@@ -21,11 +21,14 @@ def read_data(debug=True):
 
     # 去除掉cat_features
     features = train_df.columns.tolist()
-    cat_features= [feature for feature in features if 'labelencoder' in feature]
+    cat_features = [
+        feature for feature in features if 'labelencoder' in feature]
     train_df = train_df.drop(cat_features, axis=1)
     test_df = test_df.drop(cat_features, axis=1)
-    train_sp = sparse.load_npz("preprocess/train_sample_sparse.npz").tocsr()[:10000 if debug else train_df.shape[0], :]
-    test_sp = sparse.load_npz("preprocess/test_sample_sparse.npz").tocsr()[:10000 if debug else test_df.shape[0], :]
+    train_sp = sparse.load_npz(
+        "preprocess/train_sample_sparse.npz").tocsr()[:10000 if debug else train_df.shape[0], :]
+    test_sp = sparse.load_npz(
+        "preprocess/test_sample_sparse.npz").tocsr()[:10000 if debug else test_df.shape[0], :]
     train_x = sparse.hstack((train_df, train_sp)).tocsr()
     test_x = sparse.hstack((test_df, test_sp)).tocsr()
     print("done")
@@ -86,8 +89,12 @@ def param_beyesian(train):
         return max(cv_result['test-auc-mean'])
     train_y = pd.read_csv("preprocess/train_sample.csv", nrows=NROWS)['label']
     sample_index = train_y.sample(frac=0.1, random_state=2020).index.tolist()
-    train_data = xgb.DMatrix(train.tocsr()[sample_index, :
-                             ], train_y.loc[sample_index].values, silent=True)
+    train_data = xgb.DMatrix(
+        train.tocsr()[
+            sample_index,
+            :],
+        train_y.loc[sample_index].values,
+        silent=True)
     xgb_bo = BayesianOptimization(
         xgb_cv,
         {'colsample_bytree': (0.5, 1),
@@ -95,10 +102,11 @@ def param_beyesian(train):
          'min_child_weight': (1, 30),
          'max_depth': (5, 12),
          'reg_alpha': (0, 5),
-         'eta':(0.02, 0.2),
+         'eta': (0.02, 0.2),
          'reg_lambda': (0, 5)}
     )
-    xgb_bo.maximize(init_points=21, n_iter=5)  # init_points表示初始点，n_iter代表迭代次数（即采样数）
+    # init_points表示初始点，n_iter代表迭代次数（即采样数）
+    xgb_bo.maximize(init_points=21, n_iter=5)
     print(xgb_bo.max['target'], xgb_bo.max['params'])
     return xgb_bo.max['params']
 
@@ -113,7 +121,8 @@ def train_predict(train, test, params):
     """
     train_y = pd.read_csv("preprocess/train_sample.csv")['label']
     test_data = xgb.DMatrix(test)
-    truth_test = pd.read_csv('preprocess/test_truth_sample.csv')['label'].values
+    truth_test = pd.read_csv(
+        'preprocess/test_truth_sample.csv')['label'].values
 
     params = params_append(params)
     kf = KFold(n_splits=5, random_state=2020, shuffle=True)
@@ -130,20 +139,36 @@ def train_predict(train, test, params):
                                  train_y.loc[train_part_index])
         eval = xgb.DMatrix(train.tocsr()[eval_index, :],
                            train_y.loc[eval_index])
-        bst = xgb.train(params, train_part, NBR, [(train_part, 'train'),
-                                                          (eval, 'eval')], verbose_eval=VBE,
-                        maximize=False, early_stopping_rounds=ESR, evals_result=EVAL_RESULT)
+        bst = xgb.train(params,
+                        train_part,
+                        NBR,
+                        [(train_part,
+                          'train'),
+                         (eval,
+                          'eval')],
+                        verbose_eval=VBE,
+                        maximize=False,
+                        early_stopping_rounds=ESR,
+                        evals_result=EVAL_RESULT)
         prediction_test += bst.predict(test_data)
         eval_pre = bst.predict(eval)
-        prediction_train = prediction_train.append(pd.Series(eval_pre, index=eval_index))
+        prediction_train = prediction_train.append(
+            pd.Series(eval_pre, index=eval_index))
         cv_score.append(max(EVAL_RESULT['eval']['auc']))
         print(cv_score)
         print(roc_auc_score(truth_test, prediction_test / 5))
     print(cv_score, sum(cv_score) / 5)
     print(roc_auc_score(truth_test, prediction_test / 5))
     print(roc_auc_score(train_y.values, prediction_train.sort_index().values))
-    pd.Series(prediction_train.sort_index().values).to_csv("result/train_xgboost.csv", index=False)
-    pd.Series(prediction_test / 5).to_csv("result/test_xgboost.csv", index=False)
+    pd.Series(
+        prediction_train.sort_index().values).to_csv(
+        "result/train_xgboost.csv",
+        index=False)
+    pd.Series(
+        prediction_test /
+        5).to_csv(
+        "result/test_xgboost.csv",
+        index=False)
     return
 
 
@@ -157,7 +182,14 @@ if __name__ == "__main__":
     # print(best_clf)
 
     # 根据寻优结果设置参数
-    best_clf = {'colsample_bytree': 0.8648389082861029, 'eta': 0.10507276399720099, 'max_depth': 5.587245378907312, 'min_child_weight': 1.8588942349272135, 'reg_alpha': 4.106739442342471, 'reg_lambda': 1.8352371284719622, 'subsample': 0.5630865519911432}
+    best_clf = {
+        'colsample_bytree': 0.8648389082861029,
+        'eta': 0.10507276399720099,
+        'max_depth': 5.587245378907312,
+        'min_child_weight': 1.8588942349272135,
+        'reg_alpha': 4.106739442342471,
+        'reg_lambda': 1.8352371284719622,
+        'subsample': 0.5630865519911432}
 
     # 模型训练与预测
     train_predict(train, test, best_clf)

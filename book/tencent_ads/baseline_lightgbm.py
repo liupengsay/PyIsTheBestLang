@@ -23,7 +23,9 @@ def read_data(debug=True):
     test_svd = pd.read_csv("preprocess/test_sample_svd.csv", nrows=NROWS)
     train = pd.concat([train_df, train_svd], axis=1)
     test = pd.concat([test_df, test_svd], axis=1)
-    train['label'] = pd.read_csv('preprocess/train_sample.csv', nrows=NROWS)['label'].values
+    train['label'] = pd.read_csv(
+        'preprocess/train_sample.csv',
+        nrows=NROWS)['label'].values
     print("done")
     return train, test
 
@@ -68,7 +70,8 @@ def param_hyperopt(train):
     label = 'label'
     features = train.columns.tolist()
     features.remove('label')
-    cat_features= [feature for feature in features if 'labelencoder' in feature]
+    cat_features = [
+        feature for feature in features if 'labelencoder' in feature]
     train_data = lgb.Dataset(train[features], train[label], silent=True)
     params_space = {
         'learning_rate': hp.uniform('learning_rate', 1e-2, 5e-1),
@@ -103,7 +106,8 @@ def train_predict(train, test, params, debug):
     features = train.columns.tolist()
     features.remove(label)
     print(train.shape, test.shape)
-    cat_features= [feature for feature in features if 'labelencoder' in feature]
+    cat_features = [
+        feature for feature in features if 'labelencoder' in feature]
     params = params_append(params)
     kf = KFold(n_splits=5, random_state=2020, shuffle=True)
     prediction_test = 0
@@ -112,26 +116,48 @@ def train_predict(train, test, params, debug):
     ESR = 30
     NBR = 10000
     VBE = 50
-    for train_part_index, eval_index in kf.split(train[features], train[label]):
+    for train_part_index, eval_index in kf.split(
+            train[features], train[label]):
         # 模型训练
         train_part = lgb.Dataset(train[features].loc[train_part_index],
                                  train[label].loc[train_part_index])
         eval = lgb.Dataset(train[features].loc[eval_index],
                            train[label].loc[eval_index])
-        bst = lgb.train(params, train_part, num_boost_round=NBR,
-                        valid_sets=[train_part, eval],
-                        valid_names=['train', 'valid'],categorical_feature=cat_features,
-                        early_stopping_rounds=ESR, verbose_eval=VBE)
+        bst = lgb.train(
+            params,
+            train_part,
+            num_boost_round=NBR,
+            valid_sets=[
+                train_part,
+                eval],
+            valid_names=[
+                'train',
+                'valid'],
+            categorical_feature=cat_features,
+            early_stopping_rounds=ESR,
+            verbose_eval=VBE)
         prediction_test += bst.predict(test[features])
-        prediction_train = prediction_train.append(pd.Series(bst.predict(train[features].loc[eval_index]),
-                                                             index=eval_index))
+        prediction_train = prediction_train.append(
+            pd.Series(
+                bst.predict(
+                    train[features].loc[eval_index]),
+                index=eval_index))
         cv_score.append(bst.best_score['valid']['auc'])
     print(cv_score, sum(cv_score) / 5)
     NROWS = 10000 if debug else None
-    truth_test = pd.read_csv('preprocess/test_truth_sample.csv', nrows=NROWS)['label'].values
+    truth_test = pd.read_csv(
+        'preprocess/test_truth_sample.csv',
+        nrows=NROWS)['label'].values
     print(roc_auc_score(truth_test, prediction_test / 5))
-    pd.Series(prediction_train.sort_index().values).to_csv("result/train_lightgbm.csv", index=False)
-    pd.Series(prediction_test / 5).to_csv("result/test_lightgbm.csv", index=False)
+    pd.Series(
+        prediction_train.sort_index().values).to_csv(
+        "result/train_lightgbm.csv",
+        index=False)
+    pd.Series(
+        prediction_test /
+        5).to_csv(
+        "result/test_lightgbm.csv",
+        index=False)
     return
 
 
@@ -146,10 +172,15 @@ if __name__ == "__main__":
     # print(best_clf)
 
     # 寻优后设置参数
-    best_clf = {'bagging_fraction': 0.920269687818116, 'bagging_freq': 1,
-                'feature_fraction': 0.6748121703594134, 'learning_rate': 0.2534183350764367,
-                'min_child_samples': 3, 'num_leaves': 10, 'reg_alpha': 0,
-                'reg_lambda': 9.986223861515665}
+    best_clf = {
+        'bagging_fraction': 0.920269687818116,
+        'bagging_freq': 1,
+        'feature_fraction': 0.6748121703594134,
+        'learning_rate': 0.2534183350764367,
+        'min_child_samples': 3,
+        'num_leaves': 10,
+        'reg_alpha': 0,
+        'reg_lambda': 9.986223861515665}
 
     # 训练预测和结果输出
     train_predict(train, test, best_clf, debug)
