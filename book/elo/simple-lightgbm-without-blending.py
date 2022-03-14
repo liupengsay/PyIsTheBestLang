@@ -5,16 +5,15 @@
 """
 import datetime
 import gc
+import time
+import warnings
+from contextlib import contextmanager
+
 import lightgbm as lgb
 import matplotlib.pyplot as plt
 import numpy as np
-import os
 import pandas as pd
 import seaborn as sns
-import time
-import warnings
-
-from contextlib import contextmanager
 from pandas.core.common import SettingWithCopyWarning
 from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import KFold, StratifiedKFold

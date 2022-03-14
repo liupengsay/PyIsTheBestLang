@@ -4,13 +4,14 @@
 参数寻优办法：hyperopt
 模型：lightgbm
 """
+import lightgbm as lgb
 import numpy as np
 import pandas as pd
-import lightgbm as lgb
-from sklearn.model_selection import KFold
 from hyperopt import hp, fmin, tpe
 from numpy.random import RandomState
 from sklearn.metrics import mean_squared_error
+from sklearn.model_selection import KFold
+
 
 def read_data(debug=True):
     """

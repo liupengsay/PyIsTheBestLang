@@ -1,8 +1,10 @@
 
 import pandas as pd
-from sklearn.model_selection import KFold
 from catboost import Pool, CatBoostClassifier
 from sklearn.metrics import roc_auc_score
+from sklearn.model_selection import KFold
+
+
 def read_data():
     """
 
