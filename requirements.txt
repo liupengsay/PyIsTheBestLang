@@ -7,3 +7,5 @@ seaborn~=0.11.2
 lightgbm
 xgboost
 hyperopt
+bayes_opt
+catboost
