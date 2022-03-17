@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="增加依赖包">
+    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/详细简历.docx" beforeDir="false" afterPath="$PROJECT_DIR$/document/详细简历.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/document/详细简历-刘鹏.docx" beforeDir="false" afterPath="$PROJECT_DIR$/document/详细简历-刘鹏.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/solution.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/solution.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/tests/test_solution.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/tests/test_solution.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +42,7 @@
       <recent name="D:\PCRecord\leetcode\tests" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for test_solution.Test.test_function_1">
+  <component name="RunManager" selected="Python tests.Python tests for test_solution.Test.test_num_str">
     <configuration name="Python tests for test_solution.Test" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -67,6 +68,20 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;test_solution.Test.test_function_1&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_solution.Test.test_num_str" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="PCRecord" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_solution.Test.test_num_str&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -100,6 +115,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Python tests for test_solution.Test.test_num_str" />
         <item itemvalue="Python tests.Python tests for test_solution.Test.test_function_1" />
         <item itemvalue="Python tests.Python tests in test_solution.py" />
         <item itemvalue="Python tests.Python tests for test_solution.Test" />
@@ -144,7 +160,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647302559053</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="增加特征选择与参数调优">
+      <created>1647390019066</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1647390019066</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -152,6 +175,33 @@
     <MESSAGE value="调整结构" />
     <MESSAGE value="增加pytest.ini" />
     <MESSAGE value="增加依赖包" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加依赖包" />
+    <MESSAGE value="增加特征选择与参数调优" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加特征选择与参数调优" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/leetcode/solution.py</url>
+          <line>24</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/leetcode/solution.py</url>
+          <line>17</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/leetcode/solution.py</url>
+          <line>19</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/leetcode/solution.py</url>
+          <line>15</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
