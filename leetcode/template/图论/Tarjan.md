@@ -1,3 +1,6 @@
+
+
+```Python3
 import heapq
 
 class Solution:
@@ -51,3 +54,55 @@ class Solution:
                 if ans[j] == -1:
                     heapq.heappush(stack, [cur[0]+1, j])
         return ans
+```
+
+```Python3
+class Solution:
+    def longestCycle(self, edges: List[int]) -> int:
+
+        n = len(edges)
+        edge = [[] for _ in range(n)]
+        for i in range(n):
+            if edges[i] != -1:
+                edge[i] = [edges[i]]
+        # 遍历找强连通分量子树
+        visit = [0] * n
+        root = [0] * n
+        index = 1
+        cut_node = []
+        cut_edge = []
+        stack = []
+        ans = -1
+        def tarjan(i):
+            nonlocal index, ans
+            visit[i] = root[i] = index
+            index += 1
+            stack.append(i)
+            for j in edge[i]:
+                if not visit[j]:
+                    tarjan(j)
+                    root[i] = min(root[i], root[j])
+                    if visit[i] < root[j]:
+                        cut_edge.append([i, j])
+                    if visit[i] <= root[j]:
+                        cut_node.append(i)
+                elif j in stack:
+                    root[i] = min(root[i], visit[j])
+
+            if root[i] == visit[i]:
+                lst = []
+                while stack[-1] != i:
+                    lst.append(stack.pop())
+                lst.append(stack.pop())
+                r = min(root[ls] for ls in lst)
+                for ls in lst:
+                    root[ls] = r
+                if len(lst) > 1:
+                    ans = max(ans, len(lst))
+            return
+
+        for i in range(n):
+            if not visit[i]:
+                tarjan(i)
+        return ans
+```
