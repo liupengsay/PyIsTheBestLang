@@ -106,3 +106,110 @@ class Solution:
                 tarjan(i)
         return ans
 ```
+
+```Python3
+# Tarjan算法模板，有向图
+    
+def check_graph(edge: List[list], n):
+    # edge为边连接关系，n为节点数
+    
+    # 访问序号与根节点序号
+    visit = [0] * n
+    root = [0] * n
+    # 割点
+    cut_node = []
+    # 割边
+    cut_edge = []
+    # 强连通分量子树
+    sub_group = []
+    
+    # 中间变量
+    stack = []
+    index = 1
+    def tarjan(i):
+        nonlocal index
+        visit[i] = root[i] = index
+        index += 1
+        stack.append(i)
+        for j in edge[i]:
+            if not visit[j]:
+                tarjan(j)
+                root[i] = min(root[i], root[j])
+                if visit[i] < root[j]:
+                    cut_edge.append([i, j])
+                if visit[i] <= root[j]:
+                    cut_node.append(i)
+            elif j in stack:
+                root[i] = min(root[i], visit[j])
+
+        if root[i] == visit[i]:
+            lst = []
+            while stack[-1] != i:
+                lst.append(stack.pop())
+            lst.append(stack.pop())
+            r = min(root[ls] for ls in lst)
+            for ls in lst:
+                root[ls] = r
+            sub_group.append(lst)
+        return 
+        
+    for k in range(n):
+        if not visit[k]:
+            tarjan(k)
+    
+    # 注意自环的存在
+    return cut_edge, cut_node, sub_group
+```
+
+```Python3
+# Tarjan算法模板，无向图
+    
+def check_graph(edge: List[list], n):
+    # edge为边连接关系，n为节点数
+    
+    # 访问序号与根节点序号
+    visit = [0] * n
+    root = [0] * n
+    # 割点
+    cut_node = []
+    # 割边
+    cut_edge = []
+    # 强连通分量子树
+    sub_group = []
+    
+    # 中间变量
+    stack = []
+    index = 1
+    def tarjan(i, father):
+        nonlocal index
+        visit[i] = root[i] = index
+        index += 1
+        stack.append(i)
+        for j in edge[i]:
+            if j != father:
+                if not visit[j]:
+                    tarjan(j, i)
+                    root[i] = min(root[i], root[j])
+                    if visit[i] < root[j]:
+                        cut_edge.append([i, j])
+                    if visit[i] <= root[j]:
+                        cut_node.append(i)
+                elif j in stack:
+                    root[i] = min(root[i], visit[j])
+
+        if root[i] == visit[i]:
+            lst = []
+            while stack[-1] != i:
+                lst.append(stack.pop())
+            lst.append(stack.pop())
+            r = min(root[ls] for ls in lst)
+            for ls in lst:
+                root[ls] = r
+            sub_group.append(lst)
+        return 
+        
+    for k in range(n):
+        if not visit[k]:
+            tarjan(k, -1)
+    return cut_edge, cut_node, sub_group
+```
