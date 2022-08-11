@@ -4,11 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="">
+    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="字节一面面试coding题目">
+      <change afterPath="$PROJECT_DIR$/leetcode/competition/周赛题解.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode/discussion/刷题交流.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode/discussion/刷题利器.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode/discussion/力扣呼叫转移.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode/discussion/数学公式模板.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode/guardian.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode/picture/刷题利器.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode/picture/灵活复杂度.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode/template/图论/Floyd.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/详细简历-刘鹏.docx" beforeDir="false" afterPath="$PROJECT_DIR$/document/详细简历-刘鹏.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/document/力扣记录.pptx" beforeDir="false" afterPath="$PROJECT_DIR$/document/力扣记录.pptx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/discussion/单解题思路.md" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/discussion/单解题思路.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/discussion/发帖回复.md" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/discussion/发帖回复.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/discussion/多解题思路.md" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/discussion/多解题思路.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/leetcode/solution.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/solution.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/tests/test_solution.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/tests/test_solution.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/数据结构/并查集.md" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/template/数据结构/并查集.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,101 +37,161 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/../Soft/Anaconda3-2021.11/Lib/site-packages/scipy/optimize/_minimize.py" root0="SKIP_INSPECTION" />
+  </component>
   <component name="ProjectId" id="26OhvoNbKkfEzYckFLod5ENhdfD" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_MARK_IGNORED_FILES_AS_EXCLUDED" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/leetcode/tests" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/leetcode/discussion" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="run.code.analysis.last.selected.profile" value="aDefault" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\PCRecord\leetcode\discussion" />
       <recent name="D:\PCRecord\leetcode\tests" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\PCRecord\leetcode" />
+      <recent name="D:\PCRecord\leetcode\template\计算几何" />
+      <recent name="D:\PCRecord\leetcode\template\图论" />
+      <recent name="D:\PCRecord\leetcode\template\数据结构" />
+      <recent name="D:\PCRecord\leetcode\template\算法基础" />
+    </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for test_solution.Test.test_num_str">
-    <configuration name="Python tests for test_solution.Test" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.guardian">
+    <configuration name="accomplish (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/leetcode/accomplish.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="accomplish" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PCRecord" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="D:\PCRecord\leetcode\accomplish.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="competition" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PCRecord" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/leetcode/competition.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="guardian" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PCRecord" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode/tests" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_solution.Test&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <option name="SCRIPT_NAME" value="D:\PCRecord\leetcode\guardian.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for test_solution.Test.test_function_1" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="solution" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode/tests" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_solution.Test.test_function_1&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Python tests for test_solution.Test.test_num_str" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="PCRecord" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode/tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_solution.Test.test_num_str&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Python tests in test_reg_presentation.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="PCRecord" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/study/tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/study/tests/test_reg_presentation.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Python tests in test_solution.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="PCRecord" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode/tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/leetcode/tests/test_solution.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/leetcode/solution.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Python tests for test_solution.Test.test_num_str" />
-        <item itemvalue="Python tests.Python tests for test_solution.Test.test_function_1" />
-        <item itemvalue="Python tests.Python tests in test_solution.py" />
-        <item itemvalue="Python tests.Python tests for test_solution.Test" />
-        <item itemvalue="Python tests.Python tests in test_reg_presentation.py" />
+        <item itemvalue="Python.guardian" />
+        <item itemvalue="Python.solution" />
+        <item itemvalue="Python.competition" />
+        <item itemvalue="Python.accomplish (1)" />
+        <item itemvalue="Python.accomplish" />
       </list>
     </recent_temporary>
   </component>
@@ -167,41 +239,163 @@
       <option name="project" value="LOCAL" />
       <updated>1647390019066</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="字节一面面试coding题目">
+      <created>1647523394486</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1647523394486</updated>
+    </task>
+    <task id="LOCAL-00007" summary="力扣资料整理">
+      <created>1659285605423</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1659285605423</updated>
+    </task>
+    <task id="LOCAL-00008" summary="增加OI竞赛项">
+      <created>1659285666912</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1659285666912</updated>
+    </task>
+    <task id="LOCAL-00009" summary="更新并查集与tarjan强连通分量">
+      <created>1659396832160</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1659396832160</updated>
+    </task>
+    <task id="LOCAL-00010" summary="力扣发帖记录">
+      <created>1659701186013</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1659701186013</updated>
+    </task>
+    <task id="LOCAL-00011" summary="增加自定义排序">
+      <created>1659756052434</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1659756052434</updated>
+    </task>
+    <task id="LOCAL-00012" summary="第305场周赛题解">
+      <created>1659852546533</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1659852546533</updated>
+    </task>
+    <task id="LOCAL-00013" summary="更新双指针与快慢指针模板">
+      <created>1659873026638</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1659873026638</updated>
+    </task>
+    <task id="LOCAL-00014" summary="更新字典树结构">
+      <created>1659913891600</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1659913891600</updated>
+    </task>
+    <task id="LOCAL-00015" summary="本地化不提交">
+      <created>1659913914960</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1659913914960</updated>
+    </task>
+    <task id="LOCAL-00016" summary="解题之道">
+      <created>1660003212289</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1660003212289</updated>
+    </task>
+    <task id="LOCAL-00017" summary="更新Tarjan与题解模板">
+      <created>1660005810330</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1660005810330</updated>
+    </task>
+    <task id="LOCAL-00018" summary="马拉车算法">
+      <created>1660129804806</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1660129804806</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="autopep8" />
     <MESSAGE value="调整结构" />
     <MESSAGE value="增加pytest.ini" />
     <MESSAGE value="增加依赖包" />
     <MESSAGE value="增加特征选择与参数调优" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加特征选择与参数调优" />
+    <MESSAGE value="字节一面面试coding题目" />
+    <MESSAGE value="力扣资料整理" />
+    <MESSAGE value="增加OI竞赛项" />
+    <MESSAGE value="更新并查集与tarjan强连通分量" />
+    <MESSAGE value="力扣发帖记录" />
+    <MESSAGE value="增加自定义排序" />
+    <MESSAGE value="第305场周赛题解" />
+    <MESSAGE value="更新双指针与快慢指针模板" />
+    <MESSAGE value="更新字典树结构" />
+    <MESSAGE value="本地化不提交" />
+    <MESSAGE value="解题之道" />
+    <MESSAGE value="更新Tarjan与题解模板" />
+    <MESSAGE value="马拉车算法" />
+    <option name="LAST_COMMIT_MESSAGE" value="马拉车算法" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/leetcode/solution.py</url>
-          <line>24</line>
-          <option name="timeStamp" value="9" />
+          <url>file://$PROJECT_DIR$/leetcode/tests/test_solution.py</url>
+          <line>38</line>
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/leetcode/solution.py</url>
-          <line>17</line>
-          <option name="timeStamp" value="10" />
+          <url>file://$PROJECT_DIR$/leetcode/tests/test_solution.py</url>
+          <line>33</line>
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/leetcode/solution.py</url>
-          <line>19</line>
-          <option name="timeStamp" value="11" />
+          <url>file://$PROJECT_DIR$/leetcode/tests/test_solution.py</url>
+          <line>30</line>
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/leetcode/solution.py</url>
-          <line>15</line>
-          <option name="timeStamp" value="12" />
+          <url>file://$PROJECT_DIR$/leetcode/tests/test_solution.py</url>
+          <line>28</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/leetcode/guardian.py</url>
+          <line>99</line>
+          <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="trie.dct['0']['0']" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
