@@ -1,51 +1,20 @@
-import itertools
+
+
 from typing import List
 
 
-class Trie:
-    def __init__(self):
-        self.dct = dict()
-        return
+import bisect
 
-    def update(self, word):
-        cur = self.dct
-        for w in word:
-            if w not in cur:
-                cur[w] = dict()
-            cur = cur[w]
-        return
+# Definition for polynomial singly-linked list.
+# class PolyNode:
+#     def __init__(self, x=0, y=0, next=None):
+#         self.coefficient = x
+#         self.power = y
+#         self.next = next
+
+
+from collections import defaultdict
 
 
 class Solution:
-    def findAnagrams(self, s: str, p: str) -> List[int]:
-        target = [0]*26
-        for w in p:
-            target[ord(w)-ord('a')] += 1
-
-        n = len(p)
-        ans = []
-        cur = [0]*26
-        for i, w in enumerate(s):
-            cur[ord(w)-ord('a')] += 1
-            if i >= n:
-                cur[ord(s[i-n])-ord('a')] += 1
-                if cur == target:
-                    ans.append(i)
-        return ans
-
-
-
-
-
-
-
-
-
-
-
-
-
-[73,55,36,5,55,14,9,7,72,52]
-32
-69
-[-1, 1, 1, 0, 1, 0, 0, 0, -1, 1]
+    def shortestPalindrome(self, s: str) -> str:
