@@ -5,27 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/leetcode/competition/第85场双周赛题解.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/discussion/刷题之路.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/picture/平凡之路.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/picture/我得病了.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/picture/数位DP.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/picture/第85场双周赛.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/template/图论/拓扑排序.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode/picture/湖边跑步1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode/picture/湖边跑步1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode/picture/湖边跑步2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode/picture/湖边跑步3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode/template/字符串/KMP.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/competition.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/competition.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/competition/第305场周赛题解.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/discussion/刷题利器.md" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/discussion/刷题利器.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/discussion/单解题思路.md" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/discussion/单解题思路.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/discussion/发帖回复.md" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/discussion/发帖回复.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/discussion/多解题思路.md" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/discussion/多解题思路.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/leetcode/solution.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/solution.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/template/动态规划/数位DP.md" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/template/动态规划/数位DP.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/template/字符串/字典树.md" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/template/字符串/字典树.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/template/字符串/马拉车算法.md" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/template/字符串/马拉车算法.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/template/数学/快速幂.md" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/template/数学/快速幂.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/template/算法基础/前缀和与差分.md" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/template/算法基础/前缀和与差分.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/template/算法基础/排序.md" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/template/算法基础/排序.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -342,7 +328,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660261979661</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="备份更新">
+      <created>1661267940928</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1661267940928</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
