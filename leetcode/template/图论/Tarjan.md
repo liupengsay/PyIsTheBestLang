@@ -1,215 +1,28 @@
 
 
-```Python3
-import heapq
+# Tarjan
 
-class Solution:
-    def distanceToCycle(self, n, edges):
-        dct = defaultdict(list)
-        for i, j in edges:
-            dct[i].append(j)
-            dct[j].append(i)
+## 算法功能
+Tarjan 算法是基于深度优先搜索的算法，用于求解图的连通性问题，参考[60 分钟搞定图论中的 Tarjan 算法]
 
-        dfn = [0]*n
-        low = [0]*n
-        index = 1
-        stack = []
-        part = []
-        def tarjan(i, father):
-            """tarjan算法"""
-            nonlocal index, stack, part
-            dfn[i] = low[i] = index
-            index += 1
-            stack.append(i)
-            for j in dct[i]:
-                if j==father:
-                    continue
-                if not dfn[j]:
-                    tarjan(j, i)
-                    low[i] = min(low[i], low[j])  # 割点 low[i] < dfn[i]
-                                                # 割边 low[i] <= dfn[j]
-                else:
-                    low[i] = min(low[i], dfn[j])
-            lst = []
-            if dfn[i] == low[i]: # 连通分量
-                while stack[-1] != i:
-                    lst.append(stack.pop(-1))
-                lst.append(stack.pop(-1))
-            if len(lst) > 1:
-                part = lst
-            return
-        tarjan(0, -1)
+- Tarjan 算法可以在线性时间内求出**无向图的割点与桥**，进一步地可以求解**无向图的双连通分量**
+- Tarjan 算法可以也可以求解**有向图的强连通分量**，进一步地可以**求有向图的必经点与必经边**
 
-        # dijstra算法
-        ans = [-1]*n
-        stack = []
-        for i in part:
-            heapq.heappush(stack, [0, i])
-        while stack:
-            cur = heapq.heappop(stack)
-            if ans[cur[1]] != -1:
-                continue
-            ans[cur[1]] = cur[0]
-            for j in dct[cur[1]]:
-                if ans[j] == -1:
-                    heapq.heappush(stack, [cur[0]+1, j])
-        return ans
-```
+[60 分钟搞定图论中的 Tarjan 算法]: https://zhuanlan.zhihu.com/p/101923309
 
-```Python3
-class Solution:
-    def longestCycle(self, edges: List[int]) -> int:
+## 算法伪代码
 
-        n = len(edges)
-        edge = [[] for _ in range(n)]
-        for i in range(n):
-            if edges[i] != -1:
-                edge[i] = [edges[i]]
-        # 遍历找强连通分量子树
-        visit = [0] * n
-        root = [0] * n
-        index = 1
-        cut_node = []
-        cut_edge = []
-        stack = []
-        ans = -1
-        def tarjan(i):
-            nonlocal index, ans
-            visit[i] = root[i] = index
-            index += 1
-            stack.append(i)
-            for j in edge[i]:
-                if not visit[j]:
-                    tarjan(j)
-                    root[i] = min(root[i], root[j])
-                    if visit[i] < root[j]:
-                        cut_edge.append([i, j])
-                    if visit[i] <= root[j]:
-                        cut_node.append(i)
-                elif j in stack:
-                    root[i] = min(root[i], visit[j])
+## 算法模板与测试用例
+- 见Tarjan.py
 
-            if root[i] == visit[i]:
-                lst = []
-                while stack[-1] != i:
-                    lst.append(stack.pop())
-                lst.append(stack.pop())
-                r = min(root[ls] for ls in lst)
-                for ls in lst:
-                    root[ls] = r
-                if len(lst) > 1:
-                    ans = max(ans, len(lst))
-            return
+## 经典题目
+- 无向有环图求割点[1568. 使陆地分离的最少天数]
+- 无向有环图求点最近的环[2204. Distance to a Cycle in Undirected Graph]
+- 无向有环图求割边[1192. 查找集群内的「关键连接」]
+- 有向有环图求环[2360. 图中的最长环]
 
-        for i in range(n):
-            if not visit[i]:
-                tarjan(i)
-        return ans
-```
+[1192. 查找集群内的「关键连接」]: https://leetcode.cn/problems/critical-connections-in-a-network/solution/by-liupengsay-dlc2/
+[2360. 图中的最长环]: https://leetcode.cn/problems/longest-cycle-in-a-graph/solution/by-liupengsay-4ff6/
+[2204. Distance to a Cycle in Undirected Graph]: https://leetcode.cn/problems/distance-to-a-cycle-in-undirected-graph/solution/er-xu-cheng-ming-jiu-xu-zui-python3tarja-09qn/
+[1568. 使陆地分离的最少天数]: https://leetcode.cn/problems/minimum-number-of-days-to-disconnect-island/solution/by-liupengsay-zd7w/
 
-```Python3
-# Tarjan算法模板，有向图
-    
-def check_graph(edge: List[list], n):
-    # edge为边连接关系，n为节点数
-    
-    # 访问序号与根节点序号
-    visit = [0] * n
-    root = [0] * n
-    # 割点
-    cut_node = []
-    # 割边
-    cut_edge = []
-    # 强连通分量子树
-    sub_group = []
-    
-    # 中间变量
-    stack = []
-    index = 1
-    def tarjan(i):
-        nonlocal index
-        visit[i] = root[i] = index
-        index += 1
-        stack.append(i)
-        for j in edge[i]:
-            if not visit[j]:
-                tarjan(j)
-                root[i] = min(root[i], root[j])
-                if visit[i] < root[j]:
-                    cut_edge.append([i, j])
-                if visit[i] <= root[j]:
-                    cut_node.append(i)
-            elif j in stack:
-                root[i] = min(root[i], visit[j])
-
-        if root[i] == visit[i]:
-            lst = []
-            while stack[-1] != i:
-                lst.append(stack.pop())
-            lst.append(stack.pop())
-            r = min(root[ls] for ls in lst)
-            for ls in lst:
-                root[ls] = r
-            sub_group.append(lst)
-        return 
-        
-    for k in range(n):
-        if not visit[k]:
-            tarjan(k)
-    
-    # 注意自环的存在
-    return cut_edge, cut_node, sub_group
-```
-
-```Python3
-# Tarjan算法模板，无向图
-    
-def check_graph(edge: List[list], n):
-    # edge为边连接关系，n为节点数
-    
-    # 访问序号与根节点序号
-    visit = [0] * n
-    root = [0] * n
-    # 割点
-    cut_node = []
-    # 割边
-    cut_edge = []
-    # 强连通分量子树
-    sub_group = []
-    
-    # 中间变量
-    stack = []
-    index = 1
-    def tarjan(i, father):
-        nonlocal index
-        visit[i] = root[i] = index
-        index += 1
-        stack.append(i)
-        for j in edge[i]:
-            if j != father:
-                if not visit[j]:
-                    tarjan(j, i)
-                    root[i] = min(root[i], root[j])
-                    if visit[i] < root[j]:
-                        cut_edge.append([i, j])
-                    if visit[i] <= root[j]:
-                        cut_node.append(i)
-                elif j in stack:
-                    root[i] = min(root[i], visit[j])
-
-        if root[i] == visit[i]:
-            lst = []
-            while stack[-1] != i:
-                lst.append(stack.pop())
-            lst.append(stack.pop())
-            r = min(root[ls] for ls in lst)
-            for ls in lst:
-                root[ls] = r
-            sub_group.append(lst)
-        return 
-        
-    for k in range(n):
-        if not visit[k]:
-            tarjan(k, -1)
-    return cut_edge, cut_node, sub_group
-```

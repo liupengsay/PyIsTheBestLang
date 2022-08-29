@@ -1,6 +1,6 @@
 import logging
 import unittest
-from leetcode.solution import Solution
+from leetcode.problem_0 import Solution
 
 
 class Test(unittest.TestCase):
