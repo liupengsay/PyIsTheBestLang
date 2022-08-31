@@ -5,35 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/leetcode/other/weekly_competition.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/picture/第308场周赛排名.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/picture/算法导论.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/problem_0.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/problem_1.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/problem_2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/problem_3.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/problem_4.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/temp.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/temp.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/template/图论/Tarjan.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/template/图论/二分图最大权最小权匹配KM算法.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/template/图论/并查集.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/template/算法基础/前缀和与差分.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode/template/数据结构/树状数组.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode/template/数据结构/线段树.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/accomplish.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/competition.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/leetcode/discussion/单解题思路.md" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/discussion/单解题思路.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/guardian.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/other/guardian.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/solution.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/template/动态规划/树形DP.md" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/template/动态规划/树形DP.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/template/图论/Dijkstra.md" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/template/图论/Dijkstra.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/template/图论/Tarjan.md" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/template/图论/Tarjan.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/template/图论/拓扑排序.md" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/template/图论/拓扑排序.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/template/数学/数论.md" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/template/数学/数论.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/template/数据结构/并查集.md" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/template/图论/并查集.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/template/算法基础/指针.md" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/template/算法基础/指针.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/tests/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/competition/第308场周赛题解.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/tests/test_solution.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/tests/test_solution.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/discussion/多解题思路.md" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/discussion/多解题思路.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/problem_0.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/problem_0.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/problem_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/problem_1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/problem_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/problem_2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/problem_3.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/problem_3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/problem_4.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/problem_4.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/temp.md" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/temp.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/temp.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/temp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/数学/位运算.md" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/template/数学/位运算.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/数据结构/树状数组.md" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/template/数据结构/树状数组.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,8 +77,8 @@
       <recent name="D:\PCRecord\leetcode\template\计算几何" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.二分图最大权最小权匹配KM算法">
-    <configuration name="二分图最大权最小权匹配KM算法" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.Python tests in 线段树.py">
+    <configuration name="线段树" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -101,11 +86,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode/template/图论" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode/template/数据结构" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/leetcode/template/图论/二分图最大权最小权匹配KM算法.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/leetcode/template/数据结构/线段树.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -114,97 +99,69 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="problem_0" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for 线段树.test_segment_tree_get_sum" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode/template/数据结构" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/leetcode/problem_0.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;线段树.test_segment_tree_get_sum&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="problem_2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for 线段树.test_segment_tree_range_sum" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode/template/数据结构" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/leetcode/problem_2.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;线段树.test_segment_tree_range_sum&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="problem_3" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests in 树状数组.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode/template/数据结构" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/leetcode/problem_3.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/leetcode/template/数据结构/树状数组.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="problem_4" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests in 线段树.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode/template/数据结构" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/leetcode/problem_4.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/leetcode/template/数据结构/线段树.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.二分图最大权最小权匹配KM算法" />
-        <item itemvalue="Python.problem_0" />
-        <item itemvalue="Python.problem_4" />
-        <item itemvalue="Python.problem_3" />
-        <item itemvalue="Python.problem_2" />
+        <item itemvalue="Python tests.Python tests in 线段树.py" />
+        <item itemvalue="Python.线段树" />
+        <item itemvalue="Python tests.Python tests in 树状数组.py" />
+        <item itemvalue="Python tests.Python tests for 线段树.test_segment_tree_range_sum" />
+        <item itemvalue="Python tests.Python tests for 线段树.test_segment_tree_get_sum" />
       </list>
     </recent_temporary>
   </component>
@@ -364,7 +321,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661290853285</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="备份更新KM二分图算法">
+      <created>1661733936286</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1661733936286</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -389,7 +353,8 @@
     <MESSAGE value="马拉车算法" />
     <MESSAGE value="备份更新" />
     <MESSAGE value="备份更新KMP" />
-    <option name="LAST_COMMIT_MESSAGE" value="备份更新KMP" />
+    <MESSAGE value="备份更新KM二分图算法" />
+    <option name="LAST_COMMIT_MESSAGE" value="备份更新KM二分图算法" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

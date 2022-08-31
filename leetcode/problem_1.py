@@ -3,33 +3,29 @@
 import bisect
 
 from typing import List
-
+import heapq
 import math
-from collections import defaultdict, Counter
+from collections import defaultdict, Counter, deque
 from functools import lru_cache
 
 from sortedcontainers import SortedList, SortedDict, SortedSet
 
+from sortedcontainers import SortedDict
+
 
 class Solution:
-    def reorderSpaces(self, text: str) -> str:
-        cnt = text.count(' ')
-        lst = text.split(' ')
-        lst = [ls for ls in lst if ls]
-        n = len(lst)
-        if n == 1:
-            return lst[0] + ' '*cnt
-        ans = (' ' * (cnt // (n - 1))).join(lst)
-        ans += ' ' * (cnt % (n - 1))
-        return ans
+    def getMaximumGenerated(self, n: int) -> int:
+        if n <= 1:
+            return n
+
+        nums = [0] * (n + 1)
+        nums[1] = 1
+        for i in range(2, n + 1):
+            if i % 2 == 0:
+                nums[i] = nums[i // 2]
+            else:
+                nums[i] = nums[i // 2] + nums[i // 2 + 1]
+        return max(nums)
 
 
-assert Solution().reorderSpaces(
-    "  this   is  a sentence ") == "this   is   a   sentence"
-assert Solution().reorderSpaces(
-    " practice   makes   perfect") == "practice   makes   perfect "
-assert Solution().reorderSpaces("hello   world") == "hello   world"
-assert Solution().reorderSpaces(
-    "  walks  udp package   into  bar a") == "walks  udp  package  into  bar  a "
-assert Solution().reorderSpaces("a") == "a"
-assert Solution().reorderSpaces("  aweefe  ") == "aweefe    "
+print(Solution().getMaximumGenerated(7))

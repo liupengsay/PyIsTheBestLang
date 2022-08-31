@@ -1,9 +1,6 @@
 
-# [树状数组]
-
-```Python3
 # 单点更新与前缀求和
-class TreeArray:
+class TreeArrayPoint:
     # 数组索引从1开始
     def __init__(self, n):
         self.n = n
@@ -28,17 +25,15 @@ class TreeArray:
             ans += self.c[x]
             x -= self.lowest_bit(x)
         return ans
-```
 
-![树状数组.png](../../picture/树状数组.png)
-```Python3
+
 # 使用差分数组进行区间更新与求和
-class TreeArray:
+class TreeArrayRange:
     # 数组索引从1开始
     def __init__(self, n):
         self.n = n
-        self.t1 = [0]*(n+1)
-        self.t2 = [0] *(n+1)
+        self.t1 = [0] * (n + 1)
+        self.t2 = [0] * (n + 1)
 
     @staticmethod
     def lowest_bit(x):
@@ -64,12 +59,52 @@ class TreeArray:
             ret = ret + t[k]
             k = k - self.lowest_bit(k)
         return ret
-    
+
     # 求数组的前缀区间和
     def get_sum1(self, l, r):
-        a = (r+1) * self.get_sum(self.t1, r) - self.get_sum(self.t2, r)
+        a = (r + 1) * self.get_sum(self.t1, r) - self.get_sum(self.t2, r)
         b = l * self.get_sum(self.t1, l - 1) - self.get_sum(self.t2, l - 1)
         return a - b
-```
 
-[树状数组]: https://oi-wiki.org/ds/fenwick/
+
+def test_tree_array_range():
+
+    def check(nums):
+        ceil = max(nums)
+        tree_array = TreeArrayRange(ceil)
+        ans = 0
+        for num in nums:
+            tree_array.add1(num, num, 1)
+            left = tree_array.get_sum1(1, num - 1)
+            right = tree_array.get_sum1(num + 1, ceil)
+            ans += left if left < right else right
+        return ans
+
+    assert check(nums=[1, 3, 3, 3, 2, 4, 2, 1, 2]) == 4
+    assert check(nums=[1, 2, 3, 6, 5, 4]) == 3
+    assert check(nums=[1, 5, 6, 2]) == 1
+    return
+
+
+def test_tree_array_point():
+
+    def check(nums):
+        ceil = max(nums)
+        tree_array = TreeArrayPoint(ceil)
+        ans = 0
+        for num in nums:
+            tree_array.add(num, 1)
+            left = tree_array.get_sum(num - 1)
+            right = tree_array.get_sum(ceil) - tree_array.get_sum(num)
+            ans += left if left < right else right
+        return ans
+
+    assert check(nums=[1, 3, 3, 3, 2, 4, 2, 1, 2]) == 4
+    assert check(nums=[1, 2, 3, 6, 5, 4]) == 3
+    assert check(nums=[1, 5, 6, 2]) == 1
+    return
+
+
+if __name__ == '__main__':
+    test_tree_array_range()
+    test_tree_array_point()
