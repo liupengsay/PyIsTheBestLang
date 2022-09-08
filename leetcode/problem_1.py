@@ -7,25 +7,31 @@ import heapq
 import math
 from collections import defaultdict, Counter, deque
 from functools import lru_cache
-
+from itertools import combinations
 from sortedcontainers import SortedList, SortedDict, SortedSet
 
 from sortedcontainers import SortedDict
 
 
 class Solution:
-    def getMaximumGenerated(self, n: int) -> int:
-        if n <= 1:
-            return n
-
-        nums = [0] * (n + 1)
-        nums[1] = 1
-        for i in range(2, n + 1):
-            if i % 2 == 0:
-                nums[i] = nums[i // 2]
+    def checkDistances(self, s: str, distance: List[int]) -> bool:
+        n = len(s)
+        pre = dict()
+        for i in range(n):
+            if s[i] in pre:
+                if distance[ord(s[i]) - ord('a')] != i - pre[s[i]] - 1:
+                    return False
             else:
-                nums[i] = nums[i // 2] + nums[i // 2 + 1]
-        return max(nums)
+                pre[s[i]] = i
+        return True
 
 
-print(Solution().getMaximumGenerated(7))
+def test_solution():
+    assert Solution().checkDistances(
+        "abaccb", [
+            1, 3, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+    return
+
+
+if __name__ == '__main__':
+    test_solution()

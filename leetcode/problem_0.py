@@ -9,40 +9,39 @@ from functools import lru_cache
 from sortedcontainers import SortedList, SortedDict, SortedSet
 
 from sortedcontainers import SortedDict
+import random
 
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-
-
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
 
 class Solution:
-    def pathSum(self, root: TreeNode, targetSum: int) -> int:
+    def rearrangeString(self, s: str, k: int) -> str:
 
-        def dfs(node):
-            nonlocal ans, pre
-            if not node:
-                return
-            pre += node.val
-            ans += dct[pre - targetSum]
-            dct[pre] += 1
-            dfs(node.left)
-            dfs(node.right)
-            dct[pre] -= 1
-            return
+        cnt = Counter(s)
+        stack = []
+        for w, c in cnt.items():
+            heapq.heappush(stack, [0, -c, w])
 
-        dct = defaultdict(int)
-        dct[0] = 1
-        pre = 0
-        ans = 0
-        dfs(root)
+        ans = ""
+        ind = 0
+        while stack:
+            if stack[0][0] > ind:
+                return ""
+            while stack and stack[0][0] < ind:
+                item = heapq.heappop(stack)
+                item[0] = ind
+                heapq.heappush(item)
+            _, c, w = heapq.heappop(stack)
+            c += 1
+            ans += w
+            ind += 1
+            if c < 0:
+                heapq.heappush(stack, [ind - 1 + k, c, w])
         return ans
+
+
+def test_solution():
+    assert Solution().minDistance([2, 3, 5, 12, 18], 2) == 9
+    return
+
+
+if __name__ == '__main__':
+    test_solution()

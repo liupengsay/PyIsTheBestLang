@@ -1,19 +1,27 @@
 
-class Solution:
-    def bestTeamScore(self, scores: List[int], ages: List[int]) -> int:
+from functools import lru_cache
 
-        n = len(scores) + 1
-        lst = [[ages[i], scores[i]] for i in range(n - 1)]
-        lst.append([-1, 0])
-        lst.sort()
+from sortedcontainers import SortedList, SortedDict, SortedSet
 
-        dp = [0] * n
-        for i in range(1, n):
-            age, score = lst[i]
-            dp[i] = score
-            for j in range(i):
-                if lst[j][0] == age and score + dp[j] > dp[i]:
-                    dp[i] = score + dp[j]
-                if lst[j][0] < age and lst[j][1] <= score and score + dp[j] > dp[i]:
-                    dp[i] = score + dp[j]
-        return max(dp)
+from sortedcontainers import SortedDict
+
+
+st = """执行用时：
+124 ms
+, 在所有 Python3 提交中击败了
+28.35%
+的用户
+内存消耗：
+15.7 MB
+, 在所有 Python3 提交中击败了
+80.31%
+的用户
+通过测试用例：
+64 / 64"""
+st = st.split("\n")
+i, j = st.index('内存消耗：'), st.index('通过测试用例：')
+st[i-2] = " " + st[i-2] + " "
+st[j-2] = " " + st[j-2] + " "
+print("- " + "".join(st[:i]))
+print("- " + "".join(st[i:j]))
+print("- " + "".join(st[j:]))
