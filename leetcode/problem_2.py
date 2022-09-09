@@ -14,29 +14,18 @@ from sortedcontainers import SortedDict
 import heapq
 from sortedcontainers import SortedList
 
-
-MOD = 10**9 + 7
-
-
 class Solution:
-    def numberOfWays(self, startPos: int, endPos: int, k: int) -> int:
+    def canEat(self, candiesCount: List[int], queries: List[List[int]]) -> List[bool]:
+        n = len(candiesCount)
+        pre =  [0]
+        for i in range(n):
+            pre.append(pre[-1]+candiesCount[i])
 
-        pre = defaultdict()
-        pre[startPos] = 1
-        while k:
-            nex = defaultdict()
-            for pos in pre:
-                nex[pos + 1] += pre[pos]
-                nex[pos - 1] += pre[pos]
-            for pos in nex:
-                nex[pos] %= MOD
-            pre = nex.copy()
-            k -= 1
-        return pre[endPos] % MOD
+        ans = []
 
 
 def test_solution():
-    assert Solution().countPairs([1, 3, 5, 7, 9]) == 4
+    assert Solution().minCharacters("dee", "a") == 0
     return
 
 

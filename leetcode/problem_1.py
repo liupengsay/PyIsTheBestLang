@@ -14,16 +14,14 @@ from sortedcontainers import SortedDict
 
 
 class Solution:
-    def checkDistances(self, s: str, distance: List[int]) -> bool:
-        n = len(s)
-        pre = dict()
-        for i in range(n):
-            if s[i] in pre:
-                if distance[ord(s[i]) - ord('a')] != i - pre[s[i]] - 1:
-                    return False
-            else:
-                pre[s[i]] = i
-        return True
+    def countBalls(self, lowLimit: int, highLimit: int) -> int:
+        cnt = defaultdict(int)
+        for num in range(lowLimit, highLimit+1):
+            k = sum([int(s) for s in str(num)])
+            cnt[k] += 1
+        c = max(cnt.values())
+        return [k for k in cnt if cnt[k]==c][0]
+
 
 
 def test_solution():
