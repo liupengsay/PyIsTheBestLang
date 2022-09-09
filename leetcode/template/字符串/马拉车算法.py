@@ -60,5 +60,4 @@ def minCut(s: str) -> int:
                 post[lst[left]].append(lst[right])
             left += 1
             right -= 1
-
     return ref, post

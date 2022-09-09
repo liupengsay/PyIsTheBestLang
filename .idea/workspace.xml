@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/leetcode/template/字符串/马拉车算法.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/problem_0.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/problem_0.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/problem_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/problem_1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/problem_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/problem_2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/problem_3.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/problem_3.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/problem_4.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/problem_4.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/temp.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/temp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/字符串/马拉车算法.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/template/字符串/马拉车算法.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -338,7 +331,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662642530647</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="马拉车算法获取回文串信息更新">
+      <created>1662683766686</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1662683766687</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -366,7 +366,8 @@
     <MESSAGE value="备份更新KM二分图算法" />
     <MESSAGE value="更新线段树与树状数组的区间查询和" />
     <MESSAGE value="更新周赛题解与周赛模板" />
-    <option name="LAST_COMMIT_MESSAGE" value="更新周赛题解与周赛模板" />
+    <MESSAGE value="马拉车算法获取回文串信息更新" />
+    <option name="LAST_COMMIT_MESSAGE" value="马拉车算法获取回文串信息更新" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
