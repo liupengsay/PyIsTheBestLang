@@ -5,7 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/leetcode/template/字符串/马拉车算法.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/template/字符串/马拉车算法.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode/change.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode/template/字符串/后缀数组.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode/template/字符串/后缀数组.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/problem_0.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/problem_0.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/problem_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/problem_1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/problem_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/problem_2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/problem_3.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/problem_3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/problem_4.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/problem_4.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/temp.md" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/temp.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/temp.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/temp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/数学/数论.md" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/template/数学/数论.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/数学/数论.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/template/数学/数论.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/数据结构/单调栈.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/template/数据结构/单调栈.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/数据结构/线段树.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/template/数据结构/线段树.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/luogu/submission.py" beforeDir="false" afterPath="$PROJECT_DIR$/luogu/submission.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +81,49 @@
       <recent name="D:\PCRecord\leetcode" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests in problem_3.py">
+  <component name="RunManager" selected="Python.change">
+    <configuration name="change" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PCRecord" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/leetcode/change.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="submission" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PCRecord" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/luogu" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/luogu/submission.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="temp" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -88,7 +145,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for problem_3.test_solution" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for problem_1.test_solution" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -98,11 +155,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;problem_3.test_solution&quot;" />
+      <option name="_new_target" value="&quot;problem_1.test_solution&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for problem_4.test_solution" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests in problem_1.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -112,45 +169,17 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;problem_4.test_solution&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Python tests in problem_3.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="PCRecord" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/leetcode/problem_3.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Python tests in problem_4.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="PCRecord" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/leetcode/problem_4.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/leetcode/problem_1.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Python tests in problem_3.py" />
-        <item itemvalue="Python tests.Python tests for problem_3.test_solution" />
-        <item itemvalue="Python tests.Python tests for problem_4.test_solution" />
-        <item itemvalue="Python tests.Python tests in problem_4.py" />
+        <item itemvalue="Python.change" />
+        <item itemvalue="Python tests.Python tests in problem_1.py" />
+        <item itemvalue="Python tests.Python tests for problem_1.test_solution" />
         <item itemvalue="Python.temp" />
+        <item itemvalue="Python.submission" />
       </list>
     </recent_temporary>
   </component>
@@ -338,7 +367,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662683766687</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="马拉车算法获取回文串信息更新">
+      <created>1662684255997</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1662684255997</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -402,6 +438,21 @@
           <line>11</line>
           <option name="timeStamp" value="38" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/leetcode/problem_3.py</url>
+          <line>16</line>
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/leetcode/problem_3.py</url>
+          <line>6</line>
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/leetcode/problem_4.py</url>
+          <line>17</line>
+          <option name="timeStamp" value="62" />
+        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -412,6 +463,9 @@
       </default-breakpoints>
     </breakpoint-manager>
     <watches-manager>
+      <configuration name="tests">
+        <watch expression="tree" />
+      </configuration>
       <configuration name="PythonConfigurationType">
         <watch expression="trie.dct['0']['0']" />
       </configuration>

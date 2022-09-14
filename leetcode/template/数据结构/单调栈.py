@@ -35,3 +35,33 @@ class Solution:
             if area > ans:
                 ans = area
         return ans
+
+
+MOD = 10**9 + 7
+class Solution:
+    def maxSumMinProduct(self, nums: List[int]) -> int:
+        n = len(nums)
+
+        post = [n-1]*n
+        stack = []
+        for i in range(n):
+            while stack and nums[stack[-1]] > nums[i]:
+                post[stack.pop()] = i-1
+            stack.append(i)
+
+        pre = [0]*n
+        stack = []
+        for i in range(n-1, -1, -1):
+            while stack and nums[stack[-1]] > nums[i]:
+                pre[stack.pop()] = i+1
+            stack.append(i)
+
+        pre_fix = [0]
+        for num in nums:
+            pre_fix.append(pre_fix[-1]+num)
+
+        ans = 0
+        for i in range(n):
+            if nums[i]*(post[i]-pre[i]+1) > ans:
+                ans = nums[i]*(post[i]-pre[i]+1)
+        return ans % MO

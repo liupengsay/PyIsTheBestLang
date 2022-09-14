@@ -11,21 +11,20 @@ from sortedcontainers import SortedList, SortedDict, SortedSet
 from itertools import combinations
 from sortedcontainers import SortedDict
 
-import heapq
-from sortedcontainers import SortedList
 
-class Solution:
-    def canEat(self, candiesCount: List[int], queries: List[List[int]]) -> List[bool]:
-        n = len(candiesCount)
-        pre =  [0]
-        for i in range(n):
-            pre.append(pre[-1]+candiesCount[i])
+from sortedcontainers import SortedList, SortedDict, SortedSet
+from itertools import combinations
+from sortedcontainers import SortedDict
 
-        ans = []
+
+
 
 
 def test_solution():
-    assert Solution().minCharacters("dee", "a") == 0
+    assert Solution().largestMerge("cabaa", word2="bcaaa") == "cbcabaaaaa"
+    assert Solution().largestMerge("ab", word2="abcd") == "abcdab"
+    assert Solution().largestMerge("ab", word2="aba") == "ababa"
+
     return
 
 

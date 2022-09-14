@@ -1,6 +1,7 @@
 
 
 import bisect
+import random
 
 from typing import List
 import heapq
@@ -13,21 +14,15 @@ from sortedcontainers import SortedList, SortedDict, SortedSet
 from sortedcontainers import SortedDict
 
 
-class Solution:
-    def countBalls(self, lowLimit: int, highLimit: int) -> int:
-        cnt = defaultdict(int)
-        for num in range(lowLimit, highLimit+1):
-            k = sum([int(s) for s in str(num)])
-            cnt[k] += 1
-        c = max(cnt.values())
-        return [k for k in cnt if cnt[k]==c][0]
+from functools import lru_cache
+
 
 
 
 def test_solution():
-    assert Solution().checkDistances(
-        "abaccb", [
-            1, 3, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+    assert Solution().earliestAndLatest(5, 1, 5) == [1, 1]
+    assert Solution().earliestAndLatest(27, 26, 27) == [5, 5]
+    assert Solution().earliestAndLatest(27, 1, 26) == [2, 2]
     return
 
 

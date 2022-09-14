@@ -1,23 +1,4 @@
 
-
-def get_n_bin(n, b):
-    # 整数n的b进制计算
-    def check(cur, num):
-        if cur <= 1:
-            return [[0, cur]]
-        cnt = 0
-        while cur:
-            cur //= num
-            cnt += 1
-        return [[cnt, 1]] + check(cur - num**cnt)
-
-    lst = check(n, b)
-    tmp = [0] * (lst[0][0] + 1)
-    for i, val in lst:
-        tmp[-i - 1] = val
-    return tmp
-
-
 def sieve_of_eratosthenes(n):  # 埃拉托色尼筛选法，返回少于n的素数
     primes = [True] * (n + 1)  # 范围0到n的列表
     p = 2  # 这是最小的素数
@@ -31,8 +12,22 @@ def sieve_of_eratosthenes(n):  # 埃拉托色尼筛选法，返回少于n的素�
     return len(primes)
 
 
+def get_k_bin_of_n(n: int, k: int) -> int:
+    lst = []
+    while n:
+        lst.append(n % k)
+        n //= k
+    return lst[::-1]
+
+
 def test_sieve_of_eratosthenes():
     print(sieve_of_eratosthenes(10**4))
+    return
+
+
+def test_get_k_bin_of_n():
+    for i in range(1, 100, 10000):
+        assert [int(w) for w in bin(i)[2:]] == get_k_bin_of_n(i, 2)
     return
 
 

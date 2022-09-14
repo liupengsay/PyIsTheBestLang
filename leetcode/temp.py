@@ -5,32 +5,55 @@ from sortedcontainers import SortedList, SortedDict, SortedSet
 
 from sortedcontainers import SortedDict
 
+# class Solution:
+#     def earliestAndLatest(self, n: int, firstPlayer: int, secondPlayer: int) -> List[int]:
+#
+#         def dfs(tup, step):
+#             nonlocal small, big
+#             if tup in visit:
+#                 return
+#             visit.add(tup)
+#
+#             i = 0
+#             j = len(tup)-1
+#             stack = [[]]
+#             while i<j:
+#                 nex = []
+#                 if tup[i] == firstPlayer and tup[j] == secondPlayer:
+#                     small = min(small, step)
+#                     big = max(big, step)
+#                     return
+#                 for path in stack:
+#                     nex.append(path+[tup[i]])
+#                     nex.append(path+[tup[j]])
+#                 i += 1
+#                 j -= 1
+#                 stack = nex[:]
+#
+#
+#             for state in stack:
+#                 if i == j:
+#                     state.append(tup[i])
+#                 dfs(tuple(sorted(state)), step+1)
+#             return
+#
+#         visit = set()
+#         small = n
+#         big = 0
+#         dfs(tuple(list(range(1, n+1))), 1)
+#         return [small, big]
 
-st = """执行用时：
-164 ms
-, 在所有 Python3 提交中击败了
-100.00%
-的用户
-内存消耗：
-16 MB
-, 在所有 Python3 提交中击败了
-100.00%
-的用户
-通过测试用例：
-95 / 95"""
-st = st.split("\n")
-i, j = st.index('内存消耗：'), st.index('通过测试用例：')
-st[i-2] = " " + st[i-2] + " "
-st[j-2] = " " + st[j-2] + " "
-print("- " + "".join(st[:i]))
-print("- " + "".join(st[i:j]))
-print("- " + "".join(st[j:]))
-import math
-def dfs(n):
-    if n <= 2:
-        return n
-    k = math.floor(math.sqrt(2*n+1/4)-1/2)
-    cur = k*(k+1)//2
-    return n+dfs(k*(k-1)//2+max(0, n-cur-1))
+@lru_cache(None)
+def check(i, j):
+    if i > j:
+        return [[]]
+    if i == j:
+        return [[i]]
+    res = []
+    for nex in check(i+1, j-1):
+        res.append([i]+nex)
+        res.append(nex+[j])
+    return res
 
-print(dfs(5))
+
+print(len(check(0, 27)))

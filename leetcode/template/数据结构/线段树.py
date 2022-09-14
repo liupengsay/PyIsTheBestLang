@@ -47,6 +47,111 @@ class SegmentTreeRangeSum:
         return ans
 
 
+class SegmentTreeRangeMax:
+    def __init__(self):
+        self.height = defaultdict(int)
+        self.lazy = defaultdict(int)
+
+    def push_down(self, i):
+        # 懒标记下放，注意取最大值
+        if self.lazy[i]:
+            self.height[2*i] = self.height[2*i] if self.height[2*i] > self.lazy[i] else self.lazy[i]
+            self.height[2*i+1] = self.height[2*i+1] if self.height[2*i+1] > self.lazy[i] else self.lazy[i]
+
+            self.lazy[2*i] = self.lazy[2*i] if self.lazy[2*i] > self.lazy[i] else self.lazy[i]
+            self.lazy[2*i+1] = self.lazy[2*i+1] if self.lazy[2*i+1] > self.lazy[i] else self.lazy[i]
+
+            self.lazy[i] = 0
+        return
+
+    def update(self, l, r, s, t, val, i):
+        # 更新区间最大值
+        if l<=s and t<=r:
+            self.height[i] = self.height[i] if self.height[i] > val else val
+            self.lazy[i] = self.lazy[i] if self.lazy[i] > val else val
+            return
+        self.push_down(i)
+        m = s+(t-s)//2
+        if l<=m: # 注意左右子树的边界与范围
+            self.update(l, r, s, m, val, 2*i)
+        if r>m:
+            self.update(l, r, m+1, t, val, 2*i+1)
+        self.height[i] = self.height[2*i] if self.height[2*i] > self.height[2*i+1] else self.height[2*i+1]
+        return
+
+    def query(self, l, r, s, t, i):
+        # 查询区间的最大值
+        if l<=s and t<=r:
+            return self.height[i]
+        self.push_down(i)
+        m = s+(t-s)//2
+        highest = 0
+        if l<=m:
+            cur = self.query(l, r, s, m, 2*i)
+            if cur > highest:
+                highest = cur
+        if r>m:
+            cur = self.query(l, r, m+1, t, 2*i+1)
+            if cur > highest:
+                highest = cur
+        return highest
+
+# 作者：liupengsay
+# 链接：https://leetcode.cn/problems/the-skyline-problem/solution/by-liupengsay-isfo/
+# 来源：力扣（LeetCode）
+# 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+
+class SegmentTreeMin:
+    def __init__(self):
+        self.height = defaultdict(lambda: float("inf"))
+        self.lazy = defaultdict(lambda: float("inf"))
+
+    def push_down(self, i):
+        # 懒标记下放，注意取最小值
+        if self.lazy[i] < float("inf"):
+            self.height[2*i] = self.height[2*i] if self.height[2*i] < self.lazy[i] else self.lazy[i]
+            self.height[2*i+1] = self.height[2*i+1] if self.height[2*i+1] < self.lazy[i] else self.lazy[i]
+
+            self.lazy[2*i] = self.lazy[2*i] if self.lazy[2*i] < self.lazy[i] else self.lazy[i]
+            self.lazy[2*i+1] = self.lazy[2*i+1] if self.lazy[2*i+1] < self.lazy[i] else self.lazy[i]
+
+            self.lazy[i] = float("inf")
+        return
+
+    def update(self, l, r, s, t, val, i):
+        # 更新区间最小值
+        if l<=s and t<=r:
+            self.height[i] = self.height[i] if self.height[i] < val else val
+            self.lazy[i] = self.lazy[i] if self.lazy[i] < val else val
+            return
+        self.push_down(i)
+        m = s+(t-s)//2
+        if l<=m: # 注意左右子树的边界与范围
+            self.update(l, r, s, m, val, 2*i)
+        if r>m:
+            self.update(l, r, m+1, t, val, 2*i+1)
+        self.height[i] = self.height[2*i] if self.height[2*i] < self.height[2*i+1] else self.height[2*i+1]
+        return
+
+    def query(self, l, r, s, t, i):
+        # 查询区间的最小值
+        if l<=s and t<=r:
+            return self.height[i]
+        self.push_down(i)
+        m = s+(t-s)//2
+        highest = float("inf")
+        if l<=m:
+            cur = self.query(l, r, s, m, 2*i)
+            if cur < highest:
+                highest = cur
+        if r>m:
+            cur = self.query(l, r, m+1, t, 2*i+1)
+            if cur < highest:
+                highest = cur
+        return highest if highest < float("inf") else -1
+
+
 def test_segment_tree_range_sum():
 
     def check(nums):

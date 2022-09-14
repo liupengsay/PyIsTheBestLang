@@ -12,38 +12,41 @@ from sortedcontainers import SortedDict
 import random
 
 
-"""
-# Definition for an Interval.
-class Interval:
-    def __init__(self, start: int = None, end: int = None):
-        self.start = start
-        self.end = end
-"""
-
-
-from sortedcontainers import SortedList
+from collections import defaultdict
 
 
 class Solution:
-    def busiestServers(self, k: int, arrival: List[int], load: List[int]) -> List[int]:
-        cnt = defaultdict(int)
-        stack = []
-        null = SortedList(list(range(k)))
-        for i, start in enumerate(arrival):
-            while stack and stack[0][0] <= start:
-                _, ind = heapq.heappop(stack)
-                null.add(ind)
-            if null:
-                j = i % k
-                p = null.bisect_left(j)
-                if 0 <= p < len(null):
-                    cnt[null[p]] += 1
-                    heapq.heappush(stack, [start + load[i], null[p]])
-                else:
-                    cnt[null[0]] += 1
-                    heapq.heappush(stack, [start + load[i], null[0]])
-        target = max(cnt.values())
-        return [k for k in cnt if cnt[k] == target]
+    def restoreIpAddresses(self, s: str) -> List[str]:
+
+        def check(st):
+            if len(st) == 1:
+                return True
+            if st[0] == "0":
+                return False
+            return int(st) <= 255
+
+        def dfs(pre, st, i):
+            if len(pre) > 4:
+                return
+            if st and not check(st):
+                return
+            if i == n:
+                if st:
+                    pre.append(st)
+                if len(pre) == 4 and all(check(st) for st in pre) and len("".join(pre)) == n:
+                    ans.append(".".join(pre))
+                return
+            if st:
+                dfs(pre+[st], s[i], i + 1)
+            dfs(pre, st + s[i], i + 1)
+            return
+
+        n = len(s)
+        ans = []
+        if n > 12:
+            return ans
+        dfs([], "", 0)
+        return ans
 
 
 def test_solution():
