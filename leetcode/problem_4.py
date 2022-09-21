@@ -12,14 +12,16 @@ from sortedcontainers import SortedList, SortedDict, SortedSet
 from sortedcontainers import SortedDict
 import heapq
 
-from sortedcontainers import SortedList, SortedDict, SortedSet
-from collections import defaultdict
-
-
+class Solution:
+    def validArrangement(self, pairs: List[List[int]]) -> List[List[int]]:
 
 def test_solution():
-    assert Solution().minSkips([1,3,2], 4, 2) == 2
-    return
+    dct = []
+    for i in range(2, 10):
+        dct.append(Solution().kMirror(i, 30))
+    print(dct)
+    return dct
+
 
 
 if __name__ == '__main__':

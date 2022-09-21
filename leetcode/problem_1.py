@@ -13,16 +13,22 @@ from sortedcontainers import SortedList, SortedDict, SortedSet
 
 from sortedcontainers import SortedDict
 
-
 from functools import lru_cache
 
+import random
+from itertools import permutations
 
+class Solution:
+    def findEvenNumbers(self, digits: List[int]) -> List[int]:
+        ans = set()
+        for item in permutations(digits, 3):
+            if item[0] != 0 and item[-1]%2 == 0:
+                ans.add(item[0]*100+item[1]*10+item[2])
+        return sorted(list(ans))
 
 
 def test_solution():
-    assert Solution().earliestAndLatest(5, 1, 5) == [1, 1]
-    assert Solution().earliestAndLatest(27, 26, 27) == [5, 5]
-    assert Solution().earliestAndLatest(27, 1, 26) == [2, 2]
+    assert Solution().kSimilarity(s1="abc", s2="bca") == 2
     return
 
 

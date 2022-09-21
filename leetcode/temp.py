@@ -1,59 +1,41 @@
 
-from functools import lru_cache
 
-from sortedcontainers import SortedList, SortedDict, SortedSet
+lst = []
+for i in range(1, 10000):
+    st = bin(i)[2:]
+    if st == st[::-1]:
+        lst.append(st)
 
-from sortedcontainers import SortedDict
+def check(st, k):
+    m = len(st)
+    res = 0
+    for i, w in enumerate(st):
+        if w == "1":
+            res += k**(m-1-i)
+    return str(res)
 
-# class Solution:
-#     def earliestAndLatest(self, n: int, firstPlayer: int, secondPlayer: int) -> List[int]:
-#
-#         def dfs(tup, step):
-#             nonlocal small, big
-#             if tup in visit:
-#                 return
-#             visit.add(tup)
-#
-#             i = 0
-#             j = len(tup)-1
-#             stack = [[]]
-#             while i<j:
-#                 nex = []
-#                 if tup[i] == firstPlayer and tup[j] == secondPlayer:
-#                     small = min(small, step)
-#                     big = max(big, step)
-#                     return
-#                 for path in stack:
-#                     nex.append(path+[tup[i]])
-#                     nex.append(path+[tup[j]])
-#                 i += 1
-#                 j -= 1
-#                 stack = nex[:]
-#
-#
-#             for state in stack:
-#                 if i == j:
-#                     state.append(tup[i])
-#                 dfs(tuple(sorted(state)), step+1)
-#             return
-#
-#         visit = set()
-#         small = n
-#         big = 0
-#         dfs(tuple(list(range(1, n+1))), 1)
-#         return [small, big]
+dp = [[""], [str(i) for i in range(10)]]
+for k in range(2, 12):
+    if k%2 == 1:
+        m = k//2
+        lst = []
+        for st in dp[-1]:
+            for i in range(10):
+                lst.append(st[:m] + str(i) + st[m:])
+        dp.append(lst)
+    else:
+        lst = []
+        for st in dp[-2]:
+            for i in range(10):
+                lst.append(str(i) + st + str(i))
+        dp.append(lst)
 
-@lru_cache(None)
-def check(i, j):
-    if i > j:
-        return [[]]
-    if i == j:
-        return [[i]]
-    res = []
-    for nex in check(i+1, j-1):
-        res.append([i]+nex)
-        res.append(nex+[j])
-    return res
+nums = []
+for lst in dp:
+    for num in lst:
+        if num and num[0] != "0":
+            nums.append(int(num))
+print(len(nums))
+print(len(nums[:100]))
 
 
-print(len(check(0, 27)))

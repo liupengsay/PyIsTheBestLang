@@ -1,19 +1,35 @@
 
-
-
-
-【儿须成名酒须醉】Python3+状态压缩
-- 执行用时： 36 ms , 在所有 Python3 提交中击败了 81.48% 的用户
-- 内存消耗： 14.9 MB , 在所有 Python3 提交中击败了 74.82% 的用户
-- 通过测试用例： 80 / 80
-
-芒果台开关游戏：这是开（操作1为奇数次，偶数次为关）、这是开（操作2为奇数次，偶数次为关） 、这是开（操作3为奇数次，偶数次为关）、这是开（操作4为奇数次，偶数次为关），这是开还是关？
-每个操作偶数次不改变灯泡状态，因为可以枚举每种操作的奇偶次数组合，计算相应的灯泡序列状态，想不到O(1)的复杂度，暴力比较存储O(n)也可
-- 执行用时： 40 ms, 在所有 Python3 提交中击败了 91.64 % 的用户
-- 内存消耗： 17.8 MB, 在所有 Python3 提交中击败了 17.48 % 的用户
-- 通过测试用例： 86 / 86
+### 解题思路
+【儿须成名酒须醉】Python3+广度优先搜索
+### 代码
+- 执行用时：1160 ms, 在所有 Python3 提交中击败了 79.29% 的用户
+- 内存消耗：15.1 MB, 在所有 Python3 提交中击败了 50.71% 的用户
+- 通过测试用例：60 / 60
 ```python3
-
+class Solution:
+    def kSimilarity(self, s1: str, s2: str) -> int:
+        n = len(s1)
+        lst1, lst2 = list(s1), list(s2)
+        visit = {tuple(lst1)}
+        step = 0
+        stack = [(lst1, 0)]
+        while stack:
+            nex = []
+            for pre, i in stack:
+                while i < n and pre[i] == lst2[i]:
+                    i += 1
+                if i == n:
+                    return step
+                for j in range(i+1, n):
+                    if pre[j] == lst2[i] != lst2[j]:
+                        pre[j], pre[i] = pre[i], pre[j]
+                        if tuple(pre) not in visit:
+                            visit.add(tuple(pre))
+                            nex.append([pre[:], i+1])
+                        pre[j], pre[i] = pre[i], pre[j]
+            stack = nex
+            step += 1
+        return -1
 ```
 
 # 方法二：前缀和
