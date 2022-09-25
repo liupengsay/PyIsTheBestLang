@@ -5,26 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/luogu/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/luogu/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/luogu/.idea/luogu.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/luogu/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/luogu/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/luogu/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/luogu/tests/submission.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/luogu/tests/submission.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/PCRecord.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PCRecord.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/change.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/change.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/problem_0.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/problem_0.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/problem_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/problem_1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/problem_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/problem_2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/problem_3.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/problem_3.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/problem_4.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/problem_4.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/temp.md" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/temp.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/temp.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/temp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/template/数据结构/线段树.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/template/数据结构/线段树.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/luogu/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/backup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/luogu/submission.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,9 +32,6 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/../Soft/Anaconda3-2021.11/Lib/site-packages/scipy/optimize/_minimize.py" root0="SKIP_INSPECTION" />
-  </component>
   <component name="ProjectId" id="26OhvoNbKkfEzYckFLod5ENhdfD" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -69,7 +49,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/luogu" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="run.code.analysis.last.selected.profile" value="aDefault" />
-    <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -86,7 +66,19 @@
       <recent name="D:\PCRecord\leetcode\picture" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.temp">
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.change">
     <configuration name="change" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -173,15 +165,15 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.temp" />
         <item itemvalue="Python.change" />
-        <item itemvalue="Python tests.Python tests in problem_1.py" />
-        <item itemvalue="Python tests.Python tests for problem_1.test_solution" />
-        <item itemvalue="Python tests.Python tests in problem_4.py" />
+        <item itemvalue="Python.temp" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="" />

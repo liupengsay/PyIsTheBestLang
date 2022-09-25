@@ -33,6 +33,8 @@ class Solution:
 
 def test_solution():
     assert Solution().minDistance([2, 3, 5, 12, 18], 2) == 9
+
+
     return
 
 
