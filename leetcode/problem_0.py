@@ -16,37 +16,19 @@ from collections import defaultdict
 
 
 class Solution:
-    def restoreIpAddresses(self, s: str) -> List[str]:
-
-        def check(st):
-            if len(st) == 1:
-                return True
-            if st[0] == "0":
-                return False
-            return int(st) <= 255
-
-        def dfs(pre, st, i):
-            if len(pre) > 4:
-                return
-            if st and not check(st):
-                return
-            if i == n:
-                if st:
-                    pre.append(st)
-                if len(pre) == 4 and all(check(st) for st in pre) and len("".join(pre)) == n:
-                    ans.append(".".join(pre))
-                return
-            if st:
-                dfs(pre+[st], s[i], i + 1)
-            dfs(pre, st + s[i], i + 1)
-            return
-
-        n = len(s)
-        ans = []
-        if n > 12:
-            return ans
-        dfs([], "", 0)
-        return ans
+    def transportationHub(self, path: List[List[int]]) -> int:
+        nodes = set()
+        in_degree = defaultdict(int)
+        out_degree = defaultdict(int)
+        for a, b in path:
+            in_degree[b] += 1
+            out_degree[a] += 1
+            nodes.add(a)
+            nodes.add(b)
+        for i in nodes:
+            if in_degree[i] == len(nodes) - 1 and out_degree[i] == 0:
+                return i
+        return -1
 
 
 def test_solution():

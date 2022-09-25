@@ -9,24 +9,23 @@ class SegmentTreeRangeSum:
         self.lazy = defaultdict(int)
         self.count = 0
 
-    def push_down(self, i):
+    def push_down(self, i, s, m, t):
         if self.lazy[i]:
-            self.cover[2 * i] = self.lazy[i]
-            self.cover[2 * i + 1] = self.lazy[i]
+            self.cover[2 * i] += self.lazy[i]*(m-s+1)
+            self.cover[2 * i + 1] += self.lazy[i]*(t-m)
 
-            self.lazy[2 * i] = self.lazy[i]
-            self.lazy[2 * i + 1] = self.lazy[i]
+            self.lazy[2 * i] += self.lazy[i]
+            self.lazy[2 * i + 1] += self.lazy[i]
 
             self.lazy[i] = 0
 
     def update(self, left, r, s, t, val, i):
         if left <= s and t <= r:
-            self.cover[i] += val
-            self.lazy[i] = val
+            self.cover[i] += val*(t-s+1)
+            self.lazy[i] += val
             return
-
-        self.push_down(i)
         m = s + (t - s) // 2
+        self.push_down(i, s, m, t)
         if left <= m:
             self.update(left, r, s, m, val, 2 * i)
         if r > m:
@@ -37,8 +36,8 @@ class SegmentTreeRangeSum:
     def query(self, left, r, s, t, i):
         if left <= s and t <= r:
             return self.cover[i]
-        self.push_down(i)
         m = s + (t - s) // 2
+        self.push_down(i, s, m, t)
         ans = 0
         if left <= m:
             ans += self.query(left, r, s, m, 2 * i)
@@ -196,9 +195,9 @@ def test_segment_tree_range_sum():
         segment_tree = SegmentTreeRangeSum()
         ans = 0
         for num in nums:
-            left = segment_tree.query(0, num - 1, 0, ceil + 1, 1)
-            right = segment_tree.query(num + 1, ceil, 0, ceil + 1, 1)
-            segment_tree.update(num, num, 0, ceil + 1, 1, 1)
+            left = segment_tree.query(0, num - 1, 0, ceil, 1)
+            right = segment_tree.query(num + 1, ceil, 0, ceil, 1)
+            segment_tree.update(num, num, 0, ceil, 1, 1)
             ans += left if left < right else right
         return ans
 

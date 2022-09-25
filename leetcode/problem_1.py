@@ -17,18 +17,26 @@ from functools import lru_cache
 
 import random
 from itertools import permutations
+import numpy as np
+
+from decimal import Decimal
+
+
+import heapq
+import copy
+from collections import defaultdict
 
 class Solution:
-    def findEvenNumbers(self, digits: List[int]) -> List[int]:
-        ans = set()
-        for item in permutations(digits, 3):
-            if item[0] != 0 and item[-1]%2 == 0:
-                ans.add(item[0]*100+item[1]*10+item[2])
-        return sorted(list(ans))
+    def countEven(self, num: int) -> int:
+        ans = 0
+        for i in range(1, num+1):
+            if sum([int(w) for w in str(i)]) % 2==0:
+                ans += 1
+        return ans
 
 
 def test_solution():
-    assert Solution().kSimilarity(s1="abc", s2="bca") == 2
+    assert Solution().maximumANDSum([1,2,3,4,5,6], 3) == 9
     return
 
 

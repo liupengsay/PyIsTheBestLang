@@ -14,14 +14,38 @@ from sortedcontainers import SortedDict
 import heapq
 from itertools import combinations
 
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
 class Solution:
-    def validArrangement(self, pairs: List[List[int]]) -> List[List[int]]:
+    def repeatLimitedString(self, s: str, repeatLimit: int) -> str:
+        cnt = sorted([list(item) for item in Counter(s).items()], key=lambda x: x[0], reverse=True)
+        ans = ""
+        while cnt:
+            add = min(cnt[0][1], repeatLimit)
+            ans += cnt[0][0]*add
+            cnt[0][1] -= add
+            if not cnt[0][1]:
+                cnt.pop(0)
+                continue
+            else:
+                if len(cnt) >= 2:
+                    ans += cnt[1][0]
+                    cnt[1][1] -= 1
+                    if not cnt[1][1]:
+                        cnt.pop(1)
+                else:
+                    break
+        return ans
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

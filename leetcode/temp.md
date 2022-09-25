@@ -1,36 +1,40 @@
 
 ### 解题思路
-【儿须成名酒须醉】Python3+广度优先搜索
+【儿须成名酒须醉】Python3+状压DP
+
 ### 代码
-- 执行用时：1160 ms, 在所有 Python3 提交中击败了 79.29% 的用户
-- 内存消耗：15.1 MB, 在所有 Python3 提交中击败了 50.71% 的用户
-- 通过测试用例：60 / 60
+- 执行用时：876 ms, 在所有 Python3 提交中击败了 50.75% 的用户
+- 内存消耗：15.2 MB, 在所有 Python3 提交中击败了 74.63% 的用户
+- 通过测试用例：84 / 84
 ```python3
+
+def get_k_bin_of_n(n: int, k: int, m: int) -> int:
+    lst = []
+    while n:
+        lst.append(n % k)
+        n //= k
+    lst = lst + [0] * (m - len(lst))
+    return lst
+
+
 class Solution:
-    def kSimilarity(self, s1: str, s2: str) -> int:
-        n = len(s1)
-        lst1, lst2 = list(s1), list(s2)
-        visit = {tuple(lst1)}
-        step = 0
-        stack = [(lst1, 0)]
-        while stack:
-            nex = []
-            for pre, i in stack:
-                while i < n and pre[i] == lst2[i]:
-                    i += 1
-                if i == n:
-                    return step
-                for j in range(i+1, n):
-                    if pre[j] == lst2[i] != lst2[j]:
-                        pre[j], pre[i] = pre[i], pre[j]
-                        if tuple(pre) not in visit:
-                            visit.add(tuple(pre))
-                            nex.append([pre[:], i+1])
-                        pre[j], pre[i] = pre[i], pre[j]
-            stack = nex
-            step += 1
-        return -1
+    def maximumANDSum(self, nums: List[int], numSlots: int) -> int:
+        n = len(nums)
+        dp = [0] * (3 ** numSlots)
+        for sub in range(3 ** numSlots):
+            cnt = get_k_bin_of_n(sub, 3, numSlots)
+            pre = sum(cnt)
+            if pre >= n:
+                continue
+            for j in range(numSlots):
+                if cnt[j] < 2:
+                    cur = dp[sub] + (nums[pre] & (j + 1))
+                    dp[sub + 3**j] = max(dp[sub + 3**j], cur)
+        return max(dp)
 ```
+
+[1820. 最多邀请的个数]: https://leetcode.cn/problems/maximum-number-of-accepted-invitations/solution/er-xu-cheng-ming-jiu-xu-zui-python3xiong-ikt7/
+
 
 # 方法二：前缀和
 # 提交结果
