@@ -13,43 +13,37 @@ from sortedcontainers import SortedList, SortedDict, SortedSet
 from sortedcontainers import SortedDict
 import heapq
 
-def get_all_factor(num):
-    factor = set()
-    for i in range(1, int(math.sqrt(num))+1):
-        if num % i == 0:
-            factor.add(i)
-            factor.add(num//i)
-    return sorted(list(factor))
+from sortedcontainers import SortedList
 
-def divPrime(num):
-    lt = []
-    while num != 1:
-        for i in range(2, int(num+1)):
-            if num % i == 0:  # i是num的一个质因数
-                lt.append(i)
-                num = num / i # 将num除以i，剩下的部分继续分解
-                break
-    return lt
-
+from sortedcontainers import SortedList
 
 class Solution:
-    def countPairs(self, nums: List[int], k: int) -> int:
-        n = len(nums)
-        if k == 1:
-            return n*(n-1)//2
-        ans = 0
-        pre = defaultdict(int)
-        for i, num in enumerate(nums):
-            a = num//math.gcd(num, k)
-            ans += pre[a]
-            for f in get_all_factor(num):
-                pre[f] += 1
-        return ans
+    def maximumMinimumPath(self, grid: List[List[int]]) -> int:
+        m, n = len(grid), len(grid[0])
+
+        visit = [[1]*n for _ in range(m)]
+        stack = [[-grid[0][0], 0, 0]]
+        while stack:
+            dis, i, j = heapq.heappop(stack)
+            dis = -dis
+            if i == m-1 and j == n-1:
+                return dis
+            if visit[i][j] <= dis:
+                continue
+            visit[i][j] = dis
+            for x, y in [[i-1, j], [i+1, j], [i, j-1], [i, j+1]]:
+                if 0<=x<m and 0<=y<n:
+                    heapq.heappush(stack, [-min(dis, grid[x][y]), x, y])
+
+
 
 def test_solution():
-    assert Solution().numberOfGoodPaths(vals = [1,3,2,1,3], edges = [[0,1],[0,2],[2,3],[2,4]]) == 6
-    return
+    assert Solution().longestRepeating(
+        "geuqjmt", "bgemoegklm", [
+            3, 4, 2, 6, 5, 6, 5, 4, 3, 2]) == [
+        3, 3, 4]
 
+    return
 
 
 if __name__ == '__main__':

@@ -63,39 +63,31 @@ class Solution:
 # 来源：力扣（LeetCode）
 # 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 ```
-```bibtex
-from functools import lru_cache
 
+# 1067. 范围内的数字计数
+```Python3
 class Solution:
     def digitsCount(self, d: int, low: int, high: int) -> int:
 
-        def check(n):
-            s = str(n)
-            m = len(s)
-
+        def check(num):
             @lru_cache(None)
-            def dfs(i, is_limit, is_zero):
-                if i == m-1:
-                    if not is_limit:
-                        return 1
-                    return int(int(s[i]) >= d)
-
+            def dfs(i, cnt, is_limit, is_num):
+                if i == n:
+                    if is_num:
+                        return cnt
+                    return 0
                 res = 0
+                if not is_num:
+                    res += dfs(i + 1, 0, False, False)
+
+                floor = 0 if is_num else 1
                 ceil = int(s[i]) if is_limit else 9
-                for k in range(0, ceil+1):
-                    if is_zero and not k:
-                        res += dfs(i+1, is_limit and k == ceil, True)
-                    else:
-                        res += dfs(i+1, is_limit and k == ceil, False)
-
-                    if not is_zero and d==k:
-                        if not is_limit:
-                            res += 10**(m-i-1)
-                        elif is_limit and d == int(s[i]):
-                            res += int(s[i+1:]) + 1
+                for x in range(floor, ceil + 1):
+                    res += dfs(i + 1, cnt + int(x == d),
+                               is_limit and ceil == x, True)
                 return res
-
-            return dfs(0, True, False)
-
-        return check(high) - check(low-1)
+            s = str(num)
+            n = len(s)
+            return dfs(0, 0, True, False)
+        return check(high) - check(low - 1)
 ```

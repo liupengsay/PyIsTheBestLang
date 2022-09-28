@@ -20,42 +20,26 @@ from collections import deque
 
 
 
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
+
 class Solution:
-    def mergeNodes(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        lst = []
-        cur = head
-        pre = 0
-        while cur:
-            if cur.val == 0:
-                if pre:
-                    lst.append(pre)
-                pre = 0
-            else:
-                pre += cur.val
-            cur = cur.next
-        if not lst:
-            return
-        cur = head
-        i = 0
-        n = len(lst)
-        while cur:
-            cur.val = lst[i]
-            i += 1
-            if i == n:
-                cur.next = None
-            cur = cur.next
-        return head
+    def numKLenSubstrNoRepeats(self, s: str, k: int) -> int:
+        n = len(s)
+        if n < k or k > 26:
+            return 0
+
+        ans = 0
+        dct = defaultdict(int)
+        for i in range(k-1):
+            dct[s[i]] += 1
+        for i in range(k-1, n):
+            dct[s[i]] += 1
+            if i-k >= 0:
+                dct[s[i-k]] -= 1
+            if max(dct.values()) <= 1:
+                ans += 1
+        return ans
 
 
-def test_solution():
-    m = 976
-    assert Solution().ballGame(m, p) == 1
-    return
 
 
 if __name__ == '__main__':

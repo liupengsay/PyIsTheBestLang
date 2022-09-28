@@ -185,6 +185,41 @@ class SegmentTreeMin:
         return highest if highest < float("inf") else -1
 
 
+class SegmentTreeRangeMinShort:
+    def __init__(self):
+        self.height = defaultdict(lambda: float("inf"))
+
+    def update(self, l, r, s, t, val, i):
+        # 更新区间最小值
+        if l<=s and t<=r:
+            if self.height[i] > val:
+                self.height[i] = val
+            return
+        m = s+(t-s)//2
+        if l<=m: # 注意左右子树的边界与范围
+            self.update(l, r, s, m, val, 2*i)
+        if r>m:
+            self.update(l, r, m+1, t, val, 2*i+1)
+        self.height[i] = self.height[2*i] if self.height[2*i] < self.height[2*i+1] else self.height[2*i+1]
+        return
+
+    def query(self, l, r, s, t, i):
+        # 查询区间的最小值
+        if l<=s and t<=r:
+            return self.height[i]
+        m = s+(t-s)//2
+        lowest = float("inf")
+        if l<=m:
+            cur = self.query(l, r, s, m, 2*i)
+            if cur < lowest:
+                lowest = cur
+        if r>m:
+            cur = self.query(l, r, m+1, t, 2*i+1)
+            if cur < lowest:
+                lowest = cur
+        return lowest
+
+
 def test_segment_tree_range_sum():
 
     def check(nums):
