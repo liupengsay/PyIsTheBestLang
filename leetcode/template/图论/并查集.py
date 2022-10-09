@@ -20,7 +20,7 @@ class UnionFind:
         root_x = self.find(x)
         root_y = self.find(y)
         if root_x == root_y:
-            return
+            return False
         if self.size[root_x] >= self.size[root_y]:
             root_x, root_y = root_y, root_x
         self.root[root_x] = root_y
@@ -28,7 +28,7 @@ class UnionFind:
         # 将非根节点的秩赋0
         self.size[root_x] = 0
         self.part -= 1
-        return
+        return True
 
     def is_connected(self, x, y):
         return self.find(x) == self.find(y)

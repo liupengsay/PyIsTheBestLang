@@ -146,6 +146,7 @@ class SegmentTreeMin:
             self.height[2*i] = self.height[2*i] if self.height[2*i] < self.lazy[i] else self.lazy[i]
             self.height[2*i+1] = self.height[2*i+1] if self.height[2*i+1] < self.lazy[i] else self.lazy[i]
 
+
             self.lazy[2*i] = self.lazy[2*i] if self.lazy[2*i] < self.lazy[i] else self.lazy[i]
             self.lazy[2*i+1] = self.lazy[2*i+1] if self.lazy[2*i+1] < self.lazy[i] else self.lazy[i]
 
