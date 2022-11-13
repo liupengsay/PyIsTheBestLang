@@ -33,3 +33,39 @@ class Solution:
 来源：力扣（LeetCode）
 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 ```
+
+
+```python3
+# 计算s[i:]与s的最长公共前缀
+# Python Version
+def z_function(s):
+    n = len(s)
+    z = [0] * n
+    l, r = 0, 0
+    for i in range(1, n):
+        if i <= r and z[i - l] < r - i + 1:
+            z[i] = z[i - l]
+        else:
+            z[i] = max(0, r - i + 1)
+            while i + z[i] < n and s[z[i]] == s[i + z[i]]:
+                z[i] += 1
+        if i + z[i] - 1 > r:
+            l = i
+            r = i + z[i] - 1
+    return z
+
+
+# Python Version
+# 计算s[:i]与s[:i]的最长公共真前缀与真后缀
+def prefix_function(s):
+    n = len(s)
+    pi = [0] * n
+    for i in range(1, n):
+        j = pi[i - 1]
+        while j > 0 and s[i] != s[j]:
+            j = pi[j - 1]
+        if s[i] == s[j]:
+            j += 1
+        pi[i] = j
+    return pi
+```

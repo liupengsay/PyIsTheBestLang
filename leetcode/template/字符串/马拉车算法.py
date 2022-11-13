@@ -61,3 +61,26 @@ def minCut(s: str) -> int:
             left += 1
             right -= 1
     return ref, post
+
+
+def palindrome(s: str) -> int:
+    # 获取区间的回文串信息
+    n = len(s)
+    t = "#" + "#".join(list(s)) + "#"
+    dp = manacher(t)
+    m = len(t)
+
+    # 以当前索引作为边界结尾的回文子串起始位置索引
+    end = [[] for _ in range(n)]
+    # 以当前索引作为边界开头的回文子串起始位置索引
+    start = [[] for _ in range(n)]
+    for j in range(m):
+        left = j - dp[j] + 1
+        right = j + dp[j] - 1
+        while left <= right:
+            if t[left] != "#":
+                end[right//2].append(left//2)
+                start[left//2].append(right//2)
+            left += 1
+            right -= 1
+    return start, end

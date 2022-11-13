@@ -15,102 +15,69 @@ from sortedcontainers import SortedList, SortedDict, SortedSet
 from sortedcontainers import SortedDict
 import heapq
 from itertools import combinations
+from sortedcontainers import SortedList
 
 
-def doubling(s):
-    # sa[i]:排名为i的后缀的起始位置
-    # rk[i]:起始位置为i的后缀的排名
-    n = len(s)
-    sa = []
-    rk = []
-    for i in range(n):
-        rk.append(ord(s[i]) - ord('a'))  # 刚开始时，每个后缀的排名按照它们首字母的排序
-        sa.append(i)  # 而排名第i的后缀就是从i开始的后缀
+# 标准并查集
+class UnionFind:
+    def __init__(self, n):
+        self.root = [i for i in range(n)]
+        self.size = [1] * n
+        self.part = n
 
-    l = 0  # l是已经排好序的长度，现在要按2l长度排序
-    sig = 26  # sig是unique的排名的个数，初始是字符集的大小
-    while True:
-        p = []
-        # 对于长度小于l的后缀来说，它们的第二关键字排名肯定是最小的，因为都是空的
-        for i in range(n - l, n):
-            p.append(i)
-        # 对于其它长度的后缀来说，起始位置在`sa[i]`的后缀排名第i，而它的前l个字符恰好是起始位置为`sa[i]-l`的后缀的第二关键字
-        for i in range(n):
-            if sa[i] >= l:
-                p.append(sa[i] - l)
-        # 然后开始基数排序，先对第一关键字进行统计
-        # 先统计每个值都有多少
-        cnt = [0] * sig
-        for i in range(n):
-            cnt[rk[i]] += 1
-        # 做个前缀和，方便基数排序
-        for i in range(1, sig):
-            cnt[i] += cnt[i - 1]
-        # 然后利用基数排序计算新sa
-        for i in range(n - 1, -1, -1):
-            cnt[rk[p[i]]] -= 1
-            sa[cnt[rk[p[i]]]] = p[i]
-        # 然后利用新sa计算新rk
+    def find(self, x):
+        if x != self.root[x]:
+            # 在查询的时候合并到顺带直接根节点
+            root_x = self.find(self.root[x])
+            self.root[x] = root_x
+            return root_x
+        return x
 
-        def equal(i, j, l):
-            if rk[i] != rk[j]:
-                return False
-            if i + l >= n and j + l >= n:
-                return True
-            if i + l < n and j + l < n:
-                return rk[i + l] == rk[j + l]
+    def union(self, x, y):
+        root_x = self.find(x)
+        root_y = self.find(y)
+        if root_x == root_y:
             return False
-        sig = -1
-        tmp = [None] * n
-        for i in range(n):
-            # 直接通过判断第一关键字的排名和第二关键字的排名来确定它们的前2l个字符是否相同
-            if i == 0 or not equal(sa[i], sa[i - 1], l):
-                sig += 1
-            tmp[sa[i]] = sig
-        rk = tmp
-        sig += 1
-        if sig == n:
-            break
-        # 更新有效长度
-        l = l << 1 if l > 0 else 1
-    # 计算height数组
-    k = 0
-    height = [0] * n
-    for i in range(n):
-        if rk[i] > 0:
-            j = sa[rk[i] - 1]
-            while i + k < n and j + k < n and s[i + k] == s[j + k]:
-                k += 1
-            height[rk[i]] = k
-            k = max(0, k - 1)  # 下一个height的值至少从max(0,k-1)开始
-    return sa, rk, height
+        if self.size[root_x] >= self.size[root_y]:
+            root_x, root_y = root_y, root_x
+        self.root[root_x] = root_y
+        self.size[root_y] += self.size[root_x]
+        # 将非根节点的秩赋0
+        self.size[root_x] = 0
+        self.part -= 1
+        return True
 
 
 class Solution:
-    def robotWithString(self, s: str) -> str:
-        n = len(s)
+    def minimumOperations(self, root: Optional[TreeNode]) -> int:
 
-        # 动态规划记录右侧的最小字母
-        right = ["z"] * (n + 1)
-        for i in range(n - 1, -1, -1):
-            right[i] = min(right[i + 1], s[i])
+        def check(lst):
+            val = [node.val for node in lst]
+            tmp = sorted(val)
+            ind = {num: i for i, num in enumerate(val)}
+            n = len(val)
+            uf = UnionFind(n)
+            for i in range(n):
+                uf.union(ind[val[i]], ind[tmp[i]])
+            return sum(p - 1 for p in uf.size if p >= 1)
 
-        stack = []
-        ans = ""
-        for i in range(n):
-            stack.append(s[i])
-            # 假如当前栈顶为最小字母则出栈加到最终结果
-            while stack and stack[-1] <= right[i + 1]:
-                ans += stack.pop()
-        return ans + "".join(stack[::-1])
+        ans = 0
+        stack = [root]
+        while stack:
+            ans += check(stack)
+            nex = []
+            for node in stack:
+                if node.left:
+                    nex.append(node.left)
+                if node.right:
+                    nex.append(node.right)
+            stack = nex[:]
+        return ans
 
 
 class TestGeneral(unittest.TestCase):
     def test_solution(self):
-        assert Solution().maxHappyGroups(batchSize = 3, groups = [1,2,3,4,5,6]) == 4
-        assert Solution().maxHappyGroups(batchSize = 4, groups = [1,3,2,5,2,2,1,6]) == 4
-        assert Solution().maxHappyGroups(3, [844438225,657615828,355556135,491931377,644089602,30037905,863899906,246536524,682224520]) == 6
-        assert Solution().maxHappyGroups(8, [244197059,419273145,329407130,44079526,351372795,200588773,340091770,851189293,909604028,621703634,959388577,989293607,325139045,263977422,358987768,108391681,584357588,656476891,621680874,867119215,639909909,98831415,263171984,236390093,21876446]) == 13
+        assert Solution()
         return
 
 

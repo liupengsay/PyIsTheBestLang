@@ -4,35 +4,38 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="线段树更新">
-      <change afterPath="$PROJECT_DIR$/leetcode/competition/第313场周赛题解.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/competition/第314场周赛题解.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/competition/第88场双周赛题解.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/tests/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/tests/problem_1.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/tests/problem_3.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/tests/problem_4.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/tests/temp.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/tests/temp.py" afterDir="false" />
+    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="增加测试用例时间">
+      <change afterPath="$PROJECT_DIR$/leetcode/competition/第315场周赛题解.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode/competition/第318场周赛题解.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode/competition/第319场周赛题解.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode/competition/第89场双周赛题解.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode/competition/第90场双周赛题解.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode/competition/第91场双周赛题解.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode/template/搜索/dfs序.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode/template/算法基础/递归与迭代.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/backup.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/tests/backup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/change.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/tests/change.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/problem_1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/problem_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/tests/problem_2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/problem_3.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/problem_4.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/temp.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/temp.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/template/图论/并查集.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/template/图论/并查集.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/字符串/KMP.md" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/template/字符串/KMP.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/字符串/马拉车算法.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/template/字符串/马拉车算法.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/leetcode/template/数学/数论.md" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/template/数学/数论.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/template/数据结构/线段树.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/template/数据结构/线段树.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/测试用例.txt" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/tests/测试用例.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/数据结构/树状数组.md" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/template/数据结构/树状数组.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/数据结构/线段树.md" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/template/数据结构/线段树.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/tests/change.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/tests/change.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/tests/problem_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/tests/problem_1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/tests/problem_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/tests/problem_2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/tests/problem_3.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/tests/problem_3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/tests/problem_4.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/tests/problem_4.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/tests/temp.md" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/tests/temp.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/tests/temp.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/tests/temp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/tests/测试用例.txt" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/tests/测试用例.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="PCRecord" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -66,7 +69,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/leetcode/tests" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/leetcode/competition" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="run.code.analysis.last.selected.profile" value="aDefault" />
     <property name="settings.editor.selected.configurable" value="preferences.externalTools" />
@@ -80,9 +83,9 @@
       <recent name="D:\PCRecord\leetcode\other" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\PCRecord\leetcode\competition" />
       <recent name="D:\PCRecord\leetcode\tests" />
       <recent name="D:\PCRecord\leetcode" />
-      <recent name="D:\PCRecord\leetcode\competition" />
       <recent name="D:\PCRecord\leetcode\other" />
       <recent name="D:\PCRecord\leetcode\discussion" />
     </key>
@@ -99,8 +102,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in problem_1.py">
-    <configuration name="problem_1" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.change">
+    <configuration name="change" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -108,11 +111,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode/tests" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="D:\PCRecord\leetcode\tests\problem_1.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/leetcode/tests/change.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -121,7 +124,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="problem_3" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="temp" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -129,11 +132,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode/tests" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="D:\PCRecord\leetcode\tests\problem_3.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/leetcode/tests/temp.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -156,20 +159,6 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for problem_1.TestGeneral.test_solution" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <module name="PCRecord" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode/tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;problem_1.TestGeneral.test_solution&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
     <configuration name="Unittests in problem_1.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -184,13 +173,27 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
+    <configuration name="Unittests in problem_3.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="PCRecord" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/leetcode/tests/problem_3.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.change" />
+        <item itemvalue="Python tests.Unittests in problem_3.py" />
         <item itemvalue="Python tests.Unittests in problem_1.py" />
         <item itemvalue="Python tests.Unittests for problem_1.TestGeneral" />
-        <item itemvalue="Python tests.Unittests for problem_1.TestGeneral.test_solution" />
-        <item itemvalue="Python.problem_1" />
-        <item itemvalue="Python.problem_3" />
+        <item itemvalue="Python.temp" />
       </list>
     </recent_temporary>
   </component>
@@ -409,7 +412,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664325494170</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="增加测试用例时间">
+      <created>1665327541722</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1665327541723</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -427,7 +437,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="增加pytest.ini" />
     <MESSAGE value="增加依赖包" />
     <MESSAGE value="增加特征选择与参数调优" />
     <MESSAGE value="字节一面面试coding题目" />
@@ -452,7 +461,8 @@
     <MESSAGE value="力扣运行时间自动化打印" />
     <MESSAGE value="增加欧拉回路内容" />
     <MESSAGE value="线段树更新" />
-    <option name="LAST_COMMIT_MESSAGE" value="线段树更新" />
+    <MESSAGE value="增加测试用例时间" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加测试用例时间" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -486,26 +496,6 @@
           <url>file://$PROJECT_DIR$/leetcode/other/weekly_competition.py</url>
           <line>11</line>
           <option name="timeStamp" value="38" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/leetcode/tests/problem_2.py</url>
-          <line>39</line>
-          <option name="timeStamp" value="63" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/leetcode/tests/problem_3.py</url>
-          <line>18</line>
-          <option name="timeStamp" value="101" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/leetcode/tests/problem_3.py</url>
-          <line>102</line>
-          <option name="timeStamp" value="110" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/leetcode/tests/problem_3.py</url>
-          <line>112</line>
-          <option name="timeStamp" value="112" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
