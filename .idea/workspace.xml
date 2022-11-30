@@ -4,29 +4,293 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="增加测试用例时间">
-      <change afterPath="$PROJECT_DIR$/leetcode/competition/第315场周赛题解.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/competition/第318场周赛题解.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/competition/第319场周赛题解.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/competition/第89场双周赛题解.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/competition/第90场双周赛题解.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/competition/第91场双周赛题解.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/template/搜索/dfs序.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/template/算法基础/递归与迭代.md" afterDir="false" />
+    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="周赛题解更新">
+      <change afterPath="$PROJECT_DIR$/algorithm/competition/周赛题解.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/competition/第308场周赛题解.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/competition/第309场周赛题解.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/competition/第311场周赛题解.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/competition/第313场周赛题解.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/competition/第314场周赛题解.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/competition/第315场周赛题解.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/competition/第318场周赛题解.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/competition/第319场周赛题解.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/competition/第320场周赛题解.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/competition/第321场周赛题解.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/competition/第85场双周赛题解.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/competition/第86场双周赛题解.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/competition/第88场双周赛题解.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/competition/第89场双周赛题解.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/competition/第90场双周赛题解.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/competition/第91场双周赛题解.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/competition/第92场双周赛题解.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/discussion/传道授业之我心中的好题解.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/discussion/刷题之路.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/discussion/刷题交流.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/discussion/刷题利器.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/discussion/力扣呼叫转移.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/discussion/单解题思路.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/discussion/发帖回复.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/discussion/多解题思路.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/discussion/学习计划与LeetBook.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/discussion/对象命名如何才能信达雅.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/discussion/工作中遇到的力扣算法.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/discussion/数学公式模板.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/discussion/测试用例.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/discussion/燃烧我的脑细胞.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/discussion/算法复杂度与数据范围.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/discussion/论对数复杂度的魅力.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/other/guardian.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/other/weekly_competition.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/picture/Guardian.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/picture/LeetBook.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/picture/刷题利器.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/picture/力扣.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/picture/勋章.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/picture/塞尔达1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/picture/塞尔达2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/picture/学习计划.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/picture/对数复杂度.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/picture/对象命名.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/picture/平凡之路.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/picture/并查集.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/picture/我得病了.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/picture/排序.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/picture/数位DP.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/picture/数据范围.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/picture/树状数组.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/picture/湖边跑步1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/picture/湖边跑步1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/picture/湖边跑步2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/picture/湖边跑步3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/picture/火箭少女.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/picture/灵活复杂度.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/picture/燃烧我的卡路里.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/picture/第308场周赛排名.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/picture/第85场双周赛.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/picture/算法导论.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/picture/项目中用到的算法.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/picture/题解之道.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/graph/Dijkstra.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/graph/Floyd.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/graph/Tarjan.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/graph/Tarjan.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/graph/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/graph/dfs.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/graph/scc.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/graph/二分图最大权最小权匹配KM算法.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/graph/并查集.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/graph/并查集.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/graph/拓扑排序.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/graph/拓扑排序.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/graph/欧拉回路.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/动态规划/区间DP.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/动态规划/数位DP.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/动态规划/数组DP.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/动态规划/有向无环图DP.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/动态规划/树形DP.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/动态规划/概率DP.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/动态规划/模拟退火.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/动态规划/模拟退火.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/动态规划/状压DP.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/动态规划/状压DP.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/动态规划/背包DP.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/字符串/KMP.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/字符串/后缀数组.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/字符串/后缀数组.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/字符串/字典树.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/字符串/字符串匹配.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/字符串/字符串哈希.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/字符串/字符串哈希.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/字符串/马拉车算法.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/字符串/马拉车算法.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/搜索/dfs序.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/搜索/剪枝.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/搜索/双向搜索.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/搜索/回溯.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/搜索/广度优先搜索.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/搜索/深度优先搜索.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/搜索/记忆化搜索.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/数学/位运算.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/数学/快速幂.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/数学/排列组合.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/数学/数论.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/数学/数论.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/数学/概率论.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/数学/组合数学.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/数学/高精度.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/数据结构/单调栈.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/数据结构/单调栈.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/数据结构/树状数组.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/数据结构/树状数组.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/数据结构/线段树.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/数据结构/线段树.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/数据结构/设计.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/算法基础/二分与三分.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/算法基础/倍增.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/算法基础/前缀和与差分.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/算法基础/前缀和与差分.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/算法基础/指针.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/算法基础/排序.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/算法基础/构造.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/算法基础/枚举.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/算法基础/模拟.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/算法基础/贪心.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/算法基础/递归与分治.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/算法基础/递归与迭代.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/计算几何/凸包.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/tests/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/tests/backup.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/tests/change.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/tests/problem_1.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/tests/problem_2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/tests/problem_3.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/tests/problem_4.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/tests/temp.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/tests/temp.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/tests/test_solution.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/tests/测试用例.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/luogu/tests/submission.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/template/字符串/KMP.md" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/template/字符串/KMP.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/template/字符串/马拉车算法.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/template/字符串/马拉车算法.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/template/数学/数论.md" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/template/数学/数论.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/template/数据结构/树状数组.md" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/template/数据结构/树状数组.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/template/数据结构/线段树.md" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/template/数据结构/线段树.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/tests/change.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/tests/change.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/tests/problem_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/tests/problem_1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/tests/problem_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/tests/problem_2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/tests/problem_3.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/tests/problem_3.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/tests/problem_4.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/tests/problem_4.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/tests/temp.md" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/tests/temp.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/tests/temp.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/tests/temp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/tests/测试用例.txt" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/tests/测试用例.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/competition/周赛题解.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/competition/第308场周赛题解.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/competition/第309场周赛题解.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/competition/第311场周赛题解.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/competition/第313场周赛题解.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/competition/第314场周赛题解.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/competition/第315场周赛题解.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/competition/第318场周赛题解.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/competition/第319场周赛题解.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/competition/第85场双周赛题解.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/competition/第86场双周赛题解.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/competition/第88场双周赛题解.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/competition/第89场双周赛题解.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/competition/第90场双周赛题解.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/competition/第91场双周赛题解.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/discussion/传道授业之我心中的好题解.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/discussion/刷题之路.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/discussion/刷题交流.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/discussion/刷题利器.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/discussion/力扣呼叫转移.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/discussion/单解题思路.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/discussion/发帖回复.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/discussion/多解题思路.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/discussion/学习计划与LeetBook.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/discussion/对象命名如何才能信达雅.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/discussion/工作中遇到的力扣算法.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/discussion/数学公式模板.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/discussion/测试用例.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/discussion/燃烧我的脑细胞.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/discussion/算法复杂度与数据范围.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/discussion/论对数复杂度的魅力.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/other/guardian.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/other/weekly_competition.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/picture/Guardian.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/picture/LeetBook.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/picture/刷题利器.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/picture/力扣.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/picture/勋章.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/picture/塞尔达1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/picture/塞尔达2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/picture/学习计划.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/picture/对数复杂度.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/picture/对象命名.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/picture/平凡之路.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/picture/并查集.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/picture/我得病了.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/picture/排序.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/picture/数位DP.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/picture/数据范围.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/picture/树状数组.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/picture/湖边跑步1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/picture/湖边跑步1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/picture/湖边跑步2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/picture/湖边跑步3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/picture/火箭少女.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/picture/灵活复杂度.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/picture/燃烧我的卡路里.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/picture/第308场周赛排名.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/picture/第85场双周赛.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/picture/算法导论.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/picture/项目中用到的算法.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/picture/题解之道.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/动态规划/区间DP.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/动态规划/数位DP.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/动态规划/数组DP.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/动态规划/有向无环图DP.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/动态规划/树形DP.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/动态规划/概率DP.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/动态规划/模拟退火.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/动态规划/模拟退火.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/动态规划/状压DP.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/动态规划/状压DP.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/动态规划/背包DP.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/图论/Dijkstra.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/图论/Floyd.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/图论/Tarjan.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/图论/Tarjan.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/图论/二分图最大权最小权匹配KM算法.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/图论/并查集.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/图论/并查集.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/图论/拓扑排序.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/图论/拓扑排序.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/图论/欧拉回路.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/字符串/KMP.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/字符串/后缀数组.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/字符串/后缀数组.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/字符串/字典树.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/字符串/字符串匹配.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/字符串/字符串哈希.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/字符串/字符串哈希.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/字符串/马拉车算法.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/字符串/马拉车算法.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/搜索/dfs序.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/搜索/剪枝.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/搜索/双向搜索.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/搜索/回溯.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/搜索/广度优先搜索.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/搜索/深度优先搜索.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/搜索/记忆化搜索.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/数学/位运算.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/数学/快速幂.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/数学/排列组合.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/数学/数论.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/数学/数论.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/数学/概率论.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/数学/组合数学.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/数学/高精度.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/数据结构/单调栈.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/数据结构/单调栈.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/数据结构/树状数组.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/数据结构/树状数组.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/数据结构/线段树.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/数据结构/线段树.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/数据结构/设计.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/算法基础/二分与三分.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/算法基础/倍增.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/算法基础/前缀和与差分.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/算法基础/前缀和与差分.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/算法基础/指针.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/算法基础/排序.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/算法基础/构造.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/算法基础/枚举.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/算法基础/模拟.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/算法基础/贪心.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/算法基础/递归与分治.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/算法基础/递归与迭代.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/template/计算几何/凸包.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/tests/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/tests/backup.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/tests/change.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/tests/problem_1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/tests/problem_2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/tests/problem_3.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/tests/problem_4.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/tests/temp.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/tests/temp.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/tests/test_solution.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode/tests/测试用例.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/luogu/tests/submission.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/luogu/tests/submission.h" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -69,7 +333,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/leetcode/competition" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/leetcode/template/图论" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="run.code.analysis.last.selected.profile" value="aDefault" />
     <property name="settings.editor.selected.configurable" value="preferences.externalTools" />
@@ -83,11 +347,11 @@
       <recent name="D:\PCRecord\leetcode\other" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\PCRecord\leetcode\template\图论" />
       <recent name="D:\PCRecord\leetcode\competition" />
       <recent name="D:\PCRecord\leetcode\tests" />
       <recent name="D:\PCRecord\leetcode" />
       <recent name="D:\PCRecord\leetcode\other" />
-      <recent name="D:\PCRecord\leetcode\discussion" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -102,8 +366,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.change">
-    <configuration name="change" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.scc (1)">
+    <configuration name="强连通分量" type="PythonConfigurationType" factoryName="Python">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -111,11 +375,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode/tests" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode/template/图论" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/leetcode/tests/change.py" />
+      <option name="SCRIPT_NAME" value="D:\PCRecord\leetcode\template\图论\scc.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -124,7 +388,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="temp" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="Tarjan" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -132,11 +396,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode/tests" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/template/graph" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/leetcode/tests/temp.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/algorithm/template/graph/Tarjan.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -145,55 +409,97 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for problem_1.TestGeneral" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="scc (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode/tests" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/template/graph" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;problem_1.TestGeneral&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/algorithm/template/graph/scc.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests in problem_1.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="scc" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode/tests" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode/template/图论" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/leetcode/tests/problem_1.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/leetcode/template/图论/scc.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests in problem_3.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="submission" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode/tests" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/luogu/tests" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/leetcode/tests/problem_3.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/luogu/tests/submission.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="temp (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="PCRecord" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/algorithm/tests/temp.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.change" />
-        <item itemvalue="Python tests.Unittests in problem_3.py" />
-        <item itemvalue="Python tests.Unittests in problem_1.py" />
-        <item itemvalue="Python tests.Unittests for problem_1.TestGeneral" />
-        <item itemvalue="Python.temp" />
+        <item itemvalue="Python.scc (1)" />
+        <item itemvalue="Python.submission" />
+        <item itemvalue="Python.temp (1)" />
+        <item itemvalue="Python.Tarjan" />
+        <item itemvalue="Python.scc" />
       </list>
     </recent_temporary>
   </component>
@@ -419,7 +725,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665327541723</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="周赛题解更新">
+      <created>1668350770541</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1668350770541</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -437,7 +750,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="增加依赖包" />
     <MESSAGE value="增加特征选择与参数调优" />
     <MESSAGE value="字节一面面试coding题目" />
     <MESSAGE value="力扣资料整理" />
@@ -462,7 +774,8 @@
     <MESSAGE value="增加欧拉回路内容" />
     <MESSAGE value="线段树更新" />
     <MESSAGE value="增加测试用例时间" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加测试用例时间" />
+    <MESSAGE value="周赛题解更新" />
+    <option name="LAST_COMMIT_MESSAGE" value="周赛题解更新" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -497,6 +810,16 @@
           <line>11</line>
           <option name="timeStamp" value="38" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/leetcode/tests/problem_3.py</url>
+          <line>49</line>
+          <option name="timeStamp" value="153" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/leetcode/tests/temp.py</url>
+          <line>29</line>
+          <option name="timeStamp" value="154" />
+        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -509,6 +832,7 @@
     <watches-manager>
       <configuration name="tests">
         <watch expression="tree" />
+        <watch expression="visit" />
       </configuration>
       <configuration name="PythonConfigurationType">
         <watch expression="trie.dct['0']['0']" />

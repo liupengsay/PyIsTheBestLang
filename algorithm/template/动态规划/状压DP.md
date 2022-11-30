@@ -1,5 +1,10 @@
 
 
+### 通过深搜回溯枚举全部子集的办法比位运算枚举效率更高
+参考题目：
+https://leetcode.cn/problems/partition-to-k-equal-sum-subsets/solution/by-liupengsay-6dpl/
+
+
 ```python3
 # https://leetcode.cn/problems/minimum-number-of-work-sessions-to-finish-the-tasks/
 

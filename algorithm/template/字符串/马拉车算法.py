@@ -72,7 +72,7 @@ def palindrome(s: str) -> int:
 
     # 以当前索引作为边界结尾的回文子串起始位置索引
     end = [[] for _ in range(n)]
-    # 以当前索引作为边界开头的回文子串起始位置索引
+    # 以当前索引作为边界开头的回文子串结束位置索引
     start = [[] for _ in range(n)]
     for j in range(m):
         left = j - dp[j] + 1

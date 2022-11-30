@@ -21,12 +21,15 @@ def check_graph(edge: List[list], n):
     # 中间变量
     stack = []
     index = 1
+    in_stack = [0] * n
 
     def tarjan(i, father):
         nonlocal index
         visit[i] = root[i] = index
         index += 1
         stack.append(i)
+
+        in_stack[i] = 1
         child = 0
         for j in edge[i]:
             if j != father:
@@ -42,14 +45,16 @@ def check_graph(edge: List[list], n):
                         cut_node.append(i)
                     elif father == -1 and child >= 2:
                         cut_node.append(i)
-                elif j in stack:
+                elif in_stack[j]:
                     root[i] = min(root[i], visit[j])
 
         if root[i] == visit[i]:
             lst = []
             while stack[-1] != i:
                 lst.append(stack.pop())
+                in_stack[lst[-1]] = 0
             lst.append(stack.pop())
+            in_stack[lst[-1]] = 0
             r = min(root[ls] for ls in lst)
             for ls in lst:
                 root[ls] = r

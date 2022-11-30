@@ -22,24 +22,26 @@ from collections import deque
 from sortedcontainers import SortedList
 
 
+
+
 class Solution:
-    def subarrayLCM(self, nums: List[int], k: int) -> int:
-        n = len(nums)
-        ans = 0
-        for i in range(n):
-            x = 1
-            for j in range(i, n):
-                x = math.lcm(x, nums[j])
-                if x == k:
-                    ans += 1
-                elif x > k:
-                    break
-        return ans
+    def appendCharacters(self, s: str, t: str) -> int:
+
+        n = len(t)
+        i = 0
+        for w in s:
+            if w == t[i]:
+                i += 1
+                if i == n:
+                    return 0
+        return n-i
+
+
 
 
 class TestGeneral(unittest.TestCase):
     def test_solution(self):
-        assert Solution()
+        assert Solution().minSwap(nums1=[1, 3, 5, 4], nums2=[1, 2, 3, 7]) == 1
         return
 
 

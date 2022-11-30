@@ -69,3 +69,38 @@ def prefix_function(s):
         pi[i] = j
     return pi
 ```
+
+
+```python3
+def prefix_function(s):
+    # 计算s[:i]与s[:i]的最长公共真前缀与真后缀
+    n = len(s)
+    pi = [0] * n
+    for i in range(1, n):
+        j = pi[i - 1]
+        while j > 0 and s[i] != s[j]:
+            j = pi[j - 1]
+        if s[i] == s[j]:
+            j += 1
+        pi[i] = j
+    return pi
+
+
+class Solution:
+    def rotateString(self, s: str, goal: str) -> bool:
+        if len(s) != len(goal):
+            return False
+        n = len(s)
+        t = goal + s + s
+        pi = prefix_function(t)
+        for i in range(2 * n - 1, 3 * n):
+            if pi[i] == n:
+                return True
+        return False
+
+
+作者：liupengsay
+链接：https://leetcode.cn/problems/rotate-string/solution/by-liupengsay-zzc5/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+```
