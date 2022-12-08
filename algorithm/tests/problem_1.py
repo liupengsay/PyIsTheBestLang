@@ -28,74 +28,28 @@ import heapq
 import copy
 
 
-
-class Kosaraju:
-    def __init__(self, n, g):
-        self.n = n
-        self.g = g
-        self.g2 = [[] for _ in range(self.n)]
-        self.vis = [False] * n
-        self.s = []
-        self.color = [0] * n
-        self.sccCnt = 0
-        self.gen_reverse_graph()
-        self.kosaraju()
-
-    def gen_reverse_graph(self):
-        for i in range(self.n):
-            for j in self.g[i]:
-                self.g2[j].append(i)
-        return
-
-    def dfs1(self, u):
-        self.vis[u] = True
-        for v in self.g[u]:
-            if not self.vis[v]:
-                self.dfs1(v)
-        self.s.append(u)
-        return
-
-    def dfs2(self, u):
-        self.color[u] = self.sccCnt
-        for v in self.g2[u]:
-            if not self.color[v]:
-                self.dfs2(v)
-        return
-
-    def kosaraju(self):
-        for i in range(self.n):
-            if not self.vis[i]:
-                self.dfs1(i)
-        for i in range(self.n - 1, -1, -1):
-            if not self.color[self.s[i]]:
-                self.sccCnt += 1
-                self.dfs2(self.s[i])
-        self.color = [c-1 for c in self.color]
-        return
-
-
 class Solution:
-    def longestCycle(self, edges: List[int]) -> int:
-        n = len(edges)
-        edge = [[] for _ in range(n)]
-        ans = 0
-        for i in range(n):
-            if edges[i] != -1:
-                if i == edges[i]:
-                    ans = 1
-                else:
-                    edge[i].append(edges[i])
+    def minDistance(self, houses: List[int], k: int) -> int:
+        n = len(houses)
+        cost = [[0] * n for _ in range(n)]
+        for i in range(n - 2, -1, -1):
+            cost[i][i + 1] = houses[i + 1] - houses[i]
+            for j in range(i + 2, n):
+                cost[i][j] = cost[i + 1][j - 1] + houses[j] - houses[i]
 
-        kosaraju = Kosaraju(n, edge)
-        cnt = max(Counter(kosaraju.color).values())
-        if cnt > 1:
-            ans = cnt
-        return ans if ans > 0 else -1
+        dp = [[float("inf")] * (k + 1) for _ in range(n + 1)]
+        dp[0][0] = 0
+        for i in range(n):
+            dp[i + 1][1] = cost[0][i]
+            for j in range(2, k + 1):
+                dp[i + 1][j] = min((dp[x][j - 1] + cost[x][i]) for x in range(i + 1))
+        return dp[n][k]
+
 
 
 class TestGeneral(unittest.TestCase):
     def test_solution(self):
-        assert Solution().isValid("(]") == False
+        assert Solution().maxValue(events = [[1,2,4],[3,4,3],[2,3,10]], k = 2) == 10
         return
 
 

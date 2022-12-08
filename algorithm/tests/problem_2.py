@@ -24,17 +24,29 @@ from sortedcontainers import SortedList
 
 
 
-class Solution:
-    def appendCharacters(self, s: str, t: str) -> int:
 
-        n = len(t)
-        i = 0
-        for w in s:
-            if w == t[i]:
-                i += 1
-                if i == n:
-                    return 0
-        return n-i
+class Solution:
+    def dividePlayers(self, skill: List[int]) -> int:
+        s = sum(skill)
+        n = len(skill)
+
+        if s % (n//2) != 0:
+            return -1
+
+        m = s//(n//2)
+        pre = defaultdict(int)
+        ans =0
+        for num in skill:
+            if pre[m-num]:
+                ans += num*(m-num)
+                pre[m-num] -= 1
+            else:
+                pre[num] +=1
+        if sum(pre.values()) == 0:
+            return ans
+        return -1
+
+
 
 
 

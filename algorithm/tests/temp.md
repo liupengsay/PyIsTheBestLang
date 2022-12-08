@@ -1,53 +1,67 @@
 ***
 ### 解题思路
-【儿须成名酒须醉】Python3+哈希计数+栈
-- 参考官解
+【儿须成名酒须醉】Python3+枚举
+- 枚举表达式所有可能的状态计算
+
 ### 代码
-- 执行用时：232 ms, 在所有 Python3 提交中击败了 100.00% 的用户
-- 内存消耗：22.9 MB, 在所有 Python3 提交中击败了 40.59% 的用户
-- 通过测试用例：38 / 38
+- 执行用时：1488 ms, 在所有 Python3 提交中击败了 5.15% 的用户
+- 内存消耗：15.1 MB, 在所有 Python3 提交中击败了 16.11% 的用户
+- 通过测试用例：71 / 71
 
 ```python3
-class FreqStack:
+class Solution:
+    def judgePoint24(self, cards: List[int]) -> bool:
 
-    def __init__(self):
-        self.dct = defaultdict(list)
-        self.freq = 0
-        self.cnt = defaultdict(int)
+        for a, b, c, d in permutations(cards, 4):
+            for op1 in "+-*/":
+                for op2 in "+-*/":
+                    for op3 in "+-*/":
+                        dct = [f"{a}{op1}{b}{op2}{c}{op3}{d}",
 
-    def push(self, val: int) -> None:
-        self.cnt[val] += 1
-        self.dct[self.cnt[val]].append(val)
-        self.freq = self.freq if self.freq > self.cnt[val] else self.cnt[val]
+                               f"({a}{op1}{b}){op2}{c}{op3}{d}",
+                               f"{a}{op1}({b}{op2}{c}){op3}{d}",
+                               f"{a}{op1}{b}{op2}({c}{op3}{d})",
+                               f"({a}{op1}{b}{op2}{c}){op3}{d}",
+                               f"{a}{op1}({b}{op2}{c}{op3}{d})",
 
-    def pop(self) -> int:
-        val = self.dct[self.freq].pop()
-        self.cnt[val] -= 1
-        if not self.dct[self.freq]:
-            self.freq -= 1
-        return val
+                               f"({a}{op1}{b}){op2}({c}{op3}{d})",
+                               f"({a}{op1}{b}{op2}{c}){op3}{d}",
+                               f"{a}{op1}({b}{op2}({c}{op3}{d}))"]
+                        for st in dct:
+                            try:
+                                if abs(24 - eval(st)) < 1e-5:
+                                    return True
+                            except BaseException as _:
+                                pass
+        return False
 ```
 
 ***
 ### 解题思路
-【儿须成名酒须醉】Python3+贪心
-- 参考大佬题解
+【儿须成名酒须醉】Python3+三指针
+
 ### 代码
-- 执行用时：56 ms, 在所有 Python3 提交中击败了 73.75% 的用户
-- 内存消耗：16.1 MB, 在所有 Python3 提交中击败了 76.25% 的用户
-- 通过测试用例：117 / 117
+- 执行用时：696 ms, 在所有 Python3 提交中击败了 29.68% 的用户
+- 内存消耗：15 MB, 在所有 Python3 提交中击败了 91.78% 的用户
+- 通过测试用例：315 / 315
 
 
 ```python3
 class Solution:
-    def intersectionSizeTwo(self, intervals: List[List[int]]) -> int:
-        intervals.sort(key=lambda inter: [inter[1], -inter[0]])
-        ans, a, b = 0, -1, -1
-        for x, y in intervals:
-            if x > b:
-                ans, a, b = ans + 2, y - 1, y
-            elif x > a:
-                ans, a, b = ans + 1, b, y
+    def threeSumSmaller(self, nums: List[int], target: int) -> int:
+        nums.sort()
+        n = len(nums)
+        ans = 0
+        for i in range(n - 2):
+            j, k = i + 1, n - 1
+            while j < k:
+                cur = nums[i] + nums[j] + nums[k]
+                if cur >= target:
+                    k -= 1
+                else:
+                    # 注意这里的计数与移动方向
+                    ans += k - j
+                    j += 1
         return ans
 ```
 
