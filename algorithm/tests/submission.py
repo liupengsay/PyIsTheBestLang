@@ -36,58 +36,41 @@ from sortedcontainers import SortedList
 # int(input().strip())
 # [int(w) for w in input().split() if w]
 # [float(w) for w in input().split() if w]
-
+# sys.setrecursionlimit(10000000)
 #n, c = [int(w) for w in input().strip().split() if w]
 import numpy as np
 import math
 import bisect
-
-import sys
 from functools import lru_cache
 from collections import defaultdict
-sys.setrecursionlimit(10000000)
+import bisect
+
+import math
+import sys
+
 input = lambda: sys.stdin.readline()
 print = lambda x: sys.stdout.write(str(x)+'\n')
 
 
-while True:
-    s = input().strip()
-    if not s or s == "EOF":
-        break
-    m, n = [int(w) for w in s.split() if w]
-    lst = []
-    for _ in range(m):
-        s = input().strip()
-        while not s:
-            s = input().strip()
-        lst.append(s)
+low, high = [int(w) for w in input().split() if w]
 
-    def find():
-        for i in range(m):
-            for j in range(n):
-                if lst[i][j] == "S":
-                    return [i, j]
 
-    start = find()
-    stack = [start]
-    visit = {(start[0], start[1])}
-    ans = ""
-    while stack and not ans:
-        nex = []
-        for i, j in stack:
-            if ans:
-                break
-            for x, y in [[i-1,j],[i+1,j],[i,j-1],[i,j+1]]:
-                if lst[x%m][y%n] != "#":
-                    if lst[x%m][y%n] == "S" and (x, y) not in visit:
-                        ans = "Yes"
-                        break
-                    if (x, y) not in visit:
-                        lst[x%m][y%n] = "S"
-                        visit.add((x,y))
-                        nex.append((x, y))
-        stack = nex
-    if ans:
-        print("Yes")
-    else:
-        print("No")
+n = int(math.sqrt(high))+1
+primes = [True] * (n + 1)  # 范围0到n的列表
+p = 2  # 这是最小的素数
+while p * p <= n:  # 一直筛到sqrt(n)就行了
+    if primes[p]:  # 如果没被筛，一定是素数
+        for i in range(p * 2, n + 1, p):  # 筛掉它的倍数即可
+            primes[i] = False
+    p += 1
+primes = [element for element in range(2, n + 1) if primes[element]]  # 得到所有少于n的素数
+
+
+euler_phi = [True]*(high-low+1)
+for p in primes:
+    for a in range(max(low//p, 2), high//p+1):
+        if low<=a*p<=high:
+            euler_phi[a*p-low] = False
+if low == 1:
+    euler_phi[1] = False
+print(sum(euler_phi))
