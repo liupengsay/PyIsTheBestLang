@@ -5,33 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="scc强连通分量">
-      <change afterPath="$PROJECT_DIR$/algorithm/template/graph/spfa.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/template/数据结构/st.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/luogu/P1205_2.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/luogu/P1205_2.out" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/luogu/P1429_6.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/luogu/P1429_6.out" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/luogu/P1765_2.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/luogu/P1765_2.out" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/luogu/P3131_12.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/luogu/P3131_12.out" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/luogu/P3143_3.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/luogu/P3143_3.out" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/luogu/P3385_1.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/luogu/P3385_1.out" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/luogu/P3387_2.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/luogu/P3387_2.out" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/luogu/P4956_6.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/luogu/P4956_6.out" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/luogu/P5714_1.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/luogu/P5714_1.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/数据结构/单调栈.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/数据结构/单调栈.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/数据结构/线段树.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/数据结构/线段树.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/change.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/change.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/submission.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/submission.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/temp.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/temp.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/luogu/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/luogu/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/luogu/.idea/luogu.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/luogu/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/luogu/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/luogu/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/luogu/tests/submission.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -481,7 +461,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670535696436</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="ST表与SPFA最短路算法">
+      <created>1670680751115</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1670680751115</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -499,7 +486,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="增加OI竞赛项" />
     <MESSAGE value="更新并查集与tarjan强连通分量" />
     <MESSAGE value="力扣发帖记录" />
     <MESSAGE value="增加自定义排序" />
@@ -524,7 +510,8 @@
     <MESSAGE value="scc强连通分量" />
     <MESSAGE value="数论备份" />
     <MESSAGE value="数论增加欧拉素数筛法" />
-    <option name="LAST_COMMIT_MESSAGE" value="数论增加欧拉素数筛法" />
+    <MESSAGE value="ST表与SPFA最短路算法" />
+    <option name="LAST_COMMIT_MESSAGE" value="ST表与SPFA最短路算法" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
