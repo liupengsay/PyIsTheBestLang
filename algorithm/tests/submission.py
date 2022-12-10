@@ -46,31 +46,32 @@ from collections import defaultdict
 import bisect
 
 import math
+import heapq
 import sys
-
+from collections import defaultdict, Counter, deque
+from functools import lru_cache
 input = lambda: sys.stdin.readline()
 print = lambda x: sys.stdout.write(str(x)+'\n')
+sys.setrecursionlimit(10000000)
+
+import math
+
+s = input().strip()
 
 
-low, high = [int(w) for w in input().split() if w]
 
 
-n = int(math.sqrt(high))+1
-primes = [True] * (n + 1)  # 范围0到n的列表
-p = 2  # 这是最小的素数
-while p * p <= n:  # 一直筛到sqrt(n)就行了
-    if primes[p]:  # 如果没被筛，一定是素数
-        for i in range(p * 2, n + 1, p):  # 筛掉它的倍数即可
-            primes[i] = False
-    p += 1
-primes = [element for element in range(2, n + 1) if primes[element]]  # 得到所有少于n的素数
+def longestPalindrome(s: str) -> str:
+    n = len(s)
+    ans = ""
+    for i in range(n):
+        for x, y in [[i, i],[i,i+1]]:
+            while x>=0 and y<n and s[x]==s[y]:
+                if y-x+1>len(ans):
+                    ans=s[x:y+1]
+                x-=1
+                y+=1
+    return ans
 
 
-euler_phi = [True]*(high-low+1)
-for p in primes:
-    for a in range(max(low//p, 2), high//p+1):
-        if low<=a*p<=high:
-            euler_phi[a*p-low] = False
-if low == 1:
-    euler_phi[1] = False
-print(sum(euler_phi))
+print(longestPalindrome(s))

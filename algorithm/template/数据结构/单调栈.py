@@ -64,4 +64,39 @@ class Solution:
         for i in range(n):
             if nums[i]*(post[i]-pre[i]+1) > ans:
                 ans = nums[i]*(post[i]-pre[i]+1)
-        return ans % MO
+        return ans % MOD
+
+"""
+
+#求长方形个数题目：https://www.luogu.com.cn/problem/P1950
+import sys
+
+input = lambda: sys.stdin.readline()
+print = lambda x: sys.stdout.write(str(x)+'\n')
+
+
+m, n = [int(w) for w in input().strip().split() if w]
+ans = 0
+pre = [0]*n
+for _ in range(m):
+    s = input().strip()
+    for j in range(n):
+        if s[j] == ".":
+            pre[j] += 1
+        else:
+            pre[j] = 0
+
+    right = [n-1]*n
+    left = [0] * n
+    stack = []
+    for j in range(n):
+        while stack and pre[stack[-1]] >= pre[j]:
+            right[stack.pop()] = j-1
+        if stack:
+            left[j] = stack[-1]+1
+        stack.append(j)
+
+    ans += sum((right[j]-j+1)*(j-left[j]+1)*pre[j] for j in range(n))
+print(ans)
+
+"""

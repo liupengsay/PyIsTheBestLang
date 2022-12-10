@@ -4,36 +4,22 @@
 - 枚举表达式所有可能的状态计算
 
 ### 代码
-- 执行用时：1488 ms, 在所有 Python3 提交中击败了 5.15% 的用户
-- 内存消耗：15.1 MB, 在所有 Python3 提交中击败了 16.11% 的用户
-- 通过测试用例：71 / 71
+- 执行用时：352 ms, 在所有 Python3 提交中击败了 100.00% 的用户
+- 内存消耗：15.4 MB, 在所有 Python3 提交中击败了 55.56% 的用户
+- 通过测试用例：100 / 100
 
 ```python3
 class Solution:
-    def judgePoint24(self, cards: List[int]) -> bool:
-
-        for a, b, c, d in permutations(cards, 4):
-            for op1 in "+-*/":
-                for op2 in "+-*/":
-                    for op3 in "+-*/":
-                        dct = [f"{a}{op1}{b}{op2}{c}{op3}{d}",
-
-                               f"({a}{op1}{b}){op2}{c}{op3}{d}",
-                               f"{a}{op1}({b}{op2}{c}){op3}{d}",
-                               f"{a}{op1}{b}{op2}({c}{op3}{d})",
-                               f"({a}{op1}{b}{op2}{c}){op3}{d}",
-                               f"{a}{op1}({b}{op2}{c}{op3}{d})",
-
-                               f"({a}{op1}{b}){op2}({c}{op3}{d})",
-                               f"({a}{op1}{b}{op2}{c}){op3}{d}",
-                               f"{a}{op1}({b}{op2}({c}{op3}{d}))"]
-                        for st in dct:
-                            try:
-                                if abs(24 - eval(st)) < 1e-5:
-                                    return True
-                            except BaseException as _:
-                                pass
-        return False
+    def minCost(self, n: int, cuts: List[int]) -> int:
+        cuts.sort()
+        cuts.insert(0, 0)
+        cuts.append(n)
+        m = len(cuts)
+        dp = [[0] * (m + 1) for _ in range(m + 1)]
+        for i in range(m - 1, -1, -1):
+            for j in range(i + 2, m):
+                dp[i][j] = cuts[j] - cuts[i] + min(dp[i][k] + dp[k][j] for k in range(i + 1, j))
+        return dp[0][m - 1]
 ```
 
 ***

@@ -45,6 +45,50 @@ class SegmentTreeRangeSum:
             ans += self.query(left, r, m + 1, t, 2 * i + 1)
         return ans
 
+
+class SegmentTreeRangeSumArray:
+    def __init__(self, n):
+        self.cover = [0]*4*n
+        self.lazy = [0]*4*n
+        self.count = 0
+
+    def push_down(self, i, s, m, t):
+        if self.lazy[i]:
+            self.cover[2 * i] += self.lazy[i]*(m-s+1)
+            self.cover[2 * i + 1] += self.lazy[i]*(t-m)
+
+            self.lazy[2 * i] += self.lazy[i]
+            self.lazy[2 * i + 1] += self.lazy[i]
+
+            self.lazy[i] = 0
+
+    def update(self, left, r, s, t, val, i):
+        if left <= s and t <= r:
+            self.cover[i] += val*(t-s+1)
+            self.lazy[i] += val
+            return
+        m = s + (t - s) // 2
+        self.push_down(i, s, m, t)
+        if left <= m:
+            self.update(left, r, s, m, val, 2 * i)
+        if r > m:
+            self.update(left, r, m + 1, t, val, 2 * i + 1)
+        self.cover[i] = self.cover[2 * i] + self.cover[2 * i + 1]
+        return
+
+    def query(self, left, r, s, t, i):
+        if left <= s and t <= r:
+            return self.cover[i]
+        m = s + (t - s) // 2
+        self.push_down(i, s, m, t)
+        ans = 0
+        if left <= m:
+            ans += self.query(left, r, s, m, 2 * i)
+        if r > m:
+            ans += self.query(left, r, m + 1, t, 2 * i + 1)
+        return ans
+
+
 class SegmentTreeRangeMaxShort:
     def __init__(self):
         self.height = defaultdict(int)

@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="scc强连通分量">
-      <change afterPath="$PROJECT_DIR$/algorithm/competition/第322场周赛题解.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/template/greedy/sort.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/template/mathmatics/number_theory.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/template/mathmatics/概率论.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/template/mathmatics/组合数学.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/template/mathmatics/高精度.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/template/搜索/折半搜索.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/tests/submission.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/graph/spfa.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/数据结构/st.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/luogu/P1205_2.in" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/luogu/P1205_2.out" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/luogu/P1429_6.in" afterDir="false" />
@@ -21,31 +15,23 @@
       <change afterPath="$PROJECT_DIR$/luogu/P1765_2.out" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/luogu/P3131_12.in" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/luogu/P3131_12.out" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/luogu/P3143_3.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/luogu/P3143_3.out" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/luogu/P3385_1.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/luogu/P3385_1.out" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/luogu/P3387_2.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/luogu/P3387_2.out" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/luogu/P4956_6.in" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/luogu/P4956_6.out" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/luogu/P5714_1.in" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/luogu/P5714_1.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/数学/位运算.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/mathmatics/位运算.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/数学/快速幂.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/mathmatics/快速幂.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/数学/排列组合.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/mathmatics/排列组合.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/数学/数论.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/mathmatics/数论.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/数学/数论.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/mathmatics/数论.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/数学/概率论.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/数学/组合数学.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/greedy/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/数学/高精度.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/greedy/lis.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/算法基础/前缀和与差分.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/算法基础/前缀和与差分.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/算法基础/排序.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/算法基础/排序.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/backup.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/template/数据结构/单调栈.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/数据结构/单调栈.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/template/数据结构/线段树.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/数据结构/线段树.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/tests/change.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/change.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_3.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_3.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_4.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_4.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/tests/submission.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/submission.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/tests/temp.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/temp.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/temp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/temp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/test_solution.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/测试用例.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/luogu/tests/submission.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -122,7 +108,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests for number_theory.TestGeneral.test_euler_phi">
+  <component name="RunManager" selected="Python.submission (1)">
     <configuration name="强连通分量" type="PythonConfigurationType" factoryName="Python">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -165,6 +151,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="spfa" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="PCRecord" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/template/graph" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/algorithm/template/graph/spfa.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="submission (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -186,17 +193,17 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for number_theory.TestGeneral.test_euler_phi" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for problem_1.TestGeneral.test_solution" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/template/mathmatics" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/tests" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;number_theory.TestGeneral.test_euler_phi&quot;" />
+      <option name="_new_target" value="&quot;problem_1.TestGeneral.test_solution&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -214,27 +221,13 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests in sort.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <module name="PCRecord" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/template/greedy" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/template/greedy/sort.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Unittests for number_theory.TestGeneral.test_euler_phi" />
         <item itemvalue="Python.submission (1)" />
-        <item itemvalue="Python tests.Unittests in problem_1.py" />
+        <item itemvalue="Python.spfa" />
         <item itemvalue="Python.change" />
-        <item itemvalue="Python tests.Unittests in sort.py" />
+        <item itemvalue="Python tests.Unittests in problem_1.py" />
+        <item itemvalue="Python tests.Unittests for problem_1.TestGeneral.test_solution" />
       </list>
     </recent_temporary>
   </component>
@@ -474,7 +467,21 @@
       <option name="project" value="LOCAL" />
       <updated>1669812039738</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="数论备份">
+      <created>1670508196833</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1670508196833</updated>
+    </task>
+    <task id="LOCAL-00034" summary="数论增加欧拉素数筛法">
+      <created>1670535696436</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1670535696436</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -492,8 +499,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="字节一面面试coding题目" />
-    <MESSAGE value="力扣资料整理" />
     <MESSAGE value="增加OI竞赛项" />
     <MESSAGE value="更新并查集与tarjan强连通分量" />
     <MESSAGE value="力扣发帖记录" />
@@ -517,7 +522,9 @@
     <MESSAGE value="增加测试用例时间" />
     <MESSAGE value="周赛题解更新" />
     <MESSAGE value="scc强连通分量" />
-    <option name="LAST_COMMIT_MESSAGE" value="scc强连通分量" />
+    <MESSAGE value="数论备份" />
+    <MESSAGE value="数论增加欧拉素数筛法" />
+    <option name="LAST_COMMIT_MESSAGE" value="数论增加欧拉素数筛法" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
