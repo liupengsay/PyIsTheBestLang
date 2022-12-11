@@ -34,8 +34,8 @@ from sortedcontainers import SortedList
 
 
 # int(input().strip())
-# [int(w) for w in input().split() if w]
-# [float(w) for w in input().split() if w]
+# [int(w) for w in input().strip().split() if w]
+# [float(w) for w in input().strip().split() if w]
 # sys.setrecursionlimit(10000000)
 #n, c = [int(w) for w in input().strip().split() if w]
 import numpy as np
@@ -47,31 +47,33 @@ import bisect
 
 import math
 import heapq
-import sys
-from collections import defaultdict, Counter, deque
-from functools import lru_cache
-input = lambda: sys.stdin.readline()
-print = lambda x: sys.stdout.write(str(x)+'\n')
-sys.setrecursionlimit(10000000)
-
-import math
-
-s = input().strip()
 
 
 
 
-def longestPalindrome(s: str) -> str:
-    n = len(s)
-    ans = ""
-    for i in range(n):
-        for x, y in [[i, i],[i,i+1]]:
-            while x>=0 and y<n and s[x]==s[y]:
-                if y-x+1>len(ans):
-                    ans=s[x:y+1]
-                x-=1
-                y+=1
-    return ans
+s1 = input().strip()
+s2 = input().strip()
+
+class KMP:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def prefix_function(s):
+        # 计算s[:i]与s[:i]的最长公共真前缀与真后缀
+        n = len(s)
+        pi = [0] * n
+        for i in range(1, n):
+            j = pi[i - 1]
+            while j > 0 and s[i] != s[j]:
+                j = pi[j - 1]
+            if s[i] == s[j]:
+                j += 1
+            pi[i] = j
+        # pi[0] = 0
+        return pi
 
 
-print(longestPalindrome(s))
+
+ans = KMP().prefix_function(s2)
+print(" ".join(str(x) for x in ans))

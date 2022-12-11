@@ -86,3 +86,5 @@ class MyCalendarTwo:
 ```python3
 books = [[i, i+100] for i in range(1, 100000)]
 ```
+
+昨晚掉大分，今天就喜提$rank1$，这就是周赛的魅力吧！就像开盲盒，打开之前永远不知道里面有什么~

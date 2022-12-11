@@ -1,4 +1,9 @@
-
+"""
+算法：LGV引理
+功能：用来处理有向无环图上不相交路径计数问题
+题目：P6657 【模板】LGV 引理（https://www.luogu.com.cn/problem/P6657）
+参考：OI WiKi（https://oi-wiki.org/graph/lgv/）
+"""
 
 import bisect
 import random
@@ -28,23 +33,18 @@ import heapq
 import copy
 
 
-class Solution:
-    def deleteGreatestValue(self, grid: List[List[int]]) -> int:
-        ans = 0
-        m, n = len(grid), len(grid[0])
-        for _ in range(n):
-            cur = 0
-            for i in range(m):
-                val = max(grid[i])
-                cur = cur if cur > val else val
-                grid[i].remove(val)
-            ans += cur
-        return ans
+class ClassName:
+    def __init__(self):
+        return
+
+    def gen_result(self):
+        return
 
 
 class TestGeneral(unittest.TestCase):
-    def test_solution(self):
-        assert Solution().minCost(7, [1, 3, 4, 5]) == 11
+    def test_euler_phi(self):
+        nt = ClassName()
+        assert nt.gen_result(10 ** 11 + 131) == 66666666752
         return
 
 

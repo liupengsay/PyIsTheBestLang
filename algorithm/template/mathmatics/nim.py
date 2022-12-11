@@ -1,4 +1,11 @@
+"""
+算法：nim游戏也叫公平组合游戏，属于博弈论范畴
+功能：用来判断游戏是否存在必胜态与必输态
+题目：P2197 【模板】nim 游戏（https://www.luogu.com.cn/problem/P2197）
+参考：OI WiKi（https://oi-wiki.org/graph/lgv/）
 
+有一个神奇的结论：当n堆石子的数量异或和等于0时，先手必胜，否则先手必败
+"""
 
 import bisect
 import random
@@ -28,23 +35,19 @@ import heapq
 import copy
 
 
-class Solution:
-    def deleteGreatestValue(self, grid: List[List[int]]) -> int:
-        ans = 0
-        m, n = len(grid), len(grid[0])
-        for _ in range(n):
-            cur = 0
-            for i in range(m):
-                val = max(grid[i])
-                cur = cur if cur > val else val
-                grid[i].remove(val)
-            ans += cur
-        return ans
+class Nim:
+    def __init__(self, lst):
+        self.lst = lst
+        return
+
+    def gen_result(self):
+        return reduce(xor, self.lst) != 0
 
 
 class TestGeneral(unittest.TestCase):
-    def test_solution(self):
-        assert Solution().minCost(7, [1, 3, 4, 5]) == 11
+    def test_euler_phi(self):
+        nim = Nim([0, 2, 3])
+        assert nim.gen_result() == True
         return
 
 

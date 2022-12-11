@@ -38,8 +38,6 @@ from functools import reduce
 from functools import cmp_to_key
 
 
-
-
 # 标准并查集
 class UnionFind:
     def __init__(self, n):
@@ -74,10 +72,10 @@ class UnionFind:
 
     def get_root_part(self):
         # 获取每个根节点对应的组
-        part = defaultdict(set)
+        part = defaultdict(list)
         n = len(self.root)
         for i in range(n):
-            part[self.find(i)].add(i)
+            part[self.find(i)].append(i)
         return part
 
     def get_root_size(self):
@@ -90,59 +88,49 @@ class UnionFind:
 
 
 class Solution:
-    def magnificentSets(self, n: int, edges: List[List[int]]) -> int:
-        dct = [[] for _ in range(n)]
-        degree = defaultdict(int)
-        uf = UnionFind(n)
-        for i, j in edges:
-            i -= 1
-            j -= 1
-            dct[i].append(j)
-            dct[j].append(i)
-            degree[i]+=1
-            degree[j] += 1
-            uf.union(i, j)
+    def maxPoints(self, grid: List[List[int]], queries: List[int]) -> List[int]:
 
-        part = uf.get_root_part()
+        # 根据邻居关系进行建图处理
+        dct = []
+        m, n = len(grid), len(grid[0])
+        for i in range(m):
+            for j in range(n):
+                if i + 1 < m:
+                    x, y = grid[i][j], grid[i + 1][j]
+                    dct.append([i * n + j, i * n + n + j, x if x > y else y])
+                if j + 1 < n:
+                    x, y = grid[i][j], grid[i][j + 1]
+                    dct.append([i * n + j, i * n + 1 + j, x if x > y else y])
+        dct.sort(key=lambda d: d[2])
+        uf = UnionFind(m * n)
 
-        def check(nodes, edges):
-            res = 0
+        # 按照查询值的大小排序，依次进行查询
+        k = len(queries)
+        ind = list(range(k))
+        ind.sort(key=lambda d: queries[d])
 
-            for i in nodes:
-                root = defaultdict(lambda: int)
-                ans = 0
-                visit = [0] * n
-                if not visit[i]:
-                    stack = [i]
-                    visit[i] = 1
-                    while stack:
-                        nex = []
-                        for x in stack:
-                            root[x] = ans
-                        ans += 1
-                        for x in stack:
-                            for y in dct[x]:
-                                if not visit[y]:
-                                    nex.append(y)
-                                    visit[y] = 1
-                        stack = nex
-                if all(abs(root[x-1]-root[y-1])==1 for x, y in edges):
-                    res = max(res, len(set(root)))
-            return res
-        ans = 0
-        for p in part:
-            cur = check(list(part[p]), [[x-1,y-1] for x, y in edges if x-1 in part[p] and y-1 in part[p]])
-            ans = max(ans, cur)
-        return ans if ans> 0 else -1
-
-
+        # 根据查询值的大小利用指针持续更新并查集
+        ans = []
+        j = 0
+        length = len(dct)
+        for i in ind:
+            cur = queries[i]
+            while j < length and dct[j][2] < cur:
+                uf.union(dct[j][0], dct[j][1])
+                j += 1
+            if cur > grid[0][0]:
+                ans.append([i, uf.size[uf.find(0)]])
+            else:
+                ans.append([i, 0])
+        ans.sort(key=lambda a: a[0])
+        return [a[1] for a in ans]
 
 
 class TestGeneral(unittest.TestCase):
     def test_solution(self):
-        assert Solution().countSubarrays(nums = [2,3,1], k = 3) == 1
-        assert Solution().countSubarrays(nums = [3,2,1,4,5], k = 4) == 3
-        assert Solution().countSubarrays([2,5,1,4,3,6], 1) == 3
+        assert Solution().countSubarrays(nums=[2, 3, 1], k=3) == 1
+        assert Solution().countSubarrays(nums=[3, 2, 1, 4, 5], k=4) == 3
+        assert Solution().countSubarrays([2, 5, 1, 4, 3, 6], 1) == 3
         return
 
 

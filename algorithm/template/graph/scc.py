@@ -58,6 +58,33 @@ Garbow 算法是 Tarjan 算法的另一种实现，Tarjan 算法是用 dfn 和 l
 参考题目：P3387	【模板】缩点 https://www.luogu.com.cn/problem/solution/P3387
 """
 
+import bisect
+import random
+import re
+import unittest
+
+from typing import List
+import heapq
+import math
+from collections import defaultdict, Counter, deque
+from functools import lru_cache
+from itertools import combinations
+from sortedcontainers import SortedList, SortedDict, SortedSet
+
+from sortedcontainers import SortedDict
+from functools import reduce
+from operator import xor
+from functools import lru_cache
+
+import random
+from itertools import permutations, combinations
+import numpy as np
+
+from decimal import Decimal
+
+import heapq
+import copy
+
 
 class Kosaraju:
     def __init__(self, n, g):
@@ -102,6 +129,23 @@ class Kosaraju:
                 self.dfs2(self.s[i])
         self.color = [c-1 for c in self.color]
         return
+
+    def gen_new_edges(self, weight):
+        color = defaultdict(list)
+        dct = dict()
+        for i in range(self.n):
+            j = self.color[i]
+            dct[i] = j
+            color[j].append(i)
+        k = len(color)
+        new_weight = [sum(weight[i] for i in color[j]) for j in range(k)]
+
+        new_edges = [set() for _ in range(k)]
+        for i in range(self.n):
+            for j in self.g[i]:
+                if dct[i] != dct[j]:
+                    new_edges[dct[i]].add(dct[j])
+        return new_weight, new_edges
 
 
 class Tarjan:
