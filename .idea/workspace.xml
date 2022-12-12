@@ -4,33 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="新算法上传">
-      <change afterPath="$PROJECT_DIR$/algorithm/template/graph/euler_path.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/template/graph/lca.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/template/graph/union_find.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/template/mathmatics/multiplicative_inverse.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/template/string/suffix_array.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/template/string/trie.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/tests/P3379_1.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/tests/P3379_1.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/graph/prufer.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/graph/prufer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/graph/并查集.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/graph/并查集.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/string/后缀数组.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/string/后缀数组.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/string/字典树.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/数据结构/skip_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/data_structure/skip_table.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/数据结构/单调栈.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/data_structure/单调栈.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/数据结构/单调栈.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/data_structure/单调栈.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/数据结构/树状数组.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/data_structure/树状数组.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/数据结构/树状数组.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/data_structure/树状数组.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/数据结构/线段树.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/data_structure/线段树.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/数据结构/线段树.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/data_structure/线段树.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/数据结构/设计.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/data_structure/设计.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/submission.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/submission.py" afterDir="false" />
-    </list>
+    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="新增字典树与后缀数组" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -485,7 +459,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670770840116</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="新增字典树与后缀数组">
+      <created>1670805308246</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1670805308246</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -503,7 +484,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="力扣发帖记录" />
     <MESSAGE value="增加自定义排序" />
     <MESSAGE value="第305场周赛题解" />
     <MESSAGE value="更新双指针与快慢指针模板" />
@@ -528,7 +508,8 @@
     <MESSAGE value="ST表与SPFA最短路算法" />
     <MESSAGE value="scc强连通分量" />
     <MESSAGE value="新算法上传" />
-    <option name="LAST_COMMIT_MESSAGE" value="新算法上传" />
+    <MESSAGE value="新增字典树与后缀数组" />
+    <option name="LAST_COMMIT_MESSAGE" value="新增字典树与后缀数组" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
