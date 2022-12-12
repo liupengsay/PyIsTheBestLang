@@ -47,33 +47,34 @@ import bisect
 import heapq
 
 import sys
-import math
-sys.setrecursionlimit(1000000)
+from collections import defaultdict, Counter, deque
+from functools import lru_cache
 input = lambda: sys.stdin.readline()
 print = lambda x: sys.stdout.write(str(x)+'\n')
+sys.setrecursionlimit(10000000)
 
+import math
 
-class MultiplicativeInverse:
-    def __init__(self):
-        return
+n, m = map(int, input().split())
+lst1 = list(map(int, input().split()))
+f = [[0] * 18 for i in range(1 + n)]
 
-    @staticmethod
-    def get_result(a, p):
-        # 注意a和p都为正整数
-        return pow(a, -1, p)
+for i in range(1, n + 1):
+    f[i][0] = lst1[i - 1]
+for j in range(1, int(math.log2(n)) + 1):  # 一定不能用ceil，必须用floor 或者int    +1
+    for i in range(1, n - (1<<j) + 2):
+        a = f[i][j - 1]
+        b = f[i +  (1<<(j - 1))][j - 1]
+        f[i][j] = a if a > b else b
 
-
-
-import numpy as np
-n = int(input().strip())
-grid = []
-for _ in range(n):
-    grid.append([int(w) for w in input().strip().split() if w])
-
-
-MOD = 10**9 + 7
-print(np.linalg.inv(np.array(grid)))
-# 矩阵对象可以通过 .I 更方便的求逆
-A = np.matrix(np.array(grid))
-print([[x%MOD for x in ls] for ls in A.I])
+q = []
+res = []
+for i in range(m):
+    l, r = map(int, input().split())
+    q.append([l ,r])
+    k = int(math.log2(r - l + 1))
+    a = f[l][k]
+    b = f[r - (1<<k) + 1][k]
+    res.append(a if a > b else b)
+print(res)
 
