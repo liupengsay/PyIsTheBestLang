@@ -35,22 +35,37 @@ import copy
 
 class PruferAndTree:
     def __init__(self):
+        """默认以0为最小标号"""
         return
 
     @staticmethod
-    def tree_to_prufer(adj, root):
-        # 以root为根的带标号树生成prufer序列，adj为邻接关系
+    def adj_to_parent(adj, root):
 
         def dfs(v):
             for u in adj[v]:
                 if u != parent[v]:
                     parent[u] = v
                     dfs(u)
-        # 以root为根生成prufer序列
+
         n = len(adj)
         parent = [-1] * n
         dfs(root)
+        return parent
 
+    @staticmethod
+    def parent_to_adj(parent):
+        n = len(parent)
+        adj = [[] for _ in range(n)]
+        for i in range(n):
+            if parent[i] != -1:  # 即 i!=root
+                adj[i].append(parent[i])
+                adj[parent[i]].append(i)
+        return parent
+
+    def tree_to_prufer(self, adj, root):
+        # 以root为根的带标号树生成prufer序列，adj为邻接关系
+        parent = self.adj_to_parent(adj, root)
+        n = len(adj)
         # 统计度数，以较小的叶子节点序号开始
         ptr = -1
         degree = [0] * n

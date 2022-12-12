@@ -4,53 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="scc强连通分量">
-      <change afterPath="$PROJECT_DIR$/algorithm/competition/第323场周赛题解.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/template/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/template/graph/dominating_tree.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/template/graph/lgv.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/template/graph/prufer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/template/mathmatics/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/template/mathmatics/nim.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/template/mathmatics/partion_fft.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/template/string/kmp.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/template/string/lyndon_decomposition.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/template/string/字符串匹配.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/template/string/字符串哈希.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/PCRecord.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PCRecord.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="新算法上传">
+      <change afterPath="$PROJECT_DIR$/algorithm/template/graph/euler_path.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/graph/lca.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/graph/union_find.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/mathmatics/multiplicative_inverse.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/string/suffix_array.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/template/string/trie.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/tests/P3379_1.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/tests/P3379_1.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/graph/scc.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/graph/scc.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/graph/spfa.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/graph/spfa.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/mathmatics/number_theory.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/mathmatics/number_theory.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/动态规划/区间DP.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/dp/区间DP.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/动态规划/数位DP.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/dp/数位DP.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/动态规划/数组DP.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/dp/数组DP.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/动态规划/有向无环图DP.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/dp/有向无环图DP.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/动态规划/树形DP.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/dp/树形DP.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/动态规划/概率DP.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/dp/概率DP.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/动态规划/模拟退火.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/dp/模拟退火.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/动态规划/模拟退火.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/dp/模拟退火.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/动态规划/状压DP.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/dp/状压DP.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/动态规划/状压DP.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/dp/状压DP.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/动态规划/背包DP.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/dp/背包DP.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/字符串/KMP.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/字符串/后缀数组.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/string/后缀数组.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/字符串/后缀数组.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/string/后缀数组.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/字符串/字典树.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/string/字典树.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/字符串/字符串匹配.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/mathmatics/linear_basis.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/字符串/字符串哈希.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/string/字符串哈希.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/字符串/字符串哈希.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/mathmatics/scan_line.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/字符串/马拉车算法.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/string/马拉车算法.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/字符串/马拉车算法.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/string/manacher.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/数据结构/st.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/数据结构/skip_table.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/template/graph/prufer.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/graph/prufer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/template/graph/并查集.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/template/graph/并查集.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/template/string/后缀数组.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/template/string/后缀数组.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/template/string/字典树.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/template/数据结构/skip_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/data_structure/skip_table.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/template/数据结构/单调栈.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/data_structure/单调栈.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/template/数据结构/单调栈.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/data_structure/单调栈.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/template/数据结构/树状数组.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/data_structure/树状数组.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/template/数据结构/树状数组.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/data_structure/树状数组.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/template/数据结构/线段树.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/data_structure/线段树.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/template/数据结构/线段树.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/data_structure/线段树.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/template/数据结构/设计.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/template/data_structure/设计.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_3.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_3.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_4.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_4.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/tests/submission.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/submission.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/temp.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/temp.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/temp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/temp.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -96,7 +75,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/algorithm/competition" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="run.code.analysis.last.selected.profile" value="aDefault" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable" />
+    <property name="settings.editor.selected.configurable" value="fileTemplates" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -126,7 +105,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests for prufer.TestGeneral">
+  <component name="RunManager" selected="Python.submission">
     <configuration name="强连通分量" type="PythonConfigurationType" factoryName="Python">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -148,84 +127,90 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for prufer.TestGeneral" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="submission" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="PCRecord" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/algorithm/tests/submission.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests for multiplicative_inverse.TestGeneral.test_multiplicative_inverse" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/template/graph" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/template/mathmatics" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;prufer.TestGeneral&quot;" />
+      <option name="_new_target" value="&quot;multiplicative_inverse.TestGeneral.test_multiplicative_inverse&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for prufer.TestGeneral.test_prufer_code" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for suffix_array.TestGeneral.test_suffix_array" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/template/graph" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/template/string" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;prufer.TestGeneral.test_prufer_code&quot;" />
+      <option name="_new_target" value="&quot;suffix_array.TestGeneral.test_suffix_array&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for prufer.TestGeneral.test_prufer_to_tree" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests in multiplicative_inverse.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/template/graph" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/template/mathmatics" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;prufer.TestGeneral.test_prufer_to_tree&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Unittests in prufer.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <module name="PCRecord" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/template/graph" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/template/graph/prufer.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/template/mathmatics/multiplicative_inverse.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for prufer.TestGeneral.test_tree_to_prufer" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests in suffix_array.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/template/graph" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/template/string" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;prufer.TestGeneral.test_tree_to_prufer&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/template/string/suffix_array.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Unittests for prufer.TestGeneral" />
-        <item itemvalue="Python tests.Unittests for prufer.TestGeneral.test_prufer_to_tree" />
-        <item itemvalue="Python tests.pytest for prufer.TestGeneral.test_tree_to_prufer" />
-        <item itemvalue="Python tests.Unittests for prufer.TestGeneral.test_prufer_code" />
-        <item itemvalue="Python tests.Unittests in prufer.py" />
+        <item itemvalue="Python.submission" />
+        <item itemvalue="Python tests.Unittests for multiplicative_inverse.TestGeneral.test_multiplicative_inverse" />
+        <item itemvalue="Python tests.Unittests in multiplicative_inverse.py" />
+        <item itemvalue="Python tests.Unittests in suffix_array.py" />
+        <item itemvalue="Python tests.Unittests for suffix_array.TestGeneral.test_suffix_array" />
       </list>
     </recent_temporary>
   </component>
@@ -493,7 +478,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670680867274</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="新算法上传">
+      <created>1670770840115</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1670770840116</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -511,7 +503,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="更新并查集与tarjan强连通分量" />
     <MESSAGE value="力扣发帖记录" />
     <MESSAGE value="增加自定义排序" />
     <MESSAGE value="第305场周赛题解" />
@@ -536,7 +527,8 @@
     <MESSAGE value="数论增加欧拉素数筛法" />
     <MESSAGE value="ST表与SPFA最短路算法" />
     <MESSAGE value="scc强连通分量" />
-    <option name="LAST_COMMIT_MESSAGE" value="scc强连通分量" />
+    <MESSAGE value="新算法上传" />
+    <option name="LAST_COMMIT_MESSAGE" value="新算法上传" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

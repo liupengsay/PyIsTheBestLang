@@ -44,36 +44,36 @@ import bisect
 from functools import lru_cache
 from collections import defaultdict
 import bisect
-
-import math
 import heapq
 
+import sys
+import math
+sys.setrecursionlimit(1000000)
+input = lambda: sys.stdin.readline()
+print = lambda x: sys.stdout.write(str(x)+'\n')
 
 
-
-s1 = input().strip()
-s2 = input().strip()
-
-class KMP:
+class MultiplicativeInverse:
     def __init__(self):
         return
 
     @staticmethod
-    def prefix_function(s):
-        # 计算s[:i]与s[:i]的最长公共真前缀与真后缀
-        n = len(s)
-        pi = [0] * n
-        for i in range(1, n):
-            j = pi[i - 1]
-            while j > 0 and s[i] != s[j]:
-                j = pi[j - 1]
-            if s[i] == s[j]:
-                j += 1
-            pi[i] = j
-        # pi[0] = 0
-        return pi
+    def get_result(a, p):
+        # 注意a和p都为正整数
+        return pow(a, -1, p)
 
 
 
-ans = KMP().prefix_function(s2)
-print(" ".join(str(x) for x in ans))
+import numpy as np
+n = int(input().strip())
+grid = []
+for _ in range(n):
+    grid.append([int(w) for w in input().strip().split() if w])
+
+
+MOD = 10**9 + 7
+print(np.linalg.inv(np.array(grid)))
+# 矩阵对象可以通过 .I 更方便的求逆
+A = np.matrix(np.array(grid))
+print([[x%MOD for x in ls] for ls in A.I])
+
