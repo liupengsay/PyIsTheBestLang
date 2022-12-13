@@ -2,14 +2,11 @@
 """
 
 """
-算法：KMP算法
-功能：用来处理字符串的前缀后缀相关问题
+算法：马拉车算法
+功能：用来处理字符串的回文相关问题
 题目：
 L0214 最短回文串（https://leetcode.cn/problems/shortest-palindrome/）计算字符串前缀最长回文子串
 
-
-[LC 团灭一众字符匹配问题](https://leetcode.cn/problems/shortest-palindrome/solution/by-flix-be4y/)
-参考：OI WiKi（https://oi-wiki.org/string/kmp/）
 """
 
 def manacher(s):

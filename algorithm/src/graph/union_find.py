@@ -7,6 +7,8 @@
 功能：用来处理图论相关的联通问题
 题目：
 P3367 并查集（https://www.luogu.com.cn/problem/P3367）计算连通分块的数量
+L1697 检查边长度限制的路径是否存在（https://leetcode.cn/problems/checking-existence-of-edge-length-limited-paths/）离线查询两点间所有路径的最大边权值
+
 参考：OI WiKi（）
 """
 
@@ -87,6 +89,34 @@ class UnionFind:
         return size
 
 
+class Solution:
+    def distance_limited_paths_exist(self, n: int, edge_list: List[List[int]], queries: List[List[int]]) -> List[bool]:
+        # 查询 queries 里面的 [p, q, limit] 即 p 和 q 之间存在最大边权值严格小于 limit 的路径是否成立
+        m = len(queries)
+
+        # 按照 limit 排序
+        ind = list(range(m))
+        ind.sort(key=lambda x: queries[x][2])
+
+        # 按照边权值排序
+        edge_list.sort(key=lambda x: x[2])
+        uf = UnionFind(n)
+        i = 0
+        k = len(edge_list)
+        ans = []
+        for j in ind:
+
+            # 实时加入可用于连通的边并查询结果
+            p, q, limit = queries[j]
+            while i < k and edge_list[i][2] < limit:
+                uf.union(edge_list[i][0], edge_list[i][1])
+                i += 1
+            ans.append([j, uf.is_connected(p, q)])
+
+        # 按照顺序返回结果
+        ans.sort(key=lambda x: x[0])
+        return [an[1] for an in ans]
+
 
 class TestGeneral(unittest.TestCase):
 
@@ -96,6 +126,14 @@ class TestGeneral(unittest.TestCase):
             uf.union(i, j)
         assert uf.part == 3
         return
+
+    def test_solutioon(self):
+        sl = Solution()
+        n = 3
+        edge_list = [[0, 1, 2], [1, 2, 4], [2, 0, 8], [1, 0, 16]]
+        queries = [[0, 1, 2], [0, 2, 5]]
+        assert sl.distance_limited_paths_exist(n, edge_list, queries) == [False, True]
+
 
 
 if __name__ == '__main__':

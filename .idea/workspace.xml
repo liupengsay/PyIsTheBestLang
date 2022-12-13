@@ -5,26 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="新增算法备份">
-      <change afterPath="$PROJECT_DIR$/algorithm/src/data_structure/priority_queue.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/data_structure/small_heapq.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/data_structure/tree_array.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/string/string_hash.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/tests/problem_0.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/src/data_structure/segment_tree.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/tripart_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/tripart_search.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/skip_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/data_structure/sparse_table.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/树状数组.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/树状数组.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/minimum_spanning_tree.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/minimum_spanning_tree.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/scc.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/scc.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/spfa.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/spfa.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/线段树.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/data_structure/线段树.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/线段树.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/src/graph/union_find.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/union_find.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/greedy/longest_increasing_subsequenc.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/greedy/longest_increasing_subsequence.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/multiplicative_inverse.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/multiplicative_inverse.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/peishu_theorem.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/peishu_theorem.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/string/kmp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/string/kmp.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/src/string/manacher.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/string/manacher.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/submission.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/submission.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_1.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -102,7 +89,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests for tree_array.TestGeneral.test_tree_array_range_sum">
+  <component name="RunManager" selected="Python tests.Unittests in segment_tree.py">
     <configuration name="强连通分量" type="PythonConfigurationType" factoryName="Python">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -124,35 +111,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for spfa.TestGeneral" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <module name="PCRecord" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/graph" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;spfa.TestGeneral&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Unittests for spfa.TestGeneral.test_spfa" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <module name="PCRecord" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/graph" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;spfa.TestGeneral.test_spfa&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Unittests for tree_array.TestGeneral.test_tree_array_range" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for segment_tree.TestGeneral.test_segment_tree_range_add_min" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -162,11 +121,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tree_array.TestGeneral.test_tree_array_range&quot;" />
+      <option name="_new_target" value="&quot;segment_tree.TestGeneral.test_segment_tree_range_add_min&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for tree_array.TestGeneral.test_tree_array_range_sum" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for segment_tree.TestGeneral.test_segment_tree_range_add_sum" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -176,11 +135,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tree_array.TestGeneral.test_tree_array_range_sum&quot;" />
+      <option name="_new_target" value="&quot;segment_tree.TestGeneral.test_segment_tree_range_add_sum&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests in tree_array.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for segment_tree.TestGeneral.test_segment_tree_range_update_max" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -190,17 +149,45 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/data_structure/tree_array.py&quot;" />
+      <option name="_new_target" value="&quot;segment_tree.TestGeneral.test_segment_tree_range_update_max&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests for segment_tree.TestGeneral.test_segment_tree_range_update_sum" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="PCRecord" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/data_structure" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;segment_tree.TestGeneral.test_segment_tree_range_update_sum&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests in segment_tree.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="PCRecord" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/data_structure" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/data_structure/segment_tree.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Unittests for tree_array.TestGeneral.test_tree_array_range_sum" />
-        <item itemvalue="Python tests.Unittests in tree_array.py" />
-        <item itemvalue="Python tests.Unittests for tree_array.TestGeneral.test_tree_array_range" />
-        <item itemvalue="Python tests.Unittests for spfa.TestGeneral" />
-        <item itemvalue="Python tests.Unittests for spfa.TestGeneral.test_spfa" />
+        <item itemvalue="Python tests.Unittests in segment_tree.py" />
+        <item itemvalue="Python tests.Unittests for segment_tree.TestGeneral.test_segment_tree_range_update_sum" />
+        <item itemvalue="Python tests.Unittests for segment_tree.TestGeneral.test_segment_tree_range_add_min" />
+        <item itemvalue="Python tests.Unittests for segment_tree.TestGeneral.test_segment_tree_range_update_max" />
+        <item itemvalue="Python tests.Unittests for segment_tree.TestGeneral.test_segment_tree_range_add_sum" />
       </list>
     </recent_temporary>
   </component>
@@ -510,7 +497,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670890693644</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="新增算法备份">
+      <created>1670946277197</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1670946277197</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
