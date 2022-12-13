@@ -1,11 +1,9 @@
 """
-算法：乘法逆元
-功能：求逆元取模，注意取的模必须为质数，且不能整除该质数，否则不存在对应的乘法逆元
+算法：单调队列
+功能：维护单调性，计算滑动窗口最大值最小值
 题目：
-P3811 乘法逆元（https://www.luogu.com.cn/problem/P3811）使用乘法逆元计算
-P5431 乘法逆元（https://www.luogu.com.cn/problem/P5431）使用乘法逆元计算
-P2613 有理数取余（https://www.luogu.com.cn/problem/P2613）使用乘法逆元计算
-
+P2251 质量检测（https://www.luogu.com.cn/problem/P2251）滑动区间最小值
+L0239 滑动窗口最大值（https://leetcode.cn/problems/sliding-window-maximum/）滑动区间最大值
 参考：OI WiKi（xx）
 """
 
@@ -37,22 +35,19 @@ import heapq
 import copy
 
 
-class MultiplicativeInverse:
+class ClassName:
     def __init__(self):
         return
 
-    @staticmethod
-    def get_result(a, p):
-        # 注意a和p都为正整数
-        return pow(a, -1, p)
+    def gen_result(self):
+        return
 
 
 class TestGeneral(unittest.TestCase):
 
-    def test_multiplicative_inverse(self):
-        mt = MultiplicativeInverse()
-        assert mt.get_result(10, 13) == 4
-        assert mt.get_result(10, 1) == 0
+    def test_xxx(self):
+        nt = ClassName()
+        assert nt.gen_result(10 ** 11 + 131) == 66666666752
         return
 
 

@@ -5,18 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="新增算法备份">
-      <change afterPath="$PROJECT_DIR$/algorithm/src/basis/construction_result.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/basis/two_pointer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/basis/various_sort.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/graph/topological_sort.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/src/data_structure/priority_queue.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/src/data_structure/small_heapq.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/src/data_structure/tree_array.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/src/string/string_hash.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/tests/problem_0.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/倍增.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/指针.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/Floyd.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/floyd.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/Tarjan.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/Tarjan.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/tarjan.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/拓扑排序.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/拓扑排序.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/tripart_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/tripart_search.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/skip_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/data_structure/sparse_table.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/树状数组.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/树状数组.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/minimum_spanning_tree.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/minimum_spanning_tree.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/scc.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/scc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/spfa.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/spfa.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/union_find.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/union_find.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/greedy/longest_increasing_subsequenc.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/greedy/longest_increasing_subsequence.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/multiplicative_inverse.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/multiplicative_inverse.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/peishu_theorem.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/peishu_theorem.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/string/kmp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/string/kmp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/string/manacher.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/string/manacher.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/tests/submission.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/submission.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,7 +33,9 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FavoritesManager">
-    <favorites_list name="PCRecord" />
+    <favorites_list name="PCRecord">
+      <favorite_root url="file://$PROJECT_DIR$/algorithm/src/data_structure/heapq.py" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+    </favorites_list>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -92,7 +102,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests for two_pointer.TestGeneral.test_two_pointer">
+  <component name="RunManager" selected="Python tests.Unittests for tree_array.TestGeneral.test_tree_array_range_sum">
     <configuration name="强连通分量" type="PythonConfigurationType" factoryName="Python">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -114,21 +124,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for number_theory.TestGeneral.test_get_prime_factor" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <module name="PCRecord" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/mathmatics" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;number_theory.TestGeneral.test_get_prime_factor&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Unittests for topological_sort.TestGeneral.test_topological_sort" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for spfa.TestGeneral" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -138,59 +134,73 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;topological_sort.TestGeneral.test_topological_sort&quot;" />
+      <option name="_new_target" value="&quot;spfa.TestGeneral&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for two_pointer.TestGeneral" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for spfa.TestGeneral.test_spfa" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/basis" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/graph" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;two_pointer.TestGeneral&quot;" />
+      <option name="_new_target" value="&quot;spfa.TestGeneral.test_spfa&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for two_pointer.TestGeneral.test_two_pointer" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for tree_array.TestGeneral.test_tree_array_range" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/basis" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/data_structure" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;two_pointer.TestGeneral.test_two_pointer&quot;" />
+      <option name="_new_target" value="&quot;tree_array.TestGeneral.test_tree_array_range&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests in number_theory.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for tree_array.TestGeneral.test_tree_array_range_sum" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/mathmatics" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/data_structure" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/mathmatics/number_theory.py&quot;" />
+      <option name="_new_target" value="&quot;tree_array.TestGeneral.test_tree_array_range_sum&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests in tree_array.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="PCRecord" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/data_structure" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/data_structure/tree_array.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Unittests for two_pointer.TestGeneral.test_two_pointer" />
-        <item itemvalue="Python tests.Unittests for two_pointer.TestGeneral" />
-        <item itemvalue="Python tests.Unittests for topological_sort.TestGeneral.test_topological_sort" />
-        <item itemvalue="Python tests.Unittests in number_theory.py" />
-        <item itemvalue="Python tests.Unittests for number_theory.TestGeneral.test_get_prime_factor" />
+        <item itemvalue="Python tests.Unittests for tree_array.TestGeneral.test_tree_array_range_sum" />
+        <item itemvalue="Python tests.Unittests in tree_array.py" />
+        <item itemvalue="Python tests.Unittests for tree_array.TestGeneral.test_tree_array_range" />
+        <item itemvalue="Python tests.Unittests for spfa.TestGeneral" />
+        <item itemvalue="Python tests.Unittests for spfa.TestGeneral.test_spfa" />
       </list>
     </recent_temporary>
   </component>
@@ -493,7 +503,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670888849312</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="新增算法备份">
+      <created>1670890693644</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1670890693644</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -583,7 +600,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/algorithm/tests/submission.py</url>
-          <line>78</line>
+          <line>86</line>
           <option name="timeStamp" value="171" />
         </line-breakpoint>
       </breakpoints>

@@ -1,7 +1,8 @@
 """
 算法：三分查找
 功能：用来寻找区间至多具有一个峰顶点或者一个谷底点的函数极值解
-题目：P3382 【模板】三分法（https://www.luogu.com.cn/problem/P3382）
+题目：
+P3382 三分法（https://www.luogu.com.cn/problem/P3382）利用三分求区间函数极值点
 参考：OI WiKi（xx）
 """
 

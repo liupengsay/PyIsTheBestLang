@@ -31,6 +31,14 @@ import random
 import math
 
 from sortedcontainers import SortedList
+import sys
+import heapq
+
+def input(): return sys.stdin.readline()
+def print(x): return sys.stdout.write(str(x) + '\n')
+
+
+sys.setrecursionlimit(10000000)
 
 
 # int(input().strip())

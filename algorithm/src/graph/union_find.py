@@ -1,7 +1,12 @@
 """
+
+"""
+
+"""
 算法：并查集
 功能：用来处理图论相关的联通问题
-题目：P3367 【模板】并查集（https://www.luogu.com.cn/problem/P3367）
+题目：
+P3367 并查集（https://www.luogu.com.cn/problem/P3367）计算连通分块的数量
 参考：OI WiKi（）
 """
 

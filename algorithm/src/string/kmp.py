@@ -1,9 +1,14 @@
 """
 算法：KMP算法
 功能：用来处理字符串的前缀后缀相关问题
-题目：P3375 【模板】KMP字符串匹配（https://www.luogu.com.cn/problem/P3375）
-[796. 旋转字符串] (https://leetcode.cn/problems/rotate-string/)
-[LC 团灭一众字符匹配问题](https://leetcode.cn/problems/shortest-palindrome/solution/by-flix-be4y/)
+题目：
+P3375 KMP字符串匹配（https://www.luogu.com.cn/problem/P3375）计算子字符串出现的位置
+L0796 旋转字符串（https://leetcode.cn/problems/rotate-string/）计算字符串是否可以旋转得到
+L0025 找出字符串中第一个匹配项的下标（https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/）计算子字符串第一次出现的位置
+L0214 最短回文串（https://leetcode.cn/problems/shortest-palindrome/）计算字符串前缀最长回文子串
+L1392 最长快乐前缀（https://leetcode.cn/problems/longest-happy-prefix/）计算最长的公共前后缀
+L2223 构造字符串的总得分和（https://leetcode.cn/problems/longest-happy-prefix/）利用扩展KMP计算Z函数
+
 参考：OI WiKi（https://oi-wiki.org/string/kmp/）
 """
 
@@ -56,7 +61,7 @@ class KMP:
 
     @staticmethod
     def find(s1, s2):
-        # 查找s2在s1中的索引位置
+        # 查找 s2 在 s1 中的索引位置
         n, m = len(s1), len(s2)
         s = s2 + "#" + s1
         pi = KMP().prefix_function(s2 + "#" + s1)
@@ -68,7 +73,7 @@ class KMP:
 
     @staticmethod
     def z_function(s):
-        # 计算s[i:]与s的最长公共前缀
+        # 计算 s[i:] 与 s 的最长公共前缀
         n = len(s)
         z = [0] * n
         l, r = 0, 0

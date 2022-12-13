@@ -1,11 +1,10 @@
 """
-算法：乘法逆元
-功能：求逆元取模，注意取的模必须为质数，且不能整除该质数，否则不存在对应的乘法逆元
-题目：
-P3811 乘法逆元（https://www.luogu.com.cn/problem/P3811）使用乘法逆元计算
-P5431 乘法逆元（https://www.luogu.com.cn/problem/P5431）使用乘法逆元计算
-P2613 有理数取余（https://www.luogu.com.cn/problem/P2613）使用乘法逆元计算
-
+算法：字符串哈希
+功能：xxx
+题目：xx（xx）
+L0214 最短回文串（https://leetcode.cn/problems/shortest-palindrome/）使用正向与反向字符串哈希计算字符串前缀最长回文子串
+L1044 最长重复子串（https://leetcode.cn/problems/shortest-palindrome/）利用二分查找加字符串哈希确定具有最长长度的重复子串
+L1316.不同的循环子字符串（https://leetcode.cn/problems/shortest-palindrome/）利用字符串哈希确定不同循环子串的个数
 参考：OI WiKi（xx）
 """
 
@@ -37,22 +36,19 @@ import heapq
 import copy
 
 
-class MultiplicativeInverse:
+class ClassName:
     def __init__(self):
         return
 
-    @staticmethod
-    def get_result(a, p):
-        # 注意a和p都为正整数
-        return pow(a, -1, p)
+    def gen_result(self):
+        return
 
 
 class TestGeneral(unittest.TestCase):
 
-    def test_multiplicative_inverse(self):
-        mt = MultiplicativeInverse()
-        assert mt.get_result(10, 13) == 4
-        assert mt.get_result(10, 1) == 0
+    def test_xxx(self):
+        nt = ClassName()
+        assert nt.gen_result(10 ** 11 + 131) == 66666666752
         return
 
 

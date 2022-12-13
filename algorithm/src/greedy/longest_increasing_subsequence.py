@@ -6,8 +6,8 @@ LIS：Longest Increasing Subsequence
 问题4：最长单调不增子序列（不升）：>=
 对于数组来说，正数反可以将后两个问题3和4转换为前两个问题1和2进行解决
 参考题目：
-P1020 [NOIP1999 普及组] 导弹拦截 https://www.luogu.com.cn/problem/P1020
-P1439 【模板】最长公共子序列（https://www.luogu.com.cn/problem/P1439）
+P1020 导弹拦截（https://www.luogu.com.cn/problem/P1020）使用贪心加二分计算最长单调不减和单调不增子序列的长度
+P1439 最长公共子序列（https://www.luogu.com.cn/problem/P1439）使用贪心加二分计算最长单调递增子序列的长度
 """
 
 import bisect

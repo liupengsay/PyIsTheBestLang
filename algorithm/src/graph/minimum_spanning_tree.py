@@ -2,8 +2,8 @@
 算法：最小生成树（Kruskal算法和Prim算法两种）
 功能：计算无向图边权值和最小的生成树
 题目：
-P3366 【模板】最小生成树（https://www.luogu.com.cn/problem/P3366）
-1489. 找到最小生成树里的关键边和伪关键边（https://leetcode.cn/problems/find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree/）
+P3366 最小生成树（https://www.luogu.com.cn/problem/P3366）计算最小生成树的权值和
+L1489 找到最小生成树里的关键边和伪关键边（https://leetcode.cn/problems/find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree/）计算最小生成树的关键边与伪关键边
 Prim在稠密图中比Kruskal优，在稀疏图中比Kruskal劣。Prim是以更新过的节点的连边找最小值，Kruskal是直接将边排序。
 两者其实都是运用贪心的思路
 参考：OI WiKi（xx）
