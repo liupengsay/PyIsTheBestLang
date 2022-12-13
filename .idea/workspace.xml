@@ -4,213 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="新增字典树与后缀数组">
-      <change afterPath="$PROJECT_DIR$/algorithm/src/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/data_structure/skip_table.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/data_structure/单调栈.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/data_structure/单调栈.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/data_structure/树状数组.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/data_structure/树状数组.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/data_structure/线段树.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/data_structure/线段树.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/data_structure/设计.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/dp/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/dp/区间DP.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/dp/数位DP.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/dp/数组DP.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/dp/有向无环图DP.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/dp/树形DP.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/dp/概率DP.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/dp/模拟退火.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/dp/模拟退火.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/dp/状压DP.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/dp/状压DP.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/dp/背包DP.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/graph/Floyd.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/graph/Tarjan.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/graph/Tarjan.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/graph/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/graph/bigraph_weighted_match.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/graph/dfs.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/graph/dijkstra.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/graph/dominating_tree.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/graph/euler_path.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/graph/lca.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/graph/lgv.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/graph/minimum_spanning_tree.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/graph/prufer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/graph/scc.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/graph/spfa.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/graph/union_find.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/graph/拓扑排序.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/graph/拓扑排序.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/greedy/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/greedy/longest_increasing_subsequenc.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/greedy/sort.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/cantor_expands.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/linear_basis.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/multiplicative_inverse.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/nim_game.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/number_theory.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/partion_fft.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/peishu_theorem.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/scan_line.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/位运算.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/快速幂.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/排列组合.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/数论.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/数论.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/概率论.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/组合数学.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/高精度.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/string/kmp.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/string/lyndon_decomposition.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/string/manacher.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/string/suffix_array.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/string/trie.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/string/字符串匹配.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/string/字符串哈希.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/string/字符串哈希.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/string/马拉车算法.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/搜索/dfs序.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/搜索/剪枝.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/搜索/双向搜索.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/搜索/回溯.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/搜索/广度优先搜索.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/搜索/折半搜索.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/搜索/深度优先搜索.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/搜索/记忆化搜索.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/算法基础/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/算法基础/binary_search.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/算法基础/tripart_search.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/算法基础/倍增.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/算法基础/前缀和与差分.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/算法基础/前缀和与差分.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/算法基础/指针.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/算法基础/排序.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/算法基础/构造.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/算法基础/枚举.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/算法基础/模拟.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/算法基础/贪心.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/算法基础/递归与分治.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/算法基础/递归与迭代.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/计算几何/凸包.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="新增算法备份">
+      <change afterPath="$PROJECT_DIR$/algorithm/src/basis/construction_result.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/src/basis/two_pointer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/src/basis/various_sort.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/src/graph/topological_sort.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/data_structure/skip_table.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/data_structure/单调栈.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/data_structure/单调栈.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/data_structure/树状数组.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/data_structure/树状数组.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/data_structure/线段树.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/data_structure/线段树.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/data_structure/设计.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/dp/区间DP.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/dp/数位DP.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/dp/数组DP.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/dp/有向无环图DP.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/dp/树形DP.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/dp/概率DP.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/dp/模拟退火.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/dp/模拟退火.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/dp/状压DP.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/dp/状压DP.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/dp/背包DP.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/graph/Dijkstra.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/graph/Floyd.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/graph/Tarjan.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/graph/Tarjan.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/graph/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/graph/dfs.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/graph/dominating_tree.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/graph/euler_path.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/graph/lca.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/graph/lgv.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/graph/prufer.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/graph/scc.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/graph/spfa.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/graph/union_find.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/graph/二分图最大权最小权匹配KM算法.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/graph/拓扑排序.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/graph/拓扑排序.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/graph/欧拉回路.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/greedy/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/greedy/lis.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/greedy/sort.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/mathmatics/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/mathmatics/linear_basis.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/mathmatics/multiplicative_inverse.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/mathmatics/nim.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/mathmatics/number_theory.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/mathmatics/partion_fft.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/mathmatics/scan_line.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/mathmatics/位运算.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/mathmatics/快速幂.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/mathmatics/排列组合.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/mathmatics/数论.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/mathmatics/数论.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/mathmatics/概率论.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/mathmatics/组合数学.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/mathmatics/高精度.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/string/kmp.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/string/lyndon_decomposition.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/string/manacher.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/string/suffix_array.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/string/trie.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/string/字符串匹配.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/string/字符串哈希.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/string/字符串哈希.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/string/马拉车算法.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/搜索/dfs序.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/搜索/剪枝.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/搜索/双向搜索.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/搜索/回溯.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/搜索/广度优先搜索.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/搜索/折半搜索.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/搜索/深度优先搜索.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/搜索/记忆化搜索.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/算法基础/二分与三分.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/算法基础/倍增.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/算法基础/前缀和与差分.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/算法基础/前缀和与差分.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/算法基础/指针.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/算法基础/排序.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/算法基础/构造.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/算法基础/枚举.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/算法基础/模拟.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/算法基础/贪心.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/算法基础/递归与分治.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/算法基础/递归与迭代.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/template/计算几何/凸包.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/P3379_1.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/P3379_1.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/submission.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/submission.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/elo/README.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/elo/baseline_randomforest.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/elo/best_xgboost.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/elo/dict.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/elo/eda.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/elo/groupby.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/elo/nlp.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/elo/promotion_lightgbm.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/elo/ronghe.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/elo/simple-lightgbm-without-blending.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/tencent_ads/README.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/tencent_ads/baseline_lightgbm.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/tencent_ads/best_xgboost.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/tencent_ads/eda.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/tencent_ads/feature_engineering.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/tencent_ads/model_fusion.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/tencent_ads/model_stacking.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/tencent_ads/promotion_catboost.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/力扣记录.pptx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/投递简历-刘鹏.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/详细简历-刘鹏.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study/reg_presentation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study/tests/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study/tests/test_reg_presentation.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/倍增.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/指针.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/Floyd.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/floyd.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/Tarjan.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/Tarjan.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/tarjan.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/拓扑排序.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/拓扑排序.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -286,7 +92,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests for skip_table.TestGeneral">
+  <component name="RunManager" selected="Python tests.Unittests for two_pointer.TestGeneral.test_two_pointer">
     <configuration name="强连通分量" type="PythonConfigurationType" factoryName="Python">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -308,90 +114,83 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="submission" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="PCRecord" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/algorithm/tests/submission.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Unittests for skip_table.TestGeneral" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for number_theory.TestGeneral.test_get_prime_factor" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/data_structure" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/mathmatics" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;skip_table.TestGeneral&quot;" />
+      <option name="_new_target" value="&quot;number_theory.TestGeneral.test_get_prime_factor&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for skip_table.TestGeneral.test_skip_table" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for topological_sort.TestGeneral.test_topological_sort" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/data_structure" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/graph" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;skip_table.TestGeneral.test_skip_table&quot;" />
+      <option name="_new_target" value="&quot;topological_sort.TestGeneral.test_topological_sort&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for tripart_search.TestGeneral" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for two_pointer.TestGeneral" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/算法基础" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/basis" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tripart_search.TestGeneral&quot;" />
+      <option name="_new_target" value="&quot;two_pointer.TestGeneral&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for tripart_search.TestGeneral.test_tripart_pack_tripart" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for two_pointer.TestGeneral.test_two_pointer" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/算法基础" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/basis" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tripart_search.TestGeneral.test_tripart_pack_tripart&quot;" />
+      <option name="_new_target" value="&quot;two_pointer.TestGeneral.test_two_pointer&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests in number_theory.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="PCRecord" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/mathmatics" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/mathmatics/number_theory.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Unittests for skip_table.TestGeneral" />
-        <item itemvalue="Python tests.Unittests for skip_table.TestGeneral.test_skip_table" />
-        <item itemvalue="Python.submission" />
-        <item itemvalue="Python tests.Unittests for tripart_search.TestGeneral" />
-        <item itemvalue="Python tests.Unittests for tripart_search.TestGeneral.test_tripart_pack_tripart" />
+        <item itemvalue="Python tests.Unittests for two_pointer.TestGeneral.test_two_pointer" />
+        <item itemvalue="Python tests.Unittests for two_pointer.TestGeneral" />
+        <item itemvalue="Python tests.Unittests for topological_sort.TestGeneral.test_topological_sort" />
+        <item itemvalue="Python tests.Unittests in number_theory.py" />
+        <item itemvalue="Python tests.Unittests for number_theory.TestGeneral.test_get_prime_factor" />
       </list>
     </recent_temporary>
   </component>
@@ -680,7 +479,21 @@
       <option name="project" value="LOCAL" />
       <updated>1670805445250</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="新增算法备份">
+      <created>1670860355410</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1670860355410</updated>
+    </task>
+    <task id="LOCAL-00041" summary="新增算法备份">
+      <created>1670888849312</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1670888849312</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -698,7 +511,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="增加自定义排序" />
     <MESSAGE value="第305场周赛题解" />
     <MESSAGE value="更新双指针与快慢指针模板" />
     <MESSAGE value="更新字典树结构" />
@@ -723,7 +535,8 @@
     <MESSAGE value="scc强连通分量" />
     <MESSAGE value="新算法上传" />
     <MESSAGE value="新增字典树与后缀数组" />
-    <option name="LAST_COMMIT_MESSAGE" value="新增字典树与后缀数组" />
+    <MESSAGE value="新增算法备份" />
+    <option name="LAST_COMMIT_MESSAGE" value="新增算法备份" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

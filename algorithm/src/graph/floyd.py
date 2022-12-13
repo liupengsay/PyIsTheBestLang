@@ -1,4 +1,4 @@
-```Python3
+
 class Solution:
     def shortestPathLength(self, graph: List[List[int]]) -> int:
         n = len(graph)
@@ -12,4 +12,4 @@ class Solution:
             for i in range(n):
                 for j in range(n):
                     d[i][j] = min(d[i][j], d[i][k] + d[k][j])
-```
+        return dp
