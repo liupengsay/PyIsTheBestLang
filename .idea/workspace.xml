@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="线段树">
-      <change afterPath="$PROJECT_DIR$/algorithm/src/basis/violent_enumeration.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/src/data_structure/monotonic_stack.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/segment_tree.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/data_structure/segment_tree.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/线段树.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/设计.md" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -181,8 +180,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python tests.Unittests in segment_tree.py" />
-        <item itemvalue="Python tests.Unittests for segment_tree.TestGeneral.test_segment_tree_range_update_min" />
         <item itemvalue="Python tests.Unittests for segment_tree.TestGeneral.test_segment_tree_range_update_max" />
+        <item itemvalue="Python tests.Unittests for segment_tree.TestGeneral.test_segment_tree_range_update_min" />
         <item itemvalue="Python tests.Unittests for segment_tree.TestGeneral.test_segment_tree_array_single_add_sum_max_min" />
         <item itemvalue="Python tests.Unittests for segment_tree.TestGeneral.test_segment_tree_range_update_sum" />
       </list>
@@ -508,7 +507,21 @@
       <option name="project" value="LOCAL" />
       <updated>1670973477081</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="线段树">
+      <created>1670976156049</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1670976156049</updated>
+    </task>
+    <task id="LOCAL-00046" summary="线段树">
+      <created>1670976182351</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1670976182351</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
