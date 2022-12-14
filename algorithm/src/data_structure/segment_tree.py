@@ -543,7 +543,6 @@ class TestGeneral(unittest.TestCase):
             num = random.randint(low+1, high)
             for i in range(left, right+1):
                 nums[i] = num
-            # stra.update(i, i, low, high, num, 1)
             stra.update(left, right, low, high, num, 1)
             assert stra.query(left, right, low, high, 1) == max(nums[left:right + 1])
 
@@ -581,7 +580,6 @@ class TestGeneral(unittest.TestCase):
             num = random.randint(low+1, high)
             for i in range(left, right+1):
                 nums[i] = num
-            # stra.update(i, i, low, high, num, 1)
             stra.update(left, right, low, high, num, 1)
             assert stra.query(left, right, low, high, 1) == min(nums[left:right + 1])
 
