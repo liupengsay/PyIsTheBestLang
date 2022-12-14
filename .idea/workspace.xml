@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="新增算法备份">
-      <change afterPath="$PROJECT_DIR$/algorithm/src/data_structure/segment_tree.py" afterDir="false" />
+    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="线段树">
+      <change afterPath="$PROJECT_DIR$/algorithm/src/basis/violent_enumeration.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/线段树.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/data_structure/线段树.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/线段树.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/union_find.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/union_find.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/string/manacher.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/string/manacher.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/segment_tree.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/data_structure/segment_tree.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/线段树.md" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -111,7 +108,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for segment_tree.TestGeneral.test_segment_tree_range_add_min" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for segment_tree.TestGeneral.test_segment_tree_array_single_add_sum_max_min" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -121,21 +118,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;segment_tree.TestGeneral.test_segment_tree_range_add_min&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Unittests for segment_tree.TestGeneral.test_segment_tree_range_add_sum" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <module name="PCRecord" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/data_structure" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;segment_tree.TestGeneral.test_segment_tree_range_add_sum&quot;" />
+      <option name="_new_target" value="&quot;segment_tree.TestGeneral.test_segment_tree_array_single_add_sum_max_min&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -150,6 +133,20 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;segment_tree.TestGeneral.test_segment_tree_range_update_max&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests for segment_tree.TestGeneral.test_segment_tree_range_update_min" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="PCRecord" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/data_structure" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;segment_tree.TestGeneral.test_segment_tree_range_update_min&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -184,10 +181,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python tests.Unittests in segment_tree.py" />
-        <item itemvalue="Python tests.Unittests for segment_tree.TestGeneral.test_segment_tree_range_update_sum" />
-        <item itemvalue="Python tests.Unittests for segment_tree.TestGeneral.test_segment_tree_range_add_min" />
+        <item itemvalue="Python tests.Unittests for segment_tree.TestGeneral.test_segment_tree_range_update_min" />
         <item itemvalue="Python tests.Unittests for segment_tree.TestGeneral.test_segment_tree_range_update_max" />
-        <item itemvalue="Python tests.Unittests for segment_tree.TestGeneral.test_segment_tree_range_add_sum" />
+        <item itemvalue="Python tests.Unittests for segment_tree.TestGeneral.test_segment_tree_array_single_add_sum_max_min" />
+        <item itemvalue="Python tests.Unittests for segment_tree.TestGeneral.test_segment_tree_range_update_sum" />
       </list>
     </recent_temporary>
   </component>
@@ -504,7 +501,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670946277197</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="线段树">
+      <created>1670973477081</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1670973477081</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -522,7 +526,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="第305场周赛题解" />
     <MESSAGE value="更新双指针与快慢指针模板" />
     <MESSAGE value="更新字典树结构" />
     <MESSAGE value="本地化不提交" />
@@ -547,7 +550,8 @@
     <MESSAGE value="新算法上传" />
     <MESSAGE value="新增字典树与后缀数组" />
     <MESSAGE value="新增算法备份" />
-    <option name="LAST_COMMIT_MESSAGE" value="新增算法备份" />
+    <MESSAGE value="线段树" />
+    <option name="LAST_COMMIT_MESSAGE" value="线段树" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
