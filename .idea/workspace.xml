@@ -5,10 +5,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="单调栈">
+      <change afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/comb_perm.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/monotonic_stack.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/data_structure/monotonic_stack.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/单调栈.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/单调栈.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/data_structure/单调栈.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/binary_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/binary_search.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/various_sort.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/various_sort.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/排序.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/构造.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/枚举.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/模拟.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/贪心.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/递归与分治.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/递归与迭代.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/greedy/sort.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/排列组合.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/概率论.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/组合数学.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/高精度.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/string/manacher.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/string/manacher_palindrome.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/string/string_hash.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/string/string_hash.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/string/字符串匹配.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/string/字符串哈希.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/string/字符串哈希.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/string/马拉车算法.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/搜索/dfs序.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/search/dfs序.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/搜索/剪枝.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/search/剪枝.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/搜索/双向搜索.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/search/双向搜索.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/搜索/回溯.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/search/回溯.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/搜索/广度优先搜索.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/search/广度优先搜索.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/搜索/折半搜索.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/search/折半搜索.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/搜索/深度优先搜索.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/search/深度优先搜索.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/搜索/记忆化搜索.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/search/记忆化搜索.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/计算几何/凸包.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/凸包.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -67,11 +94,11 @@
       <recent name="D:\PCRecord\leetcode" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\PCRecord\algorithm\src\mathmatics" />
       <recent name="D:\PCRecord\algorithm\src\dp" />
       <recent name="D:\PCRecord\algorithm\src\算法基础" />
       <recent name="D:\PCRecord\algorithm\template\mathmatics" />
       <recent name="D:\PCRecord\algorithm\tests" />
-      <recent name="D:\PCRecord\leetcode\tests" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -86,7 +113,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in monotonic_stack.py">
+  <component name="RunManager" selected="Python tests.Unittests in binary_search.py">
     <configuration name="强连通分量" type="PythonConfigurationType" factoryName="Python">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -108,83 +135,83 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for monotonic_stack.TestGeneral" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for manacher_palindrome.TestGeneral.test_manacher_palindrome" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/data_structure" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/string" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;monotonic_stack.TestGeneral&quot;" />
+      <option name="_new_target" value="&quot;manacher_palindrome.TestGeneral.test_manacher_palindrome&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for monotonic_stack.TestGeneral.test_monotonic_stack" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for string_hash.TestGeneral.test_string_hash" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/data_structure" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/string" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;monotonic_stack.TestGeneral.test_monotonic_stack&quot;" />
+      <option name="_new_target" value="&quot;string_hash.TestGeneral.test_string_hash&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for segment_tree.TestGeneral.test_segment_tree_range_update_max" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests in basis" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/data_structure" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/basis" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;segment_tree.TestGeneral.test_segment_tree_range_update_max&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Unittests in monotonic_stack.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <module name="PCRecord" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/data_structure" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/data_structure/monotonic_stack.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/basis&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests in segment_tree.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests in binary_search.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/data_structure" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/basis" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/data_structure/segment_tree.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/basis/binary_search.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests in manacher_palindrome.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="PCRecord" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/string" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/string/manacher_palindrome.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Unittests in monotonic_stack.py" />
-        <item itemvalue="Python tests.Unittests for monotonic_stack.TestGeneral.test_monotonic_stack" />
-        <item itemvalue="Python tests.Unittests for monotonic_stack.TestGeneral" />
-        <item itemvalue="Python tests.Unittests in segment_tree.py" />
-        <item itemvalue="Python tests.Unittests for segment_tree.TestGeneral.test_segment_tree_range_update_max" />
+        <item itemvalue="Python tests.Unittests in binary_search.py" />
+        <item itemvalue="Python tests.Unittests in basis" />
+        <item itemvalue="Python tests.Unittests in manacher_palindrome.py" />
+        <item itemvalue="Python tests.Unittests for manacher_palindrome.TestGeneral.test_manacher_palindrome" />
+        <item itemvalue="Python tests.Unittests for string_hash.TestGeneral.test_string_hash" />
       </list>
     </recent_temporary>
   </component>
@@ -529,7 +556,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670977187749</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="单调栈">
+      <created>1671016609976</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1671016609976</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
