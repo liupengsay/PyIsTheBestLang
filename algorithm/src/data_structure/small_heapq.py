@@ -1,4 +1,7 @@
 """
+
+"""
+"""
 算法：堆（优先队列）
 功能：通常用于需要贪心的场景
 题目：
@@ -10,6 +13,9 @@ P4053 建筑抢修（https://www.luogu.com.cn/problem/P4053）用一个堆延迟
 P1878 舞蹈课（https://www.luogu.com.cn/problem/P1878）用哈希加一个堆进行模拟计算
 
 L0630 课程表（https://leetcode.cn/problems/course-schedule-iii/）用一个堆延迟选择贪心维护最优
+L2454 下一个更大元素 IV（https://leetcode.cn/problems/next-greater-element-iv/）使用两个堆维护下下个更大元素即出队两次时遇见的元素
+L2402 会议室 III（https://leetcode.cn/problems/meeting-rooms-iii/）使用两个堆模拟进行会议室安排并进行计数
+L2386 找出数组的第 K 大和（https://leetcode.cn/problems/find-the-k-sum-of-an-array/）转换思路使用堆维护最大和第 K 次出队的则为目标结果
 
 参考：OI WiKi（xx）
 """

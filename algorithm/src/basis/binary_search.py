@@ -1,7 +1,15 @@
 """
-算法：xxx
-功能：xxx
+
+
+"""
+"""
+算法：二分查找
+功能：利用单调性确定最优选择
 题目：xx（xx）
+L2468 根据限制分割消息（https://leetcode.cn/problems/split-message-based-on-limit/）根据长度限制进行二分
+L2426 满足不等式的数对数目（https://leetcode.cn/problems/number-of-pairs-satisfying-inequality/）根据不等式变换和有序集合进行二分查找
+
+
 参考：OI WiKi（xx）
 """
 

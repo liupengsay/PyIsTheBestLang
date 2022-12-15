@@ -2,10 +2,10 @@
 
 """
 """
-算法：数学排列组合计数
-功能：全排列计数，选取comb计数，隔板法
+算法：矩阵DP
+功能：在二维矩阵上进行转移的DP，经典的有矩阵前缀和，矩阵区间和，正方形最大边长或面积
 题目：
-L2338 统计理想数组的数目（https://leetcode.cn/problems/count-the-number-of-ideal-arrays/）枚举可行的元素组合序列使用隔板法进行计数
+L2435 矩阵中和能被 K 整除的路径（https://leetcode.cn/problems/paths-in-matrix-whose-sum-is-divisible-by-k/）利用模 K 的特点进行路径计算
 
 参考：OI WiKi（xx）
 """
@@ -38,22 +38,19 @@ import heapq
 import copy
 
 
-from itertools import combinations
-
-
-class CombPerm:
+class ClassName:
     def __init__(self):
         return
 
-    @staticmethod
-    def combination(n, k):
-        return combinations(list(range(n)), k)
+    def gen_result(self):
+        return
 
 
 class TestGeneral(unittest.TestCase):
 
-    def test_combination(self):
-        print([item for item in combination(4, 2)])
+    def test_xxx(self):
+        nt = ClassName()
+        assert nt.gen_result(10 ** 11 + 131) == 66666666752
         return
 
 

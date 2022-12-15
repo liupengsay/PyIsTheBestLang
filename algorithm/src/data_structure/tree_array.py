@@ -7,7 +7,7 @@
 题目：
 P3374 树状数组 1（https://www.luogu.com.cn/problem/P3374）区间值更新与求和
 P3368 树状数组 2（https://www.luogu.com.cn/problem/P3368）区间值更新与求和
-
+P5677 配对统计（https://www.luogu.com.cn/problem/P5677）区间值更新与求和
 参考：OI WiKi（https://oi-wiki.org/ds/fenwick/）
 """
 

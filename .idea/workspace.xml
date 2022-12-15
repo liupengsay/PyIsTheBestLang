@@ -5,37 +5,52 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="单调栈">
-      <change afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/comb_perm.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/picture/个人题解页面关键字搜索.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/src/basis/simulation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/src/dp/bag_dp.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/src/dp/digital_dp.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/src/dp/interval_dp.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/src/dp/linear_dp.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/src/dp/matrix_dp.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/src/dp/memory_dp.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/src/dp/state_dp.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/src/dp/tree_dp.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/src/greedy/brain_storming.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/convex_hull.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/src/search/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/src/search/bfs.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/src/search/dfs.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/src/basis/binary_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/binary_search.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/various_sort.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/various_sort.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/排序.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/构造.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/枚举.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/模拟.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/贪心.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/递归与分治.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/递归与迭代.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/greedy/sort.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/排列组合.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/概率论.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/组合数学.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/高精度.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/string/manacher.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/string/manacher_palindrome.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/string/string_hash.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/string/string_hash.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/string/字符串匹配.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/string/字符串哈希.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/string/字符串哈希.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/string/马拉车算法.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/搜索/dfs序.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/search/dfs序.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/搜索/剪枝.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/search/剪枝.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/搜索/双向搜索.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/search/双向搜索.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/搜索/回溯.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/search/回溯.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/搜索/广度优先搜索.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/search/广度优先搜索.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/搜索/折半搜索.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/search/折半搜索.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/搜索/深度优先搜索.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/search/深度优先搜索.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/搜索/记忆化搜索.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/search/记忆化搜索.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/计算几何/凸包.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/凸包.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/diff_array.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/diff_array.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/two_pointer.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/two_pointer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/violent_enumeration.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/violent_enumeration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/monotonic_stack.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/data_structure/monotonic_stack.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/segment_tree.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/data_structure/segment_tree.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/small_heapq.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/data_structure/small_heapq.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/tree_array.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/data_structure/tree_array.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/区间DP.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/discussion/意见反馈.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/数位DP.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/数组DP.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/有向无环图DP.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/树形DP.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/概率DP.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/模拟退火.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/模拟退火.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/状压DP.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/状压DP.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/背包DP.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/dfs.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/dijkstra.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/dijkstra.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/spfa.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/spfa.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/topological_sort.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/topological_sort.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/union_find.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/union_find.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/bit_operation.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/bit_operation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/comb_perm.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/comb_perm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/凸包.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/string/trie.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/string/trie.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/tests/submission.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/submission.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -94,11 +109,11 @@
       <recent name="D:\PCRecord\leetcode" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\PCRecord\algorithm\src\mathmatics" />
       <recent name="D:\PCRecord\algorithm\src\dp" />
+      <recent name="D:\PCRecord\algorithm\src\search" />
+      <recent name="D:\PCRecord\algorithm\src\mathmatics" />
       <recent name="D:\PCRecord\algorithm\src\算法基础" />
       <recent name="D:\PCRecord\algorithm\template\mathmatics" />
-      <recent name="D:\PCRecord\algorithm\tests" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -113,7 +128,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in binary_search.py">
+  <component name="RunManager" selected="Python tests.Unittests for union_find.TestGeneral.test_solutioon">
     <configuration name="强连通分量" type="PythonConfigurationType" factoryName="Python">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -135,83 +150,83 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for manacher_palindrome.TestGeneral.test_manacher_palindrome" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for tree_dp.TestGeneral.test_tree_dp" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/string" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/dp" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;manacher_palindrome.TestGeneral.test_manacher_palindrome&quot;" />
+      <option name="_new_target" value="&quot;tree_dp.TestGeneral.test_tree_dp&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for string_hash.TestGeneral.test_string_hash" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for union_find.TestGeneral.test_persistent_union_find" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/string" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/graph" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;string_hash.TestGeneral.test_string_hash&quot;" />
+      <option name="_new_target" value="&quot;union_find.TestGeneral.test_persistent_union_find&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests in basis" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for union_find.TestGeneral.test_solutioon" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/basis" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/graph" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/basis&quot;" />
+      <option name="_new_target" value="&quot;union_find.TestGeneral.test_solutioon&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests in spfa.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="PCRecord" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/graph" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/graph/spfa.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests in binary_search.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests in union_find.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/basis" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/graph" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/basis/binary_search.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Unittests in manacher_palindrome.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <module name="PCRecord" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/string" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/string/manacher_palindrome.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/graph/union_find.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Unittests in binary_search.py" />
-        <item itemvalue="Python tests.Unittests in basis" />
-        <item itemvalue="Python tests.Unittests in manacher_palindrome.py" />
-        <item itemvalue="Python tests.Unittests for manacher_palindrome.TestGeneral.test_manacher_palindrome" />
-        <item itemvalue="Python tests.Unittests for string_hash.TestGeneral.test_string_hash" />
+        <item itemvalue="Python tests.Unittests for union_find.TestGeneral.test_solutioon" />
+        <item itemvalue="Python tests.Unittests in union_find.py" />
+        <item itemvalue="Python tests.Unittests for union_find.TestGeneral.test_persistent_union_find" />
+        <item itemvalue="Python tests.Unittests for tree_dp.TestGeneral.test_tree_dp" />
+        <item itemvalue="Python tests.Unittests in spfa.py" />
       </list>
     </recent_temporary>
   </component>
@@ -563,7 +578,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671016609976</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="单调栈">
+      <created>1671022093223</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1671022093223</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -652,9 +674,9 @@
           <option name="timeStamp" value="154" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/algorithm/tests/submission.py</url>
-          <line>86</line>
-          <option name="timeStamp" value="171" />
+          <url>file://$PROJECT_DIR$/algorithm/src/dp/tree_dp.py</url>
+          <line>148</line>
+          <option name="timeStamp" value="188" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

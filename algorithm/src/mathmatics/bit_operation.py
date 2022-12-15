@@ -2,6 +2,9 @@
 算法：位运算相关技巧
 功能：进行二进制上的位操作
 题目：xx（xx）
+
+L2354 优质数对的数目（https://leetcode.cn/problems/number-of-excellent-pairs/）需要脑筋急转弯确定位 1 的规律进行哈希计数枚举即可
+
 参考：OI WiKi（xx）
 https://blog.csdn.net/qq_35473473/article/details/106320878
 """

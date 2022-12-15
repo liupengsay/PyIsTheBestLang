@@ -2,10 +2,10 @@
 
 """
 """
-算法：数学排列组合计数
-功能：全排列计数，选取comb计数，隔板法
+算法：背包DP
+功能：xxx
 题目：
-L2338 统计理想数组的数目（https://leetcode.cn/problems/count-the-number-of-ideal-arrays/）枚举可行的元素组合序列使用隔板法进行计数
+L0214 最短回文串（https://leetcode.cn/problems/shortest-palindrome/）计算字符串前缀最长回文子串
 
 参考：OI WiKi（xx）
 """
@@ -38,22 +38,19 @@ import heapq
 import copy
 
 
-from itertools import combinations
-
-
-class CombPerm:
+class ClassName:
     def __init__(self):
         return
 
-    @staticmethod
-    def combination(n, k):
-        return combinations(list(range(n)), k)
+    def gen_result(self):
+        return
 
 
 class TestGeneral(unittest.TestCase):
 
-    def test_combination(self):
-        print([item for item in combination(4, 2)])
+    def test_xxx(self):
+        nt = ClassName()
+        assert nt.gen_result(10 ** 11 + 131) == 66666666752
         return
 
 

@@ -17,6 +17,7 @@ Dijkstra：路径权值优先的深度优先搜索（只适用正权值）
 
 参考题目：
 P3385 负环（https://www.luogu.com.cn/problem/P3385）通过最短路径更新的边数来计算从起点出发是否存在负环
+P1144 最短路计数（https://www.luogu.com.cn/problem/P1462）计算最短路的条数
 """
 
 
@@ -73,7 +74,8 @@ class SPFA:
             u = queue.popleft()
             self.visit[u] = False
             # 更新当前节点的相邻节点的距离
-            for v, w in self.dct[u].items():
+            for v in self.dct[u]:
+                w = self.dct[u][v]
                 if self.dis[v] > self.dis[u] + w:
                     self.dis[v] = self.dis[u] + w
                     self.cnt[v] = self.cnt[u] + 1
@@ -86,6 +88,46 @@ class SPFA:
         # 不存在从起点出发的负环
         return "NO"
 
+
+class SPFACnt:
+    def __init__(self):
+        # 最短路计数
+        return
+
+    @staticmethod
+    def gen_result(dct):
+        n = len(dct)
+        # 初始化距离
+        dis = [float("inf") for _ in range(n)]
+        # 标识当前节点是否在栈中
+        visit = [False] * n
+        # 当前最小距离的路径边数
+        cnt = [0] * n
+        queue = deque([0])
+        # 队列与起点初始化默认从 0 出发
+        dis[0] = 0
+        visit[0] = True
+        cnt[0] = 1
+        while queue:
+            # 取出队列中的第一个节点
+            u = queue.popleft()
+            visit[u] = False
+            # 更新当前节点的相邻节点的距离
+            for v in dct[u]:
+                w = dct[u][v]
+                if dis[v] > dis[u] + 1:
+                    dis[v] = dis[u] + 1
+                    cnt[v] = w*cnt[u]  # 此处 w 为重合边数
+                    # 如果相邻节点还没有在队列中，将它加入队列
+                    if not visit[v]:
+                        queue.append(v)
+                        visit[v] = True
+                elif dis[v] == dis[u] + 1:
+                    cnt[v] += w*cnt[u]
+                    if not visit[v]:
+                        queue.append(v)
+                        visit[v] = True
+        return cnt
 
 class TestGeneral(unittest.TestCase):
 
@@ -103,6 +145,11 @@ class TestGeneral(unittest.TestCase):
         assert res == "YES"
         return
 
+    def test_spfa_cnt(self):
+        dct = [{1: 3, 2: 2}, {3: 4}, {3: 1}, {}]
+        spfa = SPFACnt()
+        assert spfa.gen_result(dct) == [1, 3, 2, 14]
+        return
 
 if __name__ == '__main__':
     unittest.main()

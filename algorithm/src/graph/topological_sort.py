@@ -1,7 +1,13 @@
 """
+
+"""
+
+"""
 算法：拓扑排序
-功能：有向图
+功能：有向图进行排序，无向图在选定根节点的情况下也可以进行拓扑排序
 题目：xx（xx）
+
+L2392 给定条件下构造矩阵（https://leetcode.cn/problems/build-a-matrix-with-conditions/）分别通过行列的拓扑排序来确定数字所在索引
 参考：OI WiKi（xx）
 """
 
@@ -39,7 +45,7 @@ class TopologicalSort:
 
     @staticmethod
     def get_rank(n, edges):
-        dct = [[] for _ in range(n)]
+        dct = [list() for _ in range(n)]
         degree = [0]*n
         for i, j in edges:
             degree[j] += 1

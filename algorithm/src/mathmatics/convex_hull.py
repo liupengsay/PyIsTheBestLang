@@ -1,4 +1,41 @@
+"""
+
+"""
+"""
+算法：凸包
+功能：求点集的子集组成最小凸包上
+题目：
+L1924 安装栅栏 II（https://leetcode.cn/problems/erect-the-fence-ii/）求出最小凸包后使用三分套三分求解最小圆覆盖
+
+参考：OI WiKi（xx）
+"""
+
+import bisect
+import random
+import re
+import unittest
+
+from typing import List
+import heapq
 import math
+from collections import defaultdict, Counter, deque
+from functools import lru_cache
+from itertools import combinations
+from sortedcontainers import SortedList, SortedDict, SortedSet
+
+from sortedcontainers import SortedDict
+from functools import reduce
+from operator import xor
+from functools import lru_cache
+
+import random
+from itertools import permutations, combinations
+import numpy as np
+
+from decimal import Decimal
+
+import heapq
+import copy
 
 
 class Solution:
@@ -15,6 +52,7 @@ class Solution:
             x, y = node
             cur = math.atan2(y - point[1], x - point[0]) * 180 / math.pi
             return [cur, abs(x - point[0])]
+
         n = len(trees)
         for i in range(n):
             trees[i].extend(angle(trees[i]))
@@ -25,6 +63,7 @@ class Solution:
             x2, y2 = node2[0] - node1[0], node2[1] - node1[1]
             x3, y3 = node3[0] - node1[0], node3[1] - node1[1]
             return x2 * y3 - y2 * x3 < 0
+
         stack = []
         for node in trees:
             if not node[2]:
@@ -38,10 +77,10 @@ class Solution:
                         stack.pop(-1)
             stack.append(node)
         del trees
-        
+
         if len(stack) == 1:
             return point + [0]
-        
+
         # 2.三分套三分搜寻极值
         def target(x, y):
             return max([(x - p[0]) ** 2 + (y - p[1]) ** 2 for p in stack])
@@ -51,6 +90,7 @@ class Solution:
         highx = max([p[0] for p in stack])
         lowy = min([p[1] for p in stack])
         highy = max([p[1] for p in stack])
+
         def optimize(y):
             low = lowx
             high = highx
@@ -87,7 +127,14 @@ class Solution:
         x, r = optimize(low)
         return [x, low, math.sqrt(r)]
 
-作者：liupengsay
-链接：https://leetcode.cn/problems/erect-the-fence-ii/solution/-by-liupengsay-lnxj/
-来源：力扣（LeetCode）
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+class TestGeneral(unittest.TestCase):
+
+    def test_xxx(self):
+        nt = ClassName()
+        assert nt.gen_result(10 ** 11 + 131) == 66666666752
+        return
+
+
+if __name__ == '__main__':
+    unittest.main()

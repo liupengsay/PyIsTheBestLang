@@ -8,6 +8,10 @@
 
 L0085 最大矩形（https://leetcode.cn/problems/maximal-rectangle/）枚举矩形下边界结合单调栈计算最大面积 
 P1950 长方形（https://www.luogu.com.cn/problem/P1950）通过枚举下边界结合单调栈计算矩形个数
+L2334 元素值大于变化阈值的子数组（https://leetcode.cn/problems/subarray-with-elements-greater-than-varying-threshold/）排序后枚举最小值左右两边的影响范围
+L2281 巫师的总力量（https://leetcode.cn/problems/sum-of-total-strength-of-wizards/）枚举当前元素作为最小值的子数组和并使用前缀和的前缀和计算
+L2262 字符串的总引力（https://leetcode.cn/problems/total-appeal-of-a-string/）计算下一个或者上一个不同字符的位置
+
 参考：OI WiKi（xx）
 """
 

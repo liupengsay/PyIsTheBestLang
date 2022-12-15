@@ -2,10 +2,12 @@
 
 """
 """
-算法：数学排列组合计数
-功能：全排列计数，选取comb计数，隔板法
+算法：记忆化搜索
+功能：记忆化形式的DP，可以自顶向下也可以自底向上
 题目：
-L2338 统计理想数组的数目（https://leetcode.cn/problems/count-the-number-of-ideal-arrays/）枚举可行的元素组合序列使用隔板法进行计数
+L2328 网格图中递增路径的数目（https://leetcode.cn/problems/number-of-increasing-paths-in-a-grid/）计算严格递增的路径数量
+L2312 卖木头块（https://leetcode.cn/problems/selling-pieces-of-wood/）自顶向下搜索最佳方案
+L2267 检查是否有合法括号字符串路径（https://leetcode.cn/problems/check-if-there-is-a-valid-parentheses-string-path/）记忆化搜索合法路径
 
 参考：OI WiKi（xx）
 """
@@ -38,22 +40,19 @@ import heapq
 import copy
 
 
-from itertools import combinations
-
-
-class CombPerm:
+class ClassName:
     def __init__(self):
         return
 
-    @staticmethod
-    def combination(n, k):
-        return combinations(list(range(n)), k)
+    def gen_result(self):
+        return
 
 
 class TestGeneral(unittest.TestCase):
 
-    def test_combination(self):
-        print([item for item in combination(4, 2)])
+    def test_xxx(self):
+        nt = ClassName()
+        assert nt.gen_result(10 ** 11 + 131) == 66666666752
         return
 
 

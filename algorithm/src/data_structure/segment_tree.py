@@ -9,6 +9,8 @@
 P3372 线段树（https://www.luogu.com.cn/problem/P3372）区间值增减与计算区间和
 L0218 天际线问题（https://leetcode.cn/problems/the-skyline-problem/solution/by-liupengsay-isfo/）区间值修改与计算最大值
 L2286 以组为单位订音乐会的门票（https://leetcode.cn/problems/booking-concert-tickets-in-groups/）区间值增减与计算区间和、区间最大值、区间最小值
+L2407 最长递增子序列 II（https://leetcode.cn/problems/longest-increasing-subsequence-ii/）维护与查询区间最大值，然后进行DP更新
+L2276 统计区间中的整数数目（https://leetcode.cn/problems/count-integers-in-intervals/）维护区间并集的长度
 
 参考：OI WiKi（xx）
 """
@@ -69,6 +71,67 @@ class SegmentTreeRangeAddSum:
         if r > m:
             self.update(left, r, m + 1, t, val, 2 * i + 1)
         self.cover[i] = self.cover[2 * i] + self.cover[2 * i + 1]
+        return
+
+    def query(self, left, r, s, t, i):
+        if left <= s and t <= r:
+            return self.cover[i]
+        m = s + (t - s) // 2
+        self.push_down(i, s, m, t)
+        ans = 0
+        if left <= m:
+            ans += self.query(left, r, s, m, 2 * i)
+        if r > m:
+            ans += self.query(left, r, m + 1, t, 2 * i + 1)
+        return ans
+
+class SegmentTreeRangeAddMulSum:
+
+    def __init__(self, p, n):
+        self.p = p
+        # 区间值增减与区间和查询
+        self.cover = [0]*4*n
+        self.lazy = [[] for _ in range(4*n)]
+
+    def push_down(self, i, s, m, t):
+
+        if self.lazy[i]:
+            for op, val in self.lazy[i]:
+                if op == "add":
+                    self.cover[2 * i] += val*(m-s+1)
+                    self.cover[2 * i + 1] += val*(t-m)
+
+                    self.lazy[2 * i] += [[op, val]]
+                    self.lazy[2 * i + 1] += [[op, val]]
+                else:
+                    self.cover[2 * i] *= val
+                    self.cover[2 * i + 1] *= val
+
+                    self.lazy[2 * i] += [[op, val]]
+                    self.lazy[2 * i + 1] += [[op, val]]
+                self.cover[2 * i] %= self.p
+                self.cover[2 * i + 1] %= self.p
+
+            self.lazy[i] = []
+
+    def update(self, left, r, s, t, op, val, i):
+        if left <= s and t <= r:
+            if op == "add":
+                self.cover[i] += val*(t-s+1)
+                self.lazy[i] += [["add", val]]
+            else:
+                self.cover[i] *= val
+                self.lazy[i] += [["mul", val]]
+            self.cover[i] %= self.p
+            return
+        m = s + (t - s) // 2
+        self.push_down(i, s, m, t)
+        if left <= m:
+            self.update(left, r, s, m, op, val, 2 * i)
+        if r > m:
+            self.update(left, r, m + 1, t, op, val, 2 * i + 1)
+        self.cover[i] = self.cover[2 * i] + self.cover[2 * i + 1]
+        self.cover[i] %= self.p
         return
 
     def query(self, left, r, s, t, i):
