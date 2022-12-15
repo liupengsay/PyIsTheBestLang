@@ -1,3 +1,22 @@
+
+import sys
+import heapq
+sys.setrecursionlimit(10000000)
+
+
+def read():
+    return sys.stdin.readline()
+
+
+def ac(x):
+    return sys.stdout.write(str(x) + '\n')
+
+# 快读快写套餐
+map(int, read().split())
+int(read())
+map(int, read().split())
+ac("END")
+
 import bisect
 import random
 import re
@@ -64,41 +83,119 @@ import heapq
 input = lambda: sys.stdin.readline()
 print = lambda x: sys.stdout.write(x)
 
+import random
+import sys
+import os
+import math
+from collections import Counter, defaultdict, deque
+from functools import lru_cache, reduce
+from itertools import accumulate, combinations, permutations
+from heapq import nsmallest, nlargest, heapify, heappop, heappush
+from io import BytesIO, IOBase
+from copy import deepcopy
+import threading
+import bisect
+BUFSIZE = 4096
 
-def main():
-    n, m, b = map(int, input().split())
-    cost = [0]*n
-    for i in range(n):
-        cost[i] = int(input())
 
-    dct = [dict() for _ in range(n)]
-    for _ in range(m):
-        a, b, c = map(int, input().split())
-        a -= 1
-        b -= 1
-        if b not in dct[a] or dct[a][b] > c:
-            dct[a][b] = c
-        if a not in dct[b] or dct[b][a] > c:
-            dct[b][a] = c
+class FastIO(IOBase):
+    newlines = 0
 
-    def check():
-        visit = [float("inf")]*n
-        blood = [float("-inf")]*n
-        stack = [[cost[0], 0, b]]
-        while stack:
-            dis, i, bd = heapq.heappop(stack)
-            if i == n-1:
-                return str(dis)
-            if dis >= visit[i] and bd <= blood[i]:
+    def __init__(self, file):
+        self._fd = file.fileno()
+        self.buffer = BytesIO()
+        self.writable = "x" in file.mode or "r" not in file.mode
+        self.write = self.buffer.write if self.writable else None
+
+    def read(self):
+        while True:
+            b = os.read(self._fd, max(os.fstat(self._fd).st_size, BUFSIZE))
+            if not b:
+                break
+            ptr = self.buffer.tell()
+            self.buffer.seek(0, 2), self.buffer.write(b), self.buffer.seek(ptr)
+        self.newlines = 0
+        return self.buffer.read()
+
+    def readline(self):
+        while self.newlines == 0:
+            b = os.read(self._fd, max(os.fstat(self._fd).st_size, BUFSIZE))
+            self.newlines = b.count(b"\n") + (not b)
+            ptr = self.buffer.tell()
+            self.buffer.seek(0, 2), self.buffer.write(b), self.buffer.seek(ptr)
+        self.newlines -= 1
+        return self.buffer.readline()
+
+    def flush(self):
+        if self.writable:
+            os.write(self._fd, self.buffer.getvalue())
+            self.buffer.truncate(0), self.buffer.seek(0)
+
+class IOWrapper(IOBase):
+    def __init__(self, file):
+        self.buffer = FastIO(file)
+        self.flush = self.buffer.flush
+        self.writable = self.buffer.writable
+        self.write = lambda s: self.buffer.write(s.encode("ascii"))
+        self.read = lambda: self.buffer.read().decode("ascii")
+        self.readline = lambda: self.buffer.readline().decode("ascii")
+
+sys.stdin, sys.stdout = IOWrapper(sys.stdin), IOWrapper(sys.stdout)
+input = lambda: sys.stdin.readline().rstrip("\r\n")
+
+def I():
+    return input()
+
+def II():
+    return int(input())
+
+def MI():
+    return map(int, input().split())
+
+def LI():
+    return list(input().split())
+
+def LII():
+    return list(map(int, input().split()))
+
+def GMI():
+    return map(lambda x: int(x) - 1, input().split())
+
+def LGMI():
+    return list(map(lambda x: int(x) - 1, input().split()))
+
+class SparseTable:
+    def __init__(self, data, merge_method):
+        self.note = [0] * (len(data) + 1)
+        self.merge_method = merge_method
+        l, r, v = 1, 2, 0
+        while True:
+            for i in range(l, r):
+                if i >= len(self.note):
+                    break
+                self.note[i] = v
+            else:
+                l *= 2
+                r *= 2
+                v += 1
                 continue
-            if dis<visit[i]:
-                visit[i] = dis
-                blood[i] = bd
-            for j in dct[i]:
-                heapq.heappush(stack, [max(dis, cost[j]), j, bd-dct[i][j]])
-        return "AFK"
+            break
+        self.ST = [[0] * len(data) for _ in range(self.note[-1]+1)]
+        self.ST[0] = data
+        for i in range(1, len(self.ST)):
+            for j in range(len(data) - (1 << i) + 1):
+                self.ST[i][j] = merge_method(self.ST[i-1][j], self.ST[i-1][j + (1 << (i-1))])
 
-    print(check())
-    return
+    def query(self, l, r):
+        pos = self.note[r-l+1]
+        return self.merge_method(self.ST[pos][l], self.ST[pos][r - (1 << pos) + 1])
 
-main()
+n, m = MI()
+height = []
+for _ in range(n):
+    height.append(II())
+minST = SparseTable(height, min)
+maxST = SparseTable(height, max)
+for _ in range(m):
+    l, r = GMI()
+    print(maxST.query(l, r) - minST.query(l, r))
