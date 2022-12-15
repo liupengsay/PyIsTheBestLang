@@ -2,12 +2,10 @@
 
 """
 """
-算法：背包DP
-功能：xxx
+算法：折半搜索
+功能：常见于 1<<n 较大的情况，对半分开进行枚举 
 题目：
-L0214 最短回文串（https://leetcode.cn/problems/shortest-palindrome/）计算字符串前缀最长回文子串
-L2218 从栈中取出 K 个硬币的最大面值和（https://leetcode.cn/problems/maximum-value-of-k-coins-from-piles/）背包DP
-
+LP5194 Scales S（https://www.luogu.com.cn/problem/P5194）折半搜索枚举
 
 参考：OI WiKi（xx）
 """

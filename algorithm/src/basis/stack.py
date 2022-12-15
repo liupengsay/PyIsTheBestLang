@@ -2,12 +2,10 @@
 
 """
 """
-算法：背包DP
-功能：xxx
+算法：栈
+功能：模拟题中常见，如括号之类的，后进先出
 题目：
-L0214 最短回文串（https://leetcode.cn/problems/shortest-palindrome/）计算字符串前缀最长回文子串
-L2218 从栈中取出 K 个硬币的最大面值和（https://leetcode.cn/problems/maximum-value-of-k-coins-from-piles/）背包DP
-
+L2197 替换数组中的非互质数（https://leetcode.cn/problems/replace-non-coprime-numbers-in-array/）结合数学使用栈进行模拟
 
 参考：OI WiKi（xx）
 """

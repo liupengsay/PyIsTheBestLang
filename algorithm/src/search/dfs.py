@@ -3,7 +3,7 @@
 """
 """
 算法：深度优先搜索
-功能：常与回溯枚举结合使用
+功能：常与回溯枚举结合使用，比较经典的还有DFS序
 题目：
 P1120 小木棍（https://www.luogu.com.cn/problem/P1120）把数组分成和相等的子数组
 
@@ -38,6 +38,32 @@ import heapq
 import copy
 
 
+class DFS:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def gen_node_order(dct):
+
+        def dfs(x):
+            nonlocal order
+            visit[x] = order
+            order += 1
+            for y in dct[x]:
+                if not visit[y]:
+                    dfs(y)
+            interval[x] = [visit[x], order-1]
+            return
+
+        n = len(dct)
+        order = 1
+        visit = [0]*n
+        interval = [[] for _ in range(n)]
+
+        dfs(0)
+        return visit, interval
+
+
 class ClassName:
     def __init__(self):
         return
@@ -48,9 +74,12 @@ class ClassName:
 
 class TestGeneral(unittest.TestCase):
 
-    def test_xxx(self):
-        nt = ClassName()
-        assert nt.gen_result(10 ** 11 + 131) == 66666666752
+    def test_dfs(self):
+        dfs = DFS()
+        dct = [[1, 2], [0, 3], [0, 4], [1], [2]]
+        visit, interval = dfs.gen_node_order(dct)
+        assert visit == [1, 2, 4, 3, 5]
+        assert interval == [[1, 5], [2, 3], [4, 5], [3, 3], [5, 5]]
         return
 
 

@@ -2,12 +2,10 @@
 
 """
 """
-算法：背包DP
-功能：xxx
+算法：哈希
+功能：前后缀计数、索引、加和
 题目：
-L0214 最短回文串（https://leetcode.cn/problems/shortest-palindrome/）计算字符串前缀最长回文子串
-L2218 从栈中取出 K 个硬币的最大面值和（https://leetcode.cn/problems/maximum-value-of-k-coins-from-piles/）背包DP
-
+Lxxxx xxxx（https://leetcode.cn/problems/shortest-palindrome/）xxxx
 
 参考：OI WiKi（xx）
 """
