@@ -3,11 +3,13 @@
 """
 """
 算法：背包DP
-功能：xxx
+功能：一重背包DP，数量有限从后往前遍历，数量无限则从前往后遍历；多重背包DP，可使用二进制拆分进行优化。
+
 题目：
 L0214 最短回文串（https://leetcode.cn/problems/shortest-palindrome/）计算字符串前缀最长回文子串
 L2218 从栈中取出 K 个硬币的最大面值和（https://leetcode.cn/problems/maximum-value-of-k-coins-from-piles/）背包DP
-
+P1048 采药（https://www.luogu.com.cn/problem/P1048）一维背包DP，数量有限，从后往前遍历
+P1776 宝物筛选（https://www.luogu.com.cn/problem/P1776）多重背包，使用二进制拆分进行优化
 
 参考：OI WiKi（xx）
 """
@@ -45,6 +47,48 @@ class ClassName:
         return
 
     def gen_result(self):
+        return
+
+    def main_p1776(self):
+
+        import sys
+        sys.setrecursionlimit(10000000)
+
+        def read():
+            return sys.stdin.readline()
+
+        def ac(x):
+            return sys.stdout.write(str(x) + '\n')
+
+        # 二进制拆分
+        def bin_split(num):
+            res = []
+            x = 1
+            while num >= x:
+                res.append(x)
+                num -= x
+                x *= 2
+            if num:
+                res.append(num)
+            return res
+
+        def main():
+            n, w = map(int, read().split())
+            pre = [0] * (w + 1)
+            for _ in range(n):
+                val, weight, amount = map(int, read().split())
+                cur = pre[:]
+                for x in bin_split(amount):
+                    for i in range(w, x * weight - 1, -1):
+                        c = cur[i - x * weight] + x * val
+                        if cur[i] < c:
+                            cur[i] = c
+                pre = cur[:]
+            ac(max(pre))
+            return
+
+        main()
+
         return
 
 

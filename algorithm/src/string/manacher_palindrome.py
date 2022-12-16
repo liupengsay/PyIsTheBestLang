@@ -6,7 +6,7 @@
 功能：用来处理字符串的回文相关问题
 题目：
 L0214 最短回文串（https://leetcode.cn/problems/shortest-palindrome/）计算字符串前缀最长回文子串
-
+P4555 最长双回文串（https://www.luogu.com.cn/problem/P4555）计算以当前索引为开头以及结尾的最长回文子串
 """
 
 import bisect
@@ -85,8 +85,58 @@ class ManacherPlindrome:
                     end[right//2].append(left//2)
                 left += 1
                 right -= 1
-        # 由此还可以获得以某个位置开头或者结尾的最长回文子串
         return start, end
+
+    def palindrome_longest(self, s: str) -> (list, list):
+        # 获取区间的回文串信息
+        n = len(s)
+        # 保证所有的回文串为奇数长度，且中心为 # 的为原偶数回文子串，中心为 字母 的为原奇数回文子串
+        t = "#" + "#".join(list(s)) + "#"
+        dp = self.manacher(t)
+        m = len(t)
+
+        # 由此还可以获得以某个位置开头或者结尾的最长回文子串的长度
+        post = [1] * n
+        pre = [1] * n
+
+        for j in range(m):
+            left = j - dp[j] + 1
+            right = j + dp[j] - 1
+            while left <= right:
+                if t[left] != "#":
+                    x, y = left // 2, right // 2
+                    post[x] = max(post[x], y - x + 1)
+                    pre[y] = max(pre[y], y - x + 1)
+                    break
+                left += 1
+                right -= 1
+        # 由此还可以获得以某个位置开头或者结尾的最长回文子串
+        for i in range(1, n):
+            if i - pre[i - 1] - 1 >= 0 and s[i] == s[i - pre[i - 1] - 1]:
+                pre[i] = max(pre[i], pre[i - 1] + 2)
+
+        for i in range(n - 2, -1, -1):
+            pre[i] = max(pre[i], pre[i + 1] - 2)
+
+        for i in range(n - 2, -1, -1):
+            if i + post[i + 1] + 1 < n and s[i] == s[i + post[i + 1] + 1]:
+                post[i] = max(post[i], post[i + 1] + 2)
+        for i in range(1, n):
+            post[i] = max(post[i], post[i - 1] - 2)
+
+        return post, pre
+
+
+class Luogu:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def main_4555(s):
+        n = len(s)
+        post, pre = ManacherPlindrome().palindrome_longest(s)
+        ans = max(post[i + 1] + pre[i] for i in range(n - 1))
+        return ans
 
 
 class TestGeneral(unittest.TestCase):
@@ -97,6 +147,12 @@ class TestGeneral(unittest.TestCase):
         start, end = mp.palindrome(s)
         assert start == [[0, 5], [1, 4], [2, 3], [3], [4], [5]]
         assert end == [[0], [1], [2], [2, 3], [1, 4], [0, 5]]
+        return
+
+    def test_luogu(self):
+        s = "baacaabbacabb"
+        luogu = Luogu()
+        assert luogu.main_4555(s) == 12
         return
 
 

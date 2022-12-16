@@ -8,7 +8,7 @@ L0025 找出字符串中第一个匹配项的下标（https://leetcode.cn/proble
 L0214 最短回文串（https://leetcode.cn/problems/shortest-palindrome/）计算字符串前缀最长回文子串
 L1392 最长快乐前缀（https://leetcode.cn/problems/longest-happy-prefix/）计算最长的公共前后缀
 L2223 构造字符串的总得分和（https://leetcode.cn/problems/longest-happy-prefix/）利用扩展KMP计算Z函数
-
+P4391 无线传输（https://www.luogu.com.cn/problem/P4391）脑经急转弯加KMP算法，最优结果为 n-pi[n-1]
 参考：OI WiKi（https://oi-wiki.org/string/kmp/）
 """
 
