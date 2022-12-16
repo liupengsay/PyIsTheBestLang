@@ -4,6 +4,7 @@
 题目：xx（xx）
 
 L2354 优质数对的数目（https://leetcode.cn/problems/number-of-excellent-pairs/）需要脑筋急转弯确定位 1 的规律进行哈希计数枚举即可
+P5657 格雷码（https://www.luogu.com.cn/problem/P5657）计算编号为 k 的二进制符，并补前缀 0 为 n 位
 
 参考：OI WiKi（xx）
 https://blog.csdn.net/qq_35473473/article/details/106320878
@@ -83,6 +84,9 @@ class TestGeneral(unittest.TestCase):
 
     def test_bit_operation(self):
         bo = BitOperation()
+
+        lst = [bo.integer_to_graycode(i) for i in range(11)]
+        print(lst)
 
         assert bo.integer_to_graycode(0) == "0"
         assert bo.integer_to_graycode(22) == "11101"

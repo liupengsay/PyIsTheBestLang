@@ -1,90 +1,72 @@
+
+import random
+import heapq
+import math
 import sys
+import bisect
+from functools import lru_cache
+from collections import Counter
+from collections import defaultdict
+from itertools import combinations
+from itertools import permutations
 
 sys.setrecursionlimit(10000000)
 
 
-def read():
-    return sys.stdin.readline().strip()
-
-
-def ac(x):
-    return sys.stdout.write(str(x) + '\n')
-
-
-class ManacherPlindrome:
+class FastIO:
     def __init__(self):
         return
 
     @staticmethod
-    def manacher(s):
-        # 马拉车算法
-        n = len(s)
-        arm = [0] * n
-        left, right = 0, -1
-        for i in range(0, n):
-            k = 1 if i > right else min(arm[left + right - i], right - i + 1)
+    def read():
+        return sys.stdin.readline().strip()
 
-            # 持续增加回文串的长度
-            while 0 <= i - k and i + k < n and s[i - k] == s[i + k]:
-                k += 1
-            arm[i] = k
+    def read_int(self):
+        return int(self.read())
 
-            # 更新右侧最远的回文串边界
-            k -= 1
-            if i + k > right:
-                left = i - k
-                right = i + k
-        # 返回每个位置往右的臂长其中 s[i-arm[i]+1: i+arm[i]] 为回文子串范围
-        return arm
+    def read_ints(self):
+        return map(int, self.read().split())
 
-    def palindrome(self, s: str) -> (list, list):
-        # 获取区间的回文串信息
-        n = len(s)
-        # 保证所有的回文串为奇数长度，且中心为 # 的为原偶数回文子串，中心为 字母 的为原奇数回文子串
-        t = "#" + "#".join(list(s)) + "#"
-        dp = self.manacher(t)
-        m = len(t)
+    def read_ints_minus_one(self):
+        return map(lambda x: int(x) - 1, self.read().split())
 
-        # 以当前索引作为边界开头的最长回文子串结束位置索引
-        post = [1] * n
-        # 以当前索引作为边界结尾的最长回文子串起始位置索引
-        pre = [1] * n
+    def read_list_ints(self):
+        return list(map(int, self.read().split()))
 
-        for j in range(m):
-            left = j - dp[j] + 1
-            right = j + dp[j] - 1
-            while left <= right:
-                if t[left] != "#":
-                    x, y = left // 2, right // 2
-                    post[x] = max(post[x], y - x + 1)
-                    pre[y] = max(pre[y], y - x + 1)
-                    break
-                left += 1
-                right -= 1
-        # 由此还可以获得以某个位置开头或者结尾的最长回文子串
-        for i in range(1, n):
-            if i - pre[i - 1] - 1 >= 0 and s[i] == s[i - pre[i - 1] - 1]:
-                pre[i] = max(pre[i], pre[i - 1] + 2)
+    def read_list_ints_minus_one(self):
+        return list(map(lambda x: int(x) - 1, self.read().split()))
 
-        for i in range(n - 2, -1, -1):
-            pre[i] = max(pre[i], pre[i + 1] - 2)
+    def read_str(self):
+        return self.read()
 
-        for i in range(n - 2, -1, -1):
-            if i + post[i + 1] + 1 < n and s[i] == s[i + post[i + 1] + 1]:
-                post[i] = max(post[i], post[i + 1] + 2)
-        for i in range(1, n):
-            post[i] = max(post[i], post[i - 1] - 2)
-        return post, pre
+    def read_list_str(self):
+        return self.read().split()
+
+    @staticmethod
+    def st(x):
+        return sys.stdout.write(str(x) + '\n')
+
+    @staticmethod
+    def lst(x):
+        return sys.stdout.write(" ".join(str(w) for w in x) + '\n')
 
 
-def main():
-    s = read()
-    n = len(s)
-    post, pre = ManacherPlindrome().palindrome(s)
-
-
-    ans = max(post[i + 1] + pre[i] for i in range(n - 1))
-    ac(ans)
+def main(ac=FastIO()):
+    m, n, x, y = ac.read_ints()
+    cnt = [[0] * n for _ in range(m)]
+    last = [[-1] * n for _ in range(m)]
+    for k in range(1, x + 1):
+        x1, y1, x2, y2 = ac.read_ints_minus_one()
+        for i in range(x1, x2 + 1):
+            for j in range(y1, y2 + 1):
+                cnt[i][j] += 1
+                last[i][j] = k
+    for _ in range(y):
+        a, b = ac.read_ints_minus_one()
+        if cnt[a][b]:
+            ac.lst(["Y", cnt[a][b], last[a][b]])
+        else:
+            ac.st("N")
     return
 
 

@@ -3,12 +3,14 @@
 """
 """
 算法：Trie字典树，也叫前缀树
-功能：处理字符串以及结合位运算相关
+功能：处理字符串以及结合位运算相关，01Trie通用用于查询位运算极值
 题目：
 
 P8306 字典树（https://www.luogu.com.cn/problem/P8306）
 
 L2416 字符串的前缀分数和（https://leetcode.cn/problems/sum-of-prefix-scores-of-strings/）单词组前缀计数
+P4551 最长异或路径（https://www.luogu.com.cn/problem/P4551）关键是利用异或的性质，将任意根节点作为中转站
+
 参考：OI WiKi（）
 """
 

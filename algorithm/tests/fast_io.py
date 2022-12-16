@@ -16,7 +16,29 @@ map(int, read().split())
 int(read())
 map(int, read().split())
 ac("END")
+sys.stdin, sys.stdout = IOWrapper(sys.stdin), IOWrapper(sys.stdout)
+read = lambda: sys.stdin.readline().rstrip("\r\n")
 
+def I():
+    return read()
+
+def II():
+    return int(read())
+
+def MI():
+    return map(int, read().split())
+
+def LI():
+    return list(read().split())
+
+def LII():
+    return list(map(int, read().split()))
+
+def GMI():
+    return map(lambda x: int(x) - 1, read().split())
+
+def LGMI():
+    return list(map(lambda x: int(x) - 1, read().split()))
 import bisect
 import random
 import re
@@ -57,11 +79,11 @@ import heapq
 sys.setrecursionlimit(10000000)
 
 
-# int(input().strip())
-# [int(w) for w in input().strip().split() if w]
-# [float(w) for w in input().strip().split() if w]
+# int(read().strip())
+# [int(w) for w in read().strip().split() if w]
+# [float(w) for w in read().strip().split() if w]
 # sys.setrecursionlimit(10000000)
-#n, c = [int(w) for w in input().strip().split() if w]
+#n, c = [int(w) for w in read().strip().split() if w]
 import numpy as np
 import math
 import bisect
@@ -73,14 +95,14 @@ import heapq
 import sys
 from collections import defaultdict, Counter, deque
 from functools import lru_cache
-input = lambda: sys.stdin.readline()
+read = lambda: sys.stdin.readline()
 print = lambda x: sys.stdout.write(str(x)+'\n')
 sys.setrecursionlimit(10000000)
 
 import sys
 import heapq
 
-input = lambda: sys.stdin.readline()
+read = lambda: sys.stdin.readline()
 print = lambda x: sys.stdout.write(x)
 
 import random
@@ -140,29 +162,7 @@ class IOWrapper(IOBase):
         self.read = lambda: self.buffer.read().decode("ascii")
         self.readline = lambda: self.buffer.readline().decode("ascii")
 
-sys.stdin, sys.stdout = IOWrapper(sys.stdin), IOWrapper(sys.stdout)
-input = lambda: sys.stdin.readline().rstrip("\r\n")
 
-def I():
-    return input()
-
-def II():
-    return int(input())
-
-def MI():
-    return map(int, input().split())
-
-def LI():
-    return list(input().split())
-
-def LII():
-    return list(map(int, input().split()))
-
-def GMI():
-    return map(lambda x: int(x) - 1, input().split())
-
-def LGMI():
-    return list(map(lambda x: int(x) - 1, input().split()))
 
 class SparseTable:
     def __init__(self, data, merge_method):
