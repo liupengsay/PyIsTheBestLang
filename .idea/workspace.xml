@@ -4,25 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="FastIO">
+    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="前缀和的前缀和">
+      <change afterPath="$PROJECT_DIR$/algorithm/src/string/palindrome_num.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/binary_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/binary_search.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/diff_array.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/diff_array.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/hash.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/hash.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/two_pointer.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/two_pointer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/violent_enumeration.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/violent_enumeration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/segment_tree.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/data_structure/segment_tree.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/small_heapq.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/data_structure/small_heapq.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/tree_array.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/data_structure/tree_array.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/linear_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/linear_dp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/state_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/state_dp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/topological_sort.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/topological_sort.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/union_find.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/union_find.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/greedy/brain_storming.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/greedy/brain_storming.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/greedy/longest_increasing_subsequence.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/greedy/longest_increasing_subsequence.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/string/string_hash.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/string/string_hash.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_0.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_0.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/matrix_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/matrix_dp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/euler_path.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/euler_path.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/search/bfs.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/search/bfs.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -100,7 +87,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.problem_0">
+  <component name="RunManager" selected="Python tests.Unittests for palindrome_num.TestGeneral.test_pllindrome_num">
     <configuration name="强连通分量" type="PythonConfigurationType" factoryName="Python">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -178,20 +165,6 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for ac_auto_machine.TestGeneral.test_AhoCorasick" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <module name="PCRecord" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/string" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;ac_auto_machine.TestGeneral.test_AhoCorasick&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
     <configuration name="Unittests for bit_operation.TestGeneral.test_bit_operation" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -206,13 +179,27 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
+    <configuration name="Unittests for palindrome_num.TestGeneral.test_pllindrome_num" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="PCRecord" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/string" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;palindrome_num.TestGeneral.test_pllindrome_num&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Unittests for palindrome_num.TestGeneral.test_pllindrome_num" />
         <item itemvalue="Python.problem_0" />
         <item itemvalue="Python.temp" />
         <item itemvalue="Python tests.Unittests for bit_operation.TestGeneral.test_bit_operation" />
         <item itemvalue="Python tests.Unittests for ac_auto_machine.TestGeneral" />
-        <item itemvalue="Python tests.Unittests for ac_auto_machine.TestGeneral.test_AhoCorasick" />
       </list>
     </recent_temporary>
   </component>
@@ -227,13 +214,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647300774340</updated>
-    </task>
-    <task id="LOCAL-00005" summary="增加特征选择与参数调优">
-      <created>1647390019066</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1647390019066</updated>
     </task>
     <task id="LOCAL-00006" summary="字节一面面试coding题目">
       <created>1647523394486</created>
@@ -571,7 +551,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671206689311</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="前缀和的前缀和">
+      <created>1671243654039</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1671243654039</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -589,7 +576,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="更新Tarjan与题解模板" />
     <MESSAGE value="马拉车算法" />
     <MESSAGE value="备份更新" />
     <MESSAGE value="备份更新KMP" />
@@ -614,7 +600,8 @@
     <MESSAGE value="双向BFS、可持久化并查集、树形DP" />
     <MESSAGE value="DFS序" />
     <MESSAGE value="FastIO" />
-    <option name="LAST_COMMIT_MESSAGE" value="FastIO" />
+    <MESSAGE value="前缀和的前缀和" />
+    <option name="LAST_COMMIT_MESSAGE" value="前缀和的前缀和" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

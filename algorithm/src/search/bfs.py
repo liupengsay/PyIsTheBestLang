@@ -10,7 +10,7 @@ L2290 到达角落需要移除障碍物的最小数（https://leetcode.cn/proble
 L1368 使网格图至少有一条有效路径的最小代价（https://leetcode.cn/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/）使用0-1 BFS进行优化计算最小代价
 L2258 逃离火灾（https://leetcode.cn/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/）使用二分查找加双源BFS进行模拟
 P5507 机关（https://www.luogu.com.cn/problem/P5507）双向BFS进行搜索
-
+L2092 找出知晓秘密的所有专家（https://leetcode.cn/problems/find-all-people-with-secret/）按照时间排序，在同一时间进行BFS扩散
 
 参考：OI WiKi（xx）
 """
