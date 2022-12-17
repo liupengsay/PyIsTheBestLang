@@ -18,29 +18,38 @@ class FastIO:
         return
 
     @staticmethod
-    def read():
+    def _read():
         return sys.stdin.readline().strip()
 
     def read_int(self):
-        return int(self.read())
+        return int(self._read())
+
+    def read_float(self):
+        return int(self._read())
 
     def read_ints(self):
-        return map(int, self.read().split())
+        return map(int, self._read().split())
+
+    def read_floats(self):
+        return map(float, self._read().split())
 
     def read_ints_minus_one(self):
-        return map(lambda x: int(x) - 1, self.read().split())
+        return map(lambda x: int(x) - 1, self._read().split())
 
     def read_list_ints(self):
-        return list(map(int, self.read().split()))
+        return list(map(int, self._read().split()))
+
+    def read_list_floats(self):
+        return list(map(float, self._read().split()))
 
     def read_list_ints_minus_one(self):
-        return list(map(lambda x: int(x) - 1, self.read().split()))
+        return list(map(lambda x: int(x) - 1, self._read().split()))
 
     def read_str(self):
-        return self.read()
+        return self._read()
 
     def read_list_str(self):
-        return self.read().split()
+        return self._read().split()
 
     @staticmethod
     def st(x):
@@ -51,22 +60,39 @@ class FastIO:
         return sys.stdout.write(" ".join(str(w) for w in x) + '\n')
 
 
+def get_all_factor(a):
+    # 获取整数所有的因子包括 1 和它自己
+    factor = set()
+    for i in range(1, int(math.sqrt(a)) + 1):
+        if a % i == 0:
+            factor.add(i)
+            factor.add(a // i)
+    return sorted(list(factor))
+
+
 def main(ac=FastIO()):
-    m, n, x, y = ac.read_ints()
-    cnt = [[0] * n for _ in range(m)]
-    last = [[-1] * n for _ in range(m)]
-    for k in range(1, x + 1):
-        x1, y1, x2, y2 = ac.read_ints_minus_one()
-        for i in range(x1, x2 + 1):
-            for j in range(y1, y2 + 1):
-                cnt[i][j] += 1
-                last[i][j] = k
-    for _ in range(y):
-        a, b = ac.read_ints_minus_one()
-        if cnt[a][b]:
-            ac.lst(["Y", cnt[a][b], last[a][b]])
-        else:
-            ac.st("N")
+
+    def check():
+
+        exp = 0
+        life = 10
+        n = ac.read_int()
+        for _ in range(n):
+            x, a = ac.read_floats()
+            if life - x <= 0:
+                return exp
+            life -= x
+            life = min(life, 10)
+            exp += max(0, a)
+        return exp
+
+    ans = int(check())
+    m = 0
+    while ans >= 2**m:
+        ans -= 2**m
+        m += 1
+
+    ac.lst([m, ans])
     return
 
 

@@ -5,7 +5,7 @@
 算法：哈希
 功能：前后缀计数、索引、加和
 题目：
-Lxxxx xxxx（https://leetcode.cn/problems/shortest-palindrome/）xxxx
+L2143 在两个数组的区间中选取数字（https://leetcode.cn/problems/choose-numbers-from-two-arrays-in-range/）前缀和哈希计数转换为求连续子数组和为 0 的个数
 
 参考：OI WiKi（xx）
 """

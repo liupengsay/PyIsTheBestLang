@@ -11,6 +11,8 @@ L0698 划分为k个相等的子集（https://leetcode.cn/problems/partition-to-k
 P1896 互不侵犯（https://www.luogu.com.cn/problem/P1896）按行状态与行个数枚举所有的摆放可能性
 L1349 参加考试的最大学生数（https://leetcode.cn/problems/maximum-students-taking-exam/）按行状态枚举所有的摆放可能性
 P2704 炮兵阵地（https://www.luogu.com.cn/problem/P2704）记录两个前序状态进行转移
+L2172 数组的最大与和（https://leetcode.cn/problems/maximum-and-sum-of-array/）使用位运算和状态压缩进行转移
+
 参考：OI WiKi（xx）
 """
 

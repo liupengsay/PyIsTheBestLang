@@ -8,6 +8,9 @@
 P3374 树状数组 1（https://www.luogu.com.cn/problem/P3374）区间值更新与求和
 P3368 树状数组 2（https://www.luogu.com.cn/problem/P3368）区间值更新与求和
 P5677 配对统计（https://www.luogu.com.cn/problem/P5677）区间值更新与求和
+L2179 统计数组中好三元组数目（https://leetcode.cn/problems/count-good-triplets-in-an-array/）维护区间范围内的个数
+
+
 参考：OI WiKi（https://oi-wiki.org/ds/fenwick/）
 """
 

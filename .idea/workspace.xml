@@ -4,16 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="DFS序">
-      <change afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/big_number.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/string/ac_auto_machine.py" afterDir="false" />
+    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="FastIO">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/bit_operation.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/bit_operation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/number_theory.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/number_theory.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/string/trie.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/string/trie.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/fast_io.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/fast_io.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/binary_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/binary_search.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/diff_array.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/diff_array.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/hash.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/hash.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/two_pointer.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/two_pointer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/violent_enumeration.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/violent_enumeration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/segment_tree.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/data_structure/segment_tree.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/small_heapq.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/data_structure/small_heapq.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/tree_array.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/data_structure/tree_array.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/linear_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/linear_dp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/state_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/state_dp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/topological_sort.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/topological_sort.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/union_find.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/union_find.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/greedy/brain_storming.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/greedy/brain_storming.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/greedy/longest_increasing_subsequence.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/greedy/longest_increasing_subsequence.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/string/string_hash.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/string/string_hash.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_0.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_0.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/temp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/temp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_1.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -218,13 +227,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647300774340</updated>
-    </task>
-    <task id="LOCAL-00004" summary="增加依赖包">
-      <created>1647302559053</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1647302559053</updated>
     </task>
     <task id="LOCAL-00005" summary="增加特征选择与参数调优">
       <created>1647390019066</created>
@@ -562,7 +564,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671190883235</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="FastIO">
+      <created>1671206689311</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1671206689311</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -580,7 +589,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="解题之道" />
     <MESSAGE value="更新Tarjan与题解模板" />
     <MESSAGE value="马拉车算法" />
     <MESSAGE value="备份更新" />
@@ -605,7 +613,8 @@
     <MESSAGE value="单调栈" />
     <MESSAGE value="双向BFS、可持久化并查集、树形DP" />
     <MESSAGE value="DFS序" />
-    <option name="LAST_COMMIT_MESSAGE" value="DFS序" />
+    <MESSAGE value="FastIO" />
+    <option name="LAST_COMMIT_MESSAGE" value="FastIO" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

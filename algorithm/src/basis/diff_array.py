@@ -1,12 +1,15 @@
 """
+
+"""
+"""
 算法：差分数组与前缀和
-功能：用来解决一维数组或者二维数组的加和问题，以及前缀和计算
+功能：用来解决一维数组或者二维数组的加和问题，以及前缀和计算，还有前缀和的前缀和
 题目：
 
 P3397 地毯（https://www.luogu.com.cn/problem/P3397#submit）
 L2281 巫师的总力量（https://leetcode.cn/problems/sum-of-total-strength-of-wizards/）枚举当前元素作为最小值的子数组和并使用前缀和的前缀和计算
 L2251 花期内花的数目（https://leetcode.cn/problems/number-of-flowers-in-full-bloom/）离散化差分数组
-
+L2132 用邮票贴满网格图（https://leetcode.cn/problems/stamping-the-grid/）用前缀和枚举可行的邮票左上端点，然后查看空白格点左上方是否有可行的邮票点
 
 参考：OI WiKi（xx）
 """

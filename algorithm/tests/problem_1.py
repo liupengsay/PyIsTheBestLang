@@ -28,21 +28,21 @@ import heapq
 import copy
 
 
-
 class Solution:
-    def getLucky(self, s: str, k: int) -> int:
-        lst = []
-        for w in s:
-            lst.extend(list(str(ord(w)-ord("a"))))
+    def longestZigZag(self, root: Optional[TreeNode]) -> int:
 
-        for _ in range(k):
-            lst = list(str(sum(int(w) for w in lst)))
-            if len(lst) ==1:
-                break
-        return int("".join(lst))
-
-
-
+        ans = -1
+        def dfs(node):
+            nonlocal ans
+            if not node:
+                return [0, 0]
+            left = dfs(node.left)
+            right = dfs(node.right)
+            ans = max(ans, left[1]+1, right[0]+1)
+            res = [left[1]+1, right[0]+1]
+            return res
+        dfs(root)
+        return ans
 
 class TestGeneral(unittest.TestCase):
     def test_solution(self):

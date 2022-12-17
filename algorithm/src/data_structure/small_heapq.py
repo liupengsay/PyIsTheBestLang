@@ -16,6 +16,8 @@ L0630 课程表（https://leetcode.cn/problems/course-schedule-iii/）用一个�
 L2454 下一个更大元素 IV（https://leetcode.cn/problems/next-greater-element-iv/）使用两个堆维护下下个更大元素即出队两次时遇见的元素
 L2402 会议室 III（https://leetcode.cn/problems/meeting-rooms-iii/）使用两个堆模拟进行会议室安排并进行计数
 L2386 找出数组的第 K 大和（https://leetcode.cn/problems/find-the-k-sum-of-an-array/）转换思路使用堆维护最大和第 K 次出队的则为目标结果
+L2163 删除元素后和的最小差值（https://leetcode.cn/problems/minimum-difference-in-sums-after-removal-of-elements/）预处理前缀后缀最大最小的 K 个数和再进行枚举分割点
+
 
 参考：OI WiKi（xx）
 """

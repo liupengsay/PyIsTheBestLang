@@ -4,7 +4,9 @@
 题目：xx（xx）
 L0214 最短回文串（https://leetcode.cn/problems/shortest-palindrome/）使用正向与反向字符串哈希计算字符串前缀最长回文子串
 L1044 最长重复子串（https://leetcode.cn/problems/shortest-palindrome/）利用二分查找加字符串哈希确定具有最长长度的重复子串
-L1316.不同的循环子字符串（https://leetcode.cn/problems/shortest-palindrome/）利用字符串哈希确定不同循环子串的个数
+L1316 不同的循环子字符串（https://leetcode.cn/problems/shortest-palindrome/）利用字符串哈希确定不同循环子串的个数
+L2156 查找给定哈希值的子串（https://leetcode.cn/problems/find-substring-with-given-hash-value/）逆向进行字符串哈希的计算
+
 参考：OI WiKi（xx）
 """
 
@@ -43,6 +45,7 @@ class StringHash:
 
     @staticmethod
     def gen_hash_prime_mod(n):
+        # 也可以不提前进行计算，滚动进行还行 x=(x*p+y)%mod 更新
         p1 = random.randint(26, 100)
         p2 = random.randint(26, 100)
         mod1 = random.randint(10 ** 9 + 7, 2 ** 31 - 1)
