@@ -22,20 +22,40 @@ from collections import deque
 from sortedcontainers import SortedList
 
 
+
+def get_prime_factor(num):
+    res = []
+    for i in range(2, num):
+        cnt = 0
+        while num % i == 0:
+            num //= i
+            cnt += 1
+            #print(i, num)
+        if cnt:
+            res.append([i, cnt])
+        if i > num:
+            break
+    if not res:
+        res = [[num, 1]]
+    return res
+
+
 class Solution:
-    def longestSquareStreak(self, nums: List[int]) -> int:
-        dct = sorted(list(set(nums)), reverse=True)
-        pre = defaultdict(int)
-        ans = 0
-        for num in dct:
-            pre[num] = pre[num * num] + 1
-            ans = ans if ans > pre[num] else pre[num]
-        return ans if ans > 0 else -1
+    def smallestValue(self, n: int) -> int:
+        while True:
+            res = get_prime_factor(n)
+            if len(res) == 1 and res[0][1] == 1:
+                break
+            n = 0
+            for num, va in res:
+                n += num*va
+        return n
+
 
 
 class TestGeneral(unittest.TestCase):
     def test_solution(self):
-        assert Solution().minSwap(nums1=[1, 3, 5, 4], nums2=[1, 2, 3, 7]) == 1
+        assert Solution().smallestValue(4) == 4
         return
 
 

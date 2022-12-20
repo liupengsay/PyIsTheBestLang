@@ -4,12 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="前缀和的前缀和">
-      <change afterPath="$PROJECT_DIR$/algorithm/src/string/palindrome_num.py" afterDir="false" />
+    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="回文数字枚举">
+      <change afterPath="$PROJECT_DIR$/algorithm/competition/第324场周赛题解.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/matrix_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/matrix_dp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/euler_path.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/euler_path.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/search/bfs.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/search/bfs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/union_find.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/union_find.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/greedy/brain_storming.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/greedy/brain_storming.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/number_theory.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/number_theory.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/tests/fast_io.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/fast.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_0.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_0.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_3.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_4.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_4.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/tests/temp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/temp.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -54,25 +61,25 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Soft/Anaconda3/Library/bin" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/algorithm/competition" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="run.code.analysis.last.selected.profile" value="aDefault" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\PCRecord\algorithm\competition" />
-      <recent name="D:\PCRecord\leetcode\template\图论" />
-      <recent name="D:\PCRecord\leetcode\competition" />
-      <recent name="D:\PCRecord\leetcode\tests" />
-      <recent name="D:\PCRecord\leetcode" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\PCRecord\algorithm\src\dp" />
       <recent name="D:\PCRecord\algorithm\src\search" />
       <recent name="D:\PCRecord\algorithm\src\mathmatics" />
       <recent name="D:\PCRecord\algorithm\src\算法基础" />
       <recent name="D:\PCRecord\algorithm\template\mathmatics" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\PCRecord\algorithm\competition" />
+      <recent name="D:\PCRecord\leetcode\template\图论" />
+      <recent name="D:\PCRecord\leetcode\competition" />
+      <recent name="D:\PCRecord\leetcode\tests" />
+      <recent name="D:\PCRecord\leetcode" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -87,7 +94,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests for palindrome_num.TestGeneral.test_pllindrome_num">
+  <component name="RunManager" selected="Python.problem_0">
     <configuration name="强连通分量" type="PythonConfigurationType" factoryName="Python">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -151,21 +158,21 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for ac_auto_machine.TestGeneral" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for problem_3.TestGeneral.test_solution" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/string" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/tests" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;ac_auto_machine.TestGeneral&quot;" />
+      <option name="_new_target" value="&quot;problem_3.TestGeneral.test_solution&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for bit_operation.TestGeneral.test_bit_operation" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests in number_theory.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -175,31 +182,31 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;bit_operation.TestGeneral.test_bit_operation&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/mathmatics/number_theory.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for palindrome_num.TestGeneral.test_pllindrome_num" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests in problem_3.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/string" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/tests" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;palindrome_num.TestGeneral.test_pllindrome_num&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/tests/problem_3.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Unittests for palindrome_num.TestGeneral.test_pllindrome_num" />
         <item itemvalue="Python.problem_0" />
         <item itemvalue="Python.temp" />
-        <item itemvalue="Python tests.Unittests for bit_operation.TestGeneral.test_bit_operation" />
-        <item itemvalue="Python tests.Unittests for ac_auto_machine.TestGeneral" />
+        <item itemvalue="Python tests.Unittests in number_theory.py" />
+        <item itemvalue="Python tests.Unittests in problem_3.py" />
+        <item itemvalue="Python tests.Unittests for problem_3.TestGeneral.test_solution" />
       </list>
     </recent_temporary>
   </component>
@@ -214,13 +221,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647300774340</updated>
-    </task>
-    <task id="LOCAL-00006" summary="字节一面面试coding题目">
-      <created>1647523394486</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1647523394486</updated>
     </task>
     <task id="LOCAL-00007" summary="力扣资料整理">
       <created>1659285605423</created>
@@ -558,7 +558,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671243654039</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="回文数字枚举">
+      <created>1671244574471</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1671244574471</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -576,7 +583,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="马拉车算法" />
     <MESSAGE value="备份更新" />
     <MESSAGE value="备份更新KMP" />
     <MESSAGE value="备份更新KM二分图算法" />
@@ -601,7 +607,8 @@
     <MESSAGE value="DFS序" />
     <MESSAGE value="FastIO" />
     <MESSAGE value="前缀和的前缀和" />
-    <option name="LAST_COMMIT_MESSAGE" value="前缀和的前缀和" />
+    <MESSAGE value="回文数字枚举" />
+    <option name="LAST_COMMIT_MESSAGE" value="回文数字枚举" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -650,6 +657,11 @@
           <url>file://$PROJECT_DIR$/algorithm/src/dp/tree_dp.py</url>
           <line>148</line>
           <option name="timeStamp" value="188" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/algorithm/src/string/palindrome_num.py</url>
+          <line>68</line>
+          <option name="timeStamp" value="192" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

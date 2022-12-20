@@ -11,11 +11,13 @@
 参考：OI WiKi（xx）
 """
 
+
+
+
 import bisect
 import random
 import re
 import unittest
-
 from typing import List
 import heapq
 import math
@@ -23,22 +25,16 @@ from collections import defaultdict, Counter, deque
 from functools import lru_cache
 from itertools import combinations
 from sortedcontainers import SortedList, SortedDict, SortedSet
-
 from sortedcontainers import SortedDict
 from functools import reduce
 from operator import xor
 from functools import lru_cache
-
 import random
 from itertools import permutations, combinations
 import numpy as np
-
 from decimal import Decimal
-
 import heapq
 import copy
-
-
 class NumberTheory:
     def __init__(self):
         return
@@ -123,21 +119,21 @@ class NumberTheory:
         return int(ans)
 
     @staticmethod
-    def ouLaShai(upperBound):
+    def euler_flag_prime(n):
         # 欧拉线性筛素数
-        # 说明：返回小于upperBound的所有素数
-        filter = [False for _ in range(upperBound + 1)]
-        primeNumbers = []
-        for num in range(2, upperBound + 1):
-            if not filter[num]:
-                primeNumbers.append(num)
-            for prime in primeNumbers:
-                if num * prime > upperBound:
+        # 说明：返回小于等于 n 的所有素数
+        flag = [False for _ in range(n + 1)]
+        prime_numbers = []
+        for num in range(2, n + 1):
+            if not flag[num]:
+                prime_numbers.append(num)
+            for prime in prime_numbers:
+                if num * prime > n:
                     break
-                filter[num * prime] = True
+                flag[num * prime] = True
                 if num % prime == 0:  # 这句是最有意思的地方  下面解释
                     break
-        return primeNumbers
+        return prime_numbers
 
     @staticmethod
     def sieve_of_eratosthenes(n):  # 埃拉托色尼筛选法，返回小于等于n的素数
@@ -148,7 +144,9 @@ class NumberTheory:
                 for i in range(p * 2, n + 1, p):  # 筛掉它的倍数即可
                     primes[i] = False
             p += 1
-        primes = [element for element in range(2, n + 1) if primes[element]]  # 得到所有少于n的素数
+        primes = [
+            element for element in range(
+                2, n + 1) if primes[element]]  # 得到所有少于n的素数
         return primes
 
     @staticmethod
@@ -173,11 +171,23 @@ class NumberTheory:
                 res.append([i, cnt])
             if i > num:
                 break
-        if not res:
-            res = [[num, 1]]
+        if num != 1 or not res:
+            res.append([num, 1])
         return res
 
+
 class TestGeneral(unittest.TestCase):
+
+    def test_get_prime_factor(self):
+        nt = NumberTheory()
+        for i in range(1, 100000):
+            res = nt.get_prime_factor(i)
+            num = 0
+            for val, c in res:
+                num += val * c
+            assert num == i
+        return
+
     def test_euler_phi(self):
         nt = NumberTheory()
         assert nt.euler_phi(10**11 + 131) == 66666666752
@@ -186,9 +196,9 @@ class TestGeneral(unittest.TestCase):
     def test_euler_shai(self):
         nt = NumberTheory()
         correctResult_30 = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
-        ouLaShaiResult_30 = nt.ouLaShai(30)
-        assert correctResult_30 == ouLaShaiResult_30
-        assert len(nt.ouLaShai(10**6)) == 78498
+        euler_flag_primeResult_30 = nt.euler_flag_prime(30)
+        assert correctResult_30 == euler_flag_primeResult_30
+        assert len(nt.euler_flag_prime(10**6)) == 78498
         return
 
     def test_eratosthenes_shai(self):
@@ -245,9 +255,10 @@ class TestGeneral(unittest.TestCase):
         num = 1
         assert nt.get_prime_factor(num) == [[1, 1]]
 
-        num = 2*(3**2)*7*(11**3)
+        num = 2 * (3**2) * 7 * (11**3)
         assert nt.get_prime_factor(num) == [[2, 1], [3, 2], [7, 1], [11, 3]]
         return
+
 
 if __name__ == '__main__':
     unittest.main()
