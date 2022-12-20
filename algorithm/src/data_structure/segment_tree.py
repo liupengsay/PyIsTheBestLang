@@ -86,6 +86,7 @@ class SegmentTreeRangeAddSum:
             ans += self.query(left, r, m + 1, t, 2 * i + 1)
         return ans
 
+
 class SegmentTreeRangeAddMulSum:
 
     def __init__(self, p, n):

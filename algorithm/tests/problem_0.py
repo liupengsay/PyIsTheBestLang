@@ -63,54 +63,13 @@ class FastIO:
         return sys.stdout.write(" ".join(str(w) for w in x) + '\n')
 
 
-def find_floor(fun, left, right):
-    error = 1e-2
-    while left < right - error:
-        diff = (right - left) / 3
-        mid1 = left + diff
-        mid2 = left + 2 * diff
-        dist1 = fun(mid1)
-        dist2 = fun(mid2)
-        if dist1 < dist2:
-            right = mid2
-        elif dist1 > dist2:
-            left = mid1
-        else:
-            left = mid1
-            right = mid2
-    return left if fun(left) < fun(right) else right
-
-
 def main(ac=FastIO()):
-    n = ac.read_int()
-    pos_x = []
-    pos_y = []
-    for _ in range(n):
-        x, y = ac.read_ints()
-        pos_x.append(x)
-        pos_y.append(y)
-    pos_x.sort()
-    pos_y.sort()
-
-    def fun_x(a):
-        res = 0
-        for i in range(n):
-            res += abs(pos_x[i]-a-i)
-        return res
-
-    def fun_y(b):
-        return sum(abs(y-b) for y in pos_y)
-
-    floor_x = find_floor(fun_x, pos_x[0]-n, pos_x[-1]+n)
-    floor_y = find_floor(fun_y, pos_y[0]-n, pos_y[-1]+n)
-
-    ans = float("inf")
-    for a in range(-1, 2):
-        for b in range(-2, 2):
-            x = int(floor_x) + a
-            y = int(floor_y) + b
-            ans = min(ans, fun_x(x) + fun_y(y))
-    ac.st(ans)
+    k = ac.read_int()
+    m = n = 1
+    while m+n <= k:
+        m, n = n, m+n
+    ac.st(f"m={m}")
+    ac.st(f"n={n}")
     return
 
 

@@ -4,19 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="回文数字枚举">
-      <change afterPath="$PROJECT_DIR$/algorithm/competition/第324场周赛题解.md" afterDir="false" />
+    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="质因数分解bug修复">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/union_find.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/union_find.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/greedy/brain_storming.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/greedy/brain_storming.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/number_theory.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/number_theory.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/fast_io.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/fast.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/segment_tree.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/data_structure/segment_tree.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_0.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_0.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_3.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_3.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_4.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_4.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/temp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/temp.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -221,13 +212,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647300774340</updated>
-    </task>
-    <task id="LOCAL-00007" summary="力扣资料整理">
-      <created>1659285605423</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1659285605423</updated>
     </task>
     <task id="LOCAL-00008" summary="增加OI竞赛项">
       <created>1659285666912</created>
@@ -565,7 +549,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671244574471</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="质因数分解bug修复">
+      <created>1671539408308</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1671539408308</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -583,7 +574,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="备份更新" />
     <MESSAGE value="备份更新KMP" />
     <MESSAGE value="备份更新KM二分图算法" />
     <MESSAGE value="更新线段树与树状数组的区间查询和" />
@@ -608,7 +598,8 @@
     <MESSAGE value="FastIO" />
     <MESSAGE value="前缀和的前缀和" />
     <MESSAGE value="回文数字枚举" />
-    <option name="LAST_COMMIT_MESSAGE" value="回文数字枚举" />
+    <MESSAGE value="质因数分解bug修复" />
+    <option name="LAST_COMMIT_MESSAGE" value="质因数分解bug修复" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -662,6 +653,11 @@
           <url>file://$PROJECT_DIR$/algorithm/src/string/palindrome_num.py</url>
           <line>68</line>
           <option name="timeStamp" value="192" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/algorithm/tests/problem_0.py</url>
+          <line>66</line>
+          <option name="timeStamp" value="194" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
