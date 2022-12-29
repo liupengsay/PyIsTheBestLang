@@ -1,10 +1,12 @@
-
+import copy
 import random
 import heapq
 import math
 import sys
 import bisect
+import datetime
 from functools import lru_cache
+from collections import deque
 from collections import Counter
 from collections import defaultdict
 from itertools import combinations
@@ -63,14 +65,18 @@ class FastIO:
         return sys.stdout.write(" ".join(str(w) for w in x) + '\n')
 
 
-def main(ac=FastIO()):
-    k = ac.read_int()
-    m = n = 1
-    while m+n <= k:
-        m, n = n, m+n
-    ac.st(f"m={m}")
-    ac.st(f"n={n}")
-    return
+def get_all_factor(num):
+    # 获取整数所有的因子包括1和它自己
+    factor = set()
+    for i in range(1, int(math.sqrt(num)) + 1):
+        if num % i == 0:
+            factor.add(i)
+            factor.add(num // i)
+    return sorted(list(factor))
 
+
+def main(ac=FastIO()):
+    n, p = ac.read_ints()
+    return
 
 main()

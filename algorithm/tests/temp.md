@@ -1,25 +1,26 @@
 ***
 ### 解题思路
-【儿须成名酒须醉】Python3+枚举
-- 枚举表达式所有可能的状态计算
+【儿须成名酒须醉】Python3+暴力+模拟
 
 ### 代码
-- 执行用时：352 ms, 在所有 Python3 提交中击败了 100.00% 的用户
-- 内存消耗：15.4 MB, 在所有 Python3 提交中击败了 55.56% 的用户
-- 通过测试用例：100 / 100
+- 执行用时：60 ms, 在所有 Python3 提交中击败了 100.00% 的用户
+- 内存消耗：15.4 MB, 在所有 Python3 提交中击败了 7.79% 的用户
+- 通过测试用例：101 / 101
 
 ```python3
 class Solution:
-    def minCost(self, n: int, cuts: List[int]) -> int:
-        cuts.sort()
-        cuts.insert(0, 0)
-        cuts.append(n)
-        m = len(cuts)
-        dp = [[0] * (m + 1) for _ in range(m + 1)]
-        for i in range(m - 1, -1, -1):
-            for j in range(i + 2, m):
-                dp[i][j] = cuts[j] - cuts[i] + min(dp[i][k] + dp[k][j] for k in range(i + 1, j))
-        return dp[0][m - 1]
+    def largestMerge(self, word1: str, word2: str) -> str:
+        ans = ""
+        while word1 and word2:
+            if word1 > word2:
+                ans += word1[0]
+                word1 = word1[1:]
+            else:
+                ans += word2[0]
+                word2 = word2[1:]
+        ans += word1
+        ans += word2
+        return ans
 ```
 
 ***

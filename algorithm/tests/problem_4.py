@@ -37,33 +37,47 @@ from functools import reduce
 
 from functools import cmp_to_key
 
+mod = 10 ** 9 + 7
+
 
 class Solution:
-    def cycleLengthQueries(self, n: int, queries: List[List[int]]) -> List[int]:
-        ans = []
+    def countPartitions(self, nums: List[int], k: int) -> int:
+        s = sum(nums)
+        big = [num for num in nums if num >= k]
+        small = [num for num in nums if num < k]
+        s = sum(small)
+        pre = defaultdict(int)
+        pre[0] = 1
+        for num in small:
+            cur = pre.copy()
+            for p in pre:
+                cur[p + num] += pre[p]
+                cur[p + num] %= mod
+            pre = cur.copy()
 
-        for a, b in queries:
-
-            ans_b = [b]
-            while b > 1:
-                ans_b.append(b // 2)
-                b //= 2
-            if ans_b[-1] != b:
-                ans_b.append(b)
-            ind_b = {num: i for i, num in enumerate(ans_b)}
-
-            ans_a = [a]
-            while ans_a[-1] not in ind_b:
-                ans_a.append(a // 2)
-                a //= 2
-            ans.append(len(ans_a) + ind_b[ans_a[-1]])
+        m = len(big)
+        ans = 0
+        for w in pre:
+            a, b = w, s- w
+            if a >= k and b>=k:
+                ans += pow(2, m, mod)*pre[w]
+            if a < k and b>=k:
+                if m:
+                    ans += m*pow(2, m-1, mod)*pre[w]
+            if a>=k and b<k:
+                if m:
+                    ans += m * pow(2, m - 1, mod) * pre[w]
+            if a<k and b<k:
+                if m>=2:
+                    ans += m*(m-1)*pow(2, m - 2, mod)*pre[w]
+            ans %= mod
         return ans
+
+
 
 class TestGeneral(unittest.TestCase):
     def test_solution(self):
-        assert Solution().countSubarrays(nums=[2, 3, 1], k=3) == 1
-        assert Solution().countSubarrays(nums=[3, 2, 1, 4, 5], k=4) == 3
-        assert Solution().countSubarrays([2, 5, 1, 4, 3, 6], 1) == 3
+        assert Solution().countPartitions([977208288,291246471,396289084,732660386,353072667,34663752,815193508,717830630,566248717,260280127,824313248,701810861,923747990,478854232,781012117,525524820,816579805,861362222,854099903,300587204,746393859,34127045,823962434,587009583,562784266,115917238,763768139,393348369,3433689,586722616,736284943,596503829,205828197,500187252,86545000,490597209,497434538,398468724,267376069,514045919,172592777,469713137,294042883,985724156,388968179,819754989,271627185,378316864,820060916,436058499,385836880,818060440,727928431,737435034,888699172,961120185,907997012,619204728,804452206,108201344,986517084,650443054], 95) == 145586000
         return
 
 

@@ -14,7 +14,9 @@
 # 原文链接：https://blog.csdn.net/weixin_42001089/article/details/83590686
 
 功能：来求一棵树的最近公共祖先（LCA）
-题目：P3379 【模板】最近公共祖先（LCA）（https://www.luogu.com.cn/problem/P3379）
+题目：
+P3379 【模板】最近公共祖先（LCA）（https://www.luogu.com.cn/problem/P3379）
+L1483 树节点的第 K 个祖先（https://leetcode.cn/problems/kth-ancestor-of-a-tree-node/）
 参考：OI WiKi（）
 CSDN（https://blog.csdn.net/weixin_42001089/article/details/83590686）
 
@@ -162,10 +164,31 @@ class LcaRMQ:
         return b
 
 
-class LcaMultiply:
-    def __init__(self, dct, root):
-        self.dct = dct
-        self.root = root
+class TreeAncestor:
+
+    def __init__(self, n: int, parent: List[int]):
+        # 根据节点规模设置层数
+        self.cols = max(2, math.ceil(math.log2(n)))
+
+        self.dp = [[-1] * self.cols for _ in range(n)]
+        for i in range(n):
+            self.dp[i][0] = parent[i]
+        # 动态规划设置祖先, dp[node][j] 表示 node 往前推第 2^j 个祖先
+        for j in range(1, self.cols):
+            for i in range(n):
+                father = self.dp[i][j-1]
+                if father != -1:
+                    self.dp[i][j] = self.dp[father][j-1]
+        return
+
+    def get_kth_ancestor(self, node: int, k: int) -> int:
+        # 查询节点的第 k 个祖先
+        for i in range(self.cols - 1, -1, -1):
+            if k & (1 << i):
+                node = self.dp[node][i]
+                if node == -1:
+                    break
+        return node
 
 
 class TestGeneral(unittest.TestCase):
@@ -180,7 +203,6 @@ class TestGeneral(unittest.TestCase):
         assert lt.LCA(root, 7, 8) == root
         return
 
-
     def test_lca_rmq(self):
         g = {3: [5, 1], 5: [6, 2], 2: [7, 4], 1: [0, 8]}
         dct = defaultdict(list)
@@ -190,6 +212,16 @@ class TestGeneral(unittest.TestCase):
         lt = LcaRMQ(dct, root)
         assert lt.LCA(7, 8) == root
         return
+
+    def test_tree_anncestor(self):
+        parent = [-1, 0, 0, 1, 2]
+        tree = TreeAncestor(5, parent)
+        assert tree.get_kth_ancestor(4, 3) == -1
+        assert tree.get_kth_ancestor(4, 2) == 0
+        assert tree.get_kth_ancestor(4, 1) == 2
+        assert tree.get_kth_ancestor(4, 0) == 4
+        return
+
 
 if __name__ == '__main__':
     unittest.main()
