@@ -50,10 +50,10 @@ class FastIO:
     def read_str(self):
         return self._read()
 
-    def read_strs(self):
-        return self._read().split()
-
     def read_list_str(self):
+        return list(self._read())
+
+    def read_list_strs(self):
         return self._read().split()
 
     @staticmethod
@@ -65,18 +65,31 @@ class FastIO:
         return sys.stdout.write(" ".join(str(w) for w in x) + '\n')
 
 
-def get_all_factor(num):
-    # 获取整数所有的因子包括1和它自己
-    factor = set()
-    for i in range(1, int(math.sqrt(num)) + 1):
-        if num % i == 0:
-            factor.add(i)
-            factor.add(num // i)
-    return sorted(list(factor))
-
-
 def main(ac=FastIO()):
-    n, p = ac.read_ints()
+    n = ac.read_int()
+    cnt = [0]*26
+    pre = 1
+    order = 1
+    ind = 0
+    for _ in range(n):
+        lst = ac.read_list_strs()
+        cur = int(lst[1])
+        x = (cur-pre+1)//26
+        for i in range(26):
+            cnt[i] += x
+        for _ in range((cur-pre+1)%26):
+            cnt[ind] += 1
+            ind += order
+            ind %= 26
+        pre = cur + 1
+        if lst[0] == "UPIT":
+            ac.st(cnt[ord(lst[2])-ord("a")])
+        else:
+            ind -= order
+            order *= -1
+            ind += order
+            ind %= 26
     return
+
 
 main()

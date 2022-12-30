@@ -11,30 +11,11 @@
 参考：OI WiKi（xx）
 """
 
-
-
-
-import bisect
-import random
-import re
-import unittest
-from typing import List
-import heapq
 import math
-from collections import defaultdict, Counter, deque
-from functools import lru_cache
-from itertools import combinations
-from sortedcontainers import SortedList, SortedDict, SortedSet
-from sortedcontainers import SortedDict
-from functools import reduce
-from operator import xor
-from functools import lru_cache
 import random
-from itertools import permutations, combinations
-import numpy as np
-from decimal import Decimal
-import heapq
-import copy
+import unittest
+
+
 class NumberTheory:
     def __init__(self):
         return
@@ -161,6 +142,7 @@ class NumberTheory:
 
     @staticmethod
     def get_prime_factor(num):
+        # 质因数分解
         res = []
         for i in range(2, int(math.sqrt(num)) + 1):
             cnt = 0

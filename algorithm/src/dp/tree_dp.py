@@ -149,6 +149,31 @@ class TreeDP:
         return up_to_down, down_to_up
 
 
+class TreeDiameter:
+    # 任取树中的一个节点x，找出距离它最远的点y，那么点y就是这棵树中一条直径的一个端点。我们再从y出发，找出距离y最远的点就找到了一条直径。
+    # 这个算法依赖于一个性质：对于树中的任一个点，距离它最远的点一定是树上一条直径的一个端点。
+    def __init__(self, edge):
+        self.edge = edge
+        self.n = len(self.edge)
+        return
+
+    def get_farest(self, node):
+        q = deque([(node, -1)])
+        while q:
+            for _ in range(len(q)):
+                node, pre = q.popleft()
+                for x in self.edge[node]:
+                    if x != pre:
+                        q.append((x, node))
+        return node
+
+    def get_diameter_node(self):
+        # 获取树的直径端点
+        x = self.get_farest(0)
+        y = self.get_farest(x)
+        return x, y
+
+
 class TestGeneral(unittest.TestCase):
 
     def test_tree_dp(self):
