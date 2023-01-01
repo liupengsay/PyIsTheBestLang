@@ -28,21 +28,10 @@ import heapq
 import copy
 
 
-
-
 class Solution:
-    def twoOutOfThree(self, nums1: List[int], nums2: List[int], nums3: List[int]) -> List[int]:
-        cnt = defaultdict(int)
-        for num in set(nums1):
-            cnt[num] += 1
+    def countDigits(self, num: int) -> int:
+        return sum(num % int(w) == 0 for w in str(num))
 
-        for num in set(nums2):
-            cnt[num] += 1
-
-        for num in set(nums3):
-            cnt[num] += 1
-
-        return [num for num in cnt if cnt[num]>=2]
 
 class TestGeneral(unittest.TestCase):
     def test_solution(self):

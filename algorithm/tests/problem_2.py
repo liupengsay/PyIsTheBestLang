@@ -22,41 +22,31 @@ from collections import deque
 from sortedcontainers import SortedList
 
 
+def get_prime_factor(num):
+    # 质因数分解
+    res = []
+    for i in range(2, int(math.sqrt(num)) + 1):
+        cnt = 0
+        while num % i == 0:
+            num //= i
+            cnt += 1
+        if cnt:
+            res.append([i, cnt])
+        if i > num:
+            break
+    if num != 1 or not res:
+        res.append([num, 1])
+    return res
+
 
 class Solution:
-    def takeCharacters(self, s: str, k: int) -> int:
-        cnt= Counter(s)
-        if cnt["a"]<k or cnt["b"]<k or cnt["c"]<k:
-            return -1
-
-        n = len(s)
-
-        if any(cnt[w]==k for w in "abc"):
-            return n
-
-        def check(length):
-            cur = defaultdict(int)
-            for i in range(length-1):
-                cur[s[i]] += 1
-            for i in range(length-1, n):
-                cur[s[i]] += 1
-                if all(cnt[w]-cur[w]>=k for w in "abc"):
-                    return True
-                cur[s[i-length+1]] -= 1
-            return False
-
-
-        low = 1
-        high = n
-        while low < high-1:
-            mid = low+(high-low)//2
-            if check(mid):
-                low = mid
-            else:
-                high = mid
-        ans = high if check(high) else low
-        return n-ans
-
+    def distinctPrimeFactors(self, nums: List[int]) -> int:
+        ans = set()
+        for num in nums:
+            for x in get_prime_factor(num):
+                if x > 1:
+                    ans.add(x)
+        return len(ans)
 
 
 

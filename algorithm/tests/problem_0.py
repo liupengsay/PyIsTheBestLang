@@ -11,6 +11,8 @@ from collections import Counter
 from collections import defaultdict
 from itertools import combinations
 from itertools import permutations
+import datetime
+
 
 sys.setrecursionlimit(10000000)
 
@@ -66,29 +68,9 @@ class FastIO:
 
 
 def main(ac=FastIO()):
-    n = ac.read_int()
-    cnt = [0]*26
-    pre = 1
-    order = 1
-    ind = 0
-    for _ in range(n):
-        lst = ac.read_list_strs()
-        cur = int(lst[1])
-        x = (cur-pre+1)//26
-        for i in range(26):
-            cnt[i] += x
-        for _ in range((cur-pre+1)%26):
-            cnt[ind] += 1
-            ind += order
-            ind %= 26
-        pre = cur + 1
-        if lst[0] == "UPIT":
-            ac.st(cnt[ord(lst[2])-ord("a")])
-        else:
-            ind -= order
-            order *= -1
-            ind += order
-            ind %= 26
+    x, y = ac.read_ints()
+
+
     return
 
 

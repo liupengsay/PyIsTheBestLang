@@ -20,30 +20,22 @@ from itertools import combinations, permutations
 
 
 
-
-
-
-mod = 10**9+7
-
-
 class Solution:
-    def countPartitions(self, nums: List[int], k: int) -> int:
-        s = sum(nums)
-        pre = defaultdict(int)
-        pre[0] = 1
-        for num in nums:
-            cur = pre.copy()
-            for p in pre:
-                if p+num<k:
-                    cur[p+num] += pre[p]
-                    cur[p+num] %= mod
-            pre = cur.copy()
+    def minimumPartition(self, s: str, k: int) -> int:
 
-        small = sum(pre.values())
-        n = len(nums)
-        total = pow(2, n, mod)
-        ans = (total-2*small) % mod
-        return ans
+        if any(int(w) > k for w in s):
+            return -1
+
+        ans = 0
+        pre = ""
+        for w in s:
+            if int(pre + w) <= k:
+                pre += w
+            else:
+                ans += 1
+        return ans + 1
+
+
 
 
 
