@@ -69,6 +69,55 @@ class NumberTheory:
         return True
 
     @staticmethod
+    def is_prime1(x):
+        if x == 1:
+            return False
+        for i in range(2, x):
+            if x % i == 0:
+                return False
+        return True
+
+    @staticmethod
+    def is_prime2(x):
+        if x == 1:
+            return False
+        for i in range(2, int(x ** 0.5) + 1):
+            if x % i == 0:
+                return False
+        return True
+
+    @staticmethod
+    def is_prime3(x):
+        if x == 1:
+            return False
+        if x == 2:
+            return True
+        elif x % 2 == 0:
+            return False
+        for i in range(3, int(math.sqrt(x)) + 1, 2):
+            if x % i == 0:
+                return False
+        return True
+
+    @staticmethod
+    def is_prime4(x):
+        """https://zhuanlan.zhihu.com/p/107300262
+        任何一个自然数，总可以表示成以下六种形式之一：6n，6n+1，6n+2，6n+3，6n+4，6n+5（n=0,1,2...）
+        我们可以发现，除了2和3，只有形如6n+1和6n+5的数有可能是质数。
+        且形如6n+1和6n+5的数如果不是质数，它们的因数也会含有形如6n+1或者6n+5的数，因此可以得到如下算法：
+        """
+        if x == 1:
+            return False
+        if (x == 2) or (x == 3):
+            return True
+        if (x % 6 != 1) and (x % 6 != 5):
+            return False
+        for i in range(5, int(math.sqrt(x)) + 1, 6):
+            if (x % i == 0) or (x % (i + 2) == 0):
+                return False
+        return True
+
+    @staticmethod
     def rational_number_to_fraction(st):
         """
         # 有理数循环小数化为分数
@@ -219,6 +268,15 @@ class TestGeneral(unittest.TestCase):
         assert not nt.is_prime(1)
         assert nt.is_prime(5)
         assert not nt.is_prime(51)
+        for _ in range(10):
+            i = random.randint(1, 10**4)
+            assert nt.is_prime(i) == nt.is_prime4(i)
+
+        for _ in range(1):
+            x = random.randint(10**8, 10**9)
+            y = x + 10**6
+            for num in range(x, y+1):
+                nt.is_prime4(x)
         return
 
     def test_gcd_lcm(self):
