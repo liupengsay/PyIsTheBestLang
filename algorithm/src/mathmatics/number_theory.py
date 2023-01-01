@@ -176,7 +176,7 @@ class NumberTheory:
             p += 1
         primes = [
             element for element in range(
-                2, n + 1) if primes[element]]  # 得到所有少于n的素数
+                2, n + 1) if primes[element]]  # 得到所有小于等于n的素数
         return primes
 
     @staticmethod
