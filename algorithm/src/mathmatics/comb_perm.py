@@ -46,6 +46,14 @@ class CombPerm:
         return
 
     @staticmethod
+    def combinnation(nums, k):
+        return [list(item) for item in combinations(nums, k)]
+
+    @staticmethod
+    def permutation(nums, k):
+        return [list(item) for item in permutations(nums, k)]
+
+    @staticmethod
     def comb_perm(x, y):
         length = 10 ** 6 + 5
         mod = 10 ** 9 + 7
@@ -156,6 +164,14 @@ class TestGeneral(unittest.TestCase):
         assert math.comb(j, i) % mod == cp.comb_perm(j, i)
 
         assert cp.main_p1287(3, 2) == 6
+
+        nums = [1, 2, 3]
+        ans = cp.combinnation(nums, 2)
+        assert ans == [[1, 2], [1, 3], [2, 3]]
+
+        ans = cp.permutation(nums, 1)
+        assert ans == [[1], [2], [3]]
+
         return
 
 

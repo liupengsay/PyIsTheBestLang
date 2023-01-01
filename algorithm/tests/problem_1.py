@@ -28,9 +28,19 @@ import heapq
 import copy
 
 
+
 class Solution:
-    def countDigits(self, num: int) -> int:
-        return sum(num % int(w) == 0 for w in str(num))
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        ans = j = 0
+        n = len(s)
+        pre =set()
+        for i in range(n):
+            while j < n and s[j] not in pre:
+                pre.add(s[j])
+                j += 1
+            ans = ans if ans > j-i else j-i
+            pre.discard(s[i])
+        return ans
 
 
 class TestGeneral(unittest.TestCase):
