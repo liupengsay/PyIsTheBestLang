@@ -160,11 +160,10 @@ class TreeDiameter:
     def get_farest(self, node):
         q = deque([(node, -1)])
         while q:
-            for _ in range(len(q)):
-                node, pre = q.popleft()
-                for x in self.edge[node]:
-                    if x != pre:
-                        q.append((x, node))
+            node, pre = q.popleft()
+            for x in self.edge[node]:
+                if x != pre:
+                    q.append((x, node))
         return node
 
     def get_diameter_node(self):
