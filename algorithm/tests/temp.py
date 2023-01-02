@@ -13,5 +13,6 @@ sys.setrecursionlimit(10000000)
 
 
 
-n = 10**5
-print(n*(n+1)//2 >= 10**9)
+num = 10**12
+n = int(math.sqrt(2 * num + 0.25) - 0.5)
+print(n)

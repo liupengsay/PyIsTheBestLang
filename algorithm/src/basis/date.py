@@ -8,11 +8,27 @@ Lxxxx xxxx（https://leetcode.cn/problems/shortest-palindrome/）xxxx
 """
 import datetime
 import unittest
-
+import time
 
 class DateTime:
     def __init__(self):
         return
+
+    @staticmethod
+    def time_to_unix(dt):
+        # 转换成时间 "2016-05-05 20:28:54"
+        time_array = time.strptime(dt, "%Y-%m-%d %H:%M:%S")
+        # 转换成时间戳
+        timestamp = time.mktime(time_array)
+        return timestamp
+
+    @staticmethod
+    def unix_to_time(timestamp):
+        # 转换成时间 1462451334
+        time_local = time.localtime(timestamp)
+        # 转换成新的时间格式(2016-05-05 20:28:54)
+        dt = time.strftime("%Y-%m-%d %H:%M:%S", time_local)
+        return dt
 
     @staticmethod
     def is_leap_year(yy):
@@ -69,6 +85,9 @@ class TestGeneral(unittest.TestCase):
 
         assert dt.is_leap_year(2000) is True
         assert dt.is_leap_year(2100) is False
+
+        assert dt.unix_to_time(1462451334) == "2016-05-05 20:28:54"
+        assert dt.time_to_unix("2016-05-05 20:28:54") == 1462451334
         return
 
 
