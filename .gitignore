@@ -1,4 +1,6 @@
 /.pytest_cache/
 /.idea/*
 /.idea/
+.idea/*
+.idea/workspace.xml
 /.idea/workspace.xml

@@ -73,7 +73,7 @@ class FastIO:
             else:
                 to = f(*args, **kwargs)
                 while True:
-                    if isinstance(to, GeneratorType):
+                    if type(to) is GeneratorType:
                         stack.append(to)
                         to = next(to)
                     else:
@@ -83,43 +83,3 @@ class FastIO:
                         to = stack[-1].send(to)
                 return to
         return wrappedfunc
-
-
-def get_k_bin_of_n(n, k):
-    # 整数n的k进制计算（支持正数进制与负数进制）
-    if n == 0:
-        return [0]
-    if k == 0:
-        return []
-    # 支持正负数
-    pos = 1 if k > 0 else -1
-    k = abs(k)
-    lst = []
-    while n:
-        lst.append(n % k)
-        n //= k
-        n *= pos
-    lst.reverse()
-    return lst
-
-
-def main(ac=FastIO()):
-    st = "0123456789" + "".join(chr(i+ord("A")) for i in range(26))
-
-    def check(num):
-        cur = get_k_bin_of_n(num, n)
-        return "".join(st[i] for i in cur)
-
-    n = ac.read_int()
-    for i in range(1, n):
-        lst = []
-        for j in range(1, i+1):
-            x = check(i)
-            y = check(j)
-            z = check(i*j)
-            lst.append(f"{x}*{y}={z}")
-        ac.lst(lst)
-    return
-
-
-main()

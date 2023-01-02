@@ -15,7 +15,7 @@ from types import GeneratorType
 
 sys.setrecursionlimit(10000000)
 
-
+# https://atcoder.jp/contests/abc267/submissions/me
 class FastIO:
     def __init__(self):
         return
@@ -73,7 +73,7 @@ class FastIO:
             else:
                 to = f(*args, **kwargs)
                 while True:
-                    if isinstance(to, GeneratorType):
+                    if type(to) is GeneratorType:
                         stack.append(to)
                         to = next(to)
                     else:
@@ -85,40 +85,67 @@ class FastIO:
         return wrappedfunc
 
 
-def get_k_bin_of_n(n, k):
-    # 整数n的k进制计算（支持正数进制与负数进制）
-    if n == 0:
-        return [0]
-    if k == 0:
-        return []
-    # 支持正负数
-    pos = 1 if k > 0 else -1
-    k = abs(k)
-    lst = []
-    while n:
-        lst.append(n % k)
-        n //= k
-        n *= pos
-    lst.reverse()
-    return lst
+class TreeDiameter:
+    # 任取树中的一个节点x，找出距离它最远的点y，那么点y就是这棵树中一条直径的一个端点。我们再从y出发，找出距离y最远的点就找到了一条直径。
+    # 这个算法依赖于一个性质：对于树中的任一个点，距离它最远的点一定是树上一条直径的一个端点。
+    def __init__(self, edge):
+        self.edge = edge
+        self.n = len(self.edge)
+        return
+
+    def get_farest(self, node):
+        q = deque([(node, -1)])
+        while q:
+            node, pre = q.popleft()
+            for x in self.edge[node]:
+                if x != pre:
+                    q.append((x, node))
+        return node
+
+    def get_diameter_node(self):
+        # 获取树的直径端点
+        x = self.get_farest(0)
+        y = self.get_farest(x)
+        return x, y
 
 
 def main(ac=FastIO()):
-    st = "0123456789" + "".join(chr(i+ord("A")) for i in range(26))
-
-    def check(num):
-        cur = get_k_bin_of_n(num, n)
-        return "".join(st[i] for i in cur)
-
     n = ac.read_int()
-    for i in range(1, n):
-        lst = []
-        for j in range(1, i+1):
-            x = check(i)
-            y = check(j)
-            z = check(i*j)
-            lst.append(f"{x}*{y}={z}")
-        ac.lst(lst)
+    edge = [[] for _ in range(n)]
+    for _ in range(n - 1):
+        u, v = ac.read_ints_minus_one()
+        edge[u].append(v)
+        edge[v].append(u)
+    # 获取任意直径的端点
+    root1, root2 = TreeDiameter(edge).get_diameter_node()
+    q = ac.read_int()
+    dct = [set() for _ in range(n)]
+
+    # 读取答案
+    ans = [-1]*q
+    for i in range(q):
+        u, k = ac.read_ints()
+        u -= 1
+        dct[u].add((i, k))
+
+    @ac.bootstrap
+    def dfs(node, fa):
+        path.append(node)
+        for x, z in list(dct[node]):
+            if len(path) >= z+1:
+                ans[x] = path[-z-1] + 1
+                dct[node].discard((x, z))
+        for y in edge[node]:
+            if y != fa:
+                yield dfs(y, node)
+        path.pop()
+        yield
+
+    path = []
+    dfs(root1, -1)
+    dfs(root2, -1)
+    for a in ans:
+        ac.st(a)
     return
 
 

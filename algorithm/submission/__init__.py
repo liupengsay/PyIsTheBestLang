@@ -1,4 +1,14 @@
+"""
 
+"""
+"""
+算法：xxx
+功能：xxx
+题目：
+Lxxxx xxxx（https://leetcode.cn/problems/shortest-palindrome/）xxxx
+
+参考：OI WiKi（xx）
+"""
 
 import bisect
 import random
@@ -28,15 +38,19 @@ import heapq
 import copy
 
 
+class ClassName:
+    def __init__(self):
+        return
 
-
-
-
+    def gen_result(self):
+        return
 
 
 class TestGeneral(unittest.TestCase):
-    def test_solution(self):
-        assert Solution().minCost(7, [1, 3, 4, 5]) == 11
+
+    def test_xxx(self):
+        nt = ClassName()
+        assert nt.gen_result(10 ** 11 + 131) == 66666666752
         return
 
 

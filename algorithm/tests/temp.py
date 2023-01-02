@@ -13,4 +13,5 @@ sys.setrecursionlimit(10000000)
 
 
 
-
+n = 10**5
+print(n*(n+1)//2 >= 10**9)
