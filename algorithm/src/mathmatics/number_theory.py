@@ -42,7 +42,7 @@ class NumberTheory:
 
     @staticmethod
     def get_k_bin_of_n(n, k):
-        # 整数n的k进制计算
+        # 整数n的k进制计算（支持正数进制与负数进制）
         if n == 0:
             return [0]
         if k == 0:
@@ -56,6 +56,8 @@ class NumberTheory:
             n //= k
             n *= pos
         lst.reverse()
+        # 最高支持三十六进制的表达
+        # "0123456789" + "".join(chr(i+ord("A")) for i in range(26))
         return lst
 
     @staticmethod
