@@ -17,6 +17,11 @@ class DateTime:
     @staticmethod
     def is_leap_year(yy):
         # 判断是否为闰年
+        # 闰年天数
+        leap_month = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+        not_leap_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+        assert sum(leap_month) == 366
+        assert sum(not_leap_month) == 365
         return yy % 400 == 0 or (yy % 4 == 0 and yy % 100 != 0)
 
     @staticmethod

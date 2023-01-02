@@ -93,7 +93,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.problem_0">
+  <component name="RunManager" selected="Python tests.Unittests in date.py">
     <configuration name="强连通分量" type="PythonConfigurationType" factoryName="Python">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -201,8 +201,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.problem_0" />
         <item itemvalue="Python tests.Unittests in date.py" />
+        <item itemvalue="Python.problem_0" />
         <item itemvalue="Python tests.Unittests for date.TestGeneral.test_date_time" />
         <item itemvalue="Python.temp" />
         <item itemvalue="Python tests.Unittests in tree_dp.py" />
