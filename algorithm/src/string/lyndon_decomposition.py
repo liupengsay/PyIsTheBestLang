@@ -76,6 +76,24 @@ class LyndonDecomposition:
                 i += j - k
         return s[ans: ans + n // 2]
 
+    @staticmethod
+    def minist_express(sec):
+        n = len(sec)
+        k, i, j = 0, 0, 1
+        while k < n and i < n and j < n:
+            if sec[(i + k) % n] == sec[(j + k) % n]:
+                k += 1
+            else:
+                if sec[(i + k) % n] > sec[(j + k) % n]:
+                    i = i + k + 1
+                else:
+                    j = j + k + 1
+                if i == j:
+                    i += 1
+                k = 0
+        i = min(i, j)
+        return sec[i:] + sec[:i]
+
 
 class TestGeneral(unittest.TestCase):
     def test_solve_by_duval(self):
@@ -86,6 +104,7 @@ class TestGeneral(unittest.TestCase):
     def test_min_cyclic_string(self):
         ld = LyndonDecomposition()
         assert ld.min_cyclic_string("ababa") == "aabab"
+        assert ld.minist_express("ababa") == "aabab"
         return
 
 
