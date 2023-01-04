@@ -18,6 +18,8 @@ P1175 表达式的转换（https://www.luogu.com.cn/problem/P1175）
 
 class Node(object):
     def __init__(self, val=" ", left=None, right=None):
+        if val[0] == "+" and len(val) >= 2:
+            val = val[1:]
         self.val = val
         self.left = left
         self.right = right
@@ -35,7 +37,7 @@ class TreeExpression:
         except ValueError as _:
             pass
 
-        # 处理-(的情形
+        # 处理-(开头的情形
         if len(s) >= 2 and s[0] == "-" and s[1] == "(":
             cnt = 0
             for i, w in enumerate(s):
@@ -48,7 +50,7 @@ class TreeExpression:
                         s = pre + s[i:]
                         break
 
-        # 处理包含负数的情形
+        # 处理-开头的情形
         neg = ""
         if s[0] == "-":
             neg = "-"
