@@ -10,8 +10,11 @@ import datetime
 import unittest
 import time
 
+
 class DateTime:
     def __init__(self):
+        self.leap_month = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+        self.not_leap_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
         return
 
     @staticmethod
@@ -30,14 +33,11 @@ class DateTime:
         dt = time.strftime("%Y-%m-%d %H:%M:%S", time_local)
         return dt
 
-    @staticmethod
-    def is_leap_year(yy):
+    def is_leap_year(self, yy):
         # 判断是否为闰年
         # 闰年天数
-        leap_month = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-        not_leap_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-        assert sum(leap_month) == 366
-        assert sum(not_leap_month) == 365
+        assert sum(self.leap_month) == 366
+        assert sum(self.not_leap_month) == 365
         return yy % 400 == 0 or (yy % 4 == 0 and yy % 100 != 0)
 
     @staticmethod
@@ -69,6 +69,24 @@ class DateTime:
                 ans.append(f"{yy}-{mm}-{dd}")
         return ans
 
+    def unix_minute(self, s):
+        # 0000-00-00-00:00 开始的分钟数
+        lst = s.split("-")
+        y, m, d = [int(w) for w in lst[:-1]]
+        h, minute = [int(w) for w in lst[-1].split(":")]
+        day = d + 365*y + self.leap_year_count(y)
+        if self.is_leap_year(y):
+            day += sum(self.leap_month[:m - 1])
+        else:
+            day += sum(self.not_leap_month[:m - 1])
+        res = day * 24 * 60 + h * 60 + minute
+        return res
+
+    @staticmethod
+    def leap_year_count(y):
+        # 小于等于 y 的闰年数（容斥原理）
+        return 1 + y//4 - y//100 + y//400
+
 
 class TestGeneral(unittest.TestCase):
 
@@ -85,9 +103,15 @@ class TestGeneral(unittest.TestCase):
 
         assert dt.is_leap_year(2000) is True
         assert dt.is_leap_year(2100) is False
+        assert dt.is_leap_year(0) is True
 
         assert dt.unix_to_time(1462451334) == "2016-05-05 20:28:54"
         assert dt.time_to_unix("2016-05-05 20:28:54") == 1462451334
+
+        ans = 0
+        for i in range(10000):
+            ans += dt.is_leap_year(i)
+            assert ans == dt.leap_year_count(i)
         return
 
 
