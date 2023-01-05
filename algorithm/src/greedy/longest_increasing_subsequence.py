@@ -10,12 +10,13 @@ LIS：Longest Increasing Subsequence
 问题4：最长单调不增子序列（不升）：>=
 对于数组来说，正数反可以将后两个问题3和4转换为前两个问题1和2进行解决，可以算全局的最长单调子序列，也可以计算前后缀的最长单调子序列
 
+dilworth定理，不下降子序列最小个数等于最大上升子序列的长度，不上升子序列最小个数等于最大下降子序列的长度。
 参考题目：
 P1020 导弹拦截（https://www.luogu.com.cn/problem/P1020）使用贪心加二分计算最长单调不减和单调不增子序列的长度
 P1439 最长公共子序列（https://www.luogu.com.cn/problem/P1439）使用贪心加二分计算最长单调递增子序列的长度
 P1091 合唱队形（https://www.luogu.com.cn/problem/P1091）可以往前以及往后计算最长单调子序列
 L2111 使数组 K 递增的最少操作次数（https://leetcode.cn/problems/minimum-operations-to-make-the-array-k-increasing/）分成 K 组计算每组的最长递增子序列
-
+P1233 木棍加工（https://www.luogu.com.cn/problem/P1233）
 
 """
 
