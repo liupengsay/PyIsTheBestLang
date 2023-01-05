@@ -2,7 +2,7 @@
 
 """
 """
-算法：贪心
+算法：贪心、逆向思维
 功能：各种可证明不可证明的头脑风暴
 题目：
 L2499 让数组不相等的最小总代价（https://leetcode.cn/problems/minimum-total-cost-to-make-arrays-unequal/）利用鸽巢原理贪心计算最小代价
