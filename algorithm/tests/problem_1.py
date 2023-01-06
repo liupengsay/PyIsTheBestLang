@@ -27,16 +27,20 @@ from decimal import Decimal
 import heapq
 import copy
 
-
-
-
+"""
+# Definition for an Interval.
+class Interval:
+    def __init__(self, start: int = None, end: int = None):
+        self.start = start
+        self.end = end
+"""
 
 
 
 
 class TestGeneral(unittest.TestCase):
     def test_solution(self):
-        assert Solution().minCost(7, [1, 3, 4, 5]) == 11
+        assert Solution().countPairs(nums=[1, 4, 2, 7], low=2, high=6) == 6
         return
 
 

@@ -3,7 +3,7 @@
 """
 
 """
-算法：SPFA：路径边数优先的广度优先搜索（可以使用带负权值）
+算法：SPFA：路径边数优先的广度优先搜索（可以使用带负权值）也可以计算最短路
 
 功能：SPFA（Shortest Path Faster Algorithm）是一种用于计算单源最短路径的算法。它通过使用队列和松弛操作来不断更新路径长度，从而更快地找到最短路径。
 
@@ -129,6 +129,7 @@ class SPFACnt:
                         visit[v] = True
         return cnt
 
+
 class TestGeneral(unittest.TestCase):
 
     def test_spfa(self):
@@ -150,6 +151,7 @@ class TestGeneral(unittest.TestCase):
         spfa = SPFACnt()
         assert spfa.gen_result(dct) == [1, 3, 2, 14]
         return
+
 
 if __name__ == '__main__':
     unittest.main()

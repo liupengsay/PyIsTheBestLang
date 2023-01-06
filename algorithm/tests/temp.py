@@ -13,6 +13,10 @@ sys.setrecursionlimit(10000000)
 
 
 
-num = 10**12
-n = int(math.sqrt(2 * num + 0.25) - 0.5)
-print(n)
+
+
+
+n = 5*10000
+
+
+print(n*(n+1)//2)

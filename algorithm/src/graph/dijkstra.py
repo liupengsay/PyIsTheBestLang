@@ -15,7 +15,8 @@ P1462 通往奥格瑞玛的道路（https://www.luogu.com.cn/problem/P1462）使
 L0787 K 站中转内最便宜的航班（https://leetcode.cn/problems/cheapest-flights-within-k-stops/）使用带约束的最短路计算最终结果
 
 L2203 得到要求路径的最小带权子图（https://leetcode.cn/problems/minimum-weighted-subgraph-with-the-required-paths/）使用三个Dijkstra最短路获得结果
-
+P1339 [USACO09OCT]Heat Wave G（https://www.luogu.com.cn/problem/P1339）标准最短路计算
+P1342 请柬（https://www.luogu.com.cn/problem/P1342）正反两遍最短路
 
 参考：OI WiKi（xx）
 """

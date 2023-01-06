@@ -1,26 +1,50 @@
 ***
 ### 解题思路
-【儿须成名酒须醉】Python3+暴力+模拟
+【儿须成名酒须醉】Python3+递归+二叉树+中缀表达式
+- 相似题目[P1175 表达式的转换](https://www.luogu.com.cn/problem/P1175)
 
 ### 代码
-- 执行用时：60 ms, 在所有 Python3 提交中击败了 100.00% 的用户
-- 内存消耗：15.4 MB, 在所有 Python3 提交中击败了 7.79% 的用户
-- 通过测试用例：101 / 101
+- 执行用时：44 ms, 在所有 Python3 提交中击败了 22.73% 的用户
+- 内存消耗：15.2 MB, 在所有 Python3 提交中击败了 9.09% 的用户
+- 通过测试用例：64 / 64
 
 ```python3
+class Node(object):
+    def __init__(self, val=" ", left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
 class Solution:
-    def largestMerge(self, word1: str, word2: str) -> str:
-        ans = ""
-        while word1 and word2:
-            if word1 > word2:
-                ans += word1[0]
-                word1 = word1[1:]
-            else:
-                ans += word2[0]
-                word2 = word2[1:]
-        ans += word1
-        ans += word2
-        return ans
+    def expTree(self, s: str) -> 'Node':
+        # 只剩数字的情况
+        if s.isnumeric():
+            return Node(s)
+
+        # 不支持 2*-3 和 -2+3 的情形即要求所有数字为非负数
+        n = len(s)
+        cnt = 0
+
+        # 按照运算符号的优先级倒序遍历字符串
+        for i in range(n - 1, -1, -1):
+            cnt += int(s[i] == ')') - int(s[i] == '(')
+            if s[i] in ['+', '-'] and not cnt:
+                return Node(s[i], self.expTree(s[:i]), self.expTree(s[i + 1:]))
+
+        # 注意是从后往前
+        for i in range(n - 1, -1, -1):
+            cnt += int(s[i] == ')') - int(s[i] == '(')
+            if s[i] in ['*', '/'] and not cnt:
+                return Node(s[i], self.expTree(s[:i]), self.expTree(s[i + 1:]))
+
+        # 注意是从前往后
+        for i in range(n):
+            cnt += int(s[i] == ')') - int(s[i] == '(')
+            if s[i] in ['^'] and not cnt:  # 这里的 ^ 表示幂
+                return Node(s[i], self.expTree(s[:i]), self.expTree(s[i + 1:]))
+
+        # 其余则是开头结尾为括号的情况
+        return self.expTree(s[1:-1])
 ```
 
 ***

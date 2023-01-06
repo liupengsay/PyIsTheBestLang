@@ -22,21 +22,21 @@ from collections import deque
 from sortedcontainers import SortedList
 
 
-def get_prime_factor(num):
-    # 质因数分解
-    res = []
-    for i in range(2, int(math.sqrt(num)) + 1):
-        cnt = 0
-        while num % i == 0:
-            num //= i
-            cnt += 1
-        if cnt:
-            res.append([i, cnt])
-        if i > num:
-            break
-    if num != 1 or not res:
-        res.append([num, 1])
-    return res
+class Solution:
+    def partitionDisjoint(self, nums: List[int]) -> int:
+        n = len(nums)
+        ans = n
+        post = [-1]*(n+1)
+        post[n] = float("inf")
+        post[n-1] = nums[n-1]
+        for i in range(n-2, -1, -1):
+            post[i] = post[i+1] if post[i+1] < nums[i] else nums[i]
+
+        pre = float("-inf")
+        for i in range(n):
+            pre = pre if pre > nums[i] else nums[i]
+            if pre < post[i+1]:
+                return i+1
 
 
 class Solution:

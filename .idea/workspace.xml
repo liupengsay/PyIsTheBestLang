@@ -4,10 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="增加闰年与非闰年天数">
+    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="增加unix时间戳">
+      <change afterPath="$PROJECT_DIR$/algorithm/picture/P8435_1.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/picture/P8435_1.out" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/picture/P8435_2.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/picture/P8435_2.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/date.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/date.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/dijkstra.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/dijkstra.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/spfa.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/spfa.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/lexico_graphical_order.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/lexico_graphical_order.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/tests/change.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/change.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/tests/fast.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_0.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_0.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/tests/temp.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/temp.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/tests/temp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/temp.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -56,7 +67,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/algorithm/submission" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="run.code.analysis.last.selected.profile" value="aDefault" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Python" />
+    <property name="settings.editor.selected.configurable" value="fileTemplates" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -150,45 +161,45 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for date.TestGeneral.test_date_time" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for lexico_graphical_order.TestGeneral.test_lexico_graphical_order" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/basis" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/mathmatics" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;date.TestGeneral.test_date_time&quot;" />
+      <option name="_new_target" value="&quot;lexico_graphical_order.TestGeneral.test_lexico_graphical_order&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests in date.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests in lexico_graphical_order.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/basis" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/mathmatics" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/basis/date.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/mathmatics/lexico_graphical_order.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests in tree_dp.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests in problem_1.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/dp" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/tests" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/dp/tree_dp.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/tests/problem_1.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
@@ -196,9 +207,9 @@
       <list>
         <item itemvalue="Python.problem_0" />
         <item itemvalue="Python.temp" />
-        <item itemvalue="Python tests.Unittests for date.TestGeneral.test_date_time" />
-        <item itemvalue="Python tests.Unittests in date.py" />
-        <item itemvalue="Python tests.Unittests in tree_dp.py" />
+        <item itemvalue="Python tests.Unittests in lexico_graphical_order.py" />
+        <item itemvalue="Python tests.Unittests for lexico_graphical_order.TestGeneral.test_lexico_graphical_order" />
+        <item itemvalue="Python tests.Unittests in problem_1.py" />
       </list>
     </recent_temporary>
   </component>
@@ -213,90 +224,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647300774340</updated>
-    </task>
-    <task id="LOCAL-00021" summary="备份更新KMP">
-      <created>1661290853285</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1661290853285</updated>
-    </task>
-    <task id="LOCAL-00022" summary="备份更新KM二分图算法">
-      <created>1661733936286</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1661733936286</updated>
-    </task>
-    <task id="LOCAL-00023" summary="更新线段树与树状数组的区间查询和">
-      <created>1661907569701</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1661907569701</updated>
-    </task>
-    <task id="LOCAL-00024" summary="更新周赛题解与周赛模板">
-      <created>1662642530646</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1662642530647</updated>
-    </task>
-    <task id="LOCAL-00025" summary="马拉车算法获取回文串信息更新">
-      <created>1662683766686</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1662683766687</updated>
-    </task>
-    <task id="LOCAL-00026" summary="马拉车算法获取回文串信息更新">
-      <created>1662684255997</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1662684255997</updated>
-    </task>
-    <task id="LOCAL-00027" summary="力扣运行时间自动化打印">
-      <created>1663192492120</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1663192492120</updated>
-    </task>
-    <task id="LOCAL-00028" summary="增加欧拉回路内容">
-      <created>1663762543010</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1663762543010</updated>
-    </task>
-    <task id="LOCAL-00029" summary="线段树更新">
-      <created>1664325494170</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1664325494170</updated>
-    </task>
-    <task id="LOCAL-00030" summary="增加测试用例时间">
-      <created>1665327541722</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1665327541723</updated>
-    </task>
-    <task id="LOCAL-00031" summary="周赛题解更新">
-      <created>1668350770541</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1668350770541</updated>
-    </task>
-    <task id="LOCAL-00032" summary="scc强连通分量">
-      <created>1669812039738</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1669812039738</updated>
     </task>
     <task id="LOCAL-00033" summary="数论备份">
       <created>1670508196833</created>
@@ -557,7 +484,91 @@
       <option name="project" value="LOCAL" />
       <updated>1672668244355</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="增加unix时间戳">
+      <created>1672697431540</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1672697431540</updated>
+    </task>
+    <task id="LOCAL-00071" summary="最小表示法">
+      <created>1672759415189</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1672759415189</updated>
+    </task>
+    <task id="LOCAL-00072" summary="内向基环树（有向与无向）拓扑排序">
+      <created>1672759443442</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1672759443442</updated>
+    </task>
+    <task id="LOCAL-00073" summary="无向图割点、割边与边双连通分量">
+      <created>1672759481596</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1672759481596</updated>
+    </task>
+    <task id="LOCAL-00074" summary="增加闰年计数以及距离初始零点的分钟数">
+      <created>1672835396029</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1672835396029</updated>
+    </task>
+    <task id="LOCAL-00075" summary="解析中缀、后缀表达式">
+      <created>1672839382671</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1672839382671</updated>
+    </task>
+    <task id="LOCAL-00076" summary="中缀表达式支持负数">
+      <created>1672845606277</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1672845606277</updated>
+    </task>
+    <task id="LOCAL-00077" summary="处理加法的情形">
+      <created>1672845853861</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1672845853861</updated>
+    </task>
+    <task id="LOCAL-00078" summary="几种字典序排列">
+      <created>1672929171272</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1672929171272</updated>
+    </task>
+    <task id="LOCAL-00079" summary="使用01trie求解异或问题">
+      <created>1672929200031</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1672929200031</updated>
+    </task>
+    <task id="LOCAL-00080" summary="dilworth定理">
+      <created>1672931928997</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1672931928997</updated>
+    </task>
+    <task id="LOCAL-00081" summary="贪心逆向思维">
+      <created>1672955064545</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1672955064545</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -575,18 +586,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="ST表与SPFA最短路算法" />
-    <MESSAGE value="scc强连通分量" />
-    <MESSAGE value="新算法上传" />
-    <MESSAGE value="新增字典树与后缀数组" />
-    <MESSAGE value="新增算法备份" />
-    <MESSAGE value="线段树" />
-    <MESSAGE value="单调栈" />
-    <MESSAGE value="双向BFS、可持久化并查集、树形DP" />
-    <MESSAGE value="DFS序" />
-    <MESSAGE value="FastIO" />
-    <MESSAGE value="前缀和的前缀和" />
-    <MESSAGE value="回文数字枚举" />
     <MESSAGE value="质因数分解bug修复" />
     <MESSAGE value="树节点的第K个祖先" />
     <MESSAGE value="质因数分解" />
@@ -600,7 +599,19 @@
     <MESSAGE value="增加日期相关处理函数" />
     <MESSAGE value="快速读写" />
     <MESSAGE value="增加闰年与非闰年天数" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加闰年与非闰年天数" />
+    <MESSAGE value="增加unix时间戳" />
+    <MESSAGE value="最小表示法" />
+    <MESSAGE value="内向基环树（有向与无向）拓扑排序" />
+    <MESSAGE value="无向图割点、割边与边双连通分量" />
+    <MESSAGE value="增加闰年计数以及距离初始零点的分钟数" />
+    <MESSAGE value="解析中缀、后缀表达式" />
+    <MESSAGE value="中缀表达式支持负数" />
+    <MESSAGE value="处理加法的情形" />
+    <MESSAGE value="几种字典序排列" />
+    <MESSAGE value="使用01trie求解异或问题" />
+    <MESSAGE value="dilworth定理" />
+    <MESSAGE value="贪心逆向思维" />
+    <option name="LAST_COMMIT_MESSAGE" value="贪心逆向思维" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -672,6 +683,7 @@
       <configuration name="PythonConfigurationType">
         <watch expression="trie.dct['0']['0']" />
         <watch expression="lst[3]" />
+        <watch expression="res.children" />
       </configuration>
     </watches-manager>
   </component>
