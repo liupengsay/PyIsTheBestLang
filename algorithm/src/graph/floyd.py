@@ -5,13 +5,62 @@
 
 """
 算法：Floyd（单源最短路经算法）
-功能：计算点到有向或者无向图里面其他点的最近距离
+功能：计算点到有向或者无向图里面其他点的最近距离，也可以计算最长路
 题目：
 P1119 灾后重建 （https://www.luogu.com.cn/problem/P1119）离线查询加Floyd动态更新经过中转站的起终点距离
-
+P1807 最长路（https://www.luogu.com.cn/problem/P1807）
+P1476 休息中的小呆
 参考：OI WiKi（xx）
 """
 
+
+class Floyd:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def longest_path_length(edges, n):
+
+        # 索引从1-n并求1-n的最长路
+        dp = [[0] * (n + 1) for _ in range(n + 1)]
+        for i, j, k in edges:  # k >= 0
+            dp[i][j] = k
+
+        for i in range(1, n + 1):
+            for j in range(1, n + 1):
+                for k in range(1, n + 1):
+                    if i != j and j != k and i != k and dp[i][k] and dp[k][j]:
+                        if dp[i][j] < dp[i][k] + dp[k][j]:
+                            dp[i][j] = dp[i][k] + dp[k][j]
+
+        length = dp[1][n]
+        path = []
+        for i in range(1, n + 1):
+            if dp[1][i] + dp[i][n] == dp[1][n]:
+                path.append(i)
+        return length, path
+
+    @staticmethod
+    def longest_length(edges, n):
+
+        # 求1到n的最长路有向无环图带负权
+        dis = [defaultdict(lambda: float("-inf")) for _ in range(n + 1)]
+        for i, j, w in edges:
+            dis[i][j] = max(dis[i][j], w)
+
+        @lru_cache(None)
+        def dfs(x):
+            if x == n:
+                return 0
+            res = float("-inf")
+            for y in dis[x]:
+                cur = dis[x][y] + dfs(y)
+                res = res if res > cur else cur
+            return res
+
+        ans = dfs(1)
+        ans = ans if ans > float("-inf") else -1
+        return ans
 
 # class Solution:
 #     def shortestPathLength(self, graph: List[List[int]]):

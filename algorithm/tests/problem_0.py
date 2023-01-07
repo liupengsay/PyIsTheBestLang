@@ -94,43 +94,9 @@ class FastIO:
 
 
 def main(ac=FastIO()):
-    n, m = ac.read_ints()
-    edge = [[] for _ in range(n)]
-    rev = [[] for _ in range(n)]
-    for _ in range(m):
-        u, v, w = ac.read_ints()
-        edge[u-1].append([v-1, w])
-        rev[v-1].append([u-1, w])
 
-    n = len(edge)
-    dis = [float("inf")] * n
-    dis[0] = 0
-    while stack:
-        d, i = heapq.heappop(stack)
-        if dis[i] < d:
-            continue
-        for j, w in edge[i]:
-            dj = w + d
-            if dj < dis[j]:
-                dis[j] = dj
-                heapq.heappush(stack, [dj, j])
-    ans = sum(dis)
 
-    n = len(rev)
-    dis = [float("inf")] * n
-    stack = [[0, 0]]
-    dis[0] = 0
-    while stack:
-        d, i = heapq.heappop(stack)
-        if dis[i] < d:
-            continue
-        for j, w in rev[i]:
-            dj = w + d
-            if dj < dis[j]:
-                dis[j] = dj
-                heapq.heappush(stack, [dj, j])
-    ans += sum(dis)
-    ac.st(ans)
+
     return
 
 

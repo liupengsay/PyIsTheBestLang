@@ -1,50 +1,41 @@
 ***
 ### 解题思路
-【儿须成名酒须醉】Python3+递归+二叉树+中缀表达式
-- 相似题目[P1175 表达式的转换](https://www.luogu.com.cn/problem/P1175)
+【儿须成名酒须醉】Python3+卡特兰数+排列组合+乘法逆元
 
 ### 代码
-- 执行用时：44 ms, 在所有 Python3 提交中击败了 22.73% 的用户
-- 内存消耗：15.2 MB, 在所有 Python3 提交中击败了 9.09% 的用户
-- 通过测试用例：64 / 64
+- 执行用时：32 ms, 在所有 Python3 提交中击败了 100.00% 的用户
+- 内存消耗：15.1 MB, 在所有 Python3 提交中击败了 43.75% 的用户
+- 通过测试用例：75 / 75
 
 ```python3
-class Node(object):
-    def __init__(self, val=" ", left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
+
+def produce_perm_mod(n, mod):
+    # 求全排列组合数
+    perm = [1] * n
+    for i in range(1, n):
+        perm[i] = perm[i - 1] * i
+        perm[i] %= mod
+
+    return perm
+
+n = 500
+mod = 10**9 + 7
+perm = produce_perm_mod(2*n+2, mod)
 
 class Solution:
-    def expTree(self, s: str) -> 'Node':
-        # 只剩数字的情况
-        if s.isnumeric():
-            return Node(s)
+    def numberOfWays(self, numPeople: int) -> int:
+        n = numPeople // 2
 
-        # 不支持 2*-3 和 -2+3 的情形即要求所有数字为非负数
-        n = len(s)
-        cnt = 0
+        if numPeople <= 1:
+            return 1
 
-        # 按照运算符号的优先级倒序遍历字符串
-        for i in range(n - 1, -1, -1):
-            cnt += int(s[i] == ')') - int(s[i] == '(')
-            if s[i] in ['+', '-'] and not cnt:
-                return Node(s[i], self.expTree(s[:i]), self.expTree(s[i + 1:]))
+        
+        # 利用乘法逆元求解组合数
+        def comb(a, b):
+            res = perm[a] * pow(perm[b], -1, mod) * pow(perm[a - b], -1, mod)
+            return res % mod
 
-        # 注意是从后往前
-        for i in range(n - 1, -1, -1):
-            cnt += int(s[i] == ')') - int(s[i] == '(')
-            if s[i] in ['*', '/'] and not cnt:
-                return Node(s[i], self.expTree(s[:i]), self.expTree(s[i + 1:]))
-
-        # 注意是从前往后
-        for i in range(n):
-            cnt += int(s[i] == ')') - int(s[i] == '(')
-            if s[i] in ['^'] and not cnt:  # 这里的 ^ 表示幂
-                return Node(s[i], self.expTree(s[:i]), self.expTree(s[i + 1:]))
-
-        # 其余则是开头结尾为括号的情况
-        return self.expTree(s[1:-1])
+        return (comb(2 * n, n) - comb(2 * n, n - 1)) % mod
 ```
 
 ***

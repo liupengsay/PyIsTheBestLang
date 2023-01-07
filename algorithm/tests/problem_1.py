@@ -27,15 +27,20 @@ from decimal import Decimal
 import heapq
 import copy
 
-"""
-# Definition for an Interval.
-class Interval:
-    def __init__(self, start: int = None, end: int = None):
-        self.start = start
-        self.end = end
-"""
 
 
+class Solution:
+    def rankTeams(self, votes: List[str]) -> str:
+        n = len(votes[0])
+        dct = defaultdict(lambda: [0]*n)
+        for s in votes:
+            for i, w in enumerate(votes):
+                dct[w][i] -= 1
+
+        ans = [[cnt, w] for w, cnt in dct.keys()]
+        ans.sort(key=lambda x: [x[0], x[1]])
+        st = "".join([w for _, w in ans])
+        return st
 
 
 class TestGeneral(unittest.TestCase):

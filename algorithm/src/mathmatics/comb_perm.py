@@ -3,14 +3,20 @@
 """
 """
 算法：数学排列组合计数
-功能：全排列计数，选取comb计数，隔板法，错位排列，斯特林数，容斥原理，可以通过乘法逆元快速求解组合数与全排列数
+功能：全排列计数，选取comb计数，隔板法，错位排列，斯特林数、卡特兰数，容斥原理，可以通过乘法逆元快速求解组合数与全排列数
 题目：
+
+
 L2338 统计理想数组的数目（https://leetcode.cn/problems/count-the-number-of-ideal-arrays/）枚举可行的元素组合序列使用隔板法进行计数
 L0634 寻找数组的错位排列（https://leetcode.cn/problems/find-the-derangement-of-an-array/）错位排列计数使用动态规划转移计算
 P4071 排列计数（https://www.luogu.com.cn/problem/P4071）通过乘法逆元快速求解组合数与全排列数，同时递归计算错位排列数
 P1287 盒子与球（https://www.luogu.com.cn/problem/P1287）斯特林数形式的DP，以及全排列数
 
+P1375 小猫（https://www.luogu.com.cn/problem/P1375）卡特兰数
+1259. 不相交的握手（https://leetcode.cn/problems/handshakes-that-dont-cross/）卡特兰数
+
 参考：OI WiKi（xx）
+卡特兰数（https://oi-wiki.org/math/combinatorics/catalan/）
 """
 
 
@@ -44,6 +50,31 @@ import math
 class CombPerm:
     def __init__(self):
         return
+
+    def cattelan_number(self, n, mod):
+        # 卡特兰数 dp[i + 1] = sum(dp[j] * dp[i - j] for j in range(i + 1)) % MOD
+        if n <= 1:
+            return 1
+
+        perm = self.produce_perm_mod(2*n+2, mod)
+        # 利用乘法逆元求解组合数
+
+        def comb(a, b):
+            res = perm[a] * pow(perm[b], -1, mod) * pow(perm[a - b], -1, mod)
+            return res % mod
+
+        ans = (comb(2 * n, n) - comb(2 * n, n - 1)) % mod
+        return ans
+
+    @staticmethod
+    def produce_perm_mod(n, mod):
+        # 求全排列组合数
+        perm = [1] * n
+        for i in range(1, n):
+            perm[i] = perm[i - 1] * i
+            perm[i] %= mod
+
+        return perm
 
     @staticmethod
     def combinnation(nums, k):

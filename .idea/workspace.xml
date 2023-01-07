@@ -4,20 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="增加unix时间戳">
-      <change afterPath="$PROJECT_DIR$/algorithm/picture/P8435_1.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/picture/P8435_1.out" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/picture/P8435_2.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/picture/P8435_2.out" afterDir="false" />
+    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="字典序">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/dijkstra.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/dijkstra.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/spfa.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/spfa.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/lexico_graphical_order.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/lexico_graphical_order.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/floyd.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/floyd.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/comb_perm.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/comb_perm.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/tests/change.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/change.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/fast.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_0.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_0.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/tests/temp.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/temp.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/tests/temp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/temp.py" afterDir="false" />
     </list>
@@ -97,7 +90,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.problem_0">
+  <component name="RunManager" selected="Python.change">
     <configuration name="强连通分量" type="PythonConfigurationType" factoryName="Python">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -111,6 +104,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="D:\PCRecord\leetcode\template\图论\scc.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="change" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="PCRecord" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/algorithm/tests/change.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -189,27 +203,13 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests in problem_1.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <module name="PCRecord" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/tests/problem_1.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.change" />
         <item itemvalue="Python.problem_0" />
         <item itemvalue="Python.temp" />
         <item itemvalue="Python tests.Unittests in lexico_graphical_order.py" />
         <item itemvalue="Python tests.Unittests for lexico_graphical_order.TestGeneral.test_lexico_graphical_order" />
-        <item itemvalue="Python tests.Unittests in problem_1.py" />
       </list>
     </recent_temporary>
   </component>
@@ -224,13 +224,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647300774340</updated>
-    </task>
-    <task id="LOCAL-00033" summary="数论备份">
-      <created>1670508196833</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1670508196833</updated>
     </task>
     <task id="LOCAL-00034" summary="数论增加欧拉素数筛法">
       <created>1670535696436</created>
@@ -568,7 +561,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672955064545</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="字典序">
+      <created>1673002282266</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1673002282266</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -586,7 +586,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="质因数分解bug修复" />
     <MESSAGE value="树节点的第K个祖先" />
     <MESSAGE value="质因数分解" />
     <MESSAGE value="LocalSortedList类更新" />
@@ -611,7 +610,8 @@
     <MESSAGE value="使用01trie求解异或问题" />
     <MESSAGE value="dilworth定理" />
     <MESSAGE value="贪心逆向思维" />
-    <option name="LAST_COMMIT_MESSAGE" value="贪心逆向思维" />
+    <MESSAGE value="字典序" />
+    <option name="LAST_COMMIT_MESSAGE" value="字典序" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
