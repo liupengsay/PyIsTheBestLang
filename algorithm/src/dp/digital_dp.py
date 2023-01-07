@@ -99,7 +99,7 @@ class DigitalDP:
             if d:
                 s = s[:i] + str(d - 1) + (len(s) - i - 1) * "9"
             else:
-                s = s[:i-1] + str(int(s[i-1])-1) + (len(s) - i - 1) * "9"
+                s = s[:i - 1] + str(int(s[i - 1]) - 1) + (len(s) - i - 1) * "9"
             num = int(s)
 
         lst = []
@@ -148,9 +148,14 @@ class DigitalDP:
         st = list(range(10))
         st.remove(d)
         while num:
-            lst.append(num % 9)
-            num //= 9
+            if d:
+                lst.append(num % 9)
+                num //= 9
+            else:
+                lst.append((num - 1) % 9)
+                num = (num - 1) // 9
         lst.reverse()
+        # 也可以使用二分加数位DP进行求解
         ans = [str(st[i]) for i in lst]
         return int("".join(ans))
 
@@ -170,14 +175,20 @@ class TestGeneral(unittest.TestCase):
             assert dd.count_digit_num(n, d) == cnt[d]
 
         for d in range(1, 10):
-            assert dd.count_digit_base(n, d) == sum(str(d) not in str(num) for num in range(1, n + 1))
+            assert dd.count_digit_base(
+                n, d) == sum(
+                str(d) not in str(num) for num in range(
+                    1, n + 1))
 
         for d in range(10):
-            assert dd.count_digit_base2(n, d) == sum(str(d) not in str(num) for num in range(1, n + 1))
+            assert dd.count_digit_base2(
+                n, d) == sum(
+                str(d) not in str(num) for num in range(
+                    1, n + 1))
 
-        for d in range(1, 10):
+        for d in range(10):
             nums = []
-            for i in range(1, n+1):
+            for i in range(1, n + 1):
                 if str(d) not in str(i):
                     nums.append(i)
             for i, num in enumerate(nums):

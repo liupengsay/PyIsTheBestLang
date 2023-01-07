@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="数位DP与进制计数">
+    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="增加数位DP计算不含数字d的个数">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/src/dp/digital_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/digital_dp.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -210,13 +211,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647300774340</updated>
-    </task>
-    <task id="LOCAL-00039" summary="新增字典树与后缀数组">
-      <created>1670805445250</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1670805445250</updated>
     </task>
     <task id="LOCAL-00040" summary="新增算法备份">
       <created>1670860355410</created>
@@ -554,7 +548,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673084944546</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="增加数位DP计算不含数字d的个数">
+      <created>1673085533949</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1673085533949</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -572,7 +573,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="排列组合" />
     <MESSAGE value="增加日期类" />
     <MESSAGE value="增加三十六进制字符串" />
     <MESSAGE value="修改直径端点获取办法" />
@@ -597,7 +597,8 @@
     <MESSAGE value="高精度" />
     <MESSAGE value="有理数与无限循环小数、分数" />
     <MESSAGE value="数位DP与进制计数" />
-    <option name="LAST_COMMIT_MESSAGE" value="数位DP与进制计数" />
+    <MESSAGE value="增加数位DP计算不含数字d的个数" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加数位DP计算不含数字d的个数" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
