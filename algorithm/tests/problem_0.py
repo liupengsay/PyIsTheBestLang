@@ -77,6 +77,14 @@ class FastIO:
         return res
 
     @staticmethod
+    def max(a, b):
+        return a if a > b else b
+
+    @staticmethod
+    def min(a, b):
+        return a if a < b else b
+
+    @staticmethod
     def bootstrap(f, stack=[]):
         def wrappedfunc(*args, **kwargs):
             if stack:
@@ -96,17 +104,15 @@ class FastIO:
         return wrappedfunc
 
 
+
+
+
 def main(ac=FastIO()):
-    while True:
-        s = ac.read_str()
-        if not s:
-            break
-        r, n = [w for w in s.split() if w]
-        ans = (Decimal(r) ** int(n)).normalize()
-        ans = "{:f}".format(ans)
-        if ans[:2] == '0.':
-            ans = ans[1:]
-        ac.st(ans)
+    n, d = ac.read_ints()
+    ans = fraction_to_decimal(n, d)
+    while ans:
+        ac.st(ans[:76])
+        ans = ans[76:]
     return
 
 

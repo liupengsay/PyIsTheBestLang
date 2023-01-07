@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="四重背包">
+    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="高精度">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/interval_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/interval_dp.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/big_number.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/big_number.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_0.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_0.py" afterDir="false" />
     </list>
@@ -85,7 +86,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in big_number.py">
+  <component name="RunManager" selected="Python tests.Unittests for big_number.TestGeneral.test_high_percision">
     <configuration name="强连通分量" type="PythonConfigurationType" factoryName="Python">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -170,6 +171,20 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="Unittests for big_number.TestGeneral.test_high_percision" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="PCRecord" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/mathmatics" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;big_number.TestGeneral.test_high_percision&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
     <configuration name="Unittests in big_number.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -184,27 +199,13 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests in lexico_graphical_order.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <module name="PCRecord" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/mathmatics" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/mathmatics/lexico_graphical_order.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Unittests in big_number.py" />
+        <item itemvalue="Python tests.Unittests for big_number.TestGeneral.test_high_percision" />
         <item itemvalue="Python.problem_0" />
+        <item itemvalue="Python tests.Unittests in big_number.py" />
         <item itemvalue="Python.change" />
         <item itemvalue="Python.temp" />
-        <item itemvalue="Python tests.Unittests in lexico_graphical_order.py" />
       </list>
     </recent_temporary>
   </component>
@@ -219,13 +220,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647300774340</updated>
-    </task>
-    <task id="LOCAL-00036" summary="scc强连通分量">
-      <created>1670680867274</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1670680867274</updated>
     </task>
     <task id="LOCAL-00037" summary="新算法上传">
       <created>1670770840115</created>
@@ -563,7 +557,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673055932040</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="高精度">
+      <created>1673057507555</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1673057507555</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -581,7 +582,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="LocalSortedList类更新" />
     <MESSAGE value="质数判断更新" />
     <MESSAGE value="周赛题解更新" />
     <MESSAGE value="排列组合" />
@@ -606,7 +606,8 @@
     <MESSAGE value="字典序" />
     <MESSAGE value="卡特兰数" />
     <MESSAGE value="四重背包" />
-    <option name="LAST_COMMIT_MESSAGE" value="四重背包" />
+    <MESSAGE value="高精度" />
+    <option name="LAST_COMMIT_MESSAGE" value="高精度" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
