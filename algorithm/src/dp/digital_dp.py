@@ -143,7 +143,7 @@ class DigitalDP:
 
     @staticmethod
     def compute_digit(num, d):
-        # 使用进制计算第num个不含数字d的数 1<=d<=9
+        # 使用进制计算第num个不含数字d的数 0<=d<=9
         lst = []
         st = list(range(10))
         st.remove(d)
