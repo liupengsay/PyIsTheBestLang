@@ -2,7 +2,7 @@
 
 """
 """
-算法：大数分解、素数判断
+算法：大数分解、素数判断、高精度计算
 功能：xxx
 题目：
 Lxxxx xxxx（https://leetcode.cn/problems/shortest-palindrome/）xxxx
@@ -36,21 +36,26 @@ from decimal import Decimal
 
 import heapq
 import copy
+from decimal import Decimal, getcontext, MAX_PREC
+getcontext().prec = MAX_PREC
 
 
-class ClassName:
+class HighPrecision:
     def __init__(self):
         return
 
-    def gen_result(self):
-        return
+    @staticmethod
+    def float_pow(r, n):
+        ans = (Decimal(r) ** int(n)).normalize()
+        ans = "{:f}".format(ans)
+        return ans
 
 
 class TestGeneral(unittest.TestCase):
 
-    def test_xxx(self):
-        nt = ClassName()
-        assert nt.gen_result(10 ** 11 + 131) == 66666666752
+    def test_high_percision(self):
+        hp = HighPrecision()
+        assert hp.float_pow("98.999", "5") == "9509420210.697891990494999"
         return
 
 

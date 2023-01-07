@@ -11,10 +11,13 @@ from collections import Counter
 from collections import defaultdict
 from itertools import combinations
 from itertools import permutations
+from decimal import Decimal, getcontext, MAX_PREC
 from types import GeneratorType
 from functools import cmp_to_key
 inf = float("inf")
 sys.setrecursionlimit(10000000)
+
+getcontext().prec = MAX_PREC
 
 
 class FastIO:
@@ -94,27 +97,16 @@ class FastIO:
 
 
 def main(ac=FastIO()):
-    n = ac.read_int()
-    nums = [ac.read_list_ints() for _ in range(n)]
-    m, r = ac.read_ints()
-    pre = {(0, 0, 0): 1}
-    dp = [[[0, 0] for _ in range(r+1)] for _ in range(m+1)]
-    for rmb, rp, time in nums:
-        for i in range(m, rmb-1, -1):
-            for j in range(r, rp-1, -1):
-                tm, cost = dp[i-rmb][j-rp]
-                cur = [tm+1, cost+time]
-                pre = dp[i][j]
-                if cur[0] > pre[0] or (cur[0] == pre[0] and cur[1] < pre[1]):
-                    dp[i][j] = cur[:]
-
-    cur = [0, 0]
-    for i in range(m+1):
-        for j in range(r+1):
-            pre = dp[i][j]
-            if cur[0] < pre[0] or (cur[0] == pre[0] and cur[1] > pre[1]):
-                cur = pre
-    ac.st(cur[-1])
+    while True:
+        s = ac.read_str()
+        if not s:
+            break
+        r, n = [w for w in s.split() if w]
+        ans = (Decimal(r) ** int(n)).normalize()
+        ans = "{:f}".format(ans)
+        if ans[:2] == '0.':
+            ans = ans[1:]
+        ac.st(ans)
     return
 
 
