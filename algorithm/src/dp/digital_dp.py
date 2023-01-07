@@ -107,7 +107,7 @@ class DigitalDP:
             lst.append(num % 10)
             if d and lst[-1] >= d:
                 lst[-1] -= 1
-            elif not d and lst[-1] == 0:
+            elif not d and lst[-1] == 0:  # 不含 0 应该怎么算
                 num *= 10
                 num -= 1
                 lst.append(num % 10)
@@ -119,6 +119,27 @@ class DigitalDP:
             ans *= 9
             ans += x
         return ans
+
+    @staticmethod
+    def count_digit_base2(num, d):
+
+        # 使用数位DP计算1-num内不含数字d的个数 0<=d<=9
+        @lru_cache(None)
+        def dfs(i: int, is_limit: bool, is_num: bool) -> int:
+            if i == m:
+                return int(is_num)
+
+            res = 0
+            if not is_num:  # 可以跳过当前数位
+                res = dfs(i + 1, False, False)
+            up = int(s[i]) if is_limit else 9
+            for x in range(0 if is_num else 1, up + 1):  # 枚举要填入的数字 d
+                if x != d:
+                    res += dfs(i + 1, is_limit and x == up, True)
+            return res
+        s = str(num)
+        m = len(s)
+        return dfs(0, True, False)
 
     @staticmethod
     def compute_digit(num, d):
@@ -150,6 +171,9 @@ class TestGeneral(unittest.TestCase):
 
         for d in range(1, 10):
             assert dd.count_digit_base(n, d) == sum(str(d) not in str(num) for num in range(1, n + 1))
+
+        for d in range(10):
+            assert dd.count_digit_base2(n, d) == sum(str(d) not in str(num) for num in range(1, n + 1))
 
         for d in range(1, 10):
             nums = []
