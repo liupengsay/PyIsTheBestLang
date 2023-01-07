@@ -17,7 +17,7 @@ L0787 K 站中转内最便宜的航班（https://leetcode.cn/problems/cheapest-f
 L2203 得到要求路径的最小带权子图（https://leetcode.cn/problems/minimum-weighted-subgraph-with-the-required-paths/）使用三个Dijkstra最短路获得结果
 P1339 [USACO09OCT]Heat Wave G（https://www.luogu.com.cn/problem/P1339）标准最短路计算
 P1342 请柬（https://www.luogu.com.cn/problem/P1342）正反两遍最短路
-
+P1576 最小花费（https://www.luogu.com.cn/problem/P1576）堆优化转换成负数求最短路
 参考：OI WiKi（xx）
 """
 
@@ -55,6 +55,7 @@ class Dijkstra:
 
     @staticmethod
     def get_dijkstra_result(dct, src):
+        # Dijkstra求最短路，变成负数求可以求最长路（还是正权值）
         n = len(dct)
         dis = [float("inf")]*n
         stack = [[0, src]]
@@ -69,6 +70,26 @@ class Dijkstra:
                     dis[j] = dj
                     heapq.heappush(stack, [dj, j])
         return dis
+
+    @staticmethod
+    def gen_dijkstra_max_result(dct, src, dsc):
+
+        # 求乘积最大的路
+        inf = float("inf")
+        dis = defaultdict(lambda: -inf)
+        stack = [[-1, src]]
+        dis[src] = 1
+        while stack:
+            d, i = heapq.heappop(stack)
+            d = -d
+            if dis[i] > d:
+                continue
+            for j in dct[i]:
+                dj = dct[i][j] * d
+                if dj > dis[j]:
+                    dis[j] = dj
+                    heapq.heappush(stack, [-dj, j])
+        return dis[dsc]
 
 
 class Solution:

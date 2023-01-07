@@ -13,6 +13,8 @@ P1049 [NOIP2001 普及组] 装箱问题（https://www.luogu.com.cn/problem/P1049
 P1776 宝物筛选（https://www.luogu.com.cn/problem/P1776）多重背包，使用二进制拆分进行优化
 P1509 找啊找啊找GF（https://www.luogu.com.cn/problem/P1509）四重背包
 P1060 [NOIP2006 普及组] 开心的金明（https://www.luogu.com.cn/problem/P1509）一维背包DP
+P1566 加等式（https://www.luogu.com.cn/problem/P1566#submit）限制计数背包
+
 参考：OI WiKi（xx）
 """
 

@@ -32,7 +32,7 @@ class FastIO:
         return int(self._read())
 
     def read_float(self):
-        return int(self._read())
+        return float(self._read())
 
     def read_ints(self):
         return map(int, self._read().split())
@@ -104,15 +104,22 @@ class FastIO:
         return wrappedfunc
 
 
-
-
-
 def main(ac=FastIO()):
-    n, d = ac.read_ints()
-    ans = fraction_to_decimal(n, d)
-    while ans:
-        ac.st(ans[:76])
-        ans = ans[76:]
+    t = ac.read_int()
+    for _ in range(t):
+        n = ac.read_int()
+        lst = []
+        while n:
+            lst.append(n % 10)
+            if lst[-1] >= 7:
+                lst[-1] -= 1
+            n //= 10
+        lst.reverse()
+        ans = 0
+        for num in lst:
+            ans *= 9
+            ans += num
+        ac.st(ans)
     return
 
 

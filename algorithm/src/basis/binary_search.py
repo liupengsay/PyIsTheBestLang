@@ -3,7 +3,7 @@
 
 """
 """
-算法：二分查找、有序集合
+算法：二分查找、有序集合、还可以使用精度控制二分
 功能：利用单调性确定最优选择，通常可以使用SortedList
 题目：xx（xx）
 L2468 根据限制分割消息（https://leetcode.cn/problems/split-message-based-on-limit/）根据长度限制进行二分
@@ -11,6 +11,11 @@ L2426 满足不等式的数对数目（https://leetcode.cn/problems/number-of-pa
 L2179 统计数组中好三元组数目（https://leetcode.cn/problems/count-good-triplets-in-an-array/）维护区间范围内的个数
 L2141 同时运行 N 台电脑的最长时间（https://leetcode.cn/problems/maximum-running-time-of-n-computers/）贪心选择最大的 N 个电池作为基底，然后二分确定在其余电池的加持下可以运行的最长时间
 L2102 序列顺序查询（https://leetcode.cn/problems/sequentially-ordinal-rank-tracker/）使用有序集合维护优先级姓名实时查询
+
+P1577 切绳子（https://www.luogu.com.cn/problem/P1577）
+P1570 KC 喝咖啡
+
+
 参考：OI WiKi（xx）
 """
 
@@ -391,6 +396,23 @@ class DefineSortedList:
         if self.lst[j] >= num:
             return j
         return i
+
+
+class BinarySearch:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def bisect_left(low, high, check, error=1e-5):
+        while low < high - error:
+            mid = low + (high - low) / 2
+            if check(mid):
+                low = mid
+            else:
+                high = mid
+        ans = high if check(high) else low
+        return ans
+
 
 
 class TestGeneral(unittest.TestCase):
