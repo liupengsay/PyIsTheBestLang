@@ -1,54 +1,50 @@
 
 import bisect
+import random
 import re
 import unittest
+
 from typing import List
 import heapq
 import math
 from collections import defaultdict, Counter, deque
 from functools import lru_cache
-
+from itertools import combinations, accumulate
 from sortedcontainers import SortedList, SortedDict, SortedSet
-from itertools import combinations
 from sortedcontainers import SortedDict
+from functools import reduce
+from operator import xor, mul, add
+from functools import lru_cache
 
-from sortedcontainers import SortedList, SortedDict, SortedSet
-from itertools import combinations, permutations
-from sortedcontainers import SortedDict
+import random
+from itertools import permutations, combinations
+import numpy as np
+
 from decimal import Decimal
 
-from collections import deque
+import heapq
+import copy
 
-from sortedcontainers import SortedList
+
+def mmax(a, b):
+    return a if a > b else b
 
 
-class Solution:
-    def partitionDisjoint(self, nums: List[int]) -> int:
-        n = len(nums)
-        ans = n
-        post = [-1]*(n+1)
-        post[n] = float("inf")
-        post[n-1] = nums[n-1]
-        for i in range(n-2, -1, -1):
-            post[i] = post[i+1] if post[i+1] < nums[i] else nums[i]
+def mmin(a, b):
+    return a if a < b else b
 
-        pre = float("-inf")
-        for i in range(n):
-            pre = pre if pre > nums[i] else nums[i]
-            if pre < post[i+1]:
-                return i+1
 
 
 class Solution:
-    def distinctPrimeFactors(self, nums: List[int]) -> int:
-        ans = set()
-        for num in nums:
-            for x in get_prime_factor(num):
-                if x > 1:
-                    ans.add(x)
-        return len(ans)
+    def maxKelements(self, nums: List[int], k: int) -> int:
 
-
+        heapq.heapify([-num for num in nums])
+        ans = 0
+        for _ in range(k):
+            x = heapq.heappop(nums)
+            ans += x
+            heapq.heappush(nums, math.ceil(x/3))
+        return ans
 
 
 class TestGeneral(unittest.TestCase):

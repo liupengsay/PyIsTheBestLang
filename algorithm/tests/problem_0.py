@@ -77,11 +77,11 @@ class FastIO:
         return res
 
     @staticmethod
-    def max(a, b):
+    def mmax(a, b):
         return a if a > b else b
 
     @staticmethod
-    def min(a, b):
+    def mmin(a, b):
         return a if a < b else b
 
     @staticmethod
@@ -104,22 +104,53 @@ class FastIO:
         return wrappedfunc
 
 
+def get_prime_factor(num):
+    # 质因数分解
+    res = []
+    for i in range(2, int(math.sqrt(num)) + 1):
+        cnt = 0
+        while num % i == 0:
+            num //= i
+            cnt += 1
+        if cnt:
+            res.append([i, cnt])
+        if i > num:
+            break
+    if num != 1 or not res:
+        res.append([num, 1])
+    return res
+
+
+
 def main(ac=FastIO()):
-    t = ac.read_int()
-    for _ in range(t):
-        n = ac.read_int()
-        lst = []
-        while n:
-            lst.append(n % 10)
-            if lst[-1] >= 7:
-                lst[-1] -= 1
-            n //= 10
-        lst.reverse()
-        ans = 0
-        for num in lst:
-            ans *= 9
-            ans += num
-        ac.st(ans)
+    n, k = ac.read_ints()
+    if n == 1:
+        ac.st(k)
+        return
+    lst = get_prime_factor(n)
+    prime = [x for x, _ in lst]
+    m = len(prime)
+
+    def check(x):
+        res = 0
+        for i in range(1, m+1):
+            for item in combinations(prime, i):
+                cur = 1
+                for num in item:
+                    cur *= num
+                res += (x//cur)*(-1)**(i+1)
+        return x-res >= k
+
+    low = 1
+    high = n*k
+    while low < high-1:
+        mid = low+(high-low)//2
+        if check(mid):
+            high = mid
+        else:
+            low = mid
+    ans= low if check(low) else high
+    ac.st(ans)
     return
 
 

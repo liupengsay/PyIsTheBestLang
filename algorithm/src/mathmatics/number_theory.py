@@ -14,6 +14,7 @@
 import math
 import random
 import unittest
+from itertools import combinations
 
 
 class NumberTheory:
@@ -208,8 +209,43 @@ class NumberTheory:
             res.append([num, 1])
         return res
 
+    def get_prime_cnt(self, x, y):
+        # P1592 互质
+        # P2429 制杖题
+
+        # 使用容斥原理计算 [1, y] 内与 x 互质的个数
+        if x == 1:
+            return y
+
+        lst = self.get_prime_factor(x)
+        prime = [p for p, _ in lst]
+        m = len(lst)
+        # 求与 x 不互质的数，再减去这部分数
+        res = 0
+        for i in range(1, m+1):
+            for item in combinations(prime, i):
+                cur = 1
+                for num in item:
+                    cur *= num
+                res += (y//cur)*(-1)**(i+1)
+        return y-res
+
 
 class TestGeneral(unittest.TestCase):
+
+    def test_prime_cnt(self):
+        nt = NumberTheory()
+        for _ in range(100):
+            x = random.randint(1, 100)
+            y = random.randint(1, 10000)
+            cnt = 0
+            for i in range(1, y+1):
+                if math.gcd(i, x) == 1:
+                    cnt += 1
+            print(x, y, nt.get_prime_cnt(x, y), cnt)
+            assert nt.get_prime_cnt(x, y) == cnt
+        return
+
 
     def test_get_prime_factor(self):
         nt = NumberTheory()
