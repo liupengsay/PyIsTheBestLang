@@ -49,6 +49,8 @@ class BFS:
 
     @staticmethod
     def bilateral_bfs():
+        # 双向BFS
+        # P1747 好奇怪的游戏
         state = []
         dct = [[0] * 4 for _ in range(12)]
         for i in range(12):
@@ -119,6 +121,7 @@ class BFS:
         print(len(path))
         print(" ".join(str(x) for x in path))
         return
+
 
 class Solution:
     def minimumObstacles(self, grid: List[List[int]]) -> int:

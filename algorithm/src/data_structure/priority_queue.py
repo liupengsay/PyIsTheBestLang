@@ -1,10 +1,11 @@
 """
-算法：单调队列
+算法：单调队列、双端队列
 功能：维护单调性，计算滑动窗口最大值最小值
 题目：
 P2251 质量检测（https://www.luogu.com.cn/problem/P2251）滑动区间最小值
 L0239 滑动窗口最大值（https://leetcode.cn/problems/sliding-window-maximum/）滑动区间最大值
 参考：OI WiKi（xx）
+P1750 出栈序列（https://www.luogu.com.cn/problem/P1750）经典题目，滑动指针窗口栈加队列
 """
 
 import bisect
