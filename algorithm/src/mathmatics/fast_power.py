@@ -3,6 +3,8 @@
 功能：高效计算整数的幂次方取模
 题目：xx（xx）
 参考：OI WiKi（xx）
+
+P1630 求和
 """
 
 import bisect

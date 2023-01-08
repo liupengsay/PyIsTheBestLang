@@ -77,11 +77,11 @@ class FastIO:
         return res
 
     @staticmethod
-    def mmax(a, b):
+    def max(a, b):
         return a if a > b else b
 
     @staticmethod
-    def mmin(a, b):
+    def min(a, b):
         return a if a < b else b
 
     @staticmethod
@@ -104,31 +104,17 @@ class FastIO:
         return wrappedfunc
 
 
-def get_recent_palindrom_num(n: str) -> list:
-    # 564. 寻找最近的回文数（https://leetcode.cn/problems/find-the-closest-palindrome/）
-    # P1609 最小回文数（https://www.luogu.com.cn/problem/P1609）
-    # 用原数的前半部分加一后的结果替换后半部分得到的回文整数。
-    # 用原数的前半部分减一后的结果替换后半部分得到的回文整数。
-    # 为防止位数变化导致构造的回文整数错误，因此直接构造 999…999 和 100…001 作为备选答案
-    # 计算正整数 n 附近的回文数，获得最近的最小或者最大的回文数
-
-    m = len(n)
-    candidates = [10 ** (m - 1) - 1, 10 ** m + 1]
-    prefix = int(n[:(m + 1) // 2])
-    for x in range(prefix - 1, prefix + 2):
-        y = x if m % 2 == 0 else x // 10
-        while y:
-            x = x * 10 + y % 10
-            y //= 10
-        candidates.append(x)
-    return candidates
+def check(x0, y0, x2, y2):
+    x1 = (x0+x2+y2-y0)/2
+    y1 = (y0 + y2 + x0 - x2) / 2
+    x3 = (x0 + x2 - y2 + y0) / 2
+    y3 = (y0 + y2 - x0 + x2) / 2
+    return (x1, y1), (x3, y3)
 
 
 def main(ac=FastIO()):
-    n = ac.read_str()
-    nums = get_recent_palindrom_num(n)
-    nums = [num for num in nums if num > int(n)]
-    ac.st(min(nums))
+    m, n = ac.read_ints()
+
     return
 
 

@@ -30,7 +30,7 @@ Tarjan 算法是基于深度优先搜索的算法，用于求解图的连通性�
 [1568. 使陆地分离的最少天数]: https://leetcode.cn/problems/minimum-number-of-days-to-disconnect-island/solution/by-liupengsay-zd7w/
 P8436 【模板】边双连通分量：https://www.luogu.com.cn/problem/P8436（有自环与重边，通过虚拟节点进行扩边）
 P8435 【模板】点双连通分量：https://www.luogu.com.cn/problem/P8435（有自环与重边，通过虚拟节点进行扩边）
-
+P1656 炸铁路（https://www.luogu.com.cn/problem/P1656）求割边
 """
 
 
