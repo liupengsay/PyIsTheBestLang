@@ -104,53 +104,31 @@ class FastIO:
         return wrappedfunc
 
 
-def get_prime_factor(num):
-    # 质因数分解
-    res = []
-    for i in range(2, int(math.sqrt(num)) + 1):
-        cnt = 0
-        while num % i == 0:
-            num //= i
-            cnt += 1
-        if cnt:
-            res.append([i, cnt])
-        if i > num:
-            break
-    if num != 1 or not res:
-        res.append([num, 1])
-    return res
+def get_recent_palindrom_num(n: str) -> list:
+    # 564. 寻找最近的回文数（https://leetcode.cn/problems/find-the-closest-palindrome/）
+    # P1609 最小回文数（https://www.luogu.com.cn/problem/P1609）
+    # 用原数的前半部分加一后的结果替换后半部分得到的回文整数。
+    # 用原数的前半部分减一后的结果替换后半部分得到的回文整数。
+    # 为防止位数变化导致构造的回文整数错误，因此直接构造 999…999 和 100…001 作为备选答案
+    # 计算正整数 n 附近的回文数，获得最近的最小或者最大的回文数
 
+    m = len(n)
+    candidates = [10 ** (m - 1) - 1, 10 ** m + 1]
+    prefix = int(n[:(m + 1) // 2])
+    for x in range(prefix - 1, prefix + 2):
+        y = x if m % 2 == 0 else x // 10
+        while y:
+            x = x * 10 + y % 10
+            y //= 10
+        candidates.append(x)
+    return candidates
 
 
 def main(ac=FastIO()):
-    n, k = ac.read_ints()
-    if n == 1:
-        ac.st(k)
-        return
-    lst = get_prime_factor(n)
-    prime = [x for x, _ in lst]
-    m = len(prime)
-
-    def check(x):
-        res = 0
-        for i in range(1, m+1):
-            for item in combinations(prime, i):
-                cur = 1
-                for num in item:
-                    cur *= num
-                res += (x//cur)*(-1)**(i+1)
-        return x-res >= k
-
-    low = 1
-    high = n*k
-    while low < high-1:
-        mid = low+(high-low)//2
-        if check(mid):
-            high = mid
-        else:
-            low = mid
-    ans= low if check(low) else high
-    ac.st(ans)
+    n = ac.read_str()
+    nums = get_recent_palindrom_num(n)
+    nums = [num for num in nums if num > int(n)]
+    ac.st(min(nums))
     return
 
 

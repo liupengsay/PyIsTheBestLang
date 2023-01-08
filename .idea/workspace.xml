@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="使用进制计算第n个不含0的数">
+    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="容斥原理求互质与不互质的数个数">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/number_theory.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/number_theory.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/string/palindrome_num.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/string/palindrome_num.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_0.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_0.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_3.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_3.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_4.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_4.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/temp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/temp.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -90,7 +85,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in number_theory.py">
+  <component name="RunManager" selected="Python tests.Unittests for palindrome_num.TestGeneral.test_pllindrome_num">
     <configuration name="强连通分量" type="PythonConfigurationType" factoryName="Python">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -161,6 +156,20 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
+    <configuration name="Unittests for palindrome_num.TestGeneral.test_pllindrome_num" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="PCRecord" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/string" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;palindrome_num.TestGeneral.test_pllindrome_num&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
     <configuration name="Unittests in number_theory.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -175,27 +184,13 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests in problem_4.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <module name="PCRecord" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/tests/problem_4.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Unittests for palindrome_num.TestGeneral.test_pllindrome_num" />
+        <item itemvalue="Python.problem_0" />
         <item itemvalue="Python tests.Unittests in number_theory.py" />
         <item itemvalue="Python tests.Unittests for number_theory.TestGeneral.test_prime_cnt" />
         <item itemvalue="Python tests.Unittests for number_theory.TestGeneral.test_get_prime_factor" />
-        <item itemvalue="Python.problem_0" />
-        <item itemvalue="Python tests.Unittests in problem_4.py" />
       </list>
     </recent_temporary>
   </component>
@@ -210,13 +205,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647300774340</updated>
-    </task>
-    <task id="LOCAL-00042" summary="新增算法备份">
-      <created>1670890693644</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1670890693644</updated>
     </task>
     <task id="LOCAL-00043" summary="新增算法备份">
       <created>1670946277197</created>
@@ -554,7 +542,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673085992722</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <task id="LOCAL-00091" summary="容斥原理求互质与不互质的数个数">
+      <created>1673151522969</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1673151522969</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -572,7 +567,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="增加三十六进制字符串" />
     <MESSAGE value="修改直径端点获取办法" />
     <MESSAGE value="增加日期相关处理函数" />
     <MESSAGE value="快速读写" />
@@ -597,7 +591,8 @@
     <MESSAGE value="数位DP与进制计数" />
     <MESSAGE value="增加数位DP计算不含数字d的个数" />
     <MESSAGE value="使用进制计算第n个不含0的数" />
-    <option name="LAST_COMMIT_MESSAGE" value="使用进制计算第n个不含0的数" />
+    <MESSAGE value="容斥原理求互质与不互质的数个数" />
+    <option name="LAST_COMMIT_MESSAGE" value="容斥原理求互质与不互质的数个数" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -646,11 +641,6 @@
           <url>file://$PROJECT_DIR$/algorithm/src/dp/tree_dp.py</url>
           <line>148</line>
           <option name="timeStamp" value="188" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/algorithm/src/string/palindrome_num.py</url>
-          <line>68</line>
-          <option name="timeStamp" value="192" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/algorithm/src/mathmatics/number_theory.py</url>
