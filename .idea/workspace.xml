@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="正方形求点与三角形面积计算">
+    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="滑动指针窗口栈加队列">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/priority_queue.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/data_structure/priority_queue.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/search/bfs.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/search/bfs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_0.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_0.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/temp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/temp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_1.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -214,13 +211,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647300774340</updated>
-    </task>
-    <task id="LOCAL-00045" summary="线段树">
-      <created>1670976156049</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1670976156049</updated>
     </task>
     <task id="LOCAL-00046" summary="线段树">
       <created>1670976182351</created>
@@ -558,7 +548,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673178107188</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL-00094" summary="滑动指针窗口栈加队列">
+      <created>1673198897708</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1673198897708</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -576,7 +573,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="快速读写" />
     <MESSAGE value="增加闰年与非闰年天数" />
     <MESSAGE value="增加unix时间戳" />
     <MESSAGE value="最小表示法" />
@@ -601,7 +597,8 @@
     <MESSAGE value="容斥原理求互质与不互质的数个数" />
     <MESSAGE value="最近的回文数字" />
     <MESSAGE value="正方形求点与三角形面积计算" />
-    <option name="LAST_COMMIT_MESSAGE" value="正方形求点与三角形面积计算" />
+    <MESSAGE value="滑动指针窗口栈加队列" />
+    <option name="LAST_COMMIT_MESSAGE" value="滑动指针窗口栈加队列" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
