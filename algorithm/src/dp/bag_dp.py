@@ -14,15 +14,17 @@ P1776 宝物筛选（https://www.luogu.com.cn/problem/P1776）多重背包，使
 P1509 找啊找啊找GF（https://www.luogu.com.cn/problem/P1509）四重背包
 P1060 [NOIP2006 普及组] 开心的金明（https://www.luogu.com.cn/problem/P1509）一维背包DP
 P1566 加等式（https://www.luogu.com.cn/problem/P1566#submit）限制计数背包
-
+P1759 通天之潜水（https://www.luogu.com.cn/problem/P1759）二重背包
 参考：OI WiKi（xx）
 """
+
+
+
 
 import bisect
 import random
 import re
 import unittest
-
 from typing import List
 import heapq
 import math
@@ -30,77 +32,94 @@ from collections import defaultdict, Counter, deque
 from functools import lru_cache
 from itertools import combinations
 from sortedcontainers import SortedList, SortedDict, SortedSet
-
 from sortedcontainers import SortedDict
 from functools import reduce
 from operator import xor
 from functools import lru_cache
-
 import random
 from itertools import permutations, combinations
 import numpy as np
-
 from decimal import Decimal
-
 import heapq
 import copy
-
-
-class ClassName:
+class BagDP:
     def __init__(self):
         return
 
-    def gen_result(self):
-        return
-
-    def main_p1776(self):
-
-        import sys
-        sys.setrecursionlimit(10000000)
-
-        def read():
-            return sys.stdin.readline()
-
-        def ac(x):
-            return sys.stdout.write(str(x) + '\n')
-
+    @staticmethod
+    def bin_split(num):
+        assert num > 0
         # 二进制拆分
-        def bin_split(num):
-            res = []
-            x = 1
-            while num >= x:
-                res.append(x)
-                num -= x
-                x *= 2
-            if num:
-                res.append(num)
-            return res
+        lst = []
+        m = 1
+        while num:
+            if num % 2:
+                lst.append(m)
+            m *= 2
+            num //= 2
+        return lst
 
-        def main():
-            n, w = map(int, read().split())
-            pre = [0] * (w + 1)
-            for _ in range(n):
-                val, weight, amount = map(int, read().split())
-                cur = pre[:]
-                for x in bin_split(amount):
-                    for i in range(w, x * weight - 1, -1):
-                        c = cur[i - x * weight] + x * val
-                        if cur[i] < c:
-                            cur[i] = c
-                pre = cur[:]
-            ac(max(pre))
-            return
+    @staticmethod
+    def one_dimension_limited(n, nums):
+        # 一维有限背包
+        dp = [0] * (n + 1)
+        dp[0] = 1
+        for num in nums:
+            for i in range(n, num - 1, -1):
+                dp[i] += dp[i - num]
+        return dp[n]
 
-        main()
+    @staticmethod
+    def one_dimension_unlimited(n, nums):
+        # 一维无限背包
+        dp = [0] * (n + 1)
+        dp[0] = 1
+        for num in nums:
+            for i in range(num, n + 1):
+                dp[i] += dp[i - num]
+        return dp[n]
 
-        return
+    @staticmethod
+    def two_dimension_limited(m, n, nums):
+        # 二维有限背包
+        dp = [[0] * (n + 1) for _ in range(m + 1)]
+        dp[0][0] = 1
+        for a, b in nums:
+            for i in range(m, a - 1, -1):
+                for j in range(n, b - 1, -1):
+                    dp[i][j] += dp[i - a][j - b]
+        return dp[m][n]
+
+    @staticmethod
+    def two_dimension_unlimited(m, n, nums):
+        # 二维无限背包
+        dp = [[0] * (n + 1) for _ in range(m + 1)]
+        dp[0][0] = 1
+        for a, b in nums:
+            for i in range(a, m + 1):
+                for j in range(b, n + 1):
+                    dp[i][j] += dp[i - a][j - b]
+        return dp[m][n]
+
+    def continuous_bag_with_bin_split(self, n, nums):
+        # 使用二进制优化的连续背包（以一维有限背包为例）
+        dp = [0] * (n + 1)
+        dp[0] = 1
+        for num in nums:
+            for x in self.bin_split(num):
+                for i in range(n, x - 1, -1):
+                    dp[i] += dp[i - x]
+
+        return dp[n]
 
 
 class TestGeneral(unittest.TestCase):
 
-    def test_xxx(self):
-        nt = ClassName()
-        assert nt.gen_result(10 ** 11 + 131) == 66666666752
+    def test_bag_dp(self):
+        bd = BagDP()
+        for _ in range(1000):
+            num = random.randint(1, 100000000)
+            assert sum(bd.bin_split(num)) == num
         return
 
 
