@@ -9,6 +9,8 @@ ST表算法全称Sparse-Table算法，是由Tarjan提出的一种解决RMQ问题
 题目：
 P3865 ST 表（https://www.luogu.com.cn/problem/P3865）
 P2880 Balanced Lineup G（https://www.luogu.com.cn/problem/P2880）使用ST表预处理区间最大值与最小值
+P1890 gcd区间（https://www.luogu.com.cn/problem/P3865）使用ST表预处理区间的gcd
+P1816 忠诚（https://www.luogu.com.cn/problem/P1816）使用ST表预处理区间的最小值
 参考：OI WiKi（xx）
 """
 
@@ -59,8 +61,10 @@ class SparseTable1:
                 b = self.f[i + (1 << (j - 1))][j - 1]
                 if self.fun == "max":
                     self.f[i][j] = a if a > b else b
-                else:
+                elif self.fun == "min":
                     self.f[i][j] = a if a < b else b
+                else:
+                    self.f[i][j] = math.gcd(a, b)
         return
 
     def query(self, left, right):
@@ -70,8 +74,10 @@ class SparseTable1:
         b = self.f[right - (1 << k) + 1][k]
         if self.fun == "max":
             return a if a > b else b
-        else:
+        elif self.fun == "min":
             return a if a < b else b
+        else:
+            return math.gcd(a, b)
 
 
 class SparseTable2:
@@ -97,8 +103,10 @@ class SparseTable2:
                 a, b = self.ST[i-1][j], self.ST[i-1][j + (1 << (i-1))]
                 if self.fun == "max":
                     self.ST[i][j] = a if a > b else b
-                else:
+                elif self.fun == "min":
                     self.ST[i][j] = a if a < b else b
+                else:
+                    self.ST[i][j] = math.gcd(a, b)
         return
 
     def query(self, left, right):
@@ -107,13 +115,22 @@ class SparseTable2:
         a, b = self.ST[pos][left], self.ST[pos][right - (1 << pos) + 1]
         if self.fun == "max":
             return a if a > b else b
-        else:
+        elif self.fun == "min":
             return a if a < b else b
+        else:
+            return math.gcd(a, b)
 
 
 class TestGeneral(unittest.TestCase):
 
     def test_sparse_table(self):
+
+        def check(lst):
+            ans = lst[0]
+            for num in lst[1:]:
+                ans = math.gcd(num, ans)
+            return ans
+
         nums = [9, 3, 1, 7, 5, 6, 0, 8]
         st = SparseTable1(nums)
         queries = [[1, 6], [1, 5], [2, 7], [2, 6], [1, 8], [4, 8], [3, 7], [1, 8]]
@@ -123,14 +140,16 @@ class TestGeneral(unittest.TestCase):
         nums = [random.randint(0, ceil) for _ in range(1000)]
         st1_max = SparseTable1(nums, "max")
         st1_min = SparseTable1(nums, "min")
-
+        st1_gcd = SparseTable1(nums, "gcd")
         st2_max = SparseTable2(nums, "max")
         st2_min = SparseTable2(nums, "min")
+        st2_gcd = SparseTable2(nums, "gcd")
         for _ in range(ceil):
             left = random.randint(1, ceil-10)
             right = random.randint(left, ceil)
             assert st1_max.query(left, right) == st2_max.query(left-1, right-1) == max(nums[left-1:right])
             assert st1_min.query(left, right) == st2_min.query(left - 1, right - 1) == min(nums[left - 1:right])
+            assert st1_gcd.query(left, right) == st2_gcd.query(left-1, right-1) == check(nums[left - 1:right])
         return
 
 
