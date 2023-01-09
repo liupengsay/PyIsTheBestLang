@@ -81,7 +81,7 @@ class BagDP:
 
     @staticmethod
     def two_dimension_limited(m, n, nums):
-        # 二维有限背包
+        # 二维有限背包（多维背包类似）
         dp = [[0] * (n + 1) for _ in range(m + 1)]
         dp[0][0] = 1
         for a, b in nums:
@@ -92,7 +92,7 @@ class BagDP:
 
     @staticmethod
     def two_dimension_unlimited(m, n, nums):
-        # 二维无限背包
+        # 二维无限背包（多维背包类似）
         dp = [[0] * (n + 1) for _ in range(m + 1)]
         dp[0][0] = 1
         for a, b in nums:
@@ -109,7 +109,6 @@ class BagDP:
             for x in self.bin_split(num):
                 for i in range(n, x - 1, -1):
                     dp[i] += dp[i - x]
-
         return dp[n]
 
 
