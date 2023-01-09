@@ -15,6 +15,7 @@ P1287 盒子与球（https://www.luogu.com.cn/problem/P1287）斯特林数形式
 P1375 小猫（https://www.luogu.com.cn/problem/P1375）卡特兰数
 1259. 不相交的握手（https://leetcode.cn/problems/handshakes-that-dont-cross/）卡特兰数
 
+P1754 球迷购票问题（https://www.luogu.com.cn/problem/P1754）卡特兰数
 参考：OI WiKi（xx）
 卡特兰数（https://oi-wiki.org/math/combinatorics/catalan/）
 """
@@ -53,6 +54,24 @@ class CombPerm:
 
     def cattelan_number(self, n, mod):
         # 卡特兰数 dp[i + 1] = sum(dp[j] * dp[i - j] for j in range(i + 1)) % MOD
+        if n <= 1:
+            return 1
+
+        perm = self.produce_perm_mod(2*n+2, mod)
+        # 利用乘法逆元求解组合数
+
+        def comb(a, b):
+            res = perm[a] * pow(perm[b], -1, mod) * pow(perm[a - b], -1, mod)
+            return res % mod
+
+        ans = (comb(2 * n, n) - comb(2 * n, n - 1)) % mod
+        return ans
+
+    def cattelan_number2(self, n, mod):
+        # 卡特兰数 dp[i][j] = dp[i-1][j]+dp[i][j-1]
+        # 也是长为 2n 合法的括号匹配数 h(n) = h(n-1)*(4*n-2)//(n+1)
+        # 也可以使用 h(n) = math.comb(2*n, n)//(n+1) 求解
+        # 参考题目 【P1754 球迷购票问题】
         if n <= 1:
             return 1
 
