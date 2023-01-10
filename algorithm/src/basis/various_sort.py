@@ -176,6 +176,57 @@ class VariousSort:
         return nums
 
     @staticmethod
+    def merge_sort_inverse_pair(nums, n):
+
+        # 使用归并排序计算在只交换相邻元素的情况下至少需要多少次才能使数组变得有序
+        # 也可以使用 2*n 长度的树状数组与线段树进行模拟计算
+        # 结果等同于数组逆序对的数目
+        # 参考题目【P1774 最接近神的人】
+
+        def merge(left, right):
+            nonlocal ans
+            if left >= right:
+                return
+
+            # 递归进行排序
+            mid = (left + right) // 2
+            merge(left, mid)
+            merge(mid + 1, right)
+
+            # 合并有序列表
+            i, j = left, mid + 1
+            k = left
+            while i <= mid and j <= right:
+                if nums[i] <= nums[j]:
+                    arr[k] = nums[i]
+                    i += 1
+                else:
+                    arr[k] = nums[j]
+                    j += 1
+                    # 此时出现了逆序对移动记录次数
+                    ans += mid - i + 1
+                k += 1
+            while i <= mid:
+                arr[k] = nums[i]
+                i += 1
+                k += 1
+            while j <= right:
+                arr[k] = nums[j]
+                j += 1
+                k += 1
+
+            # 将值赋到原数组
+            for i in range(left, right + 1):
+                nums[i] = arr[i]
+            return
+
+        # 使用归并排序进行求解
+        arr = [0] * n
+        merge(0, n - 1)
+        return
+
+
+    @staticmethod
     def heap_sort(nums):
         # 堆排序
         def sift_down(start, end):
