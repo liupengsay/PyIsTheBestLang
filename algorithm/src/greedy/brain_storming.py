@@ -19,14 +19,20 @@ L0517 超级洗衣机（https://leetcode.cn/problems/super-washing-machines/）�
 
 P1684 考验（https://www.luogu.com.cn/problem/P1684）线性贪心满足条件即增加计数
 
+P1658 购物（https://www.luogu.com.cn/problem/P1658）看似背包实则贪心
+P2001 硬币的面值（https://www.luogu.com.cn/problem/P2001）看似背包实则贪心
+P1620 漂亮字串（https://www.luogu.com.cn/problem/P1620）分类讨论进行贪心
+
 参考：OI WiKi（xx）
 """
+
+
+
 
 import bisect
 import random
 import re
 import unittest
-
 from typing import List
 import heapq
 import math
@@ -34,35 +40,48 @@ from collections import defaultdict, Counter, deque
 from functools import lru_cache
 from itertools import combinations
 from sortedcontainers import SortedList, SortedDict, SortedSet
-
 from sortedcontainers import SortedDict
 from functools import reduce
 from operator import xor
 from functools import lru_cache
-
 import random
 from itertools import permutations, combinations
 import numpy as np
-
 from decimal import Decimal
-
 import heapq
 import copy
-
-
-class ClassName:
+class BrainStorming:
     def __init__(self):
         return
 
-    def gen_result(self):
-        return
+    @staticmethod
+    def minimal_coin_need(n, m, nums):
+
+        nums += [m + 1]
+        nums.sort()
+        # 有 n 个可选取且无限的硬币，为了形成 1-m 所有组合需要的最少硬币个数
+        if nums[0] != 1:
+            return -1
+        ans = sum_ = 0
+        for i in range(n):
+            nex = nums[i + 1] - 1
+            nex = nex if nex < m else m
+            x = math.ceil((nex - sum_) / nums[i])
+            x = x if x >= 0 else 0
+            ans += x
+            sum_ += x * nums[i]
+            if sum_ >= m:
+                break
+        return ans
 
 
 class TestGeneral(unittest.TestCase):
 
-    def test_xxx(self):
-        nt = ClassName()
-        assert nt.gen_result(10 ** 11 + 131) == 66666666752
+    def test_brain_storming(self):
+        bs = BrainStorming()
+        n, m = 4, 20
+        nums = [1, 2, 5, 10]
+        assert bs.minimal_coin_need(n, m, nums) == 5
         return
 
 

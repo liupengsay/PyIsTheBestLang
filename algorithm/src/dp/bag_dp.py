@@ -20,8 +20,8 @@ P1806 跑步（https://www.luogu.com.cn/problem/P1806）连续值一维有限背
 P1853 投资的最大效益（https://www.luogu.com.cn/problem/P1853）一维无限背包有技巧成倍缩小背包范围
 
 P1874 快速求和（https://www.luogu.com.cn/problem/P1874）类似区间与背包的结合枚举前一个字符串加号分割点求和
-P1977 出租车拼车（https://www.luogu.com.cn/problem/P1977）分组背包
-
+P1977 出租车拼车（https://www.luogu.com.cn/problem/P1977）分组有限背包
+P1586 四方定理（https://www.luogu.com.cn/problem/P1586）分组无限背包
 参考：OI WiKi（xx）
 """
 
@@ -119,8 +119,8 @@ class BagDP:
         return dp[n]
 
     @staticmethod
-    def group_bag(n, d, nums):
-        # 分组背包（以一维有限背包为例）
+    def group_bag_limited(n, d, nums):
+        # 分组背包（以一维有限背包为例）计算出租车的最小花费
         pre = [float("inf")] * (n + 1)
         pre[0] = 0
         for r, z in nums:
@@ -134,6 +134,20 @@ class BagDP:
         if pre[n] < float("inf"):
             return pre[n]
         return -1
+
+    @staticmethod
+    def group_bag_unlimited(nums):
+        # 分组背包（以一维无限背包为例）计算 n 分解成四个数的平方和的方案数
+        n = max(nums)
+        dp = [[0] * 5 for _ in range(n + 1)]
+        dp[0][0] = 1
+        for i in range(1, int(math.sqrt(n)) + 1):
+            x = i * i
+            for j in range(x, n + 1):
+                for k in range(1, 5):
+                    if dp[j - x][k - 1]:
+                        dp[j][k] += dp[j - x][k - 1]
+        return [sum(dp[num]) for num in nums]
 
 
 class TestGeneral(unittest.TestCase):

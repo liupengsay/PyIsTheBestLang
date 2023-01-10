@@ -7,6 +7,8 @@
 题目：
 P1120 小木棍（https://www.luogu.com.cn/problem/P1120）把数组分成和相等的子数组
 P1692 部落卫队（https://www.luogu.com.cn/problem/P1692）暴力搜索枚举字典序最大可行的连通块
+
+P1612 [yLOI2018] 树上的链（https://www.luogu.com.cn/problem/P1612）使用dfs记录路径的前缀和并使用二分确定最长链条
 参考：OI WiKi（xx）
 """
 
@@ -44,7 +46,7 @@ class DFS:
 
     @staticmethod
     def gen_node_order(dct):
-
+        # 生成深搜序即 dfs 序以及对应子树编号区间
         def dfs(x):
             nonlocal order
             visit[x] = order

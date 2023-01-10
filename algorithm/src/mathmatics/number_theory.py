@@ -15,6 +15,8 @@ P1748 H数（https://www.luogu.com.cn/problem/P1748）丑数可以使用堆模�
 1201. 丑数 III（https://leetcode.cn/problems/ugly-number-iii/）只含特定因子数即能被其中一个数整除的第 n 个丑数
 313. 超级丑数（https://leetcode.cn/problems/super-ugly-number/）只含某些特定质因数的第 n 个丑数
 P1952 火星上的加法运算（https://www.luogu.com.cn/problem/P1952）N进制加法
+
+P1592 互质（https://www.luogu.com.cn/problem/P1592）使用二分与容斥原理计算与 n 互质的第 k 个正整数
 """
 
 import math
@@ -288,7 +290,6 @@ class TestGeneral(unittest.TestCase):
             print(x, y, nt.get_prime_cnt(x, y), cnt)
             assert nt.get_prime_cnt(x, y) == cnt
         return
-
 
     def test_get_prime_factor(self):
         nt = NumberTheory()

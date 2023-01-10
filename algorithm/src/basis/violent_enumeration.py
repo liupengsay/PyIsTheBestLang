@@ -17,6 +17,7 @@ L2151 基于陈述统计最多好人数（https://leetcode.cn/problems/maximum-g
 L2147 分隔长廊的方案数（https://leetcode.cn/problems/number-of-ways-to-divide-a-long-corridor/）根据题意进行分隔点枚举计数
 L2122 还原原数组（https://leetcode.cn/problems/recover-the-original-array/）枚举差值 k 判断是否合法
 
+P1632 点的移动（https://www.luogu.com.cn/problem/P1632）枚举横坐标和纵坐标的所有组合移动距离
 参考：OI WiKi（xx）
 """
 

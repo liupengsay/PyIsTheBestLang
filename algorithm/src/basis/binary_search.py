@@ -12,8 +12,8 @@ L2179 统计数组中好三元组数目（https://leetcode.cn/problems/count-goo
 L2141 同时运行 N 台电脑的最长时间（https://leetcode.cn/problems/maximum-running-time-of-n-computers/）贪心选择最大的 N 个电池作为基底，然后二分确定在其余电池的加持下可以运行的最长时间
 L2102 序列顺序查询（https://leetcode.cn/problems/sequentially-ordinal-rank-tracker/）使用有序集合维护优先级姓名实时查询
 
-P1577 切绳子（https://www.luogu.com.cn/problem/P1577）
-P1570 KC 喝咖啡
+P1577 切绳子（https://www.luogu.com.cn/problem/P1577）数学整除向下取整与二分
+P1570 KC 喝咖啡（https://www.luogu.com.cn/problem/P1570）公式转换后使用贪心加二分
 P1843 奶牛晒衣服（https://www.luogu.com.cn/problem/P1843）贪心加二分
 
 参考：OI WiKi（xx）

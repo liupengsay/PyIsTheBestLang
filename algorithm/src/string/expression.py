@@ -11,6 +11,7 @@ import unittest
 题目：
 P1175 表达式的转换（https://www.luogu.com.cn/problem/P1175）
 1597. 根据中缀表达式构造二叉表达式树（https://leetcode.cn/problems/build-binary-expression-tree-from-infix-expression/）
+P1617 爱与愁的一千个伤心的理由（https://www.luogu.com.cn/problem/P1617）把数字转换为美式英语
 
 参考：OI WiKi（xx）
 """
@@ -115,6 +116,50 @@ class TreeExpression:
         return ans
 
 
+class EnglishNumber:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def number_to_english(n):
+
+        # 将 0-9999 的数字转换为美式英语即有 and
+        one = ["", "one", "two", "three", "four",
+               "five", "six", "seven", "eight", "nine",
+               "ten", "eleven", "twelve", "thirteen", "fourteen",
+               "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"]
+
+        ten = [
+            "twenty",
+            "thirty",
+            "forty",
+            "fifty",
+            "sixty",
+            "seventy",
+            "eighty",
+            "ninety"]
+
+        for word in ten:
+            one.append(word)
+            for i in range(1, 10):
+                one.append(word + " " + one[i])
+
+        ans = ""
+        s = str(n)
+        if n >= 1000:
+            ans += one[n // 1000] + " thousand "
+
+        if (n % 1000) // 100 > 0:
+            ans += one[n % 1000 // 100] + " hundred "
+        if (n >= 100 and 0 < n % 100 < 10) or (n >= 1000 and 0 < n % 1000 < 100):
+            ans += "and "
+        ans += one[n % 100]
+
+        if ans == "":
+            return "zero"
+        return ans
+
+
 class TestGeneral(unittest.TestCase):
 
     def test_tree_expression(self):
@@ -123,6 +168,13 @@ class TestGeneral(unittest.TestCase):
         for s in lst:
             assert int(te.main_1175(s)[-1][0]) == eval(s.replace("^", "**").replace("/", "//"))
         return
+
+    def test_english_number(self):
+
+        en = EnglishNumber()
+        num = 5208
+        assert en.number_to_english(num) == "five thousand two hundred and eight"
+
 
 
 if __name__ == '__main__':

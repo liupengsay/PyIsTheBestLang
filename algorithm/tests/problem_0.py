@@ -107,19 +107,22 @@ class FastIO:
 
 
 def main(ac=FastIO()):
-    x, n = ac.read_floats()
-    if x == 1.0:
-        ac.st("1.0000")
-    n = int(n)
-    ref = -math.log(1-x)
-    error = 1e-6
-    ans = pre = x
-    for i in range(2, n+1):
-        pre *= x
-        ans += pre/i
-        if ref-ans < error:
+    m, n = ac.read_ints()
+    nums = sorted(ac.read_list_ints() + [m + 1])
+    if nums[0] != 1:
+        ac.st(-1)
+        return
+    ans = sum_ = 0
+    for i in range(n):
+        nex = nums[i + 1] - 1
+        nex = nex if nex < m else m
+        x = math.ceil((nex - sum_) / nums[i])
+        x = x if x >= 0 else 0
+        ans += x
+        sum_ += x * nums[i]
+        if sum_ >= m:
             break
-    ac.st("%.4f" % ans)
+    ac.st(ans)
     return
 
 
