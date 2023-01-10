@@ -8,7 +8,7 @@ Prim在稠密图中比Kruskal优，在稀疏图中比Kruskal劣。Prim是以更�
 P3366 最小生成树（https://www.luogu.com.cn/problem/P3366）计算最小生成树的权值和
 L1489 找到最小生成树里的关键边和伪关键边（https://leetcode.cn/problems/find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree/）计算最小生成树的关键边与伪关键边
 P2872 Building Roads S（https://www.luogu.com.cn/problem/P2872）使用prim计算最小生成树
-
+P1991 无线通讯网（https://www.luogu.com.cn/problem/P1991）计算保证k个连通块下最小的边权值
 
 参考：OI WiKi（xx）
 """

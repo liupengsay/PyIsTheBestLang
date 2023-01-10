@@ -4,14 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="增加题目">
-      <change afterPath="$PROJECT_DIR$/algorithm/src/basis/recursion.py" afterDir="false" />
+    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="题目补充">
+      <change afterPath="$PROJECT_DIR$/algorithm/src/basis/circular_section.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/monotonic_stack.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/data_structure/monotonic_stack.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/dijkstra.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/dijkstra.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/big_number.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/big_number.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/stack.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/stack.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/bag_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/bag_dp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/linear_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/linear_dp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/tree_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/tree_dp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/minimum_spanning_tree.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/minimum_spanning_tree.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/spfa.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/spfa.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/topological_sort.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/topological_sort.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/fast_power.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/fast_power.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/geometry.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/geometry.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/number_theory.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/number_theory.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/search/bfs.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/search/bfs.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -89,7 +94,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in greedy">
+  <component name="RunManager" selected="Python tests.Unittests in fast_power.py">
     <configuration name="强连通分量" type="PythonConfigurationType" factoryName="Python">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -103,27 +108,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="D:\PCRecord\leetcode\template\图论\scc.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="problem_0" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="PCRecord" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/algorithm/tests/problem_0.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -160,6 +144,20 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
+    <configuration name="Unittests in fast_power.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="PCRecord" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/mathmatics" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/mathmatics/fast_power.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
     <configuration name="Unittests in greedy" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -190,11 +188,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Unittests in fast_power.py" />
         <item itemvalue="Python tests.Unittests in greedy" />
         <item itemvalue="Python tests.Unittests in bag_dp.py" />
         <item itemvalue="Python tests.Unittests for bag_dp.TestGeneral.test_bag_dp" />
         <item itemvalue="Python tests.Unittests in priority_queue.py" />
-        <item itemvalue="Python.problem_0" />
       </list>
     </recent_temporary>
   </component>
@@ -209,13 +207,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647300774340</updated>
-    </task>
-    <task id="LOCAL-00054" summary="前缀和的前缀和">
-      <created>1671243654039</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1671243654039</updated>
     </task>
     <task id="LOCAL-00055" summary="回文数字枚举">
       <created>1671244574471</created>
@@ -553,7 +544,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673310286779</updated>
     </task>
-    <option name="localTasksCounter" value="103" />
+    <task id="LOCAL-00103" summary="题目补充">
+      <created>1673311163317</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1673311163317</updated>
+    </task>
+    <option name="localTasksCounter" value="104" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -571,7 +569,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="中缀表达式支持负数" />
     <MESSAGE value="处理加法的情形" />
     <MESSAGE value="几种字典序排列" />
     <MESSAGE value="使用01trie求解异或问题" />
@@ -596,7 +593,8 @@
     <MESSAGE value="第二种卡特兰数" />
     <MESSAGE value="归并排序交换相邻元素最少次数、逆序对数目" />
     <MESSAGE value="增加题目" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加题目" />
+    <MESSAGE value="题目补充" />
+    <option name="LAST_COMMIT_MESSAGE" value="题目补充" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -643,12 +641,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/algorithm/src/dp/tree_dp.py</url>
-          <line>148</line>
+          <line>149</line>
           <option name="timeStamp" value="188" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/algorithm/src/mathmatics/number_theory.py</url>
-          <line>39</line>
+          <line>41</line>
           <option name="timeStamp" value="253" />
         </line-breakpoint>
       </breakpoints>

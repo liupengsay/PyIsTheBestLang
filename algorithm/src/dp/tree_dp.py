@@ -12,6 +12,7 @@ L2440 创建价值相同的连通块（https://leetcode.cn/problems/create-compo
 L1569 将子数组重新排序得到同一个二叉查找树的方案数（https://leetcode.cn/problems/number-of-ways-to-reorder-array-to-get-same-bst/solution/by-liupengsay-yi3h/）
 P1395 会议（https://leetcode.cn/problems/create-components-with-same-value/）树的总距离，单个节点距离其他所有节点的最大距离
 P1352 没有上司的舞会（https://www.luogu.com.cn/problem/P1352）树形DP，隔层进行动态规划转移
+P1922 女仆咖啡厅桌游吧（https://www.luogu.com.cn/problem/P1922）树形DP，贪心进行子树与叶子节点的分配
 参考：OI WiKi（xx）
 """
 

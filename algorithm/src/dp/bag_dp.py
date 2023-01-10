@@ -20,6 +20,8 @@ P1806 跑步（https://www.luogu.com.cn/problem/P1806）连续值一维有限背
 P1853 投资的最大效益（https://www.luogu.com.cn/problem/P1853）一维无限背包有技巧成倍缩小背包范围
 
 P1874 快速求和（https://www.luogu.com.cn/problem/P1874）类似区间与背包的结合枚举前一个字符串加号分割点求和
+P1977 出租车拼车（https://www.luogu.com.cn/problem/P1977）分组背包
+
 参考：OI WiKi（xx）
 """
 
@@ -115,6 +117,23 @@ class BagDP:
                 for i in range(n, x - 1, -1):
                     dp[i] += dp[i - x]
         return dp[n]
+
+    @staticmethod
+    def group_bag(n, d, nums):
+        # 分组背包（以一维有限背包为例）
+        pre = [float("inf")] * (n + 1)
+        pre[0] = 0
+        for r, z in nums:
+            cur = pre[:]  # 关键在于这里需要分组背包
+            for x in range(1, z + 1):
+                cost = d + x * r
+                for i in range(n, x - 1, -1):
+                    if pre[i - x] + cost < cur[i]:
+                        cur[i] = pre[i - x] + cost
+            pre = cur[:]
+        if pre[n] < float("inf"):
+            return pre[n]
+        return -1
 
 
 class TestGeneral(unittest.TestCase):
