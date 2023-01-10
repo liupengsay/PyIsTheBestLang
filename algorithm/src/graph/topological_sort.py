@@ -13,7 +13,8 @@ L2127 参加会议的最多员工数（https://leetcode.cn/problems/maximum-empl
 内向基环树介绍：https://leetcode.cn/problems/maximum-employees-to-be-invited-to-a-meeting/solution/nei-xiang-ji-huan-shu-tuo-bu-pai-xu-fen-c1i1b/
 2360. 图中的最长环（https://leetcode.cn/problems/longest-cycle-in-a-graph/）
 2127. 参加会议的最多员工数（https://leetcode.cn/problems/maximum-employees-to-be-invited-to-a-meeting/）
-
+P1960 郁闷的记者（https://www.luogu.com.cn/problem/P1960）计算拓扑排序是否唯一
+P1992 不想兜圈的老爷爷（https://www.luogu.com.cn/problem/P1992）拓扑排序计算有向图是否有环
 参考：OI WiKi（xx）
 """
 
@@ -108,6 +109,40 @@ class TopologicalSort:
     #         else:
     #             ac.st("No")
     #     return
+
+    @staticmethod
+    def is_topology_unique(dct, degree, n):
+
+        # 保证存在拓扑排序的情况下判断是否唯一
+        ans = []
+        stack = [i for i in range(n) if not degree[i]]
+        while stack:
+            ans.extend(stack)
+            if len(stack) > 1:
+                return False
+            nex = []
+            for i in stack:
+                for j in dct[i]:
+                    degree[j] -= 1
+                    if not degree[j]:
+                        nex.append(j)
+            stack = nex
+        return True
+
+    @staticmethod
+    def is_topology_loop(edge, degree, n):
+
+        # 使用拓扑排序判断有向图是否存在环
+        stack = [i for i in range(n) if not degree[i]]
+        while stack:
+            nex = []
+            for i in stack:
+                for j in edge[i]:
+                    degree[j] -= 1
+                    if not degree[j]:
+                        nex.append(j)
+            stack = nex
+        return sum(degree) == 0
 
 
 class TestGeneral(unittest.TestCase):
