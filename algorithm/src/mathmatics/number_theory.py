@@ -11,7 +11,9 @@
 参考：OI WiKi（xx）
 P1865 A % B Problem（https://www.luogu.com.cn/problem/P1865）通过线性筛素数后进行二分查询区间素数个数
 P1748 H数（https://www.luogu.com.cn/problem/P1748）丑数可以使用堆模拟可以使用指针递增也可以使用容斥原理与二分进行计算
-
+264. 丑数 II（https://leetcode.cn/problems/ugly-number-ii/）只含2、3、5质因数的第 n 个丑数
+1201. 丑数 III（https://leetcode.cn/problems/ugly-number-iii/）只含特定因子数即能被其中一个数整除的第 n 个丑数
+313. 超级丑数（https://leetcode.cn/problems/super-ugly-number/）只含某些特定质因数的第 n 个丑数
 P1952 火星上的加法运算（https://www.luogu.com.cn/problem/P1952）N进制加法
 """
 
@@ -24,6 +26,25 @@ from itertools import combinations
 class NumberTheory:
     def __init__(self):
         return
+
+    @staticmethod
+    def nth_super_ugly_number(n: int, primes) -> int:
+
+        # 计算只含 primes 中的质因数的第 n 个丑数
+        dp = [0] * (n + 1)
+        m = len(primes)
+        pointers = [0] * m
+        nums = [1] * m
+
+        for i in range(1, n + 1):
+            min_num = min(nums)
+            dp[i] = min_num
+            for j in range(m):
+                if nums[j] == min_num:
+                    pointers[j] += 1
+                    nums[j] = dp[pointers[j]] * primes[j]
+
+        return dp[n]
 
     def gcd(self, x, y):
         # # 最大公约数

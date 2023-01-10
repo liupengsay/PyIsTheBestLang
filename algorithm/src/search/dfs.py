@@ -6,7 +6,7 @@
 功能：常与回溯枚举结合使用，比较经典的还有DFS序
 题目：
 P1120 小木棍（https://www.luogu.com.cn/problem/P1120）把数组分成和相等的子数组
-
+P1692 部落卫队（https://www.luogu.com.cn/problem/P1692）暴力搜索枚举字典序最大可行的连通块
 参考：OI WiKi（xx）
 """
 

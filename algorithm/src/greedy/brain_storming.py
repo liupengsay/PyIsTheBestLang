@@ -17,7 +17,7 @@ L2071 你可以安排的最多任务数目（https://leetcode.cn/problems/maximu
 P1031 均分纸牌（https://www.luogu.com.cn/problem/P1031）贪心计算每个点的前缀和流量，需要补齐或者输出时进行计数
 L0517 超级洗衣机（https://leetcode.cn/problems/super-washing-machines/）类似上题，计算最小的左右移动次数以及往左右的移动次数
 
-
+P1684 考验（https://www.luogu.com.cn/problem/P1684）线性贪心满足条件即增加计数
 
 参考：OI WiKi（xx）
 """

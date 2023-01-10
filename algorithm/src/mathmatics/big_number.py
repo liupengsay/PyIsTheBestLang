@@ -7,6 +7,10 @@
 题目：
 Lxxxx xxxx（https://leetcode.cn/problems/shortest-palindrome/）xxxx
 P1920 成功密码（https://www.luogu.com.cn/problem/P1920）预估高精度计算与公式 -ln(1-x) = sum(x**i/i for in range(1, n+1)) 其中 n 趋近于无穷
+P1729 计算e（https://www.luogu.com.cn/problem/P1729）高精度计算e小数位
+P1727 计算π（https://www.luogu.com.cn/problem/P1727）高精度计算π小数位
+
+
 参考：OI WiKi（xx）
 """
 

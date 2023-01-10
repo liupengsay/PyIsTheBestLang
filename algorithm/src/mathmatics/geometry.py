@@ -30,7 +30,7 @@ import copy
 算法：计算几何、设计到平面坐标系上的一些问题求解
 功能：xxx
 题目：
-Lxxxx xxxx（https://leetcode.cn/problems/shortest-palindrome/）xxxx
+P1665 正方形计数（https://www.luogu.com.cn/problem/P1665）枚举正方形对角线顶点计算可行个数
 
 参考：OI WiKi（xx）
 """
