@@ -11,6 +11,8 @@
 参考：OI WiKi（xx）
 P1865 A % B Problem（https://www.luogu.com.cn/problem/P1865）通过线性筛素数后进行二分查询区间素数个数
 P1748 H数（https://www.luogu.com.cn/problem/P1748）丑数可以使用堆模拟可以使用指针递增也可以使用容斥原理与二分进行计算
+
+P1952 火星上的加法运算（https://www.luogu.com.cn/problem/P1952）N进制加法
 """
 
 import math
@@ -62,6 +64,24 @@ class NumberTheory:
         # 最高支持三十六进制的表达
         # "0123456789" + "".join(chr(i+ord("A")) for i in range(26))
         return lst
+
+    @staticmethod
+    def k_bin_to_ten(k, st: str) -> str:
+        # k进制字符转为 10 进制字符
+        order = "0123456789" + "".join(chr(i + ord("a")) for i in range(26))
+        ind = {w: i for i, w in enumerate(order)}
+        m = len(st)
+        ans = 0
+        for i in range(m):
+            ans *= k
+            ans += ind[st[i]]
+        return str(ans)
+
+    def ten_to_k_bin(self, k, st: str) -> str:
+        # 10 进制字符转为 k 进制字符
+        order = "0123456789" + "".join(chr(i + ord("a")) for i in range(26))
+        lst = self.get_k_bin_of_n(int(st), k)
+        return "".join(order[i] for i in lst)
 
     @staticmethod
     def is_prime(num):
