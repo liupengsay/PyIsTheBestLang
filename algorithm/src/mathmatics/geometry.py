@@ -50,6 +50,12 @@ class Geometry:
         return (x1, y1), (x3, y3)
 
     @staticmethod
+    def compute_square_area(x0, y0, x2, y2):
+        # 已知正方形对角线上的点，求正方形面积，注意是整数
+        ans = (x0 - x2) * (x0 - x2) + (y0 - y2) * (y0 - y2)
+        return ans // 2
+
+    @staticmethod
     def compute_triangle_area(x1, y1, x2, y2, x3, y3):
         return abs((x1 * y2 - x2 * y1) + (x2 * y3 -
                    x3 * y2) + (x3 * y1 - x1 * y3)) / 2
