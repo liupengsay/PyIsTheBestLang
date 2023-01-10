@@ -106,100 +106,20 @@ class FastIO:
         return wrappedfunc
 
 
-def check1(nums, n ,c):
-    stack = []
-    ans = []
-
-    queue = deque()
-    right = 0
-    for i in range(n):
-        m = len(stack)
-
-        # 维护右边还可以在栈长度范围内增加元素的最小值
-        while queue and queue[0][1] < i:
-            queue.popleft()
-        for x in range(right, min(right + c - m, n, i + c - m)):
-            while queue and queue[-1][0] >= nums[x]:
-                queue.pop()
-            queue.append([nums[x], x])
-        right = min(right + c - m, n, i + c - m)
-
-        # 如果栈满了或者右边没有更小于的直接出队
-        while (queue and stack and stack[-1] <= queue[0][0]) or len(stack) == c:
-            ans.append(stack.pop())
-        stack.append(nums[i])
-    ans.extend(stack[::-1])
-    return ans
-
-
-def check2(nums, n, c):
-    ans = []
-    stack = []
-    for i in range(n):
-        if not stack:
-            stack.append(nums[i])
-            continue
-
-        add = False
-        while stack:
-            flag = False
-            for j in range(i, min(i+c-len(stack), n)):
-                if nums[j] < stack[-1]:
-                    flag = True
-                    break
-            if flag:
-                add = True
-                stack.append(nums[i])
-                break
-            else:
-                ans.append(stack.pop())
-        if not add:
-            stack.append(nums[i])
-    ans.extend(stack[::-1])
-    return ans
-
-
-def check3(nums, n, c):
-    ans = []
-    stack = []
-    queue = deque()
-    j = 0
-    for i in range(n):
-        if not stack:
-            stack.append(nums[i])
-            continue
-
-        while queue and queue[0] < i:
-            queue.popleft()
-        j = i if j < i else i
-
-        add = False
-        while stack:
-            while j < n and j-i+1 + len(stack) <= c:
-                while queue and nums[queue[-1]] >= nums[j]:
-                    queue.pop()
-                queue.append(j)
-                j += 1
-                if nums[queue[0]] < stack[-1]:
-                    break
-            if queue and stack[-1] > nums[queue[0]]:
-                add = True
-                stack.append(nums[i])
-                break
-            else:
-                ans.append(stack.pop())
-        if not add:
-            stack.append(nums[i])
-    ans.extend(stack[::-1])
-    return ans
-
-
 def main(ac=FastIO()):
-    n, c = ac.read_ints()
-
-    nums = ac.read_list_ints()
-
-    ac.lst(check3(nums, n, c))
+    x, n = ac.read_floats()
+    if x == 1.0:
+        ac.st("1.0000")
+    n = int(n)
+    ref = -math.log(1-x)
+    error = 1e-6
+    ans = pre = x
+    for i in range(2, n+1):
+        pre *= x
+        ans += pre/i
+        if ref-ans < error:
+            break
+    ac.st("%.4f" % ans)
     return
 
 

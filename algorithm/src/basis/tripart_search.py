@@ -3,6 +3,7 @@
 功能：用来寻找区间至多具有一个峰顶点或者一个谷底点的函数极值解
 题目：
 P3382 三分法（https://www.luogu.com.cn/problem/P3382）利用三分求区间函数极值点
+P1883 函数（https://www.luogu.com.cn/problem/P1883）三分求下凸函数最小值
 参考：OI WiKi（xx）
 """
 
@@ -39,8 +40,10 @@ class TriPartSearch:
         return
 
     @staticmethod
-    def find_ceil(fun, left, right):
-        error = 1e-6
+    def find_ceil_point(fun, left, right, error = 1e-6):
+        
+        # 求解上凸函数函数取得最大值时的点
+
         while left < right - error:
             diff = (right - left) / 3
             mid1 = left + diff
@@ -57,7 +60,10 @@ class TriPartSearch:
         return left
 
     @staticmethod
-    def find_floor(fun, left, right):
+    def find_floor_point(fun, left, right):
+
+        # 求解下凸函数取得最大值时的点
+
         error = 1e-6
         while left < right - error:
             diff = (right - left) / 3
@@ -74,13 +80,59 @@ class TriPartSearch:
                 right = mid2
         return left
 
+    @staticmethod
+    def find_ceil_value(fun, left, right, error = 1e-7):
+
+        # 求解上凸函数取得的最大值
+        f1, f2 = fun(left), fun(right)
+        while abs(f1 - f2) > error:
+            diff = (right - left) / 3
+            mid1 = left + diff
+            mid2 = left + 2 * diff
+            dist1 = fun(mid1)
+            dist2 = fun(mid2)
+            if dist1 > dist2:
+                right = mid2
+                f2 = dist2
+            elif dist1 < dist2:
+                left = mid1
+                f1 = dist1
+            else:
+                left = mid1
+                right = mid2
+                f1, f2 = dist1, dist2
+        return (f1 + f2)/2
+
+    @staticmethod
+    def find_floor_value(fun, left, right, error = 1e-7):
+
+        # 求解下凸函数取得的最小值
+        f1, f2 = fun(left), fun(right)
+        while abs(f1 - f2) > error:
+            diff = (right - left) / 3
+            mid1 = left + diff
+            mid2 = left + 2 * diff
+            dist1 = fun(mid1)
+            dist2 = fun(mid2)
+            if dist1 < dist2:
+                right = mid2
+                f2 = dist2
+            elif dist1 > dist2:
+                left = mid1
+                f1 = dist1
+            else:
+                left = mid1
+                right = mid2
+                f1, f2 = dist1, dist2
+        return (f1 + f2)/2
+
 
 class TriPartPackTriPart:
     def __init__(self):
         return
 
     @staticmethod
-    def find_floor(target, left_x, right_x, low_y, high_y):
+    def find_floor_point(target, left_x, right_x, low_y, high_y):
         # 求最小的坐标[x,y]使得目标函数target最小
         error = 5e-8
         
@@ -128,10 +180,10 @@ class TestGeneral(unittest.TestCase):
     def test_tripart_search(self):
         tps = TriPartSearch()
         def fun1(x): return (x - 1) * (x - 1)
-        assert abs(tps.find_floor(fun1, -5, 100) - 1) < 1e-5
+        assert abs(tps.find_floor_point(fun1, -5, 100) - 1) < 1e-5
 
         def fun2(x): return -(x - 1) * (x - 1)
-        assert abs(tps.find_ceil(fun2, -5, 100) - 1) < 1e-5
+        assert abs(tps.find_ceil_point(fun2, -5, 100) - 1) < 1e-5
         return
 
     def test_tripart_pack_tripart(self):
@@ -139,7 +191,7 @@ class TestGeneral(unittest.TestCase):
         nodes = [[1, 1], [1, -1], [-1, 1], [-1, -1]]
         # 定义目标函数
         def target(x, y): return max([(x - p[0]) ** 2 + (y - p[1]) ** 2 for p in nodes])
-        x0, y0, _ = tpt.find_floor(target, -10, 10, -10, 10)
+        x0, y0, _ = tpt.find_floor_point(target, -10, 10, -10, 10)
         assert abs(x0) < 1e-5 and abs(y0) < 1e-5
         return
 

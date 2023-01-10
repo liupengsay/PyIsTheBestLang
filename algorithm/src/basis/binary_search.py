@@ -14,7 +14,7 @@ L2102 序列顺序查询（https://leetcode.cn/problems/sequentially-ordinal-ran
 
 P1577 切绳子（https://www.luogu.com.cn/problem/P1577）
 P1570 KC 喝咖啡
-
+P1843 奶牛晒衣服（https://www.luogu.com.cn/problem/P1843）贪心加二分
 
 参考：OI WiKi（xx）
 """

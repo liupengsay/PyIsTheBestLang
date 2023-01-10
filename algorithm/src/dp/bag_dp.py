@@ -15,6 +15,11 @@ P1509 找啊找啊找GF（https://www.luogu.com.cn/problem/P1509）四重背包
 P1060 [NOIP2006 普及组] 开心的金明（https://www.luogu.com.cn/problem/P1509）一维背包DP
 P1566 加等式（https://www.luogu.com.cn/problem/P1566#submit）限制计数背包
 P1759 通天之潜水（https://www.luogu.com.cn/problem/P1759）二重背包
+P1794 装备运输（https://www.luogu.com.cn/problem/P1794）二重背包
+P1806 跑步（https://www.luogu.com.cn/problem/P1806）连续值一维有限背包计数
+P1853 投资的最大效益（https://www.luogu.com.cn/problem/P1853）一维无限背包有技巧成倍缩小背包范围
+
+P1874 快速求和（https://www.luogu.com.cn/problem/P1874）类似区间与背包的结合枚举前一个字符串加号分割点求和
 参考：OI WiKi（xx）
 """
 

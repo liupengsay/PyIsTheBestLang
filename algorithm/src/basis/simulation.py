@@ -6,7 +6,7 @@
 功能：根据题意进行模拟
 题目：
 L2296 设计一个文本编辑器（https://leetcode.cn/problems/design-a-text-editor/）使用指针维护结果进行模拟
-
+P1815 蠕虫游戏（https://www.luogu.com.cn/problem/P1815）模拟类似贪吃蛇的移动
 参考：OI WiKi（xx）
 """
 

@@ -18,6 +18,9 @@ L2203 得到要求路径的最小带权子图（https://leetcode.cn/problems/min
 P1339 [USACO09OCT]Heat Wave G（https://www.luogu.com.cn/problem/P1339）标准最短路计算
 P1342 请柬（https://www.luogu.com.cn/problem/P1342）正反两遍最短路
 P1576 最小花费（https://www.luogu.com.cn/problem/P1576）堆优化转换成负数求最短路
+
+P1821 [USACO07FEB] Cow Party S（https://www.luogu.com.cn/problem/P1821）正反两遍最短路
+P1882 接力赛跑（https://www.luogu.com.cn/problem/P1882）转换为最短路求解最短路距离最远的点
 参考：OI WiKi（xx）
 """
 

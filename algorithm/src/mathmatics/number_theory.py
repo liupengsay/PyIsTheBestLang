@@ -9,6 +9,8 @@
 
 
 参考：OI WiKi（xx）
+P1865 A % B Problem（https://www.luogu.com.cn/problem/P1865）通过线性筛素数后进行二分查询区间素数个数
+
 """
 
 import math
