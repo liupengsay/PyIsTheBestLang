@@ -21,6 +21,7 @@ P1576 最小花费（https://www.luogu.com.cn/problem/P1576）堆优化转换成
 
 P1821 [USACO07FEB] Cow Party S（https://www.luogu.com.cn/problem/P1821）正反两遍最短路
 P1882 接力赛跑（https://www.luogu.com.cn/problem/P1882）转换为最短路求解最短路距离最远的点
+P1907 设计道路（https://www.luogu.com.cn/problem/P1907）自定义建图计算最短路
 参考：OI WiKi（xx）
 """
 

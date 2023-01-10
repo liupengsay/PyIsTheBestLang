@@ -11,15 +11,17 @@ L1368 使网格图至少有一条有效路径的最小代价（https://leetcode.
 L2258 逃离火灾（https://leetcode.cn/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/）使用二分查找加双源BFS进行模拟
 P5507 机关（https://www.luogu.com.cn/problem/P5507）双向BFS进行搜索
 L2092 找出知晓秘密的所有专家（https://leetcode.cn/problems/find-all-people-with-secret/）按照时间排序，在同一时间进行BFS扩散
-
+P1747 好奇怪的游戏（https://www.luogu.com.cn/problem/P1747）双向BFS搜索最短距离
 参考：OI WiKi（xx）
 """
+
+
+
 
 import bisect
 import random
 import re
 import unittest
-
 from typing import List
 import heapq
 import math
@@ -27,22 +29,16 @@ from collections import defaultdict, Counter, deque
 from functools import lru_cache
 from itertools import combinations
 from sortedcontainers import SortedList, SortedDict, SortedSet
-
 from sortedcontainers import SortedDict
 from functools import reduce
 from operator import xor
 from functools import lru_cache
-
 import random
 from itertools import permutations, combinations
 import numpy as np
-
 from decimal import Decimal
-
 import heapq
 import copy
-
-
 class BFS:
     def __init__(self):
         return
@@ -122,6 +118,53 @@ class BFS:
         print(" ".join(str(x) for x in path))
         return
 
+    @staticmethod
+    def main_p1747(x0, y0, x2, y2):
+
+        # 双向BFS模板题
+
+        def check(x1, y1):
+            if (x1, y1) == (1, 1):
+                return 0
+
+            visit1 = {(x1, y1): 0}
+            visit2 = {(1, 1): 0}
+            direc = [[1, 2], [1, -2], [-1, 2], [-1, -2],
+                     [2, 1], [2, -1], [-2, 1], [-2, -1]]
+            direc.extend([[2, 2], [2, -2], [-2, 2], [-2, -2]])
+            stack1 = [[x1, y1]]
+            stack2 = [[1, 1]]
+            step = 1
+
+            while True:
+                nex1 = []
+                for i, j in stack1:
+                    for a, b in direc:
+                        if 0 < i + a <= 20 and 0 < j + b <= 20 and (i + a, j + b) not in visit1:
+                            visit1[(i + a, j + b)] = step
+                            nex1.append([i + a, j + b])
+                            if (i + a, j + b) in visit2:
+                                return step + visit2[(i + a, j + b)]
+
+                stack1 = nex1
+
+                nex2 = []
+                for i, j in stack2:
+                    for a, b in direc:
+                        if 0 < i + a <= 20 and 0 < j + b <= 20 and (i + a, j + b) not in visit2:
+                            visit2[(i + a, j + b)] = step
+                            nex2.append([i + a, j + b])
+                            if (i + a, j + b) in visit1:
+                                return step + visit1[(i + a, j + b)]
+
+                stack2 = nex2
+                step += 1
+            return -1
+
+        ans1 = check(x0, y0)
+        ans2 = check(x2, y2)
+        return ans1, ans2
+
 
 class Solution:
     def minimumObstacles(self, grid: List[List[int]]) -> int:
@@ -137,8 +180,10 @@ class Solution:
                     g = grid[x][y]
                     if dis[x][y] + g < dis[nx][ny]:
                         dis[nx][ny] = dis[x][y] + g
-                        if g == 0: q.appendleft((nx, ny))
-                        else: q.append((nx, ny))
+                        if g == 0:
+                            q.appendleft((nx, ny))
+                        else:
+                            q.append((nx, ny))
         return dis[m - 1][n - 1]
 
 
@@ -157,7 +202,8 @@ class Solution:
                 continue
             seen.add((x, y))
             cur_pos = x * n + y
-            for i, (nx, ny) in enumerate([(x, y + 1), (x, y - 1), (x + 1, y), (x - 1, y)]):
+            for i, (nx, ny) in enumerate(
+                    [(x, y + 1), (x, y - 1), (x + 1, y), (x - 1, y)]):
                 new_pos = nx * n + ny
                 new_dis = dist[cur_pos] + (1 if grid[x][y] != i + 1 else 0)
                 if 0 <= nx < m and 0 <= ny < n and new_dis < dist[new_pos]:
