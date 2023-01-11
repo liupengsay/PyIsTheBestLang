@@ -18,6 +18,7 @@ L2147 分隔长廊的方案数（https://leetcode.cn/problems/number-of-ways-to-
 L2122 还原原数组（https://leetcode.cn/problems/recover-the-original-array/）枚举差值 k 判断是否合法
 
 P1632 点的移动（https://www.luogu.com.cn/problem/P1632）枚举横坐标和纵坐标的所有组合移动距离
+P2128 赤壁之战（https://www.luogu.com.cn/problem/P2128）枚举完全图的顶点组合，平面图最多四个点
 参考：OI WiKi（xx）
 """
 
