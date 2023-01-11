@@ -13,7 +13,7 @@ L2463 最小移动总距离（https://leetcode.cn/problems/minimum-total-distanc
 预处理区间DP（需要预处理一个DP再计算最终DP）
 L2472 不重叠回文子字符串的最大数目（https://leetcode.cn/problems/maximum-number-of-non-overlapping-palindrome-substrings/）回文子串判定DP加线性DP
 L2430 对字母串可执行的最大删除数（https://leetcode.cn/problems/maximum-deletions-on-a-string/）最长公共前缀DP加线性DP
-P1521 求逆序对（https://www.luogu.com.cn/problem/P1521）
+P1521 求逆序对（https://www.luogu.com.cn/problem/P1521）使用归并排序计算移动次数，也可以使用倍增的树状数组
 P1775 石子合并（弱化版）（https://www.luogu.com.cn/problem/P1775）
 
 参考：OI WiKi（xx）

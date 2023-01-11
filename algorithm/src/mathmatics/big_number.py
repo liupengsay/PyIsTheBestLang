@@ -9,7 +9,8 @@ Lxxxx xxxx（https://leetcode.cn/problems/shortest-palindrome/）xxxx
 P1920 成功密码（https://www.luogu.com.cn/problem/P1920）预估高精度计算与公式 -ln(1-x) = sum(x**i/i for in range(1, n+1)) 其中 n 趋近于无穷
 P1729 计算e（https://www.luogu.com.cn/problem/P1729）高精度计算e小数位
 P1727 计算π（https://www.luogu.com.cn/problem/P1727）高精度计算π小数位
-
+P1530 [USACO2.4]分数化小数 Fractions to Decimals（https://www.luogu.com.cn/problem/P1530）分数化为小数
+P1517 高精求小数幂（https://www.luogu.com.cn/record/list?user=739032&status=12&page=5）高精度计算小数的幂值
 
 参考：OI WiKi（xx）
 """
@@ -50,6 +51,7 @@ class HighPrecision:
 
     @staticmethod
     def float_pow(r, n):
+        # 高精度计算小数的幂值
         ans = (Decimal(r) ** int(n)).normalize()
         ans = "{:f}".format(ans)
         return ans

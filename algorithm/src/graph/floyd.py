@@ -9,7 +9,7 @@
 题目：
 P1119 灾后重建 （https://www.luogu.com.cn/problem/P1119）离线查询加Floyd动态更新经过中转站的起终点距离
 P1807 最长路（https://www.luogu.com.cn/problem/P1807）
-P1476 休息中的小呆
+P1476 休息中的小呆（https://www.luogu.com.cn/problem/P1476）Floyd求最长路
 参考：OI WiKi（xx）
 """
 

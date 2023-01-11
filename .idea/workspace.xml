@@ -6,18 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="增加题目">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/binary_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/binary_search.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/violent_enumeration.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/violent_enumeration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/circular_section.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/circular_section.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/simulation.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/simulation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/src/dp/bag_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/bag_dp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/digital_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/digital_dp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/interval_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/interval_dp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/linear_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/linear_dp.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/src/graph/dijkstra.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/dijkstra.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/floyd.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/floyd.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/src/graph/minimum_spanning_tree.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/minimum_spanning_tree.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/greedy/brain_storming.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/greedy/brain_storming.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/fast_power.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/fast_power.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/number_theory.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/number_theory.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/big_number.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/big_number.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/src/search/dfs.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/search/dfs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/string/expression.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/string/expression.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_0.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_0.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -215,13 +213,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647300774340</updated>
-    </task>
-    <task id="LOCAL-00063" summary="排列组合">
-      <created>1672589316414</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1672589316414</updated>
     </task>
     <task id="LOCAL-00064" summary="增加日期类">
       <created>1672666553384</created>
@@ -559,7 +550,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673364320039</updated>
     </task>
-    <option name="localTasksCounter" value="112" />
+    <task id="LOCAL-00112" summary="增加题目">
+      <created>1673393196928</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1673393196928</updated>
+    </task>
+    <option name="localTasksCounter" value="113" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

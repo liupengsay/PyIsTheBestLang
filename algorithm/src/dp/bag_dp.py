@@ -22,6 +22,10 @@ P1853 投资的最大效益（https://www.luogu.com.cn/problem/P1853）一维无
 P1874 快速求和（https://www.luogu.com.cn/problem/P1874）类似区间与背包的结合枚举前一个字符串加号分割点求和
 P1977 出租车拼车（https://www.luogu.com.cn/problem/P1977）分组有限背包
 P1586 四方定理（https://www.luogu.com.cn/problem/P1586）分组无限背包
+P1566 加等式（https://www.luogu.com.cn/problem/P1566）一维有限背包计数
+P1509 找啊找啊找GF（https://www.luogu.com.cn/problem/P1509）二重背包，转移的时候比较优先级有两个
+
+P1504 积木城堡（https://www.luogu.com.cn/problem/P1504）一维有限背包DP
 参考：OI WiKi（xx）
 """
 

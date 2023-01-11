@@ -12,7 +12,8 @@ L2209 用地毯覆盖后的最少白色砖块（https://leetcode.cn/problems/min
 L2188 完成比赛的最少时间（https://leetcode.cn/problems/minimum-time-to-finish-the-race/）预处理DP
 L2167 移除所有载有违禁货物车厢所需的最少时间（https://leetcode.cn/problems/minimum-time-to-remove-all-cars-containing-illegal-goods/）使用前缀后缀DP预处理后进行枚举
 P1970 [NOIP2013 提高组] 花匠（https://www.luogu.com.cn/problem/P1970）使用贪心与动态规划计算最长的山脉子数组
-
+P1564 膜拜（https://www.luogu.com.cn/problem/P1564）线性DP
+P1481 魔族密码（https://www.luogu.com.cn/problem/P1481）线性DP
 参考：OI WiKi（xx）
 """
 

@@ -35,6 +35,7 @@ P1965 [NOIP2013 提高组] 转圈游戏（https://www.luogu.com.cn/problem/P1965
 957. N 天后的牢房（https://leetcode.cn/problems/prison-cells-after-n-days/）循环节计算
 418. 屏幕可显示句子的数量（https://leetcode.cn/problems/sentence-screen-fitting/）循环节计算
 466. 统计重复个数（https://leetcode.cn/problems/count-the-repetitions/）循环节计算
+P1532 卡布列克圆舞曲（https://www.luogu.com.cn/problem/P1532）循环节计算
 参考：OI WiKi（xx）
 """
 

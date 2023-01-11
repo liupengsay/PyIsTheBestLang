@@ -9,6 +9,7 @@ P1120 小木棍（https://www.luogu.com.cn/problem/P1120）把数组分成和相
 P1692 部落卫队（https://www.luogu.com.cn/problem/P1692）暴力搜索枚举字典序最大可行的连通块
 
 P1612 [yLOI2018] 树上的链（https://www.luogu.com.cn/problem/P1612）使用dfs记录路径的前缀和并使用二分确定最长链条
+P1475 [USACO2.3]控制公司 Controlling Companies（https://www.luogu.com.cn/problem/P1475）深搜确定可以控制的公司对
 参考：OI WiKi（xx）
 """
 
