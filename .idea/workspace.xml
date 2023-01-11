@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="增加题目">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/search/bfs.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/search/bfs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/search/dfs.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/search/dfs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/matrix_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/matrix_dp.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -212,13 +210,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647300774340</updated>
-    </task>
-    <task id="LOCAL-00067" summary="增加日期相关处理函数">
-      <created>1672668122802</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1672668122802</updated>
     </task>
     <task id="LOCAL-00068" summary="快速读写">
       <created>1672668147042</created>
@@ -556,7 +547,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673479482383</updated>
     </task>
-    <option name="localTasksCounter" value="116" />
+    <task id="LOCAL-00116" summary="增加题目">
+      <created>1673479649427</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1673479649428</updated>
+    </task>
+    <option name="localTasksCounter" value="117" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
