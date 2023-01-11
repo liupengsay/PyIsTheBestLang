@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="增加题目">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/tree_array.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/data_structure/tree_array.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/bag_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/bag_dp.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/src/basis/range.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/src/dp/linear_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/linear_dp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/search/dfs.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/search/dfs.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -86,7 +85,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in tree_array.py">
+  <component name="RunManager" selected="Python tests.Unittests in range.py">
     <configuration name="强连通分量" type="PythonConfigurationType" factoryName="Python">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -150,20 +149,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for expression.TestGeneral.test_english_number" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <module name="PCRecord" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/string" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;expression.TestGeneral.test_english_number&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
     <configuration name="Unittests for linear_dp.TestGeneral" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -176,6 +161,20 @@
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;linear_dp.TestGeneral&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests in range.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="PCRecord" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/basis" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/basis/range.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <configuration name="Unittests in tree_array.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
@@ -194,11 +193,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Unittests in range.py" />
         <item itemvalue="Python tests.Unittests in tree_array.py" />
         <item itemvalue="Python tests.Unittests for linear_dp.TestGeneral" />
         <item itemvalue="Python.problem_0" />
         <item itemvalue="Python.temp" />
-        <item itemvalue="Python tests.Unittests for expression.TestGeneral.test_english_number" />
       </list>
     </recent_temporary>
   </component>
@@ -213,13 +212,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647300774340</updated>
-    </task>
-    <task id="LOCAL-00069" summary="增加闰年与非闰年天数">
-      <created>1672668244355</created>
-      <option name="number" value="00069" />
-      <option name="presentableId" value="LOCAL-00069" />
-      <option name="project" value="LOCAL" />
-      <updated>1672668244355</updated>
     </task>
     <task id="LOCAL-00070" summary="增加unix时间戳">
       <created>1672697431540</created>
@@ -557,7 +549,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673479843327</updated>
     </task>
-    <option name="localTasksCounter" value="118" />
+    <task id="LOCAL-00118" summary="增加题目">
+      <created>1673480385812</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1673480385812</updated>
+    </task>
+    <option name="localTasksCounter" value="119" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
