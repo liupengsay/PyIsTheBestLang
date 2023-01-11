@@ -25,6 +25,7 @@ P1907 设计道路（https://www.luogu.com.cn/problem/P1907）自定义建图计
 P1744 采购特价商品（https://www.luogu.com.cn/problem/P1744）裸题最短路
 P1529 [USACO2.4]回家 Bessie Come Home（https://www.luogu.com.cn/problem/P1529）裸题最短路
 P1649 [USACO07OCT]Obstacle Course S（https://www.luogu.com.cn/problem/P1649）自定义距离计算的最短路
+P2083 找人（https://www.luogu.com.cn/problem/P2083）反向最短路
 参考：OI WiKi（xx）
 """
 

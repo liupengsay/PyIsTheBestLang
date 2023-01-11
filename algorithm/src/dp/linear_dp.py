@@ -18,6 +18,8 @@ P2029 跳舞（https://www.luogu.com.cn/problem/P2029）线性DP
 P2031 脑力达人之分割字串（https://www.luogu.com.cn/problem/P2031）线性DP
 P2062 分队问题（https://www.luogu.com.cn/problem/P2062）线性DP+前缀最大值DP优化
 P2072 宗教问题（https://www.luogu.com.cn/problem/P2072）两个线性DP
+
+P2096 最佳旅游线路（https://www.luogu.com.cn/problem/P2096）最大连续子序列和
 参考：OI WiKi（xx）
 """
 

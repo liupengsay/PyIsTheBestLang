@@ -13,6 +13,8 @@ P1475 [USACO2.3]控制公司 Controlling Companies（https://www.luogu.com.cn/pr
 
 P2080 增进感情（https://www.luogu.com.cn/problem/P2080）深搜回溯与剪枝
 301. 删除无效的括号（https://leetcode.cn/problems/remove-invalid-parentheses/）深搜回溯与剪枝
+P2090 数字对（https://www.luogu.com.cn/problem/P2090）深搜贪心回溯剪枝与辗转相减法
+
 参考：OI WiKi（xx）
 """
 
@@ -68,6 +70,31 @@ class DFS:
 
         dfs(0)
         return visit, interval
+
+    @staticmethod
+    def add_to_n(n):
+
+        # 计算将 [1, 1] 通过 [a, b] 到 [a, a+b] 或者 [a+b, a] 的方式最少次数变成 a == n or b == n
+        if n == 1:
+            return 0
+
+        def gcd_minus(a, b, c):
+            nonlocal ans
+            if c >= ans or not b:
+                return
+            assert a >= b
+            if b == 1:
+                ans = ans if ans < c + a - 1 else c + a - 1
+                return
+
+            # 逆向思维计算保证使 b 减少到 a 以下
+            gcd_minus(b, a % b, c + a // b)
+            return
+
+        ans = n - 1
+        for i in range(1, n):
+            gcd_minus(n, i, 0)
+        return ans
 
 
 class TestGeneral(unittest.TestCase):

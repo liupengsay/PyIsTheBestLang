@@ -1,18 +1,3 @@
-"""
-算法：最小生成树（Kruskal算法和Prim算法两种）
-功能：计算无向图边权值和最小的生成树
-Prim在稠密图中比Kruskal优，在稀疏图中比Kruskal劣。Prim是以更新过的节点的连边找最小值，Kruskal是直接将边排序。
-两者其实都是运用贪心的思路
-
-题目：
-P3366 最小生成树（https://www.luogu.com.cn/problem/P3366）计算最小生成树的权值和
-L1489 找到最小生成树里的关键边和伪关键边（https://leetcode.cn/problems/find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree/）计算最小生成树的关键边与伪关键边
-P2872 Building Roads S（https://www.luogu.com.cn/problem/P2872）使用prim计算最小生成树
-P1991 无线通讯网（https://www.luogu.com.cn/problem/P1991）计算保证k个连通块下最小的边权值
-P1661 扩散（https://www.luogu.com.cn/problem/P1661）最小生成树的边最大权值
-P1547 [USACO05MAR]Out of Hay S（https://www.luogu.com.cn/problem/P1547）最小生成树的边最大权值
-参考：OI WiKi（xx）
-"""
 
 import bisect
 import random
@@ -40,6 +25,25 @@ from decimal import Decimal
 
 import heapq
 import copy
+
+"""
+
+算法：最小生成树（Kruskal算法和Prim算法两种）
+功能：计算无向图边权值和最小的生成树
+Prim在稠密图中比Kruskal优，在稀疏图中比Kruskal劣。Prim是以更新过的节点的连边找最小值，Kruskal是直接将边排序。
+两者其实都是运用贪心的思路
+
+题目：
+P3366 最小生成树（https://www.luogu.com.cn/problem/P3366）计算最小生成树的权值和
+L1489 找到最小生成树里的关键边和伪关键边（https://leetcode.cn/problems/find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree/）计算最小生成树的关键边与伪关键边
+P2872 Building Roads S（https://www.luogu.com.cn/problem/P2872）使用prim计算最小生成树
+P1991 无线通讯网（https://www.luogu.com.cn/problem/P1991）计算保证k个连通块下最小的边权值
+P1661 扩散（https://www.luogu.com.cn/problem/P1661）最小生成树的边最大权值
+P1547 [USACO05MAR]Out of Hay S（https://www.luogu.com.cn/problem/P1547）最小生成树的边最大权值
+P2121 拆地毯（https://www.luogu.com.cn/problem/P2121）保留 k 条边的最大生成树权值
+参考：OI WiKi（xx）
+"""
+
 
 class UnionFind:
     def __init__(self, n):
@@ -112,7 +116,6 @@ class MininumSpanningTree:
         return
 
 
-
 class Luogu:
     def __init__(self):
         return
@@ -121,6 +124,7 @@ class Luogu:
     def main_p2872():
         from sys import stdin
         # https://www.luogu.com.cn/record/74793627
+
         def main():
             n, m = map(int, input().split())
             edge = [[0] * (n + 1) for _ in range(n + 1)]
@@ -129,14 +133,14 @@ class Luogu:
                 vtx.append([int(i) for i in input().split()])
             for i in range(1, n + 1):
                 for j in range(i + 1, n + 1):
-                    edge[i][j] = edge[j][i] = ((vtx[i][0] - vtx[j][0]) ** 2 + \
+                    edge[i][j] = edge[j][i] = ((vtx[i][0] - vtx[j][0]) ** 2 +
                                                (vtx[i][1] - vtx[j][1]) ** 2) ** 0.5
             for _ in range(m):
                 a, b = map(int, input().split())
                 edge[a][b] = edge[b][a] = 0
 
-
             # prim计算最小生成树
+
             def Prim():
                 vis = set([1])
                 dist = edge[1].copy()
