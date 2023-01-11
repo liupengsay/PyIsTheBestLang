@@ -5,8 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="增加题目">
+      <change afterPath="$PROJECT_DIR$/algorithm/src/graph/bst.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/linear_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/linear_dp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/tree_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/tree_dp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/floyd.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/floyd.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_0.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_0.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_1.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -84,7 +89,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.problem_0">
+  <component name="RunManager" selected="Python tests.Unittests for linear_dp.TestGeneral">
     <configuration name="强连通分量" type="PythonConfigurationType" factoryName="Python">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -127,6 +132,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="temp" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="PCRecord" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/algorithm/tests/temp.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="Unittests for brain_storming.TestGeneral.test_brain_storming" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -155,21 +181,7 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests in brain_storming.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <module name="PCRecord" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/greedy" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/greedy/brain_storming.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Unittests in matrix_dp.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for linear_dp.TestGeneral" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -179,17 +191,17 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/dp/matrix_dp.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <option name="_new_target" value="&quot;linear_dp.TestGeneral&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Unittests for linear_dp.TestGeneral" />
         <item itemvalue="Python.problem_0" />
+        <item itemvalue="Python.temp" />
         <item itemvalue="Python tests.Unittests for expression.TestGeneral.test_english_number" />
         <item itemvalue="Python tests.Unittests for brain_storming.TestGeneral.test_brain_storming" />
-        <item itemvalue="Python tests.Unittests in brain_storming.py" />
-        <item itemvalue="Python tests.Unittests in matrix_dp.py" />
       </list>
     </recent_temporary>
   </component>
@@ -638,7 +650,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/algorithm/src/dp/tree_dp.py</url>
-          <line>149</line>
+          <line>154</line>
           <option name="timeStamp" value="188" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">

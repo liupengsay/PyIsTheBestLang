@@ -35,18 +35,35 @@ def mmin(a, b):
     return a if a < b else b
 
 
-
 class Solution:
-    def coinChange(self, coins: List[int], amount: int) -> int:
-        dp = [float("inf")]*(amount+1)
-        dp[0] = 1
-        for num in coins:
-            for i in range(num, amount+1):
-                if dp[i-num] + 1 < dp[i]:
-                    dp[i] = dp[i-num] + 1
-        if dp[-1] < float("inf"):
-            return dp[-1]
-        return -1
+    def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+        n, m = len(nums1), len(nums2)
+
+        def get_kth_num(k):
+            ind1 = ind2 = 0
+            while k:
+                if ind1 == n:
+                    return nums2[ind2 + k - 1]
+                if ind2 == m:
+                    return nums1[ind1 + k - 1]
+                index1 = min(ind1 + k // 2 - 1, n - 1)
+                index2 = min(ind2 + k // 2 - 1, m - 1)
+                val1, val2 = nums1[index1], nums2[index2]
+                if val1 < val2:
+                    ind1 = index1
+                    k -= index1 - ind1 + 1
+                    ind1 = index1 + 1
+                else:
+                    k -= index2 - ind2 + 1
+                    ind2 = index2 + 1
+            return min(nums1[ind1], nums2[ind2])
+
+        s = n + m
+        if s % 2:
+            return get_kth_num(s // 2 + 1)
+        return (get_kth_num(s // 2 + 1) + get_kth_num(s // 2)) / 2
+
+
 
 class TestGeneral(unittest.TestCase):
     def test_solution(self):

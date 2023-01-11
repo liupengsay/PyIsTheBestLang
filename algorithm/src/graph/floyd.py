@@ -10,6 +10,7 @@
 P1119 灾后重建 （https://www.luogu.com.cn/problem/P1119）离线查询加Floyd动态更新经过中转站的起终点距离
 P1807 最长路（https://www.luogu.com.cn/problem/P1807）
 P1476 休息中的小呆（https://www.luogu.com.cn/problem/P1476）Floyd求最长路
+P2009 跑步（https://www.luogu.com.cn/problem/P2009）Floyd求最短路
 参考：OI WiKi（xx）
 """
 
@@ -62,20 +63,14 @@ class Floyd:
         ans = ans if ans > float("-inf") else -1
         return ans
 
-# class Solution:
-#     def shortestPathLength(self, graph: List[List[int]]):
-#         n = len(graph)
-#         d = [[n + 1] * n for _ in range(n)]
-#         for i in range(n):
-#             for j in graph[i]:
-#                 d[i][j] = 1
-#
-#         # 使用 floyd 算法预处理出所有点对之间的最短路径长度
-#         for k in range(n):
-#             for i in range(n):
-#                 for j in range(n):
-#                     d[i][j] = min(d[i][j], d[i][k] + d[k][j])
-#         return dp
+    @staticmethod
+    def shortest_path(n, dp):
+        # 使用 floyd 算法计算所有点对之间的最短路
+        for k in range(n):  # 中间节点
+            for i in range(n):  # 起始节点
+                for j in range(n):  # 结束节点
+                    dp[i][j] = min(dp[i][j], dp[i][k] + dp[k][j])
+        return dp
 
 
 
