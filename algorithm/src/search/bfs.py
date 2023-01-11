@@ -1,6 +1,7 @@
-"""
+import unittest
+from collections import deque
+from typing import List
 
-"""
 """
 算法：广度优先搜索
 功能：在有向图与无向图进行扩散，多源双向BFS，0-1BFS（类似SPFA）
@@ -12,33 +13,12 @@ L2258 逃离火灾（https://leetcode.cn/problems/minimum-cost-to-make-at-least-
 P5507 机关（https://www.luogu.com.cn/problem/P5507）双向BFS进行搜索
 L2092 找出知晓秘密的所有专家（https://leetcode.cn/problems/find-all-people-with-secret/）按照时间排序，在同一时间进行BFS扩散
 P1747 好奇怪的游戏（https://www.luogu.com.cn/problem/P1747）双向BFS搜索最短距离
+
+P2040 打开所有的灯（https://www.luogu.com.cn/problem/P2040）定义状态进行 BFS 搜索
 参考：OI WiKi（xx）
 """
 
 
-
-
-import bisect
-import random
-import re
-import unittest
-from typing import List
-import heapq
-import math
-from collections import defaultdict, Counter, deque
-from functools import lru_cache
-from itertools import combinations
-from sortedcontainers import SortedList, SortedDict, SortedSet
-from sortedcontainers import SortedDict
-from functools import reduce
-from operator import xor
-from functools import lru_cache
-import random
-from itertools import permutations, combinations
-import numpy as np
-from decimal import Decimal
-import heapq
-import copy
 class BFS:
     def __init__(self):
         return
@@ -140,7 +120,8 @@ class BFS:
                 nex1 = []
                 for i, j in stack1:
                     for a, b in direc:
-                        if 0 < i + a <= 20 and 0 < j + b <= 20 and (i + a, j + b) not in visit1:
+                        if 0 < i + a <= 20 and 0 < j + \
+                                b <= 20 and (i + a, j + b) not in visit1:
                             visit1[(i + a, j + b)] = step
                             nex1.append([i + a, j + b])
                             if (i + a, j + b) in visit2:
@@ -151,7 +132,8 @@ class BFS:
                 nex2 = []
                 for i, j in stack2:
                     for a, b in direc:
-                        if 0 < i + a <= 20 and 0 < j + b <= 20 and (i + a, j + b) not in visit2:
+                        if 0 < i + a <= 20 and 0 < j + \
+                                b <= 20 and (i + a, j + b) not in visit2:
                             visit2[(i + a, j + b)] = step
                             nex2.append([i + a, j + b])
                             if (i + a, j + b) in visit1:
@@ -170,7 +152,7 @@ class Solution:
     def minimumObstacles(self, grid: List[List[int]]) -> int:
         # L2290
         m, n = len(grid), len(grid[0])
-        dis = [[inf] * n for _ in range(m)]
+        dis = [[float("inf")] * n for _ in range(m)]
         dis[0][0] = 0
         q = deque([(0, 0)])
         while q:
@@ -194,6 +176,7 @@ class Solution:
         BIG = int(1e9)
         dist = [0] + [BIG] * (m * n - 1)
         seen = set()
+        import collections
         q = collections.deque([(0, 0)])
 
         while len(q) > 0:

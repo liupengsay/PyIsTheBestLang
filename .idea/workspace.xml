@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="增加题目">
-      <change afterPath="$PROJECT_DIR$/algorithm/src/graph/bst.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/linear_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/linear_dp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/tree_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/tree_dp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/floyd.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/floyd.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_0.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_0.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/search/bfs.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/search/bfs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/search/dfs.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/search/dfs.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -216,20 +212,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647300774340</updated>
-    </task>
-    <task id="LOCAL-00065" summary="增加三十六进制字符串">
-      <created>1672667947114</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1672667947114</updated>
-    </task>
-    <task id="LOCAL-00066" summary="修改直径端点获取办法">
-      <created>1672668102977</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1672668102977</updated>
     </task>
     <task id="LOCAL-00067" summary="增加日期相关处理函数">
       <created>1672668122802</created>
@@ -560,7 +542,21 @@
       <option name="project" value="LOCAL" />
       <updated>1673395374702</updated>
     </task>
-    <option name="localTasksCounter" value="114" />
+    <task id="LOCAL-00114" summary="补充线性DP模板">
+      <created>1673479451209</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1673479451210</updated>
+    </task>
+    <task id="LOCAL-00115" summary="增加题目">
+      <created>1673479482383</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1673479482383</updated>
+    </task>
+    <option name="localTasksCounter" value="116" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -578,7 +574,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="卡特兰数" />
     <MESSAGE value="四重背包" />
     <MESSAGE value="高精度" />
     <MESSAGE value="有理数与无限循环小数、分数" />
@@ -602,6 +597,7 @@
     <MESSAGE value="正方形面积" />
     <MESSAGE value="N进制与十进制互相转换" />
     <MESSAGE value="正权环加最长路" />
+    <MESSAGE value="补充线性DP模板" />
     <MESSAGE value="增加题目" />
     <option name="LAST_COMMIT_MESSAGE" value="增加题目" />
   </component>

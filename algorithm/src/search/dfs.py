@@ -67,14 +67,6 @@ class DFS:
         return visit, interval
 
 
-class ClassName:
-    def __init__(self):
-        return
-
-    def gen_result(self):
-        return
-
-
 class TestGeneral(unittest.TestCase):
 
     def test_dfs(self):
