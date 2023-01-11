@@ -26,6 +26,7 @@ P1566 加等式（https://www.luogu.com.cn/problem/P1566）一维有限背包计
 P1509 找啊找啊找GF（https://www.luogu.com.cn/problem/P1509）二重背包，转移的时候比较优先级有两个
 
 P1504 积木城堡（https://www.luogu.com.cn/problem/P1504）一维有限背包DP
+P2066 机器分配（https://www.luogu.com.cn/problem/P2066）分组有限背包，转移的时候比较优先级有两个
 参考：OI WiKi（xx）
 """
 

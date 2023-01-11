@@ -10,7 +10,7 @@ P3368 树状数组 2（https://www.luogu.com.cn/problem/P3368）区间值更新�
 P5677 配对统计（https://www.luogu.com.cn/problem/P5677）区间值更新与求和
 L2179 统计数组中好三元组数目（https://leetcode.cn/problems/count-good-triplets-in-an-array/）维护区间范围内的个数
 
-
+P2068 统计和（https://www.luogu.com.cn/problem/P2068）单点更新与区间求和
 参考：OI WiKi（https://oi-wiki.org/ds/fenwick/）
 """
 
@@ -52,7 +52,7 @@ class TreeArrayRangeSum:
         return x & (-x)
 
     # 更新单点的差分数值
-    def add(self, k, v):
+    def _add(self, k, v):
         v1 = k * v
         while k <= self.n:
             self.t1[k] = self.t1[k] + v
@@ -60,7 +60,7 @@ class TreeArrayRangeSum:
             k = k + self.lowest_bit(k)
 
     # 求差分数组的前缀和
-    def sum(self, t, k):
+    def _sum(self, t, k):
         ret = 0
         while k:
             ret = ret + t[k]
@@ -69,13 +69,13 @@ class TreeArrayRangeSum:
 
     # 更新差分的区间数值
     def update_range(self, l, r, v):
-        self.add(l, v)
-        self.add(r + 1, -v)
+        self._add(l, v)
+        self._add(r + 1, -v)
 
     # 求数组的前缀区间和
     def get_sum_range(self, l, r):
-        a = (r + 1) * self.sum(self.t1, r) - self.sum(self.t2, r)
-        b = l * self.sum(self.t1, l - 1) - self.sum(self.t2, l - 1)
+        a = (r + 1) * self._sum(self.t1, r) - self._sum(self.t2, r)
+        b = l * self._sum(self.t1, l - 1) - self._sum(self.t2, l - 1)
         return a - b
 
 
@@ -103,6 +103,34 @@ class TreeArrayPrefixMin:
         ans = float("inf")
         while x >= 1:
             ans = min(ans, self.c[x])
+            x -= self.lowest_bit(x)
+        return ans
+
+
+class TreeArrayPrefixMax:
+    # 单点更新与前缀最大值
+    def __init__(self, n):
+        self.n = n
+        # 数组索引从1开始
+        self.c = [float("-inf")]*(n+1)
+
+    # 求x的二进制表示中，最低位的1的位置对应的数，向右相加更新管辖值，向左相减获得前缀和
+    @staticmethod
+    def lowest_bit(x):
+        return x & -x
+
+    # 给nums索引x增加k，同时维护对应受到影响的区间和c数组
+    def add(self, x, k):
+        while x <= self.n:  # 不能越界
+            self.c[x] = max(self.c[x], k)
+            x = x + self.lowest_bit(x)
+        return
+
+    # 前缀求最小值
+    def get_prefix_min(self, x):  # a[1]..a[x]的最大值
+        ans = float("inf")
+        while x >= 1:
+            ans = max(ans, self.c[x])
             x -= self.lowest_bit(x)
         return ans
 
@@ -142,6 +170,23 @@ class TestGeneral(unittest.TestCase):
             tapm.add(i + 1, d)
             right = random.randint(0, ceil - 1)
             assert min(nums[:right + 1]) == tapm.get_prefix_min(right + 1)
+        return
+
+    @unittest.skip
+    def test_tree_array_prefix_max(self):
+        ceil = 1000
+        nums = [random.randint(0, ceil) for _ in range(ceil)]
+        tapm = TreeArrayPrefixMax(ceil)
+        for i in range(ceil):
+            tapm.add(i+1, nums[i])
+
+        for _ in range(ceil):
+            d = random.randint(-ceil, ceil)
+            i = random.randint(0, ceil - 1)
+            nums[i] += d
+            tapm.add(i + 1, d)
+            right = random.randint(0, ceil - 1)
+            assert max(nums[:right + 1]) == tapm.get_prefix_min(right + 1)
         return
 
 
