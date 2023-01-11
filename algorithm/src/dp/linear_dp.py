@@ -1,6 +1,6 @@
-"""
 
-"""
+import unittest
+
 """
 算法：线性DP
 功能：xxx
@@ -14,56 +14,35 @@ L2167 移除所有载有违禁货物车厢所需的最少时间（https://leetco
 P1970 [NOIP2013 提高组] 花匠（https://www.luogu.com.cn/problem/P1970）使用贪心与动态规划计算最长的山脉子数组
 P1564 膜拜（https://www.luogu.com.cn/problem/P1564）线性DP
 P1481 魔族密码（https://www.luogu.com.cn/problem/P1481）线性DP
+P2029 跳舞（https://www.luogu.com.cn/problem/P2029）线性DP
+P2031 脑力达人之分割字串（https://www.luogu.com.cn/problem/P2031）线性DP
 参考：OI WiKi（xx）
 """
 
-import bisect
-import random
-import re
-import unittest
 
-from typing import List
-import heapq
-import math
-from collections import defaultdict, Counter, deque
-from functools import lru_cache
-from itertools import combinations
-from sortedcontainers import SortedList, SortedDict, SortedSet
+class LinearDP:
+    def __init__(self):
+        return
 
-from sortedcontainers import SortedDict
-from functools import reduce
-from operator import xor
-from functools import lru_cache
-
-import random
-from itertools import permutations, combinations
-import numpy as np
-
-from decimal import Decimal
-
-import heapq
-import copy
-
-
-class Solution:
-    def minimumCosts(self, regular: List[int], express: List[int], expressCost: int) -> List[int]:
-        # L2361
-        n = len(regular)
-        cost = [[0, 0] for _ in range(n + 1)]
-        cost[0][1] = expressCost
-        for i in range(1, n + 1):
-            cost[i][0] = min(cost[i - 1][0] + regular[i - 1],
-                             cost[i - 1][1] + express[i - 1])
-            cost[i][1] = min(cost[i][0] + expressCost,
-                             cost[i - 1][1] + express[i - 1])
-        return [min(c) for c in cost[1:]]
+    @staticmethod
+    def liner_dp_template(nums):
+        # 线性 DP 递推模板（以最长上升子序列长度为例）
+        n = len(nums)
+        dp = [0] * (n + 1)
+        for i in range(n):
+            dp[i + 1] = 1
+            for j in range(i):
+                if nums[i] > nums[j] and dp[j] + 1 > dp[i + 1]:
+                    dp[i + 1] = dp[j] + 1
+        return max(dp)
 
 
 class TestGeneral(unittest.TestCase):
 
-    def test_xxx(self):
-        nt = ClassName()
-        assert nt.gen_result(10 ** 11 + 131) == 66666666752
+    def test_linear_dp(self):
+        ld = LinearDP()
+        nums = [6, 3, 5, 2, 1, 6, 8, 9]
+        assert ld.liner_dp_template(nums) == 4
         return
 
 
