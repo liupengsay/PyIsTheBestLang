@@ -41,6 +41,7 @@ P1991 无线通讯网（https://www.luogu.com.cn/problem/P1991）计算保证k�
 P1661 扩散（https://www.luogu.com.cn/problem/P1661）最小生成树的边最大权值
 P1547 [USACO05MAR]Out of Hay S（https://www.luogu.com.cn/problem/P1547）最小生成树的边最大权值
 P2121 拆地毯（https://www.luogu.com.cn/problem/P2121）保留 k 条边的最大生成树权值
+P2126 Mzc家中的男家丁（https://www.luogu.com.cn/problem/P2126）转化为最小生成树求解
 参考：OI WiKi（xx）
 """
 
