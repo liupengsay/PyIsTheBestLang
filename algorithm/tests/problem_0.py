@@ -106,59 +106,30 @@ class FastIO:
         return wrappedfunc
 
 
-ans = 1  # 标记是第几层
-ans1 = 1  # 最高层数
-pr = FastIO().st
+def square(x):
+    return x*x
 
-
-class BST(object):
-    def __init__(self, data, left=None, right=None):  # BST的三个，值，左子树，右子树
-        super(BST, self).__init__()
-        self.data = data
-        self.left = left
-        self.right = right
-
-    def insert(self, val):  # 插入函数
-        global ans, ans1
-        if val < self.data:  # 如果小于就放到左子树
-            if self.left:  # 如果有左子树
-                ans += 1  # 层数+1
-                self.left.insert(val)  # 左子树调用递归
-            else:  # 没有左子树
-                ans += 1  # 层数+1
-                self.left = BST(val)  # 把值放在这个点的左子树上
-                if ans > ans1:  # 如果层数比之前最高层数高
-                    ans1 = ans  # 替换
-                ans = 1  # 重新开始
-        else:  # 比节点的值大
-            if self.right:  # 有右子树
-                ans += 1  # 层数+1
-                self.right.insert(val)  # 右子树调用递归
-            else:  # 没有右子树
-                ans += 1  # 层数+1
-                self.right = BST(val)  # 将值放在右子树上
-                if ans > ans1:  # 如果层数大于最高层数
-                    ans1 = ans  # 覆盖
-                ans = 1  # 重新开始
-        return
-
-    def post_order(self):  # 后序遍历：左，右，根
-        if self.left:  # 有左子树
-            self.left.post_order()  # 先遍历它的左子树
-        if self.right:  # 有右子树
-            self.right.post_order()  # 遍历右子树
-        pr(self.data)  # 都没有或已经遍历完就输出值
-        return
+def sqrt(x):
+    return math.sqrt(x)
 
 
 def main(ac=FastIO()):
-    n = ac.read_int()
-    nums = ac.read_list_ints()
-    bst = BST(nums[0])
-    for num in nums[1:]:
-        bst.insert(num)
-    ac.st(f"deep={ans1}")
-    bst.post_order()
+    sx, sy, tx, ty = ac.read_list_floats()
+    ans = inf
+    ans = ac.min(ans, sqrt(square(sx + tx + 2) + square(sy - ty)))   # I型计算
+    ans = ac.min(ans, sqrt(square(-sx - tx + 2) + square(sy - ty)))
+    ans = ac.min(ans, sqrt(square(sx - tx) + square(sy + ty + 2)))
+    ans = ac.min(ans, sqrt(square(sx - tx) + square(-sy - ty + 2)))
+
+    ans = ac.min(ans, sqrt(square(-sx - ty + 2) + square(-sy - tx + 1)))  # Z型计算
+    ans = ac.min(ans, sqrt(square(-sx - ty + 1) + square(-sy - tx + 2)))
+    ans = ac.min(ans, sqrt(square(sx - ty + 2) + square(-sy + tx + 1)))
+    ans = ac.min(ans, sqrt(square(sx - ty + 1) + square(-sy + tx + 2)))
+    ans = ac.min(ans, sqrt(square(-sx + ty + 2) + square(-sy + tx + 1)))
+    ans = ac.min(ans, sqrt(square(-sx + ty + 1) + square(-sy + tx + 2)))
+    ans = ac.min(ans, sqrt(square(sx + ty + 2) + square(sy + tx + 1)))
+    ans = ac.min(ans, sqrt(square(sx + ty + 1) + square(sy + tx + 2)))
+    ac.st("%.3f" % ans)
     return
 
 

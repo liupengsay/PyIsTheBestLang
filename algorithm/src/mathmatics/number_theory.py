@@ -1,7 +1,10 @@
 
-"""
+import math
+import random
+import unittest
+from itertools import combinations
 
-"""
+
 """
 算法：数论、欧拉筛、线性筛、素数、欧拉函数、因子分解、素因子分解、进制转换
 功能：有时候数位DP类型题目可以使用N进制来求取
@@ -18,11 +21,6 @@ P1952 火星上的加法运算（https://www.luogu.com.cn/problem/P1952）N进�
 
 P1592 互质（https://www.luogu.com.cn/problem/P1592）使用二分与容斥原理计算与 n 互质的第 k 个正整数
 """
-
-import math
-import random
-import unittest
-from itertools import combinations
 
 
 class NumberTheory:
@@ -58,6 +56,17 @@ class NumberTheory:
     def lcm(self, x, y):
         # 最小公倍数
         return x * y // self.gcd(x, y)
+
+    @staticmethod
+    def get_factor_upper(n):
+        # 使用素数筛类似的方法获取小于等于 n 的所有数除 1 与自身之外的所有因数
+        factor = [[] for _ in range(n+1)]
+        for i in range(2, n+1):
+            x = 2
+            while i*x <= n:
+                factor[i*x].append(i)
+                x += 1
+        return factor
 
     @staticmethod
     def factorial_zero_count(num):
@@ -379,6 +388,15 @@ class TestGeneral(unittest.TestCase):
 
         num = 2 * (3**2) * 7 * (11**3)
         assert nt.get_prime_factor(num) == [[2, 1], [3, 2], [7, 1], [11, 3]]
+        return
+
+    def test_get_factor(self):
+        nt = NumberTheory()
+
+        num = 1000
+        ans = nt.get_factor_upper(num)
+        for i in range(1, num+1):
+            assert ans[i] == nt.get_all_factor(i)[1:-1]
         return
 
 

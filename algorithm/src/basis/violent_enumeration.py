@@ -1,8 +1,7 @@
-"""
+import unittest
 
 """
-"""
-算法：暴力枚举
+算法：暴力枚举、旋转矩阵、螺旋矩阵
 功能：xxx
 题目：
 P1548 棋盘问题（https://www.luogu.com.cn/problem/P1548）枚举正方形与长方形的右小角计算个数
@@ -19,36 +18,9 @@ L2122 还原原数组（https://leetcode.cn/problems/recover-the-original-array/
 
 P1632 点的移动（https://www.luogu.com.cn/problem/P1632）枚举横坐标和纵坐标的所有组合移动距离
 P2128 赤壁之战（https://www.luogu.com.cn/problem/P2128）枚举完全图的顶点组合，平面图最多四个点
-
+P2191 小Z的情书（https://www.luogu.com.cn/problem/P2191）逆向思维旋转矩阵
 参考：OI WiKi（xx）
 """
-
-import bisect
-import random
-import re
-import unittest
-
-from typing import List
-import heapq
-import math
-from collections import defaultdict, Counter, deque
-from functools import lru_cache
-from itertools import combinations
-from sortedcontainers import SortedList, SortedDict, SortedSet
-
-from sortedcontainers import SortedDict
-from functools import reduce
-from operator import xor
-from functools import lru_cache
-
-import random
-from itertools import permutations, combinations
-import numpy as np
-
-from decimal import Decimal
-
-import heapq
-import copy
 
 
 class ViolentEnumeration:
@@ -56,7 +28,7 @@ class ViolentEnumeration:
         return
 
     @staticmethod
-    def matrix_rotate(matrix):
+    def matrix_rotate(matrix):  # 旋转矩阵
 
         # 将矩阵顺时针旋转 90 度
         n = len(matrix)
