@@ -4,7 +4,7 @@ from typing import List
 
 """
 算法：矩阵DP
-功能：在二维矩阵上进行转移的DP，经典的有矩阵前缀和，矩阵区间和，正方形最大边长或面积
+功能：在二维矩阵上进行转移的DP，经典的有矩阵前缀和，矩阵区间和，正方形最大边长或面积，编辑距离，公共子序列，最长回文子串
 题目：
 L2435 矩阵中和能被 K 整除的路径（https://leetcode.cn/problems/paths-in-matrix-whose-sum-is-divisible-by-k/）利用模 K 的特点进行路径计算
 L2088 统计农场中肥沃金字塔的数目（https://leetcode.cn/problems/count-fertile-pyramids-in-a-land/）类似求正方形的边长和面积进行矩阵DP
@@ -12,6 +12,7 @@ P1681 最大正方形II（https://www.luogu.com.cn/problem/P1681）求黑白格�
 221. 最大正方形（https://leetcode.cn/problems/maximal-square/）求全为 1 的最大正方形面积
 
 P2049 魔术棋子（https://www.luogu.com.cn/problem/P2049）求左上角到右下角所有路径的乘积取模数
+P2138 小Z的关系距离（https://www.luogu.com.cn/problem/P2138）最长公共子序列
 参考：OI WiKi（xx）
 """
 
