@@ -7,6 +7,8 @@
 题目：
 L2197 替换数组中的非互质数（https://leetcode.cn/problems/replace-non-coprime-numbers-in-array/）结合数学使用栈进行模拟
 P1944 最长括号匹配（https://www.luogu.com.cn/problem/P1944）最长连续合法括号字串长度
+
+P2201 数列编辑器（https://www.luogu.com.cn/problem/P2201）双栈模拟指针移动同时记录前缀和与前序最大前缀和
 参考：OI WiKi（xx）
 """
 

@@ -1,5 +1,7 @@
+import unittest
+
 """
-算法：双指针 快慢指针
+算法：双指针、快慢指针
 功能：通过相对移动来减少计算复杂度
 题目：xx（xx）
 L2444 统计定界子数组的数目（https://leetcode.cn/problems/count-subarrays-with-fixed-bounds/）通向双指针的移动来根据两个指针的位置来进行计数
@@ -7,35 +9,9 @@ L2398 预算内的最多机器人数目（https://leetcode.cn/problems/maximum-n
 L2302 统计得分小于 K 的子数组数目（https://leetcode.cn/problems/count-subarrays-with-score-less-than-k/）同向双指针维护指针位置与计数
 L2301 替换字符后匹配（https://leetcode.cn/problems/match-substring-after-replacement/）枚举匹配字符起点并使用双指针维护可行长度
 L2106 摘水果（https://leetcode.cn/problems/maximum-fruits-harvested-after-at-most-k-steps/）巧妙利用行走距离的计算更新双指针
+P2207 Photo（https://www.luogu.com.cn/problem/P2207）贪心加同向双指针
 参考：OI WiKi（xx）
 """
-
-import bisect
-import random
-import re
-import unittest
-
-from typing import List
-import heapq
-import math
-from collections import defaultdict, Counter, deque
-from functools import lru_cache
-from itertools import combinations
-from sortedcontainers import SortedList, SortedDict, SortedSet
-
-from sortedcontainers import SortedDict
-from functools import reduce
-from operator import xor
-from functools import lru_cache
-
-import random
-from itertools import permutations, combinations
-import numpy as np
-
-from decimal import Decimal
-
-import heapq
-import copy
 
 
 class TwoPointer:
@@ -65,7 +41,7 @@ class TwoPointer:
                 pre.add(nums[j])
                 j += 1
             # 视情况更新返回值
-            ans = ans if ans > j - i + 1 else j - i + 1
+            ans = ans if ans > j - i else j - i
             pre.discard(nums[i])
         return ans
 
@@ -90,7 +66,7 @@ class TestGeneral(unittest.TestCase):
     def test_two_pointer(self):
         nt = TwoPointer()
         nums = [1, 2, 3, 4, 4, 3, 3, 2, 1, 6, 3]
-        assert nt.same_direction(nums) == 5
+        assert nt.same_direction(nums) == 4
 
         nums = [1, 2, 3, 4, 4, 5, 6, 9]
         assert nt.opposite_direction(nums, 9)

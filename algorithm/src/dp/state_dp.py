@@ -13,6 +13,7 @@ L1349 参加考试的最大学生数（https://leetcode.cn/problems/maximum-stud
 P2704 炮兵阵地（https://www.luogu.com.cn/problem/P2704）记录两个前序状态进行转移
 L2172 数组的最大与和（https://leetcode.cn/problems/maximum-and-sum-of-array/）使用位运算和状态压缩进行转移
 
+P2196 [NOIP1996 提高组] 挖地雷（https://www.luogu.com.cn/problem/P2196）有向图最长路径加状压DP
 P1690 贪婪的Copy（https://www.luogu.com.cn/problem/P1690）最短路加状压DP
 参考：OI WiKi（xx）
 """

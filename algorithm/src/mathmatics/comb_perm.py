@@ -18,6 +18,7 @@ P1375 小猫（https://www.luogu.com.cn/problem/P1375）卡特兰数
 P1754 球迷购票问题（https://www.luogu.com.cn/problem/P1754）卡特兰数
 
 P2193 HXY和序列（https://www.luogu.com.cn/problem/P2193）使用隔板法与因数分解进行组合方案数求解
+2338. 统计理想数组的数目（https://leetcode.cn/problems/count-the-number-of-ideal-arrays/）使用隔板法与因数分解进行组合方案数求解
 
 参考：OI WiKi（xx）
 卡特兰数（https://oi-wiki.org/math/combinatorics/catalan/）

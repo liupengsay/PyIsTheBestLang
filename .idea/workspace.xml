@@ -4,12 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="矩阵旋转">
+    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="获取所有小于上界数的因子">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/violent_enumeration.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/violent_enumeration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/circular_section.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/circular_section.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/simulation.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/simulation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/stack.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/stack.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/two_pointer.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/two_pointer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/state_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/state_dp.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/comb_perm.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/comb_perm.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/number_theory.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/number_theory.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_0.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_0.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -57,7 +60,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/algorithm/submission" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="run.code.analysis.last.selected.profile" value="aDefault" />
-    <property name="settings.editor.selected.configurable" value="fileTemplates" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Python" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -87,7 +90,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in number_theory.py">
+  <component name="RunManager" selected="Python tests.Unittests in simulation.py">
     <configuration name="强连通分量" type="PythonConfigurationType" factoryName="Python">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -101,27 +104,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="D:\PCRecord\leetcode\template\图论\scc.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="problem_0" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="PCRecord" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/algorithm/tests/problem_0.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -144,7 +126,7 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for violent_enumeration.TestGeneral" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for simulation.TestGeneral.test_spiral_matrix" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -154,7 +136,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;violent_enumeration.TestGeneral&quot;" />
+      <option name="_new_target" value="&quot;simulation.TestGeneral.test_spiral_matrix&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -172,7 +154,7 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests in violent_enumeration.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests in simulation.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -182,17 +164,31 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/basis/violent_enumeration.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/basis/simulation.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests in two_pointer.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="PCRecord" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/basis" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/basis/two_pointer.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Unittests in simulation.py" />
+        <item itemvalue="Python tests.Unittests for simulation.TestGeneral.test_spiral_matrix" />
+        <item itemvalue="Python tests.Unittests in two_pointer.py" />
         <item itemvalue="Python tests.Unittests in number_theory.py" />
         <item itemvalue="Python tests.Unittests for number_theory.TestGeneral.test_get_factor" />
-        <item itemvalue="Python tests.Unittests in violent_enumeration.py" />
-        <item itemvalue="Python.problem_0" />
-        <item itemvalue="Python tests.Unittests for violent_enumeration.TestGeneral" />
       </list>
     </recent_temporary>
   </component>
@@ -207,13 +203,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647300774340</updated>
-    </task>
-    <task id="LOCAL-00078" summary="几种字典序排列">
-      <created>1672929171272</created>
-      <option name="number" value="00078" />
-      <option name="presentableId" value="LOCAL-00078" />
-      <option name="project" value="LOCAL" />
-      <updated>1672929171272</updated>
     </task>
     <task id="LOCAL-00079" summary="使用01trie求解异或问题">
       <created>1672929200031</created>
@@ -551,7 +540,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673482281743</updated>
     </task>
-    <option name="localTasksCounter" value="127" />
+    <task id="LOCAL-00127" summary="获取所有小于上界数的因子">
+      <created>1673535885694</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1673535885694</updated>
+    </task>
+    <option name="localTasksCounter" value="128" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -569,7 +565,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="容斥原理求互质与不互质的数个数" />
     <MESSAGE value="最近的回文数字" />
     <MESSAGE value="正方形求点与三角形面积计算" />
     <MESSAGE value="滑动指针窗口栈加队列" />
@@ -594,7 +589,8 @@
     <MESSAGE value="最小生成树识别与转化" />
     <MESSAGE value="矩阵二维DP" />
     <MESSAGE value="矩阵旋转" />
-    <option name="LAST_COMMIT_MESSAGE" value="矩阵旋转" />
+    <MESSAGE value="获取所有小于上界数的因子" />
+    <option name="LAST_COMMIT_MESSAGE" value="获取所有小于上界数的因子" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
