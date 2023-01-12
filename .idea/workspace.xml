@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="矩阵二维DP">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/violent_enumeration.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/violent_enumeration.py" afterDir="false" />
-    </list>
+    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="矩阵旋转" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +81,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests for violent_enumeration.TestGeneral">
+  <component name="RunManager" selected="Python tests.Unittests in violent_enumeration.py">
     <configuration name="强连通分量" type="PythonConfigurationType" factoryName="Python">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -162,27 +159,27 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests in tree_array.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests in violent_enumeration.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/data_structure" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/basis" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/data_structure/tree_array.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/basis/violent_enumeration.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Unittests in violent_enumeration.py" />
         <item itemvalue="Python tests.Unittests for violent_enumeration.TestGeneral" />
         <item itemvalue="Python tests.Unittests for spfa.TestGeneral.test_spfa" />
         <item itemvalue="Python tests.Unittests in spfa.py" />
         <item itemvalue="Python tests.Unittests in range.py" />
-        <item itemvalue="Python tests.Unittests in tree_array.py" />
       </list>
     </recent_temporary>
   </component>
@@ -197,13 +194,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647300774340</updated>
-    </task>
-    <task id="LOCAL-00076" summary="中缀表达式支持负数">
-      <created>1672845606277</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL-00076" />
-      <option name="project" value="LOCAL" />
-      <updated>1672845606277</updated>
     </task>
     <task id="LOCAL-00077" summary="处理加法的情形">
       <created>1672845853861</created>
@@ -541,7 +531,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673481650736</updated>
     </task>
-    <option name="localTasksCounter" value="125" />
+    <task id="LOCAL-00125" summary="矩阵旋转">
+      <created>1673482180326</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1673482180326</updated>
+    </task>
+    <option name="localTasksCounter" value="126" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -559,7 +556,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="使用进制计算第n个不含0的数" />
     <MESSAGE value="容斥原理求互质与不互质的数个数" />
     <MESSAGE value="最近的回文数字" />
     <MESSAGE value="正方形求点与三角形面积计算" />
@@ -584,7 +580,8 @@
     <MESSAGE value="根据几何知识暴力枚举" />
     <MESSAGE value="最小生成树识别与转化" />
     <MESSAGE value="矩阵二维DP" />
-    <option name="LAST_COMMIT_MESSAGE" value="矩阵二维DP" />
+    <MESSAGE value="矩阵旋转" />
+    <option name="LAST_COMMIT_MESSAGE" value="矩阵旋转" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
