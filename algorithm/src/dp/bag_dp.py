@@ -1,6 +1,14 @@
-"""
+import math
+import random
+import unittest
+from collections import defaultdict
+from itertools import combinations
+from itertools import permutations
+from decimal import Decimal, getcontext, MAX_PREC
+from types import GeneratorType
+from functools import cmp_to_key
 
-"""
+
 """
 算法：背包DP、分组背包、一维（无限有限）背包、二位背包、多重背包、分组背包、限制背包
 功能：一重背包DP，数量有限从后往前遍历，数量无限则从前往后遍历；多重背包DP，可使用二进制拆分进行优化。
@@ -27,33 +35,12 @@ P1509 找啊找啊找GF（https://www.luogu.com.cn/problem/P1509）二重背包�
 
 P1504 积木城堡（https://www.luogu.com.cn/problem/P1504）一维有限背包DP
 P2066 机器分配（https://www.luogu.com.cn/problem/P2066）分组有限背包，转移的时候比较优先级有两个
+
+P2340 [USACO03FALL]Cow Exhibition G（https://www.luogu.com.cn/problem/P2340）经典01背包变种问题还带负数加和
 参考：OI WiKi（xx）
 """
 
 
-
-
-import bisect
-import random
-import re
-import unittest
-from typing import List
-import heapq
-import math
-from collections import defaultdict, Counter, deque
-from functools import lru_cache
-from itertools import combinations
-from sortedcontainers import SortedList, SortedDict, SortedSet
-from sortedcontainers import SortedDict
-from functools import reduce
-from operator import xor
-from functools import lru_cache
-import random
-from itertools import permutations, combinations
-import numpy as np
-from decimal import Decimal
-import heapq
-import copy
 class BagDP:
     def __init__(self):
         return
@@ -153,6 +140,23 @@ class BagDP:
                     if dp[j - x][k - 1]:
                         dp[j][k] += dp[j - x][k - 1]
         return [sum(dp[num]) for num in nums]
+
+    @staticmethod
+    def one_dimension_limited_use_dct(nums):
+        # 一维有限背包（带负数的情况下使用字典做转移记录）
+        inf = float("inf")
+        pre = defaultdict(lambda: -inf)
+        pre[0] = 0
+        for s, f in nums:
+            cur = pre.copy()
+            for p in pre:
+                cur[p + s] = max(cur[p + s], pre[p] + f)
+            pre = cur
+        ans = 0
+        for p in pre:
+            if p >= 0 and pre[p] >= 0:
+                ans = ans if ans > p + pre[p] else p + pre[p]
+        return ans
 
 
 class TestGeneral(unittest.TestCase):

@@ -4,9 +4,12 @@
 题目：
 P2251 质量检测（https://www.luogu.com.cn/problem/P2251）滑动区间最小值
 L0239 滑动窗口最大值（https://leetcode.cn/problems/sliding-window-maximum/）滑动区间最大值
+P1750 出栈序列（https://www.luogu.com.cn/problem/P1750）经典题目，滑动指针窗口栈加队列
+
+P2311 loidc，想想看（https://www.luogu.com.cn/problem/P2311）不定长滑动窗口最大值索引
 参考：OI WiKi（xx）
 
-P1750 出栈序列（https://www.luogu.com.cn/problem/P1750）经典题目，滑动指针窗口栈加队列
+
 """
 
 import bisect

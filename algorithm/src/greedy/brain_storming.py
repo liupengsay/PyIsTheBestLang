@@ -22,7 +22,8 @@ P1684 考验（https://www.luogu.com.cn/problem/P1684）线性贪心满足条件
 P1658 购物（https://www.luogu.com.cn/problem/P1658）看似背包实则贪心
 P2001 硬币的面值（https://www.luogu.com.cn/problem/P2001）看似背包实则贪心
 P1620 漂亮字串（https://www.luogu.com.cn/problem/P1620）分类讨论进行贪心
-
+P2255 [USACO14JAN]Recording the Moolympics S（https://www.luogu.com.cn/problem/P2255）两个指针进行贪心
+P2327 [SCOI2005]扫雷（https://www.luogu.com.cn/problem/P2327）脑筋急转弯进行枚举
 参考：OI WiKi（xx）
 """
 

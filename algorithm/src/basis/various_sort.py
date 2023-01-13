@@ -4,6 +4,8 @@
 题目：xx（xx）
 
 L0045 把数组排成最小的数（https://leetcode.cn/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/）自定义排序携程快排
+P2310 loidc，看看海（https://www.luogu.com.cn/problem/P2310）预处理排序之后进行遍历
+
 参考：OI WiKi（xx）
 """
 

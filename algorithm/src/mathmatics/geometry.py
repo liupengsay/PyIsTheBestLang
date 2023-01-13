@@ -31,7 +31,7 @@ import copy
 功能：xxx
 题目：
 P1665 正方形计数（https://www.luogu.com.cn/problem/P1665）枚举正方形对角线顶点计算可行个数
-
+P2313 [HNOI2005]汤姆的游戏（https://www.luogu.com.cn/problem/P2313）判断点在矩形中或者圆形中
 参考：OI WiKi（xx）
 """
 
@@ -57,8 +57,8 @@ class Geometry:
 
     @staticmethod
     def compute_triangle_area(x1, y1, x2, y2, x3, y3):
-        return abs((x1 * y2 - x2 * y1) + (x2 * y3 -
-                   x3 * y2) + (x3 * y1 - x1 * y3)) / 2
+        # 可用于判断点与三角形的位置关系
+        return abs((x1 * y2 - x2 * y1) + (x2 * y3 - x3 * y2) + (x3 * y1 - x1 * y3)) / 2
 
 
 class TestGeneral(unittest.TestCase):

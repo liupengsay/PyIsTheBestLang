@@ -13,7 +13,7 @@ P2239 [NOIP2014 普及组] 螺旋矩阵（https://www.luogu.com.cn/problem/P2239
 54. 螺旋矩阵（https://leetcode.cn/problems/spiral-matrix/）https://leetcode.cn/problems/spiral-matrix/
 59. 螺旋矩阵 II（https://leetcode.cn/problems/spiral-matrix-ii/）
 2326. 螺旋矩阵 IV（https://leetcode.cn/problems/spiral-matrix-iv/）
-
+P2338 [USACO14JAN]Bessie Slows Down S（https://www.luogu.com.cn/problem/P2338）按照题意进行时间与距离的模拟
 参考：OI WiKi（xx）
 """
 

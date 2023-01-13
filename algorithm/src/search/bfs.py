@@ -15,6 +15,7 @@ L2092 找出知晓秘密的所有专家（https://leetcode.cn/problems/find-all-
 P1747 好奇怪的游戏（https://www.luogu.com.cn/problem/P1747）双向BFS搜索最短距离
 
 P2040 打开所有的灯（https://www.luogu.com.cn/problem/P2040）定义状态进行 BFS 搜索
+P2335 [SDOI2005]位图（https://www.luogu.com.cn/problem/P2335）广度优先搜索
 参考：OI WiKi（xx）
 """
 
@@ -22,6 +23,29 @@ P2040 打开所有的灯（https://www.luogu.com.cn/problem/P2040）定义状态
 class BFS:
     def __init__(self):
         return
+
+    @staticmethod
+    def bfs_template(grid):
+        # 广度优先搜索计算所有 "0" 到最近的 "1" 的距离
+        m, n = len(grid), len(grid[0])
+        stack = []
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == "1":
+                    grid[i][j] = 0
+                    stack.append([i, j])
+        # BFS 模板
+        step = 1
+        while stack:
+            nex = []
+            for i, j in stack:
+                for a, b in [[i - 1, j], [i + 1, j], [i, j - 1], [i, j + 1]]:
+                    if 0 <= a < m and 0 <= b < n and grid[a][b] == "0":
+                        grid[a][b] = step
+                        nex.append([a, b])
+            stack = nex
+            step += 1
+        return grid
 
     @staticmethod
     def bilateral_bfs():
