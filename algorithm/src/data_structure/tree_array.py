@@ -1,6 +1,6 @@
-"""
+import random
+import unittest
 
-"""
 """
 算法：树状数组
 功能：进行数组区间加减，和区间值求和（单点可转换为区间）
@@ -11,32 +11,10 @@ P5677 配对统计（https://www.luogu.com.cn/problem/P5677）区间值更新与
 L2179 统计数组中好三元组数目（https://leetcode.cn/problems/count-good-triplets-in-an-array/）维护区间范围内的个数
 
 P2068 统计和（https://www.luogu.com.cn/problem/P2068）单点更新与区间求和
+P2345 [USACO04OPEN] MooFest G（https://www.luogu.com.cn/problem/P2345）使用两个树状数组计数与加和更新查询
+P2357 守墓人（https://www.luogu.com.cn/problem/P2357）区间更新与区间求和
 参考：OI WiKi（https://oi-wiki.org/ds/fenwick/）
 """
-
-
-
-import bisect
-import random
-import re
-import unittest
-from typing import List
-import heapq
-import math
-from collections import defaultdict, Counter, deque
-from functools import lru_cache
-from itertools import combinations
-from sortedcontainers import SortedList, SortedDict, SortedSet
-from sortedcontainers import SortedDict
-from functools import reduce
-from operator import xor
-from functools import lru_cache
-import random
-from itertools import permutations, combinations
-import numpy as np
-from decimal import Decimal
-import heapq
-import copy
 
 
 class TreeArrayRangeSum:
