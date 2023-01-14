@@ -21,6 +21,8 @@ P2072 宗教问题（https://www.luogu.com.cn/problem/P2072）两个线性DP
 
 P2096 最佳旅游线路（https://www.luogu.com.cn/problem/P2096）最大连续子序列和
 P2285 [HNOI2004]打鼹鼠（https://www.luogu.com.cn/problem/P2285）线性DP+前缀最大值DP剪枝优化
+
+P2642 双子序列最大和（https://www.luogu.com.cn/problem/P2642）枚举前后两个非空的最大子序列和
 参考：OI WiKi（xx）
 """
 

@@ -16,6 +16,8 @@ P1747 好奇怪的游戏（https://www.luogu.com.cn/problem/P1747）双向BFS搜
 
 P2040 打开所有的灯（https://www.luogu.com.cn/problem/P2040）定义状态进行 BFS 搜索
 P2335 [SDOI2005]位图（https://www.luogu.com.cn/problem/P2335）广度优先搜索
+P2385 [USACO07FEB]Bronze Lilypad Pond B（https://www.luogu.com.cn/problem/P2385）广度优先搜索最短步数
+P2630 图像变换（https://www.luogu.com.cn/problem/P2630）BFS模拟计算最短次数与最小字典序
 参考：OI WiKi（xx）
 """
 

@@ -24,6 +24,8 @@ P2001 硬币的面值（https://www.luogu.com.cn/problem/P2001）看似背包实
 P1620 漂亮字串（https://www.luogu.com.cn/problem/P1620）分类讨论进行贪心
 P2255 [USACO14JAN]Recording the Moolympics S（https://www.luogu.com.cn/problem/P2255）两个指针进行贪心
 P2327 [SCOI2005]扫雷（https://www.luogu.com.cn/problem/P2327）脑筋急转弯进行枚举
+
+P2649 游戏预言（https://www.luogu.com.cn/problem/P2649）贪心，输的时候输最惨，赢的时候微弱优势
 参考：OI WiKi（xx）
 """
 

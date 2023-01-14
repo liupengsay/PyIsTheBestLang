@@ -15,6 +15,8 @@ L2127 参加会议的最多员工数（https://leetcode.cn/problems/maximum-empl
 2127. 参加会议的最多员工数（https://leetcode.cn/problems/maximum-employees-to-be-invited-to-a-meeting/）
 P1960 郁闷的记者（https://www.luogu.com.cn/problem/P1960）计算拓扑排序是否唯一
 P1992 不想兜圈的老爷爷（https://www.luogu.com.cn/problem/P1992）拓扑排序计算有向图是否有环
+
+P2712 摄像头（https://www.luogu.com.cn/problem/P2712）拓扑排序计算非环节点数
 参考：OI WiKi（xx）
 """
 

@@ -1,5 +1,4 @@
 
-
 import bisect
 import random
 import re
@@ -10,11 +9,12 @@ import heapq
 import math
 from collections import defaultdict, Counter, deque
 from functools import lru_cache
-from itertools import combinations, accumulate
+from itertools import combinations
 from sortedcontainers import SortedList, SortedDict, SortedSet
+
 from sortedcontainers import SortedDict
 from functools import reduce
-from operator import xor, mul, add
+from operator import xor
 from functools import lru_cache
 
 import random
@@ -26,28 +26,30 @@ from decimal import Decimal
 import heapq
 import copy
 
+"""
+算法：概率DP
+功能：xxx
+题目：
+P2719 搞笑世界杯（https://www.luogu.com.cn/record/list?user=739032&status=12&page=1）二维DP求概率
+
+参考：OI WiKi（xx）
+"""
 
 
 
-class Solution:
-    def simplifyPath(self, path: str) -> str:
-        lst = [w for w in path.split("/") if w]
-        stack = []
-        for w in lst:
-            if w == ".":
-                continue
-            if w == "..":
-                if stack:
-                    stack.pop()
-            else:
-                stack.append(w)
-        ans = "/" + "/".join(stack)
-        return ans
+class ClassName:
+    def __init__(self):
+        return
+
+    def gen_result(self):
+        return
 
 
 class TestGeneral(unittest.TestCase):
-    def test_solution(self):
-        assert Solution().countPairs(nums=[1, 4, 2, 7], low=2, high=6) == 6
+
+    def test_xxx(self):
+        nt = ClassName()
+        assert 1
         return
 
 

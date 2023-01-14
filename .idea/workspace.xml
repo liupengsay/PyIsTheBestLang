@@ -4,10 +4,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="螺旋矩阵">
+    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="增加题目">
+      <change afterPath="$PROJECT_DIR$/algorithm/src/dp/prob_dp.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/tree_array.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/data_structure/tree_array.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/binary_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/binary_search.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/date.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/date.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/hash.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/hash.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/range.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/range.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/simulation.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/simulation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/two_pointer.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/two_pointer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/violent_enumeration.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/violent_enumeration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/sparse_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/data_structure/sparse_table.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/bag_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/bag_dp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/interval_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/interval_dp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/linear_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/linear_dp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/matrix_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/matrix_dp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/dijkstra.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/dijkstra.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/floyd.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/floyd.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/minimum_spanning_tree.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/minimum_spanning_tree.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/scc.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/scc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/spfa.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/spfa.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/topological_sort.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/topological_sort.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/greedy/brain_storming.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/greedy/brain_storming.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/big_number.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/big_number.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/geometry.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/geometry.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/search/bfs.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/search/bfs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/search/dfs.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/search/dfs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_0.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_0.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/tests/temp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/temp.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -85,7 +111,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in tree_array.py">
+  <component name="RunManager" selected="Python.problem_0">
     <configuration name="强连通分量" type="PythonConfigurationType" factoryName="Python">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -107,7 +133,49 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for simulation.TestGeneral.test_spiral_matrix" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="problem_0" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="PCRecord" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/algorithm/tests/problem_0.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="temp" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="PCRecord" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/algorithm/tests/temp.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests in date.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -117,21 +185,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;simulation.TestGeneral.test_spiral_matrix&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Unittests in bag_dp.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <module name="PCRecord" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/dp" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/dp/bag_dp.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/basis/date.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
@@ -163,27 +217,13 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests in two_pointer.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <module name="PCRecord" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/basis" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/basis/two_pointer.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Unittests in tree_array.py" />
-        <item itemvalue="Python tests.Unittests in bag_dp.py" />
+        <item itemvalue="Python.problem_0" />
+        <item itemvalue="Python.temp" />
+        <item itemvalue="Python tests.Unittests in date.py" />
         <item itemvalue="Python tests.Unittests in simulation.py" />
-        <item itemvalue="Python tests.Unittests for simulation.TestGeneral.test_spiral_matrix" />
-        <item itemvalue="Python tests.Unittests in two_pointer.py" />
+        <item itemvalue="Python tests.Unittests in tree_array.py" />
       </list>
     </recent_temporary>
   </component>
@@ -198,13 +238,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647300774340</updated>
-    </task>
-    <task id="LOCAL-00081" summary="贪心逆向思维">
-      <created>1672955064545</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1672955064545</updated>
     </task>
     <task id="LOCAL-00082" summary="字典序">
       <created>1673002282266</created>
@@ -542,7 +575,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673568172382</updated>
     </task>
-    <option name="localTasksCounter" value="130" />
+    <task id="LOCAL-00130" summary="增加题目">
+      <created>1673568373189</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1673568373189</updated>
+    </task>
+    <option name="localTasksCounter" value="131" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -576,7 +616,6 @@
     <MESSAGE value="N进制与十进制互相转换" />
     <MESSAGE value="正权环加最长路" />
     <MESSAGE value="补充线性DP模板" />
-    <MESSAGE value="增加题目" />
     <MESSAGE value="区间覆盖、合并" />
     <MESSAGE value="带负权环的最短路" />
     <MESSAGE value="根据几何知识暴力枚举" />
@@ -585,7 +624,8 @@
     <MESSAGE value="矩阵旋转" />
     <MESSAGE value="获取所有小于上界数的因子" />
     <MESSAGE value="螺旋矩阵" />
-    <option name="LAST_COMMIT_MESSAGE" value="螺旋矩阵" />
+    <MESSAGE value="增加题目" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加题目" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -10,6 +10,8 @@ L2302 统计得分小于 K 的子数组数目（https://leetcode.cn/problems/cou
 L2301 替换字符后匹配（https://leetcode.cn/problems/match-substring-after-replacement/）枚举匹配字符起点并使用双指针维护可行长度
 L2106 摘水果（https://leetcode.cn/problems/maximum-fruits-harvested-after-at-most-k-steps/）巧妙利用行走距离的计算更新双指针
 P2207 Photo（https://www.luogu.com.cn/problem/P2207）贪心加同向双指针
+
+P2381 圆圆舞蹈（https://www.luogu.com.cn/problem/P2381）环形数组，滑动窗口双指针
 参考：OI WiKi（xx）
 """
 

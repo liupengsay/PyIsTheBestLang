@@ -5,6 +5,9 @@
 算法：深度优先搜索
 功能：常与回溯枚举结合使用，比较经典的还有DFS序
 题目：
+
+P2383 狗哥玩木棒（https://www.luogu.com.cn/problem/P2383）暴力搜索木棍拼接组成正方形
+473. 火柴拼正方形（https://leetcode.cn/problems/matchsticks-to-square/）暴力搜索木棍拼接组成正方形
 P1120 小木棍（https://www.luogu.com.cn/problem/P1120）把数组分成和相等的子数组
 P1692 部落卫队（https://www.luogu.com.cn/problem/P1692）暴力搜索枚举字典序最大可行的连通块
 
@@ -14,6 +17,7 @@ P1475 [USACO2.3]控制公司 Controlling Companies（https://www.luogu.com.cn/pr
 P2080 增进感情（https://www.luogu.com.cn/problem/P2080）深搜回溯与剪枝
 301. 删除无效的括号（https://leetcode.cn/problems/remove-invalid-parentheses/）深搜回溯与剪枝
 P2090 数字对（https://www.luogu.com.cn/problem/P2090）深搜贪心回溯剪枝与辗转相减法
+P2420 让我们异或吧（https://www.luogu.com.cn/problem/P2420）脑筋急转弯使用深搜确定到根路径的异或结果以及异或特性获得任意两点之间最短路的异或结果
 
 参考：OI WiKi（xx）
 """
@@ -49,6 +53,40 @@ import copy
 class DFS:
     def __init__(self):
         return
+
+    @staticmethod
+    def makesquare(matchsticks: List[int]) -> bool:
+        # 模板：深搜将数组分组组成正方形
+        n, s = len(matchsticks), sum(matchsticks)
+        if s % 4 or max(matchsticks) > s // 4:
+            return False
+
+        def dfs(i):
+            nonlocal ans
+            if ans:
+                return
+            if i == n:
+                if len(pre) == 4:
+                    ans = True
+                return
+            if len(pre) > 4:
+                return
+            for j in range(len(pre)):
+                if pre[j] + matchsticks[i] <= m:
+                    pre[j] += matchsticks[i]
+                    dfs(i + 1)
+                    pre[j] -= matchsticks[i]
+            pre.append(matchsticks[i])
+            dfs(i + 1)
+            pre.pop()
+            return
+
+        matchsticks.sort(reverse=True)
+        m = s // 4
+        ans = False
+        pre = []
+        dfs(0)
+        return ans
 
     @staticmethod
     def gen_node_order(dct):

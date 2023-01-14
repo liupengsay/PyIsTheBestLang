@@ -14,6 +14,12 @@ P2239 [NOIP2014 普及组] 螺旋矩阵（https://www.luogu.com.cn/problem/P2239
 59. 螺旋矩阵 II（https://leetcode.cn/problems/spiral-matrix-ii/）
 2326. 螺旋矩阵 IV（https://leetcode.cn/problems/spiral-matrix-iv/）
 P2338 [USACO14JAN]Bessie Slows Down S（https://www.luogu.com.cn/problem/P2338）按照题意进行时间与距离的模拟
+
+P2366 yyy2015c01的IDE之Watches（https://www.luogu.com.cn/problem/P2366）字符串模拟与变量赋值计算
+P2552 [AHOI2001]团体操队形（https://www.luogu.com.cn/problem/P2552）经典矩阵赋值模拟
+P2696 慈善的约瑟夫（https://www.luogu.com.cn/problem/P2696）约瑟夫环模拟与差分计算
+剑指 Offer 62. 圆圈中最后剩下的数字（https://leetcode.cn/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/）约瑟夫环
+
 参考：OI WiKi（xx）
 """
 
@@ -21,6 +27,27 @@ P2338 [USACO14JAN]Bessie Slows Down S（https://www.luogu.com.cn/problem/P2338�
 class SpiralMatrix:
     def __init__(self):
         return
+
+    @staticmethod
+    def joseph_ring(n, m):
+        # 模板：约瑟夫环计算最后的幸存者
+        # 0.1..m-1每次选取第m个消除之后剩下的编号
+        f = 0
+        for x in range(2, n + 1):
+            f = (m + f) % x
+        return f
+
+
+    @staticmethod
+    def num_to_loc(m, n, num):
+        # 根据从左往右从上往下的顺序生成给定数字的行列索引
+        # 0123、4567
+        return [num // n, num % n]
+
+    @staticmethod
+    def loc_to_num(r, c, m, n):
+        # 根据从左往右从上往下的顺序给定的行列索引生成数字
+        return r * n + n
 
     @staticmethod
     def get_spiral_matrix_num1(m, n, r, c):  # 顺时针螺旋

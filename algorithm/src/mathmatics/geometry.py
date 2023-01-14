@@ -33,6 +33,7 @@ import copy
 P1665 正方形计数（https://www.luogu.com.cn/problem/P1665）枚举正方形对角线顶点计算可行个数
 P2313 [HNOI2005]汤姆的游戏（https://www.luogu.com.cn/problem/P2313）判断点在矩形中或者圆形中
 P2358 蚂蚁搬家（https://www.luogu.com.cn/problem/P2358）计算几何判断正方体上表面的点到下表面的点最短距离
+P2665 [USACO08FEB]Game of Lines S（https://www.luogu.com.cn/problem/P2665）不同的斜率计算
 参考：OI WiKi（xx）
 """
 
@@ -40,6 +41,22 @@ P2358 蚂蚁搬家（https://www.luogu.com.cn/problem/P2358）计算几何判断
 class Geometry:
     def __init__(self):
         return
+
+    @staticmethod
+    def compute_slope(x1, y1, x2, y2):
+        # 模板：根据两不同的点确定直线斜率
+        if x1 == x2:
+            ans = "x"
+        else:
+            a = y2-y1
+            b = x2-x1
+            g = math.gcd(a, b)
+            if b < 0:
+                a *= -1
+                b *= -1
+            # 使用最简分数来表示斜率
+            ans = [a//g, b//g]
+        return ans
 
     @staticmethod
     def compute_square_point(x0, y0, x2, y2):

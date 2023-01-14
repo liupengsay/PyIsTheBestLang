@@ -5,6 +5,7 @@ import heapq
 import math
 import sys
 import bisect
+import time
 import datetime
 from functools import lru_cache
 from collections import deque
@@ -106,31 +107,27 @@ class FastIO:
         return wrappedfunc
 
 
-def square(x):
-    return x*x
-
-def sqrt(x):
-    return math.sqrt(x)
-
-
 def main(ac=FastIO()):
-    sx, sy, tx, ty = ac.read_list_floats()
-    ans = inf
-    ans = ac.min(ans, sqrt(square(sx + tx + 2) + square(sy - ty)))   # I型计算
-    ans = ac.min(ans, sqrt(square(-sx - tx + 2) + square(sy - ty)))
-    ans = ac.min(ans, sqrt(square(sx - tx) + square(sy + ty + 2)))
-    ans = ac.min(ans, sqrt(square(sx - tx) + square(-sy - ty + 2)))
+    n = ac.read_int()//2
 
-    ans = ac.min(ans, sqrt(square(-sx - ty + 2) + square(-sy - tx + 1)))  # Z型计算
-    ans = ac.min(ans, sqrt(square(-sx - ty + 1) + square(-sy - tx + 2)))
-    ans = ac.min(ans, sqrt(square(sx - ty + 2) + square(-sy + tx + 1)))
-    ans = ac.min(ans, sqrt(square(sx - ty + 1) + square(-sy + tx + 2)))
-    ans = ac.min(ans, sqrt(square(-sx + ty + 2) + square(-sy + tx + 1)))
-    ans = ac.min(ans, sqrt(square(-sx + ty + 1) + square(-sy + tx + 2)))
-    ans = ac.min(ans, sqrt(square(sx + ty + 2) + square(sy + tx + 1)))
-    ans = ac.min(ans, sqrt(square(sx + ty + 1) + square(sy + tx + 2)))
-    ac.st("%.3f" % ans)
+    @lru_cache(None)
+    def dfs(a, b):
+        if a+b == 2:
+            if a == 0 or b == 0:
+                return 1
+            return 0
+        if a == 0 or b == 0:
+            return 1
+        res = (dfs(a-1, b) + dfs(a, b-1))/2
+        return res
+
+    if n == 0:
+        ac.st(0)
+        return
+    ans = dfs(n, n)
+    ac.st("%.4f" % ans)
     return
 
 
 main()
+

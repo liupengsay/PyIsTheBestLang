@@ -19,6 +19,7 @@ L2122 还原原数组（https://leetcode.cn/problems/recover-the-original-array/
 P1632 点的移动（https://www.luogu.com.cn/problem/P1632）枚举横坐标和纵坐标的所有组合移动距离
 P2128 赤壁之战（https://www.luogu.com.cn/problem/P2128）枚举完全图的顶点组合，平面图最多四个点
 P2191 小Z的情书（https://www.luogu.com.cn/problem/P2191）逆向思维旋转矩阵
+P2699 【数学1】小浩的幂次运算（https://www.luogu.com.cn/problem/P2699）分类讨论、暴力枚举模拟
 参考：OI WiKi（xx）
 """
 

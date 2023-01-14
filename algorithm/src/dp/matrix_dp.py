@@ -10,6 +10,7 @@ L2435 矩阵中和能被 K 整除的路径（https://leetcode.cn/problems/paths-
 L2088 统计农场中肥沃金字塔的数目（https://leetcode.cn/problems/count-fertile-pyramids-in-a-land/）类似求正方形的边长和面积进行矩阵DP
 P1681 最大正方形II（https://www.luogu.com.cn/problem/P1681）求黑白格子相间的最大正方形面积
 221. 最大正方形（https://leetcode.cn/problems/maximal-square/）求全为 1 的最大正方形面积
+P2701 [USACO5.3]巨大的牛棚Big Barn（https://www.luogu.com.cn/problem/P2701）求全为 "." 的最大正方形面积，如果不要求实心只能做到O(n^3)复杂度
 
 P2049 魔术棋子（https://www.luogu.com.cn/problem/P2049）求左上角到右下角所有路径的乘积取模数
 P2138 小Z的关系距离（https://www.luogu.com.cn/problem/P2138）最长公共子序列
@@ -17,6 +18,12 @@ P2138 小Z的关系距离（https://www.luogu.com.cn/problem/P2138）最长公�
 P2268 [HNOI2002]DNA分子的最佳比对（https://www.luogu.com.cn/problem/P2268）类似编辑距离
 72. 编辑距离（https://leetcode.cn/problems/edit-distance/）矩阵DP
 P2301 就是干！（https://www.luogu.com.cn/problem/P2301）矩阵DP，注意最小值的更新处理
+P2364 胖男孩（https://www.luogu.com.cn/problem/P2364）三维DP求最长公共子序列LCS并且输出LCS
+P2543 [AHOI2004]奇怪的字符串（https://www.luogu.com.cn/problem/P2543）二维DP求最长公共子序列LCS长度
+
+
+P2513 [HAOI2009]逆序对数列（https://www.luogu.com.cn/record/list?user=739032&status=12&page=2）二维矩阵DP加前缀和优化
+
 参考：OI WiKi（xx）
 """
 
@@ -79,6 +86,28 @@ class MatrixDP:
                     if dp[i + 1][j + 1] > ans:
                         ans = dp[i + 1][j + 1]
         return ans ** 2
+
+    @staticmethod
+    def longest_common_sequence(s1, s2, s3) -> str:
+        # 模板：最长公共子序列 LCS 可扩展到三维四维
+        m, n, k = len(s1), len(s2), len(s3)
+        # 记录 LCS 的长度
+        dp = [[[0] * (k + 1) for _ in range(n + 1)] for _ in range(m + 1)]
+        # 记录 LCS 的子串
+        res = [[[""] * (k + 1) for _ in range(n + 1)] for _ in range(m + 1)]
+        for i in range(m):
+            for j in range(n):
+                for p in range(k):
+                    if s1[i] == s2[j] == s3[p]:
+                        if dp[i + 1][j + 1][p + 1] < dp[i][j][p] + 1:
+                            dp[i + 1][j + 1][p + 1] = dp[i][j][p] + 1
+                            res[i + 1][j + 1][p + 1] = res[i][j][p] + s1[i]
+                    else:
+                        for a, b, c in [[1, 1, 0], [0, 1, 1], [1, 0, 1]]:
+                            if dp[i + 1][j + 1][p + 1] < dp[i + a][j + b][p + c]:
+                                dp[i + 1][j + 1][p + 1] = dp[i + a][j + b][p + c]
+                                res[i + 1][j + 1][p + 1] = res[i + a][j + b][p + c]
+        return res[m][n][k]
 
 
 class TestGeneral(unittest.TestCase):

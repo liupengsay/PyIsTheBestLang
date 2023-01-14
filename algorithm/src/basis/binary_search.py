@@ -16,6 +16,7 @@ P1577 切绳子（https://www.luogu.com.cn/problem/P1577）数学整除向下取
 P1570 KC 喝咖啡（https://www.luogu.com.cn/problem/P1570）公式转换后使用贪心加二分
 P1843 奶牛晒衣服（https://www.luogu.com.cn/problem/P1843）贪心加二分
 P2309 loidc，卖卖萌（https://www.luogu.com.cn/problem/P2309）使用前缀和有序列表加二分求解和为正数的子串个数
+P2390 地标访问（https://www.luogu.com.cn/problem/P2390）枚举加二分起始也可以使用双指针
 参考：OI WiKi（xx）
 """
 

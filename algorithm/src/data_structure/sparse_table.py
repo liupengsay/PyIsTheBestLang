@@ -11,6 +11,7 @@ P3865 ST 表（https://www.luogu.com.cn/problem/P3865）
 P2880 Balanced Lineup G（https://www.luogu.com.cn/problem/P2880）使用ST表预处理区间最大值与最小值
 P1890 gcd区间（https://www.luogu.com.cn/problem/P3865）使用ST表预处理区间的gcd
 P1816 忠诚（https://www.luogu.com.cn/problem/P1816）使用ST表预处理区间的最小值
+P2412 查单词（https://www.luogu.com.cn/problem/P2412）预处理字典序之后使用ST表查询静态区间最大字典序
 参考：OI WiKi（xx）
 """
 

@@ -1,17 +1,13 @@
-def euler_flag_prime(n):
-    # 欧拉线性筛素数
-    # 说明：返回小于等于 n 的所有素数
-    flag = [False for _ in range(n + 1)]
-    prime_numbers = []
-    for num in range(2, n + 1):
-        if not flag[num]:
-            prime_numbers.append(num)
-        for prime in prime_numbers:
-            if num * prime > n:
-                break
-            flag[num * prime] = True
-            if num % prime == 0:  # 这句是最有意思的地方  下面解释
-                break
-    return prime_numbers
 
-print(len(euler_flag_prime(1000)))
+
+n = 1000
+
+k = 5
+dct= [ [] for _ in range(n+1)]
+
+for i in range(1, n+1):
+    for j in range(i+1, n+1):
+        if bin(i^j).count("1") == k:
+            dct[i].append(j)
+            dct[j].append(i)
+print(dct)

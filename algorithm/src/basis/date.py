@@ -2,13 +2,14 @@
 算法：xxx
 功能：xxx
 题目：
-Lxxxx xxxx（https://leetcode.cn/problems/shortest-palindrome/）xxxx
+P2655 2038年问题（https://www.luogu.com.cn/problem/P2655）计算指定日期时分秒过了一定秒数后的具体日期时分秒
 
 参考：OI WiKi（xx）
 """
 import datetime
 import unittest
 import time
+from datetime import datetime, timedelta
 
 
 class DateTime:
@@ -74,7 +75,7 @@ class DateTime:
         lst = s.split("-")
         y, m, d = [int(w) for w in lst[:-1]]
         h, minute = [int(w) for w in lst[-1].split(":")]
-        day = d + 365*y + self.leap_year_count(y)
+        day = d + 365 * y + self.leap_year_count(y)
         if self.is_leap_year(y):
             day += sum(self.leap_month[:m - 1])
         else:
@@ -82,10 +83,43 @@ class DateTime:
         res = day * 24 * 60 + h * 60 + minute
         return res
 
+    def unix_second(self, s):
+        # 0000-00-00-00:00:00 开始的秒数
+        lst = s.split("-")
+        y, m, d = [int(w) for w in lst[:-1]]
+        h, minute, sec = [int(w) for w in lst[-1].split(":")]
+        day = d + 365 * y + self.leap_year_count(y)
+        if self.is_leap_year(y):
+            day += sum(self.leap_month[:m - 1])
+        else:
+            day += sum(self.not_leap_month[:m - 1])
+        res = (day * 24 * 60 + h * 60 + minute) * 60 + sec
+        return res
+
     @staticmethod
     def leap_year_count(y):
         # 小于等于 y 的闰年数（容斥原理）
-        return 1 + y//4 - y//100 + y//400
+        return 1 + y // 4 - y // 100 + y // 400
+
+    @staticmethod
+    def get_start_date(y, m, d, hh, mm, ss, x):
+        # 模板：计算任意日期起点，经过任意年、月、天、时、分、秒数后的日期点
+        start_date = datetime(
+            year=y,
+            month=m,
+            day=d,
+            hour=hh,
+            minute=mm,
+            second=ss)
+        end_date = start_date + timedelta(seconds=x)
+
+        return [
+            end_date.year,
+            end_date.month,
+            end_date.day,
+            end_date.hour,
+            end_date.minute,
+            end_date.second]
 
 
 class TestGeneral(unittest.TestCase):
@@ -107,6 +141,9 @@ class TestGeneral(unittest.TestCase):
 
         assert dt.unix_to_time(1462451334) == "2016-05-05 20:28:54"
         assert dt.time_to_unix("2016-05-05 20:28:54") == 1462451334
+
+        assert dt.unix_to_time(1462451335) == "2016-05-05 20:28:55"
+        assert dt.time_to_unix("2016-05-05 20:28:55") == 1462451335
 
         ans = 0
         for i in range(10000):

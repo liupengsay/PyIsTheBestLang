@@ -11,6 +11,8 @@ P1729 计算e（https://www.luogu.com.cn/problem/P1729）高精度计算e小数�
 P1727 计算π（https://www.luogu.com.cn/problem/P1727）高精度计算π小数位
 P1530 [USACO2.4]分数化小数 Fractions to Decimals（https://www.luogu.com.cn/problem/P1530）分数化为小数
 P1517 高精求小数幂（https://www.luogu.com.cn/record/list?user=739032&status=12&page=5）高精度计算小数的幂值
+P2388 阶乘之乘（https://www.luogu.com.cn/problem/P2388）阶乘之乘后缀0的个数
+172. 阶乘后的零（https://leetcode.cn/problems/factorial-trailing-zeroes/）阶乘后缀0的个数
 
 参考：OI WiKi（xx）
 """
@@ -48,6 +50,26 @@ getcontext().prec = MAX_PREC
 class HighPrecision:
     def __init__(self):
         return
+
+    @staticmethod
+    def factorial_to_factorial(n):
+        # 模板：计算1!*2!***n!的后缀0个数
+        ans = 0
+        num = 5
+        while num <= n:
+            ans += num * (n // num) * (n // num - 1) // 2
+            ans += (n // num) * (n % num + 1)
+            num *= 5
+        return ans
+
+    @staticmethod
+    def factorial_to_zero(n):
+        # 模板：计算n!的后缀0个数
+        ans = 0
+        while n:
+            ans += n // 5
+            n //= 5
+        return ans
 
     @staticmethod
     def float_pow(r, n):

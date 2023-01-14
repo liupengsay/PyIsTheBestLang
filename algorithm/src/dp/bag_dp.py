@@ -37,6 +37,12 @@ P1504 积木城堡（https://www.luogu.com.cn/problem/P1504）一维有限背包
 P2066 机器分配（https://www.luogu.com.cn/problem/P2066）分组有限背包，转移的时候比较优先级有两个
 
 P2340 [USACO03FALL]Cow Exhibition G（https://www.luogu.com.cn/problem/P2340）经典01背包变种问题还带负数加和
+
+P2370 yyy2015c01 的 U 盘（https://www.luogu.com.cn/problem/P2370）使用最小生成树的思想排序后贪心进行背包放入，达成条件后即中止
+P2386 放苹果（https://www.luogu.com.cn/problem/P2386）背包DP进行去重组合加和计数
+
+P2623 物品选取（https://www.luogu.com.cn/problem/P2623）综合经典背包，函数取最大值进行一维有限背包，连续个数使用二进制优化背包，无限个数背包
+
 参考：OI WiKi（xx）
 """
 
@@ -47,15 +53,16 @@ class BagDP:
 
     @staticmethod
     def bin_split(num):
+        # 二进制优化是指 1.2.4.x这样连续的而不是二进制10101对应的1
         assert num > 0
-        # 二进制拆分
         lst = []
-        m = 1
-        while num:
-            if num % 2:
-                lst.append(m)
-            m *= 2
-            num //= 2
+        x = 1
+        while x <= num:
+            lst.append(x)
+            num -= x
+            x *= 2
+        if num:
+            lst.append(num)
         return lst
 
     @staticmethod

@@ -46,6 +46,8 @@ P3385 负环（https://www.luogu.com.cn/problem/P3385）通过最短路径更新
 P1144 最短路计数（https://www.luogu.com.cn/problem/P1462）计算最短路的条数
 P1938 [USACO09NOV]Job Hunt S（https://www.luogu.com.cn/problem/P1938）使用负环判断正环，以及使用最短路求最长路即最大正权路径值
 P2136 拉近距离（https://www.luogu.com.cn/problem/P2136）计算可能有负权环的最短距离
+
+P2648 赚钱（https://www.luogu.com.cn/problem/P2648）判断是否存在正权环以及最长路
 """
 
 
@@ -55,7 +57,7 @@ class SPFA:
     
     @staticmethod
     def negtive_circle(dct):
-        dct = dct
+        # 模板：判断是否存在负环与求解最短路（正数取反即可判断是否存在正权环以及最长路）
         n = len(dct)
         # 初始化距离
         dis = [float("inf") for _ in range(n)]
