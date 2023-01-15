@@ -26,65 +26,73 @@ import heapq
 import copy
 
 
-def mmax(a, b):
-    return a if a > b else b
-
-
-def mmin(a, b):
-    return a if a < b else b
-
-
-from functools import cmp_to_key
-
-from functools import cmp_to_key
-
-from functools import cmp_to_key
-
-
 class Solution:
-    def findCrossingTime(self, n: int, k: int, time: List[List[int]]) -> int:
+    def maxOutput(self,
+                  n: int,
+                  edges: List[List[int]],
+                  price: List[int]) -> int:
 
-        rank = [[-time[i][0] - time[i][2], -i] for i in range(k)]
-        left_person = [[0, rank[num], num] for num in range(k)]
-        heapq.heapify(left_person)
+        def mmax(a, b):
+            return a if a > b else b
 
+        def dfs(i, fa):
+            nonlocal ans
+            cur = []
+            for j in dct[i]:
+                if j != fa:
+                    dfs(j, i)
+                    cur.append(lst[j])
+
+            # 计算所有子树的前缀后缀两项最大值
+            m = len(cur)
+            pre_0 = [0] * (m + 1)
+            for x in range(m):
+                pre_0[x + 1] = mmax(pre_0[x], cur[x][0])
+
+            post_0 = [0] * (m + 1)
+            for x in range(m - 1, -1, -1):
+                post_0[x] = mmax(post_0[x + 1], cur[x][0])
+
+            m = len(cur)
+            pre_1 = [0] * (m + 1)
+            for x in range(m):
+                pre_1[x + 1] = mmax(pre_1[x], cur[x][1])
+
+            post_1 = [0] * (m + 1)
+            for x in range(m - 1, -1, -1):
+                post_1[x] = mmax(post_1[x + 1], cur[x][1])
+
+            # 超过两个子节点，选取不同最长路作为端点
+            if m >= 2:
+                for x in range(m):
+                    y = mmax(pre_0[x], post_0[x + 1]) + cur[x][1] + price[i]
+                    ans = ans if ans > y else y
+                    y = mmax(pre_1[x], post_1[x + 1]) + cur[x][0] + price[i]
+                    ans = ans if ans > y else y
+            elif m == 1:  # 只有一个的时候 i 作为其中一个端点
+                y = mmax(cur[0][1], cur[0][0] + price[i])
+                ans = ans if ans > y else y
+            if not cur:  # 没有子树
+                lst[i] = [0, price[i]]
+            else:  # 有子树，两项都加 price[i]
+                lst[i] = [pre_0[-1] + price[i], pre_1[-1] + price[i]]
+            return
+
+        dct = [[] for _ in range(n)]
+        for u, v in edges:
+            dct[u].append(v)
+            dct[v].append(u)
+        # 树形 DP 记录 【子树去掉叶子节点的最长路，子树的最长路】
+        lst = [[0, 0] for _ in range(n)]
         ans = 0
-        right_person = []
-        on = 0
-        while n:
-            if right_person and not left_person:
-                tm, _, idx = heapq.heappop(right_person)
-                on = max(on, tm)
-                n -= 1
-                tm = on + time[idx][2]
-                on = tm
-                heapq.heappush(left_person, [on + time[idx][3], rank[idx], idx])
-                ans = tm + time[idx][3]
-            elif right_person and left_person and left_person[0][0] >= right_person[0][0]:
-                tm, _, idx = heapq.heappop(right_person)
-                on = max(on, tm)
-                n -= 1
-                tm = on + time[idx][2]
-                on = tm
-                heapq.heappush(left_person, [on + time[idx][3], rank[idx], idx])
-                ans = tm + time[idx][3]
-
-            else:
-                tm, _, idx = heapq.heappop(left_person)
-                tm = max(tm, on)
-                on = tm + time[idx][0]
-                heapq.heappush(right_person, [on + time[idx][1], rank[idx], idx])
-
+        dfs(0, -1)
         return ans
-
-
-
-
 
 
 class TestGeneral(unittest.TestCase):
     def test_solution(self):
-        assert Solution().findCrossingTime(n = 1, k = 3, time = [[1,1,2,1],[1,1,3,1],[1,1,4,1]]) == 6
+        assert Solution().maxOutput(
+            n=4, edges=[[2, 0], [0, 1], [1, 3]], price=[2, 3, 1, 1]) == 6
         return
 
 

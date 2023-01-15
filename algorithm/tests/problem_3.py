@@ -1,6 +1,5 @@
 
 
-
 import bisect
 import random
 import re
@@ -28,40 +27,30 @@ import heapq
 import copy
 
 
-def mmax(a, b):
-    return a if a > b else b
-
-
-def mmin(a, b):
-    return a if a < b else b
-
-
-
-
-
 class Solution:
-    def isItPossible(self, word1: str, word2: str) -> bool:
-        cnt1 = Counter(word1)
-        cnt2 = Counter(word2)
-        lst = [chr(i+ord("a")) for i in range(26)]
-        for a in lst:
-            for b in lst:
-                cnt11 = cnt1.copy()
-                cnt22 = cnt2.copy()
-                cnt11[a] -= 1
-                cnt11[b] += 1
-                cnt22[a] += 1
-                cnt22[b] -= 1
-                if sum(cnt11[w] >= 1 for w in lst) == sum(cnt22[w] >= 1 for w in lst):
-                    return True
-        return False
-
-
+    def countGood(self, nums: List[int], k: int) -> int:
+        n = len(nums)
+        ans = j = 0
+        # 元素计数
+        cnt = defaultdict(int)
+        # 符合条件的元素对计数
+        total = 0
+        for i in range(n):
+            while j < n and total < k:
+                total += cnt[nums[j]]  # 增加元素对计数
+                cnt[nums[j]] += 1  # 增加元素个数
+                j += 1
+            if total >= k:  # 不少于 k 对
+                ans += n - j + 1
+            cnt[nums[i]] -= 1
+            total -= cnt[nums[i]]
+        return ans
 
 
 class TestGeneral(unittest.TestCase):
     def test_solution(self):
-        assert Solution().isPossible(4, [[1,2],[2,3],[2,4],[3,4]]) == False
+        assert Solution().isPossible(
+            4, [[1, 2], [2, 3], [2, 4], [3, 4]]) == False
 
         return
 

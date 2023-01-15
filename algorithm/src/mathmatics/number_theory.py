@@ -19,7 +19,12 @@ P1748 H数（https://www.luogu.com.cn/problem/P1748）丑数可以使用堆模�
 313. 超级丑数（https://leetcode.cn/problems/super-ugly-number/）只含某些特定质因数的第 n 个丑数
 P1952 火星上的加法运算（https://www.luogu.com.cn/problem/P1952）N进制加法
 
+P1555 尴尬的数字（https://www.luogu.com.cn/problem/P1555）二进制与三进制
 P1592 互质（https://www.luogu.com.cn/problem/P1592）使用二分与容斥原理计算与 n 互质的第 k 个正整数
+P1465 [USACO2.2]序言页码 Preface Numbering（https://www.luogu.com.cn/problem/P1465）整数转罗马数字
+12. 整数转罗马数字（https://leetcode.cn/problems/integer-to-roman/）整数转罗马数字
+13. 罗马数字转整数（https://leetcode.cn/problems/roman-to-integer/）罗马数字转整数
+
 """
 
 
@@ -28,23 +33,55 @@ class NumberTheory:
         return
 
     @staticmethod
+    def int_to_roman(num: int) -> str:
+
+        # 模板：罗马数字转整数
+        lst = [['I', 1], ['IV', 4], ['V', 5], ['IX', 9], ['X', 10], ['XL', 40], ['L', 50], ['XC', 90], ['C', 100], ['CD', 400], ['D', 500], ['CM', 900], ['M', 1000]]
+        n = len(lst)
+        i = n - 1
+        ans = ''
+        while i >= 0:
+            if num >= lst[i][1]:
+                k = num // lst[i][1]
+                ans += k * lst[i][0]
+                num -= k * lst[i][1]
+                if num == 0:
+                    return ans
+            else:
+                i -= 1
+        return ans
+
+    @staticmethod
+    def roman_to_int(s: str) -> int:
+        dct = {'IV': 4, 'IX': 9, 'XL': 40, 'XC': 90, 'CD': 400, 'CM': 900, 'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
+        ans = i = 0
+        n = len(s)
+        while i < n:
+            if i + 1 < n and s[i:i + 2] in dct:
+                ans += dct[s[i:i + 2]]
+                i += 2
+            else:
+                ans += dct[s[i]]
+                i += 1
+        return ans
+
+    @staticmethod
     def nth_super_ugly_number(n: int, primes) -> int:
 
-        # 计算只含 primes 中的质因数的第 n 个丑数
-        dp = [0] * (n + 1)
+        # 计算只含 primes 中的质因数的第 n 个丑数，注意这里包含了 1
+        dp = [1] * n
         m = len(primes)
-        pointers = [0] * m
-        nums = [1] * m
-
-        for i in range(1, n + 1):
-            min_num = min(nums)
-            dp[i] = min_num
+        points = [0] * m
+        for i in range(1, n):
+            nex = float('inf')
             for j in range(m):
-                if nums[j] == min_num:
-                    pointers[j] += 1
-                    nums[j] = dp[pointers[j]] * primes[j]
-
-        return dp[n]
+                if primes[j] * dp[points[j]] < nex:
+                    nex = primes[j] * dp[points[j]]
+            dp[i] = nex
+            for j in range(m):
+                if primes[j] * dp[points[j]] == nex:
+                    points[j] += 1
+        return dp[n - 1]
 
     def gcd(self, x, y):
         # # 最大公约数
@@ -397,6 +434,14 @@ class TestGeneral(unittest.TestCase):
         ans = nt.get_factor_upper(num)
         for i in range(1, num+1):
             assert ans[i] == nt.get_all_factor(i)[1:-1]
+        return
+
+    def test_roma_int(self):
+        nt = NumberTheory()
+
+        num = 1000
+        for i in range(1, num+1):
+            assert nt.roman_to_int(nt.int_to_roman(i)) == i
         return
 
 

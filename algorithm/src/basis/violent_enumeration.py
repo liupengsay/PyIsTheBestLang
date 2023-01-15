@@ -20,6 +20,11 @@ P1632 点的移动（https://www.luogu.com.cn/problem/P1632）枚举横坐标和
 P2128 赤壁之战（https://www.luogu.com.cn/problem/P2128）枚举完全图的顶点组合，平面图最多四个点
 P2191 小Z的情书（https://www.luogu.com.cn/problem/P2191）逆向思维旋转矩阵
 P2699 【数学1】小浩的幂次运算（https://www.luogu.com.cn/problem/P2699）分类讨论、暴力枚举模拟
+P1371 NOI元丹（https://www.luogu.com.cn/problem/P1371）前后缀枚举计数
+P1369 矩形（https://www.luogu.com.cn/problem/P1369）矩阵DP与有贪心枚举在矩形边上的最多点个数
+
+
+
 参考：OI WiKi（xx）
 """
 

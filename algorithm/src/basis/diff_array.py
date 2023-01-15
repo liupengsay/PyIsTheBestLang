@@ -12,6 +12,10 @@ L2251 花期内花的数目（https://leetcode.cn/problems/number-of-flowers-in-
 L2132 用邮票贴满网格图（https://leetcode.cn/problems/stamping-the-grid/）用前缀和枚举可行的邮票左上端点，然后查看空白格点左上方是否有可行的邮票点
 
 P1869 愚蠢的组合数（https://www.luogu.com.cn/problem/P1869）使用前缀和记录1-N的因子2的个数继而计算C(N,K)的奇偶性
+
+6292. 子矩阵元素加 1（https://leetcode.cn/problems/increment-submatrices-by-one/)二维差分前缀和
+
+
 参考：OI WiKi（xx）
 """
 
@@ -82,7 +86,7 @@ class DiffMatrix:
         # 二维差分数组
         diff = [[0] * (n + 2) for _ in range(m + 2)]
         # 索引从1开始，矩阵初始值为0
-        for xa, xb, ya, yb, d in shifts:
+        for xa, xb, ya, yb, d in shifts:  # 注意这里的行列索引范围，是从左上角到右小角
             diff[xa][ya] += d
             diff[xa][yb + 1] -= d
             diff[xb + 1][ya] -= d
@@ -95,6 +99,22 @@ class DiffMatrix:
         for i in range(1, m + 1):
             diff[i] = diff[i][1:n + 1]
         return diff[1: m+1]
+
+    @staticmethod
+    def get_diff_matrix2(m, n, shifts):
+        diff = [[0] * (n + 1) for _ in range(m + 1)]
+        # 二维差分，索引从 0 开始
+        for xa, xb, ya, yb, d in shifts:
+            diff[xa][ya] += d
+            diff[xa][yb + 1] -= d
+            diff[xb + 1][ya] -= d
+            diff[xb + 1][yb + 1] += d
+
+        res = [[0] * (n + 1) for _ in range(n + 1)]
+        for i in range(n):
+            for j in range(n):
+                res[i + 1][j + 1] = res[i + 1][j] + res[i][j + 1] - res[i][j] + diff[i][j]
+        return [item[1:] for item in res[1:]]
 
     @staticmethod
     def get_matrix_prefix_sum(mat):
@@ -138,8 +158,13 @@ class TestGeneral(unittest.TestCase):
         # 索引从1开始
         shifts = [[1, 2, 1, 2, 1], [2, 3, 2, 3, 1],
                   [2, 2, 2, 2, 2], [1, 1, 3, 3, 3]]
-        diff = dam.get_diff_matrix(m, n, shifts)
-        assert diff == [[1, 1, 3], [1, 4, 1], [0, 1, 1]]
+        diff = [[1, 1, 3], [1, 4, 1], [0, 1, 1]]
+        assert dam.get_diff_matrix(m, n, shifts) == diff
+
+        shifts = [[1, 2, 1, 2, 1], [2, 3, 2, 3, 1],
+                  [2, 2, 2, 2, 2], [1, 1, 3, 3, 3]]
+        shifts = [[x-1 for x in ls[:-1]]+[ls[-1]] for ls in shifts]
+        assert dam.get_diff_matrix2(m, n, shifts) == diff
 
         pre = dam.get_matrix_prefix_sum(diff)
         assert pre == [[0, 0, 0, 0], [0, 1, 2, 5], [0, 2, 7, 11], [0, 2, 8, 13]]

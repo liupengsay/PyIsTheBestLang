@@ -42,7 +42,10 @@ P2370 yyy2015c01 的 U 盘（https://www.luogu.com.cn/problem/P2370）使用最�
 P2386 放苹果（https://www.luogu.com.cn/problem/P2386）背包DP进行去重组合加和计数
 
 P2623 物品选取（https://www.luogu.com.cn/problem/P2623）综合经典背包，函数取最大值进行一维有限背包，连续个数使用二进制优化背包，无限个数背包
+P1474 [USACO2.3]Money System / [USACO07OCT]Cow Cash G（https://www.luogu.com.cn/problem/P1474）一维无限背包计数
 
+P1466 [USACO2.2]集合 Subset Sums（https://www.luogu.com.cn/problem/P1466）一维有限背包加和计数
+P1455 搭配购买（https://www.luogu.com.cn/problem/P1455）并查集进行搭配购买组合加一维有限背包
 参考：OI WiKi（xx）
 """
 

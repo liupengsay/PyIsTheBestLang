@@ -28,6 +28,13 @@ P1649 [USACO07OCT]Obstacle Course S（https://www.luogu.com.cn/problem/P1649）�
 P2083 找人（https://www.luogu.com.cn/problem/P2083）反向最短路
 P2299 Mzc和体委的争夺战（https://www.luogu.com.cn/problem/P2299）最短路裸题
 P2683 小岛（https://www.luogu.com.cn/problem/P2683）最短路裸题结合并查集查询
+
+P1396 营救（https://www.luogu.com.cn/problem/P1396）最短路变种问题，求解路径上边权的最大值，类似接雨水
+407. 接雨水 II（https://leetcode.cn/problems/trapping-rain-water-ii/）经典最短路变种问题，求解路径上边权的最大值
+P1346 电车（https://www.luogu.com.cn/problem/P1346）建图跑最短路
+P1339 [USACO09OCT]Heat Wave G（https://www.luogu.com.cn/record/list?user=739032&status=12&page=11）最短路裸题
+
+
 参考：OI WiKi（xx）
 """
 

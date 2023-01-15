@@ -17,6 +17,9 @@ P1521 求逆序对（https://www.luogu.com.cn/problem/P1521）使用归并排序
 P1775 石子合并（弱化版）（https://www.luogu.com.cn/problem/P1775）典型区间DP和前缀和预处理
 P2426 删数（https://www.luogu.com.cn/problem/P2426）典型区间DP
 P2690 [USACO04NOV]Apple Catching G（https://www.luogu.com.cn/problem/P2690）区间DP记忆化搜索模拟
+P1435 [IOI2000] 回文字串（https://www.luogu.com.cn/problem/P1435）典型区间DP求最长不连续回文子序列
+
+P1388 算式（https://www.luogu.com.cn/problem/P1388）回溯枚举符号组合，再使用区间DP进行最大值求解
 参考：OI WiKi（xx）
 """
 

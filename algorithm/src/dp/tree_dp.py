@@ -17,15 +17,17 @@ P1922 女仆咖啡厅桌游吧（https://www.luogu.com.cn/problem/P1922）树形
 P2016 战略游戏（https://www.luogu.com.cn/problem/P2016）树形DP瞭望每条边
 968. 监控二叉树（https://leetcode.cn/problems/binary-tree-cameras/）树形DP监控每个节点
 
-
+6294. 最大价值和与最小价值和的差值（https://leetcode.cn/problems/difference-between-maximum-and-minimum-price-sum/）树形换根DP，求去掉其中一个叶子节点的最大直径
 参考：OI WiKi（xx）
 """
+
+
+
 
 import bisect
 import random
 import re
 import unittest
-
 from typing import List
 import heapq
 import math
@@ -33,27 +35,41 @@ from collections import defaultdict, Counter, deque
 from functools import lru_cache
 from itertools import combinations
 from sortedcontainers import SortedList, SortedDict, SortedSet
-
 from sortedcontainers import SortedDict
 from functools import reduce
 from operator import xor
 from functools import lru_cache
-
 import random
 from itertools import permutations, combinations
 import numpy as np
-
 from decimal import Decimal
-
 import heapq
 import copy
 from heapq import nlargest
-
-
 class TreeDP:
     def __init__(self):
         return
 
+    @staticmethod
+    def change_root_dp(n: int, edges: List[List[int]], price: List[int]):
+        # 模板： 换根DP
+        edge = [[] for _ in range(n)]
+        for u, v in edges:
+            edge[u].append(v)
+            edge[v].append(u)
+
+        @lru_cache(None)
+        def dfs(i, fa):
+            # 注意复杂度是O(n^2)
+            # 也是求以此为根的最大路径
+            ans = 0
+            for j in edge[i]:
+                if j != fa:
+                    cur = dfs(j, i)
+                    ans = ans if ans > cur else cur
+            return ans + price[i]
+
+        return max(dfs(i, -1) - price[i] for i in range(n))
 
     @staticmethod
     def sum_of_distances_in_tree(n: int, edges):
@@ -93,19 +109,19 @@ class TreeDP:
             son_dis[x] = res
             return res
 
-        son_dis = [0]*n
+        son_dis = [0] * n
         dfs(0)
 
         def dfs(x):
             for y in tree[x]:
-                father_dis[y] = (son_dis[x] - son_dis[y] - son_count[y]) + father_dis[x] + n-son_count[y]
+                father_dis[y] = (
+                    son_dis[x] - son_dis[y] - son_count[y]) + father_dis[x] + n - son_count[y]
                 dfs(y)
             return
 
-        father_dis = [0]*n
+        father_dis = [0] * n
         dfs(0)
-        return [father_dis[i]+son_dis[i] for i in range(n)]
-
+        return [father_dis[i] + son_dis[i] for i in range(n)]
 
     @staticmethod
     def longest_path_through_node(dct):
@@ -118,12 +134,12 @@ class TreeDP:
             for y in dct[x]:
                 if not visit[y]:
                     dfs(y)
-                    res.append(max(down_to_up[y])+1)
+                    res.append(max(down_to_up[y]) + 1)
             down_to_up[x] = nlargest(2, res)
             return
 
         # 默认以 0 为根
-        visit = [0]*n
+        visit = [0] * n
         down_to_up = [[] for _ in range(n)]
         dfs(0)
 
@@ -143,11 +159,11 @@ class TreeDP:
                     if max(down_to_up[y]) in tmp:
                         tmp.remove(max(down_to_up[y]))
                     if tmp[0]:
-                        father = father if father > tmp[0]+2 else tmp[0]+2
+                        father = father if father > tmp[0] + 2 else tmp[0] + 2
                     dfs(y, father)
             return
 
-        visit = [0]*n
+        visit = [0] * n
         up_to_down = [0] * n
         # 默认以 0 为根
         dfs(0, 0)

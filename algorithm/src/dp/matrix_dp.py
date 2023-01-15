@@ -21,8 +21,8 @@ P2301 就是干！（https://www.luogu.com.cn/problem/P2301）矩阵DP，注意�
 P2364 胖男孩（https://www.luogu.com.cn/problem/P2364）三维DP求最长公共子序列LCS并且输出LCS
 P2543 [AHOI2004]奇怪的字符串（https://www.luogu.com.cn/problem/P2543）二维DP求最长公共子序列LCS长度
 
-
 P2513 [HAOI2009]逆序对数列（https://www.luogu.com.cn/record/list?user=739032&status=12&page=2）二维矩阵DP加前缀和优化
+P1434 [SHOI2002] 滑雪（https://www.luogu.com.cn/problem/P1434）二维矩阵DP计算最长上升的路径
 
 参考：OI WiKi（xx）
 """

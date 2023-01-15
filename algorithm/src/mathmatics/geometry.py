@@ -34,6 +34,8 @@ P1665 正方形计数（https://www.luogu.com.cn/problem/P1665）枚举正方形
 P2313 [HNOI2005]汤姆的游戏（https://www.luogu.com.cn/problem/P2313）判断点在矩形中或者圆形中
 P2358 蚂蚁搬家（https://www.luogu.com.cn/problem/P2358）计算几何判断正方体上表面的点到下表面的点最短距离
 P2665 [USACO08FEB]Game of Lines S（https://www.luogu.com.cn/problem/P2665）不同的斜率计算
+
+P1355 神秘大三角（https://www.luogu.com.cn/problem/P1355）使用三角形面积计算判断点与三角形的位置关系
 参考：OI WiKi（xx）
 """
 

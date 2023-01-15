@@ -28,21 +28,12 @@ import copy
 
 
 
-
 class Solution:
-    def simplifyPath(self, path: str) -> str:
-        lst = [w for w in path.split("/") if w]
-        stack = []
-        for w in lst:
-            if w == ".":
-                continue
-            if w == "..":
-                if stack:
-                    stack.pop()
-            else:
-                stack.append(w)
-        ans = "/" + "/".join(stack)
-        return ans
+    def differenceOfSum(self, nums: List[int]) -> int:
+        return abs(sum(nums)-sum(sum(int(d) for d in str(num)) for num in nums))
+
+
+
 
 
 class TestGeneral(unittest.TestCase):
