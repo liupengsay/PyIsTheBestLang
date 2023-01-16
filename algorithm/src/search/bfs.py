@@ -22,6 +22,9 @@ P2630 图像变换（https://www.luogu.com.cn/problem/P2630）BFS模拟计算最
 P1332 血色先锋队（https://www.luogu.com.cn/problem/P1332）标准BFS
 P1330 封锁阳光大学（https://www.luogu.com.cn/problem/P1330）BFS进行隔层染色取较小值，也可以判断连通块是否存在奇数环
 P1215 [USACO1.4]母亲的牛奶 Mother's Milk（https://www.luogu.com.cn/problem/P1215）广度优先搜索进行模拟与状态记录
+P1037 [NOIP2002 普及组] 产生数（https://www.luogu.com.cn/problem/P1037）广度优先搜索之后进行模拟和枚举
+
+
 参考：OI WiKi（xx）
 """
 

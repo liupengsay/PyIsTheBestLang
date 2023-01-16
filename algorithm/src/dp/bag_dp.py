@@ -48,6 +48,7 @@ P1466 [USACO2.2]集合 Subset Sums（https://www.luogu.com.cn/problem/P1466）�
 P1455 搭配购买（https://www.luogu.com.cn/problem/P1455）并查集进行搭配购买组合加一维有限背包
 
 P1230 智力大冲浪（https://www.luogu.com.cn/problem/P1230）排序后根据时间限制进行动态更新一维有限背包
+P1077 [NOIP2012 普及组] 摆花（https://www.luogu.com.cn/problem/P1077）一维有限背包计数
 参考：OI WiKi（xx）
 """
 

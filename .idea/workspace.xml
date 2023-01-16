@@ -4,38 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="增加题目">
-      <change afterPath="$PROJECT_DIR$/algorithm/src/basis/performance.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithm/src/dp/game_dp.py" afterDir="false" />
+    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/date.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/date.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/hash.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/hash.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/range.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/range.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/src/basis/simulation.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/simulation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/src/basis/violent_enumeration.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/violent_enumeration.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/src/dp/bag_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/bag_dp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/digital_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/digital_dp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/interval_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/interval_dp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/linear_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/linear_dp.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/src/dp/matrix_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/matrix_dp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/state_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/state_dp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/tree_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/tree_dp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/dijkstra.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/dijkstra.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/minimum_spanning_tree.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/minimum_spanning_tree.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/src/greedy/brain_storming.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/greedy/brain_storming.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/greedy/longest_increasing_subsequence.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/greedy/longest_increasing_subsequence.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/comb_perm.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/comb_perm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/geometry.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/geometry.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/lexico_graphical_order.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/lexico_graphical_order.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/number_theory.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/number_theory.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/src/search/bfs.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/search/bfs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/search/dfs.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/search/dfs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/string/expression.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/string/expression.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/string/manacher_palindrome.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/string/manacher_palindrome.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_0.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_0.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_1.py" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -64,6 +42,9 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/../Soft/Anaconda3-2021.11/Lib/site-packages/scipy/optimize/_minimize.py" root0="SKIP_INSPECTION" />
+  </component>
   <component name="ProjectId" id="26OhvoNbKkfEzYckFLod5ENhdfD" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -81,7 +62,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/algorithm/submission" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="run.code.analysis.last.selected.profile" value="aDefault" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Python" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -98,18 +79,6 @@
       <recent name="D:\PCRecord\algorithm\src\算法基础" />
       <recent name="D:\PCRecord\algorithm\template\mathmatics" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager" selected="Python.problem_0">
     <configuration name="强连通分量" type="PythonConfigurationType" factoryName="Python">
@@ -220,7 +189,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -583,13 +552,12 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />

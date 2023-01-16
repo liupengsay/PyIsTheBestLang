@@ -22,6 +22,10 @@ P2696 慈善的约瑟夫（https://www.luogu.com.cn/problem/P2696）约瑟夫环
 P1234 小A的口头禅（https://www.luogu.com.cn/problem/P1234）计算矩阵每个点四个方向特定长为4的单词个数
 
 P1166 打保龄球（https://www.luogu.com.cn/problem/P1166）按照题意复杂的模拟题
+P1076 [NOIP2012 普及组] 寻宝（https://www.luogu.com.cn/problem/P1076）模拟进行操作即可
+P8924 「GMOI R1-T1」Perfect Math Class（https://www.luogu.com.cn/problem/P8924）模拟的同时使用进制的思想进行求解
+
+
 参考：OI WiKi（xx）
 """
 

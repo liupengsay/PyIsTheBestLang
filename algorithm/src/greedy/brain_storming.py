@@ -36,6 +36,11 @@ P1325 雷达安装（https://www.luogu.com.cn/problem/P1325）排序后进行贪
 P1250 种树（https://www.luogu.com.cn/problem/P1250）区间的贪心题，使用线段树修改区间与查询和，以及二分进行计算
 P1230 智力大冲浪（https://www.luogu.com.cn/problem/P1230）排序后进行选取贪心
 P1159 排行榜（https://www.luogu.com.cn/problem/P1159）使用队列贪心进行模拟
+P1095 [NOIP2007 普及组] 守望者的逃离（https://www.luogu.com.cn/problem/P1095）贪心模拟也可以理解为动态规划转移
+
+P1056 [NOIP2008 普及组] 排座椅（https://www.luogu.com.cn/record/list?user=739032&status=12&page=14）根据题意进行计数排序贪心选择
+
+
 参考：OI WiKi（xx）
 """
 

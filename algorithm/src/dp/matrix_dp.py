@@ -25,7 +25,7 @@ P2513 [HAOI2009]逆序对数列（https://www.luogu.com.cn/record/list?user=7390
 P1434 [SHOI2002] 滑雪（https://www.luogu.com.cn/problem/P1434）二维矩阵DP计算最长上升的路径
 
 P1140 相似基因（https://www.luogu.com.cn/problem/P1140）二维矩阵DP
-
+P1057 [NOIP2008 普及组] 传球游戏（https://www.luogu.com.cn/problem/P1057）二维DP可做成转移的
 参考：OI WiKi（xx）
 """
 

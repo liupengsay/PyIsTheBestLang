@@ -22,7 +22,7 @@ P2193 HXY和序列（https://www.luogu.com.cn/problem/P2193）使用隔板法与
 
 P1338 末日的传说（https://www.luogu.com.cn/problem/P1338）枚举满足个数的逆序对排列，即找特定逆序对个数的最小排列
 P1313 [NOIP2011 提高组] 计算系数（https://www.luogu.com.cn/problem/P1313）二项式展开的系数计算
-
+P1061 [NOIP2006 普及组] Jam 的计数法（https://www.luogu.com.cn/problem/P1061）模拟计算下一个字典序排列
 
 参考：OI WiKi（xx）
 卡特兰数（https://oi-wiki.org/math/combinatorics/catalan/）
