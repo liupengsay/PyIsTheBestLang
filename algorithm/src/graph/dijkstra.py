@@ -34,7 +34,8 @@ P1396 营救（https://www.luogu.com.cn/problem/P1396）最短路变种问题，
 P1346 电车（https://www.luogu.com.cn/problem/P1346）建图跑最短路
 P1339 [USACO09OCT]Heat Wave G（https://www.luogu.com.cn/record/list?user=739032&status=12&page=11）最短路裸题
 
-
+P1318 积水面积（https://www.luogu.com.cn/problem/P1318）一维接雨水，计算前后缀最大值的最小值再减去自身值
+42. 接雨水（https://leetcode.cn/problems/trapping-rain-water/）一维接雨水，计算前后缀最大值的最小值再减去自身值
 参考：OI WiKi（xx）
 """
 

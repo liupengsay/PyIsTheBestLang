@@ -24,7 +24,7 @@ P1592 互质（https://www.luogu.com.cn/problem/P1592）使用二分与容斥原
 P1465 [USACO2.2]序言页码 Preface Numbering（https://www.luogu.com.cn/problem/P1465）整数转罗马数字
 12. 整数转罗马数字（https://leetcode.cn/problems/integer-to-roman/）整数转罗马数字
 13. 罗马数字转整数（https://leetcode.cn/problems/roman-to-integer/）罗马数字转整数
-
+P1112 波浪数（https://www.luogu.com.cn/problem/P1112）枚举波浪数计算其不同进制下是否满足条件
 """
 
 

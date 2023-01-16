@@ -18,6 +18,8 @@ P2016 战略游戏（https://www.luogu.com.cn/problem/P2016）树形DP瞭望每�
 968. 监控二叉树（https://leetcode.cn/problems/binary-tree-cameras/）树形DP监控每个节点
 
 6294. 最大价值和与最小价值和的差值（https://leetcode.cn/problems/difference-between-maximum-and-minimum-price-sum/）树形换根DP，求去掉其中一个叶子节点的最大直径
+
+P1122 最大子树和（https://www.luogu.com.cn/problem/P1122）计算最大的连通块和
 参考：OI WiKi（xx）
 """
 
@@ -60,7 +62,7 @@ class TreeDP:
 
         @lru_cache(None)
         def dfs(i, fa):
-            # 注意复杂度是O(n^2)
+            # 注意在星状图的复杂度是O(n^2)（还有一种特殊的树结构是树链）
             # 也是求以此为根的最大路径
             ans = 0
             for j in edge[i]:

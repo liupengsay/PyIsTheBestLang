@@ -3,6 +3,8 @@
 功能：xxx
 题目：
 P2655 2038年问题（https://www.luogu.com.cn/problem/P2655）计算指定日期时分秒过了一定秒数后的具体日期时分秒
+P1167 刷题（https://www.luogu.com.cn/problem/P1167#submit）计算两个日期之间经过的秒数
+
 
 参考：OI WiKi（xx）
 """

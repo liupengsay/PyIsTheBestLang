@@ -14,12 +14,10 @@ L1012 至少有 1 位重复的数字
 L1067 范围内的数字计数
 L1397 找到所有好字符串
 P1590 失踪的7（https://www.luogu.com.cn/problem/P1590）计算 n 以内不含7的个数
-
+P1239 计数器（https://www.luogu.com.cn/problem/P1239）计算 n 以内每个数字0-9的个数
 
 参考：OI WiKi（xx）
 """
-
-
 
 
 import bisect

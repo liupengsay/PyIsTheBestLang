@@ -20,6 +20,7 @@ P2690 [USACO04NOV]Apple Catching G（https://www.luogu.com.cn/problem/P2690）�
 P1435 [IOI2000] 回文字串（https://www.luogu.com.cn/problem/P1435）典型区间DP求最长不连续回文子序列
 
 P1388 算式（https://www.luogu.com.cn/problem/P1388）回溯枚举符号组合，再使用区间DP进行最大值求解
+P1103 书本整理（https://www.luogu.com.cn/problem/P1103）三维DP
 参考：OI WiKi（xx）
 """
 

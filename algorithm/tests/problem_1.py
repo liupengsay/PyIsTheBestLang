@@ -28,12 +28,32 @@ import copy
 
 
 
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def differenceOfSum(self, nums: List[int]) -> int:
-        return abs(sum(nums)-sum(sum(int(d) for d in str(num)) for num in nums))
+    def verticalOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        ans = defaultdict(list)
 
+        def dfs(node, i, j):
+            nonlocal ind
+            if not node:
+                return
+            ans[j].append([i, ind, node.val])
+            ind += 1
+            dfs(node.left, i+1, j - 1)
+            dfs(node.right, i+1, j + 1)
+            return
 
-
+        ind = 0
+        dfs(root, 0, 0)
+        axis= list(ans.keys())
+        for i in axis:
+            ans[i].sort(key=lambda x: [x[0], x[1]])
+        return [[val for _, _, val in ans[i]] for i in sorted(ans)]
 
 
 class TestGeneral(unittest.TestCase):

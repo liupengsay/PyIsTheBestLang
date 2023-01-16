@@ -15,6 +15,8 @@ L2172 数组的最大与和（https://leetcode.cn/problems/maximum-and-sum-of-ar
 
 P2196 [NOIP1996 提高组] 挖地雷（https://www.luogu.com.cn/problem/P2196）有向图最长路径加状压DP
 P1690 贪婪的Copy（https://www.luogu.com.cn/problem/P1690）最短路加状压DP
+P1294 高手去散步（https://www.luogu.com.cn/problem/P1294）图问题使用状压DP求解最长直径
+P1123 取数游戏（https://www.luogu.com.cn/problem/P1123）类似占座位的经典状压DP
 参考：OI WiKi（xx）
 """
 

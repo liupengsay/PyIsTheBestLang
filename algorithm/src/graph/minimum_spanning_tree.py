@@ -46,6 +46,10 @@ P2126 Mzc家中的男家丁（https://www.luogu.com.cn/problem/P2126）转化为
 P2330 [SCOI2005]繁忙的都市（https://www.luogu.com.cn/problem/P2330）最小生成树边数量与最大边权值
 P2504 [HAOI2006]聪明的猴子（https://www.luogu.com.cn/problem/P2504）识别为最小生成树求解
 P2700 逐个击破（https://www.luogu.com.cn/problem/P2700）逆向思维与最小生成树，选取最大权组合，修改并查集size
+
+P1195 口袋的天空（https://www.luogu.com.cn/record/list?user=739032&status=12&page=13）最小生成树生成K个连通块
+P1194 买礼物（https://www.luogu.com.cn/problem/P1194）最小生成树变种问题
+
 参考：OI WiKi（xx）
 """
 

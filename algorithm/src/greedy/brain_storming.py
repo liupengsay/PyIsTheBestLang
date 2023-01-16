@@ -31,7 +31,11 @@ P1367 蚂蚁（https://www.luogu.com.cn/problem/P1367）脑筋急转弯，蚂蚁
 P1362 兔子数（https://www.luogu.com.cn/problem/P1362）找规律之后，进行广度优先搜索枚举
 P1090 [NOIP2004 提高组] 合并果子 / [USACO06NOV] Fence Repair G（https://www.luogu.com.cn/record/list?user=739032&status=12&page=11）从小到大贪心合并
 P1334 瑞瑞的木板（https://www.luogu.com.cn/problem/P1334）逆向思维的合并果子，从小到大合并
+P1325 雷达安装（https://www.luogu.com.cn/problem/P1325）排序后进行贪心修建更新
 
+P1250 种树（https://www.luogu.com.cn/problem/P1250）区间的贪心题，使用线段树修改区间与查询和，以及二分进行计算
+P1230 智力大冲浪（https://www.luogu.com.cn/problem/P1230）排序后进行选取贪心
+P1159 排行榜（https://www.luogu.com.cn/problem/P1159）使用队列贪心进行模拟
 参考：OI WiKi（xx）
 """
 

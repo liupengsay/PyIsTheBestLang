@@ -7,6 +7,7 @@
 题目：
 L0214 最短回文串（https://leetcode.cn/problems/shortest-palindrome/）计算字符串前缀最长回文子串
 P4555 最长双回文串（https://www.luogu.com.cn/problem/P4555）计算以当前索引为开头以及结尾的最长回文子串
+P1210 [USACO1.3]最长的回文 Calf Flac（https://www.luogu.com.cn/problem/P1210）寻找最长的连续回文子串
 """
 
 import bisect

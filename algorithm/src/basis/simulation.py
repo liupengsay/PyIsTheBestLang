@@ -19,7 +19,9 @@ P2366 yyy2015c01的IDE之Watches（https://www.luogu.com.cn/problem/P2366）字�
 P2552 [AHOI2001]团体操队形（https://www.luogu.com.cn/problem/P2552）经典矩阵赋值模拟
 P2696 慈善的约瑟夫（https://www.luogu.com.cn/problem/P2696）约瑟夫环模拟与差分计算
 剑指 Offer 62. 圆圈中最后剩下的数字（https://leetcode.cn/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/）约瑟夫环
+P1234 小A的口头禅（https://www.luogu.com.cn/problem/P1234）计算矩阵每个点四个方向特定长为4的单词个数
 
+P1166 打保龄球（https://www.luogu.com.cn/problem/P1166）按照题意复杂的模拟题
 参考：OI WiKi（xx）
 """
 

@@ -29,7 +29,7 @@ import copy
 功能：计算字典序第K小、和某个对象的字典序rank
 题目：
 440. 字典序的第K小数字（https://leetcode.cn/problems/k-th-smallest-in-lexicographical-order/）xxxx
-P1243 排序集合（https://www.luogu.com.cn/problem/P1243）
+P1243 排序集合（https://www.luogu.com.cn/problem/P1243）求出第K小的子集
 P1338 末日的传说（https://www.luogu.com.cn/problem/P1338）结合逆序对计数的字典序
 参考：OI WiKi（xx）
 """

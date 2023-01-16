@@ -22,6 +22,9 @@ P1473 [USACO2.3]零的数列 Zero Sum（https://www.luogu.com.cn/problem/P1473�
 P1461 [USACO2.1]海明码 Hamming Codes（https://www.luogu.com.cn/problem/P1461）汉明距离计算与深搜回溯枚举
 P1394 山上的国度（https://www.luogu.com.cn/problem/P1394）深搜进行可达性确认
 
+P1180 驾车旅游（https://www.luogu.com.cn/problem/P1180）深搜进行模拟
+P1118 [USACO06FEB]Backward Digit Sums G/S（https://www.luogu.com.cn/problem/P1118）使用单位矩阵模拟计算杨辉三角的系数，再进行暴搜寻找最小字典序结果
+
 参考：OI WiKi（xx）
 """
 

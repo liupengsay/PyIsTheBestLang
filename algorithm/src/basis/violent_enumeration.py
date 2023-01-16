@@ -23,7 +23,7 @@ P2699 【数学1】小浩的幂次运算（https://www.luogu.com.cn/problem/P269
 P1371 NOI元丹（https://www.luogu.com.cn/problem/P1371）前后缀枚举计数
 P1369 矩形（https://www.luogu.com.cn/problem/P1369）矩阵DP与有贪心枚举在矩形边上的最多点个数
 
-
+P1158 [NOIP2010 普及组] 导弹拦截（https://www.luogu.com.cn/problem/P1158）按照距离的远近进行预处理排序枚举，使用后缀最大值进行更新
 
 参考：OI WiKi（xx）
 """

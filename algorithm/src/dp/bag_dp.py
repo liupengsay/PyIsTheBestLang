@@ -46,6 +46,8 @@ P1474 [USACO2.3]Money System / [USACO07OCT]Cow Cash G（https://www.luogu.com.cn
 
 P1466 [USACO2.2]集合 Subset Sums（https://www.luogu.com.cn/problem/P1466）一维有限背包加和计数
 P1455 搭配购买（https://www.luogu.com.cn/problem/P1455）并查集进行搭配购买组合加一维有限背包
+
+P1230 智力大冲浪（https://www.luogu.com.cn/problem/P1230）排序后根据时间限制进行动态更新一维有限背包
 参考：OI WiKi（xx）
 """
 
