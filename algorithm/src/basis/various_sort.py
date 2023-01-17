@@ -5,7 +5,7 @@
 
 L0045 把数组排成最小的数（https://leetcode.cn/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/）自定义排序携程快排
 P2310 loidc，看看海（https://www.luogu.com.cn/problem/P2310）预处理排序之后进行遍历
-
+912. 排序数组（https://leetcode.cn/problems/sort-an-array/）快速排序
 参考：OI WiKi（xx）
 """
 
@@ -68,28 +68,28 @@ class VariousSort:
                 rank += 1
         return nums
 
-    @staticmethod
-    def quick_sort(nums):
+    # @staticmethod
+    # def quick_sort(nums):
         # 快速排序
-        def recursion(first, last):
-            if first >= last:
-                return
-            mid_value = nums[first]
-            low = first
-            high = last
-            while low < high:
-                while low < high and nums[high] >= mid_value:
-                    high -= 1
-                nums[low] = nums[high]
-                while low < high and nums[low] < mid_value:
-                    low += 1
-                nums[high] = nums[low]
-            nums[low] = mid_value
-            recursion(first, low - 1)
-            recursion(low + 1, last)
-
-        recursion(0, len(nums) - 1)
-        return nums
+        # def recursion(first, last):
+        #     if first >= last:
+        #         return
+        #     mid_value = nums[first]
+        #     low = first
+        #     high = last
+        #     while low < high:
+        #         while low < high and nums[high] >= mid_value:
+        #             high -= 1
+        #         nums[low] = nums[high]
+        #         while low < high and nums[low] < mid_value:
+        #             low += 1
+        #         nums[high] = nums[low]
+        #     nums[low] = mid_value
+        #     recursion(first, low - 1)
+        #     recursion(low + 1, last)
+        #
+        # recursion(0, len(nums) - 1)
+        # return nums
 
     @staticmethod
     def sortArray(self, lst: List[int]) -> List[int]:
@@ -117,34 +117,34 @@ class VariousSort:
         quick_sort(0, n - 1)
         return lst
 
-    @staticmethod
-    def quick_sort_three(nums):
-        # 三路快排
-        def recursion(first, last):
-            if first >= last:
-                return
-            random_index = random.randint(first, last)
-            pivot = nums[random_index]
-            nums[first], nums[random_index] = nums[random_index], nums[first]
-            i = first + 1
-            j = first
-            k = last + 1
-            while i < k:
-                if nums[i] < pivot:
-                    nums[i], nums[j + 1] = nums[j + 1], nums[i]
-                    j += 1
-                    i += 1
-                elif nums[i] > pivot:
-                    nums[i], nums[k - 1] = nums[k - 1], nums[i]
-                    k -= 1
-                else:
-                    i += 1
-            nums[first], nums[j] = nums[j], nums[first]
-            recursion(first, j - 1)
-            recursion(k, last)
-
-        recursion(0, len(nums) - 1)
-        return nums
+    # @staticmethod
+    # def quick_sort_three(nums):
+    #     # 三路快排
+    #     def recursion(first, last):
+    #         if first >= last:
+    #             return
+    #         random_index = random.randint(first, last)
+    #         pivot = nums[random_index]
+    #         nums[first], nums[random_index] = nums[random_index], nums[first]
+    #         i = first + 1
+    #         j = first
+    #         k = last + 1
+    #         while i < k:
+    #             if nums[i] < pivot:
+    #                 nums[i], nums[j + 1] = nums[j + 1], nums[i]
+    #                 j += 1
+    #                 i += 1
+    #             elif nums[i] > pivot:
+    #                 nums[i], nums[k - 1] = nums[k - 1], nums[i]
+    #                 k -= 1
+    #             else:
+    #                 i += 1
+    #         nums[first], nums[j] = nums[j], nums[first]
+    #         recursion(first, j - 1)
+    #         recursion(k, last)
+    #
+    #     recursion(0, len(nums) - 1)
+    #     return nums
 
 
     def merge_sort(self, nums):

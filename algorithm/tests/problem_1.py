@@ -25,40 +25,33 @@ from decimal import Decimal
 
 import heapq
 import copy
+from sortedcontainers import SortedList
+
+
+class MedianFinder:
+
+    def __init__(self):
+        self.lst = SortedList()
+
+    def addNum(self, num: int) -> None:
+        self.lst.add(num)
+
+    def findMedian(self) -> float:
+        n = len(self.lst)
+        if n%2:
+            return self.lst[n//2]
+        return (self.lst[n//2]+self.lst[n//2-1])/2
 
 
 
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-class Solution:
-    def verticalOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
-        ans = defaultdict(list)
-
-        def dfs(node, i, j):
-            nonlocal ind
-            if not node:
-                return
-            ans[j].append([i, ind, node.val])
-            ind += 1
-            dfs(node.left, i+1, j - 1)
-            dfs(node.right, i+1, j + 1)
-            return
-
-        ind = 0
-        dfs(root, 0, 0)
-        axis= list(ans.keys())
-        for i in axis:
-            ans[i].sort(key=lambda x: [x[0], x[1]])
-        return [[val for _, _, val in ans[i]] for i in sorted(ans)]
-
+# Your MedianFinder object will be instantiated and called as such:
+# obj = MedianFinder()
+# obj.addNum(num)
+# param_2 = obj.findMedian()
 
 class TestGeneral(unittest.TestCase):
     def test_solution(self):
-        assert Solution().countPairs(nums=[1, 4, 2, 7], low=2, high=6) == 6
+        assert Solution().sortArray([5,1,1,2,0,0]) == [0,0,1,1,2,5]
         return
 
 
