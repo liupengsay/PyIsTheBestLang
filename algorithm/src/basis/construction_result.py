@@ -1,7 +1,10 @@
 """
 算法：构造
-功能：xxx
+功能：通常需要根据题目要求，进行贪心排序之后的构造出合理可行的答案
 题目：xx（xx）
+
+280. 摆动排序（https://leetcode.cn/problems/wiggle-sort/）按照降序先赋给奇数索引再给偶数索引
+
 参考：OI WiKi（xx）
 """
 
@@ -44,8 +47,8 @@ class ClassName:
 class TestGeneral(unittest.TestCase):
 
     def test_xxx(self):
-        nt = ClassName()
-        assert nt.gen_result(10 ** 11 + 131) == 66666666752
+        # nt = ClassName()
+        # assert nt.gen_result(10 ** 11 + 131) == 66666666752
         return
 
 

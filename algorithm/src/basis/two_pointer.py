@@ -13,7 +13,7 @@ P2207 Photo（https://www.luogu.com.cn/problem/P2207）贪心加同向双指针
 
 P2381 圆圆舞蹈（https://www.luogu.com.cn/problem/P2381）环形数组，滑动窗口双指针
 6293. 统计好子数组的数目（https://leetcode.cn/problems/count-the-number-of-good-subarrays/）双指针计数
-
+259. 较小的三数之和（https://leetcode.cn/problems/3sum-smaller/）使用双指针或者计数枚举的方式
 
 参考：OI WiKi（xx）
 """

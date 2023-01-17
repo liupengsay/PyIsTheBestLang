@@ -28,26 +28,27 @@ import copy
 from sortedcontainers import SortedList
 
 
-class MedianFinder:
+# """
+# This is BinaryMatrix's API interface.
+# You should not implement it, or speculate about its implementation
+# """
+#class BinaryMatrix(object):
+#    def get(self, row: int, col: int) -> int:
+#    def dimensions(self) -> list[]:
+class Solution:
+    def minDistance(self, word1: str, word2: str) -> int:
+        inf = float("inf")
+        m, n = len(word1), len(word2)
+        dp = [[inf]*(n+1) for _ in range(m+1)]
+        dp[0][0] = 0
+        for i in range(m):
+            dp[i+1][0] = i+1
+            for j in range(n):
+                dp[i+1][j+1] = min(dp[i][j+1]+1, dp[i+1][j]+1, dp[i][j]+int(word1[i]!=word2[j]))
+        return dp[m][n]
 
-    def __init__(self):
-        self.lst = SortedList()
-
-    def addNum(self, num: int) -> None:
-        self.lst.add(num)
-
-    def findMedian(self) -> float:
-        n = len(self.lst)
-        if n%2:
-            return self.lst[n//2]
-        return (self.lst[n//2]+self.lst[n//2-1])/2
 
 
-
-# Your MedianFinder object will be instantiated and called as such:
-# obj = MedianFinder()
-# obj.addNum(num)
-# param_2 = obj.findMedian()
 
 class TestGeneral(unittest.TestCase):
     def test_solution(self):

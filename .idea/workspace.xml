@@ -6,8 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/various_sort.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/various_sort.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/construction_result.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/construction_result.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/diff_array.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/diff_array.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/range.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/range.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/two_pointer.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/two_pointer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/violent_enumeration.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/violent_enumeration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/topological_sort.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/topological_sort.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/greedy/brain_storming.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/greedy/brain_storming.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machine_learning/doc/刘鹏详细2023（持续刷新）.docx" beforeDir="false" afterPath="$PROJECT_DIR$/machine_learning/doc/刘鹏详细2023（持续刷新）.docx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,7 +191,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -195,13 +202,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647300774340</updated>
-    </task>
-    <task id="LOCAL-00085" summary="高精度">
-      <created>1673057507555</created>
-      <option name="number" value="00085" />
-      <option name="presentableId" value="LOCAL-00085" />
-      <option name="project" value="LOCAL" />
-      <updated>1673057507555</updated>
     </task>
     <task id="LOCAL-00086" summary="有理数与无限循环小数、分数">
       <created>1673061230821</created>
@@ -539,7 +539,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673884048347</updated>
     </task>
-    <option name="localTasksCounter" value="134" />
+    <task id="LOCAL-00134" summary="简历更新">
+      <created>1673914704255</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
+      <option name="project" value="LOCAL" />
+      <updated>1673914704255</updated>
+    </task>
+    <option name="localTasksCounter" value="135" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -556,7 +563,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="正方形求点与三角形面积计算" />
     <MESSAGE value="滑动指针窗口栈加队列" />
     <MESSAGE value="使用ST表预处理区间的gcd" />
     <MESSAGE value="滑动窗口最大值最小值" />
@@ -581,7 +587,8 @@
     <MESSAGE value="获取所有小于上界数的因子" />
     <MESSAGE value="螺旋矩阵" />
     <MESSAGE value="增加题目" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加题目" />
+    <MESSAGE value="简历更新" />
+    <option name="LAST_COMMIT_MESSAGE" value="简历更新" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

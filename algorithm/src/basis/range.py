@@ -34,6 +34,9 @@ P2082 区间覆盖（加强版）（https://www.luogu.com.cn/problem/P2082）经
 P2434 [SDOI2005]区间（https://www.luogu.com.cn/problem/P2434）经典区间合并为不相交的区间
 P2684 搞清洁（https://www.luogu.com.cn/problem/P2684）最小区间覆盖，选取最少的区间来进行覆盖
 435. 无重叠区间（https://leetcode.cn/problems/non-overlapping-intervals/）最多不相交的区间，使用贪心或者二分DP
+763. 划分字母区间（https://leetcode.cn/problems/partition-labels/）经典将区间合并为不相交的区间
+
+
 参考：OI WiKi（xx）
 """
 
