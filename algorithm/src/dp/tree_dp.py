@@ -18,7 +18,7 @@ P2016 战略游戏（https://www.luogu.com.cn/problem/P2016）树形DP瞭望每�
 968. 监控二叉树（https://leetcode.cn/problems/binary-tree-cameras/）树形DP监控每个节点
 
 6294. 最大价值和与最小价值和的差值（https://leetcode.cn/problems/difference-between-maximum-and-minimum-price-sum/）树形换根DP，求去掉其中一个叶子节点的最大直径
-
+124. 二叉树中的最大路径和（https://leetcode.cn/problems/binary-tree-maximum-path-sum/）树形DP
 P1122 最大子树和（https://www.luogu.com.cn/problem/P1122）计算最大的连通块和
 参考：OI WiKi（xx）
 """

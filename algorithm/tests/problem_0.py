@@ -110,40 +110,39 @@ class FastIO:
 
 
 def main(ac=FastIO()):
-    n, k = ac.read_ints()
-    cnt = ac.read_list_ints()
-    dis = [0] + ac.read_list_ints()
-    for i in range(1, n):
-        dis[i] += dis[i-1]
+    t = ac.read_int()
+    for _ in range(t):
+        n, k = ac.read_ints()
+        nums = ac.read_list_ints()
+        nums.sort()
+        ac.read_list_ints()
 
-    pre = [0]*(n+1)
-    for i in range(n):
-        pre[i+1] = pre[i]+cnt[i]
+        post = [0]*n
+        j = 0
+        for i in range(n):
+            while j + 1 < n and nums[j + 1] - nums[i] <= k:
+                j += 1
+            if nums[j] - nums[i] <= k:
+                post[i] = j-i+1
+        for i in range(n-2, -1, -1):
+            post[i] = ac.max(post[i+1], post[i])
 
-    # 带权中位数
-    cost = [[0]*n for _ in range(n)]
-    for i in range(n):
-        for j in range(i+1, n):
-            cur = 0
-            total = pre[j+1] - pre[i]
-            mid = -1
-            for x in range(i, j+1):
-                cur += cnt[x]
-                if cur > total - cur:
-                    mid = x
-                    break
-            s = 0
-            for x in range(i, j+1):
-                s += cnt[x]*abs(dis[x]-dis[mid])
-            cost[i][j] = s
+        left = [0]*n
+        j = n-1
+        for i in range(n-1, -1, -1):
+            while j -1 >= 0 and nums[i] - nums[j-1] <= k:
+                j -= 1
+            if nums[i] - nums[j] <= k:
+                left[i] = i-j+1
+        for i in range(1, n):
+            left[i] = ac.max(left[i-1], left[i])
+        ans = max(max(left), max(post))
+        if n > 1:
+            cur = max(left[i]+post[i+1] for i in range(n-1))
+            ans = ans if ans > cur else cur
+        ac.st(ans)
 
-    dp = [[inf]*(k+1) for _ in range(n+1)]
-    dp[0][0] = 0
-    for i in range(n):
-        dp[i+1][1] = cost[0][i]
-        for j in range(2, k+1):
-            dp[i+1][j] = min(dp[x][j-1]+cost[x][i] for x in range(i+1))
-    ac.st(dp[n][k])
+
     return
 
 

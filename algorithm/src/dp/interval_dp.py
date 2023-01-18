@@ -21,6 +21,8 @@ P1435 [IOI2000] 回文字串（https://www.luogu.com.cn/problem/P1435）典型�
 
 P1388 算式（https://www.luogu.com.cn/problem/P1388）回溯枚举符号组合，再使用区间DP进行最大值求解
 P1103 书本整理（https://www.luogu.com.cn/problem/P1103）三维DP
+1547. 切棍子的最小成本（https://leetcode.cn/problems/minimum-cost-to-cut-a-stick/）区间DP模拟
+
 参考：OI WiKi（xx）
 """
 

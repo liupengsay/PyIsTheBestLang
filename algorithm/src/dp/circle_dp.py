@@ -7,6 +7,8 @@
 
 题目：
 L1880 石子合并（https://www.luogu.com.cn/problem/P1880）将数组复制成两遍进行区间DP
+918. 环形子数组的最大和（https://leetcode.cn/problems/maximum-sum-circular-subarray/）枚举可能的最大与最小区间
+
 
 参考：OI WiKi（xx）
 """

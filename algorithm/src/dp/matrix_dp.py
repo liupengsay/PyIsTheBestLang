@@ -23,7 +23,7 @@ P2543 [AHOI2004]奇怪的字符串（https://www.luogu.com.cn/problem/P2543）�
 
 P2513 [HAOI2009]逆序对数列（https://www.luogu.com.cn/record/list?user=739032&status=12&page=2）二维矩阵DP加前缀和优化
 P1434 [SHOI2002] 滑雪（https://www.luogu.com.cn/problem/P1434）二维矩阵DP计算最长上升的路径
-
+329. 矩阵中的最长递增路径（https://leetcode.cn/problems/longest-increasing-path-in-a-matrix/）二维矩阵DP
 P1140 相似基因（https://www.luogu.com.cn/problem/P1140）二维矩阵DP
 P1057 [NOIP2008 普及组] 传球游戏（https://www.luogu.com.cn/problem/P1057）二维DP可做成转移的
 参考：OI WiKi（xx）
