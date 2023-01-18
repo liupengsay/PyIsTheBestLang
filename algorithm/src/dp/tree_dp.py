@@ -20,6 +20,7 @@ P2016 战略游戏（https://www.luogu.com.cn/problem/P2016）树形DP瞭望每�
 6294. 最大价值和与最小价值和的差值（https://leetcode.cn/problems/difference-between-maximum-and-minimum-price-sum/）树形换根DP，求去掉其中一个叶子节点的最大直径
 124. 二叉树中的最大路径和（https://leetcode.cn/problems/binary-tree-maximum-path-sum/）树形DP
 P1122 最大子树和（https://www.luogu.com.cn/problem/P1122）计算最大的连通块和
+F - Expensive Expense （https://atcoder.jp/contests/abc222/tasks/abc222_f）换根DP
 参考：OI WiKi（xx）
 """
 
@@ -127,48 +128,46 @@ class TreeDP:
 
     @staticmethod
     def longest_path_through_node(dct):
+
+        # 模板：换根DP，两遍DFS获取从下往上与从上往下的DP信息
         n = len(dct)
 
         # 两遍DFS获取从下往上与从上往下的节点最远距离
-        def dfs(x):
-            visit[x] = 1
+        def dfs(x, fa):
             res = [0, 0]
             for y in dct[x]:
-                if not visit[y]:
-                    dfs(y)
+                if y != fa:
+                    dfs(y, x)
                     res.append(max(down_to_up[y]) + 1)
             down_to_up[x] = nlargest(2, res)
             return
 
         # 默认以 0 为根
-        visit = [0] * n
         down_to_up = [[] for _ in range(n)]
-        dfs(0)
+        dfs(0, -1)
 
-        def dfs(x, pre):
-            visit[x] = 1
+        def dfs(x, pre, fa):
             up_to_down[x] = pre
             son = [0, 0]
             for y in dct[x]:
-                if not visit[y]:
+                if y != fa:
                     son.append(max(down_to_up[y]))
             son = nlargest(2, son)
 
             for y in dct[x]:
-                if not visit[y]:
+                if y != fa:
                     father = pre + 1
                     tmp = son[:]
                     if max(down_to_up[y]) in tmp:
                         tmp.remove(max(down_to_up[y]))
                     if tmp[0]:
                         father = father if father > tmp[0] + 2 else tmp[0] + 2
-                    dfs(y, father)
+                    dfs(y, father, x)
             return
 
-        visit = [0] * n
         up_to_down = [0] * n
         # 默认以 0 为根
-        dfs(0, 0)
+        dfs(0, 0, -1)
         # 树的直径、核心可通过这两个数组计算得到，其余类似的递归可参照这种方式
         return up_to_down, down_to_up
 
