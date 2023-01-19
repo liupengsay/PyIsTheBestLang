@@ -5,22 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/machine_learning/doc/~$简历2023（持续刷新）.docx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/machine_learning/doc/~$详细2023（持续刷新）.docx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/machine_learning/study/ml.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/binary_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/binary_search.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/simulation.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/simulation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/circle_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/circle_dp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/interval_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/interval_dp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/linear_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/linear_dp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/construction_result.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/construction_result.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/diff_array.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/diff_array.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/violent_enumeration.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/violent_enumeration.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/src/dp/matrix_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/matrix_dp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/tree_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/tree_dp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/geometry.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/geometry.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_0.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_0.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/temp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/temp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machine_learning/doc/刘鹏详细2023（持续刷新）.docx" beforeDir="false" afterPath="$PROJECT_DIR$/machine_learning/doc/刘鹏详细2023（持续刷新）.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/greedy/brain_storming.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/greedy/brain_storming.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/string/string_hash.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/string/string_hash.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +79,7 @@
       <recent name="D:\PCRecord\algorithm\template\mathmatics" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.temp">
+  <component name="RunManager" selected="Python tests.Unittests in tree_dp.py">
     <configuration name="强连通分量" type="PythonConfigurationType" factoryName="Python">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -196,10 +187,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Unittests in tree_dp.py" />
         <item itemvalue="Python.temp" />
         <item itemvalue="Python.problem_0" />
         <item itemvalue="Python tests.Unittests in problem_1.py" />
-        <item itemvalue="Python tests.Unittests in tree_dp.py" />
         <item itemvalue="Python tests.Unittests for diff_array.TestGeneral.test_diff_array_matrix" />
       </list>
     </recent_temporary>
@@ -215,20 +206,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647300774340</updated>
-    </task>
-    <task id="LOCAL-00087" summary="数位DP与进制计数">
-      <created>1673084944546</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1673084944546</updated>
-    </task>
-    <task id="LOCAL-00088" summary="增加数位DP计算不含数字d的个数">
-      <created>1673085533949</created>
-      <option name="number" value="00088" />
-      <option name="presentableId" value="LOCAL-00088" />
-      <option name="project" value="LOCAL" />
-      <updated>1673085533949</updated>
     </task>
     <task id="LOCAL-00089" summary="使用进制计算第n个不含0的数">
       <created>1673085852553</created>
@@ -559,7 +536,21 @@
       <option name="project" value="LOCAL" />
       <updated>1673965384745</updated>
     </task>
-    <option name="localTasksCounter" value="136" />
+    <task id="LOCAL-00136" summary="增加题目">
+      <created>1674039706990</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1674039706990</updated>
+    </task>
+    <task id="LOCAL-00137" summary="修改换根DP模板">
+      <created>1674040243987</created>
+      <option name="number" value="00137" />
+      <option name="presentableId" value="LOCAL-00137" />
+      <option name="project" value="LOCAL" />
+      <updated>1674040243987</updated>
+    </task>
+    <option name="localTasksCounter" value="138" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -576,7 +567,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="滑动指针窗口栈加队列" />
     <MESSAGE value="使用ST表预处理区间的gcd" />
     <MESSAGE value="滑动窗口最大值最小值" />
     <MESSAGE value="二进制优化背包举例" />
@@ -601,7 +591,8 @@
     <MESSAGE value="螺旋矩阵" />
     <MESSAGE value="简历更新" />
     <MESSAGE value="增加题目" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加题目" />
+    <MESSAGE value="修改换根DP模板" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改换根DP模板" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -648,7 +639,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/algorithm/src/dp/tree_dp.py</url>
-          <line>172</line>
+          <line>171</line>
           <option name="timeStamp" value="188" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">

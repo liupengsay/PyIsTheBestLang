@@ -2,7 +2,7 @@
 
 """
 """
-算法：差分数组与前缀和
+算法：差分数组与前缀和、后缀和、前缀最大子序列和、后缀最大子序列和
 功能：用来解决一维数组或者二维数组的加和问题，以及前缀和计算，还有前缀和的前缀和
 题目：
 
@@ -14,7 +14,7 @@ L2132 用邮票贴满网格图（https://leetcode.cn/problems/stamping-the-grid/
 P1869 愚蠢的组合数（https://www.luogu.com.cn/problem/P1869）使用前缀和记录1-N的因子2的个数继而计算C(N,K)的奇偶性
 
 6292. 子矩阵元素加 1（https://leetcode.cn/problems/increment-submatrices-by-one/)二维差分前缀和
-
+P8772 [蓝桥杯 2022 省 A] 求和（https://www.luogu.com.cn/record/list?user=739032&status=12&page=15）后缀和计算
 
 参考：OI WiKi（xx）
 """
