@@ -30,7 +30,7 @@ import copy
 算法：BST二叉搜索树
 功能：根据数字顺序建立二叉搜索树
 题目：
-Lxxxx xxxx（https://leetcode.cn/problems/shortest-palindrome/）xxxx
+P2171 Hz吐泡泡（https://www.luogu.com.cn/problem/P2171）依次输入数据生成二叉搜索树
 
 参考：OI WiKi（xx）
 """
@@ -41,6 +41,7 @@ ans1 = 1  # 最高层数
 
 class BST(object):
     def __init__(self, data, left=None, right=None):  # BST的三个，值，左子树，右子树
+        # 这里遇到链条形状的树会有性能问题
         super(BST, self).__init__()
         self.data = data
         self.left = left

@@ -15,6 +15,8 @@ P1869 愚蠢的组合数（https://www.luogu.com.cn/problem/P1869）使用前缀
 
 6292. 子矩阵元素加 1（https://leetcode.cn/problems/increment-submatrices-by-one/)二维差分前缀和
 P8772 [蓝桥杯 2022 省 A] 求和（https://www.luogu.com.cn/record/list?user=739032&status=12&page=15）后缀和计算
+P2367 语文成绩（https://www.luogu.com.cn/problem/P2367）差分数组记录区间增减变化，最后还原计算最小值
+P2280 [HNOI2003]激光炸弹（https://www.luogu.com.cn/problem/P2280）二位前缀和
 
 参考：OI WiKi（xx）
 """

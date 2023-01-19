@@ -29,6 +29,9 @@ P2881 [USACO07MAR]Ranking the Cows G（https://www.luogu.com.cn/problem/P2881）
 P2895 [USACO08FEB]Meteor Shower S（https://www.luogu.com.cn/problem/P2895）广度优先搜索模拟
 
 P2960 [USACO09OCT]Invasion of the Milkweed G（https://www.luogu.com.cn/problem/P2960）广度优先搜索裸题
+P2298 Mzc和男家丁的游戏（https://www.luogu.com.cn/problem/P2298）BFS裸题
+
+
 
 参考：OI WiKi（xx）
 """

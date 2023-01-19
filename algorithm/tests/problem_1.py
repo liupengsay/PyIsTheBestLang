@@ -28,43 +28,13 @@ import copy
 from sortedcontainers import SortedList
 
 
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
 class Solution:
-    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
-        ans = ListNode(-1)
-        pre = ans
-        while list1 and list2:
-            if list1.val >= list2:
-                tmp = list2.next
-                list2.next = None
-                pre.next = list2
-                pre = pre.next
-                list2 = tmp
-            else:
-                tmp = list1.next
-                list1.next = None
-                pre.next = list1
-                pre = pre.next
-                list1 = tmp
-        while list1:
-            tmp = list2.next
-            list2.next = None
-            pre.next = list2
-            pre = pre.next
-            list2 = tmp
-        while list2:
-            tmp = list1.next
-            list1.next = None
-            pre.next = list1
-            pre = pre.next
-            list1 = tmp
-        return ans.next
-
-
+    def findingUsersActiveMinutes(self, logs: List[List[int]], k: int) -> List[int]:
+        dct = defaultdict(set)
+        for i, t in logs:
+            dct[i].add(t)
+        cnt = Counter([len(dct[i]) for i in dct])
+        return [cnt[i+1] for i in range(k)]
 
 
 class TestGeneral(unittest.TestCase):
