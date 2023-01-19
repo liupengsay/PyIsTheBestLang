@@ -17,10 +17,18 @@ P1570 KC 喝咖啡（https://www.luogu.com.cn/problem/P1570）公式转换后使
 P1843 奶牛晒衣服（https://www.luogu.com.cn/problem/P1843）贪心加二分
 P2309 loidc，卖卖萌（https://www.luogu.com.cn/problem/P2309）使用前缀和有序列表加二分求解和为正数的子串个数
 P2390 地标访问（https://www.luogu.com.cn/problem/P2390）枚举加二分起始也可以使用双指针
-
+P2759 奇怪的函数（https://www.luogu.com.cn/problem/P2759）公式变换后使用二分求解
 P1404 平均数（https://www.luogu.com.cn/problem/P1404）公式变换后使用前缀和加二分
 295. 数据流的中位数（https://leetcode.cn/problems/find-median-from-data-stream/）使用一个SortedList和三个变量维护左右两边与中间段的和
 4. 寻找两个正序数组的中位数（https://leetcode.cn/problems/median-of-two-sorted-arrays/）经典二分思想查找题
+
+P2855 [USACO06DEC]River Hopscotch S（https://www.luogu.com.cn/problem/P2855）使用贪心加二分
+
+P2884 [USACO07MAR]Monthly Expense S（https://www.luogu.com.cn/problem/P2884）最大最小之类的经典二分问题
+
+
+
+
 参考：OI WiKi（xx）
 """
 

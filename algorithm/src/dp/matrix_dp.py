@@ -27,8 +27,10 @@ P1434 [SHOI2002] 滑雪（https://www.luogu.com.cn/problem/P1434）二维矩阵D
 P1140 相似基因（https://www.luogu.com.cn/problem/P1140）二维矩阵DP
 P1057 [NOIP2008 普及组] 传球游戏（https://www.luogu.com.cn/problem/P1057）二维DP可做成转移的
 P8825 [传智杯 #3 初赛] 运气（https://www.luogu.com.cn/problem/P8825）结合取模进行滚动更新计算
-
-
+P2758 编辑距离（https://www.luogu.com.cn/problem/P2758）二维DP编辑距离
+P2803 学校选址 II（https://www.luogu.com.cn/problem/P2803）二维DP与一个计算带权中位数距离的区间DP
+1478. 安排邮筒（https://leetcode.cn/problems/allocate-mailboxes/）二维DP与一个计算不带权中位数距离的区间DP
+P2946 [USACO09MAR]Cow Frisbee Team S（https://www.luogu.com.cn/problem/P2946）计算何为某个数字倍数的连续子序列个数
 
 参考：OI WiKi（xx）
 """

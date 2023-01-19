@@ -109,40 +109,70 @@ class FastIO:
         return wrappedfunc
 
 
+
+class SegmentTreeRangeUpdateXORSum:
+    def __init__(self):
+        # 区间值01翻转与区间和查询
+        self.cover = defaultdict(int)
+        self.lazy = defaultdict(int)
+
+    def push_down(self, i, s, m, t):
+        if self.lazy[i]:
+            self.cover[2 * i] = m - s + 1 - self.cover[2*i]
+            self.cover[2 * i + 1] = t - m - self.cover[2 * i + 1]
+
+            self.lazy[2 * i] ^= self.lazy[i]  # 注意使用异或抵消查询
+            self.lazy[2 * i + 1] ^= self.lazy[i]  # 注意使用异或抵消查询
+
+            self.lazy[i] = 0
+
+    def update(self, left, r, s, t, val, i):
+        if left <= s and t <= r:
+            self.cover[i] = t-s+1 - self.cover[i]
+            self.lazy[i] ^= val  # 注意使用异或抵消查询
+            return
+        m = s + (t - s) // 2
+        self.push_down(i, s, m, t)
+        if left <= m:
+            self.update(left, r, s, m, val, 2 * i)
+        if r > m:
+            self.update(left, r, m + 1, t, val, 2 * i + 1)
+        self.cover[i] = self.cover[2 * i] + self.cover[2 * i + 1]
+        return
+
+    def query(self, left, r, s, t, i):
+        if left <= s and t <= r:
+            return self.cover[i]
+        m = s + (t - s) // 2
+        self.push_down(i, s, m, t)
+        ans = 0
+        if left <= m:
+            ans += self.query(left, r, s, m, 2 * i)
+        if r > m:
+            ans += self.query(left, r, m + 1, t, 2 * i + 1)
+        return ans
+
+
 def main(ac=FastIO()):
-    t = ac.read_int()
-    for _ in range(t):
-        n, k = ac.read_ints()
-        nums = ac.read_list_ints()
-        nums.sort()
-        ac.read_list_ints()
-
-        post = [0]*n
-        j = 0
-        for i in range(n):
-            while j + 1 < n and nums[j + 1] - nums[i] <= k:
-                j += 1
-            if nums[j] - nums[i] <= k:
-                post[i] = j-i+1
-        for i in range(n-2, -1, -1):
-            post[i] = ac.max(post[i+1], post[i])
-
-        left = [0]*n
-        j = n-1
-        for i in range(n-1, -1, -1):
-            while j -1 >= 0 and nums[i] - nums[j-1] <= k:
-                j -= 1
-            if nums[i] - nums[j] <= k:
-                left[i] = i-j+1
-        for i in range(1, n):
-            left[i] = ac.max(left[i-1], left[i])
-        ans = max(max(left), max(post))
-        if n > 1:
-            cur = max(left[i]+post[i+1] for i in range(n-1))
-            ans = ans if ans > cur else cur
-        ac.st(ans)
-
-
+    n, m = ac.read_ints()
+    tree = SegmentTreeRangeUpdateXORSum()
+    s = ac.read_str()
+    cnt = 0
+    for i in range(n):
+        if s[i] == "1":
+            cnt += 1
+        else:
+            if cnt:
+                tree.update(i+1-cnt, i, 1, n, 1, 1)
+            cnt = 0
+    if cnt:
+        tree.update(n-cnt+1, n, 1, n, 1, 1)
+    for _ in range(m):
+        op, left ,right = ac.read_ints()
+        if not op:
+            tree.update(left, right, 1, n, 1, 1)
+        else:
+            ac.st(tree.query(left, right, 1, n, 1))
     return
 
 

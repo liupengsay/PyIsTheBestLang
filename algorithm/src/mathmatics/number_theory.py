@@ -17,6 +17,8 @@ P1748 H数（https://www.luogu.com.cn/problem/P1748）丑数可以使用堆模�
 264. 丑数 II（https://leetcode.cn/problems/ugly-number-ii/）只含2、3、5质因数的第 n 个丑数
 1201. 丑数 III（https://leetcode.cn/problems/ugly-number-iii/）只含特定因子数即能被其中一个数整除的第 n 个丑数
 313. 超级丑数（https://leetcode.cn/problems/super-ugly-number/）只含某些特定质因数的第 n 个丑数
+
+P2723 [USACO3.1]丑数 Humble Numbers（https://www.luogu.com.cn/problem/P2723）第n小的只含给定素因子的丑数
 P1952 火星上的加法运算（https://www.luogu.com.cn/problem/P1952）N进制加法
 
 P1555 尴尬的数字（https://www.luogu.com.cn/problem/P1555）二进制与三进制
@@ -25,6 +27,8 @@ P1465 [USACO2.2]序言页码 Preface Numbering（https://www.luogu.com.cn/proble
 12. 整数转罗马数字（https://leetcode.cn/problems/integer-to-roman/）整数转罗马数字
 13. 罗马数字转整数（https://leetcode.cn/problems/roman-to-integer/）罗马数字转整数
 P1112 波浪数（https://www.luogu.com.cn/problem/P1112）枚举波浪数计算其不同进制下是否满足条件
+P2926 [USACO08DEC]Patting Heads S（https://www.luogu.com.cn/problem/P2926）素数筛或者因数分解计数统计可被数列其他数整除的个数
+
 """
 
 

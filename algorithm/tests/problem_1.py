@@ -28,26 +28,43 @@ import copy
 from sortedcontainers import SortedList
 
 
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+        ans = ListNode(-1)
+        pre = ans
+        while list1 and list2:
+            if list1.val >= list2:
+                tmp = list2.next
+                list2.next = None
+                pre.next = list2
+                pre = pre.next
+                list2 = tmp
+            else:
+                tmp = list1.next
+                list1.next = None
+                pre.next = list1
+                pre = pre.next
+                list1 = tmp
+        while list1:
+            tmp = list2.next
+            list2.next = None
+            pre.next = list2
+            pre = pre.next
+            list2 = tmp
+        while list2:
+            tmp = list1.next
+            list1.next = None
+            pre.next = list1
+            pre = pre.next
+            list1 = tmp
+        return ans.next
 
-class MedianFinder:
 
-    def __init__(self):
-        self.lst = SortedList()
-
-    def addNum(self, num: int) -> None:
-        self.lst.add(num)
-
-    def findMedian(self) -> float:
-        m = len(self.lst)
-        if m %2:
-            return self.lst[m//2]
-        return (self.lst[m//2]+self.lst[m//2-1])/2
-
-
-# Your MedianFinder object will be instantiated and called as such:
-# obj = MedianFinder()
-# obj.addNum(num)
-# param_2 = obj.findMedian()
 
 
 class TestGeneral(unittest.TestCase):

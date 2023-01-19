@@ -13,6 +13,8 @@ L2407 最长递增子序列 II（https://leetcode.cn/problems/longest-increasing
 L2276 统计区间中的整数数目（https://leetcode.cn/problems/count-integers-in-intervals/）维护区间并集的长度
 L2179 统计数组中好三元组数目（https://leetcode.cn/problems/count-good-triplets-in-an-array/）维护区间范围内的个数
 L2158 每天绘制新区域的数量（https://leetcode.cn/problems/amount-of-new-area-painted-each-day/）线段树维护区间范围的覆盖
+P2846 [USACO08NOV]Light Switching G（https://www.luogu.com.cn/problem/P2846）线段树统计区间翻转和
+P2574 XOR的艺术（https://www.luogu.com.cn/problem/P2574）线段树统计区间翻转和
 参考：OI WiKi（xx）
 """
 
@@ -42,6 +44,49 @@ from decimal import Decimal
 
 import heapq
 import copy
+
+
+class SegmentTreeRangeUpdateXORSum:
+    def __init__(self):
+        # 区间值01翻转与区间和查询
+        self.cover = defaultdict(int)
+        self.lazy = defaultdict(int)
+
+    def push_down(self, i, s, m, t):
+        if self.lazy[i]:
+            self.cover[2 * i] = m - s + 1 - self.cover[2*i]
+            self.cover[2 * i + 1] = t - m - self.cover[2 * i + 1]
+
+            self.lazy[2 * i] ^= self.lazy[i]  # 注意使用异或抵消查询
+            self.lazy[2 * i + 1] ^= self.lazy[i]  # 注意使用异或抵消查询
+
+            self.lazy[i] = 0
+
+    def update(self, left, r, s, t, val, i):
+        if left <= s and t <= r:
+            self.cover[i] = t-s+1 - self.cover[i]
+            self.lazy[i] ^= val  # 注意使用异或抵消查询
+            return
+        m = s + (t - s) // 2
+        self.push_down(i, s, m, t)
+        if left <= m:
+            self.update(left, r, s, m, val, 2 * i)
+        if r > m:
+            self.update(left, r, m + 1, t, val, 2 * i + 1)
+        self.cover[i] = self.cover[2 * i] + self.cover[2 * i + 1]
+        return
+
+    def query(self, left, r, s, t, i):
+        if left <= s and t <= r:
+            return self.cover[i]
+        m = s + (t - s) // 2
+        self.push_down(i, s, m, t)
+        ans = 0
+        if left <= m:
+            ans += self.query(left, r, s, m, 2 * i)
+        if r > m:
+            ans += self.query(left, r, m + 1, t, 2 * i + 1)
+        return ans
 
 
 class SegmentTreeRangeAddSum:

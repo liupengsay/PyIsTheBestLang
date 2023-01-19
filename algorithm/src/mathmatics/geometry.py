@@ -38,6 +38,8 @@ P2665 [USACO08FEB]Game of Lines S（https://www.luogu.com.cn/problem/P2665）不
 P1355 神秘大三角（https://www.luogu.com.cn/problem/P1355）使用三角形面积计算判断点与三角形的位置关系
 149. 直线上最多的点数（https://leetcode.cn/problems/max-points-on-a-line/）用直线斜率判断一条线上最多的点数
 P1142 轰炸（https://www.luogu.com.cn/problem/P1142）利用斜率计算一条直线上最多的点
+P2778 [AHOI2016初中组]迷宫（https://www.luogu.com.cn/problem/P2778）枚举圆与点的位置关系
+
 参考：OI WiKi（xx）
 """
 

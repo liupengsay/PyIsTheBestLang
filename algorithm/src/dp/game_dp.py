@@ -28,10 +28,10 @@ import copy
 
 """
 算法：博弈类DP、玩游戏、必胜态、必输态
-功能：通常使用枚举加模拟贪心的方式，和记忆化搜索进行状态转移
+功能：通常使用枚举、区间DP加模拟贪心的方式，和记忆化搜索进行状态转移
 题目：
 P1290 欧几里德的游戏（https://www.luogu.com.cn/problem/P1290）典型的博弈DP题
-
+375. 猜数字大小 II（https://leetcode.cn/problems/guess-number-higher-or-lower-ii/）使用区间DP求解的典型博弈DP
 参考：OI WiKi（xx）
 """
 

@@ -22,8 +22,10 @@ P1684 考验（https://www.luogu.com.cn/problem/P1684）线性贪心满足条件
 P1658 购物（https://www.luogu.com.cn/problem/P1658）看似背包实则贪心
 P2001 硬币的面值（https://www.luogu.com.cn/problem/P2001）看似背包实则贪心
 P1620 漂亮字串（https://www.luogu.com.cn/problem/P1620）分类讨论进行贪心
+P2773 漂亮字串（https://www.luogu.com.cn/problem/P2773）分类讨论进行贪心
 P2255 [USACO14JAN]Recording the Moolympics S（https://www.luogu.com.cn/problem/P2255）两个指针进行贪心
 P2327 [SCOI2005]扫雷（https://www.luogu.com.cn/problem/P2327）脑筋急转弯进行枚举
+P2777 [AHOI2016初中组]自行车比赛（https://www.luogu.com.cn/problem/P2777）贪心枚举最佳得分组合，加前后缀记录最大值
 
 P2649 游戏预言（https://www.luogu.com.cn/problem/P2649）贪心，输的时候输最惨，赢的时候微弱优势
 
@@ -42,6 +44,10 @@ P1056 [NOIP2008 普及组] 排座椅（https://www.luogu.com.cn/record/list?user
 625. 最小因式分解（https://leetcode.cn/problems/minimum-factorization/）贪心进行因式分解，类似质因数分解
 P8847 [JRKSJ R5] 1-1 A（https://www.luogu.com.cn/problem/P8847）分类讨论和贪心进行
 P8845 [传智杯 #4 初赛] 小卡和质数（https://www.luogu.com.cn/problem/solution/P8845）脑筋急转弯，只有2是偶数质数
+P2772 寻找平面上的极大点（https://www.luogu.com.cn/problem/P2772）按照两个维度排序，再按照其中一个维度顺序比较最大值
+
+P2878 [USACO07JAN] Protecting the Flowers S（https://www.luogu.com.cn/problem/P2878）经典贪心题目，可使用举例两个计算、再进行归纳确定排序规则
+P2920 [USACO08NOV]Time Management S（https://www.luogu.com.cn/problem/P2920）排序后进行贪心计算
 
 
 参考：OI WiKi（xx）

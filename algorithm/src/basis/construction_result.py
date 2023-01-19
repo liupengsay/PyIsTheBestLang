@@ -6,7 +6,7 @@
 280. 摆动排序（https://leetcode.cn/problems/wiggle-sort/）按照降序先赋给奇数索引再给偶数索引
 P8846 『JROI-7』PMK 配匹串符字（https://www.luogu.com.cn/problem/P8846）厘清题意进行贪心构造
 
-
+P2902 [USACO08MAR]Pearl Pairing G（https://www.luogu.com.cn/problem/P2902）构造不同颜色对
 参考：OI WiKi（xx）
 """
 

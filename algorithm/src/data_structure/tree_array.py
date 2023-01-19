@@ -13,6 +13,8 @@ L2179 统计数组中好三元组数目（https://leetcode.cn/problems/count-goo
 P2068 统计和（https://www.luogu.com.cn/problem/P2068）单点更新与区间求和
 P2345 [USACO04OPEN] MooFest G（https://www.luogu.com.cn/problem/P2345）使用两个树状数组计数与加和更新查询
 P2357 守墓人（https://www.luogu.com.cn/problem/P2357）区间更新与区间求和
+P2781 传教（https://www.luogu.com.cn/problem/P2781）区间更新与区间求和
+
 参考：OI WiKi（https://oi-wiki.org/ds/fenwick/）
 """
 

@@ -21,6 +21,9 @@ P2016 战略游戏（https://www.luogu.com.cn/problem/P2016）树形DP瞭望每�
 124. 二叉树中的最大路径和（https://leetcode.cn/problems/binary-tree-maximum-path-sum/）树形DP
 P1122 最大子树和（https://www.luogu.com.cn/problem/P1122）计算最大的连通块和
 F - Expensive Expense （https://atcoder.jp/contests/abc222/tasks/abc222_f）换根DP
+
+P2932 [USACO09JAN]Earthquake Damage G（https://www.luogu.com.cn/problem/P2932）树形DP统计子树个数与贪心安排最小损坏个数
+
 参考：OI WiKi（xx）
 """
 
