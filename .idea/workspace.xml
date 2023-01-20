@@ -6,11 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/diff_array.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/diff_array.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/matrix_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/matrix_dp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/bst.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/bst.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/search/bfs.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/search/bfs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/segment_tree.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/data_structure/segment_tree.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_0.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_0.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machine_learning/doc/~$简历2023（持续刷新）.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/machine_learning/doc/~$详细2023（持续刷新）.docx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,13 +204,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647300774340</updated>
-    </task>
-    <task id="LOCAL-00091" summary="容斥原理求互质与不互质的数个数">
-      <created>1673151522969</created>
-      <option name="number" value="00091" />
-      <option name="presentableId" value="LOCAL-00091" />
-      <option name="project" value="LOCAL" />
-      <updated>1673151522969</updated>
     </task>
     <task id="LOCAL-00092" summary="最近的回文数字">
       <created>1673154641389</created>
@@ -549,7 +541,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674170304896</updated>
     </task>
-    <option name="localTasksCounter" value="140" />
+    <task id="LOCAL-00140" summary="增加题目">
+      <created>1674171494706</created>
+      <option name="number" value="00140" />
+      <option name="presentableId" value="LOCAL-00140" />
+      <option name="project" value="LOCAL" />
+      <updated>1674171494706</updated>
+    </task>
+    <option name="localTasksCounter" value="141" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

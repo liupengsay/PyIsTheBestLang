@@ -110,69 +110,24 @@ class FastIO:
 
 
 
-class SegmentTreeRangeUpdateXORSum:
-    def __init__(self):
-        # 区间值01翻转与区间和查询
-        self.cover = defaultdict(int)
-        self.lazy = defaultdict(int)
-
-    def push_down(self, i, s, m, t):
-        if self.lazy[i]:
-            self.cover[2 * i] = m - s + 1 - self.cover[2*i]
-            self.cover[2 * i + 1] = t - m - self.cover[2 * i + 1]
-
-            self.lazy[2 * i] ^= self.lazy[i]  # 注意使用异或抵消查询
-            self.lazy[2 * i + 1] ^= self.lazy[i]  # 注意使用异或抵消查询
-
-            self.lazy[i] = 0
-
-    def update(self, left, r, s, t, val, i):
-        if left <= s and t <= r:
-            self.cover[i] = t-s+1 - self.cover[i]
-            self.lazy[i] ^= val  # 注意使用异或抵消查询
-            return
-        m = s + (t - s) // 2
-        self.push_down(i, s, m, t)
-        if left <= m:
-            self.update(left, r, s, m, val, 2 * i)
-        if r > m:
-            self.update(left, r, m + 1, t, val, 2 * i + 1)
-        self.cover[i] = self.cover[2 * i] + self.cover[2 * i + 1]
-        return
-
-    def query(self, left, r, s, t, i):
-        if left <= s and t <= r:
-            return self.cover[i]
-        m = s + (t - s) // 2
-        self.push_down(i, s, m, t)
-        ans = 0
-        if left <= m:
-            ans += self.query(left, r, s, m, 2 * i)
-        if r > m:
-            ans += self.query(left, r, m + 1, t, 2 * i + 1)
-        return ans
-
 
 def main(ac=FastIO()):
     n, m = ac.read_ints()
-    tree = SegmentTreeRangeUpdateXORSum()
-    s = ac.read_str()
-    cnt = 0
+    nums = ac.read_list_ints()
+    tree = SegmentTreeRangeAddSum()
     for i in range(n):
-        if s[i] == "1":
-            cnt += 1
-        else:
-            if cnt:
-                tree.update(i+1-cnt, i, 1, n, 1, 1)
-            cnt = 0
-    if cnt:
-        tree.update(n-cnt+1, n, 1, n, 1, 1)
+        tree.update(i, i, 0, n-1, nums[i], 1)
     for _ in range(m):
-        op, left ,right = ac.read_ints()
-        if not op:
-            tree.update(left, right, 1, n, 1, 1)
+        lst = ac.read_list_strs()
+        if lst[0] == "M":
+            a, b = [int(w)-1 for w in lst[1:]]
+            ac.st(tree.query_min(a, b, 0, n-1, 1))
+        elif lst[0] == "P":
+            a, b, c = [int(w)-1 for w in lst[1:]]
+            tree.update(a, b, 0, n-1, c+1, 1)
         else:
-            ac.st(tree.query(left, right, 1, n, 1))
+            a, b = [int(w)-1 for w in lst[1:]]
+            ac.st(tree.query(a, b, 0, n-1, 1))
     return
 
 
