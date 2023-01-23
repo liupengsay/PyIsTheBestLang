@@ -51,6 +51,10 @@ P1230 智力大冲浪（https://www.luogu.com.cn/problem/P1230）排序后根据
 P1077 [NOIP2012 普及组] 摆花（https://www.luogu.com.cn/problem/P1077）一维有限背包计数
 P2725 [USACO3.1]邮票 Stamps（https://www.luogu.com.cn/problem/P2725）01无限背包计数
 P2918 [USACO08NOV]Buying Hay S（https://www.luogu.com.cn/problem/P2918）一维无限背包，需要根据题意增加背包容量上限计算
+P3027 [USACO10OCT]Making Money G（https://www.luogu.com.cn/problem/P3027）一维无限背包，需要根据题意进行利润计算
+P3030 [USACO11NOV]Tile Exchanging S（https://www.luogu.com.cn/problem/P3030）分组枚举有限背包
+P3040 [USACO12JAN]Bale Share S（https://www.luogu.com.cn/problem/P3040）二维变种背包
+
 
 参考：OI WiKi（xx）
 """

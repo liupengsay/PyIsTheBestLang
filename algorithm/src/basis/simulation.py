@@ -29,7 +29,7 @@ P8889 狠狠地切割(Hard Version)（https://www.luogu.com.cn/problem/P8889）�
 
 P8870 [传智杯 #5 初赛] B-莲子的机械动力学（https://www.luogu.com.cn/problem/P8870）按照进制进行加法模拟
 
-
+P3111 [USACO14DEC]Cow Jog S（https://www.luogu.com.cn/problem/P3111）逆向思维使用行进距离模拟分组，类似力扣车队题目
 参考：OI WiKi（xx）
 """
 

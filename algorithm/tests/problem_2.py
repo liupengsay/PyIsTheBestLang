@@ -44,46 +44,9 @@ from decimal import Decimal, getcontext, MAX_PREC
 from types import GeneratorType
 from functools import cmp_to_key
 
-inf = float("inf")
-sys.setrecursionlimit(10000000)
-
-getcontext().prec = MAX_PREC
 
 
-def get_diff_matrix(m, n, shifts):
-    # 二维差分数组
-    diff = [[0] * (n + 2) for _ in range(m + 2)]
-    # 索引从1开始，矩阵初始值为0
-    for xa, ya, xb, yb in shifts:
-        diff[xa][ya] += 1
-        diff[xa][yb + 1] -= 1
-        diff[xb + 1][ya] -= 1
-        diff[xb + 1][yb + 1] += 1
 
-    for i in range(1, m + 2):
-        for j in range(1, n + 2):
-            diff[i][j] += diff[i - 1][j] + diff[i][j - 1] - diff[i - 1][j - 1]
-
-    for i in range(1, m + 1):
-        diff[i] = diff[i][1:n + 1]
-
-    return diff[1: m + 1]
-
-
-class Solution:
-    def rangeAddQueries(self, n: int, queries: List[List[int]]) -> List[List[int]]:
-        queries = [[x + 1 for x in ls] for ls in queries]
-        # print(queries)
-        ans = get_diff_matrix(n, n, queries)
-        return ans
-
-
-class Solution:
-    def rangeAddQueries(self, n: int, queries: List[List[int]]) -> List[List[int]]:
-        queries = [[x + 1 for x in ls] + [1] for ls in queries]
-        # print(queries)
-        ans = get_diff_matrix(n, n, queries)
-        return ans
 
 
 

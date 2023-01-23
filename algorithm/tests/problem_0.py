@@ -109,25 +109,22 @@ class FastIO:
         return wrappedfunc
 
 
-
-
 def main(ac=FastIO()):
     n, m = ac.read_ints()
-    nums = ac.read_list_ints()
-    tree = SegmentTreeRangeAddSum()
-    for i in range(n):
-        tree.update(i, i, 0, n-1, nums[i], 1)
-    for _ in range(m):
-        lst = ac.read_list_strs()
-        if lst[0] == "M":
-            a, b = [int(w)-1 for w in lst[1:]]
-            ac.st(tree.query_min(a, b, 0, n-1, 1))
-        elif lst[0] == "P":
-            a, b, c = [int(w)-1 for w in lst[1:]]
-            tree.update(a, b, 0, n-1, c+1, 1)
+    nums = [ac.read_str() for _ in range(n)]
+    arr = [ac.read_str() for _ in range(n)]
+    ans = 0
+    for item in combinations(list(range(m)), 3):
+        a, b, c = item
+        pre = set()
+        for s in nums:
+            pre.add((s[a], s[b], s[c]))
+        for s in arr:
+            if (s[a], s[b], s[c]) in pre:
+                break
         else:
-            a, b = [int(w)-1 for w in lst[1:]]
-            ac.st(tree.query(a, b, 0, n-1, 1))
+            ans += 1
+    ac.st(ans)
     return
 
 

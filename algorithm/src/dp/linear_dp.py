@@ -29,6 +29,9 @@ P1096 [NOIP2007 普及组] Hanoi 双塔问题（https://www.luogu.com.cn/problem
 P2896 [USACO08FEB]Eating Together S（https://www.luogu.com.cn/problem/P2896）前后缀动态规划
 P2904 [USACO08MAR]River Crossing S（https://www.luogu.com.cn/problem/P2904）前缀和预处理加线性DP
 
+P3062 [USACO12DEC]Wifi Setup S（https://www.luogu.com.cn/problem/P3062）线性DP枚举
+
+
 
 参考：OI WiKi（xx）
 """

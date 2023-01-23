@@ -28,18 +28,27 @@ import copy
 from sortedcontainers import SortedList
 
 
+
 class Solution:
-    def findingUsersActiveMinutes(self, logs: List[List[int]], k: int) -> List[int]:
-        dct = defaultdict(set)
-        for i, t in logs:
-            dct[i].add(t)
-        cnt = Counter([len(dct[i]) for i in dct])
-        return [cnt[i+1] for i in range(k)]
+    def longestValidParentheses(self, s: str) -> int:
+        stack = [[-1, ""]]
+        ans = 0
+        for i, w in enumerate(s):
+            if w == ")":
+                if stack[-1][1] != "(":
+                    stack = [[i, ""]]
+                else:
+                    stack.pop()
+                    cur = i-stack[-1][0]
+                    ans = ans if ans > cur else cur
+            else:
+                stack.append([i, "("])
+        return ans
 
 
 class TestGeneral(unittest.TestCase):
     def test_solution(self):
-        assert Solution().sortArray([5,1,1,2,0,0]) == [0,0,1,1,2,5]
+        assert Solution().sortArray([5, 1, 1, 2, 0, 0]) == [0, 0, 1, 1, 2, 5]
         return
 
 

@@ -40,6 +40,10 @@ P1318 积水面积（https://www.luogu.com.cn/problem/P1318）一维接雨水，
 P2888 [USACO07NOV]Cow Hurdles S（https://www.luogu.com.cn/problem/P2888）最短路计算路径上最大边权值最小的路径
 P2935 [USACO09JAN]Best Spot S（https://www.luogu.com.cn/problem/P2935）最短路裸题
 P2951 [USACO09OPEN]Hide and Seek S（https://www.luogu.com.cn/problem/P2951）最短路裸题
+P2984 [USACO10FEB]Chocolate Giving S（https://www.luogu.com.cn/problem/P2984）最短路裸题
+P3003 [USACO10DEC]Apple Delivery S（https://www.luogu.com.cn/problem/P3003）三遍最短路
+P3094 [USACO13DEC]Vacation Planning S（https://www.luogu.com.cn/problem/P3094）预处理最短路之后进行查询
+
 
 
 参考：OI WiKi（xx）
@@ -94,6 +98,26 @@ class Dijkstra:
                     dis[j] = dj
                     heapq.heappush(stack, [dj, j])
         return dis
+
+    @staticmethod
+    def get_dijkstra_result2(dct, src, dst):
+        # 模板：Dijkstra求起终点的最短路，注意只能是正权值可以提前返回结果
+        n = len(dct)
+        dis = [float("inf")] * n
+        stack = [[0, src]]
+        dis[src] = 0
+        while stack:
+            d, i = heapq.heappop(stack)
+            if dis[i] < d:
+                continue
+            if i == dst:
+                return d
+            for j in dct[i]:
+                dj = dct[i][j] + d
+                if dj < dis[j]:
+                    dis[j] = dj
+                    heapq.heappush(stack, [dj, j])
+        return dis[dst]
 
     @staticmethod
     def gen_dijkstra_max_result(dct, src, dsc):

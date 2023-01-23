@@ -2,7 +2,7 @@
 算法：KMP算法
 功能：用来处理字符串的前缀后缀相关问题
 题目：
-P3375 KMP字符串匹配（https://www.luogu.com.cn/problem/P3375）计算子字符串出现的位置
+P3375 KMP字符串匹配（https://www.luogu.com.cn/problem/P3375）计算子字符串出现的位置，与最长公共前后缀的子字符串长度
 L0796 旋转字符串（https://leetcode.cn/problems/rotate-string/）计算字符串是否可以旋转得到
 L0025 找出字符串中第一个匹配项的下标（https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/）计算子字符串第一次出现的位置
 L0214 最短回文串（https://leetcode.cn/problems/shortest-palindrome/）计算字符串前缀最长回文子串

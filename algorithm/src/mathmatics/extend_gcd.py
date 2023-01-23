@@ -2,11 +2,12 @@
 
 """
 """
-算法：扩展欧几里得定理
+算法：扩展欧几里得定理、extended_gcd、binary_gcd
 功能：用于求解单个同余方程
 题目：
 LP1082 同余方程（https://www.luogu.com.cn/problem/P1082）转化为同余方程求解最小的正整数解
-
+P5435 基于值域预处理的快速 GCD（https://www.luogu.com.cn/problem/P5435）binary_gcd快速求解
+6301. 判断一个点是否可以到达（https://leetcode.cn/contest/biweekly-contest-96/problems/check-if-point-is-reachable/）binary_gcd快速求解
 参考：OI WiKi（xx）
 """
 
@@ -36,6 +37,27 @@ from decimal import Decimal
 
 import heapq
 import copy
+
+
+def binary_gcd(a, b):
+    c = 1
+    while a - b:
+        if a & 1:
+            if b & 1:
+                if a > b:
+                    a = (a - b) >> 1
+                else:
+                    b = (b - a) >> 1
+            else:
+                b = b >> 1
+        else:
+            if b & 1:
+                a = a >> 1
+            else:
+                c = c << 1
+                b = b >> 1
+                a = a >> 1
+    return c * a
 
 
 class ExtendGcd:

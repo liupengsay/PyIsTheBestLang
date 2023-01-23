@@ -23,6 +23,10 @@ P1122 最大子树和（https://www.luogu.com.cn/problem/P1122）计算最大的
 F - Expensive Expense （https://atcoder.jp/contests/abc222/tasks/abc222_f）换根DP
 
 P2932 [USACO09JAN]Earthquake Damage G（https://www.luogu.com.cn/problem/P2932）树形DP统计子树个数与贪心安排最小损坏个数
+P2996 [USACO10NOV]Visiting Cows G（https://www.luogu.com.cn/problem/P2996）树形DP
+
+P3074 [USACO13FEB]Milk Scheduling S（https://www.luogu.com.cn/problem/P3074）树的最长路径（广搜DP记录最长时间也可以）
+
 
 参考：OI WiKi（xx）
 """

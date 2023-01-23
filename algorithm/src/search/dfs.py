@@ -24,6 +24,7 @@ P1394 山上的国度（https://www.luogu.com.cn/problem/P1394）深搜进行可
 
 P1180 驾车旅游（https://www.luogu.com.cn/problem/P1180）深搜进行模拟
 P1118 [USACO06FEB]Backward Digit Sums G/S（https://www.luogu.com.cn/problem/P1118）使用单位矩阵模拟计算杨辉三角的系数，再进行暴搜寻找最小字典序结果
+P3252 [JLOI2012]树（https://www.luogu.com.cn/problem/P3252）深搜回溯加前缀和哈希
 
 参考：OI WiKi（xx）
 """

@@ -25,68 +25,32 @@ from decimal import Decimal
 import heapq
 import copy
 
-
 class Solution:
-    def maxOutput(self,
-                  n: int,
-                  edges: List[List[int]],
-                  price: List[int]) -> int:
+    def minTime(self, time: List[int], m: int) -> int:
 
-        def mmax(a, b):
-            return a if a > b else b
+        def check(x):
+            res = 0
+            pre_max = 0
+            cur = 0
+            for num in time:
+                if cur-pre_max + num > x:
+                    res += 1
+                    pre_max = 0
+                    cur = 0
+                else:
+                    cur += num
+                    pre_max = pre_max if pre_max > num else num
+            return res <= m
 
-        def dfs(i, fa):
-            nonlocal ans
-            cur = []
-            for j in dct[i]:
-                if j != fa:
-                    dfs(j, i)
-                    cur.append(lst[j])
-
-            # 计算所有子树的前缀后缀两项最大值
-            m = len(cur)
-            pre_0 = [0] * (m + 1)
-            for x in range(m):
-                pre_0[x + 1] = mmax(pre_0[x], cur[x][0])
-
-            post_0 = [0] * (m + 1)
-            for x in range(m - 1, -1, -1):
-                post_0[x] = mmax(post_0[x + 1], cur[x][0])
-
-            m = len(cur)
-            pre_1 = [0] * (m + 1)
-            for x in range(m):
-                pre_1[x + 1] = mmax(pre_1[x], cur[x][1])
-
-            post_1 = [0] * (m + 1)
-            for x in range(m - 1, -1, -1):
-                post_1[x] = mmax(post_1[x + 1], cur[x][1])
-
-            # 超过两个子节点，选取不同最长路作为端点
-            if m >= 2:
-                for x in range(m):
-                    y = mmax(pre_0[x], post_0[x + 1]) + cur[x][1] + price[i]
-                    ans = ans if ans > y else y
-                    y = mmax(pre_1[x], post_1[x + 1]) + cur[x][0] + price[i]
-                    ans = ans if ans > y else y
-            elif m == 1:  # 只有一个的时候 i 作为其中一个端点
-                y = mmax(cur[0][1], cur[0][0] + price[i])
-                ans = ans if ans > y else y
-            if not cur:  # 没有子树
-                lst[i] = [0, price[i]]
-            else:  # 有子树，两项都加 price[i]
-                lst[i] = [pre_0[-1] + price[i], pre_1[-1] + price[i]]
-            return
-
-        dct = [[] for _ in range(n)]
-        for u, v in edges:
-            dct[u].append(v)
-            dct[v].append(u)
-        # 树形 DP 记录 【子树去掉叶子节点的最长路，子树的最长路】
-        lst = [[0, 0] for _ in range(n)]
-        ans = 0
-        dfs(0, -1)
-        return ans
+        low = 0
+        high = max(time)
+        while low < high-1:
+            mid = low+(high-low)//2
+            if check(mid):
+                high = mid
+            else:
+                low = mid
+        return low if check(low) else high
 
 
 class TestGeneral(unittest.TestCase):

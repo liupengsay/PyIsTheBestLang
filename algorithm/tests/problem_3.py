@@ -27,24 +27,27 @@ import heapq
 import copy
 
 
+
+
+
+
 class Solution:
-    def countGood(self, nums: List[int], k: int) -> int:
-        n = len(nums)
-        ans = j = 0
-        # 元素计数
-        cnt = defaultdict(int)
-        # 符合条件的元素对计数
-        total = 0
+    def makeStringsEqual(self, s: str, target: str) -> bool:
+        cnt = [0, 0]
+        if len(s) != len(target):
+            return False
+        n = len(s)
         for i in range(n):
-            while j < n and total < k:
-                total += cnt[nums[j]]  # 增加元素对计数
-                cnt[nums[j]] += 1  # 增加元素个数
-                j += 1
-            if total >= k:  # 不少于 k 对
-                ans += n - j + 1
-            cnt[nums[i]] -= 1
-            total -= cnt[nums[i]]
-        return ans
+            if s[i] != target[i]:
+                if s[i] == "1":
+                    cnt[1] += 1
+                else:
+                    cnt[0] += 1
+        one = "1" in s
+        zero = "0" in s
+
+
+        if cnt[0]:
 
 
 class TestGeneral(unittest.TestCase):

@@ -30,7 +30,10 @@ P2895 [USACO08FEB]Meteor Shower S（https://www.luogu.com.cn/problem/P2895）广
 
 P2960 [USACO09OCT]Invasion of the Milkweed G（https://www.luogu.com.cn/problem/P2960）广度优先搜索裸题
 P2298 Mzc和男家丁的游戏（https://www.luogu.com.cn/problem/P2298）BFS裸题
-
+P3139 [USACO16FEB]Milk Pails S（https://www.luogu.com.cn/problem/P3139）广搜加记忆化
+P3183 [HAOI2016] 食物链（https://www.luogu.com.cn/problem/P3183#submit）广搜计数计算路径条数，也可以使用深搜DP计数
+P3395 路障（https://www.luogu.com.cn/problem/P3395）广度优先搜索进行模拟
+P3416 [USACO16DEC]Moocast S（https://www.luogu.com.cn/problem/P3416）广搜加记忆化访问
 
 
 参考：OI WiKi（xx）
@@ -40,6 +43,33 @@ P2298 Mzc和男家丁的游戏（https://www.luogu.com.cn/problem/P2298）BFS裸
 class BFS:
     def __init__(self):
         return
+
+    @staticmethod
+    def main_3183(n, m, edges):
+        # 模板：计算有向无环图路径条数
+        edge = [[] for _ in range(n)]
+        degree = [0]*n
+        out_degree = [0]*n
+        for i, j in edges:
+            edge[i].append(j)
+            degree[j] += 1
+            out_degree[i] += 1
+        ind = [i for i in range(n) if degree[i] and not out_degree[i]]
+        cnt = [0]*n
+        stack = [i for i in range(n) if not degree[i]]
+        for x in stack:
+            cnt[x] = 1
+        while stack:
+            nex = []
+            for i in stack:
+                for j in edge[i]:
+                    degree[j] -= 1
+                    cnt[j] += cnt[i]
+                    if not degree[j]:
+                        nex.append(j)
+            stack = nex
+        ans = sum(cnt[i] for i in ind)
+        return ans
 
     @staticmethod
     def bfs_template(grid):
