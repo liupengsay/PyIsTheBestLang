@@ -7,7 +7,8 @@
 功能：计算点到有向或者无向图里面其他点的最近距离
 题目：
 
-P3371 单源最短路径（弱化版）（https://www.luogu.com.cn/problem/P3371）
+P3371 单源最短路径（弱化版）（https://www.luogu.com.cn/problem/P3371）最短路模板题
+P4779 【模板】单源最短路径（标准版）（https://www.luogu.com.cn/problem/P4779）最短路模板题
 L2290 到达角落需要移除障碍物的最小数（https://leetcode.cn/problems/minimum-obstacle-removal-to-reach-corner/）计算最小代价
 L2258 逃离火灾（https://leetcode.cn/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/）使用双源BFS计算等待时间后最短路求出路径上最小等待时间的最大值
 P1629 邮递员送信（https://www.luogu.com.cn/problem/P1629）正反两个方向的最短路进行计算往返路程
@@ -43,7 +44,7 @@ P2951 [USACO09OPEN]Hide and Seek S（https://www.luogu.com.cn/problem/P2951）�
 P2984 [USACO10FEB]Chocolate Giving S（https://www.luogu.com.cn/problem/P2984）最短路裸题
 P3003 [USACO10DEC]Apple Delivery S（https://www.luogu.com.cn/problem/P3003）三遍最短路
 P3094 [USACO13DEC]Vacation Planning S（https://www.luogu.com.cn/problem/P3094）预处理最短路之后进行查询
-
+P3905 道路重建（https://www.luogu.com.cn/problem/P3905）逆向思维，重新建图后计算最短路
 
 
 参考：OI WiKi（xx）

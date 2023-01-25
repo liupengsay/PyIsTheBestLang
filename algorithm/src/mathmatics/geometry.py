@@ -40,7 +40,7 @@ P1355 神秘大三角（https://www.luogu.com.cn/problem/P1355）使用三角形
 P1142 轰炸（https://www.luogu.com.cn/problem/P1142）利用斜率计算一条直线上最多的点
 P2778 [AHOI2016初中组]迷宫（https://www.luogu.com.cn/problem/P2778）枚举圆与点的位置关系
 P3021 [USACO11MAR]Bovine Bridge Battle S（https://www.luogu.com.cn/problem/P3021）容斥原理计数加枚举中心对称点
-
+D. Pair Of Lines (https://codeforces.com/contest/961/problem/D) 抽屉原理枚举初始共线点并计算其他点的共线性情况
 参考：OI WiKi（xx）
 """
 
@@ -50,19 +50,43 @@ class Geometry:
         return
 
     @staticmethod
+    def same_line(point1, point2, point3):
+        # 模板：计算三点共线
+        x1, y1 = point1
+        x2, y2 = point2
+        x3, y3 = point3
+        return (x2 - x1) * (y3 - y2) == (x3 - x2) * (y2 - y1)
+
+    @staticmethod
+    def compute_slope2(point1, point2):
+        # 模板：根据两不同的点确定直线斜率
+        x1, y1 = point1
+        x2, y2 = point2
+        a, b = x2 - x1, y2 - y1
+        g = math.gcd(a, b)
+        a //= g
+        b //= g
+        if a < 0:
+            a *= -1
+            b *= -1
+        elif a == 0:  # 注意此时的正负号
+            b = abs(b)
+        return a, b
+
+    @staticmethod
     def compute_slope(x1, y1, x2, y2):
         # 模板：根据两不同的点确定直线斜率
         if x1 == x2:
             ans = "x"
         else:
-            a = y2-y1
-            b = x2-x1
+            a = y2 - y1
+            b = x2 - x1
             g = math.gcd(a, b)
             if b < 0:
                 a *= -1
                 b *= -1
             # 使用最简分数来表示斜率
-            ans = [a//g, b//g]
+            ans = [a // g, b // g]
         return ans
 
     @staticmethod
@@ -83,7 +107,8 @@ class Geometry:
     @staticmethod
     def compute_triangle_area(x1, y1, x2, y2, x3, y3):
         # 可用于判断点与三角形的位置关系
-        return abs((x1 * y2 - x2 * y1) + (x2 * y3 - x3 * y2) + (x3 * y1 - x1 * y3)) / 2
+        return abs((x1 * y2 - x2 * y1) + (x2 * y3 -
+                   x3 * y2) + (x3 * y1 - x1 * y3)) / 2
 
 
 class TestGeneral(unittest.TestCase):

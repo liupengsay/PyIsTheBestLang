@@ -8,7 +8,7 @@ P1630 求和（https://www.luogu.com.cn/problem/P1630）快速幂计算，利用
 P1939 【模板】矩阵加速（数列）（https://www.luogu.com.cn/problem/P1939）矩阵快速幂递推求解
 P1962 斐波那契数列（https://www.luogu.com.cn/problem/P1962）矩阵快速幂递推求解
 P3390 【模板】矩阵快速幂（https://www.luogu.com.cn/problem/P3390）矩阵快速幂计算
-
+P3811 【模板】乘法逆元（https://www.luogu.com.cn/problem/P3811）乘法逆元模板题
 """
 
 import bisect
@@ -37,6 +37,27 @@ from decimal import Decimal
 
 import heapq
 import copy
+
+
+class PowerReverse:
+    def __init__(self):
+        return
+
+    # 扩展欧几里得求乘法逆元
+    def ex_gcd(self, a, b):
+        if b == 0:
+            return 1, 0, a
+        else:
+            x, y, q = self.ex_gcd(b, a % b)
+            x, y = y, (x - (a // b) * y)
+            return x, y, q
+
+    def mod_reverse(self, a, p):
+        x, y, q = self.ex_gcd(a, p)
+        if q != 1:
+            raise Exception("No solution.")
+        else:
+            return (x + p) % p  # 防止负数
 
 
 class FastPower:
@@ -124,7 +145,10 @@ class TestGeneral(unittest.TestCase):
 
     def test_fast_power(self):
         fp = FastPower()
-        a, b, mod = random.randint(1, 123), random.randint(1, 1234), random.randint(1, 12345)
+        a, b, mod = random.randint(
+            1, 123), random.randint(
+            1, 1234), random.randint(
+            1, 12345)
         assert fp.fast_power_api(a, b, mod) == fp.fast_power(a, b, mod)
 
         x, n = random.uniform(0, 1), random.randint(1, 1234)
@@ -138,10 +162,14 @@ class TestGeneral(unittest.TestCase):
             cur = copy.deepcopy(mat)
             for _ in range(1, n):
                 cur = mfp.matrix_mul(cur, mat, mod)
-            assert cur == mfp.matrix_pow(mat, n, mod) == mfp.matrix_pow2(mat, n, mod)
+            assert cur == mfp.matrix_pow(
+                mat, n, mod) == mfp.matrix_pow2(
+                mat, n, mod)
 
         base = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
-        assert mfp.matrix_pow(mat, 0, mod) == mfp.matrix_pow2(mat, 0, mod) == base
+        assert mfp.matrix_pow(
+            mat, 0, mod) == mfp.matrix_pow2(
+            mat, 0, mod) == base
         return
 
 

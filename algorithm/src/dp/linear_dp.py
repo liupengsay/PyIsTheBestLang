@@ -31,6 +31,8 @@ P2904 [USACO08MAR]River Crossing S（https://www.luogu.com.cn/problem/P2904）�
 
 P3062 [USACO12DEC]Wifi Setup S（https://www.luogu.com.cn/problem/P3062）线性DP枚举
 
+P3842 [TJOI2007]线段（https://www.luogu.com.cn/problem/P3842）线性DP进行模拟
+P3903 导弹拦截III（https://www.luogu.com.cn/problem/P3903）线性DP枚举当前元素作为谷底与山峰的子序列长度
 
 
 参考：OI WiKi（xx）

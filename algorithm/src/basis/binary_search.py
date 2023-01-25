@@ -29,6 +29,10 @@ P2884 [USACO07MAR]Monthly Expense S（https://www.luogu.com.cn/problem/P2884）�
 P2985 [USACO10FEB]Chocolate Eating S（https://www.luogu.com.cn/problem/P2985）使用贪心加二分进行模拟
 P3184 [USACO16DEC]Counting Haybales S（https://www.luogu.com.cn/problem/P3184）二分查找区间范围内个数
 P3611 [USACO17JAN]Cow Dance Show S（https://www.luogu.com.cn/problem/P3611）二分贪心加堆优化模拟
+P3743 kotori的设备（https://www.luogu.com.cn/problem/P3743）经典二分查找注意check函数
+P4058 [Code+#1]木材（https://www.luogu.com.cn/problem/P4058）经典二分查找注意check函数
+P4670 [BalticOI 2011 Day2]Plagiarism（https://www.luogu.com.cn/problem/P4670）排序后二分查找计数
+
 
 
 

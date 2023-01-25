@@ -52,6 +52,7 @@ P3387 缩点 （https://www.luogu.com.cn/problem/solution/P3387）允许多次�
 
 L2360 图中的最长环（https://leetcode.cn/problems/longest-cycle-in-a-graph/）求最长的环长度（有向图、内向基环树没有环套环，N个节点N条边，也可以使用拓扑排序）
 P2661 [NOIP2015 提高组] 信息传递（https://www.luogu.com.cn/problem/P2661）求最小的环长度（有向图、内向基环树没有环套环，N个节点N条边，也可以使用拓扑排序）
+P4089 [USACO17DEC]The Bovine Shuffle S（https://www.luogu.com.cn/problem/P4089）求所有环的长度和，注意自环
 
 """
 

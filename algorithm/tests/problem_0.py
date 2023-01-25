@@ -110,21 +110,9 @@ class FastIO:
 
 
 def main(ac=FastIO()):
-    n, m = ac.read_ints()
-    nums = [ac.read_str() for _ in range(n)]
-    arr = [ac.read_str() for _ in range(n)]
-    ans = 0
-    for item in combinations(list(range(m)), 3):
-        a, b, c = item
-        pre = set()
-        for s in nums:
-            pre.add((s[a], s[b], s[c]))
-        for s in arr:
-            if (s[a], s[b], s[c]) in pre:
-                break
-        else:
-            ans += 1
-    ac.st(ans)
+    n, p = ac.read_ints()
+    for i in range(1, n+1):
+        ac.st(pow(i, -1, p))
     return
 
 

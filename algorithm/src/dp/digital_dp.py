@@ -15,9 +15,12 @@ L1067 范围内的数字计数
 L1397 找到所有好字符串
 P1590 失踪的7（https://www.luogu.com.cn/problem/P1590）计算 n 以内不含7的个数
 P1239 计数器（https://www.luogu.com.cn/problem/P1239）计算 n 以内每个数字0-9的个数
+P3908 数列之异或（https://www.luogu.com.cn/problem/P3908）计算 1^2..^n的异或和，可以使用数位DP计数也可以用相邻的奇偶数计算
 
 参考：OI WiKi（xx）
 """
+
+
 
 
 import bisect
@@ -44,6 +47,34 @@ import copy
 class DigitalDP:
     def __init__(self):
         return
+
+    @staticmethod
+    def main(n):
+        # 模板：计算小于等于n的正整数二进制位1的个数
+        @lru_cache(None)
+        def dfs(i, is_limit, is_num, cnt):
+            if i == m:
+                if is_num:
+                    return cnt
+                return 0
+            res = 0
+            if not is_num:
+                res += dfs(i + 1, False, False, cnt)
+            low = 0 if is_num else 1
+            high = int(st[i]) if is_limit else 1
+            for x in range(low, high + 1):
+                res += dfs(i + 1, is_limit and high == x,
+                           True, cnt + int(i == w) * x)
+            return res
+
+        st = bin(n)[2:]
+        m = len(st)
+        ans = []  # 从二进制高位到二进制低位
+        for w in range(m):
+            cur = dfs(0, True, False, 0)
+            ans.append(cur)
+            dfs.cache_clear()
+        return ans
 
     @staticmethod
     def count_special_numbers(n: int) -> int:

@@ -18,6 +18,8 @@ P1091 合唱队形（https://www.luogu.com.cn/problem/P1091）可以往前以及
 L2111 使数组 K 递增的最少操作次数（https://leetcode.cn/problems/minimum-operations-to-make-the-array-k-increasing/）分成 K 组计算每组的最长递增子序列
 P1233 木棍加工（https://www.luogu.com.cn/problem/P1233）按照一个维度排序后计算另一个维度的，最长严格递增子序列的长度
 P2782 友好城市（https://www.luogu.com.cn/problem/P2782）按照一个维度排序后计算另一个维度的，最长严格递增子序列的长度（也可以考虑使用线段树求区间最大值）
+P3902 递增（https://www.luogu.com.cn/problem/P3902）最长严格上升子序列
+
 """
 
 import bisect

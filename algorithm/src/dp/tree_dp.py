@@ -26,6 +26,9 @@ P2932 [USACO09JAN]Earthquake Damage G（https://www.luogu.com.cn/problem/P2932�
 P2996 [USACO10NOV]Visiting Cows G（https://www.luogu.com.cn/problem/P2996）树形DP
 
 P3074 [USACO13FEB]Milk Scheduling S（https://www.luogu.com.cn/problem/P3074）树的最长路径（广搜DP记录最长时间也可以）
+P3884 [JLOI2009]二叉树问题（https://www.luogu.com.cn/problem/P3884）基础树形DP计算两点间路径变种长度
+P3915 树的分解（https://www.luogu.com.cn/problem/P3915）递归拆解生成等大小的连通块
+P4615 [COCI2017-2018#5] Birokracija（https://www.luogu.com.cn/problem/P4615）树形DP
 
 
 参考：OI WiKi（xx）

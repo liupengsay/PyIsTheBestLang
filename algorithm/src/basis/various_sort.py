@@ -1,11 +1,14 @@
 """
-算法：各种排序
+算法：各种排序、冒泡排序、归并排序
 功能：xxx
 题目：xx（xx）
 
 L0045 把数组排成最小的数（https://leetcode.cn/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/）自定义排序携程快排
 P2310 loidc，看看海（https://www.luogu.com.cn/problem/P2310）预处理排序之后进行遍历
 912. 排序数组（https://leetcode.cn/problems/sort-an-array/）快速排序
+P4378 [USACO18OPEN]Out of Sorts S（https://www.luogu.com.cn/problem/P4378）枚举元素向左冒泡的移动轮数，计算最大轮数
+
+
 参考：OI WiKi（xx）
 """
 
@@ -223,9 +226,10 @@ class VariousSort:
             return
 
         # 使用归并排序进行求解
+        ans = 0
         arr = [0] * n
         merge(0, n - 1)
-        return
+        return ans
 
 
     @staticmethod

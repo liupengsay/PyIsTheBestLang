@@ -28,8 +28,10 @@ P8924 「GMOI R1-T1」Perfect Math Class（https://www.luogu.com.cn/problem/P892
 P8889 狠狠地切割(Hard Version)（https://www.luogu.com.cn/problem/P8889）经典01序列分段计数
 
 P8870 [传智杯 #5 初赛] B-莲子的机械动力学（https://www.luogu.com.cn/problem/P8870）按照进制进行加法模拟
-
+P3880 [JLOI2008]提示问题（https://www.luogu.com.cn/problem/P3880）按照题意模拟加密字符串
 P3111 [USACO14DEC]Cow Jog S（https://www.luogu.com.cn/problem/P3111）逆向思维使用行进距离模拟分组，类似力扣车队题目
+P4346 [CERC2015]ASCII Addition（https://www.luogu.com.cn/problem/P4346）模拟数字与字符串的转换与进行加减
+
 参考：OI WiKi（xx）
 """
 

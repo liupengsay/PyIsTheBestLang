@@ -7,33 +7,28 @@
     <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/src/basis/binary_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/binary_search.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/diff_array.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/diff_array.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/range.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/range.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/src/basis/simulation.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/simulation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/two_pointer.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/two_pointer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/stack.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/stack.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/various_sort.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/various_sort.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/src/basis/violent_enumeration.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/violent_enumeration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/monotonic_stack.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/data_structure/monotonic_stack.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/segment_tree.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/data_structure/segment_tree.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/bag_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/bag_dp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/sparse_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/data_structure/sparse_table.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/digital_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/digital_dp.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/src/dp/linear_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/linear_dp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/matrix_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/matrix_dp.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/src/dp/tree_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/tree_dp.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/src/graph/dijkstra.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/dijkstra.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/union_find.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/union_find.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/greedy/brain_storming.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/greedy/brain_storming.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/floyd.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/floyd.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/scc.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/scc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/greedy/longest_increasing_subsequence.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/greedy/longest_increasing_subsequence.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/comb_perm.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/comb_perm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/extend_gcd.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/extend_gcd.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/fast_power.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/fast_power.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/geometry.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/geometry.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/src/search/bfs.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/search/bfs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/search/dfs.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/search/dfs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/string/kmp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/string/kmp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/string/trie.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/string/trie.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_0.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_0.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_3.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_3.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_4.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_4.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/tests/temp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/temp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machine_learning/study/ml.md" beforeDir="false" afterPath="$PROJECT_DIR$/machine_learning/study/ml.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -228,13 +223,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647300774340</updated>
-    </task>
-    <task id="LOCAL-00093" summary="正方形求点与三角形面积计算">
-      <created>1673178107188</created>
-      <option name="number" value="00093" />
-      <option name="presentableId" value="LOCAL-00093" />
-      <option name="project" value="LOCAL" />
-      <updated>1673178107188</updated>
     </task>
     <task id="LOCAL-00094" summary="滑动指针窗口栈加队列">
       <created>1673198897708</created>
@@ -572,7 +560,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674223018560</updated>
     </task>
-    <option name="localTasksCounter" value="142" />
+    <task id="LOCAL-00142" summary="增加题目">
+      <created>1674444462684</created>
+      <option name="number" value="00142" />
+      <option name="presentableId" value="LOCAL-00142" />
+      <option name="project" value="LOCAL" />
+      <updated>1674444462685</updated>
+    </task>
+    <option name="localTasksCounter" value="143" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -661,7 +656,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/algorithm/src/dp/tree_dp.py</url>
-          <line>178</line>
+          <line>181</line>
           <option name="timeStamp" value="188" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">

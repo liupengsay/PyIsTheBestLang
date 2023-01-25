@@ -29,21 +29,7 @@ from sortedcontainers import SortedList
 
 
 
-class Solution:
-    def longestValidParentheses(self, s: str) -> int:
-        stack = [[-1, ""]]
-        ans = 0
-        for i, w in enumerate(s):
-            if w == ")":
-                if stack[-1][1] != "(":
-                    stack = [[i, ""]]
-                else:
-                    stack.pop()
-                    cur = i-stack[-1][0]
-                    ans = ans if ans > cur else cur
-            else:
-                stack.append([i, "("])
-        return ans
+
 
 
 class TestGeneral(unittest.TestCase):
