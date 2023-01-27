@@ -18,6 +18,10 @@ from itertools import accumulate
 from decimal import Decimal, getcontext, MAX_PREC
 from types import GeneratorType
 from functools import cmp_to_key
+import datetime
+import unittest
+import time
+
 
 inf = float("inf")
 sys.setrecursionlimit(10000000)
@@ -108,12 +112,37 @@ class FastIO:
                 return to
         return wrappedfunc
 
+def sieve_of_eratosthenes(n):  # 埃拉托色尼筛选法，返回小于等于n的素数
+    primes = [True] * (n + 1)  # 范围0到n的列表
+    p = 2  # 这是最小的素数
+    while p * p <= n:  # 一直筛到sqrt(n)就行了
+        if primes[p]:  # 如果没被筛，一定是素数
+            for i in range(p * 2, n + 1, p):  # 筛掉它的倍数即可
+                primes[i] = False
+        p += 1
+    primes = [
+        element for element in range(
+            2, n + 1) if primes[element]]  # 得到所有小于等于n的素数
+    return primes
+
+
+leap_month = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+not_leap_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+
+def is_leap_year(self, yy):
+    # 闰年天数
+    return yy % 400 == 0 or (yy % 4 == 0 and yy % 100 != 0)
+
 
 def main(ac=FastIO()):
-    n, p = ac.read_ints()
-    for i in range(1, n+1):
-        ac.st(pow(i, -1, p))
+    t = ac.read_int()
+    primes = set(sieve_of_eratosthenes(9999))
+    for _ in range(t):
+        s = ac.read_str()
+
     return
 
 
 main()
+

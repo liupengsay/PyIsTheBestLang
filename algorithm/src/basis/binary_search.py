@@ -32,6 +32,8 @@ P3611 [USACO17JAN]Cow Dance Show S（https://www.luogu.com.cn/problem/P3611）�
 P3743 kotori的设备（https://www.luogu.com.cn/problem/P3743）经典二分查找注意check函数
 P4058 [Code+#1]木材（https://www.luogu.com.cn/problem/P4058）经典二分查找注意check函数
 P4670 [BalticOI 2011 Day2]Plagiarism（https://www.luogu.com.cn/problem/P4670）排序后二分查找计数
+P5119 [USACO18DEC]Convention S（https://www.luogu.com.cn/problem/P5119）经典贪心加二分问题
+P5250 【深基17.例5】木材仓库（https://www.luogu.com.cn/problem/P5250）维护一个有序集合
 
 
 

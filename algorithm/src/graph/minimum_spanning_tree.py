@@ -52,6 +52,8 @@ P1194 买礼物（https://www.luogu.com.cn/problem/P1194）最小生成树变种
 P2820 局域网（https://www.luogu.com.cn/problem/P2820）最小生成树裸题
 
 P2916 [USACO08NOV]Cheering up the Cow G（https://www.luogu.com.cn/problem/P2916）需要自定义排序之后计算最小生成树的好题
+P4955 [USACO14JAN]Cross Country Skiing S（https://www.luogu.com.cn/problem/P4955）最小生成树，自定义中止条件
+
 
 
 参考：OI WiKi（xx）

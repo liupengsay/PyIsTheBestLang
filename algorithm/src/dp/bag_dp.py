@@ -54,6 +54,8 @@ P2918 [USACO08NOV]Buying Hay S（https://www.luogu.com.cn/problem/P2918）一维
 P3027 [USACO10OCT]Making Money G（https://www.luogu.com.cn/problem/P3027）一维无限背包，需要根据题意进行利润计算
 P3030 [USACO11NOV]Tile Exchanging S（https://www.luogu.com.cn/problem/P3030）分组枚举有限背包
 P3040 [USACO12JAN]Bale Share S（https://www.luogu.com.cn/problem/P3040）二维变种背包
+P4817 [USACO15DEC]Fruit Feast G（https://www.luogu.com.cn/problem/P4817）一维有限背包DP变种
+P5087 数学（https://www.luogu.com.cn/problem/P5087）二维有限背包变种问题
 
 
 参考：OI WiKi（xx）

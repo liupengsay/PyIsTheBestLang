@@ -27,10 +27,11 @@ import heapq
 import copy
 
 """
-算法：分治、递归
+算法：分治、递归、二叉树、四叉树、十叉树、N叉树
 功能：xxx
 题目：
 P1911 L 国的战斗之排兵布阵（https://www.luogu.com.cn/problem/P1911）使用四叉树递归计算
+P5461 赦免战俘（https://www.luogu.com.cn/problem/P5461）递归计算四叉树左上角
 
 参考：OI WiKi（xx）
 """

@@ -4,6 +4,8 @@
 题目：
 P2655 2038年问题（https://www.luogu.com.cn/problem/P2655）计算指定日期时分秒过了一定秒数后的具体日期时分秒
 P1167 刷题（https://www.luogu.com.cn/problem/P1167#submit）计算两个日期之间经过的秒数
+P5407 [THUPC2019]历史行程（https://www.luogu.com.cn/problem/P5407）确定两个日期间隔
+P5440 【XR-2】奇迹（https://www.luogu.com.cn/problem/P5440）枚举日期是否合法且为质数
 
 
 参考：OI WiKi（xx）
@@ -19,6 +21,13 @@ class DateTime:
         self.leap_month = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
         self.not_leap_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
         return
+
+    @staticmethod
+    def day_interval(y1, m1, d1, y2, m2, d2):
+        # 模板：计算两个日期之间的间隔天数
+        day1 = datetime.datetime(y1, m1, d1)
+        day2 = datetime.datetime(y2, m2, d2)
+        return (day1 - day2).days
 
     @staticmethod
     def time_to_unix(dt):
@@ -84,6 +93,19 @@ class DateTime:
             day += sum(self.not_leap_month[:m - 1])
         res = day * 24 * 60 + h * 60 + minute
         return res
+
+    def unix_day(self, s):
+        # 0000-00-00-00:00 开始的天数？用来计算日期间隔似乎有点问题
+        lst = s.split("-")
+        y, m, d = [int(w) for w in lst[:-1]]
+        h, minute = [int(w) for w in lst[-1].split(":")]
+        day = d + 365 * y + self.leap_year_count(y)
+        if self.is_leap_year(y):
+            day += sum(self.leap_month[:m - 1])
+        else:
+            day += sum(self.not_leap_month[:m - 1])
+        res = day * 24 * 60 + h * 60 + minute
+        return res//(24*60)
 
     def unix_second(self, s):
         # 0000-00-00-00:00:00 开始的秒数

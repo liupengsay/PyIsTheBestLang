@@ -16,7 +16,8 @@ L2158 每天绘制新区域的数量（https://leetcode.cn/problems/amount-of-ne
 P2846 [USACO08NOV]Light Switching G（https://www.luogu.com.cn/problem/P2846）线段树统计区间翻转和
 P2574 XOR的艺术（https://www.luogu.com.cn/problem/P2574）线段树统计区间翻转和
 P3130 [USACO15DEC] Counting Haybale P（https://www.luogu.com.cn/problem/P3130）区间增减、区间最小值查询、区间和查询
-P3870 [TJOI2009] 开关（https://www.luogu.com.cn/problem/P3870）# 区间值01翻转与区间和查询
+P3870 [TJOI2009] 开关（https://www.luogu.com.cn/problem/P3870） 区间值01翻转与区间和查询
+P5057 [CQOI2006]简单题（https://www.luogu.com.cn/problem/P5057） 区间值01翻转与区间和查询
 P3372 【模板】线段树 1（https://www.luogu.com.cn/problem/P3372）区间值增减与求和
 
 参考：OI WiKi（xx）

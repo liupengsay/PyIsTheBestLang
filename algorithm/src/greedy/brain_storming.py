@@ -50,6 +50,9 @@ P2878 [USACO07JAN] Protecting the Flowers S（https://www.luogu.com.cn/problem/P
 P2920 [USACO08NOV]Time Management S（https://www.luogu.com.cn/problem/P2920）排序后进行贪心计算
 P2983 [USACO10FEB]Chocolate Buying S（https://www.luogu.com.cn/problem/P2983）看起来是背包其实是贪心优先选择最便宜的奶牛满足
 P3173 [HAOI2009]巧克力（https://www.luogu.com.cn/problem/P3173）从大到小排序进行贪心计算
+P5098 [USACO04OPEN]Cave Cows 3（https://www.luogu.com.cn/problem/P5098）贪心按照一个维度排序后再按照另一个维度分类讨论，记录前缀最小值
+P5159 WD与矩阵（https://www.luogu.com.cn/problem/P5159）利用异或的特点枚举计数并进行快速幂计算
+
 
 
 

@@ -2,12 +2,13 @@
 """
 
 """
-算法：马拉车算法
-功能：用来处理字符串的回文相关问题
+算法：马拉车算法、回文连续子串、回文不连续子串
+功能：用来处理字符串的回文相关问题，可以有暴力、DP、中心扩展法、马拉车
 题目：
 L0214 最短回文串（https://leetcode.cn/problems/shortest-palindrome/）计算字符串前缀最长回文子串
 P4555 最长双回文串（https://www.luogu.com.cn/problem/P4555）计算以当前索引为开头以及结尾的最长回文子串
 P1210 [USACO1.3]最长的回文 Calf Flac（https://www.luogu.com.cn/problem/P1210）寻找最长的连续回文子串
+P4888 三去矩阵（https://www.luogu.com.cn/problem/P4888）中心扩展法双指针
 """
 
 import bisect
@@ -62,6 +63,7 @@ class ManacherPlindrome:
                 left = i - k
                 right = i + k
         # 返回每个位置往右的臂长其中 s[i-arm[i]+1: i+arm[i]] 为回文子串范围
+        # 即以i为中心的最长回文子串长度
         return arm
 
     def palindrome(self, s: str) -> (list, list):

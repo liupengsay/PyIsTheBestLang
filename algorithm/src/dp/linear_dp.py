@@ -33,6 +33,7 @@ P3062 [USACO12DEC]Wifi Setup S（https://www.luogu.com.cn/problem/P3062）线性
 
 P3842 [TJOI2007]线段（https://www.luogu.com.cn/problem/P3842）线性DP进行模拟
 P3903 导弹拦截III（https://www.luogu.com.cn/problem/P3903）线性DP枚举当前元素作为谷底与山峰的子序列长度
+P5414 [YNOI2019] 排序（https://www.luogu.com.cn/problem/P5414）贪心，使用线性DP计算最大不降子序列和
 
 
 参考：OI WiKi（xx）

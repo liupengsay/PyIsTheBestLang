@@ -25,6 +25,13 @@ P1394 山上的国度（https://www.luogu.com.cn/problem/P1394）深搜进行可
 P1180 驾车旅游（https://www.luogu.com.cn/problem/P1180）深搜进行模拟
 P1118 [USACO06FEB]Backward Digit Sums G/S（https://www.luogu.com.cn/problem/P1118）使用单位矩阵模拟计算杨辉三角的系数，再进行暴搜寻找最小字典序结果
 P3252 [JLOI2012]树（https://www.luogu.com.cn/problem/P3252）深搜回溯加前缀和哈希
+P4913 【深基16.例3】二叉树深度（https://www.luogu.com.cn/problem/P4913）深搜确定深度
+P5118 [USACO18DEC]Back and Forth B（https://www.luogu.com.cn/problem/P5118）深搜回溯与哈希记录进行模拟
+
+P5197 [USACO19JAN]Grass Planting S（https://www.luogu.com.cn/problem/P5197）树形DP模拟与染色法，利用父亲与自己的染色确定儿子们的染色
+P5198 [USACO19JAN]Icy Perimeter S（https://www.luogu.com.cn/problem/P5198）经典计算连通块的周长与面积
+P5318 【深基18.例3】查找文献（https://www.luogu.com.cn/problem/P5318）经典广搜拓扑排序与深搜序生成与获取
+
 
 参考：OI WiKi（xx）
 """

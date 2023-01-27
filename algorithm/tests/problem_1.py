@@ -27,9 +27,31 @@ import heapq
 import copy
 from sortedcontainers import SortedList
 
+class Solution:
+    def restoreIpAddresses(self, s: str) -> List[str]:
+        lst = list(s)
+        n = len(lst)
+        def check(x):
+            if len(x) >= 2 and x[0] == "0":
+                return False
+            return 0<=int(x)<=255
+
+        ans = []
+        for item in combinations(list(range(1, n)), 3):
+            tmp = lst[:]
+            for i in item[::-1]:
+                tmp.insert(i, ".")
+            t = "".join(tmp)
+            cur = t.split(".")
+            if all(check(x) for x in cur):
+                ans.append(t)
+        return ans
 
 
-
+# Your LRUCache object will be instantiated and called as such:
+# obj = LRUCache(capacity)
+# param_1 = obj.get(key)
+# obj.put(key,value)
 
 
 class TestGeneral(unittest.TestCase):
