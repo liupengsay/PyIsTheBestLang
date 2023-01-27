@@ -91,7 +91,7 @@ class DiffMatrix:
         # 二维差分数组
         diff = [[0] * (n + 2) for _ in range(m + 2)]
         # 索引从1开始，矩阵初始值为0
-        for xa, xb, ya, yb, d in shifts:  # 注意这里的行列索引范围，是从左上角到右小角
+        for xa, xb, ya, yb, d in shifts:  # 注意这里的行列索引范围，是从左上角到右下角
             diff[xa][ya] += d
             diff[xa][yb + 1] -= d
             diff[xb + 1][ya] -= d
@@ -108,15 +108,15 @@ class DiffMatrix:
     @staticmethod
     def get_diff_matrix2(m, n, shifts):
         diff = [[0] * (n + 1) for _ in range(m + 1)]
-        # 二维差分，索引从 0 开始
+        # 二维差分，索引从 0 开始， 注意这里的行列索引范围，是从左上角到右下角
         for xa, xb, ya, yb, d in shifts:
             diff[xa][ya] += d
             diff[xa][yb + 1] -= d
             diff[xb + 1][ya] -= d
             diff[xb + 1][yb + 1] += d
 
-        res = [[0] * (n + 1) for _ in range(n + 1)]
-        for i in range(n):
+        res = [[0] * (n + 1) for _ in range(m + 1)]
+        for i in range(m):
             for j in range(n):
                 res[i + 1][j + 1] = res[i + 1][j] + res[i][j + 1] - res[i][j] + diff[i][j]
         return [item[1:] for item in res[1:]]
