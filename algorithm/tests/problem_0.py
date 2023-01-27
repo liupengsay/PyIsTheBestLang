@@ -125,22 +125,92 @@ def sieve_of_eratosthenes(n):  # 埃拉托色尼筛选法，返回小于等于n�
             2, n + 1) if primes[element]]  # 得到所有小于等于n的素数
     return primes
 
-
+dct = set(sieve_of_eratosthenes(10000))
+days_dct = set(x for x in dct if 1<=x<=31)
+months_dct = set(x for x in dct if 101<=x<=10000)
+target = set()
+for x in dct:
+    if x >= 101 and int(str(x)[-2:]) in dct:
+        target.add(x)
+print(len(target))
 leap_month = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 not_leap_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
 
-def is_leap_year(self, yy):
+def is_leap_year(yy):
     # 闰年天数
     return yy % 400 == 0 or (yy % 4 == 0 and yy % 100 != 0)
 
 
+def is_prime4(x):
+    """https://zhuanlan.zhihu.com/p/107300262
+    任何一个自然数，总可以表示成以下六种形式之一：6n，6n+1，6n+2，6n+3，6n+4，6n+5（n=0,1,2...）
+    我们可以发现，除了2和3，只有形如6n+1和6n+5的数有可能是质数。
+    且形如6n+1和6n+5的数如果不是质数，它们的因数也会含有形如6n+1或者6n+5的数，因此可以得到如下算法：
+    """
+    if x == 1:
+        return False
+    if (x == 2) or (x == 3):
+        return True
+    if (x % 6 != 1) and (x % 6 != 5):
+        return False
+    for i in range(5, int(math.sqrt(x)) + 1, 6):
+        if (x % i == 0) or (x % (i + 2) == 0):
+            return False
+    return True
+
+days = set()
+for y in range(1, 10000):
+    for m in target:
+        if is_prime4(y*10000+m):
+            days.add(str(y*10000+m))
+
+
+class TrieCount:
+    def __init__(self):
+        self.dct = dict()
+        return
+
+    def update(self, word):
+        # 更新单词与前缀计数
+        cur = self.dct
+        for w in word:
+            if w not in cur:
+                cur[w] = dict()
+            cur = cur[w]
+        return
+
+    def query(self, word):
+        # 查询前缀单词个数
+
+        res = 0
+
+        def dfs(i, cur):
+            nonlocal res
+            if i == 8:
+                res += 1
+                return
+            if word[i].isnumeric():
+                if word[i] in cur:
+                    dfs(i+1, cur[word[i]])
+            else:
+                for w in cur:
+                    dfs(i+1, cur[w])
+            return
+        dfs(0, self.dct)
+
+        return res
+
+print(len(days))
 def main(ac=FastIO()):
+    trie = TrieCount()
+    for word in days:
+        trie.update(word)
+    assert "57070307" in days
     t = ac.read_int()
-    primes = set(sieve_of_eratosthenes(9999))
     for _ in range(t):
         s = ac.read_str()
-
+        ac.st(trie.query(s))
     return
 
 

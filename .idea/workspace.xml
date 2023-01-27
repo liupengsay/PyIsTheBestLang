@@ -6,27 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/binary_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/binary_search.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/date.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/date.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/recursion.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/recursion.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/simulation.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/simulation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/two_pointer.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/two_pointer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/violent_enumeration.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/violent_enumeration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/segment_tree.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/data_structure/segment_tree.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/sparse_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/data_structure/sparse_table.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/tree_array.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/data_structure/tree_array.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/bag_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/bag_dp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/linear_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/linear_dp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/tree_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/tree_dp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/minimum_spanning_tree.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/minimum_spanning_tree.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/scc.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/scc.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/greedy/brain_storming.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/greedy/brain_storming.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/search/bfs.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/search/bfs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/search/dfs.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/search/dfs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/search/half_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/search/half_search.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/string/manacher_palindrome.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/string/manacher_palindrome.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_0.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_0.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_1.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -221,13 +201,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647300774340</updated>
-    </task>
-    <task id="LOCAL-00095" summary="滑动指针窗口栈加队列">
-      <created>1673224305725</created>
-      <option name="number" value="00095" />
-      <option name="presentableId" value="LOCAL-00095" />
-      <option name="project" value="LOCAL" />
-      <updated>1673224305725</updated>
     </task>
     <task id="LOCAL-00096" summary="使用ST表预处理区间的gcd">
       <created>1673270020608</created>
@@ -565,7 +538,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674628251224</updated>
     </task>
-    <option name="localTasksCounter" value="144" />
+    <task id="LOCAL-00144" summary="增加题目">
+      <created>1674794635782</created>
+      <option name="number" value="00144" />
+      <option name="presentableId" value="LOCAL-00144" />
+      <option name="project" value="LOCAL" />
+      <updated>1674794635782</updated>
+    </task>
+    <option name="localTasksCounter" value="145" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
