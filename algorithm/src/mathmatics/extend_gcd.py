@@ -2,7 +2,7 @@
 
 """
 """
-算法：扩展欧几里得定理、extended_gcd、binary_gcd
+算法：扩展欧几里得定理、extended_gcd、binary_gcd、二进制gcd
 功能：用于求解单个同余方程
 题目：
 LP1082 同余方程（https://www.luogu.com.cn/problem/P1082）转化为同余方程求解最小的正整数解

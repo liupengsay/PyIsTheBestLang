@@ -18,6 +18,7 @@ from itertools import accumulate
 from decimal import Decimal, getcontext, MAX_PREC
 from types import GeneratorType
 from functools import cmp_to_key
+from heapq import nlargest
 import datetime
 import unittest
 import time
@@ -113,30 +114,27 @@ class FastIO:
         return wrappedfunc
 
 
-def gcd(x, y):
-    while y:
-        x, y = y, x % y
-    return x
-
-
 def main(ac=FastIO()):
-    t = ac.read_int()
-    for _ in range(t):
-        n, k = ac.read_ints()
-        dct = ac.read_list_ints()
-        if n == k:
-            ac.st(-1)
-            continue
-        res = n
-        for i in range(1, n+1):
-            if i not in dct:
-                res = gcd(res, i)
-                if res == 1:
-                    break
-        if res == 1 and n > k:
-            ac.st(n)
-        else:
-            ac.st(-1)
+    n = ac.read_int()
+    grid = [ac.read_list_ints() for _ in range(n)]
+    avg = [sum(grid[i][j] for i in range(n)) for j in range(8)]
+    total = [sum(g) for g in grid]
+    lst = [sum(abs(n*grid[w][j]-avg[j]) for w in range(n)) for j in range(8)]
+    y = []
+    for i in range(n):
+        cur = [-1]*8
+        for j in range(8):
+            z = lst[j]
+            if z == 0:
+                cur[j] = 0
+            else:
+                cur[j] = (n*grid[i][j]-avg[j])/z
+        y.append(cur)
+    total_pos = [sum(y[i][:3]) + 0.8*sum(y[i][3:]) for i in range(n)]
+    ind = list(range(n))
+    ind.sort(key=lambda x: [-total_pos[x], -total[x], x])
+    for i in ind:
+        ac.st(i+1)
     return
 
 

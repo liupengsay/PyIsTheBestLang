@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="">
+    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="使用迭代方式求解gcd">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/diff_array.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/diff_array.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/number_theory.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/number_theory.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/extend_gcd.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/extend_gcd.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_0.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_0.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/tests/temp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/temp.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -87,7 +85,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in number_theory.py">
+  <component name="RunManager" selected="Python.problem_0">
     <configuration name="强连通分量" type="PythonConfigurationType" factoryName="Python">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -195,15 +193,15 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Unittests in number_theory.py" />
         <item itemvalue="Python.problem_0" />
-        <item itemvalue="Python tests.Unittests in problem_1.py" />
         <item itemvalue="Python.temp" />
+        <item itemvalue="Python tests.Unittests in number_theory.py" />
+        <item itemvalue="Python tests.Unittests in problem_1.py" />
         <item itemvalue="Python tests.Unittests in diff_array.py" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -214,13 +212,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647300774340</updated>
-    </task>
-    <task id="LOCAL-00096" summary="使用ST表预处理区间的gcd">
-      <created>1673270020608</created>
-      <option name="number" value="00096" />
-      <option name="presentableId" value="LOCAL-00096" />
-      <option name="project" value="LOCAL" />
-      <updated>1673270020608</updated>
     </task>
     <task id="LOCAL-00097" summary="滑动窗口最大值最小值">
       <created>1673278641682</created>
@@ -558,7 +549,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674794635782</updated>
     </task>
-    <option name="localTasksCounter" value="145" />
+    <task id="LOCAL-00145" summary="使用迭代方式求解gcd">
+      <created>1674857448676</created>
+      <option name="number" value="00145" />
+      <option name="presentableId" value="LOCAL-00145" />
+      <option name="project" value="LOCAL" />
+      <updated>1674857448677</updated>
+    </task>
+    <option name="localTasksCounter" value="146" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -576,7 +574,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="使用ST表预处理区间的gcd" />
     <MESSAGE value="滑动窗口最大值最小值" />
     <MESSAGE value="二进制优化背包举例" />
     <MESSAGE value="多雷背包类似" />
@@ -601,7 +598,8 @@
     <MESSAGE value="简历更新" />
     <MESSAGE value="修改换根DP模板" />
     <MESSAGE value="增加题目" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加题目" />
+    <MESSAGE value="使用迭代方式求解gcd" />
+    <option name="LAST_COMMIT_MESSAGE" value="使用迭代方式求解gcd" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -653,7 +651,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/algorithm/src/mathmatics/number_theory.py</url>
-          <line>114</line>
+          <line>113</line>
           <option name="timeStamp" value="253" />
         </line-breakpoint>
       </breakpoints>

@@ -35,6 +35,10 @@ sys.setrecursionlimit(10000000)
 getcontext().prec = MAX_PREC
 
 
-nums = [4, 3, 2,1]
-nums[2:].sort()
-print(nums)
+n = 2
+dp = 1
+while n < 20:
+    n += 1
+    dp += (n+1)//2
+    assert (n-1)*(n+3)//4 == dp
+    print(n, dp)
