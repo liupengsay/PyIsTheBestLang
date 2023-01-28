@@ -4,46 +4,50 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/book/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/book/doc/第一章 竞赛介绍_终稿.docx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/book/doc/第七章 用户画像_终稿.docx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/book/doc/第八章 Elo实战案例_终稿.docx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/book/doc/第十三章 计算广告_终稿.docx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/book/doc/第十五章 Tencent实战案例_终稿.docx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/book/src/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/book/src/elo/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/learning/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/work/README.md" afterDir="false" />
+    <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="README补充">
+      <change afterPath="$PROJECT_DIR$/work/study/LightGBM与XGBoost的区别.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/work/study/picture/LightGBM与XGBoost思维导图.jpeg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/book/src/README.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/Tencent2018" beforeDir="false" afterPath="$PROJECT_DIR$/book/src/Tencent2018" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/baseline_randomforest.py" beforeDir="false" afterPath="$PROJECT_DIR$/book/src/baseline_randomforest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/best_xgboost.py" beforeDir="false" afterPath="$PROJECT_DIR$/book/src/best_xgboost.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/data" beforeDir="false" afterPath="$PROJECT_DIR$/book/src/data" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/dict.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/book/src/dict.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/eda.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/book/src/eda.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/groupby.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/book/src/groupby.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/nlp.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/book/src/nlp.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/promotion_lightgbm.py" beforeDir="false" afterPath="$PROJECT_DIR$/book/src/promotion_lightgbm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/ronghe.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/book/src/ronghe.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/simple-lightgbm-without-blending.py" beforeDir="false" afterPath="$PROJECT_DIR$/book/src/simple-lightgbm-without-blending.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machine_learning/src/讯飞AI_top1_酒水鱼/final_ronghe.py" beforeDir="false" afterPath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/final_ronghe.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machine_learning/src/讯飞AI_top1_酒水鱼/liupeng_demo.py" beforeDir="false" afterPath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/liupeng_demo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machine_learning/src/讯飞AI_top1_酒水鱼/run.sh" beforeDir="false" afterPath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/run.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machine_learning/src/讯飞AI_top1_酒水鱼/src/data/ratio_feat.csv" beforeDir="false" afterPath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/src/data/ratio_feat.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machine_learning/src/讯飞AI_top1_酒水鱼/src/final_ronghe.py" beforeDir="false" afterPath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/src/final_ronghe.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machine_learning/src/讯飞AI_top1_酒水鱼/src/liupeng_demo.py" beforeDir="false" afterPath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/src/liupeng_demo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machine_learning/src/讯飞AI_top1_酒水鱼/src/wanghe_demo.py" beforeDir="false" afterPath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/src/wanghe_demo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machine_learning/src/讯飞AI_top1_酒水鱼/src/wengyp_demo.py" beforeDir="false" afterPath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/src/wengyp_demo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machine_learning/src/讯飞AI_top1_酒水鱼/wanghe_demo.py" beforeDir="false" afterPath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/wanghe_demo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machine_learning/src/讯飞AI_top1_酒水鱼/water_demo.py" beforeDir="false" afterPath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/water_demo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machine_learning/src/讯飞AI_top1_酒水鱼/算法说明.txt" beforeDir="false" afterPath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/算法说明.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machine_learning/src/讯飞AI_top1_酒水鱼/运行说明.txt" beforeDir="false" afterPath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/运行说明.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machine_learning/src/酒水鱼1.0.0.pptx" beforeDir="false" afterPath="$PROJECT_DIR$/learning/src/酒水鱼1.0.0.pptx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/competition/周赛题解.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/competition/第308场周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第308场周赛题解.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/competition/第309场周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第309场周赛题解.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/competition/第311场周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第311场周赛题解.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/competition/第313场周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第313场周赛题解.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/competition/第314场周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第314场周赛题解.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/competition/第315场周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第315场周赛题解.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/competition/第318场周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第318场周赛题解.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/competition/第319场周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第319场周赛题解.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/competition/第320场周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第320场周赛题解.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/competition/第321场周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第321场周赛题解.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/competition/第322场周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第322场周赛题解.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/competition/第323场周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第323场周赛题解.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/competition/第324场周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第324场周赛题解.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/competition/第326场周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第326场周赛题解.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/competition/第85场双周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第85场双周赛题解.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/competition/第86场双周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第86场双周赛题解.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/competition/第88场双周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第88场双周赛题解.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/competition/第89场双周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第89场双周赛题解.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/competition/第90场双周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第90场双周赛题解.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/competition/第91场双周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第91场双周赛题解.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/competition/第92场双周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第92场双周赛题解.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/doc/灵茶试炼.pptx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/submission/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/submission/atcoder_267F.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/learning/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/competition/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/final_ronghe.py" beforeDir="false" afterPath="$PROJECT_DIR$/competition/src/讯飞AI_top1_酒水鱼/final_ronghe.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/liupeng_demo.py" beforeDir="false" afterPath="$PROJECT_DIR$/competition/src/讯飞AI_top1_酒水鱼/liupeng_demo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/run.sh" beforeDir="false" afterPath="$PROJECT_DIR$/competition/src/讯飞AI_top1_酒水鱼/run.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/src/data/ratio_feat.csv" beforeDir="false" afterPath="$PROJECT_DIR$/competition/src/讯飞AI_top1_酒水鱼/src/data/ratio_feat.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/src/final_ronghe.py" beforeDir="false" afterPath="$PROJECT_DIR$/competition/src/讯飞AI_top1_酒水鱼/src/final_ronghe.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/src/liupeng_demo.py" beforeDir="false" afterPath="$PROJECT_DIR$/competition/src/讯飞AI_top1_酒水鱼/src/liupeng_demo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/src/wanghe_demo.py" beforeDir="false" afterPath="$PROJECT_DIR$/competition/src/讯飞AI_top1_酒水鱼/src/wanghe_demo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/src/wengyp_demo.py" beforeDir="false" afterPath="$PROJECT_DIR$/competition/src/讯飞AI_top1_酒水鱼/src/wengyp_demo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/wanghe_demo.py" beforeDir="false" afterPath="$PROJECT_DIR$/competition/src/讯飞AI_top1_酒水鱼/wanghe_demo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/water_demo.py" beforeDir="false" afterPath="$PROJECT_DIR$/competition/src/讯飞AI_top1_酒水鱼/water_demo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/算法说明.txt" beforeDir="false" afterPath="$PROJECT_DIR$/competition/src/讯飞AI_top1_酒水鱼/算法说明.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/运行说明.txt" beforeDir="false" afterPath="$PROJECT_DIR$/competition/src/讯飞AI_top1_酒水鱼/运行说明.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learning/src/酒水鱼1.0.0.pptx" beforeDir="false" afterPath="$PROJECT_DIR$/competition/src/酒水鱼1.0.0.pptx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/work/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/work/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,11 +98,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\PCRecord\work\study\picture" />
       <recent name="D:\PCRecord\book\src\elo" />
       <recent name="D:\PCRecord\book\src" />
       <recent name="D:\PCRecord\book\doc" />
       <recent name="D:\PCRecord\book" />
-      <recent name="D:\PCRecord\algorithm\src\dp" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\PCRecord\algorithm\submission" />
@@ -247,13 +251,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647300774340</updated>
-    </task>
-    <task id="LOCAL-00099" summary="多雷背包类似">
-      <created>1673279821751</created>
-      <option name="number" value="00099" />
-      <option name="presentableId" value="LOCAL-00099" />
-      <option name="project" value="LOCAL" />
-      <updated>1673279821751</updated>
     </task>
     <task id="LOCAL-00100" summary="第二种卡特兰数">
       <created>1673279914323</created>
@@ -591,7 +588,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674904046425</updated>
     </task>
-    <option name="localTasksCounter" value="148" />
+    <task id="LOCAL-00148" summary="README补充">
+      <created>1674905617455</created>
+      <option name="number" value="00148" />
+      <option name="presentableId" value="LOCAL-00148" />
+      <option name="project" value="LOCAL" />
+      <updated>1674905617455</updated>
+    </task>
+    <option name="localTasksCounter" value="149" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -609,7 +613,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="滑动窗口最大值最小值" />
     <MESSAGE value="二进制优化背包举例" />
     <MESSAGE value="多雷背包类似" />
     <MESSAGE value="第二种卡特兰数" />
@@ -634,7 +637,8 @@
     <MESSAGE value="修改换根DP模板" />
     <MESSAGE value="增加题目" />
     <MESSAGE value="使用迭代方式求解gcd" />
-    <option name="LAST_COMMIT_MESSAGE" value="使用迭代方式求解gcd" />
+    <MESSAGE value="README补充" />
+    <option name="LAST_COMMIT_MESSAGE" value="README补充" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
