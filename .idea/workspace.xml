@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/book/README.md" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/book/doc/第一章 竞赛介绍_终稿.docx" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/book/doc/第七章 用户画像_终稿.docx" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/book/doc/第八章 Elo实战案例_终稿.docx" afterDir="false" />
@@ -12,9 +13,14 @@
       <change afterPath="$PROJECT_DIR$/book/doc/第十五章 Tencent实战案例_终稿.docx" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/book/src/__init__.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/book/src/elo/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/book/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/book/src/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/learning/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/work/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/book/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/book/src/README.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/book/Tencent2018" beforeDir="false" afterPath="$PROJECT_DIR$/book/src/Tencent2018" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/book/__init__.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/book/baseline_randomforest.py" beforeDir="false" afterPath="$PROJECT_DIR$/book/src/baseline_randomforest.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/book/best_xgboost.py" beforeDir="false" afterPath="$PROJECT_DIR$/book/src/best_xgboost.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/book/data" beforeDir="false" afterPath="$PROJECT_DIR$/book/src/data" afterDir="false" />
@@ -25,6 +31,19 @@
       <change beforePath="$PROJECT_DIR$/book/promotion_lightgbm.py" beforeDir="false" afterPath="$PROJECT_DIR$/book/src/promotion_lightgbm.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/book/ronghe.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/book/src/ronghe.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/book/simple-lightgbm-without-blending.py" beforeDir="false" afterPath="$PROJECT_DIR$/book/src/simple-lightgbm-without-blending.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machine_learning/src/讯飞AI_top1_酒水鱼/final_ronghe.py" beforeDir="false" afterPath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/final_ronghe.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machine_learning/src/讯飞AI_top1_酒水鱼/liupeng_demo.py" beforeDir="false" afterPath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/liupeng_demo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machine_learning/src/讯飞AI_top1_酒水鱼/run.sh" beforeDir="false" afterPath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/run.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machine_learning/src/讯飞AI_top1_酒水鱼/src/data/ratio_feat.csv" beforeDir="false" afterPath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/src/data/ratio_feat.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machine_learning/src/讯飞AI_top1_酒水鱼/src/final_ronghe.py" beforeDir="false" afterPath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/src/final_ronghe.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machine_learning/src/讯飞AI_top1_酒水鱼/src/liupeng_demo.py" beforeDir="false" afterPath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/src/liupeng_demo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machine_learning/src/讯飞AI_top1_酒水鱼/src/wanghe_demo.py" beforeDir="false" afterPath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/src/wanghe_demo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machine_learning/src/讯飞AI_top1_酒水鱼/src/wengyp_demo.py" beforeDir="false" afterPath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/src/wengyp_demo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machine_learning/src/讯飞AI_top1_酒水鱼/wanghe_demo.py" beforeDir="false" afterPath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/wanghe_demo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machine_learning/src/讯飞AI_top1_酒水鱼/water_demo.py" beforeDir="false" afterPath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/water_demo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machine_learning/src/讯飞AI_top1_酒水鱼/算法说明.txt" beforeDir="false" afterPath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/算法说明.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machine_learning/src/讯飞AI_top1_酒水鱼/运行说明.txt" beforeDir="false" afterPath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/运行说明.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machine_learning/src/酒水鱼1.0.0.pptx" beforeDir="false" afterPath="$PROJECT_DIR$/learning/src/酒水鱼1.0.0.pptx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,9 +73,6 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/../Soft/Anaconda3-2021.11/Lib/site-packages/scipy/optimize/_minimize.py" root0="SKIP_INSPECTION" />
-  </component>
   <component name="ProjectId" id="26OhvoNbKkfEzYckFLod5ENhdfD" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -77,13 +93,6 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\PCRecord\algorithm\submission" />
-      <recent name="D:\PCRecord\algorithm\competition" />
-      <recent name="D:\PCRecord\leetcode\template\图论" />
-      <recent name="D:\PCRecord\leetcode\competition" />
-      <recent name="D:\PCRecord\leetcode\tests" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\PCRecord\book\src\elo" />
       <recent name="D:\PCRecord\book\src" />
@@ -91,6 +100,25 @@
       <recent name="D:\PCRecord\book" />
       <recent name="D:\PCRecord\algorithm\src\dp" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\PCRecord\algorithm\submission" />
+      <recent name="D:\PCRecord\algorithm\competition" />
+      <recent name="D:\PCRecord\leetcode\template\图论" />
+      <recent name="D:\PCRecord\leetcode\competition" />
+      <recent name="D:\PCRecord\leetcode\tests" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager" selected="Python.problem_0">
     <configuration name="强连通分量" type="PythonConfigurationType" factoryName="Python">
@@ -208,7 +236,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -571,12 +599,13 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
