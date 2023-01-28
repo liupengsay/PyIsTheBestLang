@@ -88,11 +88,10 @@ class NumberTheory:
         return dp[n - 1]
 
     def gcd(self, x, y):
-        # # 最大公约数
-        if y == 0:
-            return x
-        else:
-            return self.gcd(y, x % y)
+        # 最大公约数
+        while y:
+            x, y = y, x % y
+        return x
 
     def lcm(self, x, y):
         # 最小公倍数
@@ -213,6 +212,20 @@ class NumberTheory:
         for i in range(5, int(math.sqrt(x)) + 1, 6):
             if (x % i == 0) or (x % (i + 2) == 0):
                 return False
+        return True
+
+    @staticmethod
+    def is_prime5(n):
+        if n == 2:
+            return True
+        if n <= 1 or not n ^ 1:
+            return False
+
+        for i in range(15):
+            rand = random.randint(2, n - 1)
+            if pow(rand, n - 1, n) != 1:
+                return False
+
         return True
 
     @staticmethod
@@ -402,7 +415,7 @@ class TestGeneral(unittest.TestCase):
         assert not nt.is_prime(51)
         for _ in range(10):
             i = random.randint(1, 10**4)
-            assert nt.is_prime(i) == nt.is_prime4(i)
+            assert nt.is_prime(i) == nt.is_prime4(i) == nt.is_prime5(i)
 
         for _ in range(1):
             x = random.randint(10**8, 10**9)
