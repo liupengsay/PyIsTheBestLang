@@ -5,10 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="使用迭代方式求解gcd">
-      <change afterPath="$PROJECT_DIR$/book/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machine_learning/doc/刘鹏简历2023（持续刷新）.docx" beforeDir="false" afterPath="$PROJECT_DIR$/work/doc/刘鹏简历2023（持续刷新）.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machine_learning/doc/刘鹏详细2023（持续刷新）.docx" beforeDir="false" afterPath="$PROJECT_DIR$/work/doc/刘鹏详细2023（持续刷新）.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machine_learning/study/ml.md" beforeDir="false" afterPath="$PROJECT_DIR$/work/study/ml.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/book/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/book/README.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/book/Tencent2018" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/book/baseline_randomforest.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/book/best_xgboost.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/book/data" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/book/dict.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/book/eda.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/book/groupby.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/book/nlp.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/book/promotion_lightgbm.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/book/ronghe.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/book/simple-lightgbm-without-blending.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,9 +46,6 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/../Soft/Anaconda3-2021.11/Lib/site-packages/scipy/optimize/_minimize.py" root0="SKIP_INSPECTION" />
   </component>
   <component name="ProjectId" id="26OhvoNbKkfEzYckFLod5ENhdfD" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -75,6 +81,18 @@
       <recent name="D:\PCRecord\algorithm\src\算法基础" />
       <recent name="D:\PCRecord\algorithm\template\mathmatics" />
     </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager" selected="Python.problem_0">
     <configuration name="强连通分量" type="PythonConfigurationType" factoryName="Python">
@@ -192,7 +210,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -203,13 +221,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647300774340</updated>
-    </task>
-    <task id="LOCAL-00098" summary="二进制优化背包举例">
-      <created>1673279780215</created>
-      <option name="number" value="00098" />
-      <option name="presentableId" value="LOCAL-00098" />
-      <option name="project" value="LOCAL" />
-      <updated>1673279780215</updated>
     </task>
     <task id="LOCAL-00099" summary="多雷背包类似">
       <created>1673279821751</created>
@@ -547,7 +558,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674903491735</updated>
     </task>
-    <option name="localTasksCounter" value="147" />
+    <task id="LOCAL-00147" summary="使用迭代方式求解gcd">
+      <created>1674904046425</created>
+      <option name="number" value="00147" />
+      <option name="presentableId" value="LOCAL-00147" />
+      <option name="project" value="LOCAL" />
+      <updated>1674904046425</updated>
+    </task>
+    <option name="localTasksCounter" value="148" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -555,12 +573,13 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
