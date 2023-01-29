@@ -115,26 +115,35 @@ class FastIO:
 
 
 def main(ac=FastIO()):
-    n = ac.read_int()
-    grid = [ac.read_list_ints() for _ in range(n)]
-    avg = [sum(grid[i][j] for i in range(n)) for j in range(8)]
-    total = [sum(g) for g in grid]
-    lst = [sum(abs(n*grid[w][j]-avg[j]) for w in range(n)) for j in range(8)]
-    y = []
-    for i in range(n):
-        cur = [-1]*8
-        for j in range(8):
-            z = lst[j]
-            if z == 0:
-                cur[j] = 0
-            else:
-                cur[j] = (n*grid[i][j]-avg[j])/z
-        y.append(cur)
-    total_pos = [sum(y[i][:3]) + 0.8*sum(y[i][3:]) for i in range(n)]
-    ind = list(range(n))
-    ind.sort(key=lambda x: [-total_pos[x], -total[x], x])
-    for i in ind:
-        ac.st(i+1)
+    n, m, c = ac.read_ints()
+    visit = ac.read_list_ints()
+    edge = [dict() for _ in range(n)]
+    degree = [0]*n
+    for _ in range(c):
+        a, b, x = ac.read_ints()
+        a -= 1
+        b -= 1
+        if b not in edge[a]:
+            edge[a][b] = x
+            degree[b] += 1
+        else:
+            y = edge[a][b]
+            x = x if x > y else y
+            edge[a][b] = x
+    stack = [i for i in range(n) if not degree[i]]
+    while stack:
+        nex = []
+        for i in stack:
+            for j in edge[i]:
+                cur = edge[i][j] + visit[i]
+                degree[j] -= 1
+                if cur > visit[j]:
+                    visit[j] = cur
+                if not degree[j]:
+                    nex.append(j)
+        stack = nex
+    for a in visit:
+        ac.st(a)
     return
 
 

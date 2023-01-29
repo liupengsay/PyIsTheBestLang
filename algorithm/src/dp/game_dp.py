@@ -32,6 +32,9 @@ import copy
 题目：
 P1290 欧几里德的游戏（https://www.luogu.com.cn/problem/P1290）典型的博弈DP题
 375. 猜数字大小 II（https://leetcode.cn/problems/guess-number-higher-or-lower-ii/）使用区间DP求解的典型博弈DP
+P5635 【CSGRound1】天下第一（https://www.luogu.com.cn/problem/P5635）博弈DP模拟与手写记忆化搜索，避免陷入死循环
+
+
 参考：OI WiKi（xx）
 """
 

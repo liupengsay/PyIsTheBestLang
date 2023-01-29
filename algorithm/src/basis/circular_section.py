@@ -37,6 +37,9 @@ P1965 [NOIP2013 提高组] 转圈游戏（https://www.luogu.com.cn/problem/P1965
 466. 统计重复个数（https://leetcode.cn/problems/count-the-repetitions/）循环节计算
 P1532 卡布列克圆舞曲（https://www.luogu.com.cn/problem/P1532）循环节计算
 P2203 Blink（https://www.luogu.com.cn/problem/P2203）循环节计算
+P5550 Chino的数列（https://www.luogu.com.cn/problem/P5550）循环节计算也可以使用矩阵快速幂递推
+
+
 参考：OI WiKi（xx）
 """
 

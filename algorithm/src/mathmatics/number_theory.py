@@ -28,7 +28,7 @@ P1465 [USACO2.2]序言页码 Preface Numbering（https://www.luogu.com.cn/proble
 13. 罗马数字转整数（https://leetcode.cn/problems/roman-to-integer/）罗马数字转整数
 P1112 波浪数（https://www.luogu.com.cn/problem/P1112）枚举波浪数计算其不同进制下是否满足条件
 P2926 [USACO08DEC]Patting Heads S（https://www.luogu.com.cn/problem/P2926）素数筛或者因数分解计数统计可被数列其他数整除的个数
-
+P5535 【XR-3】小道消息（https://www.luogu.com.cn/problem/P5535）素数is_prime5判断加贪心脑筋急转弯
 """
 
 
@@ -88,7 +88,7 @@ class NumberTheory:
         return dp[n - 1]
 
     def gcd(self, x, y):
-        # 最大公约数
+        # 模板：迭代法求最大公约数
         while y:
             x, y = y, x % y
         return x

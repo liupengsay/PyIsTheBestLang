@@ -1,15 +1,3 @@
-"""
-算法：快速幂、矩阵快速幂
-功能：高效计算整数的幂次方取模
-题目：xx（xx）
-参考：OI WiKi（xx）
-
-P1630 求和（https://www.luogu.com.cn/problem/P1630）快速幂计算，利用同模进行计数加和
-P1939 【模板】矩阵加速（数列）（https://www.luogu.com.cn/problem/P1939）矩阵快速幂递推求解
-P1962 斐波那契数列（https://www.luogu.com.cn/problem/P1962）矩阵快速幂递推求解
-P3390 【模板】矩阵快速幂（https://www.luogu.com.cn/problem/P3390）矩阵快速幂计算
-P3811 【模板】乘法逆元（https://www.luogu.com.cn/problem/P3811）乘法逆元模板题
-"""
 
 import bisect
 import random
@@ -37,6 +25,22 @@ from decimal import Decimal
 
 import heapq
 import copy
+
+"""
+算法：快速幂、矩阵快速幂
+功能：高效计算整数的幂次方取模
+题目：xx（xx）
+参考：OI WiKi（xx）
+
+P1630 求和（https://www.luogu.com.cn/problem/P1630）快速幂计算，利用同模进行计数加和
+P1939 【模板】矩阵加速（数列）（https://www.luogu.com.cn/problem/P1939）矩阵快速幂递推求解
+P1962 斐波那契数列（https://www.luogu.com.cn/problem/P1962）矩阵快速幂递推求解
+P3390 【模板】矩阵快速幂（https://www.luogu.com.cn/problem/P3390）矩阵快速幂计算
+P3811 【模板】乘法逆元（https://www.luogu.com.cn/problem/P3811）乘法逆元模板题
+
+P5550 Chino的数列（https://www.luogu.com.cn/problem/P5550）循环节计算也可以使用矩阵快速幂递推
+
+"""
 
 
 class PowerReverse:

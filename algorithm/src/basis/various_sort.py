@@ -1,16 +1,3 @@
-"""
-算法：各种排序、冒泡排序、归并排序
-功能：xxx
-题目：xx（xx）
-
-L0045 把数组排成最小的数（https://leetcode.cn/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/）自定义排序携程快排
-P2310 loidc，看看海（https://www.luogu.com.cn/problem/P2310）预处理排序之后进行遍历
-912. 排序数组（https://leetcode.cn/problems/sort-an-array/）快速排序
-P4378 [USACO18OPEN]Out of Sorts S（https://www.luogu.com.cn/problem/P4378）枚举元素向左冒泡的移动轮数，计算最大轮数
-
-
-参考：OI WiKi（xx）
-"""
 
 import bisect
 import random
@@ -39,6 +26,21 @@ from decimal import Decimal
 import heapq
 import copy
 from functools import cmp_to_key
+
+"""
+算法：各种排序、冒泡排序、归并排序（期望比较次数最少）、快速排序（期望性能最好）
+功能：xxx
+题目：xx（xx）
+
+L0045 把数组排成最小的数（https://leetcode.cn/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/）自定义排序携程快排
+P2310 loidc，看看海（https://www.luogu.com.cn/problem/P2310）预处理排序之后进行遍历
+912. 排序数组（https://leetcode.cn/problems/sort-an-array/）快速排序
+P4378 [USACO18OPEN]Out of Sorts S（https://www.luogu.com.cn/problem/P4378）枚举元素向左冒泡的移动轮数，计算最大轮数
+P5626 【AFOI-19】数码排序（https://www.luogu.com.cn/problem/P5626）分治DP，归并排序需要的比较次数最少，但是可能内存占用超过快排
+
+
+参考：OI WiKi（xx）
+"""
 
 
 class VariousSort:

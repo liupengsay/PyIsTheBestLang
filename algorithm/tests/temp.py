@@ -35,10 +35,16 @@ sys.setrecursionlimit(10000000)
 getcontext().prec = MAX_PREC
 
 
-n = 2
-dp = 1
-while n < 20:
-    n += 1
-    dp += (n+1)//2
-    assert (n-1)*(n+3)//4 == dp
-    print(n, dp)
+def fun(a, b, c,d):
+    return (a|b)^(c&d)
+
+
+cnt = Counter()
+for a in range(3):
+    for b in range(3):
+        for c in range(3):
+            for d in range(3):
+               # print(a, b, c, d)
+                s = fun(a, b, c, d)
+                cnt[s] += 1
+print(cnt)

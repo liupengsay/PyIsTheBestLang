@@ -5,49 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="README补充">
-      <change afterPath="$PROJECT_DIR$/work/study/LightGBM与XGBoost的区别.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/work/study/picture/LightGBM与XGBoost思维导图.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/work/study/P5767_1.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/work/study/P5767_1.out" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/work/study/P5767_8.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/work/study/P5767_8.out" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/work/study/P5931_4.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/work/study/P5931_4.out" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/work/study/P6145_2.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/work/study/P6145_2.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/competition/周赛题解.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/competition/第308场周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第308场周赛题解.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/competition/第309场周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第309场周赛题解.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/competition/第311场周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第311场周赛题解.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/competition/第313场周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第313场周赛题解.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/competition/第314场周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第314场周赛题解.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/competition/第315场周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第315场周赛题解.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/competition/第318场周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第318场周赛题解.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/competition/第319场周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第319场周赛题解.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/competition/第320场周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第320场周赛题解.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/competition/第321场周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第321场周赛题解.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/competition/第322场周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第322场周赛题解.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/competition/第323场周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第323场周赛题解.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/competition/第324场周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第324场周赛题解.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/competition/第326场周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第326场周赛题解.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/competition/第85场双周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第85场双周赛题解.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/competition/第86场双周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第86场双周赛题解.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/competition/第88场双周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第88场双周赛题解.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/competition/第89场双周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第89场双周赛题解.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/competition/第90场双周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第90场双周赛题解.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/competition/第91场双周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第91场双周赛题解.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/competition/第92场双周赛题解.md" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/weekly/第92场双周赛题解.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/doc/灵茶试炼.pptx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/submission/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/submission/atcoder_267F.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/learning/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/competition/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/final_ronghe.py" beforeDir="false" afterPath="$PROJECT_DIR$/competition/src/讯飞AI_top1_酒水鱼/final_ronghe.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/liupeng_demo.py" beforeDir="false" afterPath="$PROJECT_DIR$/competition/src/讯飞AI_top1_酒水鱼/liupeng_demo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/run.sh" beforeDir="false" afterPath="$PROJECT_DIR$/competition/src/讯飞AI_top1_酒水鱼/run.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/src/data/ratio_feat.csv" beforeDir="false" afterPath="$PROJECT_DIR$/competition/src/讯飞AI_top1_酒水鱼/src/data/ratio_feat.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/src/final_ronghe.py" beforeDir="false" afterPath="$PROJECT_DIR$/competition/src/讯飞AI_top1_酒水鱼/src/final_ronghe.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/src/liupeng_demo.py" beforeDir="false" afterPath="$PROJECT_DIR$/competition/src/讯飞AI_top1_酒水鱼/src/liupeng_demo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/src/wanghe_demo.py" beforeDir="false" afterPath="$PROJECT_DIR$/competition/src/讯飞AI_top1_酒水鱼/src/wanghe_demo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/src/wengyp_demo.py" beforeDir="false" afterPath="$PROJECT_DIR$/competition/src/讯飞AI_top1_酒水鱼/src/wengyp_demo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/wanghe_demo.py" beforeDir="false" afterPath="$PROJECT_DIR$/competition/src/讯飞AI_top1_酒水鱼/wanghe_demo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/water_demo.py" beforeDir="false" afterPath="$PROJECT_DIR$/competition/src/讯飞AI_top1_酒水鱼/water_demo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/算法说明.txt" beforeDir="false" afterPath="$PROJECT_DIR$/competition/src/讯飞AI_top1_酒水鱼/算法说明.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/learning/src/讯飞AI_top1_酒水鱼/运行说明.txt" beforeDir="false" afterPath="$PROJECT_DIR$/competition/src/讯飞AI_top1_酒水鱼/运行说明.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/learning/src/酒水鱼1.0.0.pptx" beforeDir="false" afterPath="$PROJECT_DIR$/competition/src/酒水鱼1.0.0.pptx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/work/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/work/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/circular_section.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/circular_section.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/diff_array.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/diff_array.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/recursion.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/recursion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/simulation.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/simulation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/various_sort.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/various_sort.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/violent_enumeration.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/violent_enumeration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/game_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/game_dp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/tree_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/tree_dp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/greedy/brain_storming.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/greedy/brain_storming.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/bit_operation.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/bit_operation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/comb_perm.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/comb_perm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/extend_gcd.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/extend_gcd.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/fast_power.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/fast_power.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/number_theory.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/number_theory.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_0.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_0.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/tests/temp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/temp.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +107,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.problem_0">
+  <component name="RunManager" selected="Python tests.Unittests in various_sort.py">
     <configuration name="强连通分量" type="PythonConfigurationType" factoryName="Python">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -188,17 +171,17 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests in diff_array.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests in fast_power.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/basis" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/mathmatics" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/basis/diff_array.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/mathmatics/fast_power.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
@@ -216,27 +199,27 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests in problem_1.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests in various_sort.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/tests" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/basis" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/tests/problem_1.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/basis/various_sort.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Unittests in various_sort.py" />
+        <item itemvalue="Python tests.Unittests in fast_power.py" />
         <item itemvalue="Python.problem_0" />
         <item itemvalue="Python.temp" />
         <item itemvalue="Python tests.Unittests in number_theory.py" />
-        <item itemvalue="Python tests.Unittests in problem_1.py" />
-        <item itemvalue="Python tests.Unittests in diff_array.py" />
       </list>
     </recent_temporary>
   </component>
@@ -251,13 +234,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647300774340</updated>
-    </task>
-    <task id="LOCAL-00100" summary="第二种卡特兰数">
-      <created>1673279914323</created>
-      <option name="number" value="00100" />
-      <option name="presentableId" value="LOCAL-00100" />
-      <option name="project" value="LOCAL" />
-      <updated>1673279914323</updated>
     </task>
     <task id="LOCAL-00101" summary="归并排序交换相邻元素最少次数、逆序对数目">
       <created>1673309192459</created>
@@ -595,7 +571,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674905617455</updated>
     </task>
-    <option name="localTasksCounter" value="149" />
+    <task id="LOCAL-00149" summary="README补充">
+      <created>1674909673709</created>
+      <option name="number" value="00149" />
+      <option name="presentableId" value="LOCAL-00149" />
+      <option name="project" value="LOCAL" />
+      <updated>1674909673709</updated>
+    </task>
+    <option name="localTasksCounter" value="150" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -685,7 +668,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/algorithm/src/dp/tree_dp.py</url>
-          <line>184</line>
+          <line>185</line>
           <option name="timeStamp" value="188" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">

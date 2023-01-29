@@ -2,7 +2,7 @@
 
 """
 """
-算法：贪心、逆向思维
+算法：贪心、逆向思维、抽屉原理、鸽巢原理、容斥原理
 功能：各种可证明不可证明的头脑风暴
 题目：
 L2499 让数组不相等的最小总代价（https://leetcode.cn/problems/minimum-total-cost-to-make-arrays-unequal/）利用鸽巢原理贪心计算最小代价
@@ -54,7 +54,7 @@ P5098 [USACO04OPEN]Cave Cows 3（https://www.luogu.com.cn/problem/P5098）贪心
 P5159 WD与矩阵（https://www.luogu.com.cn/problem/P5159）利用异或的特点枚举计数并进行快速幂计算
 
 
-
+P5497 [LnOI2019SP]龟速单项式变换(SMT)（https://www.luogu.com.cn/problem/P5497）抽屉原理进行分类讨论
 
 参考：OI WiKi（xx）
 """

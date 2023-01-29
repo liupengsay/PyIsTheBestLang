@@ -27,12 +27,13 @@ import heapq
 import copy
 
 """
-算法：分治、递归、二叉树、四叉树、十叉树、N叉树
+算法：分治、递归、二叉树、四叉树、十叉树、N叉树、先序、中序、后序遍历
 功能：xxx
 题目：
 P1911 L 国的战斗之排兵布阵（https://www.luogu.com.cn/problem/P1911）使用四叉树递归计算
 P5461 赦免战俘（https://www.luogu.com.cn/problem/P5461）递归计算四叉树左上角
-
+P5551 Chino的树学（https://www.luogu.com.cn/problem/P5551）先序遍历的完全二叉树递归计算
+P5626 【AFOI-19】数码排序（https://www.luogu.com.cn/problem/P5626）分治DP，归并排序需要的比较次数最少，但是可能内存占用超过快排
 参考：OI WiKi（xx）
 """
 

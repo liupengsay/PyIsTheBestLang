@@ -2,7 +2,7 @@
 
 """
 """
-算法：差分数组与前缀和、后缀和、前缀最大子序列和、后缀最大子序列和
+算法：差分数组与前缀和、后缀和、前缀最大子序列和、后缀最大子序列和、二维差分
 功能：用来解决一维数组或者二维数组的加和问题，以及前缀和计算，还有前缀和的前缀和
 题目：
 
@@ -20,6 +20,8 @@ P2280 [HNOI2003]激光炸弹（https://www.luogu.com.cn/problem/P2280）二维�
 P3138 [USACO16FEB]Load Balancing S（https://www.luogu.com.cn/problem/P3138）二维前缀和
 P3406 海底高铁（https://www.luogu.com.cn/problem/P3406）差分数组计算每段路经过次数，再贪心新选择买卡还是单刷
 P3655 不成熟的梦想家 (未熟 DREAMER)（https://www.luogu.com.cn/problem/P3655）差分数组变形模拟
+P5542 [USACO19FEB]Painting The Barn S（https://www.luogu.com.cn/problem/P5542）二维差分，需要适配覆盖区间
+
 
 参考：OI WiKi（xx）
 """
