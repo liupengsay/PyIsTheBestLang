@@ -36,6 +36,8 @@ P5483 [JLOI2011]小A的烦恼（https://www.luogu.com.cn/problem/P5483）模拟�
 
 P5587 打字练习（https://www.luogu.com.cn/problem/P5587）按照题意模拟统计
 P5759 [NOI1997] 竞赛排名（https://www.luogu.com.cn/problem/P5759）按照题意模拟统计，使用将除法转换为乘法避免引起精度问题的处理技巧
+P5989 [PA2019]Wina（https://www.luogu.com.cn/problem/P5989）模拟计数确定每个点左右角上方移除点的个数
+P5995 [PA2014]Lustra（https://www.luogu.com.cn/problem/P5995）动态模拟更新结果
 
 
 参考：OI WiKi（xx）

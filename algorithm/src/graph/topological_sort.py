@@ -17,6 +17,8 @@ P1960 郁闷的记者（https://www.luogu.com.cn/problem/P1960）计算拓扑排
 P1992 不想兜圈的老爷爷（https://www.luogu.com.cn/problem/P1992）拓扑排序计算有向图是否有环
 269. 火星词典（https://leetcode.cn/problems/alien-dictionary/）经典按照字典序建图，与拓扑排序的应用
 P2712 摄像头（https://www.luogu.com.cn/problem/P2712）拓扑排序计算非环节点数
+P6145 [USACO20FEB]Timeline G（https://www.luogu.com.cn/problem/P6145）经典拓扑排序计算每个节点最晚的访问时间点
+
 参考：OI WiKi（xx）
 """
 

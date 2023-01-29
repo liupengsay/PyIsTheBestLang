@@ -30,6 +30,15 @@ from sortedcontainers import SortedList
 
 
 
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        n = len(nums)
+        pre = dict()
+        for i in range(n):
+            x = nums[i]
+            if target-x in pre:
+                return [pre[target-x], i]
+            pre[x] = i
 
 
 class TestGeneral(unittest.TestCase):

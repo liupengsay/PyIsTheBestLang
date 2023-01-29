@@ -6,14 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="增加洛谷部分题目复习">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/diff_array.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/diff_array.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/construction_result.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/construction_result.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/range.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/range.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/src/basis/simulation.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/simulation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/data_structure/monotonic_stack.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/data_structure/monotonic_stack.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/dp/linear_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/dp/linear_dp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/dijkstra.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/dijkstra.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/violent_enumeration.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/violent_enumeration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/euler_path.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/euler_path.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/graph/union_find.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/graph/union_find.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/src/greedy/brain_storming.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/greedy/brain_storming.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/bit_operation.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/bit_operation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/src/mathmatics/fast_power.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/mathmatics/fast_power.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm/src/string/trie.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/string/trie.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_0.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_0.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_1.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -217,13 +220,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647300774340</updated>
-    </task>
-    <task id="LOCAL-00102" summary="增加题目">
-      <created>1673310286778</created>
-      <option name="number" value="00102" />
-      <option name="presentableId" value="LOCAL-00102" />
-      <option name="project" value="LOCAL" />
-      <updated>1673310286779</updated>
     </task>
     <task id="LOCAL-00103" summary="题目补充">
       <created>1673311163317</created>
@@ -561,7 +557,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675004722990</updated>
     </task>
-    <option name="localTasksCounter" value="151" />
+    <task id="LOCAL-00151" summary="增加洛谷部分题目复习">
+      <created>1675027173578</created>
+      <option name="number" value="00151" />
+      <option name="presentableId" value="LOCAL-00151" />
+      <option name="project" value="LOCAL" />
+      <updated>1675027173578</updated>
+    </task>
+    <option name="localTasksCounter" value="152" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

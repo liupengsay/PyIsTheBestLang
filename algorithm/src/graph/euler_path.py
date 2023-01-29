@@ -1,19 +1,3 @@
-"""
-算法：欧拉路径（使用深度优先搜索里面的Hierholzer算法）
-功能：求解有向图与无向图中的欧拉路径，定义比较复杂且不统一，须根据实际情况作适配与调整
-
-题目：
-
-P7771 【模板】欧拉路径（https://www.luogu.com.cn/problem/P7771）
-L0753 破解保险箱（https://leetcode.cn/problems/cracking-the-safe/solution/er-xu-cheng-ming-jiu-xu-zui-by-liupengsa-lm77/）
-L2097 合法重新排列数对（https://leetcode.cn/problems/valid-arrangement-of-pairs/submissions/）欧拉路径模板题，注意确定首尾点
-
-
-
-参考：OI WiKi（https://oi-wiki.org/graph/euler/）
-
-https://www.jianshu.com/p/8394b8e5b878
-"""
 
 import bisect
 import random
@@ -41,6 +25,24 @@ from decimal import Decimal
 
 import heapq
 import copy
+
+
+"""
+
+算法：欧拉路径（使用深度优先搜索里面的Hierholzer算法）
+功能：求解有向图与无向图中的欧拉路径，定义比较复杂且不统一，须根据实际情况作适配与调整
+
+题目：
+
+P7771 【模板】欧拉路径（https://www.luogu.com.cn/problem/P7771）欧拉路径模板题
+L0753 破解保险箱（https://leetcode.cn/problems/cracking-the-safe/solution/er-xu-cheng-ming-jiu-xu-zui-by-liupengsa-lm77/）
+L2097 合法重新排列数对（https://leetcode.cn/problems/valid-arrangement-of-pairs/submissions/）欧拉路径模板题，注意确定首尾点
+P6066 [USACO05JAN]Watchcow S（https://www.luogu.com.cn/problem/P6066）欧拉路径模板题
+
+
+参考：OI WiKi（https://oi-wiki.org/graph/euler/）
+https://www.jianshu.com/p/8394b8e5b878
+"""
 
 
 class EulerPath:

@@ -1,14 +1,3 @@
-"""
-算法：位运算相关技巧
-功能：进行二进制上的位操作，包括与、异或、或、取反
-题目：xx（xx）
-
-L2354 优质数对的数目（https://leetcode.cn/problems/number-of-excellent-pairs/）需要脑筋急转弯确定位 1 的规律进行哈希计数枚举即可
-P5657 格雷码（https://www.luogu.com.cn/problem/P5657）计算编号为 k 的二进制符，并补前缀 0 为 n 位
-
-参考：OI WiKi（xx）
-https://blog.csdn.net/qq_35473473/article/details/106320878
-"""
 
 import bisect
 import random
@@ -36,6 +25,21 @@ from decimal import Decimal
 
 import heapq
 import copy
+
+"""
+
+算法：位运算相关技巧
+功能：进行二进制上的位操作，包括与、异或、或、取反
+题目：xx（xx）
+
+L2354 优质数对的数目（https://leetcode.cn/problems/number-of-excellent-pairs/）需要脑筋急转弯确定位 1 的规律进行哈希计数枚举即可
+P5657 格雷码（https://www.luogu.com.cn/problem/P5657）计算编号为 k 的二进制符，并补前缀 0 为 n 位
+P6102 [EER2]谔运算（https://www.luogu.com.cn/problem/P6102）经典位运算加和题目，按位计算，按照位0与位1的数量进行讨论
+
+参考：OI WiKi（xx）
+https://blog.csdn.net/qq_35473473/article/details/106320878
+"""
+
 
 
 class BitOperation:

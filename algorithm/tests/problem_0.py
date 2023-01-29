@@ -115,35 +115,7 @@ class FastIO:
 
 
 def main(ac=FastIO()):
-    n, m, c = ac.read_ints()
-    visit = ac.read_list_ints()
-    edge = [dict() for _ in range(n)]
-    degree = [0]*n
-    for _ in range(c):
-        a, b, x = ac.read_ints()
-        a -= 1
-        b -= 1
-        if b not in edge[a]:
-            edge[a][b] = x
-            degree[b] += 1
-        else:
-            y = edge[a][b]
-            x = x if x > y else y
-            edge[a][b] = x
-    stack = [i for i in range(n) if not degree[i]]
-    while stack:
-        nex = []
-        for i in stack:
-            for j in edge[i]:
-                cur = edge[i][j] + visit[i]
-                degree[j] -= 1
-                if cur > visit[j]:
-                    visit[j] = cur
-                if not degree[j]:
-                    nex.append(j)
-        stack = nex
-    for a in visit:
-        ac.st(a)
+
     return
 
 
