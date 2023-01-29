@@ -35,6 +35,7 @@ P5079 Tweetuzki 爱伊图（https://www.luogu.com.cn/problem/P5079）字符串�
 P5483 [JLOI2011]小A的烦恼（https://www.luogu.com.cn/problem/P5483）模拟进行表格拼接
 
 P5587 打字练习（https://www.luogu.com.cn/problem/P5587）按照题意模拟统计
+P5759 [NOI1997] 竞赛排名（https://www.luogu.com.cn/problem/P5759）按照题意模拟统计，使用将除法转换为乘法避免引起精度问题的处理技巧
 
 
 参考：OI WiKi（xx）

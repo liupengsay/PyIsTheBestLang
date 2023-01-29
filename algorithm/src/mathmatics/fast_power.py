@@ -37,7 +37,7 @@ P1939 【模板】矩阵加速（数列）（https://www.luogu.com.cn/problem/P1
 P1962 斐波那契数列（https://www.luogu.com.cn/problem/P1962）矩阵快速幂递推求解
 P3390 【模板】矩阵快速幂（https://www.luogu.com.cn/problem/P3390）矩阵快速幂计算
 P3811 【模板】乘法逆元（https://www.luogu.com.cn/problem/P3811）乘法逆元模板题
-
+P5775 [AHOI2006]斐波卡契的兔子（https://www.luogu.com.cn/problem/P5775）从背包模拟、前缀和优化、到数列变换使用矩阵快速幂再到纯模拟
 P5550 Chino的数列（https://www.luogu.com.cn/problem/P5550）循环节计算也可以使用矩阵快速幂递推
 
 """

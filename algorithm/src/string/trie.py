@@ -13,6 +13,7 @@ P4551 最长异或路径（https://www.luogu.com.cn/problem/P4551）关键是利
 1803. 统计异或值在范围内的数对有多少（https://leetcode.cn/problems/count-pairs-with-xor-in-a-range/）
 677. 键值映射（https://leetcode.cn/problems/map-sum-pairs/）
 P3864 [USACO1.2]命名那个数字 Name That Number（https://www.luogu.com.cn/problem/P3864）使用哈希枚举或者进行字典树存储
+P5755 [NOI2000] 单词查找树（https://www.luogu.com.cn/problem/P5755）字典树节点计数
 
 参考：OI WiKi（）
 """

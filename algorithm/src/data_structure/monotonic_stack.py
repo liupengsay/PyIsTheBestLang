@@ -15,6 +15,7 @@ P1901 发射站（https://www.luogu.com.cn/problem/P1901）由不相同的数组
 P2866 [USACO06NOV]Bad Hair Day S（https://www.luogu.com.cn/problem/P2866）单调栈
 P2947 [USACO09MAR]Look Up S（https://www.luogu.com.cn/problem/P2947）单调栈裸题
 P4147 玉蟾宫（https://www.luogu.com.cn/problem/P4147）枚举矩形的下边界，使用单调栈计算最大矩形面积
+P5788 【模板】单调栈（https://www.luogu.com.cn/problem/P5788）单调栈模板题
 
 
 
