@@ -115,7 +115,17 @@ class FastIO:
 
 
 def main(ac=FastIO()):
+    n = ac.read_int()
+    nums = [ac.read_list_ints() for _ in range(n)]
 
+
+
+    nums.sort(key=cmp_to_key(compare))
+    pre = post = 0
+    for a, b in nums:
+        pre += a
+        post = ac.max(post, pre) + b
+    ac.st(post)
     return
 
 

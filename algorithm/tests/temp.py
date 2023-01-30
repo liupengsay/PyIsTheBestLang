@@ -24,6 +24,7 @@ from itertools import accumulate
 from decimal import Decimal, getcontext, MAX_PREC
 from types import GeneratorType
 from functools import cmp_to_key
+import functools
 import datetime
 import unittest
 import time
@@ -35,16 +36,39 @@ sys.setrecursionlimit(10000000)
 getcontext().prec = MAX_PREC
 
 
-def fun(a, b, c,d):
-    return (a|b)^(c&d)
+def my_compare(x, y):
+    if x < y:
+        return -1
+    elif x > y:
+        return 1
+    return 0
+
+nums = list(range(14))[::-1]
+nums.sort(key = functools.cmp_to_key(my_compare))
+print(nums)
+
+import functools
+
+strs = [3, 4, 1, 2]
 
 
-cnt = Counter()
-for a in range(3):
-    for b in range(3):
-        for c in range(3):
-            for d in range(3):
-               # print(a, b, c, d)
-                s = fun(a, b, c, d)
-                cnt[s] += 1
-print(cnt)
+# 自定义排序规则
+def my_compare(x, y):
+    if x > y:
+        return 1
+    elif x < y:
+        return -1
+    return 0
+
+
+# 分别使用sorted和list.sort
+print(strs)
+print(sorted(strs, key=functools.cmp_to_key(my_compare)))
+
+print(strs)
+strs.sort(key=functools.cmp_to_key(my_compare))
+print(strs)
+
+
+
+

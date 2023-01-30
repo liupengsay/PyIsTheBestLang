@@ -28,15 +28,18 @@ import copy
 from functools import cmp_to_key
 
 """
-算法：各种排序、冒泡排序、归并排序（期望比较次数最少）、快速排序（期望性能最好）
+算法：各种排序、冒泡排序、归并排序（期望比较次数最少）、快速排序（期望性能最好）、自定义排序（灵活）
 功能：xxx
 题目：xx（xx）
 
-L0045 把数组排成最小的数（https://leetcode.cn/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/）自定义排序携程快排
 P2310 loidc，看看海（https://www.luogu.com.cn/problem/P2310）预处理排序之后进行遍历
 912. 排序数组（https://leetcode.cn/problems/sort-an-array/）快速排序
 P4378 [USACO18OPEN]Out of Sorts S（https://www.luogu.com.cn/problem/P4378）枚举元素向左冒泡的移动轮数，计算最大轮数
 P5626 【AFOI-19】数码排序（https://www.luogu.com.cn/problem/P5626）分治DP，归并排序需要的比较次数最少，但是可能内存占用超过快排
+
+P6243 [USACO06OPEN]The Milk Queue G（https://www.luogu.com.cn/problem/P6243）经典贪心举例之后进行自定义排序
+面试题45. 把数组排成最小的数（https://leetcode.cn/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/）自定义拼接成最小的数
+
 
 
 参考：OI WiKi（xx）
@@ -73,37 +76,15 @@ class VariousSort:
                 rank += 1
         return nums
 
-    # @staticmethod
-    # def quick_sort(nums):
-        # 快速排序
-        # def recursion(first, last):
-        #     if first >= last:
-        #         return
-        #     mid_value = nums[first]
-        #     low = first
-        #     high = last
-        #     while low < high:
-        #         while low < high and nums[high] >= mid_value:
-        #             high -= 1
-        #         nums[low] = nums[high]
-        #         while low < high and nums[low] < mid_value:
-        #             low += 1
-        #         nums[high] = nums[low]
-        #     nums[low] = mid_value
-        #     recursion(first, low - 1)
-        #     recursion(low + 1, last)
-        #
-        # recursion(0, len(nums) - 1)
-        # return nums
-
     @staticmethod
-    def sortArray(self, lst: List[int]) -> List[int]:
-        # 两路快排
+    def quick_sort_two(lst: List[int]) -> List[int]:
+        # 模板：比较好理解和记忆的两路快排
         n = len(lst)
 
         def quick_sort(i, j):
             if i >= j:
                 return
+
             val = lst[random.randint(i, j)]
             left = i
             for k in range(i, j + 1):
@@ -121,36 +102,6 @@ class VariousSort:
 
         quick_sort(0, n - 1)
         return lst
-
-    # @staticmethod
-    # def quick_sort_three(nums):
-    #     # 三路快排
-    #     def recursion(first, last):
-    #         if first >= last:
-    #             return
-    #         random_index = random.randint(first, last)
-    #         pivot = nums[random_index]
-    #         nums[first], nums[random_index] = nums[random_index], nums[first]
-    #         i = first + 1
-    #         j = first
-    #         k = last + 1
-    #         while i < k:
-    #             if nums[i] < pivot:
-    #                 nums[i], nums[j + 1] = nums[j + 1], nums[i]
-    #                 j += 1
-    #                 i += 1
-    #             elif nums[i] > pivot:
-    #                 nums[i], nums[k - 1] = nums[k - 1], nums[i]
-    #                 k -= 1
-    #             else:
-    #                 i += 1
-    #         nums[first], nums[j] = nums[j], nums[first]
-    #         recursion(first, j - 1)
-    #         recursion(k, last)
-    #
-    #     recursion(0, len(nums) - 1)
-    #     return nums
-
 
     def merge_sort(self, nums):
         # 归并排序
@@ -232,7 +183,6 @@ class VariousSort:
         arr = [0] * n
         merge(0, n - 1)
         return ans
-
 
     @staticmethod
     def heap_sort(nums):
@@ -318,7 +268,8 @@ class VariousSort:
                     nums[i], nums[i + 1] = nums[i + 1], nums[i]
         return nums
 
-    def selection_sort(self, nums):
+    @staticmethod
+    def selection_sort(nums):
         n = len(nums)
         for i in range(n):
             ith = i
@@ -328,52 +279,47 @@ class VariousSort:
             nums[i], nums[ith] = nums[ith], nums[i]
         return nums
 
+    @staticmethod
+    def defined_sort(nums):
+        def compare(a, b):
+            # 模板：自定义排序
+            if a < b:
+                return -1
+            elif a > b:
+                return 1
+            return 0
 
-    def largestNumber(self, nums: List[int]) -> str:
-        def quick_sort(l, r):
-            if l >= r:
-                return
-            i, j = l, r
-            while i < j:
-                while strs[j] + strs[l] <= strs[l] + strs[j] and i < j:
-                    j -= 1
-                while strs[i] + strs[l] >= strs[l] + strs[i] and i < j:
-                    i += 1
-                strs[i], strs[j] = strs[j], strs[i]
-            strs[i], strs[l] = strs[l], strs[i]
-            quick_sort(l, i - 1)
-            quick_sort(i + 1, r)
-            return
+        def compare2(x, y):
+            # 模板：自定义排序
+            a = int(x+y)
+            b = int(y+x)
+            if a < b:
+                return -1
+            elif a > b:
+                return 1
+            return 0
 
-        strs = [str(num) for num in nums]
-        quick_sort(0, len(strs) - 1)
-        return str(int(''.join(strs)))
-
-
-    def largestNumber2(self, nums: List[int]) -> str:
-        # 自定义排序获得最大数字
-        def compare(x, y):
-            return int(y + x) - int(x + y)
-
-        nums = [str(num) for num in nums]
+        def compare3(x, y):
+            # 模板：自定义排序
+            a = x+y
+            b = y+x
+            if a < b:
+                return -1
+            elif a > b:
+                return 1
+            return 0
         nums.sort(key=cmp_to_key(compare))
-        # print(nums)
-        return str(int(''.join(nums)))
-
-    def minNumber(self, nums: List[int]) -> str:
-        # 自定义排序拼接数字字符串使得最后的数字字典序最小
-        def compare(x, y):
-            return (x+y) < (y+x)
-        nums = [str(num) for num in nums]
-        nums.sort(key=cmp_to_key(compare))
-        return "".join(nums)
+        return nums
 
 
 class TestGeneral(unittest.TestCase):
 
-    def test_xxx(self):
+    def test_various_sort(self):
         vs = VariousSort()
-        #assert nt.gen_result(10 ** 11 + 131) == 66666666752
+        n = 1000
+        for _ in range(n):
+            nums = [random.randint(0, n) for _ in range(n)]
+            assert vs.defined_sort(nums) == vs.quick_sort_two(nums) == vs.merge_sort(nums)
         return
 
 
