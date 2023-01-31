@@ -1,12 +1,9 @@
-from __future__ import division
 import copy
 import random
 import heapq
 import math
 import sys
 import bisect
-import re
-import time
 import datetime
 from functools import lru_cache
 from collections import deque
@@ -14,20 +11,12 @@ from collections import Counter
 from collections import defaultdict
 from itertools import combinations
 from itertools import permutations
-from itertools import accumulate
-from decimal import Decimal, getcontext, MAX_PREC
 from types import GeneratorType
 from functools import cmp_to_key
 from heapq import nlargest
-import datetime
-import unittest
-import time
-
-
 inf = float("inf")
 sys.setrecursionlimit(10000000)
 
-getcontext().prec = MAX_PREC
 
 
 class FastIO:
@@ -42,7 +31,7 @@ class FastIO:
         return int(self._read())
 
     def read_float(self):
-        return float(self._read())
+        return int(self._read())
 
     def read_ints(self):
         return map(int, self._read().split())
@@ -114,18 +103,42 @@ class FastIO:
         return wrappedfunc
 
 
+
+
+
 def main(ac=FastIO()):
-    n = ac.read_int()
-    nums = [ac.read_list_ints() for _ in range(n)]
+    import io, os
+    import collections
+    input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
+    R = lambda: map(int, input().split())
 
+    n, m = R()
 
+    dp = [[inf] * n for _ in range(n)]
+    for i in range(n):
+        dp[i][i] = 0
+    for _ in range(m):
+        x, y, w = R()
+        x -= 1
+        y -= 1
+        w = ac.min(dp[x][y], w)
+        dp[x][y] = dp[y][x] = w
 
-    nums.sort(key=cmp_to_key(compare))
-    pre = post = 0
-    for a, b in nums:
-        pre += a
-        post = ac.max(post, pre) + b
-    ac.st(post)
+    for k in range(n):
+        for i in range(n):
+            for j in range(i+1, n):
+                dp[i][j] = dp[j][i] = ac.min(dp[i][j], dp[i][k]+dp[k][j])
+
+    ans = inf
+    for i in range(n):
+        for j in range(i + 1, n):
+            cur = 0
+            for a in range(n):
+                for b in range(a + 1, n):
+                    x = ac.min(dp[a][i] + dp[j][b], dp[a][j]+dp[i][b])
+                    cur += min(dp[a][b], x)
+            ans = ans if ans < cur else cur
+    ac.st(ans)
     return
 
 

@@ -76,7 +76,7 @@ class ExtendGcd:
             gcd, x, y = self.extend_gcd(b % a, a)
             return gcd, y - (b // a) * x, x
 
-    def solve_equal(self, a, b, m = 1):
+    def solve_equal(self, a, b, m=1):
         # 求解ax+by=m方程组的所有解
         gcd, x0, y0 = self.extend_gcd(a, b)
         assert a * x0 + b * y0 == 1

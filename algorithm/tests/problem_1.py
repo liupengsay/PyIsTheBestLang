@@ -30,15 +30,68 @@ from sortedcontainers import SortedList
 
 
 
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
 class Solution:
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
-        n = len(nums)
-        pre = dict()
-        for i in range(n):
-            x = nums[i]
-            if target-x in pre:
-                return [pre[target-x], i]
-            pre[x] = i
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        """
+        Do not return anything, modify head in-place instead.
+        """
+
+        def reverse(node):
+            res = None
+            while node:
+                tmp = node.next
+                node.next = res
+                res = node
+                node = tmp
+            return res
+
+
+        def merge(node1, node2):
+            res = ListNode(-1)
+            node = res
+            while node1 and node2:
+                tmp = node1.next
+                node1.next = None
+                node.next = node1
+                node = node.next
+                node1 = tmp
+
+                tmp = node2.next
+                node2.next = None
+                node.next = node2
+                node = node.next
+                node2 = tmp
+
+            if node1:
+                node.next = node1
+            if node2:
+                node.next = node2
+            return res.next
+
+        ans = ListNode(-1)
+        ans.next = head
+        fast = slow = ans
+        while fast and fast.next:
+            fast = fast.next.next
+            slow = slow.next
+
+        post = reverse(slow.next)
+        slow.next = None
+        pre = ans.next
+        return merge(pre, post)
+
+
+
+# Your LRUCache object will be instantiated and called as such:
+# obj = LRUCache(capacity)
+# param_1 = obj.get(key)
+# obj.put(key,value)
+
 
 
 class TestGeneral(unittest.TestCase):
