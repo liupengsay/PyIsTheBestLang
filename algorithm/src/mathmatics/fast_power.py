@@ -41,6 +41,7 @@ P5775 [AHOI2006]斐波卡契的兔子（https://www.luogu.com.cn/problem/P5775�
 P5550 Chino的数列（https://www.luogu.com.cn/problem/P5550）循环节计算也可以使用矩阵快速幂递推
 P6045 后缀树（https://www.luogu.com.cn/problem/P6045）脑筋急转弯进行组合计数与快速幂枚举计算
 P6075 [JSOI2015]子集选取（https://www.luogu.com.cn/problem/P6075）组合计数后进行快速幂计算
+P6392 中意（https://www.luogu.com.cn/problem/P6392）公式拆解变换后进行快速幂计算
 
 
 """

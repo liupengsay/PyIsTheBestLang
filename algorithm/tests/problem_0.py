@@ -18,7 +18,6 @@ inf = float("inf")
 sys.setrecursionlimit(10000000)
 
 
-
 class FastIO:
     def __init__(self):
         return
@@ -103,42 +102,39 @@ class FastIO:
         return wrappedfunc
 
 
-
-
-
 def main(ac=FastIO()):
-    import io, os
-    import collections
-    input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
-    R = lambda: map(int, input().split())
+    n = ac.read_int()
+    edge = [[] for _ in range(n)]
+    for _ in range(n-1):
+        u, v = ac.read_ints_minus_one()
+        edge[u].append(v)
+        edge[v].append(u)
 
-    n, m = R()
+    @ac.bootstrap
+    def dfs(i, fa):
+        dct = defaultdict(int)
+        res = 0
+        for j in edge[i]:
+            if j != fa:
+                yield dfs(j, i)
+                nex = cnt[j]
+                res += nex
+                if len(dct) < 3:
+                    dct[nex] += 1
+        if fa != -1:
+            pre = n-1-res
+            if (len(dct) == 1 and dct[pre]) or not dct:
+                ans[i] = 1
+        else:
+            if len(dct) == 1 or not dct:
+                ans[i] = 1
+        cnt[i] = res + 1
+        yield
 
-    dp = [[inf] * n for _ in range(n)]
-    for i in range(n):
-        dp[i][i] = 0
-    for _ in range(m):
-        x, y, w = R()
-        x -= 1
-        y -= 1
-        w = ac.min(dp[x][y], w)
-        dp[x][y] = dp[y][x] = w
-
-    for k in range(n):
-        for i in range(n):
-            for j in range(i+1, n):
-                dp[i][j] = dp[j][i] = ac.min(dp[i][j], dp[i][k]+dp[k][j])
-
-    ans = inf
-    for i in range(n):
-        for j in range(i + 1, n):
-            cur = 0
-            for a in range(n):
-                for b in range(a + 1, n):
-                    x = ac.min(dp[a][i] + dp[j][b], dp[a][j]+dp[i][b])
-                    cur += min(dp[a][b], x)
-            ans = ans if ans < cur else cur
-    ac.st(ans)
+    cnt = [0]*n
+    ans = [0]*n
+    dfs(0, -1)
+    ac.lst([i+1 for i in range(n) if ans[i]])
     return
 
 

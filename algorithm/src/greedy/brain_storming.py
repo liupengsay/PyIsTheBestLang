@@ -2,7 +2,7 @@
 
 """
 """
-算法：贪心、逆向思维、抽屉原理、鸽巢原理、容斥原理
+算法：贪心、逆向思维、抽屉原理、鸽巢原理、容斥原理、自定义排序
 功能：各种可证明不可证明的头脑风暴
 题目：
 L2499 让数组不相等的最小总代价（https://leetcode.cn/problems/minimum-total-cost-to-make-arrays-unequal/）利用鸽巢原理贪心计算最小代价
@@ -59,7 +59,13 @@ P5682 [CSP-J2019 江西] 次大值（https://www.luogu.com.cn/problem/P5682）�
 P5804 [SEERC2019]Absolute Game（https://www.luogu.com.cn/problem/P5804）排序贪心枚举和二分查找优化
 P5963 [BalticOI ?] Card 卡牌游戏【来源请求】（https://www.luogu.com.cn/problem/P5963）经典贪心题目，可使用举例两个计算、再进行归纳确定排序规则
 P6023 走路（https://www.luogu.com.cn/problem/P6023）可证明集中在某天是最佳结果，然后使用指针进行模拟计算
-P6243 [USACO06OPEN]The Milk Queue G（https://www.luogu.com.cn/problem/P6243）经典贪心举例之后进行自定义排序
+P6243 [USACO06OPEN]The Milk Queue G（https://www.luogu.com.cn/problem/P6243）经典贪心举例之后进行优先级比较，再自定义排序
+P6179 [USACO15DEC]High Card Wins S（https://www.luogu.com.cn/problem/list?difficulty=3&page=13）经典贪心
+P6380 『MdOI R2』Mayuri（https://www.luogu.com.cn/problem/P6380）贪心模拟进行赋值
+
+P6446 [COCI2010-2011#1] TABOVI（https://www.luogu.com.cn/problem/P6446）贪心进行操作，经典使得数组所有值相等的最少操作次数变形题目，每次操作可以使得连续区间加1或者减1
+P6462 [传智杯 #2 决赛] 补刀（https://www.luogu.com.cn/problem/P6462）贪心进行分类计算
+P6549 [COCI2010-2011#2] KNJIGE（https://www.luogu.com.cn/problem/P6549）逆向思维，使用插入排序的思想进行模拟
 
 
 参考：OI WiKi（xx）

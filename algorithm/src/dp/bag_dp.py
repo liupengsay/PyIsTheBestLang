@@ -56,6 +56,9 @@ P3030 [USACO11NOV]Tile Exchanging S（https://www.luogu.com.cn/problem/P3030）�
 P3040 [USACO12JAN]Bale Share S（https://www.luogu.com.cn/problem/P3040）二维变种背包
 P4817 [USACO15DEC]Fruit Feast G（https://www.luogu.com.cn/problem/P4817）一维有限背包DP变种
 P5087 数学（https://www.luogu.com.cn/problem/P5087）二维有限背包变种问题
+P6205 [USACO06JAN]Dollar Dayz S（https://www.luogu.com.cn/problem/P6205）一维无限背包
+P6389 [COCI2007-2008#4] MUZICARI（https://www.luogu.com.cn/problem/P6389）一维有限背包变种问题，寻找和尽可能接近的两个分组
+P6567 [NOI Online #3 入门组] 买表（https://www.luogu.com.cn/problem/P6567）一维二进制优化有限背包，即物品数为连续值时需要使用二进制优化
 
 
 参考：OI WiKi（xx）

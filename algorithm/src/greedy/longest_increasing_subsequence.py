@@ -19,6 +19,7 @@ L2111 使数组 K 递增的最少操作次数（https://leetcode.cn/problems/min
 P1233 木棍加工（https://www.luogu.com.cn/problem/P1233）按照一个维度排序后计算另一个维度的，最长严格递增子序列的长度
 P2782 友好城市（https://www.luogu.com.cn/problem/P2782）按照一个维度排序后计算另一个维度的，最长严格递增子序列的长度（也可以考虑使用线段树求区间最大值）
 P3902 递增（https://www.luogu.com.cn/problem/P3902）最长严格上升子序列
+P6403 [COCI2014-2015#2] STUDENTSKO（https://www.luogu.com.cn/problem/P6403）问题转化为最长不降子序列
 
 """
 

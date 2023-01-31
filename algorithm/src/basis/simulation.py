@@ -38,6 +38,11 @@ P5587 打字练习（https://www.luogu.com.cn/problem/P5587）按照题意模拟
 P5759 [NOI1997] 竞赛排名（https://www.luogu.com.cn/problem/P5759）按照题意模拟统计，使用将除法转换为乘法避免引起精度问题的处理技巧
 P5989 [PA2019]Wina（https://www.luogu.com.cn/problem/P5989）模拟计数确定每个点左右角上方移除点的个数
 P5995 [PA2014]Lustra（https://www.luogu.com.cn/problem/P5995）动态模拟更新结果
+P6264 [COCI2014-2015#3] DOM（https://www.luogu.com.cn/problem/P6264）进行模拟和循环判断
+P6282 [USACO20OPEN] Cereal S（https://www.luogu.com.cn/problem/P6282）逆向思维进行，倒序分配模拟
+
+P6410 [COCI2008-2009#3] CROSS（https://www.luogu.com.cn/problem/P6410）按照题意和经典数独问题进行模拟
+P6480 [CRCI2006-2007] TETRIS（https://www.luogu.com.cn/problem/P6480）模拟摆放位置计数
 
 
 参考：OI WiKi（xx）

@@ -28,63 +28,54 @@ import copy
 from sortedcontainers import SortedList
 
 
-
-
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
 class Solution:
-    def reorderList(self, head: Optional[ListNode]) -> None:
-        """
-        Do not return anything, modify head in-place instead.
-        """
+    def snakesAndLadders(self, board: List[List[int]]) -> int:
+        n = len(board)
 
-        def reverse(node):
-            res = None
-            while node:
-                tmp = node.next
-                node.next = res
-                res = node
-                node = tmp
-            return res
+        ind = [[0] * n for _ in range(n)]
+        i, j = n - 1, 0
+        order = 1
+        cnt = 1
+        dct = []
+        while i >= 0 and j >= 0:
+            ind[i][j] = cnt
+            dct.append([i, j])
+            cnt += 1
+            if order:
+                j += 1
+                if j >= n:
+                    i -= 1
+                    j = n - 1
+                    order = 1 - order
+            else:
+                j -= 1
+                if j < 0:
+                    i -= 1
+                    j = 0
+                    order = 1 - order
 
-
-        def merge(node1, node2):
-            res = ListNode(-1)
-            node = res
-            while node1 and node2:
-                tmp = node1.next
-                node1.next = None
-                node.next = node1
-                node = node.next
-                node1 = tmp
-
-                tmp = node2.next
-                node2.next = None
-                node.next = node2
-                node = node.next
-                node2 = tmp
-
-            if node1:
-                node.next = node1
-            if node2:
-                node.next = node2
-            return res.next
-
-        ans = ListNode(-1)
-        ans.next = head
-        fast = slow = ans
-        while fast and fast.next:
-            fast = fast.next.next
-            slow = slow.next
-
-        post = reverse(slow.next)
-        slow.next = None
-        pre = ans.next
-        return merge(pre, post)
-
+        stack = [[n - 1, 0]]
+        visit = [[0] * n for _ in range(n)]
+        visit[n - 1][0] = 1
+        step = 1
+        while stack:
+            nex = []
+            for i, j in stack:
+                cur = ind[i][j]
+                ceil = cur + 6 if cur + 6 < n * n else n * n
+                for x in range(cur + 1, ceil + 1):
+                    a, b = dct[x-1]
+                    if board[a][b] != -1:
+                        x = board[a][b]
+                        a, b = dct[x-1]
+                    if x == n * n:
+                        return step
+                    if not visit[a][b]:
+                        visit[a][b] = step
+                        nex.append([a, b])
+            step += 1
+            stack = nex
+        return -1
 
 
 # Your LRUCache object will be instantiated and called as such:
@@ -93,10 +84,9 @@ class Solution:
 # obj.put(key,value)
 
 
-
 class TestGeneral(unittest.TestCase):
     def test_solution(self):
-        assert Solution().sortArray([5, 1, 1, 2, 0, 0]) == [0, 0, 1, 1, 2, 5]
+        assert Solution().snakesAndLadders([[-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1],[-1,35,-1,-1,13,-1],[-1,-1,-1,-1,-1,-1],[-1,15,-1,-1,-1,-1]])==4
         return
 
 
