@@ -31,6 +31,10 @@ import copy
 440. 字典序的第K小数字（https://leetcode.cn/problems/k-th-smallest-in-lexicographical-order/）xxxx
 P1243 排序集合（https://www.luogu.com.cn/problem/P1243）求出第K小的子集
 P1338 末日的传说（https://www.luogu.com.cn/problem/P1338）结合逆序对计数的字典序
+
+P2524 Uim的情人节礼物·其之弐（https://www.luogu.com.cn/problem/P2524）计算全排列的字典序排名
+P2525 Uim的情人节礼物·其之壱（https://www.luogu.com.cn/problem/P2525）计算全排列的上一个排列
+
 参考：OI WiKi（xx）
 """
 

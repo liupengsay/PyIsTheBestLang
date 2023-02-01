@@ -13,6 +13,8 @@ P1530 [USACO2.4]分数化小数 Fractions to Decimals（https://www.luogu.com.cn
 P1517 高精求小数幂（https://www.luogu.com.cn/record/list?user=739032&status=12&page=5）高精度计算小数的幂值
 P2388 阶乘之乘（https://www.luogu.com.cn/problem/P2388）阶乘之乘后缀0的个数
 172. 阶乘后的零（https://leetcode.cn/problems/factorial-trailing-zeroes/）阶乘后缀0的个数
+P2394 yyy loves Chemistry I（https://www.luogu.com.cn/problem/P2394）高精度计算
+P2393 yyy loves Maths II（https://www.luogu.com.cn/problem/P2393）高精度计算
 
 参考：OI WiKi（xx）
 """

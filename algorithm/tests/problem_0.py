@@ -69,6 +69,7 @@ class FastIO:
 
     @staticmethod
     def round_5(f):
+        # 四舍五入保留d位小数 '{:.df}'.format(ans)
         res = int(f)
         if f - res >= 0.5:
             res += 1
@@ -102,39 +103,65 @@ class FastIO:
         return wrappedfunc
 
 
+
 def main(ac=FastIO()):
     n = ac.read_int()
-    edge = [[] for _ in range(n)]
-    for _ in range(n-1):
-        u, v = ac.read_ints_minus_one()
-        edge[u].append(v)
-        edge[v].append(u)
+    grid = [ac.read_list_str() for _ in range(n)]
+    height = [ac.read_list_ints() for _ in range(n)]
 
-    @ac.bootstrap
-    def dfs(i, fa):
-        dct = defaultdict(int)
-        res = 0
-        for j in edge[i]:
-            if j != fa:
-                yield dfs(j, i)
-                nex = cnt[j]
-                res += nex
-                if len(dct) < 3:
-                    dct[nex] += 1
-        if fa != -1:
-            pre = n-1-res
-            if (len(dct) == 1 and dct[pre]) or not dct:
-                ans[i] = 1
+    nums = []
+    house = []
+    start = [-1, -1]
+    low = inf
+    high = -inf
+    uf = UnionFind(n * n)
+    for i in range(n):
+        for j in range(n):
+            nums.append([i, j, height[i][j]])
+            if grid[i][j] == "K":
+                house.append(i*n+j)
+                low = ac.min(low, height[i][j])
+                high = ac.max(high, height[i][j])
+                uf.size[i*n+j] = 1
+            elif grid[i][j] == "P":
+                start = [i, j]
+                low = ac.min(low, height[i][j])
+                high = ac.max(high, height[i][j])
+
+    nums.sort(key=lambda x: x[2])
+
+
+    def check(gap):
+        j = 0
+        for i in range(n*n):
+            # if nums[i][2] > low:
+            #     break
+            # if nums[i][2] >= high-gap:
+            while j<n*n and nums[j][2] <= nums[i][2]+gap:
+                j += 1
+            j -= 1
+            if j>=i and nums[j][2]-nums[i][2] <= gap and nums[i][2]<=low and nums[j][2]>=high:
+                a, b = nums[i][2], nums[j][2]
+                uf1 = copy.deepcopy(uf)
+                for x, y, _ in nums[i:j+1]:
+                    for p, q in [[x-1,y],[x+1,y],[x,y+1],[x,y-1], [x-1,y-1],[x-1,y+1],[x+1,y-1],[x+1,y+1]]:
+                        if 0<=p<n and 0<=q<n and a<=height[p][q] <= b:
+                            uf1.union(x*n+y, p*n+q)
+                if uf1.size[uf1.find(start[0]*n+start[1])] == len(house):
+                    return True
+
+        return False
+
+    floor = high-low
+    ceil = max(x for _,_, x in nums) - min(x for _,_, x in nums)
+    while floor < ceil-1:
+        mid = floor + (ceil-floor)//2
+        if check(mid):
+            ceil = mid
         else:
-            if len(dct) == 1 or not dct:
-                ans[i] = 1
-        cnt[i] = res + 1
-        yield
-
-    cnt = [0]*n
-    ans = [0]*n
-    dfs(0, -1)
-    ac.lst([i+1 for i in range(n) if ans[i]])
+            floor = mid
+    ans = floor if check(floor) else ceil
+    ac.st(ans)
     return
 
 

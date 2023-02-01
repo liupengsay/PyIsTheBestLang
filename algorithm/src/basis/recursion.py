@@ -34,6 +34,9 @@ P1911 L 国的战斗之排兵布阵（https://www.luogu.com.cn/problem/P1911）�
 P5461 赦免战俘（https://www.luogu.com.cn/problem/P5461）递归计算四叉树左上角
 P5551 Chino的树学（https://www.luogu.com.cn/problem/P5551）先序遍历的完全二叉树递归计算
 P5626 【AFOI-19】数码排序（https://www.luogu.com.cn/problem/P5626）分治DP，归并排序需要的比较次数最少，但是可能内存占用超过快排
+P2907 [USACO08OPEN]Roads Around The Farm S（https://www.luogu.com.cn/problem/P2907）分析复杂度之后采用递归模拟
+
+
 参考：OI WiKi（xx）
 """
 
