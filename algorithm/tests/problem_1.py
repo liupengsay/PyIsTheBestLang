@@ -28,55 +28,28 @@ import copy
 from sortedcontainers import SortedList
 
 
-class Solution:
-    def snakesAndLadders(self, board: List[List[int]]) -> int:
-        n = len(board)
 
-        ind = [[0] * n for _ in range(n)]
-        i, j = n - 1, 0
-        order = 1
-        cnt = 1
-        dct = []
-        while i >= 0 and j >= 0:
-            ind[i][j] = cnt
-            dct.append([i, j])
-            cnt += 1
-            if order:
-                j += 1
-                if j >= n:
-                    i -= 1
-                    j = n - 1
-                    order = 1 - order
-            else:
-                j -= 1
-                if j < 0:
-                    i -= 1
-                    j = 0
-                    order = 1 - order
+class MinStack:
 
-        stack = [[n - 1, 0]]
-        visit = [[0] * n for _ in range(n)]
-        visit[n - 1][0] = 1
-        step = 1
-        while stack:
-            nex = []
-            for i, j in stack:
-                cur = ind[i][j]
-                ceil = cur + 6 if cur + 6 < n * n else n * n
-                for x in range(cur + 1, ceil + 1):
-                    a, b = dct[x-1]
-                    if board[a][b] != -1:
-                        x = board[a][b]
-                        a, b = dct[x-1]
-                    if x == n * n:
-                        return step
-                    if not visit[a][b]:
-                        visit[a][b] = step
-                        nex.append([a, b])
-            step += 1
-            stack = nex
-        return -1
+    def __init__(self):
+        self.stack = [-1]
+        self.min_stack = [float("inf")]
 
+    def push(self, val: int) -> None:
+        self.stack.append(val)
+        a = self.min_stack[-1]
+        a =a  if a < val else val
+        self.min_stack.append(a)
+
+    def pop(self) -> None:
+        self.stack.pop()
+        self.min_stack.pop()
+
+    def top(self) -> int:
+        return self.stack[-1]
+
+    def getMin(self) -> int:
+        return self.min_stack[-1]
 
 # Your LRUCache object will be instantiated and called as such:
 # obj = LRUCache(capacity)

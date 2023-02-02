@@ -1,8 +1,12 @@
 
 
-def round(f, n):
-    st = f":.{n}f"
-    return st.format(f)
 
+def check(s):
+    num = sum(int(d) for d in str(s))
+    if num >= 10:
+        return check(num)
+    return num
 
-print(round(4.25, 1))
+for i in range(1000, 1200):
+    ans = (i-1000)%9
+    assert check(i) == ans + 1
