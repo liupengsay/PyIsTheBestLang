@@ -1,27 +1,30 @@
-"""
+
+import unittest
+from functools import lru_cache
 
 """
-"""
 算法：数位DP
-功能：统计满足一定条件的自然数个数，也可以根据字典序大小特点统计一些特定字符串的个数
+功能：统计满足一定条件的自然数个数，也可以根据字典序大小特点统计一些特定字符串的个数，是一种计数常用的DP思想
+
 题目：
-L2376 统计特殊整数（https://leetcode.cn/problems/count-special-integers/）计算小于 n 的特殊正整数个数
-L0233 数字 1 的个数
-L1706 出现 2 的次数
-L0600 不含连续 1 的非负整数
-L0902 最大为 N 的数字组合
-L1012 至少有 1 位重复的数字
-L1067 范围内的数字计数
-L1397 找到所有好字符串
+
+===================================力扣===================================
+233. 数字 1 的个数（https://leetcode.cn/problems/number-of-digit-one/）数字 1 的个数
+600. 不含连续 1 的非负整数（https://leetcode.cn/problems/non-negative-integers-without-consecutive-ones/）不含连续 1 的非负整数
+902. 最大为 N 的数字组合（https://leetcode.cn/problems/numbers-at-most-n-given-digit-set/）限定字符情况下小于等于 n 的个数
+1012. 至少有 1 位重复的数字（https://leetcode.cn/problems/numbers-with-repeated-digits/）容斥原理计算没有重复数字的个数
+1067. 范围内的数字计数（https://leetcode.cn/problems/digit-count-in-range/）计算区间计数，使用右端点减去左端点
+1397. 找到所有好字符串（https://leetcode.cn/problems/find-all-good-strings/）使用数位DP思想进行模拟
+2376. 统计特殊整数（https://leetcode.cn/problems/count-special-integers/）计算小于 n 的特殊正整数个数
+面试题 17.06. 2出现的次数（https://leetcode.cn/problems/number-of-2s-in-range-lcci/）所有数位出现 2 的次数
+
+===================================洛谷===================================
 P1590 失踪的7（https://www.luogu.com.cn/problem/P1590）计算 n 以内不含7的个数
 P1239 计数器（https://www.luogu.com.cn/problem/P1239）计算 n 以内每个数字0-9的个数
 P3908 数列之异或（https://www.luogu.com.cn/problem/P3908）计算 1^2..^n的异或和，可以使用数位DP计数也可以用相邻的奇偶数计算
 
 参考：OI WiKi（xx）
 """
-
-import unittest
-from functools import lru_cache
 
 
 class DigitalDP:
@@ -77,7 +80,7 @@ class DigitalDP:
 
     @staticmethod
     def count_digit_num(num, d):
-        # 计算1-num内数字d的个数
+        # 模板: 计算1-num内数字d的个数
         @lru_cache(None)
         def dfs(i, cnt, is_limit, is_num):
             if i == n:
@@ -91,8 +94,7 @@ class DigitalDP:
             floor = 0 if is_num else 1
             ceil = int(s[i]) if is_limit else 9
             for x in range(floor, ceil + 1):
-                res += dfs(i + 1, cnt + int(x == d),
-                           is_limit and ceil == x, True)
+                res += dfs(i + 1, cnt + int(x == d), is_limit and ceil == x, True)
             return res
         s = str(num)
         n = len(s)
@@ -101,7 +103,7 @@ class DigitalDP:
     @staticmethod
     def count_digit_base(num, d):
 
-        # 使用进制计算1-num内不含数字d的个数 1<=d<=9
+        # 模板: 使用进制计算1-num内不含数字d的个数 1<=d<=9
         s = str(num)
         i = s.find(str(d))
         if i != -1:
@@ -132,7 +134,7 @@ class DigitalDP:
     @staticmethod
     def count_digit_base2(num, d):
 
-        # 使用数位DP计算1-num内不含数字d的个数 0<=d<=9
+        # 模板: 使用数位DP计算1-num内不含数字d的个数 0<=d<=9
         @lru_cache(None)
         def dfs(i: int, is_limit: bool, is_num: bool) -> int:
             if i == m:
@@ -152,7 +154,7 @@ class DigitalDP:
 
     @staticmethod
     def compute_digit(num, d):
-        # 使用进制计算第num个不含数字d的数 0<=d<=9
+        # 模板: 使用进制计算第num个不含数字d的数 0<=d<=9
         lst = []
         st = list(range(10))
         st.remove(d)
@@ -184,16 +186,14 @@ class TestGeneral(unittest.TestCase):
             assert dd.count_digit_num(n, d) == cnt[d]
 
         for d in range(1, 10):
-            assert dd.count_digit_base(
-                n, d) == sum(
-                str(d) not in str(num) for num in range(
-                    1, n + 1))
+            ans1 = dd.count_digit_base(n, d)
+            ans2 = sum(str(d) not in str(num) for num in range(1, n + 1))
+            assert ans1 == ans2
 
         for d in range(10):
-            assert dd.count_digit_base2(
-                n, d) == sum(
-                str(d) not in str(num) for num in range(
-                    1, n + 1))
+            ans1 = dd.count_digit_base2(n, d)
+            ans2 = sum(str(d) not in str(num) for num in range(1, n + 1))
+            assert ans1 == ans2
 
         for d in range(10):
             nums = []
