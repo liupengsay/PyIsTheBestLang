@@ -1,19 +1,6 @@
-import copy
-import random
-import heapq
-import math
 import sys
-import bisect
-import datetime
-from functools import lru_cache
-from collections import deque
-from collections import Counter
-from collections import defaultdict
-from itertools import combinations
-from itertools import permutations
 from types import GeneratorType
-from functools import cmp_to_key
-from heapq import nlargest
+
 inf = float("inf")
 sys.setrecursionlimit(10000000)
 
@@ -30,7 +17,7 @@ class FastIO:
         return int(self._read())
 
     def read_float(self):
-        return int(self._read())
+        return float(self._read())
 
     def read_ints(self):
         return map(int, self._read().split())
@@ -69,7 +56,6 @@ class FastIO:
 
     @staticmethod
     def round_5(f):
-        # 四舍五入保留d位小数 '{:.df}'.format(ans)
         res = int(f)
         if f - res >= 0.5:
             res += 1
@@ -100,30 +86,15 @@ class FastIO:
                             break
                         to = stack[-1].send(to)
                 return to
+
         return wrappedfunc
 
 
-def check(s):
-    num = sum(int(d) for d in str(s))
-    if num >= 10:
-        return check(num)
-    return num
-
-
 def main(ac=FastIO()):
-    q = ac.read_int()
-    for _ in range(q):
-        low, high = ac.read_ints()
-        ans = 0
-        for x in range(low, high + 1):
-            y = check(x)
-            if y == 1:
-                m = (high - x + 1) // 9
-                k = (high - x + 1) % 9
-                ans += m * (9 * 10 // 2) + k * (k + 1) // 2
-                break
-            ans += y
-        ac.st(ans)
+    n = ac.read_int()
+    nums = ac.read_list_ints()
+    nums.sort(key=lambda x: x*(-1)**(x+1))
+    print(nums)
     return
 
 

@@ -6,9 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="113d67c9-70f9-4ba9-8037-53419a3106ee" name="Changes" comment="洛谷增加题目">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/basis/stack.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/basis/stack.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithm/src/greedy/brain_storming.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/src/greedy/brain_storming.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_0.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_0.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/tests/problem_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/problem_1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm/tests/temp.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm/tests/temp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +58,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/algorithm/submission" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="run.code.analysis.last.selected.profile" value="aDefault" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="fileTemplates" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -85,7 +88,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.problem_0">
+  <component name="RunManager" selected="Python tests.Unittests in stack.py">
     <configuration name="强连通分量" type="PythonConfigurationType" factoryName="Python">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -107,97 +110,83 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="problem_0" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="PCRecord" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/algorithm/tests/problem_0.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="temp" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="PCRecord" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/algorithm/tests/temp.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Unittests for problem_1.TestGeneral.test_solution" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests in diff_array.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/tests" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/basis" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;problem_1.TestGeneral.test_solution&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Unittests in floyd.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <module name="PCRecord" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/graph" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/graph/floyd.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/basis/diff_array.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests in problem_1.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests in hash.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PCRecord" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/tests" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/basis" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/tests/problem_1.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/basis/hash.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests in range.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="PCRecord" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/basis" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/basis/range.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests in recursion.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="PCRecord" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/basis" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/basis/recursion.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests in stack.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="PCRecord" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithm/src/basis" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/algorithm/src/basis/stack.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.problem_0" />
-        <item itemvalue="Python.temp" />
-        <item itemvalue="Python tests.Unittests in problem_1.py" />
-        <item itemvalue="Python tests.Unittests for problem_1.TestGeneral.test_solution" />
-        <item itemvalue="Python tests.Unittests in floyd.py" />
+        <item itemvalue="Python tests.Unittests in stack.py" />
+        <item itemvalue="Python tests.Unittests in recursion.py" />
+        <item itemvalue="Python tests.Unittests in range.py" />
+        <item itemvalue="Python tests.Unittests in hash.py" />
+        <item itemvalue="Python tests.Unittests in diff_array.py" />
       </list>
     </recent_temporary>
   </component>
@@ -212,90 +201,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647300774340</updated>
-    </task>
-    <task id="LOCAL-00108" summary="N进制与十进制互相转换">
-      <created>1673362667964</created>
-      <option name="number" value="00108" />
-      <option name="presentableId" value="LOCAL-00108" />
-      <option name="project" value="LOCAL" />
-      <updated>1673362667964</updated>
-    </task>
-    <task id="LOCAL-00109" summary="正权环加最长路">
-      <created>1673362686864</created>
-      <option name="number" value="00109" />
-      <option name="presentableId" value="LOCAL-00109" />
-      <option name="project" value="LOCAL" />
-      <updated>1673362686864</updated>
-    </task>
-    <task id="LOCAL-00110" summary="增加题目">
-      <created>1673362703690</created>
-      <option name="number" value="00110" />
-      <option name="presentableId" value="LOCAL-00110" />
-      <option name="project" value="LOCAL" />
-      <updated>1673362703690</updated>
-    </task>
-    <task id="LOCAL-00111" summary="增加题目">
-      <created>1673364320039</created>
-      <option name="number" value="00111" />
-      <option name="presentableId" value="LOCAL-00111" />
-      <option name="project" value="LOCAL" />
-      <updated>1673364320039</updated>
-    </task>
-    <task id="LOCAL-00112" summary="增加题目">
-      <created>1673393196928</created>
-      <option name="number" value="00112" />
-      <option name="presentableId" value="LOCAL-00112" />
-      <option name="project" value="LOCAL" />
-      <updated>1673393196928</updated>
-    </task>
-    <task id="LOCAL-00113" summary="增加题目">
-      <created>1673395374702</created>
-      <option name="number" value="00113" />
-      <option name="presentableId" value="LOCAL-00113" />
-      <option name="project" value="LOCAL" />
-      <updated>1673395374702</updated>
-    </task>
-    <task id="LOCAL-00114" summary="补充线性DP模板">
-      <created>1673479451209</created>
-      <option name="number" value="00114" />
-      <option name="presentableId" value="LOCAL-00114" />
-      <option name="project" value="LOCAL" />
-      <updated>1673479451210</updated>
-    </task>
-    <task id="LOCAL-00115" summary="增加题目">
-      <created>1673479482383</created>
-      <option name="number" value="00115" />
-      <option name="presentableId" value="LOCAL-00115" />
-      <option name="project" value="LOCAL" />
-      <updated>1673479482383</updated>
-    </task>
-    <task id="LOCAL-00116" summary="增加题目">
-      <created>1673479649427</created>
-      <option name="number" value="00116" />
-      <option name="presentableId" value="LOCAL-00116" />
-      <option name="project" value="LOCAL" />
-      <updated>1673479649428</updated>
-    </task>
-    <task id="LOCAL-00117" summary="增加题目">
-      <created>1673479843327</created>
-      <option name="number" value="00117" />
-      <option name="presentableId" value="LOCAL-00117" />
-      <option name="project" value="LOCAL" />
-      <updated>1673479843327</updated>
-    </task>
-    <task id="LOCAL-00118" summary="增加题目">
-      <created>1673480385812</created>
-      <option name="number" value="00118" />
-      <option name="presentableId" value="LOCAL-00118" />
-      <option name="project" value="LOCAL" />
-      <updated>1673480385812</updated>
-    </task>
-    <task id="LOCAL-00119" summary="区间覆盖、合并">
-      <created>1673480784458</created>
-      <option name="number" value="00119" />
-      <option name="presentableId" value="LOCAL-00119" />
-      <option name="project" value="LOCAL" />
-      <updated>1673480784458</updated>
     </task>
     <task id="LOCAL-00120" summary="区间覆盖、合并">
       <created>1673481200670</created>
@@ -556,7 +461,91 @@
       <option name="project" value="LOCAL" />
       <updated>1675260434438</updated>
     </task>
-    <option name="localTasksCounter" value="157" />
+    <task id="LOCAL-00157" summary="洛谷增加题目">
+      <created>1675297056765</created>
+      <option name="number" value="00157" />
+      <option name="presentableId" value="LOCAL-00157" />
+      <option name="project" value="LOCAL" />
+      <updated>1675297056765</updated>
+    </task>
+    <task id="LOCAL-00158" summary="二分查找与有序集合更新">
+      <created>1675478202949</created>
+      <option name="number" value="00158" />
+      <option name="presentableId" value="LOCAL-00158" />
+      <option name="project" value="LOCAL" />
+      <updated>1675478202949</updated>
+    </task>
+    <task id="LOCAL-00159" summary="循环节优化">
+      <created>1675478244076</created>
+      <option name="number" value="00159" />
+      <option name="presentableId" value="LOCAL-00159" />
+      <option name="project" value="LOCAL" />
+      <updated>1675478244076</updated>
+    </task>
+    <task id="LOCAL-00160" summary="循环节计算">
+      <created>1675478613984</created>
+      <option name="number" value="00160" />
+      <option name="presentableId" value="LOCAL-00160" />
+      <option name="project" value="LOCAL" />
+      <updated>1675478613984</updated>
+    </task>
+    <task id="LOCAL-00161" summary="构造类题目">
+      <created>1675478702101</created>
+      <option name="number" value="00161" />
+      <option name="presentableId" value="LOCAL-00161" />
+      <option name="project" value="LOCAL" />
+      <updated>1675478702101</updated>
+    </task>
+    <task id="LOCAL-00162" summary="日期与时间相关">
+      <created>1675478977954</created>
+      <option name="number" value="00162" />
+      <option name="presentableId" value="LOCAL-00162" />
+      <option name="project" value="LOCAL" />
+      <updated>1675478977954</updated>
+    </task>
+    <task id="LOCAL-00163" summary="差分与前缀和">
+      <created>1675479734899</created>
+      <option name="number" value="00163" />
+      <option name="presentableId" value="LOCAL-00163" />
+      <option name="project" value="LOCAL" />
+      <updated>1675479734899</updated>
+    </task>
+    <task id="LOCAL-00164" summary="哈希">
+      <created>1675479810950</created>
+      <option name="number" value="00164" />
+      <option name="presentableId" value="LOCAL-00164" />
+      <option name="project" value="LOCAL" />
+      <updated>1675479810950</updated>
+    </task>
+    <task id="LOCAL-00165" summary="语言技巧">
+      <created>1675480151677</created>
+      <option name="number" value="00165" />
+      <option name="presentableId" value="LOCAL-00165" />
+      <option name="project" value="LOCAL" />
+      <updated>1675480151677</updated>
+    </task>
+    <task id="LOCAL-00166" summary="区间合并、拆分与差分数组">
+      <created>1675480364101</created>
+      <option name="number" value="00166" />
+      <option name="presentableId" value="LOCAL-00166" />
+      <option name="project" value="LOCAL" />
+      <updated>1675480364101</updated>
+    </task>
+    <task id="LOCAL-00167" summary="递归分治">
+      <created>1675480435516</created>
+      <option name="number" value="00167" />
+      <option name="presentableId" value="LOCAL-00167" />
+      <option name="project" value="LOCAL" />
+      <updated>1675480435516</updated>
+    </task>
+    <task id="LOCAL-00168" summary="模拟操作">
+      <created>1675480532167</created>
+      <option name="number" value="00168" />
+      <option name="presentableId" value="LOCAL-00168" />
+      <option name="project" value="LOCAL" />
+      <updated>1675480532167</updated>
+    </task>
+    <option name="localTasksCounter" value="169" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -574,17 +563,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="题目补充" />
-    <MESSAGE value="循环节" />
-    <MESSAGE value="拓扑排序判断有向图的环、拓扑排序是否唯一" />
-    <MESSAGE value="矩阵快速幂" />
-    <MESSAGE value="正方形面积" />
-    <MESSAGE value="N进制与十进制互相转换" />
-    <MESSAGE value="正权环加最长路" />
-    <MESSAGE value="补充线性DP模板" />
-    <MESSAGE value="区间覆盖、合并" />
-    <MESSAGE value="带负权环的最短路" />
-    <MESSAGE value="根据几何知识暴力枚举" />
     <MESSAGE value="最小生成树识别与转化" />
     <MESSAGE value="矩阵二维DP" />
     <MESSAGE value="矩阵旋转" />
@@ -599,7 +577,19 @@
     <MESSAGE value="增加自定义排序内容" />
     <MESSAGE value="Floyd经典变形题目" />
     <MESSAGE value="洛谷增加题目" />
-    <option name="LAST_COMMIT_MESSAGE" value="洛谷增加题目" />
+    <MESSAGE value="二分查找与有序集合更新" />
+    <MESSAGE value="循环节优化" />
+    <MESSAGE value="循环节计算" />
+    <MESSAGE value="构造类题目" />
+    <MESSAGE value="日期与时间相关" />
+    <MESSAGE value="差分与前缀和" />
+    <MESSAGE value="哈希" />
+    <MESSAGE value="语言技巧" />
+    <MESSAGE value="区间合并、拆分与差分数组" />
+    <MESSAGE value="递归分治" />
+    <MESSAGE value="模拟操作" />
+    <option name="LAST_COMMIT_MESSAGE" value="模拟操作" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

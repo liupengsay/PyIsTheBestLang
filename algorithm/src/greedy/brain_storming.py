@@ -21,6 +21,9 @@ P1684 考验（https://www.luogu.com.cn/problem/P1684）线性贪心满足条件
 
 P1658 购物（https://www.luogu.com.cn/problem/P1658）看似背包实则贪心
 P2001 硬币的面值（https://www.luogu.com.cn/problem/P2001）看似背包实则贪心
+1798. 你能构造出连续值的最大数目（https://leetcode.cn/problems/maximum-number-of-consecutive-values-you-can-make/）看似背包实则贪心
+
+
 P1620 漂亮字串（https://www.luogu.com.cn/problem/P1620）分类讨论进行贪心
 P2773 漂亮字串（https://www.luogu.com.cn/problem/P2773）分类讨论进行贪心
 P2255 [USACO14JAN]Recording the Moolympics S（https://www.luogu.com.cn/problem/P2255）两个指针进行贪心
@@ -71,30 +74,10 @@ P6549 [COCI2010-2011#2] KNJIGE（https://www.luogu.com.cn/problem/P6549）逆向
 参考：OI WiKi（xx）
 """
 
-
-
-
-import bisect
-import random
-import re
-import unittest
-from typing import List
-import heapq
 import math
-from collections import defaultdict, Counter, deque
-from functools import lru_cache
-from itertools import combinations
-from sortedcontainers import SortedList, SortedDict, SortedSet
-from sortedcontainers import SortedDict
-from functools import reduce
-from operator import xor
-from functools import lru_cache
-import random
-from itertools import permutations, combinations
-import numpy as np
-from decimal import Decimal
-import heapq
-import copy
+import unittest
+
+
 class BrainStorming:
     def __init__(self):
         return
