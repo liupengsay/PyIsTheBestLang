@@ -3,44 +3,42 @@ import unittest
 
 """
 算法：模拟
-功能：根据题意进行模拟
+功能：根据题意进行模拟，有经典模拟结论约瑟夫环问题
 题目：
-L2296 设计一个文本编辑器（https://leetcode.cn/problems/design-a-text-editor/）使用指针维护结果进行模拟
+
+===================================力扣===================================
+2296. 设计一个文本编辑器（https://leetcode.cn/problems/design-a-text-editor/）使用指针维护结果进行模拟
+54. 螺旋矩阵（https://leetcode.cn/problems/spiral-matrix/）https://leetcode.cn/problems/spiral-matrix/
+59. 螺旋矩阵 II（https://leetcode.cn/problems/spiral-matrix-ii/）
+2326. 螺旋矩阵 IV（https://leetcode.cn/problems/spiral-matrix-iv/）
+剑指 Offer 62. 圆圈中最后剩下的数字（https://leetcode.cn/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/）约瑟夫环
+
+===================================洛谷===================================
 P1815 蠕虫游戏（https://www.luogu.com.cn/problem/P1815）模拟类似贪吃蛇的移动
 P1538 迎春舞会之数字舞蹈（https://www.luogu.com.cn/problem/P1538）模拟数字文本的打印
 P1535 [USACO08MAR]Cow Travelling S（https://www.luogu.com.cn/problem/P1535）动态规划模拟计数
 P2239 [NOIP2014 普及组] 螺旋矩阵（https://www.luogu.com.cn/problem/P2239）模拟螺旋矩阵的赋值
-54. 螺旋矩阵（https://leetcode.cn/problems/spiral-matrix/）https://leetcode.cn/problems/spiral-matrix/
-59. 螺旋矩阵 II（https://leetcode.cn/problems/spiral-matrix-ii/）
-2326. 螺旋矩阵 IV（https://leetcode.cn/problems/spiral-matrix-iv/）
 P2338 [USACO14JAN]Bessie Slows Down S（https://www.luogu.com.cn/problem/P2338）按照题意进行时间与距离的模拟
-
 P2366 yyy2015c01的IDE之Watches（https://www.luogu.com.cn/problem/P2366）字符串模拟与变量赋值计算
 P2552 [AHOI2001]团体操队形（https://www.luogu.com.cn/problem/P2552）经典矩阵赋值模拟
 P2696 慈善的约瑟夫（https://www.luogu.com.cn/problem/P2696）约瑟夫环模拟与差分计算
-剑指 Offer 62. 圆圈中最后剩下的数字（https://leetcode.cn/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/）约瑟夫环
 P1234 小A的口头禅（https://www.luogu.com.cn/problem/P1234）计算矩阵每个点四个方向特定长为4的单词个数
-
 P1166 打保龄球（https://www.luogu.com.cn/problem/P1166）按照题意复杂的模拟题
 P1076 [NOIP2012 普及组] 寻宝（https://www.luogu.com.cn/problem/P1076）模拟进行操作即可
 P8924 「GMOI R1-T1」Perfect Math Class（https://www.luogu.com.cn/problem/P8924）模拟的同时使用进制的思想进行求解
-
 P8889 狠狠地切割(Hard Version)（https://www.luogu.com.cn/problem/P8889）经典01序列分段计数
-
 P8870 [传智杯 #5 初赛] B-莲子的机械动力学（https://www.luogu.com.cn/problem/P8870）按照进制进行加法模拟
 P3880 [JLOI2008]提示问题（https://www.luogu.com.cn/problem/P3880）按照题意模拟加密字符串
 P3111 [USACO14DEC]Cow Jog S（https://www.luogu.com.cn/problem/P3111）逆向思维使用行进距离模拟分组，类似力扣车队题目
 P4346 [CERC2015]ASCII Addition（https://www.luogu.com.cn/problem/P4346）模拟数字与字符串的转换与进行加减
 P5079 Tweetuzki 爱伊图（https://www.luogu.com.cn/problem/P5079）字符串模拟
 P5483 [JLOI2011]小A的烦恼（https://www.luogu.com.cn/problem/P5483）模拟进行表格拼接
-
 P5587 打字练习（https://www.luogu.com.cn/problem/P5587）按照题意模拟统计
 P5759 [NOI1997] 竞赛排名（https://www.luogu.com.cn/problem/P5759）按照题意模拟统计，使用将除法转换为乘法避免引起精度问题的处理技巧
 P5989 [PA2019]Wina（https://www.luogu.com.cn/problem/P5989）模拟计数确定每个点左右角上方移除点的个数
 P5995 [PA2014]Lustra（https://www.luogu.com.cn/problem/P5995）动态模拟更新结果
 P6264 [COCI2014-2015#3] DOM（https://www.luogu.com.cn/problem/P6264）进行模拟和循环判断
 P6282 [USACO20OPEN] Cereal S（https://www.luogu.com.cn/problem/P6282）逆向思维进行，倒序分配模拟
-
 P6410 [COCI2008-2009#3] CROSS（https://www.luogu.com.cn/problem/P6410）按照题意和经典数独问题进行模拟
 P6480 [CRCI2006-2007] TETRIS（https://www.luogu.com.cn/problem/P6480）模拟摆放位置计数
 
