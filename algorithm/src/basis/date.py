@@ -29,7 +29,7 @@ class DateTime:
 
     @staticmethod
     def day_interval(y1, m1, d1, y2, m2, d2):
-        # 模板：计算两个日期之间的间隔天数
+        # 模板: 计算两个日期之间的间隔天数
         day1 = datetime.datetime(y1, m1, d1)
         day2 = datetime.datetime(y2, m2, d2)
         return (day1 - day2).days
@@ -134,7 +134,7 @@ class DateTime:
 
     @staticmethod
     def get_start_date(y, m, d, hh, mm, ss, x):
-        # 模板：计算任意日期起点，经过任意年月天时分秒数后的日期点
+        # 模板: 计算任意日期起点，经过任意年月天时分秒数后的日期点
         start_date = datetime(year=y, month=m, day=d, hour=hh, minute=mm, second=ss)
         end_date = start_date + timedelta(seconds=x)  # 这里设置间隔信息
         ans = [end_date.year, end_date.month, end_date.day, end_date.hour, end_date.minute, end_date.second]
