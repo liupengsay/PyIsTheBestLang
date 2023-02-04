@@ -1,38 +1,17 @@
+import math
+import unittest
+
 """
 算法：三分查找
 功能：用来寻找区间至多具有一个峰顶点或者一个谷底点的函数极值解
 题目：
+
+===================================洛谷===================================
 P3382 三分法（https://www.luogu.com.cn/problem/P3382）利用三分求区间函数极值点
 P1883 函数（https://www.luogu.com.cn/problem/P1883）三分求下凸函数最小值
+
 参考：OI WiKi（xx）
 """
-
-import bisect
-import random
-import re
-import unittest
-
-from typing import List
-import heapq
-import math
-from collections import defaultdict, Counter, deque
-from functools import lru_cache
-from itertools import combinations
-from sortedcontainers import SortedList, SortedDict, SortedSet
-
-from sortedcontainers import SortedDict
-from functools import reduce
-from operator import xor
-from functools import lru_cache
-
-import random
-from itertools import permutations, combinations
-import numpy as np
-
-from decimal import Decimal
-
-import heapq
-import copy
 
 
 class TriPartSearch:
