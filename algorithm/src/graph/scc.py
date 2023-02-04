@@ -57,32 +57,9 @@ P5145 漂浮的鸭子（https://www.luogu.com.cn/problem/P5145）内向基环树
 
 """
 
-import bisect
-import random
-import re
 import unittest
 
-from typing import List
-import heapq
-import math
-from collections import defaultdict, Counter, deque
-from functools import lru_cache
-from itertools import combinations
-from sortedcontainers import SortedList, SortedDict, SortedSet
-
-from sortedcontainers import SortedDict
-from functools import reduce
-from operator import xor
-from functools import lru_cache
-
-import random
-from itertools import permutations, combinations
-import numpy as np
-
-from decimal import Decimal
-
-import heapq
-import copy
+from collections import defaultdict
 
 
 class Kosaraju:
@@ -192,7 +169,7 @@ class InwardBaseTree:
 
     @staticmethod
     def largest_circle(n, edge, dct):
-        # 模板：求内向基环树的最大权值和环 edge表示有向边i>edge[i] dct表示对应的边权值
+        # 模板: 求内向基环树的最大权值和环 edge表示有向边i>edge[i] dct表示对应的边权值
 
         def dfs(x, sum_):
             nonlocal ans

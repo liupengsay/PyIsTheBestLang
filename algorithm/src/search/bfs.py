@@ -52,7 +52,7 @@ class BFS:
 
     @staticmethod
     def main_3183(n, m, edges):
-        # 模板：计算有向无环图路径条数
+        # 模板: 计算有向无环图路径条数
         edge = [[] for _ in range(n)]
         degree = [0]*n
         out_degree = [0]*n

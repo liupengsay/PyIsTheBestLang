@@ -19,33 +19,10 @@ P2393 yyy loves Maths II（https://www.luogu.com.cn/problem/P2393）高精度计
 参考：OI WiKi（xx）
 """
 
-import bisect
-import random
-import re
-import unittest
-
-from typing import List
-import heapq
 import math
-from collections import defaultdict, Counter, deque
-from functools import lru_cache
-from itertools import combinations
-from sortedcontainers import SortedList, SortedDict, SortedSet
-
-from sortedcontainers import SortedDict
-from functools import reduce
-from operator import xor
-from functools import lru_cache
-
-import random
-from itertools import permutations, combinations
-import numpy as np
-
-from decimal import Decimal
-
-import heapq
-import copy
+import unittest
 from decimal import Decimal, getcontext, MAX_PREC
+
 getcontext().prec = MAX_PREC
 
 
@@ -55,7 +32,7 @@ class HighPrecision:
 
     @staticmethod
     def factorial_to_factorial(n):
-        # 模板：计算1!*2!***n!的后缀0个数
+        # 模板: 计算1!*2!***n!的后缀0个数
         ans = 0
         num = 5
         while num <= n:
@@ -66,7 +43,7 @@ class HighPrecision:
 
     @staticmethod
     def factorial_to_zero(n):
-        # 模板：计算n!的后缀0个数
+        # 模板: 计算n!的后缀0个数
         ans = 0
         while n:
             ans += n // 5

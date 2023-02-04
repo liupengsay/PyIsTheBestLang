@@ -1,12 +1,15 @@
-"""
+import math
+import random
+import unittest
 
 """
-"""
-算法：ST（Sparse-Table）
-功能：计算静态区间内的最大值、最大公约数
+算法：ST（Sparse-Table）稀疏表
+功能：计算静态区间内的最大值、最小值、最大公约数
 ST表算法全称Sparse-Table算法，是由Tarjan提出的一种解决RMQ问题（区间最值）的强力算法。 离线预处理时间复杂度θ（nlogn），在线查询时间θ（1），可以说是一种非常高效的算法。 不过ST表的应用场合也是有限的，它只能处理静态区间最值，不能维护动态的，也就是说不支持在预处理后对值进行修改。
 
 题目：
+
+===================================洛谷===================================
 P3865 ST 表（https://www.luogu.com.cn/problem/P3865）
 P2880 Balanced Lineup G（https://www.luogu.com.cn/problem/P2880）使用ST表预处理区间最大值与最小值
 P1890 gcd区间（https://www.luogu.com.cn/problem/P3865）使用ST表预处理区间的gcd
@@ -15,36 +18,8 @@ P2412 查单词（https://www.luogu.com.cn/problem/P2412）预处理字典序之
 P2880 [USACO07JAN] Balanced Lineup G（https://www.luogu.com.cn/problem/P2880）查询区间最大值与最小值
 P5097 [USACO04OPEN]Cave Cows 2（https://www.luogu.com.cn/problem/P5097）静态区间最小值
 
-
 参考：OI WiKi（xx）
 """
-
-import bisect
-import random
-import re
-import unittest
-
-from typing import List
-import heapq
-import math
-from collections import defaultdict, Counter, deque
-from functools import lru_cache
-from itertools import combinations
-from sortedcontainers import SortedList, SortedDict, SortedSet
-
-from sortedcontainers import SortedDict
-from functools import reduce
-from operator import xor
-from functools import lru_cache
-
-import random
-from itertools import permutations, combinations
-import numpy as np
-
-from decimal import Decimal
-
-import heapq
-import copy
 
 
 class SparseTable1:

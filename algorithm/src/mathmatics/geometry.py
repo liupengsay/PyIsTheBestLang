@@ -1,30 +1,5 @@
-
-import bisect
-import random
-import re
-import unittest
-
-from typing import List
-import heapq
 import math
-from collections import defaultdict, Counter, deque
-from functools import lru_cache
-from itertools import combinations
-from sortedcontainers import SortedList, SortedDict, SortedSet
-
-from sortedcontainers import SortedDict
-from functools import reduce
-from operator import xor
-from functools import lru_cache
-
-import random
-from itertools import permutations, combinations
-import numpy as np
-
-from decimal import Decimal
-
-import heapq
-import copy
+import unittest
 
 """
 算法：计算几何、设计到平面坐标系上的一些问题求解
@@ -51,7 +26,7 @@ class Geometry:
 
     @staticmethod
     def same_line(point1, point2, point3):
-        # 模板：计算三点共线
+        # 模板: 计算三点共线
         x1, y1 = point1
         x2, y2 = point2
         x3, y3 = point3
@@ -59,7 +34,7 @@ class Geometry:
 
     @staticmethod
     def compute_slope2(point1, point2):
-        # 模板：根据两不同的点确定直线斜率
+        # 模板: 根据两不同的点确定直线斜率
         x1, y1 = point1
         x2, y2 = point2
         a, b = x2 - x1, y2 - y1
@@ -75,7 +50,7 @@ class Geometry:
 
     @staticmethod
     def compute_slope(x1, y1, x2, y2):
-        # 模板：根据两不同的点确定直线斜率
+        # 模板: 根据两不同的点确定直线斜率
         if x1 == x2:
             ans = "x"
         else:

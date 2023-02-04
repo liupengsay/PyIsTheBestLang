@@ -99,7 +99,7 @@ class MatrixDP:
 
     @staticmethod
     def longest_common_sequence(s1, s2, s3) -> str:
-        # 模板：最长公共子序列 LCS 可扩展到三维四维
+        # 模板: 最长公共子序列 LCS 可扩展到三维四维
         m, n, k = len(s1), len(s2), len(s3)
         # 记录 LCS 的长度
         dp = [[[0] * (k + 1) for _ in range(n + 1)] for _ in range(m + 1)]

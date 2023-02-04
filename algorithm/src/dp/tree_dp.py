@@ -39,38 +39,20 @@ P6591 [YsOI2020]植树（https://www.luogu.com.cn/problem/P6591）换根DP，即
 参考：OI WiKi（xx）
 """
 
-
-
-
-import bisect
-import random
-import re
 import unittest
-from typing import List
-import heapq
-import math
-from collections import defaultdict, Counter, deque
+from collections import deque
 from functools import lru_cache
-from itertools import combinations
-from sortedcontainers import SortedList, SortedDict, SortedSet
-from sortedcontainers import SortedDict
-from functools import reduce
-from operator import xor
-from functools import lru_cache
-import random
-from itertools import permutations, combinations
-import numpy as np
-from decimal import Decimal
-import heapq
-import copy
 from heapq import nlargest
+from typing import List
+
+
 class TreeDP:
     def __init__(self):
         return
 
     @staticmethod
     def change_root_dp(n: int, edges: List[List[int]], price: List[int]):
-        # 模板： 换根DP
+        # 模板:  换根DP
         edge = [[] for _ in range(n)]
         for u, v in edges:
             edge[u].append(v)
@@ -144,7 +126,7 @@ class TreeDP:
     @staticmethod
     def longest_path_through_node(dct):
 
-        # 模板：换根DP，两遍DFS获取从下往上与从上往下的DP信息
+        # 模板: 换根DP，两遍DFS获取从下往上与从上往下的DP信息
         n = len(dct)
 
         # 两遍DFS获取从下往上与从上往下的节点最远距离

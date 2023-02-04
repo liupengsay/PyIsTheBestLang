@@ -53,32 +53,10 @@ P6770 [USACO05MAR]Checking an Alibi 不在场的证明（https://www.luogu.com.c
 参考：OI WiKi（xx）
 """
 
-import bisect
-import random
-import re
+import heapq
 import unittest
-
+from collections import defaultdict
 from typing import List
-import heapq
-import math
-from collections import defaultdict, Counter, deque
-from functools import lru_cache
-from itertools import combinations
-from sortedcontainers import SortedList, SortedDict, SortedSet
-
-from sortedcontainers import SortedDict
-from functools import reduce
-from operator import xor
-from functools import lru_cache
-
-import random
-from itertools import permutations, combinations
-import numpy as np
-
-from decimal import Decimal
-
-import heapq
-import copy
 
 
 class Dijkstra:
@@ -87,7 +65,7 @@ class Dijkstra:
 
     @staticmethod
     def get_dijkstra_result(dct, src):
-        # 模板：Dijkstra求最短路，变成负数求可以求最长路（还是正权值）
+        # 模板: Dijkstra求最短路，变成负数求可以求最长路（还是正权值）
         n = len(dct)
         dis = [float("inf")]*n
         stack = [[0, src]]
@@ -105,7 +83,7 @@ class Dijkstra:
 
     @staticmethod
     def get_dijkstra_result2(dct, src, dst):
-        # 模板：Dijkstra求起终点的最短路，注意只能是正权值可以提前返回结果
+        # 模板: Dijkstra求起终点的最短路，注意只能是正权值可以提前返回结果
         n = len(dct)
         dis = [float("inf")] * n
         stack = [[0, src]]

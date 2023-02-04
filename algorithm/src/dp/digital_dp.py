@@ -20,37 +20,17 @@ P3908 数列之异或（https://www.luogu.com.cn/problem/P3908）计算 1^2..^n�
 参考：OI WiKi（xx）
 """
 
-
-
-
-import bisect
-import random
-import re
 import unittest
-from typing import List
-import heapq
-import math
-from collections import defaultdict, Counter, deque
 from functools import lru_cache
-from itertools import combinations
-from sortedcontainers import SortedList, SortedDict, SortedSet
-from sortedcontainers import SortedDict
-from functools import reduce
-from operator import xor
-from functools import lru_cache
-import random
-from itertools import permutations, combinations
-import numpy as np
-from decimal import Decimal
-import heapq
-import copy
+
+
 class DigitalDP:
     def __init__(self):
         return
 
     @staticmethod
     def main(n):
-        # 模板：计算小于等于n的正整数二进制位1的个数
+        # 模板: 计算小于等于n的正整数二进制位1的个数
         @lru_cache(None)
         def dfs(i, is_limit, is_num, cnt):
             if i == m:
