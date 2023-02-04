@@ -1,46 +1,24 @@
-
-import bisect
 import random
-import re
 import unittest
-
-from typing import List
-import heapq
-import math
-from collections import defaultdict, Counter, deque
-from functools import lru_cache
-from itertools import combinations
-from sortedcontainers import SortedList, SortedDict, SortedSet
-
-from sortedcontainers import SortedDict
-from functools import reduce
-from operator import xor
-from functools import lru_cache
-
-import random
-from itertools import permutations, combinations
-import numpy as np
-
-from decimal import Decimal
-
-import heapq
-import copy
+from collections import Counter
 from functools import cmp_to_key
+from typing import List
 
 """
-算法：各种排序、冒泡排序、归并排序（期望比较次数最少）、快速排序（期望性能最好）、自定义排序（灵活）
-功能：xxx
+算法：排序、冒泡排序、归并排序（期望比较次数最少）、快速排序（期望性能最好）、自定义排序（灵活）
+功能：各种排序的实现以及特点变形题目，如逆序对
 题目：xx（xx）
 
-P2310 loidc，看看海（https://www.luogu.com.cn/problem/P2310）预处理排序之后进行遍历
+===================================力扣===================================
 912. 排序数组（https://leetcode.cn/problems/sort-an-array/）快速排序
-P4378 [USACO18OPEN]Out of Sorts S（https://www.luogu.com.cn/problem/P4378）枚举元素向左冒泡的移动轮数，计算最大轮数
-P5626 【AFOI-19】数码排序（https://www.luogu.com.cn/problem/P5626）分治DP，归并排序需要的比较次数最少，但是可能内存占用超过快排
-
-P6243 [USACO06OPEN]The Milk Queue G（https://www.luogu.com.cn/problem/P6243）经典贪心举例之后进行自定义排序
 面试题45. 把数组排成最小的数（https://leetcode.cn/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/）自定义拼接成最小的数
 
-
+===================================洛谷===================================
+P2310 loidc，看看海（https://www.luogu.com.cn/problem/P2310）预处理排序之后进行遍历
+P4378 [USACO18OPEN]Out of Sorts S（https://www.luogu.com.cn/problem/P4378）枚举元素向左冒泡的移动轮数，计算最大轮数
+P5626 【AFOI-19】数码排序（https://www.luogu.com.cn/problem/P5626）分治DP，归并排序需要的比较次数最少，但是可能内存占用超过快排
+P6243 [USACO06OPEN]The Milk Queue G（https://www.luogu.com.cn/problem/P6243）经典贪心举例之后进行自定义排序
+P1774 最接近神的人（https://www.luogu.com.cn/problem/P1774）使用归并排序确定在只交换相邻元素的情况下最少的交换次数使得数组有序
 
 参考：OI WiKi（xx）
 """
@@ -52,7 +30,7 @@ class VariousSort:
 
     @staticmethod
     def insertion_sort(nums):
-        # 插入排序
+        # 模板: 插入排序
         n = len(nums)
         for i in range(1, n):
             key = nums[i]
@@ -65,7 +43,7 @@ class VariousSort:
 
     @staticmethod
     def counting_sort(nums):
-        # 计数排序
+        # 模板: 计数排序
         count = Counter(nums)
         keys = sorted(count.keys())
         rank = 0
@@ -78,21 +56,23 @@ class VariousSort:
 
     @staticmethod
     def quick_sort_two(lst: List[int]) -> List[int]:
-        # 模板：比较好理解和记忆的两路快排
+        # 模板: 比较好理解和记忆的两路快排
         n = len(lst)
 
         def quick_sort(i, j):
             if i >= j:
                 return
 
+            # 先找到左边比较小的分治排序
             val = lst[random.randint(i, j)]
             left = i
             for k in range(i, j + 1):
                 if lst[k] < val:
                     lst[k], lst[left] = lst[left], lst[k]
                     left += 1
-
             quick_sort(i, left - 1)
+
+            # 再找到右边比较大的分治排序
             for k in range(i, j + 1):
                 if lst[k] == val:
                     lst[k], lst[left] = lst[left], lst[k]
@@ -104,7 +84,7 @@ class VariousSort:
         return lst
 
     def merge_sort(self, nums):
-        # 归并排序
+        # 模板: 归并排序
         if len(nums) > 1:
             mid = len(nums) // 2
             left = nums[:mid]
@@ -113,6 +93,7 @@ class VariousSort:
             self.merge_sort(left)
             self.merge_sort(right)
 
+            # 使用指针合并有序列表
             i = j = k = 0
             while i < len(left) and j < len(right):
                 if left[i] < right[j]:
@@ -122,6 +103,7 @@ class VariousSort:
                     nums[k] = right[j]
                     j += 1
                 k += 1
+
             while i < len(left):
                 nums[k] = left[i]
                 i += 1
@@ -136,10 +118,7 @@ class VariousSort:
     @staticmethod
     def merge_sort_inverse_pair(nums, n):
 
-        # 使用归并排序计算在只交换相邻元素的情况下至少需要多少次才能使数组变得有序
-        # 也可以使用 2*n 长度的树状数组与线段树进行模拟计算
-        # 结果等同于数组逆序对的数目
-        # 参考题目【P1774 最接近神的人】
+        # 模板: 使用归并排序计算在只交换相邻元素的情况下至少需要多少次才能使数组变得有序
 
         def merge(left, right):
             nonlocal ans
@@ -182,11 +161,14 @@ class VariousSort:
         ans = 0
         arr = [0] * n
         merge(0, n - 1)
+        # 也可以使用 2*n 长度的树状数组与线段树进行模拟计算
+        # 结果等同于数组逆序对的数目
+        # 参考题目P1774
         return ans
 
     @staticmethod
     def heap_sort(nums):
-        # 堆排序
+        # 模板: 堆排序
         def sift_down(start, end):
             # 计算父结点和子结点的下标
             parent = int(start)
@@ -222,7 +204,7 @@ class VariousSort:
 
     @staticmethod
     def shell_sort(nums):
-        # 希尔排序
+        # 模板: 希尔排序
         length = len(nums)
         h = 1
         while h < length / 3:
@@ -238,7 +220,7 @@ class VariousSort:
 
     @staticmethod
     def bucket_sort(nums):
-        # 桶排序
+        # 模板: 桶排序
         min_num = min(nums)
         max_num = max(nums)
         # 桶的大小
@@ -257,7 +239,7 @@ class VariousSort:
 
     @staticmethod
     def bubble_sort(nums):
-        # 冒泡排序
+        # 模板: 冒泡排序
         n = len(nums)
         flag = True
         while flag:
@@ -270,6 +252,7 @@ class VariousSort:
 
     @staticmethod
     def selection_sort(nums):
+        # 模板: 选择排序
         n = len(nums)
         for i in range(n):
             ith = i
@@ -281,8 +264,11 @@ class VariousSort:
 
     @staticmethod
     def defined_sort(nums):
+
+        # 模板: 自定义排序
+
         def compare(a, b):
-            # 模板：自定义排序
+            # 比较函数
             if a < b:
                 return -1
             elif a > b:
@@ -290,7 +276,7 @@ class VariousSort:
             return 0
 
         def compare2(x, y):
-            # 模板：自定义排序
+            # 比较函数
             a = int(x+y)
             b = int(y+x)
             if a < b:
@@ -300,7 +286,7 @@ class VariousSort:
             return 0
 
         def compare3(x, y):
-            # 模板：自定义排序
+            # 比较函数
             a = x+y
             b = y+x
             if a < b:
@@ -319,7 +305,7 @@ class TestGeneral(unittest.TestCase):
         n = 1000
         for _ in range(n):
             nums = [random.randint(0, n) for _ in range(n)]
-            assert vs.defined_sort(nums) == vs.quick_sort_two(nums) == vs.merge_sort(nums)
+            assert vs.defined_sort(nums) == vs.quick_sort_two(nums) == vs.merge_sort(nums) == sorted(nums)
         return
 
 
