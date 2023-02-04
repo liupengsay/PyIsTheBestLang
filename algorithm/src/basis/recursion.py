@@ -1,45 +1,19 @@
-
-import bisect
-import random
-import re
 import unittest
-
-from typing import List
-import heapq
-import math
-from collections import defaultdict, Counter, deque
-from functools import lru_cache
-from itertools import combinations
-from sortedcontainers import SortedList, SortedDict, SortedSet
-
-from sortedcontainers import SortedDict
-from functools import reduce
-from operator import xor
-from functools import lru_cache
-
-import random
-from itertools import permutations, combinations
-import numpy as np
-
-from decimal import Decimal
-
-import heapq
-import copy
 
 """
 算法：分治、递归、二叉树、四叉树、十叉树、N叉树、先序、中序、后序遍历
-功能：xxx
+功能：递归进行处理，与迭代是处理相同问题的两种不同方式
 题目：
+
+===================================洛谷===================================
 P1911 L 国的战斗之排兵布阵（https://www.luogu.com.cn/problem/P1911）使用四叉树递归计算
 P5461 赦免战俘（https://www.luogu.com.cn/problem/P5461）递归计算四叉树左上角
 P5551 Chino的树学（https://www.luogu.com.cn/problem/P5551）先序遍历的完全二叉树递归计算
 P5626 【AFOI-19】数码排序（https://www.luogu.com.cn/problem/P5626）分治DP，归并排序需要的比较次数最少，但是可能内存占用超过快排
 P2907 [USACO08OPEN]Roads Around The Farm S（https://www.luogu.com.cn/problem/P2907）分析复杂度之后采用递归模拟
 
-
 参考：OI WiKi（xx）
 """
-
 
 
 class Recusion:
@@ -47,8 +21,6 @@ class Recusion:
         return
 
     def gen_result(self):
-
-
         return
 
     @staticmethod
@@ -112,8 +84,7 @@ class Recusion:
 class TestGeneral(unittest.TestCase):
 
     def test_rescursion(self):
-        # nt = ClassName()
-        # assert nt.gen_result(1 0* *11 + 131) == 66666666752
+        pass
         return
 
 
