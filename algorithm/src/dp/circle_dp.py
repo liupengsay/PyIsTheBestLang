@@ -1,44 +1,17 @@
-"""
+import unittest
 
-"""
 """
 算法：环形线性或者区间DP
 功能：计算环形数组上的操作，比较简单的方式是将数组复制成两遍进行区间或者线性DP
 
 题目：
-L1880 石子合并（https://www.luogu.com.cn/problem/P1880）将数组复制成两遍进行区间DP
-918. 环形子数组的最大和（https://leetcode.cn/problems/maximum-sum-circular-subarray/）枚举可能的最大与最小区间
 
+===================================力扣===================================
+918. 环形子数组的最大和（https://leetcode.cn/problems/maximum-sum-circular-subarray/）枚举可能的最大与最小区间
+1880. 石子合并（https://www.luogu.com.cn/problem/P1880）将数组复制成两遍进行区间DP
 
 参考：OI WiKi（xx）
 """
-
-import bisect
-import random
-import re
-import unittest
-
-from typing import List
-import heapq
-import math
-from collections import defaultdict, Counter, deque
-from functools import lru_cache
-from itertools import combinations
-from sortedcontainers import SortedList, SortedDict, SortedSet
-
-from sortedcontainers import SortedDict
-from functools import reduce
-from operator import xor
-from functools import lru_cache
-
-import random
-from itertools import permutations, combinations
-import numpy as np
-
-from decimal import Decimal
-
-import heapq
-import copy
 
 
 class ClassName:
@@ -103,9 +76,8 @@ class ClassName:
 
 class TestGeneral(unittest.TestCase):
 
-    def test_xxx(self):
-        nt = ClassName()
-        assert nt.gen_result(10 ** 11 + 131) == 66666666752
+    def test_circle_dp(self):
+        pass
         return
 
 
