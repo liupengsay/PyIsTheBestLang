@@ -1,40 +1,18 @@
-
-import bisect
-import random
-import re
 import unittest
-
-from typing import List
-import heapq
-import math
-from collections import defaultdict, Counter, deque
-from functools import lru_cache
-from itertools import combinations
-from sortedcontainers import SortedList, SortedDict, SortedSet
-
-from sortedcontainers import SortedDict
-from functools import reduce
-from operator import xor
-from functools import lru_cache
-
-import random
-from itertools import permutations, combinations
-import numpy as np
-
-from decimal import Decimal
-
-import heapq
-import copy
 
 """
 算法：区间合并、区间覆盖、区间计数
-功能：xxx
+功能：涉及到区间的一些合并查询和操作，也可以使用差分数组与树状数组、线段树进行解决
 题目：
+
+===================================力扣===================================
+435. 无重叠区间（https://leetcode.cn/problems/non-overlapping-intervals/）最多不相交的区间，使用贪心或者二分DP
+763. 划分字母区间（https://leetcode.cn/problems/partition-labels/）经典将区间合并为不相交的区间
+
+===================================洛谷===================================
 P2082 区间覆盖（加强版）（https://www.luogu.com.cn/problem/P2082）经典区间合并确定覆盖范围
 P2434 [SDOI2005]区间（https://www.luogu.com.cn/problem/P2434）经典区间合并为不相交的区间
 P2684 搞清洁（https://www.luogu.com.cn/problem/P2684）最小区间覆盖，选取最少的区间来进行覆盖
-435. 无重叠区间（https://leetcode.cn/problems/non-overlapping-intervals/）最多不相交的区间，使用贪心或者二分DP
-763. 划分字母区间（https://leetcode.cn/problems/partition-labels/）经典将区间合并为不相交的区间
 P2970 [USACO09DEC]Selfish Grazing S（https://www.luogu.com.cn/problem/P2970）最多不相交的区间，使用贪心或者二分DP
 P6123 [NEERC2016]Hard Refactoring（https://www.luogu.com.cn/problem/P6123）区间合并变形问题
 
@@ -49,7 +27,7 @@ class RangeCoverCount:
 
     @staticmethod
     def range_cover_less(t, nums):
-        # 模板：计算nums的最少区间数进行覆盖 [1,t]
+        # 模板: 计算nums的最少区间数进行覆盖 [1,t]
         nums.sort(key=lambda x: [x[0], -x[1]])
         if nums[0][0] != 1:
             return -1
@@ -86,8 +64,7 @@ class RangeCoverCount:
 
     @staticmethod
     def range_merge(lst):
-
-        # 合并线性区间为不相交的区间
+        # 模板: 合并线性区间为不相交的区间
         lst.sort(key=lambda it: it[0])
         ans = []
         x, y = lst[0]
