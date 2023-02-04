@@ -1,18 +1,22 @@
-"""
+import random
+import unittest
+from collections import defaultdict
 
-"""
 """
 算法：线段树
 功能：用以修改和查询区间的值信息，支持增减、修改，区间和、区间最大值、区间最小值
-题目：xx（xx）
+题目：
 
+===================================力扣===================================
+218. 天际线问题（https://leetcode.cn/problems/the-skyline-problem/solution/by-liupengsay-isfo/）区间值修改与计算最大值
+2286. 以组为单位订音乐会的门票（https://leetcode.cn/problems/booking-concert-tickets-in-groups/）区间值增减与计算区间和、区间最大值、区间最小值
+2407. 最长递增子序列 II（https://leetcode.cn/problems/longest-increasing-subsequence-ii/）维护与查询区间最大值，然后进行DP更新
+2276. 统计区间中的整数数目（https://leetcode.cn/problems/count-integers-in-intervals/）维护区间并集的长度
+2179. 统计数组中好三元组数目（https://leetcode.cn/problems/count-good-triplets-in-an-array/）维护区间范围内的个数
+2158. 每天绘制新区域的数量（https://leetcode.cn/problems/amount-of-new-area-painted-each-day/）线段树维护区间范围的覆盖
+
+===================================洛谷===================================
 P3372 线段树（https://www.luogu.com.cn/problem/P3372）区间值增减与计算区间和
-L0218 天际线问题（https://leetcode.cn/problems/the-skyline-problem/solution/by-liupengsay-isfo/）区间值修改与计算最大值
-L2286 以组为单位订音乐会的门票（https://leetcode.cn/problems/booking-concert-tickets-in-groups/）区间值增减与计算区间和、区间最大值、区间最小值
-L2407 最长递增子序列 II（https://leetcode.cn/problems/longest-increasing-subsequence-ii/）维护与查询区间最大值，然后进行DP更新
-L2276 统计区间中的整数数目（https://leetcode.cn/problems/count-integers-in-intervals/）维护区间并集的长度
-L2179 统计数组中好三元组数目（https://leetcode.cn/problems/count-good-triplets-in-an-array/）维护区间范围内的个数
-L2158 每天绘制新区域的数量（https://leetcode.cn/problems/amount-of-new-area-painted-each-day/）线段树维护区间范围的覆盖
 P2846 [USACO08NOV]Light Switching G（https://www.luogu.com.cn/problem/P2846）线段树统计区间翻转和
 P2574 XOR的艺术（https://www.luogu.com.cn/problem/P2574）线段树统计区间翻转和
 P3130 [USACO15DEC] Counting Haybale P（https://www.luogu.com.cn/problem/P3130）区间增减、区间最小值查询、区间和查询
@@ -23,33 +27,6 @@ P3372 【模板】线段树 1（https://www.luogu.com.cn/problem/P3372）区间�
 参考：OI WiKi（xx）
 """
 
-import bisect
-import random
-import re
-import unittest
-
-from typing import List
-import heapq
-import math
-from collections import defaultdict, Counter, deque
-from functools import lru_cache
-from itertools import combinations
-from sortedcontainers import SortedList, SortedDict, SortedSet
-
-from sortedcontainers import SortedDict
-from functools import reduce
-from operator import xor
-from functools import lru_cache
-
-import random
-from itertools import permutations, combinations
-import numpy as np
-
-from decimal import Decimal
-
-import heapq
-import copy
-
 
 class SegmentTreeRangeUpdateXORSum:
     def __init__(self):
@@ -59,7 +36,7 @@ class SegmentTreeRangeUpdateXORSum:
 
     def push_down(self, i, s, m, t):
         if self.lazy[i]:
-            self.cover[2 * i] = m - s + 1 - self.cover[2*i]
+            self.cover[2 * i] = m - s + 1 - self.cover[2 * i]
             self.cover[2 * i + 1] = t - m - self.cover[2 * i + 1]
 
             self.lazy[2 * i] ^= self.lazy[i]  # 注意使用异或抵消查询
@@ -69,7 +46,7 @@ class SegmentTreeRangeUpdateXORSum:
 
     def update(self, left, r, s, t, val, i):
         if left <= s and t <= r:
-            self.cover[i] = t-s+1 - self.cover[i]
+            self.cover[i] = t - s + 1 - self.cover[i]
             self.lazy[i] ^= val  # 注意使用异或抵消查询
             return
         m = s + (t - s) // 2
@@ -102,8 +79,8 @@ class SegmentTreeRangeAddSum:
 
     def push_down(self, i, s, m, t):
         if self.lazy[i]:
-            self.cover[2 * i] += self.lazy[i]*(m-s+1)
-            self.cover[2 * i + 1] += self.lazy[i]*(t-m)
+            self.cover[2 * i] += self.lazy[i] * (m - s + 1)
+            self.cover[2 * i + 1] += self.lazy[i] * (t - m)
 
             self.lazy[2 * i] += self.lazy[i]
             self.lazy[2 * i + 1] += self.lazy[i]
@@ -112,7 +89,7 @@ class SegmentTreeRangeAddSum:
 
     def update(self, left, r, s, t, val, i):
         if left <= s and t <= r:
-            self.cover[i] += val*(t-s+1)
+            self.cover[i] += val * (t - s + 1)
             self.lazy[i] += val
             return
         m = s + (t - s) // 2
@@ -142,16 +119,16 @@ class SegmentTreeRangeAddMulSum:
     def __init__(self, p, n):
         self.p = p
         # 区间值增减与区间和查询
-        self.cover = [0]*4*n
-        self.lazy = [[] for _ in range(4*n)]
+        self.cover = [0] * 4 * n
+        self.lazy = [[] for _ in range(4 * n)]
 
     def push_down(self, i, s, m, t):
 
         if self.lazy[i]:
             for op, val in self.lazy[i]:
                 if op == "add":
-                    self.cover[2 * i] += val*(m-s+1)
-                    self.cover[2 * i + 1] += val*(t-m)
+                    self.cover[2 * i] += val * (m - s + 1)
+                    self.cover[2 * i + 1] += val * (t - m)
 
                     self.lazy[2 * i] += [[op, val]]
                     self.lazy[2 * i + 1] += [[op, val]]
@@ -169,7 +146,7 @@ class SegmentTreeRangeAddMulSum:
     def update(self, left, r, s, t, op, val, i):
         if left <= s and t <= r:
             if op == "add":
-                self.cover[i] += val*(t-s+1)
+                self.cover[i] += val * (t - s + 1)
                 self.lazy[i] += [["add", val]]
             else:
                 self.cover[i] *= val
@@ -207,8 +184,8 @@ class SegmentTreeRangeUpdateSum:
 
     def push_down(self, i, s, m, t):
         if self.lazy[i]:
-            self.cover[2 * i] = self.lazy[i]*(m-s+1)
-            self.cover[2 * i + 1] = self.lazy[i]*(t-m)
+            self.cover[2 * i] = self.lazy[i] * (m - s + 1)
+            self.cover[2 * i + 1] = self.lazy[i] * (t - m)
 
             self.lazy[2 * i] = self.lazy[i]
             self.lazy[2 * i + 1] = self.lazy[i]
@@ -217,7 +194,7 @@ class SegmentTreeRangeUpdateSum:
 
     def update(self, left, r, s, t, val, i):
         if left <= s and t <= r:
-            self.cover[i] = val*(t-s+1)
+            self.cover[i] = val * (t - s + 1)
             self.lazy[i] = val
             return
         m = s + (t - s) // 2
@@ -316,11 +293,27 @@ class SegmentTreeRangeAddMax:
     def push_down(self, i):
         # 懒标记下放，注意取最大值
         if self.lazy[i]:
-            self.height[2 * i] = self.height[2 * i] if self.height[2 * i] > self.lazy[i] else self.lazy[i]
-            self.height[2 * i + 1] = self.height[2 * i + 1] if self.height[2 * i + 1] > self.lazy[i] else self.lazy[i]
+            self.height[2 *
+                        i] = self.height[2 *
+                                         i] if self.height[2 *
+                                                           i] > self.lazy[i] else self.lazy[i]
+            self.height[2 *
+                        i +
+                        1] = self.height[2 *
+                                         i +
+                                         1] if self.height[2 *
+                                                           i +
+                                                           1] > self.lazy[i] else self.lazy[i]
 
-            self.lazy[2 * i] = self.lazy[2 * i] if self.lazy[2 * i] > self.lazy[i] else self.lazy[i]
-            self.lazy[2 * i + 1] = self.lazy[2 * i + 1] if self.lazy[2 * i + 1] > self.lazy[i] else self.lazy[i]
+            self.lazy[2 * i] = self.lazy[2 * i] if self.lazy[2 *
+                                                             i] > self.lazy[i] else self.lazy[i]
+            self.lazy[2 *
+                      i +
+                      1] = self.lazy[2 *
+                                     i +
+                                     1] if self.lazy[2 *
+                                                     i +
+                                                     1] > self.lazy[i] else self.lazy[i]
 
             self.lazy[i] = 0
         return
@@ -337,7 +330,8 @@ class SegmentTreeRangeAddMax:
             self.update(l, r, s, m, val, 2 * i)
         if r > m:
             self.update(l, r, m + 1, t, val, 2 * i + 1)
-        self.height[i] = self.height[2 * i] if self.height[2 * i] > self.height[2 * i + 1] else self.height[2 * i + 1]
+        self.height[i] = self.height[2 * i] if self.height[2 *
+                                                           i] > self.height[2 * i + 1] else self.height[2 * i + 1]
         return
 
     def query(self, l, r, s, t, i):
@@ -388,7 +382,8 @@ class SegmentTreeRangeUpdateMax:
             self.update(l, r, s, m, val, 2 * i)
         if r > m:
             self.update(l, r, m + 1, t, val, 2 * i + 1)
-        self.height[i] = self.height[2 * i] if self.height[2 * i] > self.height[2 * i + 1] else self.height[2 * i + 1]
+        self.height[i] = self.height[2 * i] if self.height[2 *
+                                                           i] > self.height[2 * i + 1] else self.height[2 * i + 1]
         return
 
     def query(self, l, r, s, t, i):
@@ -439,7 +434,8 @@ class SegmentTreeRangeUpdateMin:
             self.update(l, r, s, m, val, 2 * i)
         if r > m:
             self.update(l, r, m + 1, t, val, 2 * i + 1)
-        self.height[i] = self.height[2 * i] if self.height[2 * i] < self.height[2 * i + 1] else self.height[2 * i + 1]
+        self.height[i] = self.height[2 * i] if self.height[2 *
+                                                           i] < self.height[2 * i + 1] else self.height[2 * i + 1]
         return
 
     def query(self, l, r, s, t, i):
@@ -469,8 +465,8 @@ class SegmentTreeRangeAddSumQueryMin:
 
     def push_down(self, i, s, m, t):
         if self.lazy[i]:
-            self.cover[2 * i] += self.lazy[i]*(m-s+1)
-            self.cover[2 * i + 1] += self.lazy[i]*(t-m)
+            self.cover[2 * i] += self.lazy[i] * (m - s + 1)
+            self.cover[2 * i + 1] += self.lazy[i] * (t - m)
 
             self.floor[2 * i] += self.lazy[i]
             self.floor[2 * i + 1] += self.lazy[i]
@@ -482,7 +478,7 @@ class SegmentTreeRangeAddSumQueryMin:
 
     def update(self, left, r, s, t, val, i):
         if left <= s and t <= r:
-            self.cover[i] += val*(t-s+1)
+            self.cover[i] += val * (t - s + 1)
             self.floor[i] += val
             self.lazy[i] += val
             return
@@ -534,43 +530,60 @@ class SegmentTreeRangeAddMin:
     def push_down(self, i):
         # 懒标记下放，注意取最小值
         if self.lazy[i] < float("inf"):
-            self.height[2*i] = self.height[2*i] if self.height[2*i] < self.lazy[i] else self.lazy[i]
-            self.height[2*i+1] = self.height[2*i+1] if self.height[2*i+1] < self.lazy[i] else self.lazy[i]
+            self.height[2 *
+                        i] = self.height[2 *
+                                         i] if self.height[2 *
+                                                           i] < self.lazy[i] else self.lazy[i]
+            self.height[2 *
+                        i +
+                        1] = self.height[2 *
+                                         i +
+                                         1] if self.height[2 *
+                                                           i +
+                                                           1] < self.lazy[i] else self.lazy[i]
 
-            self.lazy[2*i] = self.lazy[2*i] if self.lazy[2*i] < self.lazy[i] else self.lazy[i]
-            self.lazy[2*i+1] = self.lazy[2*i+1] if self.lazy[2*i+1] < self.lazy[i] else self.lazy[i]
+            self.lazy[2 * i] = self.lazy[2 * i] if self.lazy[2 *
+                                                             i] < self.lazy[i] else self.lazy[i]
+            self.lazy[2 *
+                      i +
+                      1] = self.lazy[2 *
+                                     i +
+                                     1] if self.lazy[2 *
+                                                     i +
+                                                     1] < self.lazy[i] else self.lazy[i]
 
             self.lazy[i] = float("inf")
         return
 
     def update(self, l, r, s, t, val, i):
         # 更新区间最小值
-        if l<=s and t<=r:
+        if l <= s and t <= r:
             self.height[i] = self.height[i] if self.height[i] < val else val
             self.lazy[i] = self.lazy[i] if self.lazy[i] < val else val
             return
         self.push_down(i)
-        m = s+(t-s)//2
-        if l<=m: # 注意左右子树的边界与范围
-            self.update(l, r, s, m, val, 2*i)
-        if r>m:
-            self.update(l, r, m+1, t, val, 2*i+1)
-        self.height[i] = self.height[2*i] if self.height[2*i] < self.height[2*i+1] else self.height[2*i+1]
+        m = s + (t - s) // 2
+        if l <= m:  # 注意左右子树的边界与范围
+            self.update(l, r, s, m, val, 2 * i)
+        if r > m:
+            self.update(l, r, m + 1, t, val, 2 * i + 1)
+        self.height[i] = self.height[2 * i] if self.height[2 *
+                                                           i] < self.height[2 * i + 1] else self.height[2 * i + 1]
         return
 
     def query(self, l, r, s, t, i):
         # 查询区间的最小值
-        if l<=s and t<=r:
+        if l <= s and t <= r:
             return self.height[i]
         self.push_down(i)
-        m = s+(t-s)//2
+        m = s + (t - s) // 2
         highest = float("inf")
-        if l<=m:
-            cur = self.query(l, r, s, m, 2*i)
+        if l <= m:
+            cur = self.query(l, r, s, m, 2 * i)
             if cur < highest:
                 highest = cur
-        if r>m:
-            cur = self.query(l, r, m+1, t, 2*i+1)
+        if r > m:
+            cur = self.query(l, r, m + 1, t, 2 * i + 1)
             if cur < highest:
                 highest = cur
         return highest if highest < float("inf") else -1
@@ -589,24 +602,26 @@ class TestGeneral(unittest.TestCase):
 
         for _ in range(n):
             # 区间增加值
-            left = random.randint(0, n-1)
-            right = random.randint(left, n-1)
-            num = random.randint(low, high)
-            stra.update(left, right, low, high, num, 1)
-            for i in range(left, right+1):
-                nums[i] += num
             left = random.randint(0, n - 1)
             right = random.randint(left, n - 1)
-            assert stra.query(left, right, low, high, 1) == sum(nums[left:right+1])
-
-            # 单点增加值
-            left = random.randint(0, n - 1)
-            right =left
             num = random.randint(low, high)
             stra.update(left, right, low, high, num, 1)
             for i in range(left, right + 1):
                 nums[i] += num
-            assert stra.query(left, right, low, high, 1) == sum(nums[left:right + 1])
+            left = random.randint(0, n - 1)
+            right = random.randint(left, n - 1)
+            assert stra.query(left, right, low, high, 1) == sum(
+                nums[left:right + 1])
+
+            # 单点增加值
+            left = random.randint(0, n - 1)
+            right = left
+            num = random.randint(low, high)
+            stra.update(left, right, low, high, num, 1)
+            for i in range(left, right + 1):
+                nums[i] += num
+            assert stra.query(left, right, low, high, 1) == sum(
+                nums[left:right + 1])
         return
 
     def test_segment_tree_range_update_sum(self):
@@ -620,15 +635,16 @@ class TestGeneral(unittest.TestCase):
 
         for _ in range(n):
             # 区间增加值
-            left = random.randint(0, n-1)
-            right = random.randint(left, n-1)
+            left = random.randint(0, n - 1)
+            right = random.randint(left, n - 1)
             num = random.randint(low, high)
             stra.update(left, right, low, high, num, 1)
-            for i in range(left, right+1):
+            for i in range(left, right + 1):
                 nums[i] = num
             left = random.randint(0, n - 1)
             right = random.randint(left, n - 1)
-            assert stra.query(left, right, low, high, 1) == sum(nums[left:right+1])
+            assert stra.query(left, right, low, high, 1) == sum(
+                nums[left:right + 1])
 
             # 单点增加值
             left = random.randint(0, n - 1)
@@ -637,7 +653,8 @@ class TestGeneral(unittest.TestCase):
             stra.update(left, right, low, high, num, 1)
             for i in range(left, right + 1):
                 nums[i] = num
-            assert stra.query(left, right, low, high, 1) == sum(nums[left:right + 1])
+            assert stra.query(left, right, low, high, 1) == sum(
+                nums[left:right + 1])
         return
 
     def test_segment_tree_point_add_sum_max_min(self):
@@ -647,28 +664,34 @@ class TestGeneral(unittest.TestCase):
         nums = [random.randint(low, high) for _ in range(high)]
         staasmm = SegmentTreePointAddSumMaxMin(high)
         for i in range(high):
-            staasmm.add(1, low, high, i+1, nums[i])
+            staasmm.add(1, low, high, i + 1, nums[i])
 
         for _ in range(high):
             # 单点进行增减值
             i = random.randint(0, high - 1)
             num = random.randint(low, high)
             nums[i] += num
-            staasmm.add(1, low, high, i+1, num)
+            staasmm.add(1, low, high, i + 1, num)
 
             # 查询区间和、最大值、最小值
-            left = random.randint(0, high-1)
-            right = random.randint(left, high-1)
-            assert staasmm.query_sum(1, low, high, left+1, right+1) == sum(nums[left:right + 1])
-            assert staasmm.query_max(1, low, high, left+1, right+1) == max(nums[left:right + 1])
-            assert staasmm.query_min(1, low, high, left+1, right+1) == min(nums[left:right + 1])
+            left = random.randint(0, high - 1)
+            right = random.randint(left, high - 1)
+            assert staasmm.query_sum(
+                1, low, high, left + 1, right + 1) == sum(nums[left:right + 1])
+            assert staasmm.query_max(
+                1, low, high, left + 1, right + 1) == max(nums[left:right + 1])
+            assert staasmm.query_min(
+                1, low, high, left + 1, right + 1) == min(nums[left:right + 1])
 
             # 查询单点和、最大值、最小值
             left = random.randint(0, high - 1)
             right = left
-            assert staasmm.query_sum(1, low, high, left+1, right+1) == sum(nums[left:right + 1])
-            assert staasmm.query_max(1, low, high, left+1, right+1) == max(nums[left:right + 1])
-            assert staasmm.query_min(1, low, high, left+1, right+1) == min(nums[left:right + 1])
+            assert staasmm.query_sum(
+                1, low, high, left + 1, right + 1) == sum(nums[left:right + 1])
+            assert staasmm.query_max(
+                1, low, high, left + 1, right + 1) == max(nums[left:right + 1])
+            assert staasmm.query_min(
+                1, low, high, left + 1, right + 1) == min(nums[left:right + 1])
 
         return
 
@@ -683,15 +706,16 @@ class TestGeneral(unittest.TestCase):
 
         for _ in range(high):
             # 区间更新最大值
-            left = random.randint(0, high-1)
-            right = random.randint(left, high-1)
+            left = random.randint(0, high - 1)
+            right = random.randint(left, high - 1)
             num = random.randint(low, high)
             stra.update(left, right, low, high, num, 1)
-            for i in range(left, right+1):
+            for i in range(left, right + 1):
                 nums[i] = nums[i] if nums[i] > num else num
             left = random.randint(0, high - 1)
             right = random.randint(left, high - 1)
-            assert stra.query(left, right, low, high, 1) == max(nums[left:right+1])
+            assert stra.query(left, right, low, high, 1) == max(
+                nums[left:right + 1])
 
             # 单点更新最大值
             left = random.randint(0, high - 1)
@@ -700,17 +724,19 @@ class TestGeneral(unittest.TestCase):
             stra.update(left, right, low, high, num, 1)
             for i in range(left, right + 1):
                 nums[i] = nums[i] if nums[i] > num else num
-            assert stra.query(left, right, low, high, 1) == max(nums[left:right + 1])
+            assert stra.query(left, right, low, high, 1) == max(
+                nums[left:right + 1])
 
             left = random.randint(0, high - 1)
             right = random.randint(left, high - 1)
-            assert stra.query(left, right, low, high, 1) == max(nums[left:right + 1])
+            assert stra.query(left, right, low, high, 1) == max(
+                nums[left:right + 1])
         return
 
     def test_segment_tree_range_update_max(self):
         low = 0
         high = 1000
-        nums = [random.randint(low+1, high) for _ in range(high)]
+        nums = [random.randint(low + 1, high) for _ in range(high)]
         stra = SegmentTreeRangeUpdateMax()
         for i in range(high):
             stra.update(i, i, low, high, nums[i], 1)
@@ -718,36 +744,40 @@ class TestGeneral(unittest.TestCase):
 
         for _ in range(high):
             # 区间更新最大值
-            left = random.randint(0, high-1)
-            right = random.randint(left, high-1)
-            num = random.randint(low+1, high)
-            for i in range(left, right+1):
+            left = random.randint(0, high - 1)
+            right = random.randint(left, high - 1)
+            num = random.randint(low + 1, high)
+            for i in range(left, right + 1):
                 nums[i] = num
             stra.update(left, right, low, high, num, 1)
-            assert stra.query(left, right, low, high, 1) == max(nums[left:right + 1])
+            assert stra.query(left, right, low, high, 1) == max(
+                nums[left:right + 1])
 
             left = random.randint(0, high - 1)
             right = random.randint(left, high - 1)
-            assert stra.query(left, right, low, high, 1) == max(nums[left:right+1])
+            assert stra.query(left, right, low, high, 1) == max(
+                nums[left:right + 1])
 
             # 单点更新最大值
             left = random.randint(0, high - 1)
             right = left
-            num = random.randint(low+1, high)
+            num = random.randint(low + 1, high)
             stra.update(left, right, low, high, num, 1)
             for i in range(left, right + 1):
                 nums[i] = num
-            assert stra.query(left, right, low, high, 1) == max(nums[left:right + 1])
+            assert stra.query(left, right, low, high, 1) == max(
+                nums[left:right + 1])
 
             left = random.randint(0, high - 1)
             right = random.randint(left, high - 1)
-            assert stra.query(left, right, low, high, 1) == max(nums[left:right + 1])
+            assert stra.query(left, right, low, high, 1) == max(
+                nums[left:right + 1])
         return
 
     def test_segment_tree_range_update_min(self):
         low = 0
         high = 1000
-        nums = [random.randint(low+1, high) for _ in range(high)]
+        nums = [random.randint(low + 1, high) for _ in range(high)]
         stra = SegmentTreeRangeUpdateMin()
         for i in range(high):
             stra.update(i, i, low, high, nums[i], 1)
@@ -755,30 +785,34 @@ class TestGeneral(unittest.TestCase):
 
         for _ in range(high):
             # 区间更新最大值
-            left = random.randint(0, high-1)
-            right = random.randint(left, high-1)
-            num = random.randint(low+1, high)
-            for i in range(left, right+1):
+            left = random.randint(0, high - 1)
+            right = random.randint(left, high - 1)
+            num = random.randint(low + 1, high)
+            for i in range(left, right + 1):
                 nums[i] = num
             stra.update(left, right, low, high, num, 1)
-            assert stra.query(left, right, low, high, 1) == min(nums[left:right + 1])
+            assert stra.query(left, right, low, high, 1) == min(
+                nums[left:right + 1])
 
             left = random.randint(0, high - 1)
             right = random.randint(left, high - 1)
-            assert stra.query(left, right, low, high, 1) == min(nums[left:right+1])
+            assert stra.query(left, right, low, high, 1) == min(
+                nums[left:right + 1])
 
             # 单点更新最大值
             left = random.randint(0, high - 1)
             right = left
-            num = random.randint(low+1, high)
+            num = random.randint(low + 1, high)
             stra.update(left, right, low, high, num, 1)
             for i in range(left, right + 1):
                 nums[i] = num
-            assert stra.query(left, right, low, high, 1) == min(nums[left:right + 1])
+            assert stra.query(left, right, low, high, 1) == min(
+                nums[left:right + 1])
 
             left = random.randint(0, high - 1)
             right = random.randint(left, high - 1)
-            assert stra.query(left, right, low, high, 1) == min(nums[left:right + 1])
+            assert stra.query(left, right, low, high, 1) == min(
+                nums[left:right + 1])
         return
 
     def test_segment_tree_range_add_min(self):
@@ -792,15 +826,16 @@ class TestGeneral(unittest.TestCase):
 
         for _ in range(high):
             # 区间更新最大值
-            left = random.randint(0, high-1)
-            right = random.randint(left, high-1)
+            left = random.randint(0, high - 1)
+            right = random.randint(left, high - 1)
             num = random.randint(low, high)
             stra.update(left, right, low, high, num, 1)
-            for i in range(left, right+1):
+            for i in range(left, right + 1):
                 nums[i] = nums[i] if nums[i] < num else num
             left = random.randint(0, high - 1)
             right = random.randint(left, high - 1)
-            assert stra.query(left, right, low, high, 1) == min(nums[left:right+1])
+            assert stra.query(left, right, low, high, 1) == min(
+                nums[left:right + 1])
 
             # 单点更新最大值
             left = random.randint(0, high - 1)
@@ -809,11 +844,13 @@ class TestGeneral(unittest.TestCase):
             stra.update(left, right, low, high, num, 1)
             for i in range(left, right + 1):
                 nums[i] = nums[i] if nums[i] < num else num
-            assert stra.query(left, right, low, high, 1) == min(nums[left:right + 1])
+            assert stra.query(left, right, low, high, 1) == min(
+                nums[left:right + 1])
 
             left = random.randint(0, high - 1)
             right = random.randint(left, high - 1)
-            assert stra.query(left, right, low, high, 1) == min(nums[left:right + 1])
+            assert stra.query(left, right, low, high, 1) == min(
+                nums[left:right + 1])
         return
 
 
