@@ -1,3 +1,4 @@
+import math
 import sys
 from types import GeneratorType
 
@@ -92,9 +93,11 @@ class FastIO:
 
 def main(ac=FastIO()):
     n = ac.read_int()
-    nums = ac.read_list_ints()
-    nums.sort(key=lambda x: x*(-1)**(x+1))
-    print(nums)
+    nums = [ac.read_int() for _ in range(n)]
+    ans = 0
+    for i in range(n):
+        for j in range(i+1, n):
+            ans = math.gcd(ans, )
     return
 
 
