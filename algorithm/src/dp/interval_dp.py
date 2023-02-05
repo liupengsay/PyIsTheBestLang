@@ -1,6 +1,8 @@
-"""
+from typing import List
 
-"""
+MOD = 10 ** 9 + 7
+
+
 """
 算法：区间DP
 功能：xxx
@@ -26,34 +28,7 @@ P2858 [USACO06FEB]Treats for the Cows G/S（https://www.luogu.com.cn/problem/P28
 参考：OI WiKi（xx）
 """
 
-import bisect
-import random
-import re
-import unittest
 
-from typing import List
-import heapq
-import math
-from collections import defaultdict, Counter, deque
-from functools import lru_cache
-from itertools import combinations
-from sortedcontainers import SortedList, SortedDict, SortedSet
-
-from sortedcontainers import SortedDict
-from functools import reduce
-from operator import xor
-from functools import lru_cache
-
-import random
-from itertools import permutations, combinations
-import numpy as np
-
-from decimal import Decimal
-
-import heapq
-import copy
-
-MOD = 10 ** 9 + 7
 
 class Solution:
     def minimumTotalDistance(self, robot: List[int], factory: List[List[int]]) -> int:
