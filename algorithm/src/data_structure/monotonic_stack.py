@@ -19,6 +19,9 @@ P2866 [USACO06NOV]Bad Hair Day S（https://www.luogu.com.cn/problem/P2866）单�
 P2947 [USACO09MAR]Look Up S（https://www.luogu.com.cn/problem/P2947）单调栈裸题
 P4147 玉蟾宫（https://www.luogu.com.cn/problem/P4147）枚举矩形的下边界，使用单调栈计算最大矩形面积
 P5788 【模板】单调栈（https://www.luogu.com.cn/problem/P5788）单调栈模板题
+P7314 [COCI2018-2019#3] Pismo（https://www.luogu.com.cn/problem/P7314）枚举当前最小值，使用单调栈确定前后第一个比它大的值
+P7399 [COCI2020-2021#5] Po（https://www.luogu.com.cn/problem/P7399）单调栈变形题目，贪心进行赋值，区间操作达成目标数组
+
 
 参考：OI WiKi（xx）
 """

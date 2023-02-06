@@ -13,6 +13,8 @@ from collections import deque
 P2251 质量检测（https://www.luogu.com.cn/problem/P2251）滑动区间最小值
 P1750 出栈序列（https://www.luogu.com.cn/problem/P1750）经典题目，滑动指针窗口栈加队列
 P2311 loidc，想想看（https://www.luogu.com.cn/problem/P2311）不定长滑动窗口最大值索引
+P7175 [COCI2014-2015#4] PŠENICA（https://www.luogu.com.cn/problem/P7175）使用有序优先队列进行模拟
+
 
 参考：OI WiKi（xx）
 """

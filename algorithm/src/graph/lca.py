@@ -17,6 +17,11 @@
 题目：
 P3379 【模板】最近公共祖先（LCA）（https://www.luogu.com.cn/problem/P3379）
 L1483 树节点的第 K 个祖先（https://leetcode.cn/problems/kth-ancestor-of-a-tree-node/）
+
+P7128 「RdOI R1」序列(sequence)（https://www.luogu.com.cn/problem/P7128）完全二叉树进行LCA路径模拟交换，使得数组有序
+
+
+
 参考：OI WiKi（）
 CSDN（https://blog.csdn.net/weixin_42001089/article/details/83590686）
 

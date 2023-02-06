@@ -67,8 +67,17 @@ P6179 [USACO15DEC]High Card Wins S（https://www.luogu.com.cn/problem/list?diffi
 P6380 『MdOI R2』Mayuri（https://www.luogu.com.cn/problem/P6380）贪心模拟进行赋值
 
 P6446 [COCI2010-2011#1] TABOVI（https://www.luogu.com.cn/problem/P6446）贪心进行操作，经典使得数组所有值相等的最少操作次数变形题目，每次操作可以使得连续区间加1或者减1
+P5019 [NOIP2018 提高组] 铺设道路（https://www.luogu.com.cn/problem/P5019）贪心进行操作，经典使得数组所有值相等的最少操作次数变形题目，每次操作可以使得连续区间加1或者减1
+
 P6462 [传智杯 #2 决赛] 补刀（https://www.luogu.com.cn/problem/P6462）贪心进行分类计算
 P6549 [COCI2010-2011#2] KNJIGE（https://www.luogu.com.cn/problem/P6549）逆向思维，使用插入排序的思想进行模拟
+P6785 「EZEC-3」排列（https://www.luogu.com.cn/problem/P6785）脑筋急转弯进行，条件判断与贪心计数
+P6851 onu（https://www.luogu.com.cn/problem/P6851）贪心模拟，均从大到小排序，先选择赢的牌，再计算输的牌
+P7176 [COCI2014-2015#4] PRIPREME（https://www.luogu.com.cn/problem/P7176）贪心策略，结论题
+P7228 [COCI2015-2016#3] MOLEKULE（https://www.luogu.com.cn/problem/P7228）脑筋急转弯贪心加树形dfs计算
+
+P7260 [COCI2009-2010#3] RAZGOVOR（https://www.luogu.com.cn/problem/P7260）贪心与动态规划，经典使得数组所有值从0变化等于给定升序数组的最少操作次数，每次操作可以使得连续区间加1
+P7319 「PMOI-4」生成树（https://www.luogu.com.cn/problem/P7319）公式变形后使用排序不等式进行贪心计算
 
 
 参考：OI WiKi（xx）

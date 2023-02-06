@@ -2,7 +2,7 @@
 
 """
 """
-算法：深度优先搜索
+算法：深度优先搜索、染色法
 功能：常与回溯枚举结合使用，比较经典的还有DFS序
 题目：
 
@@ -31,6 +31,8 @@ P5118 [USACO18DEC]Back and Forth B（https://www.luogu.com.cn/problem/P5118）�
 P5197 [USACO19JAN]Grass Planting S（https://www.luogu.com.cn/problem/P5197）树形DP模拟与染色法，利用父亲与自己的染色确定儿子们的染色
 P5198 [USACO19JAN]Icy Perimeter S（https://www.luogu.com.cn/problem/P5198）经典计算连通块的周长与面积
 P5318 【深基18.例3】查找文献（https://www.luogu.com.cn/problem/P5318）经典广搜拓扑排序与深搜序生成与获取
+P6691 选择题（https://www.luogu.com.cn/problem/P6691）染色法，进行二分图可行性方案计数与最大最小染色
+P7370 [COCI2018-2019#4] Wand（https://www.luogu.com.cn/problem/P7370）所有可能的祖先节点，注意特别情况没有任何祖先节点则自身可达
 
 
 参考：OI WiKi（xx）

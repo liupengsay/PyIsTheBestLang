@@ -13,6 +13,9 @@ import unittest
 P8846 『JROI-7』PMK 配匹串符字（https://www.luogu.com.cn/problem/P8846）厘清题意进行贪心构造
 P2902 [USACO08MAR]Pearl Pairing G（https://www.luogu.com.cn/problem/P2902）构造不同颜色对
 P5823 【L&K R-03】课表的排列（https://www.luogu.com.cn/problem/P5823）构造相同元素间隔为等差1的数组
+P7383 「EZEC-6」加减（https://www.luogu.com.cn/problem/P7383）贪心构造
+
+
 参考：OI WiKi（xx）
 """
 
