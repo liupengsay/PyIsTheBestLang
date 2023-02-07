@@ -35,6 +35,10 @@ P1887 乘积最大3（https://www.luogu.com.cn/problem/P1887）在和一定的�
 P2043 质因子分解（https://www.luogu.com.cn/problem/P2043）使用素数筛法的思想，计算阶乘n!的质因子与对应的个数
 P2192 HXY玩卡片（https://www.luogu.com.cn/problem/P2192）一个数能整除9当且仅当其数位和能整除9
 P7191 [COCI2007-2008#6] GRANICA（https://www.luogu.com.cn/problem/P7191）取模公式变换，转换为计算最大公约数，与所有因数分解计算
+P7517 [省选联考 2021 B 卷] 数对（https://www.luogu.com.cn/problem/P7517）利用埃氏筛的思想，从小到大，进行因数枚举计数
+P7588 双重素数（2021 CoE-II A）（https://www.luogu.com.cn/problem/P7588）素数枚举计算，优先使用is_prime4
+P7696 [COCI2009-2010#4] IKS（https://www.luogu.com.cn/problem/P7696）数组，每个数进行质因数分解，然后均匀分配质因子
+
 """
 
 

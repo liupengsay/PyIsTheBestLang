@@ -21,7 +21,8 @@ P4147 玉蟾宫（https://www.luogu.com.cn/problem/P4147）枚举矩形的下边
 P5788 【模板】单调栈（https://www.luogu.com.cn/problem/P5788）单调栈模板题
 P7314 [COCI2018-2019#3] Pismo（https://www.luogu.com.cn/problem/P7314）枚举当前最小值，使用单调栈确定前后第一个比它大的值
 P7399 [COCI2020-2021#5] Po（https://www.luogu.com.cn/problem/P7399）单调栈变形题目，贪心进行赋值，区间操作达成目标数组
-
+P7410 [USACO21FEB] Just Green Enough S（https://www.luogu.com.cn/problem/P7410）通过容斥原理与单调栈计算01矩阵个数
+P7762 [COCI2016-2017#5] Unija（https://www.luogu.com.cn/problem/P7762）类似单调栈的思想，按照宽度进行贪心排序，计算每个高度的面积贡献
 
 参考：OI WiKi（xx）
 """

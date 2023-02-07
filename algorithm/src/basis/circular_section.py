@@ -16,7 +16,7 @@ P1532 卡布列克圆舞曲（https://www.luogu.com.cn/problem/P1532）循环节
 P2203 Blink（https://www.luogu.com.cn/problem/P2203）循环节计算
 P5550 Chino的数列（https://www.luogu.com.cn/problem/P5550）循环节计算也可以使用矩阵快速幂递推
 P7318 「PMOI-4」人赢の梦（https://www.luogu.com.cn/problem/P7318）二维元素，再增加虚拟开始状态，进行循环节计算
-
+P7681 [COCI2008-2009#5] LUBENICA（https://www.luogu.com.cn/problem/P7681）带前缀和的循环节，注意定义循环状态
 
 参考：OI WiKi（xx）
 """
@@ -52,6 +52,52 @@ class CircleSection:
         tm -= length
         j = tm % circle
         return lst[ind + j]
+
+    @staticmethod
+    def circle_section_pre(n, grid, c, sta, cur, h):
+        # 模板: 需要计算前缀和与循环节
+        dct = dict()
+        lst = []
+        cnt = []
+        while sta not in dct:
+            dct[sta] = len(dct)
+            lst.append(sta)
+            cnt.append(c)
+            sta = cur
+            c = 0
+            cur = 0
+            for i in range(n):
+                num = 1 if sta & (1 << i) else 2
+                for j in range(n):
+                    if grid[i][j] == "1":
+                        c += num
+                        cur ^= (num % 2) * (1 << j)
+
+        # 此时次数状态为 0.1...length-1
+        length = len(lst)
+        # 在 ind 次处出现循节
+        ind = dct[sta]
+        pre = [0] * (length + 1)
+        for i in range(length):
+            pre[i + 1] = pre[i] + cnt[i]
+
+        ans = 0
+        # 所求次数不超出循环节
+        if h < length:
+            return ans + pre[h]
+
+        # 所求次数进入循环节
+        circle = length - ind
+        circle_cnt = pre[length] - pre[ind]
+
+        h -= length
+        ans += pre[length]
+
+        ans += (h // circle) * circle_cnt
+
+        j = h % circle
+        ans += pre[ind + j] - pre[ind]
+        return ans
 
 
 class TestGeneral(unittest.TestCase):

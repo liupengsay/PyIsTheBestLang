@@ -27,6 +27,8 @@ P6481 [COCI2006-2007] FIREFLY（https://www.luogu.com.cn/problem/P6481）区间�
 P2956 [USACO09OCT]The Robot Plow G（https://www.luogu.com.cn/problem/P2956）二维差分前缀和
 P3397 地毯（https://www.luogu.com.cn/problem/P3397#submit）
 P1869 愚蠢的组合数（https://www.luogu.com.cn/problem/P1869）使用前缀和记录1-N的因子2的个数继而计算C(N,K)的奇偶性
+P7667 [JOI2018] Art Exhibition（https://www.luogu.com.cn/problem/P7667）公式变换，排序后使用前缀和
+
 
 参考：OI WiKi（xx）
 """

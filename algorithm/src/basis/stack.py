@@ -14,6 +14,8 @@ import unittest
 P1944 最长括号匹配（https://www.luogu.com.cn/problem/P1944）最长连续合法括号字串长度
 P2201 数列编辑器（https://www.luogu.com.cn/problem/P2201）双栈模拟指针移动同时记录前缀和与前序最大前缀和
 P4387 【深基15.习9】验证栈序列（https://www.luogu.com.cn/problem/P4387）模拟入栈出栈队列判断是否可行
+P7674 [COCI2013-2014#5] EKSPLOZIJA（https://www.luogu.com.cn/problem/P7674）使用栈模仿消除
+
 
 参考：OI WiKi（xx）
 """

@@ -78,6 +78,12 @@ P7228 [COCI2015-2016#3] MOLEKULE（https://www.luogu.com.cn/problem/P7228）脑�
 
 P7260 [COCI2009-2010#3] RAZGOVOR（https://www.luogu.com.cn/problem/P7260）贪心与动态规划，经典使得数组所有值从0变化等于给定升序数组的最少操作次数，每次操作可以使得连续区间加1
 P7319 「PMOI-4」生成树（https://www.luogu.com.cn/problem/P7319）公式变形后使用排序不等式进行贪心计算
+P7412 [USACO21FEB] Year of the Cow S（https://www.luogu.com.cn/problem/P7412）贪心，将问题转换为去掉最长的k-1个非零距离
+P7522 ⎌ Nurture ⎌（https://www.luogu.com.cn/problem/P7522）进行分类贪心讨论
+P7633 [COCI2010-2011#5] BRODOVI（https://www.luogu.com.cn/problem/P7633）使用埃氏筛法思想，进行模拟贪心计算
+P7714 「EZEC-10」排列排序（https://www.luogu.com.cn/problem/P7714）经典子序列排序使得整体有序，使用前缀最大值与指针计数确认子数组分割点
+P7787 [COCI2016-2017#6] Turnir（https://www.luogu.com.cn/problem/P7787）脑筋急转弯，借助完全二叉树的思想
+P7813 谜（https://www.luogu.com.cn/problem/P7813）贪心计算最大选取值
 
 
 参考：OI WiKi（xx）

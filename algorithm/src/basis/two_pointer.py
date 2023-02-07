@@ -1,7 +1,7 @@
 import unittest
 
 """
-算法：双指针、快慢指针
+算法：双指针、快慢指针、先后指针、桶计数
 功能：通过相对移动，来减少计算复杂度，分为同向双指针，相反双指针，以及中心扩展法
 
 题目：
@@ -21,7 +21,7 @@ P3353 在你窗外闪耀的星星（https://www.luogu.com.cn/problem/P3353）滑
 P3662 [USACO17FEB]Why Did the Cow Cross the Road II S（https://www.luogu.com.cn/problem/P3662）滑动子数组和
 P4995 跳跳！（https://www.luogu.com.cn/problem/P4995）排序后利用贪心与双指针进行模拟
 P2207 Photo（https://www.luogu.com.cn/problem/P2207）贪心加同向双指针
-
+P7542 [COCI2009-2010#1] MALI（https://www.luogu.com.cn/problem/P7542）桶计数加双指针进行计算
 参考：OI WiKi（xx）
 """
 
