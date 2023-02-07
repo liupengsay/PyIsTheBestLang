@@ -86,6 +86,10 @@ P7787 [COCI2016-2017#6] Turnir（https://www.luogu.com.cn/problem/P7787）脑筋
 P7813 谜（https://www.luogu.com.cn/problem/P7813）贪心计算最大选取值
 
 
+https://codeforces.com/problemset/problem/1186/D（贪心取floor，再根据加和为0的特质进行补充加1成为ceil）
+https://codeforces.com/contest/792/problem/C（分类进行贪心取数比较，取最长的返回结果）
+
+
 参考：OI WiKi（xx）
 """
 

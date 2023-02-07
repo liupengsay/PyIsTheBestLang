@@ -41,6 +41,7 @@ P7404 [JOI 2021 Final] とてもたのしい家庭菜園 4（https://www.luogu.c
 P7541 [COCI2009-2010#1] DOBRA（https://www.luogu.com.cn/problem/P7541）线性DP记忆化搜索，类似数位DP
 P7767 [COCI 2011/2012 #5] DNA（https://www.luogu.com.cn/problem/P7767）线性DP，计算前缀变成全部相同字符的最少操作次数
 
+https://codeforces.com/problemset/problem/75/D（经典压缩数组，最大子段和升级）
 
 参考：OI WiKi（xx）
 """

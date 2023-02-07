@@ -61,6 +61,8 @@ P7286 「EZEC-5」人赢（https://www.luogu.com.cn/problem/P7286）排序后枚
 P7626 [COCI2011-2012#1] MATRIX（https://www.luogu.com.cn/problem/P7626）枚举正方形子矩阵的主对角线与副对角线之差
 P7799 [COCI2015-2016#6] PIANINO（https://www.luogu.com.cn/problem/P7799）哈希枚举计数
 
+https://codeforces.com/problemset/problem/1426/F（分类枚举中间的b计数两边的?ac，并使用快速幂进行求解）
+
 
 参考：OI WiKi（xx）
 """
