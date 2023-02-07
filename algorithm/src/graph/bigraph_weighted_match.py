@@ -1,12 +1,4 @@
 
-"""
-算法：二分图最大最小权值匹配
-功能：
-题目：P3386 【模板】二分图最大匹配（https://www.luogu.com.cn/problem/P3386）
-P6577 【模板】二分图最大权完美匹配（https://www.luogu.com.cn/problem/P6577）
-参考：OI WiKi（xx）
-"""
-
 
 import numpy as np
 
@@ -36,6 +28,23 @@ from decimal import Decimal
 
 import heapq
 import copy
+
+
+"""
+算法：二分图最大最小权值匹配、KM算法
+功能：
+题目：
+
+===================================力扣===================================
+1820. 最多邀请的个数（https://leetcode.cn/problems/maximum-number-of-accepted-invitations/）使用匈牙利算法或者二分图最大权KM算法解决
+1066. 校园自行车分配 II（https://leetcode.cn/problems/campus-bikes-ii/）二分图最小权KM算法解决
+
+===================================洛谷===================================
+P3386 【模板】二分图最大匹配（https://www.luogu.com.cn/problem/P3386）
+P6577 【模板】二分图最大权完美匹配（https://www.luogu.com.cn/problem/P6577）
+参考：OI WiKi（xx）
+"""
+
 
 class KM:
     def __init__(self):
@@ -108,7 +117,6 @@ class KM:
         self.row, self.col = self.matrix.shape  # 源数据行列
         self.size = max(self.row, self.col)
         self.pad_matrix(min)
-        print(self.matrix)
         self.lx = self.matrix.max(1)
         self.ly = np.array([0] * self.size, dtype=int)
         self.match = np.array([-1] * self.size, dtype=int)
@@ -127,22 +135,17 @@ class KM:
 
 class TestGeneral(unittest.TestCase):
 
-    def test_dijkstra(self):
-        djk = Dijkstra()
-        dct = [{1: 1, 2: 4}, {2: 2}, {}]
-        assert djk.get_dijkstra_result(dct, 0) == [0, 1, 3]
+    def test_km(self):
+        a = np.array([[1, 3, 5], [4, 1, 1], [1, 5, 3]])
+
+        km = KM()
+        min_ = km.compute(a.copy(), True)
+        print("最小组合:", min_,  a[[i[0] for i in min_], [i[1] for i in min_]])
+
+        max_ = km.compute(a.copy())
+        print("最大组合:", max_, a[[i[0] for i in max_], [i[1] for i in max_]])
         return
 
 
 if __name__ == '__main__':
     unittest.main()
-
-if __name__ == '__main__':
-    a = np.array([[1, 3, 5], [4, 1, 1], [1, 5, 3]])
-
-    km = KM()
-    min_ = km.compute(a.copy(), True)
-    print("最小组合:", min_, a[[i[0] for i in min_], [i[1] for i in min_]])
-
-    max_ = km.compute(a.copy())
-    print("最大组合:", max_, a[[i[0] for i in max_], [i[1] for i in max_]])
