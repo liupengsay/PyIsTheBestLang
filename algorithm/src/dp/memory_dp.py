@@ -3,11 +3,13 @@
 """
 """
 算法：记忆化搜索
-功能：记忆化形式的DP，可以自顶向下也可以自底向上
+功能：记忆化形式的DP，可以自顶向下也可以自底向上，就是另一种写法的DP
 题目：
-L2328 网格图中递增路径的数目（https://leetcode.cn/problems/number-of-increasing-paths-in-a-grid/）计算严格递增的路径数量
-L2312 卖木头块（https://leetcode.cn/problems/selling-pieces-of-wood/）自顶向下搜索最佳方案
-L2267 检查是否有合法括号字符串路径（https://leetcode.cn/problems/check-if-there-is-a-valid-parentheses-string-path/）记忆化搜索合法路径
+
+===================================力扣===================================
+2328. 网格图中递增路径的数目（https://leetcode.cn/problems/number-of-increasing-paths-in-a-grid/）计算严格递增的路径数量
+2312. 卖木头块（https://leetcode.cn/problems/selling-pieces-of-wood/）自顶向下搜索最佳方案
+2267. 检查是否有合法括号字符串路径（https://leetcode.cn/problems/check-if-there-is-a-valid-parentheses-string-path/）记忆化搜索合法路径
 
 参考：OI WiKi（xx）
 """
