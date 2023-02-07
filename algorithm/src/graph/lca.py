@@ -1,31 +1,4 @@
-"""
-算法：LCA，使用Tarjan、Range Maximum Query（RMQ）、和倍增算法求解
 
-# 最近公共祖先算法:
-# 通常解决这类问题有两种方法：在线算法和离线算法
-# 在线算法：每次读入一个查询，处理这个查询，给出答案
-# 离线算法：一次性读入所有查询，统一进行处理，给出所有答案
-# 我们接下来介绍一种离线算法：Tarjan，两种在线算法：RMQ,倍增算法
-# Tarjan的时间复杂度是 O(n+q)
-# RMQ是一种先进行 O(nlogn) 预处理，然后O(1)在线查询的算法。
-# 倍增算法是一种时间复杂度 O((n+q)logn)的算法
-# ————————————————
-# 版权声明：本文为CSDN博主「weixin_42001089」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-# 原文链接：https://blog.csdn.net/weixin_42001089/article/details/83590686
-
-功能：来求一棵树的最近公共祖先（LCA）
-题目：
-P3379 【模板】最近公共祖先（LCA）（https://www.luogu.com.cn/problem/P3379）
-L1483 树节点的第 K 个祖先（https://leetcode.cn/problems/kth-ancestor-of-a-tree-node/）
-
-P7128 「RdOI R1」序列(sequence)（https://www.luogu.com.cn/problem/P7128）完全二叉树进行LCA路径模拟交换，使得数组有序
-
-
-
-参考：OI WiKi（）
-CSDN（https://blog.csdn.net/weixin_42001089/article/details/83590686）
-
-"""
 
 import bisect
 import random
@@ -53,6 +26,36 @@ from decimal import Decimal
 
 import heapq
 import copy
+
+
+"""
+
+算法：LCA，使用Tarjan、Range Maximum Query（RMQ）、和倍增算法求解
+
+功能：来求一棵树的最近公共祖先（LCA）
+题目：
+
+===================================力扣===================================
+1483. 树节点的第 K 个祖先（https://leetcode.cn/problems/kth-ancestor-of-a-tree-node/）动态规划与二进制跳转维护祖先信息，类似ST表的思想与树状数组的思想
+
+===================================洛谷===================================
+P3379 【模板】最近公共祖先（LCA）（https://www.luogu.com.cn/problem/P3379）最近公共祖先模板题
+P7128 「RdOI R1」序列(sequence)（https://www.luogu.com.cn/problem/P7128）完全二叉树进行LCA路径模拟交换，使得数组有序
+
+
+
+参考：
+最近公共祖先算法:
+通常解决这类问题有两种方法：在线算法和离线算法
+在线算法：每次读入一个查询，处理这个查询，给出答案
+离线算法：一次性读入所有查询，统一进行处理，给出所有答案
+我们接下来介绍一种离线算法：Tarjan，两种在线算法：RMQ,倍增算法
+Tarjan的时间复杂度是 O(n+q)
+RMQ是一种先进行 O(nlogn) 预处理，然后O(1)在线查询的算法。
+倍增算法是一种时间复杂度 O((n+q)logn)的算法
+CSDN（https://blog.csdn.net/weixin_42001089/article/details/83590686）
+
+"""
 
 
 class LcaTarjan:
@@ -184,6 +187,21 @@ class TreeAncestor:
                 father = self.dp[i][j-1]
                 if father != -1:
                     self.dp[i][j] = self.dp[father][j-1]
+
+        # 计算每个节点的深度
+        self.depth = [0]*n
+        dct = [[] for _ in range(n)]
+        for i in range(n):
+            if parent[i] != -1:
+                dct[parent[i]].append(i)
+
+        def dfs(x, d):
+            self.depth[x] = d
+            for y in dct[x]:
+                dfs(y, d+1)
+            return
+        # 默认以0为根节点
+        dfs(0, 0)
         return
 
     def get_kth_ancestor(self, node: int, k: int) -> int:
@@ -194,6 +212,20 @@ class TreeAncestor:
                 if node == -1:
                     break
         return node
+
+    def get_lca(self, x: int, y: int) -> int:
+        if self.depth[x] < self.depth[y]:
+            x, y = y, x
+        while self.depth[x] > self.depth[y]:
+            d = self.depth[x]-self.depth[y]
+            x = self.dp[x][int(math.log2(d))]
+        if x == y:
+            return x
+        for k in range(int(math.log2(self.depth[x])), -1, -1):
+            if self.dp[x][k] != self.dp[y][k]:
+                x = self.dp[x][k]
+                y = self.dp[y][k]
+        return self.dp[x][0]
 
 
 class TestGeneral(unittest.TestCase):
@@ -225,6 +257,10 @@ class TestGeneral(unittest.TestCase):
         assert tree.get_kth_ancestor(4, 2) == 0
         assert tree.get_kth_ancestor(4, 1) == 2
         assert tree.get_kth_ancestor(4, 0) == 4
+        assert tree.get_lca(3, 4) == 0
+        assert tree.get_lca(2, 4) == 2
+        assert tree.get_lca(3, 1) == 1
+        assert tree.get_lca(3, 2) == 0
         return
 
 

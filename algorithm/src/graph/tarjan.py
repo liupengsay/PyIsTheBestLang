@@ -24,10 +24,13 @@ Tarjan 算法是基于深度优先搜索的算法，用于求解图的连通性�
 - 无向有环图求割边[1192. 查找集群内的「关键连接」]
 - 有向有环图求环[2360. 图中的最长环]
 
+===================================力扣===================================
 [1192. 查找集群内的「关键连接」]: https://leetcode.cn/problems/critical-connections-in-a-network/solution/by-liupengsay-dlc2/
 [2360. 图中的最长环]: https://leetcode.cn/problems/longest-cycle-in-a-graph/solution/by-liupengsay-4ff6/
 [2204. Distance to a Cycle in Undirected Graph]: https://leetcode.cn/problems/distance-to-a-cycle-in-undirected-graph/solution/er-xu-cheng-ming-jiu-xu-zui-python3tarja-09qn/
 [1568. 使陆地分离的最少天数]: https://leetcode.cn/problems/minimum-number-of-days-to-disconnect-island/solution/by-liupengsay-zd7w/
+
+===================================洛谷===================================
 P8436 【模板】边双连通分量：https://www.luogu.com.cn/problem/P8436（有自环与重边，通过虚拟节点进行扩边）
 P8435 【模板】点双连通分量：https://www.luogu.com.cn/problem/P8435（有自环与重边，通过虚拟节点进行扩边）
 P1656 炸铁路（https://www.luogu.com.cn/problem/P1656）求割边

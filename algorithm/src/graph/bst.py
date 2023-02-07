@@ -28,8 +28,10 @@ import copy
 
 """
 算法：BST二叉搜索树
-功能：根据数字顺序建立二叉搜索树
+功能：根据数字顺序建立二叉搜索树、实时维护
 题目：
+
+===================================洛谷===================================
 P2171 Hz吐泡泡（https://www.luogu.com.cn/problem/P2171）依次输入数据生成二叉搜索树
 
 参考：OI WiKi（xx）
@@ -199,12 +201,11 @@ class BinarySearchTree:
         return  # Node not found
 
 
-# class TestGeneral(unittest.TestCase):
+class TestGeneral(unittest.TestCase):
 
-    # def test_xxx(self):
-    #     nt = ClassName()
-    #     assert nt.gen_result(1 0 * *11 + 131) == 66666666752
-    #     return
+    def test_xxx(self):
+        pass
+        return
 
 
 if __name__ == '__main__':

@@ -1,9 +1,3 @@
-"""
-算法：支配树
-功能：支配树算法是一种用来求解图中支配性的算法。它通常用于寻找图中的支配点（即点的集合，它们可以支配图中的所有点）。下面是一个简单的支配树算法的模板，它使用 Python 语言实现：
-题目：P5180 【模板】支配树（https://www.luogu.com.cn/problem/P5180）
-参考：OI WiKi（）
-"""
 
 import bisect
 import random
@@ -31,6 +25,17 @@ from decimal import Decimal
 
 import heapq
 import copy
+
+"""
+
+算法：支配树
+功能：支配树算法是一种用来求解图中支配性的算法。它通常用于寻找图中的支配点（即点的集合，它们可以支配图中的所有点）。下面是一个简单的支配树算法的模板，它使用 Python 语言实现：
+题目：
+
+===================================洛谷===================================
+P5180 【模板】支配树（https://www.luogu.com.cn/problem/P5180）
+参考：OI WiKi（）
+"""
 
 
 # 定义一个支配树类
@@ -72,9 +77,8 @@ class DominatingTree:
         return self.dominators
 
 
-
 class TestGeneral(unittest.TestCase):
-    def test_euler_phi(self):
+    def test_dominate_tree(self):
         # 创建支配树对象
         dt = DominatingTree(5)
 

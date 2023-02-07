@@ -34,8 +34,14 @@ Prim在稠密图中比Kruskal优，在稀疏图中比Kruskal劣。Prim是以更�
 两者其实都是运用贪心的思路
 
 题目：
+
+===================================力扣===================================
+1489. 找到最小生成树里的关键边和伪关键边（https://leetcode.cn/problems/find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree/）计算最小生成树的关键边与伪关键边
+
+
+===================================洛谷===================================
 P3366 最小生成树（https://www.luogu.com.cn/problem/P3366）计算最小生成树的权值和
-L1489 找到最小生成树里的关键边和伪关键边（https://leetcode.cn/problems/find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree/）计算最小生成树的关键边与伪关键边
+
 P2872 Building Roads S（https://www.luogu.com.cn/problem/P2872）使用prim计算最小生成树
 P1991 无线通讯网（https://www.luogu.com.cn/problem/P1991）计算保证k个连通块下最小的边权值
 P1661 扩散（https://www.luogu.com.cn/problem/P1661）最小生成树的边最大权值
@@ -55,7 +61,6 @@ P2916 [USACO08NOV]Cheering up the Cow G（https://www.luogu.com.cn/problem/P2916
 P4955 [USACO14JAN]Cross Country Skiing S（https://www.luogu.com.cn/problem/P4955）最小生成树，自定义中止条件
 P6705 [COCI2010-2011#7] POŠTAR（https://www.luogu.com.cn/problem/P6705）枚举最小值，使用最小生成树，与自定义权值进行计算
 P7775 [COCI2009-2010#2] VUK（https://www.luogu.com.cn/problem/P7775）BFS加最小生成树思想，求解
-
 
 
 参考：OI WiKi（xx）

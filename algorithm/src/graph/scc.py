@@ -1,6 +1,7 @@
 
-"""
-"""
+import unittest
+
+from collections import defaultdict
 
 """
 
@@ -45,22 +46,20 @@ Garbow 算法是 Tarjan 算法的另一种实现，Tarjan 算法是用 dfn 和 l
 定义：有向图 G 强连通是指 G 中任意两个结点连通，强连通分量（Strongly Connected Components，SCC）是极大的强连通子图
 距离：求一条路径，可以经过重复结点，要求经过的不同结点数量最多
 
-参考：OI WiKi（https://oi-wiki.org/graph/scc/）
-
 题目：
-P3387 缩点 （https://www.luogu.com.cn/problem/solution/P3387）允许多次经过点和边求一条路径最大权值和
 
-L2360 图中的最长环（https://leetcode.cn/problems/longest-cycle-in-a-graph/）求最长的环长度（有向图、内向基环树没有环套环，N个节点N条边，也可以使用拓扑排序）
+===================================力扣===================================
+2360 图中的最长环（https://leetcode.cn/problems/longest-cycle-in-a-graph/）求最长的环长度（有向图、内向基环树没有环套环，N个节点N条边，也可以使用拓扑排序）
+
+===================================洛谷===================================
+P3387 缩点 （https://www.luogu.com.cn/problem/solution/P3387）允许多次经过点和边求一条路径最大权值和
 P2661 [NOIP2015 提高组] 信息传递（https://www.luogu.com.cn/problem/P2661）求最小的环长度（有向图、内向基环树没有环套环，N个节点N条边，也可以使用拓扑排序）
 P4089 [USACO17DEC]The Bovine Shuffle S（https://www.luogu.com.cn/problem/P4089）求所有环的长度和，注意自环
 P5145 漂浮的鸭子（https://www.luogu.com.cn/problem/P5145）内向基环树求最大权值和的环
 
+参考：OI WiKi（https://oi-wiki.org/graph/scc/）
+
 """
-
-import unittest
-
-from collections import defaultdict
-
 
 class Kosaraju:
     def __init__(self, n, g):
@@ -169,7 +168,7 @@ class InwardBaseTree:
 
     @staticmethod
     def largest_circle(n, edge, dct):
-        # 模板: 求内向基环树的最大权值和环 edge表示有向边i>edge[i] dct表示对应的边权值
+        # 模板: 求内向基环树的最大权值和环 edge表示有向边 i=>edge[i] 而 dct表示对应的边权值
 
         def dfs(x, sum_):
             nonlocal ans

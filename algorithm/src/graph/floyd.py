@@ -1,12 +1,15 @@
 
-"""
+import unittest
+from collections import defaultdict
+from functools import lru_cache
 
 """
 
-"""
 算法：Floyd（单源最短路经算法）
 功能：计算点到有向或者无向图里面其他点的最近距离，也可以计算最长路
 题目：
+
+===================================洛谷===================================
 P1119 灾后重建 （https://www.luogu.com.cn/problem/P1119）离线查询加Floyd动态更新经过中转站的起终点距离
 P1807 最长路（https://www.luogu.com.cn/problem/P1807）
 P1476 休息中的小呆（https://www.luogu.com.cn/problem/P1476）Floyd求最长路
@@ -16,7 +19,6 @@ P2910 [USACO08OPEN]Clear And Present Danger S（https://www.luogu.com.cn/problem
 P3906 Geodetic集合（https://www.luogu.com.cn/problem/P3906）Floyd算法计算最短路径上经过的点集合
 P6464 [传智杯 #2 决赛] 传送门（https://www.luogu.com.cn/problem/P6464）枚举边之后进行Floyd算法更新计算，经典理解Floyd的原理题，经典借助中间两点更新最短距离
 P6175 无向图的最小环问题（https://www.luogu.com.cn/problem/P6175）经典使用Floyd枚举三个点之间的距离和
-
 
 参考：OI WiKi（xx）
 """
@@ -97,11 +99,6 @@ class Floyd:
                 for j in range(n):  # 结束节点
                     dp[i][j] = min(dp[i][j], dp[i][k] + dp[k][j])
         return dp
-
-
-import unittest
-from collections import defaultdict
-from functools import lru_cache
 
 
 class Luogu:

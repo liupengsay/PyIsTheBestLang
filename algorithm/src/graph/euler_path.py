@@ -34,9 +34,12 @@ import copy
 
 题目：
 
+===================================力扣===================================
+753. 破解保险箱（https://leetcode.cn/problems/cracking-the-safe/solution/er-xu-cheng-ming-jiu-xu-zui-by-liupengsa-lm77/）
+2097. 合法重新排列数对（https://leetcode.cn/problems/valid-arrangement-of-pairs/submissions/）欧拉路径模板题，注意确定首尾点
+
+===================================洛谷===================================
 P7771 【模板】欧拉路径（https://www.luogu.com.cn/problem/P7771）欧拉路径模板题
-L0753 破解保险箱（https://leetcode.cn/problems/cracking-the-safe/solution/er-xu-cheng-ming-jiu-xu-zui-by-liupengsa-lm77/）
-L2097 合法重新排列数对（https://leetcode.cn/problems/valid-arrangement-of-pairs/submissions/）欧拉路径模板题，注意确定首尾点
 P6066 [USACO05JAN]Watchcow S（https://www.luogu.com.cn/problem/P6066）欧拉路径模板题
 
 
