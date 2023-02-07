@@ -8,7 +8,7 @@ import unittest
 
 ===================================力扣===================================
 2296. 设计一个文本编辑器（https://leetcode.cn/problems/design-a-text-editor/）使用指针维护结果进行模拟
-54. 螺旋矩阵（https://leetcode.cn/problems/spiral-matrix/）https://leetcode.cn/problems/spiral-matrix/
+54. 螺旋矩阵（https://leetcode.cn/problems/spiral-matrix/）https://leetcode.cn/problems/spiral-matrix/ 两种方式，数字到索引，以及索引到数字
 59. 螺旋矩阵 II（https://leetcode.cn/problems/spiral-matrix-ii/）
 2326. 螺旋矩阵 IV（https://leetcode.cn/problems/spiral-matrix-iv/）
 剑指 Offer 62. 圆圈中最后剩下的数字（https://leetcode.cn/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/）约瑟夫环
@@ -62,7 +62,6 @@ class SpiralMatrix:
             f = (m + f) % x
         return f
 
-
     @staticmethod
     def num_to_loc(m, n, num):
         # 根据从左往右从上往下的顺序生成给定数字的行列索引
@@ -100,7 +99,7 @@ class SpiralMatrix:
         return num
 
     @staticmethod
-    def get_spiral_matrix_num2(m, n, r, c):  # 顺时针螺旋
+    def get_spiral_matrix_num2(m, n, r, c):  # 顺时针螺旋: 索引到数字序
         # 获取 m*n 矩阵的 [r, c] 元素位置（元素从 1 开始索引从 1 开始）
 
         rem = min(r - 1, m - r, c - 1, n - c)
@@ -122,7 +121,7 @@ class SpiralMatrix:
         return num
 
     @staticmethod
-    def get_spiral_matrix_loc(m, n, num):  # 顺时针螺旋
+    def get_spiral_matrix_loc(m, n, num):  # 顺时针螺旋: 数字序到索引
         # 获取 m*n 矩阵的元素 num 位置
 
         def check(x):
@@ -130,14 +129,15 @@ class SpiralMatrix:
             return res < num
 
         low = 0
-        high = max(m, n)
+        high = max(m // 2, n // 2)
         while low < high - 1:
             mid = low + (high - low) // 2
             if check(mid):
                 low = mid
             else:
                 high = mid
-        rem = low if check(low) else high
+        rem = high if check(high) else low
+
         num -= 2 * rem * (m - rem + 1) + 2 * rem * (n - rem + 1) - 4 * rem
         assert num > 0
         m -= 2 * rem
