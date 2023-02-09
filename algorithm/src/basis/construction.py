@@ -15,7 +15,13 @@ P2902 [USACO08MAR]Pearl Pairing G（https://www.luogu.com.cn/problem/P2902）构
 P5823 【L&K R-03】课表的排列（https://www.luogu.com.cn/problem/P5823）构造相同元素间隔为等差1的数组
 P7383 「EZEC-6」加减（https://www.luogu.com.cn/problem/P7383）贪心构造
 
+================================CodeForces================================
 https://codeforces.com/problemset/problem/1396/A（贪心构造）
+https://codeforces.com/problemset/problem/1118/E（模拟贪心构造）
+https://codeforces.com/problemset/problem/960/C（贪心构造）
+
+==================================AtCoder=================================
+https://atcoder.jp/contests/agc007/tasks/agc007_b（脑筋急转弯思维构造公式）
 
 
 参考：OI WiKi（xx）

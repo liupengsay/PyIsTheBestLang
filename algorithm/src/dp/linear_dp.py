@@ -47,6 +47,10 @@ P7767 [COCI 2011/2012 #5] DNA（https://www.luogu.com.cn/problem/P7767）线性D
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/75/D（经典压缩数组，最大子段和升级）
+https://codeforces.com/problemset/problem/1084/C（线性DP加前缀和优化）
+https://codeforces.com/problemset/problem/166/E（线性DP计数）
+https://codeforces.com/problemset/problem/1221/D（线性DP模拟）
+
 
 参考：OI WiKi（xx）
 """

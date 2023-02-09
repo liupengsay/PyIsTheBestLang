@@ -29,6 +29,11 @@ P3397 地毯（https://www.luogu.com.cn/problem/P3397#submit）
 P1869 愚蠢的组合数（https://www.luogu.com.cn/problem/P1869）使用前缀和记录1-N的因子2的个数继而计算C(N,K)的奇偶性
 P7667 [JOI2018] Art Exhibition（https://www.luogu.com.cn/problem/P7667）公式变换，排序后使用前缀和
 
+================================CodeForces================================
+https://codeforces.com/problemset/problem/33/C（前后缀最大变换和与分割点枚举，经典类型题目）
+https://codeforces.com/problemset/problem/797/C（后缀最小值字典序模拟）
+https://codeforces.com/problemset/problem/75/D（压缩数组最大子段和）
+
 
 参考：OI WiKi（xx）
 """

@@ -20,6 +20,10 @@ P5626 【AFOI-19】数码排序（https://www.luogu.com.cn/problem/P5626）分�
 P6243 [USACO06OPEN]The Milk Queue G（https://www.luogu.com.cn/problem/P6243）经典贪心举例之后进行自定义排序
 P1774 最接近神的人（https://www.luogu.com.cn/problem/P1774）使用归并排序确定在只交换相邻元素的情况下最少的交换次数使得数组有序
 
+
+================================CodeForces================================
+https://codeforces.com/problemset/problem/922/D（贪心加自定义排序）
+
 参考：OI WiKi（xx）
 """
 

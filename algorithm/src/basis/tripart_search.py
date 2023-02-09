@@ -10,6 +10,11 @@ import unittest
 P3382 三分法（https://www.luogu.com.cn/problem/P3382）利用三分求区间函数极值点
 P1883 函数（https://www.luogu.com.cn/problem/P1883）三分求下凸函数最小值
 
+================================CodeForces================================
+https://codeforces.com/problemset/problem/939/E（贪心使用双指针或者三分进行求解）
+http://codeforces.com/problemset/problem/439/D（利用单调性变换使用三分查找求解）
+
+
 参考：OI WiKi（xx）
 """
 

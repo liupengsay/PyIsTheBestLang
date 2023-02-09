@@ -40,6 +40,12 @@ P7617 [COCI2011-2012#2] KOMPIĆI（https://www.luogu.com.cn/problem/P7617）使�
 P7627 [COCI2011-2012#1] X3（https://www.luogu.com.cn/problem/P7627）经典按位操作枚举计算个数
 P7649 [BalticOI 2004 Day 1] SCALES（https://www.luogu.com.cn/problem/P7649）三进制计算，贪心模拟砝码放置
 
+================================CodeForces================================
+https://codeforces.com/problemset/problem/305/C（利用二进制加减的思想进行解题）
+https://codeforces.com/problemset/problem/878/A（位运算的操作理解）
+http://codeforces.com/problemset/problem/282/C（利用位运算的特性进行判断）
+
+
 
 参考：OI WiKi（xx）
 https://blog.csdn.net/qq_35473473/article/details/106320878

@@ -37,6 +37,11 @@ P7074 [CSP-J2020] 方格取数（https://www.luogu.com.cn/problem/P7074）经典
 P7160 「dWoi R1」Sixth Monokuma's Son（https://www.luogu.com.cn/problem/P7160）三个维度DP的枚举计数
 P7266 [BalticOI 2000] Honeycomb Problem（https://www.luogu.com.cn/problem/P7266）蜂窝形状的矩阵DP
 P3399 丝绸之路（https://www.luogu.com.cn/problem/P3399）二维矩阵DP
+
+================================CodeForces================================
+https://codeforces.com/problemset/problem/1446/B（最长公共子序列LCS变形问题，理解贡献）
+https://codeforces.com/problemset/problem/429/B（四个方向的矩阵DP）
+
 参考：OI WiKi（xx）
 """
 

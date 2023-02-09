@@ -2,7 +2,7 @@
 
 """
 """
-算法：贪心、逆向思维、抽屉原理、鸽巢原理、容斥原理、自定义排序
+算法：贪心、逆向思维、抽屉原理、鸽巢原理、容斥原理、自定义排序、思维、脑筋急转弯
 功能：各种可证明不可证明的头脑风暴
 题目：
 L2499 让数组不相等的最小总代价（https://leetcode.cn/problems/minimum-total-cost-to-make-arrays-unequal/）利用鸽巢原理贪心计算最小代价
@@ -85,10 +85,22 @@ P7714 「EZEC-10」排列排序（https://www.luogu.com.cn/problem/P7714）经�
 P7787 [COCI2016-2017#6] Turnir（https://www.luogu.com.cn/problem/P7787）脑筋急转弯，借助完全二叉树的思想
 P7813 谜（https://www.luogu.com.cn/problem/P7813）贪心计算最大选取值
 
-
+================================CodeForces================================
 https://codeforces.com/problemset/problem/1186/D（贪心取floor，再根据加和为0的特质进行补充加1成为ceil）
 https://codeforces.com/contest/792/problem/C（分类进行贪心取数比较，取最长的返回结果）
-
+https://codeforces.com/problemset/problem/166/E（思维模拟DP）
+https://codeforces.com/problemset/problem/1025/C（脑筋急转弯）
+https://codeforces.com/problemset/problem/1042/C（贪心分类模拟）
+https://codeforces.com/problemset/problem/439/C（贪心分类讨论）
+https://codeforces.com/problemset/problem/1283/E（贪心分类讨论）
+https://codeforces.com/contest/1092/problem/C（脑筋急转弯思维分类题）
+https://codeforces.com/problemset/problem/1280/B（脑筋急转弯思维分类题）
+https://codeforces.com/problemset/problem/723/C（贪心模拟构造）
+https://codeforces.com/problemset/problem/712/C（逆向思维反向模拟）
+https://codeforces.com/problemset/problem/747/D（贪心模拟求解）
+https://codeforces.com/problemset/problem/1148/D（贪心，自定义排序选择构造）
+https://codeforces.com/contest/792/problem/C（分类进行贪心讨论）
+https://codeforces.com/problemset/problem/830/A （按照影响区间排序，然后贪心分配时间）
 
 参考：OI WiKi（xx）
 """

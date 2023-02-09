@@ -18,6 +18,11 @@ P2412 查单词（https://www.luogu.com.cn/problem/P2412）预处理字典序之
 P2880 [USACO07JAN] Balanced Lineup G（https://www.luogu.com.cn/problem/P2880）查询区间最大值与最小值
 P5097 [USACO04OPEN]Cave Cows 2（https://www.luogu.com.cn/problem/P5097）静态区间最小值
 
+================================CodeForces================================
+https://codeforces.com/problemset/problem/1691/D（单调栈枚举加ST表最大值最小值查询）
+https://codeforces.com/problemset/problem/689/D（根据单调性使用二分加ST表进行个数计算）
+
+
 参考：OI WiKi（xx）
 """
 

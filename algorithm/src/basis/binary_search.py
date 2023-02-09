@@ -38,8 +38,15 @@ P6281 [USACO20OPEN] Social Distancing S（https://www.luogu.com.cn/problem/P6281
 P6423 [COCI2008-2009#2] SVADA（https://www.luogu.com.cn/problem/P6423）利用单调性进行二分计算
 P7177 [COCI2014-2015#4] MRAVI（https://www.luogu.com.cn/problem/P7177）二分加树形dfs模拟
 
+================================CodeForces================================
 https://codeforces.com/problemset/problem/1251/D（使用贪心进行中位数二分求解）
 https://codeforces.com/problemset/problem/830/A（使用贪心进行距离点覆盖二分求解）
+https://codeforces.com/problemset/problem/847/E（使用贪心二分与指针进行判断）
+https://codeforces.com/problemset/problem/732/D（使用贪心二分与指针进行判断）
+https://codeforces.com/problemset/problem/778/A（二分和使用指针判断是否check
+https://codeforces.com/problemset/problem/913/C（DP预处理最有单价，再二分加贪心进行模拟求解）
+
+
 
 参考：OI WiKi（xx）
 """

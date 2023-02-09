@@ -16,6 +16,9 @@ P2684 搞清洁（https://www.luogu.com.cn/problem/P2684）最小区间覆盖，
 P2970 [USACO09DEC]Selfish Grazing S（https://www.luogu.com.cn/problem/P2970）最多不相交的区间，使用贪心或者二分DP
 P6123 [NEERC2016]Hard Refactoring（https://www.luogu.com.cn/problem/P6123）区间合并变形问题
 
+================================CodeForces================================
+https://codeforces.com/problemset/problem/827/A（区间合并为不相交的区间，再贪心赋值）
+
 
 参考：OI WiKi（xx）
 """
