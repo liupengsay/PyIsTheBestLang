@@ -29,6 +29,7 @@ https://codeforces.com/problemset/problem/689/D（根据单调性使用二分加
 
 class SparseTable1:
     def __init__(self, lst, fun="max"):
+        # 只要fun满足单调性就可以进行静态区间查询
         self.fun = fun
         self.n = len(lst)
         self.lst = lst
@@ -48,8 +49,12 @@ class SparseTable1:
                     self.f[i][j] = a if a > b else b
                 elif self.fun == "min":
                     self.f[i][j] = a if a < b else b
-                else:
+                elif self.fun == "gcd":
                     self.f[i][j] = math.gcd(a, b)
+                elif self.fun == "and":
+                    self.f[i][j] = a & b
+                elif self.fun == "or":
+                    self.f[i][j] = a | b
         return
 
     def query(self, left, right):
@@ -61,8 +66,12 @@ class SparseTable1:
             return a if a > b else b
         elif self.fun == "min":
             return a if a < b else b
-        else:
+        elif self.fun == "gcd":
             return math.gcd(a, b)
+        elif self.fun == "and":
+            return a & b
+        elif self.fun == "or":
+            return a | b
 
 
 class SparseTable2:
@@ -116,6 +125,18 @@ class TestGeneral(unittest.TestCase):
                 ans = math.gcd(num, ans)
             return ans
 
+        def check_and(lst):
+            ans = lst[0]
+            for num in lst[1:]:
+                ans &= num
+            return ans
+
+        def check_or(lst):
+            ans = lst[0]
+            for num in lst[1:]:
+                ans |= num
+            return ans
+
         nums = [9, 3, 1, 7, 5, 6, 0, 8]
         st = SparseTable1(nums)
         queries = [[1, 6], [1, 5], [2, 7], [2, 6], [1, 8], [4, 8], [3, 7], [1, 8]]
@@ -126,6 +147,9 @@ class TestGeneral(unittest.TestCase):
         st1_max = SparseTable1(nums, "max")
         st1_min = SparseTable1(nums, "min")
         st1_gcd = SparseTable1(nums, "gcd")
+        st1_and = SparseTable1(nums, "and")
+        st1_or = SparseTable1(nums, "or")
+
         st2_max = SparseTable2(nums, "max")
         st2_min = SparseTable2(nums, "min")
         st2_gcd = SparseTable2(nums, "gcd")
@@ -135,6 +159,8 @@ class TestGeneral(unittest.TestCase):
             assert st1_max.query(left, right) == st2_max.query(left-1, right-1) == max(nums[left-1:right])
             assert st1_min.query(left, right) == st2_min.query(left - 1, right - 1) == min(nums[left - 1:right])
             assert st1_gcd.query(left, right) == st2_gcd.query(left-1, right-1) == check(nums[left - 1:right])
+            assert st1_and.query(left, right) == check_and(nums[left - 1:right])
+            assert st1_or.query(left, right) == check_or(nums[left - 1:right])
         return
 
 
