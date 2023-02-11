@@ -24,8 +24,55 @@ P3870 [TJOI2009] 开关（https://www.luogu.com.cn/problem/P3870） 区间值01�
 P5057 [CQOI2006]简单题（https://www.luogu.com.cn/problem/P5057） 区间值01翻转与区间和查询
 P3372 【模板】线段树 1（https://www.luogu.com.cn/problem/P3372）区间值增减与求和
 
+================================CodeForces================================
+
+https://codeforces.com/problemset/problem/482/B（区间按位或赋值、按位与查询）
+
 参考：OI WiKi（xx）
 """
+
+
+class SegmentTreeOrUpdateAndQuery:
+    def __init__(self):
+        # 区间按位或赋值、按位与查询
+        self.cover = defaultdict(int)
+        self.lazy = defaultdict(int)
+
+    def push_down(self, i):
+        if self.lazy[i]:
+            self.cover[2 * i] |= self.lazy[i]
+            self.cover[2 * i + 1] |= self.lazy[i]
+
+            self.lazy[2 * i] |= self.lazy[i]
+            self.lazy[2 * i + 1] |= self.lazy[i]
+
+            self.lazy[i] = 0
+
+    def update(self, left, r, s, t, val, i):
+        if left <= s and t <= r:
+            self.cover[i] |= val
+            self.lazy[i] |= val
+            return
+        m = s + (t - s) // 2
+        self.push_down(i)
+        if left <= m:
+            self.update(left, r, s, m, val, 2 * i)
+        if r > m:
+            self.update(left, r, m + 1, t, val, 2 * i + 1)
+        self.cover[i] = self.cover[2 * i] & self.cover[2 * i + 1]
+        return
+
+    def query(self, left, r, s, t, i):
+        if left <= s and t <= r:
+            return self.cover[i]
+        m = s + (t - s) // 2
+        self.push_down(i)
+        ans = (1<<31)-1
+        if left <= m:
+            ans &= self.query(left, r, s, m, 2 * i)
+        if r > m:
+            ans &= self.query(left, r, m + 1, t, 2 * i + 1)
+        return ans
 
 
 class SegmentTreeRangeUpdateXORSum:
