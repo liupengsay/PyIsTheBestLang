@@ -15,6 +15,9 @@ P4551 最长异或路径（https://www.luogu.com.cn/problem/P4551）关键是利
 P3864 [USACO1.2]命名那个数字 Name That Number（https://www.luogu.com.cn/problem/P3864）使用哈希枚举或者进行字典树存储
 P5755 [NOI2000] 单词查找树（https://www.luogu.com.cn/problem/P5755）字典树节点计数
 
+================================CodeForces================================
+Fixed Prefix Permutations（https://codeforces.com/problemset/problem/1792/D）变形后使用字典树进行计数查询
+
 参考：OI WiKi（）
 """
 

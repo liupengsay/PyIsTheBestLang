@@ -45,6 +45,7 @@ https://codeforces.com/problemset/problem/847/E（使用贪心二分与指针进
 https://codeforces.com/problemset/problem/732/D（使用贪心二分与指针进行判断）
 https://codeforces.com/problemset/problem/778/A（二分和使用指针判断是否check
 https://codeforces.com/problemset/problem/913/C（DP预处理最有单价，再二分加贪心进行模拟求解）
+Teleporters (Hard Version)（https://codeforces.com/problemset/problem/1791/G2）贪心排序，前缀和枚举二分
 
 
 
