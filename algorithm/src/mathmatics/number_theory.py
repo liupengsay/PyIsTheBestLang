@@ -41,6 +41,8 @@ P7696 [COCI2009-2010#4] IKS（https://www.luogu.com.cn/problem/P7696）数组，
 
 ================================CodeForces================================
 C. Hossam and Trainees（https://codeforces.com/problemset/problem/1771/C）使用pollard_rho进行质因数分解
+P4718 【模板】Pollard's rho 算法（https://www.luogu.com.cn/problem/P4718）使用pollard_rho进行质因数分解与素数判断
+
 
 """
 
@@ -386,6 +388,8 @@ class NumberTheory:
         return n
 
     def get_prime_factors_with_pollard_rho(self, n):
+        """returns prime factors of n"""
+        # 返回 n 的质因数分解与对应因子个数
         if n <= 1:
             return Counter()
         f = self.pollard_rho(n)
