@@ -3,7 +3,7 @@ import math
 import random
 import unittest
 from itertools import combinations
-
+from collections import Counter
 
 """
 算法：数论、欧拉筛、线性筛、素数、欧拉函数、因子分解、素因子分解、进制转换、因数分解
@@ -38,6 +38,9 @@ P7191 [COCI2007-2008#6] GRANICA（https://www.luogu.com.cn/problem/P7191）取�
 P7517 [省选联考 2021 B 卷] 数对（https://www.luogu.com.cn/problem/P7517）利用埃氏筛的思想，从小到大，进行因数枚举计数
 P7588 双重素数（2021 CoE-II A）（https://www.luogu.com.cn/problem/P7588）素数枚举计算，优先使用is_prime4
 P7696 [COCI2009-2010#4] IKS（https://www.luogu.com.cn/problem/P7696）数组，每个数进行质因数分解，然后均匀分配质因子
+
+================================CodeForces================================
+C. Hossam and Trainees（https://codeforces.com/problemset/problem/1771/C）使用pollard_rho进行质因数分解
 
 """
 
@@ -97,7 +100,8 @@ class NumberTheory:
                     points[j] += 1
         return dp[n - 1]
 
-    def gcd(self, x, y):
+    @staticmethod
+    def gcd(x, y):
         # 模板: 迭代法求最大公约数
         while y:
             x, y = y, x % y
@@ -348,6 +352,45 @@ class NumberTheory:
                 res += (y//cur)*(-1)**(i+1)
         return y-res
 
+    def pollard_rho(self, n):
+        """returns a random factor of n"""
+        # 随机返回一个 n 的因数 [1, 10**9]
+        if n & 1 == 0:
+            return 2
+        if n % 3 == 0:
+            return 3
+
+        s = ((n - 1) & (1 - n)).bit_length() - 1
+        d = n >> s
+        for a in [2, 325, 9375, 28178, 450775, 9780504, 1795265022]:
+            p = pow(a, d, n)
+            if p == 1 or p == n - 1 or a % n == 0:
+                continue
+            for _ in range(s):
+                prev = p
+                p = (p * p) % n
+                if p == 1:
+                    return self.gcd(prev - 1, n)
+                if p == n - 1:
+                    break
+            else:
+                for i in range(2, n):
+                    x, y = i, (i * i + 1) % n
+                    f = self.gcd(abs(x - y), n)
+                    while f == 1:
+                        x, y = (x * x + 1) % n, (y * y + 1) % n
+                        y = (y * y + 1) % n
+                        f = self.gcd(abs(x - y), n)
+                    if f != n:
+                        return f
+        return n
+
+    def get_prime_factors_with_pollard_rho(self, n):
+        if n <= 1:
+            return Counter()
+        f = self.pollard_rho(n)
+        return Counter([n]) if f == n else self.get_prime_factors_with_pollard_rho(f) + self.get_prime_factors_with_pollard_rho(n // f)
+
 
 class TestGeneral(unittest.TestCase):
 
@@ -360,7 +403,6 @@ class TestGeneral(unittest.TestCase):
             for i in range(1, y+1):
                 if math.gcd(i, x) == 1:
                     cnt += 1
-            print(x, y, nt.get_prime_cnt(x, y), cnt)
             assert nt.get_prime_cnt(x, y) == cnt
         return
 
@@ -368,10 +410,21 @@ class TestGeneral(unittest.TestCase):
         nt = NumberTheory()
         for i in range(1, 100000):
             res = nt.get_prime_factor(i)
-            num = 0
+            cnt = nt.get_prime_factors_with_pollard_rho(i)
+            num = 1
             for val, c in res:
-                num += val * c
+                num *= val ** c
+                if val > 1:
+                    assert cnt[val] == c
             assert num == i
+
+        nt = NumberTheory()
+        num = 2
+        assert nt.get_prime_factor(num) == [[2, 1]]
+        num = 1
+        assert nt.get_prime_factor(num) == [[1, 1]]
+        num = 2 * (3**2) * 7 * (11**3)
+        assert nt.get_prime_factor(num) == [[2, 1], [3, 2], [7, 1], [11, 3]]
         return
 
     def test_euler_phi(self):
@@ -381,9 +434,9 @@ class TestGeneral(unittest.TestCase):
 
     def test_euler_shai(self):
         nt = NumberTheory()
-        correctResult_30 = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
-        euler_flag_primeResult_30 = nt.euler_flag_prime(30)
-        assert correctResult_30 == euler_flag_primeResult_30
+        label = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+        pred = nt.euler_flag_prime(30)
+        assert label == pred
         assert len(nt.euler_flag_prime(10**6)) == 78498
         return
 
@@ -439,19 +492,6 @@ class TestGeneral(unittest.TestCase):
         a, b = random.randint(1, 1000), random.randint(1, 1000)
         assert nt.gcd(a, b) == math.gcd(a, b)
         assert nt.lcm(a, b) == math.lcm(a, b)
-        return
-
-    def test_get_prime_factor(self):
-        nt = NumberTheory()
-
-        num = 2
-        assert nt.get_prime_factor(num) == [[2, 1]]
-
-        num = 1
-        assert nt.get_prime_factor(num) == [[1, 1]]
-
-        num = 2 * (3**2) * 7 * (11**3)
-        assert nt.get_prime_factor(num) == [[2, 1], [3, 2], [7, 1], [11, 3]]
         return
 
     def test_get_factor(self):
