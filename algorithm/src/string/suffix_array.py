@@ -1,38 +1,17 @@
+import unittest
+
 """
 算法：后缀数组
 功能：生成字符串的后缀排序
-题目：P3809 【模板】后缀排序（https://www.luogu.com.cn/problem/P3809）
+题目：
 
-【1754. 构造字典序最大的合并字符串】（https://leetcode.cn/problems/largest-merge-of-two-strings/solution/by-liupengsay-fhoo/）
+===================================力扣===================================
+1754. 构造字典序最大的合并字符串（https://leetcode.cn/problems/largest-merge-of-two-strings/solution/by-liupengsay-fhoo/）
+
+===================================洛谷===================================
+P3809 【模板】后缀排序（https://www.luogu.com.cn/problem/P3809）
 参考：OI WiKi（https://oi-wiki.org/string/sa/）
 """
-
-import bisect
-import random
-import re
-import unittest
-
-from typing import List
-import heapq
-import math
-from collections import defaultdict, Counter, deque
-from functools import lru_cache
-from itertools import combinations
-from sortedcontainers import SortedList, SortedDict, SortedSet
-
-from sortedcontainers import SortedDict
-from functools import reduce
-from operator import xor
-from functools import lru_cache
-
-import random
-from itertools import permutations, combinations
-import numpy as np
-
-from decimal import Decimal
-
-import heapq
-import copy
 
 
 class SuffixArray:

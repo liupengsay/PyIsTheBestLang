@@ -34,10 +34,13 @@ import bisect
 功能：计算平面几何面积或者立体体积
 题目：
 
-[P5490 扫描线]（https://www.luogu.com.cn/problem/P5490）
-[850. 矩形面积 II](https://leetcode.cn/problems/rectangle-area-ii/)
-P6265 [COCI2014-2015#3] SILUETA（https://www.luogu.com.cn/problem/P6265）计算建筑物的扫描线轮廓
+===================================力扣===================================
 218. 天际线问题（https://leetcode.cn/problems/the-skyline-problem/）扫描线计算建筑物的轮廓
+[850. 矩形面积 II](https://leetcode.cn/problems/rectangle-area-ii/)
+
+===================================洛谷===================================
+[P5490 扫描线]（https://www.luogu.com.cn/problem/P5490）
+P6265 [COCI2014-2015#3] SILUETA（https://www.luogu.com.cn/problem/P6265）计算建筑物的扫描线轮廓
 
 参考：[OI WiKi]（https://oi-wiki.org/geometry/scanning/)
 """

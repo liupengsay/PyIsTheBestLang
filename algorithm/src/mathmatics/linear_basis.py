@@ -1,37 +1,18 @@
-
-
-"""
-线性基也叫Hamel基
-WiKi: https://oi-wiki.org/math/linear-algebra/basis/
-题目：P3812 【模板】线性基（https://www.luogu.com.cn/problem/P3812）
-
-"""
-import bisect
-import random
-import re
 import unittest
 
-from typing import List
-import heapq
-import math
-from collections import defaultdict, Counter, deque
-from functools import lru_cache
-from itertools import combinations
-from sortedcontainers import SortedList, SortedDict, SortedSet
-
-from sortedcontainers import SortedDict
 from functools import reduce
 from operator import xor
-from functools import lru_cache
 
-import random
-from itertools import permutations, combinations
-import numpy as np
+"""
+算法：线性基也叫Hamel基
+功能：求解数组的异或和、排第K的异或和、以及异或和排第几、更新线性基即原始数组等
 
-from decimal import Decimal
+题目：
+===================================洛谷===================================
+P3812 【模板】线性基（https://www.luogu.com.cn/problem/P3812）
 
-import heapq
-import copy
+参考：https://oi-wiki.org/math/linear-algebra/basis/
+"""
 
 
 class LinearBasis:
@@ -40,10 +21,10 @@ class LinearBasis:
         self.n = 64
         self.lst = lst
         self.gen_linear_basis()
+        self.linear_basis = [0] * self.n
         return
 
     def gen_linear_basis(self):
-        self.linear_basis = [0] * self.n
         for num in self.lst:
             self.add(num)
         return

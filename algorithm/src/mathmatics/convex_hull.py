@@ -5,7 +5,9 @@
 算法：凸包
 功能：求点集的子集组成最小凸包上
 题目：
-L1924 安装栅栏 II（https://leetcode.cn/problems/erect-the-fence-ii/）求出最小凸包后使用三分套三分求解最小圆覆盖
+
+===================================力扣===================================
+1924 安装栅栏 II（https://leetcode.cn/problems/erect-the-fence-ii/）求出最小凸包后使用三分套三分求解最小圆覆盖
 
 参考：OI WiKi（xx）
 """
@@ -130,9 +132,8 @@ class Solution:
 
 class TestGeneral(unittest.TestCase):
 
-    def test_xxx(self):
-        nt = ClassName()
-        assert nt.gen_result(10 ** 11 + 131) == 66666666752
+    def test_convex_hull(self):
+        pass
         return
 
 

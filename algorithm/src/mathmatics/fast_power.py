@@ -29,9 +29,8 @@ import copy
 """
 算法：快速幂、矩阵快速幂
 功能：高效计算整数的幂次方取模
-题目：xx（xx）
-参考：OI WiKi（xx）
-
+题目：
+===================================洛谷===================================
 P1630 求和（https://www.luogu.com.cn/problem/P1630）快速幂计算，利用同模进行计数加和
 P1939 【模板】矩阵加速（数列）（https://www.luogu.com.cn/problem/P1939）矩阵快速幂递推求解
 P1962 斐波那契数列（https://www.luogu.com.cn/problem/P1962）矩阵快速幂递推求解
@@ -43,6 +42,7 @@ P6045 后缀树（https://www.luogu.com.cn/problem/P6045）脑筋急转弯进行
 P6075 [JSOI2015]子集选取（https://www.luogu.com.cn/problem/P6075）组合计数后进行快速幂计算
 P6392 中意（https://www.luogu.com.cn/problem/P6392）公式拆解变换后进行快速幂计算
 
+参考：OI WiKi（xx）
 
 """
 

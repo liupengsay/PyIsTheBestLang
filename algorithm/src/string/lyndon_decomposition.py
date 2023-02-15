@@ -1,11 +1,4 @@
-"""
-算法：Lyndon 分解（使用Duval 算法求解）
-功能：用来将字符串s分解成Lyndon串s1s2s3...
-Lyndon子串定义为：当且仅当s的字典序严格小于它的所有非平凡的（非平凡：非空且不同于自身）循环同构串时， s才是 Lyndon 串。
-题目：P6657 【模板】LGV 引理（https://www.luogu.com.cn/problem/P6657）
-参考：OI WiKi（https://oi-wiki.org/string/lyndon/）Duval 可以在 O(n)的时间内求出一个串的 Lyndon 分解
-拓展：可用于求字符串s的最小表示法
-"""
+
 
 import bisect
 import random
@@ -33,6 +26,19 @@ from decimal import Decimal
 
 import heapq
 import copy
+
+"""
+算法：Lyndon 分解（使用Duval 算法求解）
+功能：用来将字符串s分解成Lyndon串s1s2s3...
+Lyndon子串定义为：当且仅当s的字典序严格小于它的所有非平凡的（非平凡：非空且不同于自身）循环同构串时， s才是 Lyndon 串。
+题目：
+
+===================================洛谷===================================
+P6657 【模板】LGV 引理（https://www.luogu.com.cn/problem/P6657）
+参考：OI WiKi（https://oi-wiki.org/string/lyndon/）Duval 可以在 O(n)的时间内求出一个串的 Lyndon 分解
+拓展：可用于求字符串s的最小表示法
+"""
+
 
 
 class LyndonDecomposition:

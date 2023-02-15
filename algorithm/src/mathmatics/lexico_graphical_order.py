@@ -1,37 +1,19 @@
-import bisect
-import random
-import re
-import unittest
-
-from typing import List
-import heapq
 import math
-from collections import defaultdict, Counter, deque
-from functools import lru_cache
-from itertools import combinations
-from sortedcontainers import SortedList, SortedDict, SortedSet
-
-from sortedcontainers import SortedDict
-from functools import reduce
-from operator import xor
-from functools import lru_cache
-
 import random
+import unittest
 from itertools import permutations, combinations
-import numpy as np
 
-from decimal import Decimal
-
-import heapq
-import copy
 """
 算法：字典序
 功能：计算字典序第K小、和某个对象的字典序rank
 题目：
-440. 字典序的第K小数字（https://leetcode.cn/problems/k-th-smallest-in-lexicographical-order/）xxxx
+
+===================================力扣===================================
+440. 字典序的第K小数字（https://leetcode.cn/problems/k-th-smallest-in-lexicographical-order/）经典面试题使用十叉树求解
+
+===================================洛谷===================================
 P1243 排序集合（https://www.luogu.com.cn/problem/P1243）求出第K小的子集
 P1338 末日的传说（https://www.luogu.com.cn/problem/P1338）结合逆序对计数的字典序
-
 P2524 Uim的情人节礼物·其之弐（https://www.luogu.com.cn/problem/P2524）计算全排列的字典序排名
 P2525 Uim的情人节礼物·其之壱（https://www.luogu.com.cn/problem/P2525）计算全排列的上一个排列
 

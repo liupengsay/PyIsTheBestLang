@@ -1,29 +1,30 @@
-"""
 
-"""
+import math
+import unittest
+from decimal import Decimal, getcontext, MAX_PREC
+getcontext().prec = MAX_PREC
+
+
 """
 算法：大数分解、素数判断、高精度计算
 功能：xxx
 题目：
-Lxxxx xxxx（https://leetcode.cn/problems/shortest-palindrome/）xxxx
+
+===================================力扣===================================
+172. 阶乘后的零（https://leetcode.cn/problems/factorial-trailing-zeroes/）阶乘后缀0的个数
+
+===================================洛谷===================================
 P1920 成功密码（https://www.luogu.com.cn/problem/P1920）预估高精度计算与公式 -ln(1-x) = sum(x**i/i for in range(1, n+1)) 其中 n 趋近于无穷
 P1729 计算e（https://www.luogu.com.cn/problem/P1729）高精度计算e小数位
 P1727 计算π（https://www.luogu.com.cn/problem/P1727）高精度计算π小数位
 P1530 [USACO2.4]分数化小数 Fractions to Decimals（https://www.luogu.com.cn/problem/P1530）分数化为小数
 P1517 高精求小数幂（https://www.luogu.com.cn/record/list?user=739032&status=12&page=5）高精度计算小数的幂值
 P2388 阶乘之乘（https://www.luogu.com.cn/problem/P2388）阶乘之乘后缀0的个数
-172. 阶乘后的零（https://leetcode.cn/problems/factorial-trailing-zeroes/）阶乘后缀0的个数
 P2394 yyy loves Chemistry I（https://www.luogu.com.cn/problem/P2394）高精度计算
 P2393 yyy loves Maths II（https://www.luogu.com.cn/problem/P2393）高精度计算
 
 参考：OI WiKi（xx）
 """
-
-import math
-import unittest
-from decimal import Decimal, getcontext, MAX_PREC
-
-getcontext().prec = MAX_PREC
 
 
 class HighPrecision:

@@ -1,7 +1,14 @@
+import unittest
+
+import numpy as np
+
 """
 算法：分治FFT（分治快速傅里叶变换）是一种用于快速计算多项式乘法的算法。它通过将多项式拆分成两个较小的多项式，然后对每个小多项式分别进行FFT，最后合并计算结果来实现快速计算。
 功能：快速计算傅里叶变换的多项式子函数
-题目：P4721 【模板】分治 FFT（https://www.luogu.com.cn/problem/P4721）
+题目：
+
+===================================洛谷===================================
+P4721 【模板】分治 FFT（https://www.luogu.com.cn/problem/P4721）
 参考：OI WiKi（https://oi-wiki.org/math/poly/fft/）
 
 https://cmwqf.github.io/2019/02/18/%E5%88%86%E6%B2%BBFFT%E8%AF%A6%E8%A7%A3/
@@ -10,34 +17,6 @@ https://cmwqf.github.io/2019/02/18/%E5%88%86%E6%B2%BBFFT%E8%AF%A6%E8%A7%A3/
 例如，您可以编写一个递归函数，该函数接受一个多项式的系数数组作为输入，递归地将它拆分成两个较小的多项式，然后分别对每个小多项式进行FFT，最后合并计算结果。
 """
 
-import bisect
-import random
-import re
-import unittest
-
-from typing import List
-import heapq
-import math
-from collections import defaultdict, Counter, deque
-from functools import lru_cache
-from itertools import combinations
-from sortedcontainers import SortedList, SortedDict, SortedSet
-
-from sortedcontainers import SortedDict
-from functools import reduce
-from operator import xor
-from functools import lru_cache
-
-import random
-from itertools import permutations, combinations
-import numpy as np
-
-from decimal import Decimal
-
-import heapq
-import copy
-
-import numpy as np
 
 def fft_v(x):
     x = np.asarray(x, dtype=float)

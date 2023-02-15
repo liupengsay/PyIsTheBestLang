@@ -1,14 +1,4 @@
-"""
 
-"""
-"""
-算法：回文数字枚举
-功能：xxx
-题目：
-L2081 k 镜像数字的和（https://leetcode.cn/problems/sum-of-k-mirror-numbers/）枚举 k 进制的回文数字并依次判定合法性
-
-参考：OI WiKi（xx）
-"""
 
 
 
@@ -34,6 +24,20 @@ import numpy as np
 from decimal import Decimal
 import heapq
 import copy
+
+
+"""
+算法：回文数字枚举
+功能：xxx
+题目：
+
+===================================力扣===================================
+2081 k 镜像数字的和（https://leetcode.cn/problems/sum-of-k-mirror-numbers/）枚举 k 进制的回文数字并依次判定合法性
+
+参考：OI WiKi（xx）
+"""
+
+
 class PalindromeNum:
     def __init__(self):
         return

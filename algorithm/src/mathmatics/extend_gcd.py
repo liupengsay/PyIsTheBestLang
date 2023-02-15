@@ -1,19 +1,3 @@
-"""
-
-"""
-"""
-算法：扩展欧几里得定理、extended_gcd、binary_gcd、二进制gcd
-功能：用于求解单个同余方程
-题目：
-LP1082 同余方程（https://www.luogu.com.cn/problem/P1082）转化为同余方程求解最小的正整数解
-P5435 基于值域预处理的快速 GCD（https://www.luogu.com.cn/problem/P5435）binary_gcd快速求解
-6301. 判断一个点是否可以到达（https://leetcode.cn/contest/biweekly-contest-96/problems/check-if-point-is-reachable/）binary_gcd快速求解
-
-P5582 【SWTR-01】Escape（https://www.luogu.com.cn/problem/P5582）贪心加脑筋急转弯，使用扩展欧几里得算法gcd为1判断可达性
-
-
-参考：OI WiKi（xx）
-"""
 
 import bisect
 import random
@@ -41,6 +25,24 @@ from decimal import Decimal
 
 import heapq
 import copy
+
+
+"""
+算法：扩展欧几里得定理、extended_gcd、binary_gcd、二进制gcd
+功能：用于求解单个同余方程
+题目：
+
+===================================力扣===================================
+6301. 判断一个点是否可以到达（https://leetcode.cn/contest/biweekly-contest-96/problems/check-if-point-is-reachable/）binary_gcd快速求解
+
+===================================洛谷===================================
+P1082 同余方程（https://www.luogu.com.cn/problem/P1082）转化为同余方程求解最小的正整数解
+P5435 基于值域预处理的快速 GCD（https://www.luogu.com.cn/problem/P5435）binary_gcd快速求解
+P5582 【SWTR-01】Escape（https://www.luogu.com.cn/problem/P5582）贪心加脑筋急转弯，使用扩展欧几里得算法gcd为1判断可达性
+
+
+参考：OI WiKi（xx）
+"""
 
 
 def binary_gcd(a, b):
