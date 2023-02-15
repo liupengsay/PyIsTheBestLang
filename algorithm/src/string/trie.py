@@ -6,7 +6,7 @@ import unittest
 题目：
 
 ===================================力扣===================================
-L2416 字符串的前缀分数和（https://leetcode.cn/problems/sum-of-prefix-scores-of-strings/）单词组前缀计数
+2416. 字符串的前缀分数和（https://leetcode.cn/problems/sum-of-prefix-scores-of-strings/）单词组前缀计数
 1803. 统计异或值在范围内的数对有多少（https://leetcode.cn/problems/count-pairs-with-xor-in-a-range/）
 677. 键值映射（https://leetcode.cn/problems/map-sum-pairs/）
 
