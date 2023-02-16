@@ -1,5 +1,7 @@
 import bisect
 import unittest
+import random
+
 
 """
 
@@ -47,7 +49,7 @@ https://codeforces.com/problemset/problem/778/A（二分和使用指针判断是
 https://codeforces.com/problemset/problem/913/C（DP预处理最有单价，再二分加贪心进行模拟求解）
 Teleporters (Hard Version)（https://codeforces.com/problemset/problem/1791/G2）贪心排序，前缀和枚举二分
 
-
+D. Multiplication Table（https://codeforces.com/problemset/problem/448/D）经典二分查找计算n*m的乘法表第k大元素
 
 参考：OI WiKi（xx）
 """
@@ -89,11 +91,49 @@ class BinarySearch:
                 low = mid
         return low if check(low) else high
 
+    @staticmethod
+    def cf_448d(n, m, k):
+        # 模板：计算 n*m 乘法矩阵内的第 k 大元素
+        def check(num):
+            res = 0
+            for x in range(1, m + 1):
+                res += min(n, num // x)
+            return res
+
+        # 初始化大小
+        if m > n:
+            m, n = n, m
+
+        # 二分查找第k大
+        low = 1
+        high = m * n
+        while low < high - 1:
+            mid = low + (high - low) // 2
+            if check(mid) < k:
+                low = mid
+            else:
+                high = mid
+
+        ans = low if check(low) >= k else high
+        return ans
+
 
 class TestGeneral(unittest.TestCase):
 
-    def test_define_sorted_list(self):
-        pass
+    def test_binary_search(self):
+
+        bs = BinarySearch()
+        for _ in range(2):
+            m = random.randint(10, 100)
+            n = random.randint(10, 100)
+            lst = []
+            for i in range(1, m + 1):
+                lst.extend([i*j for j in range(1, n+1)])
+            lst.sort()
+            for i, num in enumerate(lst):
+                k = i+1
+                assert bs.cf_448d(n, m, k) == num
+
         return
 
 
