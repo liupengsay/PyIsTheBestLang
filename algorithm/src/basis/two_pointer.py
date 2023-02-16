@@ -22,6 +22,10 @@ P3662 [USACO17FEB]Why Did the Cow Cross the Road II S（https://www.luogu.com.cn
 P4995 跳跳！（https://www.luogu.com.cn/problem/P4995）排序后利用贪心与双指针进行模拟
 P2207 Photo（https://www.luogu.com.cn/problem/P2207）贪心加同向双指针
 P7542 [COCI2009-2010#1] MALI（https://www.luogu.com.cn/problem/P7542）桶计数加双指针进行计算
+
+================================CodeForces================================
+D. Carousel（https://codeforces.com/problemset/problem/1328/D）环形数组滑动窗口，记录变化次数并根据奇偶变换次数与环形首尾元素确定染色数量
+
 参考：OI WiKi（xx）
 """
 
@@ -31,8 +35,17 @@ class TwoPointer:
         return
 
     @staticmethod
+    def circle_array(arr):
+        # 模板：环形数组指针移动
+        n = len(arr)
+        ans = 0
+        for i in range(n):
+            ans = max(ans, arr[i]+arr[(i+n-1)%n])
+        return ans
+
+    @staticmethod
     def fast_and_slow(head):
-        # 快慢指针判断链表是否存在环
+        # 模板：快慢指针判断链表是否存在环
         fast = slow = head
         while fast and fast.next:
             fast = fast.next.next
