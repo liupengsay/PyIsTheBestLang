@@ -163,7 +163,7 @@ class TwoSAT:
         return
 
     @staticmethod
-    def main_4782(n, pairs):
+    def luogu_4782(n, pairs):
         # 建图并把索引编码
         edge = [[] for _ in range(2 * n)]
         for i, a, j, b in pairs:
@@ -211,7 +211,7 @@ class TwoSAT:
         return
 
     @staticmethod
-    def main_p5782(n, pairs):
+    def luogu_p5782(n, pairs):
 
         # 建图并把索引编码
         edge = [[] for _ in range(4 * n)]
@@ -263,7 +263,7 @@ class TwoSAT:
         return
 
     @staticmethod
-    def main_4171(n, pairs):
+    def luogu_4171(n, pairs):
         # 建图并把索引编码
         edge = [[] for _ in range(2 * n)]
         for lst in pairs:
@@ -277,16 +277,15 @@ class TwoSAT:
         #####################################################
         # # 按照强连通进行缩点
         tarjan = Tarjan(edge)
+        ans = True
         for sc in tarjan.scc:
             pre = set()
             for node in sc:
                 # 条件相反的两个点不能在一个强连通分量
                 if node // 2 in pre:
-                    # ac.st("BAD")
-                    return
+                    ans = False
                 pre.add(node // 2)
-        # ac.st("GOOD")
-
+        # ac.st("GOOD" if ans else "BAD")
 
         #####################################################
         # Kosaraju算法
