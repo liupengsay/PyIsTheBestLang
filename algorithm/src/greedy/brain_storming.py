@@ -91,6 +91,7 @@ https://codeforces.com/problemset/problem/747/D（贪心模拟求解）
 https://codeforces.com/problemset/problem/1148/D（贪心，自定义排序选择构造）
 https://codeforces.com/contest/792/problem/C（分类进行贪心讨论）
 https://codeforces.com/problemset/problem/830/A （按照影响区间排序，然后贪心分配时间）
+C. Table Decorations（https://codeforces.com/problemset/problem/478/C）贪心结论题a<=b<=c则有min((a+b+c)//3, a+b)
 
 参考：OI WiKi（xx）
 """
