@@ -56,6 +56,10 @@ P6770 [USACO05MAR]Checking an Alibi 不在场的证明（https://www.luogu.com.c
 P6833 [Cnoi2020]雷雨（https://www.luogu.com.cn/problem/P6833）三遍最短路后，进行枚举计算
 P7551 [COCI2020-2021#6] Alias（https://www.luogu.com.cn/problem/P7551）最短路裸题，注意重边与自环
 
+================================CodeForces================================
+C. Dijkstra?（https://codeforces.com/problemset/problem/20/C）正权值最短路计算，并记录返回生成路径
+
+
 参考：OI WiKi（xx）
 """
 
@@ -71,6 +75,7 @@ class Dijkstra:
         dis = [float("inf")]*n
         stack = [[0, src]]
         dis[src] = 0
+
         while stack:
             d, i = heapq.heappop(stack)
             if dis[i] < d:
@@ -83,12 +88,13 @@ class Dijkstra:
         return dis
 
     @staticmethod
-    def get_dijkstra_result2(dct, src, dst):
-        # 模板: Dijkstra求起终点的最短路，注意只能是正权值可以提前返回结果
+    def dijkstra_src_to_dst_path(dct, src, dst):
+        # 模板: Dijkstra求起终点的最短路，注意只能是正权值可以提前返回结果，并返回对应经过的路径
         n = len(dct)
         dis = [float("inf")] * n
         stack = [[0, src]]
         dis[src] = 0
+        father = [-1] * n  # 记录最短路的上一跳
         while stack:
             d, i = heapq.heappop(stack)
             if dis[i] < d:
@@ -100,6 +106,13 @@ class Dijkstra:
                 if dj < dis[j]:
                     dis[j] = dj
                     heapq.heappush(stack, [dj, j])
+        # 向上回溯路径
+        path = []
+        i = dst
+        while i != -1:
+            path.append(i + 1)
+            i = father[i]
+        path.reverse()
         return dis[dst]
 
     @staticmethod
