@@ -5,44 +5,8 @@ from collections import defaultdict
 
 """
 
-Tarjan 算法求强连通分量（即是有向图的环）
-在 Tarjan 算法中为每个结点  维护了以下几个变量：
-
-：深度优先搜索遍历时结点  被搜索的次序。
-：在  的子树中能够回溯到的最早的已经在栈中的结点。设以  为根的子树为 。 定义为以下结点的  的最小值： 中的结点；从  通过一条不在搜索树上的边能到达的结点。
-一个结点的子树内结点的 dfn 都大于该结点的 dfn。
-
-从根开始的一条路径上的 dfn 严格递增，low 严格非降。
-
-按照深度优先搜索算法搜索的次序对图中所有的结点进行搜索，维护每个结点的 dfn 与 low 变量，且让搜索到的结点入栈。每当找到一个强连通元素，就按照该元素包含结点数目让栈中元素出栈。在搜索过程中，对于结点  和与其相邻的结点 （ 不是  的父节点）考虑 3 种情况：
-
- 未被访问：继续对  进行深度搜索。在回溯过程中，用  更新 。因为存在从  到  的直接路径，所以  能够回溯到的已经在栈中的结点， 也一定能够回溯到。
- 被访问过，已经在栈中：根据 low 值的定义，用  更新 。
- 被访问过，已不在栈中：说明  已搜索完毕，其所在连通分量已被处理，所以不用对其做操作。
-
-
-Kosaraju 算法
-引入
-Kosaraju 算法最早在 1978 年由 S. Rao Kosaraju 在一篇未发表的论文上提出，但 Micha Sharir 最早发表了它。
-
-过程
-该算法依靠两次简单的 DFS 实现：
-
-第一次 DFS，选取任意顶点作为起点，遍历所有未访问过的顶点，并在回溯之前给顶点编号，也就是后序遍历。
-
-第二次 DFS，对于反向后的图，以标号最大的顶点作为起点开始 DFS。这样遍历到的顶点集合就是一个强连通分量。对于所有未访问过的结点，选取标号最大的，重复上述过程。
-
-两次 DFS 结束后，强连通分量就找出来了，Kosaraju 算法的时间复杂度为 。
-
-Garbow 算法
-过程
-Garbow 算法是 Tarjan 算法的另一种实现，Tarjan 算法是用 dfn 和 low 来计算强连通分量的根，Garbow 维护一个节点栈，并用第二个栈来确定何时从第一个栈中弹出属于同一个强连通分量的节点。从节点  开始的 DFS 过程中，当一条路径显示这组节点都属于同一个强连通分量时，只要栈顶节点的访问时间大于根节点  的访问时间，就从第二个栈中弹出这个节点，那么最后只留下根节点 。在这个过程中每一个被弹出的节点都属于同一个强连通分量。
-
-当回溯到某一个节点  时，如果这个节点在第二个栈的顶部，就说明这个节点是强连通分量的起始节点，在这个节点之后搜索到的那些节点都属于同一个强连通分量，于是从第一个栈中弹出那些节点，构成强连通分量。
-
-
-算法：强连通分量
-功能：用来求解有向图与无向图的强连通分量，可以将一张图的每个强连通分量都缩成一个点，然后这张图会变成一个 DAG，可以进行拓扑排序以及更多其他操作
+算法：强连通分量、2-SAT、最大环、最小环
+功能：用来求解有向图的强连通分量，可以将一张图的每个强连通分量都缩成一个点，然后这张图会变成一个 DAG，可以进行拓扑排序以及更多其他操作
 定义：有向图 G 强连通是指 G 中任意两个结点连通，强连通分量（Strongly Connected Components，SCC）是极大的强连通子图
 距离：求一条路径，可以经过重复结点，要求经过的不同结点数量最多
 
@@ -56,18 +20,21 @@ P3387 缩点 （https://www.luogu.com.cn/problem/solution/P3387）允许多次�
 P2661 [NOIP2015 提高组] 信息传递（https://www.luogu.com.cn/problem/P2661）求最小的环长度（有向图、内向基环树没有环套环，N个节点N条边，也可以使用拓扑排序）
 P4089 [USACO17DEC]The Bovine Shuffle S（https://www.luogu.com.cn/problem/P4089）求所有环的长度和，注意自环
 P5145 漂浮的鸭子（https://www.luogu.com.cn/problem/P5145）内向基环树求最大权值和的环
+P4782 【模板】2-SAT 问题（https://www.luogu.com.cn/problem/P4782）2-SAT 问题模板题
+P5782 [POI2001] 和平委员会（https://www.luogu.com.cn/problem/P5782）2-SAT 问题模板题
+P4171 [JSOI2010] 满汉全席（https://www.luogu.com.cn/problem/P4171）2-SAT 问题模板题
 
 参考：OI WiKi（https://oi-wiki.org/graph/scc/）
-
 """
+
 
 class Kosaraju:
     def __init__(self, n, g):
         self.n = n
         self.g = g
-        self.g2 = [[] for _ in range(self.n)]
+        self.g2 = [list() for _ in range(self.n)]
         self.vis = [False] * n
-        self.s = []
+        self.s = list()
         self.color = [0] * n
         self.sccCnt = 0
         self.gen_reverse_graph()
@@ -189,6 +156,148 @@ class InwardBaseTree:
             dfs(edge[st], dct[st])
             b[st] = 1
         return ans
+
+
+class TwoSAT:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def main_4782(n, pairs):
+        # 建图并把索引编码
+        edge = [[] for _ in range(2 * n)]
+        for i, a, j, b in pairs:
+            i -= 1
+            j -= 1
+            edge[i * 2 + 1 - a].append(j * 2 + b)
+            edge[j * 2 + 1 - b].append(i * 2 + a)
+
+        #####################################################
+        # 按照强连通进行缩点检验是否存在冲突
+        tarjan = Tarjan(edge)
+        for sc in tarjan.scc:
+            pre = set()
+            for node in sc:
+                # 条件相反的两个点不能在一个强连通分量
+                if node // 2 in pre:
+                    # ac.st("IMPOSSIBLE")
+                    return
+                pre.add(node // 2)
+
+        # 进行方案赋予，先出现的确定值
+        # ac.st("POSSIBLE")
+        ans = [0] * n
+        pre = set()
+        for sc in tarjan.scc:
+            for node in sc:
+                i = node // 2
+                if i not in pre:
+                    ans[i] = node % 2
+                pre.add(i)
+        # ac.lst(ans)
+
+        #####################################################
+        # Kosaraju算法（与上面的算法二选一）
+        kosaraju = Kosaraju(2 * n, edge)
+        for i in range(n):
+            if kosaraju.color[i * 2] == kosaraju.color[i * 2 + 1]:
+                # ac.st("IMPOSSIBLE")
+                return
+
+        # ac.st("POSSIBLE")
+        ans = [int(kosaraju.color[2 * i] < kosaraju.color[2 * i + 1])
+               for i in range(n)]
+        # ac.lst(ans)
+        return
+
+    @staticmethod
+    def main_p5782(n, pairs):
+
+        # 建图并把索引编码
+        edge = [[] for _ in range(4 * n)]
+        for a, b in pairs:
+            edge[a * 2 + 1].append(b * 2)
+            edge[b * 2 + 1].append(a * 2)
+
+        # 同一党派内只允许一个人参加
+        for i in range(n):
+            a, b = 2 * i, 2 * i + 1
+            edge[a * 2 + 1].append(b * 2)
+            edge[a * 2].append(b * 2 + 1)
+            edge[b * 2 + 1].append(a * 2)
+            edge[b * 2].append(a * 2 + 1)
+
+        #####################################################
+        # 按照强连通进行缩点
+        tarjan = Tarjan(edge)
+        for sc in tarjan.scc:
+            pre = set()
+            for node in sc:
+                # 条件相反的两个点不能在一个强连通分量
+                if node // 2 in pre:
+                    # ac.st("NIE")
+                    return
+                pre.add(node // 2)
+
+        # 进行方案赋予，先出现的确定值
+        ans = [0] * 2 * n
+        pre = set()
+        for sc in tarjan.scc:
+            for node in sc:
+                i = node // 2
+                if i not in pre:
+                    ans[i] = node % 2
+                pre.add(i)
+        res = [i+1 for i in range(2 * n) if ans[i]]
+
+        #####################################################
+        # Kosaraju算法
+        kosaraju = Kosaraju(4 * n, edge)
+        for i in range(2 * n):
+            if kosaraju.color[i * 2] == kosaraju.color[i * 2 + 1]:
+                # ac.st("NIE")
+                return
+        # 注意是小于符号
+        ans = [int(kosaraju.color[2 * i] < kosaraju.color[2 * i + 1]) for i in range(2 * n)]
+        res = [i + 1 for i in range(2 * n) if ans[i]]
+        return
+
+    @staticmethod
+    def main_4171(n, pairs):
+        # 建图并把索引编码
+        edge = [[] for _ in range(2 * n)]
+        for lst in pairs:
+            i = int(lst[0][1:]) - 1
+            j = int(lst[1][1:]) - 1
+            a = 1 if lst[0][0] == "h" else 0
+            b = 1 if lst[1][0] == "h" else 0
+            edge[i * 2 + (1 - a)].append(j * 2 + b)
+            edge[j * 2 + (1 - b)].append(i * 2 + a)
+
+        #####################################################
+        # # 按照强连通进行缩点
+        tarjan = Tarjan(edge)
+        for sc in tarjan.scc:
+            pre = set()
+            for node in sc:
+                # 条件相反的两个点不能在一个强连通分量
+                if node // 2 in pre:
+                    # ac.st("BAD")
+                    return
+                pre.add(node // 2)
+        # ac.st("GOOD")
+
+
+        #####################################################
+        # Kosaraju算法
+        kosaraju = Kosaraju(2 * n, edge)
+        ans = True
+        for i in range(n):
+            if kosaraju.color[i * 2] == kosaraju.color[i * 2 + 1]:
+                ans = False
+                break
+        # ac.st("GOOD" if ans else "BAD")
+        return
 
 
 class TestGeneral(unittest.TestCase):
