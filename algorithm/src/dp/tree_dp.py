@@ -34,6 +34,7 @@ P7159 「dWoi R1」Sweet Fruit Chocolate（https://www.luogu.com.cn/problem/P715
 
 ==================================AtCoder=================================
 F - Expensive Expense （https://atcoder.jp/contests/abc222/tasks/abc222_f）换根DP
+D. Distance in Tree（https://codeforces.com/problemset/problem/161/D）树形DP计数，记录距离为k的点对数
 
 参考：OI WiKi（xx）
 """
@@ -43,6 +44,42 @@ from collections import deque
 from functools import lru_cache
 from heapq import nlargest
 from typing import List
+
+
+class Solution:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def cf_161d(n, k, pairs):
+        # 模板：记录树中距离为 k 的节点对数量
+        edge = [[] for _ in range(n)]
+        for x, y in pairs:
+            edge[x].append(y)
+            edge[y].append(x)
+        dp = [[0] * (k + 1) for _ in range(n)]
+
+        def dfs(i, fa):
+            nonlocal ans
+            dp[i][0] = 1
+            for j in edge[i]:
+                if j != fa:
+                    yield dfs(j, i)
+                    for s in range(1, k + 1):
+                        dp[i][s] += dp[j][s - 1]
+
+            ans += dp[i][k]
+            cur = 0
+            for j in edge[i]:
+                if j != fa:
+                    for s in range(1, k):
+                        cur += dp[j][s - 1] * (dp[i][k - s] - dp[j][k - s - 1])
+            ans += cur // 2
+            yield
+
+        ans = 0
+        dfs(0, -1)
+        return ans
 
 
 class TreeDP:
