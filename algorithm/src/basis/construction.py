@@ -20,6 +20,7 @@ https://codeforces.com/problemset/problem/1396/A（贪心构造）
 https://codeforces.com/problemset/problem/1118/E（模拟贪心构造）
 https://codeforces.com/problemset/problem/960/C（贪心构造）
 B. Fedya and Array（https://codeforces.com/contest/1793/problem/B）思维题贪心构造
+D. Replace by MEX（https://codeforces.com/problemset/problem/1375/D）经典MEX的构造题，使得数组非降，即最小的未出现在数组中的数
 
 ==================================AtCoder=================================
 https://atcoder.jp/contests/agc007/tasks/agc007_b（脑筋急转弯思维构造公式）

@@ -1,5 +1,7 @@
 
 import unittest
+from algorithm.src.fast_io import FastIO, inf
+
 
 """
 算法：线性DP
@@ -51,6 +53,7 @@ https://codeforces.com/problemset/problem/1084/C（线性DP加前缀和优化）
 https://codeforces.com/problemset/problem/166/E（线性DP计数）
 https://codeforces.com/problemset/problem/1221/D（线性DP模拟）
 C. Chef Monocarp（https://codeforces.com/problemset/problem/1437/C）二维线性DP，两个数组线性移动进行匹配计算最大或者最小值
+D. Armchairs（https://codeforces.com/problemset/problem/1525/D）二维线性DP，两个数组线性移动进行匹配计算最大或者最小值
 
 参考：OI WiKi（xx）
 """
@@ -58,6 +61,24 @@ C. Chef Monocarp（https://codeforces.com/problemset/problem/1437/C）二维线�
 
 class LinearDP:
     def __init__(self):
+        return
+
+    @staticmethod
+    def cf_1525d(ac=FastIO()):
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        occu = [i for i in range(n) if nums[i]]
+        free = [i for i in range(n) if not nums[i]]
+        if not occu:
+            ac.st(0)
+            return
+        a, b = len(occu), len(free)
+        dp = [[inf] * (b + 1) for _ in range(a + 1)]
+        dp[0] = [0] * (b + 1)
+        for i in range(a):
+            for j in range(b):
+                dp[i + 1][j + 1] = ac.min(dp[i + 1][j], dp[i][j] + abs(occu[i] - free[j]))
+        ac.st(dp[-1][-1])
         return
 
     @staticmethod
