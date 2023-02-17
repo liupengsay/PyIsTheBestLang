@@ -10,6 +10,7 @@ from typing import List
 题目：xx（xx）
 
 ===================================力扣===================================
+179. 最大数（https://leetcode.cn/problems/largest-number/）自定义拼接最大数
 912. 排序数组（https://leetcode.cn/problems/sort-an-array/）快速排序
 面试题45. 把数组排成最小的数（https://leetcode.cn/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/）自定义拼接成最小的数
 
@@ -300,6 +301,24 @@ class VariousSort:
             return 0
         nums.sort(key=cmp_to_key(compare))
         return nums
+
+    @staticmethod
+    def lc_179(nums: List[int]) -> str:
+
+        # 模板: 自定义排序拼接最大数
+        def compare(a, b):
+            # 比较函数
+            x = int(a + b)
+            y = int(b + a)
+            if x > y:
+                return -1
+            elif x < y:
+                return 1
+            return 0
+
+        nums = [str(x) for x in nums]
+        nums.sort(key=cmp_to_key(compare))
+        return str(int("".join(nums)))
 
 
 class TestGeneral(unittest.TestCase):
