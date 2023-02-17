@@ -24,6 +24,10 @@ P4782 【模板】2-SAT 问题（https://www.luogu.com.cn/problem/P4782）2-SAT 
 P5782 [POI2001] 和平委员会（https://www.luogu.com.cn/problem/P5782）2-SAT 问题模板题
 P4171 [JSOI2010] 满汉全席（https://www.luogu.com.cn/problem/P4171）2-SAT 问题模板题
 
+================================CodeForces================================
+C. Engineer Artem（https://codeforces.com/problemset/problem/1438/C）2-SAT 问题模板题
+
+
 参考：OI WiKi（https://oi-wiki.org/graph/scc/）
 """
 
@@ -161,6 +165,50 @@ class InwardBaseTree:
 class TwoSAT:
     def __init__(self):
         return
+
+    @staticmethod
+    def cf_1438c(m, n, grid):
+        # 建图并把索引编码
+        edge = [[] for _ in range(2 * m * n)]
+        for i in range(m):
+            for j in range(n):
+                if i + 1 < m:
+                    x, y = i * n + j, i * n + n + j
+                    for a, b in [[0, 0], [0, 1], [1, 0], [1, 1]]:
+                        if grid[i][j] + a == grid[i + 1][j] + b:
+                            edge[x * 2 + a].append(y * 2 + 1 - b)
+                            edge[y * 2 + b].append(x * 2 + 1 - a)
+                if j + 1 < n:
+                    x, y = i * n + j, i * n + 1 + j
+                    for a, b in [[0, 0], [0, 1], [1, 0], [1, 1]]:
+                        if grid[i][j] + a == grid[i][j + 1] + b:
+                            edge[x * 2 + a].append(y * 2 + 1 - b)
+                            edge[y * 2 + b].append(x * 2 + 1 - a)
+
+        #####################################################
+        # 按照强连通进行缩点
+        tarjan = Tarjan(edge)
+        # 进行方案赋予，先出现的确定值
+        ans = [0] * m*n
+        pre = set()
+        for sc in tarjan.scc:
+            for node in sc:
+                i = node // 2
+                if i not in pre:
+                    ans[i] = node % 2
+                pre.add(i)
+
+        for x in range(m * n):
+            grid[x // n][x % n] += ans[x]
+
+        #####################################################
+        # Kosaraju算法
+        kosaraju = Kosaraju(2 * m * n, edge)
+        # 注意是小于符号
+        ans = [int(kosaraju.color[2 * i] < kosaraju.color[2 * i + 1]) for i in range(m * n)]
+        for x in range(m * n):
+            grid[x // n][x % n] += ans[x]
+        return grid
 
     @staticmethod
     def luogu_4782(n, pairs):
