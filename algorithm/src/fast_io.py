@@ -12,8 +12,14 @@ from collections import defaultdict
 from itertools import combinations
 from itertools import permutations
 from types import GeneratorType
+from functools import cmp_to_key
+from functools import reduce
+from operator import xor
+from operator import mul
+from operator import add
+from heapq import nlargest
 
-sys.setrecursionlimit(10000000)
+inf = float("inf")
 
 
 class FastIO:
@@ -28,7 +34,7 @@ class FastIO:
         return int(self._read())
 
     def read_float(self):
-        return int(self._read())
+        return float(self._read())
 
     def read_ints(self):
         return map(int, self._read().split())
@@ -51,11 +57,11 @@ class FastIO:
     def read_str(self):
         return self._read()
 
-    def read_strs(self):
+    def read_list_strs(self):
         return self._read().split()
 
     def read_list_str(self):
-        return self._read().split()
+        return list(self._read())
 
     @staticmethod
     def st(x):
@@ -66,6 +72,21 @@ class FastIO:
         return sys.stdout.write(" ".join(str(w) for w in x) + '\n')
 
     @staticmethod
+    def round_5(f):
+        res = int(f)
+        if f - res >= 0.5:
+            res += 1
+        return res
+
+    @staticmethod
+    def max(a, b):
+        return a if a > b else b
+
+    @staticmethod
+    def min(a, b):
+        return a if a < b else b
+
+    @staticmethod
     def bootstrap(f, stack=[]):
         def wrappedfunc(*args, **kwargs):
             if stack:
@@ -73,7 +94,7 @@ class FastIO:
             else:
                 to = f(*args, **kwargs)
                 while True:
-                    if type(to) is GeneratorType:
+                    if isinstance(to, GeneratorType):
                         stack.append(to)
                         to = next(to)
                     else:
@@ -82,4 +103,5 @@ class FastIO:
                             break
                         to = stack[-1].send(to)
                 return to
+
         return wrappedfunc
