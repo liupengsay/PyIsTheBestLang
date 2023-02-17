@@ -1,6 +1,7 @@
 import unittest
 
 from typing import List
+from types import GeneratorType
 
 """
 算法：矩阵DP、二维DP
@@ -41,9 +42,57 @@ P3399 丝绸之路（https://www.luogu.com.cn/problem/P3399）二维矩阵DP
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1446/B（最长公共子序列LCS变形问题，理解贡献）
 https://codeforces.com/problemset/problem/429/B（四个方向的矩阵DP）
+D. Colored Rectangles（https://codeforces.com/problemset/problem/1398/D）三维DP，选取两个不同数组的数乘积，计算最大总和
 
 参考：OI WiKi（xx）
 """
+
+
+class Solution:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def bootstrap(f, queue=[]):
+        def wrappedfunc(*args, **kwargs):
+            if queue:
+                return f(*args, **kwargs)
+            else:
+                to = f(*args, **kwargs)
+                while True:
+                    if isinstance(to, GeneratorType):
+                        queue.append(to)
+                        to = next(to)
+                    else:
+                        queue.pop()
+                        if not queue:
+                            break
+                        to = queue[-1].send(to)
+                return to
+        return wrappedfunc
+
+    def cf_1398d(self, r, g, b, lst):
+        # 模板：三维DP，选取两个不同数组的数乘积，计算最大总和
+        @self.bootstrap
+        def dfs(i, j, k):
+            if dp[i][j][k] != -1:
+                yield
+            res = 0
+            if i < r and j < g:
+                yield dfs(i + 1, j + 1, k)
+                res = max(res, dp[i + 1][j + 1][k] + lst[0][i] * lst[1][j])
+            if i < r and k < b:
+                yield dfs(i + 1, j, k + 1)
+                res = max(res, dp[i + 1][j][k + 1] + lst[0][i] * lst[2][k])
+            if j < g and k < b:
+                yield dfs(i, j + 1, k + 1)
+                res = max(res, dp[i][j + 1][k + 1] + lst[2][k] * lst[1][j])
+            dp[i][j][k] = res
+            yield
+
+        dp = [[[-1] * (b + 1) for _ in range(g + 1)] for _ in range(r + 1)]
+        dfs(0, 0, 0)
+        return dp[0][0][0]
 
 
 class MatrixDP:
