@@ -33,7 +33,7 @@ P7667 [JOI2018] Art Exhibition（https://www.luogu.com.cn/problem/P7667）公式
 https://codeforces.com/problemset/problem/33/C（前后缀最大变换和与分割点枚举，经典类型题目）
 https://codeforces.com/problemset/problem/797/C（后缀最小值字典序模拟）
 https://codeforces.com/problemset/problem/75/D（压缩数组最大子段和）
-
+C. Count Triangles（https://codeforces.com/problemset/problem/1355/C）经典使用作用域差分计算，合法三角形边长个数
 
 参考：OI WiKi（xx）
 """
@@ -42,6 +42,25 @@ https://codeforces.com/problemset/problem/75/D（压缩数组最大子段和）
 class DiffArray:
     def __init__(self):
         return
+
+    @staticmethod
+    def cf_1355c(a, b, c, d):
+        # 模板: 经典使用作用域差分计算，合法三角形边长个数
+        diff = [0] * (b + c + 1)
+        for x in range(a, b + 1):
+            diff[x + b] += 1
+            if x + c + 1 <= b + c:
+                diff[x + c + 1] -= 1
+        for i in range(1, b + c + 1):
+            diff[i] += diff[i - 1]
+
+        for i in range(1, b + c + 1):
+            diff[i] += diff[i - 1]
+
+        ans = 0
+        for z in range(c, d + 1):
+            ans += diff[-1] - diff[min(z, b + c)]
+        return ans
 
     @staticmethod
     def get_diff_array(n, shifts):
