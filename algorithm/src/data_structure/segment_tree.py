@@ -1,6 +1,7 @@
 import random
 import unittest
 from collections import defaultdict
+from types import GeneratorType
 
 """
 算法：线段树
@@ -27,10 +28,139 @@ P3372 【模板】线段树 1（https://www.luogu.com.cn/problem/P3372）区间�
 ================================CodeForces================================
 
 https://codeforces.com/problemset/problem/482/B（区间按位或赋值、按位与查询）
+C. Sereja and Brackets（https://codeforces.com/problemset/problem/380/C）线段树查询区间内所有合法连续子序列括号串的总长度
 
 参考：OI WiKi（xx）
 """
 
+
+class SegTreeBrackets:
+    def __init__(self, n, s):
+        self.n = n
+        self.s = s
+        self.a = [0] * (2 * self.n)
+        self.b = [0] * (2 * self.n)
+        self.c = [0] * (2 * self.n)
+
+    def build(self):
+        for i in range(self.n):
+            self.a[i + self.n] = 0
+            self.b[i + self.n] = 1 if self.s[i] == "(" else 0
+            self.c[i + self.n] = 1 if self.s[i] == ")" else 0
+        for i in range(self.n - 1, 0, -1):
+            t = min(self.b[i << 1], self.c[i << 1 | 1])
+            self.a[i] = self.a[i << 1] + self.a[i << 1 | 1] + 2 * t
+            self.b[i] = self.b[i << 1] + self.b[i << 1 | 1] - t
+            self.c[i] = self.c[i << 1] + self.c[i << 1 | 1] - t
+
+    def query(self, low, r):
+        left = []
+        right = []
+        low += self.n
+        r += self.n
+        while low <= r:
+            if low & 1:
+                left.append([self.a[low], self.b[low], self.c[low]])
+                low += 1
+            if not r & 1:
+                right.append([self.a[r], self.b[r], self.c[r]])
+                r -= 1
+            low >>= 1
+            r >>= 1
+        a1 = b1 = c1 = 0
+        for a2, b2, c2 in left + right[::-1]:
+            t = min(b1, c2)
+            a1 += a2 + 2 * t
+            b1 += b2 - t
+            c1 += c2 - t
+        return a1
+    
+    
+class Solution:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def bootstrap(f, queue=[]):
+        def wrappedfunc(*args, **kwargs):
+            if queue:
+                return f(*args, **kwargs)
+            else:
+                to = f(*args, **kwargs)
+                while True:
+                    if isinstance(to, GeneratorType):
+                        queue.append(to)
+                        to = next(to)
+                    else:
+                        queue.pop()
+                        if not queue:
+                            break
+                        to = queue[-1].send(to)
+                return to
+        return wrappedfunc
+
+    def cf_380c(self, word, quiries):
+        # 模板：线段树进行分治并使用dp合并
+        n = len(word)
+        a = [0] * (4 * n)
+        b = [0] * (4 * n)
+        c = [0] * (4 * n)
+
+        @self.bootstrap
+        def update(left, r, s, t, i):
+            if s == t:
+                if word[s - 1] == ")":
+                    c[i] = 1
+                else:
+                    b[i] = 1
+                a[i] = 0
+                yield
+
+            m = s + (t - s) // 2
+            if left <= m:
+                yield update(left, r, s, m, i << 1)
+            if r > m:
+                yield update(left, r, m + 1, t, i << 1 | 1)
+
+            match = min(b[i << 1], c[i << 1 | 1])
+            a[i] = a[i << 1] + a[i << 1 | 1] + 2 * match
+            b[i] = b[i << 1] + b[i << 1 | 1] - match
+            c[i] = c[i << 1] + c[i << 1 | 1] - match
+            yield
+
+        @self.bootstrap
+        def query(left, r, s, t, i):
+            if left <= s and t <= r:
+                d[i] = [a[i], b[i], c[i]]
+                yield
+
+            a1 = b1 = c1 = 0
+            m = s + (t - s) // 2
+            if left <= m:
+                yield query(left, r, s, m, i << 1)
+                a2, b2, c2 = d[i << 1]
+                match = min(b1, c2)
+                a1 += a2 + 2 * match
+                b1 += b2 - match
+                c1 += c2 - match
+            if r > m:
+                yield query(left, r, m + 1, t, i << 1 | 1)
+                a2, b2, c2 = d[i << 1 | 1]
+                match = min(b1, c2)
+                a1 += a2 + 2 * match
+                b1 += b2 - match
+                c1 += c2 - match
+            d[i] = [a1, b1, c1]
+            yield
+
+        update(1, n, 1, n, 1)
+        ans = []
+        for x, y in quiries:
+            d = defaultdict(list)
+            query(x, y, 1, n, 1)
+            ans.append(d[1][0])
+        return ans
+        
 
 class SegmentTreeOrUpdateAndQuery:
     def __init__(self):
