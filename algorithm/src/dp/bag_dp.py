@@ -51,6 +51,11 @@ P6389 [COCI2007-2008#4] MUZICARI（https://www.luogu.com.cn/problem/P6389）一�
 P6567 [NOI Online #3 入门组] 买表（https://www.luogu.com.cn/problem/P6567）一维二进制优化有限背包，即物品数为连续值时需要使用二进制优化
 P6771 [USACO05MAR]Space Elevator 太空电梯（https://www.luogu.com.cn/problem/P6771）排序后，一维有限变种背包，使用二进制优化
 
+
+================================CodeForces================================
+B. Modulo Sum（https://codeforces.com/problemset/problem/577/B）取模计数二进制优化与背包DP，寻找非空子序列的和整除给定的数
+
+
 参考：OI WiKi（xx）
 """
 
@@ -58,6 +63,29 @@ P6771 [USACO05MAR]Space Elevator 太空电梯（https://www.luogu.com.cn/problem
 class BagDP:
     def __init__(self):
         return
+
+    def cf_577b(self, m, nums):
+        # 模板：取模计数二进制优化与背包DP，寻找非空子序列的和整除给定的数
+        cnt = [0] * m
+        for num in nums:
+            cnt[num % m] += 1
+        if cnt[0] or max(cnt) >= m:
+            return "YES"
+        pre = [0] * m
+        for i in range(1, m):
+            if cnt[i]:
+                for x in self.bin_split(cnt[i]):
+                    cur = pre[:]
+                    y = (x * i) % m
+                    cur[y] = 1
+                    for j in range(m):
+                        if pre[j]:
+                            cur[(j + y) % m] = 1
+                    pre = cur[:]
+                if pre[0]:
+                    return "YES"
+        return "NO"
+
 
     @staticmethod
     def bin_split(num):
