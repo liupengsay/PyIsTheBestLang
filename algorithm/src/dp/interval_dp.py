@@ -26,6 +26,10 @@ P1435 [IOI2000] 回文字串（https://www.luogu.com.cn/problem/P1435）典型�
 P1388 算式（https://www.luogu.com.cn/problem/P1388）回溯枚举符号组合，再使用区间DP进行最大值求解
 P1103 书本整理（https://www.luogu.com.cn/problem/P1103）三维DP
 P2858 [USACO06FEB]Treats for the Cows G/S（https://www.luogu.com.cn/problem/P2858）典型区间DP
+
+================================CodeForces================================
+C. The Sports Festival（https://codeforces.com/problemset/problem/1509/C）转换为区间DP进行求解
+
 参考：OI WiKi（xx）
 """
 
@@ -34,47 +38,53 @@ class IntervalDP:
     def __init__(self):
         return
 
-
-class Solution:
-    def minimumTotalDistance(self, robot: List[int], factory: List[List[int]]) -> int:
-        # L2463
+    @staticmethod
+    def cf_1509c(n, nums):
+        # 模板：使用数组进行区间DP转移求解
+        dp = [[float("inf")] * n for _ in range(n)]
+        for i in range(n - 1, -1, -1):
+            dp[i][i] = 0
+            for j in range(i + 1, n):
+                dp[i][j] = nums[j] - nums[i] + min(dp[i + 1][j], dp[i][j - 1])
+        return dp[0][n - 1]
+    
+    @staticmethod
+    def lc_2463(robot, factory):
+        # 模板：两个数组使用指针移动方向与前缀和优化求解
         robot.sort()
         factory.sort()
         m, n = len(factory), len(robot)
-        dp = [[float("inf")]*(n+1) for _ in range(m+1)]
+        dp = [[float("inf")] * (n + 1) for _ in range(m + 1)]
         dp[0][0] = 0
         for i in range(m):
-            for j in range(n+1):
+            for j in range(n + 1):
                 if dp[i][j] < float("inf"):
-                    dp[i+1][j] = min(dp[i+1][j], dp[i][j])
+                    dp[i + 1][j] = min(dp[i + 1][j], dp[i][j])
                     cost = 0
-                    for k in range(1, factory[i][1]+1):
-                        if j+k-1<n:
-                            cost += abs(factory[i][0]-robot[j+k-1])
-                            dp[i+1][j+k] = min(dp[i+1][j+k], dp[i][j]+cost)
+                    for k in range(1, factory[i][1] + 1):
+                        if j + k - 1 < n:
+                            cost += abs(factory[i][0] - robot[j + k - 1])
+                            dp[i + 1][j + k] = min(dp[i + 1][j + k], dp[i][j] + cost)
                         else:
                             break
         return dp[-1][-1]
 
-
-class Solution:
-    def beautifulPartitions(self, s: str, k: int, minLength: int) -> int:
-
-        # L2478
+    @staticmethod
+    def lc_2478(s: str, k: int, min_length: int) -> int:
         start = set("2357")
         if s[0] not in start:
             return 0
         n = len(s)
         dp = [[0] * n for _ in range(k)]
         for i in range(n):
-            if i + 1 >= minLength and s[i] not in start:
+            if i + 1 >= min_length and s[i] not in start:
                 dp[0][i] = 1
 
         for j in range(1, k):
             pre = 0
             x = 0
             for i in range(n):
-                while x <= i - minLength and s[x]:
+                while x <= i - min_length and s[x]:
                     if s[x] not in start and s[x + 1] in start:
                         pre += dp[j - 1][x]
                         pre %= MOD
@@ -83,10 +93,8 @@ class Solution:
                     dp[j][i] = pre
         return dp[-1][-1]
 
-
-class Solution:
-    def maxPalindromes(self, s: str, k: int) -> int:
-        # L2472
+    @staticmethod
+    def lc_2472(s: str, k: int) -> int:
         n = len(s)
         res = [[0] * (n + 1) for _ in range(n + 1)]
         for i in range(n - 1, -1, -1):
@@ -108,10 +116,10 @@ class Solution:
 
 class TestGeneral(unittest.TestCase):
 
-    def test_linear_dp(self):
-        ld = LinearDP()
+    def test_interval_dp(self):
+        ld = IntervalDP()
         nums = [6, 3, 5, 2, 1, 6, 8, 9]
-        assert ld.liner_dp_template(nums) == 4
+        pass
         return
 
 
