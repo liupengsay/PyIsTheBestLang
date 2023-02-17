@@ -50,7 +50,7 @@ https://codeforces.com/problemset/problem/75/D（经典压缩数组，最大子�
 https://codeforces.com/problemset/problem/1084/C（线性DP加前缀和优化）
 https://codeforces.com/problemset/problem/166/E（线性DP计数）
 https://codeforces.com/problemset/problem/1221/D（线性DP模拟）
-
+C. Chef Monocarp（https://codeforces.com/problemset/problem/1437/C）二维线性DP，两个数组线性移动进行匹配计算最大或者最小值
 
 参考：OI WiKi（xx）
 """
@@ -59,6 +59,19 @@ https://codeforces.com/problemset/problem/1221/D（线性DP模拟）
 class LinearDP:
     def __init__(self):
         return
+
+    @staticmethod
+    def cf_1437c(n, nums):
+        # 模板：两个数组线性移动进行匹配计算最大或者最小值
+        nums.sort()
+        m = 2 * n
+        dp = [[float("inf")] * (n + 1) for _ in range(m + 1)]
+        dp[0][0] = 0
+        for i in range(m):
+            dp[i + 1][0] = 0
+            for j in range(n):
+                dp[i + 1][j + 1] = min(dp[i][j + 1], dp[i][j] + abs(nums[j] - i - 1))
+        return dp[m][n]
 
     @staticmethod
     def liner_dp_template(nums):
