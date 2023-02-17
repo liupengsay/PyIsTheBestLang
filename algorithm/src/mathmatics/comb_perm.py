@@ -1,6 +1,8 @@
-"""
+from itertools import combinations
+from itertools import permutations
 
-"""
+from algorithm.src.fast_io import FastIO
+
 """
 算法：数学排列组合计数、乘法逆元
 功能：全排列计数，选取comb计数，隔板法，错位排列，斯特林数、卡特兰数，容斥原理，可以通过乘法逆元快速求解组合数与全排列数
@@ -26,41 +28,45 @@ P3414 SAC#1 - 组合数（https://www.luogu.com.cn/problem/P3414）组合数奇�
 P4369 [Code+#4]组合数问题（https://www.luogu.com.cn/problem/P4369）脑筋急转弯进行组合数加和构造
 P5520 [yLOI2019] 青原樱（https://www.luogu.com.cn/problem/P5520）隔板法计算组合数
 
+================================CodeForces================================
+D. Triangle Coloring（https://codeforces.com/problemset/problem/1795/D）组合计数取模与乘法逆元快速计算
 
 参考：OI WiKi（xx）
 卡特兰数（https://oi-wiki.org/math/combinatorics/catalan/）
 """
 
 
-
-
-import bisect
-import random
-import re
-import unittest
-from typing import List
-import heapq
-import math
-from collections import defaultdict, Counter, deque
-from functools import lru_cache
-from itertools import combinations
-from sortedcontainers import SortedList, SortedDict, SortedSet
-from sortedcontainers import SortedDict
-from functools import reduce
-from operator import xor
-from functools import lru_cache
-import random
-from itertools import permutations, combinations
-import numpy as np
-from decimal import Decimal
-import heapq
-import copy
-from itertools import combinations
-import math
-
-
 class CombPerm:
     def __init__(self):
+        return
+
+    @staticmethod
+    def cf_1795d(ac=FastIO()):
+
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+
+        mod = 998244353
+        length = n // 3 + 1
+        # 模板：求全排列组合数
+        perm = [1] * length
+        for i in range(1, length):
+            perm[i] = perm[i - 1] * i
+            perm[i] %= mod
+
+        # 利用乘法逆元求解组合数
+        def comb(a, b):
+            res = perm[a] * pow(perm[b], -1, mod) * pow(perm[a - b], -1, mod)
+            return res % mod
+
+        ans = 1
+        for i in range(0, n - 2, 3):
+            lst = nums[i:i + 3]
+            ans *= lst.count(min(lst))
+            ans %= mod
+        ans *= comb(n // 3, n // 6)
+        ans %= mod
+        ac.st(ans)
         return
 
     def cattelan_number(self, n, mod):

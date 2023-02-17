@@ -1,4 +1,5 @@
 import unittest
+from algorithm.src.fast_io import FastIO, inf
 
 """
 
@@ -18,7 +19,7 @@ P7674 [COCI2013-2014#5] EKSPLOZIJA（https://www.luogu.com.cn/problem/P7674）�
 
 ================================CodeForces================================
 C. Longest Regular Bracket Sequence（https://codeforces.com/problemset/problem/5/C）最长连续合法括号子序列以及个数
-
+E. Almost Regular Bracket Sequence（https://codeforces.com/problemset/problem/1095/E）计算改变一个括号后是的字符串合法的位置数
 
 参考：OI WiKi（xx）
 """
@@ -26,6 +27,38 @@ C. Longest Regular Bracket Sequence（https://codeforces.com/problemset/problem/
 
 class Solution:
     def __init__(self):
+        return
+
+    @staticmethod
+    def cf_1095e(ac=FastIO()):
+        n = ac.read_int()
+        s = ac.read_str()
+        post = [inf] * (n + 1)
+        post[-1] = 0
+        x = 0
+        for i in range(n - 1, -1, -1):
+            if s[i] == ")":
+                x += 1
+            else:
+                x -= 1
+            if x < 0:
+                break
+            post[i] = x
+
+        ans = x = 0
+        for i in range(n):
+            if s[i] == "(" and x >= 1 and x - 1 == post[i + 1]:
+                ans += 1
+            elif s[i] == ")" and x >= 0 and x + 1 == post[i + 1]:
+                ans += 1
+
+            if s[i] == "(":
+                x += 1
+            else:
+                x -= 1
+            if x < 0:
+                break
+        ac.st(ans)
         return
 
     @staticmethod

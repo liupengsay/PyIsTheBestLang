@@ -36,6 +36,8 @@ P7159 「dWoi R1」Sweet Fruit Chocolate（https://www.luogu.com.cn/problem/P715
 F - Expensive Expense （https://atcoder.jp/contests/abc222/tasks/abc222_f）换根DP
 D. Distance in Tree（https://codeforces.com/problemset/problem/161/D）树形DP计数，记录距离为k的点对数
 
+================================CodeForces================================
+C. Uncle Bogdan and Country Happiness（https://codeforces.com/problemset/problem/1388/C）树形DP模拟计算，递归获取子树信息，逆向从上往下还原
 参考：OI WiKi（xx）
 """
 
@@ -49,6 +51,44 @@ from typing import List
 class Solution:
     def __init__(self):
         return
+
+    @staticmethod
+    def cf_1388c(ac):
+        n, m = ac.read_ints()
+        person = ac.read_list_ints()
+        h = ac.read_list_ints()
+        edge = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            x, y = ac.read_ints_minus_one()
+            edge[x].append(y)
+            edge[y].append(x)
+
+        @ac.bootstrap
+        def dfs(i, fa):
+            nonlocal ans
+            a = b = 0
+            for j in edge[i]:
+                if j != fa:
+                    yield dfs(j, i)
+                    a += pos[j]
+                    b += neg[j]
+
+            if (h[i] + person[i] + b + a) % 2:
+                ans = False
+                yield
+            good = (h[i] + person[i] + b + a) // 2
+            bad = person[i] + a + b - good
+            if good < 0 or bad < 0 or bad > person[i] + b:
+                ans = False
+            pos[i] = good
+            neg[i] = bad
+            yield
+
+        ans = True
+        pos = [0] * n
+        neg = [0] * n
+        dfs(0, -1)
+        return "YES" if ans else "NO"
 
     @staticmethod
     def cf_161d(n, k, pairs):

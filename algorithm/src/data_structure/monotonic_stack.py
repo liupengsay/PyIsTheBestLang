@@ -24,6 +24,11 @@ P7399 [COCI2020-2021#5] Po（https://www.luogu.com.cn/problem/P7399）单调栈�
 P7410 [USACO21FEB] Just Green Enough S（https://www.luogu.com.cn/problem/P7410）通过容斥原理与单调栈计算01矩阵个数
 P7762 [COCI2016-2017#5] Unija（https://www.luogu.com.cn/problem/P7762）类似单调栈的思想，按照宽度进行贪心排序，计算每个高度的面积贡献
 
+================================CodeForces================================
+E. Explosions?（https://codeforces.com/problemset/problem/1795/E）单调栈贪心计数枚举，前后缀DP转移
+
+
+
 参考：OI WiKi（xx）
 """
 

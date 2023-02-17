@@ -1,6 +1,7 @@
 import unittest
 from collections import deque
 from typing import List
+from algorithm.src.fast_io import FastIO
 
 """
 算法：广度优先搜索
@@ -43,12 +44,46 @@ P6207 [USACO06OCT] Cows on Skates G（https://www.luogu.com.cn/problem/P6207）�
 P6582 座位调查（https://www.luogu.com.cn/problem/P6582）bfs合法性判断与组合计数快速幂
 P7243 最大公约数（https://www.luogu.com.cn/problem/P7243）广度优先搜索加gcd最大公约数计算
 
+================================CodeForces================================
+E. Nearest Opposite Parity（https://codeforces.com/problemset/problem/1272/E）经典反向建图，多源BFS
+
 参考：OI WiKi（xx）
 """
 
 
 class BFS:
     def __init__(self):
+        return
+
+    @staticmethod
+    def cf_1272e(ac=FastIO()):
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        ans = [-1] * n
+
+        # 模板：反向建图
+        edge = [[] for _ in range(n)]
+        for i in range(n):
+            for x in [i + nums[i], i - nums[i]]:
+                if 0 <= x < n:
+                    edge[x].append(i)
+
+        # 多源 BFS
+        for x in [0, 1]:
+            stack = [i for i in range(n) if nums[i] % 2 == x]
+            visit = set(stack)
+            step = 1
+            while stack:
+                nex = []
+                for i in stack:
+                    for j in edge[i]:
+                        if j not in visit:
+                            ans[j] = step
+                            nex.append(j)
+                            visit.add(j)
+                step += 1
+                stack = nex
+        ac.lst(ans)
         return
 
     @staticmethod

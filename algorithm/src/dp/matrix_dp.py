@@ -43,6 +43,8 @@ P3399 丝绸之路（https://www.luogu.com.cn/problem/P3399）二维矩阵DP
 https://codeforces.com/problemset/problem/1446/B（最长公共子序列LCS变形问题，理解贡献）
 https://codeforces.com/problemset/problem/429/B（四个方向的矩阵DP）
 D. Colored Rectangles（https://codeforces.com/problemset/problem/1398/D）三维DP，选取两个不同数组的数乘积，计算最大总和
+B. The least round way（https://codeforces.com/problemset/problem/2/B）矩阵DP，计算路径上乘积最少的后缀0个数，经典题目
+
 
 参考：OI WiKi（xx）
 """
@@ -51,6 +53,83 @@ D. Colored Rectangles（https://codeforces.com/problemset/problem/1398/D）三�
 class Solution:
     def __init__(self):
         return
+
+    @staticmethod
+    def cf_2b(n, grid):
+        # 模板：计算乘积后缀0最少的个数以及对应的路径
+        def f_2(num):
+            if not num:
+                return 1
+            res = 0
+            while num and num % 2 == 0:
+                num //= 2
+                res += 1
+            return res
+
+        def f_5(num):
+            if not num:
+                return 1
+            res = 0
+            while num and num % 5 == 0:
+                num //= 5
+                res += 1
+            return res
+
+        def check(fun):
+            dp = [[inf] * n for _ in range(n)]
+            dp[0][0] = fun(grid[0][0])
+            f = [[-1] * n for _ in range(n)]
+            for j in range(1, n):
+                f[0][j] = j - 1
+                dp[0][j] = dp[0][j - 1] + fun(grid[0][j]) if grid[0][j] else 1
+            for i in range(1, n):
+                f[i][0] = (i - 1) * n
+                dp[i][0] = dp[i - 1][0] + fun(grid[i][0]) if grid[i][0] else 1
+                for j in range(1, n):
+                    if grid[i][j] == 0:
+                        dp[i][j] = 1
+                    else:
+                        c = fun(grid[i][j])
+                        dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) + c
+                    f[i][j] = (i - 1) * n + j if dp[i - 1][j] < dp[i][j - 1] else i * n + j - 1
+            cnt = dp[-1][-1]
+            path = ""
+            x = (n - 1) * n + n - 1
+            while f[x // n][x % n] != -1:
+                i, j = x // n, x % n
+                p = f[i][j]
+                if i == p // n:
+                    path += "R"
+                else:
+                    path += "D"
+                x = p
+            return cnt, path[::-1]
+
+        inf = float("inf")
+        c1, path1 = check(f_2)
+        c2, path2 = check(f_5)
+        if c1 <= c2:
+            ans = [c1, path1]
+        else:
+            ans = [c2, path2]
+
+        # 考虑 0 的存在影响
+        zero = False
+        for i in range(n):
+            for j in range(n):
+                if grid[i][j] == 0:
+                    zero = True
+        if not zero:
+            return ans
+
+        if ans[0] > 1:
+            for i in range(n):
+                for j in range(n):
+                    if grid[i][j] == 0:
+                        cur = "D" * i + "R" * j + "D" * (n - 1 - i) + "R" * (n - 1 - j)
+                        ans = [1, cur]
+                        return ans
+        return ans
 
     @staticmethod
     def bootstrap(f, queue=[]):

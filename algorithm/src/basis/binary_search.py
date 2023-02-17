@@ -50,6 +50,8 @@ https://codeforces.com/problemset/problem/913/C（DP预处理最有单价，再�
 Teleporters (Hard Version)（https://codeforces.com/problemset/problem/1791/G2）贪心排序，前缀和枚举二分
 
 D. Multiplication Table（https://codeforces.com/problemset/problem/448/D）经典二分查找计算n*m的乘法表第k大元素
+D. Cleaning the Phone（https://codeforces.com/problemset/problem/1475/D）贪心排序+前缀和+枚举+二分
+D. Odd-Even Subsequence（https://codeforces.com/problemset/problem/1370/D）利用单调性二分，再使用贪心check
 
 参考：OI WiKi（xx）
 """

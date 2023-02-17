@@ -1,6 +1,8 @@
 
 import unittest
 from typing import List
+from algorithm.src.fast_io import FastIO, inf
+
 
 MOD = 10 ** 9 + 7
 
@@ -29,6 +31,7 @@ P2858 [USACO06FEB]Treats for the Cows G/S（https://www.luogu.com.cn/problem/P28
 
 ================================CodeForces================================
 C. The Sports Festival（https://codeforces.com/problemset/problem/1509/C）转换为区间DP进行求解
+B. Zuma（https://codeforces.com/problemset/problem/607/B）区间DP，经典通过消除回文子序列删除整个数组的最少次数
 
 参考：OI WiKi（xx）
 """
@@ -36,6 +39,37 @@ C. The Sports Festival（https://codeforces.com/problemset/problem/1509/C）转�
 
 class IntervalDP:
     def __init__(self):
+        return
+
+    @staticmethod
+    def cf_307b(ac=FastIO()):
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+
+        # 初始化
+        dp = [[inf] * n for _ in range(n + 1)]
+        for i in range(n):
+            for j in range(i):
+                dp[i][j] = 0
+        dp[n] = [0] * n
+
+        # 状态转移
+        for i in range(n - 1, -1, -1):
+            dp[i][i] = 1
+            if i + 1 < n:
+                dp[i][i + 1] = 2 if nums[i] != nums[i + 1] else 1
+            for j in range(i + 2, n):
+
+                dp[i][j] = ac.min(dp[i + 1][j], dp[i][j - 1]) + 1
+                if nums[i] == nums[i + 1]:
+                    dp[i][j] = ac.min(dp[i][j], 1 + dp[i + 2][j])
+
+                for k in range(i + 2, j + 1):
+                    dp[i][j] = ac.min(dp[i][j], dp[i][k] + dp[k + 1][j])
+                    if nums[k] == nums[i]:
+                        dp[i][j] = ac.min(dp[i][j], dp[i + 1][k - 1] + dp[k + 1][j])
+
+        ac.st(dp[0][n - 1])
         return
 
     @staticmethod

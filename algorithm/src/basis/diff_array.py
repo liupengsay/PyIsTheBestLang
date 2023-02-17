@@ -1,4 +1,6 @@
 import unittest
+from algorithm.src.fast_io import FastIO
+import bisect
 
 """
 
@@ -34,6 +36,7 @@ https://codeforces.com/problemset/problem/33/C（前后缀最大变换和与分�
 https://codeforces.com/problemset/problem/797/C（后缀最小值字典序模拟）
 https://codeforces.com/problemset/problem/75/D（压缩数组最大子段和）
 C. Count Triangles（https://codeforces.com/problemset/problem/1355/C）经典使用作用域差分计算，合法三角形边长个数
+C. Tea Tasting（https://codeforces.com/problemset/problem/1795/C）前缀和二分后，经典使用差分计数模拟加和
 
 参考：OI WiKi（xx）
 """
@@ -41,6 +44,36 @@ C. Count Triangles（https://codeforces.com/problemset/problem/1355/C）经典�
 
 class DiffArray:
     def __init__(self):
+        return
+
+    @staticmethod
+    def cf_1795c(ac=FastIO()):
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            a = ac.read_list_ints()
+            b = ac.read_list_ints()
+            pre = [0] * (n + 1)
+            for i in range(n):
+                pre[i + 1] = pre[i] + b[i]
+
+            ans = [0] * n
+            diff = [0] * n
+            for i in range(n):
+                j = bisect.bisect_left(pre, pre[i] + a[i])
+                if j == n + 1 or pre[j] > pre[i] + a[i]:
+                    j -= 1
+                diff[i] += 1
+                if j < n:
+                    diff[j] -= 1
+                if pre[j] - pre[i] < a[i]:
+                    if j < n:
+                        ans[j] += a[i] - (pre[j] - pre[i])
+            for i in range(1, n):
+                diff[i] += diff[i - 1]
+
+            for i in range(n):
+                ans[i] += b[i] * diff[i]
+            ac.lst(ans)
         return
 
     @staticmethod

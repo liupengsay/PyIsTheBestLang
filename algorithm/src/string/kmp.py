@@ -1,4 +1,5 @@
 import unittest
+from algorithm.src.fast_io import FastIO
 
 """
 算法：KMP算法
@@ -15,12 +16,47 @@ import unittest
 ===================================洛谷===================================
 P3375 KMP字符串匹配（https://www.luogu.com.cn/problem/P3375）计算子字符串出现的位置，与最长公共前后缀的子字符串长度
 P4391 无线传输（https://www.luogu.com.cn/problem/P4391）脑经急转弯加KMP算法，最优结果为 n-pi[n-1]
+
+
+================================CodeForces================================
+D2. Prefix-Suffix Palindrome (Hard version)（https://codeforces.com/problemset/problem/1326/D2）利用马拉车的贪心思想贪心取前后缀，再判断剩余字符的最长前后缀回文子串
+
+
 参考：OI WiKi（https://oi-wiki.org/string/kmp/）
+
 """
 
 
 class KMP:
     def __init__(self):
+        return
+
+    def cf_1326d2(self, ac=FastIO()):
+        # 模板：使用KMP计算字符前后缀的最长回文子串
+        for _ in range(ac.read_int()):
+            s = ac.read_str()
+            n = len(s)
+            i, j = 0, n - 1
+            while i < j:
+                if s[i] == s[j]:
+                    i += 1
+                    j -= 1
+                else:
+                    break
+            if i >= j:
+                ac.st(s)
+                continue
+
+            mid = s[i:j + 1]
+            a = self.prefix_function(mid + "#" + mid[::-1])[-1]
+            s1 = mid[:a]
+
+            a = self.prefix_function(mid[::-1] + "#" + mid)[-1]
+            s2 = mid[-a:]
+            if len(s1) > len(s2):
+                ac.st(s[:i] + s1 + s[j + 1:])
+            else:
+                ac.st(s[:i] + s2 + s[j + 1:])
         return
 
     @staticmethod
