@@ -22,6 +22,7 @@ P1517 高精求小数幂（https://www.luogu.com.cn/record/list?user=739032&stat
 P2388 阶乘之乘（https://www.luogu.com.cn/problem/P2388）阶乘之乘后缀0的个数
 P2394 yyy loves Chemistry I（https://www.luogu.com.cn/problem/P2394）高精度计算
 P2393 yyy loves Maths II（https://www.luogu.com.cn/problem/P2393）高精度计算
+P2399 non hates math（https://www.luogu.com.cn/problem/P2399）小数有理数转换为最简分数
 
 参考：OI WiKi（xx）
 """
@@ -86,7 +87,7 @@ class HighPrecision:
 
     @staticmethod
     def decimal_to_fraction(st):
-
+        # 模板：小数转分数
         def sum_fraction(tmp):
             # 分数相加
             mu = tmp[0][1]

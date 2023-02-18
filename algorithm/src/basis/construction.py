@@ -21,6 +21,8 @@ https://codeforces.com/problemset/problem/1118/E（模拟贪心构造）
 https://codeforces.com/problemset/problem/960/C（贪心构造）
 B. Fedya and Array（https://codeforces.com/contest/1793/problem/B）思维题贪心构造
 D. Replace by MEX（https://codeforces.com/problemset/problem/1375/D）经典MEX的构造题，使得数组非降，即最小的未出现在数组中的数
+D. Phoenix and Science（https://codeforces.com/problemset/problem/1348/D）利用二进制优化将数分割，并利用分裂特点进行计算
+D. Diane（https://codeforces.com/problemset/problem/1554/D）构造，将n取一半向下取整
 
 ==================================AtCoder=================================
 https://atcoder.jp/contests/agc007/tasks/agc007_b（脑筋急转弯思维构造公式）

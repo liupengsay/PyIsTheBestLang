@@ -86,7 +86,6 @@ class BagDP:
                     return "YES"
         return "NO"
 
-
     @staticmethod
     def bin_split(num):
         # 二进制优化是指 1.2.4.x这样连续的而不是二进制10101对应的1

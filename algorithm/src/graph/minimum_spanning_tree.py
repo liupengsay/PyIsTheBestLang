@@ -62,6 +62,7 @@ P4955 [USACO14JAN]Cross Country Skiing S（https://www.luogu.com.cn/problem/P495
 P6705 [COCI2010-2011#7] POŠTAR（https://www.luogu.com.cn/problem/P6705）枚举最小值，使用最小生成树，与自定义权值进行计算
 P7775 [COCI2009-2010#2] VUK（https://www.luogu.com.cn/problem/P7775）BFS加最小生成树思想，求解
 
+P2658 汽车拉力比赛（https://www.luogu.com.cn/problem/P2658）典型最小生成树计算
 
 参考：OI WiKi（xx）
 """
