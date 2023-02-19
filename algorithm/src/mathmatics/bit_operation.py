@@ -36,6 +36,7 @@ import copy
 2354. 优质数对的数目（https://leetcode.cn/problems/number-of-excellent-pairs/）需要脑筋急转弯确定位 1 的规律进行哈希计数枚举即可
 260. 只出现一次的数字 III（https://leetcode.cn/problems/single-number-iii/）利用位运算两个相同元素异或和为0的特点，以及lowbit进行分组确定两个只出现一次的元素
 6365. 将整数减少到零需要的最少操作数（https://leetcode.cn/problems/minimum-operations-to-reduce-an-integer-to-0/）n 加上或减去 2 的某个幂使得 n 变为 0 的最少操作数
+6360. 最小无法得到的或值（https://leetcode.cn/problems/minimum-impossible-or/）利用贪心思想，类似硬币凑金额推理得出结论
 
 ===================================洛谷===================================
 P5657 格雷码（https://www.luogu.com.cn/problem/P5657）计算编号为 k 的二进制符，并补前缀 0 为 n 位
@@ -59,6 +60,15 @@ https://blog.csdn.net/qq_35473473/article/details/106320878
 class Solution:
     def __int__(self):
         return
+
+    @staticmethod
+    def lc_6360(nums):
+        # 模板：最小的无法由子数组的或运算得到的数（异或则可以使用线性基求解判断）
+        dct = set(nums)
+        ans = 1
+        while ans in dct:
+            ans *= 2
+        return ans
 
     @staticmethod
     def lc_6365(num):
