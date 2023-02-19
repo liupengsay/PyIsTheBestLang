@@ -14,6 +14,8 @@ import unittest
 2301. 替换字符后匹配（https://leetcode.cn/problems/match-substring-after-replacement/）枚举匹配字符起点并使用双指针维护可行长度
 2106. 摘水果（https://leetcode.cn/problems/maximum-fruits-harvested-after-at-most-k-steps/）巧妙利用行走距离的计算更新双指针
 6293. 统计好子数组的数目（https://leetcode.cn/problems/count-the-number-of-good-subarrays/）双指针计数
+16. 最接近的三数之和（https://leetcode.cn/problems/3sum-closest/）三指针确定最接近目标值的和
+15. 三数之和（https://leetcode.cn/problems/3sum/）寻找三个元素和为 0 的不重复组合
 
 ===================================洛谷===================================
 P2381 圆圆舞蹈（https://www.luogu.com.cn/problem/P2381）环形数组，滑动窗口双指针
@@ -30,6 +32,52 @@ D. Carousel（https://codeforces.com/problemset/problem/1328/D）环形数组滑
 """
 
 
+class Solution:
+    def __int__(self):
+        return
+
+    @staticmethod
+    def lc_16(nums, target):
+        # 模板：寻找最接近目标值的三个元素和
+        n = len(nums)
+        nums.sort()
+        ans = nums[0] + nums[1] + nums[2]
+        for i in range(n - 2):
+            j, k = i + 1, n - 1
+            x = nums[i]
+            while j < k:  # 经典遍历数组作为第一个指针，另外两个指针相向而行
+                cur = x + nums[j] + nums[k]
+                ans = ans if abs(target - ans) < abs(target - cur) else cur
+                if cur > target:
+                    k -= 1
+                elif cur < target:
+                    j += 1
+                else:
+                    return target
+        return ans
+
+    @staticmethod
+    def lc_15(nums):
+        # 模板：寻找三个元素和为 0 的不重复组合
+        nums.sort()
+        n = len(nums)
+        ans = set()
+        for i in range(n - 2):
+            j, k = i + 1, n - 1
+            x = nums[i]
+            while j < k:
+                cur = x + nums[j] + nums[k]
+                if cur > 0:
+                    k -= 1
+                elif cur < 0:
+                    j += 1
+                else:
+                    ans.add((x, nums[j], nums[k]))
+                    j += 1
+                    k -= 1
+        return [list(a) for a in ans]
+
+
 class TwoPointer:
     def __init__(self):
         return
@@ -40,7 +88,7 @@ class TwoPointer:
         n = len(arr)
         ans = 0
         for i in range(n):
-            ans = max(ans, arr[i]+arr[(i+n-1)%n])
+            ans = max(ans, arr[i] + arr[(i + n - 1) % n])
         return ans
 
     @staticmethod

@@ -15,6 +15,7 @@ from sortedcontainers import SortedList
 2402. 会议室 III（https://leetcode.cn/problems/meeting-rooms-iii/）使用两个堆模拟进行会议室安排并进行计数
 2386. 找出数组的第 K 大和（https://leetcode.cn/problems/find-the-k-sum-of-an-array/）转换思路使用堆维护最大和第 K 次出队的则为目标结果
 2163. 删除元素后和的最小差值（https://leetcode.cn/problems/minimum-difference-in-sums-after-removal-of-elements/）预处理前缀后缀最大最小的 K 个数和再进行枚举分割点
+1792. 最大平均通过率（https://leetcode.cn/problems/maximum-average-pass-ratio/）贪心依次给增幅最大的班级人数加 1 
 
 ===================================洛谷===================================
 P1168 中位数（https://www.luogu.com.cn/problem/P1168） 用两个堆维护中位数
@@ -27,6 +28,23 @@ P1878 舞蹈课（https://www.luogu.com.cn/problem/P1878）用哈希加一个堆
 参考：OI WiKi（xx）
 """
 
+
+class Solution:
+    def __int__(self):
+        return
+
+    @staticmethod
+    def lc_1792(classes, extra_students):
+        stack = []
+        for p, t in classes:
+            heapq.heappush(stack, [p / t - (p + 1) / (t + 1), p, t])
+        for _ in range(extra_students):
+            r, p, t = heapq.heappop(stack)
+            p += 1
+            t += 1
+            # 关键点在于优先级的设置为 p / t - (p + 1) / (t + 1)
+            heapq.heappush(stack, [p / t - (p + 1) / (t + 1), p, t])
+        return sum(p / t for _, p, t in stack) / len(classes)
 
 class HeapqMedian:
     def __init__(self, mid):

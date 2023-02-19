@@ -2,6 +2,7 @@ import random
 import unittest
 from collections import defaultdict
 from types import GeneratorType
+from typing import List
 
 """
 算法：线段树
@@ -16,6 +17,7 @@ from types import GeneratorType
 2179. 统计数组中好三元组数目（https://leetcode.cn/problems/count-good-triplets-in-an-array/）维护区间范围内的个数
 2158. 每天绘制新区域的数量（https://leetcode.cn/problems/amount-of-new-area-painted-each-day/）线段树维护区间范围的覆盖
 6358. 更新数组后处理求和查询（https://leetcode.cn/problems/handling-sum-queries-after-update/）区间值01翻转与区间和查询，使用bitset实现
+
 ===================================洛谷===================================
 P3372 线段树（https://www.luogu.com.cn/problem/P3372）区间值增减与计算区间和
 P2846 [USACO08NOV]Light Switching G（https://www.luogu.com.cn/problem/P2846）线段树统计区间翻转和
@@ -782,6 +784,29 @@ class SegmentTreeRangeAddMin:
                 highest = cur
         return highest if highest < float("inf") else -1
 
+
+class Solution:
+    def __int__(self):
+        return
+
+    @staticmethod
+    def lc_6358(nums1: List[int], nums2: List[int], queries: List[List[int]]) -> List[int]:
+        # 模板：区间进行 0 1 翻转与 1 的个数查询
+        res = []
+        seg = SegBitSet()
+        n = len(nums1)
+        for i in range(n):
+            if nums1[i]:
+                seg.update(i, i)
+        s = sum(nums2)
+        for a, b, c in queries:
+            if a == 1:
+                seg.update(b, c)
+            elif a == 2:
+                s += seg.val.bit_count() * b
+            else:
+                res.append(s)
+        return res
 
 class TestGeneral(unittest.TestCase):
 

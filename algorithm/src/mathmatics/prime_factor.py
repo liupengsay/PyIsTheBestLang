@@ -38,6 +38,8 @@ from algorithm.src.fast_io import FastIO
 264. 丑数 II（https://leetcode.cn/problems/ugly-number-ii/）只含2、3、5质因数的第 n 个丑数
 1201. 丑数 III（https://leetcode.cn/problems/ugly-number-iii/）只含特定因子数即能被其中一个数整除的第 n 个丑数
 313. 超级丑数（https://leetcode.cn/problems/super-ugly-number/）只含某些特定质因数的第 n 个丑数
+6364. 无平方子集计数（https://leetcode.cn/problems/count-the-number-of-square-free-subsets/）非空子集乘积不含除 1 之外任何平方整除数，即乘积质数因子的幂次均为 1（背包DP计数）
+1994. 好子集的数目（https://leetcode.cn/problems/the-number-of-good-subsets/）非空子集乘积不含除 1 之外任何平方整除数，即乘积质数因子的幂次均为 1（背包DP计数）
 
 ===================================洛谷===================================
 P1865 A % B Problem（https://www.luogu.com.cn/problem/P1865）通过线性筛素数后进行二分查询区间素数个数
@@ -64,6 +66,29 @@ D. Two Divisors（https://codeforces.com/problemset/problem/1366/D）计算最�
 class Solution:
     def __init__(self):
         return
+
+    @staticmethod
+    def lc_6334(nums: List[int]) -> int:
+        # 模板：非空子集乘积不含除 1 之外任何平方整除数，即乘积质数因子的幂次均为 1（背包DP计数）
+        dct = {2, 3, 5, 6, 7, 10, 11, 13, 14, 15, 17, 19, 21, 22, 23, 26, 29, 30}
+        # 集合为质数因子幂次均为 1
+        mod = 10 ** 9 + 7
+        cnt = Counter(nums)
+        pre = defaultdict(int)
+        for num in cnt:
+            if num in dct:
+                cur = pre.copy()
+                for p in pre:
+                    if math.gcd(p, num) == 1:
+                        cur[p * num] += pre[p] * cnt[num]
+                        cur[p * num] %= mod
+                cur[num] += cnt[num]
+                pre = cur.copy()
+        # 1 需要特殊处理
+        p = pow(2, cnt[1], mod)
+        ans = sum(pre.values()) * p
+        ans += p - 1
+        return ans % mod
 
     @staticmethod
     def cf_1366d(ac=FastIO()):

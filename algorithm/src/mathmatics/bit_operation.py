@@ -34,6 +34,8 @@ import copy
 
 ===================================力扣===================================
 2354. 优质数对的数目（https://leetcode.cn/problems/number-of-excellent-pairs/）需要脑筋急转弯确定位 1 的规律进行哈希计数枚举即可
+260. 只出现一次的数字 III（https://leetcode.cn/problems/single-number-iii/）利用位运算两个相同元素异或和为0的特点，以及lowbit进行分组确定两个只出现一次的元素
+6365. 将整数减少到零需要的最少操作数（https://leetcode.cn/problems/minimum-operations-to-reduce-an-integer-to-0/）n 加上或减去 2 的某个幂使得 n 变为 0 的最少操作数
 
 ===================================洛谷===================================
 P5657 格雷码（https://www.luogu.com.cn/problem/P5657）计算编号为 k 的二进制符，并补前缀 0 为 n 位
@@ -54,6 +56,60 @@ https://blog.csdn.net/qq_35473473/article/details/106320878
 """
 
 
+class Solution:
+    def __int__(self):
+        return
+
+    @staticmethod
+    def lc_6365(num):
+        # 模板：n 加上或减去 2 的某个幂使得 n 变为 0 的最少操作数
+        @lru_cache(None)
+        def dfs(n):
+            if not n:
+                return 0
+            if bin(n).count("1") == 1:
+                return 1
+            lowbit = n & (-n)
+            return 1 + min(dfs(n - lowbit), dfs(n + lowbit))
+
+        def greedy(n):
+            # 对应有 O(logn) 贪心解法
+            s = bin(n)[2:][::-1]
+            ans = cnt = 0
+            m = len(s)
+            for i in range(m):
+                if s[i] == "1":
+                    cnt += 1
+                else:
+                    if cnt == 1:
+                        ans += 1
+                        cnt = 0
+                    elif cnt >= 2:
+                        if i + 1 < m and s[i + 1] == "1":
+                            ans += 1
+                            cnt = 1
+                        else:
+                            ans += 2
+                            cnt = 0
+            if cnt:
+                ans += 1 if cnt == 1 else 2
+            return ans
+
+        # 更优解法 bin(n ^ (3 * n)).count("1")
+        return dfs(num)
+    @staticmethod
+    def lc_260(nums):
+        # 模板：找出数组当中两个只出现一次的数（其余数保证出现两次）
+        s = reduce(xor, nums)
+        low = s & (-s)
+        ans = [0, 0]
+        for num in nums:
+            if num & low:
+                ans[0] ^= num
+            else:
+                ans[1] ^= num
+        return ans
+
 
 class BitOperation:
     def __init__(self):
@@ -66,13 +122,13 @@ class BitOperation:
         binary = list()
         binary.append(graycode[0])
         for i in range(1, graycode_len):
-            if graycode[i] == binary[i-1]:
+            if graycode[i] == binary[i - 1]:
                 b = 0
             else:
                 b = 1
             binary.append(str(b))
-        return int("0b"+ ''.join(binary), 2)
-    
+        return int("0b" + ''.join(binary), 2)
+
     @staticmethod
     def integer_to_graycode(integer):
         # 二进制转格雷码
@@ -81,7 +137,7 @@ class BitOperation:
         binay_len = len(binary)
         graycode.append(binary[0])
         for i in range(1, binay_len):
-            if binary[i-1] == binary[i]:
+            if binary[i - 1] == binary[i]:
                 g = 0
             else:
                 g = 1

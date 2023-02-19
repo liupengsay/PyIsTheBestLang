@@ -2,6 +2,8 @@ import unittest
 
 from typing import List
 from types import GeneratorType
+from algorithm.src.fast_io import FastIO
+
 
 """
 算法：矩阵DP、二维DP
@@ -15,6 +17,7 @@ from types import GeneratorType
 72. 编辑距离（https://leetcode.cn/problems/edit-distance/）矩阵DP
 329. 矩阵中的最长递增路径（https://leetcode.cn/problems/longest-increasing-path-in-a-matrix/）二维矩阵DP
 1478. 安排邮筒（https://leetcode.cn/problems/allocate-mailboxes/）二维DP与一个计算不带权中位数距离的区间DP
+6363. 找出对应 LCP 矩阵的字符串（https://leetcode.cn/problems/find-the-string-with-lcp/）贪心构造符合条件的字符串，并通过计算LCP进行确认
 
 ===================================洛谷===================================
 P2701 [USACO5.3]巨大的牛棚Big Barn（https://www.luogu.com.cn/problem/P2701）求全为 "." 的最大正方形面积，如果不要求实心只能做到O(n^3)复杂度
@@ -55,7 +58,39 @@ class Solution:
         return
 
     @staticmethod
-    def cf_2b(n, grid):
+    def lc_6363(lcp: List[List[int]]) -> str:
+        # 模板：根据 LCP 矩阵生成字典序最小的符合条件的字符串
+        n = len(lcp)
+        ans = [""] * n
+        ind = 0
+        for i in range(n):
+            if ans[i]:
+                continue
+            if ind == 26:
+                return ""
+            w = chr(ind + ord("a"))
+            ans[i] = w
+            ind += 1
+            for j in range(i + 1, n):
+                if lcp[i][j]:
+                    ans[j] = w
+
+        ans = "".join(ans)
+        for i in range(n - 1, -1, -1):
+            for j in range(n - 1, -1, -1):
+                if ans[i] == ans[j]:
+                    if i + 1 < n and j + 1 < n:
+                        x = lcp[i + 1][j + 1] + 1
+                    else:
+                        x = 1
+                else:
+                    x = 0
+                if x != lcp[i][j]:
+                    return ""
+        return ans
+
+    @staticmethod
+    def cf_2b(ac, n, grid):
         # 模板：计算乘积后缀0最少的个数以及对应的路径
         def f_2(num):
             if not num:
@@ -90,9 +125,8 @@ class Solution:
                         dp[i][j] = 1
                     else:
                         c = fun(grid[i][j])
-                        dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) + c
-                    f[i][j] = (i - 1) * n + j if dp[i -
-                                                    1][j] < dp[i][j - 1] else i * n + j - 1
+                        dp[i][j] = ac.min(dp[i - 1][j], dp[i][j - 1]) + c
+                    f[i][j] = (i - 1) * n + j if dp[i - 1][j] < dp[i][j - 1] else i * n + j - 1
             cnt = dp[-1][-1]
             path = ""
             x = (n - 1) * n + n - 1
@@ -127,47 +161,28 @@ class Solution:
             for i in range(n):
                 for j in range(n):
                     if grid[i][j] == 0:
-                        cur = "D" * i + "R" * j + "D" * \
-                            (n - 1 - i) + "R" * (n - 1 - j)
+                        cur = "D" * i + "R" * j + "D" * (n - 1 - i) + "R" * (n - 1 - j)
                         ans = [1, cur]
                         return ans
         return ans
 
     @staticmethod
-    def bootstrap(f, queue=[]):
-        def wrappedfunc(*args, **kwargs):
-            if queue:
-                return f(*args, **kwargs)
-            else:
-                to = f(*args, **kwargs)
-                while True:
-                    if isinstance(to, GeneratorType):
-                        queue.append(to)
-                        to = next(to)
-                    else:
-                        queue.pop()
-                        if not queue:
-                            break
-                        to = queue[-1].send(to)
-                return to
-        return wrappedfunc
-
-    def cf_1398d(self, r, g, b, lst):
+    def cf_1398d(ac, r, g, b, lst):
         # 模板：三维DP，选取两个不同数组的数乘积，计算最大总和
-        @self.bootstrap
+        @ac.bootstrap
         def dfs(i, j, k):
             if dp[i][j][k] != -1:
                 yield
             res = 0
             if i < r and j < g:
                 yield dfs(i + 1, j + 1, k)
-                res = max(res, dp[i + 1][j + 1][k] + lst[0][i] * lst[1][j])
+                res = ac.max(res, dp[i + 1][j + 1][k] + lst[0][i] * lst[1][j])
             if i < r and k < b:
                 yield dfs(i + 1, j, k + 1)
-                res = max(res, dp[i + 1][j][k + 1] + lst[0][i] * lst[2][k])
+                res = ac.max(res, dp[i + 1][j][k + 1] + lst[0][i] * lst[2][k])
             if j < g and k < b:
                 yield dfs(i, j + 1, k + 1)
-                res = max(res, dp[i][j + 1][k + 1] + lst[2][k] * lst[1][j])
+                res = ac.max(res, dp[i][j + 1][k + 1] + lst[2][k] * lst[1][j])
             dp[i][j][k] = res
             yield
 
