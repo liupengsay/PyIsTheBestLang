@@ -20,8 +20,9 @@ class LinearBasis:
         """线性基类由原数组lst生成"""
         self.n = 64
         self.lst = lst
-        self.gen_linear_basis()
         self.linear_basis = [0] * self.n
+        self.gen_linear_basis()
+
         return
 
     def gen_linear_basis(self):

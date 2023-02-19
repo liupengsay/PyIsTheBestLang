@@ -15,14 +15,14 @@ from types import GeneratorType
 2276. 统计区间中的整数数目（https://leetcode.cn/problems/count-integers-in-intervals/）维护区间并集的长度
 2179. 统计数组中好三元组数目（https://leetcode.cn/problems/count-good-triplets-in-an-array/）维护区间范围内的个数
 2158. 每天绘制新区域的数量（https://leetcode.cn/problems/amount-of-new-area-painted-each-day/）线段树维护区间范围的覆盖
-
+6358. 更新数组后处理求和查询（https://leetcode.cn/problems/handling-sum-queries-after-update/）区间值01翻转与区间和查询，使用bitset实现
 ===================================洛谷===================================
 P3372 线段树（https://www.luogu.com.cn/problem/P3372）区间值增减与计算区间和
 P2846 [USACO08NOV]Light Switching G（https://www.luogu.com.cn/problem/P2846）线段树统计区间翻转和
 P2574 XOR的艺术（https://www.luogu.com.cn/problem/P2574）线段树统计区间翻转和
 P3130 [USACO15DEC] Counting Haybale P（https://www.luogu.com.cn/problem/P3130）区间增减、区间最小值查询、区间和查询
 P3870 [TJOI2009] 开关（https://www.luogu.com.cn/problem/P3870） 区间值01翻转与区间和查询
-P5057 [CQOI2006]简单题（https://www.luogu.com.cn/problem/P5057） 区间值01翻转与区间和查询
+P5057 [CQOI2006] 简单题（https://www.luogu.com.cn/problem/P5057） 区间值01翻转与区间和查询
 P3372 【模板】线段树 1（https://www.luogu.com.cn/problem/P3372）区间值增减与求和
 
 ================================CodeForces================================
@@ -32,6 +32,23 @@ C. Sereja and Brackets（https://codeforces.com/problemset/problem/380/C）线�
 
 参考：OI WiKi（xx）
 """
+
+
+class SegBitSet:
+    # 使用位运算进行区间01翻转操作
+    def __init__(self):
+        self.val = 0
+        return
+
+    def update(self, b, c):
+        # 索引从0开始
+        p = (1 << (c + 1)) - (1 << b)
+        self.val ^= p
+        return
+
+    def query(self, b, c):
+        p = (1 << (c + 1)) - (1 << b)
+        return (self.val & p).bit_count()
 
 
 class SegTreeBrackets:
@@ -74,8 +91,8 @@ class SegTreeBrackets:
             b1 += b2 - t
             c1 += c2 - t
         return a1
-    
-    
+
+
 class Solution:
     def __init__(self):
         return
@@ -160,7 +177,7 @@ class Solution:
             query(x, y, 1, n, 1)
             ans.append(d[1][0])
         return ans
-        
+
 
 class SegmentTreeOrUpdateAndQuery:
     def __init__(self):
@@ -197,7 +214,7 @@ class SegmentTreeOrUpdateAndQuery:
             return self.cover[i]
         m = s + (t - s) // 2
         self.push_down(i)
-        ans = (1<<31)-1
+        ans = (1 << 31) - 1
         if left <= m:
             ans &= self.query(left, r, s, m, 2 * i)
         if r > m:
