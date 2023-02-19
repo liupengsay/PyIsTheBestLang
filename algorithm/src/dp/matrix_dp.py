@@ -91,7 +91,8 @@ class Solution:
                     else:
                         c = fun(grid[i][j])
                         dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) + c
-                    f[i][j] = (i - 1) * n + j if dp[i - 1][j] < dp[i][j - 1] else i * n + j - 1
+                    f[i][j] = (i - 1) * n + j if dp[i -
+                                                    1][j] < dp[i][j - 1] else i * n + j - 1
             cnt = dp[-1][-1]
             path = ""
             x = (n - 1) * n + n - 1
@@ -126,7 +127,8 @@ class Solution:
             for i in range(n):
                 for j in range(n):
                     if grid[i][j] == 0:
-                        cur = "D" * i + "R" * j + "D" * (n - 1 - i) + "R" * (n - 1 - j)
+                        cur = "D" * i + "R" * j + "D" * \
+                            (n - 1 - i) + "R" * (n - 1 - j)
                         ans = [1, cur]
                         return ans
         return ans
@@ -179,6 +181,17 @@ class MatrixDP:
         return
 
     @staticmethod
+    def lcp(s, t):
+        # 模板：最长公共前缀模板s[i:]和t[j:]
+        m, n = len(s), len(t)
+        dp = [[0] * (n + 1) for _ in range(m + 1)]
+        for i in range(n - 1, -1, -1):
+            for j in range(n - 1, -1, -1):
+                if s[i] == t[j]:
+                    dp[i][j] = dp[i + 1][j + 1] + 1
+        return dp
+
+    @staticmethod
     def min_distance(word1: str, word2: str):
         m, n = len(word1), len(word2)
         dp = [[float("inf")] * (n + 1) for _ in range(m + 1)]
@@ -190,7 +203,8 @@ class MatrixDP:
         for i in range(m - 1, -1, -1):
             for j in range(n - 1, -1, -1):
                 # 删除，插入，替换
-                dp[i][j] = min(dp[i + 1][j] + 1, dp[i][j + 1] + 1, dp[i + 1][j + 1] + int(word1[i] != word2[j]))
+                dp[i][j] = min(dp[i + 1][j] + 1, dp[i][j + 1] + 1,
+                               dp[i + 1][j + 1] + int(word1[i] != word2[j]))
         return dp[0][0]
 
     @staticmethod
@@ -228,7 +242,8 @@ class MatrixDP:
             for j in range(n):
                 if matrix[i][j] == "1":
                     # 转移公式
-                    dp[i + 1][j + 1] = min(dp[i][j], dp[i + 1][j], dp[i][j + 1]) + 1
+                    dp[i + 1][j + 1] = min(dp[i][j],
+                                           dp[i + 1][j], dp[i][j + 1]) + 1
                     if dp[i + 1][j + 1] > ans:
                         ans = dp[i + 1][j + 1]
         return ans ** 2
@@ -250,7 +265,8 @@ class MatrixDP:
                             res[i + 1][j + 1][p + 1] = res[i][j][p] + s1[i]
                     else:
                         for a, b, c in [[1, 1, 0], [0, 1, 1], [1, 0, 1]]:
-                            if dp[i + 1][j + 1][p + 1] < dp[i + a][j + b][p + c]:
+                            if dp[i + 1][j + 1][p +
+                                                1] < dp[i + a][j + b][p + c]:
                                 dp[i + 1][j + 1][p + 1] = dp[i + a][j + b][p + c]
                                 res[i + 1][j + 1][p + 1] = res[i + a][j + b][p + c]
         return res[m][n][k]
