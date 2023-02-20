@@ -1,4 +1,6 @@
 import unittest
+from algorithm.src.fast_io import FastIO
+from collections import deque
 
 """
 
@@ -23,6 +25,8 @@ B. Fedya and Array（https://codeforces.com/contest/1793/problem/B）思维题�
 D. Replace by MEX（https://codeforces.com/problemset/problem/1375/D）经典MEX的构造题，使得数组非降，即最小的未出现在数组中的数
 D. Phoenix and Science（https://codeforces.com/problemset/problem/1348/D）利用二进制优化将数分割，并利用分裂特点进行计算
 D. Diane（https://codeforces.com/problemset/problem/1554/D）构造，将n取一半向下取整
+C. Matching Numbers（https://codeforces.com/problemset/problem/1788/C）构造，选取 1 到 2n 的数两两配对且和为连续数
+D. Task On The Board（https://codeforces.com/problemset/problem/1367/D）逆向思维模拟构造
 
 ==================================AtCoder=================================
 https://atcoder.jp/contests/agc007/tasks/agc007_b（脑筋急转弯思维构造公式）
@@ -32,11 +36,50 @@ https://atcoder.jp/contests/agc007/tasks/agc007_b（脑筋急转弯思维构造�
 """
 
 
-class Construction:
-    def __init__(self):
+class Solution:
+    def __int__(self):
         return
 
-    def gen_result(self):
+    @staticmethod
+    def cf_1367d(ac=FastIO()):
+        # 模板：逆向思维进行生成模拟构造
+        for _ in range(ac.read_int()):
+            s = ac.read_str()
+            m = ac.read_int()
+            nums = ac.read_list_ints()
+            ans = [""] * m
+            lst = deque(sorted(list(s), reverse=True))
+            while max(nums) >= 0:
+                zero = [i for i in range(m) if nums[i] == 0]
+                k = len(zero)
+                while len(set(list(lst)[:k])) != 1:
+                    lst.popleft()
+                for i in zero:
+                    nums[i] = -1
+                    ans[i] = lst.popleft()
+                while lst and lst[0] == ans[zero[0]]:
+                    lst.popleft()
+                for i in range(m):
+                    if nums[i] != -1:
+                        nums[i] -= sum(abs(i - j) for j in zero)
+            ac.st("".join(ans))
+        return
+
+    @staticmethod
+    def cf_1788c(ac=FastIO()):
+        # 模板：选取 1 到 2n 的数两两配对且和为连续数
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            if n % 2:
+                ac.st("YES")
+                x = n // 2
+                for i in range(1, n + 1):
+                    if i <= x:
+                        ac.lst([i, i + n + x + 1])
+                    else:
+                        ac.lst([i, i - x + n])
+            else:
+                ac.st("NO")
         return
 
 
