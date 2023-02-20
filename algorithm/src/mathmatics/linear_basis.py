@@ -22,7 +22,6 @@ class LinearBasis:
         self.lst = lst
         self.linear_basis = [0] * self.n
         self.gen_linear_basis()
-
         return
 
     def gen_linear_basis(self):
