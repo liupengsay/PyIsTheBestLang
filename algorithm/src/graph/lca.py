@@ -1,38 +1,17 @@
-
-
-import bisect
-import random
-import re
 import unittest
 
 from typing import List
-import heapq
 import math
-from collections import defaultdict, Counter, deque
-from functools import lru_cache
-from itertools import combinations
-from sortedcontainers import SortedList, SortedDict, SortedSet
+import unittest
+from collections import deque
+from typing import List
 
-from sortedcontainers import SortedDict
-from functools import reduce
-from operator import xor
-from functools import lru_cache
-
-import random
-from itertools import permutations, combinations
-import numpy as np
-
-from decimal import Decimal
-
-import heapq
-import copy
-
+from algorithm.src.fast_io import FastIO
 
 """
 
-算法：LCA，使用Tarjan、Range Maximum Query（RMQ）、和倍增算法求解
-
-功能：来求一棵树的最近公共祖先（LCA）
+算法：LCA、倍增算法、树链剖分
+功能：来求一棵树的最近公共祖先（LCA）也可以使用
 题目：
 
 ===================================力扣===================================
@@ -45,165 +24,44 @@ P7128 「RdOI R1」序列(sequence)（https://www.luogu.com.cn/problem/P7128）�
 ==================================LibreOJ==================================
 #10135. 「一本通 4.4 练习 2」祖孙询问（https://loj.ac/p/10135）lca查询与判断
 
+================================CodeForces================================
+E. Tree Queries（https://codeforces.com/problemset/problem/1328/E）利用 LCA 判定节点组是否符合条件，也可以使用 dfs 序
+
 
 参考：
-最近公共祖先算法:
-通常解决这类问题有两种方法：在线算法和离线算法
-在线算法：每次读入一个查询，处理这个查询，给出答案
-离线算法：一次性读入所有查询，统一进行处理，给出所有答案
-我们接下来介绍一种离线算法：Tarjan，两种在线算法：RMQ,倍增算法
-Tarjan的时间复杂度是 O(n+q)
-RMQ是一种先进行 O(nlogn) 预处理，然后O(1)在线查询的算法。
-倍增算法是一种时间复杂度 O((n+q)logn)的算法
 CSDN（https://blog.csdn.net/weixin_42001089/article/details/83590686）
 
 """
 
 
-class LcaTarjan:
-    def __init__(self, dct, root):
-        self.dct = dct
-        self.depth = dict()
-        self.father = dict()
-        self.maxstep = 20  # 最多向上跳2^maxstep步
-
-        self.depth[root] = 1
-        for x in dct[root]:
-            self.dfs(root, x)
-
-    def dfs(self, prev, rt):
-        self.father[rt] = [prev]
-        self.depth[rt] = self.depth[prev] + 1
-        for i in range(1, self.maxstep):
-            if self.father[rt][i - 1] in self.father and len(
-                    self.father[self.father[rt][i - 1]]) >= i:
-                self.father[rt].append(
-                    self.father[self.father[rt][i - 1]][i - 1])
-            else:
-                break
-        for x in self.dct[rt]:
-            self.dfs(rt, x)
-        return
-
-    def LCA(self, root, m, n):
-        # 因为 self.f中没有根节点，所以这里判断一下，如果其中一个是根节点，那么其LCA必是根节点，直接返回即可
-        if m == root or n == root:
-            return root
-        if self.depth[n] < self.depth[m]:
-            temp = m
-            m = n
-            n = temp
-        # 目的就是将m和n的深度调为一样
-        for i in range(len(self.father[n])):
-            if self.depth[n] - self.depth[m] >= 2 ** (len(self.father[n]) - i - 1):
-                n = self.father[n][len(self.father[n]) - i - 1]
-        if n == m:
-            return n
-        # 两者一同向上跳，注意这里的length的重要性
-        length = len(self.father[n])
-        for i in range(length):
-            if self.father[n][length - i -
-                              1] != self.father[m][length - i - 1]:
-                n = self.father[n][length - i - 1]
-                m = self.father[m][length - i - 1]
-        return self.father[m][0]
-
-
-class LcaRMQ:
-    def __init__(self, dct, root):
-        self.dct = dct
-        self.root = root
-
-        # 记录每一个元素对应的深度
-        self.R = []
-
-        # 记录遍历过的元素对应
-        self.ves = []
-
-        # 记录每一个区段的最值，它的结构是这样{1: [1, 1, 1, 1, 1], 2: [2, 2, 2, 2, 11],.........}
-        # 2: [2, 2, 2, 2, 11]比如代表的意义就是从第二个位置开始，长度为1的区间中(本身)深度最浅元素的位置是2，长度为2的区间中深度最浅元素的位置是2
-        # 长度为4的区间中(本身)深度最浅元素的位置是2，长度为8的区间中(本身)深度最浅元素的位置是2，长度为16的区间中(本身)深度最浅元素的位置是11
-        self.dp = {}
-        # 记录每一个元素在欧拉序中出现的第一个位置
-        self.first = {}
-
-        self.dfs(root, 1)
-        self.ST(len(self.R))
-        return
-
-    def dfs(self, root, depth):
-        self.R.append(depth)
-        self.ves.append(root)
-        if root not in self.first:
-            self.first[root] = len(self.ves)
-        for x in self.dct[root]:
-            self.dfs(x, depth + 1)
-            self.R.append(depth)
-            self.ves.append(root)
-        return
-
-    def ST(self, lenth):
-        K = int(math.log(lenth, 2))
-        for i in range(lenth):
-            self.dp[i + 1] = [i + 1]
-        for j in range(1, K + 1):
-            i = 1
-            while i + 2 ** j - 1 <= lenth:
-                a = self.dp[i][j - 1]
-                b = self.dp[i + 2 ** (j - 1)][j - 1]
-                if self.R[a - 1] <= self.R[b - 1]:
-                    self.dp[i].append(a)
-                else:
-                    self.dp[i].append(b)
-                i += 1
-        return
-
-    def LCA(self, f, g):
-        if self.first[f] < self.first[g]:
-            c = self.RMQ(self.first[f], self.first[g])
-        else:
-            c = self.RMQ(self.first[g], self.first[f])
-        return self.ves[c - 1]
-
-    def RMQ(self, m, n):
-        K = int(math.log(n - m + 1, 2))
-        a = self.dp[m][K]
-        b = self.dp[n - 2 ** K + 1][K]
-        if self.R[a - 1] < self.R[b - 1]:
-            return a
-        return b
-
-
 class TreeAncestor:
 
-    def __init__(self, n: int, parent: List[int]):
+    def __init__(self, edges: List[List[int]]):
+        # 默认以0为根节点
+        n = len(edges)
+        self.parent = [-1] * n
+        self.depth = [-1] * n
+        stack = deque([0])
+        self.depth[0] = 0
+        while stack:
+            i = stack.popleft()
+            for j in edges[i]:
+                if self.depth[j] == -1:
+                    self.depth[j] = self.depth[i] + 1
+                    self.parent[j] = i
+                    stack.append(j)
+
         # 根据节点规模设置层数
         self.cols = max(2, math.ceil(math.log2(n)))
-
         self.dp = [[-1] * self.cols for _ in range(n)]
         for i in range(n):
-            self.dp[i][0] = parent[i]
-        # 动态规划设置祖先, dp[node][j] 表示 node 往前推第 2^j 个祖先
+            self.dp[i][0] = self.parent[i]
+        # 动态规划设置祖先初始化, dp[node][j] 表示 node 往前推第 2^j 个祖先
         for j in range(1, self.cols):
             for i in range(n):
                 father = self.dp[i][j-1]
                 if father != -1:
                     self.dp[i][j] = self.dp[father][j-1]
-
-        # 计算每个节点的深度
-        self.depth = [0]*n
-        dct = [[] for _ in range(n)]
-        for i in range(n):
-            if parent[i] != -1:
-                dct[parent[i]].append(i)
-
-        def dfs(x, d):
-            self.depth[x] = d
-            for y in dct[x]:
-                dfs(y, d+1)
-            return
-        # 默认以0为根节点
-        dfs(0, 0)
         return
 
     def get_kth_ancestor(self, node: int, k: int) -> int:
@@ -216,6 +74,7 @@ class TreeAncestor:
         return node
 
     def get_lca(self, x: int, y: int) -> int:
+        # 计算任意两点的最近公共祖先 LCA
         if self.depth[x] < self.depth[y]:
             x, y = y, x
         while self.depth[x] > self.depth[y]:
@@ -229,32 +88,85 @@ class TreeAncestor:
                 y = self.dp[y][k]
         return self.dp[x][0]
 
+    def get_dist(self, u: int, v: int) -> int:
+        # 计算任意点的最短路距离
+        lca = self.get_lca(u, v)
+        depth_u = self.depth[u]
+        depth_v = self.depth[v]
+        depth_lca = self.depth[lca]
+        return depth_u + depth_v - 2 * depth_lca
+
+
+class Solution:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def cf_1328e(ac=FastIO()):
+        n, m = ac.read_ints()
+        edge = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            u, v = ac.read_ints_minus_one()
+            edge[u].append(v)
+            edge[v].append(u)
+
+        tree = TreeAncestor(edge)
+        for _ in range(m):
+            nums = ac.read_list_ints_minus_one()[1:]
+            deep = nums[0]
+            for num in nums:
+                if tree.depth[num] > tree.depth[deep]:
+                    deep = num
+            ans = True
+            for num in nums:
+                fa = tree.get_lca(num, deep)
+                if fa == num or tree.parent[num] == fa:
+                    continue
+                else:
+                    ans = False
+                    break
+            ac.st("YES" if ans else "NO")
+        return
+
+    @staticmethod
+    def lc_1483(parent, node, k):
+        n = len(parent)
+        edges = [[] for _ in range(n)]
+        for i in range(n):
+            if parent[i] != -1:
+                edges[i].append(parent[i])
+                edges[parent[i]].append(i)
+        tree = TreeAncestor(edges)
+        return tree.get_kth_ancestor(node, k)
+
+    @staticmethod
+    def lg_p3379(ac=FastIO()):
+        n, m, s = ac.read_ints()
+        s -= 1
+        edge = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            x, y = ac.read_ints_minus_one()
+            edge[x].append(y)
+            edge[y].append(x)
+        # 需要改 s 为默认根
+        tree = TreeAncestor(edge)
+        for _ in range(m):
+            x, y = ac.read_ints_minus_one()
+            ac.st(tree.get_lca(x, y) + 1)
+        return
+
 
 class TestGeneral(unittest.TestCase):
 
-    def test_lca_tarjan(self):
-        g = {3: [5, 1], 5: [6, 2], 2: [7, 4], 1: [0, 8]}
-        dct = defaultdict(list)
-        for k in g:
-            dct[k].extend(g[k])
-        root = 3
-        lt = LcaTarjan(dct, root)
-        assert lt.LCA(root, 7, 8) == root
-        return
-
-    def test_lca_rmq(self):
-        g = {3: [5, 1], 5: [6, 2], 2: [7, 4], 1: [0, 8]}
-        dct = defaultdict(list)
-        for k in g:
-            dct[k].extend(g[k])
-        root = 3
-        lt = LcaRMQ(dct, root)
-        assert lt.LCA(7, 8) == root
-        return
-
     def test_tree_anncestor(self):
         parent = [-1, 0, 0, 1, 2]
-        tree = TreeAncestor(5, parent)
+        n = len(parent)
+        edges = [[] for _ in range(n)]
+        for i in range(n):
+            if parent[i] != -1:
+                edges[i].append(parent[i])
+                edges[parent[i]].append(i)
+        tree = TreeAncestor(edges)
         assert tree.get_kth_ancestor(4, 3) == -1
         assert tree.get_kth_ancestor(4, 2) == 0
         assert tree.get_kth_ancestor(4, 1) == 2
@@ -263,6 +175,11 @@ class TestGeneral(unittest.TestCase):
         assert tree.get_lca(2, 4) == 2
         assert tree.get_lca(3, 1) == 1
         assert tree.get_lca(3, 2) == 0
+        assert tree.get_dist(0, 0) == 0
+        assert tree.get_dist(0, 4) == 2
+        assert tree.get_dist(3, 4) == 4
+        assert tree.get_dist(1, 0) == 1
+        assert tree.get_dist(2, 3) == 3
         return
 
 
