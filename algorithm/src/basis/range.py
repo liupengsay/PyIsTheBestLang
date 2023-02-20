@@ -27,6 +27,7 @@ A. String Reconstruction（https://codeforces.com/problemset/problem/827/A）区
 参考：OI WiKi（xx）
 """
 
+
 class Range:
     def __init__(self):
         return
@@ -64,7 +65,7 @@ class Range:
             if end >= t:
                 return ans
             # 可以作为下一个交集
-            if (end >= a and inter) or (not inter and end >= a-1):  # 如果是 [1, 2] + [3, 4] = [1, 4] 则需要改成 end >= a-1
+            if (end >= a and inter) or (not inter and end >= a - 1): # 如果是 [1, 2] + [3, 4] = [1, 4] 则需要改成 end >= a-1
                 cur = cur if cur > b else b
             else:
                 if cur <= end:
@@ -75,7 +76,7 @@ class Range:
                 cur = -1
                 if end >= t:
                     return ans
-                if (end >= a and inter) or (not inter and end >= a-1):   # 如果是 [1, 2] + [3, 4] = [1, 4] 则需要改成 end >= a-1
+                if (end >= a and inter) or (not inter and end >= a - 1): # 如果是 [1, 2] + [3, 4] = [1, 4] 则需要改成 end >= a-1
                     # 可以再交
                     cur = cur if cur > b else b
                 else:
@@ -86,7 +87,6 @@ class Range:
             ans += 1
             return ans
         return -1
-
 
     @staticmethod
     def disjoint_most(lst):
@@ -109,17 +109,17 @@ class Solution:
     @staticmethod
     def lc_45(nums):
         n = len(nums)
-        lst = [[i, min(n-1, i+nums[i])] for i in range(n)]
+        lst = [[i, min(n - 1, i + nums[i])] for i in range(n)]
         if n == 1:  # 注意特判
             return 0
-        return Range().cover_less(0, n-1, lst)
+        return Range().cover_less(0, n - 1, lst)
 
     @staticmethod
     def lc_1326(n, ranges):
-        m = n+1
+        m = n + 1
         lst = []
         for i in range(m):
-            lst.append([max(i-ranges[i], 0), i+ranges[i]])
+            lst.append([max(i - ranges[i], 0), i + ranges[i]])
         return Range().cover_less(0, n, lst)
 
     @staticmethod
