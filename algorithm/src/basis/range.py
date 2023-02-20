@@ -1,4 +1,5 @@
 import unittest
+from algorithm.src.fast_io import FastIO
 
 """
 算法：区间合并、区间覆盖、区间计数
@@ -6,43 +7,64 @@ import unittest
 题目：
 
 ===================================力扣===================================
+45. 跳跃游戏 II（https://leetcode.cn/problems/jump-game-ii/）转换为最小区间覆盖问题
+1326. 灌溉花园的最少水龙头数目（https://leetcode.cn/problems/minimum-number-of-taps-to-open-to-water-a-garden/）转换为最小区间覆盖问题
+1024. 视频拼接（https://leetcode.cn/problems/video-stitching/）转换为最小区间覆盖问题
 435. 无重叠区间（https://leetcode.cn/problems/non-overlapping-intervals/）最多不相交的区间，使用贪心或者二分DP
 763. 划分字母区间（https://leetcode.cn/problems/partition-labels/）经典将区间合并为不相交的区间
 
 ===================================洛谷===================================
 P2082 区间覆盖（加强版）（https://www.luogu.com.cn/problem/P2082）经典区间合并确定覆盖范围
 P2434 [SDOI2005]区间（https://www.luogu.com.cn/problem/P2434）经典区间合并为不相交的区间
-P2684 搞清洁（https://www.luogu.com.cn/problem/P2684）最小区间覆盖，选取最少的区间来进行覆盖
 P2970 [USACO09DEC]Selfish Grazing S（https://www.luogu.com.cn/problem/P2970）最多不相交的区间，使用贪心或者二分DP
 P6123 [NEERC2016]Hard Refactoring（https://www.luogu.com.cn/problem/P6123）区间合并变形问题
+P2684 搞清洁（https://www.luogu.com.cn/problem/P2684）最小区间覆盖，选取最少的区间来进行覆盖
 
 ================================CodeForces================================
-https://codeforces.com/problemset/problem/827/A（区间合并为不相交的区间，再贪心赋值）
+A. String Reconstruction（https://codeforces.com/problemset/problem/827/A）区间合并为不相交的区间，再贪心赋值
 
 
 参考：OI WiKi（xx）
 """
 
-
-class RangeCoverCount:
+class Range:
     def __init__(self):
         return
 
     @staticmethod
-    def range_cover_less(t, nums):
-        # 模板: 计算nums的最少区间数进行覆盖 [1,t]
-        nums.sort(key=lambda x: [x[0], -x[1]])
-        if nums[0][0] != 1:
+    def merge(lst):
+        # 模板: 区间合并为不相交的区间
+        lst.sort(key=lambda it: it[0])
+        ans = []
+        x, y = lst[0]
+        for a, b in lst[1:]:
+            # 注意此处开闭区间 [1, 3] + [3, 4] = [1, 4]
+            if a <= y:  # 如果是 [1, 2] + [3, 4] = [1, 4] 则需要改成 a <= y-1
+                y = y if y > b else b
+            else:
+                ans.append([x, y])
+                x, y = a, b
+        ans.append([x, y])
+        return ans
+
+    @staticmethod
+    def cover_less(s, t, lst, inter=True):
+        # 模板: 计算nums的最少区间数进行覆盖 [s, t]
+        lst.sort(key=lambda x: [x[0], -x[1]])
+        if lst[0][0] != s:
             return -1
+        if lst[0][1] >= t:
+            return 1
         # 起点
         ans = 1  # 可以换为最后选取的区间返回
-        end = nums[0][1]
+        end = lst[0][1]
         cur = -1
-        for a, b in nums[1:]:
+        for a, b in lst[1:]:
+            # 注意此处开闭区间 [1, 3] + [3, 4] = [1, 4]
             if end >= t:
                 return ans
             # 可以作为下一个交集
-            if end >= a - 1:
+            if (end >= a and inter) or (not inter and end >= a-1):  # 如果是 [1, 2] + [3, 4] = [1, 4] 则需要改成 end >= a-1
                 cur = cur if cur > b else b
             else:
                 if cur <= end:
@@ -53,7 +75,7 @@ class RangeCoverCount:
                 cur = -1
                 if end >= t:
                     return ans
-                if end >= a - 1:
+                if (end >= a and inter) or (not inter and end >= a-1):   # 如果是 [1, 2] + [3, 4] = [1, 4] 则需要改成 end >= a-1
                     # 可以再交
                     cur = cur if cur > b else b
                 else:
@@ -65,28 +87,64 @@ class RangeCoverCount:
             return ans
         return -1
 
+
     @staticmethod
-    def range_merge(lst):
-        # 模板: 合并线性区间为不相交的区间
-        lst.sort(key=lambda it: it[0])
-        ans = []
-        x, y = lst[0]
-        for a, b in lst[1:]:
-            if a <= y:
-                y = y if y > b else b
-            else:
-                ans.append([x, y])
-                x, y = a, b
-        ans.append([x, y])
+    def disjoint_most(lst):
+        # 模板：最多不相交的区间
+        lst.sort(key=lambda x: x[1])
+        n = len(lst)
+        ans = 0
+        end = float("-inf")
+        for a, b in lst:
+            if a >= end:
+                ans += 1
+                end = b
         return ans
+
+
+class Solution:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def lc_45(nums):
+        n = len(nums)
+        lst = [[i, min(n-1, i+nums[i])] for i in range(n)]
+        if n == 1:  # 注意特判
+            return 0
+        return Range().cover_less(0, n-1, lst)
+
+    @staticmethod
+    def lc_1326(n, ranges):
+        m = n+1
+        lst = []
+        for i in range(m):
+            lst.append([max(i-ranges[i], 0), i+ranges[i]])
+        return Range().cover_less(0, n, lst)
+
+    @staticmethod
+    def lc_1024(clips, time) -> int:
+        return Range().cover_less(0, time, clips)
+
+    @staticmethod
+    def lg_p2684(ac=FastIO()):
+        n, t = ac.read_ints()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        ac.st(Range().cover_less(1, t, nums))
+        return
+
+    @staticmethod
+    def lc_435(intervals):
+        n = len(intervals)
+        return n - Range().disjoint_most(intervals)
 
 
 class TestGeneral(unittest.TestCase):
 
     def test_range_cover_count(self):
-        rcc = RangeCoverCount()
+        rcc = Range()
         lst = [[1, 4], [2, 5], [3, 6], [8, 9]]
-        assert rcc.range_merge(lst) == [[1, 6], [8, 9]]
+        assert rcc.merge(lst) == [[1, 6], [8, 9]]
         return
 
 
