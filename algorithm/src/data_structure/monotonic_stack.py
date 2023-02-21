@@ -1,5 +1,8 @@
 import random
 import unittest
+from typing import List
+
+from algorithm.src.fast_io import FastIO
 
 """
 算法：单调栈
@@ -7,13 +10,12 @@ import unittest
 题目：
 
 ===================================力扣===================================
-85. 最大矩形（https://leetcode.cn/problems/maximal-rectangle/）枚举矩形下边界结合单调栈计算最大面积 
+85. 最大矩形（https://leetcode.cn/problems/maximal-rectangle/）枚举矩形下边界，使用单调栈计算最大矩形面积 
 2334. 元素值大于变化阈值的子数组（https://leetcode.cn/problems/subarray-with-elements-greater-than-varying-threshold/）排序后枚举最小值左右两边的影响范围
-2281. 巫师的总力量（https://leetcode.cn/problems/sum-of-total-strength-of-wizards/）枚举当前元素作为最小值的子数组和并使用前缀和的前缀和计算
 2262. 字符串的总引力（https://leetcode.cn/problems/total-appeal-of-a-string/）计算下一个或者上一个不同字符的位置
 
 ===================================洛谷===================================
-P1950 长方形（https://www.luogu.com.cn/problem/P1950）通过枚举下边界结合单调栈计算矩形个数
+P1950 长方形（https://www.luogu.com.cn/problem/P1950）通过枚举下边界，结合单调栈计算矩形个数
 P1901 发射站（https://www.luogu.com.cn/problem/P1901）由不相同的数组成的数组求其前后的更大值
 P2866 [USACO06NOV]Bad Hair Day S（https://www.luogu.com.cn/problem/P2866）单调栈
 P2947 [USACO09MAR]Look Up S（https://www.luogu.com.cn/problem/P2947）单调栈裸题
@@ -31,6 +33,103 @@ E. Explosions?（https://codeforces.com/problemset/problem/1795/E）单调栈贪
 
 参考：OI WiKi（xx）
 """
+
+class Rectangle:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def compute_area(pre):
+        # 根据高度计算最大矩形面积
+        m = len(pre)
+        left = [0] * m
+        right = [m - 1] * m
+        stack = []
+        for i in range(m):
+            while stack and pre[stack[-1]] > pre[i]:
+                right[stack.pop()] = i - 1
+            if stack:
+                left[i] = stack[-1] + 1
+            stack.append(i)
+
+        ans = 0
+        for i in range(m):
+            cur = pre[i] * (right[i] - left[i] + 1)
+            ans = ans if ans > cur else cur
+        return ans
+
+    @staticmethod
+    def compute_number(pre):
+        n = len(pre)
+        # 根据高度计算矩形个数
+        right = [n - 1] * n
+        left = [0] * n
+        stack = []
+        for j in range(n):
+            while stack and pre[stack[-1]] > pre[j]:
+                right[stack.pop()] = j - 1
+            if stack:
+                left[j] = stack[-1] + 1
+            stack.append(j)
+
+        ans = 0
+        for j in range(n):
+            ans += (right[j] - j + 1) * (j - left[j] + 1) * pre[j]
+        return ans
+
+
+class Solution:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def lc_85(matrix: List[List[str]]) -> int:
+        # 模板：单调栈计算最大矩形面积
+        m, n = len(matrix), len(matrix[0])
+        pre = [0] * n
+        ans = 0
+        for i in range(m):
+            for j in range(n):
+                if matrix[i][j] == "1":
+                    pre[j] += 1
+                else:
+                    pre[j] = 0
+            ans = max(ans, Rectangle().compute_area(pre))
+        return ans
+
+    @staticmethod
+    def lg_p4147(ac=FastIO()):
+        # 模板：单调栈计算最大矩形面积
+        n, m = ac.read_ints()
+        pre = [0] * m
+        ans = 0
+        for _ in range(n):
+            lst = ac.read_list_strs()
+            for i in range(m):
+                if lst[i] == "F":
+                    pre[i] += 1
+                else:
+                    pre[i] = 0
+            ans = ac.max(ans, Rectangle().compute_area(pre))
+        ac.st(3 * ans)
+        return
+
+    @staticmethod
+    def main(ac=FastIO()):
+        # 模板：单调栈计算矩形个数
+        m, n = ac.read_ints()
+        ans = 0
+        pre = [0] * n
+        for _ in range(m):
+            s = ac.read_str()
+            for j in range(n):
+                if s[j] == ".":
+                    pre[j] += 1
+                else:
+                    pre[j] = 0
+            ans += Rectangle().compute_number(pre)
+        ac.st(ans)
+        return
 
 
 class MonotonicStack:
