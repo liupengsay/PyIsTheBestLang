@@ -16,6 +16,7 @@ import bisect
 2132. 用邮票贴满网格图（https://leetcode.cn/problems/stamping-the-grid/）用前缀和枚举可行的邮票左上端点，然后查看空白格点左上方是否有可行的邮票点
 1229. 安排会议日程（https://leetcode.cn/problems/meeting-scheduler/）离散化差分数组
 6292. 子矩阵元素加 1（https://leetcode.cn/problems/increment-submatrices-by-one/)二维差分前缀和
+2565. 最少得分子序列（https://leetcode.cn/problems/subsequence-with-the-minimum-score/）使用前后缀指针枚举匹配最长前后缀
 
 ===================================洛谷===================================
 P8772 [蓝桥杯 2022 省 A] 求和（https://www.luogu.com.cn/record/list?user=739032&status=12&page=15）后缀和计算
@@ -216,6 +217,29 @@ class Solution:
             left, right = pre[i], post[i]
             ans += strength[i] * ((i - left + 1) * (ss[right + 2] - ss[i + 1]) - (right - i + 1) * (ss[i + 1] - ss[left]))
             ans %= mod
+        return ans
+
+    @staticmethod
+    def lc_2565(s: str, t: str) -> int:
+        # 模板：使用前后缀贪心枚举前后缀最长匹配
+        m, n = len(s), len(t)
+        pre = [0] * (m + 1)
+        ind = 0
+        for i in range(m):
+            if ind < n and s[i] == t[ind]:
+                ind += 1
+            pre[i + 1] = ind
+        if ind == n:
+            return 0
+
+        post = [0] * (m + 1)
+        ind = 0
+        for i in range(m - 1, -1, -1):
+            if ind < n and s[i] == t[-ind - 1]:
+                ind += 1
+            post[i] = ind
+
+        ans = min(n - (post[i] + pre[i]) for i in range(m + 1))
         return ans
 
 
