@@ -1,13 +1,15 @@
 import math
 import unittest
 
+from algorithm.src.fast_io import FastIO
+
 """
 算法：三分查找
 功能：用来寻找区间至多具有一个峰顶点或者一个谷底点的函数极值解
 题目：
 
 ===================================洛谷===================================
-P3382 三分法（https://www.luogu.com.cn/problem/P3382）利用三分求区间函数极值点
+P3382 【模板】三分法（https://www.luogu.com.cn/problem/P3382）利用三分求区间函数极值点
 P1883 函数（https://www.luogu.com.cn/problem/P1883）三分求下凸函数最小值
 
 ================================CodeForces================================
@@ -20,14 +22,14 @@ http://codeforces.com/problemset/problem/439/D（利用单调性变换使用三�
 
 
 class TriPartSearch:
+    # 三分查找
     def __init__(self):
         return
 
     @staticmethod
-    def find_ceil_point(fun, left, right, error = 1e-6):
+    def find_ceil_point(fun, left, right, error=1e-6):
         
         # 求解上凸函数函数取得最大值时的点
-
         while left < right - error:
             diff = (right - left) / 3
             mid1 = left + diff
@@ -47,7 +49,6 @@ class TriPartSearch:
     def find_floor_point(fun, left, right):
 
         # 求解下凸函数取得最大值时的点
-
         error = 1e-6
         while left < right - error:
             diff = (right - left) / 3
@@ -65,7 +66,7 @@ class TriPartSearch:
         return left
 
     @staticmethod
-    def find_ceil_value(fun, left, right, error = 1e-7):
+    def find_ceil_value(fun, left, right, error=1e-7):
 
         # 求解上凸函数取得的最大值
         f1, f2 = fun(left), fun(right)
@@ -88,7 +89,7 @@ class TriPartSearch:
         return (f1 + f2)/2
 
     @staticmethod
-    def find_floor_value(fun, left, right, error = 1e-7):
+    def find_floor_value(fun, left, right, error=1e-7):
 
         # 求解下凸函数取得的最小值
         f1, f2 = fun(left), fun(right)
@@ -112,6 +113,7 @@ class TriPartSearch:
 
 
 class TriPartPackTriPart:
+    # 模板：三分套三分
     def __init__(self):
         return
 
@@ -157,6 +159,31 @@ class TriPartPackTriPart:
         res_x, r = optimize(low)
         res_y = low
         return [res_x, res_y, math.sqrt(r)]
+
+
+class Solution:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def lg_p3382(ac=FastIO()):
+        # 模板：三分查找取得最大值的函数点
+        n, l, r = ac.read_floats()
+        n = int(n)
+        lst = ac.read_list_floats()
+        lst.reverse()
+
+        def check(x):
+            res = lst[0]
+            mul = 1
+            for i in range(1, n + 1):
+                mul *= x
+                res += mul * lst[i]
+            return res
+
+        ans = TriPartSearch().find_ceil_point(check, l, r)
+        ac.st(ans)
+        return
 
 
 class TestGeneral(unittest.TestCase):
