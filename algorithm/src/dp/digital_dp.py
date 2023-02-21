@@ -32,8 +32,8 @@ class DigitalDP:
         return
 
     @staticmethod
-    def main(n):
-        # 模板: 计算小于等于n的正整数二进制位1的个数
+    def count_bin(n):
+        # 模板: 计算 1 到 n 的正整数二进制位 1 出现的次数
         @lru_cache(None)
         def dfs(i, is_limit, is_num, cnt):
             if i == m:
@@ -46,8 +46,7 @@ class DigitalDP:
             low = 0 if is_num else 1
             high = int(st[i]) if is_limit else 1
             for x in range(low, high + 1):
-                res += dfs(i + 1, is_limit and high == x,
-                           True, cnt + int(i == w) * x)
+                res += dfs(i + 1, is_limit and high == x, True, cnt + int(i == w) * x)
             return res
 
         st = bin(n)[2:]
@@ -60,27 +59,8 @@ class DigitalDP:
         return ans
 
     @staticmethod
-    def count_special_numbers(n: int) -> int:
-        s = str(n)
-
-        @lru_cache(None)
-        def f(i: int, mask: int, is_limit: bool, is_num: bool) -> int:
-            if i == len(s):
-                return int(is_num)
-            res = 0
-            if not is_num:  # 可以跳过当前数位
-                res = f(i + 1, mask, False, False)
-            up = int(s[i]) if is_limit else 9
-            for d in range(0 if is_num else 1, up + 1):  # 枚举要填入的数字 d
-                if mask >> d & 1 == 0:  # d 不在 mask 中
-                    res += f(i + 1, mask | (1 << d),
-                             is_limit and d == up, True)
-            return res
-        return f(0, 0, True, False)
-
-    @staticmethod
-    def count_digit_num(num, d):
-        # 模板: 计算1-num内数字d的个数
+    def count_digit(num, d):
+        # 模板: 计算 1到 num 内数位 d 出现的个数
         @lru_cache(None)
         def dfs(i, cnt, is_limit, is_num):
             if i == n:
@@ -101,9 +81,9 @@ class DigitalDP:
         return dfs(0, 0, True, False)
 
     @staticmethod
-    def count_digit_base(num, d):
-
-        # 模板: 使用进制计算1-num内不含数字d的个数 1<=d<=9
+    def count_num_base(num, d):
+        # 模板: 使用进制计算 1 到 num 内不含数位 d 的数字个数 
+        assert 1 <= d <= 9  # 不含 0 则使用数位 DP 进行计算
         s = str(num)
         i = s.find(str(d))
         if i != -1:
@@ -132,9 +112,11 @@ class DigitalDP:
         return ans
 
     @staticmethod
-    def count_digit_base2(num, d):
+    def count_num_dp(num, d):
 
-        # 模板: 使用数位DP计算1-num内不含数字d的个数 0<=d<=9
+        # 模板: 使用进制计算 1 到 num 内不含数位 d 的数字个数 
+        assert 0 <= d <= 9
+        
         @lru_cache(None)
         def dfs(i: int, is_limit: bool, is_num: bool) -> int:
             if i == m:
@@ -153,24 +135,36 @@ class DigitalDP:
         return dfs(0, True, False)
 
     @staticmethod
-    def compute_digit(num, d):
-        # 模板: 使用进制计算第num个不含数字d的数 0<=d<=9
+    def get_kth_without_d(k, d):
+        # 模板: 使用进制计算第 k 个不含数位 d 的数 0<=d<=9
         lst = []
         st = list(range(10))
         st.remove(d)
-        while num:
+        while k:
             if d:
-                lst.append(num % 9)
-                num //= 9
+                lst.append(k % 9)
+                k //= 9
             else:
-                lst.append((num - 1) % 9)
-                num = (num - 1) // 9
+                lst.append((k - 1) % 9)
+                k = (k - 1) // 9
         lst.reverse()
-        # 也可以使用二分加数位DP进行求解
+        # 也可以使用二分加数位 DP 进行求解
         ans = [str(st[i]) for i in lst]
         return int("".join(ans))
 
 
+class Solution:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def lc_233(n: int) -> int:
+        # 模板：计算 0 到 n 有数位 1 的出现次数
+        if not n:
+            return 0
+        return DigitalDP().count_digit(n, 1)
+    
+    
 class TestGeneral(unittest.TestCase):
 
     def test_digital_dp(self):
@@ -183,15 +177,15 @@ class TestGeneral(unittest.TestCase):
                 cnt[int(w)] += 1
 
         for d in range(10):
-            assert dd.count_digit_num(n, d) == cnt[d]
+            assert dd.count_digit(n, d) == cnt[d]
 
         for d in range(1, 10):
-            ans1 = dd.count_digit_base(n, d)
+            ans1 = dd.count_num_base(n, d)
             ans2 = sum(str(d) not in str(num) for num in range(1, n + 1))
             assert ans1 == ans2
 
         for d in range(10):
-            ans1 = dd.count_digit_base2(n, d)
+            ans1 = dd.count_num_dp(n, d)
             ans2 = sum(str(d) not in str(num) for num in range(1, n + 1))
             assert ans1 == ans2
 
@@ -201,7 +195,7 @@ class TestGeneral(unittest.TestCase):
                 if str(d) not in str(i):
                     nums.append(i)
             for i, num in enumerate(nums):
-                assert dd.compute_digit(i + 1, d) == num
+                assert dd.get_kth_without_d(i + 1, d) == num
         return
 
 
