@@ -1,4 +1,7 @@
 import unittest
+from collections import defaultdict
+from typing import List
+
 from algorithm.src.fast_io import FastIO
 
 """
@@ -10,6 +13,7 @@ from algorithm.src.fast_io import FastIO
 45. 跳跃游戏 II（https://leetcode.cn/problems/jump-game-ii/）转换为最小区间覆盖问题
 1326. 灌溉花园的最少水龙头数目（https://leetcode.cn/problems/minimum-number-of-taps-to-open-to-water-a-garden/）转换为最小区间覆盖问题
 1024. 视频拼接（https://leetcode.cn/problems/video-stitching/）转换为最小区间覆盖问题
+
 435. 无重叠区间（https://leetcode.cn/problems/non-overlapping-intervals/）最多不相交的区间，使用贪心或者二分DP
 763. 划分字母区间（https://leetcode.cn/problems/partition-labels/）经典将区间合并为不相交的区间
 
@@ -135,8 +139,23 @@ class Solution:
 
     @staticmethod
     def lc_435(intervals):
+        # 模板：合并区间
         n = len(intervals)
         return n - Range().disjoint_most(intervals)
+
+    @staticmethod
+    def lc_763(s: str) -> List[int]:
+        # 模板：合并区间
+        dct = defaultdict(list)
+        for i, w in enumerate(s):
+            if len(dct[w]) >= 2:
+                dct[w].pop()
+            dct[w].append(i)
+        lst = []
+        for w in dct:
+            lst.append([dct[w][0], dct[w][-1]])
+        ans = Range().merge(lst)
+        return [y-x+1 for x, y in ans]
 
 
 class TestGeneral(unittest.TestCase):
