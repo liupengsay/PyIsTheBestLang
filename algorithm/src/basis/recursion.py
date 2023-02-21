@@ -18,30 +18,26 @@ P7673 [COCI2013-2014#5] OBILAZAK（https://www.luogu.com.cn/problem/P7673）根�
 """
 
 
-class Recusion:
+class Solution:
     def __init__(self):
         return
 
-    def gen_result(self):
-        return
-
     @staticmethod
-    def main_p1911(n, x, y):
+    def lg_p1911(n, x, y):
 
-        x -= 1
-        y -= 1
-        m = 1 << n
-        ans = [[0] * m for _ in range(m)]
+        # 模板：递归处理四叉树
 
         def dfs(x1, y1, x2, y2, a, b):
             nonlocal ind
             if x1 == x2 and y1 == y2:
                 return
+
+            # 确定是哪一个角被占用了
             flag = find(x1, y1, x2, y2, a, b)
             x0 = x1 + (x2 - x1) // 2
             y0 = y1 + (y2 - y1) // 2
 
-            # # 四叉树中心邻居节点
+            # 四叉树中心邻居节点
             lst = [[x0, y0], [x0, y0 + 1], [x0 + 1, y0], [x0 + 1, y0 + 1]]
             nex = []
             for i in range(4):
@@ -69,9 +65,15 @@ class Recusion:
                 return 2
             return 3
 
+        x -= 1
+        y -= 1
+        m = 1 << n
+        ans = [[0] * m for _ in range(m)]
         ind = 1
-
+        # 递归生成
         dfs(0, 0, m - 1, m - 1, x, y)
+
+        # 哈希化处理
         dct = dict()
         dct[0] = 0
         for i in range(m):
@@ -79,7 +81,6 @@ class Recusion:
                 x = ans[i][j]
                 if x not in dct:
                     dct[x] = len(dct)
-
         return [[dct[i] for i in a] for a in ans]
 
 
