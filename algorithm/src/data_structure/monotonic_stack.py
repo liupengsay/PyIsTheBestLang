@@ -115,7 +115,7 @@ class Solution:
         return
 
     @staticmethod
-    def main(ac=FastIO()):
+    def lg_p1950(ac=FastIO()):
         # 模板：单调栈计算矩形个数
         m, n = ac.read_ints()
         ans = 0

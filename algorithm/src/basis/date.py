@@ -159,7 +159,7 @@ class Solution:
             m, d, h, m, s = lst[2:]
             start_date = datetime(year=y, month=m, day=d, hour=h, minute=m, second=s)
             end_date = start_date + timedelta(seconds=x)
-            ac.lst([end_date.year, end_date.month, end_date.day,end_date.hour, end_date.minute, end_date.second])
+            ac.lst([end_date.year, end_date.month, end_date.day, end_date.hour, end_date.minute, end_date.second])
         return
 
 
