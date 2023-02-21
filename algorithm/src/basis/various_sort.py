@@ -302,6 +302,37 @@ class VariousSort:
         nums.sort(key=cmp_to_key(compare))
         return nums
 
+
+class Solution:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def lc_912(lst: List[int]) -> List[int]:
+        # 模板：快速排序两路手动实现
+        n = len(lst)
+
+        def quick_sort(i, j):
+            if i >= j:
+                return
+            val = lst[random.randint(i, j)]
+            left = i
+            for k in range(i, j + 1):
+                if lst[k] < val:
+                    lst[k], lst[left] = lst[left], lst[k]
+                    left += 1
+
+            quick_sort(i, left - 1)
+            for k in range(i, j + 1):
+                if lst[k] == val:
+                    lst[k], lst[left] = lst[left], lst[k]
+                    left += 1
+            quick_sort(left, j)
+            return
+
+        quick_sort(0, n - 1)
+        return lst
+
     @staticmethod
     def lc_179(nums: List[int]) -> str:
 
