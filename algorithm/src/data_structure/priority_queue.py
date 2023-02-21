@@ -1,5 +1,9 @@
 import unittest
 from collections import deque
+import random
+from typing import List
+
+from algorithm.src.fast_io import FastIO
 
 """
 算法：单调队列、双端队列
@@ -44,6 +48,26 @@ class PriorityQueue:
         if method == "min":
             ans = [-num for num in ans]
         return ans
+
+
+class Solution:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def lc_239(self, nums: List[int], k: int) -> List[int]:
+        # 模板：滑动窗口最大值
+        return PriorityQueue().sliding_window(nums, k)
+
+    @staticmethod
+    def lg_p2251(ac=FastIO()):
+        # 模板：滑动窗口最小值
+        n, m = ac.read_ints()
+        nums = ac.read_list_ints()
+        ans = PriorityQueue().sliding_window(nums, m, "min")
+        for a in ans:
+            ac.st(a)
+        return
 
 
 class TestGeneral(unittest.TestCase):
