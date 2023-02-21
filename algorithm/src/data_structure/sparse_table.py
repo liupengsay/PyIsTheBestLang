@@ -1,6 +1,9 @@
 import math
 import random
 import unittest
+from functools import reduce
+
+from algorithm.src.fast_io import FastIO
 
 """
 算法：ST（Sparse-Table）稀疏表
@@ -10,7 +13,7 @@ ST表算法全称Sparse-Table算法，是由Tarjan提出的一种解决RMQ问题
 题目：
 
 ===================================洛谷===================================
-P3865 ST 表（https://www.luogu.com.cn/problem/P3865）
+P3865 ST 表（https://www.luogu.com.cn/problem/P3865）使用ST表静态查询区间最大值
 P2880 Balanced Lineup G（https://www.luogu.com.cn/problem/P2880）使用ST表预处理区间最大值与最小值
 P1890 gcd区间（https://www.luogu.com.cn/problem/P3865）使用ST表预处理区间的gcd
 P1816 忠诚（https://www.luogu.com.cn/problem/P1816）使用ST表预处理区间的最小值
@@ -115,16 +118,24 @@ class SparseTable2:
         else:
             return math.gcd(a, b)
 
+class Solution:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def lg_p3865(ac=FastIO()):
+        # 模板：查询静态区间最大值
+        n, m = ac.read_ints()
+        st = SparseTable1(ac.read_list_ints())
+        for _ in range(m):
+            x, y = ac.read_ints()
+            ac.st(st.query(x, y))
+        return
+
 
 class TestGeneral(unittest.TestCase):
 
     def test_sparse_table(self):
-
-        def check(lst):
-            ans = lst[0]
-            for num in lst[1:]:
-                ans = math.gcd(num, ans)
-            return ans
 
         def check_and(lst):
             ans = lst[0]
@@ -159,7 +170,7 @@ class TestGeneral(unittest.TestCase):
             right = random.randint(left, ceil)
             assert st1_max.query(left, right) == st2_max.query(left-1, right-1) == max(nums[left-1:right])
             assert st1_min.query(left, right) == st2_min.query(left - 1, right - 1) == min(nums[left - 1:right])
-            assert st1_gcd.query(left, right) == st2_gcd.query(left-1, right-1) == check(nums[left - 1:right])
+            assert st1_gcd.query(left, right) == st2_gcd.query(left-1, right-1) == reduce(math.gcd, nums[left - 1:right])
             assert st1_and.query(left, right) == check_and(nums[left - 1:right])
             assert st1_or.query(left, right) == check_or(nums[left - 1:right])
         return
