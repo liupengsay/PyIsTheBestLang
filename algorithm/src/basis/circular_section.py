@@ -1,4 +1,5 @@
 import unittest
+from typing import List
 
 """
 算法：循环节
@@ -98,6 +99,41 @@ class CircleSection:
         j = h % circle
         ans += pre[ind + j] - pre[ind]
         return ans
+
+
+class Solution:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def lc_957(cells: List[int], n: int) -> List[int]:
+        # 模板：N 天后的牢房经典循环节
+        def compute_loop(i, j, n):
+            # 此时只需计算k即可，即最后一次的状态
+            if j == n:
+                return n
+            k = i + (n - i) % (j - i)
+            return k
+
+        m = len(cells)
+        dct = dict()
+        state = []
+        day = 0
+        # 进行模拟状态
+        while day < n:
+            busy = set([i for i in range(1, m - 1) if cells[i - 1] == cells[i + 1]])
+            cells = [1 if i in busy else 0 for i in range(m)]
+            day += 1
+            state.append(cells[:])
+            if tuple(cells) in dct:
+                break
+            dct[tuple(cells)] = day
+
+        # 计算循环节信息
+        i = dct[tuple(cells)]
+        j = day
+        k = compute_loop(i, j, n)
+        return state[k - 1]
 
 
 class TestGeneral(unittest.TestCase):
