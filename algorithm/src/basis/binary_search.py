@@ -1,7 +1,7 @@
 import bisect
 import unittest
 import random
-
+from algorithm.src.fast_io import FastIO, inf
 
 """
 
@@ -16,6 +16,7 @@ import random
 2179 统计数组中好三元组数目（https://leetcode.cn/problems/count-good-triplets-in-an-array/）维护区间范围内的个数
 2141 同时运行 N 台电脑的最长时间（https://leetcode.cn/problems/maximum-running-time-of-n-computers/）贪心选择最大的 N 个电池作为基底，然后二分确定在其余电池的加持下可以运行的最长时间
 2102 序列顺序查询（https://leetcode.cn/problems/sequentially-ordinal-rank-tracker/）使用有序集合维护优先级姓名实时查询
+2563. 统计公平数对的数目（https://leetcode.cn/problems/count-the-number-of-fair-pairs/）使用二分查找确定范围个数
 
 ===================================洛谷===================================
 P1577 切绳子（https://www.luogu.com.cn/problem/P1577）数学整除向下取整与二分
@@ -46,11 +47,11 @@ https://codeforces.com/problemset/problem/830/A（使用贪心进行距离点覆
 https://codeforces.com/problemset/problem/847/E（使用贪心二分与指针进行判断）
 https://codeforces.com/problemset/problem/732/D（使用贪心二分与指针进行判断）
 https://codeforces.com/problemset/problem/778/A（二分和使用指针判断是否check
-https://codeforces.com/problemset/problem/913/C（DP预处理最有单价，再二分加贪心进行模拟求解）
-Teleporters (Hard Version)（https://codeforces.com/problemset/problem/1791/G2）贪心排序，前缀和枚举二分
+https://codeforces.com/problemset/problem/913/C（DP预处理最优单价，再二分加贪心进行模拟求解）
 
+G2. Teleporters (Hard Version)（https://codeforces.com/problemset/problem/1791/G2）贪心排序，前缀和枚举二分
 D. Multiplication Table（https://codeforces.com/problemset/problem/448/D）经典二分查找计算n*m的乘法表第k大元素
-D. Cleaning the Phone（https://codeforces.com/problemset/problem/1475/D）贪心排序+前缀和+枚举+二分
+D. Cleaning the Phone（https://codeforces.com/problemset/problem/1475/D）贪心排序，前缀和枚举二分
 D. Odd-Even Subsequence（https://codeforces.com/problemset/problem/1370/D）利用单调性二分，再使用贪心check
 
 参考：OI WiKi（xx）
@@ -62,20 +63,10 @@ class BinarySearch:
         return
 
     @staticmethod
-    def bisect_left(nums, target):
-        # 模板: 寻找target的插入位置1
-        return bisect.bisect_left(nums, target)
-
-    @staticmethod
-    def bisect_right(nums, target):
-        # 模板: 寻找target的插入位置2
-        return bisect.bisect_right(nums, target)
-
-    @staticmethod
-    def find_int(low, high, check):
-        # 模板: 整数范围内二分查找
-        while low < high-1:
-            mid = low+(high-low)//2
+    def find_int_left(low, high, check):
+        # 模板: 整数范围内二分查找，选择最靠左满足check
+        while low < high - 1:
+            mid = low + (high - low) // 2
             if check(mid):
                 high = mid
             else:
@@ -83,10 +74,21 @@ class BinarySearch:
         return low if check(low) else high
 
     @staticmethod
-    def find_float(low, high, check, error=1e-6):
-        # 模板: 浮点数范围内二分查找
-        while low < high-error:
-            mid = low+(high-low)/2
+    def find_int_right(low, high, check):
+        # 模板: 整数范围内二分查找，选择最靠右满足check
+        while low < high - 1:
+            mid = low + (high - low) // 2
+            if check(mid):
+                low = mid
+            else:
+                high = mid
+        return high if check(high) else low
+
+    @staticmethod
+    def find_float_left(low, high, check, error=1e-6):
+        # 模板: 浮点数范围内二分查找, 选择最靠左满足check
+        while low < high - error:
+            mid = low + (high - low) / 2
             if check(mid):
                 high = mid
             else:
@@ -94,48 +96,152 @@ class BinarySearch:
         return low if check(low) else high
 
     @staticmethod
-    def cf_448d(n, m, k):
+    def find_float_right(low, high, check, error=1e-6):
+        # 模板: 浮点数范围内二分查找, 选择最靠右满足check
+        while low < high - error:
+            mid = low + (high - low) / 2
+            if check(mid):
+                low = mid
+            else:
+                high = mid
+        return high if check(high) else low
+
+
+class Solution:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def cf_448d(ac=FastIO()):
         # 模板：计算 n*m 乘法矩阵内的第 k 大元素
+        n, m, k = ac.read_ints()
+
         def check(num):
             res = 0
             for x in range(1, m + 1):
                 res += min(n, num // x)
-            return res
+            return res >= k
 
         # 初始化大小
         if m > n:
             m, n = n, m
 
-        # 二分查找第k大
-        low = 1
-        high = m * n
-        while low < high - 1:
-            mid = low + (high - low) // 2
-            if check(mid) < k:
-                low = mid
-            else:
-                high = mid
+        ans = BinarySearch().find_int_left(1, m * n, check)
+        ac.st(ans)
+        return
 
-        ans = low if check(low) >= k else high
+    @staticmethod
+    def cf_1370d(ac=FastIO()):
+        n, k = map(int, input().split())
+        nums = list(map(int, input().split()))
+
+        def check(x):
+            # 奇偶交替，依次枚举奇数索引与偶数索引不超过x
+            for ind in [0, 1]:
+                cnt = 0
+                for num in nums:
+                    if not ind:
+                        cnt += 1
+                        ind = 1 - ind
+                    else:
+                        if num <= x:
+                            cnt += 1
+                            ind = 1 - ind
+                    if cnt >= k:
+                        return True
+            return False
+
+        low = min(nums)
+        high = max(nums)
+        ans = BinarySearch().find_int_left(low, high, check)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1475d(ac=FastIO()):
+        # 模板：贪心排序后，枚举并使用前缀和进行二分查询
+        for _ in range(ac.read_int()):
+            n, m = ac.read_ints()
+            a = ac.read_list_ints()
+            b = ac.read_list_ints()
+            if sum(a) < m:
+                ac.st(-1)
+                continue
+
+            # 排序
+            a1 = [a[i] for i in range(n) if b[i] == 1]
+            a2 = [a[i] for i in range(n) if b[i] == 2]
+            a1.sort(reverse=True)
+            a2.sort(reverse=True)
+
+            # 前缀和
+            x, y = len(a1), len(a2)
+            pre1 = [0] * (x + 1)
+            for i in range(x):
+                pre1[i + 1] = pre1[i] + a1[i]
+
+            # 初始化后进行二分枚举
+            ans = inf
+            pre = 0
+            j = bisect.bisect_left(pre1, m - pre)
+            if j <= x:
+                ans = ac.min(ans, j)
+
+            for i in range(y):
+                cnt = i + 1
+                pre += a2[i]
+                j = bisect.bisect_left(pre1, m - pre)
+                if j <= x:
+                    ans = ac.min(ans, j + cnt * 2)
+            ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1791g2(ac=FastIO()):
+        for _ in range(ac.read_int()):
+
+            n, c = ac.read_ints()
+            cost = ac.read_list_ints()
+            lst = [[ac.min(x, n + 1 - x) + cost[x - 1], x + cost[x - 1]]
+                   for x in range(1, n + 1)]
+            lst.sort(key=lambda it: it[0])
+            pre = [0] * (n + 1)
+            for i in range(n):
+                pre[i + 1] = pre[i] + lst[i][0]
+
+            def check(y):
+                res = pre[y]
+                if y > i:
+                    res -= lst[i][0]
+                res += lst[i][1]
+                return res <= c
+
+            ans = 0
+            for i in range(n):
+                if lst[i][1] <= c:
+                    cur = BinarySearch().find_int_right(0, n, check)
+                    cur = cur - int(cur > i) + 1
+                    ans = ac.max(ans, cur)
+            ac.st(ans)
+        return
+
+    @staticmethod
+    def lc_2563(nums, lower, upper):
+        # 模板：查找数值和在一定范围的数对个数
+        nums.sort()
+        n = len(nums)
+        ans = 0
+        for i in range(n):
+            x = bisect.bisect_right(nums, upper-nums[i], hi=i)
+            y = bisect.bisect_left(nums, lower-nums[i], hi=i)
+            ans += x - y
         return ans
 
 
 class TestGeneral(unittest.TestCase):
 
     def test_binary_search(self):
-
-        bs = BinarySearch()
-        for _ in range(2):
-            m = random.randint(10, 100)
-            n = random.randint(10, 100)
-            lst = []
-            for i in range(1, m + 1):
-                lst.extend([i*j for j in range(1, n+1)])
-            lst.sort()
-            for i, num in enumerate(lst):
-                k = i+1
-                assert bs.cf_448d(n, m, k) == num
-
+        pass
         return
 
 
