@@ -1,9 +1,12 @@
+import math
 import unittest
+from typing import List
+
 from algorithm.src.fast_io import FastIO, inf
 
 """
 
-算法：栈
+算法：栈、RBS（合法括号子序列）
 功能：模拟题中常见，如括号之类的，后进先出，升级版应用有单调栈、最大栈和最小栈
 题目：
 
@@ -31,7 +34,23 @@ class Solution:
         return
 
     @staticmethod
+    def lc_2197(nums: List[int]) -> List[int]:
+        # 模板：栈结合 gcd 与 lcm 进行模拟计算
+        stack = list()
+        for num in nums:
+            stack.append(num)
+            while len(stack) >= 2:
+                g = math.gcd(stack[-1], stack[-2])
+                if g > 1:
+                    stack[-2] = stack[-1] * stack[-2] // g
+                    stack.pop()
+                else:
+                    break
+        return stack
+
+    @staticmethod
     def cf_1095e(ac=FastIO()):
+        # 模板：计算只替换一个字符的情况下括号串是否合法
         n = ac.read_int()
         s = ac.read_str()
         post = [inf] * (n + 1)
@@ -52,7 +71,6 @@ class Solution:
                 ans += 1
             elif s[i] == ")" and x >= 0 and x + 1 == post[i + 1]:
                 ans += 1
-
             if s[i] == "(":
                 x += 1
             else:
@@ -87,15 +105,8 @@ class Solution:
         return [ans, cnt]
 
 
-class Stack:
-    def __init__(self):
-        return
-
-    def gen_result(self):
-        return
-
-
 class MaxStack:
+    # 模板：经典最大栈
     def __init__(self):
         return
 
@@ -104,6 +115,7 @@ class MaxStack:
 
 
 class MinStack:
+    # 模板：经典最小栈
     def __init__(self):
         return
 
