@@ -1,6 +1,7 @@
 import bisect
 import unittest
-import random
+from typing import List
+
 from algorithm.src.fast_io import FastIO, inf
 
 """
@@ -198,6 +199,7 @@ class Solution:
 
     @staticmethod
     def cf_1791g2(ac=FastIO()):
+        # 模板：find_int_right
         for _ in range(ac.read_int()):
 
             n, c = ac.read_ints()
@@ -236,6 +238,37 @@ class Solution:
             y = bisect.bisect_left(nums, lower-nums[i], hi=i)
             ans += x - y
         return ans
+
+    @staticmethod
+    def lc_4(nums1: List[int], nums2: List[int]) -> float:
+        # 模板：经典双指针二分移动查找两个正序数组的中位数
+        def get_kth_num(k):
+            ind1 = ind2 = 0
+            while k:
+                if ind1 == m:
+                    return nums2[ind2 + k - 1]
+                if ind2 == n:
+                    return nums1[ind1 + k - 1]
+                if k == 1:
+                    return min(nums1[ind1], nums2[ind2])
+                index1 = min(ind1 + k // 2 - 1, m - 1)
+                index2 = min(ind2 + k // 2 - 1, n - 1)
+                val1 = nums1[index1]
+                val2 = nums2[index2]
+                if val1 < val2:
+                    k -= index1 - ind1 + 1
+                    ind1 = index1 + 1
+                else:
+                    k -= index2 - ind2 + 1
+                    ind2 = index2 + 1
+            return
+
+        m, n = len(nums1), len(nums2)
+        s = m + n
+        if s % 2:
+            return get_kth_num(s // 2 + 1)
+        else:
+            return (get_kth_num(s // 2 + 1) + get_kth_num(s // 2)) / 2
 
 
 class TestGeneral(unittest.TestCase):
