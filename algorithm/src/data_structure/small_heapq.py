@@ -1,6 +1,7 @@
 import heapq
 import random
 import unittest
+from typing import List
 
 from sortedcontainers import SortedList
 
@@ -10,7 +11,7 @@ from sortedcontainers import SortedList
 题目：
 
 ===================================力扣===================================
-630. 课程表（https://leetcode.cn/problems/course-schedule-iii/）用一个堆延迟选择贪心维护最优
+630. 课程表 III（https://leetcode.cn/problems/course-schedule-iii/）用一个堆延迟选择贪心维护最优
 2454. 下一个更大元素 IV（https://leetcode.cn/problems/next-greater-element-iv/）使用两个堆维护下下个更大元素即出队两次时遇见的元素
 2402. 会议室 III（https://leetcode.cn/problems/meeting-rooms-iii/）使用两个堆模拟进行会议室安排并进行计数
 2386. 找出数组的第 K 大和（https://leetcode.cn/problems/find-the-k-sum-of-an-array/）转换思路使用堆维护最大和第 K 次出队的则为目标结果
@@ -28,23 +29,6 @@ P1878 舞蹈课（https://www.luogu.com.cn/problem/P1878）用哈希加一个堆
 参考：OI WiKi（xx）
 """
 
-
-class Solution:
-    def __int__(self):
-        return
-
-    @staticmethod
-    def lc_1792(classes, extra_students):
-        stack = []
-        for p, t in classes:
-            heapq.heappush(stack, [p / t - (p + 1) / (t + 1), p, t])
-        for _ in range(extra_students):
-            r, p, t = heapq.heappop(stack)
-            p += 1
-            t += 1
-            # 关键点在于优先级的设置为 p / t - (p + 1) / (t + 1)
-            heapq.heappush(stack, [p / t - (p + 1) / (t + 1), p, t])
-        return sum(p / t for _, p, t in stack) / len(classes)
 
 class HeapqMedian:
     def __init__(self, mid):
@@ -74,6 +58,43 @@ class HeapqMedian:
 
     def query(self):
         return self.mid
+
+
+class Solution:
+    def __int__(self):
+        return
+
+    @staticmethod
+    def lc_1792(classes, extra_students):
+        # 模板：使用堆进行贪心模拟每次选择最优
+        stack = []
+        for p, t in classes:
+            heapq.heappush(stack, [p / t - (p + 1) / (t + 1), p, t])
+        for _ in range(extra_students):
+            r, p, t = heapq.heappop(stack)
+            p += 1
+            t += 1
+            # 关键点在于优先级的设置为 p / t - (p + 1) / (t + 1)
+            heapq.heappush(stack, [p / t - (p + 1) / (t + 1), p, t])
+        return sum(p / t for _, p, t in stack) / len(classes)
+
+    @staticmethod
+    def lc_630(courses: List[List[int]]) -> int:
+        # 模板：经典反悔堆，遍历过程选择使用更优的
+        courses.sort(key=lambda x: x[1])
+        # 按照结束时间排序
+        stack = []
+        day = 0
+        for duration, last in courses:
+            if day + duration <= last:
+                day += duration
+                heapq.heappush(stack, -duration)
+            else:
+                # 如果有学习时间更短的课程则进行替换
+                if stack and -stack[0] > duration:
+                    day += heapq.heappop(stack) + duration
+                    heapq.heappush(stack, -duration)
+        return len(stack)
 
 
 class TestGeneral(unittest.TestCase):
