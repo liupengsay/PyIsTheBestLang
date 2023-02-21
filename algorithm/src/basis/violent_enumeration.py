@@ -1,5 +1,7 @@
 import unittest
 import math
+from itertools import combinations
+
 from algorithm.src.fast_io import FastIO, inf
 
 
@@ -100,7 +102,7 @@ class Solution:
 
     @staticmethod
     def cf_584d(ac=FastIO()):
-
+        # 模板：将 n 分解为最多三个质数的和
         def is_prime4(x):
             if x == 1:
                 return False
@@ -129,6 +131,41 @@ class Solution:
                 ac.lst([3, i, j])
                 return
         return
+
+    @staticmethod
+    def lc_670(num: int) -> int:
+        # 模板：在复杂度有限的情况下有限采用枚举的方式计算而不是贪心
+
+        def check():  # 贪心
+            lst = list(str(num))
+            n = len(lst)
+            post = list(range(n))
+            # 从后往前遍历，对每个数位，记录其往后最大且最靠后的比它大的数位位置，再从前往后交换第一个有更大的靠后值得数位
+            j = n - 1
+            for i in range(n - 2, -1, -1):
+                if lst[i] > lst[j]:
+                    j = i
+                if lst[j] > lst[i]:
+                    post[i] = j
+
+            for i in range(n):
+                if post[i] != i:
+                    lst[i], lst[post[i]] = lst[post[i]], lst[i]
+                    return int("".join(lst))
+            return int("".join(lst))
+
+        def check2():  # 枚举
+            lst = list(str(num))
+            n = len(lst)
+            ans = num
+            for item in combinations(list(range(n)), 2):
+                cur = lst[:]
+                i, j = item
+                cur[i], cur[j] = cur[j], cur[i]
+                x = int("".join(cur))
+                ans = ans if ans > x else x
+            return ans
+        return check2()
 
 
 class ViolentEnumeration:
