@@ -2,6 +2,10 @@ import math
 import random
 import unittest
 from collections import defaultdict
+from typing import List
+
+from algorithm.src.fast_io import FastIO
+
 
 """
 算法：背包DP、分组背包、一维（无限有限）背包、二位背包、多重背包、分组背包、限制背包
@@ -9,8 +13,7 @@ from collections import defaultdict
 题目：
 
 ===================================力扣===================================
-214. 最短回文串（https://leetcode.cn/problems/shortest-palindrome/）计算字符串前缀最长回文子串
-2218. 从栈中取出 K 个硬币的最大面值和（https://leetcode.cn/problems/maximum-value-of-k-coins-from-piles/）背包DP
+2218. 从栈中取出 K 个硬币的最大面值和（https://leetcode.cn/problems/maximum-value-of-k-coins-from-piles/）分组背包DP
 
 ===================================洛谷===================================
 P1048 采药（https://www.luogu.com.cn/problem/P1048）一维背包DP，数量有限，从后往前遍历
@@ -54,7 +57,7 @@ P6771 [USACO05MAR]Space Elevator 太空电梯（https://www.luogu.com.cn/problem
 
 ================================CodeForces================================
 B. Modulo Sum（https://codeforces.com/problemset/problem/577/B）取模计数二进制优化与背包DP，寻找非空子序列的和整除给定的数
-
+A. Writing Code（https://codeforces.com/problemset/problem/543/A）二维有限背包DP，当作无限进行处理
 
 参考：OI WiKi（xx）
 """
@@ -63,28 +66,6 @@ B. Modulo Sum（https://codeforces.com/problemset/problem/577/B）取模计数�
 class BagDP:
     def __init__(self):
         return
-
-    def cf_577b(self, m, nums):
-        # 模板：取模计数二进制优化与背包DP，寻找非空子序列的和整除给定的数
-        cnt = [0] * m
-        for num in nums:
-            cnt[num % m] += 1
-        if cnt[0] or max(cnt) >= m:
-            return "YES"
-        pre = [0] * m
-        for i in range(1, m):
-            if cnt[i]:
-                for x in self.bin_split(cnt[i]):
-                    cur = pre[:]
-                    y = (x * i) % m
-                    cur[y] = 1
-                    for j in range(m):
-                        if pre[j]:
-                            cur[(j + y) % m] = 1
-                    pre = cur[:]
-                if pre[0]:
-                    return "YES"
-        return "NO"
 
     @staticmethod
     def bin_split(num):
@@ -199,6 +180,68 @@ class BagDP:
             if p >= 0 and pre[p] >= 0:
                 ans = ans if ans > p + pre[p] else p + pre[p]
         return ans
+
+
+class Solution:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def cf_543a(ac=FastIO()):
+        n, m, b, mod = ac.read_ints()
+        nums = ac.read_list_ints()
+        pre = [[0] * (b + 1) for _ in range(m + 1)]
+        pre[0][0] = 1
+        for num in nums:
+            for i in range(1, m + 1):
+                # 由于每个用户的天数都可以取到 m 所以当作类似无限背包进行转移
+                for j in range(num, b + 1):
+                    pre[i][j] = (pre[i][j] + pre[i - 1][j - num]) % mod
+        ac.st(sum(pre[m]) % mod)
+        return
+
+    @staticmethod
+    def cf_577b(m, nums):
+        # 模板：取模计数二进制优化与背包DP，寻找非空子序列的和整除给定的数
+        cnt = [0] * m
+        for num in nums:
+            cnt[num % m] += 1
+        if cnt[0] or max(cnt) >= m:
+            return "YES"
+        pre = [0] * m
+        for i in range(1, m):
+            if cnt[i]:
+                for x in BagDP().bin_split(cnt[i]):
+                    cur = pre[:]
+                    y = (x * i) % m
+                    cur[y] = 1
+                    for j in range(m):
+                        if pre[j]:
+                            cur[(j + y) % m] = 1
+                    pre = cur[:]
+                if pre[0]:
+                    return "YES"
+        return "NO"
+
+    @staticmethod
+    def lc_2218(piles: List[List[int]], k: int) -> int:
+
+        # 模板：线性有限分组背包 DP 注意转移
+        cur = [0] * (k + 1)
+        for lst in piles:
+
+            n = len(lst)
+            pre = [0] * (n + 1)
+            for i in range(n):
+                pre[i + 1] = pre[i] + lst[i]
+            # 注意这里需要进行拷贝
+            nex = cur[:]
+            for j in range(1, k + 1):
+                for x in range(min(n+1, j+1)):
+                    nex[j] = max(nex[j], cur[j - x] + pre[x])
+            cur = nex[:]
+        return cur[-1]
+
 
 
 class TestGeneral(unittest.TestCase):
