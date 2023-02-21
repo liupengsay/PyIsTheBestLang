@@ -4,6 +4,8 @@ from collections import defaultdict
 from types import GeneratorType
 from typing import List
 
+from algorithm.src.fast_io import inf
+
 """
 算法：线段树
 功能：用以修改和查询区间的值信息，支持增减、修改，区间和、区间最大值、区间最小值
@@ -482,34 +484,18 @@ class SegmentTreePointAddSumMaxMin:
 
 class SegmentTreeRangeAddMax:
     # 持续增加最大值
-    def __init__(self):
-        self.height = defaultdict(int)
-        self.lazy = defaultdict(int)
+    def __init__(self, n):
+        self.height = [0]*(4*n)
+        self.lazy = [0]*(4*n)
 
     def push_down(self, i):
         # 懒标记下放，注意取最大值
         if self.lazy[i]:
-            self.height[2 *
-                        i] = self.height[2 *
-                                         i] if self.height[2 *
-                                                           i] > self.lazy[i] else self.lazy[i]
-            self.height[2 *
-                        i +
-                        1] = self.height[2 *
-                                         i +
-                                         1] if self.height[2 *
-                                                           i +
-                                                           1] > self.lazy[i] else self.lazy[i]
+            self.height[2 * i] = self.height[2 * i] if self.height[2 * i] > self.lazy[i] else self.lazy[i]
+            self.height[2 * i + 1] = self.height[2 * i + 1] if self.height[2 * i + 1] > self.lazy[i] else self.lazy[i]
 
-            self.lazy[2 * i] = self.lazy[2 * i] if self.lazy[2 *
-                                                             i] > self.lazy[i] else self.lazy[i]
-            self.lazy[2 *
-                      i +
-                      1] = self.lazy[2 *
-                                     i +
-                                     1] if self.lazy[2 *
-                                                     i +
-                                                     1] > self.lazy[i] else self.lazy[i]
+            self.lazy[2 * i] = self.lazy[2 * i] if self.lazy[2 * i] > self.lazy[i] else self.lazy[i]
+            self.lazy[2 * i + 1] = self.lazy[2 * i + 1] if self.lazy[2 * i + 1] > self.lazy[i] else self.lazy[i]
 
             self.lazy[i] = 0
         return
@@ -526,8 +512,7 @@ class SegmentTreeRangeAddMax:
             self.update(l, r, s, m, val, 2 * i)
         if r > m:
             self.update(l, r, m + 1, t, val, 2 * i + 1)
-        self.height[i] = self.height[2 * i] if self.height[2 *
-                                                           i] > self.height[2 * i + 1] else self.height[2 * i + 1]
+        self.height[i] = self.height[2 * i] if self.height[2 * i] > self.height[2 * i + 1] else self.height[2 * i + 1]
         return
 
     def query(self, l, r, s, t, i):
@@ -808,6 +793,31 @@ class Solution:
                 res.append(s)
         return res
 
+    @staticmethod
+    def lc_218(buildings: List[List[int]]) -> List[List[int]]:
+        # 模板：线段树离散化区间且持续增加最大值
+        pos = set()
+        for left, right, _ in buildings:
+            pos.add(left)
+            pos.add(right)
+        lst = sorted(list(pos))
+        n = len(lst)
+        dct = {x: i for i, x in enumerate(lst)}
+        # 离散化更新线段树
+        segment = SegmentTreeRangeAddMax(n)
+        for left, right, height in buildings:
+            segment.update(dct[left], dct[right]-1, 0, n-1, height, 1)
+        # 按照端点进行关键点查询
+        pre = -1
+        ans = []
+        for pos in lst:
+            h = segment.query(dct[pos], dct[pos], 0, n-1, 1)
+            if h != pre:
+                ans.append([pos, h])
+                pre = h
+        return ans
+
+
 class TestGeneral(unittest.TestCase):
 
     def test_segment_tree_range_add_sum(self):
@@ -918,7 +928,7 @@ class TestGeneral(unittest.TestCase):
         low = 0
         high = 1000
         nums = [random.randint(low, high) for _ in range(high)]
-        stra = SegmentTreeRangeAddMax()
+        stra = SegmentTreeRangeAddMax(high)
         for i in range(high):
             stra.update(i, i, low, high, nums[i], 1)
             assert stra.query(i, i, low, high, 1) == max(nums[i:i + 1])
