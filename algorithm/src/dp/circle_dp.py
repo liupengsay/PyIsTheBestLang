@@ -1,4 +1,5 @@
 import unittest
+from typing import List
 
 """
 算法：环形线性或者区间DP
@@ -8,70 +9,31 @@ import unittest
 
 ===================================力扣===================================
 918. 环形子数组的最大和（https://leetcode.cn/problems/maximum-sum-circular-subarray/）枚举可能的最大与最小区间
-1880. 石子合并（https://www.luogu.com.cn/problem/P1880）将数组复制成两遍进行区间DP
 
 参考：OI WiKi（xx）
 """
 
 
-class ClassName:
+class Solution:
     def __init__(self):
         return
 
-    def gen_result(self):
-        return
+    @staticmethod
+    def lc_918(nums: List[int]) -> int:
+        # 模板：环形子数组的最大非空连续子数组和
+        s = ceil = floor = pre_ceil = pre_floor = nums[0]
+        for num in nums[1:]:
+            s += num
+            pre_floor = pre_floor if pre_floor < 0 else 0
+            pre_floor += num
+            floor = floor if floor < pre_floor else pre_floor
 
-    def main_p1880(self):
-        import sys
-        from functools import lru_cache
-        sys.setrecursionlimit(10000000)
-
-        def read():
-            return sys.stdin.readline()
-
-        def ac(x):
-            return sys.stdout.write(str(x) + '\n')
-
-        def main():
-            n = int(read())
-            nums = list(map(int, read().split()))
-            nums = nums + nums
-            n *= 2
-            pre = [0] * (n + 1)
-            for i in range(n):
-                pre[i + 1] = pre[i] + nums[i]
-
-            @lru_cache(None)
-            def floor(x, y):
-                if x >= y:
-                    return 0
-                if x == y - 1:
-                    return nums[x] + nums[x + 1]
-                res = float("inf")
-                for k in range(x, y):
-                    cur = floor(x, k) + floor(k + 1, y) + pre[y + 1] - pre[x]
-                    res = res if res < cur else cur
-                return res
-
-            ac(min(floor(i, i + n // 2 - 1) for i in range(n // 2)))
-
-            @lru_cache(None)
-            def ceil(x, y):
-                if x >= y:
-                    return 0
-                if x == y - 1:
-                    return nums[x] + nums[x + 1]
-                res = 0
-                for k in range(x, y):
-                    cur = ceil(x, k) + ceil(k + 1, y) + pre[y + 1] - pre[x]
-                    res = res if res > cur else cur
-                return res
-
-            ac(max(ceil(i, i + n // 2 - 1) for i in range(n // 2)))
-            return
-
-        main()
-        return
+            pre_ceil = pre_ceil if pre_ceil > 0 else 0
+            pre_ceil += num
+            ceil = ceil if ceil > pre_ceil else pre_ceil
+        if floor < s:
+            return max(ceil, s - floor)
+        return ceil
 
 
 class TestGeneral(unittest.TestCase):
