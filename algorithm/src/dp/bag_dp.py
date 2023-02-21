@@ -188,6 +188,7 @@ class Solution:
 
     @staticmethod
     def cf_543a(ac=FastIO()):
+        # 模板：分组背包 DP 有限作为无限
         n, m, b, mod = ac.read_ints()
         nums = ac.read_list_ints()
         pre = [[0] * (b + 1) for _ in range(m + 1)]
