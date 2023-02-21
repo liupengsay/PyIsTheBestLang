@@ -1,4 +1,5 @@
 import unittest
+from typing import List
 
 """
 算法：双指针、快慢指针、先后指针、桶计数
@@ -77,7 +78,23 @@ class Solution:
                     k -= 1
         return [list(a) for a in ans]
 
-
+    @staticmethod
+    def lc_259(nums: List[int], target: int) -> int:
+        # 模板：使用相反方向的双指针统计和小于 target 的三元组数量
+        nums.sort()
+        n = len(nums)
+        ans = 0
+        for i in range(n - 2):
+            x = nums[i]
+            j, k = i + 1, n - 1
+            while j < k:
+                cur = x + nums[j] + nums[k]
+                if cur < target:
+                    ans += k - j
+                    j += 1
+                else:
+                    k -= 1
+        return ans
 class TwoPointer:
     def __init__(self):
         return
