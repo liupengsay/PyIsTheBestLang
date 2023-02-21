@@ -7,9 +7,9 @@ from algorithm.src.fast_io import FastIO
 题目：
 
 ===================================力扣===================================
+214. 最短回文串（https://leetcode.cn/problems/shortest-palindrome/）计算字符串前缀最长回文子串
 796. 旋转字符串（https://leetcode.cn/problems/rotate-string/）计算字符串是否可以旋转得到
 25. 找出字符串中第一个匹配项的下标（https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/）计算子字符串第一次出现的位置
-214. 最短回文串（https://leetcode.cn/problems/shortest-palindrome/）计算字符串前缀最长回文子串
 1392. 最长快乐前缀（https://leetcode.cn/problems/longest-happy-prefix/）计算最长的公共前后缀
 2223. 构造字符串的总得分和（https://leetcode.cn/problems/longest-happy-prefix/）利用扩展KMP计算Z函数
 
@@ -31,34 +31,6 @@ class KMP:
     def __init__(self):
         return
 
-    def cf_1326d2(self, ac=FastIO()):
-        # 模板：使用KMP计算字符前后缀的最长回文子串
-        for _ in range(ac.read_int()):
-            s = ac.read_str()
-            n = len(s)
-            i, j = 0, n - 1
-            while i < j:
-                if s[i] == s[j]:
-                    i += 1
-                    j -= 1
-                else:
-                    break
-            if i >= j:
-                ac.st(s)
-                continue
-
-            mid = s[i:j + 1]
-            a = self.prefix_function(mid + "#" + mid[::-1])[-1]
-            s1 = mid[:a]
-
-            a = self.prefix_function(mid[::-1] + "#" + mid)[-1]
-            s2 = mid[-a:]
-            if len(s1) > len(s2):
-                ac.st(s[:i] + s1 + s[j + 1:])
-            else:
-                ac.st(s[:i] + s2 + s[j + 1:])
-        return
-
     @staticmethod
     def prefix_function(s):
         # 计算s[:i]与s[:i]的最长公共真前缀与真后缀
@@ -75,35 +47,79 @@ class KMP:
         return pi
 
     @staticmethod
-    def find(s1, s2):
+    def z_function(s):
+        # 计算 s[i:] 与 s 的最长公共前缀
+        n = len(s)
+        z = [0] * n
+        left, r = 0, 0
+        for i in range(1, n):
+            if i <= r and z[i - left] < r - i + 1:
+                z[i] = z[i - left]
+            else:
+                z[i] = max(0, r - i + 1)
+                while i + z[i] < n and s[z[i]] == s[i + z[i]]:
+                    z[i] += 1
+            if i + z[i] - 1 > r:
+                left = i
+                r = i + z[i] - 1
+        # z[0] = 0
+        return z
+
+    def find(self, s1, s2):
         # 查找 s2 在 s1 中的索引位置
         n, m = len(s1), len(s2)
-        s = s2 + "#" + s1
-        pi = KMP().prefix_function(s2 + "#" + s1)
+        pi = self.prefix_function(s2 + "#" + s1)
         ans = []
         for i in range(m + 1, m + n + 1):
             if pi[i] == m:
                 ans.append(i - m - m)
         return ans
 
+    def find_longest_palidrome(self, s, pos="prefix"):
+        # 计算最长前缀与最长后缀回文子串
+        if pos == "prefix":
+            return self.prefix_function(s + "#" + s[::-1])[-1]
+        return self.prefix_function(s[::-1] + "#" + s)[-1]
+
+
+class Solution:
+    def __init__(self):
+        return 
+    
     @staticmethod
-    def z_function(s):
-        # 计算 s[i:] 与 s 的最长公共前缀
-        n = len(s)
-        z = [0] * n
-        l, r = 0, 0
-        for i in range(1, n):
-            if i <= r and z[i - l] < r - i + 1:
-                z[i] = z[i - l]
+    def cf_1326d2(ac=FastIO()):
+        # 模板：使用 KMP 计算最长回文前缀与后缀
+        for _ in range(ac.read_int()):
+            s = ac.read_str()
+            n = len(s)
+            i, j = 0, n - 1
+            while i < j:
+                if s[i] == s[j]:
+                    i += 1
+                    j -= 1
+                else:
+                    break
+            if i >= j:
+                ac.st(s)
+                continue
+
+            mid = s[i:j + 1]
+            a = KMP().find_longest_palidrome(s)
+            s1 = mid[:a]
+
+            a = KMP().find_longest_palidrome(s, "suffix")
+            s2 = mid[-a:]
+            if len(s1) > len(s2):
+                ac.st(s[:i] + s1 + s[j + 1:])
             else:
-                z[i] = max(0, r - i + 1)
-                while i + z[i] < n and s[z[i]] == s[i + z[i]]:
-                    z[i] += 1
-            if i + z[i] - 1 > r:
-                l = i
-                r = i + z[i] - 1
-        # z[0] = 0
-        return z
+                ac.st(s[:i] + s2 + s[j + 1:])
+        return
+
+    @staticmethod
+    def lc_214(s: str) -> str:
+        # 模板：使用 KMP 计算最长回文前缀
+        k = KMP().find_longest_palidrome(s)
+        return s[k:][::-1] + s
 
 
 class TestGeneral(unittest.TestCase):
