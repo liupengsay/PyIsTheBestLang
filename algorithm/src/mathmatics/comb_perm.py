@@ -1,10 +1,16 @@
 from itertools import combinations
 from itertools import permutations
-
+import unittest
 from algorithm.src.fast_io import FastIO
+from typing import List
+from collections import Counter
+from algorithm.src.fast_io import FastIO
+import math
+from functools import lru_cache
 
 """
-算法：数学排列组合计数、乘法逆元
+
+算法：数学排列组合计数、乘法逆元（也叫combinatorics）
 功能：全排列计数，选取comb计数，隔板法，错位排列，斯特林数、卡特兰数，容斥原理，可以通过乘法逆元快速求解组合数与全排列数
 题目：
 
@@ -30,41 +36,63 @@ P5520 [yLOI2019] 青原樱（https://www.luogu.com.cn/problem/P5520）隔板法�
 
 ================================CodeForces================================
 D. Triangle Coloring（https://codeforces.com/problemset/problem/1795/D）组合计数取模与乘法逆元快速计算
+C. Beautiful Numbers（https://codeforces.com/problemset/problem/300/C）枚举个数并使用组合数计算方案数
+
 
 参考：OI WiKi（xx）
 卡特兰数（https://oi-wiki.org/math/combinatorics/catalan/）
 """
 
 
-class CombPerm:
-    def __init__(self):
+class Combinatorics:
+    def __init__(self, n, mod):
+        # 模板：求全排列组合数
+        self.perm = [1] * n
+        self.mod = mod
+        for i in range(1, n):
+            # 阶乘数 i! 取模
+            self.perm[i] = self.perm[i - 1] * i
+            self.perm[i] %= self.mod
+        return
+
+    def comb(self, a, b):
+        # 组合数根据乘法逆元求解
+        res = self.perm[a] * pow(self.perm[b], -1, self.mod) * pow(self.perm[a - b], -1, self.mod)
+        return res % self.mod
+
+
+class Solution:
+    def __int__(self):
+        return
+
+    @staticmethod
+    def cf_300c(ac=FastIO()):
+        mod = 10 ** 9 + 7
+        a, b, n = ac.read_ints()
+        c = Combinatorics(n+1, mod)
+
+        dct = set(f"{a}{b}")
+        ans = 0
+        for i in range(n + 1):
+            num = a * i + b * (n - i)
+            if all(w in dct for w in str(num)):
+                ans += c.comb(n, i)
+                ans %= mod
+        ac.st(ans)
         return
 
     @staticmethod
     def cf_1795d(ac=FastIO()):
-
         n = ac.read_int()
         nums = ac.read_list_ints()
-
         mod = 998244353
-        length = n // 3 + 1
-        # 模板：求全排列组合数
-        perm = [1] * length
-        for i in range(1, length):
-            perm[i] = perm[i - 1] * i
-            perm[i] %= mod
-
-        # 利用乘法逆元求解组合数
-        def comb(a, b):
-            res = perm[a] * pow(perm[b], -1, mod) * pow(perm[a - b], -1, mod)
-            return res % mod
-
+        c = Combinatorics(n // 3 + 1, mod)
         ans = 1
         for i in range(0, n - 2, 3):
             lst = nums[i:i + 3]
             ans *= lst.count(min(lst))
             ans %= mod
-        ans *= comb(n // 3, n // 6)
+        ans *= c.comb(n // 3, n // 6)
         ans %= mod
         ac.st(ans)
         return
@@ -224,7 +252,7 @@ class CombPerm:
 class TestGeneral(unittest.TestCase):
 
     def test_comb_perm(self):
-        cp = CombPerm()
+        cp = Solution()
         i = 500
         j = 10000
         mod = 10**9 + 7

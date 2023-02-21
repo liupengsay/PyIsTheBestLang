@@ -2,6 +2,7 @@ import random
 import unittest
 
 from sortedcontainers import SortedList
+from algorithm.src.fast_io import FastIO
 
 """
 
@@ -11,7 +12,6 @@ from sortedcontainers import SortedList
 题目：xx（xx）
 
 ===================================力扣===================================
-4. 寻找两个正序数组的中位数（https://leetcode.cn/problems/median-of-two-sorted-arrays/）经典二分思想查找题
 295. 数据流的中位数（https://leetcode.cn/problems/find-median-from-data-stream/）使用一个SortedList和三个变量维护左右两边与中间段的和
 2468 根据限制分割消息（https://leetcode.cn/problems/split-message-based-on-limit/）根据长度限制进行二分
 2426 满足不等式的数对数目（https://leetcode.cn/problems/number-of-pairs-satisfying-inequality/）根据不等式变换和有序集合进行二分查找
@@ -45,6 +45,7 @@ P7391 「TOCO Round 1」自适应 PVZ（https://www.luogu.com.cn/problem/P7391�
 
 ================================CodeForces================================
 D. Pashmak and Parmida's problem（https://codeforces.com/problemset/problem/459/D）使用有序集合进行大小计数查找
+E. Enemy is weak（https://codeforces.com/problemset/problem/61/E）典型应用场景，前后缀大于小于值计数
 
 参考：OI WiKi（xx）
 """
@@ -285,6 +286,34 @@ class LocalSortedList:
     def __repr__(self):
         """Return string representation of sorted list."""
         return 'SortedList({0})'.format(list(self))
+
+
+class Solution:
+    def __int__(self):
+        return
+
+    @staticmethod
+    def cf_61e(ac=FastIO()):
+        # 模板：典型计算 i < j < k 但是 nums[i] > nums[j] > nums[k] 的组合数
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        pre = [0] * (n + 1)
+        lst = LocalSortedList()
+        for i in range(n):
+            pre[i + 1] = i - lst.bisect_right(nums[i])
+            lst.add(nums[i])
+
+        post = [0] * (n + 1)
+        lst = LocalSortedList()
+        for i in range(n - 1, -1, -1):
+            post[i] = lst.bisect_left(nums[i])
+            lst.add(nums[i])
+
+        ans = 0
+        for i in range(1, n - 1):
+            ans += pre[i + 1] * post[i]
+        ac.st(ans)
+        return
 
 
 class TestGeneral(unittest.TestCase):

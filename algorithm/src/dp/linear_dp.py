@@ -1,7 +1,7 @@
 
 import unittest
 from algorithm.src.fast_io import FastIO, inf
-
+from collections import Counter
 
 """
 算法：线性DP
@@ -55,6 +55,7 @@ https://codeforces.com/problemset/problem/166/E（线性DP计数）
 https://codeforces.com/problemset/problem/1221/D（线性DP模拟）
 C. Chef Monocarp（https://codeforces.com/problemset/problem/1437/C）二维线性DP，两个数组线性移动进行匹配计算最大或者最小值
 D. Armchairs（https://codeforces.com/problemset/problem/1525/D）二维线性DP，两个数组线性移动进行匹配计算最大或者最小值
+A. Garland（https://codeforces.com/problemset/problem/1286/A）线性经典dp
 
 参考：OI WiKi（xx）
 """
@@ -62,6 +63,51 @@ D. Armchairs（https://codeforces.com/problemset/problem/1525/D）二维线性DP
 
 class LinearDP:
     def __init__(self):
+        return
+
+    @staticmethod
+    def cf_1286a(ac=FastIO()):
+
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        ex = set(nums)
+        cnt = Counter([i % 2 for i in range(1, n + 1) if i not in ex])
+
+        # 模板：经典记忆化搜索的模拟线性DP写法
+        @ac.bootstrap
+        def dfs(i, single, double, pre):
+            if (i, single, double, pre) in dct:
+                yield
+            if i == n:
+                dct[(i, single, double, pre)] = 0
+                yield
+            res = inf
+            if nums[i] != 0:
+                v = nums[i] % 2
+                yield dfs(i + 1, single, double, v)
+                cur = dct[(i + 1, single, double, v)]
+                if pre != -1 and pre != v:
+                    cur += 1
+                res = ac.min(res, cur)
+            else:
+                if single:
+                    yield dfs(i + 1, single - 1, double, 1)
+                    cur = dct[(i + 1, single - 1, double, 1)]
+                    if pre != -1 and pre != 1:
+                        cur += 1
+                    res = ac.min(res, cur)
+                if double:
+                    yield dfs(i + 1, single, double - 1, 0)
+                    cur = dct[(i + 1, single, double - 1, 0)]
+                    if pre != -1 and pre != 0:
+                        cur += 1
+                    res = ac.min(res, cur)
+            dct[(i, single, double, pre)] = res
+            yield
+
+        dct = dict()
+        dfs(0, cnt[1], cnt[0], -1)
+        ac.st(dct[(0, cnt[1], cnt[0], -1)])
         return
 
     @staticmethod

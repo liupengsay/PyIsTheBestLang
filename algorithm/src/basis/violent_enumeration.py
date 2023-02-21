@@ -1,7 +1,10 @@
 import unittest
+import math
+from algorithm.src.fast_io import FastIO, inf
+
 
 """
-算法：暴力枚举、旋转矩阵、螺旋矩阵
+算法：暴力枚举、旋转矩阵、螺旋矩阵（也叫brute_force）
 功能：根据题意，在复杂度有限的情况下，进行所有可能情况的枚举
 题目：
 
@@ -65,10 +68,67 @@ P7799 [COCI2015-2016#6] PIANINO（https://www.luogu.com.cn/problem/P7799）哈�
 https://codeforces.com/problemset/problem/1426/F（分类枚举中间的b计数两边的?ac，并使用快速幂进行求解）
 D. Zigzags（https://codeforces.com/problemset/problem/1400/D）枚举+二分
 D. Moscow Gorillas（https://codeforces.com/contest/1793/problem/D）枚举计数
-
+D. Dima and Lisa（https://codeforces.com/problemset/problem/584/D）确定一个质数3，枚举第二三个质数，小于 10**9 的任何数都可以分解为最多三个质数的和
+D. Three Integers（https://codeforces.com/problemset/problem/1311/D）根据题意，确定一个上限值，贪心枚举
 
 参考：OI WiKi（xx）
 """
+
+
+class Solution:
+    def __int__(self):
+        return
+
+    @staticmethod
+    def cf_1311d(ac=FastIO()):
+        # 模板：根据贪心策略 a=b=1 时显然满足条件，因此枚举不会超过这个代价的范围就行
+        for _ in range(ac.read_int()):
+            a, b, c = ac.read_list_ints()
+            ans = inf
+            res = []
+            for x in range(1, 2 * a + 1):
+                for y in range(x, 2 * b + 1, x):
+                    if y % x == 0:
+                        for z in [(c // y) * y, (c // y) * y + y]:
+                            cost = abs(a - x) + abs(b - y) + abs(c - z)
+                            if cost < ans:
+                                ans = cost
+                                res = [x, y, z]
+            ac.st(ans)
+            ac.lst(res)
+        return
+
+    @staticmethod
+    def cf_584d(ac=FastIO()):
+
+        def is_prime4(x):
+            if x == 1:
+                return False
+            if (x == 2) or (x == 3):
+                return True
+            if (x % 6 != 1) and (x % 6 != 5):
+                return False
+            for i in range(5, int(math.sqrt(x)) + 1, 6):
+                if (x % i == 0) or (x % (i + 2) == 0):
+                    return False
+            return True
+
+        # 模板：将正整数分解为最多三个质数的和
+        n = ac.read_int()
+        assert 3 <= n < 10**9
+
+        if is_prime4(n):
+            ac.st(1)
+            ac.st(n)
+            return
+
+        for i in range(2, 10 ** 5):
+            j = n - 3 - i
+            if is_prime4(i) and is_prime4(j):
+                ac.st(3)
+                ac.lst([3, i, j])
+                return
+        return
 
 
 class ViolentEnumeration:

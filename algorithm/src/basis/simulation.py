@@ -1,8 +1,9 @@
 import random
 import unittest
+from algorithm.src.fast_io import FastIO
 
 """
-算法：模拟
+算法：模拟（implemention）
 功能：根据题意进行模拟，有经典模拟结论约瑟夫环问题
 题目：
 
@@ -44,11 +45,41 @@ P6480 [CRCI2006-2007] TETRIS（https://www.luogu.com.cn/problem/P6480）模拟�
 P7186 [CRCI2008-2009] TABLICA（https://www.luogu.com.cn/problem/P7186）脑筋急转弯，使用有限数据与作用域进行模拟
 P7338 『MdOI R4』Color（https://www.luogu.com.cn/problem/P7338）进行贪心模拟赋值
 
+================================CodeForces================================
+C. Gargari and Bishops（https://codeforces.com/problemset/problem/463/C）选取两组互不相交的主副对角线使得和最大
 
 参考：OI WiKi（xx）
 """
 
+class Solution:
+    def __int__(self):
+        return
 
+    @staticmethod
+    def cf_463c(ac=FastIO()):
+        n = ac.read_int()
+        grid = [ac.read_list_ints() for _ in range(n)]
+        left = [0] * 2 * n
+        right = [0] * 2 * n
+        for i in range(n):
+            for j in range(n):
+                left[i - j] += grid[i][j]
+                right[i + j] += grid[i][j]
+
+        ans1 = [-1, -1]
+        ans2 = [[-1, -1], [-1, -1]]
+        for i in range(n):
+            for j in range(n):
+                # 两个主教的位置，坐标和分别为一个奇数一个偶数才不会相交
+                cur = left[i - j] + right[i + j] - grid[i][j]
+                t = (i + j) & 1
+                if cur > ans1[t]:
+                    ans1[t] = cur
+                    ans2[t] = [i + 1, j + 1]
+
+        ac.st(sum(ans1))
+        ac.lst(ans2[0] + ans2[1])
+        return
 class SpiralMatrix:
     def __init__(self):
         return

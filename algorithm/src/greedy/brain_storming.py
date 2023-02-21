@@ -1,7 +1,10 @@
-"""
+
+from collections import Counter
+from algorithm.src.fast_io import FastIO
+
 
 """
-"""
+
 算法：贪心、逆向思维、抽屉原理、鸽巢原理、容斥原理、自定义排序、思维、脑筋急转弯
 功能：各种可证明不可证明的头脑风暴
 题目：
@@ -96,13 +99,83 @@ https://codeforces.com/problemset/problem/830/A （按照影响区间排序，�
 C. Table Decorations（https://codeforces.com/problemset/problem/478/C）贪心结论题a<=b<=c则有min((a+b+c)//3, a+b)
 A. Dreamoon Likes Coloring（https://codeforces.com/problemset/problem/1329/A）贪心+指针+模拟
 D. Maximum Distributed Tree（https://codeforces.com/problemset/problem/1401/D）贪心dfs枚举经过边的路径计数
-
+C. Make Palindrome（https://codeforces.com/problemset/problem/600/C）回文子串计数贪心
+D. Slime（https://codeforces.com/problemset/problem/1038/D）贪心模拟，分类讨论
 
 参考：OI WiKi（xx）
 """
 
 import math
 import unittest
+
+
+class Solution:
+    def __int__(self):
+        return
+
+    @staticmethod
+    def cf_1038d(ac=FastIO()):
+        # 模板：分类讨论贪心模拟
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        if n == 1:
+            ac.st(nums[0])
+            return
+        if n == 2:
+            ac.st(ac.max(nums[0] - nums[1], nums[1] - nums[0]))
+            return
+        zero = nums.count(0)
+        if zero >= 2:
+            ac.st(sum(abs(num) for num in nums))
+        elif zero == 1:
+            ac.st(sum(abs(num) for num in nums))
+        else:
+            if all(num > 0 for num in nums):
+                ac.st(sum(nums) - 2 * min(nums))
+            elif all(num < 0 for num in nums):
+                ac.st(sum(abs(num) for num in nums) - 2 * min(abs(num) for num in nums))
+            else:
+                ac.st(sum(abs(num) for num in nums))
+        return
+
+    @staticmethod
+    def main(ac=FastIO()):
+        s = ac.read_str()
+        cnt = Counter(s)
+        n = len(s)
+        double = []
+        single = []
+        for w in cnt:
+            if cnt[w] % 2 == 0:
+                x = cnt[w] // 2
+                double.append([w, x])
+            else:
+                x = cnt[w] // 2
+                if x:
+                    double.append([w, x])
+                single.append(w)
+        if n % 2 == 0:
+            single.sort()
+            m = len(single)
+            for i in range(m // 2):
+                double.append([single[i], 1])
+            double.sort(key=lambda it: it[0])
+            ans = ""
+            for w, c in double:
+                ans += w * c
+            ac.st(ans + ans[::-1])
+
+        else:
+            single.sort()
+            m = len(single)
+            for i in range(m // 2):
+                double.append([single[i], 1])
+            double.sort(key=lambda it: it[0])
+            ans = ""
+            for w, c in double:
+                ans += w * c
+            ac.st(ans + single[m // 2] + ans[::-1])
+        return
 
 
 class BrainStorming:

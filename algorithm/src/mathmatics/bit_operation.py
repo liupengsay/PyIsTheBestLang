@@ -25,10 +25,11 @@ from decimal import Decimal
 
 import heapq
 import copy
+from algorithm.src.fast_io import FastIO
 
 """
 
-算法：位运算相关技巧
+算法：位运算相关技巧（也叫bitmasks）
 功能：进行二进制上的位操作，包括与、异或、或、取反，通常使用按位思考与举例的方式寻找规律
 题目：
 
@@ -50,7 +51,7 @@ P7649 [BalticOI 2004 Day 1] SCALES（https://www.luogu.com.cn/problem/P7649）�
 https://codeforces.com/problemset/problem/305/C（利用二进制加减的思想进行解题）
 https://codeforces.com/problemset/problem/878/A（位运算的操作理解）
 http://codeforces.com/problemset/problem/282/C（利用位运算的特性进行判断）
-
+C. Mikasa（https://codeforces.com/problemset/problem/1554/C）经典位运算操作贪心计算
 
 参考：OI WiKi（xx）
 https://blog.csdn.net/qq_35473473/article/details/106320878
@@ -59,6 +60,25 @@ https://blog.csdn.net/qq_35473473/article/details/106320878
 
 class Solution:
     def __int__(self):
+        return
+
+    @staticmethod
+    def cf_1554c(ac=FastIO()):
+        # 模板：涉及到 MEX 转换为求 n^ans>=m+1 的最小值ans
+        for _ in range(ac.read_int()):
+            n, m = ac.read_ints()
+            assert 0 <= n <= 10**9
+            assert 0 <= m <= 10**9
+            p = m + 1
+            ans = 0
+            for i in range(30, -1, -1):
+                if ans ^ n >= p:
+                    break
+                if n & (1 << i) == p & (1 << i):
+                    continue
+                if p & (1 << i):
+                    ans |= (1 << i)
+            ac.st(ans)
         return
 
     @staticmethod
@@ -91,6 +111,7 @@ class Solution:
                 if s[i] == "1":
                     cnt += 1
                 else:
+                    # 中心思想是连续的 111 可以通过加 1 变成 1000 再减去其中的 1 即操作两次
                     if cnt == 1:
                         ans += 1
                         cnt = 0
@@ -107,6 +128,7 @@ class Solution:
 
         # 更优解法 bin(n ^ (3 * n)).count("1")
         return dfs(num)
+
     @staticmethod
     def lc_260(nums):
         # 模板：找出数组当中两个只出现一次的数（其余数保证出现两次）
