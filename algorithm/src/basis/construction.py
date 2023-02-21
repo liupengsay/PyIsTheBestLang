@@ -1,4 +1,6 @@
 import unittest
+from typing import List
+
 from algorithm.src.fast_io import FastIO
 from collections import deque
 
@@ -80,6 +82,24 @@ class Solution:
                         ac.lst([i, i - x + n])
             else:
                 ac.st("NO")
+        return
+
+    @staticmethod
+    def lc_280(nums: List[int]) -> None:
+        # 模板：摆动排序数组构造
+        nums.sort()
+        n = len(nums)
+        ans = [0]*n
+        j = n-1
+        for i in range(1, n, 2):
+            ans[i] = nums[j]
+            j -= 1
+        j = 0
+        for i in range(0, n, 2):
+            ans[i] = nums[j]
+            j += 1
+        for i in range(n):
+            nums[i] = ans[i]
         return
 
 
