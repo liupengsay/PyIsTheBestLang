@@ -1,9 +1,11 @@
 import random
 import unittest
+from collections import deque
+
 from algorithm.src.fast_io import FastIO
 
 """
-算法：模拟（implemention）
+算法：模拟（也叫implemention）
 功能：根据题意进行模拟，有经典模拟结论约瑟夫环问题
 题目：
 
@@ -51,35 +53,7 @@ C. Gargari and Bishops（https://codeforces.com/problemset/problem/463/C）选�
 参考：OI WiKi（xx）
 """
 
-class Solution:
-    def __int__(self):
-        return
 
-    @staticmethod
-    def cf_463c(ac=FastIO()):
-        n = ac.read_int()
-        grid = [ac.read_list_ints() for _ in range(n)]
-        left = [0] * 2 * n
-        right = [0] * 2 * n
-        for i in range(n):
-            for j in range(n):
-                left[i - j] += grid[i][j]
-                right[i + j] += grid[i][j]
-
-        ans1 = [-1, -1]
-        ans2 = [[-1, -1], [-1, -1]]
-        for i in range(n):
-            for j in range(n):
-                # 两个主教的位置，坐标和分别为一个奇数一个偶数才不会相交
-                cur = left[i - j] + right[i + j] - grid[i][j]
-                t = (i + j) & 1
-                if cur > ans1[t]:
-                    ans1[t] = cur
-                    ans2[t] = [i + 1, j + 1]
-
-        ac.st(sum(ans1))
-        ac.lst(ans2[0] + ans2[1])
-        return
 class SpiralMatrix:
     def __init__(self):
         return
@@ -188,6 +162,65 @@ class SpiralMatrix:
             a = m - (num - n - (n - 1) - (m - 1))
             b = 1
         return [r + a, c + b]
+
+
+class Solution:
+    def __int__(self):
+        return
+
+    @staticmethod
+    def cf_463c(ac=FastIO()):
+        n = ac.read_int()
+        grid = [ac.read_list_ints() for _ in range(n)]
+        left = [0] * 2 * n
+        right = [0] * 2 * n
+        for i in range(n):
+            for j in range(n):
+                left[i - j] += grid[i][j]
+                right[i + j] += grid[i][j]
+
+        ans1 = [-1, -1]
+        ans2 = [[-1, -1], [-1, -1]]
+        for i in range(n):
+            for j in range(n):
+                # 两个主教的位置，坐标和分别为一个奇数一个偶数才不会相交
+                cur = left[i - j] + right[i + j] - grid[i][j]
+                t = (i + j) & 1
+                if cur > ans1[t]:
+                    ans1[t] = cur
+                    ans2[t] = [i + 1, j + 1]
+
+        ac.st(sum(ans1))
+        ac.lst(ans2[0] + ans2[1])
+        return
+
+    @staticmethod
+    def lg_p1815(ac=FastIO()):
+        # 模板：根据指令进行方格组合移动
+        def check():
+            lst = deque([[25, j] for j in range(11, 31)])
+            direc = {"E": [0, 1], "S": [1, 0], "W": [0, -1], "N": [-1, 0]}
+            for i, w in enumerate(s):
+                m = i + 1
+                x, y = lst[-1]
+                a, b = direc[w]
+                x += a
+                y += b
+                if not (1 <= x <= 50 and 1 <= y <= 50):
+                    return f"The worm ran off the board on move {m}."
+                if [x, y] in lst and [x, y] != lst[0]:
+                    return f"The worm ran into itself on move {m}."
+                lst.popleft()
+                lst.append([x, y])
+            return f"The worm successfully made all {m} moves."
+
+        while True:
+            s = ac.read_int()
+            if not s:
+                break
+            s = ac.read_str()
+            ac.st(check())
+        return
 
 
 class TestGeneral(unittest.TestCase):
