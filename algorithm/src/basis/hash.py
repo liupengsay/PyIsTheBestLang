@@ -1,4 +1,6 @@
 import unittest
+from collections import defaultdict
+from typing import List
 
 """
 算法：哈希
@@ -14,6 +16,31 @@ P1114 “非常男女”计划（https://www.luogu.com.cn/record/list?user=73903
 
 参考：OI WiKi（xx）
 """
+
+class Solution:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def lc_2143(nums1: List[int], nums2: List[int]) -> int:
+        # 模板：经典使用哈希计数模拟线性 DP 转移
+        n = len(nums1)
+        mod = 10**9 + 7
+        pre = defaultdict(int)
+        pre[-nums1[0]] += 1
+        pre[nums2[0]] += 1
+        ans = pre[0]
+        for i in range(1, n):
+            cur = defaultdict(int)
+            cur[-nums1[i]] += 1
+            cur[nums2[i]] += 1
+            for p in pre:
+                cur[p - nums1[i]] += pre[p]
+                cur[p + nums2[i]] += pre[p]
+            ans += cur[0]
+            ans %= mod
+            pre = cur
+        return ans
 
 
 class HashMap:
