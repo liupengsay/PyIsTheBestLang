@@ -1,13 +1,14 @@
 import random
 import unittest
 
+from algorithm.src.fast_io import FastIO
+
 """
 算法：树状数组
 功能：进行数组区间加减，和区间值求和（单点可转换为区间）
 题目：
 
 ===================================力扣===================================
-2179. 统计数组中好三元组数目（https://leetcode.cn/problems/count-good-triplets-in-an-array/）维护区间范围内的个数
 
 ===================================洛谷===================================
 P2068 统计和（https://www.luogu.com.cn/problem/P2068）单点更新与区间求和
@@ -66,6 +67,26 @@ class TreeArrayRangeSum:
         a = (r + 1) * self._sum(self.t1, r) - self._sum(self.t2, r)
         b = l * self._sum(self.t1, l - 1) - self._sum(self.t2, l - 1)
         return a - b
+
+
+class Solution:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def lg_p2068(ac=FastIO()):
+        # 模板：树状数组单点更新与区间和查询
+        n = ac.read_int()
+        w = ac.read_int()
+        tree = TreeArrayRangeSum(n)
+        for _ in range(w):
+            lst = ac.read_list_strs()
+            a, b = int(lst[1]), int(lst[2])
+            if lst[0] == "x":
+                tree.update_range(a, a, b)
+            else:
+                ac.st(tree.get_sum_range(a, b))
+        return
 
 
 class TestGeneral(unittest.TestCase):
