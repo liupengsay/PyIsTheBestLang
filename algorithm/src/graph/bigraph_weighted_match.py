@@ -49,6 +49,65 @@ C. Chef Monocarp（https://codeforces.com/problemset/problem/1437/C）二分图�
 参考：OI WiKi（xx）
 """
 
+# EK算法
+from collections import defaultdict, deque
+
+
+class EK:
+
+    def __init__(self, n, m, s, t):
+        self.flow = [0] * (n + 10)
+        self.pre = [0] * (n + 10)
+        self.used = set()
+        self.g = defaultdict(list)
+        self.edges_val = defaultdict(int)
+        self.m = m
+        self.s = s
+        self.t = t
+        self.res = 0
+
+    def add_edge(self, from_node, to, flow):
+        self.edges_val[(from_node, to)] += flow
+        self.edges_val[(to, from_node)] += 0
+        self.g[from_node].append(to)
+        self.g[to].append(from_node)
+
+    def bfs(self) -> bool:
+        self.used.clear()
+        q = deque()
+        q.append(self.s)
+        self.used.add(self.s)
+        self.flow[self.s] = float('inf')
+        while q:
+            now = q.popleft()
+            for nxt in self.g[now]:
+                edge = (now, nxt)
+                val = self.edges_val[edge]
+                if nxt not in self.used and val:
+                    self.used.add(nxt)
+                    self.flow[nxt] = min(self.flow[now], val)
+                    self.pre[nxt] = now
+                    if nxt == self.t:
+                        return True
+                    q.append(nxt)
+        return False
+
+    def pipline(self) -> int:
+        while self.bfs():
+            self.res += self.flow[self.t]
+            from_node = self.t
+            to = self.pre[from_node]
+            while True:
+                edge = (from_node, to)
+                reverse_edge = (to, from_node)
+                self.edges_val[edge] += self.flow[self.t]
+                self.edges_val[reverse_edge] -= self.flow[self.t]
+                if to == self.s:
+                    break
+                from_node = to
+                to = self.pre[from_node]
+        return self.res
+
 
 class KM:
     def __init__(self):
@@ -137,6 +196,57 @@ class KM:
         return result
 
 
+class Soluttion:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def lc_1820(grid):
+        # 模板：匈牙利算法模板建图计算最大匹配
+        m, n = len(grid), len(grid[0])
+        dct = defaultdict(list)
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j]:
+                    dct[i].append(j)
+
+        def hungarian(i):
+            for j in dct[i]:
+                if not visit[j]:
+                    visit[j] = True
+                    if match[j] == -1 or hungarian(match[j]):
+                        match[j] = i
+                        return True
+            return False
+
+        match = [-1] * n
+        ans = 0
+        for i in range(m):
+            visit = [False]*n
+            if hungarian(i):
+                ans += 1
+        return ans
+
+    @staticmethod
+    def lc_1820_2(grid: List[List[int]]) -> int:
+        # 模板：EK网络最大流算法模板建图计算最大匹配
+        n = len(grid)
+        m = len(grid[0])
+        s = n + m + 1
+        t = n + m + 2
+        ek = EK(n + m, n * m, s, t)
+        used = set()
+        for i in range(n):
+            for j in range(m):
+                if grid[i][j]:
+                    ek.add_edge(i, n + j, 1)
+        for i in range(n):
+            ek.add_edge(s, i, 1)
+        for i in range(m):
+            ek.add_edge(n + i, t, 1)
+        return ek.pipline()
+    
+    
 class TestGeneral(unittest.TestCase):
 
     def test_km(self):
