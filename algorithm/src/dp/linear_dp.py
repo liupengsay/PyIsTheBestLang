@@ -1,5 +1,7 @@
 
 import unittest
+from typing import List
+
 from algorithm.src.fast_io import FastIO, inf
 from collections import Counter
 
@@ -64,6 +66,34 @@ A. Garland（https://codeforces.com/problemset/problem/1286/A）线性经典dp
 class LinearDP:
     def __init__(self):
         return
+
+    @staticmethod
+    def liner_dp_template(nums):
+        # 线性 DP 递推模板（以最长上升子序列长度为例）
+        n = len(nums)
+        dp = [0] * (n + 1)
+        for i in range(n):
+            dp[i + 1] = 1
+            for j in range(i):
+                if nums[i] > nums[j] and dp[j] + 1 > dp[i + 1]:
+                    dp[i + 1] = dp[j] + 1
+        return max(dp)
+
+
+class Solution:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def lc_2361(regular: List[int], express: List[int], express_cost: int) -> List[int]:
+        # 模板：线性 DP 转移
+        n = len(regular)
+        cost = [[0, 0] for _ in range(n + 1)]
+        cost[0][1] = express_cost
+        for i in range(1, n + 1):
+            cost[i][0] = min(cost[i - 1][0] + regular[i - 1], cost[i - 1][1] + express[i - 1])
+            cost[i][1] = min(cost[i][0] + express_cost, cost[i - 1][1] + express[i - 1])
+        return [min(c) for c in cost[1:]]
 
     @staticmethod
     def cf_1286a(ac=FastIO()):
@@ -140,18 +170,6 @@ class LinearDP:
             for j in range(n):
                 dp[i + 1][j + 1] = min(dp[i][j + 1], dp[i][j] + abs(nums[j] - i - 1))
         return dp[m][n]
-
-    @staticmethod
-    def liner_dp_template(nums):
-        # 线性 DP 递推模板（以最长上升子序列长度为例）
-        n = len(nums)
-        dp = [0] * (n + 1)
-        for i in range(n):
-            dp[i + 1] = 1
-            for j in range(i):
-                if nums[i] > nums[j] and dp[j] + 1 > dp[i + 1]:
-                    dp[i + 1] = dp[j] + 1
-        return max(dp)
 
 
 class TestGeneral(unittest.TestCase):
