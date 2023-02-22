@@ -6,7 +6,7 @@ from algorithm.src.fast_io import FastIO
 
 
 """
-算法：矩阵DP、二维DP
+算法：矩阵DP、二维DP、记忆化搜索（记忆化形式的DP，可以自顶向下也可以自底向上，就是另一种写法的DP）
 功能：在二维矩阵上进行转移的DP，经典的有矩阵前缀和，矩阵区间和，正方形最大边长或面积，编辑距离，公共子序列，最长回文子串
 题目：
 
@@ -20,6 +20,9 @@ from algorithm.src.fast_io import FastIO
 329. 矩阵中的最长递增路径（https://leetcode.cn/problems/longest-increasing-path-in-a-matrix/）二维矩阵DP
 1478. 安排邮筒（https://leetcode.cn/problems/allocate-mailboxes/）二维DP与一个计算不带权中位数距离的区间DP
 6363. 找出对应 LCP 矩阵的字符串（https://leetcode.cn/problems/find-the-string-with-lcp/）贪心构造符合条件的字符串，并通过计算LCP进行确认
+2328. 网格图中递增路径的数目（https://leetcode.cn/problems/number-of-increasing-paths-in-a-grid/）计算严格递增的路径数量
+2312. 卖木头块（https://leetcode.cn/problems/selling-pieces-of-wood/）自顶向下搜索最佳方案
+2267. 检查是否有合法括号字符串路径（https://leetcode.cn/problems/check-if-there-is-a-valid-parentheses-string-path/）记忆化搜索合法路径
 
 ===================================洛谷===================================
 P2701 [USACO5.3]巨大的牛棚Big Barn（https://www.luogu.com.cn/problem/P2701）求全为 "." 的最大正方形面积，如果不要求实心只能做到O(n^3)复杂度
