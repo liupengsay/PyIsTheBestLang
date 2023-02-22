@@ -48,7 +48,7 @@ P1432 倒水问题（https://www.luogu.com.cn/problem/P1432）经典BFS倒水题
 
 ================================CodeForces================================
 E. Nearest Opposite Parity（https://codeforces.com/problemset/problem/1272/E）经典反向建图，多源BFS
-
+A. Book（https://codeforces.com/problemset/problem/1572/A）脑筋急转弯建图，广度优先搜索计算是否存在环与无环时从任意起点的DAG最长路
 参考：OI WiKi（xx）
 """
 
@@ -285,11 +285,14 @@ class Solution:
 
 
 class Solution:
-    # L1368
-    def minCost(self, grid: List[List[int]]) -> int:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def lc_1368(grid: List[List[int]]) -> int:
         m, n = len(grid), len(grid[0])
-        BIG = int(1e9)
-        dist = [0] + [BIG] * (m * n - 1)
+        ceil = int(1e9)
+        dist = [0] + [ceil] * (m * n - 1)
         seen = set()
         import collections
         q = collections.deque([(0, 0)])
@@ -312,6 +315,39 @@ class Solution:
                         q.append((nx, ny))
 
         return dist[m * n - 1]
+
+    @staticmethod
+    def cf_1572a(ac=FastIO()):
+        # 模板：BFS 判断 DAG 是否有环和无环时的最长路（注意起点可能有多个）
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            dct = [dict() for _ in range(n)]
+            degree = [0] * n
+            for i in range(n):
+                lst = ac.read_list_ints_minus_one()[1:]
+                for j in lst:
+                    dct[j][i] = 0 if i > j else 1
+                degree[i] = len(lst)
+
+            # 配置起点
+            visit = [0] * n
+            stack = [i for i in range(n) if not degree[i]]
+            while stack:
+                nex = []
+                for i in stack:
+                    for j in dct[i]:
+                        degree[j] -= 1
+                        # 拓扑排序的同时更新最长路
+                        if visit[i] + dct[i][j] > visit[j]:
+                            visit[j] = visit[i] + dct[i][j]
+                        if not degree[j]:
+                            nex.append(j)
+                stack = nex
+            if max(degree) == 0:
+                ac.st(max(visit) + 1)
+            else:
+                ac.st(-1)
+        return
 
 
 class TestGeneral(unittest.TestCase):

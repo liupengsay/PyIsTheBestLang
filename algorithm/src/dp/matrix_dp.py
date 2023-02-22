@@ -11,6 +11,8 @@ from algorithm.src.fast_io import FastIO
 题目：
 
 ===================================力扣===================================
+2478. 完美分割的方案数（https://leetcode.cn/problems/number-of-beautiful-partitions/）
+2463. 最小移动总距离（https://leetcode.cn/problems/minimum-total-distance-traveled/）
 2435. 矩阵中和能被 K 整除的路径（https://leetcode.cn/problems/paths-in-matrix-whose-sum-is-divisible-by-k/）利用模 K 的特点进行路径计算
 2088. 统计农场中肥沃金字塔的数目（https://leetcode.cn/problems/count-fertile-pyramids-in-a-land/）类似求正方形的边长和面积进行矩阵DP
 221. 最大正方形（https://leetcode.cn/problems/maximal-square/）求全为 1 的最大正方形面积
@@ -189,6 +191,53 @@ class Solution:
         dp = [[[-1] * (b + 1) for _ in range(g + 1)] for _ in range(r + 1)]
         dfs(0, 0, 0)
         return dp[0][0][0]
+
+    @staticmethod
+    def lc_2478(s: str, k: int, min_length: int) -> int:
+        mod = 10**9 + 7
+        # 模板：前缀和优化二维矩阵DP
+        start = set("2357")
+        if s[0] not in start:
+            return 0
+        n = len(s)
+        dp = [[0] * n for _ in range(k)]
+        for i in range(n):
+            if i + 1 >= min_length and s[i] not in start:
+                dp[0][i] = 1
+
+        for j in range(1, k):
+            pre = 0
+            x = 0
+            for i in range(n):
+                while x <= i - min_length and s[x]:
+                    if s[x] not in start and s[x + 1] in start:
+                        pre += dp[j - 1][x]
+                        pre %= mod
+                    x += 1
+                if s[i] not in start:
+                    dp[j][i] = pre
+        return dp[-1][-1]
+
+    @staticmethod
+    def lc_2463(robot, factory):
+        # 模板：两个数组使用指针移动方向与前缀和优化求解
+        robot.sort()
+        factory.sort()
+        m, n = len(factory), len(robot)
+        dp = [[float("inf")] * (n + 1) for _ in range(m + 1)]
+        dp[0][0] = 0
+        for i in range(m):
+            for j in range(n + 1):
+                if dp[i][j] < float("inf"):
+                    dp[i + 1][j] = min(dp[i + 1][j], dp[i][j])
+                    cost = 0
+                    for k in range(1, factory[i][1] + 1):
+                        if j + k - 1 < n:
+                            cost += abs(factory[i][0] - robot[j + k - 1])
+                            dp[i + 1][j + k] = min(dp[i + 1][j + k], dp[i][j] + cost)
+                        else:
+                            break
+        return dp[-1][-1]
 
 
 class MatrixDP:

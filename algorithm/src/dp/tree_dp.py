@@ -1,6 +1,11 @@
-"""
 
-"""
+import unittest
+from collections import deque
+from functools import lru_cache
+from heapq import nlargest
+from typing import List
+from algorithm.src.fast_io import FastIO
+
 """
 算法：树形DP
 功能：在树形或者图结构上进行DP，有换根DP，自顶向下和自底向上DP
@@ -38,16 +43,11 @@ D. Distance in Tree（https://codeforces.com/problemset/problem/161/D）树形DP
 
 ================================CodeForces================================
 C. Uncle Bogdan and Country Happiness（https://codeforces.com/problemset/problem/1388/C）树形DP模拟计算，递归获取子树信息，逆向从上往下还原
+F. Maximum White Subtree（https://codeforces.com/problemset/problem/1324/F）经典换根DP题，两遍dfs搜索更新计算
 
 
 参考：OI WiKi（xx）
 """
-
-import unittest
-from collections import deque
-from functools import lru_cache
-from heapq import nlargest
-from typing import List
 
 
 class Solution:
@@ -122,6 +122,52 @@ class Solution:
         ans = 0
         dfs(0, -1)
         return ans
+
+    @staticmethod
+    def cf_1324f(ac=FastIO()):
+
+        # 模板：换根DP，根据题意进行转换贪心计算结果
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        edge = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            x, y = ac.read_ints_minus_one()
+            edge[x].append(y)
+            edge[y].append(x)
+
+        @ac.bootstrap
+        def dfs(i, fa):
+            res = 0
+            for j in edge[i]:
+                if j != fa:
+                    yield dfs(j, i)
+                    cur = son[j] + 2 * nums[j] - 1
+                    res += ac.max(cur, 0)
+            son[i] = res
+            yield
+
+        # 第一遍获取从下往上的最优结果
+        son = [0] * n
+        dfs(0, -1)
+
+        @ac.bootstrap
+        def dfs2(i, fa, pre):
+            ans[i] = son[i] + pre + 2 * nums[i] - 1
+
+            lst = [son[j] + 2 * nums[j] - 1 for j in edge[i] if j != fa]
+            s = sum([y for y in lst if y >= 0])
+            for j in edge[i]:
+                if j != fa:
+                    tmp = son[j] + 2 * nums[j] - 1
+                    cur = ac.max(0, pre + s - ac.max(0, tmp) + 2 * nums[i] - 1)
+                    yield dfs2(j, i, cur)
+            yield
+
+        # 第二遍获取从下往上的最优结果并更新加和
+        ans = [0] * n
+        dfs2(0, -1, 0)
+        ac.lst(ans)
+        return
 
 
 class TreeDP:
