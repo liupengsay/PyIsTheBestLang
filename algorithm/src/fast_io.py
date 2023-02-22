@@ -24,6 +24,7 @@ inf = float("inf")
 
 class FastIO:
     def __init__(self):
+        self.inf = float("inf")
         return
 
     @staticmethod
@@ -87,21 +88,21 @@ class FastIO:
         return a if a < b else b
 
     @staticmethod
-    def bootstrap(f, stack=[]):
+    def bootstrap(f, queue=deque()):
         def wrappedfunc(*args, **kwargs):
-            if stack:
+            if queue:
                 return f(*args, **kwargs)
             else:
                 to = f(*args, **kwargs)
                 while True:
                     if isinstance(to, GeneratorType):
-                        stack.append(to)
+                        queue.append(to)
                         to = next(to)
                     else:
-                        stack.pop()
-                        if not stack:
+                        queue.pop()
+                        if not queue:
                             break
-                        to = stack[-1].send(to)
+                        to = queue[-1].send(to)
                 return to
 
         return wrappedfunc
