@@ -163,8 +163,8 @@ class Solution:
 class TestGeneral(unittest.TestCase):
 
     def test_state_dp(self):
-        sd = StateDP()
-        assert sd.main_p1896(9, 12) == 50734210126
+        sd = Solution()
+        assert sd.lg_p1896(9, 12) == 50734210126
 
         seats = [["#", ".", ".", ".", "#"], [".", "#", ".", "#", "."], [".", ".", "#", ".", "."], [".", "#", ".", "#", "."], ["#", ".", ".", ".", "#"]]
         assert sd.main_l1349(seats) == 10

@@ -55,6 +55,52 @@ class Solution:
         return
 
     @staticmethod
+    def lc_2458(root, queries: List[int]) -> List[int]:
+        # 模板：经典类似换根 DP 的思想跑两遍 DFS
+        def dfs(node, d):
+            if not node:
+                return 0
+            left = dfs(node.left, d + 1)
+            right = dfs(node.right, d + 1)
+            h = max(left, right)
+            node_depth[node.val] = d
+            node_height[node.val] = h
+            depth_height[node.val] = d + h
+            return h + 1
+
+        # 节点深度
+        node_depth = dict()
+        # 子树高度
+        node_height = dict()
+        # 每层节点的子树深度集合
+        depth_height = dict()
+        dfs(root, 0)
+
+        def get_ans(node, pre):
+            if not node:
+                return
+            ans[node.val] = pre
+
+            pre = max(pre, node_depth[node.val])
+            if node.right:
+                pre_right = max(pre, depth_height[node.right.val])
+            else:
+                pre_right = pre
+
+            if node.left:
+                pre_left = max(pre, depth_height[node.left.val])
+            else:
+                pre_left = pre
+
+            get_ans(node.left, pre_right)
+            get_ans(node.right, pre_left)
+            return
+
+        ans = dict()
+        get_ans(root, 0)
+        return [ans[q] for q in queries]
+
+    @staticmethod
     def cf_1388c(ac):
         n, m = ac.read_ints()
         person = ac.read_list_ints()
