@@ -26,6 +26,8 @@ from decimal import Decimal
 import heapq
 import copy
 
+from algorithm.src.fast_io import FastIO
+
 """
 算法：概率DP
 功能：根据组合数与转移方案求解概率或者期望
@@ -38,20 +40,39 @@ P2719 搞笑世界杯（https://www.luogu.com.cn/record/list?user=739032&status=
 """
 
 
-
-class ClassName:
+class Solution:
     def __init__(self):
         return
 
-    def gen_result(self):
+    @staticmethod
+    def main(ac=FastIO()):
+
+        # 模板：经典记忆化二维 DP 模拟搜索转移计算概率
+
+        @lru_cache(None)
+        def dfs(a, b):
+            if a + b == 2:
+                if a == 0 or b == 0:
+                    return 1
+                return 0
+            if a == 0 or b == 0:
+                return 1
+            res = (dfs(a - 1, b) + dfs(a, b - 1)) / 2
+            return res
+
+        n = ac.read_int() // 2
+        if n == 0:
+            ans = 0
+        else:
+            ans = dfs(n, n)
+        ac.st("%.4f" % ans)
         return
 
 
 class TestGeneral(unittest.TestCase):
 
     def test_xxx(self):
-        nt = ClassName()
-        assert 1
+        pass
         return
 
 
