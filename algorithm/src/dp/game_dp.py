@@ -2,6 +2,8 @@ import unittest
 
 from functools import lru_cache
 
+from algorithm.src.fast_io import FastIO
+
 """
 算法：博弈类DP、玩游戏、必胜态、必输态
 功能：通常使用枚举、区间DP加模拟贪心的方式，和记忆化搜索进行状态转移
@@ -20,26 +22,36 @@ P4702 取石子（https://www.luogu.com.cn/problem/P4702）博弈分析必胜策
 """
 
 
-class GameDP:
+class Solution:
     def __init__(self):
         return
 
     @staticmethod
-    def main_p1280(x, y):
+    def lg_p1280(ac=FastIO()):
+        # 模板：博弈 DP 下的必胜策略分析
+        n = ac.read_int()
+        for _ in range(n):
+            x, y = ac.read_ints()
 
-        @lru_cache(None)
-        def dfs(a, b):
-            if a < b:
-                a, b = b, a
-            if a % b == 0:
-                return True
-            for i in range(1, a // b + 1):
-                if not dfs(a - i * b, b):
+            @lru_cache(None)
+            def dfs(a, b):
+                if a < b:
+                    a, b = b, a
+                if a % b == 0:
                     return True
-            return False
+                if a//b >= 2:  # 注意分类贪心进行必胜态考量
+                    return True
+                for i in range(1, a // b + 1):
+                    if not dfs(a - i * b, b):
+                        return True
+                return False
 
-        ans = dfs(x, y)
-        return ans
+            ans = dfs(x, y)
+            if ans:
+                ac.st("Stan wins")
+            else:
+                ac.st("Ollie wins")
+        return
 
 
 class TestGeneral(unittest.TestCase):
