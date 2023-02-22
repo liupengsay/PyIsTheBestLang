@@ -246,7 +246,29 @@ class Soluttion:
             ek.add_edge(n + i, t, 1)
         return ek.pipline()
     
-    
+    @staticmethod
+    def lc_1820_3(grid):
+        # 模板：LM算法模板建图计算最大匹配
+        n = max(len(grid), len(grid[0]))
+        lst = [[0]*n for _ in range(n)]
+        ind = 0
+        for i in range(n):
+            for j in range(n):
+                try:
+                    lst[i][j] = grid[i][j]
+                except IndexError as _:
+                    ind += 1
+
+        arr = np.array(lst)
+        km = KM()
+        max_ = km.compute(arr)
+
+        ans = 0
+        for i, j in max_:
+            ans += lst[i][j]
+        return ans
+
+
 class TestGeneral(unittest.TestCase):
 
     def test_km(self):
