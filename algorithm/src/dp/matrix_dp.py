@@ -60,6 +60,31 @@ class Solution:
         return
 
     @staticmethod
+    def lc_2435(grid: List[List[int]], k: int) -> int:
+        # 模板：标准矩阵 DP 左上到右下的状态转移
+        mod = 10 ** 9 + 7
+        m, n = len(grid), len(grid[0])
+        dp = [[[0] * k for _ in range(n)] for _ in range(m)]
+        dp[0][0][grid[0][0] % k] = 1
+
+        pre = grid[0][0]
+        for j in range(1, n):
+            pre += grid[0][j]
+            dp[0][j][pre % k] = 1
+
+        pre = grid[0][0]
+        for i in range(1, m):
+            pre += grid[i][0]
+            dp[i][0][pre % k] = 1
+
+        for i in range(1, m):
+            for j in range(1, n):
+                for x in range(k):
+                    y = (x - grid[i][j]) % k
+                    dp[i][j][x] = (dp[i - 1][j][y] + dp[i][j - 1][y]) % mod
+        return dp[-1][-1][0]
+
+    @staticmethod
     def lc_6363(lcp: List[List[int]]) -> str:
         # 模板：根据 LCP 矩阵生成字典序最小的符合条件的字符串
         n = len(lcp)
