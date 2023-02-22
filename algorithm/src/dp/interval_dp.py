@@ -84,6 +84,7 @@ class Solution:
 
     @staticmethod
     def lc_2472(s: str, k: int) -> int:
+        # 模板：预处理线性回文子串 DP 优化外加结果计算线性 DP
         n = len(s)
         res = [[0] * (n + 1) for _ in range(n + 1)]
         for i in range(n - 1, -1, -1):
