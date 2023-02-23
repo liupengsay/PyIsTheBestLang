@@ -4,18 +4,21 @@ import unittest
 from collections import defaultdict
 from typing import List
 
+from algorithm.src.fast_io import FastIO
+
 """
 算法：Dijkstra（单源最短路经算法）
 功能：计算点到有向或者无向图里面其他点的最近距离
 题目：
 
 ===================================力扣===================================
-2290. 到达角落需要移除障碍物的最小数（https://leetcode.cn/problems/minimum-obstacle-removal-to-reach-corner/）计算最小代价
-2258. 逃离火灾（https://leetcode.cn/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/）使用双源BFS计算等待时间后最短路求出路径上最小等待时间的最大值
-787. K 站中转内最便宜的航班（https://leetcode.cn/problems/cheapest-flights-within-k-stops/）使用带约束的最短路计算最终结果
-2203. 得到要求路径的最小带权子图（https://leetcode.cn/problems/minimum-weighted-subgraph-with-the-required-paths/）使用三个Dijkstra最短路获得结果
-407. 接雨水 II（https://leetcode.cn/problems/trapping-rain-water-ii/）经典最短路变种问题，求解路径上边权的最大值
 42. 接雨水（https://leetcode.cn/problems/trapping-rain-water/）一维接雨水，计算前后缀最大值的最小值再减去自身值
+407. 接雨水 II（https://leetcode.cn/problems/trapping-rain-water-ii/）经典最短路变种问题，求解路径上边权的最大值
+787. K 站中转内最便宜的航班（https://leetcode.cn/problems/cheapest-flights-within-k-stops/）使用带约束的最短路计算最终结果
+1293. 网格中的最短路径（https://leetcode.cn/problems/shortest-path-in-a-grid-with-obstacles-elimination/）使用带约束的最短路计算最终结果
+2203. 得到要求路径的最小带权子图（https://leetcode.cn/problems/minimum-weighted-subgraph-with-the-required-paths/）使用三个Dijkstra最短路获得结果
+2258. 逃离火灾（https://leetcode.cn/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/）使用双源BFS计算等待时间后最短路求出路径上最小等待时间的最大值
+2290. 到达角落需要移除障碍物的最小数（https://leetcode.cn/problems/minimum-obstacle-removal-to-reach-corner/）计算最小代价
 
 ===================================洛谷===================================
 P3371 单源最短路径（弱化版）（https://www.luogu.com.cn/problem/P3371）最短路模板题
@@ -137,46 +140,88 @@ class Dijkstra:
 
 
 class Solution:
-    def findCheapestPrice(self, n: int, flights: List[List[int]], src: int, dst: int, k: int) -> int:
-        # 带约束的最短路 L0787
-        dct = defaultdict(lambda: defaultdict(lambda: float("inf")))
-        for u, v, p in flights:
-            dct[u][v] = min(dct[u][v], p)
+    def __init__(self):
+        return
 
+    @staticmethod
+    def lc_787(n: int, flights: List[List[int]], src: int, dst: int, k: int) -> int:
+        # 模板：Dijkstra 带约束的最短路
+        dct = [dict() for _ in range(n)]
+        for u, v, p in flights:
+            dct[u][v] = p
+
+        # 第一维是代价，第二维是次数
         stack = [[0, 0, src]]
-        visit = defaultdict(lambda: float("inf"))
+        dis = [float("inf")] * n
         while stack:
             cost, cnt, i = heapq.heappop(stack)
-            if visit[i] <= cnt or cnt >= k + 2:
+            # 前面的代价已经比当前小了若是换乘次数更多则显然不可取
+            if dis[i] <= cnt or cnt >= k + 2:  # 超过 k 次换乘也不行
                 continue
             if i == dst:
                 return cost
-            visit[i] = cnt
+            dis[i] = cnt
             for j in dct[i]:
-                heapq.heappush(stack, [cost + dct[i][j], cnt + 1, j])
+                if cnt + 1 < dis[j]:
+                    heapq.heappush(stack, [cost + dct[i][j], cnt + 1, j])
         return -1
 
     @staticmethod
-    def main(n, cost, dct, s):
-        # P1462
-        def check():
-            visit = [float("-inf")] * n
-            stack = [[cost[0], 0, s]]
-            visit[0] = s
-            while stack:
-                dis, i, bd = heapq.heappop(stack)
-                if i == n - 1:
-                    return dis
-                if visit[i] > bd:
-                    continue
-                for j in dct[i]:
-                    bj = bd - dct[i][j]
-                    if bj >= 0 and visit[j] < bj:
-                        visit[j] = bj
-                        nex = dis if dis > cost[j] else cost[j]
-                        heapq.heappush(stack, [nex, j, bj])
-            return "AFK"
-        return check()
+    def lc_1293(grid: List[List[int]], k: int) -> int:
+        # 模板：Dijkstra 带约束的最短路
+        m, n = len(grid), len(grid[0])
+        visit = defaultdict(lambda: float("inf"))
+        # 第一维是距离，第二维是代价
+        stack = [[0, 0, 0, 0]]
+        while stack:
+            dis, cost, i, j = heapq.heappop(stack)
+            # 距离更远所以要求消除的障碍物更少
+            if visit[(i, j)] <= cost or cost > k:  # 超过 k 次不满足条件
+                continue
+            if i == m - 1 and j == n - 1:
+                return dis
+            visit[(i, j)] = cost
+            for x, y in [[i - 1, j], [i + 1, j], [i, j - 1], [i, j + 1]]:
+                if 0 <= x < m and 0 <= y < n and cost + grid[x][y] < visit[(x, y)]:
+                    heapq.heappush(stack, [dis + 1, cost + grid[x][y], x, y])
+        return -1
+
+    @staticmethod
+    def lg_p1462(ac=FastIO()):
+        # 模板：Dijkstra 带约束的最短路
+        n, m, s = ac.read_ints()
+        cost = [ac.read_int() for _ in range(n)]
+        dct = [dict() for _ in range(n)]
+        for _ in range(m):
+            a, b, c = ac.read_ints()
+            a -= 1
+            b -= 1
+            # 取权值较小的边
+            if b not in dct[a] or dct[a][b] > c:
+                dct[a][b] = c
+            if a not in dct[b] or dct[b][a] > c:
+                dct[b][a] = c
+
+        visit = [0] * n
+        stack = [[cost[0], 0, s]]
+        # 第一维是花费，第二维是血量
+        while stack:
+            dis, i, bd = heapq.heappop(stack)
+            # 前期花费更少，就要求当前血量更高
+            if visit[i] > bd:
+                continue
+            if i == n - 1:
+                ac.st(dis)
+                return
+            visit[i] = bd
+            for j in dct[i]:
+                bj = bd - dct[i][j]
+                # 必须是非负数才能存活
+                if bj >= visit[j]:
+                    visit[j] = bj
+                    heapq.heappush(stack, [ac.max(dis, cost[j]), j, bj])
+        ac.st("AFK")
+        return
 
 
 class TestGeneral(unittest.TestCase):
