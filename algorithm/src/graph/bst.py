@@ -26,7 +26,9 @@ from decimal import Decimal
 import heapq
 import copy
 import time
-from algorithm.src.fast_io import FastIO
+from algorithm.src.fast_io import FastIO, inf
+import sys
+sys.setrecursionlimit(10000000)
 
 """
 算法：BST二叉搜索树
@@ -361,6 +363,15 @@ class TestGeneral(unittest.TestCase):
         self.lg_2171_2(n, nums[:])
         t3 = time.time()
         print(n, t2-t1, t3-t2)
+
+        n = 2000
+        nums = list(range(1, n+1))
+        t1 = time.time()
+        self.lg_2171_1(n, nums[:])
+        t2 = time.time()
+        self.lg_2171_2(n, nums[:])
+        t3 = time.time()
+        print(n, t2 - t1, t3 - t2)
         return
 
 
