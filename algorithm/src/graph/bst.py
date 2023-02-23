@@ -25,6 +25,8 @@ from decimal import Decimal
 
 import heapq
 import copy
+import time
+from algorithm.src.fast_io import FastIO
 
 """
 算法：BST二叉搜索树
@@ -78,7 +80,7 @@ class BST(object):
             self.left.post_order()  # 先遍历它的左子树
         if self.right:  # 有右子树
             self.right.post_order()  # 遍历右子树
-        print(self.data)  # 都没有或已经遍历完就输出值
+        # print(self.data)  # 都没有或已经遍历完就输出值
         return
 
 
@@ -201,10 +203,164 @@ class BinarySearchTree:
         return  # Node not found
 
 
+class Solution:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def lg_p2171_1(ac=FastIO()):
+        # 模板: bst 标准插入 O(n^2)
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        bst = BST(nums[0])
+        for num in nums[1:]:
+            bst.insert(num)
+        ac.st(f"deep={ans1}")
+        bst.post_order()
+        return
+
+    @staticmethod
+    def lg_p2171_2(ac=FastIO()):
+
+        # 模板: bst 链表与二叉树模拟插入 O(nlogn)
+        @ac.bootstrap
+        def dfs(rt):
+            if ls[rt]:
+                yield dfs(ls[rt])
+            if rs[rt]:
+                yield dfs(rs[rt])
+            ac.st(a[rt])
+            yield
+
+        n = ac.read_int()
+        m = n + 10
+
+        # 排序后离散化
+        a = [0] + ac.read_list_ints()
+        b = a[:]
+        a.sort()
+        ind = {a[i]: i for i in range(n + 1)}
+        b = [ind[x] for x in b]
+        del ind
+
+        # 初始化序号
+        pre = [i - 1 for i in range(m)]
+        nxt = [i + 1 for i in range(m)]
+        dep = [0] * m
+        u = [0] * m
+        d = [0] * m
+
+        for i in range(n, 0, -1):
+            t = b[i]
+            u[t] = pre[t]
+            d[t] = nxt[t]
+            nxt[pre[t]] = nxt[t]
+            pre[nxt[t]] = pre[t]
+
+        ls = [0] * (n + 1)
+        rs = [0] * (n + 1)
+        root = b[1]
+        dep[b[1]] = 1
+        deep = 1
+        for i in range(2, n + 1):
+            f = 0
+            t = b[i]
+            if n >= u[t] >= 1 and dep[u[t]] + 1 > dep[t]:
+                dep[t] = dep[u[t]] + 1
+                f = u[t]
+            if 1 <= d[t] <= n and dep[d[t]] + 1 > dep[t]:
+                dep[t] = dep[d[t]] + 1
+                f = d[t]
+            if f < t:
+                rs[f] = t
+            else:
+                ls[f] = t
+            deep = ac.max(deep, dep[t])
+        ac.st(f"deep={deep}")
+        dfs(root)
+        return
+
+
 class TestGeneral(unittest.TestCase):
 
-    def test_xxx(self):
-        pass
+    @staticmethod
+    def lg_2171_1(n, nums):
+        # 模板: bst 标准插入 O(n^2)
+        bst = BST(nums[0])
+        for num in nums[1:]:
+            bst.insert(num)
+        bst.post_order()  # 实现是这里要将 print 从内部注释恢复打印
+        return
+
+    @staticmethod
+    def lg_2171_2(n, nums, ac=FastIO):
+        # 模板: bst 链表与二叉树模拟插入 O(nlogn)
+
+        @ac.bootstrap
+        def dfs(rt):
+            if ls[rt]:
+                yield dfs(ls[rt])
+            if rs[rt]:
+                yield dfs(rs[rt])
+            yield
+
+        m = n + 10
+        # 排序后离散化
+        a = [0] + nums
+        b = a[:]
+        a.sort()
+        ind = {a[i]: i for i in range(n + 1)}
+        b = [ind[x] for x in b]
+        del ind
+
+        # 初始化序号
+        pre = [i - 1 for i in range(m)]
+        nxt = [i + 1 for i in range(m)]
+        dep = [0] * m
+        u = [0] * m
+        d = [0] * m
+
+        for i in range(n, 0, -1):
+            t = b[i]
+            u[t] = pre[t]
+            d[t] = nxt[t]
+            nxt[pre[t]] = nxt[t]
+            pre[nxt[t]] = pre[t]
+
+        ls = [0] * (n + 1)
+        rs = [0] * (n + 1)
+        root = b[1]
+        dep[b[1]] = 1
+        deep = 1
+        for i in range(2, n + 1):
+            f = 0
+            t = b[i]
+            if n >= u[t] >= 1 and dep[u[t]] + 1 > dep[t]:
+                dep[t] = dep[u[t]] + 1
+                f = u[t]
+            if 1 <= d[t] <= n and dep[d[t]] + 1 > dep[t]:
+                dep[t] = dep[d[t]] + 1
+                f = d[t]
+            if f < t:
+                rs[f] = t
+            else:
+                ls[f] = t
+            deep = ac.max(deep, dep[t])
+        dfs(root)
+        return
+
+    def test_solution(self):
+        n = 1000000
+        nums = [random.randint(1, n) for _ in range(n)]
+        nums = list(set(nums))
+        n = len(nums)
+        random.shuffle(nums)
+        t1 = time.time()
+        self.lg_2171_1(n, nums[:])
+        t2 = time.time()
+        self.lg_2171_2(n, nums[:])
+        t3 = time.time()
+        print(n, t2-t1, t3-t2)
         return
 
 
