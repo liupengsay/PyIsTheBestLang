@@ -37,7 +37,7 @@ CSDN（https://blog.csdn.net/weixin_42001089/article/details/83590686）
 class TreeAncestor:
 
     def __init__(self, edges: List[List[int]]):
-        # 默认以0为根节点
+        # 默认以 0 为根节点
         n = len(edges)
         self.parent = [-1] * n
         self.depth = [-1] * n
@@ -103,6 +103,7 @@ class Solution:
 
     @staticmethod
     def cf_1328e(ac=FastIO()):
+        # 模板：利用 LCA 的方式查询是否为一条链上距离不超过 1 的点
         n, m = ac.read_ints()
         edge = [[] for _ in range(n)]
         for _ in range(n - 1):
@@ -130,6 +131,7 @@ class Solution:
 
     @staticmethod
     def lc_1483(parent, node, k):
+        # 模板：查询任意节点的第 k 个祖先
         n = len(parent)
         edges = [[] for _ in range(n)]
         for i in range(n):
@@ -141,6 +143,7 @@ class Solution:
 
     @staticmethod
     def lg_p3379(ac=FastIO()):
+        # 模板：查询任意两个节点的 LCA
         n, m, s = ac.read_ints()
         s -= 1
         edge = [[] for _ in range(n)]
