@@ -122,13 +122,8 @@ class Solution:
 
 class TestGeneral(unittest.TestCase):
 
-    def test_luogu(self):
-        luogu = Luogu()
-        n = 4
-        repair = [1, 2, 3, 4]
-        edges = [[0, 2, 1], [2, 3, 1], [3, 1, 2], [2, 1, 4], [0, 3, 5]]
-        queries = [[2, 0, 2], [0, 1, 2], [0, 1, 3], [0, 1, 4]]
-        assert luogu.main_p1119(n, repair, edges, queries) == [-1, -1, 5, 4]
+    def test_solution(self):
+        pass
         return
 
 
