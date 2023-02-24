@@ -7,17 +7,18 @@ from algorithm.src.fast_io import FastIO
 
 """
 
-算法：Floyd（单源最短路经算法）
-功能：计算点到有向或者无向图里面其他点的最近距离，也可以计算最长路
+算法：Floyd（多源最短路经算法）
+功能：计算点到有向或者无向图里面其他点的最短路，也可以计算最长路，以及所有最长路最短路上经过的点
 题目：
 
 ===================================洛谷===================================
 P1119 灾后重建 （https://www.luogu.com.cn/problem/P1119）离线查询加Floyd动态更新经过中转站的起终点距离
 P1476 休息中的小呆（https://www.luogu.com.cn/problem/P1476）Floyd 求索引从 1 到 n 的最长路并求所有在最长路上的点
+P3906 Geodetic集合（https://www.luogu.com.cn/problem/P3906）Floyd算法计算最短路径上经过的点集合
+
 P2009 跑步（https://www.luogu.com.cn/problem/P2009）Floyd求最短路
 P2419 [USACO08JAN]Cow Contest S（https://www.luogu.com.cn/problem/P2419）看似拓扑排序其实是使用Floyd进行拓扑排序
 P2910 [USACO08OPEN]Clear And Present Danger S（https://www.luogu.com.cn/problem/P2910）最短路计算之后进行查询
-P3906 Geodetic集合（https://www.luogu.com.cn/problem/P3906）Floyd算法计算最短路径上经过的点集合
 P6464 [传智杯 #2 决赛] 传送门（https://www.luogu.com.cn/problem/P6464）枚举边之后进行Floyd算法更新计算，经典理解Floyd的原理题，经典借助中间两点更新最短距离
 P6175 无向图的最小环问题（https://www.luogu.com.cn/problem/P6175）经典使用Floyd枚举三个点之间的距离和
 
@@ -28,25 +29,6 @@ P6175 无向图的最小环问题（https://www.luogu.com.cn/problem/P6175）经
 class Floyd:
     def __init__(self):
         return
-
-    @staticmethod
-    def shortest_path_node(n, m, edges, i, j):
-        # 模板: 计算i与j之间所有可行的最短路经过的点
-        inf = float("inf")
-        dp = [[inf] * n for _ in range(n)]
-        for i in range(n):
-            dp[i][i] = 0
-        for u, v in edges:
-            dp[u][v] = dp[v][u] = 1
-        for k in range(n):
-            for i in range(n):
-                for j in range(i+1, n):  # 优化
-                    a = dp[i][k] + dp[k][j]
-                    b = dp[i][j]
-                    dp[j][i] = dp[i][j] = a if a < b else b
-
-        ans = [x + 1 for x in range(n) if dp[i][x] + dp[x][j] == dp[i][j]]
-        return ans
 
     @staticmethod
     def shortest_path(n, dp):
@@ -64,7 +46,7 @@ class Solution:
 
     @staticmethod
     def lg_p1119(ac=FastIO()):
-        # 模板：利用Floyd算法特点和修复的中转站更新最短距离
+        # 模板：利用 Floyd 算法特点和修复的中转站更新最短距离（无向图）
         n, m = ac.read_ints()
         repair = ac.read_list_ints()
         # 设置初始值距离
@@ -94,7 +76,7 @@ class Solution:
 
     @staticmethod
     def lg_p1476(ac=FastIO()):
-        # 模板：Floyd 求索引从 1 到 n 的最长路并求所有在最长路上的点
+        # 模板：Floyd 求索引从 1 到 n 的最长路并求所有在最长路上的点（有向图）
         n = ac.read_int() + 1
         m = ac.read_int()
         dp = [[-ac.inf] * (n + 1) for _ in range(n + 1)]
@@ -117,6 +99,28 @@ class Solution:
                 path.append(i)
         ac.st(length)
         ac.lst(path)
+        return
+
+    @staticmethod
+    def lg_p3906(ac=FastIO()):
+        # 模板：Floyd 求索引从 u 到 v 的最短路并求所有在最短路上的点（无向图）
+        n, m = ac.read_ints()
+        dp = [[ac.inf] * (n + 1) for _ in range(n + 1)]
+        for _ in range(m):
+            i, j = ac.read_ints()
+            dp[i][j] = dp[j][i] = 1
+        for i in range(1, n + 1):
+            dp[i][i] = 0
+
+        for k in range(1, n + 1):
+            for i in range(1, n + 1):
+                for j in range(i + 1, n + 1):  # 无向图这里就可以优化
+                    dp[j][i] = dp[i][j] = ac.min(dp[i][j], dp[i][k] + dp[k][j])
+
+        for _ in range(ac.read_int()):
+            u, v = ac.read_ints()
+            dis = min(dp[u][k] + dp[k][v] for k in range(1, n + 1))
+            ac.lst([x for x in range(1, n + 1) if dp[u][x] + dp[x][v] == dis])
         return
 
 
