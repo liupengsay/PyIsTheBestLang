@@ -73,6 +73,30 @@ class Solution:
         return
 
     @staticmethod
+    def lg_p3648(ac=FastIO()):
+        # 模板：判断不同起点出发是否存在正环并计算最长路
+        d, p, c, f = ac.read_ints()
+        dct = [dict() for _ in range(c)]
+        for _ in range(p):
+            a, b = ac.read_ints_minus_one()
+            # 直接权值取负数变为判断是否存在负环与计算最短路
+            dct[a][b] = -d
+        for _ in range(f):
+            j, k, t = ac.read_ints()
+            j -= 1
+            k -= 1
+            dct[j][k] = -(d - t)
+        res = -ac.inf
+        for s in range(c):
+            ans, dis, _ = SPFA().negtive_circle(dct, s, -d)
+            if ans == "YES":
+                ac.st("orz")
+                return
+            res = ac.max(res, -min(dis))
+        ac.st(res)
+        return
+
+    @staticmethod
     def lg_p2136(ac=FastIO()):
         # 模板：判断不同起点出发是否存在负环并计算最短路
         n, m = ac.read_ints()
