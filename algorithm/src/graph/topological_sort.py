@@ -9,7 +9,7 @@
 内向基环树介绍：https://leetcode.cn/problems/maximum-employees-to-be-invited-to-a-meeting/solution/nei-xiang-ji-huan-shu-tuo-bu-pai-xu-fen-c1i1b/
 
 ===================================力扣===================================
-360. 图中的最长环（https://leetcode.cn/problems/longest-cycle-in-a-graph/）
+360. 图中的最长环（https://leetcode.cn/problems/longest-cycle-in-a-graph/）拓扑排序计算有向图内向基环树最长环
 2392. 给定条件下构造矩阵（https://leetcode.cn/problems/build-a-matrix-with-conditions/）分别通过行列的拓扑排序来确定数字所在索引
 2127. 参加会议的最多员工数（https://leetcode.cn/problems/maximum-employees-to-be-invited-to-a-meeting/）拓扑排序确定内向基环，按照环的大小进行贪心枚举
 
