@@ -73,6 +73,21 @@ class Solution:
         return
 
     @staticmethod
+    def lg_p2136(ac=FastIO()):
+        # 模板：判断不同起点出发是否存在负环并计算最短路
+        n, m = ac.read_ints()
+        dct = [dict() for _ in range(n)]
+        for _ in range(m):
+            a, b, c = ac.read_ints()
+            a -= 1
+            b -= 1
+            dct[a][b] = ac.min(dct[a].get(a, ac.inf), -c)
+        ans1, dis1, _ = SPFA().negtive_circle(dct, 0)
+        ans2, dis2, _ = SPFA().negtive_circle(dct, n - 1)
+        ac.st("Forever love" if ans1 == "YES" or ans2 == "YES" else ac.min(dis1[n - 1], dis2[0]))
+        return
+
+    @staticmethod
     def lg_p3385(ac=FastIO()):
         # 模板：SPFA 判断是否存在负环与计算最短路
         for _ in range(ac.read_int()):
