@@ -24,7 +24,7 @@ P1938 [USACO09NOV]Job Hunt S（https://www.luogu.com.cn/problem/P1938）使用�
 P2136 拉近距离（https://www.luogu.com.cn/problem/P2136）计算可能有负权环的最短距离
 P2648 赚钱（https://www.luogu.com.cn/problem/P2648）判断是否存在正权环以及最长路
 
-P1144 最短路计数（https://www.luogu.com.cn/problem/P1462）计算最短路的条数
+P1144 最短路计数（https://www.luogu.com.cn/problem/P1144）计算最短路的条数
 """
 
 
@@ -68,8 +68,66 @@ class SPFA:
         return "NO", dis, cnt
 
 
+class SPFACnt:
+    def __init__(self):
+        # 最短路计数
+        return
+
+    @staticmethod
+    def gen_result(dct, mod=10**9 + 7):
+        n = len(dct)
+        # 初始化距离
+        dis = [float("inf") for _ in range(n)]
+        # 标识当前节点是否在栈中
+        visit = [False] * n
+        # 当前最小距离的路径边数
+        cnt = [0] * n
+        queue = deque([0])
+        # 队列与起点初始化默认从 0 出发
+        dis[0] = 0
+        visit[0] = True
+        cnt[0] = 1
+        while queue:
+            # 取出队列中的第一个节点
+            u = queue.popleft()
+            visit[u] = False
+            # 更新当前节点的相邻节点的距离
+            for v in dct[u]:
+                w = dct[u][v]
+                if dis[v] > dis[u] + 1:
+                    dis[v] = dis[u] + 1
+                    cnt[v] = w * cnt[u]  # 此处 w 为重合边数
+                    cnt[v] %= mod
+                    # 如果相邻节点还没有在队列中，将它加入队列
+                    if not visit[v]:
+                        queue.append(v)
+                        visit[v] = True
+                elif dis[v] == dis[u] + 1:
+                    cnt[v] += w * cnt[u]
+                    cnt[v] %= mod
+                    if not visit[v]:
+                        queue.append(v)
+                        visit[v] = True
+        return cnt
+
+
 class Solution:
     def __init__(self):
+        return
+
+    @staticmethod
+    def lg_p1144(ac=FastIO()):
+        # 模板：无向无权图起点出发的最短路计数问题
+        n, m = ac.read_ints()
+        dct = [dict() for _ in range(n)]
+        for _ in range(m):
+            x, y = ac.read_ints_minus_one()
+            if x != y:
+                dct[y][x] = dct[x][y] = dct[x].get(y, 0) + 1
+
+        cnt = SPFACnt().gen_result(dct, 100003)
+        for a in cnt:
+            ac.st(a)
         return
 
     @staticmethod
@@ -146,47 +204,6 @@ class Solution:
         ans, dis, _ = SPFA().negtive_circle(dct, s, -d)
         ac.st(-1 if ans == "YES" else -min(dis))
         return
-
-
-class SPFACnt:
-    def __init__(self):
-        # 最短路计数
-        return
-
-    @staticmethod
-    def gen_result(dct):
-        n = len(dct)
-        # 初始化距离
-        dis = [float("inf") for _ in range(n)]
-        # 标识当前节点是否在栈中
-        visit = [False] * n
-        # 当前最小距离的路径边数
-        cnt = [0] * n
-        queue = deque([0])
-        # 队列与起点初始化默认从 0 出发
-        dis[0] = 0
-        visit[0] = True
-        cnt[0] = 1
-        while queue:
-            # 取出队列中的第一个节点
-            u = queue.popleft()
-            visit[u] = False
-            # 更新当前节点的相邻节点的距离
-            for v in dct[u]:
-                w = dct[u][v]
-                if dis[v] > dis[u] + 1:
-                    dis[v] = dis[u] + 1
-                    cnt[v] = w*cnt[u]  # 此处 w 为重合边数
-                    # 如果相邻节点还没有在队列中，将它加入队列
-                    if not visit[v]:
-                        queue.append(v)
-                        visit[v] = True
-                elif dis[v] == dis[u] + 1:
-                    cnt[v] += w*cnt[u]
-                    if not visit[v]:
-                        queue.append(v)
-                        visit[v] = True
-        return cnt
 
 
 class TestGeneral(unittest.TestCase):
