@@ -1,37 +1,14 @@
-
-import bisect
-import random
-import re
 import unittest
-
 from typing import List
-import heapq
-import math
-from collections import defaultdict, Counter, deque
-from functools import lru_cache
-from itertools import combinations
-from sortedcontainers import SortedList, SortedDict, SortedSet
 
-from sortedcontainers import SortedDict
-from functools import reduce
-from operator import xor
-from functools import lru_cache
-
-import random
-from itertools import permutations, combinations
-import numpy as np
-
-from decimal import Decimal
-
-import heapq
-import copy
+from algorithm.src.graph.union_find import UnionFind
 
 """
 
 算法：最小生成树（Kruskal算法和Prim算法两种）
 功能：计算无向图边权值和最小的生成树
 Prim在稠密图中比Kruskal优，在稀疏图中比Kruskal劣。Prim是以更新过的节点的连边找最小值，Kruskal是直接将边排序。
-两者其实都是运用贪心的思路
+两者其实都是运用贪心的思路，Kruskal相对比较常用
 
 题目：
 
@@ -68,54 +45,6 @@ P2658 汽车拉力比赛（https://www.luogu.com.cn/problem/P2658）典型最小
 """
 
 
-class UnionFind:
-    def __init__(self, n):
-        self.root = [i for i in range(n)]
-        self.size = [1] * n
-        self.part = n
-
-    def find(self, x):
-        if x != self.root[x]:
-            # 在查询的时候合并到顺带直接根节点
-            root_x = self.find(self.root[x])
-            self.root[x] = root_x
-            return root_x
-        return x
-
-    def union(self, x, y):
-        root_x = self.find(x)
-        root_y = self.find(y)
-        if root_x == root_y:
-            return False
-        if self.size[root_x] >= self.size[root_y]:
-            root_x, root_y = root_y, root_x
-        self.root[root_x] = root_y
-        self.size[root_y] += self.size[root_x]
-        # 将非根节点的秩赋0
-        self.size[root_x] = 0
-        self.part -= 1
-        return True
-
-    def is_connected(self, x, y):
-        return self.find(x) == self.find(y)
-
-    def get_root_part(self):
-        # 获取每个根节点对应的组
-        part = defaultdict(list)
-        n = len(self.root)
-        for i in range(n):
-            part[self.find(i)].append(i)
-        return part
-
-    def get_root_size(self):
-        # 获取每个根节点对应的组大小
-        size = defaultdict(int)
-        n = len(self.root)
-        for i in range(n):
-            size[self.find(i)] = self.size[self.find(i)]
-        return size
-
-
 class MininumSpanningTree:
     def __init__(self, edges, n):
         # n个节点
@@ -139,13 +68,60 @@ class MininumSpanningTree:
         return
 
 
-class Luogu:
+class Solution:
     def __init__(self):
         return
 
     @staticmethod
-    def main_p2872():
-        from sys import stdin
+    def lc_1489(n: int, edges: List[List[int]]) -> List[List[int]]:
+        # 模板：求最小生成树的关键边与伪关键边
+        m = len(edges)
+        # 代价排序
+        lst = list(range(m))
+        lst.sort(key=lambda it: edges[it][2])
+
+        # 计算最小生成树代价
+        min_cost = 0
+        uf = UnionFind(n)
+        for i in lst:
+            x, y, cost = edges[i]
+            if uf.union(x, y):
+                min_cost += cost
+
+        # 枚举关键边
+        key = set()
+        for i in lst:
+            cur_cost = 0
+            uf = UnionFind(n)
+            for j in lst:
+                if j != i:
+                    x, y, cost = edges[j]
+                    if uf.union(x, y):
+                        cur_cost += cost
+            if cur_cost > min_cost or uf.part != 1:
+                key.add(i)
+
+        # 枚举伪关键边
+        fake = set()
+        for i in lst:
+            if i not in key:
+                cur_cost = edges[i][2]
+                uf = UnionFind(n)
+                # 先将当前边加入生成树
+                uf.union(edges[i][0], edges[i][1])
+                for j in lst:
+                    x, y, cost = edges[j]
+                    if uf.union(x, y):
+                        cur_cost += cost
+                # 若仍然是最小生成树就说明是伪关键边
+                if cur_cost == min_cost and uf.part == 1:
+                    fake.add(i)
+
+        return [list(key), list(fake)]
+
+
+    @staticmethod
+    def lg_p2872():
         # https://www.luogu.com.cn/record/74793627
 
         def main():
