@@ -1,6 +1,7 @@
 import unittest
 from typing import List
 
+from algorithm.src.fast_io import FastIO
 from algorithm.src.graph.union_find import UnionFind
 
 """
@@ -15,24 +16,23 @@ Prim在稠密图中比Kruskal优，在稀疏图中比Kruskal劣。Prim是以更�
 ===================================力扣===================================
 1489. 找到最小生成树里的关键边和伪关键边（https://leetcode.cn/problems/find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree/）计算最小生成树的关键边与伪关键边
 
-
 ===================================洛谷===================================
-P3366 最小生成树（https://www.luogu.com.cn/problem/P3366）计算最小生成树的权值和
-
-P2872 Building Roads S（https://www.luogu.com.cn/problem/P2872）使用prim计算最小生成树
+P3366 最小生成树（https://www.luogu.com.cn/problem/P3366）最小生成树裸题
+P2820 局域网（https://www.luogu.com.cn/problem/P2820）逆向思维，求最小生成树权值和
 P1991 无线通讯网（https://www.luogu.com.cn/problem/P1991）计算保证k个连通块下最小的边权值
+
 P1661 扩散（https://www.luogu.com.cn/problem/P1661）最小生成树的边最大权值
 P1547 [USACO05MAR]Out of Hay S（https://www.luogu.com.cn/problem/P1547）最小生成树的边最大权值
 P2121 拆地毯（https://www.luogu.com.cn/problem/P2121）保留 k 条边的最大生成树权值
 P2126 Mzc家中的男家丁（https://www.luogu.com.cn/problem/P2126）转化为最小生成树求解
-
+P2872 Building Roads S（https://www.luogu.com.cn/problem/P2872）使用prim计算最小生成树
 P2330 [SCOI2005]繁忙的都市（https://www.luogu.com.cn/problem/P2330）最小生成树边数量与最大边权值
 P2504 [HAOI2006]聪明的猴子（https://www.luogu.com.cn/problem/P2504）识别为最小生成树求解
 P2700 逐个击破（https://www.luogu.com.cn/problem/P2700）逆向思维与最小生成树，选取最大权组合，修改并查集size
 
 P1195 口袋的天空（https://www.luogu.com.cn/record/list?user=739032&status=12&page=13）最小生成树生成K个连通块
 P1194 买礼物（https://www.luogu.com.cn/problem/P1194）最小生成树变种问题
-P2820 局域网（https://www.luogu.com.cn/problem/P2820）最小生成树裸题
+
 
 P2916 [USACO08NOV]Cheering up the Cow G（https://www.luogu.com.cn/problem/P2916）需要自定义排序之后计算最小生成树的好题
 P4955 [USACO14JAN]Cross Country Skiing S（https://www.luogu.com.cn/problem/P4955）最小生成树，自定义中止条件
@@ -70,6 +70,58 @@ class MininumSpanningTree:
 
 class Solution:
     def __init__(self):
+        return
+
+    @staticmethod
+    def lg_p1991(ac=FastIO()):
+        # 模板：利用最小生成树计算 k 个连通块所需的最大边权值
+        k, n = ac.read_ints()
+        pos = [ac.read_list_ints() for _ in range(n)]
+        edge = []
+        for i in range(n):
+            for j in range(i + 1, n):
+                a = pos[i][0] - pos[j][0]
+                b = pos[i][1] - pos[j][1]
+                edge.append([i, j, a * a + b * b])
+
+        uf = UnionFind(n)
+        edge.sort(key=lambda it: it[2])
+        cost = 0
+        for x, y, z in edge:
+            if uf.part == k:
+                break
+            if uf.union(x, y):
+                cost = z
+        ans = cost**0.5
+        ac.st("%.2f" % ans)
+        return
+
+    @staticmethod
+    def lg_2820(ac=FastIO()):
+        # 模板：求删除最大权值和使得存在回路的连通图变成最小生成树
+        n, m = ac.read_ints()
+        edge = [ac.read_list_ints() for _ in range(m)]
+        uf = UnionFind(n)
+        edge.sort(key=lambda it: it[2])
+        cost = 0
+        for x, y, z in edge:
+            if not uf.union(x - 1, y - 1):
+                cost += z
+        ac.st(cost)
+        return
+
+    @staticmethod
+    def lg_p3366(ac=FastIO()):
+        # 模板：求最小生成树的权值和
+        n, m = ac.read_ints()
+        edge = [ac.read_list_ints() for _ in range(m)]
+        uf = UnionFind(n)
+        edge.sort(key=lambda it: it[2])
+        cost = 0
+        for x, y, z in edge:
+            if uf.union(x - 1, y - 1):
+                cost += z
+        ac.st(cost if uf.part == 1 else "orz")
         return
 
     @staticmethod
