@@ -9,9 +9,10 @@
 内向基环树介绍：https://leetcode.cn/problems/maximum-employees-to-be-invited-to-a-meeting/solution/nei-xiang-ji-huan-shu-tuo-bu-pai-xu-fen-c1i1b/
 
 ===================================力扣===================================
+360. 图中的最长环（https://leetcode.cn/problems/longest-cycle-in-a-graph/）
 2392. 给定条件下构造矩阵（https://leetcode.cn/problems/build-a-matrix-with-conditions/）分别通过行列的拓扑排序来确定数字所在索引
 2127. 参加会议的最多员工数（https://leetcode.cn/problems/maximum-employees-to-be-invited-to-a-meeting/）拓扑排序确定内向基环，按照环的大小进行贪心枚举
-360. 图中的最长环（https://leetcode.cn/problems/longest-cycle-in-a-graph/）
+
 127. 参加会议的最多员工数（https://leetcode.cn/problems/maximum-employees-to-be-invited-to-a-meeting/）
 269. 火星词典（https://leetcode.cn/problems/alien-dictionary/）经典按照字典序建图，与拓扑排序的应用
 
@@ -152,6 +153,44 @@ class TopologicalSort:
                         nex.append(j)
             stack = nex
         return sum(degree) == 0
+
+class Solution:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def lc_2360(edges: List[int]) -> int:
+        # 模板：拓扑排序计算有向图内向基环树最长环
+        n = len(edges)
+        # 记录入度
+        degree = defaultdict(int)
+        for i in range(n):
+            if edges[i] != -1:
+                degree[edges[i]] += 1
+
+        # 先消除无环部分
+        stack = [i for i in range(n) if not degree[i]]
+        while stack:
+            nex = []
+            for i in stack:
+                if edges[i] != -1:
+                    degree[edges[i]] -= 1
+                    if not degree[edges[i]]:
+                        nex.append(edges[i])
+            stack = nex
+
+        # 注意没有自环
+        visit = [int(degree[i] == 0) for i in range(n)]
+        ans = -1
+        for i in range(n):
+            cnt = 0
+            while not visit[i]:
+                visit[i] = 1
+                cnt += 1
+                i = edges[i]
+            if cnt and cnt > ans:
+                ans = cnt
+        return ans
 
 
 class TestGeneral(unittest.TestCase):
