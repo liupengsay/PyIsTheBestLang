@@ -15,7 +15,7 @@ from algorithm.src.fast_io import FastIO
 题目：
 
 ===================================力扣===================================
-2360 图中的最长环（https://leetcode.cn/problems/longest-cycle-in-a-graph/）求最长的环长度（有向图、内向基环树没有环套环，N个节点N条边，也可以使用拓扑排序）
+2360. 图中的最长环（https://leetcode.cn/problems/longest-cycle-in-a-graph/）求最长的环长度（有向图、内向基环树没有环套环，N个节点N条边，也可以使用拓扑排序）
 
 ===================================洛谷===================================
 P3387 缩点 （https://www.luogu.com.cn/problem/solution/P3387）允许多次经过点和边求一条路径最大权值和
@@ -135,33 +135,38 @@ class Tarjan:
         return
 
 
-class InwardBaseTree:
+class Solution:
     def __init__(self):
         return
 
     @staticmethod
-    def largest_circle(n, edge, dct):
-        # 模板: 求内向基环树的最大权值和环 edge表示有向边 i=>edge[i] 而 dct表示对应的边权值
+    def lc_2360(edges):
 
-        def dfs(x, sum_):
-            nonlocal ans
-            if x == st:
-                ans = ans if ans > sum_ else sum_
-                return
-            if a[x] or b[x]:
-                return
-            a[x] = 1
-            dfs(edge[x], sum_+dct[x])
-            a[x] = 0
-            return
+        # 模板: 求内向基环树的最大权值和环 edge表示有向边 i 到 edge[i] 而 dct表示对应的边权值
+        def largest_circle(n, edge, dct):
 
-        a = [0]*n
-        b = [0]*n
-        ans = 0
-        for st in range(n):
-            dfs(edge[st], dct[st])
-            b[st] = 1
-        return ans
+            def dfs(x, sum_):
+                nonlocal ans
+                if x == st:
+                    ans = ans if ans > sum_ else sum_
+                    return
+                # 访问过
+                if a[x] or b[x]:
+                    return
+                a[x] = 1
+                dfs(edge[x], sum_+dct[x])
+                a[x] = 0
+                return
+
+            a = [0]*n
+            b = [0]*n
+            ans = 0
+            for st in range(n):
+                dfs(edge[st], dct[st])
+                b[st] = 1
+            return ans
+        # 经典题目也可用 scc 或者拓扑排序求解
+        return largest_circle(len(edges), edges, [1]*len(edges))
 
 
 class TwoSAT:
@@ -361,11 +366,6 @@ class TwoSAT:
                     ans = False
                     break
             ac.st("GOOD" if ans else "BAD")
-        return
-
-
-class Solution:
-    def __init__(self):
         return
 
 
