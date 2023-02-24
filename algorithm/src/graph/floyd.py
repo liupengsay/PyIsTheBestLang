@@ -13,7 +13,7 @@ from algorithm.src.fast_io import FastIO
 
 ===================================洛谷===================================
 P1119 灾后重建 （https://www.luogu.com.cn/problem/P1119）离线查询加Floyd动态更新经过中转站的起终点距离
-P1476 休息中的小呆（https://www.luogu.com.cn/problem/P1476）Floyd求最长路
+P1476 休息中的小呆（https://www.luogu.com.cn/problem/P1476）Floyd 求索引从 1 到 n 的最长路并求所有在最长路上的点
 P2009 跑步（https://www.luogu.com.cn/problem/P2009）Floyd求最短路
 P2419 [USACO08JAN]Cow Contest S（https://www.luogu.com.cn/problem/P2419）看似拓扑排序其实是使用Floyd进行拓扑排序
 P2910 [USACO08OPEN]Clear And Present Danger S（https://www.luogu.com.cn/problem/P2910）最短路计算之后进行查询
@@ -47,28 +47,6 @@ class Floyd:
 
         ans = [x + 1 for x in range(n) if dp[i][x] + dp[x][j] == dp[i][j]]
         return ans
-
-    @staticmethod
-    def longest_path_length(edges, n):
-
-        # 索引从1-n并求1-n的最长路
-        dp = [[0] * (n + 1) for _ in range(n + 1)]
-        for i, j, k in edges:  # k >= 0
-            dp[i][j] = k
-
-        for i in range(1, n + 1):
-            for j in range(1, n + 1):
-                for k in range(1, n + 1):
-                    if i != j and j != k and i != k and dp[i][k] and dp[k][j]:
-                        if dp[i][j] < dp[i][k] + dp[k][j]:
-                            dp[i][j] = dp[i][k] + dp[k][j]
-
-        length = dp[1][n]
-        path = []
-        for i in range(1, n + 1):
-            if dp[1][i] + dp[i][n] == dp[1][n]:
-                path.append(i)
-        return length, path
 
     @staticmethod
     def shortest_path(n, dp):
@@ -113,6 +91,34 @@ class Solution:
             else:
                 ac.st(-1)
         return
+
+    @staticmethod
+    def lg_p1476(ac=FastIO()):
+        # 模板：Floyd 求索引从 1 到 n 的最长路并求所有在最长路上的点
+        n = ac.read_int() + 1
+        m = ac.read_int()
+        dp = [[-ac.inf] * (n + 1) for _ in range(n + 1)]
+        for _ in range(m):
+            i, j, k = ac.read_ints()
+            dp[i][j] = k
+        for i in range(n + 1):
+            dp[i][i] = 0
+
+        for i in range(1, n + 1):
+            for j in range(1, n + 1):
+                for k in range(1, n + 1):
+                    if dp[i][j] < dp[i][k] + dp[k][j]:
+                        dp[i][j] = dp[i][k] + dp[k][j]
+
+        length = dp[1][n]
+        path = []
+        for i in range(1, n + 1):
+            if dp[1][i] + dp[i][n] == dp[1][n]:
+                path.append(i)
+        ac.st(length)
+        ac.lst(path)
+        return
+
 
 class TestGeneral(unittest.TestCase):
 
