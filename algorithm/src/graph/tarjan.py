@@ -1,7 +1,7 @@
 import unittest
 from collections import defaultdict
 from typing import DefaultDict, Set, List, Tuple
-
+from algorithm.src.graph.union_find import UnionFind
 from algorithm.src.fast_io import FastIO
 
 """
@@ -28,13 +28,12 @@ Tarjan 算法是基于深度优先搜索的算法，用于求解图的连通性�
 - 有向有环图求环[2360. 图中的最长环]
 
 ===================================力扣===================================
-[1192. 查找集群内的「关键连接」]: https://leetcode.cn/problems/critical-connections-in-a-network/solution/by-liupengsay-dlc2/
-[2360. 图中的最长环]: https://leetcode.cn/problems/longest-cycle-in-a-graph/solution/by-liupengsay-4ff6/
+1192. 查找集群内的关键连接（https://leetcode.cn/problems/critical-connections-in-a-network/）求割边
+2360. 图中的最长环（https://leetcode.cn/problems/longest-cycle-in-a-graph/solution/by-liupengsay-4ff6/）经典求有向图最长环
 [2204. Distance to a Cycle in Undirected Graph]: https://leetcode.cn/problems/distance-to-a-cycle-in-undirected-graph/solution/er-xu-cheng-ming-jiu-xu-zui-python3tarja-09qn/
 [1568. 使陆地分离的最少天数]: https://leetcode.cn/problems/minimum-number-of-days-to-disconnect-island/solution/by-liupengsay-zd7w/
 
 ===================================洛谷===================================
-
 P3388 【模板】割点（割顶）（https://www.luogu.com.cn/problem/P3388）有自环与重边，求无向图割点
 P8435 【模板】点双连通分量（https://www.luogu.com.cn/problem/P8435）有自环与重边，只关注孤立自环即可
 P8436 【模板】边双连通分量（https://www.luogu.com.cn/problem/P8436）有自环与重边，通过虚拟节点进行扩边
@@ -44,55 +43,6 @@ P1656 炸铁路（https://www.luogu.com.cn/problem/P1656）求割边
 P1793 跑步（https://www.luogu.com.cn/problem/P1793）求连通图两个指定点之间的割点，使用枚举与并查集的方式进行求解
 
 """
-
-
-# 标准并查集
-class UnionFind:
-    def __init__(self, n):
-        self.root = [i for i in range(n)]
-        self.size = [1] * n
-        self.part = n
-
-    def find(self, x):
-        if x != self.root[x]:
-            # 在查询的时候合并到顺带直接根节点
-            root_x = self.find(self.root[x])
-            self.root[x] = root_x
-            return root_x
-        return x
-
-    def union(self, x, y):
-        root_x = self.find(x)
-        root_y = self.find(y)
-        if root_x == root_y:
-            return False
-        if self.size[root_x] >= self.size[root_y]:
-            root_x, root_y = root_y, root_x
-        self.root[root_x] = root_y
-        self.size[root_y] += self.size[root_x]
-        # 将非根节点的秩赋0
-        self.size[root_x] = 0
-        self.part -= 1
-        return True
-
-    def is_connected(self, x, y):
-        return self.find(x) == self.find(y)
-
-    def get_root_part(self):
-        # 获取每个根节点对应的组
-        part = defaultdict(list)
-        n = len(self.root)
-        for i in range(n):
-            part[self.find(i)].append(i)
-        return part
-
-    def get_root_size(self):
-        # 获取每个根节点对应的组大小
-        size = defaultdict(int)
-        n = len(self.root)
-        for i in range(n):
-            size[self.find(i)] = self.size[self.find(i)]
-        return size
 
 
 class TarjanCC:
@@ -315,7 +265,7 @@ class TarjanCC:
         return uf.get_root_part()
 
 
-class Tarjan:
+class TarjanUndirected:
     def __init__(self):
         return
 
@@ -388,13 +338,69 @@ class Tarjan:
         return cut_edge, cut_node, sub_group
 
 
+class TarjanDirected:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def check_graph(edge: List[list], n):
+        # edge为边连接关系，n为节点数
+
+        # 访问序号与根节点序号
+        visit = [0] * n
+        root = [0] * n
+        # 割点
+        cut_node = []
+        # 割边
+        cut_edge = []
+        # 强连通分量子树
+        sub_group = []
+
+        # 中间变量
+        stack = []
+        index = 1
+
+        def tarjan(i):
+            nonlocal index
+            visit[i] = root[i] = index
+            index += 1
+            stack.append(i)
+            for j in edge[i]:
+                if not visit[j]:
+                    tarjan(j)
+                    root[i] = min(root[i], root[j])
+                    if visit[i] < root[j]:
+                        cut_edge.append([i, j])
+                    if visit[i] <= root[j]:
+                        cut_node.append(i)
+                elif j in stack:
+                    root[i] = min(root[i], visit[j])
+
+            if root[i] == visit[i]:
+                lst = []
+                while stack[-1] != i:
+                    lst.append(stack.pop())
+                lst.append(stack.pop())
+                r = min(root[ls] for ls in lst)
+                for ls in lst:
+                    root[ls] = r
+                sub_group.append(lst)
+            return
+
+        for k in range(n):
+            if not visit[k]:
+                tarjan(k)
+
+        return cut_edge, cut_node, sub_group
+
+
 class Solution:
     def __init__(self):
         return
 
     @staticmethod
-    def lc_2360(edges: List[int]) -> int:
-        # 模板：TarjanCC 求有向图强连通分量
+    def lc_2360_1(edges: List[int]) -> int:
+        # 模板：TarjanCC 求 scc 有向图强连通分量
         n = len(edges)
         edge = [set() for _ in range(n)]
         for i in range(n):
@@ -402,6 +408,22 @@ class Solution:
         scc_id, scc_node_id, node_scc_id = TarjanCC().get_strongly_connected_component(n, edge)
         ans = max(len(scc_node_id[r]) for r in scc_node_id)
         return ans if ans > 1 else -1
+
+    @staticmethod
+    def lc_2360_2(edges: List[int]) -> int:
+        # 模板：有向图 Tarjan 求 scc 有向图强连通分量
+        n = len(edges)
+        edge = [[] for _ in range(n)]
+        for i in range(n):
+            if edges[i] != -1:
+                edge[i] = [edges[i]]
+        _, _, sub_group = TarjanDirected().check_graph(edge,  n)
+        ans = -1
+        for sub in sub_group:
+            if len(sub) > 1 and len(sub) > ans:
+                ans = len(sub)
+        return ans
+
 
     @staticmethod
     def lg_p3388(ac=FastIO()):
@@ -488,13 +510,33 @@ class Solution:
             ac.lst(a)
         return
 
+    @staticmethod
+    def lc_1192_1(n: int, connections: List[List[int]]) -> List[List[int]]:
+        # 模板：使用 TarjanCC 求割边
+        edge = [set() for _ in range(n)]
+        for i, j in connections:
+            edge[i].add(j)
+            edge[j].add(i)
+        cutting_point, cutting_edge = TarjanCC().get_cutting_point_and_cutting_edge(n, edge)
+        return [list(e) for e in cutting_edge]
+
+    @staticmethod
+    def lc_1192_2(n: int, connections: List[List[int]]) -> List[List[int]]:
+        # 模板：使用 Tarjan 求割边
+        edge = [[] for _ in range(n)]
+        for i, j in connections:
+            edge[i].append(j)
+            edge[j].append(i)
+        cut_edge, cut_node, sub_group = TarjanUndirected().check_graph(edge, n)
+        return cut_edge
+
 
 class TestGeneral(unittest.TestCase):
     def test_undirected_graph(self):
         # 无向无环图
         edge = [[1, 2], [0, 3], [0, 3], [1, 2]]
         n = 4
-        ta = Tarjan()
+        ta = TarjanUndirected()
         cut_edge, cut_node, sub_group = ta.check_graph(edge, n)
         assert not cut_edge
         assert not cut_node
