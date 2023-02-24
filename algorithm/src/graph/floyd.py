@@ -3,6 +3,8 @@ import unittest
 from collections import defaultdict
 from functools import lru_cache
 
+from algorithm.src.fast_io import FastIO
+
 """
 
 算法：Floyd（单源最短路经算法）
@@ -11,7 +13,6 @@ from functools import lru_cache
 
 ===================================洛谷===================================
 P1119 灾后重建 （https://www.luogu.com.cn/problem/P1119）离线查询加Floyd动态更新经过中转站的起终点距离
-P1807 最长路（https://www.luogu.com.cn/problem/P1807）
 P1476 休息中的小呆（https://www.luogu.com.cn/problem/P1476）Floyd求最长路
 P2009 跑步（https://www.luogu.com.cn/problem/P2009）Floyd求最短路
 P2419 [USACO08JAN]Cow Contest S（https://www.luogu.com.cn/problem/P2419）看似拓扑排序其实是使用Floyd进行拓扑排序
@@ -70,28 +71,6 @@ class Floyd:
         return length, path
 
     @staticmethod
-    def longest_length(edges, n):
-
-        # 求1到n的最长路有向无环图带负权
-        dis = [defaultdict(lambda: float("-inf")) for _ in range(n + 1)]
-        for i, j, w in edges:
-            dis[i][j] = max(dis[i][j], w)
-
-        @lru_cache(None)
-        def dfs(x):
-            if x == n:
-                return 0
-            res = float("-inf")
-            for y in dis[x]:
-                cur = dis[x][y] + dfs(y)
-                res = res if res > cur else cur
-            return res
-
-        ans = dfs(1)
-        ans = ans if ans > float("-inf") else -1
-        return ans
-
-    @staticmethod
     def shortest_path(n, dp):
         # 使用 floyd 算法计算所有点对之间的最短路
         for k in range(n):  # 中间节点
@@ -101,37 +80,39 @@ class Floyd:
         return dp
 
 
-class Luogu:
+class Solution:
     def __init__(self):
         return
 
     @staticmethod
-    def main_p1119(n, repair, edges, queries):
-
+    def lg_p1119(ac=FastIO()):
+        # 模板：利用Floyd算法特点和修复的中转站更新最短距离
+        n, m = ac.read_ints()
+        repair = ac.read_list_ints()
         # 设置初始值距离
-        dis = [[float("inf")] * n for _ in range(n)]
-        for a, b, c in edges:
+        dis = [[ac.inf] * n for _ in range(n)]
+        for i in range(m):
+            a, b, c = ac.read_ints()
             dis[a][b] = dis[b][a] = c
         for i in range(n):
             dis[i][i] = 0
 
-        res = []
-        # 修复村庄之后用 Floyd算法 更新以该村庄为中转的距离
+        # 修复村庄之后用Floyd算法更新以该村庄为中转的距离
         k = 0
-        for x, y, t in queries:
+        for _ in range(ac.read_int()):
+            x, y, t = ac.read_ints()
+            # 离线算法
             while k < n and repair[k] <= t:
+                # k修复则更新以k为中转站的距离
                 for a in range(n):
                     for b in range(a + 1, n):
-                        cur = dis[a][k] + dis[k][b]
-                        if dis[a][b] > cur:
-                            dis[a][b] = dis[b][a] = cur
+                        dis[a][b] = dis[b][a] = ac.min(dis[a][k] + dis[k][b], dis[b][a])
                 k += 1
-            if dis[x][y] < float("inf") and x < k and y < k:
-                res.append(dis[x][y])
+            if dis[x][y] < ac.inf and x < k and y < k:
+                ac.st(dis[x][y])
             else:
-                res.append(-1)
-        return res
-
+                ac.st(-1)
+        return
 
 class TestGeneral(unittest.TestCase):
 

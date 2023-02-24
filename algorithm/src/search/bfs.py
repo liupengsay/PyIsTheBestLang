@@ -45,6 +45,7 @@ P6582 座位调查（https://www.luogu.com.cn/problem/P6582）bfs合法性判断
 P7243 最大公约数（https://www.luogu.com.cn/problem/P7243）广度优先搜索加gcd最大公约数计算
 P3496 [POI2010]GIL-Guilds（https://www.luogu.com.cn/problem/P3496）脑筋急转弯，BFS隔层染色
 P1432 倒水问题（https://www.luogu.com.cn/problem/P1432）经典BFS倒水题，使用记忆化广搜
+P1807 最长路（https://www.luogu.com.cn/problem/P1807）不保证连通的有向无环图求 1 到 n 的最长路
 
 ================================CodeForces================================
 E. Nearest Opposite Parity（https://codeforces.com/problemset/problem/1272/E）经典反向建图，多源BFS
@@ -53,9 +54,78 @@ A. Book（https://codeforces.com/problemset/problem/1572/A）脑筋急转弯建�
 """
 
 
-class BFS:
+class Solution:
     def __init__(self):
         return
+
+    @staticmethod
+    def lg_p1807_1(ac=FastIO()):
+        # 模板：有向无环图使用拓扑排序求最长路
+        n, m = ac.read_ints()
+        edge = [dict() for _ in range(n)]
+        pre = [set() for _ in range(n)]
+        for _ in range(m):
+            u, v, w = ac.read_ints()
+            u -= 1
+            v -= 1
+            edge[u][v] = ac.max(edge[u].get(v, -ac.inf), w)
+            pre[v].add(u)
+
+        # 注意这里可能有 0 之外的入度为 0 的点，需要先进行拓扑消除
+        stack = deque([i for i in range(1, n) if not pre[i]])
+        while stack:
+            i = stack.popleft()
+            for j in edge[i]:
+                pre[j].discard(i)
+                if not pre[j]:
+                    stack.append(j)
+
+        # 广搜计算最长路，进一步还可以确定相应的具体路径
+        visit = [-ac.inf] * n
+        visit[0] = 0
+        stack = deque([0])
+        while stack:
+            i = stack.popleft()
+            for j in edge[i]:
+                w = edge[i][j]
+                pre[j].discard(i)
+                if visit[i] + w > visit[j]:
+                    visit[j] = visit[i] + w
+                if not pre[j]:
+                    stack.append(j)
+
+        ac.st(visit[-1] if visit[-1] > -ac.inf else -1)
+        return
+
+    @staticmethod
+    def lg_p1807_2(ac=FastIO()):
+        # 模板：有向无环图使用深搜求最长路
+        n, m = ac.read_ints()
+        edge = [dict() for _ in range(n)]
+        for _ in range(m):
+            u, v, w = ac.read_ints()
+            u -= 1
+            v -= 1
+            edge[u][v] = ac.max(edge[u].get(v, -ac.inf), w)
+
+        @ac.bootstrap
+        def dfs(x):
+            if x == n - 1:
+                ans[x] = 0
+                yield
+            res = -ac.inf
+            for y in edge[x]:
+                yield dfs(y)
+                cur = edge[x][y] + ans[y]
+                res = res if res > cur else cur
+            ans[x] = res
+            yield
+
+        ans = [-ac.inf] * n
+        dfs(0)
+        ac.st(ans[0] if ans[0] > -ac.inf else -1)
+        return
+
 
     @staticmethod
     def cf_1272e(ac=FastIO()):
