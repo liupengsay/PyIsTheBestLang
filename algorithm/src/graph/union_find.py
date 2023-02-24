@@ -143,6 +143,63 @@ class Solution:
         ans.sort(key=lambda x: x[0])
         return [an[1] for an in ans]
 
+    @staticmethod
+    def lc_2503(grid: List[List[int]], queries: List[int]) -> List[int]:
+        # 模板：并查集与离线排序查询结合
+        dct = []
+        # 根据邻居关系进行建图处理
+        m, n = len(grid), len(grid[0])
+        for i in range(m):
+            for j in range(n):
+                if i + 1 < m:
+                    x, y = grid[i][j], grid[i + 1][j]
+                    dct.append([i * n + j, i * n + n + j, x if x > y else y])
+                if j + 1 < n:
+                    x, y = grid[i][j], grid[i][j + 1]
+                    dct.append([i * n + j, i * n + 1 + j, x if x > y else y])
+        dct.sort(key=lambda d: d[2])
+        uf = UnionFind(m * n)
+
+        # 按照查询值的大小排序，依次进行查询
+        k = len(queries)
+        ind = list(range(k))
+        ind.sort(key=lambda d: queries[d])
+
+        # 根据查询值的大小利用指针持续更新并查集
+        ans = [0]*k
+        j = 0
+        length = len(dct)
+        for i in ind:
+            cur = queries[i]
+            while j < length and dct[j][2] < cur:
+                uf.union(dct[j][0], dct[j][1])
+                j += 1
+            if cur > grid[0][0]:
+                ans[i] = uf.size[uf.find(0)]
+        return ans
+
+    @staticmethod
+    def lc_2421(vals: List[int], edges: List[List[int]]) -> int:
+        # 模板：并查集与离线排序查询结合
+        n = len(vals)
+        index = defaultdict(list)
+        for i in range(n):
+            index[vals[i]].append(i)
+        edges.sort(key=lambda x: max(vals[x[0]], vals[x[1]]))
+        uf = UnionFind(n)
+        # 离线查询计数
+        i = 0
+        m = len(edges)
+        ans = 0
+        for val in sorted(index):
+            while i < m and vals[edges[i][0]] <= val and vals[edges[i][1]] <= val:
+                uf.union(edges[i][0], edges[i][1])
+                i += 1
+            cnt = Counter(uf.find(x) for x in index[val])
+            for w in cnt.values():
+                ans += w * (w - 1) // 2 + w
+        return ans
+
 
 # 可持久化并查集
 class PersistentUnionFind:
