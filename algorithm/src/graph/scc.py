@@ -15,10 +15,10 @@ from algorithm.src.fast_io import FastIO
 题目：
 
 ===================================力扣===================================
-2360. 图中的最长环（https://leetcode.cn/problems/longest-cycle-in-a-graph/）求最长的环长度（有向图、内向基环树没有环套环，N个节点N条边，也可以使用拓扑排序）
+2360. 图中的最长环（https://leetcode.cn/problems/longest-cycle-in-a-graph/）求最长的环长度（有向图scc、内向基环树没有环套环，N个节点N条边，也可以使用拓扑排序）
 
 ===================================洛谷===================================
-P3387 缩点 （https://www.luogu.com.cn/problem/solution/P3387）允许多次经过点和边求一条路径最大权值和
+P3387 【模板】缩点 （https://www.luogu.com.cn/problem/solution/P3387）允许多次经过点和边求一条路径最大权值和
 P2661 [NOIP2015 提高组] 信息传递（https://www.luogu.com.cn/problem/P2661）求最小的环长度（有向图、内向基环树没有环套环，N个节点N条边，也可以使用拓扑排序）
 P4089 [USACO17DEC]The Bovine Shuffle S（https://www.luogu.com.cn/problem/P4089）求所有环的长度和，注意自环
 P5145 漂浮的鸭子（https://www.luogu.com.cn/problem/P5145）内向基环树求最大权值和的环
@@ -104,13 +104,14 @@ class Tarjan:
         self.low = [0] * self.n
         self.visit = [0] * self.n
         self.stamp = 0
-        self.visit = [0]*self.n
+        self.visit = [0] * self.n
         self.stack = []
         self.scc = []
         for i in range(self.n):
             if not self.visit[i]:
                 self.tarjan(i)
 
+    @FastIO.bootstrap
     def tarjan(self, u):
         self.dfn[u], self.low[u] = self.stamp, self.stamp
         self.stamp += 1
@@ -118,10 +119,10 @@ class Tarjan:
         self.visit[u] = 1
         for v in self.edge[u]:
             if not self.visit[v]:  # 未访问
-                self.tarjan(v)
-                self.low[u] = min(self.low[u], self.low[v])
+                yield self.tarjan(v)
+                self.low[u] = FastIO.min(self.low[u], self.low[v])
             elif self.visit[v] == 1:
-                self.low[u] = min(self.low[u], self.dfn[v])
+                self.low[u] = FastIO.min(self.low[u], self.dfn[v])
 
         if self.dfn[u] == self.low[u]:
             cur = []
@@ -132,11 +133,59 @@ class Tarjan:
                 if cur[-1] == u:
                     break
             self.scc.append(cur)
-        return
+        yield
 
 
 class Solution:
     def __init__(self):
+        return
+
+    @staticmethod
+    def lg_p3387(ac=FastIO()):
+        # 模板：有向图使用强连通分量将环进行缩点后求最长路
+        n, m = ac.read_ints()
+        weight = ac.read_list_ints()
+        edge = [set() for _ in range(n)]
+        for _ in range(m):
+            x, y = ac.read_ints_minus_one()
+            edge[x].add(y)
+        edge = [list(e) for e in edge]
+
+        # 求得强连通分量后进行重新建图，这里也可以使用 Kosaraju 算法
+        tarjan = Tarjan(edge)
+        ind = [-1] * n
+        m = len(tarjan.scc)
+        point = [0] * m
+        degree = [0] * m
+        dct = [[] for _ in range(n)]
+        for i, ls in enumerate(tarjan.scc):
+            for j in ls:
+                ind[j] = i
+                point[i] += weight[j]
+        for i in range(n):
+            for j in edge[i]:
+                u, v = ind[i], ind[j]
+                if u != v:
+                    dct[u].append(v)
+        for i in range(m):
+            for j in dct[i]:
+                degree[j] += 1
+
+        # 拓扑排序求最长路，这里也可以使用深搜
+        visit = [0] * m
+        stack = deque([i for i in range(m) if not degree[i]])
+        for i in stack:
+            visit[i] = point[i]
+        while stack:
+            i = stack.popleft()
+            for j in dct[i]:
+                w = point[j]
+                degree[j] -= 1
+                if visit[i] + w > visit[j]:
+                    visit[j] = visit[i] + w
+                if not degree[j]:
+                    stack.append(j)
+        ac.st(max(visit))
         return
 
     @staticmethod

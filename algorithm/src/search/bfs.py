@@ -60,7 +60,7 @@ class Solution:
 
     @staticmethod
     def lg_p1807_1(ac=FastIO()):
-        # 模板：有向无环图使用拓扑排序求最长路
+        # 模板：有向无环图 DAG 使用拓扑排序求最长路
         n, m = ac.read_ints()
         edge = [dict() for _ in range(n)]
         pre = [set() for _ in range(n)]
@@ -99,7 +99,7 @@ class Solution:
 
     @staticmethod
     def lg_p1807_2(ac=FastIO()):
-        # 模板：有向无环图使用深搜求最长路
+        # 模板：有向无环图 DAG 使用深搜求最长路
         n, m = ac.read_ints()
         edge = [dict() for _ in range(n)]
         for _ in range(m):
