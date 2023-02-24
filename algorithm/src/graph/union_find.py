@@ -112,8 +112,12 @@ class UnionFind:
 
 
 class Solution:
-    def distance_limited_paths_exist(self, n: int, edge_list: List[List[int]], queries: List[List[int]]) -> List[bool]:
-        # 查询 queries 里面的 [p, q, limit] 即 p 和 q 之间存在最大边权值严格小于 limit 的路径是否成立
+    def __init__(self):
+        return
+
+    @staticmethod
+    def lc_1697(n: int, edge_list: List[List[int]], queries: List[List[int]]) -> List[bool]:
+        # 模板：并查集与离线排序查询结合
         m = len(queries)
 
         # 按照 limit 排序
@@ -126,8 +130,8 @@ class Solution:
         i = 0
         k = len(edge_list)
         ans = []
+        # 查询 queries 里面的 [p, q, limit] 即 p 和 q 之间存在最大边权值严格小于 limit 的路径是否成立
         for j in ind:
-
             # 实时加入可用于连通的边并查询结果
             p, q, limit = queries[j]
             while i < k and edge_list[i][2] < limit:
