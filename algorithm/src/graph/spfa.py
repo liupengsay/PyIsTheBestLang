@@ -1,6 +1,8 @@
 import unittest
 from collections import deque
 
+from algorithm.src.fast_io import FastIO
+
 """
 算法：SPFA：路径边数优先的广度优先搜索（可以使用带负权值）也可以计算最短路
 
@@ -18,19 +20,20 @@ Dijkstra：路径权值优先的深度优先搜索（只适用正权值）
 
 ===================================洛谷===================================
 P3385 负环（https://www.luogu.com.cn/problem/P3385）通过最短路径更新的边数来计算从起点出发是否存在负环
-P1144 最短路计数（https://www.luogu.com.cn/problem/P1462）计算最短路的条数
 P1938 [USACO09NOV]Job Hunt S（https://www.luogu.com.cn/problem/P1938）使用负环判断正环，以及使用最短路求最长路即最大正权路径值
 P2136 拉近距离（https://www.luogu.com.cn/problem/P2136）计算可能有负权环的最短距离
 P2648 赚钱（https://www.luogu.com.cn/problem/P2648）判断是否存在正权环以及最长路
+
+P1144 最短路计数（https://www.luogu.com.cn/problem/P1462）计算最短路的条数
 """
 
 
 class SPFA:
     def __init__(self):
         return
-    
+
     @staticmethod
-    def negtive_circle(dct):
+    def negtive_circle(dct, src=0, initial=0):
         # 模板: 判断是否存在负环与求解最短路（正数取反即可判断是否存在正权环以及最长路）
         n = len(dct)
         # 初始化距离
@@ -40,10 +43,10 @@ class SPFA:
         # 当前最小距离的路径边数
         cnt = [0] * n
         # 求带负权的最短路距离与路径边数
-        queue = deque([0])
+        queue = deque([src])
         # 队列与起点初始化默认从 0 出发
-        dis[0] = 0
-        visit[0] = True
+        dis[src] = initial
+        visit[src] = True
 
         while queue:
             # 取出队列中的第一个节点
@@ -63,6 +66,47 @@ class SPFA:
                         visit[v] = True
         # 不存在从起点出发的负环
         return "NO", dis, cnt
+
+
+class Solution:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def lg_p3385(ac=FastIO()):
+        # 模板：SPFA 判断是否存在负环与计算最短路
+        for _ in range(ac.read_int()):
+            n, m = ac.read_list_ints()
+            dct = [dict() for _ in range(n)]
+            for _ in range(m):
+                u, v, w = ac.read_ints()
+                u -= 1
+                v -= 1
+                dct[u][v] = ac.min(dct[u].get(v, ac.inf), w)
+                if w >= 0:
+                    dct[v][u] = ac.min(dct[v].get(u, ac.inf), w)
+            ans, _, _ = SPFA().negtive_circle(dct)
+            ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_1938(ac=FastIO()):
+        # 模板：SPFA 判断是否存在正环与计算最长路
+        d, p, c, f, s = ac.read_ints()
+        s -= 1
+        dct = [dict() for _ in range(c)]
+        for _ in range(p):
+            a, b = ac.read_ints_minus_one()
+            # 直接权值取负数变为判断是否存在负环与计算最短路
+            dct[a][b] = -d
+        for _ in range(f):
+            j, k, t = ac.read_ints()
+            j -= 1
+            k -= 1
+            dct[j][k] = -(d - t)
+        ans, dis, _ = SPFA().negtive_circle(dct, s, -d)
+        ac.st(-1 if ans == "YES" else -min(dis))
+        return
 
 
 class SPFACnt:
