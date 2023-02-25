@@ -22,13 +22,12 @@ P2388 阶乘之乘（https://www.luogu.com.cn/problem/P2388）阶乘之乘后缀
 P1920 成功密码（https://www.luogu.com.cn/problem/P1920）预估高精度计算与公式 -ln(1-x) = sum(x**i/i for in range(1, n+1)) 其中 n 趋近于无穷
 P1729 计算e（https://www.luogu.com.cn/problem/P1729）高精度计算e小数位
 P1727 计算π（https://www.luogu.com.cn/problem/P1727）高精度计算π小数位
-P1530 [USACO2.4]分数化小数 Fractions to Decimals（https://www.luogu.com.cn/problem/P1530）分数化为小数
 P1517 高精求小数幂（https://www.luogu.com.cn/record/list?user=739032&status=12&page=5）高精度计算小数的幂值
-
 P2394 yyy loves Chemistry I（https://www.luogu.com.cn/problem/P2394）高精度计算
 P2393 yyy loves Maths II（https://www.luogu.com.cn/problem/P2393）高精度计算
-P2399 non hates math（https://www.luogu.com.cn/problem/P2399）小数有理数转换为最简分数
 
+P2399 non hates math（https://www.luogu.com.cn/problem/P2399）小数有理数转换为最简分数
+P1530 [USACO2.4]分数化小数 Fractions to Decimals（https://www.luogu.com.cn/problem/P1530）分数化为小数
 参考：OI WiKi（xx）
 """
 
@@ -137,6 +136,24 @@ class Solution:
         # 模板: 1!*2!*...*n!的后缀零个数
         n = ac.read_int()
         ac.st(HighPrecision().factorial_to_factorial(n))
+        return
+
+    @staticmethod
+    def lg_p2399(ac=FastIO()):
+        # 模板：有理数转最简分数
+        s = ac.read_str()
+        a, b = HighPrecision().decimal_to_fraction(s)
+        ac.st(f"{a}/{b}")
+        return
+
+    @staticmethod
+    def lg_p1530(ac=FastIO()):
+        # 模板：最简分数转化为有理数
+        n, d = ac.read_ints()
+        ans = HighPrecision().fraction_to_decimal(n, d)
+        while ans:
+            ac.st(ans[:76])
+            ans = ans[76:]
         return
 
 
