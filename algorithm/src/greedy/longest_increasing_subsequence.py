@@ -2,6 +2,8 @@ import bisect
 import unittest
 from typing import List
 
+from algorithm.src.fast_io import FastIO
+
 """
 
 算法：最长上升（或不降）子序列 Longest Increasing Subsequence（LIS）
@@ -10,7 +12,7 @@ from typing import List
 最长单调递减子序列（严格下降）：>
 最长单调不增子序列（不升）：>=
 对于数组来说，正数反可以将后两个问题3和4转换为前两个问题1和2进行解决，可以算全局的最长单调子序列，也可以计算前后缀的最长单调子序列
-dilworth定理：不下降子序列最小个数等于最大上升子序列的长度，不上升子序列最小个数等于最大下降子序列的长度。
+dilworth定理：分成不下降子序列最小组数等于最大上升子序列的长度，分成不上升子序列最小组数等于最大下降子序列的长度。
 参考题目：
 ===================================力扣===================================
 2111. 使数组 K 递增的最少操作次数（https://leetcode.cn/problems/minimum-operations-to-make-the-array-k-increasing/）分成 K 组计算每组的最长递增子序列
@@ -80,6 +82,14 @@ class Solution:
             ans += len(lst)-LongestIncreasingSubsequence().definitely_not_reduce(lst)
         return ans
 
+    @staticmethod
+    def lc_p1020(ac=FastIO()):
+        # 模板：根据 dilworth 最长不升子序列的长度与分成不降子序列的最小组数（最长上升子序列的长度）
+        nums = ac.read_list_ints()
+        lis = LongestIncreasingSubsequence()
+        ac.st(lis.definitely_not_increase(nums))
+        ac.st(lis.definitely_increase(nums))
+        return
 
 
 class TestGeneral(unittest.TestCase):
