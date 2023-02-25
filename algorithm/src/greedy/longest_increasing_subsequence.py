@@ -29,7 +29,6 @@ P6403 [COCI2014-2015#2] STUDENTSKO（https://www.luogu.com.cn/problem/P6403）�
 """
 
 
-
 class LongestIncreasingSubsequence:
     def __init__(self):
         return
@@ -89,6 +88,18 @@ class Solution:
         lis = LongestIncreasingSubsequence()
         ac.st(lis.definitely_not_increase(nums))
         ac.st(lis.definitely_increase(nums))
+        return
+
+    @staticmethod
+    def lg_1439(ac=FastIO()):
+        # 模板：最长公共子序列求解使用哈希映射转换为最长上升子序列
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        ind = [0]*(n+1)
+        for i, num in enumerate(nums):
+            ind[num] = i
+        nums = [ind[x] for x in ac.read_list_ints()]
+        ac.st(LongestIncreasingSubsequence().definitely_increase(nums))
         return
 
 
