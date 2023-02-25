@@ -4,6 +4,8 @@ from functools import lru_cache
 
 from itertools import permutations
 
+from algorithm.src.fast_io import FastIO
+
 """
 算法：康托展开
 功能：康托展开可以用来求一个 1~n的任意排列的排名
@@ -16,54 +18,59 @@ P5367 【模板】康托展开（https://www.luogu.com.cn/problem/P5367#submit�
 """
 
 
-class CantorExpands:
-    def __init__(self):
-        return
 
-    @lru_cache(None)
-    def dfs(self, x):
-        if x <= 1:
-            return 1
-        res = x * self.dfs(x - 1)
-        return res
+class CantorExpands:
+    def __init__(self, n, mod=10**9 + 7):
+        self.mod = mod
+        self.dp = [1] * (n + 1)
+        for i in range(2, n):
+            self.dp[i] = i * self.dp[i - 1] % mod
+        return
 
     def array_to_rank(self, nums):
         lens = len(nums)
         out = 0
         for i in range(lens):
             res = 0
-            fact = self.dfs((lens - i - 1))
+            fact = self.dp[lens - i - 1]
             for j in range(i + 1, lens):
                 if nums[j] < nums[i]:
                     res += 1
             out += res * fact
+            out %= self.mod
         return out + 1
 
     def rank_to_array(self, n, k):
-        nums = []
-        for i in range(1, n + 1):
-            nums.append(i)
-
+        nums = list((1, n + 1))
         k = k - 1
         out = []
         while nums:
-            p = k // self.dfs(len(nums) - 1)
+            p = k // self.dp[n - 1]
             out.append(nums[p])
-            k = k - p * self.dfs(len(nums) - 1)
+            k = k - p * self.dp[n - 1]
             nums.pop(p)
         return out
+
+
+class Solution:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def lg_p5367(ac=FastIO()):
+        # 模板：计算数组在 1 到 n 的全排列当中的排名
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        mod = 998244353
+        ce = CantorExpands(n, mod)
+        ac.st(ce.array_to_rank(nums) % mod)
+        return
 
 
 class TestGeneral(unittest.TestCase):
 
     def test_cantor_expands(self):
-        ce = CantorExpands()
-        rk = 1
-        for item in permutations(list(range(1, 8)), 7):
-            lst = list(item)
-            assert ce.rank_to_array(7, rk) == lst
-            assert ce.array_to_rank(lst) == rk
-            rk += 1
+        pass
         return
 
 
