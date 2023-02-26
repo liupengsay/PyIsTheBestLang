@@ -27,8 +27,7 @@ class LexicoGraphicalOrder:
 
     @staticmethod
     def get_kth_num(n, k):
-
-        # 求 [1, n] 范围内字典序第 k 小的数字
+        # 模板：求 1 到 n 范围内字典序第 k 小的数字
         def check():
             c = 0
             first = last = num
@@ -51,13 +50,13 @@ class LexicoGraphicalOrder:
                 k -= 1
         return num
 
-    def get_num_rank(self, n, num):
-
-        # 求 [1, n] 范围内数字 num 的字典序
+    def get_num_kth(self, n, num):
+        # 模板：求 1 到 n 范围内数字 num 的字典序
         x = str(num)
         low = 1
         high = n
         while low < high - 1:
+            # 使用二分进行逆向工程
             mid = low + (high - low) // 2
             st = str(self.get_kth_num(n, mid))
             if st < x:
@@ -168,6 +167,7 @@ class LexicoGraphicalOrder:
         return low if self.get_kth_subset_perm(n, low) == lst else high
 
 
+
 class TestGeneral(unittest.TestCase):
 
     def test_lexico_graphical_order(self):
@@ -179,7 +179,7 @@ class TestGeneral(unittest.TestCase):
             i = random.randint(0, n - 1)
             num = nums[i]
             assert lgo.get_kth_num(n, i + 1) == int(num)
-            assert lgo.get_num_rank(n, int(num)) == i + 1
+            assert lgo.get_num_kth(n, int(num)) == i + 1
 
         n = 10
         nums = []
