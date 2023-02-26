@@ -59,14 +59,6 @@ class Combinatorics:
         res = self.perm[a] * pow(self.perm[b], -1, self.mod) * pow(self.perm[a - b], -1, self.mod)
         return res % self.mod
 
-    def cattelan_number2(self, n, mod):
-
-        if n <= 1:
-            return 1
-
-        ans = (self.comb(2 * n, n) - self.comb(2 * n, n - 1)) % mod
-        return ans
-
     @staticmethod
     def combinnation(nums, k):
         return [list(item) for item in combinations(nums, k)]
