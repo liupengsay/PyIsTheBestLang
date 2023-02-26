@@ -74,7 +74,7 @@ class Solution:
 
     @staticmethod
     def lc_1259_1(num_people: int) -> int:
-        # 模板：卡特兰数
+        # 模板：卡特兰数计算
         n = num_people // 2
         if num_people <= 1:
             return 1
@@ -111,7 +111,7 @@ class Solution:
         # 类似题目也有长为 2n 合法的括号匹配数 h(n) = h(n-1)*(4*n-2)//(n+1)
         # 也可以使用 h(n) = math.comb(2*n, n)//(n+1) 求解
         ans = math.comb(2 * n, n) - math.comb(2 * n, n - 1)
-        assert ans == math.comb(2*n, n)//(n+1)
+        assert ans == math.comb(2*n, n)//(n+1)  # 不需要取模时可以直接用这个计算
         ac.st(ans)
         return
 
