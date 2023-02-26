@@ -26,6 +26,8 @@ from decimal import Decimal
 import heapq
 import copy
 
+from algorithm.src.fast_io import FastIO
+
 """
 算法：快速幂、矩阵快速幂
 功能：高效计算整数的幂次方取模
@@ -47,25 +49,35 @@ P6392 中意（https://www.luogu.com.cn/problem/P6392）公式拆解变换后进
 """
 
 
-class PowerReverse:
+class FastPower:
     def __init__(self):
         return
 
-    # 扩展欧几里得求乘法逆元
-    def ex_gcd(self, a, b):
-        if b == 0:
-            return 1, 0, a
-        else:
-            x, y, q = self.ex_gcd(b, a % b)
-            x, y = y, (x - (a // b) * y)
-            return x, y, q
+    @staticmethod
+    def fast_power_api(a, b, mod):
+        return pow(a, b, mod)
 
-    def mod_reverse(self, a, p):
-        x, y, q = self.ex_gcd(a, p)
-        if q != 1:
-            raise Exception("No solution.")
-        else:
-            return (x + p) % p  # 防止负数
+    @staticmethod
+    def fast_power(a, b, mod):
+        a = a % mod
+        res = 1
+        while b > 0:
+            if b & 1:
+                res = res * a % mod
+            a = a * a % mod
+            b >>= 1
+        return res
+
+    @staticmethod
+    def x_pow(x: float, n: int) -> float:
+        # 浮点数快速幂
+        def quick_mul(n):
+            if n == 0:
+                return 1.0
+            y = quick_mul(n // 2)
+            return y * y if n % 2 == 0 else y * y * x
+
+        return quick_mul(n) if n >= 0 else 1.0 / quick_mul(-n)
 
 
 class MatrixFastPower:
@@ -118,41 +130,41 @@ class MatrixFastPower:
         return ans
 
 
-class FastPower:
+class PowerReverse:
     def __init__(self):
         return
 
-    @staticmethod
-    def fast_power_api(a, b, mod):
-        return pow(a, b, mod)
+    # 扩展欧几里得求乘法逆元
+    def ex_gcd(self, a, b):
+        if b == 0:
+            return 1, 0, a
+        else:
+            x, y, q = self.ex_gcd(b, a % b)
+            x, y = y, (x - (a // b) * y)
+            return x, y, q
 
-    @staticmethod
-    def fast_power(a, b, mod):
-        a = a % mod
-        res = 1
-        while b > 0:
-            if b & 1:
-                res = res * a % mod
-            a = a * a % mod
-            b >>= 1
-        return res
-
-    @staticmethod
-    def x_pow(x: float, n: int) -> float:
-        # 浮点数快速幂
-        def quick_mul(n):
-            if n == 0:
-                return 1.0
-            y = quick_mul(n // 2)
-            return y * y if n % 2 == 0 else y * y * x
-
-        return quick_mul(n) if n >= 0 else 1.0 / quick_mul(-n)
+    def mod_reverse(self, a, p):
+        x, y, q = self.ex_gcd(a, p)
+        if q != 1:
+            raise Exception("No solution.")
+        else:
+            return (x + p) % p  # 防止负数
 
 
 class Solution:
     def __init__(self):
         return
 
+    @staticmethod
+    def lg_p1630(ac=FastIO()):
+        # 模板：利用取模分组计数与快速幂计算 1**b+2**b+..+a**b % mod 的值
+        mod = 10**4
+        for _ in range(ac.read_int()):
+            a, b = ac.read_ints()
+            rest = [0] + [pow(i, b, mod) for i in range(1, mod)]
+            ans = sum(rest) * (a // mod) + sum(rest[:a % mod + 1])
+            ac.st(ans % mod)
+        return
 
 
 class TestGeneral(unittest.TestCase):
