@@ -3,6 +3,7 @@ from collections import defaultdict
 from functools import lru_cache
 from functools import reduce
 from operator import xor
+from typing import List
 
 from algorithm.src.fast_io import FastIO
 
@@ -38,6 +39,48 @@ C. Mikasa（https://codeforces.com/problemset/problem/1554/C）经典位运算�
 参考：OI WiKi（xx）
 https://blog.csdn.net/qq_35473473/article/details/106320878
 """
+
+
+class BitOperation:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def graycode_to_integer(graycode):
+        # 格雷码转二进制
+        graycode_len = len(graycode)
+        binary = list()
+        binary.append(graycode[0])
+        for i in range(1, graycode_len):
+            if graycode[i] == binary[i - 1]:
+                b = 0
+            else:
+                b = 1
+            binary.append(str(b))
+        return int("0b" + ''.join(binary), 2)
+
+    @staticmethod
+    def integer_to_graycode(integer):
+        # 二进制转格雷码
+        binary = bin(integer).replace('0b', '')
+        graycode = list()
+        binay_len = len(binary)
+        graycode.append(binary[0])
+        for i in range(1, binay_len):
+            if binary[i - 1] == binary[i]:
+                g = 0
+            else:
+                g = 1
+            graycode.append(str(g))
+        return ''.join(graycode)
+
+    @staticmethod
+    def get_graycode(n):
+        # n位数格雷码
+        code = [0, 1]
+        for i in range(1, n):
+            code.extend([(1 << i) + num for num in code[::-1]])
+        return code
 
 
 class Solution:
@@ -146,47 +189,18 @@ class Solution:
                     dct[st] = set()
         return ans
 
-
-class BitOperation:
-    def __init__(self):
-        return
+    @staticmethod
+    def lc_1238(n: int, start: int) -> List[int]:
+        # 模板：生成 n 位数的格雷码
+        ans = BitOperation().get_graycode(n)
+        i = ans.index(start)
+        return ans[i:] + ans[:i]
 
     @staticmethod
-    def graycode_to_integer(graycode):
-        # 格雷码转二进制
-        graycode_len = len(graycode)
-        binary = list()
-        binary.append(graycode[0])
-        for i in range(1, graycode_len):
-            if graycode[i] == binary[i - 1]:
-                b = 0
-            else:
-                b = 1
-            binary.append(str(b))
-        return int("0b" + ''.join(binary), 2)
-
-    @staticmethod
-    def integer_to_graycode(integer):
-        # 二进制转格雷码
-        binary = bin(integer).replace('0b', '')
-        graycode = list()
-        binay_len = len(binary)
-        graycode.append(binary[0])
-        for i in range(1, binay_len):
-            if binary[i - 1] == binary[i]:
-                g = 0
-            else:
-                g = 1
-            graycode.append(str(g))
-        return ''.join(graycode)
-
-    @staticmethod
-    def get_graycode(n):
-        # n位数格雷码
-        code = [0, 1]
-        for i in range(1, n):
-            code.extend([(1 << i) + num for num in code[::-1]])
-        return code
+    def lc_89(n: int) -> List[int]:
+        # 模板：生成 n 位数的格雷码
+        ans = BitOperation().get_graycode(n)
+        return ans
 
 
 class TestGeneral(unittest.TestCase):
