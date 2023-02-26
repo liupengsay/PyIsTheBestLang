@@ -3,6 +3,8 @@ import unittest
 from collections import defaultdict
 from typing import List
 
+from algorithm.src.fast_io import FastIO
+
 """
 算法：计算几何、设计到平面坐标系上的一些问题求解
 功能：xxx
@@ -75,7 +77,8 @@ class Geometry:
 
     @staticmethod
     def compute_square_point(x0, y0, x2, y2):
-        # 已知正方形对角线上的点，求另外两个点的坐标
+        assert [x0, y0] != [x2, y2]
+        # 模板：已知正方形对角线上的两个点且保证两点不同，求另外两个点的坐标
         x1 = (x0 + x2 + y2 - y0) / 2
         y1 = (y0 + y2 + x0 - x2) / 2
         x3 = (x0 + x2 - y2 + y0) / 2
@@ -92,7 +95,6 @@ class Geometry:
     def compute_triangle_area(x1, y1, x2, y2, x3, y3):
         # 可用于判断点与三角形的位置关系
         return abs((x1 * y2 - x2 * y1) + (x2 * y3 - x3 * y2) + (x3 * y1 - x1 * y3)) / 2
-
 
 
 class Solution:
@@ -112,6 +114,35 @@ class Solution:
                 dct[gm.compute_slope2(points[i], points[j])] += 1
             ans = max(ans, max(dct.values())+1)
         return ans
+
+    @staticmethod
+    def lg_p1665(ac=FastIO()):
+        # 模板：计算可以组成正方形的点的个数
+        n = ac.read_int()
+        lst = [ac.read_list_ints() for _ in range(n)]
+        dct = set(tuple(p) for p in lst)
+        ans = 0
+        m = len(lst)
+        for i in range(m):
+            x1, y1 = lst[i]
+            for j in range(i+1, m):
+                x2, y2 = lst[j]
+                point1, point2 = Geometry.compute_square_point(x1, y1, x2, y2)
+
+                a, b = point1
+                if int(a) != a or int(b) != b:
+                    continue
+                point1 = (int(a), int(b))
+
+                a, b = point2
+                if int(a) != a or int(b) != b:
+                    continue
+                point2 = (int(a), int(b))
+
+                if point1 in dct and point2 in dct:
+                    ans += 1
+        ac.st(ans//2)
+        return
 
 
 class TestGeneral(unittest.TestCase):
