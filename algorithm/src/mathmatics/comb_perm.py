@@ -15,7 +15,6 @@ from functools import lru_cache
 题目：
 
 ===================================力扣===================================
-2338. 统计理想数组的数目（https://leetcode.cn/problems/count-the-number-of-ideal-arrays/）枚举可行的元素组合序列使用隔板法进行计数
 634. 寻找数组的错位排列（https://leetcode.cn/problems/find-the-derangement-of-an-array/）错位排列计数使用动态规划转移计算
 1259. 不相交的握手（https://leetcode.cn/problems/handshakes-that-dont-cross/）卡特兰数
 2338. 统计理想数组的数目（https://leetcode.cn/problems/count-the-number-of-ideal-arrays/）使用隔板法与因数分解进行组合方案数求解
@@ -59,43 +58,6 @@ class Combinatorics:
         # 组合数根据乘法逆元求解
         res = self.perm[a] * pow(self.perm[b], -1, self.mod) * pow(self.perm[a - b], -1, self.mod)
         return res % self.mod
-
-
-class Solution:
-    def __int__(self):
-        return
-
-    @staticmethod
-    def cf_300c(ac=FastIO()):
-        mod = 10 ** 9 + 7
-        a, b, n = ac.read_ints()
-        c = Combinatorics(n+1, mod)
-
-        dct = set(f"{a}{b}")
-        ans = 0
-        for i in range(n + 1):
-            num = a * i + b * (n - i)
-            if all(w in dct for w in str(num)):
-                ans += c.comb(n, i)
-                ans %= mod
-        ac.st(ans)
-        return
-
-    @staticmethod
-    def cf_1795d(ac=FastIO()):
-        n = ac.read_int()
-        nums = ac.read_list_ints()
-        mod = 998244353
-        c = Combinatorics(n // 3 + 1, mod)
-        ans = 1
-        for i in range(0, n - 2, 3):
-            lst = nums[i:i + 3]
-            ans *= lst.count(min(lst))
-            ans %= mod
-        ans *= c.comb(n // 3, n // 6)
-        ans %= mod
-        ac.st(ans)
-        return
 
     def cattelan_number(self, n, mod):
         # 卡特兰数 dp[i + 1] = sum(dp[j] * dp[i - j] for j in range(i + 1)) % MOD
@@ -159,13 +121,7 @@ class Solution:
             perm[i] = perm[i - 1] * i
             perm[i] %= mod
 
-        # 求错位排列组合数
-        fault = [0] * length
-        fault[0] = 1
-        fault[2] = 1
-        for i in range(3, length):
-            fault[i] = (i - 1) * (fault[i - 1] + fault[i - 2])
-            fault[i] %= mod
+
 
         # 利用乘法逆元求解组合数
         def comb(a, b):
@@ -173,6 +129,52 @@ class Solution:
             return res % mod
 
         return comb(x, y)
+
+
+class Solution:
+    def __int__(self):
+        return
+
+    @staticmethod
+    def lc_634(n):
+        # 模板：求错位排列组合数
+        mod = 10**9+7
+        fault = [0, 0, 1, 2]
+        for i in range(4, n + 1):
+            fault.append((i - 1) * (fault[i - 1] + fault[i - 2]) % mod)
+        return fault[n]
+
+    @staticmethod
+    def cf_300c(ac=FastIO()):
+        mod = 10 ** 9 + 7
+        a, b, n = ac.read_ints()
+        c = Combinatorics(n+1, mod)
+
+        dct = set(f"{a}{b}")
+        ans = 0
+        for i in range(n + 1):
+            num = a * i + b * (n - i)
+            if all(w in dct for w in str(num)):
+                ans += c.comb(n, i)
+                ans %= mod
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1795d(ac=FastIO()):
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        mod = 998244353
+        c = Combinatorics(n // 3 + 1, mod)
+        ans = 1
+        for i in range(0, n - 2, 3):
+            lst = nums[i:i + 3]
+            ans *= lst.count(min(lst))
+            ans %= mod
+        ans *= c.comb(n // 3, n // 6)
+        ans %= mod
+        ac.st(ans)
+        return
 
     @staticmethod
     def main_p4071():
