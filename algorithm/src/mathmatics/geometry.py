@@ -1,5 +1,7 @@
 import math
 import unittest
+from collections import defaultdict
+from typing import List
 
 """
 算法：计算几何、设计到平面坐标系上的一些问题求解
@@ -39,6 +41,7 @@ class Geometry:
 
     @staticmethod
     def compute_slope2(point1, point2):
+        assert point1 != point2
         # 模板: 根据两不同的点确定直线斜率
         x1, y1 = point1
         x2, y2 = point2
@@ -55,6 +58,7 @@ class Geometry:
 
     @staticmethod
     def compute_slope(x1, y1, x2, y2):
+        assert [x1, y1] != [x2, y2]
         # 模板: 根据两不同的点确定直线斜率
         if x1 == x2:
             ans = "x"
@@ -87,8 +91,27 @@ class Geometry:
     @staticmethod
     def compute_triangle_area(x1, y1, x2, y2, x3, y3):
         # 可用于判断点与三角形的位置关系
-        return abs((x1 * y2 - x2 * y1) + (x2 * y3 -
-                   x3 * y2) + (x3 * y1 - x1 * y3)) / 2
+        return abs((x1 * y2 - x2 * y1) + (x2 * y3 - x3 * y2) + (x3 * y1 - x1 * y3)) / 2
+
+
+
+class Solution:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def lc_149(points: List[List[int]]) -> int:
+        # 模板：计算两个不相同的点组成的直线斜率
+        ans = 0
+        n = len(points)
+        gm = Geometry()
+        for i in range(n):
+            dct = defaultdict(int)
+            dct[0] = 0
+            for j in range(i+1, n):
+                dct[gm.compute_slope2(points[i], points[j])] += 1
+            ans = max(ans, max(dct.values())+1)
+        return ans
 
 
 class TestGeneral(unittest.TestCase):
