@@ -68,36 +68,6 @@ class PowerReverse:
             return (x + p) % p  # 防止负数
 
 
-class FastPower:
-    def __init__(self):
-        return
-
-    @staticmethod
-    def fast_power_api(a, b, mod):
-        return pow(a, b, mod)
-
-    @staticmethod
-    def fast_power(a, b, mod):
-        a = a % mod
-        res = 1
-        while b > 0:
-            if b & 1:
-                res = res * a % mod
-            a = a * a % mod
-            b >>= 1
-        return res
-
-    @staticmethod
-    def x_pow(x: float, n: int) -> float:
-        def quick_mul(n):
-            if n == 0:
-                return 1.0
-            y = quick_mul(n // 2)
-            return y * y if n % 2 == 0 else y * y * x
-
-        return quick_mul(n) if n >= 0 else 1.0 / quick_mul(-n)
-
-
 class MatrixFastPower:
     def __init__(self):
         return
@@ -105,8 +75,7 @@ class MatrixFastPower:
     @staticmethod
     def matrix_mul(y, x, mod=10 ** 9 + 7):
         # 矩阵乘法函数，返回两个矩阵相乘的值，建议背诵
-        return [[sum(a * b % mod for a, b in zip(col, row)) %
-                 mod for col in zip(*x)] for row in y]
+        return [[sum(a * b % mod for a, b in zip(col, row)) % mod for col in zip(*x)] for row in y]
 
     def matrix_pow(self, mat_a, n, mod=10 ** 9 + 7):
 
@@ -147,6 +116,43 @@ class MatrixFastPower:
             base = self.matrix_mul2(base, base, mod)
             p >>= 1
         return ans
+
+
+class FastPower:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def fast_power_api(a, b, mod):
+        return pow(a, b, mod)
+
+    @staticmethod
+    def fast_power(a, b, mod):
+        a = a % mod
+        res = 1
+        while b > 0:
+            if b & 1:
+                res = res * a % mod
+            a = a * a % mod
+            b >>= 1
+        return res
+
+    @staticmethod
+    def x_pow(x: float, n: int) -> float:
+        # 浮点数快速幂
+        def quick_mul(n):
+            if n == 0:
+                return 1.0
+            y = quick_mul(n // 2)
+            return y * y if n % 2 == 0 else y * y * x
+
+        return quick_mul(n) if n >= 0 else 1.0 / quick_mul(-n)
+
+
+class Solution:
+    def __init__(self):
+        return
+
 
 
 class TestGeneral(unittest.TestCase):
