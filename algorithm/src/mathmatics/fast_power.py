@@ -166,6 +166,23 @@ class Solution:
             ac.st(ans % mod)
         return
 
+    @staticmethod
+    def lg_p1939(ac=FastIO()):
+        # 模板：利用转移矩阵乘法公式和快速幂计算值
+        mat = [[1, 0, 1], [1, 0, 0], [0, 1, 0]]
+        lst = [1, 1, 1]
+        mod = 10**9 + 7
+        mfp = MatrixFastPower()
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            if n > 3:
+                nex = mfp.matrix_pow(mat, n - 3)
+                ans = sum(nex[0]) % mod
+                ac.st(ans)
+            else:
+                ac.st(lst[n - 1])
+        return
+
 
 class TestGeneral(unittest.TestCase):
 
