@@ -59,48 +59,13 @@ class Combinatorics:
         res = self.perm[a] * pow(self.perm[b], -1, self.mod) * pow(self.perm[a - b], -1, self.mod)
         return res % self.mod
 
-    def cattelan_number(self, n, mod):
-        # 卡特兰数 dp[i + 1] = sum(dp[j] * dp[i - j] for j in range(i + 1)) % MOD
-        if n <= 1:
-            return 1
-
-        perm = self.produce_perm_mod(2*n+2, mod)
-        # 利用乘法逆元求解组合数
-
-        def comb(a, b):
-            res = perm[a] * pow(perm[b], -1, mod) * pow(perm[a - b], -1, mod)
-            return res % mod
-
-        ans = (comb(2 * n, n) - comb(2 * n, n - 1)) % mod
-        return ans
-
     def cattelan_number2(self, n, mod):
-        # 卡特兰数 dp[i][j] = dp[i-1][j]+dp[i][j-1]
-        # 也是长为 2n 合法的括号匹配数 h(n) = h(n-1)*(4*n-2)//(n+1)
-        # 也可以使用 h(n) = math.comb(2*n, n)//(n+1) 求解
-        # 参考题目 【P1754 球迷购票问题】
+
         if n <= 1:
             return 1
 
-        perm = self.produce_perm_mod(2*n+2, mod)
-        # 利用乘法逆元求解组合数
-
-        def comb(a, b):
-            res = perm[a] * pow(perm[b], -1, mod) * pow(perm[a - b], -1, mod)
-            return res % mod
-
-        ans = (comb(2 * n, n) - comb(2 * n, n - 1)) % mod
+        ans = (self.comb(2 * n, n) - self.comb(2 * n, n - 1)) % mod
         return ans
-
-    @staticmethod
-    def produce_perm_mod(n, mod):
-        # 求全排列组合数
-        perm = [1] * n
-        for i in range(1, n):
-            perm[i] = perm[i - 1] * i
-            perm[i] %= mod
-
-        return perm
 
     @staticmethod
     def combinnation(nums, k):
@@ -110,29 +75,52 @@ class Combinatorics:
     def permutation(nums, k):
         return [list(item) for item in permutations(nums, k)]
 
-    @staticmethod
-    def comb_perm(x, y):
-        length = 10 ** 6 + 5
-        mod = 10 ** 9 + 7
-
-        # 求全排列组合数
-        perm = [1] * length
-        for i in range(1, length):
-            perm[i] = perm[i - 1] * i
-            perm[i] %= mod
-
-
-
-        # 利用乘法逆元求解组合数
-        def comb(a, b):
-            res = perm[a] * pow(perm[b], -1, mod) * pow(perm[a - b], -1, mod)
-            return res % mod
-
-        return comb(x, y)
-
 
 class Solution:
     def __int__(self):
+        return
+
+    @staticmethod
+    def lc_1259_1(num_people: int) -> int:
+        # 模板：卡特兰数
+        n = num_people // 2
+        if num_people <= 1:
+            return 1
+        mod = 10 ** 9 + 7
+        cm = Combinatorics(2 * n + 2, mod)
+        ans = cm.comb(2 * n, n) - cm.comb(2 * n, n - 1)
+        return ans % mod
+
+    @staticmethod
+    def lc_1259_2(num_people: int) -> int:
+        # 模板：卡特兰数的数组形式
+        n = num_people // 2
+        mod = 10 ** 9 + 7
+        dp = [1] * (n + 1)
+        for i in range(1, n + 1):
+            dp[i] = sum(dp[j] * dp[i - 1 - j] for j in range(i)) % mod
+        return dp[n]
+
+    @staticmethod
+    def lg_p1375(ac=FastIO()):
+        # 模板：卡特兰数计算
+        n = ac.read_int()
+        mod = 10 ** 9 + 7
+        cm = Combinatorics(2 * n + 2, mod)
+        ans = cm.comb(2 * n, n) - cm.comb(2 * n, n - 1)
+        ac.st(ans % mod)
+        return
+
+    @staticmethod
+    def lg_p1754(ac=FastIO()):
+        # 模板：卡特兰数计算
+        n = ac.read_int()
+        # 卡特兰数的另一种区间递推形式 dp[i][j] = dp[i-1][j]+dp[i][j-1]
+        # 类似题目也有长为 2n 合法的括号匹配数 h(n) = h(n-1)*(4*n-2)//(n+1)
+        # 也可以使用 h(n) = math.comb(2*n, n)//(n+1) 求解
+        ans = math.comb(2 * n, n) - math.comb(2 * n, n - 1)
+        assert ans == math.comb(2*n, n)//(n+1)
+        ac.st(ans)
         return
 
     @staticmethod
