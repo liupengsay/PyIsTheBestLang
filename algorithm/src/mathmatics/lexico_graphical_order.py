@@ -4,8 +4,8 @@ import unittest
 from itertools import permutations, combinations
 
 """
-算法：字典序
-功能：计算字典序第K小、和某个对象的字典序rank
+算法：字典序与字典序排名解析
+功能：计算字典序第K小和某个对象的字典序rank、计算subset的字典序与解析、计算comb的字典序与解析、计算perm的字典序与解析
 题目：
 
 ===================================力扣===================================
@@ -151,7 +151,7 @@ class LexicoGraphicalOrder:
         return ans
 
     def get_subset_perm_rank(self, n, lst):
-        # 集合 [1,..,n] 中选取 n 个元素的全排列 lst 的字典序
+        # 集合 [1,..,n] 中选取 n 个元素的 perm 全排列 lst 的字典序
 
         low = 1
         high = math.factorial(n)
@@ -165,6 +165,17 @@ class LexicoGraphicalOrder:
             else:
                 return mid
         return low if self.get_kth_subset_perm(n, low) == lst else high
+
+
+class Solution:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def lc_440(n, k):
+        # 模板：计算 1 到 n 字典序第 k 小的数字
+        return LexicoGraphicalOrder().get_kth_num(n, k)
+
 
 
 
