@@ -3,6 +3,8 @@ import unittest
 from functools import reduce
 from operator import xor
 
+from algorithm.src.fast_io import FastIO
+
 """
 算法：线性基也叫Hamel基
 功能：求解数组的异或和、排第K的异或和、以及异或和排第几、更新线性基即原始数组等
@@ -87,6 +89,20 @@ class LinearBasis:
         return ans + 1 if not num else -1
 
 
+class Solution:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def lg_p3812(ac=FastIO()):
+        # 模板：线性基查询数组取任何子集得到的 xor 最大值
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        lb = LinearBasis(nums)
+        ac.st(lb.query_max())
+        return
+
+
 class TestGeneral(unittest.TestCase):
     def test_euler_phi(self):
         lst = [0, 1, 2, 4, 8, 16]
@@ -104,7 +120,7 @@ class TestGeneral(unittest.TestCase):
         assert lb.query_min() == 0
         assert lb.query_xor(20)
 
-        # 查询第k小与异或和是第几小
+        # 查询第 k 小以及异或和是第几小
         n = len(nums)
         for i in range(n):
             assert lb.query_k_rank(i + 1) == nums[i]
