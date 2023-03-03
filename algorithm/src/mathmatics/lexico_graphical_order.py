@@ -3,6 +3,8 @@ import random
 import unittest
 from itertools import permutations, combinations
 
+from algorithm.src.fast_io import FastIO
+
 """
 算法：字典序与字典序排名解析
 功能：计算字典序第K小和某个对象的字典序rank、计算subset的字典序与解析、计算comb的字典序与解析、计算perm的字典序与解析
@@ -14,6 +16,7 @@ from itertools import permutations, combinations
 ===================================洛谷===================================
 P1243 排序集合（https://www.luogu.com.cn/problem/P1243）求出第K小的子集
 P1338 末日的传说（https://www.luogu.com.cn/problem/P1338）结合逆序对计数的字典序
+
 P2524 Uim的情人节礼物·其之弐（https://www.luogu.com.cn/problem/P2524）计算全排列的字典序排名
 P2525 Uim的情人节礼物·其之壱（https://www.luogu.com.cn/problem/P2525）计算全排列的上一个排列
 
@@ -87,7 +90,7 @@ class LexicoGraphicalOrder:
                 k -= pow(2, n - i)
         return ans
 
-    def get_subset_rank(self, n, lst):
+    def get_subset_kth(self, n, lst):
 
         # 集合 [1,..,n] 的子集 lst 的字典序
         low = 1
@@ -120,7 +123,7 @@ class LexicoGraphicalOrder:
                 nums.pop(0)
         return ans
 
-    def get_subset_comb_rank(self, n, m, lst):
+    def get_subset_comb_kth(self, n, m, lst):
         # 集合 [1,..,n] 中选取 m 个元素的排列 lst 的字典序
 
         low = 1
@@ -150,7 +153,7 @@ class LexicoGraphicalOrder:
             k -= i*single
         return ans
 
-    def get_subset_perm_rank(self, n, lst):
+    def get_subset_perm_kth(self, n, lst):
         # 集合 [1,..,n] 中选取 n 个元素的 perm 全排列 lst 的字典序
 
         low = 1
@@ -176,7 +179,22 @@ class Solution:
         # 模板：计算 1 到 n 字典序第 k 小的数字
         return LexicoGraphicalOrder().get_kth_num(n, k)
 
+    @staticmethod
+    def lg_p1243(ac=FastIO()):
+        # 模板：获取第 k 小的子集
+        n, k = ac.read_ints()
+        lst = LexicoGraphicalOrder().get_kth_subset(n, k)
+        ac.lst(lst)
+        return
 
+    @staticmethod
+    def lg_p2524(ac=FastIO()):
+        # 模板：计算 1 到 n 的全排列中 lst 的字典序排名
+        n = ac.read_int()
+        lst = [int(w) for w in ac.read_str()]
+        rk = LexicoGraphicalOrder().get_subset_perm_kth(n, lst)
+        ac.st(rk)
+        return
 
 
 class TestGeneral(unittest.TestCase):
@@ -202,7 +220,7 @@ class TestGeneral(unittest.TestCase):
             i = random.randint(0, n - 1)
             lst = nums[i]
             assert lgo.get_kth_subset(n, i + 1) == lst
-            assert lgo.get_subset_rank(n, lst) == i + 1
+            assert lgo.get_subset_kth(n, lst) == i + 1
 
         n = 10
         m = 4
@@ -213,7 +231,7 @@ class TestGeneral(unittest.TestCase):
             i = random.randint(0, len(nums) - 1)
             lst = nums[i]
             assert lgo.get_kth_subset_comb(n, m, i+1) == lst
-            assert lgo.get_subset_comb_rank(n, m, lst) == i + 1
+            assert lgo.get_subset_comb_kth(n, m, lst) == i + 1
 
         n = 8
         nums = []
@@ -222,7 +240,7 @@ class TestGeneral(unittest.TestCase):
         for i, lst in enumerate(nums):
             lst = nums[i]
             assert lgo.get_kth_subset_perm(n, i + 1) == lst
-            assert lgo.get_subset_perm_rank(n, lst) == i + 1
+            assert lgo.get_subset_perm_kth(n, lst) == i + 1
         return
 
 
