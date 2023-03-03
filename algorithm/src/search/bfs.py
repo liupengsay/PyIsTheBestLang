@@ -126,7 +126,6 @@ class Solution:
         ac.st(ans[0] if ans[0] > -ac.inf else -1)
         return
 
-
     @staticmethod
     def cf_1272e(ac=FastIO()):
         n = ac.read_int()
