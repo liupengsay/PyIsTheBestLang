@@ -2,6 +2,8 @@
 
 import unittest
 
+from algorithm.src.fast_io import FastIO
+
 """
 算法：乘法逆元、组合数求幂快速计算
 功能：求逆元取模，注意取的模必须为质数，且不能整除该质数，否则不存在对应的乘法逆元
@@ -21,17 +23,46 @@ class MultiplicativeInverse:
         return
 
     @staticmethod
-    def get_result(a, p):
-        # 注意a和p都为正整数，且p为质数
+    def compute_with_api(a, p):
         return pow(a, -1, p)
+
+    # 扩展欧几里得求逆元
+    def ex_gcd(self, a, b):
+        if b == 0:
+            return 1, 0, a
+        else:
+            x, y, q = self.ex_gcd(b, a % b)
+            x, y = y, (x - (a // b) * y)
+            return x, y, q
+
+    # 扩展欧几里得求逆元
+    def mod_reverse(self, a, p):
+        x, y, q = self.ex_gcd(a, p)
+        if q != 1:
+            raise Exception("No solution.")
+        else:
+            return (x + p) % p  # 防止负数(a, p):
+            # 注意a和p都为正整数，且p为质数
+
+
+class Solution:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def lg_p3811(ac=FastIO()):
+        n, p = ac.read_ints()
+        for i in range(1, n + 1):
+            ac.st(MultiplicativeInverse().mod_reverse(i, p))
+        return
 
 
 class TestGeneral(unittest.TestCase):
 
     def test_multiplicative_inverse(self):
         mt = MultiplicativeInverse()
-        assert mt.get_result(10, 13) == 4
-        assert mt.get_result(10, 1) == 0
+        assert MultiplicativeInverse().mod_reverse(10, 13) == 4
+        assert MultiplicativeInverse().mod_reverse(10, 1) == 0
         return
 
 

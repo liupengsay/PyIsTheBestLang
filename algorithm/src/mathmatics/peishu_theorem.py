@@ -1,5 +1,9 @@
 import math
 import unittest
+from functools import reduce
+from typing import List
+
+from algorithm.src.fast_io import FastIO
 
 """
 算法：裴蜀定理
@@ -18,15 +22,29 @@ P4549 裴蜀定理（https://www.luogu.com.cn/problem/P4549）计算所有元素
 
 
 class PeiShuTheorem:
-    def __init__(self, lst):
-        self.lst = lst
-        self.get_lst_gcd()
+    def __init__(self):
         return
 
-    def get_lst_gcd(self):
-        self.ans = self.lst[0]
-        for g in self.lst[1:]:
-            self.ans = math.gcd(self.ans, g)
+    @staticmethod
+    def get_lst_gcd(lst):
+        return reduce(math.gcd, lst)
+
+
+class Solution:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def lc_1250(nums: List[int]) -> bool:
+        # 模板：转化为裴蜀定理计算数组最大公约数是否等于 1 求解
+        return PeiShuTheorem().get_lst_gcd(nums) == 1
+
+    @staticmethod
+    def lg_p4549(ac=FastIO()):
+        # 模板：转化为裴蜀定理计算数组最大公约数求解
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        ac.st(PeiShuTheorem().get_lst_gcd(nums))
         return
 
 
@@ -34,8 +52,8 @@ class TestGeneral(unittest.TestCase):
 
     def test_peishu_theorem(self):
         lst = [4059, -1782]
-        pst = PeiShuTheorem(lst)
-        assert pst.ans == 99
+        pst = PeiShuTheorem().get_lst_gcd(lst)
+        assert pst == 99
         return
 
 
