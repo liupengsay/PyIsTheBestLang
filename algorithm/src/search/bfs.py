@@ -128,11 +128,11 @@ class Solution:
 
     @staticmethod
     def cf_1272e(ac=FastIO()):
+        # 模板：反向建图与多源 BFS 计算
         n = ac.read_int()
         nums = ac.read_list_ints()
         ans = [-1] * n
 
-        # 模板：反向建图
         edge = [[] for _ in range(n)]
         for i in range(n):
             for x in [i + nums[i], i - nums[i]]:
@@ -158,12 +158,14 @@ class Solution:
         return
 
     @staticmethod
-    def main_3183(n, m, edges):
-        # 模板: 计算有向无环图路径条数
+    def lg_p3183(ac=FastIO()):
+        # 模板: 计算有向无环图路径条数也可以使用深搜
+        n, m = ac.read_ints()
         edge = [[] for _ in range(n)]
-        degree = [0]*n
-        out_degree = [0]*n
-        for i, j in edges:
+        degree = [0] * n
+        out_degree = [0] * n
+        for _ in range(m):
+            i, j = ac.read_ints_minus_one()
             edge[i].append(j)
             degree[j] += 1
             out_degree[i] += 1
@@ -210,7 +212,6 @@ class Solution:
     @staticmethod
     def bilateral_bfs():
         # 双向BFS
-        # P1747 好奇怪的游戏
         state = []
         dct = [[0] * 4 for _ in range(12)]
         for i in range(12):
@@ -283,9 +284,10 @@ class Solution:
         return
 
     @staticmethod
-    def main_p1747(x0, y0, x2, y2):
-
-        # 双向BFS模板题
+    def lg_p1747(ac=FastIO()):
+        # 模板：双向 BFS 搜索
+        x0, y0 = ac.read_ints()
+        x2, y2 = ac.read_ints()
 
         def check(x1, y1):
             if (x1, y1) == (1, 1):
@@ -304,8 +306,7 @@ class Solution:
                 nex1 = []
                 for i, j in stack1:
                     for a, b in direc:
-                        if 0 < i + a <= 20 and 0 < j + \
-                                b <= 20 and (i + a, j + b) not in visit1:
+                        if 0 < i + a <= 20 and 0 < j + b <= 20 and (i + a, j + b) not in visit1:
                             visit1[(i + a, j + b)] = step
                             nex1.append([i + a, j + b])
                             if (i + a, j + b) in visit2:
@@ -316,8 +317,7 @@ class Solution:
                 nex2 = []
                 for i, j in stack2:
                     for a, b in direc:
-                        if 0 < i + a <= 20 and 0 < j + \
-                                b <= 20 and (i + a, j + b) not in visit2:
+                        if 0 < i + a <= 20 and 0 < j + b <= 20 and (i + a, j + b) not in visit2:
                             visit2[(i + a, j + b)] = step
                             nex2.append([i + a, j + b])
                             if (i + a, j + b) in visit1:
@@ -325,37 +325,30 @@ class Solution:
 
                 stack2 = nex2
                 step += 1
-            return -1
 
-        ans1 = check(x0, y0)
-        ans2 = check(x2, y2)
-        return ans1, ans2
-
-
-class Solution:
-    def minimumObstacles(self, grid: List[List[int]]) -> int:
-        # L2290
-        m, n = len(grid), len(grid[0])
-        dis = [[float("inf")] * n for _ in range(m)]
-        dis[0][0] = 0
-        q = deque([(0, 0)])
-        while q:
-            x, y = q.popleft()
-            for nx, ny in (x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1):
-                if 0 <= nx < m and 0 <= ny < n:
-                    g = grid[x][y]
-                    if dis[x][y] + g < dis[nx][ny]:
-                        dis[nx][ny] = dis[x][y] + g
-                        if g == 0:
-                            q.appendleft((nx, ny))
-                        else:
-                            q.append((nx, ny))
-        return dis[m - 1][n - 1]
-
-
-class Solution:
-    def __init__(self):
+        ac.st(check(x0, y0))
+        ac.st(check(x2, y2))
         return
+
+    @staticmethod
+    def lc_2290(grid: List[List[int]]) -> int:
+        # 模板：使用队列实现 01BFS 即优先选择距离较短的路线
+        m, n = len(grid), len(grid[0])
+        visit = [[0] * n for _ in range(m)]
+        q = deque([(0, 0, 0)])
+        while q:
+            # 也可以使用 Dijkstra 进行求解
+            d, x, y = q.popleft()
+            for nx, ny in (x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1):
+                if 0 <= nx < m and 0 <= ny < n and not visit[nx][ny]:
+                    if [nx, ny] == [m-1, n-1]:
+                        return d + grid[nx][ny]
+                    visit[nx][ny] = 1
+                    if not grid[nx][ny]:
+                        q.appendleft((d, nx, ny))
+                    else:
+                        q.append((d + 1, nx, ny))
+
 
     @staticmethod
     def lc_1368(grid: List[List[int]]) -> int:
