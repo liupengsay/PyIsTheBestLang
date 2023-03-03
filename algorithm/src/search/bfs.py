@@ -5,11 +5,11 @@ from algorithm.src.fast_io import FastIO
 
 """
 算法：广度优先搜索
-功能：在有向图与无向图进行扩散，多源双向BFS，0-1BFS（类似SPFA）
+功能：在有向图与无向图进行扩散，多源、双向BFS，0-1BFS（类似SPFA）
 题目：
 
 ===================================力扣===================================
-2493. 将节点分成尽可能多的组（https://leetcode.cn/problems/shortest-palindrome/）利用并查集和广度优先搜索进行连通块分组并枚举最佳方案
+2493. 将节点分成尽可能多的组（https://leetcode.cn/problems/divide-nodes-into-the-maximum-number-of-groups/）利用并查集和广度优先搜索进行连通块分组并枚举最佳方案
 2290. 到达角落需要移除障碍物的最小数（https://leetcode.cn/problems/minimum-obstacle-removal-to-reach-corner/）使用0-1 BFS进行优化计算最小代价
 1368. 使网格图至少有一条有效路径的最小代价（https://leetcode.cn/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/）使用0-1 BFS进行优化计算最小代价
 2258. 逃离火灾（https://leetcode.cn/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/）使用二分查找加双源BFS进行模拟
@@ -159,7 +159,7 @@ class Solution:
 
     @staticmethod
     def lg_p3183(ac=FastIO()):
-        # 模板: 计算有向无环图路径条数也可以使用深搜
+        # 模板: 计算有向无环图路径条数
         n, m = ac.read_ints()
         edge = [[] for _ in range(n)]
         degree = [0] * n
@@ -174,7 +174,7 @@ class Solution:
         stack = [i for i in range(n) if not degree[i]]
         for x in stack:
             cnt[x] = 1
-        while stack:
+        while stack:  # 也可以使用深搜
             nex = []
             for i in stack:
                 for j in edge[i]:
@@ -185,103 +185,6 @@ class Solution:
             stack = nex
         ans = sum(cnt[i] for i in ind)
         return ans
-
-    @staticmethod
-    def bfs_template(grid):
-        # 广度优先搜索计算所有 "0" 到最近的 "1" 的距离
-        m, n = len(grid), len(grid[0])
-        stack = []
-        for i in range(m):
-            for j in range(n):
-                if grid[i][j] == "1":
-                    grid[i][j] = 0
-                    stack.append([i, j])
-        # BFS 模板
-        step = 1
-        while stack:
-            nex = []
-            for i, j in stack:
-                for a, b in [[i - 1, j], [i + 1, j], [i, j - 1], [i, j + 1]]:
-                    if 0 <= a < m and 0 <= b < n and grid[a][b] == "0":
-                        grid[a][b] = step
-                        nex.append([a, b])
-            stack = nex
-            step += 1
-        return grid
-
-    @staticmethod
-    def bilateral_bfs():
-        # 双向BFS
-        state = []
-        dct = [[0] * 4 for _ in range(12)]
-        for i in range(12):
-            nums = [int(x) for x in input().strip().split() if x]
-            for j in range(1, 5):
-                dct[i][j - 1] = nums[j] - 1
-            state.append(nums[0] - 1)
-
-        # 定义两个搜索状态
-        stack1 = [tuple(state)]
-        visit1 = {stack1[0]: tuple()}
-        target = tuple([0] * 12)
-        flag = (target == stack1[0][0])
-        step = 1
-
-        stack2 = [target]
-        visit2 = {stack2[0]: tuple()}
-        while not flag:
-            nex1 = []
-            for pre in stack1:
-                lst = list(pre)
-                for i in range(12):
-                    tmp = lst[:]
-                    x = dct[i][tmp[i]]
-                    tmp[x] += 1
-                    tmp[x] %= 4
-                    tmp[i] += 1
-                    tmp[i] %= 4
-                    tmp = tuple(tmp)
-                    if tmp not in visit1:
-                        nex1.append(tmp)
-                        visit1[tmp] = visit1[pre] + (i + 1,)
-                        # 判定是否遇见
-                        if tmp in visit2:
-                            flag = True
-                            path = visit1[tmp] + visit2[tmp][::-1]
-                            break
-                if flag:
-                    break
-
-            nex2 = []
-            for pre in stack2:
-                lst = list(pre)
-                for i in range(12):
-                    tmp = lst[:]
-
-                    tmp[i] -= 1
-                    tmp[i] %= 4
-
-                    x = dct[i][tmp[i]]
-                    tmp[x] -= 1
-                    tmp[x] %= 4
-
-                    tmp = tuple(tmp)
-                    if tmp not in visit2:
-                        nex2.append(tmp)
-                        visit2[tmp] = visit2[pre] + (i + 1,)
-                        # 判定是否遇见
-                        if tmp in visit1:
-                            flag = True
-                            path = visit1[tmp] + visit2[tmp][::-1]
-                            break
-                if flag:
-                    break
-            stack1 = nex1
-            stack2 = nex2
-            step += 1
-        print(len(path))
-        print(" ".join(str(x) for x in path))
-        return
 
     @staticmethod
     def lg_p1747(ac=FastIO()):
@@ -413,8 +316,7 @@ class Solution:
 class TestGeneral(unittest.TestCase):
 
     def test_xxx(self):
-        nt = ClassName()
-        assert nt.gen_result(10 ** 11 + 131) == 66666666752
+        pass
         return
 
 
