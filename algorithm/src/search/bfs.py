@@ -332,7 +332,7 @@ class Solution:
 
     @staticmethod
     def lc_2290(grid: List[List[int]]) -> int:
-        # 模板：使用队列实现 01BFS 即优先选择距离较短的路线
+        # 模板：使用队列实现0-1 BFS 即优先选择距离较短的路线
         m, n = len(grid), len(grid[0])
         visit = [[0] * n for _ in range(m)]
         q = deque([(0, 0, 0)])
@@ -349,24 +349,23 @@ class Solution:
                     else:
                         q.append((d + 1, nx, ny))
 
-
     @staticmethod
     def lc_1368(grid: List[List[int]]) -> int:
+        # 模板：使用队列实现0-1 BFS 即优先选择距离较短的路线
         m, n = len(grid), len(grid[0])
         ceil = int(1e9)
         dist = [0] + [ceil] * (m * n - 1)
         seen = set()
-        import collections
-        q = collections.deque([(0, 0)])
+        q = deque([(0, 0)])
 
-        while len(q) > 0:
+        while q:
+            # 也可以使用 Dijkstra 进行求解
             x, y = q.popleft()
             if (x, y) in seen:
                 continue
             seen.add((x, y))
             cur_pos = x * n + y
-            for i, (nx, ny) in enumerate(
-                    [(x, y + 1), (x, y - 1), (x + 1, y), (x - 1, y)]):
+            for i, (nx, ny) in enumerate([(x, y + 1), (x, y - 1), (x + 1, y), (x - 1, y)]):
                 new_pos = nx * n + ny
                 new_dis = dist[cur_pos] + (1 if grid[x][y] != i + 1 else 0)
                 if 0 <= nx < m and 0 <= ny < n and new_dis < dist[new_pos]:
@@ -375,7 +374,6 @@ class Solution:
                         q.appendleft((nx, ny))
                     else:
                         q.append((nx, ny))
-
         return dist[m * n - 1]
 
     @staticmethod
