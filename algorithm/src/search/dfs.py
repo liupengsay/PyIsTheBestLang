@@ -3,6 +3,8 @@ import unittest
 
 from typing import List
 
+from algorithm.src.fast_io import FastIO
+
 """
 
 算法：深度优先搜索、染色法
@@ -41,14 +43,13 @@ P7370 [COCI2018-2019#4] Wand（https://www.luogu.com.cn/problem/P7370）所有�
 """
 
 
-
-class DFS:
+class Solution:
     def __init__(self):
         return
 
     @staticmethod
-    def makesquare(matchsticks: List[int]) -> bool:
-        # 模板: 深搜将数组分组组成正方形
+    def lc_473(matchsticks: List[int]) -> bool:
+        # 模板: 深搜加回溯判断能否将数组分成正方形
         n, s = len(matchsticks), sum(matchsticks)
         if s % 4 or max(matchsticks) > s // 4:
             return False
@@ -73,12 +74,102 @@ class DFS:
             pre.pop()
             return
 
-        matchsticks.sort(reverse=True)
+        matchsticks.sort(reverse=True)  # 优化点
         m = s // 4
         ans = False
         pre = []
         dfs(0)
         return ans
+
+    @staticmethod
+    def lg_2383(ac=FastIO()):
+        n = ac.read_int()
+        for _ in range(n):
+            nums = ac.read_list_ints()[1:]
+            ans = Solution().lc_473(nums)
+            if not ans:
+                ac.st("no")
+            else:
+                ac.st("yes")
+        return
+
+    @staticmethod
+    def lc_301(s):
+        # 模板：深搜回溯计算删除最少数量的无效括号使得子串合法有效
+
+        def dfs(i):
+            nonlocal ans, pre, left, right
+            if i == n:
+                if left == right:
+                    if len(pre) == len(ans[-1]):
+                        ans.append("".join(pre))
+                    elif len(pre) > len(ans[-1]):
+                        ans = ["".join(pre)]
+                return
+            if right > left or right + n - i < left or len(pre) + n - i < len(ans[-1]):
+                return
+
+            dfs(i + 1)
+            left += int(s[i] == "(")
+            right += int(s[i] == ")")
+            pre.append(s[i])
+            dfs(i + 1)
+            left -= int(s[i] == "(")
+            right -= int(s[i] == ")")
+            pre.pop()
+            return
+
+        n = len(s)
+        ans = [""]
+        left = right = 0
+        pre = []
+        dfs(0)
+        return list(set(ans))
+
+    @staticmethod
+    def lg_p5318(ac=FastIO()):
+        # 模板：深搜与广搜序获取
+        n, m = ac.read_ints()
+        dct = [[] for _ in range(n + 1)]
+        degree = [0] * (n + 1)
+        for _ in range(m):
+            x, y = ac.read_ints()
+            dct[x].append(y)
+            degree[y] += 1
+        for i in range(1, n + 1):
+            dct[i].sort()
+
+        # 深搜序值获取
+        @ac.bootstrap
+        def dfs(a):
+            ans.append(a)
+            visit[a] = 1
+            for z in dct[a]:
+                if not visit[z]:
+                    yield dfs(z)
+            yield
+
+        visit = [0] * (n + 1)
+        ans = []
+        dfs(1)
+        ac.lst(ans)
+
+        # 拓扑排序广搜
+        ans = []
+        stack = [1]
+        visit = [0] * (n + 1)
+        visit[1] = 1
+        while stack:
+            ans.extend(stack)
+            nex = []
+            for i in stack:
+                for j in dct[i]:
+                    if not visit[j]:
+                        nex.append(j)
+                        visit[j] = 1
+            stack = nex
+        ac.lst(ans)
+        return
 
     @staticmethod
     def gen_node_order(dct):
@@ -130,7 +221,7 @@ class DFS:
 class TestGeneral(unittest.TestCase):
 
     def test_dfs(self):
-        dfs = DFS()
+        dfs = Solution()
         dct = [[1, 2], [0, 3], [0, 4], [1], [2]]
         visit, interval = dfs.gen_node_order(dct)
         assert visit == [1, 2, 4, 3, 5]
