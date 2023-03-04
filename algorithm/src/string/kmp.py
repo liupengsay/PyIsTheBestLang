@@ -143,6 +143,15 @@ class Solution:
         ans = sum(KMP().z_function(s)) + len(s)
         return ans
 
+    @staticmethod
+    def lg_p4391(ac=FastIO()):
+        # 模板：计算最小的循环子串使得其不断重复包含给定字符串
+        n = ac.read_int()
+        s = ac.read_str()
+        pi = KMP().prefix_function(s)
+        ac.st(n-pi[-1])
+        return
+
 
 class TestGeneral(unittest.TestCase):
 
