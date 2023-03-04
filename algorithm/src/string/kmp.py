@@ -121,6 +121,22 @@ class Solution:
         k = KMP().find_longest_palidrome(s)
         return s[k:][::-1] + s
 
+    @staticmethod
+    def lc_796(s: str, goal: str) -> bool:
+        ans = KMP().find(s+s, goal)
+        return len(ans) > 0 and len(s) == len(goal)
+
+    @staticmethod
+    def lc_28(haystack: str, needle: str) -> int:
+        ans = KMP().find(haystack, needle)
+        return ans[0] if ans else -1
+
+    @staticmethod
+    def lc_1392(s: str) -> str:
+        # 模板：字符串的最长非空真前缀（同时也是非空真后缀）
+        lst = KMP().prefix_function(s)
+        return s[:lst[-1]]
+
 
 class TestGeneral(unittest.TestCase):
 
