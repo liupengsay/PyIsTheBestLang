@@ -16,6 +16,7 @@ from algorithm.src.fast_io import FastIO
 
 435. 无重叠区间（https://leetcode.cn/problems/non-overlapping-intervals/）最多不相交的区间，使用贪心或者二分DP
 763. 划分字母区间（https://leetcode.cn/problems/partition-labels/）经典将区间合并为不相交的区间
+6313. 统计将重叠区间合并成组的方案数（https://leetcode.cn/contest/biweekly-contest-99/problems/count-ways-to-group-overlapping-ranges/）经典将区间合并为不相交的区间，再使用快速幂计数
 
 ===================================洛谷===================================
 P2082 区间覆盖（加强版）（https://www.luogu.com.cn/problem/P2082）经典区间合并确定覆盖范围
@@ -156,6 +157,13 @@ class Solution:
             lst.append([dct[w][0], dct[w][-1]])
         ans = Range().merge(lst)
         return [y-x+1 for x, y in ans]
+
+    @staticmethod
+    def lc_6313(ranges: List[List[int]]) -> int:
+        # 模板：合并为不相交的区间
+        cnt = len(Range().merge(ranges))
+        mod = 10 ** 9 + 7
+        return pow(2, cnt, mod)
 
 
 class TestGeneral(unittest.TestCase):

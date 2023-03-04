@@ -257,11 +257,11 @@ class Solution:
 class TestGeneral(unittest.TestCase):
 
     def test_dfs(self):
-        dfs = Solution()
+        dfs = DFS()
         dct = [[1, 2], [0, 3], [0, 4], [1], [2]]
         visit, interval = dfs.gen_node_order(dct)
-        assert visit == [1, 2, 4, 3, 5]
-        assert interval == [[1, 5], [2, 3], [4, 5], [3, 3], [5, 5]]
+        assert visit == [x-1 for x in [1, 2, 4, 3, 5]]
+        assert interval == [[a-1, b-1] for a, b in [[1, 5], [2, 3], [4, 5], [3, 3], [5, 5]]]
         return
 
 
