@@ -137,6 +137,12 @@ class Solution:
         lst = KMP().prefix_function(s)
         return s[:lst[-1]]
 
+    @staticmethod
+    def lc_2223(s: str) -> int:
+        # 模板：z 函数计算最长公共前缀
+        ans = sum(KMP().z_function(s)) + len(s)
+        return ans
+
 
 class TestGeneral(unittest.TestCase):
 
