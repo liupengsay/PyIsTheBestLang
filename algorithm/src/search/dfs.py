@@ -14,6 +14,8 @@ from algorithm.src.fast_io import FastIO
 ===================================力扣===================================
 473. 火柴拼正方形（https://leetcode.cn/problems/matchsticks-to-square/）暴力搜索木棍拼接组成正方形
 301. 删除无效的括号（https://leetcode.cn/problems/remove-invalid-parentheses/）深搜回溯与剪枝
+6314. 统计可能的树根数目（https://leetcode.cn/contest/biweekly-contest-99/problems/count-number-of-possible-root-nodes/）深搜序加差分计数
+
 
 ===================================洛谷===================================
 P2383 狗哥玩木棒（https://www.luogu.com.cn/problem/P2383）暴力搜索木棍拼接组成正方形
@@ -41,6 +43,31 @@ P7370 [COCI2018-2019#4] Wand（https://www.luogu.com.cn/problem/P7370）所有�
 
 参考：OI WiKi（xx）
 """
+
+
+class DFS:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def gen_node_order(dct):
+        # 模板：生成深搜序即 dfs 序以及对应子树编号区间
+        def dfs(x):
+            nonlocal order
+            visit[x] = order
+            order += 1
+            for y in dct[x]:
+                if visit[y] == -1:
+                    dfs(y)
+            interval[x] = [visit[x], order - 1]
+            return
+
+        n = len(dct)
+        order = 0
+        visit = [-1] * n
+        interval = [[] for _ in range(n)]
+        dfs(0)
+        return visit, interval
 
 
 class Solution:
@@ -172,27 +199,6 @@ class Solution:
         return
 
     @staticmethod
-    def gen_node_order(dct):
-        # 生成深搜序即 dfs 序以及对应子树编号区间
-        def dfs(x):
-            nonlocal order
-            visit[x] = order
-            order += 1
-            for y in dct[x]:
-                if not visit[y]:
-                    dfs(y)
-            interval[x] = [visit[x], order-1]
-            return
-
-        n = len(dct)
-        order = 1
-        visit = [0]*n
-        interval = [[] for _ in range(n)]
-
-        dfs(0)
-        return visit, interval
-
-    @staticmethod
     def add_to_n(n):
 
         # 计算将 [1, 1] 通过 [a, b] 到 [a, a+b] 或者 [a+b, a] 的方式最少次数变成 a == n or b == n
@@ -216,6 +222,36 @@ class Solution:
         for i in range(1, n):
             gcd_minus(n, i, 0)
         return ans
+
+    @staticmethod
+    def lc_6314(edges: List[List[int]], guesses: List[List[int]], k: int) -> int:
+        # 模板：使用深搜序确定猜测的查询范围，并使用差分数组计数
+        n = len(edges) + 1
+        dct = [[] for _ in range(n)]
+        for i, j in edges:
+            dct[i].append(j)
+            dct[j].append(i)
+
+        visit, interval = DFS().gen_node_order(dct)
+
+        diff = [0] * n
+        for u, v in guesses:
+            if visit[u] <= visit[v]:
+                a, b = interval[v]
+                lst = [[0, a - 1], [b + 1, n - 1]]
+            else:
+                a, b = interval[u]
+                lst = [[a, b]]
+
+            for x, y in lst:
+                if x <= y:
+                    diff[x] += 1
+                    if y + 1 < n:
+                        diff[y + 1] -= 1
+
+        for i in range(1, n):
+            diff[i] += diff[i - 1]
+        return sum(x >= k for x in diff)
 
 
 class TestGeneral(unittest.TestCase):
