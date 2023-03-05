@@ -98,7 +98,33 @@ D. Two Divisors（https://codeforces.com/problemset/problem/1366/D）计算最�
 class NumberTheory:
     def __init__(self):
         return
+    
+    @staticmethod
+    def get_min_prime_and_prime_factor():
+        
+        # 模板：计算 1 到 ceil 所有数字的最小质数因子
+        ceil = 10**6
+        min_prime = [0]*(ceil+1)
+        for i in range(2, ceil+1):
+            if not min_prime[i]:
+                min_prime[i] = i
+                for j in range(i*i, ceil+1, i):
+                    min_prime[j] = i
+        
+        # 模板：计算 1 到 ceil 所有数字的质数分解
+        prime_factor = [[] for _ in range(ceil+1)]
+        for num in range(2, ceil+1):
+            i = num
+            while num > 1:
+                p = min_prime[num]
+                cnt = 0
+                while num % p == 0:
+                    num //= p
+                    cnt += 1
+                prime_factor[i].append([p, cnt])
+        return 
 
+        
     @staticmethod
     def get_num_prime_factor(ceil):
         # 模板：快速计算 1~ceil 的所有质数因子
