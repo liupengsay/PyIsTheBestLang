@@ -51,6 +51,7 @@ from functools import reduce
 313. 超级丑数（https://leetcode.cn/problems/super-ugly-number/）只含某些特定质因数的第 n 个丑数
 6364. 无平方子集计数（https://leetcode.cn/problems/count-the-number-of-square-free-subsets/）非空子集乘积不含除 1 之外任何平方整除数，即乘积质数因子的幂次均为 1（背包DP计数）
 1994. 好子集的数目（https://leetcode.cn/problems/the-number-of-good-subsets/）非空子集乘积不含除 1 之外任何平方整除数，即乘积质数因子的幂次均为 1（背包DP计数）
+6309. 分割数组使乘积互质（https://leetcode.cn/contest/weekly-contest-335/problems/split-the-array-to-make-coprime-products/）计算 1 到 n 的每个数所有的质因子，并使用差分进行影响因子计数
 
 ===================================洛谷===================================
 P1865 A % B Problem（https://www.luogu.com.cn/problem/P1865）通过线性筛素数后进行二分查询区间素数个数
@@ -97,6 +98,18 @@ D. Two Divisors（https://codeforces.com/problemset/problem/1366/D）计算最�
 class NumberTheory:
     def __init__(self):
         return
+
+    @staticmethod
+    def get_num_prime_factor(ceil):
+        # 模板：快速计算 1~ceil 的所有质数因子
+        prime = [[] for _ in range(ceil + 1)]
+        for i in range(2, ceil + 1):
+            if not prime[i]:
+                prime[i].append(i)
+                # 从 i*i 开始作为 prime[j] 的最小质数因子
+                for j in range(i * 2, ceil + 1, i):
+                    prime[j].append(i)
+        return prime
 
     @staticmethod
     def int_to_roman(num: int) -> str:
@@ -540,6 +553,32 @@ class Solution:
         ac.lst(ans1)
         ac.lst(ans2)
         return
+
+    @staticmethod
+    def lc_6309(nums: List[int]) -> int:
+        # 模板：计算 1 到 n 的数所有的质因子并使用差分确定作用范围
+        prime = NumberTheory().get_num_prime_factor(10**6)
+        n = len(nums)
+        dct = defaultdict(list)
+        for i, num in enumerate(nums):
+            for p in prime[num]:
+                dct[p].append(i)
+
+        # 确定作用域
+        diff = [0] * (n + 1)
+        for p in dct:
+            i, j = dct[p][0], dct[p][-1]
+            a, b = i, j - 1
+            if a <= b:
+                diff[a] += 1
+                diff[b + 1] -= 1
+        for i in range(1, n + 1):
+            diff[i] += diff[i - 1]
+        for i in range(n - 1):
+            if not diff[i]:
+                return i
+        return -1
+
 
 class TestGeneral(unittest.TestCase):
 
