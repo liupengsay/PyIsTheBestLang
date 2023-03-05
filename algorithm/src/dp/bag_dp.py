@@ -14,6 +14,7 @@ from algorithm.src.fast_io import FastIO
 
 ===================================力扣===================================
 2218. 从栈中取出 K 个硬币的最大面值和（https://leetcode.cn/problems/maximum-value-of-k-coins-from-piles/）分组背包DP
+6310. 获得分数的方法数（https://leetcode.cn/contest/weekly-contest-335/problems/number-of-ways-to-earn-points/）看似二进制优化背包，实则数量转移
 
 ===================================洛谷===================================
 P1048 采药（https://www.luogu.com.cn/problem/P1048）一维背包DP，数量有限，从后往前遍历
@@ -243,6 +244,44 @@ class Solution:
             cur = nex[:]
         return cur[-1]
 
+    @staticmethod
+    def lg_p6567(ac=FastIO()):
+        # 模板：一维有限二进制优化背包
+        n, m = ac.read_ints()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        target = ac.read_list_ints()
+        ceil = max(target)
+        dp = [0] * (ceil + 1)
+        dp[0] = 1
+        for k, a in nums:
+            for b in BagDP().bin_split(a):
+                x = b * k
+                for i in range(ceil, x - 1, -1):
+                    if dp[i - x]:
+                        dp[i] = 1
+        for t in target:
+            if dp[t]:
+                ac.st("Yes")
+            else:
+                ac.st("No")
+        return
+
+    @staticmethod
+    def lc_6310(target: int, types: List[List[int]]) -> int:
+        # 模板：看似二进制优化 DP 实则矩阵 DP 转移
+        mod = 10 ** 9 + 7
+        n = len(types)
+        pre = [0] * (target + 1)
+        pre[0] = 1
+        for i in range(n):
+            c, m = types[i]
+            cur = pre[:]
+            for x in range(1, c + 1):
+                for j in range(target - x * m + 1):
+                    if x * m + j <= target:
+                        cur[x * m + j] += pre[j]
+            pre = [num % mod for num in cur]
+        return pre[-1]
 
 
 class TestGeneral(unittest.TestCase):
