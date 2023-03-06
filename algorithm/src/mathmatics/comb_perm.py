@@ -47,12 +47,15 @@ class Combinatorics:
     def __init__(self, n, mod):
         # 模板：求全排列组合数
         self.perm = [1] * n
+        self.rev = [1] * n
         self.mod = mod
         for i in range(1, n):
             # 阶乘数 i! 取模
             self.perm[i] = self.perm[i - 1] * i
             self.perm[i] %= self.mod
-        self.rev = [pow(self.perm[i], -1, self.mod) for i in range(n)]
+        self.rev[-1] = pow(self.perm[-1], -1, self.mod)
+        for i in range(n-2, 0, -1):
+            self.rev[i] = (self.rev[i+1]*(i+1)%mod)
         return
 
     def comb(self, a, b):
