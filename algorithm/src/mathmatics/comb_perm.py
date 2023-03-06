@@ -52,11 +52,12 @@ class Combinatorics:
             # 阶乘数 i! 取模
             self.perm[i] = self.perm[i - 1] * i
             self.perm[i] %= self.mod
+        self.rev = [pow(self.perm[i], -1, self.mod) for i in range(n)]
         return
 
     def comb(self, a, b):
         # 组合数根据乘法逆元求解
-        res = self.perm[a] * pow(self.perm[b], -1, self.mod) * pow(self.perm[a - b], -1, self.mod)
+        res = self.perm[a] * self.rev[b] * self.rev[a - b]
         return res % self.mod
 
     @staticmethod
