@@ -52,6 +52,8 @@ from functools import reduce
 6364. 无平方子集计数（https://leetcode.cn/problems/count-the-number-of-square-free-subsets/）非空子集乘积不含除 1 之外任何平方整除数，即乘积质数因子的幂次均为 1（背包DP计数）
 1994. 好子集的数目（https://leetcode.cn/problems/the-number-of-good-subsets/）非空子集乘积不含除 1 之外任何平方整除数，即乘积质数因子的幂次均为 1（背包DP计数）
 6309. 分割数组使乘积互质（https://leetcode.cn/contest/weekly-contest-335/problems/split-the-array-to-make-coprime-products/）计算 1 到 n 的每个数所有的质因子，并使用差分进行影响因子计数
+2464. 有效分割中的最少子数组数目（https://leetcode.cn/problems/minimum-subarrays-in-a-valid-split/）计算 1 到 n 的每个数所有的质因子，并使用动态规划计数
+LCP 14. 切分数组（https://leetcode.cn/problems/qie-fen-shu-zu/）计算 1 到 n 的每个数所有的质因子，并使用动态规划计数
 
 ===================================洛谷===================================
 P1865 A % B Problem（https://www.luogu.com.cn/problem/P1865）通过线性筛素数后进行二分查询区间素数个数
