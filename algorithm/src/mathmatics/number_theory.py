@@ -95,6 +95,35 @@ D. Two Divisors（https://codeforces.com/problemset/problem/1366/D）计算最�
 """
 
 
+class NumberTheoryPrimeFactor:
+    def __init__(self, ceil):
+        self.ceil = ceil
+        self.prime_factor = [[] for _ in range(self.ceil + 1)]
+        self.min_prime = [0] * (self.ceil + 1)
+        self.get_min_prime_and_prime_factor()
+        return
+
+    def get_min_prime_and_prime_factor(self):
+        # 模板：计算 1 到 self.ceil 所有数字的最小质数因子
+        for i in range(2, self.ceil + 1):
+            if not self.min_prime[i]:
+                self.min_prime[i] = i
+                for j in range(i * i, self.ceil + 1, i):
+                    self.min_prime[j] = i
+
+        # 模板：计算 1 到 self.ceil 所有数字的质数分解
+        for num in range(2, self.ceil + 1):
+            i = num
+            while num > 1:
+                p = self.min_prime[num]
+                cnt = 0
+                while num % p == 0:
+                    num //= p
+                    cnt += 1
+                self.prime_factor[i].append([p, cnt])
+        return
+
+
 class NumberTheory:
     def __init__(self):
         return
