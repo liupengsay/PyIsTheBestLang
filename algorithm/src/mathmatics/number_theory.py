@@ -113,16 +113,16 @@ class NumberTheoryPrimeFactor:
                 for j in range(i * i, self.ceil + 1, i):
                     self.min_prime[j] = i
 
-        # 模板：计算 1 到 self.ceil 所有数字的质数分解
-        for num in range(2, self.ceil + 1):
-            i = num
-            while num > 1:
-                p = self.min_prime[num]
-                cnt = 0
-                while num % p == 0:
-                    num //= p
-                    cnt += 1
-                self.prime_factor[i].append([p, cnt])
+        # 模板：计算 1 到 self.ceil 所有数字的质数分解（可选）
+#         for num in range(2, self.ceil + 1):
+#             i = num
+#             while num > 1:
+#                 p = self.min_prime[num]
+#                 cnt = 0
+#                 while num % p == 0:
+#                     num //= p
+#                     cnt += 1
+#                 self.prime_factor[i].append([p, cnt])
         return
 
 
@@ -635,7 +635,52 @@ class Solution:
             if not diff[i]:
                 return i
         return -1
-
+    
+    @staticmethod
+    def lc_2464(nums: List[int]) -> int:
+        # 模板：计算 1 到 n 的数所有的质因子并使用动态规划计数
+        nt = NumberTheoryPrime(max(nums))
+        inf = float("inf")
+        ind = dict()
+        n = len(nums)
+        dp = [inf] * (n + 1)
+        dp[0] = 0
+        for i, num in enumerate(nums):
+            while num > 1:
+                p = nt.min_prime[num]
+                while num % p == 0:
+                    num //= p
+                if p not in ind or dp[i] < dp[ind[p]]:
+                    ind[p] = i
+                if dp[ind[p]] + 1 < dp[i + 1]:
+                    dp[i + 1] = dp[ind[p]] + 1
+                if dp[i] + 1 < dp[i + 1]:
+                    dp[i + 1] = dp[i] + 1
+        return dp[-1] if dp[-1] < inf else -1
+    
+    
+    @staticmethod
+    def lc_lcp14(nums: List[int]) -> int:
+        # 模板：计算 1 到 n 的数所有的质因子并使用动态规划计数
+        nt = NumberTheoryPrime(max(nums))
+        inf = float("inf")
+        ind = dict()
+        n = len(nums)
+        dp = [inf] * (n + 1)
+        dp[0] = 0
+        for i, num in enumerate(nums):
+            while num > 1:
+                p = nt.min_prime[num]
+                while num % p == 0:
+                    num //= p
+                if p not in ind or dp[i] < dp[ind[p]]:
+                    ind[p] = i
+                if dp[ind[p]] + 1 < dp[i + 1]:
+                    dp[i + 1] = dp[ind[p]] + 1
+                if dp[i] + 1 < dp[i + 1]:
+                    dp[i + 1] = dp[i] + 1
+        return dp[-1] if dp[-1] < inf else -1
+    
 
 class TestGeneral(unittest.TestCase):
 
