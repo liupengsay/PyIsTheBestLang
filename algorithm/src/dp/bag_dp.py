@@ -59,7 +59,7 @@ P6771 [USACO05MAR]Space Elevator 太空电梯（https://www.luogu.com.cn/problem
 ================================CodeForces================================
 B. Modulo Sum（https://codeforces.com/problemset/problem/577/B）取模计数二进制优化与背包DP，寻找非空子序列的和整除给定的数
 A. Writing Code（https://codeforces.com/problemset/problem/543/A）二维有限背包DP，当作无限进行处理
-
+E. Porcelain（https://codeforces.com/problemset/problem/148/E）01背包枚举，两层动态规划
 参考：OI WiKi（xx）
 """
 
