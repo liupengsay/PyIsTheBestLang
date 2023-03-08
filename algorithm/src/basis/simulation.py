@@ -5,7 +5,7 @@ from collections import deque
 from algorithm.src.fast_io import FastIO
 
 """
-算法：模拟（也叫implemention）
+算法：模拟（也叫implemention）、大模拟
 功能：根据题意进行模拟，有经典模拟结论约瑟夫环问题
 题目：
 
@@ -15,6 +15,7 @@ from algorithm.src.fast_io import FastIO
 59. 螺旋矩阵 II（https://leetcode.cn/problems/spiral-matrix-ii/）
 2326. 螺旋矩阵 IV（https://leetcode.cn/problems/spiral-matrix-iv/）
 剑指 Offer 62. 圆圈中最后剩下的数字（https://leetcode.cn/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/）约瑟夫环
+2534. 通过门的时间（https://leetcode.cn/problems/time-taken-to-cross-the-door/）根据题意进行模拟
 
 ===================================洛谷===================================
 P1815 蠕虫游戏（https://www.luogu.com.cn/problem/P1815）模拟类似贪吃蛇的移动
