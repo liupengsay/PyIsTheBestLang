@@ -44,7 +44,7 @@ D. Distance in Tree（https://codeforces.com/problemset/problem/161/D）树形DP
 ================================CodeForces================================
 C. Uncle Bogdan and Country Happiness（https://codeforces.com/problemset/problem/1388/C）树形DP模拟计算，递归获取子树信息，逆向从上往下还原
 F. Maximum White Subtree（https://codeforces.com/problemset/problem/1324/F）经典换根DP题，两遍dfs搜索更新计算
-
+D. Book of Evil（https://codeforces.com/problemset/problem/337/D）经典换根DP题，两遍dfs搜索更新计算
 
 参考：OI WiKi（xx）
 """
@@ -337,6 +337,65 @@ class TreeDP:
         dfs(0, 0, -1)
         # 树的直径、核心可通过这两个数组计算得到，其余类似的递归可参照这种方式
         return up_to_down, down_to_up
+
+@staticmethod
+def cf_337d(ac=FastIO()):
+    n, m, d = ac.read_ints()
+    evil = set(ac.read_list_ints_minus_one())
+    edge = [[] for _ in range(n)]
+    for _ in range(n-1):
+        u, v = ac.read_ints_minus_one()
+        edge[u].append(v)
+        edge[v].append(u)
+ 
+    @ac.bootstrap
+    def dfs(i, fa):
+        res = -inf
+        for j in edge[i]:
+            if j != fa:
+                yield dfs(j, i)
+                res = ac.max(res, son[j]+1)
+        if i in evil:
+            res = ac.max(res, 0)
+        son[i] = res
+        yield
+ 
+    # 计算子节点最远的evil
+    son = [-inf]*n
+    dfs(0, -1)
+ 
+    @ac.bootstrap
+    def dfs2(i, fa, pre):
+        father[i] = pre
+        a = b = pre+1
+        for j in edge[i]:
+            if j != fa:
+                c = son[j] + 2
+                if c >= a:
+                    a, b = c, a
+                elif c >= b:
+                    a, b = a, c
+        if i in evil:
+            c = 1
+            if c >= a:
+                a, b = c, a
+            elif c >= b:
+                a, b = a, c
+        for j in edge[i]:
+            if j != fa:
+                c = son[j] + 2
+                if a == c:
+                    yield dfs2(j, i, b)
+                else:
+                    yield dfs2(j, i, a)
+        yield
+ 
+    # 计算父节点最远的evil
+    father = [-inf] * n
+    dfs2(0, -1, -inf)
+    ans = sum(ac.max(father[i], son[i]) <= d for i in range(n))
+    ac.st(ans)
+    return
 
 
 class TreeDiameter:
