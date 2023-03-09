@@ -36,6 +36,7 @@ import copy
 698. 划分为k个相等的子集（https://leetcode.cn/problems/partition-to-k-equal-sum-subsets/）预处理计算子集后进行记忆化状态转移
 2172. 数组的最大与和（https://leetcode.cn/problems/maximum-and-sum-of-array/）使用位运算和状态压缩进行转移
 1255. 得分最高的单词集合（https://leetcode.cn/problems/maximum-score-words-formed-by-letters/）状压DP
+2403. 杀死所有怪物的最短时间（https://leetcode.cn/problems/minimum-time-to-kill-all-monsters/）状压DP
 
 ===================================洛谷===================================
 P1896 互不侵犯（https://www.luogu.com.cn/problem/P1896）按行状态与行个数枚举所有的摆放可能性
@@ -160,6 +161,41 @@ class Solution:
 
         return dfs(0, 0, 0)
 
+    @staticmethod
+    def lc_2403_1(power: List[int]) -> int:
+        # 模板：状态压缩DP数组形式
+        m = len(power)
+        dp = [0] * (1 << m)
+        for state in range(1, 1 << m):
+            gain = m - state.bit_count() + 1
+            res = float("inf")
+            for i in range(m):
+                if state & (1 << i):
+                    cur = (power[i] + gain - 1) // gain + dp[state ^ (1 << i)]
+                    res = res if res < cur else cur
+            dp[state] = res
+        return dp[-1]
+    
+    @staticmethod
+    def lc_2403_2(power: List[int]) -> int:
+        # 模板：状态压缩DP记忆化形式
+        
+        @lru_cache(None)
+        def dfs(state):
+            if not state:
+                return 0
+            gain = m - bin(state).count("1") + 1
+            res = float("inf")
+            for i in range(m):
+                if state & (1 << i):
+                    cur = math.ceil(power[i] / gain) + dfs(state ^ (1 << i))
+                    res = res if res < cur else cur
+            return res
+
+        m = len(power)
+        return dfs((1 << m) - 1)
+    
+    
 
 class TestGeneral(unittest.TestCase):
 
