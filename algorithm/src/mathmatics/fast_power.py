@@ -32,6 +32,10 @@ from algorithm.src.fast_io import FastIO
 算法：快速幂、矩阵快速幂
 功能：高效计算整数的幂次方取模
 题目：
+
+===================================力扣===================================
+450. 应用操作后不同二进制字符串的数量（https://leetcode.cn/problems/number-of-distinct-binary-strings-after-applying-operations/）脑筋急转弯快速幂计算
+
 ===================================洛谷===================================
 P1630 求和（https://www.luogu.com.cn/problem/P1630）快速幂计算，利用同模进行计数加和
 P1939 【模板】矩阵加速（数列）（https://www.luogu.com.cn/problem/P1939）矩阵快速幂递推求解
