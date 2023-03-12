@@ -217,10 +217,12 @@ class Solution:
         # 模板：差分约束转换为负环判断求解
         n, m = ac.read_ints()
         dct = [dict() for _ in range(n+1)]
+        # 超级源点有向边出发
         for i in range(1, n + 1):
             dct[0][i] = 0
         for _ in range(m):
             lst = ac.read_list_ints()
+            # xa - xb <= c 则增加有向边 [xb, xa, c] 其中 xb => xa
             if lst[0] == 1:
                 a, b, c = lst[1:]
                 dct[a][b] = -c
@@ -242,6 +244,7 @@ class Solution:
     def lc_6318(tasks: List[List[int]]) -> int:
         # 模板：差分约束转换为负环判断求解
         n = max(it[1] for it in tasks)
+        # xa - xb <= c 则增加有向边 [xb, xa, c] 其中 xb => xa
         dct = [dict() for _ in range(n + 2)]
 
         # 邻项约束
