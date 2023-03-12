@@ -145,6 +145,13 @@ class Luogu:
         ans = max(post[i + 1] + pre[i] for i in range(n - 1))
         return ans
 
+    @staticmethod
+    def lc_5(s: str) -> str:
+        # 模板：计算字符串的最长回文子串，转换为求字符开头以及结尾的最长回文子串
+        post, pre = ManacherPlindrome().palindrome_longest(s)
+        i = post.index(max(post))
+        return s[i: i+post[i]]
+
 
 class TestGeneral(unittest.TestCase):
 
