@@ -1,7 +1,7 @@
 
 import unittest
 
-from collections import defaultdict
+from collections import defaultdict, deque
 
 from algorithm.src.fast_io import FastIO
 
