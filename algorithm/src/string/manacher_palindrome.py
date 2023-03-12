@@ -32,6 +32,7 @@ import copy
 题目：
 
 ===================================力扣===================================
+5. 最长回文子串（https://leetcode.cn/problems/longest-palindromic-substring/）计算字符串的最长回文连续子串
 214 最短回文串（https://leetcode.cn/problems/shortest-palindrome/）计算字符串前缀最长回文子串
 
 ===================================洛谷===================================
@@ -137,7 +138,8 @@ class Luogu:
         return
 
     @staticmethod
-    def main_4555(s):
+    def lg_4555(s):
+        # 模板：计算长度和最大的两个回文子串的长度和，转换为求字符开头以及结尾的最长回文子串
         n = len(s)
         post, pre = ManacherPlindrome().palindrome_longest(s)
         ans = max(post[i + 1] + pre[i] for i in range(n - 1))
@@ -157,7 +159,7 @@ class TestGeneral(unittest.TestCase):
     def test_luogu(self):
         s = "baacaabbacabb"
         luogu = Luogu()
-        assert luogu.main_4555(s) == 12
+        assert luogu.lg_4555(s) == 12
         return
 
 
