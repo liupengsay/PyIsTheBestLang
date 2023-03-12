@@ -4,10 +4,11 @@ from collections import deque
 from functools import lru_cache
 from heapq import nlargest
 from typing import List
-from algorithm.src.fast_io import FastIO
+from algorithm.src.fast_io import FastIO, inf
+from algorithm.src.graph.union_find import UnionFind
 
 """
-算法：树形DP
+算法：树形DP、树的直径
 功能：在树形或者图结构上进行DP，有换根DP，自顶向下和自底向上DP
 题目：
 
@@ -18,6 +19,7 @@ from algorithm.src.fast_io import FastIO
 968. 监控二叉树（https://leetcode.cn/problems/binary-tree-cameras/）树形DP监控每个节点
 6294. 最大价值和与最小价值和的差值（https://leetcode.cn/problems/difference-between-maximum-and-minimum-price-sum/）树形换根DP，求去掉其中一个叶子节点的最大直径
 124. 二叉树中的最大路径和（https://leetcode.cn/problems/binary-tree-maximum-path-sum/）树形DP
+1617. 统计子树中城市之间最大距离（https://leetcode.cn/problems/count-subtrees-with-max-distance-between-cities/）二进制枚举加树的直径计算
 
 ===================================洛谷===================================
 
@@ -48,6 +50,177 @@ D. Book of Evil（https://codeforces.com/problemset/problem/337/D）经典换根
 
 参考：OI WiKi（xx）
 """
+
+
+class TreeDP:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def change_root_dp(n: int, edges: List[List[int]], price: List[int]):
+        # 模板:  换根DP
+        edge = [[] for _ in range(n)]
+        for u, v in edges:
+            edge[u].append(v)
+            edge[v].append(u)
+
+        @lru_cache(None)
+        def dfs(i, fa):
+            # 注意在星状图的复杂度是O(n^2)（还有一种特殊的树结构是树链）
+            # 也是求以此为根的最大路径
+            ans = 0
+            for j in edge[i]:
+                if j != fa:
+                    cur = dfs(j, i)
+                    ans = ans if ans > cur else cur
+            return ans + price[i]
+
+        return max(dfs(i, -1) - price[i] for i in range(n))
+
+    @staticmethod
+    def sum_of_distances_in_tree(n: int, edges):
+        # 计算节点到所有其他节点的总距离
+        dct = [[] for _ in range(n)]
+        for i, j in edges:
+            dct[i].append(j)
+            dct[j].append(i)
+
+        tree = [[] for _ in range(n)]
+        stack = [0]
+        visit = {0}
+        while stack:
+            nex = []
+            for i in stack:
+                for j in dct[i]:
+                    if j not in visit:
+                        visit.add(j)
+                        nex.append(j)
+                        tree[i].append(j)
+            stack = nex[:]
+
+        def dfs(x):
+            res = 1
+            for y in tree[x]:
+                res += dfs(y)
+            son_count[x] = res
+            return res
+
+        son_count = [0] * n
+        dfs(0)
+
+        def dfs(x):
+            res = son_count[x] - 1
+            for y in tree[x]:
+                res += dfs(y)
+            son_dis[x] = res
+            return res
+
+        son_dis = [0] * n
+        dfs(0)
+
+        def dfs(x):
+            for y in tree[x]:
+                father_dis[y] = (
+                    son_dis[x] - son_dis[y] - son_count[y]) + father_dis[x] + n - son_count[y]
+                dfs(y)
+            return
+
+        father_dis = [0] * n
+        dfs(0)
+        return [father_dis[i] + son_dis[i] for i in range(n)]
+
+    @staticmethod
+    def longest_path_through_node(dct):
+
+        # 模板: 换根DP，两遍DFS获取从下往上与从上往下的DP信息
+        n = len(dct)
+
+        # 两遍DFS获取从下往上与从上往下的节点最远距离
+        def dfs(x, fa):
+            res = [0, 0]
+            for y in dct[x]:
+                if y != fa:
+                    dfs(y, x)
+                    res.append(max(down_to_up[y]) + 1)
+            down_to_up[x] = nlargest(2, res)
+            return
+
+        # 默认以 0 为根
+        down_to_up = [[] for _ in range(n)]
+        dfs(0, -1)
+
+        def dfs(x, pre, fa):
+            up_to_down[x] = pre
+            son = [0, 0]
+            for y in dct[x]:
+                if y != fa:
+                    son.append(max(down_to_up[y]))
+            son = nlargest(2, son)
+
+            for y in dct[x]:
+                if y != fa:
+                    father = pre + 1
+                    tmp = son[:]
+                    if max(down_to_up[y]) in tmp:
+                        tmp.remove(max(down_to_up[y]))
+                    if tmp[0]:
+                        father = father if father > tmp[0] + 2 else tmp[0] + 2
+                    dfs(y, father, x)
+            return
+
+        up_to_down = [0] * n
+        # 默认以 0 为根
+        dfs(0, 0, -1)
+        # 树的直径、核心可通过这两个数组计算得到，其余类似的递归可参照这种方式
+        return up_to_down, down_to_up
+
+
+class TreeDiameter:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def get_diameter_bfs(edge):
+
+        def bfs(node):
+            # 模板：使用BFS计算获取树的直径端点以及直径长度
+            d = 0
+            q = deque([(node, -1, d)])
+            while q:
+                node, pre, d = q.popleft()
+                for nex in edge[node]:
+                    if nex != pre:
+                        q.append((nex, node, d + 1))
+            return node, d
+
+        n = len(edge)
+
+        # 这个算法依赖于一个性质，对于树中的任一个点，距离它最远的点一定是树上一条直径的一个端点
+        x, _ = bfs(0)
+        # 任取树中的一个节点x，找出距离它最远的点y，那么点y就是这棵树中一条直径的一个端点。我们再从y出发，找出距离y最远的点就找到了一条直径
+        y, dis = bfs(x)
+        return dis
+
+    @staticmethod
+    def get_diameter_dfs(edge):
+
+        def dfs(i, fa):
+            nonlocal ans
+            a = b = 0
+            for j in edge[i]:
+                if j != fa:
+                    x = dfs(j, i)
+                    if x >= a:
+                        a, b = x, a
+                    elif x >= b:
+                        b = x
+            ans = ans if ans > a + b else a + b
+            return a + 1 if a > b else b + 1
+
+        # 模板：使用DFS与动态规划计算直径
+        ans = 0
+        dfs(0, -1)
+        return ans
 
 
 class Solution:
@@ -215,211 +388,87 @@ class Solution:
         ac.lst(ans)
         return
 
-
-class TreeDP:
-    def __init__(self):
-        return
-
     @staticmethod
-    def change_root_dp(n: int, edges: List[List[int]], price: List[int]):
-        # 模板:  换根DP
+    def cf_337d(ac=FastIO()):
+        n, m, d = ac.read_ints()
+        evil = set(ac.read_list_ints_minus_one())
         edge = [[] for _ in range(n)]
-        for u, v in edges:
+        for _ in range(n-1):
+            u, v = ac.read_ints_minus_one()
             edge[u].append(v)
             edge[v].append(u)
 
-        @lru_cache(None)
+        @ac.bootstrap
         def dfs(i, fa):
-            # 注意在星状图的复杂度是O(n^2)（还有一种特殊的树结构是树链）
-            # 也是求以此为根的最大路径
-            ans = 0
+            res = -inf
             for j in edge[i]:
                 if j != fa:
-                    cur = dfs(j, i)
-                    ans = ans if ans > cur else cur
-            return ans + price[i]
+                    yield dfs(j, i)
+                    res = ac.max(res, son[j]+1)
+            if i in evil:
+                res = ac.max(res, 0)
+            son[i] = res
+            yield
 
-        return max(dfs(i, -1) - price[i] for i in range(n))
-
-    @staticmethod
-    def sum_of_distances_in_tree(n: int, edges):
-        # 计算节点到所有其他节点的总距离
-        dct = [[] for _ in range(n)]
-        for i, j in edges:
-            dct[i].append(j)
-            dct[j].append(i)
-
-        tree = [[] for _ in range(n)]
-        stack = [0]
-        visit = {0}
-        while stack:
-            nex = []
-            for i in stack:
-                for j in dct[i]:
-                    if j not in visit:
-                        visit.add(j)
-                        nex.append(j)
-                        tree[i].append(j)
-            stack = nex[:]
-
-        def dfs(x):
-            res = 1
-            for y in tree[x]:
-                res += dfs(y)
-            son_count[x] = res
-            return res
-
-        son_count = [0] * n
-        dfs(0)
-
-        def dfs(x):
-            res = son_count[x] - 1
-            for y in tree[x]:
-                res += dfs(y)
-            son_dis[x] = res
-            return res
-
-        son_dis = [0] * n
-        dfs(0)
-
-        def dfs(x):
-            for y in tree[x]:
-                father_dis[y] = (
-                    son_dis[x] - son_dis[y] - son_count[y]) + father_dis[x] + n - son_count[y]
-                dfs(y)
-            return
-
-        father_dis = [0] * n
-        dfs(0)
-        return [father_dis[i] + son_dis[i] for i in range(n)]
-
-    @staticmethod
-    def longest_path_through_node(dct):
-
-        # 模板: 换根DP，两遍DFS获取从下往上与从上往下的DP信息
-        n = len(dct)
-
-        # 两遍DFS获取从下往上与从上往下的节点最远距离
-        def dfs(x, fa):
-            res = [0, 0]
-            for y in dct[x]:
-                if y != fa:
-                    dfs(y, x)
-                    res.append(max(down_to_up[y]) + 1)
-            down_to_up[x] = nlargest(2, res)
-            return
-
-        # 默认以 0 为根
-        down_to_up = [[] for _ in range(n)]
+        # 计算子节点最远的evil
+        son = [-inf]*n
         dfs(0, -1)
 
-        def dfs(x, pre, fa):
-            up_to_down[x] = pre
-            son = [0, 0]
-            for y in dct[x]:
-                if y != fa:
-                    son.append(max(down_to_up[y]))
-            son = nlargest(2, son)
-
-            for y in dct[x]:
-                if y != fa:
-                    father = pre + 1
-                    tmp = son[:]
-                    if max(down_to_up[y]) in tmp:
-                        tmp.remove(max(down_to_up[y]))
-                    if tmp[0]:
-                        father = father if father > tmp[0] + 2 else tmp[0] + 2
-                    dfs(y, father, x)
-            return
-
-        up_to_down = [0] * n
-        # 默认以 0 为根
-        dfs(0, 0, -1)
-        # 树的直径、核心可通过这两个数组计算得到，其余类似的递归可参照这种方式
-        return up_to_down, down_to_up
-
-@staticmethod
-def cf_337d(ac=FastIO()):
-    n, m, d = ac.read_ints()
-    evil = set(ac.read_list_ints_minus_one())
-    edge = [[] for _ in range(n)]
-    for _ in range(n-1):
-        u, v = ac.read_ints_minus_one()
-        edge[u].append(v)
-        edge[v].append(u)
- 
-    @ac.bootstrap
-    def dfs(i, fa):
-        res = -inf
-        for j in edge[i]:
-            if j != fa:
-                yield dfs(j, i)
-                res = ac.max(res, son[j]+1)
-        if i in evil:
-            res = ac.max(res, 0)
-        son[i] = res
-        yield
- 
-    # 计算子节点最远的evil
-    son = [-inf]*n
-    dfs(0, -1)
- 
-    @ac.bootstrap
-    def dfs2(i, fa, pre):
-        father[i] = pre
-        a = b = pre+1
-        for j in edge[i]:
-            if j != fa:
-                c = son[j] + 2
+        @ac.bootstrap
+        def dfs2(i, fa, pre):
+            father[i] = pre
+            a = b = pre+1
+            for j in edge[i]:
+                if j != fa:
+                    c = son[j] + 2
+                    if c >= a:
+                        a, b = c, a
+                    elif c >= b:
+                        a, b = a, c
+            if i in evil:
+                c = 1
                 if c >= a:
                     a, b = c, a
                 elif c >= b:
                     a, b = a, c
-        if i in evil:
-            c = 1
-            if c >= a:
-                a, b = c, a
-            elif c >= b:
-                a, b = a, c
-        for j in edge[i]:
-            if j != fa:
-                c = son[j] + 2
-                if a == c:
-                    yield dfs2(j, i, b)
-                else:
-                    yield dfs2(j, i, a)
-        yield
- 
-    # 计算父节点最远的evil
-    father = [-inf] * n
-    dfs2(0, -1, -inf)
-    ans = sum(ac.max(father[i], son[i]) <= d for i in range(n))
-    ac.st(ans)
-    return
+            for j in edge[i]:
+                if j != fa:
+                    c = son[j] + 2
+                    if a == c:
+                        yield dfs2(j, i, b)
+                    else:
+                        yield dfs2(j, i, a)
+            yield
 
-
-class TreeDiameter:
-    # 任取树中的一个节点x，找出距离它最远的点y，那么点y就是这棵树中一条直径的一个端点。我们再从y出发，找出距离y最远的点就找到了一条直径。
-    # 这个算法依赖于一个性质：对于树中的任一个点，距离它最远的点一定是树上一条直径的一个端点。
-    def __init__(self, edge):
-        self.edge = edge
-        self.n = len(self.edge)
+        # 计算父节点最远的evil
+        father = [-inf] * n
+        dfs2(0, -1, -inf)
+        ans = sum(ac.max(father[i], son[i]) <= d for i in range(n))
+        ac.st(ans)
         return
 
-    def get_farest(self, node):
-        q = deque([(node, -1)])
-        while q:
-            node, pre = q.popleft()
-            for x in self.edge[node]:
-                if x != pre:
-                    q.append((x, node))
-        return node
-
-    def get_diameter_node(self):
-        # 获取树的直径端点
-        x = self.get_farest(0)
-        y = self.get_farest(x)
-        return x, y
+    @staticmethod
+    def lc_1617(n: int, edges: List[List[int]]) -> List[int]:
+        # 模板：枚举子集使用并查集判断连通性再计算树的直径
+        ans = [0] * n
+        for state in range(1, 1 << n):
+            node = [i for i in range(n) if state & (1 << i)]
+            ind = {num: i for i, num in enumerate(node)}
+            m = len(node)
+            dct = [[] for _ in range(m)]
+            uf = UnionFind(m)
+            for u, v in edges:
+                u -= 1
+                v -= 1
+                if u in ind and v in ind:
+                    dct[ind[u]].append(ind[v])
+                    dct[ind[v]].append(ind[u])
+                    uf.union(ind[u], ind[v])
+            if uf.part != 1:
+                continue
+            # 计算直径或者是get_diameter_bfs都可以
+            ans[TreeDiameter().get_diameter_dfs(dct)] += 1
+        return ans[1:]
 
 
 class TestGeneral(unittest.TestCase):
