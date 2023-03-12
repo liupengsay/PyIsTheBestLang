@@ -10,7 +10,8 @@
 
 ===================================力扣===================================
 360. 图中的最长环（https://leetcode.cn/problems/longest-cycle-in-a-graph/）拓扑排序计算有向图内向基环树最长环
-2392. 给定条件下构造矩阵（https://leetcode.cn/problems/build-a-matrix-with-conditions/）分别通过行列的拓扑排序来确定数字所在索引
+2392. 给定条件下构造矩阵（https://leetcode.cn/problems/build-a-matrix-with-conditions/）分别通过行列的拓扑排序来确定数字所在索引，数字可能相同，需要使用并查集
+2371. 最小化网格中的最大值（https://leetcode.cn/problems/minimize-maximum-value-in-a-grid/）分别通过行列的拓扑排序来确定数字所在索引，数字都不同可以使用贪心
 2127. 参加会议的最多员工数（https://leetcode.cn/problems/maximum-employees-to-be-invited-to-a-meeting/）拓扑排序确定内向基环，按照环的大小进行贪心枚举
 
 127. 参加会议的最多员工数（https://leetcode.cn/problems/maximum-employees-to-be-invited-to-a-meeting/）

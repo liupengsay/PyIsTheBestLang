@@ -15,6 +15,7 @@ from algorithm.src.fast_io import FastIO
 ===================================力扣===================================
 2218. 从栈中取出 K 个硬币的最大面值和（https://leetcode.cn/problems/maximum-value-of-k-coins-from-piles/）分组背包DP
 6310. 获得分数的方法数（https://leetcode.cn/contest/weekly-contest-335/problems/number-of-ways-to-earn-points/）看似二进制优化背包，实则数量转移
+2189. 建造纸牌屋的方法数（https://leetcode.cn/problems/number-of-ways-to-build-house-of-cards/）转换为01背包求解
 
 ===================================洛谷===================================
 P1048 采药（https://www.luogu.com.cn/problem/P1048）一维背包DP，数量有限，从后往前遍历

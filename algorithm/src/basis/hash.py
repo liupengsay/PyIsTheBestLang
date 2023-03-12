@@ -9,6 +9,8 @@ from typing import List
 
 ===================================力扣===================================
 2143. 在两个数组的区间中选取数字（https://leetcode.cn/problems/choose-numbers-from-two-arrays-in-range/）前缀和哈希计数转换为求连续子数组和为 0 的个数
+面试题 17.05.  字母与数字（https://leetcode.cn/problems/find-longest-subarray-lcci/）和为0的最长连续子数组，使用前缀和哈希求解
+1590. 使数组和能被 P 整除（https://leetcode.cn/problems/make-sum-divisible-by-p/）求和模p与整个子数组模p相等的最短子数组，使用前缀和哈希求解
 
 ===================================洛谷===================================
 P2697 宝石串（https://www.luogu.com.cn/problem/P2697）哈希记录前缀和与对应索引

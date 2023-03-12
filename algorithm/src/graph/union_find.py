@@ -16,6 +16,7 @@
 2158. 每天绘制新区域的数量（https://leetcode.cn/problems/amount-of-new-area-painted-each-day/）使用并查集维护区间左端点，不断进行合并
 2157. 字符串分组（https://leetcode.cn/problems/groups-of-strings/）利用字母的有限数量进行变换枚举分组
 2076. 处理含限制条件的好友请求（https://leetcode.cn/problems/process-restricted-friend-requests/）使用并查集变种，维护群体的不喜欢关系
+2459. 通过移动项目到空白区域来排序数组（https://leetcode.cn/problems/sort-array-by-moving-items-to-empty-space/）置换环经典题目
 
 
 ===================================洛谷===================================
