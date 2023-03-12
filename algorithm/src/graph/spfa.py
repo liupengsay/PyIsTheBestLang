@@ -1,5 +1,6 @@
 import unittest
 from collections import deque
+from typing import List
 
 from algorithm.src.fast_io import FastIO
 
@@ -236,6 +237,34 @@ class Solution:
         else:
             ac.st("No")
         return
+
+    @staticmethod
+    def lc_6318(tasks: List[List[int]]) -> int:
+        # 模板：差分约束转换为负环判断求解
+        n = max(it[1] for it in tasks)
+        dct = [dict() for _ in range(n + 2)]
+
+        # 邻项约束
+        for i in range(1, n + 1):
+            dct[i][i - 1] = 0
+            dct[i - 1][i] = 1
+
+        # 条件约束
+        for s, e, c in tasks:
+            if s-1 not in dct[e]:
+                dct[e][s - 1] = -c
+            else:
+                # 注意重边的约束
+                k = dct[e][s - 1]
+                dct[e][s - 1] = k if k < -c else -c
+
+        # 超级源点
+        for i in range(n + 1):
+            dct[n + 1][i] = 0
+
+        _, dis, _ = SPFA().negative_circle(dct, n + 1)
+        return dis[n] - dis[0]
+
 
 class TestGeneral(unittest.TestCase):
 
