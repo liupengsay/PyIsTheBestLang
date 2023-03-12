@@ -4,7 +4,7 @@ from collections import deque
 from algorithm.src.fast_io import FastIO
 
 """
-算法：SPFA：路径边数优先的广度优先搜索（可以使用带负权值）也可以计算最短路
+算法：SPFA路径边数优先的广度优先搜索（可以使用带负权值）也可以计算最短路、差分约束
 
 功能：SPFA（Shortest Path Faster Algorithm）是一种用于计算单源最短路径的算法。它通过使用队列和松弛操作来不断更新路径长度，从而更快地找到最短路径。
 
@@ -16,15 +16,21 @@ from algorithm.src.fast_io import FastIO
 功能：SPFA 算法是一种简单易用的最短路径算法，它通过使用队列和松弛操作来快速求解单源最短路径问题。它的时间复杂度与输入图的稠密程度有关，并且容易陷入死循环，因此需要注意这些问题。
 Dijkstra：路径权值优先的深度优先搜索（只适用正权值）
 
-参考题目：
+题目：
+===================================力扣===================================
+
 
 ===================================洛谷===================================
 P3385 负环（https://www.luogu.com.cn/problem/P3385）通过最短路径更新的边数来计算从起点出发是否存在负环
 P1938 [USACO09NOV]Job Hunt S（https://www.luogu.com.cn/problem/P1938）使用负环判断正环，以及使用最短路求最长路即最大正权路径值
 P2136 拉近距离（https://www.luogu.com.cn/problem/P2136）计算可能有负权环的最短距离
 P2648 赚钱（https://www.luogu.com.cn/problem/P2648）判断是否存在正权环以及最长路
-
 P1144 最短路计数（https://www.luogu.com.cn/problem/P1144）计算最短路的条数
+
+P1993 小 K 的农场（https://www.luogu.com.cn/problem/P1993）差分约束判断是否存在负环
+
+参考：
+差分约束（https://oi-wiki.org/graph/diff-constraints/）
 """
 
 
@@ -33,7 +39,7 @@ class SPFA:
         return
 
     @staticmethod
-    def negtive_circle(dct, src=0, initial=0):
+    def negative_circle(dct, src=0, initial=0):
         # 模板: 判断是否存在负环与求解最短路（正数取反即可判断是否存在正权环以及最长路）
         n = len(dct)
         # 初始化距离
@@ -146,7 +152,7 @@ class Solution:
             dct[j][k] = -(d - t)
         res = -ac.inf
         for s in range(c):
-            ans, dis, _ = SPFA().negtive_circle(dct, s, -d)
+            ans, dis, _ = SPFA().negative_circle(dct, s, -d)
             if ans == "YES":
                 ac.st("orz")
                 return
@@ -164,8 +170,8 @@ class Solution:
             a -= 1
             b -= 1
             dct[a][b] = ac.min(dct[a].get(a, ac.inf), -c)
-        ans1, dis1, _ = SPFA().negtive_circle(dct, 0)
-        ans2, dis2, _ = SPFA().negtive_circle(dct, n - 1)
+        ans1, dis1, _ = SPFA().negative_circle(dct, 0)
+        ans2, dis2, _ = SPFA().negative_circle(dct, n - 1)
         ac.st("Forever love" if ans1 == "YES" or ans2 == "YES" else ac.min(dis1[n - 1], dis2[0]))
         return
 
@@ -182,7 +188,7 @@ class Solution:
                 dct[u][v] = ac.min(dct[u].get(v, ac.inf), w)
                 if w >= 0:
                     dct[v][u] = ac.min(dct[v].get(u, ac.inf), w)
-            ans, _, _ = SPFA().negtive_circle(dct)
+            ans, _, _ = SPFA().negative_circle(dct)
             ac.st(ans)
         return
 
@@ -201,24 +207,49 @@ class Solution:
             j -= 1
             k -= 1
             dct[j][k] = -(d - t)
-        ans, dis, _ = SPFA().negtive_circle(dct, s, -d)
+        ans, dis, _ = SPFA().negative_circle(dct, s, -d)
         ac.st(-1 if ans == "YES" else -min(dis))
         return
 
+    @staticmethod
+    def lg_p1993(ac=FastIO()):
+        # 模板：差分约束转换为负环判断求解
+        n, m = ac.read_ints()
+        dct = [dict() for _ in range(n+1)]
+        for i in range(1, n + 1):
+            dct[0][i] = 0
+        for _ in range(m):
+            lst = ac.read_list_ints()
+            if lst[0] == 1:
+                a, b, c = lst[1:]
+                dct[a][b] = -c
+            elif lst[0] == 2:
+                a, b, c = lst[1:]
+                dct[b][a] = c
+            else:
+                a, b = lst[1:]
+                dct[a][b] = 0
+                dct[b][a] = 0
+        ans, _, _ = SPFA().negative_circle(dct)
+        if ans == "NO":
+            ac.st("Yes")
+        else:
+            ac.st("No")
+        return
 
 class TestGeneral(unittest.TestCase):
 
     def test_spfa(self):
         dct = [{1: 5, 2: 1}, {3: 4}, {3: 2}, {}]
         spfa = SPFA()
-        res, dis, cnt = spfa.negtive_circle(dct)
+        res, dis, cnt = spfa.negative_circle(dct)
         assert res == "NO"
         assert dis == [0, 5, 1, 3]
         assert cnt == [0, 1, 1, 2]
 
         dct = [{1: 5, 2: 1}, {3: 4}, {3: 2}, {2: -4}]
         spfa = SPFA()
-        res, _, _ = spfa.negtive_circle(dct)
+        res, _, _ = spfa.negative_circle(dct)
         assert res == "YES"
         return
 
