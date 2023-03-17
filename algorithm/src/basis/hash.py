@@ -13,6 +13,7 @@ from typing import List
 1590. 使数组和能被 P 整除（https://leetcode.cn/problems/make-sum-divisible-by-p/）求和模p与整个子数组模p相等的最短子数组，使用前缀和哈希求解
 6317. 统计美丽子数组数目（https://leetcode.cn/contest/weekly-contest-336/problems/count-the-number-of-beautiful-subarrays/）前缀和哈希计数
 题目-02. 销售出色区间（https://leetcode.cn/contest/hhrc2022/problems/0Wx4Pc/）前缀和哈希，加脑筋急转弯贪心
+题目-03. 重复的彩灯树（https://leetcode.cn/contest/hhrc2022/problems/VAc7h3/）二叉树序列化
 
 ===================================洛谷===================================
 P2697 宝石串（https://www.luogu.com.cn/problem/P2697）哈希记录前缀和与对应索引
