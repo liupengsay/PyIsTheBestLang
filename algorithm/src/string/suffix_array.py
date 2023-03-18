@@ -6,7 +6,7 @@ import unittest
 题目：
 
 ===================================力扣===================================
-1754. 构造字典序最大的合并字符串（https://leetcode.cn/problems/largest-merge-of-two-strings/solution/by-liupengsay-fhoo/）
+1754. 构造字典序最大的合并字符串（https://leetcode.cn/problems/largest-merge-of-two-strings/）
 
 ===================================洛谷===================================
 P3809 【模板】后缀排序（https://www.luogu.com.cn/problem/P3809）
@@ -15,11 +15,11 @@ P3809 【模板】后缀排序（https://www.luogu.com.cn/problem/P3809）
 
 
 class SuffixArray:
-    def __init__(self, ind):
+    def __init__(self, ind: dict):
         self.ind = ind
         return
 
-    def doubling(self, s):
+    def get_array(self, s):
         # sa[i]:排名为i的后缀的起始位置
         # rk[i]:起始位置为i的后缀的排名
         # height[i]: 第i名的后缀与它前一名的后缀的最长公共前缀
@@ -89,9 +89,17 @@ class SuffixArray:
                 k = max(0, k - 1)  # 下一个height的值至少从max(0,k-1)开始
         return sa, rk, height
 
-    def largestMerge(self, word1: str, word2: str) -> str:
-        word = word1 + [k for k in self.ind if self.ind[k] == 0][0] + word2
-        sa, rk, height = self.doubling(word)
+
+class Solution:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def lc_1754_1(word1: str, word2: str) -> str:
+        # 模板：后缀数组计算后缀的字典序大小
+        ind = {chr(ord("a") - 1 + i): i for i in range(27)}
+        word = word1 + chr(ord("a")-1) + word2
+        sa, rk, height = SuffixArray(ind).get_array(word)
         m, n = len(word1), len(word2)
         i = 0
         j = 0
@@ -107,15 +115,27 @@ class SuffixArray:
         merge += word2[j:]
         return merge
 
+    @staticmethod
+    def lc_1754_2(word1: str, word2: str) -> str:
+        # 模板：贪心比较后缀的字典序大小
+        merge = ""
+        i = j = 0
+        m, n = len(word1), len(word2)
+        while i < m and j < n:
+            if word1[i:] > word2[j:]:
+                merge += word1[i]
+                i += 1
+            else:
+                merge += word2[j]
+                j += 1
+        merge += word1[i:]
+        merge += word2[j:]
+        return merge
+
 
 class TestGeneral(unittest.TestCase):
 
     def test_suffix_array(self):
-        words = [str(x) for x in range(10)] + [chr(i + ord("A"))
-                                               for i in range(26)] + [chr(i + ord("a")) for i in range(26)]
-        ind = {st: i for i, st in enumerate(words)}
-        nt = SuffixArray(ind)
-        assert nt.largestMerge("abcabc", "abdcaba") == "abdcabcabcaba"
         return
 
 
