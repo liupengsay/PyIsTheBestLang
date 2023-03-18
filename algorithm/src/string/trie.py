@@ -1,3 +1,4 @@
+import math
 import unittest
 from algorithm.src.fast_io import FastIO
 from typing import List
@@ -11,7 +12,7 @@ from collections import Counter
 ===================================力扣===================================
 2416. 字符串的前缀分数和（https://leetcode.cn/problems/sum-of-prefix-scores-of-strings/）单词组前缀计数
 1803. 统计异或值在范围内的数对有多少（https://leetcode.cn/problems/count-pairs-with-xor-in-a-range/）经典01Trie，查询异或值在一定范围的数组对
-677. 键值映射（https://leetcode.cn/problems/map-sum-pairs/）
+677. 键值映射（https://leetcode.cn/problems/map-sum-pairs/）更新与查询给定字符串作为单词键前缀的对应值的和
 2479. 两个不重叠子树的最大异或值（https://leetcode.cn/problems/maximum-xor-of-two-non-overlapping-subtrees/）01Trie计算最大异或值
 
 ===================================洛谷===================================
@@ -37,7 +38,7 @@ class Node:
         self.count = 0
 
 
-class Trie01Node:
+class TrieZeroOneXorNode:
     def __init__(self):
         # 使用自定义节点实现
         self.root = Node()
@@ -102,7 +103,7 @@ class Trie01Node:
         return val ^ self.cur.data
 
 
-class Trie01Dict:
+class TrieZeroOneXorRange:
     def __init__(self, n):
         # 使用字典数据结构实现
         self.dct = dict()
@@ -152,7 +153,8 @@ class Trie01Dict:
         dfs(0, self.dct, self.n)
         return res
 
-class Trie01DctXor:
+
+class TrieZeroOneXorMax:
     # 模板：使用01Trie维护与查询数组最大异或值
     def __init__(self, n):
         # 使用字典数据结构实现
@@ -187,81 +189,8 @@ class Trie01DctXor:
         return ans
 
 
-class Solution:
-    def __int__(self):
-        return
-
-    @staticmethod
-    def lc_1803(nums: List[int], low: int, high: int) -> int:
-
-        count = Counter(nums)
-
-        # 确定二进制序列的长度
-        big = max(nums)
-        n = 0
-        while (1 << (n + 1)) - 1 < big:
-            n += 1
-        trie = Trie01Dict(n)
-        trie.update(0, 0)
-        # 滚动更新字典树同时查询符合条件的数对个数
-        ans = 0
-        for num in count:
-            ans += count[num]*(trie.query(num, high) - trie.query(num, low - 1))
-            trie.update(num, count[num])
-        return ans
-
-    @staticmethod
-    def cf_706d(ac=FastIO()):
-        q = ac.read_int()
-        trie = Trie01Node()
-        trie.add(0)
-        for _ in range(q):
-            op, x = ac.read_list_strs()
-            if op == "+":
-                trie.add(int(x))
-            elif op == "-":
-                trie.delete(int(x))
-            else:
-                ac.st(trie.query(int(x)))
-        return
-
-    @staticmethod
-    def lc_2479(n: int, edges: List[List[int]], values: List[int]) -> int:
-        dct = [[] for _ in range(n)]
-        for i, j in edges:
-            dct[i].append(j)
-            dct[j].append(i)
-
-        # 预处理子树取值之和
-        def dfs1(x, fa):
-            res = values[x]
-            for y in dct[x]:
-                if y != fa:
-                    dfs1(y, x)
-                    res += son[y]
-            son[x] = res
-            return
-        son = [0] * n
-        dfs1(0, -1)
-
-        def dfs2(x, fa):
-            nonlocal ans
-            cur = trie.query_xor_max(son[x])
-            ans = ans if ans > cur else cur
-            for y in dct[x]:
-                if y != fa:
-                    dfs2(y, x)
-            trie.add(son[x])
-            return
-        # 根据题意使用深搜序和01字典树动态维护查询
-        trie = Trie01DctXor(int(math.log2(sum(values)) + 2))
-        ans = 0
-        dfs2(0, -1)
-        return ans
-    
-    
 class TriePrefixKeyValue:
-    # L677
+    # 模板：更新单词的键值对与查询对应字符串前缀的值的和
     def __init__(self):
         self.dct = dict()
         return
@@ -360,6 +289,129 @@ class TrieBit:
             cur = cur[w]
             cur["cnt"] -= 1
         return
+
+
+class TriePrefixCount:
+    # 模板：更新单词集合，并计算给定字符串作为前缀的单词个数
+    def __init__(self):
+        self.dct = dict()
+        return
+
+    def update(self, word):
+        cur = self.dct
+        for w in word:
+            if w not in cur:
+                cur[w] = dict()
+            cur = cur[w]
+            cur['cnt'] = cur.get("cnt", 0) + 1
+        return
+
+    def query(self, word):
+        cur = self.dct
+        res = 0
+        for w in word:
+            if w not in cur:
+                return False
+            cur = cur[w]
+            res += cur['cnt']
+        return res
+
+    
+class Solution:
+    def __int__(self):
+        return
+
+    @staticmethod
+    def lc_677():
+        # 模板：更新与查询给定字符串作为单词键前缀的对应值的和
+        class MapSum:
+            def __init__(self):
+                self.trie = TriePrefixKeyValue()
+
+            def insert(self, key: str, val: int) -> None:
+                self.trie.update(key, val)
+
+            def sum(self, prefix: str) -> int:
+                return self.trie.query(prefix)
+        MapSum()
+        return
+
+    @staticmethod
+    def lc_1803(nums: List[int], low: int, high: int) -> int:
+        # 模板：使用01字典树查询异或值在有一定范围内的数对个数
+        count = Counter(nums)
+        # 确定二进制序列的长度
+        big = max(nums)
+        n = 0
+        while (1 << (n + 1)) - 1 < big:
+            n += 1
+        trie = TrieZeroOneXorRange(n)
+        trie.update(0, 0)
+        # 滚动更新字典树同时查询符合条件的数对个数
+        ans = 0
+        for num in count:
+            ans += count[num]*(trie.query(num, high) - trie.query(num, low - 1))
+            trie.update(num, count[num])
+        return ans
+
+    @staticmethod
+    def cf_706d(ac=FastIO()):
+        # 模板：使用01字典树增加与删除数字后查询最大异或值
+        q = ac.read_int()
+        trie = TrieZeroOneXorNode()
+        trie.add(0)
+        for _ in range(q):
+            op, x = ac.read_list_strs()
+            if op == "+":
+                trie.add(int(x))
+            elif op == "-":
+                trie.delete(int(x))
+            else:
+                ac.st(trie.query(int(x)))
+        return
+
+    @staticmethod
+    def lc_2479(n: int, edges: List[List[int]], values: List[int]) -> int:
+        # 模板：借助深搜的顺序进行01字典树查询最大异或数对值
+        dct = [[] for _ in range(n)]
+        for i, j in edges:
+            dct[i].append(j)
+            dct[j].append(i)
+
+        # 预处理子树取值之和
+        def dfs1(x, fa):
+            res = values[x]
+            for y in dct[x]:
+                if y != fa:
+                    dfs1(y, x)
+                    res += son[y]
+            son[x] = res
+            return
+        son = [0] * n
+        dfs1(0, -1)
+
+        def dfs2(x, fa):
+            nonlocal ans
+            cur = trie.query_xor_max(son[x])
+            ans = ans if ans > cur else cur
+            for y in dct[x]:
+                if y != fa:
+                    dfs2(y, x)
+            trie.add(son[x])
+            return
+        # 根据题意使用深搜序和01字典树动态维护查询
+        trie = TrieZeroOneXorMax(int(math.log2(sum(values)) + 2))
+        ans = 0
+        dfs2(0, -1)
+        return ans
+    
+    @staticmethod
+    def lc_2416(words: List[str]) -> List[int]:
+        trie = TriePrefixCount()
+        for word in words:
+            trie.update(word)
+        return [trie.query(word) for word in words]
+
 
 
 class TestGeneral(unittest.TestCase):
