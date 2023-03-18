@@ -1,5 +1,7 @@
 import unittest
 
+from algorithm.src.fast_io import FastIO
+
 """
 算法：后缀数组
 功能：生成字符串的后缀排序
@@ -10,6 +12,7 @@ import unittest
 
 ===================================洛谷===================================
 P3809 【模板】后缀排序（https://www.luogu.com.cn/problem/P3809）
+
 参考：OI WiKi（https://oi-wiki.org/string/sa/）
 """
 
@@ -131,6 +134,18 @@ class Solution:
         merge += word1[i:]
         merge += word2[j:]
         return merge
+
+    @staticmethod
+    def lg_3809(ac=FastIO()):
+        # 模板：计算数组的后缀排序
+        words = [str(x) for x in range(10)] + [chr(i + ord("A")) for i in range(26)] + [chr(i + ord("a")) for i in
+                                                                                        range(26)]
+        ind = {st: i for i, st in enumerate(words)}
+        s = ac.read_str()
+        sa = SuffixArray(ind)
+        ans, _, _ = sa.get_array(s)
+        ac.lst([x + 1 for x in ans])
+        return
 
 
 class TestGeneral(unittest.TestCase):
