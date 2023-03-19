@@ -12,6 +12,7 @@ from algorithm.src.fast_io import FastIO
 
 ===================================力扣===================================
 149. 直线上最多的点数（https://leetcode.cn/problems/max-points-on-a-line/）用直线斜率判断一条线上最多的点数
+面试题 16.03. 交点（https://leetcode.cn/problems/intersection-lcci/）计算两条线段最靠左靠下的交点
 
 ===================================洛谷===================================
 P1665 正方形计数（https://www.luogu.com.cn/problem/P1665）枚举正方形对角线顶点计算可行个数
@@ -96,10 +97,39 @@ class Geometry:
         # 可用于判断点与三角形的位置关系
         return abs((x1 * y2 - x2 * y1) + (x2 * y3 - x3 * y2) + (x3 * y1 - x1 * y3)) / 2
 
+    @staticmethod
+    def line_intersection_line(start1: List[int], end1: List[int], start2: List[int], end2: List[int]) -> List[float]:
+        # 模板：计算两条线段最靠下最靠左的交点，没有交点则返回空
+        x1, y1 = start1
+        x2, y2 = end1
+        x3, y3 = start2
+        x4, y4 = end2
+        det = lambda a, b, c, d: a * d - b * c
+        d = det(x1 - x2, x4 - x3, y1 - y2, y4 - y3)
+        p = det(x4 - x2, x4 - x3, y4 - y2, y4 - y3)
+        q = det(x1 - x2, x4 - x2, y1 - y2, y4 - y2)
+        if d != 0:
+            lam, eta = p / d, q / d
+            if not (0 <= lam <= 1 and 0 <= eta <= 1):
+                return []
+            return [lam * x1 + (1 - lam) * x2, lam * y1 + (1 - lam) * y2]
+        if p != 0 or q != 0:
+            return []
+        t1, t2 = sorted([start1, end1]), sorted([start2, end2])
+        if t1[1] < t2[0] or t2[1] < t1[0]:
+            return []
+        return max(t1[0], t2[0])
+
 
 class Solution:
     def __init__(self):
         return
+
+    @staticmethod
+    def lc_1603(start1: List[int], end1: List[int], start2: List[int], end2: List[int]) -> List[float]:
+        # 模板：计算两条线段之间的最靠左靠下的交点
+        gm = Geometry()
+        return gm.line_intersection_line(start1, end1, start2, end2)
 
     @staticmethod
     def lc_149(points: List[List[int]]) -> int:
