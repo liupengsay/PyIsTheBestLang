@@ -13,6 +13,7 @@ from algorithm.src.fast_io import FastIO
 ===================================力扣===================================
 149. 直线上最多的点数（https://leetcode.cn/problems/max-points-on-a-line/）用直线斜率判断一条线上最多的点数
 面试题 16.03. 交点（https://leetcode.cn/problems/intersection-lcci/）计算两条线段最靠左靠下的交点
+面试题 16.14. 最佳直线（https://leetcode.cn/problems/best-line-lcci/）用直线斜率判断一条线上最多的点数
 
 ===================================洛谷===================================
 P1665 正方形计数（https://www.luogu.com.cn/problem/P1665）枚举正方形对角线顶点计算可行个数
