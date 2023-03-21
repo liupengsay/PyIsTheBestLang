@@ -118,6 +118,7 @@ class SparseTable2:
         else:
             return math.gcd(a, b)
 
+
 class Solution:
     def __init__(self):
         return

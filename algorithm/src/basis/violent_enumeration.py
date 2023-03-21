@@ -75,6 +75,7 @@ D. Zigzags（https://codeforces.com/problemset/problem/1400/D）枚举+二分
 D. Moscow Gorillas（https://codeforces.com/contest/1793/problem/D）枚举计数
 D. Dima and Lisa（https://codeforces.com/problemset/problem/584/D）确定一个质数3，枚举第二三个质数，小于 10**9 的任何数都可以分解为最多三个质数的和
 D. Three Integers（https://codeforces.com/problemset/problem/1311/D）根据题意，确定一个上限值，贪心枚举
+C. Flag（https://codeforces.com/problemset/problem/1181/C）按列进行枚举
 
 参考：OI WiKi（xx）
 """
