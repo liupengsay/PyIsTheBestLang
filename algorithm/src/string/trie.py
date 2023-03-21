@@ -14,7 +14,7 @@ from collections import Counter
 1803. 统计异或值在范围内的数对有多少（https://leetcode.cn/problems/count-pairs-with-xor-in-a-range/）经典01Trie，查询异或值在一定范围的数组对
 677. 键值映射（https://leetcode.cn/problems/map-sum-pairs/）更新与查询给定字符串作为单词键前缀的对应值的和
 2479. 两个不重叠子树的最大异或值（https://leetcode.cn/problems/maximum-xor-of-two-non-overlapping-subtrees/）01Trie计算最大异或值
-
+面试题 17.17. 多次搜索（https://leetcode.cn/problems/multi-search-lcci/）AC自动机计数，也可直接使用字典树逆向思维，字典树存关键字，再搜索文本，和单词矩阵一样的套路
 ===================================洛谷===================================
 P8306 字典树（https://www.luogu.com.cn/problem/P8306）
 P4551 最长异或路径（https://www.luogu.com.cn/problem/P4551）关键是利用异或的性质，将任意根节点作为中转站
@@ -291,6 +291,32 @@ class TrieBit:
         return
 
 
+class TrieKeyWordSearchInText:
+    def __init__(self):
+        self.dct = dict()
+        return
+
+    def add_key_word(self, word, i):
+        cur = self.dct
+        for w in word:
+            if w not in cur:
+                cur[w] = dict()
+            cur = cur[w]
+        cur["isEnd"] = i
+
+    def search_text(self, text):
+        cur = self.dct
+        res = []
+        for w in text:
+            if w in cur:
+                cur = cur[w]
+                if "isEnd" in cur:
+                    res.append(cur["isEnd"])
+            else:
+                break
+        return res
+
+
 class TriePrefixCount:
     # 模板：更新单词集合，并计算给定字符串作为前缀的单词个数
     def __init__(self):
@@ -320,6 +346,20 @@ class TriePrefixCount:
 class Solution:
     def __int__(self):
         return
+
+    @staticmethod
+    def lc_1717(big: str, smalls: List[str]) -> List[List[int]]:
+        # 模板：AC自动机类似题目，查询关键词在文本中的出现索引
+        trie = TrieKeyWordSearchInText()
+        for i, word in enumerate(smalls):
+            trie.add_key_word(word, i)
+
+        ans = [[] for _ in smalls]
+        n = len(big)
+        for i in range(n):
+            for j in trie.search_text(big[i:]):
+                ans[j].append(i)
+        return ans
 
     @staticmethod
     def lc_677():
