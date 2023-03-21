@@ -1,10 +1,19 @@
-"""
 
-"""
+import unittest
+
+from collections import defaultdict
+
+from queue import Queue
+from typing import List, Dict, Iterable
+
+
 """
 算法：AC自动机
 功能：KMP加Trie的结合应用，用关键词建立字典树，再查询文本中关键词的出现次数
 题目：
+
+===================================力扣===================================
+面试题 17.17. 多次搜索（https://leetcode.cn/problems/multi-search-lcci/）AC自动机计数，也可直接使用字典树
 
 ===================================洛谷===================================
 P3808 【模板】AC 自动机（简单版）（https://www.luogu.com.cn/problem/P3808）AC自动机计数
@@ -13,36 +22,6 @@ P5357 【模板】AC自动机（二次加强版）（https://www.luogu.com.cn/pr
 
 参考：OI WiKi（xx）
 """
-
-import bisect
-import random
-import re
-import unittest
-
-from typing import List
-import heapq
-import math
-from collections import defaultdict, Counter, deque
-from functools import lru_cache
-from itertools import combinations
-from sortedcontainers import SortedList, SortedDict, SortedSet
-
-from sortedcontainers import SortedDict
-from functools import reduce
-from operator import xor
-from functools import lru_cache
-
-import random
-from itertools import permutations, combinations
-import numpy as np
-
-from decimal import Decimal
-
-import heapq
-import copy
-
-from queue import Queue
-from typing import List, Dict, Iterable
 
 
 class AhoCorasick(object):
@@ -138,19 +117,17 @@ class AhoCorasick(object):
         return result
 
 
-
-from collections import defaultdict
-
-class TrieNode():
+class TrieNode:
     def __init__(self):
         self.child = {}
-        self.failto = None
+        self.fail_to = None
         self.is_word = False
         '''
         下面节点值可以根据具体场景进行赋值
         '''
         self.str_ = ''
         self.num = 0
+
 
 class AhoCorasickAutomation:
     def __init__(self):
@@ -159,8 +136,8 @@ class AhoCorasickAutomation:
         """
         self.root = TrieNode()
 
-    def buildTrieTree(self, wordlst):
-        for word in wordlst:
+    def build_trie_tree(self, word_lst):
+        for word in word_lst:
             cur = self.root
             for i, c in enumerate(word):
                 if c not in cur.child:
@@ -171,31 +148,31 @@ class AhoCorasickAutomation:
             cur.is_word = True
             cur.num += 1
 
-    def build_AC_from_Trie(self):
+    def build_ac_from_trie(self):
         queue = []
         for child in self.root.child:
-            self.root.child[child].failto = self.root
+            self.root.child[child].fail_to = self.root
             queue.append(self.root.child[child])
 
         while len(queue) > 0:
             cur = queue.pop(0)
             for child in cur.child.keys():
-                failto = cur.failto
+                fail_to = cur.fail_to
                 while True:
-                    if failto == None:
-                        cur.child[child].failto = self.root
+                    if not fail_to:
+                        cur.child[child].fail_to = self.root
                         break
-                    if child in failto.child:
-                        cur.child[child].failto = failto.child[child]
+                    if child in fail_to.child:
+                        cur.child[child].fail_to = fail_to.child[child]
                         break
                     else:
-                        failto = failto.failto
+                        fail_to = fail_to.fail_to
                 queue.append(cur.child[child])
 
     def ac_search(self, str_):
         cur = self.root
         result = defaultdict(int)
-        # result = {}
+        dct = {}  # 输出具体索引
         i = 0
         n = len(str_)
         while i < n:
@@ -205,28 +182,40 @@ class AhoCorasickAutomation:
                 if cur.is_word:
                     temp = cur.str_
                     result[temp] += 1
-                    # result.setdefault(temp, [])
-                    # result[temp].append([i - len(temp) + 1, i, cur.num])
+                    dct.setdefault(temp, [])
+                    dct[temp].append(i - len(temp) + 1)
 
                 '''
                 处理所有其他长度公共字串
                 '''
-                fl = cur.failto
+                fl = cur.fail_to
                 while fl:
                     if fl.is_word:
                         temp = fl.str_
                         result[temp] += 1
-                        # result.setdefault(temp, [])
-                        # result[temp].append([i - len(temp) + 1, i, cur.failto.num])
-                    fl = fl.failto
+                        dct.setdefault(temp, [])
+                        dct[temp].append(i - len(temp) + 1)
+                    fl = fl.fail_to
                 i += 1
 
             else:
-                cur = cur.failto
-                if cur == None:
+                cur = cur.fail_to
+                if not cur:
                     cur = self.root
                     i += 1
-        return result
+        return result, dct
+
+
+class Solution:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def lc_1717(big: str, smalls: List[str]) -> List[List[int]]:
+        # 模板：AC自动机匹配关键词在文本中出现的位置信息
+        auto = AhoCorasick(smalls)
+        dct = auto.search_in(big)
+        return [dct.get(w, []) for w in smalls]
 
 
 class TestGeneral(unittest.TestCase):
@@ -236,14 +225,16 @@ class TestGeneral(unittest.TestCase):
         keywords = ["i","is", "ssippi"]
         auto = AhoCorasick(keywords)
         text = "misissippi"
-        assert auto.search_in(text) == {"i": [1, 3, 6, 9], "is": [1, 3], "ssippi": [4]}
+        ans = auto.search_in(text)
+        assert ans == {"i": [1, 3, 6, 9], "is": [1, 3], "ssippi": [4]}
 
-        acTree = AhoCorasickAutomation()
-        acTree.buildTrieTree(["i", "is", "ssippi"])
-        acTree.build_AC_from_Trie()
-        assert acTree.ac_search("misissippi") == {"i": 4, "is": 2, "ssippi": 1}
+        ac_tree = AhoCorasickAutomation()
+        ac_tree.build_trie_tree(["i", "is", "ssippi"])
+        ac_tree.build_ac_from_trie()
+        res, dct = ac_tree.ac_search("misissippi")
+        assert res == {"i": 4, "is": 2, "ssippi": 1}
+        assert dct == ans
         return
-
 
 
 if __name__ == '__main__':
