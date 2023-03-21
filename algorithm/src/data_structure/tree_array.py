@@ -95,6 +95,31 @@ class TreeArrayPrefixMax:
         return
 
 
+class TreeArrayPrefixMin:
+    # 模板：树状数组维护数组前缀最小值
+    def __init__(self, n):
+        # 索引从 1 到 n
+        self.inf = float("inf")
+        self.t = [self.inf] * (n + 1)
+
+    @staticmethod
+    def lowest_bit(i):
+        return i & (-i)
+
+    def query(self, i):
+        mi = self.inf
+        while i:
+            mi = mi if mi < self.t[i] else self.t[i]
+            i -= self.lowest_bit(i)
+        return mi
+
+    def update(self, i, mi):
+        while i < len(self.t):
+            self.t[i] = self.t[i] if self.t[i] < mi else mi
+            i += self.lowest_bit(i)
+        return
+    
+    
 class Solution:
     def __init__(self):
         return
@@ -132,8 +157,11 @@ class TestGeneral(unittest.TestCase):
         ceil = 1000
         nums = [random.randint(0, ceil) for _ in range(ceil)]
         tars = TreeArrayRangeSum(ceil)
+        pm = TreeArrayPrefixMin(ceil)
         for i in range(ceil):
             tars.update_range(i + 1, i + 1, nums[i])
+            pm.update(i+1, nums[i])
+            assert pm.query(i + 1) == min(nums[:i + 1])
 
         for _ in range(ceil):
             d = random.randint(-ceil, ceil)
@@ -144,6 +172,7 @@ class TestGeneral(unittest.TestCase):
             left = random.randint(0, ceil - 1)
             right = random.randint(left, ceil - 1)
             assert sum(nums[left: right + 1]) == tars.get_sum_range(left + 1, right + 1)
+
 
 
 if __name__ == '__main__':
