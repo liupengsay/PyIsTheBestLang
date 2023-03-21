@@ -174,6 +174,5 @@ class TestGeneral(unittest.TestCase):
             assert sum(nums[left: right + 1]) == tars.get_sum_range(left + 1, right + 1)
 
 
-
 if __name__ == '__main__':
     unittest.main()
