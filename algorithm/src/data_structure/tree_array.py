@@ -1,5 +1,6 @@
 import random
 import unittest
+from typing import List
 
 from algorithm.src.fast_io import FastIO
 
@@ -9,6 +10,7 @@ from algorithm.src.fast_io import FastIO
 题目：
 
 ===================================力扣===================================
+1626. 无矛盾的最佳球队（https://leetcode.cn/problems/best-team-with-no-conflicts/）树状数组维护前缀最大值，也可使用动态规划求解
 
 ===================================洛谷===================================
 P2068 统计和（https://www.luogu.com.cn/problem/P2068）单点更新与区间求和
@@ -69,6 +71,30 @@ class TreeArrayRangeSum:
         return a - b
 
 
+class TreeArrayPrefixMax:
+    # 模板：树状数组维护数组前缀最大值
+    def __init__(self, n):
+        # 索引从 1 到 n
+        self.t = [0] * (n + 1)
+
+    @staticmethod
+    def lowest_bit(i):
+        return i & (-i)
+
+    def query(self, i):
+        mx = 0
+        while i:
+            mx = mx if mx > self.t[i] else self.t[i]
+            i -= self.lowest_bit(i)
+        return mx
+
+    def update(self, i, mx):
+        while i < len(self.t):
+            self.t[i] = self.t[i] if self.t[i] > mx else mx
+            i += self.lowest_bit(i)
+        return
+
+
 class Solution:
     def __init__(self):
         return
@@ -87,6 +113,16 @@ class Solution:
             else:
                 ac.st(tree.get_sum_range(a, b))
         return
+
+    @staticmethod
+    def lc_1626(scores: List[int], ages: List[int]) -> int:
+        # 模板：动态规划与树状数组维护前缀最大值
+        n = max(ages)
+        tree_array = TreeArrayPrefixMax(n)
+        for score, age in sorted(zip(scores, ages)):
+            cur = tree_array.query(age) + score
+            tree_array.update(age, cur)
+        return tree_array.query(n)
 
 
 class TestGeneral(unittest.TestCase):
