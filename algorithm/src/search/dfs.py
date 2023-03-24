@@ -1,5 +1,7 @@
 
 import unittest
+import bisect
+from collections import defaultdict
 
 from typing import List
 
@@ -40,6 +42,8 @@ P5318 【深基18.例3】查找文献（https://www.luogu.com.cn/problem/P5318�
 P6691 选择题（https://www.luogu.com.cn/problem/P6691）染色法，进行二分图可行性方案计数与最大最小染色
 P7370 [COCI2018-2019#4] Wand（https://www.luogu.com.cn/problem/P7370）所有可能的祖先节点，注意特别情况没有任何祖先节点则自身可达
 
+================================CodeForces================================
+D. Tree Requests（https://codeforces.com/contest/570/problem/D）dfs序与二分查找
 
 参考：OI WiKi（xx）
 """
@@ -252,6 +256,58 @@ class Solution:
         for i in range(1, n):
             diff[i] += diff[i - 1]
         return sum(x >= k for x in diff)
+
+    @staticmethod
+    def cf_570d(ac=FastIO()):
+        # 模板：使用dfs序与二分进行计数统计
+        n, m = ac.read_list_ints()
+        parent = ac.read_list_ints()
+        edge = [[] for _ in range(n)]
+        for i in range(n - 1):
+            edge[parent[i] - 1].append(i + 1)
+        del parent
+        s = ac.read_str()
+
+        # 模板：生成深搜序即 dfs 序以及对应子树编号区间
+        @ac.bootstrap
+        def dfs(x, h):
+            nonlocal order, ceil
+            ceil = ac.max(ceil, h)
+            start = order
+            order += 1
+            while len(dct) < h + 1:
+                dct.append(defaultdict(list))
+            dct[h][s[x]].append(order - 1)
+            for y in edge[x]:
+                yield dfs(y, h + 1)
+            interval[x] = [start, order - 1]
+            yield
+
+        # 计算高度与深搜区间
+        order = 0
+        ceil = 0
+        # 存储字符对应的高度以及dfs序
+        dct = []
+        interval = [[] for _ in range(n)]
+        dfs(0, 1)
+        del s
+        del edge
+
+        for _ in range(m):
+            v, he = ac.read_ints_minus_one()
+            he += 1
+            if he > ceil:
+                ac.st("Yes")
+                continue
+            low, high = interval[v]
+            odd = 0
+            for w in dct[he]:
+                cur = bisect.bisect_right(dct[he][w], high) - bisect.bisect_left(dct[he][w], low)
+                odd += cur % 2
+                if odd >= 2:
+                    break
+            ac.st("Yes" if odd <= 1 else "No")
+        return
 
 
 class TestGeneral(unittest.TestCase):
