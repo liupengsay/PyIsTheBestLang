@@ -49,6 +49,8 @@ D. Distance in Tree（https://codeforces.com/problemset/problem/161/D）树形DP
 C. Uncle Bogdan and Country Happiness（https://codeforces.com/problemset/problem/1388/C）树形DP模拟计算，递归获取子树信息，逆向从上往下还原
 F. Maximum White Subtree（https://codeforces.com/problemset/problem/1324/F）经典换根DP题，两遍dfs搜索更新计算
 D. Book of Evil（https://codeforces.com/problemset/problem/337/D）经典换根DP题，两遍dfs搜索更新计算
+E. Tree Painting（https://codeforces.com/problemset/problem/1187/E）经典换根DP题，两遍dfs搜索更新计算
+
 
 参考：OI WiKi（xx）
 """
@@ -471,6 +473,45 @@ class Solution:
             # 计算直径或者是get_diameter_bfs都可以
             ans[TreeDiameter().get_diameter_dfs(dct)] += 1
         return ans[1:]
+
+    @staticmethod
+    def cf_1187e(ac=FastIO()):
+        # 模板：经典换根DP题计算最佳结果
+        n = ac.read_int()
+        edge = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            u, v = ac.read_list_ints_minus_one()
+            edge[u].append(v)
+            edge[v].append(u)
+
+        @ac.bootstrap
+        def dfs(i, fa):
+            for j in edge[i]:
+                if j != fa:
+                    yield dfs(j, i)
+                    down[i] += down[j]
+                    son[i] += son[j]
+            son[i] += 1
+            down[i] += son[i]
+            yield
+
+        down = [0] * n
+        son = [0] * n
+        dfs(0, -1)
+
+        @ac.bootstrap
+        def dfs2(i, fa, pre):
+            up[i] = pre
+            res = sum(down[j] for j in edge[i] if j != fa)
+            for j in edge[i]:
+                if j != fa:
+                    yield dfs2(j, i, (n - son[j]) + pre + (res - down[j]))
+            yield
+
+        up = [0] * n
+        dfs2(0, -1, 0)
+        ac.st(max(up[i] + (down[i] - son[i]) + n for i in range(n)))
+        return
 
 
 class TestGeneral(unittest.TestCase):
