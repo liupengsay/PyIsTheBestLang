@@ -53,7 +53,9 @@ class ManacherPlindrome:
         arm = [0] * n
         left, right = 0, -1
         for i in range(0, n):
-            k = 1 if i > right else min(arm[left + right - i], right - i + 1)
+            a, b = arm[left + right - i], right - i + 1
+            a = a if a < b else b
+            k = 1 if i > right else a
 
             # 持续增加回文串的长度
             while 0 <= i - k and i + k < n and s[i - k] == s[i + k]:
