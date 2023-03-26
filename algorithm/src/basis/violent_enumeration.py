@@ -76,6 +76,7 @@ D. Moscow Gorillas（https://codeforces.com/contest/1793/problem/D）枚举计�
 D. Dima and Lisa（https://codeforces.com/problemset/problem/584/D）确定一个质数3，枚举第二三个质数，小于 10**9 的任何数都可以分解为最多三个质数的和
 D. Three Integers（https://codeforces.com/problemset/problem/1311/D）根据题意，确定一个上限值，贪心枚举
 C. Flag（https://codeforces.com/problemset/problem/1181/C）按列进行枚举
+B. Maximum Value（https://codeforces.com/problemset/problem/484/B）排序后进行枚举，并使用二分查找进行确认
 
 参考：OI WiKi（xx）
 """
@@ -170,6 +171,32 @@ class Solution:
                 ans = ans if ans > x else x
             return ans
         return check2()
+
+    @staticmethod
+    def cf_484b(ac=FastIO()):
+        # 模板：查询数组中两两取模运算的最大值（要求较小值作为取模数）
+        ac.read_int()
+        nums = sorted(list(set(ac.read_list_ints())))
+        n = len(nums)
+        ceil = nums[-1]
+
+        dp = [0] * (ceil + 1)
+        i = 0
+        for x in range(1, ceil + 1):
+            dp[x] = dp[x - 1]
+            while i < n and nums[i] <= x:
+                dp[x] = nums[i]
+                i += 1
+
+        ans = 0
+        for num in nums:
+            x = 1
+            while x * num <= ceil:
+                x += 1
+                for a in [x * num - 1]:
+                    ans = ac.max(ans, dp[ac.min(a, ceil)] % num)
+        ac.st(ans)
+        return
 
 
 class ViolentEnumeration:
