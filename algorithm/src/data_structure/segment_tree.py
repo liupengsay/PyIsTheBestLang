@@ -35,7 +35,7 @@ P3372 【模板】线段树 1（https://www.luogu.com.cn/problem/P3372）区间�
 
 https://codeforces.com/problemset/problem/482/B（区间按位或赋值、按位与查询）
 C. Sereja and Brackets（https://codeforces.com/problemset/problem/380/C）线段树查询区间内所有合法连续子序列括号串的总长度
-
+C. Circular RMQ（https://codeforces.com/problemset/problem/52/C）线段树更新和查询循环数组区间最小值
 参考：OI WiKi（xx）
 """
 

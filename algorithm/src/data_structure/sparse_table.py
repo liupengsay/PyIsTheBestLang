@@ -1,6 +1,8 @@
 import math
 import random
 import unittest
+import bisect
+from collections import defaultdict
 from functools import reduce
 
 from algorithm.src.fast_io import FastIO
@@ -26,6 +28,7 @@ D. Max GEQ Sum（https://codeforces.com/problemset/problem/1691/D）单调栈枚
 D. Friends and Subsequences（https://codeforces.com/problemset/problem/689/D）根据单调性使用二分加ST表进行个数计算
 D. Yet Another Yet Another Task（https://codeforces.com/problemset/problem/1359/D）单调栈枚举加ST表最大值最小值查询
 B. Integers Have Friends（https://codeforces.com/problemset/problem/1548/B）ST表查询区间gcd并枚举数组开头，二分确定长度
+474F（https://codeforces.com/problemset/problem/474/F）稀疏表计算最小值和gcd，并使用二分查找计数
 
 参考：OI WiKi（xx）
 """
@@ -131,6 +134,27 @@ class Solution:
         for _ in range(m):
             x, y = ac.read_ints()
             ac.st(st.query(x, y))
+        return
+
+    @staticmethod
+    def cf_474f(ac=FastIO()):
+        # 模板：使用稀疏表查询静态区间 gcd 与最小值
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        dct = defaultdict(list)
+        for i, num in enumerate(nums):
+            dct[num].append(i)
+        st_gcd = SparseTable1(nums, "gcd")
+        st_min = SparseTable1(nums, "min")
+        for _ in range(ac.read_int()):
+            x, y = ac.read_ints_minus_one()
+            num1 = st_gcd.query(x + 1, y + 1)
+            num2 = st_min.query(x + 1, y + 1)
+            if num1 == num2:
+                res = bisect.bisect_right(dct[num1], y) - bisect.bisect_left(dct[num1], x)
+                ac.st(y - x + 1 - res)
+            else:
+                ac.st(y - x + 1)
         return
 
 
