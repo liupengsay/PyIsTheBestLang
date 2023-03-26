@@ -52,6 +52,7 @@ G2. Teleporters (Hard Version)（https://codeforces.com/problemset/problem/1791/
 D. Multiplication Table（https://codeforces.com/problemset/problem/448/D）经典二分查找计算n*m的乘法表第k大元素
 D. Cleaning the Phone（https://codeforces.com/problemset/problem/1475/D）贪心排序，前缀和枚举二分
 D. Odd-Even Subsequence（https://codeforces.com/problemset/problem/1370/D）利用单调性二分，再使用贪心check
+D. Max Median（https://codeforces.com/problemset/problem/1486/D）利用单调性二分，再使用经典哈希前缀和计算和为正数的最长连续子序列
 
 参考：OI WiKi（xx）
 """
@@ -267,6 +268,41 @@ class Solution:
             return get_kth_num(s // 2 + 1)
         else:
             return (get_kth_num(s // 2 + 1) + get_kth_num(s // 2)) / 2
+
+    @staticmethod
+    def cf_1486d(ac=FastIO()):
+        # 模板：经典转换为二分和哈希前缀求最长和为正数的最长连续子序列
+        n, k = ac.read_ints()
+        nums = ac.read_list_ints()
+        low = 0
+        high = n - 1
+        lst = sorted(nums)
+
+        def check(x):
+            x = lst[x]
+            dct = dict()
+            pre = 0
+            dct[0] = -1
+            for i, num in enumerate(nums):
+                pre += 1 if num >= x else -1
+                if pre > 0 and i + 1 >= k:
+                    return True
+                # 为负数时，只需贪心考虑第一次为 pre-1 时的长度即可
+                if pre - 1 in dct and i - dct[pre - 1] >= k:
+                    return True
+                if pre not in dct:
+                    dct[pre] = i
+            return False
+
+        while low < high - 1:
+            mid = low + (high - low) // 2
+            if check(mid):
+                low = mid
+            else:
+                high = mid
+        ans = high if check(high) else low
+        ac.st(lst[ans])
+        return
 
 
 class TestGeneral(unittest.TestCase):
