@@ -91,7 +91,7 @@ C. Hossam and Trainees（https://codeforces.com/problemset/problem/1771/C）使�
 A. Enlarge GCD（https://codeforces.com/problemset/problem/1034/A）经典求 1 到 n 所有数字的质因子个数总和 
 C. Hossam and Trainees（https://codeforces.com/problemset/problem/1771/C）使用pollard_rho进行质因数分解
 D. Two Divisors（https://codeforces.com/problemset/problem/1366/D）计算最小的质因子，使用构造判断是否符合条件
-
+A. Orac and LCM（https://codeforces.com/contest/1349/problem/A）质因数分解，枚举最终结果当中质因子的幂次
 
 参考：OI WiKi（xx）
 """
@@ -114,15 +114,15 @@ class NumberTheoryPrimeFactor:
                     self.min_prime[j] = i
 
         # 模板：计算 1 到 self.ceil 所有数字的质数分解（可选）
-#         for num in range(2, self.ceil + 1):
-#             i = num
-#             while num > 1:
-#                 p = self.min_prime[num]
-#                 cnt = 0
-#                 while num % p == 0:
-#                     num //= p
-#                     cnt += 1
-#                 self.prime_factor[i].append([p, cnt])
+        for num in range(2, self.ceil + 1):
+            i = num
+            while num > 1:
+                p = self.min_prime[num]
+                cnt = 0
+                while num % p == 0:
+                    num //= p
+                    cnt += 1
+                self.prime_factor[i].append([p, cnt])
         return
 
 
@@ -639,7 +639,7 @@ class Solution:
     @staticmethod
     def lc_2464(nums: List[int]) -> int:
         # 模板：计算 1 到 n 的数所有的质因子并使用动态规划计数
-        nt = NumberTheoryPrime(max(nums))
+        nt = NumberTheoryPrimeFactor(max(nums))
         inf = float("inf")
         ind = dict()
         n = len(nums)
@@ -657,12 +657,11 @@ class Solution:
                 if dp[i] + 1 < dp[i + 1]:
                     dp[i + 1] = dp[i] + 1
         return dp[-1] if dp[-1] < inf else -1
-    
     
     @staticmethod
     def lc_lcp14(nums: List[int]) -> int:
         # 模板：计算 1 到 n 的数所有的质因子并使用动态规划计数
-        nt = NumberTheoryPrime(max(nums))
+        nt = NumberTheoryPrimeFactor(max(nums))
         inf = float("inf")
         ind = dict()
         n = len(nums)
@@ -681,6 +680,26 @@ class Solution:
                     dp[i + 1] = dp[i] + 1
         return dp[-1] if dp[-1] < inf else -1
     
+    @staticmethod
+    def cf_1349a(ac=FastIO()):
+        # 模板：质因数分解，枚举最终结果当中质因子的幂次
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        nmp = NumberTheoryPrimeFactor(max(nums))
+        dct = defaultdict(list)
+
+        for num in nums:
+            for p, c in nmp.prime_factor[num]:
+                dct[p].append(c)
+
+        ans = 1
+        for p in dct:
+            if len(dct[p]) >= n - 1:
+                dct[p].sort()
+                ans *= p**dct[p][-n + 1]
+        ac.st(ans)
+        return
+
 
 class TestGeneral(unittest.TestCase):
 
