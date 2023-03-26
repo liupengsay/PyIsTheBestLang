@@ -1,6 +1,6 @@
 
 import unittest
-from collections import deque
+from collections import deque, Counter
 from functools import lru_cache
 from heapq import nlargest
 from typing import List
@@ -50,7 +50,7 @@ C. Uncle Bogdan and Country Happiness（https://codeforces.com/problemset/proble
 F. Maximum White Subtree（https://codeforces.com/problemset/problem/1324/F）经典换根DP题，两遍dfs搜索更新计算
 D. Book of Evil（https://codeforces.com/problemset/problem/337/D）经典换根DP题，两遍dfs搜索更新计算
 E. Tree Painting（https://codeforces.com/problemset/problem/1187/E）经典换根DP题，两遍dfs搜索更新计算
-
+E. Lomsat gelral（https://codeforces.com/problemset/problem/600/E）迭代方式写深搜序，按秩合并，由小到大
 
 参考：OI WiKi（xx）
 """
@@ -512,6 +512,102 @@ class Solution:
         dfs2(0, -1, 0)
         ac.st(max(up[i] + (down[i] - son[i]) + n for i in range(n)))
         return
+
+    @staticmethod
+    def cf_600e_bfs(ac=FastIO()):
+        # 模板：自下而上递归的迭代写法，从小到大按秩合并
+        n = ac.read_int()
+        colors = ac.read_list_ints()
+        edge = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            i, j = ac.read_ints_minus_one()
+            edge[i].append(j)
+            edge[j].append(i)
+        # 深搜序自下而上以及父子信息获取
+        stack = [[0, -1]]
+        parent = [-1] * n
+        down_to_up_order = []
+        while stack:
+            i, fa = stack.pop()
+            down_to_up_order.append(i)
+            for j in edge[i]:
+                if j != fa:
+                    stack.append([j, i])
+                    parent[j] = i
+        down_to_up_order.reverse()
+
+        # 维护一个最大值的出现次数
+        mx = [0] * n
+        ans = [0] * n
+        dp = [None] * n
+        for i in down_to_up_order:
+            dp[i] = Counter()
+            dp[i][colors[i]] += 1
+            mx[i] = 1
+            ans[i] = colors[i]
+            for j in edge[i]:
+                if dp[j]:
+                    if len(dp[j]) > len(dp[i]):
+                        # 从小到大
+                        dp[i], dp[j] = dp[j], dp[i]
+                        mx[i] = mx[j]
+                        ans[i] = ans[j]
+                    for w in dp[j]:
+                        # 按秩合并
+                        dp[i][w] += dp[j][w]
+                        if dp[i][w] == mx[i]:
+                            ans[i] += w
+                        elif dp[i][w] > mx[i]:
+                            mx[i] = dp[i][w]
+                            ans[i] = w
+                    # 及时清空
+                    dp[j] = None
+        ac.lst(ans)
+        return
+
+    @staticmethod
+    def cf_600e_dfs(ac=FastIO()):
+        # 模板：自下而上递归的递归写法，从小到大按秩合并
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        edge = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            u, v = ac.read_ints_minus_one()
+            edge[u].append(v)
+            edge[v].append(u)
+
+        @ac.bootstrap
+        def dfs(i, fa):
+            dp[i] = Counter()
+            dp[i][nums[i]] += 1
+            ceil[i] = 1
+            cur = nums[i]
+            for j in edge[i]:
+                if j != fa:
+                    yield dfs(j, i)
+                    if len(dp[j]) > len(dp[i]):
+                        dp[i], dp[j] = dp[j], dp[i]
+                        cur = ans[j]
+                        ceil[i] = ceil[j]
+                    for num in dp[j]:
+                        dp[i][num] += dp[j][num]
+                        if dp[i][num] > ceil[i]:
+                            ceil[i] = dp[i][num]
+                            cur = num
+                        elif dp[i][num] == ceil[i]:
+                            cur += num
+                    dp[j] = None
+            ans[i] = cur
+            yield
+
+        dp = [None] * n
+        ans = [0] * n
+        ceil = [0] * n
+        dfs(0, -1)
+        ac.lst(ans)
+        return
+
+
 
 
 class TestGeneral(unittest.TestCase):
