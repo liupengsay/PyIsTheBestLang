@@ -129,7 +129,23 @@ class NumberTheoryPrimeFactor:
 class NumberTheory:
     def __init__(self):
         return
-    
+
+    @staticmethod
+    def least_square_sum(n: int) -> int:
+        # 模板：四平方数定理（每个数最多用四个数的完全平方和就可以表示）
+        while n % 4 == 0:
+            n //= 4
+        if n % 8 == 7:
+            return 4
+        for i in range(n + 1):
+            temp = i * i
+            if temp <= n:
+                if int((n - temp) ** 0.5) ** 2 + temp == n:
+                    return 1 + (0 if temp == 0 else 1)
+            else:
+                break
+        return 3
+
     @staticmethod
     def get_min_prime_and_prime_factor():
         
