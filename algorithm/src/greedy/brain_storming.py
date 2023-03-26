@@ -103,6 +103,7 @@ A. Dreamoon Likes Coloring（https://codeforces.com/problemset/problem/1329/A）
 D. Maximum Distributed Tree（https://codeforces.com/problemset/problem/1401/D）贪心dfs枚举经过边的路径计数
 C. Make Palindrome（https://codeforces.com/problemset/problem/600/C）回文子串计数贪心
 D. Slime（https://codeforces.com/problemset/problem/1038/D）贪心模拟，分类讨论
+B. Color the Fence（https://codeforces.com/problemset/problem/349/B）贪心模拟
 
 参考：OI WiKi（xx）
 """
