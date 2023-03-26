@@ -16,6 +16,8 @@
 
 127. 参加会议的最多员工数（https://leetcode.cn/problems/maximum-employees-to-be-invited-to-a-meeting/）
 269. 火星词典（https://leetcode.cn/problems/alien-dictionary/）经典按照字典序建图，与拓扑排序的应用
+6356. 收集树中金币（https://leetcode.cn/contest/weekly-contest-338/problems/collect-coins-in-a-tree/）无向图拓扑排序内向基环树
+
 
 ===================================洛谷===================================
 P1960 郁闷的记者（https://www.luogu.com.cn/problem/P1960）计算拓扑排序是否唯一
@@ -25,6 +27,8 @@ P6145 [USACO20FEB]Timeline G（https://www.luogu.com.cn/problem/P6145）经典�
 
 ==================================AtCoder=================================
 F - Well-defined Path Queries on a Namori（https://atcoder.jp/contests/abc266/）（无向图的内向基环树，求简单路径的树枝连通）
+
+
 
 参考：OI WiKi（xx）
 """
