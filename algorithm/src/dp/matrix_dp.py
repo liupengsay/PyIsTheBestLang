@@ -23,6 +23,7 @@ from algorithm.src.fast_io import FastIO
 2328. 网格图中递增路径的数目（https://leetcode.cn/problems/number-of-increasing-paths-in-a-grid/）计算严格递增的路径数量
 2312. 卖木头块（https://leetcode.cn/problems/selling-pieces-of-wood/）自顶向下搜索最佳方案
 2267. 检查是否有合法括号字符串路径（https://leetcode.cn/problems/check-if-there-is-a-valid-parentheses-string-path/）记忆化搜索合法路径
+1092. 最短公共超序列（https://leetcode.cn/problems/shortest-common-supersequence/）经典从后往前动态规划加从前往后构造，计算最长公共子序列，并构造包含两个字符串的最短公共超序列
 
 ===================================洛谷===================================
 P2701 [USACO5.3]巨大的牛棚Big Barn（https://www.luogu.com.cn/problem/P2701）求全为 "." 的最大正方形面积，如果不要求实心只能做到O(n^3)复杂度
@@ -61,6 +62,37 @@ B. The least round way（https://codeforces.com/problemset/problem/2/B）矩阵D
 class Solution:
     def __init__(self):
         return
+
+    @staticmethod
+    def lc_1092(str1: str, str2: str) -> str:
+        # 模板：计算最长公共子序列，并构造包含两个字符串的最短公共超序列
+        m, n = len(str1), len(str2)
+        dp = [[0] * (n + 1) for _ in range(m + 1)]
+
+        for i in range(m - 1, -1, -1):
+            for j in range(n - 1, -1, -1):
+                a, b = dp[i + 1][j], dp[i][j + 1]
+                a = a if a > b else b
+                if str1[i] == str2[j]:
+                    b = dp[i + 1][j + 1] + 1
+                    a = a if a > b else b
+                dp[i][j] = a
+
+        i = j = 0
+        ans = ""
+        while i < m and j < n:
+            if str1[i] == str2[j]:
+                ans += str1[i]
+                i += 1
+                j += 1
+            elif dp[i + 1][j + 1] == dp[i + 1][j]:
+                ans += str2[j]
+                j += 1
+            else:
+                ans += str1[i]
+                i += 1
+        ans += str1[i:] + str2[j:]
+        return ans
 
     @staticmethod
     def lc_2435(grid: List[List[int]], k: int) -> int:
