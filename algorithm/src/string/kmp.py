@@ -20,7 +20,7 @@ P4391 无线传输（https://www.luogu.com.cn/problem/P4391）脑经急转弯加
 
 ================================CodeForces================================
 D2. Prefix-Suffix Palindrome (Hard version)（https://codeforces.com/problemset/problem/1326/D2）利用马拉车的贪心思想贪心取前后缀，再判断剩余字符的最长前后缀回文子串
-
+D. Prefixes and Suffixes（https://codeforces.com/contest/432/problem/D）扩展kmp与kmp结合使用计数，经典z函数与前缀函数结合应用题
 
 参考：OI WiKi（https://oi-wiki.org/string/kmp/）
 
@@ -150,6 +150,33 @@ class Solution:
         s = ac.read_str()
         pi = KMP().prefix_function(s)
         ac.st(n-pi[-1])
+        return
+
+    @staticmethod
+    def cf_432d(ac=FastIO()):
+        # 模板：z函数与kmp算法共同使用，并使用倒序计数
+        s = ac.read_str()
+
+        n = len(s)
+        z = KMP().z_function(s)
+        z[0] = n
+        ans = []
+        for i in range(n - 1, -1, -1):
+            if z[i] == n - i:
+                ans.append([n - i, 0])
+        z.sort()
+
+        j = n-1
+        m = len(ans)
+        for i in range(m-1, -1, -1):
+            x = ans[i][0]
+            while j >= 0 and z[j] >= x:
+                j -= 1
+            ans[i][1] = n-j-1
+
+        ac.st(m)
+        for a in ans:
+            ac.lst(a)
         return
 
 
