@@ -316,6 +316,43 @@ class Solution:
                 ac.st(-1)
         return
 
+    @staticmethod
+    def cf_1037d(ac=FastIO()):
+        # 模板：使用队列与集合判断 bfs序 即广搜序
+        n = ac.read_int()
+        edge = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            i, j = ac.read_ints_minus_one()
+            edge[i].append(j)
+            edge[j].append(i)
+
+        dct = [set() for _ in range(n)]
+        stack = [(0, -1)]
+        parent = [-1] * n
+        while stack:
+            nex = []
+            for i, fa in stack:
+                for j in edge[i]:
+                    if j != fa:
+                        nex.append((j, i))
+                        dct[i].add(j)
+                        parent[j] = i
+            stack = nex[:]
+
+        nums = ac.read_list_ints_minus_one()
+        stack = deque([{0}])
+        for num in nums:
+            if not stack or num not in stack[0]:
+                ac.st("NO")
+                return
+            stack[0].discard(num)
+            if not stack[0]:
+                stack.popleft()
+            if dct[num]:
+                stack.append(dct[num])
+        ac.st("YES")
+        return
+
 
 class TestGeneral(unittest.TestCase):
 
