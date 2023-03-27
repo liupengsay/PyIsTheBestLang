@@ -93,6 +93,7 @@ A. Enlarge GCD（https://codeforces.com/problemset/problem/1034/A）经典求 1 
 C. Hossam and Trainees（https://codeforces.com/problemset/problem/1771/C）使用pollard_rho进行质因数分解
 D. Two Divisors（https://codeforces.com/problemset/problem/1366/D）计算最小的质因子，使用构造判断是否符合条件
 A. Orac and LCM（https://codeforces.com/contest/1349/problem/A）质因数分解，枚举最终结果当中质因子的幂次
+D. Same GCDs（https://codeforces.com/problemset/problem/1295/D）利用最大公因数的特性转换为欧拉函数求解，即比 n 小且与 n 互质的数个数
 
 参考：OI WiKi（xx）
 """
@@ -715,6 +716,17 @@ class Solution:
                 dct[p].sort()
                 ans *= p**dct[p][-n + 1]
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1295d(ac=FastIO()):
+        # 模板：欧拉函数求解
+        for _ in range(ac.read_int()):
+            a, m = ac.read_ints()
+            g = math.gcd(a, m)
+            mm = m // g
+            ans = NumberTheory().euler_phi(mm)
+            ac.st(ans)
         return
 
 

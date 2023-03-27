@@ -50,6 +50,10 @@ P1807 最长路（https://www.luogu.com.cn/problem/P1807）不保证连通的有
 ================================CodeForces================================
 E. Nearest Opposite Parity（https://codeforces.com/problemset/problem/1272/E）经典反向建图，多源BFS
 A. Book（https://codeforces.com/problemset/problem/1572/A）脑筋急转弯建图，广度优先搜索计算是否存在环与无环时从任意起点的DAG最长路
+D. Valid BFS?（https://codeforces.com/problemset/problem/1037/D）经典BDS好题，结合队列与集合进行模拟
+
+
+
 参考：OI WiKi（xx）
 """
 
