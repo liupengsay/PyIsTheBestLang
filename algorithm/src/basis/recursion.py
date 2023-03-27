@@ -1,7 +1,9 @@
 import unittest
 
+from algorithm.src.fast_io import FastIO
+
 """
-算法：分治、递归、二叉树、四叉树、十叉树、N叉树、先序、中序、后序遍历
+算法：分治、递归、二叉树、四叉树、十叉树、N叉树、先序、中序、后序遍历，也叫（divide and conquer）
 功能：递归进行处理，与迭代是处理相同问题的两种不同方式
 题目：
 
@@ -12,6 +14,9 @@ P5551 Chino的树学（https://www.luogu.com.cn/problem/P5551）先序遍历的�
 P5626 【AFOI-19】数码排序（https://www.luogu.com.cn/problem/P5626）分治DP，归并排序需要的比较次数最少，但是可能内存占用超过快排
 P2907 [USACO08OPEN]Roads Around The Farm S（https://www.luogu.com.cn/problem/P2907）分析复杂度之后采用递归模拟
 P7673 [COCI2013-2014#5] OBILAZAK（https://www.luogu.com.cn/problem/P7673）根据中序遍历，递归还原完全二叉树
+
+================================CodeForces================================
+C. Painting Fence（https://codeforces.com/contest/448/problem/C）贪心递归DP
 
 
 参考：OI WiKi（xx）
@@ -82,6 +87,33 @@ class Solution:
                 if x not in dct:
                     dct[x] = len(dct)
         return [[dct[i] for i in a] for a in ans]
+
+    @staticmethod
+    def cf_448c(ac=FastIO()):
+        # 模板：贪心递归DP
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+
+        @ac.bootstrap
+        def dfs(arr):
+            m = len(arr)
+            low = min(arr)
+            cur = [num-low for num in arr]
+            ans = low
+            i = 0
+            while i < m:
+                if cur[i] == 0:
+                    i += 1
+                    continue
+                j = i
+                while j < m and cur[j] > 0:
+                    j += 1
+                ans += yield dfs(cur[i: j])
+                i = j
+            yield ac.min(ans, m)
+
+        ac.st(dfs(nums))
+        return
 
 
 class TestGeneral(unittest.TestCase):
