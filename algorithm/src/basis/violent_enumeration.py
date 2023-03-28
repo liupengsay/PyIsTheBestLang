@@ -77,6 +77,7 @@ D. Dima and Lisa（https://codeforces.com/problemset/problem/584/D）确定一�
 D. Three Integers（https://codeforces.com/problemset/problem/1311/D）根据题意，确定一个上限值，贪心枚举
 C. Flag（https://codeforces.com/problemset/problem/1181/C）按列进行枚举
 B. Maximum Value（https://codeforces.com/problemset/problem/484/B）排序后进行枚举，并使用二分查找进行确认
+C. Arithmetic Progression（https://codeforces.com/problemset/problem/382/C）分类讨论
 
 参考：OI WiKi（xx）
 """
@@ -196,6 +197,56 @@ class Solution:
                 for a in [x * num - 1]:
                     ans = ac.max(ans, dp[ac.min(a, ceil)] % num)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_382c(ac=FastIO()):
+        # 2023年3月29日·灵茶试炼·分类讨论
+        n = ac.read_int()
+        nums = sorted(ac.read_list_ints())
+
+        # 只有一种情况有无穷多个
+        if n == 1:
+            ac.st(-1)
+            return
+
+        # 计算排序后相邻项差值最大值与最小值以及不同差值
+        diff = [nums[i] - nums[i - 1] for i in range(1, n)]
+        high = max(diff)
+        low = min(diff)
+        cnt = len(set(diff))
+
+        # 1. 大于等于3个不同差值显然没有
+        if cnt >= 3:
+            ac.st(0)
+            return
+        elif cnt == 2:
+            # 2. 有2个不同差值存在合理情况当且仅当 high=2*low 且 count(high)==1
+            if high != 2 * low or diff.count(high) != 1:
+                ac.st(0)
+                return
+
+            for i in range(1, n):
+                if nums[i] - nums[i - 1] == high:
+                    ac.st(1)
+                    ac.st(nums[i - 1] + low)
+                    return
+        else:
+            # 3.有1个差值时分为0与不为0，不为0分 n大于2 与等于2
+            if low == high == 0:
+                ac.st(1)
+                ac.st(nums[0])
+                return
+            if n == 2:
+                if low % 2 == 0:
+                    ac.st(3)
+                    ac.lst([nums[0] - low, nums[0] + low // 2, nums[1] + low])
+                else:
+                    ac.st(2)
+                    ac.lst([nums[0] - low, nums[1] + low])
+            else:
+                ac.st(2)
+                ac.lst([nums[0] - low, nums[-1] + low])
         return
 
 
