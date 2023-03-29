@@ -24,6 +24,8 @@ from decimal import Decimal
 import heapq
 import copy
 
+from algorithm.src.fast_io import FastIO
+
 """
 算法：状态压缩DP
 功能：使用二进制数字表示转移状态，计算相应的转移方程，通常可以先计算满足条件的子集，有时通过深搜回溯枚举全部子集的办法比位运算枚举效率更高
@@ -49,12 +51,39 @@ P1123 取数游戏（https://www.luogu.com.cn/problem/P1123）类似占座位的
 
 ================================CodeForces================================
 D. Kefa and Dishes（https://codeforces.com/problemset/problem/580/D）状态压缩DP结合前后相邻的增益计算最优解
+E. Compatible Numbers（https://codeforces.com/problemset/problem/165/E）线性DP，状态压缩枚举，类似子集思想求解可能存在的与为0的数对
+
 参考：OI WiKi（xx）
 """
 
 
 class Solution:
     def __int__(self):
+        return
+
+    @staticmethod
+    def cf_165e(ac=FastIO()):
+        # 模板：线性状态压缩DP，类似子集思想求解可能存在的与为0的数对
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        ceil = max(nums).bit_length()
+        dp = [-1] * (1 << ceil)
+        for num in nums:
+            dp[num] = num
+
+        for i in range(1, 1 << ceil):
+            if dp[i] == -1:
+                for j in range(i.bit_length()):
+                    if i & (1 << j) and dp[i ^ (1 << j)] != -1:
+                        dp[i] = dp[i ^ (1 << j)]
+                        break
+
+        ans = [-1] * n
+        for i in range(n):
+            num = nums[i]
+            x = num ^ ((1 << ceil) - 1)
+            ans[i] = dp[x]
+        ac.lst(ans)
         return
 
     @staticmethod
