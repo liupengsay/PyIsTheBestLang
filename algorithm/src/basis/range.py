@@ -18,6 +18,9 @@ from algorithm.src.fast_io import FastIO
 763. 划分字母区间（https://leetcode.cn/problems/partition-labels/）经典将区间合并为不相交的区间
 6313. 统计将重叠区间合并成组的方案数（https://leetcode.cn/contest/biweekly-contest-99/problems/count-ways-to-group-overlapping-ranges/）经典将区间合并为不相交的区间，再使用快速幂计数
 2345. 寻找可见山的数量（https://leetcode.cn/problems/finding-the-number-of-visible-mountains/）二维偏序，转换为区间包含问题
+757. 设置交集大小至少为2（https://leetcode.cn/problems/set-intersection-size-at-least-two/）贪心选取最少的点集合，使得每个区间包含其中至少两个点
+2589. 完成所有任务的最少时间（https://leetcode.cn/problems/minimum-time-to-complete-all-tasks/）贪心选取最少的点集合，使得每个区间包含其中要求的k个点
+LCP 32. 批量处理任务（https://leetcode.cn/problems/t3fKg1/）贪心选取最少的点集合，使得每个区间包含其中要求的k个点
 
 ===================================洛谷===================================
 P2082 区间覆盖（加强版）（https://www.luogu.com.cn/problem/P2082）经典区间合并确定覆盖范围
@@ -29,6 +32,8 @@ P1233 木棍加工（https://www.luogu.com.cn/problem/P1233）按照一个维度
 ================================CodeForces================================
 A. String Reconstruction（https://codeforces.com/problemset/problem/827/A）区间合并为不相交的区间，再贪心赋值
 D. Nested Segments（https://codeforces.com/problemset/problem/652/D）二位偏序，转换为区间包含问题
+D. Non-zero Segments（https://codeforces.com/problemset/problem/1426/D）贪心选取最少的点集合，使得每个区间包含其中至少一个点
+
 
 参考：OI WiKi（xx）
 """
@@ -165,6 +170,35 @@ class Solution:
         cnt = len(Range().merge(ranges))
         mod = 10 ** 9 + 7
         return pow(2, cnt, mod)
+
+    @staticmethod
+    def cf_1426d(ac=FastIO()):
+        # 模板：选取最少的点集合，使得每个区间包含其中至少一个点
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        pre = 0
+        dct = dict()
+        dct[pre] = -1
+        lst = []
+        for i in range(n):
+            pre += nums[i]
+            if pre in dct:
+                lst.append([dct[pre], i])
+            dct[pre] = i
+        if not lst:
+            ac.st(0)
+            return
+        lst.sort(key=lambda it: [it[1], it[0]])
+        ans = 1
+        a, b = lst[0]
+        for c, d in lst[1:]:
+            if b > c + 1:
+                continue
+            else:
+                ans += 1
+                b = d
+        ac.st(ans)
+        return
 
 
 class TestGeneral(unittest.TestCase):
