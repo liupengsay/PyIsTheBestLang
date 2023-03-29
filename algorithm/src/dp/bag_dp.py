@@ -4,8 +4,7 @@ import unittest
 from collections import defaultdict
 from typing import List
 
-from algorithm.src.fast_io import FastIO
-
+from algorithm.src.fast_io import FastIO, inf
 
 """
 算法：背包DP、分组背包、一维（无限有限）背包、二位背包、多重背包、分组背包、限制背包
@@ -61,6 +60,8 @@ P6771 [USACO05MAR]Space Elevator 太空电梯（https://www.luogu.com.cn/problem
 B. Modulo Sum（https://codeforces.com/problemset/problem/577/B）取模计数二进制优化与背包DP，寻找非空子序列的和整除给定的数
 A. Writing Code（https://codeforces.com/problemset/problem/543/A）二维有限背包DP，当作无限进行处理
 E. Porcelain（https://codeforces.com/problemset/problem/148/E）01背包枚举，两层动态规划
+F. Zero Remainder Sum（https://codeforces.com/problemset/problem/1433/F）01背包枚举，两层动态规划
+
 参考：OI WiKi（xx）
 """
 
@@ -186,6 +187,35 @@ class BagDP:
 
 class Solution:
     def __init__(self):
+        return
+
+    @staticmethod
+    def cf_1433f(ac=FastIO()):
+        # 模板：两层背包DP，矩阵动态规划转移
+        m, n, k = ac.read_ints()
+        pre = [-inf] * k
+        pre[0] = 0
+        x = n // 2
+        for _ in range(m):
+            nums = ac.read_list_ints()
+            dp = [[-inf] * k for _ in range(x + 1)]
+            dp[0][0] = 0
+            for num in nums:
+                nex = [ls[:] for ls in dp]
+                for i in range(x):
+                    for j in range(k):
+                        d = (j + num) % k
+                        nex[i + 1][d] = ac.max(dp[i][j] + num, nex[i + 1][d])
+                dp = [ls[:] for ls in nex]
+            tmp = [max(dp[i][j] for i in range(x + 1)) for j in range(k)]
+
+            cur = pre[:]
+            for i in range(k):
+                for j in range(k):
+                    cur[(i + j) % k] = ac.max(cur[(i + j) % k], pre[i] + tmp[j])
+            pre = cur[:]
+
+        ac.st(pre[0])
         return
 
     @staticmethod
