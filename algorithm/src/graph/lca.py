@@ -29,6 +29,7 @@ P7128 「RdOI R1」序列(sequence)（https://www.luogu.com.cn/problem/P7128）�
 E. Tree Queries（https://codeforces.com/problemset/problem/1328/E）利用 LCA 判定节点组是否符合条件，也可以使用 dfs 序
 C. Ciel the Commander（https://codeforces.com/problemset/problem/321/C）使用树的质心递归，依次切割形成平衡树赋值
 E. Minimum spanning tree for each edge（https://codeforces.com/problemset/problem/609/E）使用LCA的思想维护树中任意两点的路径边权最大值，并贪心替换获得边作为最小生成树时的最小权值和，有点类似于关键边与非关键边，但二者并不相同
+E. A and B and Lecture Rooms（https://codeforces.com/problemset/problem/519/E）LCA经典运用题目，查询距离与第k个祖先节点，与子树节点计数
 
 参考：
 CSDN（https://blog.csdn.net/weixin_42001089/article/details/83590686）
@@ -212,6 +213,56 @@ class TreeAncestorWeight:
 
 class Solution:
     def __init__(self):
+        return
+
+    @staticmethod
+    def cf_519e(ac=FastIO()):
+        # 模板：使用LCA计算第k个祖先与节点之间的距离
+        n = ac.read_int()
+        edges = [[] for _ in range(n)]
+        for _ in range(n-1):
+            x, y = ac.read_ints_minus_one()
+            edges[x].append(y)
+            edges[y].append(x)
+
+        lca = TreeAncestor(edges)
+        sub = [0]*n
+
+        @ac.bootstrap
+        def dfs(i, fa):
+            nonlocal sub
+            cur = 1
+            for j in edges[i]:
+                if j != fa:
+                    yield dfs(j, i)
+                    cur += sub[j]
+            sub[i] = cur
+            yield
+        dfs(0, -1)
+
+        for _ in range(ac.read_int()):
+            x, y = ac.read_ints_minus_one()
+            if x == y:
+                ac.st(n)
+                continue
+
+            dis = lca.get_dist(x, y)
+            if dis % 2 == 1:
+                ac.st(0)
+            else:
+                z = lca.get_lca(x, y)
+                dis1 = lca.get_dist(x, z)
+                dis2 = lca.get_dist(y, z)
+                if dis1 == dis2:
+                    up = n - sub[z]
+                    down = sub[z] - sub[lca.get_kth_ancestor(x, dis1-1)]-sub[lca.get_kth_ancestor(y, dis2-1)]
+                    ac.st(up+down)
+                elif dis1 > dis2:
+                    w = lca.get_kth_ancestor(x, (dis1+dis2)//2)
+                    ac.st(sub[w] - sub[lca.get_kth_ancestor(x, (dis1+dis2)//2-1)])
+                else:
+                    w = lca.get_kth_ancestor(y, (dis1 + dis2) // 2)
+                    ac.st(sub[w] - sub[lca.get_kth_ancestor(y, (dis1 + dis2) // 2 - 1)])
         return
 
     @staticmethod
