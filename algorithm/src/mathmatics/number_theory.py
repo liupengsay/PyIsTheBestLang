@@ -94,6 +94,8 @@ C. Hossam and Trainees（https://codeforces.com/problemset/problem/1771/C）使�
 D. Two Divisors（https://codeforces.com/problemset/problem/1366/D）计算最小的质因子，使用构造判断是否符合条件
 A. Orac and LCM（https://codeforces.com/contest/1349/problem/A）质因数分解，枚举最终结果当中质因子的幂次
 D. Same GCDs（https://codeforces.com/problemset/problem/1295/D）利用最大公因数的特性转换为欧拉函数求解，即比 n 小且与 n 互质的数个数
+D. Another Problem About Dividing Numbers（https://codeforces.com/problemset/problem/1538/D）使用pollard_rho进行质因数分解
+
 
 参考：OI WiKi（xx）
 """
