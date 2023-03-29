@@ -201,6 +201,7 @@ class Solution:
 
     @staticmethod
     def cf_382c(ac=FastIO()):
+
         # 2023年3月29日·灵茶试炼·分类讨论
         n = ac.read_int()
         nums = sorted(ac.read_list_ints())

@@ -36,6 +36,7 @@ P5520 [yLOI2019] 青原樱（https://www.luogu.com.cn/problem/P5520）隔板法�
 ================================CodeForces================================
 D. Triangle Coloring（https://codeforces.com/problemset/problem/1795/D）组合计数取模与乘法逆元快速计算
 C. Beautiful Numbers（https://codeforces.com/problemset/problem/300/C）枚举个数并使用组合数计算方案数
+C. Gerald and Giant Chess（https://codeforces.com/problemset/problem/559/C）容斥原理组合计数
 
 
 参考：OI WiKi（xx）
@@ -74,6 +75,35 @@ class Combinatorics:
 
 class Solution:
     def __int__(self):
+        return
+
+    @staticmethod
+    def cf_559c(ac=FastIO()):
+
+        # 模板：容斥原理组合数计算
+        m, n, k = ac.read_ints()
+        mod = 10 ** 9 + 7
+        cb = Combinatorics(m + n, mod)
+        pos = [ac.read_list_ints_minus_one() for _ in range(k)]
+        pos.sort()
+
+        def dist(x1, y1, x2, y2):
+            return cb.comb(x2 + y2 - x1 - y1, x2 - x1)
+
+        ans = dist(0, 0, m - 1, n - 1)
+        bad = []
+        for x in range(k):
+            i, j = pos[x]
+            cur = dist(0, 0, i, j)
+            for y in range(x):
+                a, b = pos[y]
+                if b <= j:
+                    cur -= dist(a, b, i, j) * bad[y]
+                    cur %= mod
+            bad.append(cur)
+            ans -= cur * dist(i, j, m - 1, n - 1)
+            ans %= mod
+        ac.st(ans)
         return
 
     @staticmethod
