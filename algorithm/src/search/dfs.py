@@ -58,46 +58,46 @@ class DFS:
         # 模板：生成深搜序即 dfs 序以及对应子树编号区间
         def dfs(x):
             nonlocal order
-            visit[x] = order
+            start[x] = order
             order += 1
             for y in dct[x]:
-                if visit[y] == -1:
+                if start[y] == -1:
                     dfs(y)
-            interval[x] = [visit[x], order - 1]
+            end[x] = order - 1
             return
 
         n = len(dct)
         order = 0
-        visit = [-1] * n
-        interval = [[] for _ in range(n)]
+        start = [-1] * n
+        end = [-1]*n
         dfs(0)
-        return visit, interval
+        return start, end
 
     @staticmethod
     def gen_dfs_order_iteration(dct):
         # 模板：生成深搜序即 dfs 序以及对应子树编号区间
         n = len(dct)
         order = 0
-        visit = [-1] * n
-        interval = [[0, 0] for _ in range(n)]
+        start = [-1] * n
+        end = [-1]*n
         parent = [-1]*n
         stack = deque([[0, 1, -1]])
         while stack:
             i, state, fa = stack.popleft()
             if state:
-                visit[i] = order
-                interval[i] = [order, order]
+                start[i] = order
+                end[i] = order
                 order += 1
                 stack.appendleft([i, 0, fa])
-                for j in dct[i][::-1]:
+                for j in dct[i]:
                     if j != fa:
                         parent[j] = i
                         stack.appendleft([j, 1, i])
             else:
                 if parent[i] != -1:
-                    interval[parent[i]][1] = interval[i][1]
+                    end[parent[i]] = end[i]
 
-        return visit, interval
+        return start, end
 
 
 class Solution:
@@ -378,17 +378,15 @@ class TestGeneral(unittest.TestCase):
     def test_dfs(self):
         dfs = DFS()
         dct = [[1, 2], [0, 3], [0, 4], [1], [2]]
-        visit, interval = dfs.gen_dfs_order_recursion(dct)
-        assert visit == [x-1 for x in [1, 2, 4, 3, 5]]
-        assert interval == [[a-1, b-1] for a, b in [[1, 5], [2, 3], [4, 5], [3, 3], [5, 5]]]
+        start, end = dfs.gen_dfs_order_recursion(dct)
+        assert start == [x-1 for x in [1, 2, 4, 3, 5]]
+        assert end == [b-1 for _, b in [[1, 5], [2, 3], [4, 5], [3, 3], [5, 5]]]
 
         dfs = DFS()
         dct = [[1, 2], [0, 3], [0, 4], [1], [2]]
-        visit2, interval2 = dfs.gen_dfs_order_iteration(dct)
-        assert visit2 == [x - 1 for x in [1, 2, 4, 3, 5]]
-        assert interval2 == [[a - 1, b - 1] for a, b in [[1, 5], [2, 3], [4, 5], [3, 3], [5, 5]]]
-
-
+        start, end = dfs.gen_dfs_order_iteration([d[::-1] for d in dct])
+        assert start == [x - 1 for x in [1, 2, 4, 3, 5]]
+        assert end == [b-1 for _, b in [[1, 5], [2, 3], [4, 5], [3, 3], [5, 5]]]
         return
 
 
