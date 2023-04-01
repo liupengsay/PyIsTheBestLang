@@ -1,7 +1,9 @@
 
 import heapq
 import unittest
-from collections import defaultdict
+from collections import defaultdict, deque
+from itertools import accumulate
+from operator import add
 from typing import List
 
 from algorithm.src.fast_io import FastIO
@@ -61,7 +63,7 @@ P7551 [COCI2020-2021#6] Alias（https://www.luogu.com.cn/problem/P7551）最短�
 
 ================================CodeForces================================
 C. Dijkstra?（https://codeforces.com/problemset/problem/20/C）正权值最短路计算，并记录返回生成路径
-
+E. Weights Distributing（https://codeforces.com/problemset/problem/1343/E）使用三个01BFS求最短路加贪心枚举计算
 
 参考：OI WiKi（xx）
 """
@@ -138,9 +140,54 @@ class Dijkstra:
                     heapq.heappush(stack, [-dj, j])
         return dis[dsc]
 
+    @staticmethod
+    def get_shortest_by_bfs(dct: List[List[int]], src):
+        # 模板: 使用01BFS求最短路
+        n = len(dct)
+        dis = [-1] * n
+        stack = deque([src])
+        dis[src] = 0
+        while stack:
+            i = stack.popleft()
+            for j in dct[i]:
+                if dis[j] == -1:
+                    dis[j] = dis[i] + 1
+                    stack.append(j)
+        return dis
+
 
 class Solution:
     def __init__(self):
+        return
+
+    @staticmethod
+    def cf_1343e(ac=FastIO()):
+        # 模板：使用01BFS求三个最短路
+        for _ in range(ac.read_int()):
+            n, m, a, b, c = ac.read_list_ints()
+            a -= 1
+            b -= 1
+            c -= 1
+            prices = sorted(ac.read_list_ints())
+            prices = list(accumulate(prices, add, initial=0))
+
+            dct = [[] for _ in range(n)]
+            for _ in range(m):
+                u, v = ac.read_ints_minus_one()
+                dct[u].append(v)
+                dct[v].append(u)
+
+            dis_a = Dijkstra().get_shortest_by_bfs(dct, a)
+            dis_b = Dijkstra().get_shortest_by_bfs(dct, b)
+            dis_c = Dijkstra().get_shortest_by_bfs(dct, c)
+            ans = inf
+            for x in range(n):
+                up = dis_b[x]
+                down = dis_a[x] + dis_c[x]
+                if up + down <= m:
+                    cur = prices[up] + prices[up + down]
+                    ans = ac.min(ans, cur)
+            ac.st(ans)
         return
 
     @staticmethod

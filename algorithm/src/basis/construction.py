@@ -29,6 +29,8 @@ D. Phoenix and Science（https://codeforces.com/problemset/problem/1348/D）利�
 D. Diane（https://codeforces.com/problemset/problem/1554/D）构造，将n取一半向下取整
 C. Matching Numbers（https://codeforces.com/problemset/problem/1788/C）构造，选取 1 到 2n 的数两两配对且和为连续数
 D. Task On The Board（https://codeforces.com/problemset/problem/1367/D）逆向思维模拟构造
+D. Multiples and Power Differences（https://codeforces.com/problemset/problem/1485/D）按照数据范围进行构造
+
 
 ==================================AtCoder=================================
 https://atcoder.jp/contests/agc007/tasks/agc007_b（脑筋急转弯思维构造公式）

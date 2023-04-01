@@ -37,7 +37,8 @@ https://codeforces.com/problemset/problem/482/B（区间按位或赋值、按位
 C. Sereja and Brackets（https://codeforces.com/problemset/problem/380/C）线段树查询区间内所有合法连续子序列括号串的总长度
 C. Circular RMQ（https://codeforces.com/problemset/problem/52/C）线段树更新和查询循环数组区间最小值
 D. The Child and Sequence（https://codeforces.com/problemset/problem/438/D）使用线段树维护区间取模，区间和，修改单点值，和区间最大值
-
+E. A Simple Task（https://codeforces.com/contest/558/problem/E）26个线段树维护区间排序信息
+D. Water Tree（https://codeforces.com/problemset/problem/343/D）dfs序加线段树
 
 参考：OI WiKi（xx）
 """
