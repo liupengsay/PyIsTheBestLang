@@ -39,6 +39,7 @@ from algorithm.src.fast_io import FastIO
 2172. 数组的最大与和（https://leetcode.cn/problems/maximum-and-sum-of-array/）使用位运算和状态压缩进行转移
 1255. 得分最高的单词集合（https://leetcode.cn/problems/maximum-score-words-formed-by-letters/）状压DP
 2403. 杀死所有怪物的最短时间（https://leetcode.cn/problems/minimum-time-to-kill-all-monsters/）状压DP
+1681. 最小不兼容性（https://leetcode.cn/problems/minimum-incompatibility/）状态压缩分组DP，状态压缩和组合数选取结合使用
 
 ===================================洛谷===================================
 P1896 互不侵犯（https://www.luogu.com.cn/problem/P1896）按行状态与行个数枚举所有的摆放可能性
@@ -60,6 +61,39 @@ E. Compatible Numbers（https://codeforces.com/problemset/problem/165/E）线性
 class Solution:
     def __int__(self):
         return
+
+    @staticmethod
+    def lc_1681(self, nums: List[int], k: int) -> int:
+        # 模板：状态压缩和组合数选取结合使用
+
+        @lru_cache(None)
+        def dfs(state):
+            if not state:
+                return 0
+
+            dct = dict()
+            for j in range(n):
+                if state & (1 << j):
+                    dct[nums[j]] = j
+            if len(dct) < m:
+                return inf
+            res = inf
+            for item in combinations(list(dct.keys()), m):
+                cur = max(item) - min(item)
+                nex = state
+                for num in item:
+                    nex ^= (1 << dct[num])
+                x = dfs(nex) + cur
+                res = res if res < x else x
+            return res
+
+        n = len(nums)
+        if n % k:
+            return -1
+        inf = float("inf")
+        m = n // k
+        ans = dfs((1 << n) - 1)
+        return ans if ans < inf else -1
 
     @staticmethod
     def cf_165e(ac=FastIO()):
