@@ -1,6 +1,7 @@
 """
 
 """
+from algorithm.src.fast_io import FastIO
 
 """
 算法：并查集、可持久化并查集
@@ -32,6 +33,7 @@ P6153 询问（https://www.luogu.com.cn/problem/P6153）经典并查集思想贪
 ================================CodeForces================================
 D. Roads not only in Berland（https://codeforces.com/problemset/problem/25/D）并查集将原来的边断掉重新来连接使得成为一整个连通集
 E. Monsters（https://codeforces.com/contest/1810/problem/E）并查集加启发式搜索，使用BFS与堆优化实现
+E. Connected Components?（https://codeforces.com/contest/920/problem/E）并查集，加线性动态维护剩余节点
 
 参考：OI WiKi（xx）
 """
@@ -116,6 +118,74 @@ class UnionFind:
 class Solution:
     def __init__(self):
         return
+
+    @staticmethod
+    def cf_1810e(ac=FastIO()):
+        # 模板：并查集加启发式搜索，使用线性遍历维护
+        for _ in range(ac.read_int()):
+            n, m = ac.read_ints()
+            nums = ac.read_list_ints()
+            edge = [[] for _ in range(n)]
+            for _ in range(m):
+                u, v = ac.read_list_ints_minus_one()
+                edge[u].append(v)
+                edge[v].append(u)
+
+            visit = [-1] * n
+            ans = "NO"
+            for i in range(n):
+                if visit[i] == -1 and not nums[i]:
+                    count = 0
+                    visit[i] = i
+                    stack = [[0, i]]
+                    while stack:
+                        d, x = heapq.heappop(stack)
+                        if count < nums[x]:
+                            break
+                        count += 1
+                        for j in edge[x]:
+                            if visit[j] != i:
+                                visit[j] = i
+                                heapq.heappush(stack, [nums[j], j])
+                    if count == n:
+                        ans = "YES"
+                        break
+            ac.st(ans)
+
+        return
+
+    @staticmethod
+    def cf_920e(ac=FastIO()):
+        # 模板：并查集线性更新，使用集合进行维护
+        n, m = ac.read_list_ints()
+        edge = set()
+        for _ in range(m):
+            u, v = ac.read_ints_minus_one()
+            edge.add((u, v))
+        ans = []
+        not_visit = set(range(n))
+        for i in range(n):
+            if i in not_visit:
+                stack = [i]
+                cnt = 1
+                not_visit.discard(i)
+                while stack:
+                    u = stack.pop()
+                    visit = []
+                    for v in not_visit:
+                        if (u, v) in edge or (v, u) in edge:
+                            continue
+                        cnt += 1
+                        stack.append(v)
+                        visit.append(v)
+                    for v in visit:
+                        not_visit.discard(v)
+                ans.append(cnt)
+        ans.sort()
+        ac.st(len(ans))
+        ac.lst(ans)
+        return
+
 
     @staticmethod
     def lc_1697(n: int, edge_list: List[List[int]], queries: List[List[int]]) -> List[bool]:
