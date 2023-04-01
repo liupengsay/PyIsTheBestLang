@@ -95,6 +95,7 @@ D. Two Divisors（https://codeforces.com/problemset/problem/1366/D）计算最�
 A. Orac and LCM（https://codeforces.com/contest/1349/problem/A）质因数分解，枚举最终结果当中质因子的幂次
 D. Same GCDs（https://codeforces.com/problemset/problem/1295/D）利用最大公因数的特性转换为欧拉函数求解，即比 n 小且与 n 互质的数个数
 D. Another Problem About Dividing Numbers（https://codeforces.com/problemset/problem/1538/D）使用pollard_rho进行质因数分解
+A. Row GCD（https://codeforces.com/problemset/problem/1458/A）gcd公式变换求解
 
 
 参考：OI WiKi（xx）
@@ -729,6 +730,20 @@ class Solution:
             mm = m // g
             ans = NumberTheory().euler_phi(mm)
             ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1458a(ac=FastIO()):
+        # 模板：gcd公式变换求解gcd(x,y)=gcd(x-y,y)
+        m, n = ac.read_ints()
+        a = ac.read_list_ints()
+        b = ac.read_list_ints()
+        g = 0
+        # 推广到n维
+        for i in range(1, m):
+            g = math.gcd(g, a[i]-a[i-1])
+        ans = [math.gcd(g, a[0]+num) for num in b]
+        ac.lst(ans)
         return
 
 
