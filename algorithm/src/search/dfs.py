@@ -6,6 +6,7 @@ from collections import defaultdict, deque
 from typing import List
 
 from algorithm.src.fast_io import FastIO
+from algorithm.src.graph.lca import TreeAncestor
 
 """
 
@@ -43,7 +44,8 @@ P6691 选择题（https://www.luogu.com.cn/problem/P6691）染色法，进行二
 P7370 [COCI2018-2019#4] Wand（https://www.luogu.com.cn/problem/P7370）所有可能的祖先节点，注意特别情况没有任何祖先节点则自身可达
 
 ================================CodeForces================================
-D. Tree Requests（https://codeforces.com/contest/570/problem/D）dfs序与二分查找
+D. Tree Requests（https://codeforces.com/contest/570/problem/D）dfs序与二分查找，也可以使用离线查询
+E. Blood Cousins（https://codeforces.com/contest/208/problem/E）深搜序加LCA加二分查找计数
 
 参考：OI WiKi（xx）
 """
@@ -81,18 +83,20 @@ class DFS:
         start = [-1] * n
         end = [-1]*n
         parent = [-1]*n
-        stack = deque([[0, 1, -1]])
+        stack = [[0, 1, -1, 0]]
+        depth = [0]*n
         while stack:
-            i, state, fa = stack.popleft()
+            i, state, fa, d = stack.pop()
             if state:
                 start[i] = order
                 end[i] = order
+                depth[i] = d
                 order += 1
-                stack.appendleft([i, 0, fa])
+                stack.append([i, 0, fa, d])
                 for j in dct[i]:
                     if j != fa:
                         parent[j] = i
-                        stack.appendleft([j, 1, i])
+                        stack.append([j, 1, i, d+1])
             else:
                 if parent[i] != -1:
                     end[parent[i]] = end[i]
@@ -370,6 +374,41 @@ class Solution:
                     ans[j] ^= depth[h]
         for a in ans:
             ac.st("Yes" if a & (a - 1) == 0 else "No")
+        return
+
+    @staticmethod
+    def cf_208e(ac=FastIO()):
+        # 模板：深搜序加LCA加二分查找计数
+        n = ac.read_int()
+        parent = ac.read_list_ints()
+
+        edge = [[] for _ in range(n + 1)]
+        for i in range(n):
+            edge[parent[i]].append(i + 1)
+            edge[i + 1].append(parent[i])
+        del parent
+
+        tree = TreeAncestor(edge)
+        start, end = DFS().gen_dfs_order_iteration(edge)
+
+        dct = [[] for _ in range(n + 1)]
+        for i in range(n + 1):
+            dct[tree.depth[i]].append(start[i])
+        for i in range(n + 1):
+            dct[i].sort()
+
+        ans = []
+        for _ in range(ac.read_int()):
+            v, p = ac.read_ints()
+            if tree.depth[v] - 1 < p:
+                ans.append(0)
+                continue
+            u = tree.get_kth_ancestor(v, p)
+            low, high = start[u], end[u]
+            cur = bisect.bisect_right(
+                dct[tree.depth[v]], high) - bisect.bisect_left(dct[tree.depth[v]], low)
+            ans.append(ac.max(cur - 1, 0))
+        ac.lst(ans)
         return
 
 
