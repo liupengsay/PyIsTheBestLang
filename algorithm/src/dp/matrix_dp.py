@@ -1,4 +1,6 @@
 import unittest
+from bisect import bisect_left
+from collections import defaultdict
 
 from typing import List
 from types import GeneratorType
@@ -24,6 +26,7 @@ from algorithm.src.fast_io import FastIO
 2312. 卖木头块（https://leetcode.cn/problems/selling-pieces-of-wood/）自顶向下搜索最佳方案
 2267. 检查是否有合法括号字符串路径（https://leetcode.cn/problems/check-if-there-is-a-valid-parentheses-string-path/）记忆化搜索合法路径
 1092. 最短公共超序列（https://leetcode.cn/problems/shortest-common-supersequence/）经典从后往前动态规划加从前往后构造，计算最长公共子序列，并构造包含两个字符串的最短公共超序列
+1143. 最长公共子序列（https://leetcode.cn/problems/longest-common-subsequence/）使用LIS的方法求LCS
 
 ===================================洛谷===================================
 P2701 [USACO5.3]巨大的牛棚Big Barn（https://www.luogu.com.cn/problem/P2701）求全为 "." 的最大正方形面积，如果不要求实心只能做到O(n^3)复杂度
@@ -59,9 +62,45 @@ B. The least round way（https://codeforces.com/problemset/problem/2/B）矩阵D
 """
 
 
+class LcsLis:
+    def __init__(self):
+        return
+
+    def longest_common_subsequence(self, s1: str, s2: str) -> int:
+        # 使用LIS的办法求LCS
+        if len(s1) > len(s2):
+            s1, s2 = s2, s1
+        m = len(s2)
+        mapper = defaultdict(list)
+        for i in range(m-1, -1, -1):
+            mapper[s2[i]].append(i)
+        nums = []
+        for c in s1:
+            if c in mapper:
+                nums.extend(mapper[c])
+        return self.longest_increasing_subsequence(nums)
+
+    @staticmethod
+    def longest_increasing_subsequence(nums: List[int]) -> int:
+        # 使用贪心二分求LIS
+        stack = []
+        for x in nums:
+            idx = bisect_left(stack, x)
+            if idx < len(stack):
+                stack[idx] = x
+            else:
+                stack.append(x)
+        # 还可以返回stack获得最长公共子序列
+        return len(stack)
+
+
 class Solution:
     def __init__(self):
         return
+
+    @staticmethod
+    def lc_1143(self, s1: str, s2: str) -> int:
+        return LcsLis().longest_common_subsequence(s1, s2)
 
     @staticmethod
     def lc_1092(str1: str, str2: str) -> str:
