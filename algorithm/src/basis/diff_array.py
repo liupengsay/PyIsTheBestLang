@@ -40,6 +40,7 @@ https://codeforces.com/problemset/problem/797/C（后缀最小值字典序模拟
 https://codeforces.com/problemset/problem/75/D（压缩数组最大子段和）
 C. Count Triangles（https://codeforces.com/problemset/problem/1355/C）经典使用作用域差分计算，合法三角形边长个数
 C. Tea Tasting（https://codeforces.com/problemset/problem/1795/C）前缀和二分后，经典使用差分计数模拟加和
+D. Constant Palindrome Sum（https://codeforces.com/problemset/problem/1343/D）枚举x使用差分数组进行范围计数
 
 参考：OI WiKi（xx）
 """
