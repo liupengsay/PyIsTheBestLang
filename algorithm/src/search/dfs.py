@@ -1,7 +1,7 @@
 
 import unittest
 import bisect
-from collections import defaultdict
+from collections import defaultdict, deque
 
 from typing import List
 
@@ -16,7 +16,7 @@ from algorithm.src.fast_io import FastIO
 ===================================力扣===================================
 473. 火柴拼正方形（https://leetcode.cn/problems/matchsticks-to-square/）暴力搜索木棍拼接组成正方形
 301. 删除无效的括号（https://leetcode.cn/problems/remove-invalid-parentheses/）深搜回溯与剪枝
-6314. 统计可能的树根数目（https://leetcode.cn/contest/biweekly-contest-99/problems/count-number-of-possible-root-nodes/）深搜序加差分计数
+2581. 统计可能的树根数目（https://leetcode.cn/contest/biweekly-contest-99/problems/count-number-of-possible-root-nodes/）深搜序加差分计数
 
 
 ===================================洛谷===================================
@@ -54,7 +54,7 @@ class DFS:
         return
 
     @staticmethod
-    def gen_node_order(dct):
+    def gen_dfs_order_recursion(dct):
         # 模板：生成深搜序即 dfs 序以及对应子树编号区间
         def dfs(x):
             nonlocal order
@@ -71,6 +71,32 @@ class DFS:
         visit = [-1] * n
         interval = [[] for _ in range(n)]
         dfs(0)
+        return visit, interval
+
+    @staticmethod
+    def gen_dfs_order_iteration(dct):
+        # 模板：生成深搜序即 dfs 序以及对应子树编号区间
+        n = len(dct)
+        order = 0
+        visit = [-1] * n
+        interval = [[0, 0] for _ in range(n)]
+        parent = [-1]*n
+        stack = deque([[0, 1, -1]])
+        while stack:
+            i, state, fa = stack.popleft()
+            if state:
+                visit[i] = order
+                interval[i] = [order, order]
+                order += 1
+                stack.appendleft([i, 0, fa])
+                for j in dct[i][::-1]:
+                    if j != fa:
+                        parent[j] = i
+                        stack.appendleft([j, 1, i])
+            else:
+                if parent[i] != -1:
+                    interval[parent[i]][1] = interval[i][1]
+
         return visit, interval
 
 
@@ -228,7 +254,7 @@ class Solution:
         return ans
 
     @staticmethod
-    def lc_6314(edges: List[List[int]], guesses: List[List[int]], k: int) -> int:
+    def lc_2581(edges: List[List[int]], guesses: List[List[int]], k: int) -> int:
         # 模板：使用深搜序确定猜测的查询范围，并使用差分数组计数
         n = len(edges) + 1
         dct = [[] for _ in range(n)]
@@ -236,8 +262,8 @@ class Solution:
             dct[i].append(j)
             dct[j].append(i)
 
-        visit, interval = DFS().gen_node_order(dct)
-
+        visit, interval = DFS().gen_dfs_order_recursion(dct)
+        # 也可以使用 DFS().gen_dfs_order_iteration(dct)
         diff = [0] * n
         for u, v in guesses:
             if visit[u] <= visit[v]:
@@ -258,8 +284,8 @@ class Solution:
         return sum(x >= k for x in diff)
 
     @staticmethod
-    def cf_570d(ac=FastIO()):
-        # 模板：使用dfs序与二分进行计数统计
+    def cf_570d_1(ac=FastIO()):
+        # 模板：使用dfs序与二分进行计数统计（超时）
         n, m = ac.read_list_ints()
         parent = ac.read_list_ints()
         edge = [[] for _ in range(n)]
@@ -309,15 +335,60 @@ class Solution:
             ac.st("Yes" if odd <= 1 else "No")
         return
 
+    @staticmethod
+    def cf_570d_2(ac=FastIO()):
+        # 模板：使用迭代顺序实现深搜序，利用异或和来判断是否能形成回文
+
+        n, m = ac.read_ints()
+        parent = ac.read_list_ints_minus_one()
+        edge = [[] for _ in range(n)]
+        for i in range(n - 1):
+            edge[parent[i]].append(i + 1)
+        s = ac.read_str()
+
+        queries = [[] for _ in range(n)]
+        for i in range(m):
+            v, h = ac.read_ints()
+            queries[v - 1].append([h - 1, i])
+
+        ans = [0] * m
+        depth = [0] * n
+
+        # 迭代方式同时更新深度与状态
+        stack = [[0, 1, 0]]
+        while stack:
+            i, state, height = stack.pop()
+            if state:
+                for h, j in queries[i]:
+                    ans[j] ^= depth[h]
+                depth[height] ^= 1 << (ord(s[i]) - ord("a"))
+                stack.append([i, 0, height])
+                for j in edge[i]:
+                    stack.append([j, 1, height + 1])
+            else:
+                for h, j in queries[i]:
+                    ans[j] ^= depth[h]
+        for a in ans:
+            ac.st("Yes" if a & (a - 1) == 0 else "No")
+        return
+
 
 class TestGeneral(unittest.TestCase):
 
     def test_dfs(self):
         dfs = DFS()
         dct = [[1, 2], [0, 3], [0, 4], [1], [2]]
-        visit, interval = dfs.gen_node_order(dct)
+        visit, interval = dfs.gen_dfs_order_recursion(dct)
         assert visit == [x-1 for x in [1, 2, 4, 3, 5]]
         assert interval == [[a-1, b-1] for a, b in [[1, 5], [2, 3], [4, 5], [3, 3], [5, 5]]]
+
+        dfs = DFS()
+        dct = [[1, 2], [0, 3], [0, 4], [1], [2]]
+        visit2, interval2 = dfs.gen_dfs_order_iteration(dct)
+        assert visit2 == [x - 1 for x in [1, 2, 4, 3, 5]]
+        assert interval2 == [[a - 1, b - 1] for a, b in [[1, 5], [2, 3], [4, 5], [3, 3], [5, 5]]]
+
+
         return
 
 

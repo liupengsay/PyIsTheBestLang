@@ -31,6 +31,7 @@ P6153 询问（https://www.luogu.com.cn/problem/P6153）经典并查集思想贪
 
 ================================CodeForces================================
 D. Roads not only in Berland（https://codeforces.com/problemset/problem/25/D）并查集将原来的边断掉重新来连接使得成为一整个连通集
+E. Monsters（https://codeforces.com/contest/1810/problem/E）并查集加启发式搜索，使用BFS与堆优化实现
 
 参考：OI WiKi（xx）
 """
