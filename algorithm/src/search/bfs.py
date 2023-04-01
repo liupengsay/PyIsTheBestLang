@@ -14,6 +14,8 @@ from algorithm.src.fast_io import FastIO
 1368. 使网格图至少有一条有效路径的最小代价（https://leetcode.cn/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/）使用0-1 BFS进行优化计算最小代价
 2258. 逃离火灾（https://leetcode.cn/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/）使用二分查找加双源BFS进行模拟
 2092. 找出知晓秘密的所有专家（https://leetcode.cn/problems/find-all-people-with-secret/）按照时间排序，在同一时间进行BFS扩散
+6330. 图中的最短环（https://leetcode.cn/contest/biweekly-contest-101/problems/shortest-cycle-in-a-graph/）使用BFS求无向图的最短环，还可以删除边计算两点最短路成为环，或者以任意边为起点，逐渐加边
+
 
 ===================================洛谷===================================
 P1747 好奇怪的游戏（https://www.luogu.com.cn/problem/P1747）双向BFS搜索最短距离
@@ -61,6 +63,121 @@ D. Valid BFS?（https://codeforces.com/problemset/problem/1037/D）经典BDS好�
 class Solution:
     def __init__(self):
         return
+
+    @staticmethod
+    def lc_6330_1(n: int, edges: List[List[int]]) -> int:
+
+        # 模板：求无向图的最小环
+        graph = [[] for _ in range(n)]
+        for x, y in edges:
+            graph[x].append(y)
+            graph[y].append(x)
+
+        inf = float("inf")
+        ans = inf
+        for i in range(n):
+            dist = [inf] * n
+            par = [-1] * n
+            dist[i] = 0
+            q = deque([i])
+            while q:
+                x = q.popleft()
+                for child in graph[x]:
+                    if dist[x] > ans:
+                        break
+                    if dist[child] == inf:
+                        dist[child] = 1 + dist[x]
+                        par[child] = x
+                        q.append(child)
+                    elif par[x] != child and par[child] != x:
+                        cur = dist[x] + dist[child] + 1
+                        ans = ans if ans < cur else cur
+        return ans if ans != inf else -1
+
+    @staticmethod
+    def lc_6330_2(n: int, edges: List[List[int]]) -> int:
+
+        # 模板：求无向图的最小环
+        graph = [[] for _ in range(n)]
+        for u, v in edges:
+            graph[u].append(v)
+            graph[v].append(u)
+
+        ans = float('inf')
+        for i in range(n):
+            q = deque([(i, -1, 1)])  # 节点编号，父节点编号，当前路径长度
+            visited = {(i, -1)}
+            while q:
+                u, parent, dist = q.popleft()
+                if dist > ans:
+                    break
+                for v in graph[u]:
+                    if v == parent:  # 避免重复访问父节点
+                        continue
+                    if v == i:  # 找到当前起点的最小环
+                        ans = ans if ans < dist else dist
+                        break
+                    if (v, u) not in visited:
+                        visited.add((v, u))
+                        q.append((v, u, dist + 1))
+        return ans if ans < float('inf') else -1
+
+    @staticmethod
+    def lc_6330_3(n: int, edges: List[List[int]]) -> int:
+        # 模板：求无向图的最小环
+        inf = float('inf')
+        g = [[] for _ in range(n)]
+        for x, y in edges:
+            g[x].append(y)
+            g[y].append(x)  # 建图
+
+        def bfs(start: int) -> int:
+            nonlocal inf
+            dis = [-1] * n  # dis[i] 表示从 start 到 i 的最短路长度
+            dis[start] = 0
+            q = deque([(start, -1)])
+            while q:
+                x, fa = q.popleft()
+                for y in g[x]:
+                    if dis[y] < 0:  # 第一次遇到
+                        dis[y] = dis[x] + 1
+                        q.append((y, x))
+                    elif y != fa:  # 第二次遇到
+                        # 由于是 BFS，后面不会遇到更短的环，直接返回
+                        return dis[x] + dis[y] + 1
+            return inf  # 该连通分量无环
+
+        ans = min(bfs(i) for i in range(n))
+        return ans if ans < inf else -1
+
+    @staticmethod
+    def lc_6330_4(n: int, edges: List[List[int]]) -> int:
+        # 模板：求无向图的最小环，枚举边
+        graph = [set() for _ in range(n)]
+        for x, y in edges:
+            graph[x].add(y)
+            graph[y].add(x)
+
+        inf = float("inf")
+        ans = inf
+        for x, y in edges:
+            graph[x].discard(y)
+            graph[y].discard(x)
+            dis = [inf] * n
+            dis[x] = 0
+            stack = deque([x])
+            while stack:
+                m = len(stack)
+                for _ in range(m):
+                    i = stack.popleft()
+                    for j in graph[i]:
+                        if dis[j] == inf:
+                            dis[j] = dis[i] + 1
+                            stack.append(j)
+            ans = ans if ans < dis[y] else dis[y]
+            graph[x].add(y)
+            graph[y].add(x)
+        return ans + 1 if ans < inf else -1
 
     @staticmethod
     def lg_p1807_1(ac=FastIO()):
