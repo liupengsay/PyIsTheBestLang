@@ -61,7 +61,7 @@ class Range:
 
     @staticmethod
     def cover_less(s, t, lst, inter=True):
-        # 模板: 计算nums的最少区间数进行覆盖 [s, t]
+        # 模板: 计算nums的最少区间数进行覆盖 [s, t] 即最少区间覆盖
         lst.sort(key=lambda x: [x[0], -x[1]])
         if lst[0][0] != s:
             return -1
@@ -87,7 +87,8 @@ class Range:
                 cur = -1
                 if end >= t:
                     return ans
-                if (end >= a and inter) or (not inter and end >= a - 1): # 如果是 [1, 2] + [3, 4] = [1, 4] 则需要改成 end >= a-1
+                # 如果是 [1, 2] + [3, 4] = [1, 4] 则需要改成 end >= a-1
+                if (end >= a and inter) or (not inter and end >= a - 1):
                     # 可以再交
                     cur = cur if cur > b else b
                 else:

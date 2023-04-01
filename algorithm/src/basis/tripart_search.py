@@ -4,7 +4,7 @@ import unittest
 from algorithm.src.fast_io import FastIO
 
 """
-算法：三分查找
+算法：三分查找求一维极值、三分套三分求二维极值
 功能：用来寻找区间至多具有一个峰顶点或者一个谷底点的函数极值解
 题目：
 
