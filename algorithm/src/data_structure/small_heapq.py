@@ -63,6 +63,20 @@ class HeapqMedian:
         return self.mid
 
 
+class KthLargest:
+    # 使用一个堆维护第k大的元素
+    def __init__(self, k: int, nums: List[int]):
+        self.heap = [num for num in nums]
+        self.k = k
+        heapq.heapify(self.heap)
+
+    def add(self, val: int) -> int:
+        heapq.heappush(self.heap, val)
+        while len(self.heap) > self.k:
+            heapq.heappop(self.heap)
+        return self.heap[0]
+
+
 class MedianFinder:
     # 使用两个堆动态维护数组的中位数
     def __init__(self):
