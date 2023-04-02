@@ -20,6 +20,9 @@ P1338 末日的传说（https://www.luogu.com.cn/problem/P1338）结合逆序对
 P2524 Uim的情人节礼物·其之弐（https://www.luogu.com.cn/problem/P2524）计算全排列的字典序排名
 P2525 Uim的情人节礼物·其之壱（https://www.luogu.com.cn/problem/P2525）计算全排列的上一个排列
 
+================================CodeForces================================
+B. K-th Beautiful String（https://codeforces.com/problemset/problem/1328/B）计算comb的字典序
+
 参考：OI WiKi（xx）
 """
 
@@ -172,6 +175,18 @@ class LexicoGraphicalOrder:
 
 class Solution:
     def __init__(self):
+        return
+
+    @staticmethod
+    def cf_1328b(ac=FastIO()):
+        # 模板：计算comb选取的字典序
+        for _ in range(ac.read_int()):
+            n, k = ac.read_ints()
+            ind = LexicoGraphicalOrder().get_kth_subset_comb(n, 2, n*(n-1)//2-k+1)
+            ans = ["a"]*n
+            for i in ind:
+                ans[i-1] = "b"
+            ac.st("".join(ans))
         return
 
     @staticmethod
