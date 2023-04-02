@@ -27,6 +27,7 @@ from algorithm.src.fast_io import FastIO
 2267. 检查是否有合法括号字符串路径（https://leetcode.cn/problems/check-if-there-is-a-valid-parentheses-string-path/）记忆化搜索合法路径
 1092. 最短公共超序列（https://leetcode.cn/problems/shortest-common-supersequence/）经典从后往前动态规划加从前往后构造，计算最长公共子序列，并构造包含两个字符串的最短公共超序列
 1143. 最长公共子序列（https://leetcode.cn/problems/longest-common-subsequence/）使用LIS的方法求LCS
+1035. 不相交的线（https://leetcode.cn/problems/uncrossed-lines/）使用LIS的方法求LCS
 
 ===================================洛谷===================================
 P2701 [USACO5.3]巨大的牛棚Big Barn（https://www.luogu.com.cn/problem/P2701）求全为 "." 的最大正方形面积，如果不要求实心只能做到O(n^3)复杂度
@@ -66,7 +67,7 @@ class LcsLis:
     def __init__(self):
         return
 
-    def longest_common_subsequence(self, s1: str, s2: str) -> int:
+    def longest_common_subsequence(self, s1, s2) -> int:
         # 使用LIS的办法求LCS
         if len(s1) > len(s2):
             s1, s2 = s2, s1
@@ -99,7 +100,13 @@ class Solution:
         return
 
     @staticmethod
+    def lc_1305(self, nums1: List[int], nums2: List[int]) -> int:
+        # 模板：使用LIS的办法求LCS
+        return LcsLis().longest_common_subsequence(nums1, nums2)
+
+    @staticmethod
     def lc_1143(self, s1: str, s2: str) -> int:
+        # 模板：使用LIS的办法求LCS
         return LcsLis().longest_common_subsequence(s1, s2)
 
     @staticmethod

@@ -39,6 +39,7 @@ C. Circular RMQ（https://codeforces.com/problemset/problem/52/C）线段树更�
 D. The Child and Sequence（https://codeforces.com/problemset/problem/438/D）使用线段树维护区间取模，区间和，修改单点值，和区间最大值
 E. A Simple Task（https://codeforces.com/contest/558/problem/E）26个线段树维护区间排序信息
 D. Water Tree（https://codeforces.com/problemset/problem/343/D）dfs序加线段树
+E. XOR on Segment（https://codeforces.com/problemset/problem/242/E）线段树区间异或，与区间加和
 
 参考：OI WiKi（xx）
 """

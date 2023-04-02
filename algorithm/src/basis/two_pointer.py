@@ -30,6 +30,7 @@ P7542 [COCI2009-2010#1] MALI（https://www.luogu.com.cn/problem/P7542）桶计�
 
 ================================CodeForces================================
 D. Carousel（https://codeforces.com/problemset/problem/1328/D）环形数组滑动窗口，记录变化次数并根据奇偶变换次数与环形首尾元素确定染色数量
+C. Eugene and an array（https://codeforces.com/problemset/problem/1333/C）双指针，计算前缀和不重复即没有区间段和为0的个数
 
 参考：OI WiKi（xx）
 """

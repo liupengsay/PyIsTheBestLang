@@ -1,9 +1,14 @@
-"""
 
-"""
+import unittest
+
+from typing import List
+from collections import defaultdict, Counter
 from algorithm.src.fast_io import FastIO
+import heapq
+
 
 """
+
 算法：并查集、可持久化并查集
 功能：用来处理图论相关的联通问题，通常结合逆向思考、置换环或者离线查询进行求解，连通块不一定是秩大小，也可以是最大最小值、和等
 题目：
@@ -35,35 +40,9 @@ D. Roads not only in Berland（https://codeforces.com/problemset/problem/25/D）
 E. Monsters（https://codeforces.com/contest/1810/problem/E）并查集加启发式搜索，使用BFS与堆优化实现
 E. Connected Components?（https://codeforces.com/contest/920/problem/E）并查集，加线性动态维护剩余节点
 
+
 参考：OI WiKi（xx）
 """
-
-import bisect
-import random
-import re
-import unittest
-
-from typing import List
-import heapq
-import math
-from collections import defaultdict, Counter, deque
-from functools import lru_cache
-from itertools import combinations
-from sortedcontainers import SortedList, SortedDict, SortedSet
-
-from sortedcontainers import SortedDict
-from functools import reduce
-from operator import xor
-from functools import lru_cache
-
-import random
-from itertools import permutations, combinations
-import numpy as np
-
-from decimal import Decimal
-
-import heapq
-import copy
 
 
 # 标准并查集
