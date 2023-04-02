@@ -5,6 +5,8 @@ from typing import List
 
 from sortedcontainers import SortedList
 
+from algorithm.src.fast_io import FastIO
+
 """
 算法：堆（优先队列）
 功能：通常用于需要贪心的场景
@@ -17,6 +19,7 @@ from sortedcontainers import SortedList
 2386. 找出数组的第 K 大和（https://leetcode.cn/problems/find-the-k-sum-of-an-array/）转换思路使用堆维护最大和第 K 次出队的则为目标结果
 2163. 删除元素后和的最小差值（https://leetcode.cn/problems/minimum-difference-in-sums-after-removal-of-elements/）预处理前缀后缀最大最小的 K 个数和再进行枚举分割点
 1792. 最大平均通过率（https://leetcode.cn/problems/maximum-average-pass-ratio/）贪心依次给增幅最大的班级人数加 1 
+295. 数据流的中位数（https://leetcode.cn/problems/find-median-from-data-stream/）用两个堆维护中位数
 
 ===================================洛谷===================================
 P1168 中位数（https://www.luogu.com.cn/problem/P1168） 用两个堆维护中位数
@@ -60,8 +63,36 @@ class HeapqMedian:
         return self.mid
 
 
+class MedianFinder:
+    # 使用两个堆动态维护数组的中位数
+    def __init__(self):
+        self.pre = []  # 负数
+        self.post = []  # 正数（中位数的位置）
+
+    def add_num(self, num: int) -> None:
+        if len(self.pre) != len(self.post):
+            heapq.heappush(self.pre, -heapq.heappushpop(self.post, num))
+        else:
+            heapq.heappush(self.post, -heapq.heappushpop(self.pre, -num))
+
+    def find_median(self) -> float:
+        return self.post[0] if len(self.pre) != len(self.post) else (self.post[0]-self.pre[0])/2
+
+
 class Solution:
     def __int__(self):
+        return
+
+    @staticmethod
+    def lg_1198(ac=FastIO()):
+        # 模板：使用两个堆维护中位数
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        arr = MedianFinder()
+        for i in range(n):
+            arr.add_num(nums[i])
+            if i % 2 == 0:
+                ac.st(arr.find_median())
         return
 
     @staticmethod
