@@ -100,12 +100,12 @@ class Solution:
         return
 
     @staticmethod
-    def lc_1305(self, nums1: List[int], nums2: List[int]) -> int:
+    def lc_1305(nums1: List[int], nums2: List[int]) -> int:
         # 模板：使用LIS的办法求LCS
         return LcsLis().longest_common_subsequence(nums1, nums2)
 
     @staticmethod
-    def lc_1143(self, s1: str, s2: str) -> int:
+    def lc_1143(s1: str, s2: str) -> int:
         # 模板：使用LIS的办法求LCS
         return LcsLis().longest_common_subsequence(s1, s2)
 
