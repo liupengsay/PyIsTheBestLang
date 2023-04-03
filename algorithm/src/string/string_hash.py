@@ -45,6 +45,9 @@ P6140 [USACO07NOV]Best Cow Line S（https://www.luogu.com.cn/problem/P6140）贪
 P2870 [USACO07DEC]Best Cow Line G（https://www.luogu.com.cn/problem/P2870）贪心模拟与字典序比较，使用字符串哈希与二分查找比较正序与倒序最长公共子串
 P5832 [USACO19DEC]Where Am I? B（https://www.luogu.com.cn/problem/P5832）可以使用字符串哈希进行最长的长度使得所有对应长度的子串均是唯一的
 
+================================CodeForces================================
+
+
 参考：OI WiKi（xx）
 """
 

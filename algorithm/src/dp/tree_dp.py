@@ -3,6 +3,8 @@ import unittest
 from collections import deque, Counter
 from functools import lru_cache
 from heapq import nlargest
+from itertools import accumulate
+from operator import add
 from typing import List
 from algorithm.src.fast_io import FastIO, inf
 from algorithm.src.graph.union_find import UnionFind
@@ -51,6 +53,7 @@ F. Maximum White Subtree（https://codeforces.com/problemset/problem/1324/F）�
 D. Book of Evil（https://codeforces.com/problemset/problem/337/D）经典换根DP题，两遍dfs搜索更新计算
 E. Tree Painting（https://codeforces.com/problemset/problem/1187/E）经典换根DP题，两遍dfs搜索更新计算
 E. Lomsat gelral（https://codeforces.com/problemset/problem/600/E）迭代方式写深搜序，按秩合并，由小到大
+D. A Wide, Wide Graph（https://codeforces.com/problemset/problem/1805/D）树的直径计算，任意点到直径的某个端点的距离最长
 
 参考：OI WiKi（xx）
 """
@@ -227,8 +230,67 @@ class TreeDiameter:
         return ans
 
 
+class TreeDiameterDis:
+    # 任取树中的一个节点x，找出距离它最远的点y，那么点y就是这棵树中一条直径的一个端点。我们再从y出发，找出距离y最远的点就找到了一条直径。
+    # 这个算法依赖于一个性质：对于树中的任一个点，距离它最远的点一定是树上一条直径的一个端点。
+    def __init__(self, edge):
+        self.edge = edge
+        self.n = len(self.edge)
+        return
+
+    def get_furthest(self, node):
+        q = deque([(node, -1)])
+        while q:
+            node, pre = q.popleft()
+            for x in self.edge[node]:
+                if x != pre:
+                    q.append((x, node))
+        return node
+
+    def get_diameter_node(self):
+        # 获取树的直径端点
+        x = self.get_furthest(0)
+        y = self.get_furthest(x)
+        return x, y
+
+    def get_bfs_dis(self, node):
+        dis = [inf] * self.n
+        stack = [node]
+        dis[node] = 0
+        while stack:
+            nex = []
+            for i in stack:
+                for j in self.edge[i]:
+                    if dis[j] == inf:
+                        nex.append(j)
+                        dis[j] = dis[i] + 1
+            stack = nex[:]
+        return dis
+
+
 class Solution:
     def __init__(self):
+        return
+
+    @staticmethod
+    def cf_1805d(ac=FastIO()):
+        # 模板：使用树的直径与端点距离，计算节点对距离至少为k的连通块个数
+        n = ac.read_int()
+        edge = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            u, v = ac.read_ints_minus_one()
+            edge[u].append(v)
+            edge[v].append(u)
+        tree = TreeDiameterDis(edge)
+        u, v = tree.get_diameter_node()
+        dis1 = tree.get_bfs_dis(u)
+        dis2 = tree.get_bfs_dis(v)
+        diff = [0] * n
+        for i in range(n):
+            diff[ac.max(dis1[i], dis2[i])] += 1
+        diff[0] = 1
+        diff = list(accumulate(diff, add))
+        ac.lst([ac.min(x, n) for x in diff])
         return
 
     @staticmethod
