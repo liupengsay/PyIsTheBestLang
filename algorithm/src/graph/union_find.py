@@ -39,6 +39,9 @@ P6153 询问（https://www.luogu.com.cn/problem/P6153）经典并查集思想贪
 D. Roads not only in Berland（https://codeforces.com/problemset/problem/25/D）并查集将原来的边断掉重新来连接使得成为一整个连通集
 E. Monsters（https://codeforces.com/contest/1810/problem/E）并查集加启发式搜索，使用BFS与堆优化实现
 E. Connected Components?（https://codeforces.com/contest/920/problem/E）并查集，加线性动态维护剩余节点
+C. Ice Cave（https://codeforces.com/problemset/problem/540/C）路径可达
+E2. Unforgivable Curse (hard version)（https://codeforces.com/problemset/problem/1800/E2）使用并查集分组计算可达
+
 
 
 参考：OI WiKi（xx）

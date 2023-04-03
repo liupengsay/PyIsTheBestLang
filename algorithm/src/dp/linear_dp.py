@@ -60,6 +60,7 @@ https://codeforces.com/problemset/problem/1221/D（线性DP模拟）
 C. Chef Monocarp（https://codeforces.com/problemset/problem/1437/C）二维线性DP，两个数组线性移动进行匹配计算最大或者最小值
 D. Armchairs（https://codeforces.com/problemset/problem/1525/D）二维线性DP，两个数组线性移动进行匹配计算最大或者最小值
 A. Garland（https://codeforces.com/problemset/problem/1286/A）线性经典dp
+D. Make The Fence Great Again（https://codeforces.com/problemset/problem/1221/D）线性DP，最多变化为增加0、1、2
 
 参考：OI WiKi（xx）
 """

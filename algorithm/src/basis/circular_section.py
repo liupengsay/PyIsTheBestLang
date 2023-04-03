@@ -19,6 +19,10 @@ P5550 Chino的数列（https://www.luogu.com.cn/problem/P5550）循环节计算�
 P7318 「PMOI-4」人赢の梦（https://www.luogu.com.cn/problem/P7318）二维元素，再增加虚拟开始状态，进行循环节计算
 P7681 [COCI2008-2009#5] LUBENICA（https://www.luogu.com.cn/problem/P7681）带前缀和的循环节，注意定义循环状态
 
+================================CodeForces================================
+C. Yet Another Counting Problem（https://codeforces.com/problemset/problem/1342/C）循环节计数
+
+
 参考：OI WiKi（xx）
 """
 

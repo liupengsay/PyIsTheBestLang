@@ -48,6 +48,7 @@ P7391 「TOCO Round 1」自适应 PVZ（https://www.luogu.com.cn/problem/P7391�
 ================================CodeForces================================
 D. Pashmak and Parmida's problem（https://codeforces.com/problemset/problem/459/D）使用有序集合进行大小计数查找
 E. Enemy is weak（https://codeforces.com/problemset/problem/61/E）典型应用场景，前后缀大于小于值计数
+D. Multiset（https://codeforces.com/problemset/problem/1354/D）有序列表的维护与查询
 
 参考：OI WiKi（xx）
 """

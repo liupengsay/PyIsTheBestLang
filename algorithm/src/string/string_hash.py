@@ -27,6 +27,8 @@ from decimal import Decimal
 import heapq
 import copy
 
+from algorithm.src.fast_io import FastIO
+
 """
 
 算法：字符串哈希
@@ -46,6 +48,7 @@ P2870 [USACO07DEC]Best Cow Line G（https://www.luogu.com.cn/problem/P2870）贪
 P5832 [USACO19DEC]Where Am I? B（https://www.luogu.com.cn/problem/P5832）可以使用字符串哈希进行最长的长度使得所有对应长度的子串均是唯一的
 
 ================================CodeForces================================
+D. Remove Two Letters（https://codeforces.com/problemset/problem/1800/D）字符串前后缀哈希加和变换
 
 
 参考：OI WiKi（xx）
@@ -72,6 +75,54 @@ class StringHash:
         for _ in range(1, n + 1):
             dp2.append((dp2[-1] * p2) % mod2)
         return p1, p2, mod1, mod2, dp1, dp2
+
+
+class Solution:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def cf_1800d(ac=FastIO()):
+
+        # 模板：字符串前后缀哈希加和，使用两个哈希避免碰撞
+        n = 2 * 10 ** 5
+        p1 = random.randint(26, 100)
+        p2 = random.randint(26, 100)
+        mod1 = random.randint(10 ** 9 + 7, 2 ** 31 - 1)
+        mod2 = random.randint(10 ** 9 + 7, 2 ** 31 - 1)
+
+        dp1 = [1]
+        for _ in range(1, n + 1):
+            dp1.append((dp1[-1] * p1) % mod1)
+        dp2 = [1]
+        for _ in range(1, n + 1):
+            dp2.append((dp2[-1] * p2) % mod2)
+
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            s = ac.read_str()
+
+            post1 = [0] * (n + 1)
+            for i in range(n - 1, -1, -1):
+                post1[i] = (post1[i + 1] + (ord(s[i]) - ord("a")) * dp1[n - 1 - i]) % mod1
+
+            post2 = [0] * (n + 1)
+            for i in range(n - 1, -1, -1):
+                post2[i] = (post2[i + 1] + (ord(s[i]) - ord("a")) * dp2[n - 1 - i]) % mod2
+
+            ans = set()
+            pre1 = pre2 = 0
+            for i in range(n - 1):
+                x1 = pre1
+                y1 = post1[i + 2]
+                x2 = pre2
+                y2 = post2[i + 2]
+                ans.add(((x1 * dp1[n - i - 2] + y1) % mod1, (x2 * dp2[n - i - 2] + y2) % mod2))
+                # ans.add((x1 * dp1[n - i - 2] + y1) % mod1)
+                pre1 = (pre1 * p1) % mod1 + ord(s[i]) - ord("a")
+                pre2 = (pre2 * p2) % mod2 + ord(s[i]) - ord("a")
+            ac.st(len(ans))
+        return
 
 
 class TestGeneral(unittest.TestCase):
