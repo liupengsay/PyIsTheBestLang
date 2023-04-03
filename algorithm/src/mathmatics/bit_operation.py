@@ -22,6 +22,8 @@ from algorithm.src.fast_io import FastIO
 1238. 循环码排列（https://leetcode.cn/problems/circular-permutation-in-binary-representation/）生成格雷码，使得循环数组相邻数字二进制位只有一位不同
 89. 格雷编码（https://leetcode.cn/problems/gray-code/）生成 0 开头的 n 位格雷码序列
 137. 只出现一次的数字 II（https://leetcode.cn/problems/single-number-ii/）使用位运算按位计数
+剑指 Offer 56 - I. 数组中数字出现的次数（https://leetcode.cn/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-lcof/）使用位运算按位计数
+260. 只出现一次的数字 III（https://leetcode.cn/problems/single-number-iii/）使用位运算按位计数
 
 ===================================洛谷===================================
 P5657 格雷码（https://www.luogu.com.cn/problem/P5657）计算编号为 k 的二进制符，并补前缀 0 为 n 位
@@ -87,6 +89,20 @@ class BitOperation:
 class Solution:
     def __int__(self):
         return
+
+    @staticmethod
+    def lc_260(nums: List[int]) -> List[int]:
+
+        # 模板：将整数换算成二进制进行计数
+        s = reduce(xor, nums)
+        last = s & (-s)
+        one = two = 0
+        for num in nums:
+            if num & last:
+                one ^= num
+            else:
+                two ^= num
+        return [one, two]
 
     @staticmethod
     def lc_137(nums: List[int]) -> int:
