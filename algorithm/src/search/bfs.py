@@ -16,7 +16,6 @@ from algorithm.src.fast_io import FastIO
 2092. 找出知晓秘密的所有专家（https://leetcode.cn/problems/find-all-people-with-secret/）按照时间排序，在同一时间进行BFS扩散
 6330. 图中的最短环（https://leetcode.cn/contest/biweekly-contest-101/problems/shortest-cycle-in-a-graph/）使用BFS求无向图的最短环，还可以删除边计算两点最短路成为环，或者以任意边为起点，逐渐加边
 
-
 ===================================洛谷===================================
 P1747 好奇怪的游戏（https://www.luogu.com.cn/problem/P1747）双向BFS搜索最短距离
 P5507 机关（https://www.luogu.com.cn/problem/P5507）双向BFS进行搜索
@@ -53,6 +52,7 @@ P1807 最长路（https://www.luogu.com.cn/problem/P1807）不保证连通的有
 E. Nearest Opposite Parity（https://codeforces.com/problemset/problem/1272/E）经典反向建图，多源BFS
 A. Book（https://codeforces.com/problemset/problem/1572/A）脑筋急转弯建图，广度优先搜索计算是否存在环与无环时从任意起点的DAG最长路
 D. Valid BFS?（https://codeforces.com/problemset/problem/1037/D）经典BDS好题，结合队列与集合进行模拟
+P6175 无向图的最小环问题（https://www.luogu.com.cn/problem/P6175）经典使用Floyd枚举三个点之间的距离和，O(n^3)，也可以使用BFS或者Dijkstra计算
 
 
 
@@ -136,6 +136,7 @@ class Solution:
             dis = [-1] * n  # dis[i] 表示从 start 到 i 的最短路长度
             dis[start] = 0
             q = deque([(start, -1)])
+            res = inf
             while q:
                 x, fa = q.popleft()
                 for y in g[x]:
@@ -144,8 +145,8 @@ class Solution:
                         q.append((y, x))
                     elif y != fa:  # 第二次遇到
                         # 由于是 BFS，后面不会遇到更短的环，直接返回
-                        return dis[x] + dis[y] + 1
-            return inf  # 该连通分量无环
+                        res = res if res < dis[x] + dis[y] + 1 else dis[x] + dis[y] + 1
+            return res  # 该连通分量无环
 
         ans = min(bfs(i) for i in range(n))
         return ans if ans < inf else -1

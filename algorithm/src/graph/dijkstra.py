@@ -6,7 +6,7 @@ from itertools import accumulate
 from operator import add
 from typing import List
 
-from algorithm.src.fast_io import FastIO
+from algorithm.src.fast_io import FastIO, inf
 
 """
 算法：Dijkstra（单源最短路经算法）
@@ -61,12 +61,72 @@ P6770 [USACO05MAR]Checking an Alibi 不在场的证明（https://www.luogu.com.c
 P6833 [Cnoi2020]雷雨（https://www.luogu.com.cn/problem/P6833）三遍最短路后，进行枚举计算
 P7551 [COCI2020-2021#6] Alias（https://www.luogu.com.cn/problem/P7551）最短路裸题，注意重边与自环
 
+P6175 无向图的最小环问题（https://www.luogu.com.cn/problem/P6175）使用Dijkstra枚举边计算或者使用DFS枚举点，带权
+
 ================================CodeForces================================
 C. Dijkstra?（https://codeforces.com/problemset/problem/20/C）正权值最短路计算，并记录返回生成路径
 E. Weights Distributing（https://codeforces.com/problemset/problem/1343/E）使用三个01BFS求最短路加贪心枚举计算
 
 参考：OI WiKi（xx）
 """
+
+
+class UnDirectedShortestCycle:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def find_shortest_cycle_with_node(n: int, dct) -> int:
+        # 模板：求无向图的最小环，枚举点
+        ans = inf
+        for i in range(n):
+            dist = [inf] * n
+            par = [-1] * n
+            dist[i] = 0
+            q = [[0, i]]
+            while q:
+                _, x = heapq.heappop(q)
+                for child in dct[x]:
+                    if dist[x] > ans:
+                        break
+                    if dist[child] > dct[x][child] + dist[x]:
+                        dist[child] = dct[x][child] + dist[x]
+                        par[child] = x
+                        heapq.heappush(q, [dist[child], child])
+                    elif par[x] != child and par[child] != x:
+                        cur = dist[x] + dist[child] + dct[x][child]
+                        ans = ans if ans < cur else cur
+        return ans if ans != inf else -1
+
+    @staticmethod
+    def find_shortest_cycle_with_edge(n: int, dct, edges) -> int:
+        # 模板：求无向图的最小环，枚举边
+
+        ans = inf
+        for x, y, w in edges:
+            dct[x].pop(y)
+            dct[y].pop(x)
+
+            dis = [inf] * n
+            stack = [[0, x]]
+            dis[x] = 0
+
+            while stack:
+                d, i = heapq.heappop(stack)
+                if dis[i] < d:
+                    continue
+                if i == y:
+                    break
+                for j in dct[i]:
+                    dj = dct[i][j] + d
+                    if dj < dis[j]:
+                        dis[j] = dj
+                        heapq.heappush(stack, [dj, j])
+
+            ans = ans if ans < dis[y] + w else dis[y] + w
+            dct[x][y] = w
+            dct[y][x] = w
+        return ans if ans < inf else -1
 
 
 class Dijkstra:
@@ -158,6 +218,37 @@ class Dijkstra:
 
 class Solution:
     def __init__(self):
+        return
+
+    @staticmethod
+    def lg_p6175_1(ac=FastIO()):
+        # 模板：使用Dijkstra枚举边的方式计算最小环
+        n, m = ac.read_ints()
+        dct = [defaultdict(lambda: inf) for _ in range(n)]
+        edges = []
+        for _ in range(m):
+            i, j, w = ac.read_ints()
+            dct[i-1][j-1] = ac.min(dct[i-1][j-1], w)
+            dct[j - 1][i - 1] = ac.min(dct[j - 1][i - 1], w)
+        for i in range(n):
+            for j in dct[i]:
+                if j > i:
+                    edges.append([i, j, dct[i][j]])
+        ans = UnDirectedShortestCycle.find_shortest_cycle_with_edge(n, dct, edges)
+        ac.st(ans if ans != -1 else "No solution.")
+        return
+
+    @staticmethod
+    def lg_p6175_2(ac=FastIO()):
+        # 模板：使用Dijkstra枚举点的方式计算最小环
+        n, m = ac.read_ints()
+        dct = [defaultdict(lambda: inf) for _ in range(n)]
+        for _ in range(m):
+            i, j, w = ac.read_ints()
+            dct[i-1][j-1] = ac.min(dct[i-1][j-1], w)
+            dct[j - 1][i - 1] = ac.min(dct[j - 1][i - 1], w)
+        ans = UnDirectedShortestCycle().find_shortest_cycle_with_node(n, dct)
+        ac.st(ans if ans != -1 else "No solution.")
         return
 
     @staticmethod
