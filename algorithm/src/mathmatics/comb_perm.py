@@ -37,7 +37,7 @@ P5520 [yLOI2019] 青原樱（https://www.luogu.com.cn/problem/P5520）隔板法�
 D. Triangle Coloring（https://codeforces.com/problemset/problem/1795/D）组合计数取模与乘法逆元快速计算
 C. Beautiful Numbers（https://codeforces.com/problemset/problem/300/C）枚举个数并使用组合数计算方案数
 C. Gerald and Giant Chess（https://codeforces.com/problemset/problem/559/C）容斥原理组合计数
-
+C. Binary Search（https://codeforces.com/problemset/problem/1436/C）二分加组合数计算
 
 参考：OI WiKi（xx）
 卡特兰数（https://oi-wiki.org/math/combinatorics/catalan/）
@@ -64,17 +64,42 @@ class Combinatorics:
         res = self.perm[a] * self.rev[b] * self.rev[a - b]
         return res % self.mod
 
-    @staticmethod
-    def combinnation(nums, k):
-        return [list(item) for item in combinations(nums, k)]
-
-    @staticmethod
-    def permutation(nums, k):
-        return [list(item) for item in permutations(nums, k)]
+    def factorial(self, a):
+        # 组合数根据乘法逆元求解
+        res = self.perm[a]
+        return res % self.mod
 
 
 class Solution:
     def __int__(self):
+        return
+
+    @staticmethod
+    def cf_1436c(ac=FastIO()):
+
+        # 模板：二分查找加组合数计算
+        n, x, pos = ac.read_ints()
+        big = small = 0
+
+        left = 0
+        right = n
+        while left < right:
+            mid = (left+right)//2
+            if mid <= pos:
+                small += int(mid != pos)
+                left = mid+1
+            else:
+                right = mid
+                big += 1
+
+        if small >= x or big > n - x:
+            ac.st(0)
+            return
+        mod = 10**9+7
+        comb = Combinatorics(n, mod)
+        ans = comb.comb(n-x, big)*comb.factorial(big)*math.comb(x-1, small)*math.factorial(small)
+        ans *= comb.factorial(n-big-small-1)
+        ac.st(ans % mod)
         return
 
     @staticmethod
