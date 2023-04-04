@@ -1,5 +1,5 @@
 import unittest
-from collections import defaultdict
+from collections import defaultdict, Counter
 from functools import lru_cache
 from functools import reduce
 from operator import xor
@@ -38,6 +38,8 @@ https://codeforces.com/problemset/problem/305/C（利用二进制加减的思想
 https://codeforces.com/problemset/problem/878/A（位运算的操作理解）
 http://codeforces.com/problemset/problem/282/C（利用位运算的特性进行判断）
 C. Mikasa（https://codeforces.com/problemset/problem/1554/C）经典位运算操作贪心计算
+F. Dasha and Nightmares（https://codeforces.com/contest/1800/problem/F）位运算枚举计数
+
 
 参考：OI WiKi（xx）
 https://blog.csdn.net/qq_35473473/article/details/106320878
@@ -88,6 +90,35 @@ class BitOperation:
 
 class Solution:
     def __int__(self):
+        return
+
+    @staticmethod
+    def cf_1800f(ac=FastIO()):
+
+        # 模板：位运算枚举计数
+        n = ac.read_int()
+        strings = [ac.read_str() for _ in range(n)]
+        states = []
+        for s in strings:
+            cnt = Counter(s)
+            a = b = 0
+            for i in range(26):
+                x = chr(i + ord("a"))
+                if cnt[x] % 2:
+                    a |= (1 << i)
+                if cnt[x]:
+                    b |= (1 << i)
+            states.append([a, b])
+
+        ans = 0
+        for i in range(26):
+            pre = defaultdict(int)
+            target = ((1 << 26) - 1) ^ (1 << i)
+            for j in range(n):
+                if not states[j][1] & (1 << i):
+                    ans += pre[target ^ states[j][0]]
+                    pre[states[j][0]] += 1
+        ac.st(ans)
         return
 
     @staticmethod
