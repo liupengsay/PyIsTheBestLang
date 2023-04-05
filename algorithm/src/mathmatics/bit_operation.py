@@ -96,7 +96,7 @@ class Solution:
     @staticmethod
     def cf_276d(ac=FastIO()):
 
-        # 模板：区间[,r]的最大异或和
+        # 模板：区间[l,r]的最大异或和
         a, b = ac.read_ints()
         n = len(bin(b)) - 2
         ans = 0
