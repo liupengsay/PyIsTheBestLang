@@ -39,6 +39,7 @@ https://codeforces.com/problemset/problem/878/A（位运算的操作理解）
 http://codeforces.com/problemset/problem/282/C（利用位运算的特性进行判断）
 C. Mikasa（https://codeforces.com/problemset/problem/1554/C）经典位运算操作贪心计算
 F. Dasha and Nightmares（https://codeforces.com/contest/1800/problem/F）位运算枚举计数
+D. Little Girl and Maximum XOR（https://codeforces.com/problemset/problem/276/D）范围[l,r]区间的最大异或和
 
 
 参考：OI WiKi（xx）
@@ -90,6 +91,22 @@ class BitOperation:
 
 class Solution:
     def __int__(self):
+        return
+
+    @staticmethod
+    def cf_276d(ac=FastIO()):
+
+        # 模板：区间[,r]的最大异或和
+        a, b = ac.read_ints()
+        n = len(bin(b)) - 2
+        ans = 0
+        for i in range(n - 1, -1, -1):
+            if b - a >= (1 << i):
+                ans |= (1 << i)
+            else:
+                if (a ^ b) & (1 << i):
+                    ans |= (1 << i)
+        ac.st(ans)
         return
 
     @staticmethod
