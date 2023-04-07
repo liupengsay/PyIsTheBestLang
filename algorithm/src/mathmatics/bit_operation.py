@@ -40,7 +40,7 @@ http://codeforces.com/problemset/problem/282/C（利用位运算的特性进行�
 C. Mikasa（https://codeforces.com/problemset/problem/1554/C）经典位运算操作贪心计算
 F. Dasha and Nightmares（https://codeforces.com/contest/1800/problem/F）位运算枚举计数
 D. Little Girl and Maximum XOR（https://codeforces.com/problemset/problem/276/D）范围[l,r]区间的最大异或和
-
+G. Orray（https://codeforces.com/contest/1742/problem/G）重排数组使得前缀或值的字典序最大
 
 参考：OI WiKi（xx）
 https://blog.csdn.net/qq_35473473/article/details/106320878
@@ -91,6 +91,42 @@ class BitOperation:
 
 class Solution:
     def __int__(self):
+        return
+
+    @staticmethod
+    def cf_1742g(ac=FastIO()):
+
+        # 模板：重排数组使得前缀或值的字典序最大
+        def or_(a, b):
+            return a | b
+
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+
+            def or_(a, b):
+                return a | b
+
+            nums = ac.read_list_ints()
+            total = reduce(or_, nums)
+            ind = set(list(range(n)))
+            rest = nums[:]
+            ans = []
+            pre = 0
+            while pre != total:
+                low = -1
+                x = 0
+                for i in ind:
+                    if rest[i] > low:
+                        low = rest[i]
+                        x = i
+                pre |= nums[x]
+                ans.append(nums[x])
+                ind.discard(x)
+                for i in ind:
+                    rest[i] = (rest[i] ^ (rest[i] & pre))
+            for i in ind:
+                ans.append(nums[i])
+            ac.lst(ans)
         return
 
     @staticmethod
