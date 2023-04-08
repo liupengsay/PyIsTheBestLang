@@ -11,11 +11,18 @@ from collections import Counter
 from collections import defaultdict
 from itertools import combinations
 from itertools import permutations
+import sys
 from types import GeneratorType
+
+import matplotlib.pyplot as plt
+import networkx as nx
 from functools import cmp_to_key
 from functools import reduce
 from operator import xor
 from operator import mul
+import networkx as nx
+import matplotlib.pyplot as plt
+
 from operator import add
 from heapq import nlargest
 
@@ -95,7 +102,7 @@ class FastIO:
             else:
                 to = f(*args, **kwargs)
                 while True:
-                    if isinstance(to, GeneratorType):
+                    if isinstance(to, generatorType):
                         queue.append(to)
                         to = next(to)
                     else:
@@ -106,3 +113,25 @@ class FastIO:
                 return to
 
         return wrappedfunc
+
+    @staticmethod
+    def plot_graph(n, edges):
+
+        # 创建一个有向图
+        g = nx.Graph()
+        for i in range(n):
+            # 添加节点
+            g.add_node(i+1)
+
+        for u, v in edges:
+            # 添加边
+            g.add_edge(u, v)
+
+        # 绘制图形
+        nx.draw_networkx(g)
+        plt.show()
+        return
+
+
+n, edges = 10, [[2, 9], [9, 10], [2, 3], [6, 7], [4, 3], [1, 2], [3, 8], [2, 5], [6, 5]]
+FastIO().plot_graph(n, edges)

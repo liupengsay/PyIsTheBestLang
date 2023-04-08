@@ -31,7 +31,7 @@ from algorithm.src.fast_io import FastIO
 
 """
 
-算法：字符串哈希
+算法：字符串哈希、树哈希
 功能：将一定长度的字符串映射为多项式函数值，并进行比较或者计数，通常结合滑动窗口进行计算，注意防止哈希碰撞
 题目：
 
@@ -40,6 +40,7 @@ from algorithm.src.fast_io import FastIO
 1044 最长重复子串（https://leetcode.cn/problems/shortest-palindrome/）利用二分查找加字符串哈希确定具有最长长度的重复子串
 1316 不同的循环子字符串（https://leetcode.cn/problems/shortest-palindrome/）利用字符串哈希确定不同循环子串的个数
 2156 查找给定哈希值的子串（https://leetcode.cn/problems/find-substring-with-given-hash-value/）逆向进行字符串哈希的计算
+652. 寻找重复的子树（https://leetcode.cn/problems/find-duplicate-subtrees/）树哈希，确定重复子树
 
 ===================================洛谷===================================
 P8835 [传智杯 #3 决赛] 子串（https://www.luogu.com.cn/record/list?user=739032&status=12&page=14）字符串哈希或者KMP查找匹配的连续子串
@@ -80,6 +81,80 @@ class StringHash:
 class Solution:
     def __init__(self):
         return
+
+    @staticmethod
+    def cf_1800g(ac=FastIO()):
+        # 模板：使用树哈希编码判断树是否对称
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            edge = [[] for _ in range(n)]
+            for _ in range(n-1):
+                u, v = ac.read_ints_minus_one()
+                edge[u].append(v)
+                edge[v].append(u)
+
+            @ac.bootstrap
+            def dfs(i, fa):
+                res = []
+                cnt = 1
+                for j in edge[i]:
+                    if j != fa:
+                        yield dfs(j, i)
+                        res.append(tree_hash[j])
+                        cnt += sub[j]
+                st = (tuple(sorted(res)), cnt)
+                if st not in seen:
+                    seen[st] = len(seen) + 1
+                tree_hash[i] = seen[st]
+                sub[i] = cnt
+                yield
+
+            # 使用深搜或者迭代预先将子树进行哈希编码
+            tree_hash = [-1] * n
+            sub = [0]*n
+            seen = dict()
+            dfs(0, -1)
+
+            # 逐层判断哈希值不为0的子树是否对称
+            u = 0
+            father = -1
+            ans = "YES"
+            while u != -1:
+                dct = Counter(tree_hash[v] for v in edge[u] if v != father)
+                single = 0
+                for w in dct:
+                    single += dct[w] % 2
+                if single == 0:
+                    break
+                if single > 1:
+                    ans = "NO"
+                    break
+                for v in edge[u]:
+                    if v != father and dct[tree_hash[v]] % 2:
+                        u, father = v, u
+                        break
+            ac.st(ans)
+        return
+
+    @staticmethod
+    def lc_652(root):
+        # 使用树哈希编码序列化子树，查找重复子树
+        def dfs(node):
+            if not node:
+                return 0
+
+            state = (node.val, dfs(node.left), dfs(node.right))
+            if state in seen:
+                node, idy = seen[state]
+                repeat.add(node)
+                return idy
+            seen[state] = [node, len(seen) + 1]
+            return seen[state][1]
+
+        seen = dict()
+        repeat = set()
+        dfs(root)
+        return list(repeat)
 
     @staticmethod
     def cf_1800d(ac=FastIO()):
