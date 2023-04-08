@@ -102,7 +102,7 @@ class FastIO:
             else:
                 to = f(*args, **kwargs)
                 while True:
-                    if isinstance(to, generatorType):
+                    if isinstance(to, GeneratorType):
                         queue.append(to)
                         to = next(to)
                     else:
@@ -122,10 +122,13 @@ class FastIO:
         for i in range(n):
             # 添加节点
             g.add_node(i+1)
+        for i in range(n):
+            for j in edges[i]:
+                g.add_edge(i+1, j+1)
 
-        for u, v in edges:
-            # 添加边
-            g.add_edge(u, v)
+        # for u, v in edges:
+        #     # 添加边
+        #     g.add_edge(u, v)
 
         # 绘制图形
         nx.draw_networkx(g)
@@ -133,5 +136,3 @@ class FastIO:
         return
 
 
-n, edges = 10, [[2, 9], [9, 10], [2, 3], [6, 7], [4, 3], [1, 2], [3, 8], [2, 5], [6, 5]]
-FastIO().plot_graph(n, edges)
