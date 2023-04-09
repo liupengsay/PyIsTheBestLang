@@ -41,7 +41,7 @@ https://codeforces.com/problemset/problem/75/D（压缩数组最大子段和）
 C. Count Triangles（https://codeforces.com/problemset/problem/1355/C）经典使用作用域差分计算，合法三角形边长个数
 C. Tea Tasting（https://codeforces.com/problemset/problem/1795/C）前缀和二分后，经典使用差分计数模拟加和
 D. Constant Palindrome Sum（https://codeforces.com/problemset/problem/1343/D）枚举x使用差分数组进行范围计数
-
+E. Counting Rectangles（https://codeforces.com/problemset/problem/1722/E）根据数字取值范围使用二位前缀和计算
 参考：OI WiKi（xx）
 """
 
@@ -133,6 +133,31 @@ class DiffMatrix:
 
 class Solution:
     def __init__(self):
+        return
+
+    @staticmethod
+    def cf_1722e(ac=FastIO()):
+        # 模板：根据数字范围，使用二位前缀和，求解子矩阵元素和
+        for _ in range(ac.read_int()):
+            k, q = ac.read_ints()
+            rec = [ac.read_list_ints() for _ in range(k)]
+            qur = [ac.read_list_ints() for _ in range(q)]
+            m = n = 1001
+            dp = [[0] * n for _ in range(m)]
+            for a, b in rec:
+                dp[a][b] += a * b
+            pre = [[0] * (n + 1) for _ in range(m + 1)]
+            for i in range(m):
+                for j in range(n):
+                    pre[i + 1][j + 1] = pre[i + 1][j] + pre[i][j + 1] - pre[i][j] + dp[i][j]
+
+            for hs, ws, hb, wb in qur:
+                hb -= 1
+                wb -= 1
+                hs += 1
+                ws += 1
+                ans = pre[hb + 1][wb + 1] - pre[hs][wb + 1] - pre[hb + 1][ws] + pre[hs][ws]
+                ac.st(ans)
         return
 
     @staticmethod
