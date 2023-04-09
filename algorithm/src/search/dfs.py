@@ -66,7 +66,7 @@ class Order:
     @staticmethod
     def post_order(root: Optional[TreeNode]) -> List[int]:
         ans = []
-        stack = deque([[root, 1]] if root else [])
+        stack = [[root, 1]] if root else []
         while stack:
             node, state = stack.pop()
             if state:
@@ -83,7 +83,7 @@ class Order:
     @staticmethod
     def pre_order(root: Optional[TreeNode]) -> List[int]:
         ans = []
-        stack = deque([[root, 1]] if root else [])
+        stack = [[root, 1]] if root else []
         while stack:
             node, state = stack.pop()
             if state:
@@ -100,7 +100,7 @@ class Order:
     @staticmethod
     def in_order(root: Optional[TreeNode]) -> List[int]:
         ans = []
-        stack = deque([[root, 1]] if root else [])
+        stack = [[root, 1]] if root else []
         while stack:
             node, state = stack.pop()
             if state:
