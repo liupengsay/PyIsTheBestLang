@@ -11,6 +11,7 @@ from algorithm.src.fast_io import FastIO
 
 ===================================力扣===================================
 1626. 无矛盾的最佳球队（https://leetcode.cn/problems/best-team-with-no-conflicts/）树状数组维护前缀最大值，也可使用动态规划求解
+6353. 网格图中最少访问的格子数（https://leetcode.cn/problems/minimum-number-of-visited-cells-in-a-grid/）树状数组维护前缀区间最小值单点更新
 
 ===================================洛谷===================================
 P2068 统计和（https://www.luogu.com.cn/problem/P2068）单点更新与区间求和
@@ -71,8 +72,8 @@ class TreeArrayRangeSum:
         return a - b
 
 
-class TreeArrayPrefixMax:
-    # 模板：树状数组维护数组前缀最大值
+class TreeArrayRangeQueryPointUpdateMax:
+    # 模板：树状数组 前缀区间查询 单点更新 最大值
     def __init__(self, n):
         # 索引从 1 到 n
         self.t = [0] * (n + 1)
@@ -95,8 +96,8 @@ class TreeArrayPrefixMax:
         return
 
 
-class TreeArrayPrefixMin:
-    # 模板：树状数组维护数组前缀最小值
+class TreeArrayRangeQueryPointUpdateMin:
+    # 模板：树状数组 前缀区间查询 最小值 单点更新
     def __init__(self, n):
         # 索引从 1 到 n
         self.inf = float("inf")
@@ -123,6 +124,21 @@ class TreeArrayPrefixMin:
 class Solution:
     def __init__(self):
         return
+    
+    @staticmethod
+    def lc_6353(grid: List[List[int]]) -> int:
+        n, m = len(grid), len(grid[0])
+        dp = [[float("inf")] * m for _ in range(n)]
+        r, c = [TreeArrayRangeQueryPointUpdateMin(m) for _ in range(n)], [TreeArrayRangeQueryPointUpdateMin(n) for _ in range(m)]
+        dp[n - 1][m - 1] = 1
+        for i in range(n - 1, -1, -1):
+            for j in range(m - 1, -1, -1):
+                if grid[i][j] > 0:
+                    dp[i][j] = min(r[i].query(min(j + grid[i][j]+1, m)), c[j].query(min(i + grid[i][j]+1, n))) + 1
+                if dp[i][j] <= n * m:
+                    r[i].update(j+1, dp[i][j])
+                    c[j].update(i+1, dp[i][j])
+        return -1 if dp[0][0] > n * m else dp[0][0]
 
     @staticmethod
     def lg_p2068(ac=FastIO()):
@@ -143,7 +159,7 @@ class Solution:
     def lc_1626(scores: List[int], ages: List[int]) -> int:
         # 模板：动态规划与树状数组维护前缀最大值
         n = max(ages)
-        tree_array = TreeArrayPrefixMax(n)
+        tree_array = TreeArrayRangeQueryPointUpdateMax(n)
         for score, age in sorted(zip(scores, ages)):
             cur = tree_array.query(age) + score
             tree_array.update(age, cur)
@@ -157,11 +173,14 @@ class TestGeneral(unittest.TestCase):
         ceil = 1000
         nums = [random.randint(0, ceil) for _ in range(ceil)]
         tars = TreeArrayRangeSum(ceil)
-        pm = TreeArrayPrefixMin(ceil)
+        pm = TreeArrayRangeQueryPointUpdateMin(ceil)
+        pm_max = TreeArrayRangeQueryPointUpdateMax(ceil)
         for i in range(ceil):
             tars.update_range(i + 1, i + 1, nums[i])
             pm.update(i+1, nums[i])
+            pm_max.update(i+1, nums[i])
             assert pm.query(i + 1) == min(nums[:i + 1])
+            assert pm_max.query(i+1) == max(nums[:i+1])
 
         for _ in range(ceil):
             d = random.randint(-ceil, ceil)
