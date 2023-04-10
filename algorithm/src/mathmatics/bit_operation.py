@@ -24,6 +24,7 @@ from algorithm.src.fast_io import FastIO
 137. 只出现一次的数字 II（https://leetcode.cn/problems/single-number-ii/）使用位运算按位计数
 剑指 Offer 56 - I. 数组中数字出现的次数（https://leetcode.cn/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-lcof/）使用位运算按位计数
 260. 只出现一次的数字 III（https://leetcode.cn/problems/single-number-iii/）使用位运算按位计数
+2546. 执行逐位运算使字符串相等（https://leetcode.cn/problems/apply-bitwise-operations-to-make-strings-equal/）按照异或特点脑筋急转弯
 
 ===================================洛谷===================================
 P5657 格雷码（https://www.luogu.com.cn/problem/P5657）计算编号为 k 的二进制符，并补前缀 0 为 n 位

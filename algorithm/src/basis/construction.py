@@ -30,7 +30,7 @@ D. Diane（https://codeforces.com/problemset/problem/1554/D）构造，将n取�
 C. Matching Numbers（https://codeforces.com/problemset/problem/1788/C）构造，选取 1 到 2n 的数两两配对且和为连续数
 D. Task On The Board（https://codeforces.com/problemset/problem/1367/D）逆向思维模拟构造
 D. Multiples and Power Differences（https://codeforces.com/problemset/problem/1485/D）按照数据范围进行构造
-
+G. Even-Odd XOR（https://codeforces.com/problemset/problem/1722/G）根据奇偶性和异或和特点进行构造
 
 ==================================AtCoder=================================
 https://atcoder.jp/contests/agc007/tasks/agc007_b（脑筋急转弯思维构造公式）

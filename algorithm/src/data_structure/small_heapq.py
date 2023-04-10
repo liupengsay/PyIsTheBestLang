@@ -20,6 +20,7 @@ from algorithm.src.fast_io import FastIO
 2163. 删除元素后和的最小差值（https://leetcode.cn/problems/minimum-difference-in-sums-after-removal-of-elements/）预处理前缀后缀最大最小的 K 个数和再进行枚举分割点
 1792. 最大平均通过率（https://leetcode.cn/problems/maximum-average-pass-ratio/）贪心依次给增幅最大的班级人数加 1 
 295. 数据流的中位数（https://leetcode.cn/problems/find-median-from-data-stream/）用两个堆维护中位数
+2542. 最大子序列的分数（https://leetcode.cn/problems/maximum-subsequence-score/）贪心排序枚举加堆维护最大的k个数进行计算
 
 ===================================洛谷===================================
 P1168 中位数（https://www.luogu.com.cn/problem/P1168） 用两个堆维护中位数
