@@ -14,7 +14,9 @@ from algorithm.src.fast_io import FastIO
 题目：xx（xx）
 
 ===================================力扣===================================
-2617. 网格图中最少访问的格子数（https://leetcode.cn/problems/minimum-number-of-visited-cells-in-a-grid/）使用数组维护链表的前后节点信息（超时）
+2617. 网格图中最少访问的格子数（https://leetcode.cn/problems/minimum-number-of-visited-cells-in-a-grid/）使用数组维护链表的前后节点信息
+2612. 最少翻转操作数（https://leetcode.cn/problems/minimum-reverse-operations/）使用数组维护链表的前后节点信息
+
 ===================================牛客===================================
 牛牛排队伍（https://ac.nowcoder.com/acm/contest/49888/C）使用数组维护链表的前后节点信息
 
