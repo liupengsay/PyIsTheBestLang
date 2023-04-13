@@ -10,3 +10,6 @@ liupengsay的算法笔记
 
 ## book
 机器学习算法竞赛实战 终稿
+
+## competition
+机器学习相关竞赛获奖方案
