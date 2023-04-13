@@ -166,3 +166,4 @@ st3 = lst[11:-2]
 st4 = lst[-2:]
 for s in [st1, st2, st3, st4]:
     print("- " + "".join(s))
+
