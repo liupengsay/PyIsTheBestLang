@@ -54,6 +54,7 @@ D. Book of Evil（https://codeforces.com/problemset/problem/337/D）经典换根
 E. Tree Painting（https://codeforces.com/problemset/problem/1187/E）经典换根DP题，两遍dfs搜索更新计算
 E. Lomsat gelral（https://codeforces.com/problemset/problem/600/E）迭代方式写深搜序，按秩合并，由小到大
 D. A Wide, Wide Graph（https://codeforces.com/problemset/problem/1805/D）树的直径计算，任意点到直径的某个端点的距离最长
+G. White-Black Balanced Subtrees（https://codeforces.com/contest/1676/problem/G）使用迭代的方式进行树形DP计算
 
 参考：OI WiKi（xx）
 """
@@ -270,6 +271,35 @@ class TreeDiameterDis:
 
 class Solution:
     def __init__(self):
+        return
+
+    @staticmethod
+    def cf_1676g(ac=FastIO()):
+        # 模板：使用迭代的方式计算树形DP
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            parent = ac.read_list_ints_minus_one()
+            color = ac.read_str()
+            dct = [[] for _ in range(n)]
+            for i in range(n-1):
+                dct[parent[i]].append(i+1)
+            ans = 0
+            sub = [0]*n
+            stack = [[0, 1]]
+            while stack:
+                i, state = stack.pop()
+                if state:
+                    stack.append([i, 0])
+                    for j in dct[i]:
+                        stack.append([j, 1])
+                else:
+                    x = 0
+                    for j in dct[i]:
+                        x += sub[j]
+                    x += 1 if color[i] == "B" else -1
+                    sub[i] = x
+                    ans += x == 0
+            ac.st(ans)
         return
 
     @staticmethod

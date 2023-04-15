@@ -14,6 +14,7 @@ from algorithm.src.fast_io import FastIO
 2334. 元素值大于变化阈值的子数组（https://leetcode.cn/problems/subarray-with-elements-greater-than-varying-threshold/）排序后枚举最小值左右两边的影响范围
 2262. 字符串的总引力（https://leetcode.cn/problems/total-appeal-of-a-string/）计算下一个或者上一个不同字符的位置
 2355. 你能拿走的最大图书数量（https://leetcode.cn/problems/maximum-number-of-books-you-can-take/）单调栈加DP
+255. 验证前序遍历序列二叉搜索树（https://leetcode.cn/problems/verify-preorder-sequence-in-binary-search-tree/）单调栈经典使用，判断数组是否为二叉搜索树的前序遍历，同样地可验证后序遍历
 
 ===================================洛谷===================================
 P1950 长方形（https://www.luogu.com.cn/problem/P1950）通过枚举下边界，结合单调栈计算矩形个数
@@ -82,6 +83,22 @@ class Rectangle:
 class Solution:
     def __init__(self):
         return
+
+    @staticmethod
+    def lc_255(preorder: List[int]) -> bool:
+        # 模板：使用单调栈判断是否为前序序列
+
+        pre_max = float("-inf")
+        n = len(preorder)
+        stack = []
+        for i in range(n):
+            if preorder[i] < pre_max:
+                return False
+            while stack and preorder[stack[-1]] < preorder[i]:
+                cur = preorder[stack.pop()]
+                pre_max = pre_max if pre_max > cur else cur
+            stack.append(i)
+        return True
 
     @staticmethod
     def lc_85(matrix: List[List[str]]) -> int:

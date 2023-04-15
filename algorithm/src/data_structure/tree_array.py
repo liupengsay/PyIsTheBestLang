@@ -26,7 +26,7 @@ P5677 配对统计（https://www.luogu.com.cn/problem/P5677）区间值更新与
 
 ================================CodeForces================================
 F. Range Update Point Query（https://codeforces.com/problemset/problem/1791/F）树状数组维护区间操作数与查询单点值
-
+H2. Maximum Crossings (Hard Version)（https://codeforces.com/contest/1676/problem/H2）树状数组维护前缀区间和
 
 参考：OI WiKi（https://oi-wiki.org/ds/fenwick/）
 """
@@ -96,6 +96,30 @@ class TreeArrayRangeQueryPointUpdateMax:
         return
 
 
+class TreeArrayRangeQuerySum:
+    # 模板：树状数组 前缀区间 和
+    def __init__(self, n):
+        # 索引从 1 到 n
+        self.t = [0] * (n + 1)
+
+    @staticmethod
+    def lowest_bit(i):
+        return i & (-i)
+
+    def query(self, i):
+        mi = 0
+        while i:
+            mi += self.t[i]
+            i -= self.lowest_bit(i)
+        return mi
+
+    def update(self, i, mi):
+        while i < len(self.t):
+            self.t[i] += mi
+            i += self.lowest_bit(i)
+        return
+
+
 class TreeArrayRangeQueryPointUpdateMin:
     # 模板：树状数组 前缀区间查询 最小值 单点更新
     def __init__(self, n):
@@ -139,6 +163,23 @@ class Solution:
                     r[i].update(j+1, dp[i][j])
                     c[j].update(i+1, dp[i][j])
         return -1 if dp[0][0] > n * m else dp[0][0]
+
+    @staticmethod
+    def cf_1676h2(ac=FastIO()):
+        # 模板：树状数组维护前缀区间和
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            a = ac.read_list_ints()
+            ceil = max(a)
+            ans = 0
+            tree = TreeArrayRangeQuerySum(ceil)
+            x = 0
+            for num in a:
+                ans += x - tree.query(num-1)
+                tree.update(num, 1)
+                x += 1
+            ac.st(ans)
+        return
 
     @staticmethod
     def lg_p2068(ac=FastIO()):
