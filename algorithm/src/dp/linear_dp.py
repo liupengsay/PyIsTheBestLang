@@ -20,6 +20,9 @@ from collections import Counter
 2431. 最大限度地提高购买水果的口味（https://leetcode.cn/problems/maximize-total-tastiness-of-purchased-fruits/）线性DP进行模拟计算
 6355. 质数减法运算（https://leetcode.cn/contest/weekly-contest-338/problems/collect-coins-in-a-tree/）线性DP
 2547. 拆分数组的最小代价（https://leetcode.cn/problems/minimum-cost-to-split-an-array/）线性DP并使用一个变量维护计数
+2638. Count the Number of K-Free Subsets（https://leetcode.cn/problems/count-the-number-of-k-free-subsets/）线性DP计数
+2597. 美丽子集的数目（https://leetcode.cn/problems/the-number-of-beautiful-subsets/）线性DP计数
+
 
 ===================================洛谷===================================
 P1970 [NOIP2013 提高组] 花匠（https://www.luogu.com.cn/problem/P1970）使用贪心与动态规划计算最长的山脉子数组
@@ -143,6 +146,49 @@ class Solution:
         dfs(0, cnt[1], cnt[0], -1)
         ac.st(dct[(0, cnt[1], cnt[0], -1)])
         return
+
+    @staticmethod
+    def lc_2638(nums: List[int], k: int) -> int:
+        # 模板：线性DP计数
+        n = len(nums)
+        dp = [1] * (n+1)
+        dp[1] = 2
+        for i in range(2, 51):
+            dp[i] = dp[i - 1] + dp[i - 2]
+        dct = set(nums)
+        ans = 1
+        for num in nums:
+            if num - k not in dct:
+                cnt = 0
+                while num in dct:
+                    cnt += 1
+                    num += k
+                ans *= dp[cnt]
+        return ans
+
+    @staticmethod
+    def lc_2597(nums: List[int], k: int) -> int:
+        # 模板：线性DP计数
+        power = [1 << i for i in range(21)]
+
+        def check(tmp):
+            m = len(tmp)
+            dp = [1] * (m + 1)
+            dp[1] = power[tmp[0]] - 1 + dp[0]
+            for i in range(1, m):
+                dp[i + 1] = dp[i - 1] * (power[tmp[i]] - 1) + dp[i]
+            return dp[-1]
+
+        cnt = Counter(nums)
+        ans = 1
+        for num in cnt:
+            if num - k not in cnt:
+                lst = []
+                while num in cnt:
+                    lst.append(cnt[num])
+                    num += k
+                ans *= check(lst)
+        return ans - 1
 
     @staticmethod
     def cf_1525d(ac=FastIO()):
