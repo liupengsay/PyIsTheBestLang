@@ -11,16 +11,18 @@ from algorithm.src.graph.union_find import UnionFind
 
 """
 
-算法：LCA、倍增算法、树链剖分、树的质心
+算法：LCA、倍增算法、树链剖分、树的质心、离线LCA与树上差分
 功能：来求一棵树的最近公共祖先（LCA）也可以使用
 题目：
 
 ===================================力扣===================================
 1483. 树节点的第 K 个祖先（https://leetcode.cn/problems/kth-ancestor-of-a-tree-node/）动态规划与二进制跳转维护祖先信息，类似ST表的思想与树状数组的思想
+6378. 最小化旅行的价格总和（https://leetcode.cn/problems/minimize-the-total-price-of-the-trips/）离线LCA与树上差分
 
 ===================================洛谷===================================
 P3379 【模板】最近公共祖先（LCA）（https://www.luogu.com.cn/problem/P3379）最近公共祖先模板题
 P7128 「RdOI R1」序列(sequence)（https://www.luogu.com.cn/problem/P7128）完全二叉树进行LCA路径模拟交换，使得数组有序
+P3128 [USACO15DEC]Max Flow P（https://www.luogu.com.cn/problem/P3128）离线LCA与树上差分
 
 ==================================LibreOJ==================================
 #10135. 「一本通 4.4 练习 2」祖孙询问（https://loj.ac/p/10135）lca查询与判断
@@ -35,6 +37,183 @@ E. A and B and Lecture Rooms（https://codeforces.com/problemset/problem/519/E�
 CSDN（https://blog.csdn.net/weixin_42001089/article/details/83590686）
 
 """
+
+
+class UnionFindLCA:
+    def __init__(self, n):
+        self.root = [i for i in range(n)]
+        self.order = [0] * n
+
+    def find(self, x):
+        lst = []
+        while x != self.root[x]:
+            lst.append(x)
+            # 在查询的时候合并到顺带直接根节点
+            x = self.root[x]
+        for w in lst:
+            self.root[w] = x
+        return x
+
+    def union(self, x, y):
+        root_x = self.find(x)
+        root_y = self.find(y)
+        if root_x == root_y:
+            return False
+        if self.order[root_x] < self.order[root_y]:
+            root_x, root_y = root_y, root_x
+        self.root[root_x] = root_y
+        return True
+
+
+class OfflineLCA:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def bfs_iteration(dct, queries, root=0):
+
+        # 模板：离线查询LCA
+        n = len(dct)
+        ans = [dict() for _ in range(n)]
+        for i, j in queries:
+            ans[i][j] = -1
+            ans[j][i] = -1
+        ind = 1
+        stack = [[root, 1]]
+        visit = [0] * n
+        parent = [-1] * n
+        uf = UnionFindLCA(n)
+        while stack:
+            i, state = stack.pop()
+            if state:
+                uf.order[i] = ind
+                ind += 1
+                visit[i] = 1
+                stack.append([i, 0])
+                for j in dct[i]:
+                    if j != parent[i]:
+                        parent[j] = i
+                        stack.append([j, 1])
+                for y in ans[i]:
+                    if visit[y] == 1:
+                        ans[y][i] = ans[i][y] = y
+                    else:
+                        ans[y][i] = ans[i][y] = uf.find(y)
+            else:
+                visit[i] = 2
+                uf.union(i, parent[i])
+
+        return [ans[i][j] for i, j in queries]
+
+    @staticmethod
+    def dfs_recursion(dct, queries, root=0):
+
+        # 模板：离线查询LCA
+        n = len(dct)
+        ans = [dict() for _ in range(n)]
+        for i, j in queries:
+            ans[i][j] = -1
+            ans[j][i] = -1
+
+        def dfs(x, fa):
+            nonlocal ind
+            visit[x] = 1
+            uf.order[x] = ind
+            ind += 1
+
+            for y in ans[x]:
+                if visit[y] == 1:
+                    ans[x][y] = ans[y][x] = y
+                elif visit[y] == 2:
+                    ans[x][y] = ans[y][x] = uf.find(y)
+            for y in dct[x]:
+                if y != fa:
+                    dfs(y, x)
+            visit[x] = 2
+            uf.union(x, fa)
+            return
+
+        uf = UnionFindLCA(n)
+        ind = 1
+        visit = [0] * n
+        dfs(root, -1)
+        return [ans[i][j] for i, j in queries]
+
+
+class TreeDiffArray:
+
+    # 模板：树上差分
+    def __init__(self):
+        return
+
+    @staticmethod
+    def bfs_iteration(dct, queries, root=0):
+        n = len(dct)
+
+        stack = [root]
+        parent = [-1] * n
+        while stack:
+            i = stack.pop()
+            for j in dct[i]:
+                if j != parent[i]:
+                    stack.append(j)
+                    parent[j] = i
+
+        # 进行差分计数
+        diff = [0] * n
+        for u, v, ancestor in queries:
+            diff[u] += 1
+            diff[v] += 1
+            diff[ancestor] -= 1
+            if parent[ancestor] != -1:
+                diff[parent[ancestor]] -= 1
+
+        # 自底向上进行差分加和
+        stack = [[root, 1]]
+        while stack:
+            i, state = stack.pop()
+            if state:
+                stack.append([i, 0])
+                for j in dct[i]:
+                    if j != parent[i]:
+                        stack.append([j, 1])
+            else:
+                for j in dct[i]:
+                    if j != parent[i]:
+                        diff[i] += diff[j]
+        return diff
+
+    @staticmethod
+    def dfs_recursion(dct, queries, root=0):
+        n = len(dct)
+
+        stack = [root]
+        parent = [-1] * n
+        while stack:
+            i = stack.pop()
+            for j in dct[i]:
+                if j != parent[i]:
+                    stack.append(j)
+                    parent[j] = i
+
+        # 进行差分计数
+        diff = [0] * n
+        for u, v, ancestor in queries:
+            diff[u] += 1
+            diff[v] += 1
+            diff[ancestor] -= 1
+            if parent[ancestor] != -1:
+                diff[parent[ancestor]] -= 1
+
+        def dfs(x, fa):
+            for y in dct[x]:
+                if y != fa:
+                    diff[x] += dfs(y, x)
+            return diff[x]
+
+        dfs(0, -1)
+        return diff
+
 
 
 class TreeAncestor:
@@ -366,7 +545,66 @@ class Solution:
         for a, b, c in lst:
             ac.st(cost + c - lca.get_dist_weight_max(a, b))
         return
+    
+    @staticmethod
+    def lc_6738(n: int, edges: List[List[int]], price: List[int], trips: List[List[int]]) -> int:
 
+        # 模板：离线LCA加树上差分加树形DP
+        dct = [[] for _ in range(n)]
+        for i, j in edges:
+            dct[i].append(j)
+            dct[j].append(i)
+
+        # 离线LCA
+        res = OfflineLCA().bfs_iteration(dct, trips)
+        # res = OfflineLCA().dfs_recursion(dct, trips)   # 也可以使用递归
+
+        # 树上差分
+        m = len(trips)
+        queries = [trips[i] + [res[i]] for i in range(m)]
+        cnt = TreeDiffArray().bfs_iteration(dct, queries)
+        # cnt = TreeDiffArray().dfs_recursion(dct, queries)  # 也可以使用递归
+
+        # 迭代版的树形DP
+        stack = [[0, 1]]
+        sub = [[] for _ in range(n)]
+        parent = [-1] * n
+        while stack:
+            i, state = stack.pop()
+            if state:
+                stack.append([i, 0])
+                for j in dct[i]:
+                    if j != parent[i]:
+                        parent[j] = i
+                        stack.append([j, 1])
+            else:
+                res = [cnt[i] * price[i], cnt[i] * price[i] // 2]
+                for j in dct[i]:
+                    if j != parent[i]:
+                        a, b = sub[j]
+                        res[0] += a if a < b else b
+                        res[1] += a
+                sub[i] = res
+
+        return min(sub[0])
+
+    @staticmethod
+    def lg_p3128(ac=FastIO()):
+        # 模板：离线LCA加树上差分
+        n, k = ac.read_ints()
+        dct = [[] for _ in range(n)]
+        for _ in range(n-1):
+            i, j = ac.read_ints_minus_one()
+            dct[i].append(j)
+            dct[j].append(i)
+        queries = [ac.read_list_ints_minus_one() for _ in range(k)]
+        res = OfflineLCA().bfs_iteration(dct, queries)
+        # res = OfflineLCA().dfs_recursion(dct, trips)  # 也可以使用递归
+        queries = [queries[i] + [res[i]] for i in range(k)]
+        cnt = TreeDiffArray().bfs_iteration(dct, queries)
+        # cnt = TreeDiffArray().dfs_recursion(dct, queries)  # 也可以使用递归
+        ac.st(max(cnt))
+        return
 
 class TestGeneral(unittest.TestCase):
 
