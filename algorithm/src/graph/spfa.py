@@ -1,6 +1,6 @@
 import unittest
 from collections import deque
-from typing import List
+from typing import List, Dict
 
 from algorithm.src.fast_io import FastIO
 
@@ -40,7 +40,7 @@ class SPFA:
         return
 
     @staticmethod
-    def negative_circle(dct, src=0, initial=0):
+    def negative_circle(dct: List[Dict[int]], src=0, initial=0) -> (str, List[float], List[int]):
         # 模板: 判断是否存在负环与求解最短路（正数取反即可判断是否存在正权环以及最长路）
         n = len(dct)
         # 初始化距离

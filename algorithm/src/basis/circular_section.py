@@ -32,7 +32,7 @@ class CircleSection:
         return
 
     @staticmethod
-    def compute_circle_result(n, m, x, tm):
+    def compute_circle_result(n: int, m: int, x: int, tm: int) -> int:
 
         # 模板: 使用哈希与列表模拟记录循环节开始位置
         dct = dict()
