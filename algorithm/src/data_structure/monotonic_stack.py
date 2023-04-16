@@ -32,9 +32,9 @@ P7762 [COCI2016-2017#5] Unija（https://www.luogu.com.cn/problem/P7762）类似�
 E. Explosions?（https://codeforces.com/problemset/problem/1795/E）单调栈贪心计数枚举，前后缀DP转移
 
 
-
 参考：OI WiKi（xx）
 """
+
 
 class Rectangle:
     def __init__(self):
@@ -42,7 +42,8 @@ class Rectangle:
 
     @staticmethod
     def compute_area(pre):
-        # 根据高度计算最大矩形面积
+        # 模板：使用单调栈根据高度计算最大矩形面积
+
         m = len(pre)
         left = [0] * m
         right = [m - 1] * m
@@ -50,8 +51,8 @@ class Rectangle:
         for i in range(m):
             while stack and pre[stack[-1]] > pre[i]:
                 right[stack.pop()] = i - 1
-            if stack:
-                left[i] = stack[-1] + 1
+            if stack:  # 这里可以同时求得数组前后的下一个大于等于值
+                left[i] = stack[-1] + 1  # 这里将相同的值视为右边的更大且并不会影响计算
             stack.append(i)
 
         ans = 0
@@ -62,15 +63,16 @@ class Rectangle:
 
     @staticmethod
     def compute_number(pre):
+        # 模板：使用单调栈根据高度计算矩形个数
+
         n = len(pre)
-        # 根据高度计算矩形个数
         right = [n - 1] * n
         left = [0] * n
         stack = []
         for j in range(n):
             while stack and pre[stack[-1]] > pre[j]:
                 right[stack.pop()] = j - 1
-            if stack:
+            if stack:  # 这个单调栈过程和上述求面积的一样
                 left[j] = stack[-1] + 1
             stack.append(j)
 
