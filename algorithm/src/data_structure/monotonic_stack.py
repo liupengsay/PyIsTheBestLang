@@ -1,5 +1,6 @@
 import random
 import unittest
+from collections import defaultdict
 from typing import List
 
 from algorithm.src.fast_io import FastIO
@@ -27,6 +28,7 @@ P7314 [COCI2018-2019#3] Pismo（https://www.luogu.com.cn/problem/P7314）枚举�
 P7399 [COCI2020-2021#5] Po（https://www.luogu.com.cn/problem/P7399）单调栈变形题目，贪心进行赋值，区间操作达成目标数组
 P7410 [USACO21FEB] Just Green Enough S（https://www.luogu.com.cn/problem/P7410）通过容斥原理与单调栈计算01矩阵个数
 P7762 [COCI2016-2017#5] Unija（https://www.luogu.com.cn/problem/P7762）类似单调栈的思想，按照宽度进行贪心排序，计算每个高度的面积贡献
+P1578 奶牛浴场（https://www.luogu.com.cn/problem/P1578）使用单调栈离散化枚举障碍点的最大面积矩形
 
 ================================CodeForces================================
 E. Explosions?（https://codeforces.com/problemset/problem/1795/E）单调栈贪心计数枚举，前后缀DP转移
@@ -84,6 +86,61 @@ class Rectangle:
 
 class Solution:
     def __init__(self):
+        return
+
+    @staticmethod
+    def lg_p1598(ac=FastIO()):
+
+        # 模板：使用单调栈离散化枚举障碍点的最大面积矩形
+        def compute_area_obstacle(lst):
+            nonlocal ans
+            # 模板：使用单调栈根据高度计算最大矩形面积
+            m = len(height)
+            left = [0] * m
+            right = [m - 1] * m
+            stack = []
+            for i in range(m):
+                while stack and height[stack[-1]] > height[i]:
+                    right[stack.pop()] = i  # 注意这里不减 1 了是边界
+                if stack:  # 这里可以同时求得数组前后的下一个大于等于值
+                    left[i] = stack[-1]  # 这里将相同的值视为右边的更大且并不会影响计算，注意这里不加 1 了是边界
+                stack.append(i)
+
+            for i in range(m):
+                cur = height[i] * (lst[right[i]] - lst[left[i]])
+                ans = ans if ans > cur else cur
+            return ans
+
+        length, n = ac.read_ints()
+        q = ac.read_int()
+        nums = [ac.read_list_ints() for _ in range(q)]
+        node_row = defaultdict(list)
+        node_col = defaultdict(list)
+        for x, y in nums:
+            node_row[y].append(x)
+            node_col[x].append(y)
+
+        # 枚举矩形上下两行边界
+        y_axis = sorted([y for _, y in nums]+[0, n], reverse=True)
+        ans = 0
+        col = defaultdict(lambda: n)
+        x_axis = sorted([x for x, _ in nums]+[0, length])
+        for y in y_axis:
+            height = [col[x] - y for x in x_axis]
+            compute_area_obstacle(x_axis)
+            for x in node_row[y]:
+                col[x] = y
+
+        # 枚举矩形左右两列边界
+        x_axis.reverse()
+        y_axis.reverse()
+        row = defaultdict(lambda: length)
+        for x in x_axis:
+            height = [row[y] - x for y in y_axis]
+            compute_area_obstacle(y_axis)
+            for y in node_col[x]:
+                row[y] = x
+        ac.st(ans)
         return
 
     @staticmethod
