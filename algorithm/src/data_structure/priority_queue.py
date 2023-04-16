@@ -15,6 +15,7 @@ from algorithm.src.fast_io import FastIO
 
 ===================================洛谷===================================
 P2251 质量检测（https://www.luogu.com.cn/problem/P2251）滑动区间最小值
+P2032 扫描（https://www.luogu.com.cn/problem/P2032）滑动区间最大值
 P1750 出栈序列（https://www.luogu.com.cn/problem/P1750）经典题目，滑动指针窗口栈加队列
 P2311 loidc，想想看（https://www.luogu.com.cn/problem/P2311）不定长滑动窗口最大值索引
 P7175 [COCI2014-2015#4] PŠENICA（https://www.luogu.com.cn/problem/P7175）使用有序优先队列进行模拟
@@ -58,6 +59,16 @@ class Solution:
     def lc_239(self, nums: List[int], k: int) -> List[int]:
         # 模板：滑动窗口最大值
         return PriorityQueue().sliding_window(nums, k)
+
+    @staticmethod
+    def lg_p2032(ac=FastIO()):
+        # 模板：滑动窗口最大值
+        n, k = ac.read_ints()
+        nums = ac.read_list_ints()
+        ans = PriorityQueue().sliding_window(nums, k)
+        for a in ans:
+            ac.st(a)
+        return
 
     @staticmethod
     def lg_p2251(ac=FastIO()):
