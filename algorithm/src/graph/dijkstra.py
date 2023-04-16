@@ -4,7 +4,7 @@ import unittest
 from collections import defaultdict, deque
 from itertools import accumulate
 from operator import add
-from typing import List
+from typing import List, Dict
 
 from algorithm.src.fast_io import FastIO, inf
 
@@ -77,7 +77,7 @@ class UnDirectedShortestCycle:
 
     @staticmethod
     def find_shortest_cycle_with_node(n: int, dct) -> int:
-        # 模板：求无向图的最小环，枚举点
+        # 模板：求无向图的最小环长度，枚举点
         ans = inf
         for i in range(n):
             dist = [inf] * n
@@ -100,7 +100,7 @@ class UnDirectedShortestCycle:
 
     @staticmethod
     def find_shortest_cycle_with_edge(n: int, dct, edges) -> int:
-        # 模板：求无向图的最小环，枚举边
+        # 模板：求无向图的最小环长度，枚举边
 
         ans = inf
         for x, y, w in edges:
@@ -134,7 +134,7 @@ class Dijkstra:
         return
 
     @staticmethod
-    def get_dijkstra_result(dct, src):
+    def get_dijkstra_result(dct: List[Dict[int]], src: int) -> List[float]:
         # 模板: Dijkstra求最短路，变成负数求可以求最长路（还是正权值）
         n = len(dct)
         dis = [float("inf")]*n
@@ -153,7 +153,7 @@ class Dijkstra:
         return dis
 
     @staticmethod
-    def dijkstra_src_to_dst_path(dct, src, dst):
+    def dijkstra_src_to_dst_path(dct: List[Dict[int]], src: int, dst: int) -> float:
         # 模板: Dijkstra求起终点的最短路，注意只能是正权值可以提前返回结果，并返回对应经过的路径
         n = len(dct)
         dis = [float("inf")] * n
@@ -183,9 +183,8 @@ class Dijkstra:
     @staticmethod
     def gen_dijkstra_max_result(dct, src, dsc):
 
-        # 求乘积最大的路
-        inf = float("inf")
-        dis = defaultdict(lambda: -inf)
+        # 求乘积最大的路，取反后求最短路径
+        dis = defaultdict(lambda: float("-inf"))
         stack = [[-1, src]]
         dis[src] = 1
         while stack:

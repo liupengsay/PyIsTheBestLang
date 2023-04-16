@@ -40,11 +40,12 @@ CSDN（https://blog.csdn.net/weixin_42001089/article/details/83590686）
 
 
 class UnionFindLCA:
-    def __init__(self, n):
+    def __init__(self, n: int) -> None:
         self.root = [i for i in range(n)]
         self.order = [0] * n
+        return
 
-    def find(self, x):
+    def find(self, x: int) -> int:
         lst = []
         while x != self.root[x]:
             lst.append(x)
@@ -54,7 +55,7 @@ class UnionFindLCA:
             self.root[w] = x
         return x
 
-    def union(self, x, y):
+    def union(self, x: int, y: int) -> bool:
         root_x = self.find(x)
         root_y = self.find(y)
         if root_x == root_y:
@@ -70,30 +71,30 @@ class OfflineLCA:
         return
 
     @staticmethod
-    def bfs_iteration(dct, queries, root=0):
+    def bfs_iteration(dct: List[List[int]], queries: List[List[int]], root=0) -> List[int]:
 
         # 模板：离线查询LCA
         n = len(dct)
         ans = [dict() for _ in range(n)]
-        for i, j in queries:
+        for i, j in queries:  # 需要查询的节点对
             ans[i][j] = -1
             ans[j][i] = -1
         ind = 1
-        stack = [[root, 1]]
-        visit = [0] * n
-        parent = [-1] * n
+        stack = [(root, 1)]  # 使用栈记录访问过程
+        visit = [0] * n  # 访问状态数组 0 为未访问 1 为访问但没有遍历完子树 2 为访问且遍历完子树
+        parent = [-1] * n  # 父节点
         uf = UnionFindLCA(n)
         while stack:
             i, state = stack.pop()
             if state:
-                uf.order[i] = ind
+                uf.order[i] = ind  # dfs序
                 ind += 1
                 visit[i] = 1
-                stack.append([i, 0])
+                stack.append((i, 0))
                 for j in dct[i]:
                     if j != parent[i]:
                         parent[j] = i
-                        stack.append([j, 1])
+                        stack.append((j, 1))
                 for y in ans[i]:
                     if visit[y] == 1:
                         ans[y][i] = ans[i][y] = y
@@ -106,7 +107,7 @@ class OfflineLCA:
         return [ans[i][j] for i, j in queries]
 
     @staticmethod
-    def dfs_recursion(dct, queries, root=0):
+    def dfs_recursion(dct: List[List[int]], queries: List[List[int]], root=0) -> List[int]:
 
         # 模板：离线查询LCA
         n = len(dct)
@@ -142,14 +143,13 @@ class OfflineLCA:
 
 class TreeDiffArray:
 
-    # 模板：树上差分
+    # 模板：树上差分、点差分、边差分
     def __init__(self):
         return
 
     @staticmethod
-    def bfs_iteration(dct, queries, root=0):
+    def bfs_iteration(dct: List[List[int]], queries: List[List[int]], root=0) -> List[int]:
         n = len(dct)
-
         stack = [root]
         parent = [-1] * n
         while stack:
@@ -159,9 +159,10 @@ class TreeDiffArray:
                     stack.append(j)
                     parent[j] = i
 
-        # 进行差分计数
+        # 进行点差分计数
         diff = [0] * n
         for u, v, ancestor in queries:
+            # 将 u 与 c 到 ancestor 的路径经过的节点进行差分修改
             diff[u] += 1
             diff[v] += 1
             diff[ancestor] -= 1
@@ -184,7 +185,7 @@ class TreeDiffArray:
         return diff
 
     @staticmethod
-    def dfs_recursion(dct, queries, root=0):
+    def dfs_recursion(dct: List[List[int]], queries: List[List[int]], root=0) -> List[int]:
         n = len(dct)
 
         stack = [root]
@@ -213,7 +214,6 @@ class TreeDiffArray:
 
         dfs(0, -1)
         return diff
-
 
 
 class TreeAncestor:
