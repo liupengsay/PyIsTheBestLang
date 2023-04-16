@@ -50,17 +50,20 @@ E2. Unforgivable Curse (hard version)（https://codeforces.com/problemset/proble
 
 # 标准并查集
 class UnionFind:
-    def __init__(self, n):
+    def __init__(self, n: int) -> None:
         self.root = [i for i in range(n)]
         self.size = [1] * n
         self.part = n
+        return
 
     def find(self, x):
-        if x != self.root[x]:
+        lst = []
+        while x != self.root[x]:
+            lst.append(x)
             # 在查询的时候合并到顺带直接根节点
-            root_x = self.find(self.root[x])
-            self.root[x] = root_x
-            return root_x
+            x = self.root[x]
+        for w in lst:
+            self.root[w] = x
         return x
 
     def union(self, x, y):
