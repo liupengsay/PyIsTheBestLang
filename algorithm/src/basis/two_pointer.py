@@ -1,5 +1,9 @@
 import unittest
+from operator import add
+from itertools import accumulate
 from typing import List
+
+from algorithm.src.fast_io import FastIO
 
 """
 算法：双指针、快慢指针、先后指针、桶计数
@@ -27,6 +31,7 @@ P3662 [USACO17FEB]Why Did the Cow Cross the Road II S（https://www.luogu.com.cn
 P4995 跳跳！（https://www.luogu.com.cn/problem/P4995）排序后利用贪心与双指针进行模拟
 P2207 Photo（https://www.luogu.com.cn/problem/P2207）贪心加同向双指针
 P7542 [COCI2009-2010#1] MALI（https://www.luogu.com.cn/problem/P7542）桶计数加双指针进行计算
+P4653 [CEOI2017] Sure Bet（https://www.luogu.com.cn/problem/P4653）贪心排序后使用双指针计算
 
 ================================CodeForces================================
 D. Carousel（https://codeforces.com/problemset/problem/1328/D）环形数组滑动窗口，记录变化次数并根据奇偶变换次数与环形首尾元素确定染色数量
@@ -38,6 +43,34 @@ C. Eugene and an array（https://codeforces.com/problemset/problem/1333/C）双�
 
 class Solution:
     def __int__(self):
+        return
+
+    @staticmethod
+    def lg_p4653(ac=FastIO()):
+
+        # 模板：贪心排序后使用双指针计算
+        n = ac.read_int()
+
+        nums1 = []
+        nums2 = []
+        for _ in range(n):
+            x, y = ac.read_list_floats()
+            nums1.append(x)
+            nums2.append(y)
+        nums1.sort(reverse=True)
+        nums2.sort(reverse=True)
+        nums1 = list(accumulate(nums1, add))
+        nums2 = list(accumulate(nums2, add))
+
+        ans = i = j = 0
+        while i < n and j < n:
+            if nums1[i] < nums2[j]:
+                ans = ac.max(ans, nums1[i] - i - j - 2)
+                i += 1
+            else:
+                ans = ac.max(ans, nums2[j] - i - j - 2)
+                j += 1
+        ac.st("%.4f" % ans)
         return
 
     @staticmethod
