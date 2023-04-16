@@ -33,6 +33,7 @@ P2956 [USACO09OCT]The Robot Plow G（https://www.luogu.com.cn/problem/P2956）�
 P3397 地毯（https://www.luogu.com.cn/problem/P3397#submit）
 P1869 愚蠢的组合数（https://www.luogu.com.cn/problem/P1869）使用前缀和记录1-N的因子2的个数继而计算C(N,K)的奇偶性
 P7667 [JOI2018] Art Exhibition（https://www.luogu.com.cn/problem/P7667）公式变换，排序后使用前缀和
+P2671 [NOIP2015 普及组] 求和（https://www.luogu.com.cn/problem/P2671）前缀加和与前缀计数枚举，分奇偶性讨论
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/33/C（前后缀最大变换和与分割点枚举，经典类型题目）
@@ -158,6 +159,42 @@ class Solution:
                 ws += 1
                 ans = pre[hb + 1][wb + 1] - pre[hs][wb + 1] - pre[hb + 1][ws] + pre[hs][ws]
                 ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p2671(ac=FastIO()):
+        # 模板：前后缀计数加和，分奇偶性讨论
+        n, m = ac.read_ints()
+        number = ac.read_list_ints()
+        colors = ac.read_list_ints()
+        mod = 10007
+        # 转换为求相同奇偶性的 x 与 y 且颜色相同的和 x*ax+x*az+z*ax+z*az 即 (x+z)*(ax+az)
+        ans = 0
+        pre_sum = [[0, 0] for _ in range(m+1)]
+        pre_cnt = [[0, 0] for _ in range(m+1)]
+        for i in range(n):  # 枚举 z 计算 z*ax+z*az
+            num, color = number[i], colors[i]
+            k = i % 2
+            z_ax = (i + 1) * pre_sum[color][k]
+            z_az = (i + 1) * num * pre_cnt[color][k]
+            ans += z_ax + z_az
+            pre_sum[color][k] += num
+            pre_cnt[color][k] += 1
+            ans %= mod
+
+        pre_sum = [[0, 0] for _ in range(m+1)]
+        pre_cnt = [[0, 0] for _ in range(m+1)]
+        for i in range(n - 1, -1, -1):  # 枚举 x 计算 x*ax+x*az
+            num, color = number[i], colors[i]
+            k = i % 2
+            x_az = (i + 1) * pre_sum[color][k]
+            x_ax = (i + 1) * num * pre_cnt[color][k]
+            ans += x_ax + x_az
+            pre_sum[color][k] += num
+            pre_cnt[color][k] += 1
+            ans %= mod
+
+        ac.st(ans)
         return
 
     @staticmethod
