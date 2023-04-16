@@ -20,6 +20,7 @@ P1750 出栈序列（https://www.luogu.com.cn/problem/P1750）经典题目，滑
 P2311 loidc，想想看（https://www.luogu.com.cn/problem/P2311）不定长滑动窗口最大值索引
 P7175 [COCI2014-2015#4] PŠENICA（https://www.luogu.com.cn/problem/P7175）使用有序优先队列进行模拟
 P7793 [COCI2014-2015#7] ACM（https://www.luogu.com.cn/problem/P7793）双端单调队列，进行最小值计算
+P2216 [HAOI2007]理想的正方形（https://www.luogu.com.cn/problem/P2216）二维区间的滑动窗口最大最小值
 
 参考：OI WiKi（xx）
 """
@@ -30,7 +31,7 @@ class PriorityQueue:
         return
 
     @staticmethod
-    def sliding_window(nums, k, method="max"):
+    def sliding_window(nums: List[int], k: int, method="max") -> List[int]:
         assert k >= 1
         # 模板: 计算滑动窗口最大值与最小值
         if method == "min":
@@ -46,6 +47,26 @@ class PriorityQueue:
             stack.append([nums[i], i])
             if i >= k - 1:
                 ans.append(stack[0][0])
+        if method == "min":
+            ans = [-num for num in ans]
+        return ans
+
+    @staticmethod
+    def sliding_window_all(nums: List[int], k: int, method="max") -> List[int]:
+        assert k >= 1
+        # 模板: 计算滑动窗口最大值与最小值
+        if method == "min":
+            nums = [-num for num in nums]
+        n = len(nums)
+        stack = deque()
+        ans = []
+        for i in range(n):
+            while stack and stack[0][1] <= i - k:
+                stack.popleft()
+            while stack and stack[-1][0] <= nums[i]:
+                stack.pop()
+            stack.append([nums[i], i])
+            ans.append(stack[0][0])
         if method == "min":
             ans = [-num for num in ans]
         return ans
@@ -78,6 +99,33 @@ class Solution:
         ans = PriorityQueue().sliding_window(nums, m, "min")
         for a in ans:
             ac.st(a)
+        return
+
+    @staticmethod
+    def lg_p2216(ac=FastIO()):
+
+        # 模板：二维滑动窗口最大值与滑动窗口最小值
+        m, n, k = ac.read_ints()
+        grid = [ac.read_list_ints() for _ in range(m)]
+
+        ceil = [[0]*n for _ in range(m)]
+        floor = [[0]*n for _ in range(m)]
+        pq = PriorityQueue()
+        for i in range(m):
+            ceil[i] = pq.sliding_window_all(grid[i], k, "max")
+            floor[i] = pq.sliding_window_all(grid[i], k, "min")
+        for j in range(n):
+            lst = pq.sliding_window_all([ceil[i][j] for i in range(m)], k, "max")
+            for i in range(m):
+                ceil[i][j] = lst[i]
+            lst = pq.sliding_window_all([floor[i][j] for i in range(m)], k, "min")
+            for i in range(m):
+                floor[i][j] = lst[i]
+        ans = ceil[k-1][k-1] - floor[k-1][k-1]
+        for i in range(k-1, m):
+            for j in range(k-1, n):
+                ans = ac.min(ans, ceil[i][j]-floor[i][j])
+        ac.st(ans)
         return
 
 
