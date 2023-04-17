@@ -21,6 +21,7 @@ P2311 loidc，想想看（https://www.luogu.com.cn/problem/P2311）不定长滑�
 P7175 [COCI2014-2015#4] PŠENICA（https://www.luogu.com.cn/problem/P7175）使用有序优先队列进行模拟
 P7793 [COCI2014-2015#7] ACM（https://www.luogu.com.cn/problem/P7793）双端单调队列，进行最小值计算
 P2216 [HAOI2007]理想的正方形（https://www.luogu.com.cn/problem/P2216）二维区间的滑动窗口最大最小值
+P1886 滑动窗口 /【模板】单调队列（https://www.luogu.com.cn/problem/P1886）计算滑动窗口的最大值与最小值
 
 参考：OI WiKi（xx）
 """
@@ -126,6 +127,35 @@ class Solution:
             for j in range(k-1, n):
                 ans = ac.min(ans, ceil[i][j]-floor[i][j])
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p1886(ac=FastIO()):
+        # 模板：计算滑动窗口最大最小值
+        n, k = ac.read_ints()
+        nums = ac.read_list_ints()
+        ans1 = []
+        ans2 = []
+        ceil = deque()
+        floor = deque()
+        for i in range(n):
+            while ceil and ceil[0] < i-k+1:
+                ceil.popleft()
+            while ceil and nums[ceil[-1]] <= nums[i]:
+                ceil.pop()
+            ceil.append(i)
+
+            while floor and floor[0] < i-k+1:
+                floor.popleft()
+            while floor and nums[floor[-1]] >= nums[i]:
+                floor.pop()
+            floor.append(i)
+
+            if i >= k-1:
+                ans1.append(nums[floor[0]])
+                ans2.append(nums[ceil[0]])
+        ac.lst(ans1)
+        ac.lst(ans2)
         return
 
 
