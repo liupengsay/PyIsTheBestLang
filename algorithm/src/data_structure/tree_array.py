@@ -120,6 +120,54 @@ class TreeArrayRangeQuerySum:
         return
 
 
+class TreeArrayRangeMaxMin:
+
+    # 模板：树状数组单点更新区间查询最大值与最小值
+    def __init__(self, n: int) -> None:
+        # 可以改动为动态持续减少或增加单点值后，查询区间最大值与最小值
+        self.n = n
+        self.a = [0] * (n + 1)
+        self.tree_ceil = [0] * (n + 1)
+        self.tree_floor = [float('inf')] * (n + 1)
+        return
+
+    @staticmethod
+    def low_bit(x):
+        return x & -x
+
+    def add(self, x, k):
+        # 索引从1开始
+        while x <= self.n:
+            self.tree_ceil[x] = max(self.tree_ceil[x], k)
+            self.tree_floor[x] = min(self.tree_floor[x], k)
+            x += self.low_bit(x)
+        return
+
+    def find_max(self, left, r):
+        # 索引从1开始
+        max_val = float('-inf')
+        while r >= left:
+            if r - self.low_bit(r) >= left - 1:
+                max_val = max(max_val, self.tree_ceil[r])
+                r -= self.low_bit(r)
+            else:
+                max_val = max(max_val, self.a[r])
+                r -= 1
+        return max_val
+
+    def find_min(self, left, r):
+        # 索引从1开始
+        min_val = float('inf')
+        while r >= left:
+            if r - self.low_bit(r) >= left - 1:
+                min_val = min(min_val, self.tree_floor[r])
+                r -= self.low_bit(r)
+            else:
+                min_val = min(min_val, self.a[r])
+                r -= 1
+        return min_val
+
+
 class TreeArrayRangeQueryPointUpdateMin:
     # 模板：树状数组 前缀区间查询 最小值 单点更新
     def __init__(self, n):
@@ -148,7 +196,21 @@ class TreeArrayRangeQueryPointUpdateMin:
 class Solution:
     def __init__(self):
         return
-    
+
+    @staticmethod
+    def lg_p2280(ac=FastIO()):
+        # 模板：树状数组单点更新区间查询最大值与最小值
+        n, q = ac.read_ints()
+        tree = TreeArrayRangeMaxMin(n)
+        for i in range(n):
+            tree.a[i + 1] = ac.read_int()
+            tree.add(i + 1, tree.a[i + 1])
+
+        for _ in range(q):
+            a, b = ac.read_ints()
+            ac.st(tree.find_max(a, b) - tree.find_min(a, b))
+        return
+
     @staticmethod
     def lc_6353(grid: List[List[int]]) -> int:
         n, m = len(grid), len(grid[0])
