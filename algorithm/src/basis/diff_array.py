@@ -36,6 +36,7 @@ P7667 [JOI2018] Art Exhibition（https://www.luogu.com.cn/problem/P7667）公式
 P2671 [NOIP2015 普及组] 求和（https://www.luogu.com.cn/problem/P2671）前缀加和与前缀计数枚举，分奇偶性讨论
 P1719 最大加权矩形（https://www.luogu.com.cn/problem/P1719）求最大子矩阵和，经典枚举矩阵上下边界并使用前缀和计算
 P2882 [USACO07MAR]Face The Right Way G（https://www.luogu.com.cn/problem/P2882）贪心枚举加差分验证
+P4552 [Poetize6] IncDec Sequence（https://www.luogu.com.cn/problem/P4552）差分数组经典题，明晰差分本质
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/33/C（前后缀最大变换和与分割点枚举，经典类型题目）
@@ -149,6 +150,21 @@ class Solution:
         ans = DiffMatrix().get_diff_matrix(n, n, shifts)
         for a in ans:
             ac.lst(a)
+        return
+
+    @staticmethod
+    def lg_p4552(ac=FastIO()):
+        # 模板：差分数组经典题，明晰差分本质
+        n = ac.read_int()
+        diff = [ac.read_int() for _ in range(n)]
+        for i in range(n - 1, 0, -1):
+            diff[i] -= diff[i - 1]
+        pos = sum(num for num in diff[1:] if num > 0)
+        neg = -sum(num for num in diff[1:] if num < 0)
+        ans1 = max(pos, neg)
+        ans2 = abs(pos - neg) + 1
+        ac.st(ans1)
+        ac.st(ans2)
         return
 
     @staticmethod
