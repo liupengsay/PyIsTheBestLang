@@ -40,6 +40,7 @@ P6281 [USACO20OPEN] Social Distancing S（https://www.luogu.com.cn/problem/P6281
 P6423 [COCI2008-2009#2] SVADA（https://www.luogu.com.cn/problem/P6423）利用单调性进行二分计算
 P7177 [COCI2014-2015#4] MRAVI（https://www.luogu.com.cn/problem/P7177）二分加树形dfs模拟
 P1314 [NOIP2011 提高组] 聪明的质监员（https://www.luogu.com.cn/problem/P1314）经典二分寻找最接近目标值的和
+P3017 [USACO11MAR]Brownie Slicing G（https://www.luogu.com.cn/problem/P3017）经典二分将矩阵分成a*b个子矩阵且子矩阵和的最小值最大
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1251/D（使用贪心进行中位数二分求解）
@@ -229,6 +230,50 @@ class Solution:
                 if j <= x:
                     ans = ac.min(ans, j + cnt * 2)
             ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p3017(ac=FastIO()):
+
+        # 模板：经典二分将矩阵分成a*b个子矩阵且子矩阵和的最小值最大
+        def check(x):
+
+            def cut():
+                cur = 0
+                c = 0
+                for num in pre:
+                    cur += num
+                    if cur >= x:
+                        c += 1
+                        cur = 0
+                return c >= b
+
+            cnt = i = 0
+            pre = [0] * n
+            while i < m:
+                if cut():
+                    pre = [0] * n
+                    cnt += 1
+                else:
+                    for j in range(n):
+                        pre[j] += grid[i][j]
+                    i += 1
+            if cut():
+                cnt += 1
+            return cnt >= a
+
+        m, n, a, b = ac.read_ints()
+        grid = [ac.read_list_ints() for _ in range(m)]
+        low = 0
+        high = sum(sum(g) for g in grid) // (a * b)
+        while low < high - 1:
+            mid = low + (high - low) // 2
+            if check(mid):
+                low = mid
+            else:
+                high = mid
+        ans = high if check(high) else low
+        ac.st(ans)
         return
 
     @staticmethod
