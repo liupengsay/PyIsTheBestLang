@@ -29,6 +29,7 @@ P7399 [COCI2020-2021#5] Po（https://www.luogu.com.cn/problem/P7399）单调栈�
 P7410 [USACO21FEB] Just Green Enough S（https://www.luogu.com.cn/problem/P7410）通过容斥原理与单调栈计算01矩阵个数
 P7762 [COCI2016-2017#5] Unija（https://www.luogu.com.cn/problem/P7762）类似单调栈的思想，按照宽度进行贪心排序，计算每个高度的面积贡献
 P1578 奶牛浴场（https://www.luogu.com.cn/problem/P1578）使用单调栈离散化枚举障碍点的最大面积矩形
+P3467 [POI2008]PLA-Postering（https://www.luogu.com.cn/problem/P3467）贪心单调栈
 
 ================================CodeForces================================
 E. Explosions?（https://codeforces.com/problemset/problem/1795/E）单调栈贪心计数枚举，前后缀DP转移
@@ -86,6 +87,22 @@ class Rectangle:
 
 class Solution:
     def __init__(self):
+        return
+
+    @staticmethod
+    def lg_p3467(ac=FastIO()):
+        # 模板：使用单调栈进行计算
+        n = ac.read_int()
+        nums = [ac.read_list_ints()[1] for _ in range(n)]
+        stack = []
+        ans = 0
+        for i in range(n):
+            while stack and nums[stack[-1]] >= nums[i]:
+                j = stack.pop()
+                if nums[j] == nums[i]:  # 同样高度的连续区域可以一次覆盖
+                    ans += 1
+            stack.append(i)
+        ac.st(n - ans)
         return
 
     @staticmethod
