@@ -23,9 +23,7 @@ P8772 [蓝桥杯 2022 省 A] 求和（https://www.luogu.com.cn/record/list?user=
 P2367 语文成绩（https://www.luogu.com.cn/problem/P2367）差分数组记录区间增减变化，最后还原计算最小值
 P2280 [HNOI2003]激光炸弹（https://www.luogu.com.cn/problem/P2280）二维前缀和
 P3138 [USACO16FEB]Load Balancing S（https://www.luogu.com.cn/problem/P3138）二维前缀和
-P3406 
-
-海底高铁（https://www.luogu.com.cn/problem/P3406）差分数组计算每段路经过次数，再贪心新选择买卡还是单刷
+P3406 海底高铁（https://www.luogu.com.cn/problem/P3406）差分数组计算每段路经过次数，再贪心新选择买卡还是单刷
 P3655 不成熟的梦想家 (未熟 DREAMER)（https://www.luogu.com.cn/problem/P3655）差分数组变形模拟
 P5542 [USACO19FEB]Painting The Barn S（https://www.luogu.com.cn/problem/P5542）二维差分，需要适配覆盖区间
 P5686 [CSP-S2019 江西] 和积和（https://www.luogu.com.cn/problem/P5686）前缀和的前缀和
@@ -37,6 +35,7 @@ P1869 愚蠢的组合数（https://www.luogu.com.cn/problem/P1869）使用前缀
 P7667 [JOI2018] Art Exhibition（https://www.luogu.com.cn/problem/P7667）公式变换，排序后使用前缀和
 P2671 [NOIP2015 普及组] 求和（https://www.luogu.com.cn/problem/P2671）前缀加和与前缀计数枚举，分奇偶性讨论
 P1719 最大加权矩形（https://www.luogu.com.cn/problem/P1719）求最大子矩阵和，经典枚举矩阵上下边界并使用前缀和计算
+P2882 [USACO07MAR]Face The Right Way G（https://www.luogu.com.cn/problem/P2882）贪心枚举加差分验证
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/33/C（前后缀最大变换和与分割点枚举，经典类型题目）
@@ -346,6 +345,37 @@ class Solution:
 
         ans = min(n - (post[i] + pre[i]) for i in range(m + 1))
         return ans
+
+    @staticmethod
+    def lg_p2882(ac=FastIO()):
+
+        # 模板：贪心枚举加差分验证
+        n = ac.read_int()
+        lst = [int(ac.read_str() == "F") for _ in range(n)]
+        ans = [float("inf"), 0]
+        for k in range(1, n + 1):
+            diff = [0] * n
+            m = 0
+            for i in range(n - k + 1):
+                if i:
+                    diff[i] += diff[i - 1]
+                x = diff[i] + lst[i]
+                if x % 2:
+                    continue
+                else:
+                    m += 1
+                    diff[i] += 1
+                    if i + k < n:
+                        diff[i + k] -= 1
+            for i in range(n - k + 1, n):
+                diff[i] += diff[i - 1]
+                if (diff[i] + lst[i]) % 2 == 0:
+                    break
+            else:
+                if [m, k] < ans:
+                    ans = [m, k]
+        ac.lst(ans[::-1])
+        return
 
 
 class TestGeneral(unittest.TestCase):
