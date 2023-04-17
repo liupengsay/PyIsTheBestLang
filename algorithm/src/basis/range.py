@@ -7,6 +7,7 @@ from algorithm.src.fast_io import FastIO
 """
 算法：区间合并、区间覆盖、区间计数
 功能：涉及到区间的一些合并查询和操作，也可以使用差分数组与树状数组、线段树进行解决
+用法：合并为不相交的区间，最小区间覆盖问题，最多不相交的区间
 题目：
 
 ===================================力扣===================================
@@ -29,6 +30,8 @@ P2970 [USACO09DEC]Selfish Grazing S（https://www.luogu.com.cn/problem/P2970）�
 P6123 [NEERC2016]Hard Refactoring（https://www.luogu.com.cn/problem/P6123）区间合并变形问题
 P2684 搞清洁（https://www.luogu.com.cn/problem/P2684）最小区间覆盖，选取最少的区间来进行覆盖
 P1233 木棍加工（https://www.luogu.com.cn/problem/P1233）按照一个维度排序后计算另一个维度的最长严格递增子序列的长度，二位偏序，转换为区间包含问题
+P1496 火烧赤壁（https://www.luogu.com.cn/problem/P1496）经典区间合并确定覆盖范围
+
 ================================CodeForces================================
 A. String Reconstruction（https://codeforces.com/problemset/problem/827/A）区间合并为不相交的区间，再贪心赋值
 D. Nested Segments（https://codeforces.com/problemset/problem/652/D）二位偏序，转换为区间包含问题
@@ -116,6 +119,18 @@ class Range:
 
 class Solution:
     def __init__(self):
+        return
+
+    @staticmethod
+    def lg_p1496(ac=FastIO()):
+        # 模板：经典区间合并确定覆盖范围
+        n = ac.read_int()
+        lst = []
+        for _ in range(n):
+            a, b = [int(w) for w in input().strip().split() if w]
+            lst.append([a, b])
+        ans = sum(b-a for a, b in Range().merge(lst))
+        ac.st(ans)
         return
 
     @staticmethod

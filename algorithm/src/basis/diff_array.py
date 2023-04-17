@@ -30,7 +30,7 @@ P5686 [CSP-S2019 江西] 和积和（https://www.luogu.com.cn/problem/P5686）�
 P6180 [USACO15DEC]Breed Counting S（https://www.luogu.com.cn/problem/P6180）前缀和计数
 P6481 [COCI2006-2007] FIREFLY（https://www.luogu.com.cn/problem/P6481）区间更新后进行所有前缀查询
 P2956 [USACO09OCT]The Robot Plow G（https://www.luogu.com.cn/problem/P2956）二维差分前缀和
-P3397 地毯（https://www.luogu.com.cn/problem/P3397#submit）
+P3397 地毯（https://www.luogu.com.cn/problem/P3397）二维差分前缀和
 P1869 愚蠢的组合数（https://www.luogu.com.cn/problem/P1869）使用前缀和记录1-N的因子2的个数继而计算C(N,K)的奇偶性
 P7667 [JOI2018] Art Exhibition（https://www.luogu.com.cn/problem/P7667）公式变换，排序后使用前缀和
 P2671 [NOIP2015 普及组] 求和（https://www.luogu.com.cn/problem/P2671）前缀加和与前缀计数枚举，分奇偶性讨论
@@ -135,6 +135,19 @@ class DiffMatrix:
 
 class Solution:
     def __init__(self):
+        return
+
+    @staticmethod
+    def lg_p3397(ac=FastIO()):
+        # 模板：二维差分前缀和
+        n, m = ac.read_ints()
+        shifts = []
+        for _ in range(m):
+            x1, y1, x2, y2 = ac.read_ints()
+            shifts.append([x1, x2, y1, y2, 1])
+        ans = DiffMatrix().get_diff_matrix(n, n, shifts)
+        for a in ans:
+            ac.lst(a)
         return
 
     @staticmethod

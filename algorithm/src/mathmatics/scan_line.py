@@ -29,6 +29,8 @@ import copy
 
 import bisect
 
+from algorithm.src.fast_io import FastIO
+
 """
 算法：扫描线
 功能：计算平面几何面积或者立体体积
@@ -36,114 +38,109 @@ import bisect
 
 ===================================力扣===================================
 218. 天际线问题（https://leetcode.cn/problems/the-skyline-problem/）扫描线计算建筑物的轮廓
-[850. 矩形面积 II](https://leetcode.cn/problems/rectangle-area-ii/)
+850. 矩形面积 II（https://leetcode.cn/problems/rectangle-area-ii/）扫描线计算覆盖面积
 
 ===================================洛谷===================================
-[P5490 扫描线]（https://www.luogu.com.cn/problem/P5490）
 P6265 [COCI2014-2015#3] SILUETA（https://www.luogu.com.cn/problem/P6265）计算建筑物的扫描线轮廓
+P5490 【模板】扫描线（https://www.luogu.com.cn/problem/P5490）扫描线计算覆盖面积
+P1884 [USACO12FEB]Overplanting S（https://www.luogu.com.cn/problem/P1884）扫描线计算覆盖面积
 
 参考：[OI WiKi]（https://oi-wiki.org/geometry/scanning/)
 """
 
 
-class Scan:
+class ScanLine:
     def __init__(self):
         return
 
-    def gen_result(self):
-        return
+    @staticmethod
+    def get_sky_line(buildings: List[List[int]]) -> List[List[int]]:
 
+        # 模板：扫描线提取建筑物轮廓
+        events = []
+        # 生成左右端点事件并排序
+        for left, right, height in buildings:
+            # [x,y,h]分别为左右端点与高度
+            events.append([left, -height, right])
+            events.append([right, 0, 0])
+        events.sort()
 
-class Segtree:
-    def __init__(self):
-        self.cover = 0
-        self.length = 0
-        self.max_length = 0
+        # 初始化结果与前序高度
+        res = [[0, 0]]
+        stack = [[0, float('inf')]]
+        for left, height, right in events:
+            # 超出管辖范围的先出队
+            while left >= stack[0][1]:
+                heapq.heappop(stack)
+            # 加入备选天际线队列
+            if height < 0:
+                heapq.heappush(stack, [height, right])
+            # 高度发生变化出现新的关键点
+            if res[-1][1] != -stack[0][0]:
+                res.append([left, -stack[0][0]])
+        return res[1:]
+
+    @staticmethod
+    def get_rec_area(rectangles: List[List[int]]) -> int:
+
+        # 模板：扫描线提取矩形x轴的端点并排序（也可以取y轴的端点是一个意思）
+        axis = set()
+        # [x1,y1,x2,y2] 为左下角到右上角坐标
+        for rec in rectangles:
+            axis.add(rec[0])
+            axis.add(rec[2])
+        axis = sorted(list(axis))
+        ans = 0
+        n = len(axis)
+        for i in range(n - 1):
+
+            # 枚举两个点之间的宽度
+            x1, x2 = axis[i], axis[i + 1]
+            width = x2 - x1
+            if not width:
+                continue
+
+            # 这里本质上是求一维区间的合并覆盖长度作为高度
+            items = [[rec[1], rec[3]] for rec in rectangles if rec[0] < x2 and rec[2] > x1]
+            items.sort(key=lambda x: [x[0], -x[1]])
+            height = low = high = 0
+            for y1, y2 in items:
+                if y1 >= high:
+                    height += high - low
+                    low, high = y1, y2
+                else:
+                    high = high if high > y2 else y2
+            height += high - low
+
+            # 表示区[x1,x2]内的矩形覆盖高度为height
+            ans += width * height
+        return ans
 
 
 class Solution:
-    def rectangleArea(self, rectangles: List[List[int]]) -> int:
-        hbound = set()
-        for rect in rectangles:
-            # 下边界
-            hbound.add(rect[1])
-            # 上边界
-            hbound.add(rect[3])
+    def __init__(self):
+        return
 
-        hbound = sorted(hbound)
-        m = len(hbound)
-        # 线段树有 m-1 个叶子节点，对应着 m-1 个会被完整覆盖的线段，需要开辟 ~4m 大小的空间
-        tree = [Segtree() for _ in range(m * 4 + 1)]
-
-        def init(idx: int, l: int, r: int) -> None:
-            tree[idx].cover = tree[idx].length = 0
-            if l == r:
-                tree[idx].max_length = hbound[l] - hbound[l - 1]
-                return
-
-            mid = (l + r) // 2
-            init(idx * 2, l, mid)
-            init(idx * 2 + 1, mid + 1, r)
-            tree[idx].max_length = tree[idx * 2].max_length + tree[idx * 2 + 1].max_length
-
-        def update(idx: int, l: int, r: int, ul: int, ur: int, diff: int) -> None:
-            if l > ur or r < ul:
-                return
-            if ul <= l and r <= ur:
-                tree[idx].cover += diff
-                pushup(idx, l, r)
-                return
-
-            mid = (l + r) // 2
-            update(idx * 2, l, mid, ul, ur, diff)
-            update(idx * 2 + 1, mid + 1, r, ul, ur, diff)
-            pushup(idx, l, r)
-
-        def pushup(idx: int, l: int, r: int) -> None:
-            if tree[idx].cover > 0:
-                tree[idx].length = tree[idx].max_length
-            elif l == r:
-                tree[idx].length = 0
-            else:
-                tree[idx].length = tree[idx * 2].length + tree[idx * 2 + 1].length
-
-        init(1, 1, m - 1)
-
-        sweep = list()
-        for i, rect in enumerate(rectangles):
-            # 左边界
-            sweep.append((rect[0], i, 1))
-            # 右边界
-            sweep.append((rect[2], i, -1))
-        sweep.sort()
-
-        ans = i = 0
-        while i < len(sweep):
-            j = i
-            while j + 1 < len(sweep) and sweep[i][0] == sweep[j + 1][0]:
-                j += 1
-            if j + 1 == len(sweep):
-                break
-
-            # 一次性地处理掉一批横坐标相同的左右边界
-            for k in range(i, j + 1):
-                _, idx, diff = sweep[k]
-                # 使用二分查找得到完整覆盖的线段的编号范围
-                left = bisect_left(hbound, rectangles[idx][1]) + 1
-                right = bisect_left(hbound, rectangles[idx][3])
-                update(1, 1, m - 1, left, right, diff)
-
-            ans += tree[1].length * (sweep[j + 1][0] - sweep[j][0])
-            i = j + 1
-
-        return ans % (10 ** 9 + 7)
-
+    @staticmethod
+    def lg_p1884(ac=FastIO()):
+        # 模板：计算矩形覆盖面积
+        n = ac.read_int()
+        lst = []
+        for _ in range(n):
+            lst.append(ac.read_list_ints())
+        low_x = min(min(ls[0], ls[2]) for ls in lst)
+        low_y = min(min(ls[1], ls[3]) for ls in lst)
+        # 注意挪到坐标原点
+        lst = [[ls[0] - low_x, ls[1] - low_y, ls[2] - low_x, ls[3] - low_y] for ls in lst]
+        lst = [[ls[0], ls[3], ls[2], ls[1]] for ls in lst]
+        ans = ScanLine().get_rec_area(lst)
+        ac.st(ans)
+        return
 
 
 class TestGeneral(unittest.TestCase):
     def test_euler_phi(self):
-        nt = ClassName()
-        assert nt.gen_result(10**11 + 131) == 66666666752
+        pass
         return
 
 

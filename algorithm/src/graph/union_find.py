@@ -34,6 +34,7 @@ P5877 棋盘游戏（https://www.luogu.com.cn/problem/P5877）正向模拟实时
 P6111 [USACO18JAN]MooTube S（https://www.luogu.com.cn/problem/P6111）并查集加离线查询进行计算
 P6121 [USACO16OPEN]Closing the Farm G（https://www.luogu.com.cn/problem/P6121）逆序并查集根据连通块大小进行连通性判定
 P6153 询问（https://www.luogu.com.cn/problem/P6153）经典并查集思想贪心题，体现了并查集的思想
+P1955 [NOI2015] 程序自动分析（https://www.luogu.com.cn/problem/P1955）并查集裸题
 
 ================================CodeForces================================
 D. Roads not only in Berland（https://codeforces.com/problemset/problem/25/D）并查集将原来的边断掉重新来连接使得成为一整个连通集
