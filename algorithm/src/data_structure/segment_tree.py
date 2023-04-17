@@ -4,7 +4,7 @@ from collections import defaultdict
 from types import GeneratorType
 from typing import List
 
-from algorithm.src.fast_io import inf
+from algorithm.src.fast_io import inf, FastIO
 
 """
 算法：线段树
@@ -31,6 +31,7 @@ P3870 [TJOI2009] 开关（https://www.luogu.com.cn/problem/P3870） 区间值01�
 P5057 [CQOI2006] 简单题（https://www.luogu.com.cn/problem/P5057） 区间值01翻转与区间和查询
 P3372 【模板】线段树 1（https://www.luogu.com.cn/problem/P3372）区间值增减与求和
 P2880 [USACO07JAN] Balanced Lineup G（https://www.luogu.com.cn/problem/P2880）查询区间最大值与最小值
+P1904 天际线（https://www.luogu.com.cn/problem/P1904）使用线段树，区间更新最大值并单点查询计算天际线
 
 ================================CodeForces================================
 
@@ -105,90 +106,64 @@ class SegTreeBrackets:
         return a1
 
 
-class Solution:
-    def __init__(self):
-        return
+class SegmentTreeRangeAddMax:
+    # 模板：线段树区间更新、持续增加最大值
+    def __init__(self, n):
+        self.floor = 0
+        self.height = [self.floor]*(4*n)
+        self.lazy = [self.floor]*(4*n)
 
     @staticmethod
-    def bootstrap(f, queue=[]):
-        def wrappedfunc(*args, **kwargs):
-            if queue:
-                return f(*args, **kwargs)
+    def max(a, b):
+        return a if a > b else b
+
+    def push_down(self, i):
+        # 懒标记下放，注意取最大值
+        if self.lazy[i]:
+            self.height[2 * i] = self.max(self.height[2 * i], self.lazy[i])
+            self.height[2 * i + 1] = self.max(self.height[2 * i + 1], self.lazy[i])
+            self.lazy[2 * i] = self.max(self.lazy[2 * i], self.lazy[i])
+            self.lazy[2 * i + 1] = self.max(self.lazy[2 * i + 1], self.lazy[i])
+            self.lazy[i] = 0
+        return
+
+    def update(self, left, right, s, t, val, i):
+        # 更新区间最大值
+        stack = [[s, t, i, 1]]
+        while stack:
+            a, b, i, state = stack.pop()
+            if state:
+                if left <= a and b <= right:
+                    self.height[i] = self.max(self.height[i], val)
+                    self.lazy[i] = self.max(self.lazy[i], val)
+                    continue
+                self.push_down(i)
+                stack.append([a, b, i, 0])
+                m = a + (b - a) // 2
+                if left <= m:  # 注意左右子树的边界与范围
+                    stack.append([a, m, 2 * i, 1])
+                if right > m:
+                    stack.append([m + 1, b, 2 * i + 1, 1])
             else:
-                to = f(*args, **kwargs)
-                while True:
-                    if isinstance(to, GeneratorType):
-                        queue.append(to)
-                        to = next(to)
-                    else:
-                        queue.pop()
-                        if not queue:
-                            break
-                        to = queue[-1].send(to)
-                return to
-        return wrappedfunc
+                self.height[i] = self.max(self.height[2 * i], self.height[2 * i + 1])
+        return
 
-    def cf_380c(self, word, quiries):
-        # 模板：线段树进行分治并使用dp合并
-        n = len(word)
-        a = [0] * (4 * n)
-        b = [0] * (4 * n)
-        c = [0] * (4 * n)
-
-        @self.bootstrap
-        def update(left, r, s, t, i):
-            if s == t:
-                if word[s - 1] == ")":
-                    c[i] = 1
-                else:
-                    b[i] = 1
-                a[i] = 0
-                yield
-
-            m = s + (t - s) // 2
+    def query(self, left, right, s, t, i):
+        # 查询区间的最大值
+        stack = [[s, t, i]]
+        highest = self.floor
+        while stack:
+            a, b, i = stack.pop()
+            if left <= a and b <= right:
+                highest = self.max(highest, self.height[i])
+                continue
+            self.push_down(i)
+            m = a + (b - a) // 2
             if left <= m:
-                yield update(left, r, s, m, i << 1)
-            if r > m:
-                yield update(left, r, m + 1, t, i << 1 | 1)
-
-            match = min(b[i << 1], c[i << 1 | 1])
-            a[i] = a[i << 1] + a[i << 1 | 1] + 2 * match
-            b[i] = b[i << 1] + b[i << 1 | 1] - match
-            c[i] = c[i << 1] + c[i << 1 | 1] - match
-            yield
-
-        @self.bootstrap
-        def query(left, r, s, t, i):
-            if left <= s and t <= r:
-                d[i] = [a[i], b[i], c[i]]
-                yield
-
-            a1 = b1 = c1 = 0
-            m = s + (t - s) // 2
-            if left <= m:
-                yield query(left, r, s, m, i << 1)
-                a2, b2, c2 = d[i << 1]
-                match = min(b1, c2)
-                a1 += a2 + 2 * match
-                b1 += b2 - match
-                c1 += c2 - match
-            if r > m:
-                yield query(left, r, m + 1, t, i << 1 | 1)
-                a2, b2, c2 = d[i << 1 | 1]
-                match = min(b1, c2)
-                a1 += a2 + 2 * match
-                b1 += b2 - match
-                c1 += c2 - match
-            d[i] = [a1, b1, c1]
-            yield
-
-        update(1, n, 1, n, 1)
-        ans = []
-        for x, y in quiries:
-            d = defaultdict(list)
-            query(x, y, 1, n, 1)
-            ans.append(d[1][0])
-        return ans
+                stack.append([a, m, 2*i])
+            if right > m:
+                stack.append([m+1, b, 2*i + 1])
+        return highest
 
 
 class SegmentTreeOrUpdateAndQuery:
@@ -490,57 +465,6 @@ class SegmentTreePointAddSumMaxMin:
         return res
 
 
-class SegmentTreeRangeAddMax:
-    # 持续增加最大值
-    def __init__(self, n):
-        self.height = [0]*(4*n)
-        self.lazy = [0]*(4*n)
-
-    def push_down(self, i):
-        # 懒标记下放，注意取最大值
-        if self.lazy[i]:
-            self.height[2 * i] = self.height[2 * i] if self.height[2 * i] > self.lazy[i] else self.lazy[i]
-            self.height[2 * i + 1] = self.height[2 * i + 1] if self.height[2 * i + 1] > self.lazy[i] else self.lazy[i]
-
-            self.lazy[2 * i] = self.lazy[2 * i] if self.lazy[2 * i] > self.lazy[i] else self.lazy[i]
-            self.lazy[2 * i + 1] = self.lazy[2 * i + 1] if self.lazy[2 * i + 1] > self.lazy[i] else self.lazy[i]
-
-            self.lazy[i] = 0
-        return
-
-    def update(self, l, r, s, t, val, i):
-        # 更新区间最大值
-        if l <= s and t <= r:
-            self.height[i] = self.height[i] if self.height[i] > val else val
-            self.lazy[i] = self.lazy[i] if self.lazy[i] > val else val
-            return
-        self.push_down(i)
-        m = s + (t - s) // 2
-        if l <= m:  # 注意左右子树的边界与范围
-            self.update(l, r, s, m, val, 2 * i)
-        if r > m:
-            self.update(l, r, m + 1, t, val, 2 * i + 1)
-        self.height[i] = self.height[2 * i] if self.height[2 * i] > self.height[2 * i + 1] else self.height[2 * i + 1]
-        return
-
-    def query(self, l, r, s, t, i):
-        # 查询区间的最大值
-        if l <= s and t <= r:
-            return self.height[i]
-        self.push_down(i)
-        m = s + (t - s) // 2
-        highest = float("-inf")
-        if l <= m:
-            cur = self.query(l, r, s, m, 2 * i)
-            if cur > highest:
-                highest = cur
-        if r > m:
-            cur = self.query(l, r, m + 1, t, 2 * i + 1)
-            if cur > highest:
-                highest = cur
-        return highest
-
-
 class SegmentTreeRangeUpdateMax:
     # 持续修改区间值
     def __init__(self):
@@ -802,6 +726,34 @@ class Solution:
         return res
 
     @staticmethod
+    def lg_p1904(ac=FastIO()):
+
+        # 模板：使用线段树，区间更新最大值并单点查询计算天际线
+        low = 0
+        high = 10 ** 4
+        segment = SegmentTreeRangeAddMax(high)
+        nums = set()
+        while True:
+            s = ac.read_str()
+            if not s:
+                break
+            x, h, y = [int(w) for w in s.split() if w]
+            nums.add(x)
+            nums.add(y)
+            segment.update(x, y - 1, low, high, h, 1)
+        nums = sorted(list(nums))
+        n = len(nums)
+        height = [segment.query(num, num, low, high, 1) for num in nums]
+        ans = []
+        pre = -1
+        for i in range(n):
+            if height[i] != pre:
+                ans.extend([nums[i], height[i]])
+                pre = height[i]
+        ac.lst(ans)
+        return
+
+    @staticmethod
     def lc_218(buildings: List[List[int]]) -> List[List[int]]:
         # 模板：线段树离散化区间且持续增加最大值
         pos = set()
@@ -823,6 +775,71 @@ class Solution:
             if h != pre:
                 ans.append([pos, h])
                 pre = h
+        return ans
+
+    @staticmethod
+    def cf_380c(ac=FastIO()):
+        word = []
+        quiries = []
+        # 模板：线段树进行分治并使用dp合并
+        n = len(word)
+        a = [0] * (4 * n)
+        b = [0] * (4 * n)
+        c = [0] * (4 * n)
+
+        @ac.bootstrap
+        def update(left, r, s, t, i):
+            if s == t:
+                if word[s - 1] == ")":
+                    c[i] = 1
+                else:
+                    b[i] = 1
+                a[i] = 0
+                yield
+
+            m = s + (t - s) // 2
+            if left <= m:
+                yield update(left, r, s, m, i << 1)
+            if r > m:
+                yield update(left, r, m + 1, t, i << 1 | 1)
+
+            match = min(b[i << 1], c[i << 1 | 1])
+            a[i] = a[i << 1] + a[i << 1 | 1] + 2 * match
+            b[i] = b[i << 1] + b[i << 1 | 1] - match
+            c[i] = c[i << 1] + c[i << 1 | 1] - match
+            yield
+
+        @self.bootstrap
+        def query(left, r, s, t, i):
+            if left <= s and t <= r:
+                d[i] = [a[i], b[i], c[i]]
+                yield
+
+            a1 = b1 = c1 = 0
+            m = s + (t - s) // 2
+            if left <= m:
+                yield query(left, r, s, m, i << 1)
+                a2, b2, c2 = d[i << 1]
+                match = min(b1, c2)
+                a1 += a2 + 2 * match
+                b1 += b2 - match
+                c1 += c2 - match
+            if r > m:
+                yield query(left, r, m + 1, t, i << 1 | 1)
+                a2, b2, c2 = d[i << 1 | 1]
+                match = min(b1, c2)
+                a1 += a2 + 2 * match
+                b1 += b2 - match
+                c1 += c2 - match
+            d[i] = [a1, b1, c1]
+            yield
+
+        update(1, n, 1, n, 1)
+        ans = []
+        for x, y in quiries:
+            d = defaultdict(list)
+            query(x, y, 1, n, 1)
+            ans.append(d[1][0])
         return ans
 
 
