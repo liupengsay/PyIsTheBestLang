@@ -23,6 +23,7 @@ P7793 [COCI2014-2015#7] ACM（https://www.luogu.com.cn/problem/P7793）双端单
 P2216 [HAOI2007]理想的正方形（https://www.luogu.com.cn/problem/P2216）二维区间的滑动窗口最大最小值
 P1886 滑动窗口 /【模板】单调队列（https://www.luogu.com.cn/problem/P1886）计算滑动窗口的最大值与最小值
 P1714 切蛋糕（https://www.luogu.com.cn/problem/P1714）前缀和加滑动窗口最小值
+P1725 琪露诺（https://www.luogu.com.cn/problem/P1725）单调队列和指针维护滑动窗口最大值加线性DP
 
 参考：OI WiKi（xx）
 """
@@ -76,6 +77,32 @@ class PriorityQueue:
 
 class Solution:
     def __init__(self):
+        return
+
+    @staticmethod
+    def lg_p1725(ac=FastIO()):
+
+        # 模板：单调队列和指针维护滑动窗口最大值加线性DP
+        inf = float("-inf")
+        n, low, high = ac.read_ints()
+        n += 1
+        nums = ac.read_list_ints()
+        dp = [-inf] * n
+        dp[0] = nums[0]
+        j = 0
+        stack = deque()
+        for i in range(1, n):
+            while stack and stack[0][0] < i - high:
+                stack.popleft()
+            while j < n and j <= i - low:
+                while stack and stack[-1][1] <= dp[j]:
+                    stack.pop()
+                stack.append([j, dp[j]])
+                j += 1
+            if stack:
+                dp[i] = stack[0][1] + nums[i]
+        ans = max(dp[x] for x in range(n) if x + high >= n)
+        ac.st(ans)
         return
 
     @staticmethod
