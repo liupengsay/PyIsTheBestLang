@@ -34,6 +34,7 @@ P3397 地毯（https://www.luogu.com.cn/problem/P3397#submit）
 P1869 愚蠢的组合数（https://www.luogu.com.cn/problem/P1869）使用前缀和记录1-N的因子2的个数继而计算C(N,K)的奇偶性
 P7667 [JOI2018] Art Exhibition（https://www.luogu.com.cn/problem/P7667）公式变换，排序后使用前缀和
 P2671 [NOIP2015 普及组] 求和（https://www.luogu.com.cn/problem/P2671）前缀加和与前缀计数枚举，分奇偶性讨论
+P1719 最大加权矩形（https://www.luogu.com.cn/problem/P1719）求最大子矩阵和，经典枚举矩阵上下边界并使用前缀和计算
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/33/C（前后缀最大变换和与分割点枚举，经典类型题目）
@@ -134,6 +135,32 @@ class DiffMatrix:
 
 class Solution:
     def __init__(self):
+        return
+
+    @staticmethod
+    def lg_p1719(ac=FastIO()):
+
+        # 模板：求最大子矩阵和，经典枚举矩阵上下边界并使用前缀和计算
+        n = ac.read_int()
+        total = []
+        while len(total) < n * n:
+            total.extend(ac.read_list_ints())
+        grid = []
+        for i in range(n):
+            grid.append(total[i * n: (i + 1) * n])
+        del total
+
+        ans = float("-inf")
+        for i in range(n):
+            lst = [0] * n
+            for j in range(i, n):
+                lst = [lst[k] + grid[j][k] for k in range(n)]
+                floor = pre = 0
+                for num in lst:
+                    pre += num
+                    ans = ac.max(ans, pre - floor)
+                    floor = ac.min(floor, pre)
+        ac.st(ans)
         return
 
     @staticmethod
