@@ -127,6 +127,18 @@ class Solution:
         return
 
     @staticmethod
+    def lg_p2880(ac=FastIO()):
+        # 模板：查询静态区间最大值与最小值
+        n, q = ac.read_ints()
+        nums = [ac.read_int() for _ in range(n)]
+        st1 = SparseTable1(nums, "max")
+        st2 = SparseTable1(nums, "min")
+        for _ in range(q):
+            a, b = ac.read_ints()
+            ac.st(st1.query(a, b)-st2.query(a, b))
+        return
+
+    @staticmethod
     def lg_p3865(ac=FastIO()):
         # 模板：查询静态区间最大值
         n, m = ac.read_ints()
