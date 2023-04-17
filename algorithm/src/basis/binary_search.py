@@ -41,6 +41,7 @@ P6423 [COCI2008-2009#2] SVADA（https://www.luogu.com.cn/problem/P6423）利用�
 P7177 [COCI2014-2015#4] MRAVI（https://www.luogu.com.cn/problem/P7177）二分加树形dfs模拟
 P1314 [NOIP2011 提高组] 聪明的质监员（https://www.luogu.com.cn/problem/P1314）经典二分寻找最接近目标值的和
 P3017 [USACO11MAR]Brownie Slicing G（https://www.luogu.com.cn/problem/P3017）经典二分将矩阵分成a*b个子矩阵且子矩阵和的最小值最大
+P1083 [NOIP2012 提高组] 借教室（https://www.luogu.com.cn/problem/P1083）经典二分结合差分进行寻找第一个失效点
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1251/D（使用贪心进行中位数二分求解）
@@ -384,6 +385,44 @@ class Solution:
         ac.st(lst[ans])
         return
 
+    @staticmethod
+    def lg_p1083(ac=FastIO()):
+
+        # 模板：经典二分结合差分进行寻找第一个失效点
+
+        def check(s):
+            diff = [0] * n
+            for c, a, b in lst[:s]:
+                diff[a-1] += c
+                if b < n:
+                    diff[b] -= c
+            if diff[0] > nums[0]:
+                return False
+            pre = diff[0]
+            for i in range(1, n):
+                pre += diff[i]
+                if pre > nums[i]:
+                    return False
+            return True
+
+        n, m = ac.read_ints()
+        nums = ac.read_list_ints()
+        lst = [ac.read_list_ints() for _ in range(m)]
+        low = 0
+        high = n
+        while low < high - 1:
+            mid = low + (high - low) // 2
+            if check(mid):
+                low = mid
+            else:
+                high = mid
+        ans = high if check(high) else low
+        if ans == n:
+            ac.st(0)
+        else:
+            ac.st(-1)
+            ac.st(ans+1)
+        return
 
 class TestGeneral(unittest.TestCase):
 
