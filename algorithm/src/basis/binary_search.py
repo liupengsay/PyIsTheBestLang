@@ -39,6 +39,7 @@ P6174 [USACO16JAN]Angry Cows S（https://www.luogu.com.cn/problem/P6174）经典
 P6281 [USACO20OPEN] Social Distancing S（https://www.luogu.com.cn/problem/P6281）经典贪心加二分问题
 P6423 [COCI2008-2009#2] SVADA（https://www.luogu.com.cn/problem/P6423）利用单调性进行二分计算
 P7177 [COCI2014-2015#4] MRAVI（https://www.luogu.com.cn/problem/P7177）二分加树形dfs模拟
+P1314 [NOIP2011 提高组] 聪明的质监员（https://www.luogu.com.cn/problem/P1314）经典二分寻找最接近目标值的和
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1251/D（使用贪心进行中位数二分求解）
@@ -109,6 +110,40 @@ class BinarySearch:
 
 class Solution:
     def __init__(self):
+        return
+
+    @staticmethod
+    def lg_p1314(ac=FastIO()):
+
+        # 模板：经典二分寻找最接近目标值的和
+        n, m, s = ac.read_ints()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        queries = [ac.read_list_ints() for _ in range(m)]
+
+        def check(w):
+            cnt = [0]*(n+1)
+            pre = [0]*(n+1)
+            for i in range(n):
+                cnt[i+1] = cnt[i] + int(nums[i][0] >= w)
+                pre[i+1] = pre[i] + int(nums[i][0] >= w)*nums[i][1]
+            res = 0
+            for a, b in queries:
+                res += (pre[b]-pre[a-1])*(cnt[b]-cnt[a-1])
+            return res
+
+        ans = inf
+        low = 0
+        high = max(ls[0] for ls in nums)
+        while low < high - 1:
+            mid = low + (high - low) // 2
+            x = check(mid)
+            ans = ac.min(ans, abs(s-x))
+            if x <= s:
+                high = mid - 1
+            else:
+                low = mid + 1
+        ans = ac.min(ans, ac.min(abs(s - check(low)), abs(s - check(high))))
+        ac.st(ans)
         return
 
     @staticmethod
