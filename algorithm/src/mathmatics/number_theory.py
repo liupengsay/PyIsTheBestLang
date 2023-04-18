@@ -3,6 +3,7 @@
 import bisect
 import random
 import re
+import time
 import unittest
 
 from typing import List
@@ -96,7 +97,7 @@ A. Orac and LCM（https://codeforces.com/contest/1349/problem/A）质因数分�
 D. Same GCDs（https://codeforces.com/problemset/problem/1295/D）利用最大公因数的特性转换为欧拉函数求解，即比 n 小且与 n 互质的数个数
 D. Another Problem About Dividing Numbers（https://codeforces.com/problemset/problem/1538/D）使用pollard_rho进行质因数分解
 A. Row GCD（https://codeforces.com/problemset/problem/1458/A）gcd公式变换求解
-
+A. Division（https://codeforces.com/problemset/problem/1444/A）贪心枚举质数因子
 
 参考：OI WiKi（xx）
 """
@@ -131,9 +132,27 @@ class NumberTheoryPrimeFactor:
         return
 
 
+
 class NumberTheory:
     def __init__(self):
         return
+
+    @staticmethod
+    def get_prime_factor2(x):
+        # 模板：质因数分解最多支持 1**10
+        ans = []
+        j = 2
+        while j * j <= x:
+            if x % j == 0:
+                c = 0
+                while x % j == 0:
+                    x //= j
+                    c += 1
+                ans.append([j, c])
+            j += 1
+        if x > 1:
+            ans.append([x, 1])
+        return ans
 
     @staticmethod
     def least_square_sum(n: int) -> int:
@@ -762,6 +781,16 @@ class TestGeneral(unittest.TestCase):
         return
 
     def test_get_prime_factor(self):
+        for i in range(1, 10):
+            x = random.randint(i, 10**10)
+            t0 = time.time()
+            cnt1 = NumberTheory().get_prime_factor(x)
+            t1 = time.time()
+            cnt2 = NumberTheory().get_prime_factor2(x)
+            t2 = time.time()
+            print(t1-t0, t2-t1)
+            assert cnt1 == cnt2
+
         nt = NumberTheory()
         for i in range(1, 100000):
             res = nt.get_prime_factor(i)
