@@ -58,10 +58,13 @@ class SparseTable1:
                     self.f[i][j] = a if a < b else b
                 elif self.fun == "gcd":
                     self.f[i][j] = math.gcd(a, b)
+                elif self.fun == "lcm":
+                    self.f[i][j] = a*b//math.gcd(a, b)
                 elif self.fun == "and":
                     self.f[i][j] = a & b
                 elif self.fun == "or":
                     self.f[i][j] = a | b
+
         return
 
     def query(self, left, right):
@@ -75,6 +78,8 @@ class SparseTable1:
             return a if a < b else b
         elif self.fun == "gcd":
             return math.gcd(a, b)
+        elif self.fun == "lcm":
+            return a * b // math.gcd(a, b)
         elif self.fun == "and":
             return a & b
         elif self.fun == "or":
@@ -196,6 +201,7 @@ class TestGeneral(unittest.TestCase):
         st1_max = SparseTable1(nums, "max")
         st1_min = SparseTable1(nums, "min")
         st1_gcd = SparseTable1(nums, "gcd")
+        st1_lcm = SparseTable1(nums, "lcm")
         st1_and = SparseTable1(nums, "and")
         st1_or = SparseTable1(nums, "or")
 
@@ -208,6 +214,7 @@ class TestGeneral(unittest.TestCase):
             assert st1_max.query(left, right) == st2_max.query(left-1, right-1) == max(nums[left-1:right])
             assert st1_min.query(left, right) == st2_min.query(left - 1, right - 1) == min(nums[left - 1:right])
             assert st1_gcd.query(left, right) == st2_gcd.query(left-1, right-1) == reduce(math.gcd, nums[left - 1:right])
+            assert st1_lcm.query(left, right) == reduce(math.lcm, nums[left - 1:right])
             assert st1_and.query(left, right) == check_and(nums[left - 1:right])
             assert st1_or.query(left, right) == check_or(nums[left - 1:right])
         return
