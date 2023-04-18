@@ -6,7 +6,7 @@ import unittest
 from collections import deque
 from typing import List
 
-from algorithm.src.fast_io import FastIO
+from algorithm.src.fast_io import FastIO, inf
 from algorithm.src.graph.union_find import UnionFind
 
 """
@@ -23,6 +23,7 @@ from algorithm.src.graph.union_find import UnionFind
 P3379 【模板】最近公共祖先（LCA）（https://www.luogu.com.cn/problem/P3379）最近公共祖先模板题
 P7128 「RdOI R1」序列(sequence)（https://www.luogu.com.cn/problem/P7128）完全二叉树进行LCA路径模拟交换，使得数组有序
 P3128 [USACO15DEC]Max Flow P（https://www.luogu.com.cn/problem/P3128）离线LCA与树上差分
+P7167 [eJOI2020 Day1] Fountain（https://www.luogu.com.cn/problem/P7167）单调栈建树倍增在线LCA查询
 
 ==================================LibreOJ==================================
 #10135. 「一本通 4.4 练习 2」祖孙询问（https://loj.ac/p/10135）lca查询与判断
@@ -216,6 +217,51 @@ class TreeDiffArray:
         return diff
 
 
+class TreeAncestorPool:
+
+    def __init__(self, edges: List[List[int]], weight):
+        # 以 0 为根节点
+        n = len(edges)
+        self.n = n
+        self.parent = [-1] * n
+        self.depth = [-1] * n
+        stack = deque([0])
+        self.depth[0] = 0
+        while stack:
+            i = stack.popleft()
+            for j in edges[i]:
+                if self.depth[j] == -1:
+                    self.depth[j] = self.depth[i] + 1
+                    self.parent[j] = i
+                    stack.append(j)
+
+        # 根据节点规模设置层数
+        self.cols = max(2, math.ceil(math.log2(n)))
+        self.dp = [[-1] * self.cols for _ in range(n)]
+        self.weight = [[inf] * self.cols for _ in range(n)]
+        for i in range(n):
+            # weight维护向上积累的水量和
+            self.dp[i][0] = self.parent[i]
+            self.weight[i][0] = weight[i]
+
+        # 动态规划设置祖先初始化, dp[node][j] 表示 node 往前推第 2^j 个祖先
+        for j in range(1, self.cols):
+            for i in range(n):
+                father = self.dp[i][j - 1]
+                if father != -1:
+                    self.dp[i][j] = self.dp[father][j - 1]
+                    self.weight[i][j] = self.weight[father][j - 1] + self.weight[i][j - 1]
+        return
+
+    def get_final_ancestor(self, node: int, v: int) -> int:
+        # 倍增查询水最后流入的水池
+        for i in range(self.cols - 1, -1, -1):
+            if v > self.weight[node][i]:
+                v -= self.weight[node][i]
+                node = self.dp[node][i]
+        return node
+
+
 class TreeAncestor:
 
     def __init__(self, edges: List[List[int]]):
@@ -392,6 +438,34 @@ class TreeAncestorWeight:
 
 class Solution:
     def __init__(self):
+        return
+
+    @staticmethod
+    def lg_p7167(ac=FastIO()):
+
+        # 模板：单调栈加倍增LCA计算
+        n, q = ac.read_ints()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        # 使用单调栈建树
+        parent = [n] * n
+        edge = [[] for _ in range(n + 1)]
+        stack = []
+        for i in range(n):
+            while stack and nums[stack[-1]][0] < nums[i][0]:
+                parent[stack.pop()] = i
+            stack.append(i)
+        for i in range(n):
+            edge[n - parent[i]].append(n - i)
+
+        # LCA预处理
+        weight = [x for _, x in nums] + [inf]
+        tree = TreeAncestorPool(edge, weight[::-1])
+
+        # 查询
+        for _ in range(q):
+            r, v = ac.read_ints()
+            ans = tree.get_final_ancestor(n - r + 1, v)
+            ac.st(0 if ans == 0 else n - ans + 1)
         return
 
     @staticmethod
