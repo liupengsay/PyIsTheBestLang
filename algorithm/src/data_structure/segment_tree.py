@@ -904,72 +904,6 @@ class SegmentTreeRangeUpdateMin:
         return highest
 
 
-
-class SegmentTreeRangeChangeQuerySumMin:
-    def __init__(self, n):
-        # 区间值增减、区间和查询、区间最小值查询
-        self.cover = [0]*(4*n)
-        self.lazy = [0]*(4*n)
-        self.floor = [0]*(4*n)
-
-    def push_down(self, i, s, m, t):
-        if self.lazy[i]:
-            self.cover[2 * i] += self.lazy[i] * (m - s + 1)
-            self.cover[2 * i + 1] += self.lazy[i] * (t - m)
-
-            self.floor[2 * i] += self.lazy[i]
-            self.floor[2 * i + 1] += self.lazy[i]
-
-            self.lazy[2 * i] += self.lazy[i]
-            self.lazy[2 * i + 1] += self.lazy[i]
-
-            self.lazy[i] = 0
-
-    def update(self, left, r, s, t, val, i):
-        if left <= s and t <= r:
-            self.cover[i] += val * (t - s + 1)
-            self.floor[i] += val
-            self.lazy[i] += val
-            return
-        m = s + (t - s) // 2
-        self.push_down(i, s, m, t)
-        if left <= m:
-            self.update(left, r, s, m, val, 2 * i)
-        if r > m:
-            self.update(left, r, m + 1, t, val, 2 * i + 1)
-        self.cover[i] = self.cover[2 * i] + self.cover[2 * i + 1]
-
-        a, b = self.floor[2 * i], self.floor[2 * i + 1]
-        self.floor[i] = a if a < b else b
-        return
-
-    def query(self, left, r, s, t, i):
-        if left <= s and t <= r:
-            return self.cover[i]
-        m = s + (t - s) // 2
-        self.push_down(i, s, m, t)
-        ans = 0
-        if left <= m:
-            ans += self.query(left, r, s, m, 2 * i)
-        if r > m:
-            ans += self.query(left, r, m + 1, t, 2 * i + 1)
-        return ans
-
-    def query_min(self, left, r, s, t, i):
-        if left <= s and t <= r:
-            return self.floor[i]
-        m = s + (t - s) // 2
-        self.push_down(i, s, m, t)
-        ans = inf
-        if left <= m:
-            b = self.query_min(left, r, s, m, 2 * i)
-            ans = ans if ans < b else b
-        if r > m:
-            b = self.query_min(left, r, m + 1, t, 2 * i + 1)
-            ans = ans if ans < b else b
-        return ans
-
-
 class Solution:
     def __int__(self):
         return
@@ -1048,7 +982,7 @@ class Solution:
     @staticmethod
     def cf_380c(ac=FastIO()):
         word = []
-        quiries = []
+        queries = []
         # 模板：线段树进行分治并使用dp合并
         n = len(word)
         a = [0] * (4 * n)
@@ -1077,7 +1011,7 @@ class Solution:
             c[i] = c[i << 1] + c[i << 1 | 1] - match
             yield
 
-        @self.bootstrap
+        @ac.bootstrap
         def query(left, r, s, t, i):
             if left <= s and t <= r:
                 d[i] = [a[i], b[i], c[i]]
@@ -1104,7 +1038,7 @@ class Solution:
 
         update(1, n, 1, n, 1)
         ans = []
-        for x, y in quiries:
+        for x, y in queries:
             d = defaultdict(list)
             query(x, y, 1, n, 1)
             ans.append(d[1][0])
@@ -1379,44 +1313,43 @@ class TestGeneral(unittest.TestCase):
         low = 0
         high = 10000
         nums = [random.randint(low, high) for _ in range(high)]
-        stra = SegmentTreeRangeChangeQuerySumMin(high)
+        stra = SegmentTreeRangeUpdateQuerySumMinMax(nums)
         for i in range(high):
-            stra.update(i, i, low, high, nums[i], 1)
-            assert stra.query_min(i, i, low, high, 1) == min(nums[i:i + 1])
-            assert stra.query(i, i, low, high, 1) == sum(nums[i:i + 1])
+            assert stra.query_min(i, i, low, high-1, 1) == min(nums[i:i + 1])
+            assert stra.query_sum(i, i, low, high-1, 1) == sum(nums[i:i + 1])
 
         for _ in range(high):
             # 区间更新最小值
             left = random.randint(0, high - 1)
             right = random.randint(left, high - 1)
             num = random.randint(low, high)
-            stra.update(left, right, low, high, num, 1)
+            stra.update(left, right, low, high-1, num, 1)
             for i in range(left, right + 1):
                 nums[i] += num
             left = random.randint(0, high - 1)
             right = random.randint(left, high - 1)
-            assert stra.query_min(left, right, low, high, 1) == min(
+            assert stra.query_min(left, right, low, high-1, 1) == min(
                 nums[left:right + 1])
-            assert stra.query(left, right, low, high, 1) == sum(
+            assert stra.query_sum(left, right, low, high-1, 1) == sum(
                 nums[left:right + 1])
 
             # 单点更新最小值
             left = random.randint(0, high - 1)
             right = left
             num = random.randint(low, high)
-            stra.update(left, right, low, high, num, 1)
+            stra.update(left, right, low, high-1, num, 1)
             for i in range(left, right + 1):
                 nums[i] += num
-            assert stra.query_min(left, right, low, high, 1) == min(
+            assert stra.query_min(left, right, low, high-1, 1) == min(
                 nums[left:right + 1])
-            assert stra.query(left, right, low, high, 1) == sum(
+            assert stra.query_sum(left, right, low, high-1, 1) == sum(
                 nums[left:right + 1])
 
             left = random.randint(0, high - 1)
             right = random.randint(left, high - 1)
-            assert stra.query_min(left, right, low, high, 1) == min(
+            assert stra.query_min(left, right, low, high-1, 1) == min(
                 nums[left:right + 1])
-            assert stra.query(left, right, low, high, 1) == sum(
+            assert stra.query_sum(left, right, low, high-1, 1) == sum(
                 nums[left:right + 1])
         return
 
