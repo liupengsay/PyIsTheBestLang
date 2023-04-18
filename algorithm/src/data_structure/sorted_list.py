@@ -45,6 +45,7 @@ P6423 [COCI2008-2009#2] SVADA（https://www.luogu.com.cn/problem/P6423）利用�
 P7333 [JRKSJ R1] JFCA（https://www.luogu.com.cn/problem/P7333）经典排序预处理后，动态更新使用有序集合进行查询，注意是环形数组
 P7391 「TOCO Round 1」自适应 PVZ（https://www.luogu.com.cn/problem/P7391）有序集合进行贪心模拟，延迟替换，类似课程表3
 P7910 [CSP-J 2021] 插入排序（https://www.luogu.com.cn/problem/P7910）使用有序列表进行维护
+P4375 [USACO18OPEN]Out of Sorts G（https://www.luogu.com.cn/problem/P4375）冒泡排序，使用有序列表维护
 
 ================================CodeForces================================
 D. Pashmak and Parmida's problem（https://codeforces.com/problemset/problem/459/D）使用有序集合进行大小计数查找
@@ -294,6 +295,21 @@ class LocalSortedList:
 
 class Solution:
     def __int__(self):
+        return
+
+    @staticmethod
+    def lg_4375d(ac=FastIO()):
+        # 模板：双向冒泡排序所需要的比较轮数
+        n = ac.read_int()
+        ans = 1
+        nums = [ac.read_int() for _ in range(n)]
+        tmp = sorted(nums)
+        ind = {num: i+1 for i, num in enumerate(tmp)}
+        lst = LocalSortedList()
+        for i in range(n):
+            lst.add(ind[nums[i]])
+            ans = ac.max(ans, i+1-lst.bisect_right(i+1))
+        ac.st(ans)
         return
 
     @staticmethod

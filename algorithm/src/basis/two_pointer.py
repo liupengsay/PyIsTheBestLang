@@ -32,6 +32,10 @@ P4995 跳跳！（https://www.luogu.com.cn/problem/P4995）排序后利用贪心
 P2207 Photo（https://www.luogu.com.cn/problem/P2207）贪心加同向双指针
 P7542 [COCI2009-2010#1] MALI（https://www.luogu.com.cn/problem/P7542）桶计数加双指针进行计算
 P4653 [CEOI2017] Sure Bet（https://www.luogu.com.cn/problem/P4653）贪心排序后使用双指针计算
+P3029 [USACO11NOV]Cow Lineup S（https://www.luogu.com.cn/problem/P3029）双指针记录包含k个不同颜色的最短连续子序列
+
+
+
 
 ================================CodeForces================================
 D. Carousel（https://codeforces.com/problemset/problem/1328/D）环形数组滑动窗口，记录变化次数并根据奇偶变换次数与环形首尾元素确定染色数量
