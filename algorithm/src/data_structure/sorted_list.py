@@ -46,6 +46,8 @@ P7333 [JRKSJ R1] JFCA（https://www.luogu.com.cn/problem/P7333）经典排序预
 P7391 「TOCO Round 1」自适应 PVZ（https://www.luogu.com.cn/problem/P7391）有序集合进行贪心模拟，延迟替换，类似课程表3
 P7910 [CSP-J 2021] 插入排序（https://www.luogu.com.cn/problem/P7910）使用有序列表进行维护
 P4375 [USACO18OPEN]Out of Sorts G（https://www.luogu.com.cn/problem/P4375）冒泡排序，使用有序列表维护
+P1908 逆序对（https://www.luogu.com.cn/problem/P1908）经典问题求逆序对，可以使用归并排序
+P1966 [NOIP2013 提高组] 火柴排队（https://www.luogu.com.cn/problem/P1966）逆序对经典贪心题目
 
 ================================CodeForces================================
 D. Pashmak and Parmida's problem（https://codeforces.com/problemset/problem/459/D）使用有序集合进行大小计数查找
@@ -347,6 +349,29 @@ class Solution:
             lst.add(nums1[i] - nums2[i] + diff)
         return ans
 
+    @staticmethod
+    def lg_1966(ac=FastIO()):
+        # 模板：逆序对经典贪心题目
+        n = ac.read_int()
+        ans = 0
+        mod = 10**8-3
+        nums1 = ac.read_list_ints()
+        ind1 = list(range(n))
+        ind1.sort(key=lambda it: nums1[it])
+
+        nums2 = ac.read_list_ints()
+        ind2 = list(range(n))
+        ind2.sort(key=lambda it: nums2[it])
+
+        q = [0]*n
+        for i in range(n):
+            q[ind1[i]] = ind2[i]
+        lst = LocalSortedList()
+        for num in q:
+            ans += len(lst) - lst.bisect_right(num)
+            lst.add(num)
+        ac.st(ans % mod)
+        return
 
 class TestGeneral(unittest.TestCase):
 

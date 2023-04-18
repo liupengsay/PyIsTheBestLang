@@ -47,6 +47,7 @@ P5550 Chino的数列（https://www.luogu.com.cn/problem/P5550）循环节计算�
 P6045 后缀树（https://www.luogu.com.cn/problem/P6045）脑筋急转弯进行组合计数与快速幂枚举计算
 P6075 [JSOI2015]子集选取（https://www.luogu.com.cn/problem/P6075）组合计数后进行快速幂计算
 P6392 中意（https://www.luogu.com.cn/problem/P6392）公式拆解变换后进行快速幂计算
+P1045 [NOIP2003 普及组] 麦森数（https://www.luogu.com.cn/problem/P1045）位数公式转换与快速幂计算
 
 参考：OI WiKi（xx）
 
@@ -157,6 +158,19 @@ class PowerReverse:
 
 class Solution:
     def __init__(self):
+        return
+
+    @staticmethod
+    def lg_p1045(ac=FastIO()):
+        # 模板：位数计算与快速幂保留后几百位数字
+        p = ac.read_int()
+        ans1 = int(p*math.log10(2)) + 1
+        ans2 = pow(2, p, 10**501) - 1
+        ans2 = str(ans2)[-500:]
+        ac.st(ans1)
+        ans2 = "0"*(500-len(ans2)) + ans2
+        for i in range(0, 500, 50):
+            ac.st(ans2[i:i+50])
         return
 
     @staticmethod
