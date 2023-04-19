@@ -23,6 +23,7 @@ P3374 树状数组 1（https://www.luogu.com.cn/problem/P3374）区间值更新�
 P3368 树状数组 2（https://www.luogu.com.cn/problem/P3368）区间值更新与求和
 P5677 配对统计（https://www.luogu.com.cn/problem/P5677）区间值更新与求和
 P5094 [USACO04OPEN] MooFest G 加强版（https://www.luogu.com.cn/problem/P5094）单点更新增加值与前缀区间和查询
+P1816 忠诚（https://www.luogu.com.cn/problem/P1816）树状数组查询静态区间最小值
 
 ================================CodeForces================================
 F. Range Update Point Query（https://codeforces.com/problemset/problem/1791/F）树状数组维护区间操作数与查询单点值
@@ -120,11 +121,10 @@ class TreeArrayRangeQuerySum:
         return
 
 
-class TreeArrayRangeMaxMin:
+class TreeArrayPointUpdateRangeMaxMin:
 
     # 模板：树状数组 单点更新修改 区间查询最大值与最小值
     def __init__(self, n: int) -> None:
-        # 可以改动为动态持续增减单点值后，查询区间最大值与最小值
         self.n = n
         self.a = [0] * (n + 1)
         self.tree_ceil = [0] * (n + 1)
@@ -145,6 +145,7 @@ class TreeArrayRangeMaxMin:
 
     def add(self, x, k):
         # 索引从1开始
+        self.a[x] = k
         while x <= self.n:
             self.tree_ceil[x] = self.max(self.tree_ceil[x], k)
             self.tree_floor[x] = self.min(self.tree_floor[x], k)
@@ -234,7 +235,7 @@ class Solution:
     def lg_p2280(ac=FastIO()):
         # 模板：树状数组单点更新区间查询最大值与最小值
         n, q = ac.read_ints()
-        tree = TreeArrayRangeMaxMin(n)
+        tree = TreeArrayPointUpdateRangeMaxMin(n)
         for i in range(n):
             tree.a[i + 1] = ac.read_int()
             tree.add(i + 1, tree.a[i + 1])
@@ -301,6 +302,22 @@ class Solution:
             tree_array.update(age, cur)
         return tree_array.query(n)
 
+    @staticmethod
+    def lg_p1816(ac=FastIO()):
+
+        # 模板：树状数组查询静态区间最小值
+        m, n = ac.read_ints()
+        nums = ac.read_list_ints()
+        tree = TreeArrayPointUpdateRangeMaxMin(m)
+        for i in range(m):
+            tree.add(i+1, nums[i])
+        ans = []
+        for _ in range(n):
+            x, y = ac.read_ints()
+            ans.append(tree.find_min(x, y))
+        ac.lst(ans)
+        return
+
 
 class TestGeneral(unittest.TestCase):
 
@@ -327,6 +344,40 @@ class TestGeneral(unittest.TestCase):
             left = random.randint(0, ceil - 1)
             right = random.randint(left, ceil - 1)
             assert sum(nums[left: right + 1]) == tars.get_sum_range(left + 1, right + 1)
+
+    def test_tree_array_range_max_min(self):
+
+        # 只能持续增加值
+        ceil = 1000
+        nums = [random.randint(0, ceil) for _ in range(ceil)]
+        tree = TreeArrayPointUpdateRangeMaxMin(ceil)
+        for i in range(ceil):
+            tree.add(i+1, nums[i])
+        for _ in range(ceil):
+            d = random.randint(0, ceil)
+            i = random.randint(0, ceil - 1)
+            nums[i] += d
+            tree.add(i + 1, tree.a[i+1]+d)
+            left = random.randint(0, ceil - 1)
+            right = random.randint(left, ceil - 1)
+            assert max(nums[left: right + 1]) == tree.find_max(left + 1, right + 1)
+
+        # 只能持续减少值
+        ceil = 1000
+        nums = [random.randint(0, ceil) for _ in range(ceil)]
+        tree = TreeArrayPointUpdateRangeMaxMin(ceil)
+        for i in range(ceil):
+            tree.add(i+1, nums[i])
+
+        for _ in range(ceil):
+            d = random.randint(0, ceil)
+            i = random.randint(0, ceil - 1)
+            nums[i] -= d
+            tree.add(i + 1, tree.a[i + 1] - d)
+            left = random.randint(0, ceil - 1)
+            right = random.randint(left, ceil - 1)
+            assert min(nums[left: right + 1]) == tree.find_min(left + 1, right + 1)
+
 
 
 if __name__ == '__main__':
