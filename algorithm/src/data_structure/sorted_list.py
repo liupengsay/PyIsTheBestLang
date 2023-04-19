@@ -373,6 +373,7 @@ class Solution:
         ac.st(ans % mod)
         return
 
+
 class TestGeneral(unittest.TestCase):
 
     def test_define_sorted_list(self):

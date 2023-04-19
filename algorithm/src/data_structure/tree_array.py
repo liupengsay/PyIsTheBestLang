@@ -22,7 +22,7 @@ P5200 [USACO19JAN]Sleepy Cow Sorting G（https://www.luogu.com.cn/problem/P5200�
 P3374 树状数组 1（https://www.luogu.com.cn/problem/P3374）区间值更新与求和
 P3368 树状数组 2（https://www.luogu.com.cn/problem/P3368）区间值更新与求和
 P5677 配对统计（https://www.luogu.com.cn/problem/P5677）区间值更新与求和
-
+P5094 [USACO04OPEN] MooFest G 加强版（https://www.luogu.com.cn/problem/P5094）单点更新增加值与前缀区间和查询
 
 ================================CodeForces================================
 F. Range Update Point Query（https://codeforces.com/problemset/problem/1791/F）树状数组维护区间操作数与查询单点值
@@ -73,7 +73,7 @@ class TreeArrayRangeSum:
 
 
 class TreeArrayRangeQueryPointUpdateMax:
-    # 模板：树状数组 前缀区间查询 单点更新 最大值
+    # 模板：树状数组 单点更新 前缀区间查询 最大值
     def __init__(self, n):
         # 索引从 1 到 n
         self.t = [0] * (n + 1)
@@ -97,7 +97,7 @@ class TreeArrayRangeQueryPointUpdateMax:
 
 
 class TreeArrayRangeQuerySum:
-    # 模板：树状数组 前缀区间 和
+    # 模板：树状数组 单点更新增减 查询前缀区间和
     def __init__(self, n):
         # 索引从 1 到 n
         self.t = [0] * (n + 1)
@@ -122,9 +122,9 @@ class TreeArrayRangeQuerySum:
 
 class TreeArrayRangeMaxMin:
 
-    # 模板：树状数组单点更新区间查询最大值与最小值
+    # 模板：树状数组 单点更新修改 区间查询最大值与最小值
     def __init__(self, n: int) -> None:
-        # 可以改动为动态持续减少或增加单点值后，查询区间最大值与最小值
+        # 可以改动为动态持续增减单点值后，查询区间最大值与最小值
         self.n = n
         self.a = [0] * (n + 1)
         self.tree_ceil = [0] * (n + 1)
@@ -169,7 +169,7 @@ class TreeArrayRangeMaxMin:
 
 
 class TreeArrayRangeQueryPointUpdateMin:
-    # 模板：树状数组 前缀区间查询 最小值 单点更新
+    # 模板：树状数组 单点更新修改 前缀区间查询最小值
     def __init__(self, n):
         # 索引从 1 到 n
         self.inf = float("inf")
@@ -195,6 +195,31 @@ class TreeArrayRangeQueryPointUpdateMin:
     
 class Solution:
     def __init__(self):
+        return
+
+    @staticmethod
+    def lg_5094(ac=FastIO()):
+
+        # 模板：树状数组单点增加值与前缀区间和查询
+        n = ac.read_int()
+        m = 5 * 10 ** 4
+
+        nums = [ac.read_list_ints() for _ in range(n)]
+        nums.sort(key=lambda y: y[0])
+        tree_sum = TreeArrayRangeQuerySum(m)
+        tree_cnt = TreeArrayRangeQuerySum(m)
+        total_cnt = 0
+        total_sum = 0
+        ans = 0
+        for v, x in nums:
+            pre_sum = tree_sum.query(x)
+            pre_cnt = tree_cnt.query(x)
+            ans += v*(pre_cnt*x-pre_sum) + v*(total_sum-pre_sum-(total_cnt-pre_cnt)*x)
+            tree_sum.update(x, x)
+            tree_cnt.update(x, 1)
+            total_cnt += 1
+            total_sum += x
+        ac.st(ans)
         return
 
     @staticmethod
