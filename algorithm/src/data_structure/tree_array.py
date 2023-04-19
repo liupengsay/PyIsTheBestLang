@@ -135,11 +135,19 @@ class TreeArrayRangeMaxMin:
     def low_bit(x):
         return x & -x
 
+    @staticmethod
+    def max(a, b):
+        return a if a > b else b
+
+    @staticmethod
+    def min(a, b):
+        return a if a < b else b
+
     def add(self, x, k):
         # 索引从1开始
         while x <= self.n:
-            self.tree_ceil[x] = max(self.tree_ceil[x], k)
-            self.tree_floor[x] = min(self.tree_floor[x], k)
+            self.tree_ceil[x] = self.max(self.tree_ceil[x], k)
+            self.tree_floor[x] = self.min(self.tree_floor[x], k)
             x += self.low_bit(x)
         return
 
@@ -148,10 +156,10 @@ class TreeArrayRangeMaxMin:
         max_val = float('-inf')
         while r >= left:
             if r - self.low_bit(r) >= left - 1:
-                max_val = max(max_val, self.tree_ceil[r])
+                max_val = self.max(max_val, self.tree_ceil[r])
                 r -= self.low_bit(r)
             else:
-                max_val = max(max_val, self.a[r])
+                max_val = self.max(max_val, self.a[r])
                 r -= 1
         return max_val
 
@@ -160,10 +168,10 @@ class TreeArrayRangeMaxMin:
         min_val = float('inf')
         while r >= left:
             if r - self.low_bit(r) >= left - 1:
-                min_val = min(min_val, self.tree_floor[r])
+                min_val = self.min(min_val, self.tree_floor[r])
                 r -= self.low_bit(r)
             else:
-                min_val = min(min_val, self.a[r])
+                min_val = self.min(min_val, self.a[r])
                 r -= 1
         return min_val
 
