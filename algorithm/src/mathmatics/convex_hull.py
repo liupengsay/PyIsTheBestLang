@@ -1,13 +1,19 @@
 """
 
 """
+from algorithm.src.fast_io import FastIO
+
 """
-算法：凸包
+算法：凸包、最小圆覆盖
 功能：求点集的子集组成最小凸包上
 题目：
 
 ===================================力扣===================================
-1924 安装栅栏 II（https://leetcode.cn/problems/erect-the-fence-ii/）求出最小凸包后使用三分套三分求解最小圆覆盖
+1924 安装栅栏 II（https://leetcode.cn/problems/erect-the-fence-ii/）求出最小凸包后使用三分套三分求解最小圆覆盖，随机增量法求最小圆覆盖
+
+===================================洛谷===================================
+P1742 最小圆覆盖（https://www.luogu.com.cn/problem/P1742）随机增量法求最小圆覆盖
+P3517 [POI2011]WYK-Plot（https://www.luogu.com.cn/problem/P3517）二分套二分，随机增量法求最小圆覆盖
 
 参考：OI WiKi（xx）
 """
@@ -40,94 +46,141 @@ import heapq
 import copy
 
 
+class MinCircleOverlap:
+    def __init__(self):
+        self.pi = math.acos(-1)
+        self.esp = 10 ** (-10)
+        return
+
+    def get_min_circle_overlap(self, points: List[List[int]]):
+        # 模板：随机增量法求解最小圆覆盖
+
+        def cross(a, b):
+            return a[0] * b[1] - b[0] * a[1]
+
+        def intersection_point(p1, v1, p2, v2):
+            # 求解两条直线的交点
+            u = (p1[0] - p2[0], p1[1] - p2[1])
+            t = cross(v2, u) / cross(v1, v2)
+            return p1[0] + v1[0] * t, p1[1] + v1[1] * t
+
+        def is_point_in_circle(circle_x, circle_y, circle_r, x, y):
+            res = math.sqrt((x - circle_x) ** 2 + (y - circle_y) ** 2)
+            if abs(res - circle_r) < self.esp:
+                return True
+            if res < circle_r:
+                return True
+            return False
+
+        def vec_rotate(v, theta):
+            x, y = v
+            return x * math.cos(theta) + y * math.sin(theta), -x * math.sin(theta) + y * math.cos(theta)
+
+        def get_out_circle(x1, y1, x2, y2, x3, y3):
+            xx1, yy1 = (x1 + x2) / 2, (y1 + y2) / 2
+            vv1 = vec_rotate((x2 - x1, y2 - y1), self.pi / 2)
+            xx2, yy2 = (x1 + x3) / 2, (y1 + y3) / 2
+            vv2 = vec_rotate((x3 - x1, y3 - y1), self.pi / 2)
+            pp = intersection_point((xx1, yy1), vv1, (xx2, yy2), vv2)
+            res = math.sqrt((pp[0] - x1) ** 2 + (pp[1] - y1) ** 2)
+            return pp[0], pp[1], res
+
+        random.shuffle(points)
+        n = len(points)
+        p = points
+
+        # 圆心与半径
+        cc1 = (p[0][0], p[0][1], 0)
+        for ii in range(1, n):
+            if not is_point_in_circle(cc1[0], cc1[1], cc1[2], p[ii][0], p[ii][1]):
+                cc2 = (p[ii][0], p[ii][1], 0)
+                for jj in range(ii):
+                    if not is_point_in_circle(cc2[0], cc2[1], cc2[2], p[jj][0], p[jj][1]):
+                        dis = math.sqrt((p[jj][0] - p[ii][0]) ** 2 + (p[jj][1] - p[ii][1]) ** 2)
+                        cc3 = ((p[jj][0] + p[ii][0]) / 2, (p[jj][1] + p[ii][1]) / 2, dis / 2)
+                        for kk in range(jj):
+                            if not is_point_in_circle(cc3[0], cc3[1], cc3[2], p[kk][0], p[kk][1]):
+                                cc3 = get_out_circle(p[ii][0], p[ii][1], p[jj][0], p[jj][1], p[kk][0], p[kk][1])
+                        cc2 = cc3
+                cc1 = cc2
+
+        return cc1
+
+
 class Solution:
-    def outerTrees(self, trees: List[List[int]]) -> List[float]:
-        # 1.求凸包
-        # 1.1 找到最小最左的点作为凸包扫描的起点
-        point = [float('inf'), float('inf')]
-        for tree in trees:
-            if [tree[1], tree[0]] < point:
-                point = tree[:]
+    def __init__(self):
+        return
 
-        # 1.2 计算所有点到起点的极角与距离
-        def angle(node):
-            x, y = node
-            cur = math.atan2(y - point[1], x - point[0]) * 180 / math.pi
-            return [cur, abs(x - point[0])]
+    @staticmethod
+    def lc_1924(trees: List[List[int]]) -> List[float]:
+        # 模板：随机增量法求最小圆覆盖
+        ans = MinCircleOverlap().get_min_circle_overlap(trees)
+        return list(ans)
 
-        n = len(trees)
-        for i in range(n):
-            trees[i].extend(angle(trees[i]))
-        trees.sort(key=lambda x: [x[2], x[3]])
+    @staticmethod
+    def lg_p1742(ac=FastIO()):
+        # 模板：随机增量法求最小圆覆盖
+        n = ac.read_int()
+        nums = [ac.read_list_floats() for _ in range(n)]
+        x, y, r = MinCircleOverlap().get_min_circle_overlap(nums)
+        ac.st(r)
+        ac.lst([x, y])
+        return
 
-        # 1.3 最小凸包生成对于共线的点只保留较远的端点
-        def check(node1, node2, node3):  # 判断是否逆时针
-            x2, y2 = node2[0] - node1[0], node2[1] - node1[1]
-            x3, y3 = node3[0] - node1[0], node3[1] - node1[1]
-            return x2 * y3 - y2 * x3 < 0
+    @staticmethod
+    def lg_3517(ac=FastIO()):
 
-        stack = []
-        for node in trees:
-            if not node[2]:
-                if len(stack) == 2:
-                    stack.pop(-1)
-            else:
-                if stack and node[2] == stack[-1][2]:
-                    stack.pop(-1)
+        # 模板：随机增量法求最小圆覆盖
+        n, m = ac.read_ints()
+        nums = [ac.read_list_ints() for _ in range(n)]
+
+        def check(r):
+
+            def circle(lst):
+                x, y, rr = MinCircleOverlap().get_min_circle_overlap(lst)
+                return x, y, rr
+
+            cnt = i = 0
+            res = []
+            while i < n:
+                left = i
+                right = n-1
+                while left < right-1:
+                    mm = left+(right-left)//2
+                    if circle(nums[i:mm+1])[2] <= r:
+                        left = mm
+                    else:
+                        right = mm
+                ll = circle(nums[i:right+1])
+                if ll[2] > r:
+                    ll = circle(nums[i:left+1])
+                    i = left+1
                 else:
-                    while len(stack) >= 3 and check(stack[-2], stack[-1], node):
-                        stack.pop(-1)
-            stack.append(node)
-        del trees
+                    i = right + 1
+                res.append(ll[:-1])
+                cnt += 1
+            return res, cnt <= m
 
-        if len(stack) == 1:
-            return point + [0]
-
-        # 2.三分套三分搜寻极值
-        def target(x, y):
-            return max([(x - p[0]) ** 2 + (y - p[1]) ** 2 for p in stack])
-
-        eps = 5e-8
-        lowx = min([p[0] for p in stack])
-        highx = max([p[0] for p in stack])
-        lowy = min([p[1] for p in stack])
-        highy = max([p[1] for p in stack])
-
-        def optimize(y):
-            low = lowx
-            high = highx
-            while low < high - eps:
-                diff = (high - low) / 3
-                mid1 = low + diff
-                mid2 = low + 2 * diff
-                dist1 = target(mid1, y)
-                dist2 = target(mid2, y)
-                if dist1 < dist2:
-                    high = mid2
-                elif dist1 > dist2:
-                    low = mid1
-                else:
-                    low = mid1
-                    high = mid2
-            return low, target(low, y)
-
-        low = lowy
-        high = highy
-        while low < high - eps:
-            diff = (high - low) / 3
-            mid1 = low + diff
-            mid2 = low + 2 * diff
-            _, dist1 = optimize(mid1)
-            _, dist2 = optimize(mid2)
-            if dist1 < dist2:
-                high = mid2
-            elif dist1 > dist2:
-                low = mid1
+        low = 0
+        high = 4*10**6
+        error = 10**(-6)
+        while low < high-error:
+            mid = low+(high-low)/2
+            if check(mid)[1]:
+                high = mid
             else:
-                low = mid1
-                high = mid2
-        x, r = optimize(low)
-        return [x, low, math.sqrt(r)]
+                low = mid
+
+        nodes, flag = check(low)
+        rrr = low
+        if not flag:
+            nodes, flag = check(high)
+            rrr = high
+        ac.st(rrr)
+        ac.st(len(nodes))
+        for a in nodes:
+            ac.lst([round(a[0], 10), round(a[1], 10)])
+        return
 
 
 class TestGeneral(unittest.TestCase):

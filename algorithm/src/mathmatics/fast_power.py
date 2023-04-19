@@ -48,6 +48,7 @@ P6045 后缀树（https://www.luogu.com.cn/problem/P6045）脑筋急转弯进行
 P6075 [JSOI2015]子集选取（https://www.luogu.com.cn/problem/P6075）组合计数后进行快速幂计算
 P6392 中意（https://www.luogu.com.cn/problem/P6392）公式拆解变换后进行快速幂计算
 P1045 [NOIP2003 普及组] 麦森数（https://www.luogu.com.cn/problem/P1045）位数公式转换与快速幂计算
+P3509 [POI2010]ZAB-Frog（https://www.luogu.com.cn/problem/P3509）双指针模拟寻找第k远的距离，快速幂原理跳转
 
 参考：OI WiKi（xx）
 
@@ -199,6 +200,36 @@ class Solution:
                 ac.st(ans)
             else:
                 ac.st(lst[n - 1])
+        return
+
+    @staticmethod
+    def lg_p3509(ac=FastIO()):
+
+        # 模板：双指针模拟寻找第k远的距离，快速幂原理跳转
+        n, k, m = ac.read_ints()
+        nums = ac.read_list_ints()
+
+        ans = list(range(n))
+
+        # 双指针找出下一跳
+        nex = [0]*n
+        head = 0
+        tail = k
+        for i in range(n):
+            while tail + 1 < n and nums[tail+1]-nums[i] < nums[i] - nums[head]:
+                head += 1
+                tail += 1
+            if nums[tail]-nums[i] <= nums[i] - nums[head]:
+                nex[i] = head
+            else:
+                nex[i] = tail
+        # 快速幂倍增计算
+        while m:
+            if m & 1:
+                ans = [nex[ans[i]] for i in range(n)]
+            nex = [nex[nex[i]] for i in range(n)]
+            m >>= 1
+        ac.lst([a+1 for a in ans])
         return
 
 
