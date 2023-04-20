@@ -20,7 +20,7 @@ P4378 [USACO18OPEN]Out of Sorts S（https://www.luogu.com.cn/problem/P4378）枚
 P5626 【AFOI-19】数码排序（https://www.luogu.com.cn/problem/P5626）分治DP，归并排序需要的比较次数最少，但是可能内存占用超过快排
 P6243 [USACO06OPEN]The Milk Queue G（https://www.luogu.com.cn/problem/P6243）经典贪心举例之后进行自定义排序
 P1774 最接近神的人（https://www.luogu.com.cn/problem/P1774）使用归并排序确定在只交换相邻元素的情况下最少的交换次数使得数组有序
-
+P1177 【模板】快速排序（https://www.luogu.com.cn/problem/P1177）快速排序
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/922/D（贪心加自定义排序）

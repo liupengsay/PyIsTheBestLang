@@ -50,6 +50,8 @@ P1690 贪婪的Copy（https://www.luogu.com.cn/problem/P1690）最短路加状�
 P1294 高手去散步（https://www.luogu.com.cn/problem/P1294）图问题使用状压DP求解最长直径
 P1123 取数游戏（https://www.luogu.com.cn/problem/P1123）类似占座位的经典状压DP
 
+P1433 吃奶酪（https://www.luogu.com.cn/problem/P1433）状压DP
+
 ================================CodeForces================================
 D. Kefa and Dishes（https://codeforces.com/problemset/problem/580/D）状态压缩DP结合前后相邻的增益计算最优解
 E. Compatible Numbers（https://codeforces.com/problemset/problem/165/E）线性DP，状态压缩枚举，类似子集思想求解可能存在的与为0的数对

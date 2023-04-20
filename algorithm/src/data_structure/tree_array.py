@@ -33,28 +33,85 @@ H2. Maximum Crossings (Hard Version)（https://codeforces.com/contest/1676/probl
 """
 
 
-class TreeArrayRangeSum:
-    # 使用差分数组进行区间更新与求和
-    def __init__(self, n):
-        self.n = n
-        # 数组索引从 1 开始
-        self.t1 = [0] * (n + 1)
-        self.t2 = [0] * (n + 1)
+class TreeArrayRangeQuerySum:
+    # 模板：树状数组 单点增减 查询前缀和与区间和
+    def __init__(self, n: int) -> None:
+        # 索引从 1 到 n
+        self.t = [0] * (n + 1)
+        # 树状数组中每个位置保存的是其向前 low_bit 的区间和
+        return
+
+    def build(self, nums: List[int]) -> None:
+        # 索引从 1 开始使用数组初始化树状数组
+        n = len(nums)
+        pre = [0]*(n+1)
+        for i in range(n):
+            pre[i+1] = pre[i] + nums[i]
+            self.t[i+1] = pre[i+1] - pre[i+1-self.lowest_bit(i+1)]
+        return
 
     @staticmethod
-    def lowest_bit(x):
+    def lowest_bit(i: int) -> int:
+        # 经典 low_bit 即最后一位二进制为 1 所表示的数
+        return i & (-i)
+
+    def query(self, i: int) -> int:
+        # 索引从 1 开始，查询 1 到 i 的前缀区间和
+        mi = 0
+        while i:
+            mi += self.t[i]
+            i -= self.lowest_bit(i)
+        return mi
+
+    def query_range(self, x: int, y: int) -> int:
+        # 索引从 1 开始，查询 x 到 y 的值
+        return self.query(y) - self.query(x-1)
+
+    def update(self, i: int, mi: int) -> None:
+        # 索引从 1 开始，索引 i 的值增加 mi 且 mi 可正可负
+        while i < len(self.t):
+            self.t[i] += mi
+            i += self.lowest_bit(i)
+        return
+
+
+class TreeArrayRangeSum:
+    # 模板：树状数组 区间增减 查询前缀和与区间和
+    def __init__(self, n: int) -> None:
+        self.n = n
+        # 索引从 1 开始
+        self.t1 = [0] * (n + 1)
+        self.t2 = [0] * (n + 1)
+        return
+
+    def build(self, nums: List[int]) -> None:
+        # 索引从 1 开始使用数组初始化树状数组
+        n = len(nums)
+        pre = [0]*(n+1)
+        for i in range(n):
+            pre[i+1] = pre[i] + nums[i]
+            self.t1[i+1] = pre[i+1] - pre[i+1-self.lowest_bit(i+1)]
+            self.t2[i+1] = (i+1)*self.t1[i+1]
+        return
+
+    @staticmethod
+    def lowest_bit(x: int) -> int:
+        # 经典 low_bit 即最后一位二进制为 1 所表示的数
         return x & (-x)
 
     # 更新单点的差分数值
-    def _add(self, k, v):
+    def _add(self, k: int, v: int) -> None:
+        # 索引从 1 开始将第 k 个数加 v 且 v 可正可负
         v1 = k * v
         while k <= self.n:
             self.t1[k] = self.t1[k] + v
             self.t2[k] = self.t2[k] + v1
             k = k + self.lowest_bit(k)
+        return
 
     # 求差分数组的前缀和
-    def _sum(self, t, k):
+    def _sum(self, t: List[int], k: int) -> int:
+        # 索引从 1 开始求前 k 个数的前缀和
         ret = 0
         while k:
             ret = ret + t[k]
@@ -62,19 +119,22 @@ class TreeArrayRangeSum:
         return ret
 
     # 更新差分的区间数值
-    def update_range(self, l, r, v):
-        self._add(l, v)
-        self._add(r + 1, -v)
+    def update_range(self, left: int, right: int, v: int) -> None:
+        # 索引从 1 开始将区间 [left, right] 的数增加 v 且 v 可正可负
+        self._add(left, v)
+        self._add(right + 1, -v)
+        return
 
     # 求数组的前缀区间和
-    def get_sum_range(self, l, r):
-        a = (r + 1) * self._sum(self.t1, r) - self._sum(self.t2, r)
-        b = l * self._sum(self.t1, l - 1) - self._sum(self.t2, l - 1)
+    def get_sum_range(self, left: int, right: int) -> int:
+        # 索引从 1 开始查询区间 [left, right] 的和
+        a = (right + 1) * self._sum(self.t1, right) - self._sum(self.t2, right)
+        b = left * self._sum(self.t1, left - 1) - self._sum(self.t2, left - 1)
         return a - b
 
 
 class TreeArrayRangeQueryPointUpdateMax:
-    # 模板：树状数组 单点更新 前缀区间查询 最大值
+    # 模板：树状数组 单点增加 前缀区间查询 最大值
     def __init__(self, n):
         # 索引从 1 到 n
         self.t = [0] * (n + 1)
@@ -97,33 +157,34 @@ class TreeArrayRangeQueryPointUpdateMax:
         return
 
 
-class TreeArrayRangeQuerySum:
-    # 模板：树状数组 单点更新增减 查询前缀区间和
+class TreeArrayRangeQueryPointUpdateMin:
+    # 模板：树状数组 单点减少 前缀区间查询最小值
     def __init__(self, n):
         # 索引从 1 到 n
-        self.t = [0] * (n + 1)
+        self.inf = float("inf")
+        self.t = [self.inf] * (n + 1)
 
     @staticmethod
     def lowest_bit(i):
         return i & (-i)
 
     def query(self, i):
-        mi = 0
+        mi = self.inf
         while i:
-            mi += self.t[i]
+            mi = mi if mi < self.t[i] else self.t[i]
             i -= self.lowest_bit(i)
         return mi
 
     def update(self, i, mi):
         while i < len(self.t):
-            self.t[i] += mi
+            self.t[i] = self.t[i] if self.t[i] < mi else mi
             i += self.lowest_bit(i)
         return
 
 
 class TreeArrayPointUpdateRangeMaxMin:
 
-    # 模板：树状数组 单点更新修改 区间查询最大值与最小值
+    # 模板：树状数组 单点增加区间查询最大值 单点减加区间查询最小值
     def __init__(self, n: int) -> None:
         self.n = n
         self.a = [0] * (n + 1)
@@ -175,31 +236,6 @@ class TreeArrayPointUpdateRangeMaxMin:
                 min_val = self.min(min_val, self.a[r])
                 r -= 1
         return min_val
-
-
-class TreeArrayRangeQueryPointUpdateMin:
-    # 模板：树状数组 单点更新修改 前缀区间查询最小值
-    def __init__(self, n):
-        # 索引从 1 到 n
-        self.inf = float("inf")
-        self.t = [self.inf] * (n + 1)
-
-    @staticmethod
-    def lowest_bit(i):
-        return i & (-i)
-
-    def query(self, i):
-        mi = self.inf
-        while i:
-            mi = mi if mi < self.t[i] else self.t[i]
-            i -= self.lowest_bit(i)
-        return mi
-
-    def update(self, i, mi):
-        while i < len(self.t):
-            self.t[i] = self.t[i] if self.t[i] < mi else mi
-            i += self.lowest_bit(i)
-        return
     
     
 class Solution:
@@ -318,6 +354,34 @@ class Solution:
         ac.lst(ans)
         return
 
+    @staticmethod
+    def lg_p3374(ac=FastIO()):
+        # 模板：树状数组 单点增减 查询前缀和与区间和
+        n, m = ac.read_ints()
+        tree = TreeArrayRangeQuerySum(n)
+        tree.build(ac.read_list_ints())
+        for _ in range(m):
+            op, x, y = ac.read_ints()
+            if op == 1:
+                tree.update(x, y)
+            else:
+                ac.st(tree.query_range(x, y))
+        return
+
+    @staticmethod
+    def lg_p3368(ac=FastIO()):
+        # 模板：树状数组 区间增减 查询前缀和与区间和
+        n, m = ac.read_ints()
+        tree = TreeArrayRangeSum(n)
+        tree.build(ac.read_list_ints())
+        for _ in range(m):
+            lst = ac.read_list_ints()
+            if len(lst) == 2:
+                ac.st(tree.get_sum_range(lst[1], lst[1]))
+            else:
+                x, y, k = lst[1:]
+                tree.update_range(x, y, k)
+        return
 
 class TestGeneral(unittest.TestCase):
 

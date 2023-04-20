@@ -10,6 +10,10 @@ from algorithm.src.fast_io import FastIO
 
 ===================================洛谷===================================
 P5194 [USACO05DEC]Scales S（https://www.luogu.com.cn/problem/P5194）利用Fibonacci数列的长度特点进行折半搜索枚举，与二分查找确定可行的最大值
+Anya and Cubes（https://www.luogu.com.cn/problem/CF525E）折半搜索计算长度
+
+
+
 
 参考：OI WiKi（xx）
 """

@@ -5,7 +5,7 @@ from algorithm.src.fast_io import FastIO
 
 """
 算法：广度优先搜索
-功能：在有向图与无向图进行扩散，多源、双向BFS，0-1BFS（类似SPFA）
+功能：在有向图与无向图进行扩散，多源、双向BFS，0-1BFS（类似SPFA）双向BFS或者A-star启发式搜索
 题目：
 
 ===================================力扣===================================
@@ -15,6 +15,7 @@ from algorithm.src.fast_io import FastIO
 2258. 逃离火灾（https://leetcode.cn/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/）使用二分查找加双源BFS进行模拟
 2092. 找出知晓秘密的所有专家（https://leetcode.cn/problems/find-all-people-with-secret/）按照时间排序，在同一时间进行BFS扩散
 6330. 图中的最短环（https://leetcode.cn/contest/biweekly-contest-101/problems/shortest-cycle-in-a-graph/）使用BFS求无向图的最短环，还可以删除边计算两点最短路成为环，或者以任意边为起点，逐渐加边
+1197. 进击的骑士（https://leetcode.cn/problems/minimum-knight-moves/?envType=study-plan-v2&id=premium-algo-100）双向BFS
 
 ===================================洛谷===================================
 P1747 好奇怪的游戏（https://www.luogu.com.cn/problem/P1747）双向BFS搜索最短距离
@@ -47,6 +48,8 @@ P7243 最大公约数（https://www.luogu.com.cn/problem/P7243）广度优先搜
 P3496 [POI2010]GIL-Guilds（https://www.luogu.com.cn/problem/P3496）脑筋急转弯，BFS隔层染色
 P1432 倒水问题（https://www.luogu.com.cn/problem/P1432）经典BFS倒水题，使用记忆化广搜
 P1807 最长路（https://www.luogu.com.cn/problem/P1807）不保证连通的有向无环图求 1 到 n 的最长路
+P1379 八数码难题（https://www.luogu.com.cn/problem/P1379）双向BFS
+P5507 机关（https://www.luogu.com.cn/problem/P5507）双向BFS或者A-star启发式搜索
 
 ================================CodeForces================================
 E. Nearest Opposite Parity（https://codeforces.com/problemset/problem/1272/E）经典反向建图，多源BFS

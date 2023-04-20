@@ -42,6 +42,7 @@ P5198 [USACO19JAN]Icy Perimeter S（https://www.luogu.com.cn/problem/P5198）经
 P5318 【深基18.例3】查找文献（https://www.luogu.com.cn/problem/P5318）经典广搜拓扑排序与深搜序生成与获取
 P6691 选择题（https://www.luogu.com.cn/problem/P6691）染色法，进行二分图可行性方案计数与最大最小染色
 P7370 [COCI2018-2019#4] Wand（https://www.luogu.com.cn/problem/P7370）所有可能的祖先节点，注意特别情况没有任何祖先节点则自身可达
+P1036 [NOIP2002 普及组] 选数（https://www.luogu.com.cn/problem/P1036）回溯剪枝
 
 ================================CodeForces================================
 D. Tree Requests（https://codeforces.com/contest/570/problem/D）dfs序与二分查找，也可以使用离线查询
