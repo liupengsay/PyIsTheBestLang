@@ -128,24 +128,32 @@ class SparseTable2:
             return math.gcd(a, b)
 
 
+
 class SparseTable2D:
     def __init__(self, matrix, method="max"):
         m, n = len(matrix), len(matrix[0])
         a, b = int(math.log2(m)) + 1, int(math.log2(n)) + 1
-        self.dp = [[[[0 for _ in range(b)] for _ in range(a)] for _ in range(1000)] for _ in range(1000)]
 
         if method == "max":
             self.fun = self.max
+            val = float("-inf")
         elif method == "min":
             self.fun = self.min
+            val = float("inf")
         elif method == "gcd":
             self.fun = self.gcd
+            val = 0
         elif method == "lcm":
             self.fun = self.min
+            val = 1
         elif method == "or":
             self.fun = self._or
-        else:  # method == "and":
-            self.fun = self._and
+            val = 0
+        else:
+            self.fun = self._and  # method == "and"
+            val = 0
+
+        self.dp = [[[[val for _ in range(b)] for _ in range(a)] for _ in range(1000)] for _ in range(1000)]
 
         for i in range(a):
             for j in range(b):
@@ -166,54 +174,52 @@ class SparseTable2D:
 
     @staticmethod
     def max(args):
-        res = float("-inf")
-        for a in args:
+        res = args[0]
+        for a in args[1:]:
             res = res if res > a else a
         return res
 
     @staticmethod
     def min(args):
-        res = float("inf")
-        for a in args:
+        res = args[0]
+        for a in args[1:]:
             res = res if res < a else a
         return res
 
     @staticmethod
     def gcd(args):
-        res = 0
-        for a in args:
+        res = args[0]
+        for a in args[1:]:
             res = math.gcd(res, a)
         return res
 
     @staticmethod
     def lcm(args):
-        res = 1
-        for a in args:
+        res = args[0]
+        for a in args[1:]:
             res = math.lcm(res, a)
         return res
 
     @staticmethod
     def _or(args):
-        res = 0
-        for a in args:
+        res = args[0]
+        for a in args[1:]:
             res |= a
         return res
 
     @staticmethod
     def _and(args):
-        res = cnt = 0
-        for a in args:
-            res = a if not cnt else res
+        res = args[0]
+        for a in args[1:]:
             res &= a
-            cnt += 1
         return res
 
     def query(self, x, y, x1, y1):
         # 索引从0开始
         k = int(math.log2(x1 - x + 1))
         p = int(math.log2(y1 - y + 1))
-        ans = max(self.dp[x][y][k][p], self.dp[x1 - (1 << k) + 1][y][k][p], self.dp[x][y1 - (1 << p) + 1][k][p],
-                  self.dp[x1 - (1 << k) + 1][y1 - (1 << p) + 1][k][p])
+        ans = self.fun([self.dp[x][y][k][p], self.dp[x1 - (1 << k) + 1][y][k][p], self.dp[x][y1 - (1 << p) + 1][k][p],
+                  self.dp[x1 - (1 << k) + 1][y1 - (1 << p) + 1][k][p]])
         return ans
 
 
@@ -313,25 +319,20 @@ class TestGeneral(unittest.TestCase):
     def test_sparse_table_2d_max_min(self):
 
         # 二维稀疏表
-        random.seed(2023)
         m = n = 50
         high = 100000
         grid = [[random.randint(0, high) for _ in range(n)] for _ in range(m)]
 
-        for method in ["max" "min", "lcm", "gcd", "or", "and"]:
+        for method in ["max", "min", "lcm", "gcd", "or", "and"]:
             st = SparseTable2D(grid, method)
+            x1 = random.randint(0, m - 1)
+            y1 = random.randint(0, n - 1)
+            x2 = random.randint(x1, m - 1)
+            y2 = random.randint(y1, n - 1)
 
-            for _ in range(m):
-
-                x1 = random.randint(0, m - 1)
-                y1 = random.randint(0, n - 1)
-                x2 = random.randint(x1, m - 1)
-                y2 = random.randint(y1, n - 1)
-
-                ans1 = st.query(x1, y1, x2, y2)
-                ans2 = st.fun([st.fun(g[y1:y2 + 1]) for g in grid[x1:x2 + 1]])
-                assert ans1 == ans2
-
+            ans1 = st.query(x1, y1, x2, y2)
+            ans2 = st.fun([st.fun(g[y1:y2 + 1]) for g in grid[x1:x2 + 1]])
+            assert ans1 == ans2
         return
 
 
