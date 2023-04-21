@@ -3,6 +3,8 @@ import random
 import unittest
 import bisect
 from collections import defaultdict
+from operator import or_, and_
+from math import lcm, gcd
 from functools import reduce
 
 from algorithm.src.fast_io import FastIO
@@ -80,7 +82,7 @@ class SparseTable1:
         elif self.fun == "gcd":
             return math.gcd(a, b)
         elif self.fun == "lcm":
-            return a * b // math.gcd(a, b)
+            return math.lcm(a, b)
         elif self.fun == "and":
             return a & b
         elif self.fun == "or":
@@ -103,6 +105,7 @@ class SparseTable2:
                 v += 1
                 continue
             break
+
         self.ST = [[0] * len(data) for _ in range(self.note[-1]+1)]
         self.ST[0] = data
         for i in range(1, len(self.ST)):
@@ -128,7 +131,6 @@ class SparseTable2:
             return math.gcd(a, b)
 
 
-
 class SparseTable2D:
     def __init__(self, matrix, method="max"):
         m, n = len(matrix), len(matrix[0])
@@ -136,24 +138,18 @@ class SparseTable2D:
 
         if method == "max":
             self.fun = self.max
-            val = float("-inf")
         elif method == "min":
             self.fun = self.min
-            val = float("inf")
         elif method == "gcd":
             self.fun = self.gcd
-            val = 0
         elif method == "lcm":
             self.fun = self.min
-            val = 1
         elif method == "or":
             self.fun = self._or
-            val = 0
         else:
-            self.fun = self._and  # method == "and"
-            val = 0
+            self.fun = self._and
 
-        self.dp = [[[[val for _ in range(b)] for _ in range(a)] for _ in range(1000)] for _ in range(1000)]
+        self.dp = [[[[0 for _ in range(b)] for _ in range(a)] for _ in range(1000)] for _ in range(1000)]
 
         for i in range(a):
             for j in range(b):
@@ -162,64 +158,50 @@ class SparseTable2D:
                         if i == 0 and j == 0:
                             self.dp[x][y][i][j] = matrix[x][y]
                         elif i == 0:
-                            self.dp[x][y][i][j] = self.fun([self.dp[x][y][i][j - 1], self.dp[x][y + (1 << (j - 1))][i][j - 1]])
+                            self.dp[x][y][i][j] = self.fun([self.dp[x][y][i][j - 1],
+                                                            self.dp[x][y + (1 << (j - 1))][i][j - 1]])
                         elif j == 0:
-                            self.dp[x][y][i][j] = self.fun([self.dp[x][y][i - 1][j], self.dp[x + (1 << (i - 1))][y][i - 1][j]])
+                            self.dp[x][y][i][j] = self.fun([self.dp[x][y][i - 1][j],
+                                                            self.dp[x + (1 << (i - 1))][y][i - 1][j]])
                         else:
                             self.dp[x][y][i][j] = self.fun([self.dp[x][y][i - 1][j - 1],
-                                                      self.dp[x + (1 << (i - 1))][y][i - 1][j - 1],
-                                                      self.dp[x][y + (1 << (j - 1))][i - 1][j - 1],
-                                                      self.dp[x + (1 << (i - 1))][y + (1 << (j - 1))][i - 1][j - 1]])
+                                                            self.dp[x + (1 << (i - 1))][y][i - 1][j - 1],
+                                                            self.dp[x][y + (1 << (j - 1))][i - 1][j - 1],
+                                                            self.dp[x + (1 << (i - 1))][y + (1 << (j - 1))][i - 1][j - 1]])
         return
 
     @staticmethod
     def max(args):
-        res = args[0]
-        for a in args[1:]:
-            res = res if res > a else a
-        return res
+        return reduce(max, args)
 
     @staticmethod
     def min(args):
-        res = args[0]
-        for a in args[1:]:
-            res = res if res < a else a
-        return res
+        return reduce(min, args)
 
     @staticmethod
     def gcd(args):
-        res = args[0]
-        for a in args[1:]:
-            res = math.gcd(res, a)
-        return res
+        return reduce(gcd, args)
 
     @staticmethod
     def lcm(args):
-        res = args[0]
-        for a in args[1:]:
-            res = math.lcm(res, a)
-        return res
+        return reduce(lcm, args)
 
     @staticmethod
     def _or(args):
-        res = args[0]
-        for a in args[1:]:
-            res |= a
-        return res
+        return reduce(or_, args)
 
     @staticmethod
     def _and(args):
-        res = args[0]
-        for a in args[1:]:
-            res &= a
-        return res
+        return reduce(and_, args)
 
     def query(self, x, y, x1, y1):
         # 索引从0开始
         k = int(math.log2(x1 - x + 1))
         p = int(math.log2(y1 - y + 1))
-        ans = self.fun([self.dp[x][y][k][p], self.dp[x1 - (1 << k) + 1][y][k][p], self.dp[x][y1 - (1 << p) + 1][k][p],
-                  self.dp[x1 - (1 << k) + 1][y1 - (1 << p) + 1][k][p]])
+        ans = self.fun([self.dp[x][y][k][p],
+                        self.dp[x1 - (1 << k) + 1][y][k][p],
+                        self.dp[x][y1 - (1 << p) + 1][k][p],
+                        self.dp[x1 - (1 << k) + 1][y1 - (1 << p) + 1][k][p]])
         return ans
 
 
