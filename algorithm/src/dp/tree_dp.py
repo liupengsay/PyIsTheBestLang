@@ -10,7 +10,7 @@ from algorithm.src.fast_io import FastIO, inf
 from algorithm.src.graph.union_find import UnionFind
 
 """
-算法：树形DP、树的直径、树上差分
+算法：树形DP、树的直径、树上差分、树的重心、树的最小偏心距
 功能：在树形或者图结构上进行DP，有换根DP，自顶向下和自底向上DP
 题目：
 

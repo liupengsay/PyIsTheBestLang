@@ -1,7 +1,7 @@
 import unittest
 from collections import deque
 from typing import List
-from algorithm.src.fast_io import FastIO
+from algorithm.src.fast_io import FastIO, inf
 
 """
 算法：广度优先搜索
@@ -50,6 +50,8 @@ P1432 倒水问题（https://www.luogu.com.cn/problem/P1432）经典BFS倒水题
 P1807 最长路（https://www.luogu.com.cn/problem/P1807）不保证连通的有向无环图求 1 到 n 的最长路
 P1379 八数码难题（https://www.luogu.com.cn/problem/P1379）双向BFS
 P5507 机关（https://www.luogu.com.cn/problem/P5507）双向BFS或者A-star启发式搜索
+P5908 猫猫和企鹅（https://www.luogu.com.cn/problem/P5908）无根树直接使用bfs遍历
+P1099 [NOIP2007 提高组] 树网的核（https://www.luogu.com.cn/problem/P1099）经典题，用到了树的直径、BFS、双指针和单调队列求最小偏心距
 
 ================================CodeForces================================
 E. Nearest Opposite Parity（https://codeforces.com/problemset/problem/1272/E）经典反向建图，多源BFS
@@ -472,6 +474,103 @@ class Solution:
             if dct[num]:
                 stack.append(dct[num])
         ac.st("YES")
+        return
+
+    @staticmethod
+    def lg_p1099(ac=FastIO()):
+        # 模板：求最小偏心距在树的直径上进行双指针与单调队列计算
+        n, s = ac.read_ints()
+        dct = [dict() for _ in range(n)]
+        for _ in range(n-1):
+            i, j, w = ac.read_ints()
+            dct[i-1][j-1] = w
+            dct[j-1][i-1] = w
+
+        def bfs_diameter(src):
+            res, node = 0, src
+            stack = [[src, 0]]
+            parent = [-1]*n
+            while stack:
+                u, dis = stack.pop()
+                if dis > res:
+                    res = dis
+                    node = u
+                for v in dct[u]:
+                    if v != parent[u]:
+                        parent[v] = u
+                        stack.append([v, dis+dct[u][v]])
+            pa = [node]
+            while parent[pa[-1]] != -1:
+                pa.append(parent[pa[-1]])
+            pa.reverse()
+            return node, pa
+
+        # 计算直径与路径
+        start, _ = bfs_diameter(0)
+        end, path = bfs_diameter(start)
+
+        def bfs_distance(src):
+            dis = [0]*n
+            stack = [[src, -1, 1]]
+            while stack:
+                u, fa, state = stack.pop()
+                if state:
+                    stack.append([u, fa, 0])
+                    for v in dct[u]:
+                        if v != fa:
+                            stack.append([v, u, 1])
+                else:
+                    x = 0
+                    for v in dct[u]:
+                        if v != fa:
+                            x = ac.max(x, dct[u][v]+dis[v])
+                    dis[u] = x
+            return dis
+
+        # 计算直径上的端点往 start 与往 end 方向的最长距离
+        dis1 = bfs_distance(start)  # start -> end
+        dis2 = bfs_distance(end)  # end -> start
+
+        def bfs_node(src):
+            stack = [[src, -1, 0]]
+            res = 0
+            while stack:
+                u, fa, dis = stack.pop()
+                res = ac.max(res, dis)
+                for v in dct[u]:
+                    if v != fa and v not in diameter:
+                        stack.append([v, u, dis+dct[u][v]])
+            diameter[src] = res
+            return
+
+        # 计算直径上的端点往非直径端点上的最远距离
+        diameter = {node: 0 for node in path}
+        for node in diameter:
+            bfs_node(node)
+
+        # 使用双指针加滑动窗口单调队列记录直径范围点往非直径方向延申的最远距离
+        m = len(path)
+        ans = inf
+        gap = 0
+        j = 0
+        q = deque()
+        q.append([diameter[path[0]], 0])
+        for i in range(m):
+            while q and q[0][1] < i:
+                q.popleft()
+            if i:
+                gap -= dct[path[i-1]][path[i]]
+
+            # 双指针与单调队列
+            while j+1 < m and gap + dct[path[j]][path[j+1]] <= s:
+                gap += dct[path[j]][path[j + 1]]
+                while q and q[-1][0] < diameter[path[j+1]]:
+                    q.pop()
+                q.append([diameter[path[j+1]], j+1])
+                j += 1
+
+            ans = ac.min(ans, max(dis2[path[i]], dis1[path[j]], q[0][0]))
+        ac.st(ans)
         return
 
 
