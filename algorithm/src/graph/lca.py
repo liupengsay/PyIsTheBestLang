@@ -6,12 +6,13 @@ import unittest
 from collections import deque
 from typing import List
 
+from algorithm.src.data_structure.tree_array import TreeArrayRangeSum
 from algorithm.src.fast_io import FastIO, inf
 from algorithm.src.graph.union_find import UnionFind
 
 """
 
-算法：LCA、倍增算法、树链剖分、树的质心、离线LCA与树上差分
+算法：LCA、倍增算法、树链剖分、树的质心、树的重心、离线LCA与树上差分
 功能：来求一棵树的最近公共祖先（LCA）也可以使用
 题目：
 
@@ -24,6 +25,7 @@ P3379 【模板】最近公共祖先（LCA）（https://www.luogu.com.cn/problem
 P7128 「RdOI R1」序列(sequence)（https://www.luogu.com.cn/problem/P7128）完全二叉树进行LCA路径模拟交换，使得数组有序
 P3128 [USACO15DEC]Max Flow P（https://www.luogu.com.cn/problem/P3128）离线LCA与树上差分
 P7167 [eJOI2020 Day1] Fountain（https://www.luogu.com.cn/problem/P7167）单调栈建树倍增在线LCA查询
+P3384 【模板】重链剖分/树链剖分（https://www.luogu.com.cn/problem/P3384）树链剖分与树状数组模拟
 
 ==================================LibreOJ==================================
 #10135. 「一本通 4.4 练习 2」祖孙询问（https://loj.ac/p/10135）lca查询与判断
@@ -379,6 +381,86 @@ class TreeCentroid:
         return centroids, pre_cent, subtree_size
 
 
+class HeavyChain:
+    def __init__(self, dct: List[List[int]], root=0) -> None:
+        # 模板：对树进行重链剖分
+        self.n = len(dct)
+        self.dct = dct
+        self.parent = [-1]*self.n  # 父节点
+        self.cnt_son = [1]*self.n  # 子树节点数
+        self.weight_son = [-1]*self.n  # 重孩子
+        self.top = [-1]*self.n  # 链式前向星
+        self.dfn = [0]*self.n  # 节点对应的深搜序
+        self.rev_dfn = [0]*self.n  # 深搜序对应的节点
+        self.depth = [0]*self.n  # 节点的深度信息
+        # 初始化
+        self.build_weight(root)
+        self.build_dfs(root)
+        return
+
+    def build_weight(self, root) -> None:
+        # 生成树的重孩子信息
+        stack = [[root, 1]]
+        while stack:
+            i, state = stack.pop()
+            if state:
+                stack.append([i, 0])
+                for j in self.dct[i]:
+                    if j != self.parent[i]:
+                        stack.append([j, 1])
+                        self.parent[j] = i
+                        self.depth[j] = self.depth[i] + 1
+            else:
+                for j in self.dct[i]:
+                    if j != self.parent[i]:
+                        self.cnt_son[i] += self.cnt_son[j]
+                        if self.weight_son[i] == -1 or self.cnt_son[j] > self.cnt_son[self.weight_son[i]]:
+                            self.weight_son[i] = j
+        return
+
+    def build_dfs(self, root) -> None:
+        # 生成树的深搜序信息
+        stack = [[root, root]]
+        order = 0
+        while stack:
+            i, tp = stack.pop()
+            self.dfn[i] = order
+            self.rev_dfn[order] = i
+            self.top[i] = tp
+            order += 1
+            # 先访问重孩子再访问轻孩子
+            w = self.weight_son[i]
+            for j in self.dct[i]:
+                if j != self.parent[i] and j != w:
+                    stack.append([j, j])
+            if w != -1:
+                stack.append([w, tp])
+        return
+
+    def query_chain(self, x, y):
+        # 查询 x 到 y 的最短路径经过的链路段
+        lst = []
+        while self.top[x] != self.top[y]:
+            if self.depth[self.top[x]] < self.depth[self.top[y]]:
+                x, y = y, x
+            lst.append([self.dfn[self.top[x]], self.dfn[x]])
+            x = self.parent[self.top[x]]
+        a, b = self.dfn[x], self.dfn[y]
+        if a > b:
+            a, b = b, a
+        lst.append([a, b])  # 返回的路径是链条的 dfs 序即 dfn
+        return lst
+
+    def query_lca(self, x, y):
+        # 查询 x 与 y 的 LCA 最近公共祖先
+        while self.top[x] != self.top[y]:
+            if self.depth[self.top[x]] < self.depth[self.top[y]]:
+                x, y = y, x
+            x = self.parent[self.top[x]]
+        # 返回的是节点真实的编号而不是 dfs 序即 dfn
+        return x if self.depth[x] < self.depth[y] else y
+
+
 class TreeAncestorWeight:
 
     def __init__(self, edges: List[List[int]], dct):
@@ -679,6 +761,63 @@ class Solution:
         # cnt = TreeDiffArray().dfs_recursion(dct, queries)  # 也可以使用递归
         ac.st(max(cnt))
         return
+
+    @staticmethod
+    def lg_p3384(ac=FastIO()):
+        # 模板：使用树链剖分和深搜序进行节点值修改与区间和查询
+        n, m, r, p = ac.read_ints()
+        r -= 1
+        tree = TreeArrayRangeSum(n)
+        nums = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        for _ in range(n-1):
+            i, j = ac.read_ints_minus_one()
+            dct[i].append(j)
+            dct[j].append(i)
+        heavy = HeavyChain(dct, r)
+        tree.build([nums[i] for i in heavy.rev_dfn])
+
+        for _ in range(m):
+            lst = ac.read_list_ints()
+            if lst[0] == 1:
+                x, y, z = lst[1:]
+                for a, b in heavy.query_chain(x-1, y-1):
+                    tree.update_range(a+1, b+1, z)
+            elif lst[0] == 2:
+                x, y = lst[1:]
+                ans = 0
+                for a, b in heavy.query_chain(x - 1, y - 1):
+                    ans += tree.get_sum_range(a + 1, b + 1)
+                    ans %= p
+                ac.st(ans)
+            elif lst[0] == 3:
+                x, z = lst[1:]
+                x -= 1
+                a, b = heavy.dfn[x], heavy.cnt_son[x]
+                tree.update_range(a+1, a+b, z)
+            else:
+                x = lst[1] - 1
+                a, b = heavy.dfn[x], heavy.cnt_son[x]
+                ans = tree.get_sum_range(a + 1, a + b) % p
+                ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p3379(ac=FastIO()):
+        # 模板：使用树链剖分求 LCA
+        n, m, r = ac.read_ints()
+        r -= 1
+        dct = [[] for _ in range(n)]
+        for _ in range(n-1):
+            i, j = ac.read_ints_minus_one()
+            dct[i].append(j)
+            dct[j].append(i)
+        heavy = HeavyChain(dct, r)
+        for _ in range(m):
+            x, y = ac.read_ints_minus_one()
+            ac.st(heavy.query_lca(x, y) + 1)
+        return
+
 
 class TestGeneral(unittest.TestCase):
 

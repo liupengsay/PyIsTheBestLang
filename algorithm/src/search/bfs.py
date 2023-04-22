@@ -52,6 +52,7 @@ P1379 八数码难题（https://www.luogu.com.cn/problem/P1379）双向BFS
 P5507 机关（https://www.luogu.com.cn/problem/P5507）双向BFS或者A-star启发式搜索
 P5908 猫猫和企鹅（https://www.luogu.com.cn/problem/P5908）无根树直接使用bfs遍历
 P1099 [NOIP2007 提高组] 树网的核（https://www.luogu.com.cn/problem/P1099）经典题，用到了树的直径、BFS、双指针和单调队列求最小偏心距
+P2491 [SDOI2011] 消防（https://www.luogu.com.cn/problem/P2491）同树网的核P1099
 
 ================================CodeForces================================
 E. Nearest Opposite Parity（https://codeforces.com/problemset/problem/1272/E）经典反向建图，多源BFS

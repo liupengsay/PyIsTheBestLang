@@ -10,7 +10,7 @@ from algorithm.src.fast_io import FastIO, inf
 from algorithm.src.graph.union_find import UnionFind
 
 """
-算法：树形DP、树的直径、树上差分、树的重心、树的最小偏心距
+算法：树形DP、树的直径、树上差分、树的重心（以及树的每个节点到其余节点的总距离和）、树的最小偏心距
 功能：在树形或者图结构上进行DP，有换根DP，自顶向下和自底向上DP
 题目：
 
@@ -24,10 +24,11 @@ from algorithm.src.graph.union_find import UnionFind
 1617. 统计子树中城市之间最大距离（https://leetcode.cn/problems/count-subtrees-with-max-distance-between-cities/）二进制枚举加树的直径计算
 2378. 选择边来最大化树的得分（https://leetcode.cn/problems/choose-edges-to-maximize-score-in-a-tree/）树形DP
 2445. 值为 1 的节点数（https://leetcode.cn/problems/number-of-nodes-with-value-one/）自上而下DP模拟
+834. 树中距离之和（https://leetcode.cn/problems/sum-of-distances-in-tree/）树的总距离，求树的重心
 
 ===================================洛谷===================================
 
-P1395 会议（https://leetcode.cn/problems/create-components-with-same-value/）树的总距离，单个节点距离其他所有节点的最大距离
+P1395 会议（https://www.luogu.com.cn/problem/P1395）树的总距离，求树的重心，单个节点距离其他所有节点的最大距离，换根DP可以做
 P1352 没有上司的舞会（https://www.luogu.com.cn/problem/P1352）树形DP，隔层进行动态规划转移
 P1922 女仆咖啡厅桌游吧（https://www.luogu.com.cn/problem/P1922）树形DP，贪心进行子树与叶子节点的分配
 P2016 战略游戏（https://www.luogu.com.cn/problem/P2016）树形DP瞭望每条边
@@ -87,7 +88,7 @@ class TreeDP:
 
     @staticmethod
     def sum_of_distances_in_tree(n: int, edges):
-        # 计算节点到所有其他节点的总距离
+        # 计算节点到所有其他节点的总距离即树的重心
         dct = [[] for _ in range(n)]
         for i, j in edges:
             dct[i].append(j)
@@ -267,6 +268,72 @@ class TreeDiameterDis:
                         dis[j] = dis[i] + 1
             stack = nex[:]
         return dis
+
+
+class TreeCentroid:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def get_tree_centroid(dct: List[List[int]]) -> int:
+        # 模板：获取树的编号最小的重心
+        n = len(dct)
+        sub = [1]*n  # 以 0 为根的有根树节点 i 的子树节点数
+        ma = [0]*n  # 以 i 为根最大的子树节点数
+        ma[0] = n
+        center = 0
+        stack = [[0, -1, 1]]
+        while stack:
+            i, fa, state = stack.pop()
+            if state:
+                stack.append([i, fa, 0])
+                for j in dct[i]:
+                    if j != fa:
+                        stack.append([j, i, 1])
+            else:
+                for j in dct[i]:
+                    if j != fa:
+                        sub[i] += sub[j]
+                        ma[i] = ma[i] if ma[i] > sub[j] else sub[j]
+                # 类似换根 DP 计算最大子树节点数
+                ma[i] = ma[i] if ma[i] > n-sub[i] else n-sub[i]
+                if ma[i] < ma[center] or (ma[i] == ma[center] and i < center):
+                    center = i
+        # 树的重心等同于最大子树最小的节点也等同于到其余所有节点距离之和最小的节点
+        return center
+
+    @staticmethod
+    def get_tree_distance(dct: List[List[int]]) -> List[int]:
+        # 模板：计算树的每个节点到其余所有的节点的总距离
+
+        n = len(dct)
+        sub = [1] * n  # 子树节点个数
+        ans = [0] * n  # 到其余所有节点的距离之和
+
+        # 第一遍 BFS 自下而上计算子树节点数与 ans[0]
+        stack = [[0, -1, 1]]
+        while stack:
+            i, fa, state = stack.pop()
+            if state:
+                stack.append([i, fa, 0])
+                for j in dct[i]:
+                    if j != fa:
+                        stack.append([j, i, 1])
+            else:
+                for j in dct[i]:
+                    if j != fa:
+                        sub[i] += sub[j]
+                        ans[i] += ans[j] + sub[j]
+
+        # 第二遍 BFS 自上而下计算距离
+        stack = [[0, -1]]
+        while stack:
+            i, fa = stack.pop()
+            for j in dct[i]:
+                if j != fa:
+                    ans[j] = ans[i] - sub[j] + n - sub[j]
+                    stack.append([j, i])
+        return ans
 
 
 class Solution:
@@ -699,7 +766,48 @@ class Solution:
         ac.lst(ans)
         return
 
+    @staticmethod
+    def lg_p1395_1(ac=FastIO()):
+        # 模板：计算树的重心为最大子树节点数最小
+        n = ac.read_int()
+        dct = [[] for _ in range(n)]
+        for _ in range(n-1):
+            i, j = ac.read_ints()
+            dct[i-1].append(j-1)
+            dct[j-1].append(i-1)
 
+        root = TreeCentroid().get_tree_centroid(dct)
+
+        def bfs_diameter(src):
+            ans = 0
+            stack = [[src, 0]]
+            parent = [-1] * n
+            while stack:
+                u, dis = stack.pop()
+                ans += dis
+                for v in dct[u]:
+                    if v != parent[u]:
+                        parent[v] = u
+                        stack.append([v, dis + 1])
+            return ans
+
+        ac.lst([root + 1, bfs_diameter(root)])
+        return
+
+    @staticmethod
+    def lg_p1395_2(ac=FastIO()):
+        # 模板：计算树的重心为距离其余所有节点
+        n = ac.read_int()
+        dct = [[] for _ in range(n)]
+        for _ in range(n-1):
+            i, j = ac.read_ints()
+            dct[i-1].append(j-1)
+            dct[j-1].append(i-1)
+
+        ans = TreeCentroid().get_tree_distance(dct)
+        dis = min(ans)
+        ac.lst([ans.index(dis)+1, dis])
+        return
 
 
 class TestGeneral(unittest.TestCase):

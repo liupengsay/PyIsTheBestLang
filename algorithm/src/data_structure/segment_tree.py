@@ -1305,7 +1305,6 @@ class SegmentTreeRangeUpdateSubConSum:
         return res
 
 
-
 class SegmentTreeRangeUpdateMin:
     # 模板：持续修改区间值并求最小值
     def __init__(self):
