@@ -1,4 +1,6 @@
+import heapq
 import math
+import random
 import unittest
 from algorithm.src.fast_io import FastIO
 from typing import List
@@ -15,15 +17,19 @@ from collections import Counter
 677. 键值映射（https://leetcode.cn/problems/map-sum-pairs/）更新与查询给定字符串作为单词键前缀的对应值的和
 2479. 两个不重叠子树的最大异或值（https://leetcode.cn/problems/maximum-xor-of-two-non-overlapping-subtrees/）01Trie计算最大异或值
 面试题 17.17. 多次搜索（https://leetcode.cn/problems/multi-search-lcci/）AC自动机计数，也可直接使用字典树逆向思维，字典树存关键字，再搜索文本，和单词矩阵一样的套路
+
 ===================================洛谷===================================
 P8306 字典树（https://www.luogu.com.cn/problem/P8306）
 P4551 最长异或路径（https://www.luogu.com.cn/problem/P4551）关键是利用异或的性质，将任意根节点作为中转站
 P3864 [USACO1.2]命名那个数字 Name That Number（https://www.luogu.com.cn/problem/P3864）使用哈希枚举或者进行字典树存储
 P5755 [NOI2000] 单词查找树（https://www.luogu.com.cn/problem/P5755）字典树节点计数
+P1481 魔族密码（https://www.luogu.com.cn/problem/P1481）最长词链   
+P5283 [十二省联考 2019] 异或粽子（https://www.luogu.com.cn/problem/P5283）字典树查询第k大异或值，并使用堆贪心选取
 
 ================================CodeForces================================
 Fixed Prefix Permutations（https://codeforces.com/problemset/problem/1792/D）变形后使用字典树进行计数查询
 D. Vasiliy's Multiset（https://codeforces.com/problemset/problem/706/D）经典01Trie，增加与删除数字，最大异或值查询
+B. Friends（https://codeforces.com/contest/241/problem/B）经典01Trie计算第 K 大的异或对，并使用堆贪心选取
 
 
 参考：OI WiKi（）
@@ -342,7 +348,43 @@ class TriePrefixCount:
             res += cur['cnt']
         return res
 
-    
+
+class TrieZeroOneXorMaxKth:
+    # 模板：使用01Trie维护与查询数组的第 k 大异或值
+    def __init__(self, n):
+        # 使用字典数据结构实现
+        self.dct = dict()
+        # 确定序列长度
+        self.n = n
+        self.inf = float("inf")
+        return
+
+    def add(self, num):
+        cur = self.dct
+        for i in range(self.n, -1, -1):
+            w = 1 if num & (1 << i) else 0
+            if w not in cur:
+                cur[w] = dict()
+            cur = cur[w]
+            cur["cnt"] = cur.get("cnt", 0) + 1
+        return
+
+    def query_xor_kth_max(self, num, k):
+        # 计算与 num 异或可以得到的第 k 大值
+        cur = self.dct
+        ans = 0
+        for i in range(self.n, -1, -1):
+            w = 1 if num & (1 << i) else 0
+            if 1 - w in cur and cur[1 - w]["cnt"] >= k:
+                cur = cur[1 - w]
+                ans |= (1 << i)
+            else:
+                if 1 - w in cur:
+                    k -= cur[1 - w].get("cnt", 0)
+                cur = cur[w]
+        return ans
+
+
 class Solution:
     def __int__(self):
         return
@@ -452,6 +494,95 @@ class Solution:
             trie.update(word)
         return [trie.query(word) for word in words]
 
+    @staticmethod
+    def lg_p1481(ac=FastIO()):
+        # 模板：字典树计算最长词链
+        n = ac.read_int()
+
+        dct = dict()
+        ans = 0
+        for _ in range(n):
+            cur = dct
+            x = 0
+            for w in ac.read_str():
+                if "isEnd" in cur:
+                    x += 1
+                if w not in cur:
+                    cur[w] = dict()
+                cur = cur[w]
+            cur["isEnd"] = 1
+            x += 1
+            ans = ans if ans > x else x
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p4551(ac=FastIO()):
+        # 模板：计算树中异或值最长的路径
+        n = ac.read_int()
+        trie = TrieZeroOneXorMax(32)
+
+        dct = [dict() for _ in range(n)]
+        for _ in range(n-1):
+            i, j, k = ac.read_ints()
+            dct[i-1][j-1] = k
+            dct[j-1][i-1] = k
+
+        stack = [[0, -1, 0]]
+        ans = 0
+        while stack:
+            i, fa, pre = stack.pop()
+            ans = ac.max(ans, trie.query_xor_max(pre))
+            ans = ac.max(ans, pre)
+            trie.add(pre)
+            for j in dct[i]:
+                if j != fa:
+                    stack.append([j, i, pre ^ dct[i][j]])
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p5283(ac=FastIO()):
+        # 模板：计算数组中最大的 k 组异或对
+        n, k = ac.read_ints()
+        nums = [0] + ac.read_list_ints()
+        for i in range(1, n+1):
+            nums[i] ^= nums[i-1]
+        trie = TrieZeroOneXorMaxKth(len(bin(max(nums))))
+        for i, num in enumerate(nums):
+            trie.add(num)
+        stack = [(-trie.query_xor_kth_max(nums[i], 1), i, 1) for i in range(n + 1)]
+        heapq.heapify(stack)
+        ans = 0
+        res = []
+        for _ in range(2*k):
+            num, i, c = heapq.heappop(stack)
+            ans -= num
+            res.append(-num)
+            if c + 1 <= n + 1:
+                heapq.heappush(stack, (-trie.query_xor_kth_max(nums[i], c + 1), i, c + 1))
+        ac.st(ans//2)
+        return
+
+    @staticmethod
+    def cf_241b(ac=FastIO()):
+        # 模板：计算数组中最大的 k 组异或对
+        mod = 10**9 + 7
+        n, k = ac.read_ints()
+        nums = ac.read_list_ints()
+        trie = TrieZeroOneXorMaxKth(len(bin(max(nums))))
+        for i, num in enumerate(nums):
+            trie.add(num)
+        stack = [(-trie.query_xor_kth_max(nums[i], 1), i, 1) for i in range(n)]
+        heapq.heapify(stack)
+        ans = 0
+        for _ in range(2 * k):
+            num, i, c = heapq.heappop(stack)
+            ans -= num
+            if c + 1 <= n:
+                heapq.heappush(stack, (-trie.query_xor_kth_max(nums[i], c + 1), i, c + 1))
+        ac.st((ans // 2) % mod)
+        return
 
 
 class TestGeneral(unittest.TestCase):
@@ -466,6 +597,33 @@ class TestGeneral(unittest.TestCase):
         assert tc.query("lt") == 0
         return
 
+    def test_trie_xor_kth_max(self):
+        nums = [random.randint(0, 10**9) for _ in range(1000)]
+        n = len(nums)
+        trie = TrieZeroOneXorMaxKth(len(bin(max(nums))))
+        for num in nums:
+            trie.add(num)
+        for _ in range(10):
+            x = random.randint(0, n - 1)
+            lst = [nums[x] ^ nums[i] for i in range(n)]
+            lst.sort(reverse=True)
+            for i in range(n):
+                assert lst[i] == trie.query_xor_kth_max(nums[x], i + 1)
+
+        n = 1000
+        nums = [0] + [random.randint(0, 100000) for _ in range(n)]
+        for i in range(1, n+1):
+            nums[i] ^= nums[i-1]
+        trie = TrieZeroOneXorMaxKth(len(bin(max(nums))))
+        for i, num in enumerate(nums):
+            trie.add(num)
+
+        for i in range(n + 1):
+            lst = [nums[i]^nums[j] for j in range(n+1)]
+            lst.sort(reverse=True)
+            for j in range(n+1):
+                assert lst[j] == trie.query_xor_kth_max(nums[i], j+1)
+        return
 
 if __name__ == '__main__':
     unittest.main()

@@ -15,8 +15,7 @@ from algorithm.src.fast_io import FastIO
 
 ===================================洛谷===================================
 P3375 KMP字符串匹配（https://www.luogu.com.cn/problem/P3375）计算子字符串出现的位置，与最长公共前后缀的子字符串长度
-P4391 无线传输（https://www.luogu.com.cn/problem/P4391）脑经急转弯加KMP算法，最优结果为 n-pi[n-1]
-
+P4391 [BOI2009]Radio Transmission 无线传输（https://www.luogu.com.cn/problem/P4391）脑经急转弯加KMP算法，最优结果为 n-pi[n-1]
 
 ================================CodeForces================================
 D2. Prefix-Suffix Palindrome (Hard version)（https://codeforces.com/problemset/problem/1326/D2）利用马拉车的贪心思想贪心取前后缀，再判断剩余字符的最长前后缀回文子串
@@ -85,7 +84,20 @@ class KMP:
 class Solution:
     def __init__(self):
         return 
-    
+
+    @staticmethod
+    def lg_p3375(ac=FastIO()):
+        # 模板：KMP字符串匹配
+        s1 = ac.read_str()
+        s2 = ac.read_str()
+        m, n = len(s1), len(s2)
+        pi = KMP().prefix_function(s2+"@"+s1)
+        for i in range(n, m+n+1):
+            if pi[i] == n:
+                ac.st(i-n+1-n)
+        ac.lst(pi[:n])
+        return
+
     @staticmethod
     def cf_1326d2(ac=FastIO()):
         # 模板：使用 KMP 计算最长回文前缀与后缀
