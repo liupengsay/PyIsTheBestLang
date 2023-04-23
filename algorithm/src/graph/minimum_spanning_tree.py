@@ -1,3 +1,4 @@
+import heapq
 import unittest
 from typing import List
 
@@ -45,26 +46,53 @@ P2658 汽车拉力比赛（https://www.luogu.com.cn/problem/P2658）典型最小
 """
 
 
-class MininumSpanningTree:
-    def __init__(self, edges, n):
+class MinimumSpanningTree:
+    def __init__(self, edges, n, method="kruskal"):
         # n个节点
         self.n = n
         # m条权值边edges
         self.edges = edges
         self.cost = 0
-        self.gen_minimum_spanning_tree()
+        self.cnt = 0
+        self.gen_minimum_spanning_tree(method)
         return
 
-    def gen_minimum_spanning_tree(self):
-        self.edges.sort(key=lambda item: item[2])
-        # 贪心按照权值选择边进行连通合并
-        uf = UnionFind(self.n)
-        for x, y, z in self.edges:
-            if uf.union(x, y):
-                self.cost += z
-        # 不能形成生成树
-        if uf.part != 1:
-            self.cost = -1
+    def gen_minimum_spanning_tree(self, method):
+
+        if method == "kruskal":
+            # 边优先
+            self.edges.sort(key=lambda item: item[2])
+            # 贪心按照权值选择边进行连通合并
+            uf = UnionFind(self.n)
+            for x, y, z in self.edges:
+                if uf.union(x, y):
+                    self.cost += z
+            # 不能形成生成树
+            if uf.part != 1:
+                self.cost = -1
+        else:
+            # 点优先使用 Dijkstra求解
+            dct = [dict() for _ in range(self.n)]
+            for i, j, w in self.edges:
+                c = dct[i].get(j, float("inf"))
+                c = c if c < w else w
+                dct[i][j] = dct[j][i] = c
+            dis = [float("inf")]*self.n
+            dis[0] = 0
+            visit = [0]*self.n
+            stack = [[0, 0]]
+            while stack:
+                d, i = heapq.heappop(stack)
+                if visit[i]:
+                    continue
+                visit[i] = 1
+                self.cost += d  # 连通花费的代价
+                self.cnt += 1  # 连通的节点数
+                for j in dct[i]:
+                    w = dct[i][j]
+                    if w < dis[j]:
+                        dis[j] = w
+                        heapq.heappush(stack, [w, j])
         return
 
 
@@ -111,18 +139,39 @@ class Solution:
         return
 
     @staticmethod
-    def lg_p3366(ac=FastIO()):
-        # 模板：求最小生成树的权值和
+    def lg_p3366_1(ac=FastIO()):
+        # 模板：kruskal求最小生成树
         n, m = ac.read_ints()
-        edge = [ac.read_list_ints() for _ in range(m)]
-        uf = UnionFind(n)
-        edge.sort(key=lambda it: it[2])
-        cost = 0
-        for x, y, z in edge:
-            if uf.union(x - 1, y - 1):
-                cost += z
-        ac.st(cost if uf.part == 1 else "orz")
+        edges = []
+        for _ in range(m):
+            x, y, z = ac.read_list_ints()
+            x -= 1
+            y -= 1
+            edges.append([x, y, z])
+        mst = MinimumSpanningTree(edges, n, "kruskal")
+        if mst.cost == -1:
+            ac.st("orz")
+        else:
+            ac.st(mst.cost)
         return
+
+    @staticmethod
+    def lg_p3366_2(ac=FastIO()):
+        # 模板：prim求最小生成树
+        n, m = ac.read_ints()
+        edges = []
+        for _ in range(m):
+            x, y, z = ac.read_list_ints()
+            x -= 1
+            y -= 1
+            edges.append([x, y, z])
+        mst = MinimumSpanningTree(edges, n, "prim")
+        if mst.cnt < n:
+            ac.st("orz")
+        else:
+            ac.st(mst.cost)
+        return
+
 
     @staticmethod
     def lc_1489(n: int, edges: List[List[int]]) -> List[List[int]]:
@@ -221,12 +270,12 @@ class TestGeneral(unittest.TestCase):
     def test_minimum_spanning_tree(self):
         n = 3
         edges = [[0, 1, 2], [1, 2, 3], [2, 0, 4]]
-        mst = MininumSpanningTree(edges, n)
+        mst = MinimumSpanningTree(edges, n)
         assert mst.cost == 5
 
         n = 4
         edges = [[0, 1, 2], [1, 2, 3], [2, 0, 4]]
-        mst = MininumSpanningTree(edges, n)
+        mst = MinimumSpanningTree(edges, n)
         assert mst.cost == -1
         return
 
