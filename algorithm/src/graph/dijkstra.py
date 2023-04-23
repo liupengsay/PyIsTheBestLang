@@ -9,7 +9,7 @@ from typing import List, Dict
 from algorithm.src.fast_io import FastIO, inf
 
 """
-算法：Dijkstra（单源最短路经算法）
+算法：Dijkstra（单源最短路经算法）、严格次短路、要保证加和最小因此只支持非负数权值、或者取反全部为非正数计算最长路
 功能：计算点到有向或者无向图里面其他点的最近距离
 题目：
 
@@ -64,7 +64,7 @@ P7551 [COCI2020-2021#6] Alias（https://www.luogu.com.cn/problem/P7551）最短�
 
 P6175 无向图的最小环问题（https://www.luogu.com.cn/problem/P6175）使用Dijkstra枚举边计算或者使用DFS枚举点，带权
 P4568 [JLOI2011] 飞行路线（https://www.luogu.com.cn/problem/P4568）K层建图计算Dijkstra最短路
-
+P2865 [USACO06NOV]Roadblocks G（https://www.luogu.com.cn/problem/P2865）严格次短路模板题
 
 ================================CodeForces================================
 C. Dijkstra?（https://codeforces.com/problemset/problem/20/C）正权值最短路计算，并记录返回生成路径
@@ -74,12 +74,13 @@ E. Weights Distributing（https://codeforces.com/problemset/problem/1343/E）使
 """
 
 
+
 class Dijkstra:
     def __init__(self):
         return
 
     @staticmethod
-    def get_dijkstra_result(dct: List[Dict[int]], src: int) -> List[float]:
+    def get_dijkstra_result(dct: List[Dict], src: int) -> List[float]:
         # 模板: Dijkstra求最短路，变成负数求可以求最长路（还是正权值）
         n = len(dct)
         dis = [float("inf")]*n
@@ -98,7 +99,7 @@ class Dijkstra:
         return dis
 
     @staticmethod
-    def dijkstra_src_to_dst_path(dct: List[Dict[int]], src: int, dst: int) -> float:
+    def dijkstra_src_to_dst_path(dct: List[Dict], src: int, dst: int) -> float:
         # 模板: Dijkstra求起终点的最短路，注意只能是正权值可以提前返回结果，并返回对应经过的路径
         n = len(dct)
         dis = [float("inf")] * n
@@ -159,6 +160,27 @@ class Dijkstra:
                     stack.append(j)
         return dis
 
+    @staticmethod
+    def get_second_shortest_path(dct: List[List[int]], src):
+        # 模板：使用Dijkstra计算严格次短路
+        n = len(dct)
+        inf = float("inf")
+        dis = [[inf]*2 for _ in range(n)]
+        dis[src][0] = 0
+        stack = [[0, 0]]
+        while stack:
+            d, i = heapq.heappop(stack)
+            if d > dis[i][1]:
+                continue
+            for j, w in dct[i]:
+                if dis[j][0] > d+w:
+                    dis[j][1] = dis[j][0]
+                    dis[j][0] = d+w
+                    heapq.heappush(stack, [d + w, j])
+                elif dis[j][0] < d+w < dis[j][1]:
+                    dis[j][1] = d+w
+                    heapq.heappush(stack, [d+w, j])
+        return dis
 
 class UnDirectedShortestCycle:
     def __init__(self):
@@ -394,6 +416,42 @@ class Solution:
         for i in range(k + 1):
             ans = ac.min(ans, dis[t + i * n])
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p1629(ac=FastIO()):
+        # 模板：正反方向建图加两边最短路计算加和即可
+        n, m = ac.read_ints()
+        dct = [dict() for _ in range(n)]
+        rev = [dict() for _ in range(n)]
+        for _ in range(m):
+            u, v, w = ac.read_ints()
+            u -= 1
+            v -= 1
+            c = dct[u].get(v, inf)
+            c = ac.min(c, w)
+            dct[u][v] = c
+            rev[v][u] = c
+        dis1 = Dijkstra().get_dijkstra_result(dct, 0)
+        dis2 = Dijkstra().get_dijkstra_result(rev, 0)
+        ans = sum(dis1[i]+dis2[i] for i in range(n))
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p2865(ac=FastIO()):
+        # 模板：严格次短路计算模板题
+        n, m = ac.read_ints()
+        dct = [[] for _ in range(n)]
+        for _ in range(m):
+            u, v, w = ac.read_ints()
+            u -= 1
+            v -= 1
+            dct[u].append([v, w])
+            dct[v].append([u, w])
+
+        dis = Dijkstra().get_second_shortest_path(dct, 0)
+        ac.st(dis[n-1][1])
         return
 
 

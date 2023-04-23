@@ -5,7 +5,7 @@ from typing import List, Dict
 from algorithm.src.fast_io import FastIO
 
 """
-算法：SPFA路径边数优先的广度优先搜索（可以使用带负权值）也可以计算最短路、差分约束
+算法：SPFA路径边数优先的广度优先搜索（可以使用带负权值）也可以计算最短路、差分约束、最短路条数
 
 功能：SPFA（Shortest Path Faster Algorithm）是一种用于计算单源最短路径的算法。它通过使用队列和松弛操作来不断更新路径长度，从而更快地找到最短路径。
 
@@ -27,12 +27,14 @@ P1938 [USACO09NOV]Job Hunt S（https://www.luogu.com.cn/problem/P1938）使用�
 P2136 拉近距离（https://www.luogu.com.cn/problem/P2136）计算可能有负权环的最短距离
 P2648 赚钱（https://www.luogu.com.cn/problem/P2648）判断是否存在正权环以及最长路
 P1144 最短路计数（https://www.luogu.com.cn/problem/P1144）计算最短路的条数
-
 P1993 小 K 的农场（https://www.luogu.com.cn/problem/P1993）差分约束判断是否存在负环
+P5960 【模板】差分约束算法（https://www.luogu.com.cn/problem/P5960）差分约束模板题
+
 
 参考：
 差分约束（https://oi-wiki.org/graph/diff-constraints/）
 """
+
 
 
 class SPFA:
@@ -40,7 +42,7 @@ class SPFA:
         return
 
     @staticmethod
-    def negative_circle(dct: List[Dict[int]], src=0, initial=0) -> (str, List[float], List[int]):
+    def negative_circle(dct: List[Dict], src=0, initial=0) -> (str, List[float], List[int]):
         # 模板: 判断是否存在负环与求解最短路（正数取反即可判断是否存在正权环以及最长路）
         n = len(dct)
         # 初始化距离
@@ -74,14 +76,10 @@ class SPFA:
         # 不存在从起点出发的负环
         return "NO", dis, cnt
 
-
-class SPFACnt:
-    def __init__(self):
-        # 最短路计数
-        return
-
     @staticmethod
-    def gen_result(dct, mod=10**9 + 7):
+    def count_shortest_path(dct, mod=10 ** 9 + 7):
+        # 最短路计数
+
         n = len(dct)
         # 初始化距离
         dis = [float("inf") for _ in range(n)]
@@ -117,6 +115,19 @@ class SPFACnt:
                         visit[v] = True
         return cnt
 
+    def differential_constraint(self, ineq: List[List[int]], n: int):
+        # 模板：差分约束计算不等式组是否有解
+        dct = [dict() for _ in range(n + 1)]
+        for i in range(1, n + 1):  # 节点索引从 1 开始，添加 0 为虚拟根节点
+            dct[0][i] = 0
+        inf = float("inf")
+        for a, b, c in ineq:  # a-b<=c
+            w = dct[b].get(a, inf)
+            w = w if w < c else c
+            dct[b][a] = w
+        ans, dis, _ = self.negative_circle(dct, 0, 0)
+        return ans, dis
+
 
 class Solution:
     def __init__(self):
@@ -132,7 +143,7 @@ class Solution:
             if x != y:
                 dct[y][x] = dct[x][y] = dct[x].get(y, 0) + 1
 
-        cnt = SPFACnt().gen_result(dct, 100003)
+        cnt = SPFA().gen_result(dct, 100003)
         for a in cnt:
             ac.st(a)
         return
@@ -268,6 +279,18 @@ class Solution:
         _, dis, _ = SPFA().negative_circle(dct, n + 1)
         return dis[n] - dis[0]
 
+    @staticmethod
+    def lg_p5960(ac=FastIO()):
+        # 模板：差分约束模板题
+        n, m = ac.read_ints()
+        edges = [ac.read_list_ints() for _ in range(m)]
+        ans, dis = SPFA().differential_constraint(edges, n)
+        if ans == "YES":
+            ac.st("NO")
+        else:
+            ac.lst(dis[1:])
+        return
+
 
 class TestGeneral(unittest.TestCase):
 
@@ -287,7 +310,7 @@ class TestGeneral(unittest.TestCase):
 
     def test_spfa_cnt(self):
         dct = [{1: 3, 2: 2}, {3: 4}, {3: 1}, {}]
-        spfa = SPFACnt()
+        spfa = SPFA()
         assert spfa.gen_result(dct) == [1, 3, 2, 14]
         return
 
