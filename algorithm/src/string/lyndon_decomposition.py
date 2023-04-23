@@ -28,17 +28,20 @@ import heapq
 import copy
 
 """
-算法：Lyndon 分解（使用Duval 算法求解）
+算法：Lyndon 分解（使用Duval 算法求解）、最小表示法、最大表示法
 功能：用来将字符串s分解成Lyndon串s1s2s3...
 Lyndon子串定义为：当且仅当s的字典序严格小于它的所有非平凡的（非平凡：非空且不同于自身）循环同构串时， s才是 Lyndon 串。
 题目：
+
+===================================洛谷===================================
+1163. 按字典序排在最后的子串（https://leetcode.cn/problems/last-substring-in-lexicographical-order/）利用最小表示法求最大表示法
+
 
 ===================================洛谷===================================
 P6657 【模板】LGV 引理（https://www.luogu.com.cn/problem/P6657）
 参考：OI WiKi（https://oi-wiki.org/string/lyndon/）Duval 可以在 O(n)的时间内求出一个串的 Lyndon 分解
 拓展：可用于求字符串s的最小表示法
 """
-
 
 
 class LyndonDecomposition:
@@ -83,7 +86,7 @@ class LyndonDecomposition:
         return s[ans: ans + n // 2]
 
     @staticmethod
-    def minist_express(sec):
+    def min_express(sec):
         n = len(sec)
         k, i, j = 0, 0, 1
         while k < n and i < n and j < n:
@@ -98,7 +101,26 @@ class LyndonDecomposition:
                     i += 1
                 k = 0
         i = min(i, j)
-        return sec[i:] + sec[:i]
+        return i, sec[i:] + sec[:i]
+
+    def max_express(self, sec):
+        # 这里用到一个小技巧，将求最大表示法的问题转换为求最小表示法
+        sec += "a"
+        lst = [26 - ord(w) + ord("a") for w in sec]
+        i, _ = self.min_express(lst)
+        # 注意最大来说要取第一个前缀的索引
+        return sec[i:][:-1]  # 返回最大表示法的前半部分
+
+
+class Solution:
+
+    def __init__(self):
+        return
+
+    @staticmethod
+    def lc_1163(s: str) -> str:
+        # 模板：求最大表示法
+        return LyndonDecomposition().max_express(s)
 
 
 class TestGeneral(unittest.TestCase):
@@ -110,7 +132,7 @@ class TestGeneral(unittest.TestCase):
     def test_min_cyclic_string(self):
         ld = LyndonDecomposition()
         assert ld.min_cyclic_string("ababa") == "aabab"
-        assert ld.minist_express("ababa") == "aabab"
+        assert ld.min_express("ababa") == "aabab"
         return
 
 
