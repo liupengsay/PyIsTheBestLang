@@ -3,7 +3,7 @@ import random
 import unittest
 from collections import defaultdict
 from typing import List
-
+from algorithm.src.mathmatics.number_theory import NumberTheory
 from algorithm.src.fast_io import FastIO, inf
 
 """
@@ -15,6 +15,8 @@ from algorithm.src.fast_io import FastIO, inf
 2218. 从栈中取出 K 个硬币的最大面值和（https://leetcode.cn/problems/maximum-value-of-k-coins-from-piles/）分组背包DP
 6310. 获得分数的方法数（https://leetcode.cn/contest/weekly-contest-335/problems/number-of-ways-to-earn-points/）看似二进制优化背包，实则数量转移
 2189. 建造纸牌屋的方法数（https://leetcode.cn/problems/number-of-ways-to-build-house-of-cards/）转换为01背包求解
+254. 因子的组合（https://leetcode.cn/problems/factor-combinations/）乘法结合背包DP
+
 
 ===================================洛谷===================================
 P1048 采药（https://www.luogu.com.cn/problem/P1048）一维背包DP，数量有限，从后往前遍历
@@ -313,6 +315,21 @@ class Solution:
                         cur[x * m + j] += pre[j]
             pre = [num % mod for num in cur]
         return pre[-1]
+
+    @staticmethod
+    def lc_254(n: int) -> List[List[int]]:
+        # 模板：使用因子分解与背包dp进行分解计算
+        lst = NumberTheory().get_all_factor(n)
+        m = len(lst)
+        dp = defaultdict(list)
+        dp[1] = [[]]
+        for i in range(1, m-1):
+            for j in range(i, m):
+                if lst[j] % lst[i] == 0:
+                    x = lst[j] // lst[i]
+                    for p in dp[x]:
+                        dp[lst[j]].append(p+[lst[i]])
+        return [ls for ls in dp[n] if ls]
 
 
 class TestGeneral(unittest.TestCase):
