@@ -1,8 +1,12 @@
+import math
+import random
 import unittest
+from functools import reduce
+from math import gcd
 from operator import add
 from itertools import accumulate
 from typing import List
-
+from operator import mul, add, xor, and_, or_
 from algorithm.src.fast_io import FastIO
 
 """
@@ -23,6 +27,10 @@ from algorithm.src.fast_io import FastIO
 15. 三数之和（https://leetcode.cn/problems/3sum/）寻找三个元素和为 0 的不重复组合
 2422. 使用合并操作将数组转换为回文序列（https://leetcode.cn/problems/merge-operations-to-turn-array-into-a-palindrome/）相反方向双指针贪心加和
 2524. Maximum Frequency Score of a Subarray（https://leetcode.cn/problems/maximum-frequency-score-of-a-subarray/）滑动窗口维护计算数字数量与幂次取模
+239. 滑动窗口最大值（https://leetcode.cn/problems/sliding-window-maximum/）滑动窗口最大值，使用滑动窗口类维护
+2447. 最大公因数等于 K 的子数组数目（https://leetcode.cn/problems/number-of-subarrays-with-gcd-equal-to-k/）滑动窗口区间 gcd，使用滑动窗口类维护
+6392. 使数组所有元素变成 1 的最少操作次数（https://leetcode.cn/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/）滑动窗口区间 gcd，使用滑动窗口类维护
+
 
 ===================================洛谷===================================
 P2381 圆圆舞蹈（https://www.luogu.com.cn/problem/P2381）环形数组，滑动窗口双指针
@@ -43,6 +51,78 @@ C. Eugene and an array（https://codeforces.com/problemset/problem/1333/C）双�
 
 参考：OI WiKi（xx）
 """
+
+INF = int(1e64)
+
+
+class SlidingWindowAggregation:
+    """SlidingWindowAggregation
+
+    Api:
+    1. append value to tail,O(1).
+    2. pop value from head,O(1).
+    3. query aggregated value in window,O(1).
+    """
+
+    def __init__(self, e, op):
+        # 模板：滑动窗口维护和查询聚合信息
+        """
+        Args:
+            e: unit element
+            op: merge function
+        """
+        self.stack0 = []
+        self.agg0 = []
+        self.stack2 = []
+        self.stack3 = []
+        self.e = e
+        self.e0 = self.e
+        self.e1 = self.e
+        self.size = 0
+        self.op = op
+
+    def append(self, value) -> None:
+        if not self.stack0:
+            self.push0(value)
+            self.transfer()
+        else:
+            self.push1(value)
+        self.size += 1
+
+    def popleft(self) -> None:
+        if not self.size:
+            return
+        if not self.stack0:
+            self.transfer()
+        self.stack0.pop()
+        self.stack2.pop()
+        self.e0 = self.stack2[-1] if self.stack2 else self.e
+        self.size -= 1
+
+    def query(self):
+        return self.op(self.e0, self.e1)
+
+    def push0(self, value):
+        self.stack0.append(value)
+        self.e0 = self.op(value, self.e0)
+        self.stack2.append(self.e0)
+
+    def push1(self, value):
+        self.agg0.append(value)
+        self.e1 = self.op(self.e1, value)
+        self.stack3.append(self.e1)
+
+    def transfer(self):
+        while self.agg0:
+            self.push0(self.agg0.pop())
+        while self.stack3:
+            self.stack3.pop()
+        self.e1 = self.e
+
+    def __len__(self):
+        return self.size
+
+
 
 
 class Solution:
@@ -135,6 +215,75 @@ class Solution:
                 else:
                     k -= 1
         return ans
+
+    @staticmethod
+    def lc_239(nums: List[int], k: int) -> List[int]:
+        # 模板：滑动窗口最大值
+        n = len(nums)
+        swa = SlidingWindowAggregation(-INF, max)
+        ans = []
+        for i in range(n):
+            swa.append(nums[i])
+            if i >= k - 1:
+                ans.append(swa.query())
+                swa.popleft()
+        return ans
+
+    @staticmethod
+    def lc_6392(nums: List[int]) -> int:
+        # 模板：滑动窗口维护区间 gcd 为 1 的长度信息
+        if gcd(*nums) != 1:
+            return -1
+        if 1 in nums:
+            return len(nums) - nums.count(1)
+
+        swa = SlidingWindowAggregation(0, gcd)
+        res, n = INF, len(nums)
+        # 枚举右端点
+        for i in range(n):
+            swa.append(nums[i])
+            while swa and swa.query() == 1:
+                res = res if res < swa.size else swa.size
+                swa.popleft()
+        return res - 1 + len(nums) - 1
+
+    @staticmethod
+    def lc_2447(nums: List[int], k: int) -> int:
+        # 模板：滑动窗口双指针三指针维护区间 gcd 为 k 的子数组数量信息
+        n = len(nums)
+        e = reduce(math.lcm, nums + [k])
+        e *= 2
+
+        swa1 = SlidingWindowAggregation(e, gcd)
+        ans = j1 = j2 = 0
+        swa2 = SlidingWindowAggregation(e, gcd)
+        for i in range(n):
+
+            if j1 < i:
+                swa1 = SlidingWindowAggregation(e, gcd)
+                j1 = i
+            if j2 < i:
+                swa2 = SlidingWindowAggregation(e, gcd)
+                j2 = i
+
+            while j1 < n and swa1.query() > k:
+                swa1.append(nums[j1])
+                j1 += 1
+                if swa1.query() == k:
+                    break
+
+            while j2 < n and gcd(swa2.query(), nums[j2]) >= k:
+                swa2.append(nums[j2])
+                j2 += 1
+
+            if swa1.query() == k:
+                ans += j2 - j1 + 1
+
+            swa1.popleft()
+            swa2.popleft()
+        return ans
+
+
 class TwoPointer:
     def __init__(self):
         return
@@ -203,6 +352,29 @@ class TestGeneral(unittest.TestCase):
         nums = [1, 2, 3, 4, 4, 5, 6, 9]
         assert not nt.opposite_direction(nums, 16)
         return
+
+    def test_ops_es(self):
+
+        dct = {max: 0, min: INF, gcd: 0, or_: 0, xor: 0, add: 0, mul: 1, and_: (1 << 32)-1}
+        for op in dct:
+            for _ in range(1000):
+                e = dct[op]
+                n = 100
+                nums = [random.randint(0, 10**9) for _ in range(n)]
+                swa = SlidingWindowAggregation(e, op)
+                k = random.randint(1, 50)
+                ans = []
+                res = []
+                for i in range(n):
+                    swa.append(nums[i])
+                    if i >= k-1:
+                        ans.append(swa.query())
+                        swa.popleft()
+                        lst = nums[i-k+1: i+1]
+                        res.append(reduce(op, lst))
+                assert len(res) == len(ans)
+                assert res == ans
+
 
 
 if __name__ == '__main__':
