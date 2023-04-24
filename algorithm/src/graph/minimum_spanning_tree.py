@@ -7,7 +7,7 @@ from algorithm.src.graph.union_find import UnionFind
 
 """
 
-算法：最小生成树（Kruskal算法和Prim算法两种）
+算法：最小生成树（Kruskal算法和Prim算法两种）、严格次小生成树（使用LCA枚举替换边计算可得）
 功能：计算无向图边权值和最小的生成树
 Prim在稠密图中比Kruskal优，在稀疏图中比Kruskal劣。Prim是以更新过的节点的连边找最小值，Kruskal是直接将边排序。
 两者其实都是运用贪心的思路，Kruskal相对比较常用

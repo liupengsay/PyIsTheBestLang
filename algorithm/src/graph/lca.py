@@ -33,7 +33,7 @@ P3384 【模板】重链剖分/树链剖分（https://www.luogu.com.cn/problem/P
 ================================CodeForces================================
 E. Tree Queries（https://codeforces.com/problemset/problem/1328/E）利用 LCA 判定节点组是否符合条件，也可以使用 dfs 序
 C. Ciel the Commander（https://codeforces.com/problemset/problem/321/C）使用树的质心递归，依次切割形成平衡树赋值
-E. Minimum spanning tree for each edge（https://codeforces.com/problemset/problem/609/E）使用LCA的思想维护树中任意两点的路径边权最大值，并贪心替换获得边作为最小生成树时的最小权值和，有点类似于关键边与非关键边，但二者并不相同
+E. Minimum spanning tree for each edge（https://codeforces.com/problemset/problem/609/E）使用LCA的思想维护树中任意两点的路径边权最大值，并贪心替换获得边作为最小生成树时的最小权值和，有点类似于关键边与非关键边，但二者并不相同，即为严格次小生成树
 E. A and B and Lecture Rooms（https://codeforces.com/problemset/problem/519/E）LCA经典运用题目，查询距离与第k个祖先节点，与子树节点计数
 
 参考：
@@ -676,7 +676,7 @@ class Solution:
 
     @staticmethod
     def cf_609e(ac=FastIO()):
-        # 模板：计算最小生成树有指定边参与时的最小权值和
+        # 模板：计算最小生成树有指定边参与时的最小权值和，由此也可计算严格次小生成树
         n, m = ac.read_ints()
         edge = [[] for _ in range(n)]
         lst = []
