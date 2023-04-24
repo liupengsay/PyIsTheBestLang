@@ -1,4 +1,5 @@
 
+![Cow2](https://github.com/liupengsay/PCRecord/blob/main/algorithm/picture/title_liupengsay.png?raw=true)
 
 
 - [1. 数据结构与算法](#1-数据结构与算法)
@@ -27,9 +28,13 @@
 
 ## 1.8. 字符串
 
+<figure class="third">
+    <img src="https://github.com/liupengsay/PCRecord/blob/main/algorithm/picture/leetcode_liupengsay.png?raw=true" 
+    width="200"/>
+    <img src="https://github.com/liupengsay/PCRecord/blob/main/algorithm/picture/codeforces_liupengsay.png?raw=true" width="200"/>
+    <img src="https://github.com/liupengsay/PCRecord/blob/main/algorithm/picture/luogu_liupengsay.png?raw=true" width="200"/>
+</figure>
 
-
-![Cow2](https://github.com/liupengsay/PCRecord/blob/main/algorithm/picture/Guardian.jpg?raw=true)
 
 
 
