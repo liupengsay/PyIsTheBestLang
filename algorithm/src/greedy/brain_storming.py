@@ -106,6 +106,7 @@ C. Make Palindrome（https://codeforces.com/problemset/problem/600/C）回文子
 D. Slime（https://codeforces.com/problemset/problem/1038/D）贪心模拟，分类讨论
 B. Color the Fence（https://codeforces.com/problemset/problem/349/B）贪心模拟
 C. Number Game（https://codeforces.com/problemset/problem/1370/C）贪心模拟必胜态
+E. Making Anti-Palindromes（https://codeforces.com/contest/1822/problem/E）贪心进行模拟计数
 
 
 参考：OI WiKi（xx）

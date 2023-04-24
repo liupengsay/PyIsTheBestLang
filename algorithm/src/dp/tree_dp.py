@@ -56,6 +56,7 @@ E. Tree Painting（https://codeforces.com/problemset/problem/1187/E）经典换�
 E. Lomsat gelral（https://codeforces.com/problemset/problem/600/E）迭代方式写深搜序，按秩合并，由小到大
 D. A Wide, Wide Graph（https://codeforces.com/problemset/problem/1805/D）树的直径计算，任意点到直径的某个端点的距离最长
 G. White-Black Balanced Subtrees（https://codeforces.com/contest/1676/problem/G）使用迭代的方式进行树形DP计算
+F. Gardening Friends（https://codeforces.com/contest/1822/problem/F）计算树中节点到其余节点的最大距离
 
 参考：OI WiKi（xx）
 """
@@ -333,6 +334,52 @@ class TreeCentroid:
                 if j != fa:
                     ans[j] = ans[i] - sub[j] + n - sub[j]
                     stack.append([j, i])
+        return ans
+
+    @staticmethod
+    def get_tree_distance_max(dct: List[List[int]]) -> List[int]:
+        # 模板：计算树的每个节点到其余所有的节点的最大距离（也可以使用直径上的点BFS）
+
+        n = len(dct)
+        sub = [[0, 0] for _ in range(n)]
+
+        # 第一遍 BFS 自下而上计算子树的最大距离与次大距离
+        stack = [[0, -1, 1]]
+        while stack:
+            i, fa, state = stack.pop()
+            if state:
+                stack.append([i, fa, 0])
+                for j in dct[i]:
+                    if j != fa:
+                        stack.append([j, i, 1])
+            else:
+                a, b = sub[i]
+                for j in dct[i]:
+                    if j != fa:
+                        x = sub[j][0]+1
+                        if x >= a:
+                            a, b = x, a
+                        elif x>=b:
+                            b = x
+                sub[i] = [a, b]
+
+        # 第二遍 BFS 自上而下更新最大距离
+        stack = [[0, -1, 0]]
+        ans = [s[0] for s in sub]
+        while stack:
+            i, fa, d = stack.pop()
+            ans[i] = ans[i] if ans[i] > d else d
+            for j in dct[i]:
+                if j != fa:
+                    nex = d
+                    x = sub[j][0]+1
+                    a, b = sub[i]
+                    # 排除当前子节点的距离
+                    if x == a:
+                        nex = nex if nex > b else b
+                    else:
+                        nex = nex if nex > a else a
+                    stack.append([j, i, nex+1])
         return ans
 
 
@@ -807,6 +854,31 @@ class Solution:
         ans = TreeCentroid().get_tree_distance(dct)
         dis = min(ans)
         ac.lst([ans.index(dis)+1, dis])
+        return
+
+    @staticmethod
+    def cf_1822f(ac=FastIO()):
+        # 模板：换根 DP 计算树中节点其余节点最大的距离
+        for _ in range(ac.read_int()):
+            n, k, c = ac.read_ints()
+            dct = [[] for _ in range(n)]
+            for _ in range(n-1):
+                i, j = ac.read_ints_minus_one()
+                dct[i].append(j)
+                dct[j].append(i)
+
+            dis = TreeCentroid().get_tree_distance_max(dct)
+
+            ans = -inf
+            stack = [[0, 0, -1]]
+            while stack:
+                i, d, fa = stack.pop()
+                cur = dis[i]*k - d
+                ans = ac.max(ans, cur)
+                for j in dct[i]:
+                    if j != fa:
+                        stack.append([j, d+c, i])
+            ac.st(ans)
         return
 
 
