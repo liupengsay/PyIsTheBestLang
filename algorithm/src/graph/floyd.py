@@ -23,6 +23,9 @@ P6464 [传智杯 #2 决赛] 传送门（https://www.luogu.com.cn/problem/P6464�
 P6175 无向图的最小环问题（https://www.luogu.com.cn/problem/P6175）经典使用Floyd枚举三个点之间的距离和，O(n^3)，也可以使用BFS或者Dijkstra计算
 B3611 【模板】传递闭包（https://www.luogu.com.cn/problem/B3611）传递闭包模板题，使用FLoyd解法
 
+================================CodeForces================================
+D. Design Tutorial: Inverse the Problem（https://codeforces.com/problemset/problem/472/D）使用Floyd判断构造给定的点对最短路距离是否存在
+
 参考：OI WiKi（xx）
 """
 
@@ -139,6 +142,33 @@ class Solution:
             ac.lst(g)
         return
 
+    @staticmethod
+    def cf_472d(ac=FastIO()):
+        # 模板：使用 Floyd 的思想判断最短路矩阵是否合理存在
+        n = ac.read_int()
+        grid = [ac.read_list_ints() for _ in range(n)]
+        for i in range(n):
+            if grid[i][i]:
+                ac.st("NO")
+                return
+            for j in range(i+1, n):
+                if grid[i][j] != grid[j][i] or not grid[i][j]:
+                    ac.st("NO")
+                    return
+        if n == 1:
+            ac.st("YES")
+            return
+        for i in range(n):
+            r = 1 if not i else 0
+            for j in range(n):
+                if grid[i][j] < grid[i][r] and i != j:
+                    r = j
+            for k in range(n):
+                if abs(grid[i][k]-grid[r][k]) != grid[i][r]:
+                    ac.st("NO")
+                    return
+        ac.st("YES")
+        return
 
 class TestGeneral(unittest.TestCase):
 

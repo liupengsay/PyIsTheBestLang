@@ -42,6 +42,10 @@ P7775 [COCI2009-2010#2] VUK（https://www.luogu.com.cn/problem/P7775）BFS加最
 
 P2658 汽车拉力比赛（https://www.luogu.com.cn/problem/P2658）典型最小生成树计算
 
+================================CodeForces================================
+D. Design Tutorial: Inverse the Problem（https://codeforces.com/problemset/problem/472/D）使用最小生成树判断构造给定的点对最短路距离是否存在，使用prim算法复杂度更优
+
+
 参考：OI WiKi（xx）
 """
 
@@ -262,6 +266,76 @@ class Solution:
             print('{:.2f}'.format(Prim()))
 
         main()
+        return
+
+    @staticmethod
+    def lg_p1194(ac=FastIO()):
+        # 模板：使用超级源点建图计算最小生成树
+        a, b = ac.read_ints()
+        grid = [ac.read_list_ints() for _ in range(b)]
+        edge = [[0, i, a] for i in range(1, b + 1)]
+        for i in range(b):
+            for j in range(i + 1, b):
+                if 0 < grid[i][j] < a:
+                    edge.append([i + 1, j + 1, grid[i][j]])
+        mst = MinimumSpanningTree(edge, b+1)
+        ac.st(mst.cost)
+        return
+
+    @staticmethod
+    def cf_472d(ac=FastIO()):
+        # 模板：使用 prim 校验最小生成树是否存在
+        n = ac.read_int()
+        grid = [ac.read_list_ints() for _ in range(n)]
+        for i in range(n):
+            if grid[i][i]:
+                ac.st("NO")
+                return
+            for j in range(i + 1, n):
+                if grid[i][j] != grid[j][i] or not grid[i][j]:
+                    ac.st("NO")
+                    return
+
+        # Prim 贪心按照权值选择边进行连通合并
+        dis = [float("inf")] * n
+        dis[0] = 0
+        visit = [0] * n
+        stack = [[0, 0, -1]]
+        res = [[] for _ in range(n)]
+        cnt = 0
+        while stack:
+            d, i, fa = heapq.heappop(stack)
+            if visit[i]:
+                continue
+            visit[i] = 1
+            if fa != -1:
+                res[fa].append([i, d])
+                res[i].append([fa, d])
+            cnt += 1
+            if cnt == n:
+                break
+            for j in range(n):
+                w = grid[i][j]
+                if w < dis[j]:
+                    dis[j] = w
+                    heapq.heappush(stack, [w, j, i])
+        del stack
+
+        # BFS 计算根节点到所有节点的距离
+        for i in range(n):
+            cur = [inf] * n
+            stack = [i]
+            cur[i] = 0
+            while stack:
+                x = stack.pop()
+                for y, w in res[x]:
+                    if cur[y] == inf:
+                        cur[y] = cur[x] + w
+                        stack.append(y)
+            if cur != grid[i]:
+                ac.st("NO")
+                return
+        ac.st("YES")
         return
 
 
