@@ -1,8 +1,9 @@
 import heapq
+import math
 import unittest
 from typing import List
 
-from algorithm.src.fast_io import FastIO
+from algorithm.src.fast_io import FastIO, inf
 from algorithm.src.graph.union_find import UnionFind
 
 """
@@ -41,9 +42,12 @@ P6705 [COCI2010-2011#7] POŠTAR（https://www.luogu.com.cn/problem/P6705）枚�
 P7775 [COCI2009-2010#2] VUK（https://www.luogu.com.cn/problem/P7775）BFS加最小生成树思想，求解
 
 P2658 汽车拉力比赛（https://www.luogu.com.cn/problem/P2658）典型最小生成树计算
+P4180 [BJWC2010] 严格次小生成树（https://www.luogu.com.cn/problem/P4180）使用最小生成树与LCA倍增查询计算严格次小生成树
+
 
 ================================CodeForces================================
 D. Design Tutorial: Inverse the Problem（https://codeforces.com/problemset/problem/472/D）使用最小生成树判断构造给定的点对最短路距离是否存在，使用prim算法复杂度更优
+E. Minimum spanning tree for each edge（https://codeforces.com/problemset/problem/609/E）使用LCA的思想维护树中任意两点的路径边权最大值，并贪心替换获得边作为最小生成树时的最小权值和，有点类似于关键边与非关键边，但二者并不相同，即为严格次小生成树
 
 
 参考：OI WiKi（xx）
@@ -98,6 +102,78 @@ class MinimumSpanningTree:
                         dis[j] = w
                         heapq.heappush(stack, [w, j])
         return
+
+
+class TreeAncestorWeightSecond:
+
+    def __init__(self, dct):
+        # 默认以 0 为根节点
+        n = len(dct)
+        self.parent = [-1] * n
+        self.depth = [-1] * n
+        stack = deque([0])
+        self.depth[0] = 0
+        while stack:
+            i = stack.popleft()
+            for j in dct[i]:
+                if self.depth[j] == -1:
+                    self.depth[j] = self.depth[i] + 1
+                    self.parent[j] = i
+                    stack.append(j)
+
+        # 根据节点规模设置层数
+        self.cols = FastIO().max(2, math.ceil(math.log2(n)))
+        self.dp = [[-1] * self.cols for _ in range(n)]
+        self.weight = [[[-1, -1] for _ in range(self.cols)] for _ in range(n)]  # 边权的最大值与次大值
+        for i in range(n):
+            self.dp[i][0] = self.parent[i]
+            if self.parent[i] != -1:
+                self.weight[i][0] = [dct[self.parent[i]][i], -1]
+
+        # 动态规划设置祖先初始化, dp[node][j] 表示 node 往前推第 2^j 个祖先
+        for j in range(1, self.cols):
+            for i in range(n):
+                father = self.dp[i][j - 1]
+                self.weight[i][j] = self.update(self.weight[i][j], self.weight[i][j-1])
+                if father != -1:
+                    self.dp[i][j] = self.dp[father][j - 1]
+                    self.weight[i][j] = self.update(self.weight[i][j], self.weight[father][j-1])
+        return
+
+    @staticmethod
+    def update(lst1, lst2):
+        a, b = lst1
+        c, d = lst2
+        # 更新最大值与次大值
+        for x in [c, d]:
+            if x >= a:
+                a, b = x, a
+            elif x >= b:
+                b = x
+        return [a, b]
+
+    def get_dist_weight_max_second(self, x: int, y: int) -> List[int]:
+        # 计算任意点的最短路上的权重最大值与次大值
+        if self.depth[x] < self.depth[y]:
+            x, y = y, x
+        ans = [-1, -1]
+        while self.depth[x] > self.depth[y]:
+            d = self.depth[x] - self.depth[y]
+            ans = self.update(ans, self.weight[x][int(math.log2(d))])
+            x = self.dp[x][int(math.log2(d))]
+        if x == y:
+            return ans
+
+        for k in range(int(math.log2(self.depth[x])), -1, -1):
+            if self.dp[x][k] != self.dp[y][k]:
+                ans = self.update(ans, self.weight[x][k])
+                ans = self.update(ans, self.weight[y][k])
+                x = self.dp[x][k]
+                y = self.dp[y][k]
+
+        ans = self.update(ans, self.weight[x][0])
+        ans = self.update(ans, self.weight[y][0])
+        return ans
 
 
 class Solution:
@@ -336,6 +412,71 @@ class Solution:
                 ac.st("NO")
                 return
         ac.st("YES")
+        return
+
+    @staticmethod
+    def lg_p4180(ac=FastIO()):
+        # 模板：使用最小生成树与LCA倍增查询计算严格次小生成树
+        n, m = ac.read_ints()
+        edges = []
+        for _ in range(m):
+            i, j, w = ac.read_ints()
+            if i != j:  # 去除自环
+                edges.append([i-1, j-1, w])
+
+        # 计算kruskal最小生成树
+        edges.sort(key=lambda it: it[2])
+        uf = UnionFind(n)
+        dct = [dict() for _ in range(n)]
+        cost = 0
+        for i, j, w in edges:
+            if uf.union(i, j):
+                cost += w
+                dct[i][j] = dct[j][i] = w
+            if uf.part == 1:
+                break
+
+        # 枚举新增的边
+        tree = TreeAncestorWeightSecond(dct)
+        ans = inf
+        for i, j, w in edges:
+            for dis in tree.get_dist_weight_max_second(i, j):
+                if dis != -1:
+                    cur = cost - dis + w
+                    if cost < cur < ans:
+                        ans = cur
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_609e(ac=FastIO()):
+        # 模板：计算最小生成树有指定边参与时的最小权值和，由此也可计算严格次小生成树
+        n, m = ac.read_ints()
+        edges = []
+        for _ in range(m):
+            i, j, w = ac.read_ints()
+            if i != j:  # 去除自环
+                edges.append([i - 1, j - 1, w])
+
+        # 计算kruskal最小生成树
+        uf = UnionFind(n)
+        dct = [dict() for _ in range(n)]
+        cost = 0
+        for i, j, w in sorted(edges, key=lambda it: it[2]):
+            if uf.union(i, j):
+                cost += w
+                dct[i][j] = dct[j][i] = w
+            if uf.part == 1:
+                break
+
+        # 枚举新增的边
+        tree = TreeAncestorWeightSecond(dct)
+        for i, j, w in edges:
+            if j in dct[i] and dct[i][j] == w:
+                ac.st(cost)
+            else:
+                dis = tree.get_dist_weight_max_second(i, j)[0]
+                ac.st(cost-dis+w)
         return
 
 
