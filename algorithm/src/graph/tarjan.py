@@ -1,6 +1,8 @@
 import unittest
 from collections import defaultdict
 from typing import DefaultDict, Set, List, Tuple
+
+from algorithm.src.graph.lca import TreeCentroid
 from algorithm.src.graph.union_find import UnionFind
 from algorithm.src.fast_io import FastIO
 
@@ -37,7 +39,8 @@ Tarjan 算法是基于深度优先搜索的算法，用于求解图的连通性�
 P3388 【模板】割点（割顶）（https://www.luogu.com.cn/problem/P3388）有自环与重边，求无向图割点
 P8435 【模板】点双连通分量（https://www.luogu.com.cn/problem/P8435）有自环与重边，只关注孤立自环即可
 P8436 【模板】边双连通分量（https://www.luogu.com.cn/problem/P8436）有自环与重边，通过虚拟节点进行扩边
-
+P2860 [USACO06JAN]Redundant Paths G（https://www.luogu.com.cn/problem/P2860）无向图边双缩点后求树的质心为根时的叶子两两配对数
+P2863 [USACO06JAN]The Cow Prom S（https://www.luogu.com.cn/problem/P2863）tarjan求强联通分量
 
 P1656 炸铁路（https://www.luogu.com.cn/problem/P1656）求割边
 P1793 跑步（https://www.luogu.com.cn/problem/P1793）求连通图两个指定点之间的割点，使用枚举与并查集的方式进行求解
@@ -92,7 +95,7 @@ class TarjanCC:
             yield
 
         dfs_id = 0
-        order, low = [FastIO().inf] * n, [FastIO().inf] * n
+        order, low = [inf] * n, [inf] * n
         visited = [False] * n
         stack = []
         in_stack = [False] * n
@@ -135,7 +138,10 @@ class TarjanCC:
                     yield dfs(nex, cur)
                     low[cur] = FastIO.min(low[cur], low[nex])
                     if low[nex] > order[cur]:
-                        cutting_edge.add(tuple(sorted([cur, nex])))
+                        if cur > nex:
+                            cutting_edge.add((nex, cur))
+                        else:
+                            cutting_edge.add((cur, nex))
                     if parent != -1 and low[nex] >= order[cur]:
                         cutting_point.add(cur)
                     elif parent == -1 and dfs_child > 1:  # 出发点没有祖先啊，所以特判一下
@@ -145,7 +151,7 @@ class TarjanCC:
             yield
 
         dfs_id = 0
-        order, low = [FastIO().inf] * n, [FastIO().inf] * n
+        order, low = [inf] * n, [inf] * n
         visited = [False] * n
 
         cutting_point = set()
@@ -217,7 +223,7 @@ class TarjanCC:
             yield
 
         dfs_id = 0
-        order, low = [FastIO().inf] * n, [FastIO().inf] * n
+        order, low = [inf] * n, [inf] * n
         visited = [False] * n
         stack = []
 
@@ -264,6 +270,59 @@ class TarjanCC:
             for j in edge[i]:
                 uf.union(i, j)
         return uf.get_root_part()
+
+    @staticmethod
+    def get_cutting_point_and_cutting_edge_bfs(n: int, edge: List[List[int]]) -> Tuple[Set[int], Set[Tuple[int, int]]]:
+        """Tarjan求解无向图的割点和割边(桥)
+        ##### 改成迭代未完成！！！！！！！！！！！！！！！！！
+        Args:
+            n (int): 结点0-n-1
+            edge (DefaultDict[int, Set[int]]): 图
+
+        Returns:
+            Tuple[Set[int], Set[Tuple[int, int]]]: 割点、桥
+
+        - 边对 (u,v) 中 u < v
+        """
+        dfs_id = 0
+        order, low = [inf] * n, [inf] * n
+        visited = [0] * n
+        cutting_point = set()
+        cutting_edge = set()
+        child = [0]*n
+        for i in range(n):
+            if not visited[i]:
+                stack = [[i, -1, 1]]
+                while stack:
+                    cur, parent, state = stack.pop()
+                    if state:
+                        stack.append([cur, parent, 0])
+                        if visited[cur]:
+                            continue
+                        visited[cur] = 1
+                        order[cur] = low[cur] = dfs_id
+                        dfs_id += 1
+                        lst = [nex for nex in edge[cur]]
+                        for nex in lst:
+                            if nex == parent:
+                                continue
+                            if not visited[nex]:
+                                child[cur] += 1
+                                stack.append([nex, cur, 1])
+                                break
+                            else:
+                                low[cur] = min(low[cur], order[nex])  # 注意这里是order
+                    else:
+                        if parent != -1 and child[cur]:
+                            cur, nex = parent, cur
+                            if low[nex] > order[cur]:
+                                cutting_edge.add(tuple(sorted([cur, nex])))
+                            if parent != -1 and low[nex] >= order[cur]:
+                                cutting_point.add(cur)
+                            elif parent == -1 and child[cur] > 1:  # 出发点没有祖先，所以特判一下
+                                cutting_point.add(cur)
+
+        return cutting_point, cutting_edge
 
 
 class TarjanUndirected:
@@ -425,7 +484,6 @@ class Solution:
                 ans = len(sub)
         return ans
 
-
     @staticmethod
     def lg_p3388(ac=FastIO()):
 
@@ -530,6 +588,110 @@ class Solution:
             edge[j].append(i)
         cut_edge, cut_node, sub_group = TarjanUndirected().check_graph(edge, n)
         return cut_edge
+
+    @staticmethod
+    def lg_p1656(ac=FastIO()):
+        # 模板：tarjan求无向图割边
+        n, m = ac.read_ints()
+        dct = [set() for _ in range(n)]
+        for _ in range(m):
+            i, j = ac.read_ints_minus_one()
+            dct[i].add(j)
+            dct[j].add(i)
+        _, cut_edge = TarjanCC().get_cutting_point_and_cutting_edge(n, dct)
+        cut_edge = sorted([list(e) for e in cut_edge])
+        for x in cut_edge:
+            ac.lst([w+1 for w in x])
+        return
+
+    @staticmethod
+    def lg_p2860(ac=FastIO()):
+        # 模板: TarjanCC 求无向图边双连通分量进行缩点后，计算质心为根时的叶子数
+        n, m = ac.read_ints()
+        edge = [set() for _ in range(n)]
+        degree = defaultdict(int)
+        pre = set()
+        for _ in range(m):
+            a, b = ac.read_ints_minus_one()
+            # 需要处理自环与重边
+            if a > b:
+                a, b = b, a
+            if a == b:
+                x = len(edge)
+                edge.append(set())
+                edge[a].add(x)
+                degree[a] += 1
+                degree[x] += 1
+                edge[x].add(a)
+            elif (a, b) in pre:
+                x = len(edge)
+                edge.append(set())
+                edge[a].add(x)
+                edge[x].add(a)
+                edge[b].add(x)
+                edge[x].add(b)
+                degree[a] += 1
+                degree[x] += 2
+                degree[b] += 1
+            else:
+                pre.add((a, b))
+                edge[a].add(b)
+                edge[b].add(a)
+                degree[a] += 1
+                degree[b] += 1
+        group = TarjanCC().get_edge_doubly_connected_component(len(edge), copy.deepcopy(edge))
+
+        # 建立新图
+        res = []
+        for r in group:
+            lst = [x for x in group[r] if x < n]
+            if lst:
+                res.append(lst)
+        k = len(res)
+        if k == 1:
+            ac.st(0)
+            return
+        ind = dict()
+        for i in range(k):
+            for x in res[i]:
+                ind[x] = i
+        dct = [set() for _ in range(k)]
+        for i in range(len(edge)):
+            for j in edge[i]:
+                if i < n and j < n and ind[i] != ind[j]:
+                    dct[ind[i]].add(ind[j])
+                    dct[ind[j]].add(ind[i])
+        dct = [list(s) for s in dct]
+        # 求树的质心
+        center = TreeCentroid().get_tree_centroid(dct)
+        stack = [[center, -1]]
+        ans = 0
+        while stack:
+            i, fa = stack.pop()
+            cnt = 0
+            for j in dct[i]:
+                if j != fa:
+                    stack.append([j, i])
+                    cnt += 1
+            if not cnt:
+                ans += 1
+        ac.st((ans+1)//2)
+        return
+
+    @staticmethod
+    def lg_p2863(ac=FastIO()):
+        # 模板: TarjanCC 求强连通分量
+        n, m = ac.read_ints()
+        edge = [set() for _ in range(n)]
+        for _ in range(m):
+            a, b = ac.read_ints_minus_one()
+            edge[a].add(b)
+        _, group, _ = TarjanCC().get_strongly_connected_component(n, edge)
+        ans = 0
+        for g in group:
+            ans += len(group[g]) > 1
+        ac.st(ans)
+        return
 
 
 class TestGeneral(unittest.TestCase):
