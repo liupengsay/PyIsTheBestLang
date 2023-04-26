@@ -1,9 +1,9 @@
 import unittest
 from collections import defaultdict
+from math import inf
 from typing import DefaultDict, Set, List, Tuple
 
-from algorithm.src.graph.lca import TreeCentroid
-from algorithm.src.graph.union_find import UnionFind
+from algorithm.src.dp.tree_dp import TreeCentroid
 from algorithm.src.fast_io import FastIO
 
 """
@@ -54,274 +54,189 @@ class TarjanCC:
         return
 
     @staticmethod
-    def get_strongly_connected_component(n: int, edge: List[Set[int]]) -> Tuple[int, DefaultDict[int, Set[int]], List[int]]:
-        """Tarjan求解有向图的强连通分量
-
-        Args:
-            n (int): 结点0-n-1
-            edge (DefaultDict[int, Set[int]]): 图
-
-        Returns:
-            Tuple[int, DefaultDict[int, Set[int]], List[int]]: SCC的数量、分组、每个结点对应的SCC编号
-        """
-
-        @FastIO.bootstrap
-        def dfs(cur: int) -> None:
-            nonlocal dfs_id, scc_id
-            if visited[cur]:
-                yield
-            visited[cur] = True
-
-            order[cur] = low[cur] = dfs_id
-            dfs_id += 1
-            stack.append(cur)
-            in_stack[cur] = True
-            for nex in edge[cur]:
-                if not visited[nex]:
-                    yield dfs(nex)
-                    low[cur] = FastIO.min(low[cur], low[nex])
-                elif in_stack[nex]:
-                    low[cur] = FastIO.min(low[cur], order[nex])  # 注意这里是order
-
-            if order[cur] == low[cur]:
-                while stack:
-                    top = stack.pop()
-                    in_stack[top] = False
-                    scc_node_id[scc_id].add(top)
-                    node_scc_id[top] = scc_id
-                    if top == cur:
-                        break
-                scc_id += 1
-            yield
-
+    def get_strongly_connected_component_bfs(n: int, edge: List[List[int]]) -> (int, DefaultDict[int, Set[int]], List[int]):
+        # 模板：Tarjan求解有向图的强连通分量 edge为有向边要求无自环与重边
         dfs_id = 0
         order, low = [inf] * n, [inf] * n
-        visited = [False] * n
-        stack = []
-        in_stack = [False] * n
+        visit = [0] * n
+        out = []
+        in_stack = [0] * n
         scc_id = 0
         scc_node_id = defaultdict(set)
         node_scc_id = [-1] * n
+        parent = [-1]*n
         for node in range(n):
-            if not visited[node]:
-                dfs(node)
+            if not visit[node]:
+                stack = [[node, 0]]
+                while stack:
+                    cur, ind = stack[-1]
+                    if not visit[cur]:
+                        visit[cur] = 1
+                        order[cur] = low[cur] = dfs_id
+                        dfs_id += 1
+                        out.append(cur)
+                        in_stack[cur] = 1
+                    if ind == len(edge[cur]):
+                        stack.pop()
+                        if order[cur] == low[cur]:
+                            while out:
+                                top = out.pop()
+                                in_stack[top] = 0
+                                scc_node_id[scc_id].add(top)
+                                node_scc_id[top] = scc_id
+                                if top == cur:
+                                    break
+                            scc_id += 1
+
+                        cur, nex = parent[cur], cur
+                        if cur != -1:
+                            low[cur] = low[cur] if low[cur] < low[nex] else low[nex]
+                    else:
+                        nex = edge[cur][ind]
+                        stack[-1][-1] += 1
+                        if not visit[nex]:
+                            parent[nex] = cur
+                            stack.append([nex, 0])
+                        elif in_stack[nex]:
+                            low[cur] = low[cur] if low[cur] < order[nex] else order[nex]  # 注意这里是order
+        # SCC的数量，分组，每个结点对应的SCC编号
         return scc_id, scc_node_id, node_scc_id
 
     @staticmethod
-    def get_cutting_point_and_cutting_edge(n: int, edge: List[Set[int]]) -> Tuple[Set[int], Set[Tuple[int, int]]]:
-        """Tarjan求解无向图的割点和割边(桥)
-
-        Args:
-            n (int): 结点0-n-1
-            edge (DefaultDict[int, Set[int]]): 图
-
-        Returns:
-            Tuple[Set[int], Set[Tuple[int, int]]]: 割点、桥
-
-        - 边对 (u,v) 中 u < v
-        """
-
-        @FastIO.bootstrap
-        def dfs(cur: int, parent: int) -> None:
-            nonlocal dfs_id
-            if visited[cur]:
-                return
-            visited[cur] = True
-            order[cur] = low[cur] = dfs_id
-            dfs_id += 1
-            dfs_child = 0
-            for nex in edge[cur]:
-                if nex == parent:
-                    continue
-                if not visited[nex]:
-                    dfs_child += 1
-                    yield dfs(nex, cur)
-                    low[cur] = FastIO.min(low[cur], low[nex])
-                    if low[nex] > order[cur]:
-                        if cur > nex:
-                            cutting_edge.add((nex, cur))
-                        else:
-                            cutting_edge.add((cur, nex))
-                    if parent != -1 and low[nex] >= order[cur]:
-                        cutting_point.add(cur)
-                    elif parent == -1 and dfs_child > 1:  # 出发点没有祖先啊，所以特判一下
-                        cutting_point.add(cur)
-                else:
-                    low[cur] = FastIO.min(low[cur], order[nex])  # 注意这里是order
-            yield
+    def get_point_doubly_connected_component_bfs(n: int, edge: List[List[int]]) -> Tuple[int, DefaultDict[int, Set[int]], List[Set[int]]]:
+        # 模板：Tarjan求解无向图的点双连通分量
 
         dfs_id = 0
         order, low = [inf] * n, [inf] * n
-        visited = [False] * n
-
-        cutting_point = set()
-        cutting_edge = set()
-
-        for i in range(n):
-            if not visited[i]:
-                dfs(i, -1)
-
-        return cutting_point, cutting_edge
-
-    @staticmethod
-    def get_point_doubly_connected_component(n: int, edge: List[Set[int]]) -> Tuple[int, DefaultDict[int, Set[int]], List[Set[int]]]:
-        """Tarjan求解无向图的点双联通分量
-
-        Args:
-            n (int): 结点0-n-1
-            edge (DefaultDict[int, Set[int]]): 图
-
-        Returns:
-            Tuple[int, DefaultDict[int, Set[int]], List[Set[int]]]: VBCC的数量、分组、每个结点对应的VBCC编号
-
-        - 我们将深搜时遇到的所有边加入到栈里面，
-        当找到一个割点的时候，
-        就将这个割点往下走到的所有边弹出，
-        而这些边所连接的点就是一个点双了
-
-        - 两个点和一条边构成的图也称为(V)BCC,因为两个点均不为割点
-
-        - VBCC编号多余1个的都是割点
-        """
-
-        @FastIO.bootstrap
-        def dfs(cur: int, parent: int) -> None:
-            nonlocal dfs_id, pdcc_id
-            if visited[cur]:
-                yield
-            visited[cur] = True
-
-            order[cur] = low[cur] = dfs_id
-            dfs_id += 1
-
-            dfs_child = 0
-            for nex in edge[cur]:
-                if nex == parent:
-                    continue
-
-                if not visited[nex]:
-                    dfs_child += 1
-                    stack.append((cur, nex))
-                    yield dfs(nex, cur)
-                    low[cur] = FastIO.min(low[cur], low[nex])
-
-                    # 遇到了割点(根和非根两种)
-                    if (parent == -1 and dfs_child > 1) or (parent != -1 and low[nex] >= order[cur]):
-                        while stack:
-                            top = stack.pop()
-                            pdcc_node_id[pdcc_id].add(top[0])
-                            pdcc_node_id[pdcc_id].add(top[1])
-                            node_pdcc_id[top[0]].add(pdcc_id)
-                            node_pdcc_id[top[1]].add(pdcc_id)
-                            if top == (cur, nex):
-                                break
-                        pdcc_id += 1
-
-                elif low[cur] > order[nex]:
-                    low[cur] = FastIO.min(low[cur], order[nex])
-                    stack.append((cur, nex))
-            yield
-
-        dfs_id = 0
-        order, low = [inf] * n, [inf] * n
-        visited = [False] * n
-        stack = []
-
-        pdcc_id = 0  # 点双个数
-        pdcc_node_id = defaultdict(set)  # 每个点双包含哪些点
-        node_pdcc_id = [set() for _ in range(n)]  # 每个点属于哪一(几)个点双，属于多个点双的点就是割点
-
-        for node in range(n):
-            if not visited[node]:
-                dfs(node, -1)
-            if stack:
-                while stack:
-                    top = stack.pop()
-                    pdcc_node_id[pdcc_id].add(top[0])
-                    pdcc_node_id[pdcc_id].add(top[1])
-                    node_pdcc_id[top[0]].add(pdcc_id)
-                    node_pdcc_id[top[1]].add(pdcc_id)
-                pdcc_id += 1
-        return pdcc_id, pdcc_node_id, node_pdcc_id
-
-    def get_edge_doubly_connected_component(self, n: int, edge: List[Set[int]]) -> dict:
-        """Tarjan求解无向图的边双联通分量
-
-        Args:
-            n (int): 结点0-n-1
-            edge (DefaultDict[int, Set[int]]): 图
-
-        Returns:
-            Tuple[int, DefaultDict[int, Set[Tuple[int, int]]], DefaultDict[Tuple[int, int], int]]]: EBCC的数量、分组、每条边对应的EBCC编号
-
-        - 边对 (u,v) 中 u < v
-
-        - 实现思路：
-          - 将所有的割边删掉剩下的都是边连通分量了(其实可以用并查集做)
-          - 处理出割边,再对整个无向图进行一次DFS,对于节点cur的出边(cur,nex),如果它是割边,则跳过这条边不沿着它往下走
-        """
-
-        _, cutting_edges = self.get_cutting_point_and_cutting_edge(n, edge)
-        for x, y in cutting_edges:
-            edge[x].discard(y)
-            edge[y].discard(x)
-        uf = UnionFind(n)
-        for i in range(n):
-            for j in edge[i]:
-                uf.union(i, j)
-        return uf.get_root_part()
-
-    @staticmethod
-    def get_cutting_point_and_cutting_edge_bfs(n: int, edge: List[List[int]]) -> Tuple[Set[int], Set[Tuple[int, int]]]:
-        """Tarjan求解无向图的割点和割边(桥)
-        ##### 改成迭代未完成！！！！！！！！！！！！！！！！！
-        Args:
-            n (int): 结点0-n-1
-            edge (DefaultDict[int, Set[int]]): 图
-
-        Returns:
-            Tuple[Set[int], Set[Tuple[int, int]]]: 割点、桥
-
-        - 边对 (u,v) 中 u < v
-        """
-        dfs_id = 0
-        order, low = [inf] * n, [inf] * n
-        visited = [0] * n
-        cutting_point = set()
-        cutting_edge = set()
+        visit = [False] * n
+        out = []
+        parent = [-1]*n
+        group_id = 0  # 点双个数
+        group_node = defaultdict(set)  # 每个点双包含哪些点
+        node_group_id = [set() for _ in range(n)]  # 每个点属于哪些点双，属于多个点双的点就是割点
         child = [0]*n
-        for i in range(n):
-            if not visited[i]:
-                stack = [[i, -1, 1]]
+        for node in range(n):
+            if not visit[node]:
+                stack = [[node, 0]]
                 while stack:
-                    cur, parent, state = stack.pop()
-                    if state:
-                        stack.append([cur, parent, 0])
-                        if visited[cur]:
-                            continue
-                        visited[cur] = 1
+                    cur, ind = stack[-1]
+                    if not visit[cur]:
+                        visit[cur] = True
                         order[cur] = low[cur] = dfs_id
                         dfs_id += 1
-                        lst = [nex for nex in edge[cur]]
-                        for nex in lst:
-                            if nex == parent:
-                                continue
-                            if not visited[nex]:
-                                child[cur] += 1
-                                stack.append([nex, cur, 1])
-                                break
-                            else:
-                                low[cur] = min(low[cur], order[nex])  # 注意这里是order
-                    else:
-                        if parent != -1 and child[cur]:
-                            cur, nex = parent, cur
-                            if low[nex] > order[cur]:
-                                cutting_edge.add(tuple(sorted([cur, nex])))
-                            if parent != -1 and low[nex] >= order[cur]:
-                                cutting_point.add(cur)
-                            elif parent == -1 and child[cur] > 1:  # 出发点没有祖先，所以特判一下
-                                cutting_point.add(cur)
 
+                    if ind == len(edge[cur]):
+                        stack.pop()
+                        cur, nex = parent[cur], cur
+                        if cur != -1:
+                            low[cur] = low[cur] if low[cur] < low[nex] else low[nex]
+                            # 遇到了割点（有根和非根两种）
+                            if (parent == -1 and child[cur] > 1) or (parent != -1 and low[nex] >= order[cur]):
+                                while out:
+                                    top = out.pop()
+                                    group_node[group_id].add(top[0])
+                                    group_node[group_id].add(top[1])
+                                    node_group_id[top[0]].add(group_id)
+                                    node_group_id[top[1]].add(group_id)
+                                    if top == (cur, nex):
+                                        break
+                                group_id += 1
+                            # 我们将深搜时遇到的所有边加入到栈里面，当找到一个割点的时候
+                            # 就将这个割点往下走到的所有边弹出，而这些边所连接的点就是一个点双
+                    else:
+                        nex = edge[cur][ind]
+                        stack[-1][-1] += 1
+                        if nex == parent[cur]:
+                            continue
+                        if not visit[nex]:
+                            parent[nex] = cur
+                            out.append((cur, nex))
+                            child[cur] += 1
+                            stack.append([nex, 0])
+                        elif low[cur] > order[nex]:
+                            low[cur] = order[nex]
+                            out.append((cur, nex))
+            if out:
+                while out:
+                    top = out.pop()
+                    group_node[group_id].add(top[0])
+                    group_node[group_id].add(top[1])
+                    node_group_id[top[0]].add(group_id)
+                    node_group_id[top[1]].add(group_id)
+                group_id += 1
+        # 点双的数量，点双分组节点，每个结点对应的点双编号（割点属于多个点双）
+        return group_id, group_node, node_group_id
+
+    def get_edge_doubly_connected_component_bfs(self, n: int, edge: List[Set[int]]):
+        # 模板：Tarjan求解无向图的边双连通分量
+        _, cutting_edges = self.get_cutting_point_and_cutting_edge_bfs(n, [list(e) for e in edge])
+        for i, j in cutting_edges:
+            edge[i].discard(j)
+            edge[j].discard(i)
+
+        # 将所有的割边删掉剩下的都是边双连通分量，处理出割边，再对整个无向图进行一次BFS
+        visit = [0]*n
+        ans = []
+        for i in range(n):
+            if visit[i]:
+                continue
+            stack = [i]
+            visit[i] = 1
+            cur = [i]
+            while stack:
+                x = stack.pop()
+                for j in edge[x]:
+                    if not visit[j]:
+                        visit[j] = 1
+                        stack.append(j)
+                        cur.append(j)
+            ans.append(cur[:])
+        # 边双的节点分组
+        return ans
+
+    @staticmethod
+    def get_cutting_point_and_cutting_edge_bfs(n: int, edge: List[List[int]]) -> (Set[int], Set[Tuple[int, int]]):
+        # 模板：Tarjan求解无向图的割点和割边（也就是桥）
+        order, low = [inf] * n, [inf] * n
+        visit = [0] * n
+        cutting_point = set()
+        cutting_edge = []
+        child = [0]*n
+        parent = [-1]*n
+        dfs_id = 0
+        for i in range(n):
+            if not visit[i]:
+                stack = [[i, 0]]
+                while stack:
+                    cur, ind = stack[-1]
+                    if not visit[cur]:
+                        visit[cur] = 1
+                        order[cur] = low[cur] = dfs_id
+                        dfs_id += 1
+                    if ind == len(edge[cur]):
+                        stack.pop()
+                        cur, nex = parent[cur], cur
+                        if cur != -1:
+                            pa = parent[cur]
+                            low[cur] = low[cur] if low[cur] < low[nex] else low[nex]
+                            if low[nex] > order[cur]:
+                                cutting_edge.append((cur, nex) if cur < nex else (nex, cur))
+                            if pa != -1 and low[nex] >= order[cur]:
+                                cutting_point.add(cur)
+                            elif pa == -1 and child[cur] > 1:  # 出发点没有祖先，所以特判一下
+                                cutting_point.add(cur)
+                    else:
+                        nex = edge[cur][ind]
+                        stack[-1][-1] += 1
+                        if nex == parent[cur]:
+                            continue
+                        if not visit[nex]:
+                            parent[nex] = cur
+                            child[cur] += 1
+                            stack.append([nex, 0])
+                        else:
+                            low[cur] = low[cur] if low[cur] < order[nex] else order[nex]  # 注意这里是order
+        # 割点和割边
         return cutting_point, cutting_edge
 
 
@@ -464,8 +379,9 @@ class Solution:
         n = len(edges)
         edge = [set() for _ in range(n)]
         for i in range(n):
-            edge[i].add(edges[i])
-        scc_id, scc_node_id, node_scc_id = TarjanCC().get_strongly_connected_component(n, edge)
+            if edges[i] != -1:
+                edge[i].add(edges[i])
+        scc_id, scc_node_id, node_scc_id = TarjanCC().get_strongly_connected_component_bfs(n, [list(e) for e in edge])
         ans = max(len(scc_node_id[r]) for r in scc_node_id)
         return ans if ans > 1 else -1
 
@@ -486,17 +402,17 @@ class Solution:
 
     @staticmethod
     def lg_p3388(ac=FastIO()):
-
         # 模板: TarjanCC 求无向图割点
         n, m = ac.read_ints()
-        edge = [set() for _ in range(n)]
+        dct = [set() for _ in range(n)]
         for _ in range(m):
-            x, y = ac.read_ints_minus_one()
-            edge[x].add(y)
-            edge[y].add(x)
-        node, _ = TarjanCC().get_cutting_point_and_cutting_edge(n, edge)
-        ac.st(len(node))
-        ac.lst(sorted([x + 1 for x in node]))
+            i, j = ac.read_ints_minus_one()
+            dct[i].add(j)
+            dct[j].add(i)
+        cut_node, _ = TarjanCC().get_cutting_point_and_cutting_edge_bfs(n, [list(d) for d in dct])
+        cut_node = sorted(list(cut_node))
+        ac.st(len(cut_node))
+        ac.lst([x+1 for x in cut_node])
         return
 
     @staticmethod
@@ -504,7 +420,7 @@ class Solution:
         # 模板: TarjanCC 求无向图点双连通分量
         n, m = ac.read_ints()
         edge = [set() for _ in range(n)]
-        degree = [0]*n
+        degree = [0] * n
         for _ in range(m):
             x, y = ac.read_ints_minus_one()
             # 注意自环的特殊处理
@@ -514,13 +430,14 @@ class Solution:
                 degree[x] += 1
                 degree[y] += 1
 
-        pdcc_id, pdcc_node_id, node_pdcc_id = TarjanCC().get_point_doubly_connected_component(n, edge)
+        pdcc_id, pdcc_node_id, node_pdcc_id = TarjanCC().get_point_doubly_connected_component_bfs(n, [list(e) for e in
+                                                                                                      edge])
         ac.st(len(pdcc_node_id) + sum(degree[i] == 0 for i in range(n)))
         for r in pdcc_node_id:
-            ac.lst([len(pdcc_node_id[r])]+[x+1 for x in pdcc_node_id[r]])
+            ac.lst([len(pdcc_node_id[r])] + [x + 1 for x in pdcc_node_id[r]])
         for i in range(n):
             if not degree[i]:
-                ac.lst([1, i+1])
+                ac.lst([1, i + 1])
         return
 
     @staticmethod
@@ -528,8 +445,6 @@ class Solution:
         # 模板: TarjanCC 求无向图边双连通分量
         n, m = ac.read_ints()
         edge = [set() for _ in range(n)]
-        degree = defaultdict(int)
-        pre = set()
         for _ in range(m):
             a, b = ac.read_ints_minus_one()
             # 需要处理自环与重边
@@ -539,34 +454,26 @@ class Solution:
                 x = len(edge)
                 edge.append(set())
                 edge[a].add(x)
-                degree[a] += 1
-                degree[x] += 1
                 edge[x].add(a)
-            elif (a, b) in pre:
+            elif b in edge[a]:
                 x = len(edge)
                 edge.append(set())
                 edge[a].add(x)
                 edge[x].add(a)
                 edge[b].add(x)
                 edge[x].add(b)
-                degree[a] += 1
-                degree[x] += 2
-                degree[b] += 1
             else:
-                pre.add((a, b))
                 edge[a].add(b)
                 edge[b].add(a)
-                degree[a] += 1
-                degree[b] += 1
-        group = TarjanCC().get_edge_doubly_connected_component(len(edge), edge)
+        group = TarjanCC().get_edge_doubly_connected_component_bfs(len(edge), edge)
         res = []
         for r in group:
-            lst = [x + 1 for x in group[r] if x < n]
+            lst = [str(x + 1) for x in r if x < n]
             if lst:
-                res.append([len(lst)] + lst)
+                res.append([str(len(lst))] + lst)
         ac.st(len(res))
         for a in res:
-            ac.lst(a)
+            ac.st(" ".join(a))
         return
 
     @staticmethod
@@ -576,7 +483,7 @@ class Solution:
         for i, j in connections:
             edge[i].add(j)
             edge[j].add(i)
-        cutting_point, cutting_edge = TarjanCC().get_cutting_point_and_cutting_edge(n, edge)
+        cutting_point, cutting_edge = TarjanCC().get_cutting_point_and_cutting_edge_bfs(n, [list(e) for e in edge])
         return [list(e) for e in cutting_edge]
 
     @staticmethod
@@ -598,10 +505,10 @@ class Solution:
             i, j = ac.read_ints_minus_one()
             dct[i].add(j)
             dct[j].add(i)
-        _, cut_edge = TarjanCC().get_cutting_point_and_cutting_edge(n, dct)
+        cut_node, cut_edge = TarjanCC().get_cutting_point_and_cutting_edge_bfs(n, [list(d) for d in dct])
         cut_edge = sorted([list(e) for e in cut_edge])
         for x in cut_edge:
-            ac.lst([w+1 for w in x])
+            ac.lst([w + 1 for w in x])
         return
 
     @staticmethod
@@ -639,14 +546,15 @@ class Solution:
                 edge[b].add(a)
                 degree[a] += 1
                 degree[b] += 1
-        group = TarjanCC().get_edge_doubly_connected_component(len(edge), copy.deepcopy(edge))
+        group = TarjanCC().get_edge_doubly_connected_component_bfs(len(edge), copy.deepcopy(edge))
 
         # 建立新图
         res = []
         for r in group:
-            lst = [x for x in group[r] if x < n]
+            lst = [x for x in r if x < n]
             if lst:
                 res.append(lst)
+
         k = len(res)
         if k == 1:
             ac.st(0)
@@ -662,6 +570,7 @@ class Solution:
                     dct[ind[i]].add(ind[j])
                     dct[ind[j]].add(ind[i])
         dct = [list(s) for s in dct]
+
         # 求树的质心
         center = TreeCentroid().get_tree_centroid(dct)
         stack = [[center, -1]]
@@ -686,7 +595,8 @@ class Solution:
         for _ in range(m):
             a, b = ac.read_ints_minus_one()
             edge[a].add(b)
-        _, group, _ = TarjanCC().get_strongly_connected_component(n, edge)
+        _, group, _ = TarjanCC().get_strongly_connected_component_bfs(n, [list(e) for e in edge])
+
         ans = 0
         for g in group:
             ans += len(group[g]) > 1
