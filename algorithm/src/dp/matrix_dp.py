@@ -54,6 +54,7 @@ P7266 [BalticOI 2000] Honeycomb Problem（https://www.luogu.com.cn/problem/P7266
 P3399 丝绸之路（https://www.luogu.com.cn/problem/P3399）二维矩阵DP
 P2516 [HAOI2010]最长公共子序列（https://www.luogu.com.cn/problem/P2516）经典DP最长公共子序列以及最长公共子序列的长度
 P1544 三倍经验（https://www.luogu.com.cn/problem/P1544）三维矩阵DP
+P1004 [NOIP2000 提高组] 方格取数（https://www.luogu.com.cn/problem/P1004）经典DP，三个方向转移
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1446/B（最长公共子序列LCS变形问题，理解贡献）
@@ -527,6 +528,36 @@ class Solution:
                         dp[cur][j][p] = dp[pre][j][p]+lst[j]
             pre = cur
         ac.st(max(max(d) for d in dp[pre]))
+        return
+
+    @staticmethod
+    def lg_p1004(ac=FastIO()):
+        # 模板：经典取数四维转三维DP
+        n = ac.read_int()
+        grid = [[0] * n for _ in range(n)]
+        while True:
+            lst = ac.read_list_ints()
+            if lst == [0, 0, 0]:
+                break
+            x, y, z = lst
+            grid[x - 1][y - 1] = z
+
+        dp = [[[0] * n for _ in range(n)] for _ in range(n)]
+        for x1 in range(n - 1, -1, -1):
+            for y1 in range(n - 1, -1, -1):
+                high = ac.min(n-1, x1+y1)
+                low = ac.max(0, x1+y1-(n-1))
+                for x2 in range(high, low-1, -1):
+                    y2 = x1 + y1 - x2
+                    post = 0
+                    for a, b in [[x1 + 1, y1], [x1, y1 + 1]]:
+                        for c, d in [[x2 + 1, y2], [x2, y2 + 1]]:
+                            if 0 <= a < n and 0 <= b < n and 0 <= c < n and 0 <= d < n:
+                                post = ac.max(post, dp[a][b][c])
+                    dp[x1][y1][x2] = post + grid[x1][y1] + grid[x2][y2]
+                    if x1 == x2:
+                        dp[x1][y1][x2] -= grid[x1][y1]
+        ac.st(dp[0][0][0])
         return
 
 
