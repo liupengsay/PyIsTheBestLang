@@ -29,6 +29,7 @@ P1816 忠诚（https://www.luogu.com.cn/problem/P1816）树状数组查询静态
 P1908 逆序对（https://www.luogu.com.cn/problem/P1908）树状数组求逆序对
 135. 二维树状数组3（https://loj.ac/p/135）区间修改，区间查询
 134. 二维树状数组2（https://loj.ac/p/134）区间修改，单点查询
+P1725 琪露诺（https://www.luogu.com.cn/problem/P1725）倒序线性DP，单点更新值，查询区间最大值
 
 ================================CodeForces================================
 F. Range Update Point Query（https://codeforces.com/problemset/problem/1791/F）树状数组维护区间操作数与查询单点值
@@ -190,7 +191,7 @@ class TreeArrayPointUpdateRangeMaxMin:
     def __init__(self, n: int) -> None:
         self.n = n
         self.a = [0] * (n + 1)
-        self.tree_ceil = [0] * (n + 1)
+        self.tree_ceil = [-float("inf")] * (n + 1)
         self.tree_floor = [float('inf')] * (n + 1)
         return
 
@@ -326,6 +327,79 @@ class TreeArray2DRange:
     def range_query(self, x1: int, y1: int, x2: int, y2: int) -> int:
         # 索引从 1 开始， 查询二维数组中 [x1, y1] 到 [x2, y2] 的区间和
         return self._query(x2, y2) - self._query(x2, y1-1) - self._query(x1-1, y2) + self._query(x1-1, y1-1)
+
+
+
+class TreeArray2DRangeMaxMin:
+
+    # 模板：树状数组 单点增加区间查询最大值 单点减少区间查询最小值（暂未调通）
+    def __init__(self, m: int, n: int) -> None:
+        self.m = m
+        self.n = n
+        self.a = [[0] * (n + 1) for _ in range(m + 1)]
+        self.tree_ceil = [[0] * (n + 1) for _ in range(m + 1)]  # 最大值只能持续增加
+        self.tree_floor = [[float('inf')] * (n + 1) for _ in range(m + 1)]  # 最小值只能持续减少
+        return
+
+    @staticmethod
+    def low_bit(x):
+        return x & -x
+
+    @staticmethod
+    def max(a, b):
+        return a if a > b else b
+
+    @staticmethod
+    def min(a, b):
+        return a if a < b else b
+
+    def add(self, x, y, k):
+        # 索引从1开始
+        self.a[x][y] = k
+        i = x
+        while i <= self.m:
+            j = y
+            while j <= self.n:
+                self.tree_ceil[i][j] = self.max(self.tree_ceil[i][j], k)
+                self.tree_floor[i][j] = self.min(self.tree_floor[i][j], k)
+                j += self.low_bit(j)
+            i += self.low_bit(i)
+        return
+
+    def find_max(self, x1, y1, x2, y2):
+        # 索引从1开始
+        max_val = float('-inf')
+        i1, i2 = x1, x2
+        while i2 >= i1:
+            if i2 - self.low_bit(i2) >= i1 - 1:
+
+                #########
+                j1, j2 = y1, y2
+                while j2 >= j1:
+                    if j2 - self.low_bit(j2) >= j1 - 1:
+                        max_val = self.max(max_val, self.tree_ceil[i2][j2])
+                        j2 -= self.low_bit(j2)
+                    else:
+                        max_val = self.max(max_val, self.a[i2][j2])
+                        j2 -= 1
+                ##########
+
+                i2 -= self.low_bit(i2)
+            else:
+
+                #########
+                j1, j2 = y1, y2
+                while j2 >= j1:
+                    if j2 - self.low_bit(j2) >= j1 - 1:
+                        max_val = self.max(max_val, self.tree_ceil[i2][j2])
+                        j2 -= self.low_bit(j2)
+                    else:
+                        max_val = self.max(max_val, self.a[i2][j2])
+                        j2 -= 1
+                ##########
+                max_val = self.max(max_val, max(self.a[i2][y1:y2+1]))
+                i2 -= 1
+        return max_val
 
 
 class Solution:
@@ -532,77 +606,23 @@ class Solution:
                 ac.st(tree.range_query(a, b, c, d))
         return
 
-
-class TreeArray2DRangeMaxMin:
-
-    # 模板：树状数组 单点增加区间查询最大值 单点减少区间查询最小值
-    def __init__(self, m: int, n: int) -> None:
-        self.m = m
-        self.n = n
-        self.a = [[0] * (n + 1) for _ in range(m + 1)]
-        self.tree_ceil = [[0] * (n + 1) for _ in range(m + 1)]  # 最大值只能持续增加
-        self.tree_floor = [[float('inf')] * (n + 1) for _ in range(m + 1)]  # 最小值只能持续减少
+    @staticmethod
+    def lg_p1725(ac=FastIO()):
+        # 模板：树状数组倒序线性DP，单点更新与区间查询最大值
+        n, a, b = ac.read_ints()
+        n += 1
+        nums = ac.read_list_ints()
+        tree = TreeArrayPointUpdateRangeMaxMin(n+1)
+        tree.add(n+1, 0)
+        post = 0
+        for i in range(n-1, -1, -1):
+            x, y = i+a+1, i+b+1
+            x = n+1 if x > n+1 else x
+            y = n+1 if y > n+1 else y
+            post = tree.find_max(x, y)
+            tree.add(i+1, post+nums[i])
+        ac.st(post+nums[0])
         return
-
-    @staticmethod
-    def low_bit(x):
-        return x & -x
-
-    @staticmethod
-    def max(a, b):
-        return a if a > b else b
-
-    @staticmethod
-    def min(a, b):
-        return a if a < b else b
-
-    def add(self, x, y, k):
-        # 索引从1开始
-        self.a[x][y] = k
-        i = x
-        while i <= self.m:
-            j = y
-            while j <= self.n:
-                self.tree_ceil[i][j] = self.max(self.tree_ceil[i][j], k)
-                self.tree_floor[i][j] = self.min(self.tree_floor[i][j], k)
-                j += self.low_bit(j)
-            i += self.low_bit(i)
-        return
-
-    def find_max(self, x1, y1, x2, y2):
-        # 索引从1开始
-        max_val = float('-inf')
-        i1, i2 = x1, x2
-        while i2 >= i1:
-            if i2 - self.low_bit(i2) >= i1 - 1:
-
-                #########
-                j1, j2 = y1, y2
-                while j2 >= j1:
-                    if j2 - self.low_bit(j2) >= j1 - 1:
-                        max_val = self.max(max_val, self.tree_ceil[i2][j2])
-                        j2 -= self.low_bit(j2)
-                    else:
-                        max_val = self.max(max_val, self.a[i2][j2])
-                        j2 -= 1
-                ##########
-
-                i2 -= self.low_bit(i2)
-            else:
-
-                #########
-                # j1, j2 = y1, y2
-                # while j2 >= j1:
-                #     if j2 - self.low_bit(j2) >= j1 - 1:
-                #         max_val = self.max(max_val, self.tree_ceil[i2][j2])
-                #         j2 -= self.low_bit(j2)
-                #     else:
-                #         max_val = self.max(max_val, self.a[i2][j2])
-                #         j2 -= 1
-                ##########
-                max_val = self.max(max_val, max(self.a[i2][y1:y2+1]))
-                i2 -= 1
-        return max_val
 
 
 class TestGeneral(unittest.TestCase):

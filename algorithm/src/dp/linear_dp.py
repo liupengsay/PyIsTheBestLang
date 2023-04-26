@@ -55,6 +55,8 @@ P7404 [JOI 2021 Final] とてもたのしい家庭菜園 4（https://www.luogu.c
 P7541 [COCI2009-2010#1] DOBRA（https://www.luogu.com.cn/problem/P7541）线性DP记忆化搜索，类似数位DP
 P7767 [COCI 2011/2012 #5] DNA（https://www.luogu.com.cn/problem/P7767）线性DP，计算前缀变成全部相同字符的最少操作次数
 P2246 SAC#1 - Hello World（升级版）（https://www.luogu.com.cn/problem/P2246）字符串计数线性DP
+P4933 大师（https://www.luogu.com.cn/problem/P4933）线性DP使用等差数列计数
+P1874 快速求和（https://www.luogu.com.cn/problem/P1874）线性DP
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/75/D（经典压缩数组，最大子段和升级）
@@ -221,6 +223,23 @@ class Solution:
                 dp[i + 1][j + 1] = min(dp[i][j + 1], dp[i][j] + abs(nums[j] - i - 1))
         return dp[m][n]
 
+    @staticmethod
+    def lg_p4933(ac=FastIO()):
+        # 模板：不同等差子序列的个数
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        mod = 998244353
+        ans = n
+        dp = [defaultdict(int) for _ in range(n)]
+        for i in range(n):
+            for j in range(i):
+                dp[i][nums[i]-nums[j]] += dp[j][nums[i]-nums[j]] + 1
+                dp[i][nums[i] - nums[j]] %= mod
+            for j in dp[i]:
+                ans += dp[i][j]
+                ans %= mod
+        ac.st(ans)
+        return
 
 class TestGeneral(unittest.TestCase):
 

@@ -17,7 +17,6 @@ from algorithm.src.fast_io import FastIO, inf
 2189. 建造纸牌屋的方法数（https://leetcode.cn/problems/number-of-ways-to-build-house-of-cards/）转换为01背包求解
 254. 因子的组合（https://leetcode.cn/problems/factor-combinations/）乘法结合背包DP
 
-
 ===================================洛谷===================================
 P1048 采药（https://www.luogu.com.cn/problem/P1048）一维背包DP，数量有限，从后往前遍历
 P1049 [NOIP2001 普及组] 装箱问题（https://www.luogu.com.cn/problem/P1049）一维背包DP
@@ -56,7 +55,9 @@ P6205 [USACO06JAN]Dollar Dayz S（https://www.luogu.com.cn/problem/P6205）一�
 P6389 [COCI2007-2008#4] MUZICARI（https://www.luogu.com.cn/problem/P6389）一维有限背包变种问题，寻找和尽可能接近的两个分组
 P6567 [NOI Online #3 入门组] 买表（https://www.luogu.com.cn/problem/P6567）一维二进制优化有限背包，即物品数为连续值时需要使用二进制优化
 P6771 [USACO05MAR]Space Elevator 太空电梯（https://www.luogu.com.cn/problem/P6771）排序后，一维有限变种背包，使用二进制优化
-
+P2842 纸币问题 1（https://www.luogu.com.cn/problem/P2842）一维无限背包DP不区分顺序
+P2840 纸币问题 2（https://www.luogu.com.cn/problem/P2840）一维无限背包DP区分顺序
+P2834 纸币问题 3（https://www.luogu.com.cn/problem/P2834）一维无限背包DP不区分顺序
 
 ================================CodeForces================================
 B. Modulo Sum（https://codeforces.com/problemset/problem/577/B）取模计数二进制优化与背包DP，寻找非空子序列的和整除给定的数
