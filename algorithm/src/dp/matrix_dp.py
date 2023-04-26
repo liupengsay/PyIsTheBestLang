@@ -1,6 +1,7 @@
 import unittest
 from bisect import bisect_left
 from collections import defaultdict
+from math import inf
 
 from typing import List
 from types import GeneratorType
@@ -52,6 +53,7 @@ P7160 「dWoi R1」Sixth Monokuma's Son（https://www.luogu.com.cn/problem/P7160
 P7266 [BalticOI 2000] Honeycomb Problem（https://www.luogu.com.cn/problem/P7266）蜂窝形状的矩阵DP
 P3399 丝绸之路（https://www.luogu.com.cn/problem/P3399）二维矩阵DP
 P2516 [HAOI2010]最长公共子序列（https://www.luogu.com.cn/problem/P2516）经典DP最长公共子序列以及最长公共子序列的长度
+P1544 三倍经验（https://www.luogu.com.cn/problem/P1544）三维矩阵DP
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1446/B（最长公共子序列LCS变形问题，理解贡献）
@@ -490,6 +492,41 @@ class Solution:
 
         ac.st(dp[pre][-1])
         ac.st(cnt[pre][-1])
+        return
+
+    @staticmethod
+    def lg_p1544(ac=FastIO()):
+        # 模板：三维矩阵DP
+        n, k = ac.read_ints()
+        dp = [[[-inf]*(k+1) for _ in range(n)] for _ in range(2)]
+        nums = []
+        while len(nums) < n*(n+1)//2:
+            nums.extend(ac.read_list_ints())
+
+        pre = 0
+        num = nums[0]
+        dp[pre][0][0] = num
+        dp[pre][0][1] = num*3
+        s = 1
+        for i in range(1, n):
+            lst = nums[s:s+i+1]
+            s += i+1
+            cur = 1-pre
+            dp[cur] = [[-inf]*(k+1) for _ in range(n)]
+            for j in range(i+1):
+                for p in range(k+1):
+                    if j and p:
+                        a = ac.max(dp[pre][j][p], dp[pre][j-1][p]) + lst[j]
+                        b = ac.max(dp[pre][j][p-1], dp[pre][j-1][p-1]) + lst[j]*3
+                        dp[cur][j][p] = ac.max(a, b)
+                    elif j:
+                        dp[cur][j][p] = ac.max(dp[pre][j][p], dp[pre][j-1][p]) + lst[j]
+                    elif p:
+                        dp[cur][j][p] = ac.max(dp[pre][j][p]+lst[j], dp[pre][j][p-1]+lst[j]*3)
+                    else:
+                        dp[cur][j][p] = dp[pre][j][p]+lst[j]
+            pre = cur
+        ac.st(max(max(d) for d in dp[pre]))
         return
 
 
