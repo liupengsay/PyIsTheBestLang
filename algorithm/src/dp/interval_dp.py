@@ -27,6 +27,8 @@ P1388 算式（https://www.luogu.com.cn/problem/P1388）回溯枚举符号组合
 P1103 书本整理（https://www.luogu.com.cn/problem/P1103）三维DP
 P2858 [USACO06FEB]Treats for the Cows G/S（https://www.luogu.com.cn/problem/P2858）典型区间DP
 P1880 石子合并（https://www.luogu.com.cn/problem/P1880）将数组复制成两遍进行区间DP
+P3205 [HNOI2010]合唱队（https://www.luogu.com.cn/problem/P3205）区间DP使用滚动数组
+P1880 [NOI1995] 石子合并（https://www.luogu.com.cn/problem/P1880）环形数组区间DP合并求最大值最小值
 
 ================================CodeForces================================
 C. The Sports Festival（https://codeforces.com/problemset/problem/1509/C）转换为区间DP进行求解
@@ -103,6 +105,35 @@ class Solution:
                     dp[i + 1] = max(dp[i + 1], dp[j] + 1)
         return dp[-1]
 
+    @staticmethod
+    def lg_p3205(ac=FastIO()):
+        # 模板：区间DP滚动数组更新
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        mod = 19650827
+        dp = [[[0, 0] for _ in range(n)] for _ in range(2)]
+        pre = 0
+        for i in range(n - 1, -1, -1):
+            cur = 1-pre
+            dp[cur][i][0] = 1
+            for j in range(i + 1, n):
+                x = 0
+                # 后 j
+                if nums[j - 1] < nums[j]:
+                    x += dp[cur][j - 1][1]
+                if nums[i] < nums[j]:
+                    x += dp[cur][j - 1][0]
+                dp[cur][j][1] = x % mod
+                x = 0
+                # 后 i
+                if nums[i + 1] > nums[i]:
+                    x += dp[pre][j][0]
+                if nums[j] > nums[i]:
+                    x += dp[pre][j][1]
+                dp[cur][j][0] = x % mod
+            pre = cur
+        ac.st(sum(dp[pre][n - 1]) % mod)
+        return
 
 class TestGeneral(unittest.TestCase):
 
