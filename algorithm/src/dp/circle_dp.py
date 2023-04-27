@@ -1,4 +1,5 @@
 import unittest
+from math import inf
 from typing import List
 
 from algorithm.src.fast_io import FastIO

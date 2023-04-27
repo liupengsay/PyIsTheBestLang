@@ -125,12 +125,6 @@ class FastIO:
         for i in range(n):
             for j in edges[i]:
                 g.add_edge(i+1, j+1)
-
-        # for u, v in edges:
-        #     # 添加边
-        #     g.add_edge(u, v)
-
-        # 绘制图形
         nx.draw_networkx(g)
         plt.show()
         return
@@ -168,4 +162,3 @@ class FastIO:
         for s in [st1, st2, st3, st4]:
             print("- " + "".join(s))
         return
-
