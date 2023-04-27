@@ -43,6 +43,7 @@ P5002 专心OI - 找祖先（https://www.luogu.com.cn/problem/P5002）使用树�
 P5651 基础最短路练习题（https://www.luogu.com.cn/problem/P5651）脑筋急转弯使用并查集去环，转换为树形DP里面任意两点路径的异或和
 P6591 [YsOI2020]植树（https://www.luogu.com.cn/problem/P6591）换根DP，即无根树递归判断每个节点作为根节点的情况
 P7159 「dWoi R1」Sweet Fruit Chocolate（https://www.luogu.com.cn/problem/P7159）树形DP枚举计数与快速幂计算
+P2015 二叉苹果树（https://www.luogu.com.cn/problem/P2015）树形DP
 
 ==================================AtCoder=================================
 F - Expensive Expense （https://atcoder.jp/contests/abc222/tasks/abc222_f）换根DP
@@ -916,6 +917,36 @@ class Solution:
                         y += b
                 dp[i] = [y, ac.max(x, y)]
         ac.st(max(dp[root]))
+        return
+
+    @staticmethod
+    def lg_p2015(ac=FastIO()):
+        # 模板：树形DP
+        n, q = ac.read_ints()
+        dct = [dict() for _ in range(n)]
+        for _ in range(n-1):
+            x, y, z = ac.read_ints()
+            dct[x-1][y-1] = z
+            dct[y-1][x-1] = z
+        dp = [[0]*(q+1) for _ in range(n)]
+        stack = [[0, -1]]
+        while stack:
+            i, fa = stack.pop()
+            if i >= 0:
+                stack.append([~i, fa])
+                for j in dct[i]:
+                    if j != fa:
+                        stack.append([j, i])
+            else:
+                i = ~i
+                if len(dct[i]) > 1:
+                    a, b = [x for x in dct[i] if x != fa]
+                    for j in range(1, q+1):
+                        cur = ac.max(dp[a][j-1]+dct[i][a], dp[b][j-1]+dct[i][b])
+                        for k in range(j-1):
+                            cur = ac.max(cur, dp[a][k]+dp[b][j-k-2]+dct[i][a]+dct[i][b])
+                        dp[i][j] = cur
+        ac.st(dp[0][q])
         return
 
 
