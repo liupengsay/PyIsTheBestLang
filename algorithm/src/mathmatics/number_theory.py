@@ -98,6 +98,7 @@ D. Same GCDs（https://codeforces.com/problemset/problem/1295/D）利用最大�
 D. Another Problem About Dividing Numbers（https://codeforces.com/problemset/problem/1538/D）使用pollard_rho进行质因数分解
 A. Row GCD（https://codeforces.com/problemset/problem/1458/A）gcd公式变换求解
 A. Division（https://codeforces.com/problemset/problem/1444/A）贪心枚举质数因子
+C. Strongly Composite（https://codeforces.com/contest/1823/problem/C）质因数分解进行贪心计算
 
 参考：OI WiKi（xx）
 """
@@ -193,8 +194,7 @@ class NumberTheory:
                     num //= p
                     cnt += 1
                 prime_factor[i].append([p, cnt])
-        return 
-
+        return
         
     @staticmethod
     def get_num_prime_factor(ceil):
@@ -763,6 +763,40 @@ class Solution:
             g = math.gcd(g, a[i]-a[i-1])
         ans = [math.gcd(g, a[0]+num) for num in b]
         ac.lst(ans)
+        return
+
+    @staticmethod
+    def main(ac=FastIO()):
+        # 模板：预先枚举质因子，再进行质因数分解
+        primes = NumberTheory().euler_flag_prime((4 * 10 ** 3))
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = ac.read_list_ints()
+            cnt = defaultdict(int)
+            for num in nums:
+                for x in primes:
+                    if x > num:
+                        break
+                    y = 0
+                    while num % x == 0:
+                        num //= x
+                        y += 1
+                    if y:
+                        cnt[x] += y
+                if num != 1:
+                    cnt[num] += 1
+            lst = list(cnt.values())
+            even = sum(x // 2 for x in lst)
+            odd = sum(x % 2 for x in lst)
+            ans = odd // 3
+            odd %= 3
+            if odd:
+                if ans or even:
+                    ac.st(ans + even)
+                else:
+                    ac.st(0)
+            else:
+                ac.st(ans + even)
         return
 
 
