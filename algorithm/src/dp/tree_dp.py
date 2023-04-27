@@ -881,6 +881,43 @@ class Solution:
             ac.st(ans)
         return
 
+    @staticmethod
+    def lg_p1352(ac=FastIO()):
+        # 模板：使用树形DP的迭代写法进行计算
+        n = ac.read_int()
+        nums = [ac.read_int() for _ in range(n)]
+
+        dct = [[] for _ in range(n)]
+        degree = [0]*n
+        for _ in range(n-1):
+            x, y = ac.read_ints_minus_one()
+            dct[y].append(x)
+            degree[x] += 1
+
+        root = [i for i in range(n) if not degree[i]][0]
+        dp = [[0, 0] for _ in range(n)]
+        stack = [[root, -1]]
+        while stack:
+            # 为取反码后的负数则直接出栈
+            i, fa = stack.pop()
+            if i >= 0:
+                stack.append([~i, fa])
+                for j in dct[i]:
+                    if j != fa:
+                        stack.append([j, i])
+            else:
+                i = ~i
+                x = nums[i] if nums[i] > 0 else 0
+                y = 0
+                for j in dct[i]:
+                    if j != fa:
+                        a, b = dp[j]
+                        x += a
+                        y += b
+                dp[i] = [y, ac.max(x, y)]
+        ac.st(max(dp[root]))
+        return
+
 
 class TestGeneral(unittest.TestCase):
 
