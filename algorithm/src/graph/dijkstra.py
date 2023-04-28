@@ -22,6 +22,7 @@ from algorithm.src.fast_io import FastIO, inf
 2258. 逃离火灾（https://leetcode.cn/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/）使用双源BFS计算等待时间后最短路求出路径上最小等待时间的最大值
 2290. 到达角落需要移除障碍物的最小数（https://leetcode.cn/problems/minimum-obstacle-removal-to-reach-corner/）计算最小代价
 499. 迷宫 III（https://leetcode.cn/problems/the-maze-iii/?envType=study-plan-v2&id=premium-algo-100）两个参数变量的最短路
+LCP 75. 传送卷轴（https://leetcode.cn/problems/rdmXM7/）一层BFS之后计算最大值最小的最短路
 
 ===================================洛谷===================================
 P3371 单源最短路径（弱化版）（https://www.luogu.com.cn/problem/P3371）最短路模板题
@@ -453,6 +454,61 @@ class Solution:
         dis = Dijkstra().get_second_shortest_path(dct, 0)
         ac.st(dis[n-1][1])
         return
+
+    @staticmethod
+    def lc_lcp75(maze: List[str]) -> int:
+        # 模板：最短路逃离
+        m, n = len(maze), len(maze[0])
+        start = [-1, -1]
+        end = [-1, -1]
+        for i in range(m):
+            for j in range(n):
+                w = maze[i][j]
+                if w == "S":
+                    start = [i, j]
+                elif w == "T":
+                    end = [i, j]
+
+        # 反向计算到达终点距离
+        bfs = [[inf] * n for _ in range(m)]
+        bfs[end[0]][end[1]] = 0
+        stack = deque([end])
+        while stack:
+            i, j = stack.popleft()
+            for x, y in [[i - 1, j], [i + 1, j], [i, j - 1], [i, j + 1]]:
+                if 0 <= x < m and 0 <= y < n and maze[x][y] != "#" and bfs[x][y] == inf:
+                    bfs[x][y] = bfs[i][j] + 1
+                    stack.append([x, y])
+
+        # 使用魔法卷轴更新正向距离
+        dis = [[inf] * n for _ in range(n)]
+        for i in range(m):
+            for j in range(n):
+                if bfs[i][j] < inf:
+                    dis[i][j] = 0
+                    if maze[i][j] == ".":
+                        if maze[m - 1 - i][j] != "#":
+                            dis[i][j] = max(dis[i][j], bfs[m - 1 - i][j])
+                        if maze[i][n - 1 - j] != "#":
+                            dis[i][j] = max(dis[i][j], bfs[i][n - 1 - j])
+
+        # 使用dijkstra计算最短路径边权最小的最大值
+        visit = [[inf] * n for _ in range(n)]
+        stack = [[dis[start[0]][start[1]], start[0], start[1]]]
+        visit[start[0]][start[1]] = dis[start[0]][start[1]]
+        while stack:
+            d, i, j = heapq.heappop(stack)
+            if visit[i][j] < d:
+                continue
+            visit[i][j] = d
+            for x, y in [[i - 1, j], [i + 1, j], [i, j - 1], [i, j + 1]]:
+                if 0 <= x < m and 0 <= y < n and maze[x][y] != "#":
+                    dj = max(d, dis[x][y])
+                    if dj < visit[x][y]:
+                        visit[x][y] = dj
+                        heapq.heappush(stack, [dj, x, y])
+        x, y = end
+        return visit[x][y] if visit[x][y] < inf else -1
 
 
 class TestGeneral(unittest.TestCase):
