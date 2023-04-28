@@ -66,6 +66,7 @@ P7551 [COCI2020-2021#6] Alias（https://www.luogu.com.cn/problem/P7551）最短�
 P6175 无向图的最小环问题（https://www.luogu.com.cn/problem/P6175）使用Dijkstra枚举边计算或者使用DFS枚举点，带权
 P4568 [JLOI2011] 飞行路线（https://www.luogu.com.cn/problem/P4568）K层建图计算Dijkstra最短路
 P2865 [USACO06NOV]Roadblocks G（https://www.luogu.com.cn/problem/P2865）严格次短路模板题
+P2622 关灯问题II（https://www.luogu.com.cn/problem/P2622）状压加dijkstra最短路计算
 
 ================================CodeForces================================
 C. Dijkstra?（https://codeforces.com/problemset/problem/20/C）正权值最短路计算，并记录返回生成路径
@@ -509,6 +510,33 @@ class Solution:
                         heapq.heappush(stack, [dj, x, y])
         x, y = end
         return visit[x][y] if visit[x][y] < inf else -1
+
+    @staticmethod
+    def lg_p2622(ac=FastIO()):
+        # 模板：Dijkstra加状压最短路
+        n = ac.read_int()
+        m = ac.read_int()
+        grid = [ac.read_list_ints() for _ in range(m)]
+        visit = [inf]*(1<<n)
+        visit[(1<<n)-1] = 0
+        stack = [[0,  (1<<n)-1]]
+        while stack:
+            d, state = heapq.heappop(stack)
+            if visit[state] < d:
+                continue
+            for i in range(m):
+                cur = state
+                for j in range(n):
+                    if grid[i][j] == 1 and cur & (1<<j):
+                        cur ^= (1<<j)
+                    elif grid[i][j] == -1 and not cur & (1<<j):
+                        cur ^= (1 << j)
+                if d+1 < visit[cur]:
+                    visit[cur] = d+1
+                    heapq.heappush(stack, [d+1, cur])
+        ans = visit[0]
+        ac.st(ans if ans < inf else -1)
+        return
 
 
 class TestGeneral(unittest.TestCase):
