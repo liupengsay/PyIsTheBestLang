@@ -44,6 +44,8 @@ P5651 基础最短路练习题（https://www.luogu.com.cn/problem/P5651）脑筋
 P6591 [YsOI2020]植树（https://www.luogu.com.cn/problem/P6591）换根DP，即无根树递归判断每个节点作为根节点的情况
 P7159 「dWoi R1」Sweet Fruit Chocolate（https://www.luogu.com.cn/problem/P7159）树形DP枚举计数与快速幂计算
 P2015 二叉苹果树（https://www.luogu.com.cn/problem/P2015）树形DP
+P2014 [CTSC1997] 选课（https://www.luogu.com.cn/problem/P2014）树形DP
+P4316 绿豆蛙的归宿（https://www.luogu.com.cn/problem/P4316）逆向建图，拓扑排序DP
 
 ==================================AtCoder=================================
 F - Expensive Expense （https://atcoder.jp/contests/abc222/tasks/abc222_f）换根DP
@@ -947,6 +949,68 @@ class Solution:
                             cur = ac.max(cur, dp[a][k]+dp[b][j-k-2]+dct[i][a]+dct[i][b])
                         dp[i][j] = cur
         ac.st(dp[0][q])
+        return
+
+    @staticmethod
+    def lg_p2014(ac=FastIO()):
+        # 模板：树形DP加背包DP
+        n, m = ac.read_ints()
+        dct = [[] for _ in range(n + 1)]
+        nums = [0]
+        for i in range(n):
+            k, s = ac.read_ints()
+            nums.append(s)
+            dct[k].append(i + 1)
+        dp = [[0] * (m + 2) for _ in range(n + 1)]
+        stack = [[0, -1]]
+        while stack:
+            i, fa = stack.pop()
+            if i >= 0:
+                stack.append([~i, fa])
+                for j in dct[i]:
+                    if j != fa:
+                        stack.append([j, i])
+            else:
+                i = ~i
+                dp[i][1] = nums[i]
+                for j in dct[i]:
+                    if j != fa:
+                        cur = dp[i][:]
+                        for x in range(1, m + 2):
+                            for y in range(m + 2 - x):
+                                cur[x + y] = ac.max(cur[x + y], dp[i][x] + dp[j][y])
+                        dp[i] = cur[:]
+        ac.st(dp[0][m + 1])
+        return
+
+    @staticmethod
+    def lg_p4316(ac=FastIO()):
+        # 模板：反向建图加拓扑排序树形概率DP
+        n, m = ac.read_ints()
+        dp = [0 for _ in range(n)]
+        degree = [0]*n
+        dct = [dict() for _ in range(n)]
+        for _ in range(m):
+            a, b, w = ac.read_ints()
+            a -= 1
+            b -= 1
+            dct[b][a] = w
+            degree[a] += 1
+        cnt = degree[:]
+
+        stack = deque([n-1])
+        while stack:
+            i = stack.popleft()
+            k = len(dct[i])
+            a = dp[i]
+            for j in dct[i]:
+                dp[j] += a + dct[i][j]
+                degree[j] -= 1
+                if not degree[j]:
+                    dp[j] /= cnt[j]
+                    stack.append(j)
+        ans = "%.2f" % (dp[0])
+        ac.st(ans)
         return
 
 

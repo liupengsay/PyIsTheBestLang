@@ -2,6 +2,7 @@
 import unittest
 from collections import defaultdict
 from functools import lru_cache
+from math import inf
 
 from algorithm.src.fast_io import FastIO
 
@@ -22,6 +23,7 @@ P2910 [USACO08OPEN]Clear And Present Danger S（https://www.luogu.com.cn/problem
 P6464 [传智杯 #2 决赛] 传送门（https://www.luogu.com.cn/problem/P6464）枚举边之后进行Floyd算法更新计算，经典理解Floyd的原理题，经典借助中间两点更新最短距离
 P6175 无向图的最小环问题（https://www.luogu.com.cn/problem/P6175）经典使用Floyd枚举三个点之间的距离和，O(n^3)，也可以使用BFS或者Dijkstra计算
 B3611 【模板】传递闭包（https://www.luogu.com.cn/problem/B3611）传递闭包模板题，使用FLoyd解法
+P1613 跑路（https://www.luogu.com.cn/problem/P1613）经典Floyd动态规划
 
 ================================CodeForces================================
 D. Design Tutorial: Inverse the Problem（https://codeforces.com/problemset/problem/472/D）使用Floyd判断构造给定的点对最短路距离是否存在
@@ -169,6 +171,40 @@ class Solution:
                     return
         ac.st("YES")
         return
+
+    @staticmethod
+    def lg_p1613(ac=FastIO()):
+        # 模板：建立新图计算Floyd最短路
+        n, m = ac.read_ints()
+        dp = [[[0] * 32 for _ in range(n)] for _ in range(n)]
+        for _ in range(m):
+            u, v = ac.read_ints_minus_one()
+            dp[u][v][0] = 1
+
+        # Floyd建新图
+        for x in range(1, 32):
+            for k in range(n):
+                for i in range(n):
+                    for j in range(n):
+                        if dp[i][k][x - 1] and dp[k][j][x - 1]:
+                            dp[i][j][x] = 1
+
+        # Floyd新图计算最短路
+        dis = [[inf] * n for _ in range(n)]
+        for i in range(n):
+            for j in range(n):
+                for x in range(32):
+                    if dp[i][j][x]:
+                        dis[i][j] = 1
+                        break
+
+        for k in range(n):
+            for i in range(n):
+                for j in range(n):
+                    dis[i][j] = ac.min(dis[i][j], dis[i][k] + dis[k][j])
+        ac.st(dis[0][n - 1])
+        return
+
 
 class TestGeneral(unittest.TestCase):
 
