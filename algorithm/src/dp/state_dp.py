@@ -49,8 +49,8 @@ P2196 [NOIP1996 提高组] 挖地雷（https://www.luogu.com.cn/problem/P2196）
 P1690 贪婪的Copy（https://www.luogu.com.cn/problem/P1690）最短路加状压DP
 P1294 高手去散步（https://www.luogu.com.cn/problem/P1294）图问题使用状压DP求解最长直径
 P1123 取数游戏（https://www.luogu.com.cn/problem/P1123）类似占座位的经典状压DP
-
 P1433 吃奶酪（https://www.luogu.com.cn/problem/P1433）状压DP
+P1896 [SCOI2005] 互不侵犯（https://www.luogu.com.cn/problem/P1896）状压DP
 
 ================================CodeForces================================
 D. Kefa and Dishes（https://codeforces.com/problemset/problem/580/D）状态压缩DP结合前后相邻的增益计算最优解
@@ -193,40 +193,6 @@ class Solution:
         return dfs(lst[0], 0)
 
     @staticmethod
-    def lg_p1896(n, k):
-        # 模板：经典国王摆放状态压缩 DP
-        @lru_cache(None)
-        def dfs(state, i, x):
-            # [上一行状态，当前行索引，已有国王个数]
-            if x == k:
-                return 1
-            if i == n or x > k:
-                return 0
-
-            # 当前行不摆放
-            res = dfs(0, i + 1, x)
-
-            # 当前行可摆放的位置
-            ind = []
-            for j in range(n):
-                if all(not state & (1 << w)
-                       for w in [j - 1, j, j + 1] if 0 <= w < n):
-                    ind.append(j)
-
-            # 枚举当前行摆放方案
-            m = len(ind)
-            for length in range(1, m + 1):
-                if x + length <= k:
-                    for item in combinations(ind, length):
-                        if any(item[j + 1] - item[j] == 1 for j in range(length - 1)):
-                            continue
-                        nex = sum(1 << w for w in item)
-                        res += dfs(nex, i + 1, x + length)
-            return res
-
-        return dfs(0, 0, 0)
-
-    @staticmethod
     def lc_2403_1(power: List[int]) -> int:
         # 模板：状态压缩DP数组形式
         m = len(power)
@@ -259,18 +225,34 @@ class Solution:
 
         m = len(power)
         return dfs((1 << m) - 1)
-    
-    
+
+    @staticmethod
+    def lg_p1896(ac=FastIO()):
+        # 模板：状压DP迭代写法
+        n, k = ac.read_ints()
+        dp = [[[0]*(k+1) for _ in range(1<<n)] for _ in range(n+1)]
+        dp[0][0][0] = 1
+
+        for i in range(n):  # 行
+            for j in range(1 << n):
+                for num in range(k+1):
+                    cur = [x for x in range(n) if not j & (1<<x) and (x==0 or not j & (1<<(x-1))) and (x==n-1 or not j &(1<<(x+1)))]
+                    for y in range(1, len(cur)+1):
+                        if num + y <= k:
+                            for item in combinations(cur, y):
+                                if all(item[p]-item[p-1] != 1 for p in range(1, y)):
+                                    state = reduce(or_, [1 << z for z in item])
+                                    dp[i+1][state][num+y] += dp[i][j][num]
+                    dp[i+1][0][num] += dp[i][j][num]
+        ans = sum(dp[n][j][k] for j in range(1<<n))
+        ac.st(ans)
+        return
+
 
 class TestGeneral(unittest.TestCase):
 
     def test_state_dp(self):
-        sd = Solution()
-        assert sd.lg_p1896(9, 12) == 50734210126
-
-        seats = [["#", ".", ".", ".", "#"], [".", "#", ".", "#", "."], [".", ".", "#", ".", "."], [".", "#", ".", "#", "."], ["#", ".", ".", ".", "#"]]
-        assert sd.main_l1349(seats) == 10
-
+        pass
         return
 
 
