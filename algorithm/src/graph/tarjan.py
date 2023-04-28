@@ -2,7 +2,7 @@ import unittest
 from collections import defaultdict
 from math import inf
 from typing import DefaultDict, Set, List, Tuple
-
+from collections import Counter
 from algorithm.src.dp.tree_dp import TreeCentroid
 from algorithm.src.fast_io import FastIO
 
@@ -45,7 +45,13 @@ P2863 [USACO06JAN]The Cow Prom S（https://www.luogu.com.cn/problem/P2863）tarj
 P1656 炸铁路（https://www.luogu.com.cn/problem/P1656）求割边
 P1793 跑步（https://www.luogu.com.cn/problem/P1793）求连通图两个指定点之间的割点，使用枚举与并查集的方式进行求解
 
+
+===================================CodeForces===================================
 F. Is It Flower?（https://codeforces.com/contest/1811/problem/F）无向图求连通分量
+C. Checkposts（https://codeforces.com/problemset/problem/427/C）有向图的强联通分量进行缩点
+
+
+
 """
 
 
@@ -601,6 +607,28 @@ class Solution:
         for g in group:
             ans += len(group[g]) > 1
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_427c(ac=FastIO()):
+        # 模板：tarjan进行有向图缩点后计数
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        for _ in range(ac.read_int()):
+            x, y = ac.read_ints_minus_one()
+            dct[x].append(y)
+        _, group, _ = TarjanCC().get_strongly_connected_component_bfs(n, dct)
+        ans = 1
+        cost = 0
+        mod = 10**9+7
+        for g in group:
+            cnt = Counter([nums[i] for i in group[g]])
+            x = min(cnt)
+            cost += x
+            ans *= cnt[x]
+            ans %= mod
+        ac.lst([cost, ans])
         return
 
 
