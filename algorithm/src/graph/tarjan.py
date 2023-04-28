@@ -1,5 +1,5 @@
 import unittest
-from collections import defaultdict
+from collections import defaultdict, deque
 from math import inf
 from typing import DefaultDict, Set, List, Tuple
 from collections import Counter
@@ -44,7 +44,7 @@ P2863 [USACO06JAN]The Cow Prom S（https://www.luogu.com.cn/problem/P2863）tarj
 
 P1656 炸铁路（https://www.luogu.com.cn/problem/P1656）求割边
 P1793 跑步（https://www.luogu.com.cn/problem/P1793）求连通图两个指定点之间的割点，使用枚举与并查集的方式进行求解
-
+P2656 采蘑菇（https://www.luogu.com.cn/problem/P2656）使用scc缩点后，计算DAG最长路
 
 ===================================CodeForces===================================
 F. Is It Flower?（https://codeforces.com/contest/1811/problem/F）无向图求连通分量
@@ -629,6 +629,63 @@ class Solution:
             ans *= cnt[x]
             ans %= mod
         ac.lst([cost, ans])
+        return
+
+    @staticmethod
+    def lg_p2656(ac=FastIO()):
+        # 模板：使用scc缩点后，计算DAG最长路
+        n, m = ac.read_ints()
+        edge = [set() for _ in range(n)]
+        edges = []
+        for _ in range(m):
+            a, b, c, d = ac.read_list_strs()
+            a = int(a)-1
+            b = int(b)-1
+            c = int(c)
+            d = float(d)
+            edges.append([a, b, c, d])
+            if a != b:
+                edge[a].add(b)
+        s = ac.read_int()-1
+        scc_id, scc_node_id, node_scc_id = TarjanCC().get_strongly_connected_component_bfs(n, [list(x) for x in edge])
+        cnt = defaultdict(int)
+        dis = [defaultdict(int) for _ in range(scc_id)]
+        pre = [set() for _ in range(scc_id)]
+        for i, j, c, d in edges:
+            if node_scc_id[i] == node_scc_id[j]:
+                x = 0
+                while c:
+                    x += c
+                    c = int(c*d)
+                cnt[node_scc_id[i]] += x
+            else:
+                a, b = node_scc_id[i], node_scc_id[j]
+                dis[a][b] = ac.max(dis[a][b], c)
+                pre[b].add(a)
+
+        # 注意这里可能有 0 之外的入度为 0 的点，需要先进行拓扑消除
+        stack = deque([i for i in range(scc_id) if not pre[i] and i != node_scc_id[s]])
+        while stack:
+            i = stack.popleft()
+            for j in dis[i]:
+                pre[j].discard(i)
+                if not pre[j]:
+                    stack.append(j)
+
+        # 广搜计算最长路，进一步还可以确定相应的具体路径
+        visit = [-inf] * scc_id
+        visit[node_scc_id[s]] = cnt[node_scc_id[s]]
+        stack = deque([node_scc_id[s]])
+        while stack:
+            i = stack.popleft()
+            for j in dis[i]:
+                w = dis[i][j]
+                pre[j].discard(i)
+                if visit[i] + w + cnt[j] > visit[j]:
+                    visit[j] = visit[i] + w + cnt[j]
+                if not pre[j]:
+                    stack.append(j)
+        ac.st(max(visit))
         return
 
 
