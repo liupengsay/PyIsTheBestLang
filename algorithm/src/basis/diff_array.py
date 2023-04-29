@@ -1,4 +1,5 @@
 import unittest
+from collections import defaultdict
 from typing import List
 
 from algorithm.src.fast_io import FastIO
@@ -46,6 +47,9 @@ C. Count Triangles（https://codeforces.com/problemset/problem/1355/C）经典�
 C. Tea Tasting（https://codeforces.com/problemset/problem/1795/C）前缀和二分后，经典使用差分计数模拟加和
 D. Constant Palindrome Sum（https://codeforces.com/problemset/problem/1343/D）枚举x使用差分数组进行范围计数
 E. Counting Rectangles（https://codeforces.com/problemset/problem/1722/E）根据数字取值范围使用二位前缀和计算
+D. Absolute Sorting（https://codeforces.com/contest/1772/problem/D）离散差分作用域计数
+
+
 参考：OI WiKi（xx）
 """
 
@@ -391,6 +395,40 @@ class Solution:
                 if [m, k] < ans:
                     ans = [m, k]
         ac.lst(ans[::-1])
+        return
+
+    @staticmethod
+    def cf_1772d(ac=FastIO()):
+        # 模板：离散化差分数组作用域计数
+        ceil = 10 ** 9
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            diff = defaultdict(int)
+            nums = ac.read_list_ints()
+            for i in range(1, n):
+                a, b = nums[i - 1], nums[i]
+                if a == b:
+                    diff[0] += 1
+                    diff[ceil + 1] -= 1
+                elif a < b:
+                    mid = a + (b - a) // 2
+                    diff[0] += 1
+                    diff[mid + 1] -= 1
+                else:
+                    mid = b - (b - a) // 2
+                    diff[mid] += 1
+                    diff[ceil + 1] -= 1
+
+            axis = sorted(list(diff.keys()))
+            m = len(axis)
+            for i in range(m):
+                if i:
+                    diff[axis[i]] += diff[axis[i - 1]]
+                if diff[axis[i]] == n - 1:
+                    ac.st(axis[i])
+                    break
+            else:
+                ac.st(-1)
         return
 
 
