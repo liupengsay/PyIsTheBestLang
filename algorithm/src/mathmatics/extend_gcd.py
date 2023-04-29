@@ -28,7 +28,7 @@ import copy
 
 
 """
-算法：扩展欧几里得定理、extended_gcd、binary_gcd、二进制gcd
+算法：扩展欧几里得定理、extended_gcd、binary_gcd、二进制gcd、裴蜀定理
 功能：用于求解单个同余方程
 题目：
 
@@ -39,31 +39,10 @@ import copy
 P1082 同余方程（https://www.luogu.com.cn/problem/P1082）转化为同余方程求解最小的正整数解
 P5435 基于值域预处理的快速 GCD（https://www.luogu.com.cn/problem/P5435）binary_gcd快速求解
 P5582 【SWTR-01】Escape（https://www.luogu.com.cn/problem/P5582）贪心加脑筋急转弯，使用扩展欧几里得算法gcd为1判断可达性
-
+P1516 青蛙的约会（https://www.luogu.com.cn/problem/P1516）求解a*x+b*y=m的最小正整数解
 
 参考：OI WiKi（xx）
 """
-
-
-def binary_gcd(a, b):
-    c = 1
-    while a - b:
-        if a & 1:
-            if b & 1:
-                if a > b:
-                    a = (a - b) >> 1
-                else:
-                    b = (b - a) >> 1
-            else:
-                b = b >> 1
-        else:
-            if b & 1:
-                a = a >> 1
-            else:
-                c = c << 1
-                b = b >> 1
-                a = a >> 1
-    return c * a
 
 
 class ExtendGcd:
@@ -79,8 +58,9 @@ class ExtendGcd:
             return gcd, y - (b // a) * x, x
 
     def solve_equal(self, a, b, m=1):
-        # 求解ax+by=m方程组的所有解
+        # 模板：扩展gcd求解ax+by=m方程组的所有解
         gcd, x0, y0 = self.extend_gcd(a, b)
+        # 方程有解当且仅当c是gcd(a,b)的倍数
         assert a * x0 + b * y0 == 1
 
         # 方程组的解初始值则为
@@ -92,8 +72,31 @@ class ExtendGcd:
         # y = y1-a//gcd*t(t=0,1,2,3,...)
         return [gcd, x1, y1]
 
+    @staticmethod
+    def binary_gcd(a, b):
+        # 模板：二进制gcd，使用二进制求两个正数的gcd
+        assert a > 0 and b > 0
+        c = 1
+        while a - b:
+            if a & 1:
+                if b & 1:
+                    if a > b:
+                        a = (a - b) >> 1
+                    else:
+                        b = (b - a) >> 1
+                else:
+                    b = b >> 1
+            else:
+                if b & 1:
+                    a = a >> 1
+                else:
+                    c = c << 1
+                    b = b >> 1
+                    a = a >> 1
+        return c * a
 
-class Luogu:
+
+class Solution:
     def __init__(self):
         return
 
@@ -111,8 +114,11 @@ class Luogu:
 class TestGeneral(unittest.TestCase):
 
     def test_extend_gcd(self):
-        luogu = Luogu()
-        assert luogu.main_1082(3, 10) == 7
+
+        for _ in range(1000):
+            a = random.randint(1, 10**9)
+            b = random.randint(1, 10**9)
+            assert ExtendGcd().binary_gcd(a, b) == math.gcd(a, b)
         return
 
 

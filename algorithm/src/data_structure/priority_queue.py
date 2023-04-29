@@ -25,6 +25,7 @@ P1886 滑动窗口 /【模板】单调队列（https://www.luogu.com.cn/problem/
 P1714 切蛋糕（https://www.luogu.com.cn/problem/P1714）前缀和加滑动窗口最小值
 P1725 琪露诺（https://www.luogu.com.cn/problem/P1725）单调队列和指针维护滑动窗口最大值加线性DP
 P2827 [NOIP2016 提高组] 蚯蚓（https://www.luogu.com.cn/problem/P2827）经典单调队列
+P3800 Power收集（https://www.luogu.com.cn/problem/P3800）单调队列优化矩阵DP
 
 参考：OI WiKi（xx）
 """
@@ -206,6 +207,36 @@ class Solution:
                 ans2.append(nums[ceil[0]])
         ac.lst(ans1)
         ac.lst(ans2)
+        return
+
+    @staticmethod
+    def lg_p3800(ac=FastIO()):
+        # 模板：单调队列优化矩阵DP
+        m, n, k, t = ac.read_ints()
+        dct = [dict() for _ in range(m)]
+        for _ in range(k):
+            x, y, val = ac.read_ints()
+            x -= 1
+            y -= 1
+            dct[x][y] = val
+
+        dp = [[0]*n for _ in range(2)]
+        pre = 0
+        for i in range(m):
+            cur = 1-pre
+            stack = deque()
+            ind = 0
+            for j in range(n):
+                while stack and stack[0][0] < j-t:
+                    stack.popleft()
+                while ind < n and ind <= j+t:
+                    while stack and stack[-1][1] <= dp[pre][ind]:
+                        stack.pop()
+                    stack.append([ind, dp[pre][ind]])
+                    ind += 1
+                dp[cur][j] = dct[i].get(j, 0) + stack[0][1]
+            pre = cur
+        ac.st(max(dp[pre]))
         return
 
 

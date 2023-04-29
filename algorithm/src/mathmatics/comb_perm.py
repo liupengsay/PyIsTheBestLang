@@ -10,10 +10,10 @@ from functools import lru_cache
 
 """
 
-算法：数学排列组合计数、乘法逆元（也叫combinatorics）
+算法：数学排列组合计数、乘法逆元（也叫combinatorics）、Lucas定理
 功能：全排列计数，选取comb计数，隔板法，错位排列，斯特林数、卡特兰数，容斥原理，可以通过乘法逆元快速求解组合数与全排列数
 题目：
-
+Lucas定理（comb(n, m)%p = comb(n%p, m%p)*comb(n//p, m//p)）%p
 ===================================力扣===================================
 634. 寻找数组的错位排列（https://leetcode.cn/problems/find-the-derangement-of-an-array/）错位排列计数使用动态规划转移计算
 1259. 不相交的握手（https://leetcode.cn/problems/handshakes-that-dont-cross/）卡特兰数
@@ -32,6 +32,7 @@ P3197 [HNOI2008]越狱（https://www.luogu.com.cn/problem/P3197）计数快速�
 P3414 SAC#1 - 组合数（https://www.luogu.com.cn/problem/P3414）组合数奇偶对半开，快速幂计算
 P4369 [Code+#4]组合数问题（https://www.luogu.com.cn/problem/P4369）脑筋急转弯进行组合数加和构造
 P5520 [yLOI2019] 青原樱（https://www.luogu.com.cn/problem/P5520）隔板法计算组合数
+P3807 【模板】卢卡斯定理/Lucas 定理（https://www.luogu.com.cn/problem/P3807）卢卡斯模板题
 
 ================================CodeForces================================
 D. Triangle Coloring（https://codeforces.com/problemset/problem/1795/D）组合计数取模与乘法逆元快速计算
@@ -43,10 +44,10 @@ C. Binary Search（https://codeforces.com/problemset/problem/1436/C）二分加�
 卡特兰数（https://oi-wiki.org/math/combinatorics/catalan/）
 """
 
-
 class Combinatorics:
     def __init__(self, n, mod):
-        # 模板：求全排列组合数
+        # 模板：求全排列组合数，使用时注意 n 的取值范围
+        n += 10
         self.perm = [1] * n
         self.rev = [1] * n
         self.mod = mod
@@ -55,8 +56,10 @@ class Combinatorics:
             self.perm[i] = self.perm[i - 1] * i
             self.perm[i] %= self.mod
         self.rev[-1] = pow(self.perm[-1], -1, self.mod)
-        for i in range(n-2, 0, -1):
-            self.rev[i] = (self.rev[i+1]*(i+1)%mod)
+        for i in range(n - 2, 0, -1):
+            self.rev[i] = (self.rev[i + 1] * (i + 1) % mod)
+        self.fault = [0] * n
+        self.fault_perm()
         return
 
     def comb(self, a, b):
@@ -68,6 +71,21 @@ class Combinatorics:
         # 组合数根据乘法逆元求解
         res = self.perm[a]
         return res % self.mod
+
+    def fault_perm(self):
+        # 求错位排列组合数
+        self.fault[0] = 1
+        self.fault[2] = 1
+        for i in range(3, len(self.fault)):
+            self.fault[i] = (i - 1) * (self.fault[i - 1] + self.fault[i - 2])
+            self.fault[i] %= self.mod
+        return
+
+    def lucas(self, n, m, p):
+        # 模板：卢卡斯定理，求 math.comb(n, m) % p
+        if m == 0:
+            return 1
+        return ((math.comb(n % p, m % p) % p) * self.lucas(n // p, m // p, p)) % p
 
 
 class Solution:
@@ -216,60 +234,18 @@ class Solution:
         return
 
     @staticmethod
-    def main_p4071():
-        import sys
-        sys.setrecursionlimit(10 ** 8)
-
-        def read():
-            return sys.stdin.readline().strip()
-
-        def ac(x):
-            return sys.stdout.write(str(x) + '\n')
-
-        length = 100
-        mod = 10 ** 9 + 7
-
-        # 求全排列组合数
-        perm = [1] * length
-        for i in range(1, length):
-            perm[i] = perm[i - 1] * i
-            perm[i] %= mod
-
-        # 求错位排列组合数
-        fault = [0] * length
-        fault[0] = 1
-        fault[2] = 1
-        for i in range(3, length):
-            fault[i] = (i - 1) * (fault[i - 1] + fault[i - 2])
-            fault[i] %= mod
-
-        # 利用乘法逆元求解组合数
-        def comb(a, b):
-            res = perm[a] * pow(perm[b], -1, mod) * pow(perm[a - b], -1, mod)
-            return res % mod
-
-        def main():
-            t = int(input())
-            for _ in range(t):
-                n, m = [int(w) for w in input().strip().split() if w]
-                while len(fault) <= n:
-                    num = (len(fault) - 1) * (fault[-1] + fault[-2])
-                    num %= mod
-                    fault.append(num)
-
-                    num = len(perm) * perm[-1]
-                    num %= mod
-                    perm.append(num)
-
-                if m > n:
-                    ac(0)
-                else:
-                    # m 个全排列乘 n-m 个错位排列
-                    ans = (comb(n, m) * fault[n - m]) % mod
-                    ac(ans)
-            return
-
-        main()
+    def lg_p4017(ac=FastIO()):
+        # 模板：组合数与错位排列求解
+        mod = 10**9+7
+        cb = Combinatorics(10**6, mod)
+        for _ in range(ac.read_int()):
+            n, m = ac.read_ints()
+            if m > n:
+                ac.st(0)
+                continue
+            ans = cb.comb(n, m)*cb.fault[n-m]
+            ans %= mod
+            ac.st(ans)
         return
 
     @staticmethod
@@ -289,24 +265,45 @@ class Solution:
         x = dfs(n, r) * math.factorial(r)
         return x
 
+    @staticmethod
+    def lg_p1287(ac=FastIO()):
+        # 模板：容斥原理计数
+        n, r = ac.read_ints()
+        ans = 0
+        for k in range(r):
+            cur = ((-1)**k)*math.comb(r, k)*((r-k)**n)
+            ans += cur
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p4071(ac=FastIO()):
+        # 模板：隔板法计算组合数
+        tp, n, m, p = ac.read_ints()
+
+        if n < 2 * m - 1:
+            ac.st(0)
+            return
+
+        ans = 1
+        for x in range(n-2*m+2, n-m+2):
+            ans *= x
+            ans %= p
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p3807(ac=FastIO()):
+        # 模板：Lucas模板题
+        for _ in range(ac.read_int()):
+            n, m, p = ac.read_ints()
+            ans = Combinatorics(10, 10**9+7).lucas(n+m, n, p)
+            ac.st(ans)
+        return
 
 class TestGeneral(unittest.TestCase):
-
     def test_comb_perm(self):
-        cp = Solution()
-        i = 500
-        j = 10000
-        mod = 10**9 + 7
-        assert math.comb(j, i) % mod == cp.comb_perm(j, i)
 
-        assert cp.main_p1287(3, 2) == 6
-
-        nums = [1, 2, 3]
-        ans = cp.combinnation(nums, 2)
-        assert ans == [[1, 2], [1, 3], [2, 3]]
-
-        ans = cp.permutation(nums, 1)
-        assert ans == [[1], [2], [3]]
 
         return
 
