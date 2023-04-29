@@ -57,6 +57,7 @@ P7767 [COCI 2011/2012 #5] DNA（https://www.luogu.com.cn/problem/P7767）线性D
 P2246 SAC#1 - Hello World（升级版）（https://www.luogu.com.cn/problem/P2246）字符串计数线性DP
 P4933 大师（https://www.luogu.com.cn/problem/P4933）线性DP使用等差数列计数
 P1874 快速求和（https://www.luogu.com.cn/problem/P1874）线性DP
+P2513 [HAOI2009]逆序对数列（https://www.luogu.com.cn/problem/P2513）前缀和优化DP
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/75/D（经典压缩数组，最大子段和升级）

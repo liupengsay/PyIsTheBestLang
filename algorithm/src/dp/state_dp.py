@@ -55,6 +55,9 @@ P1896 [SCOI2005] 互不侵犯（https://www.luogu.com.cn/problem/P1896）状压D
 ================================CodeForces================================
 D. Kefa and Dishes（https://codeforces.com/problemset/problem/580/D）状态压缩DP结合前后相邻的增益计算最优解
 E. Compatible Numbers（https://codeforces.com/problemset/problem/165/E）线性DP，状态压缩枚举，类似子集思想求解可能存在的与为0的数对
+D. A Simple Task（https://codeforces.com/contest/11/problem/D）状压DP，无向图简单环计数
+
+
 
 参考：OI WiKi（xx）
 """
@@ -245,6 +248,46 @@ class Solution:
                                     dp[i+1][state][num+y] += dp[i][j][num]
                     dp[i+1][0][num] += dp[i][j][num]
         ans = sum(dp[n][j][k] for j in range(1<<n))
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_11d(ac=FastIO()):
+
+        # 模板：状压DP无向图简单环计数
+        n, m = ac.read_ints()
+
+        # 建图
+        dct = [[] for _ in range(n)]
+        for _ in range(m):
+            i, j = ac.read_ints_minus_one()
+            dct[i].append(j)
+            dct[j].append(i)
+
+        # 初始化
+        dp = [[0] * n for _ in range(1 << n)]
+        for i in range(n):
+            dp[1 << i][i] = 1
+
+        ans = 0
+        for i in range(1, 1 << n):  # 经过的点状态，lowest_bit为起点
+            for j in range(n):
+                if not dp[i][j]:
+                    continue
+                for k in dct[j]:
+                    # 下一跳必须不能比起点序号小
+                    if (i & -i) > (1 << k):
+                        continue
+                    if i & (1 << k):
+                        # 访问过且是起点则形成环
+                        if (i & -i) == 1 << k:
+                            ans += dp[i][j]
+                    else:
+                        # 未访问过传到下一状态
+                        dp[i ^ (1 << k)][k] += dp[i][j]
+
+        # 去除一条边的环以及是无向图需要除以二
+        ans = (ans - m) // 2
         ac.st(ans)
         return
 
