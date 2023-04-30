@@ -13,6 +13,7 @@ from typing import List
 179. 最大数（https://leetcode.cn/problems/largest-number/）自定义拼接最大数
 912. 排序数组（https://leetcode.cn/problems/sort-an-array/）快速排序
 面试题45. 把数组排成最小的数（https://leetcode.cn/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/）自定义拼接成最小的数
+2412. 完成所有交易的初始最少钱数（https://leetcode.cn/problems/minimum-money-required-before-transactions/）自定义排序贪心选择顺序
 
 ===================================洛谷===================================
 P2310 loidc，看看海（https://www.luogu.com.cn/problem/P2310）预处理排序之后进行遍历
@@ -24,6 +25,9 @@ P1177 【模板】快速排序（https://www.luogu.com.cn/problem/P1177）快速
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/922/D（贪心加自定义排序）
+
+
+113. 特殊排序（https://www.acwing.com/problem/content/description/115/）自定义排序调用函数进行比较
 
 参考：OI WiKi（xx）
 """
@@ -301,6 +305,45 @@ class VariousSort:
             return 0
         nums.sort(key=cmp_to_key(compare))
         return nums
+
+    @staticmethod
+    def ac_113(compare, n):
+
+        # 模板：自定义排序
+
+        def compare_(x, y):
+            # 比较函数
+            if compare(x, y):
+                return -1
+            return 1
+
+        nums = list(range(1, n+1))
+        nums.sort(key=cmp_to_key(compare_))
+        return nums
+
+    @staticmethod
+    def minimum_money(transactions: List[List[int]]) -> int:
+        # 模板：贪心选择顺序，自定义排序方式
+
+        def check(ls):
+            x, y = ls[0], ls[1]
+            res = [0, 0]
+            if x > y:
+                res[0] = 0
+                res[1] = y
+            else:
+                res[0] = 1
+                res[1] = -x
+            return res
+
+        transactions.sort(key=lambda it: check(it))
+        ans = cur = 0
+        for a, b in transactions:
+            if cur < a:
+                ans += a-cur
+                cur = a
+            cur += b-a
+        return ans
 
 
 class Solution:

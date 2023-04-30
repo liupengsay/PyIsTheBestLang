@@ -12,6 +12,8 @@ from algorithm.src.fast_io import FastIO
 
 ===================================力扣===================================
 918. 环形子数组的最大和（https://leetcode.cn/problems/maximum-sum-circular-subarray/）枚举可能的最大与最小区间
+1388. 3n 块披萨（https://leetcode.cn/problems/pizza-with-3n-slices/）环形区间DP，类似打家劫舍
+213. 打家劫舍 II（https://leetcode.cn/problems/house-robber-ii/）环形数组DP
 
 ===================================洛谷===================================
 P1880 [NOI1995] 石子合并（https://www.luogu.com.cn/problem/P1880）环形数组区间DP合并求最大值最小值

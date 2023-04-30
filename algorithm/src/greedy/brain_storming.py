@@ -82,6 +82,9 @@ P7633 [COCI2010-2011#5] BRODOVI（https://www.luogu.com.cn/problem/P7633）使�
 P7714 「EZEC-10」排列排序（https://www.luogu.com.cn/problem/P7714）经典子序列排序使得整体有序，使用前缀最大值与指针计数确认子数组分割点
 P7787 [COCI2016-2017#6] Turnir（https://www.luogu.com.cn/problem/P7787）脑筋急转弯，借助完全二叉树的思想
 P7813 谜（https://www.luogu.com.cn/problem/P7813）贪心计算最大选取值
+P1031 [NOIP2002 提高组] 均分纸牌（https://www.luogu.com.cn/problem/P1031）经典线性均分纸牌问题
+P2512 [HAOI2008]糖果传递（https://www.luogu.com.cn/problem/P2512）经典线性环形均分纸牌问题
+122. 糖果传递（https://www.acwing.com/problem/content/124/）经典线性环形均分纸牌问题
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1186/D（贪心取floor，再根据加和为0的特质进行补充加1成为ceil）
@@ -108,6 +111,10 @@ B. Color the Fence（https://codeforces.com/problemset/problem/349/B）贪心模
 C. Number Game（https://codeforces.com/problemset/problem/1370/C）贪心模拟必胜态
 E. Making Anti-Palindromes（https://codeforces.com/contest/1822/problem/E）贪心进行模拟计数
 
+
+104. 货仓选址（https://www.acwing.com/problem/content/106/）中位数贪心
+1536. 均分纸牌（https://www.acwing.com/problem/content/description/1538/）贪心均分纸牌
+105. 七夕祭（https://www.acwing.com/problem/content/description/1538/）经典环形均分纸牌问题
 
 参考：OI WiKi（xx）
 """
@@ -182,6 +189,62 @@ class Solution:
             for w, c in double:
                 ans += w * c
             ac.st(ans + single[m // 2] + ans[::-1])
+        return
+
+    @staticmethod
+    def lg_p2512(ac=FastIO()):
+        # 模板：经典环形均分纸牌问题
+        n = ac.read_int()
+        nums = [ac.read_int() for _ in range(n)]
+        m = sum(nums)//n
+        x = 0
+        pre = []
+        for i in range(n):
+            x += m - nums[i]
+            pre.append(x)
+        pre.sort()
+        y = pre[n//2]
+        ans = sum(abs(num-y) for num in pre)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def ac_105(ac=FastIO()):
+
+        def check(nums):
+            # 环形均分纸牌
+            nn = len(nums)
+            s = sum(nums)
+            if s % nn:
+                return -1
+            mm = s // nn
+            x = 0
+            pre = []
+            for i in range(nn):
+                x += mm - nums[i]
+                pre.append(x)
+            pre.sort()
+            y = pre[nn // 2]
+            ans = sum(abs(num - y) for num in pre)
+            return ans
+
+        m, n, t = ac.read_ints()
+        row = [0] * m
+        col = [0] * n
+        for _ in range(t):
+            xx, yy = ac.read_ints_minus_one()
+            row[xx] += 1
+            col[yy] += 1
+        ans1 = check(row)
+        ans2 = check(col)
+        if ans1 != -1 and ans2 != -1:
+            ac.lst(["both", ans1 + ans2])
+        elif ans1 != -1:
+            ac.lst(["row", ans1])
+        elif ans2 != -1:
+            ac.lst(["column", ans2])
+        else:
+            ac.st("impossible")
         return
 
 

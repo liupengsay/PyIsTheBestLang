@@ -10,7 +10,7 @@ from functools import reduce
 from algorithm.src.fast_io import FastIO
 
 """
-算法：ST（Sparse-Table）稀疏表
+算法：ST（Sparse-Table）稀疏表、倍增
 功能：计算静态区间内的最大值、最小值、最大公约数、最大与、最大或
 ST表算法全称Sparse-Table算法，是由Tarjan提出的一种解决RMQ问题（区间最值）的强力算法。 离线预处理时间复杂度θ（nlogn），在线查询时间θ（1），可以说是一种非常高效的算法。 不过ST表的应用场合也是有限的，它只能处理静态区间最值，不能维护动态的，也就是说不支持在预处理后对值进行修改。
 
@@ -31,6 +31,10 @@ D. Friends and Subsequences（https://codeforces.com/problemset/problem/689/D）
 D. Yet Another Yet Another Task（https://codeforces.com/problemset/problem/1359/D）单调栈枚举加ST表最大值最小值查询
 B. Integers Have Friends（https://codeforces.com/problemset/problem/1548/B）ST表查询区间gcd并枚举数组开头，二分确定长度
 474F（https://codeforces.com/problemset/problem/474/F）稀疏表计算最小值和gcd，并使用二分查找计数
+
+
+================================AcWing====================================
+109. 天才ACM（https://www.acwing.com/problem/content/111/）贪心加倍增计算最少分段数
 
 参考：OI WiKi（xx）
 """
@@ -251,6 +255,59 @@ class Solution:
                 ac.st(y - x + 1 - res)
             else:
                 ac.st(y - x + 1)
+        return
+
+    @staticmethod
+    def ac_109(ac=FastIO()):
+
+        def merge(lst1, lst2):
+            a, b = len(lst1), len(lst2)
+            x = y = 0
+            res = []
+            while x < a or y < b:
+                if x == a or (y < b and lst2[y] < lst1[x]):
+                    res.append(lst2[y])
+                    y += 1
+                else:
+                    res.append(lst1[x])
+                    x += 1
+            return res
+
+        def check(lst1):
+            k = len(lst1)
+            x, y = 0, k - 1
+            res = cnt = 0
+            while x < y and cnt < m:
+                res += (lst1[x] - lst1[y]) ** 2
+                if res > t:
+                    return False
+                x += 1
+                y -= 1
+                cnt += 1
+            return True
+
+        # 模板：利用倍增与归并排序的思想进行数组划分
+        for _ in range(ac.read_int()):
+            n, m, t = ac.read_ints()
+            nums = ac.read_list_ints()
+            ans = i = 0
+            while i < n:
+                p = 1
+                lst = [nums[i]]
+                right = i
+                while p and right < n:
+                    cur = nums[right + 1:right + p + 1]
+                    cur.sort()
+                    tmp = merge(lst, cur)
+                    if check(tmp):
+                        lst = tmp[:]
+                        right += p
+                        p *= 2
+                    else:
+                        p //= 2
+                ans += 1
+                i = right + 1
+            ac.st(ans)
         return
 
 
