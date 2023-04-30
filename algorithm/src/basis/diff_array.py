@@ -18,6 +18,7 @@ import bisect
 1229. 安排会议日程（https://leetcode.cn/problems/meeting-scheduler/）离散化差分数组
 6292. 子矩阵元素加 1（https://leetcode.cn/problems/increment-submatrices-by-one/)二维差分前缀和
 2565. 最少得分子序列（https://leetcode.cn/problems/subsequence-with-the-minimum-score/）使用前后缀指针枚举匹配最长前后缀
+644. 子数组最大平均数 II（https://leetcode.cn/problems/maximum-average-subarray-ii/）前缀和加二分计算不短于k的子数组最大平均值
 
 ===================================洛谷===================================
 P8772 [蓝桥杯 2022 省 A] 求和（https://www.luogu.com.cn/record/list?user=739032&status=12&page=15）后缀和计算
@@ -49,6 +50,11 @@ D. Constant Palindrome Sum（https://codeforces.com/problemset/problem/1343/D）
 E. Counting Rectangles（https://codeforces.com/problemset/problem/1722/E）根据数字取值范围使用二位前缀和计算
 D. Absolute Sorting（https://codeforces.com/contest/1772/problem/D）离散差分作用域计数
 
+================================AcWing===================================
+99. 激光炸弹（https://www.acwing.com/problem/content/description/101/）二维前缀和
+100. 增减序列（https://www.acwing.com/problem/content/102/）差分数组经典题目，明晰本质
+101. 最高的牛（https://www.acwing.com/problem/content/103/）查分数组，贪心得出结论
+102. 最佳牛围栏（https://www.acwing.com/problem/content/104/）前缀和加二分计算不短于k的子数组最大平均值
 
 参考：OI WiKi（xx）
 """
@@ -160,15 +166,19 @@ class Solution:
     def lg_p4552(ac=FastIO()):
         # 模板：差分数组经典题，明晰差分本质
         n = ac.read_int()
-        diff = [ac.read_int() for _ in range(n)]
-        for i in range(n - 1, 0, -1):
-            diff[i] -= diff[i - 1]
-        pos = sum(num for num in diff[1:] if num > 0)
-        neg = -sum(num for num in diff[1:] if num < 0)
-        ans1 = max(pos, neg)
-        ans2 = abs(pos - neg) + 1
-        ac.st(ans1)
-        ac.st(ans2)
+        pre = -1
+        pos = 0
+        neg = 0
+        for _ in range(n):
+            num = ac.read_int()
+            if pre != -1:
+                if pre > num:
+                    neg += pre-num
+                else:
+                    pos += num-pre
+            pre = num
+        ac.st(max(pos, neg))
+        ac.st(abs(pos-neg)+1)
         return
 
     @staticmethod
@@ -429,6 +439,56 @@ class Solution:
                     break
             else:
                 ac.st(-1)
+        return
+
+    @staticmethod
+    def ac_99(ac=FastIO()):
+        # 模板：二维前缀和
+        n, m = ac.read_ints()
+
+        lst = [ac.read_list_ints() for _ in range(n)]
+        length = max(max(ls[:-1]) for ls in lst) + 1
+        grid = [[0] * length for _ in range(length)]
+        for x, y, v in lst:
+            grid[x][y] += v
+        ans = 0
+        dp = [[0] * (length + 1) for _ in range(length + 1)]
+        for i in range(length):
+            for j in range(length):
+                dp[i + 1][j + 1] = dp[i][j + 1] + dp[i + 1][j] - dp[i][j] + grid[i][j]
+                a, b = max(i - m + 1, 0), max(j - m + 1, 0)
+                cur = dp[i + 1][j + 1] - dp[i + 1][b] - dp[a][j + 1] + dp[a][b]
+                ans = ans if ans > cur else cur
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def ac_102(ac=FastIO()):
+
+        # 模板：前缀和加二分计算不短于k的子数组最大平均值
+        n, f = ac.read_ints()
+        nums = [ac.read_int() for _ in range(n)]
+
+        def check(x):
+            y = 0
+            pre = [0] * (n + 1)
+            for i in range(n):
+                y += nums[i] * 1000 - x
+                pre[i + 1] = pre[i] if pre[i] < y else y
+                if i >= f - 1 and y - pre[i - f + 1] >= 0:
+                    return True
+            return False
+
+        error = 1
+        low = 0
+        high = max(nums) * 1000
+        while low < high - error:
+            mid = low + (high - low) // 2
+            if check(mid):
+                low = mid
+            else:
+                high = mid
+        ac.st(high if check(high) else low)
         return
 
 

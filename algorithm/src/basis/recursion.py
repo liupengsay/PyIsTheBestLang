@@ -19,6 +19,8 @@ P1228 地毯填补问题（https://www.luogu.com.cn/problem/P1228）四叉树分
 ================================CodeForces================================
 C. Painting Fence（https://codeforces.com/contest/448/problem/C）贪心递归DP
 
+98. 分形之城（https://www.acwing.com/problem/content/100/）四叉树递归与坐标旋转变换
+93. 递归实现组合型枚举（https://www.acwing.com/problem/content/95/）递归与迭代两种方式实现组合数选取
 
 参考：OI WiKi（xx）
 """
@@ -114,6 +116,96 @@ class Solution:
             yield ac.min(ans, m)
 
         ac.st(dfs(nums))
+        return
+
+    @staticmethod
+    def ac_98(ac=FastIO()):
+
+        # 模板：四叉树递归与坐标旋转变换
+        for _ in range(ac.read_int()):
+            n, a, b = ac.read_ints()
+            a -= 1
+            b -= 1
+
+            def check(nn, mm):
+                # 递归改成迭代写法极大提升速度
+                stack = [[nn, mm]]
+                x = y = -1
+                while stack:
+                    if stack[-1][0] == 0:
+                        x = y = 0
+                        stack.pop()
+                        continue
+                    else:
+                        nn, mm = stack[-1]
+                        cc = 2 ** (2 * nn - 2)
+                        if x != -1:
+                            stack.pop()
+                            z = mm // cc
+                            length = 2 ** (nn - 1)
+                            if z == 0:
+                                x, y = y, x
+                            elif z == 1:
+                                x, y = x, y + length
+                            elif z == 2:
+                                x, y = x + length, y + length
+                            else:
+                                x, y = 2 * length - y - 1, length - x - 1
+                        else:
+                            stack.append([nn-1, mm % cc])
+                return x, y
+
+            x1, y1 = check(n, a)
+            x2, y2 = check(n, b)
+            ans = ((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5 * 10
+            ans = int(ans) + int(ans - int(ans) >= 0.5)
+            ac.st(ans)
+        return
+
+    @staticmethod
+    def ac_93_1(ac=FastIO()):
+        n, m = ac.read_ints()
+        # 模板：递归实现选取
+
+        def dfs(i):
+            if len(pre) == m:
+                ac.lst(pre)
+                return
+            if i == n:
+                return
+
+            dfs(i + 1)
+            pre.append(i + 1)
+            dfs(i + 1)
+            pre.pop()
+            return
+
+        pre = []
+        dfs(0)
+        return
+
+    @staticmethod
+    def ac_93_2(ac=FastIO()):
+        n, m = ac.read_ints()
+
+        # 模板：迭代实现选取
+        pre = []
+        stack = [[0, 0]]
+        while stack:
+            i, state = stack.pop()
+            if i >= 0:
+                stack.append([~i, state])
+                if len(pre) == m:
+                    ac.lst(pre)
+                    continue
+                if i == n:
+                    continue
+                stack.append([i + 1, 0])
+                pre.append(i + 1)
+                stack.append([i + 1, 1])
+            else:
+                if state:
+                    pre.pop()
         return
 
 

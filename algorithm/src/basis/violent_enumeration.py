@@ -79,6 +79,10 @@ C. Flag（https://codeforces.com/problemset/problem/1181/C）按列进行枚举
 B. Maximum Value（https://codeforces.com/problemset/problem/484/B）排序后进行枚举，并使用二分查找进行确认
 C. Arithmetic Progression（https://codeforces.com/problemset/problem/382/C）分类讨论
 
+
+================================Acwing===================================
+95. 费解的开关（https://www.acwing.com/problem/content/description/97/）枚举第一行的开关按钮使用状态
+
 参考：OI WiKi（xx）
 """
 
@@ -248,6 +252,41 @@ class Solution:
             else:
                 ac.st(2)
                 ac.lst([nums[0] - low, nums[-1] + low])
+        return
+
+    @staticmethod
+    def ac_95(ac=FastIO()):
+        # 模板：枚举第一行状态
+        n = ac.read_int()
+
+        for _ in range(n):
+            grid = [[int(w) for w in ac.read_str()] for _ in range(5)]
+            ac.read_str()
+
+            ans = -1
+            for state in range(1 << 5):
+                lst = [x for x in range(5) if state & (1 << x)]
+                temp = [g[:] for g in grid]
+                cur = len(lst)
+                for x in lst:
+                    i, j = 0, x
+                    temp[i][j] = 1 - temp[i][j]
+                    for a, b in [[i - 1, j], [i + 1, j], [i, j - 1], [i, j + 1]]:
+                        if 0 <= a < 5 and 0 <= b < 5:
+                            temp[a][b] = 1 - temp[a][b]
+
+                for r in range(1, 5):
+                    for j in range(5):
+                        if temp[r - 1][j] == 0:
+                            i, j = r, j
+                            temp[i][j] = 1 - temp[i][j]
+                            cur += 1
+                            for a, b in [[i - 1, j], [i + 1, j], [i, j - 1], [i, j + 1]]:
+                                if 0 <= a < 5 and 0 <= b < 5:
+                                    temp[a][b] = 1 - temp[a][b]
+                if all(all(x == 1 for x in g) for g in temp):
+                    ans = ans if ans < cur and ans != -1 else cur
+            ac.st(ans if ans <= 6 else -1)
         return
 
 

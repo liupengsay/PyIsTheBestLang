@@ -100,6 +100,8 @@ A. Row GCD（https://codeforces.com/problemset/problem/1458/A）gcd公式变换�
 A. Division（https://codeforces.com/problemset/problem/1444/A）贪心枚举质数因子
 C. Strongly Composite（https://codeforces.com/contest/1823/problem/C）质因数分解进行贪心计算
 
+================================AcWing================================
+97. 约数之和（https://www.acwing.com/problem/content/99/）计算a^b的所有约数之和
 参考：OI WiKi（xx）
 """
 
@@ -799,6 +801,44 @@ class Solution:
                 ac.st(ans + even)
         return
 
+    @staticmethod
+    def ac_97_1(ac=FastIO()):
+        # 模板：a^b的所有约数之和
+        a, b = ac.read_ints()
+        lst = NumberTheory().get_prime_factor2(a)
+        mod = 9901
+        ans = 1
+        for p, c in lst:
+            ans *= (pow(p, b*c+1, mod)-1) * pow(p-1, -1, mod)
+            ans %= mod
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def ac_97_2(ac=FastIO()):
+        # 模板：a^b的所有约数之和
+
+        def check(pp, cc):
+
+            # 等比数列求和递归分治计算
+            if cc == 0:
+                return 1
+            if cc % 2 == 1:
+                return (1 + pow(pp, (cc + 1) // 2, mod)) * check(pp, (cc - 1) // 2)
+            return (1 + pow(pp, (cc + 0) // 2, mod)) * check(pp, (cc - 1) // 2) + pow(pp, cc, mod)
+
+        a, b = ac.read_ints()
+        if a == 0:
+            ac.st(0)
+            return
+        lst = NumberTheory().get_prime_factor2(a)
+        mod = 9901
+        ans = 1
+        for p, c in lst:
+            ans *= check(p, c * b)
+            ans %= mod
+        ac.st(ans)
+        return
 
 class TestGeneral(unittest.TestCase):
 

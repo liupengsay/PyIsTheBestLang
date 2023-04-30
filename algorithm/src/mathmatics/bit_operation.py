@@ -43,6 +43,9 @@ F. Dasha and Nightmares（https://codeforces.com/contest/1800/problem/F）位运
 D. Little Girl and Maximum XOR（https://codeforces.com/problemset/problem/276/D）范围[l,r]区间的最大异或和
 G. Orray（https://codeforces.com/contest/1742/problem/G）重排数组使得前缀或值的字典序最大
 
+================================AcWing===================================
+998. 起床困难综合症（https://www.acwing.com/problem/content/1000/）按位进行或、异或、与操作后贪心选取最大值
+
 参考：OI WiKi（xx）
 https://blog.csdn.net/qq_35473473/article/details/106320878
 """
@@ -320,6 +323,36 @@ class Solution:
         # 模板：生成 n 位数的格雷码
         ans = BitOperation().get_graycode(n)
         return ans
+
+    @staticmethod
+    def ac_998(ac=FastIO()):
+        # 模板：按照二进制每个位进行操作，计算贪心结果
+        n, m = ac.read_ints()
+        ans = [[0, 1 << i] for i in range(32)]
+        for _ in range(n):
+            op, t = ac.read_list_strs()
+            t = int(t)
+            if op == "AND":
+                for i in range(32):
+                    ans[i][0] &= t & (1 << i)
+                    ans[i][1] &= t & (1 << i)
+            elif op == "OR":
+                for i in range(32):
+                    ans[i][0] |= t & (1 << i)
+                    ans[i][1] |= t & (1 << i)
+            else:
+                for i in range(32):
+                    ans[i][0] ^= t & (1 << i)
+                    ans[i][1] ^= t & (1 << i)
+        res = x = 0
+        for i in range(31, -1, -1):
+            if ans[i][1] > ans[i][0] and (x | (1 << i)) <= m:
+                x |= (1 << i)
+                res += ans[i][1]
+            else:
+                res += ans[i][0]
+        ac.st(res)
+        return
 
 
 class TestGeneral(unittest.TestCase):

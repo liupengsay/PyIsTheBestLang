@@ -69,6 +69,9 @@ D. Armchairs（https://codeforces.com/problemset/problem/1525/D）二维线性DP
 A. Garland（https://codeforces.com/problemset/problem/1286/A）线性经典dp
 D. Make The Fence Great Again（https://codeforces.com/problemset/problem/1221/D）线性DP，最多变化为增加0、1、2
 
+================================AcWing====================================
+96. 奇怪的汉诺塔（https://www.acwing.com/problem/content/98/）经典的汉诺塔问题，可推广到n个盘子与m个柱子
+
 参考：OI WiKi（xx）
 """
 
@@ -241,6 +244,27 @@ class Solution:
                 ans %= mod
         ac.st(ans)
         return
+
+    @staticmethod
+    def ac_96(ac=FastIO()):
+        # 模板：两层线性DP，经典汉诺塔问题
+        n = 12
+        dp3 = [inf] * (n + 1)  # 三个柱子
+        dp3[0] = 0
+        dp3[1] = 1
+        for i in range(2, n + 1):
+            dp3[i] = 2 * dp3[i - 1] + 1
+
+        dp4 = [inf] * (n + 1)  # 四个柱子
+        dp4[0] = 0
+        dp4[1] = 1
+        for i in range(2, n + 1):
+            dp4[i] = min(2 * dp4[j] + dp3[i - j] for j in range(1, i))
+
+        for x in range(1, n+1):
+            ac.st(dp4[x])
+        return
+
 
 class TestGeneral(unittest.TestCase):
 
