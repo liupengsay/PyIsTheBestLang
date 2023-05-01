@@ -37,7 +37,7 @@ E. Explosions?（https://codeforces.com/problemset/problem/1795/E）单调栈贪
 
 ================================AcWing====================================
 131. 直方图中最大的矩形（https://www.acwing.com/problem/content/133/）单调栈求最大矩形
-
+152. 城市游戏（https://www.acwing.com/problem/content/description/154/）单调栈求最大矩形
 
 参考：OI WiKi（xx）
 """

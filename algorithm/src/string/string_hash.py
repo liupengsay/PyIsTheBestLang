@@ -31,7 +31,7 @@ from algorithm.src.fast_io import FastIO
 
 """
 
-算法：字符串哈希、树哈希
+算法：字符串哈希、树哈希、矩阵哈希
 功能：将一定长度的字符串映射为多项式函数值，并进行比较或者计数，通常结合滑动窗口进行计算，注意防止哈希碰撞
 题目：
 
@@ -53,7 +53,7 @@ D. Remove Two Letters（https://codeforces.com/problemset/problem/1800/D）字�
 
 ================================AcWing================================
 138. 兔子与兔子（https://www.acwing.com/problem/content/140/）字符串哈希，计算子串是否完全相等
-
+156. 矩阵（https://www.acwing.com/problem/content/description/158/）经典矩阵哈希
 
 参考：OI WiKi（xx）
 """
@@ -196,7 +196,6 @@ class Solution:
                 x2 = pre2
                 y2 = post2[i + 2]
                 ans.add(((x1 * dp1[n - i - 2] + y1) % mod1, (x2 * dp2[n - i - 2] + y2) % mod2))
-                # ans.add((x1 * dp1[n - i - 2] + y1) % mod1)
                 pre1 = (pre1 * p1) % mod1 + ord(s[i]) - ord("a")
                 pre2 = (pre2 * p2) % mod2 + ord(s[i]) - ord("a")
             ac.st(len(ans))
@@ -238,6 +237,73 @@ class Solution:
                 ac.st("Yes")
             else:
                 ac.st("No")
+        return
+
+    @staticmethod
+    def ac_156(ac=FastIO()):
+        # 模板：矩阵哈希查找子矩阵是否存在
+        m, n, a, b = ac.read_ints()
+        grid = [ac.read_str() for _ in range(m)]
+
+        # 经典双哈希防止碰撞
+        p1 = random.randint(26, 100)
+        p2 = random.randint(26, 100)
+        mod1 = random.randint(10 ** 9 + 7, 2 ** 31 - 1)
+        mod2 = random.randint(10 ** 9 + 7, 2 ** 31 - 1)
+
+        def check(p, mod):
+
+            # 先列从左到右，按行从上到下
+            col = [[0] * n for _ in range(m + 1)]
+            for i in range(m):
+                for j in range(n):
+                    col[i + 1][j] = (col[i][j] * p + int(grid[i][j])) % mod
+
+            # 计算当前点往列向上 a 长度的哈希值
+            pa = pow(p % mod, a, mod)
+            for j in range(n):
+                for i in range(m - 1, a - 2, -1):
+                    col[i + 1][j] = (col[i + 1][j] - col[i - a + 1][j] * pa) % mod
+
+            # 计算每一个形状为 a*b 的子矩阵哈希值
+            pre = set()
+            pab = pow(pa, b, mod)  # 注意此时的模数
+            for i in range(a - 1, m):
+                lst = [0]
+                x = 0
+                for j in range(n):
+                    x *= pa
+                    x += col[i + 1][j]
+                    x %= mod
+                    lst.append(x)
+                    if j >= b - 1:
+                        # 计算向左 b 长度的哈希值
+                        cur = (lst[j + 1] - (lst[j - b + 1] % mod) * pab) % mod
+                        pre.add(cur)
+            return pre
+
+        def check_read(p, mod):
+            # 先列从左到右，按行从上到下
+            y = 0
+            for j in range(b):
+                for i in range(a):
+                    y *= p
+                    y += int(grid[i][j])
+                    y %= mod
+            # 形式为 [[p^3, p^1], [p^2, p^0]]
+            return y
+
+        pre1 = check(p1, mod1)
+        pre2 = check(p2, mod2)
+
+        for _ in range(ac.read_int()):
+            grid = [ac.read_str() for _ in range(a)]
+            y1 = check_read(p1, mod1)
+            y2 = check_read(p2, mod2)
+            if y1 in pre1 and y2 in pre2:
+                ac.st(1)
+            else:
+                ac.st(0)
         return
 
 
