@@ -8,7 +8,7 @@ from sortedcontainers import SortedList
 from algorithm.src.fast_io import FastIO
 
 """
-算法：堆（优先队列）
+算法：堆（优先队列）、Huffman树（霍夫曼树）
 功能：通常用于需要贪心的场景
 题目：
 
@@ -29,9 +29,16 @@ P2085 最小函数值（https://www.luogu.com.cn/problem/P2085）用数学加一
 P1631 序列合并（https://www.luogu.com.cn/problem/P1631）用一个堆维护前K小
 P4053 建筑抢修（https://www.luogu.com.cn/problem/P4053）用一个堆延迟选择贪心维护最优
 P1878 舞蹈课（https://www.luogu.com.cn/problem/P1878）用哈希加一个堆进行模拟计算
+P3620 [APIO/CTSC2007] 数据备份（https://www.luogu.com.cn/problem/P3620）贪心思想加二叉堆与双向链表优
+P2168 [NOI2015] 荷马史诗（https://www.luogu.com.cn/problem/P2168）霍夫曼树与二叉堆贪心
 
 ===================================AcWing======================================
 146. 序列（https://www.acwing.com/problem/content/description/148/）小顶堆计算经典问题m个数组最小的n个子序列和，同样可以计算最大的
+147. 数据备份（https://www.acwing.com/problem/content/description/149/）贪心思想加二叉堆与双向链表优化
+148. 合并果子（https://www.acwing.com/problem/content/150/）贪心二叉堆，霍夫曼树Huffman Tree的思想，每次优先合并较小的
+149. 荷马史诗（https://www.acwing.com/problem/content/description/151/）霍夫曼树与二叉堆贪心
+
+
 
 参考：OI WiKi（xx）
 """
@@ -172,6 +179,71 @@ class Solution:
                         heapq.heappush(stack, [pre[i]+cur[j+1], i, j+1])
                 pre = nex[:]
             ac.lst(pre)
+        return
+
+    @staticmethod
+    def ac_147(ac=FastIO()):
+        # 模板：贪心思想加二叉堆与双向链表优化
+
+        n, k = ac.read_ints()
+        nums = [ac.read_int() for _ in range(n)]
+
+        # 假如虚拟的头节点并初始化
+        diff = [inf] + [nums[i + 1] - nums[i] for i in range(n - 1)] + [inf]
+        stack = [[diff[i], i] for i in range(1, n)]
+        heapq.heapify(stack)
+        pre = [i - 1 for i in range(n + 1)]
+        post = [i + 1 for i in range(n + 1)]
+        pre[0] = 0
+        post[n] = n
+
+        # 记录删除过的点
+        ans = 0
+        delete = [0] * (n + 1)
+        while k:
+            val, i = heapq.heappop(stack)
+            if delete[i]:
+                continue
+            ans += diff[i]
+
+            # 加入新点删除旧点
+            left = diff[pre[i]]
+            right = diff[post[i]]
+            new = left + right - diff[i]
+            diff[i] = new
+            delete[pre[i]] = 1
+            delete[post[i]] = 1
+
+            pre[i] = pre[pre[i]]
+            post[pre[i]] = i
+
+            post[i] = post[post[i]]
+            pre[post[i]] = i
+            heapq.heappush(stack, [new, i])
+            k -= 1
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p2168(ac=FastIO()):
+        # 模板：二叉堆贪心与霍夫曼树Huffman Tree
+        n, k = ac.read_ints()
+        stack = [[ac.read_int(), 0] for _ in range(n)]
+        heapq.heapify(stack)
+        while (len(stack) - 1) % (k-1) != 0:
+            heapq.heappush(stack, [0, 0])
+        ans = 0
+        while len(stack) > 1:
+            cur = 0
+            dep = 0
+            for _ in range(k):
+                val, d = heapq.heappop(stack)
+                cur += val
+                dep = ac.max(dep, d)
+            ans += cur
+            heapq.heappush(stack, [cur, dep+1])
+        ac.st(ans)
+        ac.st(stack[0][1])
         return
 
 
