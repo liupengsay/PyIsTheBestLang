@@ -21,6 +21,7 @@ C. Painting Fence（https://codeforces.com/contest/448/problem/C）贪心递归D
 
 98. 分形之城（https://www.acwing.com/problem/content/100/）四叉树递归与坐标旋转变换
 93. 递归实现组合型枚举（https://www.acwing.com/problem/content/95/）递归与迭代两种方式实现组合数选取
+118. 分形（https://www.acwing.com/problem/content/120/）递归生成分形
 
 参考：OI WiKi（xx）
 """
@@ -206,6 +207,38 @@ class Solution:
             else:
                 if state:
                     pre.pop()
+        return
+
+    @staticmethod
+    def ac_118(ac=FastIO()):
+        # 模板：使用迭代方式进行递归计算
+        dp = []
+        for i in range(1, 8):
+            n = 3 ** (i - 1)
+            ans = [[" "] * n for _ in range(n)]
+            stack = [[0, 0, n - 1, n - 1]]
+            while stack:
+                x1, y1, x2, y2 = stack.pop()
+                if x1 == x2 and y1 == y2:
+                    ans[x1][y1] = "X"
+                    continue
+                m = x2 - x1 + 1
+                b = m // 3
+                col = {0: 0, 2: 2, 4: 1, 6: 0, 8: 2}
+                for x in [0, 2, 4, 6, 8]:
+                    start = [x1 + b * (x // 3), y1 + b * col[x]]
+                    end = [x1 + b * (x // 3) + b - 1, y1 + b * col[x] + b - 1]
+                    stack.append([start[0], start[1], end[0], end[1]])
+            dp.append(["".join(a) for a in ans])
+
+        while True:
+            n = ac.read_int()
+            if n == -1:
+                break
+            for a in dp[n-1]:
+                ac.st(a)
+            ac.st("-")
+
         return
 
 

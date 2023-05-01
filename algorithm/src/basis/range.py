@@ -1,5 +1,6 @@
 import unittest
 from collections import defaultdict
+from math import inf
 from typing import List
 
 from algorithm.src.fast_io import FastIO
@@ -37,6 +38,7 @@ A. String Reconstruction（https://codeforces.com/problemset/problem/827/A）区
 D. Nested Segments（https://codeforces.com/problemset/problem/652/D）二位偏序，转换为区间包含问题
 D. Non-zero Segments（https://codeforces.com/problemset/problem/1426/D）贪心选取最少的点集合，使得每个区间包含其中至少一个点
 
+112. 雷达设备（https://www.acwing.com/problem/content/114/）作用范围进行区间贪心
 
 参考：OI WiKi（xx）
 """
@@ -213,6 +215,30 @@ class Solution:
             else:
                 ans += 1
                 b = d
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def ac_112(ac=FastIO()):
+        # 模板：区间类型的贪心
+        n, d = ac.read_ints()
+        lst = [ac.read_list_ints() for _ in range(n)]
+        if any(abs(y) > d for _, y in lst):
+            ac.st(-1)
+            return
+        for i in range(n):
+            x, y = lst[i]
+            r = (d*d-y*y)**0.5
+            lst[i] = [x-r, x+r]
+        lst.sort(key=lambda it: it[0])
+        ans = 0
+        pre = -inf
+        for a, b in lst:
+            if a > pre:
+                ans += 1
+                pre = b
+            else:
+                pre = ac.min(pre, b)
         ac.st(ans)
         return
 

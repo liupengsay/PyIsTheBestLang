@@ -115,6 +115,7 @@ E. Making Anti-Palindromes（https://codeforces.com/contest/1822/problem/E）贪
 104. 货仓选址（https://www.acwing.com/problem/content/106/）中位数贪心
 1536. 均分纸牌（https://www.acwing.com/problem/content/description/1538/）贪心均分纸牌
 105. 七夕祭（https://www.acwing.com/problem/content/description/1538/）经典环形均分纸牌问题
+110. 防晒（https://www.acwing.com/problem/content/112/）贪心匹配最多组合
 
 参考：OI WiKi（xx）
 """
