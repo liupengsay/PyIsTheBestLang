@@ -103,7 +103,7 @@ C. Strongly Composite（https://codeforces.com/contest/1823/problem/C）质因�
 ================================AcWing================================
 97. 约数之和（https://www.acwing.com/problem/content/99/）计算a^b的所有约数之和
 124. 数的进制转换（https://www.acwing.com/problem/content/126/）不同进制的转换，注意0的处理
-
+197. 阶乘分解（https://www.acwing.com/problem/content/199/）计算n!阶乘的质因数分解即因子与因子的个数
 
 参考：OI WiKi（xx）
 """
@@ -869,6 +869,32 @@ class Solution:
                 ans = "0"
             ac.lst([b, ans[::-1]])
             ac.st("")
+        return
+
+    @staticmethod
+    def ac_197(ac=FastIO()):
+        # 模板：计算n!阶乘的质因数分解即因子与因子的个数
+        ceil = ac.read_int()
+        min_prime = [0] * (ceil + 1)
+        # 模板：计算 1 到 ceil 所有数字的最小质数因子
+        for i in range(2, ceil + 1):
+            if not min_prime[i]:
+                min_prime[i] = i
+                for j in range(i * i, ceil + 1, i):
+                    min_prime[j] = i
+
+        # 模板：计算 1 到 ceil 所有数字的质数分解结果
+        dct = defaultdict(int)
+        for num in range(2, ceil + 1):
+            while num > 1:
+                p = min_prime[num]
+                cnt = 0
+                while num % p == 0:
+                    num //= p
+                    cnt += 1
+                dct[p] += cnt
+        for p in sorted(dct):
+            ac.lst([p, dct[p]])
         return
 
 

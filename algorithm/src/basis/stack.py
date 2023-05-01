@@ -1,5 +1,6 @@
 import math
 import unittest
+from collections import deque
 from typing import List
 
 from algorithm.src.fast_io import FastIO, inf
@@ -29,6 +30,7 @@ E. Almost Regular Bracket Sequence（https://codeforces.com/problemset/problem/1
 
 ================================AcWing===================================
 128. 编辑器（https://www.acwing.com/problem/content/130/）堆栈模拟
+129. 火车进栈（https://www.acwing.com/problem/content/131/）经典卡特兰数，栈模拟判定出栈入栈合法性
 
 参考：OI WiKi（xx）
 """
@@ -158,6 +160,34 @@ class MinStack:
                     pre_ceil.append(ac.max(pre_ceil[-1], pre_sum[-1]))
             else:
                 ac.st(pre_ceil[int(lst[1])])
+        return
+
+    @staticmethod
+    def ac_129(ac=FastIO()):
+        # 模板：经典卡特兰数，栈模拟判定出栈入栈合法性
+        n = ac.read_int()
+        m = ac.min(5, n)
+
+        pre = list(range(1, n+1))
+
+        def check(lst):
+            lst = deque(lst)
+            stack = []
+            for num in pre:
+                stack.append(num)
+                while stack and stack[-1] == lst[0]:
+                    stack.pop()
+                    lst.popleft()
+            return not stack
+
+        cnt = 0
+        for item in permutations(list(range(n-m+1, n+1)), m):
+            cur = list(range(1, n-m+1))+list(item)
+            if check(cur):
+                ac.st("".join(str(x) for x in cur))
+                cnt += 1
+            if cnt == 20:
+                break
         return
 
 
