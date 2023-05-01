@@ -31,7 +31,7 @@ from algorithm.src.fast_io import FastIO
 
 """
 
-算法：字符串哈希、树哈希、矩阵哈希
+算法：字符串哈希、树哈希、矩阵哈希、树的最小表示法
 功能：将一定长度的字符串映射为多项式函数值，并进行比较或者计数，通常结合滑动窗口进行计算，注意防止哈希碰撞
 题目：
 
@@ -54,6 +54,7 @@ D. Remove Two Letters（https://codeforces.com/problemset/problem/1800/D）字�
 ================================AcWing================================
 138. 兔子与兔子（https://www.acwing.com/problem/content/140/）字符串哈希，计算子串是否完全相等
 156. 矩阵（https://www.acwing.com/problem/content/description/158/）经典矩阵哈希
+157. 树形地铁系统（https://www.acwing.com/problem/content/description/159/）经典树哈希，树的最小表示法
 
 参考：OI WiKi（xx）
 """
@@ -241,7 +242,7 @@ class Solution:
 
     @staticmethod
     def ac_156(ac=FastIO()):
-        # 模板：矩阵哈希查找子矩阵是否存在
+        # 模板：二维矩阵哈希查找子矩阵是否存在
         m, n, a, b = ac.read_ints()
         grid = [ac.read_str() for _ in range(m)]
 
@@ -304,6 +305,54 @@ class Solution:
                 ac.st(1)
             else:
                 ac.st(0)
+        return
+
+    @staticmethod
+    def ac_157(ac=FastIO()):
+
+        def check(st):
+            # 模板：解码原始树的字符串表示，再计算树的最小表示法
+
+            parent = [-1]
+            pa = 0
+            ind = 0
+            dct = defaultdict(list)
+            for w in st:
+                if w == "0":
+                    ind += 1
+                    dct[pa].append(ind)
+                    parent.append(pa)
+                    pa = ind
+                else:
+                    pa = parent[pa]
+
+            # 生成树的最小表示法
+            n = ind + 1
+            stack = [0]
+            sub = [""]*n
+            while stack:
+                i = stack.pop()
+                if i >= 0:
+                    stack.append(~i)
+                    for j in dct[i]:
+                        stack.append(j)
+                else:
+                    i = ~i
+                    lst = []
+                    for j in dct[i]:
+                        lst.append("0"+sub[j]+"1")
+                        sub[j] = ""
+                    lst.sort()
+                    sub[i] = "".join(lst)
+            return sub[0]
+
+        for _ in range(ac.read_int()):
+            s = ac.read_str()
+            t = ac.read_str()
+            if check(s) == check(t):
+                ac.st("same")
+            else:
+                ac.st("different")
         return
 
 
