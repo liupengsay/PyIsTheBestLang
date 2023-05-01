@@ -30,6 +30,9 @@ P1631 序列合并（https://www.luogu.com.cn/problem/P1631）用一个堆维护
 P4053 建筑抢修（https://www.luogu.com.cn/problem/P4053）用一个堆延迟选择贪心维护最优
 P1878 舞蹈课（https://www.luogu.com.cn/problem/P1878）用哈希加一个堆进行模拟计算
 
+===================================AcWing======================================
+146. 序列（https://www.acwing.com/problem/content/description/148/）小顶堆计算经典问题m个数组最小的n个子序列和，同样可以计算最大的
+
 参考：OI WiKi（xx）
 """
 
@@ -141,6 +144,35 @@ class Solution:
                     day += heapq.heappop(stack) + duration
                     heapq.heappush(stack, -duration)
         return len(stack)
+
+    @staticmethod
+    def ac_146(ac=FastIO()):
+        # 模板：小顶堆计算经典问题m个数组最小的n个子序列和，同样可以计算最大的
+        for _ in range(ac.read_int()):
+            m, n = ac.read_ints()
+            grid = [sorted(ac.read_list_ints()) for _ in range(m)]
+            grid = [g for g in grid if g]
+            m = len(grid)
+
+            pre = grid[0]
+            for i in range(1, m):
+                cur = grid[i][:]
+                nex = []
+                stack = [[pre[0]+cur[0], 0, 0]]
+                dct = set()
+                while stack and len(nex) < n:
+                    val, i, j = heapq.heappop(stack)
+                    if (i, j) in dct:
+                        continue
+                    dct.add((i, j))
+                    nex.append(val)
+                    if i + 1 < n:
+                        heapq.heappush(stack, [pre[i+1]+cur[j], i+1, j])
+                    if j + 1 < n:
+                        heapq.heappush(stack, [pre[i]+cur[j+1], i, j+1])
+                pre = nex[:]
+            ac.lst(pre)
+        return
 
 
 class TestGeneral(unittest.TestCase):

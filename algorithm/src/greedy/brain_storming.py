@@ -119,6 +119,8 @@ E. Making Anti-Palindromes（https://codeforces.com/contest/1822/problem/E）贪
 123. 士兵（https://www.acwing.com/problem/content/description/125/）中位数贪心扩展问题
 125. 耍杂技的牛（https://www.acwing.com/problem/content/127/）经典贪心思路，邻项交换
 127. 任务（https://www.acwing.com/problem/content/description/129/）经典二维排序贪心
+145. 超市（https://www.acwing.com/problem/content/147/）经典使用二叉堆贪心
+
 参考：OI WiKi（xx）
 """
 
@@ -307,6 +309,33 @@ class Solution:
                 ans += 1
                 money += 500*tm + 2*level
         ac.lst([ans, money])
+        return
+
+    @staticmethod
+    def ac_145(ac=FastIO()):
+        # 模板：使用二叉堆贪心计算
+        lst = []
+        cnt = 0
+        while cnt < 10000:
+            cur = ac.read_list_ints()
+            if not cur:
+                cnt += 1
+            lst.extend(cur)
+
+        lst = deque(lst)
+        while lst:
+            n = lst.popleft()
+            cur = []
+            for _ in range(n):
+                p, d = lst.popleft(), lst.popleft()
+                cur.append([p, d])
+            cur.sort(key=lambda it: it[1])
+            stack = []
+            for p, d in cur:
+                heapq.heappush(stack, p)
+                if len(stack) == d+1:
+                    heapq.heappop(stack)
+            ac.st(sum(stack))
         return
 
 
