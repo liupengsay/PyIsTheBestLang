@@ -57,6 +57,9 @@ D. Cleaning the Phone（https://codeforces.com/problemset/problem/1475/D）贪�
 D. Odd-Even Subsequence（https://codeforces.com/problemset/problem/1370/D）利用单调性二分，再使用贪心check
 D. Max Median（https://codeforces.com/problemset/problem/1486/D）利用单调性二分，再使用经典哈希前缀和计算和为正数的最长连续子序列
 
+================================AcWing================================
+120. 防线（https://www.acwing.com/problem/content/122/）根据单调性二分
+
 参考：OI WiKi（xx）
 """
 
@@ -423,6 +426,44 @@ class Solution:
             ac.st(-1)
             ac.st(ans+1)
         return
+
+    @staticmethod
+    def ac_120(ac=FastIO()):
+
+        def check(pos):
+            res = 0
+            for s, e, d in nums:
+                if s <= pos:
+                    res += (ac.min(pos, e) - s) // d + 1
+            return res % 2 == 1
+
+        def compute(pos):
+            res = 0
+            for s, e, d in nums:
+                if s <= pos <= e:
+                    res += (pos - s) % d == 0
+            return [pos, res]
+
+        # 模板：利用单调性二分
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = [ac.read_list_ints() for _ in range(n)]
+            low = min(x for x, _, _ in nums)
+            high = max(x for _, x, _ in nums)
+            while low < high - 1:
+                mid = low + (high - low) // 2
+                if check(mid):
+                    high = mid
+                else:
+                    low = mid
+            if check(low):
+                ac.lst(compute(low))
+            elif check(high):
+                ac.lst(compute(high))
+            else:
+                ac.st("There's no weakness.")
+        return
+
 
 class TestGeneral(unittest.TestCase):
 

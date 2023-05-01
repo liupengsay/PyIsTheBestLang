@@ -1,5 +1,6 @@
 import random
 import unittest
+from bisect import insort_left, bisect_left
 from typing import List
 
 from sortedcontainers import SortedList
@@ -373,6 +374,28 @@ class Solution:
         ac.st(ans % mod)
         return
 
+    @staticmethod
+    def ac_127(ac=FastIO()):
+        # 模板：经典二维排序贪心
+        n, m = ac.read_ints()
+        machine = [ac.read_list_ints() for _ in range(n)]
+        task = [ac.read_list_ints() for _ in range(m)]
+        machine.sort(reverse=True)
+        task.sort(reverse=True)
+        lst = []
+        ans = money = j = 0
+        for i in range(m):
+            tm, level = task[i]
+            while j < n and machine[j][0] >= tm:
+                insort_left(lst, machine[j][1])  # 使用bisect代替Sortedlist
+                j += 1
+            ind = bisect_left(lst, level)
+            if ind < len(lst):
+                lst.pop(ind)
+                ans += 1
+                money += 500*tm + 2*level
+        ac.lst([ans, money])
+        return
 
 class TestGeneral(unittest.TestCase):
 

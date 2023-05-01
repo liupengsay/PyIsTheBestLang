@@ -1,4 +1,4 @@
-
+from bisect import insort_left, bisect_left
 from collections import Counter
 from algorithm.src.fast_io import FastIO
 
@@ -116,7 +116,9 @@ E. Making Anti-Palindromes（https://codeforces.com/contest/1822/problem/E）贪
 1536. 均分纸牌（https://www.acwing.com/problem/content/description/1538/）贪心均分纸牌
 105. 七夕祭（https://www.acwing.com/problem/content/description/1538/）经典环形均分纸牌问题
 110. 防晒（https://www.acwing.com/problem/content/112/）贪心匹配最多组合
-
+123. 士兵（https://www.acwing.com/problem/content/description/125/）中位数贪心扩展问题
+125. 耍杂技的牛（https://www.acwing.com/problem/content/127/）经典贪心思路，邻项交换
+127. 任务（https://www.acwing.com/problem/content/description/129/）经典二维排序贪心
 参考：OI WiKi（xx）
 """
 
@@ -246,6 +248,65 @@ class Solution:
             ac.lst(["column", ans2])
         else:
             ac.st("impossible")
+        return
+
+    @staticmethod
+    def ac_123(ac=FastIO()):
+        # 模板：经典中位数贪心扩展问题，连续相邻排序减去下标后再排序
+        n = ac.read_int()
+        lst_x = []
+        lst_y = []
+        for _ in range(n):
+            x, y = ac.read_ints()
+            lst_y.append(y)
+            lst_x.append(x)
+        lst_y.sort()
+        mid = lst_y[n//2]
+        ans = sum(abs(pos-mid) for pos in lst_y)
+
+        lst_x.sort()
+        lst_x = [lst_x[i]-i for i in range(n)]
+        lst_x.sort()
+        mid = lst_x[n//2]
+        ans += sum(abs(pos-mid) for pos in lst_x)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def ac_125(ac=FastIO()):
+        # 模板：经典贪心思路，邻项交换
+        n = ac.read_int()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        nums.sort(key=lambda it: it[0]+it[1])
+        ans = -math.inf
+        pre = 0
+        for w, s in nums:
+            ans = ac.max(ans, pre-s)
+            pre += w
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def ac_127(ac=FastIO()):
+        # 模板：经典二维排序贪心
+        n, m = ac.read_ints()
+        machine = [ac.read_list_ints() for _ in range(n)]
+        task = [ac.read_list_ints() for _ in range(m)]
+        machine.sort(reverse=True)
+        task.sort(reverse=True)
+        lst = []
+        ans = money = j = 0
+        for i in range(m):
+            tm, level = task[i]
+            while j < n and machine[j][0] >= tm:
+                insort_left(lst, machine[j][1])
+                j += 1
+            ind = bisect_left(lst, level)
+            if ind < len(lst):
+                lst.pop(ind)
+                ans += 1
+                money += 500*tm + 2*level
+        ac.lst([ans, money])
         return
 
 

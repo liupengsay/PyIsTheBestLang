@@ -3,10 +3,12 @@ from itertools import permutations
 import unittest
 from algorithm.src.fast_io import FastIO
 from typing import List
-from collections import Counter
+from collections import Counter, defaultdict
 from algorithm.src.fast_io import FastIO
 import math
 from functools import lru_cache
+
+from algorithm.src.mathmatics.number_theory import NumberTheoryPrimeFactor
 
 """
 
@@ -40,9 +42,13 @@ C. Beautiful Numbers（https://codeforces.com/problemset/problem/300/C）枚举�
 C. Gerald and Giant Chess（https://codeforces.com/problemset/problem/559/C）容斥原理组合计数
 C. Binary Search（https://codeforces.com/problemset/problem/1436/C）二分加组合数计算
 
+================================AcWing==================================
+130. 火车进出栈问题（https://www.acwing.com/problem/content/132/）超大数字的卡特兰数计算
+
 参考：OI WiKi（xx）
 卡特兰数（https://oi-wiki.org/math/combinatorics/catalan/）
 """
+
 
 class Combinatorics:
     def __init__(self, n, mod):
@@ -300,6 +306,25 @@ class Solution:
             ans = Combinatorics(10, 10**9+7).lucas(n+m, n, p)
             ac.st(ans)
         return
+
+    @staticmethod
+    def ac_130(ac=FastIO()):
+        # 模板：超大范围的卡特兰数计算 h(n) = C(2n, n)//(n+1) = ((n+1)*..*(2*n))//(1*2*..*(n+1))
+        n = ac.read_int()
+        nt = NumberTheoryPrimeFactor(2*n+1)
+        cnt = defaultdict(int)
+        for i in range(1, 2*n+1):
+            for num, y in nt.prime_factor[i]:
+                if i <= n:
+                    cnt[num] -= y
+                else:
+                    cnt[num] += y
+        ans = 1
+        for w in cnt:
+            ans *= w**cnt[w]
+        ac.st(ans // (n+1))
+        return
+
 
 class TestGeneral(unittest.TestCase):
     def test_comb_perm(self):

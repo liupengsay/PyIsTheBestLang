@@ -26,6 +26,10 @@ P3719 [AHOI2017初中组]rexp（https://www.luogu.com.cn/problem/P3719）字符�
 C. Longest Regular Bracket Sequence（https://codeforces.com/problemset/problem/5/C）最长连续合法括号子序列以及个数
 E. Almost Regular Bracket Sequence（https://codeforces.com/problemset/problem/1095/E）计算改变一个括号后是的字符串合法的位置数
 
+
+================================AcWing===================================
+128. 编辑器（https://www.acwing.com/problem/content/130/）堆栈模拟
+
 参考：OI WiKi（xx）
 """
 
@@ -121,6 +125,39 @@ class MinStack:
         return
 
     def gen_result(self):
+        return
+
+    @staticmethod
+    def ac_128(ac=FastIO()):
+        # 模板：经典栈与指针模拟
+        pre = []
+        post = []
+        pre_sum = [0]
+        pre_ceil = [-inf]
+        for _ in range(ac.read_int()):
+            lst = ac.read_list_strs()
+            if lst[0] == "I":
+                pre.append(int(lst[1]))
+                pre_sum.append(pre_sum[-1]+int(lst[1]))
+                pre_ceil.append(ac.max(pre_ceil[-1], pre_sum[-1]))
+            elif lst[0] == "D":
+                if pre:
+                    pre.pop()
+                    pre_sum.pop()
+                    pre_ceil.pop()
+            elif lst[0] == "L":
+                if pre:
+                    post.append(pre.pop())
+                    pre_sum.pop()
+                    pre_ceil.pop()
+            elif lst[0] == "R":
+                if post:
+                    x = post.pop()
+                    pre.append(x)
+                    pre_sum.append(pre_sum[-1] + x)
+                    pre_ceil.append(ac.max(pre_ceil[-1], pre_sum[-1]))
+            else:
+                ac.st(pre_ceil[int(lst[1])])
         return
 
 

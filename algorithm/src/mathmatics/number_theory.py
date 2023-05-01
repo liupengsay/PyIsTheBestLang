@@ -102,6 +102,9 @@ C. Strongly Composite（https://codeforces.com/contest/1823/problem/C）质因�
 
 ================================AcWing================================
 97. 约数之和（https://www.acwing.com/problem/content/99/）计算a^b的所有约数之和
+124. 数的进制转换（https://www.acwing.com/problem/content/126/）不同进制的转换，注意0的处理
+
+
 参考：OI WiKi（xx）
 """
 
@@ -839,6 +842,35 @@ class Solution:
             ans %= mod
         ac.st(ans)
         return
+
+    @staticmethod
+    def ac_124(ac=FastIO()):
+        # 模板：不同进制之间的转换
+        st = "0123456789"
+        for i in range(26):
+            st += chr(i + ord("A"))
+        for i in range(26):
+            st += chr(i + ord("a"))
+        ind = {w: i for i, w in enumerate(st)}
+        for _ in range(ac.read_int()):
+            a, b, word = ac.read_list_strs()
+            a = int(a)
+            b = int(b)
+            num = 0
+            for w in word:
+                num *= a
+                num += ind[w]
+            ac.lst([a, word])
+            ans = ""
+            while num:
+                ans += st[num % b]
+                num //= b
+            if not ans:
+                ans = "0"
+            ac.lst([b, ans[::-1]])
+            ac.st("")
+        return
+
 
 class TestGeneral(unittest.TestCase):
 

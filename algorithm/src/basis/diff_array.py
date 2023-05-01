@@ -55,6 +55,8 @@ D. Absolute Sorting（https://codeforces.com/contest/1772/problem/D）离散差�
 100. 增减序列（https://www.acwing.com/problem/content/102/）差分数组经典题目，明晰本质
 101. 最高的牛（https://www.acwing.com/problem/content/103/）查分数组，贪心得出结论
 102. 最佳牛围栏（https://www.acwing.com/problem/content/104/）前缀和加二分计算不短于k的子数组最大平均值
+121. 赶牛入圈（https://www.acwing.com/problem/content/description/123/）经典离散化前缀和，双指针加二分
+126. 最大的和（https://www.acwing.com/problem/content/128/）经典最大子矩形和
 
 参考：OI WiKi（xx）
 """
@@ -489,6 +491,74 @@ class Solution:
             else:
                 high = mid
         ac.st(high if check(high) else low)
+        return
+
+    @staticmethod
+    def ac_121(ac=FastIO()):
+        # 模板：离散化前缀和，双指针加二分
+        c, b = ac.read_ints()
+        nums = [ac.read_list_ints() for _ in range(b)]
+        lst_x = sorted(list(set([x for x, _ in nums])))
+        lst_y = sorted(list(set([x for _, x in nums])))
+        m = len(lst_x)
+        n = len(lst_y)
+        ind_x = {num: i for i, num in enumerate(lst_x)}
+        ind_y = {num: i for i, num in enumerate(lst_y)}
+        grid = [[0]*(n+1) for _ in range(m+1)]
+        for x, y in nums:
+            grid[ind_x[x]+1][ind_y[y]+1] += 1
+        for i in range(1, m+1):
+            for j in range(1, n+1):
+                grid[i][j] = grid[i-1][j]+grid[i][j-1]-grid[i-1][j-1] + grid[i][j]
+
+        def check(xx):
+            up = 0
+            for i in range(m):
+                while up < m and lst_x[up]-lst_x[i] <= xx - 1:
+                    up += 1
+                right = 0
+                for j in range(n):
+                    while right < n and lst_y[right]-lst_y[j] <= xx-1:
+                        right += 1
+                    cur = grid[up][right] - grid[up][j] - grid[i][right] + grid[i][j]
+                    if cur >= c:
+                        return True
+
+            return False
+
+        low = 0
+        high = 10000
+        while low < high-1:
+            mid = low+(high-low)//2
+            if check(mid):
+                high = mid
+            else:
+                low = mid
+        ans = low if check(low) else high
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def ac_126(ac=FastIO()):
+        # 模板：经典最大子矩形和
+        n = ac.read_int()
+        nums = []
+        while len(nums) < n*n:
+            nums.extend(ac.read_list_ints())
+        grid = [nums[i:i+n] for i in range(0, n*n, n)]
+        del nums
+        ans = grid[0][0]
+        for i in range(n):
+            pre = [0]*n
+            for k in range(i, n):
+                pre = [pre[j]+grid[k][j] for j in range(n)]
+                floor = 0
+                x = 0
+                for j in range(n):
+                    x += pre[j]
+                    ans = ac.max(ans, x-floor)
+                    floor = ac.min(floor, x)
+        ac.st(ans)
         return
 
 
