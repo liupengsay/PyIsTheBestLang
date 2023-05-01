@@ -34,9 +34,14 @@ P7883 平面最近点对（加强加强版）（https://www.luogu.com.cn/problem
 P1429 平面最近点对（加强版）（https://www.luogu.com.cn/problem/P1429）经典平面点集最近点对问题使用分治求解、还有哈希分块、有序列表
 
 
+
 ================================CodeForces================================
 D. Pair Of Lines (https://codeforces.com/contest/961/problem/D) 抽屉原理枚举初始共线点并计算其他点的共线性情况
 D. Tricky Function（https://codeforces.com/problemset/problem/429/D）经典平面点集最近点对
+
+================================AcWing====================================
+119. 袭击（https://www.acwing.com/problem/content/121/）经典平面点集最近点对问题使用分治求解、还有哈希分块、有序列表
+
 
 参考：OI WiKi（xx）
 """
@@ -269,6 +274,61 @@ class ClosetPair:
             lst2.add((y, x))
         return ans
 
+    @staticmethod
+    def bucket_grid_inter_set(n: int, nums1: List[List[int]], nums2):
+
+        # 模板：使用随机增量法分网格计算两个平面点集最近的点对
+        def dis(p1, p2):
+            return (p1[0] - p2[0]) * (p1[0] - p2[0]) + (p1[1] - p2[1]) * (p1[1] - p2[1])
+
+        def check(p):
+            nonlocal ss
+            return p[0] // ss, p[1] // ss
+
+        def update(buck, ind):
+            nonlocal dct
+            if buck not in dct:
+                dct[buck] = []
+            dct[buck].append(ind)
+            return
+
+        random.shuffle(nums1)
+        random.shuffle(nums2)
+
+        # 初始化
+        dct = dict()
+        ans = inf
+        for i in range(n):
+            cur = dis(nums1[i], nums2[0])
+            ans = cur if ans > cur else ans
+        ss = ans ** 0.5
+        if ans == 0:
+            return 0
+        for i in range(n):
+            update(check(nums1[i]), i)
+        # 遍历进行随机增量
+        for i in range(1, n):
+            a, b = check(nums2[i])
+            res = ans
+            for x in [-1, 0, 1]:
+                for y in [-1, 0, 1]:
+                    cur = (x + a, y + b)
+                    if cur in dct:
+                        for j in dct[cur]:
+                            now = dis(nums2[i], nums1[j])
+                            res = res if res < now else now
+            if res == 0:  # 距离为 0 直接返回
+                return 0
+            if res < ans:
+                # 重置初始化
+                ans = res
+                ss = ans ** 0.5
+                dct = dict()
+                for x in range(n):
+                    update(check(nums1[x]), x)
+        # 返回值为欧几里得距离的平方
+        return ans
+
 
 class Solution:
     def __init__(self):
@@ -335,6 +395,17 @@ class Solution:
         # ans = ClosetPair().divide_and_conquer(nums) ** 0.5
         ans = ClosetPair().sorted_pair(nums)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def ac_119(ac=FastIO()):
+        # 模板：使用随机增量法经典计算平面两个点集之间的最近距离
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums1 = [ac.read_list_ints() for _ in range(n)]
+            nums2 = [ac.read_list_ints() for _ in range(n)]
+            ans = ClosetPair().bucket_grid_inter_set(n, nums1, nums2)
+            ac.st("%.3f" % (ans**0.5))
         return
 
 
