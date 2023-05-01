@@ -39,6 +39,9 @@ import copy
 P4555 最长双回文串（https://www.luogu.com.cn/problem/P4555）计算以当前索引为开头以及结尾的最长回文子串
 P1210 [USACO1.3]最长的回文 Calf Flac（https://www.luogu.com.cn/problem/P1210）寻找最长的连续回文子串
 P4888 三去矩阵（https://www.luogu.com.cn/problem/P4888）中心扩展法双指针
+
+139. 回文子串的最大长度（https://www.acwing.com/problem/content/141/）马拉车计算最长回文子串长度，也可使用二分查找加哈希
+
 """
 
 
@@ -134,8 +137,21 @@ class ManacherPlindrome:
 
         return post, pre
 
+    def palindrome_longest_length(self, s: str) -> (list, list):
+        # 计算字符串的最长回文子串长度
+        t = "#" + "#".join(list(s)) + "#"
+        dp = self.manacher(t)
+        m = len(t)
+        ans = 0
+        for j in range(m):
+            left = j - dp[j] + 1
+            right = j + dp[j] - 1
+            cur = (right - left + 1) // 2
+            ans = ans if ans > cur else cur
+        return ans
 
-class Luogu:
+
+class Solution:
     def __init__(self):
         return
 
@@ -154,6 +170,18 @@ class Luogu:
         i = post.index(max(post))
         return s[i: i+post[i]]
 
+    @staticmethod
+    def ac_139(ac=FastIO()):
+        # 模板：马拉车计算最长回文子串的长度
+        ind = 0
+        while True:
+            s = ac.read_str()
+            if s == "END":
+                break
+            ind += 1
+            ans = ManacherPlindrome().palindrome_longest_length(s)
+            ac.st(f"Case {ind}: {ans}")
+        return
 
 class TestGeneral(unittest.TestCase):
 

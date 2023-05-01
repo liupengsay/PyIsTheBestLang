@@ -27,6 +27,11 @@ P1725 琪露诺（https://www.luogu.com.cn/problem/P1725）单调队列和指针
 P2827 [NOIP2016 提高组] 蚯蚓（https://www.luogu.com.cn/problem/P2827）经典单调队列
 P3800 Power收集（https://www.luogu.com.cn/problem/P3800）单调队列优化矩阵DP
 
+
+===================================AcWing=====================================
+133. 蚯蚓（https://www.acwing.com/problem/content/135/）三个优先队列加一个偏移量
+135. 最大子序和（https://www.acwing.com/problem/content/137/）双端队列计算不超过一定长度的最大子段和
+
 参考：OI WiKi（xx）
 """
 
@@ -237,6 +242,64 @@ class Solution:
                 dp[cur][j] = dct[i].get(j, 0) + stack[0][1]
             pre = cur
         ac.st(max(dp[pre]))
+        return
+
+    @staticmethod
+    def ac_133(ac=FastIO()):
+        # 模板：三个优先队列加一个偏移量
+        n, m, q, u, v, t = ac.read_ints()
+        nums1 = ac.read_list_ints()
+        nums1 = deque(sorted(nums1, reverse=True))
+        nums2 = deque()
+        nums3 = deque()
+        delta = 0
+        ans1 = []
+        ans2 = []
+        for i in range(1, m+1):
+            a = nums1[0] + delta if nums1 else -inf
+            b = nums2[0] + delta if nums2 else -inf
+            c = nums3[0] + delta if nums3 else -inf
+            if a >= b and a >= c:
+                x = a
+                nums1.popleft()
+                x1 = x*u//v
+                nums2.append(x1-delta-q)
+                nums3.append(x-x1-delta-q)
+            elif b >= c and b >= a:
+                x = b
+                nums2.popleft()
+                x1 = x*u//v
+                nums2.append(x1-delta-q)
+                nums3.append(x-x1-delta-q)
+            else:
+                x = c
+                nums3.popleft()
+                x1 = x*u//v
+                nums2.append(x1-delta-q)
+                nums3.append(x-x1-delta-q)
+            delta += q
+            if i % t == 0:
+                ans1.append(x)
+
+        ind = 0
+        while nums1 or nums2 or nums3:
+            a = nums1[0] + delta if nums1 else -inf
+            b = nums2[0] + delta if nums2 else -inf
+            c = nums3[0] + delta if nums3 else -inf
+            if a >= b and a >= c:
+                x = a
+                nums1.popleft()
+            elif b >= c and b >= a:
+                x = b
+                nums2.popleft()
+            else:
+                x = c
+                nums3.popleft()
+            ind += 1
+            if ind % t == 0:
+                ans2.append(x)
+        ac.lst(ans1)
+        ac.lst(ans2)
         return
 
 

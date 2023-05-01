@@ -32,6 +32,12 @@ D. Vasiliy's Multiset（https://codeforces.com/problemset/problem/706/D）经典
 B. Friends（https://codeforces.com/contest/241/problem/B）经典01Trie计算第 K 大的异或对，并使用堆贪心选取
 
 
+================================AcWing====================================
+142. 前缀统计（https://www.acwing.com/problem/content/144/）字典树前缀统计
+143. 最大异或对（https://www.acwing.com/problem/content/145/）模板题计算最大异或对
+144. 最长异或值路径（https://www.acwing.com/problem/content/description/146/）经典使用01Trie计算树中最长异或路径
+
+
 参考：OI WiKi（）
 """
 
@@ -582,6 +588,46 @@ class Solution:
             if c + 1 <= n:
                 heapq.heappush(stack, (-trie.query_xor_kth_max(nums[i], c + 1), i, c + 1))
         ac.st((ans // 2) % mod)
+        return
+
+    @staticmethod
+    def ac_143(ac=FastIO()):
+        # 模板：计算最大异或对
+        ac.read_int()
+        ans = 0
+        trie = TrieZeroOneXorMax(32)
+        for num in ac.read_list_ints():
+            ans = ac.max(ans, trie.query_xor_max(num))
+            trie.add(num)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def ac_144(ac=FastIO()):
+
+        # 模板：经典使用01Trie计算树中最长异或路径
+        n = ac.read_int()
+        dct = [dict() for _ in range(n)]
+        for _ in range(n - 1):
+            i, j, w = ac.read_ints()
+            dct[i][j] = w
+            dct[j][i] = w
+
+        ans = 0
+        trie = TrieZeroOneXorNode()
+
+        stack = [[0, -1, 0]]
+        ceil = (1 << 31) - 1
+        while stack:
+            i, fa, val = stack.pop()
+            ans = max(ans, trie.query(val))
+            if ans == ceil:
+                break
+            trie.add(val)
+            for j in dct[i]:
+                if j != fa:
+                    stack.append([j, i, val ^ dct[i][j]])
+        ac.st(ans)
         return
 
 

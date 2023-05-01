@@ -21,6 +21,8 @@ P4391 [BOI2009]Radio Transmission 无线传输（https://www.luogu.com.cn/proble
 D2. Prefix-Suffix Palindrome (Hard version)（https://codeforces.com/problemset/problem/1326/D2）利用马拉车的贪心思想贪心取前后缀，再判断剩余字符的最长前后缀回文子串
 D. Prefixes and Suffixes（https://codeforces.com/contest/432/problem/D）扩展kmp与kmp结合使用计数，经典z函数与前缀函数结合应用题
 
+141. 周期（https://www.acwing.com/problem/content/143/）利用KMP求每个字符串前缀的最小循环节
+
 参考：OI WiKi（https://oi-wiki.org/string/kmp/）
 
 """
@@ -189,6 +191,24 @@ class Solution:
         ac.st(m)
         for a in ans:
             ac.lst(a)
+        return
+
+    @staticmethod
+    def ac_141(ac=FastIO()):
+        # 模板：利用KMP求每个字符串前缀的最小循环节
+        ind = 0
+        while True:
+            n = ac.read_int()
+            if not n:
+                break
+            s = ac.read_str()
+            ind += 1
+            ac.st(f"Test case #{ind}")
+            pi = KMP().prefix_function(s)
+            for i in range(1, n):
+                if i+1 - pi[i] and (i+1) % (i+1-pi[i]) == 0 and (i+1)//(i+1-pi[i]) > 1:
+                    ac.lst([i+1, (i+1)//(i+1-pi[i])])
+            ac.st("")
         return
 
 

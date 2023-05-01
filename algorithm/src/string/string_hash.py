@@ -51,6 +51,9 @@ P5832 [USACO19DEC]Where Am I? B（https://www.luogu.com.cn/problem/P5832）可�
 ================================CodeForces================================
 D. Remove Two Letters（https://codeforces.com/problemset/problem/1800/D）字符串前后缀哈希加和变换
 
+================================AcWing================================
+138. 兔子与兔子（https://www.acwing.com/problem/content/140/）字符串哈希，计算子串是否完全相等
+
 
 参考：OI WiKi（xx）
 """
@@ -197,6 +200,44 @@ class Solution:
                 pre1 = (pre1 * p1) % mod1 + ord(s[i]) - ord("a")
                 pre2 = (pre2 * p2) % mod2 + ord(s[i]) - ord("a")
             ac.st(len(ans))
+        return
+
+    @staticmethod
+    def ac_138(ac=FastIO()):
+
+        # 模板：字符串哈希，计算子串是否完全相等
+        p1 = random.randint(26, 100)
+        p2 = random.randint(26, 100)
+        mod1 = random.randint(10 ** 9 + 7, 2 ** 31 - 1)
+        mod2 = random.randint(10 ** 9 + 7, 2 ** 31 - 1)
+
+        s = ac.read_str()
+        n = len(s)
+        pre1 = [0] * (n + 1)
+        pre2 = [0] * (n + 1)
+        for i in range(n):
+            pre1[i + 1] = (pre1[i] * p1 + ord(s[i]) - ord("a")) % mod1
+            pre2[i + 1] = (pre2[i] * p2 + ord(s[i]) - ord("a")) % mod2
+        m = ac.read_int()
+        lst = []
+        while len(lst) < m * 4:
+            lst.extend(ac.read_list_ints_minus_one())
+
+        for i in range(0, m * 4, 4):
+            x1, y1, x2, y2 = lst[i: i + 4]
+            m1 = y1 - x1 + 1
+            m2 = y2 - x2 + 1
+            if m1 != m2:
+                ac.st("No")
+                continue
+            cur1 = ((pre1[y1 + 1] - pre1[x1] * pow(p1, m1, mod1)) % mod1,
+                    (pre2[y1 + 1] - pre2[x1] * pow(p2, m2, mod2)) % mod2)
+            cur2 = ((pre1[y2 + 1] - pre1[x2] * pow(p1, m1, mod1)) % mod1,
+                    (pre2[y2 + 1] - pre2[x2] * pow(p2, m2, mod2)) % mod2)
+            if cur1 == cur2:
+                ac.st("Yes")
+            else:
+                ac.st("No")
         return
 
 

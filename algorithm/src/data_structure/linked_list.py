@@ -26,6 +26,10 @@ from algorithm.src.fast_io import FastIO
 ================================CodeForces================================
 E. Two Teams（https://codeforces.com/contest/1154/problem/E）使用数组维护链表的前后节点信息
 
+================================AcWing===================================
+136. 邻值查找（https://www.acwing.com/problem/content/138/）链表逆序删除，查找前后最接近的值
+
+
 参考：OI WiKi（xx）
 """
 
@@ -154,3 +158,40 @@ class Solution:
 
         ans = dis[-1][-1]
         return ans if ans < inf else -1
+
+    @staticmethod
+    def ac_136(ac=FastIO()):
+        # 模板：链表逆序删除，查找前后最接近的值，也可直接使用SortedList
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        ind = list(range(n))
+        ind.sort(key=lambda it: nums[it])
+        dct = {nums[i]: i for i in range(n)}
+        pre = [-1]*n
+        post = [-1]*n
+        for i in range(1, n):
+            a, b = ind[i-1], ind[i]
+            post[a] = b
+            pre[b] = a
+        ans = []
+        for x in range(n-1, 0, -1):
+            num = nums[x]
+            i = dct[num]
+            a = pre[i]
+            b = post[i]
+            if a != -1 and b != -1:
+                if abs(num-nums[a]) < abs(num-nums[b]) or (abs(num-nums[a]) == abs(num-nums[b]) and nums[a] < nums[b]):
+                    ans.append([abs(num-nums[a]), a+1])
+                else:
+                    ans.append([abs(num - nums[b]), b + 1])
+                post[a] = b
+                pre[b] = a
+            elif a != -1:
+                ans.append([abs(num - nums[a]), a + 1])
+                post[a] = post[i]
+            else:
+                ans.append([abs(num - nums[b]), b + 1])
+                pre[b] = pre[i]
+        for i in range(n-2, -1, -1):
+            ac.lst(ans[i])
+        return

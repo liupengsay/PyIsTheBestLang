@@ -2,6 +2,8 @@ import unittest
 from collections import defaultdict
 from typing import List
 
+from algorithm.src.fast_io import FastIO
+
 """
 算法：哈希
 功能：前后缀计数、索引、加和
@@ -18,6 +20,9 @@ from typing import List
 ===================================洛谷===================================
 P2697 宝石串（https://www.luogu.com.cn/problem/P2697）哈希记录前缀和与对应索引
 P1114 “非常男女”计划（https://www.luogu.com.cn/record/list?user=739032&status=12&page=13）哈希记录前缀和与对应索引
+
+
+137. 雪花雪花雪花（https://www.acwing.com/problem/content/139/）哈希找相同雪花
 
 参考：OI WiKi（xx）
 """
@@ -46,6 +51,57 @@ class Solution:
             ans %= mod
             pre = cur
         return ans
+
+    @staticmethod
+    def ac_137(ac=FastIO()):
+
+
+        p1 = random.randint(26, 100)
+        p2 = random.randint(26, 100)
+        mod1 = random.randint(10 ** 9 + 7, 2 ** 31 - 1)
+        mod2 = random.randint(10 ** 9 + 7, 2 ** 31 - 1)
+
+        def compute(ls):
+            res1 = 0
+            for num in ls:
+                res1 *= p1
+                res1 += num
+                res1 %= mod1
+            res2 = 0
+            for num in ls:
+                res2 *= p2
+                res2 += num
+                res2 %= mod2
+            return (res1, res2)
+
+        def check():
+            res = []
+            for ii in range(6):
+                cu = tuple(lst[ii:]+lst[:ii])
+                res.append(compute(cu))
+                cu = tuple(lst[:ii+1][::-1]+lst[ii+1:][::-1])
+                res.append(compute(cu))
+            return res
+
+        n = ac.read_int()
+        pre = set()
+        ans = False
+        for _ in range(n):
+            if ans:
+                break
+            lst = ac.read_list_ints()
+            now = check()
+            if any(cur in pre for cur in now):
+                ans = True
+                break
+            for cur in now:
+                pre.add(cur)
+
+        if ans:
+            ac.st("Twin snowflakes found.")
+        else:
+            ac.st("No two snowflakes are alike.")
+        return
 
 
 class HashMap:

@@ -5,6 +5,7 @@ from algorithm.src.fast_io import FastIO
 """
 算法：后缀数组
 功能：生成字符串的后缀排序
+参考：OI WiKi（https://oi-wiki.org/string/sa/）
 题目：
 
 ===================================力扣===================================
@@ -13,7 +14,9 @@ from algorithm.src.fast_io import FastIO
 ===================================洛谷===================================
 P3809 【模板】后缀排序（https://www.luogu.com.cn/problem/P3809）
 
-参考：OI WiKi（https://oi-wiki.org/string/sa/）
+===================================AcWing=====================================
+140. 后缀数组（https://www.acwing.com/problem/content/142/）后缀数组模板题
+
 """
 
 
@@ -145,6 +148,15 @@ class Solution:
         sa = SuffixArray(ind)
         ans, _, _ = sa.get_array(s)
         ac.lst([x + 1 for x in ans])
+        return
+
+    @staticmethod
+    def ac_140(ac=FastIO()):
+        # 模板：后缀数组模板题
+        ind = {chr(ord("a") + i): i for i in range(26)}
+        sa, rk, height = SuffixArray(ind).get_array(ac.read_str())
+        ac.lst(sa)
+        ac.lst(height)
         return
 
 

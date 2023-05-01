@@ -35,6 +35,10 @@ P3467 [POI2008]PLA-Postering（https://www.luogu.com.cn/problem/P3467）贪心�
 E. Explosions?（https://codeforces.com/problemset/problem/1795/E）单调栈贪心计数枚举，前后缀DP转移
 
 
+================================AcWing====================================
+131. 直方图中最大的矩形（https://www.acwing.com/problem/content/133/）单调栈求最大矩形
+
+
 参考：OI WiKi（xx）
 """
 
@@ -282,6 +286,27 @@ class MonotonicStack:
                 self.post_smaller[i] = stack[-1]  # 有时也用 stack[-1]-1 做为边界
             stack.append(i)
 
+        return
+
+    @staticmethod
+    def ac_131(ac=FastIO()):
+        # 模板：单调栈计算最大矩形
+        while True:
+            lst = ac.read_list_ints()
+            if lst[0] == 0:
+                break
+            n = lst.pop(0)
+            post = [n-1]*n
+            pre = [0]*n
+            stack = []
+            for i in range(n):
+                while stack and lst[stack[-1]] > lst[i]:
+                    post[stack.pop()] = i-1
+                if stack:
+                    pre[i] = stack[-1] + 1
+                stack.append(i)
+            ans = max(lst[i]*(post[i]-pre[i]+1) for i in range(n))
+            ac.st(ans)
         return
 
 

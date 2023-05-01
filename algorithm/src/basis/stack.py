@@ -1,6 +1,7 @@
 import math
 import unittest
 from collections import deque
+from itertools import permutations
 from typing import List
 
 from algorithm.src.fast_io import FastIO, inf
@@ -31,6 +32,7 @@ E. Almost Regular Bracket Sequence（https://codeforces.com/problemset/problem/1
 ================================AcWing===================================
 128. 编辑器（https://www.acwing.com/problem/content/130/）堆栈模拟
 129. 火车进栈（https://www.acwing.com/problem/content/131/）经典卡特兰数，栈模拟判定出栈入栈合法性
+132. 小组队列（https://www.acwing.com/problem/content/134/）双端队列依次出队入队
 
 参考：OI WiKi（xx）
 """
@@ -163,7 +165,7 @@ class MinStack:
         return
 
     @staticmethod
-    def ac_129(ac=FastIO()):
+    def ac_129_1(ac=FastIO()):
         # 模板：经典卡特兰数，栈模拟判定出栈入栈合法性
         n = ac.read_int()
         m = ac.min(5, n)
@@ -188,6 +190,56 @@ class MinStack:
                 cnt += 1
             if cnt == 20:
                 break
+        return
+
+    @staticmethod
+    def ac_129_2(ac=FastIO()):
+        # 模板：使用回溯模拟出栈入栈所有可能的排列
+
+        def dfs(i):
+            nonlocal cnt, post, pre
+            if cnt >= 20:
+                return
+            if i == n:
+                cnt += 1
+                ac.st("".join(str(x) for x in res))
+                return
+
+            if pre:
+                res.append(pre.pop())
+                dfs(i+1)
+                pre.append(res.pop())
+
+            if post:
+                pre.append(post.popleft())
+                dfs(i)
+                post.appendleft(pre.pop())
+            return
+
+        n = ac.read_int()
+        post = deque(list(range(1, n+1)))
+        res = []
+        pre = []
+        cnt = 0
+        dfs(0)
+        return
+
+    @staticmethod
+    def ac_129_3(ac=FastIO()):
+        # 模板：使用迭代写法替换深搜与回溯
+        n = ac.read_int()
+        cnt = 0
+        stack = [[[], [], 0]]
+        while stack and cnt < 20:
+            pre, res, ind = stack.pop()
+            if len(res) == n:
+                cnt += 1
+                ac.st("".join(str(x) for x in res))
+            else:
+                if ind + 1 <= n:
+                    stack.append([pre+[ind+1], res[:], ind+1])
+                if pre:
+                    stack.append([pre[:-1], res+[pre[-1]], ind])
         return
 
 
