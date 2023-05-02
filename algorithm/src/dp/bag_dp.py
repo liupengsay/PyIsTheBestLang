@@ -66,10 +66,14 @@ E. Porcelain（https://codeforces.com/problemset/problem/148/E）01背包枚举�
 F. Zero Remainder Sum（https://codeforces.com/problemset/problem/1433/F）01背包枚举，两层动态规划
 
 ================================AcWing=====================================
-4. 多重背包问题 I（https://www.acwing.com/problem/content/4/）二进制优化背包
+4. 多重背包问题 I（https://www.acwing.com/problem/content/4/）二进制优化多重背包
 6. 多重背包问题 III（https://www.acwing.com/problem/content/description/6/）单调队列优化多重背包
-
-
+7. 混合背包问题（https://www.acwing.com/problem/content/7/）01背包、完全背包与多重背包混合使用
+8. 二维费用的背包问题（https://www.acwing.com/problem/content/8/）二维01背包
+9. 分组背包问题（https://www.acwing.com/problem/content/9/）分组01背包问题
+10. 有依赖的背包问题（https://www.acwing.com/problem/content/10/）树上背包
+11. 背包问题求方案数（https://www.acwing.com/problem/content/description/11/）背包问题求方案数
+12. 背包问题求具体方案（https://www.acwing.com/problem/content/12/）背包问题求具体方案，有两种写法
 
 参考：OI WiKi（xx）
 """
@@ -355,6 +359,106 @@ class Solution:
                     stack.append([i, dp[i]])
                     dp[i] = stack[0][1] + (i-stack[0][0])//v*w
         ac.st(dp[-1])
+        return
+
+    @staticmethod
+    def ac_10(ac=FastIO()):
+
+        # 模板：树上背包
+        n, m = ac.read_ints()
+        vol = []
+        weight = []
+        parent = [-1] * n
+        dct = [[] for _ in range(n)]
+        root = 0
+        for i in range(n):
+            v, w, p = ac.read_ints()
+            p -= 1
+            parent[i] = p
+            if p != -2:
+                dct[p].append(i)
+            else:
+                root = i
+            vol.append(v)
+            weight.append(w)
+
+        # 树上背包
+        stack = [root]
+        sub = [[0] * (m + 1) for _ in range(n)]
+        while stack:
+            i = stack.pop()
+            if i >= 0:
+                stack.append(~i)
+                for j in dct[i]:
+                    stack.append(j)
+            else:
+                i = ~i
+                sub[i][vol[i]] = weight[i]
+                for j in dct[i]:
+                    cur = sub[i][:]
+                    for x in range(vol[i], m + 1):  # 必须选择父节点的物品
+                        for y in range(m + 1 - x):
+                            cur[x + y] = max(cur[x + y], sub[i][x] + sub[j][y])
+                    sub[i] = cur[:]
+        ac.st(max(sub[root]))
+        return
+
+    @staticmethod
+    def ac_11(ac=FastIO()):
+        # 模板：01背包求方案数
+        n, m = ac.read_ints()
+        dp = [0]*(m+1)
+        cnt = [1]*(m+1)  # 注意方案数都初始化为1
+        mod = 10**9 + 7
+        for _ in range(n):
+            v, w = ac.read_ints()
+            for i in range(m, v-1, -1):
+                if dp[i-v] + w > dp[i]:
+                    dp[i] = dp[i-v] + w
+                    cnt[i] = cnt[i-v]
+                elif dp[i-v] + w == dp[i]:
+                    cnt[i] += cnt[i-v]
+                    cnt[i] %= mod
+        ac.st(cnt[-1])
+        return
+
+    @staticmethod
+    def ac_12_1(ac=FastIO()):
+        # 模板：01背包求具体方案
+        n, m = ac.read_ints()
+        dp = [[0] * (m + 1) for _ in range(n + 1)]
+        nums = [ac.read_list_ints() for _ in range(n)]
+
+        # 要求字典序最小所以倒着来
+        for i in range(n - 1, -1, -1):
+            v, w = nums[i]
+            for j in range(m, -1, -1):
+                dp[i][j] = dp[i + 1][j]
+                if j >= v and dp[i + 1][j - v] + w > dp[i][j]:
+                    dp[i][j] = dp[i + 1][j - v] + w
+
+        # 再正着求最小的字典序
+        j = m
+        path = []
+        for i in range(n):
+            v, w = nums[i]
+            if j >= v and dp[i][j] == dp[i + 1][j - v] + w:
+                j -= v
+                path.append(i + 1)
+        ac.lst(path)
+        return
+
+    @staticmethod
+    def ac_12_2(ac=FastIO()):
+        # 模板：01背包求具体方案
+        n, m = ac.read_ints()
+        dp = [[0, [-1]] for _ in range(m+1)]
+        for ind in range(n):
+            v, w = ac.read_ints()
+            for i in range(m, v-1, -1):
+                if dp[i-v][0] + w > dp[i][0] or (dp[i-v][0] + w == dp[i][0] and dp[i-v][1]+[ind+1] < dp[i][1]):
+                    dp[i] = [dp[i-v][0] + w, dp[i-v][1]+[ind+1]]
+        ac.lst(dp[-1][1][1:])
         return
 
 

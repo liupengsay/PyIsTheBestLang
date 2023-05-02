@@ -43,7 +43,7 @@ P5002 专心OI - 找祖先（https://www.luogu.com.cn/problem/P5002）使用树�
 P5651 基础最短路练习题（https://www.luogu.com.cn/problem/P5651）脑筋急转弯使用并查集去环，转换为树形DP里面任意两点路径的异或和
 P6591 [YsOI2020]植树（https://www.luogu.com.cn/problem/P6591）换根DP，即无根树递归判断每个节点作为根节点的情况
 P7159 「dWoi R1」Sweet Fruit Chocolate（https://www.luogu.com.cn/problem/P7159）树形DP枚举计数与快速幂计算
-P2015 二叉苹果树（https://www.luogu.com.cn/problem/P2015）树形DP
+P2015 二叉苹果树（https://www.luogu.com.cn/problem/P2015）树形DP，有点像树上背包
 P2014 [CTSC1997] 选课（https://www.luogu.com.cn/problem/P2014）树形DP
 P4316 绿豆蛙的归宿（https://www.luogu.com.cn/problem/P4316）逆向建图，拓扑排序DP
 
