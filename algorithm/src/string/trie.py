@@ -36,7 +36,7 @@ B. Friends（https://codeforces.com/contest/241/problem/B）经典01Trie计算�
 142. 前缀统计（https://www.acwing.com/problem/content/144/）字典树前缀统计
 143. 最大异或对（https://www.acwing.com/problem/content/145/）模板题计算最大异或对
 144. 最长异或值路径（https://www.acwing.com/problem/content/description/146/）经典使用01Trie计算树中最长异或路径
-
+161. 电话列表（https://www.acwing.com/problem/content/163/）使用字典树判断是否存在单词前缀包含
 
 参考：OI WiKi（）
 """
@@ -628,6 +628,34 @@ class Solution:
                 if j != fa:
                     stack.append([j, i, val ^ dct[i][j]])
         ac.st(ans)
+        return
+
+    @staticmethod
+    def ac_161(ac=FastIO()):
+        # 模板：经典O(n)使用字典树判断是否存在单词前缀包含
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            dct = dict()
+            ans = True
+            for _ in range(n):
+                s = ac.read_str()
+                if not ans:
+                    continue
+                cur = dct
+                flag = True
+                for w in s:
+                    if w not in cur:
+                        cur[w] = dict()
+                        flag = False
+                    cur = cur[w]
+                    if "cnt" in cur:
+                        ans = False
+                        break
+                if flag:
+                    ans = False
+                cur["cnt"] = 1
+            ac.st("YES" if ans else "NO")
+            del dct
         return
 
 

@@ -1,4 +1,6 @@
 import unittest
+from collections import Counter
+
 from algorithm.src.fast_io import FastIO
 
 """
@@ -24,6 +26,7 @@ D. Prefixes and Suffixes（https://codeforces.com/contest/432/problem/D）扩展
 ================================AcWing================================
 
 141. 周期（https://www.acwing.com/problem/content/143/）利用KMP求每个字符串前缀的最小循环节
+160. 匹配统计（https://www.acwing.com/problem/content/162/）z函数模板题
 
 参考：OI WiKi（https://oi-wiki.org/string/kmp/）
 
@@ -211,6 +214,20 @@ class Solution:
                 if i+1 - pi[i] and (i+1) % (i+1-pi[i]) == 0 and (i+1)//(i+1-pi[i]) > 1:
                     ac.lst([i+1, (i+1)//(i+1-pi[i])])
             ac.st("")
+        return
+
+    @staticmethod
+    def ac_160(ac=FastIO()):
+        # 模板：z函数模板题
+        n, m, q = ac.read_ints()
+        s = ac.read_str()
+        t = ac.read_str()
+        st = t+"#"+s
+        z = KMP().z_function(st)
+        cnt = Counter(z[m+1:])
+        for _ in range(q):
+            x = ac.read_int()
+            ac.st(cnt[x])
         return
 
 
