@@ -5,7 +5,7 @@ from algorithm.src.fast_io import FastIO, inf
 
 """
 算法：广度优先搜索
-功能：在有向图与无向图进行扩散，多源、双向BFS，0-1BFS（类似SPFA）双向BFS或者A-star启发式搜索
+功能：在有向图与无向图进行扩散，多源BFS、双向BFS，0-1BFS（类似SPFA）双向BFS或者A-star启发式搜索
 题目：
 
 ===================================力扣===================================
@@ -60,7 +60,8 @@ A. Book（https://codeforces.com/problemset/problem/1572/A）脑筋急转弯建�
 D. Valid BFS?（https://codeforces.com/problemset/problem/1037/D）经典BDS好题，结合队列与集合进行模拟
 P6175 无向图的最小环问题（https://www.luogu.com.cn/problem/P6175）经典使用Floyd枚举三个点之间的距离和，O(n^3)，也可以使用BFS或者Dijkstra计算
 
-
+================================AcWing================================
+173. 矩阵距离（https://www.acwing.com/problem/content/175/）多源BFS模板题
 
 参考：OI WiKi（xx）
 """
@@ -572,6 +573,31 @@ class Solution:
 
             ans = ac.min(ans, max(dis2[path[i]], dis1[path[j]], q[0][0]))
         ac.st(ans)
+        return
+
+    @staticmethod
+    def ac_173(ac=FastIO()):
+        # 模板：多源BFS模板题
+        m, n = ac.read_ints()
+        grid = [ac.read_list_str() for _ in range(m)]
+        stack = []
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == "1":
+                    grid[i][j] = 0
+                    stack.append([i, j])
+                else:
+                    grid[i][j] = inf
+        while stack:
+            nex = []
+            for i, j in stack:
+                for x, y in [[i-1, j], [i+1, j], [i, j-1], [i, j+1]]:
+                    if 0<=x<m and 0<=y<n and grid[x][y] == inf:
+                        nex.append([x, y])
+                        grid[x][y] = grid[i][j] + 1
+            stack = nex[:]
+        for g in grid:
+            ac.lst(g)
         return
 
 

@@ -23,7 +23,7 @@ Lucas定理（comb(n, m)%p = comb(n%p, m%p)*comb(n//p, m//p)）%p
 
 ===================================洛谷===================================
 P4071 排列计数（https://www.luogu.com.cn/problem/P4071）通过乘法逆元快速求解组合数与全排列数，同时递归计算错位排列数
-P1287 盒子与球（https://www.luogu.com.cn/problem/P1287）斯特林数形式的DP，以及全排列数
+P1287 盒子与球（https://www.luogu.com.cn/problem/P1287）第二类斯特林数形式的DP，以及全排列数
 P1375 小猫（https://www.luogu.com.cn/problem/P1375）卡特兰数
 P1754 球迷购票问题（https://www.luogu.com.cn/problem/P1754）卡特兰数
 P2193 HXY和序列（https://www.luogu.com.cn/problem/P2193）使用隔板法与因数分解进行组合方案数求解
@@ -35,6 +35,7 @@ P3414 SAC#1 - 组合数（https://www.luogu.com.cn/problem/P3414）组合数奇�
 P4369 [Code+#4]组合数问题（https://www.luogu.com.cn/problem/P4369）脑筋急转弯进行组合数加和构造
 P5520 [yLOI2019] 青原樱（https://www.luogu.com.cn/problem/P5520）隔板法计算组合数
 P3807 【模板】卢卡斯定理/Lucas 定理（https://www.luogu.com.cn/problem/P3807）卢卡斯模板题
+P1044 [NOIP2003 普及组] 栈（https://www.luogu.com.cn/problem/P1044）卡特兰数
 
 ================================CodeForces================================
 D. Triangle Coloring（https://codeforces.com/problemset/problem/1795/D）组合计数取模与乘法逆元快速计算
