@@ -4,7 +4,7 @@ from typing import List
 from algorithm.src.fast_io import FastIO, inf
 
 """
-算法：广度优先搜索
+算法：广度优先搜索、双端队列BFS
 功能：在有向图与无向图进行扩散，多源BFS、双向BFS，0-1BFS（类似SPFA）双向BFS或者A-star启发式搜索
 题目：
 
@@ -62,6 +62,7 @@ P6175 无向图的最小环问题（https://www.luogu.com.cn/problem/P6175）经
 
 ================================AcWing================================
 173. 矩阵距离（https://www.acwing.com/problem/content/175/）多源BFS模板题
+175. 电路维修（https://www.acwing.com/problem/content/177/）双端优先队列 BFS
 
 参考：OI WiKi（xx）
 """
@@ -598,6 +599,48 @@ class Solution:
             stack = nex[:]
         for g in grid:
             ac.lst(g)
+        return
+
+    @staticmethod
+    def ac_175(ac=FastIO()):
+        for _ in range(ac.read_int()):
+
+            # 模板：经典双端优先队列 01 BFS模板题注意建图
+            m, n = ac.read_ints()
+            grid = [ac.read_str() for _ in range(m)]
+            k = (m+1)*(n+1)
+            dct = [dict() for _ in range(k)]
+            for i in range(m):
+                for j in range(n):
+                    x1, y1 = i, j
+                    x2, y2 = i, j+1
+                    x3, y3 = i+1, j
+                    x4, y4 = i+1, j+1
+                    if grid[i][j] == "/":
+                        dct[x1*(n+1)+y1][x4*(n+1)+y4] = 1
+                        dct[x4 * (n + 1) + y4][x1 * (n + 1) + y1] = 1
+                        dct[x2 * (n + 1) + y2][x3 * (n + 1) + y3] = 0
+                        dct[x3 * (n + 1) + y3][x2 * (n + 1) + y2] = 0
+                    else:
+                        dct[x1 * (n + 1) + y1][x4 * (n + 1) + y4] = 0
+                        dct[x4 * (n + 1) + y4][x1 * (n + 1) + y1] = 0
+                        dct[x2 * (n + 1) + y2][x3 * (n + 1) + y3] = 1
+                        dct[x3 * (n + 1) + y3][x2 * (n + 1) + y2] = 1
+
+            visit = [inf]*(k)
+            stack = deque([0])
+            visit[0] = 0
+            while stack:
+                i = stack.popleft()
+                for j in dct[i]:
+                    dd = dct[i][j] + visit[i]
+                    if visit[j] > dd:
+                        visit[j] = dd
+                        if dd == visit[i]:
+                            stack.appendleft(j)
+                        else:
+                            stack.append(j)
+            ac.st(visit[-1] if visit[-1] < inf else "NO SOLUTION")
         return
 
 
