@@ -27,7 +27,7 @@ P1168 中位数（https://www.luogu.com.cn/problem/P1168） 用两个堆维护�
 P1801 黑匣子（https://www.luogu.com.cn/problem/P1801）用两个堆维护第K小
 P2085 最小函数值（https://www.luogu.com.cn/problem/P2085）用数学加一个堆维护前K小
 P1631 序列合并（https://www.luogu.com.cn/problem/P1631）用一个堆维护前K小
-P4053 建筑抢修（https://www.luogu.com.cn/problem/P4053）用一个堆延迟选择贪心维护最优
+P4053 建筑抢修（https://www.luogu.com.cn/problem/P4053）用一个堆延迟选择贪心维护最优，经典课程表 III
 P1878 舞蹈课（https://www.luogu.com.cn/problem/P1878）用哈希加一个堆进行模拟计算
 P3620 [APIO/CTSC2007] 数据备份（https://www.luogu.com.cn/problem/P3620）贪心思想加二叉堆与双向链表优
 P2168 [NOI2015] 荷马史诗（https://www.luogu.com.cn/problem/P2168）霍夫曼树与二叉堆贪心
@@ -244,6 +244,44 @@ class Solution:
             heapq.heappush(stack, [cur, dep+1])
         ac.st(ans)
         ac.st(stack[0][1])
+        return
+
+    @staticmethod
+    def lg_p1631(ac=FastIO()):
+        # 模板：求两个数组的前 n 个最小的元素和
+        n = ac.read_int()
+        nums1 = ac.read_list_ints()
+        nums2 = ac.read_list_ints()
+        stack = [[nums1[0]+nums2[j], 0, j] for j in range(n)]
+        # 不重不漏枚举所有索引组合
+        heapq.heapify(stack)
+        ans = []
+        for _ in range(n):
+            val, i, j = heapq.heappop(stack)
+            ans.append(val)
+            if i+1 < n:
+                heapq.heappush(stack, [nums1[i+1]+nums2[j], i+1, j])
+        ac.lst(ans)
+        return
+
+    @staticmethod
+    def lg_p4053(ac=FastIO()):
+        # 模板：懒惰删除，模拟贪心
+        n = ac.read_int()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        nums.sort(key=lambda it: it[1])
+        pre = 0
+        stack = []
+        for a, b in nums:
+            if pre+a <= b:
+                heapq.heappush(stack, -a)
+                pre += a
+            else:
+                if stack and -a > stack[0]:
+                    pre += heapq.heappop(stack)
+                    pre += a
+                    heapq.heappush(stack, -a)
+        ac.st(len(stack))
         return
 
 

@@ -4,6 +4,8 @@ from collections import Counter
 from functools import cmp_to_key
 from typing import List
 
+from algorithm.src.fast_io import FastIO
+
 """
 算法：排序、冒泡排序、归并排序（期望比较次数最少）、快速排序（期望性能最好）、自定义排序（灵活）
 功能：各种排序的实现以及特点变形题目，如逆序对
@@ -27,6 +29,7 @@ P1177 【模板】快速排序（https://www.luogu.com.cn/problem/P1177）快速
 https://codeforces.com/problemset/problem/922/D（贪心加自定义排序）
 
 
+================================AcWing====================================
 113. 特殊排序（https://www.acwing.com/problem/content/description/115/）自定义排序调用函数进行比较
 
 参考：OI WiKi（xx）
@@ -393,6 +396,32 @@ class Solution:
         nums = [str(x) for x in nums]
         nums.sort(key=cmp_to_key(compare))
         return str(int("".join(nums)))
+
+    @staticmethod
+    def lg_1177(ac=FastIO()):
+        # 模板：快速排序迭代实现
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        stack = [[0, n-1]]
+        while stack:
+            left, right = stack.pop()
+            mid = nums[random.randint(left, right)]
+            i, j = left, right
+            while i <= j:
+                while nums[i] < mid:
+                    i += 1
+                while nums[j] > mid:
+                    j -= 1
+                if i <= j:
+                    nums[i], nums[j] = nums[j], nums[i]
+                    i += 1
+                    j -= 1
+            if left < j:
+                stack.append([left, j])
+            if i < right:
+                stack.append([i, right])
+        ac.lst(nums)
+        return
 
 
 class TestGeneral(unittest.TestCase):
