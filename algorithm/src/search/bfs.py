@@ -63,6 +63,7 @@ P6175 无向图的最小环问题（https://www.luogu.com.cn/problem/P6175）经
 ================================AcWing================================
 173. 矩阵距离（https://www.acwing.com/problem/content/175/）多源BFS模板题
 175. 电路维修（https://www.acwing.com/problem/content/177/）双端优先队列 BFS
+177. 噩梦（https://www.acwing.com/problem/content/179/）多源双向BFS
 
 参考：OI WiKi（xx）
 """
@@ -642,6 +643,83 @@ class Solution:
                             stack.append(j)
             ac.st(visit[-1] if visit[-1] < inf else "NO SOLUTION")
         return
+
+    @staticmethod
+    def ac_177(ac=FastIO()):
+        for _ in range(ac.read_int()):
+            # 模板：多源双向BFS
+            m, n = ac.read_ints()
+            grid = [ac.read_str() for _ in range(m)]
+            ghost = []
+            boy = []
+            girl = []
+            for i in range(m):
+                for j in range(n):
+                    w = grid[i][j]
+                    if w == "M":
+                        boy = [i, j]
+                    elif w == "G":
+                        girl = [i, j]
+                    elif w == "Z":
+                        ghost.append([i, j])
+
+            # 男孩
+            dis_boy = [[inf] * n for _ in range(m)]
+            stack_boy = [boy]
+            for i, j in stack_boy:
+                dis_boy[i][j] = 0
+
+            dis_girl = [[inf] * n for _ in range(m)]
+            stack_girl = [girl]
+            for i, j in stack_girl:
+                dis_girl[i][j] = 0
+
+            dis_ghost = [[inf] * n for _ in range(m)]
+            stack_ghost = ghost[:]
+            for i, j in stack_ghost:
+                dis_ghost[i][j] = 0
+            pre = 0
+
+            ans = inf
+            while ans == inf and stack_girl and stack_boy:
+                pre += 1
+                for _ in range(2):
+                    nex_ghost = []
+                    for i, j in stack_ghost:
+                        for x, y in [[i-1, j], [i+1, j], [i, j-1], [i, j+1]]:
+                            if 0<=x<m and 0<=y<n and dis_ghost[x][y] == inf:
+                                dis_ghost[x][y] = pre
+                                nex_ghost.append([x, y])
+                    stack_ghost = nex_ghost[:]
+
+                for _ in range(3):
+                    nex_boy = []
+                    for i, j in stack_boy:
+                        if dis_ghost[i][j] == inf:
+                            for x, y in [[i - 1, j], [i + 1, j], [i, j - 1], [i, j + 1]]:
+                                if 0 <= x < m and 0 <= y < n and dis_boy[x][y] == inf and grid[x][y] != "X" and dis_ghost[x][y]==inf:
+                                    dis_boy[x][y] = pre
+                                    nex_boy.append([x, y])
+                                    if dis_girl[x][y] < inf:
+                                        ans = pre
+                    stack_boy = nex_boy[:]
+
+                for _ in range(1):
+                    nex = []
+                    for i, j in stack_girl:
+                        if dis_ghost[i][j] == inf:
+                            for x, y in [[i - 1, j], [i + 1, j], [i, j - 1], [i, j + 1]]:
+                                if 0 <= x < m and 0 <= y < n and dis_girl[x][y] == inf and grid[x][y] != "X" and \
+                                        dis_ghost[x][y] == inf:
+                                    dis_girl[x][y] = pre
+                                    if dis_boy[x][y] < inf:
+                                        ans = pre
+                                    nex.append([x, y])
+                    stack_girl = nex[:]
+
+            ac.st(ans if ans < inf else -1)
+        return
+
 
 
 class TestGeneral(unittest.TestCase):

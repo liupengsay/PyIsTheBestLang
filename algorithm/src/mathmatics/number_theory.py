@@ -16,7 +16,7 @@ from sortedcontainers import SortedList, SortedDict, SortedSet
 
 from sortedcontainers import SortedDict
 from functools import reduce
-from operator import xor
+from operator import xor, mul
 from functools import lru_cache
 
 import random
@@ -104,6 +104,9 @@ C. Strongly Composite（https://codeforces.com/contest/1823/problem/C）质因�
 97. 约数之和（https://www.acwing.com/problem/content/99/）计算a^b的所有约数之和
 124. 数的进制转换（https://www.acwing.com/problem/content/126/）不同进制的转换，注意0的处理
 197. 阶乘分解（https://www.acwing.com/problem/content/199/）计算n!阶乘的质因数分解即因子与因子的个数
+196. 质数距离（https://www.acwing.com/problem/content/198/）经典计算质数距离对
+198. 反素数（https://www.acwing.com/problem/content/200/）经典计算最大的反质数（反素数，即约数或者说因数个数大于任何小于它的数的因数个数）
+199. 余数之和（https://www.acwing.com/problem/content/description/201/）经典枚举因数计算之和
 
 参考：OI WiKi（xx）
 """
@@ -277,7 +280,7 @@ class NumberTheory:
 
     @staticmethod
     def get_factor_upper(n):
-        # 使用素数筛类似的方法获取小于等于 n 的所有数除 1 与自身之外的所有因数
+        # 模板：使用素数筛类似的方法获取小于等于 n 的所有数除 1 与自身之外的所有因数（倍数法）
         factor = [[] for _ in range(n+1)]
         for i in range(2, n+1):
             x = 2
@@ -467,6 +470,23 @@ class NumberTheory:
             element for element in range(
                 2, n + 1) if primes[element]]  # 得到所有小于等于n的素数
         return primes
+
+    @staticmethod
+    def linear_sieve(n):
+        # 模板：线性筛素数并计算出所有的质因子
+        is_prime = [True] * (n + 1)
+        primes = []
+        min_prime = [0] * (n + 1)
+        for i in range(2, n + 1):
+            if is_prime[i]:
+                primes.append(i)
+            for p in primes:
+                if i * p > n:
+                    break
+                is_prime[i * p] = False
+                if i % p == 0:
+                    break
+        return primes, min_prime
 
     @staticmethod
     def get_all_factor(num):
@@ -895,6 +915,79 @@ class Solution:
                 dct[p] += cnt
         for p in sorted(dct):
             ac.lst([p, dct[p]])
+        return
+
+    @staticmethod
+    def ac_196(ac=FastIO()):
+
+        # 模板：经典计算质数距离对
+        primes = NumberTheory().sieve_of_eratosthenes(2 ** 16)
+        while True:
+            lst = ac.read_list_ints()
+            if not lst:
+                break
+
+            left, right = lst
+            dp = [0] * (right - left + 1)
+            for p in primes:
+                x = max(math.ceil(left / p), 2) * p
+                while left <= x <= right:
+                    dp[x - left] = 1
+                    x += p
+
+            rest = [x + left for x in range(right - left + 1) if not dp[x] and x + left > 1]
+            if len(rest) < 2:
+                ac.st("There are no adjacent primes.")
+            else:
+                ans1 = [rest[0], rest[1]]
+                ans2 = [rest[0], rest[1]]
+                m = len(rest)
+                for i in range(2, m):
+                    a, b = rest[i - 1], rest[i]
+                    if b - a < ans1[1] - ans1[0]:
+                        ans1 = [a, b]
+                    if b - a > ans2[1] - ans2[0]:
+                        ans2 = [a, b]
+                ac.st(f"{ans1[0]},{ans1[1]} are closest, {ans2[0]},{ans2[1]} are most distant.")
+        return
+
+    @staticmethod
+    def ac_198(ac=FastIO()):
+
+        # 模板：经典计算最大的反质数（反素数，即约数或者说因数个数大于任何小于它的数的因数个数）
+        n = ac.read_int()
+        primes = NumberTheory().sieve_of_eratosthenes(50)
+        x = reduce(mul, primes)
+        while x > n:
+            x //= primes.pop()
+        # 充要条件为 2^c1*3^c2...且c1>=c2
+        m = len(primes)
+        ans = 1
+        ans = [1, 1]
+        stack = [[1, 1, int(math.log2(n)) + 1, 0]]
+        while stack:
+            x, cnt, mi, i = stack.pop()
+            if mi == 0 or i == m:
+                if cnt > ans[1] or (cnt == ans[1] and x < ans[0]):
+                    ans = [x, cnt]
+                continue
+            for y in range(mi, -1, -1):
+                if x * primes[i]**y <= n:
+                    stack.append([x * primes[i]**y, cnt * (y + 1), y, i + 1])
+        ac.st(ans[0])
+        return
+
+    @staticmethod
+    def ac_199(ac=FastIO()):
+        # 模板：计算 sum(k%i for i in range(n))
+        n, k = ac.read_ints()
+        ans = n*k
+        left = 1
+        while left <= min(n, k):
+            right = min(k//(k//left), n)
+            ans -= (k//left)*(left+right)*(right-left+1)//2
+            left = right+1
+        ac.st(ans)
         return
 
 

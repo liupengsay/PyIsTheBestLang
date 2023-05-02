@@ -72,6 +72,9 @@ P2622 关灯问题II（https://www.luogu.com.cn/problem/P2622）状压加dijkstr
 C. Dijkstra?（https://codeforces.com/problemset/problem/20/C）正权值最短路计算，并记录返回生成路径
 E. Weights Distributing（https://codeforces.com/problemset/problem/1343/E）使用三个01BFS求最短路加贪心枚举计算
 
+================================AcWing====================================
+176. 装满的油箱（https://www.acwing.com/problem/content/178/）经典加油题，使用dijkstra模仿状态
+
 参考：OI WiKi（xx）
 """
 
