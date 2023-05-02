@@ -1,7 +1,7 @@
 import math
 import random
 import unittest
-from collections import defaultdict
+from collections import defaultdict, deque
 from typing import List
 from algorithm.src.mathmatics.number_theory import NumberTheory
 from algorithm.src.fast_io import FastIO, inf
@@ -64,6 +64,12 @@ B. Modulo Sum（https://codeforces.com/problemset/problem/577/B）取模计数�
 A. Writing Code（https://codeforces.com/problemset/problem/543/A）二维有限背包DP，当作无限进行处理
 E. Porcelain（https://codeforces.com/problemset/problem/148/E）01背包枚举，两层动态规划
 F. Zero Remainder Sum（https://codeforces.com/problemset/problem/1433/F）01背包枚举，两层动态规划
+
+================================AcWing=====================================
+4. 多重背包问题 I（https://www.acwing.com/problem/content/4/）二进制优化背包
+6. 多重背包问题 III（https://www.acwing.com/problem/content/description/6/）单调队列优化多重背包
+
+
 
 参考：OI WiKi（xx）
 """
@@ -331,6 +337,25 @@ class Solution:
                     for p in dp[x]:
                         dp[lst[j]].append(p+[lst[i]])
         return [ls for ls in dp[n] if ls]
+
+    @staticmethod
+    def ac_6(ac=FastIO()):
+        # 模板：单调队列优化的多重背包问题，即限定个数和体积价值求最大值
+        n, m = ac.read_ints()
+        dp = [0]*(m+1)
+        for _ in range(n):
+            v, w, s = ac.read_ints()
+            for r in range(v):
+                stack = deque()
+                for i in range(r, m+1, v):
+                    while stack and stack[0][0] < i-s*v:
+                        stack.popleft()
+                    while stack and stack[-1][1] + (i - stack[-1][0]) // v * w <= dp[i]:
+                        stack.pop()
+                    stack.append([i, dp[i]])
+                    dp[i] = stack[0][1] + (i-stack[0][0])//v*w
+        ac.st(dp[-1])
+        return
 
 
 class TestGeneral(unittest.TestCase):
