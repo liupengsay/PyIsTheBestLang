@@ -59,6 +59,7 @@ D. Max Median（https://codeforces.com/problemset/problem/1486/D）利用单调�
 
 ================================AcWing================================
 120. 防线（https://www.acwing.com/problem/content/122/）根据单调性二分
+14. 不修改数组找出重复的数字（https://www.acwing.com/problem/content/description/15/）利用鸽巢原理二分查找重复的数，修改数组且只用O(1)空间
 
 参考：OI WiKi（xx）
 """
@@ -463,6 +464,25 @@ class Solution:
             else:
                 ac.st("There's no weakness.")
         return
+
+    @staticmethod
+    def ac_14(nums):
+        # 模板：利用鸽巢原理进行二分
+        n = len(nums) - 1
+        low = 1
+        high = n
+        while low < high:
+            mid = low + (high - low) // 2
+            cnt = 0
+            for num in nums:
+                if low <= num <= mid:
+                    cnt += 1
+            if cnt > mid - low + 1:
+                high = mid
+            else:
+
+                low = mid + 1
+        return low
 
 
 class TestGeneral(unittest.TestCase):

@@ -25,6 +25,7 @@ P3864 [USACO1.2]命名那个数字 Name That Number（https://www.luogu.com.cn/p
 P5755 [NOI2000] 单词查找树（https://www.luogu.com.cn/problem/P5755）字典树节点计数
 P1481 魔族密码（https://www.luogu.com.cn/problem/P1481）最长词链   
 P5283 [十二省联考 2019] 异或粽子（https://www.luogu.com.cn/problem/P5283）字典树查询第k大异或值，并使用堆贪心选取
+P2922 [USACO08DEC]Secret Message G（https://www.luogu.com.cn/problem/P2922）字典树好题，前缀计数
 
 ================================CodeForces================================
 Fixed Prefix Permutations（https://codeforces.com/problemset/problem/1792/D）变形后使用字典树进行计数查询
@@ -656,6 +657,34 @@ class Solution:
                 cur["cnt"] = 1
             ac.st("YES" if ans else "NO")
             del dct
+        return
+
+    @staticmethod
+    def lg_p2922(ac=FastIO()):
+        # 模板：字典树进行前缀匹配
+        m, n = ac.read_ints()
+        dct = dict()
+        for _ in range(m):
+            b = ac.read_list_ints()
+            cur = dct
+            for num in b[1:]:
+                if num not in cur:
+                    cur[num] = dict()
+                cur = cur[num]
+                cur["mid"] = cur.get("mid", 0) + 1
+            cur["cnt"] = cur.get("cnt", 0) + 1
+
+        for _ in range(n):
+            ans = 0
+            cur = dct
+            for num in ac.read_list_ints()[1:]:
+                if num not in cur:
+                    break
+                cur = cur[num]
+                ans += cur.get("cnt", 0)
+            else:
+                ans += cur.get("mid", 0) - cur.get("cnt", 0)
+            ac.st(ans)
         return
 
 
