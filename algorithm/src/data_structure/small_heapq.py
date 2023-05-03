@@ -31,6 +31,7 @@ P4053 建筑抢修（https://www.luogu.com.cn/problem/P4053）用一个堆延迟
 P1878 舞蹈课（https://www.luogu.com.cn/problem/P1878）用哈希加一个堆进行模拟计算
 P3620 [APIO/CTSC2007] 数据备份（https://www.luogu.com.cn/problem/P3620）贪心思想加二叉堆与双向链表优
 P2168 [NOI2015] 荷马史诗（https://www.luogu.com.cn/problem/P2168）霍夫曼树与二叉堆贪心
+P2278 [HNOI2003]操作系统（https://www.luogu.com.cn/problem/P2278）使用二叉堆模拟CPU占用
 
 ===================================AcWing======================================
 146. 序列（https://www.acwing.com/problem/content/description/148/）小顶堆计算经典问题m个数组最小的n个子序列和，同样可以计算最大的
@@ -282,6 +283,76 @@ class Solution:
                     pre += a
                     heapq.heappush(stack, -a)
         ac.st(len(stack))
+        return
+
+    @staticmethod
+    def lg_p2085(ac=FastIO()):
+        # 模板：利用一元二次方程的单调性与指针堆优化进行贪心选取
+        n, m = ac.read_ints()
+        stack = []
+        for _ in range(n):
+            a, b, c = ac.read_ints()
+            heapq.heappush(stack, [a+b+c, 1, a, b, c])
+        ans = []
+        while len(ans) < m:
+            val, x, a, b, c = heapq.heappop(stack)
+            ans.append(val)
+            x += 1
+            heapq.heappush(stack, [a*x*x+b*x+c, x, a, b, c])
+        ac.lst(ans)
+        return
+
+    @staticmethod
+    def lg_p2278(ac=FastIO()):
+        # 模板：使用堆模拟应用
+        now = []  # idx, reach, need, level, end
+        ans = []
+        stack = []  # -level, reach, need, idx
+        pre = 0
+        while True:
+            lst = ac.read_list_ints()  # idx, reach, need, level
+            if not lst:
+                break
+
+            # 当前达到时刻之前可以完成的任务消除掉
+            while now and now[-1] <= lst[1]:
+                ans.append([now[0], now[-1]])
+                pre = now[-1]
+                if stack:
+                    level, reach, need, idx = heapq.heappop(stack)
+                    now = [idx, reach, need, -level, ac.max(pre, reach)+need]
+                else:
+                    now = []
+
+            # 取出还有的任务运行
+            if not now and stack:
+                level, reach, need, idx = heapq.heappop(stack)
+                now = [idx, reach, need, -level, ac.max(pre, reach)+need]
+
+            # 执行任务等级不低于当前任务，当前任务直接入队
+            if now and now[3] >= lst[-1]:
+                idx, reach, need, level = lst
+                heapq.heappush(stack, [-level, reach, need, idx])
+            elif now:
+                # 当前任务等级更高，进行替换，注意剩余时间
+                idx, reach, need, level, end = now
+                heapq.heappush(stack, [-level, reach, end-lst[1], idx])
+                idx, reach, need, level = lst
+                now = [idx, reach, need, level, ac.max(pre, reach)+need]
+            else:
+                # 无执行任务，直接执行当前任务
+                idx, reach, need, level = lst
+                now = [idx, reach, need, level, ac.max(pre, reach)+need]
+
+        while stack:
+            # 执行剩余任务
+            ans.append([now[0], now[-1]])
+            pre = now[-1]
+            level, reach, need, idx = heapq.heappop(stack)
+            now = [idx, reach, need, -level, ac.max(pre, reach) + need]
+        ans.append([now[0], now[-1]])
+        for a in ans:
+            ac.lst(a)
         return
 
 

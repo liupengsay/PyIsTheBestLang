@@ -49,6 +49,7 @@ P7910 [CSP-J 2021] 插入排序（https://www.luogu.com.cn/problem/P7910）使�
 P4375 [USACO18OPEN]Out of Sorts G（https://www.luogu.com.cn/problem/P4375）冒泡排序，使用有序列表维护
 P1908 逆序对（https://www.luogu.com.cn/problem/P1908）经典问题求逆序对，可以使用归并排序
 P1966 [NOIP2013 提高组] 火柴排队（https://www.luogu.com.cn/problem/P1966）逆序对经典贪心题目
+P2161 [SHOI2009]会场预约（https://www.luogu.com.cn/problem/P2161）区间合并与删除处理
 
 ================================CodeForces================================
 D. Pashmak and Parmida's problem（https://codeforces.com/problemset/problem/459/D）使用有序集合进行大小计数查找

@@ -30,6 +30,7 @@ P1908 逆序对（https://www.luogu.com.cn/problem/P1908）树状数组求逆序
 135. 二维树状数组3（https://loj.ac/p/135）区间修改，区间查询
 134. 二维树状数组2（https://loj.ac/p/134）区间修改，单点查询
 P1725 琪露诺（https://www.luogu.com.cn/problem/P1725）倒序线性DP，单点更新值，查询区间最大值
+P3586 [POI2015] LOG（https://www.luogu.com.cn/problem/P3586）离线查询、离散化树状数组，单点增减，前缀和查询
 
 ================================CodeForces================================
 F. Range Update Point Query（https://codeforces.com/problemset/problem/1791/F）树状数组维护区间操作数与查询单点值
@@ -187,7 +188,7 @@ class TreeArrayRangeQueryPointUpdateMin:
 
 class TreeArrayPointUpdateRangeMaxMin:
 
-    # 模板：树状数组 单点增加区间查询最大值 单点减加区间查询最小值
+    # 模板：树状数组 单点增加区间查询最大值 单点减少区间查询最小值
     def __init__(self, n: int) -> None:
         self.n = n
         self.a = [0] * (n + 1)
@@ -329,9 +330,7 @@ class TreeArray2DRange:
         return self._query(x2, y2) - self._query(x2, y1-1) - self._query(x1-1, y2) + self._query(x1-1, y1-1)
 
 
-
 class TreeArray2DRangeMaxMin:
-
     # 模板：树状数组 单点增加区间查询最大值 单点减少区间查询最小值（暂未调通）
     def __init__(self, m: int, n: int) -> None:
         self.m = m
@@ -622,6 +621,55 @@ class Solution:
             post = tree.find_max(x, y)
             tree.add(i+1, post+nums[i])
         ac.st(post+nums[0])
+        return
+
+    @staticmethod
+    def lg_p3586(ac=FastIO()):
+        # 模板：离线查询、离散化树状数组，单点增减，前缀和查询
+        n, m = ac.read_ints()
+        value = {0}
+        lst = []
+        for _ in range(m):
+            cur = ac.read_list_strs()
+            if cur[0] == "U":
+                k, a = [int(w) for w in cur[1:]]
+                value.add(a)
+                lst.append([1, k, a])
+            else:
+                c, s = [int(w) for w in cur[1:]]
+                value.add(s)
+                lst.append([2, c, s])
+        value = sorted(list(value))
+        ind = {num: i for i, num in enumerate(value)}
+        length = len(ind)
+
+        tree_cnt = TreeArrayRangeQuerySum(length)
+        tree_sum = TreeArrayRangeQuerySum(length)
+        nums = [0]*n
+        total_s = 0
+        total_c = 0
+
+        for op, a, b in lst:
+            if op == 1:
+                if nums[a-1]:
+                    tree_cnt.update(ind[nums[a-1]], -1)
+                    tree_sum.update(ind[nums[a - 1]], -nums[a-1])
+                    total_s -= nums[a-1]
+                    total_c -= 1
+                nums[a-1] = b
+                if nums[a - 1]:
+                    tree_cnt.update(ind[nums[a - 1]], 1)
+                    tree_sum.update(ind[nums[a - 1]], nums[a - 1])
+                    total_s += nums[a-1]
+                    total_c += 1
+            else:
+                c, s = a, b
+                less_than_s = tree_cnt.query(ind[s]-1)
+                less_than_s_sum = tree_sum.query(ind[s]-1)
+                if (total_c-less_than_s)*s + less_than_s_sum >= c*s:
+                    ac.st("TAK")
+                else:
+                    ac.st("NIE")
         return
 
 

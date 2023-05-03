@@ -35,6 +35,9 @@ P1438 无聊的数列（https://www.luogu.com.cn/problem/P1438）差分数组区
 P1253 扶苏的问题（https://www.luogu.com.cn/problem/P1253）区间增减与区间修改并使用线段树查询区间和
 P3373 【模板】线段树 2（https://www.luogu.com.cn/problem/P3373）区间乘法与区间加法并使用线段树查询区间和
 P4513 小白逛公园（https://www.luogu.com.cn/problem/P4513）单点修改与区间最大连续子数组和查询，可升级为区间修改
+P1471 方差（https://www.luogu.com.cn/problem/P1471）区间增减，维护区间和与区间数字平方的和，以计算均差与方差
+P6492 [COCI2010-2011#6] STEP（https://www.luogu.com.cn/problem/P6492）单点修改，查找最长的01交替字符子串连续区间
+P4145 上帝造题的七分钟 2 / 花神游历各国（https://www.luogu.com.cn/problem/P4145）区间值开方向下取整，区间和查询
 
 ================================CodeForces================================
 
@@ -425,6 +428,7 @@ class SegmentTreeRangeChangeQuerySumMinMax:
             self.lazy[2 * i + 1] = self.lazy[i]
 
             self.lazy[i] = self.inf
+
 
     def change(self, left, right, s, t, val, i):
         # 更新区间值
@@ -954,8 +958,7 @@ class SegmentTreeRangeUpdateMax:
             self.update(l, r, s, m, val, 2 * i)
         if r > m:
             self.update(l, r, m + 1, t, val, 2 * i + 1)
-        self.height[i] = self.height[2 * i] if self.height[2 *
-                                                           i] > self.height[2 * i + 1] else self.height[2 * i + 1]
+        self.height[i] = self.height[2 * i] if self.height[2 * i] > self.height[2 * i + 1] else self.height[2 * i + 1]
         return
 
     def query(self, l, r, s, t, i):
@@ -1356,6 +1359,431 @@ class SegmentTreeRangeUpdateMin:
         return highest
 
 
+class SegmentTreeRangeUpdateAvgDev:
+    def __init__(self, n) -> None:
+        # 模板：区间增减、区间平均值与区间方差
+        self.n = n
+        self.cover = [0] * (4 * self.n)
+        self.cover_2 = [0] * (4 * self.n)
+        self.lazy = [0] * (4 * self.n)
+        return
+
+    @staticmethod
+    def max(a, b):
+        return a if a > b else b
+
+    @staticmethod
+    def min(a: int, b: int) -> int:
+        return a if a < b else b
+
+    def push_up(self, i):
+        # 合并区间的函数
+        self.cover[i] = self.cover[2 * i] + self.cover[2 * i + 1]
+        self.cover_2[i] = self.cover_2[2 * i] + self.cover_2[2 * i + 1]
+        return
+
+    def make_tag(self, s, t, i, val):
+        self.cover_2[i] += self.cover[i]*2*val + (t-s+1)*val*val
+        self.cover[i] += val*(t-s+1)
+        self.lazy[i] += val
+        return
+
+    def push_down(self, i, s, m, t):
+        if self.lazy[i]:
+            self.make_tag(s, m, 2 * i, self.lazy[i])
+            self.make_tag(m + 1, t, 2 * i + 1, self.lazy[i])
+            self.lazy[i] = 0
+
+    def build(self, nums) -> None:
+        # 使用数组初始化线段树
+        stack = [[0, self.n - 1, 1, 1]]
+        while stack:
+            s, t, i, state = stack.pop()
+            if state:
+                if s == t:
+                    self.cover[i] = nums[s]
+                    self.cover_2[i] = nums[s]*nums[s]
+                    continue
+                stack.append([s, t, i, 0])
+                m = s + (t - s) // 2
+                stack.append([s, m, 2 * i, 1])
+                stack.append([m + 1, t, 2 * i + 1, 1])
+            else:
+                self.push_up(i)
+        return
+
+    def update(self, left: int, right: int, s: int, t: int, val: int, i: int) -> None:
+        # 修改点值 [left  right] 取值为 0 到 n-1 增加 val 而 i 从 1 开始，直接修改到底
+        stack = [[s, t, i, 1]]
+        while stack:
+            s, t, i, state = stack.pop()
+            if state:
+                if left <= s and t <= right:
+                    self.make_tag(s, t, i, val)
+                    continue
+                m = s + (t - s) // 2
+                self.push_down(i, s, m, t)
+                stack.append([s, t, i, 0])
+                if left <= m:  # 注意左右子树的边界与范围
+                    stack.append([s, m, 2 * i, 1])
+                if right > m:
+                    stack.append([m + 1, t, 2 * i + 1, 1])
+            else:
+                self.push_up(i)
+        return
+
+    def query(self, left: int, right: int, s: int, t: int, i: int):
+        # 查询区间和，与数组平方的区间和
+        stack = [[s, t, i]]
+        ans1 = ans2 = 0
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                ans1 += self.cover[i]
+                ans2 += self.cover_2[i]
+                continue
+            m = s + (t - s) // 2
+            self.push_down(i, s, m, t)
+            if left <= m:
+                stack.append([s, m, 2 * i])
+            if right > m:
+                stack.append([m + 1, t, 2 * i + 1])
+        return [ans1, ans2]
+
+
+class SegmentTreePointChangeLongCon:
+    def __init__(self, n) -> None:
+        # 模板：单点修改，查找最长的01交替字符子串连续区间
+        self.n = n
+        self.cover = [0] * (4 * self.n)
+        self.left_0 = [0] * (4 * self.n)
+        self.left_1 = [0] * (4 * self.n)
+        self.right_0 = [0] * (4 * self.n)
+        self.right_1 = [0] * (4 * self.n)
+        self.build()
+        return
+
+    @staticmethod
+    def max(a, b):
+        return a if a > b else b
+
+    @staticmethod
+    def min(a: int, b: int) -> int:
+        return a if a < b else b
+
+    def push_up(self, i, s, m, t):
+        # 合并区间的函数
+        self.cover[i] = self.max(self.cover[2 * i], self.cover[2 * i + 1])
+        self.cover[i] = self.max(self.cover[i], self.right_0[2 * i] + self.left_1[2 * i + 1])
+        self.cover[i] = self.max(self.cover[i], self.right_1[2 * i] + self.left_0[2 * i + 1])
+
+        self.left_0[i] = self.left_0[2 * i]
+        if self.left_0[2 * i] == m - s + 1:
+            self.left_0[i] += self.left_0[2 * i + 1] if (m - s + 1) % 2 == 0 else self.left_1[2 * i + 1]
+
+        self.left_1[i] = self.left_1[2 * i]
+        if self.left_1[2 * i] == m - s + 1:
+            self.left_1[i] += self.left_1[2 * i + 1] if (m - s + 1) % 2 == 0 else self.left_0[2 * i + 1]
+
+        self.right_0[i] = self.right_0[2 * i + 1]
+        if self.right_0[2 * i + 1] == t - m:
+            self.right_0[i] += self.right_0[2 * i] if (t - m) % 2 == 0 else self.right_1[2 * i]
+
+        self.right_1[i] = self.right_1[2 * i + 1]
+        if self.right_1[2 * i + 1] == t - m:
+            self.right_1[i] += self.right_1[2 * i] if (t - m) % 2 == 0 else self.right_0[2 * i]
+        return
+
+    def build(self) -> None:
+        # 使用数组初始化线段树
+        stack = [[0, self.n - 1, 1]]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if s == t:
+                    self.cover[i] = 1
+                    self.left_0[i] = 1
+                    self.right_0[i] = 1
+                    continue
+                stack.append([s, t, ~i])
+                m = s + (t - s) // 2
+                stack.append([s, m, 2 * i])
+                stack.append([m + 1, t, 2 * i + 1])
+            else:
+                i = ~i
+                m = s + (t - s) // 2
+                self.push_up(i, s, m, t)
+        return
+
+    def update(self, left: int, right: int, s: int, t: int, i: int) -> None:
+        # 修改点值 [left  right] 取值为 0 到 n-1 增加 val 而 i 从 1 开始，直接修改到底
+        stack = [[s, t, i]]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if left <= s and t <= right:
+                    self.left_0[i] = 1 - self.left_0[i]
+                    self.right_0[i] = 1 - self.right_0[i]
+                    self.left_1[i] = 1 - self.left_1[i]
+                    self.right_1[i] = 1 - self.right_1[i]
+                    self.cover[i] = 1
+                    continue
+                m = s + (t - s) // 2
+                stack.append([s, t, ~i])
+                if left <= m:  # 注意左右子树的边界与范围
+                    stack.append([s, m, 2 * i])
+                if right > m:
+                    stack.append([m + 1, t, 2 * i + 1])
+            else:
+                i = ~i
+                m = s + (t - s) // 2
+                self.push_up(i, s, m, t)
+        return
+
+    def query(self):
+        return self.cover[1]
+
+
+class SegmentTreeRangeAndOrXOR:
+    def __init__(self, n) -> None:
+        # 模板：区间修改成01或者反转，区间查询最多有多少连续的1，以及总共有多少1
+        self.n = n
+        self.cover_1 = [0] * (4 * self.n)
+        self.cover_0 = [0] * (4 * self.n)
+        self.sum = [0] * (4 * self.n)
+        self.left_1 = [0] * (4 * self.n)
+        self.right_1 = [0] * (4 * self.n)
+        self.left_0 = [0] * (4 * self.n)
+        self.right_0 = [0] * (4 * self.n)
+        self.lazy = [inf] * (4 * self.n)
+        return
+
+    @staticmethod
+    def max(a, b):
+        return a if a > b else b
+
+    @staticmethod
+    def min(a: int, b: int) -> int:
+        return a if a < b else b
+
+    def push_up(self, i, s, m, t):
+        # 合并区间的函数
+        self.cover_1[i] = self.max(self.cover_1[2 * i], self.cover_1[2 * i + 1])
+        self.cover_1[i] = self.max(self.cover_1[i], self.right_1[2*i]+self.left_1[2*i+1])
+
+        self.cover_0[i] = self.max(self.cover_0[2 * i], self.cover_0[2 * i + 1])
+        self.cover_0[i] = self.max(self.cover_0[i], self.right_0[2 * i] + self.left_0[2 * i + 1])
+
+        self.sum[i] = self.sum[2*i] + self.sum[2*i+1]
+
+        self.left_1[i] = self.left_1[2*i]
+        if self.left_1[i] == m-s+1:
+            self.left_1[i] += self.left_1[2*i+1]
+
+        self.left_0[i] = self.left_0[2 * i]
+        if self.left_0[i] == m - s + 1:
+            self.left_0[i] += self.left_0[2 * i + 1]
+
+        self.right_1[i] = self.right_1[2 * i+1]
+        if self.right_1[i] == t-m:
+            self.right_1[i] += self.right_1[2 * i]
+
+        self.right_0[i] = self.right_0[2 * i+1]
+        if self.right_0[i] == t-m:
+            self.right_0[i] += self.right_0[2 * i]
+
+        return
+
+    def make_tag(self, s, t, i, val):
+        if val == 0:
+            self.cover_1[i] = 0
+            self.sum[i] = 0
+            self.cover_0[i] = t-s+1
+            self.left_1[i] = self.right_1[i] = 0
+            self.right_0[i] = self.left_0[i] = t-s+1
+        elif val == 1:
+            self.cover_1[i] = t-s+1
+            self.cover_0[i] = 0
+            self.sum[i] = t-s+1
+            self.left_1[i] = self.right_1[i] = t-s+1
+            self.right_0[i] = self.left_0[i] = 0
+        else:
+            self.cover_1[i], self.cover_0[i] = self.cover_0[i], self.cover_1[i]
+            self.sum[i] = t-s+1-self.sum[i]
+            self.left_0[i], self.left_1[i] = self.left_1[i], self.left_0[i]
+            self.right_0[i], self.right_1[i] = self.right_1[i], self.right_0[i]
+        self.lazy[i] = val
+        return
+
+    def push_down(self, i, s, m, t):
+        if self.lazy[i] != inf:
+            self.make_tag(s, m, 2 * i, self.lazy[i])
+            self.make_tag(m + 1, t, 2 * i + 1, self.lazy[i])
+            self.lazy[i] = inf
+
+    def build(self, nums) -> None:
+        # 使用数组初始化线段树
+        stack = [[0, self.n - 1, 1]]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if s == t:
+                    if nums[s] == 0:
+                        self.cover_1[i] = 0
+                        self.sum[i] = 0
+                        self.cover_0[i] = 1
+                        self.left_1[i] = self.right_1[i] = 0
+                        self.left_0[i] = self.right_0[i] = 1
+                    else:
+                        self.cover_1[i] = 1
+                        self.sum[i] = 1
+                        self.cover_0[i] = 0
+                        self.left_1[i] = self.right_1[i] = 1
+                        self.left_0[i] = self.right_0[i] = 0
+                    continue
+                stack.append([s, t, ~i])
+                m = s + (t - s) // 2
+                stack.append([s, m, 2 * i])
+                stack.append([m + 1, t, 2 * i + 1])
+            else:
+                i = ~i
+                m = s + (t - s) // 2
+                self.push_up(i, s, m, t)
+        return
+
+    def update(self, left: int, right: int, s: int, t: int, val: int, i: int) -> None:
+        # 修改点值 [left  right] 取值为 0 到 n-1 增加 val 而 i 从 1 开始，直接修改到底
+        stack = [[s, t, i]]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                m = s + (t - s) // 2
+                if s < t:
+                    self.push_down(i, s, m, t)
+                if left <= s and t <= right:
+                    self.make_tag(s, t, i, val)
+                    continue
+
+                stack.append([s, t, ~i])
+                if left <= m:  # 注意左右子树的边界与范围
+                    stack.append([s, m, 2 * i])
+                if right > m:
+                    stack.append([m + 1, t, 2 * i + 1])
+            else:
+                i = ~i
+                m = s + (t - s) // 2
+                self.push_up(i, s, m, t)
+        return
+
+    def query_sum(self, left: int, right: int, s: int, t: int, i: int):
+        # 查询区间和，与数组平方的区间和
+        stack = [[s, t, i]]
+        ans = 0
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                ans += self.sum[i]
+                continue
+            m = s + (t - s) // 2
+            self.push_down(i, s, m, t)
+            if left <= m:
+                stack.append([s, m, 2 * i])
+            if right > m:
+                stack.append([m + 1, t, 2 * i + 1])
+        return ans
+
+    def query_max_length(self, left: int, right: int, s: int, t: int, i: int):
+        # 查询区间的最大连续和，注意这里是递归
+        if left <= s and t <= right:
+            return self.cover_1[i], self.left_1[i], self.right_1[i]
+
+        m = s + (t - s) // 2
+        self.push_down(i, s, m, t)
+
+        if right <= m:
+            return self.query_max_length(left, right, s, m, 2 * i)
+        if left > m:
+            return self.query_max_length(left, right, m + 1, t, 2 * i + 1)
+
+        res1 = self.query_max_length(left, right, s, m, 2 * i)
+        res2 = self.query_max_length(left, right, m + 1, t, 2 * i + 1)
+
+        # 参照区间递归方式
+        res = [0] * 3
+        res[0] = self.max(res1[0], res2[0])
+        res[0] = self.max(res[0], res1[2] + res2[1])
+
+        res[1] = res1[1]
+        if res[1] == m-s+1:
+            res[1] += res2[1]
+
+        res[2] = res2[2]
+        if res[2] == t-m:
+            res[2] += res1[2]
+        return res
+
+
+class SegmentTreeRangeSqrtSum:
+    def __init__(self, n):
+        # 模板：区间值开方向下取整，区间和查询
+        self.inf = float("inf")
+        self.n = n
+        self.cover = [0] * (4 * self.n)  # 区间和
+        self.lazy = [self.inf] * (4 * self.n)  # 懒标记
+
+    def build(self, nums):
+        stack = [[0, self.n - 1, 1, 1]]
+        while stack:
+            s, t, ind, state = stack.pop()
+            if state:
+                if s == t:
+                    self.cover[ind] = nums[s]
+                else:
+                    stack.append([s, t, ind, 0])
+                    m = s + (t - s) // 2
+                    stack.append([s, m, 2 * ind, 1])
+                    stack.append([m + 1, t, 2 * ind + 1, 1])
+            else:
+                self.cover[ind] = self.cover[2 * ind] + self.cover[2 * ind + 1]
+        return
+
+    def change(self, left, right, s, t, i):
+        # 更新区间值
+        stack = [[s, t, i, 1]]
+        while stack:
+            s, t, i, state = stack.pop()
+            if state:
+                if self.cover[i] == t-s+1:
+                    continue
+                if s == t:
+                    self.cover[i] = int(self.cover[i]**0.5)
+                    continue
+                stack.append([s, t, i, 0])
+                m = s + (t - s) // 2
+                if left <= m:  # 注意左右子树的边界与范围
+                    stack.append([s, m, 2 * i, 1])
+                if right > m:
+                    stack.append([m + 1, t, 2 * i + 1, 1])
+            else:
+                self.cover[i] = self.cover[2 * i] + self.cover[2 * i + 1]
+        return
+
+    def query_sum(self, left, right, s, t, i):
+        # 查询区间的和
+        stack = [[s, t, i]]
+        ans = 0
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                ans += self.cover[i]
+                continue
+            m = s + (t - s) // 2
+            if left <= m:
+                stack.append([s, m, 2 * i])
+            if right > m:
+                stack.append([m + 1, t, 2 * i + 1])
+        return ans
+
 
 class Solution:
     def __int__(self):
@@ -1595,7 +2023,6 @@ class Solution:
                 stack.append(lst)
         return
 
-
     @staticmethod
     def lg_p4513(ac=FastIO()):
 
@@ -1615,8 +2042,121 @@ class Solution:
                 segment.update(a-1, a-1, 0, n-1, s, 1)
                 nums[a-1] = s
         return
-    
-    
+
+    @staticmethod
+    def lg_p1471(ac=FastIO()):
+        # 模板：区间增减，维护区间和与区间数字平方的和，以计算均差与方差
+        n, m = ac.read_ints()
+        tree = SegmentTreeRangeUpdateAvgDev(n)
+        tree.build(ac.read_list_floats())
+        for _ in range(m):
+            lst = ac.read_list_floats()
+            if lst[0] == 1:
+                x, y, k = lst[1:]
+                x = int(x)
+                y = int(y)
+                tree.update(x-1, y-1, 0, n-1, k, 1)
+            elif lst[0] == 2:
+                x, y = lst[1:]
+                x = int(x)
+                y = int(y)
+                ans = (tree.query(x-1, y-1, 0, n-1, 1)[0])/(y-x+1)
+                ac.st("%.4f" % ans)
+            else:
+                x, y = lst[1:]
+                x = int(x)
+                y = int(y)
+                avg, avg_2 = tree.query(x - 1, y - 1, 0, n - 1, 1)
+                ans = -(avg*avg/(y-x+1))**2 + avg_2/(y-x+1)
+                ac.st("%.4f" % ans)
+        return
+
+    @staticmethod
+    def lg_p6492(ac=FastIO()):
+        # 模板：单点修改，查找最长的01交替字符子串连续区间
+        n, q = ac.read_ints()
+        tree = SegmentTreePointChangeLongCon(n)
+        for _ in range(q):
+            i = ac.read_int() - 1
+            tree.update(i, i, 0, n-1, 1)
+            ac.st(tree.query())
+        return
+
+    @staticmethod
+    def lg_p4145(ac=FastIO()):
+        # 模板：区间值开方向下取整，区间和查询
+        n = ac.read_int()
+        tree = SegmentTreeRangeSqrtSum(n)
+        tree.build(ac.read_list_ints())
+        for _ in range(ac.read_int()):
+            lst = ac.read_list_ints()
+            a, b = [int(w) - 1 for w in lst[1:]]
+            if a > b:
+                a, b = b, a
+            if lst[0] == 0:
+                tree.change(a, b, 0, n-1, 1)
+            else:
+                ac.st(tree.query_sum(a, b, 0, n-1, 1))
+        return
+
+    @staticmethod
+    def lg_2572(ac=FastIO()):
+        # 模板：区间修改成01或者反转，区间查询最多有多少连续的1，以及总共有多少1
+        def check(tmp):
+            ans = pre = 0
+            for num in tmp:
+                if num:
+                    pre += 1
+                else:
+                    ans = ans if ans > pre else pre
+                    pre = 0
+            ans = ans if ans > pre else pre
+            return ans
+
+        # n, m = ac.read_ints()
+        for s in range(100):
+            # random.seed(s)
+            print(f"seed_{s}")
+            n = random.randint(1, 1000)
+            m = random.randint(1, 1000)
+            tree = SegmentTreeRangeAndOrXOR(n)
+            # tree.build(ac.read_list_ints())
+            nums = [random.randint(1, 1) for _ in range(n)]
+            tree.build(nums)
+            for _ in range(m):
+                lst = [random.randint(0, 4), random.randint(0, n-1), random.randint(0, n-1)]
+                # lst = ac.read_list_ints()
+                left, right = lst[1:]
+                if left > right:
+                    left, right = right, left
+                if lst[0] <= 2:
+                    tree.update(left, right, 0, n-1, lst[0], 1)
+                    if lst[0] == 0:
+                        for i in range(left, right+1):
+                            nums[i] = 0
+                    elif lst[0] == 1:
+                        for i in range(left, right+1):
+                            nums[i] = 1
+                    else:
+                        for i in range(left, right+1):
+                            nums[i] = 1-nums[i]
+                    assert nums == [tree.query_sum(i, i, 0, n-1, 1) for i in range(n)]
+                elif lst[0] == 3:
+                    #print("\n")
+                    #print(nums)
+                    #print([tree.query_sum(i, i, 0, n-1, 1) for i in range(n)])
+                    assert sum(nums[left:right+1]) == tree.query_sum(left, right, 0, n-1, 1)
+                    # ac.st(tree.query_sum(left, right, 0, n-1, 1))
+                else:
+                    #print("\n")
+                    #print(nums)
+                    #print([tree.query_sum(i, i, 0, n-1, 1) for i in range(n)])
+                    #print(tree.query_max_length(left, right, 0, n - 1, 1)[0], check(nums[left:right+1]))
+                    assert tree.query_max_length(left, right, 0, n - 1, 1)[0] == check(nums[left:right+1])
+                    # ac.st(tree.query_max_length(left, right, 0, n - 1, 1)[0])
+        return
+
+
 class TestGeneral(unittest.TestCase):
 
     def test_segment_tree_range_add_sum(self):
