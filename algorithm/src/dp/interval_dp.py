@@ -29,6 +29,8 @@ P2858 [USACO06FEB]Treats for the Cows G/S（https://www.luogu.com.cn/problem/P28
 P1880 石子合并（https://www.luogu.com.cn/problem/P1880）将数组复制成两遍进行区间DP
 P3205 [HNOI2010]合唱队（https://www.luogu.com.cn/problem/P3205）区间DP使用滚动数组
 P1880 [NOI1995] 石子合并（https://www.luogu.com.cn/problem/P1880）环形数组区间DP合并求最大值最小值
+P1040 [NOIP2003 提高组] 加分二叉树（https://www.luogu.com.cn/problem/P1040）区间DP与路径还原
+P1043 [NOIP2003 普及组] 数字游戏（https://www.luogu.com.cn/problem/P1043）环形区间DP
 
 ================================CodeForces================================
 C. The Sports Festival（https://codeforces.com/problemset/problem/1509/C）转换为区间DP进行求解

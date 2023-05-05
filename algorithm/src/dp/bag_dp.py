@@ -58,6 +58,7 @@ P6771 [USACO05MAR]Space Elevator 太空电梯（https://www.luogu.com.cn/problem
 P2842 纸币问题 1（https://www.luogu.com.cn/problem/P2842）一维无限背包DP不区分顺序
 P2840 纸币问题 2（https://www.luogu.com.cn/problem/P2840）一维无限背包DP区分顺序
 P2834 纸币问题 3（https://www.luogu.com.cn/problem/P2834）一维无限背包DP不区分顺序
+P1064 [NOIP2006 提高组] 金明的预算方案（https://www.luogu.com.cn/problem/P1064）有依赖的01背包，枚举状态进行分组讨论
 
 ================================CodeForces================================
 B. Modulo Sum（https://codeforces.com/problemset/problem/577/B）取模计数二进制优化与背包DP，寻找非空子序列的和整除给定的数

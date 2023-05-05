@@ -53,7 +53,7 @@ P5507 机关（https://www.luogu.com.cn/problem/P5507）双向BFS或者A-star启
 P5908 猫猫和企鹅（https://www.luogu.com.cn/problem/P5908）无根树直接使用bfs遍历
 P1099 [NOIP2007 提高组] 树网的核（https://www.luogu.com.cn/problem/P1099）经典题，用到了树的直径、BFS、双指针和单调队列求最小偏心距
 P2491 [SDOI2011] 消防（https://www.luogu.com.cn/problem/P2491）同树网的核P1099
-
+P1038 [NOIP2003 提高组] 神经网络（https://www.luogu.com.cn/problem/P1038）拓扑排序经典题
 ================================CodeForces================================
 E. Nearest Opposite Parity（https://codeforces.com/problemset/problem/1272/E）经典反向建图，多源BFS
 A. Book（https://codeforces.com/problemset/problem/1572/A）脑筋急转弯建图，广度优先搜索计算是否存在环与无环时从任意起点的DAG最长路

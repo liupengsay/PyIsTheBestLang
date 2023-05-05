@@ -1,4 +1,4 @@
 /.pytest_cache/
 /.idea/*
 /algorithm/tests/*
-/algorithm/sample/
+/algorithm/sample/*
