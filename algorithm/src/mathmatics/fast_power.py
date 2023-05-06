@@ -91,29 +91,7 @@ class MatrixFastPower:
         return
 
     @staticmethod
-    def matrix_mul(y, x, mod=10 ** 9 + 7):
-        # 矩阵乘法函数，返回两个矩阵相乘的值，建议背诵
-        return [[sum(a * b % mod for a, b in zip(col, row)) % mod for col in zip(*x)] for row in y]
-
-    def matrix_pow(self, mat_a, n, mod=10 ** 9 + 7):
-
-        # 矩阵快速幂算法（递归）求解矩阵的 n 次方结果
-        size_ = len(mat_a)
-        if n == 0:  # 返回单位矩阵
-            res = [[0 for _ in range(size_)] for _ in range(size_)]
-            for i in range(size_):
-                res[i][i] = 1
-            return res
-        elif n == 1:  # 返回自己
-            return mat_a
-
-        y = self.matrix_pow(mat_a, n // 2)
-        if n & 1:  # 要乘
-            return self.matrix_mul(self.matrix_mul(y, y, mod), mat_a, mod)
-        return self.matrix_mul(y, y, mod)  # 不乘
-
-    @staticmethod
-    def matrix_mul2(a, b, mod=10**9 + 7):
+    def matrix_mul(a, b, mod=10**9 + 7):
         n = len(a)
         res = [[0] * n for _ in range(n)]
         for i in range(n):
@@ -123,15 +101,15 @@ class MatrixFastPower:
                     res[i][j] %= mod
         return res
 
-    def matrix_pow2(self, base, p, mod=10**9 + 7):
+    def matrix_pow(self, base, p, mod=10**9 + 7):
         n = len(base)
         ans = [[0] * n for _ in range(n)]
         for i in range(n):
             ans[i][i] = 1
         while p:
             if p & 1:
-                ans = self.matrix_mul2(ans, base, mod)
-            base = self.matrix_mul2(base, base, mod)
+                ans = self.matrix_mul(ans, base, mod)
+            base = self.matrix_mul(base, base, mod)
             p >>= 1
         return ans
 
