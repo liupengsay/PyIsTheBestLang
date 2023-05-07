@@ -49,6 +49,7 @@ P6075 [JSOI2015]子集选取（https://www.luogu.com.cn/problem/P6075）组合�
 P6392 中意（https://www.luogu.com.cn/problem/P6392）公式拆解变换后进行快速幂计算
 P1045 [NOIP2003 普及组] 麦森数（https://www.luogu.com.cn/problem/P1045）位数公式转换与快速幂计算
 P3509 [POI2010]ZAB-Frog（https://www.luogu.com.cn/problem/P3509）双指针模拟寻找第k远的距离，快速幂原理跳转
+P1349 广义斐波那契数列（https://www.luogu.com.cn/problem/P1349）矩阵快速幂
 
 参考：OI WiKi（xx）
 
@@ -208,6 +209,23 @@ class Solution:
             nex = [nex[nex[i]] for i in range(n)]
             m >>= 1
         ac.lst([a+1 for a in ans])
+        return
+
+    @staticmethod
+    def main(ac=FastIO()):
+        # 模板：矩阵快速幂
+        p, q, a1, a2, n, m = ac.read_ints()
+        if n == 1:
+            ac.st(a1%m)
+            return
+        if n == 2:
+            ac.st(a2%m)
+            return
+        mat = [[p, q], [1, 0]]
+        res = MatrixFastPower().matrix_pow(mat, n-2, m)
+        ans = res[0][0]*a2+res[0][1]*a1
+        ans %= m
+        ac.st(ans)
         return
 
 

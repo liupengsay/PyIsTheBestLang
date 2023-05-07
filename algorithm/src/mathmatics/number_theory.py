@@ -87,7 +87,8 @@ P1876 开灯（https://www.luogu.com.cn/problem/P1876）经典好题，理解完
 P7588 双重素数（2021 CoE-II A）（https://www.luogu.com.cn/problem/P7588）素数枚举计算，优先使用is_prime4
 P7696 [COCI2009-2010#4] IKS（https://www.luogu.com.cn/problem/P7696）数组，每个数进行质因数分解，然后均匀分配质因子
 P4718 【模板】Pollard's rho 算法（https://www.luogu.com.cn/problem/P4718）使用pollard_rho进行质因数分解与素数判断
-
+P1069 [NOIP2009 普及组] 细胞分裂（https://www.luogu.com.cn/problem/P1069）质因数分解
+P1072 [NOIP2009 提高组] Hankson 的趣味题（https://www.luogu.com.cn/problem/P1072）枚举所有因数
 ================================CodeForces================================
 C. Hossam and Trainees（https://codeforces.com/problemset/problem/1771/C）使用pollard_rho进行质因数分解
 A. Enlarge GCD（https://codeforces.com/problemset/problem/1034/A）经典求 1 到 n 所有数字的质因子个数总和 
@@ -139,7 +140,6 @@ class NumberTheoryPrimeFactor:
                     cnt += 1
                 self.prime_factor[i].append([p, cnt])
         return
-
 
 
 class NumberTheory:
@@ -990,6 +990,39 @@ class Solution:
         ac.st(ans)
         return
 
+    @staticmethod
+    def lg_p1069(ac=FastIO()):
+        # 模板：质因数分解，贪心匹配模拟
+        n = ac.read_int()
+        m1, m2 = ac.read_list_ints()
+        lst = NumberTheory().get_prime_factor2(m1)
+        ans = inf
+        for num in ac.read_list_ints():
+            res = 0
+            for p, c in lst:
+                if num % p != 0:
+                    break
+                tmp = num
+                x = 0
+                while tmp % p == 0:
+                    tmp //= p
+                    x += 1
+                res = ac.max(res, math.ceil(c*m2/x))
+            else:
+                ans = ac.min(ans, res)
+        ac.st(ans if ans < inf else -1)
+        return
+    @staticmethod
+    def lg_p1072(ac=FastIO()):
+        # 模板：枚举所有因数
+        nt = NumberTheory()
+        for _ in range(ac.read_int()):
+            a0, a1, b0, b1 = ac.read_ints()
+            factor = [num for num in nt.get_all_factor(b1)
+                      if num % a1 == 0 and math.gcd(num, a0) == a1
+                      and b0 * num // math.gcd(num, b0) == b1]
+            ac.st(len(factor))
+        return
 
 class TestGeneral(unittest.TestCase):
 

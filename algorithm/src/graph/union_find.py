@@ -35,6 +35,9 @@ P6111 [USACO18JAN]MooTube S（https://www.luogu.com.cn/problem/P6111）并查集
 P6121 [USACO16OPEN]Closing the Farm G（https://www.luogu.com.cn/problem/P6121）逆序并查集根据连通块大小进行连通性判定
 P6153 询问（https://www.luogu.com.cn/problem/P6153）经典并查集思想贪心题，体现了并查集的思想
 P1955 [NOI2015] 程序自动分析（https://www.luogu.com.cn/problem/P1955）并查集裸题
+P1196 [NOI2002] 银河英雄传说（https://www.luogu.com.cn/problem/P1196）带权并查集
+P1197 [JSOI2008] 星球大战（https://www.luogu.com.cn/problem/P1197）逆序并查集，倒序枚举计算联通块个数
+P1522 [USACO2.4] 牛的旅行 Cow Tours（https://www.luogu.com.cn/problem/P1522）连通块，枚举新增路径并高精度计算联通块直径
 
 ================================CodeForces================================
 D. Roads not only in Berland（https://codeforces.com/problemset/problem/25/D）并查集将原来的边断掉重新来连接使得成为一整个连通集
@@ -99,6 +102,76 @@ class UnionFind:
         for i in range(n):
             size[self.find(i)] = self.size[self.find(i)]
         return size
+
+
+class UnionFindWeighted:
+    def __init__(self, n: int) -> None:
+        # 模板：带权并查集
+        self.root = [i for i in range(n)]
+        self.size = [1] * n
+        self.part = n
+        self.front = [0]*n  # 离队头的距离
+        return
+
+    def find(self, x):
+        lst = []
+        while x != self.root[x]:
+            lst.append(x)
+            # 在查询的时候合并到顺带直接根节点
+            x = self.root[x]
+        for w in lst:
+            self.root[w] = x
+        lst.append(x)
+        m = len(lst)
+        for i in range(m-2, -1, -1):
+            self.front[lst[i]] += self.front[lst[i+1]]
+        return x
+
+    def union(self, x, y):
+        root_x = self.find(x)
+        root_y = self.find(y)
+        # 将 root_x 拼接到 root_y 后面
+        self.front[root_x] += self.size[root_y]
+        self.root[root_x] = root_y
+        self.size[root_y] += self.size[root_x]
+        # 将非根节点的秩赋0
+        self.size[root_x] = 0
+        self.part -= 1
+        return True
+
+    def is_connected(self, x, y):
+        return self.find(x) == self.find(y)
+
+
+# 可持久化并查集
+class PersistentUnionFind:
+    def __init__(self, n):
+        self.rank = [0] * n
+        self.root = list(range(n))
+        self.version = [float("inf")] * n
+
+    def union(self, x, y, tm):
+        root_x = self.find(x)
+        root_y = self.find(y)
+        if root_x != root_y:
+            if self.rank[root_x] > self.rank[root_y]:
+                self.version[root_y] = tm
+                self.root[root_y] = root_x
+            else:
+                self.version[root_x] = tm
+                self.root[root_x] = root_y
+            if self.rank[root_x] == self.rank[root_y]:
+                self.rank[root_y] += 1
+            return True
+        return False
+
+    def find(self, x, tm=float("inf")):
+        if x == self.root[x] or self.version[x] >= tm:
+            return x
+        return self.find(self.root[x], tm)
+
+    def is_connected(self, x, y, tm):
+        return self.find(x, tm) == self.find(y, tm)
 
 
 class Solution:
@@ -258,36 +331,97 @@ class Solution:
                 ans += w * (w - 1) // 2 + w
         return ans
 
-
-# 可持久化并查集
-class PersistentUnionFind:
-    def __init__(self, n):
-        self.rank = [0]*n
-        self.root = list(range(n))
-        self.version = [float("inf")]*n
-
-    def union(self, x, y, tm):
-        root_x = self.find(x)
-        root_y = self.find(y)
-        if root_x != root_y:
-            if self.rank[root_x] > self.rank[root_y]:
-                self.version[root_y] = tm
-                self.root[root_y] = root_x
+    @staticmethod
+    def lg_p1196(ac=FastIO()):
+        # 模板：计算带权并查集
+        uf = UnionFindWeighted(30000)
+        for _ in range(ac.read_int()):
+            lst = ac.read_list_strs()
+            i, j = [int(w) - 1 for w in lst[1:]]
+            if lst[0] == "M":
+                uf.union(i, j)
             else:
-                self.version[root_x] = tm
-                self.root[root_x] = root_y
-            if self.rank[root_x] == self.rank[root_y]:
-                self.rank[root_y] += 1
-            return True
-        return False
+                root_x = uf.find(i)
+                root_y = uf.find(j)
+                if root_x != root_y:
+                    ac.st(-1)
+                else:
+                    ac.st(abs(uf.front[i]-uf.front[j])-1)
+        return
 
-    def find(self, x, tm=float("inf")):
-        if x == self.root[x] or self.version[x] >= tm:
-            return x
-        return self.find(self.root[x], tm)
+    @staticmethod
+    def lg_p1197(ac=FastIO()):
+        # 模板：逆序并查集，倒序枚举计算联通块个数
+        n, m = ac.read_ints()
+        dct = [[] for _ in range(n)]
+        for _ in range(m):
+            i, j = ac.read_ints()
+            dct[i].append(j)
+            dct[j].append(i)
+        k = ac.read_int()
+        rem = [ac.read_int() for _ in range(k)]
+        out = set(rem)
+        uf = UnionFind(n)
+        for i in range(n):
+            if i not in out:
+                for j in dct[i]:
+                    if j not in out:
+                        uf.union(i, j)
+        ans = []
+        for i in range(k-1, -1, -1):
+            ans.append(uf.part-i-1)
+            out.discard(rem[i])
+            for j in dct[rem[i]]:
+                if j not in out:
+                    uf.union(rem[i], j)
+        ans.append(uf.part)
+        ans.reverse()
+        for a in ans:
+            ac.st(a)
+        return
 
-    def is_connected(self, x, y, tm):
-        return self.find(x, tm) == self.find(y, tm)
+    @staticmethod
+    def lg_p1522(ac=FastIO()):
+
+        # 模板：连通块，枚举新增路径并高精度计算联通块直径
+
+        def dis(x1, y1, x2, y2):
+            return math.sqrt(decimal.Decimal(((x1 - x2) ** 2 + (y1 - y2) ** 2)))
+
+        n = ac.read_int()
+        nums = [[w for w in ac.read_list_ints()] for _ in range(n)]
+        grid = [ac.read_str() for _ in range(n)]
+        dct = [dict() for _ in range(n)]
+        uf = UnionFind(n)
+        for i in range(n):
+            for j in range(i + 1, n):
+                if grid[i][j] == "1":
+                    uf.union(i, j)
+                    d = dis(nums[i][0], nums[i][1], nums[j][0], nums[j][1])
+                    dct[i][j] = dct[j][i] = d
+
+        dist = []
+        for i in range(n):
+            dist.append(Dijkstra().get_dijkstra_result(dct, i))
+
+        part = uf.get_root_part()
+        fast = [inf] * n
+        group = dict()
+        for p in part:
+            for i in part[p]:
+                fast[i] = max(dist[i][j] for j in part[p])
+            group[p] = max(fast[i] for i in part[p])
+
+        ans = inf
+        for i in range(n):
+            for j in range(n):
+                if not uf.is_connected(i, j):
+                    cur = dis(nums[i][0], nums[i][1], nums[j][0], nums[j][1]) + fast[i] + fast[j]
+                    cur = ac.max(cur, group[uf.find(i)])
+                    cur = ac.max(cur, group[uf.find(j)])
+                    ans = ac.min(ans, cur)
+        ac.st("%.6f" % ans)
+        return
 
 
 class TestGeneral(unittest.TestCase):

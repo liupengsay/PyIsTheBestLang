@@ -18,7 +18,8 @@ from algorithm.src.fast_io import FastIO
 ===================================洛谷===================================
 P1880 [NOI1995] 石子合并（https://www.luogu.com.cn/problem/P1880）环形数组区间DP合并求最大值最小值
 P1121 环状最大两段子段和（https://www.luogu.com.cn/problem/P1121）环形子数组和的加强版本，只选择两段
-
+P1043 [NOIP2003 普及组] 数字游戏（https://www.luogu.com.cn/problem/P1043）环形区间DP
+P1133 教主的花园（https://www.luogu.com.cn/problem/P1133）环形动态规划
 
 参考：OI WiKi（xx）
 """
@@ -79,6 +80,7 @@ class Solution:
         nums = ac.read_list_ints()
         s = sum(nums)
 
+        # 去除两段最大的
         pre = [-inf] * (n + 1)
         x = 0
         for i in range(n):
@@ -98,6 +100,7 @@ class Solution:
             ac.st(ans)
             return
 
+        # 扣掉两段最小的
         pre = [0] * (n + 1)
         x = 0
         for i in range(n):
@@ -113,6 +116,73 @@ class Solution:
             post[i] = ac.min(post[i + 1], x)
 
         ans = ac.max(ans, s - min(pre[i] + post[i + 1] for i in range(1, n)))
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p1043(ac=FastIO()):
+        # 模板：环形区间DP
+        n, m = ac.read_ints()
+        nums = [ac.read_int() for _ in range(n)]
+        floor = inf
+        ceil = -inf
+        for _ in range(n):
+            nums.append(nums.pop(0))  # 依次枚举隔断点
+            pre = [0]*(n+1)
+            for i in range(n):
+                pre[i+1] = pre[i] + nums[i]
+            dp = [[[inf, -inf] for _ in range(m+1)] for _ in range(n+1)]
+            dp[0][0] = [1, 1]
+            for i in range(n):
+                for k in range(i+1):
+                    for j in range(1, m+1):
+                        cur = (pre[i+1]-pre[k]) % 10
+                        if dp[k][j-1][0] != inf:
+                            dp[i+1][j][0] = min(dp[i+1][j][0], dp[k][j-1][0]*cur)
+                            dp[i + 1][j][1] = max(dp[i + 1][j][1], dp[k][j - 1][0] * cur)
+                        if dp[k][j-1][1] != -inf:
+                            dp[i + 1][j][0] = min(dp[i + 1][j][0], dp[k][j - 1][1] * cur)
+                            dp[i + 1][j][1] = max(dp[i + 1][j][1], dp[k][j - 1][1] * cur)
+            floor = min(floor, dp[-1][-1][0])
+            ceil = max(ceil, dp[-1][-1][1])
+        ac.st(floor)
+        ac.st(ceil)
+        return
+
+    @staticmethod
+    def lg_p1133(ac=FastIO()):
+        # 模板：环形动态规划
+        n = ac.read_int()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        ans = 0
+
+        # 计算下一状态
+        state = []
+        for a in range(3):
+            for b in range(3):
+                if a != b:
+                    state.append([a, b])
+        nex = defaultdict(list)
+        for a, b in state:
+            for c in range(3):
+                if b<a and b < c:
+                    nex[(a, b)].append(c)
+                if b > a and b> c:
+                    nex[(a, b)].append(c)
+
+        # 枚举初始状态进行转移
+        for a, b in state:
+            pre = dict()
+            pre[(a, b)] = nums[-1][a]+nums[0][b]
+            for i in range(1, n-1):
+                cur = dict()
+                for x1, x2 in pre:
+                    for y in nex[(x1, x2)]:
+                        cur[(x2, y)] = ac.max(cur.get((x2, y), 0), pre[(x1, x2)]+nums[i][y])
+                pre = cur.copy()
+            for x1, x2 in pre:
+                if (a<x2 and a<b) or (a>x2 and a > b):
+                    ans = ac.max(ans, pre[(x1, x2)])
         ac.st(ans)
         return
 

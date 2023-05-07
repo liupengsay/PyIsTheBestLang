@@ -54,6 +54,9 @@ P5908 猫猫和企鹅（https://www.luogu.com.cn/problem/P5908）无根树直接
 P1099 [NOIP2007 提高组] 树网的核（https://www.luogu.com.cn/problem/P1099）经典题，用到了树的直径、BFS、双指针和单调队列求最小偏心距
 P2491 [SDOI2011] 消防（https://www.luogu.com.cn/problem/P2491）同树网的核P1099
 P1038 [NOIP2003 提高组] 神经网络（https://www.luogu.com.cn/problem/P1038）拓扑排序经典题
+P1126 机器人搬重物（https://www.luogu.com.cn/problem/P1126）广度优先搜索
+P1213 [USACO1.4][IOI1994]时钟 The Clocks（https://www.luogu.com.cn/problem/P1213）使用状态压缩优化进行01BFS
+
 ================================CodeForces================================
 E. Nearest Opposite Parity（https://codeforces.com/problemset/problem/1272/E）经典反向建图，多源BFS
 A. Book（https://codeforces.com/problemset/problem/1572/A）脑筋急转弯建图，广度优先搜索计算是否存在环与无环时从任意起点的DAG最长路
@@ -720,6 +723,67 @@ class Solution:
             ac.st(ans if ans < inf else -1)
         return
 
+    @staticmethod
+    def lg_p1213(ac=FastIO()):
+        # 模板：使用状态压缩优化进行01BFS
+        nex = {0:1, 1:2, 2:3, 3:0}
+        lst = "ABDE,ABC,BCEF,ADG,BDEFH,CFI,DEGH,GHI,EFHI".split(",")
+        ind = dict()
+        for i, st in enumerate(lst):
+            ind[i + 1] = [ord(w) - ord("A") for w in st]
+
+        grid = []
+        for _ in range(3):
+            grid.extend([(num-3)//3 for num in ac.read_list_ints()])
+
+        def list_to_num(ls):
+            res = 0
+            for num in ls:
+                res *= 4
+                res += num
+            return res
+
+        def num_to_list(num):
+            res = []
+            while num:
+                res.append(num%4)
+                num //= 4
+            while len(res) < 9:
+                res.append(0)
+            return res[::-1]
+
+        ans = ""
+        start = list_to_num(grid)
+        target = list_to_num([3]*9)
+
+        stack = deque([start])
+        visit= dict()
+        visit[start] = ""
+        if start == target:
+            ac.st("")
+            return
+
+        while stack:
+            state = stack.popleft()
+            pre = visit[state]
+            if ans and len(pre) > len(ans):
+                continue
+            if state == target:
+                if len(pre) < len(ans) or (len(pre)==len(ans) and pre < ans) or not ans:
+                    ans = pre
+                continue
+
+            state = num_to_list(state)
+            for i in range(9):
+                tmp = state[:]
+                for w in ind[i+1]:
+                    tmp[w] = nex[tmp[w]]
+                cur = list_to_num(tmp)
+                if cur not in visit:
+                    visit[cur] = pre+str(i+1)
+                    stack.append(cur)
+        ac.lst(list(ans))
+        return
 
 
 class TestGeneral(unittest.TestCase):

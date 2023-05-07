@@ -84,7 +84,7 @@ P7787 [COCI2016-2017#6] Turnir（https://www.luogu.com.cn/problem/P7787）脑筋
 P7813 谜（https://www.luogu.com.cn/problem/P7813）贪心计算最大选取值
 P1031 [NOIP2002 提高组] 均分纸牌（https://www.luogu.com.cn/problem/P1031）经典线性均分纸牌问题
 P2512 [HAOI2008]糖果传递（https://www.luogu.com.cn/problem/P2512）经典线性环形均分纸牌问题
-122. 糖果传递（https://www.acwing.com/problem/content/124/）经典线性环形均分纸牌问题
+P1080 [NOIP2012 提高组] 国王游戏（https://www.luogu.com.cn/problem/P1080）经典贪心，举例两项确定排序公式
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1186/D（贪心取floor，再根据加和为0的特质进行补充加1成为ceil）
@@ -111,7 +111,7 @@ B. Color the Fence（https://codeforces.com/problemset/problem/349/B）贪心模
 C. Number Game（https://codeforces.com/problemset/problem/1370/C）贪心模拟必胜态
 E. Making Anti-Palindromes（https://codeforces.com/contest/1822/problem/E）贪心进行模拟计数
 
-
+================================AcWing======================================
 104. 货仓选址（https://www.acwing.com/problem/content/106/）中位数贪心
 1536. 均分纸牌（https://www.acwing.com/problem/content/description/1538/）贪心均分纸牌
 105. 七夕祭（https://www.acwing.com/problem/content/description/1538/）经典环形均分纸牌问题
@@ -120,12 +120,39 @@ E. Making Anti-Palindromes（https://codeforces.com/contest/1822/problem/E）贪
 125. 耍杂技的牛（https://www.acwing.com/problem/content/127/）经典贪心思路，邻项交换
 127. 任务（https://www.acwing.com/problem/content/description/129/）经典二维排序贪心
 145. 超市（https://www.acwing.com/problem/content/147/）经典使用二叉堆贪心
+122. 糖果传递（https://www.acwing.com/problem/content/124/）经典线性环形均分纸牌问题
 
 参考：OI WiKi（xx）
 """
 
 import math
 import unittest
+
+
+class BrainStorming:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def minimal_coin_need(n, m, nums):
+
+        nums += [m + 1]
+        nums.sort()
+        # 有 n 个可选取且无限的硬币，为了形成 1-m 所有组合需要的最少硬币个数
+        if nums[0] != 1:
+            return -1
+        ans = sum_ = 0
+        for i in range(n):
+            nex = nums[i + 1] - 1
+            nex = nex if nex < m else m
+            x = math.ceil((nex - sum_) / nums[i])
+            x = x if x >= 0 else 0
+            ans += x
+            sum_ += x * nums[i]
+            if sum_ >= m:
+                break
+        return ans
+
 
 
 class Solution:
@@ -338,30 +365,20 @@ class Solution:
             ac.st(sum(stack))
         return
 
-
-class BrainStorming:
-    def __init__(self):
-        return
-
     @staticmethod
-    def minimal_coin_need(n, m, nums):
-
-        nums += [m + 1]
-        nums.sort()
-        # 有 n 个可选取且无限的硬币，为了形成 1-m 所有组合需要的最少硬币个数
-        if nums[0] != 1:
-            return -1
-        ans = sum_ = 0
-        for i in range(n):
-            nex = nums[i + 1] - 1
-            nex = nex if nex < m else m
-            x = math.ceil((nex - sum_) / nums[i])
-            x = x if x >= 0 else 0
-            ans += x
-            sum_ += x * nums[i]
-            if sum_ >= m:
-                break
-        return ans
+    def lg_p1080(ac=FastIO()):
+        # 模板：经典贪心，举例两项确定排序公式
+        n = ac.read_int()
+        a, b = ac.read_ints()
+        lst = [ac.read_list_ints() for _ in range(n)]
+        lst.sort(key=lambda x: x[0] * x[1] - x[1])
+        ans = 0
+        pre = a
+        for a, b in lst:
+            ans = ac.max(ans, pre // b)
+            pre *= a
+        ac.st(ans)
+        return
 
 
 class TestGeneral(unittest.TestCase):

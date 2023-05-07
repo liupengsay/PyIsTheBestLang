@@ -15,6 +15,7 @@ P5626 【AFOI-19】数码排序（https://www.luogu.com.cn/problem/P5626）分�
 P2907 [USACO08OPEN]Roads Around The Farm S（https://www.luogu.com.cn/problem/P2907）分析复杂度之后采用递归模拟
 P7673 [COCI2013-2014#5] OBILAZAK（https://www.luogu.com.cn/problem/P7673）根据中序遍历，递归还原完全二叉树
 P1228 地毯填补问题（https://www.luogu.com.cn/problem/P1228）四叉树分治递归
+P1185 绘制二叉树（https://www.luogu.com.cn/problem/P1185）二叉树递归进行绘制
 
 ================================CodeForces================================
 C. Painting Fence（https://codeforces.com/contest/448/problem/C）贪心递归DP

@@ -2,6 +2,7 @@ import math
 import random
 import unittest
 from collections import defaultdict, deque
+from itertools import combinations
 from typing import List
 from algorithm.src.mathmatics.number_theory import NumberTheory
 from algorithm.src.fast_io import FastIO, inf
@@ -59,6 +60,12 @@ P2842 纸币问题 1（https://www.luogu.com.cn/problem/P2842）一维无限背�
 P2840 纸币问题 2（https://www.luogu.com.cn/problem/P2840）一维无限背包DP区分顺序
 P2834 纸币问题 3（https://www.luogu.com.cn/problem/P2834）一维无限背包DP不区分顺序
 P1064 [NOIP2006 提高组] 金明的预算方案（https://www.luogu.com.cn/problem/P1064）有依赖的01背包，枚举状态进行分组讨论
+P1156 垃圾陷阱（https://www.luogu.com.cn/problem/P1156）转换为背包01DP求解
+P1273 有线电视网（https://www.luogu.com.cn/problem/P1273）树上分组背包
+P1284 三角形牧场（https://www.luogu.com.cn/problem/P1284）枚举三角形两边作为二维bool背包
+P1441 砝码称重（https://www.luogu.com.cn/problem/P1441）枚举加背包DP
+P1537 弹珠（https://www.luogu.com.cn/problem/P1537）经典问题二进制背包优化bool背包，划分成和相等的两部分
+P1541 [NOIP2010 提高组] 乌龟棋（https://www.luogu.com.cn/problem/P1541）四维背包
 
 ================================CodeForces================================
 B. Modulo Sum（https://codeforces.com/problemset/problem/577/B）取模计数二进制优化与背包DP，寻找非空子序列的和整除给定的数
@@ -460,6 +467,229 @@ class Solution:
                 if dp[i-v][0] + w > dp[i][0] or (dp[i-v][0] + w == dp[i][0] and dp[i-v][1]+[ind+1] < dp[i][1]):
                     dp[i] = [dp[i-v][0] + w, dp[i-v][1]+[ind+1]]
         ac.lst(dp[-1][1][1:])
+        return
+
+    @staticmethod
+    def lg_p1064(ac=FastIO()):
+        # 模板：有依赖的分组背包
+        n, m = ac.read_ints()
+        dct = [[] for _ in range(m)]
+        sub = [[] for _ in range(m)]
+        for i in range(m):
+            v, p, q = ac.read_ints()
+            if q == 0:
+                dct[i].append([v, p])
+            else:
+                sub[q - 1].append([v, p])
+        dp = [[0] * (n + 1) for _ in range(2)]
+        pre = 0
+        for i in range(m):
+            if dct[i]:
+                cur = 1 - pre
+                dp[cur] = dp[pre][:]
+                x = len(sub[i])
+                for j in range(1 << x):
+                    lst = dct[i] + [sub[i][k] for k in range(x) if j & (1 << k)]
+                    gain = sum(v * p for v, p in lst)
+                    cost = sum(v for v, _ in lst)
+                    for xx in range(n, cost - 1, -1):
+                        dp[cur][xx] = ac.max(
+                            dp[cur][xx], dp[pre][xx - cost] + gain)
+                pre = cur
+        ac.st(dp[pre][-1])
+        return
+
+    @staticmethod
+    def lg_p1156(ac=FastIO()):
+        # 模板：变形背包
+        n, m = ac.read_ints()
+
+        dct = [ac.read_list_ints() for _ in range(m)]
+        dct.sort(key=lambda it: it[0])
+
+        dp = [-inf]*(n+1)   # dp[height]=life 到达该高度后剩余的生命值
+        dp[0] = 10
+        for t, f, h in dct:
+            if dp[0] < t:
+                ac.st(dp[0])
+                return
+            for i in range(n, -1, -1):
+                if dp[i] >= t:
+                    if i+h >= n:
+                        ac.st(t)
+                        return
+                    # 不吃
+                    if i+h <= n:
+                        dp[i+h] = ac.max(dp[i+h], dp[i])
+                    # 吃掉
+                    dp[i] += f
+        ac.st(dp[0])
+        return
+
+    @staticmethod
+    def lg_p1273(ac=FastIO()):
+        # 模板：树上分组背包
+        n, m = ac.read_ints()
+        dct = [[] for _ in range(n)]
+        for j in range(n-m):
+            lst = ac.read_list_ints()
+            for i in range(1, len(lst), 2):
+                dct[j].append([lst[i]-1, lst[i+1]])
+        nums = [0]*(n-m) + ac.read_list_ints()
+        sub = [[] for _ in range(n)]
+        stack = [0]
+        while stack:
+            i = stack.pop()
+            if i >= 0:
+                stack.append(~i)
+                for j, _ in dct[i]:
+                    stack.append(j)
+            else:
+                i = ~i
+                sub[i].append(0)
+                if i >= n-m:
+                    sub[i].append(nums[i])
+                    continue
+
+                for j, cost in dct[i]:
+                    cur = sub[i][:]
+                    for k1 in range(m+1):
+                        if k1 >= len(sub[i]):
+                            break
+                        for k2 in range(m-k1+1):
+                            if k2 >= len(sub[j]):
+                                break
+                            if len(cur) < k1+k2+1:
+                                cur.extend([-inf]*(k1+k2+1-len(cur)))
+                            cur[k1+k2] = ac.max(cur[k1+k2], sub[j][k2]+sub[i][k1]-cost)
+                    sub[j] = []
+                    sub[i] = cur[:]
+        for x in range(m, -1, -1):
+            if x < len(sub[0]) and sub[0][x] >= 0:
+                ac.st(x)
+                return
+        ac.st(0)
+        return
+
+    @staticmethod
+    def lg_p1284(ac=FastIO()):
+
+        # 模板：枚举三角形两边作为二维bool背包
+        n = ac.read_int()
+
+        def check():
+            ss = (a + b + c) / 2
+            return (ss * (ss - a) * (ss - b) * (ss - c)) ** 0.5
+
+        nums = []
+        while len(nums) < n:
+            nums.extend(ac.read_list_ints())
+        s = sum(nums)
+        dp = [[0] * (s // 2 + 1) for _ in range(s // 2 + 1)]
+        dp[0][0] = 1
+        for num in nums:
+            for i in range(s // 2, -1, -1):
+                for j in range(s // 2, -1, -1):
+                    if j >= num and dp[i][j - num]:
+                        dp[i][j] = 1
+                    if i >= num and dp[i - num][j]:
+                        dp[i][j] = 1
+        ans = -1
+        for a in range(s // 2 + 1):
+            for b in range(s // 2 + 1):
+                if dp[a][b]:
+                    c = s - a - b
+                    if b + c > a > 0 and a + c > b > 0 and a + b > c > 0:
+                        cur = check()
+                        ans = ac.max(ans, cur)
+        if ans == -1:
+            ac.st(ans)
+        else:
+            ac.st(int(ans * 100))
+        return
+
+    @staticmethod
+    def lg_p1441(ac=FastIO()):
+        # 模板：枚举加背包DP
+        n, m = ac.read_ints()
+        a = ac.read_list_ints()
+        ans = 0
+        s = sum(a)
+        for item in combinations(a, n-m):
+            dp = [0]*(s+1)
+            dp[0] = 1
+            for num in item:
+                for i in range(s, num-1, -1):
+                    if dp[i-num]:
+                        dp[i] = 1
+            cur = sum(dp)-1
+            ans= ac.max(ans, cur)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p1537(ac=FastIO()):
+        # 模板：经典问题二进制背包优化bool背包，划分成和相等的两部分
+        case = 0
+        while True:
+            lst = ac.read_list_ints()
+            if sum(lst) == 0:
+                break
+
+            case += 1
+            ac.st(f"Collection #{case}:")
+            s = sum(lst[i]*(i+1) for i in range(6))
+            if s % 2:
+                ac.st("Can't be divided.")
+                ac.st("")
+                continue
+
+            m = s//2
+            dp = [0] * (m + 1)
+            dp[0] = 1
+            for x in range(6):
+                w, s = x+1, lst[x]
+                if s:
+                    for num in BagDP().bin_split(s):
+                        for i in range(m, w*num-1, -1):
+                            if dp[i-num*w]:
+                                dp[i] = 1
+            if dp[-1]:
+                ac.st("Can be divided.")
+            else:
+                ac.st("Can't be divided.")
+            ac.st("")
+        return
+
+    @staticmethod
+    def lg_p1541(ac=FastIO()):
+
+        # 模板：四维背包
+        n, m = ac.read_ints()
+        nums = ac.read_list_ints()
+        cnt = Counter(ac.read_list_ints())
+        a, b, c, d = cnt[1], cnt[2], cnt[3], cnt[4]
+        dp = [[[[0] * (d + 1) for _ in range(c + 1)] for _ in range(b + 1)] for _ in range(a + 1)]
+        dp[0][0][0][0] = nums[0]
+        ans = 0
+        for i in range(a + 1):
+            for j in range(b + 1):
+                for k in range(c + 1):
+                    for p in range(d + 1):
+                        if i + 2 * j + 3 * k + 4 * p <= n - 1:
+                            pre = 0
+                            if i:
+                                pre = ac.max(pre, dp[i - 1][j][k][p])
+                            if j:
+                                pre = ac.max(pre, dp[i][j - 1][k][p])
+                            if k:
+                                pre = ac.max(pre, dp[i][j][k - 1][p])
+                            if p:
+                                pre = ac.max(pre, dp[i][j][k][p - 1])
+                            dp[i][j][k][p] = ac.max(dp[i][j][k][p], pre + nums[i + 2 * j + 3 * k + 4 * p])
+                        if i + 2 * j + 3 * k + 4 * p == n - 1:
+                            ans = ac.max(ans, dp[i][j][k][p])
+        ac.st(ans)
         return
 
 

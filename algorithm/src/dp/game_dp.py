@@ -17,9 +17,36 @@ P1290 欧几里德的游戏（https://www.luogu.com.cn/problem/P1290）典型的
 P5635 【CSGRound1】天下第一（https://www.luogu.com.cn/problem/P5635）博弈DP模拟与手写记忆化搜索，避免陷入死循环
 P3150 pb的游戏（1）（https://www.luogu.com.cn/problem/P3150）博弈分析必胜策略与最优选择，只跟奇数偶数有关
 P4702 取石子（https://www.luogu.com.cn/problem/P4702）博弈分析必胜策略与最优选择，只跟奇数偶数有关
+P1247 取火柴游戏（https://www.luogu.com.cn/problem/P1247）nim博弈，使用异或求解
+P1512 伊甸园日历游戏（https://www.luogu.com.cn/problem/P1512）博弈DP与日期操作
 
 参考：OI WiKi（xx）
 """
+
+class DateTime:
+    def __init__(self):
+        self.leap_month = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+        self.not_leap_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+        return
+
+    def is_leap_year(self, yy):
+        # 模板: 判断是否为闰年
+        assert sum(self.leap_month) == 366
+        assert sum(self.not_leap_month) == 365
+        # 闰年天数
+        return yy % 400 == 0 or (yy % 4 == 0 and yy % 100 != 0)
+
+    def year_month_day_cnt(self, yy, mm):
+        ans = self.leap_month[mm-1] if self.is_leap_year(yy) else self.not_leap_month[mm-1]
+        return ans
+
+    def is_valid(self, yy, mm, dd):
+        if not [1900, 1, 1] <= [yy, mm, dd] <= [2006, 11, 4]:
+            return False
+        day = self.year_month_day_cnt(yy, mm)
+        if not 1<=dd<=day:
+            return False
+        return True
 
 
 class Solution:
@@ -51,6 +78,66 @@ class Solution:
                 ac.st("Stan wins")
             else:
                 ac.st("Ollie wins")
+        return
+
+    @staticmethod
+    def lg_1247(ac=FastIO()):
+        # 模板：nim博弈，使用异或求解
+        k = ac.read_int()
+        nums = ac.read_list_ints()
+        x = reduce(xor, nums)
+        if x == 0:
+            ac.st("lose")
+        else:
+            for i in range(k):
+                if nums[i] ^ x < nums[i]:
+                    res = [nums[i] - (nums[i] ^ x), i+1]
+                    ac.lst(res)
+                    nums[i] = x ^ nums[i]
+                    ac.lst(nums)
+                    return
+        return
+
+    @staticmethod
+    def lg_p1512(ac=FastIO()):
+        # 模板：博弈DP与日期操作
+        dt = DateTime()
+        stack = [[1900, 1, 1]]
+        yy, mm, dd = stack[0]
+        dates = []
+        while [yy, mm, dd] < [2006, 11, 4]:
+            if dd + 1 <= dt.year_month_day_cnt(yy, mm):
+                cur = [yy, mm, dd + 1]
+            elif mm + 1 <= 12:
+                cur = [yy, mm + 1, 1]
+            else:
+                cur = [yy + 1, 1, 1]
+            yy, mm, dd = cur
+            dates.append(cur)
+        dct = set(tuple(dt) for dt in dates)
+
+        dp = dict()
+        dp[(2006, 11, 4)] = False
+        for yy, mm, dd in dates[:-1][::-1]:
+            dp[(yy, mm, dd)] = False
+
+            cur = [yy, mm + 1, dd] if mm + 1 <= 12 else [yy + 1, 1, dd]
+            if (cur[0], cur[1], cur[2]) in dct and not dp[(cur[0], cur[1], cur[2])]:
+                dp[(yy, mm, dd)] = True
+
+            if dd + 1 <= dt.year_month_day_cnt(yy, mm):
+                cur = [yy, mm, dd + 1]
+            elif mm + 1 <= 12:
+                cur = [yy, mm + 1, 1]
+            else:
+                cur = [yy + 1, 1, 1]
+            if (cur[0], cur[1], cur[2]) in dct and not dp[(cur[0], cur[1], cur[2])]:
+                dp[(yy, mm, dd)] = True
+
+        for _ in range(ac.read_int()):
+            x, y, z = ac.read_list_ints()
+            ac.st("YES" if dp.get((x, y, z), True) else "NO")
+
         return
 
 

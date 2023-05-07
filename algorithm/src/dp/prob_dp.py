@@ -35,6 +35,7 @@ from algorithm.src.fast_io import FastIO
 
 ===================================洛谷===================================
 P2719 搞笑世界杯（https://www.luogu.com.cn/record/list?user=739032&status=12&page=1）二维DP求概率
+P1291 [SHOI2002] 百事世界杯之旅（https://www.luogu.com.cn/problem/P1291）线性DP求期望
 
 参考：OI WiKi（xx）
 """
@@ -66,6 +67,36 @@ class Solution:
         else:
             ans = dfs(n, n)
         ac.st("%.4f" % ans)
+        return
+
+    @staticmethod
+    def lg_p1291(ac=FastIO()):
+
+        # 模板：线性DP求期望，使用分数加减运算
+        n = ac.read_int()
+        ans = [1, 1]
+        for x in range(2, n+1):
+            a, b = ans
+            c, d = 1, x
+            g = math.gcd(b, d)
+            lcm = b*d//g
+            a, b = a*lcm//b+c*lcm//d, lcm
+            g = math.gcd(a, b)
+            ans = [a//g, b//g]
+
+        a, b = ans
+        a *= n
+        x = a//b
+        a %= b
+        if a == 0:
+            ac.st(x)
+            return
+        g = math.gcd(a, b)
+        ans = [a//g, b//g]
+        a, b = ans
+        ac.st(len(str(x))*" " + str(a))
+        ac.st(str(x)+"-"*len(str(b)))
+        ac.st(len(str(x))*" " + str(b))
         return
 
 

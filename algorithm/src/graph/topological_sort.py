@@ -24,6 +24,8 @@ P1960 郁闷的记者（https://www.luogu.com.cn/problem/P1960）计算拓扑排
 P1992 不想兜圈的老爷爷（https://www.luogu.com.cn/problem/P1992）拓扑排序计算有向图是否有环
 P2712 摄像头（https://www.luogu.com.cn/problem/P2712）拓扑排序计算非环节点数
 P6145 [USACO20FEB]Timeline G（https://www.luogu.com.cn/problem/P6145）经典拓扑排序计算每个节点最晚的访问时间点
+P1137 旅行计划（https://www.luogu.com.cn/problem/P1137）拓扑排序，计算可达的最长距离
+P1347 排序（https://www.luogu.com.cn/problem/P1347）拓扑排序确定字典序与矛盾或者无唯一解
 
 ==================================AtCoder=================================
 F - Well-defined Path Queries on a Namori（https://atcoder.jp/contests/abc266/）（无向图的内向基环树，求简单路径的树枝连通）
@@ -196,6 +198,78 @@ class Solution:
             if cnt and cnt > ans:
                 ans = cnt
         return ans
+
+    @staticmethod
+    def lg_p1137(ac=FastIO()):
+        # 模板：拓扑排序计算最长链条
+        n, m = ac.read_ints()
+        dct = [[] for _ in range(n)]
+        degree = [0]*n
+        for _ in range(m):
+            i, j = ac.read_ints()
+            degree[j-1] += 1
+            dct[i-1].append(j-1)
+        cnt = [1]*n
+        stack = [i for i in range(n) if not degree[i]]
+        while stack:
+            i = stack.pop()
+            for j in dct[i]:
+                cnt[j] = max(cnt[j], cnt[i]+1)
+                degree[j] -= 1
+                if not degree[j]:
+                    stack.append(j)
+        for a in cnt:
+            ac.st(a)
+        return
+
+    @staticmethod
+    def lg_p1347(ac=FastIO()):
+        # 模板：拓扑排序确定字典序与矛盾或者无唯一解
+        n, m = [int(w) for w in input().strip().split() if w]
+        dct = defaultdict(list)
+        degree = defaultdict(int)
+
+        def check(dct, degree, nodes, x):
+            stack = [k for k in nodes if not degree[k]]
+            m = len(nodes)
+            res = []
+            unique = True
+            while stack:
+                res.extend(stack)
+                if len(stack) > 1:
+                    unique = False
+                nex = []
+                for i in stack:
+                    for j in dct[i]:
+                        degree[j] -= 1
+                        if not degree[j]:
+                            nex.append(j)
+                stack = nex
+            if unique and len(res) == n:
+                s = "".join(res)
+                return True, f"Sorted sequence determined after {x} relations: {s}."
+            if len(res) < m:
+                return True, f"Inconsistency found after {x} relations."
+            return False, "Sorted sequence cannot be determined."
+
+        nodes = set()
+        res_ans = ""
+        for x in range(1, m+1):
+            s = input().strip()
+            if res_ans:
+                continue
+            dct[s[0]].append(s[2])
+            degree[s[2]] += 1
+            nodes.add(s[0])
+            nodes.add(s[2])
+            flag, ans = check(copy.deepcopy(dct), copy.deepcopy(degree), copy.deepcopy(nodes), x)
+            if flag:
+                res_ans = ans
+        if res_ans:
+            print(res_ans)
+        else:
+            print("Sorted sequence cannot be determined.")
+        return
 
 
 class TestGeneral(unittest.TestCase):

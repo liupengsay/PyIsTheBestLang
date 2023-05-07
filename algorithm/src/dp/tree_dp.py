@@ -46,6 +46,7 @@ P7159 「dWoi R1」Sweet Fruit Chocolate（https://www.luogu.com.cn/problem/P715
 P2015 二叉苹果树（https://www.luogu.com.cn/problem/P2015）树形DP，有点像树上背包
 P2014 [CTSC1997] 选课（https://www.luogu.com.cn/problem/P2014）树形DP
 P4316 绿豆蛙的归宿（https://www.luogu.com.cn/problem/P4316）逆向建图，拓扑排序DP
+P1351 [NOIP2014 提高组] 联合权值（https://www.luogu.com.cn/problem/P1351#submit）树形DP
 
 ==================================AtCoder=================================
 F - Expensive Expense （https://atcoder.jp/contests/abc222/tasks/abc222_f）换根DP
@@ -1011,6 +1012,44 @@ class Solution:
                     stack.append(j)
         ans = "%.2f" % (dp[0])
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p1351(ac=FastIO()):
+        # 模板：树形DP
+        n = ac.read_int()
+        dct = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            i, j = ac.read_ints_minus_one()
+            dct[i].append(j)
+            dct[j].append(i)
+        nums = ac.read_list_ints()
+        ceil = ans = 0
+        mod = 10007
+        stack = [[0, -1]]
+        while stack:
+            i, fa = stack.pop()
+            lst = []
+            if fa != -1:
+                lst.append(nums[fa])
+            for j in dct[i]:
+                if j != fa:
+                    stack.append([j, i])
+                    lst.append(nums[j])
+            if lst:
+
+                s = sum(lst)
+                a = b = 0
+                for num in lst:
+                    ans += num * (s - num)
+                    ans %= mod
+                    if num > a:
+                        a, b = num, a
+                    elif num > b:
+                        b = num
+                ceil = ac.max(ceil, a * b)
+
+        ac.lst([ceil, ans])
         return
 
 

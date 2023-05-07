@@ -58,6 +58,10 @@ P2246 SAC#1 - Hello World（升级版）（https://www.luogu.com.cn/problem/P224
 P4933 大师（https://www.luogu.com.cn/problem/P4933）线性DP使用等差数列计数
 P1874 快速求和（https://www.luogu.com.cn/problem/P1874）线性DP
 P2513 [HAOI2009]逆序对数列（https://www.luogu.com.cn/problem/P2513）前缀和优化DP
+P1280 尼克的任务（https://www.luogu.com.cn/problem/P1280）逆序线性 DP
+P1282 多米诺骨牌（https://www.luogu.com.cn/problem/P1282）典型线性DP
+P1356 数列的整除性（https://www.luogu.com.cn/problem/P1356）典型线性取模DP
+P1385 密令（https://www.luogu.com.cn/problem/P1385）线性DP与前缀和优化
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/75/D（经典压缩数组，最大子段和升级）
@@ -263,6 +267,89 @@ class Solution:
 
         for x in range(1, n+1):
             ac.st(dp4[x])
+        return
+
+    @staticmethod
+    def lg_p1280(ac=FastIO()):
+        # 模板：线性DP倒序模拟优化
+        n, k = ac.read_ints()
+        dct = [[] for _ in range(n+1)]
+        for _ in range(k):
+            p, t = ac.read_ints()
+            dct[p].append(p+t)
+        dp = [0]*(n+2)
+        for i in range(n, 0, -1):
+            if not dct[i]:
+                dp[i] = dp[i+1]+1
+            else:
+                for end in dct[i]:
+                    dp[i] = ac.max(dp[i], dp[end])
+        ac.st(dp[1])
+        return
+
+    @staticmethod
+    def lg_p1282(ac=FastIO()):
+        # 模板：典型线性DP使用哈希滚动
+        n = ac.read_int()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        pre = defaultdict(lambda: inf)
+        pre[0] = 0
+        for i in range(n):
+            a, b = nums[i]
+            cur = defaultdict(lambda: inf)
+            for p in pre:
+                cur[p+a-b] = ac.min(cur[p+a-b], pre[p])
+                cur[p + b - a] = ac.min(cur[p + b - a], pre[p]+1)
+            pre = cur.copy()
+        x = min(abs(v) for v in pre.keys())
+        ans = inf
+        for v in pre:
+            if abs(v) == x:
+                ans = ac.min(ans, pre[v])
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p1356(ac=FastIO()):
+        # 模板：线性DP
+        m = ac.read_int()
+        for _ in range(m):
+            n, k = ac.read_ints()
+            nums = ac.read_list_ints()
+            pre = [0]*k
+            pre[nums[0]%k] = 1
+            for num in nums[1:]:
+                cur = [0]*k
+                for a in [num, -num]:
+                    for i in range(k):
+                        if pre[i]:
+                            cur[(i+a)%k] = 1
+                pre = cur[:]
+            ac.st("Divisible" if pre[0] else "Not divisible")
+        return
+
+    @staticmethod
+    def lg_p1385(ac=FastIO()):
+        # 模板：线性DP与前缀和优化
+        mod = 10**9+7
+        for _ in range(ac.read_int()):
+            s = ac.read_str()
+            n = len(s)
+            t = sum(ord(w)-ord("a")+1 for w in s)
+            pre = [0]*(t+1)
+            pre[0] = 1
+            for _ in range(n):
+                cur = [0]*(t+1)
+                x = 0
+                for i in range(t+1):
+                    cur[i] = x
+                    x += pre[i]
+                    x %= mod
+                    if i >= 26:
+                        x -= pre[i-26]
+                        x %= mod
+                pre = cur[:]
+            ac.st((pre[-1] - 1)%mod)
         return
 
 

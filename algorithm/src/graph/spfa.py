@@ -29,7 +29,7 @@ P2648 赚钱（https://www.luogu.com.cn/problem/P2648）判断是否存在正权
 P1144 最短路计数（https://www.luogu.com.cn/problem/P1144）计算最短路的条数
 P1993 小 K 的农场（https://www.luogu.com.cn/problem/P1993）差分约束判断是否存在负环
 P5960 【模板】差分约束算法（https://www.luogu.com.cn/problem/P5960）差分约束模板题
-
+P1260 工程规划（https://www.luogu.com.cn/problem/P1260）差分约束模板题
 
 参考：
 差分约束（https://oi-wiki.org/graph/diff-constraints/）
@@ -289,6 +289,22 @@ class Solution:
             ac.st("NO")
         else:
             ac.lst(dis[1:])
+        return
+
+    @staticmethod
+    def lg_p1260(ac=FastIO()):
+        # 模板：差分约束模板题
+        n, m = ac.read_ints()
+        edges = [ac.read_list_ints() for _ in range(m)]
+        ans, dis = SPFA().differential_constraint(edges, n)
+        if ans == "YES":
+            ac.st("NO SOLUTION")
+        else:
+            res = dis[1:]
+            floor = min(res)
+            res = [num-floor for num in res]
+            for a in res:
+                ac.st(a)
         return
 
 

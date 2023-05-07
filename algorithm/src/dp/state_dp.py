@@ -291,6 +291,43 @@ class Solution:
         ac.st(ans)
         return
 
+    @staticmethod
+    def lg_p1433(ac=FastIO()):
+        # 模板：状压DP
+        n = ac.read_int()
+        lst = [[0, 0]]
+        for _ in range(n):
+            x, y = [float(w)
+                    for w in sys.stdin.readline().strip().split() if w]
+            if not x == y == 0:
+                lst.append([x, y])
+
+        n = len(lst)
+        grid = [[0.0] * n for _ in range(n)]
+        for i in range(n):
+            a, b = lst[i]
+            for j in range(i + 1, n):
+                c, d = lst[j]
+                cur = math.sqrt((a - c) * (a - c) + (b - d) * (b - d))
+                grid[i][j] = cur
+                grid[j][i] = cur
+
+        dp = [[inf] * n for _ in range(1 << n)]
+        for i in range((1 << n) - 1):
+            for pre in range(n):
+                if not i:
+                    dp[i][pre] = 0
+                    continue
+                res = inf
+                for j in range(n):
+                    if i & (1 << j):
+                        cur = dp[i ^ (1 << j)][j] + grid[pre][j]
+                        res = ac.min(res, cur)
+                dp[i][pre] = res
+        ans = dp[(1 << n) - 2][0]
+        ac.st("%.2f" % ans)
+        return
+
 
 class TestGeneral(unittest.TestCase):
 

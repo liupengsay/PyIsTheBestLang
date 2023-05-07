@@ -31,6 +31,7 @@ P1908 逆序对（https://www.luogu.com.cn/problem/P1908）树状数组求逆序
 134. 二维树状数组2（https://loj.ac/p/134）区间修改，单点查询
 P1725 琪露诺（https://www.luogu.com.cn/problem/P1725）倒序线性DP，单点更新值，查询区间最大值
 P3586 [POI2015] LOG（https://www.luogu.com.cn/problem/P3586）离线查询、离散化树状数组，单点增减，前缀和查询
+P1198 [JSOI2008] 最大数（https://www.luogu.com.cn/problem/P1198）树状数组，查询区间最大值
 
 ================================CodeForces================================
 F. Range Update Point Query（https://codeforces.com/problemset/problem/1791/F）树状数组维护区间操作数与查询单点值
@@ -670,6 +671,25 @@ class Solution:
                     ac.st("TAK")
                 else:
                     ac.st("NIE")
+        return
+
+    @staticmethod
+    def lg_p1198(ac=FastIO()):
+        # 模板：树状数组查询区间最大值
+        m, d = ac.read_ints()
+        t = 0
+        tree = TreeArrayPointUpdateRangeMaxMin(m+1)
+        i = 1
+        for _ in range(m):
+            op, x = ac.read_list_strs()
+            if op == "A":
+                x = (int(x)+t)%d
+                tree.add(i, x)
+                i += 1
+            else:
+                x = int(x)
+                t = tree.find_max(i-x, i-1)
+                ac.st(t)
         return
 
 

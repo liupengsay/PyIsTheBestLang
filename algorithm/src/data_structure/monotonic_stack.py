@@ -30,6 +30,8 @@ P7410 [USACO21FEB] Just Green Enough S（https://www.luogu.com.cn/problem/P7410�
 P7762 [COCI2016-2017#5] Unija（https://www.luogu.com.cn/problem/P7762）类似单调栈的思想，按照宽度进行贪心排序，计算每个高度的面积贡献
 P1578 奶牛浴场（https://www.luogu.com.cn/problem/P1578）使用单调栈离散化枚举障碍点的最大面积矩形
 P3467 [POI2008]PLA-Postering（https://www.luogu.com.cn/problem/P3467）贪心单调栈
+P1191 矩形（https://www.luogu.com.cn/problem/P1191）经典单调栈求矩形个数
+P1323 删数问题（https://www.luogu.com.cn/problem/P1323）二叉堆与单调栈，计算最大字典序数字
 
 ================================CodeForces================================
 E. Explosions?（https://codeforces.com/problemset/problem/1795/E）单调栈贪心计数枚举，前后缀DP转移
@@ -307,6 +309,60 @@ class MonotonicStack:
                 stack.append(i)
             ans = max(lst[i]*(post[i]-pre[i]+1) for i in range(n))
             ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p1191(ac=FastIO()):
+        # 模板：枚举下边界使用单调栈计算矩形个数
+        n = ac.read_int()
+        pre = [0]*n
+        ans = 0
+        for _ in range(n):
+            s = ac.read_str()
+            right = [n-1]*n
+            left = [0]*n
+            stack = []
+            for j in range(n):
+                if s[j] == "W":
+                    pre[j] += 1
+                else:
+                    pre[j] = 0
+                while stack and pre[stack[-1]] > pre[j]:
+                    right[stack.pop()] = j-1
+                if stack:
+                    left[j] = stack[-1] + 1
+                stack.append(j)
+            ans += sum(pre[j]*(right[j]-j+1)*(j-left[j]+1) for j in range(n))
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p1323(ac=FastIO()):
+        # 模板：二叉堆与单调栈，计算最大字典序数字
+        k, m = ac.read_ints()
+        dct = set()
+        ans = []
+        stack = [1]
+        while len(ans) < k:
+            num = heapq.heappop(stack)
+            if num in dct:
+                continue
+            ans.append(num)
+            dct.add(num)
+            heapq.heappush(stack, 2*num+1)
+            heapq.heappush(stack, 4 * num + 5)
+
+        res = "".join(str(x) for x in ans)
+        ac.st(res)
+        rem = m
+        stack = []
+        for w in res:
+            while stack and rem and w > stack[-1]:
+                stack.pop()
+                rem -= 1
+            stack.append(w)
+        stack = stack[rem:]
+        ac.st(int("".join(stack)))
         return
 
 

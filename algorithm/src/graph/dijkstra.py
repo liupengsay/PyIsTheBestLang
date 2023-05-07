@@ -68,6 +68,9 @@ P4568 [JLOI2011] 飞行路线（https://www.luogu.com.cn/problem/P4568）K层建
 P2865 [USACO06NOV]Roadblocks G（https://www.luogu.com.cn/problem/P2865）严格次短路模板题
 P2622 关灯问题II（https://www.luogu.com.cn/problem/P2622）状压加dijkstra最短路计算
 P1608 路径统计（https://www.luogu.com.cn/problem/P1608）dijkstra计算最短路径条数
+P1073 [NOIP2009 提高组] 最优贸易（https://www.luogu.com.cn/problem/P1073）正反两遍建图，Dijkstra进行计算路径最大最小值
+P1300 城市街道交通费系统（https://www.luogu.com.cn/problem/P1300）Dijkstra求最短路
+P1354 房间最短路问题（https://www.luogu.com.cn/problem/P1354）建图Dijkstra求最短路
 
 ================================CodeForces================================
 C. Dijkstra?（https://codeforces.com/problemset/problem/20/C）正权值最短路计算，并记录返回生成路径
@@ -577,6 +580,144 @@ class Solution:
             ac.st("No answer")
         else:
             ac.lst([dis[-1], cnt[-1]])
+        return
+
+    @staticmethod
+    def lg_p1073(ac=FastIO()):
+        # 模板：正反两遍建图，计算两个最短路
+        n, m = ac.read_ints()
+        nums = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        rev = [[] for _ in range(n)]
+        for _ in range(m):
+            x, y, z = ac.read_ints_minus_one()
+            dct[x].append(y)
+            rev[y].append(x)
+            if z == 1:
+                dct[y].append(x)
+                rev[x].append(y)
+
+        # 前面最小值
+        floor = [inf]*n
+        stack = [[nums[0], 0]]
+        floor[0] = nums[0]
+        while stack:
+            d, i = heapq.heappop(stack)
+            if floor[i] < d:
+                continue
+            for j in dct[i]:
+                dj = ac.min(d, nums[j])
+                if dj < floor[j]:
+                    floor[j] = dj
+                    heapq.heappush(stack, [dj, j])
+
+        # 后面最大值
+        ceil = [-inf]*n
+        ceil[n - 1] = nums[n - 1]
+        stack = [[-nums[n-1], n-1]]
+        while stack:
+            d, i = heapq.heappop(stack)
+            if ceil[i] < d:
+                continue
+            for j in rev[i]:
+                dj = ac.max(-d, nums[j])
+                if dj > ceil[j]:
+                    ceil[j] = dj
+                    heapq.heappush(stack, [-dj, j])
+        ans = max(ceil[i]-floor[i] for i in range(n))
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p1300(ac=FastIO()):
+        # 模板：Dijkstra求最短路
+        m, n = ac.read_ints()
+        grid = [ac.read_str() for _ in range(m)]
+        ind = [[0, 1], [1, 0], [0, -1], [-1, 0]]
+        dct = {"E":0, "S": 1, "W": 2, "N": 3}
+        start = [-1, -1]
+        d = -1
+        end = [-1, -1]
+        for i in range(m):
+            for j in range(n):
+                w = grid[i][j]
+                if w in dct:
+                    start = [i, j]
+                    d = dct[w]
+                if w == "F":
+                    end = [i, j]
+
+        dis = [[[inf]*4 for _ in range(n)] for _ in range(m)]
+        dis[start[0]][start[1]][d] = 0
+        stack = [[0, start[0], start[1], d]]
+        while stack:
+            pre, i, j, d = heapq.heappop(stack)
+            if dis[i][j][d] < pre:
+                continue
+            flag = False
+            for cost, r in [[1, (d-1)%4], [5, (d+1)%4], [0, d]]:
+                x, y = i+ind[r][0], j+ind[r][1]
+                if 0<=x<m and 0<=y<n and grid[x][y] != ".":
+                    dj = pre+cost
+                    if dj < dis[x][y][r]:
+                        dis[x][y][r] = dj
+                        heapq.heappush(stack, [dj, x, y, r])
+                        flag = True
+            if not flag:
+                cost, r = 10, (d+2)%4
+                x, y = i+ind[r][0], j+ind[r][1]
+                if 0<=x<m and 0<=y<n and grid[x][y] != ".":
+                    dj = pre+cost
+                    if dj < dis[x][y][r]:
+                        dis[x][y][r] = dj
+                        heapq.heappush(stack, [dj, x, y, r])
+        ac.st(min(dis[end[0]][end[1]]))
+        return
+
+    @staticmethod
+    def lg_p1354(ac=FastIO()):
+
+        # 模板：建图求最短路
+
+        def dis(x1, y1, x2, y2):
+            return ((x1-x2)**2+(y1-y2)**2)**0.5
+
+        n = ac.read_int()
+        nodes = [[0, 5], [10, 5]]
+        line = []
+        for _ in range(n):
+            x, a1, a2, b1, b2 = ac.read_floats()
+            nodes.append([x, a1])
+            nodes.append([x, a2])
+            nodes.append([x, b1])
+            nodes.append([x, b2])
+            line.append([x, a1, a2, b1, b2])
+
+        def check():
+            for x, a1, a2, b1, b2 in line:
+                if left <= x <= right:
+                    if not (a1<=k*x+bb<=a2) and not (b1<=k*x+bb<=b2):
+                        return False
+            return True
+
+        start = 0
+        end = 1
+        m = len(nodes)
+        dct = [dict() for _ in range(m)]
+        for i in range(m):
+            for j in range(i+1, m):
+                a, b = nodes[i]
+                c, d = nodes[j]
+                if a == c:
+                    continue
+                k = (d-b)/(c-a)
+                bb = d-k*c
+                left, right = min(a, c), max(a, c)
+                if check():
+                    x = dis(a, b, c, d)
+                    dct[i][j] = dct[j][i] = x
+        ans = Dijkstra().get_dijkstra_result(dct, start)[end]
+        ac.st("%.2f" % ans)
         return
 
 

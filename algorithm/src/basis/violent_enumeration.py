@@ -1,6 +1,8 @@
 import unittest
 import math
+from functools import reduce
 from itertools import combinations
+from operator import mul
 
 from algorithm.src.fast_io import FastIO, inf
 
@@ -68,6 +70,8 @@ P7273 ix35 的等差数列（https://www.luogu.com.cn/problem/P7273）经典公�
 P7286 「EZEC-5」人赢（https://www.luogu.com.cn/problem/P7286）排序后枚举最小值，选择最优结果计数
 P7626 [COCI2011-2012#1] MATRIX（https://www.luogu.com.cn/problem/P7626）枚举正方形子矩阵的主对角线与副对角线之差
 P7799 [COCI2015-2016#6] PIANINO（https://www.luogu.com.cn/problem/P7799）哈希枚举计数
+P1018 [NOIP2000 提高组] 乘积最大（https://www.luogu.com.cn/problem/P1018）枚举乘号位置
+P1311 [NOIP2011 提高组] 选择客栈（https://www.luogu.com.cn/problem/P1311）线性枚举计数，每次重置避免重复计数
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1426/F（分类枚举中间的b计数两边的?ac，并使用快速幂进行求解）
@@ -85,6 +89,32 @@ C. Arithmetic Progression（https://codeforces.com/problemset/problem/382/C）�
 
 参考：OI WiKi（xx）
 """
+
+
+
+
+class ViolentEnumeration:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def matrix_rotate(matrix):  # 旋转矩阵
+
+        # 将矩阵顺时针旋转 90 度
+        n = len(matrix)
+        for i in range(n // 2):
+            for j in range((n + 1) // 2):
+                a, b, c, d = matrix[n - j - 1][i], matrix[n - i - 1][n - j - 1], matrix[j][n - i - 1], matrix[i][j]
+                matrix[i][j], matrix[n - j - 1][i], matrix[n - i - 1][n - j - 1], matrix[j][n - i - 1] = a, b, c, d
+
+        # 将矩阵逆时针旋转 90 度
+        n = len(matrix)
+        for i in range(n // 2):
+            for j in range((n + 1) // 2):
+                a, b, c, d = matrix[j][n - i - 1], matrix[i][j], matrix[n - j - 1][i], matrix[n - i - 1][n - j - 1]
+                matrix[i][j], matrix[n - j - 1][i], matrix[n - i - 1][n - j - 1], matrix[j][n - i - 1] = a, b ,c ,d
+
+        return matrix
 
 
 class Solution:
@@ -289,29 +319,48 @@ class Solution:
             ac.st(ans if ans <= 6 else -1)
         return
 
+    @staticmethod
+    def lg_p1018(ac=FastIO()):
+        # 模板：枚举乘号的位置
+        n, k = ac.read_ints()
+        nums = ac.read_list_str()
 
-class ViolentEnumeration:
-    def __init__(self):
+        ans = 0
+        for item in combinations(list(range(1, n)), k):
+            cur = nums[:]
+            for i in item:
+                cur[i] = "*"+cur[i]
+            res = [int(w) for w in ("".join(cur)).split("*")]
+            cur = reduce(mul, res)
+            ans = ac.max(ans, cur)
+        ac.st(ans)
         return
 
     @staticmethod
-    def matrix_rotate(matrix):  # 旋转矩阵
-
-        # 将矩阵顺时针旋转 90 度
-        n = len(matrix)
-        for i in range(n // 2):
-            for j in range((n + 1) // 2):
-                a, b, c, d = matrix[n - j - 1][i], matrix[n - i - 1][n - j - 1], matrix[j][n - i - 1], matrix[i][j]
-                matrix[i][j], matrix[n - j - 1][i], matrix[n - i - 1][n - j - 1], matrix[j][n - i - 1] = a, b, c, d
-
-        # 将矩阵逆时针旋转 90 度
-        n = len(matrix)
-        for i in range(n // 2):
-            for j in range((n + 1) // 2):
-                a, b, c, d = matrix[j][n - i - 1], matrix[i][j], matrix[n - j - 1][i], matrix[n - i - 1][n - j - 1]
-                matrix[i][j], matrix[n - j - 1][i], matrix[n - i - 1][n - j - 1], matrix[j][n - i - 1] = a, b ,c ,d
-
-        return matrix
+    def lg_p1311(ac=FastIO()):
+        # 模板：线性枚举计数，每次重置避免重复计数
+        n, k, p = ac.read_ints()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        cnt = [0]*k
+        for i in range(n):
+            cnt[nums[i][0]] += 1
+        pre = [0]*k
+        ans = 0
+        for i in range(n):
+            c = nums[i][0]
+            pre[c] += 1
+            if nums[i][1] <= p:
+                for j in range(k):
+                    if j != c:
+                        ans += pre[j]*(cnt[j]-pre[j])
+                    else:
+                        ans += pre[j]-1
+                        ans += cnt[j]-pre[j]
+                        ans += (pre[j]-1)*(cnt[j]-pre[j])
+                    cnt[j] -= pre[j]
+                pre = [0]*k
+        ac.st(ans)
+        return
 
 
 class TestGeneral(unittest.TestCase):

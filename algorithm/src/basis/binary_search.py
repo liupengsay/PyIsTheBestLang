@@ -1,5 +1,6 @@
 import bisect
 import unittest
+from collections import deque
 from typing import List, Callable
 
 from algorithm.src.fast_io import FastIO, inf
@@ -42,6 +43,11 @@ P7177 [COCI2014-2015#4] MRAVI（https://www.luogu.com.cn/problem/P7177）二分�
 P1314 [NOIP2011 提高组] 聪明的质监员（https://www.luogu.com.cn/problem/P1314）经典二分寻找最接近目标值的和
 P3017 [USACO11MAR]Brownie Slicing G（https://www.luogu.com.cn/problem/P3017）经典二分将矩阵分成a*b个子矩阵且子矩阵和的最小值最大
 P1083 [NOIP2012 提高组] 借教室（https://www.luogu.com.cn/problem/P1083）经典二分结合差分进行寻找第一个失效点
+P1281 书的复制（https://www.luogu.com.cn/problem/P1281）典型二分并输出方案
+P1381 单词背诵（https://www.luogu.com.cn/problem/P1381）典型二分
+P1419 寻找段落（https://www.luogu.com.cn/problem/P1419）二分加优先队列
+P1525 [NOIP2010 提高组] 关押罪犯（https://www.luogu.com.cn/problem/P1525）经典二分加BFS进行二分图划分
+P1542 包裹快递（https://www.luogu.com.cn/problem/P1542）二分加使用分数进行高精度计算
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1251/D（使用贪心进行中位数二分求解）
@@ -412,15 +418,7 @@ class Solution:
         n, m = ac.read_ints()
         nums = ac.read_list_ints()
         lst = [ac.read_list_ints() for _ in range(m)]
-        low = 0
-        high = n
-        while low < high - 1:
-            mid = low + (high - low) // 2
-            if check(mid):
-                low = mid
-            else:
-                high = mid
-        ans = high if check(high) else low
+        ans = BinarySearch().find_int_right(0, n, check)
         if ans == n:
             ac.st(0)
         else:
@@ -483,6 +481,182 @@ class Solution:
 
                 low = mid + 1
         return low
+
+    @staticmethod
+    def lg_p1281(ac=FastIO()):
+        # 模板：典型二分并输出方案
+        m, k = ac.read_ints()
+        nums = ac.read_list_ints()
+
+        def check(xx):
+            res = pp = 0
+            for ii in range(m-1, -1, -1):
+                if pp + nums[ii] > xx:
+                    res += 1
+                    pp = nums[ii]
+                else:
+                    pp += nums[ii]
+                if res + 1 > k:
+                    return False
+            return True
+
+        x = BinarySearch().find_int_left(max(nums), sum(nums), check)
+        ans = []
+        pre = nums[m-1]
+        post = m-1
+        for i in range(m - 2, -1, -1):
+            if pre + nums[i] > x:
+                ans.append([i+2, post+1])
+                pre = nums[i]
+                post = i
+            else:
+                pre += nums[i]
+        ans.append([1, post+1])
+        for a in ans[::-1]:
+            ac.lst(a)
+        return
+
+    @staticmethod
+    def lg_p1381(ac=FastIO()):
+        # 模板：典型二分
+        n = ac.read_int()
+        dct = set([ac.read_str() for _ in range(n)])
+        m = ac.read_int()
+        words = [ac.read_str() for _ in range(m)]
+        cur = set()
+        for w in words:
+            if w in dct:
+                cur.add(w)
+
+        def check(x):
+            cnt = defaultdict(int)
+            cc = 0
+            for i in range(m):
+                if words[i] in dct:
+                    cnt[words[i]] += 1
+                    if cnt[words[i]] == 1:
+                        cc += 1
+                        if cc == s:
+                            return True
+                if i>=x-1:
+                    if words[i-x+1] in dct:
+                        cnt[words[i-x+1]] -= 1
+                        if not cnt[words[i-x+1]]:
+                            cc -= 1
+            return False
+
+        s = len(cur)
+        ac.st(s)
+        if not s:
+            ac.st(0)
+            return
+        ans = BinarySearch().find_int_left(1, m, check)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p1419(ac=FastIO()):
+
+        # 模板：二分加优先队列
+        def check(x):
+            stack = deque()
+            res = []
+            for i in range(n):
+                while stack and stack[0][0] <= i - k:
+                    stack.popleft()
+                while stack and stack[-1][1] >= pre[i] - x * i:
+                    stack.pop()
+                stack.append([i, pre[i] - x * i])
+                res.append(stack[0][1])
+                if i >= s - 1:
+                    if pre[i + 1] - x * (i + 1) >= res[i - s + 1]:
+                        return True
+            return False
+
+        n = ac.read_int()
+        s, t = ac.read_ints()
+        nums = []
+        for _ in range(n):
+            nums.append(int(input().strip()))
+        pre = [0] * (n + 1)
+        for j in range(n):
+            pre[j + 1] = pre[j] + nums[j]
+
+        k = t - s
+        ans = BinarySearch().find_float_right(min(nums), max(nums), check)
+        ac.st("%.3f" % ans)
+        return
+
+    @staticmethod
+    def lg_p1525(ac=FastIO()):
+        # 模板：经典二分加BFS进行二分图划分
+        n, m = ac.read_ints()
+        lst = [ac.read_list_ints() for _ in range(m)]
+
+        def check(weight):
+            edges = [[i, j] for i, j, w in lst if w > weight]
+            dct = defaultdict(list)
+            for i, j in edges:
+                dct[i].append(j)
+                dct[j].append(i)
+            visit = [0] * (n + 1)
+            for i in range(1, n + 1):
+                if visit[i] == 0:
+                    stack = [i]
+                    visit[i] = 1
+                    order = 2
+                    while stack:
+                        nex = []
+                        for j in stack:
+                            for y in dct[j]:
+                                if not visit[y]:
+                                    visit[y] = order
+                                    nex.append(y)
+                        order = 1 if order == 2 else 2
+                        stack = nex
+
+            return all(visit[i] != visit[j] for i, j in edges)
+
+        low = 0
+        high = max(ls[-1] for ls in lst)
+        ans = BinarySearch().find_int_left(low, high, check)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p1542(ac=FastIO()):
+        # 模板：二分加使用分数进行高精度计算
+        n = ac.read_int()
+        nums = [ac.read_list_ints() for _ in range(n)]
+
+        def add(lst1, lst2):
+            a, b = lst1
+            c, d = lst2
+            d1 = a*d+c*b
+            d2 = b*d
+            return [d1, d2]
+
+        def check(xx):
+            # 最早与最晚出发
+            t1 = 0
+            res = [xx, 1]
+            while int(res[0])!=res[0]:
+                res[0]*=10
+                res[1]*=10
+            res = [int(w) for w in res]
+            t1 = [0, 1]
+            for x, y, s in nums:
+                cur = add(t1, [s*res[1], res[0]])
+                if cur[0] > y*cur[1]:
+                    return False
+                t1 = cur[:]
+                if cur[0]<x*cur[1]:
+                    t1 = [x, 1]
+            return True
+
+        ans = BinarySearch().find_float_left(1e-4, 10**7, check)
+        ac.st("%.2f" % ans)
+        return
 
 
 class TestGeneral(unittest.TestCase):

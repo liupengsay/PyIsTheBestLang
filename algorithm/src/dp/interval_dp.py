@@ -31,6 +31,7 @@ P3205 [HNOI2010]合唱队（https://www.luogu.com.cn/problem/P3205）区间DP使
 P1880 [NOI1995] 石子合并（https://www.luogu.com.cn/problem/P1880）环形数组区间DP合并求最大值最小值
 P1040 [NOIP2003 提高组] 加分二叉树（https://www.luogu.com.cn/problem/P1040）区间DP与路径还原
 P1043 [NOIP2003 普及组] 数字游戏（https://www.luogu.com.cn/problem/P1043）环形区间DP
+P1430 序列取数（https://www.luogu.com.cn/problem/P1430）区间DP加前缀数组优化
 
 ================================CodeForces================================
 C. The Sports Festival（https://codeforces.com/problemset/problem/1509/C）转换为区间DP进行求解
@@ -136,6 +137,68 @@ class Solution:
             pre = cur
         ac.st(sum(dp[pre][n - 1]) % mod)
         return
+
+    @staticmethod
+    def lg_p1040(ac=FastIO()):
+        # 模板：使用区间DP计算最小代价，并使用迭代还原前序遍历路径
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+
+        dp = [[0]*n for _ in range(n)]
+        for i in range(n-1, -1, -1):
+            dp[i][i] = nums[i]
+            if i + 1 < n:
+                dp[i][i+1] = nums[i] + nums[i+1]
+            for j in range(i+2, n):
+                dp[i][j] = max(dp[i][k-1]*dp[k+1][j]+dp[k][k] for k in range(i+1, j))
+
+        ans = []
+        stack = [[0, n-1]]
+        while stack:
+            i, j = stack.pop()
+            if i == j:
+                ans.append(i+1)
+                continue
+            if i == j-1:
+                ans.append(i+1)
+                ans.append(j+1)
+                continue
+            for k in range(i+1, j):
+                if dp[i][j] == dp[i][k-1]*dp[k+1][j]+dp[k][k]:
+                    ans.append(k+1)
+                    stack.append([k+1, j])
+                    stack.append([i, k-1])
+                    break
+        ac.st(dp[0][n-1])
+        ac.lst(ans)
+        return
+
+    @staticmethod
+    def lg_p1430(ac=FastIO()):
+        # 模板：区间DP加前缀数组优化
+        for _ in range(ac.read_int()):
+            nums = ac.read_list_ints()
+            n = nums.pop(0)
+            pre = [0]*(n+1)
+            for i in range(n):
+                pre[i+1] = pre[i]+nums[i]
+
+            dp = [0]*n
+            post = [0]*n
+            for i in range(n-1, -1, -1):
+                dp[i] = nums[i]
+                post[i] = ac.min(nums[i], post[i])
+                floor = ac.min(0, nums[i])
+                for j in range(i+1, n):
+                    s = pre[j+1]-pre[i]
+                    dp[j] = s
+                    dp[j] = ac.max(dp[j], s-post[j])
+                    dp[j] = ac.max(dp[j], s-floor)
+                    floor = ac.min(floor, dp[j])
+                    post[j] = ac.min(post[j], dp[j])
+            ac.st(dp[n-1])
+        return
+
 
 class TestGeneral(unittest.TestCase):
 

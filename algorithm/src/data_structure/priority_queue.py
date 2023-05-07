@@ -26,7 +26,7 @@ P1714 切蛋糕（https://www.luogu.com.cn/problem/P1714）前缀和加滑动窗
 P1725 琪露诺（https://www.luogu.com.cn/problem/P1725）单调队列和指针维护滑动窗口最大值加线性DP
 P2827 [NOIP2016 提高组] 蚯蚓（https://www.luogu.com.cn/problem/P2827）经典单调队列
 P3800 Power收集（https://www.luogu.com.cn/problem/P3800）单调队列优化矩阵DP
-
+P1016 [NOIP1999 提高组] 旅行家的预算（https://www.luogu.com.cn/problem/P1016）单调队列，贪心模拟油箱，还可以增加每个站的油量限制
 
 ===================================AcWing=====================================
 133. 蚯蚓（https://www.acwing.com/problem/content/135/）三个优先队列加一个偏移量
@@ -300,6 +300,41 @@ class Solution:
                 ans2.append(x)
         ac.lst(ans1)
         ac.lst(ans2)
+        return
+
+    @staticmethod
+    def lg_p1016(ac=FastIO()):
+        # 模板：单调队列，贪心模拟油箱，还可以增加每个站的油量限制
+        d1, c, d2, p, n = ac.read_floats()
+        n = int(n)
+        nums = [[0, p]] + [ac.read_list_floats() for _ in range(n)] + [[d1, 0]]
+        nums.sort()
+        stack = deque([[p, c]])  # 价格与油量
+        ans = 0
+        in_stack = c
+        n = len(nums)
+        for i in range(1, n):
+
+            dis = nums[i][0]-nums[i-1][0]
+            if in_stack*d2 < dis:
+                ac.st("No Solution")
+                return
+
+            while dis:
+                x = ac.min(dis/d2, stack[0][1])
+                ans += x*stack[0][0]
+                dis -= x*d2
+                stack[0][1] -= x
+                in_stack -= x
+                if not stack[0][1]:
+                    stack.popleft()
+
+            cur_p = nums[i][1]
+            while stack and stack[-1][0] >= cur_p:
+                in_stack -= stack.pop()[1]
+            stack.append([cur_p, c - in_stack])
+            in_stack = c
+        ac.st("%.2f" % ans)
         return
 
 

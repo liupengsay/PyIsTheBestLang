@@ -55,6 +55,11 @@ P3399 丝绸之路（https://www.luogu.com.cn/problem/P3399）二维矩阵DP
 P2516 [HAOI2010]最长公共子序列（https://www.luogu.com.cn/problem/P2516）经典DP最长公共子序列以及最长公共子序列的长度
 P1544 三倍经验（https://www.luogu.com.cn/problem/P1544）三维矩阵DP
 P1004 [NOIP2000 提高组] 方格取数（https://www.luogu.com.cn/problem/P1004）经典DP，三个方向转移
+P1006 [NOIP2008 提高组] 传纸条（https://www.luogu.com.cn/problem/P1006）经典DP，三个方向转移
+P1107 [BJWC2008]雷涛的小猫（https://www.luogu.com.cn/problem/P1107）二维DP加前缀最值优化
+P1279 字串距离（https://www.luogu.com.cn/problem/P1279）经典编辑距离DP的变形
+P1353 [USACO08JAN]Running S（https://www.luogu.com.cn/problem/P1353）矩阵DP
+P1410 子序列（https://www.luogu.com.cn/problem/P1410）二维DP
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1446/B（最长公共子序列LCS变形问题，理解贡献）
@@ -532,7 +537,7 @@ class Solution:
 
     @staticmethod
     def lg_p1004(ac=FastIO()):
-        # 模板：经典取数四维转三维DP
+        # 模板：经典取数四维转三维DP，路径可以有交叠
         n = ac.read_int()
         grid = [[0] * n for _ in range(n)]
         while True:
@@ -558,6 +563,88 @@ class Solution:
                     if x1 == x2:
                         dp[x1][y1][x2] -= grid[x1][y1]
         ac.st(dp[0][0][0])
+        return
+
+    @staticmethod
+    def lg_p1006(ac=FastIO()):
+        # 模板：经典取数四维转三维DP，路径不能有交叠
+        m, n = ac.read_ints()
+        grid = [ac.read_list_ints() for _ in range(m)]
+
+        dp = [[[0] * m for _ in range(n)] for _ in range(m)]
+        for x1 in range(m - 1, -1, -1):
+            for y1 in range(n - 1, -1, -1):
+                high = ac.min(m-1, x1+y1)
+                low = ac.max(0, x1+y1-(n-1))
+                for x2 in range(high, low-1, -1):
+                    y2 = x1 + y1 - x2
+                    post = 0
+                    for a, b in [[x1 + 1, y1], [x1, y1 + 1]]:
+                        for c, d in [[x2 + 1, y2], [x2, y2 + 1]]:
+                            if 0 <= a < m and 0 <= b < n and 0 <= c < m and 0 <= d < n:
+                                post = ac.max(post, dp[a][b][c])
+                    dp[x1][y1][x2] = post + grid[x1][y1] + grid[x2][y2]
+                    if x1 == x2 and y1 == y2 and [x1, y1] not in [[0, 0], [m-1, n-1]]:
+                        dp[x1][y1][x2] = -inf
+        ac.st(dp[0][0][0])
+        return
+
+    @staticmethod
+    def lg_p1107(ac=FastIO()):
+        # 模板：矩阵DP加前缀数组最值优化
+        n, h, d = ac.read_ints()
+        cnt = [[0]*(h+1) for _ in range(n)]
+        for i in range(n):
+            lst = ac.read_list_ints()
+            for j in lst[1:]:
+                cnt[i][j] += 1
+
+        ceil = [0]*(h+1)
+        dp = [[0]*n for _ in range(2)]
+        pre = 0
+        for i in range(h, -1, -1):
+            cur = 1-pre
+            for j in range(n):
+                dp[cur][j] = dp[pre][j]+cnt[j][i]
+                if i+d <= h and ceil[i+d] > dp[pre][j]:
+                    dp[cur][j] = ceil[i+d]+cnt[j][i]
+            pre = cur
+            ceil[i] = max(dp[pre])
+        ac.st(ceil[0])
+        return
+
+    @staticmethod
+    def lg_p1279(ac=FastIO()):
+        # 模板：编辑距离 DP 变形
+        s = ac.read_str()
+        t = ac.read_str()
+        k = ac.read_int()
+        m, n = len(s), len(t)
+        dp = [[inf]*(n+1) for _ in range(m+1)]
+        dp[0][0] = 0
+        for j in range(n):
+            dp[0][j+1] = dp[0][j]+k
+        for i in range(m):
+            dp[i+1][0] = dp[i][0]+k
+            for j in range(n):
+                dp[i+1][j+1] = min(dp[i][j]+abs(ord(s[i])-ord(t[j])), dp[i+1][j]+k, dp[i][j+1]+k)
+        ac.st(dp[-1][-1])
+        return
+
+    @staticmethod
+    def lg_p1353(ac=FastIO()):
+        # 模板：矩阵DP
+        n, m = ac.read_ints()
+        nums = [ac.read_int() for _ in range(n)]
+        dp = [[-inf]*(m+1) for _ in range(n+1)]
+        dp[0][0] = 0
+        for i in range(n):
+            dp[i+1][0] = dp[i][0]
+            for j in range(1, min(i+2, m+1)):
+                dp[i+1][0] = ac.max(dp[i+1][0], dp[i+1-j][j])
+            for j in range(1, m+1):
+                dp[i+1][j] = dp[i][j-1]+nums[i]
+        ac.st(dp[n][0])
         return
 
 

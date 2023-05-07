@@ -44,6 +44,8 @@ P7775 [COCI2009-2010#2] VUK（https://www.luogu.com.cn/problem/P7775）BFS加最
 P2658 汽车拉力比赛（https://www.luogu.com.cn/problem/P2658）典型最小生成树计算
 P4180 [BJWC2010] 严格次小生成树（https://www.luogu.com.cn/problem/P4180）使用最小生成树与LCA倍增查询计算严格次小生成树
 
+P1265 公路修建（https://www.luogu.com.cn/problem/P1265）使用prim求解最小生成树
+P1340 兽径管理（https://www.luogu.com.cn/problem/P1340）逆序并查集，维护最小生成树的边
 
 ================================CodeForces================================
 D. Design Tutorial: Inverse the Problem（https://codeforces.com/problemset/problem/472/D）使用最小生成树判断构造给定的点对最短路距离是否存在，使用prim算法复杂度更优
@@ -477,6 +479,78 @@ class Solution:
             else:
                 dis = tree.get_dist_weight_max_second(i, j)[0]
                 ac.st(cost-dis+w)
+        return
+
+    @staticmethod
+    def lg_p1265(ac=FastIO()):
+        # 模板：使用prim求解最小生成树
+
+        def dis(x1, y1, x2, y2):
+            return (x1-x2)**2+(y1-y2)**2
+
+        n = ac.read_int()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        start = nums[0]
+        ans = 0
+        rest = set(list(range(1, n)))
+        stack = []
+        visit = [0]*n
+        nex = 1
+        for i in range(1, n):
+            visit[i] = dis(start[0], start[1], nums[i][0], nums[i][1])
+            if visit[i] < visit[nex]:
+                nex = i
+        while rest:
+            i = nex
+            rest.discard(i)
+            d = visit[i]
+            ans += d**0.5
+            nex = -1
+            for j in rest:
+                dj = dis(nums[j][0], nums[j][1], nums[i][0], nums[i][1])
+                if dj < visit[j]:
+                    visit[j] = dj
+                if nex==-1 or visit[j] < visit[nex]:
+                    nex = j
+        ac.st("%.2f" % ans)
+        return
+
+    @staticmethod
+    def lg_p1340(ac=FastIO()):
+        # 模板：逆序并查集，维护最小生成树的边
+        n, w = ac.read_ints()
+        edges = [ac.read_list_ints() for _ in range(w)]
+        ind = list(range(w))
+        ind.sort(key=lambda it: edges[it][-1])
+
+        uf = UnionFind(n)
+        ans = []
+        select = set()
+        cost = 0
+        for i in range(w-1, -1, -1):
+            if uf.part > 1:
+                cost = 0
+                select = set()
+                for j in ind:
+                    if j <= i:
+                        x, y, ww = edges[j]
+                        if uf.union(x-1, y-1):
+                            cost += ww
+                            select.add(j)
+            if uf.part > 1:
+                ans.append(-1)
+                break
+            ans.append(cost)
+            if i in select:
+                uf = UnionFind(n)
+                select = set()
+                cost = 0
+        while len(ans) < w:
+            ans.append(-1)
+
+        for i in range(w-1, -1, -1):
+            ls = ans[i]
+            ac.st(ls)
         return
 
 
