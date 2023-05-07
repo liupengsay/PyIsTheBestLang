@@ -67,6 +67,7 @@ P6175 无向图的最小环问题（https://www.luogu.com.cn/problem/P6175）使
 P4568 [JLOI2011] 飞行路线（https://www.luogu.com.cn/problem/P4568）K层建图计算Dijkstra最短路
 P2865 [USACO06NOV]Roadblocks G（https://www.luogu.com.cn/problem/P2865）严格次短路模板题
 P2622 关灯问题II（https://www.luogu.com.cn/problem/P2622）状压加dijkstra最短路计算
+P1608 路径统计（https://www.luogu.com.cn/problem/P1608）dijkstra计算最短路径条数
 
 ================================CodeForces================================
 C. Dijkstra?（https://codeforces.com/problemset/problem/20/C）正权值最短路计算，并记录返回生成路径
@@ -77,7 +78,6 @@ E. Weights Distributing（https://codeforces.com/problemset/problem/1343/E）使
 
 参考：OI WiKi（xx）
 """
-
 
 
 class Dijkstra:
@@ -102,6 +102,29 @@ class Dijkstra:
                     dis[j] = dj
                     heapq.heappush(stack, [dj, j])
         return dis
+
+    @staticmethod
+    def get_dijkstra_cnt(dct: List[Dict], src: int) -> (List[int], List[float]):
+        # 模板: Dijkstra求最短路条数
+        n = len(dct)
+        dis = [float("inf")]*n
+        stack = [[0, src]]
+        dis[src] = 0
+        cnt = [0]*n
+        cnt[src] = 1
+        while stack:
+            d, i = heapq.heappop(stack)
+            if dis[i] < d:
+                continue
+            for j in dct[i]:
+                dj = dct[i][j] + d
+                if dj < dis[j]:
+                    dis[j] = dj
+                    cnt[j] = cnt[i]
+                    heapq.heappush(stack, [dj, j])
+                elif dj == dis[j]:
+                    cnt[j] += cnt[i]
+        return cnt, dis
 
     @staticmethod
     def dijkstra_src_to_dst_path(dct: List[Dict], src: int, dst: int) -> float:
@@ -539,6 +562,21 @@ class Solution:
                     heapq.heappush(stack, [d+1, cur])
         ans = visit[0]
         ac.st(ans if ans < inf else -1)
+        return
+
+    @staticmethod
+    def lg_p1608(ac=FastIO()):
+        # 模板：有向有权图最短路计数
+        n, m = ac.read_ints()
+        dct = [dict() for _ in range(n)]
+        for _ in range(m):
+            i, j, w = ac.read_ints()
+            dct[i-1][j-1] = ac.min(dct[i-1].get(j-1, inf), w)
+        cnt, dis = Dijkstra().get_dijkstra_cnt(dct, 0)
+        if dis[-1] == inf:
+            ac.st("No answer")
+        else:
+            ac.lst([dis[-1], cnt[-1]])
         return
 
 
