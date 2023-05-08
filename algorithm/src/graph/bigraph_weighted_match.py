@@ -235,7 +235,6 @@ class Soluttion:
         s = n + m + 1
         t = n + m + 2
         ek = EK(n + m, n * m, s, t)
-        used = set()
         for i in range(n):
             for j in range(m):
                 if grid[i][j]:
