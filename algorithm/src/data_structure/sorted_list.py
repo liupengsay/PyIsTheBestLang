@@ -50,6 +50,7 @@ P4375 [USACO18OPEN]Out of Sorts G（https://www.luogu.com.cn/problem/P4375）冒
 P1908 逆序对（https://www.luogu.com.cn/problem/P1908）经典问题求逆序对，可以使用归并排序
 P1966 [NOIP2013 提高组] 火柴排队（https://www.luogu.com.cn/problem/P1966）逆序对经典贪心题目
 P2161 [SHOI2009]会场预约（https://www.luogu.com.cn/problem/P2161）区间合并与删除处理
+P1637 三元上升子序列（https://www.luogu.com.cn/problem/P1637）典型STL应用题，前后缀大小值计数
 
 ================================CodeForces================================
 D. Pashmak and Parmida's problem（https://codeforces.com/problemset/problem/459/D）使用有序集合进行大小计数查找
@@ -397,6 +398,28 @@ class Solution:
                 money += 500*tm + 2*level
         ac.lst([ans, money])
         return
+
+    @staticmethod
+    def lg_p1637(ac=FastIO()):
+        # 模板：典型STL应用题，前后缀大小值计数
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+
+        pre = [0] * n
+        lst = LocalSortedList()
+        for i in range(n):
+            pre[i] = lst.bisect_left(nums[i])
+            lst.add(nums[i])
+
+        lst = LocalSortedList()
+        post = [0] * n
+        for i in range(n - 1, -1, -1):
+            post[i] = n - i - 1 - lst.bisect_right(nums[i])
+            lst.add(nums[i])
+        ans = sum(pre[i] * post[i] for i in range(n))
+        ac.st(ans)
+        return
+
 
 class TestGeneral(unittest.TestCase):
 
