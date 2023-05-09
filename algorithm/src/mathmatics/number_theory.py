@@ -89,6 +89,9 @@ P7696 [COCI2009-2010#4] IKS（https://www.luogu.com.cn/problem/P7696）数组，
 P4718 【模板】Pollard's rho 算法（https://www.luogu.com.cn/problem/P4718）使用pollard_rho进行质因数分解与素数判断
 P1069 [NOIP2009 普及组] 细胞分裂（https://www.luogu.com.cn/problem/P1069）质因数分解
 P1072 [NOIP2009 提高组] Hankson 的趣味题（https://www.luogu.com.cn/problem/P1072）枚举所有因数
+P1593 因子和（https://www.luogu.com.cn/problem/P1593）使用质因数分解与快速幂计算a^b的所有因子之和
+
+
 ================================CodeForces================================
 C. Hossam and Trainees（https://codeforces.com/problemset/problem/1771/C）使用pollard_rho进行质因数分解
 A. Enlarge GCD（https://codeforces.com/problemset/problem/1034/A）经典求 1 到 n 所有数字的质因子个数总和 
@@ -1024,6 +1027,34 @@ class Solution:
             ac.st(len(factor))
         return
 
+    @staticmethod
+    def lg_p1593(ac=FastIO()):
+        # 模板：使用质因数分解与快速幂计算a^b的所有因子之和
+        mod = 9901
+        a, b = ac.read_ints()
+        if a == 1 or b == 0:
+            ac.st(1)
+        else:
+            # 分解质因数
+            cnt = dict()
+            for p, c in NumberTheory().get_prime_factor2(a):
+                cnt[p] = c
+            # (1+p1+p1^2+...+p1^cb)*...
+            ans = 1
+            for k in cnt:
+                c = cnt[k] * b
+                if (k - 1) % mod:
+                    # 等比数列计算乘法逆元，逆元要求与mod互质否则需要额外计算
+                    ans *= (pow(k, c + 1, mod) - 1) * pow(k - 1, -1, mod)
+                    ans %= mod
+                else:
+                    # 此时无乘法逆元
+                    ans *= (c + 1)
+                    ans %= mod
+            ac.st(ans)
+        return
+
+
 class TestGeneral(unittest.TestCase):
 
     def test_prime_cnt(self):
@@ -1049,16 +1080,18 @@ class TestGeneral(unittest.TestCase):
             print(t1-t0, t2-t1)
             assert cnt1 == cnt2
 
-        nt = NumberTheory()
-        for i in range(1, 100000):
-            res = nt.get_prime_factor(i)
-            cnt = nt.get_prime_factors_with_pollard_rho(i)
-            num = 1
-            for val, c in res:
-                num *= val ** c
-                if val > 1:
-                    assert cnt[val] == c
-            assert num == i
+    def test_get_prime_factor_pollard(self):
+        for i in range(1, 10):
+            nt = NumberTheory()
+            for i in range(1, 100000):
+                res = nt.get_prime_factor(i)
+                cnt = nt.get_prime_factors_with_pollard_rho(i)
+                num = 1
+                for val, c in res:
+                    num *= val ** c
+                    if val > 1:
+                        assert cnt[val] == c
+                assert num == i
 
         nt = NumberTheory()
         num = 2

@@ -176,12 +176,14 @@ class Solution:
     def lg_p1613(ac=FastIO()):
         # 模板：建立新图计算Floyd最短路
         n, m = ac.read_ints()
+
+        # 表示节点i与j之间距离为2^k的路径是否存在
         dp = [[[0] * 32 for _ in range(n)] for _ in range(n)]
         for _ in range(m):
             u, v = ac.read_ints_minus_one()
             dp[u][v][0] = 1
 
-        # Floyd建新图
+        # 结合倍增思想进行Floyd建新图
         for x in range(1, 32):
             for k in range(n):
                 for i in range(n):
@@ -189,7 +191,6 @@ class Solution:
                         if dp[i][k][x - 1] and dp[k][j][x - 1]:
                             dp[i][j][x] = 1
 
-        # Floyd新图计算最短路
         dis = [[inf] * n for _ in range(n)]
         for i in range(n):
             for j in range(n):
@@ -198,6 +199,7 @@ class Solution:
                         dis[i][j] = 1
                         break
 
+        # Floyd新图计算最短路
         for k in range(n):
             for i in range(n):
                 for j in range(n):

@@ -32,15 +32,20 @@ P2029 跳舞（https://www.luogu.com.cn/problem/P2029）线性DP
 P2031 脑力达人之分割字串（https://www.luogu.com.cn/problem/P2031）线性DP
 P2062 分队问题（https://www.luogu.com.cn/problem/P2062）线性DP+前缀最大值DP剪枝优化
 P2072 宗教问题（https://www.luogu.com.cn/problem/P2072）两个线性DP
+
 P2096 最佳旅游线路（https://www.luogu.com.cn/problem/P2096）最大连续子序列和变种
 P5761 [NOI1997] 最佳游览（https://www.luogu.com.cn/problem/P5761）最大连续子序列和变种
 P2285 [HNOI2004]打鼹鼠（https://www.luogu.com.cn/problem/P2285）线性DP+前缀最大值DP剪枝优化
+
 P2642 双子序列最大和（https://www.luogu.com.cn/problem/P2642）枚举前后两个非空的最大子序列和
 P1470 [USACO2.3]最长前缀 Longest Prefix（https://www.luogu.com.cn/problem/P1470）线性DP
 P1096 [NOIP2007 普及组] Hanoi 双塔问题（https://www.luogu.com.cn/problem/P1096）经典线性DP
+
 P2896 [USACO08FEB]Eating Together S（https://www.luogu.com.cn/problem/P2896）前后缀动态规划
 P2904 [USACO08MAR]River Crossing S（https://www.luogu.com.cn/problem/P2904）前缀和预处理加线性DP
+
 P3062 [USACO12DEC]Wifi Setup S（https://www.luogu.com.cn/problem/P3062）线性DP枚举
+
 P3842 [TJOI2007]线段（https://www.luogu.com.cn/problem/P3842）线性DP进行模拟
 P3903 导弹拦截III（https://www.luogu.com.cn/problem/P3903）线性DP枚举当前元素作为谷底与山峰的子序列长度
 P5414 [YNOI2019] 排序（https://www.luogu.com.cn/problem/P5414）贪心，使用线性DP计算最大不降子序列和
@@ -57,7 +62,6 @@ P1280 尼克的任务（https://www.luogu.com.cn/problem/P1280）逆序线性 DP
 P1282 多米诺骨牌（https://www.luogu.com.cn/problem/P1282）典型线性DP
 P1356 数列的整除性（https://www.luogu.com.cn/problem/P1356）典型线性取模DP
 P1385 密令（https://www.luogu.com.cn/problem/P1385）线性DP与前缀和优化
-P1651 塔（https://www.luogu.com.cn/problem/P1651）经典线性DP，组成两组相等值的最大和
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/75/D（经典压缩数组，最大子段和升级）
@@ -346,32 +350,6 @@ class Solution:
                         x %= mod
                 pre = cur[:]
             ac.st((pre[-1] - 1)%mod)
-        return
-
-    @staticmethod
-    def lg_p1651(ac=FastIO()):
-        # 模板：经典线性DP，组成两组相等值的最大和
-        ac.read_int()
-        nums = ac.read_list_ints()
-        s = sum(nums)
-        dp = [[-inf] * (2 * s + 1) for _ in range(2)]
-        # 左右两边差值为i的情况下最大高度
-        pre = 0
-        dp[pre][0] = 0
-        for num in nums:
-            cur = 1 - pre
-            for i in range(2 * s + 1):
-                if i > s:
-                    i = -(2 * s - i + 1)
-                # 加到左边
-                dp[cur][i + num] = ac.max(dp[cur][i + num], dp[pre][i])
-                # 加到右边
-                dp[cur][i - num] = ac.max(dp[cur][i - num], dp[pre][i] + num)
-                # 不加
-                dp[cur][i] = ac.max(dp[pre][i], dp[cur][i])
-            pre = cur
-        ans = dp[pre][0]
-        ac.st(ans if 0 < ans < inf else -1)
         return
 
 

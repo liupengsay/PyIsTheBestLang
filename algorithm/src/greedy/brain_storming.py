@@ -1,5 +1,6 @@
+import heapq
 from bisect import insort_left, bisect_left
-from collections import Counter
+from collections import Counter, deque
 from algorithm.src.fast_io import FastIO
 
 
@@ -85,6 +86,7 @@ P7813 谜（https://www.luogu.com.cn/problem/P7813）贪心计算最大选取值
 P1031 [NOIP2002 提高组] 均分纸牌（https://www.luogu.com.cn/problem/P1031）经典线性均分纸牌问题
 P2512 [HAOI2008]糖果传递（https://www.luogu.com.cn/problem/P2512）经典线性环形均分纸牌问题
 P1080 [NOIP2012 提高组] 国王游戏（https://www.luogu.com.cn/problem/P1080）经典贪心，举例两项确定排序公式
+P1650 田忌赛马（https://www.luogu.com.cn/problem/P1650）经典贪心，优先上对上其次下对下最后下对上
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1186/D（贪心取floor，再根据加和为0的特质进行补充加1成为ceil）
@@ -377,6 +379,36 @@ class Solution:
         for a, b in lst:
             ans = ac.max(ans, pre // b)
             pre *= a
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p1650(ac=FastIO()):
+        # 模板：经典贪心，优先上对上其次下对下最后下对上
+        ac.read_int()
+        a = deque(sorted(ac.read_list_ints(), reverse=True))
+        b = deque(sorted(ac.read_list_ints(), reverse=True))
+
+        ans = 0
+        while a and b:
+            # 上对上
+            if a[0] > b[0]:
+                a.popleft()
+                b.popleft()
+                ans += 200
+            # 下对下
+            elif a[-1] > b[-1]:
+                a.pop()
+                b.pop()
+                ans += 200
+            # 下对上
+            else:
+                x = a.pop()
+                y = b.popleft()
+                if x > y:
+                    ans += 200
+                elif x < y:
+                    ans -= 200
         ac.st(ans)
         return
 

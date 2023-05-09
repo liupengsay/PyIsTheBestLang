@@ -46,6 +46,7 @@ P4180 [BJWC2010] 严格次小生成树（https://www.luogu.com.cn/problem/P4180�
 
 P1265 公路修建（https://www.luogu.com.cn/problem/P1265）使用prim求解最小生成树
 P1340 兽径管理（https://www.luogu.com.cn/problem/P1340）逆序并查集，维护最小生成树的边
+P1550 [USACO08OCT]Watering Hole G（https://www.luogu.com.cn/problem/P1550）经典题目，建立虚拟源点，转换为最小生成树问题
 
 ================================CodeForces================================
 D. Design Tutorial: Inverse the Problem（https://codeforces.com/problemset/problem/472/D）使用最小生成树判断构造给定的点对最短路距离是否存在，使用prim算法复杂度更优
@@ -551,6 +552,30 @@ class Solution:
         for i in range(w-1, -1, -1):
             ls = ans[i]
             ac.st(ls)
+        return
+
+    @staticmethod
+    def lg_p1550(ac=FastIO()):
+        # 模板：建立虚拟源点，转换为最小生成树问题
+        n = ac.read_int()
+        edges = []
+        for i in range(n):
+            w = ac.read_int()
+            edges.append([0, i+1, w])
+
+        for i in range(n):
+            grid = ac.read_list_ints()
+            for j in range(i+1, n):
+                edges.append([i+1, j+1, grid[j]])
+        edges.sort(key=lambda it: it[2])
+        cost = 0
+        uf = UnionFind(n+1)
+        for i, j, c in edges:
+            if uf.union(i, j):
+                cost += c
+            if uf.part == 1:
+                break
+        ac.st(cost)
         return
 
 

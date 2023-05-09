@@ -39,6 +39,7 @@ P2671 [NOIP2015 普及组] 求和（https://www.luogu.com.cn/problem/P2671）前
 P1719 最大加权矩形（https://www.luogu.com.cn/problem/P1719）求最大子矩阵和，经典枚举矩阵上下边界并使用前缀和计算
 P2882 [USACO07MAR]Face The Right Way G（https://www.luogu.com.cn/problem/P2882）贪心枚举加差分验证
 P4552 [Poetize6] IncDec Sequence（https://www.luogu.com.cn/problem/P4552）差分数组经典题，明晰差分本质
+P1627 [CQOI2009] 中位数（https://www.luogu.com.cn/problem/P1627）经典前后缀中位数大小值差值计数
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/33/C（前后缀最大变换和与分割点枚举，经典类型题目）
@@ -558,6 +559,34 @@ class Solution:
                     x += pre[j]
                     ans = ac.max(ans, x-floor)
                     floor = ac.min(floor, x)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p1627(ac=FastIO()):
+        # 模板：经典前后缀中位数大小值差值计数
+        n, b = ac.read_ints()
+        nums = ac.read_list_ints()
+        i = nums.index(b)
+
+        # 前缀差值计数
+        pre = defaultdict(int)
+        cnt = ans = 0
+        for j in range(i - 1, -1, -1):
+            num = nums[j]
+            cnt += 1 if num > b else -1
+            pre[cnt] += 1
+            if cnt == 0:  # 只取前缀
+                ans += 1
+
+        # 后缀差值计数
+        cnt = 0
+        for j in range(i + 1, n):
+            num = nums[j]
+            cnt += 1 if num > b else -1
+            ans += pre[-cnt]  # 取前后缀
+            ans += 1 if not cnt else 0  # 只取后缀
+        ans += 1
         ac.st(ans)
         return
 
