@@ -37,6 +37,7 @@ P5520 [yLOI2019] 青原樱（https://www.luogu.com.cn/problem/P5520）隔板法�
 P3807 【模板】卢卡斯定理/Lucas 定理（https://www.luogu.com.cn/problem/P3807）卢卡斯模板题
 P1044 [NOIP2003 普及组] 栈（https://www.luogu.com.cn/problem/P1044）卡特兰数
 P1655 小朋友的球（https://www.luogu.com.cn/problem/P1655）矩阵DP，斯特林数
+P1680 奇怪的分组（https://www.luogu.com.cn/problem/P1680）隔板法计算不同分组的个数，使用乘法逆元与Lucas定理快速计算Comb(a,b)%m
 
 ================================CodeForces================================
 D. Triangle Coloring（https://codeforces.com/problemset/problem/1795/D）组合计数取模与乘法逆元快速计算
@@ -89,11 +90,53 @@ class Combinatorics:
             self.fault[i] %= self.mod
         return
 
+class Lucas:
+    def __init__(self):
+        # 模板：快速求Comb(a,b)%p
+        return
+
+    @staticmethod
     def lucas(self, n, m, p):
-        # 模板：卢卡斯定理，求 math.comb(n, m) % p
+        # 模板：卢卡斯定理，求 math.comb(n, m) % p，要求p为质数
         if m == 0:
             return 1
         return ((math.comb(n % p, m % p) % p) * self.lucas(n // p, m // p, p)) % p
+
+    @staticmethod
+    def comb(n, m, p):
+        # 模板：利用乘法逆元求comb(n,m)%p
+        ans = 1
+        for x in range(n - m + 1, n + 1):
+            ans *= x
+            ans %= p
+        for x in range(1, m + 1):
+            ans *= pow(x, -1, p)
+            ans %= p
+        return ans
+
+    def lucas_iter(self, n, m, p):
+        # 模板：卢卡斯定理，求 math.comb(n, m) % p，要求p为质数
+        if m == 0:
+            return 1
+        stack = [[n, m]]
+        dct = dict()
+        while stack:
+            n, m = stack.pop()
+            if n >= 0:
+                if m == 0:
+                    dct[(n, m)] = 1
+                    continue
+                stack.append([~n, m])
+                stack.append([n // p, m // p])
+            else:
+                n = ~n
+                dct[(n, m)] = (self.comb(n % p, m % p, p) % p) * dct[(n // p, m // p)] % p
+        return dct[(n, m)]
+
+    @staticmethod
+    def extend_lucas(self, n, m, p):
+        # 模板：扩展卢卡斯定理，求 math.comb(n, m) % p，不要求p为质数
+        return
 
 
 class Solution:
@@ -305,7 +348,7 @@ class Solution:
         # 模板：Lucas模板题
         for _ in range(ac.read_int()):
             n, m, p = ac.read_ints()
-            ans = Combinatorics(10, 10**9+7).lucas(n+m, n, p)
+            ans = Lucas().lucas_iter(n + m, n, p)
             ac.st(ans)
         return
 
@@ -342,6 +385,18 @@ class Solution:
                 break
             n, m = lst
             ac.st(dp[n][m])
+        return
+
+    @staticmethod
+    def lg_p1680(ac=FastIO()):
+        # 模板：隔板法计算不同分组的个数，使用乘法逆元与Lucas定理快速计算Comb(a,b)%m
+        n, m = ac.read_ints()
+        n -= sum([ac.read_int() for _ in range(m)])
+        m -= 1
+        n -= 1
+        p = 10**9+7
+        ans = Lucas().comb(n, m, p)
+        ac.st(ans)
         return
 
 

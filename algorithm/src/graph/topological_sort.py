@@ -1,5 +1,6 @@
 """
 """
+from algorithm.src.fast_io import FastIO
 
 """
 
@@ -26,6 +27,7 @@ P2712 摄像头（https://www.luogu.com.cn/problem/P2712）拓扑排序计算非
 P6145 [USACO20FEB]Timeline G（https://www.luogu.com.cn/problem/P6145）经典拓扑排序计算每个节点最晚的访问时间点
 P1137 旅行计划（https://www.luogu.com.cn/problem/P1137）拓扑排序，计算可达的最长距离
 P1347 排序（https://www.luogu.com.cn/problem/P1347）拓扑排序确定字典序与矛盾或者无唯一解
+P1685 游览（https://www.luogu.com.cn/problem/P1685）拓扑排序计算路径条数
 
 ==================================AtCoder=================================
 F - Well-defined Path Queries on a Namori（https://atcoder.jp/contests/abc266/）（无向图的内向基环树，求简单路径的树枝连通）
@@ -269,6 +271,42 @@ class Solution:
             print(res_ans)
         else:
             print("Sorted sequence cannot be determined.")
+        return
+
+    @staticmethod
+    def lg_p1685(ac=FastIO()):
+        # 模板：拓扑排序计算经过每条边的路径条数
+        n, m, s, e, t = ac.read_ints()
+        s -= 1
+        e -= 1
+        dct = [[] for _ in range(n)]
+        degree = [0] * n
+        for _ in range(m):
+            i, j, w = ac.read_ints()
+            i -= 1
+            j -= 1
+            dct[i].append([j, w])
+            degree[j] += 1
+        mod = 10000
+
+        # 记录总时间与路径条数
+        time = [0] * n
+        cnt = [0] * n
+        stack = [s]
+        cnt[s] = 1
+        while stack:
+            i = stack.pop()
+            for j, w in dct[i]:
+                degree[j] -= 1
+                if not degree[j]:
+                    stack.append(j)
+                cnt[j] += cnt[i]
+                time[j] += cnt[i] * w + time[i]
+                time[j] %= mod
+        # 减去回头的时间
+        ans = time[e] + (cnt[e] - 1) * t
+        ans %= mod
+        ac.st(ans)
         return
 
 
