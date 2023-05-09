@@ -62,6 +62,7 @@ P1280 尼克的任务（https://www.luogu.com.cn/problem/P1280）逆序线性 DP
 P1282 多米诺骨牌（https://www.luogu.com.cn/problem/P1282）典型线性DP
 P1356 数列的整除性（https://www.luogu.com.cn/problem/P1356）典型线性取模DP
 P1385 密令（https://www.luogu.com.cn/problem/P1385）线性DP与前缀和优化
+P1594 护卫队（https://www.luogu.com.cn/problem/P1594）典型线性DP
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/75/D（经典压缩数组，最大子段和升级）
@@ -350,6 +351,26 @@ class Solution:
                         x %= mod
                 pre = cur[:]
             ac.st((pre[-1] - 1)%mod)
+        return
+
+    @staticmethod
+    def lg_p1594(ac=FastIO()):
+        # 模板：典型线性DP
+        ceil, length, n = ac.read_ints()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        dp = [inf] * (n + 1)
+        dp[0] = 0
+        for i in range(n):
+            cur = 0
+            sp = inf
+            for j in range(i, -1, -1):
+                # 往前回溯的同时记录重量不能超限
+                cur += nums[j][0]
+                if cur > ceil:
+                    break
+                sp = ac.min(sp, nums[j][1])
+                dp[i + 1] = ac.min(dp[i + 1], dp[j] + length * 60 / sp)
+        ac.st("%.1f" % dp[-1])
         return
 
 

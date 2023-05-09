@@ -71,6 +71,7 @@ P1608 路径统计（https://www.luogu.com.cn/problem/P1608）dijkstra计算最�
 P1073 [NOIP2009 提高组] 最优贸易（https://www.luogu.com.cn/problem/P1073）正反两遍建图，Dijkstra进行计算路径最大最小值
 P1300 城市街道交通费系统（https://www.luogu.com.cn/problem/P1300）Dijkstra求最短路
 P1354 房间最短路问题（https://www.luogu.com.cn/problem/P1354）建图Dijkstra求最短路
+P1608 路径统计（https://www.luogu.com.cn/problem/P1608）使用Dijkstra计算有向与无向、带权与不带权的最短路数量
 
 ================================CodeForces================================
 C. Dijkstra?（https://codeforces.com/problemset/problem/20/C）正权值最短路计算，并记录返回生成路径
@@ -91,7 +92,7 @@ class Dijkstra:
     def get_dijkstra_result(dct: List[Dict], src: int) -> List[float]:
         # 模板: Dijkstra求最短路，变成负数求可以求最长路（还是正权值）
         n = len(dct)
-        dis = [float("inf")]*n
+        dis = [inf]*n
         stack = [[0, src]]
         dis[src] = 0
 
@@ -108,9 +109,9 @@ class Dijkstra:
 
     @staticmethod
     def get_dijkstra_cnt(dct: List[Dict], src: int) -> (List[int], List[float]):
-        # 模板: Dijkstra求最短路条数
+        # 模板: Dijkstra求最短路条数（最短路计算）
         n = len(dct)
-        dis = [float("inf")]*n
+        dis = [inf]*n
         stack = [[0, src]]
         dis[src] = 0
         cnt = [0]*n
@@ -123,9 +124,11 @@ class Dijkstra:
                 dj = dct[i][j] + d
                 if dj < dis[j]:
                     dis[j] = dj
+                    # 最短距离更新，重置计数
                     cnt[j] = cnt[i]
                     heapq.heappush(stack, [dj, j])
                 elif dj == dis[j]:
+                    # 最短距离一致，增加计数
                     cnt[j] += cnt[i]
         return cnt, dis
 
@@ -133,7 +136,7 @@ class Dijkstra:
     def dijkstra_src_to_dst_path(dct: List[Dict], src: int, dst: int) -> float:
         # 模板: Dijkstra求起终点的最短路，注意只能是正权值可以提前返回结果，并返回对应经过的路径
         n = len(dct)
-        dis = [float("inf")] * n
+        dis = [inf] * n
         stack = [[0, src]]
         dis[src] = 0
         father = [-1] * n  # 记录最短路的上一跳
@@ -147,6 +150,7 @@ class Dijkstra:
                 dj = dct[i][j] + d
                 if dj < dis[j]:
                     dis[j] = dj
+                    father[j] = i
                     heapq.heappush(stack, [dj, j])
         # 向上回溯路径
         path = []
@@ -195,7 +199,7 @@ class Dijkstra:
     def get_second_shortest_path(dct: List[List[int]], src):
         # 模板：使用Dijkstra计算严格次短路
         n = len(dct)
-        inf = float("inf")
+        inf = inf
         dis = [[inf]*2 for _ in range(n)]
         dis[src][0] = 0
         stack = [[0, 0]]
@@ -345,7 +349,7 @@ class Solution:
 
         # 第一维是代价，第二维是次数
         stack = [[0, 0, src]]
-        dis = [float("inf")] * n
+        dis = [inf] * n
         while stack:
             cost, cnt, i = heapq.heappop(stack)
             # 前面的代价已经比当前小了若是换乘次数更多则显然不可取
@@ -718,6 +722,21 @@ class Solution:
                     dct[i][j] = dct[j][i] = x
         ans = Dijkstra().get_dijkstra_result(dct, start)[end]
         ac.st("%.2f" % ans)
+        return
+
+    @staticmethod
+    def lg_p1608(ac=FastIO()):
+        # 模板：使用Dijkstra计算有向与无向、带权与不带权的最短路数量（最短路计数）
+        n, m = ac.read_ints()
+        dct = [dict() for _ in range(n)]
+        for _ in range(m):
+            i, j, w = ac.read_ints()
+            dct[i - 1][j - 1] = ac.min(dct[i - 1].get(j - 1, inf), w)
+        cnt, dis = Dijkstra().get_dijkstra_cnt(dct, 0)
+        if dis[-1] == inf:
+            ac.st("No answer")
+        else:
+            ac.lst([dis[-1], cnt[-1]])
         return
 
 
