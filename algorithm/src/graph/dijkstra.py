@@ -135,10 +135,10 @@ class Dijkstra:
         return cnt, dis
 
     @staticmethod
-    def dijkstra_src_to_dst_path(dct: List[Dict], src: int, dst: int) -> float:
+    def dijkstra_src_to_dst_path(dct, src: int, dst: int):
         # 模板: Dijkstra求起终点的最短路，注意只能是正权值可以提前返回结果，并返回对应经过的路径
         n = len(dct)
-        dis = [inf] * n
+        dis = [float("inf")] * n
         stack = [[0, src]]
         dis[src] = 0
         father = [-1] * n  # 记录最短路的上一跳
@@ -147,7 +147,7 @@ class Dijkstra:
             if dis[i] < d:
                 continue
             if i == dst:
-                return d
+                break
             for j in dct[i]:
                 dj = dct[i][j] + d
                 if dj < dis[j]:
@@ -158,10 +158,9 @@ class Dijkstra:
         path = []
         i = dst
         while i != -1:
-            path.append(i + 1)
+            path.append(i)
             i = father[i]
-        path.reverse()
-        return dis[dst]
+        return path, dis[dst]
 
     @staticmethod
     def gen_dijkstra_max_result(dct, src, dsc):
@@ -778,6 +777,30 @@ class Solution:
                             ans += cnt[j][i] * cnt[i][k] / cnt[j][k]
             ac.st("%.3f" % ans)
         return
+
+    @staticmethod
+    def lg_p2176(ac=FastIO()):
+
+        # 模板：枚举最短路上的边修改后，重新计算最短路
+        n, m = ac.read_ints()
+        dct = [dict() for _ in range(n)]
+        for _ in range(m):
+            i, j, w = ac.read_ints_minus_one()
+            dct[i][j] = dct[j][i] = w + 1
+        path, dis = Dijkstra().dijkstra_src_to_dst_path(dct, 0, n - 1)
+
+        # 枚举边重新计算最短路
+        ans = 0
+        k = len(path)
+        for a in range(k - 1):
+            i, j = path[a], path[a + 1]
+            dct[i][j] = dct[j][i] = dct[j][i] * 2
+            _, cur = Dijkstra().dijkstra_src_to_dst_path(dct, 0, n - 1)
+            ans = ac.max(ans, cur - dis)
+            dct[i][j] = dct[j][i] = dct[j][i] // 2
+        ac.st(ans)
+        return
+
 
 class TestGeneral(unittest.TestCase):
 

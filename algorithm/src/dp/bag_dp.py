@@ -4,6 +4,8 @@ import unittest
 from collections import defaultdict, deque
 from itertools import combinations
 from typing import List
+
+from algorithm.src.graph.union_find import UnionFind
 from algorithm.src.mathmatics.number_theory import NumberTheory
 from algorithm.src.fast_io import FastIO, inf
 
@@ -70,6 +72,8 @@ P1759 通天之潜水（https://www.luogu.com.cn/problem/P1759）二维背包并
 P1833 樱花（https://www.luogu.com.cn/problem/P1833）完全背包与单点队列优化多重背包组合
 P2014 [CTSC1997] 选课（https://www.luogu.com.cn/problem/P2014）增加一个虚拟源点将DAG转换为树上背包
 P2079 烛光晚餐（https://www.luogu.com.cn/problem/P2079）滚动哈希背包DP，使用两层哈希节省空间
+P2170 选学霸（https://www.luogu.com.cn/problem/P2170）连通块加二进制01背包优化
+
 ================================CodeForces================================
 B. Modulo Sum（https://codeforces.com/problemset/problem/577/B）取模计数二进制优化与背包DP，寻找非空子序列的和整除给定的数
 A. Writing Code（https://codeforces.com/problemset/problem/543/A）二维有限背包DP，当作无限进行处理
@@ -838,6 +842,37 @@ class Solution:
             for x1 in dp[pre][c1]:
                 if x1 >= 0:
                     ans = ac.max(ans, dp[pre][c1][x1])
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p2170(ac=FastIO()):
+        # 模板：连通块加二进制01背包优化
+        n, m, k = ac.read_ints()
+        uf = UnionFind(n)
+        for _ in range(k):
+            i, j = ac.read_ints_minus_one()
+            uf.union(i, j)
+        dct = defaultdict(int)
+        for i in range(n):
+            dct[uf.find(i)] += 1
+        lst = list(dct.values())
+        del uf
+
+        # 使用二进制优化的01背包
+        target = ac.min(2 * m, n)
+        dp = [0] * (target + 1)
+        dp[0] = 1
+        cnt = Counter(lst)
+        for num in cnt:
+            for x in BagDP().bin_split(cnt[num]):
+                for i in range(target, x * num - 1, -1):
+                    if dp[i - x * num]:
+                        dp[i] = 1
+        ans = 0
+        for i in range(1, target + 1):
+            if dp[i] and abs(i - m) < abs(ans - m):
+                ans = i
         ac.st(ans)
         return
 
