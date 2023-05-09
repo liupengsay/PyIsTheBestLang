@@ -33,7 +33,7 @@ P7442 「EZEC-7」维护序列（https://www.luogu.com.cn/problem/P7442）观察
 P7617 [COCI2011-2012#2] KOMPIĆI（https://www.luogu.com.cn/problem/P7617）使用位运算枚举
 P7627 [COCI2011-2012#1] X3（https://www.luogu.com.cn/problem/P7627）经典按位操作枚举计算个数
 P7649 [BalticOI 2004 Day 1] SCALES（https://www.luogu.com.cn/problem/P7649）三进制计算，贪心模拟砝码放置
-
+P1582 倒水（https://www.luogu.com.cn/problem/P1582）进制题脑经急转弯
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/305/C（利用二进制加减的思想进行解题）
 https://codeforces.com/problemset/problem/878/A（位运算的操作理解）
@@ -352,6 +352,17 @@ class Solution:
             else:
                 res += ans[i][0]
         ac.st(res)
+        return
+
+    @staticmethod
+    def lg_p1582(ac=FastIO()):
+        # 模板：进制题脑筋急转弯
+        n, k = ac.read_ints()
+        ans = 0
+        while bin(n).count("1") > k:
+            ans += n & (-n)
+            n += n & (-n)
+        ac.st(ans)
         return
 
 
