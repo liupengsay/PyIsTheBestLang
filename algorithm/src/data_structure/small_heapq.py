@@ -32,6 +32,7 @@ P1878 舞蹈课（https://www.luogu.com.cn/problem/P1878）用哈希加一个堆
 P3620 [APIO/CTSC2007] 数据备份（https://www.luogu.com.cn/problem/P3620）贪心思想加二叉堆与双向链表优
 P2168 [NOI2015] 荷马史诗（https://www.luogu.com.cn/problem/P2168）霍夫曼树与二叉堆贪心
 P2278 [HNOI2003]操作系统（https://www.luogu.com.cn/problem/P2278）使用二叉堆模拟CPU占用
+P1717 钓鱼（https://www.luogu.com.cn/problem/P1717）枚举最远到达地点进行二叉堆贪心选取
 
 ===================================AcWing======================================
 146. 序列（https://www.acwing.com/problem/content/description/148/）小顶堆计算经典问题m个数组最小的n个子序列和，同样可以计算最大的
@@ -353,6 +354,31 @@ class Solution:
         ans.append([now[0], now[-1]])
         for a in ans:
             ac.lst(a)
+        return
+
+    @staticmethod
+    def lg_p1717(ac=FastIO()):
+        # 模板：枚举最远到达地点进行二叉堆贪心选取
+        ans = 0
+        n = ac.read_int()
+        h = ac.read_int() * 60
+        f = ac.read_list_ints()
+        d = ac.read_list_ints()
+        t = [0] + ac.read_list_ints()
+        for i in range(n):
+            tm = sum(t[:i + 1]) * 5
+            stack = [[-f[j], j] for j in range(i + 1)]
+            heapq.heapify(stack)
+            cur = 0
+            while tm + 5 <= h and stack:
+                val, j = heapq.heappop(stack)
+                val = -val
+                cur += val
+                tm += 5
+                if val - d[j] > 0:
+                    heapq.heappush(stack, [-val + d[j], j])
+            ans = ac.max(ans, cur)
+        ac.st(ans)
         return
 
 

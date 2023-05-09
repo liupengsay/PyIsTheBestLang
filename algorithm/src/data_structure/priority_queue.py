@@ -22,11 +22,11 @@ P7175 [COCI2014-2015#4] PŠENICA（https://www.luogu.com.cn/problem/P7175）使�
 P7793 [COCI2014-2015#7] ACM（https://www.luogu.com.cn/problem/P7793）双端单调队列，进行最小值计算
 P2216 [HAOI2007]理想的正方形（https://www.luogu.com.cn/problem/P2216）二维区间的滑动窗口最大最小值
 P1886 滑动窗口 /【模板】单调队列（https://www.luogu.com.cn/problem/P1886）计算滑动窗口的最大值与最小值
-P1714 切蛋糕（https://www.luogu.com.cn/problem/P1714）前缀和加滑动窗口最小值
 P1725 琪露诺（https://www.luogu.com.cn/problem/P1725）单调队列和指针维护滑动窗口最大值加线性DP
 P2827 [NOIP2016 提高组] 蚯蚓（https://www.luogu.com.cn/problem/P2827）经典单调队列
 P3800 Power收集（https://www.luogu.com.cn/problem/P3800）单调队列优化矩阵DP
 P1016 [NOIP1999 提高组] 旅行家的预算（https://www.luogu.com.cn/problem/P1016）单调队列，贪心模拟油箱，还可以增加每个站的油量限制
+P1714 切蛋糕（https://www.luogu.com.cn/problem/P1714）前缀和加滑动窗口最小值，单调队列计算小于一定长度的最大连续子段和
 
 ===================================AcWing=====================================
 133. 蚯蚓（https://www.acwing.com/problem/content/135/）三个优先队列加一个偏移量
@@ -109,27 +109,6 @@ class Solution:
             if stack:
                 dp[i] = stack[0][1] + nums[i]
         ans = max(dp[x] for x in range(n) if x + high >= n)
-        ac.st(ans)
-        return
-
-    @staticmethod
-    def lg_p1714(ac=FastIO()):
-
-        # 模板：前缀和加滑动窗口最小值
-        n, m = ac.read_ints()
-        nums = ac.read_list_ints()
-        ans = max(nums)
-        pre = 0
-        stack = deque([[-1, 0]])
-        for i in range(n):
-            pre += nums[i]
-            while stack and stack[0][0] <= i-m-1:
-                stack.popleft()
-            while stack and stack[-1][1] >= pre:
-                stack.pop()
-            stack.append([i, pre])
-            if stack:
-                ans = ac.max(ans, pre-stack[0][1])
         ac.st(ans)
         return
 
@@ -335,6 +314,26 @@ class Solution:
             stack.append([cur_p, c - in_stack])
             in_stack = c
         ac.st("%.2f" % ans)
+        return
+
+    @staticmethod
+    def lg_p1714(ac=FastIO()):
+        # 模板：单调队列计算小于一定长度的最大连续子段和
+        n, m = ac.read_ints()
+        nums = ac.read_list_ints()
+        ans = max(nums)
+        pre = 0
+        stack = deque([[-1, 0]])
+        for i in range(n):
+            pre += nums[i]
+            while stack and stack[0][0] <= i - m - 1:
+                stack.popleft()
+            while stack and stack[-1][1] >= pre:
+                stack.pop()
+            stack.append([i, pre])
+            if stack:
+                ans = ac.max(ans, pre - stack[0][1])
+        ac.st(ans)
         return
 
 

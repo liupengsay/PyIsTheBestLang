@@ -45,6 +45,7 @@ P2863 [USACO06JAN]The Cow Prom S（https://www.luogu.com.cn/problem/P2863）tarj
 P1656 炸铁路（https://www.luogu.com.cn/problem/P1656）求割边
 P1793 跑步（https://www.luogu.com.cn/problem/P1793）求连通图两个指定点之间的割点，使用枚举与并查集的方式进行求解
 P2656 采蘑菇（https://www.luogu.com.cn/problem/P2656）使用scc缩点后，计算DAG最长路
+P1726 上白泽慧音（https://www.luogu.com.cn/problem/P1726）强连通分量裸题
 
 ===================================CodeForces===================================
 F. Is It Flower?（https://codeforces.com/contest/1811/problem/F）无向图求连通分量
@@ -686,6 +687,26 @@ class Solution:
                 if not pre[j]:
                     stack.append(j)
         ac.st(max(visit))
+        return
+
+    @staticmethod
+    def lg_p1726(ac=FastIO()):
+        # 模板：强连通分量裸题
+        n, m = ac.read_ints()
+        dct = [[] for _ in range(n)]
+        for _ in range(m):
+            a, b, t = ac.read_ints_minus_one()
+            dct[a].append(b)
+            if t == 1:
+                dct[b].append(a)
+        _, scc_node_id, _ = TarjanCC().get_strongly_connected_component_bfs(n, dct)
+        ans = []
+        for g in scc_node_id:
+            lst = sorted(list(scc_node_id[g]))
+            if len(lst) > len(ans) or (len(lst) == len(ans) and ans > lst):
+                ans = lst[:]
+        ac.st(len(ans))
+        ac.lst([x + 1 for x in ans])
         return
 
 
