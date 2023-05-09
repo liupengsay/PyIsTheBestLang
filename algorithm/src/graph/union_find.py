@@ -1,10 +1,15 @@
-
+import decimal
+import math
 import unittest
 
 from typing import List
 from collections import defaultdict, Counter
 from algorithm.src.fast_io import FastIO
 import heapq
+
+from algorithm.src.graph.dijkstra import Dijkstra
+from algorithm.src.mathmatics.number_theory import NumberTheory
+from math import inf
 
 
 """
@@ -38,6 +43,7 @@ P1955 [NOI2015] 程序自动分析（https://www.luogu.com.cn/problem/P1955）�
 P1196 [NOI2002] 银河英雄传说（https://www.luogu.com.cn/problem/P1196）带权并查集
 P1197 [JSOI2008] 星球大战（https://www.luogu.com.cn/problem/P1197）逆序并查集，倒序枚举计算联通块个数
 P1522 [USACO2.4] 牛的旅行 Cow Tours（https://www.luogu.com.cn/problem/P1522）连通块，枚举新增路径并高精度计算联通块直径
+P1621 集合（https://www.luogu.com.cn/problem/P1621）利用素数筛的思想对数复杂度合并公共质因数大于p的数并计算连通块数量
 
 ================================CodeForces================================
 D. Roads not only in Berland（https://codeforces.com/problemset/problem/25/D）并查集将原来的边断掉重新来连接使得成为一整个连通集
@@ -423,6 +429,29 @@ class Solution:
         ac.st("%.6f" % ans)
         return
 
+    @staticmethod
+    def lg_p1621(ac=FastIO()):
+        # 模板：利用素数筛的思想对数复杂度合并公共质因数大于p的数并计算连通块数量
+        a, b, p = ac.read_list_ints()
+        nums = list(range(a, b + 1))
+        ind = {num: num - a for num in nums}
+        primes = [x for x in NumberTheory().sieve_of_eratosthenes(b) if x >= p]
+
+        # 利用素数进行合并
+        uf = UnionFind(b - a + 1)
+        for x in primes:
+            lst = []
+            y = x
+            while y <= b:
+                if y in ind:
+                    lst.append(ind[y])
+                y += x
+            m = len(lst)
+            for j in range(m - 1):
+                uf.union(lst[j], lst[j + 1])
+        ac.st(uf.part)
+        return
+
 
 class TestGeneral(unittest.TestCase):
 
@@ -433,7 +462,7 @@ class TestGeneral(unittest.TestCase):
         assert uf.part == 3
         return
 
-    def test_solutioon(self):
+    def test_solution(self):
         # 离线根据时间戳排序进行查询
         sl = Solution()
         n = 3
