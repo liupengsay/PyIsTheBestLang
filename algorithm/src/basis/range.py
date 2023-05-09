@@ -32,6 +32,7 @@ P6123 [NEERC2016]Hard Refactoring（https://www.luogu.com.cn/problem/P6123）区
 P2684 搞清洁（https://www.luogu.com.cn/problem/P2684）最小区间覆盖，选取最少的区间来进行覆盖
 P1233 木棍加工（https://www.luogu.com.cn/problem/P1233）按照一个维度排序后计算另一个维度的最长严格递增子序列的长度，二位偏序，转换为区间包含问题
 P1496 火烧赤壁（https://www.luogu.com.cn/problem/P1496）经典区间合并确定覆盖范围
+P1668 [USACO04DEC] Cleaning Shifts S（https://www.luogu.com.cn/problem/P1668）转换为最小区间覆盖问题
 
 ================================CodeForces================================
 A. String Reconstruction（https://codeforces.com/problemset/problem/827/A）区间合并为不相交的区间，再贪心赋值
@@ -239,6 +240,15 @@ class Solution:
                 pre = b
             else:
                 pre = ac.min(pre, b)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p1668(ac=FastIO()):
+        # 模板：最小区间覆盖问题
+        n, t = ac.read_ints()
+        lst = [ac.read_list_ints() for _ in range(n)]
+        ans = Range().cover_less(1, t, lst, False)
         ac.st(ans)
         return
 
