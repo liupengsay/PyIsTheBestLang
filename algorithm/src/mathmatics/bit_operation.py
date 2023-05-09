@@ -34,6 +34,8 @@ P7617 [COCI2011-2012#2] KOMPIĆI（https://www.luogu.com.cn/problem/P7617）使�
 P7627 [COCI2011-2012#1] X3（https://www.luogu.com.cn/problem/P7627）经典按位操作枚举计算个数
 P7649 [BalticOI 2004 Day 1] SCALES（https://www.luogu.com.cn/problem/P7649）三进制计算，贪心模拟砝码放置
 P1582 倒水（https://www.luogu.com.cn/problem/P1582）进制题脑经急转弯
+P2114 [NOI2014] 起床困难综合症（https://www.luogu.com.cn/problem/P2114）按位操作计算模拟，贪心选取最大结果
+
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/305/C（利用二进制加减的思想进行解题）
 https://codeforces.com/problemset/problem/878/A（位运算的操作理解）
@@ -362,6 +364,36 @@ class Solution:
         while bin(n).count("1") > k:
             ans += n & (-n)
             n += n & (-n)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p2114(ac=FastIO()):
+        # 模板：按位操作计算模拟，贪心选取最大结果
+        n, m = ac.read_ints()
+        one = [1 << i for i in range(32)]
+        zero = [0] * 32
+        for _ in range(n):
+            op, t = ac.read_list_strs()
+            t = int(t)
+            for i in range(32):
+                if op == "AND":
+                    one[i] &= (t & (1 << i))
+                    zero[i] &= (t & (1 << i))
+                elif op == "OR":
+                    one[i] |= (t & (1 << i))
+                    zero[i] |= (t & (1 << i))
+                else:
+                    one[i] ^= (t & (1 << i))
+                    zero[i] ^= (t & (1 << i))
+        # 倒序选取最大值
+        ans = 0
+        for i in range(31, -1, -1):
+            if one[i] > zero[i] and m >= (1 << i):
+                m -= (1 << i)
+                ans += one[i]
+            else:
+                ans += zero[i]
         ac.st(ans)
         return
 

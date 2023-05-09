@@ -72,6 +72,8 @@ P1073 [NOIP2009 提高组] 最优贸易（https://www.luogu.com.cn/problem/P1073
 P1300 城市街道交通费系统（https://www.luogu.com.cn/problem/P1300）Dijkstra求最短路
 P1354 房间最短路问题（https://www.luogu.com.cn/problem/P1354）建图Dijkstra求最短路
 P1608 路径统计（https://www.luogu.com.cn/problem/P1608）使用Dijkstra计算有向与无向、带权与不带权的最短路数量
+P1828 [USACO3.2]香甜的黄油 Sweet Butter（https://www.luogu.com.cn/problem/P1828）多个单源Dijkstra最短路计算
+P2047 [NOI2007] 社交网络（https://www.luogu.com.cn/problem/P2047）Dijkstra计算经过每个点的所有最短路条数占比
 
 ================================CodeForces================================
 C. Dijkstra?（https://codeforces.com/problemset/problem/20/C）正权值最短路计算，并记录返回生成路径
@@ -197,25 +199,25 @@ class Dijkstra:
 
     @staticmethod
     def get_second_shortest_path(dct: List[List[int]], src):
-        # 模板：使用Dijkstra计算严格次短路
+        # 模板：使用Dijkstra计算严格次短路  # 也可以计算非严格次短路
         n = len(dct)
-        inf = inf
-        dis = [[inf]*2 for _ in range(n)]
+        dis = [[inf] * 2 for _ in range(n)]
         dis[src][0] = 0
-        stack = [[0, 0]]
+        stack = [[0, src]]
         while stack:
             d, i = heapq.heappop(stack)
-            if d > dis[i][1]:
+            if dis[i][1] < d:
                 continue
             for j, w in dct[i]:
-                if dis[j][0] > d+w:
+                if dis[j][0] > d + w:
                     dis[j][1] = dis[j][0]
-                    dis[j][0] = d+w
+                    dis[j][0] = d + w
                     heapq.heappush(stack, [d + w, j])
-                elif dis[j][0] < d+w < dis[j][1]:
-                    dis[j][1] = d+w
-                    heapq.heappush(stack, [d+w, j])
+                elif dis[j][0] < d + w < dis[j][1]:  # 非严格修改为 d+w < dis[j][1]
+                    dis[j][1] = d + w
+                    heapq.heappush(stack, [d + w, j])
         return dis
+
 
 class UnDirectedShortestCycle:
     def __init__(self):
@@ -572,21 +574,6 @@ class Solution:
         return
 
     @staticmethod
-    def lg_p1608(ac=FastIO()):
-        # 模板：有向有权图最短路计数
-        n, m = ac.read_ints()
-        dct = [dict() for _ in range(n)]
-        for _ in range(m):
-            i, j, w = ac.read_ints()
-            dct[i-1][j-1] = ac.min(dct[i-1].get(j-1, inf), w)
-        cnt, dis = Dijkstra().get_dijkstra_cnt(dct, 0)
-        if dis[-1] == inf:
-            ac.st("No answer")
-        else:
-            ac.lst([dis[-1], cnt[-1]])
-        return
-
-    @staticmethod
     def lg_p1073(ac=FastIO()):
         # 模板：正反两遍建图，计算两个最短路
         n, m = ac.read_ints()
@@ -739,6 +726,58 @@ class Solution:
             ac.lst([dis[-1], cnt[-1]])
         return
 
+    @staticmethod
+    def lg_p1828(ac=FastIO()):
+
+        # 模板：多个单源Dijkstra最短路计算
+        n, p, c = ac.read_ints()
+        pos = [ac.read_int() - 1 for _ in range(n)]
+        dct = [dict() for _ in range(p)]
+        for _ in range(c):
+            i, j, w = ac.read_list_ints()
+            i -= 1
+            j -= 1
+            dct[i][j] = dct[j][i] = ac.min(dct[i].get(j, inf), w)
+
+        # 也可以从牧出发，但是最好选择较小的集合遍历计算可达最短路
+        cnt = Counter(pos)
+        total = [0] * p
+        for i in cnt:
+            dis = Dijkstra().get_dijkstra_result(dct, i)
+            for j in range(p):
+                total[j] += dis[j] * cnt[i]
+        ac.st(min(total))
+        return
+
+    @staticmethod
+    def lg_p2047(ac=FastIO()):
+        # 模板：Dijkstra计算经过每个点的所有最短路条数占比
+        n, m = ac.read_ints()
+        dct = [dict() for _ in range(n)]
+        for _ in range(m):
+            a, b, c = ac.read_ints()
+            a -= 1
+            b -= 1
+            dct[a][b] = dct[b][a] = c
+
+        # 计算最短路距离与条数
+        dis = []
+        cnt = []
+        for i in range(n):
+            cc, dd = Dijkstra().get_dijkstra_cnt(dct, i)
+            dis.append(dd)
+            cnt.append(cc)
+
+        # 枚举起点与终点计算作为最短路的边的参与次数
+        for i in range(n):
+            ans = 0
+            for j in range(n):
+                for k in range(n):
+                    if j != i and k != i:
+                        if dis[j][i] + dis[i][k] == dis[j][k]:
+                            ans += cnt[j][i] * cnt[i][k] / cnt[j][k]
+            ac.st("%.3f" % ans)
+        return
 
 class TestGeneral(unittest.TestCase):
 

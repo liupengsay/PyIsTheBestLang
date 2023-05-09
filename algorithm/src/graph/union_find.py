@@ -44,6 +44,7 @@ P1196 [NOI2002] 银河英雄传说（https://www.luogu.com.cn/problem/P1196）�
 P1197 [JSOI2008] 星球大战（https://www.luogu.com.cn/problem/P1197）逆序并查集，倒序枚举计算联通块个数
 P1522 [USACO2.4] 牛的旅行 Cow Tours（https://www.luogu.com.cn/problem/P1522）连通块，枚举新增路径并高精度计算联通块直径
 P1621 集合（https://www.luogu.com.cn/problem/P1621）利用素数筛的思想对数复杂度合并公共质因数大于p的数并计算连通块数量
+P1892 [BOI2003]团伙（https://www.luogu.com.cn/problem/P1892）经典并查集，敌人与朋友关系
 
 ================================CodeForces================================
 D. Roads not only in Berland（https://codeforces.com/problemset/problem/25/D）并查集将原来的边断掉重新来连接使得成为一整个连通集
@@ -450,6 +451,59 @@ class Solution:
             for j in range(m - 1):
                 uf.union(lst[j], lst[j + 1])
         ac.st(uf.part)
+        return
+
+    @staticmethod
+    def lg_p1892(ac=FastIO()):
+        # 模板：经典并查集，敌人与朋友关系
+        n = ac.read_int()
+        m = ac.read_int()
+        uf = UnionFind(n)
+        dct = dict()
+        for _ in range(m):
+            lst = [w for w in input().strip().split() if w]
+            a, b = int(lst[1]), int(lst[2])
+            a -= 1
+            b -= 1
+            if lst[0] == "E":
+                # 敌人的敌人是朋友
+                if a in dct:
+                    uf.union(dct[a], b)
+                if b in dct:
+                    uf.union(dct[b], a)
+                dct[a] = b
+                dct[b] = a
+            else:
+                uf.union(a, b)
+        ac.st(uf.part)
+        return
+
+    @staticmethod
+    def lg_p1955(ac=FastIO()):
+        # 模板：并查集裸题
+        t = ac.read_int()
+        for _ in range(t):
+            n = ac.read_int()
+            ind = dict()
+            uf = UnionFind(n * 2)
+            res = []
+            for _ in range(n):
+                lst = ac.read_list_ints()
+                while not lst:
+                    lst = ac.read_list_ints()
+                i, j, e = lst
+                if i not in ind:
+                    ind[i] = len(ind)
+                if j not in ind:
+                    ind[j] = len(ind)
+                if e == 1:
+                    uf.union(ind[i], ind[j])
+                else:
+                    res.append([ind[i], ind[j]])
+            if any(uf.is_connected(i, j) for i, j in res):
+                ac.st("NO")
+            else:
+                ac.st("YES")
         return
 
 

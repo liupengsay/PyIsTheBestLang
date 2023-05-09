@@ -21,7 +21,7 @@ from algorithm.src.fast_io import FastIO, inf
 ===================================洛谷===================================
 P1048 采药（https://www.luogu.com.cn/problem/P1048）一维背包DP，数量有限，从后往前遍历
 P1049 [NOIP2001 普及组] 装箱问题（https://www.luogu.com.cn/problem/P1049）一维背包DP
-P1776 宝物筛选（https://www.luogu.com.cn/problem/P1776）多重背包，使用二进制拆分进行优化
+P1776 宝物筛选（https://www.luogu.com.cn/problem/P1776）多重背包，使用二进制拆分进行优化，进一步使用单调队列优化
 P1509 找啊找啊找GF（https://www.luogu.com.cn/problem/P1509）四重背包
 P1060 [NOIP2006 普及组] 开心的金明（https://www.luogu.com.cn/problem/P1509）一维背包DP
 P1566 加等式（https://www.luogu.com.cn/problem/P1566#submit）限制计数背包
@@ -66,7 +66,10 @@ P1284 三角形牧场（https://www.luogu.com.cn/problem/P1284）枚举三角形
 P1441 砝码称重（https://www.luogu.com.cn/problem/P1441）枚举加背包DP
 P1537 弹珠（https://www.luogu.com.cn/problem/P1537）经典问题二进制背包优化bool背包，划分成和相等的两部分
 P1541 [NOIP2010 提高组] 乌龟棋（https://www.luogu.com.cn/problem/P1541）四维背包
-
+P1759 通天之潜水（https://www.luogu.com.cn/problem/P1759）二维背包并输出字典序最小的方案
+P1833 樱花（https://www.luogu.com.cn/problem/P1833）完全背包与单点队列优化多重背包组合
+P2014 [CTSC1997] 选课（https://www.luogu.com.cn/problem/P2014）增加一个虚拟源点将DAG转换为树上背包
+P2079 烛光晚餐（https://www.luogu.com.cn/problem/P2079）滚动哈希背包DP，使用两层哈希节省空间
 ================================CodeForces================================
 B. Modulo Sum（https://codeforces.com/problemset/problem/577/B）取模计数二进制优化与背包DP，寻找非空子序列的和整除给定的数
 A. Writing Code（https://codeforces.com/problemset/problem/543/A）二维有限背包DP，当作无限进行处理
@@ -356,6 +359,7 @@ class Solution:
         n, m = ac.read_ints()
         dp = [0]*(m+1)
         for _ in range(n):
+            # 体积 价值 数量
             v, w, s = ac.read_ints()
             for r in range(v):
                 stack = deque()
@@ -689,6 +693,151 @@ class Solution:
                             dp[i][j][k][p] = ac.max(dp[i][j][k][p], pre + nums[i + 2 * j + 3 * k + 4 * p])
                         if i + 2 * j + 3 * k + 4 * p == n - 1:
                             ans = ac.max(ans, dp[i][j][k][p])
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p1759(ac=FastIO()):
+        # 模板：二维背包输出字典序最小的方案
+        m, v, n = ac.read_ints()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        dp = [[[0, []] for _ in range(v + 1)] for _ in range(m + 1)]
+        # 同时记录时间与字典序最小的方案
+        for i in range(n):
+            a, b, c = nums[i]
+            for j in range(m, a - 1, -1):
+                for k in range(v, b - 1, -1):
+                    t, p = dp[j - a][k - b]
+                    if dp[j][k][0] < t + c or (dp[j][k][0] == t + c and p + [i + 1] < dp[j][k][1]):
+                        dp[j][k] = [t + c, p + [i + 1]]
+        ans1, ans2 = dp[m][v]
+        ac.st(ans1)
+        ac.lst(ans2)
+        return
+
+    @staticmethod
+    def lg_p1776(ac=FastIO()):
+        # 模板：单调队列优化的多重背包问题，即限定个数和体积价值求最大值
+        n, m = ac.read_ints()
+        dp = [0]*(m+1)
+        for _ in range(n):
+            a, b, c = ac.read_ints()
+            # 体积 价值 数量
+            v, w, s = b, a, c
+            for r in range(v):
+                stack = deque()
+                for i in range(r, m+1, v):
+                    while stack and stack[0][0] < i-s*v:
+                        stack.popleft()
+                    while stack and stack[-1][1] + (i - stack[-1][0]) // v * w <= dp[i]:
+                        stack.pop()
+                    stack.append([i, dp[i]])
+                    dp[i] = stack[0][1] + (i-stack[0][0])//v*w
+        ac.st(dp[-1])
+        return
+
+    @staticmethod
+    def lg_p1799(ac=FastIO()):
+        # 模板：典型二维矩阵DP
+        n = ac.read_int()
+        if not n:
+            ac.st(0)
+            return
+        nums = ac.read_list_ints()
+        dp = [[-inf] * (n + 1) for _ in range(n)]
+        dp[0][0] = 0
+        dp[0][1] = 1 if nums[0] == 1 else 0
+        for i in range(1, n):
+            dp[i][0] = 0
+            for j in range(1, i + 2):
+                # 前i个数取j个的最大得分
+                dp[i][j] = ac.max(dp[i - 1][j], dp[i - 1][j - 1] + int(nums[i] == j))
+        ac.st(max(dp[n - 1]))
+        return
+
+    @staticmethod
+    def lg_p1833(ac=FastIO()):
+
+        def check(st):
+            hh, mm = st.split(":")
+            return int(hh) * 60 + int(mm)
+
+        # 模板：完全背包与单点队列优化多重背包组合
+        s, e, n = ac.read_list_strs()
+        t = check(e) - check(s)
+        dp = [0] * (t + 1)
+        for _ in range(int(n)):
+            tt, cc, p = ac.read_ints()
+            if not p:
+                for i in range(tt, t + 1):
+                    dp[i] = ac.max(dp[i], dp[i - tt] + cc)
+            else:
+                v, w, s = tt, cc, p
+                for r in range(v):
+                    stack = deque()
+                    for i in range(r, t + 1, v):
+                        while stack and stack[0][0] < i - s * v:
+                            stack.popleft()
+                        while stack and stack[-1][1] + (i - stack[-1][0]) // v * w <= dp[i]:
+                            stack.pop()
+                        stack.append([i, dp[i]])
+                        dp[i] = stack[0][1] + (i - stack[0][0]) // v * w
+        ac.st(dp[-1])
+        return
+
+    @staticmethod
+    def lg_p2014(ac=FastIO()):
+        # 模板：增加一个虚拟源点将DAG转换为树上背包
+        n, m = ac.read_ints()
+        dct = [[] for _ in range(n + 1)]
+        nums = [0]
+        for i in range(n):
+            k, s = ac.read_ints()
+            nums.append(s)
+            dct[k].append(i + 1)
+        dp = [[0] * (m + 2) for _ in range(n + 1)]
+        stack = [[0, -1]]
+        while stack:
+            i, fa = stack.pop()
+            if i >= 0:
+                stack.append([~i, fa])
+                for j in dct[i]:
+                    if j != fa:
+                        stack.append([j, i])
+            else:
+                i = ~i
+                dp[i][1] = nums[i]
+                for j in dct[i]:
+                    if j != fa:
+                        cur = dp[i][:]
+                        for x in range(m + 2):
+                            for y in range(m + 2 - x):
+                                cur[x + y] = ac.max(cur[x + y], dp[i][x] + dp[j][y])
+                        dp[i] = cur[:]
+        ac.st(dp[0][m + 1])
+        return
+
+    @staticmethod
+    def lg_p2079(ac=FastIO()):
+        # 模板：滚动哈希背包DP，使用两层哈希节省空间
+        n, v = ac.read_ints()
+        dp = [defaultdict(lambda: defaultdict(lambda: -inf)), defaultdict(lambda: defaultdict(lambda: -inf))]
+        pre = 0
+        dp[pre][0][0] = 0
+        for i in range(n):
+            c, x, y = ac.read_ints()
+            cur = 1-pre
+            for c1 in dp[pre]:
+                for x1 in dp[pre][c1]:
+                    if c1+c<=v:
+                        dp[cur][c1+c][x1+x] = ac.max(dp[cur][c1+c][x1+x], dp[pre][c1][x1]+y)
+                    dp[cur][c1][x1] = ac.max(dp[cur][c1][x1], dp[pre][c1][x1])
+            pre = cur
+        ans = -inf
+        for c1 in dp[pre]:
+            for x1 in dp[pre][c1]:
+                if x1 >= 0:
+                    ans = ac.max(ans, dp[pre][c1][x1])
         ac.st(ans)
         return
 

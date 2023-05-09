@@ -46,7 +46,7 @@ P1656 炸铁路（https://www.luogu.com.cn/problem/P1656）求割边
 P1793 跑步（https://www.luogu.com.cn/problem/P1793）求连通图两个指定点之间的割点，使用枚举与并查集的方式进行求解
 P2656 采蘑菇（https://www.luogu.com.cn/problem/P2656）使用scc缩点后，计算DAG最长路
 P1726 上白泽慧音（https://www.luogu.com.cn/problem/P1726）强连通分量裸题
-
+P2002 消息扩散（https://www.luogu.com.cn/problem/P2002）强连通分量缩点后，计算入度为0的节点个数
 ===================================CodeForces===================================
 F. Is It Flower?（https://codeforces.com/contest/1811/problem/F）无向图求连通分量
 C. Checkposts（https://codeforces.com/problemset/problem/427/C）有向图的强联通分量进行缩点
@@ -707,6 +707,28 @@ class Solution:
                 ans = lst[:]
         ac.st(len(ans))
         ac.lst([x + 1 for x in ans])
+        return
+
+    @staticmethod
+    def lg_p2002(ac=FastIO()):
+        # 模板：强连通分量缩点后，计算入度为0的节点个数
+        n, m = ac.read_ints()
+        dct = [set() for _ in range(n)]
+        for _ in range(m):
+            i, j = ac.read_ints_minus_one()
+            if i != j:
+                dct[i].add(j)
+        scc_id, _, node_scc_id = TarjanCC().get_strongly_connected_component_bfs(n, [list(e) for e in dct])
+
+        # 计算新图
+        in_degree = [0] * scc_id
+        for i in range(n):
+            a = node_scc_id[i]
+            for j in dct[i]:
+                b = node_scc_id[j]
+                if a != b:
+                    in_degree[b] = 1
+        ac.st(sum(x == 0 for x in in_degree))
         return
 
 

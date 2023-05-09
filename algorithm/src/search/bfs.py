@@ -56,6 +56,7 @@ P2491 [SDOI2011] 消防（https://www.luogu.com.cn/problem/P2491）同树网的�
 P1038 [NOIP2003 提高组] 神经网络（https://www.luogu.com.cn/problem/P1038）拓扑排序经典题
 P1126 机器人搬重物（https://www.luogu.com.cn/problem/P1126）广度优先搜索
 P1213 [USACO1.4][IOI1994]时钟 The Clocks（https://www.luogu.com.cn/problem/P1213）使用状态压缩优化进行01BFS
+P1902 刺杀大使（https://www.luogu.com.cn/problem/P1902）二分加BFS与原地哈希计算路径最大值的最小值
 
 ================================CodeForces================================
 E. Nearest Opposite Parity（https://codeforces.com/problemset/problem/1272/E）经典反向建图，多源BFS
@@ -783,6 +784,73 @@ class Solution:
                     visit[cur] = pre+str(i+1)
                     stack.append(cur)
         ac.lst(list(ans))
+        return
+
+    @staticmethod
+    def lg_p1902(ac=FastIO()):
+        # 模板：二分加BFS与原地哈希计算路径最大值的最小值
+        m, n = ac.read_ints()
+        grid = [ac.read_list_ints() for _ in range(m)]
+        for j in range(n):
+            grid[0][j] = -grid[0][j] - 1
+        dct = dict()
+
+        def check(x):
+            # 使用原地哈希节省空间
+            stack = [(0, j) for j in range(n)]
+            cnt = 0
+            while stack and cnt < n:
+                i, j = stack.pop()
+                cnt += 1 if i == m - 1 else 0
+                if i + 1 < m:
+                    a, b = i + 1, j
+                    w = grid[a][b]
+                    if x >= w >= 0:
+                        stack.append((a, b))
+                        grid[a][b] = -w - 1
+                if i - 1 >= 0:
+                    a, b = i - 1, j
+                    w = grid[a][b]
+                    if x >= w >= 0:
+                        stack.append((a, b))
+                        grid[a][b] = -w - 1
+                if j + 1 < n:
+                    a, b = i, j + 1
+                    w = grid[a][b]
+                    if x >= w >= 0:
+                        stack.append((a, b))
+                        grid[a][b] = -w - 1
+                if j - 1 >= 0:
+                    a, b = i, j - 1
+                    w = grid[a][b]
+                    if x >= w >= 0:
+                        stack.append((a, b))
+                        grid[a][b] = -w - 1
+            # 原地哈希复原
+            for i in range(1, m):
+                for j in range(n):
+                    w = grid[i][j]
+                    if w < 0:
+                        grid[i][j] = -w - 1
+            return cnt == n
+
+        low = 0
+        high = 1000
+        while low < high - 1:
+            mid = low + (high - low) // 2
+            if check(mid):
+                high = mid
+                dct[mid] = True
+            else:
+                low = mid
+                dct[mid] = False
+
+        if low in dct:
+            ac.st(low if dct[low] else high)
+        elif high in dct and not dct[high]:
+            ac.st(low)
+        else:
+            ac.st(low if check(low) else high)
         return
 
 

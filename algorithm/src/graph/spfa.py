@@ -19,7 +19,7 @@ Dijkstra：路径权值优先的深度优先搜索（只适用正权值）
 
 题目：
 ===================================力扣===================================
-2589. 完成所有任务的最少时间（https://leetcode.cn/problems/minimum-time-to-complete-all-tasks/）差分约束模板题
+2589. 完成所有任务的最少时间（https://leetcode.cn/problems/minimum-time-to-complete-all-tasks/）差分约束模板题，也可用贪心求解
 
 ===================================洛谷===================================
 P3385 负环（https://www.luogu.com.cn/problem/P3385）通过最短路径更新的边数来计算从起点出发是否存在负环
@@ -30,11 +30,12 @@ P1144 最短路计数（https://www.luogu.com.cn/problem/P1144）计算最短路
 P1993 小 K 的农场（https://www.luogu.com.cn/problem/P1993）差分约束判断是否存在负环
 P5960 【模板】差分约束算法（https://www.luogu.com.cn/problem/P5960）差分约束模板题
 P1260 工程规划（https://www.luogu.com.cn/problem/P1260）差分约束模板题
+P1931 套利（https://www.luogu.com.cn/problem/P1931）判断计算乘积是否有大于1的环
+P1986 元旦晚会（https://www.luogu.com.cn/problem/P1986）差分约束求解区间和
 
 参考：
 差分约束（https://oi-wiki.org/graph/diff-constraints/）
 """
-
 
 
 class SPFA:
@@ -115,12 +116,46 @@ class SPFA:
                         visit[v] = True
         return cnt
 
+    @staticmethod
+    def negative_circle_mul(dct, src=0, initial=0) -> (str, List[float], List[int]):
+        # 模板: 判断是否存在乘积大于1的环
+        n = len(dct)
+        # 初始化距离
+        dis = [float("inf") for _ in range(n)]
+        # 标识当前节点是否在栈中
+        visit = [False] * n
+        # 当前最小距离的路径边数
+        cnt = [0] * n
+        # 求带负权的最短路距离与路径边数
+        queue = deque([src])
+        # 队列与起点初始化默认从 0 出发
+        dis[src] = initial
+        visit[src] = True
+
+        while queue:
+            # 取出队列中的第一个节点
+            u = queue.popleft()
+            visit[u] = False
+            # 更新当前节点的相邻节点的距离
+            for v in dct[u]:
+                w = dct[u][v]
+                if dis[v] > dis[u] * w:
+                    dis[v] = dis[u] * w
+                    cnt[v] = cnt[u] + 1
+                    if cnt[v] >= n:
+                        return "YES", dis, cnt
+                    # 如果相邻节点还没有在队列中，将它加入队列
+                    if not visit[v]:
+                        queue.append(v)
+                        visit[v] = True
+        # 不存在从起点出发的负环
+        return "NO", dis, cnt
+
     def differential_constraint(self, ineq: List[List[int]], n: int):
         # 模板：差分约束计算不等式组是否有解
         dct = [dict() for _ in range(n + 1)]
         for i in range(1, n + 1):  # 节点索引从 1 开始，添加 0 为虚拟根节点
             dct[0][i] = 0
-        inf = float("inf")
         for a, b, c in ineq:  # a-b<=c
             w = dct[b].get(a, inf)
             w = w if w < c else c
@@ -306,6 +341,74 @@ class Solution:
             for a in res:
                 ac.st(a)
         return
+
+    @staticmethod
+    def lg_p1931(ac=FastIO()):
+        # 模板：计算路径乘积是否有大于1的环
+        case = 0
+        while True:
+            n = ac.read_int()
+            if not n:
+                break
+            case += 1
+            name = [ac.read_str() for _ in range(n)]
+            dct = [dict() for _ in range(n)]
+            ind = {na: i for i, na in enumerate(name)}
+            for _ in range(ac.read_int()):
+                a, c, b = ac.read_list_strs()
+                dct[ind[a]][ind[b]] = float(c)
+            ans = "No"
+            for i in range(n):
+                flag, _, _ = SPFA().negative_circle_mul(dct, i, -1)
+                if flag == "YES":
+                    ans = "Yes"
+                    break
+            ac.st(f"Case {case}: {ans}")
+            ac.read_str()
+        return
+
+    @staticmethod
+    def lg_p1986(ac=FastIO()):
+        # 模板：根据前缀和进行差分约束求解
+        n, m = ac.read_ints()
+
+        # 区间关系
+        lst = []
+        for _ in range(m):
+            a, b, c = ac.read_ints()
+            if a > b:
+                a, b = b, a
+            lst.append([a - 1, b, -c])
+        # 邻居关系
+        for i in range(1, n + 1):
+            lst.append([i, i - 1, 1])
+            lst.append([i - 1, i, 0])
+
+        # 计算差分约束，注意索引从 1 开始
+        lst = [[a + 1, b + 1, c] for a, b, c in lst]
+        ans, dis = SPFA().differential_constraint(lst, n + 1)
+
+        # 即为前缀和 pre[n+1] - pre[1]
+        ac.st(dis[n + 1] - dis[1])
+        return
+
+    @staticmethod
+    def lc_2589(self, tasks: List[List[int]]) -> int:
+        # 模板：根据前缀和进行差分约束求解
+        lst = []
+        for a, b, c in tasks:
+            if a > b:
+                a, b = b, a
+            lst.append([a - 1, b, -c])
+
+        n = 2000
+        for i in range(1, n + 1):
+            lst.append([i, i - 1, 1])
+            lst.append([i - 1, i, 0])
+
+        lst = [[a + 1, b + 1, c] for a, b, c in lst]
+        ans, dis = SPFA().differential_constraint(lst, n + 1)
+        return dis[n + 1] - dis[1]
 
 
 class TestGeneral(unittest.TestCase):

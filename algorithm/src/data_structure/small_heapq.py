@@ -33,6 +33,7 @@ P3620 [APIO/CTSC2007] 数据备份（https://www.luogu.com.cn/problem/P3620）�
 P2168 [NOI2015] 荷马史诗（https://www.luogu.com.cn/problem/P2168）霍夫曼树与二叉堆贪心
 P2278 [HNOI2003]操作系统（https://www.luogu.com.cn/problem/P2278）使用二叉堆模拟CPU占用
 P1717 钓鱼（https://www.luogu.com.cn/problem/P1717）枚举最远到达地点进行二叉堆贪心选取
+P1905 堆放货物（https://www.luogu.com.cn/problem/P1905）二叉堆从大到小贪心摆放
 
 ===================================AcWing======================================
 146. 序列（https://www.acwing.com/problem/content/description/148/）小顶堆计算经典问题m个数组最小的n个子序列和，同样可以计算最大的
@@ -379,6 +380,24 @@ class Solution:
                     heapq.heappush(stack, [-val + d[j], j])
             ans = ac.max(ans, cur)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p1905(ac=FastIO()):
+        # 模板：二叉堆从大到小贪心摆放
+        ac.read_int()
+        p = ac.read_int()
+        lst = ac.read_list_ints()
+        ans = [[0] for _ in range(p)]
+        stack = [[ans[i][0], i] for i in range(p)]
+        lst.sort(reverse=True)
+        for num in lst:
+            d, i = heapq.heappop(stack)
+            ans[i][0] += num
+            ans[i].append(num)
+            heapq.heappush(stack, [ans[i][0], i])
+        for a in ans:
+            ac.lst(a[1:])
         return
 
 

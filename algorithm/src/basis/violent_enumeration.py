@@ -72,6 +72,7 @@ P7626 [COCI2011-2012#1] MATRIX（https://www.luogu.com.cn/problem/P7626）枚举
 P7799 [COCI2015-2016#6] PIANINO（https://www.luogu.com.cn/problem/P7799）哈希枚举计数
 P1018 [NOIP2000 提高组] 乘积最大（https://www.luogu.com.cn/problem/P1018）枚举乘号位置
 P1311 [NOIP2011 提高组] 选择客栈（https://www.luogu.com.cn/problem/P1311）线性枚举计数，每次重置避免重复计数
+P2119 [NOIP2016 普及组] 魔法阵（https://www.luogu.com.cn/problem/P2119）枚举差值，并计算前后缀个数
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1426/F（分类枚举中间的b计数两边的?ac，并使用快速幂进行求解）
@@ -360,6 +361,59 @@ class Solution:
                     cnt[j] -= pre[j]
                 pre = [0]*k
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p2119(ac=FastIO()):
+
+        # 模板：枚举差值，并计算前后缀个数
+        n, m = ac.read_ints()
+        nums = [ac.read_int() for _ in range(m)]
+
+        cnt = [0] * (n + 1)
+        for num in nums:
+            cnt[num] += 1
+
+        aa = [0] * (n + 1)
+        bb = [0] * (n + 1)
+        cc = [0] * (n + 1)
+        dd = [0] * (n + 1)
+
+        # 枚举b-a=x
+        for x in range(1, n // 9 + 1):
+            if 1 + 9 * x + 1 > n:
+                break
+
+            # 前缀ab计数
+            pre_ab = [0] * (n + 1)
+            for b in range(2 * x + 1, n + 1):
+                pre_ab[b] = pre_ab[b - 1]
+                pre_ab[b] += cnt[b] * cnt[b - 2 * x]
+
+            # 作为cd
+            for c in range(n - x, -1, -1):
+                if c - 6 * x - 1 >= 1:
+                    cc[c] += pre_ab[c - 6 * x - 1] * cnt[c + x]
+                    dd[c + x] += pre_ab[c - 6 * x - 1] * cnt[c]
+                else:
+                    break
+
+            # 后缀cd
+            post_cd = [0] * (n + 2)
+            for c in range(n - x, -1, -1):
+                post_cd[c] = post_cd[c + 1]
+                post_cd[c] += cnt[c] * cnt[c + x]
+
+            # 作为ab计数
+            for b in range(2 * x + 1, n + 1):
+                if b + 6 * x + 1 <= n:
+                    aa[b - 2 * x] += post_cd[b + 6 * x + 1] * cnt[b]
+                    bb[b] += post_cd[b + 6 * x + 1] * cnt[b - 2 * x]
+                else:
+                    break
+
+        for x in nums:
+            ac.lst([aa[x], bb[x], cc[x], dd[x]])
         return
 
 

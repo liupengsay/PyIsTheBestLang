@@ -26,6 +26,8 @@ from decimal import Decimal
 import heapq
 import copy
 
+from algorithm.src.fast_io import FastIO
+
 """
 算法：马拉车算法、回文连续子串、回文不连续子串
 功能：用来处理字符串的回文相关问题，可以有暴力、DP、中心扩展法、马拉车
@@ -39,6 +41,7 @@ import copy
 P4555 最长双回文串（https://www.luogu.com.cn/problem/P4555）计算以当前索引为开头以及结尾的最长回文子串
 P1210 [USACO1.3]最长的回文 Calf Flac（https://www.luogu.com.cn/problem/P1210）寻找最长的连续回文子串
 P4888 三去矩阵（https://www.luogu.com.cn/problem/P4888）中心扩展法双指针
+P1872 回文串计数（https://www.luogu.com.cn/problem/P1872）回文串对数统计，利用马拉车计算以当前字母开头与结尾的回文串数
 
 139. 回文子串的最大长度（https://www.acwing.com/problem/content/141/）马拉车计算最长回文子串长度，也可使用二分查找加哈希
 
@@ -182,6 +185,22 @@ class Solution:
             ans = ManacherPlindrome().palindrome_longest_length(s)
             ac.st(f"Case {ind}: {ans}")
         return
+
+    @staticmethod
+    def lg_p1876(ac=FastIO()):
+        # 模板：回文串对数统计，利用马拉车计算以当前字母开头与结尾的回文串数
+        s = ac.read_str()
+        n = len(s)
+        start, end = ManacherPlindrome().palindrome(s)
+        start = [len(x) for x in start]
+        end = [len(x) for x in end]
+        pre = ans = 0
+        for i in range(n):
+            ans += pre * start[i]
+            pre += end[i]
+        ac.st(ans)
+        return
+
 
 class TestGeneral(unittest.TestCase):
 

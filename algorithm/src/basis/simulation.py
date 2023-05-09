@@ -51,6 +51,7 @@ P6410 [COCI2008-2009#3] CROSS（https://www.luogu.com.cn/problem/P6410）按照�
 P6480 [CRCI2006-2007] TETRIS（https://www.luogu.com.cn/problem/P6480）模拟摆放位置计数
 P7186 [CRCI2008-2009] TABLICA（https://www.luogu.com.cn/problem/P7186）脑筋急转弯，使用有限数据与作用域进行模拟
 P7338 『MdOI R4』Color（https://www.luogu.com.cn/problem/P7338）进行贪心模拟赋值
+P2129 L 国的战斗续之多路出击（https://www.luogu.com.cn/problem/P2129）使用栈和指针模拟
 
 ================================CodeForces================================
 C. Gargari and Bishops（https://codeforces.com/problemset/problem/463/C）选取两组互不相交的主副对角线使得和最大
@@ -225,6 +226,40 @@ class Solution:
                 break
             s = ac.read_str()
             ac.st(check())
+        return
+
+    @staticmethod
+    def lg_p2129(ac=FastIO()):
+        # 模板：使用栈和指针模拟
+        n, m = ac.read_list_ints()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        lst_x = []
+        lst_y = []
+        cnt_x = cnt_y = 0
+        for lst in [ac.read_list_strs() for _ in range(m)][::-1]:
+            if lst[0] == "x":
+                cnt_x += 1
+            elif lst[0] == "y":
+                cnt_y += 1
+            else:
+                p, q = lst[1:]
+                lst_x.append([int(p), cnt_x])
+                lst_y.append([int(q), cnt_y])
+        add_x = add_y = 0
+        for a, b in lst_x:
+            diff = cnt_x - b
+            add_x += a if diff % 2 == 0 else -a
+
+        for a, b in lst_y:
+            diff = cnt_y - b
+            add_y += a if diff % 2 == 0 else -a
+
+        cnt_x %= 2
+        cnt_y %= 2
+        for a, b in nums:
+            a = a if not cnt_x else -a
+            b = b if not cnt_y else -b
+            ac.lst([a + add_x, b + add_y])
         return
 
 

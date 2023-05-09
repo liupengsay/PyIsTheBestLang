@@ -23,6 +23,7 @@ P2201 数列编辑器（https://www.luogu.com.cn/problem/P2201）双栈模拟指
 P4387 【深基15.习9】验证栈序列（https://www.luogu.com.cn/problem/P4387）模拟入栈出栈队列判断是否可行
 P7674 [COCI2013-2014#5] EKSPLOZIJA（https://www.luogu.com.cn/problem/P7674）使用栈模仿消除
 P3719 [AHOI2017初中组]rexp（https://www.luogu.com.cn/problem/P3719）字符串运算展开
+P1974 基因聚合（https://www.luogu.com.cn/problem/P1974）贪心队列模拟
 
 ================================CodeForces================================
 C. Longest Regular Bracket Sequence（https://codeforces.com/problemset/problem/5/C）最长连续合法括号子序列以及个数
@@ -240,6 +241,17 @@ class MinStack:
                     stack.append([pre+[ind+1], res[:], ind+1])
                 if pre:
                     stack.append([pre[:-1], res+[pre[-1]], ind])
+        return
+
+    @staticmethod
+    def lg_p1974(ac=FastIO()):
+        # 模板：贪心队列模拟
+        n = ac.read_int()
+        stack = deque([1] * n)
+        while len(stack) >= 2:
+            a, b = stack.popleft(), stack.popleft()
+            stack.append(a * b + 1)
+        ac.st(stack[0])
         return
 
 

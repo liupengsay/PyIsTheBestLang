@@ -60,6 +60,8 @@ P1107 [BJWC2008]雷涛的小猫（https://www.luogu.com.cn/problem/P1107）二�
 P1279 字串距离（https://www.luogu.com.cn/problem/P1279）经典编辑距离DP的变形
 P1353 [USACO08JAN]Running S（https://www.luogu.com.cn/problem/P1353）矩阵DP
 P1410 子序列（https://www.luogu.com.cn/problem/P1410）二维DP
+P1799 数列（https://www.luogu.com.cn/problem/P1799）矩阵二维DP
+P1854 花店橱窗布置（https://www.luogu.com.cn/problem/P1854）矩阵DP，并输出匹配方案
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1446/B（最长公共子序列LCS变形问题，理解贡献）
@@ -645,6 +647,34 @@ class Solution:
             for j in range(1, m+1):
                 dp[i+1][j] = dp[i][j-1]+nums[i]
         ac.st(dp[n][0])
+        return
+
+    @staticmethod
+    def lg_p1854(ac=FastIO()):
+        # 模板：矩阵DP，并输出匹配方案
+        m, n = ac.read_ints()
+        grid = [ac.read_list_ints() for _ in range(m)]
+        dp = [[-inf] * (n + 1) for _ in range(m + 1)]
+        dp[0] = [0] * (n + 1)
+        for i in range(m):
+            for j in range(i, n):
+                for k in range(i, j + 1):
+                    if dp[i + 1][j + 1] < dp[i][k] + grid[i][j]:
+                        dp[i + 1][j + 1] = dp[i][k] + grid[i][j]
+        res = max(dp[-1])
+        ac.st(res)
+
+        # 倒序寻找最后一朵花插入的花瓶
+        ans = [n]
+        x = res
+        for i in range(m - 1, -1, -1):
+            for j in range(ans[-1] - 1, -1, -1):
+                if dp[i + 1][j + 1] == x:
+                    ans.append(j)
+                    x -= grid[i][j]
+                    break
+        ans.reverse()
+        ac.lst([x + 1 for x in ans[:-1]])
         return
 
 

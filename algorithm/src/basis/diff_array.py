@@ -40,6 +40,9 @@ P1719 最大加权矩形（https://www.luogu.com.cn/problem/P1719）求最大子
 P2882 [USACO07MAR]Face The Right Way G（https://www.luogu.com.cn/problem/P2882）贪心枚举加差分验证
 P4552 [Poetize6] IncDec Sequence（https://www.luogu.com.cn/problem/P4552）差分数组经典题，明晰差分本质
 P1627 [CQOI2009] 中位数（https://www.luogu.com.cn/problem/P1627）经典前后缀中位数大小值差值计数
+P1895 数字序列（https://www.luogu.com.cn/problem/P1895）前缀和计数加二分查找，最多不超多10**5
+P1982 [NOIP2013 普及组] 小朋友的数字（https://www.luogu.com.cn/problem/P1982）前缀最大连续子段和与前缀最大值
+P2070 刷墙（https://www.luogu.com.cn/problem/P2070）哈希离散化差分数组计数
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/33/C（前后缀最大变换和与分割点枚举，经典类型题目）
@@ -587,6 +590,81 @@ class Solution:
             ans += pre[-cnt]  # 取前后缀
             ans += 1 if not cnt else 0  # 只取后缀
         ans += 1
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p1895(ac=FastIO()):
+
+        # 模板：前缀和计数加二分查找，最多不超多10**5
+        n = 10**5
+        dp = [0] * (n + 1)
+        for i in range(1, n + 1):
+            dp[i] = dp[i - 1] + len(str(i))
+        pre = [0] * (n + 1)
+        for i in range(1, n + 1):
+            pre[i] = pre[i - 1] + dp[i]
+
+        def check(x):
+            ii = bisect.bisect_left(pre, x)
+            rest = x - pre[ii - 1]
+            j = bisect.bisect_left(dp, rest)
+            d = rest - dp[j - 1]
+            return str(j)[d - 1]
+
+        for _ in range(ac.read_int()):
+            ac.st(check(ac.read_int()))
+
+        return
+
+    @staticmethod
+    def lg_p1982(ac=FastIO()):
+
+        # 模板：前缀最大连续子段和与前缀最大值
+        n, p = ac.read_ints()
+        nums = ac.read_list_ints()
+        pre = 0
+        for i in range(n):
+            pre = pre if pre > 0 else 0
+            pre += nums[i]
+            nums[i] = pre
+            if i:
+                nums[i] = ac.max(nums[i], nums[i - 1])
+
+        final = nums[0]
+        pre = nums[0] * 2
+        for i in range(1, n):
+            final = ac.max(final, pre)
+            pre = ac.max(pre, pre + nums[i])
+        pos = 1 if final > 0 else -1
+        ac.st(pos * (abs(final) % p))
+        return
+
+    @staticmethod
+    def lg_p2070(ac=FastIO()):
+        # 模板：哈希离散化差分数组计数
+        n = ac.read_int()
+        pos = 0
+        diff = defaultdict(int)
+        for _ in range(n):
+            dis, op = ac.read_list_strs()
+            dis = int(dis)
+            if op == "L":
+                diff[pos - dis] += 1
+                diff[pos] -= 1
+                pos -= dis
+            else:
+                diff[pos] += 1
+                diff[pos + dis] -= 1
+                pos += dis
+        # 从小到大计算区间占有次数
+        axis = sorted(diff.keys())
+        m = len(axis)
+        ans = 0
+        for i in range(1, m):
+            diff[axis[i]] += diff[axis[i - 1]]
+            if diff[axis[i - 1]] >= 2:
+                ans += axis[i] - axis[i - 1]
         ac.st(ans)
         return
 

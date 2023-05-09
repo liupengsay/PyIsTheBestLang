@@ -26,6 +26,7 @@ P5755 [NOI2000] 单词查找树（https://www.luogu.com.cn/problem/P5755）字�
 P1481 魔族密码（https://www.luogu.com.cn/problem/P1481）最长词链   
 P5283 [十二省联考 2019] 异或粽子（https://www.luogu.com.cn/problem/P5283）字典树查询第k大异或值，并使用堆贪心选取
 P2922 [USACO08DEC]Secret Message G（https://www.luogu.com.cn/problem/P2922）字典树好题，前缀计数
+P1738 洛谷的文件夹（https://www.luogu.com.cn/problem/P1738）字典树键计数
 
 ================================CodeForces================================
 Fixed Prefix Permutations（https://codeforces.com/problemset/problem/1792/D）变形后使用字典树进行计数查询
@@ -684,6 +685,23 @@ class Solution:
                 ans += cur.get("cnt", 0)
             else:
                 ans += cur.get("mid", 0) - cur.get("cnt", 0)
+            ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p1738(ac=FastIO()):
+        # 模板：动态维护字典树键个数
+        n = ac.read_int()
+        dct = dict()
+        ans = 0
+        for _ in range(n):
+            s = ac.read_str().split("/")[1:]
+            cur = dct
+            for w in s:
+                if w not in cur:
+                    ans += 1
+                    cur[w] = dict()
+                cur = cur[w]
             ac.st(ans)
         return
 

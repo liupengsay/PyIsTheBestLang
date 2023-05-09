@@ -3,6 +3,7 @@ import unittest
 from functools import lru_cache
 
 from algorithm.src.fast_io import FastIO
+from algorithm.src.mathmatics.number_theory import NumberTheory
 
 """
 算法：博弈类DP、玩游戏、必胜态、必输态
@@ -19,6 +20,7 @@ P3150 pb的游戏（1）（https://www.luogu.com.cn/problem/P3150）博弈分析
 P4702 取石子（https://www.luogu.com.cn/problem/P4702）博弈分析必胜策略与最优选择，只跟奇数偶数有关
 P1247 取火柴游戏（https://www.luogu.com.cn/problem/P1247）nim博弈，使用异或求解
 P1512 伊甸园日历游戏（https://www.luogu.com.cn/problem/P1512）博弈DP与日期操作
+P2092 数字游戏（https://www.luogu.com.cn/problem/P2092）根据质数的个数来判断必胜态
 
 参考：OI WiKi（xx）
 """
@@ -138,6 +140,25 @@ class Solution:
             x, y, z = ac.read_list_ints()
             ac.st("YES" if dp.get((x, y, z), True) else "NO")
 
+        return
+
+    @staticmethod
+    def lg_p2092(ac=FastIO()):
+        # 模板：根据质数的个数来判断必胜态
+        n = ac.read_int()
+        lst = NumberTheory().get_prime_factor2(n)
+        nums = []
+        for p, c in lst:
+            nums.extend([p] * c)
+        if not nums or len(nums) == 1:
+            ac.st(1)
+            ac.st(0)
+            return
+        if len(nums) == 2:
+            ac.st(2)
+            return
+        ac.st(1)
+        ac.st(nums[0] * nums[1])
         return
 
 

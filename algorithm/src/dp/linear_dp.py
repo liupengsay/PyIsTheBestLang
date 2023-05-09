@@ -1,4 +1,4 @@
-
+import bisect
 import unittest
 from typing import List
 
@@ -62,6 +62,9 @@ P1280 尼克的任务（https://www.luogu.com.cn/problem/P1280）逆序线性 DP
 P1282 多米诺骨牌（https://www.luogu.com.cn/problem/P1282）典型线性DP
 P1356 数列的整除性（https://www.luogu.com.cn/problem/P1356）典型线性取模DP
 P1385 密令（https://www.luogu.com.cn/problem/P1385）线性DP与前缀和优化
+P1809 过河问题（https://www.luogu.com.cn/problem/P1809）思维题线性DP
+P1868 饥饿的奶牛（https://www.luogu.com.cn/problem/P1868）线性DP加二分查找优化
+P1978 集合（https://www.luogu.com.cn/problem/P1978）经典线性DP，乘积互斥
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/75/D（经典压缩数组，最大子段和升级）
@@ -350,6 +353,61 @@ class Solution:
                         x %= mod
                 pre = cur[:]
             ac.st((pre[-1] - 1)%mod)
+        return
+
+    @staticmethod
+    def lg_p1809(ac=FastIO()):
+        # 模板：思维题线性DP
+        n = ac.read_int()
+        nums = [ac.read_int() for _ in range(n)]
+        if n == 1:
+            ac.st(nums[0])
+            return
+        nums.sort()
+        dp = [inf] * (n + 1)
+        dp[0] = 0
+        dp[1] = nums[0]
+        dp[2] = ac.max(nums[0], nums[1])
+        for i in range(2, n):
+            # 两种可选方案，最小的来回，以及最小与次小的来回
+            dp[i + 1] = ac.min(dp[i] + nums[0] + nums[i], dp[i - 1] + nums[0] + 2 * nums[1] + nums[i])
+        ac.st(dp[-1])
+        return
+
+    @staticmethod
+    def lg_p1868(ac=FastIO()):
+        # 模板：线性DP加二分查找优化
+        n = ac.read_int()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        dp = [0]*(n+1)
+        nums.sort(key=lambda it: it[1])
+        pre = []
+        for i in range(n):
+            x, y = nums[i]
+            dp[i+1] = dp[i]
+            j = bisect.bisect_right(pre, x-1) - 1
+            dp[i+1] = ac.max(dp[i+1], dp[j+1]+y-x+1)
+            pre.append(y)
+        ac.st(dp[-1])
+        return
+
+    @staticmethod
+    def lg_p1978(ac=FastIO()):
+        # 模板：经典线性DP，乘积互斥
+        n, k = ac.read_ints()
+        nums = ac.read_list_ints()
+        dct = set(nums)
+        ans = 0
+        for num in nums:
+            if num % k == 0 and num//k in dct:
+                continue
+            # 找出x..kx..k^2x..
+            x = 0
+            while num in dct:
+                x += 1
+                num *= k
+            ans += (x + 1) // 2
+        ac.st(ans)
         return
 
 

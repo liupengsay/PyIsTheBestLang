@@ -87,6 +87,7 @@ P1031 [NOIP2002 提高组] 均分纸牌（https://www.luogu.com.cn/problem/P1031
 P2512 [HAOI2008]糖果传递（https://www.luogu.com.cn/problem/P2512）经典线性环形均分纸牌问题
 P1080 [NOIP2012 提高组] 国王游戏（https://www.luogu.com.cn/problem/P1080）经典贪心，举例两项确定排序公式
 P1650 田忌赛马（https://www.luogu.com.cn/problem/P1650）经典贪心，优先上对上其次下对下最后下对上
+P2088 果汁店的难题（https://www.luogu.com.cn/problem/P2088）贪心，取空闲的，或者下一个离得最远的使用
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1186/D（贪心取floor，再根据加和为0的特质进行补充加1成为ceil）
@@ -409,6 +410,40 @@ class Solution:
                     ans += 200
                 elif x < y:
                     ans -= 200
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p2088(ac=FastIO()):
+        # 模板：使用队列集合贪心，取空闲的，或者下一个离得最远的使用
+        ans = 0
+        k, n = ac.read_ints()
+        nums = []
+        while len(nums) < n:
+            nums.extend(ac.read_list_ints())
+
+        busy = set()
+        post = defaultdict(deque)
+        for i in range(n):
+            post[nums[i]].append(i)
+        for x in post:
+            post[x].append(n)
+
+        for i in range(n):
+            if nums[i] in busy:
+                continue
+            if len(busy) < k:
+                busy.add(nums[i])
+                continue
+            nex = -1
+            for x in busy:
+                while post[x] and post[x][0] < i:
+                    post[x].popleft()
+                if nex == -1 or post[x][0] >= post[nex][0]:
+                    nex = x
+            busy.discard(nex)
+            busy.add(nums[i])
+            ans += 1
         ac.st(ans)
         return
 

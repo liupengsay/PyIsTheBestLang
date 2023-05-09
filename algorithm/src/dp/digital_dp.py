@@ -2,6 +2,8 @@
 import unittest
 from functools import lru_cache
 
+from algorithm.src.fast_io import FastIO
+
 """
 算法：数位DP
 功能：统计满足一定条件的自然数个数，也可以根据字典序大小特点统计一些特定字符串的个数，是一种计数常用的DP思想
@@ -22,6 +24,7 @@ from functools import lru_cache
 P1590 失踪的7（https://www.luogu.com.cn/problem/P1590）计算 n 以内不含7的个数
 P1239 计数器（https://www.luogu.com.cn/problem/P1239）计算 n 以内每个数字0-9的个数
 P3908 数列之异或（https://www.luogu.com.cn/problem/P3908）计算 1^2..^n的异或和，可以使用数位DP计数也可以用相邻的奇偶数计算
+P1836 数页码（https://www.luogu.com.cn/problem/P1836）数位DP计算1~n内所有数字的数位和
 
 参考：OI WiKi（xx）
 """
@@ -76,13 +79,39 @@ class DigitalDP:
             for x in range(floor, ceil + 1):
                 res += dfs(i + 1, cnt + int(x == d), is_limit and ceil == x, True)
             return res
+
         s = str(num)
         n = len(s)
         return dfs(0, 0, True, False)
 
     @staticmethod
+    def count_digit_iteration(num, d):
+        # 模板: 计算 1到 num 内数位 d 出现的个数
+        assert num >= 1
+        s = str(num)
+        n = len(s)
+        dp = [[[[0] * 2 for _ in range(2)] for _ in range(n + 2)] for _ in range(n + 1)]
+        # 数位 计数 是否受限 是否为数字
+        for i in range(n, -1, -1):
+            for cnt in range(n, -1, -1):
+                for is_limit in range(1, -1, -1):
+                    for is_num in range(1, -1, -1):
+                        if i == n:
+                            dp[i][cnt][is_limit][is_num] = cnt if is_num else 0
+                            continue
+                        res = 0
+                        if not is_num:
+                            res += dp[i + 1][0][0][0]
+                        floor = 0 if is_num else 1
+                        ceil = int(s[i]) if is_limit else 9
+                        for x in range(floor, ceil + 1):
+                            res += dp[i + 1][cnt + int(x == d)][int(is_limit and x == ceil)][1]
+                        dp[i][cnt][is_limit][is_num] = res
+        return dp[0][0][1][0]
+
+    @staticmethod
     def count_num_base(num, d):
-        # 模板: 使用进制计算 1 到 num 内不含数位 d 的数字个数 
+        # 模板: 使用进制计算 1 到 num 内不含数位 d 的数字个数
         assert 1 <= d <= 9  # 不含 0 则使用数位 DP 进行计算
         s = str(num)
         i = s.find(str(d))
@@ -114,9 +143,9 @@ class DigitalDP:
     @staticmethod
     def count_num_dp(num, d):
 
-        # 模板: 使用进制计算 1 到 num 内不含数位 d 的数字个数 
+        # 模板: 使用进制计算 1 到 num 内不含数位 d 的数字个数
         assert 0 <= d <= 9
-        
+
         @lru_cache(None)
         def dfs(i: int, is_limit: bool, is_num: bool) -> int:
             if i == m:
@@ -130,6 +159,7 @@ class DigitalDP:
                 if x != d:
                     res += dfs(i + 1, is_limit and x == up, True)
             return res
+
         s = str(num)
         m = len(s)
         return dfs(0, True, False)
@@ -164,7 +194,17 @@ class Solution:
             return 0
         return DigitalDP().count_digit(n, 1)
     
-    
+    @staticmethod
+    def lg_p1836(ac=FastIO()):
+        # 模板：数位DP计算1~n内所有数字的数位和
+        n = ac.read_int()
+        ans = 0
+        for d in range(1, 10):
+            ans += d*DigitalDP().count_digit_iteration(n, d)
+        ac.st(ans)
+        return
+
+
 class TestGeneral(unittest.TestCase):
 
     def test_digital_dp(self):
@@ -178,6 +218,7 @@ class TestGeneral(unittest.TestCase):
 
         for d in range(10):
             assert dd.count_digit(n, d) == cnt[d]
+            assert dd.count_digit_iteration(n, d) == cnt[d]
 
         for d in range(1, 10):
             ans1 = dd.count_num_base(n, d)

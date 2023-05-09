@@ -28,7 +28,8 @@ from decimal import Decimal
 
 import heapq
 import copy
-
+from math import inf
+from algorithm.src.fast_io import FastIO
 
 """
 算法：二分图最大最小权值匹配、KM算法
@@ -40,8 +41,9 @@ import copy
 1066. 校园自行车分配 II（https://leetcode.cn/problems/campus-bikes-ii/）二分图最小权KM算法解决
 
 ===================================洛谷===================================
-P3386 【模板】二分图最大匹配（https://www.luogu.com.cn/problem/P3386）
-P6577 【模板】二分图最大权完美匹配（https://www.luogu.com.cn/problem/P6577）
+P3386 【模板】二分图最大匹配（https://www.luogu.com.cn/problem/P3386）二分图最大匹配
+P6577 【模板】二分图最大权完美匹配（https://www.luogu.com.cn/problem/P6577）二分图最大权完美匹配
+P1894 [USACO4.2]完美的牛栏The Perfect Stall（https://www.luogu.com.cn/problem/P1894）二分图最大匹配，转换为网络流求解
 
 ================================CodeForces================================
 C. Chef Monocarp（https://codeforces.com/problemset/problem/1437/C）二分图最小权匹配
@@ -77,7 +79,7 @@ class EK:
         q = deque()
         q.append(self.s)
         self.used.add(self.s)
-        self.flow[self.s] = float('inf')
+        self.flow[self.s] = inf
         while q:
             now = q.popleft()
             for nxt in self.g[now]:
@@ -247,7 +249,7 @@ class Soluttion:
     
     @staticmethod
     def lc_1820_3(grid):
-        # 模板：LM算法模板建图计算最大匹配
+        # 模板：KM算法模板建图计算最大匹配
         n = max(len(grid), len(grid[0]))
         lst = [[0]*n for _ in range(n)]
         ind = 0
@@ -266,6 +268,27 @@ class Soluttion:
         for i, j in max_:
             ans += lst[i][j]
         return ans
+
+    @staticmethod
+    def lg_p1894(ac=FastIO()):
+        # 模板：二分图最大权匹配
+        n, m = ac.read_ints()
+        s = n + m + 1
+        t = n + m + 2
+        # 集合个数n与集合个数m
+        ek = EK(n + m, n * m, s, t)
+        for i in range(n):
+            lst = ac.read_list_ints()[1:]
+            for j in lst:
+                # 增加边
+                ek.add_edge(i, n + j - 1, 1)
+        # 增加超级源点与汇点
+        for i in range(n):
+            ek.add_edge(s, i, 1)
+        for i in range(m):
+            ek.add_edge(n + i, t, 1)
+        ac.st(ek.pipline())
+        return
 
 
 class TestGeneral(unittest.TestCase):
