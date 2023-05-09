@@ -51,6 +51,7 @@ P1294 高手去散步（https://www.luogu.com.cn/problem/P1294）图问题使用
 P1123 取数游戏（https://www.luogu.com.cn/problem/P1123）类似占座位的经典状压DP
 P1433 吃奶酪（https://www.luogu.com.cn/problem/P1433）状压DP
 P1896 [SCOI2005] 互不侵犯（https://www.luogu.com.cn/problem/P1896）状压DP
+P1556 幸福的路（https://www.luogu.com.cn/problem/P1556）状态压缩计算最短路
 
 ================================CodeForces================================
 D. Kefa and Dishes（https://codeforces.com/problemset/problem/580/D）状态压缩DP结合前后相邻的增益计算最优解
@@ -326,6 +327,41 @@ class Solution:
                 dp[i][pre] = res
         ans = dp[(1 << n) - 2][0]
         ac.st("%.2f" % ans)
+        return
+
+    @staticmethod
+    def lg_p1556(ac=FastIO()):
+        # 模板：状态压缩计算最短路
+        n = ac.read_int()
+        nums = [[0, 0]] + [ac.read_list_ints() for _ in range(n)] + [[0, 0]]
+        n += 2
+        # 根据题意进行建图，表示起终点与方向
+        dct = [[] for _ in range(n)]
+        for i in range(n):
+            a, b = nums[i]
+            for j in range(n):
+                if i != j:
+                    c, d = nums[j]
+                    if a == c:
+                        dct[i].append([j, 4] if b < d else [j, 2])
+                    if b == d:
+                        dct[i].append([j, 1] if a < c else [j, 3])
+
+        # 状态 当前点 方向
+        dp = [[[0] * 5 for _ in range(n)] for _ in range((1 << n) - 1)]
+        dp[0][n - 1] = [0, 1, 1, 1, 1]
+        for state in range(1, (1 << n) - 1):
+            for x in range(n):
+                for f in range(5):
+                    if x == n - 1:
+                        dp[state][x][f] = 1 if not state else 0
+                    res = 0
+                    # 枚举上一个点与方向是否可以转移过来
+                    for y, ff in dct[x]:
+                        if state & (1 << y) and ff != f:
+                            res += dp[state ^ (1 << y)][y][ff]
+                    dp[state][x][f] = res
+        ac.st(dp[(1 << n) - 1 - 1][0][0])
         return
 
 

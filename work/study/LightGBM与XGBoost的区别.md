@@ -4,7 +4,7 @@
 
 - 均为基于Boosting框架的主流集成算法，都是机器学习领域GBDT算法的工程化实现。
 
-![LightGBM与XGBoost思维导图.jpeg](picture/LightGBM与XGBoost思维导图.jpeg)
+![LightGBM与XGBoost思维导图.jpeg](picture/LightGBM与XGBoost思维导图.jpeg)https://sc.hotjob.cn/wt/mailResponse/gotoVideoInterview?mailTokenId=51b642a920710a95e604ca00137baa7e3dfb281d79787cd5134402330ad12a2375a92e55c392e41b7ba99991e5cdabd0824417c517e7836904bffa7035aa6c25
 
 
 
