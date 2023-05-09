@@ -36,6 +36,7 @@ P4369 [Code+#4]组合数问题（https://www.luogu.com.cn/problem/P4369）脑筋
 P5520 [yLOI2019] 青原樱（https://www.luogu.com.cn/problem/P5520）隔板法计算组合数
 P3807 【模板】卢卡斯定理/Lucas 定理（https://www.luogu.com.cn/problem/P3807）卢卡斯模板题
 P1044 [NOIP2003 普及组] 栈（https://www.luogu.com.cn/problem/P1044）卡特兰数
+P1655 小朋友的球（https://www.luogu.com.cn/problem/P1655）矩阵DP，斯特林数
 
 ================================CodeForces================================
 D. Triangle Coloring（https://codeforces.com/problemset/problem/1795/D）组合计数取模与乘法逆元快速计算
@@ -324,6 +325,23 @@ class Solution:
         for w in cnt:
             ans *= w**cnt[w]
         ac.st(ans // (n+1))
+        return
+
+    @staticmethod
+    def lg_p1655(ac=FastIO()):
+        # 模板：第二类斯特林数只能递推
+        n = m = 101
+        dp = [[0] * m for _ in range(n)]
+        for i in range(1, n):
+            dp[i][i] = dp[i][1] = 1
+            for j in range(2, i):
+                dp[i][j] = dp[i - 1][j - 1] + j * dp[i - 1][j]
+        while True:
+            lst = ac.read_list_ints()
+            if not lst:
+                break
+            n, m = lst
+            ac.st(dp[n][m])
         return
 
 
