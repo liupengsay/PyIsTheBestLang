@@ -318,7 +318,6 @@ class Solution:
         dct = [dict() for _ in range(n)]
         for i in range(m):
             u, v = ac.read_ints_minus_one()
-            d = dis(nums[u][0], nums[u][1], nums[v][0], nums[v][1])
             dct[u][v] = dct[v][u] = 0
         # 初始化最短距离
         ans = nex = 0
