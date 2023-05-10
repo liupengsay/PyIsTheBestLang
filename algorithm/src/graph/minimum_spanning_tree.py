@@ -1,6 +1,7 @@
 import heapq
 import math
 import unittest
+from collections import deque
 from typing import List
 
 from algorithm.src.fast_io import FastIO, inf
@@ -47,6 +48,7 @@ P4180 [BJWC2010] 严格次小生成树（https://www.luogu.com.cn/problem/P4180�
 P1265 公路修建（https://www.luogu.com.cn/problem/P1265）使用prim求解最小生成树
 P1340 兽径管理（https://www.luogu.com.cn/problem/P1340）逆序并查集，维护最小生成树的边
 P1550 [USACO08OCT]Watering Hole G（https://www.luogu.com.cn/problem/P1550）经典题目，建立虚拟源点，转换为最小生成树问题
+P2212 [USACO14MAR]Watering the Fields S（https://www.luogu.com.cn/problem/P2212）经典题目，使用prim计算稠密图最小生成树
 
 ================================CodeForces================================
 D. Design Tutorial: Inverse the Problem（https://codeforces.com/problemset/problem/472/D）使用最小生成树判断构造给定的点对最短路距离是否存在，使用prim算法复杂度更优
@@ -303,48 +305,44 @@ class Solution:
 
         return [list(key), list(fake)]
 
-
     @staticmethod
-    def lg_p2872():
-        # https://www.luogu.com.cn/record/74793627
+    def lg_p2872(ac=FastIO()):
 
-        def main():
-            n, m = map(int, input().split())
-            edge = [[0] * (n + 1) for _ in range(n + 1)]
-            vtx = [[]]
-            for _ in range(n):
-                vtx.append([int(i) for i in input().split()])
-            for i in range(1, n + 1):
-                for j in range(i + 1, n + 1):
-                    edge[i][j] = edge[j][i] = ((vtx[i][0] - vtx[j][0]) ** 2 +
-                                               (vtx[i][1] - vtx[j][1]) ** 2) ** 0.5
-            for _ in range(m):
-                a, b = map(int, input().split())
-                edge[a][b] = edge[b][a] = 0
+        # 模板：使用prim计算最小生成树，适合稠密图场景
+        def dis(x1, y1, x2, y2):
+            res = (x1 - x2) ** 2 + (y1 - y2) ** 2
+            return res**0.5
 
-            # prim计算最小生成树
-
-            def Prim():
-                vis = set([1])
-                dist = edge[1].copy()
-                values = 0
-                for k in range(n - 1):
-                    next_v = -1
-                    min_d = float('inf')
-                    for i in range(1, n + 1):
-                        if dist[i] < min_d and i not in vis:
-                            next_v = i
-                            min_d = dist[i]
-                    vis.add(next_v)
-                    values += min_d
-                    for j in range(1, n + 1):
-                        if dist[j] > edge[next_v][j] and j not in vis:
-                            dist[j] = edge[next_v][j]
-                return values
-
-            print('{:.2f}'.format(Prim()))
-
-        main()
+        n, m = ac.read_ints()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        dct = [dict() for _ in range(n)]
+        for i in range(m):
+            u, v = ac.read_ints_minus_one()
+            d = dis(nums[u][0], nums[u][1], nums[v][0], nums[v][1])
+            dct[u][v] = dct[v][u] = 0
+        # 初始化最短距离
+        ans = nex = 0
+        rest = set(list(range(1, n)))
+        visit = [inf] * n
+        visit[nex] = 0
+        while rest:
+            # 点优先选择距离当前集合最近的点合并
+            i = nex
+            rest.discard(i)
+            d = visit[i]
+            ans += d
+            # 更新所有节点到当前节点的距离最小值并更新下一个节点
+            x, y = nums[i]
+            nex = -1
+            for j in rest:
+                dj = dis(nums[j][0], nums[j][1], x, y)
+                visit[j] = ac.min(visit[j], dct[i].get(j, inf))
+                if dj < visit[j]:
+                    visit[j] = dj
+                if nex == -1 or visit[j] < visit[nex]:
+                    nex = j
+        # 时间复杂度O(n^2)空间复杂度O(n)优于kruskal
+        ac.st("%.2f" % ans)
         return
 
     @staticmethod
@@ -484,35 +482,34 @@ class Solution:
 
     @staticmethod
     def lg_p1265(ac=FastIO()):
-        # 模板：使用prim求解最小生成树
+        # 模板：使用prim计算最小生成树，适合稠密图场景
 
         def dis(x1, y1, x2, y2):
             return (x1-x2)**2+(y1-y2)**2
 
+        # 初始化最短距离
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
-        start = nums[0]
-        ans = 0
+        ans = nex = 0
         rest = set(list(range(1, n)))
-        stack = []
-        visit = [0]*n
-        nex = 1
-        for i in range(1, n):
-            visit[i] = dis(start[0], start[1], nums[i][0], nums[i][1])
-            if visit[i] < visit[nex]:
-                nex = i
+        visit = [inf]*n
+        visit[nex] = 0
         while rest:
+            # 点优先选择距离当前集合最近的点合并
             i = nex
             rest.discard(i)
             d = visit[i]
-            ans += d**0.5
+            ans += d ** 0.5
             nex = -1
+            # 更新所有节点到当前节点的距离最小值并更新下一个节点
+            x, y = nums[i]
             for j in rest:
-                dj = dis(nums[j][0], nums[j][1], nums[i][0], nums[i][1])
+                dj = dis(nums[j][0], nums[j][1], x, y)
                 if dj < visit[j]:
                     visit[j] = dj
-                if nex==-1 or visit[j] < visit[nex]:
+                if nex == -1 or visit[j] < visit[nex]:
                     nex = j
+        # 时间复杂度O(n^2)空间复杂度O(n)优于kruskal
         ac.st("%.2f" % ans)
         return
 
@@ -576,6 +573,40 @@ class Solution:
             if uf.part == 1:
                 break
         ac.st(cost)
+        return
+
+    @staticmethod
+    def lg_p2212(ac=FastIO()):
+
+        # 模板：使用prim计算最小生成树，适合稠密图场景
+        def dis(x1, y1, x2, y2):
+            res = (x1 - x2) ** 2 + (y1 - y2) ** 2
+            return res if res >= c else inf
+
+        n, c = ac.read_ints()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        # 初始化最短距离
+        ans = nex = 0
+        rest = set(list(range(1, n)))
+        visit = [inf] * n
+        visit[nex] = 0
+        while rest:
+            # 点优先选择距离当前集合最近的点合并
+            i = nex
+            rest.discard(i)
+            d = visit[i]
+            ans += d
+            nex = -1
+            # 更新所有节点到当前节点的距离最小值并更新下一个节点
+            x, y = nums[i]
+            for j in rest:
+                dj = dis(nums[j][0], nums[j][1], x, y)
+                if dj < visit[j]:
+                    visit[j] = dj
+                if nex == -1 or visit[j] < visit[nex]:
+                    nex = j
+        # 时间复杂度O(n^2)空间复杂度O(n)优于kruskal
+        ac.st(ans if ans < inf else -1)
         return
 
 
