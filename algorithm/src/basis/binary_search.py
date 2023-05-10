@@ -62,7 +62,7 @@ D. Multiplication Table（https://codeforces.com/problemset/problem/448/D）经�
 D. Cleaning the Phone（https://codeforces.com/problemset/problem/1475/D）贪心排序，前缀和枚举二分
 D. Odd-Even Subsequence（https://codeforces.com/problemset/problem/1370/D）利用单调性二分，再使用贪心check
 D. Max Median（https://codeforces.com/problemset/problem/1486/D）利用单调性二分，再使用经典哈希前缀和计算和为正数的最长连续子序列
-
+D2. Coffee and Coursework (Hard Version)（https://codeforces.com/problemset/problem/1118/D2）利用单调性贪心二分
 ================================AcWing================================
 120. 防线（https://www.acwing.com/problem/content/122/）根据单调性二分
 14. 不修改数组找出重复的数字（https://www.acwing.com/problem/content/description/15/）利用鸽巢原理二分查找重复的数，修改数组且只用O(1)空间
@@ -650,12 +650,34 @@ class Solution:
                 if cur[0] > y*cur[1]:
                     return False
                 t1 = cur[:]
-                if cur[0]<x*cur[1]:
+                if cur[0] < x*cur[1]:
                     t1 = [x, 1]
             return True
 
         ans = BinarySearch().find_float_left(1e-4, 10**7, check)
         ac.st("%.2f" % ans)
+        return
+
+    @staticmethod
+    def cf_1118d2(ac=FastIO()):
+
+        # 模板：贪心二分
+        n, m = ac.read_ints()
+        nums = ac.read_list_ints()
+        s = sum(nums)
+        if s < m:
+            ac.st(-1)
+            return
+        nums.sort(reverse=True)
+
+        def check(x):
+            ans = 0
+            for i in range(n):
+                j = i // x
+                ans += ac.max(0, nums[i] - j)
+            return ans >= m
+
+        ac.st(BinarySearch().find_int_left(1, n, check))
         return
 
 
