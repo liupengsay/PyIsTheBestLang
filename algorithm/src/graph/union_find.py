@@ -45,6 +45,7 @@ P1197 [JSOI2008] 星球大战（https://www.luogu.com.cn/problem/P1197）逆序�
 P1522 [USACO2.4] 牛的旅行 Cow Tours（https://www.luogu.com.cn/problem/P1522）连通块，枚举新增路径并高精度计算联通块直径
 P1621 集合（https://www.luogu.com.cn/problem/P1621）利用素数筛的思想对数复杂度合并公共质因数大于p的数并计算连通块数量
 P1892 [BOI2003]团伙（https://www.luogu.com.cn/problem/P1892）经典并查集，敌人与朋友关系
+P2189 小Z的传感器（https://www.luogu.com.cn/problem/P2189）并查集经典题，确定访问顺序的合法性
 
 ================================CodeForces================================
 D. Roads not only in Berland（https://codeforces.com/problemset/problem/25/D）并查集将原来的边断掉重新来连接使得成为一整个连通集
@@ -504,6 +505,46 @@ class Solution:
                 ac.st("NO")
             else:
                 ac.st("YES")
+        return
+
+    @staticmethod
+    def lg_p2189(ac=FastIO()):
+
+        # 模板：并查集经典题，确定访问顺序的合法性
+        n, m, k, q = ac.read_ints()
+        dct = [[] for _ in range(n)]
+        for _ in range(m):
+            i, j = ac.read_ints_minus_one()
+            dct[i].append(j)
+            dct[j].append(i)
+
+        for _ in range(q):
+            order = ac.read_list_ints_minus_one()
+            uf = UnionFind(n)
+            visit = [0] * n
+            for i in order:
+                visit[i] = 1
+
+            # 不在路径上的直接连通
+            ans = True
+            pre = order[0]
+            for i in range(n):
+                if not visit[i]:
+                    for j in dct[i]:
+                        if not visit[j]:
+                            uf.union(i, j)
+
+            # 遍历连接确认当前的连通性
+            for i in order:
+                visit[i] = 0
+                for j in dct[i]:
+                    if not visit[j]:
+                        uf.union(i, j)
+                if not uf.is_connected(i, pre):
+                    ans = False
+                    break
+                pre = i
+            ac.st("Yes" if ans else "No")
         return
 
 

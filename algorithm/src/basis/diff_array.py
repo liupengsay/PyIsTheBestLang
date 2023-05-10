@@ -1,3 +1,4 @@
+import math
 import unittest
 from collections import defaultdict
 from typing import List
@@ -43,6 +44,7 @@ P1627 [CQOI2009] 中位数（https://www.luogu.com.cn/problem/P1627）经典前�
 P1895 数字序列（https://www.luogu.com.cn/problem/P1895）前缀和计数加二分查找，最多不超多10**5
 P1982 [NOIP2013 普及组] 小朋友的数字（https://www.luogu.com.cn/problem/P1982）前缀最大连续子段和与前缀最大值
 P2070 刷墙（https://www.luogu.com.cn/problem/P2070）哈希离散化差分数组计数
+P2190 小Z的车厢（https://www.luogu.com.cn/problem/P2190）环形数组差分
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/33/C（前后缀最大变换和与分割点枚举，经典类型题目）
@@ -666,6 +668,28 @@ class Solution:
             if diff[axis[i - 1]] >= 2:
                 ans += axis[i] - axis[i - 1]
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p2190(ac=FastIO()):
+        # 模板：环形数组差分
+        n, m = ac.read_ints()
+        diff = [0] * n
+        for _ in range(m):
+            x, y, z = ac.read_ints()
+            x -= 1
+            y -= 1
+            if x <= y:
+                diff[x] += z
+                diff[y] -= z
+            else:
+                diff[x] += z
+                if y > 0:
+                    diff[0] += z
+                    diff[y] -= z
+        for i in range(1, n):
+            diff[i] += diff[i - 1]
+        ac.st(math.ceil(max(diff) / 36))
         return
 
 

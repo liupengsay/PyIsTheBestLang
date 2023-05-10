@@ -57,6 +57,7 @@ P1038 [NOIP2003 提高组] 神经网络（https://www.luogu.com.cn/problem/P1038
 P1126 机器人搬重物（https://www.luogu.com.cn/problem/P1126）广度优先搜索
 P1213 [USACO1.4][IOI1994]时钟 The Clocks（https://www.luogu.com.cn/problem/P1213）使用状态压缩优化进行01BFS
 P1902 刺杀大使（https://www.luogu.com.cn/problem/P1902）二分加BFS与原地哈希计算路径最大值的最小值
+P2199 最后的迷宫（https://www.luogu.com.cn/problem/P2199）队列01BFS判定距离最近的可视范围
 
 ================================CodeForces================================
 E. Nearest Opposite Parity（https://codeforces.com/problemset/problem/1272/E）经典反向建图，多源BFS
@@ -851,6 +852,52 @@ class Solution:
             ac.st(low)
         else:
             ac.st(low if check(low) else high)
+        return
+
+    @staticmethod
+    def lg_p2199(ac=FastIO()):
+
+        # 模板：队列01BFS判定距离最近的可视范围
+        m, n = ac.read_ints()
+        grid = [ac.read_list_str() for _ in range(m)]
+        ind = [[0, 1], [0, -1], [1, 0], [-1, 0],
+               [1, 1], [1, -1], [-1, 1], [-1, -1]]
+        while True:
+            lst = ac.read_list_ints_minus_one()
+            if lst == [-1, -1, -1, -1]:
+                break
+            end = [lst[0], lst[1]]
+            start = [lst[2], lst[3]]
+
+            # 奖杯的可视范围
+            seen = set()
+            i, j = end
+            seen.add((i, j))
+            for a, b in ind:
+                x, y = i, j
+                while 0 <= x < m and 0 <= y < n and grid[x][y] != "X":
+                    seen.add((x, y))
+                    x += a
+                    y += b
+            if (start[0], start[1]) in seen:
+                ac.st(0)
+                continue
+
+            # 01BFS队列
+            visit = [[inf] * n for _ in range(m)]
+            stack = deque([[0, start[0], start[1]]])
+            ans = -1
+            visit[start[0]][start[1]] = 0
+            while stack and ans == -1:
+                d, i, j = stack.popleft()
+                for a, b in [[i - 1, j], [i + 1, j], [i, j - 1], [i, j + 1]]:
+                    if 0 <= a < m and 0 <= b < n and grid[a][b] != "X" and visit[a][b] == inf:
+                        visit[a][b] = d + 1
+                        stack.append([d + 1, a, b])
+                        if (a, b) in seen:
+                            ans = d + 1
+                            break
+            ac.st(ans if ans != -1 else "Poor Harry")
         return
 
 
