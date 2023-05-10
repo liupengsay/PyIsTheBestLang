@@ -38,6 +38,7 @@ P4513 小白逛公园（https://www.luogu.com.cn/problem/P4513）单点修改与
 P1471 方差（https://www.luogu.com.cn/problem/P1471）区间增减，维护区间和与区间数字平方的和，以计算均差与方差
 P6492 [COCI2010-2011#6] STEP（https://www.luogu.com.cn/problem/P6492）单点修改，查找最长的01交替字符子串连续区间
 P4145 上帝造题的七分钟 2 / 花神游历各国（https://www.luogu.com.cn/problem/P4145）区间值开方向下取整，区间和查询
+P1558 色板游戏（https://www.luogu.com.cn/problem/P1558）线段树区间值修改，区间或值查询
 
 ================================CodeForces================================
 
@@ -926,6 +927,69 @@ class SegmentTreePointAddSumMaxMin:
         if R > m:
             res = max(res, self.query_max(o * 2 + 1, m + 1, r, L, R))
         return res
+
+
+class SegmentTreeRangeChangeQueryOr:
+    def __init__(self, n) -> None:
+        # 模板：区间值与操作修改，区间值或查询
+        self.n = n
+        self.lazy = [0] * (4 * self.n)  # 懒标记与操作
+        self.cover = [0] * (4 * self.n)  # 区间或操作初始值为 1
+        return
+
+    def make_tag(self, val: int, i: int) -> None:
+        self.cover[i] = val
+        self.lazy[i] = val
+        return
+
+    def push_down(self, i: int) -> None:
+        # 下放懒标记
+        if self.lazy[i]:
+            self.make_tag(self.lazy[i], 2 * i)
+            self.make_tag(self.lazy[i], 2 * i + 1)
+            self.lazy[i] = 0
+
+    def push_up(self, i: int) -> None:
+        self.cover[i] = self.cover[2 * i] | self.cover[2 * i + 1]
+
+    def update(self, left: int, right: int, s: int, t: int, val: int, i: int) -> None:
+        # 增减区间值 left 与 right 取值为 0 到 n-1 而 i 从 1 开始
+        stack = [[s, t, i]]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if left <= s and t <= right:
+                    self.make_tag(val, i)
+                    continue
+                m = s + (t - s) // 2
+                self.push_down(i)
+                stack.append([s, t, ~i])
+
+                if left <= m:  # 注意左右子树的边界与范围
+                    stack.append([s, m, 2 * i])
+                if right > m:
+                    stack.append([m + 1, t, 2 * i + 1])
+            else:
+                i = ~i
+                self.push_up(i)
+        return
+
+    def query_or(self, left: int, right: int, s: int, t: int, i: int) -> int:
+        # 查询区间的和
+        stack = [[s, t, i]]
+        ans = 0
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                ans |= self.cover[i]
+                continue
+            m = s + (t - s) // 2
+            self.push_down(i)
+            if left <= m:
+                stack.append([s, m, 2 * i])
+            if right > m:
+                stack.append([m + 1, t, 2 * i + 1])
+        return ans
 
 
 class SegmentTreeRangeUpdateMax:
@@ -2154,6 +2218,26 @@ class Solution:
                     #print(tree.query_max_length(left, right, 0, n - 1, 1)[0], check(nums[left:right+1]))
                     assert tree.query_max_length(left, right, 0, n - 1, 1)[0] == check(nums[left:right+1])
                     # ac.st(tree.query_max_length(left, right, 0, n - 1, 1)[0])
+        return
+
+    @staticmethod
+    def lg_p1558(ac=FastIO()):
+        # 模板：线段树区间值修改，区间或值查询
+        n, t, q = ac.read_ints()
+        tree = SegmentTreeRangeChangeQueryOr(n)
+        tree.update(0, n-1, 0, n-1, 1, 1)
+        for _ in range(q):
+            lst = ac.read_list_strs()
+            if lst[0] == "C":
+                a, b, c = [int(w) for w in lst[1:]]
+                if a > b:
+                    a, b = b, a
+                tree.update(a - 1, b - 1, 0, n - 1, 1 << (c - 1), 1)
+            else:
+                a, b = [int(w) for w in lst[1:]]
+                if a > b:
+                    a, b = b, a
+                ac.st(bin(tree.query_or(a - 1, b - 1, 0, n - 1, 1)).count("1"))
         return
 
 
