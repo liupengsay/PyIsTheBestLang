@@ -58,6 +58,7 @@ P1126 机器人搬重物（https://www.luogu.com.cn/problem/P1126）广度优先
 P1213 [USACO1.4][IOI1994]时钟 The Clocks（https://www.luogu.com.cn/problem/P1213）使用状态压缩优化进行01BFS
 P1902 刺杀大使（https://www.luogu.com.cn/problem/P1902）二分加BFS与原地哈希计算路径最大值的最小值
 P2199 最后的迷宫（https://www.luogu.com.cn/problem/P2199）队列01BFS判定距离最近的可视范围
+P2226 [HNOI2001]遥控赛车比赛（https://www.luogu.com.cn/problem/P2226）有限制地BDS转向计算
 
 ================================CodeForces================================
 E. Nearest Opposite Parity（https://codeforces.com/problemset/problem/1272/E）经典反向建图，多源BFS
@@ -898,6 +899,34 @@ class Solution:
                             ans = d + 1
                             break
             ac.st(ans if ans != -1 else "Poor Harry")
+        return
+
+    @staticmethod
+    def lg_p2226(ac=FastIO()):
+        # 模板：有限制地BDS转向计算
+        m, n = ac.read_ints()
+        s1, s2, e1, e2 = ac.read_ints_minus_one()
+        grid = [ac.read_list_ints() for _ in range(m)]
+        ind = [[0, 1], [1, 0], [0, -1], [-1, 0]]
+        for t in range(1, 11):
+            stack = deque([[s1, s2, -1, 0]])
+            visit = [[[0 for _ in range(4)] for _ in range(n)] for _ in range(m)]
+            ans = -1
+            while stack and ans == -1:
+                i, j, d, total = stack.popleft()
+                pre = visit[i][j][d] if d != -1 else inf
+                for dd in range(4):
+                    x, y = i + ind[dd][0], j + ind[dd][1]
+                    if 0 <= x < m and 0 <= y < n and grid[x][y] == 1 and (dd == d or pre >= t):
+                        nex = pre + 1 if d == dd else 1
+                        if visit[x][y][dd] < nex:
+                            visit[x][y][dd] = nex
+                            stack.append([x, y, dd, total + 1])
+                            if (x, y) == (e1, e2):
+                                ans = total + 1
+                                break
+            if ans != -1:
+                ac.lst([t, ans])
         return
 
 
