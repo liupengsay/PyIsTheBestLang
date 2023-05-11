@@ -3,7 +3,7 @@ import random
 import unittest
 from collections import defaultdict, deque
 from itertools import combinations
-from typing import List
+from typing import List, Counter
 
 from algorithm.src.graph.union_find import UnionFind
 from algorithm.src.mathmatics.number_theory import NumberTheory
@@ -73,6 +73,7 @@ P1833 樱花（https://www.luogu.com.cn/problem/P1833）完全背包与单点队
 P2014 [CTSC1997] 选课（https://www.luogu.com.cn/problem/P2014）增加一个虚拟源点将DAG转换为树上背包
 P2079 烛光晚餐（https://www.luogu.com.cn/problem/P2079）滚动哈希背包DP，使用两层哈希节省空间
 P2170 选学霸（https://www.luogu.com.cn/problem/P2170）连通块加二进制01背包优化
+P2214 [USACO14MAR]Mooo Moo S（https://www.luogu.com.cn/problem/P2214）变种背包DP贪心
 
 ================================CodeForces================================
 B. Modulo Sum（https://codeforces.com/problemset/problem/577/B）取模计数二进制优化与背包DP，寻找非空子序列的和整除给定的数
@@ -874,6 +875,32 @@ class Solution:
             if dp[i] and abs(i - m) < abs(ans - m):
                 ans = i
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p2214(ac=FastIO()):
+        # 模板：变种背包DP贪心
+        n, b = ac.read_ints()
+        nums = [ac.read_int() for _ in range(b)]
+        voice = [ac.read_int() for _ in range(n)]
+
+        # 从后往前计算原始得分
+        for i in range(n - 1, 0, -1):
+            if voice[i - 1] > 0:
+                voice[i] -= voice[i - 1] - 1
+        ceil = max(voice)
+        if any(v < 0 for v in voice):
+            ac.st(-1)
+            return
+
+        # 完全背包计算最少数量
+        dp = [inf] * (ceil + 1)
+        dp[0] = 0
+        for num in nums:
+            for i in range(num, ceil + 1):
+                dp[i] = ac.min(dp[i - num] + 1, dp[i])
+        ans = sum(dp[x] for x in voice)
+        ac.st(ans if ans < inf else -1)
         return
 
 

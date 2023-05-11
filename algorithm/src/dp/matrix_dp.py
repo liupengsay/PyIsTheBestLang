@@ -62,6 +62,10 @@ P1353 [USACO08JAN]Running S（https://www.luogu.com.cn/problem/P1353）矩阵DP
 P1410 子序列（https://www.luogu.com.cn/problem/P1410）二维DP
 P1799 数列（https://www.luogu.com.cn/problem/P1799）矩阵二维DP
 P1854 花店橱窗布置（https://www.luogu.com.cn/problem/P1854）矩阵DP，并输出匹配方案
+P2140 小Z的电力管制（https://www.luogu.com.cn/problem/P2140）矩阵四维DP，可以使用记忆化与迭代计算
+P2217 [HAOI2007]分割矩阵（https://www.luogu.com.cn/problem/P2217）矩阵四维DP，可以使用记忆化与迭代计算
+P1436 棋盘分割（https://www.luogu.com.cn/problem/P1436）矩阵四维DP，可以使用记忆化与迭代计算
+P5752 [NOI1999] 棋盘分割（https://www.luogu.com.cn/problem/P5752）矩阵四维DP，可以使用记忆化与迭代计算
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1446/B（最长公共子序列LCS变形问题，理解贡献）
@@ -675,6 +679,220 @@ class Solution:
                     break
         ans.reverse()
         ac.lst([x + 1 for x in ans[:-1]])
+        return
+
+    @staticmethod
+    def lg_p2140(ac=FastIO()):
+        # 模板：矩阵四维DP，可以使用记忆化与迭代计算
+        m, n, u = ac.read_ints()
+        grid = [ac.read_list_ints() for _ in range(m)]
+        m, n = len(grid), len(grid[0])
+        pre = [[0] * (n + 1) for _ in range(m + 1)]
+        for i in range(m):
+            for j in range(n):
+                pre[i + 1][j + 1] = pre[i][j + 1] + pre[i + 1][j] - pre[i][j] + grid[i][j]
+        s = pre[-1][-1]
+
+        # @lru_cache(None)
+        # def dfs(xa, ya, xb, yb):
+        #     w = pre[xb + 1][yb + 1] - pre[xb + 1][ya] - pre[xa][yb + 1] + pre[xa][ya]
+        #     res = [-inf, -inf]
+        #     if w >= s-u:
+        #         res = [1, u-(s-w)]
+        #     else:
+        #         return res
+        #
+        #     for xx in range(xa, xb):
+        #         nex1 = dfs(xa, ya, xx, yb)
+        #         nex2 = dfs(xx+1, ya, xb, yb)
+        #         nex = [nex1[0]+nex2[0], ac.min(nex1[1], nex2[1])]
+        #         if nex > res:
+        #             res = nex[:]
+        #
+        #     for yy in range(ya, yb):
+        #         nex1 = dfs(xa, ya, xb, yy)
+        #         nex2 = dfs(xa, yy+1, xb, yb)
+        #         nex = [nex1[0]+nex2[0], ac.min(nex1[1], nex2[1])]
+        #         if nex > res:
+        #             res = nex[:]
+        #     return res
+        # ans = dfs(0, 0, m-1, n-1)
+        # ac.lst(ans)
+
+        dp = [[[[[-inf, -inf] for _ in range(n)] for _ in range(m)] for _ in range(n)] for _ in range(m)]
+        for xa in range(m-1, -1, -1):
+            for ya in range(n-1, -1, -1):
+                for xb in range(xa, m):
+                    for yb in range(ya, n):
+                        w = pre[xb + 1][yb + 1] - pre[xb + 1][ya] - pre[xa][yb + 1] + pre[xa][ya]
+                        if w < s - u:
+                            continue
+                        res = [1, u - (s - w)]
+
+                        for xx in range(xa, xb):
+                            nex1 = dp[xa][ya][xx][yb]
+                            nex2 = dp[xx+1][ya][xb][yb]
+                            nex = [nex1[0] + nex2[0], ac.min(nex1[1], nex2[1])]
+                            if nex > res:
+                                res = nex[:]
+                        for yy in range(ya, yb):
+                            nex1 = dp[xa][ya][xb][yy]
+                            nex2 = dp[xa][yy+1][xb][yb]
+                            nex = [nex1[0] + nex2[0], ac.min(nex1[1], nex2[1])]
+                            if nex > res:
+                                res = nex[:]
+                        dp[xa][ya][xb][yb] = res
+        ac.lst(dp[0][0][m-1][n-1])
+        return
+
+    @staticmethod
+    def lg_p2217(ac=FastIO()):
+
+        # 模板：矩阵四维DP，可以使用记忆化与迭代计算
+        m, n, k = ac.read_ints()
+        grid = [ac.read_list_ints() for _ in range(m)]
+        avg = sum(sum(g) for g in grid)/k
+        m, n = len(grid), len(grid[0])
+        pre = [[0] * (n + 1) for _ in range(m + 1)]
+        for i in range(m):
+            for j in range(n):
+                pre[i + 1][j + 1] = pre[i][j + 1] + pre[i + 1][j] - pre[i][j] + grid[i][j]
+
+        # @lru_cache(None)
+        # def dfs(i, j, x, y, w):
+        #     if w == 1:
+        #         return (pre[x + 1][y + 1] - pre[x + 1][j] - pre[i][y + 1] + pre[i][j]-avg)**2
+        #     res = inf
+        #     for a in range(i, x):
+        #         for up in range(1, w):
+        #             res = ac.min(res, dfs(i, j, a, y, up)+dfs(a+1, j, x, y, w-up))
+        #
+        #     for b in range(j, y):
+        #         for up in range(1, w):
+        #             res = ac.min(res, dfs(i, j, x, b, up) + dfs(i, b+1, x, y, w - up))
+        #     return res
+        # ans = (dfs(0, 0, m-1, n-1, k)/k)**0.5
+        # ac.st("%.2f" % ans)
+
+        dp = [[[[[inf] * (k + 1) for _ in range(n)] for _ in range(m)] for _ in range(n)] for _ in range(m)]
+        for i in range(m - 1, -1, -1):
+            for j in range(m - 1, -1, -1):
+                for x in range(i, m):
+                    for y in range(j, n):
+                        for w in range(k + 1):
+                            if w == 1:
+                                res = (pre[x + 1][y + 1] - pre[x + 1][j] - pre[i][y + 1] + pre[i][j] - avg) ** 2
+                                dp[i][j][x][y][w] = res
+                                continue
+                            res = inf
+                            for a in range(i, x):
+                                for up in range(1, w):
+                                    res = ac.min(res, dp[i][j][a][y][up] + dp[a + 1][j][x][y][w - up])
+                            for b in range(j, y):
+                                for up in range(1, w):
+                                    res = ac.min(res, dp[i][j][x][b][up] + dp[i][b + 1][x][y][w - up])
+                            dp[i][j][x][y][w] = res
+        ans = (dp[0][0][m - 1][n - 1][k] / k) ** 0.5
+        ac.st("%.2f" % ans)
+        return
+
+    @staticmethod
+    def lg_p1436(ac=FastIO()):
+
+        # 模板：矩阵四维DP，可以使用记忆化与迭代计算
+        k = ac.read_int()
+        m = n = 8
+        grid = [ac.read_list_ints() for _ in range(m)]
+        pre = [[0] * (n + 1) for _ in range(m + 1)]
+        for i in range(m):
+            for j in range(n):
+                pre[i + 1][j + 1] = pre[i][j + 1] + pre[i + 1][j] - pre[i][j] + grid[i][j]
+
+        # @lru_cache(None)
+        # def dfs(i, j, x, y, w):
+        #     if w == 1:
+        #         return (pre[x + 1][y + 1] - pre[x + 1][j] - pre[i][y + 1] + pre[i][j])**2
+        #     res = inf
+        #     for a in range(i, x):
+        #         res = ac.min(res, dfs(i, j, a, y, 1)+dfs(a+1, j, x, y, w-1))
+        #         res = ac.min(res, dfs(i, j, a, y, w-1) + dfs(a + 1, j, x, y, 1))
+        #     for b in range(j, y):
+        #         res = ac.min(res, dfs(i, j, x, b, 1) + dfs(i, b+1, x, y, w - 1))
+        #         res = ac.min(res, dfs(i, j, x, b, w-1) + dfs(i, b + 1, x, y, 1))
+        #     return res
+        # ans = dfs(0, 0, m-1, n-1, k)
+        # ac.st(ans)
+
+        dp = [[[[[inf] * (k + 1) for _ in range(n)] for _ in range(m)] for _ in range(n)] for _ in range(m)]
+        for i in range(m - 1, -1, -1):
+            for j in range(m - 1, -1, -1):
+                for x in range(i, m):
+                    for y in range(j, n):
+                        for w in range(k + 1):
+                            if w == 1:
+                                res = (pre[x + 1][y + 1] - pre[x + 1][j] - pre[i][y + 1] + pre[i][j])**2
+                                dp[i][j][x][y][w] = res
+                                continue
+                            res = inf
+                            for a in range(i, x):
+                                res = ac.min(res, dp[i][j][a][y][1] + dp[a + 1][j][x][y][w - 1])
+                                res = ac.min(res, dp[i][j][a][y][w - 1] + dp[a + 1][j][x][y][1])
+                            for b in range(j, y):
+                                res = ac.min(res, dp[i][j][x][b][1] + dp[i][b + 1][x][y][w - 1])
+                                res = ac.min(res, dp[i][j][x][b][w - 1] + dp[i][b + 1][x][y][1])
+                            dp[i][j][x][y][w] = res
+        ans = dp[0][0][m - 1][n - 1][k]
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p5752(ac=FastIO()):
+
+        # 模板：矩阵四维DP，可以使用记忆化与迭代计算
+        k = ac.read_int()
+        m = n = 8
+        grid = [ac.read_list_ints() for _ in range(m)]
+        avg = sum(sum(g) for g in grid) / k
+        pre = [[0] * (n + 1) for _ in range(m + 1)]
+        for i in range(m):
+            for j in range(n):
+                pre[i + 1][j + 1] = pre[i][j + 1] + pre[i + 1][j] - pre[i][j] + grid[i][j]
+
+        # @lru_cache(None)
+        # def dfs(i, j, x, y, w):
+        #     if w == 1:
+        #         return (pre[x + 1][y + 1] - pre[x + 1][j] - pre[i][y + 1] + pre[i][j]-avg)**2
+        #     res = inf
+        #     for a in range(i, x):
+        #         res = ac.min(res, dfs(i, j, a, y, 1)+dfs(a+1, j, x, y, w-1))
+        #         res = ac.min(res, dfs(i, j, a, y, w-1) + dfs(a + 1, j, x, y, 1))
+        #     for b in range(j, y):
+        #         res = ac.min(res, dfs(i, j, x, b, 1) + dfs(i, b+1, x, y, w - 1))
+        #         res = ac.min(res, dfs(i, j, x, b, w-1) + dfs(i, b + 1, x, y, 1))
+        #     return res
+        # ans = (dfs(0, 0, m-1, n-1, k)/k)**0.5
+        # ac.st("%.3f" % ans)
+
+        dp = [[[[[inf] * (k + 1) for _ in range(n)] for _ in range(m)] for _ in range(n)] for _ in range(m)]
+        for i in range(m - 1, -1, -1):
+            for j in range(m - 1, -1, -1):
+                for x in range(i, m):
+                    for y in range(j, n):
+                        for w in range(k + 1):
+                            if w == 1:
+                                res = (pre[x + 1][y + 1] - pre[x + 1][j] - pre[i][y + 1] + pre[i][j]-avg)**2
+                                dp[i][j][x][y][w] = res
+                                continue
+                            res = inf
+                            for a in range(i, x):
+                                res = ac.min(res, dp[i][j][a][y][1] + dp[a + 1][j][x][y][w - 1])
+                                res = ac.min(res, dp[i][j][a][y][w - 1] + dp[a + 1][j][x][y][1])
+                            for b in range(j, y):
+                                res = ac.min(res, dp[i][j][x][b][1] + dp[i][b + 1][x][y][w - 1])
+                                res = ac.min(res, dp[i][j][x][b][w - 1] + dp[i][b + 1][x][y][1])
+                            dp[i][j][x][y][w] = res
+        ans = (dp[0][0][m - 1][n - 1][k]/k)**0.5
+        ac.st("%.3f" % ans)
         return
 
 
