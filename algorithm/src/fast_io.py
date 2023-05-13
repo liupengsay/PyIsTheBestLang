@@ -1,37 +1,24 @@
-import copy
-import random
-import heapq
-import math
-import sys
 import bisect
-import datetime
-from functools import lru_cache
-from collections import deque
-from collections import Counter
-from collections import defaultdict
-from itertools import combinations
-from itertools import permutations
-import sys
+import decimal
+import heapq
 from types import GeneratorType
-
-import matplotlib.pyplot as plt
-import networkx as nx
+from math import inf
+import sys
 from functools import cmp_to_key
-from functools import reduce
-from operator import xor
-from operator import mul
-import networkx as nx
-import matplotlib.pyplot as plt
-
-from operator import add
+from collections import defaultdict, Counter, deque
+import math
+from functools import lru_cache
 from heapq import nlargest
-
-inf = float("inf")
+from functools import reduce
+import random
+from itertools import combinations
+from operator import xor, add
+from operator import mul
+from typing import List, Callable, Dict, Set, Tuple, DefaultDict
 
 
 class FastIO:
     def __init__(self):
-        self.inf = float("inf")
         return
 
     @staticmethod
@@ -95,7 +82,7 @@ class FastIO:
         return a if a < b else b
 
     @staticmethod
-    def bootstrap(f, queue=deque()):
+    def bootstrap(f, queue=[]):
         def wrappedfunc(*args, **kwargs):
             if queue:
                 return f(*args, **kwargs)
@@ -113,6 +100,20 @@ class FastIO:
                 return to
 
         return wrappedfunc
+
+    def ask(self, lst):
+        self.lst(lst)
+        sys.stdout.flush()
+        res = self.read_int()
+        return res
+
+    @staticmethod
+    def accumulate(nums):
+        n = len(nums)
+        pre = [0] * (n + 1)
+        for i in range(n):
+            pre[i + 1] = pre[i] + nums[i]
+        return pre
 
     @staticmethod
     def plot_graph(n, edges):
@@ -162,3 +163,52 @@ class FastIO:
         for s in [st1, st2, st3, st4]:
             print("- " + "".join(s))
         return
+
+
+class Solution:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def main(ac=FastIO()):
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        pre = ac.accumulate(nums)
+        dp = [[inf] * n for _ in range(n)]
+        mid = [[-1] * n for _ in range(n)]
+        for i in range(n - 1, -1, -1):
+            dp[i][i] = 0
+            for j in range(i + 1, n):
+                ind = i
+                for k in range(i, j):
+                    cur = dp[i][k] + dp[k + 1][j] + pre[j + 1] - pre[i]
+                    if cur < dp[i][j]:
+                        dp[i][j] = cur
+                        ind = k
+                mid[i][j] = ind
+
+        ans = []
+        nums = [str(x) for x in nums]
+        stack = [[0, n - 1]]
+        while stack:
+            i, j = stack.pop()
+            if i >= 0:
+                stack.append([~i, j])
+                if i >= j - 1:
+                    continue
+                k = mid[i][j]
+                stack.append([k + 1, j])
+                stack.append([i, k])
+            else:
+                i = ~i
+                if i < j:
+                    nums[i] = "(" + nums[i]
+                    nums[j] = nums[j] + ")"
+                    ans.append(pre[j + 1] - pre[i])
+        ac.st("+".join(nums))
+        ac.st(sum(ans))
+        ac.lst(ans)
+        return
+
+
+Solution().main()

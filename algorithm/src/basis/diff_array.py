@@ -98,6 +98,21 @@ class DiffArray:
         return pre[right + 1] - pre[left]
 
 
+class PreFixSumMatrix:
+    def __init__(self, mat):
+        self.mat = mat
+        # 二维前缀和
+        m, n = len(mat), len(mat[0])
+        self.pre = [[0] * (n + 1) for _ in range(m + 1)]
+        for i in range(m):
+            for j in range(n):
+                self.pre[i + 1][j + 1] = self.pre[i][j + 1] + self.pre[i + 1][j] - self.pre[i][j] + mat[i][j]
+
+    def query(self, xa, ya, xb, yb):
+        # 二维子矩阵和
+        return self.pre[xb + 1][yb + 1] - self.pre[xb + 1][ya] - self.pre[xa][yb + 1] + self.pre[xa][ya]
+
+
 class DiffMatrix:
     def __init__(self):
         return
