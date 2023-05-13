@@ -1,6 +1,8 @@
 import unittest
 from typing import List
 
+from algorithm.src.fast_io import FastIO
+
 """
 算法：循环节
 功能：通过模拟找出循环节进行状态计算
@@ -126,7 +128,8 @@ class Solution:
         day = 0
         # 进行模拟状态
         while day < n:
-            busy = set([i for i in range(1, m - 1) if cells[i - 1] == cells[i + 1]])
+            busy = set([i for i in range(1, m - 1)
+                       if cells[i - 1] == cells[i + 1]])
             cells = [1 if i in busy else 0 for i in range(m)]
             day += 1
             state.append(cells[:])
@@ -144,11 +147,11 @@ class Solution:
     def lg_p1468(ac=FastIO()):
         # 模板：状态压缩求循环节
         n = ac.read_int()
-        op1 = (1<<n)-1
-        op2 = sum(1<<i for i in range(0, n, 2))
-        op3 = sum(1<<i for i in range(1, n, 2))
-        op4 = sum(1<<i for i in range(0, n, 3))
-        stack = [[(1<<n)-1]]
+        op1 = (1 << n) - 1
+        op2 = sum(1 << i for i in range(0, n, 2))
+        op3 = sum(1 << i for i in range(1, n, 2))
+        op4 = sum(1 << i for i in range(0, n, 3))
+        stack = [[(1 << n) - 1]]
         ans = []
         while stack:
             path = stack.pop()
@@ -156,18 +159,18 @@ class Solution:
                 if path[-1] ^ op in path:
                     ans.append(path[:])
                 else:
-                    stack.append(path+[path[-1]^op])
+                    stack.append(path + [path[-1] ^ op])
         c = ac.read_int()
-        light = sum(1<<(i-1) for i in ac.read_list_ints()[:-1])
-        down = sum(1<<(i-1) for i in ac.read_list_ints()[:-1])
+        light = sum(1 << (i - 1) for i in ac.read_list_ints()[:-1])
+        down = sum(1 << (i - 1) for i in ac.read_list_ints()[:-1])
 
         res = set()
         for p in ans:
             m = len(p)
-            state = p[c%m]
+            state = p[c % m]
             if state & light == light and state & down == 0:
                 r = bin(state)[2:]
-                res.add("0"*(n-len(r))+r)
+                res.add("0" * (n - len(r)) + r)
         if not res:
             ac.st("IMPOSSIBLE")
             return

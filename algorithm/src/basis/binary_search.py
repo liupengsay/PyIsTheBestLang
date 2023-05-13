@@ -1,9 +1,9 @@
 import bisect
 import unittest
-from collections import deque
+from collections import deque, defaultdict
 from typing import List, Callable
-
-from algorithm.src.fast_io import FastIO, inf
+from math import inf
+from algorithm.src.fast_io import FastIO
 
 """
 
@@ -63,6 +63,8 @@ D. Cleaning the Phone（https://codeforces.com/problemset/problem/1475/D）贪�
 D. Odd-Even Subsequence（https://codeforces.com/problemset/problem/1370/D）利用单调性二分，再使用贪心check
 D. Max Median（https://codeforces.com/problemset/problem/1486/D）利用单调性二分，再使用经典哈希前缀和计算和为正数的最长连续子序列
 D2. Coffee and Coursework (Hard Version)（https://codeforces.com/problemset/problem/1118/D2）利用单调性贪心二分
+I. Photo Processing（https://codeforces.com/problemset/problem/883/I）二分加双指针dp
+
 ================================AcWing================================
 120. 防线（https://www.acwing.com/problem/content/122/）根据单调性二分
 14. 不修改数组找出重复的数字（https://www.acwing.com/problem/content/description/15/）利用鸽巢原理二分查找重复的数，修改数组且只用O(1)空间
@@ -133,14 +135,14 @@ class Solution:
         queries = [ac.read_list_ints() for _ in range(m)]
 
         def check(w):
-            cnt = [0]*(n+1)
-            pre = [0]*(n+1)
+            cnt = [0] * (n + 1)
+            pre = [0] * (n + 1)
             for i in range(n):
-                cnt[i+1] = cnt[i] + int(nums[i][0] >= w)
-                pre[i+1] = pre[i] + int(nums[i][0] >= w)*nums[i][1]
+                cnt[i + 1] = cnt[i] + int(nums[i][0] >= w)
+                pre[i + 1] = pre[i] + int(nums[i][0] >= w) * nums[i][1]
             res = 0
             for a, b in queries:
-                res += (pre[b]-pre[a-1])*(cnt[b]-cnt[a-1])
+                res += (pre[b] - pre[a - 1]) * (cnt[b] - cnt[a - 1])
             return res
 
         ans = inf
@@ -149,7 +151,7 @@ class Solution:
         while low < high - 1:
             mid = low + (high - low) // 2
             x = check(mid)
-            ans = ac.min(ans, abs(s-x))
+            ans = ac.min(ans, abs(s - x))
             if x <= s:
                 high = mid - 1
             else:
@@ -324,8 +326,8 @@ class Solution:
         n = len(nums)
         ans = 0
         for i in range(n):
-            x = bisect.bisect_right(nums, upper-nums[i], hi=i)
-            y = bisect.bisect_left(nums, lower-nums[i], hi=i)
+            x = bisect.bisect_right(nums, upper - nums[i], hi=i)
+            y = bisect.bisect_left(nums, lower - nums[i], hi=i)
             ans += x - y
         return ans
 
@@ -403,7 +405,7 @@ class Solution:
         def check(s):
             diff = [0] * n
             for c, a, b in lst[:s]:
-                diff[a-1] += c
+                diff[a - 1] += c
                 if b < n:
                     diff[b] -= c
             if diff[0] > nums[0]:
@@ -423,7 +425,7 @@ class Solution:
             ac.st(0)
         else:
             ac.st(-1)
-            ac.st(ans+1)
+            ac.st(ans + 1)
         return
 
     @staticmethod
@@ -490,7 +492,7 @@ class Solution:
 
         def check(xx):
             res = pp = 0
-            for ii in range(m-1, -1, -1):
+            for ii in range(m - 1, -1, -1):
                 if pp + nums[ii] > xx:
                     res += 1
                     pp = nums[ii]
@@ -502,16 +504,16 @@ class Solution:
 
         x = BinarySearch().find_int_left(max(nums), sum(nums), check)
         ans = []
-        pre = nums[m-1]
-        post = m-1
+        pre = nums[m - 1]
+        post = m - 1
         for i in range(m - 2, -1, -1):
             if pre + nums[i] > x:
-                ans.append([i+2, post+1])
+                ans.append([i + 2, post + 1])
                 pre = nums[i]
                 post = i
             else:
                 pre += nums[i]
-        ans.append([1, post+1])
+        ans.append([1, post + 1])
         for a in ans[::-1]:
             ac.lst(a)
         return
@@ -538,10 +540,10 @@ class Solution:
                         cc += 1
                         if cc == s:
                             return True
-                if i>=x-1:
-                    if words[i-x+1] in dct:
-                        cnt[words[i-x+1]] -= 1
-                        if not cnt[words[i-x+1]]:
+                if i >= x - 1:
+                    if words[i - x + 1] in dct:
+                        cnt[words[i - x + 1]] -= 1
+                        if not cnt[words[i - x + 1]]:
                             cc -= 1
             return False
 
@@ -632,25 +634,25 @@ class Solution:
         def add(lst1, lst2):
             a, b = lst1
             c, d = lst2
-            d1 = a*d+c*b
-            d2 = b*d
+            d1 = a * d + c * b
+            d2 = b * d
             return [d1, d2]
 
         def check(xx):
             # 最早与最晚出发
             t1 = 0
             res = [xx, 1]
-            while int(res[0])!=res[0]:
-                res[0]*=10
-                res[1]*=10
+            while int(res[0]) != res[0]:
+                res[0] *= 10
+                res[1] *= 10
             res = [int(w) for w in res]
             t1 = [0, 1]
             for x, y, s in nums:
-                cur = add(t1, [s*res[1], res[0]])
-                if cur[0] > y*cur[1]:
+                cur = add(t1, [s * res[1], res[0]])
+                if cur[0] > y * cur[1]:
                     return False
                 t1 = cur[:]
-                if cur[0] < x*cur[1]:
+                if cur[0] < x * cur[1]:
                     t1 = [x, 1]
             return True
 
@@ -678,6 +680,29 @@ class Solution:
             return ans >= m
 
         ac.st(BinarySearch().find_int_left(1, n, check))
+        return
+
+    @staticmethod
+    def cf_883i(ac=FastIO()):
+        # 模板：二分加双指针dp
+        n, k = ac.read_ints()
+        nums = sorted(ac.read_list_ints())
+
+        def check(x):
+            dp = [0] * (n + 1)
+            dp[0] = 1
+            j = 0
+            for i in range(n):
+                while nums[i] - nums[j] > x:
+                    j += 1
+                while not dp[j] and j < i - k + 1:
+                    j += 1
+                if dp[j] and i + 1 - j >= k:
+                    dp[i + 1] = 1
+            return dp[-1] == 1
+
+        ans = BinarySearch().find_int_left(0, nums[-1] - nums[0], check)
+        ac.st(ans)
         return
 
 

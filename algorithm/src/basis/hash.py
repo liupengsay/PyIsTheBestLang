@@ -1,5 +1,6 @@
 import unittest
 from collections import defaultdict
+import random
 from typing import List
 
 from algorithm.src.fast_io import FastIO
@@ -55,7 +56,6 @@ class Solution:
     @staticmethod
     def ac_137(ac=FastIO()):
 
-
         p1 = random.randint(26, 100)
         p2 = random.randint(26, 100)
         mod1 = random.randint(10 ** 9 + 7, 2 ** 31 - 1)
@@ -72,7 +72,7 @@ class Solution:
                 res2 *= p2
                 res2 += num
                 res2 %= mod2
-            return (res1, res2)
+            return res1, res2
 
         def check():
             res = []

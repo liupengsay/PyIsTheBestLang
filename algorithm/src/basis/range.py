@@ -8,7 +8,7 @@ from algorithm.src.fast_io import FastIO
 """
 算法：区间合并、区间覆盖、区间计数
 功能：涉及到区间的一些合并查询和操作，也可以使用差分数组与树状数组、线段树进行解决
-用法：合并为不相交的区间，最小区间覆盖问题，最多不相交的区间
+用法：合并为不相交的区间、最小区间覆盖问题、最多不相交的区间
 题目：
 
 ===================================力扣===================================
@@ -132,7 +132,7 @@ class Solution:
         for _ in range(n):
             a, b = [int(w) for w in input().strip().split() if w]
             lst.append([a, b])
-        ans = sum(b-a for a, b in Range().merge(lst))
+        ans = sum(b - a for a, b in Range().merge(lst))
         ac.st(ans)
         return
 
@@ -181,7 +181,7 @@ class Solution:
         for w in dct:
             lst.append([dct[w][0], dct[w][-1]])
         ans = Range().merge(lst)
-        return [y-x+1 for x, y in ans]
+        return [y - x + 1 for x, y in ans]
 
     @staticmethod
     def lc_6313(ranges: List[List[int]]) -> int:
@@ -229,8 +229,8 @@ class Solution:
             return
         for i in range(n):
             x, y = lst[i]
-            r = (d*d-y*y)**0.5
-            lst[i] = [x-r, x+r]
+            r = (d * d - y * y)**0.5
+            lst[i] = [x - r, x + r]
         lst.sort(key=lambda it: it[0])
         ans = 0
         pre = -inf
