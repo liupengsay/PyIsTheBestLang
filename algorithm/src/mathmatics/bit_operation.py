@@ -35,6 +35,7 @@ P7627 [COCI2011-2012#1] X3（https://www.luogu.com.cn/problem/P7627）经典按�
 P7649 [BalticOI 2004 Day 1] SCALES（https://www.luogu.com.cn/problem/P7649）三进制计算，贪心模拟砝码放置
 P1582 倒水（https://www.luogu.com.cn/problem/P1582）进制题脑经急转弯
 P2114 [NOI2014] 起床困难综合症（https://www.luogu.com.cn/problem/P2114）按位操作计算模拟，贪心选取最大结果
+P2326 AKN’s PPAP（https://www.luogu.com.cn/problem/P2326）按位模拟贪心选取与值最大的数值对
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/305/C（利用二进制加减的思想进行解题）
@@ -395,6 +396,29 @@ class Solution:
             else:
                 ans += zero[i]
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p2326(ac=FastIO()):
+        # 模板：按位模拟贪心选取与值最大的数值对
+        for case in range(ac.read_int()):
+            ac.read_int()
+            nums = ac.read_list_ints()
+            ans = 0
+            while nums:
+                cnt = [0] * 32
+                for num in nums:
+                    for i in range(21):
+                        if num & (1 << i):
+                            cnt[i] += 1
+                for i in range(20, -1, -1):
+                    if cnt[i] >= 2:
+                        ans |= (1 << i)
+                        nums = [num ^ (1 << i) for num in nums if num & (1 << i) and num ^ (1 << i)]
+                        break
+                else:
+                    nums = []
+            ac.st(f"Case #{case + 1}: {ans}")
         return
 
 

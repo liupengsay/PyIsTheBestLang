@@ -47,6 +47,8 @@ P1793 跑步（https://www.luogu.com.cn/problem/P1793）求连通图两个指定
 P2656 采蘑菇（https://www.luogu.com.cn/problem/P2656）使用scc缩点后，计算DAG最长路
 P1726 上白泽慧音（https://www.luogu.com.cn/problem/P1726）强连通分量裸题
 P2002 消息扩散（https://www.luogu.com.cn/problem/P2002）强连通分量缩点后，计算入度为0的节点个数
+P2341 [USACO03FALL/HAOI2006] 受欢迎的牛 G（https://www.luogu.com.cn/problem/P2341）使用scc缩点后计算出度为 0 的点集个数与大小
+
 ===================================CodeForces===================================
 F. Is It Flower?（https://codeforces.com/contest/1811/problem/F）无向图求连通分量
 C. Checkposts（https://codeforces.com/problemset/problem/427/C）有向图的强联通分量进行缩点
@@ -729,6 +731,30 @@ class Solution:
                 if a != b:
                     in_degree[b] = 1
         ac.st(sum(x == 0 for x in in_degree))
+        return
+
+    @staticmethod
+    def lg_p2341(ac=FastIO()):
+        # 模板：使用scc缩点后计算出度为 0 的点集个数与大小
+        n, m = ac.read_ints()
+        dct = [[] for _ in range(n)]
+        for _ in range(m):
+            a, b = ac.read_ints()
+            if a != b:
+                dct[a - 1].append(b - 1)
+        scc_id, scc_node_id, node_scc_id = TarjanCC().get_strongly_connected_component_bfs(n, dct)
+
+        degree = [0] * scc_id
+        for i in range(n):
+            for j in dct[i]:
+                a, b = node_scc_id[i], node_scc_id[j]
+                if a != b:
+                    degree[a] += 1
+        degree = [i for i in range(scc_id) if not degree[i]]
+        if len(degree) > 1:
+            ac.st(0)
+        else:
+            ac.st(len(scc_node_id[degree[0]]))
         return
 
 

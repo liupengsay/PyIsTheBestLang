@@ -45,6 +45,8 @@ P1895 数字序列（https://www.luogu.com.cn/problem/P1895）前缀和计数加
 P1982 [NOIP2013 普及组] 小朋友的数字（https://www.luogu.com.cn/problem/P1982）前缀最大连续子段和与前缀最大值
 P2070 刷墙（https://www.luogu.com.cn/problem/P2070）哈希离散化差分数组计数
 P2190 小Z的车厢（https://www.luogu.com.cn/problem/P2190）环形数组差分
+P2352 队爷的新书（https://www.luogu.com.cn/problem/P2352）离散化差分
+P2363 马农（https://www.luogu.com.cn/problem/P2363）二维前缀和与枚举
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/33/C（前后缀最大变换和与分割点枚举，经典类型题目）
@@ -68,7 +70,6 @@ D. Absolute Sorting（https://codeforces.com/contest/1772/problem/D）离散差�
 """
 
 
-
 class PreFixSumMatrix:
     def __init__(self, mat):
         self.mat = mat
@@ -80,7 +81,7 @@ class PreFixSumMatrix:
                 self.pre[i + 1][j + 1] = self.pre[i][j + 1] + self.pre[i + 1][j] - self.pre[i][j] + mat[i][j]
 
     def query(self, xa, ya, xb, yb):
-        # 二维子矩阵和
+        # 二维子矩阵和查询，索引从 0 开始，左上角 [xa, ya] 右下角 [xb, yb]
         return self.pre[xb + 1][yb + 1] - self.pre[xb + 1][ya] - self.pre[xa][yb + 1] + self.pre[xa][ya]
 
 
@@ -706,6 +707,51 @@ class Solution:
         for i in range(1, n):
             diff[i] += diff[i - 1]
         ac.st(math.ceil(max(diff) / 36))
+        return
+
+    @staticmethod
+    def lg_p2352(ac=FastIO()):
+        # 模板：离散化差分
+        diff = defaultdict(int)
+        for _ in range(ac.read_int()):
+            a, b = ac.read_ints()
+            diff[a] += 1
+            diff[b + 1] -= 1
+        axis = sorted(list(diff.keys()))
+        m = len(axis)
+        ans = 0
+        for i in range(1, m):
+            diff[axis[i]] += diff[axis[i - 1]]
+            # 注意此时选择右端点
+            ans = ac.max(ans, diff[axis[i - 1]] * (axis[i] - 1))
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p2363(ac=FastIO()):
+        # 模板：二维前缀和与枚举
+        n = ac.read_int()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        pre = PreFixSumMatrix(nums)
+        ans = 0
+        for i in range(n):
+            for j in range(n):
+                dct = defaultdict(int)
+                for x in range(i + 1):
+                    for y in range(j + 1):
+                        dct[pre.query(x, y, i, j)] += 1
+                for p in range(i + 1, n):
+                    for q in range(j + 1, n):
+                        ans += dct[pre.query(i + 1, j + 1, p, q)]
+
+                dct = defaultdict(int)
+                for x in range(i + 1):
+                    for y in range(j, n):
+                        dct[pre.query(x, j, i, y)] += 1
+                for p in range(i + 1, n):
+                    for q in range(j):
+                        ans += dct[pre.query(i + 1, q, p, j - 1)]
+        ac.st(ans)
         return
 
 

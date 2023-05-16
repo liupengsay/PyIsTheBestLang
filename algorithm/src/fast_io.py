@@ -17,6 +17,17 @@ from operator import mul
 from typing import List, Callable, Dict, Set, Tuple, DefaultDict
 
 
+# import sys
+# from collections import deque
+#
+# read = lambda: sys.stdin.readline()
+#
+# m, n = list(map(int, read().split()))
+# grid = []
+# for _ in range(m):
+#     grid.append(list(map(int, read().split())))
+
+
 class FastIO:
     def __init__(self):
         return

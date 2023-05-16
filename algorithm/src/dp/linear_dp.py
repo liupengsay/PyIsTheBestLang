@@ -3,7 +3,9 @@ import unittest
 from typing import List
 
 from algorithm.src.fast_io import FastIO, inf
-from collections import Counter
+from collections import Counter, defaultdict
+
+from algorithm.src.mathmatics.number_theory import NumberTheory
 
 """
 算法：线性DP
@@ -407,6 +409,62 @@ class Solution:
                 x += 1
                 num *= k
             ans += (x + 1) // 2
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p2246(ac=FastIO()):
+        # 模板：字符串计数线性DP
+        s = ""
+        while True:
+            cur = ac.read_str()
+            if not cur or cur == "eof":
+                break
+            s += cur.lower()
+        t = list("HelloWorld".lower())
+        dct = set(t)
+        ind = defaultdict(list)
+        for i, w in enumerate(t):
+            ind[w].append(i)
+        m = len(t)
+        pre = [0] * m
+        mod = 10 ** 9 + 7
+        for w in s:
+            if w not in dct:
+                continue
+            cur = pre[:]
+            for i in ind[w]:
+                if i:
+                    cur[i] += pre[i - 1]
+                else:
+                    cur[i] += 1
+            pre = [num % mod for num in cur]
+        ac.st(pre[-1])
+        return
+
+    @staticmethod
+    def lg_p2359(ac=FastIO()):
+        # 模板：预处理素数加线性DP
+        primes = NumberTheory().sieve_of_eratosthenes(10000)
+        primes = [str(num) for num in primes if 1000 > num >= 100 and "0" not in str(num)]
+        cnt = defaultdict(list)
+        for num in primes:
+            cnt[num[:-1]].append(num)
+        pre = defaultdict(int)
+        for num in primes:
+            pre[num[1:]] += 1
+        # 转移计算
+        mod = 10**9 + 9
+        n = ac.read_int()
+        for _ in range(n - 3):
+            cur = defaultdict(int)
+            for num in pre:
+                for nex in cnt[num]:
+                    cur[nex[1:]] += pre[num]
+            pre = defaultdict(int)
+            for num in cur:
+                pre[num] = cur[num] % mod
+        ans = sum(pre.values()) % mod
         ac.st(ans)
         return
 

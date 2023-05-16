@@ -74,6 +74,8 @@ P2014 [CTSC1997] 选课（https://www.luogu.com.cn/problem/P2014）增加一个�
 P2079 烛光晚餐（https://www.luogu.com.cn/problem/P2079）滚动哈希背包DP，使用两层哈希节省空间
 P2170 选学霸（https://www.luogu.com.cn/problem/P2170）连通块加二进制01背包优化
 P2214 [USACO14MAR]Mooo Moo S（https://www.luogu.com.cn/problem/P2214）变种背包DP贪心
+P2306 被 yyh 虐的 mzc（https://www.luogu.com.cn/problem/P2306）根据数据范围计数后进行二进制优化的01背包计算
+P2320 [HNOI2006] 鬼谷子的钱袋（https://www.luogu.com.cn/problem/P2320）二进制分解贪心反向计算
 
 ================================CodeForces================================
 B. Modulo Sum（https://codeforces.com/problemset/problem/577/B）取模计数二进制优化与背包DP，寻找非空子序列的和整除给定的数
@@ -901,6 +903,40 @@ class Solution:
                 dp[i] = ac.min(dp[i - num] + 1, dp[i])
         ans = sum(dp[x] for x in voice)
         ac.st(ans if ans < inf else -1)
+        return
+
+    @staticmethod
+    def lg_p2306(ac=FastIO()):
+        # 模板：根据数据范围计数后进行二进制优化的01背包计算
+        n, m, k = ac.read_ints()
+        cnt = defaultdict(lambda: defaultdict(int))
+        for _ in range(n):
+            a, b = ac.read_ints()
+            cnt[a][b] += 1
+        dp = [0] * (m + 1)
+        for a in cnt:
+            for b in cnt[a]:
+                for x in BagDP().bin_split(cnt[a][b]):
+                    for i in range(m, x * a - 1, -1):
+                        dp[i] = ac.max(dp[i], dp[i - x * a] + x * b)
+        ans = max(dp)
+        if ans >= k:
+            ac.st("yes")
+        else:
+            ac.st("no")
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p2320(ac=FastIO()):
+        # 模板：二进制分解贪心反向计算
+        m = ac.read_int()
+        ans = []
+        while m:
+            ans.append((m + 1) // 2)
+            m //= 2
+        ac.st(len(ans))
+        ac.st(*ans[::-1])
         return
 
 

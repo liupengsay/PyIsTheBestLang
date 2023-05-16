@@ -34,6 +34,7 @@ P2168 [NOI2015] 荷马史诗（https://www.luogu.com.cn/problem/P2168）霍夫�
 P2278 [HNOI2003]操作系统（https://www.luogu.com.cn/problem/P2278）使用二叉堆模拟CPU占用
 P1717 钓鱼（https://www.luogu.com.cn/problem/P1717）枚举最远到达地点进行二叉堆贪心选取
 P1905 堆放货物（https://www.luogu.com.cn/problem/P1905）二叉堆从大到小贪心摆放
+P2409 Y的积木（https://www.luogu.com.cn/problem/P2409）经典二叉堆，计算最小的k个和
 
 ===================================AcWing======================================
 146. 序列（https://www.acwing.com/problem/content/description/148/）小顶堆计算经典问题m个数组最小的n个子序列和，同样可以计算最大的
@@ -398,6 +399,27 @@ class Solution:
             heapq.heappush(stack, [ans[i][0], i])
         for a in ans:
             ac.lst(a[1:])
+        return
+
+    @staticmethod
+    def lg_p2409(ac=FastIO()):
+        # 模板：经典二叉堆，计算最小的k个和
+        n, k = ac.read_ints()
+        pre = ac.read_list_ints()[1:]
+        pre.sort()
+        for _ in range(n - 1):
+            cur = ac.read_list_ints()[1:]
+            cur.sort()
+            nex = []
+            for x in cur:
+                for num in pre:
+                    if len(nex) == k and -num - x < nex[0]:
+                        break
+                    heapq.heappush(nex, -num - x)
+                    if len(nex) > k:
+                        heapq.heappop(nex)
+            pre = sorted([-x for x in nex])
+        ac.lst(pre[:k])
         return
 
 

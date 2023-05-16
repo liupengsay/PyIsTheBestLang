@@ -74,6 +74,8 @@ P1354 房间最短路问题（https://www.luogu.com.cn/problem/P1354）建图Dij
 P1608 路径统计（https://www.luogu.com.cn/problem/P1608）使用Dijkstra计算有向与无向、带权与不带权的最短路数量
 P1828 [USACO3.2]香甜的黄油 Sweet Butter（https://www.luogu.com.cn/problem/P1828）多个单源Dijkstra最短路计算
 P2047 [NOI2007] 社交网络（https://www.luogu.com.cn/problem/P2047）Dijkstra计算经过每个点的所有最短路条数占比
+P2269 [HNOI2002]高质量的数据传输（https://www.luogu.com.cn/problem/P2269）比较两个项的最短路计算
+P2349 金字塔（https://www.luogu.com.cn/problem/P2349）比较两个项相加的最短路
 
 ================================CodeForces================================
 C. Dijkstra?（https://codeforces.com/problemset/problem/20/C）正权值最短路计算，并记录返回生成路径
@@ -799,6 +801,69 @@ class Solution:
             ans = ac.max(ans, cur - dis)
             dct[i][j] = dct[j][i] = dct[j][i] // 2
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p2269(ac=FastIO()):
+        # 模板：比较两个维度的Dijkstra计算
+        n, src, dst = ac.read_ints()
+        src -= 1
+        dst -= 1
+        time = [ac.read_list_ints() for _ in range(n)]
+        loss = [ac.read_list_floats() for _ in range(n)]
+
+        # 丢失率与时延
+        dis = [[inf, inf] for _ in range(n)]
+        stack = [[0, 0, src]]
+        dis[src] = [0, 0]
+        # 最短路
+        while stack:
+            ll, tt, i = heapq.heappop(stack)
+            if dis[i] < [ll, tt]:
+                continue
+            if i == dst:
+                break
+            for j in range(n):
+                if time[i][j] != -1 and loss[i][j] != -1:
+                    nex_ll = 1 - (1 - ll) * (1 - loss[i][j])
+                    nex_tt = tt + time[i][j]
+                    if [nex_ll, nex_tt] < dis[j]:
+                        dis[j] = [nex_ll, nex_tt]
+                        heapq.heappush(stack, [nex_ll, nex_tt, j])
+        res_ll = dis[dst][0]
+        res_tt = dis[dst][1]
+        ac.lst([res_tt, "%.4f" % res_ll])
+        return
+
+    @staticmethod
+    def lg_p2349(ac=FastIO()):
+
+        # 模板：比较两个项相加的最短路
+        n, m = ac.read_ints()
+        dct = [dict() for _ in range(n)]
+        for _ in range(m):
+            u, v, w = ac.read_ints()
+            u -= 1
+            v -= 1
+            dct[u][v] = ac.min(dct[u].get(v, inf), w)
+            dct[v][u] = ac.min(dct[v].get(u, inf), w)
+
+        # 最短路模板
+        dis = [inf] * n
+        stack = [[0, 0, 0, 0]]
+        dis[0] = 0
+        while stack:
+            dd, d, ceil, i = heapq.heappop(stack)
+            if dis[i] < dd:
+                continue
+            if i == n - 1:
+                break
+            for j in dct[i]:
+                dj = d + dct[i][j] + ac.max(ceil, dct[i][j])
+                if dj < dis[j]:
+                    dis[j] = dj
+                    heapq.heappush(stack, [dj, d + dct[i][j], ac.max(ceil, dct[i][j]), j])
+        ac.st(dis[n - 1])
         return
 
 

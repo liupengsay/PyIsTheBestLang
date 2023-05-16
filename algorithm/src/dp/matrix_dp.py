@@ -66,6 +66,8 @@ P2140 小Z的电力管制（https://www.luogu.com.cn/problem/P2140）矩阵四�
 P2217 [HAOI2007]分割矩阵（https://www.luogu.com.cn/problem/P2217）矩阵四维DP，可以使用记忆化与迭代计算
 P1436 棋盘分割（https://www.luogu.com.cn/problem/P1436）矩阵四维DP，可以使用记忆化与迭代计算
 P5752 [NOI1999] 棋盘分割（https://www.luogu.com.cn/problem/P5752）矩阵四维DP，可以使用记忆化与迭代计算
+P2380 狗哥采矿（https://www.luogu.com.cn/problem/P2380）矩阵DP
+P2401 不等数列（https://www.luogu.com.cn/problem/P2401）二维DP
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1446/B（最长公共子序列LCS变形问题，理解贡献）
@@ -891,6 +893,49 @@ class Solution:
                             dp[i][j][x][y][w] = res
         ans = (dp[0][0][m - 1][n - 1][k]/k)**0.5
         ac.st("%.3f" % ans)
+        return
+
+    @staticmethod
+    def lg_p2380(ac=FastIO()):
+        # 模板：前缀和计算与矩阵DP
+        while True:
+            m, n = ac.read_ints()
+            if m == n == 0:
+                break
+
+            grid_west = []
+            for _ in range(m):
+                lst = ac.read_list_ints()
+                grid_west.append(ac.accumulate(lst))
+
+            grid_north = [[0]*(n+1)]
+            for _ in range(m):
+                lst = ac.read_list_ints()
+                grid_north.append([grid_north[-1][i]+lst[i] for i in range(n)])
+
+            dp = [[0] * (n + 1) for _ in range(m + 1)]
+            for i in range(m):
+                for j in range(n):
+                    # 只能往左或者往上挖
+                    dp[i+1][j+1] = ac.max(dp[i][j+1] + grid_west[i][j+1], dp[i+1][j] + grid_north[i+1][j])
+            ac.st(dp[-1][-1])
+        return
+
+    @staticmethod
+    def lg_p2401(ac=FastIO()):
+        # 模板：二维DP
+        n, k = ac.read_ints()
+        dp = [[0] * (k + 1) for _ in range(2)]
+        pre = 0
+        dp[pre][0] = 1
+        mod = 2015
+        for i in range(n):
+            cur = 1 - pre
+            dp[cur][0] = 1
+            for j in range(1, ac.min(i + 1, k + 1)):
+                dp[cur][j] = (dp[pre][j] * (j + 1) + dp[pre][j - 1] * (i - j + 1)) % mod
+            pre = cur
+        ac.st(dp[pre][-1])
         return
 
 

@@ -32,6 +32,7 @@ P1880 [NOI1995] 石子合并（https://www.luogu.com.cn/problem/P1880）环形�
 P1040 [NOIP2003 提高组] 加分二叉树（https://www.luogu.com.cn/problem/P1040）区间DP与路径还原
 P1043 [NOIP2003 普及组] 数字游戏（https://www.luogu.com.cn/problem/P1043）环形区间DP
 P1430 序列取数（https://www.luogu.com.cn/problem/P1430）区间DP加前缀数组优化
+P2308 添加括号（https://www.luogu.com.cn/problem/P2308）经典区间DP，并使用递归方式反解括号添加方式以及每一步的和
 
 ================================CodeForces================================
 C. The Sports Festival（https://codeforces.com/problemset/problem/1509/C）转换为区间DP进行求解
@@ -197,6 +198,51 @@ class Solution:
                     floor = ac.min(floor, dp[j])
                     post[j] = ac.min(post[j], dp[j])
             ac.st(dp[n-1])
+        return
+
+    @staticmethod
+    def lg_p2308(ac=FastIO()):
+        # 模板：经典区间DP，并使用递归方式反解括号添加方式以及每一步的和
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        pre = ac.accumulate(nums)
+        # 记录转移的中间节点与加和最小值
+        dp = [[inf] * n for _ in range(n)]
+        mid = [[-1] * n for _ in range(n)]
+        for i in range(n - 1, -1, -1):
+            dp[i][i] = 0
+            for j in range(i + 1, n):
+                ind = i
+                for k in range(i, j):
+                    cur = dp[i][k] + dp[k + 1][j] + pre[j + 1] - pre[i]
+                    if cur < dp[i][j]:
+                        dp[i][j] = cur
+                        ind = k
+                mid[i][j] = ind
+
+        # 反推路径
+        ans = []
+        nums = [str(x) for x in nums]
+        stack = [[0, n - 1]]
+        while stack:
+            i, j = stack.pop()
+            if i >= 0:
+                stack.append([~i, j])
+                if i >= j - 1:
+                    continue
+                k = mid[i][j]
+                # 先左后右
+                stack.append([k + 1, j])
+                stack.append([i, k])
+            else:
+                i = ~i
+                if i < j:
+                    nums[i] = "(" + nums[i]
+                    nums[j] = nums[j] + ")"
+                    ans.append(pre[j + 1] - pre[i])
+        ac.st("+".join(nums))
+        ac.st(sum(ans))
+        ac.lst(ans)
         return
 
 

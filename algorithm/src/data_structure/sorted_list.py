@@ -51,6 +51,7 @@ P1908 逆序对（https://www.luogu.com.cn/problem/P1908）经典问题求逆序
 P1966 [NOIP2013 提高组] 火柴排队（https://www.luogu.com.cn/problem/P1966）逆序对经典贪心题目
 P2161 [SHOI2009]会场预约（https://www.luogu.com.cn/problem/P2161）区间合并与删除处理
 P1637 三元上升子序列（https://www.luogu.com.cn/problem/P1637）典型STL应用题，前后缀大小值计数
+P2234 [HNOI2002]营业额统计（https://www.luogu.com.cn/problem/P2234）典型STL应用题
 
 ================================CodeForces================================
 D. Pashmak and Parmida's problem（https://codeforces.com/problemset/problem/459/D）使用有序集合进行大小计数查找
@@ -417,6 +418,27 @@ class Solution:
             post[i] = n - i - 1 - lst.bisect_right(nums[i])
             lst.add(nums[i])
         ans = sum(pre[i] * post[i] for i in range(n))
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p2234(ac=FastIO()):
+        # 模板：典型STL应用题
+        n = ac.read_int()
+        ans = 0
+        lst = LocalSortedList()
+        for _ in range(n):
+            x = ac.read_int()
+            if not lst:
+                ans += x
+            else:
+                i = lst.bisect_left(x)
+                cur = inf
+                for j in [i-1, i]:
+                    if 0 <= j < len(lst):
+                        cur = ac.min(cur, abs(lst[j]-x))
+                ans += cur
+            lst.add(x)
         ac.st(ans)
         return
 

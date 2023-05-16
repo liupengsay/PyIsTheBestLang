@@ -38,6 +38,7 @@ P3807 【模板】卢卡斯定理/Lucas 定理（https://www.luogu.com.cn/proble
 P1044 [NOIP2003 普及组] 栈（https://www.luogu.com.cn/problem/P1044）卡特兰数
 P1655 小朋友的球（https://www.luogu.com.cn/problem/P1655）矩阵DP，斯特林数
 P1680 奇怪的分组（https://www.luogu.com.cn/problem/P1680）隔板法计算不同分组的个数，使用乘法逆元与Lucas定理快速计算Comb(a,b)%m
+P2265 路边的水沟（https://www.luogu.com.cn/problem/P2265）排列组合，计算comb(n+m, m)
 
 ================================CodeForces================================
 D. Triangle Coloring（https://codeforces.com/problemset/problem/1795/D）组合计数取模与乘法逆元快速计算
@@ -396,6 +397,15 @@ class Solution:
         n -= 1
         p = 10**9+7
         ans = Lucas().comb(n, m, p)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p2265(ac=FastIO()):
+        # 模板：排列组合，计算comb(n+m, m)
+        mod = 1000000007
+        n, m = ac.read_ints()
+        ans = Lucas().comb(n+m, m, mod)
         ac.st(ans)
         return
 

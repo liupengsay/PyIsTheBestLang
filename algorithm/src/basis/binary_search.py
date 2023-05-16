@@ -48,6 +48,7 @@ P1381 单词背诵（https://www.luogu.com.cn/problem/P1381）典型二分
 P1419 寻找段落（https://www.luogu.com.cn/problem/P1419）二分加优先队列
 P1525 [NOIP2010 提高组] 关押罪犯（https://www.luogu.com.cn/problem/P1525）经典二分加BFS进行二分图划分
 P1542 包裹快递（https://www.luogu.com.cn/problem/P1542）二分加使用分数进行高精度计算
+P2237 [USACO14FEB]Auto-complete S（https://www.luogu.com.cn/problem/P2237）脑筋急转弯排序后二分查找
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1251/D（使用贪心进行中位数二分求解）
@@ -703,6 +704,24 @@ class Solution:
 
         ans = BinarySearch().find_int_left(0, nums[-1] - nums[0], check)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p2237(ac=FastIO()):
+        # 模板：脑筋急转弯排序后二分查找
+        w, n = ac.read_ints()
+        nums = [ac.read_str() for _ in range(w)]
+        ind = list(range(w))
+        ind.sort(key=lambda it: nums[it])
+        nums.sort()
+        for _ in range(n):
+            k, s = ac.read_list_strs()
+            k = int(k)
+            x = bisect.bisect_left(nums, s) + k - 1
+            if x < w and nums[x][:len(s)] == s:
+                ac.st(ind[x] + 1)
+            else:
+                ac.st(-1)
         return
 
 

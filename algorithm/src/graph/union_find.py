@@ -46,6 +46,7 @@ P1522 [USACO2.4] 牛的旅行 Cow Tours（https://www.luogu.com.cn/problem/P1522
 P1621 集合（https://www.luogu.com.cn/problem/P1621）利用素数筛的思想对数复杂度合并公共质因数大于p的数并计算连通块数量
 P1892 [BOI2003]团伙（https://www.luogu.com.cn/problem/P1892）经典并查集，敌人与朋友关系
 P2189 小Z的传感器（https://www.luogu.com.cn/problem/P2189）并查集经典题，确定访问顺序的合法性
+P2307 迷宫（https://www.luogu.com.cn/problem/P2307）并查集判定树的生成是否合法
 
 ================================CodeForces================================
 D. Roads not only in Berland（https://codeforces.com/problemset/problem/25/D）并查集将原来的边断掉重新来连接使得成为一整个连通集
@@ -545,6 +546,32 @@ class Solution:
                     break
                 pre = i
             ac.st("Yes" if ans else "No")
+        return
+
+    @staticmethod
+    def lg_p2307(ac=FastIO()):
+        # 模板：并查集判定树的生成是否合法
+        while True:
+            ans = []
+            while True:
+                lst = ac.read_list_ints()
+                if not lst:
+                    break
+                ans.extend(lst)
+            if ans == [-1, -1]:
+                break
+            ans = ans[:-2]
+            nodes = list(set(ans))
+            ind = {num: i for i, num in enumerate(nodes)}
+            m = len(ind)
+            uf = UnionFind(m)
+            res = True
+            for i in range(0, len(ans), 2):
+                a, b = ind[ans[i]], ind[ans[i + 1]]
+                if not uf.union(a, b):
+                    res = False
+                    break
+            ac.st(1 if res and uf.part == 1 else 0)
         return
 
 

@@ -50,6 +50,7 @@ P6392 中意（https://www.luogu.com.cn/problem/P6392）公式拆解变换后进
 P1045 [NOIP2003 普及组] 麦森数（https://www.luogu.com.cn/problem/P1045）位数公式转换与快速幂计算
 P3509 [POI2010]ZAB-Frog（https://www.luogu.com.cn/problem/P3509）双指针模拟寻找第k远的距离，快速幂原理跳转
 P1349 广义斐波那契数列（https://www.luogu.com.cn/problem/P1349）矩阵快速幂
+P2233 [HNOI2002]公交车路线（https://www.luogu.com.cn/problem/P2233）矩阵快速幂
 
 参考：OI WiKi（xx）
 
@@ -212,7 +213,7 @@ class Solution:
         return
 
     @staticmethod
-    def main(ac=FastIO()):
+    def lg_p1349(ac=FastIO()):
         # 模板：矩阵快速幂
         p, q, a1, a2, n, m = ac.read_ints()
         if n == 1:
@@ -226,6 +227,25 @@ class Solution:
         ans = res[0][0]*a2+res[0][1]*a1
         ans %= m
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p2233(ac=FastIO()):
+        # 模板：矩阵快速幂
+        n = ac.read_int()
+        mat = [[0, 1, 0, 0, 0, 0, 0, 1],
+               [1, 0, 1, 0, 0, 0, 0, 0],
+               [0, 1, 0, 1, 0, 0, 0, 0],
+               [0, 0, 1, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 1, 0],
+               [0, 0, 0, 0, 0, 1, 0, 1],
+               [1, 0, 0, 0, 0, 0, 1, 0]]
+        res = [1, 0, 0, 0, 0, 0, 0, 0]
+        mat_pow = MatrixFastPower().matrix_pow(mat, n-1, 1000)
+        ans = [sum(mat_pow[i][j]*res[j] for j in range(8)) for i in range(8)]
+        final = (ans[3]+ans[5]) % 1000
+        ac.st(final)
         return
 
 

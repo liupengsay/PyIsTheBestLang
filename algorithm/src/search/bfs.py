@@ -59,6 +59,7 @@ P1213 [USACO1.4][IOI1994]时钟 The Clocks（https://www.luogu.com.cn/problem/P1
 P1902 刺杀大使（https://www.luogu.com.cn/problem/P1902）二分加BFS与原地哈希计算路径最大值的最小值
 P2199 最后的迷宫（https://www.luogu.com.cn/problem/P2199）队列01BFS判定距离最近的可视范围
 P2226 [HNOI2001]遥控赛车比赛（https://www.luogu.com.cn/problem/P2226）有限制地BDS转向计算
+P2296 [NOIP2014 提高组] 寻找道路（https://www.luogu.com.cn/problem/P2296）正向与反向建图跑两次BFS
 
 ================================CodeForces================================
 E. Nearest Opposite Parity（https://codeforces.com/problemset/problem/1272/E）经典反向建图，多源BFS
@@ -927,6 +928,46 @@ class Solution:
                                 break
             if ans != -1:
                 ac.lst([t, ans])
+        return
+
+    @staticmethod
+    def lg_p2296(ac=FastIO()):
+        # 模板：正向与反向建图跑两次BFS
+        n, m = ac.read_ints()
+        dct = [set() for _ in range(n)]
+        rev = [set() for _ in range(n)]
+        for _ in range(m):
+            x, y = ac.read_ints_minus_one()
+            if x != y:
+                dct[x].add(y)
+                rev[y].add(x)
+        s, t = ac.read_ints_minus_one()
+
+        # 终点可达
+        reach = [0] * n
+        reach[t] = 1
+        stack = [t]
+        while stack:
+            i = stack.pop()
+            for j in rev[i]:
+                if not reach[j]:
+                    reach[j] = 1
+                    stack.append(j)
+        if not all(reach[x] for x in dct[s]):
+            ac.st(-1)
+            return
+
+        # 起点出发最短路
+        visit = [inf] * n
+        visit[s] = 0
+        stack = deque([s])
+        while stack:
+            i = stack.popleft()
+            for j in dct[i]:
+                if all(reach[k] for k in dct[j]) and visit[j] == inf:
+                    visit[j] = visit[i] + 1
+                    stack.append(j)
+        ac.st(visit[t] if visit[t] < inf else -1)
         return
 
 
