@@ -27,6 +27,7 @@ from decimal import Decimal
 import heapq
 import copy
 
+from algorithm.src.basis.binary_search import BinarySearch
 from algorithm.src.fast_io import FastIO
 
 """
@@ -47,6 +48,7 @@ P8835 [传智杯 #3 决赛] 子串（https://www.luogu.com.cn/record/list?user=7
 P6140 [USACO07NOV]Best Cow Line S（https://www.luogu.com.cn/problem/P6140）贪心模拟与字典序比较，使用字符串哈希与二分查找比较正序与倒序最长公共子串
 P2870 [USACO07DEC]Best Cow Line G（https://www.luogu.com.cn/problem/P2870）贪心模拟与字典序比较，使用字符串哈希与二分查找比较正序与倒序最长公共子串
 P5832 [USACO19DEC]Where Am I? B（https://www.luogu.com.cn/problem/P5832）可以使用字符串哈希进行最长的长度使得所有对应长度的子串均是唯一的
+P2852 [USACO06DEC]Milk Patterns G（https://www.luogu.com.cn/problem/P2852）二分加字符串哈希计算出现超过 k 次的最长连续子数组
 
 ================================CodeForces================================
 D. Remove Two Letters（https://codeforces.com/problemset/problem/1800/D）字符串前后缀哈希加和变换
@@ -353,6 +355,35 @@ class Solution:
                 ac.st("same")
             else:
                 ac.st("different")
+        return
+
+    @staticmethod
+    def lg_p2852(ac=FastIO()):
+
+        # 模板；二分加字符串哈希计算出现超过 k 次的最长连续子数组
+        p1 = random.randint(26, 100)
+        p2 = random.randint(26, 100)
+        mod1 = random.randint(10 ** 9 + 7, 2 ** 31 - 1)
+        mod2 = random.randint(10 ** 9 + 7, 2 ** 31 - 1)
+
+        def check(x):
+            pre = defaultdict(int)
+            s1 = s2 = 0
+            pow1 = pow(p1, x - 1, mod1)
+            pow2 = pow(p2, x - 1, mod2)
+            for i in range(n):
+                s1 = (s1 * p1 + nums[i]) % mod1
+                s2 = (s2 * p2 + nums[i]) % mod2
+                if i >= x - 1:
+                    pre[(s1, s2)] += 1
+                    s1 = (s1 - pow1 * nums[i - x + 1]) % mod1
+                    s2 = (s2 - pow2 * nums[i - x + 1]) % mod2
+            return max(pre.values()) >= k
+
+        n, k = ac.read_ints()
+        nums = [ac.read_int() for _ in range(n)]
+        ans = BinarySearch().find_int_right(0, n, check)
+        ac.st(ans)
         return
 
 

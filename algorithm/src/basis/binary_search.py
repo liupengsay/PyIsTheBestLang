@@ -49,7 +49,7 @@ P1419 寻找段落（https://www.luogu.com.cn/problem/P1419）二分加优先队
 P1525 [NOIP2010 提高组] 关押罪犯（https://www.luogu.com.cn/problem/P1525）经典二分加BFS进行二分图划分
 P1542 包裹快递（https://www.luogu.com.cn/problem/P1542）二分加使用分数进行高精度计算
 P2237 [USACO14FEB]Auto-complete S（https://www.luogu.com.cn/problem/P2237）脑筋急转弯排序后二分查找
-
+P2810 Catch the theives（https://www.luogu.com.cn/problem/P2810）二分加枚举
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1251/D（使用贪心进行中位数二分求解）
 https://codeforces.com/problemset/problem/830/A（使用贪心进行距离点覆盖二分求解）
@@ -722,6 +722,38 @@ class Solution:
                 ac.st(ind[x] + 1)
             else:
                 ac.st(-1)
+        return
+
+    @staticmethod
+    def lg_p2810(ac=FastIO()):
+
+        # 模板：二分加枚举
+        n = ac.read_int()
+
+        low = 0
+        high = 10 ** 18
+
+        def check2(x):
+            k = 2
+            res = 0
+            while k * k * k <= x:
+                res += x // (k * k * k)
+                k += 1
+            return res
+
+        def check(x):
+            k = 2
+            res = 0
+            while k * k * k <= x:
+                res += x // (k * k * k)
+                k += 1
+            return res >= n
+
+        ans = BinarySearch().find_int_left(low, high, check)
+        if check2(ans) == n:
+            ac.st(ans)
+            return
+        ac.st(-1)
         return
 
 

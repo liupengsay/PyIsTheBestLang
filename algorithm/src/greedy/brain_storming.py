@@ -1,6 +1,8 @@
 import heapq
 from bisect import insort_left, bisect_left
 from collections import Counter, deque
+
+from algorithm.src.data_structure.sorted_list import LocalSortedList
 from algorithm.src.fast_io import FastIO
 
 
@@ -88,6 +90,7 @@ P2512 [HAOI2008]糖果传递（https://www.luogu.com.cn/problem/P2512）经典�
 P1080 [NOIP2012 提高组] 国王游戏（https://www.luogu.com.cn/problem/P1080）经典贪心，举例两项确定排序公式
 P1650 田忌赛马（https://www.luogu.com.cn/problem/P1650）经典贪心，优先上对上其次下对下最后下对上
 P2088 果汁店的难题（https://www.luogu.com.cn/problem/P2088）贪心，取空闲的，或者下一个离得最远的使用
+P2816 宋荣子搭积木（https://www.luogu.com.cn/problem/P2816）排序后从小到大贪心放置，使用STL维护当前积木列高度
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1186/D（贪心取floor，再根据加和为0的特质进行补充加1成为ceil）
@@ -445,6 +448,24 @@ class Solution:
             busy.add(nums[i])
             ans += 1
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p2816(ac=FastIO()):
+        # 模板：排序后从小到大贪心放置，使用STL维护当前积木列高度
+        lst = LocalSortedList()
+        ac.read_int()
+        nums = ac.read_list_ints()
+        nums.sort()
+        for num in nums:
+            i = lst.bisect_left(num)
+            if (0 <= i < len(lst) and lst[i] > num) or i == len(lst):
+                i -= 1
+            if 0 <= i < len(lst):
+                lst.add(lst.pop(i)+1)
+            else:
+                lst.add(1)
+        ac.st(len(lst))
         return
 
 

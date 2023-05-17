@@ -32,6 +32,7 @@ P1578 奶牛浴场（https://www.luogu.com.cn/problem/P1578）使用单调栈离
 P3467 [POI2008]PLA-Postering（https://www.luogu.com.cn/problem/P3467）贪心单调栈
 P1191 矩形（https://www.luogu.com.cn/problem/P1191）经典单调栈求矩形个数
 P1323 删数问题（https://www.luogu.com.cn/problem/P1323）二叉堆与单调栈，计算最大字典序数字
+P2422 良好的感觉（https://www.luogu.com.cn/problem/P2422）单调栈与前缀和
 
 ================================CodeForces================================
 E. Explosions?（https://codeforces.com/problemset/problem/1795/E）单调栈贪心计数枚举，前后缀DP转移
@@ -363,6 +364,25 @@ class MonotonicStack:
             stack.append(w)
         stack = stack[rem:]
         ac.st(int("".join(stack)))
+        return
+
+    @staticmethod
+    def lg_p2422(ac=FastIO()):
+        # 模板：单调栈与前缀和
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        lst = ac.accumulate(nums)
+        post = [n - 1] * n
+        pre = [0] * n
+        stack = []
+        for i in range(n):
+            while stack and nums[stack[-1]] > nums[i]:
+                post[stack.pop()] = i - 1
+            if stack:
+                pre[i] = stack[-1] + 1
+            stack.append(i)
+        ans = max(nums[i] * (lst[post[i] + 1] - lst[pre[i]]) for i in range(n))
+        ac.st(ans)
         return
 
 

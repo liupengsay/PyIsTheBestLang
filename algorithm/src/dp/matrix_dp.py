@@ -68,6 +68,11 @@ P1436 棋盘分割（https://www.luogu.com.cn/problem/P1436）矩阵四维DP，�
 P5752 [NOI1999] 棋盘分割（https://www.luogu.com.cn/problem/P5752）矩阵四维DP，可以使用记忆化与迭代计算
 P2380 狗哥采矿（https://www.luogu.com.cn/problem/P2380）矩阵DP
 P2401 不等数列（https://www.luogu.com.cn/problem/P2401）二维DP
+P2528 [SHOI2001]排序工作量之新任务（https://www.luogu.com.cn/problem/P2528）逆序对矩阵 DP 与模拟构造
+P2733 [USACO3.3]家的范围 Home on the Range（https://www.luogu.com.cn/problem/P2733）经典DP通过边长与差分数组计算正方形子矩阵的个数
+P2736 [USACO3.4]“破锣摇滚”乐队 Raucous Rockers（https://www.luogu.com.cn/problem/P2736）矩阵DP
+P2769 猴子上树（https://www.luogu.com.cn/problem/P2769）矩阵 DP 注意初始化条件
+
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1446/B（最长公共子序列LCS变形问题，理解贡献）
@@ -934,6 +939,127 @@ class Solution:
             dp[cur][0] = 1
             for j in range(1, ac.min(i + 1, k + 1)):
                 dp[cur][j] = (dp[pre][j] * (j + 1) + dp[pre][j - 1] * (i - j + 1)) % mod
+            pre = cur
+        ac.st(dp[pre][-1])
+        return
+
+    @staticmethod
+    def lg_p2528(ac=FastIO()):
+
+        # 模板：逆序对矩阵 DP 与模拟构造
+        n, t = ac.read_ints()
+        dp = [[0] * (t + 1) for _ in range(n + 1)]
+        dp[0][0] = 1
+        for i in range(n):
+            dp[i + 1][0] = 1
+            for j in range(1, t + 1):
+                dp[i + 1][j] = sum(dp[i][j - k] for k in range(min(i, j) + 1))
+        ac.st(dp[-1][-1])
+
+        lst = list(range(1, n + 1))
+        ans = []
+        for _ in range(n):
+            m = len(lst)
+            for i in range(m):
+                rest = (m - 1) * (m - 2) // 2 + i
+                if rest >= t:
+                    ans.append(lst.pop(i))
+                    t -= i
+                    break
+        ac.lst(ans)
+        return
+
+    @staticmethod
+    def lg_p2733(ac=FastIO()):
+        # 模板：经典DP通过边长与差分数组计算正方形子矩阵的个数
+        n = ac.read_int()
+        grid = [ac.read_str() for _ in range(n)]
+        dp = [[0] * (n + 1) for _ in range(n + 1)]
+        diff = [0] * (n + 1)
+        for i in range(n):
+            for j in range(n):
+                if grid[i][j] == "1":
+                    # 转移公式
+                    dp[i + 1][j + 1] = min(dp[i][j], dp[i + 1][j], dp[i][j + 1]) + 1
+                    x = dp[i + 1][j + 1]
+                    if x >= 2:
+                        diff[2] += 1
+                        if x + 1 <= n:
+                            diff[x + 1] -= 1
+        for i in range(2, n + 1):
+            diff[i] += diff[i - 1]
+            if diff[i] > 0:
+                ac.lst([i, diff[i]])
+        return
+
+    @staticmethod
+    def lg_p2736(ac=FastIO()):
+
+        # 模板：矩阵 DP
+        n, t, m = ac.read_ints()
+        nums = ac.read_list_ints()
+
+        # @lru_cache(None)
+        # def dfs(i, j, pre):
+        #     if i == n:
+        #         return 0
+        #     if j == m:
+        #         return 0
+        #     res = dfs(i + 1, j, pre)
+        #     if pre + nums[i] <= t:
+        #         res = ac.max(res, dfs(i + 1, j, pre + nums[i]) + 1)
+        #     if nums[i] <= t and j + 1 < m:
+        #         res = ac.max(res, dfs(i + 1, j + 1, nums[i]) + 1)
+        #     return res
+        #
+        # ans = dfs(0, 0, 0)
+        # ac.st(ans)
+
+        dp = [[[0] * (t + 1) for _ in range(m + 1)] for _ in range(n + 1)]
+        for i in range(n - 1, -1, -1):
+            for j in range(m - 1, -1, -1):
+                for k in range(t, -1, -1):
+                    res = dp[i + 1][j][k]
+                    if k + nums[i] <= t:
+                        res = ac.max(res, dp[i + 1][j][k + nums[i]] + 1)
+                    if nums[i] <= t and j + 1 < m:
+                        res = ac.max(res, dp[i + 1][j + 1][nums[i]] + 1)
+                    dp[i][j][k] = res
+        ac.st(dp[0][0][0])
+        return
+
+    @staticmethod
+    def lg_p2769(ac=FastIO()):
+
+        # 模板：矩阵 DP 注意初始化条件
+        n = ac.read_int()
+        a = ac.read_list_ints()
+        a.sort()
+        m = ac.read_int()
+        b = ac.read_list_ints()
+        b.sort()
+
+        # @lru_cache(None)
+        # def dfs(i, j, state):
+        #     if i == n:
+        #         return 0 if j == m-1 and state else inf
+        #     if not state:
+        #         return abs(a[i]-b[j])+dfs(i+1, j, 1)
+        #
+        #     res = dfs(i+1, j, 1)+abs(a[i]-b[j])
+        #     if state and j+1<m:
+        #         res = min(res, dfs(i+1, j+1, 1)+abs(a[i]-b[j+1]))
+        #     return res
+        # ac.st(dfs(0, 0, 0))
+
+        dp = [[inf for _ in range(m + 1)] for _ in range(2)]
+        pre = 0
+        dp[pre][0] = 0
+        for i in range(n):
+            cur = 1 - pre
+            dp[cur][0] = inf
+            for j in range(m):
+                dp[cur][j + 1] = ac.min(dp[pre][j] + abs(a[i] - b[j]), dp[pre][j + 1] + abs(a[i] - b[j]))
             pre = cur
         ac.st(dp[pre][-1])
         return

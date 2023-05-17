@@ -1,5 +1,6 @@
 import unittest
 import math
+from collections import defaultdict
 from functools import reduce
 from itertools import combinations
 from operator import mul
@@ -73,6 +74,7 @@ P7799 [COCI2015-2016#6] PIANINO（https://www.luogu.com.cn/problem/P7799）哈�
 P1018 [NOIP2000 提高组] 乘积最大（https://www.luogu.com.cn/problem/P1018）枚举乘号位置
 P1311 [NOIP2011 提高组] 选择客栈（https://www.luogu.com.cn/problem/P1311）线性枚举计数，每次重置避免重复计数
 P2119 [NOIP2016 普及组] 魔法阵（https://www.luogu.com.cn/problem/P2119）枚举差值，并计算前后缀个数
+P2652 同花顺（https://www.luogu.com.cn/problem/P2652）枚举花色与双指针计算长度
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1426/F（分类枚举中间的b计数两边的?ac，并使用快速幂进行求解）
@@ -414,6 +416,27 @@ class Solution:
 
         for x in nums:
             ac.lst([aa[x], bb[x], cc[x], dd[x]])
+        return
+
+    @staticmethod
+    def lg_p2652(ac=FastIO()):
+
+        # 模板：枚举花色与双指针计算长度
+        n = ac.read_int()
+        dct = defaultdict(set)
+        for _ in range(n):
+            a, b = ac.read_ints()
+            dct[a].add(b)
+        ans = n
+        for a in dct:
+            lst = sorted(list(dct[a]))
+            m = len(lst)
+            j = 0
+            for i in range(m):
+                while j < m and lst[j] - lst[i] <= n - 1:
+                    j += 1
+                ans = ac.min(ans, n - (j - i))
+        ac.st(ans)
         return
 
 

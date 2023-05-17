@@ -33,6 +33,7 @@ P1040 [NOIP2003 提高组] 加分二叉树（https://www.luogu.com.cn/problem/P1
 P1043 [NOIP2003 普及组] 数字游戏（https://www.luogu.com.cn/problem/P1043）环形区间DP
 P1430 序列取数（https://www.luogu.com.cn/problem/P1430）区间DP加前缀数组优化
 P2308 添加括号（https://www.luogu.com.cn/problem/P2308）经典区间DP，并使用递归方式反解括号添加方式以及每一步的和
+P2734 [USACO3.3]游戏 A Game（https://www.luogu.com.cn/problem/P2734）前缀和加区间DP
 
 ================================CodeForces================================
 C. The Sports Festival（https://codeforces.com/problemset/problem/1509/C）转换为区间DP进行求解
@@ -243,6 +244,36 @@ class Solution:
         ac.st("+".join(nums))
         ac.st(sum(ans))
         ac.lst(ans)
+        return
+
+    @staticmethod
+    def lg_p2734(ac=FastIO()):
+
+        # 模板：前缀和加区间 DP
+
+        n = ac.read_int()
+        nums = []
+        while len(nums) < n:
+            nums.extend(ac.read_list_ints())
+        pre = ac.accumulate(nums)
+
+        # @lru_cache(None)
+        # def dfs(i, j):
+        #     if i == j:
+        #         return nums[j]
+        #     res = nums[i]+pre[j+1]-pre[i+1]-dfs(i+1, j)
+        #     res = ac.max(res, nums[j]+pre[j]-pre[i]-dfs(i, j-1))
+        #     return res
+        # a = dfs(0, n-1)
+        # ac.lst([a, pre[-1]-a])
+
+        dp = [[0] * n for _ in range(n)]
+        for i in range(n - 1, -1, -1):
+            dp[i][i] = nums[i]
+            for j in range(i + 1, n):
+                dp[i][j] = ac.max(nums[i] + pre[j + 1] - pre[i + 1] - dp[i + 1][j], nums[j] + pre[j] - pre[i] - dp[i][j - 1])
+        a = dp[0][n - 1]
+        ac.lst([a, pre[-1] - a])
         return
 
 

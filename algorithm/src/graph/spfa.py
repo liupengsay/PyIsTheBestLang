@@ -1,5 +1,6 @@
 import unittest
 from collections import deque
+from math import inf
 from typing import List, Dict
 
 from algorithm.src.fast_io import FastIO
@@ -32,6 +33,7 @@ P5960 【模板】差分约束算法（https://www.luogu.com.cn/problem/P5960）
 P1260 工程规划（https://www.luogu.com.cn/problem/P1260）差分约束模板题
 P1931 套利（https://www.luogu.com.cn/problem/P1931）判断计算乘积是否有大于1的环
 P1986 元旦晚会（https://www.luogu.com.cn/problem/P1986）差分约束求解区间和
+P2850 [USACO06DEC]Wormholes G（https://www.luogu.com.cn/problem/P2850）计算从任意起点出发是否存在负环
 
 参考：
 差分约束（https://oi-wiki.org/graph/diff-constraints/）
@@ -409,6 +411,66 @@ class Solution:
         lst = [[a + 1, b + 1, c] for a, b, c in lst]
         ans, dis = SPFA().differential_constraint(lst, n + 1)
         return dis[n + 1] - dis[1]
+
+    @staticmethod
+    def lg_p2850(ac=FastIO()):
+        for _ in range(ac.read_int()):
+            # 模板：计算从任意起点出发是否存在负环
+            n, m, w = ac.read_list_ints()
+            dct = [dict() for _ in range(n)]
+            for _ in range(m):
+                x, y, p = ac.read_list_ints()
+                x -= 1
+                y -= 1
+                dct[x][y] = ac.min(dct[x].get(y, inf), p)
+                dct[y][x] = ac.min(dct[y].get(x, inf), p)
+            for _ in range(w):
+                x, y, p = ac.read_list_ints()
+                x -= 1
+                y -= 1
+                dct[x][y] = ac.min(dct[x].get(y, inf), -p)
+
+            dis = [float("inf") for _ in range(n)]
+            visit = [False] * n
+
+            def negative_circle():
+                # 模板: 判断是否存在负环与求解最短路（正数取反即可判断是否存在正权环以及最长路）
+                cnt = [0] * n
+                # 求带负权的最短路距离与路径边数
+                queue = deque([src])
+                # 队列与起点初始化默认从 0 出发
+                dis[src] = 0
+                visit[src] = True
+
+                while queue:
+                    # 取出队列中的第一个节点
+                    u = queue.popleft()
+                    visit[u] = False
+                    # 更新当前节点的相邻节点的距离
+                    for v in dct[u]:
+                        w = dct[u][v]
+                        if dis[v] > dis[u] + w:
+                            dis[v] = dis[u] + w
+                            cnt[v] = cnt[u] + 1
+                            if cnt[v] >= n:
+                                return "YES", dis, cnt
+                            # 如果相邻节点还没有在队列中，将它加入队列
+                            if not visit[v]:
+                                queue.append(v)
+                                visit[v] = True
+                # 不存在从起点出发的负环
+                return "NO", dis, cnt
+
+            for src in range(n):
+                if not visit[src]:
+                    # 使用 visit 记录已经计算过的节点
+                    ans, _, _ = negative_circle()
+                    if ans == "YES":
+                        ac.st("YES")
+                        break
+            else:
+                ac.st("NO")
+        return
 
 
 class TestGeneral(unittest.TestCase):

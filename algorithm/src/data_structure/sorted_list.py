@@ -52,6 +52,7 @@ P1966 [NOIP2013 提高组] 火柴排队（https://www.luogu.com.cn/problem/P1966
 P2161 [SHOI2009]会场预约（https://www.luogu.com.cn/problem/P2161）区间合并与删除处理
 P1637 三元上升子序列（https://www.luogu.com.cn/problem/P1637）典型STL应用题，前后缀大小值计数
 P2234 [HNOI2002]营业额统计（https://www.luogu.com.cn/problem/P2234）典型STL应用题
+P2804 神秘数字（https://www.luogu.com.cn/problem/P2804）前缀和加 STL 计算平均值大于 m 的连续子数组个数
 
 ================================CodeForces================================
 D. Pashmak and Parmida's problem（https://codeforces.com/problemset/problem/459/D）使用有序集合进行大小计数查找
@@ -440,6 +441,23 @@ class Solution:
                 ans += cur
             lst.add(x)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p2804(ac=FastIO()):
+        # 模板：前缀和加 STL 计算平均值大于 m 的连续子数组个数
+        n, m = ac.read_ints()
+        nums = ac.read_list_ints()
+        mod = 92084931
+        pre = 0
+        lst = LocalSortedList()
+        lst.add(0)
+        ans = 0
+        for num in nums:
+            pre += num - m
+            ans += lst.bisect_left(pre)
+            lst.add(pre)
+        ac.st(ans % mod)
         return
 
 

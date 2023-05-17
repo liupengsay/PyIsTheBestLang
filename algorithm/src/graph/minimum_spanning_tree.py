@@ -49,6 +49,7 @@ P1265 公路修建（https://www.luogu.com.cn/problem/P1265）使用prim求解�
 P1340 兽径管理（https://www.luogu.com.cn/problem/P1340）逆序并查集，维护最小生成树的边
 P1550 [USACO08OCT]Watering Hole G（https://www.luogu.com.cn/problem/P1550）经典题目，建立虚拟源点，转换为最小生成树问题
 P2212 [USACO14MAR]Watering the Fields S（https://www.luogu.com.cn/problem/P2212）经典题目，使用prim计算稠密图最小生成树
+P2847 [USACO16DEC]Moocast G（https://www.luogu.com.cn/problem/P2847）使用prim计算最小生成树，适合稠密图场景
 
 ================================CodeForces================================
 D. Design Tutorial: Inverse the Problem（https://codeforces.com/problemset/problem/472/D）使用最小生成树判断构造给定的点对最短路距离是否存在，使用prim算法复杂度更优
@@ -595,6 +596,73 @@ class Solution:
             rest.discard(i)
             d = visit[i]
             ans += d
+            nex = -1
+            # 更新所有节点到当前节点的距离最小值并更新下一个节点
+            x, y = nums[i]
+            for j in rest:
+                dj = dis(nums[j][0], nums[j][1], x, y)
+                if dj < visit[j]:
+                    visit[j] = dj
+                if nex == -1 or visit[j] < visit[nex]:
+                    nex = j
+        # 时间复杂度O(n^2)空间复杂度O(n)优于kruskal
+        ac.st(ans if ans < inf else -1)
+        return
+
+    @staticmethod
+    def lg_p2658(ac=FastIO()):
+        # 模板：典型最小生成树计算
+        m, n = ac.read_ints()
+        grid = [ac.read_list_ints() for _ in range(m)]
+        uf = UnionFind(m * n)
+        s = 0
+        for i in range(m):
+            lst = ac.read_list_ints()
+            for j in range(n):
+                if lst[j]:
+                    uf.size[i * n + j] = 1
+                    s += 1
+        edge = []
+        for i in range(m):
+            for j in range(n):
+                if i + 1 < m:
+                    edge.append([i * n + j, i * n + j + n, abs(grid[i][j] - grid[i + 1][j])])
+                if j + 1 < n:
+                    edge.append([i * n + j, i * n + j + 1, abs(grid[i][j] - grid[i][j + 1])])
+        edge.sort(key=lambda it: it[2])
+        del grid
+
+        if s == 1:
+            ac.st(0)
+            return
+        for x, y, d in edge:
+            uf.union(x, y)
+            if uf.size[uf.find(x)] == s:
+                ac.st(d)
+                return
+        return
+
+    @staticmethod
+    def lg_p2847(ac=FastIO()):
+
+        # 模板：使用prim计算最小生成树，适合稠密图场景
+        def dis(x1, y1, x2, y2):
+            res = (x1 - x2) ** 2 + (y1 - y2) ** 2
+            return res
+
+        n = ac.read_int()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        # 初始化最短距离
+        ans = nex = 0
+        rest = set(list(range(1, n)))
+        visit = [inf] * n
+        visit[nex] = 0
+        while rest:
+            # 点优先选择距离当前集合最近的点合并
+            i = nex
+            rest.discard(i)
+            d = visit[i]
+            ans = ac.max(ans, d)
             nex = -1
             # 更新所有节点到当前节点的距离最小值并更新下一个节点
             x, y = nums[i]

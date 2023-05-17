@@ -39,6 +39,8 @@ P1044 [NOIP2003 普及组] 栈（https://www.luogu.com.cn/problem/P1044）卡特
 P1655 小朋友的球（https://www.luogu.com.cn/problem/P1655）矩阵DP，斯特林数
 P1680 奇怪的分组（https://www.luogu.com.cn/problem/P1680）隔板法计算不同分组的个数，使用乘法逆元与Lucas定理快速计算Comb(a,b)%m
 P2265 路边的水沟（https://www.luogu.com.cn/problem/P2265）排列组合，计算comb(n+m, m)
+P2638 安全系统（https://www.luogu.com.cn/problem/P2638）隔板法 a 个球放入 n 个盒子不要求每个都放也不要求放完的方案数
+P2822 [NOIP2016 提高组] 组合数问题（https://www.luogu.com.cn/problem/P2822）组合数 comb(i, j) % k == 0 的个数计算 
 
 ================================CodeForces================================
 D. Triangle Coloring（https://codeforces.com/problemset/problem/1795/D）组合计数取模与乘法逆元快速计算
@@ -407,6 +409,44 @@ class Solution:
         n, m = ac.read_ints()
         ans = Lucas().comb(n+m, m, mod)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p2638(ac=FastIO()):
+        # 模板：隔板法 a 个球放入 n 个盒子不要求每个都放也不要求放完的方案数
+        n, a, b = ac.read_ints()
+        ans = math.comb(n + a, n) * math.comb(n + b, n)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p2822(ac=FastIO()):
+        # 模板：组合数 comb(i, j) % k == 0 的个数计算
+        t, k = ac.read_ints()
+
+        # 预处理计算组合数  comb(i, j) % k
+        x = 2001
+        dp = [[0] * x for _ in range(x)]
+        dp[0][0] = 1
+        for i in range(1, x):
+            dp[i][0] = 1
+            for j in range(1, i + 1):
+                # comb(i, j) = comb(i-1, j-1) + comb(i-1, j)
+                dp[i][j] = (dp[i - 1][j - 1] + dp[i - 1][j]) % k
+
+        # 前缀和计数
+        cnt = [[0] * (x + 1) for _ in range(x)]
+        for i in range(x):
+            for j in range(i + 1):
+                cnt[i][j + 1] = cnt[i][j] + int(dp[i][j] % k == 0)
+
+        # 查询
+        for _ in range(t):
+            n, m = ac.read_ints()
+            ans = 0
+            for i in range(0, n + 1):
+                ans += cnt[i][min(i + 1, m + 1)]
+            ac.st(ans)
         return
 
 

@@ -1,35 +1,12 @@
-
-import bisect
-import random
-import re
-import unittest
-
-from typing import List
-import heapq
-import math
-from collections import defaultdict, Counter, deque
-from functools import lru_cache
-from itertools import combinations
-from sortedcontainers import SortedList, SortedDict, SortedSet
-
-from sortedcontainers import SortedDict
-from functools import reduce
-from operator import xor
-from functools import lru_cache
-
-import random
-from itertools import permutations, combinations
-import numpy as np
-
-from decimal import Decimal
-
-import heapq
 import copy
+import math
+import random
+import unittest
 
 from algorithm.src.fast_io import FastIO
 
 """
-算法：快速幂、矩阵快速幂
+算法：快速幂、矩阵快速幂、乘法逆元
 功能：高效计算整数的幂次方取模
 题目：
 
@@ -51,6 +28,7 @@ P1045 [NOIP2003 普及组] 麦森数（https://www.luogu.com.cn/problem/P1045）
 P3509 [POI2010]ZAB-Frog（https://www.luogu.com.cn/problem/P3509）双指针模拟寻找第k远的距离，快速幂原理跳转
 P1349 广义斐波那契数列（https://www.luogu.com.cn/problem/P1349）矩阵快速幂
 P2233 [HNOI2002]公交车路线（https://www.luogu.com.cn/problem/P2233）矩阵快速幂
+P2613 【模板】有理数取余（https://www.luogu.com.cn/problem/P2613）乘法逆元
 
 参考：OI WiKi（xx）
 
@@ -248,15 +226,23 @@ class Solution:
         ac.st(final)
         return
 
+    @staticmethod
+    def lg_p2613(ac=FastIO()):
+        # 模板：乘法逆元求解
+        mod = 19260817
+        a = ac.read_int()
+        b = ac.read_int()
+        ans = a * pow(b, -1, mod)
+        ans %= mod
+        ac.st(ans)
+        return
+
 
 class TestGeneral(unittest.TestCase):
 
     def test_fast_power(self):
         fp = FastPower()
-        a, b, mod = random.randint(
-            1, 123), random.randint(
-            1, 1234), random.randint(
-            1, 12345)
+        a, b, mod = random.randint(1, 123), random.randint(1, 1234), random.randint(1, 12345)
         assert fp.fast_power_api(a, b, mod) == fp.fast_power(a, b, mod)
 
         x, n = random.uniform(0, 1), random.randint(1, 1234)
@@ -271,12 +257,11 @@ class TestGeneral(unittest.TestCase):
             for _ in range(1, n):
                 cur = mfp.matrix_mul(cur, mat, mod)
             assert cur == mfp.matrix_pow(
-                mat, n, mod) == mfp.matrix_pow2(
-                mat, n, mod)
+                mat, n, mod) == mfp.matrix_pow(mat, n, mod)
 
         base = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
         assert mfp.matrix_pow(
-            mat, 0, mod) == mfp.matrix_pow2(
+            mat, 0, mod) == mfp.matrix_pow(
             mat, 0, mod) == base
         return
 

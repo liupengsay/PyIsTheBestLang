@@ -47,6 +47,8 @@ P2070 刷墙（https://www.luogu.com.cn/problem/P2070）哈希离散化差分数
 P2190 小Z的车厢（https://www.luogu.com.cn/problem/P2190）环形数组差分
 P2352 队爷的新书（https://www.luogu.com.cn/problem/P2352）离散化差分
 P2363 马农（https://www.luogu.com.cn/problem/P2363）二维前缀和与枚举
+P2706 巧克力（https://www.luogu.com.cn/problem/P2706）不包含障碍点的最大子矩阵和
+P2879 [USACO07JAN] Tallest Cow S（https://www.luogu.com.cn/problem/P2879）差分数组经典题与贪心
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/33/C（前后缀最大变换和与分割点枚举，经典类型题目）
@@ -752,6 +754,53 @@ class Solution:
                     for q in range(j):
                         ans += dct[pre.query(i + 1, q, p, j - 1)]
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p2706(ac=FastIO()):
+        # 模板：不包含障碍点的最大子矩阵和
+        m, n = ac.read_ints()
+        grid = []
+        while len(grid) < m * n:
+            grid.extend(ac.read_list_ints())
+        ans = 0
+        for i in range(m):
+            lst = [0] * n
+            for j in range(i, m):
+                floor = pre = 0
+                for k in range(n):
+                    num = grid[j * n + k]
+                    lst[k] += num if num != 0 else -inf
+                    floor = 0 if floor < 0 else floor
+                    pre = pre if pre > 0 else 0
+                    num = lst[k]
+                    pre += num
+                    ans = ans if ans > pre - floor else pre - floor
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p2879(ac=FastIO()):
+        # 模板：差分数组经典题与贪心
+        n, i, h, r = ac.read_ints()
+        diff = [0] * n
+        pre = set()
+        for _ in range(r):
+            a, b = ac.read_ints_minus_one()
+            if (a, b) in pre:
+                continue
+            pre.add((a, b))
+            if a < b:
+                diff[a + 1] -= 1
+                diff[b] += 1
+            else:
+                diff[b + 1] -= 1
+                diff[a] += 1
+        for i in range(1, n):
+            diff[i] += diff[i - 1]
+        gap = h - diff[i]
+        for d in diff:
+            ac.st(d + gap)
         return
 
 

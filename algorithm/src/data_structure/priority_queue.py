@@ -27,6 +27,7 @@ P2827 [NOIP2016 提高组] 蚯蚓（https://www.luogu.com.cn/problem/P2827）经
 P3800 Power收集（https://www.luogu.com.cn/problem/P3800）单调队列优化矩阵DP
 P1016 [NOIP1999 提高组] 旅行家的预算（https://www.luogu.com.cn/problem/P1016）单调队列，贪心模拟油箱，还可以增加每个站的油量限制
 P1714 切蛋糕（https://www.luogu.com.cn/problem/P1714）前缀和加滑动窗口最小值，单调队列计算小于一定长度的最大连续子段和
+P2629 好消息，坏消息（https://www.luogu.com.cn/problem/P2629）环形数组前缀和与滑动窗口最小值
 
 ===================================AcWing=====================================
 133. 蚯蚓（https://www.acwing.com/problem/content/135/）三个优先队列加一个偏移量
@@ -333,6 +334,27 @@ class Solution:
             stack.append([i, pre])
             if stack:
                 ans = ac.max(ans, pre - stack[0][1])
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p2629(ac=FastIO()):
+        # 模板：环形数组前缀和与滑动窗口最小值
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        nums = [0] + nums + nums
+        ans = 0
+        stack = deque([0])
+        for i in range(1, n * 2):
+            nums[i] += nums[i - 1]
+            while stack and stack[0] <= i - n:
+                stack.popleft()
+            while stack and nums[stack[-1]] >= nums[i]:
+                stack.pop()
+            stack.append(i)
+            if i >= n:
+                if nums[stack[0]] >= nums[i - n]:
+                    ans += 1
         ac.st(ans)
         return
 

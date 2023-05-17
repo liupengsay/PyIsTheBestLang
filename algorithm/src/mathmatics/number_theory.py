@@ -90,7 +90,8 @@ P4718 【模板】Pollard's rho 算法（https://www.luogu.com.cn/problem/P4718�
 P1069 [NOIP2009 普及组] 细胞分裂（https://www.luogu.com.cn/problem/P1069）质因数分解
 P1072 [NOIP2009 提高组] Hankson 的趣味题（https://www.luogu.com.cn/problem/P1072）枚举所有因数
 P1593 因子和（https://www.luogu.com.cn/problem/P1593）使用质因数分解与快速幂计算a^b的所有因子之和
-
+P2527 [SHOI2001]Panda的烦恼（https://www.luogu.com.cn/problem/P2527）丑数即只含特定质因子的数
+P2557 [AHOI2002]芝麻开门（https://www.luogu.com.cn/problem/P2557）使用质因数分解计算a^b的所有因子之和
 
 ================================CodeForces================================
 C. Hossam and Trainees（https://codeforces.com/problemset/problem/1771/C）使用pollard_rho进行质因数分解
@@ -1015,6 +1016,7 @@ class Solution:
                 ans = ac.min(ans, res)
         ac.st(ans if ans < inf else -1)
         return
+
     @staticmethod
     def lg_p1072(ac=FastIO()):
         # 模板：枚举所有因数
@@ -1051,6 +1053,41 @@ class Solution:
                     # 此时无乘法逆元
                     ans *= (c + 1)
                     ans %= mod
+            ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p2527(ac=FastIO()):
+        # 模板：丑数即只含特定质因子的数
+        n, k = ac.read_ints()
+        primes = ac.read_list_ints()
+        dp = [1] * (k + 1)
+        pointer = [0] * n
+        for i in range(k):
+            num = min(dp[pointer[i]] * primes[i] for i in range(n))
+            for x in range(n):
+                if dp[pointer[x]] * primes[x] == num:
+                    pointer[x] += 1
+            dp[i + 1] = num
+        ac.st(dp[-1])
+        return
+
+    @staticmethod
+    def lg_p2557(ac=FastIO()):
+        # 模板：利用质因数分解与等比数列计算因子之和
+        a, b = ac.read_ints()
+        if a == 1 or b == 0:
+            ac.st(1)
+        else:
+            # 分解质因数
+            cnt = dict()
+            for p, c in NumberTheory().get_prime_factor2(a):
+                cnt[p] = c
+            # (1+p1+p1^2+...+p1^cb)*...
+            ans = 1
+            for k in cnt:
+                c = cnt[k] * b
+                ans *= (k**(c + 1) - 1) // (k - 1)
             ac.st(ans)
         return
 

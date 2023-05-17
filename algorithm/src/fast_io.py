@@ -221,5 +221,3 @@ class Solution:
         ac.lst(ans)
         return
 
-
-Solution().main()

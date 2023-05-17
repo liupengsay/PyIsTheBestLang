@@ -1,5 +1,6 @@
 import bisect
 import unittest
+from functools import lru_cache
 from typing import List
 
 from algorithm.src.fast_io import FastIO, inf
@@ -67,6 +68,10 @@ P1385 密令（https://www.luogu.com.cn/problem/P1385）线性DP与前缀和优�
 P1809 过河问题（https://www.luogu.com.cn/problem/P1809）思维题线性DP
 P1868 饥饿的奶牛（https://www.luogu.com.cn/problem/P1868）线性DP加二分查找优化
 P1978 集合（https://www.luogu.com.cn/problem/P1978）经典线性DP，乘积互斥
+P2432 zxbsmk爱查错（https://www.luogu.com.cn/problem/P2432）线性DP加指针
+P2439 [SDOI2005]阶梯教室设备利用（https://www.luogu.com.cn/problem/P2439）线性DP加二分
+P2476 [SCOI2008]着色方案（https://www.luogu.com.cn/problem/P2476）计数分组线性 DP 记忆化搜索
+P2849 [USACO14DEC]Marathon S（https://www.luogu.com.cn/problem/P2849）矩阵二维 DP 线性遍历
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/75/D（经典压缩数组，最大子段和升级）
@@ -466,6 +471,102 @@ class Solution:
                 pre[num] = cur[num] % mod
         ans = sum(pre.values()) % mod
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p2432(ac=FastIO()):
+
+        # 模板：线性DP加指针
+        w, n = ac.read_ints()
+        sentence = ac.read_str()
+        words = [ac.read_str()[::-1] for _ in range(w)]
+
+        dp = [inf] * (n + 1)
+        dp[0] = 0
+        for x in range(n):
+            ind = [0] * w
+            for j in range(x, -1, -1):
+                cur = x - j + 1
+                # 比对每个单词的匹配长度
+                for i in range(w):
+                    m = len(words[i])
+                    if ind[i] < m and sentence[j] == words[i][ind[i]]:
+                        ind[i] += 1
+                    if ind[i] == m:
+                        cur = ac.min(cur, x - j + 1 - m)
+                dp[x + 1] = ac.min(dp[x + 1], dp[j] + cur)
+        ac.st(dp[-1])
+        return
+
+    @staticmethod
+    def lg_p2439(ac=FastIO()):
+        # 模板：线性DP加二分
+        n = ac.read_int()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        nums.sort(key=lambda it: it[1])
+        dp = [0] * (n + 1)
+        pre = []
+        for i in range(n):
+            a, b = nums[i]
+            j = bisect.bisect_right(pre, a)
+            dp[i + 1] = ac.max(dp[i], dp[j] + b - a)
+            pre.append(b)
+        ac.st(dp[-1])
+        return
+
+    @staticmethod
+    def lg_p2476(ac=FastIO()):
+
+        # 模板：计数分组线性 DP 记忆化搜索
+
+        @lru_cache(None)
+        def dfs(a, b, c, d, e, pre):
+            if a + b + c + d + e == 0:
+                return 1
+            res = 0
+            if a:
+                res += (a - int(pre == 2)) * dfs(a - 1, b, c, d, e, 1)
+            if b:
+                res += (b - int(pre == 3)) * dfs(a + 1, b - 1, c, d, e, 2)
+            if c:
+                res += (c - int(pre == 4)) * dfs(a, b + 1, c - 1, d, e, 3)
+            if d:
+                res += (d - int(pre == 5)) * dfs(a, b, c + 1, d - 1, e, 4)
+            if e:
+                res += e * dfs(a, b, c, d + 1, e - 1, 5)
+            res %= mod
+            return res
+
+        ac.read_int()
+        color = ac.read_list_ints()
+        mod = 10**9 + 7
+        cnt = Counter(color)
+        ac.st(dfs(cnt[1], cnt[2], cnt[3], cnt[4], cnt[5], -1))
+        return
+
+    @staticmethod
+    def lg_p2849(ac=FastIO()):
+        # 模板：矩阵二维 DP 线性遍历
+        n, k = ac.read_ints()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        dis = [[0]*(n) for _ in range(n)]
+        for i in range(n):
+            x1, y1 = nums[i]
+            for j in range(i+1, n):
+                x2, y2 = nums[j]
+                dis[i][j] = abs(x1-x2) + abs(y1-y2)
+
+        dp = [[inf]*(k+1) for _ in range(n)]
+        dp[0][0] = 0
+        for i in range(1, n):
+            dp[i][0] = dp[i-1][0] + dis[i-1][i]
+            for j in range(1, k+1):
+                for x in range(i-1, -1, -1):
+                    skip = i-x-1
+                    if j-skip < 0:
+                        break
+                    dp[i][j] = ac.min(dp[i][j], dp[x][j-skip]+dis[x][i])
+        ac.st(dp[-1][-1])
         return
 
 

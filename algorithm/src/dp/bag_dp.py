@@ -76,6 +76,9 @@ P2170 选学霸（https://www.luogu.com.cn/problem/P2170）连通块加二进制
 P2214 [USACO14MAR]Mooo Moo S（https://www.luogu.com.cn/problem/P2214）变种背包DP贪心
 P2306 被 yyh 虐的 mzc（https://www.luogu.com.cn/problem/P2306）根据数据范围计数后进行二进制优化的01背包计算
 P2320 [HNOI2006] 鬼谷子的钱袋（https://www.luogu.com.cn/problem/P2320）二进制分解贪心反向计算
+P2737 [USACO4.1]麦香牛块Beef McNuggets（https://www.luogu.com.cn/problem/P2737）模板：完全背包变种问题
+P2760 科技庄园（https://www.luogu.com.cn/problem/P2760）单调队列优化的多重背包
+P2854 [USACO06DEC]Cow Roller Coaster S（https://www.luogu.com.cn/problem/P2854）分组01背包
 
 ================================CodeForces================================
 B. Modulo Sum（https://codeforces.com/problemset/problem/577/B）取模计数二进制优化与背包DP，寻找非空子序列的和整除给定的数
@@ -937,6 +940,68 @@ class Solution:
             m //= 2
         ac.st(len(ans))
         ac.st(*ans[::-1])
+        return
+
+    @staticmethod
+    def lg_p2737(ac=FastIO()):
+        # 模板：完全背包变种问题
+        n = ac.read_int()
+        ceil = 256**2 + 1
+        nums = [ac.read_int() for _ in range(n)]
+        dp = [0] * (ceil + 1)
+        dp[0] = 1
+        for i in range(1, ceil + 1):
+            for num in nums:
+                if i >= num and dp[i - num]:
+                    dp[i] = 1
+        ans = 0
+        for i in range(1, ceil + 1):
+            if not dp[i]:
+                ans = i
+        ac.st(ans if ans < ceil else 0)
+        return
+
+    @staticmethod
+    def lg_p2760(ac=FastIO()):
+        # 模板：单调队列优化的多重背包
+        m, n, p, t = ac.read_ints()
+        rest = ac.min(p, t - 1)
+        dp = [0] * (rest + 1)
+        grid = [ac.read_list_ints() for _ in range(m)]
+        mat = [ac.read_list_ints() for _ in range(m)]
+        for a in range(m):
+            for b in range(n):
+                if grid[a][b]:
+                    v, w, s = (a + 1 + b + 1) * 2, grid[a][b], mat[a][b]
+                    for r in range(v):
+                        stack = deque()
+                        for i in range(r, rest + 1, v):
+                            while stack and stack[0][0] < i - s * v:
+                                stack.popleft()
+                            while stack and stack[-1][1] + (i - stack[-1][0]) // v * w <= dp[i]:
+                                stack.pop()
+                            stack.append([i, dp[i]])
+                            dp[i] = stack[0][1] + (i - stack[0][0]) // v * w
+        ac.st(dp[-1])
+        return
+
+    @staticmethod
+    def lg_p2854(ac=FastIO()):
+        # 模板：分组01背包
+        length, n, b = ac.read_ints()
+        dp = [[-inf] * (b + 1) for _ in range(length + 1)]
+        nums = [ac.read_list_ints() for _ in range(n)]
+        nums.sort()
+        for x, w, f, c in nums:
+            if x == 0:
+                if c <= b:
+                    dp[x + w][c] = ac.max(dp[x + w][c], f)
+            else:
+                for i in range(b + 1):
+                    if i + c <= b and x + w <= length:
+                        dp[x + w][i + c] = ac.max(dp[x + w][i + c], dp[x][i] + f)
+        ans = max(dp[length])
+        ac.st(ans if ans > -inf else -1)
         return
 
 
