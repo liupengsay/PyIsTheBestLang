@@ -75,6 +75,7 @@ P1018 [NOIP2000 提高组] 乘积最大（https://www.luogu.com.cn/problem/P1018
 P1311 [NOIP2011 提高组] 选择客栈（https://www.luogu.com.cn/problem/P1311）线性枚举计数，每次重置避免重复计数
 P2119 [NOIP2016 普及组] 魔法阵（https://www.luogu.com.cn/problem/P2119）枚举差值，并计算前后缀个数
 P2652 同花顺（https://www.luogu.com.cn/problem/P2652）枚举花色与双指针计算长度
+P2994 [USACO10OCT]Dinner Time S（https://www.luogu.com.cn/problem/P2994）按照座位枚举分配人员
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1426/F（分类枚举中间的b计数两边的?ac，并使用快速幂进行求解）
@@ -438,6 +439,39 @@ class Solution:
                 ans = ac.min(ans, n - (j - i))
         ac.st(ans)
         return
+
+    @staticmethod
+    def lg_p2994(ac=FastIO()):
+
+        # 模板：按照座位枚举分配人员
+        def dis():
+            return (x1 - x2) ** 2 + (y1 - y2) ** 2
+
+        n, m = ac.read_ints()
+        cow = [ac.read_list_ints() for _ in range(n)]
+        pos = [ac.read_list_ints() for _ in range(n)]
+        visit = [0] * n
+        for j in range(m):
+            ceil = inf
+            ind = 0
+            x1, y1 = pos[j]
+            for i in range(n):
+                if visit[i]:
+                    continue
+                x2, y2 = cow[i]
+                cur = dis()
+                if cur < ceil:
+                    ceil = cur
+                    ind = i
+            if ceil < inf:
+                visit[ind] = 1
+        ans = [i + 1 for i in range(n) if not visit[i]]
+        if not ans:
+            ac.st(0)
+        for a in ans:
+            ac.st(a)
+        return
+
 
 
 class TestGeneral(unittest.TestCase):

@@ -35,6 +35,7 @@ P2278 [HNOI2003]操作系统（https://www.luogu.com.cn/problem/P2278）使用�
 P1717 钓鱼（https://www.luogu.com.cn/problem/P1717）枚举最远到达地点进行二叉堆贪心选取
 P1905 堆放货物（https://www.luogu.com.cn/problem/P1905）二叉堆从大到小贪心摆放
 P2409 Y的积木（https://www.luogu.com.cn/problem/P2409）经典二叉堆，计算最小的k个和
+P2949 [USACO09OPEN]Work Scheduling G（https://www.luogu.com.cn/problem/P2949）二叉堆贪心模拟懒惰延迟删除
 
 ===================================AcWing======================================
 146. 序列（https://www.acwing.com/problem/content/description/148/）小顶堆计算经典问题m个数组最小的n个子序列和，同样可以计算最大的
@@ -420,6 +421,22 @@ class Solution:
                         heapq.heappop(nex)
             pre = sorted([-x for x in nex])
         ac.lst(pre[:k])
+        return
+
+    @staticmethod
+    def lg_p2949(ac=FastIO()):
+        # 模板：二叉堆贪心模拟懒惰延迟删除
+        n = ac.read_int()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        nums.sort(key=lambda it: it[0])
+        ans = 0
+        stack = []
+        for d, p in nums:
+            heapq.heappush(stack, p)
+            ans += p
+            if len(stack) > d:
+                ans -= heapq.heappop(stack)
+        ac.st(ans)
         return
 
 

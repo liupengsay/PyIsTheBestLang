@@ -26,6 +26,7 @@ P7128 「RdOI R1」序列(sequence)（https://www.luogu.com.cn/problem/P7128）�
 P3128 [USACO15DEC]Max Flow P（https://www.luogu.com.cn/problem/P3128）离线LCA与树上差分
 P7167 [eJOI2020 Day1] Fountain（https://www.luogu.com.cn/problem/P7167）单调栈建树倍增在线LCA查询
 P3384 【模板】重链剖分/树链剖分（https://www.luogu.com.cn/problem/P3384）树链剖分与树状数组模拟
+P2912 [USACO08OCT]Pasture Walking G（https://www.luogu.com.cn/problem/P2912）离线LCA查询与任意点对之间距离计算
 
 ==================================LibreOJ==================================
 #10135. 「一本通 4.4 练习 2」祖孙询问（https://loj.ac/p/10135）lca查询与判断
@@ -82,27 +83,28 @@ class OfflineLCA:
             ans[i][j] = -1
             ans[j][i] = -1
         ind = 1
-        stack = [(root, 1)]  # 使用栈记录访问过程
+        stack = [root]  # 使用栈记录访问过程
         visit = [0] * n  # 访问状态数组 0 为未访问 1 为访问但没有遍历完子树 2 为访问且遍历完子树
         parent = [-1] * n  # 父节点
         uf = UnionFindLCA(n)
         while stack:
-            i, state = stack.pop()
-            if state:
+            i = stack.pop()
+            if i >= 0:
                 uf.order[i] = ind  # dfs序
                 ind += 1
                 visit[i] = 1
-                stack.append((i, 0))
+                stack.append(~i)
                 for j in dct[i]:
                     if j != parent[i]:
                         parent[j] = i
-                        stack.append((j, 1))
+                        stack.append(j)
                 for y in ans[i]:
                     if visit[y] == 1:
                         ans[y][i] = ans[i][y] = y
                     else:
                         ans[y][i] = ans[i][y] = uf.find(y)
             else:
+                i = ~i
                 visit[i] = 2
                 uf.union(i, parent[i])
 
@@ -172,15 +174,16 @@ class TreeDiffArray:
                 diff[parent[ancestor]] -= 1
 
         # 自底向上进行差分加和
-        stack = [[root, 1]]
+        stack = [root]
         while stack:
-            i, state = stack.pop()
-            if state:
-                stack.append([i, 0])
+            i = stack.pop()
+            if i >= 0:
+                stack.append(~i)
                 for j in dct[i]:
                     if j != parent[i]:
-                        stack.append([j, 1])
+                        stack.append(j)
             else:
+                i = ~i
                 for j in dct[i]:
                     if j != parent[i]:
                         diff[i] += diff[j]
@@ -399,17 +402,18 @@ class HeavyChain:
 
     def build_weight(self, root) -> None:
         # 生成树的重孩子信息
-        stack = [[root, 1]]
+        stack = [root]
         while stack:
-            i, state = stack.pop()
-            if state:
-                stack.append([i, 0])
+            i = stack.pop()
+            if i >= 0:
+                stack.append(~i)
                 for j in self.dct[i]:
                     if j != self.parent[i]:
-                        stack.append([j, 1])
+                        stack.append(j)
                         self.parent[j] = i
                         self.depth[j] = self.depth[i] + 1
             else:
+                i = ~i
                 for j in self.dct[i]:
                     if j != self.parent[i]:
                         self.cnt_son[i] += self.cnt_son[j]
@@ -638,18 +642,19 @@ class Solution:
         # cnt = TreeDiffArray().dfs_recursion(dct, queries)  # 也可以使用递归
 
         # 迭代版的树形DP
-        stack = [[0, 1]]
+        stack = [0]
         sub = [[] for _ in range(n)]
         parent = [-1] * n
         while stack:
-            i, state = stack.pop()
-            if state:
-                stack.append([i, 0])
+            i = stack.pop()
+            if i >= 0:
+                stack.append(~i)
                 for j in dct[i]:
                     if j != parent[i]:
                         parent[j] = i
-                        stack.append([j, 1])
+                        stack.append(j)
             else:
+                i = ~i
                 res = [cnt[i] * price[i], cnt[i] * price[i] // 2]
                 for j in dct[i]:
                     if j != parent[i]:
@@ -732,6 +737,39 @@ class Solution:
         for _ in range(m):
             x, y = ac.read_ints_minus_one()
             ac.st(heavy.query_lca(x, y) + 1)
+        return
+
+    @staticmethod
+    def lg_p2912(ac=FastIO()):
+        # 模板：离线LCA查询与任意点对之间距离计算
+        n, q = ac.read_ints()
+        dct = [dict() for _ in range(n)]
+        for _ in range(n - 1):
+            i, j, w = ac.read_ints()
+            i -= 1
+            j -= 1
+            dct[i][j] = dct[j][i] = w
+
+        # 根节点bfs计算距离
+        dis = [inf] * n
+        dis[0] = 0
+        stack = [[0, -1]]
+        while stack:
+            i, fa = stack.pop()
+            for j in dct[i]:
+                if j != fa:
+                    dis[j] = dis[i] + dct[i][j]
+                    stack.append([j, i])
+
+        # 查询公共祖先
+        queries = [ac.read_list_ints_minus_one() for _ in range(q)]
+        dct = [list(d.keys()) for d in dct]
+        ancestor = OfflineLCA().bfs_iteration(dct, queries, 0)
+        for x in range(q):
+            i, j = queries[x]
+            w = ancestor[x]
+            ans = dis[i] + dis[j] - 2 * dis[w]
+            ac.st(ans)
         return
 
 

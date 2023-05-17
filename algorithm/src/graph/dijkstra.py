@@ -76,6 +76,7 @@ P1828 [USACO3.2]香甜的黄油 Sweet Butter（https://www.luogu.com.cn/problem/
 P2047 [NOI2007] 社交网络（https://www.luogu.com.cn/problem/P2047）Dijkstra计算经过每个点的所有最短路条数占比
 P2269 [HNOI2002]高质量的数据传输（https://www.luogu.com.cn/problem/P2269）比较两个项的最短路计算
 P2349 金字塔（https://www.luogu.com.cn/problem/P2349）比较两个项相加的最短路
+P2914 [USACO08OCT]Power Failure G（https://www.luogu.com.cn/problem/P2914）Dijkstra动态建图计算距离
 
 ================================CodeForces================================
 C. Dijkstra?（https://codeforces.com/problemset/problem/20/C）正权值最短路计算，并记录返回生成路径
@@ -864,6 +865,45 @@ class Solution:
                     dis[j] = dj
                     heapq.heappush(stack, [dj, d + dct[i][j], ac.max(ceil, dct[i][j]), j])
         ac.st(dis[n - 1])
+        return
+
+    @staticmethod
+    def lg_p2914(ac=FastIO()):
+        # 模板：Dijkstra动态建图计算距离
+
+        def dis(x, y):
+            if y in dct[x]:
+                return 0
+            x1, y1 = nums[x]
+            x2, y2 = nums[y]
+            res = ((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5
+            return res if res <= m else inf
+
+        n, w = ac.read_ints()
+        m = ac.read_float()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        dct = [set() for _ in range(n)]
+        for _ in range(w):
+            i, j = ac.read_ints_minus_one()
+            dct[i].add(j)
+            dct[j].add(i)
+
+        n = len(dct)
+        visit = [inf] * n
+        stack = [[0, 0]]
+        visit[0] = 0
+        while stack:
+            d, i = heapq.heappop(stack)
+            if visit[i] < d:
+                continue
+            if i == n - 1:
+                break
+            for j in range(n):
+                dj = dis(i, j) + d
+                if dj < visit[j]:
+                    visit[j] = dj
+                    heapq.heappush(stack, [dj, j])
+        ac.st(int(visit[-1] * 1000) if visit[-1] < inf else -1)
         return
 
 

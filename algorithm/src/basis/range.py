@@ -8,7 +8,8 @@ from algorithm.src.fast_io import FastIO
 """
 算法：区间合并、区间覆盖、区间计数
 功能：涉及到区间的一些合并查询和操作，也可以使用差分数组与树状数组、线段树进行解决
-用法：合并为不相交的区间、最小区间覆盖问题、最多不相交的区间
+用法：合并为不相交的区间、最小区间覆盖问题、最多不相交的区间、最小点覆盖（每条线段至少一个点需要多少点覆盖）、
+最多点匹配覆盖（每条线段选一个点匹配，最多匹配数有点类似二分图）
 题目：
 
 ===================================力扣===================================
@@ -33,6 +34,7 @@ P2684 搞清洁（https://www.luogu.com.cn/problem/P2684）最小区间覆盖，
 P1233 木棍加工（https://www.luogu.com.cn/problem/P1233）按照一个维度排序后计算另一个维度的最长严格递增子序列的长度，二位偏序，转换为区间包含问题
 P1496 火烧赤壁（https://www.luogu.com.cn/problem/P1496）经典区间合并确定覆盖范围
 P1668 [USACO04DEC] Cleaning Shifts S（https://www.luogu.com.cn/problem/P1668）转换为最小区间覆盖问题
+P2887 [USACO07NOV] Sunscreen G（https://www.luogu.com.cn/problem/P2887）最多点匹配覆盖，每条线段选一个点匹配，最多匹配数有点类似二分图
 
 ================================CodeForces================================
 A. String Reconstruction（https://codeforces.com/problemset/problem/827/A）区间合并为不相交的区间，再贪心赋值
@@ -249,6 +251,24 @@ class Solution:
         n, t = ac.read_ints()
         lst = [ac.read_list_ints() for _ in range(n)]
         ans = Range().cover_less(1, t, lst, False)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p2887(ac=FastIO()):
+        # 模板：最多点匹配覆盖，每条线段选一个点匹配，最多匹配数有点类似二分图
+        n, m = ac.read_ints()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        nums.sort(key=lambda it: it[1])
+        pos = [ac.read_list_ints() for _ in range(m)]
+        pos.sort(key=lambda it: it[0])
+        ans = 0
+        for floor, ceil in nums:
+            for i in range(m):
+                if pos[i][1] and floor <= pos[i][0] <= ceil:
+                    ans += 1
+                    pos[i][1] -= 1
+                    break
         ac.st(ans)
         return
 

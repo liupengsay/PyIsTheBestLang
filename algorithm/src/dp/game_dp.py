@@ -21,6 +21,7 @@ P4702 取石子（https://www.luogu.com.cn/problem/P4702）博弈分析必胜策
 P1247 取火柴游戏（https://www.luogu.com.cn/problem/P1247）nim博弈，使用异或求解
 P1512 伊甸园日历游戏（https://www.luogu.com.cn/problem/P1512）博弈DP与日期操作
 P2092 数字游戏（https://www.luogu.com.cn/problem/P2092）根据质数的个数来判断必胜态
+P2953 [USACO09OPEN]Cow Digit Game S（https://www.luogu.com.cn/problem/P2953）必胜态线性DP
 
 参考：OI WiKi（xx）
 """
@@ -159,6 +160,25 @@ class Solution:
             return
         ac.st(1)
         ac.st(nums[0] * nums[1])
+        return
+
+    @staticmethod
+    def lg_p2953(ac=FastIO()):
+        # 模板：必胜态线性DP
+        n = 1000000
+        dp = [0] * (n + 1)
+        for i in range(1, n + 1):
+            lst = [w for w in str(i) if w != "0"]
+            lst.sort()
+            for w in [lst[0], lst[-1]]:
+                if not dp[i - int(w)]:
+                    dp[i] = 1
+                    break
+        for _ in range(ac.read_int()):
+            if dp[ac.read_int()]:
+                ac.st("YES")
+            else:
+                ac.st("NO")
         return
 
 

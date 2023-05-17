@@ -60,6 +60,8 @@ P1902 刺杀大使（https://www.luogu.com.cn/problem/P1902）二分加BFS与原
 P2199 最后的迷宫（https://www.luogu.com.cn/problem/P2199）队列01BFS判定距离最近的可视范围
 P2226 [HNOI2001]遥控赛车比赛（https://www.luogu.com.cn/problem/P2226）有限制地BDS转向计算
 P2296 [NOIP2014 提高组] 寻找道路（https://www.luogu.com.cn/problem/P2296）正向与反向建图跑两次BFS
+P2919 [USACO08NOV]Guarding the Farm S（https://www.luogu.com.cn/problem/P2919）经典bfs按元素值排序后从大到小遍历
+P2937 [USACO09JAN]Laserphones S（https://www.luogu.com.cn/problem/P2937）使用01BFS优先队列计算
 
 ================================CodeForces================================
 E. Nearest Opposite Parity（https://codeforces.com/problemset/problem/1272/E）经典反向建图，多源BFS
@@ -968,6 +970,68 @@ class Solution:
                     visit[j] = visit[i] + 1
                     stack.append(j)
         ac.st(visit[t] if visit[t] < inf else -1)
+        return
+
+    @staticmethod
+    def lg_p2919(ac=FastIO()):
+
+        # 模板：经典bfs按元素值排序后从大到小遍历
+        m, n = ac.read_ints()
+        grid = []
+        for _ in range(m):
+            grid.append(ac.read_list_ints())
+        nodes = []
+        for i in range(m):
+            for j in range(n):
+                nodes.append([i, j])
+        nodes = deque(sorted(nodes, reverse=True, key=lambda it: grid[it[0]][it[1]]))
+
+        ans = 0
+        while nodes:
+            i, j = nodes.popleft()
+            if grid[i][j] == -1:
+                continue
+            ans += 1
+            stack = [[grid[i][j], i, j]]
+            grid[i][j] = -1
+            while stack:
+                val, i, j = stack.pop()
+                for x, y in [[i - 1, j], [i + 1, j], [i, j - 1], [i, j + 1],
+                             [i - 1, j - 1], [i - 1, j + 1], [i + 1, j - 1], [i + 1, j + 1]]:
+                    if 0 <= x < m and 0 <= y < n and -1 < grid[x][y] <= val:
+                        stack.append([grid[x][y], x, y])
+                        grid[x][y] = -1
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p2937(ac=FastIO()):
+        # 模板：使用01BFS优先队列计算
+        n, m = ac.read_ints()
+        grid = [ac.read_str() for _ in range(m)]
+        visit = [[[inf] * 4 for _ in range(n)] for _ in range(m)]
+        res = []
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == "C":
+                    res.append([i, j])
+        start, end = res[0], res[1]
+        ind = [[0, 1], [1, 0], [0, -1], [-1, 0]]
+        stack = deque([[d, start[0], start[1]] for d in range(4)])
+        visit[start[0]][start[1]] = [0, 0, 0, 0]
+        while stack:
+            d, i, j = stack.popleft()
+            x, y = i + ind[d][0], j + ind[d][1]
+            if 0 <= x < m and 0 <= y < n and grid[x][y] != "*" and visit[x][y][d] > visit[i][j][d]:
+                visit[x][y][d] = visit[i][j][d]
+                stack.appendleft([d, x, y])
+            for dd in [d - 1, d + 1]:
+                dd %= 4
+                x, y = i + ind[dd][0], j + ind[dd][1]
+                if 0 <= x < m and 0 <= y < n and grid[x][y] != "*" and visit[x][y][dd] > visit[i][j][d] + 1:
+                    visit[x][y][dd] = visit[i][j][d] + 1
+                    stack.append([dd, x, y])
+        ac.st(min(visit[end[0]][end[1]]))
         return
 
 

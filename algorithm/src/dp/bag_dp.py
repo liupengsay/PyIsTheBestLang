@@ -79,6 +79,8 @@ P2320 [HNOI2006] 鬼谷子的钱袋（https://www.luogu.com.cn/problem/P2320）�
 P2737 [USACO4.1]麦香牛块Beef McNuggets（https://www.luogu.com.cn/problem/P2737）模板：完全背包变种问题
 P2760 科技庄园（https://www.luogu.com.cn/problem/P2760）单调队列优化的多重背包
 P2854 [USACO06DEC]Cow Roller Coaster S（https://www.luogu.com.cn/problem/P2854）分组01背包
+P2938 [USACO09FEB]Stock Market G（https://www.luogu.com.cn/problem/P2938）分组完全背包
+P2979 [USACO10JAN]Cheese Towers S（https://www.luogu.com.cn/problem/P2979）分组01背包
 
 ================================CodeForces================================
 B. Modulo Sum（https://codeforces.com/problemset/problem/577/B）取模计数二进制优化与背包DP，寻找非空子序列的和整除给定的数
@@ -1002,6 +1004,44 @@ class Solution:
                         dp[x + w][i + c] = ac.max(dp[x + w][i + c], dp[x][i] + f)
         ans = max(dp[length])
         ac.st(ans if ans > -inf else -1)
+        return
+
+    @staticmethod
+    def lg_p2938(ac=FastIO()):
+        # 模板：分组完全背包
+        s, d, m = ac.read_ints()
+        nums = [ac.read_list_ints() for _ in range(s)]
+        for i in range(1, d):
+            dp = [0] * (m + 1)
+            for j in range(s):
+                a, b = nums[j][i - 1], nums[j][i]
+                if b > a:
+                    for p in range(a, m + 1):
+                        dp[p] = ac.max(dp[p], dp[p - a] + b)
+            m = max(m - i + dp[i] for i in range(m + 1))
+        ac.st(m)
+        return
+
+    @staticmethod
+    def lg_p2979(ac=FastIO()):
+        # 模板：分组01背包
+        n, t, k = ac.read_ints()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        m = 5*t//4 + 1
+
+        # 先算不缩减高度的
+        dp1 = [0] * (m + 1)
+        for v, h in nums:
+            for i in range(h, m + 1):
+                if dp1[i - h] + v > dp1[i]:
+                    dp1[i] = dp1[i - h] + v
+        ans = dp1[t]
+        # 枚举最后一棒高度大于等于 k 的
+        for v, h in nums:
+            if h >= k:
+                for i in range(t, h - 1, -1):
+                    ans = ac.max(ans, dp1[(i - h)*5//4] + v)
+        ac.st(ans)
         return
 
 
