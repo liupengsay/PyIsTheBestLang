@@ -1,12 +1,13 @@
-
-
+import random
 import unittest
+from collections import Counter
 
 from algorithm.src.fast_io import FastIO
 
 """
 算法：乘法逆元、组合数求幂快速计算
 功能：求逆元取模，注意取的模必须为质数，且不能整除该质数，否则不存在对应的乘法逆元
+参考：OI WiKi（xx）
 题目：
 
 ===================================洛谷===================================
@@ -14,7 +15,11 @@ P3811 乘法逆元（https://www.luogu.com.cn/problem/P3811）使用乘法逆元
 P5431 乘法逆元（https://www.luogu.com.cn/problem/P5431）使用乘法逆元计算
 P2613 有理数取余（https://www.luogu.com.cn/problem/P2613）使用乘法逆元计算
 
-参考：OI WiKi（xx）
+
+===================================CodeForces===================================
+F. Ira and Flamenco（https://codeforces.com/contest/1833/problem/F）使用前缀乘积计算区间取模
+
+
 """
 
 
@@ -56,13 +61,41 @@ class Solution:
             ac.st(MultiplicativeInverse().mod_reverse(i, p))
         return
 
+    @staticmethod
+    def main(ac=FastIO()):
+        mod = 10 ** 9 + 7
+        mi = MultiplicativeInverse()
+        for _ in range(ac.read_int()):
+            n, m = ac.read_ints()
+            nums = ac.read_list_ints()
+            cnt = Counter(nums)
+            lst = sorted(list(cnt.keys()))
+            ans = 0
+            k = len(lst)
+            # 前缀乘积
+            pre = [0] * (n + 1)
+            pre[0] = 1
+            for i in range(k):
+                pre[i + 1] = (pre[i] * cnt[lst[i]]) % mod
+            for i in range(k - m + 1):
+                if lst[i + m - 1] == lst[i] + m - 1:
+                    # 乘法逆元
+                    ans += pre[i + m] * mi.mod_reverse(pre[i], mod)
+                    ans %= mod
+            ac.st(ans)
+        return
+
 
 class TestGeneral(unittest.TestCase):
 
     def test_multiplicative_inverse(self):
         mt = MultiplicativeInverse()
-        assert MultiplicativeInverse().mod_reverse(10, 13) == 4
-        assert MultiplicativeInverse().mod_reverse(10, 1) == 0
+        assert mt.mod_reverse(10, 13) == 4
+        assert mt.mod_reverse(10, 1) == 0
+        mod = 10**9 + 7
+        for _ in range(1000):
+            num = random.randint(1, 10**9)
+            assert pow(num, -1, mod) == mt.mod_reverse(num, mod)
         return
 
 
