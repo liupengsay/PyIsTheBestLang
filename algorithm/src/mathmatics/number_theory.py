@@ -709,7 +709,7 @@ class Solution:
     def lc_2464(nums: List[int]) -> int:
         # 模板：计算 1 到 n 的数所有的质因子并使用动态规划计数
         nt = NumberTheoryPrimeFactor(max(nums))
-        inf = float("inf")
+        inf = inf
         ind = dict()
         n = len(nums)
         dp = [inf] * (n + 1)
@@ -731,7 +731,7 @@ class Solution:
     def lc_lcp14(nums: List[int]) -> int:
         # 模板：计算 1 到 n 的数所有的质因子并使用动态规划计数
         nt = NumberTheoryPrimeFactor(max(nums))
-        inf = float("inf")
+        inf = inf
         ind = dict()
         n = len(nums)
         dp = [inf] * (n + 1)

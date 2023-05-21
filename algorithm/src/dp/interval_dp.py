@@ -82,7 +82,7 @@ class Solution:
     @staticmethod
     def cf_1509c(n, nums):
         # 模板：使用数组进行区间DP转移求解
-        dp = [[float("inf")] * n for _ in range(n)]
+        dp = [[inf] * n for _ in range(n)]
         for i in range(n - 1, -1, -1):
             dp[i][i] = 0
             for j in range(i + 1, n):

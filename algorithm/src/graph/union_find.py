@@ -157,7 +157,7 @@ class PersistentUnionFind:
     def __init__(self, n):
         self.rank = [0] * n
         self.root = list(range(n))
-        self.version = [float("inf")] * n
+        self.version = [inf] * n
 
     def union(self, x, y, tm):
         root_x = self.find(x)

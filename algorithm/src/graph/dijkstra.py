@@ -143,7 +143,7 @@ class Dijkstra:
     def dijkstra_src_to_dst_path(dct, src: int, dst: int):
         # 模板: Dijkstra求起终点的最短路，注意只能是正权值可以提前返回结果，并返回对应经过的路径
         n = len(dct)
-        dis = [float("inf")] * n
+        dis = [inf] * n
         stack = [[0, src]]
         dis[src] = 0
         father = [-1] * n  # 记录最短路的上一跳

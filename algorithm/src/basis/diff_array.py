@@ -5,6 +5,7 @@ from typing import List
 
 from algorithm.src.fast_io import FastIO
 import bisect
+from math import inf
 
 """
 
@@ -409,7 +410,7 @@ class Solution:
         # 模板：贪心枚举加差分验证
         n = ac.read_int()
         lst = [int(ac.read_str() == "F") for _ in range(n)]
-        ans = [float("inf"), 0]
+        ans = [inf, 0]
         for k in range(1, n + 1):
             diff = [0] * n
             m = 0

@@ -91,7 +91,7 @@ class Solution:
             graph[x].append(y)
             graph[y].append(x)
 
-        inf = float("inf")
+        inf = inf
         ans = inf
         for i in range(n):
             dist = [inf] * n
@@ -177,7 +177,7 @@ class Solution:
             graph[x].add(y)
             graph[y].add(x)
 
-        inf = float("inf")
+        inf = inf
         ans = inf
         for x, y in edges:
             graph[x].discard(y)

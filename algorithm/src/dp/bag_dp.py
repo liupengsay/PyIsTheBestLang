@@ -175,7 +175,7 @@ class BagDP:
     @staticmethod
     def group_bag_limited(n, d, nums):
         # 分组背包（以一维有限背包为例）计算出租车的最小花费
-        pre = [float("inf")] * (n + 1)
+        pre = [inf] * (n + 1)
         pre[0] = 0
         for r, z in nums:
             cur = pre[:]  # 关键在于这里需要分组背包
@@ -185,7 +185,7 @@ class BagDP:
                     if pre[i - x] + cost < cur[i]:
                         cur[i] = pre[i - x] + cost
             pre = cur[:]
-        if pre[n] < float("inf"):
+        if pre[n] < inf:
             return pre[n]
         return -1
 
@@ -206,7 +206,7 @@ class BagDP:
     @staticmethod
     def one_dimension_limited_use_dct(nums):
         # 一维有限背包（带负数的情况下使用字典做转移记录）
-        inf = float("inf")
+        inf = inf
         pre = defaultdict(lambda: -inf)
         pre[0] = 0
         for s, f in nums:

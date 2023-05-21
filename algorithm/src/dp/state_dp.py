@@ -96,7 +96,7 @@ class Solution:
         n = len(nums)
         if n % k:
             return -1
-        inf = float("inf")
+        inf = inf
         m = n // k
         ans = dfs((1 << n) - 1)
         return ans if ans < inf else -1
@@ -203,7 +203,7 @@ class Solution:
         dp = [0] * (1 << m)
         for state in range(1, 1 << m):
             gain = m - state.bit_count() + 1
-            res = float("inf")
+            res = inf
             for i in range(m):
                 if state & (1 << i):
                     cur = (power[i] + gain - 1) // gain + dp[state ^ (1 << i)]
@@ -220,7 +220,7 @@ class Solution:
             if not state:
                 return 0
             gain = m - bin(state).count("1") + 1
-            res = float("inf")
+            res = inf
             for i in range(m):
                 if state & (1 << i):
                     cur = math.ceil(power[i] / gain) + dfs(state ^ (1 << i))

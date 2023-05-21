@@ -233,7 +233,7 @@ class Solution:
         # 模板：两个数组线性移动进行匹配计算最大或者最小值
         nums.sort()
         m = 2 * n
-        dp = [[float("inf")] * (n + 1) for _ in range(m + 1)]
+        dp = [[inf] * (n + 1) for _ in range(m + 1)]
         dp[0][0] = 0
         for i in range(m):
             dp[i + 1][0] = 0

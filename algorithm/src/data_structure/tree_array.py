@@ -166,7 +166,7 @@ class TreeArrayRangeQueryPointUpdateMin:
     # 模板：树状数组 单点减少 前缀区间查询最小值
     def __init__(self, n):
         # 索引从 1 到 n
-        self.inf = float("inf")
+        self.inf = inf
         self.t = [self.inf] * (n + 1)
 
     @staticmethod
@@ -193,7 +193,7 @@ class TreeArrayPointUpdateRangeMaxMin:
     def __init__(self, n: int) -> None:
         self.n = n
         self.a = [0] * (n + 1)
-        self.tree_ceil = [-float("inf")] * (n + 1)
+        self.tree_ceil = [-inf] * (n + 1)
         self.tree_floor = [float('inf')] * (n + 1)
         return
 
@@ -448,7 +448,7 @@ class Solution:
     @staticmethod
     def lc_6353(grid: List[List[int]]) -> int:
         n, m = len(grid), len(grid[0])
-        dp = [[float("inf")] * m for _ in range(n)]
+        dp = [[inf] * m for _ in range(n)]
         r, c = [TreeArrayRangeQueryPointUpdateMin(m) for _ in range(n)], [TreeArrayRangeQueryPointUpdateMin(n) for _ in range(m)]
         dp[n - 1][m - 1] = 1
         for i in range(n - 1, -1, -1):

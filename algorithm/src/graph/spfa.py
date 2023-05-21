@@ -49,7 +49,7 @@ class SPFA:
         # 模板: 判断是否存在负环与求解最短路（正数取反即可判断是否存在正权环以及最长路）
         n = len(dct)
         # 初始化距离
-        dis = [float("inf") for _ in range(n)]
+        dis = [inf for _ in range(n)]
         # 标识当前节点是否在栈中
         visit = [False] * n
         # 当前最小距离的路径边数
@@ -85,7 +85,7 @@ class SPFA:
 
         n = len(dct)
         # 初始化距离
-        dis = [float("inf") for _ in range(n)]
+        dis = [inf for _ in range(n)]
         # 标识当前节点是否在栈中
         visit = [False] * n
         # 当前最小距离的路径边数
@@ -123,7 +123,7 @@ class SPFA:
         # 模板: 判断是否存在乘积大于1的环
         n = len(dct)
         # 初始化距离
-        dis = [float("inf") for _ in range(n)]
+        dis = [inf for _ in range(n)]
         # 标识当前节点是否在栈中
         visit = [False] * n
         # 当前最小距离的路径边数
@@ -430,7 +430,7 @@ class Solution:
                 y -= 1
                 dct[x][y] = ac.min(dct[x].get(y, inf), -p)
 
-            dis = [float("inf") for _ in range(n)]
+            dis = [inf for _ in range(n)]
             visit = [False] * n
 
             def negative_circle():

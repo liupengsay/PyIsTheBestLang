@@ -135,7 +135,7 @@ class MatrixDP:
     @staticmethod
     def min_distance(word1: str, word2: str):
         m, n = len(word1), len(word2)
-        dp = [[float("inf")] * (n + 1) for _ in range(m + 1)]
+        dp = [[inf] * (n + 1) for _ in range(m + 1)]
         # 编辑距离注意起始开头的边界条件
         for i in range(m + 1):
             dp[i][n] = m - i
@@ -365,7 +365,7 @@ class Solution:
                 x = p
             return cnt, path[::-1]
 
-        inf = float("inf")
+        inf = inf
         c1, path1 = check(f_2)
         c2, path2 = check(f_5)
         if c1 <= c2:
@@ -447,11 +447,11 @@ class Solution:
         robot.sort()
         factory.sort()
         m, n = len(factory), len(robot)
-        dp = [[float("inf")] * (n + 1) for _ in range(m + 1)]
+        dp = [[inf] * (n + 1) for _ in range(m + 1)]
         dp[0][0] = 0
         for i in range(m):
             for j in range(n + 1):
-                if dp[i][j] < float("inf"):
+                if dp[i][j] < inf:
                     dp[i + 1][j] = min(dp[i + 1][j], dp[i][j])
                     cost = 0
                     for k in range(1, factory[i][1] + 1):

@@ -223,7 +223,7 @@ class ClosetPair:
             return smallest
 
         def check(point_set):
-            min_dis = float("inf")
+            min_dis = inf
             if len(point_set) <= 3:
                 n = len(point_set)
                 for i in range(n):

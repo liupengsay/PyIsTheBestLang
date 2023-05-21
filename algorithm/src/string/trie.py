@@ -175,7 +175,7 @@ class TrieZeroOneXorMax:
         self.dct = dict()
         # 确定序列长度
         self.n = n
-        self.inf = float("inf")
+        self.inf = inf
         return
 
     def add(self, num):
@@ -364,7 +364,7 @@ class TrieZeroOneXorMaxKth:
         self.dct = dict()
         # 确定序列长度
         self.n = n
-        self.inf = float("inf")
+        self.inf = inf
         return
 
     def add(self, num):

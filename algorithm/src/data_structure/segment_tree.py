@@ -177,7 +177,7 @@ class SegmentTreeRangeAddMax:
 class SegmentTreeRangeAddMin:
     # 模板：线段树区间更新、持续减小最小值
     def __init__(self, n):
-        self.ceil = float("inf")
+        self.ceil = inf
         self.height = [self.ceil]*(4*n)
         self.lazy = [self.ceil]*(4*n)
 
@@ -239,7 +239,7 @@ class SegmentTreeRangeAddMin:
 class SegmentTreeRangeUpdateQuerySumMinMax:
     def __init__(self, nums: List[int]) -> None:
         # 模板：区间值增减、区间和查询、区间最小值查询、区间最大值查询
-        self.inf = float("inf")
+        self.inf = inf
         self.n = len(nums)
         self.nums = nums
         self.cover = [0] * (4 * self.n)  # 区间和
@@ -380,7 +380,7 @@ class SegmentTreeRangeUpdateQuerySumMinMax:
 class SegmentTreeRangeChangeQuerySumMinMax:
     def __init__(self, nums):
         # 模板：区间值修改、区间和查询、区间最小值查询、区间最大值查询
-        self.inf = float("inf")
+        self.inf = inf
         self.n = len(nums)
         self.nums = nums
         self.cover = [0] * (4 * self.n)  # 区间和
@@ -519,7 +519,7 @@ class SegmentTreeRangeChangeQuerySumMinMax:
 class SegmentTreeRangeUpdateChangeQueryMax:
     def __init__(self, nums: List[int]) -> None:
         # 模板：区间值增减、区间值修改、区间最大值查询
-        self.inf = float("inf")
+        self.inf = inf
         self.n = len(nums)
         self.nums = nums
         self.lazy = [[self.inf, 0]] * (4 * self.n)  # 懒标记
@@ -1054,7 +1054,7 @@ class SegmentTreeRangeUpdateMax:
 class SegmentTreeRangeUpdateMulQuerySum:
     def __init__(self, nums: List[int], p) -> None:
         # 模板：区间值增减、区间值修改、区间最大值查询
-        self.inf = float("inf")
+        self.inf = inf
         self.p = p
         self.n = len(nums)
         self.nums = nums
@@ -1163,7 +1163,7 @@ class SegmentTreeRangeUpdateMulQuerySum:
 class SegmentTreeRangeSubConSum:
     def __init__(self, nums: List[int]) -> None:
         # 模板：单点修改、区间最大连续子段和查询
-        self.inf = float("inf")
+        self.inf = inf
         self.n = len(nums)
         self.nums = nums
         self.cover = [-inf] * (4 * self.n)
@@ -1267,7 +1267,7 @@ class SegmentTreeRangeSubConSum:
 class SegmentTreeRangeUpdateSubConSum:
     def __init__(self, nums: List[int]) -> None:
         # 模板：区间修改、区间最大连续子段和查询
-        self.inf = float("inf")
+        self.inf = inf
         self.n = len(nums)
         self.nums = nums
         self.cover = [-inf] * (4 * self.n)
@@ -1425,7 +1425,7 @@ class SegmentTreeRangeUpdateMin:
             return self.height[i]
         self.push_down(i)
         m = s + (t - s) // 2
-        highest = float("inf")
+        highest = inf
         if l <= m:
             cur = self.query(l, r, s, m, 2 * i)
             if cur < highest:
@@ -1846,7 +1846,7 @@ class SegmentTreeRangeAndOrXOR:
 class SegmentTreeRangeSqrtSum:
     def __init__(self, n):
         # 模板：区间值开方向下取整，区间和查询
-        self.inf = float("inf")
+        self.inf = inf
         self.n = n
         self.cover = [0] * (4 * self.n)  # 区间和
         self.lazy = [self.inf] * (4 * self.n)  # 懒标记

@@ -104,7 +104,7 @@ class Solution:
         # 模板：使用链表维护前后的节点信息
 
         m, n = len(grid), len(grid[0])
-        inf = float("inf")
+        inf = inf
         dis = [[inf] * n for _ in range(m)]
         row_nex = [list(range(1, n + 1)) for _ in range(m)]
         row_pre = [list(range(-1, n - 1)) for _ in range(m)]

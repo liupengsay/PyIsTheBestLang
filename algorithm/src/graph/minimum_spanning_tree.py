@@ -87,7 +87,7 @@ class MinimumSpanningTree:
                 c = dct[i].get(j, float("inf"))
                 c = c if c < w else w
                 dct[i][j] = dct[j][i] = c
-            dis = [float("inf")]*self.n
+            dis = [inf]*self.n
             dis[0] = 0
             visit = [0]*self.n
             stack = [[0, 0]]
@@ -370,7 +370,7 @@ class Solution:
                     return
 
         # Prim 贪心按照权值选择边进行连通合并
-        dis = [float("inf")] * n
+        dis = [inf] * n
         dis[0] = 0
         visit = [0] * n
         stack = [[0, 0, -1]]
