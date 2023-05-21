@@ -3,6 +3,7 @@ import unittest
 from collections import defaultdict
 from functools import lru_cache
 from math import inf
+from typing import List
 
 from algorithm.src.fast_io import FastIO
 
@@ -11,6 +12,10 @@ from algorithm.src.fast_io import FastIO
 算法：Floyd（多源最短路经算法）、可以处理有向图无向图以及正负权边
 功能：计算点到有向或者无向图里面其他点的最短路，也可以计算最长路，以及所有最长路最短路上经过的点（关键节点）
 题目：
+
+===================================力扣===================================
+2642. 设计可以求最短路径的图类（https://leetcode.cn/problems/design-graph-with-shortest-path-calculator/）Floyd动态更新最短路
+
 
 ===================================洛谷===================================
 P1119 灾后重建 （https://www.luogu.com.cn/problem/P1119）离线查询加Floyd动态更新经过中转站的起终点距离
@@ -24,6 +29,7 @@ P6464 [传智杯 #2 决赛] 传送门（https://www.luogu.com.cn/problem/P6464�
 P6175 无向图的最小环问题（https://www.luogu.com.cn/problem/P6175）经典使用Floyd枚举三个点之间的距离和，O(n^3)，也可以使用BFS或者Dijkstra计算
 B3611 【模板】传递闭包（https://www.luogu.com.cn/problem/B3611）传递闭包模板题，使用FLoyd解法
 P1613 跑路（https://www.luogu.com.cn/problem/P1613）经典Floyd动态规划
+
 
 ================================CodeForces================================
 D. Design Tutorial: Inverse the Problem（https://codeforces.com/problemset/problem/472/D）使用Floyd判断构造给定的点对最短路距离是否存在
@@ -206,6 +212,36 @@ class Solution:
                     dis[i][j] = ac.min(dis[i][j], dis[i][k] + dis[k][j])
         ac.st(dis[0][n - 1])
         return
+
+
+class Graph:
+    # 模板：Floyd动态更新最短路 LC2642
+    def __init__(self, n: int, edges: List[List[int]]):
+        d = [[inf] * n for _ in range(n)]
+        for i in range(n):
+            d[i][i] = 0
+        for x, y, w in edges:
+            d[x][y] = w  # 添加一条边（输入保证没有重边和自环）
+        for k in range(n):
+            for i in range(n):
+                for j in range(n):
+                    d[i][j] = min(d[i][j], d[i][k] + d[k][j])
+        self.d = d
+
+    def add_edge(self, e: List[int]) -> None:
+        d = self.d
+        n = len(d)
+        x, y, w = e
+        if w >= d[x][y]:  # 无需更新
+            return
+        for i in range(n):
+            for j in range(n):
+                # Floyd动态更新最短路
+                d[i][j] = min(d[i][j], d[i][x] + w + d[y][j])
+
+    def shortest_path(self, start: int, end: int) -> int:
+        ans = self.d[start][end]
+        return ans if ans < inf else -1
 
 
 class TestGeneral(unittest.TestCase):
