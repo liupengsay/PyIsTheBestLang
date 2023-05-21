@@ -23,6 +23,7 @@ from algorithm.src.fast_io import FastIO, inf
 2290. 到达角落需要移除障碍物的最小数（https://leetcode.cn/problems/minimum-obstacle-removal-to-reach-corner/）计算最小代价
 499. 迷宫 III（https://leetcode.cn/problems/the-maze-iii/?envType=study-plan-v2&id=premium-algo-100）两个参数变量的最短路
 LCP 75. 传送卷轴（https://leetcode.cn/problems/rdmXM7/）一层BFS之后计算最大值最小的最短路
+6442. 修改图中的边权（https://leetcode.cn/problems/modify-graph-edge-weights/）经典两遍最短路，贪心动态更新路径权值
 
 ===================================洛谷===================================
 P3371 单源最短路径（弱化版）（https://www.luogu.com.cn/problem/P3371）最短路模板题
@@ -81,6 +82,7 @@ P2914 [USACO08OCT]Power Failure G（https://www.luogu.com.cn/problem/P2914）Dij
 ================================CodeForces================================
 C. Dijkstra?（https://codeforces.com/problemset/problem/20/C）正权值最短路计算，并记录返回生成路径
 E. Weights Distributing（https://codeforces.com/problemset/problem/1343/E）使用三个01BFS求最短路加贪心枚举计算
+B. Complete The Graph（https://codeforces.com/contest/715/problem/B）经典两遍最短路，贪心动态更新路径权值
 
 ================================AcWing====================================
 176. 装满的油箱（https://www.acwing.com/problem/content/178/）经典加油题，使用dijkstra模仿状态
@@ -904,6 +906,122 @@ class Solution:
                     visit[j] = dj
                     heapq.heappush(stack, [dj, j])
         ac.st(int(visit[-1] * 1000) if visit[-1] < inf else -1)
+        return
+
+    @staticmethod
+    def lc_6442(n: int, edges: List[List[int]], source: int, destination: int, target: int) -> List[List[int]]:
+        dct = [[] for _ in range(n)]
+        m = len(edges)
+        book = [0] * m
+        for ind, (i, j, w) in enumerate(edges):
+            if w == -1:
+                w = 1
+                book[ind] = 1
+                edges[ind][-1] = w
+            dct[i].append([ind, j])
+            dct[j].append([ind, i])
+
+        # 第一遍最短路计算最小情况下的距离
+        dis0 = [inf] * n
+        stack = [[0, source]]
+        dis0[source] = 0
+        while stack:
+            d, i = heapq.heappop(stack)
+            if dis0[i] < d:
+                continue
+            for ind, j in dct[i]:
+                dj = edges[ind][2] + d
+                if dj < dis0[j]:
+                    dis0[j] = dj
+                    heapq.heappush(stack, [dj, j])
+        if dis0[destination] > target:
+            return []
+
+        # 第二遍最短路
+        dis1 = [inf] * n
+        stack = [[0, source]]
+        dis1[source] = 0
+        while stack:
+            d, i = heapq.heappop(stack)
+            if dis1[i] < d:
+                continue
+            for ind, j in dct[i]:
+                if book[ind]:
+                    # 假设 (i, j) 是最短路上的边
+                    if (edges[ind][2] + dis1[i]) + (dis0[destination] - dis0[j]) < target:
+                        # 此时还有一些增长空间即（当前到达 j 的距离）加上（剩余 j 到 destination）的距离仍旧小于 target
+                        x = target - (edges[ind][2] + dis1[i]) - (dis0[destination] - dis0[j])
+                        edges[ind][2] += x
+                    book[ind] = 0
+                dj = edges[ind][2] + d
+                if dj < dis1[j]:
+                    dis1[j] = dj
+                    heapq.heappush(stack, [dj, j])
+
+        if dis1[destination] == target:
+            return edges
+        return []
+
+    @staticmethod
+    def cf_715b(ac=FastIO()):
+        # 模板：经典两遍最短路，贪心动态更新路径权值
+        n, m, target, source, destination = ac.read_ints()
+        edges = []
+        dct = [[] for _ in range(n)]
+        book = [0] * m
+        for ind in range(m):
+            i, j, w = ac.read_list_ints()
+            if w == 0:
+                w = 1
+                book[ind] = 1
+            edges.append([i, j, w])
+            dct[i].append([ind, j])
+            dct[j].append([ind, i])
+
+        # 第一遍最短路计算最小情况下的距离
+        dis0 = [inf] * n
+        stack = [[0, source]]
+        dis0[source] = 0
+        while stack:
+            d, i = heapq.heappop(stack)
+            if dis0[i] < d:
+                continue
+            for ind, j in dct[i]:
+                dj = edges[ind][2] + d
+                if dj < dis0[j]:
+                    dis0[j] = dj
+                    heapq.heappush(stack, [dj, j])
+        if dis0[destination] > target:
+            ac.st("NO")
+            return
+
+        # 第二遍最短路
+        dis1 = [inf] * n
+        stack = [[0, source]]
+        dis1[source] = 0
+        while stack:
+            d, i = heapq.heappop(stack)
+            if dis1[i] < d:
+                continue
+            for ind, j in dct[i]:
+                if book[ind]:
+                    # 假设 (i, j) 是最短路上的边
+                    if (edges[ind][2] + dis1[i]) + (dis0[destination] - dis0[j]) < target:
+                        # 此时还有一些增长空间即（当前到达 j 的距离）加上（剩余 j 到 destination）的距离仍旧小于 target
+                        x = target - (edges[ind][2] + dis1[i]) - (dis0[destination] - dis0[j])
+                        edges[ind][2] += x
+                    book[ind] = 0
+                dj = edges[ind][2] + d
+                if dj < dis1[j]:
+                    dis1[j] = dj
+                    heapq.heappush(stack, [dj, j])
+
+        if dis1[destination] == target:
+            ac.st("YES")
+            for e in edges:
+                ac.lst(e)
+        else:
+            ac.st("NO")
         return
 
 
