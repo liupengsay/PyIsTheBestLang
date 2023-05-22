@@ -618,38 +618,31 @@ class Solution:
             # 模板：经典双端优先队列 01 BFS模板题注意建图
             m, n = ac.read_ints()
             grid = [ac.read_str() for _ in range(m)]
-            k = (m+1)*(n+1)
-            dct = [dict() for _ in range(k)]
+            dct = [dict() for _ in range((m + 1) * (n + 1))]
             for i in range(m):
                 for j in range(n):
-                    x1, y1 = i, j
-                    x2, y2 = i, j+1
-                    x3, y3 = i+1, j
-                    x4, y4 = i+1, j+1
+                    x1, x2, x3, x4 = i * (n + 1) + j, i * (n + 1) + j + 1, \
+                        (i + 1) * (n + 1) + j, (i + 1) * (n + 1) + j + 1
                     if grid[i][j] == "/":
-                        dct[x1*(n+1)+y1][x4*(n+1)+y4] = 1
-                        dct[x4 * (n + 1) + y4][x1 * (n + 1) + y1] = 1
-                        dct[x2 * (n + 1) + y2][x3 * (n + 1) + y3] = 0
-                        dct[x3 * (n + 1) + y3][x2 * (n + 1) + y2] = 0
+                        dct[x2][x3] = dct[x3][x2] = 0
+                        dct[x1][x4] = dct[x4][x1] = 1
                     else:
-                        dct[x1 * (n + 1) + y1][x4 * (n + 1) + y4] = 0
-                        dct[x4 * (n + 1) + y4][x1 * (n + 1) + y1] = 0
-                        dct[x2 * (n + 1) + y2][x3 * (n + 1) + y3] = 1
-                        dct[x3 * (n + 1) + y3][x2 * (n + 1) + y2] = 1
-
-            visit = [inf]*(k)
-            stack = deque([0])
+                        dct[x2][x3] = dct[x3][x2] = 1
+                        dct[x1][x4] = dct[x4][x1] = 0
+            visit = [inf] * ((m + 1) * (n + 1))
             visit[0] = 0
-            while stack:
+            stack = deque([0])
+            while stack and visit[-1] == inf:
                 i = stack.popleft()
+                d = visit[i]
                 for j in dct[i]:
-                    dd = dct[i][j] + visit[i]
-                    if visit[j] > dd:
+                    dd = d + dct[i][j]
+                    if dd < visit[j]:
                         visit[j] = dd
-                        if dd == visit[i]:
-                            stack.appendleft(j)
-                        else:
+                        if dd == d + 1:
                             stack.append(j)
+                        else:
+                            stack.appendleft(j)
             ac.st(visit[-1] if visit[-1] < inf else "NO SOLUTION")
         return
 
