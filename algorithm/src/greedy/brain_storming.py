@@ -91,6 +91,9 @@ P1080 [NOIP2012 提高组] 国王游戏（https://www.luogu.com.cn/problem/P1080
 P1650 田忌赛马（https://www.luogu.com.cn/problem/P1650）经典贪心，优先上对上其次下对下最后下对上
 P2088 果汁店的难题（https://www.luogu.com.cn/problem/P2088）贪心，取空闲的，或者下一个离得最远的使用
 P2816 宋荣子搭积木（https://www.luogu.com.cn/problem/P2816）排序后从小到大贪心放置，使用STL维护当前积木列高度
+P3819 松江 1843 路（https://www.luogu.com.cn/problem/P3819）经典中位数贪心题
+P3918 [国家集训队]特技飞行（https://www.luogu.com.cn/problem/P3918）脑筋急转弯贪心
+P4025 [PA2014]Bohater（https://www.luogu.com.cn/problem/P4025）经典贪心血量与增幅自定义排序
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1186/D（贪心取floor，再根据加和为0的特质进行补充加1成为ceil）
@@ -466,6 +469,48 @@ class Solution:
             else:
                 lst.add(1)
         ac.st(len(lst))
+        return
+
+    @staticmethod
+    def lg_p3819(ac=FastIO()):
+        # 模板：经典中位数贪心题
+        length, n = ac.read_ints()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        s = sum(x for _, x in nums)
+        nums.sort()
+        pre = 0
+        for pos, x in nums:
+            pre += x
+            if pre >= s // 2:
+                ans = sum(abs(x - pos) * y for x, y in nums)
+                ac.st(ans)
+                break
+        return
+
+    @staticmethod
+    def lg_p4025(ac=FastIO()):
+        # 模板：经典贪心血量与增幅自定义排序
+        n, z = ac.read_ints()
+        pos = []
+        neg = []
+        for i in range(n):
+            d, a = ac.read_ints()
+            if d < a:
+                pos.append([d, a, i])
+            else:
+                neg.append([d, a, i])
+        pos.sort(key=lambda it: it[0])
+        neg.sort(key=lambda it: -it[1])
+        ans = []
+        for d, a, i in pos + neg:
+            z -= d
+            if z <= 0:
+                ac.st("NIE")
+                return
+            z += a
+            ans.append(i + 1)
+        ac.st("TAK")
+        ac.lst(ans)
         return
 
 

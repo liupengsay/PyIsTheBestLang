@@ -53,6 +53,7 @@ P2161 [SHOI2009]会场预约（https://www.luogu.com.cn/problem/P2161）区间�
 P1637 三元上升子序列（https://www.luogu.com.cn/problem/P1637）典型STL应用题，前后缀大小值计数
 P2234 [HNOI2002]营业额统计（https://www.luogu.com.cn/problem/P2234）典型STL应用题
 P2804 神秘数字（https://www.luogu.com.cn/problem/P2804）前缀和加 STL 计算平均值大于 m 的连续子数组个数
+P3608 [USACO17JAN]Balanced Photo G（https://www.luogu.com.cn/problem/P3608）典型STL应用题
 
 ================================CodeForces================================
 D. Pashmak and Parmida's problem（https://codeforces.com/problemset/problem/459/D）使用有序集合进行大小计数查找

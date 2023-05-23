@@ -19,6 +19,7 @@ P1338 末日的传说（https://www.luogu.com.cn/problem/P1338）结合逆序对
 
 P2524 Uim的情人节礼物·其之弐（https://www.luogu.com.cn/problem/P2524）计算全排列的字典序排名
 P2525 Uim的情人节礼物·其之壱（https://www.luogu.com.cn/problem/P2525）计算全排列的上一个排列
+P3014 [USACO11FEB]Cow Line S（https://www.luogu.com.cn/problem/P3014）计算全排列的排名与排名对应的全排列
 
 ================================CodeForces================================
 B. K-th Beautiful String（https://codeforces.com/problemset/problem/1328/B）计算comb的字典序
@@ -145,15 +146,16 @@ class LexicoGraphicalOrder:
     @staticmethod
     def get_kth_subset_perm(n, k):
         # 集合 [1,..,n] 中选取 n 个元素的第 k 个 perm 选取排列
-        # assert k <= math.factorial(n)
-
-        nums = list(range(1, n+1))
+        s = math.factorial(n)
+        assert 1 <= k <= s
+        nums = list(range(1, n + 1))
         ans = []
         while k and nums:
-            single = math.factorial(len(nums)-1)
-            i = (k-1) // single
+            single = s//len(nums)
+            i = (k - 1) // single
             ans.append(nums.pop(i))
-            k -= i*single
+            k -= i * single
+            s = single
         return ans
 
     def get_subset_perm_kth(self, n, lst):
@@ -209,6 +211,24 @@ class Solution:
         lst = [int(w) for w in ac.read_str()]
         rk = LexicoGraphicalOrder().get_subset_perm_kth(n, lst)
         ac.st(rk)
+        return
+
+    @staticmethod
+    def lg_p3014(ac=FastIO()):
+
+        # 模板：康托展开也可以使用字典序贪心计算
+        n, q = ac.read_ints()
+        og = LexicoGraphicalOrder()
+        # ct = CantorExpands(n, mod=math.factorial(n + 2))
+        for _ in range(q):
+            s = ac.read_str()
+            lst = ac.read_list_ints()
+            if s == "P":
+                ac.lst(og.get_kth_subset_perm(n, lst[0]))
+                # ac.lst(ct.rank_to_array(n, lst[0]))
+            else:
+                ac.st(og.get_subset_perm_kth(n, lst))
+                # ac.st(ct.array_to_rank(lst))
         return
 
 

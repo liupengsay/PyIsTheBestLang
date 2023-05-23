@@ -52,6 +52,7 @@ P6480 [CRCI2006-2007] TETRIS（https://www.luogu.com.cn/problem/P6480）模拟�
 P7186 [CRCI2008-2009] TABLICA（https://www.luogu.com.cn/problem/P7186）脑筋急转弯，使用有限数据与作用域进行模拟
 P7338 『MdOI R4』Color（https://www.luogu.com.cn/problem/P7338）进行贪心模拟赋值
 P2129 L 国的战斗续之多路出击（https://www.luogu.com.cn/problem/P2129）使用栈和指针模拟
+P3407 散步（https://www.luogu.com.cn/problem/P3407）经典模拟移动与相遇
 
 ================================CodeForces================================
 C. Gargari and Bishops（https://codeforces.com/problemset/problem/463/C）选取两组互不相交的主副对角线使得和最大
@@ -260,6 +261,41 @@ class Solution:
             a = a if not cnt_x else -a
             b = b if not cnt_y else -b
             ac.lst([a + add_x, b + add_y])
+        return
+
+    @staticmethod
+    def lg_p3407(ac=FastIO()):
+        # 模板：经典模拟相向而行
+        n, t, q = ac.read_ints()
+        nums = deque([ac.read_list_ints() for _ in range(n)])
+        pos = [-1] * n
+
+        # 先去除头尾永不相见的
+        ind = deque(list(range(n)))
+        while ind and nums[ind[0]][1] == 2:
+            i = ind.popleft()
+            x = nums[i][0]
+            pos[i] = x - t
+        while ind and nums[ind[-1]][1] == 1:
+            i = ind.pop()
+            x = nums[i][0]
+            pos[i] = x + t
+
+        # 对相向而行的区间段计算是否到达相遇点
+        while ind:
+            left = []
+            while ind and nums[ind[0]][1] == 1:
+                left.append(ind.popleft())
+            right = []
+            while ind and nums[ind[0]][1] == 2:
+                right.append(ind.popleft())
+            mid = (nums[right[0]][0] + nums[left[-1]][0]) // 2
+            for i in left:
+                pos[i] = ac.min(mid, nums[i][0] + t)
+            for i in right:
+                pos[i] = ac.max(mid, nums[i][0] - t)
+        for _ in range(q):
+            ac.st(pos[ac.read_int() - 1])
         return
 
 

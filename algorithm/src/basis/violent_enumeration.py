@@ -76,6 +76,7 @@ P1311 [NOIP2011 提高组] 选择客栈（https://www.luogu.com.cn/problem/P1311
 P2119 [NOIP2016 普及组] 魔法阵（https://www.luogu.com.cn/problem/P2119）枚举差值，并计算前后缀个数
 P2652 同花顺（https://www.luogu.com.cn/problem/P2652）枚举花色与双指针计算长度
 P2994 [USACO10OCT]Dinner Time S（https://www.luogu.com.cn/problem/P2994）按照座位枚举分配人员
+P3985 不开心的金明（https://www.luogu.com.cn/problem/P3985）看似背包实则枚举
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1426/F（分类枚举中间的b计数两边的?ac，并使用快速幂进行求解）

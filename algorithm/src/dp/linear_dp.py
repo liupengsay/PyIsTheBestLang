@@ -72,6 +72,10 @@ P2432 zxbsmk爱查错（https://www.luogu.com.cn/problem/P2432）线性DP加指�
 P2439 [SDOI2005]阶梯教室设备利用（https://www.luogu.com.cn/problem/P2439）线性DP加二分
 P2476 [SCOI2008]着色方案（https://www.luogu.com.cn/problem/P2476）计数分组线性 DP 记忆化搜索
 P2849 [USACO14DEC]Marathon S（https://www.luogu.com.cn/problem/P2849）矩阵二维 DP 线性遍历
+P3448 [POI2006]MIS-Teddies（https://www.luogu.com.cn/problem/P3448）线性DP计数
+P3558 [POI2013]BAJ-Bytecomputer（https://www.luogu.com.cn/problem/P3558）线性 DP 模拟
+B3734 [信息与未来 2017] 加强版密码锁（https://www.luogu.com.cn/problem/B3734）
+P3901 数列找不同（https://www.luogu.com.cn/problem/P3901）经典指针加线性 DP 记录前一个相同数的指针
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/75/D（经典压缩数组，最大子段和升级）
@@ -567,6 +571,74 @@ class Solution:
                         break
                     dp[i][j] = ac.min(dp[i][j], dp[x][j-skip]+dis[x][i])
         ac.st(dp[-1][-1])
+        return
+
+    @staticmethod
+    def lg_p3558(ac=FastIO()):
+        # 模板：线性 DP 模拟
+        ac.read_int()
+        nums = ac.read_list_ints()
+        pre = [inf, inf, inf]
+        pre[nums[0]] = 0
+        for num in nums[1:]:
+            cur = [inf, inf, inf]
+            for x in [-1, 0, 1]:
+                for k in range(3):
+                    y = num + k * x
+                    if x <= y and -1 <= y <= 1:
+                        cur[y] = ac.min(cur[y], pre[x] + k)
+            pre = cur[:]
+        ans = min(pre)
+        ac.st(ans if ans < inf else "BRAK")
+        return
+
+    @staticmethod
+    def lg_b3734(ac=FastIO()):
+        # 模板：线性矩阵 DP 模拟
+        n, r1 = ac.read_ints()
+        nums = [r1]
+        while len(nums) < n:
+            nums.append((nums[-1] * 6807 + 2831) % 201701)
+        nums = [num % 100 for num in nums]
+
+        # 使用滚动数组优化
+        dp = [[inf] * 100 for _ in range(2)]
+        # 初始化
+        pre = 0
+        for x in range(100):
+            y = abs(x - nums[0])
+            dp[pre][x] = ac.min(y * y, (100 - y) * (100 - y))
+        for i in range(1, n):
+            cur = 1 - pre
+            for j in range(100):
+                y = abs(j - nums[i])
+                res = inf
+                a = ac.min(y * y, (100 - y) * (100 - y))
+                for k in range(j):
+                    res = ac.min(res, a + dp[pre][k])
+                dp[cur][j] = res
+            pre = cur
+        ac.st(min(dp[pre]))
+        return
+
+    @staticmethod
+    def lg_p3901(ac=FastIO()):
+        # 模板：经典指针加线性 DP 记录前一个相同数的指针
+        n, q = ac.read_ints()
+        nums = ac.read_list_ints()
+        ind = dict()
+        for i in range(n):
+            x = nums[i]
+            if x in ind:
+                nums[i] = ind[x]
+            else:
+                nums[i] = -1
+            ind[x] = i
+            if i:
+                nums[i] = ac.max(nums[i], nums[i - 1])
+        for _ in range(q):
+            left, right = ac.read_ints_minus_one()
+            ac.st("Yes" if nums[right] < left else "No")
         return
 
 

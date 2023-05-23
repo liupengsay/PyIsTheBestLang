@@ -34,6 +34,8 @@ P1043 [NOIP2003 普及组] 数字游戏（https://www.luogu.com.cn/problem/P1043
 P1430 序列取数（https://www.luogu.com.cn/problem/P1430）区间DP加前缀数组优化
 P2308 添加括号（https://www.luogu.com.cn/problem/P2308）经典区间DP，并使用递归方式反解括号添加方式以及每一步的和
 P2734 [USACO3.3]游戏 A Game（https://www.luogu.com.cn/problem/P2734）前缀和加区间DP
+P3004 [USACO10DEC]Treasure Chest S（https://www.luogu.com.cn/problem/P3004）简单区间 DP 
+P3205 [HNOI2010]合唱队（https://www.luogu.com.cn/problem/P3205）区间 DP 使用滚动数组优化
 
 ================================CodeForces================================
 C. The Sports Festival（https://codeforces.com/problemset/problem/1509/C）转换为区间DP进行求解
@@ -274,6 +276,56 @@ class Solution:
                 dp[i][j] = ac.max(nums[i] + pre[j + 1] - pre[i + 1] - dp[i + 1][j], nums[j] + pre[j] - pre[i] - dp[i][j - 1])
         a = dp[0][n - 1]
         ac.lst([a, pre[-1] - a])
+        return
+
+    @staticmethod
+    def lg_p3004(ac=FastIO()):
+        # 模板：简单区间 DP
+        n = ac.read_int()
+        nums = [ac.read_int() for _ in range(n)]
+        dp = [[0] * n for _ in range(2)]
+        pre = ac.accumulate(nums)
+        x = 0
+        for i in range(n - 1, -1, -1):
+            y = 1 - x
+            dp[y][i] = nums[i]
+            for j in range(i + 1, n):
+                dp[y][j] = ac.max(pre[j + 1] - pre[i + 1] - dp[x][j] + nums[i], pre[j] - pre[i] - dp[y][j - 1] + nums[j])
+            x = y
+        ac.st(dp[x][n - 1])
+        return
+
+    @staticmethod
+    def lg_p3205(ac=FastIO()):
+        # 模板：区间 DP 使用滚动数组优化
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        mod = 19650827
+        dp = [[[0, 0] for _ in range(n)] for _ in range(2)]
+        pre = 0
+        for i in range(n - 1, -1, -1):
+
+            cur = 1 - pre
+            dp[cur][i][0] = 1
+            for j in range(i + 1, n):
+                x = 0
+                # 后 j
+                # dp[i][j][1]表示区间[i,j]以j为最后一个的方案数
+                if nums[j - 1] < nums[j]:
+                    x += dp[cur][j - 1][1]
+                if nums[i] < nums[j]:
+                    x += dp[cur][j - 1][0]
+                dp[cur][j][1] = x % mod
+                x = 0
+                # 后 i
+                # dp[i][j][0]表示区间[i,j]以i为最后一个的方案数
+                if nums[i + 1] > nums[i]:
+                    x += dp[pre][j][0]
+                if nums[j] > nums[i]:
+                    x += dp[pre][j][1]
+                dp[cur][j][0] = x % mod
+            pre = cur
+        ac.st(sum(dp[pre][n - 1]) % mod)
         return
 
 

@@ -50,6 +50,8 @@ P2352 队爷的新书（https://www.luogu.com.cn/problem/P2352）离散化差分
 P2363 马农（https://www.luogu.com.cn/problem/P2363）二维前缀和与枚举
 P2706 巧克力（https://www.luogu.com.cn/problem/P2706）不包含障碍点的最大子矩阵和
 P2879 [USACO07JAN] Tallest Cow S（https://www.luogu.com.cn/problem/P2879）差分数组经典题与贪心
+P3028 [USACO10OCT]Soda Machine G（https://www.luogu.com.cn/problem/P3028）离散化差分计算覆盖区间最多的点
+P4030 [Code+#2]可做题1（https://www.luogu.com.cn/problem/P4030）脑筋急转弯加二维前缀和计算
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/33/C（前后缀最大变换和与分割点枚举，经典类型题目）
@@ -802,6 +804,55 @@ class Solution:
         gap = h - diff[i]
         for d in diff:
             ac.st(d + gap)
+        return
+
+    @staticmethod
+    def lg_p3028(ac=FastIO()):
+        # 模板：离散化差分计算覆盖区间最多的点
+        n = ac.read_int()
+        diff = defaultdict(int)
+        for _ in range(n):
+            a, b = ac.read_ints()
+            if a > b:
+                a, b = b, a
+            diff[a] += 1
+            diff[b + 1] -= 1
+            # 增加右端点避免离散化带来重合
+            diff[b] += 0
+        axis = sorted(list(diff.keys()))
+        ans = diff[axis[0]]
+        m = len(axis)
+        for i in range(1, m):
+            # 当前点覆盖的区间数
+            diff[axis[i]] += diff[axis[i - 1]]
+            ans = ac.max(ans, diff[axis[i]])
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p4030(ac=FastIO()):
+        # 模板：脑筋急转弯加二维前缀和计算
+        m, n, t = ac.read_ints()
+        grid = [ac.read_list_ints() for _ in range(m)]
+        mat = [[0] * n for _ in range(m)]
+        for i in range(1, m):
+            for j in range(1, n):
+                a, b = grid[i - 1][j - 1], grid[i - 1][j]
+                c, d = grid[i][j - 1], grid[i][j]
+                if a + d == b + c:
+                    mat[i][j] = 1
+        pm = PreFixSumMatrix(mat)
+        for i in range(t):
+            x, y, k = ac.read_ints()
+            if k == 1:
+                ac.st("Y")
+                continue
+            x -= 1
+            y -= 1
+            if pm.query(x + 1, y + 1, x + k - 1, y + k - 1) == (k - 1) * (k - 1):
+                ac.st("Y")
+            else:
+                ac.st("N")
         return
 
 

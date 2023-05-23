@@ -27,6 +27,8 @@ P3128 [USACO15DEC]Max Flow P（https://www.luogu.com.cn/problem/P3128）离线LC
 P7167 [eJOI2020 Day1] Fountain（https://www.luogu.com.cn/problem/P7167）单调栈建树倍增在线LCA查询
 P3384 【模板】重链剖分/树链剖分（https://www.luogu.com.cn/problem/P3384）树链剖分与树状数组模拟
 P2912 [USACO08OCT]Pasture Walking G（https://www.luogu.com.cn/problem/P2912）离线LCA查询与任意点对之间距离计算
+P3019 [USACO11MAR]Meeting Place S（https://www.luogu.com.cn/problem/P3019）离线查询 LCA 最近公共祖先
+P3258 [JLOI2014]松鼠的新家（https://www.luogu.com.cn/problem/P3258）离线LCA加树上差分加树形DP
 
 ==================================LibreOJ==================================
 #10135. 「一本通 4.4 练习 2」祖孙询问（https://loj.ac/p/10135）lca查询与判断
@@ -770,6 +772,83 @@ class Solution:
             w = ancestor[x]
             ans = dis[i] + dis[j] - 2 * dis[w]
             ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p3019(ac=FastIO()):
+        # 模板：离线查询 LCA 最近公共祖先
+        n, m = ac.read_ints()
+        dct = [[] for _ in range(n)]
+        for i in range(n - 1):
+            dct[ac.read_int() - 1].append(i + 1)
+        queries = [ac.read_list_ints_minus_one() for _ in range(m)]
+        ans = OfflineLCA().bfs_iteration(dct, queries)
+        for a in ans:
+            ac.st(a + 1)
+        return
+
+    @staticmethod
+    def lg_p3258(ac=FastIO()):
+        # 模板：离线LCA加树上差分加树形DP
+        n = ac.read_int()
+        nums = ac.read_list_ints_minus_one()
+        root = nums[0]
+        dct = [[] for _ in range(n)]
+        for _ in range(n-1):
+            i, j = ac.read_ints_minus_one()
+            dct[i].append(j)
+            dct[j].append(i)
+
+        n = len(dct)
+        stack = [root]
+        parent = [-1] * n
+        while stack:
+            i = stack.pop()
+            for j in dct[i]:
+                if j != parent[i]:
+                    stack.append(j)
+                    parent[j] = i
+
+        trips = []
+        for i in range(1, n):
+            trips.append([nums[i-1], nums[i]])
+
+        # 离线LCA
+        res = OfflineLCA().bfs_iteration(dct, trips, root)
+        # 树上差分
+        diff = [0] * n
+        for i in range(n-1):
+            u, v, ancestor = trips[i] + [res[i]]
+            # 将 u 与 v 到 ancestor 的路径经过的节点进行差分修改（不包含u）
+            if u != ancestor:
+                u = parent[u]
+                diff[u] += 1
+                diff[v] += 1
+                diff[ancestor] -= 1
+                if parent[ancestor] != -1:
+                    diff[parent[ancestor]] -= 1
+            else:
+                diff[v] += 1
+                diff[u] -= 1
+
+        # 自底向上进行差分加和
+        stack = [root]
+        while stack:
+            i = stack.pop()
+            if i >= 0:
+                stack.append(~i)
+                for j in dct[i]:
+                    if j != parent[i]:
+                        stack.append(j)
+            else:
+                i = ~i
+                for j in dct[i]:
+                    if j != parent[i]:
+                        diff[i] += diff[j]
+        diff[nums[0]] += 1
+        diff[nums[-1]] -= 1
+        for a in diff:
+            ac.st(a)
         return
 
 

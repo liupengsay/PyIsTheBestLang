@@ -50,6 +50,8 @@ P2002 消息扩散（https://www.luogu.com.cn/problem/P2002）强连通分量缩
 P2341 [USACO03FALL/HAOI2006] 受欢迎的牛 G（https://www.luogu.com.cn/problem/P2341）使用scc缩点后计算出度为 0 的点集个数与大小
 P2835 刻录光盘（https://www.luogu.com.cn/problem/P2835）强连通分量scc缩点后计算入度为 0 的点数
 P2863 [USACO06JAN]The Cow Prom S（https://www.luogu.com.cn/problem/P2863）强连通分量scc模板题
+B3609 [图论与代数结构 701] 强连通分量（https://www.luogu.com.cn/problem/B3609）强连通分量scc模板题
+B3610 [图论与代数结构 801] 无向图的块（https://www.luogu.com.cn/problem/B3610）点双连通分量
 
 ===================================CodeForces===================================
 F. Is It Flower?（https://codeforces.com/contest/1811/problem/F）无向图求连通分量

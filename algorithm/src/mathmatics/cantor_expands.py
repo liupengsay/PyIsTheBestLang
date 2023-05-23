@@ -1,3 +1,4 @@
+import math
 import unittest
 
 from functools import lru_cache
@@ -5,6 +6,7 @@ from functools import lru_cache
 from itertools import permutations
 
 from algorithm.src.fast_io import FastIO
+from algorithm.src.mathmatics.lexico_graphical_order import LexicoGraphicalOrder
 
 """
 算法：康托展开
@@ -13,10 +15,10 @@ from algorithm.src.fast_io import FastIO
 
 ===================================洛谷===================================
 P5367 【模板】康托展开（https://www.luogu.com.cn/problem/P5367#submit）
+P3014 [USACO11FEB]Cow Line S（https://www.luogu.com.cn/problem/P3014）计算全排列的排名与排名对应的全排列
 
 参考：OI WiKi（https://oi-wiki.org/math/combinatorics/cantor/）
 """
-
 
 
 class CantorExpands:
@@ -64,6 +66,23 @@ class Solution:
         mod = 998244353
         ce = CantorExpands(n, mod)
         ac.st(ce.array_to_rank(nums) % mod)
+        return
+
+    @staticmethod
+    def lg_p3014(ac=FastIO()):
+        # 模板：康托展开也可以使用字典序贪心计算
+        n, q = ac.read_ints()
+        # og = LexicoGraphicalOrder()
+        ct = CantorExpands(n, mod=math.factorial(n + 2))
+        for _ in range(q):
+            s = ac.read_str()
+            lst = ac.read_list_ints()
+            if s == "P":
+                # ac.lst(og.get_kth_subset_perm(n, lst[0]))
+                ac.lst(ct.rank_to_array(n, lst[0]))
+            else:
+                # ac.st(og.get_subset_perm_kth(n, lst))
+                ac.st(ct.array_to_rank(lst))
         return
 
 

@@ -33,6 +33,7 @@ P3467 [POI2008]PLA-Postering（https://www.luogu.com.cn/problem/P3467）贪心�
 P1191 矩形（https://www.luogu.com.cn/problem/P1191）经典单调栈求矩形个数
 P1323 删数问题（https://www.luogu.com.cn/problem/P1323）二叉堆与单调栈，计算最大字典序数字
 P2422 良好的感觉（https://www.luogu.com.cn/problem/P2422）单调栈与前缀和
+P3467 [POI2008]PLA-Postering（https://www.luogu.com.cn/problem/P3467）看不懂的单调栈
 
 ================================CodeForces================================
 E. Explosions?（https://codeforces.com/problemset/problem/1795/E）单调栈贪心计数枚举，前后缀DP转移

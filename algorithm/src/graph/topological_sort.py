@@ -28,6 +28,7 @@ P6145 [USACO20FEB]Timeline G（https://www.luogu.com.cn/problem/P6145）经典�
 P1137 旅行计划（https://www.luogu.com.cn/problem/P1137）拓扑排序，计算可达的最长距离
 P1347 排序（https://www.luogu.com.cn/problem/P1347）拓扑排序确定字典序与矛盾或者无唯一解
 P1685 游览（https://www.luogu.com.cn/problem/P1685）拓扑排序计算路径条数
+P3243 [HNOI2015]菜肴制作（https://www.luogu.com.cn/problem/P3243）经典反向建图拓扑排序结合二叉堆进行顺序模拟
 
 ==================================AtCoder=================================
 F - Well-defined Path Queries on a Namori（https://atcoder.jp/contests/abc266/）（无向图的内向基环树，求简单路径的树枝连通）
@@ -307,6 +308,36 @@ class Solution:
         ans = time[e] + (cnt[e] - 1) * t
         ans %= mod
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p3243(ac=FastIO()):
+        # 模板：经典反向建图拓扑排序结合二叉堆进行顺序模拟
+        for _ in range(ac.read_int()):
+            n, m = ac.read_ints()
+            dct = [[] for _ in range(n)]
+            degree = [0] * n
+            for _ in range(m):
+                i, j = ac.read_ints_minus_one()
+                dct[j].append(i)
+                degree[i] += 1
+            ans = []
+            stack = [-i for i in range(n) if not degree[i]]
+            heapq.heapify(stack)
+            while stack:
+                # 优先选择入度为 0 且编号最大的
+                i = -heapq.heappop(stack)
+                ans.append(i)
+                for j in dct[i]:
+                    degree[j] -= 1
+                    if not degree[j]:
+                        heapq.heappush(stack, -j)
+            if len(ans) == n:
+                # 翻转后则字典序最小
+                ans.reverse()
+                ac.lst([x + 1 for x in ans])
+            else:
+                ac.st("Impossible!")
         return
 
 

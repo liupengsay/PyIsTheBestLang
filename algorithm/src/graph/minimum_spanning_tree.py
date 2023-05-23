@@ -45,7 +45,8 @@ P1340 兽径管理（https://www.luogu.com.cn/problem/P1340）逆序并查集，
 P1550 [USACO08OCT]Watering Hole G（https://www.luogu.com.cn/problem/P1550）经典题目，建立虚拟源点，转换为最小生成树问题
 P2212 [USACO14MAR]Watering the Fields S（https://www.luogu.com.cn/problem/P2212）经典题目，使用prim计算稠密图最小生成树
 P2847 [USACO16DEC]Moocast G（https://www.luogu.com.cn/problem/P2847）使用prim计算最小生成树，适合稠密图场景
-P2914 [USACO08OCT]Power Failure G（）
+P3535 [POI2012]TOU-Tour de Byteotia（https://www.luogu.com.cn/problem/P3535）最小生成树思想与并查集判环
+P4047 [JSOI2010]部落划分（https://www.luogu.com.cn/problem/P4047）使用最小生成树进行最优聚类距离计算
 
 ================================CodeForces================================
 D. Design Tutorial: Inverse the Problem（https://codeforces.com/problemset/problem/472/D）使用最小生成树判断构造给定的点对最短路距离是否存在，使用prim算法复杂度更优
@@ -670,6 +671,58 @@ class Solution:
                     nex = j
         # 时间复杂度O(n^2)空间复杂度O(n)优于kruskal
         ac.st(ans if ans < inf else -1)
+        return
+
+    @staticmethod
+    def lg_p3535(ac=FastIO()):
+        # 模板：最小生成树思想与并查集判环
+        n, m, k = ac.read_ints()
+        edge = []
+        uf = UnionFind(n)
+        ans = 0
+        for _ in range(m):
+            # 先将大于等于 k 的连接起来
+            i, j = ac.read_ints_minus_one()
+            if i >= k and j >= k:
+                uf.union(i, j)
+            else:
+                edge.append([i, j])
+        # 再依次判断剩余的边
+        for i, j in edge:
+            if not uf.union(i, j):
+                ans += 1
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p4047(ac=FastIO()):
+
+        def dis():
+            return (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)
+
+        # 模板：使用最小生成树进行最优聚类距离计算
+        n, k = ac.read_ints()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        edge = []
+        for i in range(n):
+            x1, y1 = nums[i]
+            for j in range(i + 1, n):
+                x2, y2 = nums[j]
+                edge.append([i, j, dis()])
+        edge.sort(key=lambda it: it[2])
+
+        # 当分成 k 个联通块时计算最短距离
+        uf = UnionFind(n)
+        ans = 0
+        for i, j, d in edge:
+            if uf.part == k:
+                if not uf.is_connected(i, j):
+                    ans = d
+                    break
+            else:
+                uf.union(i, j)
+        ans = ans ** 0.5
+        ac.st("%.2f" % ans)
         return
 
 

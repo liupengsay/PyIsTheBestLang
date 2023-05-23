@@ -39,6 +39,7 @@ P1471 方差（https://www.luogu.com.cn/problem/P1471）区间增减，维护区
 P6492 [COCI2010-2011#6] STEP（https://www.luogu.com.cn/problem/P6492）单点修改，查找最长的01交替字符子串连续区间
 P4145 上帝造题的七分钟 2 / 花神游历各国（https://www.luogu.com.cn/problem/P4145）区间值开方向下取整，区间和查询
 P1558 色板游戏（https://www.luogu.com.cn/problem/P1558）线段树区间值修改，区间或值查询
+P3740 [HAOI2014]贴海报（https://www.luogu.com.cn/problem/P3740）离散化线段树区间修改与单点查询
 
 ================================CodeForces================================
 
@@ -2296,6 +2297,41 @@ class Solution:
                 if a > b:
                     a, b = b, a
                 ac.st(bin(tree.query_or(a - 1, b - 1, 0, n - 1, 1)).count("1"))
+        return
+
+    @staticmethod
+    def lg_p3740(ac=FastIO()):
+        # 模板：离散化线段树区间修改与单点查询
+        n, m = ac.read_ints()
+        nums = []
+        while len(nums) < m * 2:
+            nums.extend(ac.read_list_ints())
+        nums = [nums[2 * i:2 * i + 2] for i in range(m)]
+        nodes = set()
+        nodes.add(1)
+        nodes.add(n)
+        for a, b in nums:
+            nodes.add(a)
+            nodes.add(b)
+            # 离散化特别注意需要增加右端点进行连续区间的区分
+            nodes.add(b + 1)
+        nodes = list(sorted(nodes))
+        ind = {num: i for i, num in enumerate(nodes)}
+
+        # 区间修改
+        n = len(nodes)
+        tree = SegmentTreeRangeUpdateQuery(n)
+        for i in range(m):
+            a, b = nums[i]
+            tree.update(ind[a], ind[b], 0, n - 1, i + 1, 1)
+
+        # 单点查询
+        ans = set()
+        for i in range(n):
+            c = tree.query(i, i, 0, n - 1, 1)
+            if c:
+                ans.add(c)
+        ac.st(len(ans))
         return
 
 

@@ -78,6 +78,10 @@ P2047 [NOI2007] 社交网络（https://www.luogu.com.cn/problem/P2047）Dijkstra
 P2269 [HNOI2002]高质量的数据传输（https://www.luogu.com.cn/problem/P2269）比较两个项的最短路计算
 P2349 金字塔（https://www.luogu.com.cn/problem/P2349）比较两个项相加的最短路
 P2914 [USACO08OCT]Power Failure G（https://www.luogu.com.cn/problem/P2914）Dijkstra动态建图计算距离
+P3020 [USACO11MAR]Package Delivery S（https://www.luogu.com.cn/problem/P3020）Dijkstra求最短路
+P3057 [USACO12NOV]Distant Pastures S（https://www.luogu.com.cn/problem/P3057）Dijkstra求最短路
+P3753 国事访问（https://www.luogu.com.cn/problem/P3753）最短路变形两个维度的比较
+P3956 [NOIP2017 普及组] 棋盘（https://www.luogu.com.cn/problem/P3956）多维状态的Dijkstra
 
 ================================CodeForces================================
 C. Dijkstra?（https://codeforces.com/problemset/problem/20/C）正权值最短路计算，并记录返回生成路径
@@ -1022,6 +1026,74 @@ class Solution:
                 ac.lst(e)
         else:
             ac.st("NO")
+        return
+
+    @staticmethod
+    def lg_p3753(ac=FastIO()):
+        # 模板：最短路变形两个维度的比较
+        n, m = ac.read_ints()
+        dct = [dict() for _ in range(n)]
+        cnt = 0
+        for _ in range(m):
+            x, y, s = ac.read_ints()
+            cnt += s
+            x -= 1
+            y -= 1
+            dct[x][y] = s
+            dct[y][x] = s
+
+        dis = [[inf, -inf] for _ in range(n)]
+        stack = [[0, 0, 0]]
+        dis[0] = [0, 0]
+
+        while stack:
+            dd, one, i = heapq.heappop(stack)
+            if dis[i] < [dd, one]:
+                continue
+            for j in dct[i]:
+                w = dct[i][j]
+                dj = [dd+1, one-w]
+                if dj < dis[j]:
+                    dis[j] = dj
+                    heapq.heappush(stack, [dj[0], dj[1], j])
+        ans = cnt+dis[-1][1]+dis[-1][0]+dis[-1][1]
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p3956(ac=FastIO()):
+        # 模板：Dijkstra计算最小代价
+
+        m, n = ac.read_ints()
+        grid = [[-1] * m for _ in range(m)]
+        for _ in range(n):
+            x, y, c = ac.read_ints()
+            grid[x - 1][y - 1] = c
+
+        stack = [[0, 0, grid[0][0], 0, 0]]
+        final = -1
+        visit = defaultdict(lambda: inf)
+        while stack:
+            cost, magic, color, i, j = heapq.heappop(stack)
+            if visit[(i, j, color)] <= cost:
+                continue
+            visit[(i, j, color)] = cost
+            if i == j == m - 1:
+                final = cost
+                break
+            for a, b in [[i - 1, j], [i, j + 1], [i, j - 1], [i + 1, j]]:
+                if 0 <= a < m and 0 <= b < m:
+                    if grid[i][j] != -1:
+                        if grid[a][b] != -1:
+                            heapq.heappush(stack, [cost + int(color != grid[a][b]), 0, grid[a][b], a, b])
+                        else:
+                            heapq.heappush(stack, [cost + 2 + int(color != 0), 1, 0, a, b])
+                            heapq.heappush(stack, [cost + 2 + int(color != 1), 1, 1, a, b])
+
+                    else:
+                        if grid[a][b] != -1:
+                            heapq.heappush(stack, [cost + int(color != grid[a][b]), 0, grid[a][b], a, b])
+        ac.st(final)
         return
 
 

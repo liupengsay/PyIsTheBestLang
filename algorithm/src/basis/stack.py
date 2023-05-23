@@ -24,6 +24,8 @@ P4387 【深基15.习9】验证栈序列（https://www.luogu.com.cn/problem/P438
 P7674 [COCI2013-2014#5] EKSPLOZIJA（https://www.luogu.com.cn/problem/P7674）使用栈模仿消除
 P3719 [AHOI2017初中组]rexp（https://www.luogu.com.cn/problem/P3719）字符串运算展开
 P1974 基因聚合（https://www.luogu.com.cn/problem/P1974）贪心队列模拟
+P3551 [POI2013]USU-Take-out（https://www.luogu.com.cn/problem/P3551）栈与计数指针
+P3719 [AHOI2017初中组]rexp（https://www.luogu.com.cn/problem/P3719）栈模拟
 
 ================================CodeForces================================
 C. Longest Regular Bracket Sequence（https://codeforces.com/problemset/problem/5/C）最长连续合法括号子序列以及个数
@@ -252,6 +254,28 @@ class MinStack:
             a, b = stack.popleft(), stack.popleft()
             stack.append(a * b + 1)
         ac.st(stack[0])
+        return
+
+    @staticmethod
+    def lg_p3719(ac=FastIO()):
+        # 模板：栈模拟
+        s = ac.read_str()
+        stack = []
+        for w in s:
+            if w != ")":
+                stack.append(w)
+            else:
+                pre = ""
+                while stack and stack[-1] != "(":
+                    w = stack.pop()
+                    pre += w
+                stack.pop()
+                x = max(len(t) for t in pre.split("|"))
+                stack.append("a" * x)
+
+        pre = "".join(stack)
+        x = max(len(t) for t in pre.split("|"))
+        ac.st(x)
         return
 
 

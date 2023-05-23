@@ -3,6 +3,7 @@ from collections import deque
 import random
 from typing import List
 
+from algorithm.src.basis.binary_search import BinarySearch
 from algorithm.src.fast_io import FastIO
 
 """
@@ -28,6 +29,9 @@ P3800 Power收集（https://www.luogu.com.cn/problem/P3800）单调队列优化�
 P1016 [NOIP1999 提高组] 旅行家的预算（https://www.luogu.com.cn/problem/P1016）单调队列，贪心模拟油箱，还可以增加每个站的油量限制
 P1714 切蛋糕（https://www.luogu.com.cn/problem/P1714）前缀和加滑动窗口最小值，单调队列计算小于一定长度的最大连续子段和
 P2629 好消息，坏消息（https://www.luogu.com.cn/problem/P2629）环形数组前缀和与滑动窗口最小值
+P3522 [POI2011]TEM-Temperature（https://www.luogu.com.cn/problem/P3522）看不懂的队列与单调栈思想
+P3957 [NOIP2017 普及组] 跳房子（https://www.luogu.com.cn/problem/P3957）二分加优先队列加DP
+P4085 [USACO17DEC]Haybale Feast G（https://www.luogu.com.cn/problem/P4085）双指针加优先队列滑动窗口最小值
 
 ===================================AcWing=====================================
 133. 蚯蚓（https://www.acwing.com/problem/content/135/）三个优先队列加一个偏移量
@@ -355,6 +359,78 @@ class Solution:
             if i >= n:
                 if nums[stack[0]] >= nums[i - n]:
                     ans += 1
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p3957(ac=FastIO()):
+        # 模板：二分加单调队列
+        n, d, k = ac.read_ints()
+        dis = [0]
+        score = [0]
+        for _ in range(n):
+            x, s = ac.read_ints()
+            dis.append(x)
+            score.append(s)
+        n += 1
+
+        def check(g):
+            dp = [-inf] * n
+            stack = deque()
+            dp[0] = score[0]
+            floor = ac.max(1, d - g)
+            ceil = d + g
+            j = 0
+            for i in range(1, n):
+                # 注意此时使用双指针移动窗口
+                while stack and stack[0][1] < dis[i] - ceil:
+                    stack.popleft()
+                while j < n and dis[i] - dis[j] >= floor:
+                    if dis[i] - dis[j] > ceil:
+                        j += 1
+                        continue
+                    while stack and stack[-1][0] <= dp[j]:
+                        stack.pop()
+                    stack.append([dp[j], dis[j]])
+                    j += 1
+                if stack:
+                    dp[i] = stack[0][0] + score[i]
+                    if dp[i] >= k:
+                        return True
+            return False
+
+        ans = BinarySearch().find_int_left(0, dis[-1], check)
+        ac.st(ans if check(ans) else -1)
+        return
+
+    @staticmethod
+    def lg_p4085(ac=FastIO()):
+
+        # 模板：双指针加优先队列滑动窗口最小值
+        n, m = ac.read_ints()
+        f = []
+        s = []
+        for i in range(n):
+            a, b = ac.read_ints()
+            f.append(a)
+            s.append(b)
+
+        # 注意指针与窗口的变动
+        ans = inf
+        stack = deque([])
+        j = pre = 0
+        for i in range(n):
+            while stack and stack[0][0] < i:
+                stack.popleft()
+            while j < n and pre < m:
+                pre += f[j]
+                while stack and stack[-1][1] <= s[j]:
+                    stack.pop()
+                stack.append([j, s[j]])
+                j += 1
+            if pre >= m:
+                ans = ac.min(ans, stack[0][1])
+            pre -= f[i]
         ac.st(ans)
         return
 

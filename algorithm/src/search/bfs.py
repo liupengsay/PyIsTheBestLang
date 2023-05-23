@@ -62,6 +62,11 @@ P2226 [HNOI2001]遥控赛车比赛（https://www.luogu.com.cn/problem/P2226）�
 P2296 [NOIP2014 提高组] 寻找道路（https://www.luogu.com.cn/problem/P2296）正向与反向建图跑两次BFS
 P2919 [USACO08NOV]Guarding the Farm S（https://www.luogu.com.cn/problem/P2919）经典bfs按元素值排序后从大到小遍历
 P2937 [USACO09JAN]Laserphones S（https://www.luogu.com.cn/problem/P2937）使用01BFS优先队列计算
+P3456 [POI2007]GRZ-Ridges and Valleys（https://www.luogu.com.cn/problem/P3456）使用 BFS 与周边进行山峰山谷计算
+P3496 [POI2010]GIL-Guilds（https://www.luogu.com.cn/problem/P3496）脑筋急转弯加 BFS 计算
+P3818 小A和uim之大逃离 II（https://www.luogu.com.cn/problem/P3818）使用队列进行 01BFS 状态广搜
+P3855 [TJOI2008]Binary Land（https://www.luogu.com.cn/problem/P3855）定义四维状态的广度优先搜索
+P3869 [TJOI2009] 宝藏（https://www.luogu.com.cn/problem/P3869）广搜加状压记录最少次数
 
 ================================CodeForces================================
 E. Nearest Opposite Parity（https://codeforces.com/problemset/problem/1272/E）经典反向建图，多源BFS
@@ -1025,6 +1030,175 @@ class Solution:
                     visit[x][y][dd] = visit[i][j][d] + 1
                     stack.append([dd, x, y])
         ac.st(min(visit[end[0]][end[1]]))
+        return
+
+    @staticmethod
+    def lg_p3456(ac=FastIO()):
+        # 模板：使用 BFS 与周边进行山峰山谷计算
+        n = ac.read_int()
+        grid = [ac.read_list_ints() for _ in range(n)]
+        visit = [[0]*n for _ in range(n)]
+        ceil = floor = 0
+        for x in range(n):
+            for y in range(n):
+                if visit[x][y]:
+                    continue
+                visit[x][y] = 1
+                stack = [[x, y]]
+                big = small = False
+                while stack:
+                    i, j = stack.pop()
+                    for a, b in ((i - 1, j - 1), (i - 1, j), (i - 1, j + 1), (i, j - 1),
+                                 (i, j + 1), (i + 1, j - 1), (i + 1, j), (i + 1, j + 1)):
+                        if 0 <= a < n and 0 <= b < n:
+                            if grid[a][b] > grid[x][y]:
+                                big = True
+                            elif grid[a][b] < grid[x][y]:
+                                small = True
+                            else:
+                                if not visit[a][b]:
+                                    stack.append([a, b])
+                                    visit[a][b] = 1
+                if small and big:
+                    continue
+                else:
+                    if big:
+                        ceil += 1
+                    elif small:
+                        floor += 1
+                    else:
+                        ceil += 1
+                        floor += 1
+        ac.lst([ceil, floor][::-1])
+        return
+
+    @staticmethod
+    def lg_p3818(ac=FastIO()):
+        # 模板：使用队列进行 01BFS 状态广搜
+        m, n, d, r = ac.read_ints()
+        grid = []
+        for _ in range(m):
+            grid.append(ac.read_str())
+        visit = [[[None] * 2 for _ in range(n)] for _ in range(m)]
+        visit[0][0][0] = 0
+        stack = deque([[0, 0, 0]])
+        while stack:
+            i, j, s = stack.popleft()
+            if i == m - 1 and j == n - 1:
+                ac.st(visit[i][j][s])
+                return
+            if s == 0 and 0 <= i + d < m and 0 <= j + r < n and not visit[i + d][j + r][1] and grid[i + d][j + r] != "#":
+                visit[i + d][j + r][1] = visit[i][j][s] + 1
+                stack.append([i + d, j + r, 1])
+            for x, y in [[i - 1, j], [i, j + 1], [i + 1, j], [i, j - 1]]:
+                if 0 <= x < m and 0 <= y < n and not visit[x][y][s] and grid[x][y] != "#":
+                    visit[x][y][s] = visit[i][j][s] + 1
+                    stack.append([x, y, s])
+        ac.st(-1)
+        return
+
+    @staticmethod
+    def lg_p3855(ac=FastIO()):
+
+        # 模板：定义四维状态的广度优先搜索
+        m, n = ac.read_ints()
+        grid = [ac.read_str() for _ in range(m)]
+        gg = [-1, -1]
+        mm = [-1, -1]
+        tt = [-1, -1]
+        for i in range(m):
+            for j in range(n):
+                w = grid[i][j]
+                if w == "G":
+                    gg = [i, j]
+                elif w == "M":
+                    mm = [i, j]
+                elif w == "T":
+                    tt = [i, j]
+
+        visit = [[[[-1 for _ in range(n)] for _ in range(m)] for _ in range(n)] for _ in range(m)]
+        stack = deque([[gg[0], gg[1], mm[0], mm[1]]])
+        visit[gg[0]][gg[1]][mm[0]][mm[1]] = 0
+        while stack:
+            a, b, c, d = stack.popleft()
+            ind = [[1, 0, 1, 0], [-1, 0, -1, 0], [0, 1, 0, -1], [0, -1, 0, 1]]
+            for a0, b0, c0, d0 in ind:
+                if 0 <= a + a0 < m and 0 <= b + b0 < n and grid[a + a0][b + b0] == "X":
+                    continue
+                if 0 <= c + c0 < m and 0 <= d + d0 < n and grid[c + c0][d + d0] == "X":
+                    continue
+                if 0 <= a + a0 < m and 0 <= b + b0 < n and grid[a + a0][b + b0] != "#":
+                    x, y = a + a0, b + b0
+                else:
+                    x, y = a, b
+                if 0 <= c + c0 < m and 0 <= d + d0 < n and grid[c + c0][d + d0] != "#":
+                    p, q = c + c0, d + d0
+                else:
+                    p, q = c, d
+
+                if visit[x][y][p][q] == -1:
+                    visit[x][y][p][q] = visit[a][b][c][d] + 1
+                    stack.append([x, y, p, q])
+                    if [x, y] == [p, q] == tt:
+                        ac.st(visit[x][y][p][q])
+                        return
+        ac.st("no")
+        return
+
+    @staticmethod
+    def lg_p3869(ac=FastIO()):
+        # 模板：广搜加状压记录最少次数
+        m, n = ac.read_list_ints()
+        grid = [ac.read_str() for _ in range(m)]
+        k = ac.read_int()
+        pos = dict()
+        ind = dict()
+        for i in range(k):
+            a, b, c, d = ac.read_ints_minus_one()
+            if (c, d) not in ind:
+                ind[(c, d)] = len(ind)
+            if (a, b) not in pos:
+                pos[(a, b)] = []
+            pos[(a, b)].append((c, d))
+        k = len(ind)
+
+        visit = [[[inf] * (1 << k) for _ in range(n)] for _ in range(m)]
+        ss = [-1, -1]
+        tt = [-1, -1]
+        for i in range(m):
+            for j in range(n):
+                w = grid[i][j]
+                if w == "S":
+                    ss = [i, j]
+                elif w == "T":
+                    tt = [i, j]
+        stack = deque([[ss[0], ss[1], 0]])
+        visit[ss[0]][ss[1]][0] = 0
+        while stack:
+            i, j, state = stack.popleft()
+            if [i, j] == tt:
+                break
+            for a, b in [[i - 1, j], [i + 1, j], [i, j - 1], [i, j + 1]]:
+                if 0 <= a < m and 0 <= b < n:
+                    if (a, b) not in ind:
+                        if grid[a][b] != "#":
+                            cur_state = state
+                            if (a, b) in pos:
+                                for (c, d) in pos[(a, b)]:
+                                    cur_state ^= (1 << ind[(c, d)])
+                            if visit[a][b][cur_state] == inf:
+                                stack.append([a, b, cur_state])
+                                visit[a][b][cur_state] = visit[i][j][state] + 1
+                    else:
+                        if (grid[a][b] != "#") == (not state & (1 << ind[(a, b)])):
+                            cur_state = state
+                            if (a, b) in pos:
+                                for (c, d) in pos[(a, b)]:
+                                    cur_state ^= (1 << ind[(c, d)])
+                            if visit[a][b][cur_state] == inf:
+                                stack.append([a, b, cur_state])
+                                visit[a][b][cur_state] = visit[i][j][state] + 1
+        ac.st(min(visit[tt[0]][tt[1]]))
         return
 
 

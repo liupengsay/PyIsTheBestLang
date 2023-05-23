@@ -52,6 +52,7 @@ P1123 取数游戏（https://www.luogu.com.cn/problem/P1123）类似占座位的
 P1433 吃奶酪（https://www.luogu.com.cn/problem/P1433）状压DP
 P1896 [SCOI2005] 互不侵犯（https://www.luogu.com.cn/problem/P1896）状压DP
 P1556 幸福的路（https://www.luogu.com.cn/problem/P1556）状态压缩计算最短路
+P3052 [USACO12MAR]Cows in a Skyscraper G（https://www.luogu.com.cn/problem/P3052）经典状态压缩 DP 使用二维优化
 
 ================================CodeForces================================
 D. Kefa and Dishes（https://codeforces.com/problemset/problem/580/D）状态压缩DP结合前后相邻的增益计算最优解
@@ -362,6 +363,31 @@ class Solution:
                             res += dp[state ^ (1 << y)][y][ff]
                     dp[state][x][f] = res
         ac.st(dp[(1 << n) - 1 - 1][0][0])
+        return
+
+    @staticmethod
+    def lg_p3052(ac=FastIO()):
+        # 模板：经典状态压缩 DP 使用二维优化
+        n, w = ac.read_ints()
+        nums = []
+        while len(nums) < n:
+            nums.extend(ac.read_list_ints())
+        f = [math.inf] * (1 << n)  # 当前状态下的分组
+        f[0] = 1
+        g = [0] * (1 << n)  # 当前状态下最后一组占用的重量
+        for i in range(1, 1 << n):
+            for j in range(n):
+                if i & (1 << j):
+                    pre = i ^ (1 << j)
+                    # 装在当前最后一组
+                    if g[pre] + nums[j] <= w and [f[i], g[i]] > [f[pre], g[pre] + nums[j]]:
+                        f[i] = f[pre]
+                        g[i] = g[pre] + nums[j]
+                    # 新开组
+                    elif [f[i], g[i]] > [f[pre] + 1, nums[j]]:
+                        f[i] = f[pre] + 1
+                        g[i] = nums[j]
+        ac.st(f[-1])
         return
 
 

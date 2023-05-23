@@ -44,6 +44,7 @@ from algorithm.src.fast_io import FastIO
 P3386 【模板】二分图最大匹配（https://www.luogu.com.cn/problem/P3386）二分图最大匹配
 P6577 【模板】二分图最大权完美匹配（https://www.luogu.com.cn/problem/P6577）二分图最大权完美匹配
 P1894 [USACO4.2]完美的牛栏The Perfect Stall（https://www.luogu.com.cn/problem/P1894）二分图最大匹配，转换为网络流求解
+B3605 [图论与代数结构 401] 二分图匹配（https://www.luogu.com.cn/problem/B3605）匈牙利算法二分图不带权最大匹配
 
 ================================CodeForces================================
 C. Chef Monocarp（https://codeforces.com/problemset/problem/1437/C）二分图最小权匹配
@@ -53,6 +54,72 @@ C. Chef Monocarp（https://codeforces.com/problemset/problem/1437/C）二分图�
 
 # EK算法
 from collections import defaultdict, deque
+
+
+class Hungarian:
+    def __init__(self):
+        # 模板：二分图不带权最大匹配
+        return
+
+    @staticmethod
+    def dfs_recursion(n, m, dct):
+        # 递归版写法
+        assert len(dct) == m
+
+        def hungarian(i):
+            for j in dct[i]:
+                if not visit[j]:
+                    visit[j] = True
+                    if match[j] == -1 or hungarian(match[j]):
+                        match[j] = i
+                        return True
+            return False
+
+        # 待匹配组大小为 n
+        match = [-1] * n
+        ans = 0
+        for x in range(m):
+            # 匹配组大小为 m
+            visit = [False] * n
+            if hungarian(x):
+                ans += 1
+        return ans
+
+    @staticmethod
+    def bfs_iteration(n, m, dct):
+        # 迭代版写法
+        assert len(dct) == m
+
+        match = [-1] * n
+        ans = 0
+        for i in range(m):
+            hungarian = [0] * m
+            visit = [0] * n
+            stack = [[i, 0]]
+            while stack:
+                # 当前匹配点，与匹配对象索引
+                x, ind = stack[-1]
+                if ind == len(dct[x]) or hungarian[x]:
+                    stack.pop()
+                    continue
+                y = dct[x][ind]
+                if not visit[y]:
+                    # 未访问过
+                    visit[y] = 1
+                    if match[y] == -1:
+                        match[y] = x
+                        hungarian[x] = 1
+                    else:
+                        stack.append([match[y], 0])
+                else:
+                    # 访问过且继任存在对应匹配
+                    if hungarian[match[y]]:
+                        match[y] = x
+                        hungarian[x] = 1
+                    stack[-1][1] += 1
+            if hungarian[i]:
+                ans += 1
+        return ans
 
 
 class EK:
@@ -288,6 +355,20 @@ class Soluttion:
         for i in range(m):
             ek.add_edge(n + i, t, 1)
         ac.st(ek.pipline())
+        return
+
+    @staticmethod
+    def lg_3386(ac=FastIO()):
+        # 模板：匈牙利算法二分图不带权最大匹配
+        n, m, e = ac.read_ints()
+        dct = [[] for _ in range(m)]
+        for _ in range(e):
+            i, j = ac.read_ints()
+            i -= 1
+            j -= 1
+            dct[j].append(i)
+        ac.st(Hungarian().dfs_recursion(n, m, dct))
+        # ac.st(Hungarian().bfs_iteration(n, m, dct))
         return
 
 

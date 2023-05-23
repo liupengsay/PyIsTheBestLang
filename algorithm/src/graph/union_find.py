@@ -47,6 +47,7 @@ P1621 集合（https://www.luogu.com.cn/problem/P1621）利用素数筛的思想
 P1892 [BOI2003]团伙（https://www.luogu.com.cn/problem/P1892）经典并查集，敌人与朋友关系
 P2189 小Z的传感器（https://www.luogu.com.cn/problem/P2189）并查集经典题，确定访问顺序的合法性
 P2307 迷宫（https://www.luogu.com.cn/problem/P2307）并查集判定树的生成是否合法
+P3420 [POI2005]SKA-Piggy Banks（https://www.luogu.com.cn/problem/P3420）经典并查集变形问题
 
 ================================CodeForces================================
 D. Roads not only in Berland（https://codeforces.com/problemset/problem/25/D）并查集将原来的边断掉重新来连接使得成为一整个连通集
@@ -572,6 +573,17 @@ class Solution:
                     res = False
                     break
             ac.st(1 if res and uf.part == 1 else 0)
+        return
+
+    @staticmethod
+    def lg_p3420(ac=FastIO()):
+        # 模板：特殊图 n 个节点 n 条边的联通块数量
+        n = ac.read_int()
+        uf = UnionFind(n)
+        for i in range(n):
+            j = ac.read_int()
+            uf.union(i, j - 1)
+        ac.st(uf.part)
         return
 
 

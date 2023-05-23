@@ -41,6 +41,9 @@ P1680 奇怪的分组（https://www.luogu.com.cn/problem/P1680）隔板法计算
 P2265 路边的水沟（https://www.luogu.com.cn/problem/P2265）排列组合，计算comb(n+m, m)
 P2638 安全系统（https://www.luogu.com.cn/problem/P2638）隔板法 a 个球放入 n 个盒子不要求每个都放也不要求放完的方案数
 P2822 [NOIP2016 提高组] 组合数问题（https://www.luogu.com.cn/problem/P2822）组合数 comb(i, j) % k == 0 的个数计算 
+P3223 [HNOI2012] 排队（https://www.luogu.com.cn/problem/P3223）使用容斥原理和隔板法计算
+P3904 三只小猪（https://www.luogu.com.cn/problem/P3904）递推第二类斯特林数
+P4071 [SDOI2016]排列计数（https://www.luogu.com.cn/problem/P4071）经典错排选择 n 个元素刚好有 m 个错位排列的方案数
 
 ================================CodeForces================================
 D. Triangle Coloring（https://codeforces.com/problemset/problem/1795/D）组合计数取模与乘法逆元快速计算
@@ -449,11 +452,47 @@ class Solution:
             ac.st(ans)
         return
 
+    @staticmethod
+    def lg_p3223(ac=FastIO()):
+        # 模板：使用容斥原理与隔板法计算
+        n, m = ac.read_ints()
+        ans1 = math.factorial(n + 2) * math.factorial(m) * math.comb(n + 3, m)
+        ans2 = math.factorial(2) * math.factorial(n + 1) * math.factorial(m) * math.comb(n + 2, m)
+        ac.st(ans1 - ans2)
+        return
+
+    @staticmethod
+    def lg_p3904(ac=FastIO()):
+        # 模板：递推第二类斯特林数
+        n, m = ac.read_ints()
+        dp = [[0] * m for _ in range(n)]
+        dp[0][0] = 1
+        for i in range(1, n):
+            dp[i][0] = 1
+            for j in range(1, m):
+                dp[i][j] = dp[i - 1][j] * (j + 1) + dp[i - 1][j - 1]
+        ac.st(dp[n - 1][m - 1])
+        return
+
+    @staticmethod
+    def main(ac=FastIO()):
+        # 模板：选择 n 个元素刚好有 m 个错位排列的方案数
+        mod = 10**9 + 7
+        cb = Combinatorics(10**6, mod)
+        for _ in range(ac.read_int()):
+            n, m = ac.read_ints()
+            if m > n:
+                ac.st(0)
+                continue
+            ans = cb.comb(n, m) * cb.fault[n - m]
+            ans %= mod
+            ac.st(ans)
+        return
+
 
 class TestGeneral(unittest.TestCase):
     def test_comb_perm(self):
-
-
+        pass
         return
 
 

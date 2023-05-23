@@ -50,6 +50,10 @@ P1525 [NOIP2010 提高组] 关押罪犯（https://www.luogu.com.cn/problem/P1525
 P1542 包裹快递（https://www.luogu.com.cn/problem/P1542）二分加使用分数进行高精度计算
 P2237 [USACO14FEB]Auto-complete S（https://www.luogu.com.cn/problem/P2237）脑筋急转弯排序后二分查找
 P2810 Catch the theives（https://www.luogu.com.cn/problem/P2810）二分加枚举
+P3718 [AHOI2017初中组]alter（https://www.luogu.com.cn/problem/P3718）二分加贪心
+P3853 [TJOI2007]路标设置（https://www.luogu.com.cn/problem/P3853）经典二分贪心题
+
+
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1251/D（使用贪心进行中位数二分求解）
 https://codeforces.com/problemset/problem/830/A（使用贪心进行距离点覆盖二分求解）
@@ -754,6 +758,59 @@ class Solution:
             ac.st(ans)
             return
         ac.st(-1)
+        return
+
+    @staticmethod
+    def lg_p3718(ac=FastIO()):
+        # 模板：二分加贪心
+        n, k = ac.read_ints()
+        s = ac.read_str()
+
+        def check(x):
+            if x == 1:
+                # 特殊情况
+                op1 = op2 = 0
+                for i in range(n):
+                    if i % 2:
+                        op1 += 1 if s[i] == "N" else 0
+                        op2 += 1 if s[i] == "F" else 0
+                    else:
+                        op1 += 1 if s[i] == "F" else 0
+                        op2 += 1 if s[i] == "N" else 0
+                return op1 <= k or op2 <= k
+
+            op = 0
+            pre = s[0]
+            cnt = 1
+            for w in s[1:]:
+                if w == pre:
+                    cnt += 1
+                else:
+                    # 对于相同状态连续区间断开的最少操作次数
+                    op += cnt // (x + 1)
+                    pre = w
+                    cnt = 1
+            op += cnt // (x + 1)
+            return op <= k
+
+        ans = BinarySearch().find_int_left(1, n, check)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p3853(ac=FastIO()):
+        # 模板：经典二分贪心题
+        length, n, k = ac.read_ints()
+        lst = ac.read_list_ints()
+        lst.sort()
+
+        def check(x):
+            return sum((lst[i + 1] - lst[i] + x - 1) // x - 1 for i in range(n - 1)) <= k
+
+        low = 1
+        high = max(lst[i + 1] - lst[i] for i in range(n - 1))
+        ans = BinarySearch().find_int_left(low, high, check)
+        ac.st(ans)
         return
 
 

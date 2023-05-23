@@ -47,6 +47,11 @@ P2015 二叉苹果树（https://www.luogu.com.cn/problem/P2015）树形DP，有�
 P2014 [CTSC1997] 选课（https://www.luogu.com.cn/problem/P2014）树形DP
 P4316 绿豆蛙的归宿（https://www.luogu.com.cn/problem/P4316）逆向建图，拓扑排序DP
 P1351 [NOIP2014 提高组] 联合权值（https://www.luogu.com.cn/problem/P1351#submit）树形DP
+P3304 [SDOI2013]直径（https://www.luogu.com.cn/problem/P3304）经典计算带权无向图的直径以及直径的必经边
+P3408 恋爱（https://www.luogu.com.cn/problem/P3408）树形DP
+P3478 [POI2008] STA-Station（https://www.luogu.com.cn/problem/P3478）树的质心
+P3931 SAC E#1 - 一道难题 Tree（https://www.luogu.com.cn/problem/P3931）典型树形DP
+P4084 [USACO17DEC]Barn Painting G（https://www.luogu.com.cn/problem/P4084）典型树形DP
 
 ==================================AtCoder=================================
 F - Expensive Expense （https://atcoder.jp/contests/abc222/tasks/abc222_f）换根DP
@@ -187,6 +192,33 @@ class TreeDP:
         dfs(0, 0, -1)
         # 树的直径、核心可通过这两个数组计算得到，其余类似的递归可参照这种方式
         return up_to_down, down_to_up
+
+
+class TreeDiameterWeighted:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def bfs(dct, src):
+        # 模板：使用 BFS 计算获取带权树的直径端点以及直径长度
+        n = len(dct)
+        res = [inf] * n
+        stack = [src]
+        res[src] = 0
+        parent = [-1] * n
+        while stack:
+            node = stack.pop()
+            for nex in dct[node]:
+                if nex != parent[node]:
+                    parent[nex] = node
+                    res[nex] = res[node] + dct[node][nex]
+                    stack.append(nex)
+        far = res.index(max(res))
+        diameter = [far]
+        while diameter[-1] != src:
+            diameter.append(parent[diameter[-1]])
+        diameter.reverse()
+        return far, diameter, res[far]
 
 
 class TreeDiameter:
@@ -1050,6 +1082,141 @@ class Solution:
                 ceil = ac.max(ceil, a * b)
 
         ac.lst([ceil, ans])
+        return
+
+    @staticmethod
+    def lg_p3304(ac=FastIO()):
+        # 模板：经典计算带权无向图的直径以及直径的必经边
+        n = ac.read_int()
+        dct = [dict() for _ in range(n)]
+        for _ in range(n - 1):
+            i, j, k = ac.read_ints()
+            i -= 1
+            j -= 1
+            dct[i][j] = dct[j][i] = k
+        # 首先计算直径
+        tree = TreeDiameterWeighted()
+        x, _, _ = tree.bfs(dct, 0)
+        y, path, dia = tree.bfs(dct, x)
+        ac.st(dia)
+        # 确定直径上每个点的最远端距离
+        nodes = set(path)
+        dis = [0] * n
+        for x in path:
+            q = [[x, -1, 0]]
+            while q:
+                i, fa, d = q.pop()
+                for j in dct[i]:
+                    if j != fa and j not in nodes:
+                        dis[x] = d + dct[i][j]
+                        q.append([j, i, d + dct[i][j]])
+
+        # 计算直径必经边的最右边端点
+        m = len(path)
+        pre = right = 0
+        for j in range(1, m):
+            pre += dct[path[j - 1]][path[j]]
+            right = j
+            if dis[path[j]] == dia - pre:  # 此时点下面有非当前直径的最远路径
+                break
+
+        # 计算直径必经边的最左边端点
+        left = m - 1
+        post = 0
+        for j in range(m - 2, -1, -1):
+            post += dct[path[j]][path[j + 1]]
+            left = j
+            if dis[path[j]] == dia - post:  # 此时点下面有非当前直径的最远路径
+                break
+
+        ans = ac.max(0, right - left)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_3408(ac=FastIO()):
+
+        # 模板：树形 DP 模拟
+        n, t, c = ac.read_ints()
+        dct = [[] for _ in range(n + 1)]
+        nums = [c]
+        for i in range(n):
+            b, a = ac.read_ints()
+            dct[b].append(i + 1)
+            nums.append(a)
+
+        stack = [0]
+        while stack:
+            i = stack.pop()
+            if i >= 0:
+                stack.append(~i)
+                for j in dct[i]:
+                    stack.append(j)
+            else:
+                i = ~i
+                if not dct[i]:
+                    continue
+                else:
+                    # 收到子树下属的最少花费
+                    if nums[i] > t:
+                        continue
+
+                    # 需要最少的 x 个下属花费
+                    x = math.ceil(len(dct[i]) * nums[i] / t)
+                    lst = []
+                    for j in dct[i]:
+                        lst.append(nums[j])
+                    lst.sort()
+                    nums[i] = sum(lst[:x])
+        ac.st(nums[0])
+        return
+
+    @staticmethod
+    def lg_p3478(ac=FastIO()):
+        # 模板：计算树的质心
+        n = ac.read_int()
+        dct = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            i, j = ac.read_ints_minus_one()
+            dct[i].append(j)
+            dct[j].append(i)
+        dis = TreeCentroid().get_tree_distance(dct)
+        ind = 0
+        for i in range(1, n):
+            if dis[i] > dis[ind]:
+                ind = i
+        ac.st(ind + 1)
+        return
+
+    @staticmethod
+    def lg_p3931(ac=FastIO()):
+        # 模板：树形 DP 模拟
+        n, root = ac.read_ints()
+        root -= 1
+        dct = [dict() for _ in range(n)]
+        for _ in range(n - 1):
+            i, j, c = ac.read_ints_minus_one()
+            c += 1
+            dct[i][j] = dct[j][i] = c
+        stack = [[root, -1]]
+        sub = [inf] * n
+        while stack:
+            i, fa = stack.pop()
+            if i >= 0:
+                stack.append([~i, fa])
+                for j in dct[i]:
+                    if j != fa:
+                        stack.append([j, i])
+            else:
+                i = ~i
+                if len(dct[i]) == 1 and i != root:
+                    continue
+                res = 0
+                for j in dct[i]:
+                    if j != fa:
+                        res += ac.min(dct[i][j], sub[j])
+                sub[i] = res
+        ac.st(sub[root] if sub[root] < inf else 0)
         return
 
 

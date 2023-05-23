@@ -29,6 +29,7 @@ P3509 [POI2010]ZAB-Frog（https://www.luogu.com.cn/problem/P3509）双指针模�
 P1349 广义斐波那契数列（https://www.luogu.com.cn/problem/P1349）矩阵快速幂
 P2233 [HNOI2002]公交车路线（https://www.luogu.com.cn/problem/P2233）矩阵快速幂
 P2613 【模板】有理数取余（https://www.luogu.com.cn/problem/P2613）乘法逆元
+P3758 [TJOI2017]可乐（https://www.luogu.com.cn/problem/P3758）矩阵 DP 使用快速幂优化
 
 参考：OI WiKi（xx）
 
@@ -235,6 +236,31 @@ class Solution:
         ans = a * pow(b, -1, mod)
         ans %= mod
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p3758(ac=FastIO()):
+        # 模板：矩阵 DP 使用快速幂优化
+        n, m = ac.read_ints()
+        # 转移矩阵
+        grid = [[0]*(n+1) for _ in range(n+1)]
+        for i in range(n+1):
+            grid[i][i] = 1
+            grid[0][i] = 1
+        for _ in range(m):
+            u, v = ac.read_ints()
+            grid[u][v] = grid[v][u] = 1
+        # 快速幂与最终状态计算
+        initial = [0]*(n+1)
+        initial[1] = 1
+        mod = 2017
+        t = ac.read_int()
+        ans = MatrixFastPower().matrix_pow(grid, t, mod)
+        res = 0
+        for i in range(n+1):
+            res += sum(ans[i][j]*initial[j] for j in range(n+1))
+            res %= mod
+        ac.st(res)
         return
 
 

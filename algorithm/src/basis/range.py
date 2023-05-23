@@ -3,6 +3,7 @@ from collections import defaultdict
 from math import inf
 from typing import List
 
+from algorithm.src.data_structure.sorted_list import LocalSortedList
 from algorithm.src.fast_io import FastIO
 
 """
@@ -35,6 +36,8 @@ P1233 木棍加工（https://www.luogu.com.cn/problem/P1233）按照一个维度
 P1496 火烧赤壁（https://www.luogu.com.cn/problem/P1496）经典区间合并确定覆盖范围
 P1668 [USACO04DEC] Cleaning Shifts S（https://www.luogu.com.cn/problem/P1668）转换为最小区间覆盖问题
 P2887 [USACO07NOV] Sunscreen G（https://www.luogu.com.cn/problem/P2887）最多点匹配覆盖，每条线段选一个点匹配，最多匹配数有点类似二分图
+P3661 [USACO17FEB]Why Did the Cow Cross the Road I S（https://www.luogu.com.cn/problem/P3661）经典区间与点集贪心匹配
+P3737 [HAOI2014]遥感监测（https://www.luogu.com.cn/problem/P3737）经典区间点覆盖贪心
 
 ================================CodeForces================================
 A. String Reconstruction（https://codeforces.com/problemset/problem/827/A）区间合并为不相交的区间，再贪心赋值
@@ -269,6 +272,51 @@ class Solution:
                     ans += 1
                     pos[i][1] -= 1
                     break
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p3661(ac=FastIO()):
+        # 模板：区间与点集贪心匹配
+        n, m = ac.read_ints()
+        lst = LocalSortedList([ac.read_int() for _ in range(n)])
+        nums = [ac.read_list_ints() for _ in range(m)]
+        # 按照右边端点排序
+        nums.sort(key=lambda it: it[1])
+        ans = 0
+        for a, b in nums:
+            i = lst.bisect_left(a)
+            # 选择当前符合条件且最小的
+            if 0 <= i < len(lst) and a <= lst[i] <= b:
+                ans += 1
+                lst.pop(i)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p3737(ac=FastIO()):
+        # 模板：区间点覆盖贪心
+        n, r = ac.read_ints()
+        lst = []
+        while len(lst) < 2*n:
+            lst.extend(ac.read_list_ints())
+        nums = []
+        for i in range(n):
+            x, y = lst[2*i], lst[2*i+1]
+            if r*r < y*y:
+                ac.st(-1)
+                return
+            d = (r*r-y*y)**0.5
+            nums.append([x-d, x+d])
+        nums.sort(key=lambda it: it[1])
+        ans = 1
+        a, b = nums[0]
+        for c, d in nums[1:]:
+            if b >= c:
+                continue
+            else:
+                ans += 1
+                b = d
         ac.st(ans)
         return
 

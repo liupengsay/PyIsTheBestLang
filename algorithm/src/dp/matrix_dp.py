@@ -72,7 +72,8 @@ P2528 [SHOI2001]排序工作量之新任务（https://www.luogu.com.cn/problem/P
 P2733 [USACO3.3]家的范围 Home on the Range（https://www.luogu.com.cn/problem/P2733）经典DP通过边长与差分数组计算正方形子矩阵的个数
 P2736 [USACO3.4]“破锣摇滚”乐队 Raucous Rockers（https://www.luogu.com.cn/problem/P2736）矩阵DP
 P2769 猴子上树（https://www.luogu.com.cn/problem/P2769）矩阵 DP 注意初始化条件
-
+P3012 [USACO11FEB]Cowlphabet G（https://www.luogu.com.cn/problem/P3012https://www.luogu.com.cn/problem/P3012）三维矩阵DP
+P3860 [TJOI2009] 火星人的手机（https://www.luogu.com.cn/problem/P3860）矩阵 DP 并计算具体转移方案
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1446/B（最长公共子序列LCS变形问题，理解贡献）
@@ -1062,6 +1063,76 @@ class Solution:
                 dp[cur][j + 1] = ac.min(dp[pre][j] + abs(a[i] - b[j]), dp[pre][j + 1] + abs(a[i] - b[j]))
             pre = cur
         ac.st(dp[pre][-1])
+        return
+
+    @staticmethod
+    def lg_p3012(ac=FastIO()):
+        # 模板：矩阵 DP 可以按照顺序进行转移
+        u, l, p = ac.read_ints()
+        dct = defaultdict(list)
+        nodes = set()
+        for _ in range(p):
+            st = ac.read_str()
+            dct[st[0]].append(st[1])
+            nodes.add(st[0])
+            nodes.add(st[1])
+        nodes = list(nodes)
+        ind = {w: i for i, w in enumerate(nodes)}
+        m = len(ind)
+        mod = 97654321
+
+        # 大写字母个数，小写字母个数，当前结尾字母
+        dp = [[[0] * m for _ in range(l + 1)] for _ in range(u + 1)]
+        for w in nodes:
+            if w.isupper():  # 初始化
+                dp[1][0][ind[w]] = 1
+            else:
+                dp[0][1][ind[w]] = 1
+
+        # 从小到大计算
+        for i in range(u + 1):
+            for j in range(l + 1):
+                for k in range(m):
+                    for nex in dct[nodes[k]]:
+                        # 状态转移
+                        if nex.isupper() and i + 1 <= u:
+                            dp[i + 1][j][ind[nex]] += dp[i][j][k]
+                            dp[i + 1][j][ind[nex]] %= mod
+                        if nex.islower() and j + 1 <= l:
+                            dp[i][j + 1][ind[nex]] += dp[i][j][k]
+                            dp[i][j + 1][ind[nex]] %= mod
+        ac.st(sum(dp[u][l]) % mod)
+        return
+
+    @staticmethod
+    def lg_p3860(ac=FastIO()):
+        # 模板：矩阵 DP 并计算具体转移方案
+        n, m = ac.read_ints()
+        nums = [ac.read_int() for _ in range(n)]
+        dp = [[inf] * (n + 1) for _ in range(m + 1)]
+        dp[0][0] = 0
+        pre = [[[0, 0] for _ in range(n + 1)] for _ in range(m + 1)]
+        for i in range(m):
+            dp[i + 1][0] = 0
+            for j in range(n):
+                cur = post = 0
+                for k in range(j, -1, -1):
+                    cur += post
+                    cur += nums[k]
+                    post += nums[k]
+                    if cur + dp[i][k] < dp[i + 1][j + 1]:
+                        pre[i + 1][j + 1] = [i, k]
+                        dp[i + 1][j + 1] = cur + dp[i][k]
+        ac.st(dp[m][n])
+        ans = [[m, n]]
+        while len(ans) < m + 1:
+            ans.append(pre[ans[-1][0]][ans[-1][1]])
+        ans.reverse()
+        x = len(ans)
+        for i in range(1, x):
+            a, b = ans[i - 1]
+            c, d = ans[i]
+            ac.st(d - b)
         return
 
 

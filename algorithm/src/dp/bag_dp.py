@@ -81,6 +81,9 @@ P2760 科技庄园（https://www.luogu.com.cn/problem/P2760）单调队列优化
 P2854 [USACO06DEC]Cow Roller Coaster S（https://www.luogu.com.cn/problem/P2854）分组01背包
 P2938 [USACO09FEB]Stock Market G（https://www.luogu.com.cn/problem/P2938）分组完全背包
 P2979 [USACO10JAN]Cheese Towers S（https://www.luogu.com.cn/problem/P2979）分组01背包
+P3010 [USACO11JAN]Dividing the Gold S（https://www.luogu.com.cn/problem/P3010）经典变形01背包，计算两堆差值最小的分配方案数
+P3423 [POI2005]BAN-Bank Notes（https://www.luogu.com.cn/problem/P3423）二进制优化多重背包与方案输出
+P3983 赛斯石（赛后强化版）（https://www.luogu.com.cn/problem/P3983）两个分组完全背包计算
 
 ================================CodeForces================================
 B. Modulo Sum（https://codeforces.com/problemset/problem/577/B）取模计数二进制优化与背包DP，寻找非空子序列的和整除给定的数
@@ -1042,6 +1045,77 @@ class Solution:
                 for i in range(t, h - 1, -1):
                     ans = ac.max(ans, dp1[(i - h)*5//4] + v)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p3010(ac=FastIO()):
+        # 模板：变形01背包，计算两堆差值最小的分配方案数
+        n = ac.read_int()
+        nums = [ac.read_int() for _ in range(n)]
+        s = sum(nums)
+        mod = 10 ** 6
+        # 临界点作为目标值
+        t = s // 2
+        dp = [0] * (t + 1)  # 背包
+        dp[0] = 1
+        cnt = [0] * (t + 1)  # 方案数
+        cnt[0] = 1
+        for num in nums:
+            for i in range(t, num - 1, -1):
+                if dp[i - num]:
+                    dp[i] = 1
+                    cnt[i] += cnt[i - num]
+                    cnt[i] %= mod
+
+        # 枚举最小差值
+        for i in range(t, -1, -1):
+            if dp[i]:
+                ac.st(s - 2 * i)
+                ac.st(cnt[i])
+                break
+        return
+
+    @staticmethod
+    def lg_p3423(ac=FastIO()):
+        # 模板：二进制优化多重背包并计算方案数
+        n = ac.read_int()
+        b = ac.read_list_ints()
+        c = ac.read_list_ints()
+        k = ac.read_int()
+        dp = [inf] * (k + 1)
+        dp[0] = 0
+        state = [[] for _ in range(k + 1)]
+        for j in range(n):
+            bb, cc = b[j], c[j]
+            for x in BagDP().bin_split(cc):
+                for i in range(k, x * bb - 1, -1):
+                    if dp[i - x * bb] + x < dp[i]:
+                        dp[i] = dp[i - x * bb] + x
+                        state[i] = state[i - x * bb][:] + [[bb, x]]
+        cnt = defaultdict(int)
+        for bb, xx in state[k]:
+            cnt[bb] += xx
+        ac.st(dp[k])
+        ac.lst([cnt[bb] for bb in b])
+        return
+
+    @staticmethod
+    def lg_p3983(ac=FastIO()):
+        # 模板：两个分组完全背包计算
+        n = ac.read_int()
+        # 第一个背包计算每个重量可拆分后的最大价格
+        m = 10
+        a = [0] + ac.read_list_ints()
+        for i in range(1, m + 1):
+            for j in range(i + 1):
+                a[i] = ac.max(a[i], a[j] + a[i - j])
+        # 第二个背包计算船运载的最大盈利
+        cost = [0] + [1, 3, 5, 7, 9, 10, 11, 14, 15, 17]
+        dp = [0] * (n + 1)
+        for i in range(1, m + 1):
+            for j in range(i, n + 1):
+                dp[j] = ac.max(dp[j], dp[j - i] + a[i] - cost[i])
+        ac.st(dp[-1])
         return
 
 
