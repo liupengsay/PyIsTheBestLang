@@ -36,6 +36,7 @@ P7649 [BalticOI 2004 Day 1] SCALES（https://www.luogu.com.cn/problem/P7649）�
 P1582 倒水（https://www.luogu.com.cn/problem/P1582）进制题脑经急转弯
 P2114 [NOI2014] 起床困难综合症（https://www.luogu.com.cn/problem/P2114）按位操作计算模拟，贪心选取最大结果
 P2326 AKN’s PPAP（https://www.luogu.com.cn/problem/P2326）按位模拟贪心选取与值最大的数值对
+P4144 大河的序列（https://www.luogu.com.cn/problem/P4144）按位思考贪心脑筋急转弯
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/305/C（利用二进制加减的思想进行解题）
@@ -419,6 +420,15 @@ class Solution:
                 else:
                     nums = []
             ac.st(f"Case #{case + 1}: {ans}")
+        return
+
+    @staticmethod
+    def lg_p4144(ac=FastIO()):
+        # 模板：按位思考脑筋急转弯贪心
+        n, b, p = ac.read_ints()
+        nums = ac.read_list_ints()
+        ans = max(nums)*2
+        ac.st(pow(ans+233, b, p))
         return
 
 
