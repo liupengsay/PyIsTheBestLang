@@ -92,6 +92,8 @@ P1072 [NOIP2009 提高组] Hankson 的趣味题（https://www.luogu.com.cn/probl
 P1593 因子和（https://www.luogu.com.cn/problem/P1593）使用质因数分解与快速幂计算a^b的所有因子之和
 P2527 [SHOI2001]Panda的烦恼（https://www.luogu.com.cn/problem/P2527）丑数即只含特定质因子的数
 P2557 [AHOI2002]芝麻开门（https://www.luogu.com.cn/problem/P2557）使用质因数分解计算a^b的所有因子之和
+P4446 [AHOI2018初中组]根式化简（https://www.luogu.com.cn/problem/P4446）预先处理出素数然后计算最大的完全立方数因子
+P4752 Divided Prime（https://www.luogu.com.cn/problem/P4752）判断除数是否为质数
 
 ================================CodeForces================================
 C. Hossam and Trainees（https://codeforces.com/problemset/problem/1771/C）使用pollard_rho进行质因数分解
@@ -1089,6 +1091,69 @@ class Solution:
                 c = cnt[k] * b
                 ans *= (k**(c + 1) - 1) // (k - 1)
             ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p4446(ac=FastIO()):
+        # 模板：预先处理出素数然后计算最大的完全立方数因子
+        prime = NumberTheory().sieve_of_eratosthenes(int(10**(18 / 4)) + 1)
+        ac.read_int()
+        for num in ac.read_list_ints():
+            ans = 1
+            for p in prime:
+                if p > num:
+                    break
+                c = 0
+                while num % p == 0:
+                    c += 1
+                    num //= p
+                ans *= p**(c // 3)
+
+            # 使用二分判断数字是否为完全立方数
+            low = 1
+            high = int(num**(1 / 3)) + 1
+            while low < high - 1:
+                mid = low + (high - low) // 2
+                if mid**3 <= num:
+                    low = mid
+                else:
+                    high = mid
+            if high**3 == num:
+                ans *= high
+            elif low**3 == num:
+                ans *= low
+            ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p4752(ac=FastIO()):
+        # 模板：判断除数是否为质数
+        nt = NumberTheory()
+        for _ in range(ac.read_int()):
+            ac.read_ints()
+            cnt = Counter(sorted(ac.read_list_ints()))
+            if cnt[0]:
+                ac.st("NO")
+                continue
+            for num in ac.read_list_ints():
+                cnt[num] -= 1
+
+            rest = []
+            for num in cnt:
+                if cnt[num] and num != 1:
+                    rest.append([num, cnt[num]])
+            if len(rest) >= 2:
+                ac.st("NO")
+            elif len(rest) == 1:
+                if rest[0][1] > 1:
+                    ac.st("NO")
+                else:
+                    if nt.is_prime4(rest[0][0]):
+                        ac.st("YES")
+                    else:
+                        ac.st("NO")
+            else:
+                ac.st("NO")
         return
 
 

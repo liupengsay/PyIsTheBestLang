@@ -36,6 +36,7 @@ P2308 添加括号（https://www.luogu.com.cn/problem/P2308）经典区间DP，�
 P2734 [USACO3.3]游戏 A Game（https://www.luogu.com.cn/problem/P2734）前缀和加区间DP
 P3004 [USACO10DEC]Treasure Chest S（https://www.luogu.com.cn/problem/P3004）简单区间 DP 
 P3205 [HNOI2010]合唱队（https://www.luogu.com.cn/problem/P3205）区间 DP 使用滚动数组优化
+P4170 [CQOI2007]涂色（https://www.luogu.com.cn/problem/P4170）经典区间 DP 注意转移方程计算
 
 ================================CodeForces================================
 C. The Sports Festival（https://codeforces.com/problemset/problem/1509/C）转换为区间DP进行求解
@@ -326,6 +327,23 @@ class Solution:
                 dp[cur][j][0] = x % mod
             pre = cur
         ac.st(sum(dp[pre][n - 1]) % mod)
+        return
+
+    @staticmethod
+    def lg_p4170(ac=FastIO()):
+        # 模板：经典区间 DP 注意转移方程计算
+        s = ac.read_str()
+        n = len(s)
+        dp = [[inf] * n for _ in range(n)]
+        for i in range(n - 1, -1, -1):
+            dp[i][i] = 1
+            for j in range(i + 1, n):
+                if s[i] == s[j]:
+                    dp[i][j] = ac.min(dp[i + 1][j], dp[i][j - 1])
+                else:
+                    for k in range(i, j):
+                        dp[i][j] = ac.min(dp[i][j], dp[i][k] + dp[k + 1][j])
+        ac.st(dp[0][n - 1])
         return
 
 

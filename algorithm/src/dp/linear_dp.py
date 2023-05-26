@@ -76,6 +76,9 @@ P3448 [POI2006]MIS-Teddies（https://www.luogu.com.cn/problem/P3448）线性DP�
 P3558 [POI2013]BAJ-Bytecomputer（https://www.luogu.com.cn/problem/P3558）线性 DP 模拟
 B3734 [信息与未来 2017] 加强版密码锁（https://www.luogu.com.cn/problem/B3734）
 P3901 数列找不同（https://www.luogu.com.cn/problem/P3901）经典指针加线性 DP 记录前一个相同数的指针
+P4401 [IOI2007]Miners 矿工配餐（https://www.luogu.com.cn/problem/P4401）
+P4933 大师（https://www.luogu.com.cn/problem/P4933）经典等差数列线性 DP 计数
+P5095 [USACO12OPEN]Bookshelf S（https://www.luogu.com.cn/problem/P5095）典型线性 DP 
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/75/D（经典压缩数组，最大子段和升级）
@@ -639,6 +642,45 @@ class Solution:
         for _ in range(q):
             left, right = ac.read_ints_minus_one()
             ac.st("Yes" if nums[right] < left else "No")
+        return
+
+    @staticmethod
+    def lg_p4401(ac=FastIO()):
+        # 模板：线性 DP
+        ac.read_int()
+        s = ac.read_str()
+        pre = defaultdict(int)
+        pre[("", "")] = 0
+        for w in s:
+            cur = defaultdict(int)
+            for p1, p2 in pre:
+                # 装第一个车
+                st = p1 + w
+                cur[(st[-2:], p2)] = ac.max(cur[(st[-2:], p2)], pre[(p1, p2)] + len(set(st)))
+                # 装第二个车
+                st = p2 + w
+                cur[(p1, st[-2:])] = ac.max(cur[(p1, st[-2:])], pre[(p1, p2)] + len(set(st)))
+            pre = cur
+        ac.st(max(pre.values()))
+        return
+
+    @staticmethod
+    def lg_p5095(ac=FastIO()):
+        # 模板：典型线性 DP
+        n, length = ac.read_ints()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        dp = [inf] * (n + 1)
+        dp[0] = 0
+        for i in range(n):
+            w = h = 0
+            for j in range(i, -1, -1):
+                w += nums[j][1]
+                h = ac.max(h, nums[j][0])
+                if w > length:
+                    break
+                if dp[j] + h < dp[i + 1]:
+                    dp[i + 1] = dp[j] + h
+        ac.st(dp[-1])
         return
 
 

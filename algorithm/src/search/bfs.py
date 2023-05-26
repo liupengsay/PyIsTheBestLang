@@ -67,6 +67,10 @@ P3496 [POI2010]GIL-Guilds（https://www.luogu.com.cn/problem/P3496）脑筋急�
 P3818 小A和uim之大逃离 II（https://www.luogu.com.cn/problem/P3818）使用队列进行 01BFS 状态广搜
 P3855 [TJOI2008]Binary Land（https://www.luogu.com.cn/problem/P3855）定义四维状态的广度优先搜索
 P3869 [TJOI2009] 宝藏（https://www.luogu.com.cn/problem/P3869）广搜加状压记录最少次数
+P4554 小明的游戏（https://www.luogu.com.cn/problem/P4554）典型 01BFS 进行模拟
+P4667 [BalticOI 2011 Day1]Switch the Lamp On（https://www.luogu.com.cn/problem/P4667）使用 01BFS 进行模拟计算
+P5096 [USACO04OPEN]Cave Cows 1（https://www.luogu.com.cn/problem/P5096）状压加广搜 BFS 模拟
+P5099 [USACO04OPEN]Cave Cows 4（https://www.luogu.com.cn/problem/P5099）队列 01BFS 广搜模拟
 
 ================================CodeForces================================
 E. Nearest Opposite Parity（https://codeforces.com/problemset/problem/1272/E）经典反向建图，多源BFS
@@ -1199,6 +1203,131 @@ class Solution:
                                 stack.append([a, b, cur_state])
                                 visit[a][b][cur_state] = visit[i][j][state] + 1
         ac.st(min(visit[tt[0]][tt[1]]))
+        return
+
+    @staticmethod
+    def lg_p4554(ac=FastIO()):
+        # 模板：典型 01BFS 进行模拟
+        while True:
+            lst = ac.read_list_ints()
+            if lst == [0, 0]:
+                break
+            m, n = lst
+            grid = [ac.read_str() for _ in range(m)]
+            x1, y1, x2, y2 = ac.read_ints()
+            visit = [[inf] * n for _ in range(m)]
+            stack = deque([[x1, y1]])
+            visit[x1][y1] = 0
+            while stack and visit[x2][y2] == inf:
+                x, y = stack.popleft()
+                w = grid[x][y]
+                d = visit[x][y]
+                for a, b in [[x - 1, y], [x + 1, y], [x, y - 1], [x, y + 1]]:
+                    if 0 <= a < m and 0 <= b < n:
+                        cost = d if grid[a][b] == w else d + 1
+                        if visit[a][b] > cost:
+                            visit[a][b] = cost
+                            if cost == d:
+                                stack.appendleft([a, b])
+                            else:
+                                stack.append([a, b])
+            ac.st(visit[x2][y2])
+        return
+
+    @staticmethod
+    def lg_p4667(ac=FastIO()):
+        # 模板：使用 01BFS 进行模拟计算
+        m, n = ac.read_ints()
+        grid = [ac.read_str() for _ in range(m)]
+        dct = [dict() for _ in range((m+1)*(n+1))]
+        for i in range(m):
+            for j in range(n):
+                x1, x2, x3, x4 = i*(n+1)+j, i*(n+1)+j+1, (i+1)*(n+1)+j, (i+1)*(n+1)+j+1
+                if grid[i][j] == "/":
+                    dct[x2][x3] = dct[x3][x2] = 0
+                    dct[x1][x4] = dct[x4][x1] = 1
+                else:
+                    dct[x2][x3] = dct[x3][x2] = 1
+                    dct[x1][x4] = dct[x4][x1] = 0
+        visit = [inf]*((m+1)*(n+1))
+        visit[0] = 0
+        stack = deque([[0, 0]])
+        while stack and visit[-1] == inf:
+            i, d = stack.popleft()
+            if visit[i] < d:
+                continue
+            for j in dct[i]:
+                dd = d + dct[i][j]
+                if dd < visit[j]:  # 注意这里和dijkstra非常类似也需要判断更小值
+                    visit[j] = dd
+                    if dd == d+1:
+                        stack.append([j, dd])
+                    else:
+                        stack.appendleft([j, dd])
+        ac.st(visit[-1] if visit[-1] < inf else "NO SOLUTION")
+        return
+
+    @staticmethod
+    def lg_p5096(ac=FastIO()):
+        # 模板：状压加广搜 BFS 模拟
+        n, m, k = ac.read_ints()
+        dct = [dict() for _ in range(n)]
+        cao = dict()
+        for i in range(k):
+            cao[ac.read_int() - 1] = i
+
+        for _ in range(m):
+            a, b, c = ac.read_ints_minus_one()
+            dct[a][b] = dct[b][a] = c + 1
+        visit = [[0] * (1 << k) for _ in range(n)]
+        cnt = [bin(x).count("1") for x in range(1 << k)]
+        visit[0][0] = 1
+        stack = [[0, 0]]
+        while stack:
+            i, state = stack.pop()
+            for j in dct[i]:
+                w = dct[i][j]
+                if cnt[state] > w:
+                    continue
+                nex = state
+                if j in cao:
+                    nex |= 1 << cao[j]
+                if not visit[j][nex]:
+                    visit[j][nex] = 1
+                    stack.append([j, nex])
+                if not visit[j][state]:
+                    visit[j][state] = 1
+                    stack.append([j, state])
+        ans = 0
+        for x in range(1 << k):
+            if visit[0][x]:
+                ans = ac.max(ans, cnt[x])
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p5099(ac=FastIO()):
+        # 模板：队列 01BFS 广搜模拟
+        n, t = ac.read_ints()
+        dct = dict()
+        for i in range(n):
+            x, z = ac.read_ints()
+            dct[(x, z)] = i
+        visit = [inf] * n
+        stack = deque([[0, 0, -1]])
+        ans = inf
+        while stack:
+            i, j, ind = stack.popleft()
+            d = 0 if ind == -1 else visit[ind]
+            if j == t:
+                ans = d
+                break
+            for a in range(-2, 3, 1):
+                for b in range(-2, 3, 1):
+                    if (i + a, j + b) in dct and visit[dct[(i + a, j + b)]] > d + 1:
+                        visit[dct[(i + a, j + b)]] = d + 1
+                        stack.append([i + a, j + b, dct[(i + a, j + b)]])
+        ac.st(ans if ans < inf else -1)
         return
 
 

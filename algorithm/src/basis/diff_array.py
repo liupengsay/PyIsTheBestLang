@@ -52,6 +52,8 @@ P2706 巧克力（https://www.luogu.com.cn/problem/P2706）不包含障碍点的
 P2879 [USACO07JAN] Tallest Cow S（https://www.luogu.com.cn/problem/P2879）差分数组经典题与贪心
 P3028 [USACO10OCT]Soda Machine G（https://www.luogu.com.cn/problem/P3028）离散化差分计算覆盖区间最多的点
 P4030 [Code+#2]可做题1（https://www.luogu.com.cn/problem/P4030）脑筋急转弯加二维前缀和计算
+P4440 [COCI2017-2018#3] Programiranje（https://www.luogu.com.cn/problem/P4440）典型前缀和计数
+P4623 [COCI2012-2013#6] BUREK（https://www.luogu.com.cn/problem/P4623）离散化差分计数
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/33/C（前后缀最大变换和与分割点枚举，经典类型题目）
@@ -853,6 +855,61 @@ class Solution:
                 ac.st("Y")
             else:
                 ac.st("N")
+        return
+
+    @staticmethod
+    def lg_p4440(ac=FastIO()):
+        # 模板：典型前缀和计数
+        s = ac.read_str()
+        pre = []
+        cnt = [0] * 26
+        pre.append(cnt[:])
+        for w in s:
+            cnt[ord(w) - ord("a")] += 1
+            pre.append(cnt[:])
+        for _ in range(ac.read_int()):
+            a, b, c, d = ac.read_ints_minus_one()
+            if d - c != b - a:
+                ac.st("NE")
+                continue
+            if all(pre[b + 1][j] - pre[a][j] == pre[d + 1][j] - pre[c][j] for j in range(26)):
+                ac.st("DA")
+            else:
+                ac.st("NE")
+        return
+
+    @staticmethod
+    def lg_p4623(ac=FastIO()):
+        # 模板：离散化差分计数
+        n = ac.read_int()
+        m = 10**6+1
+        diff_x = [0]*m
+        diff_y = [0]*m
+        for _ in range(n):
+            x1, y1, x2, y2, x3, y3 = ac.read_ints()
+            low_x = min(x1, x2, x3)
+            high_x = max(x1, x2, x3)
+            low_y = min(y1, y2, y3)
+            high_y = max(y1, y2, y3)
+            diff_x[low_x + 1] += 1
+            diff_x[high_x] -= 1
+            diff_y[low_y + 1] += 1
+            diff_y[high_y] -= 1
+
+        # 进行差分计算
+        for i in range(1, m):
+            diff_x[i] += diff_x[i - 1]
+        for i in range(1, m):
+            diff_y[i] += diff_y[i - 1]
+
+        # 查询
+        for _ in range(ac.read_int()):
+            op, _, num = ac.read_list_strs()
+            num = int(num)
+            if op == "x":
+                ac.st(diff_x[num])
+            else:
+                ac.st(diff_y[num])
         return
 
 

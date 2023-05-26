@@ -40,6 +40,7 @@ P6492 [COCI2010-2011#6] STEP（https://www.luogu.com.cn/problem/P6492）单点�
 P4145 上帝造题的七分钟 2 / 花神游历各国（https://www.luogu.com.cn/problem/P4145）区间值开方向下取整，区间和查询
 P1558 色板游戏（https://www.luogu.com.cn/problem/P1558）线段树区间值修改，区间或值查询
 P3740 [HAOI2014]贴海报（https://www.luogu.com.cn/problem/P3740）离散化线段树区间修改与单点查询
+P4588 [TJOI2018]数学计算（https://www.luogu.com.cn/problem/P4588）转化为线段树单点值修改与区间乘积取模
 
 ================================CodeForces================================
 
@@ -1159,6 +1160,53 @@ class SegmentTreeRangeUpdateMulQuerySum:
             if right > m:
                 stack.append([m + 1, t, 2 * i + 1])
         return ans % self.p
+
+
+class SegmentTreePointUpdateRangeMulQuery:
+    def __init__(self, n, mod) -> None:
+        # 模板：单点值修改、区间乘取模
+        self.n = n
+        self.mod = mod
+        self.cover = [1] * (4 * self.n)  # 区间乘积取模
+        return
+
+    def update(self, left: int, right: int, s: int, t: int, val: int, i: int) -> None:
+        # 修改单点值 left == right 取值为 0 到 n-1 而 i 从 1 开始
+        stack = [[s, t, i]]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if left <= s and t <= right:
+                    self.cover[i] = val
+                    continue
+                m = s + (t - s) // 2
+                stack.append([s, t, ~i])
+                if left <= m:  # 注意左右子树的边界与范围
+                    stack.append([s, m, 2 * i])
+                if right > m:
+                    stack.append([m + 1, t, 2 * i + 1])
+            else:
+                i = ~i
+                self.cover[i] = self.cover[2 * i] * self.cover[2 * i + 1]
+                self.cover[i] %= self.mod
+        return
+
+    def query_mul(self, left: int, right: int, s: int, t: int, i: int) -> int:
+        # 查询区间的乘积
+        stack = [[s, t, i]]
+        ans = 1
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                ans *= self.cover[i]
+                ans %= self.mod
+                continue
+            m = s + (t - s) // 2
+            if left <= m:
+                stack.append([s, m, 2 * i])
+            if right > m:
+                stack.append([m + 1, t, 2 * i + 1])
+        return ans
 
 
 class SegmentTreeRangeSubConSum:
@@ -2332,6 +2380,21 @@ class Solution:
             if c:
                 ans.add(c)
         ac.st(len(ans))
+        return
+
+    @staticmethod
+    def lg_p4588(ac=FastIO()):
+        # 模板：转化为线段树单点值修改与区间乘积取模
+        for _ in range(ac.read_int()):
+            q, mod = ac.read_ints()
+            tree = SegmentTreePointUpdateRangeMulQuery(q, mod)
+            for i in range(q):
+                op, num = ac.read_ints()
+                if op == 1:
+                    tree.update(i, i, 0, q - 1, num % mod, 1)
+                else:
+                    tree.update(num - 1, num - 1, 0, q - 1, 1, 1)
+                ac.st(tree.cover[1])
         return
 
 

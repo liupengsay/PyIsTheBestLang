@@ -49,6 +49,7 @@ P6140 [USACO07NOV]Best Cow Line S（https://www.luogu.com.cn/problem/P6140）贪
 P2870 [USACO07DEC]Best Cow Line G（https://www.luogu.com.cn/problem/P2870）贪心模拟与字典序比较，使用字符串哈希与二分查找比较正序与倒序最长公共子串
 P5832 [USACO19DEC]Where Am I? B（https://www.luogu.com.cn/problem/P5832）可以使用字符串哈希进行最长的长度使得所有对应长度的子串均是唯一的
 P2852 [USACO06DEC]Milk Patterns G（https://www.luogu.com.cn/problem/P2852）二分加字符串哈希计算出现超过 k 次的最长连续子数组
+P4656 [CEOI2017] Palindromic Partitions（https://www.luogu.com.cn/problem/P4656）使用字符串哈希贪心选取
 
 ================================CodeForces================================
 D. Remove Two Letters（https://codeforces.com/problemset/problem/1800/D）字符串前后缀哈希加和变换
@@ -384,6 +385,59 @@ class Solution:
         nums = [ac.read_int() for _ in range(n)]
         ans = BinarySearch().find_int_right(0, n, check)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p4656(ac=FastIO()):
+        # 模板：使用字符串哈希贪心选取
+
+        p1 = random.randint(26, 100)
+        p2 = random.randint(26, 100)
+        mod1 = random.randint(10 ** 9 + 7, 2 ** 31 - 1)
+        mod2 = random.randint(10 ** 9 + 7, 2 ** 31 - 1)
+
+        for _ in range(ac.read_int()):
+            s = ac.read_str()
+            ans = 0
+            n = len(s)
+            i, j = 0, n - 1
+            while j - i + 1 >= 2:
+                # 从两边依次进行选取
+                flag = False
+                pre1 = post1 = pre2 = post2 = 0
+                pp1 = pp2 = 1
+                x, y = i, j
+                while True:
+                    if pre1 == post1 and pre2 == post2 and x > i:
+                        flag = True
+                        i = x
+                        j = y
+                        break
+                    if y - x + 1 <= 1:
+                        break
+                    w = s[x]
+                    pre1 = (pre1 * p1 + ord(w) - ord("a")) % mod1
+                    pre2 = (pre2 * p2 + ord(w) - ord("a")) % mod2
+
+                    w = s[y]
+                    post1 = (post1 + pp1 * (ord(w) - ord("a"))) % mod1
+                    post2 = (post2 + pp2 * (ord(w) - ord("a"))) % mod2
+                    pp1 = (pp1 * p1) % mod1
+                    pp2 = (pp2 * p2) % mod2
+                    x += 1
+                    y -= 1
+                # 如果构成一对回文增加 2 否则增加 1
+                if flag:
+                    ans += 2
+                else:
+                    ans += 1
+                    i = j + 1
+                    break
+            # 特判还剩中间一个字母的情况
+            if i == j:
+                ans += 1
+            ac.st(ans)
+
         return
 
 

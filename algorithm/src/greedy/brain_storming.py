@@ -1,6 +1,6 @@
 import heapq
 from bisect import insort_left, bisect_left
-from collections import Counter, deque
+from collections import Counter, deque, defaultdict
 
 from algorithm.src.data_structure.sorted_list import LocalSortedList
 from algorithm.src.fast_io import FastIO
@@ -94,6 +94,11 @@ P2816 宋荣子搭积木（https://www.luogu.com.cn/problem/P2816）排序后从
 P3819 松江 1843 路（https://www.luogu.com.cn/problem/P3819）经典中位数贪心题
 P3918 [国家集训队]特技飞行（https://www.luogu.com.cn/problem/P3918）脑筋急转弯贪心
 P4025 [PA2014]Bohater（https://www.luogu.com.cn/problem/P4025）经典贪心血量与增幅自定义排序
+P4266 [USACO18FEB]Rest Stops SP4266 [USACO18FEB]Rest Stops S（https://www.luogu.com.cn/problem/P4266）后缀最大值贪心模拟
+P4447 [AHOI2018初中组]分组（https://www.luogu.com.cn/problem/P4447）经典贪心队列使得连续值序列最少的分组长度最大
+P4575 [CQOI2013]图的逆变换（https://www.luogu.com.cn/problem/P4575）脑筋急转弯加状压运算
+P4653 [CEOI2017] Sure Bet（https://www.luogu.com.cn/problem/P4653）看似二分使用指针贪心选取
+P5093 [USACO04OPEN]The Cow Lineup（https://www.luogu.com.cn/problem/P5093）经典脑筋急转弯使用集合确定轮数
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1186/D（贪心取floor，再根据加和为0的特质进行补充加1成为ceil）
@@ -511,6 +516,119 @@ class Solution:
             ans.append(i + 1)
         ac.st("TAK")
         ac.lst(ans)
+        return
+
+    @staticmethod
+    def lg_p4266(ac=FastIO()):
+        # 模板：后缀最大值贪心模拟
+        length, n, rf, rb = ac.read_ints()
+        nums = [[0, 0]] + [ac.read_list_ints() for _ in range(n)]
+        n += 1
+        # 记录后缀最大值序列
+        post = [n - 1] * n
+        ind = n - 1
+        for i in range(n - 2, -1, -1):
+            post[i] = ind
+            if nums[i][1] > nums[ind][1]:
+                ind = i
+        path = [post[0]]
+        while post[path[-1]] != path[-1]:
+            path.append(post[path[-1]])
+        # 模拟
+        ans = t = pre = 0
+        for i in path:
+            cur = nums[i][0]
+            c = nums[i][1]
+            ans += (cur - pre) * (rf - rb) * c
+            t += (cur - pre) * rf
+            pre = cur
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p4447(ac=FastIO()):
+        # 模板：经典贪心队列使得连续值序列最少的分组长度最大
+        ac.read_int()
+        lst = ac.read_list_ints()
+        lst.sort()
+        # 记录末尾值为 num 的连续子序列长度
+        cnt = defaultdict(list)
+        for num in lst:
+            if cnt[num - 1]:
+                # 将最小的长度取出添上
+                val = heapq.heappop(cnt[num - 1])
+                heapq.heappush(cnt[num], val + 1)
+            else:
+                # 单独成为一个序列
+                heapq.heappush(cnt[num], 1)
+        ac.st(min(min(cnt[k]) for k in cnt if cnt[k]))
+        return
+
+    @staticmethod
+    def lg_p4575(ac=FastIO()):
+        # 模板：脑筋急转弯加状压运算
+        for _ in range(ac.read_int()):
+            m = ac.read_int()
+            k = ac.read_int()
+            dct = [set() for _ in range(m)]
+            for _ in range(k):
+                i, j = ac.read_ints()
+                dct[i].add(j)
+
+            dp = [sum((1 << j) for j in dct[i]) for i in range(m)]
+            ans = True
+            for i in range(m):
+                if not ans:
+                    break
+                for j in range(i + 1, m):
+                    if dp[i] & dp[j] and dp[i] ^ dp[j]:
+                        ans = False
+                        break
+            ac.st("Yes" if ans else "No")
+        return
+
+    @staticmethod
+    def lg_p4653(ac=FastIO()):
+
+        # 模板：看似二分使用指针贪心选取
+        n = ac.read_int()
+        nums1 = []
+        nums2 = []
+        for _ in range(n):
+            x, y = ac.read_list_floats()
+            nums1.append(x)
+            nums2.append(y)
+        nums1.sort(reverse=True)
+        nums2.sort(reverse=True)
+        # 双指针选择
+        ans = i = j = a = b = 0
+        light_a = light_b = 0
+        while i < n or j < n:
+            if i < n and (a - light_b < b - light_a or j == n):
+                a += nums1[i]-1
+                i += 1
+                light_a += 1
+            else:
+                b += nums2[j]-1
+                j += 1
+                light_b += 1
+            ans = ac.max(ans, ac.min(a - light_b, b - light_a))
+        ac.st("%.4f" % ans)
+        return
+
+    @staticmethod
+    def lg_p5093(ac=FastIO()):
+        # 模板：经典脑筋急转弯使用集合确定轮数
+        n, k = ac.read_ints()
+        nums = [ac.read_int() for _ in range(n)]
+        pre = set()
+        ans = 1
+        for num in nums:
+            pre.add(num)
+            if len(pre) == k:
+                ans += 1
+                pre = set()
+        ac.st(ans)
         return
 
 

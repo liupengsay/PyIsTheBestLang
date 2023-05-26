@@ -4,6 +4,7 @@ from math import inf
 from typing import List, Dict
 
 from algorithm.src.fast_io import FastIO
+from algorithm.src.graph.dijkstra import Dijkstra
 
 """
 算法：SPFA路径边数优先的广度优先搜索（可以使用带负权值）也可以计算最短路、差分约束、最短路条数
@@ -34,7 +35,10 @@ P1260 工程规划（https://www.luogu.com.cn/problem/P1260）差分约束模板
 P1931 套利（https://www.luogu.com.cn/problem/P1931）判断计算乘积是否有大于1的环
 P1986 元旦晚会（https://www.luogu.com.cn/problem/P1986）差分约束求解区间和
 P2850 [USACO06DEC]Wormholes G（https://www.luogu.com.cn/problem/P2850）计算从任意起点出发是否存在负环
+P4878 [USACO05DEC]Layout G（https://www.luogu.com.cn/problem/P4878）经典差分数组与Dijkstra计算最短路
+P5751 [NOI1999] 01串（https://www.luogu.com.cn/problem/P5751）经典前缀和转换为差分约束求解，并计算最大值
 
+===================================力扣===================================
 参考：
 差分约束（https://oi-wiki.org/graph/diff-constraints/）
 """
@@ -470,6 +474,81 @@ class Solution:
                         break
             else:
                 ac.st("NO")
+        return
+
+    @staticmethod
+    def lg_p4878(ac=FastIO()):
+        # 模板：经典差分数组与Dijkstra计算最短路
+        n, ml, md = ac.read_ints()
+        edge = []
+        for _ in range(ml):
+            a, b, d = ac.read_ints()
+            if a > b:
+                a, b = b, a
+            edge.append([b, a, d])
+        for _ in range(md):
+            a, b, d = ac.read_ints()
+            if a > b:
+                a, b = b, a
+            edge.append([a, b, -d])
+        for i in range(1, n):
+            edge.append([i, i + 1, 0])
+        # 首先使用差分数组判环
+        ans, dis = SPFA().differential_constraint(edge, n)
+        if ans == "YES":
+            ac.st(-1)
+        else:
+            # 其次计算最大解即最短路（求最小解则是最长路）
+            dct = [dict() for _ in range(n)]
+            for a, b, c in edge:  # a-b<=c
+                a -= 1
+                b -= 1
+                w = dct[b].get(a, inf)
+                w = w if w < c else c
+                dct[b][a] = w
+            # 由于是按照编号顺序因此最大解为 dis[n-1] = pos[0] - pos[n-1] 最小即 pos[n-1] - pos[0] 最大
+            dis = Dijkstra().get_dijkstra_result(dct, 0)
+            ac.st(dis[n - 1] if dis[n - 1] < inf else -2)
+        return
+
+    @staticmethod
+    def lg_p5751(ac=FastIO()):
+        # 模板：经典前缀和转换为差分约束求解，并计算最大值
+        n, a0, b0, l0, a1, b1, l1 = ac.read_ints()
+
+        # 区间关系
+        lst = []
+        for i in range(1, n+1):
+            if i - l0 >= 0:
+                lst.append([i, i-l0, l0-a0])
+                lst.append([i-l0, i, b0-l0])
+            if i - l1 >= 0:
+                lst.append([i, i-l1, b1])
+                lst.append([i-l1, i, -a1])
+
+        # 邻居关系
+        for i in range(1, n + 1):
+            lst.append([i, i - 1, 1])
+            lst.append([i - 1, i, 0])
+
+        # 计算差分约束，注意索引从 1 开始
+        lst = [[a + 1, b + 1, c] for a, b, c in lst]
+        ans, dis = SPFA().differential_constraint(lst, n + 1)
+        if ans == "YES":
+            ac.st(-1)
+            return
+
+        # 其次计算最大解即最短路（求最小解则是最长路）
+        dct = [dict() for _ in range(n+1)]
+        for a, b, c in lst:  # a-b<=c
+            a -= 1
+            b -= 1
+            w = dct[b].get(a, inf)
+            w = w if w < c else c
+            dct[b][a] = w
+        # 最大解为 dis[n] = pos[0] - pos[n] 最小即 pos[n] - pos[0] 最大
+        dis = Dijkstra().get_dijkstra_result(dct, 0)
+        ac.st(dis[n])
         return
 
 

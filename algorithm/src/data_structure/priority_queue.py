@@ -32,6 +32,7 @@ P2629 好消息，坏消息（https://www.luogu.com.cn/problem/P2629）环形数
 P3522 [POI2011]TEM-Temperature（https://www.luogu.com.cn/problem/P3522）看不懂的队列与单调栈思想
 P3957 [NOIP2017 普及组] 跳房子（https://www.luogu.com.cn/problem/P3957）二分加优先队列加DP
 P4085 [USACO17DEC]Haybale Feast G（https://www.luogu.com.cn/problem/P4085）双指针加优先队列滑动窗口最小值
+P4392 [BOI2007]Sound 静音问题（https://www.luogu.com.cn/problem/P4392）单调队列计算滑动窗口最大值
 
 ===================================AcWing=====================================
 133. 蚯蚓（https://www.acwing.com/problem/content/135/）三个优先队列加一个偏移量
@@ -432,6 +433,36 @@ class Solution:
                 ans = ac.min(ans, stack[0][1])
             pre -= f[i]
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p4392(ac=FastIO()):
+        # 模板：单调队列计算滑动窗口最大值
+        n, m, c = ac.read_ints()
+        ceil = deque()
+        floor = deque()
+        nums = ac.read_list_ints()
+        ans = False
+        for i in range(n):
+
+            while ceil and ceil[0] <= i - m:
+                ceil.popleft()
+            while floor and floor[0] <= i - m:
+                floor.popleft()
+
+            while ceil and nums[ceil[-1]] <= nums[i]:
+                ceil.pop()
+            ceil.append(i)
+
+            while floor and nums[floor[-1]] >= nums[i]:
+                floor.pop()
+            floor.append(i)
+
+            if i >= m - 1 and nums[ceil[0]] - nums[floor[0]] <= c:
+                ac.st(i - m + 2)
+                ans = True
+        if not ans:
+            ac.st("NONE")
         return
 
 

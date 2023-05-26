@@ -77,6 +77,8 @@ P2119 [NOIP2016 普及组] 魔法阵（https://www.luogu.com.cn/problem/P2119）
 P2652 同花顺（https://www.luogu.com.cn/problem/P2652）枚举花色与双指针计算长度
 P2994 [USACO10OCT]Dinner Time S（https://www.luogu.com.cn/problem/P2994）按照座位枚举分配人员
 P3985 不开心的金明（https://www.luogu.com.cn/problem/P3985）看似背包实则枚举
+P4181 [USACO18JAN]Rental Service S（https://www.luogu.com.cn/problem/P4181）贪心枚举与后缀和
+
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1426/F（分类枚举中间的b计数两边的?ac，并使用快速幂进行求解）
@@ -473,6 +475,38 @@ class Solution:
             ac.st(a)
         return
 
+    @staticmethod
+    def lg_p4181(ac=FastIO()):
+        # 模板：贪心枚举与后缀和
+        n, m, r = ac.read_ints()
+        cow = [ac.read_int() for _ in range(n)]
+        cow.sort()
+        nums1 = [ac.read_list_ints()[::-1] for _ in range(m)]
+        nums1.sort(key=lambda it: -it[0])
+        nums2 = [ac.read_int() for _ in range(r)]
+        nums2.sort(reverse=True)
+        # 预处理后缀和
+        ind = 0
+        post = [0] * (n + 1)
+        for i in range(n - 1, -1, -1):
+            cur = 0
+            while ind < m and cow[i]:
+                if nums1[ind][1] == 0:
+                    ind += 1
+                    continue
+                x = ac.min(nums1[ind][1], cow[i])
+                cow[i] -= x
+                nums1[ind][1] -= x
+                cur += nums1[ind][0] * x
+            post[i] = post[i + 1] + cur
+        # 枚举
+        ans = post[0]
+        pre = 0
+        for i in range(ac.min(r, n)):
+            pre += nums2[i]
+            ans = ac.max(ans, pre + post[i + 1])
+        ac.st(ans)
+        return
 
 
 class TestGeneral(unittest.TestCase):

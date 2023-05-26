@@ -36,6 +36,7 @@ from algorithm.src.fast_io import FastIO
 ===================================洛谷===================================
 P2719 搞笑世界杯（https://www.luogu.com.cn/record/list?user=739032&status=12&page=1）二维DP求概率
 P1291 [SHOI2002] 百事世界杯之旅（https://www.luogu.com.cn/problem/P1291）线性DP求期望
+P4316 绿豆蛙的归宿（https://www.luogu.com.cn/problem/P4316）经典期望 DP 反向建图与拓扑排序
 
 参考：OI WiKi（xx）
 """
@@ -97,6 +98,35 @@ class Solution:
         ac.st(len(str(x))*" " + str(a))
         ac.st(str(x)+"-"*len(str(b)))
         ac.st(len(str(x))*" " + str(b))
+        return
+
+    @staticmethod
+    def lg_p4316(ac=FastIO()):
+        # 模板：期望 DP 反向建图与拓扑排序
+        n, m = ac.read_ints()
+        dp = [0 for _ in range(n)]
+        degree = [0] * n
+        dct = [dict() for _ in range(n)]
+        for _ in range(m):
+            a, b, w = ac.read_ints()
+            a -= 1
+            b -= 1
+            dct[b][a] = w
+            degree[a] += 1
+        cnt = degree[:]
+
+        # 反向拓扑排序与状态转移计算
+        stack = deque([n - 1])
+        while stack:
+            i = stack.popleft()
+            for j in dct[i]:
+                dp[j] += dp[i] + dct[i][j]
+                degree[j] -= 1
+                if not degree[j]:
+                    dp[j] /= cnt[j]
+                    stack.append(j)
+        ans = "%.2f" % (dp[0])
+        ac.st(ans)
         return
 
 

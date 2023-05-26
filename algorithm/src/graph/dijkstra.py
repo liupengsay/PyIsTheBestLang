@@ -4,7 +4,8 @@ import unittest
 from collections import defaultdict, deque
 from itertools import accumulate
 from operator import add
-from typing import List, Dict
+from typing import List, Dict, Set
+from collections import Counter
 
 from algorithm.src.fast_io import FastIO, inf
 
@@ -30,11 +31,9 @@ P3371 单源最短路径（弱化版）（https://www.luogu.com.cn/problem/P3371
 P4779 【模板】单源最短路径（标准版）（https://www.luogu.com.cn/problem/P4779）最短路模板题
 P1629 邮递员送信（https://www.luogu.com.cn/problem/P1629）正反两个方向的最短路进行计算往返路程
 P1462 通往奥格瑞玛的道路（https://www.luogu.com.cn/problem/P1462）使用带约束的最短路计算最终结果
-
 P1339 [USACO09OCT]Heat Wave G（https://www.luogu.com.cn/problem/P1339）标准最短路计算
 P1342 请柬（https://www.luogu.com.cn/problem/P1342）正反两遍最短路
 P1576 最小花费（https://www.luogu.com.cn/problem/P1576）堆优化转换成负数求最短路
-
 P1821 [USACO07FEB] Cow Party S（https://www.luogu.com.cn/problem/P1821）正反两遍最短路
 P1882 接力赛跑（https://www.luogu.com.cn/problem/P1882）转换为最短路求解最短路距离最远的点
 P1907 设计道路（https://www.luogu.com.cn/problem/P1907）自定义建图计算最短路
@@ -44,12 +43,10 @@ P1649 [USACO07OCT]Obstacle Course S（https://www.luogu.com.cn/problem/P1649）�
 P2083 找人（https://www.luogu.com.cn/problem/P2083）反向最短路
 P2299 Mzc和体委的争夺战（https://www.luogu.com.cn/problem/P2299）最短路裸题
 P2683 小岛（https://www.luogu.com.cn/problem/P2683）最短路裸题结合并查集查询
-
 P1396 营救（https://www.luogu.com.cn/problem/P1396）最短路变种问题，求解路径上边权的最大值，类似接雨水
 P1346 电车（https://www.luogu.com.cn/problem/P1346）建图跑最短路
 P1339 [USACO09OCT]Heat Wave G（https://www.luogu.com.cn/record/list?user=739032&status=12&page=11）最短路裸题
 P2784 化学1（chem1）- 化学合成（https://www.luogu.com.cn/problem/P2784）最大乘积的路径
-
 P1318 积水面积（https://www.luogu.com.cn/problem/P1318）一维接雨水，计算前后缀最大值的最小值再减去自身值
 P2888 [USACO07NOV]Cow Hurdles S（https://www.luogu.com.cn/problem/P2888）最短路计算路径上最大边权值最小的路径
 P2935 [USACO09JAN]Best Spot S（https://www.luogu.com.cn/problem/P2935）最短路裸题
@@ -63,7 +60,6 @@ P5767 [NOI1997] 最优乘车（https://www.luogu.com.cn/problem/P5767）经典�
 P6770 [USACO05MAR]Checking an Alibi 不在场的证明（https://www.luogu.com.cn/problem/P6770）最短路裸题
 P6833 [Cnoi2020]雷雨（https://www.luogu.com.cn/problem/P6833）三遍最短路后，进行枚举计算
 P7551 [COCI2020-2021#6] Alias（https://www.luogu.com.cn/problem/P7551）最短路裸题，注意重边与自环
-
 P6175 无向图的最小环问题（https://www.luogu.com.cn/problem/P6175）使用Dijkstra枚举边计算或者使用DFS枚举点，带权
 P4568 [JLOI2011] 飞行路线（https://www.luogu.com.cn/problem/P4568）K层建图计算Dijkstra最短路
 P2865 [USACO06NOV]Roadblocks G（https://www.luogu.com.cn/problem/P2865）严格次短路模板题
@@ -82,6 +78,8 @@ P3020 [USACO11MAR]Package Delivery S（https://www.luogu.com.cn/problem/P3020）
 P3057 [USACO12NOV]Distant Pastures S（https://www.luogu.com.cn/problem/P3057）Dijkstra求最短路
 P3753 国事访问（https://www.luogu.com.cn/problem/P3753）最短路变形两个维度的比较
 P3956 [NOIP2017 普及组] 棋盘（https://www.luogu.com.cn/problem/P3956）多维状态的Dijkstra
+P4880 抓住czx（https://www.luogu.com.cn/problem/P4880）枚举终点使用 Dijkstra计算最短路
+P4943 密室（https://www.luogu.com.cn/problem/P4943）枚举路径跑四遍最短路
 
 ================================CodeForces================================
 C. Dijkstra?（https://codeforces.com/problemset/problem/20/C）正权值最短路计算，并记录返回生成路径
@@ -142,6 +140,30 @@ class Dijkstra:
                     # 最短距离一致，增加计数
                     cnt[j] += cnt[i]
         return cnt, dis
+
+    @staticmethod
+    def get_dijkstra_result_limit(dct, src: int, limit: Set[int], target: Set[int]) -> List[float]:
+        # 模板: Dijkstra求最短路，变成负数求可以求最长路（还是正权值）
+        n = len(dct)
+        dis = [float("inf")] * n
+
+        dis[src] = 0 if src not in limit else inf
+        stack = [[dis[src], src]]
+        # 限制只能跑 limit 的点到 target 中的点
+        while stack and target:
+            d, i = heapq.heappop(stack)
+            if i in target:
+                target.discard(i)
+            if dis[i] < d:
+                continue
+            for j in dct[i]:
+                if j not in limit:
+                    dj = dct[i][j] + d
+                    if dj < dis[j]:
+                        dis[j] = dj
+                        heapq.heappush(stack, [dj, j])
+        return dis
+
 
     @staticmethod
     def dijkstra_src_to_dst_path(dct, src: int, dst: int):
@@ -1094,6 +1116,70 @@ class Solution:
                         if grid[a][b] != -1:
                             heapq.heappush(stack, [cost + int(color != grid[a][b]), 0, grid[a][b], a, b])
         ac.st(final)
+        return
+
+    @staticmethod
+    def lg_p4880(ac=FastIO()):
+        # 模板：枚举终点使用 Dijkstra计算最短路
+        lst = []
+        while True:
+            cur = ac.read_list_ints()
+            if not cur:
+                break
+            lst.extend(cur)
+        lst = deque(lst)
+        n, m, b, e = lst.popleft(), lst.popleft(), lst.popleft(), lst.popleft()
+        b -= 1
+        e -= 1
+        dct = [dict() for _ in range(n)]
+        for _ in range(m):
+            x, y, z = lst.popleft(), lst.popleft(), lst.popleft()
+            x -= 1
+            y -= 1
+            dct[x][y] = dct[y][x] = z
+
+        dis = Dijkstra().get_dijkstra_result(dct, b)
+
+        t = lst.popleft()
+        if not t:
+            ac.st(dis[e])
+            return
+
+        # 枚举被抓住的点
+        nums = [[0, e + 1]] + [[lst.popleft(), lst.popleft()] for _ in range(t)]
+        nums.sort()
+        for i in range(t):
+            pos = nums[i][1] - 1
+            tt = nums[i + 1][0]
+            if dis[pos] < tt:
+                ac.st(ac.max(dis[pos], nums[i][0]))
+                return
+        ac.st(ac.max(dis[nums[-1][1]], nums[-1][0]))
+        return
+
+    @staticmethod
+    def lg_p4943(ac=FastIO()):
+        # 模板：枚举路径跑四遍最短路
+        n, m, k = ac.read_ints()
+        if k:
+            visit = set(ac.read_list_ints_minus_one())
+        else:
+            visit = set()
+        dct = [dict() for _ in range(n)]
+        for _ in range(m):
+            a, b, c = ac.read_ints_minus_one()
+            dct[a][b] = dct[b][a] = ac.min(dct[a].get(a, inf), c + 1)
+        x, y = ac.read_ints_minus_one()
+
+        dis1 = Dijkstra().get_dijkstra_result_limit(dct, 0, visit, {0, x, y})
+        dis11 = Dijkstra().get_dijkstra_result_limit(dct, x, visit, {0, x, y})
+        dis2 = Dijkstra().get_dijkstra_result_limit(dct, 0, set(), {0, x, y})
+        dis22 = Dijkstra().get_dijkstra_result_limit(dct, x, set(), {0, x, y})
+
+        ans = min(ac.max(dis1[x], dis2[y]), ac.max(dis1[y], dis2[x]),
+                  dis1[x] + dis11[y], dis1[y] + dis11[y],
+                  dis2[x] + dis22[y], dis2[y] + dis22[y])
+        ac.st(ans)
         return
 
 

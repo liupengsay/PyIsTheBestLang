@@ -52,6 +52,7 @@ P2237 [USACO14FEB]Auto-complete S（https://www.luogu.com.cn/problem/P2237）脑
 P2810 Catch the theives（https://www.luogu.com.cn/problem/P2810）二分加枚举
 P3718 [AHOI2017初中组]alter（https://www.luogu.com.cn/problem/P3718）二分加贪心
 P3853 [TJOI2007]路标设置（https://www.luogu.com.cn/problem/P3853）经典二分贪心题
+P4343 [SHOI2015]自动刷题机（https://www.luogu.com.cn/problem/P4343）上下界二分加模拟
 
 
 ================================CodeForces================================
@@ -811,6 +812,41 @@ class Solution:
         high = max(lst[i + 1] - lst[i] for i in range(n - 1))
         ans = BinarySearch().find_int_left(low, high, check)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p4343(ac=FastIO()):
+        # 模板：上下界二分加模拟
+        l, k = ac.read_ints()
+        lst = []
+        for _ in range(l):
+            lst.append(int(input().strip()))
+        low = 1
+        high = sum(abs(ls) for ls in lst)
+
+        def compute(n):
+            cnt = cur = 0
+            for num in lst:
+                cur += num
+                if cur >= n:
+                    cnt += 1
+                    cur = 0
+                cur = 0 if cur < 0 else cur
+            return cnt
+
+        def check1(n):
+            return compute(n) >= k
+
+        def check2(n):
+            return compute(n) <= k
+
+        # 经典的二分函数写法与出方案
+        ceil = BinarySearch().find_int_right(low, high, check1)
+        if compute(ceil) != k:
+            ac.st(-1)
+            return
+        floor = BinarySearch().find_int_left(low, high, check2)
+        ac.lst([floor, ceil])
         return
 
 

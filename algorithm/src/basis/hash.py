@@ -21,7 +21,7 @@ from algorithm.src.fast_io import FastIO
 ===================================洛谷===================================
 P2697 宝石串（https://www.luogu.com.cn/problem/P2697）哈希记录前缀和与对应索引
 P1114 “非常男女”计划（https://www.luogu.com.cn/record/list?user=739032&status=12&page=13）哈希记录前缀和与对应索引
-
+P4889 kls与flag（https://www.luogu.com.cn/problem/P4889）经典公式变换使用哈希计数
 
 137. 雪花雪花雪花（https://www.acwing.com/problem/content/139/）哈希找相同雪花
 
@@ -101,6 +101,28 @@ class Solution:
             ac.st("Twin snowflakes found.")
         else:
             ac.st("No two snowflakes are alike.")
+        return
+
+    @staticmethod
+    def lg_p4889(ac=FastIO()):
+        # 模板：枚举计数
+        n, m = ac.read_ints()
+        height = ac.read_list_ints()
+        cnt = defaultdict(int)
+        ans = 0
+        for i in range(n):
+            # hj - hi = j - i
+            ans += cnt[height[i] - i]
+            cnt[height[i] - i] += 1
+
+        cnt = defaultdict(int)
+        for i in range(n):
+            # hi - hj = j - i
+            ans += cnt[height[i] + i]
+            # hj + hi = j - i
+            ans += cnt[i - height[i]]
+            cnt[height[i] + i] += 1
+        ac.st(ans)
         return
 
 

@@ -1,3 +1,4 @@
+import bisect
 import random
 import unittest
 from bisect import insort_left, bisect_left
@@ -54,6 +55,7 @@ P1637 三元上升子序列（https://www.luogu.com.cn/problem/P1637）典型STL
 P2234 [HNOI2002]营业额统计（https://www.luogu.com.cn/problem/P2234）典型STL应用题
 P2804 神秘数字（https://www.luogu.com.cn/problem/P2804）前缀和加 STL 计算平均值大于 m 的连续子数组个数
 P3608 [USACO17JAN]Balanced Photo G（https://www.luogu.com.cn/problem/P3608）典型STL应用题
+P5076 【深基16.例7】普通二叉树（简化版）（https://www.luogu.com.cn/problem/P5076）使用有序列表与有序集合进行名次模拟
 
 ================================CodeForces================================
 D. Pashmak and Parmida's problem（https://codeforces.com/problemset/problem/459/D）使用有序集合进行大小计数查找
@@ -459,6 +461,41 @@ class Solution:
             ans += lst.bisect_left(pre)
             lst.add(pre)
         ac.st(ans % mod)
+        return
+
+    @staticmethod
+    def lg_p5076(ac=FastIO()):
+        # 模板：使用有序列表与有序集合进行名次模拟
+        q = ac.read_int()
+        dct = set()
+        lst = []
+        lst_set = []
+        for _ in range(q):
+            op, x = ac.read_ints()
+            if op == 1:
+                i = bisect.bisect_left(lst, x)
+                ac.st(i + 1)
+            elif op == 2:
+                ac.st(lst_set[x - 1])
+            elif op == 3:
+                i = bisect.bisect_left(lst, x)
+                n = len(lst)
+                ans = -2147483647
+                if 0 <= i - 1 < n and lst_set[i - 1] < x:
+                    ans = lst_set[i - 1]
+                ac.st(ans)
+            elif op == 4:
+                i = bisect.bisect_right(lst, x)
+                n = len(lst)
+                if 0 <= i < n:
+                    ac.st(lst[i])
+                else:
+                    ac.st(2147483647)
+            else:
+                bisect.insort_left(lst, x)
+                if x not in dct:
+                    bisect.insort_left(lst_set, x)
+                    dct.add(x)
         return
 
 

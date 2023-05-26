@@ -28,15 +28,18 @@ P5677 配对统计（https://www.luogu.com.cn/problem/P5677）区间值更新与
 P5094 [USACO04OPEN] MooFest G 加强版（https://www.luogu.com.cn/problem/P5094）单点更新增加值与前缀区间和查询
 P1816 忠诚（https://www.luogu.com.cn/problem/P1816）树状数组查询静态区间最小值
 P1908 逆序对（https://www.luogu.com.cn/problem/P1908）树状数组求逆序对
-135. 二维树状数组3（https://loj.ac/p/135）区间修改，区间查询
-134. 二维树状数组2（https://loj.ac/p/134）区间修改，单点查询
+
 P1725 琪露诺（https://www.luogu.com.cn/problem/P1725）倒序线性DP，单点更新值，查询区间最大值
 P3586 [POI2015] LOG（https://www.luogu.com.cn/problem/P3586）离线查询、离散化树状数组，单点增减，前缀和查询
 P1198 [JSOI2008] 最大数（https://www.luogu.com.cn/problem/P1198）树状数组，查询区间最大值
+P4868 Preprefix sum（https://www.luogu.com.cn/problem/P4868）经典转换公式单点修改，使用两个树状数组维护前缀和的前缀和
 
 ================================CodeForces================================
 F. Range Update Point Query（https://codeforces.com/problemset/problem/1791/F）树状数组维护区间操作数与查询单点值
 H2. Maximum Crossings (Hard Version)（https://codeforces.com/contest/1676/problem/H2）树状数组维护前缀区间和
+
+135. 二维树状数组3（https://loj.ac/p/135）区间修改，区间查询
+134. 二维树状数组2（https://loj.ac/p/134）区间修改，单点查询
 
 参考：OI WiKi（https://oi-wiki.org/ds/fenwick/）
 """
@@ -691,6 +694,29 @@ class Solution:
                 x = int(x)
                 t = tree.find_max(i-x, i-1)
                 ac.st(t)
+        return
+
+    @staticmethod
+    def lg_p4868(ac=FastIO()):
+        # 模板：经典转换公式，使用两个树状数组维护前缀和的前缀和
+
+        n, m = ac.read_ints()
+        nums = ac.read_list_ints()
+        tree1 = TreeArrayRangeQuerySum(n)
+        tree1.build(nums)
+        tree2 = TreeArrayRangeQuerySum(n)
+        tree2.build([nums[i] * (i + 1) for i in range(n)])
+        for _ in range(m):
+            lst = ac.read_list_strs()
+            if lst[0] == "Modify":
+                i, x = [int(w) for w in lst[1:]]
+                y = nums[i - 1]
+                nums[i - 1] = x
+                tree1.update(i, x - y)
+                tree2.update(i, i * (x - y))
+            else:
+                i = int(lst[1])
+                ac.st((i + 1) * tree1.query(i) - tree2.query(i))
         return
 
 

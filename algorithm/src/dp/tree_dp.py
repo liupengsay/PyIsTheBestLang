@@ -1,4 +1,4 @@
-
+import math
 import unittest
 from collections import deque, Counter
 from functools import lru_cache
@@ -52,6 +52,7 @@ P3408 恋爱（https://www.luogu.com.cn/problem/P3408）树形DP
 P3478 [POI2008] STA-Station（https://www.luogu.com.cn/problem/P3478）树的质心
 P3931 SAC E#1 - 一道难题 Tree（https://www.luogu.com.cn/problem/P3931）典型树形DP
 P4084 [USACO17DEC]Barn Painting G（https://www.luogu.com.cn/problem/P4084）典型树形DP
+P4395 [BOI2003]Gem 气垫车（https://www.luogu.com.cn/problem/P4395）经典树形 DP 贪心标权值使得整棵树总价值最小
 
 ==================================AtCoder=================================
 F - Expensive Expense （https://atcoder.jp/contests/abc222/tasks/abc222_f）换根DP
@@ -1217,6 +1218,50 @@ class Solution:
                         res += ac.min(dct[i][j], sub[j])
                 sub[i] = res
         ac.st(sub[root] if sub[root] < inf else 0)
+        return
+
+    @staticmethod
+    def lg_p4395(ac=FastIO()):
+        # 模板：经典树形 DP 贪心标权值使得整棵树总价值最小
+        n = ac.read_int()
+        ceil = int(math.log2(n)) + 1
+        sub = [[inf] * (ceil + 1) for _ in range(n)]
+        dct = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            i, j = ac.read_ints_minus_one()
+            dct[i].append(j)
+            dct[j].append(i)
+
+        # 迭代写法
+        stack = [[0, -1]]
+        while stack:
+            i, fa = stack.pop()
+            if i >= 0:
+                stack.append([~i, fa])
+                for j in dct[i]:
+                    if j != fa:
+                        stack.append([j, i])
+            else:
+                i = ~i
+                cur = [0] * (ceil + 1)
+                for j in dct[i]:
+                    if j != fa:
+                        # 记录子树最小的两个值
+                        a = b = inf
+                        for c in sub[j][1:]:
+                            if c < a:
+                                a, b = c, a
+                            elif c < b:
+                                b = c
+                        # 记录 i 赋值为 x 时的子树价值和
+                        for x in range(1, ceil + 1):
+                            if sub[j][x] == a:
+                                cur[x] += b
+                            else:
+                                cur[x] += a
+                for x in range(1, ceil + 1):
+                    sub[i][x] = x + cur[x]
+        ac.st(min(sub[0][1:]))
         return
 
 

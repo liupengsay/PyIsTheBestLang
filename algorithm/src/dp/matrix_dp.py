@@ -74,6 +74,8 @@ P2736 [USACO3.4]“破锣摇滚”乐队 Raucous Rockers（https://www.luogu.com
 P2769 猴子上树（https://www.luogu.com.cn/problem/P2769）矩阵 DP 注意初始化条件
 P3012 [USACO11FEB]Cowlphabet G（https://www.luogu.com.cn/problem/P3012https://www.luogu.com.cn/problem/P3012）三维矩阵DP
 P3860 [TJOI2009] 火星人的手机（https://www.luogu.com.cn/problem/P3860）矩阵 DP 并计算具体转移方案
+P4958 [COCI2017-2018#6] Mate（https://www.luogu.com.cn/problem/P4958）三维线性 DP使用前缀和优化
+P5144 蜈蚣（）
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1446/B（最长公共子序列LCS变形问题，理解贡献）
@@ -1133,6 +1135,33 @@ class Solution:
             a, b = ans[i - 1]
             c, d = ans[i]
             ac.st(d - b)
+        return
+
+    @staticmethod
+    def lg_p4958(ac=FastIO()):
+        # 模板：三维线性 DP使用前缀和优化
+        mod = 10**9 + 7
+        ind = {chr(i + ord("a")): i for i in range(26)}
+        ind["#"] = 26
+        s = ac.read_str()
+        n = len(s)
+        dp = [[[0] * (n + 1) for _ in range(27)] for _ in range(27)]
+        dp[26][26][0] = 1
+        pre = [[0] * (n + 1) for _ in range(27)]
+        pre[26][0] = 1
+        for w in s:
+            x = ind[w]
+            for k in range(n - 1, -1, -1):
+                for j in range(27):
+                    dp[x][j][k + 1] += pre[j][k]
+                    dp[x][j][k + 1] %= mod
+                    pre[x][k + 1] += pre[j][k]
+                    pre[x][k + 1] %= mod
+        for _ in range(ac.read_int()):
+            n, st = ac.read_list_strs()
+            n = int(n)
+            i, j = ind[st[1]], ind[st[0]]
+            ac.st(dp[i][j][n])
         return
 
 
