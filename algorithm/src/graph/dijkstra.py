@@ -80,6 +80,7 @@ P3753 国事访问（https://www.luogu.com.cn/problem/P3753）最短路变形两
 P3956 [NOIP2017 普及组] 棋盘（https://www.luogu.com.cn/problem/P3956）多维状态的Dijkstra
 P4880 抓住czx（https://www.luogu.com.cn/problem/P4880）枚举终点使用 Dijkstra计算最短路
 P4943 密室（https://www.luogu.com.cn/problem/P4943）枚举路径跑四遍最短路
+P5201 [USACO19JAN]Shortcut G（https://www.luogu.com.cn/problem/P5201）经典最短路树建图，再使用树形 DP 计算最优解
 
 ================================CodeForces================================
 C. Dijkstra?（https://codeforces.com/problemset/problem/20/C）正权值最短路计算，并记录返回生成路径
@@ -1179,6 +1180,63 @@ class Solution:
         ans = min(ac.max(dis1[x], dis2[y]), ac.max(dis1[y], dis2[x]),
                   dis1[x] + dis11[y], dis1[y] + dis11[y],
                   dis2[x] + dis22[y], dis2[y] + dis22[y])
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p5201(ac=FastIO()):
+        # 模板：经典最短路树建图，再使用树形 DP 计算最优解
+        n, m, t = ac.read_ints()
+        nums = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        for _ in range(m):
+            a, b, c = ac.read_ints_minus_one()
+            dct[a].append([b, c + 1])
+            dct[b].append([a, c + 1])
+        for i in range(n):
+            dct[i].sort()
+        # 先跑一遍最短路
+        dis = [inf] * n
+        stack = [[0, 0]]
+        dis[0] = 0
+        while stack:
+            d, i = heapq.heappop(stack)
+            if dis[i] < d:
+                continue
+            for j, w in dct[i]:
+                dj = w + d
+                if dj < dis[j]:
+                    dis[j] = dj
+                    heapq.heappush(stack, [dj, j])
+
+        # 选择字典序较小的边建立最短路树
+        edge = [[] for _ in range(n)]
+        visit = [0] * n
+        for i in range(n):
+            for j, w in dct[i]:
+                if visit[j]:
+                    continue
+                if dis[i] + w == dis[j]:
+                    edge[i].append(j)
+                    edge[j].append(i)
+                    visit[j] = 1
+
+        # 树形 DP 计算
+        stack = [[0, -1]]
+        ans = 0
+        while stack:
+            i, fa = stack.pop()
+            if i >= 0:
+                stack.append([~i, fa])
+                for j in edge[i]:
+                    if j != fa:
+                        stack.append([j, i])
+            else:
+                i = ~i
+                for j in edge[i]:
+                    if j != fa:
+                        nums[i] += nums[j]
+                ans = ac.max(ans, nums[i] * (dis[i] - t))
         ac.st(ans)
         return
 

@@ -2,7 +2,7 @@ import unittest
 from collections import defaultdict, Counter
 from functools import lru_cache
 from functools import reduce
-from operator import xor
+from operator import xor, or_
 from typing import List
 
 from algorithm.src.fast_io import FastIO
@@ -38,6 +38,7 @@ P2114 [NOI2014] 起床困难综合症（https://www.luogu.com.cn/problem/P2114�
 P2326 AKN’s PPAP（https://www.luogu.com.cn/problem/P2326）按位模拟贪心选取与值最大的数值对
 P4144 大河的序列（https://www.luogu.com.cn/problem/P4144）按位思考贪心脑筋急转弯
 P4310 绝世好题（https://www.luogu.com.cn/problem/P4310）线性 DP 使用按位转移
+P5390 [Cnoi2019]数学作业（https://www.luogu.com.cn/problem/P5390）按位操作
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/305/C（利用二进制加减的思想进行解题）
@@ -450,6 +451,22 @@ class Solution:
             for j in lst:
                 cnt[j] = pre
         ac.st(max(cnt))
+        return
+
+    @staticmethod
+    def lg_p5390(ac=FastIO()):
+        # 模板：按位操作统计枚举
+        mod = 998244353
+        for _ in range(ac.read_int()):
+            nums = ac.read_list_ints()
+            n = nums[0]
+            num = reduce(or_, nums[1:])
+            pp = pow(2, n - 1, mod)
+            ans = 0
+            for i in range(32):
+                if num & (1 << i):
+                    ans += (1 << i) * pp
+            ac.st(ans % mod)
         return
 
 

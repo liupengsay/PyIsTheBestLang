@@ -14,7 +14,7 @@ from algorithm.src.fast_io import FastIO
 P3811 乘法逆元（https://www.luogu.com.cn/problem/P3811）使用乘法逆元计算
 P5431 乘法逆元（https://www.luogu.com.cn/problem/P5431）使用乘法逆元计算
 P2613 有理数取余（https://www.luogu.com.cn/problem/P2613）使用乘法逆元计算
-
+P5431 【模板】乘法逆元 2（https://www.luogu.com.cn/problem/P5431）转换为前缀积与后缀积计算求解
 
 ===================================CodeForces===================================
 F. Ira and Flamenco（https://codeforces.com/contest/1833/problem/F）使用前缀乘积计算区间取模
@@ -83,6 +83,28 @@ class Solution:
                     ans += pre[i + m] * mi.mod_reverse(pre[i], mod)
                     ans %= mod
             ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p5431(ac=FastIO()):
+        # 模板：转换为前缀积与后缀积计算求解
+        n, p, k = ac.read_ints()
+        a = ac.read_list_ints()
+        post = [1] * (n + 1)
+        for i in range(n - 1, -1, -1):
+            post[i] = (post[i + 1] * a[i]) % p
+        # 遍历数组
+        kk = k
+        pre = 1
+        ans = 0
+        for i in range(n):
+            ans += kk * pre * post[i + 1]
+            ans %= p
+            kk = (kk * k) % p
+            pre = (pre * a[i]) % p
+        ans *= pow(pre, -1, p)
+        ans %= p
+        ac.st(ans)
         return
 
 

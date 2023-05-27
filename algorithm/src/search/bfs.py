@@ -71,6 +71,7 @@ P4554 小明的游戏（https://www.luogu.com.cn/problem/P4554）典型 01BFS �
 P4667 [BalticOI 2011 Day1]Switch the Lamp On（https://www.luogu.com.cn/problem/P4667）使用 01BFS 进行模拟计算
 P5096 [USACO04OPEN]Cave Cows 1（https://www.luogu.com.cn/problem/P5096）状压加广搜 BFS 模拟
 P5099 [USACO04OPEN]Cave Cows 4（https://www.luogu.com.cn/problem/P5099）队列 01BFS 广搜模拟
+P5195 [USACO05DEC]Knights of Ni S（https://www.luogu.com.cn/problem/P5195）
 
 ================================CodeForces================================
 E. Nearest Opposite Parity（https://codeforces.com/problemset/problem/1272/E）经典反向建图，多源BFS
@@ -100,7 +101,6 @@ class Solution:
             graph[x].append(y)
             graph[y].append(x)
 
-        inf = inf
         ans = inf
         for i in range(n):
             dist = [inf] * n
@@ -186,7 +186,6 @@ class Solution:
             graph[x].add(y)
             graph[y].add(x)
 
-        inf = inf
         ans = inf
         for x, y in edges:
             graph[x].discard(y)
@@ -1327,6 +1326,52 @@ class Solution:
                     if (i + a, j + b) in dct and visit[dct[(i + a, j + b)]] > d + 1:
                         visit[dct[(i + a, j + b)]] = d + 1
                         stack.append([i + a, j + b, dct[(i + a, j + b)]])
+        ac.st(ans if ans < inf else -1)
+        return
+
+    @staticmethod
+    def lg_p5195(ac=FastIO()):
+        # 模板：记录遇到灌木与否的状态进行 BFS 计算
+        n, m = ac.read_ints()
+        lst = []
+        while len(lst) < m * n:
+            lst.extend(ac.read_list_ints())
+        grid = [lst[i * n: i * n + n] for i in range(m)]
+        del lst
+        pos_2 = [-1, -1]
+        wood = []
+        for i in range(m):
+            for j in range(n):
+                w = grid[i][j]
+                if w == 2:
+                    pos_2 = [i, j]
+                elif w == 4:
+                    wood.append([i, j])
+        # 使用队列实现的广搜
+        visit = [[[inf, inf] for _ in range(n)] for _ in range(m)]
+        stack = deque([pos_2 + [0]])
+        visit[pos_2[0]][pos_2[1]][0] = 0
+        ans = inf
+        while stack:
+            i, j, state = stack.popleft()
+            d = visit[i][j][state]
+            if grid[i][j] == 3 and state == 1:
+                ans = d
+                break
+            for a, b in [[i + 1, j], [i - 1, j], [i, j - 1], [i, j + 1]]:
+                if 0 <= a < m and 0 <= b < n:
+                    if state and grid[a][b] != 1 and visit[a][b][state] > d + 1:
+                        visit[a][b][state] = d + 1
+                        stack.append([a, b, state])
+                    if not state and grid[a][b] not in [1, 3]:
+                        if grid[a][b] == 4:
+                            cur = 1
+                        else:
+                            cur = 0
+                        if visit[a][b][cur] > d + 1:
+                            visit[a][b][cur] = d + 1
+                            stack.append([a, b, cur])
+
         ac.st(ans if ans < inf else -1)
         return
 

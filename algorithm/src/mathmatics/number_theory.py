@@ -5,7 +5,7 @@ import random
 import re
 import time
 import unittest
-
+from math import inf
 from typing import List
 import heapq
 import math
@@ -94,6 +94,8 @@ P2527 [SHOI2001]Panda的烦恼（https://www.luogu.com.cn/problem/P2527）丑数
 P2557 [AHOI2002]芝麻开门（https://www.luogu.com.cn/problem/P2557）使用质因数分解计算a^b的所有因子之和
 P4446 [AHOI2018初中组]根式化简（https://www.luogu.com.cn/problem/P4446）预先处理出素数然后计算最大的完全立方数因子
 P4752 Divided Prime（https://www.luogu.com.cn/problem/P4752）判断除数是否为质数
+P5248 [LnOI2019SP]快速多项式变换(FPT)（https://www.luogu.com.cn/problem/P5248）经典进制题目
+P5253 [JSOI2013]丢番图（https://www.luogu.com.cn/problem/P5253）经典方程变换计算 (x-n)*(y-n)=n^2 的对数
 
 ================================CodeForces================================
 C. Hossam and Trainees（https://codeforces.com/problemset/problem/1771/C）使用pollard_rho进行质因数分解
@@ -711,7 +713,6 @@ class Solution:
     def lc_2464(nums: List[int]) -> int:
         # 模板：计算 1 到 n 的数所有的质因子并使用动态规划计数
         nt = NumberTheoryPrimeFactor(max(nums))
-        inf = inf
         ind = dict()
         n = len(nums)
         dp = [inf] * (n + 1)
@@ -733,7 +734,6 @@ class Solution:
     def lc_lcp14(nums: List[int]) -> int:
         # 模板：计算 1 到 n 的数所有的质因子并使用动态规划计数
         nt = NumberTheoryPrimeFactor(max(nums))
-        inf = inf
         ind = dict()
         n = len(nums)
         dp = [inf] * (n + 1)
@@ -1154,6 +1154,30 @@ class Solution:
                         ac.st("NO")
             else:
                 ac.st("NO")
+        return
+
+    @staticmethod
+    def lg_p5248(ac=FastIO()):
+        # 模板：经典进制题目
+        m, fm = ac.read_ints()
+        lst = []
+        while fm:
+            lst.append(fm % m)
+            fm //= m
+        ac.st(len(lst))
+        ac.lst(lst)
+        return
+
+    @staticmethod
+    def lg_p5253(ac=FastIO()):
+        # 模板：经典方程变换计算 (x-n)*(y-n)=n^2 的对数
+        n = ac.read_int()
+        lst = NumberTheory().get_prime_factor2(n)
+        ans = 1
+        for _, c in lst:
+            # 转换为求数字的因数个数
+            ans *= (2 * c + 1)
+        ac.st((ans + 1) // 2)
         return
 
 

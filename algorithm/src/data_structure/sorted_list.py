@@ -2,6 +2,7 @@ import bisect
 import random
 import unittest
 from bisect import insort_left, bisect_left
+from math import inf
 from typing import List
 
 from sortedcontainers import SortedList
@@ -56,6 +57,8 @@ P2234 [HNOI2002]营业额统计（https://www.luogu.com.cn/problem/P2234）典�
 P2804 神秘数字（https://www.luogu.com.cn/problem/P2804）前缀和加 STL 计算平均值大于 m 的连续子数组个数
 P3608 [USACO17JAN]Balanced Photo G（https://www.luogu.com.cn/problem/P3608）典型STL应用题
 P5076 【深基16.例7】普通二叉树（简化版）（https://www.luogu.com.cn/problem/P5076）使用有序列表与有序集合进行名次模拟
+P5149 会议座位（https://www.luogu.com.cn/problem/P5149）经典逆序对计算使用 bisect 实现
+P5459 [BJOI2016]回转寿司（https://www.luogu.com.cn/problem/P5459）前缀和与有序列表二分查找
 
 ================================CodeForces================================
 D. Pashmak and Parmida's problem（https://codeforces.com/problemset/problem/459/D）使用有序集合进行大小计数查找
@@ -496,6 +499,38 @@ class Solution:
                 if x not in dct:
                     bisect.insort_left(lst_set, x)
                     dct.add(x)
+        return
+
+    @staticmethod
+    def lg_p5149(ac=FastIO()):
+        # 模板：经典逆序对计算使用 bisect 实现
+        ac.read_int()
+        lst = ac.read_list_strs()
+        ind = {st: i for i, st in enumerate(lst)}
+        lst = [ind[s] for s in ac.read_list_strs()]
+        ans = 0
+        pre = []
+        for num in lst:
+            ans += len(pre)-bisect.bisect_left(pre, num)
+            bisect.insort_left(pre, num)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p5459(ac=FastIO()):
+        # 模板：前缀和与有序列表二分查找
+        n, low, high = ac.read_ints()
+        a = ac.read_list_ints()
+        ans = 0
+        lst = []
+        s = sum(a)
+        bisect.insort_left(lst, s)
+        for i in range(n - 1, -1, -1):
+            s -= a[i]
+            x = bisect.bisect_left(lst, s + low)
+            ans += bisect.bisect_right(lst, s + high) - x
+            bisect.insort_left(lst, s)
+        ac.st(ans)
         return
 
 

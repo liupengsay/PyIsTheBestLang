@@ -38,6 +38,7 @@ P1668 [USACO04DEC] Cleaning Shifts S（https://www.luogu.com.cn/problem/P1668）
 P2887 [USACO07NOV] Sunscreen G（https://www.luogu.com.cn/problem/P2887）最多点匹配覆盖，每条线段选一个点匹配，最多匹配数有点类似二分图
 P3661 [USACO17FEB]Why Did the Cow Cross the Road I S（https://www.luogu.com.cn/problem/P3661）经典区间与点集贪心匹配
 P3737 [HAOI2014]遥感监测（https://www.luogu.com.cn/problem/P3737）经典区间点覆盖贪心
+P5199 [USACO19JAN]Mountain View S（https://www.luogu.com.cn/problem/P5199）经典区间包含贪心计算最多互不包含的区间个数
 
 ================================CodeForces================================
 A. String Reconstruction（https://codeforces.com/problemset/problem/827/A）区间合并为不相交的区间，再贪心赋值
@@ -317,6 +318,26 @@ class Solution:
             else:
                 ans += 1
                 b = d
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p5199(ac=FastIO()):
+        # 模板：经典区间包含贪心计算最多互不包含的区间个数
+        n = ac.read_int()
+        nums = []
+        for _ in range(n):
+            x, y = ac.read_ints()
+            nums.append([x - y, x + y])
+        # 左端点升序右端点降序
+        nums.sort(key=lambda it: [it[0], -it[1]])
+        ans = 0
+        pre = -inf
+        for a, b in nums:
+            # 右端点超出范围则形成新的一个
+            if b > pre:
+                ans += 1
+                pre = b
         ac.st(ans)
         return
 

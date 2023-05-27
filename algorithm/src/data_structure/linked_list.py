@@ -21,7 +21,7 @@ from algorithm.src.fast_io import FastIO
 牛牛排队伍（https://ac.nowcoder.com/acm/contest/49888/C）使用数组维护链表的前后节点信息
 
 ===================================洛谷===================================
-
+P5462 X龙珠（https://www.luogu.com.cn/problem/P5462）经典使用双向链表贪心选取最大字典序队列
 
 ================================CodeForces================================
 E. Two Teams（https://codeforces.com/contest/1154/problem/E）使用数组维护链表的前后节点信息
@@ -195,3 +195,43 @@ class Solution:
         for i in range(n-2, -1, -1):
             ac.lst(ans[i])
         return
+
+    @staticmethod
+    def lg_p5462(ac=FastIO()):
+        # 模板：经典使用双向链表贪心选取最大字典序队列
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        pre = [-1] * (n + 1)
+        post = [-1] * (n + 1)
+        for i in range(n):
+            if i:
+                pre[nums[i]] = nums[i - 1]
+            if i + 1 < n:
+                post[nums[i]] = nums[i + 1]
+
+        # 从大到小取出
+        visit = [0] * (n + 1)
+        ans = []
+        for num in range(n, 0, -1):
+            if visit[num] or post[num] == -1:
+                continue
+            visit[num] = visit[post[num]] = 1
+            ans.extend([num, post[num]])
+            x, y = pre[num], post[post[num]]
+            if x != -1:
+                post[x] = y
+            if y != -1:
+                pre[y] = x
+        ac.lst(ans)
+        return
+
+
+class TestGeneral(unittest.TestCase):
+
+    def test_xx(self):
+        pass
+        return
+
+
+if __name__ == '__main__':
+    unittest.main()

@@ -1,13 +1,14 @@
 import math
 import random
 import unittest
-from collections import defaultdict, deque
+from collections import defaultdict, deque, Counter
 from itertools import combinations
 from typing import List, Counter
-
+from math import inf
 from algorithm.src.graph.union_find import UnionFind
 from algorithm.src.mathmatics.number_theory import NumberTheory
-from algorithm.src.fast_io import FastIO, inf
+from algorithm.src.fast_io import FastIO
+
 
 """
 算法：背包DP、分组背包、一维（无限有限）背包、二位背包、多重背包、分组背包、限制背包
@@ -84,6 +85,8 @@ P2979 [USACO10JAN]Cheese Towers S（https://www.luogu.com.cn/problem/P2979）分
 P3010 [USACO11JAN]Dividing the Gold S（https://www.luogu.com.cn/problem/P3010）经典变形01背包，计算两堆差值最小的分配方案数
 P3423 [POI2005]BAN-Bank Notes（https://www.luogu.com.cn/problem/P3423）二进制优化多重背包与方案输出
 P3983 赛斯石（赛后强化版）（https://www.luogu.com.cn/problem/P3983）两个分组完全背包计算
+P5322 [BJOI2019] 排兵布阵（https://www.luogu.com.cn/problem/P5322）典型二维 DP 转换为分组背包
+P5365 [SNOI2017] 英雄联盟（https://www.luogu.com.cn/problem/P5365）01背包 DP 枚举数量
 
 ================================CodeForces================================
 B. Modulo Sum（https://codeforces.com/problemset/problem/577/B）取模计数二进制优化与背包DP，寻找非空子序列的和整除给定的数
@@ -209,7 +212,6 @@ class BagDP:
     @staticmethod
     def one_dimension_limited_use_dct(nums):
         # 一维有限背包（带负数的情况下使用字典做转移记录）
-        inf = inf
         pre = defaultdict(lambda: -inf)
         pre[0] = 0
         for s, f in nums:
@@ -1116,6 +1118,46 @@ class Solution:
             for j in range(i, n + 1):
                 dp[j] = ac.max(dp[j], dp[j - i] + a[i] - cost[i])
         ac.st(dp[-1])
+        return
+
+    @staticmethod
+    def lg_p5322(ac=FastIO()):
+        # 模板：典型二维 DP 转换为分组背包
+        s, n, m = ac.read_ints()
+        grid = [ac.read_list_ints() for _ in range(s)]
+        dp = [0] * (m + 1)
+        for i in range(n):
+            # dp[j] 表示派出 j 个士兵到前 i 个城堡的得分
+            lst = [grid[x][i] for x in range(s)]
+            lst.sort()
+            for j in range(m, -1, -1):
+                for ind, w in enumerate(lst):
+                    if j <= w * 2:
+                        break
+                    dp[j] = ac.max(dp[j], dp[j - 2 * w - 1] + (ind + 1) * (i + 1))
+        ac.st(dp[-1])
+        return
+
+    @staticmethod
+    def lg_p5365(ac=FastIO()):
+        # 模板：01背包 DP 枚举数量
+        n, m = ac.read_ints()
+        kk = ac.read_list_ints()
+        cc = ac.read_list_ints()
+        s = sum(kk[i] * cc[i] for i in range(n))
+        dp = [0] * (s + 1)
+        dp[0] = 1
+        for i in range(n):
+            k, c = kk[i], cc[i]
+            for x in range(s, -1, -1):
+                for p in range(1, k + 1):
+                    if x < p * c:
+                        break
+                    dp[x] = ac.max(dp[x], dp[x - p * c] * p)
+        for i in range(s + 1):
+            if dp[i] >= m:
+                ac.st(i)
+                break
         return
 
 

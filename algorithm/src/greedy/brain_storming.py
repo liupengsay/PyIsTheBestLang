@@ -99,6 +99,7 @@ P4447 [AHOI2018初中组]分组（https://www.luogu.com.cn/problem/P4447）经�
 P4575 [CQOI2013]图的逆变换（https://www.luogu.com.cn/problem/P4575）脑筋急转弯加状压运算
 P4653 [CEOI2017] Sure Bet（https://www.luogu.com.cn/problem/P4653）看似二分使用指针贪心选取
 P5093 [USACO04OPEN]The Cow Lineup（https://www.luogu.com.cn/problem/P5093）经典脑筋急转弯使用集合确定轮数
+P5425 [USACO19OPEN]I Would Walk 500 Miles G（https://www.luogu.com.cn/problem/P5425）看似最小生成树，实则脑筋急转弯贪心计算距离
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1186/D（贪心取floor，再根据加和为0的特质进行补充加1成为ceil）
@@ -628,6 +629,14 @@ class Solution:
             if len(pre) == k:
                 ans += 1
                 pre = set()
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p5425(ac=FastIO()):
+        # 模板：看似最小生成树，实则脑筋急转弯贪心计算距离
+        n, k = ac.read_ints()
+        ans = (2019201913 * (k - 1) + 2019201949 * n) % 2019201997
         ac.st(ans)
         return
 

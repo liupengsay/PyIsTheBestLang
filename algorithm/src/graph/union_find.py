@@ -48,6 +48,7 @@ P1892 [BOI2003]团伙（https://www.luogu.com.cn/problem/P1892）经典并查集
 P2189 小Z的传感器（https://www.luogu.com.cn/problem/P2189）并查集经典题，确定访问顺序的合法性
 P2307 迷宫（https://www.luogu.com.cn/problem/P2307）并查集判定树的生成是否合法
 P3420 [POI2005]SKA-Piggy Banks（https://www.luogu.com.cn/problem/P3420）经典并查集变形问题
+P5429 [USACO19OPEN]Fence Planning S（https://www.luogu.com.cn/problem/P5429）简单并查集应用题
 
 ================================CodeForces================================
 D. Roads not only in Berland（https://codeforces.com/problemset/problem/25/D）并查集将原来的边断掉重新来连接使得成为一整个连通集

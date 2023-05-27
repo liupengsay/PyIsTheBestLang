@@ -53,6 +53,7 @@ P7186 [CRCI2008-2009] TABLICA（https://www.luogu.com.cn/problem/P7186）脑筋�
 P7338 『MdOI R4』Color（https://www.luogu.com.cn/problem/P7338）进行贪心模拟赋值
 P2129 L 国的战斗续之多路出击（https://www.luogu.com.cn/problem/P2129）使用栈和指针模拟
 P3407 散步（https://www.luogu.com.cn/problem/P3407）经典模拟移动与相遇
+P5329 [SNOI2019]字符串（https://www.luogu.com.cn/problem/P5329）经典字典序应用题，依据相邻项的字典序大小来确认排序
 
 ================================CodeForces================================
 C. Gargari and Bishops（https://codeforces.com/problemset/problem/463/C）选取两组互不相交的主副对角线使得和最大
@@ -296,6 +297,33 @@ class Solution:
                 pos[i] = ac.max(mid, nums[i][0] - t)
         for _ in range(q):
             ac.st(pos[ac.read_int() - 1])
+        return
+
+    @staticmethod
+    def lg_p5329(ac=FastIO()):
+        # 模板：经典字典序应用题，依据相邻项的字典序大小来确认排序
+        n = ac.read_int()
+        s = ac.read_str()
+        ans = [0]*n
+        i, j = 0, n-1
+        idx = 0
+        for x in range(1, n):
+            if s[x] > s[x-1]:
+                # 前面的直接扔到后面必然是最大的（去掉小的s[x-1]）
+                for y in range(x-1, idx-1, -1):
+                    ans[j] = y+1
+                    j -= 1
+                idx = x
+            if s[x] < s[x-1]:
+                # 前面的直接扔到前面必然是最小的（去掉大的s[x-1]）
+                for y in range(idx, x):
+                    ans[i] = y+1
+                    i += 1
+                idx = x
+        for x in range(idx, n):
+            ans[i] = x + 1
+            i += 1
+        ac.lst(ans)
         return
 
 

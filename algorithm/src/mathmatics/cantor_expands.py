@@ -14,8 +14,8 @@ from algorithm.src.mathmatics.lexico_graphical_order import LexicoGraphicalOrder
 题目：
 
 ===================================洛谷===================================
-P5367 【模板】康托展开（https://www.luogu.com.cn/problem/P5367#submit）
 P3014 [USACO11FEB]Cow Line S（https://www.luogu.com.cn/problem/P3014）计算全排列的排名与排名对应的全排列
+P5367 【模板】康托展开（https://www.luogu.com.cn/problem/P5367）计算排列的排名
 
 参考：OI WiKi（https://oi-wiki.org/math/combinatorics/cantor/）
 """

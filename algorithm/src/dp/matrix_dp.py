@@ -75,7 +75,7 @@ P2769 猴子上树（https://www.luogu.com.cn/problem/P2769）矩阵 DP 注意�
 P3012 [USACO11FEB]Cowlphabet G（https://www.luogu.com.cn/problem/P3012https://www.luogu.com.cn/problem/P3012）三维矩阵DP
 P3860 [TJOI2009] 火星人的手机（https://www.luogu.com.cn/problem/P3860）矩阵 DP 并计算具体转移方案
 P4958 [COCI2017-2018#6] Mate（https://www.luogu.com.cn/problem/P4958）三维线性 DP使用前缀和优化
-P5144 蜈蚣（）
+P5144 蜈蚣（https://www.luogu.com.cn/problem/P5144）线性 DP 二维加前缀异或和
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1446/B（最长公共子序列LCS变形问题，理解贡献）
@@ -1162,6 +1162,25 @@ class Solution:
             n = int(n)
             i, j = ind[st[1]], ind[st[0]]
             ac.st(dp[i][j][n])
+        return
+
+    @staticmethod
+    def lg_p5144(ac=FastIO()):
+        # 模板：线性 DP 二维加前缀异或和
+        n, m = ac.read_ints()
+        dp = [[0]*m for _ in range(n)]
+        nums = ac.read_list_ints()
+        dp[0][0] = nums[0]
+        for i in range(1, n):
+            dp[i][0] = dp[i-1][0] ^ nums[i]
+            for j in range(1, m):
+                if j > i:
+                    break
+                cur = nums[i]
+                for k in range(i-1, -1, -1):
+                    dp[i][j] = ac.max(dp[k][j-1]+cur, dp[i][j])
+                    cur ^= nums[k]
+        ac.st(dp[-1][-1])
         return
 
 

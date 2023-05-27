@@ -28,11 +28,11 @@ P5677 配对统计（https://www.luogu.com.cn/problem/P5677）区间值更新与
 P5094 [USACO04OPEN] MooFest G 加强版（https://www.luogu.com.cn/problem/P5094）单点更新增加值与前缀区间和查询
 P1816 忠诚（https://www.luogu.com.cn/problem/P1816）树状数组查询静态区间最小值
 P1908 逆序对（https://www.luogu.com.cn/problem/P1908）树状数组求逆序对
-
 P1725 琪露诺（https://www.luogu.com.cn/problem/P1725）倒序线性DP，单点更新值，查询区间最大值
 P3586 [POI2015] LOG（https://www.luogu.com.cn/problem/P3586）离线查询、离散化树状数组，单点增减，前缀和查询
 P1198 [JSOI2008] 最大数（https://www.luogu.com.cn/problem/P1198）树状数组，查询区间最大值
 P4868 Preprefix sum（https://www.luogu.com.cn/problem/P4868）经典转换公式单点修改，使用两个树状数组维护前缀和的前缀和
+P5463 小鱼比可爱（加强版）（https://www.luogu.com.cn/problem/P5463）经典使用树状数组维护前缀计数，枚举最大值计算所有区间数贡献
 
 ================================CodeForces================================
 F. Range Update Point Query（https://codeforces.com/problemset/problem/1791/F）树状数组维护区间操作数与查询单点值
@@ -717,6 +717,25 @@ class Solution:
             else:
                 i = int(lst[1])
                 ac.st((i + 1) * tree1.query(i) - tree2.query(i))
+        return
+
+    @staticmethod
+    def lg_p5463(ac=FastIO()):
+        # 模板：经典使用树状数组维护前缀计数，枚举最大值计算所有区间数贡献
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        lst = sorted(list(set(nums)))
+        ind = {num: i + 1 for i, num in enumerate(lst)}
+        m = len(ind)
+        tree = TreeArrayRangeQuerySum(m)
+        ans = 0
+        for i in range(n - 1, -1, -1):
+            left = i + 1
+            right = tree.query(ind[nums[i]] - 1)
+            ans += left * right
+            # 取 nums[i] 作为区间的数又 n-i 个右端点取法
+            tree.update(ind[nums[i]], n - i)
+        ac.st(ans)
         return
 
 
