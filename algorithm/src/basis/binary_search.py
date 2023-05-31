@@ -4,6 +4,7 @@ from collections import deque, defaultdict
 from typing import List, Callable
 from math import inf
 from algorithm.src.fast_io import FastIO
+from algorithm.src.graph.union_find import UnionFind
 
 """
 
@@ -53,7 +54,9 @@ P2810 Catch the theives（https://www.luogu.com.cn/problem/P2810）二分加枚�
 P3718 [AHOI2017初中组]alter（https://www.luogu.com.cn/problem/P3718）二分加贪心
 P3853 [TJOI2007]路标设置（https://www.luogu.com.cn/problem/P3853）经典二分贪心题
 P4343 [SHOI2015]自动刷题机（https://www.luogu.com.cn/problem/P4343）上下界二分加模拟
-
+P5844 [IOI2011]ricehub（https://www.luogu.com.cn/problem/P5844）经典中位数贪心与前缀和二分
+P5878 奖品（https://www.luogu.com.cn/problem/P5878）经典二分加枚举
+P6004 [USACO20JAN] Wormhole Sort S（https://www.luogu.com.cn/problem/P6004）经典二分加并查集
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1251/D（使用贪心进行中位数二分求解）
@@ -849,6 +852,81 @@ class Solution:
         ac.lst([floor, ceil])
         return
 
+    @staticmethod
+    def lg_p5844(ac=FastIO()):
+        # 模板：经典中位数贪心与前缀和二分
+        n, m, b = ac.read_ints()
+        pos = [ac.read_int() for _ in range(n)]
+        ans = j = 0
+        pre = ac.accumulate(pos)
+
+        def check(x, y):
+            mid = (x + y) // 2
+            left = (mid - x) * pos[mid] - (pre[mid] - pre[x])
+            right = pre[y + 1] - pre[mid + 1] - (y - mid) * pos[mid]
+            return left + right
+
+        for i in range(n):
+            # 枚举左端点二分右端点
+            while j < n and check(i, j) <= b:
+                j += 1
+            ans = ac.max(ans, j - i)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p5878(ac=FastIO()):
+        # 模板：使用二分加枚举计算
+        n, m = ac.read_ints()
+        nums = [ac.read_list_ints() for _ in range(n)]
+
+        def check(num):
+            cost = 0
+            for x, y, sm, pm, sv, pv in nums:
+                need = num * x - y
+                if need <= 0:
+                    continue
+                cur = inf
+                # 枚举小包装个数
+                for i in range(need + 1):
+                    rest = need - i * sm
+                    if rest > 0:
+                        cur = ac.min(cur, i * pm + math.ceil(rest / sv) * pv)
+                    else:
+                        cur = ac.min(cur, i * pm)
+                        break
+                cost += cur
+                if cost > m:
+                    return False
+
+            return cost <= m
+
+        ans = BinarySearch().find_int_right(0, m, check)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p6004(ac=FastIO()):
+        # 模板：二分加并查集计算
+        n, m = ac.read_ints()
+        nums = ac.read_list_ints_minus_one()
+        edges = [ac.read_list_ints() for _ in range(m)]
+        edges.sort(key=lambda it: -it[2])
+
+        def check(x):
+            uf = UnionFind(n)
+            for i, j, _ in edges[:x]:
+                uf.union(i - 1, j - 1)
+            group = uf.get_root_part()
+            for g in group:
+                cur = set([nums[i] for i in group[g]])
+                if not all(i in cur for i in group[g]):
+                    return False
+            return True
+
+        ans = BinarySearch().find_int_left(0, m, check)
+        ac.st(-1 if not ans else edges[ans - 1][2])
+        return
 
 class TestGeneral(unittest.TestCase):
 

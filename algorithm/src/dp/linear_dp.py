@@ -35,20 +35,15 @@ P2029 跳舞（https://www.luogu.com.cn/problem/P2029）线性DP
 P2031 脑力达人之分割字串（https://www.luogu.com.cn/problem/P2031）线性DP
 P2062 分队问题（https://www.luogu.com.cn/problem/P2062）线性DP+前缀最大值DP剪枝优化
 P2072 宗教问题（https://www.luogu.com.cn/problem/P2072）两个线性DP
-
 P2096 最佳旅游线路（https://www.luogu.com.cn/problem/P2096）最大连续子序列和变种
 P5761 [NOI1997] 最佳游览（https://www.luogu.com.cn/problem/P5761）最大连续子序列和变种
 P2285 [HNOI2004]打鼹鼠（https://www.luogu.com.cn/problem/P2285）线性DP+前缀最大值DP剪枝优化
-
 P2642 双子序列最大和（https://www.luogu.com.cn/problem/P2642）枚举前后两个非空的最大子序列和
 P1470 [USACO2.3]最长前缀 Longest Prefix（https://www.luogu.com.cn/problem/P1470）线性DP
 P1096 [NOIP2007 普及组] Hanoi 双塔问题（https://www.luogu.com.cn/problem/P1096）经典线性DP
-
 P2896 [USACO08FEB]Eating Together S（https://www.luogu.com.cn/problem/P2896）前后缀动态规划
 P2904 [USACO08MAR]River Crossing S（https://www.luogu.com.cn/problem/P2904）前缀和预处理加线性DP
-
 P3062 [USACO12DEC]Wifi Setup S（https://www.luogu.com.cn/problem/P3062）线性DP枚举
-
 P3842 [TJOI2007]线段（https://www.luogu.com.cn/problem/P3842）线性DP进行模拟
 P3903 导弹拦截III（https://www.luogu.com.cn/problem/P3903）线性DP枚举当前元素作为谷底与山峰的子序列长度
 P5414 [YNOI2019] 排序（https://www.luogu.com.cn/problem/P5414）贪心，使用线性DP计算最大不降子序列和
@@ -79,6 +74,7 @@ P3901 数列找不同（https://www.luogu.com.cn/problem/P3901）经典指针加
 P4401 [IOI2007]Miners 矿工配餐（https://www.luogu.com.cn/problem/P4401）
 P4933 大师（https://www.luogu.com.cn/problem/P4933）经典等差数列线性 DP 计数
 P5095 [USACO12OPEN]Bookshelf S（https://www.luogu.com.cn/problem/P5095）典型线性 DP 
+P5810 [SCOI2004]文本的输入（https://www.luogu.com.cn/problem/P5810）经典线性 DP
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/75/D（经典压缩数组，最大子段和升级）
@@ -681,6 +677,22 @@ class Solution:
                 if dp[j] + h < dp[i + 1]:
                     dp[i + 1] = dp[j] + h
         ac.st(dp[-1])
+        return
+
+    @staticmethod
+    def lg_p5810(ac=FastIO()):
+        # 模板：经典线性 DP 枚举
+        n = ac.read_int()
+        dp = [0]
+        while dp[-1] < n:
+            m = len(dp)
+            cur = dp[-1]+1
+            x = 1
+            while x*2+5 <= m:
+                cur = ac.max(dp[-x*2-5]*(x+1), cur)
+                x += 1
+            dp.append(cur)
+        ac.st(len(dp)-1)
         return
 
 

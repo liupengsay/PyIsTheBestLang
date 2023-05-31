@@ -76,6 +76,8 @@ P3012 [USACO11FEB]Cowlphabet G（https://www.luogu.com.cn/problem/P3012https://w
 P3860 [TJOI2009] 火星人的手机（https://www.luogu.com.cn/problem/P3860）矩阵 DP 并计算具体转移方案
 P4958 [COCI2017-2018#6] Mate（https://www.luogu.com.cn/problem/P4958）三维线性 DP使用前缀和优化
 P5144 蜈蚣（https://www.luogu.com.cn/problem/P5144）线性 DP 二维加前缀异或和
+P5858 「SWTR-03」Golden Sword（https://www.luogu.com.cn/problem/P5858）矩阵 DP 加单调队列优化
+P5879 放棋子（https://www.luogu.com.cn/problem/P5879）矩阵 DP 加前缀和优化
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1446/B（最长公共子序列LCS变形问题，理解贡献）
@@ -1181,6 +1183,52 @@ class Solution:
                     dp[i][j] = ac.max(dp[k][j-1]+cur, dp[i][j])
                     cur ^= nums[k]
         ac.st(dp[-1][-1])
+        return
+
+    @staticmethod
+    def lg_p5858(ac=FastIO()):
+        # 模板：矩阵 DP 加单调队列优化
+        n, w, s = ac.read_ints()
+        nums = ac.read_list_ints()
+        dp = [[-inf] * w for _ in range(2)]
+        pre = 0
+        dp[pre][0] = nums[0]
+        for i in range(1, n):
+            a = nums[i]
+            cur = 1 - pre
+            stack = deque()
+            x = 0
+            for j in range(w):
+                if j > i+1:
+                    break
+                # 单调队列优化求区间内最大值
+                while stack and stack[0][0] < j - 1:
+                    stack.popleft()
+                while x < w and x <= j + s - 1:
+                    while stack and stack[-1][1] <= dp[pre][x]:
+                        stack.pop()
+                    stack.append([x, dp[pre][x]])
+                    x += 1
+                if stack:
+                    dp[cur][j] = stack[0][1] + (j + 1) * a
+            pre = cur
+        ac.st(max(dp[pre]))
+        return
+
+    @staticmethod
+    def lg_p5879(ac=FastIO()):
+        # 模板：矩阵 DP 使用后缀和优化
+        n = ac.read_int()
+        pre = [1] * (n + 1)
+        pre[0] = 0
+        for x in range(n - 1, 0, -1):
+            cur = [0] * (x + 1)
+            cnt = pre[-1]
+            for j in range(x, -1, -1):
+                cnt += pre[j]
+                cur[j] = cnt
+            pre = cur[:]
+        ac.st(sum(pre))
         return
 
 

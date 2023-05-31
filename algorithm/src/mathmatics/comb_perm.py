@@ -44,6 +44,7 @@ P2822 [NOIP2016 提高组] 组合数问题（https://www.luogu.com.cn/problem/P2
 P3223 [HNOI2012] 排队（https://www.luogu.com.cn/problem/P3223）使用容斥原理和隔板法计算
 P3904 三只小猪（https://www.luogu.com.cn/problem/P3904）递推第二类斯特林数
 P4071 [SDOI2016]排列计数（https://www.luogu.com.cn/problem/P4071）经典错排选择 n 个元素刚好有 m 个错位排列的方案数
+P5684 [CSP-J2019 江西] 非回文串（https://www.luogu.com.cn/problem/P5684）容斥原理与组合计数
 
 ================================CodeForces================================
 D. Triangle Coloring（https://codeforces.com/problemset/problem/1795/D）组合计数取模与乘法逆元快速计算
@@ -487,6 +488,40 @@ class Solution:
             ans = cb.comb(n, m) * cb.fault[n - m]
             ans %= mod
             ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p5684(ac=FastIO()):
+        # 模板：容斥原理与组合计数
+        n = ac.read_int()
+        mod = 10**9 + 7
+        cb = Combinatorics(n, mod)
+        s = ac.read_str()
+        cnt = Counter(s)
+        odd = sum(cnt[x] % 2 for x in cnt)
+        if odd > 1:
+            ans = 0
+        else:
+            # 先计算回文串的个数
+            lst = [cnt[x] // 2 for x in cnt if cnt[x] > 1]
+            ans = 1
+            s = sum(lst)
+            for x in lst:
+                ans *= cb.comb(s, x)
+                s -= x
+                ans %= mod
+        # 再计算总的排列数
+        total = 1
+        s = n
+        mu = 1
+        for x in cnt:
+            total *= cb.comb(s, cnt[x])
+            s -= cnt[x]
+            total %= mod
+            mu *= cb.factorial(cnt[x])
+            mu %= mod
+        # 最后乘上 perm 全排列
+        ac.st((total - ans) * mu % mod)
         return
 
 

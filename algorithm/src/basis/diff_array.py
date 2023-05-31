@@ -54,6 +54,7 @@ P3028 [USACO10OCT]Soda Machine G（https://www.luogu.com.cn/problem/P3028）离�
 P4030 [Code+#2]可做题1（https://www.luogu.com.cn/problem/P4030）脑筋急转弯加二维前缀和计算
 P4440 [COCI2017-2018#3] Programiranje（https://www.luogu.com.cn/problem/P4440）典型前缀和计数
 P4623 [COCI2012-2013#6] BUREK（https://www.luogu.com.cn/problem/P4623）离散化差分计数
+P6032 选择客栈 加强版（https://www.luogu.com.cn/problem/P6032）经典前后缀计数
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/33/C（前后缀最大变换和与分割点枚举，经典类型题目）
@@ -910,6 +911,36 @@ class Solution:
                 ac.st(diff_x[num])
             else:
                 ac.st(diff_y[num])
+        return
+
+    @staticmethod
+    def lg_p6032(ac=FastIO()):
+        # 模板：经典前后缀计数
+        n, k, p = ac.read_ints()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        post = [0] * k
+        for i in range(n):
+            post[nums[i][0]] += 1
+
+        pre = dict()
+        ans = ss = 0
+        for i in range(n):
+            cc, pp = nums[i]
+            if pp <= p:
+                # 直接清空，前序ss个
+                ans += ss + post[cc] - 1
+                ss = 0
+                pre = dict()
+                post[cc] -= 1
+                continue
+
+            pre[cc] = pre.get(cc, 0) + 0
+            ss -= pre.get(cc, 0)
+            pre[cc] += 1
+
+            post[cc] -= 1
+            ss += post[cc]
+        ac.st(ans)
         return
 
 

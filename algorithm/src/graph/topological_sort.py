@@ -29,6 +29,7 @@ P1137 旅行计划（https://www.luogu.com.cn/problem/P1137）拓扑排序，计
 P1347 排序（https://www.luogu.com.cn/problem/P1347）拓扑排序确定字典序与矛盾或者无唯一解
 P1685 游览（https://www.luogu.com.cn/problem/P1685）拓扑排序计算路径条数
 P3243 [HNOI2015]菜肴制作（https://www.luogu.com.cn/problem/P3243）经典反向建图拓扑排序结合二叉堆进行顺序模拟
+P5536 【XR-3】核心城市（https://www.luogu.com.cn/problem/P5536）经典使用无向图拓扑排序从外到内消除最外圈的节点
 
 ==================================AtCoder=================================
 F - Well-defined Path Queries on a Namori（https://atcoder.jp/contests/abc266/）（无向图的内向基环树，求简单路径的树枝连通）
@@ -338,6 +339,73 @@ class Solution:
                 ac.lst([x + 1 for x in ans])
             else:
                 ac.st("Impossible!")
+        return
+
+    @staticmethod
+    def lg_p5536_1(ac=FastIO()):
+        # 模板：使用直径的贪心方式选取以树的直径中点向外辐射的节点
+        n, k = ac.read_ints()
+        dct = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            i, j = ac.read_ints_minus_one()
+            dct[i].append(j)
+            dct[j].append(i)
+        x, y, _, path = TreeDiameterInfo().get_diameter_info(dct)
+
+        # 树形 DP 计算每个节点的深度与子树最大节点深度
+        root = path[len(path) // 2]
+        deep = [0] * n
+        max_deep = [0] * n
+        stack = [[root, -1, 0]]
+        while stack:
+            i, fa, d = stack.pop()
+            if i >= 0:
+                stack.append([~i, fa, d])
+                deep[i] = d
+                for j in dct[i]:
+                    if j != fa:
+                        stack.append([j, i, d + 1])
+            else:
+                i = ~i
+                max_deep[i] = deep[i]
+                for j in dct[i]:
+                    if j != fa:
+                        max_deep[i] = ac.max(max_deep[i], max_deep[j])
+
+        # 选取 k 个节点后剩下的节点的最大值
+        lst = [max_deep[i] - deep[i] for i in range(n)]
+        lst.sort(reverse=True)
+        ac.st(lst[k] + 1)
+        return
+
+    @staticmethod
+    def lg_p5536_2(ac=FastIO()):
+
+        # 模板：使用无向图拓扑排序从外到内消除最外圈的节点
+        n, k = ac.read_ints()
+        dct = [[] for _ in range(n)]
+        degree = [0] * n
+        for _ in range(n - 1):
+            i, j = ac.read_ints_minus_one()
+            dct[i].append(j)
+            dct[j].append(i)
+            degree[i] += 1
+            degree[j] += 1
+
+        # 按照度为 1 进行 BFS 消除
+        rem = n - k
+        ans = 0
+        stack = deque([[i, 1] for i in range(n) if degree[i] == 1])
+        while rem:
+            i, d = stack.popleft()
+            ans = d
+            rem -= 1
+            for j in dct[i]:
+                if degree[j] > 1:
+                    degree[j] -= 1
+                    if degree[j] == 1:
+                        stack.append([j, d + 1])
+        ac.st(ans)
         return
 
 

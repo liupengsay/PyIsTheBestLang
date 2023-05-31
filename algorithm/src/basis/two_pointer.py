@@ -1,6 +1,7 @@
 import math
 import random
 import unittest
+from collections import defaultdict
 from functools import reduce
 from math import gcd
 from operator import add
@@ -41,6 +42,7 @@ P2207 Photo（https://www.luogu.com.cn/problem/P2207）贪心加同向双指针
 P7542 [COCI2009-2010#1] MALI（https://www.luogu.com.cn/problem/P7542）桶计数加双指针进行计算
 P4653 [CEOI2017] Sure Bet（https://www.luogu.com.cn/problem/P4653）贪心排序后使用双指针计算
 P3029 [USACO11NOV]Cow Lineup S（https://www.luogu.com.cn/problem/P3029）双指针记录包含k个不同颜色的最短连续子序列
+P5583 【SWTR-01】Ethan and Sets（https://www.luogu.com.cn/problem/P5583）经典双指针
 
 
 ================================CodeForces================================
@@ -122,6 +124,60 @@ class SlidingWindowAggregation:
         return self.size
 
 
+class TwoPointer:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def circle_array(arr):
+        # 模板：环形数组指针移动
+        n = len(arr)
+        ans = 0
+        for i in range(n):
+            ans = max(ans, arr[i] + arr[(i + n - 1) % n])
+        return ans
+
+    @staticmethod
+    def fast_and_slow(head):
+        # 模板：快慢指针判断链表是否存在环
+        fast = slow = head
+        while fast and fast.next:
+            fast = fast.next.next
+            slow = slow.next
+            if fast == slow:
+                return True
+        return False
+
+    @staticmethod
+    def same_direction(nums):
+        # 模板: 相同方向双指针（寻找最长不含重复元素的子序列）
+        n = len(nums)
+        ans = j = 0
+        pre = set()
+        for i in range(n):
+            # 特别注意指针的移动情况
+            while j < n and nums[j] not in pre:
+                pre.add(nums[j])
+                j += 1
+            # 视情况更新返回值
+            ans = ans if ans > j - i else j - i
+            pre.discard(nums[i])
+        return ans
+
+    @staticmethod
+    def opposite_direction(nums, target):
+        # 模板: 相反方向双指针（寻找升序数组是否存在两个数和为target）
+        n = len(nums)
+        i, j = 0, n - 1
+        while i < j:
+            cur = nums[i] + nums[j]
+            if cur > target:
+                j -= 1
+            elif cur < target:
+                i += 1
+            else:
+                return True
+        return False
 
 
 class Solution:
@@ -282,61 +338,48 @@ class Solution:
             swa2.popleft()
         return ans
 
-
-class TwoPointer:
-    def __init__(self):
-        return
-
     @staticmethod
-    def circle_array(arr):
-        # 模板：环形数组指针移动
-        n = len(arr)
-        ans = 0
+    def lg_p5583(ac=FastIO()):
+        # 模板：双指针与变量维护区间信息
+        n, m, d = ac.read_ints()
+        nums = ac.read_list_ints()
+        cnt = dict()
+        for num in nums:
+            cnt[num] = cnt.get(num, 0) + 1
+        nums = [ac.read_list_ints() for _ in range(n)]
+        # 动态维护的变量
+        flag = 0
+        ans = [-1]
+        not_like = inf
+        power = -inf
+        cur_cnt = defaultdict(int)
+        cur_power = cur_not_like = j = 0
         for i in range(n):
-            ans = max(ans, arr[i] + arr[(i + n - 1) % n])
-        return ans
-
-    @staticmethod
-    def fast_and_slow(head):
-        # 模板：快慢指针判断链表是否存在环
-        fast = slow = head
-        while fast and fast.next:
-            fast = fast.next.next
-            slow = slow.next
-            if fast == slow:
-                return True
-        return False
-
-    @staticmethod
-    def same_direction(nums):
-        # 模板: 相同方向双指针（寻找最长不含重复元素的子序列）
-        n = len(nums)
-        ans = j = 0
-        pre = set()
-        for i in range(n):
-            # 特别注意指针的移动情况
-            while j < n and nums[j] not in pre:
-                pre.add(nums[j])
+            # 移动右指针
+            while j < n and (flag < len(cnt) or all(num in cnt for num in nums[j][2:])):
+                cur_power += nums[j][0]
+                for num in nums[j][2:]:
+                    cur_cnt[num] += 1
+                    if cur_cnt[num] == 1 and num in cnt:
+                        flag += 1
+                    if num not in cnt:
+                        cur_not_like += 1
                 j += 1
-            # 视情况更新返回值
-            ans = ans if ans > j - i else j - i
-            pre.discard(nums[i])
-        return ans
-
-    @staticmethod
-    def opposite_direction(nums, target):
-        # 模板: 相反方向双指针（寻找升序数组是否存在两个数和为target）
-        n = len(nums)
-        i, j = 0, n - 1
-        while i < j:
-            cur = nums[i] + nums[j]
-            if cur > target:
-                j -= 1
-            elif cur < target:
-                i += 1
-            else:
-                return True
-        return False
+            if flag == len(cnt):
+                if cur_not_like < not_like or (cur_not_like == not_like and cur_power > power):
+                    not_like = cur_not_like
+                    power = cur_power
+                    ans = [i + 1, j]
+            # 删除左指针
+            cur_power -= nums[i][0]
+            for num in nums[i][2:]:
+                cur_cnt[num] -= 1
+                if cur_cnt[num] == 0 and num in cnt:
+                    flag -= 1
+                if num not in cnt:
+                    cur_not_like -= 1
+        ac.lst(ans)
+        return
 
 
 class TestGeneral(unittest.TestCase):

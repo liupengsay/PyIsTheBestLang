@@ -30,6 +30,7 @@ P1349 广义斐波那契数列（https://www.luogu.com.cn/problem/P1349）矩阵
 P2233 [HNOI2002]公交车路线（https://www.luogu.com.cn/problem/P2233）矩阵快速幂
 P2613 【模板】有理数取余（https://www.luogu.com.cn/problem/P2613）乘法逆元
 P3758 [TJOI2017]可乐（https://www.luogu.com.cn/problem/P3758）矩阵 DP 使用快速幂优化
+P5789 [TJOI2017]可乐（数据加强版）（https://www.luogu.com.cn/problem/P5789）矩阵 DP 使用快速幂优化
 P5343 【XR-1】分块（https://www.luogu.com.cn/problem/P5343）线性 DP 使用矩阵幂加速计算
 
 参考：OI WiKi（xx）

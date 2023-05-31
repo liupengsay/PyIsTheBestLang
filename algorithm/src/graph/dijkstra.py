@@ -8,6 +8,7 @@ from typing import List, Dict, Set
 from collections import Counter
 
 from algorithm.src.fast_io import FastIO, inf
+from algorithm.src.graph.spfa import SPFA
 
 """
 算法：Dijkstra（单源最短路经算法）、严格次短路、要保证加和最小因此只支持非负数权值、或者取反全部为非正数计算最长路
@@ -81,6 +82,11 @@ P3956 [NOIP2017 普及组] 棋盘（https://www.luogu.com.cn/problem/P3956）多
 P4880 抓住czx（https://www.luogu.com.cn/problem/P4880）枚举终点使用 Dijkstra计算最短路
 P4943 密室（https://www.luogu.com.cn/problem/P4943）枚举路径跑四遍最短路
 P5201 [USACO19JAN]Shortcut G（https://www.luogu.com.cn/problem/P5201）经典最短路树建图，再使用树形 DP 计算最优解
+P5663 [CSP-J2019] 加工零件（https://www.luogu.com.cn/problem/P5663）经典最短路变形题目，计算最短的奇数与偶数距离
+P5683 [CSP-J2019 江西] 道路拆除（https://www.luogu.com.cn/problem/P5683）计算三遍最短路枚举中间节点到三者之间的距离
+P5837 [USACO19DEC]Milk Pumping G（https://www.luogu.com.cn/problem/P5837）经典Dijkstra变形问题，带多个状态
+P5905 【模板】Johnson 全源最短路（https://www.luogu.com.cn/problem/P5905）有向带权图可能有负权 Johnson 全源最短路计算所有点对的最短路
+P5930 [POI1999] 降水（https://www.luogu.com.cn/problem/P5930）经典Dijkstra应用接雨水
 
 ================================CodeForces================================
 C. Dijkstra?（https://codeforces.com/problemset/problem/20/C）正权值最短路计算，并记录返回生成路径
@@ -165,7 +171,6 @@ class Dijkstra:
                         heapq.heappush(stack, [dj, j])
         return dis
 
-
     @staticmethod
     def dijkstra_src_to_dst_path(dct, src: int, dst: int):
         # 模板: Dijkstra求起终点的最短路，注意只能是正权值可以提前返回结果，并返回对应经过的路径
@@ -247,6 +252,56 @@ class Dijkstra:
                 elif dis[j][0] < d + w < dis[j][1]:  # 非严格修改为 d+w < dis[j][1]
                     dis[j][1] = d + w
                     heapq.heappush(stack, [d + w, j])
+        return dis
+
+    @staticmethod
+    def get_shortest_by_bfs_inf_odd(dct: List[List[int]], src):
+        # 模板: 使用 01BFS 求最短的奇数距离与偶数距离
+        n = len(dct)
+        dis = [[inf, inf] for _ in range(n)]
+        stack = deque([[src, 0]])
+        dis[0][0] = 0
+        while stack:
+            i, x = stack.popleft()
+            for j in dct[i]:
+                dd = x + 1
+                if dis[j][dd % 2] == inf:
+                    dis[j][dd % 2] = x + 1
+                    stack.append([j, x + 1])
+        return dis
+
+    @staticmethod
+    def get_shortest_by_bfs_inf(dct: List[List[int]], src):
+        # 模板: 使用 01 BFS 求最短路
+        n = len(dct)
+        dis = [inf] * n
+        stack = deque([src])
+        dis[src] = 0
+        while stack:
+            i = stack.popleft()
+            for j in dct[i]:
+                if dis[j] == inf:
+                    dis[j] = dis[i] + 1
+                    stack.append(j)
+        return dis
+
+    @staticmethod
+    def get_dijkstra_result_edge(dct: List[List[int]], src: int) -> List[float]:
+        # 模板: Dijkstra求最短路，变成负数求可以求最长路（还是正权值）
+        n = len(dct)
+        dis = [inf] * n
+        stack = [[0, src]]
+        dis[src] = 0
+
+        while stack:
+            d, i = heapq.heappop(stack)
+            if dis[i] < d:
+                continue
+            for j, w in dct[i]:  # 链式前向星支持自环与重边
+                dj = w + d
+                if dj < dis[j]:
+                    dis[j] = dj
+                    heapq.heappush(stack, [dj, j])
         return dis
 
 
@@ -1237,6 +1292,146 @@ class Solution:
                     if j != fa:
                         nums[i] += nums[j]
                 ans = ac.max(ans, nums[i] * (dis[i] - t))
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p5663(ac=FastIO()):
+        # 模板：使用 01 BFS 计算最短的奇数与偶数距离
+        n, m, q = ac.read_ints()
+        dct = [[] for _ in range(n)]
+        for i in range(m):
+            x, y = ac.read_ints_minus_one()
+            dct[x].append(y)
+            dct[y].append(x)
+
+        dis = Dijkstra().get_shortest_by_bfs_inf_odd(dct, 0)
+        for _ in range(q):
+            x, y = ac.read_ints()
+            x -= 1
+            # 只要同奇偶性的最短距离小于等于 y 就有解
+            if dis[x][y % 2] > y:
+                ac.st("No")
+            else:
+                # 差距可在两个节点之间反复横跳
+                ac.st("Yes")
+        return
+
+    @staticmethod
+    def lg_p5683(ac=FastIO()):
+        # 模板：计算三遍最短路枚举中间节点到三者之间的距离
+        n, m = ac.read_ints()
+        dct = [[] for _ in range(n)]
+        nums = []
+        while len(nums) < 2 * m:
+            nums.extend(ac.read_list_ints_minus_one())
+        for i in range(0, 2 * m, 2):
+            x, y = nums[i], nums[i + 1]
+            dct[x].append(y)
+            dct[y].append(x)
+        # 出发与时间约束
+        s1, t1, s2, t2 = ac.read_ints()
+        s1 -= 1
+        s2 -= 1
+        dis0 = Dijkstra().get_shortest_by_bfs_inf(dct, 0)
+        dis1 = Dijkstra().get_shortest_by_bfs_inf(dct, s1)
+        dis2 = Dijkstra().get_shortest_by_bfs_inf(dct, s2)
+        ans = inf
+        for i in range(n):
+            cur = dis0[i] + dis1[i] + dis2[i]
+            # 注意时间限制
+            if dis1[i] + dis0[i] <= t1 and dis2[i] + dis0[i] <= t2:
+                ans = ac.min(ans, cur)
+        ac.st(-1 if ans == inf else m - ans)
+        return
+
+    @staticmethod
+    def lg_p5837(ac=FastIO()):
+        # 模板：Dijkstra变形问题，带多个状态
+        n, m = ac.read_ints()
+        dct = [[] for _ in range(n)]
+        for _ in range(m):
+            i, j, c, f = ac.read_ints()
+            dct[i - 1].append([j - 1, c, f])
+            dct[j - 1].append([i - 1, c, f])
+
+        dis = [inf] * n
+        stack = [[0, 0, 0, inf]]
+        dis[0] = 0
+        while stack:
+            d, i, cost, flow = heapq.heappop(stack)
+            if dis[i] < d:
+                continue
+            for j, c, f in dct[i]:
+                dj = -ac.min(flow, f) / (cost + c)
+                if dj < dis[j]:
+                    dis[j] = dj
+                    heapq.heappush(stack, [dj, j, cost + c, ac.min(flow, f)])
+        ac.st(int(-dis[-1] * 10**6))
+        return
+
+    @staticmethod
+    def lg_p5905(ac=FastIO()):
+        # 模板：有向带权图可能有负权 Johnson 全源最短路计算所有点对的最短路
+        n, m = ac.read_ints()
+        dct = [[] for _ in range(n + 1)]
+        for _ in range(m):
+            u, v, w = ac.read_ints()
+            dct[u].append([v, w])
+        for i in range(1, n + 1):
+            dct[0].append([i, 0])
+        # 首先使用 Bellman-Ford 的队列实现算法 SPFA 判断有没有负环
+        flag, h, _ = SPFA().negative_circle_edge(dct)
+        if flag == "YES":
+            ac.st(-1)
+            return
+        # 其次建立新图枚举起点跑 Dijkstra
+        for i in range(n + 1):
+            k = len(dct[i])
+            for x in range(k):
+                j, w = dct[i][x]
+                dct[i][x][1] = w + h[i] - h[j]
+        dj = Dijkstra()
+        for i in range(1, n + 1):
+            ans = 0
+            dis = dj.get_dijkstra_result_edge(dct, i)
+            for j in range(1, n + 1):
+                # 还原之后才为原图最短路
+                ans += j * (dis[j] + h[j] - h[i]) if dis[j] < inf else j * 10**9
+            ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p5930(ac=FastIO()):
+        # 模板：经典接雨水使用 Dijkstra 进行计算
+        m, n = ac.read_ints()
+        grid = [ac.read_list_ints() for _ in range(m)]
+        visit = [[inf] * n for _ in range(n)]
+        stack = []
+        for i in [0, m - 1]:
+            for j in range(n):
+                stack.append([grid[i][j], i, j])
+                visit[i][j] = grid[i][j]
+        for j in [0, n - 1]:
+            for i in range(1, m - 1):
+                stack.append([grid[i][j], i, j])
+                visit[i][j] = grid[i][j]
+        heapq.heapify(stack)
+        while stack:
+            d, i, j = heapq.heappop(stack)
+            if visit[i][j] < d:
+                continue
+            for x, y in [[i - 1, j], [i + 1, j], [i, j - 1], [i, j + 1]]:
+                if 0 <= x < m and 0 <= y < n:
+                    # 每条路径边权最大值当中的最小值
+                    dj = ac.max(grid[x][y], d)
+                    if dj < visit[x][y]:
+                        visit[x][y] = dj
+                        heapq.heappush(stack, [dj, x, y])
+        ans = 0
+        for i in range(m):
+            for j in range(n):
+                ans += visit[i][j] - grid[i][j]
         ac.st(ans)
         return
 

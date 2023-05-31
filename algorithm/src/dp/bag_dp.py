@@ -87,6 +87,7 @@ P3423 [POI2005]BAN-Bank Notes（https://www.luogu.com.cn/problem/P3423）二进�
 P3983 赛斯石（赛后强化版）（https://www.luogu.com.cn/problem/P3983）两个分组完全背包计算
 P5322 [BJOI2019] 排兵布阵（https://www.luogu.com.cn/problem/P5322）典型二维 DP 转换为分组背包
 P5365 [SNOI2017] 英雄联盟（https://www.luogu.com.cn/problem/P5365）01背包 DP 枚举数量
+P5662 [CSP-J2019] 纪念品（https://www.luogu.com.cn/problem/P5662）完全背包变形贪心题目
 
 ================================CodeForces================================
 B. Modulo Sum（https://codeforces.com/problemset/problem/577/B）取模计数二进制优化与背包DP，寻找非空子序列的和整除给定的数
@@ -1158,6 +1159,23 @@ class Solution:
             if dp[i] >= m:
                 ac.st(i)
                 break
+        return
+
+    @staticmethod
+    def lg_p5662(ac=FastIO()):
+        # 模板：完全背包变形贪心题目
+        t, n, m = ac.read_ints()
+        grid = [ac.read_list_ints() for _ in range(t)]
+        for i in range(1, t):
+            dp = [0] * (m + 1)
+            for j in range(n):
+                b, a = grid[i][j], grid[i - 1][j]
+                if b > a:
+                    for x in range(a, m + 1):
+                        dp[x] = ac.max(dp[x], dp[x - a] + b)
+            # 注意此时的 m 更新值
+            m = max(m - i + dp[i] for i in range(m + 1))
+        ac.st(m)
         return
 
 

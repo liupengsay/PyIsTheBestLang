@@ -24,6 +24,7 @@ P1816 忠诚（https://www.luogu.com.cn/problem/P1816）使用ST表预处理区�
 P2412 查单词（https://www.luogu.com.cn/problem/P2412）预处理字典序之后使用ST表查询静态区间最大字典序
 P2880 [USACO07JAN] Balanced Lineup G（https://www.luogu.com.cn/problem/P2880）查询区间最大值与最小值
 P5097 [USACO04OPEN]Cave Cows 2（https://www.luogu.com.cn/problem/P5097）静态区间最小值
+P5648 Mivik的神力（https://www.luogu.com.cn/problem/P5648）使用倍增 ST 表查询区间最大值的索引，使用单调栈建树计算距离
 
 ================================CodeForces================================
 D. Max GEQ Sum（https://codeforces.com/problemset/problem/1691/D）单调栈枚举加ST表最大值最小值查询
@@ -209,6 +210,41 @@ class SparseTable2D:
         return ans
 
 
+class SparseTableIndex:
+    def __init__(self, lst, fun="max"):
+        # 只要fun满足单调性就可以进行静态区间查询极值所在的索引
+        self.fun = fun
+        self.n = len(lst)
+        self.lst = lst
+        self.f = [[0] * (int(math.log2(self.n)) + 1)
+                  for _ in range(self.n + 1)]
+        self.gen_sparse_table()
+        return
+
+    def gen_sparse_table(self):
+        # 相当于一条链的树倍增求LCA
+        for i in range(1, self.n + 1):
+            self.f[i][0] = i - 1
+        for j in range(1, int(math.log2(self.n)) + 1):
+            for i in range(1, self.n - (1 << j) + 2):
+                a = self.f[i][j - 1]
+                b = self.f[i + (1 << (j - 1))][j - 1]
+                if self.fun == "max":
+                    self.f[i][j] = a if self.lst[a] > self.lst[b] else b
+                elif self.fun == "min":
+                    self.f[i][j] = a if self.lst[a] < self.lst[b] else b
+        return
+
+    def query(self, left, right):
+        # 查询数组的索引 left 和 right 从 1 开始
+        k = int(math.log2(right - left + 1))
+        a = self.f[left][k]
+        b = self.f[right - (1 << k) + 1][k]
+        if self.fun == "max":
+            return a if self.lst[a] > self.lst[b] else b
+        elif self.fun == "min":
+            return a if self.lst[a] < self.lst[b] else b
+
 
 class Solution:
     def __init__(self):
@@ -308,6 +344,41 @@ class Solution:
                 ans += 1
                 i = right + 1
             ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p5648(ac=FastIO()):
+        # 模板：使用倍增 ST 表查询区间最大值的索引，使用单调栈建树计算距离
+        n, t = ac.read_ints()
+        nums = ac.read_list_ints()
+        post = [n]*n
+        stack = []
+        for i in range(n):
+            while stack and nums[stack[-1]] < nums[i]:
+                post[stack.pop()] = i
+            stack.append(i)
+        edge = [[] for _ in range(n + 1)]
+        for i in range(n):
+            edge[post[i]].append(i)
+        # 建树计算距离
+        sub = [0] * (n + 1)
+        stack = [n]
+        while stack:
+            i = stack.pop()
+            for j in edge[i]:
+                sub[j] = sub[i] + nums[j] * (i - j)
+                stack.append(j)
+        # 区间最大值索引
+        st = SparseTableIndex(nums)
+        last_ans = 0
+        for _ in range(t):
+            u, v = ac.read_ints()
+            left = 1 + (u ^ last_ans) % n
+            q = 1 + (v ^ (last_ans + 1)) % (n - left + 1)
+            right = left + q - 1
+            ceil_ind = st.query(left, right)
+            last_ans = sub[left - 1] - sub[ceil_ind] + nums[ceil_ind] * (right - ceil_ind)
+            ac.st(last_ans)
         return
 
 

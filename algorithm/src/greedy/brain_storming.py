@@ -100,6 +100,8 @@ P4575 [CQOI2013]图的逆变换（https://www.luogu.com.cn/problem/P4575）脑�
 P4653 [CEOI2017] Sure Bet（https://www.luogu.com.cn/problem/P4653）看似二分使用指针贪心选取
 P5093 [USACO04OPEN]The Cow Lineup（https://www.luogu.com.cn/problem/P5093）经典脑筋急转弯使用集合确定轮数
 P5425 [USACO19OPEN]I Would Walk 500 Miles G（https://www.luogu.com.cn/problem/P5425）看似最小生成树，实则脑筋急转弯贪心计算距离
+P5884 [IOI2014]game 游戏（https://www.luogu.com.cn/problem/P5884）脑筋急转弯
+P5948 [POI2003]Chocolate（https://www.luogu.com.cn/problem/P5948）贪心模拟进行计算
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1186/D（贪心取floor，再根据加和为0的特质进行补充加1成为ceil）
@@ -638,6 +640,30 @@ class Solution:
         n, k = ac.read_ints()
         ans = (2019201913 * (k - 1) + 2019201949 * n) % 2019201997
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p5884(ac=FastIO()):
+        # 模板：脑筋急转弯
+        n = ac.read_int()
+        degree = [0] * n
+        edge = []
+        while True:
+            lst = ac.read_list_ints()
+            if not lst:
+                break
+            i, j = lst
+            if i > j:
+                i, j = j, i
+            degree[i] += 1
+            edge.append([i, j])
+        # 只有一个节点是最后一条边才确认
+        for i, j in edge:
+            degree[i] -= 1
+            if not degree[i]:
+                ac.st(1)
+            else:
+                ac.st(0)
         return
 
 

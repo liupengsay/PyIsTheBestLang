@@ -84,6 +84,40 @@ class SPFA:
         return "NO", dis, cnt
 
     @staticmethod
+    def negative_circle_edge(dct: List[List[int]], src=0, initial=0) -> (str, List[float], List[int]):
+        # 模板: 判断是否存在负环与求解最短路（正数取反即可判断是否存在正权环以及最长路）
+        n = len(dct)
+        # 初始化距离
+        dis = [inf] * n
+        # 标识当前节点是否在栈中
+        visit = [False] * n
+        # 当前最小距离的路径边数
+        cnt = [0] * n
+        # 求带负权的最短路距离与路径边数
+        queue = deque([src])
+        # 队列与起点初始化默认从 0 出发
+        dis[src] = initial
+        visit[src] = True
+
+        while queue:
+            # 取出队列中的第一个节点
+            u = queue.popleft()
+            visit[u] = False
+            # 更新当前节点的相邻节点的距离
+            for v, w in dct[u]:  # 链式前向星支持自环与重边
+                if dis[v] > dis[u] + w:
+                    dis[v] = dis[u] + w
+                    cnt[v] = cnt[u] + 1
+                    if cnt[v] >= n:
+                        return "YES", dis, cnt
+                    # 如果相邻节点还没有在队列中，将它加入队列
+                    if not visit[v]:
+                        queue.append(v)
+                        visit[v] = True
+        # 不存在从起点出发的负环
+        return "NO", dis, cnt
+
+    @staticmethod
     def count_shortest_path(dct, mod=10 ** 9 + 7):
         # 最短路计数
 
@@ -513,18 +547,18 @@ class Solution:
 
     @staticmethod
     def lg_p5751(ac=FastIO()):
-        # 模板：经典前缀和转换为差分约束求解，并计算最大值
+        # 模板：经典转换为前缀和进行差分约束求解，并使用最短路求解最大值
         n, a0, b0, l0, a1, b1, l1 = ac.read_ints()
 
         # 区间关系
         lst = []
-        for i in range(1, n+1):
+        for i in range(1, n + 1):
             if i - l0 >= 0:
-                lst.append([i, i-l0, l0-a0])
-                lst.append([i-l0, i, b0-l0])
+                lst.append([i, i - l0, l0 - a0])
+                lst.append([i - l0, i, b0 - l0])
             if i - l1 >= 0:
-                lst.append([i, i-l1, b1])
-                lst.append([i-l1, i, -a1])
+                lst.append([i, i - l1, b1])
+                lst.append([i - l1, i, -a1])
 
         # 邻居关系
         for i in range(1, n + 1):
@@ -539,14 +573,16 @@ class Solution:
             return
 
         # 其次计算最大解即最短路（求最小解则是最长路）
-        dct = [dict() for _ in range(n+1)]
+        dct = [dict() for _ in range(n + 1)]
         for a, b, c in lst:  # a-b<=c
             a -= 1
             b -= 1
             w = dct[b].get(a, inf)
             w = w if w < c else c
             dct[b][a] = w
-        # 最大解为 dis[n] = pos[0] - pos[n] 最小即 pos[n] - pos[0] 最大
+
+        # 最大解为 （dis[n] = pos[0] - pos[n] 最小）即 （pos[n] - pos[0] 最大）为 0 到 n 最短路
+        # 最小解为 （dis[n] = pos[0] - pos[n] 最大）即 （pos[n] - pos[0] 最小）为 0 到 n 最长度
         dis = Dijkstra().get_dijkstra_result(dct, 0)
         ac.st(dis[n])
         return

@@ -53,6 +53,7 @@ P1433 吃奶酪（https://www.luogu.com.cn/problem/P1433）状压DP
 P1896 [SCOI2005] 互不侵犯（https://www.luogu.com.cn/problem/P1896）状压DP
 P1556 幸福的路（https://www.luogu.com.cn/problem/P1556）状态压缩计算最短路
 P3052 [USACO12MAR]Cows in a Skyscraper G（https://www.luogu.com.cn/problem/P3052）经典状态压缩 DP 使用二维优化
+P5997 [PA2014]Pakowanie（https://www.luogu.com.cn/problem/P5997）经典贪心背包与状压 DP 结合
 
 ================================CodeForces================================
 D. Kefa and Dishes（https://codeforces.com/problemset/problem/580/D）状态压缩DP结合前后相邻的增益计算最优解
@@ -388,6 +389,37 @@ class Solution:
                         f[i] = f[pre] + 1
                         g[i] = nums[j]
         ac.st(f[-1])
+        return
+
+    @staticmethod
+    def lg_p5997(ac=FastIO()):
+        # 模板：经典贪心背包与状压 DP 结合
+        n, m = ac.read_ints()
+        a = ac.read_list_ints()
+        c = ac.read_list_ints()
+        c.sort(reverse=True)
+        # 状态最少需要的背包数
+        dp = [m + 1] * (1 << n)
+        dp[0] = 0
+        # 状态最新背包剩余的空间
+        rest = [0] * (1 << n)
+        for i in range(1, 1 << n):
+            for j in range(n):
+                if i & (1 << j):
+                    dd, rr = dp[i ^ (1 << j)], rest[i ^ (1 << j)]
+                    # 直接原装
+                    if rr >= a[j]:
+                        if dp[i] > dd or (dp[i] == dd and rest[i] < rr - a[j]):
+                            dp[i] = dd
+                            rest[i] = rr - a[j]
+                    # 新增背包
+                    if dd + 1 <= m:
+                        rr = c[dd]
+                        if rr >= a[j]:
+                            if dp[i] > dd + 1 or (dp[i] == dd + 1 and rest[i] < rr - a[j]):
+                                dp[i] = dd + 1
+                                rest[i] = rr - a[j]
+        ac.st(dp[-1] if dp[-1] < m + 1 else "NIE")
         return
 
 

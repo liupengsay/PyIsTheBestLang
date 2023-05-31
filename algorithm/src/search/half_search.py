@@ -11,7 +11,7 @@ from algorithm.src.fast_io import FastIO
 ===================================洛谷===================================
 P5194 [USACO05DEC]Scales S（https://www.luogu.com.cn/problem/P5194）利用Fibonacci数列的长度特点进行折半搜索枚举，与二分查找确定可行的最大值
 Anya and Cubes（https://www.luogu.com.cn/problem/CF525E）折半搜索计算长度
-
+P5691 [NOI2001] 方程的解数（https://www.luogu.com.cn/problem/P5691）折半搜索与枚举
 
 ===================================AcWing======================================
 171. 送礼物（https://www.acwing.com/problem/content/173/）经典折半搜索查找最接近目标值的子数组和
@@ -96,6 +96,72 @@ class Solution:
             if 0 <= j < len(post):
                 ans = max(ans, num+post[j])
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p5691(ac=FastIO()):
+        # 模板：折半搜索与枚举
+        n = ac.read_int()
+        m = ac.read_int()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        ans = 0
+        if n == 1:
+            for x1 in range(1, m + 1):
+                if nums[0][0] * x1 ** nums[0][1] == 0:
+                    ans += 1
+            ac.st(ans)
+            return
+        if n == 2:
+            for x1 in range(1, m + 1):
+                for x2 in range(1, m + 1):
+                    if nums[0][0] * x1 ** nums[0][1] + nums[1][0] * x2 ** nums[1][1] == 0:
+                        ans += 1
+            ac.st(ans)
+            return
+        if n == 3:
+            for x1 in range(1, m + 1):
+                for x2 in range(1, m + 1):
+                    for x3 in range(1, m + 1):
+                        cur = nums[0][0] * x1 ** nums[0][1] + nums[1][0] * x2 ** nums[1][1] + nums[2][0] * x3 ** \
+                              nums[2][1]
+                        if cur == 0:
+                            ans += 1
+            ac.st(ans)
+            return
+
+        # 枚举前半部分
+        dct = dict()
+        for x1 in range(1, m + 1):
+            for x2 in range(1, m + 1):
+                for x3 in range(1, m + 1):
+                    cur = nums[0][0] * x1 ** nums[0][1] + nums[1][0] * x2 ** nums[1][1] + nums[2][0] * x3 ** nums[2][1]
+                    dct[cur] = dct.get(cur, 0) + 1
+
+        # 计算后半部分
+        nums = nums[3:]
+        n = len(nums)
+        if n == 1:
+            for x1 in range(1, m + 1):
+                cur = nums[0][0] * x1 ** nums[0][1]
+                ans += dct.get(-cur, 0)
+            ac.st(ans)
+            return
+        if n == 2:
+            for x1 in range(1, m + 1):
+                for x2 in range(1, m + 1):
+                    cur = nums[0][0] * x1 ** nums[0][1] + nums[1][0] * x2 ** nums[1][1]
+                    ans += dct.get(-cur, 0)
+            ac.st(ans)
+            return
+        if n == 3:
+            for x1 in range(1, m + 1):
+                for x2 in range(1, m + 1):
+                    for x3 in range(1, m + 1):
+                        cur = nums[0][0] * x1 ** nums[0][1] + nums[1][0] * x2 ** nums[1][1] + nums[2][0] * x3 ** \
+                              nums[2][1]
+                        ans += dct.get(-cur, 0)
+            ac.st(ans)
+            return
         return
 
 
