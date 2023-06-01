@@ -12,7 +12,7 @@ from algorithm.src.graph.spfa import SPFA
 
 """
 算法：Dijkstra（单源最短路经算法）、严格次短路、要保证加和最小因此只支持非负数权值、或者取反全部为非正数计算最长路
-功能：计算点到有向或者无向图里面其他点的最近距离
+功能：计算点到有向或者无向图里面其他点的最近距离、带约束的最短路、分层Dijkstra
 题目：
 
 ===================================力扣===================================
@@ -24,9 +24,11 @@ from algorithm.src.graph.spfa import SPFA
 2258. 逃离火灾（https://leetcode.cn/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/）使用双源BFS计算等待时间后最短路求出路径上最小等待时间的最大值
 2290. 到达角落需要移除障碍物的最小数（https://leetcode.cn/problems/minimum-obstacle-removal-to-reach-corner/）计算最小代价
 499. 迷宫 III（https://leetcode.cn/problems/the-maze-iii/?envType=study-plan-v2&id=premium-algo-100）两个参数变量的最短路
-LCP 75. 传送卷轴（https://leetcode.cn/problems/rdmXM7/）一层BFS之后计算最大值最小的最短路
 6442. 修改图中的边权（https://leetcode.cn/problems/modify-graph-edge-weights/）经典两遍最短路，贪心动态更新路径权值
+2714. 找到最短路径的 K 次跨越（https://leetcode.cn/problems/find-shortest-path-with-k-hops/）经典带约束的最短路，也可以使用分层Dijkstra求解
+2699. 修改图中的边权（https://leetcode.cn/problems/modify-graph-edge-weights/）经典Dijkstra最短路贪心应用
 
+LCP 75. 传送卷轴（https://leetcode.cn/problems/rdmXM7/）首先BFS之后计算最大值最小的最短路
 ===================================洛谷===================================
 P3371 单源最短路径（弱化版）（https://www.luogu.com.cn/problem/P3371）最短路模板题
 P4779 【模板】单源最短路径（标准版）（https://www.luogu.com.cn/problem/P4779）最短路模板题
@@ -92,7 +94,6 @@ P6063 [USACO05JAN]The Wedding Juicer G（https://www.luogu.com.cn/problem/P6063�
 C. Dijkstra?（https://codeforces.com/problemset/problem/20/C）正权值最短路计算，并记录返回生成路径
 E. Weights Distributing（https://codeforces.com/problemset/problem/1343/E）使用三个01BFS求最短路加贪心枚举计算
 B. Complete The Graph（https://codeforces.com/contest/715/problem/B）经典两遍最短路，贪心动态更新路径权值
-
 ================================AcWing====================================
 176. 装满的油箱（https://www.acwing.com/problem/content/178/）经典加油题，使用dijkstra模仿状态
 
@@ -1464,6 +1465,114 @@ class Solution:
                     heapq.heappush(stack, [dis if dis > grid[x][y] else grid[x][y], x, y])
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_2714_1(n: int, edges: List[List[int]], s: int, d: int, k: int) -> int:
+        # 模板：经典带约束的最短路，也可以使用分层 Dijkstra 求解
+        dct = [[] for _ in range(n)]
+        for u, v, w in edges:
+            dct[u].append([v, w])
+            dct[v].append([u, w])
+
+        visit = [[inf]*(k+1) for _ in range(n)]
+        stack = [[0, 0, s]]
+        visit[s][0] = 0
+        while stack:
+            dis, c, i = heapq.heappop(stack)
+            if i == d:
+                return dis
+            if visit[i][c] < dis:
+                continue
+            for j, w in dct[i]:
+                if c + 1 <= k and dis < visit[j][c+1]:
+                    visit[j][c + 1] = dis
+                    heapq.heappush(stack, [dis, c + 1, j])
+                if dis + w < visit[j][c]:
+                    visit[j][c] = dis + w
+                    heapq.heappush(stack, [dis + w, c, j])
+        return -1
+
+    @staticmethod
+    def lc_2714_2(n: int, edges: List[List[int]], s: int, d: int, k: int) -> int:
+        # 模板：经典带约束的最短路，也可以使用分层 Dijkstra 求解
+        dct = [[] for _ in range(n)]
+        for u, v, w in edges:
+            dct[u].append([v, w])
+            dct[v].append([u, w])
+
+        n = len(dct)
+        cnt = [inf] * n
+        stack = [[0, 0, s]]
+        while stack:
+            dis, c, i = heapq.heappop(stack)
+            if i == d:
+                return dis
+            if cnt[i] < c:
+                continue
+            cnt[i] = c
+            for j, w in dct[i]:
+                if c + 1 < cnt[j] and c + 1 <= k:
+                    heapq.heappush(stack, [dis, c + 1, j])
+                if c < cnt[j]:
+                    heapq.heappush(stack, [dis + w, c, j])
+        return -1
+
+    @staticmethod
+    def lc_2699(n: int, edges: List[List[int]], source: int, destination: int, target: int) -> List[List[int]]:
+
+        # 模板：经典Dijkstra最短路贪心应用
+
+        dct = [[] for _ in range(n)]
+        m = len(edges)
+        book = [0] * m
+        for ind, (i, j, w) in enumerate(edges):
+            if w == -1:
+                w = 1
+                book[ind] = 1
+                edges[ind][-1] = w
+            dct[i].append([ind, j])
+            dct[j].append([ind, i])
+
+        # 第一遍最短路计算最小情况下的距离
+        dis0 = [inf] * n
+        stack = [[0, source]]
+        dis0[source] = 0
+        while stack:
+            d, i = heapq.heappop(stack)
+            if dis0[i] < d:
+                continue
+            for ind, j in dct[i]:
+                dj = edges[ind][2] + d
+                if dj < dis0[j]:
+                    dis0[j] = dj
+                    heapq.heappush(stack, [dj, j])
+        if dis0[destination] > target:
+            return []
+
+        # 第二遍最短路
+        dis1 = [inf] * n
+        stack = [[0, source]]
+        dis1[source] = 0
+        while stack:
+            d, i = heapq.heappop(stack)
+            if dis1[i] < d:
+                continue
+            for ind, j in dct[i]:
+                if book[ind]:
+                    # 假设 (i, j) 是最短路上的边
+                    if (edges[ind][2] + dis1[i]) + (dis0[destination] - dis0[j]) < target:
+                        # 此时还有一些增长空间即（当前到达 j 的距离）加上（剩余 j 到 destination）的距离仍旧小于 target
+                        x = target - (edges[ind][2] + dis1[i]) - (dis0[destination] - dis0[j])
+                        edges[ind][2] += x
+                    book[ind] = 0
+                dj = edges[ind][2] + d
+                if dj < dis1[j]:
+                    dis1[j] = dj
+                    heapq.heappush(stack, [dj, j])
+
+        if dis1[destination] == target:
+            return edges
+        return []
 
 
 class TestGeneral(unittest.TestCase):

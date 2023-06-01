@@ -8,7 +8,7 @@ from algorithm.src.fast_io import FastIO
 import heapq
 
 from algorithm.src.graph.dijkstra import Dijkstra
-from algorithm.src.mathmatics.number_theory import NumberTheory
+from algorithm.src.mathmatics.number_theory import NumberTheory, NumberTheoryPrimeFactor
 from math import inf
 
 
@@ -28,7 +28,7 @@ from math import inf
 2157. 字符串分组（https://leetcode.cn/problems/groups-of-strings/）利用字母的有限数量进行变换枚举分组
 2076. 处理含限制条件的好友请求（https://leetcode.cn/problems/process-restricted-friend-requests/）使用并查集变种，维护群体的不喜欢关系
 2459. 通过移动项目到空白区域来排序数组（https://leetcode.cn/problems/sort-array-by-moving-items-to-empty-space/）置换环经典题目
-
+2709. 最大公约数遍历（https://leetcode.cn/problems/greatest-common-divisor-traversal/）经典并查集计算具有相同质因数的连通块
 
 ===================================洛谷===================================
 P3367 并查集（https://www.luogu.com.cn/problem/P3367）计算连通分块的数量
@@ -617,6 +617,20 @@ class Solution:
         ac.st(ans)
         return
 
+    @staticmethod
+    def lc_2709(nums: List[int]) -> bool:
+        # 模板：经典并查集计算具有相同质因数的连通块
+        prime_factor = NumberTheory().get_num_prime_factor(10 ** 5)  # 放在全局计算
+        n = len(nums)
+        uf = UnionFind(n)
+        pre = dict()
+        for i in range(n):
+            for num in prime_factor[nums[i]]:
+                if num in pre:
+                    uf.union(i, pre[num])
+                else:
+                    pre[num] = i
+        return uf.part == 1
 
 class TestGeneral(unittest.TestCase):
 

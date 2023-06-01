@@ -25,7 +25,7 @@ from algorithm.src.mathmatics.number_theory import NumberTheory
 2547. 拆分数组的最小代价（https://leetcode.cn/problems/minimum-cost-to-split-an-array/）线性DP并使用一个变量维护计数
 2638. Count the Number of K-Free Subsets（https://leetcode.cn/problems/count-the-number-of-k-free-subsets/）线性DP计数
 2597. 美丽子集的数目（https://leetcode.cn/problems/the-number-of-beautiful-subsets/）线性DP计数
-
+2713. 矩阵中严格递增的单元格数（https://leetcode.cn/problems/maximum-strictly-increasing-cells-in-a-matrix/）按照值域分层线性 DP
 
 ===================================洛谷===================================
 P1970 [NOIP2013 提高组] 花匠（https://www.luogu.com.cn/problem/P1970）使用贪心与动态规划计算最长的山脉子数组
@@ -777,6 +777,28 @@ class Solution:
             bisect.insort_left(lst, b)
         ac.st(dp[-1])
         return
+
+    @staticmethod
+    def lc_2713(mat: List[List[int]]) -> int:
+        # 模板：按照值域分层线性 DP
+        m, n = len(mat), len(mat[0])
+        dct = defaultdict(list)
+        for i in range(m):
+            for j in range(n):
+                dct[mat[i][j]].append([i, j])
+        row = [0] * m
+        col = [0] * n
+        for val in sorted(dct):
+            lst = []
+            for i, j in dct[val]:
+                x = row[i] if row[i] > col[j] else col[j]
+                lst.append([i, j, x + 1])
+            for i, j, w in lst:
+                if col[j] < w:
+                    col[j] = w
+                if row[i] < w:
+                    row[i] = w
+        return max(max(row), max(col))
 
 
 class TestGeneral(unittest.TestCase):
