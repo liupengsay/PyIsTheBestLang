@@ -75,6 +75,7 @@ P4401 [IOI2007]Miners 矿工配餐（https://www.luogu.com.cn/problem/P4401）
 P4933 大师（https://www.luogu.com.cn/problem/P4933）经典等差数列线性 DP 计数
 P5095 [USACO12OPEN]Bookshelf S（https://www.luogu.com.cn/problem/P5095）典型线性 DP 
 P5810 [SCOI2004]文本的输入（https://www.luogu.com.cn/problem/P5810）经典线性 DP
+P6040 「ACOI2020」课后期末考试滑溜滑溜补习班（https://www.luogu.com.cn/problem/P6040）单调队列优化的线性 DP 
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/75/D（经典压缩数组，最大子段和升级）
@@ -693,6 +694,39 @@ class Solution:
                 x += 1
             dp.append(cur)
         ac.st(len(dp)-1)
+        return
+
+    @staticmethod
+    def lg_p6040(ac=FastIO()):
+        # 模板：单调队列优化的线性 DP
+        n, k, d, x, tp = ac.read_ints()
+        mod = 10**9
+        nums = []
+        seed = 0
+        xx = int("0x66CCFF", 16)
+        if tp == 0:
+            nums = ac.read_list_ints()
+        else:
+            seed = ac.read_int()
+            seed = (seed * xx % mod + 20120712) % mod
+        # 使用公式变换确定要计算的单调队列值
+        pre = nums[0] if not tp else seed
+        stack = deque([[0, pre - d]])
+        for i in range(1, n):
+            seed = nums[i] if not tp else (seed * xx % mod + 20120712) % mod
+            # 出队
+            while stack and stack[0][0] < i - x:
+                stack.popleft()
+            cur = pre + seed + k
+            if stack:
+                # 当前最小值计算
+                cur = ac.min(cur, stack[0][1] + i * d + seed + k)
+            # 进队
+            while stack and stack[-1][1] >= cur - i * d - d:
+                stack.pop()
+            stack.append([i, cur - i * d - d])
+            pre = cur
+        ac.st(pre)
         return
 
 

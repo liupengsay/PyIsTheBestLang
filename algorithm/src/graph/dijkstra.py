@@ -87,7 +87,7 @@ P5683 [CSP-J2019 江西] 道路拆除（https://www.luogu.com.cn/problem/P5683�
 P5837 [USACO19DEC]Milk Pumping G（https://www.luogu.com.cn/problem/P5837）经典Dijkstra变形问题，带多个状态
 P5905 【模板】Johnson 全源最短路（https://www.luogu.com.cn/problem/P5905）有向带权图可能有负权 Johnson 全源最短路计算所有点对的最短路
 P5930 [POI1999] 降水（https://www.luogu.com.cn/problem/P5930）经典Dijkstra应用接雨水
-
+P6063 [USACO05JAN]The Wedding Juicer G（https://www.luogu.com.cn/problem/P6063）经典Dijkstra应用接雨水
 ================================CodeForces================================
 C. Dijkstra?（https://codeforces.com/problemset/problem/20/C）正权值最短路计算，并记录返回生成路径
 E. Weights Distributing（https://codeforces.com/problemset/problem/1343/E）使用三个01BFS求最短路加贪心枚举计算
@@ -1432,6 +1432,36 @@ class Solution:
         for i in range(m):
             for j in range(n):
                 ans += visit[i][j] - grid[i][j]
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p6063(ac=FastIO()):
+        # 模板：经典Dijkstra应用接雨水
+        n, m = ac.read_ints()
+        grid = [ac.read_list_ints() for _ in range(m)]
+
+        # 使用虚拟化超级汇点初始化起点
+        stack = []
+        for i in [0, m - 1]:
+            for j in range(n):
+                stack.append([grid[i][j], i, j])
+        for i in range(1, m - 1):
+            for j in [0, n - 1]:
+                stack.append([grid[i][j], i, j])
+        heapq.heapify(stack)
+
+        # 使用最短路算法寻找每个格子到达超级汇点的路径途中最大值里面的最小值
+        ans = 0
+        while stack:
+            dis, i, j = heapq.heappop(stack)
+            if grid[i][j] == -1:
+                continue
+            ans += 0 if dis < grid[i][j] else dis - grid[i][j]
+            grid[i][j] = -1
+            for x, y in [[i - 1, j], [i + 1, j], [i, j + 1], [i, j - 1]]:
+                if 0 <= x < m and 0 <= y < n and grid[x][y] != -1:
+                    heapq.heappush(stack, [dis if dis > grid[x][y] else grid[x][y], x, y])
         ac.st(ans)
         return
 

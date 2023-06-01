@@ -78,6 +78,7 @@ P4958 [COCI2017-2018#6] Mate（https://www.luogu.com.cn/problem/P4958）三维�
 P5144 蜈蚣（https://www.luogu.com.cn/problem/P5144）线性 DP 二维加前缀异或和
 P5858 「SWTR-03」Golden Sword（https://www.luogu.com.cn/problem/P5858）矩阵 DP 加单调队列优化
 P5879 放棋子（https://www.luogu.com.cn/problem/P5879）矩阵 DP 加前缀和优化
+P6119 [USACO17FEB]Why Did the Cow Cross the Road II G（https://www.luogu.com.cn/problem/P6119）经典矩阵 DP 为 LCS 的变形题
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1446/B（最长公共子序列LCS变形问题，理解贡献）
@@ -1229,6 +1230,19 @@ class Solution:
                 cur[j] = cnt
             pre = cur[:]
         ac.st(sum(pre))
+        return
+
+    @staticmethod
+    def lg_p6119(ac=FastIO()):
+        # 模板：经典矩阵 DP 为 LCS 的变形题
+        n = ac.read_int()
+        a = [ac.read_int() for _ in range(n)]
+        b = [ac.read_int() for _ in range(n)]
+        dp = [[0] * (n + 1) for _ in range(n + 1)]
+        for i in range(n):
+            for j in range(n):
+                dp[i + 1][j + 1] = max(dp[i + 1][j], dp[i][j + 1], dp[i][j] + int(abs(a[i] - b[j]) <= 4))
+        ac.st(dp[-1][-1])
         return
 
 

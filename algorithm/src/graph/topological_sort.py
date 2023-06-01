@@ -1,6 +1,7 @@
 """
 """
 from algorithm.src.fast_io import FastIO
+from algorithm.src.graph.union_find import UnionFind
 
 """
 
@@ -30,6 +31,7 @@ P1347 排序（https://www.luogu.com.cn/problem/P1347）拓扑排序确定字典
 P1685 游览（https://www.luogu.com.cn/problem/P1685）拓扑排序计算路径条数
 P3243 [HNOI2015]菜肴制作（https://www.luogu.com.cn/problem/P3243）经典反向建图拓扑排序结合二叉堆进行顺序模拟
 P5536 【XR-3】核心城市（https://www.luogu.com.cn/problem/P5536）经典使用无向图拓扑排序从外到内消除最外圈的节点
+P6037 Ryoku 的探索（https://www.luogu.com.cn/problem/P6037）经典无向图基环树并查集拓扑排序与环模拟计算
 
 ==================================AtCoder=================================
 F - Well-defined Path Queries on a Namori（https://atcoder.jp/contests/abc266/）（无向图的内向基环树，求简单路径的树枝连通）
@@ -406,6 +408,57 @@ class Solution:
                     if degree[j] == 1:
                         stack.append([j, d + 1])
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p6037(ac=FastIO()):
+        # 模板：经典无向图基环树并查集拓扑排序与环模拟计算
+        n = ac.read_int()
+        dct = [[] for _ in range(n)]
+        # 首先分割连通分量
+        uf = UnionFind(n)
+        degree = [0] * n
+        edge = []
+        for _ in range(n):
+            u, v, w, p = ac.read_ints()
+            u -= 1
+            v -= 1
+            dct[u].append([v, w, p])
+            dct[v].append([u, w, p])
+            uf.union(u, v)
+            edge.append([u, v, w])
+            degree[u] += 1
+            degree[v] += 1
+        # 其次对每个分量计算结果
+        part = uf.get_root_part()
+        ans = [-1] * n
+        for p in part:
+            # 拓扑排序找出环
+            stack = deque([i for i in part[p] if degree[i] == 1])
+            visit = set()
+            while stack:
+                i = stack.popleft()
+                visit.add(i)
+                for j, _, _ in dct[i]:
+                    degree[j] -= 1
+                    if degree[j] == 1:
+                        stack.append(j)
+            # 根据环贪心计算结果
+            circle = [i for i in part[p] if i not in visit]
+            s = sum(w for i, _, w in edge if uf.find(i) == p)
+            for x in circle:
+                cur = [[j, w, p] for j, w, p in dct[x] if degree[j] > 1]
+                cur.sort(key=lambda it: it[-1])
+                ans[x] = s - cur[0][1]
+            stack = deque(circle)
+            while stack:
+                i = stack.popleft()
+                for j, _, _ in dct[i]:
+                    if ans[j] == -1:
+                        ans[j] = ans[i]
+                        stack.append(j)
+        for a in ans:
+            ac.st(a)
         return
 
 

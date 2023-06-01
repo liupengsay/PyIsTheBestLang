@@ -47,6 +47,159 @@ E. Explosions?（https://codeforces.com/problemset/problem/1795/E）单调栈贪
 """
 
 
+class MonotonicStack:
+    def __init__(self, nums):
+        self.nums = nums
+        self.n = len(nums)
+
+        # 视情况可给不存在前序相关最值的值赋 i 或者 0
+        self.pre_bigger = [-1] * self.n  # 上一个更大值
+        self.pre_bigger_equal = [-1] * self.n  # 上一个大于等于值
+        self.pre_smaller = [-1] * self.n  # 上一个更小值
+        self.pre_smaller_equal = [-1] * self.n  # 上一个小于等于值
+
+        # 视情况可给不存在前序相关最值的值赋 i 或者 n-1
+        self.post_bigger = [-1] * self.n  # 下一个更大值
+        self.post_bigger_equal = [-1] * self.n  # 下一个大于等于值
+        self.post_smaller = [-1] * self.n  # 下一个更小值
+        self.post_smaller_equal = [-1] * self.n   # 下一个小于等于值
+
+        self.gen_result()
+        return
+
+    def gen_result(self):
+
+        # 从前往后遍历
+        stack = []
+        for i in range(self.n):
+            while stack and self.nums[i] >= self.nums[stack[-1]]:
+                self.post_bigger_equal[stack.pop()] = i  # 有时也用 i-1 作为边界
+            if stack:
+                self.pre_bigger[i] = stack[-1]  # 有时也用 stack[-1]+1 做为边界
+            stack.append(i)
+
+        stack = []
+        for i in range(self.n):
+            while stack and self.nums[i] <= self.nums[stack[-1]]:
+                self.post_smaller_equal[stack.pop()] = i  # 有时也用 i-1 作为边界
+            if stack:
+                self.pre_smaller[i] = stack[-1]  # 有时也用 stack[-1]+1 做为边界
+            stack.append(i)
+
+        # 从后往前遍历
+        stack = []
+        for i in range(self.n - 1, -1, -1):
+            while stack and self.nums[i] >= self.nums[stack[-1]]:
+                self.pre_bigger_equal[stack.pop()] = i  # 有时也用 i-1 作为边界
+            if stack:
+                self.post_bigger[i] = stack[-1]  # 有时也用 stack[-1]-1 做为边界
+            stack.append(i)
+
+        stack = []
+        for i in range(self.n - 1, -1, -1):
+            while stack and self.nums[i] <= self.nums[stack[-1]]:
+                self.pre_smaller_equal[stack.pop()] = i  # 有时也用 i-1 作为边界
+            if stack:
+                self.post_smaller[i] = stack[-1]  # 有时也用 stack[-1]-1 做为边界
+            stack.append(i)
+
+        return
+
+    @staticmethod
+    def ac_131(ac=FastIO()):
+        # 模板：单调栈计算最大矩形
+        while True:
+            lst = ac.read_list_ints()
+            if lst[0] == 0:
+                break
+            n = lst.pop(0)
+            post = [n-1]*n
+            pre = [0]*n
+            stack = []
+            for i in range(n):
+                while stack and lst[stack[-1]] > lst[i]:
+                    post[stack.pop()] = i-1
+                if stack:
+                    pre[i] = stack[-1] + 1
+                stack.append(i)
+            ans = max(lst[i]*(post[i]-pre[i]+1) for i in range(n))
+            ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p1191(ac=FastIO()):
+        # 模板：枚举下边界使用单调栈计算矩形个数
+        n = ac.read_int()
+        pre = [0]*n
+        ans = 0
+        for _ in range(n):
+            s = ac.read_str()
+            right = [n-1]*n
+            left = [0]*n
+            stack = []
+            for j in range(n):
+                if s[j] == "W":
+                    pre[j] += 1
+                else:
+                    pre[j] = 0
+                while stack and pre[stack[-1]] > pre[j]:
+                    right[stack.pop()] = j-1
+                if stack:
+                    left[j] = stack[-1] + 1
+                stack.append(j)
+            ans += sum(pre[j]*(right[j]-j+1)*(j-left[j]+1) for j in range(n))
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p1323(ac=FastIO()):
+        # 模板：二叉堆与单调栈，计算最大字典序数字
+        k, m = ac.read_ints()
+        dct = set()
+        ans = []
+        stack = [1]
+        while len(ans) < k:
+            num = heapq.heappop(stack)
+            if num in dct:
+                continue
+            ans.append(num)
+            dct.add(num)
+            heapq.heappush(stack, 2*num+1)
+            heapq.heappush(stack, 4 * num + 5)
+
+        res = "".join(str(x) for x in ans)
+        ac.st(res)
+        rem = m
+        stack = []
+        for w in res:
+            while stack and rem and w > stack[-1]:
+                stack.pop()
+                rem -= 1
+            stack.append(w)
+        stack = stack[rem:]
+        ac.st(int("".join(stack)))
+        return
+
+    @staticmethod
+    def lg_p2422(ac=FastIO()):
+        # 模板：单调栈与前缀和
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        lst = ac.accumulate(nums)
+        post = [n - 1] * n
+        pre = [0] * n
+        stack = []
+        for i in range(n):
+            while stack and nums[stack[-1]] > nums[i]:
+                post[stack.pop()] = i - 1
+            if stack:
+                pre[i] = stack[-1] + 1
+            stack.append(i)
+        ans = max(nums[i] * (lst[post[i] + 1] - lst[pre[i]]) for i in range(n))
+        ac.st(ans)
+        return
+
+
 class Rectangle:
     def __init__(self):
         return
@@ -230,159 +383,6 @@ class Solution:
                 else:
                     pre[j] = 0
             ans += Rectangle().compute_number(pre)
-        ac.st(ans)
-        return
-
-
-class MonotonicStack:
-    def __init__(self, nums):
-        self.nums = nums
-        self.n = len(nums)
-
-        # 视情况可给不存在前序相关最值的值赋 i 或者 0
-        self.pre_bigger = [-1] * self.n  # 上一个更大值
-        self.pre_bigger_equal = [-1] * self.n  # 上一个大于等于值
-        self.pre_smaller = [-1] * self.n  # 上一个更小值
-        self.pre_smaller_equal = [-1] * self.n  # 上一个小于等于值
-
-        # 视情况可给不存在前序相关最值的值赋 i 或者 n-1
-        self.post_bigger = [-1] * self.n  # 下一个更大值
-        self.post_bigger_equal = [-1] * self.n  # 下一个大于等于值
-        self.post_smaller = [-1] * self.n  # 下一个更小值
-        self.post_smaller_equal = [-1] * self.n   # 下一个小于等于值
-
-        self.gen_result()
-        return
-
-    def gen_result(self):
-
-        # 从前往后遍历
-        stack = []
-        for i in range(self.n):
-            while stack and self.nums[i] >= self.nums[stack[-1]]:
-                self.post_bigger_equal[stack.pop()] = i  # 有时也用 i-1 作为边界
-            if stack:
-                self.pre_bigger[i] = stack[-1]  # 有时也用 stack[-1]+1 做为边界
-            stack.append(i)
-
-        stack = []
-        for i in range(self.n):
-            while stack and self.nums[i] <= self.nums[stack[-1]]:
-                self.post_smaller_equal[stack.pop()] = i  # 有时也用 i-1 作为边界
-            if stack:
-                self.pre_smaller[i] = stack[-1]  # 有时也用 stack[-1]+1 做为边界
-            stack.append(i)
-
-        # 从后往前遍历
-        stack = []
-        for i in range(self.n - 1, -1, -1):
-            while stack and self.nums[i] >= self.nums[stack[-1]]:
-                self.pre_bigger_equal[stack.pop()] = i  # 有时也用 i-1 作为边界
-            if stack:
-                self.post_bigger[i] = stack[-1]  # 有时也用 stack[-1]-1 做为边界
-            stack.append(i)
-
-        stack = []
-        for i in range(self.n - 1, -1, -1):
-            while stack and self.nums[i] <= self.nums[stack[-1]]:
-                self.pre_smaller_equal[stack.pop()] = i  # 有时也用 i-1 作为边界
-            if stack:
-                self.post_smaller[i] = stack[-1]  # 有时也用 stack[-1]-1 做为边界
-            stack.append(i)
-
-        return
-
-    @staticmethod
-    def ac_131(ac=FastIO()):
-        # 模板：单调栈计算最大矩形
-        while True:
-            lst = ac.read_list_ints()
-            if lst[0] == 0:
-                break
-            n = lst.pop(0)
-            post = [n-1]*n
-            pre = [0]*n
-            stack = []
-            for i in range(n):
-                while stack and lst[stack[-1]] > lst[i]:
-                    post[stack.pop()] = i-1
-                if stack:
-                    pre[i] = stack[-1] + 1
-                stack.append(i)
-            ans = max(lst[i]*(post[i]-pre[i]+1) for i in range(n))
-            ac.st(ans)
-        return
-
-    @staticmethod
-    def lg_p1191(ac=FastIO()):
-        # 模板：枚举下边界使用单调栈计算矩形个数
-        n = ac.read_int()
-        pre = [0]*n
-        ans = 0
-        for _ in range(n):
-            s = ac.read_str()
-            right = [n-1]*n
-            left = [0]*n
-            stack = []
-            for j in range(n):
-                if s[j] == "W":
-                    pre[j] += 1
-                else:
-                    pre[j] = 0
-                while stack and pre[stack[-1]] > pre[j]:
-                    right[stack.pop()] = j-1
-                if stack:
-                    left[j] = stack[-1] + 1
-                stack.append(j)
-            ans += sum(pre[j]*(right[j]-j+1)*(j-left[j]+1) for j in range(n))
-        ac.st(ans)
-        return
-
-    @staticmethod
-    def lg_p1323(ac=FastIO()):
-        # 模板：二叉堆与单调栈，计算最大字典序数字
-        k, m = ac.read_ints()
-        dct = set()
-        ans = []
-        stack = [1]
-        while len(ans) < k:
-            num = heapq.heappop(stack)
-            if num in dct:
-                continue
-            ans.append(num)
-            dct.add(num)
-            heapq.heappush(stack, 2*num+1)
-            heapq.heappush(stack, 4 * num + 5)
-
-        res = "".join(str(x) for x in ans)
-        ac.st(res)
-        rem = m
-        stack = []
-        for w in res:
-            while stack and rem and w > stack[-1]:
-                stack.pop()
-                rem -= 1
-            stack.append(w)
-        stack = stack[rem:]
-        ac.st(int("".join(stack)))
-        return
-
-    @staticmethod
-    def lg_p2422(ac=FastIO()):
-        # 模板：单调栈与前缀和
-        n = ac.read_int()
-        nums = ac.read_list_ints()
-        lst = ac.accumulate(nums)
-        post = [n - 1] * n
-        pre = [0] * n
-        stack = []
-        for i in range(n):
-            while stack and nums[stack[-1]] > nums[i]:
-                post[stack.pop()] = i - 1
-            if stack:
-                pre[i] = stack[-1] + 1
-            stack.append(i)
-        ans = max(nums[i] * (lst[post[i] + 1] - lst[pre[i]]) for i in range(n))
         ac.st(ans)
         return
 

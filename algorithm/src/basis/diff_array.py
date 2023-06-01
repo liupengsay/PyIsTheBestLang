@@ -55,6 +55,7 @@ P4030 [Code+#2]可做题1（https://www.luogu.com.cn/problem/P4030）脑筋急�
 P4440 [COCI2017-2018#3] Programiranje（https://www.luogu.com.cn/problem/P4440）典型前缀和计数
 P4623 [COCI2012-2013#6] BUREK（https://www.luogu.com.cn/problem/P4623）离散化差分计数
 P6032 选择客栈 加强版（https://www.luogu.com.cn/problem/P6032）经典前后缀计数
+P6070 『MdOI R1』Decrease（https://www.luogu.com.cn/problem/P6070）经典二维差分贪心修改实时维护差分与计算前缀和即矩阵最新值
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/33/C（前后缀最大变换和与分割点枚举，经典类型题目）
@@ -940,6 +941,34 @@ class Solution:
 
             post[cc] -= 1
             ss += post[cc]
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p6070(ac=FastIO()):
+        # 模板：经典二维差分贪心修改实时维护差分与计算前缀和即矩阵最新值
+        n, m, k = ac.read_ints()
+        grid = [[0] * n for _ in range(n)]
+        for _ in range(m):
+            x, y, z = ac.read_ints_minus_one()
+            grid[x][y] = z + 1
+        diff = [[0] * (n + 2) for _ in range(n + 2)]
+
+        ans = 0
+        for i in range(n):
+            for j in range(n):
+                diff[i + 1][j + 1] += diff[i + 1][j] + diff[i][j + 1] - diff[i][j]
+                d = diff[i + 1][j + 1] + grid[i][j]
+                # 二维差分，索引从 0 开始， 注意这里的行列索引范围，是从左上角到右下角
+                if d:
+                    if i + k + 1 > n + 1 or j + k + 1 > n + 1:
+                        ac.st(-1)
+                        return
+                    diff[i + 1][j + 1] -= d
+                    diff[i + 1][j + k + 1] += d
+                    diff[i + k + 1][j + 1] += d
+                    diff[i + k + 1][j + k + 1] -= d
+                    ans += abs(d)
         ac.st(ans)
         return
 

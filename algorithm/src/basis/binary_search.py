@@ -4,6 +4,7 @@ from collections import deque, defaultdict
 from typing import List, Callable
 from math import inf
 from algorithm.src.fast_io import FastIO
+from algorithm.src.graph.lca import OfflineLCA
 from algorithm.src.graph.union_find import UnionFind
 
 """
@@ -57,6 +58,8 @@ P4343 [SHOI2015]自动刷题机（https://www.luogu.com.cn/problem/P4343）上�
 P5844 [IOI2011]ricehub（https://www.luogu.com.cn/problem/P5844）经典中位数贪心与前缀和二分
 P5878 奖品（https://www.luogu.com.cn/problem/P5878）经典二分加枚举
 P6004 [USACO20JAN] Wormhole Sort S（https://www.luogu.com.cn/problem/P6004）经典二分加并查集
+P6058 [加油武汉]体温调查（https://www.luogu.com.cn/problem/P6058）使用深搜序与离线 LCA 计算相邻叶子之间距离并二分确定时间
+P6069 『MdOI R1』Group（https://www.luogu.com.cn/problem/P6069）经典方差计算公式变形，使用二分加变量维护区间的方差值大小
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1251/D（使用贪心进行中位数二分求解）
@@ -927,6 +930,85 @@ class Solution:
         ans = BinarySearch().find_int_left(0, m, check)
         ac.st(-1 if not ans else edges[ans - 1][2])
         return
+
+    @staticmethod
+    def lg_p6058(ac=FastIO()):
+        # 模板：使用深搜序与离线 LCA 计算相邻叶子之间距离并二分确定时间
+        n, k = ac.read_ints()
+        dct = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            x, y, z = ac.read_ints_minus_one()
+            dct[x].append([y, z + 1])
+            dct[y].append([x, z + 1])
+        if n == 1:
+            ac.st(0)
+            return
+        for i in range(n):
+            dct[i].sort(reverse=True)
+        # 找出叶子
+        stack = [[0, -1]]
+        dis = [0] * n
+        leaf = []
+        while stack:
+            i, fa = stack.pop()
+            for j, w in dct[i]:
+                if j != fa:
+                    dis[j] = dis[i] + w
+                    stack.append([j, i])
+            if len(dct[i]) == 1 and i:
+                leaf.append(i)
+        c = len(leaf)
+        pairs = [[leaf[i - 1], leaf[i]] for i in range(1, c)]
+        edge = [[ls[0] for ls in lst] for lst in dct]
+        # 计算叶子之间的距离
+        ces = OfflineLCA().bfs_iteration(edge, pairs, 0)
+        pairs_dis = [dis[leaf[i - 1]] + dis[leaf[i]] - 2 * dis[ces[i - 1]] for i in range(1, c)]
+        pre = ac.accumulate(pairs_dis)
+
+        def check(t):
+            ii = 0
+            part = 0
+            while ii < c:
+                post = -1
+                for jj in range(ii, c):
+                    # 当前节点最远能够到达的叶子距离
+                    if pre[jj] - pre[ii] + dis[leaf[ii]] + dis[leaf[jj]] <= t:
+                        post = jj
+                    else:
+                        break
+                part += 1
+                ii = post + 1
+            return part <= k
+
+        # 二分进行计算
+        ans = BinarySearch().find_int_left(max(dis[i] * 2 for i in leaf), sum(dis[i] * 2 for i in leaf), check)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p6069(ac=FastIO()):
+        # 模板：经典方差计算公式变形，使用二分加变量维护区间的方差值大小
+        n, m = ac.read_ints()
+        nums = ac.read_list_ints()
+        nums.sort()
+
+        def check(x):
+            ss = s = 0
+            for i in range(n):
+                ss += nums[i]**2
+                s += nums[i]
+                if i >= x - 1:
+                    # 方差变形公式转换为整数乘法
+                    if x * ss - s * s <= x * m:
+                        return True
+                    ss -= nums[i - x + 1]**2
+                    s -= nums[i - x + 1]
+            return False
+
+        ans = BinarySearch().find_int_right(1, n, check)
+        ac.st(n - ans)
+        return
+
 
 class TestGeneral(unittest.TestCase):
 

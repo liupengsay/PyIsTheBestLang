@@ -45,6 +45,7 @@ P3223 [HNOI2012] 排队（https://www.luogu.com.cn/problem/P3223）使用容斥�
 P3904 三只小猪（https://www.luogu.com.cn/problem/P3904）递推第二类斯特林数
 P4071 [SDOI2016]排列计数（https://www.luogu.com.cn/problem/P4071）经典错排选择 n 个元素刚好有 m 个错位排列的方案数
 P5684 [CSP-J2019 江西] 非回文串（https://www.luogu.com.cn/problem/P5684）容斥原理与组合计数
+P6057 [加油武汉]七步洗手法（https://www.luogu.com.cn/problem/P6057）容斥原理计数
 
 ================================CodeForces================================
 D. Triangle Coloring（https://codeforces.com/problemset/problem/1795/D）组合计数取模与乘法逆元快速计算
@@ -522,6 +523,22 @@ class Solution:
             mu %= mod
         # 最后乘上 perm 全排列
         ac.st((total - ans) * mu % mod)
+        return
+
+    @staticmethod
+    def lg_p6057(ac=FastIO()):
+        # 模板：容斥原理计数
+        n, m = ac.read_ints()
+        degree = [0] * n
+        for _ in range(m):
+            x, y = ac.read_ints_minus_one()
+            degree[x] += 1
+            degree[y] += 1
+        ans = 0
+        for i in range(n):
+            ans += (n - 1 - degree[i]) * degree[i]
+        ans //= 2
+        ac.st(n * (n - 1) * (n - 2) // 6 - ans)
         return
 
 

@@ -1,6 +1,7 @@
 import heapq
 import random
 import unittest
+from collections import deque
 from typing import List
 
 from sortedcontainers import SortedList
@@ -36,6 +37,7 @@ P1717 钓鱼（https://www.luogu.com.cn/problem/P1717）枚举最远到达地点
 P1905 堆放货物（https://www.luogu.com.cn/problem/P1905）二叉堆从大到小贪心摆放
 P2409 Y的积木（https://www.luogu.com.cn/problem/P2409）经典二叉堆，计算最小的k个和
 P2949 [USACO09OPEN]Work Scheduling G（https://www.luogu.com.cn/problem/P2949）二叉堆贪心模拟懒惰延迟删除
+P6033 [NOIP2004 提高组] 合并果子 加强版（https://www.luogu.com.cn/problem/P6033）经典贪心升级版可用双端队列优化
 
 ===================================AcWing======================================
 146. 序列（https://www.acwing.com/problem/content/description/148/）小顶堆计算经典问题m个数组最小的n个子序列和，同样可以计算最大的
@@ -436,6 +438,37 @@ class Solution:
             ans += p
             if len(stack) > d:
                 ans -= heapq.heappop(stack)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p6033(ac=FastIO()):
+        # 模板：经典队列 O(n) 模拟合并果子
+        n = ac.read_int()
+        pre = deque(sorted(ac.read_list_ints()))
+        post = deque()
+        ans = 0
+        while len(pre) + len(post) > 1:
+            if not pre:
+                cur = post.popleft() + post.popleft()
+                ans += cur
+                post.append(cur)
+                continue
+            if not post:
+                cur = pre.popleft() + pre.popleft()
+                ans += cur
+                post.append(cur)
+                continue
+            if pre[0] < post[0]:
+                a = pre.popleft()
+            else:
+                a = post.popleft()
+            if pre and (not post or pre[0] < post[0]):
+                b = pre.popleft()
+            else:
+                b = post.popleft()
+            ans += a + b
+            post.append(a + b)
         ac.st(ans)
         return
 
