@@ -1,10 +1,13 @@
 import unittest
 from bisect import bisect_left
 from collections import defaultdict
+from itertools import permutations
 from math import inf
 
 from typing import List
 from types import GeneratorType
+
+from algorithm.src.basis.diff_array import PreFixSumMatrix
 from algorithm.src.fast_io import FastIO
 
 
@@ -79,6 +82,10 @@ P5144 蜈蚣（https://www.luogu.com.cn/problem/P5144）线性 DP 二维加前�
 P5858 「SWTR-03」Golden Sword（https://www.luogu.com.cn/problem/P5858）矩阵 DP 加单调队列优化
 P5879 放棋子（https://www.luogu.com.cn/problem/P5879）矩阵 DP 加前缀和优化
 P6119 [USACO17FEB]Why Did the Cow Cross the Road II G（https://www.luogu.com.cn/problem/P6119）经典矩阵 DP 为 LCS 的变形题
+P6323 [COCI2006-2007#4] ZBRKA（https://www.luogu.com.cn/problem/P6323）经典 DP 逆序对为指定数量时的排列个数使用前缀和优化
+P6394 樱花，还有你（https://www.luogu.com.cn/problem/P6394）矩阵 DP 加前缀和优化
+P6433 「EZEC-1」出题（https://www.luogu.com.cn/problem/P6433）贪心分类讨论使用矩阵 DP 计算
+P6451 [COCI2008-2009#4] SLIKAR（https://www.luogu.com.cn/problem/P6451）使用迭代方式实现四维 DP 并枚举四叉树获取对应最小代价和状态
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1446/B（最长公共子序列LCS变形问题，理解贡献）
@@ -1243,6 +1250,164 @@ class Solution:
             for j in range(n):
                 dp[i + 1][j + 1] = max(dp[i + 1][j], dp[i][j + 1], dp[i][j] + int(abs(a[i] - b[j]) <= 4))
         ac.st(dp[-1][-1])
+        return
+
+    @staticmethod
+    def lg_p6323(ac=FastIO()):
+        # 模板：经典 DP 逆序对为指定数量时的排列个数使用前缀和优化
+        mod = 10**9 + 7
+        n, k = ac.read_ints()
+        dp = [[0] * (k + 1) for _ in range(2)]
+        pre = 0
+        dp[pre][0] = 1
+        for i in range(n):
+            cur = 1 - pre
+            lst = ac.accumulate(dp[pre])
+            for j in range(k + 1):
+                left = j - i if j - i >= 0 else 0
+                dp[cur][j] = (lst[j + 1] - lst[left]) % mod
+            pre = cur
+        ac.st(dp[pre][k] % mod)
+        return
+
+    @staticmethod
+    def lg_p6394(ac=FastIO()):
+        # 模板：矩阵 DP 加前缀和优化
+        n, k = ac.read_ints()
+        s = ac.read_list_ints()
+        if sum(s) < n:
+            ac.st("impossible")
+            return
+        mod = 10086001
+        dp = [[0] * (n + 1) for _ in range(2)]
+        pre = ans = 0
+        dp[pre][0] = 1
+        for i in range(k):
+            cur = 1 - pre
+            lst = ac.accumulate(dp[pre])
+            for j in range(n + 1):
+                low = ac.max(0, j - s[i])
+                dp[cur][j] = lst[j + 1] - lst[low]
+                dp[cur][j] %= mod
+            ans += dp[cur][n]
+            ans %= mod
+            pre = cur
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p6433(ac=FastIO()):
+        # 模板：贪心分类讨论使用矩阵 DP 计算
+        n, m, k = ac.read_list_ints()
+
+        nums = [ac.read_list_ints() for _ in range(n)]
+        if sum(x for _, x in nums) <= m:
+            lst = [a for a, _ in nums]
+            lst.sort(reverse=True)
+            lst.pop()
+            ans = sum(a * 2 for a in lst[:k]) + sum(lst[k:])
+            ac.st(ans)
+            return
+
+        # dp[i][j]表示花费时间 i 翻倍次数为 j 时的最大毒瘤程度
+        dp = [[0 for _ in range(k + 1)] for _ in range(m + 1)]
+        for a, x in nums:
+            for i in range(m, -1, -1):
+                for j in range(k, -1, -1):
+                    cur = dp[i][j]
+                    if i >= x:
+                        cur = ac.max(cur, dp[i - x][j] + a)
+                        if j >= 1:
+                            cur = ac.max(cur, dp[i - x][j - 1] + 2 * a)
+                    dp[i][j] = cur
+        ac.st(dp[m][k])
+        return
+
+    @staticmethod
+    def lg_p6451(ac=FastIO()):
+        # 模板：使用迭代方式实现四维 DP 并枚举四叉树获取对应最小代价和状态
+        n = ac.read_int()
+        grid = [[int(w) for w in ac.read_str()] for _ in range(n)]
+        pre = PreFixSumMatrix(grid)
+        del grid
+        states = list(set([tuple(item) for item in permutations([0, 1, 2, 2], 4)]))
+        ind = {state: i for i, state in enumerate(states)}
+
+        def dfs():
+            # 计算最小代价
+            stack = [[0, 0, n - 1, n - 1]]
+            while stack:
+                x1, y1, x2, y2 = stack.pop()
+                if x1 >= 0:
+                    if (x1, y1, x2, y2) in dct:
+                        continue
+                    if x1 == x2 and y1 == y2:
+                        dct[(x1, y1, x2, y2)] = [0, 0]
+                        continue
+                    stack.append([~x1, y1, x2, y2])
+                    m = (x2 - x1 + 1) // 2
+                    x_mid = x1 + m - 1
+                    y_mid = y1 + m - 1
+                    sub = [[x1, y1, x_mid, y_mid], [x1, y_mid + 1, x_mid, y2],
+                           [x_mid + 1, y1, x2, y_mid], [x_mid + 1, y_mid + 1, x2, y2]]
+                    stack.extend(sub)
+                else:
+                    x1 = ~x1
+                    m = (x2 - x1 + 1) // 2
+                    x_mid = x1 + m - 1
+                    y_mid = y1 + m - 1
+                    sub = [[x1, y1, x_mid, y_mid], [x1, y_mid + 1, x_mid, y2],
+                           [x_mid + 1, y1, x2, y_mid], [x_mid + 1, y_mid + 1, x2, y2]]
+                    res = [0, inf]
+                    for item in states:
+                        cost = 0
+                        for i in range(4):
+                            xx1, yy1, xx2, yy2 = sub[i]
+                            if item[i] == 0:
+                                cost += pre.query(xx1, yy1, xx2, yy2)
+                            elif item[i] == 1:
+                                cost += (yy2 - yy1 + 1) * (xx2 - xx1 + 1) - pre.query(xx1, yy1, xx2, yy2)
+                            else:
+                                nex = dct[(xx1, yy1, xx2, yy2)]
+                                cost += nex[-1]
+                        if cost < res[-1]:
+                            res = [ind[item], cost]
+                    dct[(x1, y1, x2, y2)] = res
+            return
+
+        def check():
+            # 通过转移状态进行结果赋值
+            stack = [[0, 0, n - 1, n - 1]]
+            while stack:
+                x1, y1, x2, y2 = stack.pop()
+                if x1 == x2 and y1 == y2:
+                    ans[x1][y1] = pre.query(x1, y1, x1, y1)
+                    continue
+                m = (x2 - x1 + 1) // 2
+                x_mid = x1 + m - 1
+                y_mid = y1 + m - 1
+                sub = [[x1, y1, x_mid, y_mid], [x1, y_mid + 1, x_mid, y2],
+                       [x_mid + 1, y1, x2, y_mid], [x_mid + 1, y_mid + 1, x2, y2]]
+                res = states[dct[(x1, y1, x2, y2)][0]]
+                for i in range(4):
+                    xx1, yy1, xx2, yy2 = sub[i]
+                    if res[i] == 0:
+                        continue
+                    if res[i] == 1:
+                        for w in range(xx1, xx2 + 1):
+                            for h in range(yy1, yy2 + 1):
+                                ans[w][h] = 1
+                    else:
+                        stack.append([xx1, yy1, xx2, yy2])
+            return
+
+        dct = dict()
+        dfs()
+        ans = [[0] * n for _ in range(n)]
+        check()
+        ac.st(dct[(0, 0, n-1, n-1)][-1])
+        for a in ans:
+            ac.st("".join(str(x) for x in a))
         return
 
 

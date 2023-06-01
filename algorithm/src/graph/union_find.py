@@ -14,7 +14,7 @@ from math import inf
 
 """
 
-算法：并查集、可持久化并查集
+算法：并查集、可持久化并查集、置换环
 功能：用来处理图论相关的联通问题，通常结合逆向思考、置换环或者离线查询进行求解，连通块不一定是秩大小，也可以是最大最小值、和等
 题目：
 
@@ -49,6 +49,7 @@ P2189 小Z的传感器（https://www.luogu.com.cn/problem/P2189）并查集经�
 P2307 迷宫（https://www.luogu.com.cn/problem/P2307）并查集判定树的生成是否合法
 P3420 [POI2005]SKA-Piggy Banks（https://www.luogu.com.cn/problem/P3420）经典并查集变形问题
 P5429 [USACO19OPEN]Fence Planning S（https://www.luogu.com.cn/problem/P5429）简单并查集应用题
+P6193 [USACO07FEB]Cow Sorting G（https://www.luogu.com.cn/problem/P6193）经典置换环计算交换代价
 
 ================================CodeForces================================
 D. Roads not only in Berland（https://codeforces.com/problemset/problem/25/D）并查集将原来的边断掉重新来连接使得成为一整个连通集
@@ -585,6 +586,35 @@ class Solution:
             j = ac.read_int()
             uf.union(i, j - 1)
         ac.st(uf.part)
+        return
+
+    @staticmethod
+    def lg_p6193(ac=FastIO()):
+        # 模板：经典置换环计算交换代价
+        n = ac.read_int()
+        nums = [ac.read_int() for _ in range(n)]
+        lst = sorted(nums)
+        # 离散化
+        ind = {num: i for i, num in enumerate(lst)}
+        uf = UnionFind(n)
+        x = lst[0]
+        # 寻找置换环
+        for i in range(n):
+            uf.union(i, ind[nums[i]])
+        part = uf.get_root_part()
+        ans = 0
+        for p in part:
+            y = min(lst[i] for i in part[p])
+            s = sum(lst[i] for i in part[p])
+            m = len(part[p])
+            if m == 1:
+                continue
+            #  使用当前置换环最小值交换
+            cost1 = s + (m - 2) * y
+            # 或者使用全局最小值交换
+            cost2 = s - y + x + (m - 2) * x + (x + y) * 2
+            ans += ac.min(cost1, cost2)
+        ac.st(ans)
         return
 
 

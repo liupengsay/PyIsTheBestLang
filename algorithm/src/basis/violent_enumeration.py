@@ -1,6 +1,7 @@
+import bisect
 import unittest
 import math
-from collections import defaultdict
+from collections import defaultdict, deque
 from functools import reduce
 from itertools import combinations
 from operator import mul
@@ -78,6 +79,8 @@ P2652 同花顺（https://www.luogu.com.cn/problem/P2652）枚举花色与双指
 P2994 [USACO10OCT]Dinner Time S（https://www.luogu.com.cn/problem/P2994）按照座位枚举分配人员
 P3985 不开心的金明（https://www.luogu.com.cn/problem/P3985）看似背包实则枚举
 P4181 [USACO18JAN]Rental Service S（https://www.luogu.com.cn/problem/P4181）贪心枚举与后缀和
+P6149 [USACO20FEB] Triangles S（https://www.luogu.com.cn/problem/P6149）经典枚举三角形的直角点使用前缀和与二分计算距离和
+P6393 隔离的日子（https://www.luogu.com.cn/problem/P6393）经典利用值域范围进行枚举计算
 
 
 ================================CodeForces================================
@@ -506,6 +509,75 @@ class Solution:
             pre += nums2[i]
             ans = ac.max(ans, pre + post[i + 1])
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p6149(ac=FastIO()):
+        # 模板：经典枚举三角形的直角点使用前缀和与二分计算距离和
+        n = ac.read_int()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        dct_x = defaultdict(list)
+        dct_y = defaultdict(list)
+        for x, y in nums:
+            dct_x[x].append(y)
+            dct_y[y].append(x)
+        pre_x = defaultdict(list)
+        for x in dct_x:
+            dct_x[x].sort()
+            pre_x[x] = ac.accumulate(dct_x[x])
+        pre_y = defaultdict(list)
+        for y in dct_y:
+            dct_y[y].sort()
+            pre_y[y] = ac.accumulate(dct_y[y])
+
+        ans = 0
+        mod = 10**9 + 7
+        for x, y in nums:
+            # 二分找到中间点 xi 计算两侧距离
+            xi = bisect.bisect_left(dct_y[y], x)
+            left_x = (xi + 1) * x - pre_y[y][xi + 1]
+            right_x = pre_y[y][-1] - pre_y[y][xi + 1] - (len(dct_y[y]) - xi - 1) * x
+
+            yi = bisect.bisect_left(dct_x[x], y)
+            left_y = (yi + 1) * y - pre_x[x][yi + 1]
+            right_y = pre_x[x][-1] - pre_x[x][yi + 1] - (len(dct_x[x]) - yi - 1) * y
+            ans += (left_x + right_x) * (left_y + right_y)
+            ans %= mod
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p6393(ac=FastIO()):
+        # 模板：经典利用值域范围进行枚举计算
+        n = ac.read_int()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        dct = dict()
+        for i in range(n):
+            a, b = nums[i]
+            if b not in dct:
+                dct[b] = dict()
+            if a not in dct[b]:
+                dct[b][a] = deque()
+            dct[b][a].append(i)
+        for i in range(n):
+            a, b = nums[i]
+            ind = -2
+            for bb in dct:
+                if (b * b) % bb == 0:
+                    # 寻找符合条件的最小值
+                    aa = a + b * b // bb + b
+                    if aa in dct[bb]:
+                        while dct[bb][aa] and dct[bb][aa][0] <= i:
+                            dct[bb][aa].popleft()
+                        if dct[bb][aa]:
+                            j = dct[bb][aa][0]
+                            if ind == -2 or j < ind:
+                                ind = j
+                        else:
+                            del dct[bb][aa]
+                            if not dct[bb]:
+                                del dct[bb]
+            ac.st(ind + 1)
         return
 
 

@@ -43,6 +43,7 @@ P7542 [COCI2009-2010#1] MALI（https://www.luogu.com.cn/problem/P7542）桶计�
 P4653 [CEOI2017] Sure Bet（https://www.luogu.com.cn/problem/P4653）贪心排序后使用双指针计算
 P3029 [USACO11NOV]Cow Lineup S（https://www.luogu.com.cn/problem/P3029）双指针记录包含k个不同颜色的最短连续子序列
 P5583 【SWTR-01】Ethan and Sets（https://www.luogu.com.cn/problem/P5583）经典双指针
+P6465 [传智杯 #2 决赛] 课程安排（https://www.luogu.com.cn/problem/P6465）滑动窗口与双指针计数
 
 
 ================================CodeForces================================
@@ -379,6 +380,29 @@ class Solution:
                 if num not in cnt:
                     cur_not_like -= 1
         ac.lst(ans)
+        return
+
+    @staticmethod
+    def lg_p6465(ac=FastIO()):
+        # 模板：滑动窗口与双指针计数
+        for _ in range(ac.read_int()):
+            n, m = ac.read_list_ints()
+            nums = ac.read_list_ints()
+            m = ac.max(m, 2)
+            ans = j = s = 0
+            cnt = dict()
+            for i in range(n):
+                if i and nums[i] == nums[i - 1]:
+                    cnt = dict()
+                    s = 0
+                    j = i
+                    continue
+                while j <= i - m + 1:
+                    cnt[nums[j]] = cnt.get(nums[j], 0) + 1
+                    s += 1
+                    j += 1
+                ans += s - cnt.get(nums[i], 0)
+            ac.st(ans)
         return
 
 

@@ -72,6 +72,7 @@ P4667 [BalticOI 2011 Day1]Switch the Lamp On（https://www.luogu.com.cn/problem/
 P5096 [USACO04OPEN]Cave Cows 1（https://www.luogu.com.cn/problem/P5096）状压加广搜 BFS 模拟
 P5099 [USACO04OPEN]Cave Cows 4（https://www.luogu.com.cn/problem/P5099）队列 01BFS 广搜模拟
 P5195 [USACO05DEC]Knights of Ni S（https://www.luogu.com.cn/problem/P5195）
+P6131 [USACO11NOV]Cow Beauty Pageant S（https://www.luogu.com.cn/problem/P6131）经典 BFS 计算不同连通块之间的距离
 
 ================================CodeForces================================
 E. Nearest Opposite Parity（https://codeforces.com/problemset/problem/1272/E）经典反向建图，多源BFS
@@ -1373,6 +1374,65 @@ class Solution:
                             stack.append([a, b, cur])
 
         ac.st(ans if ans < inf else -1)
+        return
+
+    @staticmethod
+    def lg_p6131(ac=FastIO()):
+        # 模板：经典 BFS 计算不同连通块之间的距离
+        m, n = ac.read_ints()
+        grid = [ac.read_list_str() for _ in range(m)]
+
+        # 确定连通块
+        color = 0
+        dct = []
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == "X":
+                    stack = [[i, j]]
+                    grid[i][j] = str(color)
+                    cur = []
+                    while stack:
+                        a, b = stack.pop()
+                        cur.append([a, b])
+                        for x, y in [[a - 1, b], [a + 1, b], [a, b - 1], [a, b + 1]]:
+                            if 0 <= x < m and 0 <= y < n and grid[x][y] == "X":
+                                stack.append([x, y])
+                                grid[x][y] = str(color)
+                    color += 1
+                    dct.append(cur)
+
+        dis = [[0] * n for _ in range(m)]
+        for c in range(3):
+            # 分别计算连通块到每个点的距离
+            stack = deque(dct[c])
+            cur = [[inf] * n for _ in range(m)]
+            for i, j in stack:
+                cur[i][j] = 0
+            while stack:
+                a, b = stack.popleft()
+                for x, y in [[a - 1, b], [a + 1, b], [a, b - 1], [a, b + 1]]:
+                    if 0 <= x < m and 0 <= y < n:
+                        if grid[x][y] != ".":
+                            if cur[x][y] > cur[a][b]:
+                                cur[x][y] = cur[a][b]
+                                stack.append([x, y])
+                        else:
+                            # 只有遇到 "."才需要增加距离
+                            if cur[x][y] > cur[a][b] + 1:
+                                cur[x][y] = cur[a][b] + 1
+                                stack.append([x, y])
+            for i in range(m):
+                for j in range(n):
+                    dis[i][j] += cur[i][j]
+        # 枚举交互节点
+        ans = inf
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == ".":  # 三个连通块重复计数需要减去二
+                    ans = ac.min(ans, dis[i][j] - 2)
+                else:
+                    ans = ac.min(ans, dis[i][j])
+        ac.st(ans)
         return
 
 

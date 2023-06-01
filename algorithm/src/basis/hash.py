@@ -1,5 +1,5 @@
 import unittest
-from collections import defaultdict
+from collections import defaultdict, Counter
 import random
 from typing import List
 
@@ -22,6 +22,7 @@ from algorithm.src.fast_io import FastIO
 P2697 宝石串（https://www.luogu.com.cn/problem/P2697）哈希记录前缀和与对应索引
 P1114 “非常男女”计划（https://www.luogu.com.cn/record/list?user=739032&status=12&page=13）哈希记录前缀和与对应索引
 P4889 kls与flag（https://www.luogu.com.cn/problem/P4889）经典公式变换使用哈希计数
+P6273 [eJOI2017] 魔法（https://www.luogu.com.cn/problem/P6273）经典哈希前缀计数
 
 137. 雪花雪花雪花（https://www.acwing.com/problem/content/139/）哈希找相同雪花
 
@@ -122,6 +123,43 @@ class Solution:
             # hj + hi = j - i
             ans += cnt[i - height[i]]
             cnt[height[i] + i] += 1
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p6273(ac=FastIO()):
+        # 模板：经典哈希前缀计数
+        ac.read_int()
+        s = ac.read_str()
+        # 选择最少出现的字符作为减数
+        ct = Counter(s)
+        st = list(ct.keys())
+        ind = {w: i for i, w in enumerate(st)}
+        m = len(ind)
+        x = 0
+        for i in range(1, m):
+            if ct[st[i]] < ct[st[x]]:
+                x = i
+        # 记录状态
+        cnt = [0] * m
+        pre = defaultdict(int)
+        pre[tuple(cnt)] = 1
+        ans = 0
+        mod = 10**9 + 7
+        for w in s:
+            if w == st[x]:
+                # 其余所有字符减 1
+                for i in range(m):
+                    if i != ind[w]:
+                        cnt[i] -= 1
+            else:
+                # 减数字符加 1
+                cnt[ind[w]] += 1
+            tp = tuple(cnt)
+            # sa-ta = sb-tb 则有 sa-sb = ta-tb 因此这样计数
+            ans += pre[tp]
+            pre[tp] += 1
+            ans %= mod
         ac.st(ans)
         return
 

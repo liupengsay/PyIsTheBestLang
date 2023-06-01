@@ -37,6 +37,7 @@ from algorithm.src.fast_io import FastIO
 P2719 搞笑世界杯（https://www.luogu.com.cn/record/list?user=739032&status=12&page=1）二维DP求概率
 P1291 [SHOI2002] 百事世界杯之旅（https://www.luogu.com.cn/problem/P1291）线性DP求期望
 P4316 绿豆蛙的归宿（https://www.luogu.com.cn/problem/P4316）经典期望 DP 反向建图与拓扑排序
+P6154 游走（https://www.luogu.com.cn/problem/P6154）经典反向建图期望树形 DP 与有理数取模
 
 参考：OI WiKi（xx）
 """
@@ -127,6 +128,43 @@ class Solution:
                     stack.append(j)
         ans = "%.2f" % (dp[0])
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p6154(ac=FastIO()):
+        # 模板：经典反向建图期望树形 DP 与有理数取模
+        n, m = ac.read_ints()
+        dct = [[] for _ in range(n)]
+        degree = [0] * n
+        for _ in range(m):
+            x, y = ac.read_ints_minus_one()
+            dct[y].append(x)
+            degree[x] += 1
+        # 当前节点为起点的路径总长度
+        length_sum = [0] * n
+        # 当前节点为起点的路径总数
+        path_cnt = [0] * n
+        mod = 998244353
+        stack = deque([i for i in range(n) if not degree[i]])
+        for i in stack:
+            path_cnt[i] = 1
+        while stack:
+            i = stack.popleft()
+            for j in dct[i]:
+                degree[j] -= 1
+                # 路径总长度增加
+                length_sum[j] += path_cnt[i] + length_sum[i]
+                # 路径条数增加
+                path_cnt[j] += path_cnt[i]
+                if not degree[j]:
+                    # 新增一条以当前点开始和结束的路径即起点与终点可以相同
+                    path_cnt[j] += 1
+                    path_cnt[j] %= mod
+                    length_sum[j] %= mod
+                    stack.append(j)
+        total_length = sum(length_sum) % mod
+        total_cnt = sum(path_cnt) % mod
+        ac.st(total_length * pow(total_cnt, -1, mod) % mod)
         return
 
 

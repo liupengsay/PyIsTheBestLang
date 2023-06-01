@@ -33,6 +33,7 @@ P3586 [POI2015] LOG（https://www.luogu.com.cn/problem/P3586）离线查询、�
 P1198 [JSOI2008] 最大数（https://www.luogu.com.cn/problem/P1198）树状数组，查询区间最大值
 P4868 Preprefix sum（https://www.luogu.com.cn/problem/P4868）经典转换公式单点修改，使用两个树状数组维护前缀和的前缀和
 P5463 小鱼比可爱（加强版）（https://www.luogu.com.cn/problem/P5463）经典使用树状数组维护前缀计数，枚举最大值计算所有区间数贡献
+P6225 [eJOI2019] 异或橙子（https://www.luogu.com.cn/problem/P6225）经典使用树状数组维护前缀异或和
 
 ================================CodeForces================================
 F. Range Update Point Query（https://codeforces.com/problemset/problem/1791/F）树状数组维护区间操作数与查询单点值
@@ -140,6 +141,48 @@ class TreeArrayRangeSum:
         a = (right + 1) * self._sum(self.t1, right) - self._sum(self.t2, right)
         b = left * self._sum(self.t1, left - 1) - self._sum(self.t2, left - 1)
         return a - b
+
+
+class TreeArrayRangeQuerySumXOR:
+    # 模板：树状数组 单点增减 查询前缀异或和与区间异或和
+    def __init__(self, n: int) -> None:
+        # 索引从 1 到 n
+        self.t = [0] * (n + 1)
+        # 树状数组中每个位置保存的是其向前 low_bit 的区间异或和
+        return
+
+    def build(self, nums: List[int]) -> None:
+        # 索引从 1 开始使用数组初始化树状数组
+        n = len(nums)
+        pre = [0] * (n + 1)
+        for i in range(n):
+            pre[i + 1] = pre[i] ^ nums[i]
+            self.t[i + 1] = pre[i + 1] ^ pre[i + 1 - self.lowest_bit(i + 1)]
+        return
+
+    @staticmethod
+    def lowest_bit(i: int) -> int:
+        # 经典 low_bit 即最后一位二进制为 1 所表示的数
+        return i & (-i)
+
+    def query(self, i: int) -> int:
+        # 索引从 1 开始，查询 1 到 i 的前缀区间和
+        mi = 0
+        while i:
+            mi ^= self.t[i]
+            i -= self.lowest_bit(i)
+        return mi
+
+    def query_range(self, x: int, y: int) -> int:
+        # 索引从 1 开始，查询 x 到 y 的值
+        return self.query(y) ^ self.query(x - 1)
+
+    def update(self, i: int, mi: int) -> None:
+        # 索引从 1 开始，索引 i 的值异或增加 mi 且 mi 可正可负
+        while i < len(self.t):
+            self.t[i] ^= mi
+            i += self.lowest_bit(i)
+        return
 
 
 class TreeArrayRangeQueryPointUpdateMax:
@@ -736,6 +779,43 @@ class Solution:
             # 取 nums[i] 作为区间的数又 n-i 个右端点取法
             tree.update(ind[nums[i]], n - i)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p6225(ac=FastIO()):
+        # 模板：经典使用树状数组维护前缀异或和
+        n, q = ac.read_ints()
+        nums = ac.read_list_ints()
+
+        tree_odd = TreeArrayRangeQuerySumXOR(n)
+        tree_even = TreeArrayRangeQuerySumXOR(n)
+        for i in range(n):
+            # 也可以使用对应子数组进行初始化
+            if i % 2 == 0:
+                tree_odd.update(i + 1, nums[i])
+            else:
+                tree_even.update(i + 1, nums[i])
+
+        for _ in range(q):
+            lst = ac.read_list_ints()
+            if lst[0] == 1:
+                i, x = lst[1:]
+                a = nums[i - 1]
+                if i % 2 == 0:
+                    tree_even.update(i, a ^ x)
+                else:
+                    tree_odd.update(i, a ^ x)
+                nums[i - 1] = x
+            else:
+                left, right = lst[1:]
+                if (right - left + 1) % 2 == 0:
+                    ac.st(0)
+                else:
+                    # 如果是奇数长度则为 left 开始每隔 2 的元素异或和
+                    if left % 2:
+                        ac.st(tree_odd.query_range(left, right))
+                    else:
+                        ac.st(tree_even.query_range(left, right))
         return
 
 

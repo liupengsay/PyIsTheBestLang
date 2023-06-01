@@ -4,7 +4,7 @@ from functools import lru_cache
 from typing import List
 
 from algorithm.src.fast_io import FastIO, inf
-from collections import Counter, defaultdict
+from collections import Counter, defaultdict, deque
 
 from algorithm.src.mathmatics.number_theory import NumberTheory
 
@@ -76,6 +76,8 @@ P4933 大师（https://www.luogu.com.cn/problem/P4933）经典等差数列线性
 P5095 [USACO12OPEN]Bookshelf S（https://www.luogu.com.cn/problem/P5095）典型线性 DP 
 P5810 [SCOI2004]文本的输入（https://www.luogu.com.cn/problem/P5810）经典线性 DP
 P6040 「ACOI2020」课后期末考试滑溜滑溜补习班（https://www.luogu.com.cn/problem/P6040）单调队列优化的线性 DP 
+P6120 [USACO17JAN]Hoof, Paper, Scissor S（https://www.luogu.com.cn/problem/P6120）线性 DP 模拟
+P6146 [USACO20FEB]Help Yourself G（https://www.luogu.com.cn/problem/P6146）线性 DP 枚举计数
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/75/D（经典压缩数组，最大子段和升级）
@@ -727,6 +729,53 @@ class Solution:
             stack.append([i, cur - i * d - d])
             pre = cur
         ac.st(pre)
+        return
+
+    @staticmethod
+    def lg_p6120(ac=FastIO()):
+        # 模板：典型线性规划
+        n = ac.read_int()
+        ind = {w: i for i, w in enumerate("HSP")}
+        # 滚动数组更新
+        dp = [[[0, -inf], [0, -inf], [0, -inf]] for _ in range(2)]
+        pre = 0
+        for _ in range(n):
+            cur = 1 - pre
+            i = ind[ac.read_str()]
+            w = (i - 1) % 3
+            for j in range(3):
+                dp[cur][j][0] = dp[pre][j][0]  # 当前出 j 且未作改变的最大值
+                # 当前出 j 且作出改变的最大值
+                dp[cur][j][1] = max(dp[pre][j][1], max(dp[pre][k][0] for k in range(3) if k != j))
+                if j == w:  # 当前局为胜手
+                    dp[cur][j][0] += 1
+                    dp[cur][j][1] += 1
+            pre = cur
+        ac.st(max(max(d) for d in dp[pre]))
+        return
+
+    @staticmethod
+    def lg_p6146(ac=FastIO()):
+        # 模板：经典区间排序与所有子集连通块个数计算
+        n = ac.read_int()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        nums.sort(key=lambda it: it[0])
+        mod = 10**9 + 7
+        pp = [1] * (n + 1)
+        for i in range(1, n + 1):
+            pp[i] = (pp[i - 1] * 2) % mod
+        # dp[i]表示前 i 个区间的结果
+        dp = [0] * n
+        dp[0] = 1
+        lst = [nums[0][1]]
+        for i in range(1, n):
+            a, b = nums[i]
+            j = bisect.bisect_left(lst, a)  # 作为 i 单独连通块新增的计数即与前面区间无交集
+            # 选当前 i 与不选当前 i 区间的连通块数量
+            dp[i] = 2 * dp[i - 1] + pp[j]
+            dp[i] %= mod
+            bisect.insort_left(lst, b)
+        ac.st(dp[-1])
         return
 
 

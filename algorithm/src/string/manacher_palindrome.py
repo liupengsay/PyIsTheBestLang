@@ -42,6 +42,7 @@ P4555 最长双回文串（https://www.luogu.com.cn/problem/P4555）计算以当
 P1210 [USACO1.3]最长的回文 Calf Flac（https://www.luogu.com.cn/problem/P1210）寻找最长的连续回文子串
 P4888 三去矩阵（https://www.luogu.com.cn/problem/P4888）中心扩展法双指针
 P1872 回文串计数（https://www.luogu.com.cn/problem/P1872）回文串对数统计，利用马拉车计算以当前字母开头与结尾的回文串数
+P6297 替换（https://www.luogu.com.cn/problem/P6297）中心扩展法并使用变量维护
 
 139. 回文子串的最大长度（https://www.acwing.com/problem/content/141/）马拉车计算最长回文子串长度，也可使用二分查找加哈希
 
@@ -199,6 +200,45 @@ class Solution:
             ans += pre * start[i]
             pre += end[i]
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p6297(ac=FastIO()):
+        # 模板：中心扩展法并使用变量维护
+        n, k = ac.read_ints()
+        mod = 10**9 + 7
+        nums = ac.read_list_ints()
+        ans = 0
+        for i in range(n):
+
+            cur = nums[i]
+            rem = k
+            x, y = i - 1, i + 1
+            while x >= 0 and y < n:
+                if nums[x] != nums[y]:
+                    if not rem:
+                        break
+                    rem -= 1
+                cur *= nums[x] * nums[y]
+                x -= 1
+                y += 1
+            ans = ac.max(ans, cur)
+
+            if i + 1 < n:
+                cur = 0
+                rem = k
+                x, y = i, i + 1
+                while x >= 0 and y < n:
+                    if nums[x] != nums[y]:
+                        if not rem:
+                            break
+                        rem -= 1
+                    cur = cur if cur else 1
+                    cur *= nums[x] * nums[y]
+                    x -= 1
+                    y += 1
+                ans = ac.max(ans, cur)
+        ac.st(ans % mod)
         return
 
 

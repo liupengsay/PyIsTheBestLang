@@ -1,7 +1,7 @@
 import heapq
 import math
 import unittest
-from collections import deque
+from collections import deque, defaultdict
 from typing import List
 
 from algorithm.src.fast_io import FastIO, inf
@@ -47,6 +47,7 @@ P2212 [USACO14MAR]Watering the Fields S（https://www.luogu.com.cn/problem/P2212
 P2847 [USACO16DEC]Moocast G（https://www.luogu.com.cn/problem/P2847）使用prim计算最小生成树，适合稠密图场景
 P3535 [POI2012]TOU-Tour de Byteotia（https://www.luogu.com.cn/problem/P3535）最小生成树思想与并查集判环
 P4047 [JSOI2010]部落划分（https://www.luogu.com.cn/problem/P4047）使用最小生成树进行最优聚类距离计算
+P6171 [USACO16FEB]Fenced In G（https://www.luogu.com.cn/problem/P6171）稀疏图使用 Kruskal 计算最小生成树
 
 ================================CodeForces================================
 D. Design Tutorial: Inverse the Problem（https://codeforces.com/problemset/problem/472/D）使用最小生成树判断构造给定的点对最短路距离是否存在，使用prim算法复杂度更优
@@ -723,6 +724,34 @@ class Solution:
                 uf.union(i, j)
         ans = ans ** 0.5
         ac.st("%.2f" % ans)
+        return
+
+    @staticmethod
+    def lg_p6171(ac=FastIO()):
+        # 模板：稀疏图使用 Kruskal 计算最小生成树
+        a, b, n, m = ac.read_ints()
+        nums1 = [0, a] + [ac.read_int() for _ in range(n)]
+        nums2 = [0, b] + [ac.read_int() for _ in range(m)]
+        nums1.sort()
+        nums2.sort()
+        dct = defaultdict(list)
+        for i in range(1, m + 2):
+            for j in range(1, n + 2):
+                # 建图是关键
+                x = (i - 1) * (n + 1) + (j - 1)
+                if i + 1 < m + 2:
+                    y = i * (n + 1) + (j - 1)
+                    dct[nums1[j] - nums1[j - 1]].append([x, y])
+                if j + 1 < n + 2:
+                    y = (i - 1) * (n + 1) + j
+                    dct[nums2[i] - nums2[i - 1]].append([x, y])
+        ans = 0
+        uf = UnionFind((n + 1) * (m + 1))
+        for c in sorted(dct):
+            for i, j in dct[c]:
+                if uf.union(i, j):
+                    ans += c
+        ac.st(ans)
         return
 
 

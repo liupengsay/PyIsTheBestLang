@@ -102,6 +102,7 @@ P5093 [USACO04OPEN]The Cow Lineup（https://www.luogu.com.cn/problem/P5093）经
 P5425 [USACO19OPEN]I Would Walk 500 Miles G（https://www.luogu.com.cn/problem/P5425）看似最小生成树，实则脑筋急转弯贪心计算距离
 P5884 [IOI2014]game 游戏（https://www.luogu.com.cn/problem/P5884）脑筋急转弯
 P5948 [POI2003]Chocolate（https://www.luogu.com.cn/problem/P5948）贪心模拟进行计算
+P6196 [EER1]代价（https://www.luogu.com.cn/problem/P6196）贪心使用 1 进行分段计算代价
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1186/D（贪心取floor，再根据加和为0的特质进行补充加1成为ceil）
@@ -664,6 +665,32 @@ class Solution:
                 ac.st(1)
             else:
                 ac.st(0)
+        return
+
+    @staticmethod
+    def lg_p6196(ac=FastIO()):
+        # 模板：贪心使用 1 进行分段计算代价
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        ans = 0
+        lst = []
+        for num in nums:
+            if num == 1:
+                if lst:
+                    m = len(lst)
+                    ans += min(lst)
+                    for i in range(1, m):
+                        ans += lst[i - 1] * lst[i]
+                ans += 1
+                lst = []
+            else:
+                lst.append(num)
+        if lst:
+            m = len(lst)
+            ans += min(lst)
+            for i in range(1, m):
+                ans += lst[i - 1] * lst[i]
+        ac.st(ans)
         return
 
 

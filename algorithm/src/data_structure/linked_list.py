@@ -22,6 +22,7 @@ from algorithm.src.fast_io import FastIO
 
 ===================================洛谷===================================
 P5462 X龙珠（https://www.luogu.com.cn/problem/P5462）经典使用双向链表贪心选取最大字典序队列
+P6155 修改（https://www.luogu.com.cn/problem/P6155）经典排序贪心使用并查集思想寻找右边最近的空位
 
 ================================CodeForces================================
 E. Two Teams（https://codeforces.com/contest/1154/problem/E）使用数组维护链表的前后节点信息
@@ -223,6 +224,35 @@ class Solution:
             if y != -1:
                 pre[y] = x
         ac.lst(ans)
+        return
+
+    @staticmethod
+    def lg_p6155(ac=FastIO()):
+        # 模板：经典排序贪心使用并查集思想寻找右边最近的空位
+        n = ac.read_int()
+        a = ac.read_list_ints()
+        b = ac.read_list_ints()
+        a.sort(reverse=True)  # 反向遍历从大到小尽早占据已有位置
+        mod = 2**64
+        b.sort()
+        cnt = []
+        pre = dict()
+        for num in a:
+            y = num
+            # 类似并查集寻找右边最近的空位
+            lst = [num]
+            while y in pre:
+                lst.append(y)
+                y = pre[y]
+            lst.append(y)
+            # 类似链表记录每个数右侧最近的空位
+            for x in lst:
+                # 更新这个区间所有数右边最近的空位
+                pre[x] = y + 1
+            cnt.append(y - num)
+        cnt.sort(reverse=True)
+        ans = sum(cnt[i] * b[i] for i in range(n))
+        ac.st(ans % mod)
         return
 
 

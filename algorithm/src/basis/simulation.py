@@ -54,6 +54,7 @@ P7338 『MdOI R4』Color（https://www.luogu.com.cn/problem/P7338）进行贪心
 P2129 L 国的战斗续之多路出击（https://www.luogu.com.cn/problem/P2129）使用栈和指针模拟
 P3407 散步（https://www.luogu.com.cn/problem/P3407）经典模拟移动与相遇
 P5329 [SNOI2019]字符串（https://www.luogu.com.cn/problem/P5329）经典字典序应用题，依据相邻项的字典序大小来确认排序
+P6397 [COI2008] GLASNICI（https://www.luogu.com.cn/problem/P6397）经典贪心模拟
 
 ================================CodeForces================================
 C. Gargari and Bishops（https://codeforces.com/problemset/problem/463/C）选取两组互不相交的主副对角线使得和最大
@@ -324,6 +325,26 @@ class Solution:
             ans[i] = x + 1
             i += 1
         ac.lst(ans)
+        return
+
+    @staticmethod
+    def lg_p6397(ac=FastIO()):
+        # 模板：经典贪心模拟
+        k = ac.read_float()
+        nums = [ac.read_float() for _ in range(ac.read_int())]
+        pre = nums[0]
+        ans = 0
+        for num in nums[1:]:
+            # 记录当前位置与当前耗时
+            if num - ans <= pre + k <= num + ans:  # 直接通知到位修改位置不增加时间
+                pre += k
+            elif pre + k > num + ans:  # 直接通知到位不增加时间位置受限
+                pre = ac.max(pre, num + ans)
+            else:  # 需要相向而行花费时间
+                gap = (num - ans - pre - k) / 2.0
+                pre = num - ans - gap
+                ans += gap
+        ac.st(ans)
         return
 
 

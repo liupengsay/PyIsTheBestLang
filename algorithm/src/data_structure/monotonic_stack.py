@@ -34,6 +34,7 @@ P1191 矩形（https://www.luogu.com.cn/problem/P1191）经典单调栈求矩形
 P1323 删数问题（https://www.luogu.com.cn/problem/P1323）二叉堆与单调栈，计算最大字典序数字
 P2422 良好的感觉（https://www.luogu.com.cn/problem/P2422）单调栈与前缀和
 P3467 [POI2008]PLA-Postering（https://www.luogu.com.cn/problem/P3467）看不懂的单调栈
+P6404 [COCI2014-2015#2] BOB（https://www.luogu.com.cn/problem/P6404）经典单调栈计算具有相同数字的子矩形个数
 
 ================================CodeForces================================
 E. Explosions?（https://codeforces.com/problemset/problem/1795/E）单调栈贪心计数枚举，前后缀DP转移
@@ -383,6 +384,35 @@ class Solution:
                 else:
                     pre[j] = 0
             ans += Rectangle().compute_number(pre)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p6404(ac=FastIO()):
+        # 模板：经典单调栈计算具有相同数字的子矩形个数
+        m, n = ac.read_list_ints()
+        grid = [ac.read_list_ints() for _ in range(m)]
+        ans = 0
+        rt = Rectangle()
+        pre = [[0, 0] for _ in range(n)]
+        # 枚举子矩形的下边界
+        for i in range(m):
+            for j in range(n):
+                if pre[j][0] == grid[i][j]:
+                    pre[j][1] += 1
+                else:
+                    pre[j] = [grid[i][j], 1]
+            # 按照相同数字分段计数
+            lst = [pre[0][1]]
+            num = pre[0][0]
+            for x, c in pre[1:]:
+                if x == num:
+                    lst.append(c)
+                else:
+                    ans += rt.compute_number(lst)
+                    lst = [c]
+                    num = x
+            ans += rt.compute_number(lst)
         ac.st(ans)
         return
 

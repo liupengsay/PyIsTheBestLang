@@ -56,6 +56,7 @@ P4440 [COCI2017-2018#3] Programiranje（https://www.luogu.com.cn/problem/P4440�
 P4623 [COCI2012-2013#6] BUREK（https://www.luogu.com.cn/problem/P4623）离散化差分计数
 P6032 选择客栈 加强版（https://www.luogu.com.cn/problem/P6032）经典前后缀计数
 P6070 『MdOI R1』Decrease（https://www.luogu.com.cn/problem/P6070）经典二维差分贪心修改实时维护差分与计算前缀和即矩阵最新值
+P6278 [USACO20OPEN]Haircut G（https://www.luogu.com.cn/problem/P6278）经典逆序对作用域与差分前缀和计算
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/33/C（前后缀最大变换和与分割点枚举，经典类型题目）
@@ -970,6 +971,23 @@ class Solution:
                     diff[i + k + 1][j + k + 1] -= d
                     ans += abs(d)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p6278(ac=FastIO()):
+        # 模板：经典逆序对作用域与差分前缀和计算
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        diff = [0] * (n + 1)
+        pre = []
+        for num in nums:
+            # num 作为最小值时的逆序对个数
+            diff[num] += len(pre) - bisect.bisect_right(pre, num)
+            bisect.insort_left(pre, num)
+        diff = ac.accumulate(diff)
+        for i in range(n):
+            # 减少到 i 时前面小于 i 的对应逆序对不受改变
+            ac.st(diff[i])
         return
 
 

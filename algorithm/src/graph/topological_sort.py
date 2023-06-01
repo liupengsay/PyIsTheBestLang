@@ -32,6 +32,8 @@ P1685 游览（https://www.luogu.com.cn/problem/P1685）拓扑排序计算路径
 P3243 [HNOI2015]菜肴制作（https://www.luogu.com.cn/problem/P3243）经典反向建图拓扑排序结合二叉堆进行顺序模拟
 P5536 【XR-3】核心城市（https://www.luogu.com.cn/problem/P5536）经典使用无向图拓扑排序从外到内消除最外圈的节点
 P6037 Ryoku 的探索（https://www.luogu.com.cn/problem/P6037）经典无向图基环树并查集拓扑排序与环模拟计算
+P6255 [ICPC2019 WF]Dead-End Detector（https://www.luogu.com.cn/problem/P6255）简单无向图并查集计算连通块后使用拓扑排序寻找环的信息
+P6417 [COCI2014-2015#1] MAFIJA（https://www.luogu.com.cn/problem/P6417）有向图基环树贪心应用拓扑排序由外向内
 
 ==================================AtCoder=================================
 F - Well-defined Path Queries on a Namori（https://atcoder.jp/contests/abc266/）（无向图的内向基环树，求简单路径的树枝连通）
@@ -41,29 +43,10 @@ F - Well-defined Path Queries on a Namori（https://atcoder.jp/contests/abc266/�
 参考：OI WiKi（xx）
 """
 
-import bisect
-import random
-import re
 import unittest
 
 from typing import List
-import heapq
-import math
-from collections import defaultdict, Counter, deque
-from functools import lru_cache
-from itertools import combinations
-from sortedcontainers import SortedList, SortedDict, SortedSet
-
-from sortedcontainers import SortedDict
-from functools import reduce
-from operator import xor
-from functools import lru_cache
-
-import random
-from itertools import permutations, combinations
-import numpy as np
-
-from decimal import Decimal
+from collections import defaultdict, deque
 
 import heapq
 import copy
@@ -459,6 +442,101 @@ class Solution:
                         stack.append(j)
         for a in ans:
             ac.st(a)
+        return
+
+    @staticmethod
+    def lg_p6255(ac=FastIO()):
+        # 模板：简单无向图并查集计算连通块后使用拓扑排序寻找环的信息
+        n, m = ac.read_ints()
+        dct = [[] for _ in range(n)]
+        degree = [0] * n
+        uf = UnionFind(n)
+        for _ in range(m):  # 简单无向图即没有环套环
+            i, j = ac.read_ints_minus_one()
+            degree[j] += 1
+            degree[i] += 1
+            dct[i].append(j)
+            dct[j].append(i)
+            uf.union(i, j)
+        # 计算连通块
+        part = uf.get_root_part()
+        ans = []
+        for p in part:
+            lst = part[p]
+            # 拓扑排序找环
+            nodes = [i for i in lst if degree[i] == 1]
+            stack = nodes[:]
+            visit = set()
+            cnt = 0
+            while stack:
+                cnt += len(stack)
+                for i in stack:
+                    visit.add(i)
+                nex = []
+                for i in stack:
+                    for j in dct[i]:
+                        degree[j] -= 1
+                        if degree[j] == 1:
+                            nex.append(j)
+                stack = nex[:]
+            if cnt == len(part[p]):
+                # 没有环则所有外围点出发的边都是死路
+                for i in nodes:
+                    for j in dct[i]:
+                        ans.append([i + 1, j + 1])
+            else:
+                # 有环则所有环上的点
+                for i in lst:
+                    if i not in visit:
+                        for j in dct[i]:
+                            if j in visit:
+                                ans.append([i + 1, j + 1])
+        ans.sort()
+        ac.st(len(ans))
+        for a in ans:
+            ac.lst(a)
+        return
+
+    @staticmethod
+    def lg_p6417(ac=FastIO()):
+        # 模板：有向图基环树贪心应用拓扑排序由外向内
+        n = ac.read_int()
+        dct = [ac.read_int() - 1 for _ in range(n)]
+        degree = [0] * n
+        for i in range(n):
+            degree[dct[i]] += 1
+        # 外层直接作为坏蛋
+        stack = [x for x in range(n) if not degree[x]]
+        visit = [-1] * n
+        ans = len(stack)
+        for i in stack:
+            visit[i] = 1
+        while stack:
+            nex = []
+            for i in stack:
+                degree[dct[i]] -= 1
+                # 确定坏蛋或者是平民的角色后根据度进行角色指定
+                if (not degree[dct[i]] or visit[i] == 1) and visit[dct[i]] == -1:
+                    if visit[i] == 1:
+                        # 父亲是坏蛋必然是平民
+                        visit[dct[i]] = 0
+                    else:
+                        # 入度为 0 优先指定为坏蛋
+                        ans += 1
+                        visit[dct[i]] = 1
+                    nex.append(dct[i])
+            stack = nex[:]
+
+        for i in range(n):
+            x = 0
+            # 计算剩余环的大小
+            while visit[i] == -1:
+                visit[i] = 1
+                x += 1
+                i = dct[i]
+            # 环内的坏蛋最多个数
+            ans += x // 2
+        ac.st(ans)
         return
 
 

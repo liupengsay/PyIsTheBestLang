@@ -21,6 +21,7 @@ P5550 Chino的数列（https://www.luogu.com.cn/problem/P5550）循环节计算�
 P7318 「PMOI-4」人赢の梦（https://www.luogu.com.cn/problem/P7318）二维元素，再增加虚拟开始状态，进行循环节计算
 P7681 [COCI2008-2009#5] LUBENICA（https://www.luogu.com.cn/problem/P7681）带前缀和的循环节，注意定义循环状态
 P1468 [USACO2.2]派对灯 Party Lamps（https://www.luogu.com.cn/problem/P1468）状态压缩求循环节
+P6148 [USACO20FEB] Swapity Swapity Swap S（https://www.luogu.com.cn/problem/P6148）经典计算循环节后模拟
 
 ================================CodeForces================================
 C. Yet Another Counting Problem（https://codeforces.com/problemset/problem/1342/C）循环节计数
@@ -177,6 +178,34 @@ class Solution:
         res = sorted([r[::-1] for r in res])
         for r in res:
             ac.st(r)
+        return
+
+    @staticmethod
+    def lg_p6148(ac=FastIO()):
+        # 模板：经典计算循环节后模拟
+        n, m, k = ac.read_ints()
+        nums = [ac.read_list_ints_minus_one() for _ in range(m)]
+        nex = [-1] * n
+        for i in range(n):
+            x = i
+            for a, b in nums:
+                if a <= x <= b:
+                    x = a + b - x
+            nex[i] = x
+        # 找出循环节
+        ans = [0] * n
+        for i in range(n):
+            if ans[i]:
+                continue
+            lst = [i]
+            while nex[lst[-1]] != lst[0]:
+                lst.append(nex[lst[-1]])
+            m = len(lst)
+            for j in range(m):
+                # 进行相应的移动
+                ans[lst[(j + k) % m]] = lst[j] + 1
+        for a in ans:
+            ac.st(a)
         return
 
 
