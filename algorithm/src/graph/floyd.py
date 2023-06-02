@@ -217,7 +217,7 @@ class Solution:
 
 
 class Graph:
-    # 模板：Floyd动态更新最短路 LC2642
+    # 模板：Floyd动态更新最短路 LC2642 也可以使用 Dijkstra 暴力求解
     def __init__(self, n: int, edges: List[List[int]]):
         d = [[inf] * n for _ in range(n)]
         for i in range(n):
@@ -238,7 +238,7 @@ class Graph:
             return
         for i in range(n):
             for j in range(n):
-                # Floyd动态更新最短路
+                # Floyd 在增加一条边时动态更新最短路
                 d[i][j] = min(d[i][j], d[i][x] + w + d[y][j])
 
     def shortest_path(self, start: int, end: int) -> int:

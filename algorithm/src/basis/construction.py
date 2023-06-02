@@ -12,6 +12,7 @@ from collections import deque
 
 ===================================力扣===================================
 280. 摆动排序（https://leetcode.cn/problems/wiggle-sort/）按照降序先赋给奇数索引再给偶数索引
+2663. 字典序最小的美丽字符串（https://leetcode.cn/problems/lexicographically-smallest-beautiful-string/）贪心构造不含任何回文子串的字典序最小的字符串
 
 ===================================洛谷===================================
 P8846 『JROI-7』PMK 配匹串符字（https://www.luogu.com.cn/problem/P8846）厘清题意进行贪心构造
@@ -104,6 +105,27 @@ class Solution:
         for i in range(n):
             nums[i] = ans[i]
         return
+
+    @staticmethod
+    def lc_2663(s: str, k: int) -> str:
+        # 模板：贪心构造不含任何回文子串的字典序最小的字符串
+        n = len(s)
+        for i in range(n - 1, -1, -1):
+            # 倒序枚举
+            for x in range(ord(s[i]) - ord("a") + 1, k):
+                w = chr(ord("a") + x)
+                # 只要没有长度为 2 和长度为 3 的回文子串则都不存在任何大于 1 长度的回文子串
+                if (i == 0 or s[i - 1] != w) and not (i >= 2 and w == s[i - 2]):
+                    ans = s[:i] + w
+                    # 贪心赋值且字典序最小
+                    while len(ans) < n:
+                        for y in range(0, k):
+                            x = chr(y + ord("a"))
+                            if x != ans[-1] and (len(ans) < 2 or ans[-2] != x):
+                                ans += x
+                                break
+                    return ans
+        return ""
 
 
 class TestGeneral(unittest.TestCase):

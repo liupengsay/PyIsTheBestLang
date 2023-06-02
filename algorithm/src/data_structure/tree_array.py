@@ -14,6 +14,7 @@ from algorithm.src.fast_io import FastIO
 1626. 无矛盾的最佳球队（https://leetcode.cn/problems/best-team-with-no-conflicts/）树状数组维护前缀最大值，也可使用动态规划求解
 6353. 网格图中最少访问的格子数（https://leetcode.cn/problems/minimum-number-of-visited-cells-in-a-grid/）树状数组维护前缀区间最小值单点更新
 308. 二维区域和检索 - 可变（https://leetcode.cn/problems/range-sum-query-2d-mutable/）二维树状数组，单点增减与区间和查询
+2659. 将数组清空（https://leetcode.cn/problems/make-array-empty/submissions/）经典模拟删除，可以使用树状数组也可以使用SortedList也可以使用贪心
 
 
 ===================================洛谷===================================
@@ -817,6 +818,24 @@ class Solution:
                     else:
                         ac.st(tree_even.query_range(left, right))
         return
+
+    @staticmethod
+    def lc_2659(nums: List[int]) -> int:
+        # 模板：经典模拟删除，可以使用树状数组也可以使用SortedList也可以使用贪心
+        n = len(nums)
+        ans = 0
+        pre = 1
+        dct = {num: i + 1 for i, num in enumerate(nums)}
+        tree = TreeArrayRangeQuerySum(n)
+        for num in sorted(nums):
+            i = dct[num]
+            if pre <= i:
+                ans += i - pre + 1 - tree.query_range(pre, i)
+            else:
+                ans += n - pre + 1 - tree.query_range(pre, n) + i - 1 + 1 - tree.query_range(1, i)
+            tree.update(i, 1)
+            pre = i
+        return ans
 
 
 class TestGeneral(unittest.TestCase):

@@ -1,3 +1,4 @@
+import heapq
 import unittest
 from bisect import bisect_left
 from collections import defaultdict
@@ -8,6 +9,7 @@ from typing import List
 from types import GeneratorType
 
 from algorithm.src.basis.diff_array import PreFixSumMatrix
+from algorithm.src.data_structure.tree_array import TreeArrayRangeQueryPointUpdateMin
 from algorithm.src.fast_io import FastIO
 
 
@@ -32,6 +34,7 @@ from algorithm.src.fast_io import FastIO
 1092. 最短公共超序列（https://leetcode.cn/problems/shortest-common-supersequence/）经典从后往前动态规划加从前往后构造，计算最长公共子序列，并构造包含两个字符串的最短公共超序列
 1143. 最长公共子序列（https://leetcode.cn/problems/longest-common-subsequence/）使用LIS的方法求LCS
 1035. 不相交的线（https://leetcode.cn/problems/uncrossed-lines/）使用LIS的方法求LCS
+2617. 网格图中最少访问的格子数（https://leetcode.cn/problems/minimum-number-of-visited-cells-in-a-grid/）倒序矩阵 DP 并使用树状数组记录更新前缀最小值
 
 ===================================洛谷===================================
 P2701 [USACO5.3]巨大的牛棚Big Barn（https://www.luogu.com.cn/problem/P2701）求全为 "." 的最大正方形面积，如果不要求实心只能做到O(n^3)复杂度
@@ -1409,6 +1412,55 @@ class Solution:
         for a in ans:
             ac.st("".join(str(x) for x in a))
         return
+
+    @staticmethod
+    def lc_2617_1(grid: List[List[int]]) -> int:
+        # 模板：倒序矩阵 DP 并使用树状数组记录更新前缀最小值
+        m, n = len(grid), len(grid[0])
+        dp = [[inf] * n for _ in range(m)]
+        dp[-1][-1] = 1
+        row = [TreeArrayRangeQueryPointUpdateMin(n) for _ in range(m)]
+        col = [TreeArrayRangeQueryPointUpdateMin(m) for _ in range(n)]
+        for i in range(m - 1, -1, -1):
+            for j in range(n - 1, -1, -1):
+                if i == m - 1 and j == n - 1:
+                    row[i].update(n, 1)
+                    col[j].update(m, 1)
+                    continue
+                right = grid[i][j] + j + 1 if grid[i][j] + j + 1 < n else n
+                val1 = row[i].query(right)
+
+                down = grid[i][j] + i + 1 if grid[i][j] + i + 1 < m else m
+                val2 = col[j].query(down)
+                dp[i][j] = val1 + 1 if val1 < val2 else val2 + 1
+                row[i].update(j + 1, dp[i][j])
+                col[j].update(i + 1, dp[i][j])
+        return dp[0][0] if dp[0][0] < inf else -1
+
+    @staticmethod
+    def lc_2617_2(grid: List[List[int]]) -> int:
+        # 模板：矩阵 DP 使用优先队列或者单调队列进行优化
+        m, n = len(grid), len(grid[0])
+        dp = [[inf] * n for _ in range(m)]
+        dp[0][0] = 1
+        row = [[] for _ in range(m)]
+        col = [[] for _ in range(n)]
+        heapq.heappush(row[0], [1, grid[0][0]])
+        heapq.heappush(col[0], [1, grid[0][0]])
+        for i in range(m):
+            for j in range(n):
+                if i == 0 and j == 0:
+                    continue
+                while row[i] and row[i][0][1] < j:
+                    heapq.heappop(row[i])
+                while col[j] and col[j][0][1] < i:
+                    heapq.heappop(col[j])
+                val = inf if not row[i] else row[i][0][0]
+                val = val if not col[j] or col[j][0][0] > val else col[j][0][0]
+                dp[i][j] = val + 1
+                heapq.heappush(row[i], [val + 1, grid[i][j] + j])
+                heapq.heappush(col[j], [val + 1, grid[i][j] + i])
+        return dp[-1][-1] if dp[-1][-1] < inf else -1
 
 
 class TestGeneral(unittest.TestCase):

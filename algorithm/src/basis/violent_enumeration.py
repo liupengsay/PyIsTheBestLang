@@ -5,12 +5,13 @@ from collections import defaultdict, deque
 from functools import reduce
 from itertools import combinations
 from operator import mul
+from typing import List
 
 from algorithm.src.fast_io import FastIO, inf
 
 
 """
-算法：暴力枚举、旋转矩阵、螺旋矩阵（也叫brute_force）
+算法：暴力枚举、旋转矩阵、螺旋矩阵（也叫brute_force）、贡献法
 功能：根据题意，在复杂度有限的情况下，进行所有可能情况的枚举
 题目：
 
@@ -28,7 +29,7 @@ from algorithm.src.fast_io import FastIO, inf
 2122. 还原原数组（https://leetcode.cn/problems/recover-the-original-array/）枚举差值 k 判断是否合法
 2468 根据限制分割消息（https://leetcode.cn/problems/split-message-based-on-limit/）根据长度限制进行二分
 2417. 最近的公平整数（https://leetcode.cn/problems/closest-fair-integer/）按照位数贪心枚举加和
-
+2681. 英雄的力量（https://leetcode.cn/problems/power-of-heroes/）按照贡献法枚举计数
 
 ===================================洛谷===================================
 P1548 棋盘问题（https://www.luogu.com.cn/problem/P1548）枚举正方形与长方形的右小角计算个数
@@ -81,7 +82,6 @@ P3985 不开心的金明（https://www.luogu.com.cn/problem/P3985）看似背包
 P4181 [USACO18JAN]Rental Service S（https://www.luogu.com.cn/problem/P4181）贪心枚举与后缀和
 P6149 [USACO20FEB] Triangles S（https://www.luogu.com.cn/problem/P6149）经典枚举三角形的直角点使用前缀和与二分计算距离和
 P6393 隔离的日子（https://www.luogu.com.cn/problem/P6393）经典利用值域范围进行枚举计算
-
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1426/F（分类枚举中间的b计数两边的?ac，并使用快速幂进行求解）
@@ -579,6 +579,21 @@ class Solution:
                                 del dct[bb]
             ac.st(ind + 1)
         return
+
+    @staticmethod
+    def lc_2681(nums: List[int]) -> int:
+        # 模板：按照贡献法枚举计数
+        mod = 10**9 + 7
+        nums.sort()
+        ans = pre = 0
+        for num in nums:
+            ans += num * num * pre
+            ans += num * num * num
+            pre %= mod
+            ans %= mod
+            pre *= 2
+            pre += num
+        return ans
 
 
 class TestGeneral(unittest.TestCase):
