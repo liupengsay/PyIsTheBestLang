@@ -50,6 +50,7 @@ P2870 [USACO07DEC]Best Cow Line G（https://www.luogu.com.cn/problem/P2870）贪
 P5832 [USACO19DEC]Where Am I? B（https://www.luogu.com.cn/problem/P5832）可以使用字符串哈希进行最长的长度使得所有对应长度的子串均是唯一的
 P2852 [USACO06DEC]Milk Patterns G（https://www.luogu.com.cn/problem/P2852）二分加字符串哈希计算出现超过 k 次的最长连续子数组
 P4656 [CEOI2017] Palindromic Partitions（https://www.luogu.com.cn/problem/P4656）使用字符串哈希贪心选取
+P6739 [BalticOI 2014 Day1] Three Friends（https://www.luogu.com.cn/problem/P6739）前后缀字符串哈希
 
 ================================CodeForces================================
 D. Remove Two Letters（https://codeforces.com/problemset/problem/1800/D）字符串前后缀哈希加和变换
@@ -65,24 +66,25 @@ D. Remove Two Letters（https://codeforces.com/problemset/problem/1800/D）字�
 
 class StringHash:
     # 注意哈希碰撞，需要取两个质数与模进行区分
-    def __init__(self):
+    def __init__(self, n, s):
+        self.n = n
+        self.p = [random.randint(26, 100), random.randint(26, 100)]
+        self.mod = [random.randint(10 ** 9 + 7, 2 ** 31 - 1), random.randint(10 ** 9 + 7, 2 ** 31 - 1)]
+        self.pre = [[0], [0]]
+        self.pp = [[1], [1]]
+        for w in s:
+            for i in range(2):
+                self.pre[i].append((self.pre[i][-1] * self.p[i] + ord(w) - ord("a")) % self.mod[i])
+                self.pp[i].append((self.pp[i][-1] * self.p[i]) % self.mod[i])
         return
 
-    @staticmethod
-    def gen_hash_prime_mod(n):
-        # 也可以不提前进行计算，滚动进行还行 x=(x*p+y)%mod 更新
-        p1 = random.randint(26, 100)
-        p2 = random.randint(26, 100)
-        mod1 = random.randint(10 ** 9 + 7, 2 ** 31 - 1)
-        mod2 = random.randint(10 ** 9 + 7, 2 ** 31 - 1)
-
-        dp1 = [1]
-        for _ in range(1, n + 1):
-            dp1.append((dp1[-1] * p1) % mod1)
-        dp2 = [1]
-        for _ in range(1, n + 1):
-            dp2.append((dp2[-1] * p2) % mod2)
-        return p1, p2, mod1, mod2, dp1, dp2
+    def query(self, x, y):
+        # 模板：字符串区间的哈希值，索引从 0 开始
+        ans = [0, 0]
+        for i in range(2):
+            if x <= y:
+                ans[i] = (self.pre[i][y + 1] - self.pre[i][x] * pow(self.p[i], y - x + 1, self.mod[i])) % self.mod[i]
+        return ans
 
 
 class Solution:
@@ -438,6 +440,48 @@ class Solution:
                 ans += 1
             ac.st(ans)
 
+        return
+
+    @staticmethod
+    def lg_p6739(ac=FastIO()):
+        # 模板：前后缀字符串哈希
+        n = ac.read_int()
+        s = ac.read_str()
+        sth = StringHash(n, s)
+
+        ans = dict()
+        for i in range(n):
+            if len(ans) > 1:
+                break
+            if i < n // 2:
+                ss = sth.query(0, i - 1)
+                tt = sth.query(i + 1, n // 2)
+                pp = [(ss[j] * sth.pp[j][n // 2 - i] + tt[j]) % sth.mod[j] for j in range(2)]
+
+                rr = sth.query(n // 2 + 1, n - 1)
+                if pp == rr:
+                    ans[tuple(pp)] = i
+
+            elif i == n // 2:
+                pp = sth.query(0, n // 2 - 1)
+                rr = sth.query(n // 2 + 1, n - 1)
+                if pp == rr:
+                    ans[tuple(pp)] = i
+            else:
+                pp = sth.query(0, n // 2 - 1)
+
+                ss = sth.query(n // 2, i - 1)
+                tt = sth.query(i + 1, n - 1)
+                rr = [(ss[j] * sth.pp[j][n - 1 - i] + tt[j]) % sth.mod[j] for j in range(2)]
+                if pp == rr:
+                    ans[tuple(pp)] = i
+        if not ans:
+            ac.st("NOT POSSIBLE")
+        elif len(ans) > 1:
+            ac.st("NOT UNIQUE")
+        else:
+            i = list(ans.values())[0]
+            ac.st((s[:i] + s[i + 1:])[:n // 2])
         return
 
 

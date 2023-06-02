@@ -103,6 +103,7 @@ P5425 [USACO19OPEN]I Would Walk 500 Miles G（https://www.luogu.com.cn/problem/P
 P5884 [IOI2014]game 游戏（https://www.luogu.com.cn/problem/P5884）脑筋急转弯
 P5948 [POI2003]Chocolate（https://www.luogu.com.cn/problem/P5948）贪心模拟进行计算
 P6196 [EER1]代价（https://www.luogu.com.cn/problem/P6196）贪心使用 1 进行分段计算代价
+P6874 [COCI2013-2014#6] KOCKICE（https://www.luogu.com.cn/problem/P6874）经典变换公式转为中位数贪心
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1186/D（贪心取floor，再根据加和为0的特质进行补充加1成为ceil）
@@ -691,6 +692,23 @@ class Solution:
             for i in range(1, m):
                 ans += lst[i - 1] * lst[i]
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p6874(ac=FastIO()):
+        # 模板：经典变换公式转为中位数贪心
+        n = ac.read_int()
+        a = ac.read_list_ints()
+        b = ac.read_list_ints()
+        for i in range(n):
+            w = abs(i-n//2)
+            a[i] -= w
+            b[i] -= w
+        a.extend(b)
+        del b
+        a.sort()
+        x = ac.max(0, a[n])
+        ac.st(sum(abs(x-num) for num in a))
         return
 
 

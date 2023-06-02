@@ -1,6 +1,6 @@
 import math
 import unittest
-from collections import defaultdict
+from collections import defaultdict, deque
 from typing import List
 
 from algorithm.src.fast_io import FastIO
@@ -57,6 +57,9 @@ P4623 [COCI2012-2013#6] BUREK（https://www.luogu.com.cn/problem/P4623）离散�
 P6032 选择客栈 加强版（https://www.luogu.com.cn/problem/P6032）经典前后缀计数
 P6070 『MdOI R1』Decrease（https://www.luogu.com.cn/problem/P6070）经典二维差分贪心修改实时维护差分与计算前缀和即矩阵最新值
 P6278 [USACO20OPEN]Haircut G（https://www.luogu.com.cn/problem/P6278）经典逆序对作用域与差分前缀和计算
+P6537 [COCI2013-2014#1] RATAR（https://www.luogu.com.cn/problem/P6537）预处理前缀和加枚举
+P6877 [JOI 2020 Final] 長いだけのネクタイ（https://www.luogu.com.cn/problem/P6877）排序贪心前后缀 DP 枚举
+P6878 [JOI 2020 Final] JJOOII 2（https://www.luogu.com.cn/problem/P6878）前后缀枚举
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/33/C（前后缀最大变换和与分割点枚举，经典类型题目）
@@ -988,6 +991,104 @@ class Solution:
         for i in range(n):
             # 减少到 i 时前面小于 i 的对应逆序对不受改变
             ac.st(diff[i])
+        return
+
+    @staticmethod
+    def lg_p6537(ac=FastIO()):
+        # 模板：预处理前缀和加枚举
+        n = ac.read_int()
+        grid = [ac.read_list_ints() for _ in range(n)]
+        pre = PreFixSumMatrix(grid)
+        ans = 0
+        for i in range(n):
+            for j in range(n):
+                # 左上右下
+                dct = dict()
+                for x in range(i+1):
+                    for y in range(j+1):
+                        val = pre.query(x, y, i, j)
+                        dct[val] = dct.get(val, 0) + 1
+                for x in range(i+1, n):
+                    for y in range(j+1, n):
+                        val = pre.query(i+1, j+1, x, y)
+                        ans += dct.get(val, 0)
+                # 左下右上
+                dct = defaultdict(int)
+                for x in range(i+1):
+                    for y in range(j, n):
+                        val = pre.query(x, j, i, y)
+                        dct[val] = dct.get(val, 0) + 1
+                for x in range(i+1, n):
+                    for y in range(j):
+                        val = pre.query(i+1, y, x, j-1)
+                        ans += dct.get(val, 0)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p6877(ac=FastIO()):
+        # 模板：排序贪心前后缀 DP 枚举
+        n = ac.read_int()
+        a = ac.read_list_ints()
+        b = ac.read_list_ints()
+        aa = a[:]
+
+        a.sort()
+        b.sort()
+        pre = [0]*(n+2)
+        for i in range(n):
+            pre[i+1] = ac.max(pre[i], a[i]-b[i])
+
+        post = [0]*(n+2)
+        for i in range(n-1, -1, -1):
+            post[i] = ac.max(post[i+1], a[i+1]-b[i])
+
+        ans = dict()
+        for i in range(n+1):
+            ans[a[i]] = ac.max(pre[i], post[i])
+        ac.lst([ans[x] for x in aa])
+        return
+
+    @staticmethod
+    def lg_p6878(ac=FastIO()):
+        # 模板：前后缀枚举
+        n, k = ac.read_ints()
+        s = ac.read_str()
+        pre = [-1]*n
+        stack = deque()
+        for i in range(n):
+            while len(stack) > k:
+                stack.popleft()
+            if s[i] == "J":
+                stack.append(i)
+            elif s[i] == "O":
+                if len(stack) == k:
+                    pre[i] = stack[0]
+
+        post_o = [-1]*n
+        post = [-1] * n
+        stack = deque()
+        stack_o = deque()
+        for i in range(n-1, -1, -1):
+            while len(stack) > k:
+                stack.popleft()
+            if s[i] == "I":
+                stack.append(i)
+            if s[i] == "O":
+                stack_o.append(i)
+            while len(stack_o) > k:
+                stack_o.popleft()
+            if s[i] == "O":
+                if len(stack) == k:
+                    post[i] = stack[0]
+                if len(stack_o) == k:
+                    post_o[i] = stack_o[0]
+
+        ans = inf
+        for i in range(n):
+            if pre[i] != -1 and post_o[i] != -1 and post[post_o[i]] != -1:
+                ans = ac.min(ans, post[post_o[i]]-pre[i]+1-3*k)
+        ac.st(ans if ans < inf else -1)
         return
 
 

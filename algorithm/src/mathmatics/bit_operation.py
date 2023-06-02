@@ -39,6 +39,7 @@ P2326 AKN’s PPAP（https://www.luogu.com.cn/problem/P2326）按位模拟贪心
 P4144 大河的序列（https://www.luogu.com.cn/problem/P4144）按位思考贪心脑筋急转弯
 P4310 绝世好题（https://www.luogu.com.cn/problem/P4310）线性 DP 使用按位转移
 P5390 [Cnoi2019]数学作业（https://www.luogu.com.cn/problem/P5390）按位操作
+P6824 「EZEC-4」可乐（https://www.luogu.com.cn/problem/P6824）经典按位操作计算异或不等式在使用差分作用域计数
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/305/C（利用二进制加减的思想进行解题）
@@ -467,6 +468,40 @@ class Solution:
                 if num & (1 << i):
                     ans += (1 << i) * pp
             ac.st(ans % mod)
+        return
+
+    @staticmethod
+    def lg_p6824(ac=FastIO()):
+        # 模板：经典按位操作计算异或不等式在使用差分作用域计数
+        n, k = ac.read_ints()
+        nums = [ac.read_int() for _ in range(n)]
+        m = len(bin(max(k, max(nums))))
+        diff = [0] * ((1 << m) + 1)
+        for a in nums:
+            i, pre = m - 1, 0
+            while True:
+                if i == -1:
+                    diff[pre] += 1
+                    diff[pre + 1] -= 1
+                    break
+                if k & (1 << i):
+                    if a & (1 << i):
+                        low = pre ^ (1 << i)
+                        high = low ^ ((1 << i) - 1)
+                        diff[low] += 1
+                        diff[high + 1] -= 1
+                        i -= 1
+                    else:
+                        low, high = pre, pre ^ ((1 << i) - 1)
+                        diff[low] += 1
+                        diff[high + 1] -= 1
+                        i, pre = i - 1, pre ^ (1 << i)
+                else:
+                    if a & (1 << i):
+                        i, pre = i - 1, pre ^ (1 << i)
+                    else:
+                        i -= 1
+        ac.st(max(ac.accumulate(diff)))
         return
 
 

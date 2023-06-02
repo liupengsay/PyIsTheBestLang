@@ -73,6 +73,7 @@ P5096 [USACO04OPEN]Cave Cows 1（https://www.luogu.com.cn/problem/P5096）状压
 P5099 [USACO04OPEN]Cave Cows 4（https://www.luogu.com.cn/problem/P5099）队列 01BFS 广搜模拟
 P5195 [USACO05DEC]Knights of Ni S（https://www.luogu.com.cn/problem/P5195）
 P6131 [USACO11NOV]Cow Beauty Pageant S（https://www.luogu.com.cn/problem/P6131）经典 BFS 计算不同连通块之间的距离
+P6909 [ICPC2015 WF]Keyboarding（https://www.luogu.com.cn/problem/P6909）预处理加 BFS 
 
 ================================CodeForces================================
 E. Nearest Opposite Parity（https://codeforces.com/problemset/problem/1272/E）经典反向建图，多源BFS
@@ -1432,6 +1433,82 @@ class Solution:
                     ans = ac.min(ans, dis[i][j] - 2)
                 else:
                     ans = ac.min(ans, dis[i][j])
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p6909(ac=FastIO()):
+        # 模板：预处理加 BFS
+        m, n = ac.read_ints()
+        grid = [ac.read_str() for _ in range(m)]
+
+        up = [[-1]*n for _ in range(m)]
+        for j in range(n):
+            for i in range(1, m):
+                if grid[i][j] == grid[i-1][j]:
+                    up[i][j] = up[i-1][j]
+                else:
+                    up[i][j] = i-1
+
+        down = [[-1]*n for _ in range(m)]
+        for j in range(n):
+            for i in range(m-2, -1, -1):
+                if grid[i][j] == grid[i+1][j]:
+                    down[i][j] = down[i+1][j]
+                else:
+                    down[i][j] = i+1
+
+        left = [[-1] * n for _ in range(m)]
+        for i in range(m):
+            for j in range(1, n):
+                if grid[i][j] == grid[i][j-1]:
+                    left[i][j] = left[i][j-1]
+                else:
+                    left[i][j] = j-1
+
+        right = [[-1] * n for _ in range(m)]
+        for i in range(m):
+            for j in range(n-2, -1, -1):
+                if grid[i][j] == grid[i][j + 1]:
+                    right[i][j] = right[i][j + 1]
+                else:
+                    right[i][j] = j + 1
+
+        s = ac.read_str()+"*"
+        k = len(s)
+        visit = [[-1] * n for _ in range(m)]
+        visit[0][0] = 0
+        stack = deque([[0, 0, 0, 0]])
+        ans = -1
+        while stack and ans == -1:
+            d, ind, i, j = stack.popleft()
+            if s[ind] == grid[i][j]:
+                if ind + 1 > visit[i][j]:
+                    stack.append([d + 1, ind + 1, i, j])
+                    visit[i][j] = ind + 1
+                    if ind + 1 == k:
+                        ans = d + 1
+                        break
+            if up[i][j] != -1:
+                x, y = up[i][j], j
+                if visit[x][y] < ind:
+                    visit[x][y] = ind
+                    stack.append([d + 1, ind, x, y])
+            if down[i][j] != -1:
+                x, y = down[i][j], j
+                if visit[x][y] < ind:
+                    visit[x][y] = ind
+                    stack.append([d + 1, ind, x, y])
+            if left[i][j] != -1:
+                x, y = i, left[i][j]
+                if visit[x][y] < ind:
+                    visit[x][y] = ind
+                    stack.append([d + 1, ind, x, y])
+            if right[i][j] != -1:
+                x, y = i, right[i][j]
+                if visit[x][y] < ind:
+                    visit[x][y] = ind
+                    stack.append([d + 1, ind, x, y])
         ac.st(ans)
         return
 

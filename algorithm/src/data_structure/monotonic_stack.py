@@ -1,8 +1,11 @@
+import bisect
+import heapq
 import random
 import unittest
 from collections import defaultdict
 from typing import List
 
+from algorithm.src.data_structure.sparse_table import SparseTable1
 from algorithm.src.fast_io import FastIO
 
 """
@@ -35,6 +38,9 @@ P1323 删数问题（https://www.luogu.com.cn/problem/P1323）二叉堆与单调
 P2422 良好的感觉（https://www.luogu.com.cn/problem/P2422）单调栈与前缀和
 P3467 [POI2008]PLA-Postering（https://www.luogu.com.cn/problem/P3467）看不懂的单调栈
 P6404 [COCI2014-2015#2] BOB（https://www.luogu.com.cn/problem/P6404）经典单调栈计算具有相同数字的子矩形个数
+P6503 [COCI2010-2011#3] DIFERENCIJA（https://www.luogu.com.cn/problem/P6503）经典单调栈连续子序列的最大值最小值贡献计数
+P6510 奶牛排队（https://www.luogu.com.cn/problem/P6510）单调栈稀疏表加哈希二分
+P6801 [CEOI2020] 花式围栏（https://www.luogu.com.cn/problem/P6801）经典单调栈计算矩形个数
 
 ================================CodeForces================================
 E. Explosions?（https://codeforces.com/problemset/problem/1795/E）单调栈贪心计数枚举，前后缀DP转移
@@ -413,6 +419,100 @@ class Solution:
                     lst = [c]
                     num = x
             ans += rt.compute_number(lst)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p6503(ac=FastIO()):
+        # 模板：经典单调栈连续子序列的最大值最小值贡献计数
+        m = ac.read_int()
+        nums = [ac.read_int() for _ in range(m)]
+        left = [0] * m
+        right = [m - 1] * m
+        stack = []
+        for i in range(m):
+            while stack and nums[stack[-1]] < nums[i]:
+                right[stack.pop()] = i - 1
+            if stack:  # 这里可以同时求得数组前后的下一个大于等于值
+                left[i] = stack[-1] + 1  # 这里将相同的值视为右边的更大且并不会影响计算
+            stack.append(i)
+        ans = sum((right[i]-i+1)*nums[i]*(i-left[i]+1) for i in range(m))
+
+        left = [0] * m
+        right = [m - 1] * m
+        stack = []
+        for i in range(m):
+            while stack and nums[stack[-1]] > nums[i]:
+                right[stack.pop()] = i - 1
+            if stack:  # 这里可以同时求得数组前后的下一个大于等于值
+                left[i] = stack[-1] + 1  # 这里将相同的值视为右边的更大且并不会影响计算
+            stack.append(i)
+        ans -= sum((right[i]-i+1)*nums[i]*(i-left[i]+1) for i in range(m))
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p6510(ac=FastIO()):
+        # 模板：单调栈稀疏表加哈希二分
+        n = ac.read_int()
+        nums = [ac.read_int() for _ in range(n)]
+        post = [n-1]*n
+        stack = []
+        dct = defaultdict(list)
+        for i in range(n):
+            while stack and nums[stack[-1]] >= nums[i]:
+                post[stack.pop()] = i-1
+            stack.append(i)
+            dct[nums[i]].append(i)
+        st = SparseTable1(nums)
+        ans = 0
+        for i in range(n):
+            x = st.query(i+1, post[i]+1)
+            if x == nums[i]:
+                continue
+            j = bisect.bisect_left(dct[x], i)
+            ans = ac.max(ans, dct[x][j]-i+1)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p6801(ac=FastIO()):
+        # 模板：经典单调栈计算矩形个数
+
+        def compute(x, y):
+            return x * (x + 1) * y * (y + 1) // 4
+
+        ans = 0
+        mod = 10 ** 9 + 7
+        n = ac.read_int()
+        h = ac.read_list_ints()
+        w = ac.read_list_ints()
+        # 削峰维持单调递增
+        stack = []
+        for i in range(n):
+            ww, hh = w[i], h[i]
+            while stack and stack[-1][1] >= hh:
+                www, hhh = stack.pop()
+                if stack and stack[-1][1] >= hh:
+                    max_h = stack[-1][1]
+                    ans += compute(www, hhh) - compute(www, max_h)
+                    ans %= mod
+                    stack[-1][0] += www
+                else:
+                    ww += www
+                    ans += compute(www, hhh) - compute(www, hh)
+                    ans %= mod
+            stack.append([ww, hh])
+        # 反向计算剩余
+        ww, hh = stack.pop()
+        while stack:
+            www, hhh = stack.pop()
+            ans += compute(ww, hh) - compute(ww, hhh)
+            ans %= mod
+            ww += www
+            hh = hhh
+        ans += compute(ww, hh)
+        ans %= mod
         ac.st(ans)
         return
 

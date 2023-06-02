@@ -41,6 +41,7 @@ P4145 上帝造题的七分钟 2 / 花神游历各国（https://www.luogu.com.cn
 P1558 色板游戏（https://www.luogu.com.cn/problem/P1558）线段树区间值修改，区间或值查询
 P3740 [HAOI2014]贴海报（https://www.luogu.com.cn/problem/P3740）离散化线段树区间修改与单点查询
 P4588 [TJOI2018]数学计算（https://www.luogu.com.cn/problem/P4588）转化为线段树单点值修改与区间乘积取模
+P6627 [省选联考 2020 B 卷] 幸运数字（https://www.luogu.com.cn/problem/P6627）线段树维护和查询区间异或值
 
 ================================CodeForces================================
 
@@ -1892,6 +1893,103 @@ class SegmentTreeRangeAndOrXOR:
         return res
 
 
+class SegmentTreeRangeXORQuery:
+    def __init__(self, n) -> None:
+        # 模板：区间异或修改、单点异或查询
+        self.n = n
+        self.cover = [0] * (4 * self.n)
+        self.lazy = [0] * (4 * self.n)
+        return
+
+    def push_up(self, i):
+        # 合并区间的函数
+        self.cover[i] = self.cover[2 * i] ^ self.cover[2 * i + 1]
+        return
+
+    def make_tag(self, i, val):
+        self.cover[i] ^= val
+        self.lazy[i] ^= val
+        return
+
+    def push_down(self, i):
+        if self.lazy[i]:
+            self.make_tag(2 * i, self.lazy[i])
+            self.make_tag(2 * i + 1, self.lazy[i])
+            self.lazy[i] = 0
+
+    def update_range(self, left: int, right: int, s: int, t: int, val: int, i: int) -> None:
+        # 修改点值 [left  right] 取值为 0 到 n-1 异或 val 而 i 从 1 开始
+        stack = [[s, t, i]]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                m = s + (t - s) // 2
+                if left <= s and t <= right:
+                    self.make_tag(i, val)
+                    continue
+                self.push_down(i)
+                stack.append([s, t, ~i])
+                if left <= m:  # 注意左右子树的边界与范围
+                    stack.append([s, m, 2 * i])
+                if right > m:
+                    stack.append([m + 1, t, 2 * i + 1])
+            else:
+                i = ~i
+                self.push_up(i)
+        return
+
+    def update_point(self, left: int, right: int, s: int, t: int, val: int, i: int) -> None:
+        # 修改点值 [left  right] 取值为 0 到 n-1 异或 val 而 i 从 1 开始
+        assert left == right
+        while True:
+            if left <= s and t <= right:
+                self.make_tag(i, val)
+                break
+            self.push_down(i)
+            m = s + (t - s) // 2
+            if left <= m:  # 注意左右子树的边界与范围
+                s, t, i = s, m, 2 * i
+            if right > m:
+                s, t, i = m + 1, t, 2 * i + 1
+        while i > 1:
+            i //= 2
+            self.push_up(i)
+        return
+
+    def query(self, left: int, right: int, s: int, t: int, i: int):
+        # 查询区间和，与数组平方的区间和
+        stack = [[s, t, i]]
+        ans = 0
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                ans ^= self.cover[i]
+                continue
+            m = s + (t - s) // 2
+            self.push_down(i)
+            if left <= m:
+                stack.append([s, m, 2 * i])
+            if right > m:
+                stack.append([m + 1, t, 2 * i + 1])
+        return ans
+
+    def query_point(self, left: int, right: int, s: int, t: int, i: int):
+        # 查询区间和，与数组平方的区间和
+        assert left == right
+        ans = 0
+        while True:
+            if left <= s and t <= right:
+                ans ^= self.cover[i]
+                break
+            m = s + (t - s) // 2
+            self.push_down(i)
+            if left <= m:
+                s, t, i = s, m, 2 * i
+            if right > m:
+                s, t, i = m + 1, t, 2 * i + 1
+        return ans
+
+
 class SegmentTreeRangeSqrtSum:
     def __init__(self, n):
         # 模板：区间值开方向下取整，区间和查询
@@ -2240,6 +2338,47 @@ class Solution:
                 avg, avg_2 = tree.query(x - 1, y - 1, 0, n - 1, 1)
                 ans = -(avg*avg/(y-x+1))**2 + avg_2/(y-x+1)
                 ac.st("%.4f" % ans)
+        return
+
+    @staticmethod
+    def lg_p6627(ac=FastIO()):
+        # 模板：线段树维护和查询区间异或值
+        n = ac.read_int()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        nodes = {0, -10**9-1, 10**9+1}
+        for lst in nums:
+            for va in lst[1:-1]:
+                nodes.add(va)
+                nodes.add(va-1)
+                nodes.add(va+1)
+        nodes = sorted(list(nodes))
+        n = len(nodes)
+        ind = {num: i for i, num in enumerate(nodes)}
+        tree = SegmentTreeRangeXORQuery(n)
+        arr = [0]*n
+        for lst in nums:
+            if lst[0] == 1:
+                a, b, w = lst[1:]
+                if a > b:
+                    a, b = b, a
+                tree.update_range(ind[a], ind[b], 0, n-1, w, 1)
+            elif lst[0] == 2:
+                a, w = lst[1:]
+                arr[ind[a]] ^= w  # 使用数组代替
+                # tree.update_point(ind[a], ind[a], 0, n-1, w, 1)
+            else:
+                a, w = lst[1:]
+                tree.update_range(0, n-1, 0, n - 1, w, 1)
+                arr[ind[a]] ^= w  # 使用数组代替
+                # tree.update_point(ind[a], ind[a], 0, n - 1, w, 1)
+        ans = inf
+        res = -inf
+        for i in range(n):
+            val = tree.query_point(i, i, 0, n-1, 1) ^ arr[i]
+            if val > res or (val == res and (abs(ans) > abs(nodes[i]) or (abs(ans) == abs(nodes[i]) and nodes[i] > ans))):
+                res = val
+                ans = nodes[i]
+        ac.lst([res, ans])
         return
 
     @staticmethod

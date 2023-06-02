@@ -52,6 +52,7 @@ P2835 刻录光盘（https://www.luogu.com.cn/problem/P2835）强连通分量scc
 P2863 [USACO06JAN]The Cow Prom S（https://www.luogu.com.cn/problem/P2863）强连通分量scc模板题
 B3609 [图论与代数结构 701] 强连通分量（https://www.luogu.com.cn/problem/B3609）强连通分量scc模板题
 B3610 [图论与代数结构 801] 无向图的块（https://www.luogu.com.cn/problem/B3610）点双连通分量
+P7033 [NWRRC2016]CodeCoder vs TopForces（https://www.luogu.com.cn/problem/P7033）经典scc缩点后使用 DAG 进行树形 DP
 
 ===================================CodeForces===================================
 F. Is It Flower?（https://codeforces.com/contest/1811/problem/F）无向图求连通分量
@@ -113,6 +114,17 @@ class TarjanCC:
                         elif in_stack[nex]:
                             low[cur] = low[cur] if low[cur] < order[nex] else order[nex]  # 注意这里是order
         # SCC的数量，分组，每个结点对应的SCC编号
+        # 建立新图
+        new_dct = [set() for _ in range(scc_id)]
+        for i in range(n):
+            for j in edge[i]:
+                a, b = node_scc_id[i], node_scc_id[j]
+                if a != b:
+                    new_dct[b].add(a)
+        new_degree = [0]*scc_id
+        for i in range(scc_id):
+            for j in new_dct[i]:
+                new_degree[j] += 1
         return scc_id, scc_node_id, node_scc_id
 
     @staticmethod
@@ -789,6 +801,54 @@ class Solution:
         for g in group:
             ans += len(group[g]) > 1
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p7033(ac=FastIO()):
+        # 模板：经典scc缩点后使用 DAG 进行树形 DP
+        n = ac.read_int()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        ind = list(range(n))
+        dct = [[] for _ in range(n)]
+        degree = [0] * n
+
+        ind.sort(key=lambda it: -nums[it][0])
+        for i in range(n - 1):
+            x, y = ind[i], ind[i + 1]
+            degree[y] += 1
+            dct[x].append(y)
+
+        ind.sort(key=lambda it: -nums[it][1])
+        for i in range(n - 1):
+            x, y = ind[i], ind[i + 1]
+            degree[y] += 1
+            dct[x].append(y)
+        scc_id, scc_node_id, node_scc_id = TarjanCC().get_strongly_connected_component_bfs(n,
+                                                                                           [list(set(e)) for e in dct])
+
+        # 建立新图
+        new_dct = [set() for _ in range(scc_id)]
+        for i in range(n):
+            for j in dct[i]:
+                a, b = node_scc_id[i], node_scc_id[j]
+                if a != b:
+                    new_dct[b].add(a)
+        new_degree = [0] * scc_id
+        for i in range(scc_id):
+            for j in new_dct[i]:
+                new_degree[j] += 1
+
+        # 计算结果
+        ans_group = [0] * scc_id
+        stack = [i for i in range(scc_id) if not new_degree[i]]
+        while stack:
+            i = stack.pop()
+            ans_group[i] += len(scc_node_id[i]) - 1
+            for j in new_dct[i]:
+                ans_group[j] += ans_group[i] + 1
+                stack.append(j)
+        for i in range(n):
+            ac.st(ans_group[node_scc_id[i]])
         return
 
 

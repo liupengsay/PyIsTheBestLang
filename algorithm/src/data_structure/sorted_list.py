@@ -59,6 +59,7 @@ P3608 [USACO17JAN]Balanced Photo G（https://www.luogu.com.cn/problem/P3608）�
 P5076 【深基16.例7】普通二叉树（简化版）（https://www.luogu.com.cn/problem/P5076）使用有序列表与有序集合进行名次模拟
 P5149 会议座位（https://www.luogu.com.cn/problem/P5149）经典逆序对计算使用 bisect 实现
 P5459 [BJOI2016]回转寿司（https://www.luogu.com.cn/problem/P5459）前缀和与有序列表二分查找
+P6538 [COCI2013-2014#1] LOPOV（https://www.luogu.com.cn/problem/P6538）典型STL维护贪心
 
 ================================CodeForces================================
 D. Pashmak and Parmida's problem（https://codeforces.com/problemset/problem/459/D）使用有序集合进行大小计数查找

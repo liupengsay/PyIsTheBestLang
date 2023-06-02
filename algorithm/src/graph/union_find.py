@@ -50,6 +50,7 @@ P2307 迷宫（https://www.luogu.com.cn/problem/P2307）并查集判定树的生
 P3420 [POI2005]SKA-Piggy Banks（https://www.luogu.com.cn/problem/P3420）经典并查集变形问题
 P5429 [USACO19OPEN]Fence Planning S（https://www.luogu.com.cn/problem/P5429）简单并查集应用题
 P6193 [USACO07FEB]Cow Sorting G（https://www.luogu.com.cn/problem/P6193）经典置换环计算交换代价
+P6706 [COCI2010-2011#7] KUGLICE（https://www.luogu.com.cn/problem/P6706）经典有向图并查集逆序更新边 find_merge 灵活使用
 
 ================================CodeForces================================
 D. Roads not only in Berland（https://codeforces.com/problemset/problem/25/D）并查集将原来的边断掉重新来连接使得成为一整个连通集
@@ -631,6 +632,52 @@ class Solution:
                 else:
                     pre[num] = i
         return uf.part == 1
+
+    @staticmethod
+    def lg_p6706(ac=FastIO()):
+        # 模板：经典有向图并查集逆序更新边 find_merge 灵活使用
+        n = ac.read_int()
+        edge = ac.read_list_ints_minus_one()
+        q = ac.read_int()
+        query = [ac.read_list_ints() for _ in range(q)]
+        rem = dict()
+        for op, x in query:
+            if op == 2:
+                rem[x - 1] = edge[x - 1]
+                edge[x - 1] = -1
+
+        def find_merge(y):
+            tmp = [y]
+            while edge[tmp[-1]] not in [-1, n, y]:
+                tmp.append(edge[tmp[-1]])
+            if edge[tmp[-1]] == -1:
+                for yy in tmp[:-1]:
+                    edge[yy] = tmp[-1]
+            else:
+                for yy in tmp[:-1]:
+                    edge[yy] = n
+            return
+
+        ans = []
+        for i in range(q - 1, -1, -1):
+            op, x = query[i]
+            x -= 1
+            if op == 1:
+                find_merge(x)
+                if edge[x] == n:
+                    res = "CIKLUS"
+                elif edge[x] == -1:
+                    res = x + 1
+                else:
+                    res = edge[x] + 1
+                ans.append(res)
+            else:
+                edge[x] = rem[x]
+                find_merge(x)
+        for i in range(len(ans) - 1, -1, -1):
+            ac.st(ans[i])
+        return
+
 
 class TestGeneral(unittest.TestCase):
 

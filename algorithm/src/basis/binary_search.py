@@ -4,6 +4,8 @@ import unittest
 from collections import deque, defaultdict
 from typing import List, Callable
 from math import inf
+
+from algorithm.src.data_structure.sorted_list import LocalSortedList
 from algorithm.src.fast_io import FastIO
 from algorithm.src.graph.lca import OfflineLCA
 from algorithm.src.graph.union_find import UnionFind
@@ -61,6 +63,7 @@ P5878 奖品（https://www.luogu.com.cn/problem/P5878）经典二分加枚举
 P6004 [USACO20JAN] Wormhole Sort S（https://www.luogu.com.cn/problem/P6004）经典二分加并查集
 P6058 [加油武汉]体温调查（https://www.luogu.com.cn/problem/P6058）使用深搜序与离线 LCA 计算相邻叶子之间距离并二分确定时间
 P6069 『MdOI R1』Group（https://www.luogu.com.cn/problem/P6069）经典方差计算公式变形，使用二分加变量维护区间的方差值大小
+P6733 「Wdsr-2」间歇泉（https://www.luogu.com.cn/problem/P6733）二分加STL进行 Check
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1251/D（使用贪心进行中位数二分求解）
@@ -1008,6 +1011,27 @@ class Solution:
 
         ans = BinarySearch().find_int_right(1, n, check)
         ac.st(n - ans)
+        return
+
+    @staticmethod
+    def lg_p6633(ac=FastIO()):
+        # 模板：二分加STL进行 Check
+        n, k = ac.read_list_ints()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        nums.sort(key=lambda it: -it[1])
+
+        def check(x):
+            res = 0
+            pre = LocalSortedList()
+            for a, c in nums:
+                res += pre.bisect_right(a*c-x*a)
+                pre.add(-(a*c-x*a))
+                if res >= k:
+                    return True
+            return res >= k
+
+        ans = BinarySearch().find_float_right(0, nums[0][1], check, 1e-3)
+        ac.st(ans)
         return
 
 

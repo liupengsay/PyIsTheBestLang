@@ -54,6 +54,8 @@ P1896 [SCOI2005] 互不侵犯（https://www.luogu.com.cn/problem/P1896）状压D
 P1556 幸福的路（https://www.luogu.com.cn/problem/P1556）状态压缩计算最短路
 P3052 [USACO12MAR]Cows in a Skyscraper G（https://www.luogu.com.cn/problem/P3052）经典状态压缩 DP 使用二维优化
 P5997 [PA2014]Pakowanie（https://www.luogu.com.cn/problem/P5997）经典贪心背包与状压 DP 结合
+P6883 [COCI2016-2017#3] Kroničan（https://www.luogu.com.cn/problem/P6883）典型状压 DP 
+
 
 ================================CodeForces================================
 D. Kefa and Dishes（https://codeforces.com/problemset/problem/580/D）状态压缩DP结合前后相邻的增益计算最优解
@@ -420,6 +422,25 @@ class Solution:
                                 dp[i] = dd + 1
                                 rest[i] = rr - a[j]
         ac.st(dp[-1] if dp[-1] < m + 1 else "NIE")
+        return
+
+    @staticmethod
+    def lg_p6883(ac=FastIO()):
+        # 模板：典型状压 DP
+        n, k = ac.read_ints()
+        grid = [ac.read_list_ints() for _ in range(n)]
+        dp = [inf] * (1 << n)
+        dp[-1] = 0
+        ans = inf
+        for i in range((1 << n) - 1, -1, -1):
+            lst = [j for j in range(n) if (1 << j) & i]
+            if len(lst) <= k:
+                ans = ac.min(ans, dp[i])
+                continue
+            for j in lst:
+                c = min(grid[j][k] for k in lst if k != j)
+                dp[i ^ (1 << j)] = ac.min(dp[i ^ (1 << j)], dp[i] + c)
+        ac.st(ans)
         return
 
 

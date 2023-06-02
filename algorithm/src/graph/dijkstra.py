@@ -90,6 +90,9 @@ P5837 [USACO19DEC]Milk Pumping G（https://www.luogu.com.cn/problem/P5837）经�
 P5905 【模板】Johnson 全源最短路（https://www.luogu.com.cn/problem/P5905）有向带权图可能有负权 Johnson 全源最短路计算所有点对的最短路
 P5930 [POI1999] 降水（https://www.luogu.com.cn/problem/P5930）经典Dijkstra应用接雨水
 P6063 [USACO05JAN]The Wedding Juicer G（https://www.luogu.com.cn/problem/P6063）经典Dijkstra应用接雨水
+P6512 [QkOI#R1] Quark and Flying Pigs（https://www.luogu.com.cn/problem/P6512）经典最短路加DP
+
+
 ================================CodeForces================================
 C. Dijkstra?（https://codeforces.com/problemset/problem/20/C）正权值最短路计算，并记录返回生成路径
 E. Weights Distributing（https://codeforces.com/problemset/problem/1343/E）使用三个01BFS求最短路加贪心枚举计算
@@ -1573,6 +1576,30 @@ class Solution:
         if dis1[destination] == target:
             return edges
         return []
+
+    @staticmethod
+    def lg_p6512(ac=FastIO()):
+        # 模板：经典最短路加DP
+        n, m, k = ac.read_ints()
+        dct = [[] for _ in range(n)]
+        for _ in range(m):
+            i, j, w = ac.read_ints_minus_one()
+            dct[i].append([j, w + 1])
+            dct[j].append([i, w + 1])
+        dis = []
+        for i in range(n):
+            dis.append(Dijkstra().get_dijkstra_result_edge(dct, i))
+        dp = [-inf] * (k + 1)
+        dp[0] = 0
+        pos = [[0, 0]] + [ac.read_list_ints() for _ in range(k)]
+        pos.sort()
+        for i in range(k):
+            t, v = pos[i + 1]
+            v -= 1
+            lst = [dp[j] + 1 for j in range(i + 1) if dis[v][pos[j][1] - 1] + pos[j][0] <= t] + [0]
+            dp[i + 1] = max(lst)
+        ac.st(max(dp))
+        return
 
 
 class TestGeneral(unittest.TestCase):

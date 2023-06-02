@@ -11,7 +11,7 @@ from types import GeneratorType
 from algorithm.src.basis.diff_array import PreFixSumMatrix
 from algorithm.src.data_structure.tree_array import TreeArrayRangeQueryPointUpdateMin
 from algorithm.src.fast_io import FastIO
-
+from algorithm.src.mathmatics.comb_perm import Combinatorics
 
 """
 算法：矩阵DP、二维DP、记忆化搜索（记忆化形式的DP，可以自顶向下也可以自底向上，就是另一种写法的DP）
@@ -89,6 +89,8 @@ P6323 [COCI2006-2007#4] ZBRKA（https://www.luogu.com.cn/problem/P6323）经典 
 P6394 樱花，还有你（https://www.luogu.com.cn/problem/P6394）矩阵 DP 加前缀和优化
 P6433 「EZEC-1」出题（https://www.luogu.com.cn/problem/P6433）贪心分类讨论使用矩阵 DP 计算
 P6451 [COCI2008-2009#4] SLIKAR（https://www.luogu.com.cn/problem/P6451）使用迭代方式实现四维 DP 并枚举四叉树获取对应最小代价和状态
+P6509 [CRCI2007-2008] JEDNAKOST（https://www.luogu.com.cn/problem/P6509）典型矩阵 DP 并记录对应的状态转移
+P6870 [COCI2019-2020#5] Zapina（https://www.luogu.com.cn/problem/P6870）矩阵 DP 与组合数优化计数
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1446/B（最长公共子序列LCS变形问题，理解贡献）
@@ -1461,6 +1463,68 @@ class Solution:
                 heapq.heappush(row[i], [val + 1, grid[i][j] + j])
                 heapq.heappush(col[j], [val + 1, grid[i][j] + i])
         return dp[-1][-1] if dp[-1][-1] < inf else -1
+
+    @staticmethod
+    def lg_p6509(ac=FastIO()):
+        # 模板：典型矩阵 DP 并记录对应的状态转移
+        s = ac.read_str().split("=")
+        b = int(s[1])
+        s = s[0]
+        n = len(s)
+        dp = [[inf] * (b + 1) for _ in range(n + 1)]
+        dp[0][0] = -1
+        pre = [0] * n
+        ind = 0
+        for i in range(n):
+            pre[i] = ind
+            if s[i] != "0":
+                ind = i
+        change = [[[-1, -1] for _ in range(b + 1)] for _ in range(n + 1)]
+        for i in range(n):
+            for j in range(i, ac.max(-1, i - 5), -1):
+                val = int(s[j:i + 1])
+                for x in range(b + 1 - val):
+                    if dp[j][x] + 1 < dp[i + 1][x + val]:
+                        dp[i + 1][x + val] = dp[j][x] + 1
+                        change[i + 1][x + val] = [j, x]
+            if pre[j] < i - 5:
+                j = pre[j] + 1
+                val = int(s[j:i + 1])
+                for x in range(b + 1 - val):
+                    if dp[j][x] + 1 < dp[i + 1][x + val]:
+                        dp[i + 1][x + val] = dp[j][x] + 1
+                        change[i + 1][x + val] = [j, x]
+        ans = list(s)
+        x, val = n, b
+        while [x, val] != [0, 0]:
+            x, val = change[x][val]
+            if x:
+                ans[x] = "+" + ans[x]
+        ac.st("".join(ans) + "=" + str(b))
+        return
+
+    @staticmethod
+    def lg_p6870(ac=FastIO()):
+        # 模板：矩阵 DP 与组合数优化计数
+        n = ac.read_int()
+        mod = 10**9 + 7
+        cb = Combinatorics(n, mod)
+        dp = [[0] * (n + 1) for _ in range(n + 1)]
+        dp[0][0] = 1
+        for i in range(1, n + 1):
+            for j in range(n + 1):
+                for k in range(n + 1 - j):
+                    if k == i:
+                        continue
+                    dp[i][j + k] += dp[i - 1][j] * cb.comb(j + k, k)
+                    dp[i][j + k] %= mod
+
+        ans = 1
+        for _ in range(n):
+            ans *= n
+            ans %= mod
+        ac.st((ans - dp[n][n]) % mod)
+        return
 
 
 class TestGeneral(unittest.TestCase):

@@ -82,6 +82,7 @@ P3985 不开心的金明（https://www.luogu.com.cn/problem/P3985）看似背包
 P4181 [USACO18JAN]Rental Service S（https://www.luogu.com.cn/problem/P4181）贪心枚举与后缀和
 P6149 [USACO20FEB] Triangles S（https://www.luogu.com.cn/problem/P6149）经典枚举三角形的直角点使用前缀和与二分计算距离和
 P6393 隔离的日子（https://www.luogu.com.cn/problem/P6393）经典利用值域范围进行枚举计算
+P6767 [BalticOI 2020/2012 Day0] Roses（https://www.luogu.com.cn/problem/P6767）
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1426/F（分类枚举中间的b计数两边的?ac，并使用快速幂进行求解）
@@ -594,6 +595,20 @@ class Solution:
             pre *= 2
             pre += num
         return ans
+
+    @staticmethod
+    def lg_p6767(ac=FastIO()):
+        # 模板：贪心枚举性价比较低的数量
+        n, a, b, c, d = ac.read_ints()
+        if b * c > a * d:
+            a, b, c, d = c, d, a, b
+
+        ans = inf
+        for x in range(10**5 + 1):
+            cur = x * d + b * ac.max(math.ceil((n - x * c) / a), 0)
+            ans = ac.min(ans, cur)
+        ac.st(ans)
+        return
 
 
 class TestGeneral(unittest.TestCase):

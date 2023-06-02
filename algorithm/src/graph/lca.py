@@ -29,6 +29,7 @@ P3384 【模板】重链剖分/树链剖分（https://www.luogu.com.cn/problem/P
 P2912 [USACO08OCT]Pasture Walking G（https://www.luogu.com.cn/problem/P2912）离线LCA查询与任意点对之间距离计算
 P3019 [USACO11MAR]Meeting Place S（https://www.luogu.com.cn/problem/P3019）离线查询 LCA 最近公共祖先
 P3258 [JLOI2014]松鼠的新家（https://www.luogu.com.cn/problem/P3258）离线LCA加树上差分加树形DP
+P6869 [COCI2019-2020#5] Putovanje（https://www.luogu.com.cn/problem/P6869）离线 LCA 查询与树上边差分计算
 
 ==================================LibreOJ==================================
 #10135. 「一本通 4.4 练习 2」祖孙询问（https://loj.ac/p/10135）lca查询与判断
@@ -186,6 +187,42 @@ class TreeDiffArray:
                         stack.append(j)
             else:
                 i = ~i
+                for j in dct[i]:
+                    if j != parent[i]:
+                        diff[i] += diff[j]
+        return diff
+
+    @staticmethod
+    def bfs_iteration_edge(dct: List[List[int]], queries: List[List[int]], root=0) -> List[int]:
+        # 模板：树上边差分计算，将边的计数下放到对应的子节点
+        n = len(dct)
+        stack = [root]
+        parent = [-1] * n
+        while stack:
+            i = stack.pop()
+            for j in dct[i]:
+                if j != parent[i]:
+                    stack.append(j)
+                    parent[j] = i
+
+        # 进行边差分计数
+        diff = [0] * n
+        for u, v, ancestor in queries:
+            # 将 u 与 v 到 ancestor 的路径的边下放到节点
+            diff[u] += 1
+            diff[v] += 1
+            diff[ancestor] -= 2
+
+        # 自底向上进行边差分加和
+        stack = [[root, 1]]
+        while stack:
+            i, state = stack.pop()
+            if state:
+                stack.append([i, 0])
+                for j in dct[i]:
+                    if j != parent[i]:
+                        stack.append([j, 1])
+            else:
                 for j in dct[i]:
                     if j != parent[i]:
                         diff[i] += diff[j]
@@ -884,6 +921,43 @@ class Solution:
                 sub[i] = res
 
         return min(sub[0])
+
+    @staticmethod
+    def lg_p6969(ac=FastIO()):
+        # 模板：离线 LCA 查询与树上边差分计算
+        n = ac.read_int()
+        dct = [[] for _ in range(n)]
+        cost = [dict() for _ in range(n)]
+        for _ in range(n - 1):
+            a, b, c1, c2 = ac.read_ints()
+            a -= 1
+            b -= 1
+            cost[a][b] = cost[b][a] = [c1, c2]
+            dct[a].append(b)
+            dct[b].append(a)
+
+        query = [[i, i + 1] for i in range(n - 1)]
+        res = OfflineLCA().bfs_iteration(dct, query)
+        for i in range(n - 1):
+            query[i].append(res[i])
+        diff = TreeDiffArray().bfs_iteration_edge(dct, query, 0)
+
+        # 将变形的边差分还原
+        ans = 0
+        stack = [0]
+        parent = [-1] * n
+        while stack:
+            i = stack.pop()
+            for j in dct[i]:
+                if j != parent[i]:
+                    stack.append(j)
+                    parent[j] = i
+                    # 边计数下放到节点上
+                    cnt = diff[j]
+                    c1, c2 = cost[i][j]
+                    ans += ac.min(cnt * c1, c2)
+        ac.st(ans)
+        return
 
 
 class TestGeneral(unittest.TestCase):

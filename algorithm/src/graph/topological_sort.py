@@ -34,6 +34,7 @@ P5536 【XR-3】核心城市（https://www.luogu.com.cn/problem/P5536）经典�
 P6037 Ryoku 的探索（https://www.luogu.com.cn/problem/P6037）经典无向图基环树并查集拓扑排序与环模拟计算
 P6255 [ICPC2019 WF]Dead-End Detector（https://www.luogu.com.cn/problem/P6255）简单无向图并查集计算连通块后使用拓扑排序寻找环的信息
 P6417 [COCI2014-2015#1] MAFIJA（https://www.luogu.com.cn/problem/P6417）有向图基环树贪心应用拓扑排序由外向内
+P6560 [SBCOI2020] 时光的流逝（https://www.luogu.com.cn/problem/P6560）经典反向建图拓扑排序与博弈必胜态
 
 ==================================AtCoder=================================
 F - Well-defined Path Queries on a Namori（https://atcoder.jp/contests/abc266/）（无向图的内向基环树，求简单路径的树枝连通）
@@ -537,6 +538,44 @@ class Solution:
             # 环内的坏蛋最多个数
             ans += x // 2
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p6560(ac=FastIO()):
+        # 模板：经典反向建图拓扑排序与博弈必胜态
+        n, m, q = ac.read_ints()
+        dct = [[] for _ in range(n)]
+        degree = [[0, -1, 0] for _ in range(n)]
+        for _ in range(m):
+            i, j = ac.read_ints_minus_one()
+            dct[j].append(i)
+            degree[i][0] += 1
+
+        visit = [[-1, 0] for _ in range(n)]
+        for ind in range(q):
+            s, e = ac.read_ints_minus_one()
+            visit[s] = [ind, 0]
+            stack = deque([x for x in range(n) if not degree[x][0] or x == e])
+            for i in stack:
+                visit[i] = [ind, -1]
+            while stack and not visit[s][1]:
+                i = stack.popleft()
+                for j in dct[i]:
+                    if visit[j][0] != ind:
+                        visit[j] = [ind, 0]
+                    if degree[j][1] != ind:
+                        degree[j][1] = ind
+                        degree[j][2] = degree[j][0]
+                    if visit[j][1]:
+                        continue
+                    degree[j][2] -= 1
+                    if visit[i][1] == -1:
+                        visit[j][1] = 1
+                        stack.append(j)
+                    elif not degree[j][2] and visit[i][1] == 1:
+                        visit[j][1] = -1
+                        stack.append(j)
+            ac.st(visit[s][1])
         return
 
 
