@@ -53,6 +53,7 @@ P2863 [USACO06JAN]The Cow Prom S（https://www.luogu.com.cn/problem/P2863）强�
 B3609 [图论与代数结构 701] 强连通分量（https://www.luogu.com.cn/problem/B3609）强连通分量scc模板题
 B3610 [图论与代数结构 801] 无向图的块（https://www.luogu.com.cn/problem/B3610）点双连通分量
 P7033 [NWRRC2016]CodeCoder vs TopForces（https://www.luogu.com.cn/problem/P7033）经典scc缩点后使用 DAG 进行树形 DP
+P7965 [COCI2021-2022#2] Kutije（https://www.luogu.com.cn/problem/P7965）经典scc缩点后使用 DAG 进行树形 DP
 
 ===================================CodeForces===================================
 F. Is It Flower?（https://codeforces.com/contest/1811/problem/F）无向图求连通分量
@@ -849,6 +850,48 @@ class Solution:
                 stack.append(j)
         for i in range(n):
             ac.st(ans_group[node_scc_id[i]])
+        return
+
+    @staticmethod
+    def lg_p7965(ac=FastIO()):
+        # 模板：经典scc缩点后使用 DAG 进行树形 DP
+        n, m, q = ac.read_ints()
+        dct = [set() for _ in range(n)]
+        for _ in range(m):
+            lst = ac.read_list_ints()
+            for i in range(n):
+                dct[i].add(lst[i]-1)
+        dct = [list(e) for e in dct]
+        scc_id, scc_node_id, node_scc_id = TarjanCC().get_strongly_connected_component_bfs(n, dct)
+
+        new_dct = [set() for _ in range(scc_id)]
+        for i in range(n):
+            for j in dct[i]:
+                a, b = node_scc_id[i], node_scc_id[j]
+                if a != b:
+                    new_dct[a].add(b)
+        degree = [0]*scc_id
+        for i in range(scc_id):
+            for j in new_dct[i]:
+                degree[j] += 1
+        sub = [set() for _ in range(scc_id)]
+        stack = [i for i in range(scc_id) if not degree[i]]
+        while stack:
+            i = stack.pop()
+            if i >= 0:
+                stack.append(~i)
+                for j in new_dct[i]:
+                    stack.append(j)
+            else:
+                i = ~i
+                sub[i].add(i)
+                for j in new_dct[i]:
+                    for x in sub[j]:
+                        sub[i].add(x)
+        for _ in range(q):
+            a, b = ac.read_ints_minus_one()
+            x, y = node_scc_id[a], node_scc_id[b]
+            ac.st("DA" if y in sub[x] else "NE")
         return
 
 

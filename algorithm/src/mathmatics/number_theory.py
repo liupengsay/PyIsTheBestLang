@@ -1,41 +1,17 @@
-
-
-import bisect
+import math
 import random
-import re
 import time
 import unittest
-from math import inf
-from typing import List
-import heapq
-import math
-from collections import defaultdict, Counter, deque
-from functools import lru_cache
-from itertools import combinations
-from sortedcontainers import SortedList, SortedDict, SortedSet
-
-from sortedcontainers import SortedDict
-from functools import reduce
-from operator import xor, mul
-from functools import lru_cache
-
-import random
-from itertools import permutations, combinations
-import numpy as np
-
-from decimal import Decimal
-
-import heapq
-import copy
-from algorithm.src.fast_io import FastIO
-
-import math
-import random
-import unittest
-from itertools import combinations
 from collections import Counter
-from algorithm.src.fast_io import FastIO
+from collections import defaultdict
 from functools import reduce
+from itertools import combinations
+from math import inf
+from operator import mul
+from typing import List
+
+from algorithm.src.fast_io import FastIO
+
 """
 算法：数论、欧拉筛、线性筛、素数、欧拉函数、因子分解、素因子分解、进制转换、因数分解
 功能：有时候数位DP类型题目可以使用N进制来求取，质因数分解、因数分解、素数筛、线性筛、欧拉函数、pollard_rho、Meissel–Lehmer 算法（计算范围内素数个数）
@@ -96,6 +72,7 @@ P4446 [AHOI2018初中组]根式化简（https://www.luogu.com.cn/problem/P4446�
 P4752 Divided Prime（https://www.luogu.com.cn/problem/P4752）判断除数是否为质数
 P5248 [LnOI2019SP]快速多项式变换(FPT)（https://www.luogu.com.cn/problem/P5248）经典进制题目
 P5253 [JSOI2013]丢番图（https://www.luogu.com.cn/problem/P5253）经典方程变换计算 (x-n)*(y-n)=n^2 的对数
+P7960 [NOIP2021] 报数（https://www.luogu.com.cn/problem/P7960）类似埃氏筛的思路进行预处理
 
 ================================CodeForces================================
 C. Hossam and Trainees（https://codeforces.com/problemset/problem/1771/C）使用pollard_rho进行质因数分解
@@ -1178,6 +1155,29 @@ class Solution:
             # 转换为求数字的因数个数
             ans *= (2 * c + 1)
         ac.st((ans + 1) // 2)
+        return
+
+    @staticmethod
+    def lg_p7960(ac=FastIO()):
+        # 模板：类似埃氏筛的思路进行预处理
+        n = 10**7
+        dp = [0] * (n + 1)
+        for x in range(1, n + 1):
+            if "7" in str(x):
+                y = 1
+                while x * y <= n:
+                    dp[x * y] = 1
+                    y += 1
+        post = 10**7 + 1
+        for i in range(n, -1, -1):
+            if dp[i] == 1:
+                dp[i] = -1
+            else:
+                dp[i] = post
+                post = i
+
+        for _ in range(ac.read_int()):
+            ac.st(dp[ac.read_int()])
         return
 
 

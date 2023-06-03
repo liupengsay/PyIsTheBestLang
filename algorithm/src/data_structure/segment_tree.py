@@ -42,6 +42,7 @@ P1558 色板游戏（https://www.luogu.com.cn/problem/P1558）线段树区间值
 P3740 [HAOI2014]贴海报（https://www.luogu.com.cn/problem/P3740）离散化线段树区间修改与单点查询
 P4588 [TJOI2018]数学计算（https://www.luogu.com.cn/problem/P4588）转化为线段树单点值修改与区间乘积取模
 P6627 [省选联考 2020 B 卷] 幸运数字（https://www.luogu.com.cn/problem/P6627）线段树维护和查询区间异或值
+P8081 [COCI2011-2012#4] ZIMA（https://www.luogu.com.cn/problem/P8081）差分计数计算作用域，也可以线段树区间修改、区间加和查询
 
 ================================CodeForces================================
 
@@ -517,6 +518,69 @@ class SegmentTreeRangeChangeQuerySumMinMax:
             if right > m:
                 stack.append([m + 1, t, 2 * i + 1])
         return highest
+
+
+class SegmentTreeRangeUpdateQuerySum:
+    def __init__(self, n) -> None:
+        # 模板：区间修改、区间和查询
+        self.n = n
+        self.sum = [0] * (4 * self.n)
+        self.lazy = [0] * (4 * self.n)
+        return
+
+    def push_up(self, i):
+        # 合并区间的函数
+        self.sum[i] = self.sum[2 * i] + self.sum[2 * i + 1]
+        return
+
+    def make_tag(self, s, t, i, val):
+        self.sum[i] = val * (t - s + 1)
+        self.lazy[i] = val
+        return
+
+    def push_down(self, i, s, m, t):
+        if self.lazy[i]:
+            self.make_tag(s, m, 2 * i, self.lazy[i])
+            self.make_tag(m + 1, t, 2 * i + 1, self.lazy[i])
+            self.lazy[i] = 0
+
+    def update_range(self, left: int, right: int, s: int, t: int, val: int, i: int) -> None:
+        # 修改点值 left == right 取值为 0 到 n-1 而 i 从 1 开始，直接修改到底
+        stack = [[s, t, i]]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if left <= s and t <= right:
+                    self.make_tag(s, t, i, val)
+                    continue
+                m = s + (t - s) // 2
+                self.push_down(i, s, m, t)
+                stack.append([s, t, ~i])
+                if left <= m:  # 注意左右子树的边界与范围
+                    stack.append([s, m, 2 * i])
+                if right > m:
+                    stack.append([m + 1, t, 2 * i + 1])
+            else:
+                i = ~i
+                self.push_up(i)
+        return
+
+    def query_range(self, left: int, right: int, s: int, t: int, i: int):
+        # 区间加和查询
+        ans = 0
+        stack = [[s, t, i]]
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                ans += self.sum[i]
+                continue
+            m = s + (t - s) // 2
+            self.push_down(i, s, m, t)
+            if left <= m:  # 注意左右子树的边界与范围
+                stack.append([s, m, 2 * i])
+            if right > m:
+                stack.append([m + 1, t, 2 * i + 1])
+        return ans
 
 
 class SegmentTreeRangeUpdateChangeQueryMax:
@@ -2534,6 +2598,51 @@ class Solution:
                 else:
                     tree.update(num - 1, num - 1, 0, q - 1, 1, 1)
                 ac.st(tree.cover[1])
+        return
+
+    @staticmethod
+    def lg_p8081(ac=FastIO()):
+        # 模板：线段树区间修改、区间加和查询
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        tree = SegmentTreeRangeUpdateQuerySum(n)
+        pre = 0
+        ceil = 0
+        for i in range(n):
+            if nums[i] < 0:
+                pre += 1
+            else:
+                if pre:
+                    ceil = max(ceil, pre)
+                    low, high = i-3*pre, i-pre-1
+                    if high >= 0:
+                        tree.update_range(ac.max(0, low), high, 0, n-1, 1, 1)
+                pre = 0
+        if pre:
+            ceil = max(ceil, pre)
+            low, high = n - 3 * pre, n - pre - 1
+            if high >= 0:
+                tree.update_range(ac.max(0, low), high, 0, n - 1, 1, 1)
+
+        ans = tree.query_range(0, n-1, 0, n-1, 1)
+        pre = 0
+        res = 0
+        for i in range(n):
+            if nums[i] < 0:
+                pre += 1
+            else:
+                if pre == ceil:
+                    low, high = i-4*pre, i-3*pre-1
+                    low = ac.max(low, 0)
+                    if low <= high:
+                        res = ac.max(res, high-low+1-tree.query_range(low, high, 0, n-1, 1))
+                pre = 0
+        if pre == ceil:
+            low, high = n - 4 * pre, n - 3 * pre - 1
+            low = ac.max(low, 0)
+            if low <= high:
+                res = ac.max(res, high - low + 1 - tree.query_range(low, high, 0, n - 1, 1))
+        ac.st(ans + res)
         return
 
 

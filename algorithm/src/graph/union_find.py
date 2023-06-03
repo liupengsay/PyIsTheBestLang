@@ -3,7 +3,7 @@ import math
 import unittest
 
 from typing import List
-from collections import defaultdict, Counter
+from collections import defaultdict, Counter, deque
 from algorithm.src.fast_io import FastIO
 import heapq
 
@@ -29,6 +29,7 @@ from math import inf
 2076. 处理含限制条件的好友请求（https://leetcode.cn/problems/process-restricted-friend-requests/）使用并查集变种，维护群体的不喜欢关系
 2459. 通过移动项目到空白区域来排序数组（https://leetcode.cn/problems/sort-array-by-moving-items-to-empty-space/）置换环经典题目
 2709. 最大公约数遍历（https://leetcode.cn/problems/greatest-common-divisor-traversal/）经典并查集计算具有相同质因数的连通块
+2612. 最少翻转操作数（https://leetcode.cn/problems/minimum-reverse-operations/）经典并查集应用 find_merge 灵活使用
 
 ===================================洛谷===================================
 P3367 并查集（https://www.luogu.com.cn/problem/P3367）计算连通分块的数量
@@ -51,6 +52,7 @@ P3420 [POI2005]SKA-Piggy Banks（https://www.luogu.com.cn/problem/P3420）经典
 P5429 [USACO19OPEN]Fence Planning S（https://www.luogu.com.cn/problem/P5429）简单并查集应用题
 P6193 [USACO07FEB]Cow Sorting G（https://www.luogu.com.cn/problem/P6193）经典置换环计算交换代价
 P6706 [COCI2010-2011#7] KUGLICE（https://www.luogu.com.cn/problem/P6706）经典有向图并查集逆序更新边 find_merge 灵活使用
+P7991 [USACO21DEC] Connecting Two Barns S（https://www.luogu.com.cn/problem/P7991）经典并查集计算连通块缩点使得 1 和 n 连通最多加两条路的代价
 
 ================================CodeForces================================
 D. Roads not only in Berland（https://codeforces.com/problemset/problem/25/D）并查集将原来的边断掉重新来连接使得成为一整个连通集
@@ -677,6 +679,83 @@ class Solution:
         for i in range(len(ans) - 1, -1, -1):
             ac.st(ans[i])
         return
+
+    @staticmethod
+    def lg_p7991(ac=FastIO()):
+        # 模板：经典并查集计算连通块缩点使得 1 和 n 连通最多加两条路的代价
+        for _ in range(ac.read_int()):
+            n, m = ac.read_ints()
+            uf = UnionFind(n)
+            for _ in range(m):
+                i, j = ac.read_ints_minus_one()
+                uf.union(i, j)
+            if uf.is_connected(0, n-1):
+                ac.st(0)
+                continue
+
+            dis_0 = [inf]*n
+            dis_1 = [inf]*n
+
+            pre_0 = pre_1 = -1
+            for i in range(n):
+                if uf.is_connected(0, i):
+                    pre_0 = i
+                if uf.is_connected(n-1, i):
+                    pre_1 = i
+                if pre_0 != -1:
+                    dis_0[uf.find(i)] = ac.min(dis_0[uf.find(i)], (i - pre_0) ** 2)
+                if pre_1 != -1:
+                    dis_1[uf.find(i)] = ac.min(dis_1[uf.find(i)], (i - pre_1) ** 2)
+
+            pre_0 = pre_1 = -1
+            for i in range(n-1, -1, -1):
+                if uf.is_connected(0, i):
+                    pre_0 = i
+                if uf.is_connected(n - 1, i):
+                    pre_1 = i
+                if pre_0 != -1:
+                    dis_0[uf.find(i)] = ac.min(dis_0[uf.find(i)], (i - pre_0) ** 2)
+                if pre_1 != -1:
+                    dis_1[uf.find(i)] = ac.min(dis_1[uf.find(i)], (i - pre_1) ** 2)
+            ans = min(dis_0[i]+dis_1[i] for i in range(n))
+            ac.st(ans)
+        return
+
+    @staticmethod
+    def lc_2612(n: int, p: int, banned: List[int], k: int) -> List[int]:
+
+        def find_merge(x):
+            # 并查集父节点表示下一个为访问的点类似链表
+            tmp = []
+            while x != fa[x]:
+                tmp.append(x)
+                x = fa[x]
+            for y in tmp:
+                fa[y] = x
+            return x
+
+        ans = [-1] * n
+        fa = list(range(n + 2))
+        for i in banned:
+            fa[i] = i + 2
+
+        stack = deque([p])
+        ans[p] = 0
+        while stack:
+            i = stack.popleft()
+            # 满足 low <= j <= high 且要有相同的奇偶性
+            low = max(0, k - 1 - i, i - k + 1)
+            high = min(2 * n - k - 1 - i, n - 1, i + k - 1)
+            j = find_merge(low)
+            while j <= high:
+                if ans[j] == -1:
+                    # 未访问过
+                    ans[j] = ans[i] + 1
+                    fa[j] = j + 2  # merge到下一个
+                    stack.append(j)
+                # 继续访问下一个
+                j = find_merge(j + 2)
+        return ans
 
 
 class TestGeneral(unittest.TestCase):

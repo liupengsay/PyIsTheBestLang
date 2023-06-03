@@ -4,6 +4,8 @@ from typing import List
 from algorithm.src.fast_io import FastIO
 from collections import deque
 
+from algorithm.src.mathmatics.number_theory import NumberTheory
+
 """
 
 算法：构造
@@ -19,6 +21,7 @@ P8846 『JROI-7』PMK 配匹串符字（https://www.luogu.com.cn/problem/P8846�
 P2902 [USACO08MAR]Pearl Pairing G（https://www.luogu.com.cn/problem/P2902）构造不同颜色对
 P5823 【L&K R-03】课表的排列（https://www.luogu.com.cn/problem/P5823）构造相同元素间隔为等差1的数组
 P7383 「EZEC-6」加减（https://www.luogu.com.cn/problem/P7383）贪心构造
+P7947 [✗✓OI R1] 铝锤制作（https://www.luogu.com.cn/problem/P7947）贪心构造积为 n 和为 k 的数列，乘积分解成质因数其和最小
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1396/A（贪心构造）
@@ -126,6 +129,21 @@ class Solution:
                                 break
                     return ans
         return ""
+
+    @staticmethod
+    def lg_p7947(ac=FastIO()):
+        # 模板：贪心构造积为 n 和为 k 的数列，乘积分解成质因数其和最小
+        n, k = ac.read_ints()
+        ans = []
+        for p, c in NumberTheory().get_prime_factor2(n):
+            ans.extend([p]*c)
+        if sum(ans) > k:
+            ac.st(-1)
+        else:
+            ans.extend([1]*(k-sum(ans)))
+            ac.st(len(ans))
+            ac.lst(ans)
+        return
 
 
 class TestGeneral(unittest.TestCase):

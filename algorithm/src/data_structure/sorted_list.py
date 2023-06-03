@@ -60,6 +60,7 @@ P5076 【深基16.例7】普通二叉树（简化版）（https://www.luogu.com.
 P5149 会议座位（https://www.luogu.com.cn/problem/P5149）经典逆序对计算使用 bisect 实现
 P5459 [BJOI2016]回转寿司（https://www.luogu.com.cn/problem/P5459）前缀和与有序列表二分查找
 P6538 [COCI2013-2014#1] LOPOV（https://www.luogu.com.cn/problem/P6538）典型STL维护贪心
+P7912 [CSP-J 2021] 小熊的果篮（https://www.luogu.com.cn/problem/P7912）经典 STL 应用模拟题
 
 ================================CodeForces================================
 D. Pashmak and Parmida's problem（https://codeforces.com/problemset/problem/459/D）使用有序集合进行大小计数查找
@@ -532,6 +533,33 @@ class Solution:
             ans += bisect.bisect_right(lst, s + high) - x
             bisect.insort_left(lst, s)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p7912(ac=FastIO()):
+        # 模板：经典 STL 应用模拟题使用 STL 模拟删除
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        lst = [LocalSortedList([i+1 for i in range(n) if not nums[i]]), LocalSortedList([i+1 for i in range(n) if nums[i]])]
+
+        while lst[0] and lst[1]:
+            ans = []
+            if lst[0][0] < lst[1][0]:
+                i = 0
+            else:
+                i = 1
+            ans.append(lst[i].pop(0))
+            i = 1-i
+            while lst[i] and lst[i][-1] > ans[-1]:
+                j = lst[i].bisect_left(ans[-1])
+                ans.append(lst[i].pop(j))
+                i = 1-i
+            ac.lst(ans)
+
+        for a in lst[0]:
+            ac.st(a)
+        for a in lst[1]:
+            ac.st(a)
         return
 
 

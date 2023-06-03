@@ -78,6 +78,7 @@ P5810 [SCOI2004]文本的输入（https://www.luogu.com.cn/problem/P5810）经�
 P6040 「ACOI2020」课后期末考试滑溜滑溜补习班（https://www.luogu.com.cn/problem/P6040）单调队列优化的线性 DP 
 P6120 [USACO17JAN]Hoof, Paper, Scissor S（https://www.luogu.com.cn/problem/P6120）线性 DP 模拟
 P6146 [USACO20FEB]Help Yourself G（https://www.luogu.com.cn/problem/P6146）线性 DP 枚举计数
+P7994 [USACO21DEC] Air Cownditioning B（https://www.luogu.com.cn/problem/P7994）经典线性 DP 修改连续区间值加一减一的最少操作次数
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/75/D（经典压缩数组，最大子段和升级）
@@ -799,6 +800,32 @@ class Solution:
                 if row[i] < w:
                     row[i] = w
         return max(max(row), max(col))
+
+    @staticmethod
+    def lg_p7994(ac=FastIO()):
+        # 模板：经典线性 DP 修改连续区间值加一减一的最少操作次数
+        n = ac.read_int()
+        a = ac.read_list_ints()
+        b = ac.read_list_ints()
+
+        nums = [a[i]-b[i] for i in range(n)]
+        ans = abs(nums[0])
+        for i in range(1, n):
+            x, y = nums[i-1], nums[i]
+            if x == 0:
+                ans += abs(y)
+            elif y == 0:
+                continue
+            else:
+                if x*y < 0:
+                    ans += abs(y)
+                else:
+                    if x > 0:
+                        ans += ac.max(0, y-x)
+                    else:
+                        ans += ac.max(0, x-y)
+        ac.st(ans)
+        return
 
 
 class TestGeneral(unittest.TestCase):

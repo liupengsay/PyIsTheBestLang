@@ -60,6 +60,10 @@ P6278 [USACO20OPEN]Haircut G（https://www.luogu.com.cn/problem/P6278）经典�
 P6537 [COCI2013-2014#1] RATAR（https://www.luogu.com.cn/problem/P6537）预处理前缀和加枚举
 P6877 [JOI 2020 Final] 長いだけのネクタイ（https://www.luogu.com.cn/problem/P6877）排序贪心前后缀 DP 枚举
 P6878 [JOI 2020 Final] JJOOII 2（https://www.luogu.com.cn/problem/P6878）前后缀枚举
+P8081 [COCI2011-2012#4] ZIMA（https://www.luogu.com.cn/problem/P8081）差分计数计算作用域
+P8033 [COCI2015-2016#7] Prozor（https://www.luogu.com.cn/problem/P8033）二维前缀和计数
+P7992 [USACO21DEC] Convoluted Intervals S（https://www.luogu.com.cn/problem/P7992）经典桶计数与作用域差分计数
+P7948 [✗✓OI R1] 前方之风（https://www.luogu.com.cn/problem/P7948）排序后预处理前后缀信息指针查询
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/33/C（前后缀最大变换和与分割点枚举，经典类型题目）
@@ -91,11 +95,13 @@ class PreFixSumMatrix:
         self.pre = [[0] * (n + 1) for _ in range(m + 1)]
         for i in range(m):
             for j in range(n):
-                self.pre[i + 1][j + 1] = self.pre[i][j + 1] + self.pre[i + 1][j] - self.pre[i][j] + mat[i][j]
+                self.pre[i + 1][j + 1] = self.pre[i][j + 1] + \
+                    self.pre[i + 1][j] - self.pre[i][j] + mat[i][j]
 
     def query(self, xa, ya, xb, yb):
         # 二维子矩阵和查询，索引从 0 开始，左上角 [xa, ya] 右下角 [xb, yb]
-        return self.pre[xb + 1][yb + 1] - self.pre[xb + 1][ya] - self.pre[xa][yb + 1] + self.pre[xa][ya]
+        return self.pre[xb + 1][yb + 1] - self.pre[xb +
+                                                   1][ya] - self.pre[xa][yb + 1] + self.pre[xa][ya]
 
 
 class DiffArray:
@@ -145,7 +151,8 @@ class DiffMatrix:
 
         for i in range(1, m + 2):
             for j in range(1, n + 2):
-                diff[i][j] += diff[i - 1][j] + diff[i][j - 1] - diff[i - 1][j - 1]
+                diff[i][j] += diff[i - 1][j] + \
+                    diff[i][j - 1] - diff[i - 1][j - 1]
 
         for i in range(1, m + 1):
             diff[i] = diff[i][1:n + 1]
@@ -164,7 +171,8 @@ class DiffMatrix:
         res = [[0] * (n + 1) for _ in range(m + 1)]
         for i in range(m):
             for j in range(n):
-                res[i + 1][j + 1] = res[i + 1][j] + res[i][j + 1] - res[i][j] + diff[i][j]
+                res[i + 1][j + 1] = res[i + 1][j] + \
+                    res[i][j + 1] - res[i][j] + diff[i][j]
         return [item[1:] for item in res[1:]]
 
     @staticmethod
@@ -174,13 +182,15 @@ class DiffMatrix:
         pre = [[0] * (n + 1) for _ in range(m + 1)]
         for i in range(m):
             for j in range(n):
-                pre[i + 1][j + 1] = pre[i][j + 1] + pre[i + 1][j] - pre[i][j] + mat[i][j]
+                pre[i + 1][j + 1] = pre[i][j + 1] + \
+                    pre[i + 1][j] - pre[i][j] + mat[i][j]
         return pre
 
     @staticmethod
     def get_matrix_range_sum(pre, xa, ya, xb, yb):
         # 二维子矩阵和
-        return pre[xb + 1][yb + 1] - pre[xb + 1][ya] - pre[xa][yb + 1] + pre[xa][ya]
+        return pre[xb + 1][yb + 1] - pre[xb + 1][ya] - \
+            pre[xa][yb + 1] + pre[xa][ya]
 
 
 class Solution:
@@ -211,12 +221,12 @@ class Solution:
             num = ac.read_int()
             if pre != -1:
                 if pre > num:
-                    neg += pre-num
+                    neg += pre - num
                 else:
-                    pos += num-pre
+                    pos += num - pre
             pre = num
         ac.st(max(pos, neg))
-        ac.st(abs(pos-neg)+1)
+        ac.st(abs(pos - neg) + 1)
         return
 
     @staticmethod
@@ -259,14 +269,16 @@ class Solution:
             pre = [[0] * (n + 1) for _ in range(m + 1)]
             for i in range(m):
                 for j in range(n):
-                    pre[i + 1][j + 1] = pre[i + 1][j] + pre[i][j + 1] - pre[i][j] + dp[i][j]
+                    pre[i + 1][j + 1] = pre[i + 1][j] + \
+                        pre[i][j + 1] - pre[i][j] + dp[i][j]
 
             for hs, ws, hb, wb in qur:
                 hb -= 1
                 wb -= 1
                 hs += 1
                 ws += 1
-                ans = pre[hb + 1][wb + 1] - pre[hs][wb + 1] - pre[hb + 1][ws] + pre[hs][ws]
+                ans = pre[hb + 1][wb + 1] - pre[hs][wb + 1] - \
+                    pre[hb + 1][ws] + pre[hs][ws]
                 ac.st(ans)
         return
 
@@ -279,8 +291,8 @@ class Solution:
         mod = 10007
         # 转换为求相同奇偶性的 x 与 y 且颜色相同的和 x*ax+x*az+z*ax+z*az 即 (x+z)*(ax+az)
         ans = 0
-        pre_sum = [[0, 0] for _ in range(m+1)]
-        pre_cnt = [[0, 0] for _ in range(m+1)]
+        pre_sum = [[0, 0] for _ in range(m + 1)]
+        pre_cnt = [[0, 0] for _ in range(m + 1)]
         for i in range(n):  # 枚举 z 计算 z*ax+z*az
             num, color = number[i], colors[i]
             k = i % 2
@@ -291,8 +303,8 @@ class Solution:
             pre_cnt[color][k] += 1
             ans %= mod
 
-        pre_sum = [[0, 0] for _ in range(m+1)]
-        pre_cnt = [[0, 0] for _ in range(m+1)]
+        pre_sum = [[0, 0] for _ in range(m + 1)]
+        pre_cnt = [[0, 0] for _ in range(m + 1)]
         for i in range(n - 1, -1, -1):  # 枚举 x 计算 x*ax+x*az
             num, color = number[i], colors[i]
             k = i % 2
@@ -387,7 +399,8 @@ class Solution:
         ans = 0
         for i in range(n):
             left, right = pre[i], post[i]
-            ans += strength[i] * ((i - left + 1) * (ss[right + 2] - ss[i + 1]) - (right - i + 1) * (ss[i + 1] - ss[left]))
+            ans += strength[i] * ((i - left + 1) * (ss[right + 2] -
+                                  ss[i + 1]) - (right - i + 1) * (ss[i + 1] - ss[left]))
             ans %= mod
         return ans
 
@@ -493,7 +506,8 @@ class Solution:
         dp = [[0] * (length + 1) for _ in range(length + 1)]
         for i in range(length):
             for j in range(length):
-                dp[i + 1][j + 1] = dp[i][j + 1] + dp[i + 1][j] - dp[i][j] + grid[i][j]
+                dp[i + 1][j + 1] = dp[i][j + 1] + \
+                    dp[i + 1][j] - dp[i][j] + grid[i][j]
                 a, b = max(i - m + 1, 0), max(j - m + 1, 0)
                 cur = dp[i + 1][j + 1] - dp[i + 1][b] - dp[a][j + 1] + dp[a][b]
                 ans = ans if ans > cur else cur
@@ -540,23 +554,25 @@ class Solution:
         n = len(lst_y)
         ind_x = {num: i for i, num in enumerate(lst_x)}
         ind_y = {num: i for i, num in enumerate(lst_y)}
-        grid = [[0]*(n+1) for _ in range(m+1)]
+        grid = [[0] * (n + 1) for _ in range(m + 1)]
         for x, y in nums:
-            grid[ind_x[x]+1][ind_y[y]+1] += 1
-        for i in range(1, m+1):
-            for j in range(1, n+1):
-                grid[i][j] = grid[i-1][j]+grid[i][j-1]-grid[i-1][j-1] + grid[i][j]
+            grid[ind_x[x] + 1][ind_y[y] + 1] += 1
+        for i in range(1, m + 1):
+            for j in range(1, n + 1):
+                grid[i][j] = grid[i - 1][j] + grid[i][j - 1] - \
+                    grid[i - 1][j - 1] + grid[i][j]
 
         def check(xx):
             up = 0
             for i in range(m):
-                while up < m and lst_x[up]-lst_x[i] <= xx - 1:
+                while up < m and lst_x[up] - lst_x[i] <= xx - 1:
                     up += 1
                 right = 0
                 for j in range(n):
-                    while right < n and lst_y[right]-lst_y[j] <= xx-1:
+                    while right < n and lst_y[right] - lst_y[j] <= xx - 1:
                         right += 1
-                    cur = grid[up][right] - grid[up][j] - grid[i][right] + grid[i][j]
+                    cur = grid[up][right] - grid[up][j] - \
+                        grid[i][right] + grid[i][j]
                     if cur >= c:
                         return True
 
@@ -564,8 +580,8 @@ class Solution:
 
         low = 0
         high = 10000
-        while low < high-1:
-            mid = low+(high-low)//2
+        while low < high - 1:
+            mid = low + (high - low) // 2
             if check(mid):
                 high = mid
             else:
@@ -579,20 +595,20 @@ class Solution:
         # 模板：经典最大子矩形和
         n = ac.read_int()
         nums = []
-        while len(nums) < n*n:
+        while len(nums) < n * n:
             nums.extend(ac.read_list_ints())
-        grid = [nums[i:i+n] for i in range(0, n*n, n)]
+        grid = [nums[i:i + n] for i in range(0, n * n, n)]
         del nums
         ans = grid[0][0]
         for i in range(n):
-            pre = [0]*n
+            pre = [0] * n
             for k in range(i, n):
-                pre = [pre[j]+grid[k][j] for j in range(n)]
+                pre = [pre[j] + grid[k][j] for j in range(n)]
                 floor = 0
                 x = 0
                 for j in range(n):
                     x += pre[j]
-                    ans = ac.max(ans, x-floor)
+                    ans = ac.max(ans, x - floor)
                     floor = ac.min(floor, x)
         ac.st(ans)
         return
@@ -857,7 +873,8 @@ class Solution:
                 continue
             x -= 1
             y -= 1
-            if pm.query(x + 1, y + 1, x + k - 1, y + k - 1) == (k - 1) * (k - 1):
+            if pm.query(x + 1, y + 1, x + k - 1, y +
+                        k - 1) == (k - 1) * (k - 1):
                 ac.st("Y")
             else:
                 ac.st("N")
@@ -878,7 +895,8 @@ class Solution:
             if d - c != b - a:
                 ac.st("NE")
                 continue
-            if all(pre[b + 1][j] - pre[a][j] == pre[d + 1][j] - pre[c][j] for j in range(26)):
+            if all(pre[b + 1][j] - pre[a][j] == pre[d + 1]
+                   [j] - pre[c][j] for j in range(26)):
                 ac.st("DA")
             else:
                 ac.st("NE")
@@ -888,9 +906,9 @@ class Solution:
     def lg_p4623(ac=FastIO()):
         # 模板：离散化差分计数
         n = ac.read_int()
-        m = 10**6+1
-        diff_x = [0]*m
-        diff_y = [0]*m
+        m = 10**6 + 1
+        diff_x = [0] * m
+        diff_y = [0] * m
         for _ in range(n):
             x1, y1, x2, y2, x3, y3 = ac.read_ints()
             low_x = min(x1, x2, x3)
@@ -961,7 +979,8 @@ class Solution:
         ans = 0
         for i in range(n):
             for j in range(n):
-                diff[i + 1][j + 1] += diff[i + 1][j] + diff[i][j + 1] - diff[i][j]
+                diff[i + 1][j + 1] += diff[i + 1][j] + \
+                    diff[i][j + 1] - diff[i][j]
                 d = diff[i + 1][j + 1] + grid[i][j]
                 # 二维差分，索引从 0 开始， 注意这里的行列索引范围，是从左上角到右下角
                 if d:
@@ -1004,23 +1023,23 @@ class Solution:
             for j in range(n):
                 # 左上右下
                 dct = dict()
-                for x in range(i+1):
-                    for y in range(j+1):
+                for x in range(i + 1):
+                    for y in range(j + 1):
                         val = pre.query(x, y, i, j)
                         dct[val] = dct.get(val, 0) + 1
-                for x in range(i+1, n):
-                    for y in range(j+1, n):
-                        val = pre.query(i+1, j+1, x, y)
+                for x in range(i + 1, n):
+                    for y in range(j + 1, n):
+                        val = pre.query(i + 1, j + 1, x, y)
                         ans += dct.get(val, 0)
                 # 左下右上
                 dct = defaultdict(int)
-                for x in range(i+1):
+                for x in range(i + 1):
                     for y in range(j, n):
                         val = pre.query(x, j, i, y)
                         dct[val] = dct.get(val, 0) + 1
-                for x in range(i+1, n):
+                for x in range(i + 1, n):
                     for y in range(j):
-                        val = pre.query(i+1, y, x, j-1)
+                        val = pre.query(i + 1, y, x, j - 1)
                         ans += dct.get(val, 0)
         ac.st(ans)
         return
@@ -1035,16 +1054,16 @@ class Solution:
 
         a.sort()
         b.sort()
-        pre = [0]*(n+2)
+        pre = [0] * (n + 2)
         for i in range(n):
-            pre[i+1] = ac.max(pre[i], a[i]-b[i])
+            pre[i + 1] = ac.max(pre[i], a[i] - b[i])
 
-        post = [0]*(n+2)
-        for i in range(n-1, -1, -1):
-            post[i] = ac.max(post[i+1], a[i+1]-b[i])
+        post = [0] * (n + 2)
+        for i in range(n - 1, -1, -1):
+            post[i] = ac.max(post[i + 1], a[i + 1] - b[i])
 
         ans = dict()
-        for i in range(n+1):
+        for i in range(n + 1):
             ans[a[i]] = ac.max(pre[i], post[i])
         ac.lst([ans[x] for x in aa])
         return
@@ -1054,7 +1073,7 @@ class Solution:
         # 模板：前后缀枚举
         n, k = ac.read_ints()
         s = ac.read_str()
-        pre = [-1]*n
+        pre = [-1] * n
         stack = deque()
         for i in range(n):
             while len(stack) > k:
@@ -1065,11 +1084,11 @@ class Solution:
                 if len(stack) == k:
                     pre[i] = stack[0]
 
-        post_o = [-1]*n
+        post_o = [-1] * n
         post = [-1] * n
         stack = deque()
         stack_o = deque()
-        for i in range(n-1, -1, -1):
+        for i in range(n - 1, -1, -1):
             while len(stack) > k:
                 stack.popleft()
             if s[i] == "I":
@@ -1087,8 +1106,136 @@ class Solution:
         ans = inf
         for i in range(n):
             if pre[i] != -1 and post_o[i] != -1 and post[post_o[i]] != -1:
-                ans = ac.min(ans, post[post_o[i]]-pre[i]+1-3*k)
+                ans = ac.min(ans, post[post_o[i]] - pre[i] + 1 - 3 * k)
         ac.st(ans if ans < inf else -1)
+        return
+
+    @staticmethod
+    def lg_p8081(ac=FastIO()):
+        # 模板：差分计数计算作用域
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        diff = [0] * (n + 1)
+        pre = 0
+        ceil = 0
+        for i in range(n):
+            if nums[i] < 0:
+                pre += 1
+            else:
+                if pre:
+                    ceil = ac.max(ceil, pre)
+                    low, high = ac.max(0, i - 3 * pre), i - pre - 1
+                    if low <= high:
+                        diff[low] += 1
+                        diff[high + 1] -= 1
+                pre = 0
+        if pre:
+            ceil = ac.max(ceil, pre)
+            low, high = ac.max(0, n - 3 * pre), n - pre - 1
+            if low <= high:
+                diff[low] += 1
+                diff[high + 1] -= 1
+
+        diff = [int(num > 0) for num in ac.accumulate(diff)][1:n + 1]
+        diff = ac.accumulate(diff)
+        ans = diff[-1]
+        pre = 0
+        res = 0
+        for i in range(n):
+            if nums[i] < 0:
+                pre += 1
+            else:
+                if pre == ceil:
+                    low, high = i - 4 * pre, i - 3 * pre - 1
+                    low = ac.max(low, 0)
+                    if low <= high:
+                        res = ac.max(res, high - low + 1 -
+                                     diff[high + 1] + diff[low])
+                pre = 0
+        if pre == ceil:
+            low, high = n - 4 * pre, n - 3 * pre - 1
+            low = ac.max(low, 0)
+            if low <= high:
+                res = ac.max(res, high - low + 1 - diff[high + 1] + diff[low])
+        ac.st(ans + res)
+        return
+
+    @staticmethod
+    def lg_p8033(ac=FastIO()):
+        # 模板：二维前缀和计数
+        m, n, k = ac.read_list_ints()
+        grid = [list(ac.read_str()) for _ in range(m)]
+        mat = [[int(w == "*") for w in lst] for lst in grid]
+        pre = PreFixSumMatrix(mat)
+        val = 0
+        ans = []
+
+        for i in range(k - 1, m):
+            for j in range(k - 1, n):
+                cur = pre.query(i - k + 2, j - k + 2, i - 1, j - 1)
+                if cur > val:
+                    val = cur
+                    ans = [i, j]
+        i, j = ans
+        x1, y1, x2, y2 = i - k + 1, j - k + 1, i, j
+        grid[x1][y1] = grid[x1][y2] = "+"
+        grid[x2][y1] = grid[x2][y2] = "+"
+        for i in [x1, x2]:
+            for j in range(y1 + 1, y2):
+                grid[i][j] = "-"
+        for j in [y1, y2]:
+            for i in range(x1 + 1, x2):
+                grid[i][j] = "|"
+        ac.st(val)
+        for g in grid:
+            ac.st("".join(g))
+        return
+
+    @staticmethod
+    def lg_p7992(ac=FastIO()):
+        # 模板：经典桶计数与作用域差分计数
+        n, m = ac.read_ints()
+        a = [0] * (m + 1)
+        b = [0] * (m + 1)
+        diff = [0] * (2 * m + 2)
+        for _ in range(n):
+            x, y = ac.read_ints()
+            a[x] += 1
+            b[y] += 1
+        for i in range(m + 1):
+            for j in range(m + 1):
+                diff[i + j] += a[i] * a[j]
+                diff[i + j + 1] -= b[i] * b[j]
+        for i in range(2 * m + 1):
+            if i:
+                diff[i] += diff[i - 1]
+            ac.st(diff[i])
+        return
+
+    @staticmethod
+    def lg_p7948(ac=FastIO()):
+        # 模板：排序后预处理前后缀信息指针查询
+        for _ in range(ac.read_int()):
+            n, q = ac.read_ints()
+            a = ac.read_list_ints()
+            b = ac.read_list_ints()
+            a.sort(reverse=True)
+            pre = [0] * n
+            s = 0
+            for i in range(n):
+                s += a[i]
+                pre[i] = (i+1)*a[i] - s
+
+            ind = list(range(q))
+            ind.sort(key=lambda it: -b[it])
+            ans = [-1] * q
+            j = n - 1
+            for i in ind:
+                k = b[i]
+                while j >= 0 and pre[j] < -k*(j+1):
+                    j -= 1
+                ans[i] = j + 1
+            ac.lst(ans)
         return
 
 
@@ -1123,11 +1270,12 @@ class TestGeneral(unittest.TestCase):
 
         shifts = [[1, 2, 1, 2, 1], [2, 3, 2, 3, 1],
                   [2, 2, 2, 2, 2], [1, 1, 3, 3, 3]]
-        shifts = [[x-1 for x in ls[:-1]]+[ls[-1]] for ls in shifts]
+        shifts = [[x - 1 for x in ls[:-1]] + [ls[-1]] for ls in shifts]
         assert dam.get_diff_matrix2(m, n, shifts) == diff
 
         pre = dam.get_matrix_prefix_sum(diff)
-        assert pre == [[0, 0, 0, 0], [0, 1, 2, 5], [0, 2, 7, 11], [0, 2, 8, 13]]
+        assert pre == [[0, 0, 0, 0], [0, 1, 2, 5],
+                       [0, 2, 7, 11], [0, 2, 8, 13]]
 
         xa, ya, xb, yb = 1, 1, 2, 2
         assert dam.get_matrix_range_sum(pre, xa, ya, xb, yb) == 7

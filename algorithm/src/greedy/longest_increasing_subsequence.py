@@ -6,7 +6,7 @@ from algorithm.src.fast_io import FastIO
 
 """
 
-算法：最长上升（或不降）子序列 Longest Increasing Subsequence（LIS）
+算法：最长上升（或不降）子序列 Longest Increasing Subsequence（LIS）Longest Decreasing Subsequence（LDS）统称 Longest Monotonic Subsequence（LMS） 
 最长单调递增子序列（严格上升）：<
 最长单调不减子序列（不降）：<=
 最长单调递减子序列（严格下降）：>
@@ -28,6 +28,7 @@ P3902 递增（https://www.luogu.com.cn/problem/P3902）最长严格上升子序
 P6403 [COCI2014-2015#2] STUDENTSKO（https://www.luogu.com.cn/problem/P6403）问题转化为最长不降子序列
 P5939 [POI1998]折线（https://www.luogu.com.cn/problem/P5939）旋转后转换为 LIS 问题
 P5978 [CEOI2018] Global warming（https://www.luogu.com.cn/problem/P5978）经典 LIS 变形问题，贪心枚举前半部分
+P7957 [COCI2014-2015#6] KRATKI（https://www.luogu.com.cn/problem/P7957）经典 LMS 逆问题构造
 
 """
 
@@ -150,6 +151,23 @@ class Solution:
             else:
                 dp.append(nums[i] - x)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p7957(ac=FastIO()):
+        # 模板：经典 LMS 逆问题构造
+        n, k = ac.read_ints()
+        if k * k < n:
+            ac.st(-1)
+            return
+        ans = []
+        x = 1
+        while len(ans) < n:
+            rest = ac.min(n-len(ans), k)
+            for y in range(x+rest-1, x-1, -1):
+                ans.append(y)
+            x = x+rest
+        ac.lst(ans)
         return
 
 

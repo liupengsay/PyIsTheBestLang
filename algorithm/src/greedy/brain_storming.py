@@ -104,6 +104,8 @@ P5884 [IOI2014]game 游戏（https://www.luogu.com.cn/problem/P5884）脑筋急�
 P5948 [POI2003]Chocolate（https://www.luogu.com.cn/problem/P5948）贪心模拟进行计算
 P6196 [EER1]代价（https://www.luogu.com.cn/problem/P6196）贪心使用 1 进行分段计算代价
 P6874 [COCI2013-2014#6] KOCKICE（https://www.luogu.com.cn/problem/P6874）经典变换公式转为中位数贪心
+P8050 [ZYOI Round1] Chessboard game/棋盘游戏（https://www.luogu.com.cn/problem/P8050）脑筋急转弯黑白染色法任意操作不改变黑白元素和的差值
+P7935 [COCI2007-2008#5] AVOGADRO（https://www.luogu.com.cn/problem/P7935）脑筋急转弯
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1186/D（贪心取floor，再根据加和为0的特质进行补充加1成为ceil）
@@ -709,6 +711,29 @@ class Solution:
         a.sort()
         x = ac.max(0, a[n])
         ac.st(sum(abs(x-num) for num in a))
+        return
+
+    @staticmethod
+    def lg_p8050(ac=FastIO()):
+        # 模板：脑筋急转弯黑白染色法任意操作不改变黑白元素和的差值
+        m1, n1, m2, n2, k = ac.read_list_ints()
+        black = white = cnt = state = 0
+        for i in range(m1 + m2):
+            lst = ac.read_list_ints()
+            for j in range(len(lst)):
+                if lst[j] != 999999:
+                    if (i + j) % 2:
+                        black += lst[j]
+                        cnt += 1
+                    else:
+                        white += lst[j]
+                else:
+                    state = (i + j) % 2
+                    cnt += (i + j) % 2
+        ans = (2 * cnt - m1 * n1 - m2 * n2) * k - black + white
+        if not state:
+            ans = -ans
+        ac.st(ans)
         return
 
 

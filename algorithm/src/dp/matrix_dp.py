@@ -1,7 +1,7 @@
 import heapq
 import unittest
 from bisect import bisect_left
-from collections import defaultdict
+from collections import defaultdict, deque
 from itertools import permutations
 from math import inf
 
@@ -91,6 +91,7 @@ P6433 「EZEC-1」出题（https://www.luogu.com.cn/problem/P6433）贪心分类
 P6451 [COCI2008-2009#4] SLIKAR（https://www.luogu.com.cn/problem/P6451）使用迭代方式实现四维 DP 并枚举四叉树获取对应最小代价和状态
 P6509 [CRCI2007-2008] JEDNAKOST（https://www.luogu.com.cn/problem/P6509）典型矩阵 DP 并记录对应的状态转移
 P6870 [COCI2019-2020#5] Zapina（https://www.luogu.com.cn/problem/P6870）矩阵 DP 与组合数优化计数
+P7995 [USACO21DEC] Walking Home B（https://www.luogu.com.cn/problem/P7995）矩阵 DP 
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1446/B（最长公共子序列LCS变形问题，理解贡献）
@@ -1465,6 +1466,50 @@ class Solution:
         return dp[-1][-1] if dp[-1][-1] < inf else -1
 
     @staticmethod
+    def lc_2617_3(grid: List[List[int]]) -> int:
+        # 模板：矩阵 DP 使用 BFS 加并查集的方式进行计算
+        m, n = len(grid), len(grid[0])
+        row = [list(range(1, n + 1)) for _ in range(m)]
+        col = [list(range(1, m + 1)) for _ in range(n)]
+        dp = [[inf] * n for _ in range(m)]
+        dp[0][0] = 1
+        stack = deque([[0, 0]])
+        while stack:
+            i, j = stack.popleft()
+            d = dp[i][j]
+            if i == m - 1 and j == n - 1:
+                return d
+            val = grid[i][j]
+
+            # 使用并查集或者类似链表进行合并
+            lst = [j]
+            # 查到下一个就可以移动到的未访问格子
+            while lst[-1] <= j + val and lst[-1] < n:
+                lst.append(row[i][lst[-1]])
+            last = lst[-1]
+            for x in lst[1:-1]:
+                if dp[i][x] == inf:
+                    dp[i][x] = d + 1
+                    stack.append([i, x])
+                row[i][x] = last
+            row[i][j] = last
+
+            # 使用并查集或者类似链表进行合并
+            lst = [i]
+            while lst[-1] <= i + val and lst[-1] < m:
+                lst.append(col[j][lst[-1]])
+            last = lst[-1]
+            for x in lst[1:-1]:
+                if dp[x][j] == inf:
+                    dp[x][j] = d + 1
+                    stack.append([x, j])
+                col[j][x] = last
+            col[j][i] = last
+
+        return -1
+
+
+    @staticmethod
     def lg_p6509(ac=FastIO()):
         # 模板：典型矩阵 DP 并记录对应的状态转移
         s = ac.read_str().split("=")
@@ -1524,6 +1569,40 @@ class Solution:
             ans *= n
             ans %= mod
         ac.st((ans - dp[n][n]) % mod)
+        return
+
+    @staticmethod
+    def lg_p7995(ac=FastIO()):
+        # 模板：矩阵 DP 计算
+        for _ in range(ac.read_int()):
+            n, k = ac.read_list_ints()
+            k += 1
+            grid = [ac.read_str() for _ in range(n)]
+            dp = [[[[0, 0, 0] for _ in range(k+1)] for _ in range(n)] for _ in range(n)]
+            dp[0][0][0] = [1, 0, 0]
+            for i in range(n):
+                for j in range(n):
+                    if grid[i][j] == "H":
+                        continue
+                    if i:
+                        d = 1
+                        for x in range(k+1):
+                            for y in range(3):
+                                kk = x + int(y != d)
+                                if kk <= k:
+                                    dp[i][j][kk][d] += dp[i-1][j][x][y]
+                    if j:
+                        d = 2
+                        for x in range(k+1):
+                            for y in range(3):
+                                kk = x + int(y != d)
+                                if kk <= k:
+                                    dp[i][j][kk][d] += dp[i][j-1][x][y]
+            ans = 0
+            for x in range(k+1):
+                ans += sum(dp[-1][-1][x])
+            ac.st(ans)
+
         return
 
 

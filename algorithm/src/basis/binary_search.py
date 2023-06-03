@@ -22,6 +22,7 @@ from algorithm.src.graph.union_find import UnionFind
 2141 同时运行 N 台电脑的最长时间（https://leetcode.cn/problems/maximum-running-time-of-n-computers/）贪心选择最大的 N 个电池作为基底，然后二分确定在其余电池的加持下可以运行的最长时间
 2102 序列顺序查询（https://leetcode.cn/problems/sequentially-ordinal-rank-tracker/）使用有序集合维护优先级姓名实时查询
 2563. 统计公平数对的数目（https://leetcode.cn/problems/count-the-number-of-fair-pairs/）使用二分查找确定范围个数
+2604. 吃掉所有谷子的最短时间（https://leetcode.cn/problems/minimum-time-to-eat-all-grains/）二分加指针贪心 check
 
 ===================================洛谷===================================
 P1577 切绳子（https://www.luogu.com.cn/problem/P1577）数学整除向下取整与二分
@@ -1033,6 +1034,34 @@ class Solution:
         ans = BinarySearch().find_float_right(0, nums[0][1], check, 1e-3)
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_2604(hens: List[int], grains: List[int]) -> int:
+        # 模板：二分加指针贪心 check
+        hens.sort()
+        grains.sort()
+        m, n = len(hens), len(grains)
+
+        def check(x):
+            i = 0
+            for pos in hens:
+                left = right = 0
+                while i < n:
+                    if grains[i] >= pos:
+                        right = right if right > grains[i] - pos else grains[i] - pos
+                    else:
+                        left = left if left > pos - grains[i] else pos - grains[i]
+                    if left * 2 + right <= x or right * 2 + left <= x:
+                        i += 1
+                    else:
+                        break
+                if i == n:
+                    return True
+            return False
+
+        low = 0
+        high = sum(abs(g - hens[0]) * 2 for g in grains)
+        return BinarySearch().find_int_left(low, high, check)
 
 
 class TestGeneral(unittest.TestCase):
