@@ -112,7 +112,8 @@ class NumberTheoryPrimeFactor:
             if not self.min_prime[i]:
                 self.min_prime[i] = i
                 for j in range(i * i, self.ceil + 1, i):
-                    self.min_prime[j] = i
+                    if not self.min_prime[j]:
+                        self.min_prime[j] = i
 
         # 模板：计算 1 到 self.ceil 所有数字的质数分解（可选）
         for num in range(2, self.ceil + 1):

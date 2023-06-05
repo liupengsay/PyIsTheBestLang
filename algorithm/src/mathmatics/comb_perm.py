@@ -52,6 +52,7 @@ D. Triangle Coloring（https://codeforces.com/problemset/problem/1795/D）组合
 C. Beautiful Numbers（https://codeforces.com/problemset/problem/300/C）枚举个数并使用组合数计算方案数
 C. Gerald and Giant Chess（https://codeforces.com/problemset/problem/559/C）容斥原理组合计数
 C. Binary Search（https://codeforces.com/problemset/problem/1436/C）二分加组合数计算
+B. Mashmokh and ACM（https://codeforces.com/problemset/problem/414/B）经典使用最小质因数与隔板法计数 DP
 
 ================================AcWing==================================
 130. 火车进出栈问题（https://www.acwing.com/problem/content/132/）超大数字的卡特兰数计算
@@ -74,7 +75,7 @@ class Combinatorics:
             self.perm[i] %= self.mod
         self.rev[-1] = pow(self.perm[-1], -1, self.mod)
         for i in range(n - 2, 0, -1):
-            self.rev[i] = (self.rev[i + 1] * (i + 1) % mod)
+            self.rev[i] = (self.rev[i + 1] * (i + 1) % mod)  # 阶乘 i! 取逆元
         self.fault = [0] * n
         self.fault_perm()
         return
@@ -97,6 +98,15 @@ class Combinatorics:
             self.fault[i] = (i - 1) * (self.fault[i - 1] + self.fault[i - 2])
             self.fault[i] %= self.mod
         return
+
+    def inv(self, n):
+        # 求 pow(n, -1, mod)
+        return self.perm[n - 1] * self.rev[n] % self.mod
+
+    def catalan(self, n):
+        # 求卡特兰数
+        return (self.comb(2 * n, n) - self.comb(2 * n, n - 1)) % self.mod
+
 
 class Lucas:
     def __init__(self):
@@ -539,6 +549,28 @@ class Solution:
             ans += (n - 1 - degree[i]) * degree[i]
         ans //= 2
         ac.st(n * (n - 1) * (n - 2) // 6 - ans)
+        return
+
+    @staticmethod
+    def cf_414b(ac=FastIO()):
+        mod = 10 ** 9 + 7
+        n, k = ac.read_ints()
+        mp = NumberTheoryPrimeFactor(n)
+        rp = Combinatorics(15 + 1, mod)
+        cnt = [0] * (n + 1)  # 当前值 last 的最小质因数幂次
+        res = [0] * (n + 1)  # 结尾为 last 的数组个数
+        cnt[1] = res[1] = ans = 1
+        for last in range(2, n + 1):
+            p = mp.min_prime[last]
+            pre = last // p
+            if mp.min_prime[pre] == p:
+                cnt[last] = cnt[pre] + 1
+                res[last] = res[pre] * (k + cnt[last] - 1) * rp.inv(cnt[last]) % mod
+            else:
+                cnt[last] = 1
+                res[last] = res[pre] * k % mod
+            ans = (ans + res[last]) % mod
+        ac.st(ans)
         return
 
 
