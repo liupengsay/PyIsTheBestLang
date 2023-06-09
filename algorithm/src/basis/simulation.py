@@ -58,6 +58,7 @@ P5329 [SNOI2019]字符串（https://www.luogu.com.cn/problem/P5329）经典字�
 P6397 [COI2008] GLASNICI（https://www.luogu.com.cn/problem/P6397）经典贪心模拟
 P8247 皇室战争（https://www.luogu.com.cn/problem/P8247）经典模拟按照相对位置比例进行区分
 P8611 [蓝桥杯 2014 省 AB] 蚂蚁感冒（https://www.luogu.com.cn/problem/P8611）经典蚂蚁碰撞模拟分类讨论
+P8755 [蓝桥杯 2021 省 AB2] 负载均衡（https://www.luogu.com.cn/problem/P8755）使用二叉堆进行模拟计算
 
 ================================CodeForces================================
 C. Gargari and Bishops（https://codeforces.com/problemset/problem/463/C）选取两组互不相交的主副对角线使得和最大

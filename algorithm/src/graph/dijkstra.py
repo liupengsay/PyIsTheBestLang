@@ -92,6 +92,7 @@ P5930 [POI1999] 降水（https://www.luogu.com.cn/problem/P5930）经典Dijkstra
 P6063 [USACO05JAN]The Wedding Juicer G（https://www.luogu.com.cn/problem/P6063）经典Dijkstra应用接雨水
 P6512 [QkOI#R1] Quark and Flying Pigs（https://www.luogu.com.cn/problem/P6512）经典最短路加DP
 P8385 [POI 2003] Smugglers（https://www.luogu.com.cn/problem/P8385）经典脑筋急转弯建图最短路
+P8724 [蓝桥杯 2020 省 AB3] 限高杆（https://www.luogu.com.cn/problem/P8724）分层最短路Dijkstra计算
 
 ================================CodeForces================================
 C. Dijkstra?（https://codeforces.com/problemset/problem/20/C）正权值最短路计算，并记录返回生成路径

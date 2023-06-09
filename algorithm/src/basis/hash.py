@@ -23,6 +23,7 @@ P2697 宝石串（https://www.luogu.com.cn/problem/P2697）哈希记录前缀和
 P1114 “非常男女”计划（https://www.luogu.com.cn/record/list?user=739032&status=12&page=13）哈希记录前缀和与对应索引
 P4889 kls与flag（https://www.luogu.com.cn/problem/P4889）经典公式变换使用哈希计数
 P6273 [eJOI2017] 魔法（https://www.luogu.com.cn/problem/P6273）经典哈希前缀计数
+P8630 [蓝桥杯 2015 国 B] 密文搜索（https://www.luogu.com.cn/problem/P8630）哈希计数与排列枚举
 
 137. 雪花雪花雪花（https://www.acwing.com/problem/content/139/）哈希找相同雪花
 

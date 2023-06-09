@@ -107,6 +107,9 @@ P6874 [COCI2013-2014#6] KOCKICE（https://www.luogu.com.cn/problem/P6874）经�
 P8050 [ZYOI Round1] Chessboard game/棋盘游戏（https://www.luogu.com.cn/problem/P8050）脑筋急转弯黑白染色法任意操作不改变黑白元素和的差值
 P7935 [COCI2007-2008#5] AVOGADRO（https://www.luogu.com.cn/problem/P7935）脑筋急转弯
 P8109 [Cnoi2021]幻想乡程序设计大赛（https://www.luogu.com.cn/problem/P8109）经典STL贪心分配求解
+P8669 [蓝桥杯 2018 省 B] 乘积最大（https://www.luogu.com.cn/problem/P8669）贪心选取 k 个数乘积最大
+P8709 [蓝桥杯 2020 省 A1] 超级胶水（https://www.luogu.com.cn/problem/P8709）脑筋急转弯模拟计算
+P8732 [蓝桥杯 2020 国 ABC] 答疑（https://www.luogu.com.cn/problem/P8732）经典贪心枚举两项计算优先级公式
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1186/D（贪心取floor，再根据加和为0的特质进行补充加1成为ceil）
@@ -734,6 +737,20 @@ class Solution:
         ans = (2 * cnt - m1 * n1 - m2 * n2) * k - black + white
         if not state:
             ans = -ans
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p8732(ac=FastIO()):
+        # 模板：经典贪心枚举两项计算优先级公式
+        n = ac.read_int()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        nums.sort(key=lambda it: sum(it))
+        ans = pre = 0
+        for s, a, e in nums:
+            pre += s + a
+            ans += pre
+            pre += e
         ac.st(ans)
         return
 

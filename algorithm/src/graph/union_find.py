@@ -54,6 +54,10 @@ P6193 [USACO07FEB]Cow Sorting G（https://www.luogu.com.cn/problem/P6193）经�
 P6706 [COCI2010-2011#7] KUGLICE（https://www.luogu.com.cn/problem/P6706）经典有向图并查集逆序更新边 find_merge 灵活使用
 P7991 [USACO21DEC] Connecting Two Barns S（https://www.luogu.com.cn/problem/P7991）经典并查集计算连通块缩点使得 1 和 n 连通最多加两条路的代价
 P8230 [AGM 2022 资格赛] 地牢（https://www.luogu.com.cn/problem/P8230）分层并查集加模拟
+P8637 [蓝桥杯 2016 省 B] 交换瓶子（https://www.luogu.com.cn/problem/P8637）经典并查集置换环
+P8686 [蓝桥杯 2019 省 A] 修改数组（https://www.luogu.com.cn/problem/P8686）经典并查集灵活应用
+P8785 [蓝桥杯 2022 省 B] 扫雷（https://www.luogu.com.cn/problem/P8785）根据边界进行并查集构建计数
+P8787 [蓝桥杯 2022 省 B] 砍竹子（https://www.luogu.com.cn/problem/P8787）经典贪心二叉堆模拟与并查集灵活应用
 
 ================================CodeForces================================
 D. Roads not only in Berland（https://codeforces.com/problemset/problem/25/D）并查集将原来的边断掉重新来连接使得成为一整个连通集
@@ -789,6 +793,79 @@ class Solution:
                         if val > 0:
                             ans += val
             start = end[:]
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p8686(ac=FastIO()):
+        # 模板：经典并查集灵活应用
+        ac.read_int()
+        nums = ac.read_list_ints()
+        post = dict()
+        ans = []
+        for num in nums:
+            lst = [num]
+            while lst[-1] in post:
+                lst.append(post[lst[-1]])
+            for x in lst:
+                post[x] = lst[-1] + 1
+            ans.append(lst[-1])
+        ac.lst(ans)
+        return
+
+    @staticmethod
+    def lg_p8787(ac=FastIO()):
+        # 模板：经典贪心二叉堆模拟与并查集灵活应用
+
+        class UnionFindLeftRoot:
+            def __init__(self, n: int) -> None:
+                self.root = [i for i in range(n)]
+                self.part = n
+                return
+
+            def find(self, x):
+                lst = []
+                while x != self.root[x]:
+                    lst.append(x)
+                    # 在查询的时候合并到顺带直接根节点
+                    x = self.root[x]
+                for w in lst:
+                    self.root[w] = x
+                return x
+
+            def union(self, x, y):
+                root_x = self.find(x)
+                root_y = self.find(y)
+                if root_x == root_y:
+                    return False
+                if root_x <= root_y:
+                    root_x, root_y = root_y, root_x
+                self.root[root_x] = root_y
+                return True
+
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        stack = [[-nums[i], -i] for i in range(n)]
+        heapq.heapify(stack)
+        uf = UnionFindLeftRoot(n)
+        for i in range(n):
+            if i and nums[i] == nums[i - 1]:
+                uf.union(i - 1, i)
+        ans = 0
+        while stack:
+            val, i = heapq.heappop(stack)
+            val, i = -val, -i
+            if val == 1:
+                break
+            if i != uf.find(i):
+                continue
+            if i and nums[uf.find(i-1)] == val:
+                uf.union(i-1, i)
+                continue
+            ans += 1
+            val = int(((val // 2) + 1)**0.5)
+            nums[i] = val
+            heapq.heappush(stack, [-nums[i], -i])
         ac.st(ans)
         return
 

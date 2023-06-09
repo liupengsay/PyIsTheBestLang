@@ -61,6 +61,7 @@ P5149 会议座位（https://www.luogu.com.cn/problem/P5149）经典逆序对计
 P5459 [BJOI2016]回转寿司（https://www.luogu.com.cn/problem/P5459）前缀和与有序列表二分查找
 P6538 [COCI2013-2014#1] LOPOV（https://www.luogu.com.cn/problem/P6538）典型STL维护贪心
 P7912 [CSP-J 2021] 小熊的果篮（https://www.luogu.com.cn/problem/P7912）经典 STL 应用模拟题
+P8667 [蓝桥杯 2018 省 B] 递增三元组（https://www.luogu.com.cn/problem/P8667）典型STL应用题
 
 ================================CodeForces================================
 D. Pashmak and Parmida's problem（https://codeforces.com/problemset/problem/459/D）使用有序集合进行大小计数查找

@@ -1,11 +1,13 @@
-
+import heapq
 import unittest
 from collections import defaultdict
 from functools import lru_cache
 from math import inf
 from typing import List
 
+from algorithm.src.basis.binary_search import BinarySearch
 from algorithm.src.fast_io import FastIO
+from algorithm.src.graph.dijkstra import Dijkstra
 
 """
 
@@ -32,6 +34,7 @@ P6175 无向图的最小环问题（https://www.luogu.com.cn/problem/P6175）经
 B3611 【模板】传递闭包（https://www.luogu.com.cn/problem/B3611）传递闭包模板题，使用FLoyd解法
 P1613 跑路（https://www.luogu.com.cn/problem/P1613）经典Floyd动态规划
 P8312 [COCI2021-2022#4] Autobus（https://www.luogu.com.cn/problem/P8312）经典最多k条边的最短路跑k遍Floyd
+P8794 [蓝桥杯 2022 国 A] 环境治理（https://www.luogu.com.cn/problem/P8794）经典二分加Floyd计算
 
 ================================CodeForces================================
 D. Design Tutorial: Inverse the Problem（https://codeforces.com/problemset/problem/472/D）使用Floyd判断构造给定的点对最短路距离是否存在
@@ -243,6 +246,80 @@ class Solution:
         for c, d in nums:
             res = dis[c][d]
             ac.st(res if res < inf else -1)
+        return
+
+    @staticmethod
+    def lg_p8794(ac=FastIO()):
+        # 模板：经典二分加Floyd计算
+
+        def get_dijkstra_result_mat(mat: List[List[int]], src: int) -> List[float]:
+            # 模板: Dijkstra求最短路，变成负数求可以求最长路（还是正权值）
+            n = len(mat)
+            dis = [inf] * n
+            stack = [[0, src]]
+            dis[src] = 0
+            visit = set(list(range(n)))
+            while stack:
+                d, i = heapq.heappop(stack)
+                if dis[i] < d:
+                    continue
+                visit.discard(i)
+                for j in visit:
+                    dj = mat[i][j] + d
+                    if dj < dis[j]:
+                        dis[j] = dj
+                        heapq.heappush(stack, [dj, j])
+            return dis
+
+        n, q = ac.read_ints()
+        grid = [ac.read_list_ints() for _ in range(n)]
+        lower = [ac.read_list_ints() for _ in range(n)]
+        ans = 0
+        for i in range(n):
+            ans += sum(get_dijkstra_result_mat(lower, i))
+        if ans > q:
+            ac.st(-1)
+            return
+
+        ans = 0
+        for i in range(n):
+            ans += sum(get_dijkstra_result_mat(grid, i))
+        if ans <= q:
+            ac.st(0)
+            return
+
+        def check(x):
+            cnt = [x // n] * n
+            for y in range(x % n):
+                cnt[y] += 1
+            cur = [[0] * n for _ in range(n)]
+            for a in range(n):
+                for b in range(n):
+                    cur[a][b] = ac.max(lower[a][b], grid[a][b] - cnt[a] - cnt[b])
+            dis = 0
+            for y in range(n):
+                dis += sum(get_dijkstra_result_mat(cur, y))
+            return dis <= q
+
+        def check2(x):
+            cnt = [x // n] * n
+            for y in range(x % n):
+                cnt[y] += 1
+            cur = [[0] * n for _ in range(n)]
+            for a in range(n):
+                for b in range(n):
+                    cur[a][b] = ac.max(lower[a][b], grid[a][b] - cnt[a] - cnt[b])
+            # Floyd计算全源最短路
+            for k in range(n):
+                for a in range(n):
+                    for b in range(a+1, n):
+                        cur[a][b] = cur[b][a] = ac.min(cur[a][b], cur[a][k]+cur[k][b])
+            return sum(sum(c) for c in cur) <= q
+
+        low = 1
+        high = n * 10**5
+        ans = BinarySearch().find_int_left(low, high, check2)
+        ac.st(ans)
         return
 
 

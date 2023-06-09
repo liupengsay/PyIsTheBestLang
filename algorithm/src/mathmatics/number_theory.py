@@ -74,6 +74,10 @@ P5248 [LnOI2019SP]快速多项式变换(FPT)（https://www.luogu.com.cn/problem/
 P5253 [JSOI2013]丢番图（https://www.luogu.com.cn/problem/P5253）经典方程变换计算 (x-n)*(y-n)=n^2 的对数
 P7960 [NOIP2021] 报数（https://www.luogu.com.cn/problem/P7960）类似埃氏筛的思路进行预处理
 P8319 『JROI-4』分数（https://www.luogu.com.cn/problem/P8319）质因数分解与因子计数
+P8646 [蓝桥杯 2017 省 AB] 包子凑数（https://www.luogu.com.cn/problem/P8646）经典裴蜀定理与背包 DP 
+P8762 [蓝桥杯 2021 国 ABC] 123（https://www.luogu.com.cn/problem/P8762）容斥原理加前缀和计数
+P8778 [蓝桥杯 2022 省 A] 数的拆分（https://www.luogu.com.cn/problem/P8778）经典枚举素因子后O(n^0.25)计算是否为完全平方数与立方数
+P8782 [蓝桥杯 2022 省 B] X 进制减法（https://www.luogu.com.cn/problem/P8782）多种进制结合贪心计算，经典好题
 
 ================================CodeForces================================
 C. Hossam and Trainees（https://codeforces.com/problemset/problem/1771/C）使用pollard_rho进行质因数分解
@@ -1207,6 +1211,58 @@ class Solution:
             f[i] = ac.max(f[i - 1], f[i])
         for _ in range(ac.read_int()):
             ac.st(f[ac.read_int()])
+        return
+
+    @staticmethod
+    def lg_p8646(ac=FastIO()):
+        # 模板：经典裴蜀定理与背包 DP
+        n = ac.read_int()
+        nums = [ac.read_int() for _ in range(n)]
+        s = 10000
+        dp = [0]*(s+1)
+        dp[0] = 1
+        for num in nums:
+            for i in range(num, s+1):
+                if dp[i-num]:
+                    dp[i] = 1
+        ans = s+1-sum(dp)
+        if reduce(math.gcd, nums) != 1:
+            ac.st("INF")
+        else:
+            ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_8778(ac=FastIO()):
+        # 模板：经典枚举素因子后O(n^0.25)计算是否为完全平方数与立方数
+        primes = NumberTheory().sieve_of_eratosthenes(4000)
+
+        def check(xx):
+            for r in range(2, 6):
+                a = int(xx**(1/r))
+                for ww in [a-1, a, a+1, a+2]:
+                    if ww**r == xx:
+                        return True
+            return False
+
+        n = ac.read_int()
+        for _ in range(n):
+            num = ac.read_int()
+            flag = True
+            for p in primes:
+                if p > num:
+                    break
+                x = 0
+                while num % p == 0:
+                    x += 1
+                    num //= p
+                if x == 1:
+                    flag = False
+                    break
+            if flag and check(num):
+                ac.st("yes")
+            else:
+                ac.st("no")
         return
 
 

@@ -79,6 +79,10 @@ P6040 「ACOI2020」课后期末考试滑溜滑溜补习班（https://www.luogu.
 P6120 [USACO17JAN]Hoof, Paper, Scissor S（https://www.luogu.com.cn/problem/P6120）线性 DP 模拟
 P6146 [USACO20FEB]Help Yourself G（https://www.luogu.com.cn/problem/P6146）线性 DP 枚举计数
 P7994 [USACO21DEC] Air Cownditioning B（https://www.luogu.com.cn/problem/P7994）经典线性 DP 修改连续区间值加一减一的最少操作次数
+P8656 [蓝桥杯 2017 国 B] 对局匹配（https://www.luogu.com.cn/problem/P8656）经典分组线性 DP
+P8725 [蓝桥杯 2020 省 AB3] 画中漂流（https://www.luogu.com.cn/problem/P8725）典型矩阵 DP 使用指针关系减少维度
+P8784 [蓝桥杯 2022 省 B] 积木画（https://www.luogu.com.cn/problem/P8784）线性 DP 可以使用矩阵幂优化
+P8786 [蓝桥杯 2022 省 B] 李白打酒加强版（https://www.luogu.com.cn/problem/P8786）线性 DP 记忆化搜索模拟
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/75/D（经典压缩数组，最大子段和升级）

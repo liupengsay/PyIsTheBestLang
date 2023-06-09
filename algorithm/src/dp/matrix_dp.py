@@ -94,6 +94,7 @@ P6870 [COCI2019-2020#5] Zapina（https://www.luogu.com.cn/problem/P6870）矩阵
 P7995 [USACO21DEC] Walking Home B（https://www.luogu.com.cn/problem/P7995）矩阵 DP 
 P8325 [COCI2021-2022#5] Dijamant（https://www.luogu.com.cn/problem/P8325）经典动态规划枚举，类似最大正方形矩阵 DP 变形
 P8614 [蓝桥杯 2014 省 A] 波动数列（https://www.luogu.com.cn/problem/P8614）经典矩阵 DP 关键在于取模作为一维状态
+P8638 [蓝桥杯 2016 省 A] 密码脱落（https://www.luogu.com.cn/problem/P8638）经典矩阵 DP 最长回文子序列
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1446/B（最长公共子序列LCS变形问题，理解贡献）
@@ -1681,6 +1682,21 @@ class Solution:
                 dp[cur][j] %= mod
             pre = cur
         ac.st(dp[pre][s % n])
+        return
+
+    @staticmethod
+    def lg_p8638(ac=FastIO()):
+        # 模板：经典矩阵 DP 最长回文子序列
+        s = ac.read_str()
+        n = len(s)
+        dp = [[0]*n for _ in range(n)]
+        for i in range(n-1, -1, -1):
+            dp[i][i] = 1
+            for j in range(i+1, n):
+                dp[i][j] = ac.max(dp[i+1][j], dp[i][j-1])
+                if s[i] == s[j] and dp[i+1][j-1] + 2 > dp[i][j]:
+                    dp[i][j] = dp[i+1][j-1] + 2
+        ac.st(n-dp[0][n-1])
         return
 
 

@@ -3,13 +3,14 @@ import unittest
 from collections import defaultdict, deque
 from typing import List
 
+from algorithm.src.basis.binary_search import BinarySearch
 from algorithm.src.fast_io import FastIO
 import bisect
 from math import inf
 
 """
 
-算法：差分数组与前缀和、后缀和、前缀最大子序列和、后缀最大子序列和、二维差分、离散化差分
+算法：差分数组与前缀和、后缀和、前缀最大子序列和、后缀最大子序列和、二维差分、离散化差分、三维差分
 功能：用来解决一维数组或者二维数组的加和问题，以及前缀和计算，还有前缀和的前缀和
 题目：
 
@@ -66,6 +67,9 @@ P7992 [USACO21DEC] Convoluted Intervals S（https://www.luogu.com.cn/problem/P79
 P7948 [✗✓OI R1] 前方之风（https://www.luogu.com.cn/problem/P7948）排序后预处理前后缀信息指针查询
 P8343 [COCI2021-2022#6] Zemljište（https://www.luogu.com.cn/problem/P8343）经典子矩阵前缀和枚举与双指针
 P8551 Bassline（https://www.luogu.com.cn/problem/P8551）差分数组经典灵活应用
+P8666 [蓝桥杯 2018 省 A] 三体攻击（https://www.luogu.com.cn/problem/P8666）二分加三维差分经典题
+P8715 [蓝桥杯 2020 省 AB2] 子串分值（https://www.luogu.com.cn/problem/P8715）前后缀贡献计数
+P8783 [蓝桥杯 2022 省 B] 统计子矩阵（https://www.luogu.com.cn/problem/P8783）经典O(n^3)与双指针枚举计算子矩阵个数
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/33/C（前后缀最大变换和与分割点枚举，经典类型题目）
@@ -1292,6 +1296,53 @@ class Solution:
             if point[i]:
                 ans = ac.max(ans, diff[i] * (i - pre))
                 pre = i + 1
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p8666(ac=FastIO()):
+        # 模板：二分加三维差分经典题
+        a, b, c, m = ac.read_ints()
+        grid = [[[0] * (c + 1) for _ in range(b + 1)] for _ in range(a + 1)]
+        nums = ac.read_list_ints()
+        for i in range(1, a + 1):
+            for j in range(1, b + 1):
+                for k in range(1, c + 1):
+                    grid[i][j][k] = nums[((i - 1) * b + (j - 1)) * c + k - 1]
+        del nums
+        lst = [ac.read_list_ints() for _ in range(m)]
+
+        def check(x):
+            # 模板：三位差分计算
+            diff = [[[0] * (c + 2) for _ in range(b + 2)] for _ in range(a + 2)]
+            for i1, i2, j1, j2, k1, k2, h in lst[:x]:
+
+                # 差分值更新索引从 1 开始
+                diff[i1][j1][k1] += h
+
+                diff[i2 + 1][j1][k1] -= h
+                diff[i1][j2 + 1][k1] -= h
+                diff[i1][j1][k2 + 1] -= h
+
+                diff[i2 + 1][j2 + 1][k1] += h
+                diff[i1][j2 + 1][k2 + 1] += h
+                diff[i2 + 1][j1][k2 + 1] += h
+
+                diff[i2 + 1][j2 + 1][k2 + 1] -= h
+
+            for i1 in range(1, a + 1):
+                for j1 in range(1, b + 1):
+                    for k1 in range(1, c + 1):
+                        # 前缀和计算索引从 1 开始
+                        diff[i1][j1][k1] += diff[i1 - 1][j1][k1] + diff[i1][j1 - 1][k1] + diff[i1][j1][k1 - 1] - \
+                            diff[i1][j1 - 1][k1 - 1] - diff[i1 - 1][j1][k1 - 1] - diff[i1 - 1][j1 - 1][k1] +\
+                            diff[i1 - 1][j1 - 1][k1 - 1]
+                        if diff[i1][j1][k1] > grid[i1][j1][k1]:
+                            return True
+
+            return False
+
+        ans = BinarySearch().find_int_left(1, m, check)
         ac.st(ans)
         return
 

@@ -74,6 +74,9 @@ P5099 [USACO04OPEN]Cave Cows 4（https://www.luogu.com.cn/problem/P5099）队列
 P5195 [USACO05DEC]Knights of Ni S（https://www.luogu.com.cn/problem/P5195）
 P6131 [USACO11NOV]Cow Beauty Pageant S（https://www.luogu.com.cn/problem/P6131）经典 BFS 计算不同连通块之间的距离
 P6909 [ICPC2015 WF]Keyboarding（https://www.luogu.com.cn/problem/P6909）预处理加 BFS 
+P8628 [蓝桥杯 2015 国 AC] 穿越雷区（https://www.luogu.com.cn/problem/P8628）简单 01 BFS 
+P8673 [蓝桥杯 2018 国 C] 迷宫与陷阱（https://www.luogu.com.cn/problem/P86730）简单 01 BFS 模拟
+P8674 [蓝桥杯 2018 国 B] 调手表（https://www.luogu.com.cn/problem/P8674）经典预处理建图后使用 BFS 模拟
 
 ================================CodeForces================================
 E. Nearest Opposite Parity（https://codeforces.com/problemset/problem/1272/E）经典反向建图，多源BFS

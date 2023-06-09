@@ -23,6 +23,7 @@ import numpy as np
 from decimal import Decimal
 import heapq
 import copy
+from math import inf
 
 from algorithm.src.fast_io import FastIO
 
@@ -55,7 +56,8 @@ P1556 幸福的路（https://www.luogu.com.cn/problem/P1556）状态压缩计算
 P3052 [USACO12MAR]Cows in a Skyscraper G（https://www.luogu.com.cn/problem/P3052）经典状态压缩 DP 使用二维优化
 P5997 [PA2014]Pakowanie（https://www.luogu.com.cn/problem/P5997）经典贪心背包与状压 DP 结合
 P6883 [COCI2016-2017#3] Kroničan（https://www.luogu.com.cn/problem/P6883）典型状压 DP 
-
+P8687 [蓝桥杯 2019 省 A] 糖果（https://www.luogu.com.cn/problem/P8687）经典状压 DP 结合背包 DP 思想
+P8733 [蓝桥杯 2020 国 C] 补给（https://www.luogu.com.cn/problem/P8733）使用Floyd最短路计算并使用状压 DP
 
 ================================CodeForces================================
 D. Kefa and Dishes（https://codeforces.com/problemset/problem/580/D）状态压缩DP结合前后相邻的增益计算最优解
@@ -441,6 +443,21 @@ class Solution:
                 c = min(grid[j][k] for k in lst if k != j)
                 dp[i ^ (1 << j)] = ac.min(dp[i ^ (1 << j)], dp[i] + c)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p8687(ac=FastIO()):
+        # 模板：经典状压 DP 结合背包 DP 思想
+        n, m, k = ac.read_ints()
+        dp = [inf] * (1 << m)
+        dp[0] = 0
+        for i in range(n):
+            nums = ac.read_list_ints_minus_one()
+            cur = reduce(or_, [1 << x for x in nums])
+            for j in range(1 << m):
+                if dp[j | cur] > dp[j] + 1:
+                    dp[j | cur] = dp[j] + 1
+        ac.st(dp[-1] if dp[-1] < inf else -1)
         return
 
 

@@ -85,6 +85,10 @@ P6393 隔离的日子（https://www.luogu.com.cn/problem/P6393）经典利用值
 P6767 [BalticOI 2020/2012 Day0] Roses（https://www.luogu.com.cn/problem/P6767）
 P8270 [USACO22OPEN] Subset Equality S（https://www.luogu.com.cn/problem/P8270）经典脑筋急转弯枚举，转换为两两字母比较
 P8587 新的家乡（https://www.luogu.com.cn/problem/P8587）桶计数枚举
+P8663 [蓝桥杯 2018 省 A] 倍数问题（https://www.luogu.com.cn/problem/P8663）桶计数枚举
+P8672 [蓝桥杯 2018 国 C] 交换次数（https://www.luogu.com.cn/problem/P8672）字符串枚举与经典置换环计数
+P8712 [蓝桥杯 2020 省 B1] 整数拼接（https://www.luogu.com.cn/problem/P8712）整数长度枚举
+P8749 [蓝桥杯 2021 省 B] 杨辉三角形（https://www.luogu.com.cn/problem/P8749）利用杨辉三角形特点进行枚举
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1426/F（分类枚举中间的b计数两边的?ac，并使用快速幂进行求解）
@@ -647,6 +651,38 @@ class Solution:
                 if not flag:
                     break
             ans += "Y" if flag else "N"
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p8672(ac=FastIO()):
+        # 模板：字符串枚举与经典置换环计数
+        s = ac.read_str()
+        n = len(s)
+        dct = dict()
+        dct["B"] = s.count("B")
+        dct["A"] = s.count("A")
+        dct["T"] = s.count("T")
+        ans = inf
+        for item in permutations("BAT", 3):
+            t = ""
+            for w in item:
+                t += dct[w]*w
+            cnt = defaultdict(int)
+            for i in range(n):
+                if s[i] != t[i]:
+                    cnt[s[i]+t[i]] += 1
+            cur = 0
+            for w in item:
+                for p in item:
+                    if w != p:
+                        x = ac.min(cnt[w+p], cnt[p+w])
+                        cur += x
+                        cnt[w+p] -= x
+                        cnt[p+w] -= x
+            rest = sum(cnt.values())
+            cur += rest*2 // 3
+            ans = ac.min(ans, cur)
         ac.st(ans)
         return
 

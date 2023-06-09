@@ -35,6 +35,8 @@ P6037 Ryoku 的探索（https://www.luogu.com.cn/problem/P6037）经典无向图
 P6255 [ICPC2019 WF]Dead-End Detector（https://www.luogu.com.cn/problem/P6255）简单无向图并查集计算连通块后使用拓扑排序寻找环的信息
 P6417 [COCI2014-2015#1] MAFIJA（https://www.luogu.com.cn/problem/P6417）有向图基环树贪心应用拓扑排序由外向内
 P6560 [SBCOI2020] 时光的流逝（https://www.luogu.com.cn/problem/P6560）经典反向建图拓扑排序与博弈必胜态
+P8655 [蓝桥杯 2017 国 B] 发现环（https://www.luogu.com.cn/problem/P8655）使用拓扑排序计算有向基环树的环
+
 
 ==================================AtCoder=================================
 F - Well-defined Path Queries on a Namori（https://atcoder.jp/contests/abc266/）（无向图的内向基环树，求简单路径的树枝连通）
@@ -576,6 +578,28 @@ class Solution:
                         visit[j][1] = -1
                         stack.append(j)
             ac.st(visit[s][1])
+        return
+
+    @staticmethod
+    def lg_p8655(ac=FastIO()):
+        n = ac.read_int()
+        dct = [[] for _ in range(n)]
+        degree = [0]*n
+        for _ in range(n):
+            i, j = ac.read_ints_minus_one()
+            dct[i].append(j)
+            dct[j].append(i)
+            degree[i] += 1
+            degree[j] += 1
+        stack = [x for x in range(n) if degree[x]==1]
+        while stack:
+            y = stack.pop()
+            for z in dct[y]:
+                degree[z] -= 1
+                if degree[z] == 1:
+                    stack.append(z)
+        ans = [x+1 for x in range(n) if degree[x] == 2]
+        ac.lst(ans)
         return
 
 

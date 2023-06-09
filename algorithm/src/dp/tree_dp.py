@@ -55,6 +55,8 @@ P4084 [USACO17DEC]Barn Painting G（https://www.luogu.com.cn/problem/P4084）典
 P4395 [BOI2003]Gem 气垫车（https://www.luogu.com.cn/problem/P4395）经典树形 DP 贪心标权值使得整棵树总价值最小
 P5765 [CQOI2005]珠宝（https://www.luogu.com.cn/problem/P5765）同P4395
 P8602 [蓝桥杯 2013 省 A] 大臣的旅费（https://www.luogu.com.cn/problem/P8602）经典树的直径可用两遍BFS也可用树形DP求解
+P8625 [蓝桥杯 2015 省 B] 生命之树（https://www.luogu.com.cn/problem/P8625）树形 DP 典型
+P8744 [蓝桥杯 2021 省 A] 左孩子右兄弟（https://www.luogu.com.cn/problem/P8744）简单树形 DP
 
 ==================================AtCoder=================================
 F - Expensive Expense （https://atcoder.jp/contests/abc222/tasks/abc222_f）换根DP
@@ -1264,6 +1266,36 @@ class Solution:
                 for x in range(1, ceil + 1):
                     sub[i][x] = x + cur[x]
         ac.st(min(sub[0][1:]))
+        return
+
+    @staticmethod
+    def lg_p8625(ac=FastIO()):
+        # 模板：树形 DP 典型
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        sub = [0]*n
+        dct = [[] for _ in range(n)]
+        for _ in range(n-1):
+            i, j = ac.read_ints_minus_one()
+            dct[i].append(j)
+            dct[j].append(i)
+        stack = [[0, -1]]
+        while stack:
+            i, fa = stack.pop()
+            if i >= 0:
+                stack.append([~i, fa])
+                for j in dct[i]:
+                    if j != fa:
+                        stack.append([j, i])
+            else:
+                i = ~i
+                res = 0
+                for j in dct[i]:
+                    if j != fa:
+                        res += sub[j]
+                res += nums[i]
+                sub[i] = res if res > 0 else 0
+        ac.st(max(sub))
         return
 
 

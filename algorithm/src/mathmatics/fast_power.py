@@ -33,6 +33,7 @@ P3758 [TJOI2017]可乐（https://www.luogu.com.cn/problem/P3758）矩阵 DP 使�
 P5789 [TJOI2017]可乐（数据加强版）（https://www.luogu.com.cn/problem/P5789）矩阵 DP 使用快速幂优化
 P5343 【XR-1】分块（https://www.luogu.com.cn/problem/P5343）线性 DP 使用矩阵幂加速计算
 P8557 炼金术（Alchemy）（https://www.luogu.com.cn/problem/P8557）脑筋急转弯快速幂计数
+P8624 [蓝桥杯 2015 省 AB] 垒骰子（https://www.luogu.com.cn/problem/P8624）矩阵 DP 与快速幂
 
 参考：OI WiKi（xx）
 
@@ -307,6 +308,29 @@ class Solution:
         mod = 998244353
         n, k = ac.read_ints()
         ans = pow((pow(2, k, mod)-1) % mod, n, mod)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p8624(ac=FastIO()):
+        # 模板：矩阵 DP 与快速幂
+        mod = 10**9+7
+        n, m = ac.read_ints()
+        rem = [[0]*6 for _ in range(6)]
+        for _ in range(m):
+            i, j = ac.read_ints_minus_one()
+            rem[i][j] = rem[j][i] = 1
+        rev = [3, 4, 5, 0, 1, 2]
+        cnt = [1]*6
+        mat = [[0]*6 for _ in range(6)]
+        for i in range(6):
+            for j in range(6):
+                if not rem[j][rev[i]]:
+                    mat[i][j] = 1
+        res = MatrixFastPower().matrix_pow(mat, n-1, mod)
+        ans = sum([sum([res[i][j]*cnt[j] for j in range(6)]) for i in range(6)])
+        ans *= FastPower().fast_power(4, n, mod)
+        ans %= mod
         ac.st(ans)
         return
 
