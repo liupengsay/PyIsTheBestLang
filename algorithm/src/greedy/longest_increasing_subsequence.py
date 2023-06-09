@@ -1,5 +1,6 @@
 import bisect
 import unittest
+from collections import deque
 from typing import List
 
 from algorithm.src.fast_io import FastIO
@@ -15,6 +16,7 @@ from algorithm.src.fast_io import FastIO
 dilworth定理：分成不下降子序列最小组数等于最大上升子序列的长度，分成不上升子序列最小组数等于最大下降子序列的长度。
 参考题目：
 ===================================力扣===================================
+673. 最长递增子序列的个数（https://leetcode.cn/problems/number-of-longest-increasing-subsequence/）经典O(n^2)与O(nlogn)的LIS计数问题
 2111. 使数组 K 递增的最少操作次数（https://leetcode.cn/problems/minimum-operations-to-make-the-array-k-increasing/）分成 K 组计算每组的最长递增子序列
 面试题 17.08. 马戏团人塔（https://leetcode.cn/problems/circus-tower-lcci/）按照两个维度贪心排序后，计算最长递增子序列
 
@@ -169,6 +171,37 @@ class Solution:
             x = x+rest
         ac.lst(ans)
         return
+
+    @staticmethod
+    def lc_673(nums: List[int]) -> int:
+        # 模板：经典求 LIS 子序列的个数 O(nlogn) 做法
+        dp = []  # 维护 LIS 数组
+        s = []  # 长度对应的方案和
+        q = []  # 长度对应的末尾值与个数
+        for num in nums:
+            if not dp or num > dp[-1]:
+                dp.append(num)
+                length = len(dp)
+            else:
+                i = bisect.bisect_left(dp, num)
+                dp[i] = num
+                length = i + 1
+            while len(s) <= len(dp):
+                s.append(0)
+            while len(q) <= len(dp):
+                q.append(deque())
+
+            if length == 1:
+                s[length] += 1
+                q[length].append([num, 1])
+            else:
+                # 使用队列与计数加和维护
+                while q[length - 1] and q[length - 1][0][0] >= num:
+                    s[length - 1] -= q[length - 1].popleft()[1]
+                s[length] += s[length - 1]
+                q[length].append([num, s[length - 1]])
+        # 可以进一步变换求非严格递增子序列的个数
+        return s[-1]
 
 
 class TestGeneral(unittest.TestCase):
