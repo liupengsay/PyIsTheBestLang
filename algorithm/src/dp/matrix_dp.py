@@ -93,6 +93,7 @@ P6509 [CRCI2007-2008] JEDNAKOST（https://www.luogu.com.cn/problem/P6509）典�
 P6870 [COCI2019-2020#5] Zapina（https://www.luogu.com.cn/problem/P6870）矩阵 DP 与组合数优化计数
 P7995 [USACO21DEC] Walking Home B（https://www.luogu.com.cn/problem/P7995）矩阵 DP 
 P8325 [COCI2021-2022#5] Dijamant（https://www.luogu.com.cn/problem/P8325）经典动态规划枚举，类似最大正方形矩阵 DP 变形
+P8614 [蓝桥杯 2014 省 A] 波动数列（https://www.luogu.com.cn/problem/P8614）经典矩阵 DP 关键在于取模作为一维状态
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1446/B（最长公共子序列LCS变形问题，理解贡献）
@@ -1663,6 +1664,23 @@ class Solution:
                 if up[i][j] == down[i][j] > 0:
                     ans += 1
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p8614(ac=FastIO()):
+        # 模板：经典矩阵 DP 关键在于取模作为一维状态
+        n, s, a, b = ac.read_ints()
+        mod = 100000007
+        dp = [[0] * n for _ in range(n)]
+        pre = 0
+        dp[pre][0] = 1
+        for i in range(1, n):
+            cur = 1 - pre
+            for j in range(n):
+                dp[cur][j] = dp[pre][(j - i * a) % n] + dp[pre][(j + i * b) % n]
+                dp[cur][j] %= mod
+            pre = cur
+        ac.st(dp[pre][s % n])
         return
 
 

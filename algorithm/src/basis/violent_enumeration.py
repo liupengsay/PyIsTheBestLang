@@ -84,6 +84,7 @@ P6149 [USACO20FEB] Triangles S（https://www.luogu.com.cn/problem/P6149）经典
 P6393 隔离的日子（https://www.luogu.com.cn/problem/P6393）经典利用值域范围进行枚举计算
 P6767 [BalticOI 2020/2012 Day0] Roses（https://www.luogu.com.cn/problem/P6767）
 P8270 [USACO22OPEN] Subset Equality S（https://www.luogu.com.cn/problem/P8270）经典脑筋急转弯枚举，转换为两两字母比较
+P8587 新的家乡（https://www.luogu.com.cn/problem/P8587）桶计数枚举
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1426/F（分类枚举中间的b计数两边的?ac，并使用快速幂进行求解）

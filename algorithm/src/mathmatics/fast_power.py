@@ -32,6 +32,7 @@ P2613 【模板】有理数取余（https://www.luogu.com.cn/problem/P2613）乘
 P3758 [TJOI2017]可乐（https://www.luogu.com.cn/problem/P3758）矩阵 DP 使用快速幂优化
 P5789 [TJOI2017]可乐（数据加强版）（https://www.luogu.com.cn/problem/P5789）矩阵 DP 使用快速幂优化
 P5343 【XR-1】分块（https://www.luogu.com.cn/problem/P5343）线性 DP 使用矩阵幂加速计算
+P8557 炼金术（Alchemy）（https://www.luogu.com.cn/problem/P8557）脑筋急转弯快速幂计数
 
 参考：OI WiKi（xx）
 
@@ -297,6 +298,15 @@ class Solution:
         for j in range(size + 1):
             ans += res[0][j] * dp[size - j]
             ans %= mod
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p8557(ac=FastIO()):
+        # 模板：脑筋急转弯快速幂计数
+        mod = 998244353
+        n, k = ac.read_ints()
+        ans = pow((pow(2, k, mod)-1) % mod, n, mod)
         ac.st(ans)
         return
 

@@ -65,6 +65,7 @@ P8033 [COCI2015-2016#7] Prozor（https://www.luogu.com.cn/problem/P8033）二维
 P7992 [USACO21DEC] Convoluted Intervals S（https://www.luogu.com.cn/problem/P7992）经典桶计数与作用域差分计数
 P7948 [✗✓OI R1] 前方之风（https://www.luogu.com.cn/problem/P7948）排序后预处理前后缀信息指针查询
 P8343 [COCI2021-2022#6] Zemljište（https://www.luogu.com.cn/problem/P8343）经典子矩阵前缀和枚举与双指针
+P8551 Bassline（https://www.luogu.com.cn/problem/P8551）差分数组经典灵活应用
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/33/C（前后缀最大变换和与分割点枚举，经典类型题目）
@@ -1268,6 +1269,29 @@ class Solution:
                     if ans == b-a:
                         ac.st(ans)
                         return
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p8551(ac=FastIO()):
+        # 模板：差分数组经典灵活应用
+        n = ac.read_int()
+        m = 3 * 10**5 + 1
+        diff = [0] * (m + 2)
+        point = [0] * (m + 2)
+        for _ in range(n):
+            a, b = ac.read_ints()
+            diff[a] += 1
+            diff[b + 1] -= 1
+            point[a - 1] = 1
+            point[b] = 1
+        ans = 0
+        pre = inf
+        for i in range(1, m + 2):
+            diff[i] += diff[i - 1]
+            if point[i]:
+                ans = ac.max(ans, diff[i] * (i - pre))
+                pre = i + 1
         ac.st(ans)
         return
 

@@ -57,6 +57,7 @@ P3407 散步（https://www.luogu.com.cn/problem/P3407）经典模拟移动与相
 P5329 [SNOI2019]字符串（https://www.luogu.com.cn/problem/P5329）经典字典序应用题，依据相邻项的字典序大小来确认排序
 P6397 [COI2008] GLASNICI（https://www.luogu.com.cn/problem/P6397）经典贪心模拟
 P8247 皇室战争（https://www.luogu.com.cn/problem/P8247）经典模拟按照相对位置比例进行区分
+P8611 [蓝桥杯 2014 省 AB] 蚂蚁感冒（https://www.luogu.com.cn/problem/P8611）经典蚂蚁碰撞模拟分类讨论
 
 ================================CodeForces================================
 C. Gargari and Bishops（https://codeforces.com/problemset/problem/463/C）选取两组互不相交的主副对角线使得和最大
@@ -374,6 +375,25 @@ class Solution:
                 y //= g
             cnt.add((x, y))
         ac.st(len(cnt))
+        return
+
+    @staticmethod
+    def lg_p8611(ac=FastIO()):
+        # 模板：经典蚂蚁碰撞模拟分类讨论
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        a = nums[0]
+        x = y = 0
+        for num in nums[1:]:
+            if abs(num) > abs(a) and num < 0:
+                y += 1
+            elif abs(num) < abs(a) and num > 0:
+                x += 1
+        if a < 0:
+            ans = 1 if not x else x + y + 1
+        else:
+            ans = 1 if not y else x + y + 1
+        ac.st(ans)
         return
 
 

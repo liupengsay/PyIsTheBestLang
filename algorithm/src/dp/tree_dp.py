@@ -54,6 +54,7 @@ P3931 SAC E#1 - 一道难题 Tree（https://www.luogu.com.cn/problem/P3931）典
 P4084 [USACO17DEC]Barn Painting G（https://www.luogu.com.cn/problem/P4084）典型树形DP
 P4395 [BOI2003]Gem 气垫车（https://www.luogu.com.cn/problem/P4395）经典树形 DP 贪心标权值使得整棵树总价值最小
 P5765 [CQOI2005]珠宝（https://www.luogu.com.cn/problem/P5765）同P4395
+P8602 [蓝桥杯 2013 省 A] 大臣的旅费（https://www.luogu.com.cn/problem/P8602）经典树的直径可用两遍BFS也可用树形DP求解
 
 ==================================AtCoder=================================
 F - Expensive Expense （https://atcoder.jp/contests/abc222/tasks/abc222_f）换根DP
