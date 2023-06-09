@@ -73,6 +73,7 @@ P4752 Divided Prime（https://www.luogu.com.cn/problem/P4752）判断除数是�
 P5248 [LnOI2019SP]快速多项式变换(FPT)（https://www.luogu.com.cn/problem/P5248）经典进制题目
 P5253 [JSOI2013]丢番图（https://www.luogu.com.cn/problem/P5253）经典方程变换计算 (x-n)*(y-n)=n^2 的对数
 P7960 [NOIP2021] 报数（https://www.luogu.com.cn/problem/P7960）类似埃氏筛的思路进行预处理
+P8319 『JROI-4』分数（https://www.luogu.com.cn/problem/P8319）质因数分解与因子计数
 
 ================================CodeForces================================
 C. Hossam and Trainees（https://codeforces.com/problemset/problem/1771/C）使用pollard_rho进行质因数分解
@@ -1179,6 +1180,33 @@ class Solution:
 
         for _ in range(ac.read_int()):
             ac.st(dp[ac.read_int()])
+        return
+
+    @staticmethod
+    def lg_p8319(ac=FastIO()):
+        # 模板：质因数分解进行贪心计算
+        n = 2 * 10 ** 6
+        f = [1] * (n + 1)
+        prime = [0] * (n + 1)
+        for x in range(2, n + 1):
+            if not prime[x]:
+                # 计算当前值作为质因子的花费次数
+                t = 1
+                while t * x <= n:
+                    c = 1
+                    xx = t
+                    while xx % x == 0:
+                        xx //= x
+                        c += 1
+                    f[t * x] += (x - 1) * c
+                    prime[t * x] = 1
+                    t += 1
+
+        # 进行前缀最大值计算处理
+        for i in range(1, n + 1):
+            f[i] = ac.max(f[i - 1], f[i])
+        for _ in range(ac.read_int()):
+            ac.st(f[ac.read_int()])
         return
 
 

@@ -92,6 +92,7 @@ P6451 [COCI2008-2009#4] SLIKAR（https://www.luogu.com.cn/problem/P6451）使用
 P6509 [CRCI2007-2008] JEDNAKOST（https://www.luogu.com.cn/problem/P6509）典型矩阵 DP 并记录对应的状态转移
 P6870 [COCI2019-2020#5] Zapina（https://www.luogu.com.cn/problem/P6870）矩阵 DP 与组合数优化计数
 P7995 [USACO21DEC] Walking Home B（https://www.luogu.com.cn/problem/P7995）矩阵 DP 
+P8325 [COCI2021-2022#5] Dijamant（https://www.luogu.com.cn/problem/P8325）经典动态规划枚举，类似最大正方形矩阵 DP 变形
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1446/B（最长公共子序列LCS变形问题，理解贡献）
@@ -1508,7 +1509,6 @@ class Solution:
 
         return -1
 
-
     @staticmethod
     def lg_p6509(ac=FastIO()):
         # 模板：典型矩阵 DP 并记录对应的状态转移
@@ -1603,6 +1603,66 @@ class Solution:
                 ans += sum(dp[-1][-1][x])
             ac.st(ans)
 
+        return
+
+    @staticmethod
+    def lg_p8325(ac=FastIO()):
+        # 模板：经典动态规划枚举，类似最大正方形矩阵 DP 变形
+        m, n = ac.read_ints()
+        grid = [ac.read_str() for _ in range(m)]
+
+        up = [[0] * n for _ in range(m)]
+        for i in range(1, m):
+            pre = [-1] * n
+            post = [-1] * n
+            ind = -1
+            for j in range(n):
+                pre[j] = ind
+                if grid[i][j] == "#":
+                    ind = j
+
+            ind = -1
+            for j in range(n - 1, -1, -1):
+                post[j] = ind
+                if grid[i][j] == "#":
+                    ind = j
+
+            for j in range(n):
+                if grid[i][j] == "." and pre[j] != -1 and post[j] != -1:
+                    left = j - pre[j]
+                    right = post[j] - j
+                    if left == right > 1 and up[i - 1][j] == right - 1:
+                        up[i][j] = right
+                    if left == right == 1 and grid[i - 1][j] == "#":
+                        up[i][j] = 1
+        ans = 0
+        down = [[0] * n for _ in range(m)]
+        for i in range(m - 2, -1, -1):
+            pre = [-1] * n
+            post = [-1] * n
+            ind = -1
+            for j in range(n):
+                pre[j] = ind
+                if grid[i][j] == "#":
+                    ind = j
+
+            ind = -1
+            for j in range(n - 1, -1, -1):
+                post[j] = ind
+                if grid[i][j] == "#":
+                    ind = j
+
+            for j in range(n):
+                if grid[i][j] == "." and pre[j] != -1 and post[j] != -1:
+                    left = j - pre[j]
+                    right = post[j] - j
+                    if left == right > 1 and down[i + 1][j] == right - 1 and right >= 2:
+                        down[i][j] = right
+                    if left == right == 1 and grid[i + 1][j] == "#":
+                        down[i][j] = 1
+                if up[i][j] == down[i][j] > 0:
+                    ans += 1
+        ac.st(ans)
         return
 
 

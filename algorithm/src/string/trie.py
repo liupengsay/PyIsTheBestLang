@@ -4,6 +4,7 @@ import random
 import unittest
 from algorithm.src.fast_io import FastIO
 from typing import List
+from math import inf
 from collections import Counter
 
 """
@@ -27,6 +28,7 @@ P1481 魔族密码（https://www.luogu.com.cn/problem/P1481）最长词链
 P5283 [十二省联考 2019] 异或粽子（https://www.luogu.com.cn/problem/P5283）字典树查询第k大异或值，并使用堆贪心选取
 P2922 [USACO08DEC]Secret Message G（https://www.luogu.com.cn/problem/P2922）字典树好题，前缀计数
 P1738 洛谷的文件夹（https://www.luogu.com.cn/problem/P1738）字典树键计数
+P8420 [THUPC2022 决赛] 匹配（https://www.luogu.com.cn/problem/P8420）字典树贪心匹配
 
 ================================CodeForces================================
 Fixed Prefix Permutations（https://codeforces.com/problemset/problem/1792/D）变形后使用字典树进行计数查询
@@ -703,6 +705,51 @@ class Solution:
                     cur[w] = dict()
                 cur = cur[w]
             ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p8420(ac=FastIO()):
+        # 模板：字典树贪心匹配
+        n, m, length = ac.read_ints()
+
+        # 计算后缀 0 1 匹配的代价和
+        cnt = [0] * length
+        for _ in range(n):
+            s = ac.read_str()
+            for i in range(length):
+                cnt[i] += 1 if s[i] == "1" else 0
+        post = [0] * (length + 1)
+        for i in range(length - 1, -1, -1):
+            post[i] = post[i + 1] + ac.min(n - cnt[i], cnt[i])
+
+        # 使用禁用词构建字典
+        dct = dict()
+        for _ in range(m):
+            s = ac.read_str()
+            cur = dct
+            for w in s:
+                if w not in cur:
+                    cur[w] = dict()
+                cur = cur[w]
+
+        def dfs(x, cur_dct, p):
+            nonlocal ans
+            if x == length:
+                return
+            if "1" in cur_dct:
+                dfs(x + 1, cur_dct["1"], p + n - cnt[x])
+            else:
+                # 当前键为空时进行贪心匹配
+                ans = ac.min(ans, p + n - cnt[x] + post[x + 1])
+            if "0" in cur_dct:
+                dfs(x + 1, cur_dct["0"], p + cnt[x])
+            else:
+                ans = ac.min(ans, p + cnt[x] + post[x + 1])
+            return
+
+        ans = inf
+        dfs(0, dct, 0)
+        ac.st(ans)
         return
 
 

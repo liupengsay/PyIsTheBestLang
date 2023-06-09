@@ -83,6 +83,7 @@ P4181 [USACO18JAN]Rental Service S（https://www.luogu.com.cn/problem/P4181）�
 P6149 [USACO20FEB] Triangles S（https://www.luogu.com.cn/problem/P6149）经典枚举三角形的直角点使用前缀和与二分计算距离和
 P6393 隔离的日子（https://www.luogu.com.cn/problem/P6393）经典利用值域范围进行枚举计算
 P6767 [BalticOI 2020/2012 Day0] Roses（https://www.luogu.com.cn/problem/P6767）
+P8270 [USACO22OPEN] Subset Equality S（https://www.luogu.com.cn/problem/P8270）经典脑筋急转弯枚举，转换为两两字母比较
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1426/F（分类枚举中间的b计数两边的?ac，并使用快速幂进行求解）
@@ -607,6 +608,44 @@ class Solution:
         for x in range(10**5 + 1):
             cur = x * d + b * ac.max(math.ceil((n - x * c) / a), 0)
             ans = ac.min(ans, cur)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p8270(ac=FastIO()):
+        # 模板：经典脑筋急转弯枚举，转换为两两字母比较
+        s = ac.read_str()
+        t = ac.read_str()
+        lst = sorted(list("abcdefghijklmnopqr"))
+        m = len(lst)
+        pre = set()
+        for i in range(m):
+            for j in range(i, m):
+                cur = {lst[i], lst[j]}
+                ss = ""
+                tt = ""
+                for w in s:
+                    if w in cur:
+                        ss += w
+                for w in t:
+                    if w in cur:
+                        tt += w
+                if ss == tt:
+                    pre.add(lst[i]+lst[j])
+                    pre.add(lst[j]+lst[i])
+        ans = ""
+        for _ in range(ac.read_int()):
+            st = ac.read_str()
+            m = len(st)
+            flag = True
+            for i in range(m):
+                for j in range(i, m):
+                    if st[i]+st[j] not in pre:
+                        flag = False
+                        break
+                if not flag:
+                    break
+            ans += "Y" if flag else "N"
         ac.st(ans)
         return
 

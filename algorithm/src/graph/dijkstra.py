@@ -91,7 +91,7 @@ P5905 【模板】Johnson 全源最短路（https://www.luogu.com.cn/problem/P59
 P5930 [POI1999] 降水（https://www.luogu.com.cn/problem/P5930）经典Dijkstra应用接雨水
 P6063 [USACO05JAN]The Wedding Juicer G（https://www.luogu.com.cn/problem/P6063）经典Dijkstra应用接雨水
 P6512 [QkOI#R1] Quark and Flying Pigs（https://www.luogu.com.cn/problem/P6512）经典最短路加DP
-
+P8385 [POI 2003] Smugglers（https://www.luogu.com.cn/problem/P8385）经典脑筋急转弯建图最短路
 
 ================================CodeForces================================
 C. Dijkstra?（https://codeforces.com/problemset/problem/20/C）正权值最短路计算，并记录返回生成路径
@@ -1599,6 +1599,35 @@ class Solution:
             lst = [dp[j] + 1 for j in range(i + 1) if dis[v][pos[j][1] - 1] + pos[j][0] <= t] + [0]
             dp[i + 1] = max(lst)
         ac.st(max(dp))
+        return
+
+    @staticmethod
+    def lg_p8385(ac=FastIO()):
+        # 模板：经典脑筋急转弯建图最短路
+        n = ac.read_int()
+        price = [ac.read_int() for _ in range(n)]
+        dct = [[] for _ in range(2 * n)]
+        for _ in range(ac.read_int()):
+            a, b, c = ac.read_ints_minus_one()
+            c += 1
+            dct[a].append([b, c])
+            dct[a + n].append([b + n, c])
+        for i in range(n):
+            dct[i].append([i + n, price[i] / 2])
+
+        dis = [inf] * 2 * n
+        stack = [[0, 0]]
+        dis[0] = 0
+        while stack:
+            total, i = heapq.heappop(stack)
+            if dis[i] < total:
+                continue
+            for j, w in dct[i]:
+                dj = total + w
+                if dj < dis[j]:
+                    dis[j] = dj
+                    heapq.heappush(stack, [dj, j])
+        ac.st(int(dis[n]))
         return
 
 

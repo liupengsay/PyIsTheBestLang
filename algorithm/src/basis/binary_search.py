@@ -65,6 +65,8 @@ P6004 [USACO20JAN] Wormhole Sort S（https://www.luogu.com.cn/problem/P6004）�
 P6058 [加油武汉]体温调查（https://www.luogu.com.cn/problem/P6058）使用深搜序与离线 LCA 计算相邻叶子之间距离并二分确定时间
 P6069 『MdOI R1』Group（https://www.luogu.com.cn/problem/P6069）经典方差计算公式变形，使用二分加变量维护区间的方差值大小
 P6733 「Wdsr-2」间歇泉（https://www.luogu.com.cn/problem/P6733）二分加STL进行 Check
+P8161 [JOI 2022 Final] 自学 (Self Study)（https://www.luogu.com.cn/problem/P8161）经典贪心加二分求解
+P8198 [传智杯 #4 决赛] 背单词的小智（https://www.luogu.com.cn/problem/P8198）经典二分加指针
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1251/D（使用贪心进行中位数二分求解）
@@ -1062,6 +1064,57 @@ class Solution:
         low = 0
         high = sum(abs(g - hens[0]) * 2 for g in grains)
         return BinarySearch().find_int_left(low, high, check)
+
+    @staticmethod
+    def lg_p8161(ac=FastIO()):
+        # 模板：经典贪心加二分
+        n, m = ac.read_ints()
+        a = ac.read_list_ints()
+        b = ac.read_list_ints()
+
+        def check(x):
+            res = 0
+            for i in range(n):
+                if a[i] < b[i]:
+                    res += (x + b[i] - 1) // b[i]
+                else:
+                    if m * a[i] >= x:
+                        res += (x + a[i] - 1) // a[i]
+                    else:
+                        res += m
+                        res += (x - a[i] * m + b[i] - 1) // b[i]
+                if res > m*n:
+                    return False
+            return res <= m * n
+
+        low = 0
+        high = 10**18
+        ans = BinarySearch().find_int_right(low, high, check)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p8198(ac=FastIO()):
+        # 模板：经典二分加指针
+        n, k = ac.read_ints()
+        nums = ac.read_list_ints()
+
+        def check(x):
+            res = pre = 0
+            for num in nums:
+                if pre + num * num > x:
+                    res += 1
+                    pre = num * num
+                else:
+                    pre += num * num
+            res += 1
+            return res <= k
+
+        low = max(nums)**2
+        high = sum(num * num for num in nums)
+        ans = BinarySearch().find_int_left(low, high, check)
+        ac.st(ans)
+        return
 
 
 class TestGeneral(unittest.TestCase):

@@ -31,7 +31,7 @@ P6464 [传智杯 #2 决赛] 传送门（https://www.luogu.com.cn/problem/P6464�
 P6175 无向图的最小环问题（https://www.luogu.com.cn/problem/P6175）经典使用Floyd枚举三个点之间的距离和，O(n^3)，也可以使用BFS或者Dijkstra计算
 B3611 【模板】传递闭包（https://www.luogu.com.cn/problem/B3611）传递闭包模板题，使用FLoyd解法
 P1613 跑路（https://www.luogu.com.cn/problem/P1613）经典Floyd动态规划
-
+P8312 [COCI2021-2022#4] Autobus（https://www.luogu.com.cn/problem/P8312）经典最多k条边的最短路跑k遍Floyd
 
 ================================CodeForces================================
 D. Design Tutorial: Inverse the Problem（https://codeforces.com/problemset/problem/472/D）使用Floyd判断构造给定的点对最短路距离是否存在
@@ -213,6 +213,36 @@ class Solution:
                 for j in range(n):
                     dis[i][j] = ac.min(dis[i][j], dis[i][k] + dis[k][j])
         ac.st(dis[0][n - 1])
+        return
+
+    @staticmethod
+    def lg_p8312(ac=FastIO()):
+        # 模板：经典最多k条边的最短路跑k遍Floyd
+        n, m = ac.read_ints()
+        dis = [[inf] * n for _ in range(n)]
+        for i in range(n):
+            dis[i][i] = 0
+
+        for _ in range(m):
+            a, b, c = ac.read_ints_minus_one()
+            c += 1
+            dis[a][b] = ac.min(dis[a][b], c)
+
+        dct = [d[:] for d in dis]
+        k, q = ac.read_ints()
+        nums = [ac.read_list_ints_minus_one() for _ in range(q)]
+        k = ac.min(k, n)
+        for _ in range(k - 1):
+            cur = [d[:] for d in dis]
+            for p in range(n):
+                for i in range(n):
+                    for j in range(n):
+                        cur[i][j] = ac.min(cur[i][j], dis[i][p] + dct[p][j])
+            dis = [d[:] for d in cur]
+
+        for c, d in nums:
+            res = dis[c][d]
+            ac.st(res if res < inf else -1)
         return
 
 

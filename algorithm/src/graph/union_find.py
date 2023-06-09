@@ -53,6 +53,7 @@ P5429 [USACO19OPEN]Fence Planning S（https://www.luogu.com.cn/problem/P5429）�
 P6193 [USACO07FEB]Cow Sorting G（https://www.luogu.com.cn/problem/P6193）经典置换环计算交换代价
 P6706 [COCI2010-2011#7] KUGLICE（https://www.luogu.com.cn/problem/P6706）经典有向图并查集逆序更新边 find_merge 灵活使用
 P7991 [USACO21DEC] Connecting Two Barns S（https://www.luogu.com.cn/problem/P7991）经典并查集计算连通块缩点使得 1 和 n 连通最多加两条路的代价
+P8230 [AGM 2022 资格赛] 地牢（https://www.luogu.com.cn/problem/P8230）分层并查集加模拟
 
 ================================CodeForces================================
 D. Roads not only in Berland（https://codeforces.com/problemset/problem/25/D）并查集将原来的边断掉重新来连接使得成为一整个连通集
@@ -756,6 +757,40 @@ class Solution:
                 # 继续访问下一个
                 j = find_merge(j + 2)
         return ans
+
+    @staticmethod
+    def lg_p8230(ac=FastIO()):
+        # 模板：分层并查集加模拟
+        k, m, n = ac.read_ints()
+        ans = 1
+        start = [0, 0]
+        for _ in range(k):
+            grid = [ac.read_list_ints() for _ in range(m)]
+            lst = []
+            end = [-1, -1]
+            uf = UnionFind(m*n)
+            for i in range(m):
+                for j in range(n):
+                    w = grid[i][j]
+                    if w != -9:
+                        lst.append([w, i, j])
+                        for x, y in [[i + 1, j], [i - 1, j], [i, j - 1], [i, j + 1]]:
+                            if 0 <= x < m and 0 <= y < n and grid[x][y] != -9:
+                                uf.union(i * n + j, x * n + y)
+                    if w == -1:
+                        end = [i, j]
+            lst.sort()
+
+            for val, i, j in lst:
+                if val > ans:
+                    break
+                if uf.is_connected(start[0]*n+start[1], i*n+j):
+                    if ans >= val:
+                        if val > 0:
+                            ans += val
+            start = end[:]
+        ac.st(ans)
+        return
 
 
 class TestGeneral(unittest.TestCase):

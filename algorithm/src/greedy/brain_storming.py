@@ -106,6 +106,7 @@ P6196 [EER1]代价（https://www.luogu.com.cn/problem/P6196）贪心使用 1 进
 P6874 [COCI2013-2014#6] KOCKICE（https://www.luogu.com.cn/problem/P6874）经典变换公式转为中位数贪心
 P8050 [ZYOI Round1] Chessboard game/棋盘游戏（https://www.luogu.com.cn/problem/P8050）脑筋急转弯黑白染色法任意操作不改变黑白元素和的差值
 P7935 [COCI2007-2008#5] AVOGADRO（https://www.luogu.com.cn/problem/P7935）脑筋急转弯
+P8109 [Cnoi2021]幻想乡程序设计大赛（https://www.luogu.com.cn/problem/P8109）经典STL贪心分配求解
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1186/D（贪心取floor，再根据加和为0的特质进行补充加1成为ceil）

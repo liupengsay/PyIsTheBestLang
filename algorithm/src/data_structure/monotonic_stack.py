@@ -41,6 +41,7 @@ P6404 [COCI2014-2015#2] BOB（https://www.luogu.com.cn/problem/P6404）经典单
 P6503 [COCI2010-2011#3] DIFERENCIJA（https://www.luogu.com.cn/problem/P6503）经典单调栈连续子序列的最大值最小值贡献计数
 P6510 奶牛排队（https://www.luogu.com.cn/problem/P6510）单调栈稀疏表加哈希二分
 P6801 [CEOI2020] 花式围栏（https://www.luogu.com.cn/problem/P6801）经典单调栈计算矩形个数
+P8094 [USACO22JAN] Cow Frisbee S（https://www.luogu.com.cn/problem/P8094）单调栈典型应用前一个更大与后一个更大
 
 ================================CodeForces================================
 E. Explosions?（https://codeforces.com/problemset/problem/1795/E）单调栈贪心计数枚举，前后缀DP转移
@@ -52,6 +53,26 @@ E. Explosions?（https://codeforces.com/problemset/problem/1795/E）单调栈贪
 
 参考：OI WiKi（xx）
 """
+
+
+class QuickMonotonicStack:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def pipline(nums):
+        # 经典单调栈灵活求解
+        n = len(nums)
+        post = [-1] * n  # [n-1] * n
+        pre = [-1] * n  # [0] * n
+        stack = []
+        for i in range(n):
+            while stack and nums[stack[-1]] < nums[i]:
+                post[stack.pop()] = i  # i - 1
+            if stack:
+                pre[i] = stack[-1]  # stack[-1] + 1
+            stack.append(i)
+        return
 
 
 class MonotonicStack:
@@ -110,6 +131,11 @@ class MonotonicStack:
                 self.post_smaller[i] = stack[-1]  # 有时也用 stack[-1]-1 做为边界
             stack.append(i)
 
+        return
+
+
+class Solution:
+    def __init__(self):
         return
 
     @staticmethod
@@ -513,6 +539,22 @@ class Solution:
             hh = hhh
         ans += compute(ww, hh)
         ans %= mod
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p8094(ac=FastIO()):
+        # 模板：经典单调栈应用
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        ans = 0
+        stack = []
+        for i in range(n):
+            while stack and nums[stack[-1]] < nums[i]:
+                ans += i - stack.pop() + 1   # 当前作为较大值
+            if stack:
+                ans += i - stack[-1] + 1  # 当前作为较小值
+            stack.append(i)
         ac.st(ans)
         return
 

@@ -64,6 +64,7 @@ P8081 [COCI2011-2012#4] ZIMA（https://www.luogu.com.cn/problem/P8081）差分�
 P8033 [COCI2015-2016#7] Prozor（https://www.luogu.com.cn/problem/P8033）二维前缀和计数
 P7992 [USACO21DEC] Convoluted Intervals S（https://www.luogu.com.cn/problem/P7992）经典桶计数与作用域差分计数
 P7948 [✗✓OI R1] 前方之风（https://www.luogu.com.cn/problem/P7948）排序后预处理前后缀信息指针查询
+P8343 [COCI2021-2022#6] Zemljište（https://www.luogu.com.cn/problem/P8343）经典子矩阵前缀和枚举与双指针
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/33/C（前后缀最大变换和与分割点枚举，经典类型题目）
@@ -1236,6 +1237,38 @@ class Solution:
                     j -= 1
                 ans[i] = j + 1
             ac.lst(ans)
+        return
+
+    @staticmethod
+    def lg_p8343(ac=FastIO()):
+        # 模板：经典子矩阵前缀和枚举与双指针
+        m, n, a, b = ac.read_ints()
+        grid = [ac.read_list_ints() for _ in range(m)]
+        if a > b:
+            a, b = b, a
+        pre = PreFixSumMatrix(grid)
+        ans = inf
+        for i in range(m):
+            for k in range(i, m):
+                lst = [0]
+                ind_a = ind_b = 0
+                for j in range(n):
+                    cur = pre.query(i, 0, k, j)
+                    lst.append(cur)
+                    while ind_a + 1 < j+1 and cur - lst[ind_a] >= a:
+                        ans = ac.min(ans, abs(cur - lst[ind_a] - a) + abs(cur - lst[ind_a] - b))
+                        ind_a += 1
+
+                    while ind_b + 1 < j+1 and cur-lst[ind_b] <= b:
+                        ans = ac.min(ans, abs(cur - lst[ind_b] - a) + abs(cur - lst[ind_b] - b))
+                        ind_b += 1
+
+                    ans = ac.min(ans, abs(cur-lst[ind_a]-a)+abs(cur-lst[ind_a]-b))
+                    ans = ac.min(ans, abs(cur - lst[ind_b] - a) + abs(cur - lst[ind_b] - b))
+                    if ans == b-a:
+                        ac.st(ans)
+                        return
+        ac.st(ans)
         return
 
 

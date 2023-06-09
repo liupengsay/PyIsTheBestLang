@@ -6,7 +6,6 @@ import numpy as np
 import tensorflow as tf
 from tensorflow import keras
 
-
 """
 算法：Keras 实现回归任务与分类任务
 """
@@ -72,7 +71,7 @@ class FashionMnist:
         y_pre = np.argmax(y_prob, axis=-1)  # 类别
 
         # 准确率计算
-        acc = sum(y_pre[i] == y_test[i] for i in range(y_test.shape[0]))/y_test.shape[0]
+        acc = sum(y_pre[i] == y_test[i] for i in range(y_test.shape[0])) / y_test.shape[0]
         assert abs(acc - test_accuracy) < 1e-2
         return
 
@@ -107,7 +106,7 @@ class CaliforniaHousing:
         model.fit(x_train, y_train, epochs=20, validation_data=(x_valid, y_valid))
         mse_test = model.evaluate(x_test, y_test)
         y_pre = model.predict(x_test)
-        mse = sum((y_pre[i] - y_test[i])**2 for i in range(len(y_pre)))/len(y_pre)
+        mse = sum((y_pre[i] - y_test[i]) ** 2 for i in range(len(y_pre))) / len(y_pre)
         print(mse[0], mse_test)
         assert abs(mse[0] - mse_test) < 1e-2
         return
@@ -151,7 +150,7 @@ class WideAndDeep:
         model.fit(x_train, y_train, epochs=20, validation_data=(x_valid, y_valid))
         mse_test = model.evaluate(x_test, y_test)
         y_pre = model.predict(x_test)
-        mse = sum((y_pre[i] - y_test[i])**2 for i in range(len(y_pre)))/len(y_pre)
+        mse = sum((y_pre[i] - y_test[i]) ** 2 for i in range(len(y_pre))) / len(y_pre)
         print(mse[0], mse_test)
         assert abs(mse[0] - mse_test) < 1e-2
         return
@@ -189,13 +188,13 @@ class WideAndDeep:
 
         model.compile(loss="mse", optimizer=keras.optimizers.SGD(learning_rate=1e-3))
         model.fit((x_train_a, x_train_b), y_train, epochs=20,
-                            validation_data=((x_valid_a, x_valid_b), y_valid))
+                  validation_data=((x_valid_a, x_valid_b), y_valid))
         mse_test = model.evaluate((x_test_a, x_test_b), y_test)
         y_pre = model.predict((x_test_a, x_test_b))
-        mse = sum((y_pre[i] - y_test[i])**2 for i in range(len(y_pre)))/len(y_pre)
+        mse = sum((y_pre[i] - y_test[i]) ** 2 for i in range(len(y_pre))) / len(y_pre)
         print(mse[0], mse_test)
         assert abs(mse[0] - mse_test) < 1e-2
-        
+
         # 添加使用多个用于正则化的输出
         input_a = keras.layers.Input(shape=[5], name="wide_input")
         input_b = keras.layers.Input(shape=[6], name="deep_input")
@@ -208,12 +207,12 @@ class WideAndDeep:
                                    outputs=[output, aux_output])
         model.compile(loss=["mse", "mse"], loss_weights=[0.9, 0.1], optimizer=keras.optimizers.SGD(learning_rate=1e-3))
         model.fit([x_train_a, x_train_b], [y_train, y_train], epochs=20,
-                            validation_data=([x_valid_a, x_valid_b], [y_valid, y_valid]))
+                  validation_data=([x_valid_a, x_valid_b], [y_valid, y_valid]))
         total_loss, main_loss, aux_loss = model.evaluate(
             [x_test_a, x_test_b], [y_test, y_test])
         y_pre_main, y_pre_aux = model.predict([x_test_a, x_test_b])
-        
-        mse = sum((y_pre_main[i] - y_test[i])**2 for i in range(len(y_pre_main)))/len(y_pre_main)
+
+        mse = sum((y_pre_main[i] - y_test[i]) ** 2 for i in range(len(y_pre_main))) / len(y_pre_main)
         print(mse[0], main_loss)
         assert abs(mse[0] - main_loss) < 1e-2
 
@@ -246,7 +245,7 @@ class WideAndDeep:
         model.fit(x_train, y_train, epochs=10, validation_data=(x_valid, y_valid))
         mse_test = model.evaluate(x_test, y_test)
         y_pre = model.predict(x_test)
-        mse = sum((y_pre[i] - y_test[i])**2 for i in range(len(y_pre)))/len(y_pre)
+        mse = sum((y_pre[i] - y_test[i]) ** 2 for i in range(len(y_pre))) / len(y_pre)
         print(mse[0], mse_test)
         assert abs(mse[0] - mse_test) < 1e-2
 
@@ -287,13 +286,13 @@ class WideAndDeep:
         model.compile(loss="mse", optimizer=keras.optimizers.SGD(learning_rate=1e-3))
         checkpoint_cb = keras.callbacks.ModelCheckpoint("./data/my_keras_model.h5", save_best_only=True)
         model.fit(x_train, y_train, epochs=10,
-                            validation_data=(x_valid, y_valid),
-                            callbacks=[checkpoint_cb])
+                  validation_data=(x_valid, y_valid),
+                  callbacks=[checkpoint_cb])
         # 使用callback保存与读取最好的模型
         model = keras.models.load_model("./data/my_keras_model.h5")  # rollback to best model
         mse_test = model.evaluate(x_test, y_test)
         y_pre = model.predict(x_test)
-        mse = sum((y_pre[i] - y_test[i])**2 for i in range(len(y_pre)))/len(y_pre)
+        mse = sum((y_pre[i] - y_test[i]) ** 2 for i in range(len(y_pre))) / len(y_pre)
         print(mse[0], mse_test)
         assert abs(mse[0] - mse_test) < 1e-2
 
@@ -302,8 +301,8 @@ class WideAndDeep:
         early_stopping_cb = keras.callbacks.EarlyStopping(patience=10,
                                                           restore_best_weights=True)
         model.fit(x_train, y_train, epochs=100,
-                            validation_data=(x_valid, y_valid),
-                            callbacks=[checkpoint_cb, early_stopping_cb])
+                  validation_data=(x_valid, y_valid),
+                  callbacks=[checkpoint_cb, early_stopping_cb])
         mse_test = model.evaluate(x_test, y_test)
         y_pre = model.predict(x_test)
         mse = sum((y_pre[i] - y_test[i]) ** 2 for i in range(len(y_pre))) / len(y_pre)
@@ -313,14 +312,52 @@ class WideAndDeep:
         # 自定义call_back函数进行信息获取打印
         val_train_ratio_cb = PrintValTrainRatioCallback()
         model.fit(x_train, y_train, epochs=10,
-                            validation_data=(x_valid, y_valid),
-                            callbacks=[val_train_ratio_cb])
+                  validation_data=(x_valid, y_valid),
+                  callbacks=[val_train_ratio_cb])
         y_pre = model.predict(x_test)
         mse = sum((y_pre[i] - y_test[i]) ** 2 for i in range(len(y_pre))) / len(y_pre)
         print(mse[0], mse_test)
         assert abs(mse[0] - mse_test) < 1e-2
         return
 
+
+class HyperParameterTuning:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def pipline():
+        # 超参数调优
+        def build_model(n_hidden=1, n_neurons=30, learning_rate=3e-3, input_shape=[8]):
+            model = keras.models.Sequential()
+            model.add(keras.layers.InputLayer(input_shape=input_shape))
+            for layer in range(n_hidden):
+                model.add(keras.layers.Dense(n_neurons, activation="relu"))
+            model.add(keras.layers.Dense(1))
+            optimizer = keras.optimizers.SGD(learning_rate=learning_rate)
+            model.compile(loss="mse", optimizer=optimizer)
+            return model
+
+        # 读取数据并进行训练验证划分
+        housing = fetch_california_housing()
+        x_train_full, x_test, y_train_full, y_test = train_test_split(housing.data, housing.target, random_state=42)
+        x_train, x_valid, y_train, y_valid = train_test_split(x_train_full, y_train_full, random_state=42)
+
+        # 标准归一化数据
+        scaler = StandardScaler()
+        x_train = scaler.fit_transform(x_train)
+        x_valid = scaler.transform(x_valid)
+        x_test = scaler.transform(x_test)
+
+        # 使用scikit_learn进行超参数调优
+        keras_reg = keras.wrappers.scikit_learn.KerasRegressor(build_model)
+        keras_reg.fit(x_train, y_train, epochs=100,
+                      validation_data=(x_valid, y_valid),
+                      callbacks=[keras.callbacks.EarlyStopping(patience=10)])
+        mse_test = keras_reg.score(x_test, y_test)
+        y_pre = keras_reg.predict(x_test)
+    np.random.seed(42)
+    tf.random.set_seed(42)
 
 class TestGeneral(unittest.TestCase):
 
@@ -333,13 +370,12 @@ class TestGeneral(unittest.TestCase):
         return
 
     def test_california_housing_wide_and_deep(self):
-        #WideAndDeep().pipline()
-        #WideAndDeep().pipline_functional_api()
-        #WideAndDeep().pipline_save_and_load()
+        WideAndDeep().pipline()
+        WideAndDeep().pipline_functional_api()
+        WideAndDeep().pipline_save_and_load()
         WideAndDeep().pipline_callback()
         return
 
 
 if __name__ == '__main__':
     unittest.main()
-

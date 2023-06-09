@@ -1,3 +1,4 @@
+import math
 import random
 import unittest
 from collections import deque
@@ -55,6 +56,7 @@ P2129 L 国的战斗续之多路出击（https://www.luogu.com.cn/problem/P2129�
 P3407 散步（https://www.luogu.com.cn/problem/P3407）经典模拟移动与相遇
 P5329 [SNOI2019]字符串（https://www.luogu.com.cn/problem/P5329）经典字典序应用题，依据相邻项的字典序大小来确认排序
 P6397 [COI2008] GLASNICI（https://www.luogu.com.cn/problem/P6397）经典贪心模拟
+P8247 皇室战争（https://www.luogu.com.cn/problem/P8247）经典模拟按照相对位置比例进行区分
 
 ================================CodeForces================================
 C. Gargari and Bishops（https://codeforces.com/problemset/problem/463/C）选取两组互不相交的主副对角线使得和最大
@@ -345,6 +347,33 @@ class Solution:
                 pre = num - ans - gap
                 ans += gap
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p8247(ac=FastIO()):
+        # 模板：经典模拟按照相对位置比例进行区分
+        m, n = ac.read_ints()
+        start = [-1, -1]
+        dct = []
+        for i in range(m):
+            lst = ac.read_str()
+            for j in range(n):
+                if lst[j] == "S":
+                    start = [i, j]
+                elif lst[j] == "K":
+                    dct.append([i, j])
+        a, b = start
+        cnt = set()
+        for i, j in dct:
+            x, y = i - a, j - b
+            if x == 0:
+                y = 1 if y > 0 else -1
+            else:
+                g = math.gcd(abs(x), abs(y))
+                x //= g
+                y //= g
+            cnt.add((x, y))
+        ac.st(len(cnt))
         return
 
 
