@@ -5,6 +5,8 @@ from sklearn.preprocessing import StandardScaler
 import numpy as np
 import tensorflow as tf
 from tensorflow import keras
+from scipy.stats import reciprocal
+from sklearn.model_selection import RandomizedSearchCV
 
 """
 算法：Keras 实现回归任务与分类任务
@@ -348,16 +350,42 @@ class HyperParameterTuning:
         x_train = scaler.fit_transform(x_train)
         x_valid = scaler.transform(x_valid)
         x_test = scaler.transform(x_test)
+        keras.backend.clear_session()
+        np.random.seed(42)
+        tf.random.set_seed(42)
 
         # 使用scikit_learn进行超参数调优
         keras_reg = keras.wrappers.scikit_learn.KerasRegressor(build_model)
         keras_reg.fit(x_train, y_train, epochs=100,
                       validation_data=(x_valid, y_valid),
                       callbacks=[keras.callbacks.EarlyStopping(patience=10)])
-        mse_test = keras_reg.score(x_test, y_test)
+        mse_test = -keras_reg.score(x_test, y_test)
         y_pre = keras_reg.predict(x_test)
-    np.random.seed(42)
-    tf.random.set_seed(42)
+
+        mse = sum((y_pre[i] - y_test[i]) ** 2 for i in range(len(y_pre))) / len(y_pre)
+        print(mse, mse_test)
+        assert abs(mse - mse_test) < 1e-2
+
+        # 使用网格搜索进行计算构建
+        param_distribs = {
+            "n_hidden": [0, 1, 2, 3],
+            "n_neurons": np.arange(1, 100).tolist(),
+            "learning_rate": reciprocal(3e-4, 3e-2).rvs(1000).tolist(),
+        }
+        rnd_search_cv = RandomizedSearchCV(keras_reg, param_distribs, n_iter=10, cv=3, verbose=2)
+        rnd_search_cv.fit(x_train, y_train, epochs=100,
+                          validation_data=(x_valid, y_valid),
+                          callbacks=[keras.callbacks.EarlyStopping(patience=10)])
+        rnd_search_cv.score(x_test, y_test)
+        # 选择表现最好的模型
+        model = rnd_search_cv.best_estimator_.model
+        mse_test = model.evaluate(x_test, y_test)
+        y_pre = model.predict(x_test)
+        mse = sum((y_pre[i] - y_test[i]) ** 2 for i in range(len(y_pre))) / len(y_pre)
+        print(mse[0], mse_test)
+        assert abs(mse[0] - mse_test) < 1e-2
+        return
+
 
 class TestGeneral(unittest.TestCase):
 
@@ -374,6 +402,10 @@ class TestGeneral(unittest.TestCase):
         WideAndDeep().pipline_functional_api()
         WideAndDeep().pipline_save_and_load()
         WideAndDeep().pipline_callback()
+        return
+
+    def test_hyper_parameter_tuning(self):
+        HyperParameterTuning().pipline()
         return
 
 
