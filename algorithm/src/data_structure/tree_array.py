@@ -240,7 +240,7 @@ class TreeArrayPointUpdateRangeMaxMin:
     # 模板：树状数组 单点增加区间查询最大值 单点减少区间查询最小值
     def __init__(self, n: int) -> None:
         self.n = n
-        self.a = [0] * (n + 1)
+        self.a = [0] * (n + 1)  # 如果是求最小值设置为 [inf]*(n+1) 最大值设置为[-inf]*(n+1)
         self.tree_ceil = [-inf] * (n + 1)
         self.tree_floor = [float('inf')] * (n + 1)
         return
@@ -259,6 +259,28 @@ class TreeArrayPointUpdateRangeMaxMin:
 
     def add(self, x, k):
         # 索引从1开始
+        self.a[x] = k
+        while x <= self.n:
+            self.tree_ceil[x] = self.max(self.tree_ceil[x], k)
+            self.tree_floor[x] = self.min(self.tree_floor[x], k)
+            x += self.low_bit(x)
+        return
+
+    def add_max(self, x, k):
+        # 索引从1开始
+        if self.a[x] >= k:
+            return
+        self.a[x] = k
+        while x <= self.n:
+            self.tree_ceil[x] = self.max(self.tree_ceil[x], k)
+            self.tree_floor[x] = self.min(self.tree_floor[x], k)
+            x += self.low_bit(x)
+        return
+
+    def add_min(self, x, k):
+        # 索引从1开始
+        if self.a[x] <= k:
+            return
         self.a[x] = k
         while x <= self.n:
             self.tree_ceil[x] = self.max(self.tree_ceil[x], k)
