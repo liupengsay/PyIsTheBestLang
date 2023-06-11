@@ -1,4 +1,5 @@
 import random
+import time
 import unittest
 
 import numpy as np
@@ -605,6 +606,156 @@ class ResidualCustomModel:
         return
 
 
+class ReconstructingRegressor(keras.Model):
+    def __init__(self, output_dim, **kwargs):
+        super().__init__(**kwargs)
+        self.hidden = [keras.layers.Dense(30, activation="selu",
+                                          kernel_initializer="lecun_normal")
+                       for _ in range(5)]
+        self.out = keras.layers.Dense(output_dim)
+        self.reconstruct = None
+        self.reconstruction_mean = keras.metrics.Mean(name="reconstruction_error")
+
+    def build(self, batch_input_shape):
+        n_inputs = batch_input_shape[-1]
+        self.reconstruct = keras.layers.Dense(n_inputs)
+
+    def call(self, inputs, training=None, *args, **kwargs):
+        Z = inputs
+        for layer in self.hidden:
+            Z = layer(Z)
+        reconstruction = self.reconstruct(Z)
+        recon_loss = tf.reduce_mean(tf.square(reconstruction - inputs))
+        self.add_loss(0.05 * recon_loss)
+        if training:
+            result = self.reconstruction_mean(recon_loss)
+            self.add_metric(result)
+        return self.out(Z)
+
+
+class ReconstructingRegressorLossAndMetrics:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def reconstruct():
+        housing = fetch_california_housing()
+        x_train_full, x_test, y_train_full, y_test = train_test_split(
+            housing.data, housing.target.reshape(-1, 1), random_state=42)
+        x_train, x_valid, y_train, y_valid = train_test_split(
+            x_train_full, y_train_full, random_state=42)
+
+        scaler = StandardScaler()
+        x_train_scaled = scaler.fit_transform(x_train)
+        x_valid_scaled = scaler.transform(x_valid)
+        x_test_scaled = scaler.transform(x_test)
+
+        keras.backend.clear_session()
+        model = ReconstructingRegressor(1)
+
+        model.compile(loss="mse", optimizer="nadam")
+        model.fit(x_train_scaled, y_train, epochs=15,
+                  validation_data=(x_valid_scaled, y_valid))
+        # 模型评估
+        test_loss, error = model.evaluate(x_test_scaled, y_test)
+        y_predict = model.predict(x_test_scaled)  # 回归预测值
+        # 准确率计算
+        compute_loss = sum(abs(y_predict[i] - y_test[i]) ** 2 for i in range(len(y_predict))) / len(y_predict)
+        print(f"Check predict {compute_loss[0]}={test_loss}")
+        assert abs(compute_loss[0] - test_loss) < 1e-2
+        return
+
+
+class CustomTrainingCircle:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def custom_training_circle():
+        housing = fetch_california_housing()
+        x_train_full, x_test, y_train_full, y_test = train_test_split(
+            housing.data, housing.target.reshape(-1, 1), random_state=42)
+        x_train, x_valid, y_train, y_valid = train_test_split(
+            x_train_full, y_train_full, random_state=42)
+
+        scaler = StandardScaler()
+        x_train_scaled = scaler.fit_transform(x_train)
+        x_valid_scaled = scaler.transform(x_valid)
+        x_test_scaled = scaler.transform(x_test)
+
+        def progress_bar(iteration, total, size=30):
+            running = iteration < total
+            c = ">" if running else "="
+            p = (size - 1) * iteration // total
+            fmt = "{{:-{}d}}/{{}} [{{}}]".format(len(str(total)))
+            params = [iteration, total, "=" * p + c + "." * (size - p - 1)]
+            return fmt.format(*params)
+
+        def print_status_bar(iteration, total, loss, metrics=None, size=30):
+            metrics = " - ".join(["{}: {:.4f}".format(m.name, m.result())
+                                  for m in [loss] + (metrics or [])])
+            end = "" if iteration < total else "\n"
+            print("\r{} - {}".format(progress_bar(iteration, total), metrics), end=end)
+
+        keras.backend.clear_session()
+        l2_reg = keras.regularizers.l2(0.05)
+        model = keras.models.Sequential([
+            keras.layers.Dense(30, activation="elu", kernel_initializer="he_normal",
+                               kernel_regularizer=l2_reg),
+            keras.layers.Dense(1, kernel_regularizer=l2_reg)
+        ])
+        mean_loss = keras.metrics.Mean(name="loss")
+        mean_square = keras.metrics.Mean(name="mean_square")
+        for i in range(1, 50 + 1):
+            loss = 1 / i
+            mean_loss(loss)
+            mean_square(i ** 2)
+            print_status_bar(i, 50, mean_loss, [mean_square])
+            time.sleep(0.05)
+
+        def random_batch(X, y, batch_size=32):
+            idx = np.random.randint(len(X), size=batch_size)
+            return X[idx], y[idx]
+
+        n_epochs = 5
+        batch_size = 32
+        n_steps = len(x_train) // batch_size
+        optimizer = keras.optimizers.Nadam(learning_rate=0.01)
+        loss_fn = keras.losses.mean_squared_error
+        mean_loss = keras.metrics.Mean()
+        metrics = [keras.metrics.MeanAbsoluteError()]
+        for epoch in range(1, n_epochs + 1):
+            print("Epoch {}/{}".format(epoch, n_epochs))
+            for step in range(1, n_steps + 1):
+                x_batch, y_batch = random_batch(x_train_scaled, y_train)
+                with tf.GradientTape() as tape:
+                    y_pred = model(x_batch)
+                    main_loss = tf.reduce_mean(loss_fn(y_batch, y_pred))
+                    loss = tf.add_n([main_loss] + model.losses)
+                gradients = tape.gradient(loss, model.trainable_variables)
+                optimizer.apply_gradients(zip(gradients, model.trainable_variables))
+                for variable in model.variables:
+                    if variable.constraint is not None:
+                        variable.assign(variable.constraint(variable))
+                mean_loss(loss)
+                for metric in metrics:
+                    metric(y_batch, y_pred)
+                print_status_bar(step * batch_size, len(y_train), mean_loss, metrics)
+            print_status_bar(len(y_train), len(y_train), mean_loss, metrics)
+            for metric in [mean_loss] + metrics:
+                metric.reset_states()
+
+        model.compile(loss="mse", optimizer="nadam")
+        # 模型评估
+        test_loss = model.evaluate(x_test_scaled, y_test)
+        y_predict = model.predict(x_test_scaled)  # 回归预测值
+        # 准确率计算
+        compute_loss = sum(abs(y_predict[i] - y_test[i]) for i in range(len(y_predict))) / len(y_predict)
+        print(f"Check predict {compute_loss[0]}={test_loss}")
+        return
+
+
+
 class TestGeneral(unittest.TestCase):
 
     @unittest.skip
@@ -647,12 +798,23 @@ class TestGeneral(unittest.TestCase):
         CustomLayers.add_gaussian_noise()
         return
 
+    @unittest.skip
     def test_residual_custom_model_1(self):
         ResidualCustomModel.residual_regressor()
         return
 
+    @unittest.skip
     def test_residual_custom_model_2(self):
         ResidualCustomModel.residual_block()
+        return
+
+    @unittest.skip
+    def test_reconstruct_regressor(self):
+        ReconstructingRegressorLossAndMetrics.reconstruct()
+        return
+
+    def test_custom_training_circle(self):
+        CustomTrainingCircle.custom_training_circle()
         return
 
 
