@@ -33,41 +33,48 @@ class FastIO:
         return
 
     @staticmethod
-    def _read():
+    def read_int():
+        return int(sys.stdin.readline().strip())
+
+    @staticmethod
+    def read_float():
+        return float(sys.stdin.readline().strip())
+
+    @staticmethod
+    def read_ints():
+        return map(int, sys.stdin.readline().strip().split())
+
+    @staticmethod
+    def read_floats():
+        return map(float, sys.stdin.readline().strip().split())
+
+    @staticmethod
+    def read_ints_minus_one():
+        return map(lambda x: int(x) - 1, sys.stdin.readline().strip().split())
+
+    @staticmethod
+    def read_list_ints():
+        return list(map(int, sys.stdin.readline().strip().split()))
+
+    @staticmethod
+    def read_list_floats():
+        return list(map(float, sys.stdin.readline().strip().split()))
+
+    @staticmethod
+    def read_list_ints_minus_one():
+        return list(map(lambda x: int(x) - 1, sys.stdin.readline().strip().split()))
+
+    @staticmethod
+    def read_str():
         return sys.stdin.readline().strip()
 
-    def read_int(self):
-        return int(self._read())
+    @staticmethod
+    def read_list_strs():
+        return sys.stdin.readline().strip().split()
 
-    def read_float(self):
-        return float(self._read())
-
-    def read_ints(self):
-        return map(int, self._read().split())
-
-    def read_floats(self):
-        return map(float, self._read().split())
-
-    def read_ints_minus_one(self):
-        return map(lambda x: int(x) - 1, self._read().split())
-
-    def read_list_ints(self):
-        return list(map(int, self._read().split()))
-
-    def read_list_floats(self):
-        return list(map(float, self._read().split()))
-
-    def read_list_ints_minus_one(self):
-        return list(map(lambda x: int(x) - 1, self._read().split()))
-
-    def read_str(self):
-        return self._read()
-
-    def read_list_strs(self):
-        return self._read().split()
-
-    def read_list_str(self):
-        return list(self._read())
+    @staticmethod
+    def read_list_str():
+        return list(sys.stdin.readline().strip())
 
     @staticmethod
     def st(x):
