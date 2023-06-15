@@ -332,6 +332,24 @@ class SegmentTreeRangeUpdateQuerySumMinMax:
                 self.push_up(i)
         return
 
+    def update_point(self, left: int, right: int, s: int, t: int, val: int, i: int) -> None:
+        # 增减单点值 left 与 right 取值为 0 到 n-1 而 i 从 1 开始
+
+        while True:
+            if left <= s and t <= right:
+                self.make_tag(i, s, t, val)
+                break
+            m = s + (t - s) // 2
+            self.push_down(i, s, m, t)
+            if left <= m:  # 注意左右子树的边界与范围
+                s, t, i = s, m, 2 * i
+            if right > m:
+                s, t, i = m + 1, t, 2 * i + 1
+        while i > 1:
+            i //= 2
+            self.push_up(i)
+        return
+
     def query_sum(self, left: int, right: int, s: int, t: int, i: int) -> int:
         # 查询区间的和
         stack = [[s, t, i]]
@@ -383,6 +401,20 @@ class SegmentTreeRangeUpdateQuerySumMinMax:
             if right > m:
                 stack.append([m + 1, t, 2 * i + 1])
         return highest
+
+    def get_all_nums(self):
+        # 查询区间的所有值
+        stack = [[0, self.n-1, 1]]
+        while stack:
+            s, t, i = stack.pop()
+            if s == t:
+                self.nums[s] = self.cover[i]
+                continue
+            m = s + (t - s) // 2
+            self.push_down(i, s, m, t)
+            stack.append([s, m, 2 * i])
+            stack.append([m + 1, t, 2 * i + 1])
+        return
 
 
 class SegmentTreeRangeChangeQuerySumMinMax:
@@ -475,6 +507,24 @@ class SegmentTreeRangeChangeQuerySumMinMax:
                 self.push_up(i)
         return
 
+    def change_point(self, left: int, right: int, s: int, t: int, val: int, i: int) -> None:
+        # 增减单点值 left 与 right 取值为 0 到 n-1 而 i 从 1 开始
+
+        while True:
+            if left <= s and t <= right:
+                self.make_tag(i, s, t, val)
+                break
+            m = s + (t - s) // 2
+            self.push_down(i, s, m, t)
+            if left <= m:  # 注意左右子树的边界与范围
+                s, t, i = s, m, 2 * i
+            if right > m:
+                s, t, i = m + 1, t, 2 * i + 1
+        while i > 1:
+            i //= 2
+            self.push_up(i)
+        return
+
     def query_sum(self, left, right, s, t, i):
         # 查询区间的和
         stack = [[s, t, i]]
@@ -526,6 +576,20 @@ class SegmentTreeRangeChangeQuerySumMinMax:
             if right > m:
                 stack.append([m + 1, t, 2 * i + 1])
         return highest
+
+    def get_all_nums(self):
+        # 查询区间的所有值
+        stack = [[0, self.n-1, 1]]
+        while stack:
+            s, t, i = stack.pop()
+            if s == t:
+                self.nums[s] = self.cover[i]
+                continue
+            m = s + (t - s) // 2
+            self.push_down(i, s, m, t)
+            stack.append([s, m, 2 * i])
+            stack.append([m + 1, t, 2 * i + 1])
+        return
 
 
 class SegmentTreeRangeUpdateQuerySum:
@@ -2946,7 +3010,7 @@ class TestGeneral(unittest.TestCase):
             left = random.randint(0, high - 1)
             right = left
             num = random.randint(low, high)
-            stra.update(left, right, low, high-1, num, 1)
+            stra.update_point(left, right, low, high-1, num, 1)
             for i in range(left, right + 1):
                 nums[i] += num
             assert stra.query_min(left, right, low, high-1, 1) == min(
@@ -2960,6 +3024,8 @@ class TestGeneral(unittest.TestCase):
                 nums[left:right + 1])
             assert stra.query_sum(left, right, low, high-1, 1) == sum(
                 nums[left:right + 1])
+        stra.get_all_nums()
+        assert stra.nums == nums
         return
 
     def test_segment_tree_range_update_query_sum_min_max(self):
@@ -2992,7 +3058,7 @@ class TestGeneral(unittest.TestCase):
             assert stra.query_sum(left, right, low, high -1, 1) == sum(
                 nums[left:right + 1])
 
-            # 单点更新最小值
+            # 单点更新最小值使用 update
             left = random.randint(0, high - 1)
             right = left
             num = random.randint(-high, high)
@@ -3010,6 +3076,27 @@ class TestGeneral(unittest.TestCase):
                 nums[left:right + 1])
             assert stra.query_sum(left, right, low, high - 1, 1) == sum(
                 nums[left:right + 1])
+
+            # 单点更新最小值使用 update_point
+            left = random.randint(0, high - 1)
+            right = left
+            num = random.randint(-high, high)
+            stra.update_point(left, right, low, high - 1, num, 1)
+            for i in range(left, right + 1):
+                nums[i] += num
+            assert stra.query_min(left, right, low, high - 1, 1) == min(
+                nums[left:right + 1])
+            assert stra.query_sum(left, right, low, high - 1, 1) == sum(
+                nums[left:right + 1])
+
+            left = random.randint(0, high - 1)
+            right = random.randint(left, high - 1)
+            assert stra.query_min(left, right, low, high - 1, 1) == min(
+                nums[left:right + 1])
+            assert stra.query_sum(left, right, low, high - 1, 1) == sum(
+                nums[left:right + 1])
+        stra.get_all_nums()
+        assert stra.nums == nums
         return
 
     def test_segment_tree_range_change_query_sum_min_max(self):
@@ -3064,6 +3151,32 @@ class TestGeneral(unittest.TestCase):
                 nums[left:right + 1])
             assert stra.query_sum(left, right, low, high - 1, 1) == sum(
                 nums[left:right + 1])
+
+            # 单点更新最小值 change_point
+            left = random.randint(0, high - 1)
+            right = left
+            num = random.randint(-high, high)
+            stra.change_point(left, right, low, high - 1, num, 1)
+            for i in range(left, right + 1):
+                nums[i] = num
+            assert stra.query_min(left, right, low, high - 1, 1) == min(
+                nums[left:right + 1])
+            assert stra.query_max(left, right, low, high - 1, 1) == max(
+                nums[left:right + 1])
+            assert stra.query_sum(left, right, low, high - 1, 1) == sum(
+                nums[left:right + 1])
+
+            left = random.randint(0, high - 1)
+            right = random.randint(left, high - 1)
+            assert stra.query_min(left, right, low, high - 1, 1) == min(
+                nums[left:right + 1])
+            assert stra.query_max(left, right, low, high - 1, 1) == max(
+                nums[left:right + 1])
+            assert stra.query_sum(left, right, low, high - 1, 1) == sum(
+                nums[left:right + 1])
+
+        stra.get_all_nums()
+        assert stra.nums == nums
         return
 
     def test_segment_tree_range_sub_con_max(self):
