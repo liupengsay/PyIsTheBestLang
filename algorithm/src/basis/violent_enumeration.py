@@ -89,6 +89,9 @@ P8663 [蓝桥杯 2018 省 A] 倍数问题（https://www.luogu.com.cn/problem/P86
 P8672 [蓝桥杯 2018 国 C] 交换次数（https://www.luogu.com.cn/problem/P8672）字符串枚举与经典置换环计数
 P8712 [蓝桥杯 2020 省 B1] 整数拼接（https://www.luogu.com.cn/problem/P8712）整数长度枚举
 P8749 [蓝桥杯 2021 省 B] 杨辉三角形（https://www.luogu.com.cn/problem/P8749）利用杨辉三角形特点进行枚举
+P8808 [蓝桥杯 2022 国 C] 斐波那契数组（https://www.luogu.com.cn/problem/P8808）利用斐波那契数组的特点进行枚举
+P8809 [蓝桥杯 2022 国 C] 近似 GCD（https://www.luogu.com.cn/problem/P8809）枚举加贡献计数
+
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1426/F（分类枚举中间的b计数两边的?ac，并使用快速幂进行求解）

@@ -40,6 +40,7 @@ P4144 大河的序列（https://www.luogu.com.cn/problem/P4144）按位思考贪
 P4310 绝世好题（https://www.luogu.com.cn/problem/P4310）线性 DP 使用按位转移
 P5390 [Cnoi2019]数学作业（https://www.luogu.com.cn/problem/P5390）按位操作
 P6824 「EZEC-4」可乐（https://www.luogu.com.cn/problem/P6824）经典按位操作计算异或不等式在使用差分作用域计数
+P8842 [传智杯 #4 初赛] 小卡与质数2（https://www.luogu.com.cn/problem/P8842）经典质数个数前缀和与异或不等式区间计数
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/305/C（利用二进制加减的思想进行解题）
@@ -502,6 +503,27 @@ class Solution:
                     else:
                         i -= 1
         ac.st(max(ac.accumulate(diff)))
+        return
+
+    @staticmethod
+    def lg_p8842(ac=FastIO()):
+        # 模板：经典质数个数前缀和与异或不等式区间计数（也可考虑 01 Trie）
+        n = 1<<21
+        prime = [0] * (n + 1)
+        prime[0] = 0
+        prime[1] = 1
+        for i in range(2, n + 1):
+            if not prime[i]:
+                for j in range(i * i, n + 1, i):
+                    prime[j] = 1
+            prime[i] += prime[i - 1]
+        for _ in range(ac.read_int()):
+            x = ac.read_int()
+            ans = 0
+            for k in range(21):
+                if x & (1 << k):
+                    ans += (1 << (k + 1)) - (1 << k) - (prime[(1 << (k + 1)) - 1] - prime[(1 << k) - 1])
+            ac.st(ans)
         return
 
 

@@ -83,6 +83,7 @@ P8656 [蓝桥杯 2017 国 B] 对局匹配（https://www.luogu.com.cn/problem/P86
 P8725 [蓝桥杯 2020 省 AB3] 画中漂流（https://www.luogu.com.cn/problem/P8725）典型矩阵 DP 使用指针关系减少维度
 P8784 [蓝桥杯 2022 省 B] 积木画（https://www.luogu.com.cn/problem/P8784）线性 DP 可以使用矩阵幂优化
 P8786 [蓝桥杯 2022 省 B] 李白打酒加强版（https://www.luogu.com.cn/problem/P8786）线性 DP 记忆化搜索模拟
+P8816 [CSP-J 2022] 上升点列（https://www.luogu.com.cn/problem/P8816）典型线性矩阵 DP 模拟
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/75/D（经典压缩数组，最大子段和升级）
@@ -829,6 +830,26 @@ class Solution:
                     else:
                         ans += ac.max(0, x-y)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p8816(ac=FastIO()):
+        # 模板：典型线性矩阵 DP 模拟
+        n, k = ac.read_ints()
+        nums = sorted([ac.read_list_ints() for _ in range(n)])
+        dp = [list(range(1, k + 2)) for _ in range(n)]
+        for i in range(n - 1, -1, -1):
+            x, y = nums[i]
+            for j in range(i + 1, n):
+                a, b = nums[j]
+                if a >= x and b >= y:
+                    dis = a - x + b - y - 1
+                    for r in range(k + 1):
+                        if r + dis <= k:
+                            dp[i][r + dis] = ac.max(dp[i][r + dis], dp[j][r] + dis + 1)
+                        else:
+                            break
+        ac.st(max(max(d) for d in dp))
         return
 
 

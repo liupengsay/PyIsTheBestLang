@@ -44,6 +44,8 @@ P6691 选择题（https://www.luogu.com.cn/problem/P6691）染色法，进行二
 P7370 [COCI2018-2019#4] Wand（https://www.luogu.com.cn/problem/P7370）所有可能的祖先节点，注意特别情况没有任何祖先节点则自身可达
 P1036 [NOIP2002 普及组] 选数（https://www.luogu.com.cn/problem/P1036）回溯剪枝
 P8578 [CoE R5] So What Do We Do Now?（https://www.luogu.com.cn/problem/P8578）贪心使用深搜序
+P8838 [传智杯 #3 决赛] 面试（https://www.luogu.com.cn/problem/P8838）深度优先搜索与回溯
+
 
 ================================CodeForces================================
 D. Tree Requests（https://codeforces.com/contest/570/problem/D）dfs序与二分查找，也可以使用离线查询
@@ -474,6 +476,38 @@ class Solution:
             cur = bisect.bisect_right(
                 dct[tree.depth[v]], high) - bisect.bisect_left(dct[tree.depth[v]], low)
             ans.append(ac.max(cur - 1, 0))
+        ac.lst(ans)
+        return
+
+    @staticmethod
+    def lg_p8838(ac=FastIO()):
+        # 模板：深度优先搜索与回溯
+        n, k = ac.read_ints()
+        a = ac.read_list_ints()
+        b = ac.read_list_ints()
+
+        def dfs(i):
+            nonlocal ans, pre
+            if ans:
+                return
+            if i == k:
+                ans = pre[:]
+                return
+            for j in range(n):
+                if a[j] >= b[i]:
+                    x = a[j]
+                    a[j] = -1
+                    pre.append(j + 1)
+                    dfs(i + 1)
+                    a[j] = x
+                    pre.pop()
+            return
+
+        pre = []
+        ans = []
+        dfs(0)
+        if not ans:
+            ans = [-1]
         ac.lst(ans)
         return
 

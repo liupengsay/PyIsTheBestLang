@@ -133,20 +133,17 @@ class FastIO:
             pre[i + 1] = pre[i] + nums[i]
         return pre
 
-    @staticmethod
-    def plot_graph(n, edges):
 
-        # 创建一个有向图
-        g = nx.Graph()
-        for i in range(n):
-            # 添加节点
-            g.add_node(i+1)
-        for i in range(n):
-            for j in edges[i]:
-                g.add_edge(i+1, j+1)
-        nx.draw_networkx(g)
-        plt.show()
-        return
+class Wrapper(int):
+    # 用来规避 py 哈希碰撞的问题和进行加速
+    def __init__(self, x):
+        int.__init__(x)
+        # 原理是异或一个随机种子
+
+    def __hash__(self):
+        # 也可以将数组排序后进行哈希计数
+        return super(Wrapper, self).__hash__() ^ RANDOM
+
 
     @staticmethod
     def print_info(st):

@@ -2,6 +2,7 @@ import heapq
 import unittest
 from bisect import bisect_left
 from collections import defaultdict, deque
+from functools import lru_cache
 from itertools import permutations
 from math import inf
 
@@ -95,6 +96,7 @@ P7995 [USACO21DEC] Walking Home B（https://www.luogu.com.cn/problem/P7995）矩
 P8325 [COCI2021-2022#5] Dijamant（https://www.luogu.com.cn/problem/P8325）经典动态规划枚举，类似最大正方形矩阵 DP 变形
 P8614 [蓝桥杯 2014 省 A] 波动数列（https://www.luogu.com.cn/problem/P8614）经典矩阵 DP 关键在于取模作为一维状态
 P8638 [蓝桥杯 2016 省 A] 密码脱落（https://www.luogu.com.cn/problem/P8638）经典矩阵 DP 最长回文子序列
+P8786 [蓝桥杯 2022 省 B] 李白打酒加强版（https://www.luogu.com.cn/problem/P8786）典型三维矩阵 DP 模拟使用记忆化搜索
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1446/B（最长公共子序列LCS变形问题，理解贡献）
@@ -1697,6 +1699,30 @@ class Solution:
                 if s[i] == s[j] and dp[i+1][j-1] + 2 > dp[i][j]:
                     dp[i][j] = dp[i+1][j-1] + 2
         ac.st(n-dp[0][n-1])
+        return
+
+    @staticmethod
+    def lg_p8786(ac=FastIO()):
+        # 模板：典型三维矩阵 DP 模拟使用记忆化搜索
+
+        @lru_cache(None)
+        def dfs(x, y, wine):
+            if x == 0:
+                return 1 if y == wine else 0
+            if y == 0 or wine < 0:
+                return 0
+
+            res = 0
+            if wine * 2 <= y:
+                res += dfs(x - 1, y, wine * 2)
+            if wine:
+                res += dfs(x, y - 1, wine - 1)
+            return res % mod
+
+        mod = 10**9 + 7
+        n, m = ac.read_ints()
+        ans = dfs(n, m, 2)
+        ac.st(ans)
         return
 
 
