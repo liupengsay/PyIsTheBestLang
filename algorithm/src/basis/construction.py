@@ -1,8 +1,9 @@
+import math
 import unittest
 from typing import List
 
 from algorithm.src.fast_io import FastIO
-from collections import deque
+from collections import deque, defaultdict
 
 from algorithm.src.mathmatics.number_theory import NumberTheory
 
@@ -22,6 +23,10 @@ P2902 [USACO08MAR]Pearl Pairing G（https://www.luogu.com.cn/problem/P2902）构
 P5823 【L&K R-03】课表的排列（https://www.luogu.com.cn/problem/P5823）构造相同元素间隔为等差1的数组
 P7383 「EZEC-6」加减（https://www.luogu.com.cn/problem/P7383）贪心构造
 P7947 [✗✓OI R1] 铝锤制作（https://www.luogu.com.cn/problem/P7947）贪心构造积为 n 和为 k 的数列，乘积分解成质因数其和最小
+P9101 [PA2020] Skierowany graf acykliczny（https://www.luogu.com.cn/problem/P9101）构造恰好 k 条路径的有向无环图
+P8976 「DTOI-4」排列（https://www.luogu.com.cn/problem/P8976）经典枚举连续段进行构造数组的前半段与后半段和满足要求
+P8910 [RC-06] Operation Sequence（https://www.luogu.com.cn/problem/P8910）经典置换环构造
+P8880 无知时诋毁原神（https://www.luogu.com.cn/problem/P8880）脑筋急转弯构造分奇数与偶数讨论
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1396/A（贪心构造）
@@ -143,6 +148,154 @@ class Solution:
             ans.extend([1]*(k-sum(ans)))
             ac.st(len(ans))
             ac.lst(ans)
+        return
+
+    @staticmethod
+    def lg_p9101(ac=FastIO()):
+        # 模板：构造恰好 k 条路径的有向无环图
+        k = ac.read_int()
+        dct = defaultdict(list)
+        kk = k
+        if k == 1:  # 特判要求至少有两个节点
+            ac.st(2)
+            ac.lst([2, -1])
+            ac.lst([-1, -1])
+            return
+
+        # 多个 A -> BC -> D的结构形式
+        x = 1
+        cnt = len(bin(k)[2:]) - 1
+        level = []
+        for i in range(2 * cnt + 1):
+            if i % 2 == 0:
+                level.append([x])
+                x += 1
+            else:
+                level.append([x, x + 1])
+                x += 2
+        for i in range(2 * cnt):
+            if len(level[i]) == 1:
+                dct[level[i][0]] = level[i + 1][:]
+            else:
+                dct[level[i][0]] = level[i + 1][:]
+                dct[level[i][1]] = level[i + 1][:]
+
+        # 使用二进制逐层往上增加节点
+        k -= (1 << cnt)
+        end = x - 1
+        pre = 1 << cnt
+        for i in range(2 * cnt - 1, 0, -2):
+            xx = level[i][1]
+            pre //= 2
+            if pre <= k:
+                k -= pre
+                if end not in dct[xx]:
+                    dct[xx].append(end)
+                else:
+                    # 另外增加节点
+                    dct[xx].append(x)
+                    dct[x].append(end)
+                    x += 1
+
+        ac.st(x - 1)
+        # 将终点替换为最大的编号
+        ind = {end: x-1, x-1: end}
+        for i in range(1, x):
+            i = ind.get(i, i)
+            ans = [ind.get(j, j) for j in dct[i]]
+            while len(ans) < 2:
+                ans.append(-1)
+            ac.lst(ans)
+        return
+
+    @staticmethod
+    def lg_p8976(ac=FastIO()):
+        # 模板：经典枚举连续段进行构造数组的前半段与后半段和满足要求
+        for _ in range(ac.read_int()):
+            n, a, b = ac.read_ints()
+            mid = n // 2 + 1
+            if a + b > n * (n + 1) // 2 or ac.max(a, b) > (n // 2) * (mid + n) // 2:
+                ac.st(-1)
+                continue
+            s = n * (n + 1) // 2
+            lst = [a, b]
+            ans = []
+            for i in range(n // 2 + 1):   # 枚举起始的连续段
+                if ans:
+                    break
+                x = n // 2 - i
+                for aa, bb in [[0, 1], [1, 0]]:
+                    if x:
+                        rest = lst[aa] - i * (i + 1) // 2
+                        # 计算剩余的连续段
+                        y = math.ceil((rest * 2 / x - x + 1) / 2)
+                        y = ac.max(y, i + 1)
+
+                        if y + x - 1 <= n:
+                            cur = i * (i + 1) // 2 + x * (y + y + x - 1) // 2
+                            if cur >= lst[aa] and s - cur >= lst[bb]:
+                                pre = list(range(1, i + 1)) + list(range(y, y + x))
+                                post = list(range(i + 1, y)) + list(range(y + x, n + 1))
+                                ans = pre + post if aa == 0 else post + pre
+                                break
+                    else:
+                        if n // 2 * (1 + n // 2) // 2 >= a and s - a >= b:
+                            ans = list(range(1, n + 1))
+                            break
+            if not ans:
+                ac.st(-1)
+            else:
+                ac.lst(ans)
+        return
+
+    @staticmethod
+    def lg_p8910(ac=FastIO()):
+        # 模板：经典置换环构造
+        for _ in range(ac.read_int()):
+            n, k = ac.read_ints()
+            nex = [0] * (n + 1)
+            for i in range(k):
+                nex[i] = n - k + i
+            for i in range(k, n):
+                nex[i] = i - k
+            ans = []
+            for i in range(n):
+                if nex[i] != i:
+                    # 找到一个环上所有点
+                    lst = [i]
+                    while nex[lst[-1]] != i:
+                        lst.append(nex[lst[-1]])
+                    m = len(lst)
+                    # 依次相邻进行赋值
+                    ans.append([n + 1, lst[0] + 1])
+                    for x in range(1, m):
+                        ans.append([lst[x - 1] + 1, lst[x] + 1])
+                    ans.append([lst[m - 1] + 1, n + 1])
+                    for x in lst:
+                        nex[x] = x
+            ac.st(len(ans))
+            for a in ans:
+                ac.lst(a)
+        return
+
+    @staticmethod
+    def lg_p8880(ac=FastIO()):
+        # 模板：脑筋急转弯构造分奇数与偶数讨论
+        n = ac.read_int()
+        if n % 2 == 0:
+            ac.st(-1)
+            return
+        nums = ac.read_list_ints()
+        ind = {num: i for i, num in enumerate(nums)}
+        a = [-1] * n
+        b = [-1] * n
+        for i in range(n):
+            j = (i - 1) % n
+            x = (i + j) % n
+            a[ind[x]] = i
+            b[ind[x]] = j
+        ac.lst(a)
+        ac.lst(b)
         return
 
 

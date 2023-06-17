@@ -58,6 +58,7 @@ P8637 [蓝桥杯 2016 省 B] 交换瓶子（https://www.luogu.com.cn/problem/P86
 P8686 [蓝桥杯 2019 省 A] 修改数组（https://www.luogu.com.cn/problem/P8686）经典并查集灵活应用
 P8785 [蓝桥杯 2022 省 B] 扫雷（https://www.luogu.com.cn/problem/P8785）根据边界进行并查集构建计数
 P8787 [蓝桥杯 2022 省 B] 砍竹子（https://www.luogu.com.cn/problem/P8787）经典贪心二叉堆模拟与并查集灵活应用
+P8881 懂事时理解原神（https://www.luogu.com.cn/problem/P8881）脑筋急转弯，使用并查集判断所属连通分量是否有环
 
 ================================CodeForces================================
 D. Roads not only in Berland（https://codeforces.com/problemset/problem/25/D）并查集将原来的边断掉重新来连接使得成为一整个连通集
@@ -867,6 +868,24 @@ class Solution:
             nums[i] = val
             heapq.heappush(stack, [-nums[i], -i])
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p8881(ac=FastIO()):
+        # 模板：脑筋急转弯，使用并查集判断所属连通分量是否有环
+        for _ in range(ac.read_int()):
+            n, m = ac.read_ints()
+            uf = UnionFind(n)
+            edge = []
+            for _ in range(m):
+                i, j = ac.read_ints_minus_one()
+                uf.union(i, j)
+                edge.append([i, j])
+            cnt = 0
+            for i, j in edge:
+                if uf.is_connected(0, i):
+                    cnt += 1
+            ac.st("1.000" if uf.size[uf.find(0)] == cnt + 1 else "0.000")
         return
 
 

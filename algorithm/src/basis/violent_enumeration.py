@@ -3,7 +3,7 @@ import unittest
 import math
 from collections import defaultdict, deque
 from functools import reduce
-from itertools import combinations
+from itertools import combinations, permutations
 from operator import mul
 from typing import List
 
@@ -91,7 +91,12 @@ P8712 [蓝桥杯 2020 省 B1] 整数拼接（https://www.luogu.com.cn/problem/P8
 P8749 [蓝桥杯 2021 省 B] 杨辉三角形（https://www.luogu.com.cn/problem/P8749）利用杨辉三角形特点进行枚举
 P8808 [蓝桥杯 2022 国 C] 斐波那契数组（https://www.luogu.com.cn/problem/P8808）利用斐波那契数组的特点进行枚举
 P8809 [蓝桥杯 2022 国 C] 近似 GCD（https://www.luogu.com.cn/problem/P8809）枚举加贡献计数
-
+P9076 [PA2018] PIN（https://www.luogu.com.cn/problem/P9076）根据数字的因数进行枚举
+P9008 [入门赛 #9] 大碗宽面 (Hard Version)（https://www.luogu.com.cn/problem/P9008）经典朋友敌人陌生人容斥枚举计数
+P9006 [入门赛 #9] 神树大人挥动魔杖 (Hard Version)（https://www.luogu.com.cn/problem/P9006）经典枚举取模计数
+P8948 [YsOI2022]NOIp和省选（https://www.luogu.com.cn/problem/P8948）预处理和枚举所有情况
+P8894 「UOI-R1」求和（https://www.luogu.com.cn/problem/P8894）按照区间范围值进行枚举前后缀计数
+P8872 [传智杯 #5 初赛] D-莲子的物理热力学（https://www.luogu.com.cn/problem/P8872）排序后前后缀移动次数枚举
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1426/F（分类枚举中间的b计数两边的?ac，并使用快速幂进行求解）
@@ -685,6 +690,147 @@ class Solution:
                         cnt[p+w] -= x
             rest = sum(cnt.values())
             cur += rest*2 // 3
+            ans = ac.min(ans, cur)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p9076(ac=FastIO()):
+        # 模板：根据数字的因数进行枚举
+        n = ac.read_int()
+        ans = 0
+        pre = set()
+        for a in range(1, int(n**0.5)+1):
+            if n % a == 0:
+                for bc in [n//a-1, a-1]:
+                    if bc in pre:
+                        continue
+                    pre.add(bc)
+                    for x in range(2, bc+1):
+                        if bc % x == 0:
+                            y = bc//x-1
+                            if y > 1:
+                                ans += 1
+                        if bc // x <= 2:
+                            break
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p9008(ac=FastIO()):
+        # 模板：经典朋友敌人陌生人容斥枚举计数
+        n, p, q = ac.read_ints()
+        friend = defaultdict(set)
+        for _ in range(p):
+            u, v = ac.read_ints()
+            friend[u].add(v)
+            friend[v].add(u)
+        ans = n * (n - 1) // 2
+        rem = set()
+        for _ in range(q):
+            u, v = ac.read_ints()
+            rem.add((u, v) if u < v else (v, u))
+            for x in friend[u]:
+                if x not in friend[v]:
+                    rem.add((x, v) if x < v else (v, x))
+            for y in friend[v]:
+                if y not in friend[u]:
+                    rem.add((y, u) if y < u else (u, y))
+        ac.st(ans - len(rem))
+        return
+
+    @staticmethod
+    def lg_p9006(ac=FastIO()):
+        # 模板：经典枚举取模计数
+        mod = 100000007
+        n, k = ac.read_ints()
+        num = 9 * 10**(n - 1)
+        x = num // k
+        x %= mod
+        ans = [x] * k
+        for y in range(10**(n - 1) + x * k, 10**(n - 1) + x * k + num % k):
+            ans[y % k] += 1
+        ac.lst([x % mod for x in ans])
+        return
+
+    @staticmethod
+    def lg_p8948(ac=FastIO()):
+        # 模板：预处理和枚举所有情况
+        dct = dict()
+        dct[2000] = [400, 600]
+        for i in range(401):
+            for j in range(601):
+                x = (3 * i + 2 * j) * 10 / 12
+                x = int(x) + int(x - int(x) >= 0.5)
+                if 10 <= x <= 1990:
+                    dct[x] = [i, j]
+        for _ in range(ac.read_int()):
+            ac.lst(dct[ac.read_int()])
+        return
+
+    @staticmethod
+    def lg_p8894(ac=FastIO()):
+        # 模板：按照区间范围值进行枚举前后缀计数
+        n = ac.read_int()
+        mod = 998244353
+        nums = [ac.read_list_ints() for _ in range(n)]
+        ceil = max(q for _, q in nums)
+        low = min(p for p, _ in nums)
+        ans = 0
+        for s in range(low, ceil + 1):
+            pre = [0] * (n + 1)
+            pre[0] = 1
+            for i in range(n):
+                p, q = nums[i]
+                if p > s:
+                    pre[i + 1] = 0
+                    break
+                else:
+                    pre[i + 1] = pre[i] * (ac.min(s, q) - p + 1) % mod
+
+            post = [0] * (n + 1)
+            post[n] = 1
+            for i in range(n - 1, -1, -1):
+                p, q = nums[i]
+                if p >= s:
+                    post[i] = 0
+                    break
+                else:
+                    post[i] = post[i + 1] * (ac.min(q, s - 1) - p + 1) % mod
+            for i in range(n):
+                p, q = nums[i]
+                if p <= s <= q:
+                    ans += pre[i] * post[i + 1] * s
+                    ans %= mod
+                if pre[i+1] == 0:
+                    break
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p8872(ac=FastIO()):
+        # 模板：排序后前后缀移动次数枚举
+        n, m = ac.read_ints()
+        nums = sorted(ac.read_list_ints())
+        ans = inf
+        for i in range(n):
+            if i > m:
+                break
+            right = (m - i) // 2
+            if right >= n - i - 1:
+                ac.st(0)
+                return
+            cur = nums[-right - 1] - nums[i]
+            ans = ac.min(ans, cur)
+
+        for i in range(n - 1, -1, -1):
+            if n - i - 1 > m:
+                break
+            left = (m - n + i + 1) // 2
+            if left >= i:
+                ac.st(0)
+                return
+            cur = nums[i] - nums[left]
             ans = ac.min(ans, cur)
         ac.st(ans)
         return

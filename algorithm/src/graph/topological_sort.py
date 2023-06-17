@@ -36,6 +36,7 @@ P6255 [ICPC2019 WF]Dead-End Detector（https://www.luogu.com.cn/problem/P6255）
 P6417 [COCI2014-2015#1] MAFIJA（https://www.luogu.com.cn/problem/P6417）有向图基环树贪心应用拓扑排序由外向内
 P6560 [SBCOI2020] 时光的流逝（https://www.luogu.com.cn/problem/P6560）经典反向建图拓扑排序与博弈必胜态
 P8655 [蓝桥杯 2017 国 B] 发现环（https://www.luogu.com.cn/problem/P8655）使用拓扑排序计算有向基环树的环
+P8943 Deception Point（https://www.luogu.com.cn/problem/P8943）经典无向图基环树博弈
 
 
 ==================================AtCoder=================================
@@ -81,6 +82,30 @@ class TopologicalSort:
             stack = nex
             step += 1
         return visit
+
+    @staticmethod
+    def count_dag_path(n, edges):
+        # 模板: 计算有向无环连通图路径条数
+        edge = [[] for _ in range(n)]
+        degree = [0] * n
+        for i, j in edges:
+            edge[i].append(j)
+            degree[j] += 1
+        cnt = [0] * n
+        stack = [i for i in range(n) if not degree[i]]
+        for x in stack:
+            cnt[x] = 1
+        while stack:  # 也可以使用深搜
+            nex = []
+            for i in stack:
+                for j in edge[i]:
+                    degree[j] -= 1
+                    cnt[j] += cnt[i]
+                    if not degree[j]:
+                        nex.append(j)
+            stack = nex
+        return cnt
+
 
     # 内向基环树写法 https://atcoder.jp/contests/abc266/submissions/37717739
     # def main(ac=FastIO()):
@@ -600,6 +625,75 @@ class Solution:
                     stack.append(z)
         ans = [x+1 for x in range(n) if degree[x] == 2]
         ac.lst(ans)
+        return
+
+    @staticmethod
+    def lg_p8943(ac=FastIO()):
+        # 模板：经典无向图基环树博弈
+        n, q = ac.read_ints()
+        degree = [0] * n
+        dct = [[] for _ in range(n)]
+        for _ in range(n):
+            x, y = ac.read_ints_minus_one()
+            dct[x].append(y)
+            dct[y].append(x)
+            degree[x] += 1
+            degree[y] += 1
+
+        # 找出环
+        stack = deque([i for i in range(n) if degree[i] == 1])
+        while stack:
+            i = stack.popleft()
+            for j in dct[i]:
+                degree[j] -= 1
+                if degree[j] == 1:
+                    stack.append(j)
+
+        dis = [inf] * n
+        stack = [i for i in range(n) if degree[i] > 1]
+        path = [[stack[0], -1]]
+        while True:
+            for j in dct[path[-1][0]]:
+                if degree[j] > 1 and j != path[-1][1]:
+                    path.append([j, path[-1][0]])
+                    break
+            if path[-1][0] == path[0][0]:
+                path.pop()
+                break
+        path = [p for p, _ in path]
+        ind = {num: i for i, num in enumerate(path)}
+
+        # 计算每个点到环上的祖先节点与距离
+        parent = [-1] * n
+        for i in stack:
+            parent[i] = i
+        d = 0
+        while stack:
+            nex = []
+            for i in stack:
+                dis[i] = d
+            for i in stack:
+                for j in dct[i]:
+                    if dis[j] == inf:
+                        parent[j] = parent[i]
+                        nex.append(j)
+            stack = nex[:]
+            d += 1
+
+        for _ in range(q):
+            x, y = ac.read_ints_minus_one()
+            if dis[x] == 0:
+                ac.st("Survive" if x != y else "Deception")
+                continue
+
+            a = parent[x]
+            b = parent[y]
+            # 只有先到达环才可能幸免
+            dis_y = dis[y] + ac.min(len(path) - abs(ind[a] - ind[b]), abs(ind[a] - ind[b]))
+            if dis[x] < dis_y:
+                ac.st("Survive")
+            else:
+                ac.st("Deception")
         return
 
 

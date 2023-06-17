@@ -67,6 +67,7 @@ P6069 『MdOI R1』Group（https://www.luogu.com.cn/problem/P6069）经典方差
 P6733 「Wdsr-2」间歇泉（https://www.luogu.com.cn/problem/P6733）二分加STL进行 Check
 P8161 [JOI 2022 Final] 自学 (Self Study)（https://www.luogu.com.cn/problem/P8161）经典贪心加二分求解
 P8198 [传智杯 #4 决赛] 背单词的小智（https://www.luogu.com.cn/problem/P8198）经典二分加指针
+P9050 [PA2021] Sumy（https://www.luogu.com.cn/problem/P9050）经典二分注意值域区间与贪心模拟
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1251/D（使用贪心进行中位数二分求解）
@@ -1114,6 +1115,37 @@ class Solution:
         high = sum(num * num for num in nums)
         ans = BinarySearch().find_int_left(low, high, check)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p9050(ac=FastIO()):
+        # 模板：经典二分注意值域区间与贪心模拟
+        n = ac.read_int()
+        if n == 1:
+            ac.st("T")
+            return
+
+        nums = ac.read_list_ints()
+        lst = sorted(nums)
+
+        def check(x):
+            flag = 1
+            res = lst[x]
+            for w in lst:
+                if w == lst[x] and flag:
+                    flag = 0
+                    continue
+                if res <= w:
+                    return False
+                res += w
+            return True
+
+        floor = BinarySearch().find_int_left(0, n-1, check)
+        if check(floor):
+            ans = ["N" if nums[x] < lst[floor] else "T" for x in range(n)]
+            ac.st("".join(ans))
+        else:
+            ac.st("N" * n)
         return
 
 

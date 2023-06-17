@@ -1,5 +1,5 @@
 import unittest
-from collections import deque
+from collections import deque, defaultdict
 from typing import List
 from algorithm.src.fast_io import FastIO, inf
 
@@ -77,6 +77,7 @@ P6909 [ICPC2015 WF]Keyboarding（https://www.luogu.com.cn/problem/P6909）预处
 P8628 [蓝桥杯 2015 国 AC] 穿越雷区（https://www.luogu.com.cn/problem/P8628）简单 01 BFS 
 P8673 [蓝桥杯 2018 国 C] 迷宫与陷阱（https://www.luogu.com.cn/problem/P86730）简单 01 BFS 模拟
 P8674 [蓝桥杯 2018 国 B] 调手表（https://www.luogu.com.cn/problem/P8674）经典预处理建图后使用 BFS 模拟
+P9065 [yLOI2023] 云梦谣（https://www.luogu.com.cn/problem/P9065）脑筋急转弯BFS枚举
 
 ================================CodeForces================================
 E. Nearest Opposite Parity（https://codeforces.com/problemset/problem/1272/E）经典反向建图，多源BFS
@@ -1513,6 +1514,40 @@ class Solution:
                     visit[x][y] = ind
                     stack.append([d + 1, ind, x, y])
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p9065(ac=FastIO()):
+        # 模板：脑筋急转弯BFS枚举
+        m, n, k = ac.read_list_ints()
+        grid = [ac.read_list_ints() for _ in range(m)]
+        pos = set(tuple(ac.read_list_ints_minus_one()) for _ in range(k))
+
+        def bfs(s1, s2):
+            stack = deque()
+            dis = [[inf] * n for _ in range(m)]
+            dis[s1][s2] = 0
+            stack.append([0, s1, s2])
+            while stack:
+                d, i, j = stack.popleft()
+                for x, y in [[i - 1, j], [i + 1, j], [i, j - 1], [i, j + 1]]:
+                    if 0 <= x < m and 0 <= y < n and d + 1 < dis[x][y] and grid[x][y]:
+                        dis[x][y] = d + 1
+                        stack.append([d + 1, x, y])
+            return dis
+
+        dis1 = bfs(0, 0)
+        dis2 = bfs(m - 1, n - 1)
+        ans = dis1[m - 1][n - 1]
+        if pos:
+            pre = defaultdict(lambda: inf)
+            for i, j in pos:
+                pre[grid[i][j]] = ac.min(pre[grid[i][j]], dis1[i][j])
+            floor = min(pre.values())
+            for i, j in pos:
+                cur = ac.min(pre[grid[i][j]], floor + 1) + dis2[i][j] + 1
+                ans = ac.min(ans, cur)
+        ac.st(ans if ans < inf else -1)
         return
 
 

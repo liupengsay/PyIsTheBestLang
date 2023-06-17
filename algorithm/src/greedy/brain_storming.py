@@ -110,6 +110,7 @@ P8109 [Cnoi2021]幻想乡程序设计大赛（https://www.luogu.com.cn/problem/P
 P8669 [蓝桥杯 2018 省 B] 乘积最大（https://www.luogu.com.cn/problem/P8669）贪心选取 k 个数乘积最大
 P8709 [蓝桥杯 2020 省 A1] 超级胶水（https://www.luogu.com.cn/problem/P8709）脑筋急转弯模拟计算
 P8732 [蓝桥杯 2020 国 ABC] 答疑（https://www.luogu.com.cn/problem/P8732）经典贪心枚举两项计算优先级公式
+P8887 [DMOI-R1] 柯基棋（https://www.luogu.com.cn/problem/P8887）脑筋急转弯贪心
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/1186/D（贪心取floor，再根据加和为0的特质进行补充加1成为ceil）

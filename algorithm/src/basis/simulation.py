@@ -1,7 +1,8 @@
+import heapq
 import math
 import random
 import unittest
-from collections import deque
+from collections import deque, Counter
 
 from algorithm.src.fast_io import FastIO
 
@@ -59,6 +60,11 @@ P6397 [COI2008] GLASNICI（https://www.luogu.com.cn/problem/P6397）经典贪心
 P8247 皇室战争（https://www.luogu.com.cn/problem/P8247）经典模拟按照相对位置比例进行区分
 P8611 [蓝桥杯 2014 省 AB] 蚂蚁感冒（https://www.luogu.com.cn/problem/P8611）经典蚂蚁碰撞模拟分类讨论
 P8755 [蓝桥杯 2021 省 AB2] 负载均衡（https://www.luogu.com.cn/problem/P8755）使用二叉堆进行模拟计算
+P9023 [CCC2021 J5/S2] Modern Art（https://www.luogu.com.cn/problem/P9023）经典矩阵翻转模拟计数
+P8898 [USACO22DEC] Feeding the Cows B（https://www.luogu.com.cn/problem/P8898）贪心模拟
+P8895 「DPOI-1」优美的序列（https://www.luogu.com.cn/problem/P8895）模拟与组合计数
+P8884 「JEOI-R1」棋（https://www.luogu.com.cn/problem/P8884）分矩阵位置的奇偶性讨论
+P8873 [传智杯 #5 初赛] E-梅莉的市场经济学（https://www.luogu.com.cn/problem/P8873）等差数列计算
 
 ================================CodeForces================================
 C. Gargari and Bishops（https://codeforces.com/problemset/problem/463/C）选取两组互不相交的主副对角线使得和最大
@@ -395,6 +401,127 @@ class Solution:
         else:
             ans = 1 if not y else x + y + 1
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p9023(ac=FastIO()):
+        # 模板：经典矩阵翻转模拟计数
+        m = ac.read_int()
+        n = ac.read_int()
+        k = ac.read_int()
+        row = [0]*(m+1)
+        col = [0]*(n+1)
+        for _ in range(k):
+            lst = ac.read_list_strs()
+            x = int(lst[1])
+            if lst[0] == "R":
+                row[x] += 1
+                row[x] %= 2
+            else:
+                col[x] += 1
+                col[x] %= 2
+        cnt1 = sum(row)
+        cnt2 = sum(col)
+        ans = cnt1 * (n - cnt2) + cnt2 * (m - cnt1)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p8895(ac=FastIO()):
+        # 模板：模拟与组合计数
+        n, m, p = ac.read_ints()
+        dp = [1]*(n+1)
+        for i in range(1, n+1):
+            dp[i] = dp[i-1]*2 % p
+        nums = ac.read_list_ints()
+        cnt = Counter(nums)
+        stack = nums[:]
+        heapq.heapify(stack)
+        low = stack[0]
+        one = 0
+        even = 0
+        for num in cnt:
+            if cnt[num] == 2:
+                even += 1
+            else:
+                one += 1
+        if cnt[low] > 1 or even * 2 + one < n:
+            ac.st(0)
+        else:
+            ac.st(dp[n - even * 2 - 1])
+        for _ in range(m):
+            x, k = ac.read_ints()
+            x -= 1
+            cnt[nums[x]] -= 1
+            if cnt[nums[x]] == 1:
+                even -= 1
+                one += 1
+            elif cnt[nums[x]] == 0:
+                one -= 1
+
+            nums[x] = k
+            cnt[nums[x]] += 1
+            if cnt[nums[x]] == 2:
+                even += 1
+                one -= 1
+            elif cnt[nums[x]] == 1:
+                one += 1
+            heapq.heappush(stack, k)
+            while not cnt[stack[0]]:
+                heapq.heappop(stack)
+            if cnt[stack[0]] > 1 or even * 2 + one < n:
+                ac.st(0)
+            else:
+                ac.st(dp[n - even * 2 - 1])
+        return
+
+    @staticmethod
+    def lg_p8884(ac=FastIO()):
+        # 模板：分矩阵位置的奇偶性讨论
+        n, m, c = ac.read_ints()
+        cnt = [0, 0]
+        for _ in range(c):
+            i, j = ac.read_ints_minus_one()
+            cnt[(i + j) % 2] += 1
+
+        total = [0, 0]
+        if m % 2 == 0 or n % 2 == 0:
+            total[0] = total[1] = m * n // 2
+        else:
+            total[0] = m * n // 2 + 1
+            total[1] = m * n // 2
+
+        for _ in range(ac.read_int()):
+            x1, y1, x2, y2, p = ac.read_ints_minus_one()
+            p += 1
+            cur = [0, 0]
+            while p:
+                lst = ac.read_list_ints()
+                if not lst:
+                    continue
+                i, j = [x-1 for x in lst]
+                cur[(i + j) % 2] += 1
+                p -= 1
+
+            mm, nn = x2 - x1 + 1, y2 - y1 + 1
+            cur_total = [0, 0]
+            if (mm * nn) % 2 == 0:
+                cur_total[0] = cur_total[1] = mm * nn // 2
+            else:
+                if (x1 + y1) % 2 == 0:
+                    cur_total[0] = mm * nn // 2 + 1
+                    cur_total[1] = mm * nn // 2
+                else:
+                    cur_total[1] = mm * nn // 2 + 1
+                    cur_total[0] = mm * nn // 2
+
+            if cur[0] <= cnt[0] and cur[1] <= cnt[1] \
+                    and total[0] - cur_total[0] >= cnt[0] - cur[0]\
+                    and total[1] - cur_total[1] >= cnt[1] - cur[1]:
+                ac.st("YES")
+            else:
+                ac.st("NO")
+
         return
 
 

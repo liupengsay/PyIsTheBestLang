@@ -41,6 +41,7 @@ P4310 绝世好题（https://www.luogu.com.cn/problem/P4310）线性 DP 使用�
 P5390 [Cnoi2019]数学作业（https://www.luogu.com.cn/problem/P5390）按位操作
 P6824 「EZEC-4」可乐（https://www.luogu.com.cn/problem/P6824）经典按位操作计算异或不等式在使用差分作用域计数
 P8842 [传智杯 #4 初赛] 小卡与质数2（https://www.luogu.com.cn/problem/P8842）经典质数个数前缀和与异或不等式区间计数
+P8965 坠梦 | Falling into Dream（https://www.luogu.com.cn/problem/P8965）树形 DP 与异或计算
 
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/305/C（利用二进制加减的思想进行解题）
