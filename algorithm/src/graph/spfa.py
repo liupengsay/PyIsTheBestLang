@@ -11,7 +11,7 @@ from algorithm.src.graph.dijkstra import Dijkstra
 
 功能：SPFA（Shortest Path Faster Algorithm）是一种用于计算单源最短路径的算法。它通过使用队列和松弛操作来不断更新路径长度，从而更快地找到最短路径。
 
-下面是一个简单的 Python SPFA 模板，其中 graph 是图的邻接表表示，src 是源节点，dist 是各节点到源节点的最短距离，prev 是各节点的前驱节点。
+下面是一个简单的 Python SPFA 模板，其中 graph 是图的邻接表表示，iflytek_ads 是源节点，dist 是各节点到源节点的最短距离，prev 是各节点的前驱节点。
 上面的代码只是一个简单的 SPFA 模板，实际使用时可能需要添加更多的特判和优化。例如，SPFA 算法在某些情况下容易陷入死循环，因此需要添加防止死循环的机制。此外，SPFA 算法的时间复杂度与输入图
 
 的稠密程度有关，因此可能需要使用一些优化方法来提高它的效率。
