@@ -1627,7 +1627,7 @@ class SegmentTreeRangeUpdateSubConSum:
     def query_max(self, left: int, right: int, s: int, t: int, i: int):
         # 查询区间的最大连续和，注意这里是递归
         if left <= s and t <= right:
-            return self.cover[i], self.left[i], self.right[i], self.sum[i]
+            return [self.cover[i], self.left[i], self.right[i], self.sum[i]]
 
         m = s + (t - s) // 2
         self.push_down(i, s, m, t)
