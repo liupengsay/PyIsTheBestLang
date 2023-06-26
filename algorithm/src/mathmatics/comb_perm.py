@@ -17,6 +17,8 @@ from algorithm.src.mathmatics.number_theory import NumberTheoryPrimeFactor
 题目：
 Lucas定理（comb(n, m)%p = comb(n%p, m%p)*comb(n//p, m//p)）%p
 ===================================力扣===================================
+96. 不同的二叉搜索树（https://leetcode.cn/problems/unique-binary-search-trees/）经典卡特兰数
+95. 不同的二叉搜索树 II（https://leetcode.cn/problems/unique-binary-search-trees/）经典卡特兰数思想进行递归，生成具体方案
 634. 寻找数组的错位排列（https://leetcode.cn/problems/find-the-derangement-of-an-array/）错位排列计数使用动态规划转移计算
 1259. 不相交的握手（https://leetcode.cn/problems/handshakes-that-dont-cross/）卡特兰数
 2338. 统计理想数组的数目（https://leetcode.cn/problems/count-the-number-of-ideal-arrays/）使用隔板法与因数分解进行组合方案数求解

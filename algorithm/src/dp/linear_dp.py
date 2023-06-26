@@ -14,6 +14,7 @@ from algorithm.src.mathmatics.number_theory import NumberTheory
 题目：
 
 ===================================力扣===================================
+87. 扰乱字符串（https://leetcode.cn/problems/scramble-string/）经典线性DP记忆化深搜
 2361. 乘坐火车路线的最少费用（https://leetcode.cn/problems/minimum-costs-using-the-train-line/）当前状态只跟前一个状态有关
 2318. 不同骰子序列的数目（https://leetcode.cn/problems/number-of-distinct-roll-sequences/）当前状态只跟前一个状态有关使用枚举计数
 2263. 数组变为有序的最小操作次数（https://leetcode.cn/problems/make-array-non-decreasing-or-non-increasing/）当前状态只跟前一个状态有关
