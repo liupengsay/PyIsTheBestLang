@@ -35,6 +35,7 @@ from algorithm.src.fast_io import FastIO
 
 ===================================力扣===================================
 5. 最长回文子串（https://leetcode.cn/problems/longest-palindromic-substring/）计算字符串的最长回文连续子串
+132. 分割回文串 II（https://leetcode.cn/problems/palindrome-partitioning-ii/）经典线性 DP 与马拉车判断以每个位置为结尾的回文串
 214 最短回文串（https://leetcode.cn/problems/shortest-palindrome/）计算字符串前缀最长回文子串
 
 ===================================洛谷===================================
