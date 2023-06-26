@@ -11,6 +11,7 @@ from algorithm.src.fast_io import FastIO
 题目：
 
 ===================================力扣===================================
+60. 排列序列（https://leetcode.cn/problems/permutation-sequence/）全排列的第 k 个排列
 440. 字典序的第K小数字（https://leetcode.cn/problems/k-th-smallest-in-lexicographical-order/）经典面试题使用十叉树求解
 
 ===================================洛谷===================================
@@ -230,6 +231,12 @@ class Solution:
                 ac.st(og.get_subset_perm_kth(n, lst))
                 # ac.st(ct.array_to_rank(lst))
         return
+
+    @staticmethod
+    def lc_60(n: int, k: int) -> str:
+        #  模板：全排列的第 k 个排列
+        ans = LexicoGraphicalOrder().get_kth_subset_perm(n, k)
+        return "".join(str(x) for x in ans)
 
 
 class TestGeneral(unittest.TestCase):
