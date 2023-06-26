@@ -15,6 +15,7 @@ from math import inf
 题目：
 
 ===================================力扣===================================
+152. 乘积最大子数组（https://leetcode.cn/problems/maximum-product-subarray/）前缀最大最小乘积，计算最大连续子数组乘积
 2281. 巫师的总力量（https://leetcode.cn/problems/sum-of-total-strength-of-wizards/）枚举当前元素作为最小值的子数组和并使用前缀和的前缀和计算
 2251. 花期内花的数目（https://leetcode.cn/problems/number-of-flowers-in-full-bloom/）离散化差分数组
 2132. 用邮票贴满网格图（https://leetcode.cn/problems/stamping-the-grid/）用前缀和枚举可行的邮票左上端点，然后查看空白格点左上方是否有可行的邮票点

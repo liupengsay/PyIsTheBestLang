@@ -14,6 +14,7 @@ getcontext().prec = MAX_PREC
 题目：
 
 ===================================力扣===================================
+166. 分数到小数（https://leetcode.cn/problems/fraction-to-recurring-decimal/）经典分数转换为有理数无限循环小数
 172. 阶乘后的零（https://leetcode.cn/problems/factorial-trailing-zeroes/）阶乘后缀0的个数
 
 ===================================洛谷===================================

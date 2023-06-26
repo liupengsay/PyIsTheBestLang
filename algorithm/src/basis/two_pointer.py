@@ -17,6 +17,7 @@ from algorithm.src.fast_io import FastIO
 题目：
 
 ===================================力扣===================================
+167. 两数之和 II - 输入有序数组（https://leetcode.cn/problems/two-sum-ii-input-array-is-sorted/）经典双指针应用
 259. 较小的三数之和（https://leetcode.cn/problems/3sum-smaller/）使用双指针或者计数枚举的方式
 2444. 统计定界子数组的数目（https://leetcode.cn/problems/count-subarrays-with-fixed-bounds/）通向双指针的移动来根据两个指针的位置来进行计数
 2398. 预算内的最多机器人数目（https://leetcode.cn/problems/maximum-number-of-robots-within-budget/）同向双指针移动的条件限制有两个需要用有序集合来维护滑动窗口过程
