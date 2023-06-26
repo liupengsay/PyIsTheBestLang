@@ -94,29 +94,41 @@ class LyndonDecomposition:
 
     @staticmethod
     def min_express(sec):
+        # 最小表示法
         n = len(sec)
         k, i, j = 0, 0, 1
         while k < n and i < n and j < n:
             if sec[(i + k) % n] == sec[(j + k) % n]:
                 k += 1
             else:
-                if sec[(i + k) % n] > sec[(j + k) % n]:
+                if sec[(i + k) % n] > sec[(j + k) % n]:  # 最小表示法
                     i = i + k + 1
                 else:
                     j = j + k + 1
                 if i == j:
                     i += 1
                 k = 0
-        i = min(i, j)
+        i = i if i < j else j
         return i, sec[i:] + sec[:i]
 
-    def max_express(self, sec):
-        # 这里用到一个小技巧，将求最大表示法的问题转换为求最小表示法
-        sec += "a"
-        lst = [26 - ord(w) + ord("a") for w in sec]
-        i, _ = self.min_express(lst)
-        # 注意最大来说要取第一个前缀的索引
-        return sec[i:][:-1]  # 返回最大表示法的前半部分
+    @staticmethod
+    def max_express(sec):
+        # 最大表示法
+        n = len(sec)
+        k, i, j = 0, 0, 1
+        while k < n and i < n and j < n:
+            if sec[(i + k) % n] == sec[(j + k) % n]:
+                k += 1
+            else:
+                if sec[(i + k) % n] < sec[(j + k) % n]:  # 最大表示法
+                    i = i + k + 1
+                else:
+                    j = j + k + 1
+                if i == j:
+                    i += 1
+                k = 0
+        i = i if i < j else j
+        return i, sec[i:] + sec[:i]
 
 
 class Solution:
@@ -127,7 +139,9 @@ class Solution:
     @staticmethod
     def lc_1163(s: str) -> str:
         # 模板：求最大表示法
-        return LyndonDecomposition().max_express(s)
+        s += chr(ord("a") - 1)
+        i, _ = LyndonDecomposition().max_express(s)
+        return s[i:-1]
 
     @staticmethod
     def ac_158(ac=FastIO()):

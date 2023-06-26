@@ -81,7 +81,7 @@ class KMP:
                 ans.append(i - m - m)
         return ans
 
-    def find_longest_palidrome(self, s, pos="prefix"):
+    def find_longest_palindrome(self, s, pos="prefix"):
         # 计算最长前缀与最长后缀回文子串
         if pos == "prefix":
             return self.prefix_function(s + "#" + s[::-1])[-1]

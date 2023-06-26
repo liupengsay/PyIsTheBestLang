@@ -31,7 +31,7 @@ from algorithm.src.fast_io import FastIO
 239. 滑动窗口最大值（https://leetcode.cn/problems/sliding-window-maximum/）滑动窗口最大值，使用滑动窗口类维护
 2447. 最大公因数等于 K 的子数组数目（https://leetcode.cn/problems/number-of-subarrays-with-gcd-equal-to-k/）滑动窗口区间 gcd，使用滑动窗口类维护
 6392. 使数组所有元素变成 1 的最少操作次数（https://leetcode.cn/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/）滑动窗口区间 gcd，使用滑动窗口类维护
-
+1163. 按字典序排在最后的子串（https://leetcode.cn/problems/last-substring-in-lexicographical-order/）经典类似最小表示法的双指针
 
 ===================================洛谷===================================
 P2381 圆圆舞蹈（https://www.luogu.com.cn/problem/P2381）环形数组，滑动窗口双指针
@@ -302,6 +302,20 @@ class Solution:
                 res = res if res < swa.size else swa.size
                 swa.popleft()
         return res - 1 + len(nums) - 1
+
+    @staticmethod
+    def lc_1163(s: str) -> str:
+        # 双指针进行计算
+        i, j, n = 0, 1, len(s)
+        while j < n:
+            k = 0
+            while j + k < n and s[i + k] == s[j + k]:
+                k += 1
+            if j + k < n and s[i + k] < s[j + k]:
+                i, j = j, j + 1 if j + 1 > i + k + 1 else i + k + 1
+            else:
+                j = j + k + 1
+        return s[i:]
 
     @staticmethod
     def lc_2447(nums: List[int], k: int) -> int:

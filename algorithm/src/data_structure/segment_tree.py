@@ -55,6 +55,7 @@ D. The Child and Sequence（https://codeforces.com/problemset/problem/438/D）�
 E. A Simple Task（https://codeforces.com/contest/558/problem/E）26个线段树维护区间排序信息
 D. Water Tree（https://codeforces.com/problemset/problem/343/D）dfs序加线段树
 E. XOR on Segment（https://codeforces.com/problemset/problem/242/E）线段树区间异或，与区间加和
+C. Three displays（https://codeforces.com/problemset/problem/987/C）枚举中间数组，使用线段树维护前后缀最小值
 
 参考：OI WiKi（xx）
 """
@@ -2850,6 +2851,30 @@ class Solution:
                     diff[ind[t] + 1] -= b
         diff = ac.accumulate(diff)[2:]
         ac.st(min(diff))
+        return
+
+    @staticmethod
+    def cf_987c(ac=FastIO()):
+        # 模板：枚举中间数组，使用线段树维护前后缀最小值
+        n = ac.read_int()
+        s = ac.read_list_ints()
+        c = ac.read_list_ints()
+        ind = {num: i for i, num in enumerate(sorted(list(set(s + c + [0] + [10 ** 9 + 1]))))}
+        m = len(ind)
+        post = [inf] * n
+        tree = SegmentTreeUpdateQueryMin(m)
+        for i in range(n - 1, -1, -1):
+            tree.update_point(ind[s[i]], ind[s[i]], 0, m - 1, c[i], 1)
+            post[i] = tree.query_range(ind[s[i]] + 1, m - 1, 0, m - 1, 1)
+
+        ans = inf
+        tree = SegmentTreeUpdateQueryMin(m)
+        for i in range(n):
+            if 1 <= i <= n - 2:
+                cur = c[i] + tree.query_range(0, ind[s[i]] - 1, 0, m - 1, 1) + post[i]
+                ans = ac.min(ans, cur)
+            tree.update_point(ind[s[i]], ind[s[i]], 0, m - 1, c[i], 1)
+        ac.st(ans if ans < inf else -1)
         return
 
 
