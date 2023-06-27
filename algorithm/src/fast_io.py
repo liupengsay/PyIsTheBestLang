@@ -133,18 +133,6 @@ class FastIO:
             pre[i + 1] = pre[i] + nums[i]
         return pre
 
-
-class Wrapper(int):
-    # 用来规避 py 哈希碰撞的问题和进行加速
-    def __init__(self, x):
-        int.__init__(x)
-        # 原理是异或一个随机种子
-
-    def __hash__(self):
-        # 也可以将数组排序后进行哈希计数
-        return super(Wrapper, self).__hash__() ^ RANDOM
-
-
     @staticmethod
     def print_info(st):
         st = """执行结果：
@@ -152,7 +140,7 @@ class Wrapper(int):
         显示详情
         查看示例代码
         00 : 00 : 04
-        
+
         执行用时：
         108 ms
         , 在所有 Python3 提交中击败了
@@ -178,6 +166,18 @@ class Wrapper(int):
         for s in [st1, st2, st3, st4]:
             print("- " + "".join(s))
         return
+
+
+class Wrapper(int):
+    # 用来规避 py 哈希碰撞的问题和进行加速
+    def __init__(self, x):
+        int.__init__(x)
+        # 原理是异或一个随机种子
+
+    def __hash__(self):
+        # 也可以将数组排序后进行哈希计数
+        return super(Wrapper, self).__hash__() ^ RANDOM
+
 
 
 class Solution:
