@@ -39,6 +39,7 @@ P6225 [eJOI2019] 异或橙子（https://www.luogu.com.cn/problem/P6225）经典�
 ================================CodeForces================================
 F. Range Update Point Query（https://codeforces.com/problemset/problem/1791/F）树状数组维护区间操作数与查询单点值
 H2. Maximum Crossings (Hard Version)（https://codeforces.com/contest/1676/problem/H2）树状数组维护前缀区间和
+C. Three displays（https://codeforces.com/problemset/problem/987/C）枚举中间数组，使用树状数组维护前后缀最小值
 
 135. 二维树状数组3（https://loj.ac/p/135）区间修改，区间查询
 134. 二维树状数组2（https://loj.ac/p/134）区间修改，单点查询
@@ -858,6 +859,35 @@ class Solution:
             tree.update(i, 1)
             pre = i
         return ans
+
+    @staticmethod
+    def cf_987c(ac=FastIO()):
+        # 模板：枚举中间数组，使用树状数组维护前后缀最小值
+        n = ac.read_int()
+        s = ac.read_list_ints()
+        c = ac.read_list_ints()
+
+        nodes = sorted(list(set(s)) + [0, 10 ** 9 + 1])
+        dct = {num: i + 1 for i, num in enumerate(nodes)}
+        m = len(nodes)
+
+        pre = [inf] * n
+        tree = TreeArrayRangeQueryPointUpdateMin(m)
+        for i in range(n):
+            pre[i] = tree.query(dct[s[i]] - 1)
+            tree.update(dct[s[i]], c[i])
+
+        post = [inf] * n
+        tree = TreeArrayRangeQueryPointUpdateMin(m)
+        for i in range(n - 1, -1, -1):
+            post[i] = tree.query(m - dct[s[i]])
+            tree.update(m - dct[s[i]] + 1, c[i])
+
+        ans = inf
+        if n >= 3:
+            ans = min(pre[i] + post[i] + c[i] for i in range(1, n - 1))
+        ac.st(ans if ans < inf else -1)
+        return
 
 
 class TestGeneral(unittest.TestCase):

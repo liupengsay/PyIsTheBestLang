@@ -17,6 +17,9 @@ from algorithm.src.graph.union_find import UnionFind
 题目：xx（xx）
 ===================================力扣===================================
 4. 寻找两个正序数组的中位数（https://leetcode.cn/problems/median-of-two-sorted-arrays/）经典二分思想查找题
+81. 搜索旋转排序数组 II（https://leetcode.cn/problems/search-in-rotated-sorted-array-ii/）经典有重复数字的旋转数组
+154. 寻找旋转排序数组中的最小值 II（https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array-ii/）经典有重复数字的旋转数组
+162. 寻找峰值（https://leetcode.cn/problems/find-peak-element/）经典二分思想查找题
 2426 满足不等式的数对数目（https://leetcode.cn/problems/number-of-pairs-satisfying-inequality/）根据不等式变换和有序集合进行二分查找
 2179 统计数组中好三元组数目（https://leetcode.cn/problems/count-good-triplets-in-an-array/）维护区间范围内的个数
 2141 同时运行 N 台电脑的最长时间（https://leetcode.cn/problems/maximum-running-time-of-n-computers/）贪心选择最大的 N 个电池作为基底，然后二分确定在其余电池的加持下可以运行的最长时间

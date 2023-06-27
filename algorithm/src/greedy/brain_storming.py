@@ -13,6 +13,7 @@ from algorithm.src.fast_io import FastIO
 题目：
 
 ===================================力扣===================================
+134. 加油站（https://leetcode.cn/problems/gas-station/）经典贪心
 2499. 让数组不相等的最小总代价（https://leetcode.cn/problems/minimum-total-cost-to-make-arrays-unequal/）利用鸽巢原理贪心计算最小代价
 2449. 使数组相似的最少操作次数（https://leetcode.cn/problems/minimum-total-cost-to-make-arrays-unequal/）转换题意进行排序后用奇偶数贪心变换得到
 2448. 使数组相等的最小开销（https://leetcode.cn/problems/minimum-cost-to-make-array-equal/）利用中位数的特点变换到带权重广义下中位数的位置是最优的贪心进行增减

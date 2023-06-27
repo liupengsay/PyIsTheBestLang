@@ -12,6 +12,7 @@ from algorithm.src.fast_io import FastIO
 题目：xx（xx）
 
 ===================================力扣===================================
+164. 最大间距（https://leetcode.cn/problems/maximum-gap/）经典桶排序
 179. 最大数（https://leetcode.cn/problems/largest-number/）自定义拼接最大数
 912. 排序数组（https://leetcode.cn/problems/sort-an-array/）快速排序
 面试题45. 把数组排成最小的数（https://leetcode.cn/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/）自定义拼接成最小的数
