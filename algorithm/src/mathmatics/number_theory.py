@@ -32,7 +32,7 @@ from algorithm.src.fast_io import FastIO
 2464. 有效分割中的最少子数组数目（https://leetcode.cn/problems/minimum-subarrays-in-a-valid-split/）计算 1 到 n 的每个数所有的质因子，并使用动态规划计数
 LCP 14. 切分数组（https://leetcode.cn/problems/qie-fen-shu-zu/）计算 1 到 n 的每个数所有的质因子，并使用动态规划计数
 279. 完全平方数（https://leetcode.cn/problems/perfect-squares/）四平方数定理
-
+650. 只有两个键的键盘（https://leetcode.cn/problems/2-keys-keyboard/）经典分解质因数
 ===================================洛谷===================================
 P1865 A % B Problem（https://www.luogu.com.cn/problem/P1865）通过线性筛素数后进行二分查询区间素数个数
 P1748 H数（https://www.luogu.com.cn/problem/P1748）丑数可以使用堆模拟可以使用指针递增也可以使用容斥原理与二分进行计算

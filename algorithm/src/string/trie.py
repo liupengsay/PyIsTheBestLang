@@ -14,6 +14,7 @@ from collections import Counter
 
 ===================================力扣===================================
 421. 数组中两个数的最大异或值（https://leetcode.cn/problems/maximum-xor-of-two-numbers-in-an-array/）经典 01 Trie
+638. 大礼包（https://leetcode.cn/problems/shopping-offers/）经典使用字典树与记忆化搜索
 2416. 字符串的前缀分数和（https://leetcode.cn/problems/sum-of-prefix-scores-of-strings/）单词组前缀计数
 1803. 统计异或值在范围内的数对有多少（https://leetcode.cn/problems/count-pairs-with-xor-in-a-range/）经典01Trie，查询异或值在一定范围的数组对
 677. 键值映射（https://leetcode.cn/problems/map-sum-pairs/）更新与查询给定字符串作为单词键前缀的对应值的和
