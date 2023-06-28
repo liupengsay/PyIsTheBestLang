@@ -16,6 +16,7 @@ from algorithm.src.fast_io import FastIO
 dilworth定理：分成不下降子序列最小组数等于最大上升子序列的长度，分成不上升子序列最小组数等于最大下降子序列的长度。
 参考题目：
 ===================================力扣===================================
+354. 俄罗斯套娃信封问题（https://leetcode.cn/problems/russian-doll-envelopes/）经典二维偏序最长递增子序列问题
 673. 最长递增子序列的个数（https://leetcode.cn/problems/number-of-longest-increasing-subsequence/）经典O(n^2)与O(nlogn)的LIS计数问题
 2111. 使数组 K 递增的最少操作次数（https://leetcode.cn/problems/minimum-operations-to-make-the-array-k-increasing/）分成 K 组计算每组的最长递增子序列
 面试题 17.08. 马戏团人塔（https://leetcode.cn/problems/circus-tower-lcci/）按照两个维度贪心排序后，计算最长递增子序列

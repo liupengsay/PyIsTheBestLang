@@ -15,6 +15,7 @@ from algorithm.src.fast_io import FastIO
 
 ===================================力扣===================================
 85. 最大矩形（https://leetcode.cn/problems/maximal-rectangle/）枚举矩形下边界，使用单调栈计算最大矩形面积 
+321. 拼接最大数（https://leetcode.cn/problems/create-maximum-number/）经典枚举加单调栈
 2334. 元素值大于变化阈值的子数组（https://leetcode.cn/problems/subarray-with-elements-greater-than-varying-threshold/）排序后枚举最小值左右两边的影响范围
 2262. 字符串的总引力（https://leetcode.cn/problems/total-appeal-of-a-string/）计算下一个或者上一个不同字符的位置
 2355. 你能拿走的最大图书数量（https://leetcode.cn/problems/maximum-number-of-books-you-can-take/）单调栈加DP

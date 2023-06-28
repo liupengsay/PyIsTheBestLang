@@ -13,6 +13,7 @@ MOD = 10 ** 9 + 7
 题目：
 
 ===================================力扣===================================
+375. 猜数字大小 II（https://leetcode.cn/problems/guess-number-higher-or-lower-ii/）经典区间DP
 2472. 不重叠回文子字符串的最大数目（https://leetcode.cn/problems/maximum-number-of-non-overlapping-palindrome-substrings/）回文子串判定DP加线性DP
 2430. 对字母串可执行的最大删除数（https://leetcode.cn/problems/maximum-deletions-on-a-string/）最长公共前缀DP加线性DP
 1547. 切棍子的最小成本（https://leetcode.cn/problems/minimum-cost-to-cut-a-stick/）区间DP模拟

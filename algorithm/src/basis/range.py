@@ -15,6 +15,7 @@ from algorithm.src.fast_io import FastIO
 
 ===================================力扣===================================
 45. 跳跃游戏 II（https://leetcode.cn/problems/jump-game-ii/）转换为最小区间覆盖问题
+452. 用最少数量的箭引爆气球（https://leetcode.cn/problems/minimum-number-of-arrows-to-burst-balloons/）贪心等价为最多不想交的区间
 1326. 灌溉花园的最少水龙头数目（https://leetcode.cn/problems/minimum-number-of-taps-to-open-to-water-a-garden/）转换为最小区间覆盖问题
 1024. 视频拼接（https://leetcode.cn/problems/video-stitching/）转换为最小区间覆盖问题
 

@@ -28,11 +28,12 @@ from math import inf
 from algorithm.src.fast_io import FastIO
 
 """
-算法：状态压缩DP
+算法：状态压缩DP、轮廓线DP
 功能：使用二进制数字表示转移状态，计算相应的转移方程，通常可以先计算满足条件的子集，有时通过深搜回溯枚举全部子集的办法比位运算枚举效率更高
 题目：
 
 ===================================力扣===================================
+465. 最优账单平衡（https://leetcode.cn/problems/optimal-account-balancing/）经典枚举子集状压DP
 1349. 参加考试的最大学生数（https://leetcode.cn/problems/maximum-students-taking-exam/）按行状态枚举所有的摆放可能性
 1723. 完成所有工作的最短时间（https://leetcode.cn/problems/find-minimum-time-to-finish-all-jobs/）通过位运算枚举分配工作DP最小化的最大值
 1986. 完成任务的最少工作时间段（https://leetcode.cn/problems/minimum-number-of-work-sessions-to-finish-the-tasks/）预处理计算子集后进行记忆化状态转移
