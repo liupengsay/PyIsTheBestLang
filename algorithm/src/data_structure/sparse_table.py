@@ -6,15 +6,20 @@ from collections import defaultdict
 from operator import or_, and_
 from math import lcm, gcd
 from functools import reduce
+from typing import List
 
 from algorithm.src.fast_io import FastIO
 
 """
-算法：ST（Sparse-Table）稀疏表、倍增
+算法：ST（Sparse-Table）稀疏表、倍增、数组积性函数聚合性质
 功能：计算静态区间内的最大值、最小值、最大公约数、最大与、最大或
 ST表算法全称Sparse-Table算法，是由Tarjan提出的一种解决RMQ问题（区间最值）的强力算法。 离线预处理时间复杂度θ（nlogn），在线查询时间θ（1），可以说是一种非常高效的算法。 不过ST表的应用场合也是有限的，它只能处理静态区间最值，不能维护动态的，也就是说不支持在预处理后对值进行修改。
 
 题目：
+
+===================================力扣===================================
+2447. 最大公因数等于 K 的子数组数目（https://leetcode.cn/problems/number-of-subarrays-with-gcd-equal-to-k/）经典计算最大公因数为 k 的连续子数组个数，可推广到位运算或与异或
+2470. 最小公倍数为 K 的子数组数目（https://leetcode.cn/problems/number-of-subarrays-with-lcm-equal-to-k/）经典计算最小公倍为 k 的连续子数组个数，可推广到位运算或与异或
 
 ===================================洛谷===================================
 P3865 ST 表（https://www.luogu.com.cn/problem/P3865）使用ST表静态查询区间最大值
@@ -380,6 +385,40 @@ class Solution:
             last_ans = sub[left - 1] - sub[ceil_ind] + nums[ceil_ind] * (right - ceil_ind)
             ac.st(last_ans)
         return
+
+    @staticmethod
+    def lc_2447(nums: List[int], k: int) -> int:
+        # 模板：最大公因数等于 K 的子数组数目
+        ans = 0
+        pre = dict()
+        for num in nums:
+            cur = dict()
+            for p in pre:
+                x = math.gcd(p, num)
+                if x % k == 0:
+                    cur[x] = cur.get(x, 0) + pre[p]
+            if num % k == 0:
+                cur[num] = cur.get(num, 0) + 1
+            ans += cur.get(k, 0)
+            pre = cur
+        return ans
+
+    @staticmethod
+    def lc_2470(nums: List[int], k: int) -> int:
+        # 模板：最小公倍数为 K 的子数组数目
+        ans = 0
+        pre = dict()
+        for num in nums:
+            cur = dict()
+            for p in pre:
+                x = math.lcm(p, num)
+                if k % x == 0:
+                    cur[x] = cur.get(x, 0) + pre[p]
+            if k % num == 0:
+                cur[num] = cur.get(num, 0) + 1
+            ans += cur.get(k, 0)
+            pre = cur
+        return ans
 
 
 class TestGeneral(unittest.TestCase):
