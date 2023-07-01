@@ -7,6 +7,7 @@ from operator import or_, and_
 from math import lcm, gcd
 from functools import reduce
 from typing import List
+from math import inf
 
 from algorithm.src.fast_io import FastIO
 
@@ -18,8 +19,10 @@ ST表算法全称Sparse-Table算法，是由Tarjan提出的一种解决RMQ问题
 题目：
 
 ===================================力扣===================================
+2411. 按位或最大的最小子数组长度（https://leetcode.cn/problems/smallest-subarrays-with-maximum-bitwise-or/）经典计算最大或值的最短连续子数组
 2447. 最大公因数等于 K 的子数组数目（https://leetcode.cn/problems/number-of-subarrays-with-gcd-equal-to-k/）经典计算最大公因数为 k 的连续子数组个数，可推广到位运算或与异或
 2470. 最小公倍数为 K 的子数组数目（https://leetcode.cn/problems/number-of-subarrays-with-lcm-equal-to-k/）经典计算最小公倍为 k 的连续子数组个数，可推广到位运算或与异或
+
 
 ===================================洛谷===================================
 P3865 ST 表（https://www.luogu.com.cn/problem/P3865）使用ST表静态查询区间最大值
@@ -36,8 +39,8 @@ D. Max GEQ Sum（https://codeforces.com/problemset/problem/1691/D）单调栈枚
 D. Friends and Subsequences（https://codeforces.com/problemset/problem/689/D）根据单调性使用二分加ST表进行个数计算
 D. Yet Another Yet Another Task（https://codeforces.com/problemset/problem/1359/D）单调栈枚举加ST表最大值最小值查询
 B. Integers Have Friends（https://codeforces.com/problemset/problem/1548/B）ST表查询区间gcd并枚举数组开头，二分确定长度
-474F（https://codeforces.com/problemset/problem/474/F）稀疏表计算最小值和gcd，并使用二分查找计数
-
+F. Ant colony（https://codeforces.com/problemset/problem/474/F）稀疏表计算最小值和gcd，并使用二分查找计数
+E. MEX of LCM（https://codeforces.com/contest/1834/problem/E）经典计算连续子数组的lcm信息
 
 ================================AcWing====================================
 109. 天才ACM（https://www.acwing.com/problem/content/111/）贪心加倍增计算最少分段数
@@ -418,6 +421,23 @@ class Solution:
                 cur[num] = cur.get(num, 0) + 1
             ans += cur.get(k, 0)
             pre = cur
+        return ans
+
+    @staticmethod
+    def lc_2411(nums: List[int]) -> List[int]:
+        # 模板：经典计算最大或值的最短连续子数组
+        n = len(nums)
+        ans = [0] * n
+        post = dict()
+        for i in range(n - 1, -1, -1):
+            cur = dict()
+            num = nums[i]
+            for x in post:
+                y = cur.get(x | num, inf)
+                cur[x | num] = y if y < post[x] else post[x]
+            cur[num] = i
+            post = cur
+            ans[i] = post[max(post)] - i + 1
         return ans
 
 
