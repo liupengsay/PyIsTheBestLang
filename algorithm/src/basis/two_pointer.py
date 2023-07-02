@@ -58,6 +58,27 @@ A2. Prefix Flip (Hard Version)（https://codeforces.com/problemset/problem/1381/
 INF = int(1e64)
 
 
+class TwoPointer:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def window(nums):
+        n = len(nums)
+        ans = j = 0
+        dct = dict()
+        for i in range(n):
+            while j < n and (nums[j] in dct or not dct or (abs(max(dct) - nums[j]) <= 2 and abs(min(dct) - nums[j]) <= 2)):
+                dct[nums[j]] = dct.get(nums[j], 0) + 1
+                j += 1
+            ans += j - i
+            dct[nums[i]] -= 1
+            if not dct[nums[i]]:
+                del dct[nums[i]]
+        return ans
+
+
+
 class SlidingWindowAggregation:
     """SlidingWindowAggregation
 
