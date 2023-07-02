@@ -2,7 +2,7 @@ import bisect
 import heapq
 import random
 import unittest
-from collections import defaultdict
+from collections import defaultdict, Counter
 from typing import List
 
 from algorithm.src.data_structure.sparse_table import SparseTable1
@@ -15,7 +15,9 @@ from algorithm.src.fast_io import FastIO
 
 ===================================力扣===================================
 85. 最大矩形（https://leetcode.cn/problems/maximal-rectangle/）枚举矩形下边界，使用单调栈计算最大矩形面积 
+316. 去除重复字母（https://leetcode.cn/problems/remove-duplicate-letters/）经典单调栈结合哈希与计数进行计算
 321. 拼接最大数（https://leetcode.cn/problems/create-maximum-number/）经典枚举加单调栈
+1081. 不同字符的最小子序列（https://leetcode.cn/problems/smallest-subsequence-of-distinct-characters/）经典单调栈结合哈希与计数进行计算
 2334. 元素值大于变化阈值的子数组（https://leetcode.cn/problems/subarray-with-elements-greater-than-varying-threshold/）排序后枚举最小值左右两边的影响范围
 2262. 字符串的总引力（https://leetcode.cn/problems/total-appeal-of-a-string/）计算下一个或者上一个不同字符的位置
 2355. 你能拿走的最大图书数量（https://leetcode.cn/problems/maximum-number-of-books-you-can-take/）单调栈加DP
@@ -559,6 +561,36 @@ class Solution:
             stack.append(i)
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_316(s: str) -> str:
+        # 模板：经典单调栈结合哈希与计数进行计算
+        cnt = Counter(s)
+        in_stack = defaultdict(int)
+        stack = []
+        for w in s:
+            if not in_stack[w]:
+                while stack and stack[-1] > w and cnt[stack[-1]]:
+                    in_stack[stack.pop()] = 0
+                stack.append(w)
+                in_stack[w] = 1
+            cnt[w] -= 1
+        return "".join(stack)
+
+    @staticmethod
+    def lc_1081(s: str) -> str:
+        # 模板：经典单调栈结合哈希与计数进行计算
+        cnt = Counter(s)
+        in_stack = defaultdict(int)
+        stack = []
+        for w in s:
+            if not in_stack[w]:
+                while stack and stack[-1] > w and cnt[stack[-1]]:
+                    in_stack[stack.pop()] = 0
+                stack.append(w)
+                in_stack[w] = 1
+            cnt[w] -= 1
+        return "".join(stack)
 
 
 class TestGeneral(unittest.TestCase):

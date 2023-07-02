@@ -4,11 +4,12 @@ from typing import List
 from algorithm.src.fast_io import FastIO, inf
 
 """
-算法：广度优先搜索、双端队列BFS
+算法：广度优先搜索、双端队列BFS、离散化BFS、有边界的BFS
 功能：在有向图与无向图进行扩散，多源BFS、双向BFS，0-1BFS（类似SPFA）双向BFS或者A-star启发式搜索
 题目：
 
 ===================================力扣===================================
+1036. 逃离大迷宫（https://leetcode.cn/problems/escape-a-large-maze/）经典带边界的BFS和离散化BFS两种解法
 2493. 将节点分成尽可能多的组（https://leetcode.cn/problems/divide-nodes-into-the-maximum-number-of-groups/）利用并查集和广度优先搜索进行连通块分组并枚举最佳方案
 2290. 到达角落需要移除障碍物的最小数（https://leetcode.cn/problems/minimum-obstacle-removal-to-reach-corner/）使用0-1 BFS进行优化计算最小代价
 1368. 使网格图至少有一条有效路径的最小代价（https://leetcode.cn/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/）使用0-1 BFS进行优化计算最小代价
@@ -1549,6 +1550,82 @@ class Solution:
                 ans = ac.min(ans, cur)
         ac.st(ans if ans < inf else -1)
         return
+
+    @staticmethod
+    def lc_1036_1(blocked: List[List[int]], source: List[int], target: List[int]) -> bool:
+        # 模板：经典带边界的BFS和离散化BFS两种解法
+        def check(node):
+            stack = [node]
+            visit = {tuple(node)}
+            while stack:
+                nex = []
+                for i, j in stack:
+                    for x, y in [[i - 1, j], [i + 1, j], [i, j + 1], [i, j - 1]]:
+                        if 0 <= x < n and 0 <= y < n and (x, y) not in visit and (x, y) not in block:
+                            nex.append([x, y])
+                            visit.add((x, y))
+                stack = nex
+                if len(visit) >= ceil:
+                    break
+            return visit
+
+        n = 10**6
+        block = set(tuple(b) for b in blocked)
+        m = len(block)
+        ceil = m*m
+        visit_s = check(source)
+        visit_t = check(target)
+        return len(visit_s.intersection(visit_t)) > 0 or (len(visit_s) >= ceil and len(visit_t) >= ceil)
+
+    @staticmethod
+    def lc_1036_2(blocked: List[List[int]], source: List[int], target: List[int]) -> bool:
+        # 模板：经典带边界的BFS和离散化BFS两种解法
+        nodes_r = {0, 10 ** 6-1}
+        nodes_c = {0, 10 ** 6-1}
+        for a, b in blocked + [source] + [target]:
+            nodes_r.add(a)
+            nodes_c.add(b)
+
+        nodes_r = sorted(list(nodes_r))
+        m = len(nodes_r)
+        ind_r = dict()
+        x = 0
+        ind_r[nodes_r[0]] = x
+        for i in range(1, m):
+            if nodes_r[i] == nodes_r[i - 1] + 1:
+                x += 1
+            else:
+                x += 2
+            ind_r[nodes_r[i]] = x
+        r_id = x
+
+        nodes_c = sorted(list(nodes_c))
+        m = len(nodes_c)
+        ind_c = dict()
+        x = 0
+        ind_c[nodes_c[0]] = x
+        for i in range(1, m):
+            if nodes_c[i] == nodes_c[i - 1] + 1:
+                x += 1
+            else:
+                x += 2
+            ind_c[nodes_c[i]] = x
+        c_id = x
+
+        blocked = set((ind_r[b[0]], ind_c[b[1]]) for b in blocked)
+        source = (ind_r[source[0]], ind_c[source[1]])
+        target = (ind_r[target[0]], ind_c[target[1]])
+        stack = deque([source])
+        visit = {source}
+        while stack:
+            i, j = stack.popleft()
+            for x, y in [[i - 1, j], [i + 1, j], [i, j + 1], [i, j - 1]]:
+                if 0 <= x <= r_id and 0 <= y <= c_id and (x, y) not in visit and (x, y) not in blocked:
+                    stack.append((x, y))
+                    if (x, y) == target:
+                        return True
+                    visit.add((x, y))
+        return False
 
 
 class TestGeneral(unittest.TestCase):
