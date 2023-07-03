@@ -33,6 +33,9 @@ from algorithm.src.fast_io import FastIO
 功能：根据组合数与转移方案求解概率或者期望
 题目：
 
+===================================力扣===================================
+1227. 飞机座位分配概率（https://leetcode.cn/problems/airplane-seat-assignment-probability/）概率DP
+
 ===================================洛谷===================================
 P2719 搞笑世界杯（https://www.luogu.com.cn/record/list?user=739032&status=12&page=1）二维DP求概率
 P1291 [SHOI2002] 百事世界杯之旅（https://www.luogu.com.cn/problem/P1291）线性DP求期望

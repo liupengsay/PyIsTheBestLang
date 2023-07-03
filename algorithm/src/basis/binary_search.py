@@ -26,6 +26,7 @@ from algorithm.src.graph.union_find import UnionFind
 2102 序列顺序查询（https://leetcode.cn/problems/sequentially-ordinal-rank-tracker/）使用有序集合维护优先级姓名实时查询
 2563. 统计公平数对的数目（https://leetcode.cn/problems/count-the-number-of-fair-pairs/）使用二分查找确定范围个数
 2604. 吃掉所有谷子的最短时间（https://leetcode.cn/problems/minimum-time-to-eat-all-grains/）二分加指针贪心 check
+1201. 丑数 III（https://leetcode.cn/problems/ugly-number-iii/）二分加容斥原理计数
 
 ===================================洛谷===================================
 P1577 切绳子（https://www.luogu.com.cn/problem/P1577）数学整除向下取整与二分
