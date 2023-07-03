@@ -160,8 +160,47 @@ class Solution:
         return Range().cover_less(0, n, lst)
 
     @staticmethod
+    def lc_1326_2(n: int, ranges: List[int]) -> int:
+        # 模板：ranges 最小覆盖 [0, n]
+        post = [0] * n
+        for i, r in enumerate(ranges):
+            a, b = i - r, i + r
+            a = a if a > 0 else 0
+            b = b if b < n else n
+            if a < n:
+                post[a] = post[a] if post[a] > b else b
+        # 注意 [0, 1] [2, 2] 并不覆盖[0, 2]
+        ans = right = pre_end = 0
+        for i in range(n):
+            right = right if right > post[i] else post[i]
+            if i == right:
+                return -1
+            if i == pre_end:
+                ans += 1
+                pre_end = right
+        return ans
+
+    @staticmethod
     def lc_1024(clips, time) -> int:
         return Range().cover_less(0, time, clips)
+
+    @staticmethod
+    def lc_1024_2(clips: List[List[int]], time: int) -> int:
+        # 模板：clips 最小覆盖 [0, time]
+        post = [0]*time
+        for a, b in clips:
+            if a < time:
+                post[a] = post[a] if post[a] > b else b
+
+        ans = right = pre_end = 0
+        for i in range(time):
+            right = right if right > post[i] else post[i]
+            if i == right:
+                return -1
+            if i == pre_end:
+                ans += 1
+                pre_end = right
+        return ans
 
     @staticmethod
     def lg_p2684(ac=FastIO()):
