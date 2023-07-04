@@ -24,6 +24,7 @@ from algorithm.src.fast_io import FastIO
 255. 验证前序遍历序列二叉搜索树（https://leetcode.cn/problems/verify-preorder-sequence-in-binary-search-tree/）单调栈经典使用，判断数组是否为二叉搜索树的前序遍历，同样地可验证后序遍历
 654. 最大二叉树（https://leetcode.cn/problems/maximum-binary-tree/）经典单调栈应用题
 1130. 叶值的最小代价生成树（https://leetcode.cn/problems/minimum-cost-tree-from-leaf-values/）经典单调栈也可以使用区间DP
+1504. 统计全 1 子矩形（https://leetcode.cn/problems/count-submatrices-with-all-ones/）经典枚举上下边界单调栈计算全为 1 的子矩形个数
 
 ===================================洛谷===================================
 P1950 长方形（https://www.luogu.com.cn/problem/P1950）通过枚举下边界，结合单调栈计算矩形个数
