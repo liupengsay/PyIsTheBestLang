@@ -27,6 +27,7 @@ from algorithm.src.mathmatics.number_theory import NumberTheory
 2638. Count the Number of K-Free Subsets（https://leetcode.cn/problems/count-the-number-of-k-free-subsets/）线性DP计数
 2597. 美丽子集的数目（https://leetcode.cn/problems/the-number-of-beautiful-subsets/）线性DP计数
 2713. 矩阵中严格递增的单元格数（https://leetcode.cn/problems/maximum-strictly-increasing-cells-in-a-matrix/）按照值域分层线性 DP
+1526. 形成目标数组的子数组最少增加次数（https://leetcode.cn/problems/minimum-number-of-increments-on-subarrays-to-form-a-target-array/）经典线性 DP 与贪心
 
 ===================================洛谷===================================
 P1970 [NOIP2013 提高组] 花匠（https://www.luogu.com.cn/problem/P1970）使用贪心与动态规划计算最长的山脉子数组
