@@ -19,6 +19,7 @@ ST表算法全称Sparse-Table算法，是由Tarjan提出的一种解决RMQ问题
 题目：
 
 ===================================力扣===================================
+1521. 找到最接近目标值的函数值（https://leetcode.cn/problems/find-a-value-of-a-mysterious-function-closest-to-target/）经典计算与目标值最接近的连续子数组位运算与值
 2411. 按位或最大的最小子数组长度（https://leetcode.cn/problems/smallest-subarrays-with-maximum-bitwise-or/）经典计算最大或值的最短连续子数组
 2447. 最大公因数等于 K 的子数组数目（https://leetcode.cn/problems/number-of-subarrays-with-gcd-equal-to-k/）经典计算最大公因数为 k 的连续子数组个数，可推广到位运算或与异或
 2470. 最小公倍数为 K 的子数组数目（https://leetcode.cn/problems/number-of-subarrays-with-lcm-equal-to-k/）经典计算最小公倍为 k 的连续子数组个数，可推广到位运算或与异或
@@ -438,6 +439,19 @@ class Solution:
             cur[num] = i
             post = cur
             ans[i] = post[max(post)] - i + 1
+        return ans
+
+    @staticmethod
+    def lc_1521(arr: List[int], target: int) -> int:
+        # 模板：经典计算与目标值最接近的连续子数组位运算与值
+        ans = abs(arr[0] - target)
+        pre = {arr[0]}
+        for num in arr[1:]:
+            pre = {num & p for p in pre}
+            pre.add(num)
+            for x in pre:
+                if abs(x - target) < ans:
+                    ans = abs(x - target)
         return ans
 
 

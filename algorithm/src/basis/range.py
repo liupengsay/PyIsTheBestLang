@@ -1,5 +1,5 @@
 import unittest
-from collections import defaultdict
+from collections import defaultdict, deque
 from math import inf
 from typing import List
 
@@ -18,6 +18,7 @@ from algorithm.src.fast_io import FastIO
 452. 用最少数量的箭引爆气球（https://leetcode.cn/problems/minimum-number-of-arrows-to-burst-balloons/）贪心等价为最多不想交的区间
 1326. 灌溉花园的最少水龙头数目（https://leetcode.cn/problems/minimum-number-of-taps-to-open-to-water-a-garden/）转换为最小区间覆盖问题
 1024. 视频拼接（https://leetcode.cn/problems/video-stitching/）转换为最小区间覆盖问题
+1520. 最多的不重叠子字符串（https://leetcode.cn/problems/maximum-number-of-non-overlapping-substrings/）转化为最多不相交区间进行处理
 
 435. 无重叠区间（https://leetcode.cn/problems/non-overlapping-intervals/）最多不相交的区间，使用贪心或者二分DP
 763. 划分字母区间（https://leetcode.cn/problems/partition-labels/）经典将区间合并为不相交的区间
@@ -380,6 +381,43 @@ class Solution:
                 pre = b
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_1520(s: str) -> List[str]:
+
+        # 模板：转化为最多不相交的区间进行求解
+
+        ind = defaultdict(deque)
+        for i, w in enumerate(s):  # 枚举每种字符的起终点索引
+            ind[w].append(i)
+
+        # 将每种字符两端中间部分的字符也扩展到包含所有对应的字符范围
+        lst = []
+        for w in ind:
+            x, y = ind[w][0], ind[w][-1]
+            while True:
+                x_pre, y_pre = x, y
+                for v in ind:
+                    i = bisect.bisect_right(ind[v], x)
+                    j = bisect.bisect_left(ind[v], y) - 1
+                    if 0 <= i <= j < len(ind[v]):
+                        if ind[v][0] < x:
+                            x = ind[v][0]
+                        if ind[v][-1] > y:
+                            y = ind[v][-1]
+                if x == x_pre and y == y_pre:
+                    break
+            ind[w].appendleft(x)
+            ind[w].append(y)
+            lst.append([x, y])
+
+        # 贪心取最多且最短距离的区间覆盖
+        lst.sort(key=lambda ls: ls[1])
+        ans = []
+        for x, y in lst:
+            if not ans or x > ans[-1][1]:
+                ans.append([x, y])
+        return [s[i: j + 1] for i, j in ans]
 
 
 class TestGeneral(unittest.TestCase):
