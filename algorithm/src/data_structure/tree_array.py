@@ -11,6 +11,7 @@ from algorithm.src.fast_io import FastIO
 题目：
 
 ===================================力扣===================================
+1409. 查询带键的排列（https://leetcode.cn/problems/queries-on-a-permutation-with-key/）经典树状数组模拟
 1626. 无矛盾的最佳球队（https://leetcode.cn/problems/best-team-with-no-conflicts/）树状数组维护前缀最大值，也可使用动态规划求解
 6353. 网格图中最少访问的格子数（https://leetcode.cn/problems/minimum-number-of-visited-cells-in-a-grid/）树状数组维护前缀区间最小值单点更新
 308. 二维区域和检索 - 可变（https://leetcode.cn/problems/range-sum-query-2d-mutable/）二维树状数组，单点增减与区间和查询

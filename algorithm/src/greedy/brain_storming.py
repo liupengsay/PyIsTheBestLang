@@ -33,6 +33,8 @@ from algorithm.src.fast_io import FastIO
 6316. 重排数组以得到最大前缀分数（https://leetcode.cn/contest/weekly-contest-336/problems/rearrange-array-to-maximize-prefix-score/）贪心，加前缀和
 2436. 使子数组最大公约数大于一的最小分割数（https://leetcode.cn/problems/minimum-split-into-subarrays-with-gcd-greater-than-one/）贪心计算
 1029. 两地调度（https://leetcode.cn/problems/two-city-scheduling/）经典贪心题目，可使用举例两个计算、再进行归纳确定排序规则
+1353. 最多可以参加的会议数目（https://leetcode.cn/problems/maximum-number-of-events-that-can-be-attended/）经典枚举贪心
+1402. 做菜顺序（https://leetcode.cn/problems/reducing-dishes/）经典前缀和贪心
 
 ===================================洛谷===================================
 P1031 均分纸牌（https://www.luogu.com.cn/problem/P1031）贪心计算每个点的前缀和流量，需要补齐或者输出时进行计数

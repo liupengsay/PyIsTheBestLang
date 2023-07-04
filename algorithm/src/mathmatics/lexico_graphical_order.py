@@ -13,6 +13,7 @@ from algorithm.src.fast_io import FastIO
 ===================================力扣===================================
 60. 排列序列（https://leetcode.cn/problems/permutation-sequence/）全排列的第 k 个排列
 440. 字典序的第K小数字（https://leetcode.cn/problems/k-th-smallest-in-lexicographical-order/）经典面试题使用十叉树求解
+1415. 长度为 n 的开心字符串中字典序第 k 小的字符串（https://leetcode.cn/problems/the-k-th-lexicographical-string-of-all-happy-strings-of-length-n/）类似思路经典字典序构造
 
 ===================================洛谷===================================
 P1243 排序集合（https://www.luogu.com.cn/problem/P1243）求出第K小的子集
