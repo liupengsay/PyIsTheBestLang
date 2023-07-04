@@ -1,5 +1,6 @@
 import random
 import unittest
+from collections import deque
 from math import inf
 from typing import List
 
@@ -16,7 +17,7 @@ from algorithm.src.fast_io import FastIO
 6353. 网格图中最少访问的格子数（https://leetcode.cn/problems/minimum-number-of-visited-cells-in-a-grid/）树状数组维护前缀区间最小值单点更新
 308. 二维区域和检索 - 可变（https://leetcode.cn/problems/range-sum-query-2d-mutable/）二维树状数组，单点增减与区间和查询
 2659. 将数组清空（https://leetcode.cn/problems/make-array-empty/submissions/）经典模拟删除，可以使用树状数组也可以使用SortedList也可以使用贪心
-
+1505. 最多 K 次交换相邻数位后得到的最小整数（https://leetcode.cn/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/）经典树状数组模拟计数移动
 
 ===================================洛谷===================================
 P2068 统计和（https://www.luogu.com.cn/problem/P2068）单点更新与区间求和
@@ -889,6 +890,33 @@ class Solution:
             ans = min(pre[i] + post[i] + c[i] for i in range(1, n - 1))
         ac.st(ans if ans < inf else -1)
         return
+
+    @staticmethod
+    def lc_1505(num: str, k: int) -> str:
+
+        # 模板：经典使用树状数组模拟
+        ind = [deque() for _ in range(10)]
+        n = len(num)
+        for i in range(n):  # 按照数字存好索引
+            ind[int(num[i])].append(i)
+        # 使用树状数组模拟交换过程
+        tree = TreeArrayRangeQuerySum(n)
+        ans = ""
+        for i in range(n):
+            # 添加第i个数字
+            for x in range(10):
+                if ind[x]:
+                    # 找还有的数字
+                    j = ind[x][0]
+                    dis = tree.query_range(j + 2, n) if j + 2 <= n else 0
+                    # 索引加上移动之后的位置与第i个相隔距离在代价承受范围内
+                    if dis + j - i <= k:
+                        ind[x].popleft()
+                        ans += str(x)
+                        k -= dis + j - i
+                        tree.update(j + 1, 1)
+                        break
+        return ans
 
 
 class TestGeneral(unittest.TestCase):
