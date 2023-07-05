@@ -15,6 +15,7 @@ from algorithm.src.fast_io import FastIO
 164. 最大间距（https://leetcode.cn/problems/maximum-gap/）经典桶排序
 179. 最大数（https://leetcode.cn/problems/largest-number/）自定义拼接最大数
 912. 排序数组（https://leetcode.cn/problems/sort-an-array/）快速排序
+1585. 检查字符串是否可以通过排序子字符串得到另一个字符串（https://leetcode.cn/problems/check-if-string-is-transformable-with-substring-sort-operations/）经典冒泡排序思想进行模拟
 面试题45. 把数组排成最小的数（https://leetcode.cn/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/）自定义拼接成最小的数
 2412. 完成所有交易的初始最少钱数（https://leetcode.cn/problems/minimum-money-required-before-transactions/）自定义排序贪心选择顺序
 

@@ -45,6 +45,7 @@ from algorithm.src.fast_io import FastIO
 1125. 最小的必要团队（https://leetcode.cn/problems/smallest-sufficient-team/）经典状压DP
 1467. 两个盒子中球的颜色数相同的概率（https://leetcode.cn/problems/probability-of-a-two-boxes-having-the-same-number-of-distinct-balls/）记忆化搜索
 1531. 压缩字符串 II（https://leetcode.cn/problems/string-compression-ii/submissions/）线性DP模拟
+1595. 连通两组点的最小成本（https://leetcode.cn/problems/minimum-cost-to-connect-two-groups-of-points/）经典状压DP
 
 ===================================洛谷===================================
 P1896 互不侵犯（https://www.luogu.com.cn/problem/P1896）按行状态与行个数枚举所有的摆放可能性
