@@ -18,6 +18,7 @@ Prim在稠密图中比Kruskal优，在稀疏图中比Kruskal劣。Prim是以更�
 
 ===================================力扣===================================
 1489. 找到最小生成树里的关键边和伪关键边（https://leetcode.cn/problems/find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree/）计算最小生成树的关键边与伪关键边
+1584. 连接所有点的最小费用（https://leetcode.cn/problems/min-cost-to-connect-all-points/）稠密图使用 prim 生成最小生成树
 
 ===================================洛谷===================================
 P3366 最小生成树（https://www.luogu.com.cn/problem/P3366）最小生成树裸题
@@ -255,7 +256,6 @@ class Solution:
         else:
             ac.st(mst.cost)
         return
-
 
     @staticmethod
     def lc_1489(n: int, edges: List[List[int]]) -> List[List[int]]:
@@ -753,6 +753,58 @@ class Solution:
                     ans += c
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_1584_1(nums: List[List[int]]) -> int:
+
+        # 模板：使用prim计算最小生成树，适合稠密图场景
+        def dis(x1, y1, x2, y2):
+            res = abs(x1 - x2) + abs(y1 - y2)
+            return res
+
+        n = len(nums)
+        # 初始化最短距离
+        ans = nex = 0
+        rest = set(list(range(1, n)))
+        visit = [inf] * n
+        visit[nex] = 0
+        while rest:
+            # 点优先选择距离当前集合最近的点合并
+            i = nex
+            rest.discard(i)
+            d = visit[i]
+            ans += d
+            nex = -1
+            # 更新所有节点到当前节点的距离最小值并更新下一个节点
+            x, y = nums[i]
+            for j in rest:
+                dj = dis(nums[j][0], nums[j][1], x, y)
+                if dj < visit[j]:
+                    visit[j] = dj
+                if nex == -1 or visit[j] < visit[nex]:
+                    nex = j
+        # 时间复杂度O(n^2)空间复杂度O(n)优于kruskal
+        return ans
+
+
+    @staticmethod
+    def lc_1584_2(nums: List[List[int]]) -> int:
+
+        # 模板：使用prim计算最小生成树，适合稠密图场景
+        def dis(x1, y1, x2, y2):
+            res = abs(x1 - x2) + abs(y1 - y2)
+            return res
+
+        n = len(nums)
+        edges = []
+        for i in range(n):
+            x1, y1 = nums[i]
+            for j in range(i + 1, n):
+                x2, y2 = nums[j]
+                edges.append([i, j, dis(x1, y1, x2, y2)])
+
+        tree = MinimumSpanningTree(edges, n, "prim")
+        return tree.cost
 
 
 class TestGeneral(unittest.TestCase):
