@@ -25,6 +25,7 @@ from algorithm.src.fast_io import FastIO
 654. 最大二叉树（https://leetcode.cn/problems/maximum-binary-tree/）经典单调栈应用题
 1130. 叶值的最小代价生成树（https://leetcode.cn/problems/minimum-cost-tree-from-leaf-values/）经典单调栈也可以使用区间DP
 1504. 统计全 1 子矩形（https://leetcode.cn/problems/count-submatrices-with-all-ones/）经典枚举上下边界单调栈计算全为 1 的子矩形个数
+1673. 找出最具竞争力的子序列（https://leetcode.cn/problems/find-the-most-competitive-subsequence/）经典单调栈贪心删除选取
 
 ===================================洛谷===================================
 P1950 长方形（https://www.luogu.com.cn/problem/P1950）通过枚举下边界，结合单调栈计算矩形个数

@@ -46,6 +46,7 @@ from algorithm.src.fast_io import FastIO
 1467. 两个盒子中球的颜色数相同的概率（https://leetcode.cn/problems/probability-of-a-two-boxes-having-the-same-number-of-distinct-balls/）记忆化搜索
 1531. 压缩字符串 II（https://leetcode.cn/problems/string-compression-ii/submissions/）线性DP模拟
 1595. 连通两组点的最小成本（https://leetcode.cn/problems/minimum-cost-to-connect-two-groups-of-points/）经典状压DP
+1655. 分配重复整数（https://leetcode.cn/problems/distribute-repeating-integers/）经典状压 DP
 
 ===================================洛谷===================================
 P1896 互不侵犯（https://www.luogu.com.cn/problem/P1896）按行状态与行个数枚举所有的摆放可能性
@@ -464,6 +465,30 @@ class Solution:
                     dp[j | cur] = dp[j] + 1
         ac.st(dp[-1] if dp[-1] < inf else -1)
         return
+
+    @staticmethod
+    def lc_1655(nums: List[int], quantity: List[int]) -> bool:
+        # 模板：经典线性索引加枚举子集状压DP
+        @lru_cache(None)
+        def dfs(i, state):
+            if not state:
+                return True
+            if i == m:
+                return False
+            x = cnt[i]
+            sub = state
+            while sub:
+                cost = sum(quantity[j] for j in range(n) if sub & (1 << j))
+                if cost <= x and dfs(i + 1, state ^ sub):
+                    return True
+                sub = (sub - 1) & state
+            return False
+
+        cnt = list(Counter(nums).values())
+        n = len(quantity)
+        cnt = heapq.nlargest(n, cnt)
+        m = len(cnt)
+        return dfs(0, (1 << n) - 1)
 
 
 class TestGeneral(unittest.TestCase):

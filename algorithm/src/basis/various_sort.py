@@ -18,6 +18,7 @@ from algorithm.src.fast_io import FastIO
 1585. 检查字符串是否可以通过排序子字符串得到另一个字符串（https://leetcode.cn/problems/check-if-string-is-transformable-with-substring-sort-operations/）经典冒泡排序思想进行模拟
 面试题45. 把数组排成最小的数（https://leetcode.cn/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/）自定义拼接成最小的数
 2412. 完成所有交易的初始最少钱数（https://leetcode.cn/problems/minimum-money-required-before-transactions/）自定义排序贪心选择顺序
+1665. 完成所有任务的最少初始能量（https://leetcode.cn/problems/minimum-initial-energy-to-finish-tasks/）自定义排序确定贪心排序公式
 
 ===================================洛谷===================================
 P2310 loidc，看看海（https://www.luogu.com.cn/problem/P2310）预处理排序之后进行遍历
@@ -424,6 +425,54 @@ class Solution:
                 stack.append([i, right])
         ac.lst(nums)
         return
+
+    @staticmethod
+    def lc_1665(tasks: List[List[int]]) -> int:
+        # 模板: 自定义排序
+
+        def compare(aa, bb):
+            # 比较函数
+            a1, m1 = aa
+            a2, m2 = bb
+            s12 = m1 if m1 > a1 + m2 else a1 + m2
+            s21 = m2 if m2 > a2 + m1 else a2 + m1
+            if s12 < s21:
+                return -1
+            elif s12 > s21:
+                return 1
+            return 0
+
+        tasks.sort(key=cmp_to_key(compare))
+        ans = cur = 0
+        for a, m in tasks:
+            if cur < m:
+                ans += m - cur
+                cur = m
+            cur -= a
+        return ans
+
+    @staticmethod
+    def lc_2412(transactions: List[List[int]]) -> int:
+
+        def check(ls):
+            x, y = ls[0], ls[1]
+            res = [0, 0]
+            if x > y:
+                res[0] = 0
+                res[1] = y
+            else:
+                res[0] = 1
+                res[1] = -x
+            return res
+
+        transactions.sort(key=lambda it: check(it))
+        ans = cur = 0
+        for a, b in transactions:
+            if cur < a:
+                ans += a-cur
+                cur = a
+            cur += b-a
+        return ans
 
 
 class TestGeneral(unittest.TestCase):
