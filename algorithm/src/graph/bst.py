@@ -35,11 +35,69 @@ sys.setrecursionlimit(10000000)
 功能：根据数字顺序建立二叉搜索树、实时维护
 题目：
 
+
+===================================力扣===================================
+1569. 将子数组重新排序得到同一个二叉搜索树的方案数（https://leetcode.cn/problems/number-of-ways-to-reorder-array-to-get-same-bst/）逆序思维，倒序利用并查集建立二叉搜索树，排列组合加并查集
+
 ===================================洛谷===================================
-P2171 Hz吐泡泡（https://www.luogu.com.cn/problem/P2171）依次输入数据生成二叉搜索树
+P2171 Hz吐泡泡（https://www.luogu.com.cn/problem/P2171）依次输入数据生成二叉搜索树，可使用逆序并查集
 
 参考：OI WiKi（xx）
 """
+
+
+class UnionFindSpecial:
+    def __init__(self, n: int) -> None:
+        self.root = [i for i in range(n)]
+        return
+
+    def find(self, x):
+        lst = []
+        while x != self.root[x]:
+            lst.append(x)
+            # 在查询的时候合并到顺带直接根节点
+            x = self.root[x]
+        for w in lst:
+            self.root[w] = x
+        return x
+
+    def union(self, x, y):
+        root_x = self.find(x)
+        root_y = self.find(y)
+        if root_x < root_y:
+            root_x, root_y = root_y, root_x
+        self.root[root_x] = root_y
+        return
+
+
+class BinarySearchTreeByArray:
+    # 模板：根据数组生成二叉树的有向图结构
+    def __init__(self):
+        return
+
+    @staticmethod
+    def build(nums):
+        n = len(nums)
+        ind = list(range(n))
+        ind.sort(key=lambda it: nums[it])  # 索引
+        rank = {idx: i for i, idx in enumerate(ind)}  # 排序
+
+        dct = [[] for _ in range(n)]  # 二叉树按照索引的有向图结构
+        uf = UnionFindSpecial(n)
+        post = {}
+        for i in range(n - 1, -1, -1):
+            x = rank[i]
+            if x + 1 in post:
+                r = uf.find(post[x + 1])
+                dct[i].append(r)
+                uf.union(i, r)
+            if x - 1 in post:
+                r = uf.find(post[x - 1])
+                dct[i].append(r)
+                uf.union(i, r)
+            post[x] = i
+        return dct
+
 
 ans = 1  # 标记是第几层
 ans1 = 1  # 最高层数
@@ -47,7 +105,7 @@ ans1 = 1  # 最高层数
 
 class BST(object):
     def __init__(self, data, left=None, right=None):  # BST的三个，值，左子树，右子树
-        # 这里遇到链条形状的树会有性能问题
+        # 这里遇到链条形状的树会有性能问题（在线）
         super(BST, self).__init__()
         self.data = data
         self.left = left
@@ -282,12 +340,37 @@ class Solution:
         dfs(root)
         return
 
+    @staticmethod
+    def lg_p2171_3(ac=FastIO()):
+        ac.read_int()
+        nums = ac.read_list_ints()
+        dct = BinarySearchTreeByArray().build(nums)
+        # 使用迭代的方式计算后序遍历
+        ans = []
+        depth = 0
+        stack = [[0, 1]]
+        while stack:
+            i, d = stack.pop()
+            if i >= 0:
+                stack.append([~i, d])
+                dct[i].sort(key=lambda it: -nums[it])
+                for j in dct[i]:
+                    stack.append([j, d+1])
+            else:
+                i = ~i
+                depth = depth if depth > d else d
+                ans.append(nums[i])
+        ac.st(f"deep={depth}")
+        for a in ans:
+            ac.st(a)
+        return
+
 
 class TestGeneral(unittest.TestCase):
 
     @staticmethod
-    def lg_2171_1(n, nums):
-        # 模板: bst 标准插入 O(n^2)
+    def lg_2171_1_input(n, nums):
+        # 模板: bst 标准插入 O(n^2)（在线）
         bst = BST(nums[0])
         for num in nums[1:]:
             bst.insert(num)
@@ -295,8 +378,8 @@ class TestGeneral(unittest.TestCase):
         return
 
     @staticmethod
-    def lg_2171_2(n, nums, ac=FastIO):
-        # 模板: bst 链表与二叉树模拟插入 O(nlogn)
+    def lg_2171_2_input(n, nums, ac=FastIO):
+        # 模板: bst 链表与二叉树模拟插入 O(nlogn)（离线）
 
         @ac.bootstrap
         def dfs(rt):
@@ -351,6 +434,26 @@ class TestGeneral(unittest.TestCase):
         dfs(root)
         return
 
+    @staticmethod
+    def lg_2171_3_input(n, nums):
+        dct = BinarySearchTreeByArray().build(nums)
+        # 使用迭代的方式计算后序遍历（离线）
+        ans = []
+        depth = 0
+        stack = [[0, 1]]
+        while stack:
+            i, d = stack.pop()
+            if i >= 0:
+                stack.append([~i, d])
+                dct[i].sort(key=lambda it: -nums[it])
+                for j in dct[i]:
+                    stack.append([j, d+1])
+            else:
+                i = ~i
+                depth = depth if depth > d else d
+                ans.append(nums[i])
+        return
+
     def test_solution(self):
         n = 1000000
         nums = [random.randint(1, n) for _ in range(n)]
@@ -358,20 +461,21 @@ class TestGeneral(unittest.TestCase):
         n = len(nums)
         random.shuffle(nums)
         t1 = time.time()
-        self.lg_2171_1(n, nums[:])
+        self.lg_2171_1_input(n, nums[:])
         t2 = time.time()
-        self.lg_2171_2(n, nums[:])
+        self.lg_2171_2_input(n, nums[:])
         t3 = time.time()
-        print(n, t2-t1, t3-t2)
+        self.lg_2171_3_input(n, nums[:])
+        t4 = time.time()
+        print(n, t2-t1, t3-t2, t4-t3)
 
-        n = 2000
         nums = list(range(1, n+1))
-        t1 = time.time()
-        self.lg_2171_1(n, nums[:])
         t2 = time.time()
-        self.lg_2171_2(n, nums[:])
+        self.lg_2171_2_input(n, nums[:])
         t3 = time.time()
-        print(n, t2 - t1, t3 - t2)
+        self.lg_2171_3_input(n, nums[:])
+        t4 = time.time()
+        print(n, t3 - t2, t4 - t3)
         return
 
 

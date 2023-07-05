@@ -5,6 +5,7 @@ from typing import DefaultDict, Set, List, Tuple
 from collections import Counter
 from algorithm.src.dp.tree_dp import TreeCentroid
 from algorithm.src.fast_io import FastIO
+from algorithm.src.graph.union_find import UnionFind
 
 """
 # Tarjan
@@ -33,7 +34,7 @@ Tarjan 算法是基于深度优先搜索的算法，用于求解图的连通性�
 1192. 查找集群内的关键连接（https://leetcode.cn/problems/critical-connections-in-a-network/）求割边
 2360. 图中的最长环（https://leetcode.cn/problems/longest-cycle-in-a-graph/solution/by-liupengsay-4ff6/）经典求有向图最长环
 [2204. Distance to a Cycle in Undirected Graph]: https://leetcode.cn/problems/distance-to-a-cycle-in-undirected-graph/solution/er-xu-cheng-ming-jiu-xu-zui-python3tarja-09qn/
-[1568. 使陆地分离的最少天数]: https://leetcode.cn/problems/minimum-number-of-days-to-disconnect-island/solution/by-liupengsay-zd7w/
+1568. 使陆地分离的最少天数（https://leetcode.cn/problems/minimum-number-of-days-to-disconnect-island/solution/by-liupengsay-zd7w/）求割点数量
 
 ===================================洛谷===================================
 P3388 【模板】割点（割顶）（https://www.luogu.com.cn/problem/P3388）有自环与重边，求无向图割点
@@ -893,6 +894,46 @@ class Solution:
             x, y = node_scc_id[a], node_scc_id[b]
             ac.st("DA" if y in sub[x] else "NE")
         return
+
+    @staticmethod
+    def lc_1568(grid: List[List[int]]) -> int:
+        # 模板：经典求连通分量与割点数量题
+        m, n = len(grid), len(grid[0])
+
+        # 建图
+        edge = [[] for _ in range(m * n)]
+        nodes = set()
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == 1:
+                    if i + 1 < m and grid[i + 1][j] == 1:
+                        edge[i * n + j].append(i * n + n + j)
+                        edge[i * n + n + j].append(i * n + j)
+                    if j + 1 < n and grid[i][j + 1] == 1:
+                        edge[i * n + j].append(i * n + 1 + j)
+                        edge[i * n + 1 + j].append(i * n + j)
+                    nodes.add(i * n + j)
+        # 特殊情况
+        if len(nodes) <= 1:
+            return len(nodes)
+        nodes = sorted(list(nodes))
+        ind = {num: i for i, num in enumerate(nodes)}
+        k = len(nodes)
+        dct = [[] for _ in range(k)]
+        for i in range(m * n):
+            for j in edge[i]:
+                dct[ind[i]].append(ind[j])
+                dct[ind[j]].append(ind[i])
+
+        uf = UnionFind(k)
+        for i in range(k):
+            for j in dct[i]:
+                uf.union(i, j)
+        if uf.part > 1:
+            return 0
+
+        cutting_point, _ = TarjanCC().get_cutting_point_and_cutting_edge_bfs(k, dct)
+        return 2 if not cutting_point else 1
 
 
 class TestGeneral(unittest.TestCase):
