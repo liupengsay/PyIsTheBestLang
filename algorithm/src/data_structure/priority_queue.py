@@ -13,6 +13,7 @@ from algorithm.src.fast_io import FastIO
 
 ===================================力扣===================================
 239. 滑动窗口最大值（https://leetcode.cn/problems/sliding-window-maximum/）滑动区间最大值
+1696. 跳跃游戏 VI（https://leetcode.cn/problems/jump-game-vi/）经典优先队列 DP
 
 ===================================洛谷===================================
 P2251 质量检测（https://www.luogu.com.cn/problem/P2251）滑动区间最小值
