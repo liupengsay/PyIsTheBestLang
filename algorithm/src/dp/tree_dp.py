@@ -1300,7 +1300,7 @@ class Solution:
         return
 
     @staticmethod
-    def lc_1617(n: int, edges: List[List[int]]) -> List[int]:
+    def lc_1617_2(n: int, edges: List[List[int]]) -> List[int]:
         # 模板：经典枚举直径端点与乘法原理树形DP进行计算
         dct = [[] for _ in range(n)]
         for i, j in edges:
