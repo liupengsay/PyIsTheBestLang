@@ -25,6 +25,7 @@ from algorithm.src.graph.union_find import UnionFind
 2378. 选择边来最大化树的得分（https://leetcode.cn/problems/choose-edges-to-maximize-score-in-a-tree/）树形DP
 2445. 值为 1 的节点数（https://leetcode.cn/problems/number-of-nodes-with-value-one/）自上而下DP模拟
 834. 树中距离之和（https://leetcode.cn/problems/sum-of-distances-in-tree/）树的总距离，求树的重心
+1617. 统计子树中城市之间最大距离（https://leetcode.cn/problems/count-subtrees-with-max-distance-between-cities/）经典枚举直径端点与乘法原理树形DP进行计算
 
 ===================================洛谷===================================
 
@@ -1297,6 +1298,59 @@ class Solution:
                 sub[i] = res if res > 0 else 0
         ac.st(max(sub))
         return
+
+    @staticmethod
+    def lc_1617(n: int, edges: List[List[int]]) -> List[int]:
+        # 模板：经典枚举直径端点与乘法原理树形DP进行计算
+        dct = [[] for _ in range(n)]
+        for i, j in edges:
+            i -= 1
+            j -= 1
+            dct[i].append(j)
+            dct[j].append(i)
+
+        dis = []
+        for i in range(n):
+            cur = [inf]*n
+            cur[i] = 0
+            stack = deque([i])
+            while stack:
+                i = stack.pop()
+                for j in dct[i]:
+                    if cur[j] == inf:
+                        cur[j] = cur[i] + 1
+                        stack.append(j)
+            dis.append(cur[:])
+
+        ans = [0]*n
+        for i in range(n):
+            for j in range(i+1, n):
+                d = dis[i][j]
+
+                stack = [[i, -1]]
+                sub = [0]*n
+                while stack:
+                    ii, fa = stack.pop()
+                    if ii>=0:
+                        stack.append([~ii, fa])
+                        for jj in dct[ii]:
+                            if jj != fa:
+                                if (dis[i][jj] < d or (dis[i][jj] == d and jj > j)) and \
+                (dis[j][jj] < d or (dis[j][jj] == d and jj> i)):
+                                    stack.append([jj, ii])
+                    else:
+                        ii = ~ii
+                        sub[ii] = 1  # x是必点
+                        for jj in dct[ii]:
+                            if jj != fa:
+                                if (dis[i][jj] < d or (dis[i][jj] == d and jj > j)) and \
+                (dis[j][jj] < d or (dis[j][jj] == d and jj> i)):
+                                    sub[ii] *= sub[jj]
+                        if dis[i][ii] + dis[j][ii] > d:  # x 是可选点
+                            sub[ii] += 1
+                ans[d] += sub[i]
+
+        return ans[1:]
 
 
 class TestGeneral(unittest.TestCase):
