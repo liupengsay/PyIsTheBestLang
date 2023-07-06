@@ -33,6 +33,8 @@ from algorithm.src.fast_io import FastIO, inf
 2417. 最近的公平整数（https://leetcode.cn/problems/closest-fair-integer/）按照位数贪心枚举加和
 2681. 英雄的力量（https://leetcode.cn/problems/power-of-heroes/）按照贡献法枚举计数
 1625. 执行操作后字典序最小的字符串（https://leetcode.cn/problems/lexicographically-smallest-string-after-applying-operations/）经典枚举计算最小的字典序
+1819. 序列中不同最大公约数的数目（https://leetcode.cn/problems/number-of-different-subsequences-gcds/）经典调和级数枚举
+1862. 向下取整数对和（https://leetcode.cn/submissions/detail/371754298/）枚举商并利用调和级数的复杂度进行计算
 
 ===================================洛谷===================================
 P1548 棋盘问题（https://www.luogu.com.cn/problem/P1548）枚举正方形与长方形的右小角计算个数

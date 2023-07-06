@@ -21,6 +21,7 @@ from algorithm.src.fast_io import inf, FastIO
 6358. 更新数组后处理求和查询（https://leetcode.cn/problems/handling-sum-queries-after-update/）区间值01翻转与区间和查询，使用bitset实现
 6318. 完成所有任务的最少时间（https://leetcode.cn/contest/weekly-contest-336/problems/minimum-time-to-complete-all-tasks/）线段树，贪心加二分
 732. 我的日程安排表 III（https://leetcode.cn/problems/my-calendar-iii/）使用defaultdict进行动态开点线段树
+1851. 包含每个查询的最小区间（https://leetcode.cn/problems/minimum-interval-to-include-each-query/）区间更新最小值、单点查询，也可以用离线查询与优先队列维护计算
 
 ===================================洛谷===================================
 P2846 [USACO08NOV]Light Switching G（https://www.luogu.com.cn/problem/P2846）线段树统计区间翻转和
@@ -2269,6 +2270,7 @@ class SegmentTreeRangeSqrtSum:
         return ans
 
 
+
 class Solution:
     def __int__(self):
         return
@@ -2876,6 +2878,23 @@ class Solution:
             tree.update_point(ind[s[i]], ind[s[i]], 0, m - 1, c[i], 1)
         ac.st(ans if ans < inf else -1)
         return
+
+    @staticmethod
+    def lc_1851(intervals: List[List[int]], queries: List[int]) -> List[int]:
+        # 模板：区间更新最小值、单点查询
+        port = []
+        for inter in intervals:
+            port.extend(inter)
+        port.extend(queries)
+        lst = sorted(list(set(port)))
+
+        ind = {num: i for i, num in enumerate(lst)}
+        ceil = len(lst)
+        tree = SegmentTreeUpdateQueryMin(ceil)
+        for a, b in intervals:
+            tree.update_range(ind[a], ind[b], 0, ceil-1, b - a + 1, 1)
+        ans = [tree.query_point(ind[num], ind[num], 0, ceil-1, 1) for num in queries]
+        return [x if x != inf else -1 for x in ans]
 
 
 class TestGeneral(unittest.TestCase):

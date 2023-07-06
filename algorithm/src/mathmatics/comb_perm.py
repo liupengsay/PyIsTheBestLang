@@ -24,6 +24,7 @@ Lucas定理（comb(n, m)%p = comb(n%p, m%p)*comb(n//p, m//p)）%p
 2338. 统计理想数组的数目（https://leetcode.cn/problems/count-the-number-of-ideal-arrays/）使用隔板法与因数分解进行组合方案数求解
 1735. 生成乘积数组的方案数（https://leetcode.cn/problems/count-ways-to-make-array-with-product/）经典质数分解与隔板法应用
 1621. 大小为 K 的不重叠线段的数目（https://leetcode.cn/problems/number-of-sets-of-k-non-overlapping-line-segments/）类似隔板法的思想
+1866. 恰有 K 根木棍可以看到的排列数目（https://leetcode.cn/problems/number-of-ways-to-rearrange-sticks-with-k-sticks-visible/）第一类斯特林数
 
 ===================================洛谷===================================
 P4071 排列计数（https://www.luogu.com.cn/problem/P4071）通过乘法逆元快速求解组合数与全排列数，同时递归计算错位排列数
@@ -592,6 +593,17 @@ class Solution:
                 cur %= mod
             ans.append(cur)
         return ans
+
+    @staticmethod
+    def lc_1866(n: int, k: int) -> int:
+        # 模板：第一类斯特林数
+        mod = 10**9 + 7
+        dp = [[0]*(k+1) for _ in range(n+1)]
+        dp[0][0] = 1
+        for i in range(n):
+            for j in range(k):
+                dp[i+1][j+1] = (dp[i][j] + dp[i][j+1]*i)%mod
+        return dp[n][k]
 
 
 class TestGeneral(unittest.TestCase):

@@ -38,6 +38,7 @@ from algorithm.src.fast_io import FastIO
 1665. 完成所有任务的最少初始能量（https://leetcode.cn/problems/minimum-initial-energy-to-finish-tasks/）经典贪心不同项比较公式排序模拟
 1675. 数组的最小偏移量（https://leetcode.cn/problems/minimize-deviation-in-array/）脑筋急转弯贪心
 1686. 石子游戏 VI（https://leetcode.cn/problems/stone-game-vi/）经典贪心采用列式子确定排序方式
+1808. 好因子的最大数目（https://leetcode.cn/problems/maximize-number-of-nice-divisors/）按照模3的因子个数贪心处理
 
 ===================================洛谷===================================
 P1031 均分纸牌（https://www.luogu.com.cn/problem/P1031）贪心计算每个点的前缀和流量，需要补齐或者输出时进行计数

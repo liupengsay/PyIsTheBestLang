@@ -13,6 +13,7 @@ from algorithm.src.fast_io import FastIO
 功能：进行二进制上的位操作，包括与、异或、或、取反，通常使用按位思考与举例的方式寻找规律
 题目：
 异或经典性质：(4*i)^(4*i+1)^(4*i+2)^(4*i+3)=0
+异或经典性质：(a&b)^(a&c) = a&(b^c)
 ===================================力扣===================================
 
 2354. 优质数对的数目（https://leetcode.cn/problems/number-of-excellent-pairs/）需要脑筋急转弯确定位 1 的规律进行哈希计数枚举即可
@@ -29,6 +30,7 @@ from algorithm.src.fast_io import FastIO
 1486. 数组异或操作（https://leetcode.cn/problems/xor-operation-in-an-array/）经典异或公式计算
 1734. 解码异或后的排列（https://leetcode.cn/problems/decode-xored-permutation/）经典变换公式，解码相邻异或值编码，并利用奇数排列的异或性质
 1787. 使所有区间的异或结果为零（https://leetcode.cn/problems/make-the-xor-of-all-segments-equal-to-zero/）经典按照异或特性分组并利用值域枚举DP
+1835. 所有数对按位与结果的异或和（https://leetcode.cn/problems/find-xor-sum-of-all-pairs-bitwise-and/）按位操作模拟
 
 ===================================洛谷===================================
 P5657 格雷码（https://www.luogu.com.cn/problem/P5657）计算编号为 k 的二进制符，并补前缀 0 为 n 位
