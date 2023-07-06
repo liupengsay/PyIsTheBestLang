@@ -25,6 +25,7 @@ dilworth定理：分成不下降子序列最小组数等于最大上升子序列
 面试题 17.08. 马戏团人塔（https://leetcode.cn/problems/circus-tower-lcci/）按照两个维度贪心排序后，计算最长递增子序列
 最长递增子序列（https://www.nowcoder.com/questionTerminal/30fb9b3cab9742ecae9acda1c75bf927?orderByHotValue=1&questionTypes=000100&difficulty=11111&mutiTagIds=593&page=10&onlyReference=false）最长且字典序最小的递增子序列
 1691. 堆叠长方体的最大高度（https://leetcode.cn/problems/maximum-height-by-stacking-cuboids/submissions/）经典三维偏序LIS问题
+1713. 得到子序列的最少操作次数（https://leetcode.cn/problems/minimum-operations-to-make-a-subsequence/）经典LCS问题转换为LIS
 
 ===================================洛谷===================================
 P1020 导弹拦截（https://www.luogu.com.cn/problem/P1020）使用贪心加二分计算最长单调不减和单调不增子序列的长度

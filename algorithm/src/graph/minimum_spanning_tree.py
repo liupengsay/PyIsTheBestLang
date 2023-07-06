@@ -19,6 +19,7 @@ Prim在稠密图中比Kruskal优，在稀疏图中比Kruskal劣。Prim是以更�
 ===================================力扣===================================
 1489. 找到最小生成树里的关键边和伪关键边（https://leetcode.cn/problems/find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree/）计算最小生成树的关键边与伪关键边
 1584. 连接所有点的最小费用（https://leetcode.cn/problems/min-cost-to-connect-all-points/）稠密图使用 prim 生成最小生成树
+1724. 检查边长度限制的路径是否存在 II（https://leetcode.cn/problems/checking-existence-of-edge-length-limited-paths-ii/）经典使用最小生成树与倍增求解任意点对之间简单路径的最大边权值
 
 ===================================洛谷===================================
 P3366 最小生成树（https://www.luogu.com.cn/problem/P3366）最小生成树裸题
@@ -805,6 +806,42 @@ class Solution:
 
         tree = MinimumSpanningTree(edges, n, "prim")
         return tree.cost
+
+
+class DistanceLimitedPathsExist:
+    # 模板：LC1724
+    def __init__(self, n: int, edgeList: List[List[int]]):
+        uf = UnionFind(n)
+        edge = []
+        for i, j, d in sorted(edgeList, key=lambda it: it[-1]):
+            if uf.union(i, j):
+                edge.append([i, j, d])
+
+        self.nodes = []
+        part = uf.get_root_part()
+        self.root = [0] * n
+        for p in part:
+            self.nodes.append(part[p])
+            i = len(self.nodes) - 1
+            for x in part[p]:
+                self.root[x] = i
+        self.ind = [{num: i for i, num in enumerate(node)} for node in self.nodes]
+        dct = [[dict() for _ in range(len(node))] for node in self.nodes]
+
+        for i, j, d in edge:
+            r = self.root[i]
+            dct[r][self.ind[r][i]][self.ind[r][j]] = d
+            dct[r][self.ind[r][j]][self.ind[r][i]] = d
+        # 使用倍增维护查询任意两点路径的最大边权值
+        self.tree = [TreeAncestorWeightSecond(dc) for dc in dct]
+
+    def query(self, p: int, q: int, limit: int) -> bool:
+        if self.root[p] != self.root[q]:
+            return False
+        r = self.root[p]
+        i = self.ind[r][p]
+        j = self.ind[r][q]
+        return self.tree[r].get_dist_weight_max_second(i, j)[0] < limit
 
 
 class TestGeneral(unittest.TestCase):

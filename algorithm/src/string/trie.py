@@ -20,6 +20,7 @@ from collections import Counter
 677. 键值映射（https://leetcode.cn/problems/map-sum-pairs/）更新与查询给定字符串作为单词键前缀的对应值的和
 2479. 两个不重叠子树的最大异或值（https://leetcode.cn/problems/maximum-xor-of-two-non-overlapping-subtrees/）01Trie计算最大异或值
 面试题 17.17. 多次搜索（https://leetcode.cn/problems/multi-search-lcci/）AC自动机计数，也可直接使用字典树逆向思维，字典树存关键字，再搜索文本，和单词矩阵一样的套路
+1707. 与数组中元素的最大异或值（https://leetcode.cn/problems/maximum-xor-with-an-element-from-array/）经典排序后离线查询并使用 01 Trie求解
 
 ===================================洛谷===================================
 P8306 字典树（https://www.luogu.com.cn/problem/P8306）
@@ -753,6 +754,33 @@ class Solution:
         dfs(0, dct, 0)
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_1707(nums: List[int], queries: List[List[int]]) -> List[int]:
+        # 模板：经典排序后离线查询并使用 01 Trie求解
+        n = len(nums)
+        nums.sort()
+
+        # 添加指针
+        m = len(queries)
+        for i in range(m):
+            queries[i].append(i)
+        queries.sort(key=lambda x: x[1])
+
+        # 使用指针进行离线查询
+        trie = TrieZeroOneXorMax(32)
+        ans = []
+        j = 0
+        for x, m, i in queries:
+            while j < n and nums[j] <= m:
+                trie.add(nums[j])
+                j += 1
+            if trie.dct:
+                ans.append([i, trie.query_xor_max(x)])
+            else:
+                ans.append([i, -1])
+        ans.sort()
+        return [a[1] for a in ans]
 
 
 class TestGeneral(unittest.TestCase):

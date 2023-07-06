@@ -503,8 +503,6 @@ class HeavyChain:
         return x if self.depth[x] < self.depth[y] else y
 
 
-
-
 class Solution:
     def __init__(self):
         return
