@@ -16,7 +16,7 @@ from collections import Counter
 421. 数组中两个数的最大异或值（https://leetcode.cn/problems/maximum-xor-of-two-numbers-in-an-array/）经典 01 Trie
 638. 大礼包（https://leetcode.cn/problems/shopping-offers/）经典使用字典树与记忆化搜索
 2416. 字符串的前缀分数和（https://leetcode.cn/problems/sum-of-prefix-scores-of-strings/）单词组前缀计数
-1803. 统计异或值在范围内的数对有多少（https://leetcode.cn/problems/count-pairs-with-xor-in-a-range/）经典01Trie，查询异或值在一定范围的数组对
+1803. 统计异或值在范围内的数对有多少（https://leetcode.cn/problems/count-pairs-with-xor-in-a-range/）经典01Trie，查询异或值在一定范围的数组对，可以使用数组实现
 677. 键值映射（https://leetcode.cn/problems/map-sum-pairs/）更新与查询给定字符串作为单词键前缀的对应值的和
 2479. 两个不重叠子树的最大异或值（https://leetcode.cn/problems/maximum-xor-of-two-non-overlapping-subtrees/）01Trie计算最大异或值
 面试题 17.17. 多次搜索（https://leetcode.cn/problems/multi-search-lcci/）AC自动机计数，也可直接使用字典树逆向思维，字典树存关键字，再搜索文本，和单词矩阵一样的套路
@@ -37,7 +37,7 @@ P8420 [THUPC2022 决赛] 匹配（https://www.luogu.com.cn/problem/P8420）字�
 Fixed Prefix Permutations（https://codeforces.com/problemset/problem/1792/D）变形后使用字典树进行计数查询
 D. Vasiliy's Multiset（https://codeforces.com/problemset/problem/706/D）经典01Trie，增加与删除数字，最大异或值查询
 B. Friends（https://codeforces.com/contest/241/problem/B）经典01Trie计算第 K 大的异或对，并使用堆贪心选取
-
+E. Beautiful Subarrays（https://codeforces.com/contest/665/problem/E）统计连续区间异或对数目
 
 ================================AcWing====================================
 142. 前缀统计（https://www.acwing.com/problem/content/144/）字典树前缀统计
@@ -450,6 +450,25 @@ class Solution:
         return ans
 
     @staticmethod
+    def lc_1803_2(nums: List[int], low: int, high: int) -> int:
+        # 模板：统计范围内的异或对数目
+        ans, cnt = 0, Counter(nums)
+        high += 1
+        while high:
+            nxt = Counter()
+            for x, c in cnt.items():
+                if high & 1:
+                    ans += c * cnt[x ^ (high - 1)]
+                if low & 1:
+                    ans -= c * cnt[x ^ (low - 1)]
+                nxt[x >> 1] += c
+            cnt = nxt
+            low >>= 1
+            high >>= 1
+        return ans // 2
+
+
+    @staticmethod
     def cf_706d(ac=FastIO()):
         # 模板：使用01字典树增加与删除数字后查询最大异或值
         q = ac.read_int()
@@ -781,6 +800,35 @@ class Solution:
                 ans.append([i, -1])
         ans.sort()
         return [a[1] for a in ans]
+
+    @staticmethod
+    def cf_665e(ac=FastIO()):
+        n, k = ac.read_ints()
+        nums = ac.read_list_ints()
+        for i in range(1, n):
+            nums[i] ^= nums[i-1]
+        cnt = {0: 1}
+        for num in nums:
+            cnt[num] = cnt.get(num, 0) + 1
+        # 模板：统计范围内的异或对数目
+        ans = 0
+        del nums
+        high = 1 << 30
+        low = k
+        while high:
+            nxt = dict()
+            for x in cnt:
+                c = cnt[x]
+                if high & 1:
+                    ans += c * cnt.get(x ^ (high - 1), 0)
+                if low & 1:
+                    ans -= c * cnt.get(x ^ (low - 1), 0)
+                nxt[x >> 1] = nxt.get(x >> 1, 0) + c
+            cnt = nxt
+            low >>= 1
+            high >>= 1
+        ac.st(ans//2)
+        return
 
 
 class TestGeneral(unittest.TestCase):

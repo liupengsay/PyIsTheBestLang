@@ -27,6 +27,8 @@ from algorithm.src.fast_io import FastIO
 260. 只出现一次的数字 III（https://leetcode.cn/problems/single-number-iii/）使用位运算按位计数
 2546. 执行逐位运算使字符串相等（https://leetcode.cn/problems/apply-bitwise-operations-to-make-strings-equal/）按照异或特点脑筋急转弯
 1486. 数组异或操作（https://leetcode.cn/problems/xor-operation-in-an-array/）经典异或公式计算
+1734. 解码异或后的排列（https://leetcode.cn/problems/decode-xored-permutation/）经典变换公式，解码相邻异或值编码，并利用奇数排列的异或性质
+1787. 使所有区间的异或结果为零（https://leetcode.cn/problems/make-the-xor-of-all-segments-equal-to-zero/）经典按照异或特性分组并利用值域枚举DP
 
 ===================================洛谷===================================
 P5657 格雷码（https://www.luogu.com.cn/problem/P5657）计算编号为 k 的二进制符，并补前缀 0 为 n 位
@@ -559,6 +561,17 @@ class Solution:
         e = n & start & 1
         # (start+0)^(start+2)^..^(start+2*n-2)
         return (bo.sum_xor(s - 1) ^ bo.sum_xor(s + n - 1)) * 2 + e
+
+    @staticmethod
+    def lc_1734(encoded: List[int]) -> List[int]:
+        # 模板：经典变换公式，解码相邻异或值编码，并利用奇数排列的异或性质
+        n = len(encoded) + 1
+        total = 1 if n % 4 == 1 else 0  # n=4*k+1 与 n=4*k+3
+        odd = reduce(xor, encoded[1::2])
+        ans = [total ^ odd]
+        for num in encoded:
+            ans.append(ans[-1] ^ num)
+        return ans
 
 
 class TestGeneral(unittest.TestCase):

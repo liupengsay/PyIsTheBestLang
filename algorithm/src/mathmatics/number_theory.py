@@ -11,6 +11,7 @@ from operator import mul
 from typing import List
 
 from algorithm.src.fast_io import FastIO
+from algorithm.src.mathmatics.comb_perm import Combinatorics
 
 """
 算法：数论、欧拉筛、线性筛、素数、欧拉函数、因子分解、素因子分解、进制转换、因数分解
@@ -33,6 +34,8 @@ from algorithm.src.fast_io import FastIO
 LCP 14. 切分数组（https://leetcode.cn/problems/qie-fen-shu-zu/）计算 1 到 n 的每个数所有的质因子，并使用动态规划计数
 279. 完全平方数（https://leetcode.cn/problems/perfect-squares/）四平方数定理
 650. 只有两个键的键盘（https://leetcode.cn/problems/2-keys-keyboard/）经典分解质因数
+1735. 生成乘积数组的方案数（https://leetcode.cn/problems/count-ways-to-make-array-with-product/）经典质数分解与隔板法应用
+
 ===================================洛谷===================================
 P1865 A % B Problem（https://www.luogu.com.cn/problem/P1865）通过线性筛素数后进行二分查询区间素数个数
 P1748 H数（https://www.luogu.com.cn/problem/P1748）丑数可以使用堆模拟可以使用指针递增也可以使用容斥原理与二分进行计算

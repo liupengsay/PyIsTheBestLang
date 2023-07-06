@@ -27,6 +27,7 @@ from algorithm.src.graph.spfa import SPFA
 6442. 修改图中的边权（https://leetcode.cn/problems/modify-graph-edge-weights/）经典两遍最短路，贪心动态更新路径权值
 2714. 找到最短路径的 K 次跨越（https://leetcode.cn/problems/find-shortest-path-with-k-hops/）经典带约束的最短路，也可以使用分层Dijkstra求解
 2699. 修改图中的边权（https://leetcode.cn/problems/modify-graph-edge-weights/）经典Dijkstra最短路贪心应用
+1786. 从第一个节点出发到最后一个节点的受限路径数（https://leetcode.cn/problems/number-of-restricted-paths-from-first-to-last-node/）经典dijkstra受限最短路计数（类似最短路计数）
 
 LCP 75. 传送卷轴（https://leetcode.cn/problems/rdmXM7/）首先BFS之后计算最大值最小的最短路
 ===================================洛谷===================================
@@ -1631,6 +1632,38 @@ class Solution:
                     heapq.heappush(stack, [dj, j])
         ac.st(int(dis[n]))
         return
+
+    @staticmethod
+    def lc_1786(n: int, edges: List[List[int]]) -> int:
+
+        # 模板：经典dijkstra受限最短路计数（类似最短路计数）
+        dct = defaultdict(dict)
+        for i, j, w in edges:
+            dct[i-1][j-1] = w
+            dct[j-1][i-1] = w
+        mod = 10**9 + 7
+        # 使用倒序进行最短路搜寻
+        dis = [float('inf')]*n
+        cnt = [0]*n
+        cnt[n-1] = 1
+        dis[n-1] = 0
+        # 定义好初始值
+        stack = [[0, n-1]]
+        while stack:
+            cur_dis, cur = heapq.heappop(stack)
+            if dis[cur] < cur_dis:
+                continue
+            dis[cur] = cur_dis
+            for nex in dct[cur]:
+                # 如果到达下一个点更近，则更新值
+                if dis[nex] > dis[cur] + dct[cur][nex]:
+                    dis[nex] = dis[cur] + dct[cur][nex]
+                    heapq.heappush(stack, [dis[nex], nex])
+                # 可以形成有效的路径
+                if dis[cur] < dis[nex]:
+                    cnt[nex] += cnt[cur]
+                    cnt[nex] %= mod
+        return cnt[0]
 
 
 class TestGeneral(unittest.TestCase):

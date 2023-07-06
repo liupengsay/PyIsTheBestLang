@@ -27,6 +27,8 @@ from math import inf
 1292. 元素和小于等于阈值的正方形的最大边长（https://leetcode.cn/problems/maximum-side-length-of-a-square-with-sum-less-than-or-equal-to-threshold/）经典O(mn)复杂度枚举
 1674. 使数组互补的最少操作次数（https://leetcode.cn/problems/minimum-moves-to-make-array-complementary/）经典差分数组作用域计数
 1714. 数组中特殊等间距元素的和（https://leetcode.cn/problems/sum-of-special-evenly-spaced-elements-in-array/）经典分组加前缀和
+1738. 找出第 K 大的异或坐标值（https://leetcode.cn/problems/find-kth-largest-xor-coordinate-value/）经典二维前缀异或和
+
 ===================================洛谷===================================
 P8772 [蓝桥杯 2022 省 A] 求和（https://www.luogu.com.cn/record/list?user=739032&status=12&page=15）后缀和计算
 P2367 语文成绩（https://www.luogu.com.cn/problem/P2367）差分数组记录区间增减变化，最后还原计算最小值
@@ -1365,6 +1367,28 @@ class Solution:
                         break
                     ans = d
         return ans
+
+    @staticmethod
+    def lc_1738(matrix: List[List[int]], k: int) -> int:
+
+        # 模板：经典二维前缀异或和
+        m, n = len(matrix), len(matrix[0])
+        # 原地进行异或运算
+        for i in range(1, m):
+            matrix[i][0] = matrix[i][0] ^ matrix[i - 1][0]
+        for j in range(1, n):
+            matrix[0][j] = matrix[0][j] ^ matrix[0][j - 1]
+        for i in range(1, m):
+            for j in range(1, n):
+                matrix[i][j] = matrix[i - 1][j - 1] ^ matrix[i - 1][j] ^ matrix[i][j - 1] ^ matrix[i][j]
+
+        # 排序后返回结果
+        lst = []
+        for i in range(m):
+            lst.extend(matrix[i])
+        lst.sort()
+        return lst[-k]
+
 
 class TestGeneral(unittest.TestCase):
 

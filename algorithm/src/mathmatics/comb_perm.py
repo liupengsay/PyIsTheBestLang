@@ -22,6 +22,8 @@ Lucas定理（comb(n, m)%p = comb(n%p, m%p)*comb(n//p, m//p)）%p
 634. 寻找数组的错位排列（https://leetcode.cn/problems/find-the-derangement-of-an-array/）错位排列计数使用动态规划转移计算
 1259. 不相交的握手（https://leetcode.cn/problems/handshakes-that-dont-cross/）经典卡特兰数
 2338. 统计理想数组的数目（https://leetcode.cn/problems/count-the-number-of-ideal-arrays/）使用隔板法与因数分解进行组合方案数求解
+1735. 生成乘积数组的方案数（https://leetcode.cn/problems/count-ways-to-make-array-with-product/）经典质数分解与隔板法应用
+1621. 大小为 K 的不重叠线段的数目（https://leetcode.cn/problems/number-of-sets-of-k-non-overlapping-line-segments/）类似隔板法的思想
 
 ===================================洛谷===================================
 P4071 排列计数（https://www.luogu.com.cn/problem/P4071）通过乘法逆元快速求解组合数与全排列数，同时递归计算错位排列数
@@ -574,6 +576,22 @@ class Solution:
             ans = (ans + res[last]) % mod
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_1735(queries: List[List[int]]) -> List[int]:
+        mod = 10 ** 9 + 7
+        nt = NumberTheoryPrimeFactor(10 ** 4)
+        cb = Combinatorics(10 ** 4 + 15, mod)
+
+        # 模板：经典质数分解与隔板法应用
+        ans = []
+        for n, k in queries:
+            cur = 1
+            for _, c in nt.prime_factor[k]:
+                cur *= cb.comb(n+c-1, n-1)
+                cur %= mod
+            ans.append(cur)
+        return ans
 
 
 class TestGeneral(unittest.TestCase):

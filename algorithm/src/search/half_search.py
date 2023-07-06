@@ -8,10 +8,14 @@ from algorithm.src.fast_io import FastIO
 功能：常见于 1<<n 较大的情况，对半分开进行枚举 
 题目：
 
+===================================力扣===================================
+1755. 最接近目标值的子序列和（https://leetcode.cn/problems/closest-subsequence-sum/）经典折半搜索
+
+
 ===================================洛谷===================================
 P5194 [USACO05DEC]Scales S（https://www.luogu.com.cn/problem/P5194）利用Fibonacci数列的长度特点进行折半搜索枚举，与二分查找确定可行的最大值
 Anya and Cubes（https://www.luogu.com.cn/problem/CF525E）折半搜索计算长度
-P5691 [NOI2001] 方程的解数（https://www.luogu.com.cn/problem/P5691）折半搜索与枚举
+P5691 [NOI2001] 方程的解数（https://www.luogu.com.cn/problem/P5691）折半搜索与有序集合双指针枚举
 
 ===================================AcWing======================================
 171. 送礼物（https://www.acwing.com/problem/content/173/）经典折半搜索查找最接近目标值的子数组和
