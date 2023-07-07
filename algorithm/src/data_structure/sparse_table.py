@@ -43,6 +43,7 @@ B. Integers Have Friends（https://codeforces.com/problemset/problem/1548/B）ST
 F. Ant colony（https://codeforces.com/problemset/problem/474/F）稀疏表计算最小值和gcd，并使用二分查找计数
 E. MEX of LCM（https://codeforces.com/contest/1834/problem/E）经典计算连续子数组的lcm信息
 
+
 ================================AcWing====================================
 109. 天才ACM（https://www.acwing.com/problem/content/111/）贪心加倍增计算最少分段数
 

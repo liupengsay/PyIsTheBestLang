@@ -29,6 +29,7 @@ from algorithm.src.mathmatics.number_theory import NumberTheory
 2713. 矩阵中严格递增的单元格数（https://leetcode.cn/problems/maximum-strictly-increasing-cells-in-a-matrix/）按照值域分层线性 DP
 1526. 形成目标数组的子数组最少增加次数（https://leetcode.cn/problems/minimum-number-of-increments-on-subarrays-to-form-a-target-array/）经典线性 DP 与贪心
 1553. 吃掉 N 个橘子的最少天数（https://leetcode.cn/problems/minimum-number-of-days-to-eat-n-oranges/）记忆化搜索线性DP
+1872. 石子游戏 VIII（https://leetcode.cn/problems/stone-game-viii/）前缀和倒序DP
 
 ===================================洛谷===================================
 P1970 [NOIP2013 提高组] 花匠（https://www.luogu.com.cn/problem/P1970）使用贪心与动态规划计算最长的山脉子数组
@@ -97,6 +98,7 @@ C. Chef Monocarp（https://codeforces.com/problemset/problem/1437/C）二维线�
 D. Armchairs（https://codeforces.com/problemset/problem/1525/D）二维线性DP，两个数组线性移动进行匹配计算最大或者最小值
 A. Garland（https://codeforces.com/problemset/problem/1286/A）线性经典dp
 D. Make The Fence Great Again（https://codeforces.com/problemset/problem/1221/D）线性DP，最多变化为增加0、1、2
+E. Funny Game（https://codeforces.com/contest/731/problem/E）前缀和倒序DP
 
 ================================AcWing====================================
 96. 奇怪的汉诺塔（https://www.acwing.com/problem/content/98/）经典的汉诺塔问题，可推广到n个盘子与m个柱子

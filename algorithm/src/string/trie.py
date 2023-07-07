@@ -38,6 +38,7 @@ Fixed Prefix Permutations（https://codeforces.com/problemset/problem/1792/D）�
 D. Vasiliy's Multiset（https://codeforces.com/problemset/problem/706/D）经典01Trie，增加与删除数字，最大异或值查询
 B. Friends（https://codeforces.com/contest/241/problem/B）经典01Trie计算第 K 大的异或对，并使用堆贪心选取
 E. Beautiful Subarrays（https://codeforces.com/contest/665/problem/E）统计连续区间异或对数目
+E. Sausage Maximization（https://codeforces.com/contest/282/problem/E）转换为 01Trie 求数组最大异或值
 
 ================================AcWing====================================
 142. 前缀统计（https://www.acwing.com/problem/content/144/）字典树前缀统计
@@ -398,6 +399,82 @@ class TrieZeroOneXorMaxKth:
         return ans
 
 
+class BinaryTrie:
+    def __init__(self, max_bit: int = 30):
+        self.inf = 1 << 63
+        self.to = [[-1], [-1]]
+        self.cnt = [0]
+        self.max_bit = max_bit
+
+    def add(self, num: int) -> None:
+        cur = 0
+        self.cnt[cur] += 1
+        for k in range(self.max_bit, -1, -1):
+            bit = (num >> k) & 1
+            if self.to[bit][cur] == -1:
+                self.to[bit][cur] = len(self.cnt)
+                self.to[0].append(-1)
+                self.to[1].append(-1)
+                self.cnt.append(0)
+            cur = self.to[bit][cur]
+            self.cnt[cur] += 1
+
+    def remove(self, num: int) -> bool:
+        if self.cnt[0] == 0:
+            return False
+        cur = 0
+        rm = [0]
+        for k in range(self.max_bit, -1, -1):
+            bit = (num >> k) & 1
+            cur = self.to[bit][cur]
+            if cur == -1 or self.cnt[cur] == 0:
+                return False
+            rm.append(cur)
+        for cur in rm:
+            self.cnt[cur] -= 1
+        return True
+
+    def count(self, num: int):
+        cur = 0
+        for k in range(self.max_bit, -1, -1):
+            bit = (num >> k) & 1
+            cur = self.to[bit][cur]
+            if cur == -1 or self.cnt[cur] == 0:
+                return 0
+        return self.cnt[cur]
+
+    # Get max result for constant x ^ element in array
+    def max_xor(self, x: int) -> int:
+        if self.cnt[0] == 0:
+            return -self.inf
+        res = cur = 0
+        for k in range(self.max_bit, -1, -1):
+            bit = (x >> k) & 1
+            nxt = self.to[bit ^ 1][cur]
+            if nxt == -1 or self.cnt[nxt] == 0:
+                cur = self.to[bit][cur]
+            else:
+                cur = nxt
+                res |= 1 << k
+        return res
+
+    # Get min result for constant x ^ element in array
+    def min_xor(self, x: int) -> int:
+        if self.cnt[0] == 0:
+            return self.inf
+        res = cur = 0
+        for k in range(self.max_bit, -1, -1):
+            bit = (x >> k) & 1
+            nxt = self.to[bit][cur]
+            if nxt == -1 or self.cnt[nxt] == 0:
+                res |= 1 << k
+                cur = self.to[bit ^ 1][cur]
+            else:
+                cur = nxt
+        return res
+
+
+
 class Solution:
     def __int__(self):
         return
@@ -466,7 +543,6 @@ class Solution:
             low >>= 1
             high >>= 1
         return ans // 2
-
 
     @staticmethod
     def cf_706d(ac=FastIO()):
@@ -828,6 +904,37 @@ class Solution:
             low >>= 1
             high >>= 1
         ac.st(ans//2)
+        return
+
+    @staticmethod
+    def lc_421(nums: List[int]) -> int:
+        # 模板：求解数组最大的异或对
+        trie = TrieZeroOneXorMax(32)
+        ans = 0
+        for num in nums:
+            cur = trie.query_xor_max(num)
+            ans = ans if ans > cur else cur
+            trie.add(num)
+        return ans
+
+    @staticmethod
+    def cf_282e(ac=FastIO()):
+        # 模板：维护和查询最大异或数值对
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        ans = pre = 0
+        trie = BinaryTrie(40)
+        trie.add(0)
+        for i in range(n):
+            pre ^= nums[i]
+            trie.add(pre)
+            ans = ac.max(ans, pre)
+
+        pre = 0
+        for i in range(n - 1, -1, -1):
+            pre ^= nums[i]
+            ans = ac.max(ans, trie.max_xor(pre))
+        ac.st(ans)
         return
 
 
