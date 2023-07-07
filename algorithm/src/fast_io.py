@@ -120,10 +120,18 @@ class FastIO:
         return wrappedfunc
 
     def ask(self, lst):
+        # CF交互题输出询问并读取结果
         self.lst(lst)
         sys.stdout.flush()
         res = self.read_int()
+        # 记得任何一个输出之后都要 sys.stdout.flush() 刷新
         return res
+
+    def out_put(self, lst):
+        # CF交互题输出最终答案
+        self.lst(lst)
+        sys.stdout.flush()
+        return
 
     @staticmethod
     def accumulate(nums):
