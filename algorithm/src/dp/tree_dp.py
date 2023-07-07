@@ -26,6 +26,7 @@ from algorithm.src.graph.union_find import UnionFind
 2445. 值为 1 的节点数（https://leetcode.cn/problems/number-of-nodes-with-value-one/）自上而下DP模拟
 834. 树中距离之和（https://leetcode.cn/problems/sum-of-distances-in-tree/）树的总距离，求树的重心
 1617. 统计子树中城市之间最大距离（https://leetcode.cn/problems/count-subtrees-with-max-distance-between-cities/）经典枚举直径端点与乘法原理树形DP进行计算
+2003. 每棵子树内缺失的最小基因值（https://leetcode.cn/problems/smallest-missing-genetic-value-in-each-subtree/）树形DP启发式合并
 
 ===================================洛谷===================================
 

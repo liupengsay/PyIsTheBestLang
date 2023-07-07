@@ -34,6 +34,7 @@ from math import inf
 1559. 二维网格图中探测环（https://leetcode.cn/problems/detect-cycles-in-2d-grid/）经典并查集判环
 1569. 将子数组重新排序得到同一个二叉搜索树的方案数（https://leetcode.cn/problems/number-of-ways-to-reorder-array-to-get-same-bst/）逆序思维，倒序利用并查集建立二叉搜索树，排列组合加并查集
 1970. 你能穿过矩阵的最后一天（https://leetcode.cn/problems/last-day-where-you-can-still-cross/）经典逆序思维并查集
+1998. 数组的最大公因数排序（https://leetcode.cn/problems/gcd-sort-of-an-array/）经典并查集加质因数分解
 
 ===================================洛谷===================================
 P3367 并查集（https://www.luogu.com.cn/problem/P3367）计算连通分块的数量
