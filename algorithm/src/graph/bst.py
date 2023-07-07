@@ -38,6 +38,7 @@ sys.setrecursionlimit(10000000)
 
 ===================================力扣===================================
 1569. 将子数组重新排序得到同一个二叉搜索树的方案数（https://leetcode.cn/problems/number-of-ways-to-reorder-array-to-get-same-bst/）逆序思维，倒序利用并查集建立二叉搜索树，排列组合加并查集
+1902. 给定二叉搜索树的插入顺序求深度（https://leetcode.cn/problems/depth-of-bst-given-insertion-order/）按照顺序建立二叉树求深度
 
 ===================================洛谷===================================
 P2171 Hz吐泡泡（https://www.luogu.com.cn/problem/P2171）依次输入数据生成二叉搜索树，可使用逆序并查集
@@ -76,7 +77,7 @@ class BinarySearchTreeByArray:
         return
 
     @staticmethod
-    def build(nums):
+    def build(nums: List[int]):
         n = len(nums)
         ind = list(range(n))
         ind.sort(key=lambda it: nums[it])  # 索引
@@ -96,6 +97,41 @@ class BinarySearchTreeByArray:
                 dct[i].append(r)
                 uf.union(i, r)
             post[x] = i
+        return dct
+
+    @staticmethod
+    def build_with_stack(nums: List[int]):
+        # 模板：按顺序生成二叉树，返回二叉树的索引父子信息
+        n = len(nums)
+        # 先按照大小关系编码成 1..n
+        lst = sorted(nums)
+        dct = {num: i + 1 for i, num in enumerate(lst)}
+        ind = {num: i for i, num in enumerate(nums)}
+        order = [dct[i] for i in nums]
+        father, occur, stack = [0] * (n + 1), [0] * (n + 1), []
+        deep = [0] * (n + 1)
+        for i, x in enumerate(order, 1):
+            occur[x] = i
+        # 记录原数组索引的父子关系
+        for x, i in enumerate(occur):
+            while stack and occur[stack[-1]] > i:
+                if occur[father[stack[-1]]] < i:
+                    father[stack[-1]] = x
+                stack.pop()
+            if stack:
+                father[x] = stack[-1]
+            stack.append(x)
+
+        for x in order:
+            deep[x] = 1 + deep[father[x]]
+
+        dct = [[] for _ in range(n)]
+        for i in range(1, n + 1):
+            if father[i]:
+                u, v = father[i]-1, i-1
+                x, y = ind[lst[u]], ind[lst[v]]
+                dct[x].append(y)
+
         return dct
 
 
@@ -344,7 +380,7 @@ class Solution:
     def lg_p2171_3(ac=FastIO()):
         ac.read_int()
         nums = ac.read_list_ints()
-        dct = BinarySearchTreeByArray().build(nums)
+        dct = BinarySearchTreeByArray().build(nums)  # 或者是 build_with_stack
         # 使用迭代的方式计算后序遍历
         ans = []
         depth = 0
@@ -364,6 +400,19 @@ class Solution:
         for a in ans:
             ac.st(a)
         return
+
+    @staticmethod
+    def lc_1902(order: List[int]) -> int:
+        # 模板：按照顺序建立二叉树求深度
+        dct = BinarySearchTreeByArray().build(order)
+        stack = [[0, 1]]
+        ans = 1
+        while stack:
+            i, d = stack.pop()
+            for j in dct[i]:
+                stack.append([j, d+1])
+                ans = ans if ans > d + 1 else d + 1
+        return ans
 
 
 class TestGeneral(unittest.TestCase):
@@ -454,6 +503,26 @@ class TestGeneral(unittest.TestCase):
                 ans.append(nums[i])
         return
 
+    @staticmethod
+    def lg_2171_3_input_2(n, nums):
+        dct = BinarySearchTreeByArray().build_with_stack(nums)
+        # 使用迭代的方式计算后序遍历（离线）
+        ans = []
+        depth = 0
+        stack = [[0, 1]]
+        while stack:
+            i, d = stack.pop()
+            if i >= 0:
+                stack.append([~i, d])
+                dct[i].sort(key=lambda it: -nums[it])
+                for j in dct[i]:
+                    stack.append([j, d+1])
+            else:
+                i = ~i
+                depth = depth if depth > d else d
+                ans.append(nums[i])
+        return
+
     def test_solution(self):
         n = 1000000
         nums = [random.randint(1, n) for _ in range(n)]
@@ -467,15 +536,21 @@ class TestGeneral(unittest.TestCase):
         t3 = time.time()
         self.lg_2171_3_input(n, nums[:])
         t4 = time.time()
-        print(n, t2-t1, t3-t2, t4-t3)
+        self.lg_2171_3_input_2(n, nums[:])
+        t5 = time.time()
+        print(n, t2-t1, t3 - t2, t4 - t3, t5-t4)
 
+        t1 = time.time()
         nums = list(range(1, n+1))
         t2 = time.time()
         self.lg_2171_2_input(n, nums[:])
         t3 = time.time()
         self.lg_2171_3_input(n, nums[:])
         t4 = time.time()
-        print(n, t3 - t2, t4 - t3)
+        self.lg_2171_3_input_2(n, nums[:])
+        t5 = time.time()
+        print(n, t2-t1, t3 - t2, t4 - t3, t5-t4)
+
         return
 
 

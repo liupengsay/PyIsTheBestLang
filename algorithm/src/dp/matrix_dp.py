@@ -40,6 +40,7 @@ from algorithm.src.mathmatics.comb_perm import Combinatorics
 1092. 最短公共超序列（https://leetcode.cn/problems/shortest-common-supersequence/）经典LCS问题并输出方案，可使用LIS求解
 1692. 计算分配糖果的不同方式（https://leetcode.cn/problems/count-ways-to-distribute-candies/）矩阵DP计算方案数
 1771. 由子序列构造的最长回文串的长度（https://leetcode.cn/problems/maximize-palindrome-length-from-subsequences/）经典回文矩阵DP
+1883. 准时抵达会议现场的最小跳过休息次数（https://leetcode.cn/problems/minimum-skips-to-arrive-at-meeting-on-time/）矩阵 DP
 
 ===================================洛谷===================================
 P2701 [USACO5.3]巨大的牛棚Big Barn（https://www.luogu.com.cn/problem/P2701）求全为 "." 的最大正方形面积，如果不要求实心只能做到O(n^3)复杂度

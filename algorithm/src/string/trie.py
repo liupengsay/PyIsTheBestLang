@@ -49,80 +49,6 @@ E. Sausage Maximization（https://codeforces.com/contest/282/problem/E）转换�
 参考：OI WiKi（）
 """
 
-
-class Node:
-    def __init__(self):
-        self.data = 0
-        self.left = None  # bit为0
-        self.right = None  # bit为1
-        self.count = 0
-
-
-class TrieZeroOneXorNode:
-    def __init__(self):
-        # 使用自定义节点实现
-        self.root = Node()
-        self.cur = None
-        self.n = 31
-
-    def add(self, val):
-        self.cur = self.root
-        for i in range(self.n, -1, -1):
-            v = val & (1 << i)
-            if v:
-                # 1 走右边
-                if not self.cur.right:
-                    self.cur.right = Node()
-                self.cur = self.cur.right
-                self.cur.count += 1
-            else:
-                # 0 走左边
-                if not self.cur.left:
-                    self.cur.left = Node()
-                self.cur = self.cur.left
-                self.cur.count += 1
-        self.cur.data = val
-        return
-
-    def delete(self, val):
-        self.cur = self.root
-        for i in range(self.n, -1, -1):
-            v = val & (1 << i)
-            if v:
-                # 1 走右边
-                if self.cur.right.count == 1:
-                    self.cur.right = None
-                    break
-                self.cur = self.cur.right
-                self.cur.count -= 1
-            else:
-                # 0 走左边
-                if self.cur.left.count == 1:
-                    self.cur.left = None
-                    break
-                self.cur = self.cur.left
-                self.cur.count -= 1
-        return
-
-    def query(self, val):
-        self.cur = self.root
-        for i in range(self.n, -1, -1):
-            v = val & (1 << i)
-            if v:
-                # 1 优先走相反方向的左边
-                if self.cur.left and self.cur.left.count > 0:
-                    self.cur = self.cur.left
-                elif self.cur.right and self.cur.right.count > 0:
-                    self.cur = self.cur.right
-            else:
-                # 0 优先走相反方向的右边
-                if self.cur.right and self.cur.right.count > 0:
-                    self.cur = self.cur.right
-                elif self.cur.left and self.cur.left.count > 0:
-                    self.cur = self.cur.left
-        return val ^ self.cur.data
-
-
 class TrieZeroOneXorRange:
     def __init__(self, n):
         # 使用字典数据结构实现
@@ -547,17 +473,17 @@ class Solution:
     @staticmethod
     def cf_706d(ac=FastIO()):
         # 模板：使用01字典树增加与删除数字后查询最大异或值
+        trie = BinaryTrie(32)
         q = ac.read_int()
-        trie = TrieZeroOneXorNode()
         trie.add(0)
         for _ in range(q):
             op, x = ac.read_list_strs()
             if op == "+":
                 trie.add(int(x))
             elif op == "-":
-                trie.delete(int(x))
+                trie.remove(int(x))
             else:
-                ac.st(trie.query(int(x)))
+                ac.st(trie.max_xor(int(x)))
         return
 
     @staticmethod
@@ -716,13 +642,13 @@ class Solution:
             dct[j][i] = w
 
         ans = 0
-        trie = TrieZeroOneXorNode()
+        trie = BinaryTrie(32)
 
         stack = [[0, -1, 0]]
         ceil = (1 << 31) - 1
         while stack:
             i, fa, val = stack.pop()
-            ans = max(ans, trie.query(val))
+            ans = max(ans, trie.max_xor(val))
             if ans == ceil:
                 break
             trie.add(val)
