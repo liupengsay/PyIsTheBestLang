@@ -44,6 +44,9 @@ from algorithm.src.fast_io import FastIO
 2156 查找给定哈希值的子串（https://leetcode.cn/problems/find-substring-with-given-hash-value/）逆向进行字符串哈希的计算
 652. 寻找重复的子树（https://leetcode.cn/problems/find-duplicate-subtrees/）树哈希，确定重复子树
 1554. 只有一个不同字符的字符串（https://leetcode.cn/problems/strings-differ-by-one-character/）字符串前后缀哈希求解
+1923. 最长公共子路径（https://leetcode.cn/problems/longest-common-subpath/）经典二分查找加滚动哈希
+
+
 ===================================洛谷===================================
 P8835 [传智杯 #3 决赛] 子串（https://www.luogu.com.cn/record/list?user=739032&status=12&page=14）字符串哈希或者KMP查找匹配的连续子串
 P6140 [USACO07NOV]Best Cow Line S（https://www.luogu.com.cn/problem/P6140）贪心模拟与字典序比较，使用字符串哈希与二分查找比较正序与倒序最长公共子串

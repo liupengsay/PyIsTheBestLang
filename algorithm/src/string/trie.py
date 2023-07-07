@@ -5,7 +5,7 @@ import unittest
 from algorithm.src.fast_io import FastIO
 from typing import List
 from math import inf
-from collections import Counter
+from collections import Counter, defaultdict
 
 """
 算法：Trie字典树，也叫前缀树
@@ -21,6 +21,7 @@ from collections import Counter
 2479. 两个不重叠子树的最大异或值（https://leetcode.cn/problems/maximum-xor-of-two-non-overlapping-subtrees/）01Trie计算最大异或值
 面试题 17.17. 多次搜索（https://leetcode.cn/problems/multi-search-lcci/）AC自动机计数，也可直接使用字典树逆向思维，字典树存关键字，再搜索文本，和单词矩阵一样的套路
 1707. 与数组中元素的最大异或值（https://leetcode.cn/problems/maximum-xor-with-an-element-from-array/）经典排序后离线查询并使用 01 Trie求解
+1938. 查询最大基因差（https://leetcode.cn/problems/maximum-genetic-difference-query/）使用深搜回溯与01Trie查询最大异或值
 
 ===================================洛谷===================================
 P8306 字典树（https://www.luogu.com.cn/problem/P8306）
@@ -398,7 +399,6 @@ class BinaryTrie:
             else:
                 cur = nxt
         return res
-
 
 
 class Solution:
@@ -862,6 +862,35 @@ class Solution:
             ans = ac.max(ans, trie.max_xor(pre))
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_1938(parents: List[int], queries: List[List[int]]) -> List[int]:
+        # 模板：深搜回溯结合01Trie离线查询最大异或值对
+        dct = defaultdict(list)
+        n = len(parents)
+        for i in range(n):
+            dct[parents[i]].append(i)
+        # 存储需要查询的组合
+        ans = defaultdict(dict)
+        for node, val in queries:
+            ans[node][val] = 0
+
+        # 深度优先搜索更新每条路径的前缀值字典树
+        def dfs(root):
+            trie.add(root)
+            for k in ans[root]:
+                # 查询结果
+                ans[root][k] = trie.max_xor(k)
+            for nex in dct[root]:
+                dfs(nex)
+                # 回溯
+                trie.remove(nex)
+            return
+
+        # 从根节点开始搜索
+        trie = BinaryTrie(20)
+        dfs(dct[-1][0])
+        return [ans[node][val] for node, val in queries]
 
 
 class TestGeneral(unittest.TestCase):

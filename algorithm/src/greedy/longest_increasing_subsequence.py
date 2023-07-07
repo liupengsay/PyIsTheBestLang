@@ -26,6 +26,7 @@ dilworth定理：分成不下降子序列最小组数等于最大上升子序列
 最长递增子序列（https://www.nowcoder.com/questionTerminal/30fb9b3cab9742ecae9acda1c75bf927?orderByHotValue=1&questionTypes=000100&difficulty=11111&mutiTagIds=593&page=10&onlyReference=false）最长且字典序最小的递增子序列
 1691. 堆叠长方体的最大高度（https://leetcode.cn/problems/maximum-height-by-stacking-cuboids/submissions/）经典三维偏序LIS问题
 1713. 得到子序列的最少操作次数（https://leetcode.cn/problems/minimum-operations-to-make-a-subsequence/）经典LCS问题转换为LIS
+1940. 排序数组之间的最长公共子序列（https://leetcode.cn/problems/longest-common-subsequence-between-sorted-arrays/）经典LCS问题转为LIS问题
 
 ===================================洛谷===================================
 P1020 导弹拦截（https://www.luogu.com.cn/problem/P1020）使用贪心加二分计算最长单调不减和单调不增子序列的长度
@@ -125,13 +126,15 @@ class LcsLis:
         for c in s1:
             if c in mapper:
                 nums.extend(mapper[c])
-
+        # 这里返回的是 s2 的索引不是具体的值
         res = self.longest_increasing_subsequence_stack(nums)
         return res
 
     @staticmethod
     def longest_increasing_subsequence_stack(nums: List[int]) -> List[int]:
         # 使用贪心二分求LIS
+        if not nums:
+            return []
         n = len(nums)
         tops = [nums[0]]
         piles = [0] * n
@@ -152,7 +155,7 @@ class LcsLis:
             if piles[i] == j:
                 lis.append(nums[i])
                 j -= 1
-        lis.reverse() # 反转列表，输出字典序最小的方案
+        lis.reverse()  # 反转列表，输出字典序最小的方案
         # 还可以返回stack获得最长公共子序列
         return lis
 
