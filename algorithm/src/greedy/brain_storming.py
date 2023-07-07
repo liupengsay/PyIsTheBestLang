@@ -39,6 +39,7 @@ from algorithm.src.fast_io import FastIO
 1675. 数组的最小偏移量（https://leetcode.cn/problems/minimize-deviation-in-array/）脑筋急转弯贪心
 1686. 石子游戏 VI（https://leetcode.cn/problems/stone-game-vi/）经典贪心采用列式子确定排序方式
 1808. 好因子的最大数目（https://leetcode.cn/problems/maximize-number-of-nice-divisors/）按照模3的因子个数贪心处理
+1953. 你可以工作的最大周数（https://leetcode.cn/problems/maximum-number-of-weeks-for-which-you-can-work/）经典贪心只看最大值的影响
 
 ===================================洛谷===================================
 P1031 均分纸牌（https://www.luogu.com.cn/problem/P1031）贪心计算每个点的前缀和流量，需要补齐或者输出时进行计数

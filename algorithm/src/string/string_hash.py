@@ -45,7 +45,7 @@ from algorithm.src.fast_io import FastIO
 652. 寻找重复的子树（https://leetcode.cn/problems/find-duplicate-subtrees/）树哈希，确定重复子树
 1554. 只有一个不同字符的字符串（https://leetcode.cn/problems/strings-differ-by-one-character/）字符串前后缀哈希求解
 1923. 最长公共子路径（https://leetcode.cn/problems/longest-common-subpath/）经典二分查找加滚动哈希
-
+1948. 删除系统中的重复文件夹（https://leetcode.cn/problems/delete-duplicate-folders-in-system/）字典树与树哈希去重
 
 ===================================洛谷===================================
 P8835 [传智杯 #3 决赛] 子串（https://www.luogu.com.cn/record/list?user=739032&status=12&page=14）字符串哈希或者KMP查找匹配的连续子串

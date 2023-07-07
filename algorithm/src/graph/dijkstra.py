@@ -30,6 +30,8 @@ from algorithm.src.graph.spfa import SPFA
 1786. 从第一个节点出发到最后一个节点的受限路径数（https://leetcode.cn/problems/number-of-restricted-paths-from-first-to-last-node/）经典dijkstra受限最短路计数（类似最短路计数）
 1928. 规定时间内到达终点的最小花费（https://leetcode.cn/problems/minimum-cost-to-reach-destination-in-time/）经典Dijkstra带约束的最短路，也可用动态规划求解
 LCP 75. 传送卷轴（https://leetcode.cn/problems/rdmXM7/）首先BFS之后计算最大值最小的最短路
+1976. 到达目的地的方案数（https://leetcode.cn/problems/number-of-ways-to-arrive-at-destination/）经典Dijkstra最短路计数模板题
+
 ===================================洛谷===================================
 P3371 单源最短路径（弱化版）（https://www.luogu.com.cn/problem/P3371）最短路模板题
 P4779 【模板】单源最短路径（标准版）（https://www.luogu.com.cn/problem/P4779）最短路模板题
@@ -1664,6 +1666,15 @@ class Solution:
                     cnt[nex] += cnt[cur]
                     cnt[nex] %= mod
         return cnt[0]
+
+    @staticmethod
+    def lc_1976(n: int, roads: List[List[int]]) -> int:
+        # 模板：经典Dijkstra最短路计数模板题
+        mod = 10 ** 9 + 7
+        dct = [dict() for _ in range(n)]
+        for i, j, t in roads:
+            dct[i][j] = dct[j][i] = t
+        return Dijkstra().get_dijkstra_cnt(dct, 0)[0][n-1] % mod
 
 
 class TestGeneral(unittest.TestCase):
