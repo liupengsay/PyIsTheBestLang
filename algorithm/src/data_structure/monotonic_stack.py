@@ -30,6 +30,7 @@ from algorithm.src.fast_io import FastIO
 1840. 最高建筑高度（https://leetcode.cn/problems/maximum-building-height/）经典单调栈贪心
 1944. 队列中可以看到的人数（https://leetcode.cn/problems/number-of-visible-people-in-a-queue/）经典逆序单调栈
 1950. 所有子数组最小值中的最大值（https://leetcode.cn/problems/maximum-of-minimum-values-in-all-subarrays/）经典单调栈利用计算
+2030. 含特定字母的最小子序列（https://leetcode.cn/problems/smallest-k-length-subsequence-with-occurrences-of-a-letter/）经典单调栈删除获得满足条件的最小字典序使用
 
 ===================================洛谷===================================
 P1950 长方形（https://www.luogu.com.cn/problem/P1950）通过枚举下边界，结合单调栈计算矩形个数

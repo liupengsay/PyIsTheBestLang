@@ -29,6 +29,7 @@ from algorithm.src.graph.union_find import UnionFind
 1201. 丑数 III（https://leetcode.cn/problems/ugly-number-iii/）二分加容斥原理计数
 1739. 放置盒子（https://leetcode.cn/problems/building-boxes/）可推公式二分也可数学方法计算
 1889. 装包裹的最小浪费空间（https://leetcode.cn/problems/minimum-space-wasted-from-packaging/）排序加贪心二分
+2071. 你可以安排的最多任务数目（https://leetcode.cn/problems/maximum-number-of-tasks-you-can-assign/）经典二分加贪心
 
 ===================================洛谷===================================
 P1577 切绳子（https://www.luogu.com.cn/problem/P1577）数学整除向下取整与二分

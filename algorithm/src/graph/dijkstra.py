@@ -31,6 +31,8 @@ from algorithm.src.graph.spfa import SPFA
 1928. 规定时间内到达终点的最小花费（https://leetcode.cn/problems/minimum-cost-to-reach-destination-in-time/）经典Dijkstra带约束的最短路，也可用动态规划求解
 LCP 75. 传送卷轴（https://leetcode.cn/problems/rdmXM7/）首先BFS之后计算最大值最小的最短路
 1976. 到达目的地的方案数（https://leetcode.cn/problems/number-of-ways-to-arrive-at-destination/）经典Dijkstra最短路计数模板题
+2045. 到达目的地的第二短时间（https://leetcode.cn/problems/second-minimum-time-to-reach-destination/）不带权的严格次短路耗时模拟计算
+2093. 前往目标城市的最小费用（https://leetcode.cn/problems/minimum-cost-to-reach-city-with-discounts/）经典Dijkstra带约束的最短路
 
 ===================================洛谷===================================
 P3371 单源最短路径（弱化版）（https://www.luogu.com.cn/problem/P3371）最短路模板题
@@ -459,6 +461,34 @@ class Solution:
                 if cnt + 1 < dis[j]:
                     heapq.heappush(stack, [cost + dct[i][j], cnt + 1, j])
         return -1
+
+    @staticmethod
+    def lc_2093(n: int, highways: List[List[int]], discounts: int) -> int:
+        # 模板：Dijkstra 带约束的最短路
+        dct = [[] for _ in range(n)]
+        for u, v, p in highways:
+            dct[u].append([v, p])
+            dct[v].append([u, p])
+
+        # 第一维是花费，第二维是折扣次数
+        stack = [[0, 0, 0]]
+        dis = [inf] * n
+        while stack:
+            cost, cnt, i = heapq.heappop(stack)
+            # 前面的代价已经比当前小了若是折扣次数更多则显然不可取
+            if dis[i] <= cnt:
+                continue
+            if i == n - 1:
+                return cost
+            dis[i] = cnt
+            for j, w in dct[i]:
+                if cnt < dis[j]:
+                    heapq.heappush(stack, [cost + w, cnt, j])
+                if cnt + 1 < dis[j] and cnt + 1 <= discounts:
+                    heapq.heappush(stack, [cost + w // 2, cnt + 1, j])
+
+        return -1
+
 
     @staticmethod
     def lc_1293(grid: List[List[int]], k: int) -> int:
