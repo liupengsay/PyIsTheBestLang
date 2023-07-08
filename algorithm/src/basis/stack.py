@@ -16,6 +16,7 @@ from algorithm.src.fast_io import FastIO, inf
 2197. 替换数组中的非互质数（https://leetcode.cn/problems/replace-non-coprime-numbers-in-array/）结合数学使用栈进行模拟
 394. 字符串解码（https://leetcode.cn/problems/decode-string/）经典解码带括号成倍的字符和数字
 1096. 花括号展开 II（https://leetcode.cn/problems/brace-expansion-ii/）使用栈进行字符解码
+2116. 判断一个括号字符串是否有效（https://leetcode.cn/problems/check-if-a-parentheses-string-can-be-valid/）经典栈贪心匹配括号
 
 ===================================洛谷===================================
 P1944 最长括号匹配（https://www.luogu.com.cn/problem/P1944）最长连续合法括号字串长度
