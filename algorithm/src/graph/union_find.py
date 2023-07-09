@@ -35,6 +35,7 @@ from math import inf
 1569. 将子数组重新排序得到同一个二叉搜索树的方案数（https://leetcode.cn/problems/number-of-ways-to-reorder-array-to-get-same-bst/）逆序思维，倒序利用并查集建立二叉搜索树，排列组合加并查集
 1970. 你能穿过矩阵的最后一天（https://leetcode.cn/problems/last-day-where-you-can-still-cross/）经典逆序思维并查集
 1998. 数组的最大公因数排序（https://leetcode.cn/problems/gcd-sort-of-an-array/）经典并查集加质因数分解
+2158. 每天绘制新区域的数量（https://leetcode.cn/problems/amount-of-new-area-painted-each-day/）经典区间并查集
 
 ===================================洛谷===================================
 P3367 并查集（https://www.luogu.com.cn/problem/P3367）计算连通分块的数量
@@ -128,6 +129,33 @@ class UnionFind:
         for i in range(n):
             size[self.find(i)] = self.size[self.find(i)]
         return size
+
+
+class UnionFindRightRange:
+    # 模板：向右合并的并查集
+    def __init__(self, n: int) -> None:
+        self.root = [i for i in range(n)]
+        return
+
+    def find(self, x):
+        lst = []
+        while x != self.root[x]:
+            lst.append(x)
+            # 在查询的时候合并到顺带直接根节点
+            x = self.root[x]
+        for w in lst:
+            self.root[w] = x
+        return x
+
+    def union(self, x, y):
+        root_x = self.find(x)
+        root_y = self.find(y)
+        if root_x == root_y:
+            return False
+        if root_x > root_y:
+            root_x, root_y = root_y, root_x
+        self.root[root_x] = root_y
+        return True
 
 
 class UnionFindWeighted:
@@ -976,6 +1004,23 @@ class Solution:
                 ans %= mod
                 sub[i] += 1
         ans = (ans - 1) % mod
+        return ans
+
+    @staticmethod
+    def lc_2158(paint: List[List[int]]) -> List[int]:
+        # 模板：区间并查集
+        m = 5*10**4+10
+        uf = UnionFindRightRange(m)
+        ans = []
+        for a, b in paint:
+            cnt = 0
+            while a < b:
+                a = uf.find(a)
+                if a < b:
+                    cnt += 1
+                    uf.union(a, a+1)
+                    a += 1
+            ans.append(cnt)
         return ans
 
 
