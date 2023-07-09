@@ -19,6 +19,7 @@ from algorithm.src.graph.union_find import UnionFind
 127. 参加会议的最多员工数（https://leetcode.cn/problems/maximum-employees-to-be-invited-to-a-meeting/）
 269. 火星词典（https://leetcode.cn/problems/alien-dictionary/）经典按照字典序建图，与拓扑排序的应用
 2603. 收集树中金币（https://leetcode.cn/contest/weekly-contest-338/problems/collect-coins-in-a-tree/）无向图拓扑排序内向基环树
+2204. 无向图中到环的距离（https://leetcode.cn/problems/distance-to-a-cycle-in-undirected-graph/https://leetcode.cn/problems/distance-to-a-cycle-in-undirected-graph/）无向图拓扑排序
 
 
 ===================================洛谷===================================
@@ -695,6 +696,36 @@ class Solution:
             else:
                 ac.st("Deception")
         return
+
+    @staticmethod
+    def lc_2204(n: int, edges: List[List[int]]) -> List[int]:
+        # 模板：无向图拓扑排序
+        dct = [[] for _ in range(n)]
+        degree = [0]*n
+        for i, j in edges:
+            dct[i].append(j)
+            dct[j].append(i)
+            degree[i] += 1
+            degree[j] += 1
+        stack = deque([i for i in range(n) if degree[i] == 1])
+        while stack:
+            i = stack.popleft()
+            for j in dct[i]:
+                degree[j] -= 1
+                if degree[j] == 1:
+                    stack.append(j)
+
+        circle = deque([i for i in range(n) if degree[i] > 1])
+        ans = [-1]*n
+        for i in circle:
+            ans[i] = 0
+        while circle:
+            i = circle.popleft()
+            for j in dct[i]:
+                if ans[j] == -1:
+                    ans[j] = ans[i] + 1
+                    circle.append(j)
+        return ans
 
 
 class TestGeneral(unittest.TestCase):

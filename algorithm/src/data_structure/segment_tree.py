@@ -22,6 +22,7 @@ from algorithm.src.fast_io import inf, FastIO
 6318. 完成所有任务的最少时间（https://leetcode.cn/contest/weekly-contest-336/problems/minimum-time-to-complete-all-tasks/）线段树，贪心加二分
 732. 我的日程安排表 III（https://leetcode.cn/problems/my-calendar-iii/）使用defaultdict进行动态开点线段树
 1851. 包含每个查询的最小区间（https://leetcode.cn/problems/minimum-interval-to-include-each-query/）区间更新最小值、单点查询，也可以用离线查询与优先队列维护计算
+2213. 由单个字符重复的最长子字符串（https://leetcode.cn/problems/longest-substring-of-one-repeating-character/）单点字母更新，最长具有相同字母的连续子数组查询
 
 ===================================洛谷===================================
 P2846 [USACO08NOV]Light Switching G（https://www.luogu.com.cn/problem/P2846）线段树统计区间翻转和
@@ -2109,6 +2110,100 @@ class SegmentTreeRangeAndOrXOR:
         return res
 
 
+class SegmentTreeLongestSubSameNode:
+    # 模板：结构化线段树节点
+    def __init__(self, pref=(-1, 0), suf=(-1, 0), ma=0):
+        self.pref = pref
+        self.suf = suf
+        self.ma = ma
+        return
+
+
+class SegmentTreeLongestSubSame:
+    # 模板：单点字母更新，最长具有相同字母的连续子数组查询
+    def __init__(self, n):
+        self.n = n
+        # 注意深浅拷贝的问题
+        self.cover = [SegmentTreeLongestSubSameNode() for _ in range(4*n)]
+        return
+
+    def build(self, nums: List[int]):
+        # 使用数组初始化线段树
+        stack = [[0, self.n - 1, 1]]
+        while stack:
+            s, t, ind = stack.pop()
+            if ind >= 0:
+                if s == t:
+                    self.make_tag(ind, nums[s])
+                else:
+                    stack.append([s, t, ~ind])
+                    m = s + (t - s) // 2
+                    stack.append([s, m, 2 * ind])
+                    stack.append([m + 1, t, 2 * ind + 1])
+            else:
+                ind = ~ind
+                self.push_up(ind, s, t)
+        return
+
+    @staticmethod
+    def min(a, b):
+        return a if a < b else b
+
+    @staticmethod
+    def max(a, b):
+        return a if a > b else b
+
+    def make_tag(self, i, val):
+        self.cover[i].pref = (val, 1)
+        self.cover[i].suf = (val, 1)
+        self.cover[i].ma = 1
+        return
+
+    def push_up(self, i, s, t):
+        left, right = self.cover[2 * i], self.cover[2 * i + 1]
+        m = s + (t - s) // 2
+        length = m - s + 1
+        if left.pref[1] == length:
+            if right.pref[0] == left.pref[0]:
+                length += right.pref[1]
+            self.cover[i].pref = (left.pref[0], length)
+        else:
+            self.cover[i].pref = (left.pref[0], left.pref[1])
+
+        length = t - m
+        if right.suf[1] == length:
+            if left.suf[0] == right.suf[0]:
+                length += left.suf[1]
+            self.cover[i].suf = (right.suf[0], length)
+        else:
+            self.cover[i].suf = (right.suf[0], right.suf[1])
+        ma1 = self.max(self.cover[i].pref[1], self.cover[i].suf[1])
+        ma1 = self.max(ma1, left.suf[1] if left.suf[0] != right.pref[0] else left.suf[1] + right.pref[1])
+        ma2 = self.max(left.ma, right.ma)
+        self.cover[i].ma = self.max(ma1, ma2)
+        return
+
+    def update_point(self, left, right, s, t, val, i):
+        # 更新单点最小值
+        stack = []
+        while True:
+            stack.append([s, t, i])
+            if left <= s and t <= right:
+                self.make_tag(i, val)
+                break
+            m = s + (t - s) // 2
+            if left <= m:  # 注意左右子树的边界与范围
+                s, t, i = s, m, 2 * i
+            if right > m:
+                s, t, i = m + 1, t, 2 * i + 1
+        stack.pop()
+        while stack:
+            s, t, i = stack.pop()
+            self.push_up(i, s, t)
+        assert i == 1
+        return self.cover[i].ma
+
+
 class SegmentTreeRangeXORQuery:
     def __init__(self, n) -> None:
         # 模板：区间异或修改、单点异或查询
@@ -2274,6 +2369,17 @@ class SegmentTreeRangeSqrtSum:
 class Solution:
     def __int__(self):
         return
+
+    @staticmethod
+    def lc_2213(s: str, queryCharacters: str, queryIndices: List[int]) -> List[int]:
+        # 模板：单点字母更新，最长具有相同字母的连续子数组查询
+        n = len(s)
+        tree = SegmentTreeLongestSubSame(n)
+        tree.build([ord(w) - ord("a") for w in s])
+        ans = []
+        for i, w in zip(queryIndices, queryCharacters):
+            ans.append(tree.update_point(i, i, 0, n - 1, ord(w) - ord("a"), 1))
+        return ans
 
     @staticmethod
     def lc_6358(nums1: List[int], nums2: List[int], queries: List[List[int]]) -> List[int]:
