@@ -20,7 +20,7 @@ from algorithm.src.fast_io import FastIO
 1081. 不同字符的最小子序列（https://leetcode.cn/problems/smallest-subsequence-of-distinct-characters/）经典单调栈结合哈希与计数进行计算
 2334. 元素值大于变化阈值的子数组（https://leetcode.cn/problems/subarray-with-elements-greater-than-varying-threshold/）排序后枚举最小值左右两边的影响范围
 2262. 字符串的总引力（https://leetcode.cn/problems/total-appeal-of-a-string/）计算下一个或者上一个不同字符的位置
-2355. 你能拿走的最大图书数量（https://leetcode.cn/problems/maximum-number-of-books-you-can-take/）单调栈加DP
+2355. 你能拿走的最大图书数量（https://leetcode.cn/problems/maximum-number-of-books-you-can-take/）经典单调栈加线性DP，使用巧妙地转换
 255. 验证前序遍历序列二叉搜索树（https://leetcode.cn/problems/verify-preorder-sequence-in-binary-search-tree/）单调栈经典使用，判断数组是否为二叉搜索树的前序遍历，同样地可验证后序遍历
 654. 最大二叉树（https://leetcode.cn/problems/maximum-binary-tree/）经典单调栈应用题
 1130. 叶值的最小代价生成树（https://leetcode.cn/problems/minimum-cost-tree-from-leaf-values/）经典单调栈也可以使用区间DP
@@ -32,6 +32,8 @@ from algorithm.src.fast_io import FastIO
 1950. 所有子数组最小值中的最大值（https://leetcode.cn/problems/maximum-of-minimum-values-in-all-subarrays/）经典单调栈利用计算
 2030. 含特定字母的最小子序列（https://leetcode.cn/problems/smallest-k-length-subsequence-with-occurrences-of-a-letter/）经典单调栈删除获得满足条件的最小字典序使用
 2104. 子数组范围和（https://leetcode.cn/problems/sum-of-subarray-ranges/）经典单调栈计算贡献
+2282. 在一个网格中可以看到的人数（https://leetcode.cn/problems/number-of-people-that-can-be-seen-in-a-grid/）经典单调栈
+2289. 使数组按非递减顺序排列（https://leetcode.cn/problems/steps-to-make-array-non-decreasing/）经典单调栈模拟计算
 
 ===================================洛谷===================================
 P1950 长方形（https://www.luogu.com.cn/problem/P1950）通过枚举下边界，结合单调栈计算矩形个数
@@ -57,7 +59,7 @@ P6801 [CEOI2020] 花式围栏（https://www.luogu.com.cn/problem/P6801）经典�
 P8094 [USACO22JAN] Cow Frisbee S（https://www.luogu.com.cn/problem/P8094）单调栈典型应用前一个更大与后一个更大
 
 ================================CodeForces================================
-E. Explosions?（https://codeforces.com/problemset/problem/1795/E）单调栈贪心计数枚举，前后缀DP转移
+E. Explosions?（https://codeforces.com/problemset/problem/1795/E）单调栈优化线性DP，贪心计数枚举，前后缀DP转移
 
 
 ================================AcWing====================================
@@ -600,6 +602,55 @@ class Solution:
                 in_stack[w] = 1
             cnt[w] -= 1
         return "".join(stack)
+
+    @staticmethod
+    def lc_2355(books: List[int]) -> int:
+        # 模板：经典单调栈优化线性DP
+        n = len(books)
+        dp = [0] * n
+        stack = []
+        for i in range(n):
+
+            while stack and stack[-1][0] >= books[i] - i:
+                stack.pop()
+
+            end = books[i]
+            size = i + 1 if not stack else i - stack[-1][1]
+            size = size if size < end else end
+            cur = (end + end - size + 1) * size // 2
+
+            dp[i] = dp[stack[-1][1]] + cur if stack else cur
+            stack.append([books[i] - i, i])
+        return max(dp)
+
+    @staticmethod
+    def cf_1795e(ac=FastIO()):
+        # 模板：单调栈优化线性DP
+        for _ in range(ac.read_int()):
+
+            def check():
+                res = [0] * n
+                stack = []
+                for i in range(n):
+                    while stack and nums[stack[-1]] - stack[-1] > nums[i] - i:
+                        stack.pop()
+                    if not stack:
+                        k = ac.min(i, nums[i] - 1)
+                        res[i] = k * (nums[i] - 1 + nums[i] - k) // 2
+                    else:
+                        k = ac.min(i - stack[-1] - 1, nums[i] - 1)
+                        res[i] = k * (nums[i] - 1 + nums[i] - k) // 2 + nums[stack[-1]] + res[stack[-1]]
+                    stack.append(i)
+                return res
+
+            n = ac.read_int()
+            nums = ac.read_list_ints()
+            pre = check()
+            nums.reverse()
+            post = check()
+            ans = sum(nums) - max(pre[i] + post[n - 1 - i] for i in range(n))
+            ac.st(ans)
+        return
 
 
 class TestGeneral(unittest.TestCase):

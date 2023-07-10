@@ -8,7 +8,6 @@ from typing import List
 
 from algorithm.src.data_structure.tree_array import TreeArrayRangeSum
 from algorithm.src.fast_io import FastIO, inf
-from algorithm.src.graph.union_find import UnionFind
 
 """
 

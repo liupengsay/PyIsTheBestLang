@@ -161,6 +161,7 @@ class Solution:
             for j in range(i+2, n):
                 dp[i][j] = max(dp[i][k-1]*dp[k+1][j]+dp[k][k] for k in range(i+1, j))
 
+        # 使用栈模拟进行方案还原
         ans = []
         stack = [[0, n-1]]
         while stack:
