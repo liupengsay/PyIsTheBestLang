@@ -77,7 +77,7 @@ P1300 城市街道交通费系统（https://www.luogu.com.cn/problem/P1300）Dij
 P1354 房间最短路问题（https://www.luogu.com.cn/problem/P1354）建图Dijkstra求最短路
 P1608 路径统计（https://www.luogu.com.cn/problem/P1608）使用Dijkstra计算有向与无向、带权与不带权的最短路数量
 P1828 [USACO3.2]香甜的黄油 Sweet Butter（https://www.luogu.com.cn/problem/P1828）多个单源Dijkstra最短路计算
-P2047 [NOI2007] 社交网络（https://www.luogu.com.cn/problem/P2047）Dijkstra计算经过每个点的所有最短路条数占比
+P2047 [NOI2007] 社交网络（https://www.luogu.com.cn/problem/P2047）Dijkstra计算经过每个点的所有最短路条数占比，也可以使用Floyd进行计算
 P2269 [HNOI2002]高质量的数据传输（https://www.luogu.com.cn/problem/P2269）比较两个项的最短路计算
 P2349 金字塔（https://www.luogu.com.cn/problem/P2349）比较两个项相加的最短路
 P2914 [USACO08OCT]Power Failure G（https://www.luogu.com.cn/problem/P2914）Dijkstra动态建图计算距离
@@ -98,7 +98,7 @@ P6512 [QkOI#R1] Quark and Flying Pigs（https://www.luogu.com.cn/problem/P6512�
 P8385 [POI 2003] Smugglers（https://www.luogu.com.cn/problem/P8385）经典脑筋急转弯建图最短路
 P8724 [蓝桥杯 2020 省 AB3] 限高杆（https://www.luogu.com.cn/problem/P8724）分层最短路Dijkstra计算
 P8802 [蓝桥杯 2022 国 B] 出差（https://www.luogu.com.cn/problem/P8802）Dijkstra基础权重变形题
-
+P2176 [USACO11DEC] RoadBlock S / [USACO14FEB]Roadblock G/S（https://www.luogu.com.cn/problem/P2176）枚举最短路上的边修改后，重新计算最短路
 ================================CodeForces================================
 C. Dijkstra?（https://codeforces.com/problemset/problem/20/C）正权值最短路计算，并记录返回生成路径
 E. Weights Distributing（https://codeforces.com/problemset/problem/1343/E）使用三个01BFS求最短路加贪心枚举计算

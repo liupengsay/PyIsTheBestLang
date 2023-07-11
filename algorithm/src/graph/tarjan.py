@@ -741,6 +741,7 @@ class Solution:
             i, j = ac.read_ints_minus_one()
             if i != j:
                 dct[i].add(j)
+        # 必须要使用缩点，否则单独一个环没办法获取消息
         scc_id, _, node_scc_id = TarjanCC().get_strongly_connected_component_bfs(n, [list(e) for e in dct])
 
         # 计算新图

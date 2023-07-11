@@ -662,8 +662,10 @@ class Solution:
         # 模板：前缀和计数加二分查找，最多不超多10**5
         n = 10**5
         dp = [0] * (n + 1)
-        for i in range(1, n + 1):
+        for i in range(1, n + 1):  # 序列1234..
             dp[i] = dp[i - 1] + len(str(i))
+
+        # 序列1121231234..
         pre = [0] * (n + 1)
         for i in range(1, n + 1):
             pre[i] = pre[i - 1] + dp[i]

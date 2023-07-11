@@ -400,6 +400,7 @@ class Solution:
                 dct[ind[a]][ind[b]] = float(c)
             ans = "No"
             for i in range(n):
+                # 初始值为负，若存在乘积大于1的环，这样就能一直减小到非负数
                 flag, _, _ = SPFA().negative_circle_mul(dct, i, -1)
                 if flag == "YES":
                     ans = "Yes"

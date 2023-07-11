@@ -51,7 +51,7 @@ P1196 [NOI2002] 银河英雄传说（https://www.luogu.com.cn/problem/P1196）�
 P1197 [JSOI2008] 星球大战（https://www.luogu.com.cn/problem/P1197）逆序并查集，倒序枚举计算联通块个数
 P1522 [USACO2.4] 牛的旅行 Cow Tours（https://www.luogu.com.cn/problem/P1522）连通块，枚举新增路径并高精度计算联通块直径
 P1621 集合（https://www.luogu.com.cn/problem/P1621）利用素数筛的思想对数复杂度合并公共质因数大于p的数并计算连通块数量
-P1892 [BOI2003]团伙（https://www.luogu.com.cn/problem/P1892）经典并查集，敌人与朋友关系
+P1892 [BOI2003] 团伙（https://www.luogu.com.cn/problem/P1892）经典并查集，敌人与朋友关系
 P2189 小Z的传感器（https://www.luogu.com.cn/problem/P2189）并查集经典题，确定访问顺序的合法性
 P2307 迷宫（https://www.luogu.com.cn/problem/P2307）并查集判定树的生成是否合法
 P3420 [POI2005]SKA-Piggy Banks（https://www.luogu.com.cn/problem/P3420）经典并查集变形问题

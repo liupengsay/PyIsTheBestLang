@@ -339,7 +339,7 @@ class Soluttion:
 
     @staticmethod
     def lg_p1894(ac=FastIO()):
-        # 模板：二分图最大权匹配
+        # 模板：二分图最大权匹配（不带权也可以使用匈牙利算法）
         n, m = ac.read_ints()
         s = n + m + 1
         t = n + m + 2
