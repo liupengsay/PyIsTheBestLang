@@ -41,7 +41,7 @@ P2887 [USACO07NOV] Sunscreen G（https://www.luogu.com.cn/problem/P2887）最多
 P3661 [USACO17FEB]Why Did the Cow Cross the Road I S（https://www.luogu.com.cn/problem/P3661）经典区间与点集贪心匹配
 P3737 [HAOI2014]遥感监测（https://www.luogu.com.cn/problem/P3737）经典区间点覆盖贪心
 P5199 [USACO19JAN]Mountain View S（https://www.luogu.com.cn/problem/P5199）经典区间包含贪心计算最多互不包含的区间个数
-
+P1868 饥饿的奶牛（https://www.luogu.com.cn/problem/P1868）线性DP加二分查找优化，选取并集最大且不想交的区间
 ================================CodeForces================================
 A. String Reconstruction（https://codeforces.com/problemset/problem/827/A）区间合并为不相交的区间，再贪心赋值
 D. Nested Segments（https://codeforces.com/problemset/problem/652/D）二位偏序，转换为区间包含问题
@@ -113,6 +113,32 @@ class Range:
             ans += 1
             return ans
         return -1
+
+    @staticmethod
+    def minimum_interval_coverage(clips: List[List[int]], time: int, inter=True) -> int:
+        # 模板：从 clips 中选出最小的区间数覆盖 [0, time]
+
+        post = [0]*time
+        for a, b in clips:
+            if a < time:
+                post[a] = post[a] if post[a] > b else b
+
+        ans = right = pre_end = 0
+        for i in range(time):
+            right = right if right > post[i] else post[i]
+            if i == right:
+                return -1
+            if inter:
+                if i == pre_end:  # 也可以输出具体方案，注意此时要求区间左右点相同即 [1, 3] + [3, 4] = [1, 4]
+                    #  若改为 i == pre_end + 1 则可以改为 [1, 2] + [3, 4] = [1, 4]
+                    ans += 1
+                    pre_end = right
+            else:
+                if i == pre_end + 1:  # 也可以输出具体方案，注意此时要求区间左右点相同即 [1, 3] + [3, 4] = [1, 4]
+                    #  若改为 i == pre_end + 1 则可以改为 [1, 2] + [3, 4] = [1, 4]
+                    ans += 1
+                    pre_end = right
+        return ans
 
     @staticmethod
     def disjoint_most(lst):
@@ -298,6 +324,17 @@ class Solution:
         ans = Range().cover_less(1, t, lst, False)
         ac.st(ans)
         return
+
+    @staticmethod
+    def lg_p1668_2(ac=FastIO()):
+        # 模板：最小区间覆盖问题
+        n, t = ac.read_ints()
+        t -= 1
+        lst = [ac.read_list_ints_minus_one() for _ in range(n)]
+        ans = Range().cover_less(0, t, lst, False)
+        ac.st(ans)
+        return
+
 
     @staticmethod
     def lg_p2887(ac=FastIO()):

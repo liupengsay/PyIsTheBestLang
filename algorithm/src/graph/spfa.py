@@ -197,7 +197,7 @@ class SPFA:
         for i in range(1, n + 1):  # 节点索引从 1 开始，添加 0 为虚拟根节点
             dct[0][i] = 0
         for a, b, c in ineq:  # a-b<=c
-            w = dct[b].get(a, inf)
+            w = dct[b].get(a, inf)  # 取较小值的约束
             w = w if w < c else c
             dct[b][a] = w
         ans, dis, _ = self.negative_circle(dct, 0, 0)
@@ -370,6 +370,7 @@ class Solution:
     def lg_p1260(ac=FastIO()):
         # 模板：差分约束模板题
         n, m = ac.read_ints()
+        # edges里面索引从 1 开始
         edges = [ac.read_list_ints() for _ in range(m)]
         ans, dis = SPFA().differential_constraint(edges, n)
         if ans == "YES":

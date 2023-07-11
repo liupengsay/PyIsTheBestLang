@@ -39,6 +39,8 @@ P6403 [COCI2014-2015#2] STUDENTSKO（https://www.luogu.com.cn/problem/P6403）�
 P5939 [POI1998]折线（https://www.luogu.com.cn/problem/P5939）旋转后转换为 LIS 问题
 P5978 [CEOI2018] Global warming（https://www.luogu.com.cn/problem/P5978）经典 LIS 变形问题，贪心枚举前半部分
 P7957 [COCI2014-2015#6] KRATKI（https://www.luogu.com.cn/problem/P7957）经典 LMS 逆问题构造
+P1410 子序列（https://www.luogu.com.cn/problem/P1410）使用dilworth定理求最长不上升子序列长度小于等于2
+
 
 """
 
@@ -310,6 +312,24 @@ class Solution:
             j += 1
         ans += str1[i:] + str2[j:]
         return ans
+
+    @staticmethod
+    def lg_p1410(ac=FastIO()):
+        # 模板：最长不上升子序列
+        while True:
+            lst = ac.read_list_ints()
+            if not lst:
+                break
+            lst = lst[1:]
+            dp = []
+            for num in lst:
+                i = bisect.bisect_right(dp, -num)
+                if i < len(dp):
+                    dp[i] = -num
+                else:
+                    dp.append(-num)
+            ac.st("Yes!" if len(dp) <= 2 else "No!")
+        return
 
 
 class TestGeneral(unittest.TestCase):

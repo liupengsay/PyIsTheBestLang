@@ -20,7 +20,7 @@ P2203 Blink（https://www.luogu.com.cn/problem/P2203）循环节计算
 P5550 Chino的数列（https://www.luogu.com.cn/problem/P5550）循环节计算也可以使用矩阵快速幂递推
 P7318 「PMOI-4」人赢の梦（https://www.luogu.com.cn/problem/P7318）二维元素，再增加虚拟开始状态，进行循环节计算
 P7681 [COCI2008-2009#5] LUBENICA（https://www.luogu.com.cn/problem/P7681）带前缀和的循环节，注意定义循环状态
-P1468 [USACO2.2]派对灯 Party Lamps（https://www.luogu.com.cn/problem/P1468）状态压缩求循环节
+P1468 [USACO2.2] 派对灯 Party Lampshttps://www.luogu.com.cn/problem/P1468）状态压缩求循环节
 P6148 [USACO20FEB] Swapity Swapity Swap S（https://www.luogu.com.cn/problem/P6148）经典计算循环节后模拟
 
 ================================CodeForces================================
@@ -153,18 +153,21 @@ class Solution:
         op3 = sum(1 << i for i in range(1, n, 2))
         op4 = sum(1 << i for i in range(0, n, 3))
         stack = [[(1 << n) - 1]]
+        # 进行所有的操作模拟与循环节计算
         ans = []
         while stack:
             path = stack.pop()
             for op in [op1, op2, op3, op4]:
                 if path[-1] ^ op in path:
+                    # 遇到循环
                     ans.append(path[:])
                 else:
                     stack.append(path + [path[-1] ^ op])
+
+        # 匹配开关状态一致的路径
         c = ac.read_int()
         light = sum(1 << (i - 1) for i in ac.read_list_ints()[:-1])
         down = sum(1 << (i - 1) for i in ac.read_list_ints()[:-1])
-
         res = set()
         for p in ans:
             m = len(p)

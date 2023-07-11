@@ -115,7 +115,7 @@ class TarjanCC:
                             stack.append([nex, 0])
                         elif in_stack[nex]:
                             low[cur] = low[cur] if low[cur] < order[nex] else order[nex]  # 注意这里是order
-        # SCC的数量，分组，每个结点对应的SCC编号
+
         # 建立新图
         new_dct = [set() for _ in range(scc_id)]
         for i in range(n):
@@ -127,6 +127,7 @@ class TarjanCC:
         for i in range(scc_id):
             for j in new_dct[i]:
                 new_degree[j] += 1
+        # SCC的数量，分组，每个结点对应的SCC编号
         return scc_id, scc_node_id, node_scc_id
 
     @staticmethod
@@ -718,8 +719,10 @@ class Solution:
             a, b, t = ac.read_ints_minus_one()
             dct[a].append(b)
             if t == 1:
+                # 双向通行
                 dct[b].append(a)
         _, scc_node_id, _ = TarjanCC().get_strongly_connected_component_bfs(n, dct)
+        # 获得新图
         ans = []
         for g in scc_node_id:
             lst = sorted(list(scc_node_id[g]))

@@ -52,7 +52,7 @@ class ExtendGcd:
         return
 
     def extend_gcd(self, a, b):
-        # 扩展欧几里得算法，求解ax+by=1，返回gcd(a,b)与x与y
+        # 扩展欧几里得算法，求解ax+by=1，返回gcd(a,b)与x与y（也可以求ax % b=1的解）
         if a == 0:
             return b, 0, 1
         else:

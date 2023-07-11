@@ -395,8 +395,8 @@ class Solution:
 
     @staticmethod
     def lg_p1655(ac=FastIO()):
-        # 模板：第二类斯特林数只能递推
-        n = m = 101
+        # 模板：第二类斯特林数只能递推（n个不同的球放入m个相同的盒子，不允许为空，使用斯特林数计算）
+        n = m = 101  # （n个相同的球放入m个不同的盒子，不允许为空，使用隔板法计算）
         dp = [[0] * m for _ in range(n)]
         for i in range(1, n):
             dp[i][i] = dp[i][1] = 1
@@ -412,7 +412,8 @@ class Solution:
 
     @staticmethod
     def lg_p1680(ac=FastIO()):
-        # 模板：隔板法计算不同分组的个数，使用乘法逆元与Lucas定理快速计算Comb(a,b)%m
+        # 模板：隔板法计算不同分组的个数，使用乘法逆元与Lucas定理快速计算Comb(a,b) % m
+        # 经典转换为（n个相同的球放入m个不同的盒子，不允许为空的方案数）
         n, m = ac.read_ints()
         n -= sum([ac.read_int() for _ in range(m)])
         m -= 1

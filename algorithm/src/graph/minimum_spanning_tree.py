@@ -50,6 +50,7 @@ P2847 [USACO16DEC]Moocast G（https://www.luogu.com.cn/problem/P2847）使用pri
 P3535 [POI2012]TOU-Tour de Byteotia（https://www.luogu.com.cn/problem/P3535）最小生成树思想与并查集判环
 P4047 [JSOI2010]部落划分（https://www.luogu.com.cn/problem/P4047）使用最小生成树进行最优聚类距离计算
 P6171 [USACO16FEB]Fenced In G（https://www.luogu.com.cn/problem/P6171）稀疏图使用 Kruskal 计算最小生成树
+P1550 [USACO08OCT] Watering Hole G（https://www.luogu.com.cn/problem/P1550）经典最小生成树，增加虚拟源点
 
 ================================CodeForces================================
 D. Design Tutorial: Inverse the Problem（https://codeforces.com/problemset/problem/472/D）使用最小生成树判断构造给定的点对最短路距离是否存在，使用prim算法复杂度更优
@@ -516,6 +517,8 @@ class Solution:
     def lg_p1340(ac=FastIO()):
         # 模板：逆序并查集，维护最小生成树的边
         n, w = ac.read_ints()
+
+        # 离线查询处理，按照边权排序
         edges = [ac.read_list_ints() for _ in range(w)]
         ind = list(range(w))
         ind.sort(key=lambda it: edges[it][-1])
@@ -526,6 +529,7 @@ class Solution:
         cost = 0
         for i in range(w-1, -1, -1):
             if uf.part > 1:
+                # 重新生成最小生成树
                 cost = 0
                 select = set()
                 for j in ind:
@@ -535,10 +539,11 @@ class Solution:
                             cost += ww
                             select.add(j)
             if uf.part > 1:
+                # 无法连通直接终止
                 ans.append(-1)
                 break
             ans.append(cost)
-            if i in select:
+            if i in select:  # 当前路径不可用，重置并查集
                 uf = UnionFind(n)
                 select = set()
                 cost = 0
@@ -806,6 +811,31 @@ class Solution:
 
         tree = MinimumSpanningTree(edges, n, "prim")
         return tree.cost
+
+    @staticmethod
+    def lg_p1556(ac=FastIO()):
+        # 模板：经典最小生成树，增加虚拟源点
+        n = ac.read_int()
+        edges = []
+        for i in range(n):
+            w = ac.read_int()
+            edges.append([0, i+1, w])
+            # 虚拟源点
+        for i in range(n):
+            grid = ac.read_list_ints()
+            for j in range(i+1, n):
+                edges.append([i+1, j+1, grid[j]])
+        # kruskal最小生成树
+        edges.sort(key=lambda it: it[2])
+        cost = 0
+        uf = UnionFind(n+1)
+        for i, j, c in edges:
+            if uf.union(i, j):
+                cost += c
+            if uf.part == 1:
+                break
+        ac.st(cost)
+        return
 
 
 class DistanceLimitedPathsExist:

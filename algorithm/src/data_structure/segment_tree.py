@@ -1181,7 +1181,7 @@ class SegmentTreeRangeChangeQueryOr:
         self.cover[i] = self.cover[2 * i] | self.cover[2 * i + 1]
 
     def update(self, left: int, right: int, s: int, t: int, val: int, i: int) -> None:
-        # 增减区间值 left 与 right 取值为 0 到 n-1 而 i 从 1 开始
+        # 修改区间值 left 与 right 取值为 0 到 n-1 而 i 从 1 开始
         stack = [[s, t, i]]
         while stack:
             s, t, i = stack.pop()
@@ -2565,6 +2565,7 @@ class Solution:
                     if y <= n - 1:
                         segment.update(y, y, 0, n - 1, -k, 1)
                 else:
+                    # 经典使用差分数组进行区间的等差数列加减
                     segment.update(x - 1, x - 1, 0, n - 1, k, 1)
                     segment.update(x, y - 1, 0, n - 1, d, 1)
                     cnt = y-x
@@ -2801,11 +2802,13 @@ class Solution:
                 a, b, c = [int(w) for w in lst[1:]]
                 if a > b:
                     a, b = b, a
+                # 修改区间值
                 tree.update(a - 1, b - 1, 0, n - 1, 1 << (c - 1), 1)
             else:
                 a, b = [int(w) for w in lst[1:]]
                 if a > b:
                     a, b = b, a
+                # 区间值或查询
                 ac.st(bin(tree.query_or(a - 1, b - 1, 0, n - 1, 1)).count("1"))
         return
 

@@ -60,11 +60,11 @@ P2246 SAC#1 - Hello World（升级版）（https://www.luogu.com.cn/problem/P224
 P4933 大师（https://www.luogu.com.cn/problem/P4933）线性DP使用等差数列计数
 P1874 快速求和（https://www.luogu.com.cn/problem/P1874）线性DP
 P2513 [HAOI2009]逆序对数列（https://www.luogu.com.cn/problem/P2513）前缀和优化DP
-P1280 尼克的任务（https://www.luogu.com.cn/problem/P1280）逆序线性 DP
-P1282 多米诺骨牌（https://www.luogu.com.cn/problem/P1282）典型线性DP
+P1280 尼克的任务（https://www.luogu.com.cn/problem/P1280）经典逆序线性 DP
+P1282 多米诺骨牌（https://www.luogu.com.cn/problem/P1282）典型线性DP，使用哈希实现
 P1356 数列的整除性（https://www.luogu.com.cn/problem/P1356）典型线性取模DP
-P1385 密令（https://www.luogu.com.cn/problem/P1385）线性DP与前缀和优化
-P1809 过河问题（https://www.luogu.com.cn/problem/P1809）思维题线性DP
+P1385 密令（https://www.luogu.com.cn/problem/P1385）线性DP与前缀和优化，脑筋急转弯字符串字典序总和不变
+P1809 过河问题（https://www.luogu.com.cn/problem/P1809）思维题线性DP，经典贪心
 P1868 饥饿的奶牛（https://www.luogu.com.cn/problem/P1868）线性DP加二分查找优化
 P1978 集合（https://www.luogu.com.cn/problem/P1978）经典线性DP，乘积互斥
 P2432 zxbsmk爱查错（https://www.luogu.com.cn/problem/P2432）线性DP加指针
@@ -77,9 +77,9 @@ B3734 [信息与未来 2017] 加强版密码锁（https://www.luogu.com.cn/probl
 P3901 数列找不同（https://www.luogu.com.cn/problem/P3901）经典指针加线性 DP 记录前一个相同数的指针
 P4401 [IOI2007]Miners 矿工配餐（https://www.luogu.com.cn/problem/P4401）
 P4933 大师（https://www.luogu.com.cn/problem/P4933）经典等差数列线性 DP 计数
-P5095 [USACO12OPEN]Bookshelf S（https://www.luogu.com.cn/problem/P5095）典型线性 DP 
+P5095 [USACO12OPEN]Bookshelf S（https://www.luogu.com.cn/problem/P5095）典型线性 DP
 P5810 [SCOI2004]文本的输入（https://www.luogu.com.cn/problem/P5810）经典线性 DP
-P6040 「ACOI2020」课后期末考试滑溜滑溜补习班（https://www.luogu.com.cn/problem/P6040）单调队列优化的线性 DP 
+P6040 「ACOI2020」课后期末考试滑溜滑溜补习班（https://www.luogu.com.cn/problem/P6040）单调队列优化的线性 DP
 P6120 [USACO17JAN]Hoof, Paper, Scissor S（https://www.luogu.com.cn/problem/P6120）线性 DP 模拟
 P6146 [USACO20FEB]Help Yourself G（https://www.luogu.com.cn/problem/P6146）线性 DP 枚举计数
 P7994 [USACO21DEC] Air Cownditioning B（https://www.luogu.com.cn/problem/P7994）经典线性 DP 修改连续区间值加一减一的最少操作次数
@@ -129,14 +129,19 @@ class Solution:
         return
 
     @staticmethod
-    def lc_2361(regular: List[int], express: List[int], express_cost: int) -> List[int]:
+    def lc_2361(
+            regular: List[int],
+            express: List[int],
+            express_cost: int) -> List[int]:
         # 模板：线性 DP 转移
         n = len(regular)
         cost = [[0, 0] for _ in range(n + 1)]
         cost[0][1] = express_cost
         for i in range(1, n + 1):
-            cost[i][0] = min(cost[i - 1][0] + regular[i - 1], cost[i - 1][1] + express[i - 1])
-            cost[i][1] = min(cost[i][0] + express_cost, cost[i - 1][1] + express[i - 1])
+            cost[i][0] = min(cost[i - 1][0] + regular[i - 1],
+                             cost[i - 1][1] + express[i - 1])
+            cost[i][1] = min(cost[i][0] + express_cost,
+                             cost[i - 1][1] + express[i - 1])
         return [min(c) for c in cost[1:]]
 
     @staticmethod
@@ -188,7 +193,7 @@ class Solution:
     def lc_2638(nums: List[int], k: int) -> int:
         # 模板：线性DP计数
         n = len(nums)
-        dp = [1] * (n+1)
+        dp = [1] * (n + 1)
         dp[1] = 2
         for i in range(2, 51):
             dp[i] = dp[i - 1] + dp[i - 2]
@@ -241,7 +246,8 @@ class Solution:
         dp[0] = [0] * (b + 1)
         for i in range(a):
             for j in range(b):
-                dp[i + 1][j + 1] = ac.min(dp[i + 1][j], dp[i][j] + abs(occu[i] - free[j]))
+                dp[i + 1][j + 1] = ac.min(dp[i + 1][j],
+                                          dp[i][j] + abs(occu[i] - free[j]))
         ac.st(dp[-1][-1])
         return
 
@@ -255,7 +261,8 @@ class Solution:
         for i in range(m):
             dp[i + 1][0] = 0
             for j in range(n):
-                dp[i + 1][j + 1] = min(dp[i][j + 1], dp[i][j] + abs(nums[j] - i - 1))
+                dp[i + 1][j + 1] = min(dp[i][j + 1],
+                                       dp[i][j] + abs(nums[j] - i - 1))
         return dp[m][n]
 
     @staticmethod
@@ -268,7 +275,7 @@ class Solution:
         dp = [defaultdict(int) for _ in range(n)]
         for i in range(n):
             for j in range(i):
-                dp[i][nums[i]-nums[j]] += dp[j][nums[i]-nums[j]] + 1
+                dp[i][nums[i] - nums[j]] += dp[j][nums[i] - nums[j]] + 1
                 dp[i][nums[i] - nums[j]] %= mod
             for j in dp[i]:
                 ans += dp[i][j]
@@ -292,7 +299,7 @@ class Solution:
         for i in range(2, n + 1):
             dp4[i] = min(2 * dp4[j] + dp3[i - j] for j in range(1, i))
 
-        for x in range(1, n+1):
+        for x in range(1, n + 1):
             ac.st(dp4[x])
         return
 
@@ -300,14 +307,14 @@ class Solution:
     def lg_p1280(ac=FastIO()):
         # 模板：线性DP倒序模拟优化
         n, k = ac.read_ints()
-        dct = [[] for _ in range(n+1)]
+        dct = [[] for _ in range(n + 1)]
         for _ in range(k):
             p, t = ac.read_ints()
-            dct[p].append(p+t)
-        dp = [0]*(n+2)
+            dct[p].append(p + t)
+        dp = [0] * (n + 2)
         for i in range(n, 0, -1):
             if not dct[i]:
-                dp[i] = dp[i+1]+1
+                dp[i] = dp[i + 1] + 1
             else:
                 for end in dct[i]:
                     dp[i] = ac.max(dp[i], dp[end])
@@ -322,11 +329,13 @@ class Solution:
         pre = defaultdict(lambda: inf)
         pre[0] = 0
         for i in range(n):
+            # 枚举当前是否进行翻转
             a, b = nums[i]
             cur = defaultdict(lambda: inf)
             for p in pre:
-                cur[p+a-b] = ac.min(cur[p+a-b], pre[p])
-                cur[p + b - a] = ac.min(cur[p + b - a], pre[p]+1)
+                cur[p + a - b] = ac.min(cur[p + a - b], pre[p])
+                cur[p + b - a] = ac.min(cur[p + b - a], pre[p] + 1)
+            # 哈希记录差值为 x 时的最小翻转次数
             pre = cur.copy()
         x = min(abs(v) for v in pre.keys())
         ans = inf
@@ -343,14 +352,14 @@ class Solution:
         for _ in range(m):
             n, k = ac.read_ints()
             nums = ac.read_list_ints()
-            pre = [0]*k
-            pre[nums[0]%k] = 1
+            pre = [0] * k
+            pre[nums[0] % k] = 1
             for num in nums[1:]:
-                cur = [0]*k
+                cur = [0] * k
                 for a in [num, -num]:
                     for i in range(k):
                         if pre[i]:
-                            cur[(i+a)%k] = 1
+                            cur[(i + a) % k] = 1
                 pre = cur[:]
             ac.st("Divisible" if pre[0] else "Not divisible")
         return
@@ -358,25 +367,26 @@ class Solution:
     @staticmethod
     def lg_p1385(ac=FastIO()):
         # 模板：线性DP与前缀和优化
-        mod = 10**9+7
+        mod = 10**9 + 7
         for _ in range(ac.read_int()):
             s = ac.read_str()
             n = len(s)
-            t = sum(ord(w)-ord("a")+1 for w in s)
-            pre = [0]*(t+1)
+            t = sum(ord(w) - ord("a") + 1 for w in s)
+            pre = [0] * (t + 1)
             pre[0] = 1
+            # dp[i][j] 表长为 i+1 字典序和为 j 的方案数
             for _ in range(n):
-                cur = [0]*(t+1)
-                x = 0
-                for i in range(t+1):
+                cur = [0] * (t + 1)
+                x = 0  # 前缀和优化
+                for i in range(t + 1):
                     cur[i] = x
                     x += pre[i]
                     x %= mod
                     if i >= 26:
-                        x -= pre[i-26]
+                        x -= pre[i - 26]
                         x %= mod
                 pre = cur[:]
-            ac.st((pre[-1] - 1)%mod)
+            ac.st((pre[-1] - 1) % mod)
         return
 
     @staticmethod
@@ -394,7 +404,8 @@ class Solution:
         dp[2] = ac.max(nums[0], nums[1])
         for i in range(2, n):
             # 两种可选方案，最小的来回，以及最小与次小的来回
-            dp[i + 1] = ac.min(dp[i] + nums[0] + nums[i], dp[i - 1] + nums[0] + 2 * nums[1] + nums[i])
+            dp[i + 1] = ac.min(dp[i] + nums[0] + nums[i],
+                               dp[i - 1] + nums[0] + 2 * nums[1] + nums[i])
         ac.st(dp[-1])
         return
 
@@ -403,14 +414,14 @@ class Solution:
         # 模板：线性DP加二分查找优化
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
-        dp = [0]*(n+1)
+        dp = [0] * (n + 1)
         nums.sort(key=lambda it: it[1])
         pre = []
         for i in range(n):
             x, y = nums[i]
-            dp[i+1] = dp[i]
-            j = bisect.bisect_right(pre, x-1) - 1
-            dp[i+1] = ac.max(dp[i+1], dp[j+1]+y-x+1)
+            dp[i + 1] = dp[i]
+            j = bisect.bisect_right(pre, x - 1) - 1
+            dp[i + 1] = ac.max(dp[i + 1], dp[j + 1] + y - x + 1)
             pre.append(y)
         ac.st(dp[-1])
         return
@@ -423,7 +434,7 @@ class Solution:
         dct = set(nums)
         ans = 0
         for num in nums:
-            if num % k == 0 and num//k in dct:
+            if num % k == 0 and num // k in dct:
                 continue
             # 找出x..kx..k^2x..
             x = 0
@@ -468,7 +479,8 @@ class Solution:
     def lg_p2359(ac=FastIO()):
         # 模板：预处理素数加线性DP
         primes = NumberTheory().sieve_of_eratosthenes(10000)
-        primes = [str(num) for num in primes if 1000 > num >= 100 and "0" not in str(num)]
+        primes = [str(num) for num in primes if 1000 >
+                  num >= 100 and "0" not in str(num)]
         cnt = defaultdict(list)
         for num in primes:
             cnt[num[:-1]].append(num)
@@ -566,23 +578,23 @@ class Solution:
         # 模板：矩阵二维 DP 线性遍历
         n, k = ac.read_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
-        dis = [[0]*(n) for _ in range(n)]
+        dis = [[0] * (n) for _ in range(n)]
         for i in range(n):
             x1, y1 = nums[i]
-            for j in range(i+1, n):
+            for j in range(i + 1, n):
                 x2, y2 = nums[j]
-                dis[i][j] = abs(x1-x2) + abs(y1-y2)
+                dis[i][j] = abs(x1 - x2) + abs(y1 - y2)
 
-        dp = [[inf]*(k+1) for _ in range(n)]
+        dp = [[inf] * (k + 1) for _ in range(n)]
         dp[0][0] = 0
         for i in range(1, n):
-            dp[i][0] = dp[i-1][0] + dis[i-1][i]
-            for j in range(1, k+1):
-                for x in range(i-1, -1, -1):
-                    skip = i-x-1
-                    if j-skip < 0:
+            dp[i][0] = dp[i - 1][0] + dis[i - 1][i]
+            for j in range(1, k + 1):
+                for x in range(i - 1, -1, -1):
+                    skip = i - x - 1
+                    if j - skip < 0:
                         break
-                    dp[i][j] = ac.min(dp[i][j], dp[x][j-skip]+dis[x][i])
+                    dp[i][j] = ac.min(dp[i][j], dp[x][j - skip] + dis[x][i])
         ac.st(dp[-1][-1])
         return
 
@@ -666,10 +678,12 @@ class Solution:
             for p1, p2 in pre:
                 # 装第一个车
                 st = p1 + w
-                cur[(st[-2:], p2)] = ac.max(cur[(st[-2:], p2)], pre[(p1, p2)] + len(set(st)))
+                cur[(st[-2:], p2)] = ac.max(cur[(st[-2:], p2)],
+                                            pre[(p1, p2)] + len(set(st)))
                 # 装第二个车
                 st = p2 + w
-                cur[(p1, st[-2:])] = ac.max(cur[(p1, st[-2:])], pre[(p1, p2)] + len(set(st)))
+                cur[(p1, st[-2:])] = ac.max(cur[(p1, st[-2:])],
+                                            pre[(p1, p2)] + len(set(st)))
             pre = cur
         ac.st(max(pre.values()))
         return
@@ -700,13 +714,13 @@ class Solution:
         dp = [0]
         while dp[-1] < n:
             m = len(dp)
-            cur = dp[-1]+1
+            cur = dp[-1] + 1
             x = 1
-            while x*2+5 <= m:
-                cur = ac.max(dp[-x*2-5]*(x+1), cur)
+            while x * 2 + 5 <= m:
+                cur = ac.max(dp[-x * 2 - 5] * (x + 1), cur)
                 x += 1
             dp.append(cur)
-        ac.st(len(dp)-1)
+        ac.st(len(dp) - 1)
         return
 
     @staticmethod
@@ -757,7 +771,9 @@ class Solution:
             for j in range(3):
                 dp[cur][j][0] = dp[pre][j][0]  # 当前出 j 且未作改变的最大值
                 # 当前出 j 且作出改变的最大值
-                dp[cur][j][1] = max(dp[pre][j][1], max(dp[pre][k][0] for k in range(3) if k != j))
+                dp[cur][j][1] = max(
+                    dp[pre][j][1], max(
+                        dp[pre][k][0] for k in range(3) if k != j))
                 if j == w:  # 当前局为胜手
                     dp[cur][j][0] += 1
                     dp[cur][j][1] += 1
@@ -818,22 +834,22 @@ class Solution:
         a = ac.read_list_ints()
         b = ac.read_list_ints()
 
-        nums = [a[i]-b[i] for i in range(n)]
+        nums = [a[i] - b[i] for i in range(n)]
         ans = abs(nums[0])
         for i in range(1, n):
-            x, y = nums[i-1], nums[i]
+            x, y = nums[i - 1], nums[i]
             if x == 0:
                 ans += abs(y)
             elif y == 0:
                 continue
             else:
-                if x*y < 0:
+                if x * y < 0:
                     ans += abs(y)
                 else:
                     if x > 0:
-                        ans += ac.max(0, y-x)
+                        ans += ac.max(0, y - x)
                     else:
-                        ans += ac.max(0, x-y)
+                        ans += ac.max(0, x - y)
         ac.st(ans)
         return
 
@@ -851,7 +867,8 @@ class Solution:
                     dis = a - x + b - y - 1
                     for r in range(k + 1):
                         if r + dis <= k:
-                            dp[i][r + dis] = ac.max(dp[i][r + dis], dp[j][r] + dis + 1)
+                            dp[i][r + dis] = ac.max(dp[i]
+                                                    [r + dis], dp[j][r] + dis + 1)
                         else:
                             break
         ac.st(max(max(d) for d in dp))

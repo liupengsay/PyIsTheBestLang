@@ -28,7 +28,7 @@ from algorithm.src.fast_io import FastIO
 P1168 中位数（https://www.luogu.com.cn/problem/P1168） 用两个堆维护中位数
 P1801 黑匣子（https://www.luogu.com.cn/problem/P1801）用两个堆维护第K小
 P2085 最小函数值（https://www.luogu.com.cn/problem/P2085）用数学加一个堆维护前K小
-P1631 序列合并（https://www.luogu.com.cn/problem/P1631）用一个堆维护前K小
+P1631 序列合并（https://www.luogu.com.cn/problem/P1631）用一个堆和指针组合维护前K小
 P4053 建筑抢修（https://www.luogu.com.cn/problem/P4053）用一个堆延迟选择贪心维护最优，经典课程表 III
 P1878 舞蹈课（https://www.luogu.com.cn/problem/P1878）用哈希加一个堆进行模拟计算
 P3620 [APIO/CTSC2007] 数据备份（https://www.luogu.com.cn/problem/P3620）贪心思想加二叉堆与双向链表优
@@ -261,6 +261,7 @@ class Solution:
         n = ac.read_int()
         nums1 = ac.read_list_ints()
         nums2 = ac.read_list_ints()
+        # 初始时加入所有第二个数组的索引位置
         stack = [[nums1[0]+nums2[j], 0, j] for j in range(n)]
         # 不重不漏枚举所有索引组合
         heapq.heapify(stack)

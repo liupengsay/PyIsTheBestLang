@@ -336,6 +336,7 @@ class Solution:
         stack = deque([[-1, 0]])
         for i in range(n):
             pre += nums[i]
+            # 滑动窗口记录最小值
             while stack and stack[0][0] <= i - m - 1:
                 stack.popleft()
             while stack and stack[-1][1] >= pre:

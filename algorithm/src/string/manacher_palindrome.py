@@ -268,6 +268,21 @@ class Solution:
             x = x if x > pre[i] else pre[i]
             ans = ans if ans > x * post[i + 1] else x * post[i + 1]
 
+    @staticmethod
+    def lg_p1782(ac=FastIO()):
+        # 模板：回文串对数统计，利用马拉车计算以当前字母开头与结尾的回文串数
+        s = ac.read_str()
+        n = len(s)
+        start, end = ManacherPlindrome().palindrome(s)
+        start = [len(x) for x in start]
+        end = [len(x) for x in end]
+        pre = ans = 0
+        for i in range(n):
+            ans += pre*start[i]
+            pre += end[i]
+        ac.st(ans)
+        return
+
 
 class TestGeneral(unittest.TestCase):
 

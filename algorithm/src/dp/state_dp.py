@@ -60,7 +60,7 @@ P1294 高手去散步（https://www.luogu.com.cn/problem/P1294）图问题使用
 P1123 取数游戏（https://www.luogu.com.cn/problem/P1123）类似占座位的经典状压DP
 P1433 吃奶酪（https://www.luogu.com.cn/problem/P1433）状压DP
 P1896 [SCOI2005] 互不侵犯（https://www.luogu.com.cn/problem/P1896）状压DP
-P1556 幸福的路（https://www.luogu.com.cn/problem/P1556）状态压缩计算最短路
+P1556 幸福的路（https://www.luogu.com.cn/problem/P1556）状态压缩DP计算最短路方案数
 P3052 [USACO12MAR]Cows in a Skyscraper G（https://www.luogu.com.cn/problem/P3052）经典状态压缩 DP 使用二维优化
 P5997 [PA2014]Pakowanie（https://www.luogu.com.cn/problem/P5997）经典贪心背包与状压 DP 结合
 P6883 [COCI2016-2017#3] Kroničan（https://www.luogu.com.cn/problem/P6883）典型状压 DP 
@@ -347,6 +347,7 @@ class Solution:
     def lg_p1556(ac=FastIO()):
         # 模板：状态压缩计算最短路
         n = ac.read_int()
+        # 增加虚拟的起终点
         nums = [[0, 0]] + [ac.read_list_ints() for _ in range(n)] + [[0, 0]]
         n += 2
         # 根据题意进行建图，表示起终点与方向
@@ -355,6 +356,7 @@ class Solution:
             a, b = nums[i]
             for j in range(n):
                 if i != j:
+                    # 只有在同一行或者同一列时可以建图连边
                     c, d = nums[j]
                     if a == c:
                         dct[i].append([j, 4] if b < d else [j, 2])
@@ -375,6 +377,7 @@ class Solution:
                         if state & (1 << y) and ff != f:
                             res += dp[state ^ (1 << y)][y][ff]
                     dp[state][x][f] = res
+        # 使用 0 表示初始任意不同于 1234 的方向总和
         ac.st(dp[(1 << n) - 1 - 1][0][0])
         return
 

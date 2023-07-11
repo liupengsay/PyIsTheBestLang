@@ -66,8 +66,8 @@ P1876 开灯（https://www.luogu.com.cn/problem/P1876）经典好题，理解完
 P7588 双重素数（2021 CoE-II A）（https://www.luogu.com.cn/problem/P7588）素数枚举计算，优先使用is_prime4
 P7696 [COCI2009-2010#4] IKS（https://www.luogu.com.cn/problem/P7696）数组，每个数进行质因数分解，然后均匀分配质因子
 P4718 【模板】Pollard's rho 算法（https://www.luogu.com.cn/problem/P4718）使用pollard_rho进行质因数分解与素数判断
-P1069 [NOIP2009 普及组] 细胞分裂（https://www.luogu.com.cn/problem/P1069）质因数分解
-P1072 [NOIP2009 提高组] Hankson 的趣味题（https://www.luogu.com.cn/problem/P1072）枚举所有因数
+P1069 [NOIP2009 普及组] 细胞分裂（https://www.luogu.com.cn/problem/P1069）质因数分解，转换为因子计数翻倍整除
+P1072 [NOIP2009 提高组] Hankson 的趣味题（https://www.luogu.com.cn/problem/P1072）枚举所有因数，需要计算所有因数
 P1593 因子和（https://www.luogu.com.cn/problem/P1593）使用质因数分解与快速幂计算a^b的所有因子之和
 P2527 [SHOI2001]Panda的烦恼（https://www.luogu.com.cn/problem/P2527）丑数即只含特定质因子的数
 P2557 [AHOI2002]芝麻开门（https://www.luogu.com.cn/problem/P2557）使用质因数分解计算a^b的所有因子之和
@@ -1033,7 +1033,7 @@ class Solution:
             ans = 1
             for k in cnt:
                 c = cnt[k] * b
-                if (k - 1) % mod:
+                if (k - 1) % mod:  # 即 k % mod ！= 1 此时才有逆元
                     # 等比数列计算乘法逆元，逆元要求与mod互质否则需要额外计算
                     ans *= (pow(k, c + 1, mod) - 1) * pow(k - 1, -1, mod)
                     ans %= mod

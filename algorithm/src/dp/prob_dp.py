@@ -83,12 +83,13 @@ class Solution:
         for x in range(2, n+1):
             a, b = ans
             c, d = 1, x
+            # 使用gcd进行加减
             g = math.gcd(b, d)
             lcm = b*d//g
             a, b = a*lcm//b+c*lcm//d, lcm
             g = math.gcd(a, b)
             ans = [a//g, b//g]
-
+        # f[i] = f[i-1] + n/(n-i+1) 表示已经有 i-1 个再要有新的一个的期望为 n/(n-i+1)
         a, b = ans
         a *= n
         x = a//b
@@ -96,6 +97,7 @@ class Solution:
         if a == 0:
             ac.st(x)
             return
+        # 加和化简
         g = math.gcd(a, b)
         ans = [a//g, b//g]
         a, b = ans

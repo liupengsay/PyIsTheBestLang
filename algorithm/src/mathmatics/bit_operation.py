@@ -391,6 +391,7 @@ class Solution:
         # 模板：进制题脑筋急转弯
         n, k = ac.read_ints()
         ans = 0
+        # 每次选末尾的 1 进行增加合并
         while bin(n).count("1") > k:
             ans += n & (-n)
             n += n & (-n)

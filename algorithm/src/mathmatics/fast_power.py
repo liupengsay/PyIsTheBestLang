@@ -128,13 +128,13 @@ class Solution:
     def lg_p1045(ac=FastIO()):
         # 模板：位数计算与快速幂保留后几百位数字
         p = ac.read_int()
-        ans1 = int(p*math.log10(2)) + 1
+        ans1 = int(p * math.log10(2)) + 1
         ans2 = pow(2, p, 10**501) - 1
         ans2 = str(ans2)[-500:]
         ac.st(ans1)
-        ans2 = "0"*(500-len(ans2)) + ans2
+        ans2 = "0" * (500 - len(ans2)) + ans2
         for i in range(0, 500, 50):
-            ac.st(ans2[i:i+50])
+            ac.st(ans2[i:i + 50])
         return
 
     @staticmethod
@@ -175,14 +175,15 @@ class Solution:
         ans = list(range(n))
 
         # 双指针找出下一跳
-        nex = [0]*n
+        nex = [0] * n
         head = 0
         tail = k
         for i in range(n):
-            while tail + 1 < n and nums[tail+1]-nums[i] < nums[i] - nums[head]:
+            while tail + 1 < n and nums[tail + 1] - \
+                    nums[i] < nums[i] - nums[head]:
                 head += 1
                 tail += 1
-            if nums[tail]-nums[i] <= nums[i] - nums[head]:
+            if nums[tail] - nums[i] <= nums[i] - nums[head]:
                 nex[i] = head
             else:
                 nex[i] = tail
@@ -192,7 +193,7 @@ class Solution:
                 ans = [nex[ans[i]] for i in range(n)]
             nex = [nex[nex[i]] for i in range(n)]
             m >>= 1
-        ac.lst([a+1 for a in ans])
+        ac.lst([a + 1 for a in ans])
         return
 
     @staticmethod
@@ -200,14 +201,16 @@ class Solution:
         # 模板：矩阵快速幂
         p, q, a1, a2, n, m = ac.read_ints()
         if n == 1:
-            ac.st(a1%m)
+            ac.st(a1 % m)
             return
         if n == 2:
-            ac.st(a2%m)
+            ac.st(a2 % m)
             return
+        # 建立快速幂矩阵
         mat = [[p, q], [1, 0]]
-        res = MatrixFastPower().matrix_pow(mat, n-2, m)
-        ans = res[0][0]*a2+res[0][1]*a1
+        res = MatrixFastPower().matrix_pow(mat, n - 2, m)
+        # 计算结果
+        ans = res[0][0] * a2 + res[0][1] * a1
         ans %= m
         ac.st(ans)
         return
@@ -225,9 +228,9 @@ class Solution:
                [0, 0, 0, 0, 0, 1, 0, 1],
                [1, 0, 0, 0, 0, 0, 1, 0]]
         res = [1, 0, 0, 0, 0, 0, 0, 0]
-        mat_pow = MatrixFastPower().matrix_pow(mat, n-1, 1000)
-        ans = [sum(mat_pow[i][j]*res[j] for j in range(8)) for i in range(8)]
-        final = (ans[3]+ans[5]) % 1000
+        mat_pow = MatrixFastPower().matrix_pow(mat, n - 1, 1000)
+        ans = [sum(mat_pow[i][j] * res[j] for j in range(8)) for i in range(8)]
+        final = (ans[3] + ans[5]) % 1000
         ac.st(final)
         return
 
@@ -247,22 +250,22 @@ class Solution:
         # 模板：矩阵 DP 使用快速幂优化
         n, m = ac.read_ints()
         # 转移矩阵
-        grid = [[0]*(n+1) for _ in range(n+1)]
-        for i in range(n+1):
+        grid = [[0] * (n + 1) for _ in range(n + 1)]
+        for i in range(n + 1):
             grid[i][i] = 1
             grid[0][i] = 1
         for _ in range(m):
             u, v = ac.read_ints()
             grid[u][v] = grid[v][u] = 1
         # 快速幂与最终状态计算
-        initial = [0]*(n+1)
+        initial = [0] * (n + 1)
         initial[1] = 1
         mod = 2017
         t = ac.read_int()
         ans = MatrixFastPower().matrix_pow(grid, t, mod)
         res = 0
-        for i in range(n+1):
-            res += sum(ans[i][j]*initial[j] for j in range(n+1))
+        for i in range(n + 1):
+            res += sum(ans[i][j] * initial[j] for j in range(n + 1))
             res %= mod
         ac.st(res)
         return
@@ -307,28 +310,29 @@ class Solution:
         # 模板：脑筋急转弯快速幂计数
         mod = 998244353
         n, k = ac.read_ints()
-        ans = pow((pow(2, k, mod)-1) % mod, n, mod)
+        ans = pow((pow(2, k, mod) - 1) % mod, n, mod)
         ac.st(ans)
         return
 
     @staticmethod
     def lg_p8624(ac=FastIO()):
         # 模板：矩阵 DP 与快速幂
-        mod = 10**9+7
+        mod = 10**9 + 7
         n, m = ac.read_ints()
-        rem = [[0]*6 for _ in range(6)]
+        rem = [[0] * 6 for _ in range(6)]
         for _ in range(m):
             i, j = ac.read_ints_minus_one()
             rem[i][j] = rem[j][i] = 1
         rev = [3, 4, 5, 0, 1, 2]
-        cnt = [1]*6
-        mat = [[0]*6 for _ in range(6)]
+        cnt = [1] * 6
+        mat = [[0] * 6 for _ in range(6)]
         for i in range(6):
             for j in range(6):
                 if not rem[j][rev[i]]:
                     mat[i][j] = 1
-        res = MatrixFastPower().matrix_pow(mat, n-1, mod)
-        ans = sum([sum([res[i][j]*cnt[j] for j in range(6)]) for i in range(6)])
+        res = MatrixFastPower().matrix_pow(mat, n - 1, mod)
+        ans = sum([sum([res[i][j] * cnt[j] for j in range(6)])
+                  for i in range(6)])
         ans *= FastPower().fast_power(4, n, mod)
         ans %= mod
         ac.st(ans)
@@ -339,7 +343,10 @@ class TestGeneral(unittest.TestCase):
 
     def test_fast_power(self):
         fp = FastPower()
-        a, b, mod = random.randint(1, 123), random.randint(1, 1234), random.randint(1, 12345)
+        a, b, mod = random.randint(
+            1, 123), random.randint(
+            1, 1234), random.randint(
+            1, 12345)
         assert fp.fast_power_api(a, b, mod) == fp.fast_power(a, b, mod)
 
         x, n = random.uniform(0, 1), random.randint(1, 1234)

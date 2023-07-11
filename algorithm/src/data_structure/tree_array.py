@@ -756,7 +756,7 @@ class Solution:
         for _ in range(m):
             op, x = ac.read_list_strs()
             if op == "A":
-                x = (int(x)+t)%d
+                x = (int(x)+t) % d
                 tree.add(i, x)
                 i += 1
             else:
