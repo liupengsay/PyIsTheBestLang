@@ -41,7 +41,7 @@ P7627 [COCI2011-2012#1] X3（https://www.luogu.com.cn/problem/P7627）经典按�
 P7649 [BalticOI 2004 Day 1] SCALES（https://www.luogu.com.cn/problem/P7649）三进制计算，贪心模拟砝码放置
 P1582 倒水（https://www.luogu.com.cn/problem/P1582）进制题脑经急转弯
 P2114 [NOI2014] 起床困难综合症（https://www.luogu.com.cn/problem/P2114）按位操作计算模拟，贪心选取最大结果
-P2326 AKN’s PPAP（https://www.luogu.com.cn/problem/P2326）按位模拟贪心选取与值最大的数值对
+P2326 AKN’s PPAP（https://www.luogu.com.cn/problem/P2326）按位模拟贪心选取与值最大的数值对，最大与值对
 P4144 大河的序列（https://www.luogu.com.cn/problem/P4144）按位思考贪心脑筋急转弯
 P4310 绝世好题（https://www.luogu.com.cn/problem/P4310）线性 DP 使用按位转移
 P5390 [Cnoi2019]数学作业（https://www.luogu.com.cn/problem/P5390）按位操作
