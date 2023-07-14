@@ -35,6 +35,7 @@ LCP 14. 切分数组（https://leetcode.cn/problems/qie-fen-shu-zu/）计算 1 �
 279. 完全平方数（https://leetcode.cn/problems/perfect-squares/）四平方数定理
 650. 只有两个键的键盘（https://leetcode.cn/problems/2-keys-keyboard/）经典分解质因数
 1735. 生成乘积数组的方案数（https://leetcode.cn/problems/count-ways-to-make-array-with-product/）经典质数分解与隔板法应用
+1390. 四因数（https://leetcode.cn/contest/weekly-contest-181/problems/four-divisors/）预处理所有数的所有因子
 
 ===================================洛谷===================================
 P1865 A % B Problem（https://www.luogu.com.cn/problem/P1865）通过线性筛素数后进行二分查询区间素数个数
@@ -133,6 +134,23 @@ class NumberTheoryPrimeFactor:
                     num //= p
                     cnt += 1
                 self.prime_factor[i].append([p, cnt])
+        return
+
+
+class NumberTheoryAllFactor:
+    def __init__(self, ceil):
+        self.ceil = ceil+10
+        self.factor = [[1] for _ in range(self.ceil+1)]
+        self.get_all_factor()
+        return
+
+    def get_all_factor(self):
+        # 模板：计算 1 到 self.ceil 所有数字的所有因子
+        for i in range(2, self.ceil + 1):
+            x = 1
+            while x*i <= self.ceil:
+                self.factor[x*i].append(i)
+                x += 1
         return
 
 
@@ -1268,6 +1286,15 @@ class Solution:
                 ac.st("no")
         return
 
+    @staticmethod
+    def lc_1390(nums: List[int]) -> int:
+        # 模板：预处理所有数的所有因子
+        nt = NumberTheoryAllFactor(10**5)
+        ans = 0
+        for num in nums:
+            if len(nt.factor[num]) == 4:
+                ans += sum(nt.factor[num])
+        return ans
 
 class TestGeneral(unittest.TestCase):
 

@@ -12,7 +12,7 @@ from algorithm.src.fast_io import FastIO
 214. 最短回文串（https://leetcode.cn/problems/shortest-palindrome/）计算字符串前缀最长回文子串
 796. 旋转字符串（https://leetcode.cn/problems/rotate-string/）计算字符串是否可以旋转得到
 25. 找出字符串中第一个匹配项的下标（https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/）计算子字符串第一次出现的位置
-1392. 最长快乐前缀（https://leetcode.cn/problems/longest-happy-prefix/）计算最长的公共前后缀
+1392. 最长快乐前缀（https://leetcode.cn/problems/longest-happy-prefix/）计算最长的公共前后缀，KMP与Z函数模板题
 2223. 构造字符串的总得分和（https://leetcode.cn/problems/longest-happy-prefix/）利用扩展KMP计算Z函数
 
 ===================================洛谷===================================
