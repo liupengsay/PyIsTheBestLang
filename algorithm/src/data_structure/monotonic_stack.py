@@ -652,6 +652,22 @@ class Solution:
             ac.st(ans)
         return
 
+    @staticmethod
+    def lc_1504(mat: List[List[int]]) -> int:
+        # 模板：经典枚举上下边界单调栈计算全为 1 的子矩形个数
+        m, n = len(mat), len(mat[0])
+        ans = 0
+        rec = Rectangle()
+        pre = [0] * n
+        for j in range(m):
+            for k in range(n):
+                if mat[j][k]:
+                    pre[k] += 1
+                else:
+                    pre[k] = 0
+            ans += rec.compute_number(pre)
+        return ans
+
 
 class TestGeneral(unittest.TestCase):
 
