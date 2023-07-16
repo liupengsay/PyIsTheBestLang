@@ -33,16 +33,66 @@ import copy
 
 ===================================力扣===================================
 2081 k 镜像数字的和（https://leetcode.cn/problems/sum-of-k-mirror-numbers/）枚举 k 进制的回文数字并依次判定合法性
+866. 回文素数（https://leetcode.cn/problems/prime-palindrome/）枚举回文素数
+564. 寻找最近的回文数（https://leetcode.cn/problems/find-the-closest-palindrome/）枚举字符的前半部分与后半部分
+
 
 参考：OI WiKi（xx）
 """
+
+
+class PalindromePrimeNum:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def get_all_num(ceil=2*10**8):
+
+        def is_palindrome_prime(st):
+            if st != st[::-1]:
+                return False
+            num = int(st)
+            if num > ceil or num <= 1:
+                return False
+            for q in range(2, int(math.sqrt(num)) + 1):
+                if num % q == 0:
+                    return False
+            return True
+
+        def dfs(st):
+            if len(st) >= 2 and st[0] == "0":
+                return
+            if len(st) >= 5:
+                return
+
+            cur = st + st[::-1]
+            if is_palindrome_prime(cur):
+                res.add(int(cur))
+
+            if is_palindrome_prime(st):
+                res.add(int(st))
+
+            for i in range(10):
+                cur = st + str(i) + st[::-1]
+                if is_palindrome_prime(cur):
+                    res.add(int(cur))
+                dfs(st + str(i))
+            return
+
+        res = set()
+        for d in range(1, 10):
+            dfs(str(d))
+        res = sorted(list(res))
+        # 获取小于等于ceil的所有回文素数
+        return res
 
 
 class PalindromeNum:
     def __init__(self):
         return
 
-    def gen_result(self, n=10):
+    @staticmethod
+    def get_result(n=10):
         # 使用动态规划模拟对称的回文子串添加
         dp = [[""], [str(i) for i in range(n)]]
         for k in range(2, 12):
@@ -90,7 +140,7 @@ class TestGeneral(unittest.TestCase):
 
     def test_pllindrome_num(self):
         pn = PalindromeNum()
-        dp = pn.gen_result()
+        dp = pn.get_result()
         assert len(dp[2]) == 9
 
         n = "44"
