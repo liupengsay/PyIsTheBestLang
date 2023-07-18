@@ -12,7 +12,8 @@ from algorithm.src.fast_io import FastIO
 算法：位运算相关技巧（也叫bitmasks）
 功能：进行二进制上的位操作，包括与、异或、或、取反，通常使用按位思考与举例的方式寻找规律
 题目：
-
+异或经典性质：(4*i)^(4*i+1)^(4*i+2)^(4*i+3)=0
+异或经典性质：(a&b)^(a&c) = a&(b^c)
 ===================================力扣===================================
 
 2354. 优质数对的数目（https://leetcode.cn/problems/number-of-excellent-pairs/）需要脑筋急转弯确定位 1 的规律进行哈希计数枚举即可
@@ -26,6 +27,11 @@ from algorithm.src.fast_io import FastIO
 剑指 Offer 56 - I. 数组中数字出现的次数（https://leetcode.cn/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-lcof/）使用位运算按位计数
 260. 只出现一次的数字 III（https://leetcode.cn/problems/single-number-iii/）使用位运算按位计数
 2546. 执行逐位运算使字符串相等（https://leetcode.cn/problems/apply-bitwise-operations-to-make-strings-equal/）按照异或特点脑筋急转弯
+1486. 数组异或操作（https://leetcode.cn/problems/xor-operation-in-an-array/）经典异或公式计算
+1734. 解码异或后的排列（https://leetcode.cn/problems/decode-xored-permutation/）经典变换公式，解码相邻异或值编码，并利用奇数排列的异或性质
+1787. 使所有区间的异或结果为零（https://leetcode.cn/problems/make-the-xor-of-all-segments-equal-to-zero/）经典按照异或特性分组并利用值域枚举DP
+1835. 所有数对按位与结果的异或和（https://leetcode.cn/problems/find-xor-sum-of-all-pairs-bitwise-and/）按位操作模拟
+1611. 使整数变为 0 的最少操作次数（https://leetcode.cn/problems/minimum-one-bit-operations-to-make-integers-zero/）格雷码的操作，直接计算格雷码对应的二进制数字
 
 ===================================洛谷===================================
 P5657 格雷码（https://www.luogu.com.cn/problem/P5657）计算编号为 k 的二进制符，并补前缀 0 为 n 位
@@ -36,7 +42,7 @@ P7627 [COCI2011-2012#1] X3（https://www.luogu.com.cn/problem/P7627）经典按�
 P7649 [BalticOI 2004 Day 1] SCALES（https://www.luogu.com.cn/problem/P7649）三进制计算，贪心模拟砝码放置
 P1582 倒水（https://www.luogu.com.cn/problem/P1582）进制题脑经急转弯
 P2114 [NOI2014] 起床困难综合症（https://www.luogu.com.cn/problem/P2114）按位操作计算模拟，贪心选取最大结果
-P2326 AKN’s PPAP（https://www.luogu.com.cn/problem/P2326）按位模拟贪心选取与值最大的数值对
+P2326 AKN’s PPAP（https://www.luogu.com.cn/problem/P2326）按位模拟贪心选取与值最大的数值对，最大与值对
 P4144 大河的序列（https://www.luogu.com.cn/problem/P4144）按位思考贪心脑筋急转弯
 P4310 绝世好题（https://www.luogu.com.cn/problem/P4310）线性 DP 使用按位转移
 P5390 [Cnoi2019]数学作业（https://www.luogu.com.cn/problem/P5390）按位操作
@@ -64,6 +70,30 @@ https://blog.csdn.net/qq_35473473/article/details/106320878
 class BitOperation:
     def __init__(self):
         return
+
+    @staticmethod
+    def sum_xor(n):
+        # 模板：计算 [0, x] 区间证书的异或和
+        if n % 4 == 0:
+            return n
+        # (4*i)^(4*i+1)^(4*i+2)^(4*i+3)=0
+        elif n % 4 == 1:
+            return 1  # n^(n-1)
+        elif n % 4 == 2:
+            return n + 1  # n^(n-1)^(n-2)
+        return 0  # n^(n-1)^(n-2)^(n-3)
+
+    @staticmethod
+    def sum_xor_2(n):
+        # 模板：计算 [0, x] 区间证书的异或和
+        if n % 4 == 0:
+            return n
+        # (4*i)^(4*i+1)^(4*i+2)^(4*i+3)=0
+        elif n % 4 == 1:
+            return n ^ (n - 1)
+        elif n % 4 == 2:
+            return n ^ (n - 1) ^ (n - 2)
+        return n ^ (n - 1) ^ (n - 2) ^ (n - 3)
 
     @staticmethod
     def graycode_to_integer(graycode):
@@ -111,15 +141,8 @@ class Solution:
     def cf_1742g(ac=FastIO()):
 
         # 模板：重排数组使得前缀或值的字典序最大
-        def or_(a, b):
-            return a | b
-
         for _ in range(ac.read_int()):
             n = ac.read_int()
-
-            def or_(a, b):
-                return a | b
-
             nums = ac.read_list_ints()
             total = reduce(or_, nums)
             ind = set(list(range(n)))
@@ -313,7 +336,7 @@ class Solution:
         # 遍历往前回溯查找个数
         n = len(s)
         for i in range(n):
-            for j in range(max(i - ceil + 1, 0), i+1):
+            for j in range(max(i - ceil + 1, 0), i + 1):
                 st = s[j:i + 1]
                 if dct[st]:
                     for k in dct[st]:
@@ -369,6 +392,7 @@ class Solution:
         # 模板：进制题脑筋急转弯
         n, k = ac.read_ints()
         ans = 0
+        # 每次选末尾的 1 进行增加合并
         while bin(n).count("1") > k:
             ans += n & (-n)
             n += n & (-n)
@@ -421,7 +445,11 @@ class Solution:
                 for i in range(20, -1, -1):
                     if cnt[i] >= 2:
                         ans |= (1 << i)
-                        nums = [num ^ (1 << i) for num in nums if num & (1 << i) and num ^ (1 << i)]
+                        nums = [
+                            num ^ (
+                                1 << i) for num in nums if num & (
+                                1 << i) and num ^ (
+                                1 << i)]
                         break
                 else:
                     nums = []
@@ -433,8 +461,8 @@ class Solution:
         # 模板：按位思考脑筋急转弯贪心
         n, b, p = ac.read_ints()
         nums = ac.read_list_ints()
-        ans = max(nums)*2
-        ac.st(pow(ans+233, b, p))
+        ans = max(nums) * 2
+        ac.st(pow(ans + 233, b, p))
         return
 
     @staticmethod
@@ -510,7 +538,7 @@ class Solution:
     @staticmethod
     def lg_p8842(ac=FastIO()):
         # 模板：经典质数个数前缀和与异或不等式区间计数（也可考虑 01 Trie）
-        n = 1<<21
+        n = 1 << 21
         prime = [0] * (n + 1)
         prime[0] = 0
         prime[1] = 1
@@ -524,9 +552,30 @@ class Solution:
             ans = 0
             for k in range(21):
                 if x & (1 << k):
-                    ans += (1 << (k + 1)) - (1 << k) - (prime[(1 << (k + 1)) - 1] - prime[(1 << k) - 1])
+                    ans += (1 << (k + 1)) - (1 << k) - \
+                        (prime[(1 << (k + 1)) - 1] - prime[(1 << k) - 1])
             ac.st(ans)
         return
+
+    @staticmethod
+    def lc_1486(n: int, start: int) -> int:
+        # 模板：经典异或公式计算
+        s = start // 2
+        bo = BitOperation()
+        e = n & start & 1
+        # (start+0)^(start+2)^..^(start+2*n-2)
+        return (bo.sum_xor(s - 1) ^ bo.sum_xor(s + n - 1)) * 2 + e
+
+    @staticmethod
+    def lc_1734(encoded: List[int]) -> List[int]:
+        # 模板：经典变换公式，解码相邻异或值编码，并利用奇数排列的异或性质
+        n = len(encoded) + 1
+        total = 1 if n % 4 == 1 else 0  # n=4*k+1 与 n=4*k+3
+        odd = reduce(xor, encoded[1::2])
+        ans = [total ^ odd]
+        for num in encoded:
+            ans.append(ans[-1] ^ num)
+        return ans
 
 
 class TestGeneral(unittest.TestCase):
@@ -547,6 +596,12 @@ class TestGeneral(unittest.TestCase):
         for i in range(m):
             assert bo.graycode_to_integer(bin(code[i])[2:]) == i
             assert bo.integer_to_graycode(i) == bin(code[i])[2:]
+
+        pre = 0
+        for i in range(100000):
+            pre ^= i
+            assert bo.sum_xor(i) == pre
+            assert bo.sum_xor_2(i) == pre
         return
 
 

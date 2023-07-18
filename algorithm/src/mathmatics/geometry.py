@@ -17,6 +17,7 @@ from algorithm.src.data_structure.sorted_list import LocalSortedList
 
 ===================================力扣===================================
 149. 直线上最多的点数（https://leetcode.cn/problems/max-points-on-a-line/）用直线斜率判断一条线上最多的点数
+1453. 圆形靶内的最大飞镖数量（https://leetcode.cn/problems/maximum-number-of-darts-inside-of-a-circular-dartboard/）计算经过两个不同的点与确定半径的两处圆心
 面试题 16.03. 交点（https://leetcode.cn/problems/intersection-lcci/）计算两条线段最靠左靠下的交点
 面试题 16.14. 最佳直线（https://leetcode.cn/problems/best-line-lcci/）用直线斜率判断一条线上最多的点数
 
@@ -50,6 +51,19 @@ D. Tricky Function（https://codeforces.com/problemset/problem/429/D）经典平
 class Geometry:
     def __init__(self):
         return
+
+    @staticmethod
+    def compute_center(x1, y1, x2, y2, r):
+        # 模板：计算经过两个不同的点与确定半径的两处圆心
+        px, py = (x1 + x2) / 2, (y1 + y2) / 2
+        dx, dy = x1 - x2, y1 - y2
+        h = math.sqrt(r * r - (dx * dx + dy * dy) / 4)
+        res = []
+        for fx, fy in ((1, -1), (-1, 1)):
+            cx = px + fx * h * dy / math.sqrt(dx * dx + dy * dy)
+            cy = py + fy * h * dx / math.sqrt(dx * dx + dy * dy)
+            res.append([cx, cy])
+        return res
 
     @staticmethod
     def same_line(point1, point2, point3):
@@ -407,6 +421,23 @@ class Solution:
             ans = ClosetPair().bucket_grid_inter_set(n, nums1, nums2)
             ac.st("%.3f" % (ans**0.5))
         return
+
+    @staticmethod
+    def lc_1453(darts: List[List[int]], r: int) -> int:
+        # 模板：计算经过两个不同的点与确定半径的两处圆心
+        n = len(darts)
+        ans = 1
+        go = Geometry()
+        for i in range(n):
+            x1, y1 = darts[i]
+            for j in range(i + 1, n):
+                x2, y2 = darts[j]
+                if (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2) > 4 * r * r:
+                    continue
+                for x, y in go.compute_center(x1, y1, x2, y2, r):
+                    cur = sum((x - x0) * (x - x0) + (y - y0) * (y - y0) <= r * r for x0, y0 in darts)
+                    ans = ans if ans > cur else cur
+        return ans
 
 
 class TestGeneral(unittest.TestCase):

@@ -37,6 +37,11 @@ from algorithm.src.mathmatics.comb_perm import Combinatorics
 1143. 最长公共子序列（https://leetcode.cn/problems/longest-common-subsequence/）使用LIS的方法求LCS
 1035. 不相交的线（https://leetcode.cn/problems/uncrossed-lines/）使用LIS的方法求LCS
 2617. 网格图中最少访问的格子数（https://leetcode.cn/problems/minimum-number-of-visited-cells-in-a-grid/）倒序矩阵 DP 并使用树状数组记录更新前缀最小值
+1092. 最短公共超序列（https://leetcode.cn/problems/shortest-common-supersequence/）经典LCS问题并输出方案，可使用LIS求解
+1692. 计算分配糖果的不同方式（https://leetcode.cn/problems/count-ways-to-distribute-candies/）矩阵DP计算方案数
+1771. 由子序列构造的最长回文串的长度（https://leetcode.cn/problems/maximize-palindrome-length-from-subsequences/）经典回文矩阵DP
+1883. 准时抵达会议现场的最小跳过休息次数（https://leetcode.cn/problems/minimum-skips-to-arrive-at-meeting-on-time/）矩阵 DP
+1977. 划分数字的方案数（https://leetcode.cn/problems/number-of-ways-to-separate-numbers/）两个矩阵DP进行计算优化
 
 ===================================洛谷===================================
 P2701 [USACO5.3]巨大的牛棚Big Barn（https://www.luogu.com.cn/problem/P2701）求全为 "." 的最大正方形面积，如果不要求实心只能做到O(n^3)复杂度
@@ -69,7 +74,7 @@ P1279 字串距离（https://www.luogu.com.cn/problem/P1279）经典编辑距离
 P1353 [USACO08JAN]Running S（https://www.luogu.com.cn/problem/P1353）矩阵DP
 P1410 子序列（https://www.luogu.com.cn/problem/P1410）二维DP
 P1799 数列（https://www.luogu.com.cn/problem/P1799）矩阵二维DP
-P1854 花店橱窗布置（https://www.luogu.com.cn/problem/P1854）矩阵DP，并输出匹配方案
+P1854 花店橱窗布置（https://www.luogu.com.cn/problem/P1854）前缀最大值优化矩阵DP，并输出匹配方案
 P2140 小Z的电力管制（https://www.luogu.com.cn/problem/P2140）矩阵四维DP，可以使用记忆化与迭代计算
 P2217 [HAOI2007]分割矩阵（https://www.luogu.com.cn/problem/P2217）矩阵四维DP，可以使用记忆化与迭代计算
 P1436 棋盘分割（https://www.luogu.com.cn/problem/P1436）矩阵四维DP，可以使用记忆化与迭代计算
@@ -105,6 +110,7 @@ https://codeforces.com/problemset/problem/429/B（四个方向的矩阵DP）
 D. Colored Rectangles（https://codeforces.com/problemset/problem/1398/D）三维DP，选取两个不同数组的数乘积，计算最大总和
 B. The least round way（https://codeforces.com/problemset/problem/2/B）矩阵DP，计算路径上乘积最少的后缀0个数，经典题目
 B. Unmerge（https://codeforces.com/problemset/problem/1381/B）二维矩阵DP加单调栈优化
+D. Rarity and New Dress（https://codeforces.com/problemset/problem/1393/D）经典二维DP计算金字塔个数
 
 参考：OI WiKi（xx）
 """
@@ -688,27 +694,29 @@ class Solution:
         # 模板：矩阵DP，并输出匹配方案
         m, n = ac.read_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
-        dp = [[-inf] * (n + 1) for _ in range(m + 1)]
-        dp[0] = [0] * (n + 1)
+        dp = [[-inf]*(n+1) for _ in range(m+1)]
+        dp[0] = [0]*(n+1)
+        pre = [[-1]*(n+1) for _ in range(m+1)]
         for i in range(m):
+            x = dp[i][i]
+            ind = i
             for j in range(i, n):
-                for k in range(i, j + 1):
-                    if dp[i + 1][j + 1] < dp[i][k] + grid[i][j]:
-                        dp[i + 1][j + 1] = dp[i][k] + grid[i][j]
-        res = max(dp[-1])
-        ac.st(res)
+                if dp[i][j] > x:
+                    x = dp[i][j]
+                    ind = j
+                if dp[i+1][j+1] < x + grid[i][j]:
+                    dp[i+1][j+1] = x + grid[i][j]
+                    # 记录上一行转移顺序
+                    pre[i+1][j+1] = ind
 
-        # 倒序寻找最后一朵花插入的花瓶
-        ans = [n]
-        x = res
-        for i in range(m - 1, -1, -1):
-            for j in range(ans[-1] - 1, -1, -1):
-                if dp[i + 1][j + 1] == x:
-                    ans.append(j)
-                    x -= grid[i][j]
-                    break
+        # 倒序输出具体方案
+        res = max(dp[m])
+        ac.st(res)
+        ans = [dp[m].index(res)]
+        for i in range(m, 1, -1):
+            ans.append(pre[i][ans[-1]])
         ans.reverse()
-        ac.lst([x + 1 for x in ans[:-1]])
+        ac.lst([x for x in ans])
         return
 
     @staticmethod

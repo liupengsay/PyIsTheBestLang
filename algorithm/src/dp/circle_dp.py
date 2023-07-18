@@ -132,6 +132,7 @@ class Solution:
             for i in range(n):
                 pre[i+1] = pre[i] + nums[i]
             dp = [[[inf, -inf] for _ in range(m+1)] for _ in range(n+1)]
+            # 经典记录乘积的最大值与最小值
             dp[0][0] = [1, 1]
             for i in range(n):
                 for k in range(i+1):

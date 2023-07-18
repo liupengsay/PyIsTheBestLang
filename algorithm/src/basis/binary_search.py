@@ -26,6 +26,10 @@ from algorithm.src.graph.union_find import UnionFind
 2102 序列顺序查询（https://leetcode.cn/problems/sequentially-ordinal-rank-tracker/）使用有序集合维护优先级姓名实时查询
 2563. 统计公平数对的数目（https://leetcode.cn/problems/count-the-number-of-fair-pairs/）使用二分查找确定范围个数
 2604. 吃掉所有谷子的最短时间（https://leetcode.cn/problems/minimum-time-to-eat-all-grains/）二分加指针贪心 check
+1201. 丑数 III（https://leetcode.cn/problems/ugly-number-iii/）二分加容斥原理计数
+1739. 放置盒子（https://leetcode.cn/problems/building-boxes/）可推公式二分也可数学方法计算
+1889. 装包裹的最小浪费空间（https://leetcode.cn/problems/minimum-space-wasted-from-packaging/）排序加贪心二分
+2071. 你可以安排的最多任务数目（https://leetcode.cn/problems/maximum-number-of-tasks-you-can-assign/）经典二分加贪心
 
 ===================================洛谷===================================
 P1577 切绳子（https://www.luogu.com.cn/problem/P1577）数学整除向下取整与二分
@@ -53,9 +57,9 @@ P1314 [NOIP2011 提高组] 聪明的质监员（https://www.luogu.com.cn/problem
 P3017 [USACO11MAR]Brownie Slicing G（https://www.luogu.com.cn/problem/P3017）经典二分将矩阵分成a*b个子矩阵且子矩阵和的最小值最大
 P1083 [NOIP2012 提高组] 借教室（https://www.luogu.com.cn/problem/P1083）经典二分结合差分进行寻找第一个失效点
 P1281 书的复制（https://www.luogu.com.cn/problem/P1281）典型二分并输出方案
-P1381 单词背诵（https://www.luogu.com.cn/problem/P1381）典型二分
+P1381 单词背诵（https://www.luogu.com.cn/problem/P1381）典型二分加滑动窗口check，脑筋急转弯
 P1419 寻找段落（https://www.luogu.com.cn/problem/P1419）二分加优先队列
-P1525 [NOIP2010 提高组] 关押罪犯（https://www.luogu.com.cn/problem/P1525）经典二分加BFS进行二分图划分
+P1525 [NOIP2010 提高组] 关押罪犯（https://www.luogu.com.cn/problem/P1525）经典二分加BFS进行二分图划分，可以使用染色法或者并查集
 P1542 包裹快递（https://www.luogu.com.cn/problem/P1542）二分加使用分数进行高精度计算
 P2237 [USACO14FEB]Auto-complete S（https://www.luogu.com.cn/problem/P2237）脑筋急转弯排序后二分查找
 P2810 Catch the theives（https://www.luogu.com.cn/problem/P2810）二分加枚举
@@ -557,6 +561,7 @@ class Solution:
             cnt = defaultdict(int)
             cc = 0
             for i in range(m):
+                # 滑动窗口判断是否可行
                 if words[i] in dct:
                     cnt[words[i]] += 1
                     if cnt[words[i]] == 1:
@@ -569,7 +574,7 @@ class Solution:
                         if not cnt[words[i - x + 1]]:
                             cc -= 1
             return False
-
+        # 贪心选取所有能背的单词
         s = len(cur)
         ac.st(s)
         if not s:
@@ -586,13 +591,14 @@ class Solution:
         def check(x):
             stack = deque()
             res = []
+            # 单调队列记录前序最小值
             for i in range(n):
                 while stack and stack[0][0] <= i - k:
                     stack.popleft()
                 while stack and stack[-1][1] >= pre[i] - x * i:
                     stack.pop()
                 stack.append([i, pre[i] - x * i])
-                res.append(stack[0][1])
+                res.append(stack[0][1])   # 记录长度在 k 左右的最小前缀变化和
                 if i >= s - 1:
                     if pre[i + 1] - x * (i + 1) >= res[i - s + 1]:
                         return True
@@ -607,6 +613,7 @@ class Solution:
         for j in range(n):
             pre[j + 1] = pre[j] + nums[j]
 
+        # 二分最大平均值
         k = t - s
         ans = BinarySearch().find_float_right(min(nums), max(nums), check)
         ac.st("%.3f" % ans)
@@ -624,6 +631,7 @@ class Solution:
             for i, j in edges:
                 dct[i].append(j)
                 dct[j].append(i)
+            # 使用染色法判断是否可以二分
             visit = [0] * (n + 1)
             for i in range(1, n + 1):
                 if visit[i] == 0:
@@ -642,6 +650,7 @@ class Solution:
 
             return all(visit[i] != visit[j] for i, j in edges)
 
+        # 二分最小的最大值
         low = 0
         high = max(ls[-1] for ls in lst)
         ans = BinarySearch().find_int_left(low, high, check)
@@ -655,6 +664,7 @@ class Solution:
         nums = [ac.read_list_ints() for _ in range(n)]
 
         def add(lst1, lst2):
+            # 进行分数加减
             a, b = lst1
             c, d = lst2
             d1 = a * d + c * b

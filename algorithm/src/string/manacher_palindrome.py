@@ -37,6 +37,8 @@ from algorithm.src.fast_io import FastIO
 5. 最长回文子串（https://leetcode.cn/problems/longest-palindromic-substring/）计算字符串的最长回文连续子串
 132. 分割回文串 II（https://leetcode.cn/problems/palindrome-partitioning-ii/）经典线性 DP 与马拉车判断以每个位置为结尾的回文串
 214 最短回文串（https://leetcode.cn/problems/shortest-palindrome/）计算字符串前缀最长回文子串
+1745. 回文串分割 IV（https://leetcode.cn/problems/palindrome-partitioning-iv/）待确认如何使用马拉车实现线性做法
+1960. 两个回文子字符串长度的最大乘积（https://leetcode.cn/problems/maximum-product-of-the-length-of-two-palindromic-substrings/）利用马拉车求解每个位置前后最长回文子串
 
 ===================================洛谷===================================
 P4555 最长双回文串（https://www.luogu.com.cn/problem/P4555）计算以当前索引为开头以及结尾的最长回文子串
@@ -53,6 +55,10 @@ P6297 替换（https://www.luogu.com.cn/problem/P6297）中心扩展法并使用
 class ManacherPlindrome:
     def __init__(self):
         return
+
+    @staticmethod
+    def max(a, b):
+        return a if a > b else b
 
     @staticmethod
     def manacher(s):
@@ -121,24 +127,24 @@ class ManacherPlindrome:
             while left <= right:
                 if t[left] != "#":
                     x, y = left // 2, right // 2
-                    post[x] = max(post[x], y - x + 1)
-                    pre[y] = max(pre[y], y - x + 1)
+                    post[x] = self.max(post[x], y - x + 1)
+                    pre[y] = self.max(pre[y], y - x + 1)
                     break
                 left += 1
                 right -= 1
         # 由此还可以获得以某个位置开头或者结尾的最长回文子串
         for i in range(1, n):
             if i - pre[i - 1] - 1 >= 0 and s[i] == s[i - pre[i - 1] - 1]:
-                pre[i] = max(pre[i], pre[i - 1] + 2)
+                pre[i] = self.max(pre[i], pre[i - 1] + 2)
 
         for i in range(n - 2, -1, -1):
-            pre[i] = max(pre[i], pre[i + 1] - 2)
+            pre[i] = self.max(pre[i], pre[i + 1] - 2)
 
         for i in range(n - 2, -1, -1):
             if i + post[i + 1] + 1 < n and s[i] == s[i + post[i + 1] + 1]:
-                post[i] = max(post[i], post[i + 1] + 2)
+                post[i] = self.max(post[i], post[i + 1] + 2)
         for i in range(1, n):
-            post[i] = max(post[i], post[i - 1] - 2)
+            post[i] = self.max(post[i], post[i - 1] - 2)
 
         return post, pre
 
@@ -240,6 +246,41 @@ class Solution:
                     y += 1
                 ans = ac.max(ans, cur)
         ac.st(ans % mod)
+        return
+
+    @staticmethod
+    def lc_1960(s: str) -> int:
+        # 模板：利用马拉车求解每个位置前后最长回文子串
+        post, pre = ManacherPlindrome().palindrome_longest(s)
+
+        n = len(s)
+        if post[-1] % 2 == 0:
+            post[-1] = 1
+        for i in range(n - 2, -1, -1):
+            if post[i] % 2 == 0:
+                post[i] = 1
+            post[i] = post[i] if post[i] > post[i + 1] else post[i + 1]
+
+        ans = x = 0
+        for i in range(n - 1):
+            if pre[i] % 2 == 0:
+                pre[i] = 1
+            x = x if x > pre[i] else pre[i]
+            ans = ans if ans > x * post[i + 1] else x * post[i + 1]
+
+    @staticmethod
+    def lg_p1782(ac=FastIO()):
+        # 模板：回文串对数统计，利用马拉车计算以当前字母开头与结尾的回文串数
+        s = ac.read_str()
+        n = len(s)
+        start, end = ManacherPlindrome().palindrome(s)
+        start = [len(x) for x in start]
+        end = [len(x) for x in end]
+        pre = ans = 0
+        for i in range(n):
+            ans += pre*start[i]
+            pre += end[i]
+        ac.st(ans)
         return
 
 

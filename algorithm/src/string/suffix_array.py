@@ -10,6 +10,7 @@ from algorithm.src.fast_io import FastIO
 
 ===================================力扣===================================
 1754. 构造字典序最大的合并字符串（https://leetcode.cn/problems/largest-merge-of-two-strings/）
+1698. 字符串的不同子字符串个数（https://leetcode.cn/problems/number-of-distinct-substrings-in-a-string/）经典后缀数组应用题，利用height特性
 
 ===================================洛谷===================================
 P3809 【模板】后缀排序（https://www.luogu.com.cn/problem/P3809）
@@ -28,7 +29,7 @@ class SuffixArray:
     def get_array(self, s):
         # sa[i]:排名为i的后缀的起始位置
         # rk[i]:起始位置为i的后缀的排名
-        # height[i]: 第i名的后缀与它前一名的后缀的最长公共前缀
+        # height[i]: 第i名的后缀与它前一名的后缀的最长公共前缀  # 高度数组的定义，所有高度之和就是相同子串的个数
         n = len(s)
         sa = []
         rk = []
@@ -158,6 +159,16 @@ class Solution:
         ac.lst(sa)
         ac.lst(height)
         return
+
+    @staticmethod
+    def lc_1698(s: str) -> int:
+        # 模板：经典后缀数组应用题，利用 height 特性
+        ind = {chr(ord("a") + i): i for i in range(26)}
+        # 高度数组的定义，所有高度之和就是相同子串的个数
+        sa, rk, height = SuffixArray(ind).get_array(s)
+        n = len(s)
+        print(height)
+        return n*(n+1)//2 - sum(height)
 
 
 class TestGeneral(unittest.TestCase):

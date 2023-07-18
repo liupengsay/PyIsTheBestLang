@@ -33,6 +33,9 @@ from algorithm.src.fast_io import FastIO
 功能：根据组合数与转移方案求解概率或者期望
 题目：
 
+===================================力扣===================================
+1227. 飞机座位分配概率（https://leetcode.cn/problems/airplane-seat-assignment-probability/）概率DP
+
 ===================================洛谷===================================
 P2719 搞笑世界杯（https://www.luogu.com.cn/record/list?user=739032&status=12&page=1）二维DP求概率
 P1291 [SHOI2002] 百事世界杯之旅（https://www.luogu.com.cn/problem/P1291）线性DP求期望
@@ -80,12 +83,13 @@ class Solution:
         for x in range(2, n+1):
             a, b = ans
             c, d = 1, x
+            # 使用gcd进行加减
             g = math.gcd(b, d)
             lcm = b*d//g
             a, b = a*lcm//b+c*lcm//d, lcm
             g = math.gcd(a, b)
             ans = [a//g, b//g]
-
+        # f[i] = f[i-1] + n/(n-i+1) 表示已经有 i-1 个再要有新的一个的期望为 n/(n-i+1)
         a, b = ans
         a *= n
         x = a//b
@@ -93,6 +97,7 @@ class Solution:
         if a == 0:
             ac.st(x)
             return
+        # 加和化简
         g = math.gcd(a, b)
         ans = [a//g, b//g]
         a, b = ans

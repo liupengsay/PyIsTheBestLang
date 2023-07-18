@@ -27,8 +27,13 @@ from algorithm.src.graph.spfa import SPFA
 6442. 修改图中的边权（https://leetcode.cn/problems/modify-graph-edge-weights/）经典两遍最短路，贪心动态更新路径权值
 2714. 找到最短路径的 K 次跨越（https://leetcode.cn/problems/find-shortest-path-with-k-hops/）经典带约束的最短路，也可以使用分层Dijkstra求解
 2699. 修改图中的边权（https://leetcode.cn/problems/modify-graph-edge-weights/）经典Dijkstra最短路贪心应用
-
+1786. 从第一个节点出发到最后一个节点的受限路径数（https://leetcode.cn/problems/number-of-restricted-paths-from-first-to-last-node/）经典dijkstra受限最短路计数（类似最短路计数）
+1928. 规定时间内到达终点的最小花费（https://leetcode.cn/problems/minimum-cost-to-reach-destination-in-time/）经典Dijkstra带约束的最短路，也可用动态规划求解
 LCP 75. 传送卷轴（https://leetcode.cn/problems/rdmXM7/）首先BFS之后计算最大值最小的最短路
+1976. 到达目的地的方案数（https://leetcode.cn/problems/number-of-ways-to-arrive-at-destination/）经典Dijkstra最短路计数模板题
+2045. 到达目的地的第二短时间（https://leetcode.cn/problems/second-minimum-time-to-reach-destination/）不带权的严格次短路耗时模拟计算
+2093. 前往目标城市的最小费用（https://leetcode.cn/problems/minimum-cost-to-reach-city-with-discounts/）经典Dijkstra带约束的最短路
+
 ===================================洛谷===================================
 P3371 单源最短路径（弱化版）（https://www.luogu.com.cn/problem/P3371）最短路模板题
 P4779 【模板】单源最短路径（标准版）（https://www.luogu.com.cn/problem/P4779）最短路模板题
@@ -67,13 +72,12 @@ P6175 无向图的最小环问题（https://www.luogu.com.cn/problem/P6175）使
 P4568 [JLOI2011] 飞行路线（https://www.luogu.com.cn/problem/P4568）K层建图计算Dijkstra最短路
 P2865 [USACO06NOV]Roadblocks G（https://www.luogu.com.cn/problem/P2865）严格次短路模板题
 P2622 关灯问题II（https://www.luogu.com.cn/problem/P2622）状压加dijkstra最短路计算
-P1608 路径统计（https://www.luogu.com.cn/problem/P1608）dijkstra计算最短路径条数
 P1073 [NOIP2009 提高组] 最优贸易（https://www.luogu.com.cn/problem/P1073）正反两遍建图，Dijkstra进行计算路径最大最小值
 P1300 城市街道交通费系统（https://www.luogu.com.cn/problem/P1300）Dijkstra求最短路
 P1354 房间最短路问题（https://www.luogu.com.cn/problem/P1354）建图Dijkstra求最短路
 P1608 路径统计（https://www.luogu.com.cn/problem/P1608）使用Dijkstra计算有向与无向、带权与不带权的最短路数量
 P1828 [USACO3.2]香甜的黄油 Sweet Butter（https://www.luogu.com.cn/problem/P1828）多个单源Dijkstra最短路计算
-P2047 [NOI2007] 社交网络（https://www.luogu.com.cn/problem/P2047）Dijkstra计算经过每个点的所有最短路条数占比
+P2047 [NOI2007] 社交网络（https://www.luogu.com.cn/problem/P2047）Dijkstra计算经过每个点的所有最短路条数占比，也可以使用Floyd进行计算
 P2269 [HNOI2002]高质量的数据传输（https://www.luogu.com.cn/problem/P2269）比较两个项的最短路计算
 P2349 金字塔（https://www.luogu.com.cn/problem/P2349）比较两个项相加的最短路
 P2914 [USACO08OCT]Power Failure G（https://www.luogu.com.cn/problem/P2914）Dijkstra动态建图计算距离
@@ -94,7 +98,7 @@ P6512 [QkOI#R1] Quark and Flying Pigs（https://www.luogu.com.cn/problem/P6512�
 P8385 [POI 2003] Smugglers（https://www.luogu.com.cn/problem/P8385）经典脑筋急转弯建图最短路
 P8724 [蓝桥杯 2020 省 AB3] 限高杆（https://www.luogu.com.cn/problem/P8724）分层最短路Dijkstra计算
 P8802 [蓝桥杯 2022 国 B] 出差（https://www.luogu.com.cn/problem/P8802）Dijkstra基础权重变形题
-
+P2176 [USACO11DEC] RoadBlock S / [USACO14FEB]Roadblock G/S（https://www.luogu.com.cn/problem/P2176）枚举最短路上的边修改后，重新计算最短路
 ================================CodeForces================================
 C. Dijkstra?（https://codeforces.com/problemset/problem/20/C）正权值最短路计算，并记录返回生成路径
 E. Weights Distributing（https://codeforces.com/problemset/problem/1343/E）使用三个01BFS求最短路加贪心枚举计算
@@ -456,6 +460,34 @@ class Solution:
                 if cnt + 1 < dis[j]:
                     heapq.heappush(stack, [cost + dct[i][j], cnt + 1, j])
         return -1
+
+    @staticmethod
+    def lc_2093(n: int, highways: List[List[int]], discounts: int) -> int:
+        # 模板：Dijkstra 带约束的最短路
+        dct = [[] for _ in range(n)]
+        for u, v, p in highways:
+            dct[u].append([v, p])
+            dct[v].append([u, p])
+
+        # 第一维是花费，第二维是折扣次数
+        stack = [[0, 0, 0]]
+        dis = [inf] * n
+        while stack:
+            cost, cnt, i = heapq.heappop(stack)
+            # 前面的代价已经比当前小了若是折扣次数更多则显然不可取
+            if dis[i] <= cnt:
+                continue
+            if i == n - 1:
+                return cost
+            dis[i] = cnt
+            for j, w in dct[i]:
+                if cnt < dis[j]:
+                    heapq.heappush(stack, [cost + w, cnt, j])
+                if cnt + 1 < dis[j] and cnt + 1 <= discounts:
+                    heapq.heappush(stack, [cost + w // 2, cnt + 1, j])
+
+        return -1
+
 
     @staticmethod
     def lc_1293(grid: List[List[int]], k: int) -> int:
@@ -1631,6 +1663,47 @@ class Solution:
                     heapq.heappush(stack, [dj, j])
         ac.st(int(dis[n]))
         return
+
+    @staticmethod
+    def lc_1786(n: int, edges: List[List[int]]) -> int:
+
+        # 模板：经典dijkstra受限最短路计数（类似最短路计数）
+        dct = defaultdict(dict)
+        for i, j, w in edges:
+            dct[i-1][j-1] = w
+            dct[j-1][i-1] = w
+        mod = 10**9 + 7
+        # 使用倒序进行最短路搜寻
+        dis = [float('inf')]*n
+        cnt = [0]*n
+        cnt[n-1] = 1
+        dis[n-1] = 0
+        # 定义好初始值
+        stack = [[0, n-1]]
+        while stack:
+            cur_dis, cur = heapq.heappop(stack)
+            if dis[cur] < cur_dis:
+                continue
+            dis[cur] = cur_dis
+            for nex in dct[cur]:
+                # 如果到达下一个点更近，则更新值
+                if dis[nex] > dis[cur] + dct[cur][nex]:
+                    dis[nex] = dis[cur] + dct[cur][nex]
+                    heapq.heappush(stack, [dis[nex], nex])
+                # 可以形成有效的路径
+                if dis[cur] < dis[nex]:
+                    cnt[nex] += cnt[cur]
+                    cnt[nex] %= mod
+        return cnt[0]
+
+    @staticmethod
+    def lc_1976(n: int, roads: List[List[int]]) -> int:
+        # 模板：经典Dijkstra最短路计数模板题
+        mod = 10 ** 9 + 7
+        dct = [dict() for _ in range(n)]
+        for i, j, t in roads:
+            dct[i][j] = dct[j][i] = t
+        return Dijkstra().get_dijkstra_cnt(dct, 0)[0][n-1] % mod
 
 
 class TestGeneral(unittest.TestCase):

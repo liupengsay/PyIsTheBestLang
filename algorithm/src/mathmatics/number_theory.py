@@ -11,6 +11,7 @@ from operator import mul
 from typing import List
 
 from algorithm.src.fast_io import FastIO
+from algorithm.src.mathmatics.comb_perm import Combinatorics
 
 """
 算法：数论、欧拉筛、线性筛、素数、欧拉函数、因子分解、素因子分解、进制转换、因数分解
@@ -32,6 +33,9 @@ from algorithm.src.fast_io import FastIO
 2464. 有效分割中的最少子数组数目（https://leetcode.cn/problems/minimum-subarrays-in-a-valid-split/）计算 1 到 n 的每个数所有的质因子，并使用动态规划计数
 LCP 14. 切分数组（https://leetcode.cn/problems/qie-fen-shu-zu/）计算 1 到 n 的每个数所有的质因子，并使用动态规划计数
 279. 完全平方数（https://leetcode.cn/problems/perfect-squares/）四平方数定理
+650. 只有两个键的键盘（https://leetcode.cn/problems/2-keys-keyboard/）经典分解质因数
+1735. 生成乘积数组的方案数（https://leetcode.cn/problems/count-ways-to-make-array-with-product/）经典质数分解与隔板法应用
+1390. 四因数（https://leetcode.cn/contest/weekly-contest-181/problems/four-divisors/）预处理所有数的所有因子
 
 ===================================洛谷===================================
 P1865 A % B Problem（https://www.luogu.com.cn/problem/P1865）通过线性筛素数后进行二分查询区间素数个数
@@ -63,8 +67,8 @@ P1876 开灯（https://www.luogu.com.cn/problem/P1876）经典好题，理解完
 P7588 双重素数（2021 CoE-II A）（https://www.luogu.com.cn/problem/P7588）素数枚举计算，优先使用is_prime4
 P7696 [COCI2009-2010#4] IKS（https://www.luogu.com.cn/problem/P7696）数组，每个数进行质因数分解，然后均匀分配质因子
 P4718 【模板】Pollard's rho 算法（https://www.luogu.com.cn/problem/P4718）使用pollard_rho进行质因数分解与素数判断
-P1069 [NOIP2009 普及组] 细胞分裂（https://www.luogu.com.cn/problem/P1069）质因数分解
-P1072 [NOIP2009 提高组] Hankson 的趣味题（https://www.luogu.com.cn/problem/P1072）枚举所有因数
+P1069 [NOIP2009 普及组] 细胞分裂（https://www.luogu.com.cn/problem/P1069）质因数分解，转换为因子计数翻倍整除
+P1072 [NOIP2009 提高组] Hankson 的趣味题（https://www.luogu.com.cn/problem/P1072）枚举所有因数，需要计算所有因数
 P1593 因子和（https://www.luogu.com.cn/problem/P1593）使用质因数分解与快速幂计算a^b的所有因子之和
 P2527 [SHOI2001]Panda的烦恼（https://www.luogu.com.cn/problem/P2527）丑数即只含特定质因子的数
 P2557 [AHOI2002]芝麻开门（https://www.luogu.com.cn/problem/P2557）使用质因数分解计算a^b的所有因子之和
@@ -130,6 +134,23 @@ class NumberTheoryPrimeFactor:
                     num //= p
                     cnt += 1
                 self.prime_factor[i].append([p, cnt])
+        return
+
+
+class NumberTheoryAllFactor:
+    def __init__(self, ceil):
+        self.ceil = ceil+10
+        self.factor = [[1] for _ in range(self.ceil+1)]
+        self.get_all_factor()
+        return
+
+    def get_all_factor(self):
+        # 模板：计算 1 到 self.ceil 所有数字的所有因子
+        for i in range(2, self.ceil + 1):
+            x = 1
+            while x*i <= self.ceil:
+                self.factor[x*i].append(i)
+                x += 1
         return
 
 
@@ -1030,7 +1051,7 @@ class Solution:
             ans = 1
             for k in cnt:
                 c = cnt[k] * b
-                if (k - 1) % mod:
+                if (k - 1) % mod:  # 即 k % mod ！= 1 此时才有逆元
                     # 等比数列计算乘法逆元，逆元要求与mod互质否则需要额外计算
                     ans *= (pow(k, c + 1, mod) - 1) * pow(k - 1, -1, mod)
                     ans %= mod
@@ -1265,6 +1286,15 @@ class Solution:
                 ac.st("no")
         return
 
+    @staticmethod
+    def lc_1390(nums: List[int]) -> int:
+        # 模板：预处理所有数的所有因子
+        nt = NumberTheoryAllFactor(10**5)
+        ans = 0
+        for num in nums:
+            if len(nt.factor[num]) == 4:
+                ans += sum(nt.factor[num])
+        return ans
 
 class TestGeneral(unittest.TestCase):
 

@@ -1,6 +1,7 @@
 import bisect
 import unittest
-from collections import deque
+from bisect import bisect_left
+from collections import deque, defaultdict
 from typing import List
 
 from algorithm.src.fast_io import FastIO
@@ -16,9 +17,16 @@ from algorithm.src.fast_io import FastIO
 dilworth定理：分成不下降子序列最小组数等于最大上升子序列的长度，分成不上升子序列最小组数等于最大下降子序列的长度。
 参考题目：
 ===================================力扣===================================
+354. 俄罗斯套娃信封问题（https://leetcode.cn/problems/russian-doll-envelopes/）经典二维偏序最长递增子序列问题
 673. 最长递增子序列的个数（https://leetcode.cn/problems/number-of-longest-increasing-subsequence/）经典O(n^2)与O(nlogn)的LIS计数问题
+1092. 最短公共超序列（https://leetcode.cn/problems/shortest-common-supersequence/）经典利用LIS求LCS的最短公共超序列
+1671. 得到山形数组的最少删除次数（https://leetcode.cn/problems/minimum-number-of-removals-to-make-mountain-array/）经典山脉数组LIS变形问题
 2111. 使数组 K 递增的最少操作次数（https://leetcode.cn/problems/minimum-operations-to-make-the-array-k-increasing/）分成 K 组计算每组的最长递增子序列
 面试题 17.08. 马戏团人塔（https://leetcode.cn/problems/circus-tower-lcci/）按照两个维度贪心排序后，计算最长递增子序列
+最长递增子序列（https://www.nowcoder.com/questionTerminal/30fb9b3cab9742ecae9acda1c75bf927?orderByHotValue=1&questionTypes=000100&difficulty=11111&mutiTagIds=593&page=10&onlyReference=false）最长且字典序最小的递增子序列
+1691. 堆叠长方体的最大高度（https://leetcode.cn/problems/maximum-height-by-stacking-cuboids/submissions/）经典三维偏序LIS问题
+1713. 得到子序列的最少操作次数（https://leetcode.cn/problems/minimum-operations-to-make-a-subsequence/）经典LCS问题转换为LIS
+1940. 排序数组之间的最长公共子序列（https://leetcode.cn/problems/longest-common-subsequence-between-sorted-arrays/）经典LCS问题转为LIS问题
 
 ===================================洛谷===================================
 P1020 导弹拦截（https://www.luogu.com.cn/problem/P1020）使用贪心加二分计算最长单调不减和单调不增子序列的长度
@@ -31,6 +39,8 @@ P6403 [COCI2014-2015#2] STUDENTSKO（https://www.luogu.com.cn/problem/P6403）�
 P5939 [POI1998]折线（https://www.luogu.com.cn/problem/P5939）旋转后转换为 LIS 问题
 P5978 [CEOI2018] Global warming（https://www.luogu.com.cn/problem/P5978）经典 LIS 变形问题，贪心枚举前半部分
 P7957 [COCI2014-2015#6] KRATKI（https://www.luogu.com.cn/problem/P7957）经典 LMS 逆问题构造
+P1410 子序列（https://www.luogu.com.cn/problem/P1410）使用dilworth定理求最长不上升子序列长度小于等于2
+
 
 """
 
@@ -72,6 +82,84 @@ class LongestIncreasingSubsequence:
         # 最长单调不增子序列（不升）
         nums = [-num for num in nums]
         return self.definitely_not_reduce(nums)
+
+
+class LcsLis:
+    def __init__(self):
+        return
+
+    def longest_common_subsequence(self, s1, s2) -> int:
+        # 使用LIS的办法求LCS
+        if len(s1) > len(s2):
+            s1, s2 = s2, s1
+        m = len(s2)
+        mapper = defaultdict(list)
+        for i in range(m-1, -1, -1):
+            mapper[s2[i]].append(i)
+        nums = []
+        for c in s1:
+            if c in mapper:
+                nums.extend(mapper[c])
+
+        return self.longest_increasing_subsequence(nums)
+
+    @staticmethod
+    def longest_increasing_subsequence(nums: List[int]) -> int:
+        # 使用贪心二分求LIS
+        stack = []
+        for x in nums:
+            idx = bisect_left(stack, x)
+            if idx < len(stack):
+                stack[idx] = x
+            else:
+                stack.append(x)
+        # 还可以返回stack获得最长公共子序列
+        return len(stack)
+
+    def longest_common_subsequence_stack(self, s1, s2) -> List[int]:
+        # 使用LIS的办法求LCS
+        if len(s1) > len(s2):
+            s1, s2 = s2, s1
+        m = len(s2)
+        mapper = defaultdict(list)
+        for i in range(m - 1, -1, -1):
+            mapper[s2[i]].append(i)
+        nums = []
+        for c in s1:
+            if c in mapper:
+                nums.extend(mapper[c])
+        # 这里返回的是 s2 的索引不是具体的值
+        res = self.longest_increasing_subsequence_stack(nums)
+        return res
+
+    @staticmethod
+    def longest_increasing_subsequence_stack(nums: List[int]) -> List[int]:
+        # 使用贪心二分求LIS
+        if not nums:
+            return []
+        n = len(nums)
+        tops = [nums[0]]
+        piles = [0] * n
+        piles[0] = 0
+
+        for i in range(1, n):
+            if nums[i] > tops[-1]:
+                piles[i] = len(tops)
+                tops.append(nums[i])
+            else:
+                j = bisect.bisect_left(tops, nums[i])
+                piles[i] = j
+                tops[j] = nums[i]
+
+        lis = []
+        j = len(tops) - 1
+        for i in range(n - 1, -1, -1):
+            if piles[i] == j:
+                lis.append(nums[i])
+                j -= 1
+        lis.reverse()  # 反转列表，输出字典序最小的方案
+        # 还可以返回stack获得最长公共子序列
+        return lis
 
 
 class Solution:
@@ -202,6 +290,46 @@ class Solution:
                 q[length].append([num, s[length - 1]])
         # 可以进一步变换求非严格递增子序列的个数
         return s[-1]
+
+    @staticmethod
+    def lc_1092(self, str1: str, str2: str) -> str:
+        # 模板：经典利用LIS求LCS的最短公共超序列
+        if len(str1) > len(str2):
+            str1, str2 = str2, str1
+        lcs_lis = LcsLis().longest_common_subsequence_stack(str1, str2)
+        i = j = 0
+        ans = ""
+        for ind in lcs_lis:
+            w = str2[ind]
+            while str1[i] != w:
+                ans += str1[i]
+                i += 1
+            while str2[j] != w:
+                ans += str2[j]
+                j += 1
+            ans += w
+            i += 1
+            j += 1
+        ans += str1[i:] + str2[j:]
+        return ans
+
+    @staticmethod
+    def lg_p1410(ac=FastIO()):
+        # 模板：最长不上升子序列
+        while True:
+            lst = ac.read_list_ints()
+            if not lst:
+                break
+            lst = lst[1:]
+            dp = []
+            for num in lst:
+                i = bisect.bisect_right(dp, -num)
+                if i < len(dp):
+                    dp[i] = -num
+                else:
+                    dp.append(-num)
+            ac.st("Yes!" if len(dp) <= 2 else "No!")
+        return
 
 
 class TestGeneral(unittest.TestCase):

@@ -2,6 +2,7 @@ import heapq
 import random
 import unittest
 from collections import deque
+from heapq import heappushpop, heappush
 from typing import List
 
 from sortedcontainers import SortedList
@@ -22,12 +23,12 @@ from algorithm.src.fast_io import FastIO
 1792. 最大平均通过率（https://leetcode.cn/problems/maximum-average-pass-ratio/）贪心依次给增幅最大的班级人数加 1 
 295. 数据流的中位数（https://leetcode.cn/problems/find-median-from-data-stream/）用两个堆维护中位数
 2542. 最大子序列的分数（https://leetcode.cn/problems/maximum-subsequence-score/）贪心排序枚举加堆维护最大的k个数进行计算
-
+2263. 数组变为有序的最小操作次数（https://leetcode.cn/problems/make-array-non-decreasing-or-non-increasing/）大根堆贪心使得序列非降的最小操作次数
 ===================================洛谷===================================
 P1168 中位数（https://www.luogu.com.cn/problem/P1168） 用两个堆维护中位数
 P1801 黑匣子（https://www.luogu.com.cn/problem/P1801）用两个堆维护第K小
 P2085 最小函数值（https://www.luogu.com.cn/problem/P2085）用数学加一个堆维护前K小
-P1631 序列合并（https://www.luogu.com.cn/problem/P1631）用一个堆维护前K小
+P1631 序列合并（https://www.luogu.com.cn/problem/P1631）用一个堆和指针组合维护前K小
 P4053 建筑抢修（https://www.luogu.com.cn/problem/P4053）用一个堆延迟选择贪心维护最优，经典课程表 III
 P1878 舞蹈课（https://www.luogu.com.cn/problem/P1878）用哈希加一个堆进行模拟计算
 P3620 [APIO/CTSC2007] 数据备份（https://www.luogu.com.cn/problem/P3620）贪心思想加二叉堆与双向链表优
@@ -38,6 +39,7 @@ P1905 堆放货物（https://www.luogu.com.cn/problem/P1905）二叉堆从大到
 P2409 Y的积木（https://www.luogu.com.cn/problem/P2409）经典二叉堆，计算最小的k个和
 P2949 [USACO09OPEN]Work Scheduling G（https://www.luogu.com.cn/problem/P2949）二叉堆贪心模拟懒惰延迟删除
 P6033 [NOIP2004 提高组] 合并果子 加强版（https://www.luogu.com.cn/problem/P6033）经典贪心升级版可用双端队列优化
+P4597 序列 sequence（https://www.luogu.com.cn/problem/P4597）大根堆贪心使得序列非降的最小操作次数
 
 ===================================AcWing======================================
 146. 序列（https://www.acwing.com/problem/content/description/148/）小顶堆计算经典问题m个数组最小的n个子序列和，同样可以计算最大的
@@ -259,6 +261,7 @@ class Solution:
         n = ac.read_int()
         nums1 = ac.read_list_ints()
         nums2 = ac.read_list_ints()
+        # 初始时加入所有第二个数组的索引位置
         stack = [[nums1[0]+nums2[j], 0, j] for j in range(n)]
         # 不重不漏枚举所有索引组合
         heapq.heapify(stack)
@@ -471,6 +474,25 @@ class Solution:
             post.append(a + b)
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_2263(self, nums: List[int]) -> int:
+
+        def helper(nums: List[int]) -> int:
+            # 模板：大根堆贪心使得序列非降的最小操作次数
+            res, pq = 0, []  # 大根堆
+            for num in nums:
+                if not pq:
+                    heappush(pq, -num)
+                else:
+                    preMax = -pq[0]
+                    if preMax > num:
+                        res += preMax - num
+                        heappushpop(pq, -num)
+                    heappush(pq, -num)
+            return res
+
+        return min(helper(nums), helper(nums[::-1]))
 
 
 class TestGeneral(unittest.TestCase):

@@ -12,6 +12,7 @@ from algorithm.src.fast_io import FastIO
 
 ===================================力扣===================================
 233. 数字 1 的个数（https://leetcode.cn/problems/number-of-digit-one/）数字 1 的个数
+357. 统计各位数字都不同的数字个数（https://leetcode.cn/problems/count-numbers-with-unique-digits/）排列组合也可用数位 DP 求解
 600. 不含连续 1 的非负整数（https://leetcode.cn/problems/non-negative-integers-without-consecutive-ones/）不含连续 1 的非负整数
 902. 最大为 N 的数字组合（https://leetcode.cn/problems/numbers-at-most-n-given-digit-set/）限定字符情况下小于等于 n 的个数
 1012. 至少有 1 位重复的数字（https://leetcode.cn/problems/numbers-with-repeated-digits/）容斥原理计算没有重复数字的个数

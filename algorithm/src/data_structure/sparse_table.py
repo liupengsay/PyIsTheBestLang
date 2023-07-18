@@ -6,15 +6,24 @@ from collections import defaultdict
 from operator import or_, and_
 from math import lcm, gcd
 from functools import reduce
+from typing import List
+from math import inf
 
 from algorithm.src.fast_io import FastIO
 
 """
-算法：ST（Sparse-Table）稀疏表、倍增
+算法：ST（Sparse-Table）稀疏表、倍增、数组积性函数聚合性质
 功能：计算静态区间内的最大值、最小值、最大公约数、最大与、最大或
 ST表算法全称Sparse-Table算法，是由Tarjan提出的一种解决RMQ问题（区间最值）的强力算法。 离线预处理时间复杂度θ（nlogn），在线查询时间θ（1），可以说是一种非常高效的算法。 不过ST表的应用场合也是有限的，它只能处理静态区间最值，不能维护动态的，也就是说不支持在预处理后对值进行修改。
 
 题目：
+
+===================================力扣===================================
+1521. 找到最接近目标值的函数值（https://leetcode.cn/problems/find-a-value-of-a-mysterious-function-closest-to-target/）经典计算与目标值最接近的连续子数组位运算与值
+2411. 按位或最大的最小子数组长度（https://leetcode.cn/problems/smallest-subarrays-with-maximum-bitwise-or/）经典计算最大或值的最短连续子数组
+2447. 最大公因数等于 K 的子数组数目（https://leetcode.cn/problems/number-of-subarrays-with-gcd-equal-to-k/）经典计算最大公因数为 k 的连续子数组个数，可推广到位运算或与异或
+2470. 最小公倍数为 K 的子数组数目（https://leetcode.cn/problems/number-of-subarrays-with-lcm-equal-to-k/）经典计算最小公倍为 k 的连续子数组个数，可推广到位运算或与异或
+2654. 使数组所有元素变成 1 的最少操作次数（https://leetcode.cn/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/）经典计算最大公因数为 1 的最短连续子数组
 
 ===================================洛谷===================================
 P3865 ST 表（https://www.luogu.com.cn/problem/P3865）使用ST表静态查询区间最大值
@@ -31,7 +40,8 @@ D. Max GEQ Sum（https://codeforces.com/problemset/problem/1691/D）单调栈枚
 D. Friends and Subsequences（https://codeforces.com/problemset/problem/689/D）根据单调性使用二分加ST表进行个数计算
 D. Yet Another Yet Another Task（https://codeforces.com/problemset/problem/1359/D）单调栈枚举加ST表最大值最小值查询
 B. Integers Have Friends（https://codeforces.com/problemset/problem/1548/B）ST表查询区间gcd并枚举数组开头，二分确定长度
-474F（https://codeforces.com/problemset/problem/474/F）稀疏表计算最小值和gcd，并使用二分查找计数
+F. Ant colony（https://codeforces.com/problemset/problem/474/F）稀疏表计算最小值和gcd，并使用二分查找计数
+E. MEX of LCM（https://codeforces.com/contest/1834/problem/E）经典计算连续子数组的lcm信息
 
 
 ================================AcWing====================================
@@ -380,6 +390,70 @@ class Solution:
             last_ans = sub[left - 1] - sub[ceil_ind] + nums[ceil_ind] * (right - ceil_ind)
             ac.st(last_ans)
         return
+
+    @staticmethod
+    def lc_2447(nums: List[int], k: int) -> int:
+        # 模板：最大公因数等于 K 的子数组数目
+        ans = 0
+        pre = dict()
+        for num in nums:
+            cur = dict()
+            for p in pre:
+                x = math.gcd(p, num)
+                if x % k == 0:
+                    cur[x] = cur.get(x, 0) + pre[p]
+            if num % k == 0:
+                cur[num] = cur.get(num, 0) + 1
+            ans += cur.get(k, 0)
+            pre = cur
+        return ans
+
+    @staticmethod
+    def lc_2470(nums: List[int], k: int) -> int:
+        # 模板：最小公倍数为 K 的子数组数目
+        ans = 0
+        pre = dict()
+        for num in nums:
+            cur = dict()
+            for p in pre:
+                x = math.lcm(p, num)
+                if k % x == 0:
+                    cur[x] = cur.get(x, 0) + pre[p]
+            if k % num == 0:
+                cur[num] = cur.get(num, 0) + 1
+            ans += cur.get(k, 0)
+            pre = cur
+        return ans
+
+    @staticmethod
+    def lc_2411(nums: List[int]) -> List[int]:
+        # 模板：经典计算最大或值的最短连续子数组
+        n = len(nums)
+        ans = [0] * n
+        post = dict()
+        for i in range(n - 1, -1, -1):
+            cur = dict()
+            num = nums[i]
+            for x in post:
+                y = cur.get(x | num, inf)
+                cur[x | num] = y if y < post[x] else post[x]
+            cur[num] = i
+            post = cur
+            ans[i] = post[max(post)] - i + 1
+        return ans
+
+    @staticmethod
+    def lc_1521(arr: List[int], target: int) -> int:
+        # 模板：经典计算与目标值最接近的连续子数组位运算与值
+        ans = abs(arr[0] - target)
+        pre = {arr[0]}
+        for num in arr[1:]:
+            pre = {num & p for p in pre}
+            pre.add(num)
+            for x in pre:
+                if abs(x - target) < ans:
+                    ans = abs(x - target)
+        return ans
 
 
 class TestGeneral(unittest.TestCase):

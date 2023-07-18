@@ -45,6 +45,7 @@ from algorithm.src.graph.union_find import UnionFind
 
 题目：
 ===================================力扣===================================
+332. 重新安排行程（https://leetcode.cn/problems/reconstruct-itinerary/）欧拉回路模板题
 753. 破解保险箱（https://leetcode.cn/problems/cracking-the-safe/solution/er-xu-cheng-ming-jiu-xu-zui-by-liupengsa-lm77/）
 2097. 合法重新排列数对（https://leetcode.cn/problems/valid-arrangement-of-pairs/submissions/）欧拉路径模板题，注意确定首尾点
 
@@ -237,6 +238,8 @@ class Solution:
             nodes.add(s[0])
             nodes.add(s[1])
             pairs.append([s[0], s[1]])
+
+        # 首先离散化编码判断是否连通
         nodes = sorted(list(nodes))
         ind = {num: i for i, num in enumerate(nodes)}
         n = len(nodes)
@@ -246,6 +249,8 @@ class Solution:
         if uf.part != 1:
             ac.st("No Solution")
             return
+
+        # 经典无向图计算字典序最小的欧拉序
         pairs = [[ind[x], ind[y]] for x, y in pairs]
         euler = UnDirectedEulerPath(n, pairs)
         if not euler.exist:

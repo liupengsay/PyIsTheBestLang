@@ -13,6 +13,7 @@ from algorithm.src.fast_io import FastIO
 
 ===================================力扣===================================
 239. 滑动窗口最大值（https://leetcode.cn/problems/sliding-window-maximum/）滑动区间最大值
+1696. 跳跃游戏 VI（https://leetcode.cn/problems/jump-game-vi/）经典优先队列 DP
 
 ===================================洛谷===================================
 P2251 质量检测（https://www.luogu.com.cn/problem/P2251）滑动区间最小值
@@ -300,12 +301,14 @@ class Solution:
         n = len(nums)
         for i in range(1, n):
 
+            # 当前油箱的最大可行驶距离
             dis = nums[i][0]-nums[i-1][0]
             if in_stack*d2 < dis:
                 ac.st("No Solution")
                 return
 
             while dis:
+                # 依次取出价格最低的油进行消耗
                 x = ac.min(dis/d2, stack[0][1])
                 ans += x*stack[0][0]
                 dis -= x*d2
@@ -314,6 +317,7 @@ class Solution:
                 if not stack[0][1]:
                     stack.popleft()
 
+            # 在当前站点补充更加便宜的油
             cur_p = nums[i][1]
             while stack and stack[-1][0] >= cur_p:
                 in_stack -= stack.pop()[1]
@@ -332,6 +336,7 @@ class Solution:
         stack = deque([[-1, 0]])
         for i in range(n):
             pre += nums[i]
+            # 滑动窗口记录最小值
             while stack and stack[0][0] <= i - m - 1:
                 stack.popleft()
             while stack and stack[-1][1] >= pre:

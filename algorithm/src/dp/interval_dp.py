@@ -13,6 +13,10 @@ MOD = 10 ** 9 + 7
 题目：
 
 ===================================力扣===================================
+375. 猜数字大小 II（https://leetcode.cn/problems/guess-number-higher-or-lower-ii/）经典区间DP
+1130. 叶值的最小代价生成树（https://leetcode.cn/problems/minimum-cost-tree-from-leaf-values/）经典单调栈也可以使用区间DP
+
+1039. 多边形三角剖分的最低得分（https://leetcode.cn/problems/minimum-score-triangulation-of-polygon/）经典环形数组区间 DP
 2472. 不重叠回文子字符串的最大数目（https://leetcode.cn/problems/maximum-number-of-non-overlapping-palindrome-substrings/）回文子串判定DP加线性DP
 2430. 对字母串可执行的最大删除数（https://leetcode.cn/problems/maximum-deletions-on-a-string/）最长公共前缀DP加线性DP
 1547. 切棍子的最小成本（https://leetcode.cn/problems/minimum-cost-to-cut-a-stick/）区间DP模拟
@@ -157,6 +161,7 @@ class Solution:
             for j in range(i+2, n):
                 dp[i][j] = max(dp[i][k-1]*dp[k+1][j]+dp[k][k] for k in range(i+1, j))
 
+        # 使用栈模拟进行方案还原
         ans = []
         stack = [[0, n-1]]
         while stack:

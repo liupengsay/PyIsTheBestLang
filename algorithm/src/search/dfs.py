@@ -19,6 +19,9 @@ from algorithm.src.graph.lca import TreeAncestor
 301. 删除无效的括号（https://leetcode.cn/problems/remove-invalid-parentheses/）深搜回溯与剪枝
 2581. 统计可能的树根数目（https://leetcode.cn/contest/biweekly-contest-99/problems/count-number-of-possible-root-nodes/）深搜序加差分计数
 1059. 从始点到终点的所有路径（https://leetcode.cn/problems/all-paths-from-source-lead-to-destination/）记忆化搜索DFS深搜且回溯
+1718. 构建字典序最大的可行序列（https://leetcode.cn/problems/construct-the-lexicographically-largest-valid-sequence/）经典回溯
+2065. 最大化一张图中的路径价值（https://leetcode.cn/problems/maximum-path-quality-of-a-graph/）经典回溯
+2322. 从树中删除边的最小分数（https://leetcode.cn/problems/minimum-score-after-removals-on-a-tree/）使用深搜序枚举
 
 ===================================洛谷===================================
 P2383 狗哥玩木棒（https://www.luogu.com.cn/problem/P2383）暴力搜索木棍拼接组成正方形
@@ -151,21 +154,22 @@ class DFS:
         start = [-1] * n
         end = [-1]*n
         parent = [-1]*n
-        stack = [[0, 1, -1, 0]]
+        stack = [[0, -1, 0]]
         depth = [0]*n
         while stack:
-            i, state, fa, d = stack.pop()
-            if state:
+            i, fa, d = stack.pop()
+            if i >= 0:
                 start[i] = order
                 end[i] = order
                 depth[i] = d
                 order += 1
-                stack.append([i, 0, fa, d])
+                stack.append([~i, fa, d])
                 for j in dct[i]:
                     if j != fa:
                         parent[j] = i
-                        stack.append([j, 1, i, d+1])
+                        stack.append([j, i, d+1])
             else:
+                i = ~i
                 if parent[i] != -1:
                     end[parent[i]] = end[i]
 

@@ -20,8 +20,11 @@ Lucas定理（comb(n, m)%p = comb(n%p, m%p)*comb(n//p, m//p)）%p
 96. 不同的二叉搜索树（https://leetcode.cn/problems/unique-binary-search-trees/）经典卡特兰数
 95. 不同的二叉搜索树 II（https://leetcode.cn/problems/unique-binary-search-trees/）经典卡特兰数思想进行递归，生成具体方案
 634. 寻找数组的错位排列（https://leetcode.cn/problems/find-the-derangement-of-an-array/）错位排列计数使用动态规划转移计算
-1259. 不相交的握手（https://leetcode.cn/problems/handshakes-that-dont-cross/）卡特兰数
+1259. 不相交的握手（https://leetcode.cn/problems/handshakes-that-dont-cross/）经典卡特兰数
 2338. 统计理想数组的数目（https://leetcode.cn/problems/count-the-number-of-ideal-arrays/）使用隔板法与因数分解进行组合方案数求解
+1735. 生成乘积数组的方案数（https://leetcode.cn/problems/count-ways-to-make-array-with-product/）经典质数分解与隔板法应用
+1621. 大小为 K 的不重叠线段的数目（https://leetcode.cn/problems/number-of-sets-of-k-non-overlapping-line-segments/）类似隔板法的思想
+1866. 恰有 K 根木棍可以看到的排列数目（https://leetcode.cn/problems/number-of-ways-to-rearrange-sticks-with-k-sticks-visible/）第一类斯特林数
 
 ===================================洛谷===================================
 P4071 排列计数（https://www.luogu.com.cn/problem/P4071）通过乘法逆元快速求解组合数与全排列数，同时递归计算错位排列数
@@ -392,8 +395,8 @@ class Solution:
 
     @staticmethod
     def lg_p1655(ac=FastIO()):
-        # 模板：第二类斯特林数只能递推
-        n = m = 101
+        # 模板：第二类斯特林数只能递推（n个不同的球放入m个相同的盒子，不允许为空，使用斯特林数计算）
+        n = m = 101  # （n个相同的球放入m个不同的盒子，不允许为空，使用隔板法计算）
         dp = [[0] * m for _ in range(n)]
         for i in range(1, n):
             dp[i][i] = dp[i][1] = 1
@@ -409,7 +412,8 @@ class Solution:
 
     @staticmethod
     def lg_p1680(ac=FastIO()):
-        # 模板：隔板法计算不同分组的个数，使用乘法逆元与Lucas定理快速计算Comb(a,b)%m
+        # 模板：隔板法计算不同分组的个数，使用乘法逆元与Lucas定理快速计算Comb(a,b) % m
+        # 经典转换为（n个相同的球放入m个不同的盒子，不允许为空的方案数）
         n, m = ac.read_ints()
         n -= sum([ac.read_int() for _ in range(m)])
         m -= 1
@@ -574,6 +578,33 @@ class Solution:
             ans = (ans + res[last]) % mod
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_1735(queries: List[List[int]]) -> List[int]:
+        mod = 10 ** 9 + 7
+        nt = NumberTheoryPrimeFactor(10 ** 4)
+        cb = Combinatorics(10 ** 4 + 15, mod)
+
+        # 模板：经典质数分解与隔板法应用
+        ans = []
+        for n, k in queries:
+            cur = 1
+            for _, c in nt.prime_factor[k]:
+                cur *= cb.comb(n+c-1, n-1)
+                cur %= mod
+            ans.append(cur)
+        return ans
+
+    @staticmethod
+    def lc_1866(n: int, k: int) -> int:
+        # 模板：第一类斯特林数
+        mod = 10**9 + 7
+        dp = [[0]*(k+1) for _ in range(n+1)]
+        dp[0][0] = 1
+        for i in range(n):
+            for j in range(k):
+                dp[i+1][j+1] = (dp[i][j] + dp[i][j+1]*i)%mod
+        return dp[n][k]
 
 
 class TestGeneral(unittest.TestCase):

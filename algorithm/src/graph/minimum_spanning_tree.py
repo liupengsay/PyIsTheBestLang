@@ -18,6 +18,8 @@ Prim在稠密图中比Kruskal优，在稀疏图中比Kruskal劣。Prim是以更�
 
 ===================================力扣===================================
 1489. 找到最小生成树里的关键边和伪关键边（https://leetcode.cn/problems/find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree/）计算最小生成树的关键边与伪关键边
+1584. 连接所有点的最小费用（https://leetcode.cn/problems/min-cost-to-connect-all-points/）稠密图使用 prim 生成最小生成树
+1724. 检查边长度限制的路径是否存在 II（https://leetcode.cn/problems/checking-existence-of-edge-length-limited-paths-ii/）经典使用最小生成树与倍增求解任意点对之间简单路径的最大边权值
 
 ===================================洛谷===================================
 P3366 最小生成树（https://www.luogu.com.cn/problem/P3366）最小生成树裸题
@@ -48,6 +50,7 @@ P2847 [USACO16DEC]Moocast G（https://www.luogu.com.cn/problem/P2847）使用pri
 P3535 [POI2012]TOU-Tour de Byteotia（https://www.luogu.com.cn/problem/P3535）最小生成树思想与并查集判环
 P4047 [JSOI2010]部落划分（https://www.luogu.com.cn/problem/P4047）使用最小生成树进行最优聚类距离计算
 P6171 [USACO16FEB]Fenced In G（https://www.luogu.com.cn/problem/P6171）稀疏图使用 Kruskal 计算最小生成树
+P1550 [USACO08OCT] Watering Hole G（https://www.luogu.com.cn/problem/P1550）经典最小生成树，增加虚拟源点
 
 ================================CodeForces================================
 D. Design Tutorial: Inverse the Problem（https://codeforces.com/problemset/problem/472/D）使用最小生成树判断构造给定的点对最短路距离是否存在，使用prim算法复杂度更优
@@ -255,7 +258,6 @@ class Solution:
         else:
             ac.st(mst.cost)
         return
-
 
     @staticmethod
     def lc_1489(n: int, edges: List[List[int]]) -> List[List[int]]:
@@ -515,6 +517,8 @@ class Solution:
     def lg_p1340(ac=FastIO()):
         # 模板：逆序并查集，维护最小生成树的边
         n, w = ac.read_ints()
+
+        # 离线查询处理，按照边权排序
         edges = [ac.read_list_ints() for _ in range(w)]
         ind = list(range(w))
         ind.sort(key=lambda it: edges[it][-1])
@@ -525,6 +529,7 @@ class Solution:
         cost = 0
         for i in range(w-1, -1, -1):
             if uf.part > 1:
+                # 重新生成最小生成树
                 cost = 0
                 select = set()
                 for j in ind:
@@ -534,10 +539,11 @@ class Solution:
                             cost += ww
                             select.add(j)
             if uf.part > 1:
+                # 无法连通直接终止
                 ans.append(-1)
                 break
             ans.append(cost)
-            if i in select:
+            if i in select:  # 当前路径不可用，重置并查集
                 uf = UnionFind(n)
                 select = set()
                 cost = 0
@@ -753,6 +759,119 @@ class Solution:
                     ans += c
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_1584_1(nums: List[List[int]]) -> int:
+
+        # 模板：使用prim计算最小生成树，适合稠密图场景
+        def dis(x1, y1, x2, y2):
+            res = abs(x1 - x2) + abs(y1 - y2)
+            return res
+
+        n = len(nums)
+        # 初始化最短距离
+        ans = nex = 0
+        rest = set(list(range(1, n)))
+        visit = [inf] * n
+        visit[nex] = 0
+        while rest:
+            # 点优先选择距离当前集合最近的点合并
+            i = nex
+            rest.discard(i)
+            d = visit[i]
+            ans += d
+            nex = -1
+            # 更新所有节点到当前节点的距离最小值并更新下一个节点
+            x, y = nums[i]
+            for j in rest:
+                dj = dis(nums[j][0], nums[j][1], x, y)
+                if dj < visit[j]:
+                    visit[j] = dj
+                if nex == -1 or visit[j] < visit[nex]:
+                    nex = j
+        # 时间复杂度O(n^2)空间复杂度O(n)优于kruskal
+        return ans
+
+
+    @staticmethod
+    def lc_1584_2(nums: List[List[int]]) -> int:
+
+        # 模板：使用prim计算最小生成树，适合稠密图场景
+        def dis(x1, y1, x2, y2):
+            res = abs(x1 - x2) + abs(y1 - y2)
+            return res
+
+        n = len(nums)
+        edges = []
+        for i in range(n):
+            x1, y1 = nums[i]
+            for j in range(i + 1, n):
+                x2, y2 = nums[j]
+                edges.append([i, j, dis(x1, y1, x2, y2)])
+
+        tree = MinimumSpanningTree(edges, n, "prim")
+        return tree.cost
+
+    @staticmethod
+    def lg_p1556(ac=FastIO()):
+        # 模板：经典最小生成树，增加虚拟源点
+        n = ac.read_int()
+        edges = []
+        for i in range(n):
+            w = ac.read_int()
+            edges.append([0, i+1, w])
+            # 虚拟源点
+        for i in range(n):
+            grid = ac.read_list_ints()
+            for j in range(i+1, n):
+                edges.append([i+1, j+1, grid[j]])
+        # kruskal最小生成树
+        edges.sort(key=lambda it: it[2])
+        cost = 0
+        uf = UnionFind(n+1)
+        for i, j, c in edges:
+            if uf.union(i, j):
+                cost += c
+            if uf.part == 1:
+                break
+        ac.st(cost)
+        return
+
+
+class DistanceLimitedPathsExist:
+    # 模板：LC1724
+    def __init__(self, n: int, edgeList: List[List[int]]):
+        uf = UnionFind(n)
+        edge = []
+        for i, j, d in sorted(edgeList, key=lambda it: it[-1]):
+            if uf.union(i, j):
+                edge.append([i, j, d])
+
+        self.nodes = []
+        part = uf.get_root_part()
+        self.root = [0] * n
+        for p in part:
+            self.nodes.append(part[p])
+            i = len(self.nodes) - 1
+            for x in part[p]:
+                self.root[x] = i
+        self.ind = [{num: i for i, num in enumerate(node)} for node in self.nodes]
+        dct = [[dict() for _ in range(len(node))] for node in self.nodes]
+
+        for i, j, d in edge:
+            r = self.root[i]
+            dct[r][self.ind[r][i]][self.ind[r][j]] = d
+            dct[r][self.ind[r][j]][self.ind[r][i]] = d
+        # 使用倍增维护查询任意两点路径的最大边权值
+        self.tree = [TreeAncestorWeightSecond(dc) for dc in dct]
+
+    def query(self, p: int, q: int, limit: int) -> bool:
+        if self.root[p] != self.root[q]:
+            return False
+        r = self.root[p]
+        i = self.ind[r][p]
+        j = self.ind[r][q]
+        return self.tree[r].get_dist_weight_max_second(i, j)[0] < limit
 
 
 class TestGeneral(unittest.TestCase):

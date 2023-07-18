@@ -5,7 +5,7 @@ import unittest
 from algorithm.src.fast_io import FastIO
 from typing import List
 from math import inf
-from collections import Counter
+from collections import Counter, defaultdict
 
 """
 算法：Trie字典树，也叫前缀树
@@ -13,11 +13,15 @@ from collections import Counter
 题目：
 
 ===================================力扣===================================
+421. 数组中两个数的最大异或值（https://leetcode.cn/problems/maximum-xor-of-two-numbers-in-an-array/）经典 01 Trie
+638. 大礼包（https://leetcode.cn/problems/shopping-offers/）经典使用字典树与记忆化搜索
 2416. 字符串的前缀分数和（https://leetcode.cn/problems/sum-of-prefix-scores-of-strings/）单词组前缀计数
-1803. 统计异或值在范围内的数对有多少（https://leetcode.cn/problems/count-pairs-with-xor-in-a-range/）经典01Trie，查询异或值在一定范围的数组对
+1803. 统计异或值在范围内的数对有多少（https://leetcode.cn/problems/count-pairs-with-xor-in-a-range/）经典01Trie，查询异或值在一定范围的数组对，可以使用数组实现
 677. 键值映射（https://leetcode.cn/problems/map-sum-pairs/）更新与查询给定字符串作为单词键前缀的对应值的和
 2479. 两个不重叠子树的最大异或值（https://leetcode.cn/problems/maximum-xor-of-two-non-overlapping-subtrees/）01Trie计算最大异或值
 面试题 17.17. 多次搜索（https://leetcode.cn/problems/multi-search-lcci/）AC自动机计数，也可直接使用字典树逆向思维，字典树存关键字，再搜索文本，和单词矩阵一样的套路
+1707. 与数组中元素的最大异或值（https://leetcode.cn/problems/maximum-xor-with-an-element-from-array/）经典排序后离线查询并使用 01 Trie求解
+1938. 查询最大基因差（https://leetcode.cn/problems/maximum-genetic-difference-query/）使用深搜回溯与01Trie查询最大异或值
 
 ===================================洛谷===================================
 P8306 字典树（https://www.luogu.com.cn/problem/P8306）
@@ -34,7 +38,8 @@ P8420 [THUPC2022 决赛] 匹配（https://www.luogu.com.cn/problem/P8420）字�
 Fixed Prefix Permutations（https://codeforces.com/problemset/problem/1792/D）变形后使用字典树进行计数查询
 D. Vasiliy's Multiset（https://codeforces.com/problemset/problem/706/D）经典01Trie，增加与删除数字，最大异或值查询
 B. Friends（https://codeforces.com/contest/241/problem/B）经典01Trie计算第 K 大的异或对，并使用堆贪心选取
-
+E. Beautiful Subarrays（https://codeforces.com/contest/665/problem/E）统计连续区间异或对数目
+E. Sausage Maximization（https://codeforces.com/contest/282/problem/E）转换为 01Trie 求数组最大异或值
 
 ================================AcWing====================================
 142. 前缀统计（https://www.acwing.com/problem/content/144/）字典树前缀统计
@@ -44,80 +49,6 @@ B. Friends（https://codeforces.com/contest/241/problem/B）经典01Trie计算�
 
 参考：OI WiKi（）
 """
-
-
-class Node:
-    def __init__(self):
-        self.data = 0
-        self.left = None  # bit为0
-        self.right = None  # bit为1
-        self.count = 0
-
-
-class TrieZeroOneXorNode:
-    def __init__(self):
-        # 使用自定义节点实现
-        self.root = Node()
-        self.cur = None
-        self.n = 31
-
-    def add(self, val):
-        self.cur = self.root
-        for i in range(self.n, -1, -1):
-            v = val & (1 << i)
-            if v:
-                # 1 走右边
-                if not self.cur.right:
-                    self.cur.right = Node()
-                self.cur = self.cur.right
-                self.cur.count += 1
-            else:
-                # 0 走左边
-                if not self.cur.left:
-                    self.cur.left = Node()
-                self.cur = self.cur.left
-                self.cur.count += 1
-        self.cur.data = val
-        return
-
-    def delete(self, val):
-        self.cur = self.root
-        for i in range(self.n, -1, -1):
-            v = val & (1 << i)
-            if v:
-                # 1 走右边
-                if self.cur.right.count == 1:
-                    self.cur.right = None
-                    break
-                self.cur = self.cur.right
-                self.cur.count -= 1
-            else:
-                # 0 走左边
-                if self.cur.left.count == 1:
-                    self.cur.left = None
-                    break
-                self.cur = self.cur.left
-                self.cur.count -= 1
-        return
-
-    def query(self, val):
-        self.cur = self.root
-        for i in range(self.n, -1, -1):
-            v = val & (1 << i)
-            if v:
-                # 1 优先走相反方向的左边
-                if self.cur.left and self.cur.left.count > 0:
-                    self.cur = self.cur.left
-                elif self.cur.right and self.cur.right.count > 0:
-                    self.cur = self.cur.right
-            else:
-                # 0 优先走相反方向的右边
-                if self.cur.right and self.cur.right.count > 0:
-                    self.cur = self.cur.right
-                elif self.cur.left and self.cur.left.count > 0:
-                    self.cur = self.cur.left
-        return val ^ self.cur.data
-
 
 class TrieZeroOneXorRange:
     def __init__(self, n):
@@ -395,6 +326,81 @@ class TrieZeroOneXorMaxKth:
         return ans
 
 
+class BinaryTrie:
+    def __init__(self, max_bit: int = 30):
+        self.inf = 1 << 63
+        self.to = [[-1], [-1]]
+        self.cnt = [0]
+        self.max_bit = max_bit
+
+    def add(self, num: int) -> None:
+        cur = 0
+        self.cnt[cur] += 1
+        for k in range(self.max_bit, -1, -1):
+            bit = (num >> k) & 1
+            if self.to[bit][cur] == -1:
+                self.to[bit][cur] = len(self.cnt)
+                self.to[0].append(-1)
+                self.to[1].append(-1)
+                self.cnt.append(0)
+            cur = self.to[bit][cur]
+            self.cnt[cur] += 1
+
+    def remove(self, num: int) -> bool:
+        if self.cnt[0] == 0:
+            return False
+        cur = 0
+        rm = [0]
+        for k in range(self.max_bit, -1, -1):
+            bit = (num >> k) & 1
+            cur = self.to[bit][cur]
+            if cur == -1 or self.cnt[cur] == 0:
+                return False
+            rm.append(cur)
+        for cur in rm:
+            self.cnt[cur] -= 1
+        return True
+
+    def count(self, num: int):
+        cur = 0
+        for k in range(self.max_bit, -1, -1):
+            bit = (num >> k) & 1
+            cur = self.to[bit][cur]
+            if cur == -1 or self.cnt[cur] == 0:
+                return 0
+        return self.cnt[cur]
+
+    # Get max result for constant x ^ element in array
+    def max_xor(self, x: int) -> int:
+        if self.cnt[0] == 0:
+            return -self.inf
+        res = cur = 0
+        for k in range(self.max_bit, -1, -1):
+            bit = (x >> k) & 1
+            nxt = self.to[bit ^ 1][cur]
+            if nxt == -1 or self.cnt[nxt] == 0:
+                cur = self.to[bit][cur]
+            else:
+                cur = nxt
+                res |= 1 << k
+        return res
+
+    # Get min result for constant x ^ element in array
+    def min_xor(self, x: int) -> int:
+        if self.cnt[0] == 0:
+            return self.inf
+        res = cur = 0
+        for k in range(self.max_bit, -1, -1):
+            bit = (x >> k) & 1
+            nxt = self.to[bit][cur]
+            if nxt == -1 or self.cnt[nxt] == 0:
+                res |= 1 << k
+                cur = self.to[bit ^ 1][cur]
+            else:
+                cur = nxt
+        return res
+
+
 class Solution:
     def __int__(self):
         return
@@ -447,19 +453,37 @@ class Solution:
         return ans
 
     @staticmethod
+    def lc_1803_2(nums: List[int], low: int, high: int) -> int:
+        # 模板：统计范围内的异或对数目
+        ans, cnt = 0, Counter(nums)
+        high += 1
+        while high:
+            nxt = Counter()
+            for x, c in cnt.items():
+                if high & 1:
+                    ans += c * cnt[x ^ (high - 1)]
+                if low & 1:
+                    ans -= c * cnt[x ^ (low - 1)]
+                nxt[x >> 1] += c
+            cnt = nxt
+            low >>= 1
+            high >>= 1
+        return ans // 2
+
+    @staticmethod
     def cf_706d(ac=FastIO()):
         # 模板：使用01字典树增加与删除数字后查询最大异或值
+        trie = BinaryTrie(32)
         q = ac.read_int()
-        trie = TrieZeroOneXorNode()
         trie.add(0)
         for _ in range(q):
             op, x = ac.read_list_strs()
             if op == "+":
                 trie.add(int(x))
             elif op == "-":
-                trie.delete(int(x))
+                trie.remove(int(x))
             else:
-                ac.st(trie.query(int(x)))
+                ac.st(trie.max_xor(int(x)))
         return
 
     @staticmethod
@@ -618,13 +642,13 @@ class Solution:
             dct[j][i] = w
 
         ans = 0
-        trie = TrieZeroOneXorNode()
+        trie = BinaryTrie(32)
 
         stack = [[0, -1, 0]]
         ceil = (1 << 31) - 1
         while stack:
             i, fa, val = stack.pop()
-            ans = max(ans, trie.query(val))
+            ans = max(ans, trie.max_xor(val))
             if ans == ceil:
                 break
             trie.add(val)
@@ -751,6 +775,122 @@ class Solution:
         dfs(0, dct, 0)
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_1707(nums: List[int], queries: List[List[int]]) -> List[int]:
+        # 模板：经典排序后离线查询并使用 01 Trie求解
+        n = len(nums)
+        nums.sort()
+
+        # 添加指针
+        m = len(queries)
+        for i in range(m):
+            queries[i].append(i)
+        queries.sort(key=lambda x: x[1])
+
+        # 使用指针进行离线查询
+        trie = TrieZeroOneXorMax(32)
+        ans = []
+        j = 0
+        for x, m, i in queries:
+            while j < n and nums[j] <= m:
+                trie.add(nums[j])
+                j += 1
+            if trie.dct:
+                ans.append([i, trie.query_xor_max(x)])
+            else:
+                ans.append([i, -1])
+        ans.sort()
+        return [a[1] for a in ans]
+
+    @staticmethod
+    def cf_665e(ac=FastIO()):
+        n, k = ac.read_ints()
+        nums = ac.read_list_ints()
+        for i in range(1, n):
+            nums[i] ^= nums[i-1]
+        cnt = {0: 1}
+        for num in nums:
+            cnt[num] = cnt.get(num, 0) + 1
+        # 模板：统计范围内的异或对数目
+        ans = 0
+        del nums
+        high = 1 << 30
+        low = k
+        while high:
+            nxt = dict()
+            for x in cnt:
+                c = cnt[x]
+                if high & 1:
+                    ans += c * cnt.get(x ^ (high - 1), 0)
+                if low & 1:
+                    ans -= c * cnt.get(x ^ (low - 1), 0)
+                nxt[x >> 1] = nxt.get(x >> 1, 0) + c
+            cnt = nxt
+            low >>= 1
+            high >>= 1
+        ac.st(ans//2)
+        return
+
+    @staticmethod
+    def lc_421(nums: List[int]) -> int:
+        # 模板：求解数组最大的异或对
+        trie = TrieZeroOneXorMax(32)
+        ans = 0
+        for num in nums:
+            cur = trie.query_xor_max(num)
+            ans = ans if ans > cur else cur
+            trie.add(num)
+        return ans
+
+    @staticmethod
+    def cf_282e(ac=FastIO()):
+        # 模板：维护和查询最大异或数值对
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        ans = pre = 0
+        trie = BinaryTrie(40)
+        trie.add(0)
+        for i in range(n):
+            pre ^= nums[i]
+            trie.add(pre)
+            ans = ac.max(ans, pre)
+
+        pre = 0
+        for i in range(n - 1, -1, -1):
+            pre ^= nums[i]
+            ans = ac.max(ans, trie.max_xor(pre))
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lc_1938(parents: List[int], queries: List[List[int]]) -> List[int]:
+        # 模板：深搜回溯结合01Trie离线查询最大异或值对
+        dct = defaultdict(list)
+        n = len(parents)
+        for i in range(n):
+            dct[parents[i]].append(i)
+        # 存储需要查询的组合
+        ans = defaultdict(dict)
+        for node, val in queries:
+            ans[node][val] = 0
+
+        # 深度优先搜索更新每条路径的前缀值字典树
+        def dfs(root):
+            trie.add(root)
+            for k in ans[root]:
+                # 查询结果
+                ans[root][k] = trie.max_xor(k)
+            for nex in dct[root]:
+                dfs(nex)
+                # 回溯
+                trie.remove(nex)
+            return
+
+        # 从根节点开始搜索
+        trie = BinaryTrie(20)
+        dfs(dct[-1][0])
+        return [ans[node][val] for node, val in queries]
 
 
 class TestGeneral(unittest.TestCase):

@@ -19,10 +19,10 @@ from algorithm.src.graph.dijkstra import Dijkstra
 
 ===================================力扣===================================
 2642. 设计可以求最短路径的图类（https://leetcode.cn/problems/design-graph-with-shortest-path-calculator/）Floyd动态更新最短路
-
+1462. 课程表 IV（https://leetcode.cn/problems/course-schedule-iv/）可考虑使用传递闭包Floyd求解
 
 ===================================洛谷===================================
-P1119 灾后重建 （https://www.luogu.com.cn/problem/P1119）离线查询加Floyd动态更新经过中转站的起终点距离
+P1119 灾后重建 （https://www.luogu.com.cn/problem/P1119）离线查询加Floyd动态更新经过中转站的起终点距离，修复增加维护的是点
 P1476 休息中的小呆（https://www.luogu.com.cn/problem/P1476）Floyd 求索引从 1 到 n 的最长路并求所有在最长路上的点
 P3906 Geodetic集合（https://www.luogu.com.cn/problem/P3906）Floyd算法计算最短路径上经过的点集合
 
@@ -32,7 +32,7 @@ P2910 [USACO08OPEN]Clear And Present Danger S（https://www.luogu.com.cn/problem
 P6464 [传智杯 #2 决赛] 传送门（https://www.luogu.com.cn/problem/P6464）枚举边之后进行Floyd算法更新计算，经典理解Floyd的原理题，经典借助中间两点更新最短距离
 P6175 无向图的最小环问题（https://www.luogu.com.cn/problem/P6175）经典使用Floyd枚举三个点之间的距离和，O(n^3)，也可以使用BFS或者Dijkstra计算
 B3611 【模板】传递闭包（https://www.luogu.com.cn/problem/B3611）传递闭包模板题，使用FLoyd解法
-P1613 跑路（https://www.luogu.com.cn/problem/P1613）经典Floyd动态规划
+P1613 跑路（https://www.luogu.com.cn/problem/P1613）经典Floyd动态规划，使用两遍最短路综合计算
 P8312 [COCI2021-2022#4] Autobus（https://www.luogu.com.cn/problem/P8312）经典最多k条边的最短路跑k遍Floyd
 P8794 [蓝桥杯 2022 国 A] 环境治理（https://www.luogu.com.cn/problem/P8794）经典二分加Floyd计算
 
@@ -351,6 +351,41 @@ class Graph:
     def shortest_path(self, start: int, end: int) -> int:
         ans = self.d[start][end]
         return ans if ans < inf else -1
+
+    @staticmethod
+    def lg_p1613(ac=FastIO()):
+        # 模板：经典Floyd动态规划，使用两遍最短路综合计算
+        n, m = ac.read_ints()
+
+        # dp[i][j][k] 表示 i 到 j 有无花费为 k 秒即距离为 2**k 的的路径
+        dp = [[[0] * 32 for _ in range(n)] for _ in range(n)]
+        for _ in range(m):
+            u, v = ac.read_ints_minus_one()
+            dp[u][v][0] = 1
+        for x in range(1, 32):
+            for k in range(n):
+                for i in range(n):
+                    for j in range(n):
+                        if dp[i][k][x - 1] and dp[k][j][x - 1]:
+                            dp[i][j][x] = 1
+
+        # 建立距离二进制 1 的个数为 1 的有向图
+        dis = [[inf] * n for _ in range(n)]
+        for i in range(n):
+            for j in range(n):
+                for x in range(32):
+                    if dp[i][j][x]:
+                        dis[i][j] = 1
+                        break
+
+        # 第二遍 Floyd 求新距离意义上的最短路
+        for k in range(n):
+            for i in range(n):
+                for j in range(n):
+                    dis[i][j] = ac.min(dis[i][j], dis[i][k] + dis[k][j])
+        ac.st(dis[0][n - 1])
+
+        return
 
 
 class TestGeneral(unittest.TestCase):

@@ -28,19 +28,27 @@ from math import inf
 from algorithm.src.fast_io import FastIO
 
 """
-算法：状态压缩DP
+算法：状态压缩DP、轮廓线DP、记忆化搜索DP
 功能：使用二进制数字表示转移状态，计算相应的转移方程，通常可以先计算满足条件的子集，有时通过深搜回溯枚举全部子集的办法比位运算枚举效率更高
 题目：
 
 ===================================力扣===================================
+465. 最优账单平衡（https://leetcode.cn/problems/optimal-account-balancing/）经典枚举子集状压DP
 1349. 参加考试的最大学生数（https://leetcode.cn/problems/maximum-students-taking-exam/）按行状态枚举所有的摆放可能性
 1723. 完成所有工作的最短时间（https://leetcode.cn/problems/find-minimum-time-to-finish-all-jobs/）通过位运算枚举分配工作DP最小化的最大值
-1986. 完成任务的最少工作时间段（https://leetcode.cn/problems/minimum-number-of-work-sessions-to-finish-the-tasks/）预处理计算子集后进行记忆化状态转移
+1986. 完成任务的最少工作时间段（https://leetcode.cn/problems/minimum-number-of-work-sessions-to-finish-the-tasks/）预处理计算子集后进行记忆化状态转移，经典子集枚举
 698. 划分为k个相等的子集（https://leetcode.cn/problems/partition-to-k-equal-sum-subsets/）预处理计算子集后进行记忆化状态转移
 2172. 数组的最大与和（https://leetcode.cn/problems/maximum-and-sum-of-array/）使用位运算和状态压缩进行转移
 1255. 得分最高的单词集合（https://leetcode.cn/problems/maximum-score-words-formed-by-letters/）状压DP
 2403. 杀死所有怪物的最短时间（https://leetcode.cn/problems/minimum-time-to-kill-all-monsters/）状压DP
 1681. 最小不兼容性（https://leetcode.cn/problems/minimum-incompatibility/）状态压缩分组DP，状态压缩和组合数选取结合使用
+1125. 最小的必要团队（https://leetcode.cn/problems/smallest-sufficient-team/）经典状压DP
+1467. 两个盒子中球的颜色数相同的概率（https://leetcode.cn/problems/probability-of-a-two-boxes-having-the-same-number-of-distinct-balls/）记忆化搜索
+1531. 压缩字符串 II（https://leetcode.cn/problems/string-compression-ii/submissions/）线性DP模拟
+1595. 连通两组点的最小成本（https://leetcode.cn/problems/minimum-cost-to-connect-two-groups-of-points/）经典状压DP
+1655. 分配重复整数（https://leetcode.cn/problems/distribute-repeating-integers/）经典状压 DP
+1879. 两个数组最小的异或值之和（https://leetcode.cn/problems/minimum-xor-sum-of-two-arrays/）经典状压 DP
+2019. 解出数学表达式的学生分数（https://leetcode.cn/problems/the-score-of-students-solving-math-expression/）经典记忆化DP
 
 ===================================洛谷===================================
 P1896 互不侵犯（https://www.luogu.com.cn/problem/P1896）按行状态与行个数枚举所有的摆放可能性
@@ -52,7 +60,7 @@ P1294 高手去散步（https://www.luogu.com.cn/problem/P1294）图问题使用
 P1123 取数游戏（https://www.luogu.com.cn/problem/P1123）类似占座位的经典状压DP
 P1433 吃奶酪（https://www.luogu.com.cn/problem/P1433）状压DP
 P1896 [SCOI2005] 互不侵犯（https://www.luogu.com.cn/problem/P1896）状压DP
-P1556 幸福的路（https://www.luogu.com.cn/problem/P1556）状态压缩计算最短路
+P1556 幸福的路（https://www.luogu.com.cn/problem/P1556）状态压缩DP计算最短路方案数
 P3052 [USACO12MAR]Cows in a Skyscraper G（https://www.luogu.com.cn/problem/P3052）经典状态压缩 DP 使用二维优化
 P5997 [PA2014]Pakowanie（https://www.luogu.com.cn/problem/P5997）经典贪心背包与状压 DP 结合
 P6883 [COCI2016-2017#3] Kroničan（https://www.luogu.com.cn/problem/P6883）典型状压 DP 
@@ -339,6 +347,7 @@ class Solution:
     def lg_p1556(ac=FastIO()):
         # 模板：状态压缩计算最短路
         n = ac.read_int()
+        # 增加虚拟的起终点
         nums = [[0, 0]] + [ac.read_list_ints() for _ in range(n)] + [[0, 0]]
         n += 2
         # 根据题意进行建图，表示起终点与方向
@@ -347,6 +356,7 @@ class Solution:
             a, b = nums[i]
             for j in range(n):
                 if i != j:
+                    # 只有在同一行或者同一列时可以建图连边
                     c, d = nums[j]
                     if a == c:
                         dct[i].append([j, 4] if b < d else [j, 2])
@@ -367,6 +377,7 @@ class Solution:
                         if state & (1 << y) and ff != f:
                             res += dp[state ^ (1 << y)][y][ff]
                     dp[state][x][f] = res
+        # 使用 0 表示初始任意不同于 1234 的方向总和
         ac.st(dp[(1 << n) - 1 - 1][0][0])
         return
 
@@ -459,6 +470,54 @@ class Solution:
                     dp[j | cur] = dp[j] + 1
         ac.st(dp[-1] if dp[-1] < inf else -1)
         return
+
+    @staticmethod
+    def lc_1655(nums: List[int], quantity: List[int]) -> bool:
+        # 模板：经典线性索引加枚举子集状压DP
+        @lru_cache(None)
+        def dfs(i, state):
+            if not state:
+                return True
+            if i == m:
+                return False
+            x = cnt[i]
+            sub = state
+            while sub:
+                cost = sum(quantity[j] for j in range(n) if sub & (1 << j))
+                if cost <= x and dfs(i + 1, state ^ sub):
+                    return True
+                sub = (sub - 1) & state
+            return False
+
+        cnt = list(Counter(nums).values())
+        n = len(quantity)
+        cnt = heapq.nlargest(n, cnt)
+        m = len(cnt)
+        return dfs(0, (1 << n) - 1)
+
+    @staticmethod
+    def lc_1986(tasks: List[int], sessionTime: int):
+        # 模板：预处理计算子集后进行记忆化状态转移，经典子集枚举
+        n = len(tasks)
+        valid = [False] * (1 << n)
+        for mask in range(1, 1 << n):
+            needTime = 0
+            for i in range(n):
+                if mask & (1 << i):
+                    needTime += tasks[i]
+            if needTime <= sessionTime:
+                valid[mask] = True
+
+        f = [inf] * (1 << n)
+        f[0] = 0
+        for mask in range(1, 1 << n):
+            subset = mask
+            while subset:
+                if valid[subset]:
+                    a, b = f[mask], f[mask ^ subset] + 1
+                    f[mask] = a if a < b else b
+                subset = (subset - 1) & mask
+        return f[(1 << n) - 1]
 
 
 class TestGeneral(unittest.TestCase):

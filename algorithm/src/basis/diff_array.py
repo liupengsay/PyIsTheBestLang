@@ -16,13 +16,21 @@ from math import inf
 
 ===================================力扣===================================
 152. 乘积最大子数组（https://leetcode.cn/problems/maximum-product-subarray/）前缀最大最小乘积，计算最大连续子数组乘积
+598. 范围求和 II（https://leetcode.cn/problems/range-addition-ii/）二维差分
 2281. 巫师的总力量（https://leetcode.cn/problems/sum-of-total-strength-of-wizards/）枚举当前元素作为最小值的子数组和并使用前缀和的前缀和计算
 2251. 花期内花的数目（https://leetcode.cn/problems/number-of-flowers-in-full-bloom/）离散化差分数组
-2132. 用邮票贴满网格图（https://leetcode.cn/problems/stamping-the-grid/）用前缀和枚举可行的邮票左上端点，然后查看空白格点左上方是否有可行的邮票点
+2132. 用邮票贴满网格图（https://leetcode.cn/problems/stamping-the-grid/）用前缀和枚举可行的邮票左上端点，然后查看空白格点左上方是否有可行的邮票点，也可以使用经典的二维差分覆盖进行解决
 1229. 安排会议日程（https://leetcode.cn/problems/meeting-scheduler/）离散化差分数组
 6292. 子矩阵元素加 1（https://leetcode.cn/problems/increment-submatrices-by-one/)二维差分前缀和
 2565. 最少得分子序列（https://leetcode.cn/problems/subsequence-with-the-minimum-score/）使用前后缀指针枚举匹配最长前后缀
 644. 子数组最大平均数 II（https://leetcode.cn/problems/maximum-average-subarray-ii/）前缀和加二分计算不短于k的子数组最大平均值
+1292. 元素和小于等于阈值的正方形的最大边长（https://leetcode.cn/problems/maximum-side-length-of-a-square-with-sum-less-than-or-equal-to-threshold/）经典O(mn)复杂度枚举
+1674. 使数组互补的最少操作次数（https://leetcode.cn/problems/minimum-moves-to-make-array-complementary/）经典差分数组作用域计数
+1714. 数组中特殊等间距元素的和（https://leetcode.cn/problems/sum-of-special-evenly-spaced-elements-in-array/）经典分组加前缀和
+1738. 找出第 K 大的异或坐标值（https://leetcode.cn/problems/find-kth-largest-xor-coordinate-value/）经典二维前缀异或和
+1895. 最大的幻方（https://leetcode.cn/problems/largest-magic-square/）二维前缀和枚举优化
+1943. 描述绘画结果（https://leetcode.cn/problems/describe-the-painting/）经典离散化差分
+2021. 街上最亮的位置（https://leetcode.cn/problems/brightest-position-on-street/）经典离散化差分
 
 ===================================洛谷===================================
 P8772 [蓝桥杯 2022 省 A] 求和（https://www.luogu.com.cn/record/list?user=739032&status=12&page=15）后缀和计算
@@ -654,8 +662,10 @@ class Solution:
         # 模板：前缀和计数加二分查找，最多不超多10**5
         n = 10**5
         dp = [0] * (n + 1)
-        for i in range(1, n + 1):
+        for i in range(1, n + 1):  # 序列1234..
             dp[i] = dp[i - 1] + len(str(i))
+
+        # 序列1121231234..
         pre = [0] * (n + 1)
         for i in range(1, n + 1):
             pre[i] = pre[i - 1] + dp[i]
@@ -1346,6 +1356,43 @@ class Solution:
         ans = BinarySearch().find_int_left(1, m, check)
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_1292(mat: List[List[int]], threshold: int) -> int:
+        # 模板：经典O(mn)复杂度枚举
+        m, n = len(mat), len(mat[0])
+        ans = 0
+        pre = PreFixSumMatrix(mat)
+        for i in range(m):
+            for j in range(n):
+                r = n-j if n-j < m-i else m-i
+                for d in range(ans+1, r+1):
+                    cur = pre.query(i, j, i+d-1, j+d-1)
+                    if cur > threshold:
+                        break
+                    ans = d
+        return ans
+
+    @staticmethod
+    def lc_1738(matrix: List[List[int]], k: int) -> int:
+
+        # 模板：经典二维前缀异或和
+        m, n = len(matrix), len(matrix[0])
+        # 原地进行异或运算
+        for i in range(1, m):
+            matrix[i][0] = matrix[i][0] ^ matrix[i - 1][0]
+        for j in range(1, n):
+            matrix[0][j] = matrix[0][j] ^ matrix[0][j - 1]
+        for i in range(1, m):
+            for j in range(1, n):
+                matrix[i][j] = matrix[i - 1][j - 1] ^ matrix[i - 1][j] ^ matrix[i][j - 1] ^ matrix[i][j]
+
+        # 排序后返回结果
+        lst = []
+        for i in range(m):
+            lst.extend(matrix[i])
+        lst.sort()
+        return lst[-k]
 
 
 class TestGeneral(unittest.TestCase):

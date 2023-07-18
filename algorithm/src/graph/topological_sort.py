@@ -19,6 +19,7 @@ from algorithm.src.graph.union_find import UnionFind
 127. 参加会议的最多员工数（https://leetcode.cn/problems/maximum-employees-to-be-invited-to-a-meeting/）
 269. 火星词典（https://leetcode.cn/problems/alien-dictionary/）经典按照字典序建图，与拓扑排序的应用
 2603. 收集树中金币（https://leetcode.cn/contest/weekly-contest-338/problems/collect-coins-in-a-tree/）无向图拓扑排序内向基环树
+2204. 无向图中到环的距离（https://leetcode.cn/problems/distance-to-a-cycle-in-undirected-graph/https://leetcode.cn/problems/distance-to-a-cycle-in-undirected-graph/）无向图拓扑排序
 
 
 ===================================洛谷===================================
@@ -28,7 +29,7 @@ P2712 摄像头（https://www.luogu.com.cn/problem/P2712）拓扑排序计算非
 P6145 [USACO20FEB]Timeline G（https://www.luogu.com.cn/problem/P6145）经典拓扑排序计算每个节点最晚的访问时间点
 P1137 旅行计划（https://www.luogu.com.cn/problem/P1137）拓扑排序，计算可达的最长距离
 P1347 排序（https://www.luogu.com.cn/problem/P1347）拓扑排序确定字典序与矛盾或者无唯一解
-P1685 游览（https://www.luogu.com.cn/problem/P1685）拓扑排序计算路径条数
+P1685 游览（https://www.luogu.com.cn/problem/P1685）经典DAG拓扑排序DP计算路径条数与耗时
 P3243 [HNOI2015]菜肴制作（https://www.luogu.com.cn/problem/P3243）经典反向建图拓扑排序结合二叉堆进行顺序模拟
 P5536 【XR-3】核心城市（https://www.luogu.com.cn/problem/P5536）经典使用无向图拓扑排序从外到内消除最外圈的节点
 P6037 Ryoku 的探索（https://www.luogu.com.cn/problem/P6037）经典无向图基环树并查集拓扑排序与环模拟计算
@@ -247,6 +248,7 @@ class Solution:
         degree = defaultdict(int)
 
         def check(dct, degree, nodes, x):
+            # 每次都判断结果
             stack = [k for k in nodes if not degree[k]]
             m = len(nodes)
             res = []
@@ -262,11 +264,14 @@ class Solution:
                         if not degree[j]:
                             nex.append(j)
                 stack = nex
+            # 稳定的拓扑排序
             if unique and len(res) == n:
                 s = "".join(res)
                 return True, f"Sorted sequence determined after {x} relations: {s}."
+            # 存在环
             if len(res) < m:
                 return True, f"Inconsistency found after {x} relations."
+            # 不稳定的拓扑排序
             return False, "Sorted sequence cannot be determined."
 
         nodes = set()
@@ -315,6 +320,7 @@ class Solution:
                 degree[j] -= 1
                 if not degree[j]:
                     stack.append(j)
+                # 更新 i 到 j 的路径条数与相应耗时
                 cnt[j] += cnt[i]
                 time[j] += cnt[i] * w + time[i]
                 time[j] %= mod
@@ -695,6 +701,36 @@ class Solution:
             else:
                 ac.st("Deception")
         return
+
+    @staticmethod
+    def lc_2204(n: int, edges: List[List[int]]) -> List[int]:
+        # 模板：无向图拓扑排序
+        dct = [[] for _ in range(n)]
+        degree = [0]*n
+        for i, j in edges:
+            dct[i].append(j)
+            dct[j].append(i)
+            degree[i] += 1
+            degree[j] += 1
+        stack = deque([i for i in range(n) if degree[i] == 1])
+        while stack:
+            i = stack.popleft()
+            for j in dct[i]:
+                degree[j] -= 1
+                if degree[j] == 1:
+                    stack.append(j)
+
+        circle = deque([i for i in range(n) if degree[i] > 1])
+        ans = [-1]*n
+        for i in circle:
+            ans[i] = 0
+        while circle:
+            i = circle.popleft()
+            for j in dct[i]:
+                if ans[j] == -1:
+                    ans[j] = ans[i] + 1
+                    circle.append(j)
+        return ans
 
 
 class TestGeneral(unittest.TestCase):

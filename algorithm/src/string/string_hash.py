@@ -38,10 +38,14 @@ from algorithm.src.fast_io import FastIO
 
 ===================================力扣===================================
 214 最短回文串（https://leetcode.cn/problems/shortest-palindrome/）使用正向与反向字符串哈希计算字符串前缀最长回文子串
+572. 另一棵树的子树（https://leetcode.cn/problems/subtree-of-another-tree/）经典树结构哈希
 1044 最长重复子串（https://leetcode.cn/problems/shortest-palindrome/）利用二分查找加字符串哈希确定具有最长长度的重复子串
 1316 不同的循环子字符串（https://leetcode.cn/problems/shortest-palindrome/）利用字符串哈希确定不同循环子串的个数
 2156 查找给定哈希值的子串（https://leetcode.cn/problems/find-substring-with-given-hash-value/）逆向进行字符串哈希的计算
 652. 寻找重复的子树（https://leetcode.cn/problems/find-duplicate-subtrees/）树哈希，确定重复子树
+1554. 只有一个不同字符的字符串（https://leetcode.cn/problems/strings-differ-by-one-character/）字符串前后缀哈希求解
+1923. 最长公共子路径（https://leetcode.cn/problems/longest-common-subpath/）经典二分查找加滚动哈希
+1948. 删除系统中的重复文件夹（https://leetcode.cn/problems/delete-duplicate-folders-in-system/）字典树与树哈希去重
 
 ===================================洛谷===================================
 P8835 [传智杯 #3 决赛] 子串（https://www.luogu.com.cn/record/list?user=739032&status=12&page=14）字符串哈希或者KMP查找匹配的连续子串
@@ -483,6 +487,44 @@ class Solution:
             i = list(ans.values())[0]
             ac.st((s[:i] + s[i + 1:])[:n // 2])
         return
+
+    @staticmethod
+    def lc_1554(lst: List[str]) -> bool:
+        # 模板：字符串前后缀哈希求解
+        m = len(lst[0])
+        p = [random.randint(26, 100), random.randint(26, 100)]
+        mod = [random.randint(10 ** 9 + 7, 2 ** 31 - 1), random.randint(10 ** 9 + 7, 2 ** 31 - 1)]
+
+        pre_hash = []
+        post_hash = []
+        for s in lst:
+            pre = [[0], [0]]
+            pp = [[1], [1]]
+            for w in s:
+                for i in range(2):
+                    pre[i].append((pre[i][-1] * p[i] + ord(w) - ord("a")) % mod[i])
+                    pp[i].append((pp[i][-1] * p[i]) % mod[i])
+            pre_hash.append(pre[:])
+
+            pre = [[0], [0]]
+            pp = [[1], [1]]
+            for w in s[::-1]:
+                for i in range(2):
+                    pre[i].append((pre[i][-1] * p[i] + ord(w) - ord("a")) % mod[i])
+                    pp[i].append((pp[i][-1] * p[i]) % mod[i])
+            post_hash.append([p[::-1] for p in pre])
+
+        n = len(lst)
+        for i in range(m):
+            pre = set()
+            for j in range(n):
+                va = tuple()
+                for k in range(2):
+                    va += tuple([pre_hash[j][k][i]]) + tuple([post_hash[j][k][i+1]])
+                if va in pre:
+                    return True
+                pre.add(va)
+        return False
 
 
 class TestGeneral(unittest.TestCase):

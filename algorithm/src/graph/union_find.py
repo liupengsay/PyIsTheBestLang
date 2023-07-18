@@ -8,6 +8,7 @@ from algorithm.src.fast_io import FastIO
 import heapq
 
 from algorithm.src.graph.dijkstra import Dijkstra
+from algorithm.src.mathmatics.comb_perm import Combinatorics
 from algorithm.src.mathmatics.number_theory import NumberTheory, NumberTheoryPrimeFactor
 from math import inf
 
@@ -30,6 +31,11 @@ from math import inf
 2459. 通过移动项目到空白区域来排序数组（https://leetcode.cn/problems/sort-array-by-moving-items-to-empty-space/）置换环经典题目
 2709. 最大公约数遍历（https://leetcode.cn/problems/greatest-common-divisor-traversal/）经典并查集计算具有相同质因数的连通块
 2612. 最少翻转操作数（https://leetcode.cn/problems/minimum-reverse-operations/）经典并查集应用 find_merge 灵活使用
+1559. 二维网格图中探测环（https://leetcode.cn/problems/detect-cycles-in-2d-grid/）经典并查集判环
+1569. 将子数组重新排序得到同一个二叉搜索树的方案数（https://leetcode.cn/problems/number-of-ways-to-reorder-array-to-get-same-bst/）逆序思维，倒序利用并查集建立二叉搜索树，排列组合加并查集
+1970. 你能穿过矩阵的最后一天（https://leetcode.cn/problems/last-day-where-you-can-still-cross/）经典逆序思维并查集
+1998. 数组的最大公因数排序（https://leetcode.cn/problems/gcd-sort-of-an-array/）经典并查集加质因数分解
+2158. 每天绘制新区域的数量（https://leetcode.cn/problems/amount-of-new-area-painted-each-day/）经典区间并查集
 
 ===================================洛谷===================================
 P3367 并查集（https://www.luogu.com.cn/problem/P3367）计算连通分块的数量
@@ -45,7 +51,7 @@ P1196 [NOI2002] 银河英雄传说（https://www.luogu.com.cn/problem/P1196）�
 P1197 [JSOI2008] 星球大战（https://www.luogu.com.cn/problem/P1197）逆序并查集，倒序枚举计算联通块个数
 P1522 [USACO2.4] 牛的旅行 Cow Tours（https://www.luogu.com.cn/problem/P1522）连通块，枚举新增路径并高精度计算联通块直径
 P1621 集合（https://www.luogu.com.cn/problem/P1621）利用素数筛的思想对数复杂度合并公共质因数大于p的数并计算连通块数量
-P1892 [BOI2003]团伙（https://www.luogu.com.cn/problem/P1892）经典并查集，敌人与朋友关系
+P1892 [BOI2003] 团伙（https://www.luogu.com.cn/problem/P1892）经典并查集，敌人与朋友关系
 P2189 小Z的传感器（https://www.luogu.com.cn/problem/P2189）并查集经典题，确定访问顺序的合法性
 P2307 迷宫（https://www.luogu.com.cn/problem/P2307）并查集判定树的生成是否合法
 P3420 [POI2005]SKA-Piggy Banks（https://www.luogu.com.cn/problem/P3420）经典并查集变形问题
@@ -123,6 +129,33 @@ class UnionFind:
         for i in range(n):
             size[self.find(i)] = self.size[self.find(i)]
         return size
+
+
+class UnionFindRightRange:
+    # 模板：向右合并的并查集
+    def __init__(self, n: int) -> None:
+        self.root = [i for i in range(n)]
+        return
+
+    def find(self, x):
+        lst = []
+        while x != self.root[x]:
+            lst.append(x)
+            # 在查询的时候合并到顺带直接根节点
+            x = self.root[x]
+        for w in lst:
+            self.root[w] = x
+        return x
+
+    def union(self, x, y):
+        root_x = self.find(x)
+        root_y = self.find(y)
+        if root_x == root_y:
+            return False
+        if root_x > root_y:
+            root_x, root_y = root_y, root_x
+        self.root[root_x] = root_y
+        return True
 
 
 class UnionFindWeighted:
@@ -887,6 +920,108 @@ class Solution:
                     cnt += 1
             ac.st("1.000" if uf.size[uf.find(0)] == cnt + 1 else "0.000")
         return
+
+    @staticmethod
+    def lc_1559(grid: List[List[str]]) -> bool:
+        # 模板：经典并查集判环
+        m, n = len(grid), len(grid[0])
+        uf = UnionFind(m * n)
+        for i in range(m):
+            for j in range(n):
+                if i + 1 < m and grid[i + 1][j] == grid[i][j]:
+                    if not uf.union(i * n + j, i * n + n + j):
+                        return True
+                if j + 1 < n and grid[i][j + 1] == grid[i][j]:
+                    if not uf.union(i * n + j, i * n + j + 1):
+                        return True
+        return False
+
+    @staticmethod
+    def lc_1569(nums: List[int]) -> int:
+
+        class UnionFindSpecial:
+            def __init__(self, n: int) -> None:
+                self.root = [i for i in range(n)]
+                return
+
+            def find(self, x):
+                lst = []
+                while x != self.root[x]:
+                    lst.append(x)
+                    # 在查询的时候合并到顺带直接根节点
+                    x = self.root[x]
+                for w in lst:
+                    self.root[w] = x
+                return x
+
+            def union(self, x, y):
+                root_x = self.find(x)
+                root_y = self.find(y)
+                if root_x < root_y:
+                    root_x, root_y = root_y, root_x
+                self.root[root_x] = root_y
+                return
+
+        # 模板：逆序思维，排列组合加并查集
+        n = len(nums)
+        mod = 10 ** 9 + 7
+        n = 10 ** 3
+        cb = Combinatorics(n, mod)
+
+        # 逆向思维，倒序利用并查集建立二叉搜索树
+        dct = [[] for _ in range(n)]
+        uf = UnionFindSpecial(n)
+        post = {}
+        for i in range(n - 1, -1, -1):
+            x = nums[i]
+            if x + 1 in post:
+                r = uf.find(post[x + 1])
+                dct[i].append(r)
+                uf.union(i, r)
+            if x - 1 in post:
+                r = uf.find(post[x - 1])
+                dct[i].append(r)
+                uf.union(i, r)
+            post[x] = i
+        # 树形 DP
+        stack = [0]
+        sub = [0] * n
+        ans = 1
+        while stack:
+            i = stack.pop()
+            if i >= 0:
+                stack.append(~i)
+                for j in dct[i]:
+                    stack.append(j)
+            else:
+                i = ~i
+                lst = [0]
+                for j in dct[i]:
+                    lst.append(sub[j])
+                    sub[i] += sub[j]
+                s = sum(lst)
+                ans *= cb.comb(s, lst[-1])
+                ans %= mod
+                sub[i] += 1
+        ans = (ans - 1) % mod
+        return ans
+
+    @staticmethod
+    def lc_2158(paint: List[List[int]]) -> List[int]:
+        # 模板：区间并查集
+        m = 5*10**4+10
+        uf = UnionFindRightRange(m)
+        ans = []
+        for a, b in paint:
+            cnt = 0
+            while a < b:
+                a = uf.find(a)
+                if a < b:
+                    cnt += 1
+                    uf.union(a, a+1)
+                    a += 1
+            ans.append(cnt)
+        return ans
 
 
 class TestGeneral(unittest.TestCase):

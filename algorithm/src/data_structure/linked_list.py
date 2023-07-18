@@ -16,6 +16,7 @@ from algorithm.src.fast_io import FastIO
 ===================================力扣===================================
 2617. 网格图中最少访问的格子数（https://leetcode.cn/problems/minimum-number-of-visited-cells-in-a-grid/）使用数组维护链表的前后节点信息
 2612. 最少翻转操作数（https://leetcode.cn/problems/minimum-reverse-operations/）使用数组维护链表的前后节点信息
+1562. 查找大小为 M 的最新分组（https://leetcode.cn/problems/find-latest-group-of-size-m/）使用类似并查集的前后缀链表求解
 
 ===================================牛客===================================
 牛牛排队伍（https://ac.nowcoder.com/acm/contest/49888/C）使用数组维护链表的前后节点信息
@@ -254,6 +255,47 @@ class Solution:
         ans = sum(cnt[i] * b[i] for i in range(n))
         ac.st(ans % mod)
         return
+
+    @staticmethod
+    def lc_1562(arr: List[int], m: int) -> int:
+        # 模板：使用类似并查集的前后缀链表求解
+        n = len(arr)
+        left = [-1]*n
+        right = [-1]*n
+        cnt = [0]*(n+1)
+        ans = -1
+        for x, i in enumerate(arr):
+            i -= 1
+            if i - 1 >= 0 and left[i-1] != -1:
+                if i + 1 < n and right[i+1] != -1:
+                    start = left[i-1]
+                    end = right[i+1]
+                    cnt[i-start] -= 1
+                    cnt[end-i] -= 1
+                    cnt[end-start+1] += 1
+                    right[start] = end
+                    left[end] = start
+                else:
+                    start = left[i - 1]
+                    cnt[i - start] -= 1
+                    end = i
+                    cnt[end - start + 1] += 1
+                    right[start] = end
+                    left[end] = start
+            elif i + 1 < n and right[i+1] != -1:
+                start = i
+                end = right[i + 1]
+                cnt[end - i] -= 1
+                cnt[end - start + 1] += 1
+                right[start] = end
+                left[end] = start
+            else:
+                left[i] = right[i] = i
+                cnt[1] += 1
+
+            if cnt[m]:
+                ans = x + 1
+        return ans
 
 
 class TestGeneral(unittest.TestCase):

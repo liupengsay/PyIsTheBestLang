@@ -8,7 +8,6 @@ from typing import List
 
 from algorithm.src.data_structure.tree_array import TreeArrayRangeSum
 from algorithm.src.fast_io import FastIO, inf
-from algorithm.src.graph.union_find import UnionFind
 
 """
 
@@ -501,8 +500,6 @@ class HeavyChain:
             x = self.parent[self.top[x]]
         # 返回的是节点真实的编号而不是 dfs 序即 dfn
         return x if self.depth[x] < self.depth[y] else y
-
-
 
 
 class Solution:

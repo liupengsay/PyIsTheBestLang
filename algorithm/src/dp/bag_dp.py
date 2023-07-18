@@ -11,7 +11,7 @@ from algorithm.src.fast_io import FastIO
 
 
 """
-算法：背包DP、分组背包、一维（无限有限）背包、二位背包、多重背包、分组背包、限制背包
+算法：背包DP、分组背包、一维（无限有限）背包、二位背包、多重背包、分组背包、限制背包、填表法（过去状态预测未来状态）、刷表法（当前状态预测未来状态）
 功能：一重背包DP，数量有限从后往前遍历，数量无限则从前往后遍历；多重背包DP，可使用二进制优化进行拆分
 题目：
 
@@ -29,7 +29,7 @@ P1776 宝物筛选（https://www.luogu.com.cn/problem/P1776）多重背包，使
 P1509 找啊找啊找GF（https://www.luogu.com.cn/problem/P1509）四重背包
 P1060 [NOIP2006 普及组] 开心的金明（https://www.luogu.com.cn/problem/P1509）一维背包DP
 P1566 加等式（https://www.luogu.com.cn/problem/P1566#submit）限制计数背包
-P1759 通天之潜水（https://www.luogu.com.cn/problem/P1759）二重背包
+P1759 通天之潜水（https://www.luogu.com.cn/problem/P1759）二重背包并输出方案
 P1794 装备运输（https://www.luogu.com.cn/problem/P1794）二重背包
 P1806 跑步（https://www.luogu.com.cn/problem/P1806）连续值一维有限背包计数
 P1853 投资的最大效益（https://www.luogu.com.cn/problem/P1853）一维无限背包有技巧成倍缩小背包范围
@@ -63,13 +63,13 @@ P6771 [USACO05MAR]Space Elevator 太空电梯（https://www.luogu.com.cn/problem
 P2842 纸币问题 1（https://www.luogu.com.cn/problem/P2842）一维无限背包DP不区分顺序
 P2840 纸币问题 2（https://www.luogu.com.cn/problem/P2840）一维无限背包DP区分顺序
 P2834 纸币问题 3（https://www.luogu.com.cn/problem/P2834）一维无限背包DP不区分顺序
-P1064 [NOIP2006 提高组] 金明的预算方案（https://www.luogu.com.cn/problem/P1064）有依赖的01背包，枚举状态进行分组讨论
+P1064 [NOIP2006 提高组] 金明的预算方案（https://www.luogu.com.cn/problem/P1064）有依赖的01背包，枚举状态进行分组讨论，分组背包
 P1156 垃圾陷阱（https://www.luogu.com.cn/problem/P1156）转换为背包01DP求解
 P1273 有线电视网（https://www.luogu.com.cn/problem/P1273）树上分组背包
-P1284 三角形牧场（https://www.luogu.com.cn/problem/P1284）枚举三角形两边作为二维bool背包
+P1284 三角形牧场（https://www.luogu.com.cn/problem/P1284）枚举三角形两边作为二维bool背包，并使用三角形面积计算公式
 P1441 砝码称重（https://www.luogu.com.cn/problem/P1441）枚举加背包DP
 P1537 弹珠（https://www.luogu.com.cn/problem/P1537）经典问题二进制背包优化bool背包，划分成和相等的两部分
-P1541 [NOIP2010 提高组] 乌龟棋（https://www.luogu.com.cn/problem/P1541）四维背包
+P1541 [NOIP2010 提高组] 乌龟棋（https://www.luogu.com.cn/problem/P1541）四维背包枚举，填表法
 P1759 通天之潜水（https://www.luogu.com.cn/problem/P1759）二维背包并输出字典序最小的方案
 P1833 樱花（https://www.luogu.com.cn/problem/P1833）完全背包与单点队列优化多重背包组合
 P2014 [CTSC1997] 选课（https://www.luogu.com.cn/problem/P2014）增加一个虚拟源点将DAG转换为树上背包
@@ -89,6 +89,7 @@ P3983 赛斯石（赛后强化版）（https://www.luogu.com.cn/problem/P3983）
 P5322 [BJOI2019] 排兵布阵（https://www.luogu.com.cn/problem/P5322）典型二维 DP 转换为分组背包
 P5365 [SNOI2017] 英雄联盟（https://www.luogu.com.cn/problem/P5365）01背包 DP 枚举数量
 P5662 [CSP-J2019] 纪念品（https://www.luogu.com.cn/problem/P5662）完全背包变形贪心题目
+P1417 烹调方案（https://www.luogu.com.cn/problem/P1417）经典贪心排序后计算 01 背包最大值
 
 ================================CodeForces================================
 B. Modulo Sum（https://codeforces.com/problemset/problem/577/B）取模计数二进制优化与背包DP，寻找非空子序列的和整除给定的数
@@ -557,7 +558,9 @@ class Solution:
         for j in range(n-m):
             lst = ac.read_list_ints()
             for i in range(1, len(lst), 2):
+                # 边的成本
                 dct[j].append([lst[i]-1, lst[i+1]])
+        # 节点收益
         nums = [0]*(n-m) + ac.read_list_ints()
         sub = [[] for _ in range(n)]
         stack = [0]
@@ -569,6 +572,7 @@ class Solution:
                     stack.append(j)
             else:
                 i = ~i
+                # sub[i][j]表示人数为j时的最大收益
                 sub[i].append(0)
                 if i >= n-m:
                     sub[i].append(nums[i])
@@ -584,6 +588,7 @@ class Solution:
                                 break
                             if len(cur) < k1+k2+1:
                                 cur.extend([-inf]*(k1+k2+1-len(cur)))
+                            # 左边k1右边k2个用户时聚拢的最大收益
                             cur[k1+k2] = ac.max(cur[k1+k2], sub[j][k2]+sub[i][k1]-cost)
                     sub[j] = []
                     sub[i] = cur[:]
@@ -601,12 +606,15 @@ class Solution:
         n = ac.read_int()
 
         def check():
+            # 三角形面积计算公式
             ss = (a + b + c) / 2
             return (ss * (ss - a) * (ss - b) * (ss - c)) ** 0.5
 
         nums = []
         while len(nums) < n:
             nums.extend(ac.read_list_ints())
+
+        # 二维背包 dp[i][j] 表示能否凑成两条便分别为 i 和 j
         s = sum(nums)
         dp = [[0] * (s // 2 + 1) for _ in range(s // 2 + 1)]
         dp[0][0] = 1
@@ -622,6 +630,7 @@ class Solution:
             for b in range(s // 2 + 1):
                 if dp[a][b]:
                     c = s - a - b
+                    # 三角形合法判断公式
                     if b + c > a > 0 and a + c > b > 0 and a + b > c > 0:
                         cur = check()
                         ans = ac.max(ans, cur)
@@ -1177,6 +1186,23 @@ class Solution:
             # 注意此时的 m 更新值
             m = max(m - i + dp[i] for i in range(m + 1))
         ac.st(m)
+        return
+
+    @staticmethod
+    def lg_p1417(ac=FastIO()):
+        # 模板：经典贪心排序后计算 01 背包最大值
+        t, n = ac.read_ints()
+        a = ac.read_list_ints()
+        b = ac.read_list_ints()
+        c = ac.read_list_ints()
+        dp = [0]*(t+1)
+        ind = list(range(n))
+        ind.sort(key=lambda it: -b[it]/c[it])
+        for i in ind:
+            aa, bb, cc = a[i], b[i], c[i]
+            for j in range(t, cc-1, -1):
+                dp[j] = ac.max(dp[j], dp[j-cc]+aa-j*bb)
+        ac.st(max(dp))
         return
 
 
