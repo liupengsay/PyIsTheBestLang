@@ -111,17 +111,20 @@ class Geometry:
     @staticmethod
     def compute_square_point(x0, y0, x2, y2):
         assert [x0, y0] != [x2, y2]
-        # 模板：已知正方形对角线上的两个点且保证两点不同，求另外两个点的坐标
+        # 模板：已知矩形对角线上的两个点且保证两点不同，求另外两个点的坐标
         x1 = (x0 + x2 + y2 - y0) / 2
         y1 = (y0 + y2 + x0 - x2) / 2
         x3 = (x0 + x2 - y2 + y0) / 2
         y3 = (y0 + y2 - x0 + x2) / 2
+        # 判断正方形
+        assert abs(x0 - x2) == abs(y0 - y2)
         return (x1, y1), (x3, y3)
 
     @staticmethod
     def compute_square_point_2(x0, y0, x2, y2):
-        # 模板：已知正方形对角线上的两个点且保证两点不同，求另外两个点的坐标
+        # 模板：已知矩形对角线上的两个点且保证两点不同，求另外两个点的坐标
         assert [x0, y0] != [x2, y2]
+        # 判断正方形
         assert abs(x0-x2) == abs(y0-y2)
         return (x0, y2), (x2, y0)
 
