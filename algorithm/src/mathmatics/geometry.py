@@ -20,6 +20,7 @@ from algorithm.src.data_structure.sorted_list import LocalSortedList
 1453. 圆形靶内的最大飞镖数量（https://leetcode.cn/problems/maximum-number-of-darts-inside-of-a-circular-dartboard/）计算经过两个不同的点与确定半径的两处圆心
 面试题 16.03. 交点（https://leetcode.cn/problems/intersection-lcci/）计算两条线段最靠左靠下的交点
 面试题 16.14. 最佳直线（https://leetcode.cn/problems/best-line-lcci/）用直线斜率判断一条线上最多的点数
+2013. 检测正方形（https://leetcode.cn/problems/detect-squares/）已知正方形对角顶点计算另外两个顶点
 
 ===================================洛谷===================================
 P1665 正方形计数（https://www.luogu.com.cn/problem/P1665）枚举正方形对角线顶点计算可行个数
@@ -116,6 +117,13 @@ class Geometry:
         x3 = (x0 + x2 - y2 + y0) / 2
         y3 = (y0 + y2 - x0 + x2) / 2
         return (x1, y1), (x3, y3)
+
+    @staticmethod
+    def compute_square_point_2(x0, y0, x2, y2):
+        # 模板：已知正方形对角线上的两个点且保证两点不同，求另外两个点的坐标
+        assert [x0, y0] != [x2, y2]
+        assert abs(x0-x2) == abs(y0-y2)
+        return (x0, y2), (x2, y0)
 
     @staticmethod
     def compute_square_area(x0, y0, x2, y2):
