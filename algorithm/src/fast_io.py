@@ -7,6 +7,7 @@ import sys
 from functools import cmp_to_key
 from collections import defaultdict, Counter, deque
 import math
+from heapq import heappush, heappop, heappushpop
 from functools import lru_cache
 from heapq import nlargest
 from functools import reduce
