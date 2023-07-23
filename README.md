@@ -1,7 +1,7 @@
 
 <font size=20>**疯狂的数据结构与算法**</font>
 ***
-![Cow2](https://github.com/liupengsay/PCRecord/blob/main/algorithm/picture/title_liupengsay.png?raw=true)
+![liupengsay](https://github.com/liupengsay/Algorithm/blob/main/algorithm/picture/title_liupengsay.png?raw=true)
 ***
 
 - [1. 基础](#1-基础)
@@ -254,12 +254,15 @@ Solution().main()
 # 11. 附录
 
 <font size=5>**力扣个人主页**</font>
-[![力扣个人主页](https://github.com/liupengsay/PCRecord/blob/main/algorithm/picture/leetcode_liupengsay.png?raw=true)](https://leetcode.cn/u/liupengsay/)
+
+[![力扣个人主页](https://github.com/liupengsay/Algorithm/blob/main/algorithm/picture/leetcode_liupengsay.png?raw=true)](https://leetcode.cn/u/liupengsay/)
 
 
 <font size=5>**CF个人主页**</font>
-[![CF个人主页](https://github.com/liupengsay/PCRecord/blob/main/algorithm/picture/codeforces_liupengsay.png?raw=true)](https://codeforces.com/profile/liupengsay)
+
+[![CF个人主页](https://github.com/liupengsay/Algorithm/blob/main/algorithm/picture/codeforces_liupengsay.png?raw=true)](https://codeforces.com/profile/liupengsay)
 
 
 <font size=5>**洛谷个人主页**</font>
-[![洛谷个人主页](https://github.com/liupengsay/PCRecord/blob/main/algorithm/picture/luogu_liupengsay.png?raw=true)](https://www.luogu.com.cn/user/739032/)
+
+[![洛谷个人主页](https://github.com/liupengsay/Algorithm/blob/main/algorithm/picture/luogu_liupengsay.png?raw=true)](https://www.luogu.com.cn/user/739032/)

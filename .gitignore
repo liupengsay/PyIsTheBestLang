@@ -1,6 +1,6 @@
 /.pytest_cache/
 /.idea/*
-/algorithm/tests/*
+/tests/*
 /algorithm/sample/*
 /machine_learning/src/data/
 /machine_learning/src/datasets/
