@@ -59,7 +59,7 @@ P7965 [COCI2021-2022#2] Kutije（https://www.luogu.com.cn/problem/P7965）经典
 ===================================CodeForces===================================
 F. Is It Flower?（https://codeforces.com/contest/1811/problem/F）无向图求连通分量
 C. Checkposts（https://codeforces.com/problemset/problem/427/C）有向图的强联通分量进行缩点
-
+A. Cutting Figure（https://codeforces.com/contest/193/problem/A）脑筋急转弯计算有无割点
 
 
 """

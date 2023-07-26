@@ -22,6 +22,7 @@ from src.fast_io import inf, FastIO
 732. 我的日程安排表 III（https://leetcode.cn/problems/my-calendar-iii/）使用defaultdict进行动态开点线段树
 1851. 包含每个查询的最小区间（https://leetcode.cn/problems/minimum-interval-to-include-each-query/）区间更新最小值、单点查询，也可以用离线查询与优先队列维护计算
 2213. 由单个字符重复的最长子字符串（https://leetcode.cn/problems/longest-substring-of-one-repeating-character/）单点字母更新，最长具有相同字母的连续子数组查询
+2276. 统计区间中的整数数目（https://leetcode.cn/problems/count-integers-in-intervals/）动态开点线段树模板题
 
 ===================================洛谷===================================
 P2846 [USACO08NOV]Light Switching G（https://www.luogu.com.cn/problem/P2846）线段树统计区间翻转和
@@ -670,6 +671,145 @@ class SegmentTreeRangeChangeQuerySumMinMax:
             stack.append([s, m, 2 * i])
             stack.append([m + 1, t, 2 * i + 1])
         return
+
+
+class SegmentTreeRangeChangeQuerySumMinMaxDefaultDict:
+    def __init__(self):
+        # 模板：区间值修改、区间和查询、区间最小值查询、区间最大值查询（动态开点线段树）
+        self.cover = defaultdict(int)  # 区间和  # 注意初始化值
+        self.lazy = defaultdict(int)  # 懒标记  # 注意初始化值
+        self.floor = defaultdict(int)  # 最小值  # 注意初始化值
+        self.ceil = defaultdict(int)  # 最大值  # 注意初始化值
+
+    @staticmethod
+    def max(a, b):
+        return a if a > b else b
+
+    @staticmethod
+    def min(a, b):
+        return a if a < b else b
+
+    def push_down(self, i, s, m, t):
+        if self.lazy[i]:
+            self.cover[2 * i] = self.lazy[i] * (m - s + 1)
+            self.cover[2 * i + 1] = self.lazy[i] * (t - m)
+
+            self.floor[2 * i] = self.lazy[i]
+            self.floor[2 * i + 1] = self.lazy[i]
+
+            self.ceil[2 * i] = self.lazy[i]
+            self.ceil[2 * i + 1] = self.lazy[i]
+
+            self.lazy[2 * i] = self.lazy[i]
+            self.lazy[2 * i + 1] = self.lazy[i]
+
+            self.lazy[i] = 0
+
+    def push_up(self, i) -> None:
+        self.cover[i] = self.cover[2 * i] + self.cover[2 * i + 1]
+        self.ceil[i] = self.max(self.ceil[2 * i], self.ceil[2 * i + 1])
+        self.floor[i] = self.min(self.floor[2 * i], self.floor[2 * i + 1])
+        return
+
+    def make_tag(self, i, s, t, val) -> None:
+        self.cover[i] = val * (t - s + 1)
+        self.floor[i] = val
+        self.ceil[i] = val
+        self.lazy[i] = val
+        return
+
+    def update_range(self, left, right, s, t, val, i):
+        # 修改区间值
+        stack = [[s, t, i]]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if left <= s and t <= right:
+                    self.make_tag(i, s, t, val)
+                    continue
+
+                m = s + (t - s) // 2
+                self.push_down(i, s, m, t)
+                stack.append([s, t, ~i])
+
+                if left <= m:  # 注意左右子树的边界与范围
+                    stack.append([s, m, 2 * i])
+                if right > m:
+                    stack.append([m + 1, t, 2 * i + 1])
+            else:
+                i = ~i
+                self.push_up(i)
+        return
+
+    def update_point(self, left: int, right: int, s: int, t: int, val: int, i: int) -> None:
+        # 修改单点值 left 与 right 取值为 0 到 n-1 而 i 从 1 开始
+
+        while True:
+            if left <= s and t <= right:
+                self.make_tag(i, s, t, val)
+                break
+            m = s + (t - s) // 2
+            self.push_down(i, s, m, t)
+            if left <= m:  # 注意左右子树的边界与范围
+                s, t, i = s, m, 2 * i
+            if right > m:
+                s, t, i = m + 1, t, 2 * i + 1
+        while i > 1:
+            i //= 2
+            self.push_up(i)
+        return
+
+    def query_sum(self, left, right, s, t, i):
+        # 查询区间的和
+        stack = [[s, t, i]]
+        ans = 0
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                ans += self.cover[i]
+                continue
+            m = s + (t - s) // 2
+            self.push_down(i, s, m, t)
+            if left <= m:
+                stack.append([s, m, 2 * i])
+            if right > m:
+                stack.append([m + 1, t, 2 * i + 1])
+        return ans
+
+    def query_min(self, left, right, s, t, i):
+        # 查询区间的最小值
+        stack = [[s, t, i]]
+        highest = inf
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                highest = self.min(highest, self.floor[i])
+                continue
+            m = s + (t - s) // 2
+            self.push_down(i, s, m, t)
+            if left <= m:
+                stack.append([s, m, 2 * i])
+            if right > m:
+                stack.append([m + 1, t, 2 * i + 1])
+        return highest
+
+    def query_max(self, left, right, s, t, i):
+
+        # 查询区间的最大值
+        stack = [[s, t, i]]
+        highest = -inf
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                highest = self.max(highest, self.ceil[i])
+                continue
+            m = s + (t - s) // 2
+            self.push_down(i, s, m, t)
+            if left <= m:
+                stack.append([s, m, 2 * i])
+            if right > m:
+                stack.append([m + 1, t, 2 * i + 1])
+        return highest
 
 
 class SegmentTreeRangeUpdateQuerySum:
@@ -3003,6 +3143,20 @@ class Solution:
             tree.update_range(ind[a], ind[b], 0, ceil-1, b - a + 1, 1)
         ans = [tree.query_point(ind[num], ind[num], 0, ceil-1, 1) for num in queries]
         return [x if x != inf else -1 for x in ans]
+
+
+class CountIntervals:
+
+    def __init__(self):
+        # 模板：动态开点线段树 LC2276
+        self.n = 10**9 + 7
+        self.tree = SegmentTreeRangeChangeQuerySumMinMaxDefaultDict()
+
+    def add(self, left: int, right: int) -> None:
+        self.tree.update_range(left, right, 0, self.n-1, 1, 1)
+
+    def count(self) -> int:
+        return self.tree.cover[1]
 
 
 class TestGeneral(unittest.TestCase):
