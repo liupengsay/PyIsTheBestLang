@@ -380,9 +380,10 @@ class BinaryTrie:
             nxt = self.to[bit ^ 1][cur]
             if nxt == -1 or self.cnt[nxt] == 0:
                 cur = self.to[bit][cur]
+                res |= 1 << k
             else:
                 cur = nxt
-                res |= 1 << k
+
         return res
 
     # Get min result for constant x ^ element in array

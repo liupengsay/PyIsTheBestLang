@@ -58,7 +58,7 @@ C. Mikasa（https://codeforces.com/problemset/problem/1554/C）经典位运算�
 F. Dasha and Nightmares（https://codeforces.com/contest/1800/problem/F）位运算枚举计数
 D. Little Girl and Maximum XOR（https://codeforces.com/problemset/problem/276/D）范围[l,r]区间的最大异或和
 G. Orray（https://codeforces.com/contest/1742/problem/G）重排数组使得前缀或值的字典序最大
-
+F. Lisa and the Martians（https://codeforces.com/contest/1851/problem/F）经典数组的最小异或对，一定是排序后相邻的数
 ================================AcWing===================================
 998. 起床困难综合症（https://www.acwing.com/problem/content/1000/）按位进行或、异或、与操作后贪心选取最大值
 
