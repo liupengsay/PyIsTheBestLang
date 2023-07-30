@@ -15,6 +15,7 @@ from src.fast_io import FastIO
 2617. 网格图中最少访问的格子数（https://leetcode.cn/problems/minimum-number-of-visited-cells-in-a-grid/）使用数组维护链表的前后节点信息
 2612. 最少翻转操作数（https://leetcode.cn/problems/minimum-reverse-operations/）使用数组维护链表的前后节点信息
 1562. 查找大小为 M 的最新分组（https://leetcode.cn/problems/find-latest-group-of-size-m/）使用类似并查集的前后缀链表求解
+2382. 删除操作后的最大子段和（https://leetcode.cn/problems/maximum-segment-sum-after-removals/）逆向进行访问查询并更新连通块的结果，也可以使用双向链表维护
 
 ===================================牛客===================================
 牛牛排队伍（https://ac.nowcoder.com/acm/contest/49888/C）使用数组维护链表的前后节点信息

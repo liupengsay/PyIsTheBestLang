@@ -21,6 +21,7 @@ from src.fast_io import FastIO
 6310. 获得分数的方法数（https://leetcode.cn/contest/weekly-contest-335/problems/number-of-ways-to-earn-points/）看似二进制优化背包，实则数量转移
 2189. 建造纸牌屋的方法数（https://leetcode.cn/problems/number-of-ways-to-build-house-of-cards/）转换为01背包求解
 254. 因子的组合（https://leetcode.cn/problems/factor-combinations/）乘法结合背包DP
+1449. 数位成本和为目标值的最大数字（https://leetcode.cn/problems/form-largest-integer-with-digits-that-add-up-to-target/）代价一定情况下的最大数值
 
 ===================================洛谷===================================
 P1048 采药（https://www.luogu.com.cn/problem/P1048）一维背包DP，数量有限，从后往前遍历
