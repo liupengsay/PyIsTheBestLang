@@ -10,7 +10,7 @@ from math import inf
 
 """
 
-算法：差分数组与前缀和、后缀和、前缀最大子序列和、后缀最大子序列和、二维差分、离散化差分、三维差分
+算法：差分数组与前缀和、后缀和、前缀最大子序列和、后缀最大子序列和、二维差分、离散化差分、三维差分、二位前缀和
 功能：用来解决一维数组或者二维数组的加和问题，以及前缀和计算，还有前缀和的前缀和
 题目：
 
@@ -19,7 +19,7 @@ from math import inf
 598. 范围求和 II（https://leetcode.cn/problems/range-addition-ii/）二维差分
 2281. 巫师的总力量（https://leetcode.cn/problems/sum-of-total-strength-of-wizards/）枚举当前元素作为最小值的子数组和并使用前缀和的前缀和计算
 2251. 花期内花的数目（https://leetcode.cn/problems/number-of-flowers-in-full-bloom/）离散化差分数组
-2132. 用邮票贴满网格图（https://leetcode.cn/problems/stamping-the-grid/）用前缀和枚举可行的邮票左上端点，然后查看空白格点左上方是否有可行的邮票点，也可以使用经典的二维差分覆盖进行解决
+2132. 用邮票贴满网格图（https://leetcode.cn/problems/stamping-the-grid/）用前缀和枚举可行的邮票左上端点，然后查看空白格点左上方是否有可行的邮票点，也可以使用经典的二维差分滚动模拟覆盖进行解决
 1229. 安排会议日程（https://leetcode.cn/problems/meeting-scheduler/）离散化差分数组
 6292. 子矩阵元素加 1（https://leetcode.cn/problems/increment-submatrices-by-one/)二维差分前缀和
 2565. 最少得分子序列（https://leetcode.cn/problems/subsequence-with-the-minimum-score/）使用前后缀指针枚举匹配最长前后缀
@@ -76,7 +76,7 @@ P7992 [USACO21DEC] Convoluted Intervals S（https://www.luogu.com.cn/problem/P79
 P7948 [✗✓OI R1] 前方之风（https://www.luogu.com.cn/problem/P7948）排序后预处理前后缀信息指针查询
 P8343 [COCI2021-2022#6] Zemljište（https://www.luogu.com.cn/problem/P8343）经典子矩阵前缀和枚举与双指针
 P8551 Bassline（https://www.luogu.com.cn/problem/P8551）差分数组经典灵活应用
-P8666 [蓝桥杯 2018 省 A] 三体攻击（https://www.luogu.com.cn/problem/P8666）二分加三维差分经典题
+P8666 [蓝桥杯 2018 省 A] 三体攻击（https://www.luogu.com.cn/problem/P8666）二分加三维差分经典题，滚动模拟覆盖计算
 P8715 [蓝桥杯 2020 省 AB2] 子串分值（https://www.luogu.com.cn/problem/P8715）前后缀贡献计数
 P8783 [蓝桥杯 2022 省 B] 统计子矩阵（https://www.luogu.com.cn/problem/P8783）经典O(n^3)与双指针枚举计算子矩阵个数
 
@@ -1393,6 +1393,31 @@ class Solution:
             lst.extend(matrix[i])
         lst.sort()
         return lst[-k]
+
+    @staticmethod
+    def lc_2132(grid: List[List[int]], h: int, w: int) -> bool:
+        m, n = len(grid), len(grid[0])
+
+        # 枚举可以贴邮票的左上角位置
+        pre = PreFixSumMatrix(grid)
+        dp = [[0] * n for _ in range(m)]
+        for i in range(m - h + 1):
+            for j in range(n - w + 1):
+                cur = pre.query(i, j, i + h - 1, j + w - 1)
+                if cur == 0:
+                    dp[i][j] = 1
+        # 计算位置的前缀和
+        pre = PreFixSumMatrix(dp)
+        for i in range(m):
+            for j in range(n):
+                if not grid[i][j]:
+                    # 检查是否有邮票覆盖
+                    x = max(0, i - h + 1)
+                    y = max(0, j - w + 1)
+                    cur = pre.query(x, y, i, j)
+                    if not cur:
+                        return False
+        return True
 
 
 class TestGeneral(unittest.TestCase):
