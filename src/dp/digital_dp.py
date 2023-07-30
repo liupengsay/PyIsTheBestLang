@@ -19,7 +19,12 @@ from src.fast_io import FastIO
 1067. 范围内的数字计数（https://leetcode.cn/problems/digit-count-in-range/）计算区间计数，使用右端点减去左端点
 1397. 找到所有好字符串（https://leetcode.cn/problems/find-all-good-strings/）使用数位DP思想进行模拟
 2376. 统计特殊整数（https://leetcode.cn/problems/count-special-integers/）计算小于 n 的特殊正整数个数
+2719. 统计整数数目（https://leetcode.cn/problems/count-of-integers/）数位DP容斥模板题
+6957. 统计范围内的步进数字数目（https://leetcode.cn/problems/count-stepping-numbers-in-range/）数位DP容斥模板题
+
+
 面试题 17.06. 2出现的次数（https://leetcode.cn/problems/number-of-2s-in-range-lcci/）所有数位出现 2 的次数
+
 
 ===================================洛谷===================================
 P1590 失踪的7（https://www.luogu.com.cn/problem/P1590）计算 n 以内不含7的个数

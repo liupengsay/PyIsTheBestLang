@@ -1,5 +1,6 @@
 import unittest
 from collections import Counter
+from itertools import permutations
 
 from src.fast_io import FastIO
 
@@ -14,6 +15,7 @@ from src.fast_io import FastIO
 25. 找出字符串中第一个匹配项的下标（https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/）计算子字符串第一次出现的位置
 1392. 最长快乐前缀（https://leetcode.cn/problems/longest-happy-prefix/）计算最长的公共前后缀，KMP与Z函数模板题
 2223. 构造字符串的总得分和（https://leetcode.cn/problems/longest-happy-prefix/）利用扩展KMP计算Z函数
+6918. 包含三个字符串的最短字符串（https://leetcode.cn/problems/shortest-string-that-contains-three-strings/）kmp求字符串之间的最长公共前后缀，进行贪心拼接
 
 ===================================洛谷===================================
 P3375 KMP字符串匹配（https://www.luogu.com.cn/problem/P3375）计算子字符串出现的位置，与最长公共前后缀的子字符串长度
@@ -22,6 +24,7 @@ P4391 [BOI2009]Radio Transmission 无线传输（https://www.luogu.com.cn/proble
 ================================CodeForces================================
 D2. Prefix-Suffix Palindrome (Hard version)（https://codeforces.com/problemset/problem/1326/D2）利用马拉车的贪心思想贪心取前后缀，再判断剩余字符的最长前后缀回文子串
 D. Prefixes and Suffixes（https://codeforces.com/contest/432/problem/D）扩展kmp与kmp结合使用计数，经典z函数与前缀函数结合应用题
+E. Test（https://codeforces.com/contest/25/problem/E）kmp求字符串之间的最长公共前后缀，进行贪心拼接
 
 ================================AcWing================================
 
@@ -123,10 +126,10 @@ class Solution:
                 continue
 
             mid = s[i:j + 1]
-            a = KMP().find_longest_palidrome(s)
+            a = KMP().find_longest_palindrome(s)
             s1 = mid[:a]
 
-            a = KMP().find_longest_palidrome(s, "suffix")
+            a = KMP().find_longest_palindrome(s, "suffix")
             s2 = mid[-a:]
             if len(s1) > len(s2):
                 ac.st(s[:i] + s1 + s[j + 1:])
@@ -137,7 +140,7 @@ class Solution:
     @staticmethod
     def lc_214(s: str) -> str:
         # 模板：使用 KMP 计算最长回文前缀
-        k = KMP().find_longest_palidrome(s)
+        k = KMP().find_longest_palindrome(s)
         return s[k:][::-1] + s
 
     @staticmethod
@@ -229,6 +232,54 @@ class Solution:
             x = ac.read_int()
             ac.st(cnt[x])
         return
+
+    @staticmethod
+    def cf_25e(ac=FastIO()):
+
+        # 模板：kmp求字符串之间的最长公共前后缀，进行贪心拼接
+        s = [ac.read_str() for _ in range(3)]
+
+        def check(a, b):
+            c = b + "#" + a
+            f = KMP().prefix_function(c)
+            m = len(b)
+            if max(f[m:]) == m:
+                return a
+            x = f[-1]
+            return a + b[x:]
+
+        ind = list(range(3))
+        ans = sum(len(w) for w in s)
+        for item in permutations(ind, 3):
+            t1, t2, t3 = [s[x] for x in item]
+            cur = len(check(check(t1, t2), t3))
+            if cur < ans:
+                ans = cur
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lc_6918(aa: str, bb: str, cc: str) -> str:
+
+        def check(a, b):
+            c = b + "#" + a
+            f = KMP().prefix_function(c)
+            m = len(b)
+            if max(f[m:]) == m:
+                return a
+            x = f[-1]
+            return a + b[x:]
+
+        # 模板：kmp求字符串之间的最长公共前后缀，进行贪心拼接
+        s = [aa, bb, cc]
+        ind = list(range(3))
+        ans = "".join(s)
+        for item in permutations(ind, 3):
+            t1, t2, t3 = [s[x] for x in item]
+            cur = check(check(t1, t2), t3)
+            if len(cur) < len(ans) or (len(cur) == len(ans) and cur < ans):
+                ans = cur
+        return ans
 
 
 class TestGeneral(unittest.TestCase):
