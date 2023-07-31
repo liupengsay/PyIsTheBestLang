@@ -30,17 +30,6 @@ from sortedcontainers import SortedList
 
 
 
-class Solution:
-    def maximumPopulation(self, logs: List[List[int]]) -> int:
-
-        dct = defaultdict(int)
-        for x, y in logs:
-            for i in range(x, y):
-                dct[i] += 1
-        ceil = max(dct.values())
-        return min([x for x in dct if dct[x]==ceil])
-
-
 
 
 

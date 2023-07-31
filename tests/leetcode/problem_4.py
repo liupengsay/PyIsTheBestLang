@@ -28,41 +28,9 @@ from sortedcontainers import SortedList
 
 
 
-class Solution:
-    def largestPathValue(self, colors: str, edges: List[List[int]]) -> int:
-
-        n = len(colors)
-        dct = [[] for _ in range(n)]
-        degree = [0] * n
-        for i, j in edges:
-            if i == j:
-                return -1
-            dct[i].append(j)
-            degree[j] += 1
-
-
-        ans = 0
-        for color in range(26):
-            cnt = [0 for _ in range(n)]
-            stack = deque([i for i in range(n) if not degree[i]])
-            for i in stack:
-                cnt[i] += ord(colors[i])-ord("a") == color
-            while stack:
-                i = stack.popleft()
-                for j in dct[i]:
-                    degree[j] -= 1
-                    a, b = cnt[j], cnt[i]
-                    cnt[j] = a if a > b else b
-                    if not degree[j]:
-                        cnt[j] += ord(colors[j])-ord("a") == color
-                        stack.append(j)
-            if not all(x == 0 for x in degree):
-                return -1
-            cur = max(cnt)
-            ans = ans if ans > cur else cur
-        return ans
 
 
 
 
-assert Solution().largestNumber(cost = [4,3,2,5,6,7,2,5,5], target = 9) == "7772"
+
+assert Solution()

@@ -30,20 +30,12 @@ from sortedcontainers import SortedList
 
 
 
-class Solution:
-    def maxDistance(self, nums1: List[int], nums2: List[int]) -> int:
-        m = len(nums2)
-        n = len(nums1)
-        ans = i = 0
-        for j in range(m):
-            while i < n and nums1[i] > nums2[j]:
-                i += 1
-            if j-i > ans:
-                ans = j-i
-        return ans
 
 
 
+
+
+assert Solution()
 
 
 

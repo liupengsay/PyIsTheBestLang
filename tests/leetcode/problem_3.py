@@ -29,37 +29,7 @@ from sortedcontainers import SortedList
 
 
 
-mod = 10**9 + 7
-class Solution:
-    def maxSumMinProduct(self, nums: List[int]) -> int:
-
-        n = len(nums)
-        lst = list(accumulate(nums, initial=0))
-
-        post = [n-1] * n  # [n-1] * n
-
-        stack = []
-        for i in range(n):
-            while stack and nums[stack[-1]] > nums[i]:
-                post[stack.pop()] = i-1  # i - 1
-            stack.append(i)
-
-        pre = [0] * n  # [0] * n
-        stack = []
-        for i in range(n-1, -1, -1):
-            while stack and nums[stack[-1]] > nums[i]:
-                pre[stack.pop()] = i + 1  # i - 1
-            stack.append(i)
-
-        ans = 0
-
-        for i in range(n):
-            x = nums[i]
-            left= pre[i]
-            right = post[i]
-            cur = x*(lst[right+1]-lst[left])
-            if cur > ans:
-                ans = cur
-        return ans % mod
 
 
+
+assert Solution()
