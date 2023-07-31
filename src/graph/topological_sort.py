@@ -20,7 +20,7 @@ from src.graph.union_find import UnionFind
 269. 火星词典（https://leetcode.cn/problems/alien-dictionary/）经典按照字典序建图，与拓扑排序的应用
 2603. 收集树中金币（https://leetcode.cn/contest/weekly-contest-338/problems/collect-coins-in-a-tree/）无向图拓扑排序内向基环树
 2204. 无向图中到环的距离（https://leetcode.cn/problems/distance-to-a-cycle-in-undirected-graph/https://leetcode.cn/problems/distance-to-a-cycle-in-undirected-graph/）无向图拓扑排序
-
+1857. 有向图中最大颜色值（https://leetcode.cn/problems/largest-color-value-in-a-directed-graph/）经典拓扑排序DP
 
 ===================================洛谷===================================
 P1960 郁闷的记者（https://www.luogu.com.cn/problem/P1960）计算拓扑排序是否唯一
@@ -177,7 +177,7 @@ class TopologicalSort:
                     if not degree[j]:
                         nex.append(j)
             stack = nex
-        return sum(degree) == 0
+        return all(x==0 for x in degree)
 
 class Solution:
     def __init__(self):
@@ -731,6 +731,37 @@ class Solution:
                     ans[j] = ans[i] + 1
                     circle.append(j)
         return ans
+
+    @staticmethod
+    def lc_1857(colors: str, edges: List[List[int]]) -> int:
+
+        # 模板：经典拓扑排序DP
+        n = len(colors)
+        dct = [[] for _ in range(n)]
+        degree = [0] * n
+        for i, j in edges:
+            if i == j:
+                return -1
+            dct[i].append(j)
+            degree[j] += 1
+
+        cnt = [[0] * 26 for _ in range(n)]
+        stack = deque([i for i in range(n) if not degree[i]])
+        for i in stack:
+            cnt[i][ord(colors[i]) - ord("a")] += 1
+        while stack:
+            i = stack.popleft()
+            for j in dct[i]:
+                degree[j] -= 1
+                for c in range(26):
+                    a, b = cnt[j][c], cnt[i][c]
+                    cnt[j][c] = a if a > b else b
+                if not degree[j]:
+                    cnt[j][ord(colors[j]) - ord("a")] += 1
+                    stack.append(j)
+        if not all(x == 0 for x in degree):
+            return -1
+        return max(max(c) for c in cnt)
 
 
 class TestGeneral(unittest.TestCase):
