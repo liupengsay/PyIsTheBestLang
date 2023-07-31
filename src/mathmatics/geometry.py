@@ -18,6 +18,7 @@ from src.data_structure.sorted_list import LocalSortedList
 ===================================力扣===================================
 149. 直线上最多的点数（https://leetcode.cn/problems/max-points-on-a-line/）用直线斜率判断一条线上最多的点数
 1453. 圆形靶内的最大飞镖数量（https://leetcode.cn/problems/maximum-number-of-darts-inside-of-a-circular-dartboard/）计算经过两个不同的点与确定半径的两处圆心
+939. 最小面积矩形（https://leetcode.cn/problems/minimum-area-rectangle/）枚举矩形对角顶点计算另外两个顶点
 面试题 16.03. 交点（https://leetcode.cn/problems/intersection-lcci/）计算两条线段最靠左靠下的交点
 面试题 16.14. 最佳直线（https://leetcode.cn/problems/best-line-lcci/）用直线斜率判断一条线上最多的点数
 2013. 检测正方形（https://leetcode.cn/problems/detect-squares/）已知正方形对角顶点计算另外两个顶点
