@@ -1,4 +1,5 @@
 import unittest
+from typing import List
 
 from src.fast_io import FastIO
 from src.graph.union_find import UnionFind
@@ -294,6 +295,21 @@ class Solution:
         for x in euler.nodes[i:] + euler.nodes[:i]:
             ac.st(x + 1)
         return
+
+    @staticmethod
+    def lc_2097(pairs: List[List[int]]) -> List[List[int]]:
+        # 模板：欧拉路径模板题，离散化后转化为图的欧拉路径求解
+        nodes = set()
+        for a, b in pairs:
+            nodes.add(a)
+            nodes.add(b)
+        nodes = list(nodes)
+        n = len(nodes)
+        ind = {num: i for i, num in enumerate(nodes)}
+        lst = [[ind[a], ind[b]] for a, b in pairs]
+        ep = DirectedEulerPath(n, lst)
+        ans = ep.paths
+        return [[nodes[x], nodes[y]] for x, y in ans]
 
 
 class TestGeneral(unittest.TestCase):

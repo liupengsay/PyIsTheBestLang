@@ -30,6 +30,29 @@ from sortedcontainers import SortedList
 
 
 
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def deleteMiddle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        lst=  []
+        while head:
+            lst.append(head.val)
+            head = head.next
+        n = len(lst)
+        lst.pop(n//2)
+
+
+        fake = ListNode(-1)
+        pre = fake
+        for num in lst:
+            pre.next = ListNode(num)
+            pre = pre.next
+        return fake.next
+
+
 
 
 
