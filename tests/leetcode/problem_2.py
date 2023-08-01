@@ -30,29 +30,22 @@ from sortedcontainers import SortedList
 
 
 
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
+
+
 class Solution:
-    def deleteMiddle(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        lst=  []
-        while head:
-            lst.append(head.val)
-            head = head.next
-        n = len(lst)
-        lst.pop(n//2)
-
-
-        fake = ListNode(-1)
-        pre = fake
-        for num in lst:
-            pre.next = ListNode(num)
-            pre = pre.next
-        return fake.next
-
-
+    def carFleet(self, target: int, position: List[int], speed: List[int]) -> int:
+        n = len(position)
+        ind = list(range(n))
+        ind.sort(key=lambda it: -position[it])
+        ans = 1
+        right = [target-position[ind[0]], speed[ind[0]]]
+        for x in ind[1:]:
+            c, d = right
+            a, b = target-position[x], speed[x]
+            if c*b < a*d:
+                ans += 1
+                right = [a, b]
+        return ans
 
 
 

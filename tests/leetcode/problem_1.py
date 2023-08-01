@@ -28,19 +28,10 @@ from sortedcontainers import SortedList
 
 
 
+
 class Solution:
-    def findEvenNumbers(self, digits: List[int]) -> List[int]:
-
-        ans = set()
-        for item in permutations(digits, 3):
-            a, b, c = item
-            if a == 0 or c % 2:
-                continue
-            ans.add(a*100+b*10+c)
-        ans = list(ans)
-        ans.sort()
-        return ans
-
+    def peakIndexInMountainArray(self, arr: List[int]) -> int:
+        return arr.index(max(arr))
 
 
 

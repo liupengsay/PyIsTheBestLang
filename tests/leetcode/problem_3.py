@@ -27,89 +27,62 @@ import heapq
 import copy
 from sortedcontainers import SortedList
 
-
-def dijkstra_src_to_dst_path(dct, src: int, dst: int):
-    # 模板: Dijkstra求起终点的最短路，注意只能是正权值可以提前返回结果，并返回对应经过的路径
-    n = len(dct)
-    dis = [inf] * n
-    stack = [[0, src]]
-    dis[src] = 0
-    father = [-1] * n  # 记录最短路的上一跳
-    while stack:
-        d, i = heapq.heappop(stack)
-        if dis[i] < d:
-            continue
-        if i == dst:
-            break
-        for j in dct[i]:
-            dj = dct[i][j] + d
-            if dj < dis[j]:
-                dis[j] = dj
-                father[j] = i
-                heapq.heappush(stack, [dj, j])
-    # 向上回溯路径
-    path = []
-    i = dst
-    while i != -1:
-        path.append(i)
-        i = father[i]
-    return path, dis[dst]
+from sortedcontainers import SortedList
 
 
+class ExamRoom:
 
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-class Solution:
-    def getDirections(self, root: Optional[TreeNode], startValue: int, destValue: int) -> str:
+    def __init__(self, n: int):
+        self.n = n
+        self.lst = SortedList(key=lambda it: (-self.dis(it), it[0]))
+        self.left = dict()
+        self.right = dict()
+        self.add((-1, self.n))
 
-        dct = defaultdict(list)
+    def add(self, x):
+        self.lst.add(x)
+        self.left[x[1]] = x[0]
+        self.right[x[0]] = x[1]
+        return
 
-        def dfs(node):
-            if not node:
-                return
-            x = node.val
-            if node.left:
-                y = node.left.val
-                dct[x].append([y, "L"])
-                dct[y].append([x, "U"])
-                dfs(node.left)
+    def delete(self, x):
+        self.lst.discard(x)
+        self.left.pop(x[1])
+        self.right.pop(x[0])
+        return
 
-            if node.right:
-                y = node.right.val
-                dct[x].append([y, "R"])
-                dct[y].append([x, "U"])
-                dfs(node.right)
+    def dis(self, x):
+        if x[0] == -1 or x[1] == self.n:
+            return x[1] - x[0] - 1
+        return (x[1] - x[0]) // 2
 
-            return
+    def seat(self):
+        x = self.lst[0]
+        if x[0] == -1:
+            p = 0
+        elif x[1] == self.n - 1:
+            p = self.n - 1
+        else:
+            p = (x[1] + x[0]) // 2
+        self.delete(x)
+        self.add((x[0], p))
+        self.add((p, x[1]))
+        return p
 
-        dfs(root)
+    def leave(self, p: int) -> None:
+        left, right = self.left[p], self.right[p]
+        self.delete((left, p))
+        self.delete((p, right))
+        self.add((left, right))
+        return
 
-        parent = defaultdict(list)
-        stack = [[startValue, -1]]
-        while stack:
-            i, fa = stack.pop()
-            for j, s in dct[i]:
-                if j != fa:
-                    parent[j] = [i, s]
-                    stack.append([j, i])
-
-        x = destValue
-        ans = ""
-        while x != startValue:
-            x, s = parent[x]
-            ans += s
-        return ans
+    # Your ExamRoom object will be instantiated and called as such:
+# obj = ExamRoom(n)
+# param_1 = obj.seat()
+# obj.leave(p)
 
 
 
 
 
-
-
-
-
-assert Solution()
+assert Solution().countSubstrings(s = "aba", t = "baba") == 6

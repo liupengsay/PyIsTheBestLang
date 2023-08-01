@@ -108,27 +108,21 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
+        ind = list(range(10))
+        ind.pop(4)
+
         for _ in range(ac.read_int()):
-            s = ac.read_list_str()
-            n = len(s)
-            ans = []
-            for i in range(2, n-2):
-                if s[i-2:i+3] == list("twone"):
-                    ans.append(i+1)
-                    s[i] = "#"
-
-            for i in range(1, n-1):
-                if s[i-1:i+2] == list("one"):
-                    ans.append(i+1)
-                    s[i] = "#"
-
-            for i in range(1, n-1):
-                if s[i-1:i+2] == list("two"):
-                    ans.append(i+1)
-                    s[i] = "#"
-
-            ac.st(len(ans))
-            ac.lst(ans)
+            k = ac.read_int()
+            lst = []
+            while k:
+                lst.append(k % 9)
+                k //= 9
+            lst.reverse()
+            ans = 0
+            for i in lst:
+                ans *= 10
+                ans += ind[i]
+            ac.st(ans)
         return
 
 
