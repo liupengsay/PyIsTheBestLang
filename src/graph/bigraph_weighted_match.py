@@ -242,7 +242,7 @@ class KM:
         return result
 
 
-class Soluttion:
+class Solution:
     def __init__(self):
         return
 
@@ -347,6 +347,24 @@ class Soluttion:
         ac.st(Hungarian().dfs_recursion(n, m, dct))
         # ac.st(Hungarian().bfs_iteration(n, m, dct))
         return
+
+    @staticmethod
+    def lc_1066(workers: List[List[int]], bikes: List[List[int]]) -> int:
+        # 模板：二分图最小权匹配
+        n = len(workers)
+        m = len(bikes)
+        grid = [[0]*m for _ in range(m)]
+        for i in range(n):
+            for j in range(m):
+                grid[i][j] = abs(workers[i][0]-bikes[j][0])+abs(workers[i][1]-bikes[j][1])
+
+        a = np.array(grid)
+        km = KM()
+        min_ = km.compute(a.copy(), min=True)
+        ans = 0
+        for i,j in min_:
+            ans += grid[i][j]
+        return ans
 
 
 class TestGeneral(unittest.TestCase):

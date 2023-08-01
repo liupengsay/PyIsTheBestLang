@@ -28,10 +28,16 @@ from sortedcontainers import SortedList
 
 
 
-
 class Solution:
-    def peakIndexInMountainArray(self, arr: List[int]) -> int:
-        return arr.index(max(arr))
+    def fixedPoint(self, arr: List[int]) -> int:
+        n = len(arr)
+        for i in range(n):
+            if arr[i] == i:
+                return i
+        return -1
+
+
+
 
 
 

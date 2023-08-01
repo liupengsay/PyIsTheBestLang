@@ -30,22 +30,20 @@ from sortedcontainers import SortedList
 
 
 
-
-
 class Solution:
-    def carFleet(self, target: int, position: List[int], speed: List[int]) -> int:
-        n = len(position)
-        ind = list(range(n))
-        ind.sort(key=lambda it: -position[it])
-        ans = 1
-        right = [target-position[ind[0]], speed[ind[0]]]
-        for x in ind[1:]:
-            c, d = right
-            a, b = target-position[x], speed[x]
-            if c*b < a*d:
-                ans += 1
-                right = [a, b]
+    def indexPairs(self, text: str, words: List[str]) -> List[List[int]]:
+
+        dct = set(words)
+        ans = []
+        n = len(text)
+        for i in range(n):
+            for j in range(i, n):
+                if text[i:j+1] in dct:
+                    ans.append([i, j])
         return ans
+
+
+
 
 
 
