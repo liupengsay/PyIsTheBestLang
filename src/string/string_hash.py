@@ -15,9 +15,9 @@ from src.fast_io import FastIO
 题目：
 
 ===================================力扣===================================
-214 最短回文串（https://leetcode.cn/problems/shortest-palindrome/）使用正向与反向字符串哈希计算字符串前缀最长回文子串
+214. 最短回文串（https://leetcode.cn/problems/shortest-palindrome/）使用正向与反向字符串哈希计算字符串前缀最长回文子串
 572. 另一棵树的子树（https://leetcode.cn/problems/subtree-of-another-tree/）经典树结构哈希
-1044 最长重复子串（https://leetcode.cn/problems/shortest-palindrome/）利用二分查找加字符串哈希确定具有最长长度的重复子串
+1044. 最长重复子串（https://leetcode.cn/problems/shortest-palindrome/）利用二分查找加字符串哈希确定具有最长长度的重复子串
 1316. 不同的循环子字符串（https://leetcode.cn/problems/shortest-palindrome/）利用字符串哈希确定不同循环子串的个数
 2156 查找给定哈希值的子串（https://leetcode.cn/problems/find-substring-with-given-hash-value/）逆向进行字符串哈希的计算
 652. 寻找重复的子树（https://leetcode.cn/problems/find-duplicate-subtrees/）树哈希，确定重复子树
