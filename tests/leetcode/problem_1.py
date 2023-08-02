@@ -28,14 +28,12 @@ from sortedcontainers import SortedList
 
 
 
-class Solution:
-    def fixedPoint(self, arr: List[int]) -> int:
-        n = len(arr)
-        for i in range(n):
-            if arr[i] == i:
-                return i
-        return -1
 
+class Solution:
+    def isAlienSorted(self, words: List[str], order: str) -> bool:
+        dct = {w: chr(i+ord("a")) for i, w in enumerate(order)}
+        words = ["".join(dct[w] for w in word) for word in words]
+        return words == sorted(words)
 
 
 

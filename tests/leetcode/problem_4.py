@@ -29,40 +29,19 @@ from sortedcontainers import SortedList
 
 
 
-
 class Solution:
-    def digitsCount(self, d: int, low: int, high: int) -> int:
+    def tallestBillboard(self, rods: List[int]) -> int:
+        n = len(rods)
 
-        def count_digit(num, d):
-            # 模板: 计算 1到 num 内数位 d 出现的个数
-            @lru_cache(None)
-            def dfs(i, cnt, is_limit, is_num):
-                if i == n:
-                    if is_num:
-                        return cnt
-                    return 0
-                res = 0
-                if not is_num:
-                    res += dfs(i + 1, 0, False, False)
-
-                floor = 0 if is_num else 1
-                ceil = int(s[i]) if is_limit else 9
-                for x in range(floor, ceil + 1):
-                    res += dfs(i + 1, cnt + int(x == d), is_limit and ceil == x, True)
-                return res
-
-            s = str(num)
-            n = len(s)
-            ans = dfs(0, 0, True, False)
-            dfs.cache_clear()
-            return ans
-
-        res = count_digit(high, d) - count_digit(low-1, d)
-        return res
-
-
-
-
+        pre = defaultdict(int)
+        pre[0] = 0
+        for num in rods:
+            cur = defaultdict(int)
+            for p in pre:
+                cur[p+num] = max(cur[p+num], pre[p])
+                cur[p - num] = max(cur[p - num], pre[p]+num)
+            pre = cur.copy()
+        return pre[0]
 
 
 

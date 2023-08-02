@@ -31,20 +31,33 @@ from sortedcontainers import SortedList
 
 
 class Solution:
-    def indexPairs(self, text: str, words: List[str]) -> List[List[int]]:
+    def canReorderDoubled(self, arr: List[int]) -> bool:
+        pos = [num for num in arr if num > 0]
+        neg = [num for num in arr if num < 0]
+        zero = arr.count(0)
+        if zero % 2:
+            return False
 
-        dct = set(words)
-        ans = []
-        n = len(text)
-        for i in range(n):
-            for j in range(i, n):
-                if text[i:j+1] in dct:
-                    ans.append([i, j])
-        return ans
+        cnt = Counter(pos)
+        pos.sort()
+        for num in pos:
+            if not cnt[num]:
+                continue
+            x = cnt[num]
+            if cnt[2*num] < x:
+                return False
+            cnt[2*num] -= x
 
-
-
-
+        cnt = Counter(neg)
+        neg.sort(reverse=True)
+        for num in neg:
+            if not cnt[num]:
+                continue
+            x = cnt[num]
+            if cnt[2 * num] < x:
+                return False
+            cnt[2 * num] -= x
+        return True
 
 
 

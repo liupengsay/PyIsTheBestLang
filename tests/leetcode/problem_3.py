@@ -30,29 +30,20 @@ from sortedcontainers import SortedList
 from sortedcontainers import SortedList
 
 
-
-
-
 class Solution:
-    def assignBikes(self, workers: List[List[int]], bikes: List[List[int]]) -> int:
-        n = len(workers)
-        m = len(bikes)
+    def minDeletionSize(self, strs: List[str]) -> int:
+        ans = 0
+        while sorted(strs) != strs:
+            n = len(strs[0])
+            for j in range(n):
+                lst = [word[:j+1] for word in strs]
+                if lst != sorted(lst):
+                    strs = [word[:j]+word[j+1:] for word in strs]
+                    ans += 1
+                    break
+        return ans
 
-        @lru_cache(None)
-        def dfs(i, state):
-            if i == n:
-                return 0
-            x, y = workers[i]
-            res = inf
-            for j in range(m):
-                if state & (1<<j):
-                    a, b = bikes[j]
-                    cur = abs(x-a)+abs(b-y) + dfs(i+1, state^(1<<j))
-                    if cur < res:
-                        res = cur
-            return res
 
-        return dfs(0, (1<<m)-1)
 
 
 
