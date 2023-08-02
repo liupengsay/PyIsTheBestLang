@@ -30,37 +30,28 @@ from sortedcontainers import SortedList
 from sortedcontainers import SortedList
 
 
-
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def minFlips(self, s: str) -> int:
-        n = len(s)
-        ans = n
+    def sumEvenGrandparent(self, root: TreeNode) -> int:
 
-        for w in [1, 0]:
-            pre = w
-            t = str(pre)
-            for _ in s[1:]:
-                t += str(1-pre)
-                pre = 1-pre
-            cur = sum(int(s[i]!=t[i]) for i in range(n))
-            if cur < ans:
-                ans = cur
-        s = s[1:] + s[0]
-        for w in [1, 0]:
-            pre = w
-            t = str(pre)
-            for _ in s[1:]:
-                t += str(1-pre)
-                pre = 1-pre
-            cur = sum(int(s[i]!=t[i]) for i in range(n))
-            if cur < ans:
-                ans = cur
+
+        def dfs(node, fa, ances):
+            nonlocal ans
+            if not node:
+                return
+            if ances % 2 == 0:
+                ans += 1
+            dfs(node.left, node.val, fa)
+            dfs(node.right, node.val, fa)
+            return
+
+        ans = 0
+        dfs(root, -1, -1)
         return ans
-
-
-
-
-
-
 
 assert Solution().countSubstrings(s = "aba", t = "baba") == 6

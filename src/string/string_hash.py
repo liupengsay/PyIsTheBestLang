@@ -18,7 +18,7 @@ from src.fast_io import FastIO
 214 最短回文串（https://leetcode.cn/problems/shortest-palindrome/）使用正向与反向字符串哈希计算字符串前缀最长回文子串
 572. 另一棵树的子树（https://leetcode.cn/problems/subtree-of-another-tree/）经典树结构哈希
 1044 最长重复子串（https://leetcode.cn/problems/shortest-palindrome/）利用二分查找加字符串哈希确定具有最长长度的重复子串
-1316 不同的循环子字符串（https://leetcode.cn/problems/shortest-palindrome/）利用字符串哈希确定不同循环子串的个数
+1316. 不同的循环子字符串（https://leetcode.cn/problems/shortest-palindrome/）利用字符串哈希确定不同循环子串的个数
 2156 查找给定哈希值的子串（https://leetcode.cn/problems/find-substring-with-given-hash-value/）逆向进行字符串哈希的计算
 652. 寻找重复的子树（https://leetcode.cn/problems/find-duplicate-subtrees/）树哈希，确定重复子树
 1554. 只有一个不同字符的字符串（https://leetcode.cn/problems/strings-differ-by-one-character/）字符串前后缀哈希求解
@@ -65,7 +65,7 @@ class StringHash:
         ans = [0, 0]
         for i in range(2):
             if x <= y:
-                ans[i] = (self.pre[i][y + 1] - self.pre[i][x] * pow(self.p[i], y - x + 1, self.mod[i])) % self.mod[i]
+                ans[i] = (self.pre[i][y + 1] - self.pre[i][x] * self.pp[i][y-x+1]) % self.mod[i]
         return ans
 
 
@@ -503,6 +503,24 @@ class Solution:
                     return True
                 pre.add(va)
         return False
+
+    @staticmethod
+    def lc_1316(text: str) -> int:
+        # 模板：字符串哈希判断循环子串
+        n = len(text)
+        sh = StringHash(n, text)
+
+        ans = 0
+        for x in range(1, n // 2 + 1):
+            cur = set()
+            for i in range(n - 2 * x + 1):
+                ans1 = sh.query(i, i + x - 1)
+                ans2 = sh.query(i + x, i + 2 * x - 1)
+                if ans1 == ans2:
+                    # 注意只有长度与哈希值相同字符串才相同
+                    cur.add(tuple(ans1))
+            ans += len(cur)
+        return ans
 
 
 class TestGeneral(unittest.TestCase):

@@ -27,17 +27,38 @@ import copy
 from sortedcontainers import SortedList
 
 
+
+
+class PreFixSumMatrix:
+    def __init__(self, mat):
+        self.mat = mat
+        # 二维前缀和
+        m, n = len(mat), len(mat[0])
+        self.pre = [[0] * (n + 1) for _ in range(m + 1)]
+        for i in range(m):
+            for j in range(n):
+                self.pre[i + 1][j + 1] = self.pre[i][j + 1] + \
+                    self.pre[i + 1][j] - self.pre[i][j] + mat[i][j]
+
+    def query(self, xa, ya, xb, yb):
+        # 二维子矩阵和查询，索引从 0 开始，左上角 [xa, ya] 右下角 [xb, yb]
+        return self.pre[xb + 1][yb + 1] - self.pre[xb +
+                                                   1][ya] - self.pre[xa][yb + 1] + self.pre[xa][ya]
+
+
 class Solution:
-    def minFlips(self, s: str) -> int:
-        n = len(s)
-        s += s
-        s1 = "10" * n
-        s2 = "01" * n
-        pre1 = list(accumulate([int(s1[i]!=s[i]) for i in range(2*n)], initial=0))
-        pre2 = list(accumulate([int(s2[i]!=s[i]) for i in range(2*n)], initial=0))
-        ans1 = min(pre1[i+n]-pre1[i] for i in range(n))
-        ans2 = min(pre2[i + n] - pre2[i] for i in range(n))
-        return ans1 if ans1 < ans2 else ans2
+    def matrixBlockSum(self, mat: List[List[int]], k: int) -> List[List[int]]:
+        pre = PreFixSumMatrix(mat)
+        m, n = len(mat), len(mat[0])
+        ans= [[0]*n for _ in range(m)]
+        for i in range(m):
+            for j in range(n):
+                x1 = max(0, i-k)
+                x2 = min(m-1, i+k)
+                y1 = max(0, j-k)
+                y2 = min(n-1, j+k)
+                ans[i][j] = pre.query(x1, y1,x2,y2)
+        return ans
 
 
 assert Solution().minFlips("010") == 0

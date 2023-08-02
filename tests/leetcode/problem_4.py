@@ -26,30 +26,48 @@ import heapq
 import copy
 from sortedcontainers import SortedList
 
-mod = 10 ** 9 + 7
+
+
+
+
+class StringHash:
+    # 注意哈希碰撞，需要取两个质数与模进行区分
+    def __init__(self, n, s):
+        self.n = n
+        self.p = [random.randint(26, 100), random.randint(26, 100)]
+        self.mod = [random.randint(10 ** 9 + 7, 2 ** 31 - 1), random.randint(10 ** 9 + 7, 2 ** 31 - 1)]
+        self.pre = [[0], [0]]
+        self.pp = [[1], [1]]
+        for w in s:
+            for i in range(2):
+                self.pre[i].append((self.pre[i][-1] * self.p[i] + ord(w) - ord("a")) % self.mod[i])
+                self.pp[i].append((self.pp[i][-1] * self.p[i]) % self.mod[i])
+        return
+
+    def query(self, x, y):
+        # 模板：字符串区间的哈希值，索引从 0 开始
+        ans = [0, 0]
+        for i in range(2):
+            if x <= y:
+                ans[i] = (self.pre[i][y + 1] - self.pre[i][x] * pow(self.p[i], y - x + 1, self.mod[i])) % self.mod[i]
+        return ans
 
 
 class Solution:
-    def minWastedSpace(self, packages: List[int], boxes: List[List[int]]) -> int:
-        ans = inf
-        packages.sort()
-        pre = list(accumulate(packages, initial=0))
-        n = len(packages)
-        for box in boxes:
-            box.sort()
+    def distinctEchoSubstrings(self, text: str) -> int:
+        n = len(text)
+        sh = StringHash(n, text)
 
-            if box[-1] < packages[-1]:
-                continue
-            cur = i = 0
-            for num in box:
-                j = bisect.bisect_left(packages, num)
-                cur += num*(j-i) - (pre[j+1]-pre[i+1])
-                i = j
-            if cur < ans:
-                ans = cur
-        return ans % mod if ans < inf else -1
+        ans = set()
+        for x in range(1, n//2+1):
+            for i in range(n-2*x+1):
+                ans1 = sh.query(i, i+x-1)
+                ans2 = sh.query(i+x, i+2*x-1)
+                if ans1 == ans2:
+                    ans.add(tuple(ans1))
+        return len(ans)
 
 
 
 
-assert Solution().kSimilarity("ab", "ba") == 1
+assert Solution().maximumScore(scores = [5,2,9,8,4], edges = [[0,1],[1,2],[2,3],[0,2],[1,3],[2,4]]) == 24
