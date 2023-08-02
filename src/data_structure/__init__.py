@@ -7,7 +7,7 @@ from operator import add
 from itertools import accumulate
 from typing import List
 from operator import mul, add, xor, and_, or_
-from algorithm.src.fast_io import FastIO
+from src.fast_io import FastIO
 
 """
 算法：双指针、快慢指针、先后指针、桶计数

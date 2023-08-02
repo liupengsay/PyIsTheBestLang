@@ -8,7 +8,6 @@ from typing import List, Dict, Set
 from collections import Counter
 
 from src.fast_io import FastIO, inf
-from src.graph.spfa import SPFA
 
 """
 算法：Dijkstra（单源最短路经算法）、严格次短路、要保证加和最小因此只支持非负数权值、或者取反全部为非正数计算最长路
