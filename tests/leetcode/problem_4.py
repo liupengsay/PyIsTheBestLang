@@ -26,22 +26,28 @@ import heapq
 import copy
 from sortedcontainers import SortedList
 
-
+mod = 10 ** 9 + 7
 
 
 class Solution:
-    def tallestBillboard(self, rods: List[int]) -> int:
-        n = len(rods)
+    def minWastedSpace(self, packages: List[int], boxes: List[List[int]]) -> int:
+        ans = inf
+        packages.sort()
+        pre = list(accumulate(packages, initial=0))
+        n = len(packages)
+        for box in boxes:
+            box.sort()
 
-        pre = defaultdict(int)
-        pre[0] = 0
-        for num in rods:
-            cur = defaultdict(int)
-            for p in pre:
-                cur[p+num] = max(cur[p+num], pre[p])
-                cur[p - num] = max(cur[p - num], pre[p]+num)
-            pre = cur.copy()
-        return pre[0]
+            if box[-1] < packages[-1]:
+                continue
+            cur = i = 0
+            for num in box:
+                j = bisect.bisect_left(packages, num)
+                cur += num*(j-i) - (pre[j+1]-pre[i+1])
+                i = j
+            if cur < ans:
+                ans = cur
+        return ans % mod if ans < inf else -1
 
 
 

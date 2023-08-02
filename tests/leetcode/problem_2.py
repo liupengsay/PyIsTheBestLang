@@ -27,42 +27,20 @@ import copy
 from sortedcontainers import SortedList
 
 
-
-
-
 class Solution:
-    def canReorderDoubled(self, arr: List[int]) -> bool:
-        pos = [num for num in arr if num > 0]
-        neg = [num for num in arr if num < 0]
-        zero = arr.count(0)
-        if zero % 2:
-            return False
-
-        cnt = Counter(pos)
-        pos.sort()
-        for num in pos:
-            if not cnt[num]:
-                continue
-            x = cnt[num]
-            if cnt[2*num] < x:
-                return False
-            cnt[2*num] -= x
-
-        cnt = Counter(neg)
-        neg.sort(reverse=True)
-        for num in neg:
-            if not cnt[num]:
-                continue
-            x = cnt[num]
-            if cnt[2 * num] < x:
-                return False
-            cnt[2 * num] -= x
-        return True
+    def minFlips(self, s: str) -> int:
+        n = len(s)
+        s += s
+        s1 = "10" * n
+        s2 = "01" * n
+        pre1 = list(accumulate([int(s1[i]!=s[i]) for i in range(2*n)], initial=0))
+        pre2 = list(accumulate([int(s2[i]!=s[i]) for i in range(2*n)], initial=0))
+        ans1 = min(pre1[i+n]-pre1[i] for i in range(n))
+        ans2 = min(pre2[i + n] - pre2[i] for i in range(n))
+        return ans1 if ans1 < ans2 else ans2
 
 
-
-
-assert Solution()
+assert Solution().minFlips("010") == 0
 
 
 

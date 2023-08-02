@@ -30,18 +30,34 @@ from sortedcontainers import SortedList
 from sortedcontainers import SortedList
 
 
+
 class Solution:
-    def minDeletionSize(self, strs: List[str]) -> int:
-        ans = 0
-        while sorted(strs) != strs:
-            n = len(strs[0])
-            for j in range(n):
-                lst = [word[:j+1] for word in strs]
-                if lst != sorted(lst):
-                    strs = [word[:j]+word[j+1:] for word in strs]
-                    ans += 1
-                    break
+    def minFlips(self, s: str) -> int:
+        n = len(s)
+        ans = n
+
+        for w in [1, 0]:
+            pre = w
+            t = str(pre)
+            for _ in s[1:]:
+                t += str(1-pre)
+                pre = 1-pre
+            cur = sum(int(s[i]!=t[i]) for i in range(n))
+            if cur < ans:
+                ans = cur
+        s = s[1:] + s[0]
+        for w in [1, 0]:
+            pre = w
+            t = str(pre)
+            for _ in s[1:]:
+                t += str(1-pre)
+                pre = 1-pre
+            cur = sum(int(s[i]!=t[i]) for i in range(n))
+            if cur < ans:
+                ans = cur
         return ans
+
+
 
 
 
