@@ -41,6 +41,7 @@ from src.mathmatics.comb_perm import Combinatorics
 1771. 由子序列构造的最长回文串的长度（https://leetcode.cn/problems/maximize-palindrome-length-from-subsequences/）经典回文矩阵DP
 1883. 准时抵达会议现场的最小跳过休息次数（https://leetcode.cn/problems/minimum-skips-to-arrive-at-meeting-on-time/）矩阵 DP
 1977. 划分数字的方案数（https://leetcode.cn/problems/number-of-ways-to-separate-numbers/）两个矩阵DP进行计算优化
+2430. 对字母串可执行的最大删除数（https://leetcode.cn/problems/maximum-deletions-on-a-string/）双重DP进行LCP与矩阵DP
 
 ===================================洛谷===================================
 P2701 [USACO5.3]巨大的牛棚Big Barn（https://www.luogu.com.cn/problem/P2701）求全为 "." 的最大正方形面积，如果不要求实心只能做到O(n^3)复杂度
@@ -1732,6 +1733,23 @@ class Solution:
         ans = dfs(n, m, 2)
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_2430(s: str) -> int:
+        # 模板：双重DP进行LCP与矩阵DP
+        n = len(s)
+        lcp = [[0] * (n + 1) for _ in range(n + 1)]
+        for i in range(n - 1, -1, -1):
+            for j in range(i + 1, n):
+                if s[i] == s[j]:
+                    lcp[i][j] = lcp[i + 1][j + 1] + 1
+
+        dp = [1] * (n + 1)
+        for i in range(n - 1, -1, -1):
+            for j in range(1, (n - i) // 2 + 1):
+                if lcp[i][i + j] >= j:
+                    dp[i] = dp[i] if dp[i] > dp[i + j] + 1 else dp[i + j] + 1
+        return dp[0]
 
 
 class TestGeneral(unittest.TestCase):

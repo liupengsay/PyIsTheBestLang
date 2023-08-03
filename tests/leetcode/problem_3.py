@@ -31,57 +31,33 @@ from sortedcontainers import SortedList
 
 
 
+
+
 class Solution:
-    def maxNumOfSubstrings(self, s: str) -> List[str]:
+    def minimizeXor(self, num1: int, num2: int) -> int:
+        m = bin(num2).count("1")
 
-        n = len(s)
-        dct = defaultdict(list)
-        for i in range(n):
-            if len(dct[s[i]]) == 2:
-                dct[s[i]][1] = i
+        lst = [0]*60
+        ind = [i for i in range(60) if num1&(1<<i)]
+        ind.reverse()
+        for i in ind:
+            if m:
+                m -= 1
+                lst[i] = 1
             else:
-                dct[s[i]] = [i, i]
+                break
+        for i in range(60):
+            if m and not lst[i]:
+                lst[i] = 1
+                m -= 1
+        lst.reverse()
+        return int("0b"+"".join(str(x) for x in lst), 2)
 
-        lst = [dct[w] for w in dct]
-        res = set()
-        for a, b in lst:
 
-            while True:
-                x, y = a, b
-                for i in range(a, b+1):
-                    c, d = dct[s[i]]
-                    x = min(x, c)
-                    y = max(y, d)
-                if (x, y) == (a, b):
-                    break
-                a, b = x, y
-            res.add((a, b))
-        res = [list(r) for r in res]
-        res.sort()
-        length = [b-a+1 for a, b in res]
-
-        m = len(res)
-        dp = [0]*m
-        cnt = [0]*m
-        ans = [[] for _ in range(m)]
-        for i in range(m):
-            dp[i] = 1
-            ans[i] = [res[i]]
-            cnt[i] = length[i]
-            for j in range(i):
-                if res[j][1] < res[i][0] and (dp[j] + 1 > dp[i] or (dp[j]+1==dp[i] and cnt[j]+length[i]<cnt[i])):
-                    dp[i] = dp[j] + 1
-                    ans[i] = ans[j] + [res[i]]
-                    cnt[i] = cnt[j]+length[i]
-        x = dp.index(max(dp))
-        ret = []
-        for a, b in ans[x]:
-            ret.append(s[a:b+1])
-        return ret
 
 
 
 
 
 assert Solution().maxNumOfSubstrings("adefaddaccc") == ["e","f","ccc"]
-assert Solution().maxNumOfSubstrings(s = "abbaccd") == ["bb","cc", "d"]
+

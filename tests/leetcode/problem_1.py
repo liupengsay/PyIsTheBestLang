@@ -30,13 +30,13 @@ from sortedcontainers import SortedList
 
 
 class Solution:
-    def numWaterBottles(self, numBottles: int, numExchange: int) -> int:
-        ans = numBottles
-        cur = numBottles
-        while cur >= numExchange:
-            ans += cur//numExchange
-            cur = cur % numExchange + cur // numExchange
-        return ans
+    def commonFactors(self, a: int, b: int) -> int:
+
+        return sum(a%x==0 and b%x==0 for x in range(1, min(a,b)+1))
+
+
+
+
 
 
 

@@ -30,33 +30,23 @@ from sortedcontainers import SortedList
 
 
 
+
 class Solution:
-    def countSubTrees(self, n: int, edges: List[List[int]], labels: str) -> List[int]:
-
-        dct = [[] for _ in range(n)]
-        for i, j in edges:
-            dct[i].append(j)
-            dct[j].append(i)
-
-        ans = [0]*n
-
-        def dfs(x, fa):
-            cnt = [0]*26
-            for y in dct[x]:
-                if y != fa:
-                    nex = dfs(y, x)
-                    for i in range(26):
-                        cnt[i] += nex[i]
-
-            cnt[ord(labels[x])-ord("a")] += 1
-            ans[x] = cnt[ord(labels[x])-ord("a")]
-            return cnt
-
-        dfs(0, -1)
+    def maxSum(self, grid: List[List[int]]) -> int:
+        m, n = len(grid), len(grid[0])
+        ans= 0
+        ind = [[-1, -1], [-1, 0], [-1, 1], [0, 0], [1, -1], [1, 0], [1, 1]]
+        for i in range(1, m-1):
+            for j in range(1, n-1):
+                cur = sum(grid[i+a][j+b] for a, b in ind)
+                if cur > ans:
+                    ans = cur
         return ans
 
 
-assert Solution().minFlips("010") == 0
+
+
+assert Solution().snakesAndLadders([[-1,-1,-1,46,47,-1,-1,-1],[51,-1,-1,63,-1,31,21,-1],[-1,-1,26,-1,-1,38,-1,-1],[-1,-1,11,-1,14,23,56,57],[11,-1,-1,-1,49,36,-1,48],[-1,-1,-1,33,56,-1,57,21],[-1,-1,-1,-1,-1,-1,2,-1],[-1,-1,-1,8,3,-1,6,56]]) == 4
 
 
 
