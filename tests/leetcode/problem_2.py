@@ -30,9 +30,30 @@ from sortedcontainers import SortedList
 
 
 
+class Solution:
+    def countSubTrees(self, n: int, edges: List[List[int]], labels: str) -> List[int]:
 
+        dct = [[] for _ in range(n)]
+        for i, j in edges:
+            dct[i].append(j)
+            dct[j].append(i)
 
+        ans = [0]*n
 
+        def dfs(x, fa):
+            cnt = [0]*26
+            for y in dct[x]:
+                if y != fa:
+                    nex = dfs(y, x)
+                    for i in range(26):
+                        cnt[i] += nex[i]
+
+            cnt[ord(labels[x])-ord("a")] += 1
+            ans[x] = cnt[ord(labels[x])-ord("a")]
+            return cnt
+
+        dfs(0, -1)
+        return ans
 
 
 assert Solution().minFlips("010") == 0

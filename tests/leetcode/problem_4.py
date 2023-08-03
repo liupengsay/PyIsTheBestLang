@@ -29,11 +29,19 @@ from sortedcontainers import SortedList
 
 
 
+class Solution:
+    def closestToTarget(self, arr: List[int], target: int) -> int:
+
+        ans = set()
+        pre = set()
+        for num in arr:
+            pre = pre | {p&num for p in pre}
+            pre.add(num)
+            ans |= pre
+        return min(abs(x-target) for x in ans)
 
 
 
 
 
-
-
-assert Solution().maximumScore(scores = [5,2,9,8,4], edges = [[0,1],[1,2],[2,3],[0,2],[1,3],[2,4]]) == 24
+assert Solution().closestToTarget(arr = [1,2,4,8,16], target = 0) == 0
