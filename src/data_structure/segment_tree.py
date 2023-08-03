@@ -23,6 +23,7 @@ from src.fast_io import inf, FastIO
 1851. 包含每个查询的最小区间（https://leetcode.cn/problems/minimum-interval-to-include-each-query/）区间更新最小值、单点查询，也可以用离线查询与优先队列维护计算
 2213. 由单个字符重复的最长子字符串（https://leetcode.cn/problems/longest-substring-of-one-repeating-character/）单点字母更新，最长具有相同字母的连续子数组查询
 2276. 统计区间中的整数数目（https://leetcode.cn/problems/count-integers-in-intervals/）动态开点线段树模板题
+1340. 跳跃游戏 V（https://leetcode.cn/problems/jump-game-v/）可以使用线段树DP进行解决
 
 ===================================洛谷===================================
 P2846 [USACO08NOV]Light Switching G（https://www.luogu.com.cn/problem/P2846）线段树统计区间翻转和
@@ -3143,6 +3144,45 @@ class Solution:
             tree.update_range(ind[a], ind[b], 0, ceil-1, b - a + 1, 1)
         ans = [tree.query_point(ind[num], ind[num], 0, ceil-1, 1) for num in queries]
         return [x if x != inf else -1 for x in ans]
+
+    @staticmethod
+    def lc_1340(nums: List[int], d: int) -> int:
+
+        # 模板：可以使用线段树DP进行解决
+        n = len(nums)
+        post = [n - 1] * n
+        stack = []
+        for i in range(n):
+            while stack and nums[stack[-1]] <= nums[i]:
+                post[stack.pop()] = i - 1
+            stack.append(i)
+
+        pre = [0] * n
+        stack = []
+        for i in range(n - 1, -1, -1):
+            while stack and nums[stack[-1]] <= nums[i]:
+                pre[stack.pop()] = i + 1
+            stack.append(i)
+
+        # 分桶排序转移
+        dct = defaultdict(list)
+        for i, num in enumerate(nums):
+            dct[num].append(i)
+        tree = SegmentTreeRangeAddMax(n)
+        for num in sorted(dct):
+            cur = []
+            for i in dct[num]:
+                left, right = pre[i], post[i]
+                if left < i - d:
+                    left = i - d
+                if right > i + d:
+                    right = i + d
+                x = tree.query(left, right, 0, n - 1, 1)
+                cur.append([x + 1, i])
+
+            for x, i in cur:
+                tree.update(i, i, 0, n - 1, x, 1)
+        return tree.query(0, n - 1, 0, n - 1, 1)
 
 
 class CountIntervals:

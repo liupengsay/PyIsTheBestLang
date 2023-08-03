@@ -30,28 +30,11 @@ from sortedcontainers import SortedList
 from sortedcontainers import SortedList
 
 
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-class Solution:
-    def sumEvenGrandparent(self, root: TreeNode) -> int:
 
 
-        def dfs(node, fa, ances):
-            nonlocal ans
-            if not node:
-                return
-            if ances % 2 == 0:
-                ans += 1
-            dfs(node.left, node.val, fa)
-            dfs(node.right, node.val, fa)
-            return
 
-        ans = 0
-        dfs(root, -1, -1)
-        return ans
+
+
+
 
 assert Solution().countSubstrings(s = "aba", t = "baba") == 6
