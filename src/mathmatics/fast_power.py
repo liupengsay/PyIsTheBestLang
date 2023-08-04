@@ -6,12 +6,13 @@ import unittest
 from src.fast_io import FastIO
 
 """
-算法：快速幂、矩阵快速幂、乘法逆元
+算法：快速幂、矩阵快速幂DP、乘法逆元
 功能：高效计算整数的幂次方取模
 题目：
 
 ===================================力扣===================================
 450. 应用操作后不同二进制字符串的数量（https://leetcode.cn/problems/number-of-distinct-binary-strings-after-applying-operations/）脑筋急转弯快速幂计算
+1931. 用三种不同颜色为网格涂色（https://leetcode.cn/problems/painting-a-grid-with-three-different-colors/）转移DP可以使用快速幂进行计算
 
 ===================================洛谷===================================
 P1630 求和（https://www.luogu.com.cn/problem/P1630）快速幂计算，利用同模进行计数加和
