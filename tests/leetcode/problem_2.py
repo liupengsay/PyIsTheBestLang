@@ -30,73 +30,15 @@ from sortedcontainers import SortedList
 
 
 
-class BinarySearch:
-    def __init__(self):
-        return
-
-    @staticmethod
-    def find_int_left(low: int, high: int, check: Callable) -> int:
-        # 模板: 整数范围内二分查找，选择最靠左满足check
-        while low < high - 1:
-            mid = low + (high - low) // 2
-            if check(mid):
-                high = mid
-            else:
-                low = mid
-        return low if check(low) else high
-
-    @staticmethod
-    def find_int_right(low: int, high: int, check: Callable) -> int:
-        # 模板: 整数范围内二分查找，选择最靠右满足check
-        while low < high - 1:
-            mid = low + (high - low) // 2
-            if check(mid):
-                low = mid
-            else:
-                high = mid
-        return high if check(high) else low
-
-    @staticmethod
-    def find_float_left(low: float, high: float, check: Callable, error=1e-6) -> float:
-        # 模板: 浮点数范围内二分查找, 选择最靠左满足check
-        while low < high - error:
-            mid = low + (high - low) / 2
-            if check(mid):
-                high = mid
-            else:
-                low = mid
-        return low if check(low) else high
-
-    @staticmethod
-    def find_float_right(low: float, high: float, check: Callable, error=1e-6) -> float:
-        # 模板: 浮点数范围内二分查找, 选择最靠右满足check
-        while low < high - error:
-            mid = low + (high - low) / 2
-            if check(mid):
-                low = mid
-            else:
-                high = mid
-        return high if check(high) else low
-
-
 class Solution:
-    def maximumRemovals(self, s: str, p: str, removable: List[int]) -> int:
+    def largestWordCount(self, messages: List[str], senders: List[str]) -> str:
+        cnt = Counter()
+        for name, mess in zip(senders, messages):
+            cnt[name] += len(mess.split(" "))
 
-        ind = {num: i for i, num in enumerate(removable)}
-        m = len(p)
-        n = len(s)
+        ceil = max(cnt.values())
+        return max([k for k in cnt if cnt[k]==ceil])
 
-        def check(x):
-
-            i = 0
-            for j in range(n):
-                if j in ind and ind[j] < x:
-                    continue
-                if i<m and p[i] == s[j]:
-                    i += 1
-            return i == m
-
-        return BinarySearch().find_int_right(0, len(removable), check)
 
 
 

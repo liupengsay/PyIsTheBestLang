@@ -3,6 +3,9 @@ import unittest
 from collections import defaultdict, deque
 from typing import List
 
+from sortedcontainers import SortedList
+
+from src.basis.binary_search import BinarySearch
 from src.fast_io import inf, FastIO
 
 """
@@ -3185,10 +3188,10 @@ class Solution:
         return tree.query(0, n - 1, 0, n - 1, 1)
 
 
-class CountIntervals:
+class CountIntervalsLC2276:
 
     def __init__(self):
-        # 模板：动态开点线段树 LC2276
+        # 模板：动态开点线段树
         self.n = 10**9 + 7
         self.tree = SegmentTreeRangeChangeQuerySumMinMaxDefaultDict()
 
@@ -3199,6 +3202,48 @@ class CountIntervals:
         return self.tree.cover[1]
 
 
+class BookMyShowLC2286:
+
+    def __init__(self, n: int, m: int):
+        self.n = n
+        self.m = m
+        self.tree = SegmentTreeRangeUpdateQuerySumMinMax(n)
+        self.cnt = [0] * n
+        self.null = SortedList(list(range(n)))
+
+    def gather(self, k: int, max_row: int) -> List[int]:
+        max_row += 1
+        low = self.tree.query_min(0, max_row - 1, 0, self.n - 1, 1)
+        if self.m - low < k:
+            return []
+
+        def check(x):
+            return self.m - self.tree.query_min(0, x, 0, self.n - 1, 1) >= k
+
+        # 模板：经典二分加线段树维护最小值与和
+        y = BinarySearch().find_int_left(0, max_row - 1, check)
+        self.cnt[y] += k
+        self.tree.update_point(y, y, 0, self.n - 1, k, 1)
+        if self.cnt[y] == self.m:
+            self.null.discard(y)
+        return [y, self.cnt[y] - k]
+
+    def scatter(self, k: int, max_row: int) -> bool:
+        max_row += 1
+        s = self.tree.query_sum(0, max_row - 1, 0, self.n - 1, 1)
+        if self.m * max_row - s < k:
+            return False
+        while k:
+            x = self.null[0]
+            rest = k if k < self.m - self.cnt[x] else self.m - self.cnt[x]
+            k -= rest
+            self.cnt[x] += rest
+            self.tree.update_point(x, x, 0, self.n - 1, rest, 1)
+            if self.cnt[x] == self.m:
+                self.null.pop(0)
+        return True
+    
+    
 class TestGeneral(unittest.TestCase):
 
     def test_segment_tree_range_add_sum(self):

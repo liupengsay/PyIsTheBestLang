@@ -31,11 +31,10 @@ from sortedcontainers import SortedList
 
 
 class Solution:
-    def makeEqual(self, words: List[str]) -> bool:
-        n = len(words)
-        cnt = Counter("".join(words))
-        return all(cnt[w]%n==0 for w in cnt)
-
+    def digitCount(self, num: str) -> bool:
+        n = len(num)
+        cnt = Counter(num)
+        return all(int(num[i])==cnt[str(i)] for i in range(n))
 
 
 

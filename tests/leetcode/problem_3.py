@@ -33,19 +33,23 @@ from sortedcontainers import SortedList
 
 
 class Solution:
-    def mergeTriplets(self, triplets: List[List[int]], target: List[int]) -> bool:
+    def maximumImportance(self, n: int, roads: List[List[int]]) -> int:
+        dct = [0 for _ in range(n)]
+        for i, j in roads:
+            dct[i] += 1
+            dct[j] += 1
 
-        a, b, c = target
-        a0, b0, c0 = -inf
-        for x, y, z in triplets:
-            if x<=a and y<=b and z<=c:
-                if x > a0:
-                    a0 = x
-                if y > b0:
-                    b0=y
-                if z > c0:
-                    c0 = z
-        return [a0, b0, c0] == target
+        ind = list(range(n))
+        ind.sort(key=lambda it: dct[it])
+        value = [0]*n
+        for i in range(n):
+            value[ind[i]] = i+1
+
+        ans = 0
+        for i, j in roads:
+            ans += value[i]+value[j]
+        return ans
+
 
 
 
