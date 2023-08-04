@@ -32,32 +32,29 @@ from sortedcontainers import SortedList
 
 
 
-
 class Solution:
-    def minimizeXor(self, num1: int, num2: int) -> int:
-        m = bin(num2).count("1")
+    def mergeTriplets(self, triplets: List[List[int]], target: List[int]) -> bool:
 
-        lst = [0]*60
-        ind = [i for i in range(60) if num1&(1<<i)]
-        ind.reverse()
-        for i in ind:
-            if m:
-                m -= 1
-                lst[i] = 1
-            else:
-                break
-        for i in range(60):
-            if m and not lst[i]:
-                lst[i] = 1
-                m -= 1
-        lst.reverse()
-        return int("0b"+"".join(str(x) for x in lst), 2)
+        a, b, c = target
+        a0, b0, c0 = -inf
+        for x, y, z in triplets:
+            if x<=a and y<=b and z<=c:
+                if x > a0:
+                    a0 = x
+                if y > b0:
+                    b0=y
+                if z > c0:
+                    c0 = z
+        return [a0, b0, c0] == target
 
 
 
 
 
+assert Solution().minOperations(nums1 = [6,6], nums2 = [1]) == 3
 
 
-assert Solution().maxNumOfSubstrings("adefaddaccc") == ["e","f","ccc"]
+
+
+
 

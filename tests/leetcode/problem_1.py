@@ -29,10 +29,12 @@ from sortedcontainers import SortedList
 
 
 
-class Solution:
-    def commonFactors(self, a: int, b: int) -> int:
 
-        return sum(a%x==0 and b%x==0 for x in range(1, min(a,b)+1))
+class Solution:
+    def makeEqual(self, words: List[str]) -> bool:
+        n = len(words)
+        cnt = Counter("".join(words))
+        return all(cnt[w]%n==0 for w in cnt)
 
 
 
