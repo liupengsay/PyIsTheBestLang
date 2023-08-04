@@ -326,16 +326,13 @@ class SegmentTreeUpdateQueryMin:
 
 
 class SegmentTreeRangeUpdateQuerySumMinMax:
-    def __init__(self, nums: List[int]) -> None:
+    def __init__(self, n) -> None:
         # 模板：区间值增减、区间和查询、区间最小值查询、区间最大值查询
-        self.inf = inf
-        self.n = len(nums)
-        self.nums = nums
+        self.n = n
         self.cover = [0] * (4 * self.n)  # 区间和
         self.lazy = [0] * (4 * self.n)  # 懒标记
         self.floor = [0] * (4 * self.n)  # 最小值
         self.ceil = [0] * (4 * self.n)  # 最大值
-        self.build()  # 初始化线段树
         return
 
     @staticmethod
@@ -346,14 +343,15 @@ class SegmentTreeRangeUpdateQuerySumMinMax:
     def min(a: int, b: int) -> int:
         return a if a < b else b
 
-    def build(self) -> None:
+    def build(self, nums: List[int]) -> None:
         # 使用数组初始化线段树
+        assert self.n == len(nums)
         stack = [[0, self.n - 1, 1]]
         while stack:
             s, t, ind = stack.pop()
             if ind >= 0:
                 if s == t:
-                    self.make_tag(ind, s, t, self.nums[s])
+                    self.make_tag(ind, s, t, nums[s])
                 else:
                     stack.append([s, t, ~ind])
                     m = s + (t - s) // 2
@@ -394,7 +392,7 @@ class SegmentTreeRangeUpdateQuerySumMinMax:
         self.lazy[i] += val
         return
 
-    def update(self, left: int, right: int, s: int, t: int, val: int, i: int) -> None:
+    def update_range(self, left: int, right: int, s: int, t: int, val: int, i: int) -> None:
         # 增减区间值 left 与 right 取值为 0 到 n-1 而 i 从 1 开始
         stack = [[s, t, i]]
         while stack:
@@ -455,7 +453,7 @@ class SegmentTreeRangeUpdateQuerySumMinMax:
     def query_min(self, left: int, right: int, s: int, t: int, i: int) -> int:
         # 查询区间的最小值
         stack = [[s, t, i]]
-        highest = self.inf
+        highest = inf
         while stack:
             s, t, i = stack.pop()
             if left <= s and t <= right:
@@ -473,7 +471,7 @@ class SegmentTreeRangeUpdateQuerySumMinMax:
 
         # 查询区间的最大值
         stack = [[s, t, i]]
-        highest = -self.inf
+        highest = -inf
         while stack:
             s, t, i = stack.pop()
             if left <= s and t <= right:
@@ -487,19 +485,20 @@ class SegmentTreeRangeUpdateQuerySumMinMax:
                 stack.append([m + 1, t, 2 * i + 1])
         return highest
 
-    def get_all_nums(self):
+    def get_all_nums(self) -> List[int]:
         # 查询区间的所有值
         stack = [[0, self.n-1, 1]]
+        nums = [0]*self.n
         while stack:
             s, t, i = stack.pop()
             if s == t:
-                self.nums[s] = self.cover[i]
+                nums[s] = self.cover[i]
                 continue
             m = s + (t - s) // 2
             self.push_down(i, s, m, t)
             stack.append([s, m, 2 * i])
             stack.append([m + 1, t, 2 * i + 1])
-        return
+        return nums
 
 
 class SegmentTreeRangeChangeQuerySumMinMax:
@@ -2664,13 +2663,14 @@ class Solution:
     def lg_p3372(ac=FastIO()):
         # 模板：线段树 区间增减 与区间和查询
         n, m = ac.read_ints()
-        segment = SegmentTreeRangeUpdateQuerySumMinMax(ac.read_list_ints())
+        segment = SegmentTreeRangeUpdateQuerySumMinMax(n)
+        segment.build(ac.read_list_ints())
 
         for _ in range(m):
             lst = ac.read_list_ints()
             if lst[0] == 1:
                 x, y, k = lst[1:]
-                segment.update(x-1, y-1, 0, n-1, k, 1)
+                segment.update_range(x-1, y-1, 0, n-1, k, 1)
             else:
                 x, y = lst[1:]
                 ac.st(segment.query_sum(x-1, y-1, 0, n-1, 1))
@@ -2697,23 +2697,23 @@ class Solution:
         # 模板：差分数组区间增减加线段树查询区间和
         n, m = ac.read_ints()
         nums = ac.read_list_ints()
-        segment = SegmentTreeRangeUpdateQuerySumMinMax([0] * n)
+        segment = SegmentTreeRangeUpdateQuerySumMinMax(n)
 
         for _ in range(m):
             lst = ac.read_list_ints()
             if lst[0] == 1:
                 x, y, k, d = lst[1:]
                 if x == y:
-                    segment.update(x - 1, x - 1, 0, n - 1, k, 1)
+                    segment.update_range(x - 1, x - 1, 0, n - 1, k, 1)
                     if y <= n - 1:
-                        segment.update(y, y, 0, n - 1, -k, 1)
+                        segment.update_point(y, y, 0, n - 1, -k, 1)
                 else:
                     # 经典使用差分数组进行区间的等差数列加减
-                    segment.update(x - 1, x - 1, 0, n - 1, k, 1)
-                    segment.update(x, y - 1, 0, n - 1, d, 1)
+                    segment.update_point(x - 1, x - 1, 0, n - 1, k, 1)
+                    segment.update_range(x, y - 1, 0, n - 1, d, 1)
                     cnt = y-x
                     if y <= n - 1:
-                        segment.update(y, y, 0, n - 1, -cnt*d-k, 1)
+                        segment.update_point(y, y, 0, n - 1, -cnt*d-k, 1)
             else:
                 x = lst[1]
                 ac.st(segment.query_sum(0, x - 1, 0, n - 1, 1) + nums[x - 1])
@@ -3512,7 +3512,9 @@ class TestGeneral(unittest.TestCase):
         low = 0
         high = 10000
         nums = [random.randint(low, high) for _ in range(high)]
-        stra = SegmentTreeRangeUpdateQuerySumMinMax(nums)
+        n = len(nums)
+        stra = SegmentTreeRangeUpdateQuerySumMinMax(n)
+        stra.build(nums)
         for i in range(high):
             assert stra.query_min(i, i, low, high-1, 1) == min(nums[i:i + 1])
             assert stra.query_sum(i, i, low, high-1, 1) == sum(nums[i:i + 1])
@@ -3522,7 +3524,7 @@ class TestGeneral(unittest.TestCase):
             left = random.randint(0, high - 1)
             right = random.randint(left, high - 1)
             num = random.randint(low, high)
-            stra.update(left, right, low, high-1, num, 1)
+            stra.update_range(left, right, low, high-1, num, 1)
             for i in range(left, right + 1):
                 nums[i] += num
             left = random.randint(0, high - 1)
@@ -3550,15 +3552,16 @@ class TestGeneral(unittest.TestCase):
                 nums[left:right + 1])
             assert stra.query_sum(left, right, low, high-1, 1) == sum(
                 nums[left:right + 1])
-        stra.get_all_nums()
-        assert stra.nums == nums
+
+        assert stra.get_all_nums() == nums
         return
 
     def test_segment_tree_range_update_query_sum_min_max(self):
         low = 0
         high = 10000
         nums = [random.randint(low, high) for _ in range(high)]
-        stra = SegmentTreeRangeUpdateQuerySumMinMax(nums)
+        stra = SegmentTreeRangeUpdateQuerySumMinMax(len(nums))
+        stra.build(nums)
 
         assert stra.query_min(0, high - 1, low, high - 1, 1) == min(nums)
         assert stra.query_max(0, high - 1, low, high - 1, 1) == max(nums)
@@ -3574,7 +3577,7 @@ class TestGeneral(unittest.TestCase):
             left = random.randint(0, high - 1)
             right = random.randint(left, high - 1)
             num = random.randint(-high, high)
-            stra.update(left, right, low, high-1, num, 1)
+            stra.update_range(left, right, low, high-1, num, 1)
             for i in range(left, right + 1):
                 nums[i] += num
             left = random.randint(0, high - 1)
@@ -3588,7 +3591,7 @@ class TestGeneral(unittest.TestCase):
             left = random.randint(0, high - 1)
             right = left
             num = random.randint(-high, high)
-            stra.update(left, right, low, high - 1, num, 1)
+            stra.update_range(left, right, low, high - 1, num, 1)
             for i in range(left, right + 1):
                 nums[i] += num
             assert stra.query_min(left, right, low, high - 1, 1) == min(
@@ -3621,8 +3624,7 @@ class TestGeneral(unittest.TestCase):
                 nums[left:right + 1])
             assert stra.query_sum(left, right, low, high - 1, 1) == sum(
                 nums[left:right + 1])
-        stra.get_all_nums()
-        assert stra.nums == nums
+        assert stra.get_all_nums() == nums
         return
 
     def test_segment_tree_range_change_query_sum_min_max(self):
