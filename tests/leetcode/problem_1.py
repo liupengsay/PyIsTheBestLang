@@ -28,13 +28,9 @@ from sortedcontainers import SortedList
 
 
 
-
-
 class Solution:
-    def digitCount(self, num: str) -> bool:
-        n = len(num)
-        cnt = Counter(num)
-        return all(int(num[i])==cnt[str(i)] for i in range(n))
+    def getConcatenation(self, nums: List[int]) -> List[int]:
+        return nums+nums
 
 
 

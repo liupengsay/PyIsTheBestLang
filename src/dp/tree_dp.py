@@ -276,6 +276,47 @@ class TreeDiameter:
         return ans
 
 
+class TreeDiameterInfo:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def get_diameter_info(edge: List[List[int]]):
+        # 模板：使用两遍 BFS 计算获取不带权的树直径端点以及直径长度和具体直径经过的点
+        n = len(edge)
+
+        stack = deque([[0, -1]])
+        parent = [-1] * n
+        dis = [0] * n
+        x = -1
+        while stack:
+            i, fa = stack.popleft()
+            x = i
+            for j in edge[i]:
+                if j != fa:
+                    parent[j] = i
+                    dis[j] = dis[i] + 1
+                    stack.append([j, i])
+
+        stack = deque([[x, -1]])
+        parent = [-1] * n
+        dis = [0] * n
+        y = -1
+        while stack:
+            i, fa = stack.popleft()
+            y = i
+            for j in edge[i]:
+                if j != fa:
+                    parent[j] = i
+                    dis[j] = dis[i] + 1
+                    stack.append([j, i])
+
+        path = [y]
+        while path[-1] != x:
+            path.append(parent[path[-1]])
+        return x, y, dis, path
+
+
 class TreeDiameterDis:
     # 任取树中的一个节点x，找出距离它最远的点y，那么点y就是这棵树中一条直径的一个端点。我们再从y出发，找出距离y最远的点就找到了一条直径。
     # 这个算法依赖于一个性质：对于树中的任一个点，距离它最远的点一定是树上一条直径的一个端点。

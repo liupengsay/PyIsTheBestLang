@@ -32,23 +32,57 @@ from sortedcontainers import SortedList
 
 
 
+
+mod = 10**9 + 7
+
+dct = [[] for _ in range(6)]
+
+
+def dfs():
+    global pre
+    if pre:
+        dct[len(pre)].append(pre[:])
+    if len(pre) == 5:
+        return
+    for x in range(3):
+        if not pre or pre[-1] != x:
+            pre.append(x)
+            dfs()
+            pre.pop()
+    return
+
+pre = []
+dfs()
+
+
+edge = [[]]
+for x in range(1, 6):
+    lst = dct[x][:]
+    m = len(lst)
+    cur = [[] for _ in range(m)]
+    for i in range(m):
+        for j in range(i+1, m):
+            if all(lst[i][y] != lst[j][y] for y in range(x)):
+                cur[i].append(j)
+                cur[j].append(i)
+    edge.append(copy.deepcopy(cur))
+
+
+@lru_cache(None)
+def dfs(m, n, s):
+    if n == 1:
+        return 1
+
+    res = 0
+    for j in cur[m][s]:
+        res += dfs(m, n-1, j)
+        res %= mod
+    return res
+
+
 class Solution:
-    def maximumImportance(self, n: int, roads: List[List[int]]) -> int:
-        dct = [0 for _ in range(n)]
-        for i, j in roads:
-            dct[i] += 1
-            dct[j] += 1
-
-        ind = list(range(n))
-        ind.sort(key=lambda it: dct[it])
-        value = [0]*n
-        for i in range(n):
-            value[ind[i]] = i+1
-
-        ans = 0
-        for i, j in roads:
-            ans += value[i]+value[j]
-        return ans
+    def colorTheGrid(self, m: int, n: int) -> int:
+        return sum(dfs(m, n, x) for x in range(len(cur[m]))) % mod
 
 
 

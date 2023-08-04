@@ -1,5 +1,8 @@
 """
 """
+from math import inf
+
+from src.dp.tree_dp import TreeDiameterInfo
 from src.fast_io import FastIO
 from src.graph.union_find import UnionFind
 
@@ -21,7 +24,7 @@ from src.graph.union_find import UnionFind
 2603. 收集树中金币（https://leetcode.cn/contest/weekly-contest-338/problems/collect-coins-in-a-tree/）无向图拓扑排序内向基环树
 2204. 无向图中到环的距离（https://leetcode.cn/problems/distance-to-a-cycle-in-undirected-graph/https://leetcode.cn/problems/distance-to-a-cycle-in-undirected-graph/）无向图拓扑排序
 1857. 有向图中最大颜色值（https://leetcode.cn/problems/largest-color-value-in-a-directed-graph/）经典拓扑排序DP
-
+1932. 合并多棵二叉搜索树（https://leetcode.cn/problems/merge-bsts-to-create-single-bst/）经典连通性、拓扑排序与二叉搜索树判断
 ===================================洛谷===================================
 P1960 郁闷的记者（https://www.luogu.com.cn/problem/P1960）计算拓扑排序是否唯一
 P1992 不想兜圈的老爷爷（https://www.luogu.com.cn/problem/P1992）拓扑排序计算有向图是否有环
@@ -50,7 +53,7 @@ F - Well-defined Path Queries on a Namori（https://atcoder.jp/contests/abc266/�
 
 import unittest
 
-from typing import List
+from typing import List, Optional
 from collections import defaultdict, deque
 
 import heapq
@@ -178,6 +181,14 @@ class TopologicalSort:
                         nex.append(j)
             stack = nex
         return all(x==0 for x in degree)
+
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
 
 class Solution:
     def __init__(self):
@@ -762,6 +773,88 @@ class Solution:
         if not all(x == 0 for x in degree):
             return -1
         return max(max(c) for c in cnt)
+
+    @staticmethod
+    def lc_1932(trees: List[TreeNode]) -> Optional[TreeNode]:
+        # 模板：经典连通性、拓扑排序与二叉搜索树判断
+
+        nodes = set()
+        dct = defaultdict(list)
+        degree = defaultdict(int)
+        for root in trees:
+
+            def dfs(node):
+                if not node:
+                    return
+                nodes.add(node.val)
+                if node.left:
+                    x = node.left.val
+                    dct[node.val].append(x)
+                    degree[x] += 1
+                    dfs(node.left)
+                if node.right:
+                    x = node.right.val
+                    dct[node.val].append(x)
+                    degree[x] += 1
+                    dfs(node.right)
+                return
+
+            dfs(root)
+
+        nodes = list(nodes)
+        m = len(nodes)
+        ind = {num: i for i, num in enumerate(nodes)}
+
+        # 连通性
+        uf = UnionFind(m)
+        for x in dct:
+            for y in dct[x]:
+                uf.union(ind[x], ind[y])
+        if uf.part != 1:
+            return
+
+        # 二叉性与拓扑排序唯一根
+        for num in nodes:
+            if len(dct[num]) > 2:
+                return
+        stack = [num for num in nodes if not degree[num]]
+        if len(stack) != 1:
+            return
+        r = stack[0]
+        while stack:
+            nex = []
+            for x in stack:
+                for y in dct[x]:
+                    degree[y] -= 1
+                    if not degree[y]:
+                        nex.append(y)
+            stack = nex[:]
+        if not all(degree[x] == 0 for x in nodes):
+            return
+
+        # 二叉搜索特性
+
+        def dfs(x, floor, ceil):
+            nonlocal ans
+            if not ans:
+                return
+            if not floor < x < ceil:
+                ans = False
+                return
+            node = TreeNode(x)
+            for y in dct[x]:
+                if y < x:
+                    node.left = dfs(y, floor, x)
+                else:
+                    node.right = dfs(y, x, ceil)
+            return node
+
+        ans = True
+        root = dfs(r, -inf, inf)
+
+        if ans:
+            return root
+        return
 
 
 class TestGeneral(unittest.TestCase):

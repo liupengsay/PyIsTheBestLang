@@ -30,16 +30,25 @@ from sortedcontainers import SortedList
 
 
 
+
 class Solution:
-    def largestWordCount(self, messages: List[str], senders: List[str]) -> str:
-        cnt = Counter()
-        for name, mess in zip(senders, messages):
-            cnt[name] += len(mess.split(" "))
+    def countPalindromicSubsequence(self, s: str) -> int:
 
-        ceil = max(cnt.values())
-        return max([k for k in cnt if cnt[k]==ceil])
+        n = len(s)
+        pre = [set() for _ in range(n)]
+        cur = set()
+        for i in range(n):
+            pre[i] = cur
+            cur.add(s[i])
 
-
+        ans = set()
+        cur = set()
+        for i in range(n-1, -1, -1):
+            for w in cur:
+                if w in pre[i]:
+                    ans.add(w+s[i]+w)
+            cur.add(s[i])
+        return len(ans)
 
 
 
