@@ -32,23 +32,13 @@ from sortedcontainers import SortedList
 
 
 class Solution:
-    def countPalindromicSubsequence(self, s: str) -> int:
+    def findingUsersActiveMinutes(self, logs: List[List[int]], k: int) -> List[int]:
 
-        n = len(s)
-        pre = [set() for _ in range(n)]
-        cur = set()
-        for i in range(n):
-            pre[i] = cur
-            cur.add(s[i])
-
-        ans = set()
-        cur = set()
-        for i in range(n-1, -1, -1):
-            for w in cur:
-                if w in pre[i]:
-                    ans.add(w+s[i]+w)
-            cur.add(s[i])
-        return len(ans)
+        dct = defaultdict(set)
+        for id, item in logs:
+            dct[id].add(item)
+        cnt = Counter([len(dct[k]) for k in dct])
+        return [cnt[x] for x in range(1, k+1)]
 
 
 

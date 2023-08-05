@@ -28,11 +28,11 @@ from sortedcontainers import SortedList
 
 
 
+
 class Solution:
-    def getConcatenation(self, nums: List[int]) -> List[int]:
-        return nums+nums
+    def truncateSentence(self, s: str, k: int) -> str:
 
-
+        return "".join(s.split(" ")[:k])
 
 
 
