@@ -10,7 +10,7 @@ from collections import Counter
 from src.fast_io import FastIO, inf
 
 """
-算法：Dijkstra（单源最短路经算法）、严格次短路、要保证加和最小因此只支持非负数权值、或者取反全部为非正数计算最长路
+算法：Dijkstra（单源最短路经算法）、严格次短路、要保证加和最小因此只支持非负数权值、或者取反全部为非正数计算最长路、最短路生成树
 功能：计算点到有向或者无向图里面其他点的最近距离、带约束的最短路、分层Dijkstra
 题目：
 
@@ -86,7 +86,7 @@ P3753 国事访问（https://www.luogu.com.cn/problem/P3753）最短路变形两
 P3956 [NOIP2017 普及组] 棋盘（https://www.luogu.com.cn/problem/P3956）多维状态的Dijkstra
 P4880 抓住czx（https://www.luogu.com.cn/problem/P4880）枚举终点使用 Dijkstra计算最短路
 P4943 密室（https://www.luogu.com.cn/problem/P4943）枚举路径跑四遍最短路
-P5201 [USACO19JAN]Shortcut G（https://www.luogu.com.cn/problem/P5201）经典最短路树建图，再使用树形 DP 计算最优解
+P5201 [USACO19JAN]Shortcut G（https://www.luogu.com.cn/problem/P5201）经典最短路生成树建图，再使用树形 DP 计算最优解
 P5663 [CSP-J2019] 加工零件（https://www.luogu.com.cn/problem/P5663）经典最短路变形题目，计算最短的奇数与偶数距离
 P5683 [CSP-J2019 江西] 道路拆除（https://www.luogu.com.cn/problem/P5683）计算三遍最短路枚举中间节点到三者之间的距离
 P5837 [USACO19DEC]Milk Pumping G（https://www.luogu.com.cn/problem/P5837）经典Dijkstra变形问题，带多个状态
@@ -102,8 +102,10 @@ P2176 [USACO11DEC] RoadBlock S / [USACO14FEB]Roadblock G/S（https://www.luogu.c
 C. Dijkstra?（https://codeforces.com/problemset/problem/20/C）正权值最短路计算，并记录返回生成路径
 E. Weights Distributing（https://codeforces.com/problemset/problem/1343/E）使用三个01BFS求最短路加贪心枚举计算
 B. Complete The Graph（https://codeforces.com/contest/715/problem/B）经典两遍最短路，贪心动态更新路径权值
+
 ================================AcWing====================================
 176. 装满的油箱（https://www.acwing.com/problem/content/178/）经典加油题，使用dijkstra模仿状态
+3628. 边的删减（https://www.acwing.com/problem/content/3631/）经典最短路生成树模板题
 
 参考：OI WiKi（xx）
 """
@@ -1277,7 +1279,7 @@ class Solution:
 
     @staticmethod
     def lg_p5201(ac=FastIO()):
-        # 模板：经典最短路树建图，再使用树形 DP 计算最优解
+        # 模板：经典 最短路生成树 建图，再使用树形 DP 计算最优解
         n, m, t = ac.read_ints()
         nums = ac.read_list_ints()
         dct = [[] for _ in range(n)]
@@ -1301,7 +1303,7 @@ class Solution:
                     dis[j] = dj
                     heapq.heappush(stack, [dj, j])
 
-        # 选择字典序较小的边建立最短路树
+        # 选择字典序较小的边建立最短路生成树
         edge = [[] for _ in range(n)]
         visit = [0] * n
         for i in range(n):
@@ -1703,6 +1705,61 @@ class Solution:
         for i, j, t in roads:
             dct[i][j] = dct[j][i] = t
         return Dijkstra().get_dijkstra_cnt(dct, 0)[0][n-1] % mod
+
+    @staticmethod
+    def ac_3628(ac=FastIO()):
+        # 模板：经典最短路生成树模板题
+        n, m, k = ac.read_ints()
+        dct = [[] for _ in range(n)]
+        for ind in range(m):
+            x, y, w = ac.read_ints()
+            x -= 1
+            y -= 1
+            dct[x].append([y, w, ind])
+            dct[y].append([x, w, ind])
+
+        for i in range(n):
+            dct[i].sort()
+
+        # 先跑一遍最短路
+        dis = [inf] * n
+        stack = [[0, 0]]
+        dis[0] = 0
+        while stack:
+            d, i = heapq.heappop(stack)
+            if dis[i] < d:
+                continue
+            for j, w, _ in dct[i]:
+                dj = w + d
+                if dj < dis[j]:
+                    dis[j] = dj
+                    heapq.heappush(stack, [dj, j])
+
+        # 选择字典序较小的边建立最短路树
+        edge = [[] for _ in range(n)]
+        visit = [0] * n
+        for i in range(n):
+            for j, w, ind in dct[i]:
+                if visit[j]:
+                    continue
+                if dis[i] + w == dis[j]:
+                    edge[i].append([j, ind])
+                    edge[j].append([i, ind])
+                    visit[j] = 1
+
+        # 最后一遍BFS确定选择的边
+        ans = []
+        stack = [[0, -1]]
+        while stack:
+            x, fa = stack.pop()
+            for y, ind in edge[x]:
+                if y != fa:
+                    ans.append(ind + 1)
+                    stack.append([y, x])
+        ans = ans[:k]
+        ac.st(len(ans))
+        ac.lst(ans)
+        return
 
 
 class TestGeneral(unittest.TestCase):
