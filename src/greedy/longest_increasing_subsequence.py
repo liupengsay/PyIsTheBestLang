@@ -1,4 +1,5 @@
 import bisect
+import random
 import unittest
 from bisect import bisect_left
 from collections import deque, defaultdict
@@ -10,7 +11,7 @@ from src.fast_io import FastIO
 
 """
 
-算法：最长上升（或不降）子序列 Longest Increasing Subsequence（LIS）Longest Decreasing Subsequence（LDS）统称 Longest Monotonic Subsequence（LMS） 
+算法：最长上升（或不降）子序列 Longest Increasing Subsequence（LIS）Longest Decreasing Subsequence（LDS）统称 Longest Monotonic Subsequence（LMS）
 最长单调递增子序列（严格上升）：<
 最长单调不减子序列（不降）：<=
 最长单调递减子序列（严格下降）：>
@@ -100,7 +101,7 @@ class LcsLis:
             s1, s2 = s2, s1
         m = len(s2)
         mapper = defaultdict(list)
-        for i in range(m-1, -1, -1):
+        for i in range(m - 1, -1, -1):
             mapper[s2[i]].append(i)
         nums = []
         for c in s1:
@@ -167,6 +168,66 @@ class LcsLis:
         # 还可以返回stack获得最长公共子序列
         return lis
 
+    @staticmethod
+    def longest_increasing_subsequence_max_sum(nums):
+        # 模板：经典最长上升且和最大的子序列的长度与和（同理可扩展到下降、不严格、最小和等）
+        dp = []  # 维护 LIS 数组
+        q = []  # 长度对应的末尾值与最大和
+        for num in nums:
+            if not dp or num > dp[-1]:
+                dp.append(num)
+                length = len(dp)
+            else:
+                i = bisect.bisect_left(dp, num)
+                dp[i] = num
+                length = i + 1
+            while len(q) <= len(dp):
+                q.append(deque())
+
+            if length == 1:
+                q[length].append([num, num])
+            else:
+                # 使用队列与计数加和维护
+                while q[length - 1] and q[length - 1][0][0] >= num:
+                    q[length - 1].popleft()
+                cur = q[length - 1][0][1] + num
+                while q[length] and q[length][-1][1] <= cur:
+                    q[length].pop()
+                q[length].append([num, cur])
+        # 可以进一步变换求非严格递增子序列的个数
+        return q[-1][0][1]
+
+    @staticmethod
+    def longest_increasing_subsequence_cnt(nums):
+        # 模板：经典求 LIS 子序列的个数 O(nlogn) 做法模板题
+        dp = []  # 维护 LIS 数组
+        s = []  # 长度对应的方案和
+        q = []  # 长度对应的末尾值与个数
+        for num in nums:
+            if not dp or num > dp[-1]:
+                dp.append(num)
+                length = len(dp)
+            else:
+                i = bisect.bisect_left(dp, num)
+                dp[i] = num
+                length = i + 1
+            while len(s) <= len(dp):
+                s.append(0)
+            while len(q) <= len(dp):
+                q.append(deque())
+
+            if length == 1:
+                s[length] += 1
+                q[length].append([num, 1])
+            else:
+                # 使用队列与计数加和维护
+                while q[length - 1] and q[length - 1][0][0] >= num:
+                    s[length - 1] -= q[length - 1].popleft()[1]
+                s[length] += s[length - 1]
+                q[length].append([num, s[length - 1]])
+        # 可以进一步变换求非严格递增子序列的个数
+        return s[-1]
+
 
 class Solution:
     def __init__(self):
@@ -178,7 +239,8 @@ class Solution:
         ans = 0
         for i in range(k):
             lst = arr[i::k]
-            ans += len(lst)-LongestIncreasingSubsequence().definitely_not_reduce(lst)
+            ans += len(lst) - \
+                LongestIncreasingSubsequence().definitely_not_reduce(lst)
         return ans
 
     @staticmethod
@@ -195,7 +257,7 @@ class Solution:
         # 模板：最长公共子序列求解使用哈希映射转换为最长上升子序列
         n = ac.read_int()
         nums = ac.read_list_ints()
-        ind = [0]*(n+1)
+        ind = [0] * (n + 1)
         for i, num in enumerate(nums):
             ind[num] = i
         nums = [ind[x] for x in ac.read_list_ints()]
@@ -259,84 +321,16 @@ class Solution:
         ans = []
         x = 1
         while len(ans) < n:
-            rest = ac.min(n-len(ans), k)
-            for y in range(x+rest-1, x-1, -1):
+            rest = ac.min(n - len(ans), k)
+            for y in range(x + rest - 1, x - 1, -1):
                 ans.append(y)
-            x = x+rest
+            x = x + rest
         ac.lst(ans)
         return
 
     @staticmethod
     def lc_673(nums: List[int]) -> int:
-        # 模板：经典求 LIS 子序列的个数 O(nlogn) 做法模板题
-        dp = []  # 维护 LIS 数组
-        s = []  # 长度对应的方案和
-        q = []  # 长度对应的末尾值与个数
-        for num in nums:
-            if not dp or num > dp[-1]:
-                dp.append(num)
-                length = len(dp)
-            else:
-                i = bisect.bisect_left(dp, num)
-                dp[i] = num
-                length = i + 1
-            while len(s) <= len(dp):
-                s.append(0)
-            while len(q) <= len(dp):
-                q.append(deque())
-
-            if length == 1:
-                s[length] += 1
-                q[length].append([num, 1])
-            else:
-                # 使用队列与计数加和维护
-                while q[length - 1] and q[length - 1][0][0] >= num:
-                    s[length - 1] -= q[length - 1].popleft()[1]
-                s[length] += s[length - 1]
-                q[length].append([num, s[length - 1]])
-        # 可以进一步变换求非严格递增子序列的个数
-        return s[-1]
-
-    @staticmethod
-    def unknown_test_lis_max_sum(ac=FastIO()):
-        # 模板：待确认最长且和最大的子序列的长度与和是否可以求得
-        nums = []
-        while True:
-            cur = ac.read_list_ints()
-            nums.extend(cur)
-            if not cur and nums and len(nums) == nums[0] + 1:
-                break
-        n = nums.pop(0)
-
-        dp = []  # 维护 LIS 数组
-        q = []  # 长度对应的末尾值与最大和
-        ans = 0
-        for num in nums:
-            if not dp or num > dp[-1]:
-                dp.append(num)
-                length = len(dp)
-            else:
-                i = bisect.bisect_left(dp, num)
-                dp[i] = num
-                length = i + 1
-            while len(q) <= len(dp):
-                q.append(deque())
-
-            if length == 1:
-                q[length].append([num, num])
-                if num > ans:
-                    ans = num
-            else:
-                # 使用队列与计数加和维护
-                while q[length - 1] and q[length - 1][0][0] >= num:
-                    q[length - 1].popleft()
-                cur = q[length - 1][0][1] + num
-                while q[length] and q[length][-1][1] <= cur:
-                    q[length].pop()
-                q[length].append([num, cur])
-        # 可以进一步变换求非严格递增子序列的个数
-        ac.st(q[length][-1][0])
-        return
+        return LcsLis().longest_increasing_subsequence_cnt(nums)
 
     @staticmethod
     def lc_1092(self, str1: str, str2: str) -> str:
@@ -421,13 +415,14 @@ class Solution:
         tree = SegmentTreeRangeAddMax(n)
         for num in nums:
             if ind[num] == 0:
-                tree.update(0, 0, 0, n-1, num, 1)
+                tree.update(0, 0, 0, n - 1, num, 1)
             else:
-                tree.update(ind[num], ind[num], 0, n-1, tree.query(0, ind[num]-1, 0, n-1, 1)+num, 1)
-        ac.st(tree.query(0, n-1, 0, n-1, 1))
+                pre = tree.query(0, ind[num] - 1, 0, n - 1, 1)
+                tree.update(ind[num], ind[num], 0, n - 1, pre + num, 1)
+        ac.st(tree.query(0, n - 1, 0, n - 1, 1))
         return
-    
-    
+
+
 class TestGeneral(unittest.TestCase):
 
     def test_longest_increasing_subsequence(self):
@@ -437,6 +432,20 @@ class TestGeneral(unittest.TestCase):
         assert lis.definitely_not_reduce(nums) == 4
         assert lis.definitely_reduce(nums) == 3
         assert lis.definitely_not_increase(nums) == 5
+
+        for _ in range(10):
+            nums = [random.randint(0, 100) for _ in range(10)]
+            ans = LcsLis().longest_increasing_subsequence_max_sum(nums)
+            cur = defaultdict(int)
+            n = len(nums)
+            for i in range(1, 1 << n):
+                lst = [nums[j] for j in range(n) if i & (1 << j)]
+                m = len(lst)
+                if lst == sorted(lst) and all(lst[j+1] > lst[j] for j in range(m-1)):
+                    a, b = cur[m], sum(lst)
+                    cur[m] = a if a > b else b
+            length = max(cur)
+            assert ans == cur[length]
         return
 
 

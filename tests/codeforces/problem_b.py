@@ -107,22 +107,12 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
-        for _ in range(ac.read_int()):
-            n, k = ac.read_ints()
-            nums = ac.read_list_ints()
-            ans = n
-            for x in set(nums):
-                cur = i = 0
-                while i < n:
-                    if nums[i] != x:
-                        cur += 1
-                        i += k
-                    else:
-                        i += 1
-                if cur < ans:
-                    ans = cur
-            ac.st(ans)
-
+        n, k = ac.read_ints()
+        while k != 2**n:
+            if k > 2**n-1:
+                k -= 2**n
+            n -= 1
+        ac.st(n+1)
         return
 
 

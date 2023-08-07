@@ -8,7 +8,7 @@ from src.graph.union_find import UnionFind
 
 """
 
-算法：拓扑排序、内向基环树（有向或者无向，连通块有k个节点以及k条边）
+算法：拓扑排序、内向基环树（有向或者无向，连通块有k个节点以及k条边）、bfs序、拓扑序
 功能：有向图进行排序，无向图在选定根节点的情况下也可以进行拓扑排序
 题目：xx（xx）
 内向基环树介绍：https://leetcode.cn/problems/maximum-employees-to-be-invited-to-a-meeting/solution/nei-xiang-ji-huan-shu-tuo-bu-pai-xu-fen-c1i1b/
@@ -46,7 +46,8 @@ P8943 Deception Point（https://www.luogu.com.cn/problem/P8943）经典无向图
 ==================================AtCoder=================================
 F - Well-defined Path Queries on a Namori（https://atcoder.jp/contests/abc266/）（无向图的内向基环树，求简单路径的树枝连通）
 
-
+==================================AcWing=================================
+3696. 构造有向无环图（https://www.acwing.com/problem/content/description/3699/）经典bfs序即拓扑序与DAG构造
 
 参考：OI WiKi（xx）
 """
@@ -182,6 +183,26 @@ class TopologicalSort:
             stack = nex
         return all(x==0 for x in degree)
 
+    @staticmethod
+    def bfs_topologic_order(n, dct, degree):
+        # 拓扑排序判断有向图是否存在环，同时记录节点的拓扑顺序
+        order = [0] * n
+        stack = [i for i in range(n) if degree[i] == 0]
+        ind = 0
+        while stack:
+            nex = []
+            for i in stack:
+                order[i] = ind
+                ind += 1
+                for j in dct[i]:
+                    degree[j] -= 1
+                    if degree[j] == 0:
+                        nex.append(j)
+            stack = nex[:]
+        if any(d > 0 for d in degree):
+            return []
+        return order
+
 
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -193,6 +214,60 @@ class TreeNode:
 class Solution:
     def __init__(self):
         return
+
+    @staticmethod
+    def ac_3696(ac=FastIO()):
+        # 模板：经典bfs序即拓扑序与DAG构造
+        for _ in range(ac.read_int()):
+            def check():
+                n, m = ac.read_ints()
+                dct = [[] for _ in range(n)]
+                degree = [0] * n
+                edges = []
+                ans = []
+                for _ in range(m):
+                    t, x, y = ac.read_ints()
+                    x -= 1
+                    y -= 1
+                    if t == 1:
+                        ans.append([x, y])
+                        dct[x].append(y)
+                        degree[y] += 1
+                    else:
+                        edges.append([x, y])
+
+                # 拓扑排序判断有向图是否存在环，同时记录节点的拓扑顺序
+                order = [0] * n
+                stack = [i for i in range(n) if degree[i] == 0]
+                ind = 0
+                while stack:
+                    nex = []
+                    for i in stack:
+                        order[i] = ind
+                        ind += 1
+                        for j in dct[i]:
+                            degree[j] -= 1
+                            if degree[j] == 0:
+                                nex.append(j)
+                    stack = nex[:]
+                if any(degree[x] > 0 for x in range(n)):
+                    ac.st("NO")
+                    return
+
+                # 按照拓扑序依次给与方向
+                ac.st("YES")
+                for x, y in edges:
+                    if order[x] < order[y]:
+                        ac.lst([x + 1, y + 1])
+                    else:
+                        ac.lst([y + 1, x + 1])
+                for x, y in ans:
+                    ac.lst([x + 1, y + 1])
+                return
+
+            check()
+        return
+
 
     @staticmethod
     def lc_2360(edges: List[int]) -> int:

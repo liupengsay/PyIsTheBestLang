@@ -107,10 +107,15 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
-        for _ in range(ac.read_int()):
-            n, m, r, c = ac.read_ints()
-            ans = ac.max(r-1, n-r) + ac.max(c-1, m-c)
-            ac.st(ans)
+        n = ac.read_int()
+        s = ac.read_str()
+        a = s.count("A")
+        if a > n-a:
+            ac.st("A")
+        elif a < n-a:
+            ac.st("B")
+        else:
+            ac.st("T")
         return
 
 
