@@ -4,6 +4,8 @@ from bisect import bisect_left
 from collections import deque, defaultdict
 from typing import List
 
+from src.data_structure.segment_tree import SegmentTreeRangeAddMax
+from src.data_structure.tree_array import TreeArrayRangeQueryPointUpdateMax
 from src.fast_io import FastIO
 
 """
@@ -18,7 +20,7 @@ dilworth定理：分成不下降子序列最小组数等于最大上升子序列
 参考题目：
 ===================================力扣===================================
 354. 俄罗斯套娃信封问题（https://leetcode.cn/problems/russian-doll-envelopes/）经典二维偏序最长递增子序列问题
-673. 最长递增子序列的个数（https://leetcode.cn/problems/number-of-longest-increasing-subsequence/）经典O(n^2)与O(nlogn)的LIS计数问题
+673. 最长递增子序列的个数（https://leetcode.cn/problems/number-of-longest-increasing-subsequence/）经典O(n^2)与O(nlogn)的LIS计数问题做法模板题
 1092. 最短公共超序列（https://leetcode.cn/problems/shortest-common-supersequence/）经典利用LIS求LCS的最短公共超序列
 1671. 得到山形数组的最少删除次数（https://leetcode.cn/problems/minimum-number-of-removals-to-make-mountain-array/）经典山脉数组LIS变形问题
 2111. 使数组 K 递增的最少操作次数（https://leetcode.cn/problems/minimum-operations-to-make-the-array-k-increasing/）分成 K 组计算每组的最长递增子序列
@@ -27,6 +29,7 @@ dilworth定理：分成不下降子序列最小组数等于最大上升子序列
 1691. 堆叠长方体的最大高度（https://leetcode.cn/problems/maximum-height-by-stacking-cuboids/submissions/）经典三维偏序LIS问题
 1713. 得到子序列的最少操作次数（https://leetcode.cn/problems/minimum-operations-to-make-a-subsequence/）经典LCS问题转换为LIS
 1940. 排序数组之间的最长公共子序列（https://leetcode.cn/problems/longest-common-subsequence-between-sorted-arrays/）经典LCS问题转为LIS问题
+3662. 最大上升子序列和（https://www.acwing.com/problem/content/description/3665/）所有长度的严格上升子序列的最大子序列和，使用离散化树状数组与线性DP计算，也可使用线段树
 
 ===================================洛谷===================================
 P1020 导弹拦截（https://www.luogu.com.cn/problem/P1020）使用贪心加二分计算最长单调不减和单调不增子序列的长度
@@ -265,7 +268,7 @@ class Solution:
 
     @staticmethod
     def lc_673(nums: List[int]) -> int:
-        # 模板：经典求 LIS 子序列的个数 O(nlogn) 做法
+        # 模板：经典求 LIS 子序列的个数 O(nlogn) 做法模板题
         dp = []  # 维护 LIS 数组
         s = []  # 长度对应的方案和
         q = []  # 长度对应的末尾值与个数
@@ -293,6 +296,47 @@ class Solution:
                 q[length].append([num, s[length - 1]])
         # 可以进一步变换求非严格递增子序列的个数
         return s[-1]
+
+    @staticmethod
+    def unknown_test_lis_max_sum(ac=FastIO()):
+        # 模板：待确认最长且和最大的子序列的长度与和是否可以求得
+        nums = []
+        while True:
+            cur = ac.read_list_ints()
+            nums.extend(cur)
+            if not cur and nums and len(nums) == nums[0] + 1:
+                break
+        n = nums.pop(0)
+
+        dp = []  # 维护 LIS 数组
+        q = []  # 长度对应的末尾值与最大和
+        ans = 0
+        for num in nums:
+            if not dp or num > dp[-1]:
+                dp.append(num)
+                length = len(dp)
+            else:
+                i = bisect.bisect_left(dp, num)
+                dp[i] = num
+                length = i + 1
+            while len(q) <= len(dp):
+                q.append(deque())
+
+            if length == 1:
+                q[length].append([num, num])
+                if num > ans:
+                    ans = num
+            else:
+                # 使用队列与计数加和维护
+                while q[length - 1] and q[length - 1][0][0] >= num:
+                    q[length - 1].popleft()
+                cur = q[length - 1][0][1] + num
+                while q[length] and q[length][-1][1] <= cur:
+                    q[length].pop()
+                q[length].append([num, cur])
+        # 可以进一步变换求非严格递增子序列的个数
+        ac.st(q[length][-1][0])
+        return
 
     @staticmethod
     def lc_1092(self, str1: str, str2: str) -> str:
@@ -350,7 +394,40 @@ class Solution:
         ac.st(max(s1212, s1, s12, s121))
         return
 
+    @staticmethod
+    def ac_3662_1(ac=FastIO()):
+        # 模板：所有长度的严格上升子序列的最大子序列和，使用离散化树状数组与线性DP计算，也可使用线段树
+        ac.read_int()
+        nums = ac.read_list_ints()
+        ind = {num: i for i, num in enumerate(sorted(list(set(nums))))}
+        n = len(ind)
+        tree = TreeArrayRangeQueryPointUpdateMax(n)
 
+        for num in nums:
+            if ind[num] == 0:
+                tree.update(1, num)
+            else:
+                tree.update(ind[num] + 1, tree.query(ind[num]) + num)
+        ac.st(tree.query(n))
+        return
+
+    @staticmethod
+    def ac_3662_2(ac=FastIO()):
+        # 模板：所有长度的严格上升子序列的最大子序列和，使用离散化树状数组与线性DP计算，也可使用线段树
+        ac.read_int()
+        nums = ac.read_list_ints()
+        ind = {num: i for i, num in enumerate(sorted(list(set(nums))))}
+        n = len(ind)
+        tree = SegmentTreeRangeAddMax(n)
+        for num in nums:
+            if ind[num] == 0:
+                tree.update(0, 0, 0, n-1, num, 1)
+            else:
+                tree.update(ind[num], ind[num], 0, n-1, tree.query(0, ind[num]-1, 0, n-1, 1)+num, 1)
+        ac.st(tree.query(0, n-1, 0, n-1, 1))
+        return
+    
+    
 class TestGeneral(unittest.TestCase):
 
     def test_longest_increasing_subsequence(self):

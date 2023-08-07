@@ -1,7 +1,5 @@
-import heapq
 import random
 import sys
-from math import inf
 
 
 class FastIO:
@@ -102,6 +100,28 @@ class FastIO:
         # 随机种子避免哈希冲突
         return random.randint(0, 10**9+7)
 
+class TreeArrayRangeQueryPointUpdateMax:
+    # 模板：树状数组 单点增加 前缀区间查询 最大值
+    def __init__(self, n):
+        # 索引从 1 到 n
+        self.t = [0] * (n + 1)
+
+    @staticmethod
+    def lowest_bit(i):
+        return i & (-i)
+
+    def query(self, i):
+        mx = 0
+        while i:
+            mx = mx if mx > self.t[i] else self.t[i]
+            i -= self.lowest_bit(i)
+        return mx
+
+    def update(self, i, mx):
+        while i < len(self.t):
+            self.t[i] = self.t[i] if self.t[i] > mx else mx
+            i += self.lowest_bit(i)
+        return
 
 class Solution:
     def __init__(self):
@@ -109,57 +129,14 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
-        # 模板：经典最短路生成树模板题
-        n, m, k = ac.read_ints()
-        dct = [[] for _ in range(n)]
-        for ind in range(m):
-            x, y, w = ac.read_ints()
-            x -= 1
-            y -= 1
-            dct[x].append([y, w, ind])
-            dct[y].append([x, w, ind])
-
-        for i in range(n):
-            dct[i].sort()
-
-        # 先跑一遍最短路
-        dis = [inf] * n
-        stack = [[0, 0]]
-        dis[0] = 0
-        while stack:
-            d, i = heapq.heappop(stack)
-            if dis[i] < d:
-                continue
-            for j, w, _ in dct[i]:
-                dj = w + d
-                if dj < dis[j]:
-                    dis[j] = dj
-                    heapq.heappush(stack, [dj, j])
-
-        # 选择字典序较小的边建立最短路树
-        edge = [[] for _ in range(n)]
-        visit = [0] * n
-        for i in range(n):
-            for j, w, ind in dct[i]:
-                if visit[j]:
-                    continue
-                if dis[i] + w == dis[j]:
-                    edge[i].append([j, ind])
-                    edge[j].append([i, ind])
-                    visit[j] = 1
-
-        # 最后一遍BFS确定选择的边
-        ans = []
-        stack = [[0, -1]]
-        while stack:
-            x, fa = stack.pop()
-            for y, ind in edge[x]:
-                if y != fa:
-                    ans.append(ind+1)
-                    stack.append([y, x])
-        ans = ans[:k]
-        ac.st(len(ans))
-        ac.lst(ans)
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        ind = {num: i for i, num in enumerate(sorted(nums))}
+        tree = TreeArrayRangeQueryPointUpdateMax(n)
+        for num in nums:
+            pre = tree.query(ind[num]+1)
+            tree.update(ind[num]+1, pre+num)
+        ac.st(tree.query(n))
         return
 
 

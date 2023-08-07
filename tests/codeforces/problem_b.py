@@ -36,8 +36,7 @@ class FastIO:
 
     @staticmethod
     def read_list_ints_minus_one():
-        return list(map(lambda x: int(x) - 1,
-                        sys.stdin.readline().strip().split()))
+        return list(map(lambda x: int(x) - 1, sys.stdin.readline().strip().split()))
 
     @staticmethod
     def read_str():
@@ -99,7 +98,7 @@ class FastIO:
     @staticmethod
     def get_random_seed():
         # 随机种子避免哈希冲突
-        return random.randint(0, 10**9 + 7)
+        return random.randint(0, 10**9+7)
 
 
 class Solution:
@@ -110,11 +109,19 @@ class Solution:
     def main(ac=FastIO()):
         for _ in range(ac.read_int()):
             n, k = ac.read_ints()
-            nums = sorted(ac.read_list_ints())
-            if k >= n:
-                ac.st(sum(nums))
-            else:
-                ac.st(sum(nums[-k - 1:]))
+            nums = ac.read_list_ints()
+            ans = n
+            for x in set(nums):
+                cur = i = 0
+                while i < n:
+                    if nums[i] != x:
+                        cur += 1
+                        i += k
+                    else:
+                        i += 1
+                if cur < ans:
+                    ans = cur
+            ac.st(ans)
 
         return
 
