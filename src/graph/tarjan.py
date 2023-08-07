@@ -61,6 +61,8 @@ F. Is It Flower?（https://codeforces.com/contest/1811/problem/F）无向图求�
 C. Checkposts（https://codeforces.com/problemset/problem/427/C）有向图的强联通分量进行缩点
 A. Cutting Figure（https://codeforces.com/contest/193/problem/A）脑筋急转弯计算有无割点
 
+===================================AcWing===================================
+3579. 数字移动（https://www.acwing.com/problem/content/3582/）强连通分量模板题
 
 """
 
@@ -938,6 +940,24 @@ class Solution:
 
         cutting_point, _ = TarjanCC().get_cutting_point_and_cutting_edge_bfs(k, dct)
         return 2 if not cutting_point else 1
+
+    @staticmethod
+    def ac_3549(ac=FastIO()):
+        # 模板：强连通分量模板题
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            p = ac.read_list_ints()
+            dct = [[] for _ in range(n)]
+            for i in range(n):
+                dct[i].append(p[i]-1)
+            _, group, _ = TarjanCC().get_strongly_connected_component_bfs(n, dct)
+            ans = [0]*n
+            for g in group:
+                x = len(group[g])
+                for i in group[g]:
+                    ans[i] = x
+            ac.lst(ans)
+        return
 
 
 class TestGeneral(unittest.TestCase):

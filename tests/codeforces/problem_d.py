@@ -114,7 +114,7 @@ class FastIO:
     @staticmethod
     def get_random_seed():
         # 随机种子避免哈希冲突
-        return random.randint(0, 10**9+7)
+        return random.randint(0, 10 ** 9 + 7)
 
 
 class Solution:

@@ -41,6 +41,9 @@ P5978 [CEOI2018] Global warming（https://www.luogu.com.cn/problem/P5978）经�
 P7957 [COCI2014-2015#6] KRATKI（https://www.luogu.com.cn/problem/P7957）经典 LMS 逆问题构造
 P1410 子序列（https://www.luogu.com.cn/problem/P1410）使用dilworth定理求最长不上升子序列长度小于等于2
 
+===================================AcWing===================================
+3549. 最长非递减子序列（https://www.acwing.com/problem/content/3552/）经典线性DP动态规划贪心
+
 
 """
 
@@ -329,6 +332,22 @@ class Solution:
                 else:
                     dp.append(-num)
             ac.st("Yes!" if len(dp) <= 2 else "No!")
+        return
+
+    @staticmethod
+    def ac_3549(ac=FastIO()):
+        # 模板：经典翻转连续子数组获得最长不降子序列
+        ac.read_int()
+        nums = ac.read_list_ints()
+        s1 = s12 = s121 = s1212 = 0
+        for num in nums:
+            if num == 1:
+                s1 += 1
+                s121 = ac.max(s12 + 1, s121 + 1)
+            else:
+                s12 = ac.max(s1 + 1, s12 + 1)
+                s1212 = ac.max(s121 + 1, s1212 + 1)
+        ac.st(max(s1212, s1, s12, s121))
         return
 
 

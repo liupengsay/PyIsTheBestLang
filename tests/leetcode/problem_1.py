@@ -29,12 +29,10 @@ from sortedcontainers import SortedList
 
 
 
-class Solution:
-    def truncateSentence(self, s: str, k: int) -> str:
-
-        return "".join(s.split(" ")[:k])
 
 
 
 
-assert Solution().maxJumps(nums = [6,4,14,6,8,13,9,7,10,6,12], d = 2) == 4
+
+
+assert Solution()
