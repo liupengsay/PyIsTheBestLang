@@ -504,6 +504,49 @@ class Solution:
                 subset = (subset - 1) & mask
         return f[(1 << n) - 1]
 
+    @staticmethod
+    def ac_3735(ac=FastIO()):
+        # 模板：经典倒序状压DP与输出具体方案
+        n, m = ac.read_ints()
+        if m == n*(n-1)//2:
+            ac.st(0)
+            return
+        group = [0] * n
+        for i in range(n):
+            group[i] |= (1 << i)
+        for _ in range(m):
+            i, j = ac.read_ints()
+            i -= 1
+            j -= 1
+            group[i] |= (1 << j)
+            group[j] |= (1 << i)
+
+        dp = [inf] * (1 << n)
+        pre = [[-1, -1] for _ in range(1 << n)]
+        for i in range(n):
+            dp[group[i]] = 1
+            pre[group[i]] = [i, -1]  # use, from
+
+        for i in range(1 << n):
+            if dp[i] == inf:
+                continue
+
+            for j in range(n):
+                if i & (1 << j):
+                    nex = i | group[j]
+                    if dp[nex] > dp[i] + 1:
+                        dp[nex] = dp[i] + 1
+                        pre[nex] = [j, i]  # use, from
+
+        s = (1 << n) - 1
+        ans = []
+        while s > 0:
+            ans.append(pre[s][0] + 1)
+            s = pre[s][1]
+        ac.st(len(ans))
+        ac.lst(ans)
+        return
+
 
 class TestGeneral(unittest.TestCase):
 

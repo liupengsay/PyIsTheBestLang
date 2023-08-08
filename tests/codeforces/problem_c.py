@@ -1,5 +1,6 @@
 import random
 import sys
+from math import inf
 
 
 class FastIO:
@@ -107,43 +108,46 @@ class Solution:
         return
 
     @staticmethod
-    def ac_3760(ac=FastIO()):
-        # 模板：脑筋急转弯转化为树形DP迭代方式求解
-        n = ac.read_int()
-        w = ac.read_list_ints()
-        dct = [[] for _ in range(n)]
-        for _ in range(n - 1):
-            u, v, c = ac.read_list_ints()
-            u -= 1
-            v -= 1
-            dct[u].append([v, c])
-            dct[v].append([u, c])
-        ans = 0
+    def ac_3735(ac=FastIO()):
+        # 模板：经典倒序状压DP与输出具体方案
+        n, m = ac.read_ints()
+        if m == n*(n-1)//2:
+            ac.st(0)
+            return
+        group = [0] * n
+        for i in range(n):
+            group[i] |= (1 << i)
+        for _ in range(m):
+            i, j = ac.read_ints()
+            i -= 1
+            j -= 1
+            group[i] |= (1 << j)
+            group[j] |= (1 << i)
 
-        stack = [[0, -1]]
-        sub = [0 for _ in range(n)]
-        while stack:
-            i, fa = stack.pop()
-            if i >= 0:
-                stack.append([~i, fa])
-                for j, cc in dct[i]:
-                    if j != fa:
-                        stack.append([j, i])
-            else:
-                i = ~i
+        dp = [inf] * (1 << n)
+        pre = [[] for _ in range(1 << n)]
+        for i in range(n):
+            dp[group[i]] = 1
+            pre[group[i]] = [i, -1]  # use, from
 
-                d1, d2 = 0, 0
-                for j, cc in dct[i]:
-                    if j != fa:
-                        d = sub[j] - cc
-                        if d >= d1:
-                            d1, d2 = d, d1
-                        elif d >= d2:
-                            d2 = d
-                if d1 + d2 + w[i] > ans:
-                    ans = d1 + d2 + w[i]
-                sub[i] = d1 + w[i]
-        ac.st(ans)
+        for i in range(1 << n):
+            if dp[i] == inf:
+                continue
+
+            for j in range(n):
+                if i & (1 << j):
+                    nex = i | group[j]
+                    if dp[nex] > dp[i] + 1:
+                        dp[nex] = dp[i] + 1
+                        pre[nex] = [j, i]  # use, from
+
+        s = (1 << n) - 1
+        ans = []
+        while s > 0:
+            ans.append(pre[s][0] + 1)
+            s = pre[s][1]
+        ac.st(len(ans))
+        ac.lst(ans)
         return
 
 
