@@ -107,22 +107,27 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
-        k = ac.read_int()
-        dct = dict()
-        for i in range(1, k+1):
-            n = ac.read_int()
-            nums = ac.read_list_ints()
-            s = sum(nums)
-            for j in range(1, n+1):
-                x = s - nums[j-1]
-                if x in dct and dct[x][0] != i:
-                    ac.st("YES")
-                    ac.lst(dct[x])
-                    ac.lst([i, j])
-                    return
-                else:
-                    dct[x] = [i, j]
-        ac.st("NO")
+        for _ in range(ac.read_int()):
+            n, k = ac.read_ints()
+            s = ac.read_list_str()
+            dct = sorted(list(set(s)))
+            ceil = max(dct)
+            floor = min(dct)
+
+            if k > n:
+                ans = s+(k-n)*[min(dct)]
+            else:
+                ans = s[:k]
+                for i in range(k-1, -1, -1):
+                    if ans[i] != ceil:
+                        for w in dct:
+                            if w > ans[i]:
+                                ans[i] = w
+                                break
+                        for j in range(i+1, k):
+                            ans[j] = floor
+                        break
+            ac.st("".join(ans))
         return
 
 

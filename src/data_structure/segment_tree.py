@@ -63,6 +63,9 @@ D. Water Tree（https://codeforces.com/problemset/problem/343/D）dfs序加线�
 E. XOR on Segment（https://codeforces.com/problemset/problem/242/E）线段树区间异或，与区间加和
 C. Three displays（https://codeforces.com/problemset/problem/987/C）枚举中间数组，使用线段树维护前后缀最小值
 
+================================AcWing================================
+3805. 环形数组（https://www.acwing.com/problem/content/3808/）区间增减与最小值查询
+
 参考：OI WiKi（xx）
 """
 
@@ -330,9 +333,9 @@ class SegmentTreeRangeUpdateQuerySumMinMax:
         # 模板：区间值增减、区间和查询、区间最小值查询、区间最大值查询
         self.n = n
         self.cover = [0] * (4 * self.n)  # 区间和
-        self.lazy = [0] * (4 * self.n)  # 懒标记
-        self.floor = [0] * (4 * self.n)  # 最小值
-        self.ceil = [0] * (4 * self.n)  # 最大值
+        self.lazy = [0] * (4 * self.n)  # 懒标记只能初始化为0
+        self.floor = [0] * (4 * self.n)  # 最小值也可初始化为inf
+        self.ceil = [0] * (4 * self.n)  # 最大值也可初始化为-inf
         return
 
     @staticmethod
@@ -504,13 +507,12 @@ class SegmentTreeRangeUpdateQuerySumMinMax:
 class SegmentTreeRangeChangeQuerySumMinMax:
     def __init__(self, nums):
         # 模板：区间值修改、区间和查询、区间最小值查询、区间最大值查询
-        self.inf = inf
         self.n = len(nums)
         self.nums = nums
         self.cover = [0] * (4 * self.n)  # 区间和
-        self.lazy = [self.inf] * (4 * self.n)  # 懒标记
-        self.floor = [0] * (4 * self.n)  # 最小值
-        self.ceil = [0] * (4 * self.n)  # 最大值
+        self.lazy = [inf] * (4 * self.n)  # 懒标记只能初始化为inf
+        self.floor = [0] * (4 * self.n)  # 最小值也可初始化为inf
+        self.ceil = [0] * (4 * self.n)  # 最大值也可初始化为-inf
         self.build()  # 初始化数组
 
     @staticmethod
@@ -540,7 +542,7 @@ class SegmentTreeRangeChangeQuerySumMinMax:
         return
 
     def push_down(self, i, s, m, t):
-        if self.lazy[i] != self.inf:
+        if self.lazy[i] != inf:
             self.cover[2 * i] = self.lazy[i] * (m - s + 1)
             self.cover[2 * i + 1] = self.lazy[i] * (t - m)
 
@@ -553,7 +555,7 @@ class SegmentTreeRangeChangeQuerySumMinMax:
             self.lazy[2 * i] = self.lazy[i]
             self.lazy[2 * i + 1] = self.lazy[i]
 
-            self.lazy[i] = self.inf
+            self.lazy[i] = inf
 
     def push_up(self, i) -> None:
         self.cover[i] = self.cover[2 * i] + self.cover[2 * i + 1]
@@ -629,7 +631,7 @@ class SegmentTreeRangeChangeQuerySumMinMax:
     def query_min(self, left, right, s, t, i):
         # 查询区间的最小值
         stack = [[s, t, i]]
-        highest = self.inf
+        highest = inf
         while stack:
             s, t, i = stack.pop()
             if left <= s and t <= right:
@@ -647,7 +649,7 @@ class SegmentTreeRangeChangeQuerySumMinMax:
 
         # 查询区间的最大值
         stack = [[s, t, i]]
-        highest = -self.inf
+        highest = -inf
         while stack:
             s, t, i = stack.pop()
             if left <= s and t <= right:
@@ -881,11 +883,10 @@ class SegmentTreeRangeUpdateQuerySum:
 class SegmentTreeRangeUpdateChangeQueryMax:
     def __init__(self, nums: List[int]) -> None:
         # 模板：区间值增减、区间值修改、区间最大值查询
-        self.inf = inf
         self.n = len(nums)
         self.nums = nums
-        self.lazy = [[self.inf, 0]] * (4 * self.n)  # 懒标记
-        self.ceil = [-self.inf] * (4 * self.n)  # 最大值
+        self.lazy = [[inf, 0]] * (4 * self.n)  # 懒标记
+        self.ceil = [-inf] * (4 * self.n)  # 最大值
         self.build()  # 初始化线段树
         return
 
@@ -917,19 +918,19 @@ class SegmentTreeRangeUpdateChangeQueryMax:
 
     def push_down(self, i: int, s: int, m: int, t: int) -> None:
         # 下放懒标记
-        if self.lazy[i] != [self.inf, 0]:
+        if self.lazy[i] != [inf, 0]:
             a, b = self.lazy[i]  # 分别表示修改为 a 与 增加 b
-            if a == self.inf:
+            if a == inf:
                 self.ceil[2 * i] += b
                 self.ceil[2 * i + 1] += b
-                self.lazy[2 * i] = [self.inf, self.lazy[2 * i][1] + b]
-                self.lazy[2 * i + 1] = [self.inf, self.lazy[2 * i + 1][1] + b]
+                self.lazy[2 * i] = [inf, self.lazy[2 * i][1] + b]
+                self.lazy[2 * i + 1] = [inf, self.lazy[2 * i + 1][1] + b]
             else:
                 self.ceil[2 * i] = a
                 self.ceil[2 * i + 1] = a
                 self.lazy[2 * i] = [a, 0]
                 self.lazy[2 * i + 1] = [a, 0]
-            self.lazy[i] = [self.inf, 0]
+            self.lazy[i] = [inf, 0]
 
     def update(self, left: int, right: int, s: int, t: int, val: int, flag: int, i: int) -> None:
         # 增减区间值 left 与 right 取值为 0 到 n-1 而 i 从 1 开始
@@ -941,12 +942,12 @@ class SegmentTreeRangeUpdateChangeQueryMax:
                     if flag == 1:
                         self.ceil[i] = val
                         self.lazy[i] = [val, 0]
-                    elif self.lazy[i][0] != self.inf:
+                    elif self.lazy[i][0] != inf:
                         self.ceil[i] += val
                         self.lazy[i] = [self.lazy[i][0]+val, 0]
                     else:
                         self.ceil[i] += val
-                        self.lazy[i] = [self.inf, self.lazy[i][1]+val]
+                        self.lazy[i] = [inf, self.lazy[i][1]+val]
                     continue
 
                 m = s + (t - s) // 2
@@ -966,7 +967,7 @@ class SegmentTreeRangeUpdateChangeQueryMax:
 
         # 查询区间的最大值
         stack = [[s, t, i]]
-        highest = -self.inf
+        highest = -inf
         while stack:
             s, t, i = stack.pop()
             if left <= s and t <= right:
@@ -1416,7 +1417,6 @@ class SegmentTreeRangeUpdateMax:
 class SegmentTreeRangeUpdateMulQuerySum:
     def __init__(self, nums: List[int], p) -> None:
         # 模板：区间值增减、区间值修改、区间最大值查询
-        self.inf = inf
         self.p = p
         self.n = len(nums)
         self.nums = nums
@@ -1572,7 +1572,6 @@ class SegmentTreePointUpdateRangeMulQuery:
 class SegmentTreeRangeSubConSum:
     def __init__(self, nums: List[int]) -> None:
         # 模板：单点修改、区间最大连续子段和查询
-        self.inf = inf
         self.n = len(nums)
         self.nums = nums
         self.cover = [-inf] * (4 * self.n)
@@ -1676,7 +1675,6 @@ class SegmentTreeRangeSubConSum:
 class SegmentTreeRangeUpdateSubConSum:
     def __init__(self, nums: List[int]) -> None:
         # 模板：区间修改、区间最大连续子段和查询
-        self.inf = inf
         self.n = len(nums)
         self.nums = nums
         self.cover = [-inf] * (4 * self.n)
@@ -1718,10 +1716,10 @@ class SegmentTreeRangeUpdateSubConSum:
         return
 
     def push_down(self, i, s, m, t):
-        if self.lazy[i] != self.inf:
+        if self.lazy[i] != inf:
             self.make_tag(s, m, 2 * i, self.lazy[i])
             self.make_tag(m + 1, t, 2 * i + 1, self.lazy[i])
-            self.lazy[i] = self.inf
+            self.lazy[i] = inf
 
     def build(self) -> None:
         # 使用数组初始化线段树
@@ -2446,10 +2444,9 @@ class SegmentTreeRangeXORQuery:
 class SegmentTreeRangeSqrtSum:
     def __init__(self, n):
         # 模板：区间值开方向下取整，区间和查询
-        self.inf = inf
         self.n = n
         self.cover = [0] * (4 * self.n)  # 区间和
-        self.lazy = [self.inf] * (4 * self.n)  # 懒标记
+        self.lazy = [inf] * (4 * self.n)  # 懒标记
 
     def build(self, nums):
         stack = [[0, self.n - 1, 1]]
@@ -2505,7 +2502,6 @@ class SegmentTreeRangeSqrtSum:
             if right > m:
                 stack.append([m + 1, t, 2 * i + 1])
         return ans
-
 
 
 class Solution:
@@ -3200,6 +3196,31 @@ class CountIntervalsLC2276:
 
     def count(self) -> int:
         return self.tree.cover[1]
+
+    @staticmethod
+    def ac_3805(ac=FastIO()):
+        # 模板：区间增减与最小值查询
+        n = ac.read_int()
+        tree = SegmentTreeRangeUpdateQuerySumMinMax(n)
+        tree.build(ac.read_list_ints())
+        for _ in range(ac.read_int()):
+            lst = ac.read_list_ints()
+            if len(lst) == 2:
+                l, r = lst
+                if l <= r:
+                    ac.st(tree.query_min(l, r, 0, n-1, 1))
+                else:
+                    ans1 = tree.query_min(l, n-1, 0, n-1, 1)
+                    ans2 = tree.query_min(0, r, 0, n-1, 1)
+                    ac.st(ac.min(ans1, ans2))
+            else:
+                l, r, d = lst
+                if l <= r:
+                    tree.update_range(l, r, 0, n-1, d, 1)
+                else:
+                    tree.update_range(l, n-1, 0, n-1, d, 1)
+                    tree.update_range(0, r, 0, n-1, d, 1)
+        return
 
 
 class BookMyShowLC2286:

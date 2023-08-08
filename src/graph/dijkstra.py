@@ -108,6 +108,7 @@ B. Complete The Graph（https://codeforces.com/contest/715/problem/B）经典两
 176. 装满的油箱（https://www.acwing.com/problem/content/178/）经典加油题，使用dijkstra模仿状态
 3628. 边的删减（https://www.acwing.com/problem/content/3631/）经典最短路生成树模板题
 3772. 更新线路（https://www.acwing.com/problem/content/description/3775/）经典建立反图并使用Dijkstra最短路计数贪心模拟
+3797. 最大化最短路（https://www.acwing.com/problem/content/description/3800/）经典最短路枚举增边排序贪心
 
 参考：OI WiKi（xx）
 """
@@ -1793,6 +1794,35 @@ class Solution:
                 ceil += 1
         ac.lst([floor, ceil])
 
+        return
+
+    @staticmethod
+    def ac_3797(ac=FastIO()):
+        # 模板：经典最短路枚举增边排序贪心
+        n, m, k = ac.read_ints()
+        nums = ac.read_list_ints_minus_one()
+        dct =[[] for _ in range(n)]
+        for _ in range(m):
+            x, y = ac.read_ints_minus_one()
+            dct[x].append(y)
+            dct[y].append(x)
+        dis0 = Dijkstra().get_shortest_by_bfs(dct, 0)
+        dis1 = Dijkstra().get_shortest_by_bfs(dct, n-1)
+        nums.sort(key=lambda it: dis0[it]-dis1[it])
+
+        ans = -1
+        pre = -inf
+        d = dis0[-1]
+        for i in range(k):
+            cur = pre+1+dis1[nums[i]]
+            if cur > ans:
+                ans = cur
+            if dis0[nums[i]] > pre:
+                pre = dis0[nums[i]]
+
+        if ans > d:
+            ans = d
+        ac.st(ans)
         return
 
 

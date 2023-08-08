@@ -107,11 +107,22 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
-
         for _ in range(ac.read_int()):
             n = ac.read_int()
-            ac.st(n)
-            ac.lst(list(range(1, n+1)))
+            nums = ac.read_list_ints()
+            nums.reverse()
+            ans = []
+            pre = set()
+            for num in nums:
+                if num in pre:
+                    continue
+                pre.add(num)
+                ans.append(num)
+            ans.reverse()
+            ac.st(len(ans))
+            ac.lst(ans)
+
+
         return
 
 
