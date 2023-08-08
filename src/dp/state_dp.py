@@ -56,7 +56,8 @@ D. Kefa and Dishes（https://codeforces.com/problemset/problem/580/D）状态压
 E. Compatible Numbers（https://codeforces.com/problemset/problem/165/E）线性DP，状态压缩枚举，类似子集思想求解可能存在的与为0的数对
 D. A Simple Task（https://codeforces.com/contest/11/problem/D）状压DP，无向图简单环计数
 
-
+================================AcWing================================
+3735. 构造完全图（https://www.acwing.com/problem/content/3738/）经典倒序状压DP与输出具体方案
 
 参考：OI WiKi（xx）
 """

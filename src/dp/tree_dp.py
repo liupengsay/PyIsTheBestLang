@@ -74,6 +74,9 @@ D. A Wide, Wide Graph（https://codeforces.com/problemset/problem/1805/D）树�
 G. White-Black Balanced Subtrees（https://codeforces.com/contest/1676/problem/G）使用迭代的方式进行树形DP计算
 F. Gardening Friends（https://codeforces.com/contest/1822/problem/F）计算树中节点到其余节点的最大距离
 
+================================AcWing================================
+3760. 最大剩余油量（https://www.acwing.com/problem/content/description/3763/）脑筋急转弯转化为树形DP迭代方式求解
+
 参考：OI WiKi（xx）
 """
 
@@ -1393,6 +1396,46 @@ class Solution:
                 ans[d] += sub[i]
 
         return ans[1:]
+
+    @staticmethod
+    def ac_3760(ac=FastIO()):
+        # 模板：脑筋急转弯转化为树形DP迭代方式求解
+        n = ac.read_int()
+        w = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            u, v, c = ac.read_list_ints()
+            u -= 1
+            v -= 1
+            dct[u].append([v, c])
+            dct[v].append([u, c])
+        ans = 0
+
+        stack = [[0, -1]]
+        sub = [0 for _ in range(n)]
+        while stack:
+            i, fa = stack.pop()
+            if i >= 0:
+                stack.append([~i, fa])
+                for j, cc in dct[i]:
+                    if j != fa:
+                        stack.append([j, i])
+            else:
+                i = ~i
+
+                d1, d2 = 0, 0
+                for j, cc in dct[i]:
+                    if j != fa:
+                        d = sub[j] - cc
+                        if d >= d1:
+                            d1, d2 = d, d1
+                        elif d >= d2:
+                            d2 = d
+                if d1 + d2 + w[i] > ans:
+                    ans = d1 + d2 + w[i]
+                sub[i] = d1 + w[i]
+        ac.st(ans)
+        return
 
 
 class TestGeneral(unittest.TestCase):

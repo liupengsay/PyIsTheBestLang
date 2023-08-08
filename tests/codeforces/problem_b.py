@@ -1,3 +1,4 @@
+import math
 import random
 import sys
 
@@ -100,6 +101,13 @@ class FastIO:
         # 随机种子避免哈希冲突
         return random.randint(0, 10**9+7)
 
+def comb(m, n):
+    if n == 0:
+        return 1
+    if n == 1:
+        return m
+    return m*(m-1)//2
+
 
 class Solution:
     def __init__(self):
@@ -107,12 +115,23 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
-        n, k = ac.read_ints()
-        while k != 2**n:
-            if k > 2**n-1:
-                k -= 2**n
-            n -= 1
-        ac.st(n+1)
+
+        for _ in range(ac.read_int()):
+            n, k = ac.read_ints()
+            ans = ""
+            b = 2
+            for x in range(n):
+                if not b:
+                    ans += "a"
+                    continue
+                else:
+                    if comb(n-x-1, b) >= k:
+                        ans += "a"
+                    else:
+                        ans += "b"
+                        k -= comb(n-x-1, b)
+                        b -= 1
+            ac.st(ans)
         return
 
 

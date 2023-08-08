@@ -102,6 +102,7 @@ C. Strongly Composite（https://codeforces.com/contest/1823/problem/C）质因�
 196. 质数距离（https://www.acwing.com/problem/content/198/）经典计算质数距离对
 198. 反素数（https://www.acwing.com/problem/content/200/）经典计算最大的反质数（反素数，即约数或者说因数个数大于任何小于它的数的因数个数）
 199. 余数之和（https://www.acwing.com/problem/content/description/201/）经典枚举因数计算之和
+3727. 乘方相加（https://www.acwing.com/solution/content/54479/）脑筋急转弯转换成进制表达问题
 
 参考：OI WiKi（xx）
 """
@@ -1309,6 +1310,30 @@ class Solution:
             if reduce(math.gcd, dct[num]) == num:
                 ans += 1
         return ans
+
+    @staticmethod
+    def ac_3727(ac=FastIO()):
+        # 模板：脑筋急转弯转换成进制表达问题
+
+        for _ in range(ac.read_int()):
+            def check():
+                n, k = ac.read_ints()
+                cnt = Counter()
+                for num in ac.read_list_ints():
+                    lst = []
+                    while num:
+                        lst.append(num % k)
+                        num //= k
+                    for i, va in enumerate(lst):
+                        cnt[i] += va
+                        if cnt[i] > 1:
+                            ac.st("NO")
+                            return
+                ac.st("YES")
+                return
+            check()
+
+        return
 
 
 class TestGeneral(unittest.TestCase):

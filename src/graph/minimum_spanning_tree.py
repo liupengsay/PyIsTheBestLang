@@ -56,6 +56,9 @@ P1550 [USACO08OCT] Watering Hole G（https://www.luogu.com.cn/problem/P1550）�
 D. Design Tutorial: Inverse the Problem（https://codeforces.com/problemset/problem/472/D）使用最小生成树判断构造给定的点对最短路距离是否存在，使用prim算法复杂度更优
 E. Minimum spanning tree for each edge（https://codeforces.com/problemset/problem/609/E）使用LCA的思想维护树中任意两点的路径边权最大值，并贪心替换获得边作为最小生成树时的最小权值和，有点类似于关键边与非关键边，但二者并不相同，即为严格次小生成树
 
+================================Acwing================================
+3728. 城市通电（https://www.acwing.com/problem/content/3731/）使用prim计算最小生成树，适合稠密图场景，并获取具体连边方案，也可直接使用Kruskal（超时）
+
 
 参考：OI WiKi（xx）
 """
@@ -837,6 +840,64 @@ class Solution:
         ac.st(cost)
         return
 
+    @staticmethod
+    def ac_3728(ac=FastIO()):
+
+        # 模板：使用prim计算最小生成树，适合稠密图场景，并获取具体连边方案，也可直接使用Kruskal（超时）
+
+        def dis(aa, bb):
+            if aa == 0:
+                return cost[bb]
+            if bb == 0:
+                return cost[aa]
+
+            return (k[aa]+k[bb])*(abs(nums[aa][0]-nums[bb][0])+abs(nums[aa][1]-nums[bb][1]))
+
+        n = ac.read_int()
+        nums = [[inf, inf]] + [ac.read_list_ints() for _ in range(n)]
+        cost = [inf] + ac.read_list_ints()
+        k = [inf] + ac.read_list_ints()
+
+        # 初始化最短距离
+        ans = nex = 0
+        rest = set(list(range(n+1)))
+        visit = [inf] * (n+1)
+        visit[nex] = 0
+        pre = [-1]*(n+1)  # 记录最小生成树的父节点
+        edge = []
+        while rest:
+            # 点优先选择距离当前集合最近的点合并
+            i = nex
+            rest.discard(i)
+            d = visit[i]
+            ans += d
+            nex = -1
+            # 更新所有节点到当前节点的距离最小值并更新下一个节点
+            for j in rest:
+                dj = dis(i, j)
+                if dj < visit[j]:
+                    visit[j] = dj
+                    pre[j] = i
+                if nex == -1 or visit[j] < visit[nex]:
+                    nex = j
+            if nex != -1:
+                edge.append([pre[nex], nex])
+        # 时间复杂度O(n^2)空间复杂度O(n)优于kruskal
+        ac.st(ans if ans < inf else -1)
+        lst = []
+        for a, b in edge:
+            if a == 0:
+                lst.append(b)
+            elif b == 0:
+                lst.append(a)
+        ac.st(len(lst))
+        ac.lst(lst)
+        ac.st(len(edge) - len(lst))
+        for a, b in edge:
+            if a and b:
+                ac.lst([a, b])
+        return
+    
 
 class DistanceLimitedPathsExist:
     # 模板：LC1724
