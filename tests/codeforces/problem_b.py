@@ -1,6 +1,5 @@
 import random
 import sys
-from collections import defaultdict
 
 
 class FastIO:
@@ -108,12 +107,22 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
-        n = ac.read_int()
-        dct = defaultdict(int)
-        nums = ac.read_list_ints()
-        for i, num in enumerate(nums):
-            dct[i-num] += num
-        ac.st(max(dct.values()))
+        k = ac.read_int()
+        dct = dict()
+        for i in range(1, k+1):
+            n = ac.read_int()
+            nums = ac.read_list_ints()
+            s = sum(nums)
+            for j in range(1, n+1):
+                x = s - nums[j-1]
+                if x in dct and dct[x][0] != i:
+                    ac.st("YES")
+                    ac.lst(dct[x])
+                    ac.lst([i, j])
+                    return
+                else:
+                    dct[x] = [i, j]
+        ac.st("NO")
         return
 
 

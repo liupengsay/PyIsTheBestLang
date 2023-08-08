@@ -65,6 +65,7 @@ E. Explosions?（https://codeforces.com/problemset/problem/1795/E）单调栈优
 ================================AcWing====================================
 131. 直方图中最大的矩形（https://www.acwing.com/problem/content/133/）单调栈求最大矩形
 152. 城市游戏（https://www.acwing.com/problem/content/description/154/）单调栈求最大矩形
+3780. 构造数组（https://www.acwing.com/problem/content/description/3783/）经典单调栈线性贪心DP构造
 
 参考：OI WiKi（xx）
 """
@@ -667,6 +668,61 @@ class Solution:
                     pre[k] = 0
             ans += rec.compute_number(pre)
         return ans
+
+    @staticmethod
+    def ac_3780(ac=FastIO()):
+        # 模板：经典单调栈线性贪心DP构造
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        if n == 1:
+            ac.lst(nums)
+            return
+
+        n = len(nums)
+
+        # 后面更小的
+        post = [-1] * n
+        stack = []
+        for i in range(n):
+            while stack and nums[stack[-1]] > nums[i]:
+                post[stack.pop()] = i
+            stack.append(i)
+
+        # 前面更小的
+        pre = [-1] * n
+        stack = []
+        for i in range(n - 1, -1, -1):
+            while stack and nums[stack[-1]] > nums[i]:
+                pre[stack.pop()] = i
+            stack.append(i)
+
+        left = [0] * n
+        left[0] = nums[0]
+        for i in range(1, n):
+            j = pre[i]
+            if j != -1:
+                left[i] += nums[i] * (i - j) + left[j]
+            else:
+                left[i] = nums[i] * (i + 1)
+
+        right = [0] * n
+        right[-1] = nums[-1]
+        for i in range(n - 2, -1, -1):
+            j = post[i]
+            if j != -1:
+                right[i] += nums[i] * (j - i) + right[j]
+            else:
+                right[i] = (n - i) * nums[i]
+
+        # 枚举先上升后下降的最高点
+        dp = [left[i] + right[i] - nums[i] for i in range(n)]
+        x = dp.index(max(dp))
+        for i in range(x + 1, n):
+            nums[i] = ac.min(nums[i - 1], nums[i])
+        for i in range(x - 1, -1, -1):
+            nums[i] = ac.min(nums[i + 1], nums[i])
+        ac.lst(nums)
+        return
 
 
 class TestGeneral(unittest.TestCase):
