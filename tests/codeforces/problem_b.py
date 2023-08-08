@@ -1,6 +1,6 @@
-import math
 import random
 import sys
+from collections import defaultdict
 
 
 class FastIO:
@@ -101,13 +101,6 @@ class FastIO:
         # 随机种子避免哈希冲突
         return random.randint(0, 10**9+7)
 
-def comb(m, n):
-    if n == 0:
-        return 1
-    if n == 1:
-        return m
-    return m*(m-1)//2
-
 
 class Solution:
     def __init__(self):
@@ -115,23 +108,12 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
-
-        for _ in range(ac.read_int()):
-            n, k = ac.read_ints()
-            ans = ""
-            b = 2
-            for x in range(n):
-                if not b:
-                    ans += "a"
-                    continue
-                else:
-                    if comb(n-x-1, b) >= k:
-                        ans += "a"
-                    else:
-                        ans += "b"
-                        k -= comb(n-x-1, b)
-                        b -= 1
-            ac.st(ans)
+        n = ac.read_int()
+        dct = defaultdict(int)
+        nums = ac.read_list_ints()
+        for i, num in enumerate(nums):
+            dct[i-num] += num
+        ac.st(max(dct.values()))
         return
 
 

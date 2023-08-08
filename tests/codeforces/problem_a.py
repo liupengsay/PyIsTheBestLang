@@ -108,8 +108,15 @@ class Solution:
     @staticmethod
     def main(ac=FastIO()):
         for _ in range(ac.read_int()):
-            h, m = ac.read_ints()
-            ac.st(23*60+59+1 - h*60-m)
+            n, a, b, c = ac.read_ints()
+            ans = 0
+            s = ac.read_str()
+            for w in s:
+                if w == "1":
+                    ans += ac.min(a+c, b)
+                else:
+                    ans += ac.min(b+c, a)
+            ac.st(ans)
         return
 
 

@@ -1,6 +1,10 @@
+import heapq
+from math import inf
+import heapq
 import random
 import sys
 from math import inf
+from typing import List, Dict
 
 
 class FastIO:
@@ -37,8 +41,7 @@ class FastIO:
 
     @staticmethod
     def read_list_ints_minus_one():
-        return list(map(lambda x: int(x) - 1,
-                        sys.stdin.readline().strip().split()))
+        return list(map(lambda x: int(x) - 1, sys.stdin.readline().strip().split()))
 
     @staticmethod
     def read_str():
@@ -100,7 +103,37 @@ class FastIO:
     @staticmethod
     def get_random_seed():
         # 随机种子避免哈希冲突
-        return random.randint(0, 10**9 + 7)
+        return random.randint(0, 10**9+7)
+
+
+class Dijkstra:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def get_dijkstra_cnt(dct: List[int], src: int) -> (List[int], List[int]):
+        # 模板: Dijkstra求最短路条数（最短路计算）
+        n = len(dct)
+        dis = [inf]*n
+        stack = [[0, src]]
+        dis[src] = 0
+        cnt = [0]*n
+        cnt[src] = 1
+        while stack:
+            d, i = heapq.heappop(stack)
+            if dis[i] < d:
+                continue
+            for j, w in dct[i]:
+                dj = w + d
+                if dj < dis[j]:
+                    dis[j] = dj
+                    # 最短距离更新，重置计数
+                    cnt[j] = cnt[i]
+                    heapq.heappush(stack, [dj, j])
+                elif dj == dis[j]:
+                    # 最短距离一致，增加计数
+                    cnt[j] += cnt[i]
+        return cnt, dis
 
 
 class Solution:
@@ -108,46 +141,35 @@ class Solution:
         return
 
     @staticmethod
-    def ac_3735(ac=FastIO()):
-        # 模板：经典倒序状压DP与输出具体方案
+    def ac_3772(ac=FastIO()):
+        # 模板：经典建立反图并使用Dijkstra最短路计数贪心模拟
         n, m = ac.read_ints()
-        if m == n*(n-1)//2:
-            ac.st(0)
-            return
-        group = [0] * n
-        for i in range(n):
-            group[i] |= (1 << i)
+        rev = [[] for _ in range(n)]
         for _ in range(m):
-            i, j = ac.read_ints()
-            i -= 1
-            j -= 1
-            group[i] |= (1 << j)
-            group[j] |= (1 << i)
+            u, v = ac.read_ints_minus_one()
+            rev[v].append([u, 1])
 
-        dp = [inf] * (1 << n)
-        pre = [[] for _ in range(1 << n)]
-        for i in range(n):
-            dp[group[i]] = 1
-            pre[group[i]] = [i, -1]  # use, from
+        k = ac.read_int()
+        p = ac.read_list_ints_minus_one()
+        cnt, dis = Dijkstra().get_dijkstra_cnt(rev, p[-1])
 
-        for i in range(1 << n):
-            if dp[i] == inf:
+        floor = 0
+        for i in range(k-1):
+            if k-i-1 == dis[p[i]]:
+                break
+            if dis[p[i-1]] == dis[p[i]] + 1:
                 continue
+            else:
+                floor += 1
 
-            for j in range(n):
-                if i & (1 << j):
-                    nex = i | group[j]
-                    if dp[nex] > dp[i] + 1:
-                        dp[nex] = dp[i] + 1
-                        pre[nex] = [j, i]  # use, from
+        ceil = 0
+        for i in range(k-1):
+            if dis[p[i]] == dis[p[i+1]] + 1 and cnt[p[i]] == cnt[p[i+1]]:
+                continue
+            else:
+                ceil += 1
+        ac.lst([floor, ceil])
 
-        s = (1 << n) - 1
-        ans = []
-        while s > 0:
-            ans.append(pre[s][0] + 1)
-            s = pre[s][1]
-        ac.st(len(ans))
-        ac.lst(ans)
         return
 
 

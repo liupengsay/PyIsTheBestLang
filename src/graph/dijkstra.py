@@ -8,6 +8,7 @@ from typing import List, Dict, Set
 from collections import Counter
 
 from src.fast_io import FastIO, inf
+from src.graph.spfa import SPFA
 
 """
 算法：Dijkstra（单源最短路经算法）、严格次短路、要保证加和最小因此只支持非负数权值、或者取反全部为非正数计算最长路、最短路生成树
@@ -106,6 +107,7 @@ B. Complete The Graph（https://codeforces.com/contest/715/problem/B）经典两
 ================================AcWing====================================
 176. 装满的油箱（https://www.acwing.com/problem/content/178/）经典加油题，使用dijkstra模仿状态
 3628. 边的删减（https://www.acwing.com/problem/content/3631/）经典最短路生成树模板题
+3772. 更新线路（https://www.acwing.com/problem/content/description/3775/）经典建立反图并使用Dijkstra最短路计数贪心模拟
 
 参考：OI WiKi（xx）
 """
@@ -116,7 +118,7 @@ class Dijkstra:
         return
 
     @staticmethod
-    def get_dijkstra_result(dct: List[Dict], src: int) -> List[float]:
+    def get_dijkstra_result(dct: List[List[int]], src: int) -> List[float]:
         # 模板: Dijkstra求最短路，变成负数求可以求最长路（还是正权值）
         n = len(dct)
         dis = [inf]*n
@@ -127,15 +129,15 @@ class Dijkstra:
             d, i = heapq.heappop(stack)
             if dis[i] < d:
                 continue
-            for j in dct[i]:
-                dj = dct[i][j] + d
+            for j, w in dct[i]:
+                dj = w + d
                 if dj < dis[j]:
                     dis[j] = dj
                     heapq.heappush(stack, [dj, j])
         return dis
 
     @staticmethod
-    def get_dijkstra_cnt(dct: List[Dict], src: int) -> (List[int], List[float]):
+    def get_dijkstra_cnt(dct: List[List[int]], src: int) -> (List[int], List[float]):
         # 模板: Dijkstra求最短路条数（最短路计算）
         n = len(dct)
         dis = [inf]*n
@@ -147,8 +149,8 @@ class Dijkstra:
             d, i = heapq.heappop(stack)
             if dis[i] < d:
                 continue
-            for j in dct[i]:
-                dj = dct[i][j] + d
+            for j, w in dct[i]:
+                dj = w + d
                 if dj < dis[j]:
                     dis[j] = dj
                     # 最短距离更新，重置计数
@@ -1759,6 +1761,38 @@ class Solution:
         ans = ans[:k]
         ac.st(len(ans))
         ac.lst(ans)
+        return
+
+    @staticmethod
+    def ac_3772(ac=FastIO()):
+        # 模板：经典建立反图并使用Dijkstra最短路计数贪心模拟
+        n, m = ac.read_ints()
+        rev = [[] for _ in range(n)]
+        for _ in range(m):
+            u, v = ac.read_ints_minus_one()
+            rev[v].append([u, 1])
+
+        k = ac.read_int()
+        p = ac.read_list_ints_minus_one()
+        cnt, dis = Dijkstra().get_dijkstra_cnt(rev, p[-1])
+
+        floor = 0
+        for i in range(k-1):
+            if k-i-1 == dis[p[i]]:
+                break
+            if dis[p[i-1]] == dis[p[i]] + 1:
+                continue
+            else:
+                floor += 1
+
+        ceil = 0
+        for i in range(k-1):
+            if dis[p[i]] == dis[p[i+1]] + 1 and cnt[p[i]] == cnt[p[i+1]]:
+                continue
+            else:
+                ceil += 1
+        ac.lst([floor, ceil])
+
         return
 
 
