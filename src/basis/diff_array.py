@@ -97,6 +97,7 @@ D. Absolute Sorting（https://codeforces.com/contest/1772/problem/D）离散差�
 102. 最佳牛围栏（https://www.acwing.com/problem/content/104/）前缀和加二分计算不短于k的子数组最大平均值
 121. 赶牛入圈（https://www.acwing.com/problem/content/description/123/）经典离散化前缀和，双指针加二分
 126. 最大的和（https://www.acwing.com/problem/content/128/）经典最大子矩形和
+3993. 石子游戏（https://www.acwing.com/problem/content/description/3996/）后缀和值域思维题
 
 参考：OI WiKi（xx）
 """
@@ -1418,6 +1419,33 @@ class Solution:
                     if not cur:
                         return False
         return True
+
+    @staticmethod
+    def ac_3993(ac=FastIO()):
+        # 模板：后缀和值域思维题
+        n, k = ac.read_ints()
+        nums = ac.read_list_ints()
+        low = min(nums)
+        high = max(nums)
+        if low == high:
+            ac.st(0)
+            return
+        # 按照值域计数
+        cnt = [0]*(high-low+1)
+        for num in nums:
+            cnt[num-low] += 1
+        ans = post_cnt = post_sum = 0
+        for i in range(high-low, 0, -1):
+            post_cnt += cnt[i]  # 计数
+            post_sum += post_cnt  # 变为i-1需要的代价
+            # 假如往下变为 i-1的代价不可行，则先变为 i
+            if post_sum > k:
+                ans += 1
+                post_sum = post_cnt
+        # 此时还需要变为0
+        ans += post_sum > 0
+        ac.st(ans)
+        return
 
 
 class TestGeneral(unittest.TestCase):

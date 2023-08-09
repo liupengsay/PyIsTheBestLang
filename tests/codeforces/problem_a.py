@@ -107,10 +107,25 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
+        def check():
+            if "11" in s:
+                ac.st("No")
+                return
+            for i in range(n):
+                if s[i] == "0":
+                    if (i and s[i-1]=="1") or (i+1<n and s[i+1]=="1"):
+                        continue
+                    else:
+                        ac.st("No")
+                        return
+            ac.st("Yes")
+            return
+
         for _ in range(ac.read_int()):
-            n, k= ac.read_ints()
-            nums = ac.read_list_ints()
-            ac.st(min(k//x for x in nums if k%x==0))
+            n = ac.read_int()
+            s = ac.read_str()
+            check()
+
         return
 
 

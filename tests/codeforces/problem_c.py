@@ -1,7 +1,5 @@
-import sys
 import random
 import sys
-from typing import Callable
 
 
 class FastIO:
@@ -103,81 +101,35 @@ class FastIO:
         return random.randint(0, 10**9+7)
 
 
-class BinarySearch:
-    def __init__(self):
-        return
-
-    @staticmethod
-    def find_int_left(low: int, high: int, check: Callable) -> int:
-        # 模板: 整数范围内二分查找，选择最靠左满足check
-        while low < high - 1:
-            mid = low + (high - low) // 2
-            if check(mid):
-                high = mid
-            else:
-                low = mid
-        return low if check(low) else high
-
-    @staticmethod
-    def find_int_right(low: int, high: int, check: Callable) -> int:
-        # 模板: 整数范围内二分查找，选择最靠右满足check
-        while low < high - 1:
-            mid = low + (high - low) // 2
-            if check(mid):
-                low = mid
-            else:
-                high = mid
-        return high if check(high) else low
-
-    @staticmethod
-    def find_float_left(low: float, high: float, check: Callable, error=1e-6) -> float:
-        # 模板: 浮点数范围内二分查找, 选择最靠左满足check
-        while low < high - error:
-            mid = low + (high - low) / 2
-            if check(mid):
-                high = mid
-            else:
-                low = mid
-        return low if check(low) else high
-
-    @staticmethod
-    def find_float_right(low: float, high: float, check: Callable, error=1e-6) -> float:
-        # 模板: 浮点数范围内二分查找, 选择最靠右满足check
-        while low < high - error:
-            mid = low + (high - low) / 2
-            if check(mid):
-                low = mid
-            else:
-                high = mid
-        return high if check(high) else low
-
-
 class Solution:
     def __init__(self):
         return
 
     @staticmethod
-    def main(ac=FastIO()):
-        n, m = ac.read_ints()
+    def ac_3993(ac=FastIO()):
+        # 模板：后缀和值域思维题
+        n, k = ac.read_ints()
         nums = ac.read_list_ints()
-        pos = ac.read_list_ints()
-        pos.sort()
-        nums.sort()
-
-        def check(x):
-            i = 0
-            for num in nums:
-                while i < m and not (pos[i]-x <= num <= pos[i]+x):
-                    i += 1
-                if i == m:
-                    return False
-            return True
-
-        ans = BinarySearch().find_float_left(0, 2*10**9, check)
-        if ans - int(ans)>=0.5:
-            ac.st(int(ans)+1)
-        else:
-            ac.st(int(ans))
+        low = min(nums)
+        high = max(nums)
+        if low == high:
+            ac.st(0)
+            return
+        # 按照值域计数
+        cnt = [0]*(high-low+1)
+        for num in nums:
+            cnt[num-low] += 1
+        ans = post_cnt = post_sum = 0
+        for i in range(high-low, 0, -1):
+            post_cnt += cnt[i]  # 计数
+            post_sum += post_cnt  # 变为i-1需要的代价
+            # 假如往下变为 i-1的代价不可行，则先变为 i
+            if post_sum > k:
+                ans += 1
+                post_sum = post_cnt
+        # 此时还需要变为0
+        ans += post_sum > 0
+        ac.st(ans)
         return
 
 

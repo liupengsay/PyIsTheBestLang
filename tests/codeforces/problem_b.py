@@ -107,18 +107,20 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
-        m, n = ac.read_ints()
-        grid = [ac.read_list_ints() for _ in range(m)]
-        ans = -m*n
-        row = [sum(g) for g in grid]
-        for x in row:
-            ans += pow(2, x) - 1
-            ans += pow(2, n-x) - 1
-        row = [sum(g) for g in zip(*grid)]
-        for x in row:
-            ans += pow(2, x) - 1
-            ans += pow(2, m-x) - 1
-        ac.st(ans)
+        n, w = ac.read_ints()
+        nums = ac.read_list_ints()
+        floor = ceil = pre = 0
+        for num in nums:
+            pre += num
+            if pre < floor:
+                floor = pre
+            if pre > ceil:
+                ceil = pre
+        if -floor > w - ceil:
+            ac.st(0)
+        else:
+            ans = (w-ceil) + floor + 1
+            ac.st(ans)
         return
 
 
