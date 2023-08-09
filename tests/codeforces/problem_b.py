@@ -1,5 +1,7 @@
+import sys
 import random
 import sys
+from itertools import permutations
 
 
 class FastIO:
@@ -107,27 +109,39 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
-        for _ in range(ac.read_int()):
-            n, k = ac.read_ints()
-            s = ac.read_list_str()
-            dct = sorted(list(set(s)))
-            ceil = max(dct)
-            floor = min(dct)
+        ind = [[-1, 0], [1, 0], [0, -1], [0, 1]]
 
-            if k > n:
-                ans = s+(k-n)*[min(dct)]
-            else:
-                ans = s[:k]
-                for i in range(k-1, -1, -1):
-                    if ans[i] != ceil:
-                        for w in dct:
-                            if w > ans[i]:
-                                ans[i] = w
-                                break
-                        for j in range(i+1, k):
-                            ans[j] = floor
-                        break
-            ac.st("".join(ans))
+        def check():
+            start = [-1, -1]
+            end = [-1, -1]
+            for i in range(m):
+                for j in range(n):
+                    if grid[i][j] == "S":
+                        start = [i, j]
+                    elif grid[i][j] == "E":
+                        end = [i, j]
+            i, j = start[:]
+            for w in s:
+                if [i, j] == end:
+                    return 1
+                a, b = dct[w]
+                i += a
+                j += b
+                if not (0<=i<m and 0<=j<n and grid[i][j]!="#"):
+                    return 0
+            return 1 if [i, j] == end else 0
+
+        for _ in range(ac.read_int()):
+            m, n = ac.read_ints()
+            grid = [ac.read_str() for _ in range(m)]
+            s = ac.read_str()
+            ans = 0
+            for item in permutations(list(range(4)), 4):
+                dct = dict()
+                for d, ls in zip(item, ind):
+                    dct[str(d)] = ls
+                ans += check()
+            ac.st(ans)
         return
 
 

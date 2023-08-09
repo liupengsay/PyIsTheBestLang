@@ -64,6 +64,7 @@ A. Cutting Figure（https://codeforces.com/contest/193/problem/A）脑筋急转�
 
 ===================================AcWing===================================
 3579. 数字移动（https://www.acwing.com/problem/content/3582/）强连通分量模板题
+3813. 最大路径权值（https://www.acwing.com/problem/content/submission/3816/）强连通分量模板与拓扑排序DP
 
 """
 
@@ -958,6 +959,49 @@ class Solution:
                 for i in group[g]:
                     ans[i] = x
             ac.lst(ans)
+        return
+
+    @staticmethod
+    def ac_3813(ac=FastIO()):
+        # 模板：强连通分量模板与拓扑排序DP
+        n, m = ac.read_ints()
+        s = ac.read_str()
+        dct = [set() for _ in range(n)]
+        for _ in range(m):
+            a, b = ac.read_ints_minus_one()
+            if a == b:
+                ac.st(-1)
+                return
+            dct[a].add(b)
+        scc_id, _, _ = TarjanCC().get_strongly_connected_component_bfs(n, [list(e) for e in dct])
+        if scc_id != n:
+            ac.st(-1)
+            return
+
+        cur = [[0]*26 for _ in range(n)]
+        degree = [0]*n
+        for i in range(n):
+            for j in dct[i]:
+                degree[j] += 1
+        stack = [i for i in range(n) if not degree[i]]
+        ans = 0
+        while stack:
+            nex = []
+            for i in stack:
+                cur[i][ord(s[i]) - ord("a")] += 1
+                x = max(cur[i])
+                if x > ans:
+                    ans = x
+                for j in dct[i]:
+                    for w in range(26):
+                        y = cur[i][w]
+                        if y > cur[j][w]:
+                            cur[j][w] = y
+                    degree[j] -= 1
+                    if not degree[j]:
+                        nex.append(j)
+            stack = nex[:]
+        ac.st(ans)
         return
 
 

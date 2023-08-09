@@ -1,21 +1,10 @@
-import bisect
-import decimal
-import heapq
-from types import GeneratorType
 from math import inf
 import sys
-from heapq import heappush, heappop, heappushpop
-from functools import cmp_to_key
-from collections import defaultdict, Counter, deque
-import math
-from functools import lru_cache
-from heapq import nlargest
-from functools import reduce
 import random
-from itertools import combinations, permutations
-from operator import xor, add
-from operator import mul
-from typing import List, Callable, Dict, Set, Tuple, DefaultDict
+import sys
+from collections import defaultdict
+from math import inf
+from typing import List, Set, DefaultDict
 
 
 class FastIO:
@@ -117,134 +106,70 @@ class FastIO:
         return random.randint(0, 10**9+7)
 
 
-class SegmentTreeRangeUpdateQuerySumMinMax:
-    def __init__(self, n) -> None:
-        # 模板：区间值增减、区间和查询、区间最小值查询、区间最大值查询
-        self.n = n
-        self.lazy = [0] * (4 * self.n)  # 懒标记
-        self.floor = [inf] * (4 * self.n)  # 最小值
+class TarjanCC:
+    def __init__(self):
         return
 
     @staticmethod
-    def max(a: int, b: int) -> int:
-        return a if a > b else b
+    def get_strongly_connected_component_bfs(n: int, edge: List[List[int]]) -> (int, DefaultDict[int, Set[int]], List[int]):
+        # 模板：Tarjan求解有向图的强连通分量 edge为有向边要求无自环与重边
+        dfs_id = 0
+        order, low = [inf] * n, [inf] * n
+        visit = [0] * n
+        out = []
+        in_stack = [0] * n
+        scc_id = 0
+        scc_node_id = defaultdict(set)
+        node_scc_id = [-1] * n
+        parent = [-1]*n
+        for node in range(n):
+            if not visit[node]:
+                stack = [[node, 0]]
+                while stack:
+                    cur, ind = stack[-1]
+                    if not visit[cur]:
+                        visit[cur] = 1
+                        order[cur] = low[cur] = dfs_id
+                        dfs_id += 1
+                        out.append(cur)
+                        in_stack[cur] = 1
+                    if ind == len(edge[cur]):
+                        stack.pop()
+                        if order[cur] == low[cur]:
+                            while out:
+                                top = out.pop()
+                                in_stack[top] = 0
+                                scc_node_id[scc_id].add(top)
+                                node_scc_id[top] = scc_id
+                                if top == cur:
+                                    break
+                            scc_id += 1
 
-    @staticmethod
-    def min(a: int, b: int) -> int:
-        return a if a < b else b
+                        cur, nex = parent[cur], cur
+                        if cur != -1:
+                            low[cur] = low[cur] if low[cur] < low[nex] else low[nex]
+                    else:
+                        nex = edge[cur][ind]
+                        stack[-1][-1] += 1
+                        if not visit[nex]:
+                            parent[nex] = cur
+                            stack.append([nex, 0])
+                        elif in_stack[nex]:
+                            low[cur] = low[cur] if low[cur] < order[nex] else order[nex]  # 注意这里是order
 
-    def build(self, nums: List[int]) -> None:
-        # 使用数组初始化线段树
-        assert self.n == len(nums)
-        stack = [[0, self.n - 1, 1]]
-        while stack:
-            s, t, ind = stack.pop()
-            if ind >= 0:
-                if s == t:
-                    self.floor[ind] = nums[s]
-                    self.lazy[ind] = nums[s]
-                else:
-                    stack.append([s, t, ~ind])
-                    m = s + (t - s) // 2
-                    stack.append([s, m, 2 * ind])
-                    stack.append([m + 1, t, 2 * ind + 1])
-            else:
-                ind = ~ind
-                self.push_up(ind)
-        return
-
-    def push_down(self, i: int, s: int, m: int, t: int) -> None:
-        # 下放懒标记
-        if self.lazy[i]:
-            self.floor[2 * i] += self.lazy[i]
-            self.floor[2 * i + 1] += self.lazy[i]
-
-            self.lazy[2 * i] += self.lazy[i]
-            self.lazy[2 * i + 1] += self.lazy[i]
-
-            self.lazy[i] = 0
-
-    def push_up(self, i) -> None:
-        self.floor[i] = self.min(self.floor[2 * i], self.floor[2 * i + 1])
-        return
-
-    def make_tag(self, i, s, t, val) -> None:
-        self.floor[i] += val
-        self.lazy[i] += val
-        return
-
-    def update_range(self, left: int, right: int, s: int, t: int, val: int, i: int) -> None:
-        # 增减区间值 left 与 right 取值为 0 到 n-1 而 i 从 1 开始
-        stack = [[s, t, i]]
-        while stack:
-            s, t, i = stack.pop()
-            if i >= 0:
-                if left <= s and t <= right:
-                    self.make_tag(i, s, t, val)
-                    continue
-
-                m = s + (t - s) // 2
-                self.push_down(i, s, m, t)
-                stack.append([s, t, ~i])
-
-                if left <= m:  # 注意左右子树的边界与范围
-                    stack.append([s, m, 2 * i])
-                if right > m:
-                    stack.append([m + 1, t, 2 * i + 1])
-            else:
-                i = ~i
-                self.push_up(i)
-        return
-
-    def update_point(self, left: int, right: int, s: int, t: int, val: int, i: int) -> None:
-        # 增减单点值 left 与 right 取值为 0 到 n-1 而 i 从 1 开始
-
-        while True:
-            if left <= s and t <= right:
-                self.make_tag(i, s, t, val)
-                break
-            m = s + (t - s) // 2
-            self.push_down(i, s, m, t)
-            if left <= m:  # 注意左右子树的边界与范围
-                s, t, i = s, m, 2 * i
-            if right > m:
-                s, t, i = m + 1, t, 2 * i + 1
-        while i > 1:
-            i //= 2
-            self.push_up(i)
-        return
-
-    def query_min(self, left: int, right: int, s: int, t: int, i: int) -> int:
-        # 查询区间的最小值
-        stack = [[s, t, i]]
-        highest = inf
-        while stack:
-            s, t, i = stack.pop()
-            if left <= s and t <= right:
-                highest = self.min(highest, self.floor[i])
-                continue
-            m = s + (t - s) // 2
-            self.push_down(i, s, m, t)
-            if left <= m:
-                stack.append([s, m, 2 * i])
-            if right > m:
-                stack.append([m + 1, t, 2 * i + 1])
-        return highest
-
-    def get_all_nums(self) -> List[int]:
-        # 查询区间的所有值
-        stack = [[0, self.n-1, 1]]
-        nums = [0]*self.n
-        while stack:
-            s, t, i = stack.pop()
-            if s == t:
-                nums[s] = self.floor[i]
-                continue
-            m = s + (t - s) // 2
-            self.push_down(i, s, m, t)
-            stack.append([s, m, 2 * i])
-            stack.append([m + 1, t, 2 * i + 1])
-        return nums
+        # 建立新图
+        new_dct = [set() for _ in range(scc_id)]
+        for i in range(n):
+            for j in edge[i]:
+                a, b = node_scc_id[i], node_scc_id[j]
+                if a != b:
+                    new_dct[b].add(a)
+        new_degree = [0]*scc_id
+        for i in range(scc_id):
+            for j in new_dct[i]:
+                new_degree[j] += 1
+        # SCC的数量，分组，每个结点对应的SCC编号
+        return scc_id, scc_node_id, node_scc_id
 
 
 class Solution:
@@ -252,28 +177,46 @@ class Solution:
         return
 
     @staticmethod
-    def ac_3805(ac=FastIO()):
-        # 模板：区间增减与最小值查询
-        n = ac.read_int()
-        tree = SegmentTreeRangeUpdateQuerySumMinMax(n)
-        tree.build(ac.read_list_ints())
-        for _ in range(ac.read_int()):
-            lst = ac.read_list_ints()
-            if len(lst) == 2:
-                l, r = lst
-                if l <= r:
-                    ac.st(tree.query_min(l, r, 0, n-1, 1))
-                else:
-                    ans1 = tree.query_min(l, n-1, 0, n-1, 1)
-                    ans2 = tree.query_min(0, r, 0, n-1, 1)
-                    ac.st(ac.min(ans1, ans2))
-            else:
-                l, r, d = lst
-                if l <= r:
-                    tree.update_range(l, r, 0, n-1, d, 1)
-                else:
-                    tree.update_range(l, n-1, 0, n-1, d, 1)
-                    tree.update_range(0, r, 0, n-1, d, 1)
+    def ac_3813(ac=FastIO()):
+        # 模板：强连通分量模板与拓扑排序DP
+        n, m = ac.read_ints()
+        s = ac.read_str()
+        dct = [set() for _ in range(n)]
+        for _ in range(m):
+            a, b = ac.read_ints_minus_one()
+            if a == b:
+                ac.st(-1)
+                return
+            dct[a].add(b)
+        scc_id, _, _ = TarjanCC().get_strongly_connected_component_bfs(n, [list(e) for e in dct])
+        if scc_id != n:
+            ac.st(-1)
+            return
+
+        cur = [[0]*26 for _ in range(n)]
+        degree = [0]*n
+        for i in range(n):
+            for j in dct[i]:
+                degree[j] += 1
+        stack = [i for i in range(n) if not degree[i]]
+        ans = 0
+        while stack:
+            nex = []
+            for i in stack:
+                cur[i][ord(s[i]) - ord("a")] += 1
+                x = max(cur[i])
+                if x > ans:
+                    ans = x
+                for j in dct[i]:
+                    for w in range(26):
+                        y = cur[i][w]
+                        if y > cur[j][w]:
+                            cur[j][w] = y
+                    degree[j] -= 1
+                    if not degree[j]:
+                        nex.append(j)
+            stack = nex[:]
+        ac.st(ans)
         return
 
 
