@@ -1,10 +1,6 @@
-from math import inf
-import sys
 import random
 import sys
-from collections import defaultdict
-from math import inf
-from typing import List, Set, DefaultDict
+from collections import Counter
 
 
 class FastIO:
@@ -106,70 +102,43 @@ class FastIO:
         return random.randint(0, 10**9+7)
 
 
-class TarjanCC:
+class KMP:
     def __init__(self):
         return
 
     @staticmethod
-    def get_strongly_connected_component_bfs(n: int, edge: List[List[int]]) -> (int, DefaultDict[int, Set[int]], List[int]):
-        # 模板：Tarjan求解有向图的强连通分量 edge为有向边要求无自环与重边
-        dfs_id = 0
-        order, low = [inf] * n, [inf] * n
-        visit = [0] * n
-        out = []
-        in_stack = [0] * n
-        scc_id = 0
-        scc_node_id = defaultdict(set)
-        node_scc_id = [-1] * n
-        parent = [-1]*n
-        for node in range(n):
-            if not visit[node]:
-                stack = [[node, 0]]
-                while stack:
-                    cur, ind = stack[-1]
-                    if not visit[cur]:
-                        visit[cur] = 1
-                        order[cur] = low[cur] = dfs_id
-                        dfs_id += 1
-                        out.append(cur)
-                        in_stack[cur] = 1
-                    if ind == len(edge[cur]):
-                        stack.pop()
-                        if order[cur] == low[cur]:
-                            while out:
-                                top = out.pop()
-                                in_stack[top] = 0
-                                scc_node_id[scc_id].add(top)
-                                node_scc_id[top] = scc_id
-                                if top == cur:
-                                    break
-                            scc_id += 1
+    def prefix_function(s):
+        # 计算s[:i]与s[:i]的最长公共真前缀与真后缀
+        n = len(s)
+        pi = [0] * n
+        for i in range(1, n):
+            j = pi[i - 1]
+            while j > 0 and s[i] != s[j]:
+                j = pi[j - 1]
+            if s[i] == s[j]:
+                j += 1
+            pi[i] = j
+        # pi[0] = 0
+        return pi
 
-                        cur, nex = parent[cur], cur
-                        if cur != -1:
-                            low[cur] = low[cur] if low[cur] < low[nex] else low[nex]
-                    else:
-                        nex = edge[cur][ind]
-                        stack[-1][-1] += 1
-                        if not visit[nex]:
-                            parent[nex] = cur
-                            stack.append([nex, 0])
-                        elif in_stack[nex]:
-                            low[cur] = low[cur] if low[cur] < order[nex] else order[nex]  # 注意这里是order
-
-        # 建立新图
-        new_dct = [set() for _ in range(scc_id)]
-        for i in range(n):
-            for j in edge[i]:
-                a, b = node_scc_id[i], node_scc_id[j]
-                if a != b:
-                    new_dct[b].add(a)
-        new_degree = [0]*scc_id
-        for i in range(scc_id):
-            for j in new_dct[i]:
-                new_degree[j] += 1
-        # SCC的数量，分组，每个结点对应的SCC编号
-        return scc_id, scc_node_id, node_scc_id
+    @staticmethod
+    def z_function(s):
+        # 计算 s[i:] 与 s 的最长公共前缀
+        n = len(s)
+        z = [0] * n
+        left, r = 0, 0
+        for i in range(1, n):
+            if i <= r and z[i - left] < r - i + 1:
+                z[i] = z[i - left]
+            else:
+                z[i] = max(0, r - i + 1)
+                while i + z[i] < n and s[z[i]] == s[i + z[i]]:
+                    z[i] += 1
+            if i + z[i] - 1 > r:
+                left = i
+                r = i + z[i] - 1
+        # z[0] = 0
+        return z
 
 
 class Solution:
@@ -177,46 +146,30 @@ class Solution:
         return
 
     @staticmethod
-    def ac_3813(ac=FastIO()):
-        # 模板：强连通分量模板与拓扑排序DP
-        n, m = ac.read_ints()
-        s = ac.read_str()
-        dct = [set() for _ in range(n)]
-        for _ in range(m):
-            a, b = ac.read_ints_minus_one()
-            if a == b:
-                ac.st(-1)
-                return
-            dct[a].add(b)
-        scc_id, _, _ = TarjanCC().get_strongly_connected_component_bfs(n, [list(e) for e in dct])
-        if scc_id != n:
-            ac.st(-1)
-            return
-
-        cur = [[0]*26 for _ in range(n)]
-        degree = [0]*n
-        for i in range(n):
-            for j in dct[i]:
-                degree[j] += 1
-        stack = [i for i in range(n) if not degree[i]]
-        ans = 0
-        while stack:
-            nex = []
-            for i in stack:
-                cur[i][ord(s[i]) - ord("a")] += 1
-                x = max(cur[i])
-                if x > ans:
-                    ans = x
-                for j in dct[i]:
-                    for w in range(26):
-                        y = cur[i][w]
-                        if y > cur[j][w]:
-                            cur[j][w] = y
-                    degree[j] -= 1
-                    if not degree[j]:
-                        nex.append(j)
-            stack = nex[:]
-        ac.st(ans)
+    def ac_3823(ac=FastIO()):
+        # 模板：KMP与扩展KMP即z函数应用模板题
+        kmp = KMP()
+        for _ in range(ac.read_int()):
+            s = ac.read_str()
+            if len(s) <= 2:
+                ac.st("not exist")
+                continue
+            pre = kmp.prefix_function(s)
+            z = kmp.z_function(s)
+            ans = 0
+            cnt = Counter(s)
+            if s[0] == s[-1] and cnt[s[0]] >= 3:
+                ans = 1
+            m = len(s)
+            for i in range(1, m-1):
+                w = pre[i]
+                if z[-w] == w:
+                    if w > ans:
+                        ans = w
+            if not ans:
+                ac.st("not exist")
+            else:
+                ac.st(s[:ans])
         return
 
 

@@ -107,14 +107,16 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
+        def check():
+            for a in range(l1, r1+1):
+                for b in range(l2, r2+1):
+                    if a != b:
+                        return [a, b]
+            return
 
         for _ in range(ac.read_int()):
-            n = ac.read_int()
-            if n % 2 == 0:
-                ac.lst(list(range(1, n+1))[::-1])
-            else:
-                ans = [n] + list(range(1, n))
-                ac.lst(ans)
+            l1, r1, l2, r2 = ac.read_ints()
+            ac.lst(check())
         return
 
 

@@ -30,6 +30,7 @@ E. Test（https://codeforces.com/contest/25/problem/E）kmp求字符串之间的
 
 141. 周期（https://www.acwing.com/problem/content/143/）利用KMP求每个字符串前缀的最小循环节
 160. 匹配统计（https://www.acwing.com/problem/content/162/）z函数模板题
+3823. 寻找字符串（https://www.acwing.com/problem/content/3826/）KMP与扩展KMP即z函数应用模板题
 
 参考：OI WiKi（https://oi-wiki.org/string/kmp/）
 
@@ -280,6 +281,33 @@ class Solution:
             if len(cur) < len(ans) or (len(cur) == len(ans) and cur < ans):
                 ans = cur
         return ans
+
+    @staticmethod
+    def ac_3823(ac=FastIO()):
+        # 模板：KMP与扩展KMP即z函数应用模板题
+        kmp = KMP()
+        for _ in range(ac.read_int()):
+            s = ac.read_str()
+            if len(s) <= 2:
+                ac.st("not exist")
+                continue
+            pre = kmp.prefix_function(s)
+            z = kmp.z_function(s)
+            ans = 0
+            cnt = Counter(s)
+            if s[0] == s[-1] and cnt[s[0]] >= 3:
+                ans = 1
+            m = len(s)
+            for i in range(1, m-1):
+                w = pre[i]
+                if z[-w] == w:
+                    if w > ans:
+                        ans = w
+            if not ans:
+                ac.st("not exist")
+            else:
+                ac.st(s[:ans])
+        return
 
 
 class TestGeneral(unittest.TestCase):

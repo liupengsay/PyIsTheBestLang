@@ -1,7 +1,5 @@
-import sys
 import random
 import sys
-from itertools import permutations
 
 
 class FastIO:
@@ -109,39 +107,23 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
-        ind = [[-1, 0], [1, 0], [0, -1], [0, 1]]
-
-        def check():
-            start = [-1, -1]
-            end = [-1, -1]
-            for i in range(m):
-                for j in range(n):
-                    if grid[i][j] == "S":
-                        start = [i, j]
-                    elif grid[i][j] == "E":
-                        end = [i, j]
-            i, j = start[:]
-            for w in s:
-                if [i, j] == end:
-                    return 1
-                a, b = dct[w]
-                i += a
-                j += b
-                if not (0<=i<m and 0<=j<n and grid[i][j]!="#"):
-                    return 0
-            return 1 if [i, j] == end else 0
-
         for _ in range(ac.read_int()):
-            m, n = ac.read_ints()
-            grid = [ac.read_str() for _ in range(m)]
-            s = ac.read_str()
-            ans = 0
-            for item in permutations(list(range(4)), 4):
-                dct = dict()
-                for d, ls in zip(item, ind):
-                    dct[str(d)] = ls
-                ans += check()
-            ac.st(ans)
+            n = ac.read_int()
+
+            ans = []
+            pre = 0
+            for _ in range(n):
+                li, ri = ac.read_ints()
+                if pre > ri:
+                    ans.append(0)
+                    continue
+                if pre < li:
+                    pre = li
+                ans.append(pre)
+                pre += 1
+            ac.lst(ans)
+
+
         return
 
 
