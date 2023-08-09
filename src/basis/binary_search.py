@@ -95,6 +95,7 @@ I. Photo Processing（https://codeforces.com/problemset/problem/883/I）二分�
 ================================AcWing================================
 120. 防线（https://www.acwing.com/problem/content/122/）根据单调性二分
 14. 不修改数组找出重复的数字（https://www.acwing.com/problem/content/description/15/）利用鸽巢原理二分查找重复的数，修改数组且只用O(1)空间
+3973. 无线网络（https://www.acwing.com/problem/content/3976/）浮点数二分与滑动窗口双指针
 
 参考：OI WiKi（xx）
 """
@@ -1159,6 +1160,31 @@ class Solution:
             ac.st("".join(ans))
         else:
             ac.st("N" * n)
+        return
+
+    @staticmethod
+    def ac_3973(ac=FastIO()):
+        # 模板：浮点数二分与滑动窗口双指针
+        n, m = ac.read_ints()
+        nums = ac.read_list_ints()
+        pos = ac.read_list_ints()
+        pos.sort()
+        nums.sort()
+
+        def check(x):
+            i = 0
+            for num in nums:
+                while i < m and not (pos[i]-x <= num <= pos[i]+x):
+                    i += 1
+                if i == m:
+                    return False
+            return True
+
+        ans = BinarySearch().find_float_left(0, 2*10**9, check)
+        if ans - int(ans)>=0.5:
+            ac.st(int(ans)+1)
+        else:
+            ac.st(int(ans))
         return
 
 

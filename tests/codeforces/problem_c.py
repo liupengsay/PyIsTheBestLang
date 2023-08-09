@@ -1,21 +1,7 @@
-import bisect
-import decimal
-import heapq
-from types import GeneratorType
-from math import inf
 import sys
-from heapq import heappush, heappop, heappushpop
-from functools import cmp_to_key
-from collections import defaultdict, Counter, deque
-import math
-from functools import lru_cache
-from heapq import nlargest
-from functools import reduce
 import random
-from itertools import combinations, permutations
-from operator import xor, add
-from operator import mul
-from typing import List, Callable, Dict, Set, Tuple, DefaultDict
+import sys
+from typing import Callable
 
 
 class FastIO:
@@ -117,13 +103,81 @@ class FastIO:
         return random.randint(0, 10**9+7)
 
 
+class BinarySearch:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def find_int_left(low: int, high: int, check: Callable) -> int:
+        # 模板: 整数范围内二分查找，选择最靠左满足check
+        while low < high - 1:
+            mid = low + (high - low) // 2
+            if check(mid):
+                high = mid
+            else:
+                low = mid
+        return low if check(low) else high
+
+    @staticmethod
+    def find_int_right(low: int, high: int, check: Callable) -> int:
+        # 模板: 整数范围内二分查找，选择最靠右满足check
+        while low < high - 1:
+            mid = low + (high - low) // 2
+            if check(mid):
+                low = mid
+            else:
+                high = mid
+        return high if check(high) else low
+
+    @staticmethod
+    def find_float_left(low: float, high: float, check: Callable, error=1e-6) -> float:
+        # 模板: 浮点数范围内二分查找, 选择最靠左满足check
+        while low < high - error:
+            mid = low + (high - low) / 2
+            if check(mid):
+                high = mid
+            else:
+                low = mid
+        return low if check(low) else high
+
+    @staticmethod
+    def find_float_right(low: float, high: float, check: Callable, error=1e-6) -> float:
+        # 模板: 浮点数范围内二分查找, 选择最靠右满足check
+        while low < high - error:
+            mid = low + (high - low) / 2
+            if check(mid):
+                low = mid
+            else:
+                high = mid
+        return high if check(high) else low
+
+
 class Solution:
     def __init__(self):
         return
 
     @staticmethod
     def main(ac=FastIO()):
+        n, m = ac.read_ints()
+        nums = ac.read_list_ints()
+        pos = ac.read_list_ints()
+        pos.sort()
+        nums.sort()
 
+        def check(x):
+            i = 0
+            for num in nums:
+                while i < m and not (pos[i]-x <= num <= pos[i]+x):
+                    i += 1
+                if i == m:
+                    return False
+            return True
+
+        ans = BinarySearch().find_float_left(0, 2*10**9, check)
+        if ans - int(ans)>=0.5:
+            ac.st(int(ans)+1)
+        else:
+            ac.st(int(ans))
         return
 
 

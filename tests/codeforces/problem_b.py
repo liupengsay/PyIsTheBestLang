@@ -1,21 +1,5 @@
-import bisect
-import decimal
-import heapq
-from types import GeneratorType
-from math import inf
-import sys
-from heapq import heappush, heappop, heappushpop
-from functools import cmp_to_key
-from collections import defaultdict, Counter, deque
-import math
-from functools import lru_cache
-from heapq import nlargest
-from functools import reduce
 import random
-from itertools import combinations, permutations
-from operator import xor, add
-from operator import mul
-from typing import List, Callable, Dict, Set, Tuple, DefaultDict
+import sys
 
 
 class FastIO:
@@ -123,7 +107,18 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
-
+        m, n = ac.read_ints()
+        grid = [ac.read_list_ints() for _ in range(m)]
+        ans = -m*n
+        row = [sum(g) for g in grid]
+        for x in row:
+            ans += pow(2, x) - 1
+            ans += pow(2, n-x) - 1
+        row = [sum(g) for g in zip(*grid)]
+        for x in row:
+            ans += pow(2, x) - 1
+            ans += pow(2, m-x) - 1
+        ac.st(ans)
         return
 
 
