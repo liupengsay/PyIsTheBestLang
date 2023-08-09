@@ -1,3 +1,4 @@
+import math
 import random
 import sys
 
@@ -107,25 +108,17 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
-        def check():
-            if "11" in s:
-                ac.st("No")
-                return
-            for i in range(n):
-                if s[i] == "0":
-                    if (i and s[i-1]=="1") or (i+1<n and s[i+1]=="1"):
-                        continue
-                    else:
-                        ac.st("No")
-                        return
-            ac.st("Yes")
-            return
-
         for _ in range(ac.read_int()):
-            n = ac.read_int()
-            s = ac.read_str()
-            check()
+            a, b, c, d, k = ac.read_ints()
+            def check():
+                if math.ceil(a/c)+math.ceil(b/d) > k:
+                    ac.st(-1)
+                    return
+                x, y = math.ceil(a/c), math.ceil(b/d)
+                ac.lst([x, y])
+                return
 
+            check()
         return
 
 

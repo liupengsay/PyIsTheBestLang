@@ -1416,13 +1416,13 @@ class SegmentTreeRangeUpdateMax:
 
 class SegmentTreeRangeUpdateMulQuerySum:
     def __init__(self, nums: List[int], p) -> None:
-        # 模板：区间值增减、区间值修改、区间最大值查询
+        # 模板：区间值增减、区间值乘法、区间值修改、区间最大值查询
         self.p = p
         self.n = len(nums)
         self.nums = nums
         self.lazy_add = [0] * (4 * self.n)  # 懒标记
         self.lazy_mul = [1] * (4 * self.n)  # 懒标记
-        self.cover = [0] * (4 * self.n)  # 最大值
+        self.cover = [0] * (4 * self.n)  # 区间和
         self.build()  # 初始化线段树
         return
 

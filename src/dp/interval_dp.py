@@ -45,6 +45,9 @@ P4170 [CQOI2007]涂色（https://www.luogu.com.cn/problem/P4170）经典区间 D
 C. The Sports Festival（https://codeforces.com/problemset/problem/1509/C）转换为区间DP进行求解
 B. Zuma（https://codeforces.com/problemset/problem/607/B）区间DP，经典通过消除回文子序列删除整个数组的最少次数
 
+================================AcWing================================
+3996. 涂色（https://www.acwing.com/problem/content/3999/）经典区间 DP 最长回文子序列变形
+
 参考：OI WiKi（xx）
 """
 
@@ -348,6 +351,29 @@ class Solution:
                     for k in range(i, j):
                         dp[i][j] = ac.min(dp[i][j], dp[i][k] + dp[k + 1][j])
         ac.st(dp[0][n - 1])
+        return
+
+
+    @staticmethod
+    def ac_3996(ac=FastIO()):
+        # 模板：经典区间 DP 最长回文子序列变形
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        pre = []
+        for num in nums:
+            if pre and pre[-1] == num:
+                continue
+            pre.append(num)
+        nums = pre[:]
+        n = len(nums)
+        dp = [[0]*n for _ in range(n)]
+        for i in range(n-1, -1, -1):
+            for j in range(i+1, n):
+                if nums[i] == nums[j]:
+                    dp[i][j] = dp[i+1][j-1] + 1
+                else:
+                    dp[i][j] = ac.min(dp[i+1][j], dp[i][j-1]) + 1
+        ac.st(dp[0][n-1])
         return
 
 

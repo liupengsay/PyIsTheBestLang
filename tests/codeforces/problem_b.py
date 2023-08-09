@@ -1,5 +1,7 @@
+import sys
 import random
 import sys
+from typing import Callable
 
 
 class FastIO:
@@ -101,27 +103,40 @@ class FastIO:
         return random.randint(0, 10**9+7)
 
 
+class BinarySearch:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def find_int_left(low: int, high: int, check: Callable) -> int:
+        # 模板: 整数范围内二分查找，选择最靠左满足check
+        while low < high - 1:
+            mid = low + (high - low) // 2
+            if check(mid):
+                high = mid
+            else:
+                low = mid
+        return low if check(low) else high
+
+
 class Solution:
     def __init__(self):
         return
 
     @staticmethod
     def main(ac=FastIO()):
-        n, w = ac.read_ints()
-        nums = ac.read_list_ints()
-        floor = ceil = pre = 0
-        for num in nums:
-            pre += num
-            if pre < floor:
-                floor = pre
-            if pre > ceil:
-                ceil = pre
-        if -floor > w - ceil:
-            ac.st(0)
-        else:
-            ans = (w-ceil) + floor + 1
-            ac.st(ans)
+        n, s = ac.read_ints()
+        def check(x):
+            pre = x
+            ans = x
+            for _ in range(n):
+                pre = 2*pre - 1
+                ans += pre
+            return ans >= s
+
+        ac.st(BinarySearch().find_int_left(0, s, check))
         return
+
 
 
 Solution().main()

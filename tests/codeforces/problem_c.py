@@ -106,30 +106,25 @@ class Solution:
         return
 
     @staticmethod
-    def ac_3993(ac=FastIO()):
-        # 模板：后缀和值域思维题
-        n, k = ac.read_ints()
+    def ac_3996(ac=FastIO()):
+        # 模板：经典区间 DP 最长回文子序列变形
+        n = ac.read_int()
         nums = ac.read_list_ints()
-        low = min(nums)
-        high = max(nums)
-        if low == high:
-            ac.st(0)
-            return
-        # 按照值域计数
-        cnt = [0]*(high-low+1)
+        pre = []
         for num in nums:
-            cnt[num-low] += 1
-        ans = post_cnt = post_sum = 0
-        for i in range(high-low, 0, -1):
-            post_cnt += cnt[i]  # 计数
-            post_sum += post_cnt  # 变为i-1需要的代价
-            # 假如往下变为 i-1的代价不可行，则先变为 i
-            if post_sum > k:
-                ans += 1
-                post_sum = post_cnt
-        # 此时还需要变为0
-        ans += post_sum > 0
-        ac.st(ans)
+            if pre and pre[-1] == num:
+                continue
+            pre.append(num)
+        nums = pre[:]
+        n = len(nums)
+        dp = [[0]*n for _ in range(n)]
+        for i in range(n-1, -1, -1):
+            for j in range(i+1, n):
+                if nums[i] == nums[j]:
+                    dp[i][j] = dp[i+1][j-1] + 1
+                else:
+                    dp[i][j] = ac.min(dp[i+1][j], dp[i][j-1]) + 1
+        ac.st(dp[0][n-1])
         return
 
 
