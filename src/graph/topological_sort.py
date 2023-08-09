@@ -48,6 +48,7 @@ F - Well-defined Path Queries on a Namori（https://atcoder.jp/contests/abc266/�
 
 ==================================AcWing=================================
 3696. 构造有向无环图（https://www.acwing.com/problem/content/description/3699/）经典bfs序即拓扑序与DAG构造
+3828. 行走路径（https://www.acwing.com/problem/content/description/3831/）有向图DAG拓扑排序DP模板题并判断有无环
 
 参考：OI WiKi（xx）
 """
@@ -929,6 +930,54 @@ class Solution:
 
         if ans:
             return root
+        return
+
+    @staticmethod
+    def ac_3828(ac=FastIO()):
+        # 模板：有向图DAG拓扑排序DP模板题并判断有无环
+        m, n = ac.read_ints()
+        ind = {w: i for i, w in enumerate("QWER")}
+        grid = [ac.read_str() for _ in range(m)]
+
+        # 建图
+        dct = [[] for _ in range(m * n)]
+        degree = [0] * (m * n)
+        for i in range(m):
+            for j in range(n):
+                x = ind[grid[i][j]]
+                for a, b in [[i - 1, j], [i + 1, j], [i, j - 1], [i, j + 1]]:
+                    if 0 <= a < m and 0 <= b < n:
+                        y = ind[grid[a][b]]
+                        if y == (x + 1) % 4:
+                            dct[i * n + j].append(a * n + b)
+                            degree[a * n + b] += 1
+
+        # 拓扑排序DP
+        pre = [0] * (m * n)
+        stack = [i for i in range(m * n) if not degree[i]]
+        for i in stack:
+            if grid[i // n][i % n] == "Q":
+                pre[i] = 1
+        while stack:
+            nex = []
+            for i in stack:
+                for j in dct[i]:
+                    degree[j] -= 1
+                    if pre[i] > pre[j]:
+                        pre[j] = pre[i]
+                    if not degree[j]:
+                        if not pre[j]:
+                            if grid[j // n][j % n] == "Q":
+                                pre[j] = 1
+                        else:
+                            pre[j] += 1
+                        nex.append(j)
+            stack = nex[:]
+        if any(d > 0 for d in degree):
+            ac.st("infinity")
+            return
+        ans = max(x // 4 for x in pre)
+        ac.st(ans if ans else "none")
         return
 
 

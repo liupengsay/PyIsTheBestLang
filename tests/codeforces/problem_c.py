@@ -1,6 +1,21 @@
-import random
+import bisect
+import decimal
+import heapq
+from types import GeneratorType
+from math import inf
 import sys
-from collections import Counter
+from heapq import heappush, heappop, heappushpop
+from functools import cmp_to_key
+from collections import defaultdict, Counter, deque
+import math
+from functools import lru_cache
+from heapq import nlargest
+from functools import reduce
+import random
+from itertools import combinations, permutations
+from operator import xor, add
+from operator import mul
+from typing import List, Callable, Dict, Set, Tuple, DefaultDict
 
 
 class FastIO:
@@ -102,74 +117,13 @@ class FastIO:
         return random.randint(0, 10**9+7)
 
 
-class KMP:
-    def __init__(self):
-        return
-
-    @staticmethod
-    def prefix_function(s):
-        # 计算s[:i]与s[:i]的最长公共真前缀与真后缀
-        n = len(s)
-        pi = [0] * n
-        for i in range(1, n):
-            j = pi[i - 1]
-            while j > 0 and s[i] != s[j]:
-                j = pi[j - 1]
-            if s[i] == s[j]:
-                j += 1
-            pi[i] = j
-        # pi[0] = 0
-        return pi
-
-    @staticmethod
-    def z_function(s):
-        # 计算 s[i:] 与 s 的最长公共前缀
-        n = len(s)
-        z = [0] * n
-        left, r = 0, 0
-        for i in range(1, n):
-            if i <= r and z[i - left] < r - i + 1:
-                z[i] = z[i - left]
-            else:
-                z[i] = max(0, r - i + 1)
-                while i + z[i] < n and s[z[i]] == s[i + z[i]]:
-                    z[i] += 1
-            if i + z[i] - 1 > r:
-                left = i
-                r = i + z[i] - 1
-        # z[0] = 0
-        return z
-
-
 class Solution:
     def __init__(self):
         return
 
     @staticmethod
-    def ac_3823(ac=FastIO()):
-        # 模板：KMP与扩展KMP即z函数应用模板题
-        kmp = KMP()
-        for _ in range(ac.read_int()):
-            s = ac.read_str()
-            if len(s) <= 2:
-                ac.st("not exist")
-                continue
-            pre = kmp.prefix_function(s)
-            z = kmp.z_function(s)
-            ans = 0
-            cnt = Counter(s)
-            if s[0] == s[-1] and cnt[s[0]] >= 3:
-                ans = 1
-            m = len(s)
-            for i in range(1, m-1):
-                w = pre[i]
-                if z[-w] == w:
-                    if w > ans:
-                        ans = w
-            if not ans:
-                ac.st("not exist")
-            else:
-                ac.st(s[:ans])
+    def main(ac=FastIO()):
+
         return
 
 
