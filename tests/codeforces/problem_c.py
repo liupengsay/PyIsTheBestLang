@@ -1,7 +1,6 @@
-import heapq
 import random
 import sys
-from collections import defaultdict
+from math import inf
 
 
 class FastIO:
@@ -92,10 +91,10 @@ class FastIO:
     @staticmethod
     def accumulate(nums):
         n = len(nums)
-        pre = [0] * (n + 1)
+        dp = [0] * (n + 1)
         for i in range(n):
-            pre[i + 1] = pre[i] + nums[i]
-        return pre
+            dp[i + 1] = dp[i] + nums[i]
+        return dp
 
     @staticmethod
     def get_random_seed():
@@ -109,32 +108,44 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
-        n = ac.read_int()
-        p = ac.read_list_ints()
-        a = ac.read_list_ints()
-        b = ac.read_list_ints()
-        dct = [[] for _ in range(4)]
-        for i in range(n):
-            dct[a[i]].append([p[i], i])
-            dct[b[i]].append([p[i], i])
-        for x in range(4):
-            dct[x].sort()
-        ind = [0]*4
+        n, k = ac.read_ints()
+        nums = ac.read_list_ints()
 
-        ans = []
-        use = [0]*n
-        m = ac.read_int()
-        for num in ac.read_list_ints():
-            while ind[num] < len(dct[num]) and use[dct[num][ind[num]][1]]:
-                ind[num] += 1
-            if ind[num] < len(dct[num]):
-                p, i = dct[num][ind[num]]
-                ind[num] += 1
-                use[i] = 1
-                ans.append(p)
-            else:
-                ans.append(-1)
-        ac.lst(ans)
+        def check2(x):
+            res = 0
+            while x % 2 == 0:
+                res += 1
+                x //= 2
+            return res
+
+        def check5(x):
+            res = 0
+            while x % 5 == 0:
+                res += 1
+                x //= 5
+            return res
+
+        cnt2 = [check2(num) for num in nums]
+        cnt5 = [check5(num) for num in nums]
+
+
+        s5 = sum(cnt5)
+        dp = [[-inf]*(s5+1) for _ in range(k+1)]
+        dp[0][0] = 0
+        for i in range(n):
+            a2 = cnt2[i]
+            a5 = cnt5[i]
+            for j in range(k, 0, -1):
+                for p in range(s5, a5-1, -1):
+                    x, y = dp[j][p], dp[j-1][p-a5] + a2
+                    if y > x:
+                        dp[j][p] = y
+        ans = 0
+        for a5 in range(s5+1):
+            cur = ac.min(dp[k][a5], a5)
+            if cur > ans:
+                ans = cur
+        ac.st(ans)
         return
 
 

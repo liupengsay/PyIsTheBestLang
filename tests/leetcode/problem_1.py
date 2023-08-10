@@ -29,29 +29,16 @@ from sortedcontainers import SortedList
 
 
 
-
-@lru_cache(None)
-def dfs(n, k):
-    if not n:
-        return 0
-    if n == 1:
-        return 1
-    if n == 2:
-        return 1
-    if n == k:
-        return 1
-    if not dfs(n-1, k) or not dfs(n-2, k):
-        return 1
-    if n > k and not dfs(n-k, k):
-        return 1
-    return 0
-
-
-x = 96
-for k in range(3, x):
-    print(x, k, x%3, k%3, dfs(x, k))
+class Solution:
+    def diagonalSum(self, mat: List[List[int]]) -> int:
+        n = len(mat)
+        ans = sum(mat[i][i] for i in range(n)) + sum(mat[i][n-1-i] for i in range(n))
+        if n % 2:
+            ans -= mat[n//2][n//2]
+        return ans
 
 
 
-#
-# assert Solution()
+
+
+assert Solution()

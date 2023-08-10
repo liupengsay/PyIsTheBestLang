@@ -107,10 +107,13 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
-        n = ac.read_int()
-        nums = ac.read_list_ints()
-        ans = max(nums)^nums[-1]
-        ac.st(ans)
+        st = []
+        num = 1
+        while len(st) < 1000:
+            st.extend(list(str(num)))
+            num += 1
+        for _ in range(ac.read_int()):
+            ac.st(st[ac.read_int()-1])
         return
 
 

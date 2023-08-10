@@ -107,6 +107,7 @@ F. Zero Remainder Sum（https://codeforces.com/problemset/problem/1433/F）01背
 10. 有依赖的背包问题（https://www.acwing.com/problem/content/10/）树上背包
 11. 背包问题求方案数（https://www.acwing.com/problem/content/description/11/）背包问题求方案数
 12. 背包问题求具体方案（https://www.acwing.com/problem/content/12/）背包问题求具体方案，有两种写法
+4081. 选数（https://www.acwing.com/problem/content/4084/）转换为二维背包问题求解
 
 参考：OI WiKi（xx）
 """
@@ -1204,6 +1205,49 @@ class Solution:
             for j in range(t, cc-1, -1):
                 dp[j] = ac.max(dp[j], dp[j-cc]+aa-j*bb)
         ac.st(max(dp))
+        return
+
+    @staticmethod
+    def ac_4081(ac=FastIO()):
+        # 模板：经典矩阵DP类似背包思想
+
+        n, k = ac.read_ints()
+        nums = ac.read_list_ints()
+
+        def check2(x):
+            res = 0
+            while x % 2 == 0:
+                res += 1
+                x //= 2
+            return res
+
+        def check5(x):
+            res = 0
+            while x % 5 == 0:
+                res += 1
+                x //= 5
+            return res
+
+        cnt2 = [check2(num) for num in nums]
+        cnt5 = [check5(num) for num in nums]
+
+        s5 = sum(cnt5)
+        dp = [[-inf] * (s5 + 1) for _ in range(k + 1)]
+        dp[0][0] = 0
+        for i in range(n):
+            a2 = cnt2[i]
+            a5 = cnt5[i]
+            for j in range(k, 0, -1):
+                for p in range(s5, a5 - 1, -1):
+                    x, y = dp[j][p], dp[j - 1][p - a5] + a2
+                    if y > x:
+                        dp[j][p] = y
+        ans = 0
+        for a5 in range(s5 + 1):
+            cur = ac.min(dp[k][a5], a5)
+            if cur > ans:
+                ans = cur
+        ac.st(ans)
         return
 
 
