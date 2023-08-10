@@ -1,3 +1,4 @@
+import heapq
 import random
 import sys
 from math import inf
@@ -91,15 +92,45 @@ class FastIO:
     @staticmethod
     def accumulate(nums):
         n = len(nums)
-        dp = [0] * (n + 1)
+        pre = [0] * (n + 1)
         for i in range(n):
-            dp[i + 1] = dp[i] + nums[i]
-        return dp
+            pre[i + 1] = pre[i] + nums[i]
+        return pre
 
     @staticmethod
     def get_random_seed():
         # 随机种子避免哈希冲突
         return random.randint(0, 10**9+7)
+
+
+def dijkstra_src_to_dst_path(dct, src: int, dst: int):
+    # 模板: Dijkstra求起终点的最短路，注意只能是正权值可以提前返回结果，并返回对应经过的路径
+    n = len(dct)
+    dis = [inf] * n
+    stack = [[0, src]]
+    dis[src] = 0
+    father = [-1] * n  # 记录最短路的上一跳
+    while stack:
+        d, i = heapq.heappop(stack)
+        if dis[i] < d:
+            continue
+        if i == dst:
+            break
+        for j, w in dct[i]:
+            dj = w + d
+            if dj < dis[j]:
+                dis[j] = dj
+                father[j] = i
+                heapq.heappush(stack, [dj, j])
+    if dis[dst] == inf:
+        return [], inf
+    # 向上回溯路径
+    path = []
+    i = dst
+    while i != -1:
+        path.append(i)
+        i = father[i]
+    return path, dis[dst]
 
 
 class Solution:
@@ -108,44 +139,20 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
-        n, k = ac.read_ints()
-        nums = ac.read_list_ints()
-
-        def check2(x):
-            res = 0
-            while x % 2 == 0:
-                res += 1
-                x //= 2
-            return res
-
-        def check5(x):
-            res = 0
-            while x % 5 == 0:
-                res += 1
-                x //= 5
-            return res
-
-        cnt2 = [check2(num) for num in nums]
-        cnt5 = [check5(num) for num in nums]
-
-
-        s5 = sum(cnt5)
-        dp = [[-inf]*(s5+1) for _ in range(k+1)]
-        dp[0][0] = 0
-        for i in range(n):
-            a2 = cnt2[i]
-            a5 = cnt5[i]
-            for j in range(k, 0, -1):
-                for p in range(s5, a5-1, -1):
-                    x, y = dp[j][p], dp[j-1][p-a5] + a2
-                    if y > x:
-                        dp[j][p] = y
-        ans = 0
-        for a5 in range(s5+1):
-            cur = ac.min(dp[k][a5], a5)
-            if cur > ans:
-                ans = cur
-        ac.st(ans)
+        n, m = ac.read_ints()
+        dct = [[] for _ in range(n)]
+        for _ in range(m):
+            i, j, w = ac.read_ints()
+            i -= 1
+            j -= 1
+            dct[i].append([j, w])
+            dct[j].append([i, w])
+        path, ans = dijkstra_src_to_dst_path(dct, 0, n-1)
+        if ans == inf:
+            ac.st(-1)
+        else:
+            path.reverse()
+            ac.lst([x+1 for x in path])
         return
 
 

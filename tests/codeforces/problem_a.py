@@ -107,13 +107,13 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
-        st = []
-        num = 1
-        while len(st) < 1000:
-            st.extend(list(str(num)))
-            num += 1
-        for _ in range(ac.read_int()):
-            ac.st(st[ac.read_int()-1])
+        n, t = ac.read_ints()
+        ans = n
+        for _ in range(t):
+            ans *= 1.00011
+        ans *= 10**6
+        ans = ac.round_5(ans)/(10**6)
+        ac.st("%.6f" % ans)
         return
 
 

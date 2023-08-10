@@ -109,6 +109,7 @@ B. Complete The Graph（https://codeforces.com/contest/715/problem/B）经典两
 3628. 边的删减（https://www.acwing.com/problem/content/3631/）经典最短路生成树模板题
 3772. 更新线路（https://www.acwing.com/problem/content/description/3775/）经典建立反图并使用Dijkstra最短路计数贪心模拟
 3797. 最大化最短路（https://www.acwing.com/problem/content/description/3800/）经典最短路枚举增边排序贪心
+4196. 最短路径（https://www.acwing.com/problem/content/4199/）计算最短路长度与返回任意一条最短路
 
 参考：OI WiKi（xx）
 """
@@ -138,7 +139,7 @@ class Dijkstra:
         return dis
 
     @staticmethod
-    def get_dijkstra_cnt(dct: List[List[int]], src: int) -> (List[int], List[float]):
+    def get_dijkstra_cnt(dct: List[List[int]], src: int) -> (List[int], List[any]):
         # 模板: Dijkstra求最短路条数（最短路计算）
         n = len(dct)
         dis = [inf]*n
@@ -163,7 +164,7 @@ class Dijkstra:
         return cnt, dis
 
     @staticmethod
-    def get_dijkstra_result_limit(dct, src: int, limit: Set[int], target: Set[int]) -> List[float]:
+    def get_dijkstra_result_limit(dct: List[List[int]], src: int, limit: Set[int], target: Set[int]) -> List[float]:
         # 模板: Dijkstra求最短路，变成负数求可以求最长路（还是正权值）
         n = len(dct)
         dis = [float("inf")] * n
@@ -177,16 +178,16 @@ class Dijkstra:
                 target.discard(i)
             if dis[i] < d:
                 continue
-            for j in dct[i]:
+            for j, w in dct[i]:
                 if j not in limit:
-                    dj = dct[i][j] + d
+                    dj = w + d
                     if dj < dis[j]:
                         dis[j] = dj
                         heapq.heappush(stack, [dj, j])
         return dis
 
     @staticmethod
-    def dijkstra_src_to_dst_path(dct, src: int, dst: int):
+    def dijkstra_src_to_dst_path(dct: List[List[int]], src: int, dst: int) -> (List[int], any):
         # 模板: Dijkstra求起终点的最短路，注意只能是正权值可以提前返回结果，并返回对应经过的路径
         n = len(dct)
         dis = [inf] * n
@@ -199,12 +200,14 @@ class Dijkstra:
                 continue
             if i == dst:
                 break
-            for j in dct[i]:
-                dj = dct[i][j] + d
+            for j, w in dct[i]:
+                dj = w + d
                 if dj < dis[j]:
                     dis[j] = dj
                     father[j] = i
                     heapq.heappush(stack, [dj, j])
+        if dis[dst] == inf:
+            return [], inf
         # 向上回溯路径
         path = []
         i = dst
@@ -1823,6 +1826,25 @@ class Solution:
         if ans > d:
             ans = d
         ac.st(ans)
+        return
+
+    @staticmethod
+    def ac_4196(ac=FastIO()):
+        # 模板：计算最短路长度与返回任意一条最短路
+        n, m = ac.read_ints()
+        dct = [[] for _ in range(n)]
+        for _ in range(m):
+            i, j, w = ac.read_ints()
+            i -= 1
+            j -= 1
+            dct[i].append([j, w])
+            dct[j].append([i, w])
+        path, ans = Dijkstra().dijkstra_src_to_dst_path(dct, 0, n-1)
+        if ans == inf:
+            ac.st(-1)
+        else:
+            path.reverse()
+            ac.lst([x+1 for x in path])
         return
 
 
