@@ -58,6 +58,8 @@ B. Mashmokh and ACM（https://codeforces.com/problemset/problem/414/B）经典�
 
 ================================AcWing==================================
 130. 火车进出栈问题（https://www.acwing.com/problem/content/132/）超大数字的卡特兰数计算
+4002. 构造数组（https://www.acwing.com/problem/content/4005/）经典矩阵DP转换为隔板法计算求解
+
 
 参考：OI WiKi（xx）
 卡特兰数（https://oi-wiki.org/math/combinatorics/catalan/）
@@ -603,7 +605,15 @@ class Solution:
                 dp[i+1][j+1] = (dp[i][j] + dp[i][j+1]*i)%mod
         return dp[n][k]
 
+    @staticmethod
+    def ac_4002(ac=FastIO()):
+        # 模板：矩阵DP转化为隔板法组合数求解
+        m, n = ac.read_ints()
+        cb = Combinatorics(2*n+m, 10**9+7)
+        ac.st(cb.comb(2*n+m-1, m-1))
+        return
 
+    
 class TestGeneral(unittest.TestCase):
     def test_comb_perm(self):
         pass

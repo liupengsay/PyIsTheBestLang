@@ -23,6 +23,9 @@ P1512 伊甸园日历游戏（https://www.luogu.com.cn/problem/P1512）博弈DP�
 P2092 数字游戏（https://www.luogu.com.cn/problem/P2092）根据质数的个数来判断必胜态
 P2953 [USACO09OPEN]Cow Digit Game S（https://www.luogu.com.cn/problem/P2953）必胜态线性DP
 
+===================================AcWing===================================
+4005. 取石子游戏（https://www.acwing.com/problem/content/description/4008/）典型博弈思维题分情况讨论
+
 参考：OI WiKi（xx）
 """
 

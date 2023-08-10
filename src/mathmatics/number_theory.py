@@ -103,6 +103,7 @@ C. Strongly Composite（https://codeforces.com/contest/1823/problem/C）质因�
 198. 反素数（https://www.acwing.com/problem/content/200/）经典计算最大的反质数（反素数，即约数或者说因数个数大于任何小于它的数的因数个数）
 199. 余数之和（https://www.acwing.com/problem/content/description/201/）经典枚举因数计算之和
 3727. 乘方相加（https://www.acwing.com/solution/content/54479/）脑筋急转弯转换成进制表达问题
+3999. 最大公约数（https://www.acwing.com/problem/content/description/4002/）同CF1295D
 
 参考：OI WiKi（xx）
 """

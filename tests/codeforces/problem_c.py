@@ -1,5 +1,7 @@
+import heapq
 import random
 import sys
+from collections import defaultdict
 
 
 class FastIO:
@@ -106,25 +108,33 @@ class Solution:
         return
 
     @staticmethod
-    def ac_3996(ac=FastIO()):
-        # 模板：经典区间 DP 最长回文子序列变形
+    def main(ac=FastIO()):
         n = ac.read_int()
-        nums = ac.read_list_ints()
-        pre = []
-        for num in nums:
-            if pre and pre[-1] == num:
-                continue
-            pre.append(num)
-        nums = pre[:]
-        n = len(nums)
-        dp = [[0]*n for _ in range(n)]
-        for i in range(n-1, -1, -1):
-            for j in range(i+1, n):
-                if nums[i] == nums[j]:
-                    dp[i][j] = dp[i+1][j-1] + 1
-                else:
-                    dp[i][j] = ac.min(dp[i+1][j], dp[i][j-1]) + 1
-        ac.st(dp[0][n-1])
+        p = ac.read_list_ints()
+        a = ac.read_list_ints()
+        b = ac.read_list_ints()
+        dct = [[] for _ in range(4)]
+        for i in range(n):
+            dct[a[i]].append([p[i], i])
+            dct[b[i]].append([p[i], i])
+        for x in range(4):
+            dct[x].sort()
+        ind = [0]*4
+
+        ans = []
+        use = [0]*n
+        m = ac.read_int()
+        for num in ac.read_list_ints():
+            while ind[num] < len(dct[num]) and use[dct[num][ind[num]][1]]:
+                ind[num] += 1
+            if ind[num] < len(dct[num]):
+                p, i = dct[num][ind[num]]
+                ind[num] += 1
+                use[i] = 1
+                ans.append(p)
+            else:
+                ans.append(-1)
+        ac.lst(ans)
         return
 
 

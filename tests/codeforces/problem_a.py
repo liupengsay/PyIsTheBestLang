@@ -1,4 +1,3 @@
-import math
 import random
 import sys
 
@@ -108,17 +107,10 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
-        for _ in range(ac.read_int()):
-            a, b, c, d, k = ac.read_ints()
-            def check():
-                if math.ceil(a/c)+math.ceil(b/d) > k:
-                    ac.st(-1)
-                    return
-                x, y = math.ceil(a/c), math.ceil(b/d)
-                ac.lst([x, y])
-                return
-
-            check()
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        ans = max(nums)^nums[-1]
+        ac.st(ans)
         return
 
 
