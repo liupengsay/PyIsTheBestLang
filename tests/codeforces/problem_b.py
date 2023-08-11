@@ -1,5 +1,21 @@
-import random
+import bisect
+import decimal
+import heapq
+from types import GeneratorType
+from math import inf
 import sys
+from heapq import heappush, heappop, heappushpop
+from functools import cmp_to_key
+from collections import defaultdict, Counter, deque
+import math
+from functools import lru_cache
+from heapq import nlargest
+from functools import reduce
+import random
+from itertools import combinations, permutations
+from operator import xor, add
+from operator import mul
+from typing import List, Callable, Dict, Set, Tuple, DefaultDict
 
 
 class FastIO:
@@ -107,18 +123,7 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
-        n = ac.read_int()
-        pre = [[1]]
-        while pre[-1][-1] < n:
-            cur = set()
-            for num in pre[-1]:
-                cur.add(num*10)
-                cur.add(num*10+1)
-            pre.append(sorted(list(cur)))
-        ans = 0
-        for p in pre:
-            ans += sum(1<=x<=n for x in p)
-        ac.st(ans)
+
         return
 
 

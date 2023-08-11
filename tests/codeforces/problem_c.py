@@ -1,5 +1,21 @@
-import random
+import bisect
+import decimal
+import heapq
+from types import GeneratorType
+from math import inf
 import sys
+from heapq import heappush, heappop, heappushpop
+from functools import cmp_to_key
+from collections import defaultdict, Counter, deque
+import math
+from functools import lru_cache
+from heapq import nlargest
+from functools import reduce
+import random
+from itertools import combinations, permutations
+from operator import xor, add
+from operator import mul
+from typing import List, Callable, Dict, Set, Tuple, DefaultDict
 
 
 class FastIO:
@@ -107,21 +123,7 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
-        n, m, k = ac.read_ints()
-        points = [ac.read_list_ints() for _ in range(n)]
-        circle = [ac.read_list_ints() for _ in range(m)]
-        pre = [0 for _ in range(n)]
-        for i in range(n):
-            x, y = points[i]
-            for j in range(m):
-                r, x1, y1 = circle[j]
-                if (x-x1)*(x-x1)+(y-y1)*(y-y1) <= r*r:
-                    pre[i] |= (1<<j)
 
-        for _ in range(k):
-            a, b = ac.read_ints_minus_one()
-            ans = (pre[a]^pre[b]).bit_count()
-            ac.st(ans)
         return
 
 
