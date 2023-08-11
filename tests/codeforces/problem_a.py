@@ -107,13 +107,14 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
-        n, t = ac.read_ints()
-        ans = n
-        for _ in range(t):
-            ans *= 1.00011
-        ans *= 10**6
-        ans = ac.round_5(ans)/(10**6)
-        ac.st("%.6f" % ans)
+        p1, p2, p3, p4, a, b = ac.read_ints()
+        ans = 0
+        for x in range(a, b+1):
+            if x < p1 and x < p2 and x < p3 and x < p4:
+                ans += 1
+            else:
+                break
+        ac.st(ans)
         return
 
 

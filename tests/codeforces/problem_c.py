@@ -1,7 +1,5 @@
-import heapq
 import random
 import sys
-from math import inf
 
 
 class FastIO:
@@ -103,56 +101,27 @@ class FastIO:
         return random.randint(0, 10**9+7)
 
 
-def dijkstra_src_to_dst_path(dct, src: int, dst: int):
-    # 模板: Dijkstra求起终点的最短路，注意只能是正权值可以提前返回结果，并返回对应经过的路径
-    n = len(dct)
-    dis = [inf] * n
-    stack = [[0, src]]
-    dis[src] = 0
-    father = [-1] * n  # 记录最短路的上一跳
-    while stack:
-        d, i = heapq.heappop(stack)
-        if dis[i] < d:
-            continue
-        if i == dst:
-            break
-        for j, w in dct[i]:
-            dj = w + d
-            if dj < dis[j]:
-                dis[j] = dj
-                father[j] = i
-                heapq.heappush(stack, [dj, j])
-    if dis[dst] == inf:
-        return [], inf
-    # 向上回溯路径
-    path = []
-    i = dst
-    while i != -1:
-        path.append(i)
-        i = father[i]
-    return path, dis[dst]
-
-
 class Solution:
     def __init__(self):
         return
 
     @staticmethod
     def main(ac=FastIO()):
-        n, m = ac.read_ints()
-        dct = [[] for _ in range(n)]
-        for _ in range(m):
-            i, j, w = ac.read_ints()
-            i -= 1
-            j -= 1
-            dct[i].append([j, w])
-            dct[j].append([i, w])
-        path, ans = dijkstra_src_to_dst_path(dct, 0, n-1)
-        if ans == inf:
-            ac.st(-1)
-        else:
-            path.reverse()
-            ac.lst([x+1 for x in path])
+        n, m, k = ac.read_ints()
+        points = [ac.read_list_ints() for _ in range(n)]
+        circle = [ac.read_list_ints() for _ in range(m)]
+        pre = [0 for _ in range(n)]
+        for i in range(n):
+            x, y = points[i]
+            for j in range(m):
+                r, x1, y1 = circle[j]
+                if (x-x1)*(x-x1)+(y-y1)*(y-y1) <= r*r:
+                    pre[i] |= (1<<j)
+
+        for _ in range(k):
+            a, b = ac.read_ints_minus_one()
+            ans = (pre[a]^pre[b]).bit_count()
+            ac.st(ans)
         return
 
 

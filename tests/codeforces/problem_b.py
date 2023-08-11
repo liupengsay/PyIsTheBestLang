@@ -1,6 +1,5 @@
 import random
 import sys
-from collections import defaultdict
 
 
 class FastIO:
@@ -109,24 +108,17 @@ class Solution:
     @staticmethod
     def main(ac=FastIO()):
         n = ac.read_int()
-        diff = defaultdict(int)
-        for _ in range(n):
-            x, y = ac.read_ints()
-            diff[x] += 1
-            diff[y+1] -= 1
-            diff[x-1] += 0
-            diff[y] += 0
-        diff[10**18+1] += 0
-        axis = sorted(list(diff.keys()))
-        m = len(axis)
-        ans = [0]*(n+1)
-        for i in range(m):
-            if i:
-                diff[axis[i]] += diff[axis[i-1]]
-            if i+1<m:
-                cur = axis[i+1]-axis[i]
-                ans[diff[axis[i]]] += cur
-        ac.lst(ans[1:])
+        pre = [[1]]
+        while pre[-1][-1] < n:
+            cur = set()
+            for num in pre[-1]:
+                cur.add(num*10)
+                cur.add(num*10+1)
+            pre.append(sorted(list(cur)))
+        ans = 0
+        for p in pre:
+            ans += sum(1<=x<=n for x in p)
+        ac.st(ans)
         return
 
 

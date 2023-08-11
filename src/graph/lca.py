@@ -35,6 +35,10 @@ E. Tree Queries（https://codeforces.com/problemset/problem/1328/E）利用 LCA 
 C. Ciel the Commander（https://codeforces.com/problemset/problem/321/C）使用树的质心递归，依次切割形成平衡树赋值
 E. A and B and Lecture Rooms（https://codeforces.com/problemset/problem/519/E）LCA经典运用题目，查询距离与第k个祖先节点，与子树节点计数
 
+================================AcWing================================
+4202. 穿过圆（https://www.acwing.com/problem/content/4205/）使用位运算进行计算，也可使用包含关系建树，查询LCA计算距离
+
+
 参考：
 CSDN（https://blog.csdn.net/weixin_42001089/article/details/83590686）
 
@@ -86,6 +90,7 @@ class OfflineLCA:
         visit = [0] * n  # 访问状态数组 0 为未访问 1 为访问但没有遍历完子树 2 为访问且遍历完子树
         parent = [-1] * n  # 父节点
         uf = UnionFindLCA(n)
+        depth = [0] * n
         while stack:
             i = stack.pop()
             if i >= 0:
@@ -96,6 +101,7 @@ class OfflineLCA:
                 for j in dct[i]:
                     if j != parent[i]:
                         parent[j] = i
+                        depth[j] = depth[i] + 1
                         stack.append(j)
                 for y in ans[i]:
                     if visit[y] == 1:
