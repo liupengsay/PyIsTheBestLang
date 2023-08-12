@@ -1,21 +1,5 @@
-import bisect
-import decimal
-import heapq
-from types import GeneratorType
-from math import inf
-import sys
-from heapq import heappush, heappop, heappushpop
-from functools import cmp_to_key
-from collections import defaultdict, Counter, deque
-import math
-from functools import lru_cache
-from heapq import nlargest
-from functools import reduce
 import random
-from itertools import combinations, permutations
-from operator import xor, add
-from operator import mul
-from typing import List, Callable, Dict, Set, Tuple, DefaultDict
+import sys
 
 
 class FastIO:
@@ -123,7 +107,15 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
-
+        n = ac.read_int()
+        ans = [0, 0, 0]
+        for _ in range(n):
+            lst = ac.read_list_ints()
+            ans = [ans[i]+lst[i] for i in range(3)]
+        if all(x==0 for x in ans):
+            ac.st("YES")
+        else:
+            ac.st("NO")
         return
 
 

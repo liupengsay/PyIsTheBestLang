@@ -8,7 +8,7 @@ from src.fast_io import FastIO
 
 """
 
-算法：贪心、逆向思维、抽屉原理、鸽巢原理、容斥原理、自定义排序、思维、脑筋急转弯
+算法：贪心、逆向思维、抽屉原理、鸽巢原理、容斥原理、自定义排序、思维、脑筋急转弯、构造
 功能：各种可证明不可证明的头脑风暴
 题目：
 
@@ -157,6 +157,7 @@ E. Making Anti-Palindromes（https://codeforces.com/contest/1822/problem/E）贪
 127. 任务（https://www.acwing.com/problem/content/description/129/）经典二维排序贪心
 145. 超市（https://www.acwing.com/problem/content/147/）经典使用二叉堆贪心
 122. 糖果传递（https://www.acwing.com/problem/content/124/）经典线性环形均分纸牌问题
+4204. 构造矩阵（https://www.acwing.com/problem/content/description/4207/）经典构造
 
 参考：OI WiKi（xx）
 """

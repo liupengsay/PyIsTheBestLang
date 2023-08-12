@@ -31,6 +31,8 @@ P1127 词链（https://www.luogu.com.cn/problem/P1127）经过每个顶点一次
 P2731 [USACO3.3]骑马修栅栏 Riding the Fences（https://www.luogu.com.cn/problem/P2731）经过每条确定无向边一次且字典序最小（需要使用邻接矩阵转换为无向图欧拉路径或者回路）
 P1341 无序字母对（https://www.luogu.com.cn/problem/P1341）经过每条确定无向边一次且字典序最小（需要使用邻接矩阵转换为无向图欧拉路径或者回路）
 
+===================================AcWing===================================
+4211. 序列重排（https://www.acwing.com/problem/content/4214/）有向图欧拉路径合法方案计算
 
 参考：
 OI WiKi（https://oi-wiki.org/graph/euler/）
@@ -84,21 +86,37 @@ class DirectedEulerPath:
                 return
             starts = [0]
 
-        @FastIO.bootstrap
+        # 使用迭代版本的Hierholzer算法
+        stack = [starts[0]]
+        while stack:
+            current = stack[-1]
+            if edge[current]:
+                next_node = edge[current].pop()
+                stack.append(next_node)
+            else:
+                self.nodes.append(current)
+                if len(stack) > 1:
+                    self.paths.append([stack[-2], current])
+                stack.pop()
+        self.paths.reverse()
+        self.nodes.reverse()
+        """
+        改进前的深搜版本
         def dfs(pre):
             # 使用深度优先搜索（Hierholzer算法）求解欧拉通路
             while edge[pre]:
                 nex = edge[pre].pop()
-                yield dfs(nex)
+                dfs(nex)
                 self.nodes.append(nex)
                 self.paths.append([pre, nex])
-            yield
+            return
 
         dfs(starts[0])
-        # 注意判断所有边都经过的才算欧拉路径
         self.paths.reverse()
         self.nodes.append(starts[0])
         self.nodes.reverse()
+        """
+        # 注意判断所有边都经过的才算欧拉路径
         if len(self.nodes) == len(self.pairs) + 1:
             self.exist = True
         return
@@ -144,23 +162,45 @@ class UnDirectedEulerPath:
                 return
             starts = [0]
 
-        @FastIO.bootstrap
+        """
+        改进前的深搜版本
         def dfs(pre):
             # 使用深度优先搜索（Hierholzer算法）求解欧拉通路
             for nex in range(self.n):
                 while edge[pre][nex]:
                     edge[pre][nex] -= 1
                     edge[nex][pre] -= 1
-                    yield dfs(nex)
+                    dfs(nex)
                     self.nodes.append(nex)
                     self.paths.append([pre, nex])
-            yield
+            return
 
         dfs(starts[0])
-        # 注意判断所有边都经过的才算欧拉路径
         self.paths.reverse()
         self.nodes.append(starts[0])
         self.nodes.reverse()
+        """
+        # 使用迭代版本Hierholzer算法计算
+        stack = [starts[0]]
+        while stack:
+            current = stack[-1]
+            next_node = None
+            for nex in range(self.n):
+                if edge[current][nex]:
+                    edge[current][nex] -= 1
+                    edge[nex][current] -= 1
+                    next_node = nex
+                    stack.append(next_node)
+                    break
+            if next_node is None:
+                self.nodes.append(current)
+                if len(stack) > 1:
+                    pre = stack[-2]
+                    self.paths.append([pre, current])
+                stack.pop()
+        self.paths.reverse()
+        self.nodes.reverse()
+        # 注意判断所有边都经过的才算欧拉路径
         if len(self.nodes) == len(self.pairs) + 1:
             self.exist = True
         return
@@ -310,6 +350,21 @@ class Solution:
         ep = DirectedEulerPath(n, lst)
         ans = ep.paths
         return [[nodes[x], nodes[y]] for x, y in ans]
+
+    @staticmethod
+    def ac_4211(ac=FastIO()):
+        # 模板：有向图欧拉路径模板题
+        n = ac.read_int()
+        pairs = []
+        nums = ac.read_list_ints()
+        for i in range(n):
+            for j in range(n):
+                if j != i:
+                    if nums[j] == nums[i]*2 or nums[j]*3 == nums[i]:
+                        pairs.append([i, j])
+        dt = DirectedEulerPath(n, pairs)
+        ac.lst([nums[x] for x in dt.nodes])
+        return
 
 
 class TestGeneral(unittest.TestCase):

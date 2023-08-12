@@ -1,21 +1,6 @@
-import bisect
-import decimal
-import heapq
-from types import GeneratorType
-from math import inf
-import sys
-from heapq import heappush, heappop, heappushpop
-from functools import cmp_to_key
-from collections import defaultdict, Counter, deque
 import math
-from functools import lru_cache
-from heapq import nlargest
-from functools import reduce
 import random
-from itertools import combinations, permutations
-from operator import xor, add
-from operator import mul
-from typing import List, Callable, Dict, Set, Tuple, DefaultDict
+import sys
 
 
 class FastIO:
@@ -123,7 +108,16 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
-
+        a = ac.read_int()
+        ans = 0
+        for x in range(2, a):
+            num = a
+            while num:
+                ans += num % x
+                num //= x
+        res = a-2
+        g = math.gcd(res, ans)
+        ac.st(f"{ans//g}/{res//g}")
         return
 
 
