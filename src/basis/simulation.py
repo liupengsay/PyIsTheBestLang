@@ -69,6 +69,10 @@ P8873 [传智杯 #5 初赛] E-梅莉的市场经济学（https://www.luogu.com.c
 ================================CodeForces================================
 C. Gargari and Bishops（https://codeforces.com/problemset/problem/463/C）选取两组互不相交的主副对角线使得和最大
 
+================================AcWing================================
+4318. 最短路径（https://www.acwing.com/problem/content/description/4321/）使用哈希贪心模拟构造
+
+
 参考：OI WiKi（xx）
 """
 
@@ -522,6 +526,33 @@ class Solution:
             else:
                 ac.st("NO")
 
+        return
+
+    @staticmethod
+    def ac_4318(ac=FastIO()):
+        # 模板：使用哈希贪心模拟构造
+        x = y = 0
+        ind = dict()
+        ind["U"] = [-1, 0]
+        ind["D"] = [1, 0]
+        ind["L"] = [0, -1]
+        ind["R"] = [0, 1]
+        pre = {(0, 0)}
+        for w in ac.read_str():
+            cur = (x, y)
+            x += ind[w][0]
+            y += ind[w][1]
+            # 先前走过
+            if (x, y) in pre:
+                ac.st("NO")
+                return
+            # 先前走过附近的
+            for a, b in [[-1, 0], [0, 1], [1, 0], [0, -1]]:
+                if (x+a, y+b) in pre and (x+a, y+b) != cur:
+                    ac.st("NO")
+                    return
+            pre.add((x, y))
+        ac.st("YES")
         return
 
 
