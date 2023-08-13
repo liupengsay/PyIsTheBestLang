@@ -76,17 +76,17 @@ class QuickMonotonicStack:
         return
 
     @staticmethod
-    def pipline(nums):
-        # 经典单调栈灵活求解
+    def pipline_general(nums):
+        # 模板：经典单调栈前后边界下标计算
         n = len(nums)
-        post = [-1] * n  # [n-1] * n
-        pre = [-1] * n  # [0] * n
+        post = [n - 1] * n   # 这里可以是n/n-1/null，取决于用途
+        pre = [0] * n   # 这里可以是0/-1/null，取决于用途
         stack = []
-        for i in range(n):
-            while stack and nums[stack[-1]] < nums[i]:
-                post[stack.pop()] = i  # i - 1
-            if stack:
-                pre[i] = stack[-1]  # stack[-1] + 1
+        for i in range(n):  # 这里也可以是从n-1到0倒序计算，取决于用途
+            while stack and nums[stack[-1]] < nums[i]:  # 这里可以是"<" ">" "<=" ">="，取决于需要判断的大小关系
+                post[stack.pop()] = i - 1  # 这里可以是i或者i-1，取决于是否包含i作为右端点
+            if stack:  # 这里不一定可以同时计算，比如前后都是大于等于时，只有前后所求范围互斥时，可以计算
+                pre[i] = stack[-1] + 1  # 这里可以是stack[-1]或者stack[-1]+1，取决于是否包含stack[-1]作为左端点
             stack.append(i)
         return
 
