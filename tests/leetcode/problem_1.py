@@ -27,21 +27,15 @@ import heapq
 import copy
 from sortedcontainers import SortedList
 
-sys.set_int_max_str_digits(0)
+sys.set_int_max_str_digits(0)  # 大数的范围坑
 
 
-class Solution:
-    def maxSum(self, nums: List[int]) -> int:
-        ans = -1
-        dct = defaultdict(int)
-        for i, num in enumerate(nums):
-            x = max(w for w in str(nums[i]))
-            if dct[x]:
-                if num + dct[x] > ans:
-                    ans = num + dct[x]
-            if num > dct[x]:
-                dct[x] = num
-        return ans
+
+
+
+
+
+
 
 
 assert Solution()
