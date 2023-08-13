@@ -44,7 +44,7 @@ D. Tricky Function（https://codeforces.com/problemset/problem/429/D）经典平
 
 ================================AcWing====================================
 119. 袭击（https://www.acwing.com/problem/content/121/）经典平面点集最近点对问题使用分治求解、还有哈希分块、有序列表
-
+4309. 消灭老鼠（https://www.acwing.com/problem/content/4312/）经典直线斜率计算
 
 参考：OI WiKi（xx）
 """
@@ -450,6 +450,26 @@ class Solution:
                     cur = sum((x - x0) * (x - x0) + (y - y0) * (y - y0) <= r * r for x0, y0 in darts)
                     ans = ans if ans > cur else cur
         return ans
+
+    @staticmethod
+    def ac_4309(ac=FastIO()):
+        # 模板：经典直线斜率计算
+        n, x0, y0 = ac.read_ints()
+        dct = set()
+        for _ in range(n):
+            x, y = ac.read_ints()
+            g = math.gcd(x - x0, y - y0)
+            a = (x - x0) // g
+            b = (y - y0) // g
+            if a == 0:
+                dct.add(0)
+                continue
+            if a < 0:
+                b *= -1
+                a *= -1
+            dct.add((a, b))
+        ac.st(len(dct))
+        return
 
 
 class TestGeneral(unittest.TestCase):
