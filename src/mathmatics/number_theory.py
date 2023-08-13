@@ -104,6 +104,7 @@ C. Strongly Composite（https://codeforces.com/contest/1823/problem/C）质因�
 199. 余数之和（https://www.acwing.com/problem/content/description/201/）经典枚举因数计算之和
 3727. 乘方相加（https://www.acwing.com/solution/content/54479/）脑筋急转弯转换成进制表达问题
 3999. 最大公约数（https://www.acwing.com/problem/content/description/4002/）同CF1295D
+4319. 合适数对（https://www.acwing.com/problem/content/4322/）质因数分解后前缀哈希计数
 
 参考：OI WiKi（xx）
 """
@@ -1334,6 +1335,27 @@ class Solution:
                 return
             check()
 
+        return
+
+    @staticmethod
+    def ac_4319(ac=FastIO()):
+        # 模板：质因数分解后前缀哈希计数
+        n, k = ac.read_ints()
+        a = ac.read_list_ints()
+        nt = NumberTheoryPrimeFactor(max(a))
+        pre = defaultdict(int)
+        ans = 0
+        for num in a:
+            cur = []
+            lst = []
+            for p, c in nt.prime_factor[num]:
+                c %= k
+                if c:
+                    cur.append((p, c))
+                    lst.append((p, k-c))
+            ans += pre[tuple(lst)]
+            pre[tuple(cur)] += 1
+        ac.st(ans)
         return
 
 
