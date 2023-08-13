@@ -30,12 +30,23 @@ from sortedcontainers import SortedList
 sys.set_int_max_str_digits(0)
 
 
-
-
-
-
-
-
+class Solution:
+    def minAbsoluteDifference(self, nums: List[int], x: int) -> int:
+        if x == 0:
+            return 0
+        lst = SortedList()
+        j = 0
+        n = len(nums)
+        ans = inf
+        for i in range(n):
+            while j < n and j <= i - x:
+                lst.add(nums[j])
+                j += 1
+            ind = lst.bisect_left(nums[i])
+            for k in [ind - 1, ind, ind + 1]:
+                if 0 <= k < len(lst) and abs(nums[i] - lst[k]) < ans:
+                    ans = abs(nums[i] - lst[k])
+        return ans
 
 
 assert Solution()
