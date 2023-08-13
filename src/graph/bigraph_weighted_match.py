@@ -26,6 +26,9 @@ B3605 [图论与代数结构 401] 二分图匹配（https://www.luogu.com.cn/pro
 ================================CodeForces================================
 C. Chef Monocarp（https://codeforces.com/problemset/problem/1437/C）二分图最小权匹配
 
+================================AcWing================================
+4298. 搭档（https://www.acwing.com/problem/content/4301/）匈牙利算法二分图模板题
+
 参考：OI WiKi（xx）
 """
 
@@ -365,6 +368,22 @@ class Solution:
         for i,j in min_:
             ans += grid[i][j]
         return ans
+
+    @staticmethod
+    def ac_4298(ac=FastIO()):
+        # 模板：匈牙利算法二分图模板题
+        m = ac.read_int()
+        a = ac.read_list_ints()
+        n = ac.read_int()
+        b = ac.read_list_ints()
+        dct = [[] for _ in range(m)]
+        for i in range(m):
+            for j in range(n):
+                if abs(a[i]-b[j]) <= 1:
+                    dct[i].append(j)
+        ans = Hungarian().dfs_recursion(n, m, dct)
+        ac.st(ans)
+        return
 
 
 class TestGeneral(unittest.TestCase):
