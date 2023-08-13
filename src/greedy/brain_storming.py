@@ -159,6 +159,7 @@ E. Making Anti-Palindromes（https://codeforces.com/contest/1822/problem/E）贪
 122. 糖果传递（https://www.acwing.com/problem/content/124/）经典线性环形均分纸牌问题
 4204. 构造矩阵（https://www.acwing.com/problem/content/description/4207/）经典构造
 4307. 数字重构（https://www.acwing.com/problem/content/description/4310/）经典字典序枚举贪心
+4313. 满二叉树等长路径（https://www.acwing.com/problem/content/4316/）经典满二叉树树形DP贪心（同LC2673）
 
 参考：OI WiKi（xx）
 """
@@ -787,6 +788,23 @@ class Solution:
                         a.pop(i)
                         break
         ac.st("".join(str(x) for x in res))
+        return
+
+    @staticmethod
+    def ac_4313(ac=FastIO()):
+        # 模板：经典满二叉树树形DP贪心
+        n = ac.read_int()
+        m = 2**(n+1)
+        dp = [0]*m
+        nums = ac.read_list_ints()
+        ans = 0
+        for i in range(m//2-1, 0, -1):
+            left = dp[i*2] + nums[i*2-2]
+            right = dp[i*2+1] + nums[i*2-1]
+            x = ac.max(left, right)
+            dp[i] = x
+            ans += x*2 - left - right
+        ac.st(ans)
         return
 
 
