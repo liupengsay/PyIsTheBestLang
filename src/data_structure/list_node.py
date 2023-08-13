@@ -40,13 +40,30 @@ class ListNodeOperation:
             pre = pre.next
         return node.next
 
+    @staticmethod
+    def node_to_num(node: ListNode) -> int:
+        num = 0
+        while node:
+            num = num * 10 + node.val
+            node = node.next
+        return num
+
+    @staticmethod
+    def num_to_node(num: int) -> ListNode:
+        node = ListNode(-1)
+        pre = node
+        for x in str(num):
+            pre.next = ListNode(int(x))
+            pre = pre.next
+        return node.next
+
 
 class Solution:
     def __int__(self):
         return
 
     @staticmethod
-    def lc_6914(head: Optional[ListNode]) -> Optional[ListNode]:
+    def lc_6914_1(head: Optional[ListNode]) -> Optional[ListNode]:
         # 模板：链表与整数相乘
         lno = ListNodeOperation()
         lst = lno.node_to_lst(head)[::-1]
@@ -62,6 +79,12 @@ class Solution:
 
         nums.reverse()
         return lno.lst_to_node(nums)
+
+    @staticmethod
+    def lc_6914_2(head: Optional[ListNode]) -> Optional[ListNode]:
+        lno = ListNodeOperation()
+        num = lno.node_to_num(head)*2
+        return lno.num_to_node(num)
 
 
 class TestGeneral(unittest.TestCase):
