@@ -1,8 +1,10 @@
 import unittest
 import jieba
 import unittest
+from transformers import AutoTokenizer, AutoModel
+import torch
+import numpy as np
 
-import jieba
 
 """
 算法：短文本相似度计算
@@ -63,6 +65,28 @@ class BM25Model(object):
         return score_list
 
 
+class BertSimilarity:
+    def __init__(self):
+        # 加载BERT模型和分词器
+        self.tokenizer = AutoTokenizer.from_pretrained("bert-base-chinese")
+        self.model = AutoModel.from_pretrained("bert-base-chinese")
+        return
+
+    # 定义计算相似度的函数
+    def calc_similarity(self, s1, s2):
+        # 对句子进行分词，并添加特殊标记
+        inputs = self.tokenizer([s1, s2], return_tensors='pt', padding=True, truncation=True)
+
+        # 将输入传递给BERT模型，并获取输出
+        with torch.no_grad():
+            outputs = self.model(**inputs)
+            embeddings = outputs.last_hidden_state[:, 0, :].cpu().numpy()
+
+        # 计算余弦相似度，并返回结果
+        sim = np.dot(embeddings[0], embeddings[1]) / (np.linalg.norm(embeddings[0]) * np.linalg.norm(embeddings[1]))
+        return sim
+
+
 class TestGeneral(unittest.TestCase):
 
     @staticmethod
@@ -87,7 +111,6 @@ class TestGeneral(unittest.TestCase):
         query = "走私了两万元，在法律上应该怎么量刑？"
         query = list(jieba.cut(query))
         scores = bm25_model.get_documents_score(query)
-
         print(scores)
         print(document_list_text[scores.index(max(scores))])
         return
@@ -100,6 +123,27 @@ class TestGeneral(unittest.TestCase):
         words = [word for word in words if word not in stop_words and word.strip()]
         print(words)
         print(words)
+        return
+
+    @staticmethod
+    def test_bert_similarity():
+        # 测试函数
+        s1 = "文本相似度计算是自然语言处理中的一个重要问题"
+        s2 = "自然语言处理中的一个重要问题是文本相似度计算"
+        be = BertSimilarity()
+        similarity = be.calc_similarity(s1, s2)
+        print(f"相似度：{similarity:.4f}")
+        document_list_text = ["行政机关强行解除行政协议造成损失，如何索取赔偿？",
+                         "借钱给朋友到期不还得什么时候可以起诉？怎么起诉？",
+                         "我在微信上被骗了，请问被骗多少钱才可以立案？",
+                         "公民对于选举委员会对选民的资格申诉的处理决定不服，能不能去法院起诉吗？",
+                         "有人走私两万元，怎么处置他？",
+                         "法律上餐具、饮具集中消毒服务单位的责任是不是对消毒餐具、饮具进行检验？"]
+        query = "走私了两万元，在法律上应该怎么量刑？"
+        print(query)
+        for doc in document_list_text:
+            similarity = be.calc_similarity(query, doc)
+            print(f"{doc} 相似度：{similarity:.4f}")
         return
 
 
