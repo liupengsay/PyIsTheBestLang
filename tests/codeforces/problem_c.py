@@ -1,21 +1,5 @@
-import bisect
-import decimal
-import heapq
-from types import GeneratorType
-from math import inf
-import sys
-from heapq import heappush, heappop, heappushpop
-from functools import cmp_to_key
-from collections import defaultdict, Counter, deque
-import math
-from functools import lru_cache
-from heapq import nlargest
-from functools import reduce
 import random
-from itertools import combinations, permutations
-from operator import xor, add
-from operator import mul
-from typing import List, Callable, Dict, Set, Tuple, DefaultDict
+import sys
 
 
 class FastIO:
@@ -52,7 +36,8 @@ class FastIO:
 
     @staticmethod
     def read_list_ints_minus_one():
-        return list(map(lambda x: int(x) - 1, sys.stdin.readline().strip().split()))
+        return list(map(lambda x: int(x) - 1,
+                        sys.stdin.readline().strip().split()))
 
     @staticmethod
     def read_str():
@@ -114,7 +99,7 @@ class FastIO:
     @staticmethod
     def get_random_seed():
         # 随机种子避免哈希冲突
-        return random.randint(0, 10**9+7)
+        return random.randint(0, 10**9 + 7)
 
 
 class Solution:
@@ -122,8 +107,25 @@ class Solution:
         return
 
     @staticmethod
-    def main(ac=FastIO()):
-
+    def ac_4307(ac=FastIO()):
+        # 模板：经典字典序枚举贪心
+        a = [int(w) for w in str(ac.read_int())]
+        b = [int(w) for w in str(ac.read_int())]
+        a.sort()
+        if len(a) < len(b):
+            res = a[::-1]
+        else:
+            n = len(a)
+            res = []
+            for x in range(n):
+                for i in range(n - 1 - x, -1, -1):
+                    tmp = a[:]
+                    tmp.pop(i)
+                    if res + [a[i]] + tmp <= b:
+                        res.append(a[i])
+                        a.pop(i)
+                        break
+        ac.st("".join(str(x) for x in res))
         return
 
 
