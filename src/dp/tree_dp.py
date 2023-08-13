@@ -76,6 +76,7 @@ F. Gardening Friends（https://codeforces.com/contest/1822/problem/F）计算树
 
 ================================AcWing================================
 3760. 最大剩余油量（https://www.acwing.com/problem/content/description/3763/）脑筋急转弯转化为树形DP迭代方式求解
+4381. 翻转树边（https://www.acwing.com/problem/content/description/4384/）迭代法实现树形换根DP计算
 
 参考：OI WiKi（xx）
 """
@@ -1435,6 +1436,52 @@ class Solution:
                     ans = d1 + d2 + w[i]
                 sub[i] = d1 + w[i]
         ac.st(ans)
+        return
+
+
+    @staticmethod
+    def ac_4381(ac=FastIO()):
+        # 模板：迭代法实现树形换根DP计算
+        n = ac.read_int()
+        dct = [[] for _ in range(n)]
+        for _ in range(n-1):
+            x, y = ac.read_ints_minus_one()
+            dct[x].append([y, 0])
+            dct[y].append([x, 1])
+
+        # 第一遍DP计算子节点的影响，从上到下再从下到上累加
+        sub = [0] * n
+        stack = [[0, -1]]
+        while stack:
+            i, fa = stack.pop()
+            if i >= 0:
+                stack.append([~i, fa])
+                for j, w in dct[i]:
+                    if j != fa:
+                        stack.append([j, i])
+            else:
+                i = ~i
+                cur = 0
+                for j, w in dct[i]:
+                    if j != fa:
+                        cur += sub[j] + w
+                sub[i] = cur
+
+        # 第二遍DP计算祖先节点与兄弟节点的影响
+        cnt = [0] * n
+        stack = [[0, -1, 0]]
+        while stack:
+            i, fa, pre = stack.pop()
+            cur = sub[i]
+            sub[i] += pre
+            for j, w in dct[i]:
+                if j != fa:
+                    stack.append([j, i, pre + cur - sub[j] - w + 1 - w])
+
+        x = min(sub)
+        ac.st(x)
+        res = [i+1 for i in range(n) if sub[i] == x]
+        ac.lst(res)
         return
 
 
