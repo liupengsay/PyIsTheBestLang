@@ -158,6 +158,7 @@ E. Making Anti-Palindromes（https://codeforces.com/contest/1822/problem/E）贪
 145. 超市（https://www.acwing.com/problem/content/147/）经典使用二叉堆贪心
 122. 糖果传递（https://www.acwing.com/problem/content/124/）经典线性环形均分纸牌问题
 4204. 构造矩阵（https://www.acwing.com/problem/content/description/4207/）经典构造
+4307. 数字重构（https://www.acwing.com/problem/content/description/4310/）经典字典序枚举贪心
 
 参考：OI WiKi（xx）
 """
@@ -764,6 +765,28 @@ class Solution:
             ans += pre
             pre += e
         ac.st(ans)
+        return
+
+    @staticmethod
+    def ac_4307(ac=FastIO()):
+        # 模板：经典字典序枚举贪心
+        a = [int(w) for w in str(ac.read_int())]
+        b = [int(w) for w in str(ac.read_int())]
+        a.sort()
+        if len(a) < len(b):
+            res = a[::-1]
+        else:
+            n = len(a)
+            res = []
+            for x in range(n):
+                for i in range(n - 1 - x, -1, -1):
+                    tmp = a[:]
+                    tmp.pop(i)
+                    if res + [a[i]] + tmp <= b:
+                        res.append(a[i])
+                        a.pop(i)
+                        break
+        ac.st("".join(str(x) for x in res))
         return
 
 
