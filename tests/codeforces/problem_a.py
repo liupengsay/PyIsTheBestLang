@@ -107,15 +107,15 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
-        n = ac.read_int()
-        ans = [0, 0, 0]
-        for _ in range(n):
-            lst = ac.read_list_ints()
-            ans = [ans[i]+lst[i] for i in range(3)]
-        if all(x==0 for x in ans):
-            ac.st("YES")
-        else:
-            ac.st("NO")
+        st = "a,o,y,e,u,i"
+        dct = set(st.split(","))
+        s = ac.read_str().lower()
+        ans = ""
+        for w in s:
+            if w not in dct:
+                ans += "."
+                ans += w
+        ac.st(ans)
         return
 
 

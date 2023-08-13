@@ -1,9 +1,9 @@
 import bisect
 import random
 import re
+import sys
 import unittest
-from bisect import bisect_left
-
+from typing import List, Callable
 from typing import List
 import heapq
 import math
@@ -20,24 +20,14 @@ from math import inf
 import random
 from itertools import permutations, combinations
 import numpy as np
-from typing import List, Callable
+
 from decimal import Decimal
 
 import heapq
 import copy
 from sortedcontainers import SortedList
 
-from sortedcontainers import SortedList
-
-
-
-
-
-
-
-
-
-
+sys.set_int_max_str_digits(0)
 
 
 
@@ -49,10 +39,3 @@ from sortedcontainers import SortedList
 
 
 assert Solution()
-
-
-
-
-
-
-

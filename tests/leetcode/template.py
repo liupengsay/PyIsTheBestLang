@@ -1,6 +1,7 @@
 import bisect
 import random
 import re
+import sys
 import unittest
 from typing import List, Callable
 from typing import List
@@ -26,7 +27,7 @@ import heapq
 import copy
 from sortedcontainers import SortedList
 
-
+sys.set_int_max_str_digits(0)  # 大数的范围坑
 
 
 

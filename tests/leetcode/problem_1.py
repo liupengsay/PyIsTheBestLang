@@ -1,9 +1,10 @@
 import bisect
 import random
 import re
+import sys
 import unittest
-
 from typing import List, Callable
+from typing import List
 import heapq
 import math
 from collections import defaultdict, Counter, deque
@@ -21,21 +22,17 @@ from itertools import permutations, combinations
 import numpy as np
 
 from decimal import Decimal
-from typing import List, Callable
+
 import heapq
 import copy
 from sortedcontainers import SortedList
 
+sys.set_int_max_str_digits(0)
 
 
 
-class Solution:
-    def diagonalSum(self, mat: List[List[int]]) -> int:
-        n = len(mat)
-        ans = sum(mat[i][i] for i in range(n)) + sum(mat[i][n-1-i] for i in range(n))
-        if n % 2:
-            ans -= mat[n//2][n//2]
-        return ans
+
+
 
 
 
