@@ -54,6 +54,9 @@ P8838 [传智杯 #3 决赛] 面试（https://www.luogu.com.cn/problem/P8838）�
 D. Tree Requests（https://codeforces.com/contest/570/problem/D）dfs序与二分查找，也可以使用离线查询
 E. Blood Cousins（https://codeforces.com/contest/208/problem/E）深搜序加LCA加二分查找计数
 
+================================AcWing================================
+4310. 树的DFS（https://www.acwing.com/problem/content/4313/）经典深搜序模板题
+
 参考：OI WiKi（xx）
 """
 
@@ -147,25 +150,27 @@ class DFS:
         return start, end
 
     @staticmethod
-    def gen_dfs_order_iteration(dct):
+    def gen_bfs_order_iteration(dct):
         # 模板：生成深搜序即 dfs 序以及对应子树编号区间
         n = len(dct)
         order = 0
-        start = [-1] * n
+        start = [-1] * n  # node_to_order
         end = [-1]*n
         parent = [-1]*n
         stack = [[0, -1, 0]]
         depth = [0]*n
+        order_to_node = [-1]*n
         while stack:
             i, fa, d = stack.pop()
             if i >= 0:
                 start[i] = order
+                order_to_node[order] = i
                 end[i] = order
                 depth[i] = d
                 order += 1
                 stack.append([~i, fa, d])
                 for j in dct[i]:
-                    if j != fa:
+                    if j != fa:  # 注意访问顺序可以进行调整
                         parent[j] = i
                         stack.append([j, i, d+1])
             else:
@@ -339,7 +344,7 @@ class Solution:
             dct[j].append(i)
 
         visit, interval = DFS().gen_dfs_order_recursion(dct)
-        # 也可以使用 DFS().gen_dfs_order_iteration(dct)
+        # 也可以使用 DFS().gen_bfs_order_iteration(dct)
         diff = [0] * n
         for u, v in guesses:
             if visit[u] <= visit[v]:
@@ -461,7 +466,7 @@ class Solution:
         del parent
 
         tree = TreeAncestor(edge)
-        start, end = DFS().gen_dfs_order_iteration(edge)
+        start, end = DFS().gen_bfs_order_iteration(edge)
 
         dct = [[] for _ in range(n + 1)]
         for i in range(n + 1):
@@ -515,6 +520,28 @@ class Solution:
         ac.lst(ans)
         return
 
+    @staticmethod
+    def ac_4310(ac=FastIO()):
+        # 模板：经典深搜序模板题
+        n, q = ac.read_ints()
+        dct = [[] for _ in range(n)]
+        nums = ac.read_list_ints_minus_one()
+        for i in range(n - 1):
+            dct[nums[i]].append(i + 1)
+        for i in range(n):
+            # 注意遍历顺序
+            dct[i].sort(reverse=True)
+        start, end = DFS().gen_bfs_order_iteration(dct)
+        ind = {num: i for i, num in enumerate(start)}
+        for _ in range(q):
+            u, k = ac.read_ints()
+            u -= 1
+            if end[u] - start[u] + 1 < k:
+                ac.st(-1)
+            else:
+                ac.st(ind[start[u] + k - 1] + 1)
+        return
+
 
 class TestGeneral(unittest.TestCase):
 
@@ -527,7 +554,7 @@ class TestGeneral(unittest.TestCase):
 
         dfs = DFS()
         dct = [[1, 2], [0, 3], [0, 4], [1], [2]]
-        start, end = dfs.gen_dfs_order_iteration([d[::-1] for d in dct])
+        start, end = dfs.gen_bfs_order_iteration([d[::-1] for d in dct])
         assert start == [x - 1 for x in [1, 2, 4, 3, 5]]
         assert end == [b-1 for _, b in [[1, 5], [2, 3], [4, 5], [3, 3], [5, 5]]]
         return
