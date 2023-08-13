@@ -61,6 +61,65 @@ E. Blood Cousins（https://codeforces.com/contest/208/problem/E）深搜序加LC
 """
 
 
+class DFS:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def gen_dfs_order_recursion(dct):
+        # 模板：生成深搜序即 dfs 序以及对应子树编号区间
+        def dfs(x):
+            nonlocal order
+            start[x] = order
+            order += 1
+            for y in dct[x]:
+                if start[y] == -1:
+                    dfs(y)
+            end[x] = order - 1
+            return
+
+        n = len(dct)
+        order = 0
+        start = [-1] * n
+        end = [-1]*n
+        dfs(0)
+        return start, end
+
+    @staticmethod
+    def gen_bfs_order_iteration(dct):
+        # 模板：生成深搜序即 dfs 序以及对应子树编号区间
+        n = len(dct)
+        for i in range(n):
+            dct[i].sort(reverse=True)  # 按照子节点编号从小到大进行遍历
+        order = 0
+        start = [-1] * n  # node_to_order
+        end = [-1]*n
+        parent = [-1]*n
+        stack = [[0, -1, 0]]
+        depth = [0]*n
+        order_to_node = [-1]*n
+        while stack:
+            i, fa, d = stack.pop()
+            if i >= 0:
+                start[i] = order
+                order_to_node[order] = i
+                end[i] = order
+                depth[i] = d
+                order += 1
+                stack.append([~i, fa, d])
+                for j in dct[i]:
+                    if j != fa:  # 注意访问顺序可以进行调整
+                        parent[j] = i
+                        stack.append([j, i, d+1])
+            else:
+                i = ~i
+                if parent[i] != -1:
+                    end[parent[i]] = end[i]
+
+        return start, end
+
+
+
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
@@ -123,62 +182,6 @@ class Order:
             else:
                 ans.append(node.val)
         return ans
-
-
-class DFS:
-    def __init__(self):
-        return
-
-    @staticmethod
-    def gen_dfs_order_recursion(dct):
-        # 模板：生成深搜序即 dfs 序以及对应子树编号区间
-        def dfs(x):
-            nonlocal order
-            start[x] = order
-            order += 1
-            for y in dct[x]:
-                if start[y] == -1:
-                    dfs(y)
-            end[x] = order - 1
-            return
-
-        n = len(dct)
-        order = 0
-        start = [-1] * n
-        end = [-1]*n
-        dfs(0)
-        return start, end
-
-    @staticmethod
-    def gen_bfs_order_iteration(dct):
-        # 模板：生成深搜序即 dfs 序以及对应子树编号区间
-        n = len(dct)
-        order = 0
-        start = [-1] * n  # node_to_order
-        end = [-1]*n
-        parent = [-1]*n
-        stack = [[0, -1, 0]]
-        depth = [0]*n
-        order_to_node = [-1]*n
-        while stack:
-            i, fa, d = stack.pop()
-            if i >= 0:
-                start[i] = order
-                order_to_node[order] = i
-                end[i] = order
-                depth[i] = d
-                order += 1
-                stack.append([~i, fa, d])
-                for j in dct[i]:
-                    if j != fa:  # 注意访问顺序可以进行调整
-                        parent[j] = i
-                        stack.append([j, i, d+1])
-            else:
-                i = ~i
-                if parent[i] != -1:
-                    end[parent[i]] = end[i]
-
-        return start, end
 
 
 class Solution:
