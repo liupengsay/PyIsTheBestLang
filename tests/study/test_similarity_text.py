@@ -1,10 +1,9 @@
 import unittest
-import jieba
-import unittest
-from transformers import AutoTokenizer, AutoModel
-import torch
-import numpy as np
 
+import jieba
+import numpy as np
+import torch
+from transformers import AutoTokenizer, AutoModel
 
 """
 算法：短文本相似度计算
@@ -13,7 +12,7 @@ import numpy as np
 """
 
 
-import numpy as np
+
 from collections import Counter
 
 
@@ -66,6 +65,10 @@ class BM25Model(object):
 
 
 class BertSimilarity:
+    """
+    使用BERT模型计算两个句子相似度的Python完整实现示例
+    https://zhuanlan.zhihu.com/p/621019454
+    """
     def __init__(self):
         # 加载BERT模型和分词器
         self.tokenizer = AutoTokenizer.from_pretrained("bert-base-chinese")
@@ -85,6 +88,52 @@ class BertSimilarity:
         # 计算余弦相似度，并返回结果
         sim = np.dot(embeddings[0], embeddings[1]) / (np.linalg.norm(embeddings[0]) * np.linalg.norm(embeddings[1]))
         return sim
+
+
+class TFIDFModel(object):
+    """
+    传统方法TF-IDF解决短文本相似度问题
+    https://zhuanlan.zhihu.com/p/113017752
+    """
+    def __init__(self, documents_list):
+        self.documents_list = documents_list
+
+        # 文本总个数
+        self.documents_number = len(documents_list)
+        # 存储每个文本中没个词的词频
+        self.tf = []
+        # 存储每个词汇的逆文档频率
+        self.idf = {}
+        # 类初始化
+        self.init()
+
+    def init(self):
+        df = {}
+        for document in self.documents_list:
+            temp = {}
+            for word in document:
+                # 存储每个文档中每个词的词频
+                temp[word] = temp.get(word, 0) + 1/len(document)
+            self.tf.append(temp)
+            for key in temp.keys():
+                df[key] = df.get(key, 0) + 1
+        for key, value in df.items():
+            # 每个词的逆文档频率
+            self.idf[key] = np.log(self.documents_number / (value + 1))
+
+    def get_score(self, index, query):
+        score = 0.0
+        for q in query:
+            if q not in self.tf[index]:
+                continue
+            score += self.tf[index][q] * self.idf[q]
+        return score
+
+    def get_documents_score(self, query):
+        score_list = []
+        for i in range(self.documents_number):
+            score_list.append(self.get_score(i, query))
+        return score_list
 
 
 class TestGeneral(unittest.TestCase):
@@ -144,6 +193,30 @@ class TestGeneral(unittest.TestCase):
         for doc in document_list_text:
             similarity = be.calc_similarity(query, doc)
             print(f"{doc} 相似度：{similarity:.4f}")
+        return
+
+    @staticmethod
+    def test_tf_idf_model():
+        document_list_text = ["行政机关强行解除行政协议造成损失，如何索取赔偿？",
+                         "借钱给朋友到期不还得什么时候可以起诉？怎么起诉？",
+                         "我在微信上被骗了，请问被骗多少钱才可以立案？",
+                         "公民对于选举委员会对选民的资格申诉的处理决定不服，能不能去法院起诉吗？",
+                         "有人走私两万元，怎么处置他？",
+                         "法律上餐具、饮具集中消毒服务单位的责任是不是对消毒餐具、饮具进行检验？"]
+        document_list = [list(jieba.cut(doc)) for doc in document_list_text]  # 也可以使用停用词进行去除
+        tf_idf_model = TFIDFModel(document_list)
+        print(tf_idf_model.documents_list)
+        print(tf_idf_model.documents_number)
+        print(tf_idf_model.tf)
+        print(tf_idf_model.idf)
+        query = "走私了两万元，在法律上应该怎么量刑？"
+        query = list(jieba.cut(query))
+        # 值越大越好
+        scores = tf_idf_model.get_documents_score(query)
+        print(scores)
+        print(query)
+        print(document_list_text[scores.index(max(scores))])
+
         return
 
 
