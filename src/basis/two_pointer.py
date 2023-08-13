@@ -8,6 +8,8 @@ from itertools import accumulate
 from typing import List
 from operator import mul, add, xor, and_, or_
 from src.fast_io import FastIO
+from math import inf
+
 
 """
 算法：双指针、快慢指针、先后指针、桶计数
@@ -51,6 +53,9 @@ D. Carousel（https://codeforces.com/problemset/problem/1328/D）环形数组滑
 C. Eugene and an array（https://codeforces.com/problemset/problem/1333/C）双指针，计算前缀和不重复即没有区间段和为0的个数
 A2. Prefix Flip (Hard Version)（https://codeforces.com/problemset/problem/1381/A2）双指针模拟翻转匹配与贪心
 
+================================AcWing================================
+4217. 机器人移动（https://www.acwing.com/problem/content/4220/）经典双指针滑动窗口题目
+
 参考：OI WiKi（xx）
 """
 
@@ -76,6 +81,56 @@ class TwoPointer:
                 del dct[nums[i]]
         return ans
 
+    @staticmethod
+    def circle_array(arr):
+        # 模板：环形数组指针移动
+        n = len(arr)
+        ans = 0
+        for i in range(n):
+            ans = max(ans, arr[i] + arr[(i + n - 1) % n])
+        return ans
+
+    @staticmethod
+    def fast_and_slow(head):
+        # 模板：快慢指针判断链表是否存在环
+        fast = slow = head
+        while fast and fast.next:
+            fast = fast.next.next
+            slow = slow.next
+            if fast == slow:
+                return True
+        return False
+
+    @staticmethod
+    def same_direction(nums):
+        # 模板: 相同方向双指针（寻找最长不含重复元素的子序列）
+        n = len(nums)
+        ans = j = 0
+        pre = set()
+        for i in range(n):
+            # 特别注意指针的移动情况
+            while j < n and nums[j] not in pre:
+                pre.add(nums[j])
+                j += 1
+            # 视情况更新返回值
+            ans = ans if ans > j - i else j - i
+            pre.discard(nums[i])
+        return ans
+
+    @staticmethod
+    def opposite_direction(nums, target):
+        # 模板: 相反方向双指针（寻找升序数组是否存在两个数和为target）
+        n = len(nums)
+        i, j = 0, n - 1
+        while i < j:
+            cur = nums[i] + nums[j]
+            if cur > target:
+                j -= 1
+            elif cur < target:
+                i += 1
+            else:
+                return True
+        return False
 
 
 class SlidingWindowAggregation:
@@ -144,62 +199,6 @@ class SlidingWindowAggregation:
 
     def __len__(self):
         return self.size
-
-
-class TwoPointer:
-    def __init__(self):
-        return
-
-    @staticmethod
-    def circle_array(arr):
-        # 模板：环形数组指针移动
-        n = len(arr)
-        ans = 0
-        for i in range(n):
-            ans = max(ans, arr[i] + arr[(i + n - 1) % n])
-        return ans
-
-    @staticmethod
-    def fast_and_slow(head):
-        # 模板：快慢指针判断链表是否存在环
-        fast = slow = head
-        while fast and fast.next:
-            fast = fast.next.next
-            slow = slow.next
-            if fast == slow:
-                return True
-        return False
-
-    @staticmethod
-    def same_direction(nums):
-        # 模板: 相同方向双指针（寻找最长不含重复元素的子序列）
-        n = len(nums)
-        ans = j = 0
-        pre = set()
-        for i in range(n):
-            # 特别注意指针的移动情况
-            while j < n and nums[j] not in pre:
-                pre.add(nums[j])
-                j += 1
-            # 视情况更新返回值
-            ans = ans if ans > j - i else j - i
-            pre.discard(nums[i])
-        return ans
-
-    @staticmethod
-    def opposite_direction(nums, target):
-        # 模板: 相反方向双指针（寻找升序数组是否存在两个数和为target）
-        n = len(nums)
-        i, j = 0, n - 1
-        while i < j:
-            cur = nums[i] + nums[j]
-            if cur > target:
-                j -= 1
-            elif cur < target:
-                i += 1
-            else:
-                return True
-        return False
 
 
 class Solution:
@@ -438,6 +437,43 @@ class Solution:
                     j += 1
                 ans += s - cnt.get(nums[i], 0)
             ac.st(ans)
+        return
+
+
+    @staticmethod
+    def ac_4217(ac=FastIO()):
+        # 模板：经典双指针移动
+        n = ac.read_int()
+        s = ac.read_str()
+        a, b = ac.read_ints()
+        ans = inf
+        j = 0
+        ind = dict()
+        ind["U"] = [0, 1]
+        ind["D"] = [0, -1]
+        ind["L"] = [-1, 0]
+        ind["R"] = [1, 0]
+        lst = [0, 0]
+        for w in s:
+            lst[0] += ind[w][0]
+            lst[1] += ind[w][1]
+
+        def check():
+            rest = [lst[0] - pre[0], lst[1] - pre[1]]
+            return abs(rest[0] - a) + abs(rest[1] - b) == j - i
+
+        pre = [0, 0]
+        for i in range(n):
+            while j < n and not check():
+                w = ind[s[j]]
+                pre[0] += w[0]
+                pre[1] += w[1]
+                j += 1
+            if check() and j - i < ans:
+                ans = j - i
+            pre[0] -= ind[s[i]][0]
+            pre[1] -= ind[s[i]][1]
+        ac.st(ans if ans < inf else -1)
         return
 
 
