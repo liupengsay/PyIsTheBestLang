@@ -26,6 +26,7 @@ from decimal import Decimal
 import heapq
 import copy
 
+from src.fast_io import FastIO
 
 """
 算法：扩展欧几里得定理、extended_gcd、binary_gcd、二进制gcd、裴蜀定理
@@ -42,6 +43,10 @@ P1082 [NOIP2012 提高组] 同余方程（https://www.luogu.com.cn/problem/P1082
 P5435 基于值域预处理的快速 GCD（https://www.luogu.com.cn/problem/P5435）binary_gcd快速求解
 P5582 【SWTR-01】Escape（https://www.luogu.com.cn/problem/P5582）贪心加脑筋急转弯，使用扩展欧几里得算法gcd为1判断可达性
 P1516 青蛙的约会（https://www.luogu.com.cn/problem/P1516）求解a*x+b*y=m的最小正整数解
+
+
+===================================AcWing===================================
+4296. 合适数对（https://www.acwing.com/problem/content/4299/）扩展欧几里得求解ax+by=n的非负整数解
 
 参考：OI WiKi（xx）
 """
@@ -62,7 +67,7 @@ class ExtendGcd:
     def solve_equal(self, a, b, m=1):
         # 模板：扩展gcd求解ax+by=m方程组的所有解
         gcd, x0, y0 = self.extend_gcd(a, b)
-        # 方程有解当且仅当c是gcd(a,b)的倍数
+        # 方程有解当且仅当m是gcd(a,b)的倍数
         assert a * x0 + b * y0 == 1
 
         # 方程组的解初始值则为
@@ -96,6 +101,27 @@ class ExtendGcd:
                     b = b >> 1
                     a = a >> 1
         return c * a
+
+    @staticmethod
+    def ac_4296(ac=FastIO()):
+        # 模板：扩展欧几里得求解ax+by=n的非负整数解
+        n, a, b = [ac.read_int() for _ in range(3)]
+        g = math.gcd(a, b)
+        if n % g:
+            ac.st("NO")
+        else:
+            # 求解ax+by=n且x>=0和y>=0
+            gcd, x1, y1 = ExtendGcd().solve_equal(a, b, n)
+            low = math.ceil((-x1 * gcd) / b)
+            high = (y1 * gcd) // a
+            # low<=t<=high
+            if low <= high:
+                x = x1 + (b//gcd) * low
+                ac.st("YES")
+                ac.lst([x, (n - a * x) // b])
+            else:
+                ac.st("NO")
+        return
 
 
 class Solution:
