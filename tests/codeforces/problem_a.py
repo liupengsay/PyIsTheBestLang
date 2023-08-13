@@ -1,5 +1,21 @@
-import random
+import bisect
+import decimal
+import heapq
+from types import GeneratorType
+from math import inf
 import sys
+from heapq import heappush, heappop, heappushpop
+from functools import cmp_to_key
+from collections import defaultdict, Counter, deque
+import math
+from functools import lru_cache
+from heapq import nlargest
+from functools import reduce
+import random
+from itertools import combinations, permutations
+from operator import xor, add
+from operator import mul
+from typing import List, Callable, Dict, Set, Tuple, DefaultDict
 
 
 class FastIO:
@@ -107,15 +123,7 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
-        st = "a,o,y,e,u,i"
-        dct = set(st.split(","))
-        s = ac.read_str().lower()
-        ans = ""
-        for w in s:
-            if w not in dct:
-                ans += "."
-                ans += w
-        ac.st(ans)
+
         return
 
 

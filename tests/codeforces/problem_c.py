@@ -1,6 +1,21 @@
-import random
-import sys
+import bisect
+import decimal
+import heapq
+from types import GeneratorType
 from math import inf
+import sys
+from heapq import heappush, heappop, heappushpop
+from functools import cmp_to_key
+from collections import defaultdict, Counter, deque
+import math
+from functools import lru_cache
+from heapq import nlargest
+from functools import reduce
+import random
+from itertools import combinations, permutations
+from operator import xor, add
+from operator import mul
+from typing import List, Callable, Dict, Set, Tuple, DefaultDict
 
 
 class FastIO:
@@ -108,42 +123,7 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
-        n = ac.read_int()
-        s = ac.read_str()
-        a, b = ac.read_ints()
-        ans = inf
-        j = 0
-        ind= dict()
-        ind["U"] = [0, 1]
-        ind["D"] = [0, -1]
-        ind["L"] = [-1, 0]
-        ind["R"] = [1, 0]
-        lst = [0, 0]
-        for w in s:
-            lst[0] += ind[w][0]
-            lst[1] += ind[w][1]
 
-        def check():
-            rest = [lst[0]-pre[0], lst[1]-pre[1]]
-            return abs(rest[0]-a)+abs(rest[1]-b) == j-i
-
-        pre = [0, 0]
-        for i in range(n):
-            while j < i:
-                w = ind[s[j]]
-                pre[0] += w[0]
-                pre[1] += w[1]
-                j += 1
-            while j < n and not check():
-                w = ind[s[j]]
-                pre[0] += w[0]
-                pre[1] += w[1]
-                j += 1
-            if check() and j-i < ans:
-                ans = j-i
-            pre[0] -= ind[s[i]][0]
-            pre[1] -= ind[s[i]][1]
-        ac.st(ans if ans < inf else -1)
         return
 
 
