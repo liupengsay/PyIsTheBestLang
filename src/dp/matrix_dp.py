@@ -112,6 +112,9 @@ B. The least round way（https://codeforces.com/problemset/problem/2/B）矩阵D
 B. Unmerge（https://codeforces.com/problemset/problem/1381/B）二维矩阵DP加单调栈优化
 D. Rarity and New Dress（https://codeforces.com/problemset/problem/1393/D）经典二维DP计算金字塔个数
 
+================================AcWing================================
+4378. 选取数对（https://www.acwing.com/problem/content/4381/）典型矩阵DP
+
 参考：OI WiKi（xx）
 """
 
@@ -1750,6 +1753,28 @@ class Solution:
                 if lcp[i][i + j] >= j:
                     dp[i] = dp[i] if dp[i] > dp[i + j] + 1 else dp[i + j] + 1
         return dp[0]
+
+    @staticmethod
+    def ac_4378(ac=FastIO()):
+        # 模板：典型矩阵DP
+        n, m, k = ac.read_ints()
+        dp = [[-inf] * (k + 1) for _ in range(n + 1)]
+        dp[0][0] = 0
+        nums = ac.read_list_ints()
+        pre = ac.accumulate(nums)
+        if m == 1:
+            nums.sort()
+            ac.st(sum(nums[-k:]))
+            return
+        for i in range(n):
+            dp[i + 1][0] = 0
+            if i >= m - 1:
+                for j in range(1, k + 1):
+                    a, b = dp[i][j], dp[i - m + 1][j - 1] + \
+                        pre[i + 1] - pre[i - m + 1]
+                    dp[i + 1][j] = a if a > b else b
+        ac.st(dp[n][k])
+        return
 
 
 class TestGeneral(unittest.TestCase):
