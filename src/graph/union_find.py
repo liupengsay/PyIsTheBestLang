@@ -73,7 +73,8 @@ E. Connected Components?（https://codeforces.com/contest/920/problem/E）并查
 C. Ice Cave（https://codeforces.com/problemset/problem/540/C）路径可达
 E2. Unforgivable Curse (hard version)（https://codeforces.com/problemset/problem/1800/E2）使用并查集分组计算可达
 
-
+================================AcWing================================
+4306. 序列处理（https://www.acwing.com/problem/content/description/4309/）经典向右合并的区间并查集
 
 参考：OI WiKi（xx）
 """
@@ -1022,6 +1023,23 @@ class Solution:
                     a += 1
             ans.append(cnt)
         return ans
+
+
+    @staticmethod
+    def ac_4306(ac=FastIO()):
+        # 模板：经典向右合并的区间并查集
+        n = ac.read_int()
+        a = ac.read_list_ints()
+        uf = UnionFindRightRange(n*2+2)
+        a.sort()
+        ans = 0
+        for num in a:
+            # 其根节点就是当前还未被占据的节点
+            x = uf.find(num)
+            ans += x-num
+            uf.union(x, x+1)
+        ac.st(ans)
+        return
 
 
 class TestGeneral(unittest.TestCase):
