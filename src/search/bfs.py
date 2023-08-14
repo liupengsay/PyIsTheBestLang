@@ -4,7 +4,7 @@ from typing import List
 from src.fast_io import FastIO, inf
 
 """
-算法：广度优先搜索、双端队列BFS、离散化BFS、有边界的BFS
+算法：广度优先搜索、双端队列BFS、离散化BFS、有边界的BFS、染色法、奇数环
 功能：在有向图与无向图进行扩散，多源BFS、双向BFS，0-1BFS（类似SPFA）双向BFS或者A-star启发式搜索
 题目：
 
@@ -27,7 +27,7 @@ P2335 [SDOI2005]位图（https://www.luogu.com.cn/problem/P2335）广度优先�
 P2385 [USACO07FEB]Bronze Lilypad Pond B（https://www.luogu.com.cn/problem/P2385）广度优先搜索最短步数
 P2630 图像变换（https://www.luogu.com.cn/problem/P2630）BFS模拟计算最短次数与最小字典序
 P1332 血色先锋队（https://www.luogu.com.cn/problem/P1332）标准BFS
-P1330 封锁阳光大学（https://www.luogu.com.cn/problem/P1330）BFS进行隔层染色取较小值，也可以判断连通块是否存在奇数环
+P1330 封锁阳光大学（https://www.luogu.com.cn/problem/P1330）BFS进行隔层染色法取较小值，也可以判断连通块是否存在奇数环
 P1215 [USACO1.4]母亲的牛奶 Mother's Milk（https://www.luogu.com.cn/problem/P1215）广度优先搜索进行模拟与状态记录
 P1037 [NOIP2002 普及组] 产生数（https://www.luogu.com.cn/problem/P1037）广度优先搜索之后进行模拟和枚举
 P2853 [USACO06DEC]Cow Picnic S（https://www.luogu.com.cn/problem/P2853）广度优先搜索进行可达计数
@@ -91,6 +91,7 @@ P6175 无向图的最小环问题（https://www.luogu.com.cn/problem/P6175）经
 173. 矩阵距离（https://www.acwing.com/problem/content/175/）多源BFS模板题
 175. 电路维修（https://www.acwing.com/problem/content/177/）双端优先队列 BFS
 177. 噩梦（https://www.acwing.com/problem/content/179/）多源双向BFS
+4415. 点的赋值（https://www.acwing.com/problem/content/description/4418）经典BFS染色法，判断有无奇数环，方案计数
 
 参考：OI WiKi（xx）
 """
@@ -1627,6 +1628,87 @@ class Solution:
                         return True
                     visit.add((x, y))
         return False
+
+    @staticmethod
+    def ac_4415(ac=FastIO()):
+        # 模板：经典BFS染色法，判断有无奇数环，方案计数
+        mod = 998244353
+
+        def check():
+            n, m = ac.read_ints()
+            dct = [[] for _ in range(n)]
+            for _ in range(m):
+                u, v = ac.read_ints_minus_one()
+                dct[u].append(v)
+                dct[v].append(u)
+
+            visit = [-1] * n
+            ans = 1
+            for i in range(n):
+                if visit[i] == -1:
+                    # 染色法模板
+                    stack = [i]
+                    color = 0
+                    visit[i] = color
+                    cnt = [1, 0]
+                    while stack:
+                        color = 1 - color
+                        nex = []
+                        for x in stack:
+                            for y in dct[x]:
+                                if visit[y] == -1:
+                                    visit[y] = color
+                                    cnt[color] += 1
+                                    nex.append(y)
+                                elif visit[y] != color:
+                                    ac.st(0)
+                                    return
+                        stack = nex
+                    res = pow(2, cnt[0], mod) + pow(2, cnt[1], mod)  # 方案计数
+                    ans *= res
+                    ans %= mod
+            ac.st(ans)
+            return
+        for _ in range(ac.read_int()):
+            check()
+        return
+
+    @staticmethod
+    def lg_p1330(ac=FastIO()):
+        # 模板：经典BFS隔层染色法，判断有无奇数环
+        n, m = ac.read_ints()
+        edge = [[] for _ in range(n)]
+        for _ in range(m):
+            u, v = ac.read_ints_minus_one()
+            edge[u].append(v)
+            edge[v].append(u)
+
+        visit = [-1] * n
+        ans = 0
+        for i in range(n):
+            if visit[i] == -1:
+                # BFS染色法
+                stack = [i]
+                color = 0
+                visit[i] = color
+                cnt = [1, 0]
+                while stack:
+                    color = 1 - color
+                    nex = []
+                    for x in stack:
+                        for y in edge[x]:
+                            if visit[y] == -1:
+                                visit[y] = color
+                                cnt[color] += 1
+                                nex.append(y)
+                            elif visit[y] != color:
+                                # 奇数环
+                                ac.st("Impossible")
+                                return
+                    stack = nex
+                ans += cnt[0] if cnt[0] < cnt[1] else cnt[1]
+        ac.st(ans)
+        return
 
 
 class TestGeneral(unittest.TestCase):
