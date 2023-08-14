@@ -114,6 +114,8 @@ D. Rarity and New Dress（https://codeforces.com/problemset/problem/1393/D）经
 
 ================================AcWing================================
 4378. 选取数对（https://www.acwing.com/problem/content/4381/）典型矩阵DP
+4418. 选元素（https://www.acwing.com/problem/content/description/4421/）经典单调队列优化矩阵DP
+
 
 参考：OI WiKi（xx）
 """
@@ -399,7 +401,6 @@ class Solution:
                 x = p
             return cnt, path[::-1]
 
-        inf = inf
         c1, path1 = check(f_2)
         c2, path2 = check(f_5)
         if c1 <= c2:
@@ -1586,6 +1587,31 @@ class Solution:
             ans %= mod
         ac.st((ans - dp[n][n]) % mod)
         return
+
+    @staticmethod
+    def ac_4418(ac=FastIO()):
+        # 模板：经典单调队列优化矩阵DP
+        n, k, x = ac.read_ints()
+        nums = ac.read_list_ints()
+        # dp[i][j]表示选第i个元素，且选了j个元素的最大和
+        dp = [[-inf]*(x+1) for _ in range(n+1)]
+        dp[0][0] = 0
+        stack = [deque() for _ in range(x+1)]
+        stack[0].append((0, 0))
+        for i in range(1, n+1):
+            for j in range(x, 0, -1):
+                while stack[j-1] and stack[j-1][0][0] < i-k:
+                    stack[j-1].popleft()
+                if stack[j-1]:
+                    dp[i][j] = stack[j-1][0][1] + nums[i-1]
+                while stack[j] and stack[j][-1][1] <= dp[i][j]:
+                    stack[j].pop()
+                stack[j].append((i, dp[i][j]))
+
+        ans = max(dp[i][x] for i in range(n-k+1, n+1))
+        ac.st(ans if ans > -inf else -1)
+        return
+
 
     @staticmethod
     def lg_p7995(ac=FastIO()):
