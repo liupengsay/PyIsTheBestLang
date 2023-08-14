@@ -1,3 +1,4 @@
+import bisect
 import unittest
 from collections import defaultdict, deque
 from math import inf
@@ -9,15 +10,15 @@ from src.fast_io import FastIO
 """
 算法：区间合并、区间覆盖、区间计数
 功能：涉及到区间的一些合并查询和操作，也可以使用差分数组与树状数组、线段树进行解决
-用法：合并为不相交的区间、最小区间覆盖问题、最多不相交的区间、最小点覆盖（每条线段至少一个点需要多少点覆盖）
+用法：合并为不相交的区间、最少区间覆盖问题、最多不相交的区间、最小点覆盖（每条线段至少一个点需要多少点覆盖）
 最多点匹配覆盖（每条线段选一个点匹配，最多匹配数有点类似二分图）
 题目：
 
 ===================================力扣===================================
-45. 跳跃游戏 II（https://leetcode.cn/problems/jump-game-ii/）转换为最小区间覆盖问题
+45. 跳跃游戏 II（https://leetcode.cn/problems/jump-game-ii/）转换为最少区间覆盖问题
 452. 用最少数量的箭引爆气球（https://leetcode.cn/problems/minimum-number-of-arrows-to-burst-balloons/）贪心等价为最多不想交的区间
-1326. 灌溉花园的最少水龙头数目（https://leetcode.cn/problems/minimum-number-of-taps-to-open-to-water-a-garden/）转换为最小区间覆盖问题
-1024. 视频拼接（https://leetcode.cn/problems/video-stitching/）转换为最小区间覆盖问题
+1326. 灌溉花园的最少水龙头数目（https://leetcode.cn/problems/minimum-number-of-taps-to-open-to-water-a-garden/）转换为最少区间覆盖问题
+1024. 视频拼接（https://leetcode.cn/problems/video-stitching/）转换为最少区间覆盖问题
 1520. 最多的不重叠子字符串（https://leetcode.cn/problems/maximum-number-of-non-overlapping-substrings/）转化为最多不相交区间进行处理
 1353. 最多可以参加的会议数目（https://leetcode.cn/problems/maximum-number-of-events-that-can-be-attended/）贪心选取最多的点，使得每个点一一对应一个区间
 
@@ -37,19 +38,23 @@ P6123 [NEERC2016]Hard Refactoring（https://www.luogu.com.cn/problem/P6123）区
 P2684 搞清洁（https://www.luogu.com.cn/problem/P2684）最小区间覆盖，选取最少的区间来进行覆盖
 P1233 木棍加工（https://www.luogu.com.cn/problem/P1233）按照一个维度排序后计算另一个维度的最长严格递增子序列的长度，二位偏序，转换为区间包含问题
 P1496 火烧赤壁（https://www.luogu.com.cn/problem/P1496）经典区间合并确定覆盖范围
-P1668 [USACO04DEC] Cleaning Shifts S（https://www.luogu.com.cn/problem/P1668）转换为最小区间覆盖问题
+P1668 [USACO04DEC] Cleaning Shifts S（https://www.luogu.com.cn/problem/P1668）转换为最少区间覆盖问题
 P2887 [USACO07NOV] Sunscreen G（https://www.luogu.com.cn/problem/P2887）最多点匹配覆盖，每条线段选一个点匹配，最多匹配数有点类似二分图
 P3661 [USACO17FEB]Why Did the Cow Cross the Road I S（https://www.luogu.com.cn/problem/P3661）经典区间与点集贪心匹配
 P3737 [HAOI2014]遥感监测（https://www.luogu.com.cn/problem/P3737）经典区间点覆盖贪心
 P5199 [USACO19JAN]Mountain View S（https://www.luogu.com.cn/problem/P5199）经典区间包含贪心计算最多互不包含的区间个数
 P1868 饥饿的奶牛（https://www.luogu.com.cn/problem/P1868）线性DP加二分查找优化，选取并集最大且不想交的区间
 P2439 [SDOI2005] 阶梯教室设备利用（https://www.luogu.com.cn/problem/P2439）线性DP加二分查找优化，选取并集最大且不想交的区间
+
 ================================CodeForces================================
 A. String Reconstruction（https://codeforces.com/problemset/problem/827/A）区间合并为不相交的区间，再贪心赋值
 D. Nested Segments（https://codeforces.com/problemset/problem/652/D）二位偏序，转换为区间包含问题
 D. Non-zero Segments（https://codeforces.com/problemset/problem/1426/D）贪心选取最少的点集合，使得每个区间包含其中至少一个点
 
+================================AcWing================================
 112. 雷达设备（https://www.acwing.com/problem/content/114/）作用范围进行区间贪心
+4421. 信号（https://www.acwing.com/problem/content/4424/）经典最少区间覆盖范围问题，相邻可以不相交
+
 
 参考：OI WiKi（xx）
 """
@@ -78,6 +83,8 @@ class Range:
     @staticmethod
     def cover_less(s, t, lst, inter=True):
         # 模板: 计算nums的最少区间数进行覆盖 [s, t] 即最少区间覆盖
+        if not lst:
+            return -1
         lst.sort(key=lambda x: [x[0], -x[1]])
         if lst[0][0] != s:
             return -1
@@ -118,28 +125,33 @@ class Range:
 
     @staticmethod
     def minimum_interval_coverage(clips: List[List[int]], time: int, inter=True) -> int:
-        # 模板：从 clips 中选出最小的区间数覆盖 [0, time]
-
-        post = [0]*time
-        for a, b in clips:
-            if a < time:
-                post[a] = post[a] if post[a] > b else b
-
-        ans = right = pre_end = 0
-        for i in range(time):
-            right = right if right > post[i] else post[i]
-            if i == right:
+        # 模板：最少区间覆盖问题，从 clips 中选出最小的区间数覆盖 [0, time]
+        assert time >= 0
+        if not clips:
+            return -1
+        if time == 0:
+            if min(x for x, _ in clips) > 0:
                 return -1
-            if inter:
+            return 1
+
+        if inter:
+            post = [0]*time
+            for a, b in clips:
+                if a < time:
+                    post[a] = post[a] if post[a] > b else b
+            if not post[0]:
+                return -1
+
+            ans = right = pre_end = 0
+            for i in range(time):
+                right = right if right > post[i] else post[i]
+                if i == right:
+                    return -1
                 if i == pre_end:  # 也可以输出具体方案，注意此时要求区间左右点相同即 [1, 3] + [3, 4] = [1, 4]
-                    #  若改为 i == pre_end + 1 则可以改为 [1, 2] + [3, 4] = [1, 4]
                     ans += 1
                     pre_end = right
-            else:
-                if i == pre_end + 1:  # 也可以输出具体方案，注意此时要求区间左右点相同即 [1, 3] + [3, 4] = [1, 4]
-                    #  若改为 i == pre_end + 1 则可以改为 [1, 2] + [3, 4] = [1, 4]
-                    ans += 1
-                    pre_end = right
+        else:
+            ans = -1
         return ans
 
     @staticmethod
@@ -181,7 +193,8 @@ class Solution:
         return Range().cover_less(0, n - 1, lst)
 
     @staticmethod
-    def lc_1326(n, ranges):
+    def lc_1326_1(n, ranges):
+        # 模板：最少区间覆盖模板题
         m = n + 1
         lst = []
         for i in range(m):
@@ -190,46 +203,24 @@ class Solution:
 
     @staticmethod
     def lc_1326_2(n: int, ranges: List[int]) -> int:
-        # 模板：ranges 最小覆盖 [0, n]
-        post = [0] * n
+        # 模板：最少区间覆盖模板题
+        lst = []
         for i, r in enumerate(ranges):
             a, b = i - r, i + r
             a = a if a > 0 else 0
             b = b if b < n else n
-            if a < n:
-                post[a] = post[a] if post[a] > b else b
-        # 注意 [0, 1] [2, 2] 并不覆盖[0, 2]
-        ans = right = pre_end = 0
-        for i in range(n):
-            right = right if right > post[i] else post[i]
-            if i == right:
-                return -1
-            if i == pre_end:
-                ans += 1
-                pre_end = right
-        return ans
+            lst.append([a, b])
+        return Range().minimum_interval_coverage(lst, n, True)
 
     @staticmethod
-    def lc_1024(clips, time) -> int:
+    def lc_1024_1(clips, time) -> int:
+        # 模板：最少区间覆盖模板题
         return Range().cover_less(0, time, clips)
 
     @staticmethod
     def lc_1024_2(clips: List[List[int]], time: int) -> int:
-        # 模板：clips 最小覆盖 [0, time]
-        post = [0]*time
-        for a, b in clips:
-            if a < time:
-                post[a] = post[a] if post[a] > b else b
-
-        ans = right = pre_end = 0
-        for i in range(time):
-            right = right if right > post[i] else post[i]
-            if i == right:
-                return -1
-            if i == pre_end:
-                ans += 1
-                pre_end = right
-        return ans
+        # 模板：最少区间覆盖模板题
+        return Range().minimum_interval_coverage(clips, time, True)
 
     @staticmethod
     def lg_p2684(ac=FastIO()):
@@ -320,7 +311,7 @@ class Solution:
 
     @staticmethod
     def lg_p1668(ac=FastIO()):
-        # 模板：最小区间覆盖问题
+        # 模板：最少区间覆盖问题
         n, t = ac.read_ints()
         lst = [ac.read_list_ints() for _ in range(n)]
         ans = Range().cover_less(1, t, lst, False)
@@ -329,7 +320,7 @@ class Solution:
 
     @staticmethod
     def lg_p1668_2(ac=FastIO()):
-        # 模板：最小区间覆盖问题
+        # 模板：最少区间覆盖问题
         n, t = ac.read_ints()
         t -= 1
         lst = [ac.read_list_ints_minus_one() for _ in range(n)]
@@ -457,6 +448,21 @@ class Solution:
             if not ans or x > ans[-1][1]:
                 ans.append([x, y])
         return [s[i: j + 1] for i, j in ans]
+
+    @staticmethod
+    def ac_4421_1(ac=FastIO()):
+        # 模板：经典最少区间覆盖范围问题，相邻可以不相交
+        n, r = ac.read_ints()
+        nums = ac.read_list_ints()
+        lst = []
+        for i in range(n):
+            if nums[i]:
+                a, b = i-r+1, i+r-1
+                a = ac.max(a, 0)
+                lst.append([a, b])
+        ans = Range().cover_less(0, n-1, lst, False)
+        ac.st(ans)
+        return
 
 
 class TestGeneral(unittest.TestCase):
