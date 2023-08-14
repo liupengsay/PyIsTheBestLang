@@ -102,6 +102,7 @@ E. Funny Game（https://codeforces.com/contest/731/problem/E）前缀和倒序DP
 
 ================================AcWing====================================
 96. 奇怪的汉诺塔（https://www.acwing.com/problem/content/98/）经典的汉诺塔问题，可推广到n个盘子与m个柱子
+4414. 子序列（https://www.acwing.com/problem/content/description/4417/）经典线性子序列DP
 
 参考：OI WiKi（xx）
 """
@@ -872,6 +873,26 @@ class Solution:
                         else:
                             break
         ac.st(max(max(d) for d in dp))
+        return
+
+    @staticmethod
+    def ac_4414(ac=FastIO()):
+        # 模板：经典线性子序列DP
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        ans = -inf
+        pre = [-inf, -inf]
+        for num in nums:
+            cur = pre[:]
+            # 枚举所有子序列加和
+            for i in range(2):
+                j = (i + num) % 2
+                cur[j] = ac.max(cur[j], pre[i] + num)
+                j = num % 2
+                cur[j] = ac.max(cur[j], num)
+            pre = cur[:]
+            ans = ac.max(ans, pre[1])
+        ac.st(ans)
         return
 
 
