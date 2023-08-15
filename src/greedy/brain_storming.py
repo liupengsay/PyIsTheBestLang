@@ -160,6 +160,8 @@ E. Making Anti-Palindromes（https://codeforces.com/contest/1822/problem/E）贪
 4204. 构造矩阵（https://www.acwing.com/problem/content/description/4207/）经典构造
 4307. 数字重构（https://www.acwing.com/problem/content/description/4310/）经典字典序枚举贪心
 4313. 满二叉树等长路径（https://www.acwing.com/problem/content/4316/）经典满二叉树树形DP贪心（同LC2673）
+4426. 整除子串（https://www.acwing.com/problem/content/4429/）思维题脑筋急转弯，等价于末尾两位数字可以被4整除
+4427. 树中节点和（https://www.acwing.com/problem/content/4430/）经典树形贪心构造
 
 参考：OI WiKi（xx）
 """
@@ -805,6 +807,51 @@ class Solution:
             dp[i] = x
             ans += x*2 - left - right
         ac.st(ans)
+        return
+
+    @staticmethod
+    def ac_4426(ac=FastIO()):
+
+        # 模板：思维题脑筋急转弯，等价于末尾两位数字可以被4整除
+        s = ac.read_str()
+        ans = 0
+        n = len(s)
+        for i in range(n):
+            if i - 1 >= 0 and int(s[i - 1:i + 1]) % 4 == 0:
+                ans += i  # 两位数及以上
+            if int(s[i]) % 4 == 0:
+                ans += 1  # 一位数
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def ac_4427(ac=FastIO()):
+        # 模板：树形贪心构造
+        n = ac.read_int()
+        dct = [[] for _ in range(n)]
+        parent = ac.read_list_ints_minus_one()
+        for i in range(n - 1):
+            dct[parent[i]].append(i + 1)
+        s = ac.read_list_ints()
+        ans = [0] * n
+
+        stack = [[0, 0, 0]]
+        while stack:
+            x, pre, ss = stack.pop()
+            pre += 1
+            if pre % 2:  # 奇数位没得选
+                ans[x] = s[x] - ss
+            else:
+                lst = []   # 偶数位贪心取最大值
+                for y in dct[x]:
+                    lst.append(s[y])
+                if lst:
+                    ans[x] = min(lst) - ss
+
+            for y in dct[x]:
+                stack.append([y, pre, ss + ans[x]])
+
+        ac.st(sum(ans) if all(x >= 0 for x in ans) else -1)
         return
 
 
