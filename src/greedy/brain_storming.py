@@ -4,7 +4,7 @@ from collections import Counter, deque, defaultdict
 
 from src.data_structure.sorted_list import LocalSortedList
 from src.fast_io import FastIO
-
+from src.mathmatics.number_theory import NumberTheory
 
 """
 
@@ -164,7 +164,7 @@ E. Making Anti-Palindromes（https://codeforces.com/contest/1822/problem/E）贪
 4427. 树中节点和（https://www.acwing.com/problem/content/4430/）经典树形贪心构造
 4429. 无线网络（https://www.acwing.com/problem/content/description/4432/）经典计算邻项公式贪心排序，使用前后缀枚举
 4430. 括号序列（https://www.acwing.com/problem/content/description/4433/）经典括号匹配枚举，前后缀遍历计算
-
+4492. 减法操作（https://www.acwing.com/problem/content/description/4495/）脑筋急转弯分为奇数与偶数讨论
 
 参考：OI WiKi（xx）
 """
@@ -939,6 +939,18 @@ class Solution:
                     ans += 1
                 right += 1
         ac.st(ans)
+        return
+
+    @staticmethod
+    def ac_4492(ac=FastIO()):
+        # 模板：脑筋急转弯分为奇数与偶数讨论
+        n = ac.read_int()
+        if n % 2 == 0:
+            ac.st(n//2)
+        else:
+            lst = NumberTheory().get_prime_factor(n)
+            x = lst[0][0]
+            ac.st(1 + (n-x)//2)
         return
 
 
