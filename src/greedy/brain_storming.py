@@ -162,6 +162,9 @@ E. Making Anti-Palindromes（https://codeforces.com/contest/1822/problem/E）贪
 4313. 满二叉树等长路径（https://www.acwing.com/problem/content/4316/）经典满二叉树树形DP贪心（同LC2673）
 4426. 整除子串（https://www.acwing.com/problem/content/4429/）思维题脑筋急转弯，等价于末尾两位数字可以被4整除
 4427. 树中节点和（https://www.acwing.com/problem/content/4430/）经典树形贪心构造
+4429. 无线网络（https://www.acwing.com/problem/content/description/4432/）经典计算邻项公式贪心排序，使用前后缀枚举
+4430. 括号序列（https://www.acwing.com/problem/content/description/4433/）经典括号匹配枚举，前后缀遍历计算
+
 
 参考：OI WiKi（xx）
 """
@@ -852,6 +855,90 @@ class Solution:
                 stack.append([y, pre, ss + ans[x]])
 
         ac.st(sum(ans) if all(x >= 0 for x in ans) else -1)
+        return
+
+    @staticmethod
+    def ac_4429(ac=FastIO()):
+        # 模板：经典计算邻项公式贪心排序，使用前后缀枚举
+        n, x1, y1, x2, y2 = ac.read_ints()
+        pos = [ac.read_list_ints() for _ in range(n)]
+        dis1 = [(x - x1) * (x - x1) + (y - y1) * (y - y1) for x, y in pos]
+        dis2 = [(x - x2) * (x - x2) + (y - y2) * (y - y2) for x, y in pos]
+        # 排序
+        ind = list(range(n))
+        ind.sort(key=lambda it: dis1[it] - dis2[it])
+        # 后缀最大值
+        post = [0] * (n + 1)
+        ceil = 0
+        for i in range(n - 1, -1, -1):
+            ceil = ac.max(dis2[ind[i]], ceil)
+            post[i] = ceil
+
+        # 枚举前缀
+        ans = post[0]
+        pre = 0
+        for i in range(n):
+            pre = ac.max(pre, dis1[ind[i]])
+            if pre + post[i + 1] < ans:
+                ans = pre + post[i + 1]
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def ac_4430(ac=FastIO()):
+        # 模板：经典括号匹配枚举，前后缀遍历计算
+        n = ac.read_int()
+        s = ac.read_str()
+        ans = 0
+
+        # 左变右
+        post = [-1] * (n + 1)
+        post[n] = 0
+        right = 0
+        for i in range(n - 1, -1, -1):
+            if s[i] == ")":
+                right += 1
+            else:
+                if not right:
+                    break
+                right -= 1
+            post[i] = right
+
+        left = 0
+        for i in range(n):
+            if s[i] == ")":
+                if not left:
+                    break
+                left -= 1
+            else:
+                if post[i + 1] + 1 == left and post[i + 1] != -1:
+                    ans += 1
+                left += 1
+
+        # 右变左
+        pre = [-1] * (n + 1)
+        pre[0] = 0
+        left = 0
+        for i in range(n):
+            if s[i] == "(":
+                left += 1
+            else:
+                if not left:
+                    break
+                left -= 1
+            pre[i + 1] = left
+
+        right = 0
+        for i in range(n - 1, -1, -1):
+            if s[i] == "(":
+                if not right:
+                    break
+                right -= 1
+            else:
+                if pre[i] + 1 == right and pre[i] != -1:
+                    ans += 1
+                right += 1
+        ac.st(ans)
         return
 
 
