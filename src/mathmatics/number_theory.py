@@ -106,6 +106,8 @@ C. Strongly Composite（https://codeforces.com/contest/1823/problem/C）质因�
 3999. 最大公约数（https://www.acwing.com/problem/content/description/4002/）同CF1295D
 4319. 合适数对（https://www.acwing.com/problem/content/4322/）质因数分解后前缀哈希计数
 4484. 有限小数（https://www.acwing.com/problem/content/4487/）分数在某个进制下是否为有限小数问题
+4486. 数字操作（https://www.acwing.com/problem/content/description/4489/）经典质数分解贪心题
+
 参考：OI WiKi（xx）
 """
 
@@ -1379,6 +1381,34 @@ class Solution:
             q //= g
 
             ac.st("YES" if check() else "NO")
+        return
+
+    @staticmethod
+    def ac_4486(ac=FastIO()):
+        # 模板：经典质数分解贪心题
+        n = ac.read_int()
+        if n == 1:
+            ac.lst([1, 0])
+            return
+
+        res = NumberTheory().get_prime_factor(n)
+
+        ans = 1
+        x = 0
+        ind = [2 ** i for i in range(32)]
+        lst = []
+        for p, c in res:
+            ans *= p
+            for i in range(32):
+                if ind[i] >= c:
+                    if ind[i] > c:
+                        x = 1
+                    lst.append(i)
+                    break
+        cnt = max(w for w in lst)
+        if any(w < cnt for w in lst) or x:
+            cnt += 1
+        ac.lst([ans, cnt])
         return
 
 
