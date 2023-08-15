@@ -92,6 +92,7 @@ P6175 无向图的最小环问题（https://www.luogu.com.cn/problem/P6175）经
 175. 电路维修（https://www.acwing.com/problem/content/177/）双端优先队列 BFS
 177. 噩梦（https://www.acwing.com/problem/content/179/）多源双向BFS
 4415. 点的赋值（https://www.acwing.com/problem/content/description/4418）经典BFS染色法，判断有无奇数环，方案计数
+4481. 方格探索（https://www.acwing.com/problem/content/description/4484/）经典01BFS
 
 参考：OI WiKi（xx）
 """
@@ -1707,6 +1708,44 @@ class Solution:
                                 return
                     stack = nex
                 ans += cnt[0] if cnt[0] < cnt[1] else cnt[1]
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def ac_4481(ac=FastIO()):
+        # 模板：经典01BFS
+        m, n = ac.read_ints()
+        r, c = ac.read_ints_minus_one()
+        x, y = ac.read_ints()
+        grid = [ac.read_str() for _ in range(m)]
+
+        visit = [[0] * n for _ in range(m)]
+        visit[r][c] = 1
+        stack = deque([[0, 0, r, c]])
+        while stack:
+            a, b, x1, y1 = stack.popleft()
+            for c, d in [[x1 - 1, y1], [x1 + 1, y1]]:
+                if 0 <= c < m and 0 <= d < n and grid[c][d] == "." and not visit[c][d]:
+                    visit[c][d] = 1
+                    stack.appendleft([a, b, c, d])
+
+            for c, d in [[x1, y1 + 1]]:
+                if 0 <= c < m and 0 <= d < n and grid[c][d] == "." and b + \
+                        1 <= y and not visit[c][d]:
+                    visit[c][d] = 1
+                    stack.append([a, b + 1, c, d])
+
+            for c, d in [[x1, y1 - 1]]:
+                if 0 <= c < m and 0 <= d < n and grid[c][d] == "." and a + \
+                        1 <= x and not visit[c][d]:
+                    visit[c][d] = 1
+                    stack.append([a + 1, b, c, d])
+
+        ans = 0
+        for i in range(m):
+            for j in range(n):
+                if visit[i][j]:
+                    ans += 1
         ac.st(ans)
         return
 
