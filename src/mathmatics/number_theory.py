@@ -105,7 +105,7 @@ C. Strongly Composite（https://codeforces.com/contest/1823/problem/C）质因�
 3727. 乘方相加（https://www.acwing.com/solution/content/54479/）脑筋急转弯转换成进制表达问题
 3999. 最大公约数（https://www.acwing.com/problem/content/description/4002/）同CF1295D
 4319. 合适数对（https://www.acwing.com/problem/content/4322/）质因数分解后前缀哈希计数
-
+4484. 有限小数（https://www.acwing.com/problem/content/4487/）分数在某个进制下是否为有限小数问题
 参考：OI WiKi（xx）
 """
 
@@ -1356,6 +1356,29 @@ class Solution:
             ans += pre[tuple(lst)]
             pre[tuple(cur)] += 1
         ac.st(ans)
+        return
+
+    @staticmethod
+    def ac_4484(ac=FastIO()):
+        # 模板：分数在某个进制下是否为有限小数问题
+        for _ in range(ac.read_int()):
+
+            def check():
+                nonlocal q
+                while q > 1:
+                    gg = math.gcd(q, b)
+                    if gg == 1:
+                        break
+                    q //= gg
+
+                return q == 1
+
+            p, q, b = ac.read_ints()
+            g = math.gcd(p, q)
+            p //= g
+            q //= g
+
+            ac.st("YES" if check() else "NO")
         return
 
 
