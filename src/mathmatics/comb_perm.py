@@ -59,7 +59,7 @@ B. Mashmokh and ACM（https://codeforces.com/problemset/problem/414/B）经典�
 ================================AcWing==================================
 130. 火车进出栈问题（https://www.acwing.com/problem/content/132/）超大数字的卡特兰数计算
 4002. 构造数组（https://www.acwing.com/problem/content/4005/）经典矩阵DP转换为隔板法计算求解
-
+4496. 吃水果（https://www.acwing.com/problem/content/4499/）经典隔板法计数
 
 参考：OI WiKi（xx）
 卡特兰数（https://oi-wiki.org/math/combinatorics/catalan/）
@@ -613,7 +613,17 @@ class Solution:
         ac.st(cb.comb(2*n+m-1, m-1))
         return
 
-    
+    @staticmethod
+    def ac_4496(ac=FastIO()):
+        # 模板：经典隔板法计数
+        mod = 998244353
+        n, m, k = ac.read_list_ints()
+        cb = Combinatorics(n, mod)
+        ans = cb.comb(n - 1, k) * pow(m - 1, k, mod) * m
+        ac.st(ans % mod)
+        return
+
+
 class TestGeneral(unittest.TestCase):
     def test_comb_perm(self):
         pass
