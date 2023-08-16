@@ -59,8 +59,11 @@ F. Dasha and Nightmares（https://codeforces.com/contest/1800/problem/F）位运
 D. Little Girl and Maximum XOR（https://codeforces.com/problemset/problem/276/D）范围[l,r]区间的最大异或和
 G. Orray（https://codeforces.com/contest/1742/problem/G）重排数组使得前缀或值的字典序最大
 F. Lisa and the Martians（https://codeforces.com/contest/1851/problem/F）经典数组的最小异或对，一定是排序后相邻的数
+
 ================================AcWing===================================
 998. 起床困难综合症（https://www.acwing.com/problem/content/1000/）按位进行或、异或、与操作后贪心选取最大值
+4614. 匹配价值（https://www.acwing.com/problem/content/4617/）位运算枚举与前缀和预处理
+
 
 参考：OI WiKi（xx）
 https://blog.csdn.net/qq_35473473/article/details/106320878
@@ -576,6 +579,39 @@ class Solution:
         for num in encoded:
             ans.append(ans[-1] ^ num)
         return ans
+
+    @staticmethod
+    def ac_4614(ac=FastIO()):
+        # 模板：位运算枚举与前缀和预处理
+        n, m, q = ac.read_ints()
+        nums = ac.read_list_ints()
+        lst = [ac.read_str() for _ in range(m)]
+        cnt = Counter(lst)
+        dct = [0] * (1 << n)
+        for va in cnt:
+            dct[int("0b" + va, 2)] = cnt[va]
+
+        weight = [0] * (1 << n)
+        for i in range(1 << n):
+            weight[i] = sum(nums[j] for j in range(n) if not i & (1 << (n - 1 - j)))
+
+        res = [[0] * 101 for _ in range(1 << n)]
+        for i in range(1 << n):
+            for j in range(1 << n):
+                s = weight[i ^ j]
+                if s <= 100:
+                    res[i][s] += dct[j]
+
+        for i in range(1 << n):
+            for j in range(1, 101):
+                res[i][j] += res[i][j - 1]
+
+        for _ in range(q):
+            t, k = ac.read_list_strs()
+            k = int(k)
+
+            ac.st(res[int("0b" + t, 2)][k])
+        return
 
 
 class TestGeneral(unittest.TestCase):
