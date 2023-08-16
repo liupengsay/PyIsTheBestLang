@@ -45,6 +45,8 @@ D. Tricky Function（https://codeforces.com/problemset/problem/429/D）经典平
 ================================AcWing====================================
 119. 袭击（https://www.acwing.com/problem/content/121/）经典平面点集最近点对问题使用分治求解、还有哈希分块、有序列表
 4309. 消灭老鼠（https://www.acwing.com/problem/content/4312/）经典直线斜率计算
+4499. 画圆（https://www.acwing.com/problem/content/4502/）经典几何，使用一元二次方程求解
+
 
 参考：OI WiKi（xx）
 """
@@ -469,6 +471,41 @@ class Solution:
                 a *= -1
             dct.add((a, b))
         ac.st(len(dct))
+        return
+
+    @staticmethod
+    def ac_4499(ac=FastIO()):
+        # 模板：经典几何，使用一元二次方程求解
+        r, x1, y1, x2, y2 = ac.read_ints()
+        if (x1 - x2)**2 + (y1 - y2)**2 > r * r:
+            ans = [x1, y1, r]
+            ac.lst(["%.6f" % x for x in ans])
+            return
+
+        dis = ((x1 - x2)**2 + (y1 - y2)**2)**0.5 + r
+        ans = [0, 0, dis / 2]
+        if x1 == x2:
+            if y1 > y2:
+                x0, y0 = x2, y2 + dis / 2
+            else:
+                x0, y0 = x2, y2 - dis / 2
+            ans[0] = x0
+            ans[1] = y0
+        else:
+            k = (y2 - y1) / (x2 - x1)
+            b = y1 - k * x1
+
+            aa = k**2 + 1
+            bb = -2 * k * (y2 - b) - 2 * x2
+            cc = (y2 - b)**2 - dis**2 + x2**2
+            for xx in [(-bb + (bb * bb - 4 * aa * cc)**0.5) / 2 / aa,
+                       (-bb - (bb * bb - 4 * aa * cc)**0.5) / 2 / aa]:
+                yy = k * xx + b
+                if int(x2 - xx > 0) == int(x2 - x1 > 0):
+                    ans[0] = (xx + x2) / 2
+                    ans[1] = (yy + y2) / 2
+                    break
+        ac.lst(["%.6f" % x for x in ans])
         return
 
 
