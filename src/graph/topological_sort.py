@@ -1,5 +1,6 @@
 """
 """
+import math
 from math import inf
 
 from src.dp.tree_dp import TreeDiameterInfo
@@ -49,6 +50,7 @@ F - Well-defined Path Queries on a Namori（https://atcoder.jp/contests/abc266/�
 ==================================AcWing=================================
 3696. 构造有向无环图（https://www.acwing.com/problem/content/description/3699/）经典bfs序即拓扑序与DAG构造
 3828. 行走路径（https://www.acwing.com/problem/content/description/3831/）有向图DAG拓扑排序DP模板题并判断有无环
+4626. 最小移动距离（https://www.acwing.com/problem/content/description/4629/）有向图内向基环树判断每个环的大小
 
 参考：OI WiKi（xx）
 """
@@ -978,6 +980,42 @@ class Solution:
             return
         ans = max(x // 4 for x in pre)
         ac.st(ans if ans else "none")
+        return
+
+    @staticmethod
+    def ac_4626(ac=FastIO()):
+        # 模板：有向图内向基环树判断每个环的大小
+        n = ac.read_int()
+        a = ac.read_list_ints_minus_one()
+        dct = [[] for _ in range(n)]
+        degree = [0]*n
+        for i in range(n):
+            dct[i].append(a[i])
+            degree[a[i]] += 1
+        # 全是环上的点才行
+        if any(d == 0 for d in degree):
+            ac.st(-1)
+            return
+        # 使用BFS判断每个环的大小并累计结果
+        ans = 1
+        for i in range(n):
+            if degree[i] == 0:
+                continue
+            stack = [i]
+            degree[i] = 0
+            cur = 1
+            while stack:
+                x = stack.pop()
+                for j in dct[x]:
+                    if degree[j] > 0:
+                        degree[j] = 0
+                        cur += 1
+                        stack.append(j)
+            if cur % 2:
+                ans = math.lcm(cur, ans)
+            else:
+                ans = math.lcm(cur//2, ans)
+        ac.st(ans)
         return
 
 
