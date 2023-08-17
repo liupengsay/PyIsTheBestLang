@@ -165,6 +165,7 @@ E. Making Anti-Palindromes（https://codeforces.com/contest/1822/problem/E）贪
 4429. 无线网络（https://www.acwing.com/problem/content/description/4432/）经典计算邻项公式贪心排序，使用前后缀枚举
 4430. 括号序列（https://www.acwing.com/problem/content/description/4433/）经典括号匹配枚举，前后缀遍历计算
 4492. 减法操作（https://www.acwing.com/problem/content/description/4495/）脑筋急转弯分为奇数与偶数讨论
+4623. 买糖果（https://www.acwing.com/problem/content/description/4626/）贪心模拟
 
 参考：OI WiKi（xx）
 """
@@ -951,6 +952,26 @@ class Solution:
             lst = NumberTheory().get_prime_factor(n)
             x = lst[0][0]
             ac.st(1 + (n-x)//2)
+        return
+
+    @staticmethod
+    def ac_4623(ac=FastIO()):
+        # 模板：贪心模拟
+        n, t = ac.read_ints()
+        a = ac.read_list_ints()
+        ans = 0
+        while a:
+            s = sum(a)
+            ans += (t // s) * len(a)
+            t %= s
+            b = []
+            for num in a:
+                if t >= num:
+                    t -= num
+                    ans += 1
+                    b.append(num)
+            a = b[:]
+        ac.st(ans)
         return
 
 

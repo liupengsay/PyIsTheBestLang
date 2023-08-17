@@ -107,6 +107,7 @@ C. Strongly Composite（https://codeforces.com/contest/1823/problem/C）质因�
 4319. 合适数对（https://www.acwing.com/problem/content/4322/）质因数分解后前缀哈希计数
 4484. 有限小数（https://www.acwing.com/problem/content/4487/）分数在某个进制下是否为有限小数问题
 4486. 数字操作（https://www.acwing.com/problem/content/description/4489/）经典质数分解贪心题
+4622. 整数拆分（https://www.acwing.com/problem/content/description/4625/）思维题贪心构造
 
 参考：OI WiKi（xx）
 """
@@ -1409,6 +1410,22 @@ class Solution:
         if any(w < cnt for w in lst) or x:
             cnt += 1
         ac.lst([ans, cnt])
+        return
+
+    @staticmethod
+    def ac_4622(ac=FastIO()):
+        # 模板：思维题贪心构造
+        n = ac.read_int()
+        if n < 4:
+            ac.st(1)
+        elif n % 2 == 0:
+            ac.st(2)
+        else:
+            if NumberTheory().is_prime4(n-2):
+                ac.st(2)
+            else:
+                ac.st(3)
+
         return
 
 
