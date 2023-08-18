@@ -37,6 +37,7 @@ E. Almost Regular Bracket Sequence（https://codeforces.com/problemset/problem/1
 128. 编辑器（https://www.acwing.com/problem/content/130/）堆栈模拟
 129. 火车进栈（https://www.acwing.com/problem/content/131/）经典卡特兰数，栈模拟判定出栈入栈合法性
 132. 小组队列（https://www.acwing.com/problem/content/134/）双端队列依次出队入队
+4865. 有效类型（https://www.acwing.com/problem/content/4868/）经典栈模拟
 
 参考：OI WiKi（xx）
 """
@@ -277,6 +278,42 @@ class MinStack:
         pre = "".join(stack)
         x = max(len(t) for t in pre.split("|"))
         ac.st(x)
+        return
+
+    @staticmethod
+    def ac_4865(ac=FastIO()):
+        # 模板：经典栈模拟
+        m = ac.read_int()
+        lst = ac.read_list_strs()
+        n = len(lst)
+        if n != m*2-1:
+            ac.st("Error occurred")
+            return
+        if m == 1:
+            ac.st("int")
+            return
+
+        stack = []
+        for i in range(n):
+            if lst[i] == "int":
+                stack.append([[i, i], "int"])
+                # 维护每个函数段的左右边界
+                while len(stack) >= 3 and [ls[1] for ls in stack[-3:]] == ["pair", "int", "int"]:
+                    lst[stack[-1][0][1]] += ">"
+                    lst[stack[-2][0][1]] += ","
+                    lst[stack[-2][0][0]] = "<" + lst[stack[-2][0][0]]
+                    stack[-3][0][1] = stack[-1][0][1]
+                    stack[-3][0][0] = stack[-3][0][0]
+                    stack[-3][1] = "int"
+                    stack.pop()
+                    stack.pop()
+            else:
+                stack.append([[i, i], "pair"])
+
+        if len(stack) > 1:
+            ac.st("Error occurred")
+            return
+        ac.st("".join(lst))
         return
 
 
