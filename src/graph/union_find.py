@@ -4,6 +4,8 @@ import unittest
 
 from typing import List
 from collections import defaultdict, Counter, deque
+
+from src.data_structure.sorted_list import LocalSortedList
 from src.fast_io import FastIO
 import heapq
 
@@ -75,6 +77,7 @@ E2. Unforgivable Curse (hard version)（https://codeforces.com/problemset/proble
 
 ================================AcWing================================
 4306. 序列处理（https://www.acwing.com/problem/content/description/4309/）经典向右合并的区间并查集
+4866. 最大数量（https://www.acwing.com/problem/content/description/4869/）经典并查集模拟维护连通块大小与多余的边数量
 
 参考：OI WiKi（xx）
 """
@@ -1039,6 +1042,29 @@ class Solution:
             ans += x-num
             uf.union(x, x+1)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def ac_4866(ac=FastIO()):
+        # 模板：经典并查集模拟维护连通块大小与多余的边数量
+        n, d = ac.read_ints()
+        uf = UnionFind(n)
+        lst = LocalSortedList([1] * n)
+        pre = 0
+        for i in range(d):
+            x, y = ac.read_ints_minus_one()
+            if uf.is_connected(x, y):
+                pre += 1
+            else:
+                lst.discard(uf.size[uf.find(x)])
+                lst.discard(uf.size[uf.find(y)])
+                uf.union(x, y)
+                lst.add(uf.size[uf.find(x)])
+            ans = 0
+            m = len(lst)
+            for j in range(m - 1, m - pre - 2, -1):
+                ans += lst[j]
+            ac.st(ans - 1)
         return
 
 
