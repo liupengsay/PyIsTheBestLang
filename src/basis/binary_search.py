@@ -96,6 +96,7 @@ I. Photo Processing（https://codeforces.com/problemset/problem/883/I）二分�
 120. 防线（https://www.acwing.com/problem/content/122/）根据单调性二分
 14. 不修改数组找出重复的数字（https://www.acwing.com/problem/content/description/15/）利用鸽巢原理二分查找重复的数，修改数组且只用O(1)空间
 3973. 无线网络（https://www.acwing.com/problem/content/3976/）浮点数二分与滑动窗口双指针
+4863. 构造新矩阵（https://www.acwing.com/problem/content/description/4866/）经典二分加鸽巢原理
 
 参考：OI WiKi（xx）
 """
@@ -1181,10 +1182,35 @@ class Solution:
             return True
 
         ans = BinarySearch().find_float_left(0, 2*10**9, check)
-        if ans - int(ans)>=0.5:
+        if ans - int(ans) >= 0.5:
             ac.st(int(ans)+1)
         else:
             ac.st(int(ans))
+        return
+
+    @staticmethod
+    def ac_4683(ac=FastIO()):
+        # 模板：经典二分加鸽巢原理
+        for _ in range(ac.read_int()):
+            ac.read_str()
+            m, n = ac.read_ints()
+            grid = [ac.read_list_ints() for _ in range(m)]
+
+            def check(x):
+                row = [0] * m
+                col = [0] * n
+                for i in range(m):
+                    for j in range(n):
+                        if grid[i][j] >= x:
+                            row[i] += 1
+                            col[j] = 1
+                if any(x == 0 for x in col):
+                    return False
+                if m <= n - 1:
+                    return True
+                return max(row) >= 2
+
+            ac.st(BinarySearch().find_int_right(0, 10**9, check))
         return
 
 
