@@ -37,6 +37,9 @@ P8794 [蓝桥杯 2022 国 A] 环境治理（https://www.luogu.com.cn/problem/P87
 D. Design Tutorial: Inverse the Problem（https://codeforces.com/problemset/problem/472/D）使用Floyd判断构造给定的点对最短路距离是否存在
 
 
+===================================AcWing===================================
+4872. 最短路之和（https://www.acwing.com/problem/content/submission/4875/）经典Floyd逆序逆向思维更新最短路对
+
 """
 
 
@@ -382,6 +385,32 @@ class Graph:
                     dis[i][j] = ac.min(dis[i][j], dis[i][k] + dis[k][j])
         ac.st(dis[0][n - 1])
 
+        return
+
+    @staticmethod
+    def ac_4872(ac=FastIO()):
+        # 模板：经典Floyd逆序逆向思维更新最短路对
+        n = ac.read_int()
+        dp = [ac.read_list_ints() for _ in range(n)]
+        a = ac.read_list_ints_minus_one()
+        node = []
+        ans = []
+        for ind in range(n-1, -1, -1):
+            x = a[ind]
+            node.append(x)
+            cur = 0
+            for i in node:
+                for j in node:
+                    dp[i][x] = ac.min(dp[i][x], dp[i][j]+dp[j][x])
+                    dp[x][i] = ac.min(dp[x][i], dp[x][j]+dp[j][i])
+
+            for i in node:
+                for j in node:
+                    dp[i][j] = ac.min(dp[i][j], dp[i][x]+dp[x][j])
+                    cur += dp[i][j]
+            ans.append(cur)
+
+        ac.lst(ans[::-1])
         return
 
 
