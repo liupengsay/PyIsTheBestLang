@@ -460,7 +460,7 @@ class NumberTheory:
 
     @staticmethod
     def euler_flag_prime(n):
-        # 欧拉线性筛素数
+        # 欧拉线性筛素数，欧拉筛
         # 说明：返回小于等于 n 的所有素数
         flag = [False for _ in range(n + 1)]
         prime_numbers = []
@@ -476,7 +476,7 @@ class NumberTheory:
         return prime_numbers
 
     @staticmethod
-    def sieve_of_eratosthenes(n):  # 埃拉托色尼筛选法，返回小于等于n的素数
+    def sieve_of_eratosthenes(n):  # 埃拉托色尼筛选法，返回小于等于n的素数，质数筛
         primes = [True] * (n + 1)  # 范围0到n的列表
         p = 2  # 这是最小的素数
         while p * p <= n:  # 一直筛到sqrt(n)就行了
