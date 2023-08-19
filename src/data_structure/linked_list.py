@@ -1,5 +1,6 @@
 import unittest
 from collections import deque
+from math import inf
 from typing import List
 
 from src.fast_io import FastIO
@@ -12,8 +13,8 @@ from src.fast_io import FastIO
 题目：xx（xx）
 
 ===================================力扣===================================
-2617. 网格图中最少访问的格子数（https://leetcode.cn/problems/minimum-number-of-visited-cells-in-a-grid/）使用数组维护链表的前后节点信息
-2612. 最少翻转操作数（https://leetcode.cn/problems/minimum-reverse-operations/）使用数组维护链表的前后节点信息
+2617. 网格图中最少访问的格子数（https://leetcode.cn/problems/minimum-number-of-visited-cells-in-a-grid/）经典BFS加链表，使用数组维护链表的前后节点信息
+2612. 最少翻转操作数（https://leetcode.cn/problems/minimum-reverse-operations/）经典BFS加链表，使用数组维护链表的前后节点信息
 1562. 查找大小为 M 的最新分组（https://leetcode.cn/problems/find-latest-group-of-size-m/）使用类似并查集的前后缀链表求解
 2382. 删除操作后的最大子段和（https://leetcode.cn/problems/maximum-segment-sum-after-removals/）逆向进行访问查询并更新连通块的结果，也可以使用双向链表维护
 
@@ -29,7 +30,7 @@ E. Two Teams（https://codeforces.com/contest/1154/problem/E）使用数组维�
 
 ================================AcWing===================================
 136. 邻值查找（https://www.acwing.com/problem/content/138/）链表逆序删除，查找前后最接近的值
-
+4943. 方格迷宫（https://www.acwing.com/problem/content/description/4946/）经典BFS加链表，维护四个方向上的未访问点
 
 参考：OI WiKi（xx）
 """
@@ -103,9 +104,7 @@ class Solution:
     @staticmethod
     def lc_2617(grid: List[List[int]]) -> int:
         # 模板：使用链表维护前后的节点信息
-
         m, n = len(grid), len(grid[0])
-        inf = inf
         dis = [[inf] * n for _ in range(m)]
         row_nex = [list(range(1, n + 1)) for _ in range(m)]
         row_pre = [list(range(-1, n - 1)) for _ in range(m)]
@@ -295,6 +294,88 @@ class Solution:
             if cnt[m]:
                 ans = x + 1
         return ans
+
+    @staticmethod
+    def ac_4943(ac=FastIO()):
+        # 模板：经典BFS加链表，维护四个方向上的未访问点
+        m, n, k = ac.read_ints()
+        grid = [ac.read_str() for _ in range(m)]
+        x1, y1, x2, y2 = ac.read_ints_minus_one()
+
+        dis = [[inf] * n for _ in range(m)]
+        row_nex = [list(range(1, n + 1)) for _ in range(m)]
+        row_pre = [list(range(-1, n - 1)) for _ in range(m)]
+        col_nex = [list(range(1, m + 1)) for _ in range(n)]
+        col_pre = [list(range(-1, m - 1)) for _ in range(n)]
+        stack = deque([[x1, y1]])
+        dis[x1][y1] = 0
+
+        while stack:
+            i, j = stack.popleft()
+            d = dis[i][j]
+            # 按照右边取出可以访问到的节点
+            pre = row_pre[i]
+            nex = row_nex[i]
+            y = nex[j]
+            lst = []
+            while y <= j + k and 0 <= y < n and grid[i][y] == ".":
+                if dis[i][y] == inf:
+                    dis[i][y] = d + 1
+                    stack.append([i, y])
+                lst.append(y)
+                y = nex[y]
+            for w in lst:
+                nex[w] = y
+                pre[w] = pre[j]
+
+            # 按照左边取出可以访问到的节点
+            pre = row_pre[i]
+            nex = row_nex[i]
+            y = pre[j]
+            lst = []
+            while j - y <= k and 0 <= y < n and grid[i][y] == ".":
+                if dis[i][y] == inf:
+                    dis[i][y] = d + 1
+                    stack.append([i, y])
+                lst.append(y)
+                y = pre[y]
+            for w in lst:
+                pre[w] = y
+                nex[w] = nex[j]
+
+            # 按照下面取出可以访问到的节点
+            pre = col_pre[j]
+            nex = col_nex[j]
+            y = nex[i]
+            lst = []
+            while y <= i + k and 0 <= y < m and grid[y][j] == ".":
+                if dis[y][j] == inf:
+                    dis[y][j] = d + 1
+                    stack.append([y, j])
+                lst.append(y)
+                y = nex[y]
+            for w in lst:
+                nex[w] = y
+                pre[w] = pre[i]
+
+            # 按照上面取出可以访问到的节点
+            pre = col_pre[j]
+            nex = col_nex[j]
+            y = pre[i]
+            lst = []
+            while i - y <= k and 0 <= y < m and grid[y][j] == ".":
+                if dis[y][j] == inf:
+                    dis[y][j] = d + 1
+                    stack.append([y, j])
+                lst.append(y)
+                y = pre[y]
+            for w in lst:
+                pre[w] = y
+                nex[w] = nex[i]
+
+        ans = dis[x2][y2]
+        ac.st(ans if ans < inf else -1)
+        return
 
 
 class TestGeneral(unittest.TestCase):
