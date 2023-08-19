@@ -3,7 +3,7 @@ import random
 import unittest
 from collections import defaultdict, deque, Counter
 from itertools import combinations
-from typing import List, Counter
+from typing import List
 from math import inf
 from src.graph.union_find import UnionFind
 from src.mathmatics.number_theory import NumberTheory
@@ -120,7 +120,8 @@ class BagDP:
     @staticmethod
     def bin_split(num):
         # 二进制优化是指 1.2.4.x这样连续的而不是二进制10101对应的1
-        assert num > 0
+        if not num:
+            return []
         lst = []
         x = 1
         while x <= num:
