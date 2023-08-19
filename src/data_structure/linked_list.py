@@ -103,13 +103,11 @@ class Solution:
     
     @staticmethod
     def lc_2617(grid: List[List[int]]) -> int:
-        # 模板：使用链表维护前后的节点信息
+        # 模板：经典BFS加两个方向上的链表，也可以使用并查集代替
         m, n = len(grid), len(grid[0])
         dis = [[inf] * n for _ in range(m)]
         row_nex = [list(range(1, n + 1)) for _ in range(m)]
-        row_pre = [list(range(-1, n - 1)) for _ in range(m)]
         col_nex = [list(range(1, m + 1)) for _ in range(n)]
-        col_pre = [list(range(-1, m - 1)) for _ in range(n)]
         stack = deque([[0, 0]])
         dis[0][0] = 1
 
@@ -121,7 +119,6 @@ class Solution:
                 continue
 
             # 按照行取出可以访问到的节点
-            pre = row_pre[i]
             nex = row_nex[i]
             y = nex[j]
             lst = []
@@ -136,10 +133,8 @@ class Solution:
             # 更新前驱后驱
             for w in lst:
                 nex[w] = y
-                pre[w] = pre[j]
 
             # 按照列取出可以访问到的节点
-            pre = col_pre[j]
             nex = col_nex[j]
             y = nex[i]
             lst = []
@@ -154,7 +149,6 @@ class Solution:
             # 更新前驱后驱
             for w in lst:
                 nex[w] = y
-                pre[w] = pre[i]
 
         ans = dis[-1][-1]
         return ans if ans < inf else -1
