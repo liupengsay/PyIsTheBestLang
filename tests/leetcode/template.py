@@ -27,7 +27,7 @@ import heapq
 import copy
 from sortedcontainers import SortedList
 
-sys.set_int_max_str_digits(0)  # 大数的范围坑
+# sys.set_int_max_str_digits(0)  # 大数的范围坑
 
 
 
