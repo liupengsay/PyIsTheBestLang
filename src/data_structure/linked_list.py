@@ -1,3 +1,4 @@
+import heapq
 import unittest
 from collections import deque
 from math import inf
@@ -31,6 +32,7 @@ E. Two Teams（https://codeforces.com/contest/1154/problem/E）使用数组维�
 ================================AcWing===================================
 136. 邻值查找（https://www.acwing.com/problem/content/138/）链表逆序删除，查找前后最接近的值
 4943. 方格迷宫（https://www.acwing.com/problem/content/description/4946/）经典BFS加链表，维护四个方向上的未访问点
+5034. 配对（https://www.acwing.com/problem/content/5037/）经典堆贪心加链表进行处理
 
 参考：OI WiKi（xx）
 """
@@ -369,6 +371,49 @@ class Solution:
 
         ans = dis[x2][y2]
         ac.st(ans if ans < inf else -1)
+        return
+
+    @staticmethod
+    def ac_5034(ac=FastIO()):
+        # 模板：经典堆贪心加链表进行处理
+        n = ac.read_int()
+        s = ac.read_str()
+        nums = ac.read_list_ints()
+        post = list(range(1, n + 1))
+        pre = list(range(-1, n - 1))
+        stack = []
+        for i in range(n - 1):
+            if s[i] != s[i + 1]:
+                heapq.heappush(stack, [abs(nums[i + 1] - nums[i]), i, i + 1])
+        # 模拟出队并使用链表维护前后关系
+        ans = []
+        visit = [0] * n
+        while stack:
+            _, i, j = heapq.heappop(stack)
+            if not visit[i] and not visit[j]:
+                visit[i] = 1
+                visit[j] = 1
+                ans.append([i + 1, j + 1])
+
+                y = post[j]
+                while y < n and visit[y]:
+                    y = post[y]
+
+                x = pre[i]
+                while x >= 0 and visit[x]:
+                    x = pre[x]
+                if x != -1:
+                    post[x] = y
+                if y != n:
+                    pre[y] = x
+                if x != -1 and y != n and s[x] != s[y]:
+                    heapq.heappush(stack, [abs(nums[x] - nums[y]), x, y])
+
+            else:
+                continue
+        ac.st(len(ans))
+        for a in ans:
+            ac.lst(a)
         return
 
 
