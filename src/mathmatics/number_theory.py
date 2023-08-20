@@ -108,6 +108,8 @@ C. Strongly Composite（https://codeforces.com/contest/1823/problem/C）质因�
 4484. 有限小数（https://www.acwing.com/problem/content/4487/）分数在某个进制下是否为有限小数问题
 4486. 数字操作（https://www.acwing.com/problem/content/description/4489/）经典质数分解贪心题
 4622. 整数拆分（https://www.acwing.com/problem/content/description/4625/）思维题贪心构造
+5049. 选人（https://www.acwing.com/problem/content/description/5052/）使用质因数分解计算组合数
+
 
 参考：OI WiKi（xx）
 """
@@ -115,7 +117,7 @@ C. Strongly Composite（https://codeforces.com/contest/1823/problem/C）质因�
 
 class NumberTheoryPrimeFactor:
     def __init__(self, ceil):
-        self.ceil = ceil
+        self.ceil = ceil + 100
         self.prime_factor = [[] for _ in range(self.ceil + 1)]
         self.min_prime = [0] * (self.ceil + 1)
         self.get_min_prime_and_prime_factor()
@@ -142,10 +144,27 @@ class NumberTheoryPrimeFactor:
                 self.prime_factor[i].append([p, cnt])
         return
 
+    def comb(self, n, m):
+        cnt = defaultdict(int)
+        for i in range(1, n+1):  # n!
+            for num, y in self.prime_factor[i]:
+                cnt[num] += y
+        for i in range(1, m+1):  # m!
+            for num, y in self.prime_factor[i]:
+                cnt[num] -= y
+        for i in range(1, n-m+1):  # (n-m)!
+            for num, y in self.prime_factor[i]:
+                cnt[num] -= y
+
+        ans = 1
+        for w in cnt:
+            ans *= w**cnt[w]
+        return ans
+
 
 class NumberTheoryAllFactor:
     def __init__(self, ceil):
-        self.ceil = ceil+10
+        self.ceil = ceil+100
         self.factor = [[1] for _ in range(self.ceil+1)]
         self.get_all_factor()
         return
@@ -1426,6 +1445,25 @@ class Solution:
             else:
                 ac.st(3)
 
+        return
+
+    @staticmethod
+    def ac_5049(ac=FastIO()):
+        # 模板：使用质因数分解计算组合数
+        n, m, h = ac.read_ints()
+        a = ac.read_list_ints()
+        h -= 1
+        s = sum(a)
+        if s < n:
+            ac.st(-1)
+            return
+        if s-a[h] < n-1:
+            ac.st(1)
+            return
+        nt = NumberTheoryPrimeFactor(s)
+        total = nt.comb(s - 1, n - 1)
+        part = nt.comb(s-a[h], n-1)
+        ac.st(1-part/total)
         return
 
 
