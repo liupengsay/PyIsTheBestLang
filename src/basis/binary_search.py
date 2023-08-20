@@ -97,6 +97,7 @@ I. Photo Processing（https://codeforces.com/problemset/problem/883/I）二分�
 14. 不修改数组找出重复的数字（https://www.acwing.com/problem/content/description/15/）利用鸽巢原理二分查找重复的数，修改数组且只用O(1)空间
 3973. 无线网络（https://www.acwing.com/problem/content/3976/）浮点数二分与滑动窗口双指针
 4863. 构造新矩阵（https://www.acwing.com/problem/content/description/4866/）经典二分加鸽巢原理
+5048. 无线网络（https://www.acwing.com/problem/content/description/5051/）经典浮点数二分并求出具体方案
 
 参考：OI WiKi（xx）
 """
@@ -1211,6 +1212,35 @@ class Solution:
                 return max(row) >= 2
 
             ac.st(BinarySearch().find_int_right(0, 10**9, check))
+        return
+
+    @staticmethod
+    def ac_5048(ac=FastIO()):
+        # 模板：经典浮点数二分并求出具体方案
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        nums.sort()
+
+        def compute(r):
+            pre = -inf
+            res = []
+            for num in nums:
+                if num > pre:
+                    res.append(num+r)
+                    pre = num+2*r
+                    if len(res) > 3:
+                        break
+            return res
+
+        def check(r):
+            return len(compute(r)) <= 3
+
+        x = BinarySearch().find_float_left(0, nums[-1]-nums[0], check, 1e-6)
+        ac.st(x)
+        ans = compute(x)
+        while len(ans) < 3:
+            ans.append(ans[-1]+1)
+        ac.lst(ans)
         return
 
 
