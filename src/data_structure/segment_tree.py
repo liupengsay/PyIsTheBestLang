@@ -65,6 +65,8 @@ C. Three displays（https://codeforces.com/problemset/problem/987/C）枚举中�
 
 ================================AcWing================================
 3805. 环形数组（https://www.acwing.com/problem/content/3808/）区间增减与最小值查询
+5037. 区间异或（https://www.acwing.com/problem/content/5040/）同CF242E，使用二十多个01线段树维护区间异或与区间加和
+
 
 参考：OI WiKi（xx）
 """
@@ -3220,6 +3222,64 @@ class CountIntervalsLC2276:
                 else:
                     tree.update_range(l, n-1, 0, n-1, d, 1)
                     tree.update_range(0, r, 0, n-1, d, 1)
+        return
+
+
+    @staticmethod
+    def ac_5037_1(ac=FastIO()):
+        # 模板：同CF242E，使用二十多个01线段树维护区间异或与区间加和
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        tree = [SegmentTreeRangeUpdateXORSum(n) for _ in range(22)]
+        for j in range(22):
+            lst = [1 if nums[i] & (1<<j) else 0 for i in range(n)]
+            tree[j].build(lst)
+        for _ in range(ac.read_int()):
+            lst = ac.read_list_ints()
+            if lst[0] == 1:
+                ll, rr = lst[1:]
+                ll -= 1
+                rr -= 1
+                ans = sum((1<<j)*tree[j].query_sum(ll, rr, 0, n-1, 1) for j in range(22))
+                ac.st(ans)
+            else:
+                ll, rr, xx = lst[1:]
+                ll -= 1
+                rr -= 1
+                for j in range(22):
+                    if (1<<j) & xx:
+                        tree[j].update(ll, rr, 0, n-1, 1, 1)
+
+        return
+
+    @staticmethod
+    def ac_5037_2(ac=FastIO()):
+        # 模板：同CF242E，使用二十多个01线段树维护区间异或与区间加和
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        tree = [SegBitSet() for _ in range(22)]
+        for i in range(n):
+            x = nums[i]
+            for j in range(22):
+                if x & (1<<j):
+                    tree[j].update(i, i)
+
+        for _ in range(ac.read_int()):
+            lst = ac.read_list_ints()
+            if lst[0] == 1:
+                ll, rr = lst[1:]
+                ll -= 1
+                rr -= 1
+                ans = sum((1<<j)*tree[j].query(ll, rr) for j in range(22))
+                ac.st(ans)
+            else:
+                ll, rr, xx = lst[1:]
+                ll -= 1
+                rr -= 1
+                for j in range(22):
+                    if (1<<j) & xx:
+                        tree[j].update(ll, rr)
+
         return
 
 
