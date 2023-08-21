@@ -38,6 +38,7 @@ E. Almost Regular Bracket Sequence（https://codeforces.com/problemset/problem/1
 129. 火车进栈（https://www.acwing.com/problem/content/131/）经典卡特兰数，栈模拟判定出栈入栈合法性
 132. 小组队列（https://www.acwing.com/problem/content/134/）双端队列依次出队入队
 4865. 有效类型（https://www.acwing.com/problem/content/4868/）经典栈模拟
+5136. 平衡括号字符串（https://www.acwing.com/problem/content/description/5139/）经典栈倒序模拟
 
 参考：OI WiKi（xx）
 """
@@ -314,6 +315,39 @@ class MinStack:
             ac.st("Error occurred")
             return
         ac.st("".join(lst))
+        return
+
+    @staticmethod
+    def ac_5136(ac=FastIO()):
+        # 模板：经典栈倒序模拟
+        s = ac.read_str()
+        n = len(s)
+        ans = [0]*n
+        right = 0
+        post = deque()
+        for i in range(n-1, -1, -1):
+            if s[i] == "#":
+                post.append(i)
+            elif s[i] == "(":
+                if right:
+                    right -= 1
+                else:
+                    if not post:
+                        ac.st(-1)
+                        return
+                    ans[post[0]] += 1
+            else:
+                right += 1
+            while len(post) >= 2 and ans[post[0]]:
+                post.popleft()
+        while post and ans[post[0]]:
+            post.popleft()
+        if post or right:
+            ac.st(-1)
+            return
+        for i in range(n):
+            if s[i] == "#":
+                ac.st(ans[i])
         return
 
 
