@@ -36,6 +36,10 @@ P5343 【XR-1】分块（https://www.luogu.com.cn/problem/P5343）线性 DP 使�
 P8557 炼金术（Alchemy）（https://www.luogu.com.cn/problem/P8557）脑筋急转弯快速幂计数
 P8624 [蓝桥杯 2015 省 AB] 垒骰子（https://www.luogu.com.cn/problem/P8624）矩阵 DP 与快速幂
 
+===================================AcWing===================================
+27. 数值的整数次方（https://www.acwing.com/problem/content/26/）浮点数快速幂
+
+
 参考：OI WiKi（xx）
 
 """
@@ -61,7 +65,7 @@ class FastPower:
         return res
 
     @staticmethod
-    def x_pow(x: float, n: int) -> float:
+    def float_fast_pow(x: float, n: int) -> float:
         # 浮点数快速幂
         def quick_mul(n):
             if n == 0:
@@ -338,8 +342,17 @@ class Solution:
         ans %= mod
         ac.st(ans)
         return
-
-
+    
+    @staticmethod
+    def ac_27(base, exponent):
+        # 模板：浮点数快速幂
+        if base == 0:
+            return 0
+        if exponent == 0:
+            return 1
+        return FastPower().float_fast_pow(base, exponent)
+    
+    
 class TestGeneral(unittest.TestCase):
 
     def test_fast_power(self):
@@ -351,7 +364,7 @@ class TestGeneral(unittest.TestCase):
         assert fp.fast_power_api(a, b, mod) == fp.fast_power(a, b, mod)
 
         x, n = random.uniform(0, 1), random.randint(1, 1234)
-        assert abs(fp.x_pow(x, n) - pow(x, n)) < 1e-5
+        assert abs(fp.float_fast_pow(x, n) - pow(x, n)) < 1e-5
 
         mfp = MatrixFastPower()
         mat = [[1, 0, 1], [1, 0, 0], [0, 1, 0]]
