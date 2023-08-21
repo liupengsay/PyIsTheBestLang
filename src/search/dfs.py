@@ -10,7 +10,7 @@ from src.graph.lca import TreeAncestor
 
 """
 
-算法：深度优先搜索、染色法
+算法：深度优先搜索、染色法、枚举回溯
 功能：常与回溯枚举结合使用，比较经典的还有DFS序
 题目：
 
@@ -56,6 +56,7 @@ E. Blood Cousins（https://codeforces.com/contest/208/problem/E）深搜序加LC
 
 ================================AcWing================================
 4310. 树的DFS（https://www.acwing.com/problem/content/4313/）经典深搜序模板题
+23. 矩阵中的路径（https://www.acwing.com/problem/content/description/21/）回溯模板题
 
 参考：OI WiKi（xx）
 """
@@ -479,6 +480,39 @@ class Solution:
             else:
                 ac.st(ind[start[u] + k - 1] + 1)
         return
+
+    @staticmethod
+    def ac_23(matrix, string):
+        # 模板：回溯模板题
+        if not matrix:
+            return False
+
+        m, n = len(matrix), len(matrix[0])
+
+        def dfs(ind, x, y):
+            nonlocal ans
+            if ind == k or ans:
+                ans = True
+                return
+            for a, b in [[x - 1, y], [x + 1, y], [x, y - 1], [x, y + 1]]:
+                if 0 <= a < m and 0 <= b < n and not visit[a][b] and matrix[a][b] == string[ind]:
+                    visit[a][b] = 1
+                    dfs(ind + 1, a, b)
+                    visit[a][b] = 0
+            return
+
+        ans = False
+        visit = [[0] * n for _ in range(m)]
+        k = len(string)
+        for i in range(m):
+            for j in range(n):
+                if matrix[i][j] == string[0]:
+                    visit[i][j] = 1
+                    dfs(1, i, j)
+                    visit[i][j] = 0
+                    if ans:
+                        return True
+        return False
 
 
 class TestGeneral(unittest.TestCase):
