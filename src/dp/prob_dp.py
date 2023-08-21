@@ -158,36 +158,19 @@ class Solution:
     @staticmethod
     def ac_5058(ac=FastIO()):
         # 模板：经典概率DP
-        n, m = ac.read_ints()
-
-        @lru_cache(None)
-        def dfs(i, j, user):
-            if i < 0 or j < 0:
-                return 1
-
-            if i == 0 and j == 0:
-                return 1 if user == 1 else 0
-
-            if j == 0:
-                return 1
-            if i + j == 1:
-                if i:
-                    return 1
-                return 1-dfs(0, 0, 1-user)
-
-            if i == 0:
-                return 1-dfs(0, j-2, 1-user)
-
-            if user == 0:
-                res = i/(i+j) + j/(i+j)*(1-dfs(i, j-1, 1-user))
-                return res
-
-            res = i/(i+j)
-            res += j/(i+j)*(i/(i+j-1)*(1-dfs(i-1, j-1, 1-user)) + (j-1)/(i+j-1)*(1-dfs(i, j-2, 1-user)))
-            return res
-
-        ans = dfs(n, m, 0)
-        ac.st(ans)
+        w, b = ac.read_ints()
+        dp = [[0]*(b+1) for _ in range(w+1)]
+        for i in range(1, w+1):
+            dp[i][0] = 1
+        for i in range(1, w+1):
+            for j in range(1, b+1):
+                p = i/(i+j)
+                if j > 1:
+                    p += j/(i+j)*(j-1)/(i+j-1)*i/(i+j-2)*dp[i-1][j-2]
+                if j > 2:
+                    p += j/(i+j)*(j-1)/(i+j-1)*(j-2)/(i+j-2)*dp[i][j-3]
+                dp[i][j] = p
+        ac.st(dp[w][b])
         return
 
 
