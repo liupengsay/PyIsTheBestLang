@@ -21,6 +21,10 @@ P1291 [SHOI2002] 百事世界杯之旅（https://www.luogu.com.cn/problem/P1291�
 P4316 绿豆蛙的归宿（https://www.luogu.com.cn/problem/P4316）经典期望 DP 反向建图与拓扑排序
 P6154 游走（https://www.luogu.com.cn/problem/P6154）经典反向建图期望树形 DP 与有理数取模
 
+===================================AcWing===================================
+5058. 双色球（https://www.acwing.com/problem/content/description/5061/）经典概率DP
+
+
 参考：OI WiKi（xx）
 """
 
@@ -149,6 +153,41 @@ class Solution:
         total_length = sum(length_sum) % mod
         total_cnt = sum(path_cnt) % mod
         ac.st(total_length * pow(total_cnt, -1, mod) % mod)
+        return
+
+    @staticmethod
+    def ac_5058(ac=FastIO()):
+        # 模板：经典概率DP
+        n, m = ac.read_ints()
+
+        @lru_cache(None)
+        def dfs(i, j, user):
+            if i < 0 or j < 0:
+                return 1
+
+            if i == 0 and j == 0:
+                return 1 if user == 1 else 0
+
+            if j == 0:
+                return 1
+            if i + j == 1:
+                if i:
+                    return 1
+                return 1-dfs(0, 0, 1-user)
+
+            if i == 0:
+                return 1-dfs(0, j-2, 1-user)
+
+            if user == 0:
+                res = i/(i+j) + j/(i+j)*(1-dfs(i, j-1, 1-user))
+                return res
+
+            res = i/(i+j)
+            res += j/(i+j)*(i/(i+j-1)*(1-dfs(i-1, j-1, 1-user)) + (j-1)/(i+j-1)*(1-dfs(i, j-2, 1-user)))
+            return res
+
+        ans = dfs(n, m, 0)
+        ac.st(ans)
         return
 
 
