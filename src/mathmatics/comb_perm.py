@@ -60,6 +60,8 @@ B. Mashmokh and ACM（https://codeforces.com/problemset/problem/414/B）经典�
 130. 火车进出栈问题（https://www.acwing.com/problem/content/132/）超大数字的卡特兰数计算
 4002. 构造数组（https://www.acwing.com/problem/content/4005/）经典矩阵DP转换为隔板法计算求解
 4496. 吃水果（https://www.acwing.com/problem/content/4499/）经典隔板法计数
+5055. 画矩形（https://www.acwing.com/problem/content/5058/）经典组合数学取模求解
+
 
 参考：OI WiKi（xx）
 卡特兰数（https://oi-wiki.org/math/combinatorics/catalan/）
@@ -77,14 +79,32 @@ class Combinatorics:
             # 阶乘数 i! 取模
             self.perm[i] = self.perm[i - 1] * i
             self.perm[i] %= self.mod
-        self.rev[-1] = pow(self.perm[-1], -1, self.mod)
+        self.rev[-1] = self.mod_reverse(self.perm[-1], self.mod)  # 等价于pow(self.perm[-1], -1, self.mod)
         for i in range(n - 2, 0, -1):
             self.rev[i] = (self.rev[i + 1] * (i + 1) % mod)  # 阶乘 i! 取逆元
         self.fault = [0] * n
         self.fault_perm()
         return
 
+    def ex_gcd(self, a, b):
+        # 扩展欧几里得求乘法逆元
+        if b == 0:
+            return 1, 0, a
+        else:
+            x, y, q = self.ex_gcd(b, a % b)
+            x, y = y, (x - (a // b) * y)
+            return x, y, q
+
+    def mod_reverse(self, a, p):
+        x, y, q = self.ex_gcd(a, p)
+        if q != 1:
+            raise Exception("No solution.")   # 逆元要求a与p互质
+        else:
+            return (x + p) % p  # 防止负数
+
     def comb(self, a, b):
+        if a < b:
+            return 0
         # 组合数根据乘法逆元求解
         res = self.perm[a] * self.rev[b] * self.rev[a - b]
         return res % self.mod
@@ -621,6 +641,15 @@ class Solution:
         cb = Combinatorics(n, mod)
         ans = cb.comb(n - 1, k) * pow(m - 1, k, mod) * m
         ac.st(ans % mod)
+        return
+
+    @staticmethod
+    def ac_5055(ac=FastIO()):
+        # 模板：经典组合数学取模求解
+        mod = 10**9 + 7
+        n, m, k = ac.read_ints()
+        cb = Combinatorics(m + n, mod)
+        ac.st(cb.comb(n - 1, 2 * k) * cb.comb(m - 1, 2 * k) % mod)
         return
 
 
