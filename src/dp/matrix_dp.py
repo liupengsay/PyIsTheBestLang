@@ -116,6 +116,7 @@ D. Rarity and New Dress（https://codeforces.com/problemset/problem/1393/D）经
 ================================AcWing================================
 4378. 选取数对（https://www.acwing.com/problem/content/4381/）典型矩阵DP
 4418. 选元素（https://www.acwing.com/problem/content/description/4421/）经典单调队列优化矩阵DP
+2694. 最长公共子序列的长度与个数（https://www.acwing.com/problem/content/description/2696/）经典问题求解最长公共子序列LCS的长度与个数
 
 
 参考：OI WiKi（xx）
@@ -1801,6 +1802,44 @@ class Solution:
                         pre[i + 1] - pre[i - m + 1]
                     dp[i + 1][j] = a if a > b else b
         ac.st(dp[n][k])
+        return
+
+    @staticmethod
+    def ac_2694(ac=FastIO()):
+        # 模板：经典问题求解最长公共子序列LCS的长度与个数
+        a = ac.read_str()[:-1]
+        b = ac.read_str()[:-1]
+        mod = 10**8
+
+        # 使用滚动数组优化
+        m, n = len(a), len(b)
+        dp = [[0] * (n + 1) for _ in range(2)]
+        cnt = [[0] * (n + 1) for _ in range(2)]
+        t = 0
+        for i in range(n + 1):
+            cnt[0][i] = 1
+        cnt[1][0] = 1
+
+        for i in range(1, m + 1):
+            for j in range(1, n + 1):
+                cnt[t ^ 1][j] = 0
+                if a[i - 1] == b[j - 1]:
+                    dp[t ^ 1][j] = dp[t][j - 1] + 1
+                    cnt[t ^ 1][j] += cnt[t][j - 1]
+                else:
+                    dp[t ^ 1][j] = ac.max(dp[t][j], dp[t ^ 1][j - 1])
+                # 注意个数去重
+                if dp[t ^ 1][j] == dp[t ^ 1][j - 1]:
+                    cnt[t ^ 1][j] += cnt[t ^ 1][j - 1]
+                if dp[t ^ 1][j] == dp[t][j]:
+                    cnt[t ^ 1][j] += cnt[t][j]
+                if a[i - 1] != b[j - 1] and dp[t ^ 1][j] == dp[t][j - 1]:
+                    cnt[t ^ 1][j] -= cnt[t][j - 1]
+                cnt[t ^ 1][j] %= mod
+            t ^= 1
+
+        ac.st(dp[t][n])
+        ac.st((cnt[t][n] + mod) % mod)
         return
 
 

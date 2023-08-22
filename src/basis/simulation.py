@@ -84,7 +84,7 @@ class SpiralMatrix:
     @staticmethod
     def joseph_ring(n, m):
         # 模板: 约瑟夫环计算最后的幸存者
-        # 0.1..m-1每次选取第m个消除之后剩下的编号
+        # 0.1..n-1每次选取第m个消除之后剩下的编号
         f = 0
         for x in range(2, n + 1):
             f = (m + f) % x

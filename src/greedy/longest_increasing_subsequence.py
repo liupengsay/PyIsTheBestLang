@@ -47,7 +47,7 @@ P1410 子序列（https://www.luogu.com.cn/problem/P1410）使用dilworth定理�
 
 ===================================AcWing===================================
 3549. 最长非递减子序列（https://www.acwing.com/problem/content/3552/）经典线性DP动态规划贪心
-
+2694. 最长公共子序列（https://www.acwing.com/problem/content/description/2696/）使用LIS求解LCS的长度与个数
 
 """
 
@@ -227,6 +227,50 @@ class LcsLis:
                 q[length].append([num, s[length - 1]])
         # 可以进一步变换求非严格递增子序列的个数
         return s[-1]
+
+    @staticmethod
+    def longest_common_subsequence_length_and_cnt(s1, s2, mod=10**9+7):
+        # 模板：经典使用求 LIS 子序列的个数 O(nlogn) 做法求解 LCS 的长度与个数
+
+        # 使用LIS的办法求LCS生成索引数组
+        if len(s1) > len(s2):
+            s1, s2 = s2, s1
+        m = len(s2)
+        mapper = defaultdict(list)
+        for i in range(m - 1, -1, -1):
+            mapper[s2[i]].append(i)
+        nums = []
+        for c in s1:
+            if c in mapper:
+                nums.extend(mapper[c])
+
+        dp = []  # 维护 LIS 数组
+        s = []  # 长度对应的方案和
+        q = []  # 长度对应的末尾值与个数
+        for num in nums:
+            if not dp or num > dp[-1]:
+                dp.append(num)
+                length = len(dp)
+            else:
+                i = bisect.bisect_left(dp, num)
+                dp[i] = num
+                length = i + 1
+            while len(s) <= len(dp):
+                s.append(0)
+            while len(q) <= len(dp):
+                q.append(deque())
+
+            if length == 1:
+                s[length] += 1
+                q[length].append([num, 1])
+            else:
+                # 使用队列与计数加和维护
+                while q[length - 1] and q[length - 1][0][0] >= num:
+                    s[length - 1] -= q[length - 1].popleft()[1]
+                s[length] += s[length - 1]
+                s[length] %= mod
+                q[length].append([num, s[length - 1]])
+        return len(dp), s[-1]
 
 
 class Solution:
@@ -420,6 +464,17 @@ class Solution:
                 pre = tree.query(0, ind[num] - 1, 0, n - 1, 1)
                 tree.update(ind[num], ind[num], 0, n - 1, pre + num, 1)
         ac.st(tree.query(0, n - 1, 0, n - 1, 1))
+        return
+
+    @staticmethod
+    def ac_2694(ac=FastIO()):
+        # 模板：使用LIS的方法求解LCS的长度与个数
+        mod = 10**8
+        s1 = ac.read_str()[:-1]
+        s2 = ac.read_str()[:-1]
+        length, cnt = LcsLis().longest_common_subsequence_length_and_cnt(s1, s2, mod)
+        ac.st(length)
+        ac.st(cnt % mod)
         return
 
 
