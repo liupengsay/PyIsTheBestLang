@@ -28,7 +28,7 @@ from src.mathmatics.number_theory import NumberTheory
 2597. 美丽子集的数目（https://leetcode.cn/problems/the-number-of-beautiful-subsets/）线性DP计数
 2713. 矩阵中严格递增的单元格数（https://leetcode.cn/problems/maximum-strictly-increasing-cells-in-a-matrix/）按照值域分层线性 DP
 1526. 形成目标数组的子数组最少增加次数（https://leetcode.cn/problems/minimum-number-of-increments-on-subarrays-to-form-a-target-array/）经典线性 DP 与贪心
-1553. 吃掉 N 个橘子的最少天数（https://leetcode.cn/problems/minimum-number-of-days-to-eat-n-oranges/）记忆化搜索线性DP
+1553. 吃掉 N 个橘子的最少天数（https://leetcode.cn/problems/minimum-number-of-days-to-eat-n-oranges/）脑筋急转弯贪心记忆化搜索线性DP
 1872. 石子游戏 VIII（https://leetcode.cn/problems/stone-game-viii/）前缀和倒序DP
 
 ===================================洛谷===================================
@@ -894,6 +894,21 @@ class Solution:
             ans = ac.max(ans, pre[1])
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_1553(n: int) -> int:
+
+        # 模板：脑筋急转弯贪心记忆化搜索线性DP
+
+        @lru_cache(None)
+        def dfs(num):
+            if num <= 1:
+                return num
+            a = num % 2 + 1 + dfs(num // 2)
+            b = num % 3 + 1 + dfs(num // 3)
+            return a if a < b else b
+
+        return dfs(n)
 
 
 class TestGeneral(unittest.TestCase):
