@@ -150,6 +150,53 @@ class MonotonicStack:
         return
 
 
+
+class Rectangle:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def compute_area(pre):
+        # 模板：使用单调栈根据高度计算最大矩形面积
+
+        m = len(pre)
+        left = [0] * m
+        right = [m - 1] * m
+        stack = []
+        for i in range(m):
+            while stack and pre[stack[-1]] > pre[i]:
+                right[stack.pop()] = i - 1
+            if stack:  # 这里可以同时求得数组前后的下一个大于等于值
+                left[i] = stack[-1] + 1  # 这里将相同的值视为右边的更大且并不会影响计算
+            stack.append(i)
+
+        ans = 0
+        for i in range(m):
+            cur = pre[i] * (right[i] - left[i] + 1)
+            ans = ans if ans > cur else cur
+        return ans
+
+    @staticmethod
+    def compute_number(pre):
+        # 模板：使用单调栈根据高度计算矩形个数
+
+        n = len(pre)
+        right = [n - 1] * n
+        left = [0] * n
+        stack = []
+        for j in range(n):
+            while stack and pre[stack[-1]] > pre[j]:
+                right[stack.pop()] = j - 1
+            if stack:  # 这个单调栈过程和上述求面积的一样
+                left[j] = stack[-1] + 1
+            stack.append(j)
+
+        ans = 0
+        for j in range(n):
+            ans += (right[j] - j + 1) * (j - left[j] + 1) * pre[j]
+        return ans
+
+
 class Solution:
     def __init__(self):
         return
@@ -248,56 +295,6 @@ class Solution:
         ac.st(ans)
         return
 
-
-class Rectangle:
-    def __init__(self):
-        return
-
-    @staticmethod
-    def compute_area(pre):
-        # 模板：使用单调栈根据高度计算最大矩形面积
-
-        m = len(pre)
-        left = [0] * m
-        right = [m - 1] * m
-        stack = []
-        for i in range(m):
-            while stack and pre[stack[-1]] > pre[i]:
-                right[stack.pop()] = i - 1
-            if stack:  # 这里可以同时求得数组前后的下一个大于等于值
-                left[i] = stack[-1] + 1  # 这里将相同的值视为右边的更大且并不会影响计算
-            stack.append(i)
-
-        ans = 0
-        for i in range(m):
-            cur = pre[i] * (right[i] - left[i] + 1)
-            ans = ans if ans > cur else cur
-        return ans
-
-    @staticmethod
-    def compute_number(pre):
-        # 模板：使用单调栈根据高度计算矩形个数
-
-        n = len(pre)
-        right = [n - 1] * n
-        left = [0] * n
-        stack = []
-        for j in range(n):
-            while stack and pre[stack[-1]] > pre[j]:
-                right[stack.pop()] = j - 1
-            if stack:  # 这个单调栈过程和上述求面积的一样
-                left[j] = stack[-1] + 1
-            stack.append(j)
-
-        ans = 0
-        for j in range(n):
-            ans += (right[j] - j + 1) * (j - left[j] + 1) * pre[j]
-        return ans
-
-
-class Solution:
-    def __init__(self):
-        return
 
     @staticmethod
     def lg_p3467(ac=FastIO()):
