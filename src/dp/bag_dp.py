@@ -22,6 +22,7 @@ from src.fast_io import FastIO
 2189. 建造纸牌屋的方法数（https://leetcode.cn/problems/number-of-ways-to-build-house-of-cards/）转换为01背包求解
 254. 因子的组合（https://leetcode.cn/problems/factor-combinations/）乘法结合背包DP
 1449. 数位成本和为目标值的最大数字（https://leetcode.cn/problems/form-largest-integer-with-digits-that-add-up-to-target/）代价一定情况下的最大数值
+1049. 最后一块石头的重量 II（https://leetcode.cn/problems/last-stone-weight-ii/）经典问题，转化为01背包求解
 
 ===================================洛谷===================================
 P1048 采药（https://www.luogu.com.cn/problem/P1048）一维背包DP，数量有限，从后往前遍历
@@ -1250,6 +1251,18 @@ class Solution:
                 ans = cur
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_1049(stones: List[int]) -> int:
+        # 模板：经典问题，转化为01背包求解
+        s = sum(stones)
+        dp = [0]*(s//2 + 1)
+        dp[0] = 1
+        for num in stones:
+            for i in range(s//2, num-1, -1):
+                if dp[i-num]:
+                    dp[i] = 1
+        return min(abs(s-2*i) for i in range(s//2 + 1) if dp[i])
 
 
 class TestGeneral(unittest.TestCase):
