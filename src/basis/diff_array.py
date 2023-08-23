@@ -31,6 +31,7 @@ from math import inf
 1895. 最大的幻方（https://leetcode.cn/problems/largest-magic-square/）二维前缀和枚举优化
 1943. 描述绘画结果（https://leetcode.cn/problems/describe-the-painting/）经典离散化差分
 2021. 街上最亮的位置（https://leetcode.cn/problems/brightest-position-on-street/）经典离散化差分
+837. 新 21 点（https://leetcode.cn/problems/new-21-game/description/）使用差分数组模拟进行概率计算
 
 ===================================洛谷===================================
 P8772 [蓝桥杯 2022 省 A] 求和（https://www.luogu.com.cn/record/list?user=739032&status=12&page=15）后缀和计算
@@ -1446,8 +1447,23 @@ class Solution:
         ans += post_sum > 0
         ac.st(ans)
         return
-
-
+    
+    @staticmethod
+    def lc_837(n: int, k: int, max_pts: int) -> float:
+        # 模板：使用差分数组模拟进行概率计算
+        s = k + max_pts
+        dp = [0] * (s + 1)
+        dp[0] = 1
+        diff = [0] * (s + 1)
+        for i in range(s + 1):
+            diff[i] += diff[i - 1]
+            dp[i] += diff[i]
+            if i < k:
+                diff[i + 1] += dp[i] / max_pts
+                diff[i + max_pts + 1] -= dp[i] / max_pts
+        return sum(dp[k:n + 1])
+    
+    
 class TestGeneral(unittest.TestCase):
 
     def test_diff_array_range(self):
