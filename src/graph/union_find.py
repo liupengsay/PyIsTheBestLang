@@ -2,9 +2,10 @@ import decimal
 import math
 import unittest
 
-from typing import List
+from typing import List, Optional
 from collections import defaultdict, Counter, deque
 
+from src.basis.tree_node import TreeNode
 from src.data_structure.sorted_list import LocalSortedList
 from src.fast_io import FastIO
 import heapq
@@ -38,6 +39,7 @@ from math import inf
 1970. 你能穿过矩阵的最后一天（https://leetcode.cn/problems/last-day-where-you-can-still-cross/）经典逆序思维并查集
 1998. 数组的最大公因数排序（https://leetcode.cn/problems/gcd-sort-of-an-array/）经典并查集加质因数分解
 2158. 每天绘制新区域的数量（https://leetcode.cn/problems/amount-of-new-area-painted-each-day/）经典区间并查集
+2471. 逐层排序二叉树所需的最少操作数目（https://leetcode.cn/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/description/）经典离散化置换环
 
 ===================================洛谷===================================
 P3367 并查集（https://www.luogu.com.cn/problem/P3367）计算连通分块的数量
@@ -1066,6 +1068,37 @@ class Solution:
                 ans += lst[j]
             ac.st(ans - 1)
         return
+
+    @staticmethod
+    def lc_2471(root: Optional[TreeNode]) -> int:
+        # 模板：经典离散化置换环
+
+        def check():
+            nonlocal ans
+            ind = {num: i for i, num in enumerate(cur)}
+            lst = sorted(cur)
+            m = len(lst)
+            uf = UnionFind(m)
+            for i in range(m):
+                uf.union(ind[lst[i]], ind[cur[i]])
+            group = uf.get_root_size()
+            for p in group:
+                ans += group[p] - 1
+            return
+
+        ans = 0
+        stack = [root] if root else []
+        while stack:
+            nex = []
+            cur = [node.val for node in stack]
+            ans += check()
+            for node in stack:
+                if node.left:
+                    nex.append(node.left)
+                if node.right:
+                    nex.append(node.right)
+            stack = nex[:]
+        return ans
 
 
 class TestGeneral(unittest.TestCase):
