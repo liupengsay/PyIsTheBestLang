@@ -19,6 +19,7 @@ MOD = 10 ** 9 + 7
 2472. 不重叠回文子字符串的最大数目（https://leetcode.cn/problems/maximum-number-of-non-overlapping-palindrome-substrings/）回文子串判定DP加线性DP
 2430. 对字母串可执行的最大删除数（https://leetcode.cn/problems/maximum-deletions-on-a-string/）最长公共前缀DP加线性DP
 1547. 切棍子的最小成本（https://leetcode.cn/problems/minimum-cost-to-cut-a-stick/）区间DP模拟
+1278. 分割回文串 III（https://leetcode.cn/problems/palindrome-partitioning-iii/）经典预处理双重区间DP进行计算
 
 ===================================洛谷===================================
 P1521 求逆序对（https://www.luogu.com.cn/problem/P1521）使用归并排序计算移动次数，也可以使用倍增的树状数组
@@ -375,6 +376,26 @@ class Solution:
                     dp[i][j] = ac.min(dp[i+1][j], dp[i][j-1]) + 1
         ac.st(dp[0][n-1])
         return
+
+    @staticmethod
+    def lc_1278(s: str, k: int) -> int:
+        # 模板：经典预处理双重区间DP进行计算
+        n = len(s)
+
+        cost = [[0]*n for _ in range(n)]
+        for i in range(n-1, -1, -1):
+            if i+1<n:
+                j = i+1
+                cost[i][j] = 1 if s[i] != s[j] else 0
+            for j in range(i+2, n):
+                cost[i][j] = cost[i+1][j-1] + int(s[i]!=s[j])
+
+        dp = [[n]*k for _ in range(n+1)]
+        for i in range(n):
+            dp[i+1][0] = cost[0][i]
+            for j in range(1, k):
+                dp[i+1][j] = min(dp[x][j-1]+cost[x][i] for x in range(i+1))
+        return dp[n][k-1]
 
 
 class TestGeneral(unittest.TestCase):
