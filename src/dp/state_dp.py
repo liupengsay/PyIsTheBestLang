@@ -21,7 +21,7 @@ from src.fast_io import FastIO
 1723. 完成所有工作的最短时间（https://leetcode.cn/problems/find-minimum-time-to-finish-all-jobs/）通过位运算枚举分配工作DP最小化的最大值
 1986. 完成任务的最少工作时间段（https://leetcode.cn/problems/minimum-number-of-work-sessions-to-finish-the-tasks/）预处理计算子集后进行记忆化状态转移，经典子集枚举
 698. 划分为k个相等的子集（https://leetcode.cn/problems/partition-to-k-equal-sum-subsets/）预处理计算子集后进行记忆化状态转移
-2172. 数组的最大与和（https://leetcode.cn/problems/maximum-and-sum-of-array/）使用位运算和状态压缩进行转移
+2172. 数组的最大与和（https://leetcode.cn/problems/maximum-and-sum-of-array/）使用位运算和状态压缩进行转移，经典三进制状压DP（天平就是三进制）
 1255. 得分最高的单词集合（https://leetcode.cn/problems/maximum-score-words-formed-by-letters/）状压DP
 2403. 杀死所有怪物的最短时间（https://leetcode.cn/problems/minimum-time-to-kill-all-monsters/）状压DP
 1681. 最小不兼容性（https://leetcode.cn/problems/minimum-incompatibility/）状态压缩分组DP，状态压缩和组合数选取结合使用
@@ -547,6 +547,31 @@ class Solution:
         ac.lst(ans)
         return
 
+    @staticmethod
+    def lc_2172(nums: List[int], num_slots: int) -> int:
+        # 模板：使用位运算和状态压缩进行转移，经典三进制状压DP（天平就是三进制）
+        
+        def get_k_bin_of_n(n: int, k: int, m: int):  # 使用进制与数字转换进行状压DP
+            lst = []
+            while n:
+                lst.append(n % k)
+                n //= k
+            lst = lst + [0] * (m - len(lst))
+            return lst
+
+        length = len(nums)
+        dp = [0] * (3 ** num_slots)
+        for sub in range(3 ** num_slots):
+            cnt = get_k_bin_of_n(sub, 3, num_slots)
+            pre = sum(cnt)
+            if pre >= length:
+                continue
+            for j in range(num_slots):
+                if cnt[j] < 2:
+                    cur = dp[sub] + (nums[pre] & (j + 1))
+                    dp[sub + 3**j] = max(dp[sub + 3**j], cur)
+        return max(dp)
+    
 
 class TestGeneral(unittest.TestCase):
 
