@@ -13,6 +13,7 @@ from src.fast_io import FastIO
 214 最短回文串（https://leetcode.cn/problems/shortest-palindrome/）计算字符串前缀最长回文子串
 1745. 回文串分割 IV（https://leetcode.cn/problems/palindrome-partitioning-iv/）待确认如何使用马拉车实现线性做法
 1960. 两个回文子字符串长度的最大乘积（https://leetcode.cn/problems/maximum-product-of-the-length-of-two-palindromic-substrings/）利用马拉车求解每个位置前后最长回文子串
+2472. 不重叠回文子字符串的最大数目（https://leetcode.cn/problems/maximum-number-of-non-overlapping-palindrome-substrings/）预处理线性回文子串 DP 优化外加结果计算线性 DP 也可以使用马拉车回文串获取回文信息
 
 ===================================洛谷===================================
 P4555 最长双回文串（https://www.luogu.com.cn/problem/P4555）计算以当前索引为开头以及结尾的最长回文子串
@@ -257,6 +258,19 @@ class Solution:
         ac.st(ans)
         return
 
+    @staticmethod
+    def lc_2472(s: str, k: int) -> int:
+        # 模板：预处理线性回文子串 DP 优化外加结果计算线性 DP 也可以使用马拉车回文串获取回文信息
+        n = len(s)
+        _, end = ManacherPlindrome().palindrome(s)
+        dp = [0] * (n + 1)
+        for i in range(n):
+            dp[i + 1] = dp[i]
+            for j in end[i]:
+                if i - j + 1 >= k and dp[j] + 1 > dp[i + 1]:
+                    dp[i + 1] = dp[j] + 1
+        return dp[n]
+
 
 class TestGeneral(unittest.TestCase):
 
@@ -270,7 +284,7 @@ class TestGeneral(unittest.TestCase):
 
     def test_luogu(self):
         s = "baacaabbacabb"
-        luogu = Luogu()
+        luogu = Solution()
         assert luogu.lg_4555(s) == 12
         return
 
