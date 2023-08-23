@@ -38,6 +38,7 @@ from src.fast_io import FastIO, inf
 2014. 重复 K 次的最长子序列（https://leetcode.cn/problems/longest-subsequence-repeated-k-times/）经典利用数据范围进行枚举
 2077. 殊途同归（https://leetcode.cn/problems/paths-in-maze-that-lead-to-same-room/）经典使用位运算枚举
 2081. k 镜像数字的和（https://leetcode.cn/problems/sum-of-k-mirror-numbers/）经典回文串进制数据枚举
+2170. 使数组变成交替数组的最少操作数（https://leetcode.cn/problems/minimum-operations-to-make-the-array-alternating/）经典枚举，运用最大值与次大值技巧
 
 ===================================洛谷===================================
 P1548 棋盘问题（https://www.luogu.com.cn/problem/P1548）枚举正方形与长方形的右小角计算个数
@@ -842,6 +843,44 @@ class Solution:
             ans = ac.min(ans, cur)
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_2170(nums: List[int]) -> int:
+        # 模板：经典枚举，运用最大值与次大值技巧
+        odd = defaultdict(int)
+        even = defaultdict(int)
+        n = len(nums)
+        odd_cnt = 0
+        even_cnt = 0
+        for i in range(n):
+            if i % 2 == 0:
+                even[nums[i]] += 1
+                even_cnt += 1
+            else:
+                odd[nums[i]] += 1
+                odd_cnt += 1
+
+        # 最大值与次大值计算
+        a = b = 0
+        for num in even:
+            if even[num] >= a:
+                a, b = even[num], a
+            elif even[num] >= b:
+                b = even[num]
+
+        # 枚举奇数位置的数
+        ans = odd_cnt + even_cnt - a
+        for num in odd:
+            cur = odd_cnt - odd[num]
+            if even[num] == a:
+                x = b
+            else:
+                x = a
+            cur += even_cnt - x
+            if cur < ans:
+                ans = cur
+
+        return ans
 
 
 class TestGeneral(unittest.TestCase):
