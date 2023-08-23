@@ -19,13 +19,15 @@ from src.graph.union_find import UnionFind
 2392. 给定条件下构造矩阵（https://leetcode.cn/problems/build-a-matrix-with-conditions/）分别通过行列的拓扑排序来确定数字所在索引，数字可能相同，需要使用并查集
 2371. 最小化网格中的最大值（https://leetcode.cn/problems/minimize-maximum-value-in-a-grid/）分别通过行列的拓扑排序来确定数字所在索引，数字都不同可以使用贪心
 2127. 参加会议的最多员工数（https://leetcode.cn/problems/maximum-employees-to-be-invited-to-a-meeting/）拓扑排序确定内向基环，按照环的大小进行贪心枚举
-
 127. 参加会议的最多员工数（https://leetcode.cn/problems/maximum-employees-to-be-invited-to-a-meeting/）
 269. 火星词典（https://leetcode.cn/problems/alien-dictionary/）经典按照字典序建图，与拓扑排序的应用
 2603. 收集树中金币（https://leetcode.cn/contest/weekly-contest-338/problems/collect-coins-in-a-tree/）无向图拓扑排序内向基环树
 2204. 无向图中到环的距离（https://leetcode.cn/problems/distance-to-a-cycle-in-undirected-graph/https://leetcode.cn/problems/distance-to-a-cycle-in-undirected-graph/）无向图拓扑排序
 1857. 有向图中最大颜色值（https://leetcode.cn/problems/largest-color-value-in-a-directed-graph/）经典拓扑排序DP
 1932. 合并多棵二叉搜索树（https://leetcode.cn/problems/merge-bsts-to-create-single-bst/）经典连通性、拓扑排序与二叉搜索树判断
+1591. 奇怪的打印机 II（https://leetcode.cn/contest/biweekly-contest-35/problems/strange-printer-ii/）经典建图判断拓扑排序是否无环
+
+
 ===================================洛谷===================================
 P1960 郁闷的记者（https://www.luogu.com.cn/problem/P1960）计算拓扑排序是否唯一
 P1992 不想兜圈的老爷爷（https://www.luogu.com.cn/problem/P1992）拓扑排序计算有向图是否有环
@@ -1017,6 +1019,46 @@ class Solution:
                 ans = math.lcm(cur//2, ans)
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_1591(grid: List[List[int]]) -> bool:
+        # 模板：经典建图判断拓扑排序是否无环
+        color = defaultdict(list)
+        m, n = len(grid), len(grid[0])
+        for i in range(m):
+            for j in range(n):
+                color[grid[i][j]].append([i, j])
+
+        pos = defaultdict(list)
+        for c in color:
+            lst = color[c]
+            x1 = min(x for x, _ in lst)
+            x2 = max(x for x, _ in lst)
+
+            y1 = min(x for _, x in lst)
+            y2 = max(x for _, x in lst)
+            pos[c] = [x1, x2, y1, y2]
+
+        degree = defaultdict(int)
+        dct = defaultdict(list)
+        for x in pos:
+            a1, a2, b1, b2 = pos[x]
+            for y in pos:
+                if x != y:
+                    for a, b in color[y]:
+                        if a1 <= a <= a2 and b1 <= b <= b2:
+                            dct[x].append(y)
+                            degree[y] += 1
+        stack = [x for x in pos if not degree[x]]
+        while stack:
+            nex = []
+            for i in stack:
+                for j in dct[i]:
+                    degree[j] -= 1
+                    if not degree[j]:
+                        nex.append(j)
+            stack = nex[:]
+        return all(degree[x] == 0 for x in pos)
 
 
 class TestGeneral(unittest.TestCase):
