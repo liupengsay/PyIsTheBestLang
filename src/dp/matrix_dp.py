@@ -41,7 +41,7 @@ from src.mathmatics.comb_perm import Combinatorics
 1692. 计算分配糖果的不同方式（https://leetcode.cn/problems/count-ways-to-distribute-candies/）矩阵DP计算方案数
 1771. 由子序列构造的最长回文串的长度（https://leetcode.cn/problems/maximize-palindrome-length-from-subsequences/）经典回文矩阵DP
 1883. 准时抵达会议现场的最小跳过休息次数（https://leetcode.cn/problems/minimum-skips-to-arrive-at-meeting-on-time/）矩阵 DP
-1977. 划分数字的方案数（https://leetcode.cn/problems/number-of-ways-to-separate-numbers/）两个矩阵DP进行计算优化
+1977. 划分数字的方案数（https://leetcode.cn/problems/number-of-ways-to-separate-numbers/）经典两个矩阵DP含LCP进行计算优化，或者使用前缀优化DP
 2430. 对字母串可执行的最大删除数（https://leetcode.cn/problems/maximum-deletions-on-a-string/）双重DP进行LCP与矩阵DP
 
 ===================================洛谷===================================
@@ -1841,6 +1841,39 @@ class Solution:
         ac.st(dp[t][n])
         ac.st((cnt[t][n] + mod) % mod)
         return
+
+    @staticmethod
+    def lc_1977(num: str) -> int:
+        # 模板：经典两个矩阵DP含LCP进行计算优化，或者使用前缀优化DP
+        mod = 10 ** 9 + 7
+        n = len(num)
+        lcp = [[0] * (n + 1) for _ in range(n + 1)]
+        for i in range(n - 1, -1, -1):
+            lcp[i][i] = n - i
+            for j in range(i + 1, n):
+                lcp[i][j] = 0 if num[i] != num[j] else lcp[i + 1][j + 1] + 1
+
+        # 以索引 i 结尾且末尾数字长为 j 的方案数
+        dp = [[0] * (n + 1) for _ in range(n + 1)]
+        dp[0] = [1] * (n + 1)  # 边界条件前缀和
+        for i in range(1, n + 1):
+            # i 从 1 到 n 表示
+            for j in range(1, i + 1):
+                if num[i - j] == "0":  # 只能是没有前导零的正整数
+                    continue
+                if i - 2 * j >= 0:
+                    x = lcp[i - 2 * j][i - j]
+                    if x >= j or num[i - 2 * j + x] <= num[i - j + x]:
+                        dp[i][j] = dp[i - j][j]  # 只有这时才满足 num[i-2*j:i-j] <= num[i-j:i]
+                    else:
+                        dp[i][j] = dp[i - j][j - 1]
+                else:
+                    dp[i][j] = dp[i - j][j - 1]
+            for j in range(1, n + 1):
+                # 前缀和优化
+                dp[i][j] += dp[i][j - 1]
+                dp[i][j] %= mod
+        return dp[n][n]
 
 
 class TestGeneral(unittest.TestCase):
