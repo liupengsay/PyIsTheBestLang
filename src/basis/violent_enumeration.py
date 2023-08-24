@@ -39,6 +39,7 @@ from src.fast_io import FastIO, inf
 2077. 殊途同归（https://leetcode.cn/problems/paths-in-maze-that-lead-to-same-room/）经典使用位运算枚举
 2081. k 镜像数字的和（https://leetcode.cn/problems/sum-of-k-mirror-numbers/）经典回文串进制数据枚举
 2170. 使数组变成交替数组的最少操作数（https://leetcode.cn/problems/minimum-operations-to-make-the-array-alternating/）经典枚举，运用最大值与次大值技巧
+1215. 步进数（https://leetcode.cn/problems/stepping-numbers/）经典根据数据范围使用回溯枚举所有满足条件的数
 
 ===================================洛谷===================================
 P1548 棋盘问题（https://www.luogu.com.cn/problem/P1548）枚举正方形与长方形的右小角计算个数
@@ -881,6 +882,33 @@ class Solution:
                 ans = cur
 
         return ans
+
+    @staticmethod
+    def lc_1215(low: int, high: int) -> List[int]:
+
+        # 模板：经典根据数据范围使用回溯枚举所有满足条件的数
+
+        def dfs():
+            nonlocal num, ceil
+            if num > ceil:
+                return
+            ans.append(num)
+            last = num % 10
+            for x in [last - 1, last + 1]:
+                if 0 <= x <= 9:
+                    num = num * 10 + x
+                    dfs()
+                    num //= 10
+            return
+
+        ceil = 2 * 10 ** 9
+        ans = [0]
+        for i in range(1, 10):
+            num = i
+            dfs()
+        ans.sort()
+        i, j = bisect.bisect_left(ans, low), bisect.bisect_right(ans, high)
+        return ans[i:j]
 
 
 class TestGeneral(unittest.TestCase):
