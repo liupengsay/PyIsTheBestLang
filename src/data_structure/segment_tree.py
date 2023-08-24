@@ -20,13 +20,14 @@ from src.fast_io import inf, FastIO
 2276. 统计区间中的整数数目（https://leetcode.cn/problems/count-integers-in-intervals/）维护区间并集的长度
 2179. 统计数组中好三元组数目（https://leetcode.cn/problems/count-good-triplets-in-an-array/）维护区间范围内的个数
 2158. 每天绘制新区域的数量（https://leetcode.cn/problems/amount-of-new-area-painted-each-day/）线段树维护区间范围的覆盖
-6358. 更新数组后处理求和查询（https://leetcode.cn/problems/handling-sum-queries-after-update/）区间值01翻转与区间和查询，使用bitset实现
 6318. 完成所有任务的最少时间（https://leetcode.cn/contest/weekly-contest-336/problems/minimum-time-to-complete-all-tasks/）线段树，贪心加二分
 732. 我的日程安排表 III（https://leetcode.cn/problems/my-calendar-iii/）使用defaultdict进行动态开点线段树
 1851. 包含每个查询的最小区间（https://leetcode.cn/problems/minimum-interval-to-include-each-query/）区间更新最小值、单点查询，也可以用离线查询与优先队列维护计算
 2213. 由单个字符重复的最长子字符串（https://leetcode.cn/problems/longest-substring-of-one-repeating-character/）单点字母更新，最长具有相同字母的连续子数组查询
 2276. 统计区间中的整数数目（https://leetcode.cn/problems/count-integers-in-intervals/）动态开点线段树模板题
 1340. 跳跃游戏 V（https://leetcode.cn/problems/jump-game-v/）可以使用线段树DP进行解决
+2569. 更新数组后处理求和查询（https://leetcode.cn/problems/handling-sum-queries-after-update/）经典01线段树区间翻转与求和，也可以使用BitSet
+
 
 ===================================洛谷===================================
 P2846 [USACO08NOV]Light Switching G（https://www.luogu.com.cn/problem/P2846）线段树统计区间翻转和
@@ -72,19 +73,20 @@ C. Three displays（https://codeforces.com/problemset/problem/987/C）枚举中�
 """
 
 
-class SegBitSet:
-    # 使用位运算进行区间01翻转操作
+class SegmentTreeBitSet:
+    # 使用位运算模拟线段树进行区间01翻转操作
     def __init__(self):
         self.val = 0
         return
 
     def update(self, b, c):
-        # 索引从0开始
+        # 索引从0开始翻转区间[b, c]
         p = (1 << (c + 1)) - (1 << b)
         self.val ^= p
         return
 
     def query(self, b, c):
+        # 索引从0开始查询区间[b, c]的个数
         p = (1 << (c + 1)) - (1 << b)
         return (self.val & p).bit_count()
 
@@ -1036,6 +1038,24 @@ class SegmentTreeRangeUpdateXORSum:
         self.lazy = [0] * (4 * self.n)  # 懒标记
         return
 
+    def build(self, nums) -> None:
+        # 使用数组初始化线段树
+        stack = [[0, self.n - 1, 1]]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if s == t:
+                    self.cover[i] = nums[s]
+                else:
+                    stack.append([s, t, ~i])
+                    m = s + (t - s) // 2
+                    stack.append([s, m, 2 * i])
+                    stack.append([m + 1, t, 2 * i + 1])
+            else:
+                i = ~i
+                self.cover[i] = self.cover[2 * i] + self.cover[2 * i + 1]
+        return
+
     def push_down(self, i: int, s: int, m: int, t: int) -> None:
         if self.lazy[i]:
             self.cover[2 * i] = m - s + 1 - self.cover[2 * i]
@@ -1047,7 +1067,7 @@ class SegmentTreeRangeUpdateXORSum:
             self.lazy[i] = 0
         return
 
-    def update(self, left: int, right: int, s: int, t: int, val: int, i: int) -> None:
+    def update_range(self, left: int, right: int, s: int, t: int, val: int, i: int) -> None:
         # 增减区间值 left 与 right 取值为 0 到 n-1 而 i 从 1 开始
         stack = [[s, t, i]]
         while stack:
@@ -1087,7 +1107,6 @@ class SegmentTreeRangeUpdateXORSum:
             if right > m:
                 stack.append([m + 1, t, 2 * i + 1])
         return ans
-
 
 class SegmentTreeRangeAddSum:
     def __init__(self):
@@ -2075,7 +2094,7 @@ class SegmentTreePointChangeLongCon:
 
 class SegmentTreeRangeAndOrXOR:
     def __init__(self, n) -> None:
-        # 模板：区间修改成01或者反转，区间查询最多有多少连续的1，以及总共有多少1
+        # 模板：区间修改成01或者翻转，区间查询最多有多少连续的1，以及总共有多少1
         self.n = n
         self.cover_1 = [0] * (4 * self.n)
         self.cover_0 = [0] * (4 * self.n)
@@ -2522,10 +2541,10 @@ class Solution:
         return ans
 
     @staticmethod
-    def lc_6358(nums1: List[int], nums2: List[int], queries: List[List[int]]) -> List[int]:
-        # 模板：区间进行 0 1 翻转与 1 的个数查询
+    def lc_2569_2(nums1: List[int], nums2: List[int], queries: List[List[int]]) -> List[int]:
+        # 模板：经典01线段树区间翻转与求和，也可以使用BitSet
         res = []
-        seg = SegBitSet()
+        seg = SegmentTreeBitSet()
         n = len(nums1)
         for i in range(n):
             if nums1[i]:
@@ -2539,6 +2558,24 @@ class Solution:
             else:
                 res.append(s)
         return res
+
+    @staticmethod
+    def lc_2569_1(nums1: List[int], nums2: List[int], queries: List[List[int]]) -> List[int]:
+        # 模板：经典01线段树区间翻转与求和，也可以使用BitSet
+        n = len(nums1)
+        tree = SegmentTreeRangeUpdateXORSum(n)
+        tree.build(nums1)
+        ans = []
+        s = sum(nums2)
+        for op, x, y in queries:
+            if op == 1:
+                tree.update_range(x, y, 0, n-1, 1, 1)
+            elif op == 2:
+                s += tree.query_sum(0, n-1, 0, n-1, 1)*x
+            else:
+                ans.append(s)
+        return ans
+
 
     @staticmethod
     def lg_p1904(ac=FastIO()):
@@ -2684,7 +2721,7 @@ class Solution:
             lst = ac.read_list_ints()
             if lst[0] == 0:
                 x, y = lst[1:]
-                segment.update(x-1, y-1, 0, n-1, 1, 1)
+                segment.update_range(x-1, y-1, 0, n-1, 1, 1)
             else:
                 x, y = lst[1:]
                 ac.st(segment.query_sum(x-1, y-1, 0, n-1, 1))
@@ -2876,7 +2913,7 @@ class Solution:
 
     @staticmethod
     def lg_2572(ac=FastIO()):
-        # 模板：区间修改成01或者反转，区间查询最多有多少连续的1，以及总共有多少1
+        # 模板：区间修改成01或者翻转，区间查询最多有多少连续的1，以及总共有多少1
         def check(tmp):
             ans = pre = 0
             for num in tmp:
@@ -3224,7 +3261,6 @@ class CountIntervalsLC2276:
                     tree.update_range(0, r, 0, n-1, d, 1)
         return
 
-
     @staticmethod
     def ac_5037_1(ac=FastIO()):
         # 模板：同CF242E，使用二十多个01线段树维护区间异或与区间加和
@@ -3232,7 +3268,7 @@ class CountIntervalsLC2276:
         nums = ac.read_list_ints()
         tree = [SegmentTreeRangeUpdateXORSum(n) for _ in range(22)]
         for j in range(22):
-            lst = [1 if nums[i] & (1<<j) else 0 for i in range(n)]
+            lst = [1 if nums[i] & (1 << j) else 0 for i in range(n)]
             tree[j].build(lst)
         for _ in range(ac.read_int()):
             lst = ac.read_list_ints()
@@ -3257,11 +3293,11 @@ class CountIntervalsLC2276:
         # 模板：同CF242E，使用二十多个01线段树维护区间异或与区间加和
         n = ac.read_int()
         nums = ac.read_list_ints()
-        tree = [SegBitSet() for _ in range(22)]
+        tree = [SegmentTreeBitSet() for _ in range(22)]
         for i in range(n):
             x = nums[i]
             for j in range(22):
-                if x & (1<<j):
+                if x & (1 << j):
                     tree[j].update(i, i)
 
         for _ in range(ac.read_int()):
@@ -3270,16 +3306,15 @@ class CountIntervalsLC2276:
                 ll, rr = lst[1:]
                 ll -= 1
                 rr -= 1
-                ans = sum((1<<j)*tree[j].query(ll, rr) for j in range(22))
+                ans = sum((1 << j)*tree[j].query(ll, rr) for j in range(22))
                 ac.st(ans)
             else:
                 ll, rr, xx = lst[1:]
                 ll -= 1
                 rr -= 1
                 for j in range(22):
-                    if (1<<j) & xx:
+                    if (1 << j) & xx:
                         tree[j].update(ll, rr)
-
         return
 
 
