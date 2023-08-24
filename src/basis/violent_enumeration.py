@@ -41,6 +41,7 @@ from src.fast_io import FastIO, inf
 2170. 使数组变成交替数组的最少操作数（https://leetcode.cn/problems/minimum-operations-to-make-the-array-alternating/）经典枚举，运用最大值与次大值技巧
 1215. 步进数（https://leetcode.cn/problems/stepping-numbers/）经典根据数据范围使用回溯枚举所有满足条件的数
 2245. 转角路径的乘积中最多能有几个尾随零（https://leetcode.cn/problems/maximum-trailing-zeros-in-a-cornered-path/）经典四个方向的前缀和与两两组合枚举
+1878. 矩阵中最大的三个菱形和（https://leetcode.cn/problems/get-biggest-three-rhombus-sums-in-a-grid/）经典两个方向上的前缀和计算与边长枚举
 
 ===================================洛谷===================================
 P1548 棋盘问题（https://www.luogu.com.cn/problem/P1548）枚举正方形与长方形的右小角计算个数
@@ -910,6 +911,58 @@ class Solution:
         ans.sort()
         i, j = bisect.bisect_left(ans, low), bisect.bisect_right(ans, high)
         return ans[i:j]
+
+    @staticmethod
+    def lc_1878(grid: List[List[int]]) -> List[int]:
+        # 模板：经典两个方向上的前缀和计算与边长枚举
+
+        m, n = len(grid), len(grid[0])
+
+        @lru_cache(None)
+        def left_up(p, q):
+
+            if p < 0 or q < 0:
+                return 0
+            res = grid[p][q]
+            if p and q:
+                res += left_up(p - 1, q - 1)
+
+            return res
+
+        @lru_cache(None)
+        def right_up(p, q):
+            if p < 0 or q < 0:
+                return 0
+            res = grid[p][q]
+            if p and q + 1 < n:
+                res += right_up(p - 1, q + 1)
+
+            return res
+
+        ans = set()
+        k = max(m, n)
+        for i in range(m):
+            for j in range(n):
+                ans.add(grid[i][j])
+
+                for x in range(1, k + 1):
+                    up_point = [i - x, j]
+                    down_point = [i + x, j]
+                    left_point = [i, j - x]
+                    right_point = [i, j + x]
+                    if not all(0 <= a < m and 0 <= b < n for a, b in [up_point, down_point, left_point, right_point]):
+                        break
+                    cur = left_up(right_point[0], right_point[1]) - left_up(up_point[0], up_point[1])
+                    cur += left_up(down_point[0], down_point[1]) - left_up(left_point[0], left_point[1])
+
+                    cur += right_up(left_point[0], left_point[1]) - right_up(up_point[0], up_point[1])
+                    cur += right_up(down_point[0], down_point[1]) - right_up(right_point[0], right_point[1])
+                    cur -= grid[down_point[0]][down_point[1]]
+                    cur += grid[up_point[0]][up_point[1]]
+                    ans.add(cur)
+        ans = list(ans)
+        ans.sort(reverse=True)
+        return ans[:3]
 
     @staticmethod
     def lc_2245(grid: List[List[int]]) -> int:
