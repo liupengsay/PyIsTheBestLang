@@ -27,6 +27,7 @@ from src.graph.union_find import UnionFind
 834. 树中距离之和（https://leetcode.cn/problems/sum-of-distances-in-tree/）树的总距离，求树的重心
 1617. 统计子树中城市之间最大距离（https://leetcode.cn/problems/count-subtrees-with-max-distance-between-cities/）经典枚举直径端点与乘法原理树形DP进行计算
 2003. 每棵子树内缺失的最小基因值（https://leetcode.cn/problems/smallest-missing-genetic-value-in-each-subtree/）树形DP启发式合并
+2673. 使二叉树所有路径值相等的最小代价（https://leetcode.cn/problems/make-costs-of-paths-equal-in-a-binary-tree/）经典树形DP贪心
 
 ===================================洛谷===================================
 
@@ -1483,6 +1484,21 @@ class Solution:
         res = [i+1 for i in range(n) if sub[i] == x]
         ac.lst(res)
         return
+
+    @staticmethod
+    def lc_2673(n: int, cost: List[int]) -> int:
+        # 模板：经典树形DP贪心
+        ans = 0
+        for i in range(n // 2, 0, -1):
+            left = cost[i * 2 - 1]
+            right = cost[i * 2]
+            if left > right:
+                cost[i - 1] += left
+                ans += left - right
+            else:
+                cost[i - 1] += right
+                ans += right - left
+        return ans
 
 
 class TestGeneral(unittest.TestCase):

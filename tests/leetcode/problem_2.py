@@ -31,6 +31,33 @@ from sortedcontainers import SortedList
 
 
 
+class FrequencyTracker:
+
+    def __init__(self):
+        self.cnt = defaultdict(int)
+        self.freq = defaultdict(int)
+
+    def add(self, number: int) -> None:
+        pre = self.cnt[number]
+        self.cnt[number] += 1
+        self.freq[pre+1] += 1
+        if pre:
+            self.freq[pre] -= 1
+        return
+
+    def deleteOne(self, number: int) -> None:
+        pre = self.cnt[number]
+        if not pre:
+            return
+        self.cnt[number] -= 1
+        self.freq[pre] -= 1
+        if pre - 1:
+            self.freq[pre - 1] += 1
+        return
+
+
+    def hasFrequency(self, frequency: int) -> bool:
+        return self.freq[frequency] > 0
 
 
 

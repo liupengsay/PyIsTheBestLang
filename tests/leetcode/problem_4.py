@@ -30,12 +30,20 @@ from sortedcontainers import SortedList
 # sys.set_int_max_str_digits(0)  # 大数的范围坑
 
 
-
-
-
-
-
-
+class Solution:
+    def minIncrements(self, n: int, cost: List[int]) -> int:
+        # 模板：经典树形DP贪心
+        ans = 0
+        for i in range(n // 2, 0, -1):
+            left = cost[i * 2 - 1]
+            right = cost[i * 2]
+            if left > right:
+                cost[i - 1] += left
+                ans += left - right
+            else:
+                cost[i - 1] += right
+                ans += left - right
+        return ans
 
 
 assert Solution()
