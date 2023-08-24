@@ -2,6 +2,7 @@
 import math
 import unittest
 from decimal import Decimal, getcontext, MAX_PREC
+from typing import List
 
 from src.fast_io import FastIO
 
@@ -16,6 +17,8 @@ getcontext().prec = MAX_PREC
 ===================================力扣===================================
 166. 分数到小数（https://leetcode.cn/problems/fraction-to-recurring-decimal/）经典分数转换为有理数无限循环小数
 172. 阶乘后的零（https://leetcode.cn/problems/factorial-trailing-zeroes/）阶乘后缀0的个数
+1883. 准时抵达会议现场的最小跳过休息次数（https://leetcode.cn/problems/minimum-skips-to-arrive-at-meeting-on-time/description/）经典二维矩阵DP使用分数进行高精度浮点数计算
+
 
 ===================================洛谷===================================
 P2388 阶乘之乘（https://www.luogu.com.cn/problem/P2388）阶乘之乘后缀0的个数
@@ -123,6 +126,63 @@ class HighPrecision:
         return sum_fraction([integer, non_repeat, repeat])
 
 
+class FloatToFrac:
+    def __init__(self):
+        # 将浮点数运算转换为分数计算
+        return
+
+    @staticmethod
+    def frac_add(frac1: List[int], frac2: List[int]) -> List[int]:
+        # 要求分母a1与a2均不为0
+        b1, a1 = frac1
+        b2, a2 = frac2
+        a = math.lcm(a1, a2)
+        b = b1 * (a // a1) + b2 * (a // a2)
+        g = math.gcd(b, a)
+        b //= g
+        a //= g
+        if a < 0:
+            a *= -1
+            b *= -1
+        return [b, a]
+
+    @staticmethod
+    def frac_max(frac1: List[int], frac2: List[int]) -> List[int]:
+        # 要求分母a1与a2均不为0
+        b1, a1 = frac1
+        b2, a2 = frac2
+        if a1 < 0:
+            a1 *= -1
+            b1 *= -1
+        if a2 < 0:
+            a2 *= -1
+            b2 *= -1
+        if b1 * a2 < b2 * a1:
+            return [b2, a2]
+        return [b1, a1]
+
+    @staticmethod
+    def frac_min(frac1: List[int], frac2: List[int]) -> List[int]:
+        # 要求分母a1与a2均不为0
+        b1, a1 = frac1
+        b2, a2 = frac2
+        if a1 < 0:
+            a1 *= -1
+            b1 *= -1
+        if a2 < 0:
+            a2 *= -1
+            b2 *= -1
+        if b1 * a2 > b2 * a1:
+            return [b2, a2]
+        return [b1, a1]
+
+    @staticmethod
+    def frac_ceil(frac: List[int]) -> int:
+        # 要求分母a1与a2均不为0
+        b, a = frac
+        return math.ceil(b / a)
+
+
 class Solution:
     def __init__(self):
         return
@@ -157,10 +217,55 @@ class Solution:
             ans = ans[76:]
         return
 
+    @staticmethod
+    def lc_1883_1(dist: List[int], speed: int, hours: int) -> int:
 
+        # 模板：经典二维矩阵DP使用分数进行高精度浮点数计算
+        n = len(dist)
+        if sum(dist) > hours * speed:
+            return -1
+
+        ff = FloatToFrac()
+        dp = [[[hours * 2, 1] for _ in range(n + 1)] for _ in range(n)]
+        dp[0][0] = [0, 1]
+        for i in range(n - 1):
+            dp[i + 1][0] = ff.frac_add(dp[i][0], [ff.frac_ceil([dist[i], speed]), 1])
+            for j in range(1, i + 2):
+                pre1 = [ff.frac_ceil(ff.frac_add(dp[i][j], [dist[i], speed])), 1]
+                pre2 = ff.frac_add(dp[i][j - 1], [dist[i], speed])
+                dp[i + 1][j] = ff.frac_min(pre1, pre2)
+        for j in range(n + 1):
+            cur = ff.frac_add(dp[n - 1][j], [dist[n - 1], speed])
+            if cur[0] <= hours * cur[1]:
+                return j
+        return -1
+    
+    @staticmethod
+    def lc_1883_2(dist: List[int], speed: int, hours: int) -> int:
+
+        # 模板：经典二维矩阵DP使用分数进行高精度浮点数计算
+        cost = [Decimal(d)/Decimal(speed) for d in dist]
+        n = len(dist)
+        dp = [[hours*2]*(n+1) for _ in range(n+1)]
+        dp[0][0] = 0
+        for i in range(1, n):
+            # 使用浮点数计算
+            dp[i][0] = dp[i-1][0] + math.ceil(cost[i-1])
+            for j in range(1, i):
+                a, b = dp[i-1][j-1] + cost[i-1], math.ceil(dp[i-1][j] + cost[i-1])
+                dp[i][j] = a if a < b else b
+
+            dp[i][i] = dp[i-1][i-1] + cost[i-1]
+
+        for j in range(n+1):
+            if dp[n-1][j] + cost[-1] <= hours:
+                return j
+        return -1
+    
+    
 class TestGeneral(unittest.TestCase):
 
-    def test_high_percision(self):
+    def test_high_precision(self):
         hp = HighPrecision()
         assert hp.float_pow("98.999", "5") == "9509420210.697891990494999"
 
@@ -168,6 +273,24 @@ class TestGeneral(unittest.TestCase):
         assert hp.fraction_to_decimal(2, 1) == "2.0"
         assert hp.decimal_to_fraction("0.803(571428)") == [45, 56]
         assert hp.decimal_to_fraction("2.0") == [2, 1]
+        return
+
+    def test_float_to_frac(self):
+        ff = FloatToFrac()
+        assert ff.frac_add([1, 2], [1, 3]) == [5, 6]
+        assert ff.frac_add([1, 2], [1, -3]) == [1, 6]
+        assert ff.frac_add([1, -2], [1, 3]) == [-1, 6]
+
+        assert ff.frac_max([1, 2], [1, 3]) == [1, 2]
+        assert ff.frac_min([1, 2], [1, 3]) == [1, 3]
+
+        assert ff.frac_max([1, -2], [1, -3]) == [-1, 3]
+        assert ff.frac_min([1, -2], [1, -3]) == [-1, 2]
+
+        assert ff.frac_ceil([2, 3]) == 1
+        assert ff.frac_ceil([5, 3]) == 2
+        assert ff.frac_ceil([-2, 3]) == 0
+        assert ff.frac_ceil([-5, 3]) == -1
         return
 
 
