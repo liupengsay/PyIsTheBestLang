@@ -2,7 +2,7 @@ import bisect
 import unittest
 import math
 from collections import defaultdict, deque
-from functools import reduce
+from functools import reduce, lru_cache
 from itertools import combinations, permutations
 from operator import mul
 from typing import List
@@ -40,6 +40,7 @@ from src.fast_io import FastIO, inf
 2081. k 镜像数字的和（https://leetcode.cn/problems/sum-of-k-mirror-numbers/）经典回文串进制数据枚举
 2170. 使数组变成交替数组的最少操作数（https://leetcode.cn/problems/minimum-operations-to-make-the-array-alternating/）经典枚举，运用最大值与次大值技巧
 1215. 步进数（https://leetcode.cn/problems/stepping-numbers/）经典根据数据范围使用回溯枚举所有满足条件的数
+2245. 转角路径的乘积中最多能有几个尾随零（https://leetcode.cn/problems/maximum-trailing-zeros-in-a-cornered-path/）经典四个方向的前缀和与两两组合枚举
 
 ===================================洛谷===================================
 P1548 棋盘问题（https://www.luogu.com.cn/problem/P1548）枚举正方形与长方形的右小角计算个数
@@ -909,6 +910,74 @@ class Solution:
         ans.sort()
         i, j = bisect.bisect_left(ans, low), bisect.bisect_right(ans, high)
         return ans[i:j]
+
+    @staticmethod
+    def lc_2245(grid: List[List[int]]) -> int:
+        # 模板：经典四个方向的前缀和与两两组合枚举
+
+        def check(num, f):
+            res = 0
+            while num % f == 0:
+                res += 1
+                num //= f
+            return res
+
+        m, n = len(grid), len(grid[0])
+
+        cnt = [[[check(grid[i][j], 2), check(grid[i][j], 5)] for j in range(n)] for i in range(m)]
+
+        @lru_cache(None)
+        def up(i, j):
+            cur = cnt[i][j][:]
+            if i:
+                nex = up(i - 1, j)
+                cur[0] += nex[0]
+                cur[1] += nex[1]
+            return cur
+
+        @lru_cache(None)
+        def down(i, j):
+            cur = cnt[i][j][:]
+            if i + 1 < m:
+                nex = down(i + 1, j)
+                cur[0] += nex[0]
+                cur[1] += nex[1]
+            return cur
+
+        @lru_cache(None)
+        def left(i, j):
+            cur = cnt[i][j][:]
+            if j:
+                nex = left(i, j - 1)
+                cur[0] += nex[0]
+                cur[1] += nex[1]
+            return cur
+
+        @lru_cache(None)
+        def right(i, j):
+            cur = cnt[i][j][:]
+            if j + 1 < n:
+                nex = right(i, j + 1)
+                cur[0] += nex[0]
+                cur[1] += nex[1]
+            return cur
+
+        ans = 0
+        for i in range(m):
+            for j in range(n):
+                lst = [up(i, j), down(i, j), left(i, j), right(i, j)]
+                for ls in lst:
+                    x = ls[0] if ls[0] < ls[1] else ls[1]
+                    if x > ans:
+                        ans = x
+                tmp = cnt[i][j]
+                for item in combinations(lst, 2):
+                    ls1, ls2 = item
+                    x = ls1[0] + ls2[0] - tmp[0] if ls1[0] + ls2[0] - tmp[0] < ls1[1] + ls2[1] - tmp[1] \
+                        else ls1[1] + ls2[1] - tmp[1]
+                    if x > ans:
+                        ans = x
+        return ans
 
 
 class TestGeneral(unittest.TestCase):
