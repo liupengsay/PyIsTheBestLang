@@ -31,25 +31,9 @@ from sortedcontainers import SortedList
 
 
 
-class Solution:
-    def colorTheArray(self, n: int, queries: List[List[int]]) -> List[int]:
 
-        color = [0]*n
-        ans = []
-        pre = 0
-        for i, c in queries:
-            if color[i]:
-                if i and color[i] == color[i-1]:
-                    pre -= 1
-                if i+1<n and color[i] == color[i+1]:
-                    pre -= 1
-            color[i] = c
-            if i and color[i] == color[i - 1]:
-                pre += 1
-            if i + 1 < n and color[i] == color[i + 1]:
-                pre += 1
-            ans.append(pre)
-        return ans
+
+
 
 
 
