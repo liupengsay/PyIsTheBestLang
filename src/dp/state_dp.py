@@ -1,4 +1,6 @@
+import sys
 import unittest
+from operator import or_
 from typing import List
 import math
 from collections import Counter
@@ -11,7 +13,7 @@ from math import inf
 from src.fast_io import FastIO
 
 """
-算法：状态压缩DP、轮廓线DP、记忆化搜索DP
+算法：状态压缩DP、轮廓线DP、记忆化搜索DP、刷表法、填表法
 功能：使用二进制数字表示转移状态，计算相应的转移方程，通常可以先计算满足条件的子集，有时通过深搜回溯枚举全部子集的办法比位运算枚举效率更高
 题目：
 
@@ -31,7 +33,7 @@ from src.fast_io import FastIO
 1595. 连通两组点的最小成本（https://leetcode.cn/problems/minimum-cost-to-connect-two-groups-of-points/）经典状压DP
 1655. 分配重复整数（https://leetcode.cn/problems/distribute-repeating-integers/）经典状压 DP
 1879. 两个数组最小的异或值之和（https://leetcode.cn/problems/minimum-xor-sum-of-two-arrays/）经典状压 DP
-2019. 解出数学表达式的学生分数（https://leetcode.cn/problems/the-score-of-students-solving-math-expression/）经典记忆化DP
+2019. 解出数学表达式的学生分数（https://leetcode.cn/problems/the-score-of-students-solving-math-expression/）经典记忆化DP，可以使用刷表法与填表法迭代实现
 943. 最短超级串（https://leetcode.cn/problems/find-the-shortest-superstring/）字符串贪心最短长度拼接状压DP
 
 ===================================洛谷===================================
@@ -95,10 +97,60 @@ class Solution:
         n = len(nums)
         if n % k:
             return -1
-        inf = inf
         m = n // k
         ans = dfs((1 << n) - 1)
         return ans if ans < inf else -1
+
+    @staticmethod
+    def lc_1879_1(nums1: List[int], nums2: List[int]) -> int:
+
+        # 模板：经典记忆化深搜状压DP写法
+
+        @lru_cache(None)
+        def dfs(i, state):
+            if i == n:
+                return 0
+            res = inf
+            for j in range(n):
+                if state & (1 << j):
+                    cur = (nums1[i] ^ nums2[j]) + dfs(i + 1, state ^ (1 << j))
+                    if cur < res:
+                        res = cur
+            return res
+
+        n = len(nums1)
+        return dfs(0, (1 << n) - 1)
+
+    @staticmethod
+    def lc_1879_2(nums1: List[int], nums2: List[int]) -> int:
+        # 模板：经典状压DP迭代写法，刷表法
+        n = len(nums1)
+        s = sum(nums1) + sum(nums2)
+        dp = [s] * (1 << n)
+        dp[0] = 0
+        for state in range(1 << n):
+            i = state.bit_count()
+            for j in range(n):
+                if not state & (1 << j):
+                    a, b = dp[state | (1 << j)], (nums1[i] ^ nums2[j]) + dp[state]
+                    dp[state | (1 << j)] = a if a < b else b
+        return dp[-1]
+
+    @staticmethod
+    def lc_1879_3(nums1: List[int], nums2: List[int]) -> int:
+        # 模板：经典状压DP迭代写法，填表法
+        n = len(nums1)
+        s = sum(nums1) + sum(nums2)
+        dp = [s] * (1 << n)
+        dp[0] = 0
+        for state in range(1, 1 << n):
+            i = state.bit_count()
+            for j in range(n):
+                if state & (1 << j):
+                    a, b = dp[state], (nums1[i - 1] ^ nums2[j]) + dp[state ^ (1 << j)]
+                    dp[state] = a if a < b else b
+        return dp[-1]
+
 
     @staticmethod
     def cf_165e(ac=FastIO()):
@@ -297,8 +349,7 @@ class Solution:
         n = ac.read_int()
         lst = [[0, 0]]
         for _ in range(n):
-            x, y = [float(w)
-                    for w in sys.stdin.readline().strip().split() if w]
+            x, y = [float(w) for w in sys.stdin.readline().strip().split() if w]
             if not x == y == 0:
                 lst.append([x, y])
 
