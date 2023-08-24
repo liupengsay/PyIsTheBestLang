@@ -10,12 +10,12 @@ from src.fast_io import FastIO, inf
 
 ===================================力扣===================================
 1036. 逃离大迷宫（https://leetcode.cn/problems/escape-a-large-maze/）经典带边界的BFS和离散化BFS两种解法
-2493. 将节点分成尽可能多的组（https://leetcode.cn/problems/divide-nodes-into-the-maximum-number-of-groups/）利用并查集和广度优先搜索进行连通块分组并枚举最佳方案
+2493. 将节点分成尽可能多的组（https://leetcode.cn/problems/divide-nodes-into-the-maximum-number-of-groups/）利用并查集和广度优先搜索进行连通块分组并枚举最佳方案，也就是染色法判断是否可以形成二分图
 2290. 到达角落需要移除障碍物的最小数（https://leetcode.cn/problems/minimum-obstacle-removal-to-reach-corner/）使用0-1 BFS进行优化计算最小代价
 1368. 使网格图至少有一条有效路径的最小代价（https://leetcode.cn/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/）使用0-1 BFS进行优化计算最小代价
 2258. 逃离火灾（https://leetcode.cn/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/）使用二分查找加双源BFS进行模拟
 2092. 找出知晓秘密的所有专家（https://leetcode.cn/problems/find-all-people-with-secret/）按照时间排序，在同一时间进行BFS扩散
-6330. 图中的最短环（https://leetcode.cn/contest/biweekly-contest-101/problems/shortest-cycle-in-a-graph/）使用BFS求无向图的最短环，还可以删除边计算两点最短路成为环，或者以任意边为起点，逐渐加边
+2608. 图中的最短环（https://leetcode.cn/contest/biweekly-contest-101/problems/shortest-cycle-in-a-graph/）使用BFS求无向图的最短环，还可以删除边计算两点最短路成为环，或者以任意边为起点，逐渐加边
 1197. 进击的骑士（https://leetcode.cn/problems/minimum-knight-moves/?envType=study-plan-v2&id=premium-algo-100）双向BFS，或者经典BFS确定边界
 1654. 到家的最少跳跃次数（https://leetcode.cn/problems/minimum-jumps-to-reach-home/）经典BFS，证明确定上界模拟
 
@@ -103,7 +103,7 @@ class Solution:
         return
 
     @staticmethod
-    def lc_6330_1(n: int, edges: List[List[int]]) -> int:
+    def lc_2608_1(n: int, edges: List[List[int]]) -> int:
 
         # 模板：求无向图的最小环
         graph = [[] for _ in range(n)]
@@ -132,7 +132,7 @@ class Solution:
         return ans if ans != inf else -1
 
     @staticmethod
-    def lc_6330_2(n: int, edges: List[List[int]]) -> int:
+    def lc_2608_2(n: int, edges: List[List[int]]) -> int:
 
         # 模板：求无向图的最小环
         graph = [[] for _ in range(n)]
@@ -160,7 +160,7 @@ class Solution:
         return ans if ans < float('inf') else -1
 
     @staticmethod
-    def lc_6330_3(n: int, edges: List[List[int]]) -> int:
+    def lc_2608_3(n: int, edges: List[List[int]]) -> int:
         # 模板：求无向图的最小环
         inf = float('inf')
         g = [[] for _ in range(n)]
@@ -189,7 +189,7 @@ class Solution:
         return ans if ans < inf else -1
 
     @staticmethod
-    def lc_6330_4(n: int, edges: List[List[int]]) -> int:
+    def lc_2608_4(n: int, edges: List[List[int]]) -> int:
         # 模板：求无向图的最小环，枚举边
         graph = [set() for _ in range(n)]
         for x, y in edges:
@@ -409,6 +409,44 @@ class Solution:
                         q.appendleft((d, nx, ny))
                     else:
                         q.append((d + 1, nx, ny))
+
+    @staticmethod
+    def lc_2493(n: int, edges: List[List[int]]) -> int:
+        # 模板：利用并查集和广度优先搜索进行连通块分组并枚举最佳方案，也就是染色法判断是否可以形成二分图
+        dct = [[] for _ in range(n)]
+        uf = UnionFind(n)
+        for i, j in edges:
+            uf.union(i - 1, j - 1)
+            dct[i - 1].append(j - 1)
+            dct[j - 1].append(i - 1)
+
+        group = uf.get_root_part()
+        ans = 0
+        for g in group:
+            cur = -inf
+            lst = group[g]
+            edge = [[i - 1, j - 1] for i, j in edges if uf.find(i - 1) == uf.find(j - 1) == g]
+            for i in lst:
+                stack = [i]
+                visit = {i: 1}
+                deep = 1
+                while stack:
+                    nex = []
+                    for x in stack:
+                        for y in dct[x]:
+                            if y not in visit:
+                                visit[y] = visit[x] + 1
+                                deep = visit[x] + 1
+                                nex.append(y)
+                    stack = nex[:]
+                if all(abs(visit[x] - visit[y]) == 1 for x, y in edge):
+                    if deep > cur:
+                        cur = deep
+            if cur == -inf:
+                return -1
+            ans += cur
+        return ans
+
 
     @staticmethod
     def lc_1368(grid: List[List[int]]) -> int:
