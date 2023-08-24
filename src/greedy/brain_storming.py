@@ -29,7 +29,7 @@ from src.mathmatics.number_theory import NumberTheory
 517. 超级洗衣机（https://leetcode.cn/problems/super-washing-machines/）类似上题，计算最小的左右移动次数以及往左右的移动次数
 1798. 你能构造出连续值的最大数目（https://leetcode.cn/problems/maximum-number-of-consecutive-values-you-can-make/）看似背包实则贪心
 625. 最小因式分解（https://leetcode.cn/problems/minimum-factorization/）贪心进行因式分解，类似质因数分解
-6360. 最小无法得到的或值（https://leetcode.cn/problems/minimum-impossible-or/）脑筋急转弯贪心，可以根据暴力打表观察规律
+2568. 最小无法得到的或值（https://leetcode.cn/problems/minimum-impossible-or/）脑筋急转弯贪心，可以根据暴力打表观察规律
 6361. 修改两个元素的最小分数（https://leetcode.cn/problems/minimum-score-by-changing-two-elements/）脑筋急转弯贪心
 6316. 重排数组以得到最大前缀分数（https://leetcode.cn/contest/weekly-contest-336/problems/rearrange-array-to-maximize-prefix-score/）贪心，加前缀和
 2436. 使子数组最大公约数大于一的最小分割数（https://leetcode.cn/problems/minimum-split-into-subarrays-with-gcd-greater-than-one/）贪心计算
@@ -201,7 +201,6 @@ class BrainStorming:
             if sum_ >= m:
                 break
         return ans
-
 
 
 class Solution:
@@ -1016,6 +1015,15 @@ class Solution:
         if m % 2 == 0:
             return 0
         return 1
+
+    @staticmethod
+    def lc_2568(nums: List[int]) -> int:
+        # 模板：脑筋急转弯贪心，可以根据暴力打表观察规律
+        dct = set(nums)
+        for i in range(34):
+            if 1 << i not in dct:
+                return 1 << i
+        return -1
 
 
 class TestGeneral(unittest.TestCase):
