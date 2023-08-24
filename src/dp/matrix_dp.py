@@ -43,7 +43,7 @@ from src.mathmatics.comb_perm import Combinatorics
 1883. 准时抵达会议现场的最小跳过休息次数（https://leetcode.cn/problems/minimum-skips-to-arrive-at-meeting-on-time/）矩阵 DP
 1977. 划分数字的方案数（https://leetcode.cn/problems/number-of-ways-to-separate-numbers/）经典两个矩阵DP含LCP进行计算优化，或者使用前缀优化DP
 2430. 对字母串可执行的最大删除数（https://leetcode.cn/problems/maximum-deletions-on-a-string/）双重DP进行LCP与矩阵DP
-1216. 验证回文字符串 III（https://leetcode.cn/problems/valid-palindrome-iii/）经典DP求最长回文子串
+1216. 验证回文字符串 III（https://leetcode.cn/problems/valid-palindrome-iii/）经典DP求最长回文子序列
 
 ===================================洛谷===================================
 P2701 [USACO5.3]巨大的牛棚Big Barn（https://www.luogu.com.cn/problem/P2701）求全为 "." 的最大正方形面积，如果不要求实心只能做到O(n^3)复杂度
@@ -1618,7 +1618,7 @@ class Solution:
     @staticmethod
     def lc_1216(s: str, k: int) -> bool:
 
-        # 模板：经典DP求最长回文子串
+        # 模板：经典DP求最长回文子序列
         n = len(s)
         dp = [[0] * n for _ in range(n)]
         for i in range(n - 1, -1, -1):
