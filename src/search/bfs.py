@@ -16,7 +16,7 @@ from src.fast_io import FastIO, inf
 2258. 逃离火灾（https://leetcode.cn/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/）使用二分查找加双源BFS进行模拟
 2092. 找出知晓秘密的所有专家（https://leetcode.cn/problems/find-all-people-with-secret/）按照时间排序，在同一时间进行BFS扩散
 6330. 图中的最短环（https://leetcode.cn/contest/biweekly-contest-101/problems/shortest-cycle-in-a-graph/）使用BFS求无向图的最短环，还可以删除边计算两点最短路成为环，或者以任意边为起点，逐渐加边
-1197. 进击的骑士（https://leetcode.cn/problems/minimum-knight-moves/?envType=study-plan-v2&id=premium-algo-100）双向BFS
+1197. 进击的骑士（https://leetcode.cn/problems/minimum-knight-moves/?envType=study-plan-v2&id=premium-algo-100）双向BFS，或者经典BFS确定边界
 1654. 到家的最少跳跃次数（https://leetcode.cn/problems/minimum-jumps-to-reach-home/）经典BFS，证明确定上界模拟
 
 ===================================洛谷===================================
