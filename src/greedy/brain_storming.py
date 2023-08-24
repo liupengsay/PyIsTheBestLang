@@ -42,6 +42,8 @@ from src.mathmatics.number_theory import NumberTheory
 1808. 好因子的最大数目（https://leetcode.cn/problems/maximize-number-of-nice-divisors/）按照模3的因子个数贪心处理，经典将和拆分成最大乘积
 1953. 你可以工作的最大周数（https://leetcode.cn/problems/maximum-number-of-weeks-for-which-you-can-work/）经典贪心只看最大值的影响
 857. 雇佣 K 名工人的最低成本（https://leetcode.cn/problems/minimum-cost-to-hire-k-workers/）经典贪心排序枚举，使用堆维护K个最小值的和
+858. 镜面反射（https://leetcode.cn/problems/mirror-reflection/description/）经典脑筋急转弯思维题
+
 
 ===================================洛谷===================================
 P1031 均分纸牌（https://www.luogu.com.cn/problem/P1031）贪心计算每个点的前缀和流量，需要补齐或者输出时进行计数
@@ -995,6 +997,25 @@ class Solution:
             if len(stack) == k:
                 pre += heapq.heappop(stack)
         return ans
+
+    @staticmethod
+    def lc_858(p: int, q: int) -> int:
+
+        # 模板：经典脑筋急转弯思维题
+
+        g = math.gcd(p, q)
+        # 求解等式 k*p = m*q
+
+        # 左右次数k合计为偶数
+        k = p // g
+        if k % 2 == 0:
+            return 2
+
+        # 上下次数m合计为偶数
+        m = q // g
+        if m % 2 == 0:
+            return 0
+        return 1
 
 
 class TestGeneral(unittest.TestCase):
