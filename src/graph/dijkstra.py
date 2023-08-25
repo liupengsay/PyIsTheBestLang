@@ -28,7 +28,7 @@ from src.graph.spfa import SPFA
 2714. 找到最短路径的 K 次跨越（https://leetcode.cn/problems/find-shortest-path-with-k-hops/）经典带约束的最短路，也可以使用分层Dijkstra求解
 2699. 修改图中的边权（https://leetcode.cn/problems/modify-graph-edge-weights/）经典Dijkstra最短路贪心应用
 1786. 从第一个节点出发到最后一个节点的受限路径数（https://leetcode.cn/problems/number-of-restricted-paths-from-first-to-last-node/）经典dijkstra受限最短路计数（类似最短路计数）
-1928. 规定时间内到达终点的最小花费（https://leetcode.cn/problems/minimum-cost-to-reach-destination-in-time/）经典Dijkstra带约束的最短路，也可用动态规划求解
+1928. 规定时间内到达终点的最小花费（https://leetcode.cn/problems/minimum-cost-to-reach-destination-in-time/）经典Dijkstra带约束的最短路，也可根据无后效性类似Floyd的动态规划求解
 LCP 75. 传送卷轴（https://leetcode.cn/problems/rdmXM7/）首先BFS之后计算最大值最小的最短路
 1976. 到达目的地的方案数（https://leetcode.cn/problems/number-of-ways-to-arrive-at-destination/）经典Dijkstra最短路计数模板题
 2045. 到达目的地的第二短时间（https://leetcode.cn/problems/second-minimum-time-to-reach-destination/）不带权的严格次短路耗时模拟计算
@@ -1702,6 +1702,49 @@ class Solution:
                     cnt[nex] += cnt[cur]
                     cnt[nex] %= mod
         return cnt[0]
+
+    @staticmethod
+    def lc_1928_1(max_time: int, edges: List[List[int]], passing_fees: List[int]) -> int:
+        # 模板：经典Dijkstra带约束的最短路，也可根据无后效性类似Floyd的动态规划求解
+        n = len(passing_fees)
+        dct = [[] for _ in range(n)]
+        for i, j, w in edges:
+            dct[i].append([j, w])
+            dct[j].append([i, w])
+
+        # 堆的第一维是代价，第二维是时间，第三维是节点
+        stack = [[passing_fees[0], 0, 0]]
+        dis = [max_time + 1] * n  # 哈希存的是第二维时间结果，需要持续递减
+        while stack:
+            cost, tm, i = heapq.heappop(stack)
+            # 前面的代价已经比当前小了若是换乘次数更多则显然不可取
+            if dis[i] <= tm: 
+                continue
+            if i == n-1:
+                return cost
+            dis[i] = tm
+            for j, w in dct[i]:
+                if tm + w < dis[j]:
+                    heapq.heappush(stack, [cost + passing_fees[j], tm + w, j])
+        return -1
+    
+    @staticmethod
+    def lc_1928_2(max_time: int, edges: List[List[int]], passing_fees: List[int]) -> int:
+        # 模板：经典Dijkstra带约束的最短路，也可根据无后效性类似Floyd的动态规划求解
+        n = len(passing_fees)
+        dp = [[inf] * (max_time + 1) for _ in range(n)]
+        dp[0][0] = passing_fees[0]
+        for t in range(max_time + 1):
+            for i, j, w in edges:
+                if w <= t:
+                    a, b = dp[j][t], dp[i][t - w] + passing_fees[j]
+                    dp[j][t] = a if a < b else b
+
+                    a, b = dp[i][t], dp[j][t - w] + passing_fees[i]
+                    dp[i][t] = a if a < b else b
+        ans = min(dp[-1])
+        return ans if ans < inf else -1
+
 
     @staticmethod
     def lc_1976(n: int, roads: List[List[int]]) -> int:
