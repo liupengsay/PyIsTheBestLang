@@ -42,6 +42,7 @@ from src.fast_io import FastIO, inf
 1215. 步进数（https://leetcode.cn/problems/stepping-numbers/）经典根据数据范围使用回溯枚举所有满足条件的数
 2245. 转角路径的乘积中最多能有几个尾随零（https://leetcode.cn/problems/maximum-trailing-zeros-in-a-cornered-path/）经典四个方向的前缀和与两两组合枚举
 1878. 矩阵中最大的三个菱形和（https://leetcode.cn/problems/get-biggest-three-rhombus-sums-in-a-grid/）经典两个方向上的前缀和计算与边长枚举
+2018. 判断单词是否能放入填字游戏内（https://leetcode.cn/problems/check-if-word-can-be-placed-in-crossword/description/）经典枚举空挡位置与矩阵行列取数
 
 ===================================洛谷===================================
 P1548 棋盘问题（https://www.luogu.com.cn/problem/P1548）枚举正方形与长方形的右小角计算个数
@@ -846,6 +847,37 @@ class Solution:
             ans = ac.min(ans, cur)
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_2018(board: List[List[str]], word: str) -> bool:
+        # 模板：经典枚举空挡位置与矩阵行列取数
+        k = len(word)
+
+        def check(cur):
+            if len(cur) != len(word):
+                return False
+            return all(cur[i] == " " or cur[i] == word[i] for i in range(k))
+
+        def compute(lst):
+            length = len(lst)
+            pre = 0
+            for i in range(length):
+                if lst[i] == "#":
+                    if check([lst[x] for x in range(pre, i)]):
+                        return True
+                    pre = i + 1
+            if check([lst[x] for x in range(pre, length)]):
+                return True
+            return False
+
+        for tmp in board:
+            if compute(tmp[:]) or compute(tmp[::-1]):
+                return True
+
+        for tmp in zip(*board):
+            if compute(tmp[:]) or compute(tmp[::-1]):
+                return True
+        return False
 
     @staticmethod
     def lc_2170(nums: List[int]) -> int:
