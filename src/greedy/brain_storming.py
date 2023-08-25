@@ -43,7 +43,7 @@ from src.mathmatics.number_theory import NumberTheory
 1953. 你可以工作的最大周数（https://leetcode.cn/problems/maximum-number-of-weeks-for-which-you-can-work/）经典贪心只看最大值的影响
 857. 雇佣 K 名工人的最低成本（https://leetcode.cn/problems/minimum-cost-to-hire-k-workers/）经典贪心排序枚举，使用堆维护K个最小值的和
 858. 镜面反射（https://leetcode.cn/problems/mirror-reflection/description/）经典脑筋急转弯思维题
-
+1927. 求和游戏（https://leetcode.cn/problems/sum-game/description/）经典博弈思维题分类讨论
 
 ===================================洛谷===================================
 P1031 均分纸牌（https://www.luogu.com.cn/problem/P1031）贪心计算每个点的前缀和流量，需要补齐或者输出时进行计数
@@ -1015,6 +1015,46 @@ class Solution:
         if m % 2 == 0:
             return 0
         return 1
+
+    @staticmethod
+    def lc_1927(num: str) -> bool:
+        # 模板：经典博弈思维题分类讨论
+        def check(s):
+            res = 0
+            cnt = 0
+            for w in s:
+                if w.isnumeric():
+                    res += int(w)
+                else:
+                    cnt += 1
+            return [res, cnt]
+
+        # 计算左右两边的数字和以及问号个数
+        n = len(num)
+        a, x = check(num[:n // 2])
+        b, y = check(num[n // 2:])
+
+        # Alice把宝压在右边
+        b_add = 9 * (y // 2 + y % 2)
+        if y % 2 == 0:
+            a_add = 9 * (x // 2)
+        else:
+            a_add = 9 * (x // 2 + x % 2)
+        if a + a_add < b + b_add:
+            return True
+
+        # Alice把宝压在左边
+        a_add = 9 * (x // 2 + x % 2)
+        if x % 2 == 0:
+            b_add = 9 * (y // 2)
+        else:
+            b_add = 9 * (y // 2 + y % 2)
+        if b + b_add < a + a_add:
+            return True
+
+        # 左右都不能获胜
+        return False
+
 
     @staticmethod
     def lc_2568(nums: List[int]) -> int:
