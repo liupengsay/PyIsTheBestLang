@@ -35,6 +35,7 @@ from src.fast_io import FastIO
 1879. 两个数组最小的异或值之和（https://leetcode.cn/problems/minimum-xor-sum-of-two-arrays/）经典状压 DP
 2019. 解出数学表达式的学生分数（https://leetcode.cn/problems/the-score-of-students-solving-math-expression/）经典记忆化DP，可以使用刷表法与填表法迭代实现
 943. 最短超级串（https://leetcode.cn/problems/find-the-shortest-superstring/）字符串贪心最短长度拼接状压DP
+1434. 每个人戴不同帽子的方案数（https://leetcode.cn/problems/number-of-ways-to-wear-different-hats-to-each-other/description/）经典状压DP逆向思维
 
 ===================================洛谷===================================
 P1896 互不侵犯（https://www.luogu.com.cn/problem/P1896）按行状态与行个数枚举所有的摆放可能性
@@ -246,6 +247,53 @@ class Solution:
         m = len(seats)
         n = len(seats[0])
         return dfs(lst[0], 0)
+
+    @staticmethod
+    def lc_1434_1(hats: List[List[int]]) -> int:
+        # 模板：经典状压DP逆向思维，记忆化实现
+        mod = 10 ** 9 + 7
+        n = len(hats)
+        people = [[] for _ in range(40)]
+        for u in range(n):
+            for v in hats[u]:
+                people[v - 1].append(u)
+
+        @lru_cache(None)
+        def dfs(state, i):
+            if not state:
+                return 1
+            if i == 40:
+                return 0
+            res = dfs(state, i + 1)
+            for j in people[i]:
+                if (1 << j) & state:
+                    res += dfs(state ^ (1 << j), i + 1)
+                    res %= mod
+            return res
+
+        return dfs((1 << n) - 1, 0)
+
+    @staticmethod
+    def lc_1434_2(hats: List[List[int]]) -> int:
+        # 模板：经典状压DP逆向思维，填表法迭代实现
+        mod = 10 ** 9 + 7
+        n = len(hats)
+        people = [[] for _ in range(40)]
+        for u in range(n):
+            for v in hats[u]:
+                people[v - 1].append(u)
+
+        dp = [[0] * (1 << n) for _ in range(41)]
+        dp[0][0] = 1
+        for i in range(40):
+            for j in range(1 << n):
+                dp[i + 1][j] = dp[i][j]
+                for x in people[i]:
+                    if (1 << x) & j:
+                        dp[i + 1][j] += dp[i][j ^ (1 << x)]
+                        dp[i + 1][j] %= mod
+
+        return dp[-1][-1]
 
     @staticmethod
     def lc_2403_1(power: List[int]) -> int:
