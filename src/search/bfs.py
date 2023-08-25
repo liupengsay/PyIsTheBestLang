@@ -18,6 +18,7 @@ from src.fast_io import FastIO, inf
 2608. 图中的最短环（https://leetcode.cn/contest/biweekly-contest-101/problems/shortest-cycle-in-a-graph/）使用BFS求无向图的最短环，还可以删除边计算两点最短路成为环，或者以任意边为起点，逐渐加边
 1197. 进击的骑士（https://leetcode.cn/problems/minimum-knight-moves/?envType=study-plan-v2&id=premium-algo-100）双向BFS，或者经典BFS确定边界
 1654. 到家的最少跳跃次数（https://leetcode.cn/problems/minimum-jumps-to-reach-home/）经典BFS，证明确定上界模拟
+1926. 迷宫中离入口最近的出口（https://leetcode.cn/problems/nearest-exit-from-entrance-in-maze/）经典双端队列01BFS原地哈希
 
 ===================================洛谷===================================
 P1747 好奇怪的游戏（https://www.luogu.com.cn/problem/P1747）双向BFS搜索最短距离
@@ -447,7 +448,6 @@ class Solution:
             ans += cur
         return ans
 
-
     @staticmethod
     def lc_1368(grid: List[List[int]]) -> int:
         # 模板：使用队列实现0-1 BFS 即优先选择距离较短的路线
@@ -474,6 +474,24 @@ class Solution:
                     else:
                         q.append((nx, ny))
         return dist[m * n - 1]
+
+    @staticmethod
+    def lc_1926(maze: List[List[str]], entrance: List[int]) -> int:
+        # 模板：经典双端队列01BFS原地哈希
+        m, n = len(maze), len(maze[0])
+        x0, y0 = entrance[:]
+        stack = deque([[x0, y0, 0]])
+        maze[x0][y0] = "+"
+        while stack:
+            i, j, d = stack.popleft()
+            for x, y in [[i - 1, j], [i + 1, j], [i, j - 1], [i, j + 1]]:
+                if 0 <= x < m and 0 <= y < n and maze[x][y] == ".":
+                    if x in [0, m - 1] or y in [0, n - 1]:
+                        return d + 1
+                    stack.append([x, y, d + 1])
+                    maze[x][y] = "+"
+        return -1
+
 
     @staticmethod
     def cf_1572a(ac=FastIO()):
