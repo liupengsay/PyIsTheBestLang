@@ -606,6 +606,33 @@ class Solution:
         return dfs(0, (1 << n) - 1)
 
     @staticmethod
+    def lc_2019(s: str, answers: List[int]) -> int:
+        # 模板：类似分治的思想进行记忆化搜索
+        @lru_cache(None)
+        def dfs(state):
+            if len(state) == 1:
+                return set(state)
+            m = len(state)
+            cur = set()
+            for i in range(m):
+                if isinstance(state[i], str) and state[i] in "+*":
+                    op = state[i]
+                    pre = dfs(state[:i])
+                    post = dfs(state[i + 1:])
+                    for x in pre:
+                        for y in post:
+                            z = x + y if op == "+" else x * y
+                            if z <= 1000:
+                                cur.add(z)
+            return cur
+
+        lst = [int(w) if w.isnumeric() else w for w in s]
+        res = dfs(tuple(lst))
+        real = eval(s)
+        return sum(5 if w == real else 2 if w in res else 0 for w in answers)
+
+
+    @staticmethod
     def lc_1986(tasks: List[int], sessionTime: int):
         # 模板：预处理计算子集后进行记忆化状态转移，经典子集枚举
         n = len(tasks)
