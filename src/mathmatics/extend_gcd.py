@@ -35,8 +35,7 @@ from src.fast_io import FastIO
 
 ===================================力扣===================================
 365. 水壶问题（https://leetcode.cn/problems/water-and-jug-problem/）经典裴蜀定理贪心
-6301. 判断一个点是否可以到达（https://leetcode.cn/contest/biweekly-contest-96/problems/
-check-if-point-is-reachable/）binary_gcd快速求解，扩展欧几里得算法gcd为1判断可达性
+2543. 判断一个点是否可以到达（https://leetcode.cn/contest/biweekly-contest-96/problems/check-if-point-is-reachable/）利用binary_gcd的与扩展欧几里得求gcd的思想快速求解，判断可达性
 
 ===================================洛谷===================================
 P1082 [NOIP2012 提高组] 同余方程（https://www.luogu.com.cn/problem/P1082）转化为同余方程求解最小的正整数解
@@ -127,6 +126,11 @@ class ExtendGcd:
 class Solution:
     def __init__(self):
         return
+
+    @staticmethod
+    def lc_2543(x: int, y: int) -> bool:
+        # 模板：利用binary_gcd的与扩展欧几里得求gcd的思想快速求解，判断可达性
+        return math.gcd(x, y).bit_count() == 1
 
     @staticmethod
     def main_1082(a, b):
