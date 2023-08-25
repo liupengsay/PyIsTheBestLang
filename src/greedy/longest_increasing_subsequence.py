@@ -31,6 +31,7 @@ dilworth定理：分成不下降子序列最小组数等于最大上升子序列
 1713. 得到子序列的最少操作次数（https://leetcode.cn/problems/minimum-operations-to-make-a-subsequence/）经典LCS问题转换为LIS
 1940. 排序数组之间的最长公共子序列（https://leetcode.cn/problems/longest-common-subsequence-between-sorted-arrays/）经典LCS问题转为LIS问题
 3662. 最大上升子序列和（https://www.acwing.com/problem/content/description/3665/）所有长度的严格上升子序列的最大子序列和，使用离散化树状数组与线性DP计算，也可使用线段树
+2826. 将三个组排序（https://leetcode.cn/problems/sorting-three-groups/）转换为求最长不降子序列
 
 ===================================洛谷===================================
 P1020 导弹拦截（https://www.luogu.com.cn/problem/P1020）使用贪心加二分计算最长单调不减和单调不增子序列的长度
@@ -283,9 +284,14 @@ class Solution:
         ans = 0
         for i in range(k):
             lst = arr[i::k]
-            ans += len(lst) - \
-                LongestIncreasingSubsequence().definitely_not_reduce(lst)
+            ans += len(lst) - LongestIncreasingSubsequence().definitely_not_reduce(lst)
         return ans
+
+    @staticmethod
+    def lc_2826(nums: List[int]) -> int:
+        # 模板：转换为求最长不降子序列
+        n = len(nums)
+        return n - LongestIncreasingSubsequence().definitely_not_reduce(nums)
 
     @staticmethod
     def lc_p1020(ac=FastIO()):
