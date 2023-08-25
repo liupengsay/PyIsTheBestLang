@@ -36,6 +36,7 @@ from src.fast_io import FastIO
 2019. 解出数学表达式的学生分数（https://leetcode.cn/problems/the-score-of-students-solving-math-expression/）经典记忆化DP，可以使用刷表法与填表法迭代实现
 943. 最短超级串（https://leetcode.cn/problems/find-the-shortest-superstring/）字符串贪心最短长度拼接状压DP
 1434. 每个人戴不同帽子的方案数（https://leetcode.cn/problems/number-of-ways-to-wear-different-hats-to-each-other/description/）经典状压DP逆向思维
+847. 访问所有节点的最短路径（https://leetcode.cn/problems/shortest-path-visiting-all-nodes/）经典最短路Floyd或者Dijkstra预处理最短路加状压DP
 
 ===================================洛谷===================================
 P1896 互不侵犯（https://www.luogu.com.cn/problem/P1896）按行状态与行个数枚举所有的摆放可能性
@@ -209,6 +210,31 @@ class Solution:
                 ans = ac.max(ans, res)
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_847(graph: List[List[int]]) -> int:
+        # 模板：经典最短路Floyd或者Dijkstra预处理最短路加状压DP
+        n = len(graph)
+        dis = [[inf] * n for _ in range(n)]
+        for i in range(n):
+            for j in graph[i]:
+                dis[i][j] = dis[j][i] = 1
+        for k in range(n):
+            for i in range(n):
+                for j in range(n):
+                    dis[i][j] = min(dis[i][j], dis[i][k] + dis[k][j])
+
+        dp = [[inf] * n for _ in range(1 << n)]
+        for i in range(n):
+            dp[1 << i][i] = 0
+
+        for i in range(1 << n):
+            for j in range(n):
+                if dp[i][j] < inf and i & (1 << j):
+                    for k in range(n):
+                        if not i & (1 << k):
+                            dp[i ^ (1 << k)][k] = min(dp[i ^ (1 << k)][k], dp[i][j] + dis[j][k])
+        return min(dp[-1])
 
     @staticmethod
     def lc_1349(seats: List[List[str]]) -> int:
