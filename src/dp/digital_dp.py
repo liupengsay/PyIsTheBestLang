@@ -20,7 +20,8 @@ from src.fast_io import FastIO
 1397. 找到所有好字符串（https://leetcode.cn/problems/find-all-good-strings/）使用数位DP思想进行模拟
 2376. 统计特殊整数（https://leetcode.cn/problems/count-special-integers/）计算小于 n 的特殊正整数个数
 2719. 统计整数数目（https://leetcode.cn/problems/count-of-integers/）数位DP容斥模板题
-6957. 统计范围内的步进数字数目（https://leetcode.cn/problems/count-stepping-numbers-in-range/）数位DP容斥模板题
+2801. 统计范围内的步进数字数目（https://leetcode.cn/problems/count-stepping-numbers-in-range/）数位DP容斥模板题
+2827. 范围中美丽整数的数目（https://leetcode.cn/problems/number-of-beautiful-integers-in-the-range/）数位DP容斥模板题
 
 
 面试题 17.06. 2出现的次数（https://leetcode.cn/problems/number-of-2s-in-range-lcci/）所有数位出现 2 的次数
@@ -199,7 +200,95 @@ class Solution:
         if not n:
             return 0
         return DigitalDP().count_digit(n, 1)
-    
+
+    @staticmethod
+    def lc_2719(num1: str, num2: str, min_sum: int, max_sum: int) -> int:
+        # 模板：数位DP容斥模板题
+
+        def check(num):
+            @lru_cache(None)
+            def dfs(i, cnt, is_limit, is_num):
+                if i == n:
+                    if is_num:
+                        return 1 if min_sum <= cnt <= max_sum else 0
+                    return 0
+
+                res = 0
+                if not is_num:
+                    res += dfs(i + 1, 0, False, False)
+                floor = 0 if is_num else 1
+                ceil = int(s[i]) if is_limit else 9
+                for x in range(floor, ceil + 1):
+                    if cnt + x <= max_sum:
+                        res += dfs(i + 1, cnt + x, is_limit and ceil == x, True)
+                    res %= mod
+                return res
+
+            s = str(num)
+            n = len(s)
+            ans = dfs(0, 0, True, False)
+            dfs.cache_clear()
+            return ans
+
+        mod = 10 ** 9 + 7
+        num2 = int(num2)
+        num1 = int(num1)
+        return (check(num2) - check(num1 - 1)) % mod
+
+    @staticmethod
+    def lc_2801(low: str, high: str) -> int:
+        # 模板：数位DP容斥模板题
+
+        def check(num):
+            @lru_cache(None)
+            def dfs(i, is_limit, is_num, pre):
+                if i == n:
+                    return is_num
+                res = 0
+                if not is_num:
+                    res += dfs(i + 1, False, 0, -1)
+
+                floor = 0 if is_num else 1
+                ceil = int(s[i]) if is_limit else 9
+                for x in range(floor, ceil + 1):
+                    if pre == -1 or abs(x - pre) == 1:
+                        res += dfs(i + 1, is_limit and ceil == x, 1, x)
+                return res
+
+            s = str(num)
+            n = len(s)
+            return dfs(0, True, 0, -1)
+
+        mod = 10 ** 9 + 7
+        return (check(int(high)) - check(int(low) - 1)) % mod
+
+    @staticmethod
+    def lc_2827(low: int, high: int, k: int) -> int:
+        # 模板：数位DP容斥模板题
+
+        def check(num):
+            @lru_cache(None)
+            def dfs(i, is_limit, is_num, odd, rest):
+                if i == n:
+                    return 1 if is_num and not odd and not rest else 0
+                res = 0
+                if not is_num:
+                    res += dfs(i + 1, False, 0, 0, 0)
+
+                floor = 0 if is_num else 1
+                ceil = int(s[i]) if is_limit else 9
+                for x in range(floor, ceil + 1):
+                    res += dfs(i + 1, is_limit and ceil == x, 1, odd + 1 if x % 2 == 0 else odd - 1,
+                               (rest * 10 + x) % k)
+                return res
+
+            s = str(num)
+            n = len(s)
+            return dfs(0, True, 0, 0, 0)
+
+        return check(high) - check(low - 1)
+
+
     @staticmethod
     def lg_p1836(ac=FastIO()):
         # 模板：数位DP计算1~n内所有数字的数位和
