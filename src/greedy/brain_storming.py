@@ -41,7 +41,6 @@ from src.mathmatics.number_theory import NumberTheory
 1686. 石子游戏 VI（https://leetcode.cn/problems/stone-game-vi/）经典贪心采用列式子确定排序方式
 1808. 好因子的最大数目（https://leetcode.cn/problems/maximize-number-of-nice-divisors/）按照模3的因子个数贪心处理，经典将和拆分成最大乘积
 1953. 你可以工作的最大周数（https://leetcode.cn/problems/maximum-number-of-weeks-for-which-you-can-work/）经典贪心只看最大值的影响
-857. 雇佣 K 名工人的最低成本（https://leetcode.cn/problems/minimum-cost-to-hire-k-workers/）经典贪心排序枚举，使用堆维护K个最小值的和
 858. 镜面反射（https://leetcode.cn/problems/mirror-reflection/description/）经典脑筋急转弯思维题
 1927. 求和游戏（https://leetcode.cn/problems/sum-game/description/）经典博弈思维题分类讨论
 
@@ -976,26 +975,6 @@ class Solution:
             a = b[:]
         ac.st(ans)
         return
-
-    @staticmethod
-    def lc_857(quality: List[int], wage: List[int], k: int) -> float:
-        # 模板：经典贪心排序枚举，使用堆维护K个最小值的和
-        n = len(quality)
-        ind = list(range(n))
-        ind.sort(key=lambda it: wage[it]/quality[it])
-        ans = inf
-        pre = 0
-        stack = []
-        for i in ind:
-            if len(stack) == k-1:
-                cur = (pre+quality[i])*wage[i]/quality[i]
-                if cur < ans:
-                    ans = cur
-            heapq.heappush(stack, -quality[i])
-            pre += quality[i]
-            if len(stack) == k:
-                pre += heapq.heappop(stack)
-        return ans
 
     @staticmethod
     def lc_858(p: int, q: int) -> int:

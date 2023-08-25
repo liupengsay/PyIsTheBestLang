@@ -1,6 +1,7 @@
+import heapq
 import math
 import unittest
-from collections import deque
+from collections import deque, defaultdict
 from itertools import permutations
 from typing import List
 
@@ -17,6 +18,9 @@ from src.fast_io import FastIO, inf
 394. 字符串解码（https://leetcode.cn/problems/decode-string/）经典解码带括号成倍的字符和数字
 1096. 花括号展开 II（https://leetcode.cn/problems/brace-expansion-ii/）使用栈进行字符解码
 2116. 判断一个括号字符串是否有效（https://leetcode.cn/problems/check-if-a-parentheses-string-can-be-valid/）经典栈贪心匹配括号
+857. 雇佣 K 名工人的最低成本（https://leetcode.cn/problems/minimum-cost-to-hire-k-workers/）经典贪心排序枚举，使用堆维护K个最小值的和
+2542. 最大子序列的分数（https://leetcode.cn/problems/maximum-subsequence-score/）经典排序后枚举使用堆维护K最大的和，类似LC857
+2813. 子序列最大优雅度（https://leetcode.cn/problems/maximum-elegance-of-a-k-length-subsequence/）经典思维题排序后枚举，维护长度为K的子序列最大函数值
 
 ===================================洛谷===================================
 P1944 最长括号匹配（https://www.luogu.com.cn/problem/P1944）最长连续合法括号字串长度
@@ -49,6 +53,51 @@ class Solution:
         return
 
     @staticmethod
+    def lc_2542(nums1: List[int], nums2: List[int], k: int) -> int:
+        # 模板：经典排序后枚举使用堆维护K最大的和，类似LC857
+        n = len(nums1)
+        ind = list(range(n))
+        ind.sort(key=lambda it: -nums2[it])
+        ans = 0
+        stack = []
+        pre = 0
+        for i in ind:
+            heapq.heappush(stack, nums1[i])
+            pre += nums1[i]
+            if len(stack) > k:
+                pre -= heapq.heappop(stack)
+            if len(stack) == k:
+                if pre*nums2[i] > ans:
+                    ans = pre*nums2[i]
+        return ans
+
+
+    @staticmethod
+    def lc_2813(items: List[List[int]], k: int) -> int:
+        # 模板：经典思维题排序后枚举，维护长度为k的子序列最大函数值
+        items.sort(reverse=True)
+        ans = cnt = pre = tp = 0
+        dct = defaultdict(list)
+        stack = []
+        for p, c in items:
+            if cnt == k:
+                while stack and len(dct[stack[-1]]) == 1:
+                    stack.pop()
+                if not stack:
+                    break
+                pre -= dct[stack.pop()].pop()
+            else:
+                cnt += 1
+            pre += p
+            dct[c].append(p)
+            if len(dct[c]) == 1:
+                tp += 1
+            stack.append(c)
+            if pre + tp * tp > ans:
+                ans = pre + tp * tp
+        return ans
+
+    @staticmethod
     def lc_2197(nums: List[int]) -> List[int]:
         # 模板：栈结合 gcd 与 lcm 进行模拟计算
         stack = list()
@@ -62,6 +111,26 @@ class Solution:
                 else:
                     break
         return stack
+
+    @staticmethod
+    def lc_857(quality: List[int], wage: List[int], k: int) -> float:
+        # 模板：经典贪心排序枚举，使用堆维护K个最小值的和
+        n = len(quality)
+        ind = list(range(n))
+        ind.sort(key=lambda it: wage[it] / quality[it])
+        ans = inf
+        pre = 0
+        stack = []
+        for i in ind:
+            heapq.heappush(stack, -quality[i])
+            pre += quality[i]
+            if len(stack) > k:
+                pre += heapq.heappop(stack)
+            if len(stack) == k:
+                cur = pre * wage[i] / quality[i]
+                if cur < ans:
+                    ans = cur
+        return ans
 
     @staticmethod
     def cf_1095e(ac=FastIO()):
