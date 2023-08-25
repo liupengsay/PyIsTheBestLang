@@ -273,7 +273,6 @@ class Solution:
             check()
         return
 
-
     @staticmethod
     def lc_2360(edges: List[int]) -> int:
         # 模板：拓扑排序计算有向图内向基环树最长环
@@ -307,7 +306,42 @@ class Solution:
             if cnt and cnt > ans:
                 ans = cnt
         return ans
+    
+    @staticmethod
+    def lc_2392(k: int, row_conditions: List[List[int]], col_conditions: List[List[int]]) -> List[List[int]]:
 
+        # 模板：经典使用行列拓扑排序构造矩阵
+        def check(cond):
+            dct = defaultdict(list)
+            degree = defaultdict(int)
+            for i, j in cond:
+                dct[i].append(j)
+                degree[j] += 1
+            stack = [i for i in range(1, k + 1) if not degree[i]]
+            ans = []
+            while stack:
+                ans.extend(stack)
+                nex = []
+                for i in stack:
+                    for j in dct[i]:
+                        degree[j] -= 1
+                        if not degree[j]:
+                            nex.append(j)
+                stack = nex
+            return ans
+
+        row = check(row_conditions)
+        col = check(col_conditions)
+        if len(row) != k or len(col) != k:
+            return []
+
+        row_ind = {row[i]: i for i in range(k)}
+        col_ind = {col[i]: i for i in range(k)}
+        res = [[0] * k for _ in range(k)]
+        for i in range(1, k + 1):
+            res[row_ind[i]][col_ind[i]] = i
+        return res
+    
     @staticmethod
     def lg_p1137(ac=FastIO()):
         # 模板：拓扑排序计算最长链条
