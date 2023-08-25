@@ -3,7 +3,7 @@ import unittest
 from bisect import bisect_left
 from collections import defaultdict, deque
 from functools import lru_cache
-from itertools import permutations
+from itertools import permutations, accumulate
 from math import inf
 
 from typing import List
@@ -44,6 +44,7 @@ from src.mathmatics.comb_perm import Combinatorics
 1977. 划分数字的方案数（https://leetcode.cn/problems/number-of-ways-to-separate-numbers/）经典两个矩阵DP含LCP进行计算优化，或者使用前缀优化DP
 2430. 对字母串可执行的最大删除数（https://leetcode.cn/problems/maximum-deletions-on-a-string/）双重DP进行LCP与矩阵DP
 1216. 验证回文字符串 III（https://leetcode.cn/problems/valid-palindrome-iii/）经典DP求最长回文子序列
+2060. 同源字符串检测（https://leetcode.cn/problems/check-if-an-original-string-exists-given-two-encoded-strings/description/）二维矩阵DP枚举记忆化搜索
 
 ===================================洛谷===================================
 P2701 [USACO5.3]巨大的牛棚Big Barn（https://www.luogu.com.cn/problem/P2701）求全为 "." 的最大正方形面积，如果不要求实心只能做到O(n^3)复杂度
@@ -1894,6 +1895,89 @@ class Solution:
                 dp[i][j] += dp[i][j - 1]
                 dp[i][j] %= mod
         return dp[n][n]
+
+    @staticmethod
+    def lc_2060(s1: str, s2: str) -> bool:
+
+        # 模板：二维矩阵DP枚举记忆化搜索
+
+        def check(st):
+            if len(st) == 1:
+                return [int(st)]
+            if len(st) == 2:
+                return [int(st), int(st[0]) + int(st[1])]
+            return [int(st), int(st[:2]) + int(st[2]), int(st[0]) + int(st[1:]), int(st[0]) + int(st[1]) + int(st[2])]
+
+        def depart(s):
+            k = len(s)
+            i = 0
+            res = []
+            while i < k:
+                if s[i].isnumeric():
+                    cur = ""
+                    while i < k and s[i].isnumeric():
+                        cur += s[i]
+                        i += 1
+                    res.append([str(x) for x in check(cur)])
+                else:
+                    res.append([s[i]])
+                    i += 1
+            post = []
+            for ls in res:
+                post.append(max(int(w) if w.isnumeric() else 1 for w in ls))
+            return res, list(accumulate(post, initial=0))
+
+        lst1, pre1 = depart(s1)
+        lst2, pre2 = depart(s2)
+        m, n = len(lst1), len(lst2)
+
+        @lru_cache(None)
+        def dfs(i, j, x):
+            if pre2[-1] - pre2[j] < x:
+                return False
+            if pre1[-1] - pre1[i] < -x:
+                return False
+
+            if x == 0:
+                if i == m and j == n:
+                    return True
+                if i == m or j == n:
+                    return False
+                for a in lst1[i]:
+                    for b in lst2[j]:
+                        if a.isnumeric() and b.isnumeric():
+                            if dfs(i + 1, j + 1, int(a) - int(b)):
+                                return True
+                        elif not a.isnumeric() and not b.isnumeric():
+                            if a == b and dfs(i + 1, j + 1, 0):
+                                return True
+                        elif a.isnumeric() and not b.isnumeric():
+                            if dfs(i + 1, j + 1, int(a) - 1):
+                                return True
+                        else:
+                            if dfs(i + 1, j + 1, 1 - int(b)):
+                                return True
+                return False
+
+            elif x > 0:
+                if j == n:
+                    return False
+                for b in lst2[j]:
+                    if b.isnumeric() and dfs(i, j + 1, x - int(b)):
+                        return True
+                    if not b.isnumeric() and dfs(i, j + 1, x - 1):
+                        return True
+            else:
+                if i == m:
+                    return False
+                for a in lst1[i]:
+                    if a.isnumeric() and dfs(i + 1, j, x + int(a)):
+                        return True
+                    if not a.isnumeric() and dfs(i + 1, j, x + 1):
+                        return True
+            return False
+
+        return dfs(0, 0, 0)
 
 
 class TestGeneral(unittest.TestCase):
