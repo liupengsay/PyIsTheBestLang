@@ -1,12 +1,13 @@
 import unittest
 from collections import defaultdict, Counter
 import random
+from itertools import accumulate
 from typing import List
 
 from src.fast_io import FastIO
 
 """
-算法：哈希
+算法：哈希、贡献法
 功能：前后缀计数、索引、加和
 题目：
 
@@ -18,6 +19,7 @@ from src.fast_io import FastIO
 题目-02. 销售出色区间（https://leetcode.cn/contest/hhrc2022/problems/0Wx4Pc/）前缀和哈希，加脑筋急转弯贪心
 题目-03. 重复的彩灯树（https://leetcode.cn/contest/hhrc2022/problems/VAc7h3/）二叉树序列化
 2031. 1 比 0 多的子数组个数（https://leetcode.cn/problems/count-subarrays-with-more-ones-than-zeros/）经典前缀和哈希计数
+2025. 分割数组的最多方案数（https://leetcode.cn/problems/maximum-number-of-ways-to-partition-an-array/description/）厘清边界使用哈希贡献法计数
 
 ===================================洛谷===================================
 P2697 宝石串（https://www.luogu.com.cn/problem/P2697）哈希记录前缀和与对应索引
@@ -55,6 +57,39 @@ class Solution:
             ans %= mod
             pre = cur
         return ans
+
+    @staticmethod
+    def lc_2025(nums: List[int], k: int) -> int:
+
+        # 模板：厘清边界使用哈希贡献法计数
+        n = len(nums)
+        ans = 0
+        pre = list(accumulate(nums, initial=0))
+        for i in range(1, n):
+            if pre[i] == pre[-1] - pre[i]:
+                ans += 1
+
+        # 左-右
+        cnt = [0] * n
+        post = defaultdict(int)
+        for i in range(n - 2, -1, -1):
+            b = pre[-1] - pre[i + 1]
+            a = pre[i + 1]
+            post[a - b] += 1
+            # 作为左边
+            cnt[i] += post[nums[i] - k]
+
+        # 右-左
+        dct = defaultdict(int)
+        for i in range(1, n):
+            b = pre[-1] - pre[i]
+            a = pre[i]
+            dct[a - b] += 1
+            # 作为右边
+            cnt[i] += dct[k - nums[i]]
+
+        return max(ans, max(cnt))
+
 
     @staticmethod
     def ac_137(ac=FastIO()):
