@@ -1829,6 +1829,33 @@ class Solution:
         return
 
     @staticmethod
+    def lc_2088(grid: List[List[int]]) -> int:
+
+        # 模板：类似求正方形的边长和面积进行矩阵DP
+        def check():
+            nonlocal ans
+            dp = [[0] * n for _ in range(m)]
+            for i in range(m):
+                for j in range(n):
+                    if grid[i][j]:
+                        pre = []
+                        for x, y in [[i - 1, j - 1], [i - 1, j], [i - 1, j + 1]]:
+                            if 0 <= x < m and 0 <= y < n:
+                                pre.append(dp[x][y])
+                            else:
+                                pre.append(0)
+                        dp[i][j] = min(pre) + 1
+                        ans += dp[i][j] - 1
+            return
+
+        m, n = len(grid), len(grid[0])
+        ans = 0
+        check()
+        grid = grid[::-1]
+        check()
+        return ans
+
+    @staticmethod
     def lc_2430(s: str) -> int:
         # 模板：双重DP进行LCP与矩阵DP
         n = len(s)
