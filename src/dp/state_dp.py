@@ -37,6 +37,7 @@ from src.fast_io import FastIO
 943. 最短超级串（https://leetcode.cn/problems/find-the-shortest-superstring/）字符串贪心最短长度拼接状压DP
 1434. 每个人戴不同帽子的方案数（https://leetcode.cn/problems/number-of-ways-to-wear-different-hats-to-each-other/description/）经典状压DP逆向思维
 847. 访问所有节点的最短路径（https://leetcode.cn/problems/shortest-path-visiting-all-nodes/）经典最短路Floyd或者Dijkstra预处理最短路加状压DP
+2741. 特别的排列（https://leetcode.cn/problems/special-permutations/description/）经典状压DP
 
 ===================================洛谷===================================
 P1896 互不侵犯（https://www.luogu.com.cn/problem/P1896）按行状态与行个数枚举所有的摆放可能性
