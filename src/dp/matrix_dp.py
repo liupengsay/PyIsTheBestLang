@@ -45,6 +45,7 @@ from src.mathmatics.comb_perm import Combinatorics
 2430. 对字母串可执行的最大删除数（https://leetcode.cn/problems/maximum-deletions-on-a-string/）双重DP进行LCP与矩阵DP
 1216. 验证回文字符串 III（https://leetcode.cn/problems/valid-palindrome-iii/）经典DP求最长回文子序列
 2060. 同源字符串检测（https://leetcode.cn/problems/check-if-an-original-string-exists-given-two-encoded-strings/description/）二维矩阵DP枚举记忆化搜索
+2556. 二进制矩阵中翻转最多一次使路径不连通（https://leetcode.cn/problems/disconnect-path-in-a-binary-matrix-by-at-most-one-flip/description/）经典矩阵DP思维题，判断割点可行性
 
 ===================================洛谷===================================
 P2701 [USACO5.3]巨大的牛棚Big Barn（https://www.luogu.com.cn/problem/P2701）求全为 "." 的最大正方形面积，如果不要求实心只能做到O(n^3)复杂度
@@ -1437,6 +1438,47 @@ class Solution:
         for a in ans:
             ac.st("".join(str(x) for x in a))
         return
+
+    @staticmethod
+    def lc_2556(grid: List[List[int]]) -> bool:
+
+        # 模板：经典矩阵DP思维题，判断割点可行性
+        m, n = len(grid), len(grid[0])
+
+        left = [[0] * n for _ in range(m)]
+        left[0][0] = 1
+        for i in range(m):
+            for j in range(n):
+                if i == j == 0 or grid[i][j] == 0:
+                    continue
+                if i - 1 >= 0 and left[i - 1][j]:
+                    left[i][j] = 1
+                if j - 1 >= 0 and left[i][j - 1]:
+                    left[i][j] = 1
+        if left[-1][-1] == 0:
+            return True
+
+        right = [[0] * n for _ in range(m)]
+        right[-1][-1] = 1
+        for i in range(m - 1, -1, -1):
+            for j in range(n - 1, -1, -1):
+                if (i == m - 1 and j == n - 1) or grid[i][j] == 0:
+                    continue
+                if i + 1 < m and right[i + 1][j]:
+                    right[i][j] = 1
+                if j + 1 < n and right[i][j + 1]:
+                    right[i][j] = 1
+        if right[0][0] == 0:
+            return True
+
+        dct = defaultdict(int)
+        for i in range(m):
+            for j in range(n):
+                if (i == m - 1 and j == n - 1) or (i == 0 and j == 0):
+                    continue
+                if left[i][j] and right[i][j]:
+                    dct[i + j] += 1
+        return True if dct and min(dct.values()) == 1 else False
 
     @staticmethod
     def lc_2617_1(grid: List[List[int]]) -> int:
