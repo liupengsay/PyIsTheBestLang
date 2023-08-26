@@ -24,8 +24,8 @@ from src.mathmatics.number_theory import NumberTheory
 2431. 最大限度地提高购买水果的口味（https://leetcode.cn/problems/maximize-total-tastiness-of-purchased-fruits/）线性DP进行模拟计算
 6355. 质数减法运算（https://leetcode.cn/contest/weekly-contest-338/problems/collect-coins-in-a-tree/）线性DP
 2547. 拆分数组的最小代价（https://leetcode.cn/problems/minimum-cost-to-split-an-array/）线性DP并使用一个变量维护计数
-2638. Count the Number of K-Free Subsets（https://leetcode.cn/problems/count-the-number-of-k-free-subsets/）线性DP计数
-2597. 美丽子集的数目（https://leetcode.cn/problems/the-number-of-beautiful-subsets/）线性DP计数
+2638. 统计 K-Free 子集的总数（https://leetcode.cn/problems/count-the-number-of-k-free-subsets/）经典线性DP计数
+2597. 美丽子集的数目（https://leetcode.cn/problems/the-number-of-beautiful-subsets/）·
 2713. 矩阵中严格递增的单元格数（https://leetcode.cn/problems/maximum-strictly-increasing-cells-in-a-matrix/）按照值域分层线性 DP
 1526. 形成目标数组的子数组最少增加次数（https://leetcode.cn/problems/minimum-number-of-increments-on-subarrays-to-form-a-target-array/）经典线性 DP 与贪心
 1553. 吃掉 N 个橘子的最少天数（https://leetcode.cn/problems/minimum-number-of-days-to-eat-n-oranges/）脑筋急转弯贪心记忆化搜索线性DP
@@ -71,7 +71,7 @@ P2432 zxbsmk爱查错（https://www.luogu.com.cn/problem/P2432）线性DP加指�
 P2439 [SDOI2005]阶梯教室设备利用（https://www.luogu.com.cn/problem/P2439）线性DP加二分
 P2476 [SCOI2008]着色方案（https://www.luogu.com.cn/problem/P2476）计数分组线性 DP 记忆化搜索
 P2849 [USACO14DEC]Marathon S（https://www.luogu.com.cn/problem/P2849）矩阵二维 DP 线性遍历
-P3448 [POI2006]MIS-Teddies（https://www.luogu.com.cn/problem/P3448）线性DP计数
+P3448 [POI2006]MIS-Teddies（https://www.luogu.com.cn/problem/P3448）经典线性DP计数
 P3558 [POI2013]BAJ-Bytecomputer（https://www.luogu.com.cn/problem/P3558）线性 DP 模拟
 B3734 [信息与未来 2017] 加强版密码锁（https://www.luogu.com.cn/problem/B3734）
 P3901 数列找不同（https://www.luogu.com.cn/problem/P3901）经典指针加线性 DP 记录前一个相同数的指针
@@ -92,7 +92,7 @@ P8816 [CSP-J 2022] 上升点列（https://www.luogu.com.cn/problem/P8816）典�
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/75/D（经典压缩数组，最大子段和升级）
 https://codeforces.com/problemset/problem/1084/C（线性DP加前缀和优化）
-https://codeforces.com/problemset/problem/166/E（线性DP计数）
+https://codeforces.com/problemset/problem/166/E（经典线性DP计数）
 https://codeforces.com/problemset/problem/1221/D（线性DP模拟）
 C. Chef Monocarp（https://codeforces.com/problemset/problem/1437/C）二维线性DP，两个数组线性移动进行匹配计算最大或者最小值
 D. Armchairs（https://codeforces.com/problemset/problem/1525/D）二维线性DP，两个数组线性移动进行匹配计算最大或者最小值
@@ -192,7 +192,7 @@ class Solution:
 
     @staticmethod
     def lc_2638(nums: List[int], k: int) -> int:
-        # 模板：线性DP计数
+        # 模板：经典线性DP计数
         n = len(nums)
         dp = [1] * (n + 1)
         dp[1] = 2
@@ -211,7 +211,7 @@ class Solution:
 
     @staticmethod
     def lc_2597(nums: List[int], k: int) -> int:
-        # 模板：线性DP计数
+        # 模板：经典线性DP计数
         power = [1 << i for i in range(21)]
 
         def check(tmp):
