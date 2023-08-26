@@ -996,6 +996,20 @@ class Solution:
         return 1
 
     @staticmethod
+    def lc_1808(prime_factors: int) -> int:
+        # 模板：按照模3的因子个数贪心处理，经典将和拆分成最大乘积
+        mod = 10**9 + 7
+        if prime_factors <= 2:
+            return prime_factors
+        if prime_factors % 3 == 0:
+            return pow(3, prime_factors//3, mod)
+        elif prime_factors % 3 == 1:
+            return (4*pow(3, prime_factors//3 - 1, mod)) % mod
+        else:
+            return (2*pow(3, prime_factors//3, mod)) % mod
+
+
+    @staticmethod
     def lc_1927(num: str) -> bool:
         # 模板：经典博弈思维题分类讨论
         def check(s):
