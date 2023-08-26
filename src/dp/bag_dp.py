@@ -2,6 +2,7 @@ import math
 import random
 import unittest
 from collections import defaultdict, deque, Counter
+from functools import lru_cache
 from itertools import combinations
 from typing import List
 from math import inf
@@ -18,11 +19,12 @@ from src.fast_io import FastIO
 ===================================力扣===================================
 140. 单词拆分 II（https://leetcode.cn/problems/word-break-ii/）经典 01 背包生成具体方案
 2218. 从栈中取出 K 个硬币的最大面值和（https://leetcode.cn/problems/maximum-value-of-k-coins-from-piles/）分组背包DP
-6310. 获得分数的方法数（https://leetcode.cn/contest/weekly-contest-335/problems/number-of-ways-to-earn-points/）看似二进制优化背包，实则数量转移
+2585. 获得分数的方法数（https://leetcode.cn/contest/weekly-contest-335/problems/number-of-ways-to-earn-points/）看似二进制优化背包，实则数量转移
 2189. 建造纸牌屋的方法数（https://leetcode.cn/problems/number-of-ways-to-build-house-of-cards/）转换为01背包求解
 254. 因子的组合（https://leetcode.cn/problems/factor-combinations/）乘法结合背包DP
 1449. 数位成本和为目标值的最大数字（https://leetcode.cn/problems/form-largest-integer-with-digits-that-add-up-to-target/）代价一定情况下的最大数值
 1049. 最后一块石头的重量 II（https://leetcode.cn/problems/last-stone-weight-ii/）经典问题，转化为01背包求解
+2742. 给墙壁刷油漆（https://leetcode.cn/problems/painting-the-walls/description/）经典剪枝DP，可以转换为01背包求解
 
 ===================================洛谷===================================
 P1048 采药（https://www.luogu.com.cn/problem/P1048）一维背包DP，数量有限，从后往前遍历
@@ -346,7 +348,41 @@ class Solution:
         return
 
     @staticmethod
-    def lc_6310(target: int, types: List[List[int]]) -> int:
+    def lc_2742_1(cost: List[int], time: List[int]) -> int:
+
+        # 模板：经典剪枝DP，可以转换为01背包求解
+        @lru_cache(None)
+        def dfs(i, pre):
+            if pre >= n - i:  # 剪枝
+                return 0
+            if i == n:
+                return inf
+            res = dfs(i + 1, pre - 1)
+            cur = dfs(i + 1, pre + time[i]) + cost[i]
+            if cur < res:
+                res = cur
+            return res
+
+        n = len(cost)
+        return dfs(0, 0)
+
+    @staticmethod
+    def lc_2742_2(cost: List[int], time: List[int]) -> int:
+
+        # 模板：经典剪枝DP，可以转换为01背包求解
+        n = len(cost)
+        dp = [sum(time)] * (n + 1)
+        dp[0] = 0
+        for i in range(n):
+            c, t = cost[i], time[i]
+            for j in range(n, -1, -1):
+                s = j - t - 1 if j - t - 1 >= 0 else 0  # 此时表示付费油漆匠刷的时候免费的油漆匠不一定要刷满t
+                if dp[s] + c < dp[j]:
+                    dp[j] = dp[s] + c
+        return dp[-1]
+
+    @staticmethod
+    def lc_2585(target: int, types: List[List[int]]) -> int:
         # 模板：看似二进制优化 DP 实则矩阵 DP 转移
         mod = 10 ** 9 + 7
         n = len(types)
