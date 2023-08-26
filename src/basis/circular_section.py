@@ -12,6 +12,7 @@ from src.fast_io import FastIO
 957. N 天后的牢房（https://leetcode.cn/problems/prison-cells-after-n-days/）循环节计算
 418. 屏幕可显示句子的数量（https://leetcode.cn/problems/sentence-screen-fitting/）循环节计算
 466. 统计重复个数（https://leetcode.cn/problems/count-the-repetitions/）循环节计算
+1806. 还原排列的最少操作步数（https://leetcode.cn/problems/minimum-number-of-operations-to-reinitialize-a-permutation/description/）根据有限状态判断循环节的大小
 
 ===================================洛谷===================================
 P1965 [NOIP2013 提高组] 转圈游戏（https://www.luogu.com.cn/problem/P1965）循环节计算
@@ -143,6 +144,27 @@ class Solution:
         j = day
         k = compute_loop(i, j, n)
         return state[k - 1]
+
+    @staticmethod
+    def lc_1806(n: int) -> int:
+        # 模板：根据有限状态判断循环节的大小
+        ans = 0
+        visit = [0] * n
+        for i in range(n):
+            if visit[i]:
+                continue
+            cur = 0
+            x = i
+            while not visit[x]:
+                visit[x] = 1
+                cur += 1
+                if x % 2 == 0:
+                    x //= 2
+                else:
+                    x = n // 2 + (x - 1) // 2
+            if cur > ans:
+                ans = cur
+        return ans
 
     @staticmethod
     def lg_p1468(ac=FastIO()):
