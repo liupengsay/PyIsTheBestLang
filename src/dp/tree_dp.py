@@ -5,9 +5,12 @@ from functools import lru_cache
 from heapq import nlargest
 from itertools import accumulate
 from operator import add
-from typing import List
+from typing import List, Optional
+
+from src.basis.tree_node import TreeNode
 from src.fast_io import FastIO, inf
 from src.graph.union_find import UnionFind
+from src.utils import min_
 
 """
 算法：树形DP、树的直径、树上差分、树的重心（以及树的每个节点到其余节点的总距离和）、树的最小偏心距
@@ -745,6 +748,26 @@ class Solution:
         ans = sum(ac.max(father[i], son[i]) <= d for i in range(n))
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_968(root: Optional[TreeNode]) -> int:
+
+        # 模板：经典树形DP
+        def dfs(node):
+            # 不装被监控，装被监控，不装不被监控
+            if not node:
+                return [0, inf, 0]
+            left = dfs(node.left)
+            right = dfs(node.right)
+            res = [inf, inf, inf]
+            res[0] = min_(left[1] + min_(right[0], right[1]), right[1] + min_(left[0], left[1]))
+            res[1] = 1 + min(left) + min(right)
+            res[2] = left[0] + right[0]
+            return res
+
+        ans = dfs(root)
+        return min_(ans[0], ans[1])
+
 
     @staticmethod
     def lc_1617(n: int, edges: List[List[int]]) -> List[int]:
