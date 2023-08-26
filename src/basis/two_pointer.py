@@ -34,6 +34,7 @@ from math import inf
 2447. 最大公因数等于 K 的子数组数目（https://leetcode.cn/problems/number-of-subarrays-with-gcd-equal-to-k/）滑动窗口区间 gcd，使用滑动窗口类维护
 6392. 使数组所有元素变成 1 的最少操作次数（https://leetcode.cn/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/）滑动窗口区间 gcd，使用滑动窗口类维护
 1163. 按字典序排在最后的子串（https://leetcode.cn/problems/last-substring-in-lexicographical-order/）经典类似最小表示法的双指针
+2555. 两个线段获得的最多奖品（https://leetcode.cn/problems/maximize-win-from-two-segments/description/）经典同向双指针加线性DP
 
 ===================================洛谷===================================
 P2381 圆圆舞蹈（https://www.luogu.com.cn/problem/P2381）环形数组，滑动窗口双指针
@@ -303,6 +304,23 @@ class Solution:
             if i >= k - 1:
                 ans.append(swa.query())
                 swa.popleft()
+        return ans
+
+    @staticmethod
+    def lc_2555(prize_positions: List[int], k: int) -> int:
+        # 模板：经典同向双指针加线性DP
+        n = len(prize_positions)
+
+        pre = [0] * n
+        pre_max = [0] * (n + 1)
+        ans = 0
+        i = 0
+        for j in range(n):
+            while prize_positions[j] - prize_positions[i] > k:
+                i += 1
+            pre[j] = j - i + 1
+            ans = max(ans, pre[j] + pre_max[i])
+            pre_max[j + 1] = max(pre_max[j], pre[j])
         return ans
 
     @staticmethod
