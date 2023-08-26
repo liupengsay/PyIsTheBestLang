@@ -109,8 +109,8 @@ P8638 [蓝桥杯 2016 省 A] 密码脱落（https://www.luogu.com.cn/problem/P86
 P8786 [蓝桥杯 2022 省 B] 李白打酒加强版（https://www.luogu.com.cn/problem/P8786）典型三维矩阵 DP 模拟使用记忆化搜索
 
 ================================CodeForces================================
-https://codeforces.com/problemset/problem/1446/B（最长公共子序列LCS变形问题，理解贡献）
-https://codeforces.com/problemset/problem/429/B（四个方向的矩阵DP）
+B. Catching Cheaters（https://codeforces.com/problemset/problem/1446/B）最长公共子序列LCS变形问题，理解贡献
+B. Working out（https://codeforces.com/problemset/problem/429/B）四个方向的矩阵DP
 D. Colored Rectangles（https://codeforces.com/problemset/problem/1398/D）三维DP，选取两个不同数组的数乘积，计算最大总和
 B. The least round way（https://codeforces.com/problemset/problem/2/B）矩阵DP，计算路径上乘积最少的后缀0个数，经典题目
 B. Unmerge（https://codeforces.com/problemset/problem/1381/B）二维矩阵DP加单调栈优化
