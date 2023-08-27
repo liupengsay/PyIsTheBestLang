@@ -365,7 +365,7 @@ class Solution:
         km = KM()
         min_ = km.compute(a.copy(), min=True)
         ans = 0
-        for i,j in min_:
+        for i, j in min_:
             ans += grid[i][j]
         return ans
 

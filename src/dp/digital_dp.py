@@ -16,7 +16,7 @@ from src.fast_io import FastIO
 600. 不含连续 1 的非负整数（https://leetcode.cn/problems/non-negative-integers-without-consecutive-ones/）不含连续 1 的非负整数
 902. 最大为 N 的数字组合（https://leetcode.cn/problems/numbers-at-most-n-given-digit-set/）限定字符情况下小于等于 n 的个数
 1012. 至少有 1 位重复的数字（https://leetcode.cn/problems/numbers-with-repeated-digits/）容斥原理计算没有重复数字的个数
-1067. 范围内的数字计数（https://leetcode.cn/problems/digit-count-in-range/）计算区间计数，使用右端点减去左端点
+1067. 范围内的数字计数（https://leetcode.cn/problems/digit-count-in-range/）计算区间计数，使用右端点减去左端点，数位DP容斥模板题
 1397. 找到所有好字符串（https://leetcode.cn/problems/find-all-good-strings/）使用数位DP思想进行模拟
 2376. 统计特殊整数（https://leetcode.cn/problems/count-special-integers/）计算小于 n 的特殊正整数个数
 2719. 统计整数数目（https://leetcode.cn/problems/count-of-integers/）数位DP容斥模板题
@@ -288,7 +288,6 @@ class Solution:
 
         return check(high) - check(low - 1)
 
-
     @staticmethod
     def lg_p1836(ac=FastIO()):
         # 模板：数位DP计算1~n内所有数字的数位和
@@ -298,6 +297,12 @@ class Solution:
             ans += d*DigitalDP().count_digit_iteration(n, d)
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_1067(d: int, low: int, high: int) -> int:
+        # 模板：计算区间计数，使用右端点减去左端点，数位DP容斥模板题
+        dd = DigitalDP()
+        return dd.count_digit(high, d) - dd.count_digit(low-1, d)
 
 
 class TestGeneral(unittest.TestCase):
