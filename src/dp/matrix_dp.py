@@ -39,7 +39,7 @@ from src.mathmatics.comb_perm import Combinatorics
 2617. 网格图中最少访问的格子数（https://leetcode.cn/problems/minimum-number-of-visited-cells-in-a-grid/）倒序矩阵 DP 并使用树状数组记录更新前缀最小值
 1092. 最短公共超序列（https://leetcode.cn/problems/shortest-common-supersequence/）经典LCS问题并输出方案，可使用LIS求解
 1692. 计算分配糖果的不同方式（https://leetcode.cn/problems/count-ways-to-distribute-candies/）矩阵DP计算方案数
-1771. 由子序列构造的最长回文串的长度（https://leetcode.cn/problems/maximize-palindrome-length-from-subsequences/）经典回文矩阵DP
+1771. 由子序列构造的最长回文串的长度（https://leetcode.cn/problems/maximize-palindrome-length-from-subsequences/）经典最长回文子序列矩阵DP
 1883. 准时抵达会议现场的最小跳过休息次数（https://leetcode.cn/problems/minimum-skips-to-arrive-at-meeting-on-time/）矩阵 DP
 1977. 划分数字的方案数（https://leetcode.cn/problems/number-of-ways-to-separate-numbers/）经典两个矩阵DP含LCP进行计算优化，或者使用前缀优化DP
 2430. 对字母串可执行的最大删除数（https://leetcode.cn/problems/maximum-deletions-on-a-string/）双重DP进行LCP与矩阵DP
@@ -1931,6 +1931,31 @@ class Solution:
         ac.st(dp[t][n])
         ac.st((cnt[t][n] + mod) % mod)
         return
+
+    @staticmethod
+    def lc_1771(word1: str, word2: str) -> int:
+        # 模板：经典最长回文子序列矩阵DP
+        m, n = len(word1), len(word2)
+        s = word1 + word2
+        ans = 0
+        dp = [[0] * (m + n) for _ in range(m + n)]
+        for i in range(m + n - 1, -1, -1):
+            dp[i][i] = 1
+            if i + 1 < m + n:
+                dp[i][i + 1] = 2 if s[i] == s[i + 1] else 1
+            for j in range(i + 2, m + n):
+                a, b = dp[i + 1][j], dp[i][j - 1]
+                dp[i][j] = a if a > b else b
+                if s[i] == s[j]:
+                    a, b = dp[i][j], dp[i + 1][j - 1] + 2
+                    dp[i][j] = a if a > b else b
+        for i in range(m):
+            for j in range(m+n-1, m-1, -1):
+                if s[i] == s[j]:
+                    a, b = ans, dp[i+1][j-1]+2
+                    ans = a if a > b else b
+                    break
+        return ans
 
     @staticmethod
     def lc_1977(num: str) -> int:
