@@ -21,6 +21,7 @@ from src.fast_io import FastIO, inf
 857. 雇佣 K 名工人的最低成本（https://leetcode.cn/problems/minimum-cost-to-hire-k-workers/）经典贪心排序枚举，使用堆维护K个最小值的和
 2542. 最大子序列的分数（https://leetcode.cn/problems/maximum-subsequence-score/）经典排序后枚举使用堆维护K最大的和，类似LC857
 2813. 子序列最大优雅度（https://leetcode.cn/problems/maximum-elegance-of-a-k-length-subsequence/）经典思维题排序后枚举，维护长度为K的子序列最大函数值
+2462. 雇佣 K 位工人的总代价（https://leetcode.cn/problems/total-cost-to-hire-k-workers/）使用堆进行贪心模拟
 
 ===================================洛谷===================================
 P1944 最长括号匹配（https://www.luogu.com.cn/problem/P1944）最长连续合法括号字串长度
@@ -71,6 +72,45 @@ class Solution:
                     ans = pre*nums2[i]
         return ans
 
+    @staticmethod
+    def lc_2462(costs: List[int], k: int, candidates: int) -> int:
+        # 模板：使用堆进行贪心模拟
+        n = len(costs)
+        visit = [0]*n
+        pre = [[costs[i], i] for i in range(candidates)]
+        post = [[costs[i], i] for i in range(n-candidates, n)]
+        heapq.heapify(pre)
+        heapq.heapify(post)
+        pre_ind = candidates
+        post_ind = n-candidates-1
+        ans = 0
+        for _ in range(k):
+            while pre and visit[pre[0][1]]:
+                heapq.heappop(pre)
+            while len(pre) < candidates and pre_ind<n:
+                if not visit[pre_ind]:
+                    heapq.heappush(pre, [costs[pre_ind], pre_ind])
+                pre_ind += 1
+
+            while post and visit[post[0][1]]:
+                heapq.heappop(post)
+            while len(post) < candidates and post_ind >= 0:
+                if not visit[post_ind]:
+                    heapq.heappush(post, [costs[post_ind], post_ind])
+                post_ind -= 1
+
+            if pre and post:
+                if pre[0][0] <= post[0][0]:
+                    c, i = heapq.heappop(pre)
+                else:
+                    c, i = heapq.heappop(post)
+            elif pre:
+                c, i = heapq.heappop(pre)
+            else:
+                c, i = heapq.heappop(post)
+            visit[i] = 1
+            ans += c
+        return ans
 
     @staticmethod
     def lc_2813(items: List[List[int]], k: int) -> int:
