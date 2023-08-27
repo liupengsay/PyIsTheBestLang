@@ -36,7 +36,8 @@ LCP 14. 切分数组（https://leetcode.cn/problems/qie-fen-shu-zu/）计算 1 �
 1735. 生成乘积数组的方案数（https://leetcode.cn/problems/count-ways-to-make-array-with-product/）经典质数分解与隔板法应用
 1390. 四因数（https://leetcode.cn/contest/weekly-contest-181/problems/four-divisors/）预处理所有数的所有因子
 1819. 序列中不同最大公约数的数目（https://leetcode.cn/problems/number-of-different-subsequences-gcds/）预处理所有整数的所有因子，再枚举gcd计算
-        
+1017. 负二进制转换（https://leetcode.cn/contest/weekly-contest-130/problems/convert-to-base-2/）负进制转换模板题
+
 ===================================洛谷===================================
 P1865 A % B Problem（https://www.luogu.com.cn/problem/P1865）通过线性筛素数后进行二分查询区间素数个数
 P1748 H数（https://www.luogu.com.cn/problem/P1748）丑数可以使用堆模拟可以使用指针递增也可以使用容斥原理与二分进行计算
@@ -1465,6 +1466,12 @@ class Solution:
         part = nt.comb(s-a[h], n-1)
         ac.st(1-part/total)
         return
+
+    @staticmethod
+    def lc_1017(n: int) -> str:
+        # 模板：负进制转换模板题
+        lst = NumberTheory().get_k_bin_of_n(n, -2)
+        return "".join(str(x) for x in lst)
 
 
 class TestGeneral(unittest.TestCase):
