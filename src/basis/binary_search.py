@@ -2,6 +2,7 @@ import bisect
 import math
 import unittest
 from collections import deque, defaultdict
+from itertools import accumulate
 from typing import List, Callable
 from math import inf
 
@@ -28,7 +29,7 @@ from src.graph.union_find import UnionFind
 2604. 吃掉所有谷子的最短时间（https://leetcode.cn/problems/minimum-time-to-eat-all-grains/）二分加指针贪心 check
 1201. 丑数 III（https://leetcode.cn/problems/ugly-number-iii/）二分加容斥原理计数
 1739. 放置盒子（https://leetcode.cn/problems/building-boxes/）可推公式二分也可数学方法计算
-1889. 装包裹的最小浪费空间（https://leetcode.cn/problems/minimum-space-wasted-from-packaging/）排序加贪心二分
+1889. 装包裹的最小浪费空间（https://leetcode.cn/problems/minimum-space-wasted-from-packaging/）排序加前缀和预处理与贪心二分
 2071. 你可以安排的最多任务数目（https://leetcode.cn/problems/maximum-number-of-tasks-you-can-assign/）经典二分加贪心
 
 ===================================洛谷===================================
@@ -348,6 +349,32 @@ class Solution:
                     ans = ac.max(ans, cur)
             ac.st(ans)
         return
+
+    @staticmethod
+    def lc_1889(packages: List[int], boxes: List[List[int]]) -> int:
+        # 模板：排序加前缀和预处理与贪心二分
+        packages.sort()
+        pre = list(accumulate(packages, initial=0))
+        n = len(packages)
+        ans = inf
+        mod = 10 ** 9 + 7
+        for box in boxes:
+            box.sort()
+            if box[-1] < packages[-1]:
+                continue
+            i = cur = 0
+            for num in box:
+                if i == n:
+                    break
+                if num < packages[i]:
+                    continue
+
+                j = bisect.bisect_right(packages, num) - 1
+                cur += (j - i + 1) * num - (pre[j + 1] - pre[i])
+                i = j + 1
+            if cur < ans:
+                ans = cur
+        return ans % mod if ans < inf else -1
 
     @staticmethod
     def lc_2563(nums, lower, upper):
