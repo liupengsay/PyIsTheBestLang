@@ -1,4 +1,5 @@
 import unittest
+from itertools import accumulate
 from math import inf
 from typing import List
 
@@ -14,6 +15,7 @@ from src.fast_io import FastIO
 918. 环形子数组的最大和（https://leetcode.cn/problems/maximum-sum-circular-subarray/）枚举可能的最大与最小区间
 1388. 3n 块披萨（https://leetcode.cn/problems/pizza-with-3n-slices/）环形区间DP，类似打家劫舍
 213. 打家劫舍 II（https://leetcode.cn/problems/house-robber-ii/）环形数组DP
+1888. 使二进制字符串字符交替的最少反转次数（https://leetcode.cn/problems/minimum-number-of-flips-to-make-the-binary-string-alternating/）经典循环数组的做法，复制添加数组后枚举
 
 ===================================洛谷===================================
 P1880 [NOI1995] 石子合并（https://www.luogu.com.cn/problem/P1880）环形数组区间DP合并求最大值最小值
@@ -45,6 +47,19 @@ class Solution:
         if floor < s:
             return max(ceil, s - floor)
         return ceil
+
+    @staticmethod
+    def lc_1888(s: str) -> int:
+        # 模板：经典循环数组的做法，复制添加数组后枚举
+        n = len(s)
+        s += s
+        s1 = "10" * n
+        s2 = "01" * n
+        pre1 = list(accumulate([int(s1[i] != s[i]) for i in range(2*n)], initial=0))
+        pre2 = list(accumulate([int(s2[i] != s[i]) for i in range(2*n)], initial=0))
+        ans1 = min(pre1[i+n]-pre1[i] for i in range(n))
+        ans2 = min(pre2[i + n] - pre2[i] for i in range(n))
+        return ans1 if ans1 < ans2 else ans2
 
     @staticmethod
     def lg_p1880(ac=FastIO()):
