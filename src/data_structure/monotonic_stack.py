@@ -9,7 +9,7 @@ from src.data_structure.sparse_table import SparseTable1
 from src.fast_io import FastIO
 
 """
-算法：单调栈
+算法：单调栈、贡献法
 功能：用来计算数组前后的更大值更小值信息
 题目：
 
@@ -600,6 +600,17 @@ class Solution:
                 in_stack[w] = 1
             cnt[w] -= 1
         return "".join(stack)
+
+    @staticmethod
+    def lc_2262(s: str) -> int:
+        # 模板：计算下一个或者上一个不同字符的位置
+        n = len(s)
+        pre = defaultdict(lambda: -1)
+        ans = 0
+        for i in range(n):
+            ans += (i - pre[s[i]]) * (n - i)
+            pre[s[i]] = i
+        return ans
 
     @staticmethod
     def lc_2355(books: List[int]) -> int:
