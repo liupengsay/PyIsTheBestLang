@@ -342,17 +342,17 @@ class NumberTheory:
             return [0]
         if k == 0:
             return []
+        assert abs(k) >= 2  # 原则上要求
         # 支持正负数
         pos = 1 if k > 0 else -1
         k = abs(k)
-        lst = []
+        lst = []  # 0123456789" + "".join(chr(i+ord("A")) for i in range(26))
         while n:
             lst.append(n % k)
             n //= k
             n *= pos
         lst.reverse()
         # 最高支持三十六进制的表达
-        # "0123456789" + "".join(chr(i+ord("A")) for i in range(26))
         return lst
 
     @staticmethod
