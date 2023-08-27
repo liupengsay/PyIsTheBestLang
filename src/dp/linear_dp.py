@@ -30,6 +30,7 @@ from src.mathmatics.number_theory import NumberTheory
 1526. 形成目标数组的子数组最少增加次数（https://leetcode.cn/problems/minimum-number-of-increments-on-subarrays-to-form-a-target-array/）经典线性 DP 与贪心
 1553. 吃掉 N 个橘子的最少天数（https://leetcode.cn/problems/minimum-number-of-days-to-eat-n-oranges/）脑筋急转弯贪心记忆化搜索线性DP
 1872. 石子游戏 VIII（https://leetcode.cn/problems/stone-game-viii/）前缀和倒序DP
+1770. 执行乘法运算的最大分数（https://leetcode.cn/problems/maximum-score-from-performing-multiplication-operations/）经典数组匹配线性DP
 
 ===================================洛谷===================================
 P1970 [NOIP2013 提高组] 花匠（https://www.luogu.com.cn/problem/P1970）使用贪心与动态规划计算最长的山脉子数组
@@ -128,6 +129,22 @@ class LinearDP:
 class Solution:
     def __init__(self):
         return
+
+    @staticmethod
+    def lc_1770(nums: List[int], multipliers: List[int]) -> int:
+        # 模板：经典数组匹配线性DP
+
+        @lru_cache(None)
+        def dfs(i, j):
+            ind = i + (n - 1 - j)
+            if ind == m:
+                return 0
+            a, b = dfs(i + 1, j) + nums[i] * multipliers[ind], dfs(i, j - 1) + nums[j] * multipliers[ind]
+            return a if a > b else b
+
+        n = len(nums)
+        m = len(multipliers)
+        return dfs(0, n - 1)
 
     @staticmethod
     def lc_2361(
