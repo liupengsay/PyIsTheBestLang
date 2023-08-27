@@ -1,4 +1,5 @@
 import unittest
+from itertools import accumulate
 
 from typing import List
 from collections import defaultdict, Counter
@@ -24,6 +25,7 @@ from src.fast_io import FastIO
 1554. 只有一个不同字符的字符串（https://leetcode.cn/problems/strings-differ-by-one-character/）字符串前后缀哈希求解
 1923. 最长公共子路径（https://leetcode.cn/problems/longest-common-subpath/）经典二分查找加滚动哈希
 1948. 删除系统中的重复文件夹（https://leetcode.cn/problems/delete-duplicate-folders-in-system/）字典树与树哈希去重
+2261. 含最多 K 个可整除元素的子数组（https://leetcode.cn/problems/k-divisible-elements-subarrays/submissions/）使用字符串哈希对数组进行编码
 
 ===================================洛谷===================================
 P8835 [传智杯 #3 决赛] 子串（https://www.luogu.com.cn/record/list?user=739032&status=12&page=14）字符串哈希或者KMP查找匹配的连续子串
@@ -503,6 +505,25 @@ class Solution:
                     return True
                 pre.add(va)
         return False
+
+    @staticmethod
+    def lc_2261(nums: List[int], k: int, p: int) -> int:
+        # 模板：使用字符串哈希对数组进行编码
+        n = len(nums)
+        pre = list(accumulate([int(num % p == 0) for num in nums], initial=0))
+        p = [random.randint(26, 100), random.randint(26, 100)]
+        mod = [random.randint(10 ** 9 + 7, 2 ** 31 - 1), random.randint(10 ** 9 + 7, 2 ** 31 - 1)]
+        ans = set()
+        for i in range(n):
+            lst = [0, 0]
+            for j in range(i, n):
+                if pre[j+1] - pre[i] <= k:
+                    for x in range(2):
+                        lst[x] = (lst[x]*p[x]+nums[j]) % mod[x]
+                    ans.add((j-i+1,) + tuple(lst))
+                else:
+                    break
+        return len(ans)
 
     @staticmethod
     def lc_1316(text: str) -> int:
