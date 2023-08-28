@@ -894,7 +894,7 @@ class Solution:
         return
 
     @staticmethod
-    def lc_1505(num: str, k: int) -> str:
+    def lc_1505_1(num: str, k: int) -> str:
 
         # 模板：经典使用树状数组模拟
         n = len(num)
