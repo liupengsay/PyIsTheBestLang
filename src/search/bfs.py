@@ -19,6 +19,7 @@ from src.fast_io import FastIO, inf
 1197. 进击的骑士（https://leetcode.cn/problems/minimum-knight-moves/?envType=study-plan-v2&id=premium-algo-100）双向BFS，或者经典BFS确定边界
 1654. 到家的最少跳跃次数（https://leetcode.cn/problems/minimum-jumps-to-reach-home/）经典BFS，证明确定上界模拟
 1926. 迷宫中离入口最近的出口（https://leetcode.cn/problems/nearest-exit-from-entrance-in-maze/）经典双端队列01BFS原地哈希
+909. 蛇梯棋（https://leetcode.cn/problems/snakes-and-ladders/）经典01BFS模拟
 
 ===================================洛谷===================================
 P1747 好奇怪的游戏（https://www.luogu.com.cn/problem/P1747）双向BFS搜索最短距离
@@ -1609,6 +1610,34 @@ class Solution:
                 ans = ac.min(ans, cur)
         ac.st(ans if ans < inf else -1)
         return
+
+    @staticmethod
+    def lc_909(board: List[List[int]]) -> int:
+        # 模板：经典01BFS模拟
+        def position(num):
+            i = (num - 1) // n
+            j = (num - 1) % n
+            if i % 2:
+                return [n - 1 - i, n - 1 - j]
+            return [n - 1 - i, j]
+
+        n = len(board)
+        visit = {1}
+        stack = deque([[1, 0]])
+        while stack:
+            pre, ans = stack.popleft()
+            if pre == n * n:
+                return ans
+            for nex in range(pre + 1, pre + 7):
+                a, b = position(nex)
+                if board[a][b] != -1:
+                    nex = board[a][b]
+                if nex == n * n:
+                    return ans + 1
+                if nex not in visit:
+                    visit.add(nex)
+                    stack.append([nex, ans + 1])
+        return -1
 
     @staticmethod
     def lc_1036_1(blocked: List[List[int]], source: List[int], target: List[int]) -> bool:
