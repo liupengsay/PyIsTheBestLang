@@ -31,6 +31,7 @@ from src.mathmatics.number_theory import NumberTheory
 1553. 吃掉 N 个橘子的最少天数（https://leetcode.cn/problems/minimum-number-of-days-to-eat-n-oranges/）脑筋急转弯贪心记忆化搜索线性DP
 1872. 石子游戏 VIII（https://leetcode.cn/problems/stone-game-viii/）前缀和倒序DP
 1770. 执行乘法运算的最大分数（https://leetcode.cn/problems/maximum-score-from-performing-multiplication-operations/）经典数组匹配线性DP
+823. 带因子的二叉树（https://leetcode.cn/problems/binary-trees-with-factors/description/）经典线性DP计数
 
 ===================================洛谷===================================
 P1970 [NOIP2013 提高组] 花匠（https://www.luogu.com.cn/problem/P1970）使用贪心与动态规划计算最长的山脉子数组
@@ -145,6 +146,31 @@ class Solution:
         n = len(nums)
         m = len(multipliers)
         return dfs(0, n - 1)
+
+    @staticmethod
+    def lc_823(arr: List[int]) -> int:
+        # 模板：经典线性DP计数
+        mod = 10 ** 9 + 7
+        n = len(arr)
+        arr.sort()
+        dct = {num: i for i, num in enumerate(arr)}
+
+        dp = [0] * n
+        dp[0] = 1
+        for i in range(1, n):
+            dp[i] = 1
+            x = arr[i]
+            for j in range(i):
+                y = arr[j]
+                if y*y > x:
+                    break
+                if x % y == 0 and x // y in dct:
+                    if y == x // y:
+                        dp[i] += dp[j] * dp[j]
+                    else:
+                        dp[i] += dp[j] * dp[dct[x // y]] * 2
+                    dp[i] %= mod
+        return sum(dp) % mod
 
     @staticmethod
     def lc_2361(
