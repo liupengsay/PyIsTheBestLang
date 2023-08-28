@@ -20,6 +20,8 @@ from src.fast_io import FastIO
 题目-03. 重复的彩灯树（https://leetcode.cn/contest/hhrc2022/problems/VAc7h3/）二叉树序列化
 2031. 1 比 0 多的子数组个数（https://leetcode.cn/problems/count-subarrays-with-more-ones-than-zeros/）经典前缀和哈希计数
 2025. 分割数组的最多方案数（https://leetcode.cn/problems/maximum-number-of-ways-to-partition-an-array/description/）厘清边界使用哈希贡献法计数
+895. 最大频率栈（https://leetcode.cn/problems/maximum-frequency-stack/description/）经典哈希与栈的结合应用题
+
 
 ===================================洛谷===================================
 P2697 宝石串（https://www.luogu.com.cn/problem/P2697）哈希记录前缀和与对应索引
@@ -199,6 +201,28 @@ class Solution:
             ans %= mod
         ac.st(ans)
         return
+
+
+class LC895:
+    # 模板：经典哈希与栈的结合应用题
+    def __init__(self):
+        self.freq = defaultdict(list)
+        self.dct = defaultdict(int)
+        self.ceil = 0
+
+    def push(self, val: int) -> None:
+        self.dct[val] += 1
+        self.freq[self.dct[val]].append(val)
+        if self.dct[val] > self.ceil:
+            self.ceil = self.dct[val]
+        return
+
+    def pop(self) -> int:
+        val = self.freq[self.ceil].pop()
+        self.dct[val] -= 1
+        if not self.freq[self.ceil]:
+            self.ceil -= 1
+        return val
 
 
 class HashMap:
