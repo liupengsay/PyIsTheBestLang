@@ -1,6 +1,6 @@
 import math
 import unittest
-from typing import List
+from typing import List, Counter
 
 from src.fast_io import FastIO
 from collections import deque, defaultdict
@@ -114,6 +114,40 @@ class Solution:
         for i in range(n):
             nums[i] = ans[i]
         return
+
+    @staticmethod
+    def lc_1982(n: int, sums: List[int]) -> List[int]:
+        # 模板：经典根据数组所有子集的和构造原数组
+        low = min(sums)
+        if low < 0:
+            sums = [num - low for num in sums]
+
+        # 从小到大依次构造元素
+        cnt = Counter(sums)
+        lst = sorted(cnt.keys())
+        cnt[0] -= 1
+        ans = []
+        pre = defaultdict(int)
+        pre_sum = []
+        for _ in range(n):
+            for num in lst:
+                if cnt[num] > pre[num]:
+                    ans.append(num)
+                    for p in pre_sum[:]:
+                        pre[p + num] += 1
+                        pre_sum.append(p + num)
+                    pre[num] += 1
+                    pre_sum.append(num)
+                    break
+
+        # 返回任意一个结果
+        for i in range(1 << n):
+            cur = [j for j in range(n) if i & (1 << j)]
+            if sum(ans[j] for j in cur) == -low:
+                for j in cur:
+                    ans[j] *= -1
+                return ans
+        return []
 
     @staticmethod
     def lc_2663(s: str, k: int) -> str:

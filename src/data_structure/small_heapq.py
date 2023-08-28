@@ -2,7 +2,7 @@ import heapq
 import random
 import unittest
 from collections import deque
-from heapq import heappushpop, heappush
+from heapq import heappushpop, heappush, heappop
 from typing import List
 
 from sortedcontainers import SortedList
@@ -493,6 +493,27 @@ class Solution:
             return res
 
         return min(helper(nums), helper(nums[::-1]))
+
+    @staticmethod
+    def lc_2386(nums: List[int], k: int) -> int:
+        # 模板：转换思路使用堆维护最大和第 K 次出队的则为目标结果
+        n = len(nums)
+        tot = 0
+        for i in range(n):
+            if nums[i] >= 0:
+                tot += nums[i]
+            else:
+                nums[i] = -nums[i]
+        nums.sort()
+        # 经典思维题，类似Dijkstra的思想从大到小枚举子序列的和
+        stack = [[nums[0], 0]]
+        for _ in range(k-1):
+            pre, i = heappop(stack)
+            if i < n:
+                heapq.heappush(stack, [pre+nums[i], i+1])
+                if i:
+                    heapq.heappush(stack, [pre + nums[i] - nums[i-1], i + 1])
+        return -stack[0][0]
 
 
 class TestGeneral(unittest.TestCase):
