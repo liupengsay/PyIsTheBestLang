@@ -1,5 +1,7 @@
 
 import unittest
+from typing import List
+
 from src.fast_io import FastIO, inf
 
 
@@ -98,6 +100,19 @@ class Solution:
             for j in range(i + 1, n):
                 dp[i][j] = nums[j] - nums[i] + min(dp[i + 1][j], dp[i][j - 1])
         return dp[0][n - 1]
+
+    @staticmethod
+    def lc_1547(n: int, cuts: List[int]) -> int:
+        # 模板：区间DP模拟
+        cuts.sort()
+        cuts.insert(0, 0)
+        cuts.append(n)
+        m = len(cuts)
+        dp = [[0]*(m+1) for _ in range(m+1)]
+        for i in range(m-1, -1, -1):
+            for j in range(i+2, m):
+                dp[i][j] = cuts[j]-cuts[i] + min(dp[i][k] + dp[k][j] for k in range(i+1, j))
+        return dp[0][m-1]
 
     @staticmethod
     def lc_2472(s: str, k: int) -> int:

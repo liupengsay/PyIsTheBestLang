@@ -7,6 +7,10 @@ from src.fast_io import FastIO
 功能：递归进行处理，与迭代是处理相同问题的两种不同方式，迭代效率高于递归
 题目：
 
+===================================力扣===================================
+1545. 找出第 N 个二进制字符串中的第 K 位（https://leetcode.cn/problems/find-kth-bit-in-nth-binary-string/）经典递归计算模拟
+
+
 ===================================洛谷===================================
 P1911 L 国的战斗之排兵布阵（https://www.luogu.com.cn/problem/P1911）使用四叉树递归计算
 P5461 赦免战俘（https://www.luogu.com.cn/problem/P5461）递归计算四叉树左上角
@@ -31,6 +35,24 @@ C. Painting Fence（https://codeforces.com/contest/448/problem/C）贪心递归D
 class Solution:
     def __init__(self):
         return
+
+    @staticmethod
+    def lc_1345(a: int, b: int) -> str:
+
+        # 模板：经典递归计算模拟
+        def dfs(n, k):
+
+            if n == 1 and k == 1:
+                return '0'
+            if k == 2**(n-1):
+                return '1'
+            if k < 2**(n-1):
+                return dfs(n-1, k)
+            k -= 2**(n-1)
+            ans = dfs(n-1, 2**(n-1)-k)
+            return '1' if ans == '0' else '0'
+
+        return dfs(a, b)
 
     @staticmethod
     def lg_p1911(n, x, y):
