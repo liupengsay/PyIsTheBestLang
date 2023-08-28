@@ -1376,6 +1376,33 @@ class Solution:
         return ans
 
     @staticmethod
+    def lc_1674(nums: List[int], limit: int) -> int:
+        # 模板：经典差分数组作用域计数
+        n = len(nums)
+        diff = [0] * (2 * limit + 2)
+        for i in range(n // 2):
+            x, y = nums[i], nums[n - 1 - i]
+            # 需要操作 1 次能达到的区间
+            low_1 = 1 + x if x < y else 1 + y
+            high_1 = limit + x if x > y else limit + y
+            if low_1 <= high_1:
+                diff[low_1] += 1
+                diff[high_1 + 1] -= 1
+            diff[x + y] -= 1  # 刨除操作 0 次的点
+            diff[x + y + 1] += 1
+
+            # 需要操作 2 次能达到的区间
+            if 2 <= low_1 - 1:
+                diff[2] += 2
+                diff[low_1] -= 2
+            if high_1 + 1 <= 2 * limit:
+                diff[high_1 + 1] += 2
+                diff[2 * limit + 1] -= 2
+        for i in range(1, 2 * limit + 2):
+            diff[i] += diff[i - 1]
+        return min(diff[2:2 * limit + 1])
+
+    @staticmethod
     def lc_1738(matrix: List[List[int]], k: int) -> int:
 
         # 模板：经典二维前缀异或和

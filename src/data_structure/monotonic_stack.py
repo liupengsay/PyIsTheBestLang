@@ -602,6 +602,19 @@ class Solution:
         return "".join(stack)
 
     @staticmethod
+    def lc_1673(nums: List[int], k: int) -> List[int]:
+        # 模板：经典单调栈贪心删除选取
+        n = len(nums)
+        rem = n-k
+        stack = []
+        for num in nums:
+            while stack and stack[-1] > num and rem:
+                rem -= 1
+                stack.pop()
+            stack.append(num)
+        return stack[:k]
+
+    @staticmethod
     def lc_2262(s: str) -> int:
         # 模板：计算下一个或者上一个不同字符的位置
         n = len(s)

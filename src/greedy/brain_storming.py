@@ -3,6 +3,9 @@ from bisect import insort_left, bisect_left
 from collections import Counter, deque, defaultdict
 from typing import List
 from math import inf
+
+from sortedcontainers import SortedList
+
 from src.data_structure.sorted_list import LocalSortedList
 from src.fast_io import FastIO
 from src.mathmatics.number_theory import NumberTheory
@@ -37,12 +40,13 @@ from src.mathmatics.number_theory import NumberTheory
 1353. 最多可以参加的会议数目（https://leetcode.cn/problems/maximum-number-of-events-that-can-be-attended/）经典枚举贪心
 1402. 做菜顺序（https://leetcode.cn/problems/reducing-dishes/）经典前缀和贪心
 1665. 完成所有任务的最少初始能量（https://leetcode.cn/problems/minimum-initial-energy-to-finish-tasks/）经典贪心不同项比较公式排序模拟
-1675. 数组的最小偏移量（https://leetcode.cn/problems/minimize-deviation-in-array/）脑筋急转弯贪心
+1675. 数组的最小偏移量（https://leetcode.cn/problems/minimize-deviation-in-array/）脑筋急转弯思维题贪心
 1686. 石子游戏 VI（https://leetcode.cn/problems/stone-game-vi/）经典贪心采用列式子确定排序方式
 1808. 好因子的最大数目（https://leetcode.cn/problems/maximize-number-of-nice-divisors/）按照模3的因子个数贪心处理，经典将和拆分成最大乘积
 1953. 你可以工作的最大周数（https://leetcode.cn/problems/maximum-number-of-weeks-for-which-you-can-work/）经典贪心只看最大值的影响
 858. 镜面反射（https://leetcode.cn/problems/mirror-reflection/description/）经典脑筋急转弯思维题
 1927. 求和游戏（https://leetcode.cn/problems/sum-game/description/）经典博弈思维题分类讨论
+2592. 最大化数组的伟大值（https://leetcode.cn/problems/maximize-greatness-of-an-array/）典型贪心排序后使用双指针计算
 
 ===================================洛谷===================================
 P1031 均分纸牌（https://www.luogu.com.cn/problem/P1031）贪心计算每个点的前缀和流量，需要补齐或者输出时进行计数
@@ -996,6 +1000,19 @@ class Solution:
         return 1
 
     @staticmethod
+    def lc_1675(nums: List[int]) -> int:
+        # 模板：脑筋急转弯思维题贪心
+        lst = SortedList([num if num % 2 == 0 else num*2 for num in nums])
+        ans = lst[-1] - lst[0]
+        while True:
+            cur = lst[-1] - lst[0]
+            ans = ans if ans < cur else cur
+            if lst[-1] % 2:
+                break
+            lst.add(lst.pop()//2)
+        return ans
+
+    @staticmethod
     def lc_1808(prime_factors: int) -> int:
         # 模板：按照模3的因子个数贪心处理，经典将和拆分成最大乘积
         mod = 10**9 + 7
@@ -1007,7 +1024,6 @@ class Solution:
             return (4*pow(3, prime_factors//3 - 1, mod)) % mod
         else:
             return (2*pow(3, prime_factors//3, mod)) % mod
-
 
     @staticmethod
     def lc_1927(num: str) -> bool:
@@ -1048,6 +1064,20 @@ class Solution:
         # 左右都不能获胜
         return False
 
+    @staticmethod
+    def lc_2592(nums: List[int]) -> int:
+        # 模板：典型贪心排序后使用双指针计算
+        n = len(nums)
+        nums.sort()
+        j = 0
+        ans = 0
+        for i in range(n):
+            while j < n and nums[i] >= nums[j]:
+                j += 1
+            if j < n:
+                ans += 1
+                j += 1
+        return ans
 
     @staticmethod
     def lc_2568(nums: List[int]) -> int:

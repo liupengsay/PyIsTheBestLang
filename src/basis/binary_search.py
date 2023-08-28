@@ -31,6 +31,7 @@ from src.graph.union_find import UnionFind
 1739. 放置盒子（https://leetcode.cn/problems/building-boxes/）可推公式二分也可数学方法计算
 1889. 装包裹的最小浪费空间（https://leetcode.cn/problems/minimum-space-wasted-from-packaging/）排序加前缀和预处理与贪心二分
 2071. 你可以安排的最多任务数目（https://leetcode.cn/problems/maximum-number-of-tasks-you-can-assign/）经典二分加贪心
+2594. 修车的最少时间（https://leetcode.cn/problems/minimum-time-to-repair-cars/）经典二分
 
 ===================================洛谷===================================
 P1577 切绳子（https://www.luogu.com.cn/problem/P1577）数学整除向下取整与二分
@@ -1080,6 +1081,18 @@ class Solution:
         ans = BinarySearch().find_float_right(0, nums[0][1], check, 1e-3)
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_2594(ranks: List[int], cars: int) -> int:
+        #  模板：经典二分
+
+        def check(x):
+            res = 0
+            for r in ranks:
+                res += int((x / r) ** 0.5)
+            return res >= cars
+
+        return BinarySearch().find_int_left(0, ranks[0] * cars ** 2, check)
 
     @staticmethod
     def lc_2604(hens: List[int], grains: List[int]) -> int:

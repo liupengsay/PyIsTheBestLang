@@ -43,6 +43,7 @@ from src.fast_io import FastIO, inf
 2245. 转角路径的乘积中最多能有几个尾随零（https://leetcode.cn/problems/maximum-trailing-zeros-in-a-cornered-path/）经典四个方向的前缀和与两两组合枚举
 1878. 矩阵中最大的三个菱形和（https://leetcode.cn/problems/get-biggest-three-rhombus-sums-in-a-grid/）经典两个方向上的前缀和计算与边长枚举
 2018. 判断单词是否能放入填字游戏内（https://leetcode.cn/problems/check-if-word-can-be-placed-in-crossword/description/）经典枚举空挡位置与矩阵行列取数
+2591. 将钱分给最多的儿童（https://leetcode.cn/problems/distribute-money-to-maximum-children/）经典枚举考虑边界条件
 
 ===================================洛谷===================================
 P1548 棋盘问题（https://www.luogu.com.cn/problem/P1548）枚举正方形与长方形的右小角计算个数
@@ -607,6 +608,24 @@ class Solution:
                                 del dct[bb]
             ac.st(ind + 1)
         return
+
+    @staticmethod
+    def lc_2591(money: int, children: int) -> int:
+        # 模板：经典枚举考虑边界条件
+        ans = -1
+        for x in range(children+1):
+            if x*8 > money:
+                break
+            rest_money = money - x*8
+            rest_people = children - x
+            if rest_money < rest_people:
+                continue
+            if not rest_people and rest_money:
+                continue
+            if rest_people == 1 and rest_money == 4:
+                continue
+            ans = x
+        return ans
 
     @staticmethod
     def lc_2681(nums: List[int]) -> int:
