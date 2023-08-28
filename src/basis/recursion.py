@@ -1,5 +1,8 @@
 import unittest
+from functools import lru_cache
+from typing import Optional, List
 
+from src.basis.tree_node import TreeNode
 from src.fast_io import FastIO
 
 """
@@ -9,6 +12,7 @@ from src.fast_io import FastIO
 
 ===================================力扣===================================
 1545. 找出第 N 个二进制字符串中的第 K 位（https://leetcode.cn/problems/find-kth-bit-in-nth-binary-string/）经典递归计算模拟
+894. 所有可能的真二叉树（https://leetcode.cn/problems/all-possible-full-binary-trees/）经典类似卡特兰数的递归模拟计算生成
 
 
 ===================================洛谷===================================
@@ -35,6 +39,25 @@ C. Painting Fence（https://codeforces.com/contest/448/problem/C）贪心递归D
 class Solution:
     def __init__(self):
         return
+
+    @lru_cache(None)
+    def lc_894(self, n: int) -> List[Optional[TreeNode]]:
+
+        # 模板：经典类似卡特兰数的递归模拟计算生成
+        if n % 2 == 0:
+            return []
+        if n == 1:
+            return [TreeNode(0)]
+
+        ans = []
+        for i in range(1, n - 1):
+            for left in self.lc_894(i):
+                for right in self.lc_894(n - i - 1):
+                    node = TreeNode(0)
+                    node.left = left
+                    node.right = right
+                    ans.append(node)
+        return ans
 
     @staticmethod
     def lc_1345(a: int, b: int) -> str:
