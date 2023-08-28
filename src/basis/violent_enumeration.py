@@ -44,6 +44,7 @@ from src.fast_io import FastIO, inf
 1878. 矩阵中最大的三个菱形和（https://leetcode.cn/problems/get-biggest-three-rhombus-sums-in-a-grid/）经典两个方向上的前缀和计算与边长枚举
 2018. 判断单词是否能放入填字游戏内（https://leetcode.cn/problems/check-if-word-can-be-placed-in-crossword/description/）经典枚举空挡位置与矩阵行列取数
 2591. 将钱分给最多的儿童（https://leetcode.cn/problems/distribute-money-to-maximum-children/）经典枚举考虑边界条件
+910. 最小差值 II（https://leetcode.cn/problems/smallest-range-ii/description/）经典枚举操作的范围，计算最大值与最小值
 
 ===================================洛谷===================================
 P1548 棋盘问题（https://www.luogu.com.cn/problem/P1548）枚举正方形与长方形的右小角计算个数
@@ -934,6 +935,21 @@ class Solution:
             if cur < ans:
                 ans = cur
 
+        return ans
+
+    @staticmethod
+    def lc_910(nums: List[int], k: int) -> int:
+        # 模板：经典枚举操作的范围，计算最大值与最小值
+        nums.sort()
+        ans = nums[-1] - nums[0]
+        n = len(nums)
+        for i in range(n - 1):
+            a, b = nums[n - 1] - k, nums[i] + k
+            a = a if a > b else b
+            c, d = nums[0] + k, nums[i + 1] - k
+            c = c if c < d else d
+            if a - c < ans:
+                ans = a - c
         return ans
 
     @staticmethod
