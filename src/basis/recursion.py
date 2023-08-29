@@ -13,7 +13,7 @@ from src.fast_io import FastIO
 ===================================力扣===================================
 1545. 找出第 N 个二进制字符串中的第 K 位（https://leetcode.cn/problems/find-kth-bit-in-nth-binary-string/）经典递归计算模拟
 894. 所有可能的真二叉树（https://leetcode.cn/problems/all-possible-full-binary-trees/）经典类似卡特兰数的递归模拟计算生成
-
+880. 索引处的解码字符串（https://leetcode.cn/problems/decoded-string-at-index/）经典递归计算模拟
 
 ===================================洛谷===================================
 P1911 L 国的战斗之排兵布阵（https://www.luogu.com.cn/problem/P1911）使用四叉树递归计算
@@ -39,6 +39,26 @@ C. Painting Fence（https://codeforces.com/contest/448/problem/C）贪心递归D
 class Solution:
     def __init__(self):
         return
+
+    @staticmethod
+    def lc_880(t: str, m: int) -> str:
+        # 模板：经典递归计算模拟
+
+        def dfs(s, k):
+            n = len(s)
+            cur = 0
+            for i in range(n):
+                if s[i].isnumeric():
+                    d = int(s[i])
+                    if cur * d >= k:
+                        return dfs(s[:i], k % cur + cur * int(k % cur == 0))
+                    cur *= d
+                else:
+                    if cur + 1 == k:
+                        return s[i]
+                    cur += 1
+
+        return dfs(t, m)
 
     @lru_cache(None)
     def lc_894(self, n: int) -> List[Optional[TreeNode]]:
