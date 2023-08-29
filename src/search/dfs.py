@@ -5,6 +5,7 @@ from collections import defaultdict
 
 from typing import List, Optional
 
+from src.basis.diff_array import PreFixSumMatrix
 from src.fast_io import FastIO
 from src.graph.lca import TreeAncestor
 
@@ -22,6 +23,8 @@ from src.graph.lca import TreeAncestor
 1718. 构建字典序最大的可行序列（https://leetcode.cn/problems/construct-the-lexicographically-largest-valid-sequence/）经典回溯
 2065. 最大化一张图中的路径价值（https://leetcode.cn/problems/maximum-path-quality-of-a-graph/）经典回溯
 2322. 从树中删除边的最小分数（https://leetcode.cn/problems/minimum-score-after-removals-on-a-tree/）使用深搜序枚举
+1240. 铺瓷砖（https://leetcode.cn/problems/tiling-a-rectangle-with-the-fewest-squares/）经典DFS回溯与剪枝
+1239. 串联字符串的最大长度（https://leetcode.cn/problems/maximum-length-of-a-concatenated-string-with-unique-characters/）经典DFS回溯进行二进制枚举
 
 ===================================洛谷===================================
 P2383 狗哥玩木棒（https://www.luogu.com.cn/problem/P2383）暴力搜索木棍拼接组成正方形
@@ -271,6 +274,73 @@ class Solution:
         ans = n - 1
         for i in range(1, n):
             gcd_minus(n, i, 0)
+        return ans
+
+    @staticmethod
+    def lc_1239(arr: List[str]) -> int:
+        # 模板：经典DFS回溯进行二进制枚举
+        ans = 0
+        arr = [word for word in arr if len(set(word)) == len(word)]
+        n = len(arr)
+
+        def dfs(i):
+            nonlocal ans, pre
+            if i == n:
+                if len(pre) > ans:
+                    ans = len(pre)
+                return
+            if not set(arr[i]).intersection(pre):
+                pre |= set(arr[i])
+                dfs(i+1)
+                pre -= set(arr[i])
+            dfs(i+1)
+            return
+
+        pre = set()
+        dfs(0)
+        return ans
+
+    @staticmethod
+    def lc_1240(n: int, m: int) -> int:
+        # 模板：经典DFS回溯与剪枝
+
+        def dfs():
+            nonlocal cnt, ans
+            if cnt >= ans:  # 超过最小值剪枝
+                return
+
+            pre = PreFixSumMatrix([g[:] for g in grid])
+            if pre.query(0, 0, m - 1, n - 1) == m * n:
+                # 全部填满剪枝
+                ans = ans if ans < cnt else cnt
+                return
+
+            for i in range(m):
+                for j in range(n):
+                    if not grid[i][j]:
+                        ceil = m - i
+                        if n - j < ceil:
+                            ceil = n - j
+                        # 枚举此时左上端点正方形的长度
+                        for x in range(ceil, 0, -1):
+                            if pre.query(i, j, i + x - 1, j + x - 1) == 0 and cnt + 1 < ans:
+                                for a in range(i, i + x):
+                                    for b in range(j, j + x):
+                                        grid[a][b] = 1
+                                cnt += 1
+                                dfs()
+                                cnt -= 1
+                                for a in range(i, i + x):
+                                    for b in range(j, j + x):
+                                        grid[a][b] = 0
+                        return  # 在第一个左上角端点剪枝
+
+            return
+
+        grid = [[0] * n for _ in range(m)]
+        ans = m * n
+        cnt = 0
+        dfs()
         return ans
 
     @staticmethod
