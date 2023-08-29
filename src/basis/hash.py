@@ -30,10 +30,15 @@ P4889 kls与flag（https://www.luogu.com.cn/problem/P4889）经典公式变换�
 P6273 [eJOI2017] 魔法（https://www.luogu.com.cn/problem/P6273）经典哈希前缀计数
 P8630 [蓝桥杯 2015 国 B] 密文搜索（https://www.luogu.com.cn/problem/P8630）哈希计数与排列枚举
 
+===================================AtCoder===================================
+D - Snuke's Coloring（https://atcoder.jp/contests/abc045/tasks/arc061_b）经典哈希容斥计数
+
+===================================AcWing===================================
 137. 雪花雪花雪花（https://www.acwing.com/problem/content/139/）哈希找相同雪花
 
 参考：OI WiKi（xx）
 """
+
 
 class Solution:
     def __init__(self):
@@ -92,6 +97,25 @@ class Solution:
 
         return max(ans, max(cnt))
 
+    @staticmethod
+    def abc_45d(ac=FastIO()):
+        # 模板：经典哈希容斥计数
+        h, w, n = ac.read_ints()
+        cnt = [0]*10
+        dct = defaultdict(int)
+        for _ in range(n):
+            a, b = ac.read_ints()
+            for x in range(3):
+                for y in range(3):
+                    if 3 <= x+a <= h and 3 <= y+b <= w:
+                        dct[(x+a, y+b)] += 1
+        for k in dct:
+            cnt[dct[k]] += 1
+
+        cnt[0] = (h-2)*(w-2) - sum(cnt[1:])
+        for a in cnt:
+            ac.st(a)
+        return
 
     @staticmethod
     def ac_137(ac=FastIO()):

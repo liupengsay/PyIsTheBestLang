@@ -20,6 +20,20 @@ class TestGeneral(unittest.TestCase):
             print(ls)
         return
 
+    @staticmethod
+    def test_print_vp_atcoder():
+        print("\n")
+        lst = []
+        for num in range(45, 318):
+            num = str(num)
+            if len(num) == 2:
+                num = "0" + num
+            lst.append(f"https://atcoder.jp/contests/abc{num}/tasks/")
+        print(f"Total Contest: {len(lst)}")
+        for ls in lst:
+            print(ls)
+        return
+
 
 if __name__ == '__main__':
     unittest.main()
