@@ -32,6 +32,7 @@ from src.fast_io import FastIO
 1787. 使所有区间的异或结果为零（https://leetcode.cn/problems/make-the-xor-of-all-segments-equal-to-zero/）经典按照异或特性分组并利用值域枚举DP
 1835. 所有数对按位与结果的异或和（https://leetcode.cn/problems/find-xor-sum-of-all-pairs-bitwise-and/）按位操作模拟
 1611. 使整数变为 0 的最少操作次数（https://leetcode.cn/problems/minimum-one-bit-operations-to-make-integers-zero/）格雷码的操作，直接计算格雷码对应的二进制数字
+2275. 按位与结果大于零的最长组合（https://leetcode.cn/problems/largest-combination-with-bitwise-and-greater-than-zero/）求按位与不为0的最长子序列，不要求连续
 
 ===================================洛谷===================================
 P5657 格雷码（https://www.luogu.com.cn/problem/P5657）计算编号为 k 的二进制符，并补前缀 0 为 n 位
@@ -324,6 +325,18 @@ class Solution:
             else:
                 ans[1] ^= num
         return ans
+
+    @staticmethod
+    def lc_2275(candidates: List[int]) -> int:
+        # 模板：求按位与不为0的最长子序列，不要求连续
+        count = [0] * 32
+        for num in candidates:
+            st = bin(num)[2:]
+            n = len(st)
+            for i in range(1, n + 1, 1):  # 也可计算要求连续的情况
+                if st[-i] == '1':
+                    count[i] += 1
+        return max(count)
 
     @staticmethod
     def lc_2564(s, queries):
