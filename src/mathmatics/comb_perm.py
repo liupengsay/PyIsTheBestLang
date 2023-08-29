@@ -56,6 +56,10 @@ C. Gerald and Giant Chess（https://codeforces.com/problemset/problem/559/C）�
 C. Binary Search（https://codeforces.com/problemset/problem/1436/C）二分加组合数计算
 B. Mashmokh and ACM（https://codeforces.com/problemset/problem/414/B）经典使用最小质因数与隔板法计数 DP
 
+
+================================AtCoder================================
+D - Iroha and a Grid（https://atcoder.jp/contests/abc042/tasks/arc058_b）容斥原理组合计数
+
 ================================AcWing==================================
 130. 火车进出栈问题（https://www.acwing.com/problem/content/132/）超大数字的卡特兰数计算
 4002. 构造数组（https://www.acwing.com/problem/content/4005/）经典矩阵DP转换为隔板法计算求解
@@ -392,6 +396,20 @@ class Solution:
             n, m, p = ac.read_ints()
             ans = Lucas().lucas_iter(n + m, n, p)
             ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_42d(ac=FastIO()):
+        # 模板：容斥原理组合计数
+        mod = 10**9 + 7
+        h, w, a, b = ac.read_ints()
+        cb = Combinatorics(h+w+2, mod)
+        ans = cb.comb(h+w-2, h-1)
+        for x in range(h-a+1, h+1):
+            y = b
+            cur = cb.comb(x+y-2, x-1)*cb.comb(h-x+w-y-1, h-x)
+            ans = (ans-cur) % mod
+        ac.st(ans)
         return
 
     @staticmethod
