@@ -35,6 +35,7 @@ from math import inf
 6392. 使数组所有元素变成 1 的最少操作次数（https://leetcode.cn/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/）滑动窗口区间 gcd，使用滑动窗口类维护
 1163. 按字典序排在最后的子串（https://leetcode.cn/problems/last-substring-in-lexicographical-order/）经典类似最小表示法的双指针
 2555. 两个线段获得的最多奖品（https://leetcode.cn/problems/maximize-win-from-two-segments/description/）经典同向双指针加线性DP
+992. K 个不同整数的子数组（https://leetcode.cn/problems/subarrays-with-k-different-integers/）经典三指针，即快慢双指针维护连续子区间个数
 
 ===================================洛谷===================================
 P2381 圆圆舞蹈（https://www.luogu.com.cn/problem/P2381）环形数组，滑动窗口双指针
@@ -340,6 +341,32 @@ class Solution:
                 res = res if res < swa.size else swa.size
                 swa.popleft()
         return res - 1 + len(nums) - 1
+
+    @staticmethod
+    def lc_992(nums: List[int], k: int) -> int:
+        # 模板：经典三指针，即快慢双指针维护连续子区间个数
+        n = len(nums)
+        ans = j1 = j2 = 0
+        pre1 = dict()
+        pre2 = dict()
+        for i in range(n):
+            while j1 < n and len(pre1) < k:
+                pre1[nums[j1]] = pre1.get(nums[j1], 0) + 1
+                j1 += 1
+
+            while j2 < n and (len(pre2) < k or nums[j2] in pre2):
+                pre2[nums[j2]] = pre2.get(nums[j2], 0) + 1
+                j2 += 1
+
+            if len(pre1) == k:
+                ans += j2-j1+1
+            pre1[nums[i]] -= 1
+            if not pre1[nums[i]]:
+                pre1.pop(nums[i])
+            pre2[nums[i]] -= 1
+            if not pre2[nums[i]]:
+                pre2.pop(nums[i])
+        return ans
 
     @staticmethod
     def lc_1163(s: str) -> str:
