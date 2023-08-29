@@ -22,7 +22,7 @@ from src.fast_io import FastIO
 2141 同时运行 N 台电脑的最长时间（https://leetcode.cn/problems/maximum-running-time-of-n-computers/）贪心选择最大的 N 个电池作为基底，然后二分确定在其余电池的加持下可以运行的最长时间
 2102 序列顺序查询（https://leetcode.cn/problems/sequentially-ordinal-rank-tracker/）使用有序集合维护优先级姓名实时查询
 2519. Count the Number of K-Big Indices（https://leetcode.cn/problems/count-the-number-of-k-big-indices/）使用有序集合维护计算数量
-
+2276. 统计区间中的整数数目（https://leetcode.cn/problems/count-integers-in-intervals/）动态开点线段树模板题，维护区间并集的长度，也可使用SortedList
 
 ===================================洛谷===================================
 P1577 切绳子（https://www.luogu.com.cn/problem/P1577）数学整除向下取整与二分
@@ -307,6 +307,29 @@ class LocalSortedList:
     def __repr__(self):
         """Return string representation of sorted list."""
         return 'SortedList({0})'.format(list(self))
+
+
+class SolutionLC2276:
+
+    def __init__(self):
+        self.lst = SortedList()
+        self.sum = 0
+
+    def add(self, left: int, right: int) -> None:
+        x = self.lst.bisect_left([left, left])
+        while x - 1 >= 0 and self.lst[x - 1][1] >= left:
+            x -= 1
+
+        while 0 <= x < len(self.lst) and not (self.lst[x][0] > right or self.lst[x][1] < left):
+            a, b = self.lst.pop(x)
+            left = left if left < a else a
+            right = right if right > b else b
+            self.sum -= b - a + 1
+        self.sum += right - left + 1
+        self.lst.add([left, right])
+
+    def count(self) -> int:
+        return self.sum
 
 
 class Solution:
