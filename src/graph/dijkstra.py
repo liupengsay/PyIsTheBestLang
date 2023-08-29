@@ -33,6 +33,8 @@ LCP 75. 传送卷轴（https://leetcode.cn/problems/rdmXM7/）首先BFS之后计
 1976. 到达目的地的方案数（https://leetcode.cn/problems/number-of-ways-to-arrive-at-destination/）经典Dijkstra最短路计数模板题
 2045. 到达目的地的第二短时间（https://leetcode.cn/problems/second-minimum-time-to-reach-destination/）不带权的严格次短路耗时模拟计算
 2093. 前往目标城市的最小费用（https://leetcode.cn/problems/minimum-cost-to-reach-city-with-discounts/）经典Dijkstra带约束的最短路
+882. 细分图中的可到达节点（https://leetcode.cn/problems/reachable-nodes-in-subdivided-graph/description/）Dijkstra模板题
+
 
 ===================================洛谷===================================
 P3371 单源最短路径（弱化版）（https://www.luogu.com.cn/problem/P3371）最短路模板题
@@ -494,8 +496,38 @@ class Solution:
                     heapq.heappush(stack, [cost + w // 2, cnt + 1, j])
 
         return -1
+    
+    @staticmethod
+    def lc_882(edges: List[List[int]], max_moves: int, n: int) -> int:
+        # 模板：Dijkstra模板题
+        dct = [[] for _ in range(n)]
+        for i, j, c in edges:
+            dct[i].append([j, c + 1])
+            dct[j].append([i, c + 1])
 
+        dis = Dijkstra().get_dijkstra_result(dct, 0)
 
+        ans = sum(dis[i] <= max_moves for i in range(n))
+        for i, j, c in edges:
+            if c:
+                if dis[i] <= max_moves:
+                    a, b = max_moves - dis[i], c
+                    left = a if a < b else b
+                else:
+                    left = 0
+
+                if dis[j] <= max_moves:
+                    a, b = max_moves - dis[j], c
+                    right = a if a < b else b
+                else:
+                    right = 0
+
+                if left + right <= c:
+                    ans += left + right
+                else:
+                    ans += c
+        return ans
+    
     @staticmethod
     def lc_1293(grid: List[List[int]], k: int) -> int:
         # 模板：Dijkstra 带约束的最短路
