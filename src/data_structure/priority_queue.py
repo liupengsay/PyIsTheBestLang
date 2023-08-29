@@ -14,6 +14,7 @@ from src.fast_io import FastIO
 ===================================力扣===================================
 239. 滑动窗口最大值（https://leetcode.cn/problems/sliding-window-maximum/）滑动区间最大值
 1696. 跳跃游戏 VI（https://leetcode.cn/problems/jump-game-vi/）经典优先队列 DP
+862. 和至少为 K 的最短子数组（https://leetcode.cn/problems/shortest-subarray-with-sum-at-least-k/description/）前缀和加单调双端队列DP
 
 ===================================洛谷===================================
 P2251 质量检测（https://www.luogu.com.cn/problem/P2251）滑动区间最小值
@@ -123,6 +124,28 @@ class Solution:
     def lc_239(self, nums: List[int], k: int) -> List[int]:
         # 模板：滑动窗口最大值
         return PriorityQueue().sliding_window(nums, k)
+
+    @staticmethod
+    def lc_862(nums: List[int], k: int) -> int:
+        # 模板：前缀和加单调双端队列DP
+        n = len(nums)
+        stack = deque([0])
+        ind = deque([-1])
+        pre = 0
+        ans = n + 1
+        for i in range(n):
+            pre += nums[i]
+            while stack and stack[0] <= pre-k:
+                stack.popleft()
+                j = ind.popleft()
+                if i-j < ans:
+                    ans = i-j
+            while stack and stack[-1] >= pre:
+                stack.pop()
+                ind.pop()
+            stack.append(pre)
+            ind.append(i)
+        return ans if ans < n + 1 else -1
 
     @staticmethod
     def lg_p2032(ac=FastIO()):
