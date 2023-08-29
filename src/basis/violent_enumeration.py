@@ -123,6 +123,8 @@ C. Flag（https://codeforces.com/problemset/problem/1181/C）按列进行枚举
 B. Maximum Value（https://codeforces.com/problemset/problem/484/B）排序后进行枚举，并使用二分查找进行确认
 C. Arithmetic Progression（https://codeforces.com/problemset/problem/382/C）分类讨论
 
+================================AtCoder================================
+D - Digit Sum（https://atcoder.jp/contests/abc044/tasks/arc060_b）经典进制计算与分情况枚举因子
 
 ================================Acwing===================================
 95. 费解的开关（https://www.acwing.com/problem/content/description/97/）枚举第一行的开关按钮使用状态
@@ -322,6 +324,41 @@ class Solution:
             else:
                 ac.st(2)
                 ac.lst([nums[0] - low, nums[-1] + low])
+        return
+
+    @staticmethod
+    def abc_44d(ac=FastIO()):
+        # 模板：经典进制计算与分情况枚举因子
+        def check():
+            lst = []
+            num = n
+            while num:
+                lst.append(num % b)
+                num //= b
+            return sum(lst) == s
+
+        n = ac.read_int()
+        s = ac.read_int()
+        if s > n:
+            ac.st(-1)
+        elif s == n:
+            ac.st(n+1)
+        else:
+            # (n-s) % (b-1) == 0
+            ans = inf
+            for x in range(1, n-s+1):
+                if x*x > n-s:
+                    break
+                if (n-s) % x == 0:
+                    # 枚举 b-1 的值为 n-s 的因子
+                    y = (n-s) // x
+                    b = x + 1
+                    if check():
+                        ans = b if ans > b else ans
+                    b = y + 1
+                    if check():
+                        ans = b if ans > b else ans
+            ac.st(-1 if ans == inf else ans)
         return
 
     @staticmethod
