@@ -46,6 +46,7 @@ from src.mathmatics.comb_perm import Combinatorics
 1216. 验证回文字符串 III（https://leetcode.cn/problems/valid-palindrome-iii/）经典DP求最长回文子序列
 2060. 同源字符串检测（https://leetcode.cn/problems/check-if-an-original-string-exists-given-two-encoded-strings/description/）二维矩阵DP枚举记忆化搜索
 2556. 二进制矩阵中翻转最多一次使路径不连通（https://leetcode.cn/problems/disconnect-path-in-a-binary-matrix-by-at-most-one-flip/description/）经典矩阵DP思维题，判断割点可行性
+920. 播放列表的数量（https://leetcode.cn/problems/number-of-music-playlists/）经典矩阵DP
 
 ===================================洛谷===================================
 P2701 [USACO5.3]巨大的牛棚Big Barn（https://www.luogu.com.cn/problem/P2701）求全为 "." 的最大正方形面积，如果不要求实心只能做到O(n^3)复杂度
@@ -266,6 +267,24 @@ class Solution:
     def lc_1143(s1: str, s2: str) -> int:
         # 模板：使用LIS的办法求LCS
         return LcsLis().longest_common_subsequence(s1, s2)
+
+    @staticmethod
+    def lc_920(n: int, goal: int, k: int) -> int:
+        # 模板：经典矩阵DP（记忆化深搜刷表法实现）
+        mod = 10**9 + 7
+
+        @lru_cache(None)   # 前 i 首播放了 r 首不同的歌
+        def dfs(i, r):
+            if i == goal:
+                return 1 if r == n else 0
+            res = 0
+            if r + 1 <= n:
+                res += dfs(i + 1, r + 1) * (n - r)  # 新歌
+            if r > k:
+                res += dfs(i + 1, r) * (r - k)  # 老歌
+            return res % mod
+
+        return dfs(0, 0)
 
     @staticmethod
     def lc_1092(str1: str, str2: str) -> str:
