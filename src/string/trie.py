@@ -779,7 +779,7 @@ class Solution:
 
     @staticmethod
     def lc_1707(nums: List[int], queries: List[List[int]]) -> List[int]:
-        # 模板：经典排序后离线查询并使用 01 Trie求解
+        # 模板：经典排序后离线查询并使用 01 Trie求解最大异或值
         n = len(nums)
         nums.sort()
 
@@ -787,22 +787,21 @@ class Solution:
         m = len(queries)
         for i in range(m):
             queries[i].append(i)
-        queries.sort(key=lambda x: x[1])
+        queries.sort(key=lambda it: it[1])
 
         # 使用指针进行离线查询
         trie = TrieZeroOneXorMax(32)
-        ans = []
+        ans = [-1]*m
         j = 0
         for x, m, i in queries:
             while j < n and nums[j] <= m:
                 trie.add(nums[j])
                 j += 1
             if trie.dct:
-                ans.append([i, trie.query_xor_max(x)])
+                ans[i] = trie.query_xor_max(x)
             else:
-                ans.append([i, -1])
-        ans.sort()
-        return [a[1] for a in ans]
+                ans[i] = -1
+        return ans
 
     @staticmethod
     def cf_665e(ac=FastIO()):

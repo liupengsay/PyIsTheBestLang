@@ -2,6 +2,7 @@ import heapq
 import math
 import unittest
 from collections import deque, defaultdict
+from heapq import heappush, heappop
 from itertools import permutations
 from typing import List
 
@@ -22,6 +23,7 @@ from src.fast_io import FastIO, inf
 2542. 最大子序列的分数（https://leetcode.cn/problems/maximum-subsequence-score/）经典排序后枚举使用堆维护K最大的和，类似LC857
 2813. 子序列最大优雅度（https://leetcode.cn/problems/maximum-elegance-of-a-k-length-subsequence/）经典思维题排序后枚举，维护长度为K的子序列最大函数值
 2462. 雇佣 K 位工人的总代价（https://leetcode.cn/problems/total-cost-to-hire-k-workers/）使用堆进行贪心模拟
+1705. 吃苹果的最大数目（https://leetcode.cn/problems/maximum-number-of-eaten-apples/）使用堆进行贪心模拟
 
 ===================================洛谷===================================
 P1944 最长括号匹配（https://www.luogu.com.cn/problem/P1944）最长连续合法括号字串长度
@@ -135,6 +137,23 @@ class Solution:
             stack.append(c)
             if pre + tp * tp > ans:
                 ans = pre + tp * tp
+        return ans
+
+    @staticmethod
+    def lc_1705(apples: List[int], days: List[int]) -> int:
+        # 模板：使用堆进行贪心模拟
+        n = len(apples)
+        ans = i = 0
+        stack = []
+        while i < n or stack:
+            if i < n and apples[i]:
+                heappush(stack, [i+days[i]-1, apples[i]])
+            while stack and (stack[0][0] < i or not stack[0][1]):
+                heappop(stack)
+            if stack:
+                stack[0][1] -= 1
+                ans += 1
+            i += 1
         return ans
 
     @staticmethod
