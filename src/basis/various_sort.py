@@ -31,6 +31,8 @@ P1177 【模板】快速排序（https://www.luogu.com.cn/problem/P1177）快速
 ================================CodeForces================================
 https://codeforces.com/problemset/problem/922/D（贪心加自定义排序）
 
+================================AtCoder================================
+B - Iroha Loves Strings（https://atcoder.jp/contests/abc042/tasks/abc042_b）自定义排序
 
 ================================AcWing====================================
 113. 特殊排序（https://www.acwing.com/problem/content/description/115/）自定义排序调用函数进行比较
@@ -381,6 +383,23 @@ class Solution:
 
         quick_sort(0, n - 1)
         return lst
+
+    @staticmethod
+    def abc_42b(ac=FastIO()):
+        # 模板：自定义排序
+        n, m = ac.read_ints()
+        nums = [ac.read_str() for _ in range(n)]
+
+        def compare(a, b):
+            # 比较函数
+            if a+b < b+a:
+                return -1
+            elif a+b > b+a:
+                return 1
+            return 0
+        nums.sort(key=cmp_to_key(compare))
+        ac.st("".join(nums))
+        return
 
     @staticmethod
     def lc_179(nums: List[int]) -> str:
