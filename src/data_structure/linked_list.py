@@ -18,6 +18,7 @@ from src.fast_io import FastIO
 2612. 最少翻转操作数（https://leetcode.cn/problems/minimum-reverse-operations/）经典BFS加链表，使用数组维护链表的前后节点信息
 1562. 查找大小为 M 的最新分组（https://leetcode.cn/problems/find-latest-group-of-size-m/）使用类似并查集的前后缀链表求解
 2382. 删除操作后的最大子段和（https://leetcode.cn/problems/maximum-segment-sum-after-removals/）逆向进行访问查询并更新连通块的结果，也可以使用双向链表维护
+2289. 使数组按非递减顺序排列（https://leetcode.cn/problems/steps-to-make-array-non-decreasing/description/）经典单调栈优化的线性DP，也可用BFS加链表求解
 
 ===================================牛客===================================
 牛牛排队伍（https://ac.nowcoder.com/acm/contest/49888/C）使用数组维护链表的前后节点信息
@@ -102,7 +103,26 @@ class Solution:
             else:
                 ac.st(pre[x])
         return
-    
+
+    @staticmethod
+    def lc_2289(nums: List[int]) -> int:
+
+        # 模板：经典单调栈优化的线性DP，也可用BFS加链表求解
+        n = len(nums)
+        post = list(range(1, n + 1))
+        nums.append(10 ** 9 + 7)
+        stack = [i - 1 for i in range(1, n) if nums[i - 1] > nums[i]]
+        ans = 0
+        visit = [0] * n
+        while stack:
+            ans += 1
+            for i in stack[::-1]:
+                if nums[i] > nums[post[i]]:
+                    visit[post[i]] = 1
+                    post[i] = post[post[i]]
+            stack = [i for i in stack if not visit[i] and nums[i] > nums[post[i]]]
+        return ans
+
     @staticmethod
     def lc_2617(grid: List[List[int]]) -> int:
         # 模板：经典BFS加两个方向上的链表，也可以使用并查集代替

@@ -32,6 +32,7 @@ from src.mathmatics.number_theory import NumberTheory
 1872. 石子游戏 VIII（https://leetcode.cn/problems/stone-game-viii/）前缀和倒序DP
 1770. 执行乘法运算的最大分数（https://leetcode.cn/problems/maximum-score-from-performing-multiplication-operations/）经典数组匹配线性DP
 823. 带因子的二叉树（https://leetcode.cn/problems/binary-trees-with-factors/description/）经典线性DP计数
+2289. 使数组按非递减顺序排列（https://leetcode.cn/problems/steps-to-make-array-non-decreasing/description/）经典单调栈优化的线性DP，也可用BFS加链表求解
 
 ===================================洛谷===================================
 P1970 [NOIP2013 提高组] 花匠（https://www.luogu.com.cn/problem/P1970）使用贪心与动态规划计算最长的山脉子数组
@@ -171,6 +172,19 @@ class Solution:
                         dp[i] += dp[j] * dp[dct[x // y]] * 2
                     dp[i] %= mod
         return sum(dp) % mod
+
+    @staticmethod
+    def lc_2289(nums: List[int]) -> int:
+        # 模板：经典单调栈优化的线性DP，也可用BFS加链表求解
+        n = len(nums)
+        stack = []
+        for i in range(n - 1, -1, -1):
+            cnt = 0
+            while stack and stack[-1][0] < nums[i]:
+                _, x = stack.pop()
+                cnt = cnt + 1 if cnt + 1 > x else x
+            stack.append([nums[i], cnt])
+        return max(ls[1] for ls in stack)
 
     @staticmethod
     def lc_2361(
