@@ -48,6 +48,7 @@ from src.mathmatics.number_theory import NumberTheory
 1927. 求和游戏（https://leetcode.cn/problems/sum-game/description/）经典博弈思维题分类讨论
 2592. 最大化数组的伟大值（https://leetcode.cn/problems/maximize-greatness-of-an-array/）典型贪心排序后使用双指针计算
 1503. 所有蚂蚁掉下来前的最后一刻（https://leetcode.cn/problems/last-moment-before-all-ants-fall-out-of-a-plank/）经典脑筋急转弯题目，相撞不影响结果
+991. 坏了的计算器（https://leetcode.cn/problems/broken-calculator/）经典逆向计算贪心，偶数除2奇数加1
 
 ===================================洛谷===================================
 P1031 均分纸牌（https://www.luogu.com.cn/problem/P1031）贪心计算每个点的前缀和流量，需要补齐或者输出时进行计数
@@ -999,6 +1000,18 @@ class Solution:
         if m % 2 == 0:
             return 0
         return 1
+
+    @staticmethod
+    def lc_991(start: int, target: int) -> int:
+        # 模板：经典逆向计算贪心，偶数除2奇数加1
+        ans = 0
+        while target > start:
+            if target % 2:
+                target += 1
+            else:
+                target //= 2
+            ans += 1
+        return ans + start - target
 
     @staticmethod
     def lc_1503(n: int, left: List[int], right: List[int]) -> int:
