@@ -77,6 +77,9 @@ E. Connected Components?（https://codeforces.com/contest/920/problem/E）并查
 C. Ice Cave（https://codeforces.com/problemset/problem/540/C）路径可达
 E2. Unforgivable Curse (hard version)（https://codeforces.com/problemset/problem/1800/E2）使用并查集分组计算可达
 
+================================CodeForces================================
+D - Connectivity（https://atcoder.jp/contests/abc049/tasks/arc065_b）经典双并查集应用
+
 ================================AcWing================================
 4306. 序列处理（https://www.acwing.com/problem/content/description/4309/）经典向右合并的区间并查集
 4866. 最大数量（https://www.acwing.com/problem/content/description/4869/）经典并查集模拟维护连通块大小与多余的边数量
@@ -1029,6 +1032,25 @@ class Solution:
             ans.append(cnt)
         return ans
 
+    @staticmethod
+    def abc_49d(ac=FastIO()):
+        # 模板：经典双并查集应用
+        n, k, ll = ac.read_ints()
+        ufa = UnionFind(n)
+        for _ in range(k):
+            p, q = ac.read_ints_minus_one()
+            ufa.union(p, q)
+
+        ufb = UnionFind(n)
+        for _ in range(ll):
+            p, q = ac.read_ints_minus_one()
+            ufb.union(p, q)
+        pre = defaultdict(int)
+        for i in range(n):
+            pre[(ufa.find(i), ufb.find(i))] += 1
+        ans = [pre[(ufa.find(i), ufb.find(i))] for i in range(n)]
+        ac.lst(ans)
+        return
 
     @staticmethod
     def ac_4306(ac=FastIO()):
