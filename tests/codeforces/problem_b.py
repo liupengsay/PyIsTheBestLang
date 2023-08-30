@@ -1,5 +1,22 @@
+import bisect
+import decimal
+import heapq
+from types import GeneratorType
+from math import inf
 import sys
-import sys
+from bisect import bisect_left, bisect_right
+from heapq import heappush, heappop, heappushpop
+from functools import cmp_to_key
+from collections import defaultdict, Counter, deque
+import math
+from functools import lru_cache
+from heapq import nlargest
+from functools import reduce
+import random
+from itertools import combinations, permutations
+from operator import xor, add
+from operator import mul
+from typing import List, Callable, Dict, Set, Tuple, DefaultDict
 
 
 # sys.setrecursionlimit(10**8)设置最大递归次数
@@ -76,6 +93,10 @@ class FastIO:
     def min(a, b):
         return a if a < b else b
 
+    @staticmethod
+    def ceil(a, b):
+        return a // b + int(a % b != 0)
+
     def ask(self, lst):
         # CF交互题输出询问并读取结果
         self.lst(lst)
@@ -101,7 +122,7 @@ class FastIO:
     @staticmethod
     def get_random_seed():
         # 随机种子避免哈希冲突
-        return random.randint(0, 10**9+7)
+        return random.randint(0, 10 ** 9 + 7)
 
 
 class Solution:
@@ -110,8 +131,6 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
-        n, k = ac.read_ints()
-        ac.st(k*(k-1)**(n-1))
         return
 
 
