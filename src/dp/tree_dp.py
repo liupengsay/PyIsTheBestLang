@@ -8,9 +8,9 @@ from operator import add
 from typing import List, Optional
 
 from src.basis.tree_node import TreeNode
+from src.data_structure.list_node import ListNode
 from src.fast_io import FastIO, inf
 from src.graph.union_find import UnionFind
-from src.utils import min_
 
 """
 算法：树形DP、树的直径、树上差分、树的重心（以及树的每个节点到其余节点的总距离和）、树的最小偏心距
@@ -31,6 +31,7 @@ from src.utils import min_
 1617. 统计子树中城市之间最大距离（https://leetcode.cn/problems/count-subtrees-with-max-distance-between-cities/）经典枚举直径端点与乘法原理树形DP进行计算
 2003. 每棵子树内缺失的最小基因值（https://leetcode.cn/problems/smallest-missing-genetic-value-in-each-subtree/）树形DP启发式合并
 2673. 使二叉树所有路径值相等的最小代价（https://leetcode.cn/problems/make-costs-of-paths-equal-in-a-binary-tree/）经典树形DP贪心
+1367. 二叉树中的链表（https://leetcode.cn/problems/linked-list-in-binary-tree/description/）典型二叉树与链表比较的记忆化DP
 
 ===================================洛谷===================================
 
@@ -768,6 +769,23 @@ class Solution:
         ans = dfs(root)
         return min_(ans[0], ans[1])
 
+    @staticmethod
+    def lc_1367(head: Optional[ListNode], root: Optional[TreeNode]) -> bool:
+
+        # 模板：典型二叉树与链表比较的记忆化DP
+
+        @lru_cache(None)
+        def dfs(lst, node):
+            if not lst:
+                return True
+            if not node:
+                return False
+            if lst.val == node.val:
+                if dfs(lst.next, node.left) or dfs(lst.next, node.right):
+                    return True
+            return dfs(head, node.left) or dfs(head, node.right)
+
+        return dfs(head, root)
 
     @staticmethod
     def lc_1617(n: int, edges: List[List[int]]) -> List[int]:

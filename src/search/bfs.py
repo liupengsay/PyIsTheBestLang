@@ -468,8 +468,8 @@ class Solution:
             for i, (nx, ny) in enumerate([(x, y + 1), (x, y - 1), (x + 1, y), (x - 1, y)]):
                 new_pos = nx * n + ny
                 new_dis = dist[cur_pos] + (1 if grid[x][y] != i + 1 else 0)
-                if 0 <= nx < m and 0 <= ny < n and new_dis < dist[new_pos]:
-                    dist[new_pos] = new_dis
+                if 0 <= nx < m and 0 <= ny < n and new_dis < dist[new_pos]:  # 注意这里放缩
+                    dist[new_pos] = new_dis  # 每个点最多入队首一次队尾一次因此时间复杂度O(mn)
                     if grid[x][y] == i + 1:
                         q.appendleft((nx, ny))
                     else:
