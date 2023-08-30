@@ -49,6 +49,7 @@ from src.mathmatics.number_theory import NumberTheory
 2592. 最大化数组的伟大值（https://leetcode.cn/problems/maximize-greatness-of-an-array/）典型贪心排序后使用双指针计算
 1503. 所有蚂蚁掉下来前的最后一刻（https://leetcode.cn/problems/last-moment-before-all-ants-fall-out-of-a-plank/）经典脑筋急转弯题目，相撞不影响结果
 991. 坏了的计算器（https://leetcode.cn/problems/broken-calculator/）经典逆向计算贪心，偶数除2奇数加1
+2745. 构造最长的新字符串（https://leetcode.cn/problems/construct-the-longest-new-string/）脑筋急转弯贪心思维题
 
 ===================================洛谷===================================
 P1031 均分纸牌（https://www.luogu.com.cn/problem/P1031）贪心计算每个点的前缀和流量，需要补齐或者输出时进行计数
@@ -435,6 +436,11 @@ class Solution:
                     heapq.heappop(stack)
             ac.st(sum(stack))
         return
+
+    @staticmethod
+    def lc_2745(x: int, y: int, z: int) -> int:
+        # 模板：脑筋急转弯贪心思维题
+        return z * 2 + min(x, y) * 4 + int((max(x, y) - min(x, y)) > 0) * 2
 
     @staticmethod
     def lg_p1080(ac=FastIO()):
