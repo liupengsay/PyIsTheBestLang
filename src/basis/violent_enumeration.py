@@ -45,6 +45,7 @@ from src.fast_io import FastIO, inf
 2018. 判断单词是否能放入填字游戏内（https://leetcode.cn/problems/check-if-word-can-be-placed-in-crossword/description/）经典枚举空挡位置与矩阵行列取数
 2591. 将钱分给最多的儿童（https://leetcode.cn/problems/distribute-money-to-maximum-children/）经典枚举考虑边界条件
 910. 最小差值 II（https://leetcode.cn/problems/smallest-range-ii/description/）经典枚举操作的范围，计算最大值与最小值
+1131. 绝对值表达式的最大值（https://leetcode.cn/problems/maximum-of-absolute-value-expression/description/）经典曼哈顿距离计算，枚举可能的符号组合
 
 ===================================洛谷===================================
 P1548 棋盘问题（https://www.luogu.com.cn/problem/P1548）枚举正方形与长方形的右小角计算个数
@@ -1015,6 +1016,20 @@ class Solution:
         ans.sort()
         i, j = bisect.bisect_left(ans, low), bisect.bisect_right(ans, high)
         return ans[i:j]
+
+    @staticmethod
+    def lc_1131(arr1: List[int], arr2: List[int]) -> int:
+        # 模板：经典曼哈顿距离计算，枚举可能的符号组合
+        n = len(arr1)
+        ans = 0
+        for x in [1, -1]:
+            for y in [1, -1]:
+                for z in [1, -1]:
+                    a1 = max(x*arr1[i]+y*arr2[i]+z*i for i in range(n))
+                    a2 = min(x*arr1[i]+y*arr2[i]+z*i for i in range(n))
+                    if a1 - a2 > ans:
+                        ans = a1 - a2
+        return ans
 
     @staticmethod
     def lc_1878(grid: List[List[int]]) -> List[int]:
