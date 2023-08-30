@@ -156,6 +156,9 @@ B. Color the Fence（https://codeforces.com/problemset/problem/349/B）贪心模
 C. Number Game（https://codeforces.com/problemset/problem/1370/C）贪心模拟必胜态
 E. Making Anti-Palindromes（https://codeforces.com/contest/1822/problem/E）贪心进行模拟计数
 
+================================AtCoder======================================
+C - AtCoDeer and Election Report（https://atcoder.jp/contests/abc046/tasks/arc062_a）思维题，使用不等式进行贪心
+        
 ================================AcWing======================================
 104. 货仓选址（https://www.acwing.com/problem/content/106/）中位数贪心
 1536. 均分纸牌（https://www.acwing.com/problem/content/description/1538/）贪心均分纸牌
@@ -291,6 +294,21 @@ class Solution:
         y = pre[n//2]
         ans = sum(abs(num-y) for num in pre)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_46b(ac=FastIO()):
+        # 模板：思维题，使用不等式进行贪心
+        n = ac.read_int()
+        a = b = 1
+        for _ in range(n):
+            x, y = ac.read_ints()
+            z1 = a //x + int(a%x>0)
+            z2 = b //y + int(b%y>0)
+            z = ac.max(z1, z2)
+            a = z*x
+            b = z*y
+        ac.st(a+b)
         return
 
     @staticmethod
