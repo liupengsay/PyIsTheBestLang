@@ -36,6 +36,7 @@ from math import inf
 1163. 按字典序排在最后的子串（https://leetcode.cn/problems/last-substring-in-lexicographical-order/）经典类似最小表示法的双指针
 2555. 两个线段获得的最多奖品（https://leetcode.cn/problems/maximize-win-from-two-segments/description/）经典同向双指针加线性DP
 992. K 个不同整数的子数组（https://leetcode.cn/problems/subarrays-with-k-different-integers/）经典三指针，即快慢双指针维护连续子区间个数
+2747. 统计没有收到请求的服务器数目（https://leetcode.cn/problems/count-zero-request-servers/）经典离线查询与三指针，即快慢双指针维护连续区间的不同值个数
 
 ===================================洛谷===================================
 P2381 圆圆舞蹈（https://www.luogu.com.cn/problem/P2381）环形数组，滑动窗口双指针
@@ -322,6 +323,31 @@ class Solution:
             pre[j] = j - i + 1
             ans = max(ans, pre[j] + pre_max[i])
             pre_max[j + 1] = max(pre_max[j], pre[j])
+        return ans
+
+    @staticmethod
+    def lc_2747(n: int, logs: List[List[int]], x: int, queries: List[int]) -> List[int]:
+        # 模板：经典离线查询与三指针，即快慢双指针维护连续区间的不同值个数
+        m = len(queries)
+        ans = [0]*m
+        ind = list(range(m))
+        ind.sort(key=lambda it: queries[it])
+        logs.sort(key=lambda it: it[1])
+        i1 = i2 = 0
+        k = len(logs)
+        dct = dict()
+        for j in ind:
+            left = queries[j]-x
+            right = queries[j]
+            while i2 < k and logs[i2][1] <= right:
+                dct[logs[i2][0]] = dct.get(logs[i2][0], 0) + 1
+                i2 += 1
+            while i1 < k and logs[i1][1] < left:
+                dct[logs[i1][0]] -= 1
+                if not dct[logs[i1][0]]:
+                    del dct[logs[i1][0]]
+                i1 += 1
+            ans[j] = n - len(dct)
         return ans
 
     @staticmethod
