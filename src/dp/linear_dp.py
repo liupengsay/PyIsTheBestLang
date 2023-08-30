@@ -33,6 +33,7 @@ from src.mathmatics.number_theory import NumberTheory
 1770. 执行乘法运算的最大分数（https://leetcode.cn/problems/maximum-score-from-performing-multiplication-operations/）经典数组匹配线性DP
 823. 带因子的二叉树（https://leetcode.cn/problems/binary-trees-with-factors/description/）经典线性DP计数
 2289. 使数组按非递减顺序排列（https://leetcode.cn/problems/steps-to-make-array-non-decreasing/description/）经典单调栈优化的线性DP，也可用BFS加链表求解
+2746. 字符串连接删减字母（https://leetcode.cn/problems/decremental-string-concatenation/）经典哈希线性DP模拟实现
 
 ===================================洛谷===================================
 P1970 [NOIP2013 提高组] 花匠（https://www.luogu.com.cn/problem/P1970）使用贪心与动态规划计算最长的山脉子数组
@@ -674,6 +675,32 @@ class Solution:
         ans = min(pre)
         ac.st(ans if ans < inf else "BRAK")
         return
+
+    @staticmethod
+    def lc_2746(words: List[str]) -> int:
+        # 模板：经典哈希线性DP模拟实现
+        pre = defaultdict(int)
+        pre[words[0][0] + words[0][-1]] = len(words[0])
+
+        for a in words[1:]:
+            cur = defaultdict(lambda: inf)
+            for b in pre:
+                # a+b
+                if a[-1] == b[0]:
+                    x = len(a) - 1 + pre[b]
+                else:
+                    x = len(a) + pre[b]
+                cur[a[0] + b[-1]] = min(cur[a[0] + b[-1]], x)
+
+                # b+a
+                if b[-1] == a[0]:
+                    x = len(a) - 1 + pre[b]
+                else:
+                    x = len(a) + pre[b]
+                cur[b[0] + a[-1]] = min(cur[b[0] + a[-1]], x)
+            pre = cur
+
+        return min(pre.values())
 
     @staticmethod
     def lg_b3734(ac=FastIO()):
