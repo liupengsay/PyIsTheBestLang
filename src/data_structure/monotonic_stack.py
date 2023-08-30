@@ -674,6 +674,21 @@ class Solution:
         return
 
     @staticmethod
+    def lc_1130(arr: List[int]) -> int:
+        # 模板：经典单调栈也可以使用区间DP
+        stack = [float('inf')]
+        res = 0
+        for num in arr:
+            while stack and stack[-1] <= num:
+                cur = stack.pop(-1)
+                res += min(stack[-1]*cur, cur*num)
+            stack.append(num)
+        m = len(stack)
+        for i in range(m-2, 0, -1):
+            res += stack[i]*stack[i+1]
+        return res
+
+    @staticmethod
     def lc_1504(mat: List[List[int]]) -> int:
         # 模板：经典枚举上下边界单调栈计算全为 1 的子矩形个数
         m, n = len(mat), len(mat[0])
