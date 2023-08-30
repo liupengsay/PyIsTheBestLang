@@ -46,6 +46,7 @@ from src.fast_io import FastIO, inf
 2591. 将钱分给最多的儿童（https://leetcode.cn/problems/distribute-money-to-maximum-children/）经典枚举考虑边界条件
 910. 最小差值 II（https://leetcode.cn/problems/smallest-range-ii/description/）经典枚举操作的范围，计算最大值与最小值
 1131. 绝对值表达式的最大值（https://leetcode.cn/problems/maximum-of-absolute-value-expression/description/）经典曼哈顿距离计算，枚举可能的符号组合
+1761. 一个图中连通三元组的最小度数（https://leetcode.cn/problems/minimum-degree-of-a-connected-trio-in-a-graph/description/?envType=daily-question&envId=2023-08-31）经典无向图转为有向图进行枚举
 
 ===================================洛谷===================================
 P1548 棋盘问题（https://www.luogu.com.cn/problem/P1548）枚举正方形与长方形的右小角计算个数
@@ -1030,6 +1031,33 @@ class Solution:
                     if a1 - a2 > ans:
                         ans = a1 - a2
         return ans
+
+    @staticmethod
+    def lc_1761(n: int, edges: List[List[int]]) -> int:
+        # 模板：经典无向图转为有向图进行枚举
+        edges = [[i-1, j-1] for i, j in edges]
+        degree = [0]*n
+        dct = [set() for _ in range(n)]
+        directed = [set() for _ in range(n)]
+        for i, j in edges:
+            dct[i].add(j)
+            degree[i] += 1
+            degree[j] += 1
+            dct[j].add(i)
+        for i, j in edges:
+            if degree[i] < degree[j] or (degree[i]==degree[j] and i < j):
+                directed[i].add(j)
+            else:
+                directed[j].add(i)
+        ans = inf
+        for i in range(n):
+            for j in directed[i]:
+                for k in directed[j]:
+                    if k in dct[i]:
+                        x = degree[i]+degree[j]+degree[k] - 6
+                        if x < ans:
+                            ans = x
+        return ans if ans < inf else -1
 
     @staticmethod
     def lc_1878(grid: List[List[int]]) -> List[int]:
