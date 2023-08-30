@@ -1,22 +1,7 @@
-import bisect
-import decimal
-import heapq
-from types import GeneratorType
-from math import inf
 import sys
-from bisect import bisect_left, bisect_right
-from heapq import heappush, heappop, heappushpop
-from functools import cmp_to_key
-from collections import defaultdict, Counter, deque
-import math
-from functools import lru_cache
-from heapq import nlargest
-from functools import reduce
-import random
-from itertools import combinations, permutations
-from operator import xor, add
-from operator import mul
-from typing import List, Callable, Dict, Set, Tuple, DefaultDict
+import sys
+
+
 # sys.setrecursionlimit(10**8)设置最大递归次数
 
 
@@ -125,7 +110,8 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
-
+        n, k = ac.read_ints()
+        ac.st(k*(k-1)**(n-1))
         return
 
 
