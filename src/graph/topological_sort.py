@@ -26,6 +26,7 @@ from src.graph.union_find import UnionFind
 1857. 有向图中最大颜色值（https://leetcode.cn/problems/largest-color-value-in-a-directed-graph/）经典拓扑排序DP
 1932. 合并多棵二叉搜索树（https://leetcode.cn/problems/merge-bsts-to-create-single-bst/）经典连通性、拓扑排序与二叉搜索树判断
 1591. 奇怪的打印机 II（https://leetcode.cn/contest/biweekly-contest-35/problems/strange-printer-ii/）经典建图判断拓扑排序是否无环
+2192. 有向无环图中一个节点的所有祖先（https://leetcode.cn/problems/all-ancestors-of-a-node-in-a-directed-acyclic-graph/）经典有向图DAG拓扑排序
 
 
 ===================================洛谷===================================
@@ -826,6 +827,29 @@ class Solution:
             else:
                 ac.st("Deception")
         return
+
+    @staticmethod
+    def lc_2192(n: int, edges: List[List[int]]) -> List[List[int]]:
+        # 模板：经典有向图DAG拓扑排序
+        ans = [set() for _ in range(n)]
+        degree = [0] * n
+        dct = [[] for _ in range(n)]
+        for i, j in edges:
+            dct[i].append(j)
+            degree[j] += 1
+        stack = [i for i in range(n) if not degree[i]]
+        while stack:
+            nex = []
+            for i in stack:
+                for j in dct[i]:
+                    for x in ans[i]:
+                        ans[j].add(x)
+                    ans[j].add(i)
+                    degree[j] -= 1
+                    if not degree[j]:
+                        nex.append(j)
+            stack = nex
+        return [sorted(list(a)) for a in ans]
 
     @staticmethod
     def lc_2204(n: int, edges: List[List[int]]) -> List[int]:
