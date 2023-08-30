@@ -20,6 +20,7 @@ from src.fast_io import FastIO
 308. 二维区域和检索 - 可变（https://leetcode.cn/problems/range-sum-query-2d-mutable/）二维树状数组，单点增减与区间和查询
 2659. 将数组清空（https://leetcode.cn/problems/make-array-empty/submissions/）经典模拟删除，可以使用树状数组也可以使用SortedList也可以使用贪心
 1505. 最多 K 次交换相邻数位后得到的最小整数（https://leetcode.cn/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/）经典树状数组模拟计数移动，也可以使用SortedList
+2193. 得到回文串的最少操作次数（https://leetcode.cn/problems/minimum-number-of-moves-to-make-palindrome/description/）使用树状数组贪心模拟交换构建回文串，相同题目（P5041求回文串）
 
 ===================================洛谷===================================
 P2068 统计和（https://www.luogu.com.cn/problem/P2068）单点更新与区间求和
@@ -845,6 +846,67 @@ class Solution:
                     else:
                         ac.st(tree_even.query_range(left, right))
         return
+
+    @staticmethod
+    def lc_2193_1(s: str) -> int:
+        # 模板：使用树状数组贪心模拟交换构建回文串
+
+        n = len(s)
+        lst = list(s)
+        ans = 0
+        dct = defaultdict(deque)
+        for i in range(n):
+            dct[lst[i]].append(i)
+        tree = TreeArrayRangeQuerySum(n)
+        i, j = 0, n - 1
+        while i < j:
+            if lst[i] == "":
+                i += 1
+                continue
+            if lst[j] == "":
+                j -= 1
+                continue
+            if lst[i] == lst[j]:
+                dct[lst[i]].popleft()
+                dct[lst[j]].pop()
+                i += 1
+                j -= 1
+                continue
+
+            if len(dct[lst[j]]) >= 2:
+                left = dct[lst[j]][0]
+                ans += left - i - tree.query_range(i + 1, left + 1)
+                x = dct[lst[j]].popleft()
+                dct[lst[j]].pop()
+                lst[x] = ""
+                tree.update(x + 1, 1)
+                j -= 1
+            else:
+                right = dct[lst[i]][-1]
+                ans += j - right - tree.query_range(right + 1, j + 1)
+                x = dct[lst[i]].pop()
+                dct[lst[i]].popleft()
+                tree.update(x + 1, 1)
+                lst[x] = ""
+                i += 1
+        return ans
+
+    @staticmethod
+    def lc_2193_2(s: str) -> int:
+        # 模板：使用字符串特性贪心模拟交换构建回文串
+        n = len(s)
+        ans = 0
+        for _ in range(n//2):
+            j = s.rindex(s[0])
+            if j == 0:
+                i = s.index(s[-1])
+                ans += i
+                s = s[:i] + s[i+1:-1]
+            else:
+                ans += len(s) - 1 - j
+                s = s[1:j] + s[j+1:]
+
+        return ans
 
     @staticmethod
     def lc_2659(nums: List[int]) -> int:
