@@ -5,6 +5,7 @@ from typing import List
 
 from src.basis.binary_search import BinarySearch
 from src.fast_io import FastIO
+from src.graph.dijkstra import Dijkstra
 
 """
 
@@ -160,8 +161,8 @@ class Solution:
         return
 
     @staticmethod
-    def abc_51d(ac=FastIO()):
-        # 模板：经典脑筋急转弯Floyd计算最短路的必经边
+    def abc_51d_1(ac=FastIO()):
+        # 模板：经典脑筋急转弯Floyd计算最短路的必经边，也可直接使用Dijkstra
         n, m = ac.read_ints()
         dp = [[inf]*n for _ in range(n)]
         for i in range(n):
@@ -186,6 +187,30 @@ class Solution:
                 ans += 1
         ac.st(ans)
         return
+
+    @staticmethod
+    def abc_51d_2(ac=FastIO()):
+        # 模板：经典脑筋急转弯Floyd计算最短路的必经边，也可直接使用Dijkstra
+        n, m = ac.read_ints()
+        edges = [ac.read_list_ints() for _ in range(m)]
+        dct = [[] for _ in range(n)]
+        for i, j, w in edges:
+            i -= 1
+            j -= 1
+            dct[i].append([j, w])
+            dct[j].append([i, w])
+        dis = []
+        for i in range(n):
+            dis.append(Dijkstra().get_dijkstra_result(dct, i))
+        ans = 0
+        for i, j, w in edges:
+            i -= 1
+            j -= 1
+            if dis[i][j] < w:
+                ans += 1
+        ac.st(ans)
+        return
+
 
     @staticmethod
     def cf_472d(ac=FastIO()):
