@@ -161,36 +161,29 @@ class Solution:
 
     @staticmethod
     def abc_51d(ac=FastIO()):
-        # 模板：经典Floyd计算最短路的必经边
+        # 模板：经典脑筋急转弯Floyd计算最短路的必经边
         n, m = ac.read_ints()
         dp = [[inf]*n for _ in range(n)]
         for i in range(n):
             dp[i][i] = 0
+
         edges = [ac.read_list_ints() for _ in range(m)]
         for i, j, w in edges:
             i -= 1
             j -= 1
-            if w < dp[i][j]:
-                dp[j][i] = dp[i][j] = w
-            for x in range(n):
-                for y in range(x+1, n):
-                    a, b = dp[x][i]+w+dp[j][y], dp[x][j]+w+dp[i][y]
-                    a = a if a < b else b
-                    if dp[x][y] > a:
-                        dp[x][y] = dp[y][x] = a
+            dp[i][j] = dp[j][i] = w
+
+        for k in range(n):  # 中间节点
+            for i in range(n):  # 起始节点
+                for j in range(i+1, n):  # 结束节点
+                    a, b = dp[i][j], dp[i][k] + dp[k][j]
+                    dp[i][j] = dp[j][i] = a if a < b else b
         ans = 0
         for i, j, w in edges:
             i -= 1
             j -= 1
-            flag = 0
-            for x in range(n):
-                if flag:
-                    break
-                for y in range(x+1, n):
-                    if dp[x][y] in [dp[x][i]+w+dp[j][y], dp[x][j]+w+dp[i][y]]:
-                        flag = 1
-                        break
-            ans += 1-flag
+            if dp[i][j] < w:  # 如果最短距离小于该边则必然不经过该边
+                ans += 1
         ac.st(ans)
         return
 
