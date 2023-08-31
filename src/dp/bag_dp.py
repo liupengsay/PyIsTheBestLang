@@ -25,6 +25,7 @@ from src.fast_io import FastIO
 1449. 数位成本和为目标值的最大数字（https://leetcode.cn/problems/form-largest-integer-with-digits-that-add-up-to-target/）代价一定情况下的最大数值
 1049. 最后一块石头的重量 II（https://leetcode.cn/problems/last-stone-weight-ii/）经典问题，转化为01背包求解
 2742. 给墙壁刷油漆（https://leetcode.cn/problems/painting-the-walls/description/）经典剪枝DP，可以转换为01背包求解
+2518. 好分区的数目（https://leetcode.cn/problems/number-of-great-partitions/）经典01背包计数
 
 ===================================洛谷===================================
 P1048 采药（https://www.luogu.com.cn/problem/P1048）一维背包DP，数量有限，从后往前遍历
@@ -380,6 +381,23 @@ class Solution:
                 if dp[s] + c < dp[j]:
                     dp[j] = dp[s] + c
         return dp[-1]
+
+    @staticmethod
+    def lc_2518(nums: List[int], k: int) -> int:
+        # 模板：经典01背包计数
+        mod = 10**9 + 7
+        dp = [0] * k
+        s = sum(nums)
+        if s < 2 * k:
+            return 0
+        dp[0] = 1
+        n = len(nums)
+        for num in nums:
+            for i in range(k - 1, num - 1, -1):
+                dp[i] += dp[i - num]
+        ans = pow(2, n, mod)
+        ans -= 2 * sum(dp)
+        return ans % mod
 
     @staticmethod
     def lc_2585(target: int, types: List[List[int]]) -> int:
