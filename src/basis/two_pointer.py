@@ -5,7 +5,7 @@ from collections import defaultdict
 from functools import reduce
 from math import gcd
 from itertools import accumulate
-from typing import List
+from typing import List, Counter
 from operator import mul, add, xor, and_, or_
 from src.fast_io import FastIO
 from math import inf
@@ -37,6 +37,7 @@ from math import inf
 2555. 两个线段获得的最多奖品（https://leetcode.cn/problems/maximize-win-from-two-segments/description/）经典同向双指针加线性DP
 992. K 个不同整数的子数组（https://leetcode.cn/problems/subarrays-with-k-different-integers/）经典三指针，即快慢双指针维护连续子区间个数
 2747. 统计没有收到请求的服务器数目（https://leetcode.cn/problems/count-zero-request-servers/）经典离线查询与三指针，即快慢双指针维护连续区间的不同值个数
+2516. 每种字符至少取 K 个（https://leetcode.cn/problems/take-k-of-each-character-from-left-and-right/）逆向思维容斥原理经典双指针
 
 ===================================洛谷===================================
 P2381 圆圆舞蹈（https://www.luogu.com.cn/problem/P2381）环形数组，滑动窗口双指针
@@ -307,6 +308,25 @@ class Solution:
                 ans.append(swa.query())
                 swa.popleft()
         return ans
+
+    @staticmethod
+    def lc_2516(s: str, k: int) -> int:
+        # 模板：逆向思维容斥原理经典双指针
+        cnt = Counter(s)
+        n = len(s)
+        if any(cnt[w] < k for w in "abc"):
+            return -1
+        ans = 0
+        dct = defaultdict(int)
+        j = 0
+        for i in range(n):
+            while j < n and cnt[s[j]] - dct[s[j]] - 1 >= k:
+                dct[s[j]] += 1
+                j += 1
+            if j-i > ans:
+                ans = j-i
+            dct[s[i]] -= 1
+        return n - ans
 
     @staticmethod
     def lc_2555(prize_positions: List[int], k: int) -> int:

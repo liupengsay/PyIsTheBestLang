@@ -32,6 +32,7 @@ from src.graph.union_find import UnionFind
 1889. 装包裹的最小浪费空间（https://leetcode.cn/problems/minimum-space-wasted-from-packaging/）排序加前缀和预处理与贪心二分
 2071. 你可以安排的最多任务数目（https://leetcode.cn/problems/maximum-number-of-tasks-you-can-assign/）经典二分加贪心
 2594. 修车的最少时间（https://leetcode.cn/problems/minimum-time-to-repair-cars/）经典二分
+2517. 礼盒的最大甜蜜度（https://leetcode.cn/problems/maximum-tastiness-of-candy-basket/）经典二分
 
 ===================================洛谷===================================
 P1577 切绳子（https://www.luogu.com.cn/problem/P1577）数学整除向下取整与二分
