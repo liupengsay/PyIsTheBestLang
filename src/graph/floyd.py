@@ -33,8 +33,12 @@ P1613 跑路（https://www.luogu.com.cn/problem/P1613）经典Floyd动态规划�
 P8312 [COCI2021-2022#4] Autobus（https://www.luogu.com.cn/problem/P8312）经典最多k条边的最短路跑k遍Floyd
 P8794 [蓝桥杯 2022 国 A] 环境治理（https://www.luogu.com.cn/problem/P8794）经典二分加Floyd计算
 
+
 ================================CodeForces================================
 D. Design Tutorial: Inverse the Problem（https://codeforces.com/problemset/problem/472/D）使用Floyd判断构造给定的点对最短路距离是否存在
+
+================================AtCoder================================
+D - Candidates of No Shortest Paths（https://atcoder.jp/contests/abc051/tasks/abc051_d）经典Floyd计算最短路的必经边
 
 
 ===================================AcWing===================================
@@ -153,6 +157,41 @@ class Solution:
                         dp[i][j] = 1
         for g in dp:
             ac.lst(g)
+        return
+
+    @staticmethod
+    def abc_51d(ac=FastIO()):
+        # 模板：经典Floyd计算最短路的必经边
+        n, m = ac.read_ints()
+        dp = [[inf]*n for _ in range(n)]
+        for i in range(n):
+            dp[i][i] = 0
+        edges = [ac.read_list_ints() for _ in range(m)]
+        for i, j, w in edges:
+            i -= 1
+            j -= 1
+            if w < dp[i][j]:
+                dp[j][i] = dp[i][j] = w
+            for x in range(n):
+                for y in range(x+1, n):
+                    a, b = dp[x][i]+w+dp[j][y], dp[x][j]+w+dp[i][y]
+                    a = a if a < b else b
+                    if dp[x][y] > a:
+                        dp[x][y] = dp[y][x] = a
+        ans = 0
+        for i, j, w in edges:
+            i -= 1
+            j -= 1
+            flag = 0
+            for x in range(n):
+                if flag:
+                    break
+                for y in range(x+1, n):
+                    if dp[x][y] in [dp[x][i]+w+dp[j][y], dp[x][j]+w+dp[i][y]]:
+                        flag = 1
+                        break
+            ans += 1-flag
+        ac.st(ans)
         return
 
     @staticmethod
