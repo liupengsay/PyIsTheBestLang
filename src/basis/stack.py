@@ -39,6 +39,9 @@ P3719 [AHOI2017初中组]rexp（https://www.luogu.com.cn/problem/P3719）栈模�
 C. Longest Regular Bracket Sequence（https://codeforces.com/problemset/problem/5/C）最长连续合法括号子序列以及个数
 E. Almost Regular Bracket Sequence（https://codeforces.com/problemset/problem/1095/E）计算改变一个括号后是的字符串合法的位置数
 
+================================AtCoder================================
+D - 3N Numbers（https://atcoder.jp/contests/abc062/tasks/arc074_b）经典堆与前后缀结合
+
 
 ================================AcWing===================================
 128. 编辑器（https://www.acwing.com/problem/content/130/）堆栈模拟
@@ -220,6 +223,36 @@ class Solution:
                 x -= 1
             if x < 0:
                 break
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_62d(ac=FastIO()):
+        # 模板：经典堆与前后缀结合
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        pre = [-inf] * (3 * n + 1)
+        stack = []
+        s = 0
+        for i in range(3 * n):
+            s += nums[i]
+            heappush(stack, nums[i])
+            if len(stack) > n:
+                s -= heappop(stack)
+            if i >= n - 1:
+                pre[i] = s
+
+        post = [-inf] * (3 * n + 1)
+        stack = []
+        s = 0
+        for i in range(3 * n - 1, -1, -1):
+            s -= nums[i]
+            heappush(stack, -nums[i])
+            if len(stack) > n:
+                s -= heappop(stack)
+            if 3 * n - i >= n:
+                post[i] = s
+        ans = max(pre[i] + post[i + 1] for i in range(n - 1, 2 * n + 1))
         ac.st(ans)
         return
 
