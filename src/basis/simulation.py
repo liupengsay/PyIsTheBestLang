@@ -21,7 +21,7 @@ from src.fast_io import FastIO
 460. LFU 缓存（https://leetcode.cn/problems/lfu-cache/）经典OrderDict应用与数据结构自定义题目
 146. LRU 缓存（https://leetcode.cn/problems/lru-cache/）经典OrderDict应用与数据结构自定义题目
 2534. 通过门的时间（https://leetcode.cn/problems/time-taken-to-cross-the-door/）按照时间与题意进行模拟
-
+1823. 找出游戏的获胜者（https://leetcode.cn/contest/weekly-contest-236/problems/find-the-winner-of-the-circular-game/）约瑟夫环
 
 ===================================洛谷===================================
 P1815 蠕虫游戏（https://www.luogu.com.cn/problem/P1815）模拟类似贪吃蛇的移动
@@ -190,6 +190,11 @@ class SpiralMatrix:
 class Solution:
     def __int__(self):
         return
+
+    @staticmethod
+    def lc_1823(n: int, m: int) -> int:
+        # 模板: 约瑟夫环计算最后的幸存者
+        return SpiralMatrix.joseph_ring(n, m) + 1
 
     @staticmethod
     def cf_463c(ac=FastIO()):
