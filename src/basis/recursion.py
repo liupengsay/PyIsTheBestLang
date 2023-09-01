@@ -14,6 +14,7 @@ from src.fast_io import FastIO
 1545. 找出第 N 个二进制字符串中的第 K 位（https://leetcode.cn/problems/find-kth-bit-in-nth-binary-string/）经典递归计算模拟
 894. 所有可能的真二叉树（https://leetcode.cn/problems/all-possible-full-binary-trees/）经典类似卡特兰数的递归模拟计算生成
 880. 索引处的解码字符串（https://leetcode.cn/problems/decoded-string-at-index/）经典递归计算模拟
+932. 漂亮数组（https://leetcode.cn/problems/beautiful-array/description/）使用递归分治进行构造经典
 
 ===================================洛谷===================================
 P1911 L 国的战斗之排兵布阵（https://www.luogu.com.cn/problem/P1911）使用四叉树递归计算
@@ -78,6 +79,13 @@ class Solution:
                     node.right = right
                     ans.append(node)
         return ans
+
+    @lru_cache(None)
+    def lc_932(self, n: int) -> List[int]:
+        # 模板：使用递归分治进行构造经典
+        if n == 1:
+            return [1]
+        return [2*x-1 for x in self.lc_932((n+1)//2)] + [2*x for x in self.lc_932(n//2)]
 
     @staticmethod
     def lc_1345(a: int, b: int) -> str:
