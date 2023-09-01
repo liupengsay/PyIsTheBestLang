@@ -1,4 +1,5 @@
 import unittest
+import bisect
 from collections import defaultdict
 
 from src.mathmatics.number_theory import NumberTheory
@@ -12,6 +13,7 @@ from src.mathmatics.number_theory import NumberTheory
 2081. k 镜像数字的和（https://leetcode.cn/problems/sum-of-k-mirror-numbers/）枚举 10 进制回文数字并判断其 k 进制是否依然回文
 866. 回文素数（https://leetcode.cn/problems/prime-palindrome/）枚举回文素数
 564. 寻找最近的回文数（https://leetcode.cn/problems/find-the-closest-palindrome/）枚举字符的前半部分与后半部分
+906. 超级回文数（https://leetcode.cn/problems/super-palindromes/）经典预处理所有的回文数其开方也是回文数
 
 ===================================洛谷===================================
 P1609 最小回文数（https://www.luogu.com.cn/problem/P1609）枚举字符的前半部分与后半部分
@@ -93,6 +95,15 @@ class PalindromeNum:
 class Solution:
     def __init__(self):
         return
+
+    @staticmethod
+    def lc_906(left: str, right: str) -> int:
+        # 模板：经典预处理所有的回文数其开方也是回文数
+        nums = PalindromeNum().get_palindrome_num_2(10)
+        res = [num * num for num in nums if str(num * num)[::-1] == str(num * num)]
+        left = int(left)
+        right = int(right)
+        return bisect.bisect_right(res, right) - bisect.bisect_left(res, left)
 
     @staticmethod
     def lc_2081(k: int, n: int) -> int:
