@@ -1,5 +1,7 @@
 import unittest
 import bisect
+from itertools import combinations
+from typing import List
 
 from src.fast_io import FastIO
 
@@ -27,6 +29,53 @@ P5691 [NOI2001] 方程的解数（https://www.luogu.com.cn/problem/P5691）折�
 class Solution:
     def __init__(self):
         return
+
+    @staticmethod
+    def lc_2035(nums: List[int]) -> int:
+        # 模板：经典折半搜索排序加二分或者双指针
+
+        def check(lst):
+            # 枚举列表元素所有个数的子集和
+            m = len(lst)
+            total = sum(lst)
+            res = [set() for _ in range(m + 1)]
+            res[0].add(0)
+            res[m].add(total)
+            # 类似计算数的因子的思想只需要搜索到一半即可，另一半做差得到
+            for k in range(1, m // 2 + 1):
+                for item in combinations(lst, k):
+                    cur = sum(item)
+                    res[k].add(cur)
+                    res[m - k].add(total - cur)
+            return res
+
+        def find(left, right):
+            # 双指针查找最接近target的绝对差值
+            a, b = len(left), len(right)
+            res = float("inf")
+            i = 0
+            j = b - 1
+            while i < a and j >= 0:
+                cur = abs(target - left[i] - right[j])
+                res = res if res < cur else cur
+                if left[i] + right[j] == target:
+                    return 0
+                if left[i] + right[j] > target:
+                    j -= 1
+                elif left[i] + right[j] < target:
+                    i += 1
+            return res
+
+        # 枚举前一半个数与后一半对应的个数子集和，找到绝对差最小的结果
+        n = len(nums) // 2
+        pre = check(nums[:n])
+        post = check(nums[n:])
+        ans = float("inf")
+        target = sum(nums) / 2
+        for k in range(n + 1):
+            cur = find(sorted(list(pre[k])), sorted(list(post[n - k])))
+            ans = ans if ans < 2 * cur else 2 * cur
+        return int(ans)
 
     @staticmethod
     def lg_p5194(ac=FastIO()):
