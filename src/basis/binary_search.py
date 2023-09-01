@@ -21,10 +21,10 @@ from src.graph.union_find import UnionFind
 81. 搜索旋转排序数组 II（https://leetcode.cn/problems/search-in-rotated-sorted-array-ii/）经典有重复数字的旋转数组
 154. 寻找旋转排序数组中的最小值 II（https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array-ii/）经典有重复数字的旋转数组
 162. 寻找峰值（https://leetcode.cn/problems/find-peak-element/）经典二分思想查找题
-2426 满足不等式的数对数目（https://leetcode.cn/problems/number-of-pairs-satisfying-inequality/）根据不等式变换和有序集合进行二分查找
-2179 统计数组中好三元组数目（https://leetcode.cn/problems/count-good-triplets-in-an-array/）维护区间范围内的个数
-2141 同时运行 N 台电脑的最长时间（https://leetcode.cn/problems/maximum-running-time-of-n-computers/）贪心选择最大的 N 个电池作为基底，然后二分确定在其余电池的加持下可以运行的最长时间
-2102 序列顺序查询（https://leetcode.cn/problems/sequentially-ordinal-rank-tracker/）使用有序集合维护优先级姓名实时查询
+2426. 满足不等式的数对数目（https://leetcode.cn/problems/number-of-pairs-satisfying-inequality/）根据不等式变换和有序集合进行二分查找
+2179. 统计数组中好三元组数目（https://leetcode.cn/problems/count-good-triplets-in-an-array/）维护区间范围内的个数
+2141. 同时运行 N 台电脑的最长时间（https://leetcode.cn/problems/maximum-running-time-of-n-computers/）贪心选择最大的 N 个电池作为基底，然后二分确定在其余电池的加持下可以运行的最长时间
+2102. 序列顺序查询（https://leetcode.cn/problems/sequentially-ordinal-rank-tracker/）使用有序集合维护优先级姓名实时查询
 2563. 统计公平数对的数目（https://leetcode.cn/problems/count-the-number-of-fair-pairs/）使用二分查找确定范围个数
 2604. 吃掉所有谷子的最短时间（https://leetcode.cn/problems/minimum-time-to-eat-all-grains/）二分加指针贪心 check
 1201. 丑数 III（https://leetcode.cn/problems/ugly-number-iii/）二分加容斥原理计数
@@ -382,6 +382,22 @@ class Solution:
             if cur < ans:
                 ans = cur
         return ans % mod if ans < inf else -1
+
+    @staticmethod
+    def lc_2141(n: int, batteries: List[int]) -> int:
+        # 模板：经典贪心二分
+
+        batteries.sort(reverse=True)
+        rest = sum(batteries[n:])
+
+        def check(w):
+            res = 0
+            for num in batteries[:n]:
+                if num < w:
+                    res += w - num
+            return res <= rest
+
+        return BinarySearch().find_int_right(0, batteries[n - 1] + rest, check)
 
     @staticmethod
     def lc_2563(nums, lower, upper):
