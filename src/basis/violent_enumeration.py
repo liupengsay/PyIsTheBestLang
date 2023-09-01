@@ -127,6 +127,7 @@ C. Arithmetic Progression（https://codeforces.com/problemset/problem/382/C）�
 
 ================================AtCoder================================
 D - Digit Sum（https://atcoder.jp/contests/abc044/tasks/arc060_b）经典进制计算与分情况枚举因子
+D - Menagerie （https://atcoder.jp/contests/abc055/tasks/arc069_b）思维题脑筋急转弯枚举
 
 ================================Acwing===================================
 95. 费解的开关（https://www.acwing.com/problem/content/description/97/）枚举第一行的开关按钮使用状态
