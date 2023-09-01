@@ -128,6 +128,7 @@ C. Arithmetic Progression（https://codeforces.com/problemset/problem/382/C）�
 ================================AtCoder================================
 D - Digit Sum（https://atcoder.jp/contests/abc044/tasks/arc060_b）经典进制计算与分情况枚举因子
 D - Menagerie （https://atcoder.jp/contests/abc055/tasks/arc069_b）思维题脑筋急转弯枚举
+C - Sequence（https://atcoder.jp/contests/abc059/tasks/arc072_a）枚举前缀和的符号贪心增减
 
 ================================Acwing===================================
 95. 费解的开关（https://www.acwing.com/problem/content/description/97/）枚举第一行的开关按钮使用状态
@@ -362,6 +363,38 @@ class Solution:
                     if check():
                         ans = b if ans > b else ans
             ac.st(-1 if ans == inf else ans)
+        return
+
+    @staticmethod
+    def abc_59c(ac=FastIO()):
+        # 模板：枚举前缀和的符号贪心增减
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        ans1 = 0
+        pre = 0
+        for i in range(n):
+            pre += nums[i]
+            if i % 2 == 0:
+                if pre <= 0:
+                    ans1 += 1-pre
+                    pre = 1
+            else:
+                if pre >= 0:
+                    ans1 += pre + 1
+                    pre = -1
+        ans2 = 0
+        pre = 0
+        for i in range(n):
+            pre += nums[i]
+            if i % 2 == 1:
+                if pre <= 0:
+                    ans2 += 1 - pre
+                    pre = 1
+            else:
+                if pre >= 0:
+                    ans2 += pre + 1
+                    pre = -1
+        ac.st(ac.min(ans1, ans2))
         return
 
     @staticmethod
