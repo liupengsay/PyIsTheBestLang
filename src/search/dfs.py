@@ -2,6 +2,9 @@
 import unittest
 import bisect
 from collections import defaultdict
+from functools import reduce
+from math import inf
+from operator import xor
 
 from typing import List, Optional
 
@@ -22,7 +25,7 @@ from src.graph.lca import TreeAncestor
 1059. 从始点到终点的所有路径（https://leetcode.cn/problems/all-paths-from-source-lead-to-destination/）记忆化搜索DFS深搜且回溯
 1718. 构建字典序最大的可行序列（https://leetcode.cn/problems/construct-the-lexicographically-largest-valid-sequence/）经典回溯
 2065. 最大化一张图中的路径价值（https://leetcode.cn/problems/maximum-path-quality-of-a-graph/）经典回溯
-2322. 从树中删除边的最小分数（https://leetcode.cn/problems/minimum-score-after-removals-on-a-tree/）使用深搜序枚举
+2322. 从树中删除边的最小分数（https://leetcode.cn/problems/minimum-score-after-removals-on-a-tree/）使用深搜序dfs序枚举
 1240. 铺瓷砖（https://leetcode.cn/problems/tiling-a-rectangle-with-the-fewest-squares/）经典DFS回溯与剪枝
 1239. 串联字符串的最大长度（https://leetcode.cn/problems/maximum-length-of-a-concatenated-string-with-unique-characters/）经典DFS回溯进行二进制枚举
 
@@ -341,6 +344,54 @@ class Solution:
         ans = m * n
         cnt = 0
         dfs()
+        return ans
+
+    @staticmethod
+    def lc_2322(nums: List[int], edges: List[List[int]]) -> int:
+        # 模板：使用深搜序dfs序枚举
+        n = len(nums)
+        dct = [[] for _ in range(n)]
+        for i, j in edges:
+            dct[i].append(j)
+            dct[j].append(i)
+
+        parent = [-1] * n
+        start, end = DFS().gen_bfs_order_iteration(dct)
+
+        # 预处理子树分数
+        def dfs(xx, fa):
+            res = nums[xx]
+            for yyy in dct[xx]:
+                if yyy != fa:
+                    dfs(yyy, xx)
+                    parent[yyy] = xx
+                    res ^= sub[yyy]
+            sub[xx] = res
+            return
+
+        total = reduce(xor, nums)
+        sub = [0] * n
+        dfs(0, -1)
+        ans = inf
+        # 枚举边对
+        for i in range(n - 1):
+            x, y = edges[i]
+            if parent[x] == y:
+                x, y = y, x
+            for j in range(i + 1, n - 1):
+                a, b = edges[j]
+                if parent[a] == b:
+                    a, b = b, a
+                yy = sub[y]
+                bb = sub[b]
+                if start[y] <= start[b] <= end[y]:
+                    yy ^= bb
+                if start[b] <= start[y] <= end[b]:
+                    bb ^= yy
+                cur = [yy, bb, total ^ yy ^ bb]
+                cur_ = max(cur) - min(cur)
+                if cur_ < ans:
+                    ans = cur_
         return ans
 
     @staticmethod
