@@ -37,6 +37,7 @@ from src.mathmatics.number_theory import NumberTheory
 1911. 最大子序列交替和（https://leetcode.cn/problems/maximum-alternating-subsequence-sum/）经典线性DP
 2321. 拼接数组的最大分数（https://leetcode.cn/problems/maximum-score-of-spliced-array/description/）最大连续子数组和变种
 2320. 统计放置房子的方式数（https://leetcode.cn/problems/count-number-of-ways-to-place-houses/）经典线性DP
+1824. 最少侧跳次数（https://leetcode.cn/problems/minimum-sideway-jumps/description/）经典线性DP滚动数组
 
 ===================================洛谷===================================
 P1970 [NOIP2013 提高组] 花匠（https://www.luogu.com.cn/problem/P1970）使用贪心与动态规划计算最长的山脉子数组
@@ -981,6 +982,21 @@ class Solution:
             ans = ac.max(ans, pre[1])
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_1824(obstacles: List[int]) -> int:
+        # 模板：经典线性DP滚动数组
+        n = len(obstacles)
+        dp = [1, 0, 1]
+        for i in range(n):
+            x = obstacles[i]
+            if x:
+                dp[x - 1] = inf
+            low = min(dp)
+            for j in range(3):
+                if j != x - 1:
+                    dp[j] = dp[j] if dp[j] < low + 1 else low + 1
+        return min(dp)
 
     @staticmethod
     def lc_1553(n: int) -> int:
