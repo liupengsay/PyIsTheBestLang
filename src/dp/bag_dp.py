@@ -102,6 +102,9 @@ A. Writing Code（https://codeforces.com/problemset/problem/543/A）二维有限
 E. Porcelain（https://codeforces.com/problemset/problem/148/E）01背包枚举，两层动态规划
 F. Zero Remainder Sum（https://codeforces.com/problemset/problem/1433/F）01背包枚举，两层动态规划
 
+================================AtCoder================================
+D - Mixing Experiment（https://atcoder.jp/contests/abc054/tasks/abc054_d）二维01背包
+
 ================================AcWing=====================================
 4. 多重背包问题 I（https://www.acwing.com/problem/content/4/）二进制优化多重背包
 6. 多重背包问题 III（https://www.acwing.com/problem/content/description/6/）单调队列优化多重背包
