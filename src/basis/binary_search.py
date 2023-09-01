@@ -33,6 +33,7 @@ from src.graph.union_find import UnionFind
 2071. 你可以安排的最多任务数目（https://leetcode.cn/problems/maximum-number-of-tasks-you-can-assign/）经典二分加贪心
 2594. 修车的最少时间（https://leetcode.cn/problems/minimum-time-to-repair-cars/）经典二分
 2517. 礼盒的最大甜蜜度（https://leetcode.cn/problems/maximum-tastiness-of-candy-basket/）经典二分
+1482. 制作 m 束花所需的最少天数（https://leetcode.cn/problems/minimum-number-of-days-to-make-m-bouquets/）经典二分
 
 ===================================洛谷===================================
 P1577 切绳子（https://www.luogu.com.cn/problem/P1577）数学整除向下取整与二分
@@ -94,6 +95,10 @@ D. Odd-Even Subsequence（https://codeforces.com/problemset/problem/1370/D）利
 D. Max Median（https://codeforces.com/problemset/problem/1486/D）利用单调性二分，再使用经典哈希前缀和计算和为正数的最长连续子序列
 D2. Coffee and Coursework (Hard Version)（https://codeforces.com/problemset/problem/1118/D2）利用单调性贪心二分
 I. Photo Processing（https://codeforces.com/problemset/problem/883/I）二分加双指针dp
+
+
+================================AtCoder================================
+D - No Need （https://atcoder.jp/contests/abc056/tasks/arc070_b）经典利用单调性进行二分，用背包DP进行check
 
 ================================AcWing================================
 120. 防线（https://www.acwing.com/problem/content/122/）根据单调性二分
@@ -522,6 +527,38 @@ class Solution:
                 ac.lst(compute(high))
             else:
                 ac.st("There's no weakness.")
+        return
+
+    @staticmethod
+    def abc_56d(ac=FastIO()):
+        # 模板：经典利用单调性进行二分，用背包DP进行check
+        n, k = ac.read_ints()
+        nums = ac.read_list_ints()
+        nums.sort()
+
+        def check(i):
+            dp = [0]*k
+            dp[0] = 1
+            xx = nums[i]
+            if xx >= k:
+                return False
+
+            for j in range(n):
+                if j != i:
+                    x = nums[j]
+                    for p in range(k-1, x-1, -1):
+                        if dp[p-x]:
+                            dp[p] = 1
+                            if p + xx >= k:
+                                return False  # 此时为必要
+
+            return True  # 为非必要的目标元素
+
+        ans = BinarySearch().find_int_right(0, n-1, check)  # 非必要具有单调性，更小的也为非必要
+        if check(ans):
+            ac.st(ans+1)
+        else:
+            ac.st(0)
         return
 
     @staticmethod
