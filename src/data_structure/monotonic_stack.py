@@ -34,6 +34,7 @@ from src.fast_io import FastIO
 2104. 子数组范围和（https://leetcode.cn/problems/sum-of-subarray-ranges/）经典单调栈计算贡献
 2282. 在一个网格中可以看到的人数（https://leetcode.cn/problems/number-of-people-that-can-be-seen-in-a-grid/）经典单调栈
 2289. 使数组按非递减顺序排列（https://leetcode.cn/problems/steps-to-make-array-non-decreasing/）经典单调栈模拟计算
+907. 子数组的最小值之和（https://leetcode.cn/problems/sum-of-subarray-minimums/）经典单调栈模拟计算
 
 ===================================洛谷===================================
 P1950 长方形（https://www.luogu.com.cn/problem/P1950）通过枚举下边界，结合单调栈计算矩形个数
@@ -584,6 +585,22 @@ class Solution:
                 in_stack[w] = 1
             cnt[w] -= 1
         return "".join(stack)
+
+    @staticmethod
+    def lc_907(nums: List[int]) -> int:
+        # 模板：经典单调栈模拟计算
+        mod = 10 ** 9 + 7
+        n = len(nums)
+        post = [n - 1] * n   # 这里可以是n/n-1/null，取决于用途
+        pre = [0] * n   # 这里可以是0/-1/null，取决于用途
+        stack = []
+        for i in range(n):  # 这里也可以是从n-1到0倒序计算，取决于用途
+            while stack and nums[stack[-1]] <= nums[i]:  # 这里可以是"<" ">" "<=" ">="，取决于需要判断的大小关系
+                post[stack.pop()] = i - 1  # 这里可以是i或者i-1，取决于是否包含i作为右端点
+            if stack:  # 这里不一定可以同时计算，比如前后都是大于等于时，只有前后所求范围互斥时，可以计算
+                pre[i] = stack[-1] + 1  # 这里可以是stack[-1]或者stack[-1]+1，取决于是否包含stack[-1]作为左端点
+            stack.append(i)
+        return sum(nums[i]*(i-pre[i]+1)*(post[i]-i+1) for i in range(n)) % mod
 
     @staticmethod
     def lc_1081(s: str) -> str:
