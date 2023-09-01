@@ -129,6 +129,7 @@ C. Arithmetic Progression（https://codeforces.com/problemset/problem/382/C）�
 D - Digit Sum（https://atcoder.jp/contests/abc044/tasks/arc060_b）经典进制计算与分情况枚举因子
 D - Menagerie （https://atcoder.jp/contests/abc055/tasks/arc069_b）思维题脑筋急转弯枚举
 C - Sequence（https://atcoder.jp/contests/abc059/tasks/arc072_a）枚举前缀和的符号贪心增减
+C - Chocolate Bar（https://atcoder.jp/contests/abc062/tasks/arc074_a）枚举切割方式
 
 ================================Acwing===================================
 95. 费解的开关（https://www.acwing.com/problem/content/description/97/）枚举第一行的开关按钮使用状态
@@ -395,6 +396,38 @@ class Solution:
                     ans2 += pre + 1
                     pre = -1
         ac.st(ac.min(ans1, ans2))
+        return
+
+    @staticmethod
+    def abc_62c(ac=FastIO()):
+        # 模板：枚举切割方式
+        m, n = ac.read_ints()
+
+        def check1():
+            nonlocal ans
+            for x in range(1, m):
+                lst = [x*n, (m-x)*(n//2), (m-x)*(n//2+n%2)]
+                cur = max(lst) - min(lst)
+                if cur < ans:
+                    ans = cur
+            return
+
+        def check2():
+            nonlocal ans
+            for x in range(1, m-1):
+                lst = [x * n, ((m - x)//2) * n, ((m - x)//2+(m-x)%2) * n]
+                cur = max(lst) - min(lst)
+                if cur < ans:
+                    ans = cur
+            return
+
+        ans = inf
+        check1()
+        check2()
+        m, n = n, m
+        check1()
+        check2()
+        ac.st(ans)
         return
 
     @staticmethod
