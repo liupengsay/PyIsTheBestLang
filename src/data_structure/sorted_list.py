@@ -24,6 +24,7 @@ from src.fast_io import FastIO
 2519. Count the Number of K-Big Indices（https://leetcode.cn/problems/count-the-number-of-k-big-indices/）使用有序集合维护计算数量
 2276. 统计区间中的整数数目（https://leetcode.cn/problems/count-integers-in-intervals/）动态开点线段树模板题，维护区间并集的长度，也可使用SortedList
 1912. 设计电影租借系统（https://leetcode.cn/problems/design-movie-rental-system/）典型SortedList应用
+1825. 求出 MK 平均值（https://leetcode.cn/problems/finding-mk-average/）经典SortedList与deque应用
 
 ===================================洛谷===================================
 P1577 切绳子（https://www.luogu.com.cn/problem/P1577）数学整除向下取整与二分
