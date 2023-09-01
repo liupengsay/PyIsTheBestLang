@@ -38,6 +38,9 @@ P2850 [USACO06DEC]Wormholes G（https://www.luogu.com.cn/problem/P2850）计算�
 P4878 [USACO05DEC]Layout G（https://www.luogu.com.cn/problem/P4878）经典差分数组与Dijkstra计算最短路
 P5751 [NOI1999] 01串（https://www.luogu.com.cn/problem/P5751）经典前缀和转换为差分约束求解，并计算最大值
 
+===================================AtCoder===================================
+D - Score Attack （https://atcoder.jp/contests/abc061/tasks/abc061_d）经典反向建图后判断是否有正环并计算最长路
+
 ===================================力扣===================================
 参考：
 差分约束（https://oi-wiki.org/graph/diff-constraints/）
@@ -432,6 +435,43 @@ class Solution:
 
         # 即为前缀和 pre[n+1] - pre[1]
         ac.st(dis[n + 1] - dis[1])
+        return
+
+    @staticmethod
+    def abc_61d(ac=FastIO()):
+        # 模板：经典反向建图后判断是否有正环并计算最长路
+        n, m = ac.read_ints()
+        edges = [ac.read_list_ints() for _ in range(m)]
+        rev = [[] for _ in range(n)]
+        for a, b, c in edges:
+            a -= 1
+            b -= 1
+            rev[b].append(a)
+
+        # 反向建图
+        reach = [0] * n
+        stack = [n - 1]
+        reach[-1] = 1
+        while stack:
+            i = stack.pop()
+            for j in rev[i]:
+                if not reach[j]:
+                    reach[j] = 1
+                    stack.append(j)
+
+        dct = [dict() for _ in range(n)]
+        for a, b, c in edges:
+            a -= 1
+            b -= 1
+            if reach[a] and reach[b]:
+                dct[a][b] = -c
+
+        # 正环与最长路
+        res, dis, _ = SPFA().negative_circle(dct, 0, 0)
+        if res == "YES":
+            ac.st("inf")
+        else:
+            ac.st(-dis[n - 1])
         return
 
     @staticmethod
