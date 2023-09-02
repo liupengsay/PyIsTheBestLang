@@ -1,22 +1,5 @@
-import bisect
-import decimal
-import heapq
-from types import GeneratorType
-from math import inf
-import sys
-from bisect import bisect_left, bisect_right
-from heapq import heappush, heappop, heappushpop
-from functools import cmp_to_key
-from collections import defaultdict, Counter, deque
-import math
-from functools import lru_cache
-from heapq import nlargest
-from functools import reduce
 import random
-from itertools import combinations, permutations
-from operator import xor, add
-from operator import mul
-from typing import List, Callable, Dict, Set, Tuple, DefaultDict
+import sys
 
 
 # sys.setrecursionlimit(10**8)设置最大递归次数
@@ -131,8 +114,37 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
-
+        s = ac.read_str()
+        n = len(s)
+        ans =""
+        for x in range(2, n, 2):
+            if s[:x//2] == s[x//2:x]:
+                ans = s[:x]
+        ac.st(len(ans))
         return
 
 
-Solution().main()
+# Solution().main()
+
+
+for n in range(2, 12):
+    lst = list(range(1, n+1))
+    nex = []
+    while lst:
+        nex.append(lst.pop(0))
+        nex.reverse()
+
+    ans = [0] * n
+    i, j = 0, n - 1
+    x = n - 1
+    while i < j:
+        ans[i] = x
+        x -= 1
+        ans[j] = x
+        x -= 1
+        i += 1
+        j -= 1
+    if i == j:
+        ans[i] = x
+    print(nex, [i+1 for i in ans])
+    assert [i+1 for i in ans] == nex

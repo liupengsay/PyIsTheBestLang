@@ -59,6 +59,7 @@ B. Mashmokh and ACM（https://codeforces.com/problemset/problem/414/B）经典�
 
 ================================AtCoder================================
 D - Iroha and a Grid（https://atcoder.jp/contests/abc042/tasks/arc058_b）容斥原理组合计数
+D - 11（https://atcoder.jp/contests/abc066/tasks/arc077_b）经典容斥原理组合计数
 
 ================================AcWing==================================
 130. 火车进出栈问题（https://www.acwing.com/problem/content/132/）超大数字的卡特兰数计算
@@ -410,6 +411,29 @@ class Solution:
             cur = cb.comb(x+y-2, x-1)*cb.comb(h-x+w-y-1, h-x)
             ans = (ans-cur) % mod
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_65d(ac=FastIO()):
+        # 模板：经典容斥原理组合计数
+        mod = 10**9 + 7
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        ind = [-1, -1]
+        pre = defaultdict(list)
+        for i in range(n + 1):
+            pre[nums[i]].append(i)
+            if len(pre[nums[i]]) == 2:
+                ind = pre[nums[i]]
+                break
+        x = ind[0]
+        y = n - ind[-1]
+        cb = Combinatorics(n + 10, mod)
+        for k in range(1, n + 2):
+            ans = cb.comb(n + 1, k)
+            if 1 <= k <= x + y + 1:
+                ans -= cb.comb(x + y, k - 1)
+            ac.st(ans % mod)
         return
 
     @staticmethod
