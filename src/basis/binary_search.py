@@ -99,6 +99,7 @@ I. Photo Processing（https://codeforces.com/problemset/problem/883/I）二分�
 
 ================================AtCoder================================
 D - No Need （https://atcoder.jp/contests/abc056/tasks/arc070_b）经典利用单调性进行二分，用背包DP进行check
+D - Widespread（https://atcoder.jp/contests/abc063/tasks/arc075_b）经典利用单调性进行二分，贪心进行check
 
 ================================AcWing================================
 120. 防线（https://www.acwing.com/problem/content/122/）根据单调性二分
@@ -575,6 +576,23 @@ class Solution:
             ac.st(ans+1)
         else:
             ac.st(0)
+        return
+
+    @staticmethod
+    def abc_63d(ac=FastIO()):
+        # 模板：经典利用单调性进行二分，贪心进行check
+        n, a, b = ac.read_ints()
+        nums = [ac.read_int() for _ in range(n)]
+
+        def check(s):
+            res = 0
+            for num in nums:
+                if num > s*b:
+                    res += ac.ceil((num-s*b), (a-b))
+            return res <= s
+
+        ans = BinarySearch().find_int_left(0, ac.ceil(max(nums), b), check)
+        ac.st(ans)
         return
 
     @staticmethod

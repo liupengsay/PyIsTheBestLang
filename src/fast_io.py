@@ -101,24 +101,8 @@ class FastIO:
         return a if a < b else b
 
     @staticmethod
-    def bootstrap(f, queue=[]):
-        def wrappedfunc(*args, **kwargs):
-            if queue:
-                return f(*args, **kwargs)
-            else:
-                to = f(*args, **kwargs)
-                while True:
-                    if isinstance(to, GeneratorType):
-                        queue.append(to)
-                        to = next(to)
-                    else:
-                        queue.pop()
-                        if not queue:
-                            break
-                        to = queue[-1].send(to)
-                return to
-
-        return wrappedfunc
+    def ceil(a, b):
+        return a // b + int(a % b != 0)
 
     def ask(self, lst):
         # CF交互题输出询问并读取结果
@@ -141,6 +125,11 @@ class FastIO:
         for i in range(n):
             pre[i + 1] = pre[i] + nums[i]
         return pre
+
+    @staticmethod
+    def get_random_seed():
+        # 随机种子避免哈希冲突
+        return random.randint(0, 10 ** 9 + 7)
 
     @staticmethod
     def print_info(st):
