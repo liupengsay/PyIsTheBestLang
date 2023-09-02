@@ -83,6 +83,7 @@ D - Connectivity（https://atcoder.jp/contests/abc049/tasks/arc065_b）经典双
 ================================AcWing================================
 4306. 序列处理（https://www.acwing.com/problem/content/description/4309/）经典向右合并的区间并查集
 4866. 最大数量（https://www.acwing.com/problem/content/description/4869/）经典并查集模拟维护连通块大小与多余的边数量
+5145. 同色环（https://www.acwing.com/problem/content/5148/）使用并查集判矩阵四元及以上的环
 
 参考：OI WiKi（xx）
 """
@@ -274,6 +275,32 @@ class Solution:
                         break
             ac.st(ans)
 
+        return
+
+    @staticmethod
+    def ac_5145(ac=FastIO()):
+        # 模板：使用并查集判矩阵四元及以上的环
+        m, n = ac.read_ints()
+        grid = [ac.read_str() for _ in range(m)]
+        edges = []
+        uf = UnionFind(m * n)
+        for i in range(m):
+            for j in range(n):
+                for x, y in [[i, j + 1], [i + 1, j]]:
+                    # 只有上下左右，所以不会有三元环
+                    if 0 <= x < m and 0 <= y < n and grid[x][y] == grid[i][j]:
+                        edges.append([i * n + j, x * n + y])
+                        uf.union(i * n + j, x * n + y)
+        group = uf.get_root_part()
+        degree = defaultdict(int)
+        for i, j in edges:
+            degree[uf.find(i)] += 1
+        for g in group:
+            # 并查集多边必然是四元环及以上
+            if degree[g] >= len(group[g]) >= 4:
+                ac.st("Yes")
+                return
+        ac.st("No")
         return
 
     @staticmethod
