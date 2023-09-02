@@ -56,6 +56,9 @@ P1550 [USACO08OCT] Watering Hole G（https://www.luogu.com.cn/problem/P1550）�
 D. Design Tutorial: Inverse the Problem（https://codeforces.com/problemset/problem/472/D）使用最小生成树判断构造给定的点对最短路距离是否存在，使用prim算法复杂度更优
 E. Minimum spanning tree for each edge（https://codeforces.com/problemset/problem/609/E）使用LCA的思想维护树中任意两点的路径边权最大值，并贪心替换获得边作为最小生成树时的最小权值和，有点类似于关键边与非关键边，但二者并不相同，即为严格次小生成树
 
+===================================AtCoder===================================
+D - Built?（https://atcoder.jp/contests/abc065/tasks/arc076_b）最小生成树变形问题
+
 ================================Acwing================================
 3728. 城市通电（https://www.acwing.com/problem/content/3731/）使用prim计算最小生成树，适合稠密图场景，并获取具体连边方案，也可直接使用Kruskal（超时）
 
@@ -838,6 +841,32 @@ class Solution:
             if uf.part == 1:
                 break
         ac.st(cost)
+        return
+
+    @staticmethod
+    def abc_65d(ac=FastIO()):
+        # 模板：最小生成树变形问题
+        n = ac.read_int()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        ind = list(range(n))
+        ind.sort(key=lambda it: nums[it][0])
+        edges = []
+        for i in range(1, n):
+            x, y = ind[i-1], ind[i]
+            d = nums[y][0] - nums[x][0]
+            edges.append([x, y, d])
+        uf = UnionFind(n)
+        ind.sort(key=lambda it: nums[it][1])
+        for i in range(1, n):
+            x, y = ind[i - 1], ind[i]
+            d = nums[y][1] - nums[x][1]
+            edges.append([x, y, d])
+        edges.sort(key=lambda it: it[2])
+        ans = 0
+        for i, j, d in edges:
+            if uf.union(i, j):
+                ans += d
+        ac.st(ans)
         return
 
     @staticmethod
