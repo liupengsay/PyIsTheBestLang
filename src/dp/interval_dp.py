@@ -25,6 +25,7 @@ MOD = 10 ** 9 + 7
 1547. 切棍子的最小成本（https://leetcode.cn/problems/minimum-cost-to-cut-a-stick/）区间DP模拟
 1278. 分割回文串 III（https://leetcode.cn/problems/palindrome-partitioning-iii/）经典预处理双重区间DP进行计算
 1690. 石子游戏 VII（https://leetcode.cn/problems/stone-game-vii/description/）经典区间DP
+1312. 让字符串成为回文串的最少插入次数（https://leetcode.cn/problems/minimum-insertion-steps-to-make-a-string-palindrome/）经典区间DP，最长回文子序列
 
 ===================================洛谷===================================
 P1521 求逆序对（https://www.luogu.com.cn/problem/P1521）使用归并排序计算移动次数，也可以使用倍增的树状数组
@@ -103,6 +104,23 @@ class Solution:
             for j in range(i + 1, n):
                 dp[i][j] = nums[j] - nums[i] + min(dp[i + 1][j], dp[i][j - 1])
         return dp[0][n - 1]
+
+    @staticmethod
+    def lc_1312(s: str) -> int:
+        # 模板：经典区间DP，最长回文子序列
+        n = len(s)
+        dp = [[0]*n for _ in range(n)]
+        for i in range(n-1, -1, -1):
+            dp[i][i] = 1
+            if i+1 < n:
+                dp[i][i+1] = 2 if s[i] == s[i+1] else 1
+            for j in range(i+2, n):
+                a, b = dp[i+1][j], dp[i][j-1]
+                a = a if a > b else b
+                b = dp[i+1][j-1] + 2*int(s[i] == s[j])
+
+                dp[i][j] = a if a > b else b
+        return n-dp[0][n-1]
 
     @staticmethod
     def lc_1547(n: int, cuts: List[int]) -> int:
