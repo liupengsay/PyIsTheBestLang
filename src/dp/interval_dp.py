@@ -1,5 +1,7 @@
 
 import unittest
+from functools import lru_cache
+from itertools import accumulate
 from typing import List
 
 from src.fast_io import FastIO, inf
@@ -22,6 +24,7 @@ MOD = 10 ** 9 + 7
 2430. 对字母串可执行的最大删除数（https://leetcode.cn/problems/maximum-deletions-on-a-string/）最长公共前缀DP加线性DP
 1547. 切棍子的最小成本（https://leetcode.cn/problems/minimum-cost-to-cut-a-stick/）区间DP模拟
 1278. 分割回文串 III（https://leetcode.cn/problems/palindrome-partitioning-iii/）经典预处理双重区间DP进行计算
+1690. 石子游戏 VII（https://leetcode.cn/problems/stone-game-vii/description/）经典区间DP
 
 ===================================洛谷===================================
 P1521 求逆序对（https://www.luogu.com.cn/problem/P1521）使用归并排序计算移动次数，也可以使用倍增的树状数组
@@ -113,6 +116,22 @@ class Solution:
             for j in range(i+2, m):
                 dp[i][j] = cuts[j]-cuts[i] + min(dp[i][k] + dp[k][j] for k in range(i+1, j))
         return dp[0][m-1]
+
+    @staticmethod
+    def lc_1690(stones: List[int]) -> int:
+        # 模板：经典区间DP
+        n = len(stones)
+        pre = list(accumulate(stones, initial=0))
+
+        @lru_cache(None)
+        def dfs(i, j):
+            if i == j:
+                return 0
+            return max(-dfs(i + 1, j) + pre[j + 1] - pre[i + 1], -dfs(i, j - 1) + pre[j] - pre[i])
+
+        ans = dfs(0, n - 1)
+        dfs.cache_clear()
+        return ans
 
     @staticmethod
     def lc_2472(s: str, k: int) -> int:
