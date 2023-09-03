@@ -47,6 +47,7 @@ from src.mathmatics.comb_perm import Combinatorics
 2060. 同源字符串检测（https://leetcode.cn/problems/check-if-an-original-string-exists-given-two-encoded-strings/description/）二维矩阵DP枚举记忆化搜索
 2556. 二进制矩阵中翻转最多一次使路径不连通（https://leetcode.cn/problems/disconnect-path-in-a-binary-matrix-by-at-most-one-flip/description/）经典矩阵DP思维题，判断割点可行性
 920. 播放列表的数量（https://leetcode.cn/problems/number-of-music-playlists/）经典矩阵DP
+1594. 矩阵的最大非负积（https://leetcode.cn/problems/maximum-non-negative-product-in-a-matrix/）经典矩阵DP最大与最小乘积转移
 
 ===================================洛谷===================================
 P2701 [USACO5.3]巨大的牛棚Big Barn（https://www.luogu.com.cn/problem/P2701）求全为 "." 的最大正方形面积，如果不要求实心只能做到O(n^3)复杂度
@@ -1951,6 +1952,32 @@ class Solution:
         ac.st((cnt[t][n] + mod) % mod)
         return
 
+    @staticmethod
+    def lc_1594(grid: List[List[int]]) -> int:
+
+        # 模板：经典矩阵DP最大与最小乘积转移
+        m, n = len(grid), len(grid[0])
+
+        @lru_cache(None)
+        def dfs(i, j):
+            if i == m - 1 and j == n - 1:
+                return [grid[i][j], grid[i][j]]
+            low = inf
+            high = -inf
+            x = grid[i][j]
+            for a, b in [[i + 1, j], [i, j + 1]]:
+                if a < m and j < n:
+                    res = dfs(a, b)
+                    for w in res:
+                        low = min(low, w * x)
+                        high = max(high, w * x)
+            return [low, high]
+
+        ans = dfs(0, 0)[1]
+        if ans < 0:
+            return -1
+        return ans % (10 ** 9 + 7)
+    
     @staticmethod
     def lc_1771(word1: str, word2: str) -> int:
         # 模板：经典最长回文子序列矩阵DP
