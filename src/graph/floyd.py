@@ -40,7 +40,7 @@ D. Design Tutorial: Inverse the Problem（https://codeforces.com/problemset/prob
 
 ================================AtCoder================================
 D - Candidates of No Shortest Paths（https://atcoder.jp/contests/abc051/tasks/abc051_d）经典Floyd计算最短路的必经边
-
+D - Restoring Road Network（https://atcoder.jp/contests/abc074/tasks/arc083_b）经典最短路生成图，使用Floyd维护最小生成图
 
 ===================================AcWing===================================
 4872. 最短路之和（https://www.acwing.com/problem/content/submission/4875/）经典Floyd逆序逆向思维更新最短路对
@@ -211,6 +211,46 @@ class Solution:
         ac.st(ans)
         return
 
+    @staticmethod
+    def abc_74d(ac=FastIO()):
+        # 模板：经典最短路生成图，使用Floyd维护最小生成图
+        n = ac.read_int()
+        grid = [ac.read_list_ints() for _ in range(n)]
+        for i in range(n):
+            for j in range(n):
+                if grid[i][j] != grid[j][i]:
+                    ac.st(-1)
+                    return
+            if grid[i][i]:
+                ac.st(-1)
+                return
+
+        edges = []
+        for i in range(n):
+            for j in range(i+1, n):
+                edges.append([i, j, grid[i][j]])
+        edges.sort(key=lambda it: it[2])
+        ans = 0
+        dis = [[inf]*n for _ in range(n)]
+        for i in range(n):
+            dis[i][i] = 0
+        # 逐渐更新最短距离
+        for i, j, w in edges:
+            if dis[i][j] < grid[i][j]:
+                ac.st(-1)
+                return
+            if dis[i][j] == w:
+                continue
+            ans += w
+            for x in range(n):
+                for y in range(x+1, n):
+                    a, b = dis[x][y], dis[x][i]+w+dis[j][y]
+                    a = a if a < b else b
+                    b = dis[x][j]+w+dis[i][y]
+                    a = a if a < b else b
+                    dis[x][y] = dis[y][x] = a
+        ac.st(ans)
+        return
 
     @staticmethod
     def cf_472d(ac=FastIO()):
