@@ -130,6 +130,7 @@ D - Digit Sum（https://atcoder.jp/contests/abc044/tasks/arc060_b）经典进制
 D - Menagerie （https://atcoder.jp/contests/abc055/tasks/arc069_b）思维题脑筋急转弯枚举
 C - Sequence（https://atcoder.jp/contests/abc059/tasks/arc072_a）枚举前缀和的符号贪心增减
 C - Chocolate Bar（https://atcoder.jp/contests/abc062/tasks/arc074_a）枚举切割方式
+C - Sugar Water（https://atcoder.jp/contests/abc074/tasks/arc083_a）经典枚举系数利用公式计算边界
 
 ================================Acwing===================================
 95. 费解的开关（https://www.acwing.com/problem/content/description/97/）枚举第一行的开关按钮使用状态
@@ -428,6 +429,38 @@ class Solution:
         check1()
         check2()
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_74c(ac=FastIO()):
+        # 模板：经典枚举系数利用公式计算边界
+        res = 0
+        a, b, c, d, e, f = ac.read_ints()
+        ans = [100 * a, 0]
+        for p in range(3001):
+            if p * a * 100 > f:
+                break
+            for q in range(3001):
+                if p * a * 100 + q * b * 100 > f:
+                    break
+                if p == q == 0:
+                    continue
+                ceil = (p * a + q * b) * e
+
+                for x in range(3001):
+                    if x * c > ceil:
+                        break
+                    y1 = (ceil - x * c) // d
+                    y2 = (f - p * a * 100 - q * b * 100 - x * c) // d
+                    y1 = y1 if y1 < y2 else y2
+                    if y1 < 0:
+                        continue
+                    y = y1
+                    percent = 100 * (x * c + y * d) / (p * a * 100 + q * b * 100 + x * c + y * d)
+                    if percent > res:
+                        res = percent
+                        ans = [p * a * 100 + q * b * 100 + x * c + y * d, x * c + y * d]
+        ac.lst(ans)
         return
 
     @staticmethod
