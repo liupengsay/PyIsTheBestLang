@@ -4,7 +4,7 @@ import math
 from collections import defaultdict, deque
 from functools import reduce, lru_cache
 from itertools import combinations, permutations
-from operator import mul
+from operator import mul, or_
 from typing import List
 
 from src.fast_io import FastIO, inf
@@ -47,6 +47,7 @@ from src.fast_io import FastIO, inf
 910. 最小差值 II（https://leetcode.cn/problems/smallest-range-ii/description/）经典枚举操作的范围，计算最大值与最小值
 1131. 绝对值表达式的最大值（https://leetcode.cn/problems/maximum-of-absolute-value-expression/description/）经典曼哈顿距离计算，枚举可能的符号组合
 1761. 一个图中连通三元组的最小度数（https://leetcode.cn/problems/minimum-degree-of-a-connected-trio-in-a-graph/description/?envType=daily-question&envId=2023-08-31）经典无向图转为有向图进行枚举
+1178. 猜字谜（https://leetcode.cn/problems/number-of-valid-words-for-each-puzzle/）典型哈希计数枚举，使用位运算
 
 ===================================洛谷===================================
 P1548 棋盘问题（https://www.luogu.com.cn/problem/P1548）枚举正方形与长方形的右小角计算个数
@@ -1089,6 +1090,29 @@ class Solution:
             c = c if c < d else d
             if a - c < ans:
                 ans = a - c
+        return ans
+
+    @staticmethod
+    def lc_1178(words: List[str], puzzles: List[str]) -> List[int]:
+        # 模板：典型哈希计数枚举，使用位运算
+        dct = defaultdict(int)
+        for word in words:
+            cur = set(word)
+            lst = [ord(w) - ord("a") for w in cur]
+            state = reduce(or_, [1 << x for x in lst])
+            if len(cur) <= 7:
+                dct[state] += 1
+        ans = []
+        for word in puzzles:
+            lst = [ord(w) - ord("a") for w in word]
+            n = len(lst)
+            cur = 0
+            for i in range(1 << (n - 1)):
+                i *= 2
+                i += 1
+                s = sum(1 << lst[j] for j in range(n) if i & (1 << j))
+                cur += dct[s]
+            ans.append(cur)
         return ans
 
     @staticmethod
