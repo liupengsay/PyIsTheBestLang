@@ -1425,6 +1425,7 @@ class Solution:
 
     @staticmethod
     def lc_2132(grid: List[List[int]], h: int, w: int) -> bool:
+        # 模板：用前缀和枚举可行的邮票左上端点，然后查看空白格点左上方是否有可行的邮票点，也可以使用经典的二维差分滚动模拟覆盖进行解决
         m, n = len(grid), len(grid[0])
 
         # 枚举可以贴邮票的左上角位置
@@ -1441,8 +1442,8 @@ class Solution:
             for j in range(n):
                 if not grid[i][j]:
                     # 检查是否有邮票覆盖
-                    x = max(0, i - h + 1)
-                    y = max(0, j - w + 1)
+                    x = i - h + 1 if i - h + 1 > 0 else 0
+                    y = j - w + 1 if j - w + 1 > 0 else 0
                     cur = pre.query(x, y, i, j)
                     if not cur:
                         return False
