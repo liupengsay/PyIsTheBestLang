@@ -35,6 +35,9 @@ E. Tree Queries（https://codeforces.com/problemset/problem/1328/E）利用 LCA 
 C. Ciel the Commander（https://codeforces.com/problemset/problem/321/C）使用树的质心递归，依次切割形成平衡树赋值
 E. A and B and Lecture Rooms（https://codeforces.com/problemset/problem/519/E）LCA经典运用题目，查询距离与第k个祖先节点，与子树节点计数
 
+================================AtCoder================================
+D - Transit Tree Path（https://atcoder.jp/contests/abc070/tasks/abc070_d）典型LCA查询运用题，也可离线实现
+
 ================================AcWing================================
 4202. 穿过圆（https://www.acwing.com/problem/content/4205/）使用位运算进行计算，也可使用包含关系建树，查询LCA计算距离
 
@@ -642,6 +645,39 @@ class Solution:
         for _ in range(m):
             x, y = ac.read_ints_minus_one()
             ac.st(tree.get_lca(x, y) + 1)
+        return
+
+    @staticmethod
+    def abc_70d(ac=FastIO()):
+        # 模板：典型LCA查询运用题，也可离线实现
+        n = ac.read_int()
+        edges = [[] for _ in range(n)]
+        dct = [[] for _ in range(n)]
+        for _ in range(n-1):
+            a, b, c = ac.read_ints()
+            dct[a-1].append([b-1, c])
+            dct[b-1].append([a-1, c])
+            edges[a-1].append(b-1)
+            edges[b-1].append(a-1)
+        tree = TreeAncestor(edges)
+
+        q, k = ac.read_ints()
+        k -= 1
+        dis = [0]*n
+        stack = [[0, -1]]
+        while stack:
+            i, fa = stack.pop()
+            for j, w in dct[i]:
+                if j != fa:
+                    stack.append([j, i])
+                    dis[j] = dis[i] + w
+        for _ in range(q):
+            a, b = ac.read_ints_minus_one()
+            c1 = tree.get_lca(a, k)
+            c2 = tree.get_lca(b, k)
+            ans1 = dis[a] + dis[k] - 2 * dis[c1]
+            ans2 = dis[b] + dis[k] - 2 * dis[c2]
+            ac.st(ans1+ans2)
         return
 
     @staticmethod
