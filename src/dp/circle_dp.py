@@ -1,4 +1,5 @@
 import unittest
+from collections import defaultdict
 from itertools import accumulate
 from math import inf
 from typing import List
@@ -47,6 +48,23 @@ class Solution:
         if floor < s:
             return max(ceil, s - floor)
         return ceil
+
+    @staticmethod
+    def lc_1388(slices: List[int]) -> int:
+
+        # 模板：环形区间DP，类似打家劫舍
+
+        def check(lst):
+            n = len(lst)
+            m = n // 3 + 1
+            dp = [[0] * (m + 1) for _ in range(n + 1)]
+            for i in range(n):
+                for j in range(1, m + 1):
+                    dp[i + 1][j] = max(dp[i][j], dp[i - 1][j - 1] + lst[i] if i else lst[i])
+            return dp[-1][-1]
+
+        ans = max(check(slices[1:]), check(slices[:-1]))
+        return ans
 
     @staticmethod
     def lc_1888(s: str) -> int:
