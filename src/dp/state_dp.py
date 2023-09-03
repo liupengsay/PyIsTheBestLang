@@ -30,7 +30,7 @@ from src.fast_io import FastIO
 1125. 最小的必要团队（https://leetcode.cn/problems/smallest-sufficient-team/）经典状压DP
 1467. 两个盒子中球的颜色数相同的概率（https://leetcode.cn/problems/probability-of-a-two-boxes-having-the-same-number-of-distinct-balls/）记忆化搜索
 1531. 压缩字符串 II（https://leetcode.cn/problems/string-compression-ii/submissions/）线性DP模拟
-1595. 连通两组点的最小成本（https://leetcode.cn/problems/minimum-cost-to-connect-two-groups-of-points/）经典状压DP
+1595. 连通两组点的最小成本（https://leetcode.cn/problems/minimum-cost-to-connect-two-groups-of-points/）经典状压DP，需要一点变形
 1655. 分配重复整数（https://leetcode.cn/problems/distribute-repeating-integers/）经典状压 DP
 1879. 两个数组最小的异或值之和（https://leetcode.cn/problems/minimum-xor-sum-of-two-arrays/）经典状压 DP
 2019. 解出数学表达式的学生分数（https://leetcode.cn/problems/the-score-of-students-solving-math-expression/）经典记忆化DP，可以使用刷表法与填表法迭代实现
@@ -582,6 +582,26 @@ class Solution:
                     dp[j | cur] = dp[j] + 1
         ac.st(dp[-1] if dp[-1] < inf else -1)
         return
+
+    @staticmethod
+    def lc_1595(cost: List[List[int]]) -> int:
+
+        # 模板：经典状压DP，需要一点变形
+        m, n = len(cost), len(cost[0])
+        low = [min(cost[i][j] for i in range(m)) for j in range(n)]
+
+        @lru_cache(None)
+        def dfs(i, state):
+            if i == m:
+                res = 0
+                for j in range(n):
+                    if not state & (1 << j):
+                        res += low[j]
+                return res
+            return min(dfs(i + 1, state | (1 << j)) + cost[i][j] for j in range(n))
+
+        return dfs(0, 0)
+
 
     @staticmethod
     def lc_1655(nums: List[int], quantity: List[int]) -> bool:
