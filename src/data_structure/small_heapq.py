@@ -1,7 +1,7 @@
 import heapq
 import random
 import unittest
-from collections import deque
+from collections import deque, defaultdict
 from heapq import heappushpop, heappush, heappop
 from typing import List
 
@@ -16,7 +16,7 @@ from src.fast_io import FastIO
 
 ===================================力扣===================================
 630. 课程表 III（https://leetcode.cn/problems/course-schedule-iii/）用一个堆延迟选择贪心维护最优
-2454. 下一个更大元素 IV（https://leetcode.cn/problems/next-greater-element-iv/）使用两个堆维护下下个更大元素即出队两次时遇见的元素
+2454. 下一个更大元素 IV（https://leetcode.cn/problems/next-greater-element-iv/）使用两个堆维护下下个更大元素即出队两次时遇见的元素，也可以使用经典的哈希加SortedList
 2402. 会议室 III（https://leetcode.cn/problems/meeting-rooms-iii/）使用两个堆模拟进行会议室安排并进行计数
 2386. 找出数组的第 K 大和（https://leetcode.cn/problems/find-the-k-sum-of-an-array/）转换思路使用堆维护最大和第 K 次出队的则为目标结果
 2163. 删除元素后和的最小差值（https://leetcode.cn/problems/minimum-difference-in-sums-after-removal-of-elements/）预处理前缀后缀最大最小的 K 个数和再进行枚举分割点
@@ -116,6 +116,43 @@ class MedianFinder:
 class Solution:
     def __int__(self):
         return
+
+    @staticmethod
+    def lc_2454_1(nums: List[int]) -> List[int]:
+        # 模板：经典哈希排序加SortedList
+        n = len(nums)
+        dct = defaultdict(list)
+        for i in range(n):
+            dct[nums[i]].append(i)
+        lst = SortedList()
+        ans = [-1] * n
+        for num in sorted(dct, reverse=True):
+            for i in dct[num]:
+                j = lst.bisect_left(i)
+                if 0 <= j + 1 < len(lst):
+                    ans[i] = nums[lst[j + 1]]
+            for i in dct[num]:
+                lst.add(i)
+        return ans
+
+    @staticmethod
+    def lc_2454_2(nums: List[int]) -> List[int]:
+
+        # 模板：经典单调栈加小顶堆
+        n = len(nums)
+        ans = [-1] * n
+        mono_stack = []
+        small_stack = []
+        for i in range(n):
+            while small_stack and small_stack[0][0] < nums[i]:
+                ans[heapq.heappop(small_stack)[1]] = nums[i]
+
+            while mono_stack and nums[mono_stack[-1]] < nums[i]:
+                j = mono_stack.pop()
+                heapq.heappush(small_stack, [nums[j], j])
+            mono_stack.append(i)
+
+        return ans
 
     @staticmethod
     def lg_1198(ac=FastIO()):
