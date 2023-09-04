@@ -38,6 +38,7 @@ from src.mathmatics.number_theory import NumberTheory
 2321. 拼接数组的最大分数（https://leetcode.cn/problems/maximum-score-of-spliced-array/description/）最大连续子数组和变种
 2320. 统计放置房子的方式数（https://leetcode.cn/problems/count-number-of-ways-to-place-houses/）经典线性DP
 1824. 最少侧跳次数（https://leetcode.cn/problems/minimum-sideway-jumps/description/）经典线性DP滚动数组
+978. 最长湍流子数组（https://leetcode.cn/problems/longest-turbulent-subarray/description/）经典线性DP滚动变量
 
 ===================================洛谷===================================
 P1970 [NOIP2013 提高组] 花匠（https://www.luogu.com.cn/problem/P1970）使用贪心与动态规划计算最长的山脉子数组
@@ -997,6 +998,24 @@ class Solution:
                 if j != x - 1:
                     dp[j] = dp[j] if dp[j] < low + 1 else low + 1
         return min(dp)
+
+    @staticmethod
+    def lc_978(arr: List[int]) -> int:
+        # 模板：经典线性DP滚动变量
+        n = len(arr)
+        ans = dp0 = dp1 = 1
+        for i in range(1, n):
+            if arr[i] > arr[i - 1]:
+                dp1 = dp0 + 1
+                dp0 = 1
+            elif arr[i] < arr[i - 1]:
+                dp0 = dp1 + 1
+                dp1 = 1
+            else:
+                dp0 = dp1 = 1
+            ans = ans if ans > dp0 else dp0
+            ans = ans if ans > dp1 else dp1
+        return ans
 
     @staticmethod
     def lc_1553(n: int) -> int:
