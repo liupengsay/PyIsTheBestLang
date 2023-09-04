@@ -9,6 +9,7 @@ from operator import xor
 from typing import List, Optional
 
 from src.basis.diff_array import PreFixSumMatrix
+from src.basis.tree_node import TreeNode
 from src.fast_io import FastIO
 from src.graph.lca import TreeAncestor
 
@@ -28,6 +29,7 @@ from src.graph.lca import TreeAncestor
 2322. 从树中删除边的最小分数（https://leetcode.cn/problems/minimum-score-after-removals-on-a-tree/）使用深搜序dfs序枚举
 1240. 铺瓷砖（https://leetcode.cn/problems/tiling-a-rectangle-with-the-fewest-squares/）经典DFS回溯与剪枝
 1239. 串联字符串的最大长度（https://leetcode.cn/problems/maximum-length-of-a-concatenated-string-with-unique-characters/）经典DFS回溯进行二进制枚举
+1080. 根到叶路径上的不足节点（https://leetcode.cn/problems/insufficient-nodes-in-root-to-leaf-paths/description/）经典dfs自上而下后又自下而上
 
 ===================================洛谷===================================
 P2383 狗哥玩木棒（https://www.luogu.com.cn/problem/P2383）暴力搜索木棍拼接组成正方形
@@ -278,6 +280,27 @@ class Solution:
         for i in range(1, n):
             gcd_minus(n, i, 0)
         return ans
+
+    @staticmethod
+    def lc_1080(root: Optional[TreeNode], limit: int) -> Optional[TreeNode]:
+
+        # 模板：经典dfs自上而下后又自下而上
+        def dfs(node, lmt):
+            if not node:
+                return
+            if not node.left and not node.right:
+                if node.val < lmt:
+                    return
+                return node
+            left = dfs(node.left, lmt - node.val)
+            right = dfs(node.right, lmt - node.val)
+            if not left and not right:
+                return
+            node.left = left
+            node.right = right
+            return node
+
+        return dfs(root, limit)
 
     @staticmethod
     def lc_1239(arr: List[str]) -> int:
