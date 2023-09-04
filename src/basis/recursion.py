@@ -15,6 +15,7 @@ from src.fast_io import FastIO
 894. 所有可能的真二叉树（https://leetcode.cn/problems/all-possible-full-binary-trees/）经典类似卡特兰数的递归模拟计算生成
 880. 索引处的解码字符串（https://leetcode.cn/problems/decoded-string-at-index/）经典递归计算模拟
 932. 漂亮数组（https://leetcode.cn/problems/beautiful-array/description/）使用递归分治进行构造经典
+889. 根据前序和后序遍历构造二叉树（https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-postorder-traversal/）使用递归经典分治构造
 
 ===================================洛谷===================================
 P1911 L 国的战斗之排兵布阵（https://www.luogu.com.cn/problem/P1911）使用四叉树递归计算
@@ -60,6 +61,23 @@ class Solution:
                     cur += 1
 
         return dfs(t, m)
+
+    def lc_889(self, preorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
+        # 模板：使用递归经典分治构造
+        if not preorder:
+            return
+
+        n = len(preorder)
+        root = preorder[0]
+        ans = TreeNode(root)
+        if n == 1:
+            return ans
+        val = preorder[1]
+        i = postorder.index(val)  # 注意前序遍历与后序遍历的数组特点
+        left_cnt = i + 1
+        ans.left = self.lc_889(preorder[1:left_cnt + 1], postorder[:left_cnt])
+        ans.right = self.lc_889(preorder[left_cnt + 1:], postorder[left_cnt:-1])
+        return ans
 
     @lru_cache(None)
     def lc_894(self, n: int) -> List[Optional[TreeNode]]:
