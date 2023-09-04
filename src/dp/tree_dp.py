@@ -32,6 +32,7 @@ from src.graph.union_find import UnionFind
 2003. 每棵子树内缺失的最小基因值（https://leetcode.cn/problems/smallest-missing-genetic-value-in-each-subtree/）树形DP启发式合并
 2673. 使二叉树所有路径值相等的最小代价（https://leetcode.cn/problems/make-costs-of-paths-equal-in-a-binary-tree/）经典树形DP贪心
 1367. 二叉树中的链表（https://leetcode.cn/problems/linked-list-in-binary-tree/description/）典型二叉树与链表比较的记忆化DP
+979. 在二叉树中分配硬币（https://leetcode.cn/problems/distribute-coins-in-binary-tree/description/）经典树形DP贪心
 
 ===================================洛谷===================================
 
