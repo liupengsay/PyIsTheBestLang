@@ -38,6 +38,7 @@ from math import inf
 992. K 个不同整数的子数组（https://leetcode.cn/problems/subarrays-with-k-different-integers/）经典三指针，即快慢双指针维护连续子区间个数
 2747. 统计没有收到请求的服务器数目（https://leetcode.cn/problems/count-zero-request-servers/）经典离线查询与三指针，即快慢双指针维护连续区间的不同值个数
 2516. 每种字符至少取 K 个（https://leetcode.cn/problems/take-k-of-each-character-from-left-and-right/）逆向思维容斥原理经典双指针
+1537. 最大得分（https://leetcode.cn/problems/get-the-maximum-score/description/）双指针加线性DP或者拓扑排序做
 
 ===================================洛谷===================================
 P2381 圆圆舞蹈（https://www.luogu.com.cn/problem/P2381）环形数组，滑动窗口双指针
@@ -427,6 +428,29 @@ class Solution:
             else:
                 j = j + k + 1
         return s[i:]
+
+    @staticmethod
+    def lc_1537(nums1: List[int], nums2: List[int]) -> int:
+        # 模板：双指针加线性DP或者拓扑排序做
+        mod = 10**9 + 7
+        m, n = len(nums1), len(nums2)
+        i = j = pre1 = pre2 = 0
+        while i < m and j < n:
+            if nums1[i] < nums2[j]:
+                pre1 += nums1[i]
+                i += 1
+            elif nums1[i] > nums2[j]:
+                pre2 += nums2[j]
+                j += 1
+            else:
+                pre1 += nums1[i]
+                pre2 += nums2[j]
+                pre1 = pre2 = pre1 if pre1 > pre2 else pre2
+                i += 1
+                j += 1
+        pre1 += sum(nums1[i:])
+        pre2 += sum(nums2[j:])
+        return max(pre1, pre2) % mod
 
     @staticmethod
     def lc_2447(nums: List[int], k: int) -> int:
