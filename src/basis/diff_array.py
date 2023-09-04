@@ -32,6 +32,7 @@ from math import inf
 1943. 描述绘画结果（https://leetcode.cn/problems/describe-the-painting/）经典离散化差分
 2021. 街上最亮的位置（https://leetcode.cn/problems/brightest-position-on-street/）经典离散化差分
 837. 新 21 点（https://leetcode.cn/problems/new-21-game/description/）使用差分数组模拟进行概率计算
+891. 子序列宽度之和（https://leetcode.cn/problems/sum-of-subsequence-widths/description/）前后缀枚举最大值与最小值计数
 
 ===================================洛谷===================================
 P8772 [蓝桥杯 2022 省 A] 求和（https://www.luogu.com.cn/record/list?user=739032&status=12&page=15）后缀和计算
@@ -1358,6 +1359,21 @@ class Solution:
         ans = BinarySearch().find_int_left(1, m, check)
         ac.st(ans)
         return
+    @staticmethod
+    def lc_891(nums: List[int]) -> int:
+        # 模板：前后缀枚举最大值与最小值计数
+        mod = 10 ** 9 + 7
+        dp = [1]
+        for i in range(10 ** 5):
+            dp.append((dp[-1] * 2) % mod)
+        n = len(nums)
+        nums.sort()
+        ans = 0
+        for i in range(n):
+            ans += nums[i] * dp[i]
+            ans -= nums[i] * dp[n - 1 - i]
+            ans %= mod
+        return ans
 
     @staticmethod
     def lc_1292(mat: List[List[int]], threshold: int) -> int:

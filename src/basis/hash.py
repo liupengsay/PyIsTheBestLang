@@ -21,8 +21,6 @@ from src.fast_io import FastIO
 2031. 1 比 0 多的子数组个数（https://leetcode.cn/problems/count-subarrays-with-more-ones-than-zeros/）经典前缀和哈希计数
 2025. 分割数组的最多方案数（https://leetcode.cn/problems/maximum-number-of-ways-to-partition-an-array/description/）厘清边界使用哈希贡献法计数
 895. 最大频率栈（https://leetcode.cn/problems/maximum-frequency-stack/description/）经典哈希与栈的结合应用题
-
-
 ===================================洛谷===================================
 P2697 宝石串（https://www.luogu.com.cn/problem/P2697）哈希记录前缀和与对应索引
 P1114 “非常男女”计划（https://www.luogu.com.cn/record/list?user=739032&status=12&page=13）哈希记录前缀和与对应索引
