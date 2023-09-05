@@ -227,7 +227,7 @@ class TarjanCC:
         return ans
 
     @staticmethod
-    def get_cutting_point_and_cutting_edge_bfs(n: int, edge: List[List[int]]) -> (Set[int], Set[Tuple[int, int]]):
+    def get_cutting_point_and_cutting_edge_bfs(n: int, edge: List[List[int]]) -> (Set[int], List[Tuple[int, int]]):
         # 模板：Tarjan求解无向图的割点和割边（也就是桥）
         order, low = [inf] * n, [inf] * n
         visit = [0] * n
