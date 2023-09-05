@@ -16,6 +16,7 @@ from src.fast_io import FastIO
 880. 索引处的解码字符串（https://leetcode.cn/problems/decoded-string-at-index/）经典递归计算模拟
 932. 漂亮数组（https://leetcode.cn/problems/beautiful-array/description/）使用递归分治进行构造经典
 889. 根据前序和后序遍历构造二叉树（https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-postorder-traversal/）使用递归经典分治构造
+1028. 从先序遍历还原二叉树（https://leetcode.cn/problems/recover-a-tree-from-preorder-traversal/description/）根据先序遍历递归构造二叉树
 
 ===================================洛谷===================================
 P1911 L 国的战斗之排兵布阵（https://www.luogu.com.cn/problem/P1911）使用四叉树递归计算
@@ -104,6 +105,35 @@ class Solution:
         if n == 1:
             return [1]
         return [2*x-1 for x in self.lc_932((n+1)//2)] + [2*x for x in self.lc_932(n//2)]
+
+    @staticmethod
+    def lc_1028(traversal: str) -> Optional[TreeNode]:
+
+        # 模板：根据先序遍历递归构造二叉树
+        ans = ""
+        pre = 0
+        for w in traversal:
+            if w == "-":
+                pre += 1
+            else:
+                if pre:
+                    ans += "(" + str(pre) + ")"
+                pre = 0
+                ans += w
+
+        def dfs(s, d):
+            if not s:
+                return
+            c = "(" + str(d) + ")"
+            lst = s.split(c)
+            root = TreeNode(int(lst[0]))
+            if len(lst) > 1:
+                root.left = dfs(lst[1], d + 1)
+            if len(lst) > 2:
+                root.right = dfs(lst[2], d + 1)
+            return root
+
+        return dfs(ans, 1)
 
     @staticmethod
     def lc_1345(a: int, b: int) -> str:
