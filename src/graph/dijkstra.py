@@ -4,11 +4,10 @@ import unittest
 from collections import defaultdict, deque
 from itertools import accumulate
 from operator import add
-from typing import List, Dict, Set
+from typing import List, Set
 from collections import Counter
 
 from src.fast_io import FastIO, inf
-from src.graph.spfa import SPFA
 
 """
 算法：Dijkstra（单源最短路经算法）、严格次短路、要保证加和最小因此只支持非负数权值、或者取反全部为非正数计算最长路、最短路生成树
@@ -94,7 +93,6 @@ P5201 [USACO19JAN]Shortcut G（https://www.luogu.com.cn/problem/P5201）经典�
 P5663 [CSP-J2019] 加工零件（https://www.luogu.com.cn/problem/P5663）经典最短路变形题目，计算最短的奇数与偶数距离
 P5683 [CSP-J2019 江西] 道路拆除（https://www.luogu.com.cn/problem/P5683）计算三遍最短路枚举中间节点到三者之间的距离
 P5837 [USACO19DEC]Milk Pumping G（https://www.luogu.com.cn/problem/P5837）经典Dijkstra变形问题，带多个状态
-P5905 【模板】Johnson 全源最短路（https://www.luogu.com.cn/problem/P5905）有向带权图可能有负权 Johnson 全源最短路计算所有点对的最短路
 P5930 [POI1999] 降水（https://www.luogu.com.cn/problem/P5930）经典Dijkstra应用接雨水
 P6063 [USACO05JAN]The Wedding Juicer G（https://www.luogu.com.cn/problem/P6063）经典Dijkstra应用接雨水
 P6512 [QkOI#R1] Quark and Flying Pigs（https://www.luogu.com.cn/problem/P6512）经典最短路加DP
@@ -102,6 +100,7 @@ P8385 [POI 2003] Smugglers（https://www.luogu.com.cn/problem/P8385）经典脑�
 P8724 [蓝桥杯 2020 省 AB3] 限高杆（https://www.luogu.com.cn/problem/P8724）分层最短路Dijkstra计算
 P8802 [蓝桥杯 2022 国 B] 出差（https://www.luogu.com.cn/problem/P8802）Dijkstra基础权重变形题
 P2176 [USACO11DEC] RoadBlock S / [USACO14FEB]Roadblock G/S（https://www.luogu.com.cn/problem/P2176）枚举最短路上的边修改后，重新计算最短路
+
 ================================CodeForces================================
 C. Dijkstra?（https://codeforces.com/problemset/problem/20/C）正权值最短路计算，并记录返回生成路径
 E. Weights Distributing（https://codeforces.com/problemset/problem/1343/E）使用三个01BFS求最短路加贪心枚举计算
@@ -1446,37 +1445,6 @@ class Solution:
                     dis[j] = dj
                     heapq.heappush(stack, [dj, j, cost + c, ac.min(flow, f)])
         ac.st(int(-dis[-1] * 10**6))
-        return
-
-    @staticmethod
-    def lg_p5905(ac=FastIO()):
-        # 模板：有向带权图可能有负权 Johnson 全源最短路计算所有点对的最短路
-        n, m = ac.read_ints()
-        dct = [[] for _ in range(n + 1)]
-        for _ in range(m):
-            u, v, w = ac.read_ints()
-            dct[u].append([v, w])
-        for i in range(1, n + 1):
-            dct[0].append([i, 0])
-        # 首先使用 Bellman-Ford 的队列实现算法 SPFA 判断有没有负环
-        flag, h, _ = SPFA().negative_circle_edge(dct)
-        if flag == "YES":
-            ac.st(-1)
-            return
-        # 其次建立新图枚举起点跑 Dijkstra
-        for i in range(n + 1):
-            k = len(dct[i])
-            for x in range(k):
-                j, w = dct[i][x]
-                dct[i][x][1] = w + h[i] - h[j]
-        dj = Dijkstra()
-        for i in range(1, n + 1):
-            ans = 0
-            dis = dj.get_dijkstra_result_edge(dct, i)
-            for j in range(1, n + 1):
-                # 还原之后才为原图最短路
-                ans += j * (dis[j] + h[j] - h[i]) if dis[j] < inf else j * 10**9
-            ac.st(ans)
         return
 
     @staticmethod

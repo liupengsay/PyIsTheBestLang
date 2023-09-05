@@ -37,6 +37,7 @@ P1986 元旦晚会（https://www.luogu.com.cn/problem/P1986）差分约束求解
 P2850 [USACO06DEC]Wormholes G（https://www.luogu.com.cn/problem/P2850）计算从任意起点出发是否存在负环
 P4878 [USACO05DEC]Layout G（https://www.luogu.com.cn/problem/P4878）经典差分数组与Dijkstra计算最短路
 P5751 [NOI1999] 01串（https://www.luogu.com.cn/problem/P5751）经典前缀和转换为差分约束求解，并计算最大值
+P5905 【模板】Johnson 全源最短路（https://www.luogu.com.cn/problem/P5905）有向带权图可能有负权 Johnson 全源最短路计算所有点对的最短路
 
 ===================================AtCoder===================================
 D - Score Attack （https://atcoder.jp/contests/abc061/tasks/abc061_d）经典反向建图后判断是否有正环并计算最长路
@@ -585,6 +586,37 @@ class Solution:
             # 由于是按照编号顺序因此最大解为 dis[n-1] = pos[0] - pos[n-1] 最小即 pos[n-1] - pos[0] 最大
             dis = Dijkstra().get_dijkstra_result(dct, 0)
             ac.st(dis[n - 1] if dis[n - 1] < inf else -2)
+        return
+
+    @staticmethod
+    def lg_p5905(ac=FastIO()):
+        # 模板：有向带权图可能有负权 Johnson 全源最短路计算所有点对的最短路
+        n, m = ac.read_ints()
+        dct = [[] for _ in range(n + 1)]
+        for _ in range(m):
+            u, v, w = ac.read_ints()
+            dct[u].append([v, w])
+        for i in range(1, n + 1):
+            dct[0].append([i, 0])
+        # 首先使用 Bellman-Ford 的队列实现算法 SPFA 判断有没有负环
+        flag, h, _ = SPFA().negative_circle_edge(dct)
+        if flag == "YES":
+            ac.st(-1)
+            return
+        # 其次建立新图枚举起点跑 Dijkstra
+        for i in range(n + 1):
+            k = len(dct[i])
+            for x in range(k):
+                j, w = dct[i][x]
+                dct[i][x][1] = w + h[i] - h[j]
+        dj = Dijkstra()
+        for i in range(1, n + 1):
+            ans = 0
+            dis = dj.get_dijkstra_result_edge(dct, i)
+            for j in range(1, n + 1):
+                # 还原之后才为原图最短路
+                ans += j * (dis[j] + h[j] - h[i]) if dis[j] < inf else j * 10**9
+            ac.st(ans)
         return
 
     @staticmethod

@@ -9,33 +9,17 @@ from src.fast_io import FastIO
 from src.graph.union_find import UnionFind
 
 """
-# Tarjan
-
-## 算法功能
-Tarjan 算法是基于深度优先搜索的算法，用于求解图的连通性问题，参考[60 分钟搞定图论中的 Tarjan 算法]
-
-- Tarjan 算法可以在线性时间内求出**无向图的割点与桥**，进一步地可以求解**无向图的双连通分量**
-- Tarjan 算法可以也可以求解**有向图的强连通分量**，进一步地可以**求有向图的必经点与必经边**
-
-## 可以求有向图与无向图的割点、割边、点双连通分量与边双连通分量
-[60 分钟搞定图论中的 Tarjan 算法]: https://zhuanlan.zhihu.com/p/101923309
-
-## 算法伪代码
-
-## 算法模板与测试用例
-- 见Tarjan.py
-
-## 经典题目
-- 无向有环图求割点[1568. 使陆地分离的最少天数]
-- 无向有环图求点最近的环[2204. Distance to a Cycle in Undirected Graph]
-- 无向有环图求割边[1192. 查找集群内的「关键连接」]
-- 有向有环图求环[2360. 图中的最长环]
+算法：Tarjan、割点、割边、点双、边双
+功能：Tarjan 算法是基于深度优先搜索的算法，用于求解图的连通性问题，主要有下面这些应用
+- Tarjan 算法可以在线性时间内求出无向图的割点与桥，进一步地可以求解无向图的点双与边双连通分量
+- Tarjan 算法可以也可以求解有向图的强连通分量，进一步地可以求有向图的必经点与必经边，转换为DAG问题
+参考：60 分钟搞定图论中的 Tarjan 算法（https://zhuanlan.zhihu.com/p/101923309）
 
 ===================================力扣===================================
-1192. 查找集群内的关键连接（https://leetcode.cn/problems/critical-connections-in-a-network/）求割边
+1192. 查找集群内的关键连接（https://leetcode.cn/problems/critical-connections-in-a-network/）无向有环图求割边
 2360. 图中的最长环（https://leetcode.cn/problems/longest-cycle-in-a-graph/solution/by-liupengsay-4ff6/）经典求有向图最长环
-[2204. Distance to a Cycle in Undirected Graph]: https://leetcode.cn/problems/distance-to-a-cycle-in-undirected-graph/solution/er-xu-cheng-ming-jiu-xu-zui-python3tarja-09qn/
-1568. 使陆地分离的最少天数（https://leetcode.cn/problems/minimum-number-of-days-to-disconnect-island/solution/by-liupengsay-zd7w/）求割点数量
+2204. 无向图中到环的距离（https://leetcode.cn/problems/distance-to-a-cycle-in-undirected-graph/description/）求无向图中每个点到环的距离
+1568. 使陆地分离的最少天数（https://leetcode.cn/problems/minimum-number-of-days-to-disconnect-island/solution/by-liupengsay-zd7w/）无向有环图求求割点数量
 
 ===================================洛谷===================================
 P3388 【模板】割点（割顶）（https://www.luogu.com.cn/problem/P3388）有自环与重边，求无向图割点
@@ -74,7 +58,8 @@ class TarjanCC:
         return
 
     @staticmethod
-    def get_strongly_connected_component_bfs(n: int, edge: List[List[int]]) -> (int, DefaultDict[int, Set[int]], List[int]):
+    def get_strongly_connected_component_bfs(n: int, edge: List[List[int]]) \
+            -> (int, DefaultDict[int, Set[int]], List[int]):
         # 模板：Tarjan求解有向图的强连通分量 edge为有向边要求无自环与重边
         dfs_id = 0
         order, low = [inf] * n, [inf] * n
@@ -135,7 +120,8 @@ class TarjanCC:
         return scc_id, scc_node_id, node_scc_id
 
     @staticmethod
-    def get_point_doubly_connected_component_bfs(n: int, edge: List[List[int]]) -> Tuple[int, DefaultDict[int, Set[int]], List[Set[int]]]:
+    def get_point_doubly_connected_component_bfs(n: int, edge: List[List[int]])\
+            -> Tuple[int, DefaultDict[int, Set[int]], List[Set[int]]]:
         # 模板：Tarjan求解无向图的点双连通分量
 
         dfs_id = 0
@@ -199,7 +185,7 @@ class TarjanCC:
         # 点双的数量，点双分组节点，每个结点对应的点双编号（割点属于多个点双）
         return group_id, group_node, node_group_id
 
-    def get_edge_doubly_connected_component_bfs(self, n: int, edge: List[Set[int]]):
+    def get_edge_doubly_connected_component_bfs(self, n: int, edge: List[Set[int]]) -> List[List[int]]:
         # 模板：Tarjan求解无向图的边双连通分量
         _, cutting_edges = self.get_cutting_point_and_cutting_edge_bfs(n, [list(e) for e in edge])
         for i, j in cutting_edges:
@@ -1034,32 +1020,6 @@ class TestGeneral(unittest.TestCase):
 
         # 无向有自环图
         edge = [[1, 2], [0, 2], [0, 1, 3], [2, 3]]
-        n = 4
-        cut_edge, cut_node, sub_group = ta.check_graph(edge, n)
-        assert cut_edge == [[2, 3]]
-        assert cut_node == [2]
-        assert sub_group == [[0, 1, 2], [3]]
-        return
-
-    def test_directed_graph(self):
-        # 有向无环图
-        edge = [[1, 2], [], [3], []]
-        n = 4
-        ta = Tarjan()
-        cut_edge, cut_node, sub_group = ta.check_graph(edge, n)
-        assert cut_edge == [[0, 1], [0, 2], [2, 3]]
-        assert cut_node == [0, 2]
-        assert sub_group == [[0], [1], [2], [3]]
-
-        edge = [[1, 2], [2], [3], []]
-        n = 4
-        cut_edge, cut_node, sub_group = ta.check_graph(edge, n)
-        assert cut_edge == [[0, 1], [1, 2], [2, 3]]
-        assert cut_node == [1, 2]
-        assert sub_group == [[0], [1], [2], [3]]
-
-        # 有向有环图
-        edge = [[1, 2], [2], [0, 3], []]
         n = 4
         cut_edge, cut_node, sub_group = ta.check_graph(edge, n)
         assert cut_edge == [[2, 3]]
