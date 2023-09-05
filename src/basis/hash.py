@@ -21,6 +21,8 @@ from src.fast_io import FastIO
 2031. 1 比 0 多的子数组个数（https://leetcode.cn/problems/count-subarrays-with-more-ones-than-zeros/）经典前缀和哈希计数
 2025. 分割数组的最多方案数（https://leetcode.cn/problems/maximum-number-of-ways-to-partition-an-array/description/）厘清边界使用哈希贡献法计数
 895. 最大频率栈（https://leetcode.cn/problems/maximum-frequency-stack/description/）经典哈希与栈的结合应用题
+1658. 将 x 减到 0 的最小操作数（https://leetcode.cn/problems/minimum-operations-to-reduce-x-to-zero/description/）前缀和哈希，加脑筋急转弯贪心
+
 ===================================洛谷===================================
 P2697 宝石串（https://www.luogu.com.cn/problem/P2697）哈希记录前缀和与对应索引
 P1114 “非常男女”计划（https://www.luogu.com.cn/record/list?user=739032&status=12&page=13）哈希记录前缀和与对应索引
@@ -62,6 +64,22 @@ class Solution:
             ans %= mod
             pre = cur
         return ans
+
+    @staticmethod
+    def lc_1658(nums: List[int], x: int) -> int:
+        # 模板：前缀和哈希，加脑筋急转弯贪心
+        pre = {0: -1}
+        cur = 0
+        n = len(nums)
+        s = sum(nums)  # 先求和为 s-x 的最长子数组
+        ans = -1 if s != x else 0
+        for i, w in enumerate(nums):
+            cur += w
+            if cur - (s-x) in pre and i - pre[cur - (s-x)] > ans:  # 要求非空
+                ans = i - pre[cur - (s-x)]
+            if cur not in pre:
+                pre[cur] = i
+        return n-ans if ans > -1 else ans
 
     @staticmethod
     def lc_2025(nums: List[int], k: int) -> int:
