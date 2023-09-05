@@ -34,6 +34,7 @@ from math import inf
 837. 新 21 点（https://leetcode.cn/problems/new-21-game/description/）使用差分数组模拟进行概率计算
 891. 子序列宽度之和（https://leetcode.cn/problems/sum-of-subsequence-widths/description/）前后缀枚举最大值与最小值计数
 1191. K 次串联后最大子数组之和（https://leetcode.cn/problems/k-concatenation-maximum-sum/description/）经典前后缀最大连续子序列和
+1074. 元素和为目标值的子矩阵数量（https://leetcode.cn/problems/number-of-submatrices-that-sum-to-target/description/）经典二维前缀和枚举上下边计算目标子矩阵的数量
 
 ===================================洛谷===================================
 P8772 [蓝桥杯 2022 省 A] 求和（https://www.luogu.com.cn/record/list?user=739032&status=12&page=15）后缀和计算
@@ -367,6 +368,22 @@ class Solution:
                 ans[i] += b[i] * diff[i]
             ac.lst(ans)
         return
+
+    @staticmethod
+    def lc_1074(matrix: List[List[int]], target: int) -> int:
+        # 模板：经典二维前缀和枚举上下边计算目标子矩阵的数量
+        m, n = len(matrix), len(matrix[0])
+        pre = PreFixSumMatrix(matrix)
+        ans = 0
+        for i in range(m):
+            for j in range(i, m):
+                dct = defaultdict(int)
+                dct[0] = 1
+                for k in range(n):
+                    cur = pre.query(i, 0, j, k)
+                    ans += dct[cur-target]
+                    dct[cur] += 1
+        return ans
 
     @staticmethod
     def lc_1191(arr: List[int], k: int) -> int:
