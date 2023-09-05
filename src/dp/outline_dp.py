@@ -111,6 +111,33 @@ class Solution:
         return dp[0][0][introverts][extroverts]
 
     @staticmethod
+    def lc_1659_3(m: int, n: int, introverts: int, extroverts: int) -> int:
+
+        # 模板：记忆化深搜进行轮廓线 DP
+        @lru_cache(None)
+        def dfs(i, state, intro, ext):
+            if i == m * n:
+                return 0
+            up = state // w if i // n else 0  # 轮廓线经典边界状态计算
+            left = state % 3 if i % n else 0  # 轮廓线经典边界状态计算
+            res = dfs(i + 1, (state - up * w) * 3, intro, ext)
+            if intro:
+                cur = dfs(i + 1, (state - up * w) * 3 + 1, intro - 1, ext) + 120
+                cur += cross[1][up] + cross[1][left]
+                if cur > res:
+                    res = cur
+            if ext:
+                cur = dfs(i + 1, (state - up * w) * 3 + 2, intro, ext - 1) + 40
+                cur += cross[2][up] + cross[2][left]
+                if cur > res:
+                    res = cur
+            return res
+
+        w = 3 ** (n - 1)
+        cross = [[0, 0, 0], [0, -60, -10], [0, -10, 40]]
+        return dfs(0, 0, introverts, extroverts)
+
+    @staticmethod
     def lc_1349_1(seats: List[List[str]]) -> int:
         # 模板：记忆化深搜轮廓线 DP
 
@@ -184,7 +211,6 @@ class Solution:
         m, n = len(seats), len(seats[0])
         lst = chain.from_iterable(seats)
         return dfs(0, 0)
-
 
     @staticmethod
     def lcp_4_1(n: int, m: int, broken: List[List[int]]) -> int:
