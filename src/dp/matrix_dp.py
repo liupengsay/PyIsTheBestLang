@@ -48,6 +48,7 @@ from src.mathmatics.comb_perm import Combinatorics
 2556. 二进制矩阵中翻转最多一次使路径不连通（https://leetcode.cn/problems/disconnect-path-in-a-binary-matrix-by-at-most-one-flip/description/）经典矩阵DP思维题，判断割点可行性
 920. 播放列表的数量（https://leetcode.cn/problems/number-of-music-playlists/）经典矩阵DP
 1594. 矩阵的最大非负积（https://leetcode.cn/problems/maximum-non-negative-product-in-a-matrix/）经典矩阵DP最大与最小乘积转移
+1639. 通过给定词典构造目标字符串的方案数（https://leetcode.cn/problems/number-of-ways-to-form-a-target-string-given-a-dictionary/description/）前缀和优化二维DP
 
 ===================================洛谷===================================
 P2701 [USACO5.3]巨大的牛棚Big Barn（https://www.luogu.com.cn/problem/P2701）求全为 "." 的最大正方形面积，如果不要求实心只能做到O(n^3)复杂度
@@ -1977,7 +1978,29 @@ class Solution:
         if ans < 0:
             return -1
         return ans % (10 ** 9 + 7)
-    
+
+    @staticmethod
+    def lc_1639(words: List[str], target: str) -> int:
+        # 模板：前缀和优化二维DP
+        dct = defaultdict(lambda: defaultdict(int))
+        n = len(words[0])
+        for word in words:
+            for i, w in enumerate(word):
+                dct[w][i] += 1
+
+        m = len(target)
+        dp = [[0]*(n+1) for _ in range(m+1)]
+        dp[0][0] = 1
+        mod = 10**9 + 7
+        for i in range(m):
+            dp[i+1][0] = 0
+            pre = dp[i][0]
+            for j in range(n):
+                c = dct[target[i]][j]
+                dp[i+1][j+1] = (pre*c) % mod
+                pre += dp[i][j+1]
+        return sum(dp[-1]) % mod
+
     @staticmethod
     def lc_1771(word1: str, word2: str) -> int:
         # 模板：经典最长回文子序列矩阵DP
