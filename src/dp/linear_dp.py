@@ -39,6 +39,7 @@ from src.mathmatics.number_theory import NumberTheory
 2320. 统计放置房子的方式数（https://leetcode.cn/problems/count-number-of-ways-to-place-houses/）经典线性DP
 1824. 最少侧跳次数（https://leetcode.cn/problems/minimum-sideway-jumps/description/）经典线性DP滚动数组
 978. 最长湍流子数组（https://leetcode.cn/problems/longest-turbulent-subarray/description/）经典线性DP滚动变量
+1027. 最长等差数列（https://leetcode.cn/problems/longest-arithmetic-subsequence/）经典线性DP计算最长等差子序列
 
 ===================================洛谷===================================
 P1970 [NOIP2013 提高组] 花匠（https://www.luogu.com.cn/problem/P1970）使用贪心与动态规划计算最长的山脉子数组
@@ -1016,6 +1017,18 @@ class Solution:
             ans = ans if ans > dp0 else dp0
             ans = ans if ans > dp1 else dp1
         return ans
+
+    @staticmethod
+    def lc_1027(nums: List[int]) -> int:
+        # 模板：经典线性DP计算最长等差子序列
+        seen = set()
+        count = dict()
+        for num in nums:
+            for pre in seen:
+                d = num - pre
+                count[(num, d)] = count.get((pre, d), 1) + 1
+            seen.add(num)
+        return max(count.values())
 
     @staticmethod
     def lc_1553(n: int) -> int:
