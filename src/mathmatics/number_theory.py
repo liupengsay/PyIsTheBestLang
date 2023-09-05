@@ -37,6 +37,7 @@ LCP 14. 切分数组（https://leetcode.cn/problems/qie-fen-shu-zu/）计算 1 �
 1390. 四因数（https://leetcode.cn/contest/weekly-contest-181/problems/four-divisors/）预处理所有数的所有因子
 1819. 序列中不同最大公约数的数目（https://leetcode.cn/problems/number-of-different-subsequences-gcds/）预处理所有整数的所有因子，再枚举gcd计算
 1017. 负二进制转换（https://leetcode.cn/contest/weekly-contest-130/problems/convert-to-base-2/）负进制转换模板题
+1073. 负二进制数相加（https://leetcode.cn/problems/adding-two-negabinary-numbers/）经典负进制计算题
 
 ===================================洛谷===================================
 P1865 A % B Problem（https://www.luogu.com.cn/problem/P1865）通过线性筛素数后进行二分查询区间素数个数
@@ -1311,6 +1312,18 @@ class Solution:
             else:
                 ac.st("no")
         return
+
+    @staticmethod
+    def lc_1073(arr1: List[int], arr2: List[int]) -> List[int]:
+        # 模板：经典负进制计算题
+        def check(tmp):
+            res = 0
+            for num in tmp:
+                res = (-2)*res + num
+            return res
+
+        ans = check(arr1) + check(arr2)
+        return NumberTheory().get_k_bin_of_n(ans, -2)
 
     @staticmethod
     def lc_1390(nums: List[int]) -> int:
