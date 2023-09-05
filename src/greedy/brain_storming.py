@@ -50,6 +50,7 @@ from src.mathmatics.number_theory import NumberTheory
 1503. 所有蚂蚁掉下来前的最后一刻（https://leetcode.cn/problems/last-moment-before-all-ants-fall-out-of-a-plank/）经典脑筋急转弯题目，相撞不影响结果
 991. 坏了的计算器（https://leetcode.cn/problems/broken-calculator/）经典逆向计算贪心，偶数除2奇数加1
 2745. 构造最长的新字符串（https://leetcode.cn/problems/construct-the-longest-new-string/）脑筋急转弯贪心思维题
+1657. 确定两个字符串是否接近（https://leetcode.cn/problems/determine-if-two-strings-are-close/description/）脑筋急转弯贪心思维题
 
 ===================================洛谷===================================
 P1031 均分纸牌（https://www.luogu.com.cn/problem/P1031）贪心计算每个点的前缀和流量，需要补齐或者输出时进行计数
