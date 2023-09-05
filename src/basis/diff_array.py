@@ -33,6 +33,7 @@ from math import inf
 2021. 街上最亮的位置（https://leetcode.cn/problems/brightest-position-on-street/）经典离散化差分
 837. 新 21 点（https://leetcode.cn/problems/new-21-game/description/）使用差分数组模拟进行概率计算
 891. 子序列宽度之和（https://leetcode.cn/problems/sum-of-subsequence-widths/description/）前后缀枚举最大值与最小值计数
+1191. K 次串联后最大子数组之和（https://leetcode.cn/problems/k-concatenation-maximum-sum/description/）经典前后缀最大连续子序列和
 
 ===================================洛谷===================================
 P8772 [蓝桥杯 2022 省 A] 求和（https://www.luogu.com.cn/record/list?user=739032&status=12&page=15）后缀和计算
@@ -366,6 +367,33 @@ class Solution:
                 ans[i] += b[i] * diff[i]
             ac.lst(ans)
         return
+
+    @staticmethod
+    def lc_1191(arr: List[int], k: int) -> int:
+        # 模板：经典前后缀最大连续子序列和
+        mod = 10 ** 9 + 7
+        n = len(arr)
+        s = sum(arr)
+        pre = [0] * n
+        x = 0
+        for i in range(n):
+            x = x if x > 0 else 0
+            x += arr[i]
+            pre[i] = x
+
+        post = [0] * n
+        x = 0
+        for i in range(n - 1, -1, -1):
+            x = x if x > 0 else 0
+            x += arr[i]
+            post[i] = x
+        ans = max(0, max(pre))
+        if k > 1:
+            if pre[-1] + post[0] > ans:
+                ans = pre[-1] + post[0]
+            if pre[-1] + post[0] + s * (k - 2) > ans:
+                ans = pre[-1] + post[0] + s * (k - 2)
+        return ans % mod
 
     @staticmethod
     def cf_1355c(a, b, c, d):
