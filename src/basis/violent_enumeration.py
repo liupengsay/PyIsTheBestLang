@@ -48,6 +48,7 @@ from src.fast_io import FastIO, inf
 1131. 绝对值表达式的最大值（https://leetcode.cn/problems/maximum-of-absolute-value-expression/description/）经典曼哈顿距离计算，枚举可能的符号组合
 1761. 一个图中连通三元组的最小度数（https://leetcode.cn/problems/minimum-degree-of-a-connected-trio-in-a-graph/description/?envType=daily-question&envId=2023-08-31）经典无向图转为有向图进行枚举
 1178. 猜字谜（https://leetcode.cn/problems/number-of-valid-words-for-each-puzzle/）典型哈希计数枚举，使用位运算
+1638. 统计只差一个字符的子串数目（https://leetcode.cn/problems/count-substrings-that-differ-by-one-character/description/）枚举子字符串对开头位置也可使用DP枚举
 
 ===================================洛谷===================================
 P1548 棋盘问题（https://www.luogu.com.cn/problem/P1548）枚举正方形与长方形的右小角计算个数
@@ -1155,6 +1156,41 @@ class Solution:
                     if a1 - a2 > ans:
                         ans = a1 - a2
         return ans
+
+    @staticmethod
+    def lc_1638_1(s: str, t: str) -> int:
+        # 模板：枚举子字符串对开头位置也可使用DP枚举
+        m, n = len(s), len(t)
+        ans = 0
+        for i in range(m):
+            for j in range(n):
+                cur = int(s[i] != t[j])
+                x, y = i, j
+                while cur <= 1 and x < m and y < n:
+                    ans += cur == 1
+                    x += 1
+                    y += 1
+                    if x == m or y == n:
+                        break
+                    cur += int(s[x] != t[y])
+        return ans
+
+    @staticmethod
+    def lc_1638_2(s: str, t: str) -> int:
+        # 模板：枚举子字符串对开头位置也可使用DP枚举
+        m = len(s)
+        n = len(t)
+        cnt = [[0]*(n+1) for _ in range(m+1)]
+        same = [[0]*(n+1) for _ in range(m+1)]
+        for i in range(m):
+            for j in range(n):
+                if s[i] == t[j]:
+                    same[i+1][j+1] = same[i][j] + 1  # 以i,j为结尾的最长连续子串长度
+                    cnt[i+1][j+1] = cnt[i][j]  # 以i,j为结尾的子串对数
+                else:
+                    same[i+1][j+1] = 0  # 转移可以使用对角线方向转移则只需要O(1)空间
+                    cnt[i+1][j+1] = same[i][j] + 1
+        return sum(sum(d) for d in cnt)
 
     @staticmethod
     def lc_1761(n: int, edges: List[List[int]]) -> int:
