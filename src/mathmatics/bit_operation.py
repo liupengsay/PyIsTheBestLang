@@ -33,6 +33,7 @@ from src.fast_io import FastIO
 1835. 所有数对按位与结果的异或和（https://leetcode.cn/problems/find-xor-sum-of-all-pairs-bitwise-and/）按位操作模拟
 1611. 使整数变为 0 的最少操作次数（https://leetcode.cn/problems/minimum-one-bit-operations-to-make-integers-zero/）格雷码的操作，直接计算格雷码对应的二进制数字
 2275. 按位与结果大于零的最长组合（https://leetcode.cn/problems/largest-combination-with-bitwise-and-greater-than-zero/）求按位与不为0的最长子序列，不要求连续
+2527. 查询数组 Xor 美丽值（https://leetcode.cn/problems/find-xor-beauty-of-array/description/）按位枚举脑筋急转弯
 
 ===================================洛谷===================================
 P5657 格雷码（https://www.luogu.com.cn/problem/P5657）计算编号为 k 的二进制符，并补前缀 0 为 n 位
