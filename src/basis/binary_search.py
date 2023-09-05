@@ -34,6 +34,7 @@ from src.graph.union_find import UnionFind
 2594. 修车的最少时间（https://leetcode.cn/problems/minimum-time-to-repair-cars/）经典二分
 2517. 礼盒的最大甜蜜度（https://leetcode.cn/problems/maximum-tastiness-of-candy-basket/）经典二分
 1482. 制作 m 束花所需的最少天数（https://leetcode.cn/problems/minimum-number-of-days-to-make-m-bouquets/）经典二分
+2528. 最大化城市的最小供电站数目（https://leetcode.cn/problems/maximize-the-minimum-powered-city/description/）经典二分使用前缀和差分数组贪心验证
 
 ===================================洛谷===================================
 P1577 切绳子（https://www.luogu.com.cn/problem/P1577）数学整除向下取整与二分
@@ -399,6 +400,34 @@ class Solution:
             return res <= rest
 
         return BinarySearch().find_int_right(0, batteries[n - 1] + rest, check)
+
+    @staticmethod
+    def lc_2528(stations: List[int], r: int, k: int) -> int:
+        # 模板：经典二分使用前缀和差分数组贪心验证
+        n = len(stations)
+        nums = [0] * n
+        for i in range(n):
+            left = max(0, i - r)
+            nums[left] += stations[i]
+            if i + r + 1 < n:
+                nums[i + r + 1] -= stations[i]
+        for i in range(1, n):
+            nums[i] += nums[i - 1]
+
+        def check(x):
+            diff = [0] * (n + 2 * r + 10)
+            res = 0
+            for j in range(n):
+                diff[j] += diff[j - 1] if j else 0
+                cur = diff[j] + nums[j]
+                if cur < x:
+                    res += x - cur
+                    diff[j] += x - cur
+                    diff[j + 2 * r + 1] -= x - cur
+
+            return res <= k
+
+        return BinarySearch().find_int_right(0, max(nums) + k, check)
 
     @staticmethod
     def lc_2563(nums, lower, upper):
