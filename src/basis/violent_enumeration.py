@@ -49,6 +49,7 @@ from src.fast_io import FastIO, inf
 1761. 一个图中连通三元组的最小度数（https://leetcode.cn/problems/minimum-degree-of-a-connected-trio-in-a-graph/description/?envType=daily-question&envId=2023-08-31）经典无向图转为有向图进行枚举
 1178. 猜字谜（https://leetcode.cn/problems/number-of-valid-words-for-each-puzzle/）典型哈希计数枚举，使用位运算
 1638. 统计只差一个字符的子串数目（https://leetcode.cn/problems/count-substrings-that-differ-by-one-character/description/）枚举子字符串对开头位置也可使用DP枚举
+2212. 射箭比赛中的最大得分（https://leetcode.cn/problems/maximum-points-in-an-archery-competition/）位运算枚举或者回溯计算
 
 ===================================洛谷===================================
 P1548 棋盘问题（https://www.luogu.com.cn/problem/P1548）枚举正方形与长方形的右小角计算个数
@@ -1270,6 +1271,28 @@ class Solution:
         ans = list(ans)
         ans.sort(reverse=True)
         return ans[:3]
+
+    @staticmethod
+    def lc_2212(numArrows: int, aliceArrows: List[int]) -> List[int]:
+        # 模板：位运算枚举或者回溯计算
+        n = len(aliceArrows)
+        ans = [0]*n
+        ans[0] = numArrows
+        res = 0
+        for i in range(1<<n):
+            lst = [0]*n
+            cur = 0
+            for j in range(n):
+                if i & (1<<j):
+                    lst[j] = aliceArrows[j] + 1
+                    cur += j
+            s = sum(lst)
+            if s <= numArrows:
+                lst[0] += numArrows - s
+                if cur > res:
+                    res = cur
+                    ans = lst[:]
+        return ans
 
     @staticmethod
     def lc_2245(grid: List[List[int]]) -> int:
