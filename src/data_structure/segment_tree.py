@@ -2300,6 +2300,7 @@ class SegmentTreeLongestSubSame:
         return
 
     def make_tag(self, i):
+        # 只有此时 i 对应的区间 s==t 才打标记
         self.pref[i] = 1
         self.suf[i] = 1
         self.ceil[i] = 1
@@ -2307,7 +2308,7 @@ class SegmentTreeLongestSubSame:
 
     def push_up(self, i, s, t):
         m = s + (t - s) // 2
-        # [s, m] 与 [m+1, t]
+        # 左右区间段分别为 [s, m] 与 [m+1, t] 保证 s < t
         self.pref[i] = self.pref[2 * i]
         if self.pref[2 * i] == m - s + 1 and self.lst[m] == self.lst[m + 1]:
             self.pref[i] += self.pref[2 * i + 1]
@@ -2344,6 +2345,7 @@ class SegmentTreeLongestSubSame:
             s, t, i = stack.pop()
             self.push_up(i, s, t)
         assert i == 1
+        # 获取当前最大的连续子串
         return self.ceil[1]
 
 
