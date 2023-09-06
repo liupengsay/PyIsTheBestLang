@@ -1,5 +1,6 @@
 
 import math
+import sys
 import unittest
 from decimal import Decimal, getcontext, MAX_PREC
 from typing import List
@@ -7,10 +8,10 @@ from typing import List
 from src.fast_io import FastIO
 
 getcontext().prec = MAX_PREC
-
+sys.set_int_max_str_digits(0)  # 力扣大数的范围坑
 
 """
-算法：大数分解、素数判断、高精度计算
+算法：大数分解、素数判断、高精度计算、使用分数代替浮点数运算
 功能：xxx
 题目：
 
@@ -18,7 +19,7 @@ getcontext().prec = MAX_PREC
 166. 分数到小数（https://leetcode.cn/problems/fraction-to-recurring-decimal/）经典分数转换为有理数无限循环小数
 172. 阶乘后的零（https://leetcode.cn/problems/factorial-trailing-zeroes/）阶乘后缀0的个数
 1883. 准时抵达会议现场的最小跳过休息次数（https://leetcode.cn/problems/minimum-skips-to-arrive-at-meeting-on-time/description/）经典二维矩阵DP使用分数进行高精度浮点数计算
-
+2117. 一个区间内所有数乘积的缩写（https://leetcode.cn/problems/abbreviating-the-product-of-a-range/）大数计算或者前后缀模拟计算
 
 ===================================洛谷===================================
 P2388 阶乘之乘（https://www.luogu.com.cn/problem/P2388）阶乘之乘后缀0的个数
@@ -206,6 +207,35 @@ class Solution:
         a, b = HighPrecision().decimal_to_fraction(s)
         ac.st(f"{a}/{b}")
         return
+
+    @staticmethod
+    def lc_2217(left: int, right: int) -> str:
+        # 模板：大数计算或者前后缀模拟计算
+        mod = 10 ** 20
+        base = 10 ** 10
+        zero = 0
+        suffix = 1
+        for x in range(left, right + 1):
+            suffix *= x
+            while suffix % 10 == 0:
+                zero += 1
+                suffix //= 10
+
+            suffix %= mod
+
+        prefix = 1
+        for x in range(left, right + 1):
+            prefix *= x
+            while prefix % 10 == 0:
+                prefix //= 10
+
+            while prefix > mod:
+                prefix //= 10
+
+        if prefix >= base:
+            return str(prefix)[:5] + "..." + str(suffix)[-5:] + "e" + str(zero)
+        else:
+            return str(prefix) + "e" + str(zero)
 
     @staticmethod
     def lg_p1530(ac=FastIO()):
