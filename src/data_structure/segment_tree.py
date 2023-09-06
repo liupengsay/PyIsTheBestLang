@@ -2270,31 +2270,25 @@ class SegmentTreeRangeAndOrXOR:
         return res
 
 
-class SegmentTreeLongestSubSameNode:
-    # 模板：结构化线段树节点
-    def __init__(self, pref=(-1, 0), suf=(-1, 0), ma=0):
-        self.pref = pref
-        self.suf = suf
-        self.ma = ma
-        return
-
-
 class SegmentTreeLongestSubSame:
     # 模板：单点字母更新，最长具有相同字母的连续子数组查询
-    def __init__(self, n):
+    def __init__(self, n, lst):
         self.n = n
-        # 注意深浅拷贝的问题
-        self.cover = [SegmentTreeLongestSubSameNode() for _ in range(4*n)]
+        self.lst = lst
+        self.pref = [0] * 4 * n
+        self.suf = [0] * 4 * n
+        self.ceil = [0] * 4 * n
+        self.build()
         return
 
-    def build(self, nums: List[int]):
+    def build(self):
         # 使用数组初始化线段树
         stack = [[0, self.n - 1, 1]]
         while stack:
             s, t, ind = stack.pop()
             if ind >= 0:
                 if s == t:
-                    self.make_tag(ind, nums[s])
+                    self.make_tag(ind)
                 else:
                     stack.append([s, t, ~ind])
                     m = s + (t - s) // 2
@@ -2305,51 +2299,40 @@ class SegmentTreeLongestSubSame:
                 self.push_up(ind, s, t)
         return
 
-    @staticmethod
-    def min(a, b):
-        return a if a < b else b
-
-    @staticmethod
-    def max(a, b):
-        return a if a > b else b
-
-    def make_tag(self, i, val):
-        self.cover[i].pref = (val, 1)
-        self.cover[i].suf = (val, 1)
-        self.cover[i].ma = 1
+    def make_tag(self, i):
+        self.pref[i] = 1
+        self.suf[i] = 1
+        self.ceil[i] = 1
         return
 
     def push_up(self, i, s, t):
-        left, right = self.cover[2 * i], self.cover[2 * i + 1]
         m = s + (t - s) // 2
-        length = m - s + 1
-        if left.pref[1] == length:
-            if right.pref[0] == left.pref[0]:
-                length += right.pref[1]
-            self.cover[i].pref = (left.pref[0], length)
-        else:
-            self.cover[i].pref = (left.pref[0], left.pref[1])
+        # [s, m] 与 [m+1, t]
+        self.pref[i] = self.pref[2 * i]
+        if self.pref[2 * i] == m - s + 1 and self.lst[m] == self.lst[m + 1]:
+            self.pref[i] += self.pref[2 * i + 1]
 
-        length = t - m
-        if right.suf[1] == length:
-            if left.suf[0] == right.suf[0]:
-                length += left.suf[1]
-            self.cover[i].suf = (right.suf[0], length)
-        else:
-            self.cover[i].suf = (right.suf[0], right.suf[1])
-        ma1 = self.max(self.cover[i].pref[1], self.cover[i].suf[1])
-        ma1 = self.max(ma1, left.suf[1] if left.suf[0] != right.pref[0] else left.suf[1] + right.pref[1])
-        ma2 = self.max(left.ma, right.ma)
-        self.cover[i].ma = self.max(ma1, ma2)
+        self.suf[i] = self.suf[2 * i + 1]
+        if self.suf[2 * i + 1] == t - m and self.lst[m] == self.lst[m + 1]:
+            self.suf[i] += self.suf[2 * i]
+
+        a = -inf
+        for b in [self.pref[i], self.suf[i], self.ceil[2*i], self.ceil[2*i+1]]:
+            a = a if a > b else b
+        if self.lst[m] == self.lst[m + 1]:
+            b = self.suf[2 * i] + self.pref[2 * i + 1]
+            a = a if a > b else b
+        self.ceil[i] = a
         return
 
     def update_point(self, left, right, s, t, val, i):
         # 更新单点最小值
+        self.lst[left] = val
         stack = []
         while True:
             stack.append([s, t, i])
-            if left <= s and t <= right:
-                self.make_tag(i, val)
+            if left <= s <= t <= right:
+                self.make_tag(i)
                 break
             m = s + (t - s) // 2
             if left <= m:  # 注意左右子树的边界与范围
@@ -2361,7 +2344,7 @@ class SegmentTreeLongestSubSame:
             s, t, i = stack.pop()
             self.push_up(i, s, t)
         assert i == 1
-        return self.cover[i].ma
+        return self.ceil[1]
 
 
 class SegmentTreeRangeXORQuery:
@@ -2529,13 +2512,12 @@ class Solution:
         return
 
     @staticmethod
-    def lc_2213(s: str, queryCharacters: str, queryIndices: List[int]) -> List[int]:
+    def lc_2213(s: str, word: str, indices: List[int]) -> List[int]:
         # 模板：单点字母更新，最长具有相同字母的连续子数组查询
         n = len(s)
-        tree = SegmentTreeLongestSubSame(n)
-        tree.build([ord(w) - ord("a") for w in s])
+        tree = SegmentTreeLongestSubSame(n, [ord(w) - ord("a") for w in s])
         ans = []
-        for i, w in zip(queryIndices, queryCharacters):
+        for i, w in zip(indices, word):
             ans.append(tree.update_point(i, i, 0, n - 1, ord(w) - ord("a"), 1))
         return ans
 
