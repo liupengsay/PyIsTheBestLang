@@ -40,26 +40,7 @@ def ac_min(a, b):
 
 
 
-class Solution:
-    def maximumBobPoints(self, numArrows: int, aliceArrows: List[int]) -> List[int]:
-        n = len(aliceArrows)
-        ans = [0]*n
-        ans[0] = numArrows
-        res = 0
-        for i in range(1<<n):
-            lst = [0]*n
-            cur = 0
-            for j in range(n):
-                if i & (1<<j):
-                    lst[j] = aliceArrows[j] + 1
-                    cur += j
-            s = sum(lst)
-            if s <= numArrows:
-                lst[0] += numArrows - s
-                if cur > res:
-                    res = cur
-                    ans = lst[:]
-        return ans
+
 
 
 
