@@ -51,6 +51,7 @@ from src.mathmatics.number_theory import NumberTheory
 991. 坏了的计算器（https://leetcode.cn/problems/broken-calculator/）经典逆向计算贪心，偶数除2奇数加1
 2745. 构造最长的新字符串（https://leetcode.cn/problems/construct-the-longest-new-string/）脑筋急转弯贪心思维题
 1657. 确定两个字符串是否接近（https://leetcode.cn/problems/determine-if-two-strings-are-close/description/）脑筋急转弯贪心思维题
+2561. 重排水果（https://leetcode.cn/problems/rearranging-fruits/）思维题贪心交换
 
 ===================================洛谷===================================
 P1031 均分纸牌（https://www.luogu.com.cn/problem/P1031）贪心计算每个点的前缀和流量，需要补齐或者输出时进行计数
