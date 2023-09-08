@@ -45,8 +45,8 @@ G. Even-Odd XOR（https://codeforces.com/problemset/problem/1722/G）根据奇�
 D. Super-Permutation（https://codeforces.com/contest/1822/problem/D）构造前缀和取模互不相同的排列
 
 ==================================AtCoder=================================
-https://atcoder.jp/contests/agc007/tasks/agc007_b（脑筋急转弯思维构造公式）
-
+B - Construct Sequences（https://atcoder.jp/contests/agc007/tasks/agc007_b）脑筋急转弯思维构造公式
+D - Non-decreasing（https://atcoder.jp/contests/abc081/tasks/arc086_b）经典贪心构造分类讨论
 
 参考：OI WiKi（xx）
 """
