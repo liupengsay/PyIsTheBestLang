@@ -35,7 +35,7 @@ from src.fast_io import FastIO, inf
 1625. 执行操作后字典序最小的字符串（https://leetcode.cn/problems/lexicographically-smallest-string-after-applying-operations/）经典枚举计算最小的字典序
 1819. 序列中不同最大公约数的数目（https://leetcode.cn/problems/number-of-different-subsequences-gcds/）经典调和级数枚举
 1862. 向下取整数对和（https://leetcode.cn/submissions/detail/371754298/）枚举商并利用调和级数的复杂度进行计算
-2014. 重复 K 次的最长子序列（https://leetcode.cn/problems/longest-subsequence-repeated-k-times/）经典利用数据范围进行枚举
+2014. 重复 K 次的最长子序列（https://leetcode.cn/problems/longest-subsequence-repeated-k-times/）经典利用数据范围进行枚举，贪心使用permutations
 2077. 殊途同归（https://leetcode.cn/problems/paths-in-maze-that-lead-to-same-room/）经典使用位运算枚举
 2081. k 镜像数字的和（https://leetcode.cn/problems/sum-of-k-mirror-numbers/）经典回文串进制数据枚举
 2170. 使数组变成交替数组的最少操作数（https://leetcode.cn/problems/minimum-operations-to-make-the-array-alternating/）经典枚举，运用最大值与次大值技巧
