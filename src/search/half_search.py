@@ -1,6 +1,7 @@
 import unittest
 import bisect
 from itertools import combinations
+from math import inf
 from typing import List
 
 from src.fast_io import FastIO
@@ -13,6 +14,7 @@ from src.fast_io import FastIO
 ===================================力扣===================================
 1755. 最接近目标值的子序列和（https://leetcode.cn/problems/closest-subsequence-sum/）经典折半搜索
 2035. 将数组分成两个数组并最小化数组和的差（https://leetcode.cn/problems/partition-array-into-two-arrays-to-minimize-sum-difference/）经典折半搜索排序加二分或者双指针
+956. 最高的广告牌（https://leetcode.cn/problems/tallest-billboard/description/）可使用折半搜索计算
 
 ===================================洛谷===================================
 P5194 [USACO05DEC]Scales S（https://www.luogu.com.cn/problem/P5194）利用Fibonacci数列的长度特点进行折半搜索枚举，与二分查找确定可行的最大值
@@ -29,6 +31,43 @@ P5691 [NOI2001] 方程的解数（https://www.luogu.com.cn/problem/P5691）折�
 class Solution:
     def __init__(self):
         return
+
+    @staticmethod
+    def lc_956(rods: List[int]) -> int:
+
+        # 模板：可使用折半搜索计算
+
+        def check(tmp):
+            dct = dict()
+            n = len(tmp)
+
+            def dfs(i):
+                nonlocal total, pos
+                if i == n:
+                    if pos > dct.get(total, -inf):
+                        dct[total] = pos
+                    return
+                for d in [-1, 0, 1]:
+                    total += d * tmp[i]
+                    pos += tmp[i] if d == 1 else 0
+                    dfs(i + 1)
+                    total -= d * tmp[i]
+                    pos -= tmp[i] if d == 1 else 0
+                return
+
+            pos = total = 0
+            dfs(0)
+            return dct
+
+        m = len(rods)
+        pre = check(rods[:m // 2])
+        post = check(rods[m // 2:])
+        ans = 0
+        for k in pre:
+            if -k in post:
+                cur = pre[k] + post[-k]
+                ans = ans if ans > cur else cur
+        return ans
 
     @staticmethod
     def lc_2035(nums: List[int]) -> int:
