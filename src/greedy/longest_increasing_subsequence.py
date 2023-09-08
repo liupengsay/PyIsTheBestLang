@@ -279,6 +279,13 @@ class Solution:
         return
 
     @staticmethod
+    def lc_1713(target: List[int], arr: List[int]) -> int:
+        # 模板：最长递增子序列模板题
+        ind = {num: i for i, num in enumerate(target)}
+        lst = [ind[num] for num in arr if num in ind]
+        return len(target) - LongestIncreasingSubsequence().definitely_increase(lst)
+
+    @staticmethod
     def lc_2111(arr: List[int], k: int) -> int:
         # 模板：最长不降子序列
         ans = 0
