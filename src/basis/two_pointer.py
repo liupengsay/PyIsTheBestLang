@@ -1,11 +1,11 @@
 import math
 import random
 import unittest
-from collections import defaultdict
+from collections import defaultdict, Counter
 from functools import reduce
 from math import gcd
 from itertools import accumulate
-from typing import List, Counter
+from typing import List
 from operator import mul, add, xor, and_, or_
 from src.fast_io import FastIO
 from math import inf
@@ -39,6 +39,7 @@ from math import inf
 2747. 统计没有收到请求的服务器数目（https://leetcode.cn/problems/count-zero-request-servers/）经典离线查询与三指针，即快慢双指针维护连续区间的不同值个数
 2516. 每种字符至少取 K 个（https://leetcode.cn/problems/take-k-of-each-character-from-left-and-right/）逆向思维容斥原理经典双指针
 1537. 最大得分（https://leetcode.cn/problems/get-the-maximum-score/description/）双指针加线性DP或者拓扑排序做
+1712. 将数组分成三个子数组的方案数（https://leetcode.cn/problems/ways-to-split-array-into-three-subarrays/description/）经典三指针，即快慢双指针维护满足条件的分割点个数
 
 ===================================洛谷===================================
 P2381 圆圆舞蹈（https://www.luogu.com.cn/problem/P2381）环形数组，滑动窗口双指针
@@ -451,6 +452,24 @@ class Solution:
         pre1 += sum(nums1[i:])
         pre2 += sum(nums2[j:])
         return max(pre1, pre2) % mod
+
+    @staticmethod
+    def lc_1712(nums: List[int]) -> int:
+        # 模板：经典三指针，即快慢双指针维护满足条件的分割点个数
+        mod = 10**9 + 7
+        ans = 0
+        pre = list(accumulate(nums, initial=0))
+        j1 = j2 = 0
+        n = len(nums)
+        for i in range(n):
+            # mid的区间范围为 [i+1, j1~(j2-1)]
+            while j1 <= i or (j1 < n and pre[j1 + 1] - pre[i + 1] < pre[i + 1]):
+                j1 += 1  # j1 必须大于 i 且 mid >= left 区间的和
+            while j2 < j1 or (j2 < n - 1 and pre[-1] - pre[j2 + 1] >= pre[j2 + 1] - pre[i + 1]):
+                j2 += 1  # j2 必须大于等于j1 且 mid < right 非空因此 j2 < n-1
+            if j2 >= j1:  # 此时[i+1, j1] 到 区间[i+1, j2-1] 是合法的
+                ans += j2 - j1
+        return ans % mod
 
     @staticmethod
     def lc_2447(nums: List[int], k: int) -> int:
