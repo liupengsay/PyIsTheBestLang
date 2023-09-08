@@ -72,23 +72,6 @@ C. Three displays（https://codeforces.com/problemset/problem/987/C）枚举中�
 """
 
 
-class SegmentTreeBitSet:
-    # 使用位运算模拟线段树进行区间01翻转操作
-    def __init__(self):
-        self.val = 0
-        return
-
-    def update(self, b, c):
-        # 索引从0开始翻转区间[b, c]
-        p = (1 << (c + 1)) - (1 << b)
-        self.val ^= p
-        return
-
-    def query(self, b, c):
-        # 索引从0开始查询区间[b, c]的个数
-        p = (1 << (c + 1)) - (1 << b)
-        return (self.val & p).bit_count()
-
 
 class SegTreeBrackets:
     def __init__(self, n, s):
@@ -2524,25 +2507,6 @@ class Solution:
         return ans
 
     @staticmethod
-    def lc_2569_2(nums1: List[int], nums2: List[int], queries: List[List[int]]) -> List[int]:
-        # 模板：经典01线段树区间翻转与求和，也可以使用BitSet
-        res = []
-        seg = SegmentTreeBitSet()
-        n = len(nums1)
-        for i in range(n):
-            if nums1[i]:
-                seg.update(i, i)
-        s = sum(nums2)
-        for a, b, c in queries:
-            if a == 1:
-                seg.update(b, c)
-            elif a == 2:
-                s += seg.val.bit_count() * b
-            else:
-                res.append(s)
-        return res
-
-    @staticmethod
     def lc_2569_1(nums1: List[int], nums2: List[int], queries: List[List[int]]) -> List[int]:
         # 模板：经典01线段树区间翻转与求和，也可以使用BitSet
         n = len(nums1)
@@ -3269,35 +3233,6 @@ class CountIntervalsLC2276:
                     if (1<<j) & xx:
                         tree[j].update(ll, rr, 0, n-1, 1, 1)
 
-        return
-
-    @staticmethod
-    def ac_5037_2(ac=FastIO()):
-        # 模板：同CF242E，使用二十多个01线段树维护区间异或与区间加和
-        n = ac.read_int()
-        nums = ac.read_list_ints()
-        tree = [SegmentTreeBitSet() for _ in range(22)]
-        for i in range(n):
-            x = nums[i]
-            for j in range(22):
-                if x & (1 << j):
-                    tree[j].update(i, i)
-
-        for _ in range(ac.read_int()):
-            lst = ac.read_list_ints()
-            if lst[0] == 1:
-                ll, rr = lst[1:]
-                ll -= 1
-                rr -= 1
-                ans = sum((1 << j)*tree[j].query(ll, rr) for j in range(22))
-                ac.st(ans)
-            else:
-                ll, rr, xx = lst[1:]
-                ll -= 1
-                rr -= 1
-                for j in range(22):
-                    if (1 << j) & xx:
-                        tree[j].update(ll, rr)
         return
 
 
