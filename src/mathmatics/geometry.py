@@ -21,7 +21,7 @@ from src.data_structure.sorted_list import LocalSortedList
 939. 最小面积矩形（https://leetcode.cn/problems/minimum-area-rectangle/）枚举矩形对角顶点计算另外两个顶点
 面试题 16.03. 交点（https://leetcode.cn/problems/intersection-lcci/）计算两条线段最靠左靠下的交点
 面试题 16.14. 最佳直线（https://leetcode.cn/problems/best-line-lcci/）用直线斜率判断一条线上最多的点数
-2013. 检测正方形（https://leetcode.cn/problems/detect-squares/）已知正方形对角顶点计算另外两个顶点
+2013. 检测正方形（https://leetcode.cn/problems/detect-squares/）已知正方形对角顶点计算另外两个顶点，经典枚举哈希计数
 
 ===================================洛谷===================================
 P1665 正方形计数（https://www.luogu.com.cn/problem/P1665）枚举正方形对角线顶点计算可行个数
