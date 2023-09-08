@@ -49,6 +49,7 @@ from src.mathmatics.comb_perm import Combinatorics
 920. 播放列表的数量（https://leetcode.cn/problems/number-of-music-playlists/）经典矩阵DP
 1594. 矩阵的最大非负积（https://leetcode.cn/problems/maximum-non-negative-product-in-a-matrix/）经典矩阵DP最大与最小乘积转移
 1639. 通过给定词典构造目标字符串的方案数（https://leetcode.cn/problems/number-of-ways-to-form-a-target-string-given-a-dictionary/description/）前缀和优化二维DP
+956. 最高的广告牌（https://leetcode.cn/problems/tallest-billboard/description/）经典矩阵DP
 
 ===================================洛谷===================================
 P2701 [USACO5.3]巨大的牛棚Big Barn（https://www.luogu.com.cn/problem/P2701）求全为 "." 的最大正方形面积，如果不要求实心只能做到O(n^3)复杂度
@@ -287,6 +288,19 @@ class Solution:
             return res % mod
 
         return dfs(0, 0)
+
+    @staticmethod
+    def lc_956(rods: List[int]) -> int:
+        # 模板：经典矩阵DP
+        pre = defaultdict(int)
+        pre[0] = 0
+        for num in rods:
+            cur = pre.copy()
+            for p in pre:
+                cur[p+num] = max(cur[p+num], pre[p])
+                cur[p - num] = max(cur[p - num], pre[p] + num)
+            pre = cur
+        return pre[0]
 
     @staticmethod
     def lc_1092(str1: str, str2: str) -> str:
