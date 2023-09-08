@@ -75,7 +75,7 @@ class Solution:
         return
 
     @staticmethod
-    def lc_1681(self, nums: List[int], k: int) -> int:
+    def lc_1681(nums: List[int], k: int) -> int:
         # 模板：状态压缩和组合数选取结合使用
 
         @lru_cache(None)
@@ -83,15 +83,19 @@ class Solution:
             if not state:
                 return 0
 
+            lst = []
             dct = dict()
             for j in range(n):
-                if state & (1 << j):
+                if state & (1 << j) and nums[j] not in dct:
                     dct[nums[j]] = j
+                    lst.append(nums[j])
             if len(dct) < m:
                 return inf
             res = inf
-            for item in combinations(list(dct.keys()), m):
+            for item in combinations(lst, m):
                 cur = max(item) - min(item)
+                if cur > res:
+                    break
                 nex = state
                 for num in item:
                     nex ^= (1 << dct[num])
@@ -100,6 +104,7 @@ class Solution:
             return res
 
         n = len(nums)
+        nums.sort()
         if n % k:
             return -1
         m = n // k
