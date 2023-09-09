@@ -50,6 +50,7 @@ from src.mathmatics.comb_perm import Combinatorics
 1594. 矩阵的最大非负积（https://leetcode.cn/problems/maximum-non-negative-product-in-a-matrix/）经典矩阵DP最大与最小乘积转移
 1639. 通过给定词典构造目标字符串的方案数（https://leetcode.cn/problems/number-of-ways-to-form-a-target-string-given-a-dictionary/description/）前缀和优化二维DP
 956. 最高的广告牌（https://leetcode.cn/problems/tallest-billboard/description/）经典矩阵DP
+1301. 最大得分的路径数目（https://leetcode.cn/contest/biweekly-contest-16/problems/number-of-paths-with-max-score/）经典矩阵DP计算路径最大值与方案数
 
 ===================================洛谷===================================
 P2701 [USACO5.3]巨大的牛棚Big Barn（https://www.luogu.com.cn/problem/P2701）求全为 "." 的最大正方形面积，如果不要求实心只能做到O(n^3)复杂度
