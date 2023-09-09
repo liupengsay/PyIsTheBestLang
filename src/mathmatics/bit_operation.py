@@ -2,6 +2,7 @@ import unittest
 from collections import defaultdict, Counter
 from functools import lru_cache
 from functools import reduce
+from math import inf
 from operator import xor, or_
 from typing import List
 
@@ -265,6 +266,25 @@ class Solution:
                     ans |= (1 << i)
             ac.st(ans)
         return
+
+    @staticmethod
+    def lc_1787(nums: List[int], k: int) -> int:
+        # 模板：经典按照异或特性分组并利用值域枚举DP
+        m = max(len(bin(num))-2 for num in nums)
+        pre = [inf]*(1 << m)
+        pre[0] = 0
+        for i in range(k):
+            lst = nums[i::k]
+            n = len(lst)
+            cnt = Counter(lst)
+            low = min(pre)
+            cur = [low+n for x in pre]
+            for j in range(1 << m):
+                for num in cnt:
+                    a, b = cur[j], pre[j ^ num] + n - cnt[num]
+                    cur[j] = a if a < b else b
+            pre = cur[:]
+        return pre[0]
 
     @staticmethod
     def lc_6360(nums):
