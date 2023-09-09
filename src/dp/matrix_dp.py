@@ -51,6 +51,7 @@ from src.mathmatics.comb_perm import Combinatorics
 1639. 通过给定词典构造目标字符串的方案数（https://leetcode.cn/problems/number-of-ways-to-form-a-target-string-given-a-dictionary/description/）前缀和优化二维DP
 956. 最高的广告牌（https://leetcode.cn/problems/tallest-billboard/description/）经典矩阵DP
 1301. 最大得分的路径数目（https://leetcode.cn/contest/biweekly-contest-16/problems/number-of-paths-with-max-score/）经典矩阵DP计算路径最大值与方案数
+1937. 扣分后的最大得分（https://leetcode.cn/problems/maximum-number-of-points-with-cost/）经典矩阵前缀和后缀和优化的DP
 
 ===================================洛谷===================================
 P2701 [USACO5.3]巨大的牛棚Big Barn（https://www.luogu.com.cn/problem/P2701）求全为 "." 的最大正方形面积，如果不要求实心只能做到O(n^3)复杂度
@@ -2040,6 +2041,32 @@ class Solution:
                     ans = a if a > b else b
                     break
         return ans
+
+    @staticmethod
+    def lc_1937(points: List[List[int]]) -> int:
+        # 模板：经典矩阵前缀和后缀和优化的DP
+        m, n = len(points), len(points[0])
+        pre = points[0][:]
+
+        for i in range(1, m):
+            left = [0]*n
+            for j in range(n):
+                a = -inf if not j else left[j-1]
+                b = pre[j]+j
+                left[j] = a if a > b else b
+
+            right = [0] * n
+            for j in range(n-1, -1, -1):
+                a = -inf if j == n-1 else right[j+1]
+                b = pre[j] -j
+                right[j] = a if a > b else b
+
+            for j in range(n):
+                a = left[j] - j + points[i][j]
+                b = right[j] + j + points[i][j]
+                pre[j] = a if a > b else b
+
+        return max(pre)
 
     @staticmethod
     def lc_1977(num: str) -> int:
