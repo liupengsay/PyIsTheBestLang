@@ -51,6 +51,7 @@ from src.fast_io import FastIO, inf
 1638. 统计只差一个字符的子串数目（https://leetcode.cn/problems/count-substrings-that-differ-by-one-character/description/）枚举子字符串对开头位置也可使用DP枚举
 2212. 射箭比赛中的最大得分（https://leetcode.cn/problems/maximum-points-in-an-archery-competition/）位运算枚举或者回溯计算
 2749. 得到整数零需要执行的最少操作数（https://leetcode.cn/problems/minimum-operations-to-make-the-integer-zero/）枚举操作次数使用位运算计算可行性
+2094. 找出 3 位偶数（https://leetcode.cn/problems/finding-3-digit-even-numbers/description/）脑筋急转弯枚举，有技巧地缩小范围
 
 ===================================洛谷===================================
 P1548 棋盘问题（https://www.luogu.com.cn/problem/P1548）枚举正方形与长方形的右小角计算个数
