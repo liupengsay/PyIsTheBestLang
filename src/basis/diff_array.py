@@ -35,6 +35,7 @@ from math import inf
 891. 子序列宽度之和（https://leetcode.cn/problems/sum-of-subsequence-widths/description/）前后缀枚举最大值与最小值计数
 1191. K 次串联后最大子数组之和（https://leetcode.cn/problems/k-concatenation-maximum-sum/description/）经典前后缀最大连续子序列和
 1074. 元素和为目标值的子矩阵数量（https://leetcode.cn/problems/number-of-submatrices-that-sum-to-target/description/）经典二维前缀和枚举上下边计算目标子矩阵的数量
+1139. 最大的以 1 为边界的正方形（https://leetcode.cn/problems/largest-1-bordered-square/）经典利用二位前缀和计数枚举边长
 
 ===================================洛谷===================================
 P8772 [蓝桥杯 2022 省 A] 求和（https://www.luogu.com.cn/record/list?user=739032&status=12&page=15）后缀和计算
