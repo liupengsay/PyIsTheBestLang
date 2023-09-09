@@ -384,8 +384,8 @@ class BinaryTrie:
             nxt = self.to[bit ^ 1][cur]
             if nxt == -1 or self.cnt[nxt] == 0:
                 cur = self.to[bit][cur]
-                res |= 1 << k
             else:
+                res |= 1 << k
                 cur = nxt
 
         return res
@@ -404,6 +404,7 @@ class BinaryTrie:
             else:
                 cur = nxt
         return res
+
 
 
 class Solution:
