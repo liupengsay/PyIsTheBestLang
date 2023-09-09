@@ -199,11 +199,13 @@ class TrieCount:
 
 
 class TrieBit:
-    def __init__(self):
+    def __init__(self, n=32):
+        # 长度为n的二进制序列字典树
         self.dct = dict()
-        self.n = 32
+        self.n = n
         return
 
+    # 加入新的值到字典树中
     def update(self, num):
         cur = self.dct
         for i in range(self.n, -1, -1):
@@ -214,6 +216,7 @@ class TrieBit:
             cur["cnt"] = cur.get("cnt", 0) + 1
         return
 
+    # 查询字典树最大异或值
     def query(self, num):
         cur = self.dct
         ans = 0
@@ -226,10 +229,11 @@ class TrieBit:
                 cur = cur[w]
         return ans
 
+    # 从二进制序列中删除
     def delete(self, num):
         cur = self.dct
         for i in range(self.n, -1, -1):
-            w = num & (1 << i)
+            w = 1 if num & (1 << i) else 0
             if cur[w].get("cnt", 0) == 1:
                 del cur[w]
                 break
@@ -866,31 +870,60 @@ class Solution:
     @staticmethod
     def lc_1938(parents: List[int], queries: List[List[int]]) -> List[int]:
         # 模板：深搜回溯结合01Trie离线查询最大异或值对
-        dct = defaultdict(list)
         n = len(parents)
+        x = -1
+        dct = [[] for _ in range(n)]
         for i in range(n):
-            dct[parents[i]].append(i)
-        # 存储需要查询的组合
-        ans = defaultdict(dict)
-        for node, val in queries:
-            ans[node][val] = 0
+            if parents[i] == -1:
+                x = i
+            else:
+                dct[parents[i]].append(i)
 
-        # 深度优先搜索更新每条路径的前缀值字典树
-        def dfs(root):
-            trie.add(root)
-            for k in ans[root]:
-                # 查询结果
-                ans[root][k] = trie.max_xor(k)
-            for nex in dct[root]:
-                dfs(nex)
-                # 回溯
-                trie.remove(nex)
+        query = [dict() for _ in range(n)]
+        for node, val in queries:
+            query[node][val] = 0
+        trie = BinaryTrie(20)
+
+        def dfs(a):
+            trie.add(a)
+            for v in query[a]:
+                query[a][v] = trie.max_xor(v)
+            for b in dct[a]:
+                dfs(b)
+            trie.remove(a)
             return
 
-        # 从根节点开始搜索
-        trie = BinaryTrie(20)
-        dfs(dct[-1][0])
-        return [ans[node][val] for node, val in queries]
+        dfs(x)
+        return [query[node][val] for node, val in queries]
+
+    @staticmethod
+    def lc_1938_2(parents: List[int], queries: List[List[int]]) -> List[int]:
+        # 模板：深搜回溯结合01Trie离线查询最大异或值对
+        n = len(parents)
+        dct = [[] for _ in range(n)]
+        root = -1
+        for i in range(n):
+            if parents[i] == -1:
+                root = i
+            else:
+                dct[parents[i]].append(i)
+
+        ind = [defaultdict(dict) for _ in range(n)]
+        for node, val in queries:
+            ind[node][val] = 0
+
+        def dfs(i):
+            tree.update(i)
+            for v in ind[i]:
+                ind[i][v] = tree.query(v)
+            for j in dct[i]:
+                dfs(j)
+            tree.delete(i)
+            return
+
+        tree = TrieBit()
+        dfs(root)
+        return [ind[node][v] for node, v in queries]
 
 
 class TestGeneral(unittest.TestCase):
