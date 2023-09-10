@@ -4,6 +4,7 @@ import random
 import unittest
 
 from src.fast_io import FastIO
+from src.string.kmp import KMP
 
 """
 算法：快速幂、矩阵快速幂DP、乘法逆元
@@ -13,6 +14,7 @@ from src.fast_io import FastIO
 ===================================力扣===================================
 450. 应用操作后不同二进制字符串的数量（https://leetcode.cn/problems/number-of-distinct-binary-strings-after-applying-operations/）脑筋急转弯快速幂计算
 1931. 用三种不同颜色为网格涂色（https://leetcode.cn/problems/painting-a-grid-with-three-different-colors/）转移DP可以使用快速幂进行计算
+8020. 字符串转换（https://leetcode.cn/problems/string-transformation/description/）使用KMP与快速幂进行转移计算
 
 ===================================洛谷===================================
 P1630 求和（https://www.luogu.com.cn/problem/P1630）快速幂计算，利用同模进行计数加和
@@ -128,6 +130,21 @@ class PowerReverse:
 class Solution:
     def __init__(self):
         return
+
+    @staticmethod
+    def lc_8020(s: str, t: str, k: int) -> int:
+        # 模板：使用KMP与快速幂进行转移计算
+        mod = 10**9 + 7
+        n = len(s)
+        kmp = KMP()
+        z = kmp.prefix_function(t+"#"+s+s)
+        p = sum(z[i] == n for i in range(2*n, 3*n))
+        q = n-p
+        mat = [[p-1, p], [q, q-1]]
+        vec = [1, 0] if z[2*n] == n else [0, 1]
+        res = MatrixFastPower().matrix_pow(mat, k, mod)
+        ans = vec[0]*res[0][0] + vec[1]*res[0][1]
+        return ans % mod
 
     @staticmethod
     def lg_p1045(ac=FastIO()):
