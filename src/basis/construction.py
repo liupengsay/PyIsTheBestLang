@@ -47,6 +47,7 @@ D. Super-Permutation（https://codeforces.com/contest/1822/problem/D）构造前
 ==================================AtCoder=================================
 B - Construct Sequences（https://atcoder.jp/contests/agc007/tasks/agc007_b）脑筋急转弯思维构造公式
 D - Non-decreasing（https://atcoder.jp/contests/abc081/tasks/arc086_b）经典贪心构造分类讨论
+D - Grid Components（https://atcoder.jp/contests/abc092/tasks/arc093_b）思维题构造
 
 参考：OI WiKi（xx）
 """
