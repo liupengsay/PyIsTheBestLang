@@ -129,6 +129,8 @@ D. Three Integers（https://codeforces.com/problemset/problem/1311/D）根据题
 C. Flag（https://codeforces.com/problemset/problem/1181/C）按列进行枚举
 B. Maximum Value（https://codeforces.com/problemset/problem/484/B）排序后进行枚举，并使用二分查找进行确认
 C. Arithmetic Progression（https://codeforces.com/problemset/problem/382/C）分类讨论
+D - Remainder Reminder（https://atcoder.jp/contests/abc090/tasks/arc091_b）典型枚举
+D - Katana Thrower（https://atcoder.jp/contests/abc085/tasks/abc085_d）典型枚举
 
 ================================AtCoder================================
 D - Digit Sum（https://atcoder.jp/contests/abc044/tasks/arc060_b）经典进制计算与分情况枚举因子
