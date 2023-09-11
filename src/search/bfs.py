@@ -22,6 +22,7 @@ from src.fast_io import FastIO, inf
 909. 蛇梯棋（https://leetcode.cn/problems/snakes-and-ladders/）经典01BFS模拟
 1210. 穿过迷宫的最少移动次数（https://leetcode.cn/problems/minimum-moves-to-reach-target-with-rotations/description/）经典01BFS模拟
 1298. 你能从盒子里获得的最大糖果数（https://leetcode.cn/problems/maximum-candies-you-can-get-from-boxes/）经典BFS
+928. 尽量减少恶意软件的传播 II（https://leetcode.cn/problems/minimize-malware-spread-ii/description/）枚举起始点计算BFS
 
 ===================================洛谷===================================
 P1747 好奇怪的游戏（https://www.luogu.com.cn/problem/P1747）双向BFS搜索最短距离
