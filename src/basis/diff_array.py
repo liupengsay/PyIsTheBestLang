@@ -95,6 +95,9 @@ D. Constant Palindrome Sum（https://codeforces.com/problemset/problem/1343/D）
 E. Counting Rectangles（https://codeforces.com/problemset/problem/1722/E）根据数字取值范围使用二位前缀和计算
 D. Absolute Sorting（https://codeforces.com/contest/1772/problem/D）离散差分作用域计数
 
+================================AtCoder================================
+D - AtCoder Express 2（https://atcoder.jp/contests/abc106/tasks/abc106_d）前缀和优化DP计数
+
 ================================AcWing===================================
 99. 激光炸弹（https://www.acwing.com/problem/content/description/101/）二维前缀和
 100. 增减序列（https://www.acwing.com/problem/content/102/）差分数组经典题目，明晰本质
