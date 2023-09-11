@@ -52,6 +52,7 @@ from src.mathmatics.comb_perm import Combinatorics
 956. 最高的广告牌（https://leetcode.cn/problems/tallest-billboard/description/）经典矩阵DP
 1301. 最大得分的路径数目（https://leetcode.cn/contest/biweekly-contest-16/problems/number-of-paths-with-max-score/）经典矩阵DP计算路径最大值与方案数
 1937. 扣分后的最大得分（https://leetcode.cn/problems/maximum-number-of-points-with-cost/）经典矩阵前缀和后缀和优化的DP
+1751. 最多可以参加的会议数目 II（https://leetcode.cn/problems/maximum-number-of-events-that-can-be-attended-ii/）经典矩阵二维DP使用二分优化
 
 ===================================洛谷===================================
 P2701 [USACO5.3]巨大的牛棚Big Barn（https://www.luogu.com.cn/problem/P2701）求全为 "." 的最大正方形面积，如果不要求实心只能做到O(n^3)复杂度
