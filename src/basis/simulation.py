@@ -22,6 +22,7 @@ from src.fast_io import FastIO
 146. LRU 缓存（https://leetcode.cn/problems/lru-cache/）经典OrderDict应用与数据结构自定义题目
 2534. 通过门的时间（https://leetcode.cn/problems/time-taken-to-cross-the-door/）按照时间与题意进行模拟
 1823. 找出游戏的获胜者（https://leetcode.cn/contest/weekly-contest-236/problems/find-the-winner-of-the-circular-game/）约瑟夫环
+927. 三等分（https://leetcode.cn/problems/three-equal-parts/description/）根据二进制特点确定三部分是否相等
 
 ===================================洛谷===================================
 P1815 蠕虫游戏（https://www.luogu.com.cn/problem/P1815）模拟类似贪吃蛇的移动
