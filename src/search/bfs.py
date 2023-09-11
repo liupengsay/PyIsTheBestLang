@@ -20,6 +20,8 @@ from src.fast_io import FastIO, inf
 1654. 到家的最少跳跃次数（https://leetcode.cn/problems/minimum-jumps-to-reach-home/）经典BFS，证明确定上界模拟
 1926. 迷宫中离入口最近的出口（https://leetcode.cn/problems/nearest-exit-from-entrance-in-maze/）经典双端队列01BFS原地哈希
 909. 蛇梯棋（https://leetcode.cn/problems/snakes-and-ladders/）经典01BFS模拟
+1210. 穿过迷宫的最少移动次数（https://leetcode.cn/problems/minimum-moves-to-reach-target-with-rotations/description/）经典01BFS模拟
+1298. 你能从盒子里获得的最大糖果数（https://leetcode.cn/problems/maximum-candies-you-can-get-from-boxes/）经典BFS
 
 ===================================洛谷===================================
 P1747 好奇怪的游戏（https://www.luogu.com.cn/problem/P1747）双向BFS搜索最短距离
@@ -88,6 +90,9 @@ E. Nearest Opposite Parity（https://codeforces.com/problemset/problem/1272/E）
 A. Book（https://codeforces.com/problemset/problem/1572/A）脑筋急转弯建图，广度优先搜索计算是否存在环与无环时从任意起点的DAG最长路
 D. Valid BFS?（https://codeforces.com/problemset/problem/1037/D）经典BDS好题，结合队列与集合进行模拟
 P6175 无向图的最小环问题（https://www.luogu.com.cn/problem/P6175）经典使用Floyd枚举三个点之间的距离和，O(n^3)，也可以使用BFS或者Dijkstra计算
+
+================================AtCoder================================
+D - People on a Line（https://atcoder.jp/contests/abc087/tasks/arc090_b）BFS判断经典类差分约束问题，差分约束问题复杂度O(n^2)，本题1e5的等式使用BFS计算
 
 ================================AcWing================================
 173. 矩阵距离（https://www.acwing.com/problem/content/175/）多源BFS模板题
