@@ -41,6 +41,9 @@ P4868 Preprefix sum（https://www.luogu.com.cn/problem/P4868）经典转换公�
 P5463 小鱼比可爱（加强版）（https://www.luogu.com.cn/problem/P5463）经典使用树状数组维护前缀计数，枚举最大值计算所有区间数贡献
 P6225 [eJOI2019] 异或橙子（https://www.luogu.com.cn/problem/P6225）经典使用树状数组维护前缀异或和
 
+================================AtCoder================================
+D - Islands War（https://atcoder.jp/contests/abc103/tasks/abc103_d）经典贪心加树状数组
+
 ================================CodeForces================================
 F. Range Update Point Query（https://codeforces.com/problemset/problem/1791/F）树状数组维护区间操作数与查询单点值
 H2. Maximum Crossings (Hard Version)（https://codeforces.com/contest/1676/problem/H2）树状数组维护前缀区间和
