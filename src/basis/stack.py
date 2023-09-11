@@ -24,6 +24,7 @@ from src.fast_io import FastIO, inf
 2813. 子序列最大优雅度（https://leetcode.cn/problems/maximum-elegance-of-a-k-length-subsequence/）经典思维题排序后枚举，维护长度为K的子序列最大函数值
 2462. 雇佣 K 位工人的总代价（https://leetcode.cn/problems/total-cost-to-hire-k-workers/）使用堆进行贪心模拟
 1705. 吃苹果的最大数目（https://leetcode.cn/problems/maximum-number-of-eaten-apples/）使用堆进行贪心模拟
+1750. 删除字符串两端相同字符后的最短长度（https://leetcode.cn/problems/minimum-length-of-string-after-deleting-similar-ends/description/）经典栈模拟
 
 ===================================洛谷===================================
 P1944 最长括号匹配（https://www.luogu.com.cn/problem/P1944）最长连续合法括号字串长度
