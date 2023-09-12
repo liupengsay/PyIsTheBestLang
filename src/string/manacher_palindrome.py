@@ -10,7 +10,7 @@ from src.fast_io import FastIO
 ===================================力扣===================================
 5. 最长回文子串（https://leetcode.cn/problems/longest-palindromic-substring/）计算字符串的最长回文连续子串
 132. 分割回文串 II（https://leetcode.cn/problems/palindrome-partitioning-ii/）经典线性 DP 与马拉车判断以每个位置为结尾的回文串
-214 最短回文串（https://leetcode.cn/problems/shortest-palindrome/）计算字符串前缀最长回文子串
+214. 最短回文串（https://leetcode.cn/problems/shortest-palindrome/）计算字符串前缀最长回文子串
 1745. 回文串分割 IV（https://leetcode.cn/problems/palindrome-partitioning-iv/）待确认如何使用马拉车实现线性做法
 1960. 两个回文子字符串长度的最大乘积（https://leetcode.cn/problems/maximum-product-of-the-length-of-two-palindromic-substrings/）利用马拉车求解每个位置前后最长回文子串
 2472. 不重叠回文子字符串的最大数目（https://leetcode.cn/problems/maximum-number-of-non-overlapping-palindrome-substrings/）预处理线性回文子串 DP 优化外加结果计算线性 DP 也可以使用马拉车回文串获取回文信息

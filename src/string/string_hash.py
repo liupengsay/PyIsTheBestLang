@@ -11,16 +11,16 @@ from src.fast_io import FastIO
 
 """
 
-算法：字符串哈希、树哈希、矩阵哈希、树的最小表示法
+算法：字符串哈希、树哈希、矩阵哈希、树的最小表示法、最长前缀回文子串、最长后缀回文子串
 功能：将一定长度的字符串映射为多项式函数值，并进行比较或者计数，通常结合滑动窗口进行计算，注意防止哈希碰撞
 题目：
 
 ===================================力扣===================================
-214. 最短回文串（https://leetcode.cn/problems/shortest-palindrome/）使用正向与反向字符串哈希计算字符串前缀最长回文子串
+214. 最短回文串（https://leetcode.cn/problems/shortest-palindrome/）使用正向与反向字符串哈希计算字符串前缀最长回文子串，也可以用KMP与马拉车
 572. 另一棵树的子树（https://leetcode.cn/problems/subtree-of-another-tree/）经典树结构哈希
 1044. 最长重复子串（https://leetcode.cn/problems/shortest-palindrome/）利用二分查找加字符串哈希确定具有最长长度的重复子串
 1316. 不同的循环子字符串（https://leetcode.cn/problems/shortest-palindrome/）利用字符串哈希确定不同循环子串的个数
-2156 查找给定哈希值的子串（https://leetcode.cn/problems/find-substring-with-given-hash-value/）逆向进行字符串哈希的计算
+2156. 查找给定哈希值的子串（https://leetcode.cn/problems/find-substring-with-given-hash-value/）逆向进行字符串哈希的计算
 652. 寻找重复的子树（https://leetcode.cn/problems/find-duplicate-subtrees/）树哈希，确定重复子树
 1554. 只有一个不同字符的字符串（https://leetcode.cn/problems/strings-differ-by-one-character/）字符串前后缀哈希求解
 1923. 最长公共子路径（https://leetcode.cn/problems/longest-common-subpath/）经典二分查找加滚动哈希
@@ -128,6 +128,50 @@ class Solution:
                         break
             ac.st(ans)
         return
+
+    @staticmethod
+    def lc_214(s: str) -> str:
+        # 模板：使用正向与反向字符串哈希计算字符串前缀最长回文子串，也可以用KMP与马拉车
+
+        def query(x, y):
+            # 模板：字符串区间的哈希值，索引从 0 开始
+            ans = [0, 0]
+            for ii in range(2):
+                if x <= y:
+                    ans[ii] = (pre[ii][y + 1] - pre[ii][x] * pp[ii][y - x + 1]) % mod[ii]
+            return ans
+
+        def query_rev(x, y):
+            # 模板：字符串区间的哈希值，索引从 0 开始
+            ans = [0, 0]
+            for ii in range(2):
+                if x <= y:
+                    ans[ii] = (rev[ii][y + 1] - rev[ii][x] * pp[ii][y - x + 1]) % mod[ii]
+            return ans
+
+        n = len(s)
+        p = [random.randint(26, 100), random.randint(26, 100)]
+        mod = [random.randint(10 ** 9 + 7, 2 ** 31 - 1), random.randint(10 ** 9 + 7, 2 ** 31 - 1)]
+        pre = [[0], [0]]
+        pp = [[1], [1]]
+        for w in s:
+            for i in range(2):
+                pre[i].append((pre[i][-1] * p[i] + ord(w) - ord("a")) % mod[i])
+                pp[i].append((pp[i][-1] * p[i]) % mod[i])
+
+        rev = [[0], [0]]
+        for w in s[::-1]:
+            for i in range(2):
+                rev[i].append((rev[i][-1] * p[i] + ord(w) - ord("a")) % mod[i])
+
+        length = 1
+        for i in range(1, n):
+            m = (i + 1) // 2
+            left = query(0, m - 1)
+            right = query_rev((n - 1) - i, (n - 1) - (i - m + 1))
+            if left == right:
+                length = i + 1
+        return s[length:][::-1] + s
 
     @staticmethod
     def lc_652(root):
