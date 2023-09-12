@@ -526,6 +526,32 @@ class Solution:
         return len(ans)
 
     @staticmethod
+    def lc_1104(s: str) -> str:
+        # 模板：利用二分查找加字符串哈希确定具有最长长度的重复子串
+
+        def compute(x):
+            pre = set()
+            if x == 0:
+                return [0, 0]
+
+            for i in range(x - 1, n):
+                cur = sh.query(i - x + 1, i)
+                if tuple(cur) in pre:
+                    return [i - x + 1, i + 1]
+                pre.add(tuple(cur))
+            return [0, 0]
+
+        def check(x):
+            res = compute(x)
+            return res[1] > 0
+
+        n = len(s)
+        sh = StringHash(n, s)
+        length = BinarySearch().find_int_right(0, n - 1, check)
+        ans = compute(length)
+        return s[ans[0]: ans[1]]
+
+    @staticmethod
     def lc_1316(text: str) -> int:
         # 模板：字符串哈希判断循环子串
         n = len(text)
