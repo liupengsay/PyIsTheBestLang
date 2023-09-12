@@ -43,6 +43,7 @@ D. Task On The Board（https://codeforces.com/problemset/problem/1367/D）逆向
 D. Multiples and Power Differences（https://codeforces.com/problemset/problem/1485/D）按照数据范围进行构造
 G. Even-Odd XOR（https://codeforces.com/problemset/problem/1722/G）根据奇偶性和异或和特点进行构造
 D. Super-Permutation（https://codeforces.com/contest/1822/problem/D）构造前缀和取模互不相同的排列
+D - Make Them Even（https://atcoder.jp/contests/abc109/tasks/abc109_d）根据奇偶性与遍历顺序构造
 
 ==================================AtCoder=================================
 B - Construct Sequences（https://atcoder.jp/contests/agc007/tasks/agc007_b）脑筋急转弯思维构造公式
@@ -177,7 +178,7 @@ class Solution:
         # 模板：贪心构造积为 n 和为 k 的数列，乘积分解成质因数其和最小
         n, k = ac.read_ints()
         ans = []
-        for p, c in NumberTheory().get_prime_factor2(n):
+        for p, c in NumberTheory().get_prime_factor(n):
             ans.extend([p]*c)
         if sum(ans) > k:
             ac.st(-1)
