@@ -10,6 +10,7 @@ from math import inf
 from operator import mul
 from typing import List
 
+from src.basis.binary_search import BinarySearch
 from src.fast_io import FastIO
 
 """
@@ -45,7 +46,6 @@ P1748 H数（https://www.luogu.com.cn/problem/P1748）丑数可以使用堆模�
 P2723 [USACO3.1]丑数 Humble Numbers（https://www.luogu.com.cn/problem/P2723）第n小的只含给定素因子的丑数
 P1952 火星上的加法运算（https://www.luogu.com.cn/problem/P1952）N进制加法
 P1555 尴尬的数字（https://www.luogu.com.cn/problem/P1555）二进制与三进制
-P1592 互质（https://www.luogu.com.cn/problem/P1592）使用二分与容斥原理计算与 n 互质的第 k 个正整数
 P1465 [USACO2.2]序言页码 Preface Numbering（https://www.luogu.com.cn/problem/P1465）整数转罗马数字
 P1112 波浪数（https://www.luogu.com.cn/problem/P1112）枚举波浪数计算其不同进制下是否满足条件
 P2926 [USACO08DEC]Patting Heads S（https://www.luogu.com.cn/problem/P2926）素数筛或者因数分解计数统计可被数列其他数整除的个数
@@ -63,6 +63,7 @@ P1865 A % B Problem（https://www.luogu.com.cn/problem/P1865）通过线性筛�
 P1748 H数（https://www.luogu.com.cn/problem/P1748）丑数可以使用堆模拟可以使用指针递增也可以使用容斥原理与二分进行计算
 P2723 [USACO3.1]丑数 Humble Numbers（https://www.luogu.com.cn/problem/P2723）第n小的只含给定素因子的丑数
 P1592 互质（https://www.luogu.com.cn/problem/P1592）使用二分与容斥原理计算与 n 互质的第 k 个正整数
+P2429 制杖题（https://www.luogu.com.cn/problem/P2429）枚举质因数组合加容斥原理计数
 P2926 [USACO08DEC]Patting Heads S（https://www.luogu.com.cn/problem/P2926）素数筛或者因数分解计数统计可被数列其他数整除的个数
 P5535 【XR-3】小道消息（https://www.luogu.com.cn/problem/P5535）素数is_prime5判断加贪心脑筋急转弯
 P1876 开灯（https://www.luogu.com.cn/problem/P1876）经典好题，理解完全平方数的因子个数为奇数，其余为偶数
@@ -529,34 +530,13 @@ class NumberTheory:
 
     @staticmethod
     def get_all_factor(num):
-        # 获取整数所有的因子包括1和它自己
+        # 获取整数所有的因子包括 1 和它自己
         factor = set()
         for i in range(1, int(math.sqrt(num)) + 1):
             if num % i == 0:
                 factor.add(i)
                 factor.add(num // i)
         return sorted(list(factor))
-
-    def get_prime_cnt(self, x, y):
-        # P1592 互质
-        # P2429 制杖题
-
-        # 使用容斥原理计算 [1, y] 内与 x 互质的个数
-        if x == 1:
-            return y
-
-        lst = self.get_prime_factor(x)
-        prime = [p for p, _ in lst]
-        m = len(lst)
-        # 求与 x 不互质的数，再减去这部分数
-        res = 0
-        for i in range(1, m+1):
-            for item in combinations(prime, i):
-                cur = 1
-                for num in item:
-                    cur *= num
-                res += (y//cur)*(-1)**(i+1)
-        return y-res
 
     def pollard_rho(self, n):
         # 随机返回一个 n 的因数 [1, 10**9]
@@ -1046,6 +1026,31 @@ class Solution:
         return
 
     @staticmethod
+    def lg_p1592(ac=FastIO()):
+        n, k = ac.read_ints()
+        if n == 1:  # 特判
+            ac.st(k)
+            return
+        lst = NumberTheory().get_prime_factor(n)
+        prime = [x for x, _ in lst]
+        m = len(prime)
+
+        def check(x):
+            # 容斥原理计算与 n 不互质且小于等于 x 的数个数
+            res = 0
+            for i in range(1, m + 1):
+                for item in combinations(prime, i):
+                    cur = 1
+                    for num in item:
+                        cur *= num
+                    res += (x // cur) * (-1) ** (i + 1)
+            return x - res >= k
+
+        ans = BinarySearch().find_int_left(1, n*k, check)
+        ac.st(ans)
+        return
+
+    @staticmethod
     def lg_p1593(ac=FastIO()):
         # 模板：使用质因数分解与快速幂计算a^b的所有因子之和
         mod = 9901
@@ -1070,6 +1075,37 @@ class Solution:
                     ans *= (c + 1)
                     ans %= mod
             ac.st(ans)
+        return
+
+    @staticmethod
+    def lc_p2429(ac=FastIO()):
+        # 模板：枚举质因数组合加容斥原理计数
+        n, m = ac.read_ints()
+        primes = sorted(ac.read_list_ints())
+
+        def dfs(i):
+            nonlocal ans, value, cnt
+            if value > m:
+                return
+            if i == n:
+                if cnt:
+                    num = m // value
+                    ans += value * (num * (num + 1) // 2) * (-1) ** (cnt + 1)
+                    ans %= mod
+                return
+
+            value *= primes[i]
+            cnt += 1
+            dfs(i + 1)
+            cnt -= 1
+            value //= primes[i]
+            dfs(i + 1)
+            return
+        cnt = ans = 0
+        value = 1
+        mod = 376544743
+        dfs(0)
+        ac.st(ans)
         return
 
     @staticmethod
