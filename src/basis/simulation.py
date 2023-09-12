@@ -23,6 +23,7 @@ from src.fast_io import FastIO
 2534. 通过门的时间（https://leetcode.cn/problems/time-taken-to-cross-the-door/）按照时间与题意进行模拟
 1823. 找出游戏的获胜者（https://leetcode.cn/contest/weekly-contest-236/problems/find-the-winner-of-the-circular-game/）约瑟夫环
 927. 三等分（https://leetcode.cn/problems/three-equal-parts/description/）根据二进制特点确定三部分是否相等
+1599. 经营摩天轮的最大利润（https://leetcode.cn/problems/maximum-profit-of-operating-a-centennial-wheel/description/）典型模拟题枚举计算
 
 ===================================洛谷===================================
 P1815 蠕虫游戏（https://www.luogu.com.cn/problem/P1815）模拟类似贪吃蛇的移动
