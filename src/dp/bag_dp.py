@@ -125,7 +125,7 @@ class BagDP:
         return
 
     @staticmethod
-    def bin_split(num):
+    def bin_split_1(num):
         # 二进制优化是指 1.2.4.x这样连续的而不是二进制10101对应的1
         if not num:
             return []
@@ -137,6 +137,18 @@ class BagDP:
             x *= 2
         if num:
             lst.append(num)
+        return lst
+
+    @staticmethod
+    def bin_split_2(num):
+        # 从大到小拆分保证没有 1 以外的相同正数
+        if not num:
+            return []
+        lst = []
+        while num:
+            lst.append((num + 1) // 2)
+            num //= 2
+        lst.reverse()
         return lst
 
     @staticmethod
@@ -186,7 +198,7 @@ class BagDP:
         dp = [0] * (n + 1)
         dp[0] = 1
         for num in nums:
-            for x in self.bin_split(num):
+            for x in self.bin_split_1(num):
                 for i in range(n, x - 1, -1):
                     dp[i] += dp[i - x]
         return dp[n]
@@ -298,7 +310,7 @@ class Solution:
         pre = [0] * m
         for i in range(1, m):
             if cnt[i]:
-                for x in BagDP().bin_split(cnt[i]):
+                for x in BagDP().bin_split_1(cnt[i]):
                     cur = pre[:]
                     y = (x * i) % m
                     cur[y] = 1
@@ -339,7 +351,7 @@ class Solution:
         dp = [0] * (ceil + 1)
         dp[0] = 1
         for k, a in nums:
-            for b in BagDP().bin_split(a):
+            for b in BagDP().bin_split_1(a):
                 x = b * k
                 for i in range(ceil, x - 1, -1):
                     if dp[i - x]:
@@ -743,7 +755,7 @@ class Solution:
             for x in range(6):
                 w, s = x+1, lst[x]
                 if s:
-                    for num in BagDP().bin_split(s):
+                    for num in BagDP().bin_split_1(s):
                         for i in range(m, w*num-1, -1):
                             if dp[i-num*w]:
                                 dp[i] = 1
@@ -950,7 +962,7 @@ class Solution:
         dp[0] = 1
         cnt = Counter(lst)
         for num in cnt:
-            for x in BagDP().bin_split(cnt[num]):
+            for x in BagDP().bin_split_1(cnt[num]):
                 for i in range(target, x * num - 1, -1):
                     if dp[i - x * num]:
                         dp[i] = 1
@@ -998,7 +1010,7 @@ class Solution:
         dp = [0] * (m + 1)
         for a in cnt:
             for b in cnt[a]:
-                for x in BagDP().bin_split(cnt[a][b]):
+                for x in BagDP().bin_split_1(cnt[a][b]):
                     for i in range(m, x * a - 1, -1):
                         dp[i] = ac.max(dp[i], dp[i - x * a] + x * b)
         ans = max(dp)
@@ -1161,7 +1173,7 @@ class Solution:
         state = [[] for _ in range(k + 1)]
         for j in range(n):
             bb, cc = b[j], c[j]
-            for x in BagDP().bin_split(cc):
+            for x in BagDP().bin_split_1(cc):
                 for i in range(k, x * bb - 1, -1):
                     if dp[i - x * bb] + x < dp[i]:
                         dp[i] = dp[i - x * bb] + x
@@ -1326,9 +1338,11 @@ class TestGeneral(unittest.TestCase):
 
     def test_bag_dp(self):
         bd = BagDP()
-        for _ in range(1000):
-            num = random.randint(1, 100000000)
-            assert sum(bd.bin_split(num)) == num
+        for num in range(1, 100000):
+            lst1 = bd.bin_split_1(num)
+            lst2 = bd.bin_split_2(num)
+            assert sum(lst1) == num == sum(lst2)
+            assert len(lst1) == len(lst2)
         return
 
 
