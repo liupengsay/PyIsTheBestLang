@@ -5,7 +5,7 @@ from src.fast_io import FastIO
 import math
 from functools import lru_cache
 
-from src.mathmatics.number_theory import NumberTheoryPrimeFactor
+from src.mathmatics.number_theory import NumberTheoryPrimeFactor, NumberTheory
 
 """
 
@@ -60,6 +60,7 @@ B. Mashmokh and ACM（https://codeforces.com/problemset/problem/414/B）经典�
 ================================AtCoder================================
 D - Iroha and a Grid（https://atcoder.jp/contests/abc042/tasks/arc058_b）容斥原理组合计数
 D - 11（https://atcoder.jp/contests/abc066/tasks/arc077_b）经典容斥原理组合计数
+D - Factorization（https://atcoder.jp/contests/abc110/tasks/abc110_d）质因数分解与隔板法计数
 
 ================================AcWing==================================
 130. 火车进出栈问题（https://www.acwing.com/problem/content/132/）超大数字的卡特兰数计算
@@ -188,6 +189,20 @@ class Lucas:
 
 class Solution:
     def __int__(self):
+        return
+
+    @staticmethod
+    def abc_110d(ac=FastIO()):
+        # 模板：质因数分解与隔板法计数
+        n, m = ac.read_ints()
+        mod = 10**9 + 7
+        cb = Combinatorics(n+100, mod)  # 注意这里会超出n
+        ans = 1
+        for _, c in NumberTheory().get_prime_factor(m):
+            ans *= cb.comb(c+n-1, n-1)  # 经典n个正整数和为c+n转换
+            # 等价于sum(cb.comb(n, k)*cb.comb(c-1, k-1) for k in range(1, c+1))
+            ans %= mod
+        ac.st(ans)
         return
 
     @staticmethod
