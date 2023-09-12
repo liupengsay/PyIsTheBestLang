@@ -151,7 +151,7 @@ class Solution:
     def lg_p2092(ac=FastIO()):
         # 模板：根据质数的个数来判断必胜态
         n = ac.read_int()
-        lst = NumberTheory().get_prime_factor2(n)
+        lst = NumberTheory().get_prime_factor(n)
         nums = []
         for p, c in lst:
             nums.extend([p] * c)

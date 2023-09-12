@@ -186,8 +186,8 @@ class NumberTheory:
         return
 
     @staticmethod
-    def get_prime_factor2(x):
-        # 模板：质因数分解最多支持 1**10
+    def get_prime_factor(x):
+        # 模板：质因数分解最多支持 1**12
         ans = []
         j = 2
         while j * j <= x:
@@ -537,23 +537,6 @@ class NumberTheory:
                 factor.add(num // i)
         return sorted(list(factor))
 
-    @staticmethod
-    def get_prime_factor(num):
-        # 质因数分解
-        res = []
-        for i in range(2, int(math.sqrt(num)) + 1):
-            cnt = 0
-            while num % i == 0:
-                num //= i
-                cnt += 1
-            if cnt:
-                res.append([i, cnt])
-            if i > num:
-                break
-        if num != 1 or not res:
-            res.append([num, 1])
-        return res
-
     def get_prime_cnt(self, x, y):
         # P1592 互质
         # P2429 制杖题
@@ -865,7 +848,7 @@ class Solution:
     def ac_97_1(ac=FastIO()):
         # 模板：a^b的所有约数之和
         a, b = ac.read_ints()
-        lst = NumberTheory().get_prime_factor2(a)
+        lst = NumberTheory().get_prime_factor(a)
         mod = 9901
         ans = 1
         for p, c in lst:
@@ -891,7 +874,7 @@ class Solution:
         if a == 0:
             ac.st(0)
             return
-        lst = NumberTheory().get_prime_factor2(a)
+        lst = NumberTheory().get_prime_factor(a)
         mod = 9901
         ans = 1
         for p, c in lst:
@@ -1032,7 +1015,7 @@ class Solution:
         # 模板：质因数分解，贪心匹配模拟
         n = ac.read_int()
         m1, m2 = ac.read_list_ints()
-        lst = NumberTheory().get_prime_factor2(m1)
+        lst = NumberTheory().get_prime_factor(m1)
         ans = inf
         for num in ac.read_list_ints():
             res = 0
@@ -1072,7 +1055,7 @@ class Solution:
         else:
             # 分解质因数
             cnt = dict()
-            for p, c in NumberTheory().get_prime_factor2(a):
+            for p, c in NumberTheory().get_prime_factor(a):
                 cnt[p] = c
             # (1+p1+p1^2+...+p1^cb)*...
             ans = 1
@@ -1114,7 +1097,7 @@ class Solution:
         else:
             # 分解质因数
             cnt = dict()
-            for p, c in NumberTheory().get_prime_factor2(a):
+            for p, c in NumberTheory().get_prime_factor(a):
                 cnt[p] = c
             # (1+p1+p1^2+...+p1^cb)*...
             ans = 1
@@ -1203,7 +1186,7 @@ class Solution:
     def lg_p5253(ac=FastIO()):
         # 模板：经典方程变换计算 (x-n)*(y-n)=n^2 的对数
         n = ac.read_int()
-        lst = NumberTheory().get_prime_factor2(n)
+        lst = NumberTheory().get_prime_factor(n)
         ans = 1
         for _, c in lst:
             # 转换为求数字的因数个数
@@ -1507,13 +1490,13 @@ class TestGeneral(unittest.TestCase):
             t0 = time.time()
             cnt1 = NumberTheory().get_prime_factor(x)
             t1 = time.time()
-            cnt2 = NumberTheory().get_prime_factor2(x)
+            cnt2 = NumberTheory().get_prime_factor(x)
             t2 = time.time()
             print(t1-t0, t2-t1)
             assert cnt1 == cnt2
 
     def test_get_prime_factor_pollard(self):
-        for i in range(1, 10):
+        for _ in range(1, 10):
             nt = NumberTheory()
             for i in range(1, 100000):
                 res = nt.get_prime_factor(i)
@@ -1529,7 +1512,7 @@ class TestGeneral(unittest.TestCase):
         num = 2
         assert nt.get_prime_factor(num) == [[2, 1]]
         num = 1
-        assert nt.get_prime_factor(num) == [[1, 1]]
+        assert nt.get_prime_factor(num) == []
         num = 2 * (3**2) * 7 * (11**3)
         assert nt.get_prime_factor(num) == [[2, 1], [3, 2], [7, 1], [11, 3]]
         return
