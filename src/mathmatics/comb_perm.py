@@ -13,6 +13,7 @@ from src.mathmatics.number_theory import NumberTheoryPrimeFactor, NumberTheory
 功能：全排列计数，选取comb计数，隔板法，错位排列，斯特林数、卡特兰数，容斥原理，可以通过乘法逆元快速求解组合数与全排列数
 题目：
 Lucas定理（comb(n, m)%p = comb(n%p, m%p)*comb(n//p, m//p)）%p
+
 ===================================力扣===================================
 96. 不同的二叉搜索树（https://leetcode.cn/problems/unique-binary-search-trees/）经典卡特兰数
 95. 不同的二叉搜索树 II（https://leetcode.cn/problems/unique-binary-search-trees/）经典卡特兰数思想进行递归，生成具体方案
@@ -22,6 +23,7 @@ Lucas定理（comb(n, m)%p = comb(n%p, m%p)*comb(n//p, m//p)）%p
 1735. 生成乘积数组的方案数（https://leetcode.cn/problems/count-ways-to-make-array-with-product/）经典质数分解与隔板法应用
 1621. 大小为 K 的不重叠线段的数目（https://leetcode.cn/problems/number-of-sets-of-k-non-overlapping-line-segments/）类似隔板法的思想
 1866. 恰有 K 根木棍可以看到的排列数目（https://leetcode.cn/problems/number-of-ways-to-rearrange-sticks-with-k-sticks-visible/）第一类斯特林数
+1916. 统计为蚁群构筑房间的不同顺序（https://leetcode.cn/problems/count-ways-to-build-rooms-in-an-ant-colony/）树形DP加组合数学计数
 
 ===================================洛谷===================================
 P4071 排列计数（https://www.luogu.com.cn/problem/P4071）通过乘法逆元快速求解组合数与全排列数，同时递归计算错位排列数
