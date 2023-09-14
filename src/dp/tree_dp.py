@@ -34,6 +34,7 @@ from src.graph.union_find import UnionFind
 1367. 二叉树中的链表（https://leetcode.cn/problems/linked-list-in-binary-tree/description/）典型二叉树与链表比较的记忆化DP
 979. 在二叉树中分配硬币（https://leetcode.cn/problems/distribute-coins-in-binary-tree/description/）经典树形DP贪心
 1373. 二叉搜索子树的最大键值和（https://leetcode.cn/problems/maximum-sum-bst-in-binary-tree/）经典树形DP二叉树校验
+971. 翻转二叉树以匹配先序遍历（https://leetcode.cn/problems/flip-binary-tree-to-match-preorder-traversal/description/）树形DP贪心模拟
 
 ===================================洛谷===================================
 
