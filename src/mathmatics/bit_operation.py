@@ -12,8 +12,8 @@ from src.fast_io import FastIO
 
 算法：位运算相关技巧（也叫bitmasks）
 功能：进行二进制上的位操作，包括与、异或、或、取反，通常使用按位思考与举例的方式寻找规律
-题目：
-异或经典性质：(4*i)^(4*i+1)^(4*i+2)^(4*i+3)=0
+题目：经典问题abc_121d 求 1^2^...^n
+异或经典性质：(4*i)^(4*i+1)^(4*i+2)^(4*i+3)=0  (2*n)^(2*n+1)=1
 异或经典性质：(a&b)^(a&c) = a&(b^c)
 ===================================力扣===================================
 
@@ -62,6 +62,10 @@ F. Dasha and Nightmares（https://codeforces.com/contest/1800/problem/F）位运
 D. Little Girl and Maximum XOR（https://codeforces.com/problemset/problem/276/D）范围[l,r]区间的最大异或和
 G. Orray（https://codeforces.com/contest/1742/problem/G）重排数组使得前缀或值的字典序最大
 F. Lisa and the Martians（https://codeforces.com/contest/1851/problem/F）经典数组的最小异或对，一定是排序后相邻的数
+
+================================AtCoder================================
+D - XXOR（https://atcoder.jp/contests/abc117/tasks/abc117_d）从高位到低位按位贪心，思维题
+D - XOR World（https://atcoder.jp/contests/abc121/tasks/abc121_d）正解为(2*n)^(2*n+1)=1的性质，可使用数位DP计算 1^2^...^num的值
 
 ================================AcWing===================================
 998. 起床困难综合症（https://www.acwing.com/problem/content/1000/）按位进行或、异或、与操作后贪心选取最大值
@@ -393,6 +397,37 @@ class Solution:
         # 模板：生成 n 位数的格雷码
         ans = BitOperation().get_graycode(n)
         return ans
+
+    @staticmethod
+    def abc_117d(ac=FastIO()):
+        # 模板：从高位到低位按位贪心，思维题
+        n, k = ac.read_ints()
+        nums = ac.read_list_ints()
+        ans = pre = 0
+        for i in range(40, -1, -1):
+            cnt = Counter(int(num & (1 << i) > 0) for num in nums)
+            if cnt[1] >= cnt[0] or pre + (1 << i) > k:
+                ans += cnt[1] * (1 << i)  # 由于多于一半因此必然最优
+            else:
+                pre += (1 << i)
+                ans += cnt[0] * (1 << i)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_121d(ac=FastIO()):
+        def count(x):
+            if x <= 0:
+                return 0
+            m = (x + 1) // 2
+            ans = m % 2
+            if (x + 1) % 2:
+                ans ^= x
+            return ans
+
+        a, b = ac.read_ints()
+        ac.st(count(b) ^ count(a - 1))
+        return
 
     @staticmethod
     def ac_998(ac=FastIO()):
