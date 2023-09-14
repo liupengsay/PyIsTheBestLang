@@ -77,8 +77,9 @@ E. Connected Components?（https://codeforces.com/contest/920/problem/E）并查
 C. Ice Cave（https://codeforces.com/problemset/problem/540/C）路径可达
 E2. Unforgivable Curse (hard version)（https://codeforces.com/problemset/problem/1800/E2）使用并查集分组计算可达
 
-================================CodeForces================================
+================================AtCoder================================
 D - Connectivity（https://atcoder.jp/contests/abc049/tasks/arc065_b）经典双并查集应用
+E - 1 or 2（https://atcoder.jp/contests/abc126/tasks/abc126_e）经典双并查集的并查集应用
 
 ================================AcWing================================
 4306. 序列处理（https://www.acwing.com/problem/content/description/4309/）经典向右合并的区间并查集
