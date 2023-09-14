@@ -104,6 +104,7 @@ F. Zero Remainder Sum（https://codeforces.com/problemset/problem/1433/F）01背
 
 ================================AtCoder================================
 D - Mixing Experiment（https://atcoder.jp/contests/abc054/tasks/abc054_d）二维01背包
+D - Match Matching（https://atcoder.jp/contests/abc118/tasks/abc118_d）贪心背包DP，并还原方案
 
 ================================AcWing=====================================
 4. 多重背包问题 I（https://www.acwing.com/problem/content/4/）二进制优化多重背包
@@ -445,6 +446,33 @@ class Solution:
                     for p in dp[x]:
                         dp[lst[j]].append(p+[lst[i]])
         return [ls for ls in dp[n] if ls]
+
+    @staticmethod
+    def abc_118d(ac=FastIO()):
+        # 模板：贪心背包DP，并还原方案
+        score = [2, 5, 5, 4, 5, 6, 3, 7, 6]
+        n, m = ac.read_ints()
+        nums = ac.read_list_ints()
+        nums.sort(reverse=True)
+        dp = [-inf]*(n+1)
+        dp[0] = 0
+        for num in nums:
+            val = score[num-1]
+            for i in range(val, n+1):
+                if dp[i-val] + 1 > dp[i]:
+                    dp[i] = dp[i-val]+1
+        ans = []
+        i = n
+        while i:
+            for num in nums:
+                val = score[num-1]
+                if i >= val and dp[i] == dp[i-val]+1:
+                    ans.append(num)
+                    i -= val
+                    break
+        ans.sort(reverse=True)
+        ac.st("".join(str(x) for x in ans))
+        return
 
     @staticmethod
     def ac_6(ac=FastIO()):
