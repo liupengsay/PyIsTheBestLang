@@ -2,6 +2,7 @@ import math
 import unittest
 from audioop import add
 from collections import defaultdict
+from itertools import pairwise
 from typing import List
 import random
 
@@ -22,6 +23,7 @@ from src.data_structure.sorted_list import LocalSortedList
 面试题 16.03. 交点（https://leetcode.cn/problems/intersection-lcci/）计算两条线段最靠左靠下的交点
 面试题 16.14. 最佳直线（https://leetcode.cn/problems/best-line-lcci/）用直线斜率判断一条线上最多的点数
 2013. 检测正方形（https://leetcode.cn/problems/detect-squares/）已知正方形对角顶点计算另外两个顶点，经典枚举哈希计数
+2280. 表示一个折线图的最少线段数（https://leetcode.cn/problems/minimum-lines-to-represent-a-line-chart/）使用分数代表斜率计算
 
 ===================================洛谷===================================
 P1665 正方形计数（https://www.luogu.com.cn/problem/P1665）枚举正方形对角线顶点计算可行个数
@@ -367,6 +369,27 @@ class Solution:
         # 模板：计算两条线段之间的最靠左靠下的交点
         gm = Geometry()
         return gm.line_intersection_line(start1, end1, start2, end2)
+
+    @staticmethod
+    def lc_2280(stock: List[List[int]]) -> int:
+        # 模板：使用分数代表斜率计算
+        stock.sort()
+        pre = (-1, -1)
+        ans = 0
+        for (x, y), (a, b) in pairwise(stock):
+            if x == a:
+                cur = (x, -1)
+            else:
+                g = math.gcd(b - y, a - x)
+                bb = (b - y) // g
+                aa = (a - x) // g
+                if aa < 0:
+                    aa *= -1
+                    bb *= -1
+                cur = (bb, aa)
+            ans += pre != cur
+            pre = cur
+        return ans
 
     @staticmethod
     def lc_149(points: List[List[int]]) -> int:
