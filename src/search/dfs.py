@@ -30,6 +30,7 @@ from src.graph.lca import TreeAncestor
 1240. 铺瓷砖（https://leetcode.cn/problems/tiling-a-rectangle-with-the-fewest-squares/）经典DFS回溯与剪枝
 1239. 串联字符串的最大长度（https://leetcode.cn/problems/maximum-length-of-a-concatenated-string-with-unique-characters/）经典DFS回溯进行二进制枚举
 1080. 根到叶路径上的不足节点（https://leetcode.cn/problems/insufficient-nodes-in-root-to-leaf-paths/description/）经典dfs自上而下后又自下而上
+2056. 棋盘上有效移动组合的数目（https://leetcode.cn/problems/number-of-valid-move-combinations-on-chessboard/description/）经典回溯枚举
 
 ===================================洛谷===================================
 P2383 狗哥玩木棒（https://www.luogu.com.cn/problem/P2383）暴力搜索木棍拼接组成正方形
@@ -367,6 +368,50 @@ class Solution:
         ans = m * n
         cnt = 0
         dfs()
+        return ans
+
+    @staticmethod
+    def lc_2056(pieces: List[str], positions: List[List[int]]) -> int:
+        # 模板：经典回溯枚举
+        dct = dict()
+        dct["rook"] = [[-1, 0], [1, 0], [0, -1], [0, 1]]
+        dct["queen"] = [[-1, 0], [1, 0], [0, -1], [0, 1], [-1, 1], [1, 1], [1, -1], [-1, -1]]
+        dct["bishop"] = [[-1, 1], [1, 1], [1, -1], [-1, -1]]
+
+        ans = 0
+        n = len(pieces)
+
+        def dfs(i):
+            nonlocal ans
+            if i == n:
+                ans += 1
+                return
+            x, y = positions[i]
+            cnt = 0
+            for a, b in dct[pieces[i]]:
+                for step in range(8):
+                    if step == 0 and cnt:
+                        continue
+                    cnt += 1
+                    if not (1 <= x + a * step <= 8 and 1 <= y + b * step <= 8):
+                        break
+                    lst = [(x + a * s, y + b * s) for s in range(step + 1)]
+                    while len(lst) < 8:
+                        lst.append(lst[-1])
+                    for ii, w in enumerate(lst):
+                        if w in pre[ii]:
+                            break
+                    else:
+                        for ii, w in enumerate(lst):
+                            pre[ii].add(w)
+                        dfs(i + 1)
+                        for ii, w in enumerate(lst):
+                            pre[ii].discard(w)
+
+            return
+
+        pre = [set() for _ in range(8)]
+        dfs(0)
         return ans
 
     @staticmethod
