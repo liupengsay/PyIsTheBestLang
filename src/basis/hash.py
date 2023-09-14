@@ -22,6 +22,7 @@ from src.fast_io import FastIO
 2025. 分割数组的最多方案数（https://leetcode.cn/problems/maximum-number-of-ways-to-partition-an-array/description/）厘清边界使用哈希贡献法计数
 895. 最大频率栈（https://leetcode.cn/problems/maximum-frequency-stack/description/）经典哈希与栈的结合应用题
 1658. 将 x 减到 0 的最小操作数（https://leetcode.cn/problems/minimum-operations-to-reduce-x-to-zero/description/）前缀和哈希，加脑筋急转弯贪心
+2227. 加密解密字符串（https://leetcode.cn/problems/encrypt-and-decrypt-strings/）经典脑筋急转弯逆向思维
 
 ===================================洛谷===================================
 P2697 宝石串（https://www.luogu.com.cn/problem/P2697）哈希记录前缀和与对应索引
