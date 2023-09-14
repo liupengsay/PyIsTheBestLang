@@ -1,6 +1,7 @@
 import math
 import unittest
 from collections import defaultdict, deque
+from itertools import accumulate
 from typing import List
 
 from src.basis.binary_search import BinarySearch
@@ -36,6 +37,7 @@ from math import inf
 1191. K 次串联后最大子数组之和（https://leetcode.cn/problems/k-concatenation-maximum-sum/description/）经典前后缀最大连续子序列和
 1074. 元素和为目标值的子矩阵数量（https://leetcode.cn/problems/number-of-submatrices-that-sum-to-target/description/）经典二维前缀和枚举上下边计算目标子矩阵的数量
 1139. 最大的以 1 为边界的正方形（https://leetcode.cn/problems/largest-1-bordered-square/）经典利用二位前缀和计数枚举边长
+2281. 巫师的总力量和（https://leetcode.cn/problems/sum-of-total-strength-of-wizards/description/）单调栈计数与前缀和的前缀和计算
 
 ===================================洛谷===================================
 P8772 [蓝桥杯 2022 省 A] 求和（https://www.luogu.com.cn/record/list?user=739032&status=12&page=15）后缀和计算
@@ -433,6 +435,30 @@ class Solution:
         ans = 0
         for z in range(c, d + 1):
             ans += diff[-1] - diff[min(z, b + c)]
+        return ans
+
+    @staticmethod
+    def lc_2281(nums: List[int]) -> int:
+        # 模板：单调栈计数与前缀和的前缀和计算
+        n = len(nums)
+        post = [n - 1] * n  # 这里可以是n/n-1/null，取决于用途
+        pre = [0] * n  # 这里可以是0/-1/null，取决于用途
+        stack = []
+        for i in range(n):  # 这里也可以是从n-1到0倒序计算，取决于用途
+            while stack and nums[stack[-1]] > nums[i]:  # 这里可以是"<" ">" "<=" ">="，取决于需要判断的大小关系
+                post[stack.pop()] = i - 1  # 这里可以是i或者i-1，取决于是否包含i作为右端点
+            if stack:  # 这里不一定可以同时计算，比如前后都是大于等于时，只有前后所求范围互斥时，可以计算
+                pre[i] = stack[-1] + 1  # 这里可以是stack[-1]或者stack[-1]+1，取决于是否包含stack[-1]作为左端点
+            stack.append(i)
+        mod = 10**9 + 7
+        s = list(accumulate(nums, initial=0))
+        ss = list(accumulate(s, initial=0))
+        ans = 0
+        for i in range(n):
+            left = pre[i]
+            right = post[i]
+            ans += nums[i]*((i-left+1)*(ss[right+2]-ss[i+1]) - (right-i+1)*(ss[i+1]-ss[left]))
+            ans %= mod
         return ans
 
     @staticmethod
