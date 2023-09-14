@@ -6,6 +6,7 @@ from typing import List
 
 from sortedcontainers import SortedList
 
+from src.data_structure.sorted_list import LocalSortedList
 from src.fast_io import FastIO
 
 """
@@ -43,6 +44,7 @@ P6225 [eJOI2019] 异或橙子（https://www.luogu.com.cn/problem/P6225）经典�
 
 ================================AtCoder================================
 D - Islands War（https://atcoder.jp/contests/abc103/tasks/abc103_d）经典贪心加树状数组
+F - Absolute Minima （https://atcoder.jp/contests/abc127/tasks/abc127_f）经典离散化与两个树状数组进行加和与计数
 
 ================================CodeForces================================
 F. Range Update Point Query（https://codeforces.com/problemset/problem/1791/F）树状数组维护区间操作数与查询单点值
@@ -928,6 +930,45 @@ class Solution:
             tree.update(i, 1)
             pre = i
         return ans
+
+    @staticmethod
+    def abc_127f(ac=FastIO()):
+        # 模板：经典离散化与两个树状数组进行加和与计数
+        queries = [ac.read_list_ints() for _ in range(ac.read_int())]
+        nodes = set()
+        for lst in queries:
+            if len(lst) > 1:
+                a, _ = lst[1:]
+                nodes.add(a)
+        nodes = sorted(nodes)
+        ind = {num: i for i, num in enumerate(nodes)}
+        n = len(ind)
+        ans = 0
+        tree_sum = TreeArrayRangeQuerySum(n)
+        tree_cnt = TreeArrayRangeQuerySum(n)
+        pre = LocalSortedList()
+        for lst in queries:
+            if lst[0] == 1:
+                a, b = lst[1:]
+                ans += b
+                tree_sum.update(ind[a] + 1, a)
+                tree_cnt.update(ind[a] + 1, 1)
+                pre.add(a)
+            else:
+                m = len(pre)
+                if m % 2 == 0:
+                    i = m // 2 - 1
+                else:
+                    i = m // 2
+                val = pre[i]
+                i = ind[val]
+                left = val * tree_cnt.query(i + 1) - tree_sum.query(i + 1)
+                if i + 2 <= n:
+                    right = -val * tree_cnt.query_range(i + 2, n) + tree_sum.query_range(i + 2, n)
+                else:
+                    right = 0
+                ac.lst([val, left + right + ans])
+        return
 
     @staticmethod
     def cf_987c(ac=FastIO()):
