@@ -806,7 +806,6 @@ class Solution:
 
         def check(xx):
             # 最早与最晚出发
-            t1 = 0
             res = [xx, 1]
             while int(res[0]) != res[0]:
                 res[0] *= 10

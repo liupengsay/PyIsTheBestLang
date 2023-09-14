@@ -20,6 +20,7 @@ sys.set_int_max_str_digits(0)  # 力扣大数的范围坑
 172. 阶乘后的零（https://leetcode.cn/problems/factorial-trailing-zeroes/）阶乘后缀0的个数
 1883. 准时抵达会议现场的最小跳过休息次数（https://leetcode.cn/problems/minimum-skips-to-arrive-at-meeting-on-time/description/）经典二维矩阵DP使用分数进行高精度浮点数计算
 2117. 一个区间内所有数乘积的缩写（https://leetcode.cn/problems/abbreviating-the-product-of-a-range/）大数计算或者前后缀模拟计算
+972. 相等的有理数（https://leetcode.cn/problems/equal-rational-numbers/）有理数转为分数判断
 
 ===================================洛谷===================================
 P2388 阶乘之乘（https://www.luogu.com.cn/problem/P2388）阶乘之乘后缀0的个数
@@ -192,6 +193,11 @@ class Solution:
     def lc_172(n):
         # 模板: n!的后缀零个数
         return HighPrecision().factorial_to_zero(n)
+    @staticmethod
+    def lc_972(s: str, t: str) -> bool:
+        # 模板：有理数转为分数判断
+        hp = HighPrecision()
+        return hp.decimal_to_fraction(s) == hp.decimal_to_fraction(t)
 
     @staticmethod
     def lg_p2238(ac=FastIO()):
