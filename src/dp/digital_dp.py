@@ -26,6 +26,8 @@ from src.fast_io import FastIO
 
 面试题 17.06. 2出现的次数（https://leetcode.cn/problems/number-of-2s-in-range-lcci/）所有数位出现 2 的次数
 
+===================================AtCoder===================================
+D - XOR World（https://atcoder.jp/contests/abc121/tasks/abc121_d）正解为(2*n)^(2*n+1)=1的性质，可使用数位DP计算 1^2^...^num的值
 
 ===================================洛谷===================================
 P1590 失踪的7（https://www.luogu.com.cn/problem/P1590）计算 n 以内不含7的个数
@@ -192,6 +194,42 @@ class DigitalDP:
 
 class Solution:
     def __init__(self):
+        return
+
+    @staticmethod
+    def abc_121d(ac=FastIO()):
+        # 模板：正解为 n^(n+1) == 1 (n%2==0) 的性质
+        def count(num):
+            # 模板：使用数位DP计算 1^2^...^num的值
+            @lru_cache(None)
+            def dfs(i, cnt, is_limit, is_num):
+                if i == n:
+                    if is_num:
+                        return cnt
+                    return 0
+                res = 0
+                if not is_num:
+                    res += dfs(i + 1, 0, False, False)
+
+                floor = 0 if is_num else 1
+                ceil = int(s[i]) if is_limit else 9
+                for x in range(floor, ceil + 1):
+                    res += dfs(i + 1, cnt + int(i == d and x == 1),
+                               is_limit and ceil == x, True)
+                return res
+            if num <= 0:
+                return 0
+            s = bin(num)[2:]
+            n = len(s)
+            ans = 0
+            for d in range(n):
+                c = dfs(0, 0, True, False)
+                dfs.cache_clear()
+                if c % 2:
+                    ans += 1 << (n - d - 1)
+            return ans
+        a, b = ac.read_ints()
+        ac.st(count(b) ^ count(a - 1))
         return
 
     @staticmethod
