@@ -63,6 +63,7 @@ B. Mashmokh and ACM（https://codeforces.com/problemset/problem/414/B）经典�
 D - Iroha and a Grid（https://atcoder.jp/contests/abc042/tasks/arc058_b）容斥原理组合计数
 D - 11（https://atcoder.jp/contests/abc066/tasks/arc077_b）经典容斥原理组合计数
 D - Factorization（https://atcoder.jp/contests/abc110/tasks/abc110_d）质因数分解与隔板法计数
+E - Cell Distance（https://atcoder.jp/contests/abc127/tasks/abc127_e）经典贡献法组合计数
 
 ================================AcWing==================================
 130. 火车进出栈问题（https://www.acwing.com/problem/content/132/）超大数字的卡特兰数计算
@@ -451,6 +452,27 @@ class Solution:
             if 1 <= k <= x + y + 1:
                 ans -= cb.comb(x + y, k - 1)
             ac.st(ans % mod)
+        return
+
+    @staticmethod
+    def abc_127e(ac=FastIO()):
+        # 模板：经典贡献法组合计数
+        mod = 10**9 + 7
+        m, n, k = ac.read_ints()
+        cb = Combinatorics(m*n, mod)
+        cnt = cb.comb(m*n-2, k-2)
+        ans = 0
+        for i in range(m):
+            for j in range(n):
+                up = n*i*(i+1)//2 if i else 0
+                down = n*(m-1-i+1)*(m-1-i)//2 if i < m-1 else 0
+                left = m*j*(j+1)//2 if j else 0
+                right = m*(n-1-j+1)*(n-1-j)//2 if j < n-1 else 0
+                ans += cnt*(left+right+up+down)
+                ans %= mod
+        ans *= pow(2, -1, mod)
+        ans %= mod
+        ac.st(ans)
         return
 
     @staticmethod
