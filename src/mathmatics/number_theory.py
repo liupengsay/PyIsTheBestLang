@@ -5,7 +5,7 @@ import unittest
 from collections import Counter
 from collections import defaultdict
 from functools import reduce
-from itertools import combinations
+from itertools import combinations, permutations
 from math import inf
 from operator import mul
 from typing import List
@@ -98,6 +98,9 @@ A. Row GCD（https://codeforces.com/problemset/problem/1458/A）gcd公式变换�
 A. Division（https://codeforces.com/problemset/problem/1444/A）贪心枚举质数因子
 C. Strongly Composite（https://codeforces.com/contest/1823/problem/C）质因数分解进行贪心计算
 
+================================AtCoder================================
+D - 756（https://atcoder.jp/contests/abc114/tasks/abc114_d）质因数分解计数  
+        
 ================================AcWing================================
 97. 约数之和（https://www.acwing.com/problem/content/99/）计算a^b的所有约数之和
 124. 数的进制转换（https://www.acwing.com/problem/content/126/）不同进制的转换，注意0的处理
@@ -822,6 +825,35 @@ class Solution:
                     ac.st(0)
             else:
                 ac.st(ans + even)
+        return
+
+    @staticmethod
+    def abc_114d(ac=FastIO()):
+        # 模板：质因数分解计数
+        n = ac.read_int()
+        nt = NumberTheoryPrimeFactor(n+10)
+        cnt = Counter()
+        for x in range(1, n+1):
+            for p, c in nt.prime_factor[x]:
+                cnt[p] += c
+        ans = set()
+        for item in permutations(list(cnt.keys()), 3):
+            x, y, z = item
+            if cnt[x] >= 2 and cnt[y]>=4 and cnt[z] >= 4:
+                if y > z:
+                    y, z = z, y
+                ans.add((x, y, z))
+
+        for item in permutations(list(cnt.keys()), 2):
+            x, y = item
+            if cnt[x] >= 2 and cnt[y] >= 24:
+                ans.add((x, y, 325))
+            if cnt[x] >= 4 and cnt[y] >= 14:
+                ans.add((x, y, 515))
+        for x in cnt:
+            if cnt[x] >= 74:
+                ans.add(x)
+        ac.st(len(ans))
         return
 
     @staticmethod
