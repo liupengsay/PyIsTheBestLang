@@ -124,6 +124,8 @@ B. The least round way（https://codeforces.com/problemset/problem/2/B）矩阵D
 B. Unmerge（https://codeforces.com/problemset/problem/1381/B）二维矩阵DP加单调栈优化
 D. Rarity and New Dress（https://codeforces.com/problemset/problem/1393/D）经典二维DP计算金字塔个数
 
+================================AtCoder================================
+E - Common Subsequence（https://atcoder.jp/contests/abc130/tasks/abc130_e）二维前缀和优化矩阵DP
 ================================AcWing================================
 4378. 选取数对（https://www.acwing.com/problem/content/4381/）典型矩阵DP
 4418. 选元素（https://www.acwing.com/problem/content/description/4421/）经典单调队列优化矩阵DP
@@ -1931,6 +1933,25 @@ class Solution:
                         pre[i + 1] - pre[i - m + 1]
                     dp[i + 1][j] = a if a > b else b
         ac.st(dp[n][k])
+        return
+
+    @staticmethod
+    def abc_130e(ac=FastIO()):
+        # 模板：二维前缀和优化矩阵DP
+        m, n = ac.read_ints()
+        mod = 10**9 + 7
+        s = ac.read_list_ints()
+        t = ac.read_list_ints()
+        dp = [[0]*n for _ in range(m)]
+        pre = [[0]*(n+1) for _ in range(m+1)]
+        for i in range(m):
+            for j in range(n):
+                if s[i] == t[j]:
+                    dp[i][j] = (pre[i][j] + 1) % mod
+            for j in range(n):
+                pre[i+1][j+1] = (pre[i+1][j]+pre[i][j+1] - pre[i][j] + dp[i][j]) % mod
+        ans = sum(sum(d) for d in dp) + 1
+        ac.st(ans % mod)
         return
 
     @staticmethod
