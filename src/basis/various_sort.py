@@ -473,18 +473,13 @@ class Solution:
     @staticmethod
     def lc_2412(transactions: List[List[int]]) -> int:
 
-        def check(ls):
-            x, y = ls[0], ls[1]
-            res = [0, 0]
-            if x > y:
-                res[0] = 0
-                res[1] = y
-            else:
-                res[0] = 1
-                res[1] = -x
-            return res
+        def check(it):
+            cos, cash = it[:]
+            if cos > cash:
+                return [-1, cash]
+            return [1, -cos]
 
-        transactions.sort(key=lambda it: check(it))
+        transactions.sort(key=check)
         ans = cur = 0
         for a, b in transactions:
             if cur < a:
