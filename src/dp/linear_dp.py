@@ -110,6 +110,9 @@ A. Garland（https://codeforces.com/problemset/problem/1286/A）线性经典dp
 D. Make The Fence Great Again（https://codeforces.com/problemset/problem/1221/D）线性DP，最多变化为增加0、1、2
 E. Funny Game（https://codeforces.com/contest/731/problem/E）前缀和倒序DP
 
+================================AtCoder====================================
+E - Sum Equals Xor（https://atcoder.jp/contests/abc129/tasks/abc129_e）思维题，类似数位DP
+
 ================================AcWing====================================
 96. 奇怪的汉诺塔（https://www.acwing.com/problem/content/98/）经典的汉诺塔问题，可推广到n个盘子与m个柱子
 4414. 子序列（https://www.acwing.com/problem/content/description/4417/）经典线性子序列DP
