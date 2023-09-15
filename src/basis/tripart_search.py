@@ -118,7 +118,6 @@ class TriPartSearch:
 
     @staticmethod
     def find_floor_value_float(fun, left, right, error=1e-9, high_precision=False):
-
         # 求解下凸函数取得的最小值
         f1, f2 = fun(left), fun(right)
         while abs(f1 - f2) > error:
