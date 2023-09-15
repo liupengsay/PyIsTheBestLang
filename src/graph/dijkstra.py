@@ -2,6 +2,7 @@
 import heapq
 import unittest
 from collections import defaultdict, deque
+from heapq import heappush, heappop
 from itertools import accumulate
 from operator import add
 from typing import List, Set
@@ -34,7 +35,7 @@ LCP 75. 传送卷轴（https://leetcode.cn/problems/rdmXM7/）首先BFS之后计
 2093. 前往目标城市的最小费用（https://leetcode.cn/problems/minimum-cost-to-reach-city-with-discounts/）经典Dijkstra带约束的最短路
 882. 细分图中的可到达节点（https://leetcode.cn/problems/reachable-nodes-in-subdivided-graph/description/）Dijkstra模板题
 2577. 在网格图中访问一个格子的最少时间（https://leetcode.cn/problems/minimum-time-to-visit-a-cell-in-a-grid/）Dijkstra经典变形二维矩阵题目
-
+2065. 最大化一张图中的路径价值（https://leetcode.cn/problems/maximum-path-quality-of-a-graph/）经典回溯，正解使用Dijkstra跑最短路剪枝
 
 ===================================洛谷===================================
 P3371 单源最短路径（弱化版）（https://www.luogu.com.cn/problem/P3371）最短路模板题
@@ -469,6 +470,33 @@ class Solution:
                 if cnt + 1 < dis[j]:
                     heapq.heappush(stack, [cost + dct[i][j], cnt + 1, j])
         return -1
+
+    @staticmethod
+    def lc_2065(values: List[int], edges: List[List[int]], maxTime: int) -> int:
+        # 模板：经典回溯，正解使用Dijkstra跑最短路剪枝
+        n = len(values)
+        dct = [[] for _ in range(n)]
+        for i, j, t in edges:
+            dct[i].append([j, t])
+            dct[j].append([i, t])
+        dis = Dijkstra().get_dijkstra_result(dct, 0)
+
+        stack = [[0, 0, {0}]]
+        ans = 0
+        visit = {tuple(sorted({0}) + [0]): 0}
+        while stack:
+            t, x, nodes = heappop(stack)
+            if dis[x] + t <= maxTime:
+                cur = sum(values[j] for j in nodes)
+                if cur > ans:
+                    ans = cur
+            for y, w in dct[x]:
+                if t + w + dis[y] <= maxTime:
+                    state = tuple(sorted(nodes.union({y})) + [y])
+                    if visit.get(state, inf) > t + w:
+                        visit[state] = t + w
+                        heappush(stack, [t+w, y, nodes.union({y})])
+        return ans
 
     @staticmethod
     def lc_2093(n: int, highways: List[List[int]], discounts: int) -> int:
