@@ -25,7 +25,7 @@ from src.graph.lca import TreeAncestor
 2581. 统计可能的树根数目（https://leetcode.cn/contest/biweekly-contest-99/problems/count-number-of-possible-root-nodes/）深搜序加差分计数
 1059. 从始点到终点的所有路径（https://leetcode.cn/problems/all-paths-from-source-lead-to-destination/）记忆化搜索DFS深搜且回溯
 1718. 构建字典序最大的可行序列（https://leetcode.cn/problems/construct-the-lexicographically-largest-valid-sequence/）经典回溯
-2065. 最大化一张图中的路径价值（https://leetcode.cn/problems/maximum-path-quality-of-a-graph/）经典回溯
+2065. 最大化一张图中的路径价值（https://leetcode.cn/problems/maximum-path-quality-of-a-graph/）经典回溯，正解使用Dijkstra跑最短路剪枝
 2322. 从树中删除边的最小分数（https://leetcode.cn/problems/minimum-score-after-removals-on-a-tree/）使用深搜序dfs序枚举
 1240. 铺瓷砖（https://leetcode.cn/problems/tiling-a-rectangle-with-the-fewest-squares/）经典DFS回溯与剪枝
 1239. 串联字符串的最大长度（https://leetcode.cn/problems/maximum-length-of-a-concatenated-string-with-unique-characters/）经典DFS回溯进行二进制枚举
