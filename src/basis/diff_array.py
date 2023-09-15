@@ -38,6 +38,7 @@ from math import inf
 1074. 元素和为目标值的子矩阵数量（https://leetcode.cn/problems/number-of-submatrices-that-sum-to-target/description/）经典二维前缀和枚举上下边计算目标子矩阵的数量
 1139. 最大的以 1 为边界的正方形（https://leetcode.cn/problems/largest-1-bordered-square/）经典利用二位前缀和计数枚举边长
 2281. 巫师的总力量和（https://leetcode.cn/problems/sum-of-total-strength-of-wizards/description/）单调栈计数与前缀和的前缀和计算
+995. K 连续位的最小翻转次数（https://leetcode.cn/problems/minimum-number-of-k-consecutive-bit-flips/description/）贪心加差分数组模拟
 
 ===================================洛谷===================================
 P8772 [蓝桥杯 2022 省 A] 求和（https://www.luogu.com.cn/record/list?user=739032&status=12&page=15）后缀和计算
@@ -374,6 +375,27 @@ class Solution:
                 ans[i] += b[i] * diff[i]
             ac.lst(ans)
         return
+
+    @staticmethod
+    def lc_995(nums: List[int], k: int) -> int:
+        # 模板：贪心加差分数组模拟
+        n = len(nums)
+        ans = 0
+        diff = [0] * (n + 1)
+        for i in range(n - k + 1):
+            diff[i] += diff[i - 1] if i else 0
+            nums[i] += diff[i]
+            nums[i] %= 2
+            if nums[i] == 0:
+                nums[i] = 1
+                diff[i] += 1
+                diff[i + k] -= 1
+                ans += 1
+        for i in range(n - k + 1, n):
+            diff[i] += diff[i - 1] if i else 0
+            nums[i] += diff[i]
+            nums[i] %= 2
+        return ans if all(x == 1 for x in nums) else -1
 
     @staticmethod
     def lc_1074(matrix: List[List[int]], target: int) -> int:
