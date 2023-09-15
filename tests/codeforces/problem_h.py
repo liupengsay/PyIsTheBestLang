@@ -12,6 +12,7 @@ import math
 from functools import lru_cache
 from heapq import nlargest
 from functools import reduce
+from decimal import Decimal
 import random
 from itertools import combinations, permutations
 from operator import xor, add
