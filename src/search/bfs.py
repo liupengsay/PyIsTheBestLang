@@ -23,6 +23,7 @@ from src.fast_io import FastIO, inf
 1210. 穿过迷宫的最少移动次数（https://leetcode.cn/problems/minimum-moves-to-reach-target-with-rotations/description/）经典01BFS模拟
 1298. 你能从盒子里获得的最大糖果数（https://leetcode.cn/problems/maximum-candies-you-can-get-from-boxes/）经典BFS
 928. 尽量减少恶意软件的传播 II（https://leetcode.cn/problems/minimize-malware-spread-ii/description/）枚举起始点计算BFS
+994. 腐烂的橘子（https://leetcode.cn/problems/rotting-oranges/description/）经典BFS使用队列模拟
 
 ===================================洛谷===================================
 P1747 好奇怪的游戏（https://www.luogu.com.cn/problem/P1747）双向BFS搜索最短距离
@@ -1644,6 +1645,29 @@ class Solution:
                     visit.add(nex)
                     stack.append([nex, ans + 1])
         return -1
+
+    @staticmethod
+    def lc_994(grid: List[List[int]]) -> int:
+        # 模板：经典BFS使用队列模拟
+        m, n = len(grid), len(grid[0])
+        stack = deque()
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == 2:
+                    stack.append([i, j, 0])
+        ans = 0
+        while stack:
+            i, j, d = stack.popleft()
+            ans = d
+            for x, y in [[i+1, j], [i-1, j], [i, j+1], [i, j-1]]:
+                if 0<=x<m and 0<=y<n and grid[x][y] == 1:
+                    grid[x][y] = 2
+                    stack.append([x, y, d+1])
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == 1:
+                    return -1
+        return ans
 
     @staticmethod
     def lc_1036_1(blocked: List[List[int]], source: List[int], target: List[int]) -> bool:
