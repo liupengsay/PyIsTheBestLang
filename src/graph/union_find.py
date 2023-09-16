@@ -80,6 +80,7 @@ E2. Unforgivable Curse (hard version)（https://codeforces.com/problemset/proble
 ================================AtCoder================================
 D - Connectivity（https://atcoder.jp/contests/abc049/tasks/arc065_b）经典双并查集应用
 E - 1 or 2（https://atcoder.jp/contests/abc126/tasks/abc126_e）经典双并查集的并查集应用
+F - Must Be Rectangular!（https://atcoder.jp/contests/abc131/tasks/abc131_f）思维题并查集计数
 
 ================================AcWing================================
 4306. 序列处理（https://www.acwing.com/problem/content/description/4309/）经典向右合并的区间并查集
@@ -1078,6 +1079,27 @@ class Solution:
             pre[(ufa.find(i), ufb.find(i))] += 1
         ans = [pre[(ufa.find(i), ufb.find(i))] for i in range(n)]
         ac.lst(ans)
+        return
+
+    @staticmethod
+    def abc_131f(ac=FastIO()):
+        # 模板：思维题并查集计数
+        n = ac.read_int()
+        m = 10**5
+        uf = UnionFind(2 * m)
+        for _ in range(n):
+            x, y = ac.read_ints()
+            x -= 1
+            y -= 1
+            y += m
+            uf.union(x, y)
+        group = uf.get_root_part()
+        ans = 0
+        for g in group:
+            x = sum(xx < m for xx in group[g])
+            y = sum(xx >= m for xx in group[g])
+            ans += x * y
+        ac.st(ans - n)
         return
 
     @staticmethod
