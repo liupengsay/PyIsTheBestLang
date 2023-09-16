@@ -24,6 +24,7 @@ Lucas定理（comb(n, m)%p = comb(n%p, m%p)*comb(n//p, m//p)）%p
 1621. 大小为 K 的不重叠线段的数目（https://leetcode.cn/problems/number-of-sets-of-k-non-overlapping-line-segments/）类似隔板法的思想
 1866. 恰有 K 根木棍可以看到的排列数目（https://leetcode.cn/problems/number-of-ways-to-rearrange-sticks-with-k-sticks-visible/）第一类斯特林数
 1916. 统计为蚁群构筑房间的不同顺序（https://leetcode.cn/problems/count-ways-to-build-rooms-in-an-ant-colony/）树形DP加组合数学计数
+D - Blue and Red Balls（https://atcoder.jp/contests/abc132/tasks/abc132_d）组合数学经典计数，和为 X 的长为 Y 的正整数与非负整数方程解个数
 
 ===================================洛谷===================================
 P4071 排列计数（https://www.luogu.com.cn/problem/P4071）通过乘法逆元快速求解组合数与全排列数，同时递归计算错位排列数
@@ -705,6 +706,29 @@ class Solution:
             for j in range(k):
                 dp[i+1][j+1] = (dp[i][j] + dp[i][j+1]*i)%mod
         return dp[n][k]
+
+    @staticmethod
+    def abc_132d(ac=FastIO()):
+        # 模板：组合数学经典计数，和为 X 的长为 Y 的正整数与非负整数方程解个数
+        n, k = ac.read_ints()
+        mod = 10**9 + 7
+        cb = Combinatorics(n, mod)
+        for i in range(1, k + 1):
+            if n - k < i - 1:
+                ac.st(0)
+                continue
+            blue = cb.comb(k - 1, i - 1)
+            if i == 1:
+                red = n - k + 1
+            else:
+                red = 0
+                for mid in range(i - 1, n - k + 1):
+                    red += cb.comb(mid - 1, i - 2) * (n - k - mid + 1)
+                    red %= mod
+            ans = blue * red
+            ac.st(ans % mod)
+
+        return
 
     @staticmethod
     def ac_4002(ac=FastIO()):
