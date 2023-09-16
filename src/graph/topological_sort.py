@@ -1,7 +1,12 @@
 """
 """
+import copy
+import heapq
 import math
+import unittest
+from collections import defaultdict, deque
 from math import inf
+from typing import List, Optional
 
 from src.dp.tree_dp import TreeDiameterInfo
 from src.fast_io import FastIO
@@ -18,7 +23,7 @@ from src.graph.union_find import UnionFind
 360. 图中的最长环（https://leetcode.cn/problems/longest-cycle-in-a-graph/）拓扑排序计算有向图内向基环树最长环
 2392. 给定条件下构造矩阵（https://leetcode.cn/problems/build-a-matrix-with-conditions/）分别通过行列的拓扑排序来确定数字所在索引，数字可能相同，需要使用并查集
 2371. 最小化网格中的最大值（https://leetcode.cn/problems/minimize-maximum-value-in-a-grid/）分别通过行列的拓扑排序来确定数字所在索引，数字都不同可以使用贪心
-2127. 参加会议的最多员工数（https://leetcode.cn/problems/maximum-employees-to-be-invited-to-a-meeting/）拓扑排序确定内向基环，按照环的大小进行贪心枚举
+2127. 参加会议的最多员工数（https://leetcode.cn/problems/maximum-employees-to-be-invited-to-a-meeting/）拓扑排序确定DAG内向基环，按照环的大小进行分类讨论
 127. 参加会议的最多员工数（https://leetcode.cn/problems/maximum-employees-to-be-invited-to-a-meeting/）
 269. 火星词典（https://leetcode.cn/problems/alien-dictionary/）经典按照字典序建图，与拓扑排序的应用
 2603. 收集树中金币（https://leetcode.cn/contest/weekly-contest-338/problems/collect-coins-in-a-tree/）无向图拓扑排序内向基环树
@@ -57,14 +62,6 @@ F - Well-defined Path Queries on a Namori（https://atcoder.jp/contests/abc266/�
 
 参考：OI WiKi（xx）
 """
-
-import unittest
-
-from typing import List, Optional
-from collections import defaultdict, deque
-
-import heapq
-import copy
 
 
 class TopologicalSort:
@@ -827,6 +824,47 @@ class Solution:
             else:
                 ac.st("Deception")
         return
+
+    @staticmethod
+    def lc_2127(favorite: List[int]) -> int:
+        # 模板：拓扑排序确定DAG内向基环，按照环的大小进行分类讨论
+        n = len(favorite)
+        degree = [0]*n
+        for i in range(n):
+            degree[favorite[i]] += 1
+        depth = [0]*n
+        stack = [i for i in range(n) if degree[i] == 0]
+        while stack:
+            nex = []
+            for i in stack:
+                j = favorite[i]
+                degree[j] -= 1
+                a, b = depth[i] + 1, depth[j]
+                depth[j] = a if a > b else b
+                if not degree[j]:
+                    nex.append(j)
+            stack = nex[:]
+        ans = 0
+        bicycle = 0
+        for i in range(n):
+            if not degree[i]:
+                continue
+            lst = [i]
+            degree[i] = 0
+            x = favorite[i]
+            while x != i:
+                lst.append(x)
+                degree[x] = 0
+                x = favorite[x]
+            if len(lst) == 2:
+                # 一种是所有的2元环外接链拼接起来
+                bicycle += depth[lst[0]]+depth[lst[1]] + 2
+            elif len(lst) > ans:
+                # 一种是只有一个大于2的环
+                ans = len(lst)
+
+        ans = ans if ans > bicycle else bicycle
+        return ans
 
     @staticmethod
     def lc_2192(n: int, edges: List[List[int]]) -> List[List[int]]:
