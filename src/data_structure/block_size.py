@@ -19,12 +19,63 @@ B. Little Elephant and Array（https://codeforces.com/contest/220/problem/B）�
 D. Powerful array（https://codeforces.com/contest/86/problem/D）分块矩阵求函数值模板题
 E. XOR and Favorite Number（https://codeforces.com/contest/617/problem/E）分块矩阵求异或对计数模板题
 
+================================AtCoder================================
+F - Small Products（https://atcoder.jp/contests/abc132/tasks/abc132_f）分组线性计数DP，使用前缀和优化
+
 参考：OI WiKi（https://oi-wiki.org/ds/fenwick/）
 """
 
 
+class BlockSize:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def get_divisor_split(n):
+        # 模板：将区间 [1, n] 分解为每个区间对 n 的除数不超过范围
+        if n == 1:
+            return [1], [[1, 1]]
+        m = int(n ** 0.5)
+        pre = []
+        post = []
+        for x in range(1, m + 1):
+            pre.append(x)
+            post.append(n // x)
+        if pre[-1] == post[-1]:
+            post.pop()
+        post.reverse()
+        res = pre + post
+
+        cnt = [res[0]] + [res[i + 1] - res[i] for i in range(len(res) - 1)]
+        k = len(cnt)
+        assert k == 2 * m - int(m == n // m)
+
+        right = [n // (k - i) for i in range(1, k)]
+        pre = n // k
+        seg = [[1, pre - 1]] if pre > 1 else []
+        for num in right:
+            seg.append([pre, num])
+            pre = num + 1
+        assert sum([ls[1] - ls[0] + 1 for ls in seg]) == n
+        return cnt, seg
+
+
 class Solution:
     def __init__(self):
+        return
+
+    @staticmethod
+    def abc_132f(ac=FastIO()):
+        # 模板：分组线性计数DP，使用前缀和优化
+        mod = 10**9 + 7
+        n, k = ac.read_ints()
+        cnt, _ = BlockSize().get_divisor_split(n)
+        m = len(cnt)
+        dp = cnt[:]
+        for _ in range(k - 1):
+            pre = list(ac.accumulate(dp)[1:])[::-1]
+            dp = [(cnt[i] * pre[i]) % mod for i in range(m)]
+        ac.st(sum(dp) % mod)
         return
 
     @staticmethod
@@ -193,7 +244,10 @@ class Solution:
 
 class TestGeneral(unittest.TestCase):
 
-    def test_tree_array_range_sum(self):
+    def test_block_size(self):
+        bs = BlockSize()
+        for x in range(1, 10**4+1):
+            bs.get_divisor_split(x)
         pass
 
 
