@@ -35,9 +35,9 @@ from src.graph.union_find import UnionFind
 979. 在二叉树中分配硬币（https://leetcode.cn/problems/distribute-coins-in-binary-tree/description/）经典树形DP贪心
 1373. 二叉搜索子树的最大键值和（https://leetcode.cn/problems/maximum-sum-bst-in-binary-tree/）经典树形DP二叉树校验
 971. 翻转二叉树以匹配先序遍历（https://leetcode.cn/problems/flip-binary-tree-to-match-preorder-traversal/description/）树形DP贪心模拟
+100041. 可以到达每一个节点的最少边反转次数（https://www.acwing.com/problem/content/description/4384/）迭代法实现树形换根DP计算，或者一遍DFS或者dfs序加差分
 
 ===================================洛谷===================================
-
 P1395 会议（https://www.luogu.com.cn/problem/P1395）树的总距离，求树的重心，单个节点距离其他所有节点的最大距离，换根DP可以做
 P1352 没有上司的舞会（https://www.luogu.com.cn/problem/P1352）树形DP，隔层进行动态规划转移
 P1922 女仆咖啡厅桌游吧（https://www.luogu.com.cn/problem/P1922）树形DP，贪心进行子树与叶子节点的分配
@@ -81,10 +81,11 @@ E. Lomsat gelral（https://codeforces.com/problemset/problem/600/E）迭代方�
 D. A Wide, Wide Graph（https://codeforces.com/problemset/problem/1805/D）树的直径计算，任意点到直径的某个端点的距离最长
 G. White-Black Balanced Subtrees（https://codeforces.com/contest/1676/problem/G）使用迭代的方式进行树形DP计算
 F. Gardening Friends（https://codeforces.com/contest/1822/problem/F）计算树中节点到其余节点的最大距离
+D. Choosing Capital for Treeland（https://codeforces.com/contest/219/problem/D）迭代法实现树形换根DP计算，或者一遍DFS或者dfs序加差分
 
 ================================AcWing================================
 3760. 最大剩余油量（https://www.acwing.com/problem/content/description/3763/）脑筋急转弯转化为树形DP迭代方式求解
-4381. 翻转树边（https://www.acwing.com/problem/content/description/4384/）迭代法实现树形换根DP计算
+4381. 翻转树边（https://www.acwing.com/problem/content/description/4384/）迭代法实现树形换根DP计算，或者一遍DFS或者dfs序加差分
 
 参考：OI WiKi（xx）
 """
@@ -1483,7 +1484,6 @@ class Solution:
         ac.st(ans)
         return
 
-
     @staticmethod
     def ac_4381(ac=FastIO()):
         # 模板：迭代法实现树形换根DP计算
@@ -1528,6 +1528,38 @@ class Solution:
         res = [i+1 for i in range(n) if sub[i] == x]
         ac.lst(res)
         return
+
+    @staticmethod
+    def lc_100041(n: int, edges: List[List[int]]) -> List[int]:
+        # 模板：一遍DFS迭代实现树形换根DP计算
+        dct = [[] for _ in range(n)]
+        for x, y in edges:
+            dct[x].append([y, 1])
+            dct[y].append([x, 0])
+
+        sub_cnt = [0] * n
+        sub_one = [0] * n
+        pre_cnt = [0] * n
+        pre_one = [0] * n
+        stack = [[0, -1]]
+        while stack:
+            x, fa = stack.pop()
+            if x >= 0:
+                stack.append([~x, fa])
+                for y, w in dct[x]:
+                    if y != fa:
+                        pre_cnt[y] = pre_cnt[x] + 1
+                        pre_one[y] = pre_one[x] + w
+                        stack.append([y, x])
+            else:
+                x = ~x
+                sub_cnt[x] = 1
+                for y, w in dct[x]:
+                    if y != fa:
+                        sub_cnt[x] += sub_cnt[y]
+                        sub_one[x] += sub_one[y] + w
+        ans = [pre_one[i] + (sub_cnt[i] - sub_one[i]) + (n - 1 - pre_cnt[i] - sub_cnt[i] - (sub_one[0] - sub_one[i] - pre_one[i])) for i in range(n)]
+        return ans
 
     @staticmethod
     def lc_2673(n: int, cost: List[int]) -> int:
