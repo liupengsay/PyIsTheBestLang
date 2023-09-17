@@ -23,6 +23,7 @@ from src.graph.union_find import UnionFind
 332. 重新安排行程（https://leetcode.cn/problems/reconstruct-itinerary/）欧拉回路模板题
 753. 破解保险箱（https://leetcode.cn/problems/cracking-the-safe/solution/er-xu-cheng-ming-jiu-xu-zui-by-liupengsa-lm77/）
 2097. 合法重新排列数对（https://leetcode.cn/problems/valid-arrangement-of-pairs/submissions/）欧拉路径模板题，注意确定首尾点
+1743. 从相邻元素对还原数组（https://leetcode.cn/problems/restore-the-array-from-adjacent-pairs/）无向图欧拉路径模板题, 离散化解决，也是弱化版本的欧拉路径可直接模拟遍历记录父节点
 
 ===================================洛谷===================================
 P7771 【模板】欧拉路径（https://www.luogu.com.cn/problem/P7771）欧拉路径模板题
@@ -138,13 +139,13 @@ class UnDirectedEulerPath:
         # 存顶点的出入度
         degree = [0]*self.n
         # 存储图关系
-        edge = [[0]*self.n for _ in range(self.n)]
+        edge = [dict() for _ in range(self.n)]
         for i, j in self.pairs:
             degree[i] += 1
             degree[j] += 1
-            edge[i][j] += 1
-            edge[j][i] += 1
-
+            edge[i][j] = edge[i].get(j, 0) + 1
+            edge[j][i] = edge[j].get(i, 0) + 1
+        edge_dct = [deque(sorted(dt)) for dt in edge]  # 从小到大进行序号遍历
         # 寻找起始节点
         starts = []
         zero = 0
@@ -162,30 +163,16 @@ class UnDirectedEulerPath:
                 return
             starts = [0]
 
-        """
-        改进前的深搜版本
-        def dfs(pre):
-            # 使用深度优先搜索（Hierholzer算法）求解欧拉通路
-            for nex in range(self.n):
-                while edge[pre][nex]:
-                    edge[pre][nex] -= 1
-                    edge[nex][pre] -= 1
-                    dfs(nex)
-                    self.nodes.append(nex)
-                    self.paths.append([pre, nex])
-            return
-
-        dfs(starts[0])
-        self.paths.reverse()
-        self.nodes.append(starts[0])
-        self.nodes.reverse()
-        """
         # 使用迭代版本Hierholzer算法计算
         stack = [starts[0]]
         while stack:
             current = stack[-1]
             next_node = None
-            for nex in range(self.n):
+            while edge_dct[current]:
+                if not edge[current][edge_dct[current][0]]:
+                    edge_dct[current].popleft()
+                    continue
+                nex = edge_dct[current][0]
                 if edge[current][nex]:
                     edge[current][nex] -= 1
                     edge[nex][current] -= 1
@@ -335,6 +322,20 @@ class Solution:
         for x in euler.nodes[i:] + euler.nodes[:i]:
             ac.st(x + 1)
         return
+
+    @staticmethod
+    def lc_1743(adjacent: List[List[int]]) -> List[int]:
+        # 模板：无向图欧拉路径模板题, 离散化解决
+        nodes = set()
+        for a, b in adjacent:
+            nodes.add(a)
+            nodes.add(b)
+        nodes = sorted(nodes)
+        ind = {num: i for i, num in enumerate(nodes)}
+        pairs = [[ind[x], ind[y]] for x, y in adjacent]
+        n = len(nodes)
+        ruler = UnDirectedEulerPath(n, pairs)
+        return [nodes[x] for x in ruler.nodes]
 
     @staticmethod
     def lc_2097(pairs: List[List[int]]) -> List[List[int]]:
