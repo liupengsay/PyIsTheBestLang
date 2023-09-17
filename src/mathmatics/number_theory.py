@@ -122,70 +122,6 @@ D - 756（https://atcoder.jp/contests/abc114/tasks/abc114_d）质因数分解计
 """
 
 
-class NumberTheoryPrimeFactor:
-    def __init__(self, ceil):
-        self.ceil = ceil + 100
-        self.prime_factor = [[] for _ in range(self.ceil + 1)]
-        self.min_prime = [0] * (self.ceil + 1)
-        self.get_min_prime_and_prime_factor()
-        return
-
-    def get_min_prime_and_prime_factor(self):
-        # 模板：计算 1 到 self.ceil 所有数字的最小质数因子
-        for i in range(2, self.ceil + 1):
-            if not self.min_prime[i]:
-                self.min_prime[i] = i
-                for j in range(i * i, self.ceil + 1, i):
-                    if not self.min_prime[j]:
-                        self.min_prime[j] = i
-
-        # 模板：计算 1 到 self.ceil 所有数字的质数分解（可选）
-        for num in range(2, self.ceil + 1):
-            i = num
-            while num > 1:
-                p = self.min_prime[num]
-                cnt = 0
-                while num % p == 0:
-                    num //= p
-                    cnt += 1
-                self.prime_factor[i].append([p, cnt])
-        return
-
-    def comb(self, n, m):
-        cnt = defaultdict(int)
-        for i in range(1, n+1):  # n!
-            for num, y in self.prime_factor[i]:
-                cnt[num] += y
-        for i in range(1, m+1):  # m!
-            for num, y in self.prime_factor[i]:
-                cnt[num] -= y
-        for i in range(1, n-m+1):  # (n-m)!
-            for num, y in self.prime_factor[i]:
-                cnt[num] -= y
-
-        ans = 1
-        for w in cnt:
-            ans *= w**cnt[w]
-        return ans
-
-
-class NumberTheoryAllFactor:
-    def __init__(self, ceil):
-        self.ceil = ceil+100
-        self.factor = [[1] for _ in range(self.ceil+1)]
-        self.get_all_factor()
-        return
-
-    def get_all_factor(self):
-        # 模板：计算 1 到 self.ceil 所有数字的所有因子
-        for i in range(2, self.ceil + 1):
-            x = 1
-            while x*i <= self.ceil:
-                self.factor[x*i].append(i)
-                x += 1
-        return
-
-
 class NumberTheory:
     def __init__(self):
         return
@@ -706,80 +642,6 @@ class Solution:
             if not diff[i]:
                 return i
         return -1
-    
-    @staticmethod
-    def lc_2464(nums: List[int]) -> int:
-        # 模板：计算 1 到 n 的数所有的质因子并使用动态规划计数
-        nt = NumberTheoryPrimeFactor(max(nums))
-        ind = dict()
-        n = len(nums)
-        dp = [inf] * (n + 1)
-        dp[0] = 0
-        for i, num in enumerate(nums):
-            while num > 1:
-                p = nt.min_prime[num]
-                while num % p == 0:
-                    num //= p
-                if p not in ind or dp[i] < dp[ind[p]]:
-                    ind[p] = i
-                if dp[ind[p]] + 1 < dp[i + 1]:
-                    dp[i + 1] = dp[ind[p]] + 1
-                if dp[i] + 1 < dp[i + 1]:
-                    dp[i + 1] = dp[i] + 1
-        return dp[-1] if dp[-1] < inf else -1
-
-    @staticmethod
-    def lc_8041(self, nums: List[int]) -> int:
-        # 模板：经典预处理幂次为奇数的质因子哈希分组计数
-        n = len(nums)
-        nt = NumberTheoryPrimeFactor(n)
-        dct = defaultdict(int)
-        for i in range(1, n + 1):
-            cur = nt.prime_factor[i]
-            cur = [p for p, c in cur if c % 2]
-            dct[tuple(cur)] += nums[i - 1]
-        return max(dct.values())
-
-    @staticmethod
-    def lc_lcp14(nums: List[int]) -> int:
-        # 模板：计算 1 到 n 的数所有的质因子并使用动态规划计数
-        nt = NumberTheoryPrimeFactor(max(nums))
-        ind = dict()
-        n = len(nums)
-        dp = [inf] * (n + 1)
-        dp[0] = 0
-        for i, num in enumerate(nums):
-            while num > 1:
-                p = nt.min_prime[num]
-                while num % p == 0:
-                    num //= p
-                if p not in ind or dp[i] < dp[ind[p]]:
-                    ind[p] = i
-                if dp[ind[p]] + 1 < dp[i + 1]:
-                    dp[i + 1] = dp[ind[p]] + 1
-                if dp[i] + 1 < dp[i + 1]:
-                    dp[i + 1] = dp[i] + 1
-        return dp[-1] if dp[-1] < inf else -1
-    
-    @staticmethod
-    def cf_1349a(ac=FastIO()):
-        # 模板：质因数分解，枚举最终结果当中质因子的幂次
-        n = ac.read_int()
-        nums = ac.read_list_ints()
-        nmp = NumberTheoryPrimeFactor(max(nums))
-        dct = defaultdict(list)
-
-        for num in nums:
-            for p, c in nmp.prime_factor[num]:
-                dct[p].append(c)
-
-        ans = 1
-        for p in dct:
-            if len(dct[p]) >= n - 1:
-                dct[p].sort()
-                ans *= p**dct[p][-n + 1]
-        ac.st(ans)
-        return
 
     @staticmethod
     def cf_1295d(ac=FastIO()):
@@ -838,35 +700,6 @@ class Solution:
                     ac.st(0)
             else:
                 ac.st(ans + even)
-        return
-
-    @staticmethod
-    def abc_114d(ac=FastIO()):
-        # 模板：质因数分解计数
-        n = ac.read_int()
-        nt = NumberTheoryPrimeFactor(n+10)
-        cnt = Counter()
-        for x in range(1, n+1):
-            for p, c in nt.prime_factor[x]:
-                cnt[p] += c
-        ans = set()
-        for item in permutations(list(cnt.keys()), 3):
-            x, y, z = item
-            if cnt[x] >= 2 and cnt[y]>=4 and cnt[z] >= 4:
-                if y > z:
-                    y, z = z, y
-                ans.add((x, y, z))
-
-        for item in permutations(list(cnt.keys()), 2):
-            x, y = item
-            if cnt[x] >= 2 and cnt[y] >= 24:
-                ans.add((x, y, 325))
-            if cnt[x] >= 4 and cnt[y] >= 14:
-                ans.add((x, y, 515))
-        for x in cnt:
-            if cnt[x] >= 74:
-                ans.add(x)
-        ac.st(len(ans))
         return
 
     @staticmethod
@@ -1390,30 +1223,6 @@ class Solution:
         return NumberTheory().get_k_bin_of_n(ans, -2)
 
     @staticmethod
-    def lc_1390(nums: List[int]) -> int:
-        # 模板：预处理所有数的所有因子
-        nt = NumberTheoryAllFactor(10**5)
-        ans = 0
-        for num in nums:
-            if len(nt.factor[num]) == 4:
-                ans += sum(nt.factor[num])
-        return ans
-
-    @staticmethod
-    def lc_1819(nums: List[int]) -> int:
-        # 模板：预处理所有整数的所有因子，再枚举gcd计算
-        nt = NumberTheoryAllFactor(2 * 10 ** 5 + 10)
-        dct = defaultdict(list)
-        for num in set(nums):
-            for x in nt.factor[num]:
-                dct[x].append(num)
-        ans = 0
-        for num in dct:
-            if reduce(math.gcd, dct[num]) == num:
-                ans += 1
-        return ans
-
-    @staticmethod
     def ac_3727(ac=FastIO()):
         # 模板：脑筋急转弯转换成进制表达问题
 
@@ -1435,27 +1244,6 @@ class Solution:
                 return
             check()
 
-        return
-
-    @staticmethod
-    def ac_4319(ac=FastIO()):
-        # 模板：质因数分解后前缀哈希计数
-        n, k = ac.read_ints()
-        a = ac.read_list_ints()
-        nt = NumberTheoryPrimeFactor(max(a))
-        pre = defaultdict(int)
-        ans = 0
-        for num in a:
-            cur = []
-            lst = []
-            for p, c in nt.prime_factor[num]:
-                c %= k
-                if c:
-                    cur.append((p, c))
-                    lst.append((p, k-c))
-            ans += pre[tuple(lst)]
-            pre[tuple(cur)] += 1
-        ac.st(ans)
         return
 
     @staticmethod
@@ -1523,25 +1311,6 @@ class Solution:
             else:
                 ac.st(3)
 
-        return
-
-    @staticmethod
-    def ac_5049(ac=FastIO()):
-        # 模板：使用质因数分解计算组合数
-        n, m, h = ac.read_ints()
-        a = ac.read_list_ints()
-        h -= 1
-        s = sum(a)
-        if s < n:
-            ac.st(-1)
-            return
-        if s-a[h] < n-1:
-            ac.st(1)
-            return
-        nt = NumberTheoryPrimeFactor(s)
-        total = nt.comb(s - 1, n - 1)
-        part = nt.comb(s-a[h], n-1)
-        ac.st(1-part/total)
         return
 
     @staticmethod
