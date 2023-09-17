@@ -39,6 +39,7 @@ from math import inf
 1139. 最大的以 1 为边界的正方形（https://leetcode.cn/problems/largest-1-bordered-square/）经典利用二位前缀和计数枚举边长
 2281. 巫师的总力量和（https://leetcode.cn/problems/sum-of-total-strength-of-wizards/description/）单调栈计数与前缀和的前缀和计算
 995. K 连续位的最小翻转次数（https://leetcode.cn/problems/minimum-number-of-k-consecutive-bit-flips/description/）贪心加差分数组模拟
+986. 区间列表的交集（https://leetcode.cn/problems/interval-list-intersections/description/）离散化差分，双指针归并
 
 ===================================洛谷===================================
 P8772 [蓝桥杯 2022 省 A] 求和（https://www.luogu.com.cn/record/list?user=739032&status=12&page=15）后缀和计算
