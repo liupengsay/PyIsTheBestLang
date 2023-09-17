@@ -40,6 +40,7 @@ from math import inf
 2281. 巫师的总力量和（https://leetcode.cn/problems/sum-of-total-strength-of-wizards/description/）单调栈计数与前缀和的前缀和计算
 995. K 连续位的最小翻转次数（https://leetcode.cn/problems/minimum-number-of-k-consecutive-bit-flips/description/）贪心加差分数组模拟
 986. 区间列表的交集（https://leetcode.cn/problems/interval-list-intersections/description/）离散化差分，双指针归并
+1744. 你能在你最喜欢的那天吃到你最喜欢的糖果吗？（https://leetcode.cn/problems/can-you-eat-your-favorite-candy-on-your-favorite-day/description/）前缀和贪心模拟
 
 ===================================洛谷===================================
 P8772 [蓝桥杯 2022 省 A] 求和（https://www.luogu.com.cn/record/list?user=739032&status=12&page=15）后缀和计算
