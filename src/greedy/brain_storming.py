@@ -44,6 +44,7 @@ from src.mathmatics.number_theory import NumberTheory
 1686. 石子游戏 VI（https://leetcode.cn/problems/stone-game-vi/）经典贪心采用列式子确定排序方式
 1808. 好因子的最大数目（https://leetcode.cn/problems/maximize-number-of-nice-divisors/）按照模3的因子个数贪心处理，经典将和拆分成最大乘积
 1953. 你可以工作的最大周数（https://leetcode.cn/problems/maximum-number-of-weeks-for-which-you-can-work/）经典贪心只看最大值的影响
+2856. 删除数对后的最小数组长度（https://leetcode.cn/problems/minimum-array-length-after-pair-removals/）经典贪心只看最大值的影响
 858. 镜面反射（https://leetcode.cn/problems/mirror-reflection/description/）经典脑筋急转弯思维题
 1927. 求和游戏（https://leetcode.cn/problems/sum-game/description/）经典博弈思维题分类讨论
 2592. 最大化数组的伟大值（https://leetcode.cn/problems/maximize-greatness-of-an-array/）典型贪心排序后使用双指针计算
@@ -52,6 +53,7 @@ from src.mathmatics.number_theory import NumberTheory
 2745. 构造最长的新字符串（https://leetcode.cn/problems/construct-the-longest-new-string/）脑筋急转弯贪心思维题
 1657. 确定两个字符串是否接近（https://leetcode.cn/problems/determine-if-two-strings-are-close/description/）脑筋急转弯贪心思维题
 2561. 重排水果（https://leetcode.cn/problems/rearranging-fruits/）思维题贪心交换
+843. 猜猜这个单词（https://leetcode.cn/problems/guess-the-word/）思维题贪心模拟交互
 
 ===================================洛谷===================================
 P1031 均分纸牌（https://www.luogu.com.cn/problem/P1031）贪心计算每个点的前缀和流量，需要补齐或者输出时进行计数
