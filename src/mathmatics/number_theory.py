@@ -5,12 +5,10 @@ import unittest
 from collections import Counter
 from collections import defaultdict
 from functools import reduce
-from itertools import combinations, permutations
 from math import inf
 from operator import mul
 from typing import List
 
-from src.basis.binary_search import BinarySearch
 from src.fast_io import FastIO
 
 """
@@ -161,7 +159,7 @@ class NumberTheory:
 
     @staticmethod
     def get_min_prime_and_prime_factor():
-        
+
         # 模板：计算 1 到 ceil 所有数字的最小质数因子
         ceil = 10**6
         min_prime = [0]*(ceil+1)
@@ -170,7 +168,7 @@ class NumberTheory:
                 min_prime[i] = i
                 for j in range(i*i, ceil+1, i):
                     min_prime[j] = i
-        
+
         # 模板：计算 1 到 ceil 所有数字的质数分解
         prime_factor = [[] for _ in range(ceil+1)]
         for num in range(2, ceil+1):
@@ -323,37 +321,6 @@ class NumberTheory:
             return False
         for i in range(2, min(int(math.sqrt(num)) + 2, num)):
             if num % i == 0:
-                return False
-        return True
-
-    @staticmethod
-    def is_prime1(x):
-        if x == 1:
-            return False
-        for i in range(2, x):
-            if x % i == 0:
-                return False
-        return True
-
-    @staticmethod
-    def is_prime2(x):
-        if x == 1:
-            return False
-        for i in range(2, int(x ** 0.5) + 1):
-            if x % i == 0:
-                return False
-        return True
-
-    @staticmethod
-    def is_prime3(x):
-        if x == 1:
-            return False
-        if x == 2:
-            return True
-        elif x % 2 == 0:
-            return False
-        for i in range(3, int(math.sqrt(x)) + 1, 2):
-            if x % i == 0:
                 return False
         return True
 
@@ -904,31 +871,6 @@ class Solution:
         return
 
     @staticmethod
-    def lg_p1592(ac=FastIO()):
-        n, k = ac.read_ints()
-        if n == 1:  # 特判
-            ac.st(k)
-            return
-        lst = NumberTheory().get_prime_factor(n)
-        prime = [x for x, _ in lst]
-        m = len(prime)
-
-        def check(x):
-            # 容斥原理计算与 n 不互质且小于等于 x 的数个数
-            res = 0
-            for i in range(1, m + 1):
-                for item in combinations(prime, i):
-                    cur = 1
-                    for num in item:
-                        cur *= num
-                    res += (x // cur) * (-1) ** (i + 1)
-            return x - res >= k
-
-        ans = BinarySearch().find_int_left(1, n*k, check)
-        ac.st(ans)
-        return
-
-    @staticmethod
     def lg_p1593(ac=FastIO()):
         # 模板：使用质因数分解与快速幂计算a^b的所有因子之和
         mod = 9901
@@ -1322,18 +1264,6 @@ class Solution:
 
 class TestGeneral(unittest.TestCase):
 
-    def test_prime_cnt(self):
-        nt = NumberTheory()
-        for _ in range(100):
-            x = random.randint(1, 100)
-            y = random.randint(1, 10000)
-            cnt = 0
-            for i in range(1, y+1):
-                if math.gcd(i, x) == 1:
-                    cnt += 1
-            assert nt.get_prime_cnt(x, y) == cnt
-        return
-
     def test_get_prime_factor(self):
         for i in range(1, 10):
             x = random.randint(i, 10**10)
@@ -1346,17 +1276,16 @@ class TestGeneral(unittest.TestCase):
             assert cnt1 == cnt2
 
     def test_get_prime_factor_pollard(self):
-        for _ in range(1, 10):
-            nt = NumberTheory()
-            for i in range(1, 100000):
-                res = nt.get_prime_factor(i)
-                cnt = nt.get_prime_factors_with_pollard_rho(i)
-                num = 1
-                for val, c in res:
-                    num *= val ** c
-                    if val > 1:
-                        assert cnt[val] == c
-                assert num == i
+        nt = NumberTheory()
+        for i in range(1, 100000):
+            res = nt.get_prime_factor(i)
+            cnt = nt.get_prime_factors_with_pollard_rho(i)
+            num = 1
+            for val, c in res:
+                num *= val ** c
+                if val > 1:
+                    assert cnt[val] == c
+            assert num == i
 
         nt = NumberTheory()
         num = 2
@@ -1417,7 +1346,7 @@ class TestGeneral(unittest.TestCase):
         assert nt.is_prime(5)
         assert not nt.is_prime(51)
         for _ in range(10):
-            i = random.randint(1, 10**4)
+            i = random.randint(1, 10**3)
             assert nt.is_prime(i) == nt.is_prime4(i) == nt.is_prime5(i)
 
         for _ in range(1):

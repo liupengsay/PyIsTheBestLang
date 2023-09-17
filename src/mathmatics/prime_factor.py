@@ -1,16 +1,12 @@
 import math
-import random
-import time
 import unittest
 from collections import Counter
 from collections import defaultdict
 from functools import reduce
-from itertools import combinations, permutations
+from itertools import permutations
 from math import inf
-from operator import mul
 from typing import List
 
-from src.basis.binary_search import BinarySearch
 from src.fast_io import FastIO
 
 """
@@ -63,7 +59,6 @@ P4718 【模板】Pollard's rho 算法（https://www.luogu.com.cn/problem/P4718�
 P1865 A % B Problem（https://www.luogu.com.cn/problem/P1865）通过线性筛素数后进行二分查询区间素数个数
 P1748 H数（https://www.luogu.com.cn/problem/P1748）丑数可以使用堆模拟可以使用指针递增也可以使用容斥原理与二分进行计算
 P2723 [USACO3.1]丑数 Humble Numbers（https://www.luogu.com.cn/problem/P2723）第n小的只含给定素因子的丑数
-P1592 互质（https://www.luogu.com.cn/problem/P1592）使用二分与容斥原理计算与 n 互质的第 k 个正整数
 P2429 制杖题（https://www.luogu.com.cn/problem/P2429）枚举质因数组合加容斥原理计数
 P2926 [USACO08DEC]Patting Heads S（https://www.luogu.com.cn/problem/P2926）素数筛或者因数分解计数统计可被数列其他数整除的个数
 P5535 【XR-3】小道消息（https://www.luogu.com.cn/problem/P5535）素数is_prime5判断加贪心脑筋急转弯

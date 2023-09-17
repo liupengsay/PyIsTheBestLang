@@ -5,7 +5,8 @@ from src.fast_io import FastIO
 import math
 from functools import lru_cache
 
-from src.mathmatics.number_theory import NumberTheoryPrimeFactor, NumberTheory
+from src.mathmatics.number_theory import NumberTheory
+from src.mathmatics.prime_factor import NumberTheoryPrimeFactor
 
 """
 

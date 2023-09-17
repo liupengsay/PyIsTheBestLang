@@ -2,7 +2,7 @@ import bisect
 import math
 import unittest
 from collections import deque, defaultdict
-from itertools import accumulate
+from itertools import accumulate, combinations
 from typing import List, Callable
 from math import inf
 
@@ -10,6 +10,7 @@ from src.data_structure.sorted_list import LocalSortedList
 from src.fast_io import FastIO
 from src.graph.lca import OfflineLCA
 from src.graph.union_find import UnionFind
+from src.mathmatics.number_theory import NumberTheory
 
 """
 
@@ -45,6 +46,7 @@ P2309 loidc，卖卖萌（https://www.luogu.com.cn/problem/P2309）使用前缀�
 P2390 地标访问（https://www.luogu.com.cn/problem/P2390）枚举加二分起始也可以使用双指针
 P2759 奇怪的函数（https://www.luogu.com.cn/problem/P2759）公式变换后使用二分求解
 P1404 平均数（https://www.luogu.com.cn/problem/P1404）公式变换后使用前缀和加二分
+P1592 互质（https://www.luogu.com.cn/problem/P1592）使用二分与容斥原理计算与 n 互质的第 k 个正整数
 P2855 [USACO06DEC]River Hopscotch S（https://www.luogu.com.cn/problem/P2855）使用贪心加二分
 P2884 [USACO07MAR]Monthly Expense S（https://www.luogu.com.cn/problem/P2884）最大最小之类的经典二分问题
 P2985 [USACO10FEB]Chocolate Eating S（https://www.luogu.com.cn/problem/P2985）使用贪心加二分进行模拟
@@ -714,6 +716,31 @@ class Solution:
             ac.st(0)
             return
         ans = BinarySearch().find_int_left(1, m, check)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p1592(ac=FastIO()):
+        n, k = ac.read_ints()
+        if n == 1:  # 特判
+            ac.st(k)
+            return
+        lst = NumberTheory().get_prime_factor(n)
+        prime = [x for x, _ in lst]
+        m = len(prime)
+
+        def check(x):
+            # 容斥原理计算与 n 不互质且小于等于 x 的数个数
+            res = 0
+            for i in range(1, m + 1):
+                for item in combinations(prime, i):
+                    cur = 1
+                    for num in item:
+                        cur *= num
+                    res += (x // cur) * (-1) ** (i + 1)
+            return x - res >= k
+
+        ans = BinarySearch().find_int_left(1, n*k, check)
         ac.st(ans)
         return
 
