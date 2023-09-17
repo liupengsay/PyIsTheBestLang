@@ -3,6 +3,7 @@ import unittest
 import bisect
 from collections import defaultdict
 from functools import reduce
+from itertools import accumulate
 from math import inf
 from operator import xor
 
@@ -31,6 +32,7 @@ from src.graph.lca import TreeAncestor
 1239. 串联字符串的最大长度（https://leetcode.cn/problems/maximum-length-of-a-concatenated-string-with-unique-characters/）经典DFS回溯进行二进制枚举
 1080. 根到叶路径上的不足节点（https://leetcode.cn/problems/insufficient-nodes-in-root-to-leaf-paths/description/）经典dfs自上而下后又自下而上
 2056. 棋盘上有效移动组合的数目（https://leetcode.cn/problems/number-of-valid-move-combinations-on-chessboard/description/）经典回溯枚举
+100041. 可以到达每一个节点的最少边反转次数（https://www.acwing.com/problem/content/description/4384/）迭代法实现树形换根DP计算，或者一遍DFS或者dfs序加差分
 
 ===================================洛谷===================================
 P2383 狗哥玩木棒（https://www.luogu.com.cn/problem/P2383）暴力搜索木棍拼接组成正方形
@@ -62,6 +64,7 @@ P8838 [传智杯 #3 决赛] 面试（https://www.luogu.com.cn/problem/P8838）�
 ================================CodeForces================================
 D. Tree Requests（https://codeforces.com/contest/570/problem/D）dfs序与二分查找，也可以使用离线查询
 E. Blood Cousins（https://codeforces.com/contest/208/problem/E）深搜序加LCA加二分查找计数
+D. Choosing Capital for Treeland（https://codeforces.com/contest/219/problem/D）迭代法实现树形换根DP计算，或者一遍DFS或者dfs序加差分
 
 ================================AcWing================================
 4310. 树的DFS（https://www.acwing.com/problem/content/4313/）经典深搜序模板题
@@ -102,25 +105,25 @@ class DFS:
         for i in range(n):
             dct[i].sort(reverse=True)  # 按照子节点编号从小到大进行遍历
         order = 0
-        start = [-1] * n  # node_to_order
-        end = [-1]*n
-        parent = [-1]*n
-        stack = [[0, -1, 0]]
-        depth = [0]*n
-        order_to_node = [-1]*n
+        start = [-1] * n  # 每个原始节点的dfs序号开始点也是node_to_order
+        end = [-1]*n  # 每个原始节点的dfs序号结束点
+        parent = [-1]*n  # 每个原始节点的父节点
+        stack = [[0, -1]]
+        depth = [0]*n  # 每个原始节点的深度
+        order_to_node = [-1]*n  # 每个dfs序号对应的原始节点编号
         while stack:
-            i, fa, d = stack.pop()
+            i, fa = stack.pop()
             if i >= 0:
                 start[i] = order
                 order_to_node[order] = i
                 end[i] = order
-                depth[i] = d
                 order += 1
-                stack.append([~i, fa, d])
+                stack.append([~i, fa])
                 for j in dct[i]:
-                    if j != fa:  # 注意访问顺序可以进行调整
+                    if j != fa:  # 注意访问顺序可以进行调整，比如字典序正序逆序
                         parent[j] = i
-                        stack.append([j, i, d+1])
+                        depth[j] = depth[i] + 1
+                        stack.append([j, i])
             else:
                 i = ~i
                 if parent[i] != -1:
@@ -178,6 +181,31 @@ class Solution:
             else:
                 ac.st("yes")
         return
+
+    @staticmethod
+    def lc_100041(n: int, edges: List[List[int]]) -> List[int]:
+        # 模板：迭代法实现树形换根DP计算，或者一遍DFS或者dfs序加差分
+        dct = [[] for _ in range(n)]
+        for i, j in edges:
+            dct[i].append(j)
+            dct[j].append(i)
+        start, end = DFS().gen_bfs_order_iteration(dct)
+        diff = [0] * n
+        for i, j in edges:
+            if start[i] < start[j]:
+                a, b = start[j], end[j]
+                diff[a] += 1
+                if b + 1 < n:
+                    diff[b + 1] -= 1
+            else:
+                a, b = start[i], end[i]
+                if 0 <= a - 1:
+                    diff[0] += 1
+                    diff[a] -= 1
+                if b + 1 <= n - 1:
+                    diff[b + 1] += 1
+        diff = list(accumulate(diff))
+        return [diff[start[i]] for i in range(n)]
 
     @staticmethod
     def lc_301(s):
@@ -491,6 +519,38 @@ class Solution:
         for i in range(1, n):
             diff[i] += diff[i - 1]
         return sum(x >= k for x in diff)
+
+    @staticmethod
+    def cf_219d(ac=FastIO()):
+        # 模板：迭代法实现树形换根DP计算，或者一遍DFS或者dfs序加差分
+        n = ac.read_int()
+        edges = [ac.read_list_ints_minus_one() for _ in range(n-1)]
+
+        dct = [[] for _ in range(n)]
+        for i, j in edges:
+            dct[i].append(j)
+            dct[j].append(i)
+        start, end = DFS().gen_bfs_order_iteration(dct)
+        diff = [0] * n
+        for i, j in edges:
+            if start[i] < start[j]:
+                a, b = start[j], end[j]
+                diff[a] += 1
+                if b + 1 < n:
+                    diff[b + 1] -= 1
+            else:
+                a, b = start[i], end[i]
+                if 0 <= a - 1:
+                    diff[0] += 1
+                    diff[a] -= 1
+                if b + 1 <= n - 1:
+                    diff[b + 1] += 1
+        diff = ac.accumulate(diff)[1:]
+        res = [diff[start[i]] for i in range(n)]
+        low = min(res)
+        ac.st(low)
+        ac.lst([i + 1 for i in range(n) if res[i] == low])
+        return
 
     @staticmethod
     def cf_570d_1(ac=FastIO()):
