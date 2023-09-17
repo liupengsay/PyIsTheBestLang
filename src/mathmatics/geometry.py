@@ -12,7 +12,7 @@ from src.fast_io import FastIO, inf
 from src.data_structure.sorted_list import LocalSortedList
 
 """
-算法：计算几何、设计到平面坐标系上的一些问题求解
+算法：计算几何、设计到平面坐标系上的一些问题求解、平面最近点对
 功能：xxx
 题目：
 
