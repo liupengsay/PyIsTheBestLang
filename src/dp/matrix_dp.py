@@ -54,6 +54,8 @@ from src.mathmatics.comb_perm import Combinatorics
 1937. 扣分后的最大得分（https://leetcode.cn/problems/maximum-number-of-points-with-cost/）经典矩阵前缀和后缀和优化的DP
 1751. 最多可以参加的会议数目 II（https://leetcode.cn/problems/maximum-number-of-events-that-can-be-attended-ii/）经典矩阵二维DP使用二分优化
 1959. K 次调整数组大小浪费的最小总空间（https://leetcode.cn/problems/minimum-total-space-wasted-with-k-resizing-operations/description/）经典矩阵二维DP使用前缀和优化
+1458. 两个子序列的最大点积（https://leetcode.cn/problems/max-dot-product-of-two-subsequences/description/）经典矩阵DP
+1745. 分割回文串 IV（https://leetcode.cn/problems/palindrome-partitioning-iv/description/）经典矩阵DP判断是否为回文子串，或者使用马拉车然后枚举
 
 ===================================洛谷===================================
 P2701 [USACO5.3]巨大的牛棚Big Barn（https://www.luogu.com.cn/problem/P2701）求全为 "." 的最大正方形面积，如果不要求实心只能做到O(n^3)复杂度
@@ -2039,6 +2041,25 @@ class Solution:
                 dp[i+1][j+1] = (pre*c) % mod
                 pre += dp[i][j+1]
         return sum(dp[-1]) % mod
+
+    @staticmethod
+    def lc_1745(s: str) -> bool:
+        # 模板：经典矩阵DP判断是否为回文子串，或者使用马拉车然后枚举
+        n = len(s)
+        dp = [[0] * n for _ in range(n)]
+        for i in range(n - 1, -1, -1):
+            dp[i][i] = 1
+            if i + 1 < n:
+                dp[i][i + 1] = int(s[i] == s[i + 1])
+            for j in range(i + 2, n):
+                if s[i] == s[j] and dp[i + 1][j - 1]:
+                    dp[i][j] = 1
+
+        for i in range(1, n - 1):
+            for j in range(i, n - 1):
+                if dp[i][j] and dp[0][i - 1] and dp[j + 1][n - 1]:
+                    return True
+        return False
 
     @staticmethod
     def lc_1771(word1: str, word2: str) -> int:
