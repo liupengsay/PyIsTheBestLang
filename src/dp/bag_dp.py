@@ -26,6 +26,7 @@ from src.fast_io import FastIO
 1049. 最后一块石头的重量 II（https://leetcode.cn/problems/last-stone-weight-ii/）经典问题，转化为01背包求解
 2742. 给墙壁刷油漆（https://leetcode.cn/problems/painting-the-walls/description/）经典剪枝DP，可以转换为01背包求解
 2518. 好分区的数目（https://leetcode.cn/problems/number-of-great-partitions/）经典01背包计数
+1155. 掷骰子等于目标和的方法数（https://leetcode.cn/problems/number-of-dice-rolls-with-target-sum/description/）类似分组背包，可使用线性刷表法与填表法
 
 ===================================洛谷===================================
 P1048 采药（https://www.luogu.com.cn/problem/P1048）一维背包DP，数量有限，从后往前遍历
