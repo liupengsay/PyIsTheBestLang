@@ -39,6 +39,7 @@ LCP 14. 切分数组（https://leetcode.cn/problems/qie-fen-shu-zu/）计算 1 �
 1819. 序列中不同最大公约数的数目（https://leetcode.cn/problems/number-of-different-subsequences-gcds/）预处理所有整数的所有因子，再枚举gcd计算
 1017. 负二进制转换（https://leetcode.cn/contest/weekly-contest-130/problems/convert-to-base-2/）负进制转换模板题
 1073. 负二进制数相加（https://leetcode.cn/problems/adding-two-negabinary-numbers/）经典负进制计算题
+8041. 完全子集的最大元素和（https://leetcode.cn/problems/maximum-element-sum-of-a-complete-subset-of-indices/description/）经典质因数分解，奇数幂次的质因子组合哈希
 
 ===================================洛谷===================================
 P1865 A % B Problem（https://www.luogu.com.cn/problem/P1865）通过线性筛素数后进行二分查询区间素数个数
@@ -726,7 +727,19 @@ class Solution:
                 if dp[i] + 1 < dp[i + 1]:
                     dp[i + 1] = dp[i] + 1
         return dp[-1] if dp[-1] < inf else -1
-    
+
+    @staticmethod
+    def lc_8041(self, nums: List[int]) -> int:
+        # 模板：经典预处理幂次为奇数的质因子哈希分组计数
+        n = len(nums)
+        nt = NumberTheoryPrimeFactor(n)
+        dct = defaultdict(int)
+        for i in range(1, n + 1):
+            cur = nt.prime_factor[i]
+            cur = [p for p, c in cur if c % 2]
+            dct[tuple(cur)] += nums[i - 1]
+        return max(dct.values())
+
     @staticmethod
     def lc_lcp14(nums: List[int]) -> int:
         # 模板：计算 1 到 n 的数所有的质因子并使用动态规划计数
