@@ -95,6 +95,7 @@ P6175 无向图的最小环问题（https://www.luogu.com.cn/problem/P6175）经
 
 ================================AtCoder================================
 D - People on a Line（https://atcoder.jp/contests/abc087/tasks/arc090_b）BFS判断经典类差分约束问题，差分约束问题复杂度O(n^2)，本题1e5的等式使用BFS计算
+E - Virus Tree 2（https://atcoder.jp/contests/abc133/tasks/abc133_e）BFS染色法计数
 
 ================================AcWing================================
 173. 矩阵距离（https://www.acwing.com/problem/content/175/）多源BFS模板题
@@ -665,6 +666,42 @@ class Solution:
                 j += 1
 
             ans = ac.min(ans, max(dis2[path[i]], dis1[path[j]], q[0][0]))
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_133e(ac=FastIO()):
+        # 模板：BFS染色法计数
+        n, k = ac.read_ints()
+        mod = 1000000007
+        dct = [[] for _ in range(n)]
+        degree = [0]*n
+        for _ in range(n-1):
+            i, j = ac.read_ints_minus_one()
+            dct[i].append(j)
+            dct[j].append(i)
+            degree[i] += 1
+            degree[j] += 1
+        if n == 1:
+            ac.st(k)
+            return
+        root = [i for i in range(n) if degree[i] == 1][0]
+        stack = [[root, -1, 0, 0]]
+        ans = 1
+        while stack:
+            i, fa, pre, c = stack.pop()
+            if pre == 0:
+                ans *= (k-c)
+            elif pre == 1:
+                ans *= (k - 1-c)
+            else:
+                ans *= (k - 2-c)
+            ans %= mod
+            cnt = 0
+            for j in dct[i]:
+                if j != fa:
+                    cnt += 1
+                    stack.append([j, i, pre+1, cnt-1])
         ac.st(ans)
         return
 
