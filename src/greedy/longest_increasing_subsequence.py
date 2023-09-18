@@ -17,7 +17,10 @@ from src.fast_io import FastIO
 最长单调递减子序列（严格下降）：>
 最长单调不增子序列（不升）：>=
 对于数组来说，正数反可以将后两个问题3和4转换为前两个问题1和2进行解决，可以算全局的最长单调子序列，也可以计算前后缀的最长单调子序列
-dilworth定理：分成不下降子序列最小组数等于最大上升子序列的长度，分成不上升子序列最小组数等于最大下降子序列的长度。
+dilworth定理：
+分成不下降子序列最小组数等于最大上升子序列的长度，分成不上升子序列最小组数等于最大下降子序列的长度；
+反过来，分成上升子序列最小组数等于最大不上升的长度，分成下降子序列最小组数等于最大不下降子序列的长度。
+
 参考题目：
 ===================================力扣===================================
 354. 俄罗斯套娃信封问题（https://leetcode.cn/problems/russian-doll-envelopes/）经典二维偏序最长递增子序列问题
@@ -49,6 +52,9 @@ P1410 子序列（https://www.luogu.com.cn/problem/P1410）使用dilworth定理�
 ===================================AcWing===================================
 3549. 最长非递减子序列（https://www.acwing.com/problem/content/3552/）经典线性DP动态规划贪心
 2694. 最长公共子序列（https://www.acwing.com/problem/content/description/2696/）使用LIS求解LCS的长度与个数
+
+===================================AtCoder===================================
+E - Sequence Decomposing（https://atcoder.jp/contests/abc134/tasks/abc134_e）分成最少组数的上升子序列，等于最长不上升的子序列长度
 
 """
 
@@ -276,6 +282,15 @@ class LcsLis:
 
 class Solution:
     def __init__(self):
+        return
+
+    @staticmethod
+    def abc_134e(ac=FastIO()):
+        # 模板：分成最少组数的上升子序列，等于最长不上升的子序列长度
+        n = ac.read_int()
+        nums = [ac.read_int() for _ in range(n)]
+        ans = LongestIncreasingSubsequence().definitely_not_increase(nums)
+        ac.st(ans)
         return
 
     @staticmethod
