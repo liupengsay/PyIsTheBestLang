@@ -1,6 +1,7 @@
 
 import unittest
 import bisect
+from bisect import bisect_right, bisect_left
 from collections import defaultdict
 from functools import reduce
 from itertools import accumulate
@@ -16,9 +17,11 @@ from src.graph.lca import TreeAncestor
 
 """
 
-算法：深度优先搜索、染色法、枚举回溯
+算法：深度优先搜索、染色法、枚举回溯、欧拉序、dfs序
 功能：常与回溯枚举结合使用，比较经典的还有DFS序
-题目：
+题目：欧拉序是在dfs序的基础上增加了边的回溯，可以使用区间修改来在线维护树上距离
+
+参考：基于欧拉序的维护树上距离的在线算法（https://zhuanlan.zhihu.com/p/84236967）
 
 ===================================力扣===================================
 473. 火柴拼正方形（https://leetcode.cn/problems/matchsticks-to-square/）暴力搜索木棍拼接组成正方形
@@ -66,37 +69,19 @@ D. Tree Requests（https://codeforces.com/contest/570/problem/D）dfs序与二�
 E. Blood Cousins（https://codeforces.com/contest/208/problem/E）深搜序加LCA加二分查找计数
 D. Choosing Capital for Treeland（https://codeforces.com/contest/219/problem/D）迭代法实现树形换根DP计算，或者一遍DFS或者dfs序加差分
 
+================================AtCoder================================
+F - Colorful Tree（https://atcoder.jp/contests/abc133/tasks/abc133_f）欧拉序在线查找树上距离，结合二分与前缀和计算变化情况
+
 ================================AcWing================================
 4310. 树的DFS（https://www.acwing.com/problem/content/4313/）经典深搜序模板题
 23. 矩阵中的路径（https://www.acwing.com/problem/content/description/21/）回溯模板题
 
-参考：OI WiKi（xx）
 """
 
 
 class DFS:
     def __init__(self):
         return
-
-    @staticmethod
-    def gen_dfs_order_recursion(dct):
-        # 模板：生成深搜序即 dfs 序以及对应子树编号区间
-        def dfs(x):
-            nonlocal order
-            start[x] = order
-            order += 1
-            for y in dct[x]:
-                if start[y] == -1:
-                    dfs(y)
-            end[x] = order - 1
-            return
-
-        n = len(dct)
-        order = 0
-        start = [-1] * n
-        end = [-1]*n
-        dfs(0)
-        return start, end
 
     @staticmethod
     def gen_bfs_order_iteration(dct):
@@ -130,6 +115,66 @@ class DFS:
                     end[parent[i]] = end[i]
 
         return start, end
+
+
+class DfsEulerOrder:
+    def __init__(self, dct):
+        # 模板：dfs序与欧拉序，支持在线区间修改树上边，并且实时查询任意两点树上距离
+        n = len(dct)
+        for i in range(n):
+            dct[i].sort(reverse=True)  # 按照子节点编号从小到大进行遍历
+        self.start = [-1] * n  # 每个原始节点的dfs序号开始点也是node_to_order
+        self.end = [-1]*n  # 每个原始节点的dfs序号结束点
+        self.parent = [-1]*n  # 每个原始节点的父节点
+        self.depth = [0]*n  # 每个原始节点的深度
+        self.order_to_node = [-1]*n  # 每个dfs序号对应的原始节点编号
+        self.euler_order = []  # 每个dfs序回溯得到的欧拉序号的原始节点编号
+        self.euler_in = [-1]*n  # 每个原始节点再欧拉序中首次出现的位置
+        self.euler_out = [-1]*n   # 每个原始节点再欧拉序中最后出现的位置
+        self.build(dct)
+        return
+
+    def build(self, dct, root=0):
+        # 生成dfs序与欧拉序相关信息
+        order = 0
+        stack = [[root, -1]]
+        while stack:
+            i, fa = stack.pop()
+            if i >= 0:
+                self.euler_order.append(i)
+                self.start[i] = order
+                self.order_to_node[order] = i
+                self.end[i] = order
+                order += 1
+                stack.append([~i, fa])
+                for j in dct[i]:
+                    if j != fa:  # 注意访问顺序可以进行调整，比如字典序正序逆序
+                        self.parent[j] = i
+                        self.depth[j] = self.depth[i] + 1
+                        stack.append([j, i])
+            else:
+                i = ~i
+                if i != root:
+                    self.euler_order.append(self.parent[i])
+                if self.parent[i] != -1:
+                    self.end[self.parent[i]] = self.end[i]
+        for i, num in enumerate(self.euler_order):
+            self.euler_out[num] = i  # 计算欧拉序的位置
+            if self.euler_in[num] == -1:
+                self.euler_in[num] = i
+        return
+
+    def query_dis(self, u, v):
+        # 利用欧拉序计算树上任意两点的距离
+        return
+
+    def query_lca(self, u, v):
+        # 利用欧拉序计算树上任意两点的最近公共祖先
+        return
+
+    def update_edge(self, u, v):
+        # 利用欧拉序更新树上边的距离
+        return
 
 
 class Solution:
@@ -731,6 +776,80 @@ class Solution:
         return
 
     @staticmethod
+    def abc_133f(ac=FastIO()):
+        # 模板：欧拉序在线查找树上距离，结合二分与前缀和计算变化情况
+        n, q = ac.read_ints()
+        dct = [dict() for _ in range(n)]
+        edges = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            a, b, c, d = ac.read_ints()
+            a -= 1
+            b -= 1
+            dct[a][b] = [c, d]
+            dct[b][a] = [c, d]
+            edges[a].append(b)
+            edges[b].append(a)
+        # 最近公共祖先
+        tree = TreeAncestor(edges)
+        # 初始距离
+        dis = [0] * n
+        stack = [[0, -1]]
+        while stack:
+            x, fa = stack.pop()
+            for y in dct[x]:
+                if y != fa:
+                    c, d = dct[x][y]
+                    dct[x][y] = [c, d]
+                    dct[y][x] = [-c, d]
+                    dis[y] = dis[x] + d
+                    stack.append([y, x])
+        # 欧拉序
+        euler_order = DfsEulerOrder(edges).euler_order[:]
+        m = len(euler_order)
+        euler_ind = [-1] * n
+        # 预处理欧拉序所经过的路径前缀和
+        color_pos_ind = defaultdict(list)  # 从上往下
+        color_neg_ind = defaultdict(list)  # 从下往上
+        color_pos_pre = defaultdict(lambda: [0])
+        color_neg_pre = defaultdict(lambda: [0])
+        for i in range(m):
+            if euler_ind[euler_order[i]] == -1:
+                euler_ind[euler_order[i]] = i
+            if i:
+                a, b = euler_order[i - 1], euler_order[i]
+                c, d = dct[a][b]
+                if c > 0:
+                    color_pos_ind[c].append(i)
+                    color_pos_pre[c].append(color_pos_pre[c][-1] + d)
+                else:
+                    color_neg_ind[-c].append(i)
+                    color_neg_pre[-c].append(color_neg_pre[-c][-1] + d)
+
+        for _ in range(q):
+            x, y, u, v = ac.read_ints()
+            u -= 1
+            v -= 1
+            ancestor = tree.get_lca(u, v)
+            if euler_ind[u] > euler_ind[v]:
+                u, v = v, u
+            cur_dis = dict()
+            for w in [u, v, ancestor]:
+                # 使用欧拉序维护距离的变化
+                start, end = euler_ind[0] + 1, euler_ind[w]
+                pos_range = [bisect_left(color_pos_ind[x], start), bisect_right(color_pos_ind[x], end)]
+                neg_range = [bisect_left(color_neg_ind[x], start), bisect_right(color_neg_ind[x], end)]
+
+                # 颜色对应的路径和
+                pre_color = color_pos_pre[x][pos_range[1]] - color_pos_pre[x][pos_range[0]]
+                pre_color -= color_neg_pre[x][neg_range[1]] - color_neg_pre[x][neg_range[0]]
+                # 变更代价后的路径和
+                post_color_cnt = pos_range[1] - pos_range[0] - (neg_range[1] - neg_range[0])
+                cur_dis[w] = dis[w] - pre_color + post_color_cnt * y
+            # 使用最近公共祖先距离计算任意两点之间的距离
+            ac.st(cur_dis[u] + cur_dis[v] - 2 * cur_dis[ancestor])
+        return
+
+    @staticmethod
     def ac_23(matrix, string):
         # 模板：回溯模板题
         if not matrix:
@@ -769,15 +888,16 @@ class TestGeneral(unittest.TestCase):
     def test_dfs(self):
         dfs = DFS()
         dct = [[1, 2], [0, 3], [0, 4], [1], [2]]
-        start, end = dfs.gen_dfs_order_recursion(dct)
-        assert start == [x-1 for x in [1, 2, 4, 3, 5]]
-        assert end == [b-1 for _, b in [[1, 5], [2, 3], [4, 5], [3, 3], [5, 5]]]
-
-        dfs = DFS()
-        dct = [[1, 2], [0, 3], [0, 4], [1], [2]]
         start, end = dfs.gen_bfs_order_iteration([d[::-1] for d in dct])
         assert start == [x - 1 for x in [1, 2, 4, 3, 5]]
         assert end == [b-1 for _, b in [[1, 5], [2, 3], [4, 5], [3, 3], [5, 5]]]
+        return
+
+    def test_dfs_euler(self):
+        dct = [[1, 2], [3, 4], [0, 5], [1], [1, 6], [2], [4]]
+        dfs = DfsEulerOrder(dct)
+        assert dfs.order_to_node == [0, 1, 3, 4, 6, 2, 5]
+        assert dfs.euler_order == [0, 1, 3, 1, 4, 6, 4, 1, 0, 2, 5, 2, 0]
         return
 
 
