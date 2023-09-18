@@ -53,6 +53,7 @@ from src.fast_io import FastIO, inf
 2749. 得到整数零需要执行的最少操作数（https://leetcode.cn/problems/minimum-operations-to-make-the-integer-zero/）枚举操作次数使用位运算计算可行性
 2094. 找出 3 位偶数（https://leetcode.cn/problems/finding-3-digit-even-numbers/description/）脑筋急转弯枚举，有技巧地缩小范围
 842. 将数组拆分成斐波那契序列（https://leetcode.cn/problems/split-array-into-fibonacci-sequence/description/）脑筋急转弯枚举数列前两项也可以使用DFS回溯计算
+2122. 还原原数组（https://leetcode.cn/problems/recover-the-original-array/）枚举间隔哈希模拟可行性
 
 ===================================洛谷===================================
 P1548 棋盘问题（https://www.luogu.com.cn/problem/P1548）枚举正方形与长方形的右小角计算个数
