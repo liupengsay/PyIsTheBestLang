@@ -99,7 +99,7 @@ C. Strongly Composite（https://codeforces.com/contest/1823/problem/C）质因�
 
 ================================AtCoder================================
 D - 756（https://atcoder.jp/contests/abc114/tasks/abc114_d）质因数分解计数  
-        
+D - Preparing Boxes（https://atcoder.jp/contests/abc134/tasks/abc134_d）逆向思维，类似筛法进行构造
 ================================AcWing================================
 97. 约数之和（https://www.acwing.com/problem/content/99/）计算a^b的所有约数之和
 124. 数的进制转换（https://www.acwing.com/problem/content/126/）不同进制的转换，注意0的处理
