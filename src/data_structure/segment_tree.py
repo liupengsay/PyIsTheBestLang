@@ -1367,7 +1367,7 @@ class SegmentTreeRangeChangeQueryOr:
 
 
 class SegmentTreeRangeUpdateMax:
-    # 模板：持续修改区间值并求最大值
+    # 模板：持续修改区间值并求最大值，动态开点
     def __init__(self):
         self.height = defaultdict(lambda: float("-inf"))
         self.lazy = defaultdict(int)
