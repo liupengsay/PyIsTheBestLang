@@ -567,6 +567,57 @@ class Solution:
         return False
 
     @staticmethod
+    def lc_1948(paths: List[List[str]]) -> List[List[str]]:
+        # 模板：使用树哈希进行字典树的子树编码
+
+        dct = dict()  # 建树
+        for path in paths:
+            cur = dct
+            for w in path:
+                if w not in cur:
+                    cur[w] = dict()
+                cur = cur[w]
+            cur["**"] = 1
+
+        def dfs(node, cur_w):  # 哈希
+            if not node:
+                return tuple([0])
+
+            state = tuple()
+            for ww in sorted(node):
+                if ww != "**" and ww != "##":
+                    state += dfs(node[ww], ww)
+            if state not in seen:
+                seen[state] = len(seen) + 1
+            node["##"] = seen[state]
+            cnt[seen[state]] += 1
+            return seen[state], cur_w
+
+        seen = dict()
+        cnt = Counter()
+        dfs(dct, "")
+
+        def dfs(node):
+            if not node:
+                return
+            if cnt[node["##"]] > 1 and node["##"] > 1:
+                return
+            if pre:
+                ans.append(pre[:])
+            for ww in node:
+                if ww != "##" and ww != "**":
+                    pre.append(ww)
+                    dfs(node[ww])
+                    pre.pop()
+            return
+
+        # 回溯取出路径
+        ans = []
+        pre = []
+        dfs(dct)
+        return ans
+
+    @staticmethod
     def lc_2261(nums: List[int], k: int, p: int) -> int:
         # 模板：使用字符串哈希对数组进行编码
         n = len(nums)
