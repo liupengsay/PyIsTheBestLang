@@ -338,6 +338,22 @@ class Solution:
         return
 
     @staticmethod
+    def lc_1947(students: List[List[int]], mentors: List[List[int]]) -> int:
+        # 解法：二分图最大权匹配，也可用状压DP
+        m, n = len(students), len(students[0])
+
+        # 建立权值矩阵
+        grid = [[0] * m for _ in range(m)]
+        for i in range(m):
+            for j in range(m):
+                grid[i][j] = sum([students[i][k] == mentors[j][k] for k in range(n)])
+
+        # KM算法计算二分图最大权匹配
+        km = KM()
+        max_ = km.compute(np.array(grid))
+        return sum([grid[i][j] for i, j in max_])
+
+    @staticmethod
     def lg_3386(ac=FastIO()):
         # 模板：匈牙利算法二分图不带权最大匹配
         n, m, e = ac.read_ints()
