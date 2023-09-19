@@ -22,6 +22,7 @@ from src.fast_io import FastIO
 2659. 将数组清空（https://leetcode.cn/problems/make-array-empty/submissions/）经典模拟删除，可以使用树状数组也可以使用SortedList也可以使用贪心
 1505. 最多 K 次交换相邻数位后得到的最小整数（https://leetcode.cn/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/）经典树状数组模拟计数移动，也可以使用SortedList
 2193. 得到回文串的最少操作次数（https://leetcode.cn/problems/minimum-number-of-moves-to-make-palindrome/description/）使用树状数组贪心模拟交换构建回文串，相同题目（P5041求回文串）
+2407. 最长递增子序列 II（https://leetcode.cn/problems/longest-increasing-subsequence-ii/description/）树状数组加线性DP
 
 ===================================洛谷===================================
 P2068 统计和（https://www.luogu.com.cn/problem/P2068）单点更新与区间求和
@@ -248,12 +249,13 @@ class TreeArrayRangeQueryPointUpdateMin:
 
 class TreeArrayPointUpdateRangeMaxMin:
 
-    # 模板：树状数组 单点增加区间查询最大值 单点减少区间查询最小值
+    # 模板：树状数组 单点增加 区间查询最大值 单点减少 区间查询最小值
     def __init__(self, n: int) -> None:
         self.n = n
+        # 原始数组
         self.a = [0] * (n + 1)  # 如果是求最小值设置为 [inf]*(n+1) 最大值设置为[-inf]*(n+1)
-        self.tree_ceil = [-inf] * (n + 1)
-        self.tree_floor = [float('inf')] * (n + 1)
+        self.tree_ceil = [-inf] * (n + 1)  # 初始化也可以设置为[0]*(n+1)
+        self.tree_floor = [inf] * (n + 1)  # 初始化也可以设置为[0]*(n+1)
         return
 
     @staticmethod
@@ -269,7 +271,7 @@ class TreeArrayPointUpdateRangeMaxMin:
         return a if a < b else b
 
     def add(self, x, k):
-        # 索引从1开始
+        # 索引从1开始，更新最大值与最小值
         self.a[x] = k
         while x <= self.n:
             self.tree_ceil[x] = self.max(self.tree_ceil[x], k)
@@ -278,7 +280,7 @@ class TreeArrayPointUpdateRangeMaxMin:
         return
 
     def add_max(self, x, k):
-        # 索引从1开始
+        # 索引从1开始，单点更新最大值
         if self.a[x] >= k:
             return
         self.a[x] = k
@@ -289,7 +291,7 @@ class TreeArrayPointUpdateRangeMaxMin:
         return
 
     def add_min(self, x, k):
-        # 索引从1开始
+        # 索引从1开始，单点更新最小值
         if self.a[x] <= k:
             return
         self.a[x] = k
@@ -911,6 +913,29 @@ class Solution:
                 ans += len(s) - 1 - j
                 s = s[1:j] + s[j+1:]
 
+        return ans
+
+    @staticmethod
+    def lc_2407(nums: List[int], k: int) -> int:
+        # 模板：树状数组加线性DP
+        n = max(nums)
+        ans = 0
+        tree = TreeArrayPointUpdateRangeMaxMin(n)
+        tree.ceil = [0]*(n+1)
+        tree.floor = [0]*(n+1)
+        for num in nums:
+            low = num - k
+            high = num - 1
+            if low < 1:
+                low = 1
+            if low <= high:
+                cur = tree.find_max(low, high)
+                cur += 1
+            else:
+                cur = 1
+            if cur > ans:
+                ans = cur
+            tree.add_max(num, cur)
         return ans
 
     @staticmethod
