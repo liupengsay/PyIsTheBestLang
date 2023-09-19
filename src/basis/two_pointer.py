@@ -41,6 +41,7 @@ from math import inf
 1537. 最大得分（https://leetcode.cn/problems/get-the-maximum-score/description/）双指针加线性DP或者拓扑排序做
 1712. 将数组分成三个子数组的方案数（https://leetcode.cn/problems/ways-to-split-array-into-three-subarrays/description/）经典三指针，即快慢双指针维护满足条件的分割点个数
 986. 区间列表的交集（https://leetcode.cn/problems/interval-list-intersections/description/）离散化差分，双指针归并
+948. 令牌放置（https://leetcode.cn/problems/bag-of-tokens/description/）经典双指针贪心
 
 ===================================洛谷===================================
 P2381 圆圆舞蹈（https://www.luogu.com.cn/problem/P2381）环形数组，滑动窗口双指针
