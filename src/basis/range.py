@@ -10,7 +10,7 @@ from src.fast_io import FastIO
 """
 算法：区间合并、区间覆盖、区间计数
 功能：涉及到区间的一些合并查询和操作，也可以使用差分数组与树状数组、线段树进行解决
-用法：合并为不相交的区间、最少区间覆盖问题、最多不相交的区间、最小点覆盖（每条线段至少一个点需要多少点覆盖）
+用法：合并为不相交的区间、最少区间覆盖问题、最多不相交的区间、最小点覆盖（每条线段至少一个点需要多少点覆盖）、将区间分为不相交的最少组数
 最多点匹配覆盖（每条线段选一个点匹配，最多匹配数有点类似二分图）
 题目：
 
@@ -21,7 +21,7 @@ from src.fast_io import FastIO
 1024. 视频拼接（https://leetcode.cn/problems/video-stitching/）转换为最少区间覆盖问题
 1520. 最多的不重叠子字符串（https://leetcode.cn/problems/maximum-number-of-non-overlapping-substrings/）转化为最多不相交区间进行处理
 1353. 最多可以参加的会议数目（https://leetcode.cn/problems/maximum-number-of-events-that-can-be-attended/）贪心选取最多的点，使得每个点一一对应一个区间
-
+2406. 将区间分为最少组数（https://leetcode.cn/problems/divide-intervals-into-minimum-number-of-groups/）将区间分为不相交的最少组数使用贪心与差分数组计数解决
 435. 无重叠区间（https://leetcode.cn/problems/non-overlapping-intervals/）最多不相交的区间，使用贪心或者二分DP
 763. 划分字母区间（https://leetcode.cn/problems/partition-labels/）经典将区间合并为不相交的区间
 6313. 统计将重叠区间合并成组的方案数（https://leetcode.cn/contest/biweekly-contest-99/problems/count-ways-to-group-overlapping-ranges/）经典将区间合并为不相交的区间，再使用快速幂计数
