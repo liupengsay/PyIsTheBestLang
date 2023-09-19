@@ -40,6 +40,8 @@ from math import inf
 1998. 数组的最大公因数排序（https://leetcode.cn/problems/gcd-sort-of-an-array/）经典并查集加质因数分解
 2158. 每天绘制新区域的数量（https://leetcode.cn/problems/amount-of-new-area-painted-each-day/）经典区间并查集
 2471. 逐层排序二叉树所需的最少操作数目（https://leetcode.cn/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/description/）经典离散化置换环
+945. 使数组唯一的最小增量（https://leetcode.cn/problems/minimum-increment-to-make-array-unique/description/）可使用向右合并的区间并查集，正解为贪心
+947. 移除最多的同行或同列石头（https://leetcode.cn/contest/weekly-contest-112/problems/most-stones-removed-with-same-row-or-column/）脑筋急转弯并查集
 
 ===================================洛谷===================================
 P3367 并查集（https://www.luogu.com.cn/problem/P3367）计算连通分块的数量
@@ -958,6 +960,19 @@ class Solution:
                     cnt += 1
             ac.st("1.000" if uf.size[uf.find(0)] == cnt + 1 else "0.000")
         return
+
+    @staticmethod
+    def lc_945(nums: List[int]) -> int:
+        # 模板：可使用向右合并的区间并查集，正解为贪心
+        nums.sort()
+        ans = 0
+        uf = UnionFindRightRange(max(nums)+len(nums) + 2)
+        for num in nums:
+            # 其根节点就是当前还未被占据的节点
+            x = uf.find(num)
+            ans += x - num
+            uf.union(x, x + 1)
+        return ans
 
     @staticmethod
     def lc_1559(grid: List[List[str]]) -> bool:
