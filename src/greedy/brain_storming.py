@@ -54,6 +54,7 @@ from src.mathmatics.number_theory import NumberTheory
 1657. 确定两个字符串是否接近（https://leetcode.cn/problems/determine-if-two-strings-are-close/description/）脑筋急转弯贪心思维题
 2561. 重排水果（https://leetcode.cn/problems/rearranging-fruits/）思维题贪心交换
 843. 猜猜这个单词（https://leetcode.cn/problems/guess-the-word/）思维题贪心模拟交互
+1946. 子字符串突变后可能得到的最大整数（https://leetcode.cn/problems/largest-number-after-mutating-substring/description/）易错贪心
 
 ===================================洛谷===================================
 P1031 均分纸牌（https://www.luogu.com.cn/problem/P1031）贪心计算每个点的前缀和流量，需要补齐或者输出时进行计数
