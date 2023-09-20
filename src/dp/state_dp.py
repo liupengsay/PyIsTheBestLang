@@ -21,7 +21,7 @@ from src.fast_io import FastIO
 465. 最优账单平衡（https://leetcode.cn/problems/optimal-account-balancing/）经典枚举子集状压DP
 1349. 参加考试的最大学生数（https://leetcode.cn/problems/maximum-students-taking-exam/）按行状态枚举所有的摆放可能性
 1723. 完成所有工作的最短时间（https://leetcode.cn/problems/find-minimum-time-to-finish-all-jobs/）通过位运算枚举分配工作DP最小化的最大值
-1986. 完成任务的最少工作时间段（https://leetcode.cn/problems/minimum-number-of-work-sessions-to-finish-the-tasks/）预处理计算子集后进行记忆化状态转移，经典子集枚举
+1986. 完成任务的最少工作时间段（https://leetcode.cn/problems/minimum-number-of-work-sessions-to-finish-the-tasks/）预处理计算子集后进行记忆化状态转移，经典子集枚举，也可使用两个状态
 698. 划分为k个相等的子集（https://leetcode.cn/problems/partition-to-k-equal-sum-subsets/）预处理计算子集后进行记忆化状态转移
 2172. 数组的最大与和（https://leetcode.cn/problems/maximum-and-sum-of-array/）使用位运算和状态压缩进行转移，经典三进制状压DP（天平就是三进制）
 1255. 得分最高的单词集合（https://leetcode.cn/problems/maximum-score-words-formed-by-letters/）状压DP
@@ -659,30 +659,51 @@ class Solution:
         real = eval(s)
         return sum(5 if w == real else 2 if w in res else 0 for w in answers)
 
-
     @staticmethod
-    def lc_1986(tasks: List[int], sessionTime: int):
-        # 模板：预处理计算子集后进行记忆化状态转移，经典子集枚举
+    def lc_1986_1(tasks: List[int], session: int):
+        # 模板：预处理计算子集后进行记忆化状态转移，经典子集枚举，也可使用两个状态
         n = len(tasks)
         valid = [False] * (1 << n)
         for mask in range(1, 1 << n):
-            needTime = 0
+            cost = 0
             for i in range(n):
                 if mask & (1 << i):
-                    needTime += tasks[i]
-            if needTime <= sessionTime:
+                    cost += tasks[i]
+            if cost <= session:
                 valid[mask] = True
 
         f = [inf] * (1 << n)
         f[0] = 0
         for mask in range(1, 1 << n):
             subset = mask
-            while subset:
+            while subset:  # 状压子集枚举
                 if valid[subset]:
                     a, b = f[mask], f[mask ^ subset] + 1
                     f[mask] = a if a < b else b
                 subset = (subset - 1) & mask
         return f[(1 << n) - 1]
+
+    @staticmethod
+    def lc_1986_2(tasks: List[int], session: int):
+        # 模板：预处理计算子集后进行记忆化状态转移，经典子集枚举，也可使用两个状态
+
+        @lru_cache(None)
+        def dfs(state, rest):
+            if not state:
+                return 0
+            res = inf
+            for i in range(n):
+                if state & (1 << i):
+                    if rest >= tasks[i]:
+                        cur = dfs(state ^ (1 << i), rest - tasks[i])
+                    else:
+                        cur = 1 + dfs(state ^ (1 << i), session - tasks[i])
+                    if cur < res:
+                        res = cur
+            return res
+
+        n = len(tasks)
+        return dfs((1 << n) - 1, 0)
 
     @staticmethod
     def ac_3735(ac=FastIO()):
