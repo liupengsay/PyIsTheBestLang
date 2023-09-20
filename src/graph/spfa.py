@@ -28,7 +28,7 @@ P3385 负环（https://www.luogu.com.cn/problem/P3385）通过最短路径更新
 P1938 [USACO09NOV]Job Hunt S（https://www.luogu.com.cn/problem/P1938）使用负环判断正环，以及使用最短路求最长路即最大正权路径值
 P2136 拉近距离（https://www.luogu.com.cn/problem/P2136）计算可能有负权环的最短距离
 P2648 赚钱（https://www.luogu.com.cn/problem/P2648）判断是否存在正权环以及最长路
-P1144 最短路计数（https://www.luogu.com.cn/problem/P1144）计算最短路的条数
+P1144 最短路计数（https://www.luogu.com.cn/problem/P1144）无向无权图最短路计数
 P1993 小 K 的农场（https://www.luogu.com.cn/problem/P1993）差分约束判断是否存在负环
 P5960 【模板】差分约束算法（https://www.luogu.com.cn/problem/P5960）差分约束模板题
 P1260 工程规划（https://www.luogu.com.cn/problem/P1260）差分约束模板题
@@ -124,7 +124,7 @@ class SPFA:
 
     @staticmethod
     def count_shortest_path(dct, mod=10 ** 9 + 7):
-        # 最短路计数
+        # 无向无权图最短路计数
 
         n = len(dct)
         # 初始化距离
@@ -223,7 +223,7 @@ class Solution:
             if x != y:
                 dct[y][x] = dct[x][y] = dct[x].get(y, 0) + 1
 
-        cnt = SPFA().gen_result(dct, 100003)
+        cnt = SPFA().count_shortest_path(dct, mod=100003)
         for a in cnt:
             ac.st(a)
         return
