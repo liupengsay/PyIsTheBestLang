@@ -31,7 +31,7 @@ from src.fast_io import FastIO, inf
 1928. 规定时间内到达终点的最小花费（https://leetcode.cn/problems/minimum-cost-to-reach-destination-in-time/）经典Dijkstra带约束的最短路，也可根据无后效性类似Floyd的动态规划求解
 LCP 75. 传送卷轴（https://leetcode.cn/problems/rdmXM7/）首先BFS之后计算最大值最小的最短路
 1976. 到达目的地的方案数（https://leetcode.cn/problems/number-of-ways-to-arrive-at-destination/）经典Dijkstra最短路计数模板题
-2045. 到达目的地的第二短时间（https://leetcode.cn/problems/second-minimum-time-to-reach-destination/）不带权的严格次短路耗时模拟计算
+2045. 到达目的地的第二短时间（https://leetcode.cn/problems/second-minimum-time-to-reach-destination/）严格次短路计算模板题，距离更新时需要注意变化
 2093. 前往目标城市的最小费用（https://leetcode.cn/problems/minimum-cost-to-reach-city-with-discounts/）经典Dijkstra带约束的最短路
 882. 细分图中的可到达节点（https://leetcode.cn/problems/reachable-nodes-in-subdivided-graph/description/）Dijkstra模板题
 2577. 在网格图中访问一个格子的最少时间（https://leetcode.cn/problems/minimum-time-to-visit-a-cell-in-a-grid/）Dijkstra经典变形二维矩阵题目
@@ -470,6 +470,37 @@ class Solution:
                 if cnt + 1 < dis[j]:
                     heapq.heappush(stack, [cost + dct[i][j], cnt + 1, j])
         return -1
+
+    @staticmethod
+    def lc_2045(n: int, edges: List[List[int]], time: int, change: int) -> any:
+        # 模板：严格次短路计算模板题，距离更新时需要注意变化
+        dct = [[] for _ in range(n)]
+        for i, j in edges:
+            dct[i - 1].append(j - 1)
+            dct[j - 1].append(i - 1)
+
+        src = 0
+        dis = [[inf] * 2 for _ in range(n)]
+        dis[src][0] = 0
+        stack = [[0, src]]
+        while stack:
+            d, i = heapq.heappop(stack)
+            if dis[i][1] < d:
+                continue
+            for j in dct[i]:
+                # 注意此时的更新策略
+                if (d // change) % 2 == 0:
+                    nex_d = d + time  # 绿灯
+                else:
+                    nex_d = (d // change + 1) * change + time  # 红灯需要等待
+                if dis[j][0] > nex_d:
+                    dis[j][1] = dis[j][0]
+                    dis[j][0] = nex_d
+                    heapq.heappush(stack, [nex_d, j])
+                elif dis[j][0] < nex_d < dis[j][1]:  # 非严格修改为 d+w < dis[j][1]
+                    dis[j][1] = nex_d
+                    heapq.heappush(stack, [nex_d, j])
+        return dis[-1][1]
 
     @staticmethod
     def lc_2065(values: List[int], edges: List[List[int]], maxTime: int) -> int:
