@@ -85,6 +85,7 @@ class Range:
         # 模板: 计算nums的最少区间数进行覆盖 [s, t] 即最少区间覆盖
         if not lst:
             return -1
+        # inter=True 默认为[1, 3] + [3, 4] = [1, 4]
         lst.sort(key=lambda x: [x[0], -x[1]])
         if lst[0][0] != s:
             return -1
@@ -99,7 +100,7 @@ class Range:
             if end >= t:
                 return ans
             # 可以作为下一个交集
-            if (end >= a and inter) or (not inter and end >= a - 1): # 如果是 [1, 2] + [3, 4] = [1, 4] 则需要改成 end >= a-1
+            if (end >= a and inter) or (not inter and end >= a - 1):  # 如果是 [1, 2] + [3, 4] = [1, 4] 则需要改成 end >= a-1
                 cur = cur if cur > b else b
             else:
                 if cur <= end:
@@ -125,7 +126,8 @@ class Range:
 
     @staticmethod
     def minimum_interval_coverage(clips: List[List[int]], time: int, inter=True) -> int:
-        # 模板：最少区间覆盖问题，从 clips 中选出最小的区间数覆盖 [0, time]
+        # 模板：最少区间覆盖问题，从 clips 中选出最小的区间数覆盖 [0, time] 当前只能处理 inter=True
+        assert inter
         assert time >= 0
         if not clips:
             return -1
@@ -135,6 +137,7 @@ class Range:
             return 1
 
         if inter:
+            # 当前只能处理 inter=True 即 [1, 3] + [3, 4] = [1, 4]
             post = [0]*time
             for a, b in clips:
                 if a < time:
@@ -199,7 +202,7 @@ class Solution:
         lst = []
         for i in range(m):
             lst.append([max(i - ranges[i], 0), i + ranges[i]])
-        return Range().cover_less(0, n, lst)
+        return Range().cover_less(0, n, lst, True)
 
     @staticmethod
     def lc_1326_2(n: int, ranges: List[int]) -> int:
