@@ -41,6 +41,7 @@ P5905 【模板】Johnson 全源最短路（https://www.luogu.com.cn/problem/P59
 
 ===================================AtCoder===================================
 D - Score Attack （https://atcoder.jp/contests/abc061/tasks/abc061_d）经典反向建图后判断是否有正环并计算最长路
+E - Coins Respawn（https://atcoder.jp/contests/abc137/tasks/abc137_e）使用 SPFA 与 BFS 判断是否存在起点到终点的正权环
 
 ===================================力扣===================================
 参考：
@@ -473,6 +474,66 @@ class Solution:
             ac.st("inf")
         else:
             ac.st(-dis[n - 1])
+        return
+
+    @staticmethod
+    def abc_137e(ac=FastIO()):
+        # 模板：使用 SPFA 与 BFS 判断是否存在起点到终点的正权环
+        n, m, p = ac.read_ints()
+        dct = [[] for _ in range(n)]
+        rev = [[] for _ in range(n)]
+        edges = []
+        for _ in range(m):
+            a, b, c = ac.read_ints()
+            a -= 1
+            b -= 1
+            dct[a].append([b, p-c])
+            rev[b].append([a, p-c])
+            edges.append([a, b, p-c])
+        # 首先判断可达性
+        visit = [0]*n
+        stack = [0]
+        visit[0] = 1
+        while stack:
+            i = stack.pop()
+            for j, _ in dct[i]:
+                if not visit[j]:
+                    visit[j] = 1
+                    stack.append(j)
+        if not visit[-1]:
+            ac.st(-1)
+            return
+        # 过滤起点不能到达与不能到达终点的点
+        visit2 = [0] * n
+        stack = [n-1]
+        visit2[n-1] = 1
+        while stack:
+            i = stack.pop()
+            for j, _ in rev[i]:
+                if not visit2[j]:
+                    visit2[j] = 1
+                    stack.append(j)
+        for i in range(n):
+            if not (visit[i] and visit2[i]):
+                dct[i] = []
+            dct[i] = [[a, b] for a, b in dct[i] if visit[a] and visit2[a]]
+        # 判断此时起点到终点是否仍然存在环
+        res, dis, cnt = SPFA().negative_circle_edge(dct, 0, 0)
+        if res == "YES":
+            ac.st(-1)
+            return
+        ans = ac.max(-dis[-1], 0)
+
+        # 判断终点继续出发是否存在正权环
+        dct = [[] for _ in range(n)]
+        for a, b, c in edges:
+            dct[a].append([b, c])
+        res, dis, cnt = SPFA().negative_circle_edge(dct, n-1, 0)
+        if res == "YES":
+            ac.st(-1)
+            return
+
+        ac.st(ans)
         return
 
     @staticmethod
