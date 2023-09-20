@@ -54,6 +54,40 @@ class SPFA:
         return
 
     @staticmethod
+    def negative_circle_edge(dct: List[List[int]], src=0, initial=0) -> (str, List[float], List[int]):
+        # 模板: 判断是否存在负环与求解最短路（正数取反即可判断是否存在正权环以及最长路）
+        n = len(dct)
+        # 初始化距离
+        dis = [inf] * n
+        # 标识当前节点是否在栈中
+        visit = [False] * n
+        # 当前最小距离的路径边数
+        cnt = [0] * n
+        # 求带负权的最短路距离与路径边数
+        queue = deque([src])
+        # 队列与起点初始化默认从 0 出发
+        dis[src] = initial
+        visit[src] = True
+
+        while queue:
+            # 取出队列中的第一个节点
+            u = queue.popleft()
+            visit[u] = False
+            # 更新当前节点的相邻节点的距离
+            for v, w in dct[u]:  # 链式前向星支持自环与重边
+                if dis[v] > dis[u] + w:
+                    dis[v] = dis[u] + w
+                    cnt[v] = cnt[u] + 1
+                    if cnt[v] >= n:
+                        return "YES", dis, cnt
+                    # 如果相邻节点还没有在队列中，将它加入队列
+                    if not visit[v]:
+                        queue.append(v)
+                        visit[v] = True
+        # 不存在从起点出发的负环
+        return "NO", dis, cnt
+
+    @staticmethod
     def negative_circle(dct: List[Dict], src=0, initial=0) -> (str, List[float], List[int]):
         # 模板: 判断是否存在负环与求解最短路（正数取反即可判断是否存在正权环以及最长路）
         n = len(dct)
@@ -76,40 +110,6 @@ class SPFA:
             # 更新当前节点的相邻节点的距离
             for v in dct[u]:
                 w = dct[u][v]
-                if dis[v] > dis[u] + w:
-                    dis[v] = dis[u] + w
-                    cnt[v] = cnt[u] + 1
-                    if cnt[v] >= n:
-                        return "YES", dis, cnt
-                    # 如果相邻节点还没有在队列中，将它加入队列
-                    if not visit[v]:
-                        queue.append(v)
-                        visit[v] = True
-        # 不存在从起点出发的负环
-        return "NO", dis, cnt
-
-    @staticmethod
-    def negative_circle_edge(dct: List[List[int]], src=0, initial=0) -> (str, List[float], List[int]):
-        # 模板: 判断是否存在负环与求解最短路（正数取反即可判断是否存在正权环以及最长路）
-        n = len(dct)
-        # 初始化距离
-        dis = [inf] * n
-        # 标识当前节点是否在栈中
-        visit = [False] * n
-        # 当前最小距离的路径边数
-        cnt = [0] * n
-        # 求带负权的最短路距离与路径边数
-        queue = deque([src])
-        # 队列与起点初始化默认从 0 出发
-        dis[src] = initial
-        visit[src] = True
-
-        while queue:
-            # 取出队列中的第一个节点
-            u = queue.popleft()
-            visit[u] = False
-            # 更新当前节点的相邻节点的距离
-            for v, w in dct[u]:  # 链式前向星支持自环与重边
                 if dis[v] > dis[u] + w:
                     dis[v] = dis[u] + w
                     cnt[v] = cnt[u] + 1
