@@ -166,7 +166,8 @@ E. Making Anti-Palindromes（https://codeforces.com/contest/1822/problem/E）贪
 C - AtCoDeer and Election Report（https://atcoder.jp/contests/abc046/tasks/arc062_a）思维题，使用不等式进行贪心
 D - Wide Flip（https://atcoder.jp/contests/abc083/tasks/arc088_b）经典思维题贪心
 D - Various Sushi（https://atcoder.jp/contests/abc116/tasks/abc116_d）经典思维题贪心
-   
+D - Summer Vacation（https://atcoder.jp/contests/abc137/tasks/abc137_d）经典逆序思维题贪心
+
 ================================AcWing======================================
 104. 货仓选址（https://www.acwing.com/problem/content/106/）中位数贪心
 1536. 均分纸牌（https://www.acwing.com/problem/content/description/1538/）贪心均分纸牌
