@@ -7,6 +7,9 @@ import random
 import time
 from src.fast_io import FastIO
 import sys
+
+from src.mathmatics.comb_perm import Combinatorics
+
 sys.setrecursionlimit(10000000)
 
 """
@@ -16,7 +19,7 @@ sys.setrecursionlimit(10000000)
 
 
 ===================================力扣===================================
-1569. 将子数组重新排序得到同一个二叉搜索树的方案数（https://leetcode.cn/problems/number-of-ways-to-reorder-array-to-get-same-bst/）逆序思维，倒序利用并查集建立二叉搜索树，排列组合加并查集
+1569. 将子数组重新排序得到同一个二叉搜索树的方案数（https://leetcode.cn/problems/number-of-ways-to-reorder-array-to-get-same-bst/）按照顺序建立二叉树，使用DP与组合计数求方案数
 1902. 给定二叉搜索树的插入顺序求深度（https://leetcode.cn/problems/depth-of-bst-given-insertion-order/）按照顺序建立二叉树求深度
 
 ===================================洛谷===================================
@@ -56,10 +59,11 @@ class BinarySearchTreeByArray:
         return
 
     @staticmethod
-    def build(nums: List[int]):
+    def build_with_unionfind(nums: List[int]):
+        # 模板：按顺序生成二叉树，返回二叉树的索引父子信息，为有向图
         n = len(nums)
         ind = list(range(n))
-        ind.sort(key=lambda it: nums[it])  # 索引
+        ind.sort(key=lambda it: nums[it])  # 索引按照原始值排序
         rank = {idx: i for i, idx in enumerate(ind)}  # 排序
 
         dct = [[] for _ in range(n)]  # 二叉树按照索引的有向图结构
@@ -80,7 +84,7 @@ class BinarySearchTreeByArray:
 
     @staticmethod
     def build_with_stack(nums: List[int]):
-        # 模板：按顺序生成二叉树，返回二叉树的索引父子信息
+        # 模板：按顺序生成二叉树，返回二叉树的索引父子信息，为有向图
         n = len(nums)
         # 先按照大小关系编码成 1..n
         lst = sorted(nums)
@@ -359,7 +363,7 @@ class Solution:
     def lg_p2171_3(ac=FastIO()):
         ac.read_int()
         nums = ac.read_list_ints()
-        dct = BinarySearchTreeByArray().build(nums)  # 或者是 build_with_stack
+        dct = BinarySearchTreeByArray().build_with_unionfind(nums)  # 或者是 build_with_stack
         # 使用迭代的方式计算后序遍历
         ans = []
         depth = 0
@@ -381,9 +385,37 @@ class Solution:
         return
 
     @staticmethod
+    def lc_1569(nums: List[int]) -> int:
+        # 模板：按照顺序建立二叉树，使用DP与组合计数求方案数
+        dct = BinarySearchTreeByArray().build_with_unionfind(nums)
+        mod = 10 ** 9 + 7
+        cb = Combinatorics(100000, mod)  # 预处理计算
+        stack = [0]
+        n = len(nums)
+        ans = [0]*n
+        sub = [0]*n
+        while stack:
+            i = stack.pop()
+            if i >= 0:
+                stack.append(~i)
+                for j in dct[i]:
+                    stack.append(j)
+            else:
+                i = ~i
+                cur_ans = 1
+                cur_sub = sum(sub[j] for j in dct[i])
+                sub[i] = cur_sub + 1
+                for j in dct[i]:
+                    cur_ans *= cb.comb(cur_sub, sub[j])*ans[j]
+                    cur_sub -= sub[j]
+                    cur_ans %= mod
+                ans[i] = cur_ans
+        return (ans[0] - 1) % mod
+
+    @staticmethod
     def lc_1902(order: List[int]) -> int:
         # 模板：按照顺序建立二叉树求深度
-        dct = BinarySearchTreeByArray().build(order)
+        dct = BinarySearchTreeByArray().build_with_unionfind(order)  # 也可以使用 build_with_stack
         stack = [[0, 1]]
         ans = 1
         while stack:
@@ -464,7 +496,7 @@ class TestGeneral(unittest.TestCase):
 
     @staticmethod
     def lg_2171_3_input(n, nums):
-        dct = BinarySearchTreeByArray().build(nums)
+        dct = BinarySearchTreeByArray().build_with_unionfind(nums)
         # 使用迭代的方式计算后序遍历（离线）
         ans = []
         depth = 0
@@ -519,7 +551,6 @@ class TestGeneral(unittest.TestCase):
         t5 = time.time()
         print(n, t2-t1, t3 - t2, t4 - t3, t5-t4)
 
-        t1 = time.time()
         nums = list(range(1, n+1))
         t2 = time.time()
         self.lg_2171_2_input(n, nums[:])
@@ -528,7 +559,7 @@ class TestGeneral(unittest.TestCase):
         t4 = time.time()
         self.lg_2171_3_input_2(n, nums[:])
         t5 = time.time()
-        print(n, t2-t1, t3 - t2, t4 - t3, t5-t4)
+        print(n, t3 - t2, t4 - t3, t5-t4)
 
         return
 
