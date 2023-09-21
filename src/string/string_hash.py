@@ -41,6 +41,9 @@ P6739 [BalticOI 2014 Day1] Three Friends（https://www.luogu.com.cn/problem/P673
 ================================CodeForces================================
 D. Remove Two Letters（https://codeforces.com/problemset/problem/1800/D）字符串前后缀哈希加和变换
 
+================================AtCoder================================
+E - Who Says a Pun?（https://atcoder.jp/contests/abc141/tasks/abc141_e）二分加字符串哈希check
+
 ================================AcWing================================
 138. 兔子与兔子（https://www.acwing.com/problem/content/140/）字符串哈希，计算子串是否完全相等
 156. 矩阵（https://www.acwing.com/problem/content/description/158/）经典矩阵哈希
@@ -235,6 +238,28 @@ class Solution:
                 pre1 = (pre1 * p1) % mod1 + ord(s[i]) - ord("a")
                 pre2 = (pre2 * p2) % mod2 + ord(s[i]) - ord("a")
             ac.st(len(ans))
+        return
+
+    @staticmethod
+    def abc_141e(ac=FastIO()):
+        # 模板：二分加字符串哈希check
+        def check(x):
+            if x == 0:
+                return True
+            pre = dict()
+            for i in range(x-1, n):
+                cur = sh.query(i-x+1, i)
+                if tuple(cur) in pre:
+                    if i-pre[tuple(cur)] >= x:
+                        return True
+                else:
+                    pre[tuple(cur)] = i
+            return False
+
+        n = ac.read_int()
+        s = ac.read_str()
+        sh = StringHash(n, s)
+        ac.st(BinarySearch().find_int_right(0, n, check))
         return
 
     @staticmethod
