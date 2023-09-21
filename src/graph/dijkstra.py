@@ -12,7 +12,7 @@ from src.fast_io import FastIO, inf
 
 """
 算法：Dijkstra（单源最短路经算法）、严格次短路、要保证加和最小因此只支持非负数权值、或者取反全部为非正数计算最长路、最短路生成树
-功能：计算点到有向或者无向图里面其他点的最近距离、带约束的最短路、分层Dijkstra
+功能：计算点到有向或者无向图里面其他点的最近距离、带约束的最短路、分层Dijkstra、有向图最小环、无向图最小环
 题目：
 
 ===================================力扣===================================
@@ -106,6 +106,9 @@ P2176 [USACO11DEC] RoadBlock S / [USACO14FEB]Roadblock G/S（https://www.luogu.c
 C. Dijkstra?（https://codeforces.com/problemset/problem/20/C）正权值最短路计算，并记录返回生成路径
 E. Weights Distributing（https://codeforces.com/problemset/problem/1343/E）使用三个01BFS求最短路加贪心枚举计算
 B. Complete The Graph（https://codeforces.com/contest/715/problem/B）经典两遍最短路，贪心动态更新路径权值
+
+================================AtCoder================================
+F - Pure（https://atcoder.jp/contests/abc142/tasks/abc142_f）经典子图寻找，转换为有向图的最小环问题
 
 ================================AcWing====================================
 176. 装满的油箱（https://www.acwing.com/problem/content/178/）经典加油题，使用dijkstra模仿状态
@@ -1832,7 +1835,6 @@ class Solution:
         ans = min(dp[-1])
         return ans if ans < inf else -1
 
-
     @staticmethod
     def lc_1976(n: int, roads: List[List[int]]) -> int:
         # 模板：经典Dijkstra最短路计数模板题
@@ -1841,6 +1843,37 @@ class Solution:
         for i, j, t in roads:
             dct[i][j] = dct[j][i] = t
         return Dijkstra().get_dijkstra_cnt(dct, 0)[0][n-1] % mod
+
+    @staticmethod
+    def abc_142f(ac=FastIO()):
+        # 模板：经典子图寻找，转换为有向图的最小环问题（可使用BFS优化）
+        n, m = ac.read_ints()
+        dct = [set() for _ in range(n)]
+        edges = []
+        for _ in range(m):
+            x, y = ac.read_ints_minus_one()
+            dct[x].add((y, 1))
+            edges.append([x, y])
+
+        # 枚举边
+        ans = inf
+        res = []
+        for x, y in edges:
+            dct[x].discard((y, 1))
+
+            # 使用dijkstra寻找最小环信息
+            path, dis = Dijkstra().dijkstra_src_to_dst_path([list(e) for e in dct], y, x)
+            if dis < ans:
+                ans = dis
+                res = path[:]
+            dct[x].add((y, 1))
+        if ans == inf:
+            ac.st(-1)
+            return
+        ac.st(len(res))
+        for a in res:
+            ac.st(a+1)
+        return
 
     @staticmethod
     def ac_3628(ac=FastIO()):
