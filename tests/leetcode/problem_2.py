@@ -14,7 +14,7 @@ from sortedcontainers import SortedList, SortedDict, SortedSet
 from sortedcontainers import SortedDict
 from functools import reduce
 from heapq import heappush, heappop, heappushpop, heapify
-from operator import xor, mul, add
+from operator import xor, mul, add, or_
 from functools import lru_cache
 from math import inf
 import random
