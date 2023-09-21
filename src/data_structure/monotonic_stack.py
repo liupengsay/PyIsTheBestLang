@@ -35,6 +35,7 @@ from src.fast_io import FastIO
 2282. 在一个网格中可以看到的人数（https://leetcode.cn/problems/number-of-people-that-can-be-seen-in-a-grid/）经典单调栈
 2289. 使数组按非递减顺序排列（https://leetcode.cn/problems/steps-to-make-array-non-decreasing/）经典单调栈模拟计算
 907. 子数组的最小值之和（https://leetcode.cn/problems/sum-of-subarray-minimums/）经典单调栈模拟计算
+2454. 下一个更大元素 IV（https://leetcode.cn/problems/next-greater-element-iv/description/）经典单调栈计算下下个更大元素
 
 ===================================洛谷===================================
 P1950 长方形（https://www.luogu.com.cn/problem/P1950）通过枚举下边界，结合单调栈计算矩形个数
@@ -62,6 +63,8 @@ P8094 [USACO22JAN] Cow Frisbee S（https://www.luogu.com.cn/problem/P8094）单�
 ================================CodeForces================================
 E. Explosions?（https://codeforces.com/problemset/problem/1795/E）单调栈优化线性DP，贪心计数枚举，前后缀DP转移
 
+================================AtCoder================================
+E - Second Sum（https://atcoder.jp/contests/abc140/tasks/abc140_e）经典单调栈求下个与下下个严格更大元素与上个与上个个严格更大元素
 
 ================================AcWing====================================
 131. 直方图中最大的矩形（https://www.acwing.com/problem/content/133/）单调栈求最大矩形
@@ -90,6 +93,36 @@ class QuickMonotonicStack:
                 pre[i] = stack[-1] + 1  # 这里可以是stack[-1]或者stack[-1]+1，取决于是否包含stack[-1]作为左端点
             stack.append(i)
         return
+
+    @staticmethod
+    def pipline_general_2(nums):
+        # 模板：经典单调栈求下个与下下个严格更大元素与上个与上个个严格更大元素（可使用二分离线查询拓展到 k ）
+        n = len(nums)
+        post = [-1] * n
+        post2 = [-1] * n
+        stack1 = []
+        stack2 = []
+        for i in range(n):
+            while stack2 and stack2[0][0] < nums[i]:
+                post2[heapq.heappop(stack2)[1]] = i
+            while stack1 and nums[stack1[-1]] < nums[i]:
+                j = stack1.pop()
+                post[j] = i
+                heapq.heappush(stack2, [nums[j], j])
+            stack1.append(i)
+
+        pre = [-1] * n
+        pre2 = [-1] * n
+        stack1 = []
+        stack2 = []
+        for i in range(n - 1, -1, -1):
+            while stack2 and stack2[0][0] < nums[i]:
+                pre2[heapq.heappop(stack2)[1]] = i
+            while stack1 and nums[stack1[-1]] < nums[i]:
+                j = stack1.pop()
+                pre[j] = i
+                heapq.heappush(stack2, [nums[j], j])
+            stack1.append(i)
 
 
 class MonotonicStack:
@@ -202,6 +235,65 @@ class Solution:
         return
 
     @staticmethod
+    def abc_140e(ac=FastIO()):
+        # 模板：经典单调栈求下个与下下个严格更大元素与上个与上个个严格更大元素
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+
+        post = [-1] * n   # 这里可以是n/n-1/null，取决于用途
+        post2 = [-1] * n
+        stack1 = []
+        stack2 = []
+        for i in range(n):
+            while stack2 and stack2[0][0] < nums[i]:
+                post2[heapq.heappop(stack2)[1]] = i
+            while stack1 and nums[stack1[-1]] < nums[i]:
+                j = stack1.pop()
+                post[j] = i
+                heapq.heappush(stack2, [nums[j], j])
+            stack1.append(i)
+
+        pre = [-1] * n
+        pre2 = [-1] * n
+        stack1 = []
+        stack2 = []
+        for i in range(n - 1, -1, -1):
+            while stack2 and stack2[0][0] < nums[i]:
+                pre2[heapq.heappop(stack2)[1]] = i
+            while stack1 and nums[stack1[-1]] < nums[i]:
+                j = stack1.pop()
+                pre[j] = i
+                heapq.heappush(stack2, [nums[j], j])
+            stack1.append(i)
+
+        # 作用域计算
+        ans = 0
+        for i in range(n):
+            if pre[i] == -1:
+                left_0 = i
+                left_1 = 0
+            else:
+                left_0 = i - pre[i] - 1
+                if pre2[i] == -1:
+                    left_1 = pre[i] + 1
+                else:
+                    left_1 = pre[i] - pre2[i]
+
+            if post[i] == -1:
+                right_0 = n - 1 - i
+                right_1 = 0
+            else:
+                right_0 = post[i] - i - 1
+                if post2[i] == -1:
+                    right_1 = n - 1 - post[i] + 1
+                else:
+                    right_1 = post2[i] - post[i]
+            cnt = left_1 * (right_0 + 1) + right_1 * (left_0 + 1)
+            ans += cnt * nums[i]
+        ac.st(ans)
+        return
+
+    @staticmethod
     def ac_131(ac=FastIO()):
         # 模板：单调栈计算最大矩形
         while True:
@@ -221,6 +313,23 @@ class Solution:
             ans = max(lst[i]*(post[i]-pre[i]+1) for i in range(n))
             ac.st(ans)
         return
+
+    @staticmethod
+    def lc_2454(nums: List[int]) -> List[int]:
+        # 模板：经典单调栈计算下下个更大元素
+        n = len(nums)
+        ans = [-1]*n
+        stack1 = []
+        stack2 = []
+        for i in range(n):
+            while stack2 and stack2[0][0] < nums[i]:
+                ans[heapq.heappop(stack2)[1]] = nums[i]
+            while stack1 and nums[stack1[-1]] < nums[i]:
+                j = stack1.pop()
+                heapq.heappush(stack2, [nums[j], j])
+            stack1.append(i)
+
+        return ans
 
     @staticmethod
     def lg_p1191(ac=FastIO()):
