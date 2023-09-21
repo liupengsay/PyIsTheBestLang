@@ -36,6 +36,7 @@ LCP 14. 切分数组（https://leetcode.cn/problems/qie-fen-shu-zu/）计算 1 �
 1017. 负二进制转换（https://leetcode.cn/contest/weekly-contest-130/problems/convert-to-base-2/）负进制转换模板题
 1073. 负二进制数相加（https://leetcode.cn/problems/adding-two-negabinary-numbers/）经典负进制计算题
 8041. 完全子集的最大元素和（https://leetcode.cn/problems/maximum-element-sum-of-a-complete-subset-of-indices/description/）经典质因数分解，奇数幂次的质因子组合哈希
+2183. 统计可以被 K 整除的下标对数目（https://leetcode.cn/problems/count-array-pairs-divisible-by-k/description/）可以使用所有因子遍历枚举计数解决，正解为按照 k 的最大公因数分组
 
 ===================================洛谷===================================
 P1865 A % B Problem（https://www.luogu.com.cn/problem/P1865）通过线性筛素数后进行二分查询区间素数个数
@@ -166,13 +167,14 @@ class NumberTheoryPrimeFactor:
 
 class NumberTheoryAllFactor:
     def __init__(self, ceil):
+        # 模板：预处理所有因子
         self.ceil = ceil + 100
         self.factor = [[1] for _ in range(self.ceil + 1)]
         self.get_all_factor()
         return
 
     def get_all_factor(self):
-        # 模板：计算 1 到 self.ceil 所有数字的所有因子
+        # 模板：计算 1 到 self.ceil 所有数字的所有因子包含 1 和数字其本身
         for i in range(2, self.ceil + 1):
             x = 1
             while x * i <= self.ceil:
@@ -280,6 +282,19 @@ class Solution:
         ac.lst(ans1)
         ac.lst(ans2)
         return
+
+    @staticmethod
+    def lc_2183(nums: List[int], k: int) -> int:
+        # 模板：可以使用所有因子遍历枚举计数解决，正解为按照 k 的最大公因数分组
+        nt = NumberTheoryAllFactor(10 ** 5)
+        ans = 0
+        dct = defaultdict(int)
+        for i, num in enumerate(nums):
+            w = k // math.gcd(num, k)
+            ans += dct[w]
+            for w in nt.factor[num]:
+                dct[w] += 1
+        return ans
 
     @staticmethod
     def lc_2464(nums: List[int]) -> int:
