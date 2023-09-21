@@ -41,6 +41,7 @@ D. Design Tutorial: Inverse the Problem（https://codeforces.com/problemset/prob
 ================================AtCoder================================
 D - Candidates of No Shortest Paths（https://atcoder.jp/contests/abc051/tasks/abc051_d）经典Floyd计算最短路的必经边
 D - Restoring Road Network（https://atcoder.jp/contests/abc074/tasks/arc083_b）经典最短路生成图，使用Floyd维护最小生成图
+E - Travel by Car（https://atcoder.jp/contests/abc143/tasks/abc143_e）Floyd建图最短路，两种最短路，建两次图
 
 ===================================AcWing===================================
 4872. 最短路之和（https://www.acwing.com/problem/content/submission/4875/）经典Floyd逆序逆向思维更新最短路对
@@ -250,6 +251,50 @@ class Solution:
                     a = a if a < b else b
                     dis[x][y] = dis[y][x] = a
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_143e(ac=FastIO()):
+        # 模板：Floyd建图最短路，两种最短路，建两次图
+        n, m, ll = ac.read_ints()
+        dct = [[] for _ in range(n)]
+        dis = [[inf] * n for _ in range(n)]
+        for i in range(n):
+            dis[i][i] = 0
+        for _ in range(m):
+            x, y, z = ac.read_ints()
+            x -= 1
+            y -= 1
+            dct[x].append([y, z])
+            dct[y].append([x, z])
+            a, b = dis[x][y], z
+            dis[x][y] = dis[y][x] = a if a < b else b
+
+        for k in range(n):
+            for i in range(n):
+                for j in range(i + 1, n):
+                    cur = dis[i][k]+dis[k][j]
+                    if cur < dis[i][j]:
+                        dis[i][j] = dis[j][i] = cur
+
+        dp = [[inf]*n for _ in range(n)]
+        for i in range(n):
+            dp[i][i] = 0
+            for j in range(i+1, n):
+                if dis[i][j] <= ll:
+                    dp[i][j] = dp[j][i] = 0
+
+        for k in range(n):
+            for i in range(n):
+                for j in range(i + 1, n):
+                    cur = dp[i][k]+dp[k][j]+1
+                    if cur < dp[i][j]:
+                        dp[i][j] = dp[j][i] = cur
+
+        for _ in range(ac.read_int()):
+            x, y = ac.read_ints_minus_one()
+            ans = dp[x][y]
+            ac.st(ans if ans < inf  else -1)
         return
 
     @staticmethod
