@@ -34,6 +34,10 @@ P2393 yyy loves Maths II（https://www.luogu.com.cn/problem/P2393）高精度计
 
 P2399 non hates math（https://www.luogu.com.cn/problem/P2399）小数有理数转换为最简分数
 P1530 [USACO2.4]分数化小数 Fractions to Decimals（https://www.luogu.com.cn/problem/P1530）分数化为小数
+
+===================================AtCoder===================================
+E - Double Factorial（https://atcoder.jp/contests/abc148/tasks/abc148_e）奇数阶乘与偶数阶乘的尾随零个数
+
 参考：OI WiKi（xx）
 """
 
@@ -190,9 +194,21 @@ class Solution:
         return
 
     @staticmethod
+    def abc_148e(ac=FastIO()):
+        # 模板：奇数阶乘与偶数阶乘的尾随零个数
+        n = ac.read_int()
+        if n % 2:
+            ac.st(0)
+        else:
+            ans = HighPrecision().factorial_to_zero(n//10) + n//10
+            ac.st(ans)
+        return
+
+    @staticmethod
     def lc_172(n):
         # 模板: n!的后缀零个数
         return HighPrecision().factorial_to_zero(n)
+
     @staticmethod
     def lc_972(s: str, t: str) -> bool:
         # 模板：有理数转为分数判断
