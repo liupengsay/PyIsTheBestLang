@@ -26,6 +26,7 @@ xx（xxx）xxxxxxxxxxxxxxxxxxxx
 
 ================================AtCoder================================
 D - FT Robot（https://atcoder.jp/contests/abc082/tasks/arc087_b）思维题，分开BFS平面坐标的x与y轴移动，使用bitset优化
+E - Balanced Path（https://atcoder.jp/contests/abc147/tasks/abc147_e）矩阵DP使用bitset表示01状态优化
 
 ================================AcWing================================
 5037. 区间异或（https://www.acwing.com/problem/content/5040/）同CF242E，使用二十多个01线段树维护区间异或与区间加和
@@ -89,6 +90,40 @@ class Solution:
             else:
                 res.append(s)
         return res
+
+    @staticmethod
+    def abc_147f(ac=FastIO()):
+        # 模板：矩阵DP使用bitset表示01状态优化
+        m, n = ac.read_ints()
+        grid_a = [ac.read_list_ints() for _ in range(m)]
+        grid_b = [ac.read_list_ints() for _ in range(m)]
+        pre = [0 for _ in range(n)]
+        tmp = abs(grid_a[0][0] - grid_b[0][0])
+        offset = 6401
+        pre[0] = (1 << (offset - tmp)) | (1 << (offset + tmp))
+        for i in range(m):
+            cur = [0 for _ in range(n)]
+            if not i:
+                cur[0] = pre[0]
+            for j in range(n):
+                tmp = abs(grid_a[i][j] - grid_b[i][j])
+                if i:
+                    cur[j] |= (pre[j] << tmp) | (pre[j] >> tmp)
+                if j:
+                    cur[j] |= (cur[j - 1] << tmp) | (cur[j - 1] >> tmp)
+            pre = cur[:]
+
+        ans = offset
+        val = 1
+        x = 0
+        while val <= pre[-1]:
+            if val & pre[-1]:
+                if abs(x - offset) < ans:
+                    ans = abs(x - offset)
+            val *= 2
+            x += 1
+        ac.st(ans)
+        return
 
     @staticmethod
     def ac_5037_2(ac=FastIO()):
