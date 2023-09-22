@@ -67,6 +67,7 @@ F. Lisa and the Martians（https://codeforces.com/contest/1851/problem/F）经�
 ================================AtCoder================================
 D - XXOR（https://atcoder.jp/contests/abc117/tasks/abc117_d）从高位到低位按位贪心，思维题
 D - XOR World（https://atcoder.jp/contests/abc121/tasks/abc121_d）正解为(2*n)^(2*n+1)=1的性质，可使用数位DP计算 1^2^...^num的值
+D - Xor Sum 4（https://atcoder.jp/contests/abc147/tasks/abc147_d）典型按位异或和计算贡献
 
 ================================AcWing===================================
 998. 起床困难综合症（https://www.acwing.com/problem/content/1000/）按位进行或、异或、与操作后贪心选取最大值
