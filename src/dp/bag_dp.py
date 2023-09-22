@@ -106,6 +106,7 @@ F. Zero Remainder Sum（https://codeforces.com/problemset/problem/1433/F）01背
 ================================AtCoder================================
 D - Mixing Experiment（https://atcoder.jp/contests/abc054/tasks/abc054_d）二维01背包
 D - Match Matching（https://atcoder.jp/contests/abc118/tasks/abc118_d）贪心背包DP，并还原方案
+E - All-you-can-eat（https://atcoder.jp/contests/abc145/tasks/abc145_e）思维题01背包，需要先排序，使用刷表法解决计算
 
 ================================AcWing=====================================
 4. 多重背包问题 I（https://www.acwing.com/problem/content/4/）二进制优化多重背包
@@ -473,6 +474,20 @@ class Solution:
                     break
         ans.sort(reverse=True)
         ac.st("".join(str(x) for x in ans))
+        return
+
+    @staticmethod
+    def abc_145e(ac=FastIO()):
+        # 模板：思维题01背包，需要先排序，使用刷表法解决计算
+        n, t = ac.read_ints()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        nums.sort()
+        dp = [0] * (t+3010)
+        for x, y in nums:
+            for i in range(t-1, -1, -1):
+                if dp[i] + y > dp[i+x]:
+                    dp[i+x] = dp[i] + y
+        ac.st(max(dp))
         return
 
     @staticmethod
