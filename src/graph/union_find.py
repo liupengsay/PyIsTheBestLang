@@ -42,6 +42,7 @@ from math import inf
 2471. 逐层排序二叉树所需的最少操作数目（https://leetcode.cn/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/description/）经典离散化置换环
 945. 使数组唯一的最小增量（https://leetcode.cn/problems/minimum-increment-to-make-array-unique/description/）可使用向右合并的区间并查集，正解为贪心
 947. 移除最多的同行或同列石头（https://leetcode.cn/contest/weekly-contest-112/problems/most-stones-removed-with-same-row-or-column/）脑筋急转弯并查集
+100047. 统计树中的合法路径数目（https://leetcode.cn/problems/count-valid-paths-in-a-tree/description/）树形DP，并查集或者BFS实现
 
 ===================================洛谷===================================
 P3367 并查集（https://www.luogu.com.cn/problem/P3367）计算连通分块的数量
