@@ -61,7 +61,8 @@ P6801 [CEOI2020] 花式围栏（https://www.luogu.com.cn/problem/P6801）经典�
 P8094 [USACO22JAN] Cow Frisbee S（https://www.luogu.com.cn/problem/P8094）单调栈典型应用前一个更大与后一个更大
 
 ================================CodeForces================================
-E. Explosions?（https://codeforces.com/problemset/problem/1795/E）单调栈优化线性DP，贪心计数枚举，前后缀DP转移
+E. Explosions（https://codeforces.com/problemset/problem/1795/E）经典单调栈优化线性DP，贪心计数枚举，前后缀DP转移
+C2. Skyscrapers (https://codeforces.com/problemset/problem/1313/C2）经典单调栈优化线性DP
 
 ================================AtCoder================================
 E - Second Sum（https://atcoder.jp/contests/abc140/tasks/abc140_e）经典单调栈求下个与下下个严格更大元素与上个与上个个严格更大元素
@@ -771,8 +772,46 @@ class Solution:
         return max(dp)
 
     @staticmethod
+    def cf_1313c2(ac=FastIO()):
+        # 模板：经典单调栈优化线性DP
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        pre = [0] * n
+        stack = []
+        for i in range(n):
+            while stack and nums[stack[-1]] > nums[i]:
+                stack.pop()
+            if not stack:
+                pre[i] = nums[i]*(i + 1)
+            else:
+                pre[i] = pre[stack[-1]] + nums[i]*(i-stack[-1])
+            stack.append(i)
+
+        post = [0] * n
+        stack = []
+        for i in range(n-1, -1, -1):
+            while stack and nums[stack[-1]] > nums[i]:
+                stack.pop()
+            if not stack:
+                post[i] = nums[i] * (n - i)
+            else:
+                post[i] = post[stack[-1]] + nums[i] * (stack[-1]-i)
+            stack.append(i)
+
+        ceil = max(pre[i]+post[i]-nums[i] for i in range(n))
+        for i in range(n):
+            if pre[i]+post[i]-nums[i] == ceil:
+                for j in range(i+1, n):
+                    nums[j] = ac.min(nums[j], nums[j-1])
+                for j in range(i-1, -1, -1):
+                    nums[j] = ac.min(nums[j], nums[j+1])
+                ac.lst(nums)
+                break
+        return
+
+    @staticmethod
     def cf_1795e(ac=FastIO()):
-        # 模板：单调栈优化线性DP
+        # 模板：经典单调栈优化线性DP，贪心计数枚举，前后缀DP转移
         for _ in range(ac.read_int()):
 
             def check():
