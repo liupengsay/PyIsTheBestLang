@@ -55,14 +55,15 @@ P8842 [传智杯 #4 初赛] 小卡与质数2（https://www.luogu.com.cn/problem/
 P8965 坠梦 | Falling into Dream（https://www.luogu.com.cn/problem/P8965）树形 DP 与异或计算
 
 ================================CodeForces================================
-https://codeforces.com/problemset/problem/305/C（利用二进制加减的思想进行解题）
-https://codeforces.com/problemset/problem/878/A（位运算的操作理解）
-http://codeforces.com/problemset/problem/282/C（利用位运算的特性进行判断）
+C. Ivan and Powers of Two（https://codeforces.com/problemset/problem/305/C）利用二进制加减的思想进行解题
+A. Short Program（https://codeforces.com/problemset/problem/878/A）位运算的操作理解
+C. XOR and OR（http://codeforces.com/problemset/problem/282/C）利用位运算的特性进行判断
 C. Mikasa（https://codeforces.com/problemset/problem/1554/C）经典位运算操作贪心计算
 F. Dasha and Nightmares（https://codeforces.com/contest/1800/problem/F）位运算枚举计数
 D. Little Girl and Maximum XOR（https://codeforces.com/problemset/problem/276/D）范围[l,r]区间的最大异或和
 G. Orray（https://codeforces.com/contest/1742/problem/G）重排数组使得前缀或值的字典序最大
 F. Lisa and the Martians（https://codeforces.com/contest/1851/problem/F）经典数组的最小异或对，一定是排序后相邻的数
+D. Sum of XOR Functions（https://codeforces.com/contest/1879/problem/D）经典按位计算贡献与前缀和计数与前缀下标加和
 
 ================================AtCoder================================
 D - XXOR（https://atcoder.jp/contests/abc117/tasks/abc117_d）从高位到低位按位贪心，思维题
@@ -85,7 +86,7 @@ class BitOperation:
 
     @staticmethod
     def sum_xor(n):
-        # 模板：计算 [0, x] 区间证书的异或和
+        # 模板：计算 [0, x] 区间整数的异或和
         if n % 4 == 0:
             return n
         # (4*i)^(4*i+1)^(4*i+2)^(4*i+3)=0
@@ -97,7 +98,7 @@ class BitOperation:
 
     @staticmethod
     def sum_xor_2(n):
-        # 模板：计算 [0, x] 区间证书的异或和
+        # 模板：计算 [0, x] 区间整数的异或和
         if n % 4 == 0:
             return n
         # (4*i)^(4*i+1)^(4*i+2)^(4*i+3)=0
