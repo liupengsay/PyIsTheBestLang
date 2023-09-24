@@ -41,6 +41,8 @@ from src.mathmatics.number_theory import NumberTheory
 978. 最长湍流子数组（https://leetcode.cn/problems/longest-turbulent-subarray/description/）经典线性DP滚动变量
 1027. 最长等差数列（https://leetcode.cn/problems/longest-arithmetic-subsequence/）经典线性DP计算最长等差子序列
 1987. 不同的好子序列数目（https://leetcode.cn/problems/number-of-unique-good-subsequences/description/）经典线性计数DP
+2355. 你能拿走的最大图书数量（https://leetcode.cn/problems/maximum-number-of-books-you-can-take/）经典单调栈加线性DP，使用下标使用巧妙地转换，计算严格递增子序列的和
+100048. 美丽塔 II（https://leetcode.cn/problems/beautiful-towers-ii/）经典单调栈加线性DP，计算山脉子序列的和，前后缀单调栈优化线性DP
 
 ===================================洛谷===================================
 P1970 [NOIP2013 提高组] 花匠（https://www.luogu.com.cn/problem/P1970）使用贪心与动态规划计算最长的山脉子数组
