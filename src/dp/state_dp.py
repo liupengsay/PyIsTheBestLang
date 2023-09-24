@@ -6,7 +6,7 @@ import math
 from collections import Counter
 from functools import reduce
 from functools import lru_cache
-from itertools import combinations
+from itertools import combinations, accumulate
 import heapq
 from math import inf
 
@@ -28,7 +28,7 @@ from src.fast_io import FastIO
 2403. 杀死所有怪物的最短时间（https://leetcode.cn/problems/minimum-time-to-kill-all-monsters/）状压DP
 1681. 最小不兼容性（https://leetcode.cn/problems/minimum-incompatibility/）状态压缩分组DP，状态压缩和组合数选取结合使用
 1125. 最小的必要团队（https://leetcode.cn/problems/smallest-sufficient-team/）经典状压DP
-1467. 两个盒子中球的颜色数相同的概率（https://leetcode.cn/problems/probability-of-a-two-boxes-having-the-same-number-of-distinct-balls/）记忆化搜索
+1467. 两个盒子中球的颜色数相同的概率（https://leetcode.cn/problems/probability-of-a-two-boxes-having-the-same-number-of-distinct-balls/）记忆化搜索与组合数学计数
 1531. 压缩字符串 II（https://leetcode.cn/problems/string-compression-ii/submissions/）线性DP模拟
 1595. 连通两组点的最小成本（https://leetcode.cn/problems/minimum-cost-to-connect-two-groups-of-points/）经典状压DP，需要一点变形
 1655. 分配重复整数（https://leetcode.cn/problems/distribute-repeating-integers/）经典状压 DP
@@ -619,6 +619,33 @@ class Solution:
                     dp[j | cur] = dp[j] + 1
         ac.st(dp[-1] if dp[-1] < inf else -1)
         return
+
+    @staticmethod
+    def lc_1467(balls: List[int]) -> float:
+
+        # 模板：记忆化搜索与组合数学计数
+
+        @lru_cache(None)
+        def dfs(i, s, c1, c2):
+            if i == m:
+                return c1 == c2 and s == n // 2
+            res = 0
+            t = pre[i] - s
+            for x in range(0, balls[i] + 1):
+                if s + x <= n // 2 and t + balls[i] - x <= n // 2:
+                    cnt = math.comb((n // 2 - s), x) * math.comb((n // 2 - t), balls[i] - x)
+                    res += dfs(i + 1, s + x, c1 + int(x > 0), c2 + int(x < balls[i])) * cnt
+            return res
+
+        m = len(balls)
+        n = sum(balls)
+        total = 1
+        rest = n
+        for num in balls:
+            total *= math.comb(rest, num)
+            rest -= num
+        pre = list(accumulate(balls, initial=0))
+        return dfs(0, 0, 0, 0) / total
 
     @staticmethod
     def lc_1595(cost: List[List[int]]) -> int:
