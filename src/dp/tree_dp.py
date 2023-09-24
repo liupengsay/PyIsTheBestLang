@@ -36,6 +36,7 @@ from src.graph.union_find import UnionFind
 1373. 二叉搜索子树的最大键值和（https://leetcode.cn/problems/maximum-sum-bst-in-binary-tree/）经典树形DP二叉树校验
 971. 翻转二叉树以匹配先序遍历（https://leetcode.cn/problems/flip-binary-tree-to-match-preorder-traversal/description/）树形DP贪心模拟
 100041. 可以到达每一个节点的最少边反转次数（https://www.acwing.com/problem/content/description/4384/）迭代法实现树形换根DP计算，或者一遍DFS或者dfs序加差分
+100047. 统计树中的合法路径数目（https://leetcode.cn/problems/count-valid-paths-in-a-tree/description/）树形DP，并查集或者BFS实现
 
 ===================================洛谷===================================
 P1395 会议（https://www.luogu.com.cn/problem/P1395）树的总距离，求树的重心，单个节点距离其他所有节点的最大距离，换根DP可以做
