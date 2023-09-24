@@ -405,7 +405,7 @@ class Solution:
         return LcsLis().longest_increasing_subsequence_cnt(nums)
 
     @staticmethod
-    def lc_1092(self, str1: str, str2: str) -> str:
+    def lc_1092(str1: str, str2: str) -> str:
         # 模板：经典利用LIS求LCS的最短公共超序列
         if len(str1) > len(str2):
             str1, str2 = str2, str1
