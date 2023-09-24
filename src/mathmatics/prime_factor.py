@@ -118,24 +118,33 @@ D - 756（https://atcoder.jp/contests/abc114/tasks/abc114_d）质因数分解计
 """
 
 
-class NumberTheoryPrimeFactor:
+class PrimeFactor:
     def __init__(self, ceil):
         self.ceil = ceil + 100
-        self.prime_factor = [[] for _ in range(self.ceil + 1)]
+        # 模板：计算 1 到 self.ceil 所有数字的最小质数因子
         self.min_prime = [0] * (self.ceil + 1)
-        self.get_min_prime_and_prime_factor()
+        # 模板：判断 1 到 self.ceil 所有数字是否为质数
+        self.is_prime = [0] * (self.ceil + 1)
+        # 模板：计算 1 到 self.ceil 所有数字的质数分解
+        self.prime_factor = [[] for _ in range(self.ceil + 1)]
+        # 模板：计算 1 到 self.ceil 所有数字的所有因子包含 1 和数字其本身
+        self.all_factor = [[1] for _ in range(self.ceil + 1)]
+
+        self.build()
         return
 
-    def get_min_prime_and_prime_factor(self):
-        # 模板：计算 1 到 self.ceil 所有数字的最小质数因子
+    def build(self):
+
+        # 最小质因数与是否为质数O(nlogn)
         for i in range(2, self.ceil + 1):
             if not self.min_prime[i]:
+                self.is_prime[i] = 1
                 self.min_prime[i] = i
                 for j in range(i * i, self.ceil + 1, i):
                     if not self.min_prime[j]:
                         self.min_prime[j] = i
 
-        # 模板：计算 1 到 self.ceil 所有数字的质数分解（可选）
+        # 质因数分解O(nlogn)
         for num in range(2, self.ceil + 1):
             i = num
             while num > 1:
@@ -145,9 +154,17 @@ class NumberTheoryPrimeFactor:
                     num //= p
                     cnt += 1
                 self.prime_factor[i].append([p, cnt])
+
+        # 所有因数分解O(nlogn)
+        for i in range(2, self.ceil + 1):
+            x = 1
+            while x * i <= self.ceil:
+                self.all_factor[x * i].append(i)
+                x += 1
         return
 
     def comb(self, n, m):
+        # 模板：使用质因数分解的方式求解组合数学的值以及质因数分解O((n+m)log(n+m))
         cnt = defaultdict(int)
         for i in range(1, n + 1):  # n!
             for num, y in self.prime_factor[i]:
@@ -158,29 +175,10 @@ class NumberTheoryPrimeFactor:
         for i in range(1, n - m + 1):  # (n-m)!
             for num, y in self.prime_factor[i]:
                 cnt[num] -= y
-
         ans = 1
         for w in cnt:
             ans *= w ** cnt[w]
         return ans
-
-
-class NumberTheoryAllFactor:
-    def __init__(self, ceil):
-        # 模板：预处理所有因子
-        self.ceil = ceil + 100
-        self.factor = [[1] for _ in range(self.ceil + 1)]
-        self.get_all_factor()
-        return
-
-    def get_all_factor(self):
-        # 模板：计算 1 到 self.ceil 所有数字的所有因子包含 1 和数字其本身
-        for i in range(2, self.ceil + 1):
-            x = 1
-            while x * i <= self.ceil:
-                self.factor[x * i].append(i)
-                x += 1
-        return
 
 
 class Solution:
@@ -286,20 +284,20 @@ class Solution:
     @staticmethod
     def lc_2183(nums: List[int], k: int) -> int:
         # 模板：可以使用所有因子遍历枚举计数解决，正解为按照 k 的最大公因数分组
-        nt = NumberTheoryAllFactor(10 ** 5)
+        nt = PrimeFactor(10 ** 5)
         ans = 0
         dct = defaultdict(int)
         for i, num in enumerate(nums):
             w = k // math.gcd(num, k)
             ans += dct[w]
-            for w in nt.factor[num]:
+            for w in nt.all_factor[num]:
                 dct[w] += 1
         return ans
 
     @staticmethod
     def lc_2464(nums: List[int]) -> int:
         # 模板：计算 1 到 n 的数所有的质因子并使用动态规划计数
-        nt = NumberTheoryPrimeFactor(max(nums))
+        nt = PrimeFactor(max(nums))
         ind = dict()
         n = len(nums)
         dp = [inf] * (n + 1)
@@ -321,7 +319,7 @@ class Solution:
     def lc_8041(self, nums: List[int]) -> int:
         # 模板：经典预处理幂次为奇数的质因子哈希分组计数
         n = len(nums)
-        nt = NumberTheoryPrimeFactor(n)
+        nt = PrimeFactor(n)
         dct = defaultdict(int)
         for i in range(1, n + 1):
             cur = nt.prime_factor[i]
@@ -332,7 +330,7 @@ class Solution:
     @staticmethod
     def lc_lcp14(nums: List[int]) -> int:
         # 模板：计算 1 到 n 的数所有的质因子并使用动态规划计数
-        nt = NumberTheoryPrimeFactor(max(nums))
+        nt = PrimeFactor(max(nums))
         ind = dict()
         n = len(nums)
         dp = [inf] * (n + 1)
@@ -355,7 +353,7 @@ class Solution:
         # 模板：质因数分解，枚举最终结果当中质因子的幂次
         n = ac.read_int()
         nums = ac.read_list_ints()
-        nmp = NumberTheoryPrimeFactor(max(nums))
+        nmp = PrimeFactor(max(nums))
         dct = defaultdict(list)
 
         for num in nums:
@@ -388,7 +386,7 @@ class Solution:
     def abc_114d(ac=FastIO()):
         # 模板：质因数分解计数
         n = ac.read_int()
-        nt = NumberTheoryPrimeFactor(n + 10)
+        nt = PrimeFactor(n + 10)
         cnt = Counter()
         for x in range(1, n + 1):
             for p, c in nt.prime_factor[x]:
@@ -612,20 +610,20 @@ class Solution:
     @staticmethod
     def lc_1390(nums: List[int]) -> int:
         # 模板：预处理所有数的所有因子
-        nt = NumberTheoryAllFactor(10 ** 5)
+        nt = PrimeFactor(10 ** 5)
         ans = 0
         for num in nums:
-            if len(nt.factor[num]) == 4:
-                ans += sum(nt.factor[num])
+            if len(nt.all_factor[num]) == 4:
+                ans += sum(nt.all_factor[num])
         return ans
 
     @staticmethod
     def lc_1819(nums: List[int]) -> int:
         # 模板：预处理所有整数的所有因子，再枚举gcd计算
-        nt = NumberTheoryAllFactor(2 * 10 ** 5 + 10)
+        nt = PrimeFactor(2 * 10 ** 5 + 10)
         dct = defaultdict(list)
         for num in set(nums):
-            for x in nt.factor[num]:
+            for x in nt.all_factor[num]:
                 dct[x].append(num)
         ans = 0
         for num in dct:
@@ -663,7 +661,7 @@ class Solution:
         # 模板：质因数分解后前缀哈希计数
         n, k = ac.read_ints()
         a = ac.read_list_ints()
-        nt = NumberTheoryPrimeFactor(max(a))
+        nt = PrimeFactor(max(a))
         pre = defaultdict(int)
         ans = 0
         for num in a:
@@ -715,7 +713,7 @@ class Solution:
         if s - a[h] < n - 1:
             ac.st(1)
             return
-        nt = NumberTheoryPrimeFactor(s)
+        nt = PrimeFactor(s)
         total = nt.comb(s - 1, n - 1)
         part = nt.comb(s - a[h], n - 1)
         ac.st(1 - part / total)
