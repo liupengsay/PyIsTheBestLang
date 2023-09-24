@@ -59,6 +59,7 @@ C. Beautiful Numbers（https://codeforces.com/problemset/problem/300/C）枚举�
 C. Gerald and Giant Chess（https://codeforces.com/problemset/problem/559/C）容斥原理组合计数
 C. Binary Search（https://codeforces.com/problemset/problem/1436/C）二分加组合数计算
 B. Mashmokh and ACM（https://codeforces.com/problemset/problem/414/B）经典使用最小质因数与隔板法计数 DP
+C. Make it Alternating（https://codeforces.com/contest/1879/problem/C）贪心枚举与组合计数
 
 
 ================================AtCoder================================
