@@ -42,6 +42,7 @@ from math import inf
 986. 区间列表的交集（https://leetcode.cn/problems/interval-list-intersections/description/）离散化差分，双指针归并
 1744. 你能在你最喜欢的那天吃到你最喜欢的糖果吗？（https://leetcode.cn/problems/can-you-eat-your-favorite-candy-on-your-favorite-day/description/）前缀和贪心模拟
 1703. 得到连续 K 个 1 的最少相邻交换次数（https://leetcode.cn/problems/minimum-adjacent-swaps-for-k-consecutive-ones/）前缀和加中位数贪心
+2167. 移除所有载有违禁货物车厢所需的最少时间（https://leetcode.cn/problems/minimum-time-to-remove-all-cars-containing-illegal-goods/）经典公式变换进行前缀和枚举
 
 ===================================洛谷===================================
 P8772 [蓝桥杯 2022 省 A] 求和（https://www.luogu.com.cn/record/list?user=739032&status=12&page=15）后缀和计算
