@@ -27,7 +27,7 @@ from src.fast_io import FastIO
 1504. 统计全 1 子矩形（https://leetcode.cn/problems/count-submatrices-with-all-ones/）经典枚举上下边界单调栈计算全为 1 的子矩形个数
 1673. 找出最具竞争力的子序列（https://leetcode.cn/problems/find-the-most-competitive-subsequence/）经典单调栈贪心删除选取
 1776. 车队 II（https://leetcode.cn/problems/car-fleet-ii/）经典单调栈与并查集链表思想模拟计算
-1840. 最高建筑高度（https://leetcode.cn/problems/maximum-building-height/）经典单调栈贪心
+1840. 最高建筑高度（https://leetcode.cn/problems/maximum-building-height/）经典单调栈贪心，也可以使用前后缀数组模拟计算
 1944. 队列中可以看到的人数（https://leetcode.cn/problems/number-of-visible-people-in-a-queue/）经典逆序单调栈
 1950. 所有子数组最小值中的最大值（https://leetcode.cn/problems/maximum-of-minimum-values-in-all-subarrays/）经典单调栈利用计算
 2030. 含特定字母的最小子序列（https://leetcode.cn/problems/smallest-k-length-subsequence-with-occurrences-of-a-letter/）经典单调栈删除获得满足条件的最小字典序使用
@@ -739,6 +739,24 @@ class Solution:
                 stack.pop()
             stack.append(num)
         return stack[:k]
+
+    @staticmethod
+    def lc_1840(n: int, restrictions: List[List[int]]) -> int:
+        # 模板：经典单调栈贪心，也可以使用前后缀数组模拟计算
+        restrictions.sort()
+        stack = [[1, 0]]
+        for idx, height in restrictions:
+            if height - stack[-1][1] >= idx - stack[-1][0]:
+                continue
+            while idx - stack[-1][0] <= stack[-1][1] - height:
+                stack.pop()
+            stack.append([idx, height])
+
+        height = stack[-1][1] + n - stack[-1][0]
+        for i in range(len(stack) - 1):
+            tmp = (stack[i + 1][0] - stack[i][0] + stack[i][1] + stack[i + 1][1]) // 2
+            height = height if height > tmp else tmp
+        return height
 
     @staticmethod
     def lc_2262(s: str) -> int:
