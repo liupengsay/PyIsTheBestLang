@@ -25,6 +25,8 @@ from heapq import heappush, heappop, heapify
 
 class FastIO:
     def __init__(self):
+        self.seed = self.get_random_seed()
+        self.dct = dict()
         return
 
     @staticmethod
@@ -57,7 +59,8 @@ class FastIO:
 
     @staticmethod
     def read_list_ints_minus_one():
-        return list(map(lambda x: int(x) - 1, sys.stdin.readline().strip().split()))
+        return list(map(lambda x: int(x) - 1,
+                        sys.stdin.readline().strip().split()))
 
     @staticmethod
     def read_str():
@@ -124,6 +127,14 @@ class FastIO:
     def get_random_seed():
         # 随机种子避免哈希冲突
         return random.randint(0, 10 ** 9 + 7)
+
+    def add(self, x, cnt=1):
+        self.dct[x ^ self.seed] = self.dct.get(x ^ self.seed, 0) + cnt
+        return
+
+    def rem(self, x, cnt=1):
+        self.dct[x ^ self.seed] -= cnt
+        return
 
 
 class Solution:
