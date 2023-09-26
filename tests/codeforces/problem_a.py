@@ -131,6 +131,14 @@ class FastIO:
         self.dct[x ^ self.seed] -= cnt
         return
 
+    def get(self, x):
+        return self.dct.get(x ^ self.seed, 0)
+
+    def count(self, lst):
+        for num in lst:
+            self.add(num, 1)
+        return
+
 
 class Solution:
     def __init__(self):

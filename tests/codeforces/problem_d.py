@@ -20,6 +20,7 @@ from operator import mul
 from typing import List, Callable, Dict, Set, Tuple, DefaultDict
 from heapq import heappush, heappop, heapify
 
+
 # sys.setrecursionlimit(10**8)设置最大递归次数
 
 
@@ -129,6 +130,14 @@ class FastIO:
 
     def rem(self, x, cnt=1):
         self.dct[x ^ self.seed] -= cnt
+        return
+
+    def get(self, x):
+        return self.dct.get(x ^ self.seed, 0)
+
+    def count(self, lst):
+        for num in lst:
+            self.add(num, 1)
         return
 
 
