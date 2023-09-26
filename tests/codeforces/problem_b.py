@@ -25,7 +25,7 @@ from heapq import heappush, heappop, heapify
 
 class FastIO:
     def __init__(self):
-        self.seed = self.get_random_seed()
+        self.seed = random.randint(0, 10 ** 9 + 7)
         self.dct = dict()
         return
 
@@ -122,11 +122,6 @@ class FastIO:
         for i in range(n):
             pre[i + 1] = pre[i] + nums[i]
         return pre
-
-    @staticmethod
-    def get_random_seed():
-        # 随机种子避免哈希冲突
-        return random.randint(0, 10 ** 9 + 7)
 
     def add(self, x, cnt=1):
         self.dct[x ^ self.seed] = self.dct.get(x ^ self.seed, 0) + cnt
