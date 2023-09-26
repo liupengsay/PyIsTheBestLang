@@ -45,6 +45,7 @@ P7965 [COCI2021-2022#2] Kutije（https://www.luogu.com.cn/problem/P7965）经典
 F. Is It Flower?（https://codeforces.com/contest/1811/problem/F）无向图求连通分量
 C. Checkposts（https://codeforces.com/problemset/problem/427/C）有向图的强联通分量进行缩点
 A. Cutting Figure（https://codeforces.com/contest/193/problem/A）脑筋急转弯计算有无割点
+E. Reachability from the Capital（https://codeforces.com/contest/999/problem/E）使用SCC缩点后查看入度为0的点个数
 
 ===================================AcWing===================================
 3579. 数字移动（https://www.acwing.com/problem/content/3582/）强连通分量模板题
@@ -111,7 +112,7 @@ class TarjanCC:
             for j in edge[i]:
                 a, b = node_scc_id[i], node_scc_id[j]
                 if a != b:
-                    new_dct[b].add(a)
+                    new_dct[a].add(b)
         new_degree = [0]*scc_id
         for i in range(scc_id):
             for j in new_dct[i]:
@@ -492,6 +493,32 @@ class Solution:
         ac.st(len(res))
         for a in res:
             ac.st(" ".join(a))
+        return
+
+    @staticmethod
+    def cf_999e(ac=FastIO()):
+        # 模板：使用SCC缩点后查看入度为0的点个数
+        n, m, s = ac.read_ints()
+        s -= 1
+        edges = [set() for _ in range(n)]
+        for _ in range(m):
+            x, y = ac.read_ints_minus_one()
+            edges[x].add(y)
+        scc_id, scc_node_id, node_scc_id = TarjanCC().get_strongly_connected_component_bfs(n, [list(e) for e in edges])
+        # 建立新图
+        new_dct = [set() for _ in range(scc_id)]
+        for i in range(n):
+            for j in edges[i]:
+                a, b = node_scc_id[i], node_scc_id[j]
+                if a != b:
+                    new_dct[a].add(b)
+        new_degree = [0]*scc_id
+        for i in range(scc_id):
+            for j in new_dct[i]:
+                new_degree[j] += 1
+        ans = sum(x == 0 for x in new_degree)
+        ans -= int(new_degree[node_scc_id[s]] == 0)
+        ac.st(ans)
         return
 
     @staticmethod
