@@ -43,6 +43,8 @@ from src.mathmatics.number_theory import NumberTheory
 1987. 不同的好子序列数目（https://leetcode.cn/problems/number-of-unique-good-subsequences/description/）经典线性计数DP
 2355. 你能拿走的最大图书数量（https://leetcode.cn/problems/maximum-number-of-books-you-can-take/）经典单调栈加线性DP，使用下标使用巧妙地转换，计算严格递增子序列的和
 100048. 美丽塔 II（https://leetcode.cn/problems/beautiful-towers-ii/）经典单调栈加线性DP，计算山脉子序列的和，前后缀单调栈优化线性DP
+2327. 知道秘密的人数（https://leetcode.cn/problems/number-of-people-aware-of-a-secret/description/）经典前缀和或者差分数组优化线性DP
+2572. 无平方子集计数（https://leetcode.cn/problems/count-the-number-of-square-free-subsets/description/）经典线性DP计数
 
 ===================================洛谷===================================
 P1970 [NOIP2013 提高组] 花匠（https://www.luogu.com.cn/problem/P1970）使用贪心与动态规划计算最长的山脉子数组
