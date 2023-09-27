@@ -42,7 +42,7 @@ D. Yet Another Yet Another Task（https://codeforces.com/problemset/problem/1359
 B. Integers Have Friends（https://codeforces.com/problemset/problem/1548/B）ST表查询区间gcd并枚举数组开头，二分确定长度
 F. Ant colony（https://codeforces.com/problemset/problem/474/F）稀疏表计算最小值和gcd，并使用二分查找计数
 E. MEX of LCM（https://codeforces.com/contest/1834/problem/E）经典计算连续子数组的lcm信息
-
+E. Iva & Pav（https://codeforces.com/contest/1878/problem/E）经典计算连续子数组的and信息
 
 ================================AcWing====================================
 109. 天才ACM（https://www.acwing.com/problem/content/111/）贪心加倍增计算最少分段数
@@ -441,6 +441,47 @@ class Solution:
             post = cur
             ans[i] = post[max(post)] - i + 1
         return ans
+
+    @staticmethod
+    def cf_1878e(ac=FastIO()):
+        # 解法：经典计算连续子数组的and信息
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = ac.read_list_ints()
+            q = ac.read_int()
+            query = [dict() for _ in range(n)]
+            res = []
+            for _ in range(q):
+                ll, k = ac.read_ints()
+                ll -= 1
+                res.append([ll, k])
+                query[ll][k] = -2
+            post = dict()
+            for i in range(n - 1, -1, -1):
+                cur = dict()
+                num = nums[i]
+                for p in post:
+                    x = p & num
+                    if x not in cur or post[p] > cur[x]:
+                        cur[x] = post[p]
+                if num not in cur:
+                    cur[num] = i
+                lst = sorted(query[i].keys(), reverse=True)
+                val = [[num, cur[num]] for num in cur]
+                val.sort(reverse=True)
+                right = -2
+                m = len(val)
+                p = 0
+                for ke in lst:
+                    while p < m and val[p][0] >= ke:
+                        _, xx = val[p]
+                        if xx > right:
+                            right = xx
+                        p += 1
+                    query[i][ke] = right
+                post = cur.copy()
+            ac.lst([query[ll][k] + 1 for ll, k in res])
+        return
 
     @staticmethod
     def lc_1521(arr: List[int], target: int) -> int:
