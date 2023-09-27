@@ -56,6 +56,7 @@ from src.mathmatics.number_theory import NumberTheory
 843. 猜猜这个单词（https://leetcode.cn/problems/guess-the-word/）思维题贪心模拟交互
 1946. 子字符串突变后可能得到的最大整数（https://leetcode.cn/problems/largest-number-after-mutating-substring/description/）易错贪心
 1840. 最高建筑高度（https://leetcode.cn/problems/maximum-building-height/）经典单调栈贪心，也可以使用前后缀数组模拟计算
+1540. K 次操作转变字符串（https://leetcode.cn/problems/can-convert-string-in-k-moves/）贪心思维题，使用指针记录
 
 ===================================洛谷===================================
 P1031 均分纸牌（https://www.luogu.com.cn/problem/P1031）贪心计算每个点的前缀和流量，需要补齐或者输出时进行计数
