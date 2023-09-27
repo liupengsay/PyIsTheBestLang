@@ -1,9 +1,11 @@
+import random
+import sys
 import bisect
 import decimal
 import heapq
 from types import GeneratorType
 from math import inf
-import sys
+
 from bisect import bisect_left, bisect_right
 from heapq import heappush, heappop, heappushpop
 from functools import cmp_to_key
@@ -13,13 +15,12 @@ from functools import lru_cache
 from heapq import nlargest
 from functools import reduce
 from decimal import Decimal
-import random
+
 from itertools import combinations, permutations
 from operator import xor, add
 from operator import mul
 from typing import List, Callable, Dict, Set, Tuple, DefaultDict
 from heapq import heappush, heappop, heapify
-
 
 # sys.setrecursionlimit(10**8)设置最大递归次数
 
