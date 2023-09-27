@@ -25,6 +25,7 @@ from src.fast_io import FastIO
 2276. 统计区间中的整数数目（https://leetcode.cn/problems/count-integers-in-intervals/）动态开点线段树模板题，维护区间并集的长度，也可使用SortedList
 1912. 设计电影租借系统（https://leetcode.cn/problems/design-movie-rental-system/）典型SortedList应用
 1825. 求出 MK 平均值（https://leetcode.cn/problems/finding-mk-average/）经典SortedList与deque应用
+2250. 统计包含每个点的矩形数目（https://leetcode.cn/problems/count-number-of-rectangles-containing-each-point/）离线查询，指针排序二分
 
 ===================================洛谷===================================
 P1577 切绳子（https://www.luogu.com.cn/problem/P1577）数学整除向下取整与二分
@@ -69,6 +70,7 @@ P8667 [蓝桥杯 2018 省 B] 递增三元组（https://www.luogu.com.cn/problem/
 D. Pashmak and Parmida's problem（https://codeforces.com/problemset/problem/459/D）使用有序集合进行大小计数查找
 E. Enemy is weak（https://codeforces.com/problemset/problem/61/E）典型应用场景，前后缀大于小于值计数
 D. Multiset（https://codeforces.com/problemset/problem/1354/D）有序列表的维护与查询
+E2. Median on Segments（https://codeforces.com/contest/1005/problem/E2）经典特定中位数的连续子数组个数，使用容斥原理加前缀和有序列表二分
 
 参考：OI WiKi（xx）
 """
@@ -374,6 +376,24 @@ class Solution:
         for i in range(1, n - 1):
             ans += pre[i + 1] * post[i]
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1005e2(ac=FastIO()):
+        # 模板：经典特定中位数的连续子数组个数，使用容斥原理加前缀和有序列表二分
+        n, m = ac.read_ints()
+        nums = ac.read_list_ints()
+
+        def check(x):
+            lst = [1 if num >= x else -1 for num in nums]
+            pre = LocalSortedList([0])
+            cur = res = 0
+            for num in lst:
+                cur += num
+                res += pre.bisect_left(cur)
+                pre.add(cur)
+            return res
+        ac.st(- check(m+1) + check(m))
         return
 
     @staticmethod

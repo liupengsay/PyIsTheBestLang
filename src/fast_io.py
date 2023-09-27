@@ -1,36 +1,33 @@
+import random
+import sys
 import bisect
 import decimal
 import heapq
 from types import GeneratorType
 from math import inf
-import sys
+
+from bisect import bisect_left, bisect_right
+from heapq import heappush, heappop, heappushpop
 from functools import cmp_to_key
 from collections import defaultdict, Counter, deque
 import math
-from heapq import heappush, heappop, heappushpop
 from functools import lru_cache
 from heapq import nlargest
 from functools import reduce
-import random
-from itertools import combinations
+from decimal import Decimal
+
+from itertools import combinations, permutations
 from operator import xor, add
 from operator import mul
 from typing import List, Callable, Dict, Set, Tuple, DefaultDict
+from heapq import heappush, heappop, heapify
 
-
-# import sys
-# from collections import deque
-#
-# read = lambda: sys.stdin.readline()
-#
-# m, n = list(map(int, read().split()))
-# grid = []
-# for _ in range(m):
-#     grid.append(list(map(int, read().split())))
+# sys.setrecursionlimit(10**8)设置最大递归次数
 
 
 class FastIO:
     def __init__(self):
+        self.random_seed = random.randint(0, 10 ** 9 + 7)
         return
 
     @staticmethod
@@ -79,11 +76,11 @@ class FastIO:
 
     @staticmethod
     def st(x):
-        return sys.stdout.write(str(x) + '\n')
+        return print(x)
 
     @staticmethod
     def lst(x):
-        return sys.stdout.write(" ".join(str(w) for w in x) + '\n')
+        return print(*x)
 
     @staticmethod
     def round_5(f):
@@ -104,19 +101,8 @@ class FastIO:
     def ceil(a, b):
         return a // b + int(a % b != 0)
 
-    def ask(self, lst):
-        # CF交互题输出询问并读取结果
-        self.lst(lst)
-        sys.stdout.flush()
-        res = self.read_int()
-        # 记得任何一个输出之后都要 sys.stdout.flush() 刷新
-        return res
-
-    def out_put(self, lst):
-        # CF交互题输出最终答案
-        self.lst(lst)
-        sys.stdout.flush()
-        return
+    def hash_num(self, x):
+        return x ^ self.random_seed
 
     @staticmethod
     def accumulate(nums):
@@ -126,10 +112,19 @@ class FastIO:
             pre[i + 1] = pre[i] + nums[i]
         return pre
 
-    @staticmethod
-    def get_random_seed():
-        # 随机种子避免哈希冲突
-        return random.randint(0, 10 ** 9 + 7)
+    def inter_ask(self, lst):
+        # CF交互题输出询问并读取结果
+        self.lst(lst)
+        sys.stdout.flush()
+        res = self.read_int()
+        # 记得任何一个输出之后都要 sys.stdout.flush() 刷新
+        return res
+
+    def inter_out(self, lst):
+        # CF交互题输出最终答案
+        self.lst(lst)
+        sys.stdout.flush()
+        return
 
     @staticmethod
     def bootstrap(f, queue=[]):
