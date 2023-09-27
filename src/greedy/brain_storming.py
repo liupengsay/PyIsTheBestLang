@@ -163,6 +163,7 @@ D. Slime（https://codeforces.com/problemset/problem/1038/D）贪心模拟，分
 B. Color the Fence（https://codeforces.com/problemset/problem/349/B）贪心模拟
 C. Number Game（https://codeforces.com/problemset/problem/1370/C）贪心模拟必胜态
 E. Making Anti-Palindromes（https://codeforces.com/contest/1822/problem/E）贪心进行模拟计数
+E2. Median on Segments（https://codeforces.com/contest/1005/problem/E2）经典特定中位数的连续子数组个数，使用容斥原理加前缀和有序列表二分
 
 ================================AtCoder======================================
 C - AtCoDeer and Election Report（https://atcoder.jp/contests/abc046/tasks/arc062_a）思维题，使用不等式进行贪心
@@ -224,6 +225,29 @@ class BrainStorming:
 
 class Solution:
     def __int__(self):
+        return
+
+    @staticmethod
+    def cf_1005e2(ac=FastIO()):
+        # 模板：经典特定中位数的连续子数组个数，使用容斥原理加前缀和有序列表二分
+        n, m = ac.read_ints()
+        nums = ac.read_list_ints()
+
+        def check(x):
+            cur = res = s = 0
+            dct = defaultdict(int)
+            dct[cur ^ ac.random_seed] = 1
+            for num in nums:
+                if num >= x:
+                    s += dct[cur ^ ac.random_seed]
+                    cur += 1
+                else:
+                    cur -= 1
+                    s -= dct[cur ^ ac.random_seed]
+                res += s
+                dct[cur ^ ac.random_seed] += 1
+            return res
+        ac.st(check(m) - check(m + 1))
         return
 
     @staticmethod
