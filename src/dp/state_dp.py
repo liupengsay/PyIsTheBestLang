@@ -40,6 +40,7 @@ from src.fast_io import FastIO
 2741. 特别的排列（https://leetcode.cn/problems/special-permutations/description/）经典状压DP
 2305. 公平分发饼干（https://leetcode.cn/problems/fair-distribution-of-cookies/description/）典型状压DP枚举子集
 980. 不同路径 III（https://leetcode.cn/problems/unique-paths-iii/description/）典型状压DP或者回溯
+2571. 将整数减少到零需要的最少操作数（https://leetcode.cn/problems/minimum-operations-to-reduce-an-integer-to-0/description/）思维题记忆化DP
 
 ===================================洛谷===================================
 P1896 互不侵犯（https://www.luogu.com.cn/problem/P1896）按行状态与行个数枚举所有的摆放可能性
