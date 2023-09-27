@@ -39,18 +39,6 @@ class FastIO:
         return float(sys.stdin.readline().strip())
 
     @staticmethod
-    def read_ints():
-        return map(int, sys.stdin.readline().strip().split())
-
-    @staticmethod
-    def read_floats():
-        return map(float, sys.stdin.readline().strip().split())
-
-    @staticmethod
-    def read_ints_minus_one():
-        return map(lambda x: int(x) - 1, sys.stdin.readline().strip().split())
-
-    @staticmethod
     def read_list_ints():
         return list(map(int, sys.stdin.readline().strip().split()))
 
@@ -114,7 +102,7 @@ class FastIO:
 
     def inter_ask(self, lst):
         # CF交互题输出询问并读取结果
-        self.lst(lst)
+        self.st(lst)
         sys.stdout.flush()
         res = self.read_int()
         # 记得任何一个输出之后都要 sys.stdout.flush() 刷新
@@ -122,7 +110,7 @@ class FastIO:
 
     def inter_out(self, lst):
         # CF交互题输出最终答案
-        self.lst(lst)
+        self.st(lst)
         sys.stdout.flush()
         return
 
