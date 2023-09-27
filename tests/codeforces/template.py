@@ -27,8 +27,7 @@ from heapq import heappush, heappop, heapify
 
 class FastIO:
     def __init__(self):
-        self.seed = random.randint(0, 10 ** 9 + 7)
-        self.dct = dict()
+        self.random_seed = random.randint(0, 10 ** 9 + 7)
         return
 
     @staticmethod
@@ -61,8 +60,7 @@ class FastIO:
 
     @staticmethod
     def read_list_ints_minus_one():
-        return list(map(lambda x: int(x) - 1,
-                        sys.stdin.readline().strip().split()))
+        return list(map(lambda x: int(x) - 1, sys.stdin.readline().strip().split()))
 
     @staticmethod
     def read_str():
@@ -78,11 +76,11 @@ class FastIO:
 
     @staticmethod
     def st(x):
-        return sys.stdout.write(str(x) + '\n')
+        return print(x)
 
     @staticmethod
     def lst(x):
-        return sys.stdout.write(" ".join(str(w) for w in x) + '\n')
+        return print(*x)
 
     @staticmethod
     def round_5(f):
@@ -103,19 +101,8 @@ class FastIO:
     def ceil(a, b):
         return a // b + int(a % b != 0)
 
-    def ask(self, lst):
-        # CF交互题输出询问并读取结果
-        self.lst(lst)
-        sys.stdout.flush()
-        res = self.read_int()
-        # 记得任何一个输出之后都要 sys.stdout.flush() 刷新
-        return res
-
-    def out_put(self, lst):
-        # CF交互题输出最终答案
-        self.lst(lst)
-        sys.stdout.flush()
-        return
+    def hash_num(self, x):
+        return x ^ self.random_seed
 
     @staticmethod
     def accumulate(nums):
@@ -125,20 +112,18 @@ class FastIO:
             pre[i + 1] = pre[i] + nums[i]
         return pre
 
-    def add(self, x, cnt=1):
-        self.dct[x ^ self.seed] = self.dct.get(x ^ self.seed, 0) + cnt
-        return
+    def inter_ask(self, lst):
+        # CF交互题输出询问并读取结果
+        self.lst(lst)
+        sys.stdout.flush()
+        res = self.read_int()
+        # 记得任何一个输出之后都要 sys.stdout.flush() 刷新
+        return res
 
-    def rem(self, x, cnt=1):
-        self.dct[x ^ self.seed] -= cnt
-        return
-
-    def get(self, x):
-        return self.dct.get(x ^ self.seed, 0)
-
-    def count(self, lst):
-        for num in lst:
-            self.add(num, 1)
+    def inter_out(self, lst):
+        # CF交互题输出最终答案
+        self.lst(lst)
+        sys.stdout.flush()
         return
 
 
