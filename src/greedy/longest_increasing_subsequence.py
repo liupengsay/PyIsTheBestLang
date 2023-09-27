@@ -35,6 +35,7 @@ dilworth定理：
 1940. 排序数组之间的最长公共子序列（https://leetcode.cn/problems/longest-common-subsequence-between-sorted-arrays/）经典LCS问题转为LIS问题
 3662. 最大上升子序列和（https://www.acwing.com/problem/content/description/3665/）所有长度的严格上升子序列的最大子序列和，使用离散化树状数组与线性DP计算，也可使用线段树
 2826. 将三个组排序（https://leetcode.cn/problems/sorting-three-groups/）转换为求最长不降子序列
+1964. 找出到每个位置为止最长的有效障碍赛跑路线（https://leetcode.cn/problems/find-the-longest-valid-obstacle-course-at-each-position/）经典LIS求以每个位置结尾的最长不降子序列长度
 
 ===================================洛谷===================================
 P1020 导弹拦截（https://www.luogu.com.cn/problem/P1020）使用贪心加二分计算最长单调不减和单调不增子序列的长度
@@ -299,6 +300,21 @@ class Solution:
         ind = {num: i for i, num in enumerate(target)}
         lst = [ind[num] for num in arr if num in ind]
         return len(target) - LongestIncreasingSubsequence().definitely_increase(lst)
+
+    @staticmethod
+    def lc_1964(obstacles: List[int]) -> List[int]:
+        # 模板：经典LIS求以每个位置结尾的最长不降子序列长度
+        pre = []
+        dp = []
+        for num in obstacles:
+            i = bisect.bisect_right(dp, num)
+            if 0 <= i < len(dp):
+                dp[i] = num
+                pre.append(i + 1)
+            else:
+                dp.append(num)
+                pre.append(len(dp))
+        return pre
 
     @staticmethod
     def lc_2111(arr: List[int], k: int) -> int:
