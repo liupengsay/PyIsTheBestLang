@@ -1,5 +1,6 @@
 import unittest
 import bisect
+from collections import defaultdict
 from itertools import combinations
 from math import inf
 from typing import List
@@ -23,6 +24,7 @@ P5691 [NOI2001] 方程的解数（https://www.luogu.com.cn/problem/P5691）折�
 
 ===================================AcWing======================================
 171. 送礼物（https://www.acwing.com/problem/content/173/）经典折半搜索查找最接近目标值的子数组和
+F. Xor-Paths（https://codeforces.com/contest/1006/problem/F）前缀和哈希计数，矩阵折半搜索
 
 参考：OI WiKi（xx）
 """
@@ -150,6 +152,69 @@ class Solution:
             i = bisect.bisect_right(res1, c - num) - 1
             if i >= 0:
                 ans = ans if ans > num + res1[i] else num + res1[i]
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1006f(ac=FastIO()):
+        # 模板：前缀和哈希计数，矩阵折半搜索
+        m, n, k = ac.read_list_ints()
+        grid = [ac.read_list_ints() for _ in range(m)]
+        if m == 1 or n == 1:
+            res = 0
+            for g in grid:
+                for num in g:
+                    res ^= num
+            ac.st(1 if res == k else 0)
+            return
+
+        left = (m + n - 2) // 2
+        right = m + n - 2 - left
+        pre = [[defaultdict(int) for _ in range(n)] for _ in range(m)]
+        for i in range(m):
+            for j in range(n):
+                if i + j > left:
+                    break
+                if i == j == 0:
+                    cur = defaultdict(int)
+                    cur[grid[i][j]] = 1
+                else:
+                    x = grid[i][j]
+                    cur = defaultdict(int)
+                    for a, b in [[i - 1, j], [i, j - 1]]:
+                        if 0 <= a < m and 0 <= b < n:
+                            dct = pre[a][b]
+                            for p in dct:
+                                cur[p ^ x] += dct[p]
+                if i:
+                    pre[i-1][j] = defaultdict(int)
+                pre[i][j] = cur
+
+        ans = 0
+        post = [[defaultdict(int) for _ in range(n)] for _ in range(m)]
+        for i in range(m - 1, -1, -1):
+            for j in range(n - 1, -1, -1):
+                if m - 1 - i + n - 1 - j > right:
+                    break
+                if i == m - 1 and j == n - 1:
+                    cur = defaultdict(int)
+                    cur[grid[i][j]] = 1
+                else:
+                    x = grid[i][j]
+                    cur = defaultdict(int)
+                    for a, b in [[i + 1, j], [i, j + 1]]:
+                        if 0 <= a < m and 0 <= b < n:
+                            dct = post[a][b]
+                            for p in dct:
+                                cur[p ^ x] += dct[p]
+                post[i][j] = cur
+
+                if i+1 < m:
+                    post[i + 1][j] = defaultdict(int)
+
+                if m - 1 - i + n - 1 - j == right:
+                    for p in cur:
+                        ans += pre[i][j][p ^ k ^ grid[i][j]] * cur[p]
         ac.st(ans)
         return
 
