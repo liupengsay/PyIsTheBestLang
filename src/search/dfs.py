@@ -69,6 +69,7 @@ P8838 [传智杯 #3 决赛] 面试（https://www.luogu.com.cn/problem/P8838）�
 D. Tree Requests（https://codeforces.com/contest/570/problem/D）dfs序与二分查找，也可以使用离线查询
 E. Blood Cousins（https://codeforces.com/contest/208/problem/E）深搜序加LCA加二分查找计数
 D. Choosing Capital for Treeland（https://codeforces.com/contest/219/problem/D）迭代法实现树形换根DP计算，或者一遍DFS或者dfs序加差分
+E. Military Problem（https://codeforces.com/contest/1006/problem/E）经典dfs序模板题
 
 ================================AtCoder================================
 F - Colorful Tree（https://atcoder.jp/contests/abc133/tasks/abc133_f）欧拉序在线查找树上距离，结合二分与前缀和计算变化情况
@@ -243,6 +244,27 @@ class Solution:
                     diff[b + 1] += 1
         diff = list(accumulate(diff))
         return [diff[start[i]] for i in range(n)]
+
+    @staticmethod
+    def cf_1006e(ac=FastIO()):
+        # 模板：经典dfs序模板题
+        n, q = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        p = ac.read_list_ints_minus_one()
+        for i in range(n-1):
+            dct[p[i]].append(i+1)
+        for i in range(n):
+            dct[i].reverse()
+        dfs = DfsEulerOrder(dct)
+        for _ in range(q):
+            u, k = ac.read_list_ints()
+            u -= 1
+            x = dfs.start[u]
+            if n-x < k or dfs.start[dfs.order_to_node[x+k-1]] > dfs.end[u]:
+                ac.st(-1)
+            else:
+                ac.st(dfs.order_to_node[x+k-1] + 1)
+        return
 
     @staticmethod
     def lc_301(s):
