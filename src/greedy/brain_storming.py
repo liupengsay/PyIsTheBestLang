@@ -57,6 +57,7 @@ from src.mathmatics.number_theory import NumberTheory
 1946. 子字符串突变后可能得到的最大整数（https://leetcode.cn/problems/largest-number-after-mutating-substring/description/）易错贪心
 1840. 最高建筑高度（https://leetcode.cn/problems/maximum-building-height/）经典单调栈贪心，也可以使用前后缀数组模拟计算
 1540. K 次操作转变字符串（https://leetcode.cn/problems/can-convert-string-in-k-moves/）贪心思维题，使用指针记录
+1121. 将数组分成几个递增序列（https://leetcode.cn/problems/divide-array-into-increasing-sequences/description/）经典思维题贪心，只考虑最大值的分组影响
 
 ===================================洛谷===================================
 P1031 均分纸牌（https://www.luogu.com.cn/problem/P1031）贪心计算每个点的前缀和流量，需要补齐或者输出时进行计数
@@ -163,7 +164,7 @@ D. Slime（https://codeforces.com/problemset/problem/1038/D）贪心模拟，分
 B. Color the Fence（https://codeforces.com/problemset/problem/349/B）贪心模拟
 C. Number Game（https://codeforces.com/problemset/problem/1370/C）贪心模拟必胜态
 E. Making Anti-Palindromes（https://codeforces.com/contest/1822/problem/E）贪心进行模拟计数
-E2. Median on Segments（https://codeforces.com/contest/1005/problem/E2）经典特定中位数的连续子数组个数，使用容斥原理加前缀和有序列表二分
+E2. Median on Segments（https://codeforces.com/contest/1005/problem/E2）经典特定中位数的连续子数组个数，使用容斥原理加前缀和有序列表二分，同LC2488
 
 ================================AtCoder======================================
 C - AtCoDeer and Election Report（https://atcoder.jp/contests/abc046/tasks/arc062_a）思维题，使用不等式进行贪心
