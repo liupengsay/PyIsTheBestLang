@@ -28,7 +28,7 @@ from src.fast_io import FastIO
 
 ===================================AtCoder===================================
 D - XOR World（https://atcoder.jp/contests/abc121/tasks/abc121_d）正解为(2*n)^(2*n+1)=1的性质，可使用数位DP计算 1^2^...^num的值
-
+E - Digit Products（https://atcoder.jp/contests/abc208/tasks/abc208_e）脑筋急转弯，有技巧地处理数位DP结果计算
 ===================================洛谷===================================
 P1590 失踪的7（https://www.luogu.com.cn/problem/P1590）计算 n 以内不含7的个数
 P1239 计数器（https://www.luogu.com.cn/problem/P1239）计算 n 以内每个数字0-9的个数
@@ -230,6 +230,32 @@ class Solution:
             return ans
         a, b = ac.read_ints()
         ac.st(count(b) ^ count(a - 1))
+        return
+
+    @staticmethod
+    def abc_208e(ac=FastIO()):
+        # 模板：有技巧地处理数位DP结果计算
+
+        @lru_cache(None)
+        def dfs(i, is_limit, is_num, pre):
+            if i == m:
+                return int(is_num) and pre <= k
+            res = 0
+            if not is_num:
+                res += dfs(i + 1, False, False, 0)
+            low = 0 if is_num else 1
+            high = int(st[i]) if is_limit else 9
+            for x in range(low, high + 1):
+                y = pre*x if is_num else x
+                if y > k:
+                    y = k+1
+                res += dfs(i + 1, is_limit and high == x, True, y)
+            return res
+        n, k = ac.read_list_ints()
+        st = str(n)
+        m = len(st)
+        ans = dfs(0, True, False, 0)
+        ac.st(ans)
         return
 
     @staticmethod
