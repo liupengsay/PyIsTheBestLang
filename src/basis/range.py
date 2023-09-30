@@ -50,6 +50,8 @@ P2439 [SDOI2005] 阶梯教室设备利用（https://www.luogu.com.cn/problem/P24
 A. String Reconstruction（https://codeforces.com/problemset/problem/827/A）区间合并为不相交的区间，再贪心赋值
 D. Nested Segments（https://codeforces.com/problemset/problem/652/D）二位偏序，转换为区间包含问题
 D. Non-zero Segments（https://codeforces.com/problemset/problem/1426/D）贪心选取最少的点集合，使得每个区间包含其中至少一个点
+E. Monotonic Renumeration（https://codeforces.com/contest/1102/problem/E）区间合并为不相交的区间
+F2. Same Sum Blocks (Hard)（https://codeforces.com/contest/1141/problem/F2）利用前缀和枚举，转化为最多不相交的区间问题
 
 ================================AcWing================================
 112. 雷达设备（https://www.acwing.com/problem/content/114/）作用范围进行区间贪心
@@ -258,6 +260,20 @@ class Solution:
         cnt = len(Range().merge(ranges))
         mod = 10 ** 9 + 7
         return pow(2, cnt, mod)
+
+    @staticmethod
+    def cf_1102e(ac=FastIO()):
+        # 模板：区间合并为不相交的区间
+        mod = 998244353
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        dct = defaultdict(list)
+        for i in range(n):
+            dct[nums[i]].append(i)
+        lst = [[dct[num][0], dct[num][-1]] for num in dct]
+        ans = len(Range().merge(lst))
+        ac.st(pow(2, ans-1, mod))
+        return
 
     @staticmethod
     def cf_1426d(ac=FastIO()):
