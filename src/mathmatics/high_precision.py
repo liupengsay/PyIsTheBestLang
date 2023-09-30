@@ -35,6 +35,9 @@ P2393 yyy loves Maths II（https://www.luogu.com.cn/problem/P2393）高精度计
 P2399 non hates math（https://www.luogu.com.cn/problem/P2399）小数有理数转换为最简分数
 P1530 [USACO2.4]分数化小数 Fractions to Decimals（https://www.luogu.com.cn/problem/P1530）分数化为小数
 
+===================================CodeForces===================================
+E. Median String（https://codeforces.com/contest/1144/problem/E）超大整数加减与乘除
+
 ===================================AtCoder===================================
 E - Double Factorial（https://atcoder.jp/contests/abc148/tasks/abc148_e）奇数阶乘与偶数阶乘的尾随零个数
 
@@ -202,6 +205,31 @@ class Solution:
         else:
             ans = HighPrecision().factorial_to_zero(n//10) + n//10
             ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1144e(ac=FastIO()):
+        # 模板：超大整数加减与乘除
+        n = ac.read_int()
+        s = ac.read_str()
+        t = ac.read_str()
+        lst1 = [0] + [ord(w)-ord("a") for w in s]
+        lst2 = [0] + [ord(w)-ord("a") for w in t]
+
+        for i in range(n, 0, -1):
+            lst1[i] += lst2[i]
+            lst1[i-1] += lst1[i]//26
+            lst1[i] %= 26
+
+        for i in range(n+1):
+            rem = lst1[i] % 2
+            lst1[i] //= 2
+            if i+1 <= n:
+                lst1[i+1] += rem*26
+            else:
+                assert rem == 0
+
+        ac.st("".join(chr(i+ord("a")) for i in lst1[1:]))
         return
 
     @staticmethod
