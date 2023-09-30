@@ -55,6 +55,7 @@ P1550 [USACO08OCT] Watering Hole G（https://www.luogu.com.cn/problem/P1550）�
 ================================CodeForces================================
 D. Design Tutorial: Inverse the Problem（https://codeforces.com/problemset/problem/472/D）使用最小生成树判断构造给定的点对最短路距离是否存在，使用prim算法复杂度更优
 E. Minimum spanning tree for each edge（https://codeforces.com/problemset/problem/609/E）使用LCA的思想维护树中任意两点的路径边权最大值，并贪心替换获得边作为最小生成树时的最小权值和，有点类似于关键边与非关键边，但二者并不相同，即为严格次小生成树
+F. MST Unification（https://codeforces.com/contest/1108/problem/F）使得最小生成树的边组合唯一时，需要增加权重的最少边数量
 
 ===================================AtCoder===================================
 D - Built?（https://atcoder.jp/contests/abc065/tasks/arc076_b）最小生成树变形问题
@@ -263,6 +264,41 @@ class Solution:
             ac.st("orz")
         else:
             ac.st(mst.cost)
+        return
+
+    @staticmethod
+    def cf_1108f(ac=FastIO()):
+        # 模板：使得最小生成树的边组合唯一时，需要增加权重的最少边数量
+        n, m = ac.read_list_ints()
+        edges = []
+        for _ in range(m):
+            i, j, w = ac.read_list_ints()
+            if i != j:  # 去除自环
+                edges.append([i - 1, j - 1, w])
+
+        # 计算kruskal最小生成树
+        uf = UnionFind(n)
+        dct = [dict() for _ in range(n)]
+        cost = 0
+        for i, j, w in sorted(edges, key=lambda it: it[2]):
+            if uf.union(i, j):
+                cost += w
+                dct[i][j] = dct[j][i] = w
+            if uf.part == 1:
+                break
+        del uf
+        # 枚举新增的边
+        tree = TreeAncestorWeightSecond(dct)
+        ans = 0
+        # 使得最小生成树唯一等价于有某条边参与时依旧代价最小的该边数量
+        for i, j, w in edges:
+            if j in dct[i] and dct[i][j] == w:
+                ans += 1
+            else:
+                dis = tree.get_dist_weight_max_second(i, j)[0]
+                if dis == w:
+                    ans += 1
+        ac.st(ans - n+1)
         return
 
     @staticmethod
