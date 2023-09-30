@@ -83,6 +83,7 @@ D. A Wide, Wide Graph（https://codeforces.com/problemset/problem/1805/D）树�
 G. White-Black Balanced Subtrees（https://codeforces.com/contest/1676/problem/G）使用迭代的方式进行树形DP计算
 F. Gardening Friends（https://codeforces.com/contest/1822/problem/F）计算树中节点到其余节点的最大距离
 D. Choosing Capital for Treeland（https://codeforces.com/contest/219/problem/D）迭代法实现树形换根DP计算，或者一遍DFS或者dfs序加差分
+F. Tree with Maximum Cost（https://codeforces.com/contest/1092/problem/F）带权重树中的总距离，迭代法实现树形换根DP计算
 
 ================================AcWing================================
 3760. 最大剩余油量（https://www.acwing.com/problem/content/description/3763/）脑筋急转弯转化为树形DP迭代方式求解
@@ -92,287 +93,43 @@ D. Choosing Capital for Treeland（https://codeforces.com/contest/219/problem/D�
 """
 
 
-class TreeDP:
+class ReRootDP:
     def __init__(self):
-        return
-
+        return 
+    
     @staticmethod
-    def change_root_dp(n: int, edges: List[List[int]], price: List[int]):
-        # 模板:  换根DP
-        edge = [[] for _ in range(n)]
-        for u, v in edges:
-            edge[u].append(v)
-            edge[v].append(u)
+    def get_tree_distance_weight(dct: List[List[int]], weight) -> List[int]:
+        # 模板：计算树的每个节点到其余所有的节点的总距离（带权重）
 
-        @lru_cache(None)
-        def dfs(i, fa):
-            # 注意在星状图的复杂度是O(n^2)（还有一种特殊的树结构是树链）
-            # 也是求以此为根的最大路径
-            ans = 0
-            for j in edge[i]:
-                if j != fa:
-                    cur = dfs(j, i)
-                    ans = ans if ans > cur else cur
-            return ans + price[i]
-
-        return max(dfs(i, -1) - price[i] for i in range(n))
-
-    @staticmethod
-    def sum_of_distances_in_tree(n: int, edges):
-        # 计算节点到所有其他节点的总距离即树的重心
-        dct = [[] for _ in range(n)]
-        for i, j in edges:
-            dct[i].append(j)
-            dct[j].append(i)
-
-        tree = [[] for _ in range(n)]
-        stack = [0]
-        visit = {0}
+        n = len(dct)
+        sub = weight[:]  # 子树节点个数
+        s = sum(weight)  # 节点的权重值，默认为[1]*n
+        ans = [0] * n  # 到其余所有节点的距离之和
+        # 第一遍 BFS 自下而上计算子树节点数与 ans[0]
+        stack = [[0, -1, 1]]
         while stack:
-            nex = []
-            for i in stack:
+            i, fa, state = stack.pop()
+            if state:
+                stack.append([i, fa, 0])
                 for j in dct[i]:
-                    if j not in visit:
-                        visit.add(j)
-                        nex.append(j)
-                        tree[i].append(j)
-            stack = nex[:]
+                    if j != fa:
+                        stack.append([j, i, 1])
+            else:
+                for j in dct[i]:
+                    if j != fa:
+                        sub[i] += sub[j]
+                        ans[i] += ans[j] + sub[j]
 
-        def dfs(x):
-            res = 1
-            for y in tree[x]:
-                res += dfs(y)
-            son_count[x] = res
-            return res
-
-        son_count = [0] * n
-        dfs(0)
-
-        def dfs(x):
-            res = son_count[x] - 1
-            for y in tree[x]:
-                res += dfs(y)
-            son_dis[x] = res
-            return res
-
-        son_dis = [0] * n
-        dfs(0)
-
-        def dfs(x):
-            for y in tree[x]:
-                father_dis[y] = (
-                    son_dis[x] - son_dis[y] - son_count[y]) + father_dis[x] + n - son_count[y]
-                dfs(y)
-            return
-
-        father_dis = [0] * n
-        dfs(0)
-        return [father_dis[i] + son_dis[i] for i in range(n)]
-
-    @staticmethod
-    def longest_path_through_node(dct):
-
-        # 模板: 换根DP，两遍DFS获取从下往上与从上往下的DP信息
-        n = len(dct)
-
-        # 两遍DFS获取从下往上与从上往下的节点最远距离
-        def dfs(x, fa):
-            res = [0, 0]
-            for y in dct[x]:
-                if y != fa:
-                    dfs(y, x)
-                    res.append(max(down_to_up[y]) + 1)
-            down_to_up[x] = nlargest(2, res)
-            return
-
-        # 默认以 0 为根
-        down_to_up = [[] for _ in range(n)]
-        dfs(0, -1)
-
-        def dfs(x, pre, fa):
-            up_to_down[x] = pre
-            son = [0, 0]
-            for y in dct[x]:
-                if y != fa:
-                    son.append(max(down_to_up[y]))
-            son = nlargest(2, son)
-
-            for y in dct[x]:
-                if y != fa:
-                    father = pre + 1
-                    tmp = son[:]
-                    if max(down_to_up[y]) in tmp:
-                        tmp.remove(max(down_to_up[y]))
-                    if tmp[0]:
-                        father = father if father > tmp[0] + 2 else tmp[0] + 2
-                    dfs(y, father, x)
-            return
-
-        up_to_down = [0] * n
-        # 默认以 0 为根
-        dfs(0, 0, -1)
-        # 树的直径、核心可通过这两个数组计算得到，其余类似的递归可参照这种方式
-        return up_to_down, down_to_up
-
-
-class TreeDiameterWeighted:
-    def __init__(self):
-        return
-
-    @staticmethod
-    def bfs(dct, src):
-        # 模板：使用 BFS 计算获取带权树的直径端点以及直径长度
-        n = len(dct)
-        res = [inf] * n
-        stack = [src]
-        res[src] = 0
-        parent = [-1] * n
+        # 第二遍 BFS 自上而下计算距离
+        stack = [[0, -1]]
         while stack:
-            node = stack.pop()
-            for nex in dct[node]:
-                if nex != parent[node]:
-                    parent[nex] = node
-                    res[nex] = res[node] + dct[node][nex]
-                    stack.append(nex)
-        far = res.index(max(res))
-        diameter = [far]
-        while diameter[-1] != src:
-            diameter.append(parent[diameter[-1]])
-        diameter.reverse()
-        return far, diameter, res[far]
-
-
-class TreeDiameter:
-    def __init__(self):
-        return
-
-    @staticmethod
-    def get_diameter_bfs(edge):
-
-        def bfs(node):
-            # 模板：使用BFS计算获取树的直径端点以及直径长度
-            d = 0
-            q = deque([(node, -1, d)])
-            while q:
-                node, pre, d = q.popleft()
-                for nex in edge[node]:
-                    if nex != pre:
-                        q.append((nex, node, d + 1))
-            return node, d
-
-        n = len(edge)
-
-        # 这个算法依赖于一个性质，对于树中的任一个点，距离它最远的点一定是树上一条直径的一个端点
-        x, _ = bfs(0)
-        # 任取树中的一个节点x，找出距离它最远的点y，那么点y就是这棵树中一条直径的一个端点。我们再从y出发，找出距离y最远的点就找到了一条直径
-        y, dis = bfs(x)
-        return dis
-
-    @staticmethod
-    def get_diameter_dfs(edge):
-
-        def dfs(i, fa):
-            nonlocal ans
-            a = b = 0
-            for j in edge[i]:
+            i, fa = stack.pop()
+            for j in dct[i]:
                 if j != fa:
-                    x = dfs(j, i)
-                    if x >= a:
-                        a, b = x, a
-                    elif x >= b:
-                        b = x
-            ans = ans if ans > a + b else a + b
-            return a + 1 if a > b else b + 1
-
-        # 模板：使用DFS与动态规划计算直径
-        ans = 0
-        dfs(0, -1)
+                    ans[j] = ans[i] - sub[j] + s - sub[j]
+                    stack.append([j, i])
         return ans
-
-
-class TreeDiameterInfo:
-    def __init__(self):
-        return
-
-    @staticmethod
-    def get_diameter_info(edge: List[List[int]]):
-        # 模板：使用两遍 BFS 计算获取不带权的树直径端点以及直径长度和具体直径经过的点
-        n = len(edge)
-
-        stack = deque([[0, -1]])
-        parent = [-1] * n
-        dis = [0] * n
-        x = -1
-        while stack:
-            i, fa = stack.popleft()
-            x = i
-            for j in edge[i]:
-                if j != fa:
-                    parent[j] = i
-                    dis[j] = dis[i] + 1
-                    stack.append([j, i])
-
-        stack = deque([[x, -1]])
-        parent = [-1] * n
-        dis = [0] * n
-        y = -1
-        while stack:
-            i, fa = stack.popleft()
-            y = i
-            for j in edge[i]:
-                if j != fa:
-                    parent[j] = i
-                    dis[j] = dis[i] + 1
-                    stack.append([j, i])
-
-        path = [y]
-        while path[-1] != x:
-            path.append(parent[path[-1]])
-        return x, y, dis, path
-
-
-class TreeDiameterDis:
-    # 任取树中的一个节点x，找出距离它最远的点y，那么点y就是这棵树中一条直径的一个端点。我们再从y出发，找出距离y最远的点就找到了一条直径。
-    # 这个算法依赖于一个性质：对于树中的任一个点，距离它最远的点一定是树上一条直径的一个端点。
-    def __init__(self, edge):
-        self.edge = edge
-        self.n = len(self.edge)
-        return
-
-    def get_furthest(self, node):
-        q = deque([(node, -1)])
-        while q:
-            node, pre = q.popleft()
-            for x in self.edge[node]:
-                if x != pre:
-                    q.append((x, node))
-        return node
-
-    def get_diameter_node(self):
-        # 获取树的直径端点
-        x = self.get_furthest(0)
-        y = self.get_furthest(x)
-        return x, y
-
-    def get_bfs_dis(self, node):
-        dis = [inf] * self.n
-        stack = [node]
-        dis[node] = 0
-        while stack:
-            nex = []
-            for i in stack:
-                for j in self.edge[i]:
-                    if dis[j] == inf:
-                        nex.append(j)
-                        dis[j] = dis[i] + 1
-            stack = nex[:]
-        return dis
-
-
-class TreeCentroid:
-    def __init__(self):
-        return
-
+    
     @staticmethod
     def get_tree_centroid(dct: List[List[int]]) -> int:
         # 模板：获取树的编号最小的重心
@@ -479,7 +236,161 @@ class TreeCentroid:
                         nex = nex if nex > a else a
                     stack.append([j, i, nex+1])
         return ans
+    
+    
+class TreeDiameterWeighted:
+    def __init__(self):
+        return
 
+    @staticmethod
+    def bfs(dct, src):
+        # 模板：使用 BFS 计算获取带权树的直径端点以及直径长度
+        n = len(dct)
+        res = [inf] * n
+        stack = [src]
+        res[src] = 0
+        parent = [-1] * n
+        while stack:
+            node = stack.pop()
+            for nex in dct[node]:
+                if nex != parent[node]:
+                    parent[nex] = node
+                    res[nex] = res[node] + dct[node][nex]
+                    stack.append(nex)
+        far = res.index(max(res))
+        diameter = [far]
+        while diameter[-1] != src:
+            diameter.append(parent[diameter[-1]])
+        diameter.reverse()
+        return far, diameter, res[far]
+
+
+class TreeDiameter:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def get_diameter_bfs(edge):
+
+        def bfs(node):
+            # 模板：使用BFS计算获取树的直径端点以及直径长度
+            d = 0
+            q = deque([(node, -1, d)])
+            while q:
+                node, pre, d = q.popleft()
+                for nex in edge[node]:
+                    if nex != pre:
+                        q.append((nex, node, d + 1))
+            return node, d
+
+        n = len(edge)
+
+        # 这个算法依赖于一个性质，对于树中的任一个点，距离它最远的点一定是树上一条直径的一个端点
+        x, _ = bfs(0)
+        # 任取树中的一个节点x，找出距离它最远的点y，那么点y就是这棵树中一条直径的一个端点。我们再从y出发，找出距离y最远的点就找到了一条直径
+        y, dis = bfs(x)
+        return dis
+
+    @staticmethod
+    def get_diameter_dfs(edge):
+
+        def dfs(i, fa):
+            nonlocal ans
+            a = b = 0
+            for j in edge[i]:
+                if j != fa:
+                    x = dfs(j, i)
+                    if x >= a:
+                        a, b = x, a
+                    elif x >= b:
+                        b = x
+            ans = ans if ans > a + b else a + b
+            return a + 1 if a > b else b + 1
+
+        # 模板：使用DFS与动态规划计算直径
+        ans = 0
+        dfs(0, -1)
+        return ans
+
+
+class TreeDiameterInfo:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def get_diameter_info(edge: List[List[int]], root=0):
+        # 模板：使用两遍 BFS 计算获取不带权的树直径端点以及直径长度和具体直径经过的点
+        n = len(edge)
+
+        stack = deque([[root, -1]])
+        parent = [-1] * n
+        dis = [0] * n
+        x = -1
+        while stack:
+            i, fa = stack.popleft()
+            x = i
+            for j in edge[i]:
+                if j != fa:
+                    parent[j] = i
+                    dis[j] = dis[i] + 1
+                    stack.append([j, i])
+
+        stack = deque([[x, -1]])
+        parent = [-1] * n
+        dis = [0] * n
+        y = -1
+        while stack:
+            i, fa = stack.popleft()
+            y = i
+            for j in edge[i]:
+                if j != fa:
+                    parent[j] = i
+                    dis[j] = dis[i] + 1
+                    stack.append([j, i])
+
+        path = [y]
+        while path[-1] != x:
+            path.append(parent[path[-1]])
+        return x, y, dis, path
+
+
+class TreeDiameterDis:
+    # 任取树中的一个节点x，找出距离它最远的点y，那么点y就是这棵树中一条直径的一个端点。我们再从y出发，找出距离y最远的点就找到了一条直径。
+    # 这个算法依赖于一个性质：对于树中的任一个点，距离它最远的点一定是树上一条直径的一个端点。
+    def __init__(self, edge):
+        self.edge = edge
+        self.n = len(self.edge)
+        return
+
+    def get_furthest(self, node):
+        q = deque([(node, -1)])
+        while q:
+            node, pre = q.popleft()
+            for x in self.edge[node]:
+                if x != pre:
+                    q.append((x, node))
+        return node
+
+    def get_diameter_node(self):
+        # 获取树的直径端点
+        x = self.get_furthest(0)
+        y = self.get_furthest(x)
+        return x, y
+
+    def get_bfs_dis(self, node):
+        dis = [inf] * self.n
+        stack = [node]
+        dis[node] = 0
+        while stack:
+            nex = []
+            for i in stack:
+                for j in self.edge[i]:
+                    if dis[j] == inf:
+                        nex.append(j)
+                        dis[j] = dis[i] + 1
+            stack = nex[:]
+        return dis
+    
 
 class Solution:
     def __init__(self):
@@ -756,6 +667,20 @@ class Solution:
         return
 
     @staticmethod
+    def cf_1092f(ac=FastIO()):
+        # 模板：带权重树中的总距离，迭代法实现树形换根DP计算
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            x, y = ac.read_list_ints_minus_one()
+            dct[x].append(y)
+            dct[y].append(x)
+        ans = ReRootDP().get_tree_distance_weight(dct, nums)
+        ac.st(max(ans))
+        return
+    
+    @staticmethod
     def lc_968(root: Optional[TreeNode]) -> int:
 
         # 模板：经典树形DP
@@ -766,13 +691,13 @@ class Solution:
             left = dfs(node.left)
             right = dfs(node.right)
             res = [inf, inf, inf]
-            res[0] = min_(left[1] + min_(right[0], right[1]), right[1] + min_(left[0], left[1]))
+            res[0] = min(left[1] + min(right[0], right[1]), right[1] + min(left[0], left[1]))
             res[1] = 1 + min(left) + min(right)
             res[2] = left[0] + right[0]
             return res
 
         ans = dfs(root)
-        return min_(ans[0], ans[1])
+        return min(ans[0], ans[1])
 
     @staticmethod
     def lc_1367(head: Optional[ListNode], root: Optional[TreeNode]) -> bool:
@@ -958,7 +883,7 @@ class Solution:
             dct[i-1].append(j-1)
             dct[j-1].append(i-1)
 
-        root = TreeCentroid().get_tree_centroid(dct)
+        root = ReRootDP().get_tree_centroid(dct)
 
         def bfs_diameter(src):
             ans = 0
@@ -986,7 +911,7 @@ class Solution:
             dct[i-1].append(j-1)
             dct[j-1].append(i-1)
 
-        ans = TreeCentroid().get_tree_distance(dct)
+        ans = ReRootDP().get_tree_distance(dct)
         dis = min(ans)
         ac.lst([ans.index(dis)+1, dis])
         return
@@ -1002,7 +927,7 @@ class Solution:
                 dct[i].append(j)
                 dct[j].append(i)
 
-            dis = TreeCentroid().get_tree_distance_max(dct)
+            dis = ReRootDP().get_tree_distance_max(dct)
 
             ans = -inf
             stack = [[0, 0, -1]]
@@ -1279,7 +1204,7 @@ class Solution:
             i, j = ac.read_ints_minus_one()
             dct[i].append(j)
             dct[j].append(i)
-        dis = TreeCentroid().get_tree_distance(dct)
+        dis = ReRootDP().get_tree_distance(dct)
         ind = 0
         for i in range(1, n):
             if dis[i] > dis[ind]:
@@ -1581,15 +1506,6 @@ class Solution:
 class TestGeneral(unittest.TestCase):
 
     def test_tree_dp(self):
-        td = TreeDP()
-        n = 5
-        edges = [[0, 1], [0, 2], [2, 4], [1, 3]]
-        assert td.sum_of_distances_in_tree(n, edges) == [6, 7, 7, 10, 10]
-
-        dct = [[1, 2], [0, 3], [0, 4], [1], [2]]
-        up_to_down, down_to_up = td.longest_path_through_node(dct)
-        assert up_to_down == [0, 3, 3, 4, 4]
-        assert down_to_up == [[2, 2], [1, 0], [1, 0], [0, 0], [0, 0]]
         return
 
 
