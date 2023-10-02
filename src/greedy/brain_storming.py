@@ -39,7 +39,7 @@ from src.mathmatics.number_theory import NumberTheory
 1029. 两地调度（https://leetcode.cn/problems/two-city-scheduling/）经典贪心题目，可使用举例两个计算、再进行归纳确定排序规则
 1353. 最多可以参加的会议数目（https://leetcode.cn/problems/maximum-number-of-events-that-can-be-attended/）经典枚举贪心
 1402. 做菜顺序（https://leetcode.cn/problems/reducing-dishes/）经典前缀和贪心
-1665. 完成所有任务的最少初始能量（https://leetcode.cn/problems/minimum-initial-energy-to-finish-tasks/）经典贪心不同项比较公式排序模拟
+1665. 完成所有任务的最少初始能量（https://leetcode.cn/problems/minimum-initial-energy-to-finish-tasks/）经典贪心不同项比较公式排序模拟，同CF1203F
 1675. 数组的最小偏移量（https://leetcode.cn/problems/minimize-deviation-in-array/）脑筋急转弯思维题贪心
 1686. 石子游戏 VI（https://leetcode.cn/problems/stone-game-vi/）经典贪心采用列式子确定排序方式
 1808. 好因子的最大数目（https://leetcode.cn/problems/maximize-number-of-nice-divisors/）按照模3的因子个数贪心处理，经典将和拆分成最大乘积
