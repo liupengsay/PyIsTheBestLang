@@ -22,7 +22,18 @@ from operator import mul
 from typing import List, Callable, Dict, Set, Tuple, DefaultDict
 from heapq import heappush, heappop, heapify
 
-# sys.setrecursionlimit(10**8)设置最大递归次数
+RANDOM = random.randint(0, 10 ** 9 + 7)
+
+
+class Wrapper(int):
+    # 用来规避 py 哈希碰撞的问题和进行加速
+    def __init__(self, x):
+        int.__init__(x)
+        # 原理是异或一个随机种子
+
+    def __hash__(self):
+        # 也可以将数组排序后进行哈希计数
+        return super(Wrapper, self).__hash__() ^ RANDOM
 
 
 class FastIO:
@@ -121,7 +132,6 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
-
         return
 
 
