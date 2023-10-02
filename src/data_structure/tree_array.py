@@ -51,6 +51,7 @@ F - Absolute Minima （https://atcoder.jp/contests/abc127/tasks/abc127_f）经�
 F. Range Update Point Query（https://codeforces.com/problemset/problem/1791/F）树状数组维护区间操作数与查询单点值
 H2. Maximum Crossings (Hard Version)（https://codeforces.com/contest/1676/problem/H2）树状数组维护前缀区间和
 C. Three displays（https://codeforces.com/problemset/problem/987/C）枚举中间数组，使用树状数组维护前后缀最小值
+F. Moving Points（https://codeforces.com/contest/1311/problem/F）经典两个离散化树状数组，计数与加和
 
 135. 二维树状数组3（https://loj.ac/p/135）区间修改，区间查询
 134. 二维树状数组2（https://loj.ac/p/134）区间修改，单点查询
@@ -542,6 +543,29 @@ class Solution:
                     r[i].update(j+1, dp[i][j])
                     c[j].update(i+1, dp[i][j])
         return -1 if dp[0][0] > n * m else dp[0][0]
+
+    @staticmethod
+    def cf_1311f(ac=FastIO()):
+        # 模板：经典两个离散化树状数组，计数与加和
+        n = ac.read_int()
+        ind = list(range(n))
+        x = ac.read_list_ints()
+        ind.sort(key=lambda it: x[it])
+        v = ac.read_list_ints()
+        dct = {w: i for i, w in enumerate(sorted(set(v)))}
+        m = len(dct)
+        tree_cnt = TreeArrayRangeQuerySum(m)
+        tree_tot = TreeArrayRangeQuerySum(m)
+        ans = 0
+        for i in ind:
+            cur_v = v[i]
+            tree_cnt.update(dct[cur_v]+1, 1)
+            tree_tot.update(dct[cur_v]+1, x[i])
+            pre_cnt = tree_cnt.query(dct[cur_v]+1)
+            pre_tot = tree_tot.query(dct[cur_v]+1)
+            ans += pre_cnt*x[i] - pre_tot
+        ac.st(ans)
+        return
 
     @staticmethod
     def cf_1676h2(ac=FastIO()):
