@@ -22,7 +22,8 @@ from operator import mul
 from typing import List, Callable, Dict, Set, Tuple, DefaultDict
 from heapq import heappush, heappop, heapify
 
-RANDOM = random.randint(0, 10 ** 9 + 7)
+
+RANDOM = random.randint(0, 10**9 + 7)
 
 
 class Wrapper(int):
