@@ -34,6 +34,7 @@ P6869 [COCI2019-2020#5] Putovanje（https://www.luogu.com.cn/problem/P6869）离
 E. Tree Queries（https://codeforces.com/problemset/problem/1328/E）利用 LCA 判定节点组是否符合条件，也可以使用 dfs 序
 C. Ciel the Commander（https://codeforces.com/problemset/problem/321/C）使用树的质心递归，依次切割形成平衡树赋值
 E. A and B and Lecture Rooms（https://codeforces.com/problemset/problem/519/E）LCA经典运用题目，查询距离与第k个祖先节点，与子树节点计数
+F. Berland Beauty（https://codeforces.com/contest/1296/problem/F）使用离线或者在线查询lca贪心构造，正解可能为倍增
 
 ================================AtCoder================================
 D - Transit Tree Path（https://atcoder.jp/contests/abc070/tasks/abc070_d）典型LCA查询运用题，也可离线实现
