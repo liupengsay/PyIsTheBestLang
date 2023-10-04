@@ -62,6 +62,7 @@ E. A Simple Task（https://codeforces.com/contest/558/problem/E）26个线段树
 D. Water Tree（https://codeforces.com/problemset/problem/343/D）dfs序加线段树
 E. XOR on Segment（https://codeforces.com/problemset/problem/242/E）线段树区间异或，与区间加和
 C. Three displays（https://codeforces.com/problemset/problem/987/C）枚举中间数组，使用线段树维护前后缀最小值
+F. Wi-Fi（https://codeforces.com/contest/1216/problem/F）经典线段树加DP，正解为单调队列优化DP
 
 ================================AcWing================================
 3805. 环形数组（https://www.acwing.com/problem/content/3808/）区间增减与最小值查询
@@ -2550,6 +2551,26 @@ class Solution:
                 ans.extend([nums[i], height[i]])
                 pre = height[i]
         ac.lst(ans)
+        return
+
+    @staticmethod
+    def cf_1216f(ac=FastIO()):
+        # 模板：经典线段树加DP
+        n, k = ac.read_list_ints()
+        s = ac.read_str()
+        tree = SegmentTreeUpdateQueryMin(n)
+        for i in range(n):
+            if s[i] == "1":
+                left = ac.max(0, i-k)
+                right = ac.min(n-1, i+k)
+                pre = tree.query_range(left-1, i-1, 0, n-1, 1) if left else 0
+                cur = pre + i+1
+                tree.update_range(i, right, 0, n-1, cur, 1)
+            else:
+                pre = tree.query_point(i-1, i-1, 0, n-1, 1) if i else 0
+                cur = pre + i+1
+                tree.update_point(i, i, 0, n-1, cur, 1)
+        ac.st(tree.query_point(n-1, n-1, 0, n-1, 1))
         return
 
     @staticmethod
