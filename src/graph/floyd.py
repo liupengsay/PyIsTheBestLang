@@ -1,5 +1,6 @@
 import heapq
 import unittest
+from heapq import heappop, heappush
 from math import inf
 from typing import List
 
@@ -402,7 +403,7 @@ class Solution:
             dis[src] = 0
             visit = set(list(range(n)))
             while stack:
-                d, i = heapq.heappop(stack)
+                d, i = heappop(stack)
                 if dis[i] < d:
                     continue
                 visit.discard(i)
@@ -410,7 +411,7 @@ class Solution:
                     dj = mat[i][j] + d
                     if dj < dis[j]:
                         dis[j] = dj
-                        heapq.heappush(stack, [dj, j])
+                        heappush(stack, [dj, j])
             return dis
 
         n, q = ac.read_ints()
