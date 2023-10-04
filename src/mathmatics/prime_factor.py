@@ -8,6 +8,7 @@ from math import inf
 from typing import List
 
 from src.fast_io import FastIO
+from src.mathmatics.number_theory import NumberTheory
 
 """
 算法：数论、欧拉筛、线性筛、素数、欧拉函数、因子分解、素因子分解、进制转换、因数分解
@@ -94,6 +95,7 @@ D. Another Problem About Dividing Numbers（https://codeforces.com/problemset/pr
 A. Row GCD（https://codeforces.com/problemset/problem/1458/A）gcd公式变换求解
 A. Division（https://codeforces.com/problemset/problem/1444/A）贪心枚举质数因子
 C. Strongly Composite（https://codeforces.com/contest/1823/problem/C）质因数分解进行贪心计算
+D. Recover it!（https://codeforces.com/contest/1176/problem/D）经典构造题，贪心模拟，记录合数最大不等于自身的因子，以及质数列表的顺序
 
 ================================AtCoder================================
 D - 756（https://atcoder.jp/contests/abc114/tasks/abc114_d）质因数分解计数  
@@ -347,6 +349,33 @@ class Solution:
                 if dp[i] + 1 < dp[i + 1]:
                     dp[i + 1] = dp[i] + 1
         return dp[-1] if dp[-1] < inf else -1
+
+    @staticmethod
+    def cf_1176d(ac=FastIO()):
+        # 模板：经典构造题，贪心模拟，记录合数最大不等于自身的因子，以及质数列表的顺序
+        ac.read_int()
+        nt = PrimeFactor(2 * 10 ** 5)
+        prime_numbers = NumberTheory().euler_flag_prime(3 * 10 ** 6)
+        dct = {num: i + 1 for i, num in enumerate(prime_numbers)}
+        nums = ac.read_list_ints()
+        nums.sort(reverse=True)
+        cnt = Counter(nums)
+        ans = []
+        for num in nums:
+            if not cnt[num]:
+                continue
+            if num in dct:
+                fa = dct[num]
+                cnt[num] -= 1
+                cnt[fa] -= 1
+                ans.append(fa)
+            else:
+                cnt[num] -= 1
+                x = nt.all_factor[num][-2]
+                cnt[x] -= 1
+                ans.append(num)
+        ac.lst(ans)
+        return
 
     @staticmethod
     def cf_1349a(ac=FastIO()):
