@@ -84,6 +84,7 @@ G. White-Black Balanced Subtrees（https://codeforces.com/contest/1676/problem/G
 F. Gardening Friends（https://codeforces.com/contest/1822/problem/F）计算树中节点到其余节点的最大距离
 D. Choosing Capital for Treeland（https://codeforces.com/contest/219/problem/D）迭代法实现树形换根DP计算，或者一遍DFS或者dfs序加差分
 F. Tree with Maximum Cost（https://codeforces.com/contest/1092/problem/F）带权重树中的总距离，迭代法实现树形换根DP计算
+G. Moving to the Capital（https://codeforces.com/contest/1472/problem/G）经典根据最短路进行从下到上与从上到下的DP
 
 ================================AcWing================================
 3760. 最大剩余油量（https://www.acwing.com/problem/content/description/3763/）脑筋急转弯转化为树形DP迭代方式求解
