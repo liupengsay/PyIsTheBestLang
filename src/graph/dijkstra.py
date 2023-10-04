@@ -106,6 +106,7 @@ P2176 [USACO11DEC] RoadBlock S / [USACO14FEB]Roadblock G/S（https://www.luogu.c
 C. Dijkstra?（https://codeforces.com/problemset/problem/20/C）正权值最短路计算，并记录返回生成路径
 E. Weights Distributing（https://codeforces.com/problemset/problem/1343/E）使用三个01BFS求最短路加贪心枚举计算
 B. Complete The Graph（https://codeforces.com/contest/715/problem/B）经典两遍最短路，贪心动态更新路径权值
+G. Reducing Delivery Cost（https://codeforces.com/contest/1433/problem/G）经典全源Dijkstra最短路枚举
 
 ================================AtCoder================================
 F - Pure（https://atcoder.jp/contests/abc142/tasks/abc142_f）经典子图寻找，转换为有向图的最小环问题
@@ -130,18 +131,18 @@ class Dijkstra:
         # 模板: Dijkstra求最短路，变成负数求可以求最长路（还是正权值）
         n = len(dct)
         dis = [inf]*n
-        stack = [[0, src]]
+        stack = [(0, src)]
         dis[src] = 0
 
         while stack:
-            d, i = heapq.heappop(stack)
+            d, i = heappop(stack)
             if dis[i] < d:
                 continue
             for j, w in dct[i]:
                 dj = w + d
                 if dj < dis[j]:
                     dis[j] = dj
-                    heapq.heappush(stack, [dj, j])
+                    heappush(stack, (dj, j))
         return dis
 
     @staticmethod
@@ -149,12 +150,12 @@ class Dijkstra:
         # 模板: Dijkstra求最短路条数（最短路计算）
         n = len(dct)
         dis = [inf]*n
-        stack = [[0, src]]
+        stack = [(0, src)]
         dis[src] = 0
         cnt = [0]*n
         cnt[src] = 1
         while stack:
-            d, i = heapq.heappop(stack)
+            d, i = heappop(stack)
             if dis[i] < d:
                 continue
             for j, w in dct[i]:
@@ -163,7 +164,7 @@ class Dijkstra:
                     dis[j] = dj
                     # 最短距离更新，重置计数
                     cnt[j] = cnt[i]
-                    heapq.heappush(stack, [dj, j])
+                    heappush(stack, (dj, j))
                 elif dj == dis[j]:
                     # 最短距离一致，增加计数
                     cnt[j] += cnt[i]
@@ -179,7 +180,7 @@ class Dijkstra:
         stack = [[dis[src], src]]
         # 限制只能跑 limit 的点到 target 中的点
         while stack and target:
-            d, i = heapq.heappop(stack)
+            d, i = heappop(stack)
             if i in target:
                 target.discard(i)
             if dis[i] < d:
@@ -189,7 +190,7 @@ class Dijkstra:
                     dj = w + d
                     if dj < dis[j]:
                         dis[j] = dj
-                        heapq.heappush(stack, [dj, j])
+                        heappush(stack, (dj, j))
         return dis
 
     @staticmethod
@@ -197,11 +198,11 @@ class Dijkstra:
         # 模板: Dijkstra求起终点的最短路，注意只能是正权值可以提前返回结果，并返回对应经过的路径
         n = len(dct)
         dis = [inf] * n
-        stack = [[0, src]]
+        stack = [(0, src)]
         dis[src] = 0
         father = [-1] * n  # 记录最短路的上一跳
         while stack:
-            d, i = heapq.heappop(stack)
+            d, i = heappop(stack)
             if dis[i] < d:
                 continue
             if i == dst:
@@ -211,7 +212,7 @@ class Dijkstra:
                 if dj < dis[j]:
                     dis[j] = dj
                     father[j] = i
-                    heapq.heappush(stack, [dj, j])
+                    heappush(stack, (dj, j))
         if dis[dst] == inf:
             return [], inf
         # 向上回溯路径
@@ -230,7 +231,7 @@ class Dijkstra:
         stack = [[-1, src]]
         dis[src] = 1
         while stack:
-            d, i = heapq.heappop(stack)
+            d, i = heappop(stack)
             d = -d
             if dis[i] > d:
                 continue
@@ -238,7 +239,7 @@ class Dijkstra:
                 dj = dct[i][j] * d
                 if dj > dis[j]:
                     dis[j] = dj
-                    heapq.heappush(stack, [-dj, j])
+                    heappush(stack, [-dj, j])
         return dis[dsc]
 
     @staticmethod
@@ -262,19 +263,19 @@ class Dijkstra:
         n = len(dct)
         dis = [[inf] * 2 for _ in range(n)]
         dis[src][0] = 0
-        stack = [[0, src]]
+        stack = [(0, src)]
         while stack:
-            d, i = heapq.heappop(stack)
+            d, i = heappop(stack)
             if dis[i][1] < d:
                 continue
             for j, w in dct[i]:
                 if dis[j][0] > d + w:
                     dis[j][1] = dis[j][0]
                     dis[j][0] = d + w
-                    heapq.heappush(stack, [d + w, j])
+                    heappush(stack, [d + w, j])
                 elif dis[j][0] < d + w < dis[j][1]:  # 非严格修改为 d+w < dis[j][1]
                     dis[j][1] = d + w
-                    heapq.heappush(stack, [d + w, j])
+                    heappush(stack, [d + w, j])
         return dis
 
     @staticmethod
@@ -313,18 +314,18 @@ class Dijkstra:
         # 模板: Dijkstra求最短路，变成负数求可以求最长路（还是正权值）
         n = len(dct)
         dis = [inf] * n
-        stack = [[0, src]]
+        stack = [(0, src)]
         dis[src] = 0
 
         while stack:
-            d, i = heapq.heappop(stack)
+            d, i = heappop(stack)
             if dis[i] < d:
                 continue
             for j, w in dct[i]:  # 链式前向星支持自环与重边
                 dj = w + d
                 if dj < dis[j]:
                     dis[j] = dj
-                    heapq.heappush(stack, [dj, j])
+                    heappush(stack, (dj, j))
         return dis
 
 
@@ -342,14 +343,14 @@ class UnDirectedShortestCycle:
             dist[i] = 0
             q = [[0, i]]
             while q:
-                _, x = heapq.heappop(q)
+                _, x = heappop(q)
                 for child in dct[x]:
                     if dist[x] > ans:
                         break
                     if dist[child] > dct[x][child] + dist[x]:
                         dist[child] = dct[x][child] + dist[x]
                         par[child] = x
-                        heapq.heappush(q, [dist[child], child])
+                        heappush(q, [dist[child], child])
                     elif par[x] != child and par[child] != x:
                         cur = dist[x] + dist[child] + dct[x][child]
                         ans = ans if ans < cur else cur
@@ -369,7 +370,7 @@ class UnDirectedShortestCycle:
             dis[x] = 0
 
             while stack:
-                d, i = heapq.heappop(stack)
+                d, i = heappop(stack)
                 if dis[i] < d:
                     continue
                 if i == y:
@@ -378,7 +379,7 @@ class UnDirectedShortestCycle:
                     dj = dct[i][j] + d
                     if dj < dis[j]:
                         dis[j] = dj
-                        heapq.heappush(stack, [dj, j])
+                        heappush(stack, (dj, j))
 
             ans = ans if ans < dis[y] + w else dis[y] + w
             dct[x][y] = w
@@ -462,7 +463,7 @@ class Solution:
         stack = [[0, 0, src]]
         dis = [inf] * n
         while stack:
-            cost, cnt, i = heapq.heappop(stack)
+            cost, cnt, i = heappop(stack)
             # 前面的代价已经比当前小了若是换乘次数更多则显然不可取
             if dis[i] <= cnt or cnt >= k + 2:  # 超过 k 次换乘也不行
                 continue
@@ -471,7 +472,7 @@ class Solution:
             dis[i] = cnt
             for j in dct[i]:
                 if cnt + 1 < dis[j]:
-                    heapq.heappush(stack, [cost + dct[i][j], cnt + 1, j])
+                    heappush(stack, [cost + dct[i][j], cnt + 1, j])
         return -1
 
     @staticmethod
@@ -485,9 +486,9 @@ class Solution:
         src = 0
         dis = [[inf] * 2 for _ in range(n)]
         dis[src][0] = 0
-        stack = [[0, src]]
+        stack = [(0, src)]
         while stack:
-            d, i = heapq.heappop(stack)
+            d, i = heappop(stack)
             if dis[i][1] < d:
                 continue
             for j in dct[i]:
@@ -499,10 +500,10 @@ class Solution:
                 if dis[j][0] > nex_d:
                     dis[j][1] = dis[j][0]
                     dis[j][0] = nex_d
-                    heapq.heappush(stack, [nex_d, j])
+                    heappush(stack, [nex_d, j])
                 elif dis[j][0] < nex_d < dis[j][1]:  # 非严格修改为 d+w < dis[j][1]
                     dis[j][1] = nex_d
-                    heapq.heappush(stack, [nex_d, j])
+                    heappush(stack, [nex_d, j])
         return dis[-1][1]
 
     @staticmethod
@@ -544,7 +545,7 @@ class Solution:
         stack = [[0, 0, 0]]
         dis = [inf] * n
         while stack:
-            cost, cnt, i = heapq.heappop(stack)
+            cost, cnt, i = heappop(stack)
             # 前面的代价已经比当前小了若是折扣次数更多则显然不可取
             if dis[i] <= cnt:
                 continue
@@ -553,9 +554,9 @@ class Solution:
             dis[i] = cnt
             for j, w in dct[i]:
                 if cnt < dis[j]:
-                    heapq.heappush(stack, [cost + w, cnt, j])
+                    heappush(stack, [cost + w, cnt, j])
                 if cnt + 1 < dis[j] and cnt + 1 <= discounts:
-                    heapq.heappush(stack, [cost + w // 2, cnt + 1, j])
+                    heappush(stack, [cost + w // 2, cnt + 1, j])
 
         return -1
     
@@ -598,7 +599,7 @@ class Solution:
         # 第一维是距离，第二维是代价
         stack = [[0, 0, 0, 0]]
         while stack:
-            dis, cost, i, j = heapq.heappop(stack)
+            dis, cost, i, j = heappop(stack)
             # 距离更远所以要求消除的障碍物更少
             if visit[(i, j)] <= cost or cost > k:  # 超过 k 次不满足条件
                 continue
@@ -607,7 +608,7 @@ class Solution:
             visit[(i, j)] = cost
             for x, y in [[i - 1, j], [i + 1, j], [i, j - 1], [i, j + 1]]:
                 if 0 <= x < m and 0 <= y < n and cost + grid[x][y] < visit[(x, y)]:
-                    heapq.heappush(stack, [dis + 1, cost + grid[x][y], x, y])
+                    heappush(stack, [dis + 1, cost + grid[x][y], x, y])
         return -1
 
     @staticmethod
@@ -630,7 +631,7 @@ class Solution:
         stack = [[cost[0], 0, s]]
         # 第一维是花费，第二维是血量
         while stack:
-            dis, i, bd = heapq.heappop(stack)
+            dis, i, bd = heappop(stack)
             # 前期花费更少，就要求当前血量更高
             if visit[i] > bd:
                 continue
@@ -643,7 +644,7 @@ class Solution:
                 # 必须是非负数才能存活
                 if bj >= visit[j]:
                     visit[j] = bj
-                    heapq.heappush(stack, [ac.max(dis, cost[j]), j, bj])
+                    heappush(stack, [ac.max(dis, cost[j]), j, bj])
         ac.st("AFK")
         return
 
@@ -758,7 +759,7 @@ class Solution:
         stack = [[dis[start[0]][start[1]], start[0], start[1]]]
         visit[start[0]][start[1]] = dis[start[0]][start[1]]
         while stack:
-            d, i, j = heapq.heappop(stack)
+            d, i, j = heappop(stack)
             if visit[i][j] < d:
                 continue
             visit[i][j] = d
@@ -767,7 +768,7 @@ class Solution:
                     dj = max(d, dis[x][y])
                     if dj < visit[x][y]:
                         visit[x][y] = dj
-                        heapq.heappush(stack, [dj, x, y])
+                        heappush(stack, [dj, x, y])
         x, y = end
         return visit[x][y] if visit[x][y] < inf else -1
 
@@ -781,7 +782,7 @@ class Solution:
         visit[(1<<n)-1] = 0
         stack = [[0,  (1<<n)-1]]
         while stack:
-            d, state = heapq.heappop(stack)
+            d, state = heappop(stack)
             if visit[state] < d:
                 continue
             for i in range(m):
@@ -793,7 +794,7 @@ class Solution:
                         cur ^= (1 << j)
                 if d+1 < visit[cur]:
                     visit[cur] = d+1
-                    heapq.heappush(stack, [d+1, cur])
+                    heappush(stack, [d+1, cur])
         ans = visit[0]
         ac.st(ans if ans < inf else -1)
         return
@@ -818,28 +819,28 @@ class Solution:
         stack = [[nums[0], 0]]
         floor[0] = nums[0]
         while stack:
-            d, i = heapq.heappop(stack)
+            d, i = heappop(stack)
             if floor[i] < d:
                 continue
             for j in dct[i]:
                 dj = ac.min(d, nums[j])
                 if dj < floor[j]:
                     floor[j] = dj
-                    heapq.heappush(stack, [dj, j])
+                    heappush(stack, (dj, j))
 
         # 后面最大值
         ceil = [-inf]*n
         ceil[n - 1] = nums[n - 1]
         stack = [[-nums[n-1], n-1]]
         while stack:
-            d, i = heapq.heappop(stack)
+            d, i = heappop(stack)
             if ceil[i] < d:
                 continue
             for j in rev[i]:
                 dj = ac.max(-d, nums[j])
                 if dj > ceil[j]:
                     ceil[j] = dj
-                    heapq.heappush(stack, [-dj, j])
+                    heappush(stack, [-dj, j])
         ans = max(ceil[i]-floor[i] for i in range(n))
         ac.st(ans)
         return
@@ -867,7 +868,7 @@ class Solution:
         dis[start[0]][start[1]][d] = 0
         stack = [[0, start[0], start[1], d]]
         while stack:
-            pre, i, j, d = heapq.heappop(stack)
+            pre, i, j, d = heappop(stack)
             if dis[i][j][d] < pre:
                 continue
             flag = False
@@ -877,7 +878,7 @@ class Solution:
                     dj = pre+cost
                     if dj < dis[x][y][r]:
                         dis[x][y][r] = dj
-                        heapq.heappush(stack, [dj, x, y, r])
+                        heappush(stack, [dj, x, y, r])
                         flag = True
             if not flag:
                 cost, r = 10, (d+2)%4
@@ -886,7 +887,7 @@ class Solution:
                     dj = pre+cost
                     if dj < dis[x][y][r]:
                         dis[x][y][r] = dj
-                        heapq.heappush(stack, [dj, x, y, r])
+                        heappush(stack, [dj, x, y, r])
         ac.st(min(dis[end[0]][end[1]]))
         return
 
@@ -1042,7 +1043,7 @@ class Solution:
         dis[src] = [0, 0]
         # 最短路
         while stack:
-            ll, tt, i = heapq.heappop(stack)
+            ll, tt, i = heappop(stack)
             if dis[i] < [ll, tt]:
                 continue
             if i == dst:
@@ -1053,7 +1054,7 @@ class Solution:
                     nex_tt = tt + time[i][j]
                     if [nex_ll, nex_tt] < dis[j]:
                         dis[j] = [nex_ll, nex_tt]
-                        heapq.heappush(stack, [nex_ll, nex_tt, j])
+                        heappush(stack, [nex_ll, nex_tt, j])
         res_ll = dis[dst][0]
         res_tt = dis[dst][1]
         ac.lst([res_tt, "%.4f" % res_ll])
@@ -1077,7 +1078,7 @@ class Solution:
         stack = [[0, 0, 0, 0]]
         dis[0] = 0
         while stack:
-            dd, d, ceil, i = heapq.heappop(stack)
+            dd, d, ceil, i = heappop(stack)
             if dis[i] < dd:
                 continue
             if i == n - 1:
@@ -1086,7 +1087,7 @@ class Solution:
                 dj = d + dct[i][j] + ac.max(ceil, dct[i][j])
                 if dj < dis[j]:
                     dis[j] = dj
-                    heapq.heappush(stack, [dj, d + dct[i][j], ac.max(ceil, dct[i][j]), j])
+                    heappush(stack, [dj, d + dct[i][j], ac.max(ceil, dct[i][j]), j])
         ac.st(dis[n - 1])
         return
 
@@ -1116,7 +1117,7 @@ class Solution:
         stack = [[0, 0]]
         visit[0] = 0
         while stack:
-            d, i = heapq.heappop(stack)
+            d, i = heappop(stack)
             if visit[i] < d:
                 continue
             if i == n - 1:
@@ -1125,7 +1126,7 @@ class Solution:
                 dj = dis(i, j) + d
                 if dj < visit[j]:
                     visit[j] = dj
-                    heapq.heappush(stack, [dj, j])
+                    heappush(stack, (dj, j))
         ac.st(int(visit[-1] * 1000) if visit[-1] < inf else -1)
         return
 
@@ -1147,14 +1148,14 @@ class Solution:
         stack = [[0, source]]
         dis0[source] = 0
         while stack:
-            d, i = heapq.heappop(stack)
+            d, i = heappop(stack)
             if dis0[i] < d:
                 continue
             for ind, j in dct[i]:
                 dj = edges[ind][2] + d
                 if dj < dis0[j]:
                     dis0[j] = dj
-                    heapq.heappush(stack, [dj, j])
+                    heappush(stack, (dj, j))
         if dis0[destination] > target:
             return []
 
@@ -1163,7 +1164,7 @@ class Solution:
         stack = [[0, source]]
         dis1[source] = 0
         while stack:
-            d, i = heapq.heappop(stack)
+            d, i = heappop(stack)
             if dis1[i] < d:
                 continue
             for ind, j in dct[i]:
@@ -1177,7 +1178,7 @@ class Solution:
                 dj = edges[ind][2] + d
                 if dj < dis1[j]:
                     dis1[j] = dj
-                    heapq.heappush(stack, [dj, j])
+                    heappush(stack, (dj, j))
 
         if dis1[destination] == target:
             return edges
@@ -1204,14 +1205,14 @@ class Solution:
         stack = [[0, source]]
         dis0[source] = 0
         while stack:
-            d, i = heapq.heappop(stack)
+            d, i = heappop(stack)
             if dis0[i] < d:
                 continue
             for ind, j in dct[i]:
                 dj = edges[ind][2] + d
                 if dj < dis0[j]:
                     dis0[j] = dj
-                    heapq.heappush(stack, [dj, j])
+                    heappush(stack, (dj, j))
         if dis0[destination] > target:
             ac.st("NO")
             return
@@ -1221,7 +1222,7 @@ class Solution:
         stack = [[0, source]]
         dis1[source] = 0
         while stack:
-            d, i = heapq.heappop(stack)
+            d, i = heappop(stack)
             if dis1[i] < d:
                 continue
             for ind, j in dct[i]:
@@ -1235,7 +1236,7 @@ class Solution:
                 dj = edges[ind][2] + d
                 if dj < dis1[j]:
                     dis1[j] = dj
-                    heapq.heappush(stack, [dj, j])
+                    heappush(stack, (dj, j))
 
         if dis1[destination] == target:
             ac.st("YES")
@@ -1264,7 +1265,7 @@ class Solution:
         dis[0] = [0, 0]
 
         while stack:
-            dd, one, i = heapq.heappop(stack)
+            dd, one, i = heappop(stack)
             if dis[i] < [dd, one]:
                 continue
             for j in dct[i]:
@@ -1272,7 +1273,7 @@ class Solution:
                 dj = [dd+1, one-w]
                 if dj < dis[j]:
                     dis[j] = dj
-                    heapq.heappush(stack, [dj[0], dj[1], j])
+                    heappush(stack, [dj[0], dj[1], j])
         ans = cnt+dis[-1][1]+dis[-1][0]+dis[-1][1]
         ac.st(ans)
         return
@@ -1291,7 +1292,7 @@ class Solution:
         final = -1
         visit = defaultdict(lambda: inf)
         while stack:
-            cost, magic, color, i, j = heapq.heappop(stack)
+            cost, magic, color, i, j = heappop(stack)
             if visit[(i, j, color)] <= cost:
                 continue
             visit[(i, j, color)] = cost
@@ -1302,14 +1303,14 @@ class Solution:
                 if 0 <= a < m and 0 <= b < m:
                     if grid[i][j] != -1:
                         if grid[a][b] != -1:
-                            heapq.heappush(stack, [cost + int(color != grid[a][b]), 0, grid[a][b], a, b])
+                            heappush(stack, [cost + int(color != grid[a][b]), 0, grid[a][b], a, b])
                         else:
-                            heapq.heappush(stack, [cost + 2 + int(color != 0), 1, 0, a, b])
-                            heapq.heappush(stack, [cost + 2 + int(color != 1), 1, 1, a, b])
+                            heappush(stack, [cost + 2 + int(color != 0), 1, 0, a, b])
+                            heappush(stack, [cost + 2 + int(color != 1), 1, 1, a, b])
 
                     else:
                         if grid[a][b] != -1:
-                            heapq.heappush(stack, [cost + int(color != grid[a][b]), 0, grid[a][b], a, b])
+                            heappush(stack, [cost + int(color != grid[a][b]), 0, grid[a][b], a, b])
         ac.st(final)
         return
 
@@ -1394,14 +1395,14 @@ class Solution:
         stack = [[0, 0]]
         dis[0] = 0
         while stack:
-            d, i = heapq.heappop(stack)
+            d, i = heappop(stack)
             if dis[i] < d:
                 continue
             for j, w in dct[i]:
                 dj = w + d
                 if dj < dis[j]:
                     dis[j] = dj
-                    heapq.heappush(stack, [dj, j])
+                    heappush(stack, (dj, j))
 
         # 选择字典序较小的边建立最短路生成树
         edge = [[] for _ in range(n)]
@@ -1498,14 +1499,14 @@ class Solution:
         stack = [[0, 0, 0, inf]]
         dis[0] = 0
         while stack:
-            d, i, cost, flow = heapq.heappop(stack)
+            d, i, cost, flow = heappop(stack)
             if dis[i] < d:
                 continue
             for j, c, f in dct[i]:
                 dj = -ac.min(flow, f) / (cost + c)
                 if dj < dis[j]:
                     dis[j] = dj
-                    heapq.heappush(stack, [dj, j, cost + c, ac.min(flow, f)])
+                    heappush(stack, [dj, j, cost + c, ac.min(flow, f)])
         ac.st(int(-dis[-1] * 10**6))
         return
 
@@ -1524,9 +1525,9 @@ class Solution:
             for i in range(1, m - 1):
                 stack.append([grid[i][j], i, j])
                 visit[i][j] = grid[i][j]
-        heapq.heapify(stack)
+        heapify(stack)
         while stack:
-            d, i, j = heapq.heappop(stack)
+            d, i, j = heappop(stack)
             if visit[i][j] < d:
                 continue
             for x, y in [[i - 1, j], [i + 1, j], [i, j - 1], [i, j + 1]]:
@@ -1535,7 +1536,7 @@ class Solution:
                     dj = ac.max(grid[x][y], d)
                     if dj < visit[x][y]:
                         visit[x][y] = dj
-                        heapq.heappush(stack, [dj, x, y])
+                        heappush(stack, [dj, x, y])
         ans = 0
         for i in range(m):
             for j in range(n):
@@ -1557,19 +1558,19 @@ class Solution:
         for i in range(1, m - 1):
             for j in [0, n - 1]:
                 stack.append([grid[i][j], i, j])
-        heapq.heapify(stack)
+        heapify(stack)
 
         # 使用最短路算法寻找每个格子到达超级汇点的路径途中最大值里面的最小值
         ans = 0
         while stack:
-            dis, i, j = heapq.heappop(stack)
+            dis, i, j = heappop(stack)
             if grid[i][j] == -1:
                 continue
             ans += 0 if dis < grid[i][j] else dis - grid[i][j]
             grid[i][j] = -1
             for x, y in [[i - 1, j], [i + 1, j], [i, j + 1], [i, j - 1]]:
                 if 0 <= x < m and 0 <= y < n and grid[x][y] != -1:
-                    heapq.heappush(stack, [dis if dis > grid[x][y] else grid[x][y], x, y])
+                    heappush(stack, [dis if dis > grid[x][y] else grid[x][y], x, y])
         ac.st(ans)
         return
 
@@ -1585,7 +1586,7 @@ class Solution:
         stack = [[0, 0, s]]
         visit[s][0] = 0
         while stack:
-            dis, c, i = heapq.heappop(stack)
+            dis, c, i = heappop(stack)
             if i == d:
                 return dis
             if visit[i][c] < dis:
@@ -1593,10 +1594,10 @@ class Solution:
             for j, w in dct[i]:
                 if c + 1 <= k and dis < visit[j][c+1]:
                     visit[j][c + 1] = dis
-                    heapq.heappush(stack, [dis, c + 1, j])
+                    heappush(stack, [dis, c + 1, j])
                 if dis + w < visit[j][c]:
                     visit[j][c] = dis + w
-                    heapq.heappush(stack, [dis + w, c, j])
+                    heappush(stack, [dis + w, c, j])
         return -1
 
     @staticmethod
@@ -1611,7 +1612,7 @@ class Solution:
         cnt = [inf] * n
         stack = [[0, 0, s]]
         while stack:
-            dis, c, i = heapq.heappop(stack)
+            dis, c, i = heappop(stack)
             if i == d:
                 return dis
             if cnt[i] < c:
@@ -1619,9 +1620,9 @@ class Solution:
             cnt[i] = c
             for j, w in dct[i]:
                 if c + 1 < cnt[j] and c + 1 <= k:
-                    heapq.heappush(stack, [dis, c + 1, j])
+                    heappush(stack, [dis, c + 1, j])
                 if c < cnt[j]:
-                    heapq.heappush(stack, [dis + w, c, j])
+                    heappush(stack, [dis + w, c, j])
         return -1
 
     @staticmethod
@@ -1637,7 +1638,7 @@ class Solution:
         stack = [[0, 0, 0]]
 
         while stack:
-            d, i, j = heapq.heappop(stack)
+            d, i, j = heappop(stack)
             if dis[i][j] < d:
                 continue
             for x, y in [[i + 1, j], [i - 1, j], [i, j + 1], [i, j - 1]]:
@@ -1648,7 +1649,7 @@ class Solution:
                         dj = d + 1 + 2 * ((grid[x][y] - d - 1 + 1) // 2)
                     if dj < dis[x][y]:
                         dis[x][y] = dj
-                        heapq.heappush(stack, [dj, x, y])
+                        heappush(stack, [dj, x, y])
         return dis[-1][-1]
 
     @staticmethod
@@ -1672,14 +1673,14 @@ class Solution:
         stack = [[0, source]]
         dis0[source] = 0
         while stack:
-            d, i = heapq.heappop(stack)
+            d, i = heappop(stack)
             if dis0[i] < d:
                 continue
             for ind, j in dct[i]:
                 dj = edges[ind][2] + d
                 if dj < dis0[j]:
                     dis0[j] = dj
-                    heapq.heappush(stack, [dj, j])
+                    heappush(stack, (dj, j))
         if dis0[destination] > target:
             return []
 
@@ -1688,7 +1689,7 @@ class Solution:
         stack = [[0, source]]
         dis1[source] = 0
         while stack:
-            d, i = heapq.heappop(stack)
+            d, i = heappop(stack)
             if dis1[i] < d:
                 continue
             for ind, j in dct[i]:
@@ -1702,7 +1703,7 @@ class Solution:
                 dj = edges[ind][2] + d
                 if dj < dis1[j]:
                     dis1[j] = dj
-                    heapq.heappush(stack, [dj, j])
+                    heappush(stack, (dj, j))
 
         if dis1[destination] == target:
             return edges
@@ -1750,14 +1751,14 @@ class Solution:
         stack = [[0, 0]]
         dis[0] = 0
         while stack:
-            total, i = heapq.heappop(stack)
+            total, i = heappop(stack)
             if dis[i] < total:
                 continue
             for j, w in dct[i]:
                 dj = total + w
                 if dj < dis[j]:
                     dis[j] = dj
-                    heapq.heappush(stack, [dj, j])
+                    heappush(stack, (dj, j))
         ac.st(int(dis[n]))
         return
 
@@ -1778,7 +1779,7 @@ class Solution:
         # 定义好初始值
         stack = [[0, n-1]]
         while stack:
-            cur_dis, cur = heapq.heappop(stack)
+            cur_dis, cur = heappop(stack)
             if dis[cur] < cur_dis:
                 continue
             dis[cur] = cur_dis
@@ -1786,7 +1787,7 @@ class Solution:
                 # 如果到达下一个点更近，则更新值
                 if dis[nex] > dis[cur] + dct[cur][nex]:
                     dis[nex] = dis[cur] + dct[cur][nex]
-                    heapq.heappush(stack, [dis[nex], nex])
+                    heappush(stack, [dis[nex], nex])
                 # 可以形成有效的路径
                 if dis[cur] < dis[nex]:
                     cnt[nex] += cnt[cur]
@@ -1806,7 +1807,7 @@ class Solution:
         stack = [[passing_fees[0], 0, 0]]
         dis = [max_time + 1] * n  # 哈希存的是第二维时间结果，需要持续递减
         while stack:
-            cost, tm, i = heapq.heappop(stack)
+            cost, tm, i = heappop(stack)
             # 前面的代价已经比当前小了若是换乘次数更多则显然不可取
             if dis[i] <= tm: 
                 continue
@@ -1815,7 +1816,7 @@ class Solution:
             dis[i] = tm
             for j, w in dct[i]:
                 if tm + w < dis[j]:
-                    heapq.heappush(stack, [cost + passing_fees[j], tm + w, j])
+                    heappush(stack, [cost + passing_fees[j], tm + w, j])
         return -1
     
     @staticmethod
@@ -1895,14 +1896,14 @@ class Solution:
         stack = [[0, 0]]
         dis[0] = 0
         while stack:
-            d, i = heapq.heappop(stack)
+            d, i = heappop(stack)
             if dis[i] < d:
                 continue
             for j, w, _ in dct[i]:
                 dj = w + d
                 if dj < dis[j]:
                     dis[j] = dj
-                    heapq.heappush(stack, [dj, j])
+                    heappush(stack, (dj, j))
 
         # 选择字典序较小的边建立最短路树
         edge = [[] for _ in range(n)]
