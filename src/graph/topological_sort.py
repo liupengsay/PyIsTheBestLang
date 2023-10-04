@@ -51,6 +51,8 @@ P6560 [SBCOI2020] 时光的流逝（https://www.luogu.com.cn/problem/P6560）经
 P8655 [蓝桥杯 2017 国 B] 发现环（https://www.luogu.com.cn/problem/P8655）使用拓扑排序计算有向基环树的环
 P8943 Deception Point（https://www.luogu.com.cn/problem/P8943）经典无向图基环树博弈
 
+==================================CodeForces=================================
+E. Number of Simple Paths（https://codeforces.com/contest/1454/problem/E）经典基环树计数枚举
 
 ==================================AtCoder=================================
 F - Well-defined Path Queries on a Namori（https://atcoder.jp/contests/abc266/）（无向图的内向基环树，求简单路径的树枝连通）
@@ -466,15 +468,15 @@ class Solution:
                 degree[i] += 1
             ans = []
             stack = [-i for i in range(n) if not degree[i]]
-            heapq.heapify(stack)
+            heapify(stack)
             while stack:
                 # 优先选择入度为 0 且编号最大的
-                i = -heapq.heappop(stack)
+                i = -heappop(stack)
                 ans.append(i)
                 for j in dct[i]:
                     degree[j] -= 1
                     if not degree[j]:
-                        heapq.heappush(stack, -j)
+                        heappush(stack, -j)
             if len(ans) == n:
                 # 翻转后则字典序最小
                 ans.reverse()
