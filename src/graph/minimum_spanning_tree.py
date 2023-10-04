@@ -2,6 +2,7 @@ import heapq
 import math
 import unittest
 from collections import deque, defaultdict
+from heapq import heappop, heappush
 from typing import List
 
 from src.fast_io import FastIO, inf
@@ -104,7 +105,7 @@ class MinimumSpanningTree:
             visit = [0]*self.n
             stack = [[0, 0]]
             while stack:
-                d, i = heapq.heappop(stack)
+                d, i = heappop(stack)
                 if visit[i]:
                     continue
                 visit[i] = 1
@@ -114,7 +115,7 @@ class MinimumSpanningTree:
                     w = dct[i][j]
                     if w < dis[j]:
                         dis[j] = w
-                        heapq.heappush(stack, [w, j])
+                        heappush(stack, [w, j])
         return
 
 
@@ -423,7 +424,7 @@ class Solution:
         res = [[] for _ in range(n)]
         cnt = 0
         while stack:
-            d, i, fa = heapq.heappop(stack)
+            d, i, fa = heappop(stack)
             if visit[i]:
                 continue
             visit[i] = 1
@@ -437,7 +438,7 @@ class Solution:
                 w = grid[i][j]
                 if w < dis[j]:
                     dis[j] = w
-                    heapq.heappush(stack, [w, j, i])
+                    heappush(stack, [w, j, i])
         del stack
 
         # BFS 计算根节点到所有节点的距离

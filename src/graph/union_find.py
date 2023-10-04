@@ -1,6 +1,7 @@
 import decimal
 import math
 import unittest
+from heapq import heappop
 
 from typing import List, Optional
 from collections import defaultdict, Counter, deque
@@ -267,14 +268,14 @@ class Solution:
                     visit[i] = i
                     stack = [[0, i]]
                     while stack:
-                        d, x = heapq.heappop(stack)
+                        d, x = heappop(stack)
                         if count < nums[x]:
                             break
                         count += 1
                         for j in edge[x]:
                             if visit[j] != i:
                                 visit[j] = i
-                                heapq.heappush(stack, [nums[j], j])
+                                heappush(stack, [nums[j], j])
                     if count == n:
                         ans = "YES"
                         break
@@ -921,14 +922,14 @@ class Solution:
         n = ac.read_int()
         nums = ac.read_list_ints()
         stack = [[-nums[i], -i] for i in range(n)]
-        heapq.heapify(stack)
+        heapify(stack)
         uf = UnionFindLeftRoot(n)
         for i in range(n):
             if i and nums[i] == nums[i - 1]:
                 uf.union(i - 1, i)
         ans = 0
         while stack:
-            val, i = heapq.heappop(stack)
+            val, i = heappop(stack)
             val, i = -val, -i
             if val == 1:
                 break
@@ -940,7 +941,7 @@ class Solution:
             ans += 1
             val = int(((val // 2) + 1)**0.5)
             nums[i] = val
-            heapq.heappush(stack, [-nums[i], -i])
+            heappush(stack, [-nums[i], -i])
         ac.st(ans)
         return
 
