@@ -165,6 +165,7 @@ B. Color the Fence（https://codeforces.com/problemset/problem/349/B）贪心模
 C. Number Game（https://codeforces.com/problemset/problem/1370/C）贪心模拟必胜态
 E. Making Anti-Palindromes（https://codeforces.com/contest/1822/problem/E）贪心进行模拟计数
 E2. Median on Segments（https://codeforces.com/contest/1005/problem/E2）经典特定中位数的连续子数组个数，使用容斥原理加前缀和有序列表二分，同LC2488
+E. Permutation by Sum（https://codeforces.com/contest/1512/problem/E）思维题从大到小贪心
 
 ================================AtCoder======================================
 C - AtCoDeer and Election Report（https://atcoder.jp/contests/abc046/tasks/arc062_a）思维题，使用不等式进行贪心
