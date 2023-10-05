@@ -100,7 +100,7 @@ D. Odd-Even Subsequence（https://codeforces.com/problemset/problem/1370/D）利
 D. Max Median（https://codeforces.com/problemset/problem/1486/D）利用单调性二分，再使用经典哈希前缀和计算和为正数的最长连续子序列
 D2. Coffee and Coursework (Hard Version)（https://codeforces.com/problemset/problem/1118/D2）利用单调性贪心二分
 I. Photo Processing（https://codeforces.com/problemset/problem/883/I）二分加双指针dp
-
+G. Gift Set（https://codeforces.com/contest/1538/problem/G）二分加枚举不等式验证
 
 ================================AtCoder================================
 D - No Need （https://atcoder.jp/contests/abc056/tasks/arc070_b）经典利用单调性进行二分，用背包DP进行check
