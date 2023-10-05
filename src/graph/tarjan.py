@@ -47,6 +47,7 @@ C. Checkposts（https://codeforces.com/problemset/problem/427/C）有向图的�
 A. Cutting Figure（https://codeforces.com/contest/193/problem/A）脑筋急转弯计算有无割点
 E. Reachability from the Capital（https://codeforces.com/contest/999/problem/E）使用SCC缩点后查看入度为0的点个数
 F. Unstable String Sort（https://codeforces.com/contest/1213/problem/F）使用SCC缩点后拓扑排序贪心
+G. How Many Paths?（https://codeforces.com/contest/1547/problem/G）使用SCC缩点后利用可达性建立新图，计算路径条数
 
 ===================================AcWing===================================
 3579. 数字移动（https://www.acwing.com/problem/content/3582/）强连通分量模板题
