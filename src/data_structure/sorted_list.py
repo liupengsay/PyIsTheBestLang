@@ -71,6 +71,7 @@ D. Pashmak and Parmida's problem（https://codeforces.com/problemset/problem/459
 E. Enemy is weak（https://codeforces.com/problemset/problem/61/E）典型应用场景，前后缀大于小于值计数
 D. Multiset（https://codeforces.com/problemset/problem/1354/D）有序列表的维护与查询
 E2. Median on Segments（https://codeforces.com/contest/1005/problem/E2）经典特定中位数的连续子数组个数，使用容斥原理加前缀和有序列表二分
+E. MEX and Increments（https://codeforces.com/contest/1619/problem/E）经典MEX贪心
 
 参考：OI WiKi（xx）
 """
