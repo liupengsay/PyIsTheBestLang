@@ -36,6 +36,7 @@ from src.fast_io import FastIO
 2275. 按位与结果大于零的最长组合（https://leetcode.cn/problems/largest-combination-with-bitwise-and-greater-than-zero/）求按位与不为0的最长子序列，不要求连续
 2527. 查询数组 Xor 美丽值（https://leetcode.cn/problems/find-xor-beauty-of-array/description/）按位枚举脑筋急转弯
 2680. 最大或值（https://leetcode.cn/problems/maximum-or/description/）贪心枚举，前后缀或分解
+100087. 对数组执行操作使平方和最大（https://leetcode.cn/problems/apply-operations-on-array-to-maximize-sum-of-squares/description/）经典按位贪心
 
 ===================================洛谷===================================
 P5657 格雷码（https://www.luogu.com.cn/problem/P5657）计算编号为 k 的二进制符，并补前缀 0 为 n 位
@@ -64,6 +65,7 @@ D. Little Girl and Maximum XOR（https://codeforces.com/problemset/problem/276/D
 G. Orray（https://codeforces.com/contest/1742/problem/G）重排数组使得前缀或值的字典序最大
 F. Lisa and the Martians（https://codeforces.com/contest/1851/problem/F）经典数组的最小异或对，一定是排序后相邻的数
 D. Sum of XOR Functions（https://codeforces.com/contest/1879/problem/D）经典按位计算贡献与前缀和计数与前缀下标加和
+D. AND, OR and square sum（https://codeforces.com/problemset/problem/1368/D）经典按位模拟贪心
 
 ================================AtCoder================================
 D - XXOR（https://atcoder.jp/contests/abc117/tasks/abc117_d）从高位到低位按位贪心，思维题
