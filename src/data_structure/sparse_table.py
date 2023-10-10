@@ -44,6 +44,7 @@ F. Ant colony（https://codeforces.com/problemset/problem/474/F）稀疏表计�
 E. MEX of LCM（https://codeforces.com/contest/1834/problem/E）经典计算连续子数组的lcm信息
 E. Iva & Pav（https://codeforces.com/contest/1878/problem/E）经典计算连续子数组的and信息
 F. Array Stabilization (GCD version)（https://codeforces.com/contest/1547/problem/F）经典计算连续子数组的gcd信息
+F. Array Stabilization (AND version)（https://codeforces.com/contest/1579/problem/F）经典循环节计算连续子数组的and信息
 
 ================================AcWing====================================
 109. 天才ACM（https://www.acwing.com/problem/content/111/）贪心加倍增计算最少分段数
