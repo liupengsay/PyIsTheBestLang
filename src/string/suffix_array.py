@@ -18,6 +18,8 @@ P3809 【模板】后缀排序（https://www.luogu.com.cn/problem/P3809）
 ===================================AcWing=====================================
 140. 后缀数组（https://www.acwing.com/problem/content/142/）后缀数组模板题
 
+Morgan and a String（https://www.hackerrank.com/challenges/morgan-and-a-string/problem?isFullScreen=true）拼接两个字符串使得字典序最小
+
 """
 
 
@@ -103,7 +105,7 @@ class Solution:
 
     @staticmethod
     def lc_1754_1(word1: str, word2: str) -> str:
-        # 模板：后缀数组计算后缀的字典序大小
+        # 模板：后缀数组计算后缀的字典序大小，贪心拼接两个字符串使得字典序最大
         ind = {chr(ord("a") - 1 + i): i for i in range(27)}
         word = word1 + chr(ord("a")-1) + word2
         sa, rk, height = SuffixArray(ind).get_array(word)
@@ -138,6 +140,34 @@ class Solution:
         merge += word1[i:]
         merge += word2[j:]
         return merge
+
+    @staticmethod
+    def hr_1(ac=FastIO()):
+        # 模板：拼接两个字符串使得字典序最小
+        for _ in range(ac.read_int()):
+            word1 = ac.read_str().lower()
+            word2 = ac.read_str().lower()
+
+            ind = {chr(ord("a") + i): i for i in range(27)}
+            word = word1 + chr(ord("z")+1) + word2 + chr(ord("z")+1)
+            sa, rk, height = SuffixArray(ind).get_array(word)
+            m, n = len(word1), len(word2)
+            i = 0
+            j = 0
+            merge = []
+            while i < m and j < n:
+                if rk[i] < rk[j + m + 1]:
+                    merge.append(word1[i])
+                    i += 1
+                else:
+                    merge.append(word2[j])
+                    j += 1
+            merge.extend(list(word1[i:]))
+            merge.extend(list(word2[j:]))
+            ans = "".join(merge)
+            ac.st(ans.upper())
+
+        return
 
     @staticmethod
     def lg_3809(ac=FastIO()):
