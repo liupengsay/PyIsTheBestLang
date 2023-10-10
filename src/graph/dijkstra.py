@@ -107,6 +107,7 @@ C. Dijkstra?（https://codeforces.com/problemset/problem/20/C）正权值最短�
 E. Weights Distributing（https://codeforces.com/problemset/problem/1343/E）使用三个01BFS求最短路加贪心枚举计算
 B. Complete The Graph（https://codeforces.com/contest/715/problem/B）经典两遍最短路，贪心动态更新路径权值
 G. Reducing Delivery Cost（https://codeforces.com/contest/1433/problem/G）经典全源Dijkstra最短路枚举
+G. Counting Shortcuts（https://codeforces.com/contest/1650/problem/G）经典Dijkstra最短路与严格次短路计数，正解为01BFS
 
 ================================AtCoder================================
 F - Pure（https://atcoder.jp/contests/abc142/tasks/abc142_f）经典子图寻找，转换为有向图的最小环问题
@@ -177,7 +178,7 @@ class Dijkstra:
         dis = [float("inf")] * n
 
         dis[src] = 0 if src not in limit else inf
-        stack = [[dis[src], src]]
+        stack = [(dis[src], src)]
         # 限制只能跑 limit 的点到 target 中的点
         while stack and target:
             d, i = heappop(stack)
@@ -228,7 +229,7 @@ class Dijkstra:
 
         # 求乘积最大的路，取反后求最短路径
         dis = defaultdict(lambda: float("-inf"))
-        stack = [[-1, src]]
+        stack = [(-1, src)]
         dis[src] = 1
         while stack:
             d, i = heappop(stack)
@@ -239,7 +240,7 @@ class Dijkstra:
                 dj = dct[i][j] * d
                 if dj > dis[j]:
                     dis[j] = dj
-                    heappush(stack, [-dj, j])
+                    heappush(stack, (-dj, j))
         return dis[dsc]
 
     @staticmethod
@@ -272,11 +273,46 @@ class Dijkstra:
                 if dis[j][0] > d + w:
                     dis[j][1] = dis[j][0]
                     dis[j][0] = d + w
-                    heappush(stack, [d + w, j])
+                    heappush(stack, (d + w, j))
                 elif dis[j][0] < d + w < dis[j][1]:  # 非严格修改为 d+w < dis[j][1]
                     dis[j][1] = d + w
-                    heappush(stack, [d + w, j])
+                    heappush(stack, (d + w, j))
         return dis
+
+    @staticmethod
+    def get_second_shortest_path_cnt(dct: List[List[int]], src, mod=-1):
+        # 模板：使用Dijkstra计算严格次短路的条数   # 也可以计算非严格次短路
+        n = len(dct)
+        dis = [[inf] * 2 for _ in range(n)]
+        dis[src][0] = 0
+        stack = [(0, src, 0)]
+        cnt = [[0]*2 for _ in range(n)]
+        cnt[src][0] = 1
+        while stack:
+            d, i, state = heappop(stack)
+            if dis[i][1] < d:
+                continue
+            pre = cnt[i][state]
+            for j, w in dct[i]:
+                dd = d+w
+                if dis[j][0] > dd:
+                    dis[j][0] = dd
+                    cnt[j][0] = pre
+                    heappush(stack, (d + w, j, 0))
+                elif dis[j][0] == dd:
+                    cnt[j][0] += pre
+                    if mod != -1:
+                        cnt[j][0] %= mod
+                elif dis[j][0] < dd < dis[j][1]:  # 非严格修改为 d+w < dis[j][1]
+                    dis[j][1] = d + w
+                    cnt[j][1] = pre
+                    heappush(stack, (d + w, j, 1))
+                elif dd == dis[j][1]:
+                    cnt[j][1] += pre
+                    if mod != -1:
+                        cnt[j][1] %= mod
+        return dis, cnt
+
 
     @staticmethod
     def get_shortest_by_bfs_inf_odd(dct: List[List[int]], src):
@@ -450,6 +486,27 @@ class Solution:
                     cur = prices[up] + prices[up + down]
                     ans = ac.min(ans, cur)
             ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1650g(ac=FastIO()):
+        # 模板：最短路与严格次短路计数，因为不带权，所以正解为01BFS
+        mod = 10**9 + 7
+        for _ in range(ac.read_int()):
+            ac.read_str()
+            n, m = ac.read_list_ints()
+            s, t = ac.read_list_ints_minus_one()
+            dct = [[] for _ in range(n)]
+            for _ in range(m):
+                x, y = ac.read_list_ints_minus_one()
+                dct[x].append([y, 1])
+                dct[y].append([x, 1])
+
+            dis, cnt = Dijkstra().get_second_shortest_path_cnt(dct, s, mod)
+            ans = cnt[t][0]
+            if dis[t][1] == dis[t][0]+1:
+                ans += cnt[t][1]
+            ac.st(ans % mod)
         return
 
     @staticmethod
