@@ -23,7 +23,7 @@ xx（xxx）xxxxxxxxxxxxxxxxxxxx
 xx（xxx）xxxxxxxxxxxxxxxxxxxx
 
 ================================CodeForces================================
-xx（xxx）xxxxxxxxxxxxxxxxxxxx
+F. Interacdive Problem（https://codeforces.com/contest/1624/problem/F）二分查找交互
 
 """
 
