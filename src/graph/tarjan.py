@@ -48,6 +48,7 @@ A. Cutting Figure（https://codeforces.com/contest/193/problem/A）脑筋急转�
 E. Reachability from the Capital（https://codeforces.com/contest/999/problem/E）使用SCC缩点后查看入度为0的点个数
 F. Unstable String Sort（https://codeforces.com/contest/1213/problem/F）使用SCC缩点后拓扑排序贪心
 G. How Many Paths?（https://codeforces.com/contest/1547/problem/G）使用SCC缩点后利用可达性建立新图，计算路径条数
+E. Split Into Two Sets（https://codeforces.com/contest/1702/problem/E）使用点双进行无向图找环，判断有无奇数环
 
 ===================================AcWing===================================
 3579. 数字移动（https://www.acwing.com/problem/content/3582/）强连通分量模板题
@@ -521,6 +522,42 @@ class Solution:
         ans = sum(x == 0 for x in new_degree)
         ans -= int(new_degree[node_scc_id[s]] == 0)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1702e(ac=FastIO()):
+        # 模板：使用点双进行无向图找环，判断有无奇数环
+        for _ in range(ac.read_int()):
+            def check():
+                n = ac.read_int()
+                nums = [ac.read_list_ints() for _ in range(n)]
+                cnt = Counter()
+                for a, b in nums:
+                    if a == b:
+                        ac.st("NO")
+                        return
+                    cnt[a] += 1
+                    cnt[b] += 1
+                if max(cnt.values()) > 2:
+                    ac.st("NO")
+                    return
+
+                dct = [[] for _ in range(n)]
+                for a, b in nums:
+                    a -= 1
+                    b -= 1
+                    dct[a].append(b)
+                    dct[b].append(a)
+                group_id, group_node, node_group_id = TarjanCC().get_point_doubly_connected_component_bfs(n, dct)
+                for g in group_node:
+                    if len(group_node[g]) % 2:
+                        ac.st("NO")
+                        return
+
+                ac.st("YES")
+                return
+            check()
+
         return
 
     @staticmethod
