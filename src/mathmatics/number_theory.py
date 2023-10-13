@@ -96,10 +96,12 @@ D. Another Problem About Dividing Numbers（https://codeforces.com/problemset/pr
 A. Row GCD（https://codeforces.com/problemset/problem/1458/A）gcd公式变换求解
 A. Division（https://codeforces.com/problemset/problem/1444/A）贪心枚举质数因子
 C. Strongly Composite（https://codeforces.com/contest/1823/problem/C）质因数分解进行贪心计算
+E2. Divisible Numbers (hard version)（https://codeforces.com/contest/1744/problem/E2）枚举因数分解组合作为最大公约数
 
 ================================AtCoder================================
 D - 756（https://atcoder.jp/contests/abc114/tasks/abc114_d）质因数分解计数  
 D - Preparing Boxes（https://atcoder.jp/contests/abc134/tasks/abc134_d）逆向思维，类似筛法进行构造
+
 ================================AcWing================================
 97. 约数之和（https://www.acwing.com/problem/content/99/）计算a^b的所有约数之和
 124. 数的进制转换（https://www.acwing.com/problem/content/126/）不同进制的转换，注意0的处理
@@ -159,7 +161,6 @@ class NumberTheory:
 
     @staticmethod
     def get_min_prime_and_prime_factor():
-
         # 模板：计算 1 到 ceil 所有数字的最小质数因子
         ceil = 10**6
         min_prime = [0]*(ceil+1)
@@ -1253,6 +1254,32 @@ class Solution:
             else:
                 ac.st(3)
 
+        return
+
+    @staticmethod
+    def cf_1744_e2(ac=FastIO()):
+        # 模板：因数枚举
+        for _ in range(ac.read_int()):
+            a, b, c, d = ac.read_list_ints()
+            lst_a = NumberTheory().get_all_factor(a)
+            lst_b = NumberTheory().get_all_factor(b)
+
+            def check():
+                for x in lst_a:
+                    for y in lst_b:
+                        g = x*y
+                        yy = a*b//g
+                        low_1 = a//g+1
+                        high_1 = c//g
+
+                        low_2 = b//yy+1
+                        high_2 = d//yy
+                        if low_2 <= high_2 and low_1 <= high_1:
+                            ac.lst([low_1*g, low_2*yy])
+                            return
+                ac.lst([-1, -1])
+                return
+            check()
         return
 
     @staticmethod
