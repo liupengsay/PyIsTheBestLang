@@ -33,6 +33,7 @@ P8630 [蓝桥杯 2015 国 B] 密文搜索（https://www.luogu.com.cn/problem/P86
 
 ===================================AtCoder===================================
 D - Snuke's Coloring（https://atcoder.jp/contests/abc045/tasks/arc061_b）经典哈希容斥计数
+C. Train and QueriesC. Train and Queries（https://codeforces.com/contest/1702/problem/C）卡哈希，需要用异或进行变换
 
 ===================================AcWing===================================
 137. 雪花雪花雪花（https://www.acwing.com/problem/content/139/）哈希找相同雪花
