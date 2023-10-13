@@ -70,6 +70,7 @@ D. Tree Requests（https://codeforces.com/contest/570/problem/D）dfs序与二�
 E. Blood Cousins（https://codeforces.com/contest/208/problem/E）深搜序加LCA加二分查找计数
 D. Choosing Capital for Treeland（https://codeforces.com/contest/219/problem/D）迭代法实现树形换根DP计算，或者一遍DFS或者dfs序加差分
 E. Military Problem（https://codeforces.com/contest/1006/problem/E）经典dfs序模板题
+G2. Passable Paths (hard version)（https://codeforces.com/contest/1702/problem/G2）使用dfs序与lca组合判断是否为简单路径集合
 
 ================================AtCoder================================
 F - Colorful Tree（https://atcoder.jp/contests/abc133/tasks/abc133_f）欧拉序在线查找树上距离，结合二分与前缀和计算变化情况
