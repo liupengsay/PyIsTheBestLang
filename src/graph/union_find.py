@@ -80,6 +80,7 @@ E. Monsters（https://codeforces.com/contest/1810/problem/E）并查集加启发
 E. Connected Components?（https://codeforces.com/contest/920/problem/E）并查集，加线性动态维护剩余节点
 C. Ice Cave（https://codeforces.com/problemset/problem/540/C）路径可达
 E2. Unforgivable Curse (hard version)（https://codeforces.com/problemset/problem/1800/E2）使用并查集分组计算可达
+E. Number of Groups（https://codeforces.com/contest/1691/problem/E）经典线段并查集
 
 ================================AtCoder================================
 D - Connectivity（https://atcoder.jp/contests/abc049/tasks/arc065_b）经典双并查集应用
