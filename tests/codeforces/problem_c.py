@@ -1,11 +1,11 @@
-import random
+
 import sys
 import bisect
 import decimal
 import heapq
 from types import GeneratorType
 from math import inf
-
+import random
 from bisect import bisect_left, bisect_right
 from heapq import heappush, heappop, heappushpop
 from functools import cmp_to_key
