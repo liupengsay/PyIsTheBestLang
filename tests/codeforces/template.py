@@ -1,27 +1,7 @@
 
-import sys
-import bisect
-import decimal
-import heapq
-from types import GeneratorType
-from math import inf
 import random
-from bisect import bisect_left, bisect_right
-from heapq import heappush, heappop, heappushpop
-from functools import cmp_to_key
-from collections import defaultdict, Counter, deque
-import math
-from functools import lru_cache
-from heapq import nlargest
-from functools import reduce
-from decimal import Decimal
-
-from itertools import combinations, permutations
-from operator import xor, add
-from operator import mul
-from typing import List, Callable, Dict, Set, Tuple, DefaultDict
-from heapq import heappush, heappop, heapify
-
+import sys
+from types import GeneratorType
 
 RANDOM = random.randint(0, 10**9 + 7)
 
@@ -125,6 +105,26 @@ class FastIO:
         self.st(lst)
         sys.stdout.flush()
         return
+
+    @staticmethod
+    def bootstrap(f, queue=[]):
+        def wrappedfunc(*args, **kwargs):
+            if queue:
+                return f(*args, **kwargs)
+            else:
+                to = f(*args, **kwargs)
+                while True:
+                    if isinstance(to, GeneratorType):
+                        queue.append(to)
+                        to = next(to)
+                    else:
+                        queue.pop()
+                        if not queue:
+                            break
+                        to = queue[-1].send(to)
+                return to
+
+        return wrappedfunc
 
 
 class Solution:
