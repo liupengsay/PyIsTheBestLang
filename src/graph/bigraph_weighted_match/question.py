@@ -21,12 +21,31 @@ C. Chef Monocarp（https://codeforces.com/problemset/problem/1437/C）二分图�
 ================================AcWing================================
 4298. 搭档（https://www.acwing.com/problem/content/4301/）匈牙利算法二分图模板题
 
+================================LibraryChecker================================
+1 Matching on Bipartite Graph（https://judge.yosupo.jp/problem/bipartitematching）unweighted match
+
 参考：OI WiKi（xx）
 """
+from graph.bigraph_weighted_match.template import BipartiteMatching, Hungarian
+from utils.fast_io import FastIO
 
 
 class Solution:
     def __init__(self):
+        return
+
+    @staticmethod
+    def library_check_1(ac=FastIO()):
+        n, m, k = ac.read_list_ints()
+        bm = BipartiteMatching(n, m)
+        for _ in range(k):
+            a, b = ac.read_list_ints()
+            bm.add_edge(a, b)
+
+        matching = bm.solve()
+        ac.st(len(matching))
+        for a, b in matching:
+            ac.lst([a, b])
         return
 
     @staticmethod

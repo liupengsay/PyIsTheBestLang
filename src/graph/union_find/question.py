@@ -75,8 +75,12 @@ F - Must Be Rectangular!（https://atcoder.jp/contests/abc131/tasks/abc131_f）�
 4866. 最大数量（https://www.acwing.com/problem/content/description/4869/）经典并查集模拟维护连通块大小与多余的边数量
 5145. 同色环（https://www.acwing.com/problem/content/5148/）使用并查集判矩阵四元及以上的环
 
+================================LibraryChecker================================
+1 Cycle Detection (Undirected)（https://judge.yosupo.jp/problem/cycle_detection_undirected）use unionfind to detect circle in undirected graph
+
 参考：OI WiKi（xx）
 """
+from utils.fast_io import FastIO
 
 
 class Solution:
@@ -261,6 +265,39 @@ class Solution:
             for w in cnt.values():
                 ans += w * (w - 1) // 2 + w
         return ans
+
+    @staticmethod
+    def library_check_1(ac=FastIO()):
+        n, m = ac.read_list_ints()
+        edges = [ac.read_list_ints() + [i] for i in range(m)]
+        uf = UnionFind(n)
+        dct = [[] for _ in range(n)]
+        for u, v, i in edges:
+            if not uf.union(u, v):
+                stack = [[u, -1]]
+                parent = [[-1, -1] for _ in range(n)]
+                while stack:
+                    x, fa = stack.pop()
+                    for y, ind in dct[x]:
+                        if y != fa:
+                            parent[y] = [x, ind]
+                            stack.append([y, x])
+                nodes = [v]
+                edges = []
+                while nodes[-1] != u:
+                    edges.append(parent[nodes[-1]][1])
+                    nodes.append(parent[nodes[-1]][0])
+                edges.append(i)
+                ac.st(len(nodes))
+                ac.lst(nodes)
+                ac.lst(edges)
+                break
+            dct[u].append([v, i])
+            dct[v].append([u, i])
+        else:
+            ac.st(-1)
+
+        return
 
     @staticmethod
     def lg_p1196(ac=FastIO()):

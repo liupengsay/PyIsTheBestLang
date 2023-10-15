@@ -15,8 +15,11 @@ P3809 【模板】后缀排序（https://www.luogu.com.cn/problem/P3809）
 140. 后缀数组（https://www.acwing.com/problem/content/142/）后缀数组模板题
 
 Morgan and a String（https://www.hackerrank.com/challenges/morgan-and-a-string/problem?isFullScreen=true）拼接两个字符串使得字典序最小
+Suffix Array（https://judge.yosupo.jp/problem/suffixarray）
+1 Number of Substrings（https://judge.yosupo.jp/problem/number_of_substrings）use sa to compute number of different substring
 
 """
+
 
 class Solution:
     def __init__(self):
@@ -98,6 +101,16 @@ class Solution:
         sa = SuffixArray(ind)
         ans, _, _ = sa.get_array(s)
         ac.lst([x + 1 for x in ans])
+        return
+
+    @staticmethod
+    def library_check_1(ac=FastIO()):
+        s = ac.read_str()
+        ind = {chr(ord("a")+i): i for i in range(26)}
+        sa, rk, height = SuffixArray(ind).get_array(s)
+        n = len(s)
+        ans = sum(height)
+        ac.st(n*(n+1)//2-ans)
         return
 
     @staticmethod

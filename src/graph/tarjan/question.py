@@ -44,11 +44,131 @@ E. Split Into Two Sets（https://codeforces.com/contest/1702/problem/E）使用�
 3579. 数字移动（https://www.acwing.com/problem/content/3582/）强连通分量模板题
 3813. 最大路径权值（https://www.acwing.com/problem/content/submission/3816/）强连通分量模板与拓扑排序DP
 
+===================================LibraryChecker===================================
+1 Cycle Detection (Directed)（https://judge.yosupo.jp/problem/cycle_detection）detect any circle in a directed graph
+2 Strongly Connected Components（https://judge.yosupo.jp/problem/scc）template of scc
+3 Two-Edge-Connected Components（https://judge.yosupo.jp/problem/two_edge_connected_components）template of edge doubly connected
+
 """
+from graph.tarjan.template import TarjanCC
+from utils.fast_io import FastIO
 
 
 class Solution:
     def __init__(self):
+        return
+
+    @staticmethod
+    def library_check_1(ac=FastIO()):
+        n, m = ac.read_list_ints()
+        dct = [dict() for _ in range(n)]
+        for i in range(m):
+            u, v = ac.read_list_ints()
+            dct[u][v] = i
+
+        edge = [list(d.keys()) for d in dct]
+        scc_id, scc_node_id, node_scc_id = TarjanCC().get_strongly_connected_component_bfs(n, edge)
+        for g in scc_node_id:
+            if len(scc_node_id[g]) > 1:
+                nodes_set = scc_node_id[g]
+                i = list(scc_node_id[g])[0]
+                lst = [i]
+                pre = {i}
+                end = -1
+                while end == -1:
+                    for j in edge[i]:
+                        if j in nodes_set:
+                            if j in pre:
+                                end = j
+                                break
+                            lst.append(j)
+                            i = j
+                            pre.add(j)
+                            break
+                ind = lst.index(end)
+                lst = lst[ind:] + [end]
+                ans = []
+                k = len(lst)
+                for j in range(1, k):
+                    x, y = lst[j - 1], lst[j]
+                    ans.append(dct[x][y])
+                ac.st(len(ans))
+                for a in ans:
+                    ac.st(a)
+                break
+        else:
+            ac.st(-1)
+        return
+
+    @staticmethod
+    def library_check_2(ac=FastIO()):
+        n, m = ac.read_list_ints()
+        dct = [set() for _ in range(n)]
+        for _ in range(m):
+            x, y = ac.read_list_ints()
+            if x != y:
+                dct[x].add(y)
+        scc_id, scc_node_id, node_scc_id = TarjanCC().get_strongly_connected_component_bfs(n, [list(e) for e in dct])
+        new_dct = [set() for _ in range(scc_id)]
+        for i in range(n):
+            for j in dct[i]:
+                a, b = node_scc_id[i], node_scc_id[j]
+                if a != b:
+                    new_dct[a].add(b)
+        new_degree = [0]*scc_id
+        for i in range(scc_id):
+            for j in new_dct[i]:
+                new_degree[j] += 1
+        ans = []
+        stack = [i for i in range(scc_id) if not new_degree[i]]
+        while stack:
+            ans.extend(stack)
+            nex = []
+            for i in stack:
+                for j in new_dct[i]:
+                    new_degree[j] -= 1
+                    if not new_degree[j]:
+                        nex.append(j)
+            stack = nex
+        ac.st(len(ans))
+        for i in ans:
+            k = len(scc_node_id[i])
+            ac.lst([k] + list(scc_node_id[i]))
+        return
+
+    @staticmethod
+    def library_check3(ac=FastIO()):
+        n, m = ac.read_list_ints()
+        edge = [set() for _ in range(n)]
+        for _ in range(m):
+            a, b = ac.read_list_ints()
+            # 需要处理自环与重边
+            if a > b:
+                a, b = b, a
+            if a == b:
+                x = len(edge)
+                edge.append(set())
+                edge[a].add(x)
+                edge[x].add(a)
+            elif b in edge[a]:
+                x = len(edge)
+                edge.append(set())
+                edge[a].add(x)
+                edge[x].add(a)
+                edge[b].add(x)
+                edge[x].add(b)
+            else:
+                edge[a].add(b)
+                edge[b].add(a)
+        group = TarjanCC().get_edge_doubly_connected_component_bfs(len(edge), edge)
+        res = []
+        for r in group:
+            lst = [str(x) for x in r if x < n]
+            if lst:
+                res.append([str(len(lst))] + lst)
+        ac.st(len(res))
+        for a in res:
+            ac.st(" ".join(a))
         return
 
     @staticmethod

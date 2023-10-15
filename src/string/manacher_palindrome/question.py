@@ -3,6 +3,8 @@ import unittest
 
 from src.fast_io import FastIO
 
+from string.manacher_palindrome.template import ManacherPlindrome
+
 """
 算法：马拉车算法、回文连续子串、回文不连续子串
 功能：用来处理字符串的回文相关问题，可以有暴力、DP、中心扩展法、马拉车
@@ -25,10 +27,29 @@ P6297 替换（https://www.luogu.com.cn/problem/P6297）中心扩展法并使用
 
 139. 回文子串的最大长度（https://www.acwing.com/problem/content/141/）马拉车计算最长回文子串长度，也可使用二分查找加哈希
 
+===================================LibraryChecker===================================
+1 Enumerate Palindromes（https://judge.yosupo.jp/problem/enumerate_palindromes）
+
 """
 
 class Solution:
     def __init__(self):
+        return
+
+    @staticmethod
+    def library_check_1(ac=FastIO()):
+        s = ac.read_str()
+        t = "#".join(s)
+        dp = ManacherPlindrome().manacher(t)
+        n = len(t)
+
+        for i in range(n):
+            x = 2*dp[i] - 1
+            if t[i+dp[i]-1] == "#":
+                dp[i] = (x-1)//2
+            else:
+                dp[i] = (x + 1) // 2
+        ac.lst(dp)
         return
 
     @staticmethod

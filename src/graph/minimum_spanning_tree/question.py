@@ -61,9 +61,12 @@ F. MST Unification（https://codeforces.com/contest/1108/problem/F）使得最�
 ===================================AtCoder===================================
 D - Built?（https://atcoder.jp/contests/abc065/tasks/arc076_b）最小生成树变形问题
 
-================================Acwing================================
+================================AcWing================================
 3728. 城市通电（https://www.acwing.com/problem/content/3731/）使用prim计算最小生成树，适合稠密图场景，并获取具体连边方案，也可直接使用Kruskal（超时）
 
+================================LibraryChecker================================
+Manhattan MST（https://judge.yosupo.jp/problem/manhattanmst）
+Directed MST（https://judge.yosupo.jp/problem/directedmst）
 
 参考：OI WiKi（xx）
 """
