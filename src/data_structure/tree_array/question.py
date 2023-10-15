@@ -5,6 +5,7 @@ from typing import List
 
 from data_structure.tree_array.template import PointAddRangeSum, PointDescendPreMin, RangeAddRangeSum, \
     PointAscendPreMax, PointAscendRangeMax, PointAddRangeSum2D, RangeAddRangeSum2D
+from utils.fast_io import FastIO
 
 """
 算法：树状数组、二维树状数组
