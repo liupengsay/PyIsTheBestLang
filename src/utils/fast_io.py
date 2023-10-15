@@ -124,15 +124,3 @@ class FastIO:
                 return to
 
         return wrappedfunc
-
-
-class Solution:
-    def __init__(self):
-        return
-
-    @staticmethod
-    def main(ac=FastIO()):
-        return
-
-
-Solution().main()

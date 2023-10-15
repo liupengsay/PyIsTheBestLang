@@ -1,20 +1,25 @@
-
-import random
 import sys
+import bisect
+import decimal
+import heapq
 from types import GeneratorType
+from math import inf
+import random
+from bisect import bisect_left, bisect_right
+from heapq import heappush, heappop, heappushpop
+from functools import cmp_to_key
+from collections import defaultdict, Counter, deque
+import math
+from functools import lru_cache
+from heapq import nlargest
+from functools import reduce
+from decimal import Decimal
 
-RANDOM = random.randint(0, 10**9 + 7)
-
-
-class Wrapper(int):
-    # 用来规避 py 哈希碰撞的问题和进行加速
-    def __init__(self, x):
-        int.__init__(x)
-        # 原理是异或一个随机种子
-
-    def __hash__(self):
-        # 也可以将数组排序后进行哈希计数
-        return super(Wrapper, self).__hash__() ^ RANDOM
+from itertools import combinations, permutations
+from operator import xor, add
+from operator import mul
+from typing import List, Callable, Dict, Set, Tuple, DefaultDict
+from heapq import heappush, heappop, heapify
 
 
 class FastIO:
@@ -133,7 +138,6 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
-
         return
 
 
