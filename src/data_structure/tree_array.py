@@ -60,46 +60,58 @@ F. Moving Points（https://codeforces.com/contest/1311/problem/F）经典两个�
 """
 
 
-class TreeArrayRangeQuerySum:
+class PointAddPreRangeSum:
     # 模板：树状数组 单点增减 查询前缀和与区间和
     def __init__(self, n: int) -> None:
         # 索引从 1 到 n
-        self.t = [0] * (n + 1)
+        self.n = n
+        self.t = [0] * (self.n + 1)  # 默认nums=[0]*n
         # 树状数组中每个位置保存的是其向前 low_bit 的区间和
         return
 
     def build(self, nums: List[int]) -> None:
         # 索引从 1 开始使用数组初始化树状数组
-        n = len(nums)
-        pre = [0]*(n+1)
-        for i in range(n):
+        assert len(nums) == self.n
+        pre = [0]*(self.n+1)
+        for i in range(self.n):
             pre[i+1] = pre[i] + nums[i]
             self.t[i+1] = pre[i+1] - pre[i+1-self.lowest_bit(i+1)]
         return
+
+    def point_add(self, i: int, mi: int) -> None:
+        # 索引从 1 开始，索引 i 的值增加 mi 且 mi 可正可负
+        assert 1 <= i <= self.n
+        while i < len(self.t):
+            self.t[i] += mi
+            i += self.lowest_bit(i)
+        return
+
+    def get(self) -> List[int]:
+        # 索引从 1 开始使用数组初始化树状数组
+        nums = [self.pre_sum(i) for i in range(1, self.n+1)]
+        for i in range(self.n-1, 0, -1):
+            nums[i] -= nums[i-1]
+        return nums
 
     @staticmethod
     def lowest_bit(i: int) -> int:
         # 经典 low_bit 即最后一位二进制为 1 所表示的数
         return i & (-i)
 
-    def query(self, i: int) -> int:
+    def pre_sum(self, i: int) -> int:
         # 索引从 1 开始，查询 1 到 i 的前缀区间和
+        assert 1 <= i <= self.n
         mi = 0
         while i:
             mi += self.t[i]
             i -= self.lowest_bit(i)
         return mi
 
-    def query_range(self, x: int, y: int) -> int:
+    def range_sum(self, x: int, y: int) -> int:
         # 索引从 1 开始，查询 x 到 y 的值
-        return self.query(y) - self.query(x-1)
-
-    def update(self, i: int, mi: int) -> None:
-        # 索引从 1 开始，索引 i 的值增加 mi 且 mi 可正可负
-        while i < len(self.t):
-            self.t[i] += mi
-            i += self.lowest_bit(i)
-        return
+        assert 1 <= x <= y <= self.n
+        res = self.pre_sum(y) - self.pre_sum(x-1) if x > 1 else self.pre_sum(y)
+        return res
 
 
 class TreeArrayRangeSum:
@@ -499,17 +511,17 @@ class Solution:
 
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort(key=lambda y: y[0])
-        tree_sum = TreeArrayRangeQuerySum(m)
-        tree_cnt = TreeArrayRangeQuerySum(m)
+        tree_sum = PointAddPreRangeSum(m)
+        tree_cnt = PointAddPreRangeSum(m)
         total_cnt = 0
         total_sum = 0
         ans = 0
         for v, x in nums:
-            pre_sum = tree_sum.query(x)
-            pre_cnt = tree_cnt.query(x)
+            pre_sum = tree_sum.pre_sum(x)
+            pre_cnt = tree_cnt.pre_sum(x)
             ans += v*(pre_cnt*x-pre_sum) + v*(total_sum-pre_sum-(total_cnt-pre_cnt)*x)
-            tree_sum.update(x, x)
-            tree_cnt.update(x, 1)
+            tree_sum.point_add(x, x)
+            tree_cnt.point_add(x, 1)
             total_cnt += 1
             total_sum += x
         ac.st(ans)
@@ -554,15 +566,15 @@ class Solution:
         v = ac.read_list_ints()
         dct = {w: i for i, w in enumerate(sorted(set(v)))}
         m = len(dct)
-        tree_cnt = TreeArrayRangeQuerySum(m)
-        tree_tot = TreeArrayRangeQuerySum(m)
+        tree_cnt = PointAddPreRangeSum(m)
+        tree_tot = PointAddPreRangeSum(m)
         ans = 0
         for i in ind:
             cur_v = v[i]
-            tree_cnt.update(dct[cur_v]+1, 1)
-            tree_tot.update(dct[cur_v]+1, x[i])
-            pre_cnt = tree_cnt.query(dct[cur_v]+1)
-            pre_tot = tree_tot.query(dct[cur_v]+1)
+            tree_cnt.point_add(dct[cur_v]+1, 1)
+            tree_tot.point_add(dct[cur_v]+1, x[i])
+            pre_cnt = tree_cnt.pre_sum(dct[cur_v]+1)
+            pre_tot = tree_tot.pre_sum(dct[cur_v]+1)
             ans += pre_cnt*x[i] - pre_tot
         ac.st(ans)
         return
@@ -575,11 +587,11 @@ class Solution:
             a = ac.read_list_ints()
             ceil = max(a)
             ans = 0
-            tree = TreeArrayRangeQuerySum(ceil)
+            tree = PointAddPreRangeSum(ceil)
             x = 0
             for num in a:
-                ans += x - tree.query(num-1)
-                tree.update(num, 1)
+                ans += x - tree.pre_sum(num-1)
+                tree.point_add(num, 1)
                 x += 1
             ac.st(ans)
         return
@@ -629,14 +641,14 @@ class Solution:
     def lg_p3374(ac=FastIO()):
         # 模板：树状数组 单点增减 查询前缀和与区间和
         n, m = ac.read_ints()
-        tree = TreeArrayRangeQuerySum(n)
+        tree = PointAddPreRangeSum(n)
         tree.build(ac.read_list_ints())
         for _ in range(m):
             op, x, y = ac.read_ints()
             if op == 1:
-                tree.update(x, y)
+                tree.point_add(x, y)
             else:
-                ac.st(tree.query_range(x, y))
+                ac.st(tree.range_sum(x, y))
         return
 
     @staticmethod
@@ -661,18 +673,18 @@ class Solution:
         nums = ac.read_list_ints()
         ind = list(range(n))
         ind.sort(key=lambda x: nums[x])
-        tree = TreeArrayRangeQuerySum(n)
+        tree = PointAddPreRangeSum(n)
         ans = i = cnt = 0
         while i < n:
             val = nums[ind[i]]
             lst = []
             while i < n and nums[ind[i]] == val:
                 lst.append(ind[i]+1)
-                ans += cnt - tree.query(ind[i]+1)
+                ans += cnt - tree.range_sum(ind[i]+1)
                 i += 1
             cnt += len(lst)
             for x in lst:
-                tree.update(x, 1)
+                tree.point_add(x, 1)
         ac.st(ans)
         return
 
@@ -751,8 +763,8 @@ class Solution:
         ind = {num: i for i, num in enumerate(value)}
         length = len(ind)
 
-        tree_cnt = TreeArrayRangeQuerySum(length)
-        tree_sum = TreeArrayRangeQuerySum(length)
+        tree_cnt = PointAddPreRangeSum(length)
+        tree_sum = PointAddPreRangeSum(length)
         nums = [0]*n
         total_s = 0
         total_c = 0
@@ -760,20 +772,20 @@ class Solution:
         for op, a, b in lst:
             if op == 1:
                 if nums[a-1]:
-                    tree_cnt.update(ind[nums[a-1]], -1)
-                    tree_sum.update(ind[nums[a - 1]], -nums[a-1])
+                    tree_cnt.point_add(ind[nums[a-1]], -1)
+                    tree_sum.point_add(ind[nums[a - 1]], -nums[a-1])
                     total_s -= nums[a-1]
                     total_c -= 1
                 nums[a-1] = b
                 if nums[a - 1]:
-                    tree_cnt.update(ind[nums[a - 1]], 1)
-                    tree_sum.update(ind[nums[a - 1]], nums[a - 1])
+                    tree_cnt.range_sum(ind[nums[a - 1]], 1)
+                    tree_sum.range_sum(ind[nums[a - 1]], nums[a - 1])
                     total_s += nums[a-1]
                     total_c += 1
             else:
                 c, s = a, b
-                less_than_s = tree_cnt.query(ind[s]-1)
-                less_than_s_sum = tree_sum.query(ind[s]-1)
+                less_than_s = tree_cnt.pre_sum(ind[s]-1)
+                less_than_s_sum = tree_sum.pre_sum(ind[s]-1)
                 if (total_c-less_than_s)*s + less_than_s_sum >= c*s:
                     ac.st("TAK")
                 else:
@@ -805,9 +817,9 @@ class Solution:
 
         n, m = ac.read_ints()
         nums = ac.read_list_ints()
-        tree1 = TreeArrayRangeQuerySum(n)
+        tree1 = PointAddPreRangeSum(n)
         tree1.build(nums)
-        tree2 = TreeArrayRangeQuerySum(n)
+        tree2 = PointAddPreRangeSum(n)
         tree2.build([nums[i] * (i + 1) for i in range(n)])
         for _ in range(m):
             lst = ac.read_list_strs()
@@ -815,11 +827,11 @@ class Solution:
                 i, x = [int(w) for w in lst[1:]]
                 y = nums[i - 1]
                 nums[i - 1] = x
-                tree1.update(i, x - y)
-                tree2.update(i, i * (x - y))
+                tree1.point_add(i, x - y)
+                tree2.point_add(i, i * (x - y))
             else:
                 i = int(lst[1])
-                ac.st((i + 1) * tree1.query(i) - tree2.query(i))
+                ac.st((i + 1) * tree1.pre_sum(i) - tree2.pre_sum(i))
         return
 
     @staticmethod
@@ -830,14 +842,14 @@ class Solution:
         lst = sorted(list(set(nums)))
         ind = {num: i + 1 for i, num in enumerate(lst)}
         m = len(ind)
-        tree = TreeArrayRangeQuerySum(m)
+        tree = PointAddPreRangeSum(m)
         ans = 0
         for i in range(n - 1, -1, -1):
             left = i + 1
-            right = tree.query(ind[nums[i]] - 1)
+            right = tree.pre_sum(ind[nums[i]] - 1)
             ans += left * right
             # 取 nums[i] 作为区间的数又 n-i 个右端点取法
-            tree.update(ind[nums[i]], n - i)
+            tree.point_add(ind[nums[i]], n - i)
         ac.st(ans)
         return
 
@@ -888,7 +900,7 @@ class Solution:
         dct = defaultdict(deque)
         for i in range(n):
             dct[lst[i]].append(i)
-        tree = TreeArrayRangeQuerySum(n)
+        tree = PointAddPreRangeSum(n)
         i, j = 0, n - 1
         while i < j:
             if lst[i] == "":
@@ -906,18 +918,18 @@ class Solution:
 
             if len(dct[lst[j]]) >= 2:
                 left = dct[lst[j]][0]
-                ans += left - i - tree.query_range(i + 1, left + 1)
+                ans += left - i - tree.range_sum(i + 1, left + 1)
                 x = dct[lst[j]].popleft()
                 dct[lst[j]].pop()
                 lst[x] = ""
-                tree.update(x + 1, 1)
+                tree.point_add(x + 1, 1)
                 j -= 1
             else:
                 right = dct[lst[i]][-1]
-                ans += j - right - tree.query_range(right + 1, j + 1)
+                ans += j - right - tree.range_sum(right + 1, j + 1)
                 x = dct[lst[i]].pop()
                 dct[lst[i]].popleft()
-                tree.update(x + 1, 1)
+                tree.point_add(x + 1, 1)
                 lst[x] = ""
                 i += 1
         return ans
@@ -969,14 +981,14 @@ class Solution:
         ans = 0
         pre = 1
         dct = {num: i + 1 for i, num in enumerate(nums)}
-        tree = TreeArrayRangeQuerySum(n)
+        tree = PointAddPreRangeSum(n)
         for num in sorted(nums):
             i = dct[num]
             if pre <= i:
-                ans += i - pre + 1 - tree.query_range(pre, i)
+                ans += i - pre + 1 - tree.range_sum(pre, i)
             else:
-                ans += n - pre + 1 - tree.query_range(pre, n) + i - 1 + 1 - tree.query_range(1, i)
-            tree.update(i, 1)
+                ans += n - pre + 1 - tree.range_sum(pre, n) + i - 1 + 1 - tree.range_sum(1, i)
+            tree.point_add(i, 1)
             pre = i
         return ans
 
@@ -993,15 +1005,15 @@ class Solution:
         ind = {num: i for i, num in enumerate(nodes)}
         n = len(ind)
         ans = 0
-        tree_sum = TreeArrayRangeQuerySum(n)
-        tree_cnt = TreeArrayRangeQuerySum(n)
+        tree_sum = PointAddPreRangeSum(n)
+        tree_cnt = PointAddPreRangeSum(n)
         pre = LocalSortedList()
         for lst in queries:
             if lst[0] == 1:
                 a, b = lst[1:]
                 ans += b
-                tree_sum.update(ind[a] + 1, a)
-                tree_cnt.update(ind[a] + 1, 1)
+                tree_sum.point_add(ind[a] + 1, a)
+                tree_cnt.point_add(ind[a] + 1, 1)
                 pre.add(a)
             else:
                 m = len(pre)
@@ -1011,9 +1023,9 @@ class Solution:
                     i = m // 2
                 val = pre[i]
                 i = ind[val]
-                left = val * tree_cnt.query(i + 1) - tree_sum.query(i + 1)
+                left = val * tree_cnt.pre_sum(i + 1) - tree_sum.pre_sum(i + 1)
                 if i + 2 <= n:
-                    right = -val * tree_cnt.query_range(i + 2, n) + tree_sum.query_range(i + 2, n)
+                    right = -val * tree_cnt.range_sum(i + 2, n) + tree_sum.range_sum(i + 2, n)
                 else:
                     right = 0
                 ac.lst([val, left + right + ans])
@@ -1057,7 +1069,7 @@ class Solution:
         for i, d in enumerate(num):
             dct[d].append(i)
         # 使用树状数组模拟交换过程
-        tree = TreeArrayRangeQuerySum(n)
+        tree = PointAddPreRangeSum(n)
         ans = ""
         for i in range(n):
             # 添加第 i 个数字
@@ -1066,12 +1078,12 @@ class Solution:
                 # 找还有的数字
                 if dct[str(d)]:
                     i = dct[str(d)][0]
-                    ind = i + tree.query_range(i + 1, n)
+                    ind = i + tree.range_sum(i + 1, n)
                     # 索引加上移动之后的位置与第i个相隔距离在代价承受范围内
                     if ind - cur <= k:
                         ans += str(d)
                         k -= ind - cur
-                        tree.update(i + 1, 1)
+                        tree.point_add(i + 1, 1)
                         dct[str(d)].popleft()
                         break
         return ans
@@ -1104,6 +1116,25 @@ class Solution:
 
 
 class TestGeneral(unittest.TestCase):
+
+    def test_point_add_range_sum(self):
+
+        for _ in range(10):
+            ceil = random.randint(10, 1000)
+            nums = [random.randint(-ceil, ceil) for _ in range(ceil)]
+            tree_array = PointAddPreRangeSum(ceil)
+            tree_array.build(nums)
+            for _ in range(ceil):
+                d = random.randint(-ceil, ceil)
+                i = random.randint(0, ceil - 1)
+                nums[i] += d
+                tree_array.point_add(i + 1, d)
+
+                left = random.randint(0, ceil - 1)
+                right = random.randint(left, ceil - 1)
+                assert sum(nums[left: right + 1]) == tree_array.range_sum(left + 1, right + 1)
+                assert nums == tree_array.get()
+        return
 
     def test_tree_array_range_sum(self):
 
