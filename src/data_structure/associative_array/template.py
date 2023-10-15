@@ -1,29 +1,16 @@
-import math
-import random
 import unittest
-from functools import reduce
-from math import gcd
-from operator import add
-from itertools import accumulate
-from typing import List
-from operator import mul, add, xor, and_, or_
-from algorithm.src.fast_io import FastIO
+
+from src.fast_io import FastIO
 
 """
-Algorithm：
-Ability：
-Reference：
+Algorithm：use xor of random seed as key of mapping
+Ability：speed up and avoid hash crush
+Reference：https://judge.yosupo.jp/problem/associative_array
 
-===================================LeetCode===================================
-xx（xxx）xxxxxxxxxxxxxxxxxxxx
+================================Library Checker================================
+Associative Array（https://judge.yosupo.jp/problem/associative_array）use xor of random seed as key of mapping
 
-===================================Luogu=====================================
-xx（xxx）xxxxxxxxxxxxxxxxxxxx
 
-================================CodeForces===================================
-xx（xxx）xxxxxxxxxxxxxxxxxxxx
-
-=============================================================================
 """
 
 
@@ -37,8 +24,16 @@ class Solution:
         return
 
     @staticmethod
-    def xx_xxxx(ac=FastIO()):
-        pass
+    def libc_aa(ac=FastIO()):
+        """template question of associative array"""
+        pre = dict()
+        for _ in range(ac.read_int()):
+            lst = ac.read_list_ints()
+            if lst[0] == 0:
+                k, v = lst[1:]
+                pre[k ^ ac.random_seed] = v
+            else:
+                ac.st(pre.get(lst[1] ^ ac.random_seed, 0))
         return
 
 
