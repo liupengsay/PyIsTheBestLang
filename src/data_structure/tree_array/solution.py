@@ -1,13 +1,10 @@
-import math
-import random
 import unittest
-from functools import reduce
-from math import gcd
-from operator import add
-from itertools import accumulate
+from collections import defaultdict, deque
+from math import inf
 from typing import List
-from operator import mul, add, xor, and_, or_
-from algorithm.src.fast_io import FastIO
+
+from data_structure.tree_array.template import PointAddRangeSum, PointDescendPreMin, RangeAddRangeSum, \
+    PointAscendPreMax, PointAscendRangeMax, PointAddRangeSum2D, RangeAddRangeSum2D
 
 """
 算法：树状数组、二维树状数组
@@ -118,7 +115,7 @@ class Solution:
     def lg_p2280(ac=FastIO()):
         # 模板：树状数组单点更新区间查询最大值与最小值
         n, q = ac.read_ints()
-        tree = TreeArrayPointUpdateRangeMaxMin(n)
+        tree = PointAscendRangeMax(n)
         for i in range(n):
             tree.a[i + 1] = ac.read_int()
             tree.add(i + 1, tree.a[i + 1])
@@ -132,7 +129,7 @@ class Solution:
     def lc_6353(grid: List[List[int]]) -> int:
         n, m = len(grid), len(grid[0])
         dp = [[inf] * m for _ in range(n)]
-        r, c = [TreeArrayRangeQueryPointUpdateMin(m) for _ in range(n)], [TreeArrayRangeQueryPointUpdateMin(n) for _ in range(m)]
+        r, c = [PointDescendPreMin(m) for _ in range(n)], [PointDescendPreMin(n) for _ in range(m)]
         dp[n - 1][m - 1] = 1
         for i in range(n - 1, -1, -1):
             for j in range(m - 1, -1, -1):
@@ -202,7 +199,7 @@ class Solution:
     def lc_1626(scores: List[int], ages: List[int]) -> int:
         # 模板：动态规划与树状数组维护前缀最大值
         n = max(ages)
-        tree_array = TreeArrayRangeQueryPointUpdateMax(n)
+        tree_array = PointAscendPreMax(n)
         for score, age in sorted(zip(scores, ages)):
             cur = tree_array.query(age) + score
             tree_array.update(age, cur)
@@ -214,7 +211,7 @@ class Solution:
         # 模板：树状数组查询静态区间最小值
         m, n = ac.read_ints()
         nums = ac.read_list_ints()
-        tree = TreeArrayPointUpdateRangeMaxMin(m)
+        tree = PointAscendRangeMax(m)
         for i in range(m):
             tree.add(i+1, nums[i])
         ans = []
@@ -281,7 +278,7 @@ class Solution:
             def __init__(self, matrix: List[List[int]]):
                 m, n = len(matrix), len(matrix[0])
                 self.matrix = matrix
-                self.tree = TreeArray2D(m, n)
+                self.tree = PointAddRangeSum2D(m, n)
                 for i in range(m):
                     for j in range(n):
                         self.tree.add(i + 1, j + 1, matrix[i][j])
@@ -299,7 +296,7 @@ class Solution:
     def main(ac=FastIO()):
         # 模板：二维树状数组 区间增减 区间查询
         n, m = ac.read_ints()
-        tree = TreeArray2DRange(n, m)
+        tree = RangeAddRangeSum2D(n, m)
         while True:
             lst = ac.read_list_ints()
             if not lst:
@@ -318,7 +315,7 @@ class Solution:
         n, a, b = ac.read_ints()
         n += 1
         nums = ac.read_list_ints()
-        tree = TreeArrayPointUpdateRangeMaxMin(n+1)
+        tree = PointAscendRangeMax(n+1)
         tree.add(n+1, 0)
         post = 0
         for i in range(n-1, -1, -1):
@@ -384,7 +381,7 @@ class Solution:
         # 模板：树状数组查询区间最大值
         m, d = ac.read_ints()
         t = 0
-        tree = TreeArrayPointUpdateRangeMaxMin(m+1)
+        tree = PointAscendRangeMax(m+1)
         i = 1
         for _ in range(m):
             op, x = ac.read_list_strs()
@@ -446,8 +443,8 @@ class Solution:
         n, q = ac.read_ints()
         nums = ac.read_list_ints()
 
-        tree_odd = TreeArrayRangeQuerySumXOR(n)
-        tree_even = TreeArrayRangeQuerySumXOR(n)
+        tree_odd = PointChangePreRangeXor(n)
+        tree_even = PointChangePreRangeXor(n)
         for i in range(n):
             # 也可以使用对应子数组进行初始化
             if i % 2 == 0:
@@ -543,7 +540,7 @@ class Solution:
         # 模板：树状数组加线性DP
         n = max(nums)
         ans = 0
-        tree = TreeArrayPointUpdateRangeMaxMin(n)
+        tree = PointAscendRangeMax(n)
         tree.ceil = [0]*(n+1)
         tree.floor = [0]*(n+1)
         for num in nums:
@@ -630,13 +627,13 @@ class Solution:
         m = len(nodes)
 
         pre = [inf] * n
-        tree = TreeArrayRangeQueryPointUpdateMin(m)
+        tree = PointDescendPreMin(m)
         for i in range(n):
             pre[i] = tree.query(dct[s[i]] - 1)
             tree.update(dct[s[i]], c[i])
 
         post = [inf] * n
-        tree = TreeArrayRangeQueryPointUpdateMin(m)
+        tree = PointDescendPreMin(m)
         for i in range(n - 1, -1, -1):
             post[i] = tree.query(m - dct[s[i]])
             tree.update(m - dct[s[i]] + 1, c[i])

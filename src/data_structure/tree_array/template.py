@@ -8,12 +8,12 @@ class PointAddRangeSum:
         # 索引从 1 到 n
         self.n = n
         self.t = [0] * (self.n + 1)  # 默认nums=[0]*n
-        # 树状数组中每个位置保存的是其向前 low_bit 的区间和
+        # 树状数组中每个位置保存的是其向前 _lowest_bit 的区间和
         return
 
     @staticmethod
     def _lowest_bit(i: int) -> int:
-        # 经典 low_bit 即最后一位二进制为 1 所表示的数
+        # 经典 _lowest_bit 即最后一位二进制为 1 所表示的数
         return i & (-i)
 
     def build(self, nums: List[int]) -> None:
@@ -35,12 +35,12 @@ class PointAddRangeSum:
 
     def get(self) -> List[int]:
         # 索引从 1 开始使用数组初始化树状数组
-        nums = [self.pre_sum(i) for i in range(1, self.n + 1)]
+        nums = [self._pre_sum(i) for i in range(1, self.n + 1)]
         for i in range(self.n - 1, 0, -1):
             nums[i] -= nums[i - 1]
         return nums
 
-    def pre_sum(self, i: int) -> int:
+    def _pre_sum(self, i: int) -> int:
         # 索引从 1 开始，查询 1 到 i 的前缀区间和
         assert 1 <= i <= self.n
         mi = 0
@@ -52,8 +52,44 @@ class PointAddRangeSum:
     def range_sum(self, x: int, y: int) -> int:
         # 索引从 1 开始，查询 x 到 y 的值
         assert 1 <= x <= y <= self.n
-        res = self.pre_sum(y) - self.pre_sum(x - 1) if x > 1 else self.pre_sum(y)
+        res = self._pre_sum(y) - self._pre_sum(x - 1) if x > 1 else self._pre_sum(y)
         return res
+
+
+class PointAddRangeSum2D:
+    def __init__(self, m: int, n: int) -> None:
+        # 模板：二维树状数组 单点增减 区间和查询
+        self.m = m  # 行数
+        self.n = n  # 列数
+        self.tree = [[0] * (n + 1) for _ in range(m + 1)]  # 初始化树状数组
+        return
+
+    def add(self, x: int, y: int, val: int) -> None:
+        # 索引从 1 开始， 单点增加 val 到二维数组中坐标为 [x, y] 的值且 val 可正可负
+        i = x
+        while i <= self.m:
+            j = y
+            while j <= self.n:
+                self.tree[i][j] += val
+                j += (j & -j)
+            i += (i & -i)
+        return
+
+    def _query(self, x: int, y: int) -> int:
+        # 索引从 1 开始， 查询二维数组中 [1, 1] 到 [x, y] 的前缀和
+        res = 0
+        i = x
+        while i > 0:
+            j = y
+            while j > 0:
+                res += self.tree[i][j]
+                j -= (j & -j)
+            i -= (i & -i)
+        return res
+
+    def range_query(self, x1: int, y1: int, x2: int, y2: int) -> int:
+        # 索引从 1 开始， 查询二维数组中 [x1, y1] 到 [x2, y2] 的区间和
+        return self._query(x2, y2) - self._query(x2, y1 - 1) - self._query(x1 - 1, y2) + self._query(x1 - 1, y1 - 1)
 
 
 class RangeAddRangeSum:
@@ -67,7 +103,7 @@ class RangeAddRangeSum:
 
     @staticmethod
     def _lowest_bit(x: int) -> int:
-        # 经典 low_bit 即最后一位二进制为 1 所表示的数
+        # 经典 _lowest_bit 即最后一位二进制为 1 所表示的数
         return x & (-x)
 
     def build(self, nums: List[int]) -> None:
@@ -118,213 +154,199 @@ class RangeAddRangeSum:
         return a - b
 
 
-class TreeArrayRangeQuerySumXOR:
-    # 模板：树状数组 单点增减 查询前缀异或和与区间异或和
+class PointXorRangeXor:
+    # 模板：树状数组 单点异或 查询前缀异或和与区间异或和
     def __init__(self, n: int) -> None:
         # 索引从 1 到 n
+        self.n = n
         self.t = [0] * (n + 1)
-        # 树状数组中每个位置保存的是其向前 low_bit 的区间异或和
-        return
-
-    def build(self, nums: List[int]) -> None:
-        # 索引从 1 开始使用数组初始化树状数组
-        n = len(nums)
-        pre = [0] * (n + 1)
-        for i in range(n):
-            pre[i + 1] = pre[i] ^ nums[i]
-            self.t[i + 1] = pre[i + 1] ^ pre[i + 1 - self._lowest_bit(i + 1)]
+        # 树状数组中每个位置保存的是其向前 _lowest_bit 的区间异或和
         return
 
     @staticmethod
     def _lowest_bit(i: int) -> int:
-        # 经典 low_bit 即最后一位二进制为 1 所表示的数
+        # 经典 _lowest_bit 即最后一位二进制为 1 所表示的数
         return i & (-i)
 
-    def query(self, i: int) -> int:
+    def _pre_xor(self, i: int) -> int:
         # 索引从 1 开始，查询 1 到 i 的前缀区间和
+        assert 1 <= i <= self.n
         mi = 0
         while i:
             mi ^= self.t[i]
             i -= self._lowest_bit(i)
         return mi
 
-    def query_range(self, x: int, y: int) -> int:
-        # 索引从 1 开始，查询 x 到 y 的值
-        return self.query(y) ^ self.query(x - 1)
+    def build(self, nums: List[int]) -> None:
+        # 索引从 1 开始使用数组初始化树状数组
+        assert len(nums) == self.n
+        pre = [0] * (self.n + 1)
+        for i in range(self.n):
+            pre[i + 1] = pre[i] ^ nums[i]
+            self.t[i + 1] = pre[i + 1] ^ pre[i + 1 - self._lowest_bit(i + 1)]
+        return
 
-    def update(self, i: int, mi: int) -> None:
+    def get(self) -> List[int]:
+        # 索引从 1 开始使用数组初始化树状数组
+        return [self.range_xor(i+1, i+1) for i in range(self.n)]
+
+    def point_xor(self, i: int, mi: int) -> None:
         # 索引从 1 开始，索引 i 的值异或增加 mi 且 mi 可正可负
-        while i < len(self.t):
+        assert 1 <= i <= self.n
+        while i <= self.n:
             self.t[i] ^= mi
             i += self._lowest_bit(i)
         return
 
+    def range_xor(self, x: int, y: int) -> int:
+        # 索引从 1 开始，查询 x 到 y 的值
+        assert 1 <= x <= y <= self.n
+        res = self._pre_xor(y) ^ self._pre_xor(x - 1) if x > 1 else self._pre_xor(y)
+        return res
 
-class TreeArrayRangeQueryPointUpdateMax:
+
+class PointAscendPreMax:
     # 模板：树状数组 单点增加 前缀区间查询 最大值
-    def __init__(self, n):
+    def __init__(self, n, initial=-inf):
         # 索引从 1 到 n
-        self.t = [0] * (n + 1)
+        self.n = n
+        self.initial = initial
+        self.t = [initial] * (n + 1)
 
     @staticmethod
     def _lowest_bit(i):
         return i & (-i)
 
-    def query(self, i):
-        mx = 0
+    def pre_max(self, i):
+        assert 1 <= i <= self.n
+        mx = self.initial
         while i:
             mx = mx if mx > self.t[i] else self.t[i]
             i -= self._lowest_bit(i)
         return mx
 
-    def update(self, i, mx):
+    def point_ascend(self, i, mx):
+        assert 1 <= i <= self.n
         while i < len(self.t):
             self.t[i] = self.t[i] if self.t[i] > mx else mx
             i += self._lowest_bit(i)
         return
 
 
-class TreeArrayRangeQueryPointUpdateMin:
-    # 模板：树状数组 单点减少 前缀区间查询最小值
-    def __init__(self, n):
-        # 索引从 1 到 n
-        self.inf = inf
-        self.t = [self.inf] * (n + 1)
-
-    @staticmethod
-    def _lowest_bit(i):
-        return i & (-i)
-
-    def query(self, i):
-        mi = self.inf
-        while i:
-            mi = mi if mi < self.t[i] else self.t[i]
-            i -= self._lowest_bit(i)
-        return mi
-
-    def update(self, i, mi):
-        while i < len(self.t):
-            self.t[i] = self.t[i] if self.t[i] < mi else mi
-            i += self._lowest_bit(i)
-        return
-
-
-class TreeArrayPointUpdateRangeMaxMin:
-
-    # 模板：树状数组 单点增加 区间查询最大值 单点减少 区间查询最小值
-    def __init__(self, n: int) -> None:
+class PointAscendRangeMax:
+    # 模板：树状数组 单点持续增加 区间查询最大值
+    def __init__(self, n: int, initial=-inf) -> None:
         self.n = n
-        # 原始数组
-        self.a = [0] * (n + 1)  # 如果是求最小值设置为 [inf]*(n+1) 最大值设置为[-inf]*(n+1)
-        self.tree_ceil = [-inf] * (n + 1)  # 初始化也可以设置为[0]*(n+1)
-        self.tree_floor = [inf] * (n + 1)  # 初始化也可以设置为[0]*(n+1)
+        self.initial = initial
+        self.a = [self.initial] * (n + 1)
+        self.t = [self.initial] * (n + 1)
         return
 
     @staticmethod
-    def low_bit(x):
+    def _lowest_bit(x):
         return x & -x
 
     @staticmethod
     def max(a, b):
         return a if a > b else b
 
-    @staticmethod
-    def min(a, b):
-        return a if a < b else b
-
-    def add(self, x, k):
-        # 索引从1开始，更新最大值与最小值
-        self.a[x] = k
-        while x <= self.n:
-            self.tree_ceil[x] = self.max(self.tree_ceil[x], k)
-            self.tree_floor[x] = self.min(self.tree_floor[x], k)
-            x += self.low_bit(x)
-        return
-
-    def add_max(self, x, k):
+    def point_ascend(self, x, k):
         # 索引从1开始，单点更新最大值
+        assert 1 <= x <= self.n
         if self.a[x] >= k:
             return
         self.a[x] = k
         while x <= self.n:
-            self.tree_ceil[x] = self.max(self.tree_ceil[x], k)
-            self.tree_floor[x] = self.min(self.tree_floor[x], k)
-            x += self.low_bit(x)
+            self.t[x] = self.max(self.t[x], k)
+            x += self._lowest_bit(x)
         return
 
-    def add_min(self, x, k):
-        # 索引从1开始，单点更新最小值
-        if self.a[x] <= k:
-            return
-        self.a[x] = k
-        while x <= self.n:
-            self.tree_ceil[x] = self.max(self.tree_ceil[x], k)
-            self.tree_floor[x] = self.min(self.tree_floor[x], k)
-            x += self.low_bit(x)
-        return
-
-    def find_max(self, left, r):
+    def range_max(self, left, r):
         # 索引从1开始
-        max_val = float('-inf')
+        max_val = self.initial
         while r >= left:
-            if r - self.low_bit(r) >= left - 1:
-                max_val = self.max(max_val, self.tree_ceil[r])
-                r -= self.low_bit(r)
+            if r - self._lowest_bit(r) >= left - 1:
+                max_val = self.max(max_val, self.t[r])
+                r -= self._lowest_bit(r)
             else:
                 max_val = self.max(max_val, self.a[r])
                 r -= 1
         return max_val
 
-    def find_min(self, left, r):
+
+class PointDescendPreMin:
+    # 模板：树状数组 单点减少 前缀区间查询最小值
+    def __init__(self, n, initial=inf):
+        # 索引从 1 到 n
+        self.n = n
+        self.initial = initial
+        self.t = [self.initial] * (n + 1)
+
+    @staticmethod
+    def _lowest_bit(i):
+        return i & (-i)
+
+    def pre_min(self, i):
+        assert 1 <= i <= self.n
+        mi = self.initial
+        while i:
+            mi = mi if mi < self.t[i] else self.t[i]
+            i -= self._lowest_bit(i)
+        return mi
+
+    def point_descend(self, i, mi):
+        assert 1 <= i <= self.n
+        while i < len(self.t):
+            self.t[i] = self.t[i] if self.t[i] < mi else mi
+            i += self._lowest_bit(i)
+        return
+
+
+
+class PointDescendRangeMin:
+
+    # 模板：树状数组 单点持续减少 区间查询最小值
+    def __init__(self, n: int, initial=inf) -> None:
+        self.n = n
+        self.initial = initial
+        self.a = [self.initial] * (n + 1)
+        self.t = [self.initial] * (n + 1)
+        return
+
+    @staticmethod
+    def _lowest_bit(x):
+        return x & -x
+
+    @staticmethod
+    def min(a, b):
+        return a if a < b else b
+
+    def point_descend(self, x, k):
+        # 索引从1开始，单点更新最小值
+        assert 1 <= x <= self.n
+        if self.a[x] <= k:
+            return
+        self.a[x] = k
+        while x <= self.n:
+            self.t[x] = self.min(self.t[x], k)
+            x += self._lowest_bit(x)
+        return
+
+    def range_min(self, left, r):
         # 索引从1开始
-        min_val = float('inf')
+        assert 1 <= left <= r <= self.n
+        min_val = self.initial
         while r >= left:
-            if r - self.low_bit(r) >= left - 1:
-                min_val = self.min(min_val, self.tree_floor[r])
-                r -= self.low_bit(r)
+            if r - self._lowest_bit(r) >= left - 1:
+                min_val = self.min(min_val, self.t[r])
+                r -= self._lowest_bit(r)
             else:
                 min_val = self.min(min_val, self.a[r])
                 r -= 1
         return min_val
 
 
-class TreeArray2D:
-    def __init__(self, m: int, n: int) -> None:
-        # 模板：二维树状数组 单点增减 区间和查询
-        self.m = m  # 行数
-        self.n = n  # 列数
-        self.tree = [[0] * (n + 1) for _ in range(m + 1)]  # 初始化树状数组
-        return
-
-    def add(self, x: int, y: int, val: int) -> None:
-        # 索引从 1 开始， 单点增加 val 到二维数组中坐标为 [x, y] 的值且 val 可正可负
-        i = x
-        while i <= self.m:
-            j = y
-            while j <= self.n:
-                self.tree[i][j] += val
-                j += (j & -j)
-            i += (i & -i)
-        return
-
-    def _query(self, x: int, y: int) -> int:
-        # 索引从 1 开始， 查询二维数组中 [1, 1] 到 [x, y] 的前缀和
-        res = 0
-        i = x
-        while i > 0:
-            j = y
-            while j > 0:
-                res += self.tree[i][j]
-                j -= (j & -j)
-            i -= (i & -i)
-        return res
-
-    def range_query(self, x1: int, y1: int, x2: int, y2: int) -> int:
-        # 索引从 1 开始， 查询二维数组中 [x1, y1] 到 [x2, y2] 的区间和
-        return self._query(x2, y2) - self._query(x2, y1 - 1) - self._query(x1 - 1, y2) + self._query(x1 - 1, y1 - 1)
-
-
-class TreeArray2DRange:
+class RangeAddRangeSum2D:
     def __init__(self, m: int, n: int) -> None:
         # 模板：二维树状数组 区间增减 区间和查询
         self.m = m  # 行数
@@ -377,7 +399,7 @@ class TreeArray2DRange:
         return self._query(x2, y2) - self._query(x2, y1 - 1) - self._query(x1 - 1, y2) + self._query(x1 - 1, y1 - 1)
 
 
-class TreeArray2DRangeMaxMin:
+class PointChangeMaxMin2D:
     # 模板：树状数组 单点增加区间查询最大值 单点减少区间查询最小值（暂未调通）
     def __init__(self, m: int, n: int) -> None:
         self.m = m
@@ -388,7 +410,7 @@ class TreeArray2DRangeMaxMin:
         return
 
     @staticmethod
-    def low_bit(x):
+    def _lowest_bit(x):
         return x & -x
 
     @staticmethod
@@ -408,8 +430,8 @@ class TreeArray2DRangeMaxMin:
             while j <= self.n:
                 self.tree_ceil[i][j] = self.max(self.tree_ceil[i][j], k)
                 self.tree_floor[i][j] = self.min(self.tree_floor[i][j], k)
-                j += self.low_bit(j)
-            i += self.low_bit(i)
+                j += self._lowest_bit(j)
+            i += self._lowest_bit(i)
         return
 
     def find_max(self, x1, y1, x2, y2):
@@ -417,28 +439,28 @@ class TreeArray2DRangeMaxMin:
         max_val = float('-inf')
         i1, i2 = x1, x2
         while i2 >= i1:
-            if i2 - self.low_bit(i2) >= i1 - 1:
+            if i2 - self._lowest_bit(i2) >= i1 - 1:
 
                 #########
                 j1, j2 = y1, y2
                 while j2 >= j1:
-                    if j2 - self.low_bit(j2) >= j1 - 1:
+                    if j2 - self._lowest_bit(j2) >= j1 - 1:
                         max_val = self.max(max_val, self.tree_ceil[i2][j2])
-                        j2 -= self.low_bit(j2)
+                        j2 -= self._lowest_bit(j2)
                     else:
                         max_val = self.max(max_val, self.a[i2][j2])
                         j2 -= 1
                 ##########
 
-                i2 -= self.low_bit(i2)
+                i2 -= self._lowest_bit(i2)
             else:
 
                 #########
                 j1, j2 = y1, y2
                 while j2 >= j1:
-                    if j2 - self.low_bit(j2) >= j1 - 1:
+                    if j2 - self._lowest_bit(j2) >= j1 - 1:
                         max_val = self.max(max_val, self.tree_ceil[i2][j2])
-                        j2 -= self.low_bit(j2)
+                        j2 -= self._lowest_bit(j2)
                     else:
                         max_val = self.max(max_val, self.a[i2][j2])
                         j2 -= 1
