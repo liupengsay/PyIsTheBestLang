@@ -1,53 +1,14 @@
-import math
-import random
-import unittest
-from functools import reduce
-from math import gcd
-from operator import add
-from itertools import accumulate
-from typing import List
-from operator import mul, add, xor, and_, or_
-from algorithm.src.fast_io import FastIO
+
 
 """
-Algorithm：
-Ability：
-Reference：
+算法：Prufer序列
+功能：Prufer 序列 (Prufer code)，这是一种将带标号的无根树用一个唯一的整数序列表示的方法，可以生成带标号无根树与prufer数列的一种双射关系。
+题目：
 
-===================================LeetCode===================================
-xx（xxx）xxxxxxxxxxxxxxxxxxxx
+===================================洛谷===================================
+P6086 【模板】Prufer 序列（https://www.luogu.com.cn/problem/P6086）Prufer 序列裸题
+P2817 宋荣子的城堡（https://www.luogu.com.cn/problem/P2817）Cayley公式计算方案数
 
-===================================Luogu=====================================
-xx（xxx）xxxxxxxxxxxxxxxxxxxx
-
-================================CodeForces===================================
-xx（xxx）xxxxxxxxxxxxxxxxxxxx
-
-=============================================================================
+参考：OI WiKi（https://oi-wiki.org/graph/prufer/）
 """
 
-
-class XXX:
-    def __init__(self):
-        return
-
-
-class Solution:
-    def __int__(self):
-        return
-
-    @staticmethod
-    def xx_xxxx(ac=FastIO()):
-        pass
-        return
-
-
-class TestGeneral(unittest.TestCase):
-
-    def test_xxxx(self):
-        pass
-        return
-
-
-if __name__ == '__main__':
-    unittest.main()

@@ -7,22 +7,6 @@ from queue import Queue
 from typing import List, Dict, Iterable
 
 
-"""
-算法：AC自动机
-功能：KMP加Trie的结合应用，用关键词建立字典树，再查询文本中关键词的出现次数
-题目：
-
-===================================力扣===================================
-面试题 17.17. 多次搜索（https://leetcode.cn/problems/multi-search-lcci/）AC自动机计数，也可直接使用字典树
-
-===================================洛谷===================================
-P3808 【模板】AC 自动机（简单版）（https://www.luogu.com.cn/problem/P3808）AC自动机计数
-P3796 【模板】AC自动机（加强版）（https://www.luogu.com.cn/problem/P3796）AC自动机计数
-P5357 【模板】AC自动机（二次加强版）（https://www.luogu.com.cn/problem/P5357）AC自动机计数
-
-参考：OI WiKi（xx）
-"""
-
 
 class AhoCorasick(object):
 
@@ -206,36 +190,3 @@ class AhoCorasickAutomation:
         return result, dct
 
 
-class Solution:
-    def __init__(self):
-        return
-
-    @staticmethod
-    def lc_1717(big: str, smalls: List[str]) -> List[List[int]]:
-        # 模板：AC自动机匹配关键词在文本中出现的位置信息
-        auto = AhoCorasick(smalls)
-        dct = auto.search_in(big)
-        return [dct.get(w, []) for w in smalls]
-
-
-class TestGeneral(unittest.TestCase):
-
-    def test_AhoCorasick(self):
-
-        keywords = ["i","is", "ssippi"]
-        auto = AhoCorasick(keywords)
-        text = "misissippi"
-        ans = auto.search_in(text)
-        assert ans == {"i": [1, 3, 6, 9], "is": [1, 3], "ssippi": [4]}
-
-        ac_tree = AhoCorasickAutomation()
-        ac_tree.build_trie_tree(["i", "is", "ssippi"])
-        ac_tree.build_ac_from_trie()
-        res, dct = ac_tree.ac_search("misissippi")
-        assert res == {"i": 4, "is": 2, "ssippi": 1}
-        assert dct == ans
-        return
-
-
-if __name__ == '__main__':
-    unittest.main()

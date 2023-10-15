@@ -1,53 +1,19 @@
-import math
-import random
-import unittest
-from functools import reduce
-from math import gcd
-from operator import add
-from itertools import accumulate
-from typing import List
-from operator import mul, add, xor, and_, or_
-from algorithm.src.fast_io import FastIO
-
 """
-Algorithm：
-Ability：
-Reference：
+算法：中国剩余定理、扩展中国剩余定理
+功能：求解取模方程组
+题目：
 
-===================================LeetCode===================================
-xx（xxx）xxxxxxxxxxxxxxxxxxxx
 
-===================================Luogu=====================================
-xx（xxx）xxxxxxxxxxxxxxxxxxxx
+===================================力扣===================================
 
-================================CodeForces===================================
-xx（xxx）xxxxxxxxxxxxxxxxxxxx
+===================================洛谷===================================
+p1495 【模板】中国剩余定理（CRT）/ 曹冲养猪（https://www.luogu.com.cn/problem/p1495）同余方程求解
+P4777 【模板】扩展中国剩余定理（EXCRT）（https://www.luogu.com.cn/problem/P4777）模数不互质的情况下的同余方程求解
+P3868 [TJOI2009] 猜数字（https://www.luogu.com.cn/problem/P3868）excrt求最小非负整数解，注意负数要先取余
 
-=============================================================================
+==================================AtCoder=================================
+
+================================CodeForces================================
+
+参考：OI WiKi（https://oi-wiki.org/math/number-theory/crt/）
 """
-
-
-class XXX:
-    def __init__(self):
-        return
-
-
-class Solution:
-    def __int__(self):
-        return
-
-    @staticmethod
-    def xx_xxxx(ac=FastIO()):
-        pass
-        return
-
-
-class TestGeneral(unittest.TestCase):
-
-    def test_xxxx(self):
-        pass
-        return
-
-
-if __name__ == '__main__':
-    unittest.main()

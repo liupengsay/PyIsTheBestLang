@@ -26,25 +26,6 @@ from decimal import Decimal
 import heapq
 import copy
 
-"""
-算法：中国剩余定理、扩展中国剩余定理
-功能：求解取模方程组
-题目：
-
-
-===================================力扣===================================
-
-===================================洛谷===================================
-p1495 【模板】中国剩余定理（CRT）/ 曹冲养猪（https://www.luogu.com.cn/problem/p1495）同余方程求解
-P4777 【模板】扩展中国剩余定理（EXCRT）（https://www.luogu.com.cn/problem/P4777）模数不互质的情况下的同余方程求解
-P3868 [TJOI2009] 猜数字（https://www.luogu.com.cn/problem/P3868）excrt求最小非负整数解，注意负数要先取余
-
-==================================AtCoder=================================
-
-================================CodeForces================================
-
-参考：OI WiKi（https://oi-wiki.org/math/number-theory/crt/）
-"""
 
 
 class CRT:
@@ -105,19 +86,3 @@ class ExtendCRT:
     def pipline(self, eq):
         return reduce(self.uni, eq)
 
-
-class TestGeneral(unittest.TestCase):
-
-    def test_crt(self):
-        pairs = [(3, 1), (5, 1), (7, 2)]
-        crt = CRT()
-        assert crt.chinese_remainder(pairs) == 16
-
-        excrt = ExtendCRT()
-        pairs = [(6, 11), (9, 25), (17, 33)]
-        assert excrt.pipline(pairs)[0] == 809
-        return
-
-
-if __name__ == '__main__':
-    unittest.main()

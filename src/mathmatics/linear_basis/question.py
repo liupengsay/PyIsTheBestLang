@@ -1,53 +1,32 @@
-import math
-import random
+
 import unittest
+
 from functools import reduce
-from math import gcd
-from operator import add
-from itertools import accumulate
-from typing import List
-from operator import mul, add, xor, and_, or_
-from algorithm.src.fast_io import FastIO
+from operator import xor
+
+from src.fast_io import FastIO
 
 """
-Algorithm：
-Ability：
-Reference：
+算法：线性基也叫Hamel基
+功能：求解数组的异或和、排第K的异或和、以及异或和排第几、更新线性基即原始数组等
 
-===================================LeetCode===================================
-xx（xxx）xxxxxxxxxxxxxxxxxxxx
+题目：
+===================================洛谷===================================
+P3812 【模板】线性基（https://www.luogu.com.cn/problem/P3812）
 
-===================================Luogu=====================================
-xx（xxx）xxxxxxxxxxxxxxxxxxxx
-
-================================CodeForces===================================
-xx（xxx）xxxxxxxxxxxxxxxxxxxx
-
-=============================================================================
+参考：https://oi-wiki.org/math/linear-algebra/basis/
 """
-
-
-class XXX:
-    def __init__(self):
-        return
 
 
 class Solution:
-    def __int__(self):
+    def __init__(self):
         return
 
     @staticmethod
-    def xx_xxxx(ac=FastIO()):
-        pass
+    def lg_p3812(ac=FastIO()):
+        # 模板：线性基查询数组取任何子集得到的 xor 最大值
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        lb = LinearBasis(nums)
+        ac.st(lb.query_max())
         return
-
-
-class TestGeneral(unittest.TestCase):
-
-    def test_xxxx(self):
-        pass
-        return
-
-
-if __name__ == '__main__':
-    unittest.main()
