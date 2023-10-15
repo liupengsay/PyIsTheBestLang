@@ -12,7 +12,7 @@ from src.fast_io import FastIO
 
 
 """
-算法：背包DP、分组背包、一维（无限有限）背包、二维背包、多重背包、分组背包、限制背包、填表法（过去状态预测未来状态）、刷表法（当前状态预测未来状态）
+算法：背包DP、分组背包、一维（无限有限）背包、二维背包、多重背包、分组背包、限制背包、填表法（过去状态预测未来状态）、刷表法（当前状态预测未来状态）、可撤销背包
 功能：一重背包DP，数量有限从后往前遍历，数量无限则从前往后遍历；多重背包DP，可使用二进制优化进行拆分
 题目：
 
@@ -27,6 +27,7 @@ from src.fast_io import FastIO
 2742. 给墙壁刷油漆（https://leetcode.cn/problems/painting-the-walls/description/）经典剪枝DP，可以转换为01背包求解
 2518. 好分区的数目（https://leetcode.cn/problems/number-of-great-partitions/）经典01背包计数
 1155. 掷骰子等于目标和的方法数（https://leetcode.cn/problems/number-of-dice-rolls-with-target-sum/description/）类似分组背包，可使用线性刷表法与填表法
+100029. 和带限制的子多重集合的数目（https://leetcode.cn/problems/count-of-sub-multisets-with-bounded-sum/description/）按照单调队列的思想进行取模分组DP，使用前缀和优化，也有容斥的思想
 
 ===================================洛谷===================================
 P1048 采药（https://www.luogu.com.cn/problem/P1048）一维背包DP，数量有限，从后往前遍历
@@ -1364,6 +1365,29 @@ class Solution:
                 ans = cur
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_100029(self, nums: List[int], l: int, r: int) -> int:
+        # 模板：按照单调队列的思想进行取模分组DP，使用前缀和优化，也有容斥的思想
+        cnt = Counter(nums)
+        mod = 10 ** 9 + 7
+        dp = [0] * (r + 1)
+        dp[0] = 1
+        for num in cnt:
+            if num:
+                c = cnt[num]
+                for i in range(num):
+                    pre = [0]
+                    x = 0
+                    for j in range(i, r + 1, num):
+                        val = pre[-1] + dp[j]
+                        dp[j] += pre[x]
+                        if x-c >= 0:
+                            dp[j] -= pre[x-c]
+                        dp[j] %= mod
+                        pre.append(val % mod)
+                        x += 1
+        return sum(dp[l:]) * (cnt[0] + 1) % mod
 
     @staticmethod
     def lc_1049(stones: List[int]) -> int:
