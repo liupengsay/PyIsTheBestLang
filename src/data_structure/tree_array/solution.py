@@ -1,13 +1,13 @@
+import math
 import random
 import unittest
-from collections import deque, defaultdict
-from math import inf
+from functools import reduce
+from math import gcd
+from operator import add
+from itertools import accumulate
 from typing import List
-
-from sortedcontainers import SortedList
-
-from src.data_structure.sorted_list import LocalSortedList
-from src.fast_io import FastIO
+from operator import mul, add, xor, and_, or_
+from algorithm.src.fast_io import FastIO
 
 """
 算法：树状数组、二维树状数组
@@ -46,6 +46,7 @@ P6225 [eJOI2019] 异或橙子（https://www.luogu.com.cn/problem/P6225）经典�
 ================================AtCoder================================
 D - Islands War（https://atcoder.jp/contests/abc103/tasks/abc103_d）经典贪心加树状数组
 F - Absolute Minima （https://atcoder.jp/contests/abc127/tasks/abc127_f）经典离散化与两个树状数组进行加和与计数
+Vertex Add Subtree Sum（https://judge.yosupo.jp/problem/vertex_add_subtree_sum）use tree array and dfs order
 
 ================================CodeForces================================
 F. Range Update Point Query（https://codeforces.com/problemset/problem/1791/F）树状数组维护区间操作数与查询单点值
@@ -60,446 +61,32 @@ F. Moving Points（https://codeforces.com/contest/1311/problem/F）经典两个�
 """
 
 
-class PointAddPreRangeSum:
-    # 模板：树状数组 单点增减 查询前缀和与区间和
-    def __init__(self, n: int) -> None:
-        # 索引从 1 到 n
-        self.n = n
-        self.t = [0] * (self.n + 1)  # 默认nums=[0]*n
-        # 树状数组中每个位置保存的是其向前 low_bit 的区间和
-        return
-
-    def build(self, nums: List[int]) -> None:
-        # 索引从 1 开始使用数组初始化树状数组
-        assert len(nums) == self.n
-        pre = [0]*(self.n+1)
-        for i in range(self.n):
-            pre[i+1] = pre[i] + nums[i]
-            self.t[i+1] = pre[i+1] - pre[i+1-self.lowest_bit(i+1)]
-        return
-
-    def point_add(self, i: int, mi: int) -> None:
-        # 索引从 1 开始，索引 i 的值增加 mi 且 mi 可正可负
-        assert 1 <= i <= self.n
-        while i < len(self.t):
-            self.t[i] += mi
-            i += self.lowest_bit(i)
-        return
-
-    def get(self) -> List[int]:
-        # 索引从 1 开始使用数组初始化树状数组
-        nums = [self.pre_sum(i) for i in range(1, self.n+1)]
-        for i in range(self.n-1, 0, -1):
-            nums[i] -= nums[i-1]
-        return nums
-
-    @staticmethod
-    def lowest_bit(i: int) -> int:
-        # 经典 low_bit 即最后一位二进制为 1 所表示的数
-        return i & (-i)
-
-    def pre_sum(self, i: int) -> int:
-        # 索引从 1 开始，查询 1 到 i 的前缀区间和
-        assert 1 <= i <= self.n
-        mi = 0
-        while i:
-            mi += self.t[i]
-            i -= self.lowest_bit(i)
-        return mi
-
-    def range_sum(self, x: int, y: int) -> int:
-        # 索引从 1 开始，查询 x 到 y 的值
-        assert 1 <= x <= y <= self.n
-        res = self.pre_sum(y) - self.pre_sum(x-1) if x > 1 else self.pre_sum(y)
-        return res
-
-
-class TreeArrayRangeSum:
-    # 模板：树状数组 区间增减 查询前缀和与区间和
-    def __init__(self, n: int) -> None:
-        self.n = n
-        # 索引从 1 开始
-        self.t1 = [0] * (n + 1)
-        self.t2 = [0] * (n + 1)
-        return
-
-    def build(self, nums: List[int]) -> None:
-        # 索引从 1 开始使用数组初始化树状数组
-        n = len(nums)
-        for i in range(n):
-            self.update_range(i+1, i+1, nums[i])
-        return
-
-    @staticmethod
-    def lowest_bit(x: int) -> int:
-        # 经典 low_bit 即最后一位二进制为 1 所表示的数
-        return x & (-x)
-
-    # 更新单点的差分数值
-    def _add(self, k: int, v: int) -> None:
-        # 索引从 1 开始将第 k 个数加 v 且 v 可正可负
-        v1 = k * v
-        while k <= self.n:
-            self.t1[k] = self.t1[k] + v
-            self.t2[k] = self.t2[k] + v1
-            k = k + self.lowest_bit(k)
-        return
-
-    # 求差分数组的前缀和
-    def _sum(self, t: List[int], k: int) -> int:
-        # 索引从 1 开始求前 k 个数的前缀和
-        ret = 0
-        while k:
-            ret = ret + t[k]
-            k = k - self.lowest_bit(k)
-        return ret
-
-    # 更新差分的区间数值
-    def update_range(self, left: int, right: int, v: int) -> None:
-        # 索引从 1 开始将区间 [left, right] 的数增加 v 且 v 可正可负
-        self._add(left, v)
-        self._add(right + 1, -v)
-        return
-
-    # 求数组的前缀区间和
-    def get_sum_range(self, left: int, right: int) -> int:
-        # 索引从 1 开始查询区间 [left, right] 的和
-        a = (right + 1) * self._sum(self.t1, right) - self._sum(self.t2, right)
-        b = left * self._sum(self.t1, left - 1) - self._sum(self.t2, left - 1)
-        return a - b
-
-
-class TreeArrayRangeQuerySumXOR:
-    # 模板：树状数组 单点增减 查询前缀异或和与区间异或和
-    def __init__(self, n: int) -> None:
-        # 索引从 1 到 n
-        self.t = [0] * (n + 1)
-        # 树状数组中每个位置保存的是其向前 low_bit 的区间异或和
-        return
-
-    def build(self, nums: List[int]) -> None:
-        # 索引从 1 开始使用数组初始化树状数组
-        n = len(nums)
-        pre = [0] * (n + 1)
-        for i in range(n):
-            pre[i + 1] = pre[i] ^ nums[i]
-            self.t[i + 1] = pre[i + 1] ^ pre[i + 1 - self.lowest_bit(i + 1)]
-        return
-
-    @staticmethod
-    def lowest_bit(i: int) -> int:
-        # 经典 low_bit 即最后一位二进制为 1 所表示的数
-        return i & (-i)
-
-    def query(self, i: int) -> int:
-        # 索引从 1 开始，查询 1 到 i 的前缀区间和
-        mi = 0
-        while i:
-            mi ^= self.t[i]
-            i -= self.lowest_bit(i)
-        return mi
-
-    def query_range(self, x: int, y: int) -> int:
-        # 索引从 1 开始，查询 x 到 y 的值
-        return self.query(y) ^ self.query(x - 1)
-
-    def update(self, i: int, mi: int) -> None:
-        # 索引从 1 开始，索引 i 的值异或增加 mi 且 mi 可正可负
-        while i < len(self.t):
-            self.t[i] ^= mi
-            i += self.lowest_bit(i)
-        return
-
-
-class TreeArrayRangeQueryPointUpdateMax:
-    # 模板：树状数组 单点增加 前缀区间查询 最大值
-    def __init__(self, n):
-        # 索引从 1 到 n
-        self.t = [0] * (n + 1)
-
-    @staticmethod
-    def lowest_bit(i):
-        return i & (-i)
-
-    def query(self, i):
-        mx = 0
-        while i:
-            mx = mx if mx > self.t[i] else self.t[i]
-            i -= self.lowest_bit(i)
-        return mx
-
-    def update(self, i, mx):
-        while i < len(self.t):
-            self.t[i] = self.t[i] if self.t[i] > mx else mx
-            i += self.lowest_bit(i)
-        return
-
-
-class TreeArrayRangeQueryPointUpdateMin:
-    # 模板：树状数组 单点减少 前缀区间查询最小值
-    def __init__(self, n):
-        # 索引从 1 到 n
-        self.inf = inf
-        self.t = [self.inf] * (n + 1)
-
-    @staticmethod
-    def lowest_bit(i):
-        return i & (-i)
-
-    def query(self, i):
-        mi = self.inf
-        while i:
-            mi = mi if mi < self.t[i] else self.t[i]
-            i -= self.lowest_bit(i)
-        return mi
-
-    def update(self, i, mi):
-        while i < len(self.t):
-            self.t[i] = self.t[i] if self.t[i] < mi else mi
-            i += self.lowest_bit(i)
-        return
-
-
-class TreeArrayPointUpdateRangeMaxMin:
-
-    # 模板：树状数组 单点增加 区间查询最大值 单点减少 区间查询最小值
-    def __init__(self, n: int) -> None:
-        self.n = n
-        # 原始数组
-        self.a = [0] * (n + 1)  # 如果是求最小值设置为 [inf]*(n+1) 最大值设置为[-inf]*(n+1)
-        self.tree_ceil = [-inf] * (n + 1)  # 初始化也可以设置为[0]*(n+1)
-        self.tree_floor = [inf] * (n + 1)  # 初始化也可以设置为[0]*(n+1)
-        return
-
-    @staticmethod
-    def low_bit(x):
-        return x & -x
-
-    @staticmethod
-    def max(a, b):
-        return a if a > b else b
-
-    @staticmethod
-    def min(a, b):
-        return a if a < b else b
-
-    def add(self, x, k):
-        # 索引从1开始，更新最大值与最小值
-        self.a[x] = k
-        while x <= self.n:
-            self.tree_ceil[x] = self.max(self.tree_ceil[x], k)
-            self.tree_floor[x] = self.min(self.tree_floor[x], k)
-            x += self.low_bit(x)
-        return
-
-    def add_max(self, x, k):
-        # 索引从1开始，单点更新最大值
-        if self.a[x] >= k:
-            return
-        self.a[x] = k
-        while x <= self.n:
-            self.tree_ceil[x] = self.max(self.tree_ceil[x], k)
-            self.tree_floor[x] = self.min(self.tree_floor[x], k)
-            x += self.low_bit(x)
-        return
-
-    def add_min(self, x, k):
-        # 索引从1开始，单点更新最小值
-        if self.a[x] <= k:
-            return
-        self.a[x] = k
-        while x <= self.n:
-            self.tree_ceil[x] = self.max(self.tree_ceil[x], k)
-            self.tree_floor[x] = self.min(self.tree_floor[x], k)
-            x += self.low_bit(x)
-        return
-
-    def find_max(self, left, r):
-        # 索引从1开始
-        max_val = float('-inf')
-        while r >= left:
-            if r - self.low_bit(r) >= left - 1:
-                max_val = self.max(max_val, self.tree_ceil[r])
-                r -= self.low_bit(r)
-            else:
-                max_val = self.max(max_val, self.a[r])
-                r -= 1
-        return max_val
-
-    def find_min(self, left, r):
-        # 索引从1开始
-        min_val = float('inf')
-        while r >= left:
-            if r - self.low_bit(r) >= left - 1:
-                min_val = self.min(min_val, self.tree_floor[r])
-                r -= self.low_bit(r)
-            else:
-                min_val = self.min(min_val, self.a[r])
-                r -= 1
-        return min_val
-
-
-class TreeArray2D:
-    def __init__(self, m: int, n: int) -> None:
-        # 模板：二维树状数组 单点增减 区间和查询
-        self.m = m  # 行数
-        self.n = n  # 列数
-        self.tree = [[0] * (n + 1) for _ in range(m + 1)]  # 初始化树状数组
-        return
-
-    def add(self, x: int, y: int, val: int) -> None:
-        # 索引从 1 开始， 单点增加 val 到二维数组中坐标为 [x, y] 的值且 val 可正可负
-        i = x
-        while i <= self.m:
-            j = y
-            while j <= self.n:
-                self.tree[i][j] += val
-                j += (j & -j)
-            i += (i & -i)
-        return
-
-    def _query(self, x: int, y: int) -> int:
-        # 索引从 1 开始， 查询二维数组中 [1, 1] 到 [x, y] 的前缀和
-        res = 0
-        i = x
-        while i > 0:
-            j = y
-            while j > 0:
-                res += self.tree[i][j]
-                j -= (j & -j)
-            i -= (i & -i)
-        return res
-
-    def range_query(self, x1: int, y1: int, x2: int, y2: int) -> int:
-        # 索引从 1 开始， 查询二维数组中 [x1, y1] 到 [x2, y2] 的区间和
-        return self._query(x2, y2) - self._query(x2, y1 - 1) - self._query(x1 - 1, y2) + self._query(x1 - 1, y1 - 1)
-
-
-class TreeArray2DRange:
-    def __init__(self, m: int, n: int) -> None:
-        # 模板：二维树状数组 区间增减 区间和查询
-        self.m = m  # 行数
-        self.n = n  # 列数
-        self.m = m
-        self.n = n
-        self.t1 = [[0] * (n + 1) for _ in range(m + 1)]  # 初始化树状数组
-        self.t2 = [[0] * (n + 1) for _ in range(m + 1)]  # 初始化树状数组
-        self.t3 = [[0] * (n + 1) for _ in range(m + 1)]  # 初始化树状数组
-        self.t4 = [[0] * (n + 1) for _ in range(m + 1)]  # 初始化树状数组
-        return 
-
-    def _add(self, x: int, y: int, val: int) -> None:
-        # 索引从 1 开始， 单点增加 val 到二维数组中坐标为 [x, y] 的差分数组值且 val 可正可负
-        i = x
-        while i <= self.m:
-            j = y
-            while j <= self.n:
-                self.t1[i][j] += val
-                self.t2[i][j] += val * x
-                self.t3[i][j] += val * y
-                self.t4[i][j] += val * x * y
-                j += (j & -j)
-            i += (i & -i)
-        return
-
-    def range_add(self, x1: int, y1: int, x2: int, y2: int, val: int) -> None:
-        # 索引从 1 开始， 区间增加 val 到二维数组中坐标为左上角 [x1, y1] 到右下角的 [x2, y2] 且 val 可正可负
-        self._add(x1, y1, val)
-        self._add(x1, y2+1, -val)
-        self._add(x2+1, y1, -val)
-        self._add(x2+1, y2+1, val)
-        return
-    
-    def _query(self, x: int, y: int) -> int:
-        # 索引从 1 开始， 查询二维数组中 [1, 1] 到 [x, y] 的前缀和
-        res = 0
-        i = x
-        while i:
-            j = y
-            while j:
-                res += (x + 1) * (y + 1) * self.t1[i][j] - (y + 1) * self.t2[i][j] - (x + 1) * self.t3[i][j] + self.t4[i][j]
-                j -= (j & -j)
-            i -= (i & -i)
-        return res
-
-    def range_query(self, x1: int, y1: int, x2: int, y2: int) -> int:
-        # 索引从 1 开始， 查询二维数组中 [x1, y1] 到 [x2, y2] 的区间和
-        return self._query(x2, y2) - self._query(x2, y1-1) - self._query(x1-1, y2) + self._query(x1-1, y1-1)
-
-
-class TreeArray2DRangeMaxMin:
-    # 模板：树状数组 单点增加区间查询最大值 单点减少区间查询最小值（暂未调通）
-    def __init__(self, m: int, n: int) -> None:
-        self.m = m
-        self.n = n
-        self.a = [[0] * (n + 1) for _ in range(m + 1)]
-        self.tree_ceil = [[0] * (n + 1) for _ in range(m + 1)]  # 最大值只能持续增加
-        self.tree_floor = [[float('inf')] * (n + 1) for _ in range(m + 1)]  # 最小值只能持续减少
-        return
-
-    @staticmethod
-    def low_bit(x):
-        return x & -x
-
-    @staticmethod
-    def max(a, b):
-        return a if a > b else b
-
-    @staticmethod
-    def min(a, b):
-        return a if a < b else b
-
-    def add(self, x, y, k):
-        # 索引从1开始
-        self.a[x][y] = k
-        i = x
-        while i <= self.m:
-            j = y
-            while j <= self.n:
-                self.tree_ceil[i][j] = self.max(self.tree_ceil[i][j], k)
-                self.tree_floor[i][j] = self.min(self.tree_floor[i][j], k)
-                j += self.low_bit(j)
-            i += self.low_bit(i)
-        return
-
-    def find_max(self, x1, y1, x2, y2):
-        # 索引从1开始
-        max_val = float('-inf')
-        i1, i2 = x1, x2
-        while i2 >= i1:
-            if i2 - self.low_bit(i2) >= i1 - 1:
-
-                #########
-                j1, j2 = y1, y2
-                while j2 >= j1:
-                    if j2 - self.low_bit(j2) >= j1 - 1:
-                        max_val = self.max(max_val, self.tree_ceil[i2][j2])
-                        j2 -= self.low_bit(j2)
-                    else:
-                        max_val = self.max(max_val, self.a[i2][j2])
-                        j2 -= 1
-                ##########
-
-                i2 -= self.low_bit(i2)
-            else:
-
-                #########
-                j1, j2 = y1, y2
-                while j2 >= j1:
-                    if j2 - self.low_bit(j2) >= j1 - 1:
-                        max_val = self.max(max_val, self.tree_ceil[i2][j2])
-                        j2 -= self.low_bit(j2)
-                    else:
-                        max_val = self.max(max_val, self.a[i2][j2])
-                        j2 -= 1
-                ##########
-                max_val = self.max(max_val, max(self.a[i2][y1:y2+1]))
-                i2 -= 1
-        return max_val
-
-
 class Solution:
     def __init__(self):
+        return
+
+    @staticmethod
+    def lib_c(ac=FastIO()):
+        """template of vertex add subtree sum"""
+        n, q = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        p = ac.read_list_ints()
+        for i in range(n-1):
+            dct[p[i]].append(i+1)
+        dfs_euler = DfsEulerOrder(dct)
+        tree = PointAddRangeSum(n)
+        tree.build([nums[i] for i in dfs_euler.order_to_node])
+        for _ in range(q):
+            lst = ac.read_list_ints()
+            if lst[0]:
+                u = lst[1]
+                x, y = dfs_euler.start[u], dfs_euler.end[u]
+                ac.st(tree.range_sum(x+1, y+1))
+            else:
+                u, x = lst[1:]
+                ind = dfs_euler.start[u]
+                tree.point_add(ind+1, x)
         return
 
     @staticmethod
@@ -511,8 +98,8 @@ class Solution:
 
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort(key=lambda y: y[0])
-        tree_sum = PointAddPreRangeSum(m)
-        tree_cnt = PointAddPreRangeSum(m)
+        tree_sum = PointAddRangeSum(m)
+        tree_cnt = PointAddRangeSum(m)
         total_cnt = 0
         total_sum = 0
         ans = 0
@@ -566,8 +153,8 @@ class Solution:
         v = ac.read_list_ints()
         dct = {w: i for i, w in enumerate(sorted(set(v)))}
         m = len(dct)
-        tree_cnt = PointAddPreRangeSum(m)
-        tree_tot = PointAddPreRangeSum(m)
+        tree_cnt = PointAddRangeSum(m)
+        tree_tot = PointAddRangeSum(m)
         ans = 0
         for i in ind:
             cur_v = v[i]
@@ -587,7 +174,7 @@ class Solution:
             a = ac.read_list_ints()
             ceil = max(a)
             ans = 0
-            tree = PointAddPreRangeSum(ceil)
+            tree = PointAddRangeSum(ceil)
             x = 0
             for num in a:
                 ans += x - tree.pre_sum(num-1)
@@ -601,14 +188,14 @@ class Solution:
         # 模板：树状数组单点更新与区间和查询
         n = ac.read_int()
         w = ac.read_int()
-        tree = TreeArrayRangeSum(n)
+        tree = RangeAddRangeSum(n)
         for _ in range(w):
             lst = ac.read_list_strs()
             a, b = int(lst[1]), int(lst[2])
             if lst[0] == "x":
-                tree.update_range(a, a, b)
+                tree.range_add(a, a, b)
             else:
-                ac.st(tree.get_sum_range(a, b))
+                ac.st(tree.range_sum(a, b))
         return
 
     @staticmethod
@@ -641,7 +228,7 @@ class Solution:
     def lg_p3374(ac=FastIO()):
         # 模板：树状数组 单点增减 查询前缀和与区间和
         n, m = ac.read_ints()
-        tree = PointAddPreRangeSum(n)
+        tree = PointAddRangeSum(n)
         tree.build(ac.read_list_ints())
         for _ in range(m):
             op, x, y = ac.read_ints()
@@ -655,15 +242,15 @@ class Solution:
     def lg_p3368(ac=FastIO()):
         # 模板：树状数组 区间增减 查询前缀和与区间和
         n, m = ac.read_ints()
-        tree = TreeArrayRangeSum(n)
+        tree = RangeAddRangeSum(n)
         tree.build(ac.read_list_ints())
         for _ in range(m):
             lst = ac.read_list_ints()
             if len(lst) == 2:
-                ac.st(tree.get_sum_range(lst[1], lst[1]))
+                ac.st(tree.range_sum(lst[1], lst[1]))
             else:
                 x, y, k = lst[1:]
-                tree.update_range(x, y, k)
+                tree.range_add(x, y, k)
         return
 
     @staticmethod
@@ -673,7 +260,7 @@ class Solution:
         nums = ac.read_list_ints()
         ind = list(range(n))
         ind.sort(key=lambda x: nums[x])
-        tree = PointAddPreRangeSum(n)
+        tree = PointAddRangeSum(n)
         ans = i = cnt = 0
         while i < n:
             val = nums[ind[i]]
@@ -763,8 +350,8 @@ class Solution:
         ind = {num: i for i, num in enumerate(value)}
         length = len(ind)
 
-        tree_cnt = PointAddPreRangeSum(length)
-        tree_sum = PointAddPreRangeSum(length)
+        tree_cnt = PointAddRangeSum(length)
+        tree_sum = PointAddRangeSum(length)
         nums = [0]*n
         total_s = 0
         total_c = 0
@@ -817,9 +404,9 @@ class Solution:
 
         n, m = ac.read_ints()
         nums = ac.read_list_ints()
-        tree1 = PointAddPreRangeSum(n)
+        tree1 = PointAddRangeSum(n)
         tree1.build(nums)
-        tree2 = PointAddPreRangeSum(n)
+        tree2 = PointAddRangeSum(n)
         tree2.build([nums[i] * (i + 1) for i in range(n)])
         for _ in range(m):
             lst = ac.read_list_strs()
@@ -842,7 +429,7 @@ class Solution:
         lst = sorted(list(set(nums)))
         ind = {num: i + 1 for i, num in enumerate(lst)}
         m = len(ind)
-        tree = PointAddPreRangeSum(m)
+        tree = PointAddRangeSum(m)
         ans = 0
         for i in range(n - 1, -1, -1):
             left = i + 1
@@ -900,7 +487,7 @@ class Solution:
         dct = defaultdict(deque)
         for i in range(n):
             dct[lst[i]].append(i)
-        tree = PointAddPreRangeSum(n)
+        tree = PointAddRangeSum(n)
         i, j = 0, n - 1
         while i < j:
             if lst[i] == "":
@@ -981,7 +568,7 @@ class Solution:
         ans = 0
         pre = 1
         dct = {num: i + 1 for i, num in enumerate(nums)}
-        tree = PointAddPreRangeSum(n)
+        tree = PointAddRangeSum(n)
         for num in sorted(nums):
             i = dct[num]
             if pre <= i:
@@ -1005,8 +592,8 @@ class Solution:
         ind = {num: i for i, num in enumerate(nodes)}
         n = len(ind)
         ans = 0
-        tree_sum = PointAddPreRangeSum(n)
-        tree_cnt = PointAddPreRangeSum(n)
+        tree_sum = PointAddRangeSum(n)
+        tree_cnt = PointAddRangeSum(n)
         pre = LocalSortedList()
         for lst in queries:
             if lst[0] == 1:
@@ -1069,7 +656,7 @@ class Solution:
         for i, d in enumerate(num):
             dct[d].append(i)
         # 使用树状数组模拟交换过程
-        tree = PointAddPreRangeSum(n)
+        tree = PointAddRangeSum(n)
         ans = ""
         for i in range(n):
             # 添加第 i 个数字
@@ -1115,159 +702,13 @@ class Solution:
         return ans
 
 
+
 class TestGeneral(unittest.TestCase):
 
-    def test_point_add_range_sum(self):
-
-        for _ in range(10):
-            ceil = random.randint(10, 1000)
-            nums = [random.randint(-ceil, ceil) for _ in range(ceil)]
-            tree_array = PointAddPreRangeSum(ceil)
-            tree_array.build(nums)
-            for _ in range(ceil):
-                d = random.randint(-ceil, ceil)
-                i = random.randint(0, ceil - 1)
-                nums[i] += d
-                tree_array.point_add(i + 1, d)
-
-                left = random.randint(0, ceil - 1)
-                right = random.randint(left, ceil - 1)
-                assert sum(nums[left: right + 1]) == tree_array.range_sum(left + 1, right + 1)
-                assert nums == tree_array.get()
+    def test_xxxx(self):
+        pass
         return
 
-    def test_tree_array_range_sum(self):
 
-        ceil = 1000
-        nums = [random.randint(0, ceil) for _ in range(ceil)]
-        tars = TreeArrayRangeSum(ceil)
-        pm = TreeArrayRangeQueryPointUpdateMin(ceil)
-        pm_max = TreeArrayRangeQueryPointUpdateMax(ceil)
-        for i in range(ceil):
-            tars.update_range(i + 1, i + 1, nums[i])
-            pm.update(i+1, nums[i])
-            pm_max.update(i+1, nums[i])
-            assert pm.query(i + 1) == min(nums[:i + 1])
-            assert pm_max.query(i+1) == max(nums[:i+1])
-
-        for _ in range(ceil):
-            d = random.randint(-ceil, ceil)
-            i = random.randint(0, ceil - 1)
-            nums[i] += d
-            tars.update_range(i + 1, i + 1, d)
-
-            left = random.randint(0, ceil - 1)
-            right = random.randint(left, ceil - 1)
-            assert sum(nums[left: right + 1]) == tars.get_sum_range(left + 1, right + 1)
-
-    def test_tree_array_range_max_min(self):
-
-        # 只能持续增加值查询最大值
-        ceil = 1000
-        nums = [random.randint(0, ceil) for _ in range(ceil)]
-        tree = TreeArrayPointUpdateRangeMaxMin(ceil)
-        for i in range(ceil):
-            tree.add(i+1, nums[i])
-        for _ in range(ceil):
-            d = random.randint(0, ceil)
-            i = random.randint(0, ceil - 1)
-            nums[i] += d
-            tree.add(i + 1, tree.a[i+1]+d)
-            left = random.randint(0, ceil - 1)
-            right = random.randint(left, ceil - 1)
-            assert max(nums[left: right + 1]) == tree.find_max(left + 1, right + 1)
-
-        # 只能持续减少值查询最小值
-        ceil = 1000
-        nums = [random.randint(0, ceil) for _ in range(ceil)]
-        tree = TreeArrayPointUpdateRangeMaxMin(ceil)
-        for i in range(ceil):
-            tree.add(i+1, nums[i])
-
-        for _ in range(ceil):
-            d = random.randint(0, ceil)
-            i = random.randint(0, ceil - 1)
-            nums[i] -= d
-            tree.add(i + 1, tree.a[i + 1] - d)
-            left = random.randint(0, ceil - 1)
-            right = random.randint(left, ceil - 1)
-            assert min(nums[left: right + 1]) == tree.find_min(left + 1, right + 1)
-
-    def test_tree_array_2d_sum(self):
-
-        # 二维树状数组，单点增减，区间查询
-        m = n = 100
-        high = 100000
-        tree = TreeArray2D(m, n)
-        grid = [[random.randint(-high, high) for _ in range(n)] for _ in range(m)]
-        for i in range(m):
-            for j in range(n):
-                tree.add(i+1, j+1, grid[i][j])
-        for _ in range(m):
-            row = random.randint(0, m-1)
-            col = random.randint(0, n-1)
-            x = random.randint(-high, high)
-            grid[row][col] += x
-            tree.add(row + 1, col + 1, x)
-            x1 = random.randint(0, m-1)
-            y1 = random.randint(0, n-1)
-            x2 = random.randint(x1, m-1)
-            y2 = random.randint(y1, n-1)
-            assert tree.range_query(x1+1, y1+1, x2+1, y2+1) == sum(sum(g[y1:y2+1]) for g in grid[x1:x2+1])
-
-        # 二维树状数组，区间增减，区间查询
-        m = n = 100
-        high = 100000
-        tree = TreeArray2DRange(m, n)
-        grid = [[random.randint(-high, high) for _ in range(n)] for _ in range(m)]
-        for i in range(m):
-            for j in range(n):
-                tree.range_add(i + 1, j + 1, i+1, j+1, grid[i][j])
-        for _ in range(m):
-            x1 = random.randint(0, m - 1)
-            y1 = random.randint(0, n - 1)
-            x2 = random.randint(x1, m - 1)
-            y2 = random.randint(y1, n - 1)
-            x = random.randint(-high, high)
-            for i in range(x1, x2+1):
-                for j in range(y1, y2+1):
-                    grid[i][j] += x
-
-            tree.range_add(x1 + 1, y1 + 1, x2 + 1, y2 + 1, x)
-            x1 = random.randint(0, m - 1)
-            y1 = random.randint(0, n - 1)
-            x2 = random.randint(x1, m - 1)
-            y2 = random.randint(y1, n - 1)
-            assert tree.range_query(x1 + 1, y1 + 1, x2 + 1, y2 + 1) == sum(
-                sum(g[y1:y2 + 1]) for g in grid[x1:x2 + 1])
-
-    def test_tree_array_2d_max_min(self):
-
-        # 二维树状数组，单点增减，区间查询
-        random.seed(2023)
-        m = n = 100
-        high = 100000
-        tree = TreeArray2DRangeMaxMin(m, n)
-        grid = [[random.randint(0, high) for _ in range(n)] for _ in range(m)]
-        for i in range(m):
-            for j in range(n):
-                tree.add(i + 1, j + 1, grid[i][j])
-        for _ in range(m):
-            row = random.randint(0, m - 1)
-            col = random.randint(0, n - 1)
-            x = random.randint(0, high)
-            grid[row][col] += x
-            tree.add(row + 1, col + 1, grid[row][col])
-            x1 = random.randint(0, m - 1)
-            y1 = random.randint(0, n - 1)
-            x2 = random.randint(x1, m - 1)
-            y2 = random.randint(y1, n - 1)
-            ans1 = tree.find_max(x1 + 1, y1 + 1, x2 + 1, y2 + 1)
-            ans2 = max(max(g[y1:y2 + 1]) for g in grid[x1:x2 + 1])
-            print(ans1, ans2)
-            assert ans1 == ans2
-        return 
-    
-    
 if __name__ == '__main__':
     unittest.main()

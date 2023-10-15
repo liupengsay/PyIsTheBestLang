@@ -29,6 +29,8 @@ from sortedcontainers import SortedList
 
 # sys.set_int_max_str_digits(0)  # 大数的范围坑
 
+from src.data_structure.tree_array.tree_array import PointAddRangeSum
+
 
 def ac_max(a, b):
     return a if a > b else b
