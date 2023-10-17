@@ -148,15 +148,39 @@ class RangeAscendRangeMax:
         return highest
 
 
-class SegmentTreeUpdateQueryMin:
-    # 模板：线段树区间更新、持续减小最小值
+class RangeDescendRangeMin:
+    # 模板：线段树区间更新、持续减少最小值
     def __init__(self, n):
-        self.height = [inf] * (4 * n)
-        self.lazy = [inf] * (4 * n)
         self.n = n
+        self.cover = [inf] * (4 * n)
+        self.lazy = [inf] * (4 * n)
 
-    def build(self, nums: List[int]):
+    @staticmethod
+    def _min(a, b):
+        return a if a < b else b
+
+    def _make_tag(self, i, val) -> None:
+        self.cover[i] = self._min(self.cover[i], val)
+        self.lazy[i] = self._min(self.lazy[i], val)
+        return
+
+    def _push_up(self, i):
+        self.cover[i] = self._min(self.cover[2 * i], self.cover[2 * i + 1])
+        return
+
+    def _push_down(self, i):
+        # 懒标记下放，注意取最大值
+        if self.lazy[i] != inf:
+            self.cover[2 * i] = self._min(self.cover[2 * i], self.lazy[i])
+            self.cover[2 * i + 1] = self._min(self.cover[2 * i + 1], self.lazy[i])
+            self.lazy[2 * i] = self._min(self.lazy[2 * i], self.lazy[i])
+            self.lazy[2 * i + 1] = self._min(self.lazy[2 * i + 1], self.lazy[i])
+            self.lazy[i] = inf
+        return
+
+    def build(self, nums: List[int]) -> None:
         # 使用数组初始化线段树
+        assert self.n == len(nums)
         stack = [[0, self.n - 1, 1]]
         while stack:
             s, t, ind = stack.pop()
@@ -176,11 +200,11 @@ class SegmentTreeUpdateQueryMin:
     def get(self):
         # 查询区间的所有值
         stack = [[0, self.n - 1, 1]]
-        nums = [inf] * self.n
+        nums = [0] * self.n
         while stack:
             s, t, i = stack.pop()
             if s == t:
-                nums[s] = self.height[i]
+                nums[s] = self.cover[i]
                 continue
             m = s + (t - s) // 2
             self._push_down(i)
@@ -188,45 +212,19 @@ class SegmentTreeUpdateQueryMin:
             stack.append([m + 1, t, 2 * i + 1])
         return nums
 
-    @staticmethod
-    def min(a, b):
-        return a if a < b else b
-
-    def _push_down(self, i):
-        # 懒标记下放，注意取最小值
-        if self.lazy[i] != inf:
-            self.height[2 * i] = self.min(self.height[2 * i], self.lazy[i])
-            self.height[2 * i + 1] = self.min(self.height[2 * i + 1], self.lazy[i])
-
-            self.lazy[2 * i] = self.min(self.lazy[2 * i], self.lazy[i])
-            self.lazy[2 * i + 1] = self.min(self.lazy[2 * i + 1], self.lazy[i])
-
-            self.lazy[i] = inf
-        return
-
-    def _make_tag(self, i, val):
-        self.height[i] = self.min(self.height[i], val)
-        self.lazy[i] = self.min(self.lazy[i], val)
-        return
-
-    def _push_up(self, i):
-        self.height[i] = self.min(self.height[2 * i], self.height[2 * i + 1])
-        return
-
-    def update_range(self, left, right, s, t, val, i):
-        # 更新区间最小值
-        stack = [[s, t, i]]
+    def range_descend(self, left, right, val):
+        # 更新区间最大值
+        stack = [[0, self.n - 1, 1]]
         while stack:
             a, b, i = stack.pop()
             if i >= 0:
                 if left <= a and b <= right:
                     self._make_tag(i, val)
                     continue
-
                 self._push_down(i)
                 stack.append([a, b, ~i])
                 m = a + (b - a) // 2
-                if left <= m:  # 注意左右子树的边界与范围
+                if left <= m:
                     stack.append([a, m, 2 * i])
                 if right > m:
                     stack.append([m + 1, b, 2 * i + 1])
@@ -235,32 +233,14 @@ class SegmentTreeUpdateQueryMin:
                 self._push_up(i)
         return
 
-    def update_point(self, left, right, s, t, val, i):
-        # 更新单点最小值
-        while True:
-            if left <= s and t <= right:
-                self._make_tag(i, val)
-                break
-            self._push_down(i)
-            m = s + (t - s) // 2
-            if left <= m:  # 注意左右子树的边界与范围
-                s, t, i = s, m, 2 * i
-            if right > m:
-                s, t, i = m + 1, t, 2 * i + 1
-
-        while i > 1:
-            i //= 2
-            self._push_up(i)
-        return
-
-    def query_range(self, left, right, s, t, i):
-        # 查询区间的最小值
-        stack = [[s, t, i]]
-        floor = inf
+    def range_min(self, left, right):
+        # 查询区间的最大值
+        stack = [[0, self.n - 1, 1]]
+        lowest = inf
         while stack:
             a, b, i = stack.pop()
             if left <= a and b <= right:
-                floor = self.min(floor, self.height[i])
+                lowest = self._min(lowest, self.cover[i])
                 continue
             self._push_down(i)
             m = a + (b - a) // 2
@@ -268,22 +248,7 @@ class SegmentTreeUpdateQueryMin:
                 stack.append([a, m, 2 * i])
             if right > m:
                 stack.append([m + 1, b, 2 * i + 1])
-        return floor
-
-    def query_point(self, left, right, s, t, i):
-        # 查询单点的最小值
-        a, b, i = s, t, i
-        while True:
-            if left <= a and b <= right:
-                ans = self.height[i]
-                break
-            self._push_down(i)
-            m = a + (b - a) // 2
-            if left <= m:
-                a, b, i = a, m, 2 * i
-            if right > m:
-                a, b, i = m + 1, b, 2 * i + 1
-        return ans
+        return lowest
 
 
 class SegmentTreeRangeUpdateQuerySumMinMax:

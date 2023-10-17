@@ -6,7 +6,7 @@ from typing import List
 from sortedcontainers import SortedList
 
 from basis.binary_search.template import BinarySearch
-from data_structure.segment_tree.template import RangeAscendRangeMax, SegmentTreeUpdateQueryMin, \
+from data_structure.segment_tree.template import RangeAscendRangeMax, RangeDescendRangeMin, \
     SegmentTreeRangeUpdateQuerySumMinMax, SegmentTreeRangeUpdateXORSum, SegmentTreeRangeUpdateChangeQueryMax, \
     SegmentTreeRangeUpdateMulQuerySum, SegmentTreeRangeSubConSum, SegmentTreeRangeXORQuery, \
     SegmentTreePointChangeLongCon, SegmentTreeRangeSqrtSum, SegmentTreeRangeAndOrXOR, SegmentTreeRangeChangeQueryOr, \
@@ -144,19 +144,19 @@ class Solution:
         # 模板：经典线段树加DP
         n, k = ac.read_list_ints()
         s = ac.read_str()
-        tree = SegmentTreeUpdateQueryMin(n)
+        tree = RangeDescendRangeMin(n)
         for i in range(n):
             if s[i] == "1":
                 left = ac.max(0, i - k)
                 right = ac.min(n - 1, i + k)
-                pre = tree.query_range(left - 1, i - 1, 0, n - 1, 1) if left else 0
+                pre = tree.range_min(left - 1, i - 1) if left else 0
                 cur = pre + i + 1
-                tree.update_range(i, right, 0, n - 1, cur, 1)
+                tree.range_descend(i, right, cur)
             else:
-                pre = tree.query_point(i - 1, i - 1, 0, n - 1, 1) if i else 0
+                pre = tree.range_min(i - 1, i - 1) if i else 0
                 cur = pre + i + 1
-                tree.update_point(i, i, 0, n - 1, cur, 1)
-        ac.st(tree.query_point(n - 1, n - 1, 0, n - 1, 1))
+                tree.range_descend(i, i, cur)
+        ac.st(tree.range_min(n - 1, n - 1))
         return
 
     @staticmethod
@@ -665,12 +665,12 @@ class Solution:
             nodes = sorted(list(nodes))
             ind = {node: i for i, node in enumerate(nodes)}
             k = len(ind)
-            tree = SegmentTreeUpdateQueryMin(k)
+            tree = RangeDescendRangeMin(k)
             for s, t, b in goods[i]:
-                tree.update_range(ind[s], ind[t], 0, k - 1, b, 1)
+                tree.range_descend(ind[s], ind[t], b)
             res = []
             for x in range(k):
-                val = tree.query_point(x, x, 0, k - 1, 1)
+                val = tree.range_min(x, x)
                 if val == inf:
                     continue
                 if not res or res[-1][2] != val:
@@ -722,18 +722,18 @@ class Solution:
         ind = {num: i for i, num in enumerate(sorted(list(set(s + c + [0] + [10 ** 9 + 1]))))}
         m = len(ind)
         post = [inf] * n
-        tree = SegmentTreeUpdateQueryMin(m)
+        tree = RangeDescendRangeMin(m)
         for i in range(n - 1, -1, -1):
-            tree.update_point(ind[s[i]], ind[s[i]], 0, m - 1, c[i], 1)
-            post[i] = tree.query_range(ind[s[i]] + 1, m - 1, 0, m - 1, 1)
+            tree.range_descend(ind[s[i]], ind[s[i]], c[i])
+            post[i] = tree.range_min(ind[s[i]] + 1, m - 1)
 
         ans = inf
-        tree = SegmentTreeUpdateQueryMin(m)
+        tree = RangeDescendRangeMin(m)
         for i in range(n):
             if 1 <= i <= n - 2:
-                cur = c[i] + tree.query_range(0, ind[s[i]] - 1, 0, m - 1, 1) + post[i]
+                cur = c[i] + tree.range_min(0, ind[s[i]] - 1) + post[i]
                 ans = ac.min(ans, cur)
-            tree.update_point(ind[s[i]], ind[s[i]], 0, m - 1, c[i], 1)
+            tree.range_descend(ind[s[i]], ind[s[i]], c[i])
         ac.st(ans if ans < inf else -1)
         return
 
@@ -748,10 +748,10 @@ class Solution:
 
         ind = {num: i for i, num in enumerate(lst)}
         ceil = len(lst)
-        tree = SegmentTreeUpdateQueryMin(ceil)
+        tree = RangeDescendRangeMin(ceil)
         for a, b in intervals:
-            tree.update_range(ind[a], ind[b], 0, ceil - 1, b - a + 1, 1)
-        ans = [tree.query_point(ind[num], ind[num], 0, ceil - 1, 1) for num in queries]
+            tree.range_descend(ind[a], ind[b],  b - a + 1)
+        ans = [tree.range_min(ind[num], ind[num]) for num in queries]
         return [x if x != inf else -1 for x in ans]
 
     @staticmethod
