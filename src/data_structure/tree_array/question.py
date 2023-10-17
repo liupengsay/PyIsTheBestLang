@@ -1,10 +1,14 @@
-import unittest
 from collections import defaultdict, deque
 from math import inf
 from typing import List
 
+from sortedcontainers import SortedList
+
+from data_structure.sorted_list.template import LocalSortedList
 from data_structure.tree_array.template import PointAddRangeSum, PointDescendPreMin, RangeAddRangeSum, \
-    PointAscendPreMax, PointAscendRangeMax, PointAddRangeSum2D, RangeAddRangeSum2D
+    PointAscendPreMax, PointAscendRangeMax, PointAddRangeSum2D, RangeAddRangeSum2D, PointXorRangeXor, \
+    PointDescendRangeMin
+from search.dfs.template import DfsEulerOrder
 from utils.fast_io import FastIO
 
 """
@@ -70,8 +74,8 @@ class Solution:
         nums = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         p = ac.read_list_ints()
-        for i in range(n-1):
-            dct[p[i]].append(i+1)
+        for i in range(n - 1):
+            dct[p[i]].append(i + 1)
         dfs_euler = DfsEulerOrder(dct)
         tree = PointAddRangeSum(n)
         tree.build([nums[i] for i in dfs_euler.order_to_node])
@@ -80,11 +84,11 @@ class Solution:
             if lst[0]:
                 u = lst[1]
                 x, y = dfs_euler.start[u], dfs_euler.end[u]
-                ac.st(tree.range_sum(x+1, y+1))
+                ac.st(tree.range_sum(x + 1, y + 1))
             else:
                 u, x = lst[1:]
                 ind = dfs_euler.start[u]
-                tree.point_add(ind+1, x)
+                tree.point_add(ind + 1, x)
         return
 
     @staticmethod
@@ -102,9 +106,9 @@ class Solution:
         total_sum = 0
         ans = 0
         for v, x in nums:
-            pre_sum = tree_sum.pre_sum(x)
-            pre_cnt = tree_cnt.pre_sum(x)
-            ans += v*(pre_cnt*x-pre_sum) + v*(total_sum-pre_sum-(total_cnt-pre_cnt)*x)
+            pre_sum = tree_sum.range_sum(1, x)
+            pre_cnt = tree_cnt.range_sum(1, x)
+            ans += v * (pre_cnt * x - pre_sum) + v * (total_sum - pre_sum - (total_cnt - pre_cnt) * x)
             tree_sum.point_add(x, x)
             tree_cnt.point_add(x, 1)
             total_cnt += 1
@@ -117,13 +121,15 @@ class Solution:
         # 模板：树状数组单点更新区间查询最大值与最小值
         n, q = ac.read_list_ints()
         tree = PointAscendRangeMax(n)
+        tree2 = PointDescendRangeMin(n)
         for i in range(n):
             tree.a[i + 1] = ac.read_int()
-            tree.add(i + 1, tree.a[i + 1])
-
+            tree.point_ascend(i + 1, tree.a[i + 1])
+            tree2.a[i + 1] = ac.read_int()
+            tree2.point_descend(i + 1, tree.a[i + 1])
         for _ in range(q):
             a, b = ac.read_list_ints()
-            ac.st(tree.find_max(a, b) - tree.find_min(a, b))
+            ac.st(tree.range_max(a, b) - tree2.range_min(a, b))
         return
 
     @staticmethod
@@ -135,10 +141,10 @@ class Solution:
         for i in range(n - 1, -1, -1):
             for j in range(m - 1, -1, -1):
                 if grid[i][j] > 0:
-                    dp[i][j] = min(r[i].query(min(j + grid[i][j]+1, m)), c[j].query(min(i + grid[i][j]+1, n))) + 1
+                    dp[i][j] = min(r[i].pre_min(min(j + grid[i][j] + 1, m)), c[j].pre_min(min(i + grid[i][j] + 1, n))) + 1
                 if dp[i][j] <= n * m:
-                    r[i].update(j+1, dp[i][j])
-                    c[j].update(i+1, dp[i][j])
+                    r[i].point_descend(j + 1, dp[i][j])
+                    c[j].point_descend(i + 1, dp[i][j])
         return -1 if dp[0][0] > n * m else dp[0][0]
 
     @staticmethod
@@ -156,11 +162,11 @@ class Solution:
         ans = 0
         for i in ind:
             cur_v = v[i]
-            tree_cnt.point_add(dct[cur_v]+1, 1)
-            tree_tot.point_add(dct[cur_v]+1, x[i])
-            pre_cnt = tree_cnt.pre_sum(dct[cur_v]+1)
-            pre_tot = tree_tot.pre_sum(dct[cur_v]+1)
-            ans += pre_cnt*x[i] - pre_tot
+            tree_cnt.point_add(dct[cur_v] + 1, 1)
+            tree_tot.point_add(dct[cur_v] + 1, x[i])
+            pre_cnt = tree_cnt.range_sum(1, dct[cur_v] + 1)
+            pre_tot = tree_tot.range_sum(1, dct[cur_v] + 1)
+            ans += pre_cnt * x[i] - pre_tot
         ac.st(ans)
         return
 
@@ -168,14 +174,14 @@ class Solution:
     def cf_1676h2(ac=FastIO()):
         # 模板：树状数组维护前缀区间和
         for _ in range(ac.read_int()):
-            n = ac.read_int()
+            ac.read_int()
             a = ac.read_list_ints()
             ceil = max(a)
             ans = 0
             tree = PointAddRangeSum(ceil)
             x = 0
             for num in a:
-                ans += x - tree.pre_sum(num-1)
+                ans += x - tree.range_sum(1, num - 1)
                 tree.point_add(num, 1)
                 x += 1
             ac.st(ans)
@@ -202,9 +208,9 @@ class Solution:
         n = max(ages)
         tree_array = PointAscendPreMax(n)
         for score, age in sorted(zip(scores, ages)):
-            cur = tree_array.query(age) + score
-            tree_array.update(age, cur)
-        return tree_array.query(n)
+            cur = tree_array.pre_max(age) + score
+            tree_array.point_ascend(age, cur)
+        return tree_array.pre_max(n)
 
     @staticmethod
     def lg_p1816(ac=FastIO()):
@@ -212,13 +218,13 @@ class Solution:
         # 模板：树状数组查询静态区间最小值
         m, n = ac.read_list_ints()
         nums = ac.read_list_ints()
-        tree = PointAscendRangeMax(m)
+        tree = PointDescendRangeMin(m)
         for i in range(m):
-            tree.add(i+1, nums[i])
+            tree.point_descend(i + 1, nums[i])
         ans = []
         for _ in range(n):
             x, y = ac.read_list_ints()
-            ans.append(tree.find_min(x, y))
+            ans.append(tree.range_min(x, y))
         ac.lst(ans)
         return
 
@@ -257,40 +263,20 @@ class Solution:
         n = ac.read_int()
         nums = ac.read_list_ints()
         ind = list(range(n))
-        ind.sort(key=lambda x: nums[x])
+        ind.sort(key=lambda it: nums[it])
         tree = PointAddRangeSum(n)
         ans = i = cnt = 0
         while i < n:
             val = nums[ind[i]]
             lst = []
             while i < n and nums[ind[i]] == val:
-                lst.append(ind[i]+1)
-                ans += cnt - tree.range_sum(ind[i]+1)
+                lst.append(ind[i] + 1)
+                ans += cnt - tree.range_sum(1, ind[i] + 1)
                 i += 1
             cnt += len(lst)
             for x in lst:
                 tree.point_add(x, 1)
         ac.st(ans)
-        return
-
-    @staticmethod
-    def lc_308():
-        class NumMatrix:
-            def __init__(self, matrix: List[List[int]]):
-                m, n = len(matrix), len(matrix[0])
-                self.matrix = matrix
-                self.tree = PointAddRangeSum2D(m, n)
-                for i in range(m):
-                    for j in range(n):
-                        self.tree.add(i + 1, j + 1, matrix[i][j])
-
-            def update(self, row: int, col: int, val: int) -> None:
-                # 注意这里是修改为 val
-                self.tree.add(row + 1, col + 1, val - self.matrix[row][col])
-                self.matrix[row][col] = val
-
-            def sum_region(self, row1: int, col1: int, row2: int, col2: int) -> int:
-                return self.tree.range_query(row1 + 1, col1 + 1, row2 + 1, col2 + 1)
         return
 
     @staticmethod
@@ -316,16 +302,16 @@ class Solution:
         n, a, b = ac.read_list_ints()
         n += 1
         nums = ac.read_list_ints()
-        tree = PointAscendRangeMax(n+1)
-        tree.add(n+1, 0)
+        tree = PointAscendRangeMax(n + 1)
+        tree.point_ascend(n + 1, 0)
         post = 0
-        for i in range(n-1, -1, -1):
-            x, y = i+a+1, i+b+1
-            x = n+1 if x > n+1 else x
-            y = n+1 if y > n+1 else y
-            post = tree.find_max(x, y)
-            tree.add(i+1, post+nums[i])
-        ac.st(post+nums[0])
+        for i in range(n - 1, -1, -1):
+            x, y = i + a + 1, i + b + 1
+            x = n + 1 if x > n + 1 else x
+            y = n + 1 if y > n + 1 else y
+            post = tree.range_max(x, y)
+            tree.point_ascend(i + 1, post + nums[i])
+        ac.st(post + nums[0])
         return
 
     @staticmethod
@@ -350,28 +336,28 @@ class Solution:
 
         tree_cnt = PointAddRangeSum(length)
         tree_sum = PointAddRangeSum(length)
-        nums = [0]*n
+        nums = [0] * n
         total_s = 0
         total_c = 0
 
         for op, a, b in lst:
             if op == 1:
-                if nums[a-1]:
-                    tree_cnt.point_add(ind[nums[a-1]], -1)
-                    tree_sum.point_add(ind[nums[a - 1]], -nums[a-1])
-                    total_s -= nums[a-1]
+                if nums[a - 1]:
+                    tree_cnt.point_add(ind[nums[a - 1]], -1)
+                    tree_sum.point_add(ind[nums[a - 1]], -nums[a - 1])
+                    total_s -= nums[a - 1]
                     total_c -= 1
-                nums[a-1] = b
+                nums[a - 1] = b
                 if nums[a - 1]:
                     tree_cnt.range_sum(ind[nums[a - 1]], 1)
                     tree_sum.range_sum(ind[nums[a - 1]], nums[a - 1])
-                    total_s += nums[a-1]
+                    total_s += nums[a - 1]
                     total_c += 1
             else:
                 c, s = a, b
-                less_than_s = tree_cnt.pre_sum(ind[s]-1)
-                less_than_s_sum = tree_sum.pre_sum(ind[s]-1)
-                if (total_c-less_than_s)*s + less_than_s_sum >= c*s:
+                less_than_s = tree_cnt.range_sum(1, ind[s] - 1)
+                less_than_s_sum = tree_sum.range_sum(1, ind[s] - 1)
+                if (total_c - less_than_s) * s + less_than_s_sum >= c * s:
                     ac.st("TAK")
                 else:
                     ac.st("NIE")
@@ -382,17 +368,17 @@ class Solution:
         # 模板：树状数组查询区间最大值
         m, d = ac.read_list_ints()
         t = 0
-        tree = PointAscendRangeMax(m+1)
+        tree = PointAscendRangeMax(m + 1)
         i = 1
         for _ in range(m):
             op, x = ac.read_list_strs()
             if op == "A":
-                x = (int(x)+t) % d
-                tree.add(i, x)
+                x = (int(x) + t) % d
+                tree.point_ascend(i, x)
                 i += 1
             else:
                 x = int(x)
-                t = tree.find_max(i-x, i-1)
+                t = tree.range_max(i - x, i - 1)
                 ac.st(t)
         return
 
@@ -416,7 +402,7 @@ class Solution:
                 tree2.point_add(i, i * (x - y))
             else:
                 i = int(lst[1])
-                ac.st((i + 1) * tree1.pre_sum(i) - tree2.pre_sum(i))
+                ac.st((i + 1) * tree1.range_sum(1, i) - tree2.range_sum(1, i))
         return
 
     @staticmethod
@@ -431,7 +417,7 @@ class Solution:
         ans = 0
         for i in range(n - 1, -1, -1):
             left = i + 1
-            right = tree.pre_sum(ind[nums[i]] - 1)
+            right = tree.range_sum(1, ind[nums[i]] - 1)
             ans += left * right
             # 取 nums[i] 作为区间的数又 n-i 个右端点取法
             tree.point_add(ind[nums[i]], n - i)
@@ -444,14 +430,14 @@ class Solution:
         n, q = ac.read_list_ints()
         nums = ac.read_list_ints()
 
-        tree_odd = PointChangePreRangeXor(n)
-        tree_even = PointChangePreRangeXor(n)
+        tree_odd = PointXorRangeXor(n)
+        tree_even = PointXorRangeXor(n)
         for i in range(n):
             # 也可以使用对应子数组进行初始化
             if i % 2 == 0:
-                tree_odd.update(i + 1, nums[i])
+                tree_odd.point_xor(i + 1, nums[i])
             else:
-                tree_even.update(i + 1, nums[i])
+                tree_even.point_xor(i + 1, nums[i])
 
         for _ in range(q):
             lst = ac.read_list_ints()
@@ -459,9 +445,9 @@ class Solution:
                 i, x = lst[1:]
                 a = nums[i - 1]
                 if i % 2 == 0:
-                    tree_even.update(i, a ^ x)
+                    tree_even.point_xor(i, a ^ x)
                 else:
-                    tree_odd.update(i, a ^ x)
+                    tree_odd.point_xor(i, a ^ x)
                 nums[i - 1] = x
             else:
                 left, right = lst[1:]
@@ -470,9 +456,9 @@ class Solution:
                 else:
                     # 如果是奇数长度则为 left 开始每隔 2 的元素异或和
                     if left % 2:
-                        ac.st(tree_odd.query_range(left, right))
+                        ac.st(tree_odd.range_xor(left, right))
                     else:
-                        ac.st(tree_even.query_range(left, right))
+                        ac.st(tree_even.range_xor(left, right))
         return
 
     @staticmethod
@@ -524,15 +510,15 @@ class Solution:
         # 模板：使用字符串特性贪心模拟交换构建回文串
         n = len(s)
         ans = 0
-        for _ in range(n//2):
+        for _ in range(n // 2):
             j = s.rindex(s[0])
             if j == 0:
                 i = s.index(s[-1])
                 ans += i
-                s = s[:i] + s[i+1:-1]
+                s = s[:i] + s[i + 1:-1]
             else:
                 ans += len(s) - 1 - j
-                s = s[1:j] + s[j+1:]
+                s = s[1:j] + s[j + 1:]
 
         return ans
 
@@ -542,21 +528,21 @@ class Solution:
         n = max(nums)
         ans = 0
         tree = PointAscendRangeMax(n)
-        tree.ceil = [0]*(n+1)
-        tree.floor = [0]*(n+1)
+        tree.ceil = [0] * (n + 1)
+        tree.floor = [0] * (n + 1)
         for num in nums:
             low = num - k
             high = num - 1
             if low < 1:
                 low = 1
             if low <= high:
-                cur = tree.find_max(low, high)
+                cur = tree.range_max(low, high)
                 cur += 1
             else:
                 cur = 1
             if cur > ans:
                 ans = cur
-            tree.add_max(num, cur)
+            tree.point_ascend(num, cur)
         return ans
 
     @staticmethod
@@ -608,7 +594,7 @@ class Solution:
                     i = m // 2
                 val = pre[i]
                 i = ind[val]
-                left = val * tree_cnt.pre_sum(i + 1) - tree_sum.pre_sum(i + 1)
+                left = val * tree_cnt.range_sum(1, i + 1) - tree_sum.range_sum(1, i + 1)
                 if i + 2 <= n:
                     right = -val * tree_cnt.range_sum(i + 2, n) + tree_sum.range_sum(i + 2, n)
                 else:
@@ -630,14 +616,14 @@ class Solution:
         pre = [inf] * n
         tree = PointDescendPreMin(m)
         for i in range(n):
-            pre[i] = tree.query(dct[s[i]] - 1)
-            tree.update(dct[s[i]], c[i])
+            pre[i] = tree.pre_min(dct[s[i]] - 1)
+            tree.point_descend(dct[s[i]], c[i])
 
         post = [inf] * n
         tree = PointDescendPreMin(m)
         for i in range(n - 1, -1, -1):
-            post[i] = tree.query(m - dct[s[i]])
-            tree.update(m - dct[s[i]] + 1, c[i])
+            post[i] = tree.pre_min(m - dct[s[i]])
+            tree.point_descend(m - dct[s[i]] + 1, c[i])
 
         ans = inf
         if n >= 3:
@@ -700,13 +686,19 @@ class Solution:
         return ans
 
 
+class LC308:
+    def __init__(self, matrix: List[List[int]]):
+        m, n = len(matrix), len(matrix[0])
+        self.matrix = matrix
+        self.tree = PointAddRangeSum2D(m, n)
+        for i in range(m):
+            for j in range(n):
+                self.tree.point_add(i + 1, j + 1, matrix[i][j])
 
-class TestGeneral(unittest.TestCase):
+    def update(self, row: int, col: int, val: int) -> None:
+        # 注意这里是修改为 val
+        self.tree.point_add(row + 1, col + 1, val - self.matrix[row][col])
+        self.matrix[row][col] = val
 
-    def test_xxxx(self):
-        pass
-        return
-
-
-if __name__ == '__main__':
-    unittest.main()
+    def sum_region(self, row1: int, col1: int, row2: int, col2: int) -> int:
+        return self.tree.range_sum(row1 + 1, col1 + 1, row2 + 1, col2 + 1)

@@ -64,7 +64,7 @@ class PointAddRangeSum2D:
         self.tree = [[0] * (n + 1) for _ in range(m + 1)]  # 初始化树状数组
         return
 
-    def add(self, x: int, y: int, val: int) -> None:
+    def point_add(self, x: int, y: int, val: int) -> None:
         # 索引从 1 开始， 单点增加 val 到二维数组中坐标为 [x, y] 的值且 val 可正可负
         i = x
         while i <= self.m:
@@ -87,7 +87,7 @@ class PointAddRangeSum2D:
             i -= (i & -i)
         return res
 
-    def range_query(self, x1: int, y1: int, x2: int, y2: int) -> int:
+    def range_sum(self, x1: int, y1: int, x2: int, y2: int) -> int:
         # 索引从 1 开始， 查询二维数组中 [x1, y1] 到 [x2, y2] 的区间和
         return self._query(x2, y2) - self._query(x2, y1 - 1) - self._query(x1 - 1, y2) + self._query(x1 - 1, y1 - 1)
 
@@ -188,7 +188,7 @@ class PointXorRangeXor:
 
     def get(self) -> List[int]:
         # 索引从 1 开始使用数组初始化树状数组
-        return [self.range_xor(i+1, i+1) for i in range(self.n)]
+        return [self.range_xor(i + 1, i + 1) for i in range(self.n)]
 
     def point_xor(self, i: int, mi: int) -> None:
         # 索引从 1 开始，索引 i 的值异或增加 mi 且 mi 可正可负
@@ -300,7 +300,6 @@ class PointDescendPreMin:
             self.t[i] = self.t[i] if self.t[i] < mi else mi
             i += self._lowest_bit(i)
         return
-
 
 
 class PointDescendRangeMin:
@@ -468,4 +467,3 @@ class PointChangeMaxMin2D:
                 max_val = self.max(max_val, max(self.a[i2][y1:y2 + 1]))
                 i2 -= 1
         return max_val
-

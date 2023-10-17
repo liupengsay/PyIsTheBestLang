@@ -1,4 +1,3 @@
-
 import random
 import unittest
 from itertools import accumulate
@@ -37,13 +36,13 @@ class TestGeneral(unittest.TestCase):
                 low = -1000 if initial == -inf else 0
                 high = 10000
                 tree_array = PointAscendPreMax(n, initial)
-                nums = [initial]*n
+                nums = [initial] * n
                 for _ in range(100):
                     x = random.randint(low, high)
-                    i = random.randint(0, n-1)
+                    i = random.randint(0, n - 1)
                     nums[i] = nums[i] if nums[i] > x else x
-                    tree_array.point_ascend(i+1, x)
-                    assert list(accumulate(nums, max)) == [tree_array.pre_max(i+1) for i in range(n)]
+                    tree_array.point_ascend(i + 1, x)
+                    assert list(accumulate(nums, max)) == [tree_array.pre_max(i + 1) for i in range(n)]
         return
 
     def test_point_ascend_range_max(self):
@@ -53,15 +52,15 @@ class TestGeneral(unittest.TestCase):
                 low = -1000 if initial == -inf else 0
                 high = 10000
                 tree_array = PointAscendRangeMax(n, initial)
-                nums = [initial]*n
+                nums = [initial] * n
                 for _ in range(100):
                     x = random.randint(low, high)
-                    i = random.randint(0, n-1)
+                    i = random.randint(0, n - 1)
                     nums[i] = nums[i] if nums[i] > x else x
-                    tree_array.point_ascend(i+1, x)
-                    ll = random.randint(0, n-1)
-                    rr = random.randint(ll, n-1)
-                    assert max(nums[ll:rr+1]) == tree_array.range_max(ll+1, rr+1)
+                    tree_array.point_ascend(i + 1, x)
+                    ll = random.randint(0, n - 1)
+                    rr = random.randint(ll, n - 1)
+                    assert max(nums[ll:rr + 1]) == tree_array.range_max(ll + 1, rr + 1)
         return
 
     def test_point_descend_pre_min(self):
@@ -71,13 +70,13 @@ class TestGeneral(unittest.TestCase):
                 low = -10000
                 high = 10000
                 tree_array = PointDescendPreMin(n, initial)
-                nums = [initial]*n
+                nums = [initial] * n
                 for _ in range(100):
                     x = random.randint(low, high)
-                    i = random.randint(0, n-1)
+                    i = random.randint(0, n - 1)
                     nums[i] = nums[i] if nums[i] < x else x
-                    tree_array.point_descend(i+1, x)
-                    assert list(accumulate(nums, min)) == [tree_array.pre_min(i+1) for i in range(n)]
+                    tree_array.point_descend(i + 1, x)
+                    assert list(accumulate(nums, min)) == [tree_array.pre_min(i + 1) for i in range(n)]
         return
 
     def test_point_descend_range_min(self):
@@ -87,15 +86,15 @@ class TestGeneral(unittest.TestCase):
                 low = -10000
                 high = 10000
                 tree_array = PointDescendRangeMin(n, initial)
-                nums = [initial]*n
+                nums = [initial] * n
                 for _ in range(100):
                     x = random.randint(low, high)
-                    i = random.randint(0, n-1)
+                    i = random.randint(0, n - 1)
                     nums[i] = nums[i] if nums[i] < x else x
-                    tree_array.point_descend(i+1, x)
-                    ll = random.randint(0, n-1)
-                    rr = random.randint(ll, n-1)
-                    assert min(nums[ll:rr+1]) == tree_array.range_min(ll+1, rr+1)
+                    tree_array.point_descend(i + 1, x)
+                    ll = random.randint(0, n - 1)
+                    rr = random.randint(ll, n - 1)
+                    assert min(nums[ll:rr + 1]) == tree_array.range_min(ll + 1, rr + 1)
         return
 
     def test_range_add_range_sum(self):
@@ -108,15 +107,15 @@ class TestGeneral(unittest.TestCase):
                 tree_array.build(nums)
                 for _ in range(10):
                     x = random.randint(-10000, 10000)
-                    ll = random.randint(0, n-1)
-                    rr = random.randint(ll, n-1)
-                    for j in range(ll, rr+1):
+                    ll = random.randint(0, n - 1)
+                    rr = random.randint(ll, n - 1)
+                    for j in range(ll, rr + 1):
                         nums[j] += x
-                    tree_array.range_add(ll+1, rr+1, x)
+                    tree_array.range_add(ll + 1, rr + 1, x)
                     assert tree_array.get() == nums
-                    ll = random.randint(0, n-1)
-                    rr = random.randint(ll, n-1)
-                    assert tree_array.range_sum(ll+1, rr+1) == sum(nums[ll: rr+1])
+                    ll = random.randint(0, n - 1)
+                    rr = random.randint(ll, n - 1)
+                    assert tree_array.range_sum(ll + 1, rr + 1) == sum(nums[ll: rr + 1])
         return
 
     def test_point_add_range_sum_2d(self):
@@ -128,18 +127,18 @@ class TestGeneral(unittest.TestCase):
         grid = [[random.randint(-high, high) for _ in range(n)] for _ in range(m)]
         for i in range(m):
             for j in range(n):
-                tree.add(i + 1, j + 1, grid[i][j])
+                tree.point_add(i + 1, j + 1, grid[i][j])
         for _ in range(m):
             row = random.randint(0, m - 1)
             col = random.randint(0, n - 1)
             x = random.randint(-high, high)
             grid[row][col] += x
-            tree.add(row + 1, col + 1, x)
+            tree.point_add(row + 1, col + 1, x)
             x1 = random.randint(0, m - 1)
             y1 = random.randint(0, n - 1)
             x2 = random.randint(x1, m - 1)
             y2 = random.randint(y1, n - 1)
-            assert tree.range_query(x1 + 1, y1 + 1, x2 + 1, y2 + 1) == sum(sum(g[y1:y2 + 1]) for g in grid[x1:x2 + 1])
+            assert tree.range_sum(x1 + 1, y1 + 1, x2 + 1, y2 + 1) == sum(sum(g[y1:y2 + 1]) for g in grid[x1:x2 + 1])
         return
 
     def test_range_add_range_sum_2d(self):
@@ -216,7 +215,7 @@ class TestGeneral(unittest.TestCase):
                 res = 0
                 for num in nums[ll: rr + 1]:
                     res ^= num
-                assert res == tree_array.range_xor(ll+1, rr+1)
+                assert res == tree_array.range_xor(ll + 1, rr + 1)
         return
 
 

@@ -1,6 +1,3 @@
-import unittest
-from typing import List, Optional
-
 """
 算法：链表、两个链表表示的整数相加、链表表示的整数与整数相乘
 功能：
@@ -11,6 +8,7 @@ from typing import List, Optional
 6914. 翻倍以链表形式表示的数字（https://leetcode.cn/contest/weekly-contest-358/problems/double-a-number-represented-as-a-linked-list/）链表形式的数字与整数相乘
 
 """
+from typing import List
 
 
 class ListNode:
@@ -56,5 +54,3 @@ class ListNodeOperation:
             pre.next = ListNode(int(x))
             pre = pre.next
         return node.next
-
-

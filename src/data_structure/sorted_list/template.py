@@ -1,24 +1,15 @@
-import bisect
-import random
-import unittest
-from bisect import insort_left, bisect_left
-from math import inf
-from typing import List
-
-from sortedcontainers import SortedList
-from utils.fast_io import FastIO
-
-
 class LocalSortedList:
-    def __init__(self, iterable=[], _load=200):
+    def __init__(self, iterable=None, _load=200):
         """Initialize sorted list instance."""
+        if iterable is None:
+            iterable = []
         values = sorted(iterable)
         self._len = _len = len(values)
         self._load = _load
         self._lists = _lists = [values[i:i + _load]
                                 for i in range(0, _len, _load)]
         self._list_lens = [len(_list) for _list in _lists]
-        self._mins = [_list[0] for _list in _lists]
+        self._min_s = [_list[0] for _list in _lists]
         self._fen_tree = []
         self._rebuild = True
 
@@ -73,7 +64,7 @@ class LocalSortedList:
     def _delete(self, pos, idx):
         """Delete value at the given `(pos, idx)`."""
         _lists = self._lists
-        _mins = self._mins
+        _mins = self._min_s
         _list_lens = self._list_lens
 
         self._len -= 1
@@ -95,7 +86,7 @@ class LocalSortedList:
             return 0, 0
 
         _lists = self._lists
-        _mins = self._mins
+        _mins = self._min_s
 
         lo, pos = -1, len(_lists) - 1
         while lo + 1 < pos:
@@ -125,7 +116,7 @@ class LocalSortedList:
             return 0, 0
 
         _lists = self._lists
-        _mins = self._mins
+        _mins = self._min_s
 
         pos, hi = 0, len(_lists)
         while pos + 1 < hi:
@@ -150,7 +141,7 @@ class LocalSortedList:
         """Add `value` to sorted list."""
         _load = self._load
         _lists = self._lists
-        _mins = self._mins
+        _mins = self._min_s
         _list_lens = self._list_lens
 
         self._len += 1
@@ -244,9 +235,3 @@ class LocalSortedList:
     def __repr__(self):
         """Return string representation of sorted list."""
         return 'SortedList({0})'.format(list(self))
-
-
-
-
-
-

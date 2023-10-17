@@ -1,4 +1,3 @@
-
 """
 算法：分块查询、双指针
 功能：将查询区间进行分块排序，交替移动双指针进行动态维护查询值
@@ -18,6 +17,13 @@ F - Small Products（https://atcoder.jp/contests/abc132/tasks/abc132_f）分组�
 
 参考：OI WiKi（https://oi-wiki.org/ds/fenwick/）
 """
+from collections import defaultdict, Counter
+from itertools import accumulate
+from operator import xor
+
+from data_structure.block_size.template import BlockSize
+from utils.fast_io import FastIO
+
 
 class Solution:
     def __init__(self):
@@ -26,7 +32,7 @@ class Solution:
     @staticmethod
     def abc_132f(ac=FastIO()):
         # 模板：分组线性计数DP，使用前缀和优化
-        mod = 10**9 + 7
+        mod = 10 ** 9 + 7
         n, k = ac.read_list_ints()
         cnt, _ = BlockSize().get_divisor_split(n)
         m = len(cnt)
@@ -97,7 +103,7 @@ class Solution:
         # 模板：查询区间内的函数值
         n, t = ac.read_list_ints()
         nums = ac.read_list_ints()
-        size = int(n**0.5) + 1
+        size = int(n ** 0.5) + 1
 
         queries = [[] for _ in range(t)]
         # 将查询分段
@@ -113,7 +119,7 @@ class Solution:
             cur += cnt[num] * cnt[num] * num
             return
 
-        cnt = [0] * (10**6 + 1)
+        cnt = [0] * (10 ** 6 + 1)
         x = y = 0
         ans = [0] * t
         cnt = Counter()
@@ -169,7 +175,7 @@ class Solution:
                 cur -= dct[num ^ k]
             return
 
-        dct = [0]*(2*10**6+1)
+        dct = [0] * (2 * 10 ** 6 + 1)
         x = y = 0
         ans = [0] * m
         dct[pre[0]] += 1

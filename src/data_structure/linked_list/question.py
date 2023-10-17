@@ -1,4 +1,3 @@
-
 """
 
 算法：使用数组作为链表维护前驱后驱
@@ -30,6 +29,12 @@ E. Two Teams（https://codeforces.com/contest/1154/problem/E）使用数组维�
 
 参考：OI WiKi（xx）
 """
+import heapq
+from collections import deque
+from math import inf
+from typing import List
+
+from utils.fast_io import FastIO
 
 
 class Solution:
@@ -176,21 +181,22 @@ class Solution:
         ind = list(range(n))
         ind.sort(key=lambda it: nums[it])
         dct = {nums[i]: i for i in range(n)}
-        pre = [-1]*n
-        post = [-1]*n
+        pre = [-1] * n
+        post = [-1] * n
         for i in range(1, n):
-            a, b = ind[i-1], ind[i]
+            a, b = ind[i - 1], ind[i]
             post[a] = b
             pre[b] = a
         ans = []
-        for x in range(n-1, 0, -1):
+        for x in range(n - 1, 0, -1):
             num = nums[x]
             i = dct[num]
             a = pre[i]
             b = post[i]
             if a != -1 and b != -1:
-                if abs(num-nums[a]) < abs(num-nums[b]) or (abs(num-nums[a]) == abs(num-nums[b]) and nums[a] < nums[b]):
-                    ans.append([abs(num-nums[a]), a+1])
+                if abs(num - nums[a]) < abs(num - nums[b]) or (
+                        abs(num - nums[a]) == abs(num - nums[b]) and nums[a] < nums[b]):
+                    ans.append([abs(num - nums[a]), a + 1])
                 else:
                     ans.append([abs(num - nums[b]), b + 1])
                 post[a] = b
@@ -201,7 +207,7 @@ class Solution:
             else:
                 ans.append([abs(num - nums[b]), b + 1])
                 pre[b] = pre[i]
-        for i in range(n-2, -1, -1):
+        for i in range(n - 2, -1, -1):
             ac.lst(ans[i])
         return
 
@@ -241,10 +247,10 @@ class Solution:
         a = ac.read_list_ints()
         b = ac.read_list_ints()
         a.sort(reverse=True)  # 反向遍历从大到小尽早占据已有位置
-        mod = 2**64
+        mod = 2 ** 64
         b.sort()
         cnt = []
-        pre = dict()
+        pre = {}
         for num in a:
             y = num
             # 类似并查集寻找右边最近的空位
@@ -267,19 +273,19 @@ class Solution:
     def lc_1562(arr: List[int], m: int) -> int:
         # 模板：使用类似并查集的前后缀链表求解
         n = len(arr)
-        left = [-1]*n
-        right = [-1]*n
-        cnt = [0]*(n+1)
+        left = [-1] * n
+        right = [-1] * n
+        cnt = [0] * (n + 1)
         ans = -1
         for x, i in enumerate(arr):
             i -= 1
-            if i - 1 >= 0 and left[i-1] != -1:
-                if i + 1 < n and right[i+1] != -1:
-                    start = left[i-1]
-                    end = right[i+1]
-                    cnt[i-start] -= 1
-                    cnt[end-i] -= 1
-                    cnt[end-start+1] += 1
+            if i - 1 >= 0 and left[i - 1] != -1:
+                if i + 1 < n and right[i + 1] != -1:
+                    start = left[i - 1]
+                    end = right[i + 1]
+                    cnt[i - start] -= 1
+                    cnt[end - i] -= 1
+                    cnt[end - start + 1] += 1
                     right[start] = end
                     left[end] = start
                 else:
@@ -289,7 +295,7 @@ class Solution:
                     cnt[end - start + 1] += 1
                     right[start] = end
                     left[end] = start
-            elif i + 1 < n and right[i+1] != -1:
+            elif i + 1 < n and right[i + 1] != -1:
                 start = i
                 end = right[i + 1]
                 cnt[end - i] -= 1
@@ -428,4 +434,3 @@ class Solution:
         for a in ans:
             ac.lst(a)
         return
-

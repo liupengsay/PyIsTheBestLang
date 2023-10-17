@@ -1,13 +1,5 @@
 import heapq
-import random
-import unittest
-from collections import deque, defaultdict
-from heapq import heappushpop, heappush, heappop
 from typing import List
-
-from sortedcontainers import SortedList
-
-from utils.fast_io import FastIO
 
 
 class HeapqMedian:
@@ -68,5 +60,3 @@ class MedianFinder:
 
     def find_median(self) -> float:
         return self.post[0] if len(self.pre) != len(self.post) else (self.post[0]-self.pre[0])/2
-
-

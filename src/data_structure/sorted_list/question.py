@@ -1,4 +1,3 @@
-
 """
 
 算法：有序集合
@@ -66,6 +65,15 @@ E. MEX and Increments（https://codeforces.com/contest/1619/problem/E）经典ME
 
 参考：OI WiKi（xx）
 """
+import bisect
+from bisect import insort_left, bisect_left
+from math import inf
+from typing import List
+
+from sortedcontainers import SortedList
+
+from data_structure.sorted_list.template import LocalSortedList
+from utils.fast_io import FastIO
 
 
 class Solution:
@@ -79,11 +87,11 @@ class Solution:
         ans = 1
         nums = [ac.read_int() for _ in range(n)]
         tmp = sorted(nums)
-        ind = {num: i+1 for i, num in enumerate(tmp)}
+        ind = {num: i + 1 for i, num in enumerate(tmp)}
         lst = LocalSortedList()
         for i in range(n):
             lst.add(ind[nums[i]])
-            ans = ac.max(ans, i+1-lst.bisect_right(i+1))
+            ans = ac.max(ans, i + 1 - lst.bisect_right(i + 1))
         ac.st(ans)
         return
 
@@ -125,7 +133,8 @@ class Solution:
                 res += pre.bisect_left(cur)
                 pre.add(cur)
             return res
-        ac.st(- check(m+1) + check(m))
+
+        ac.st(- check(m + 1) + check(m))
         return
 
     @staticmethod
@@ -145,7 +154,7 @@ class Solution:
         # 模板：逆序对经典贪心题目
         n = ac.read_int()
         ans = 0
-        mod = 10**8-3
+        mod = 10 ** 8 - 3
         nums1 = ac.read_list_ints()
         ind1 = list(range(n))
         ind1.sort(key=lambda it: nums1[it])
@@ -154,7 +163,7 @@ class Solution:
         ind2 = list(range(n))
         ind2.sort(key=lambda it: nums2[it])
 
-        q = [0]*n
+        q = [0] * n
         for i in range(n):
             q[ind1[i]] = ind2[i]
         lst = LocalSortedList()
@@ -183,7 +192,7 @@ class Solution:
             if ind < len(lst):
                 lst.pop(ind)
                 ans += 1
-                money += 500*tm + 2*level
+                money += 500 * tm + 2 * level
         ac.lst([ans, money])
         return
 
@@ -221,9 +230,9 @@ class Solution:
             else:
                 i = lst.bisect_left(x)
                 cur = inf
-                for j in [i-1, i]:
+                for j in [i - 1, i]:
                     if 0 <= j < len(lst):
-                        cur = ac.min(cur, abs(lst[j]-x))
+                        cur = ac.min(cur, abs(lst[j] - x))
                 ans += cur
             lst.add(x)
         ac.st(ans)
@@ -291,7 +300,7 @@ class Solution:
         ans = 0
         pre = []
         for num in lst:
-            ans += len(pre)-bisect.bisect_left(pre, num)
+            ans += len(pre) - bisect.bisect_left(pre, num)
             bisect.insort_left(pre, num)
         ac.st(ans)
         return
@@ -318,7 +327,8 @@ class Solution:
         # 模板：经典 STL 应用模拟题使用 STL 模拟删除
         n = ac.read_int()
         nums = ac.read_list_ints()
-        lst = [LocalSortedList([i+1 for i in range(n) if not nums[i]]), LocalSortedList([i+1 for i in range(n) if nums[i]])]
+        lst = [LocalSortedList([i + 1 for i in range(n) if not nums[i]]),
+               LocalSortedList([i + 1 for i in range(n) if nums[i]])]
 
         while lst[0] and lst[1]:
             ans = []
@@ -327,11 +337,11 @@ class Solution:
             else:
                 i = 1
             ans.append(lst[i].pop(0))
-            i = 1-i
+            i = 1 - i
             while lst[i] and lst[i][-1] > ans[-1]:
                 j = lst[i].bisect_left(ans[-1])
                 ans.append(lst[i].pop(j))
-                i = 1-i
+                i = 1 - i
             ac.lst(ans)
 
         for a in lst[0]:

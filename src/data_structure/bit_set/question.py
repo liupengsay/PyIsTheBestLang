@@ -1,4 +1,3 @@
-
 """
 算法：BitSet、位集合、模拟区间状态变换、区间翻转
 功能：通过相对移动，来减少计算复杂度，分为同向双指针，相反双指针，以及中心扩展法
@@ -22,6 +21,10 @@ E - Balanced Path（https://atcoder.jp/contests/abc147/tasks/abc147_e）矩阵DP
 5037. 区间异或（https://www.acwing.com/problem/content/5040/）同CF242E，使用二十多个01线段树维护区间异或与区间加和
 
 """
+from typing import List
+
+from data_structure.bit_set.template import SegmentTreeBitSet
+from utils.fast_io import FastIO
 
 
 class Solution:
@@ -115,7 +118,7 @@ class Solution:
                 ll, rr = lst[1:]
                 ll -= 1
                 rr -= 1
-                ans = sum((1 << j)*tree[j].query(ll, rr) for j in range(22))
+                ans = sum((1 << j) * tree[j].query(ll, rr) for j in range(22))
                 ac.st(ans)
             else:
                 ll, rr, xx = lst[1:]
@@ -125,4 +128,3 @@ class Solution:
                     if (1 << j) & xx:
                         tree[j].update(ll, rr)
         return
-

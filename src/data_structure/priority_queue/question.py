@@ -1,9 +1,9 @@
-import unittest
 from collections import deque
-import random
+from math import inf
 from typing import List
 
 from basis.binary_search.template import BinarySearch
+from data_structure.priority_queue.template import PriorityQueue
 from utils.fast_io import FastIO
 
 """
@@ -44,15 +44,14 @@ P4392 [BOI2007]Sound 静音问题（https://www.luogu.com.cn/problem/P4392）单
 参考：OI WiKi（xx）
 """
 
+
 class Solution:
     def __init__(self):
         return
 
     @staticmethod
     def lg_p1725(ac=FastIO()):
-
         # 模板：单调队列和指针维护滑动窗口最大值加线性DP
-        inf = float("-inf")
         n, low, high = ac.read_list_ints()
         n += 1
         nums = ac.read_list_ints()
@@ -75,7 +74,7 @@ class Solution:
         return
 
     @staticmethod
-    def lc_239(self, nums: List[int], k: int) -> List[int]:
+    def lc_239(nums: List[int], k: int) -> List[int]:
         # 模板：滑动窗口最大值
         return PriorityQueue().sliding_window(nums, k)
 
@@ -89,11 +88,11 @@ class Solution:
         ans = n + 1
         for i in range(n):
             pre += nums[i]
-            while stack and stack[0] <= pre-k:
+            while stack and stack[0] <= pre - k:
                 stack.popleft()
                 j = ind.popleft()
-                if i-j < ans:
-                    ans = i-j
+                if i - j < ans:
+                    ans = i - j
             while stack and stack[-1] >= pre:
                 stack.pop()
                 ind.pop()
@@ -128,8 +127,8 @@ class Solution:
         m, n, k = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
 
-        ceil = [[0]*n for _ in range(m)]
-        floor = [[0]*n for _ in range(m)]
+        ceil = [[0] * n for _ in range(m)]
+        floor = [[0] * n for _ in range(m)]
         pq = PriorityQueue()
         for i in range(m):
             ceil[i] = pq.sliding_window_all(grid[i], k, "max")
@@ -141,10 +140,10 @@ class Solution:
             lst = pq.sliding_window_all([floor[i][j] for i in range(m)], k, "min")
             for i in range(m):
                 floor[i][j] = lst[i]
-        ans = ceil[k-1][k-1] - floor[k-1][k-1]
-        for i in range(k-1, m):
-            for j in range(k-1, n):
-                ans = ac.min(ans, ceil[i][j]-floor[i][j])
+        ans = ceil[k - 1][k - 1] - floor[k - 1][k - 1]
+        for i in range(k - 1, m):
+            for j in range(k - 1, n):
+                ans = ac.min(ans, ceil[i][j] - floor[i][j])
         ac.st(ans)
         return
 
@@ -158,19 +157,19 @@ class Solution:
         ceil = deque()
         floor = deque()
         for i in range(n):
-            while ceil and ceil[0] < i-k+1:
+            while ceil and ceil[0] < i - k + 1:
                 ceil.popleft()
             while ceil and nums[ceil[-1]] <= nums[i]:
                 ceil.pop()
             ceil.append(i)
 
-            while floor and floor[0] < i-k+1:
+            while floor and floor[0] < i - k + 1:
                 floor.popleft()
             while floor and nums[floor[-1]] >= nums[i]:
                 floor.pop()
             floor.append(i)
 
-            if i >= k-1:
+            if i >= k - 1:
                 ans1.append(nums[floor[0]])
                 ans2.append(nums[ceil[0]])
         ac.lst(ans1)
@@ -188,16 +187,16 @@ class Solution:
             y -= 1
             dct[x][y] = val
 
-        dp = [[0]*n for _ in range(2)]
+        dp = [[0] * n for _ in range(2)]
         pre = 0
         for i in range(m):
-            cur = 1-pre
+            cur = 1 - pre
             stack = deque()
             ind = 0
             for j in range(n):
-                while stack and stack[0][0] < j-t:
+                while stack and stack[0][0] < j - t:
                     stack.popleft()
-                while ind < n and ind <= j+t:
+                while ind < n and ind <= j + t:
                     while stack and stack[-1][1] <= dp[pre][ind]:
                         stack.pop()
                     stack.append([ind, dp[pre][ind]])
@@ -218,28 +217,28 @@ class Solution:
         delta = 0
         ans1 = []
         ans2 = []
-        for i in range(1, m+1):
+        for i in range(1, m + 1):
             a = nums1[0] + delta if nums1 else -inf
             b = nums2[0] + delta if nums2 else -inf
             c = nums3[0] + delta if nums3 else -inf
             if a >= b and a >= c:
                 x = a
                 nums1.popleft()
-                x1 = x*u//v
-                nums2.append(x1-delta-q)
-                nums3.append(x-x1-delta-q)
+                x1 = x * u // v
+                nums2.append(x1 - delta - q)
+                nums3.append(x - x1 - delta - q)
             elif b >= c and b >= a:
                 x = b
                 nums2.popleft()
-                x1 = x*u//v
-                nums2.append(x1-delta-q)
-                nums3.append(x-x1-delta-q)
+                x1 = x * u // v
+                nums2.append(x1 - delta - q)
+                nums3.append(x - x1 - delta - q)
             else:
                 x = c
                 nums3.popleft()
-                x1 = x*u//v
-                nums2.append(x1-delta-q)
-                nums3.append(x-x1-delta-q)
+                x1 = x * u // v
+                nums2.append(x1 - delta - q)
+                nums3.append(x - x1 - delta - q)
             delta += q
             if i % t == 0:
                 ans1.append(x)
@@ -268,7 +267,7 @@ class Solution:
     @staticmethod
     def lg_p1016(ac=FastIO()):
         # 模板：单调队列，贪心模拟油箱，还可以增加每个站的油量限制
-        d1, c, d2, p, n = ac.read_floats()
+        d1, c, d2, p, n = ac.read_list_floats()
         n = int(n)
         nums = [[0, p]] + [ac.read_list_floats() for _ in range(n)] + [[d1, 0]]
         nums.sort()
@@ -279,16 +278,16 @@ class Solution:
         for i in range(1, n):
 
             # 当前油箱的最大可行驶距离
-            dis = nums[i][0]-nums[i-1][0]
-            if in_stack*d2 < dis:
+            dis = nums[i][0] - nums[i - 1][0]
+            if in_stack * d2 < dis:
                 ac.st("No Solution")
                 return
 
             while dis:
                 # 依次取出价格最低的油进行消耗
-                x = ac.min(dis/d2, stack[0][1])
-                ans += x*stack[0][0]
-                dis -= x*d2
+                x = ac.min(dis / d2, stack[0][1])
+                ans += x * stack[0][0]
+                dis -= x * d2
                 stack[0][1] -= x
                 in_stack -= x
                 if not stack[0][1]:

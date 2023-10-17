@@ -1,5 +1,3 @@
-
-
 """
 算法：堆（优先队列）、Huffman树（霍夫曼树）
 功能：通常用于需要贪心的场景
@@ -43,6 +41,16 @@ P4597 序列 sequence（https://www.luogu.com.cn/problem/P4597）大根堆贪心
 参考：OI WiKi（xx）
 """
 
+import heapq
+from collections import deque, defaultdict
+from heapq import heappushpop, heappush, heappop
+from math import inf
+from typing import List
+
+from sortedcontainers import SortedList
+
+from data_structure.small_heapq.template import MedianFinder
+from utils.fast_io import FastIO
 
 
 class Solution:
@@ -143,7 +151,7 @@ class Solution:
             for i in range(1, m):
                 cur = grid[i][:]
                 nex = []
-                stack = [[pre[0]+cur[0], 0, 0]]
+                stack = [[pre[0] + cur[0], 0, 0]]
                 dct = set()
                 while stack and len(nex) < n:
                     val, i, j = heapq.heappop(stack)
@@ -152,9 +160,9 @@ class Solution:
                     dct.add((i, j))
                     nex.append(val)
                     if i + 1 < n:
-                        heapq.heappush(stack, [pre[i+1]+cur[j], i+1, j])
+                        heapq.heappush(stack, [pre[i + 1] + cur[j], i + 1, j])
                     if j + 1 < n:
-                        heapq.heappush(stack, [pre[i]+cur[j+1], i, j+1])
+                        heapq.heappush(stack, [pre[i] + cur[j + 1], i, j + 1])
                 pre = nex[:]
             ac.lst(pre)
         return
@@ -208,7 +216,7 @@ class Solution:
         n, k = ac.read_list_ints()
         stack = [[ac.read_int(), 0] for _ in range(n)]
         heapq.heapify(stack)
-        while (len(stack) - 1) % (k-1) != 0:
+        while (len(stack) - 1) % (k - 1) != 0:
             heapq.heappush(stack, [0, 0])
         ans = 0
         while len(stack) > 1:
@@ -219,7 +227,7 @@ class Solution:
                 cur += val
                 dep = ac.max(dep, d)
             ans += cur
-            heapq.heappush(stack, [cur, dep+1])
+            heapq.heappush(stack, [cur, dep + 1])
         ac.st(ans)
         ac.st(stack[0][1])
         return
@@ -231,15 +239,15 @@ class Solution:
         nums1 = ac.read_list_ints()
         nums2 = ac.read_list_ints()
         # 初始时加入所有第二个数组的索引位置
-        stack = [[nums1[0]+nums2[j], 0, j] for j in range(n)]
+        stack = [[nums1[0] + nums2[j], 0, j] for j in range(n)]
         # 不重不漏枚举所有索引组合
         heapq.heapify(stack)
         ans = []
         for _ in range(n):
             val, i, j = heapq.heappop(stack)
             ans.append(val)
-            if i+1 < n:
-                heapq.heappush(stack, [nums1[i+1]+nums2[j], i+1, j])
+            if i + 1 < n:
+                heapq.heappush(stack, [nums1[i + 1] + nums2[j], i + 1, j])
         ac.lst(ans)
         return
 
@@ -252,7 +260,7 @@ class Solution:
         pre = 0
         stack = []
         for a, b in nums:
-            if pre+a <= b:
+            if pre + a <= b:
                 heapq.heappush(stack, -a)
                 pre += a
             else:
@@ -270,13 +278,13 @@ class Solution:
         stack = []
         for _ in range(n):
             a, b, c = ac.read_list_ints()
-            heapq.heappush(stack, [a+b+c, 1, a, b, c])
+            heapq.heappush(stack, [a + b + c, 1, a, b, c])
         ans = []
         while len(ans) < m:
             val, x, a, b, c = heapq.heappop(stack)
             ans.append(val)
             x += 1
-            heapq.heappush(stack, [a*x*x+b*x+c, x, a, b, c])
+            heapq.heappush(stack, [a * x * x + b * x + c, x, a, b, c])
         ac.lst(ans)
         return
 
@@ -298,14 +306,14 @@ class Solution:
                 pre = now[-1]
                 if stack:
                     level, reach, need, idx = heapq.heappop(stack)
-                    now = [idx, reach, need, -level, ac.max(pre, reach)+need]
+                    now = [idx, reach, need, -level, ac.max(pre, reach) + need]
                 else:
                     now = []
 
             # 取出还有的任务运行
             if not now and stack:
                 level, reach, need, idx = heapq.heappop(stack)
-                now = [idx, reach, need, -level, ac.max(pre, reach)+need]
+                now = [idx, reach, need, -level, ac.max(pre, reach) + need]
 
             # 执行任务等级不低于当前任务，当前任务直接入队
             if now and now[3] >= lst[-1]:
@@ -314,13 +322,13 @@ class Solution:
             elif now:
                 # 当前任务等级更高，进行替换，注意剩余时间
                 idx, reach, need, level, end = now
-                heapq.heappush(stack, [-level, reach, end-lst[1], idx])
+                heapq.heappush(stack, [-level, reach, end - lst[1], idx])
                 idx, reach, need, level = lst
-                now = [idx, reach, need, level, ac.max(pre, reach)+need]
+                now = [idx, reach, need, level, ac.max(pre, reach) + need]
             else:
                 # 无执行任务，直接执行当前任务
                 idx, reach, need, level = lst
-                now = [idx, reach, need, level, ac.max(pre, reach)+need]
+                now = [idx, reach, need, level, ac.max(pre, reach) + need]
 
         while stack:
             # 执行剩余任务
@@ -416,7 +424,7 @@ class Solution:
     @staticmethod
     def lg_p6033(ac=FastIO()):
         # 模板：经典队列 O(n) 模拟合并果子
-        n = ac.read_int()
+        ac.read_int()
         pre = deque(sorted(ac.read_list_ints()))
         post = deque()
         ans = 0
@@ -445,18 +453,18 @@ class Solution:
         return
 
     @staticmethod
-    def lc_2263(self, nums: List[int]) -> int:
+    def lc_2263(nums: List[int]) -> int:
 
-        def helper(nums: List[int]) -> int:
+        def helper(lst: List[int]) -> int:
             # 模板：大根堆贪心使得序列非降的最小操作次数
             res, pq = 0, []  # 大根堆
-            for num in nums:
+            for num in lst:
                 if not pq:
                     heappush(pq, -num)
                 else:
-                    preMax = -pq[0]
-                    if preMax > num:
-                        res += preMax - num
+                    pre = -pq[0]
+                    if pre > num:
+                        res += pre - num
                         heappushpop(pq, -num)
                     heappush(pq, -num)
             return res
@@ -476,11 +484,10 @@ class Solution:
         nums.sort()
         # 经典思维题，类似Dijkstra的思想从大到小枚举子序列的和
         stack = [[nums[0], 0]]
-        for _ in range(k-1):
+        for _ in range(k - 1):
             pre, i = heappop(stack)
             if i < n:
-                heapq.heappush(stack, [pre+nums[i], i+1])
+                heapq.heappush(stack, [pre + nums[i], i + 1])
                 if i:
-                    heapq.heappush(stack, [pre + nums[i] - nums[i-1], i + 1])
+                    heapq.heappush(stack, [pre + nums[i] - nums[i - 1], i + 1])
         return -stack[0][0]
-

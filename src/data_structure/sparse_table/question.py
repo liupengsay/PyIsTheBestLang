@@ -41,6 +41,15 @@ F. Array Stabilization (AND version)（https://codeforces.com/contest/1579/probl
 参考：OI WiKi（xx）
 """
 
+import bisect
+import math
+from collections import defaultdict
+from math import inf
+from typing import List
+
+from data_structure.sparse_table.template import SparseTable1, SparseTableIndex
+from utils.fast_io import FastIO
+
 
 class Solution:
     def __init__(self):
@@ -281,4 +290,3 @@ class Solution:
                 if abs(x - target) < ans:
                     ans = abs(x - target)
         return ans
-

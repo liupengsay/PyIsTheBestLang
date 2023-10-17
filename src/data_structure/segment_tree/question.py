@@ -1,13 +1,18 @@
-
 import random
-import unittest
 from collections import defaultdict, deque
+from math import inf
 from typing import List
 
 from sortedcontainers import SortedList
 
 from basis.binary_search.template import BinarySearch
-from src.fast_io import inf, FastIO
+from data_structure.segment_tree.template import SegmentTreeRangeAddMax, SegmentTreeUpdateQueryMin, \
+    SegmentTreeRangeUpdateQuerySumMinMax, SegmentTreeRangeUpdateXORSum, SegmentTreeRangeUpdateChangeQueryMax, \
+    SegmentTreeRangeUpdateMulQuerySum, SegmentTreeRangeSubConSum, SegmentTreeRangeXORQuery, \
+    SegmentTreePointChangeLongCon, SegmentTreeRangeSqrtSum, SegmentTreeRangeAndOrXOR, SegmentTreeRangeChangeQueryOr, \
+    SegmentTreeRangeUpdateAvgDev, SegmentTreeRangeUpdateQuery, SegmentTreePointUpdateRangeMulQuery, \
+    SegmentTreeRangeUpdateQuerySum, SegmentTreeRangeChangeQuerySumMinMaxDefaultDict, SegmentTreeLongestSubSame
+from utils.fast_io import FastIO
 
 """
 算法：线段树
@@ -72,6 +77,7 @@ F. Wi-Fi（https://codeforces.com/contest/1216/problem/F）经典线段树加DP�
 
 参考：OI WiKi（xx）
 """
+
 
 class Solution:
     def __int__(self):

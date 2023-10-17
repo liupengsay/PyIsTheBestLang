@@ -1,3 +1,5 @@
+import heapq
+
 
 class QuickMonotonicStack:
     def __init__(self):
@@ -7,8 +9,8 @@ class QuickMonotonicStack:
     def pipline_general(nums):
         # 模板：经典单调栈前后边界下标计算
         n = len(nums)
-        post = [n - 1] * n   # 这里可以是n/n-1/null，取决于用途
-        pre = [0] * n   # 这里可以是0/-1/null，取决于用途
+        post = [n - 1] * n  # 这里可以是n/n-1/null，取决于用途
+        pre = [0] * n  # 这里可以是0/-1/null，取决于用途
         stack = []
         for i in range(n):  # 这里也可以是从n-1到0倒序计算，取决于用途
             while stack and nums[stack[-1]] < nums[i]:  # 这里可以是"<" ">" "<=" ">="，取决于需要判断的大小关系
@@ -92,7 +94,7 @@ class MonotonicStack:
         self.post_bigger = [-1] * self.n  # 下一个更大值
         self.post_bigger_equal = [-1] * self.n  # 下一个大于等于值
         self.post_smaller = [-1] * self.n  # 下一个更小值
-        self.post_smaller_equal = [-1] * self.n   # 下一个小于等于值
+        self.post_smaller_equal = [-1] * self.n  # 下一个小于等于值
 
         self.gen_result()
         return
@@ -180,5 +182,3 @@ class Rectangle:
         for j in range(n):
             ans += (right[j] - j + 1) * (j - left[j] + 1) * pre[j]
         return ans
-
-

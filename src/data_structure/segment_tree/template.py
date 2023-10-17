@@ -1,4 +1,6 @@
-
+from collections import defaultdict
+from math import inf
+from typing import List
 
 
 class SegTreeBrackets:
@@ -1742,18 +1744,18 @@ class SegmentTreeRangeUpdateMin:
             self.lazy[i] = 0
         return
 
-    def update(self, l, r, s, t, val, i):
+    def update(self, ll, r, s, t, val, i):
         # 更新区间最大值
-        if l <= s and t <= r:
+        if ll <= s and t <= r:
             self.height[i] = val
             self.lazy[i] = val
             return
         self.push_down(i)
         m = s + (t - s) // 2
-        if l <= m:  # 注意左右子树的边界与范围
-            self.update(l, r, s, m, val, 2 * i)
+        if ll <= m:  # 注意左右子树的边界与范围
+            self.update(ll, r, s, m, val, 2 * i)
         if r > m:
-            self.update(l, r, m + 1, t, val, 2 * i + 1)
+            self.update(ll, r, m + 1, t, val, 2 * i + 1)
         self.height[i] = self.height[2 * i] if self.height[2 * i] < self.height[2 * i + 1] else self.height[2 * i + 1]
         return
 
@@ -2418,6 +2420,3 @@ class SegmentTreeRangeSqrtSum:
             if right > m:
                 stack.append([m + 1, t, 2 * i + 1])
         return ans
-
-
-

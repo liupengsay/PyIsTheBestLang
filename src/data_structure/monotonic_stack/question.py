@@ -1,11 +1,10 @@
 import bisect
 import heapq
-import random
-import unittest
 from collections import defaultdict, Counter
 from typing import List
 
-from src.data_structure.sparse_table import SparseTable1
+from data_structure.monotonic_stack.template import Rectangle
+from data_structure.sparse_table.template import SparseTable1
 from utils.fast_io import FastIO
 
 """
@@ -77,7 +76,6 @@ E - Second Sum（https://atcoder.jp/contests/abc140/tasks/abc140_e）经典单�
 """
 
 
-
 class Solution:
     def __init__(self):
         return
@@ -88,7 +86,7 @@ class Solution:
         n = ac.read_int()
         nums = ac.read_list_ints()
 
-        post = [-1] * n   # 这里可以是n/n-1/null，取决于用途
+        post = [-1] * n  # 这里可以是n/n-1/null，取决于用途
         post2 = [-1] * n
         stack1 = []
         stack2 = []
@@ -149,16 +147,16 @@ class Solution:
             if lst[0] == 0:
                 break
             n = lst.pop(0)
-            post = [n-1]*n
-            pre = [0]*n
+            post = [n - 1] * n
+            pre = [0] * n
             stack = []
             for i in range(n):
                 while stack and lst[stack[-1]] > lst[i]:
-                    post[stack.pop()] = i-1
+                    post[stack.pop()] = i - 1
                 if stack:
                     pre[i] = stack[-1] + 1
                 stack.append(i)
-            ans = max(lst[i]*(post[i]-pre[i]+1) for i in range(n))
+            ans = max(lst[i] * (post[i] - pre[i] + 1) for i in range(n))
             ac.st(ans)
         return
 
@@ -166,7 +164,7 @@ class Solution:
     def lc_2454(nums: List[int]) -> List[int]:
         # 模板：经典单调栈计算下下个更大元素
         n = len(nums)
-        ans = [-1]*n
+        ans = [-1] * n
         stack1 = []
         stack2 = []
         for i in range(n):
@@ -183,12 +181,12 @@ class Solution:
     def lg_p1191(ac=FastIO()):
         # 模板：枚举下边界使用单调栈计算矩形个数
         n = ac.read_int()
-        pre = [0]*n
+        pre = [0] * n
         ans = 0
         for _ in range(n):
             s = ac.read_str()
-            right = [n-1]*n
-            left = [0]*n
+            right = [n - 1] * n
+            left = [0] * n
             stack = []
             for j in range(n):
                 if s[j] == "W":
@@ -196,11 +194,11 @@ class Solution:
                 else:
                     pre[j] = 0
                 while stack and pre[stack[-1]] > pre[j]:
-                    right[stack.pop()] = j-1
+                    right[stack.pop()] = j - 1
                 if stack:
                     left[j] = stack[-1] + 1
                 stack.append(j)
-            ans += sum(pre[j]*(right[j]-j+1)*(j-left[j]+1) for j in range(n))
+            ans += sum(pre[j] * (right[j] - j + 1) * (j - left[j] + 1) for j in range(n))
         ac.st(ans)
         return
 
@@ -217,7 +215,7 @@ class Solution:
                 continue
             ans.append(num)
             dct.add(num)
-            heapq.heappush(stack, 2*num+1)
+            heapq.heappush(stack, 2 * num + 1)
             heapq.heappush(stack, 4 * num + 5)
 
         res = "".join(str(x) for x in ans)
@@ -251,7 +249,6 @@ class Solution:
         ans = max(nums[i] * (lst[post[i] + 1] - lst[pre[i]]) for i in range(n))
         ac.st(ans)
         return
-
 
     @staticmethod
     def lg_p3467(ac=FastIO()):
@@ -302,10 +299,10 @@ class Solution:
             node_col[x].append(y)
 
         # 枚举矩形上下两行边界
-        y_axis = sorted([y for _, y in nums]+[0, n], reverse=True)
+        y_axis = sorted([y for _, y in nums] + [0, n], reverse=True)
         ans = 0
         col = defaultdict(lambda: n)
-        x_axis = sorted([x for x, _ in nums]+[0, length])
+        x_axis = sorted([x for x, _ in nums] + [0, length])
         for y in y_axis:
             height = [col[x] - y for x in x_axis]
             compute_area_obstacle(x_axis)
@@ -432,7 +429,7 @@ class Solution:
             if stack:  # 这里可以同时求得数组前后的下一个大于等于值
                 left[i] = stack[-1] + 1  # 这里将相同的值视为右边的更大且并不会影响计算
             stack.append(i)
-        ans = sum((right[i]-i+1)*nums[i]*(i-left[i]+1) for i in range(m))
+        ans = sum((right[i] - i + 1) * nums[i] * (i - left[i] + 1) for i in range(m))
 
         left = [0] * m
         right = [m - 1] * m
@@ -443,7 +440,7 @@ class Solution:
             if stack:  # 这里可以同时求得数组前后的下一个大于等于值
                 left[i] = stack[-1] + 1  # 这里将相同的值视为右边的更大且并不会影响计算
             stack.append(i)
-        ans -= sum((right[i]-i+1)*nums[i]*(i-left[i]+1) for i in range(m))
+        ans -= sum((right[i] - i + 1) * nums[i] * (i - left[i] + 1) for i in range(m))
         ac.st(ans)
         return
 
@@ -452,22 +449,22 @@ class Solution:
         # 模板：单调栈稀疏表加哈希二分
         n = ac.read_int()
         nums = [ac.read_int() for _ in range(n)]
-        post = [n-1]*n
+        post = [n - 1] * n
         stack = []
         dct = defaultdict(list)
         for i in range(n):
             while stack and nums[stack[-1]] >= nums[i]:
-                post[stack.pop()] = i-1
+                post[stack.pop()] = i - 1
             stack.append(i)
             dct[nums[i]].append(i)
         st = SparseTable1(nums)
         ans = 0
         for i in range(n):
-            x = st.query(i+1, post[i]+1)
+            x = st.query(i + 1, post[i] + 1)
             if x == nums[i]:
                 continue
             j = bisect.bisect_left(dct[x], i)
-            ans = ac.max(ans, dct[x][j]-i+1)
+            ans = ac.max(ans, dct[x][j] - i + 1)
         ac.st(ans)
         return
 
@@ -521,7 +518,7 @@ class Solution:
         stack = []
         for i in range(n):
             while stack and nums[stack[-1]] < nums[i]:
-                ans += i - stack.pop() + 1   # 当前作为较大值
+                ans += i - stack.pop() + 1  # 当前作为较大值
             if stack:
                 ans += i - stack[-1] + 1  # 当前作为较小值
             stack.append(i)
@@ -548,8 +545,8 @@ class Solution:
         # 模板：经典单调栈模拟计算
         mod = 10 ** 9 + 7
         n = len(nums)
-        post = [n - 1] * n   # 这里可以是n/n-1/null，取决于用途
-        pre = [0] * n   # 这里可以是0/-1/null，取决于用途
+        post = [n - 1] * n  # 这里可以是n/n-1/null，取决于用途
+        pre = [0] * n  # 这里可以是0/-1/null，取决于用途
         stack = []
         for i in range(n):  # 这里也可以是从n-1到0倒序计算，取决于用途
             while stack and nums[stack[-1]] <= nums[i]:  # 这里可以是"<" ">" "<=" ">="，取决于需要判断的大小关系
@@ -557,7 +554,7 @@ class Solution:
             if stack:  # 这里不一定可以同时计算，比如前后都是大于等于时，只有前后所求范围互斥时，可以计算
                 pre[i] = stack[-1] + 1  # 这里可以是stack[-1]或者stack[-1]+1，取决于是否包含stack[-1]作为左端点
             stack.append(i)
-        return sum(nums[i]*(i-pre[i]+1)*(post[i]-i+1) for i in range(n)) % mod
+        return sum(nums[i] * (i - pre[i] + 1) * (post[i] - i + 1) for i in range(n)) % mod
 
     @staticmethod
     def lc_1081(s: str) -> str:
@@ -578,7 +575,7 @@ class Solution:
     def lc_1673(nums: List[int], k: int) -> List[int]:
         # 模板：经典单调栈贪心删除选取
         n = len(nums)
-        rem = n-k
+        rem = n - k
         stack = []
         for num in nums:
             while stack and stack[-1] > num and rem:
@@ -647,29 +644,29 @@ class Solution:
             while stack and nums[stack[-1]] > nums[i]:
                 stack.pop()
             if not stack:
-                pre[i] = nums[i]*(i + 1)
+                pre[i] = nums[i] * (i + 1)
             else:
-                pre[i] = pre[stack[-1]] + nums[i]*(i-stack[-1])
+                pre[i] = pre[stack[-1]] + nums[i] * (i - stack[-1])
             stack.append(i)
 
         post = [0] * n
         stack = []
-        for i in range(n-1, -1, -1):
+        for i in range(n - 1, -1, -1):
             while stack and nums[stack[-1]] > nums[i]:
                 stack.pop()
             if not stack:
                 post[i] = nums[i] * (n - i)
             else:
-                post[i] = post[stack[-1]] + nums[i] * (stack[-1]-i)
+                post[i] = post[stack[-1]] + nums[i] * (stack[-1] - i)
             stack.append(i)
 
-        ceil = max(pre[i]+post[i]-nums[i] for i in range(n))
+        ceil = max(pre[i] + post[i] - nums[i] for i in range(n))
         for i in range(n):
-            if pre[i]+post[i]-nums[i] == ceil:
-                for j in range(i+1, n):
-                    nums[j] = ac.min(nums[j], nums[j-1])
-                for j in range(i-1, -1, -1):
-                    nums[j] = ac.min(nums[j], nums[j+1])
+            if pre[i] + post[i] - nums[i] == ceil:
+                for j in range(i + 1, n):
+                    nums[j] = ac.min(nums[j], nums[j - 1])
+                for j in range(i - 1, -1, -1):
+                    nums[j] = ac.min(nums[j], nums[j + 1])
                 ac.lst(nums)
                 break
         return
@@ -711,11 +708,11 @@ class Solution:
         for num in arr:
             while stack and stack[-1] <= num:
                 cur = stack.pop(-1)
-                res += min(stack[-1]*cur, cur*num)
+                res += min(stack[-1] * cur, cur * num)
             stack.append(num)
         m = len(stack)
-        for i in range(m-2, 0, -1):
-            res += stack[i]*stack[i+1]
+        for i in range(m - 2, 0, -1):
+            res += stack[i] * stack[i + 1]
         return res
 
     @staticmethod
@@ -788,4 +785,3 @@ class Solution:
             nums[i] = ac.min(nums[i + 1], nums[i])
         ac.lst(nums)
         return
-

@@ -1,4 +1,10 @@
+import random
+import unittest
 
+from data_structure.segment_tree.template import SegmentTreePointAddSumMaxMin, SegmentTreeRangeAddMax, \
+    SegmentTreeRangeUpdateMax, SegmentTreeRangeUpdateMin, SegmentTreeUpdateQueryMin, \
+    SegmentTreeRangeUpdateQuerySumMinMax, SegmentTreeRangeChangeQuerySumMinMax, SegmentTreeRangeUpdateSubConSum, \
+    SegmentTreeRangeUpdateQuery, SegmentTreeRangeUpdateSum, SegmentTreeRangeAddSum
 
 
 class TestGeneral(unittest.TestCase):

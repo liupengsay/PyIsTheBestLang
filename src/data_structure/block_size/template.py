@@ -1,13 +1,3 @@
-import unittest
-from collections import defaultdict, Counter
-from itertools import accumulate
-from operator import xor
-
-from utils.fast_io import FastIO
-
-
-
-
 class BlockSize:
     def __init__(self):
         return
@@ -40,7 +30,3 @@ class BlockSize:
             pre = num + 1
         assert sum([ls[1] - ls[0] + 1 for ls in seg]) == n
         return cnt, seg
-
-
-
-

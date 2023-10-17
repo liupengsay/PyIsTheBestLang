@@ -1,3 +1,6 @@
+import unittest
+
+from data_structure.block_size.template import BlockSize
 
 
 class TestGeneral(unittest.TestCase):

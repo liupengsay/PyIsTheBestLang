@@ -1,15 +1,7 @@
 import math
-import random
-import unittest
-import bisect
-from collections import defaultdict
-from operator import or_, and_
-from math import lcm, gcd
 from functools import reduce
-from typing import List
-from math import inf
-
-from utils.fast_io import FastIO
+from math import lcm, gcd
+from operator import or_, and_
 
 
 class SparseTable1:
@@ -215,4 +207,3 @@ class SparseTableIndex:
             return a if self.lst[a] > self.lst[b] else b
         elif self.fun == "min":
             return a if self.lst[a] < self.lst[b] else b
-

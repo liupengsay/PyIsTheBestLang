@@ -1,4 +1,5 @@
-
+from collections import deque
+from typing import List
 
 
 class PriorityQueue:
@@ -45,7 +46,3 @@ class PriorityQueue:
         if method == "min":
             ans = [-num for num in ans]
         return ans
-
-
-
-
