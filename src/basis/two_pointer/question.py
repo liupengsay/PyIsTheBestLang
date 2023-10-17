@@ -362,7 +362,7 @@ class Solution:
     @staticmethod
     def lg_p5583(ac=FastIO()):
         # 模板：双指针与变量维护区间信息
-        n, m, d = ac.read_ints()
+        n, m, d = ac.read_list_ints()
         nums = ac.read_list_ints()
         cnt = dict()
         for num in nums:
@@ -431,7 +431,7 @@ class Solution:
         # 模板：经典双指针移动
         n = ac.read_int()
         s = ac.read_str()
-        a, b = ac.read_ints()
+        a, b = ac.read_list_ints()
         ans = inf
         j = 0
         ind = dict()

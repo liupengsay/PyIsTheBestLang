@@ -192,7 +192,7 @@ class Solution:
     @staticmethod
     def cf_1005e2(ac=FastIO()):
         # 模板：经典特定中位数的连续子数组个数，使用容斥原理加前缀和有序列表二分
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
 
         def check(x):
@@ -299,7 +299,7 @@ class Solution:
         n = ac.read_int()
         a = b = 1
         for _ in range(n):
-            x, y = ac.read_ints()
+            x, y = ac.read_list_ints()
             z1 = a //x + int(a%x>0)
             z2 = b //y + int(b%y>0)
             z = ac.max(z1, z2)
@@ -328,7 +328,7 @@ class Solution:
             ans = sum(abs(num - y) for num in pre)
             return ans
 
-        m, n, t = ac.read_ints()
+        m, n, t = ac.read_list_ints()
         row = [0] * m
         col = [0] * n
         for _ in range(t):
@@ -354,7 +354,7 @@ class Solution:
         lst_x = []
         lst_y = []
         for _ in range(n):
-            x, y = ac.read_ints()
+            x, y = ac.read_list_ints()
             lst_y.append(y)
             lst_x.append(x)
         lst_y.sort()
@@ -386,7 +386,7 @@ class Solution:
     @staticmethod
     def ac_127(ac=FastIO()):
         # 模板：经典二维排序贪心
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         machine = [ac.read_list_ints() for _ in range(n)]
         task = [ac.read_list_ints() for _ in range(m)]
         machine.sort(reverse=True)
@@ -442,7 +442,7 @@ class Solution:
     def lg_p1080(ac=FastIO()):
         # 模板：经典贪心，举例两项确定排序公式
         n = ac.read_int()
-        a, b = ac.read_ints()
+        a, b = ac.read_list_ints()
         lst = [ac.read_list_ints() for _ in range(n)]
         lst.sort(key=lambda x: x[0] * x[1] - x[1])
         ans = 0
@@ -487,7 +487,7 @@ class Solution:
     def lg_p2088(ac=FastIO()):
         # 模板：使用队列集合贪心，取空闲的，或者下一个离得最远的使用
         ans = 0
-        k, n = ac.read_ints()
+        k, n = ac.read_list_ints()
         nums = []
         while len(nums) < n:
             nums.extend(ac.read_list_ints())
@@ -538,7 +538,7 @@ class Solution:
     @staticmethod
     def lg_p3819(ac=FastIO()):
         # 模板：经典中位数贪心题
-        length, n = ac.read_ints()
+        length, n = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         s = sum(x for _, x in nums)
         nums.sort()
@@ -554,11 +554,11 @@ class Solution:
     @staticmethod
     def lg_p4025(ac=FastIO()):
         # 模板：经典贪心血量与增幅自定义排序
-        n, z = ac.read_ints()
+        n, z = ac.read_list_ints()
         pos = []
         neg = []
         for i in range(n):
-            d, a = ac.read_ints()
+            d, a = ac.read_list_ints()
             if d < a:
                 pos.append([d, a, i])
             else:
@@ -580,7 +580,7 @@ class Solution:
     @staticmethod
     def lg_p4266(ac=FastIO()):
         # 模板：后缀最大值贪心模拟
-        length, n, rf, rb = ac.read_ints()
+        length, n, rf, rb = ac.read_list_ints()
         nums = [[0, 0]] + [ac.read_list_ints() for _ in range(n)]
         n += 1
         # 记录后缀最大值序列
@@ -631,7 +631,7 @@ class Solution:
             k = ac.read_int()
             dct = [set() for _ in range(m)]
             for _ in range(k):
-                i, j = ac.read_ints()
+                i, j = ac.read_list_ints()
                 dct[i].add(j)
 
             dp = [sum((1 << j) for j in dct[i]) for i in range(m)]
@@ -678,7 +678,7 @@ class Solution:
     @staticmethod
     def lg_p5093(ac=FastIO()):
         # 模板：经典脑筋急转弯使用集合确定轮数
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
         pre = set()
         ans = 1
@@ -693,7 +693,7 @@ class Solution:
     @staticmethod
     def lg_p5425(ac=FastIO()):
         # 模板：看似最小生成树，实则脑筋急转弯贪心计算距离
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         ans = (2019201913 * (k - 1) + 2019201949 * n) % 2019201997
         ac.st(ans)
         return
@@ -889,7 +889,7 @@ class Solution:
     @staticmethod
     def ac_4429(ac=FastIO()):
         # 模板：经典计算邻项公式贪心排序，使用前后缀枚举
-        n, x1, y1, x2, y2 = ac.read_ints()
+        n, x1, y1, x2, y2 = ac.read_list_ints()
         pos = [ac.read_list_ints() for _ in range(n)]
         dis1 = [(x - x1) * (x - x1) + (y - y1) * (y - y1) for x, y in pos]
         dis2 = [(x - x2) * (x - x2) + (y - y2) * (y - y2) for x, y in pos]
@@ -985,7 +985,7 @@ class Solution:
     @staticmethod
     def ac_4623(ac=FastIO()):
         # 模板：贪心模拟
-        n, t = ac.read_ints()
+        n, t = ac.read_list_ints()
         a = ac.read_list_ints()
         ans = 0
         while a:

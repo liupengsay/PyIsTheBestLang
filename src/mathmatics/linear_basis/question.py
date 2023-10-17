@@ -4,7 +4,7 @@ import unittest
 from functools import reduce
 from operator import xor
 
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 
 """
 算法：线性基也叫Hamel基

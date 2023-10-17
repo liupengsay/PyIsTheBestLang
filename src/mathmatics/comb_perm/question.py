@@ -76,7 +76,7 @@ class Solution:
     @staticmethod
     def abc_110d(ac=FastIO()):
         # 模板：质因数分解与隔板法计数
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         mod = 10**9 + 7
         cb = Combinatorics(n+100, mod)  # 注意这里会超出n
         ans = 1
@@ -91,7 +91,7 @@ class Solution:
     def cf_1436c(ac=FastIO()):
 
         # 模板：二分查找加组合数计算
-        n, x, pos = ac.read_ints()
+        n, x, pos = ac.read_list_ints()
         big = small = 0
 
         left = 0
@@ -119,7 +119,7 @@ class Solution:
     def cf_559c(ac=FastIO()):
 
         # 模板：容斥原理组合数计算
-        m, n, k = ac.read_ints()
+        m, n, k = ac.read_list_ints()
         mod = 10 ** 9 + 7
         cb = Combinatorics(m + n, mod)
         pos = [ac.read_list_ints_minus_one() for _ in range(k)]
@@ -199,7 +199,7 @@ class Solution:
     @staticmethod
     def cf_300c(ac=FastIO()):
         mod = 10 ** 9 + 7
-        a, b, n = ac.read_ints()
+        a, b, n = ac.read_list_ints()
         c = Combinatorics(n+1, mod)
 
         dct = set(f"{a}{b}")
@@ -234,7 +234,7 @@ class Solution:
         mod = 10**9+7
         cb = Combinatorics(10**6, mod)
         for _ in range(ac.read_int()):
-            n, m = ac.read_ints()
+            n, m = ac.read_list_ints()
             if m > n:
                 ac.st(0)
                 continue
@@ -263,7 +263,7 @@ class Solution:
     @staticmethod
     def lg_p1287(ac=FastIO()):
         # 模板：容斥原理计数
-        n, r = ac.read_ints()
+        n, r = ac.read_list_ints()
         ans = 0
         for k in range(r):
             cur = ((-1)**k)*math.comb(r, k)*((r-k)**n)
@@ -274,7 +274,7 @@ class Solution:
     @staticmethod
     def lg_p4071(ac=FastIO()):
         # 模板：隔板法计算组合数
-        tp, n, m, p = ac.read_ints()
+        tp, n, m, p = ac.read_list_ints()
 
         if n < 2 * m - 1:
             ac.st(0)
@@ -291,7 +291,7 @@ class Solution:
     def lg_p3807(ac=FastIO()):
         # 模板：Lucas模板题
         for _ in range(ac.read_int()):
-            n, m, p = ac.read_ints()
+            n, m, p = ac.read_list_ints()
             ans = Lucas().lucas_iter(n + m, n, p)
             ac.st(ans)
         return
@@ -300,7 +300,7 @@ class Solution:
     def abc_42d(ac=FastIO()):
         # 模板：容斥原理组合计数
         mod = 10**9 + 7
-        h, w, a, b = ac.read_ints()
+        h, w, a, b = ac.read_list_ints()
         cb = Combinatorics(h+w+2, mod)
         ans = cb.comb(h+w-2, h-1)
         for x in range(h-a+1, h+1):
@@ -337,7 +337,7 @@ class Solution:
     def abc_127e(ac=FastIO()):
         # 模板：经典贡献法组合计数
         mod = 10**9 + 7
-        m, n, k = ac.read_ints()
+        m, n, k = ac.read_list_ints()
         cb = Combinatorics(m*n, mod)
         cnt = cb.comb(m*n-2, k-2)
         ans = 0
@@ -393,7 +393,7 @@ class Solution:
     def lg_p1680(ac=FastIO()):
         # 模板：隔板法计算不同分组的个数，使用乘法逆元与Lucas定理快速计算Comb(a,b) % m
         # 经典转换为（n个相同的球放入m个不同的盒子，不允许为空的方案数）
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         n -= sum([ac.read_int() for _ in range(m)])
         m -= 1
         n -= 1
@@ -406,7 +406,7 @@ class Solution:
     def lg_p2265(ac=FastIO()):
         # 模板：排列组合，计算comb(n+m, m)
         mod = 1000000007
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         ans = Lucas().comb(n+m, m, mod)
         ac.st(ans)
         return
@@ -414,7 +414,7 @@ class Solution:
     @staticmethod
     def lg_p2638(ac=FastIO()):
         # 模板：隔板法 a 个球放入 n 个盒子不要求每个都放也不要求放完的方案数
-        n, a, b = ac.read_ints()
+        n, a, b = ac.read_list_ints()
         ans = math.comb(n + a, n) * math.comb(n + b, n)
         ac.st(ans)
         return
@@ -422,7 +422,7 @@ class Solution:
     @staticmethod
     def lg_p2822(ac=FastIO()):
         # 模板：组合数 comb(i, j) % k == 0 的个数计算
-        t, k = ac.read_ints()
+        t, k = ac.read_list_ints()
 
         # 预处理计算组合数  comb(i, j) % k
         x = 2001
@@ -442,7 +442,7 @@ class Solution:
 
         # 查询
         for _ in range(t):
-            n, m = ac.read_ints()
+            n, m = ac.read_list_ints()
             ans = 0
             for i in range(0, n + 1):
                 ans += cnt[i][min(i + 1, m + 1)]
@@ -452,7 +452,7 @@ class Solution:
     @staticmethod
     def lg_p3223(ac=FastIO()):
         # 模板：使用容斥原理与隔板法计算
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         ans1 = math.factorial(n + 2) * math.factorial(m) * math.comb(n + 3, m)
         ans2 = math.factorial(2) * math.factorial(n + 1) * math.factorial(m) * math.comb(n + 2, m)
         ac.st(ans1 - ans2)
@@ -461,7 +461,7 @@ class Solution:
     @staticmethod
     def lg_p3904(ac=FastIO()):
         # 模板：递推第二类斯特林数
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dp = [[0] * m for _ in range(n)]
         dp[0][0] = 1
         for i in range(1, n):
@@ -477,7 +477,7 @@ class Solution:
         mod = 10**9 + 7
         cb = Combinatorics(10**6, mod)
         for _ in range(ac.read_int()):
-            n, m = ac.read_ints()
+            n, m = ac.read_list_ints()
             if m > n:
                 ac.st(0)
                 continue
@@ -523,7 +523,7 @@ class Solution:
     @staticmethod
     def lg_p6057(ac=FastIO()):
         # 模板：容斥原理计数
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         degree = [0] * n
         for _ in range(m):
             x, y = ac.read_ints_minus_one()
@@ -539,7 +539,7 @@ class Solution:
     @staticmethod
     def cf_414b(ac=FastIO()):
         mod = 10 ** 9 + 7
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         mp = NumberTheoryPrimeFactor(n)
         rp = Combinatorics(15 + 1, mod)
         cnt = [0] * (n + 1)  # 当前值 last 的最小质因数幂次
@@ -588,7 +588,7 @@ class Solution:
     @staticmethod
     def abc_132d(ac=FastIO()):
         # 模板：组合数学经典计数，和为 X 的长为 Y 的正整数与非负整数方程解个数
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         mod = 10**9 + 7
         cb = Combinatorics(n, mod)
         for i in range(1, k + 1):
@@ -611,7 +611,7 @@ class Solution:
     @staticmethod
     def ac_4002(ac=FastIO()):
         # 模板：矩阵DP转化为隔板法组合数求解
-        m, n = ac.read_ints()
+        m, n = ac.read_list_ints()
         cb = Combinatorics(2*n+m, 10**9+7)
         ac.st(cb.comb(2*n+m-1, m-1))
         return
@@ -630,7 +630,7 @@ class Solution:
     def ac_5055(ac=FastIO()):
         # 模板：经典组合数学取模求解
         mod = 10**9 + 7
-        n, m, k = ac.read_ints()
+        n, m, k = ac.read_list_ints()
         cb = Combinatorics(m + n, mod)
         ac.st(cb.comb(n - 1, 2 * k) * cb.comb(m - 1, 2 * k) % mod)
         return

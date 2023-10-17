@@ -173,7 +173,7 @@ class Solution:
     @staticmethod
     def lg_p7947(ac=FastIO()):
         # 模板：贪心构造积为 n 和为 k 的数列，乘积分解成质因数其和最小
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         ans = []
         for p, c in NumberTheory().get_prime_factor(n):
             ans.extend([p]*c)
@@ -247,7 +247,7 @@ class Solution:
     def lg_p8976(ac=FastIO()):
         # 模板：经典枚举连续段进行构造数组的前半段与后半段和满足要求
         for _ in range(ac.read_int()):
-            n, a, b = ac.read_ints()
+            n, a, b = ac.read_list_ints()
             mid = n // 2 + 1
             if a + b > n * (n + 1) // 2 or ac.max(a, b) > (n // 2) * (mid + n) // 2:
                 ac.st(-1)
@@ -287,7 +287,7 @@ class Solution:
     def lg_p8910(ac=FastIO()):
         # 模板：经典置换环构造
         for _ in range(ac.read_int()):
-            n, k = ac.read_ints()
+            n, k = ac.read_list_ints()
             nex = [0] * (n + 1)
             for i in range(k):
                 nex[i] = n - k + i

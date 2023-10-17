@@ -110,7 +110,7 @@ class Solution:
     def cf_276d(ac=FastIO()):
 
         # 模板：区间[l,r]的最大异或和
-        a, b = ac.read_ints()
+        a, b = ac.read_list_ints()
         n = len(bin(b)) - 2
         ans = 0
         for i in range(n - 1, -1, -1):
@@ -186,7 +186,7 @@ class Solution:
     def cf_1554c(ac=FastIO()):
         # 模板：涉及到 MEX 转换为求 n^ans>=m+1 的最小值ans
         for _ in range(ac.read_int()):
-            n, m = ac.read_ints()
+            n, m = ac.read_list_ints()
             assert 0 <= n <= 10**9
             assert 0 <= m <= 10**9
             p = m + 1
@@ -331,7 +331,7 @@ class Solution:
     @staticmethod
     def abc_117d(ac=FastIO()):
         # 模板：从高位到低位按位贪心，思维题
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
         ans = pre = 0
         for i in range(40, -1, -1):
@@ -355,14 +355,14 @@ class Solution:
                 ans ^= x
             return ans
 
-        a, b = ac.read_ints()
+        a, b = ac.read_list_ints()
         ac.st(count(b) ^ count(a - 1))
         return
 
     @staticmethod
     def ac_998(ac=FastIO()):
         # 模板：按照二进制每个位进行操作，计算贪心结果
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         ans = [[0, 1 << i] for i in range(32)]
         for _ in range(n):
             op, t = ac.read_list_strs()
@@ -392,7 +392,7 @@ class Solution:
     @staticmethod
     def lg_p1582(ac=FastIO()):
         # 模板：进制题脑筋急转弯
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         ans = 0
         # 每次选末尾的 1 进行增加合并
         while bin(n).count("1") > k:
@@ -404,7 +404,7 @@ class Solution:
     @staticmethod
     def lg_p2114(ac=FastIO()):
         # 模板：按位操作计算模拟，贪心选取最大结果
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         one = [1 << i for i in range(32)]
         zero = [0] * 32
         for _ in range(n):
@@ -461,7 +461,7 @@ class Solution:
     @staticmethod
     def lg_p4144(ac=FastIO()):
         # 模板：按位思考脑筋急转弯贪心
-        n, b, p = ac.read_ints()
+        n, b, p = ac.read_list_ints()
         nums = ac.read_list_ints()
         ans = max(nums) * 2
         ac.st(pow(ans + 233, b, p))
@@ -506,7 +506,7 @@ class Solution:
     @staticmethod
     def lg_p6824(ac=FastIO()):
         # 模板：经典按位操作计算异或不等式在使用差分作用域计数
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
         m = len(bin(max(k, max(nums))))
         diff = [0] * ((1 << m) + 1)
@@ -582,7 +582,7 @@ class Solution:
     @staticmethod
     def ac_4614(ac=FastIO()):
         # 模板：位运算枚举与前缀和预处理
-        n, m, q = ac.read_ints()
+        n, m, q = ac.read_list_ints()
         nums = ac.read_list_ints()
         lst = [ac.read_str() for _ in range(m)]
         cnt = Counter(lst)

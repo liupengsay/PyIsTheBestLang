@@ -3,8 +3,8 @@ from collections import deque
 import random
 from typing import List
 
-from src.basis.binary_search import BinarySearch
-from src.fast_io import FastIO
+from basis.binary_search.template import BinarySearch
+from utils.fast_io import FastIO
 
 """
 算法：单调队列、双端队列
@@ -53,7 +53,7 @@ class Solution:
 
         # 模板：单调队列和指针维护滑动窗口最大值加线性DP
         inf = float("-inf")
-        n, low, high = ac.read_ints()
+        n, low, high = ac.read_list_ints()
         n += 1
         nums = ac.read_list_ints()
         dp = [-inf] * n
@@ -104,7 +104,7 @@ class Solution:
     @staticmethod
     def lg_p2032(ac=FastIO()):
         # 模板：滑动窗口最大值
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
         ans = PriorityQueue().sliding_window(nums, k)
         for a in ans:
@@ -114,7 +114,7 @@ class Solution:
     @staticmethod
     def lg_p2251(ac=FastIO()):
         # 模板：滑动窗口最小值
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         ans = PriorityQueue().sliding_window(nums, m, "min")
         for a in ans:
@@ -125,7 +125,7 @@ class Solution:
     def lg_p2216(ac=FastIO()):
 
         # 模板：二维滑动窗口最大值与滑动窗口最小值
-        m, n, k = ac.read_ints()
+        m, n, k = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
 
         ceil = [[0]*n for _ in range(m)]
@@ -151,7 +151,7 @@ class Solution:
     @staticmethod
     def lg_p1886(ac=FastIO()):
         # 模板：计算滑动窗口最大最小值
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
         ans1 = []
         ans2 = []
@@ -180,10 +180,10 @@ class Solution:
     @staticmethod
     def lg_p3800(ac=FastIO()):
         # 模板：单调队列优化矩阵DP
-        m, n, k, t = ac.read_ints()
+        m, n, k, t = ac.read_list_ints()
         dct = [dict() for _ in range(m)]
         for _ in range(k):
-            x, y, val = ac.read_ints()
+            x, y, val = ac.read_list_ints()
             x -= 1
             y -= 1
             dct[x][y] = val
@@ -210,7 +210,7 @@ class Solution:
     @staticmethod
     def ac_133(ac=FastIO()):
         # 模板：三个优先队列加一个偏移量
-        n, m, q, u, v, t = ac.read_ints()
+        n, m, q, u, v, t = ac.read_list_ints()
         nums1 = ac.read_list_ints()
         nums1 = deque(sorted(nums1, reverse=True))
         nums2 = deque()
@@ -306,7 +306,7 @@ class Solution:
     @staticmethod
     def lg_p1714(ac=FastIO()):
         # 模板：单调队列计算小于一定长度的最大连续子段和
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         ans = max(nums)
         pre = 0
@@ -348,11 +348,11 @@ class Solution:
     @staticmethod
     def lg_p3957(ac=FastIO()):
         # 模板：二分加单调队列
-        n, d, k = ac.read_ints()
+        n, d, k = ac.read_list_ints()
         dis = [0]
         score = [0]
         for _ in range(n):
-            x, s = ac.read_ints()
+            x, s = ac.read_list_ints()
             dis.append(x)
             score.append(s)
         n += 1
@@ -390,11 +390,11 @@ class Solution:
     def lg_p4085(ac=FastIO()):
 
         # 模板：双指针加优先队列滑动窗口最小值
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         f = []
         s = []
         for i in range(n):
-            a, b = ac.read_ints()
+            a, b = ac.read_list_ints()
             f.append(a)
             s.append(b)
 
@@ -420,7 +420,7 @@ class Solution:
     @staticmethod
     def lg_p4392(ac=FastIO()):
         # 模板：单调队列计算滑动窗口最大值
-        n, m, c = ac.read_ints()
+        n, m, c = ac.read_list_ints()
         ceil = deque()
         floor = deque()
         nums = ac.read_list_ints()

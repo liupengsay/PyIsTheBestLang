@@ -127,7 +127,7 @@ class Solution:
     @staticmethod
     def lg_p6148(ac=FastIO()):
         # 模板：经典计算循环节后模拟
-        n, m, k = ac.read_ints()
+        n, m, k = ac.read_list_ints()
         nums = [ac.read_list_ints_minus_one() for _ in range(m)]
         nex = [-1] * n
         for i in range(n):

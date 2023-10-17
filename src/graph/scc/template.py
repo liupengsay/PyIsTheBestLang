@@ -3,7 +3,7 @@ import unittest
 
 from collections import defaultdict, deque
 
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 
 
 
@@ -117,7 +117,7 @@ class TwoSAT:
     @staticmethod
     def cf_1438c(ac=FastIO()):
         for _ in range(ac.read_int()):
-            m, n = ac.read_ints()
+            m, n = ac.read_list_ints()
             grid = [ac.read_list_ints() for _ in range(m)]
             # 建图并把索引编码
             edge = [[] for _ in range(2 * m * n)]
@@ -166,11 +166,11 @@ class TwoSAT:
 
     @staticmethod
     def luogu_4782(ac=FastIO()):
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         # 建图并把索引编码
         edge = [[] for _ in range(2 * n)]
         for _ in range(m):
-            i, a, j, b = ac.read_ints()
+            i, a, j, b = ac.read_list_ints()
             i -= 1
             j -= 1
             edge[i * 2 + 1 - a].append(j * 2 + b)
@@ -216,7 +216,7 @@ class TwoSAT:
 
     @staticmethod
     def luogu_p5782(ac=FastIO()):
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         # 建图并把索引编码
         edge = [[] for _ in range(4 * n)]
         for _ in range(m):
@@ -273,7 +273,7 @@ class TwoSAT:
     @staticmethod
     def luogu_4171(ac=FastIO()):
         for _ in range(ac.read_int()):
-            n, m = ac.read_ints()
+            n, m = ac.read_list_ints()
             # 建图并把索引编码
             edge = [[] for _ in range(2 * n)]
             for _ in range(m):

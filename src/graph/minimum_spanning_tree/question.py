@@ -5,7 +5,7 @@ from collections import deque, defaultdict
 from heapq import heappop, heappush
 from typing import List
 
-from src.fast_io import FastIO, inf
+from utils.fast_io import FastIO, inf
 from src.graph.union_find import UnionFind
 
 """
@@ -79,7 +79,7 @@ class Solution:
     @staticmethod
     def lg_p1991(ac=FastIO()):
         # 模板：利用最小生成树计算 k 个连通块所需的最大边权值
-        k, n = ac.read_ints()
+        k, n = ac.read_list_ints()
         pos = [ac.read_list_ints() for _ in range(n)]
         edge = []
         for i in range(n):
@@ -103,7 +103,7 @@ class Solution:
     @staticmethod
     def lg_2820(ac=FastIO()):
         # 模板：求删除最大权值和使得存在回路的连通图变成最小生成树
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         edge = [ac.read_list_ints() for _ in range(m)]
         uf = UnionFind(n)
         edge.sort(key=lambda it: it[2])
@@ -117,7 +117,7 @@ class Solution:
     @staticmethod
     def lg_p3366_1(ac=FastIO()):
         # 模板：kruskal求最小生成树
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         edges = []
         for _ in range(m):
             x, y, z = ac.read_list_ints()
@@ -134,7 +134,7 @@ class Solution:
     @staticmethod
     def lg_p3366_2(ac=FastIO()):
         # 模板：prim求最小生成树
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         edges = []
         for _ in range(m):
             x, y, z = ac.read_list_ints()
@@ -238,7 +238,7 @@ class Solution:
             res = (x1 - x2) ** 2 + (y1 - y2) ** 2
             return res ** 0.5
 
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         dct = [dict() for _ in range(n)]
         for i in range(m):
@@ -272,7 +272,7 @@ class Solution:
     @staticmethod
     def lg_p1194(ac=FastIO()):
         # 模板：使用超级源点建图计算最小生成树
-        a, b = ac.read_ints()
+        a, b = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(b)]
         edge = [[0, i, a] for i in range(1, b + 1)]
         for i in range(b):
@@ -342,10 +342,10 @@ class Solution:
     @staticmethod
     def lg_p4180(ac=FastIO()):
         # 模板：使用最小生成树与LCA倍增查询计算严格次小生成树
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         edges = []
         for _ in range(m):
-            i, j, w = ac.read_ints()
+            i, j, w = ac.read_list_ints()
             if i != j:  # 去除自环
                 edges.append([i - 1, j - 1, w])
 
@@ -376,10 +376,10 @@ class Solution:
     @staticmethod
     def cf_609e(ac=FastIO()):
         # 模板：计算最小生成树有指定边参与时的最小权值和，由此也可计算严格次小生成树
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         edges = []
         for _ in range(m):
-            i, j, w = ac.read_ints()
+            i, j, w = ac.read_list_ints()
             if i != j:  # 去除自环
                 edges.append([i - 1, j - 1, w])
 
@@ -440,7 +440,7 @@ class Solution:
     @staticmethod
     def lg_p1340(ac=FastIO()):
         # 模板：逆序并查集，维护最小生成树的边
-        n, w = ac.read_ints()
+        n, w = ac.read_list_ints()
 
         # 离线查询处理，按照边权排序
         edges = [ac.read_list_ints() for _ in range(w)]
@@ -511,7 +511,7 @@ class Solution:
             res = (x1 - x2) ** 2 + (y1 - y2) ** 2
             return res if res >= c else inf
 
-        n, c = ac.read_ints()
+        n, c = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         # 初始化最短距离
         ans = nex = 0
@@ -540,7 +540,7 @@ class Solution:
     @staticmethod
     def lg_p2658(ac=FastIO()):
         # 模板：典型最小生成树计算
-        m, n = ac.read_ints()
+        m, n = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
         uf = UnionFind(m * n)
         s = 0
@@ -607,7 +607,7 @@ class Solution:
     @staticmethod
     def lg_p3535(ac=FastIO()):
         # 模板：最小生成树思想与并查集判环
-        n, m, k = ac.read_ints()
+        n, m, k = ac.read_list_ints()
         edge = []
         uf = UnionFind(n)
         ans = 0
@@ -632,7 +632,7 @@ class Solution:
             return (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)
 
         # 模板：使用最小生成树进行最优聚类距离计算
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         edge = []
         for i in range(n):
@@ -659,7 +659,7 @@ class Solution:
     @staticmethod
     def lg_p6171(ac=FastIO()):
         # 模板：稀疏图使用 Kruskal 计算最小生成树
-        a, b, n, m = ac.read_ints()
+        a, b, n, m = ac.read_list_ints()
         nums1 = [0, a] + [ac.read_int() for _ in range(n)]
         nums2 = [0, b] + [ac.read_int() for _ in range(m)]
         nums1.sort()

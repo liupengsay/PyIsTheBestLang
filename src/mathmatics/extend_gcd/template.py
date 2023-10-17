@@ -26,7 +26,7 @@ from decimal import Decimal
 import heapq
 import copy
 
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 
 
 

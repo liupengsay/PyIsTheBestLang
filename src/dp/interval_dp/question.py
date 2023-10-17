@@ -5,7 +5,7 @@ from functools import lru_cache
 from itertools import accumulate
 from typing import List
 
-from src.fast_io import FastIO, inf
+from utils.fast_io import FastIO, inf
 
 
 MOD = 10 ** 9 + 7

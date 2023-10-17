@@ -377,7 +377,7 @@ class Solution:
     @staticmethod
     def abc_62c(ac=FastIO()):
         # 模板：枚举切割方式
-        m, n = ac.read_ints()
+        m, n = ac.read_list_ints()
 
         def check1():
             nonlocal ans
@@ -410,7 +410,7 @@ class Solution:
     def abc_74c(ac=FastIO()):
         # 模板：经典枚举系数利用公式计算边界
         res = 0
-        a, b, c, d, e, f = ac.read_ints()
+        a, b, c, d, e, f = ac.read_list_ints()
         ans = [100 * a, 0]
         for p in range(3001):
             if p * a * 100 > f:
@@ -476,7 +476,7 @@ class Solution:
     @staticmethod
     def lg_p1018(ac=FastIO()):
         # 模板：枚举乘号的位置
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         nums = ac.read_list_str()
 
         ans = 0
@@ -493,7 +493,7 @@ class Solution:
     @staticmethod
     def lg_p1311(ac=FastIO()):
         # 模板：线性枚举计数，每次重置避免重复计数
-        n, k, p = ac.read_ints()
+        n, k, p = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         cnt = [0]*k
         for i in range(n):
@@ -520,7 +520,7 @@ class Solution:
     def lg_p2119(ac=FastIO()):
 
         # 模板：枚举差值，并计算前后缀个数
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(m)]
 
         cnt = [0] * (n + 1)
@@ -576,7 +576,7 @@ class Solution:
         n = ac.read_int()
         dct = defaultdict(set)
         for _ in range(n):
-            a, b = ac.read_ints()
+            a, b = ac.read_list_ints()
             dct[a].add(b)
         ans = n
         for a in dct:
@@ -597,7 +597,7 @@ class Solution:
         def dis():
             return (x1 - x2) ** 2 + (y1 - y2) ** 2
 
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         cow = [ac.read_list_ints() for _ in range(n)]
         pos = [ac.read_list_ints() for _ in range(n)]
         visit = [0] * n
@@ -625,7 +625,7 @@ class Solution:
     @staticmethod
     def lg_p4181(ac=FastIO()):
         # 模板：贪心枚举与后缀和
-        n, m, r = ac.read_ints()
+        n, m, r = ac.read_list_ints()
         cow = [ac.read_int() for _ in range(n)]
         cow.sort()
         nums1 = [ac.read_list_ints()[::-1] for _ in range(m)]
@@ -760,7 +760,7 @@ class Solution:
     @staticmethod
     def lg_p6767(ac=FastIO()):
         # 模板：贪心枚举性价比较低的数量
-        n, a, b, c, d = ac.read_ints()
+        n, a, b, c, d = ac.read_list_ints()
         if b * c > a * d:
             a, b, c, d = c, d, a, b
 
@@ -866,16 +866,16 @@ class Solution:
     @staticmethod
     def lg_p9008(ac=FastIO()):
         # 模板：经典朋友敌人陌生人容斥枚举计数
-        n, p, q = ac.read_ints()
+        n, p, q = ac.read_list_ints()
         friend = defaultdict(set)
         for _ in range(p):
-            u, v = ac.read_ints()
+            u, v = ac.read_list_ints()
             friend[u].add(v)
             friend[v].add(u)
         ans = n * (n - 1) // 2
         rem = set()
         for _ in range(q):
-            u, v = ac.read_ints()
+            u, v = ac.read_list_ints()
             rem.add((u, v) if u < v else (v, u))
             for x in friend[u]:
                 if x not in friend[v]:
@@ -890,7 +890,7 @@ class Solution:
     def lg_p9006(ac=FastIO()):
         # 模板：经典枚举取模计数
         mod = 100000007
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         num = 9 * 10**(n - 1)
         x = num // k
         x %= mod
@@ -957,7 +957,7 @@ class Solution:
     @staticmethod
     def lg_p8872(ac=FastIO()):
         # 模板：排序后前后缀移动次数枚举
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         nums = sorted(ac.read_list_ints())
         ans = inf
         for i in range(n):

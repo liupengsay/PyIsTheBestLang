@@ -4,7 +4,7 @@ import random
 import unittest
 from collections import deque, Counter
 
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 
 
 

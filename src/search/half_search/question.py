@@ -5,7 +5,7 @@ from itertools import combinations
 from math import inf
 from typing import List
 
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 
 """
 算法：折半搜索、meet in middle
@@ -121,7 +121,7 @@ class Solution:
     @staticmethod
     def lg_p5194(ac=FastIO()):
         # 模板：折半搜索枚举后使用二分寻找最接近目标值的数
-        n, c = ac.read_ints()
+        n, c = ac.read_list_ints()
         val = [ac.read_int() for _ in range(n)]
 
         def check(lst):
@@ -222,7 +222,7 @@ class Solution:
     def ac_171(ac=FastIO()):
         # 模板：经典折半搜索查找最接近目标值的子数组和
 
-        w, n = ac.read_ints()
+        w, n = ac.read_list_ints()
         lst = [ac.read_int() for _ in range(n)]
         lst.sort()
 

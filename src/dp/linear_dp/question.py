@@ -353,10 +353,10 @@ class Solution:
     @staticmethod
     def lg_p1280(ac=FastIO()):
         # 模板：线性DP倒序模拟优化
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         dct = [[] for _ in range(n + 1)]
         for _ in range(k):
-            p, t = ac.read_ints()
+            p, t = ac.read_list_ints()
             dct[p].append(p + t)
         dp = [0] * (n + 2)
         for i in range(n, 0, -1):
@@ -397,7 +397,7 @@ class Solution:
         # 模板：线性DP
         m = ac.read_int()
         for _ in range(m):
-            n, k = ac.read_ints()
+            n, k = ac.read_list_ints()
             nums = ac.read_list_ints()
             pre = [0] * k
             pre[nums[0] % k] = 1
@@ -476,7 +476,7 @@ class Solution:
     @staticmethod
     def lg_p1978(ac=FastIO()):
         # 模板：经典线性DP，乘积互斥
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
         dct = set(nums)
         ans = 0
@@ -553,7 +553,7 @@ class Solution:
     def lg_p2432(ac=FastIO()):
 
         # 模板：线性DP加指针
-        w, n = ac.read_ints()
+        w, n = ac.read_list_ints()
         sentence = ac.read_str()
         words = [ac.read_str()[::-1] for _ in range(w)]
 
@@ -623,7 +623,7 @@ class Solution:
     @staticmethod
     def lg_p2849(ac=FastIO()):
         # 模板：矩阵二维 DP 线性遍历
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         dis = [[0] * (n) for _ in range(n)]
         for i in range(n):
@@ -693,7 +693,7 @@ class Solution:
     @staticmethod
     def lg_b3734(ac=FastIO()):
         # 模板：线性矩阵 DP 模拟
-        n, r1 = ac.read_ints()
+        n, r1 = ac.read_list_ints()
         nums = [r1]
         while len(nums) < n:
             nums.append((nums[-1] * 6807 + 2831) % 201701)
@@ -722,7 +722,7 @@ class Solution:
     @staticmethod
     def lg_p3901(ac=FastIO()):
         # 模板：经典指针加线性 DP 记录前一个相同数的指针
-        n, q = ac.read_ints()
+        n, q = ac.read_list_ints()
         nums = ac.read_list_ints()
         ind = dict()
         for i in range(n):
@@ -764,7 +764,7 @@ class Solution:
     @staticmethod
     def lg_p5095(ac=FastIO()):
         # 模板：典型线性 DP
-        n, length = ac.read_ints()
+        n, length = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         dp = [inf] * (n + 1)
         dp[0] = 0
@@ -799,7 +799,7 @@ class Solution:
     @staticmethod
     def lg_p6040(ac=FastIO()):
         # 模板：单调队列优化的线性 DP
-        n, k, d, x, tp = ac.read_ints()
+        n, k, d, x, tp = ac.read_list_ints()
         mod = 10**9
         nums = []
         seed = 0
@@ -929,7 +929,7 @@ class Solution:
     @staticmethod
     def lg_p8816(ac=FastIO()):
         # 模板：典型线性矩阵 DP 模拟
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         nums = sorted([ac.read_list_ints() for _ in range(n)])
         dp = [list(range(1, k + 2)) for _ in range(n)]
         for i in range(n - 1, -1, -1):

@@ -5,7 +5,7 @@ import datetime
 import time
 import unittest
 from datetime import datetime, timedelta
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 
 
 """

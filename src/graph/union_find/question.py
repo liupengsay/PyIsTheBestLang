@@ -91,7 +91,7 @@ class Solution:
     def cf_1810e(ac=FastIO()):
         # 模板：并查集加启发式搜索，使用线性遍历维护
         for _ in range(ac.read_int()):
-            n, m = ac.read_ints()
+            n, m = ac.read_list_ints()
             nums = ac.read_list_ints()
             edge = [[] for _ in range(n)]
             for _ in range(m):
@@ -125,7 +125,7 @@ class Solution:
     @staticmethod
     def ac_5145(ac=FastIO()):
         # 模板：使用并查集判矩阵四元及以上的环
-        m, n = ac.read_ints()
+        m, n = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
         edges = []
         uf = UnionFind(m * n)
@@ -320,10 +320,10 @@ class Solution:
     @staticmethod
     def lg_p1197(ac=FastIO()):
         # 模板：逆序并查集，倒序枚举计算联通块个数
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for _ in range(m):
-            i, j = ac.read_ints()
+            i, j = ac.read_list_ints()
             dct[i].append(j)
             dct[j].append(i)
         k = ac.read_int()
@@ -471,7 +471,7 @@ class Solution:
     def lg_p2189(ac=FastIO()):
 
         # 模板：并查集经典题，确定访问顺序的合法性
-        n, m, k, q = ac.read_ints()
+        n, m, k, q = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for _ in range(m):
             i, j = ac.read_ints_minus_one()
@@ -637,7 +637,7 @@ class Solution:
     def lg_p7991(ac=FastIO()):
         # 模板：经典并查集计算连通块缩点使得 1 和 n 连通最多加两条路的代价
         for _ in range(ac.read_int()):
-            n, m = ac.read_ints()
+            n, m = ac.read_list_ints()
             uf = UnionFind(n)
             for _ in range(m):
                 i, j = ac.read_ints_minus_one()
@@ -713,7 +713,7 @@ class Solution:
     @staticmethod
     def lg_p8230(ac=FastIO()):
         # 模板：分层并查集加模拟
-        k, m, n = ac.read_ints()
+        k, m, n = ac.read_list_ints()
         ans = 1
         start = [0, 0]
         for _ in range(k):
@@ -821,7 +821,7 @@ class Solution:
     def lg_p8881(ac=FastIO()):
         # 模板：脑筋急转弯，使用并查集判断所属连通分量是否有环
         for _ in range(ac.read_int()):
-            n, m = ac.read_ints()
+            n, m = ac.read_list_ints()
             uf = UnionFind(n)
             edge = []
             for _ in range(m):
@@ -953,7 +953,7 @@ class Solution:
     @staticmethod
     def abc_49d(ac=FastIO()):
         # 模板：经典双并查集应用
-        n, k, ll = ac.read_ints()
+        n, k, ll = ac.read_list_ints()
         ufa = UnionFind(n)
         for _ in range(k):
             p, q = ac.read_ints_minus_one()
@@ -977,7 +977,7 @@ class Solution:
         m = 10**5
         uf = UnionFind(2 * m)
         for _ in range(n):
-            x, y = ac.read_ints()
+            x, y = ac.read_list_ints()
             x -= 1
             y -= 1
             y += m
@@ -1010,7 +1010,7 @@ class Solution:
     @staticmethod
     def ac_4866(ac=FastIO()):
         # 模板：经典并查集模拟维护连通块大小与多余的边数量
-        n, d = ac.read_ints()
+        n, d = ac.read_list_ints()
         uf = UnionFind(n)
         lst = LocalSortedList([1] * n)
         pre = 0

@@ -9,7 +9,7 @@ from functools import reduce
 from typing import List
 from math import inf
 
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 
 
 class SparseTable1:

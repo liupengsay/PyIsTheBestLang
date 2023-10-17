@@ -5,7 +5,7 @@ from math import inf
 from typing import List
 
 from src.data_structure.sorted_list import LocalSortedList
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 
 
 

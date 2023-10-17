@@ -1,7 +1,7 @@
 import unittest
 from typing import List
 from collections import Counter, defaultdict
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 import math
 from functools import lru_cache
 

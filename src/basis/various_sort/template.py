@@ -4,7 +4,7 @@ from collections import Counter
 from functools import cmp_to_key
 from typing import List
 
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 
 """
 算法：排序、冒泡排序、归并排序（期望比较次数最少）、快速排序（期望性能最好）、自定义排序（灵活）

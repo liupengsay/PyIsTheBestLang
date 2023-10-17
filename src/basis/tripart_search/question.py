@@ -6,7 +6,7 @@ import random
 from collections import defaultdict
 from typing import List
 from decimal import Decimal
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 from math import inf
 
 
@@ -124,7 +124,7 @@ class Solution:
     @staticmethod
     def cf_439d(ac=FastIO()):
         # 模板：求函数取得最小值时的点
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         a = ac.read_list_ints()
         b = ac.read_list_ints()
         a.sort()

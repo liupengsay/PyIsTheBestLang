@@ -7,7 +7,7 @@ from typing import List
 
 from sortedcontainers import SortedList
 
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 
 
 class HeapqMedian:

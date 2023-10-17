@@ -34,7 +34,7 @@ class Solution:
     @staticmethod
     def lg_p3014_1(ac=FastIO()):
         # 模板：康托展开也可以使用字典序贪心计算
-        n, q = ac.read_ints()
+        n, q = ac.read_list_ints()
         ct = CantorExpands(n, mod=math.factorial(n + 2))
         for _ in range(q):
             s = ac.read_str()
@@ -48,7 +48,7 @@ class Solution:
     @staticmethod
     def lg_p3014_2(ac=FastIO()):
         # 模板：康托展开也可以使用字典序贪心计算
-        n, q = ac.read_ints()
+        n, q = ac.read_list_ints()
         og = LexicoGraphicalOrder()
         for _ in range(q):
             s = ac.read_str()
@@ -62,7 +62,7 @@ class Solution:
     @staticmethod
     def ac_5052(ac=FastIO()):
         # 模板：经典康托展开与BFS搜索，根据排列数确定最多末尾重排的长度
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         low = ac.max(1, n-12)
         high = n
 

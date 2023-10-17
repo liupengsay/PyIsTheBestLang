@@ -48,12 +48,12 @@ class Solution:
     @staticmethod
     def lg_p1119(ac=FastIO()):
         # 模板：利用 Floyd 算法特点和修复的中转站更新最短距离（无向图）
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         repair = ac.read_list_ints()
         # 设置初始值距离
         dis = [[ac.inf] * n for _ in range(n)]
         for i in range(m):
-            a, b, c = ac.read_ints()
+            a, b, c = ac.read_list_ints()
             dis[a][b] = dis[b][a] = c
         for i in range(n):
             dis[i][i] = 0
@@ -61,7 +61,7 @@ class Solution:
         # 修复村庄之后用Floyd算法更新以该村庄为中转的距离
         k = 0
         for _ in range(ac.read_int()):
-            x, y, t = ac.read_ints()
+            x, y, t = ac.read_list_ints()
             # 离线算法
             while k < n and repair[k] <= t:
                 # k修复则更新以k为中转站的距离
@@ -82,7 +82,7 @@ class Solution:
         m = ac.read_int()
         dp = [[-ac.inf] * (n + 1) for _ in range(n + 1)]
         for _ in range(m):
-            i, j, k = ac.read_ints()
+            i, j, k = ac.read_list_ints()
             dp[i][j] = k
         for i in range(n + 1):
             dp[i][i] = 0
@@ -105,10 +105,10 @@ class Solution:
     @staticmethod
     def lg_p3906(ac=FastIO()):
         # 模板：Floyd 求索引从 u 到 v 的最短路并求所有在最短路上的点（无向图）
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dp = [[ac.inf] * (n + 1) for _ in range(n + 1)]
         for _ in range(m):
-            i, j = ac.read_ints()
+            i, j = ac.read_list_ints()
             dp[i][j] = dp[j][i] = 1
         for i in range(1, n + 1):
             dp[i][i] = 0
@@ -119,7 +119,7 @@ class Solution:
                     dp[j][i] = dp[i][j] = ac.min(dp[i][j], dp[i][k] + dp[k][j])
 
         for _ in range(ac.read_int()):
-            u, v = ac.read_ints()
+            u, v = ac.read_list_ints()
             dis = min(dp[u][k] + dp[k][v] for k in range(1, n + 1))
             ac.lst([x for x in range(1, n + 1) if dp[u][x] + dp[x][v] == dis])
         return
@@ -141,7 +141,7 @@ class Solution:
     @staticmethod
     def abc_51d_1(ac=FastIO()):
         # 模板：经典脑筋急转弯Floyd计算最短路的必经边，也可直接使用Dijkstra
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dp = [[inf]*n for _ in range(n)]
         for i in range(n):
             dp[i][i] = 0
@@ -169,7 +169,7 @@ class Solution:
     @staticmethod
     def abc_51d_2(ac=FastIO()):
         # 模板：经典脑筋急转弯Floyd计算最短路的必经边，也可直接使用Dijkstra
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         edges = [ac.read_list_ints() for _ in range(m)]
         dct = [[] for _ in range(n)]
         for i, j, w in edges:
@@ -233,13 +233,13 @@ class Solution:
     @staticmethod
     def abc_143e(ac=FastIO()):
         # 模板：Floyd建图最短路，两种最短路，建两次图
-        n, m, ll = ac.read_ints()
+        n, m, ll = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         dis = [[inf] * n for _ in range(n)]
         for i in range(n):
             dis[i][i] = 0
         for _ in range(m):
-            x, y, z = ac.read_ints()
+            x, y, z = ac.read_list_ints()
             x -= 1
             y -= 1
             dct[x].append([y, z])
@@ -305,7 +305,7 @@ class Solution:
     @staticmethod
     def lg_p1613(ac=FastIO()):
         # 模板：建立新图计算Floyd最短路
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
 
         # 表示节点i与j之间距离为2^k的路径是否存在
         dp = [[[0] * 32 for _ in range(n)] for _ in range(n)]
@@ -340,7 +340,7 @@ class Solution:
     @staticmethod
     def lg_p8312(ac=FastIO()):
         # 模板：经典最多k条边的最短路跑k遍Floyd
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dis = [[inf] * n for _ in range(n)]
         for i in range(n):
             dis[i][i] = 0
@@ -351,7 +351,7 @@ class Solution:
             dis[a][b] = ac.min(dis[a][b], c)
 
         dct = [d[:] for d in dis]
-        k, q = ac.read_ints()
+        k, q = ac.read_list_ints()
         nums = [ac.read_list_ints_minus_one() for _ in range(q)]
         k = ac.min(k, n)
         for _ in range(k - 1):
@@ -390,7 +390,7 @@ class Solution:
                         heappush(stack, [dj, j])
             return dis
 
-        n, q = ac.read_ints()
+        n, q = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(n)]
         lower = [ac.read_list_ints() for _ in range(n)]
         ans = 0

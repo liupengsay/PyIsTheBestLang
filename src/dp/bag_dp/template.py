@@ -8,7 +8,7 @@ from typing import List
 from math import inf
 from src.graph.union_find import UnionFind
 from src.mathmatics.number_theory import NumberTheory
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 
 
 

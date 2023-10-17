@@ -6,8 +6,8 @@ from collections import defaultdict, Counter
 
 import random
 
-from src.basis.binary_search import BinarySearch
-from src.fast_io import FastIO
+from basis.binary_search.template import BinarySearch
+from utils.fast_io import FastIO
 from src.mathmatics.fast_power import MatrixFastPower
 
 """
@@ -279,7 +279,7 @@ class Solution:
     @staticmethod
     def ac_156(ac=FastIO()):
         # 模板：二维矩阵哈希查找子矩阵是否存在
-        m, n, a, b = ac.read_ints()
+        m, n, a, b = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
 
         # 经典双哈希防止碰撞
@@ -428,7 +428,7 @@ class Solution:
                     s2 = (s2 - pow2 * nums[i - x + 1]) % mod2
             return max(pre.values()) >= k
 
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
         ans = BinarySearch().find_int_right(0, n, check)
         ac.st(ans)

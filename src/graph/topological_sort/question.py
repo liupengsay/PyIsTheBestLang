@@ -62,13 +62,13 @@ class Solution:
         # 模板：经典bfs序即拓扑序与DAG构造
         for _ in range(ac.read_int()):
             def check():
-                n, m = ac.read_ints()
+                n, m = ac.read_list_ints()
                 dct = [[] for _ in range(n)]
                 degree = [0] * n
                 edges = []
                 ans = []
                 for _ in range(m):
-                    t, x, y = ac.read_ints()
+                    t, x, y = ac.read_list_ints()
                     x -= 1
                     y -= 1
                     if t == 1:
@@ -182,11 +182,11 @@ class Solution:
     @staticmethod
     def lg_p1137(ac=FastIO()):
         # 模板：拓扑排序计算最长链条
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         degree = [0] * n
         for _ in range(m):
-            i, j = ac.read_ints()
+            i, j = ac.read_list_ints()
             degree[j - 1] += 1
             dct[i - 1].append(j - 1)
         cnt = [1] * n
@@ -258,13 +258,13 @@ class Solution:
     @staticmethod
     def lg_p1685(ac=FastIO()):
         # 模板：拓扑排序计算经过每条边的路径条数
-        n, m, s, e, t = ac.read_ints()
+        n, m, s, e, t = ac.read_list_ints()
         s -= 1
         e -= 1
         dct = [[] for _ in range(n)]
         degree = [0] * n
         for _ in range(m):
-            i, j, w = ac.read_ints()
+            i, j, w = ac.read_list_ints()
             i -= 1
             j -= 1
             dct[i].append([j, w])
@@ -296,7 +296,7 @@ class Solution:
     def lg_p3243(ac=FastIO()):
         # 模板：经典反向建图拓扑排序结合二叉堆进行顺序模拟
         for _ in range(ac.read_int()):
-            n, m = ac.read_ints()
+            n, m = ac.read_list_ints()
             dct = [[] for _ in range(n)]
             degree = [0] * n
             for _ in range(m):
@@ -325,7 +325,7 @@ class Solution:
     @staticmethod
     def lg_p5536_1(ac=FastIO()):
         # 模板：使用直径的贪心方式选取以树的直径中点向外辐射的节点
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for _ in range(n - 1):
             i, j = ac.read_ints_minus_one()
@@ -363,7 +363,7 @@ class Solution:
     def lg_p5536_2(ac=FastIO()):
 
         # 模板：使用无向图拓扑排序从外到内消除最外圈的节点
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         degree = [0] * n
         for _ in range(n - 1):
@@ -399,7 +399,7 @@ class Solution:
         degree = [0] * n
         edge = []
         for _ in range(n):
-            u, v, w, p = ac.read_ints()
+            u, v, w, p = ac.read_list_ints()
             u -= 1
             v -= 1
             dct[u].append([v, w, p])
@@ -443,7 +443,7 @@ class Solution:
     @staticmethod
     def lg_p6255(ac=FastIO()):
         # 模板：简单无向图并查集计算连通块后使用拓扑排序寻找环的信息
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         degree = [0] * n
         uf = UnionFind(n)
@@ -538,7 +538,7 @@ class Solution:
     @staticmethod
     def lg_p6560(ac=FastIO()):
         # 模板：经典反向建图拓扑排序与博弈必胜态
-        n, m, q = ac.read_ints()
+        n, m, q = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         degree = [[0, -1, 0] for _ in range(n)]
         for _ in range(m):
@@ -598,7 +598,7 @@ class Solution:
     @staticmethod
     def lg_p8943(ac=FastIO()):
         # 模板：经典无向图基环树博弈
-        n, q = ac.read_ints()
+        n, q = ac.read_list_ints()
         degree = [0] * n
         dct = [[] for _ in range(n)]
         for _ in range(n):
@@ -874,7 +874,7 @@ class Solution:
     @staticmethod
     def ac_3828(ac=FastIO()):
         # 模板：有向图DAG拓扑排序DP模板题并判断有无环
-        m, n = ac.read_ints()
+        m, n = ac.read_list_ints()
         ind = {w: i for i, w in enumerate("QWER")}
         grid = [ac.read_str() for _ in range(m)]
 

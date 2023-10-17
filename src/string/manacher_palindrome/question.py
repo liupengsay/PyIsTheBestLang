@@ -1,7 +1,7 @@
 
 import unittest
 
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 
 from string.manacher_palindrome.template import ManacherPlindrome
 
@@ -109,7 +109,7 @@ class Solution:
     @staticmethod
     def lg_p6297(ac=FastIO()):
         # 模板：中心扩展法并使用变量维护
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         mod = 10**9 + 7
         nums = ac.read_list_ints()
         ans = 0

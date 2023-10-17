@@ -69,7 +69,7 @@ class Solution:
                 if c % 2:
                     ans += 1 << (n - d - 1)
             return ans
-        a, b = ac.read_ints()
+        a, b = ac.read_list_ints()
         ac.st(count(b) ^ count(a - 1))
         return
 

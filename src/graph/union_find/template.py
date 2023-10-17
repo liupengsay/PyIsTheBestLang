@@ -8,7 +8,7 @@ from collections import defaultdict, Counter, deque
 
 from src.basis.tree_node import TreeNode
 from src.data_structure.sorted_list import LocalSortedList
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 import heapq
 
 from src.graph.dijkstra import Dijkstra

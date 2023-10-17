@@ -4,7 +4,7 @@ from functools import lru_cache
 from typing import Optional, List
 
 from src.basis.tree_node import TreeNode
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 
 """
 算法：分治、递归、二叉树、四叉树、十叉树、N叉树、先序、中序、后序遍历，也叫（divide and conquer）
@@ -247,7 +247,7 @@ class Solution:
 
         # 模板：四叉树递归与坐标旋转变换
         for _ in range(ac.read_int()):
-            n, a, b = ac.read_ints()
+            n, a, b = ac.read_list_ints()
             a -= 1
             b -= 1
 
@@ -288,7 +288,7 @@ class Solution:
 
     @staticmethod
     def ac_93_1(ac=FastIO()):
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         # 模板：递归实现选取
 
         def dfs(i):
@@ -310,7 +310,7 @@ class Solution:
 
     @staticmethod
     def ac_93_2(ac=FastIO()):
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
 
         # 模板：迭代实现选取
         pre = []

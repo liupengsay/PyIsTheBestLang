@@ -23,7 +23,7 @@ class Solution:
 
     @staticmethod
     def lg_p3811(ac=FastIO()):
-        n, p = ac.read_ints()
+        n, p = ac.read_list_ints()
         for i in range(1, n + 1):
             ac.st(MultiplicativeInverse().mod_reverse(i, p))
         return
@@ -33,7 +33,7 @@ class Solution:
         mod = 10 ** 9 + 7
         mi = MultiplicativeInverse()
         for _ in range(ac.read_int()):
-            n, m = ac.read_ints()
+            n, m = ac.read_list_ints()
             nums = ac.read_list_ints()
             cnt = Counter(nums)
             lst = sorted(list(cnt.keys()))
@@ -55,7 +55,7 @@ class Solution:
     @staticmethod
     def lg_p5431(ac=FastIO()):
         # 模板：转换为前缀积与后缀积计算求解
-        n, p, k = ac.read_ints()
+        n, p, k = ac.read_list_ints()
         a = ac.read_list_ints()
         post = [1] * (n + 1)
         for i in range(n - 1, -1, -1):

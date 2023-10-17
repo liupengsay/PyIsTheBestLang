@@ -134,7 +134,7 @@ class Solution:
     def ac_146(ac=FastIO()):
         # 模板：小顶堆计算经典问题m个数组最小的n个子序列和，同样可以计算最大的
         for _ in range(ac.read_int()):
-            m, n = ac.read_ints()
+            m, n = ac.read_list_ints()
             grid = [sorted(ac.read_list_ints()) for _ in range(m)]
             grid = [g for g in grid if g]
             m = len(grid)
@@ -163,7 +163,7 @@ class Solution:
     def ac_147(ac=FastIO()):
         # 模板：贪心思想加二叉堆与双向链表优化
 
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
 
         # 假如虚拟的头节点并初始化
@@ -205,7 +205,7 @@ class Solution:
     @staticmethod
     def lg_p2168(ac=FastIO()):
         # 模板：二叉堆贪心与霍夫曼树Huffman Tree
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         stack = [[ac.read_int(), 0] for _ in range(n)]
         heapq.heapify(stack)
         while (len(stack) - 1) % (k-1) != 0:
@@ -266,10 +266,10 @@ class Solution:
     @staticmethod
     def lg_p2085(ac=FastIO()):
         # 模板：利用一元二次方程的单调性与指针堆优化进行贪心选取
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         stack = []
         for _ in range(n):
-            a, b, c = ac.read_ints()
+            a, b, c = ac.read_list_ints()
             heapq.heappush(stack, [a+b+c, 1, a, b, c])
         ans = []
         while len(ans) < m:
@@ -379,7 +379,7 @@ class Solution:
     @staticmethod
     def lg_p2409(ac=FastIO()):
         # 模板：经典二叉堆，计算最小的k个和
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         pre = ac.read_list_ints()[1:]
         pre.sort()
         for _ in range(n - 1):

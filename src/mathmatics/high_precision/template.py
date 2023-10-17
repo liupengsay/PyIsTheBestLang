@@ -5,7 +5,7 @@ import unittest
 from decimal import Decimal, getcontext, MAX_PREC
 from typing import List
 
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 
 getcontext().prec = MAX_PREC
 sys.set_int_max_str_digits(0)  # 力扣大数的范围坑

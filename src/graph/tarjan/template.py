@@ -5,7 +5,7 @@ from math import inf
 from typing import DefaultDict, Set, List, Tuple
 from collections import Counter
 from src.dp.tree_dp import TreeCentroid
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 from src.graph.union_find import UnionFind
 
 

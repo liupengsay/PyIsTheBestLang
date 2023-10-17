@@ -9,7 +9,7 @@ from typing import List, Optional
 
 from src.basis.tree_node import TreeNode
 from src.data_structure.list_node import ListNode
-from src.fast_io import FastIO, inf
+from utils.fast_io import FastIO, inf
 from src.graph.union_find import UnionFind
 
 

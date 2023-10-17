@@ -10,7 +10,7 @@ from itertools import combinations, accumulate
 import heapq
 from math import inf
 
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 
 """
 算法：状态压缩DP、轮廓线DP、记忆化搜索DP、刷表法、填表法
@@ -223,13 +223,13 @@ class Solution:
     def cf_580d(ac):
 
         # 模板：bitmask位运算状态压缩转移，从 1 少的状态向多的转移，并枚举前一个 1 的位置计算增益
-        n, m, k = ac.read_ints()
+        n, m, k = ac.read_list_ints()
         ind = {1 << i: i for i in range(n + 1)}
         nums = ac.read_list_ints()
         dp = [[0] * (n + 1) for _ in range(1 << n)]
         edge = [[0] * (n + 1) for _ in range(n + 1)]
         for _ in range(k):
-            x, y, c = ac.read_ints()
+            x, y, c = ac.read_list_ints()
             x -= 1
             y -= 1
             edge[x][y] = c
@@ -398,7 +398,7 @@ class Solution:
     @staticmethod
     def lg_p1896(ac=FastIO()):
         # 模板：状压DP迭代写法
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         dp = [[[0] * (k + 1) for _ in range(1 << n)] for _ in range(n + 1)]
         dp[0][0][0] = 1
 
@@ -422,7 +422,7 @@ class Solution:
     def cf_11d(ac=FastIO()):
 
         # 模板：状压DP无向图简单环计数
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
 
         # 建图
         dct = [[] for _ in range(n)]
@@ -535,7 +535,7 @@ class Solution:
     @staticmethod
     def lg_p3052(ac=FastIO()):
         # 模板：经典状态压缩 DP 使用二维优化
-        n, w = ac.read_ints()
+        n, w = ac.read_list_ints()
         nums = []
         while len(nums) < n:
             nums.extend(ac.read_list_ints())
@@ -560,7 +560,7 @@ class Solution:
     @staticmethod
     def lg_p5997(ac=FastIO()):
         # 模板：经典贪心背包与状压 DP 结合
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         a = ac.read_list_ints()
         c = ac.read_list_ints()
         c.sort(reverse=True)
@@ -591,7 +591,7 @@ class Solution:
     @staticmethod
     def lg_p6883(ac=FastIO()):
         # 模板：典型状压 DP
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(n)]
         dp = [inf] * (1 << n)
         dp[-1] = 0
@@ -610,7 +610,7 @@ class Solution:
     @staticmethod
     def lg_p8687(ac=FastIO()):
         # 模板：经典状压 DP 结合背包 DP 思想
-        n, m, k = ac.read_ints()
+        n, m, k = ac.read_list_ints()
         dp = [inf] * (1 << m)
         dp[0] = 0
         for i in range(n):
@@ -767,7 +767,7 @@ class Solution:
     @staticmethod
     def ac_3735(ac=FastIO()):
         # 模板：经典倒序状压DP与输出具体方案
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         if m == n * (n - 1) // 2:
             ac.st(0)
             return
@@ -775,7 +775,7 @@ class Solution:
         for i in range(n):
             group[i] |= (1 << i)
         for _ in range(m):
-            i, j = ac.read_ints()
+            i, j = ac.read_list_ints()
             i -= 1
             j -= 1
             group[i] |= (1 << j)

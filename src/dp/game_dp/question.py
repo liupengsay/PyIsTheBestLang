@@ -33,7 +33,7 @@ class Solution:
         # 模板：博弈 DP 下的必胜策略分析
         n = ac.read_int()
         for _ in range(n):
-            x, y = ac.read_ints()
+            x, y = ac.read_list_ints()
 
             @lru_cache(None)
             def dfs(a, b):

@@ -7,7 +7,7 @@ from typing import List
 
 from src.data_structure.segment_tree import SegmentTreeRangeAddMax
 from src.data_structure.tree_array import PointAscendPreMax
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 
 
 class LongestIncreasingSubsequence:

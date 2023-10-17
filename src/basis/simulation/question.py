@@ -173,7 +173,7 @@ class Solution:
     @staticmethod
     def lg_p3407(ac=FastIO()):
         # 模板：经典模拟相向而行
-        n, t, q = ac.read_ints()
+        n, t, q = ac.read_list_ints()
         nums = deque([ac.read_list_ints() for _ in range(n)])
         pos = [-1] * n
 
@@ -255,7 +255,7 @@ class Solution:
     @staticmethod
     def lg_p8247(ac=FastIO()):
         # 模板：经典模拟按照相对位置比例进行区分
-        m, n = ac.read_ints()
+        m, n = ac.read_list_ints()
         start = [-1, -1]
         dct = []
         for i in range(m):
@@ -324,7 +324,7 @@ class Solution:
     @staticmethod
     def lg_p8895(ac=FastIO()):
         # 模板：模拟与组合计数
-        n, m, p = ac.read_ints()
+        n, m, p = ac.read_list_ints()
         dp = [1]*(n+1)
         for i in range(1, n+1):
             dp[i] = dp[i-1]*2 % p
@@ -345,7 +345,7 @@ class Solution:
         else:
             ac.st(dp[n - even * 2 - 1])
         for _ in range(m):
-            x, k = ac.read_ints()
+            x, k = ac.read_list_ints()
             x -= 1
             cnt[nums[x]] -= 1
             if cnt[nums[x]] == 1:
@@ -373,7 +373,7 @@ class Solution:
     @staticmethod
     def lg_p8884(ac=FastIO()):
         # 模板：分矩阵位置的奇偶性讨论
-        n, m, c = ac.read_ints()
+        n, m, c = ac.read_list_ints()
         cnt = [0, 0]
         for _ in range(c):
             i, j = ac.read_ints_minus_one()

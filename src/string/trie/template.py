@@ -2,7 +2,7 @@ import heapq
 import math
 import random
 import unittest
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 from typing import List
 from math import inf
 from collections import Counter, defaultdict

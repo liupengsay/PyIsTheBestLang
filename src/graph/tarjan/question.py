@@ -201,7 +201,7 @@ class Solution:
     @staticmethod
     def lg_p3388(ac=FastIO()):
         # 模板: TarjanCC 求无向图割点
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dct = [set() for _ in range(n)]
         for _ in range(m):
             i, j = ac.read_ints_minus_one()
@@ -216,7 +216,7 @@ class Solution:
     @staticmethod
     def lg_p8435(ac=FastIO()):
         # 模板: TarjanCC 求无向图点双连通分量
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         edge = [set() for _ in range(n)]
         degree = [0] * n
         for _ in range(m):
@@ -241,7 +241,7 @@ class Solution:
     @staticmethod
     def lg_p8436(ac=FastIO()):
         # 模板: TarjanCC 求无向图边双连通分量
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         edge = [set() for _ in range(n)]
         for _ in range(m):
             a, b = ac.read_ints_minus_one()
@@ -277,7 +277,7 @@ class Solution:
     @staticmethod
     def cf_999e(ac=FastIO()):
         # 模板：使用SCC缩点后查看入度为0的点个数
-        n, m, s = ac.read_ints()
+        n, m, s = ac.read_list_ints()
         s -= 1
         edges = [set() for _ in range(n)]
         for _ in range(m):
@@ -359,7 +359,7 @@ class Solution:
     @staticmethod
     def lg_p1656(ac=FastIO()):
         # 模板：tarjan求无向图割边
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dct = [set() for _ in range(n)]
         for _ in range(m):
             i, j = ac.read_ints_minus_one()
@@ -374,7 +374,7 @@ class Solution:
     @staticmethod
     def lg_p2860(ac=FastIO()):
         # 模板: TarjanCC 求无向图边双连通分量进行缩点后，计算质心为根时的叶子数
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         edge = [set() for _ in range(n)]
         degree = defaultdict(int)
         pre = set()
@@ -450,7 +450,7 @@ class Solution:
     @staticmethod
     def lg_p2863(ac=FastIO()):
         # 模板: TarjanCC 求强连通分量
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         edge = [set() for _ in range(n)]
         for _ in range(m):
             a, b = ac.read_ints_minus_one()
@@ -488,7 +488,7 @@ class Solution:
     @staticmethod
     def lg_p2656(ac=FastIO()):
         # 模板：使用scc缩点后，计算DAG最长路
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         edge = [set() for _ in range(n)]
         edges = []
         for _ in range(m):
@@ -545,7 +545,7 @@ class Solution:
     @staticmethod
     def lg_p1726(ac=FastIO()):
         # 模板：强连通分量裸题
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for _ in range(m):
             a, b, t = ac.read_ints_minus_one()
@@ -567,7 +567,7 @@ class Solution:
     @staticmethod
     def lg_p2002(ac=FastIO()):
         # 模板：强连通分量缩点后，计算入度为0的节点个数
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dct = [set() for _ in range(n)]
         for _ in range(m):
             i, j = ac.read_ints_minus_one()
@@ -590,10 +590,10 @@ class Solution:
     @staticmethod
     def lg_p2341(ac=FastIO()):
         # 模板：使用scc缩点后计算出度为 0 的点集个数与大小
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for _ in range(m):
-            a, b = ac.read_ints()
+            a, b = ac.read_list_ints()
             if a != b:
                 dct[a - 1].append(b - 1)
         scc_id, scc_node_id, node_scc_id = TarjanCC().get_strongly_connected_component_bfs(n, dct)
@@ -629,7 +629,7 @@ class Solution:
     @staticmethod
     def lg_p2863(ac=FastIO()):
         # 模板：强连通分量scc模板题
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         edge = [set() for _ in range(n)]
         for _ in range(m):
             a, b = ac.read_ints_minus_one()
@@ -692,7 +692,7 @@ class Solution:
     @staticmethod
     def lg_p7965(ac=FastIO()):
         # 模板：经典scc缩点后使用 DAG 进行树形 DP
-        n, m, q = ac.read_ints()
+        n, m, q = ac.read_list_ints()
         dct = [set() for _ in range(n)]
         for _ in range(m):
             lst = ac.read_list_ints()
@@ -792,7 +792,7 @@ class Solution:
     @staticmethod
     def ac_3813(ac=FastIO()):
         # 模板：强连通分量模板与拓扑排序DP
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         s = ac.read_str()
         dct = [set() for _ in range(n)]
         for _ in range(m):

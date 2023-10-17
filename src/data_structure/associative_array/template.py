@@ -1,6 +1,6 @@
 import unittest
 
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 
 """
 Algorithm：use xor of random seed as key of mapping

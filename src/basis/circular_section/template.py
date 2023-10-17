@@ -1,7 +1,7 @@
 import unittest
 from typing import List
 
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 
 
 

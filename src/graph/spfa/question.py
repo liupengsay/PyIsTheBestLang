@@ -49,7 +49,7 @@ class Solution:
     @staticmethod
     def lg_p1144(ac=FastIO()):
         # 模板：无向无权图起点出发的最短路计数问题
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dct = [dict() for _ in range(n)]
         for _ in range(m):
             x, y = ac.read_ints_minus_one()
@@ -64,14 +64,14 @@ class Solution:
     @staticmethod
     def lg_p3648(ac=FastIO()):
         # 模板：判断不同起点出发是否存在正环并计算最长路
-        d, p, c, f = ac.read_ints()
+        d, p, c, f = ac.read_list_ints()
         dct = [dict() for _ in range(c)]
         for _ in range(p):
             a, b = ac.read_ints_minus_one()
             # 直接权值取负数变为判断是否存在负环与计算最短路
             dct[a][b] = -d
         for _ in range(f):
-            j, k, t = ac.read_ints()
+            j, k, t = ac.read_list_ints()
             j -= 1
             k -= 1
             dct[j][k] = -(d - t)
@@ -88,10 +88,10 @@ class Solution:
     @staticmethod
     def lg_p2136(ac=FastIO()):
         # 模板：判断不同起点出发是否存在负环并计算最短路
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dct = [dict() for _ in range(n)]
         for _ in range(m):
-            a, b, c = ac.read_ints()
+            a, b, c = ac.read_list_ints()
             a -= 1
             b -= 1
             dct[a][b] = ac.min(dct[a].get(a, ac.inf), -c)
@@ -107,7 +107,7 @@ class Solution:
             n, m = ac.read_list_ints()
             dct = [dict() for _ in range(n)]
             for _ in range(m):
-                u, v, w = ac.read_ints()
+                u, v, w = ac.read_list_ints()
                 u -= 1
                 v -= 1
                 dct[u][v] = ac.min(dct[u].get(v, ac.inf), w)
@@ -120,7 +120,7 @@ class Solution:
     @staticmethod
     def lg_1938(ac=FastIO()):
         # 模板：SPFA 判断是否存在正环与计算最长路
-        d, p, c, f, s = ac.read_ints()
+        d, p, c, f, s = ac.read_list_ints()
         s -= 1
         dct = [dict() for _ in range(c)]
         for _ in range(p):
@@ -128,7 +128,7 @@ class Solution:
             # 直接权值取负数变为判断是否存在负环与计算最短路
             dct[a][b] = -d
         for _ in range(f):
-            j, k, t = ac.read_ints()
+            j, k, t = ac.read_list_ints()
             j -= 1
             k -= 1
             dct[j][k] = -(d - t)
@@ -139,7 +139,7 @@ class Solution:
     @staticmethod
     def lg_p1993(ac=FastIO()):
         # 模板：差分约束转换为负环判断求解
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dct = [dict() for _ in range(n+1)]
         # 超级源点有向边出发
         for i in range(1, n + 1):
@@ -195,7 +195,7 @@ class Solution:
     @staticmethod
     def lg_p5960(ac=FastIO()):
         # 模板：差分约束模板题
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         edges = [ac.read_list_ints() for _ in range(m)]
         ans, dis = SPFA().differential_constraint(edges, n)
         if ans == "YES":
@@ -207,7 +207,7 @@ class Solution:
     @staticmethod
     def lg_p1260(ac=FastIO()):
         # 模板：差分约束模板题
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         # edges里面索引从 1 开始
         edges = [ac.read_list_ints() for _ in range(m)]
         ans, dis = SPFA().differential_constraint(edges, n)
@@ -250,12 +250,12 @@ class Solution:
     @staticmethod
     def lg_p1986(ac=FastIO()):
         # 模板：根据前缀和进行差分约束求解
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
 
         # 区间关系
         lst = []
         for _ in range(m):
-            a, b, c = ac.read_ints()
+            a, b, c = ac.read_list_ints()
             if a > b:
                 a, b = b, a
             lst.append([a - 1, b, -c])
@@ -275,7 +275,7 @@ class Solution:
     @staticmethod
     def abc_61d(ac=FastIO()):
         # 模板：经典反向建图后判断是否有正环并计算最长路
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         edges = [ac.read_list_ints() for _ in range(m)]
         rev = [[] for _ in range(n)]
         for a, b, c in edges:
@@ -312,12 +312,12 @@ class Solution:
     @staticmethod
     def abc_137e(ac=FastIO()):
         # 模板：使用 SPFA 与 BFS 判断是否存在起点到终点的正权环
-        n, m, p = ac.read_ints()
+        n, m, p = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         rev = [[] for _ in range(n)]
         edges = []
         for _ in range(m):
-            a, b, c = ac.read_ints()
+            a, b, c = ac.read_list_ints()
             a -= 1
             b -= 1
             dct[a].append([b, p-c])
@@ -450,15 +450,15 @@ class Solution:
     @staticmethod
     def lg_p4878(ac=FastIO()):
         # 模板：经典差分数组与Dijkstra计算最短路
-        n, ml, md = ac.read_ints()
+        n, ml, md = ac.read_list_ints()
         edge = []
         for _ in range(ml):
-            a, b, d = ac.read_ints()
+            a, b, d = ac.read_list_ints()
             if a > b:
                 a, b = b, a
             edge.append([b, a, d])
         for _ in range(md):
-            a, b, d = ac.read_ints()
+            a, b, d = ac.read_list_ints()
             if a > b:
                 a, b = b, a
             edge.append([a, b, -d])
@@ -485,10 +485,10 @@ class Solution:
     @staticmethod
     def lg_p5905(ac=FastIO()):
         # 模板：有向带权图可能有负权 Johnson 全源最短路计算所有点对的最短路
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dct = [[] for _ in range(n + 1)]
         for _ in range(m):
-            u, v, w = ac.read_ints()
+            u, v, w = ac.read_list_ints()
             dct[u].append([v, w])
         for i in range(1, n + 1):
             dct[0].append([i, 0])
@@ -516,7 +516,7 @@ class Solution:
     @staticmethod
     def lg_p5751(ac=FastIO()):
         # 模板：经典转换为前缀和进行差分约束求解，并使用最短路求解最大值
-        n, a0, b0, l0, a1, b1, l1 = ac.read_ints()
+        n, a0, b0, l0, a1, b1, l1 = ac.read_list_ints()
 
         # 区间关系
         lst = []

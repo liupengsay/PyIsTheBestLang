@@ -1,16 +1,11 @@
 import bisect
 import math
-import unittest
 from collections import deque, defaultdict
 from itertools import accumulate, combinations
-from typing import List, Callable
 from math import inf
+from typing import List
 
-from src.data_structure.sorted_list import LocalSortedList
-from src.fast_io import FastIO
-from src.graph.lca import OfflineLCA
-from src.graph.union_find import UnionFind
-from src.mathmatics.number_theory import NumberTheory
+from utils.fast_io import FastIO
 
 """
 
@@ -116,6 +111,7 @@ D - Widespread（https://atcoder.jp/contests/abc063/tasks/arc075_b）经典利�
 参考：OI WiKi（xx）
 """
 
+
 class Solution:
     def __init__(self):
         return
@@ -124,7 +120,7 @@ class Solution:
     def lg_p1314(ac=FastIO()):
 
         # 模板：经典二分寻找最接近目标值的和
-        n, m, s = ac.read_ints()
+        n, m, s = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         queries = [ac.read_list_ints() for _ in range(m)]
 
@@ -157,7 +153,7 @@ class Solution:
     @staticmethod
     def cf_448d(ac=FastIO()):
         # 模板：计算 n*m 乘法矩阵内的第 k 大元素
-        n, m, k = ac.read_ints()
+        n, m, k = ac.read_list_ints()
 
         def check(num):
             res = 0
@@ -204,7 +200,7 @@ class Solution:
     def cf_1475d(ac=FastIO()):
         # 模板：贪心排序后，枚举并使用前缀和进行二分查询
         for _ in range(ac.read_int()):
-            n, m = ac.read_ints()
+            n, m = ac.read_list_ints()
             a = ac.read_list_ints()
             b = ac.read_list_ints()
             if sum(a) < m:
@@ -269,7 +265,7 @@ class Solution:
                 cnt += 1
             return cnt >= a
 
-        m, n, a, b = ac.read_ints()
+        m, n, a, b = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
         low = 0
         high = sum(sum(g) for g in grid) // (a * b)
@@ -288,7 +284,7 @@ class Solution:
         # 模板：find_int_right
         for _ in range(ac.read_int()):
 
-            n, c = ac.read_ints()
+            n, c = ac.read_list_ints()
             cost = ac.read_list_ints()
             lst = [[ac.min(x, n + 1 - x) + cost[x - 1], x + cost[x - 1]]
                    for x in range(1, n + 1)]
@@ -429,7 +425,7 @@ class Solution:
     @staticmethod
     def cf_1486d(ac=FastIO()):
         # 模板：经典转换为二分和哈希前缀求最长和为正数的最长连续子序列
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
         low = 0
         high = n - 1
@@ -481,7 +477,7 @@ class Solution:
                     return False
             return True
 
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         lst = [ac.read_list_ints() for _ in range(m)]
         ans = BinarySearch().find_int_right(0, n, check)
@@ -532,7 +528,7 @@ class Solution:
     @staticmethod
     def abc_56d(ac=FastIO()):
         # 模板：经典利用单调性进行二分，用背包DP进行check
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
         nums.sort()
 
@@ -564,7 +560,7 @@ class Solution:
     @staticmethod
     def abc_63d(ac=FastIO()):
         # 模板：经典利用单调性进行二分，贪心进行check
-        n, a, b = ac.read_ints()
+        n, a, b = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
 
         def check(s):
@@ -600,7 +596,7 @@ class Solution:
     @staticmethod
     def lg_p1281(ac=FastIO()):
         # 模板：典型二分并输出方案
-        m, k = ac.read_ints()
+        m, k = ac.read_list_ints()
         nums = ac.read_list_ints()
 
         def check(xx):
@@ -672,7 +668,7 @@ class Solution:
 
     @staticmethod
     def lg_p1592(ac=FastIO()):
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         if n == 1:  # 特判
             ac.st(k)
             return
@@ -716,7 +712,7 @@ class Solution:
             return False
 
         n = ac.read_int()
-        s, t = ac.read_ints()
+        s, t = ac.read_list_ints()
         nums = []
         for _ in range(n):
             nums.append(int(input().strip()))
@@ -733,7 +729,7 @@ class Solution:
     @staticmethod
     def lg_p1525(ac=FastIO()):
         # 模板：经典二分加BFS进行二分图划分
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         lst = [ac.read_list_ints() for _ in range(m)]
 
         def check(weight):
@@ -807,7 +803,7 @@ class Solution:
     def cf_1118d2(ac=FastIO()):
 
         # 模板：贪心二分
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         s = sum(nums)
         if s < m:
@@ -828,7 +824,7 @@ class Solution:
     @staticmethod
     def cf_883i(ac=FastIO()):
         # 模板：二分加双指针dp
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         nums = sorted(ac.read_list_ints())
 
         def check(x):
@@ -851,7 +847,7 @@ class Solution:
     @staticmethod
     def lg_p2237(ac=FastIO()):
         # 模板：脑筋急转弯排序后二分查找
-        w, n = ac.read_ints()
+        w, n = ac.read_list_ints()
         nums = [ac.read_str() for _ in range(w)]
         ind = list(range(w))
         ind.sort(key=lambda it: nums[it])
@@ -901,7 +897,7 @@ class Solution:
     @staticmethod
     def lg_p3718(ac=FastIO()):
         # 模板：二分加贪心
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         s = ac.read_str()
 
         def check(x):
@@ -938,7 +934,7 @@ class Solution:
     @staticmethod
     def lg_p3853(ac=FastIO()):
         # 模板：经典二分贪心题
-        length, n, k = ac.read_ints()
+        length, n, k = ac.read_list_ints()
         lst = ac.read_list_ints()
         lst.sort()
 
@@ -954,7 +950,7 @@ class Solution:
     @staticmethod
     def lg_p4343(ac=FastIO()):
         # 模板：上下界二分加模拟
-        l, k = ac.read_ints()
+        l, k = ac.read_list_ints()
         lst = []
         for _ in range(l):
             lst.append(int(input().strip()))
@@ -989,7 +985,7 @@ class Solution:
     @staticmethod
     def lg_p5844(ac=FastIO()):
         # 模板：经典中位数贪心与前缀和二分
-        n, m, b = ac.read_ints()
+        n, m, b = ac.read_list_ints()
         pos = [ac.read_int() for _ in range(n)]
         ans = j = 0
         pre = ac.accumulate(pos)
@@ -1011,7 +1007,7 @@ class Solution:
     @staticmethod
     def lg_p5878(ac=FastIO()):
         # 模板：使用二分加枚举计算
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
 
         def check(num):
@@ -1042,7 +1038,7 @@ class Solution:
     @staticmethod
     def lg_p6004(ac=FastIO()):
         # 模板：二分加并查集计算
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         nums = ac.read_list_ints_minus_one()
         edges = [ac.read_list_ints() for _ in range(m)]
         edges.sort(key=lambda it: -it[2])
@@ -1065,7 +1061,7 @@ class Solution:
     @staticmethod
     def lg_p6058(ac=FastIO()):
         # 模板：使用深搜序与离线 LCA 计算相邻叶子之间距离并二分确定时间
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for _ in range(n - 1):
             x, y, z = ac.read_ints_minus_one()
@@ -1119,7 +1115,7 @@ class Solution:
     @staticmethod
     def lg_p6069(ac=FastIO()):
         # 模板：经典方差计算公式变形，使用二分加变量维护区间的方差值大小
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         nums.sort()
 
@@ -1204,7 +1200,7 @@ class Solution:
     @staticmethod
     def lg_p8161(ac=FastIO()):
         # 模板：经典贪心加二分
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         a = ac.read_list_ints()
         b = ac.read_list_ints()
 
@@ -1232,7 +1228,7 @@ class Solution:
     @staticmethod
     def lg_p8198(ac=FastIO()):
         # 模板：经典二分加指针
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
 
         def check(x):
@@ -1286,7 +1282,7 @@ class Solution:
     @staticmethod
     def ac_3973(ac=FastIO()):
         # 模板：浮点数二分与滑动窗口双指针
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         pos = ac.read_list_ints()
         pos.sort()
@@ -1313,7 +1309,7 @@ class Solution:
         # 模板：经典二分加鸽巢原理
         for _ in range(ac.read_int()):
             ac.read_str()
-            m, n = ac.read_ints()
+            m, n = ac.read_list_ints()
             grid = [ac.read_list_ints() for _ in range(m)]
 
             def check(x):

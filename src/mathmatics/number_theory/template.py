@@ -9,7 +9,7 @@ from math import inf
 from operator import mul
 from typing import List
 
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 
 
 class NumberTheory:

@@ -49,22 +49,22 @@ class Solution:
     @staticmethod
     def lg_p2880(ac=FastIO()):
         # 模板：查询静态区间最大值与最小值
-        n, q = ac.read_ints()
+        n, q = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
         st1 = SparseTable1(nums, "max")
         st2 = SparseTable1(nums, "min")
         for _ in range(q):
-            a, b = ac.read_ints()
+            a, b = ac.read_list_ints()
             ac.st(st1.query(a, b)-st2.query(a, b))
         return
 
     @staticmethod
     def lg_p3865(ac=FastIO()):
         # 模板：查询静态区间最大值
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         st = SparseTable1(ac.read_list_ints())
         for _ in range(m):
-            x, y = ac.read_ints()
+            x, y = ac.read_list_ints()
             ac.st(st.query(x, y))
         return
 
@@ -120,7 +120,7 @@ class Solution:
 
         # 模板：利用倍增与归并排序的思想进行数组划分
         for _ in range(ac.read_int()):
-            n, m, t = ac.read_ints()
+            n, m, t = ac.read_list_ints()
             nums = ac.read_list_ints()
             ans = i = 0
             while i < n:
@@ -145,7 +145,7 @@ class Solution:
     @staticmethod
     def lg_p5648(ac=FastIO()):
         # 模板：使用倍增 ST 表查询区间最大值的索引，使用单调栈建树计算距离
-        n, t = ac.read_ints()
+        n, t = ac.read_list_ints()
         nums = ac.read_list_ints()
         post = [n]*n
         stack = []
@@ -168,7 +168,7 @@ class Solution:
         st = SparseTableIndex(nums)
         last_ans = 0
         for _ in range(t):
-            u, v = ac.read_ints()
+            u, v = ac.read_list_ints()
             left = 1 + (u ^ last_ans) % n
             q = 1 + (v ^ (last_ans + 1)) % (n - left + 1)
             right = left + q - 1
@@ -238,7 +238,7 @@ class Solution:
             query = [dict() for _ in range(n)]
             res = []
             for _ in range(q):
-                ll, k = ac.read_ints()
+                ll, k = ac.read_list_ints()
                 ll -= 1
                 res.append([ll, k])
                 query[ll][k] = -2

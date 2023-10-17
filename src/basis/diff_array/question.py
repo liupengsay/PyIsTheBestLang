@@ -1,17 +1,15 @@
 
 
+import bisect
 import math
-import unittest
 from collections import defaultdict, deque
 from itertools import accumulate
+from math import inf
 from typing import List
 
-from src.basis.binary_search import BinarySearch
-from src.fast_io import FastIO
-import bisect
-from math import inf
-
-
+from basis.binary_search.template import BinarySearch
+from basis.diff_array.template import DiffMatrix, PreFixSumMatrix
+from utils.fast_io import FastIO
 
 """
 
@@ -129,10 +127,10 @@ class Solution:
     @staticmethod
     def lg_p3397(ac=FastIO()):
         # 模板：二维差分前缀和
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         shifts = []
         for _ in range(m):
-            x1, y1, x2, y2 = ac.read_ints()
+            x1, y1, x2, y2 = ac.read_list_ints()
             shifts.append([x1, x2, y1, y2, 1])
         ans = DiffMatrix().get_diff_matrix(n, n, shifts)
         for a in ans:
@@ -188,7 +186,7 @@ class Solution:
     def cf_1722e(ac=FastIO()):
         # 模板：根据数字范围，使用二位前缀和，求解子矩阵元素和
         for _ in range(ac.read_int()):
-            k, q = ac.read_ints()
+            k, q = ac.read_list_ints()
             rec = [ac.read_list_ints() for _ in range(k)]
             qur = [ac.read_list_ints() for _ in range(q)]
             m = n = 1001
@@ -214,7 +212,7 @@ class Solution:
     @staticmethod
     def lg_p2671(ac=FastIO()):
         # 模板：前后缀计数加和，分奇偶性讨论
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         number = ac.read_list_ints()
         colors = ac.read_list_ints()
         mod = 10007
@@ -311,7 +309,7 @@ class Solution:
                 dct[0] = 1
                 for k in range(n):
                     cur = pre.query(i, 0, j, k)
-                    ans += dct[cu r -target]
+                    ans += dct[cur -target]
                     dct[cur] += 1
         return ans
 
@@ -374,14 +372,14 @@ class Solution:
             if stack:  # 这里不一定可以同时计算，比如前后都是大于等于时，只有前后所求范围互斥时，可以计算
                 pre[i] = stack[-1] + 1  # 这里可以是stack[-1]或者stack[-1]+1，取决于是否包含stack[-1]作为左端点
             stack.append(i)
-        mod = 1 0* *9 + 7
+        mod = 10**9 + 7
         s = list(accumulate(nums, initial=0))
         ss = list(accumulate(s, initial=0))
         ans = 0
         for i in range(n):
             left = pre[i]
             right = post[i]
-            ans += nums[i ] *(( i -lef t +1 ) *(ss[righ t +2 ] -ss[ i +1]) - (righ t - i +1 ) *(ss[ i +1 ] -ss[left]))
+            ans += nums[i ] *(( i -left +1 ) *(ss[right +2 ] -ss[i +1]) - (right - i +1 ) *(ss[ i +1 ] -ss[left]))
             ans %= mod
         return ans
 
@@ -512,7 +510,7 @@ class Solution:
     @staticmethod
     def ac_99(ac=FastIO()):
         # 模板：二维前缀和
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
 
         lst = [ac.read_list_ints() for _ in range(n)]
         length = max(max(ls[:-1]) for ls in lst) + 1
@@ -535,7 +533,7 @@ class Solution:
     def ac_102(ac=FastIO()):
 
         # 模板：前缀和加二分计算不短于k的子数组最大平均值
-        n, f = ac.read_ints()
+        n, f = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
 
         def check(x):
@@ -563,7 +561,7 @@ class Solution:
     @staticmethod
     def ac_121(ac=FastIO()):
         # 模板：离散化前缀和，双指针加二分
-        c, b = ac.read_ints()
+        c, b = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(b)]
         lst_x = sorted(list(set([x for x, _ in nums])))
         lst_y = sorted(list(set([x for _, x in nums])))
@@ -633,7 +631,7 @@ class Solution:
     @staticmethod
     def lg_p1627(ac=FastIO()):
         # 模板：经典前后缀中位数大小值差值计数
-        n, b = ac.read_ints()
+        n, b = ac.read_list_ints()
         nums = ac.read_list_ints()
         i = nums.index(b)
 
@@ -662,7 +660,7 @@ class Solution:
     def lg_p1895(ac=FastIO()):
 
         # 模板：前缀和计数加二分查找，最多不超多10**5
-        n = 1 0* *5
+        n = 10**5
         dp = [0] * (n + 1)
         for i in range(1, n + 1):  # 序列1234..
             dp[i] = dp[i - 1] + len(str(i))
@@ -688,7 +686,7 @@ class Solution:
     def lg_p1982(ac=FastIO()):
 
         # 模板：前缀最大连续子段和与前缀最大值
-        n, p = ac.read_ints()
+        n, p = ac.read_list_ints()
         nums = ac.read_list_ints()
         pre = 0
         for i in range(n):
@@ -738,10 +736,10 @@ class Solution:
     @staticmethod
     def lg_p2190(ac=FastIO()):
         # 模板：环形数组差分
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         diff = [0] * n
         for _ in range(m):
-            x, y, z = ac.read_ints()
+            x, y, z = ac.read_list_ints()
             x -= 1
             y -= 1
             if x <= y:
@@ -762,7 +760,7 @@ class Solution:
         # 模板：离散化差分
         diff = defaultdict(int)
         for _ in range(ac.read_int()):
-            a, b = ac.read_ints()
+            a, b = ac.read_list_ints()
             diff[a] += 1
             diff[b + 1] -= 1
         axis = sorted(list(diff.keys()))
@@ -805,7 +803,7 @@ class Solution:
     @staticmethod
     def lg_p2706(ac=FastIO()):
         # 模板：不包含障碍点的最大子矩阵和
-        m, n = ac.read_ints()
+        m, n = ac.read_list_ints()
         grid = []
         while len(grid) < m * n:
             grid.extend(ac.read_list_ints())
@@ -828,7 +826,7 @@ class Solution:
     @staticmethod
     def lg_p2879(ac=FastIO()):
         # 模板：差分数组经典题与贪心
-        n, i, h, r = ac.read_ints()
+        n, i, h, r = ac.read_list_ints()
         diff = [0] * n
         pre = set()
         for _ in range(r):
@@ -855,7 +853,7 @@ class Solution:
         n = ac.read_int()
         diff = defaultdict(int)
         for _ in range(n):
-            a, b = ac.read_ints()
+            a, b = ac.read_list_ints()
             if a > b:
                 a, b = b, a
             diff[a] += 1
@@ -875,7 +873,7 @@ class Solution:
     @staticmethod
     def lg_p4030(ac=FastIO()):
         # 模板：脑筋急转弯加二维前缀和计算
-        m, n, t = ac.read_ints()
+        m, n, t = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
         mat = [[0] * n for _ in range(m)]
         for i in range(1, m):
@@ -886,7 +884,7 @@ class Solution:
                     mat[i][j] = 1
         pm = PreFixSumMatrix(mat)
         for i in range(t):
-            x, y, k = ac.read_ints()
+            x, y, k = ac.read_list_ints()
             if k == 1:
                 ac.st("Y")
                 continue
@@ -925,11 +923,11 @@ class Solution:
     def lg_p4623(ac=FastIO()):
         # 模板：离散化差分计数
         n = ac.read_int()
-        m = 1 0* *6 + 1
+        m = 10**6 + 1
         diff_x = [0] * m
         diff_y = [0] * m
         for _ in range(n):
-            x1, y1, x2, y2, x3, y3 = ac.read_ints()
+            x1, y1, x2, y2, x3, y3 = ac.read_list_ints()
             low_x = min(x1, x2, x3)
             high_x = max(x1, x2, x3)
             low_y = min(y1, y2, y3)
@@ -958,7 +956,7 @@ class Solution:
     @staticmethod
     def lg_p6032(ac=FastIO()):
         # 模板：经典前后缀计数
-        n, k, p = ac.read_ints()
+        n, k, p = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         post = [0] * k
         for i in range(n):
@@ -988,7 +986,7 @@ class Solution:
     @staticmethod
     def lg_p6070(ac=FastIO()):
         # 模板：经典二维差分贪心修改实时维护差分与计算前缀和即矩阵最新值
-        n, m, k = ac.read_ints()
+        n, m, k = ac.read_list_ints()
         grid = [[0] * n for _ in range(n)]
         for _ in range(m):
             x, y, z = ac.read_ints_minus_one()
@@ -1090,7 +1088,7 @@ class Solution:
     @staticmethod
     def lg_p6878(ac=FastIO()):
         # 模板：前后缀枚举
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         s = ac.read_str()
         pre = [-1] * n
         stack = deque()
@@ -1213,12 +1211,12 @@ class Solution:
     @staticmethod
     def lg_p7992(ac=FastIO()):
         # 模板：经典桶计数与作用域差分计数
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         a = [0] * (m + 1)
         b = [0] * (m + 1)
         diff = [0] * (2 * m + 2)
         for _ in range(n):
-            x, y = ac.read_ints()
+            x, y = ac.read_list_ints()
             a[x] += 1
             b[y] += 1
         for i in range(m + 1):
@@ -1235,7 +1233,7 @@ class Solution:
     def lg_p7948(ac=FastIO()):
         # 模板：排序后预处理前后缀信息指针查询
         for _ in range(ac.read_int()):
-            n, q = ac.read_ints()
+            n, q = ac.read_list_ints()
             a = ac.read_list_ints()
             b = ac.read_list_ints()
             a.sort(reverse=True)
@@ -1260,7 +1258,7 @@ class Solution:
     @staticmethod
     def lg_p8343(ac=FastIO()):
         # 模板：经典子矩阵前缀和枚举与双指针
-        m, n, a, b = ac.read_ints()
+        m, n, a, b = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
         if a > b:
             a, b = b, a
@@ -1297,7 +1295,7 @@ class Solution:
         diff = [0] * (m + 2)
         point = [0] * (m + 2)
         for _ in range(n):
-            a, b = ac.read_ints()
+            a, b = ac.read_list_ints()
             diff[a] += 1
             diff[b + 1] -= 1
             point[a - 1] = 1
@@ -1315,7 +1313,7 @@ class Solution:
     @staticmethod
     def lg_p8666(ac=FastIO()):
         # 模板：二分加三维差分经典题
-        a, b, c, m = ac.read_ints()
+        a, b, c, m = ac.read_list_ints()
         grid = [[[0] * (c + 1) for _ in range(b + 1)] for _ in range(a + 1)]
         nums = ac.read_list_ints()
         for i in range(1, a + 1):
@@ -1468,7 +1466,7 @@ class Solution:
     @staticmethod
     def ac_3993(ac=FastIO()):
         # 模板：后缀和值域思维题
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
         low = min(nums)
         high = max(nums)

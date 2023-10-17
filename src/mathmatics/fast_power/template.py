@@ -3,7 +3,7 @@ import math
 import random
 import unittest
 
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 from src.string.kmp import KMP
 
 

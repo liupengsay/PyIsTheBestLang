@@ -108,7 +108,7 @@ class Solution:
 
     @staticmethod
     def lg_p2684(ac=FastIO()):
-        n, t = ac.read_ints()
+        n, t = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         ac.st(Range().cover_less(1, t, nums))
         return
@@ -186,7 +186,7 @@ class Solution:
     @staticmethod
     def ac_112(ac=FastIO()):
         # 模板：区间类型的贪心
-        n, d = ac.read_ints()
+        n, d = ac.read_list_ints()
         lst = [ac.read_list_ints() for _ in range(n)]
         if any(abs(y) > d for _, y in lst):
             ac.st(-1)
@@ -210,7 +210,7 @@ class Solution:
     @staticmethod
     def lg_p1668(ac=FastIO()):
         # 模板：最少区间覆盖问题
-        n, t = ac.read_ints()
+        n, t = ac.read_list_ints()
         lst = [ac.read_list_ints() for _ in range(n)]
         ans = Range().cover_less(1, t, lst, False)
         ac.st(ans)
@@ -219,7 +219,7 @@ class Solution:
     @staticmethod
     def lg_p1668_2(ac=FastIO()):
         # 模板：最少区间覆盖问题
-        n, t = ac.read_ints()
+        n, t = ac.read_list_ints()
         t -= 1
         lst = [ac.read_list_ints_minus_one() for _ in range(n)]
         ans = Range().cover_less(0, t, lst, False)
@@ -230,7 +230,7 @@ class Solution:
     @staticmethod
     def lg_p2887(ac=FastIO()):
         # 模板：最多点匹配覆盖，每条线段选一个点匹配，最多匹配数有点类似二分图
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort(key=lambda it: it[1])
         pos = [ac.read_list_ints() for _ in range(m)]
@@ -248,7 +248,7 @@ class Solution:
     @staticmethod
     def lg_p3661(ac=FastIO()):
         # 模板：区间与点集贪心匹配
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         lst = LocalSortedList([ac.read_int() for _ in range(n)])
         nums = [ac.read_list_ints() for _ in range(m)]
         # 按照右边端点排序
@@ -266,7 +266,7 @@ class Solution:
     @staticmethod
     def lg_p3737(ac=FastIO()):
         # 模板：区间点覆盖贪心
-        n, r = ac.read_ints()
+        n, r = ac.read_list_ints()
         lst = []
         while len(lst) < 2*n:
             lst.extend(ac.read_list_ints())
@@ -296,7 +296,7 @@ class Solution:
         n = ac.read_int()
         nums = []
         for _ in range(n):
-            x, y = ac.read_ints()
+            x, y = ac.read_list_ints()
             nums.append([x - y, x + y])
         # 左端点升序右端点降序
         nums.sort(key=lambda it: [it[0], -it[1]])
@@ -350,7 +350,7 @@ class Solution:
     @staticmethod
     def ac_4421_1(ac=FastIO()):
         # 模板：经典最少区间覆盖范围问题，相邻可以不相交
-        n, r = ac.read_ints()
+        n, r = ac.read_list_ints()
         nums = ac.read_list_ints()
         lst = []
         for i in range(n):

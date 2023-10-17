@@ -36,7 +36,7 @@ class Solution:
     def cf_1328b(ac=FastIO()):
         # 模板：计算comb选取的字典序
         for _ in range(ac.read_int()):
-            n, k = ac.read_ints()
+            n, k = ac.read_list_ints()
             ind = LexicoGraphicalOrder().get_kth_subset_comb(n, 2, n*(n-1)//2-k+1)
             ans = ["a"]*n
             for i in ind:
@@ -52,7 +52,7 @@ class Solution:
     @staticmethod
     def lg_p1243(ac=FastIO()):
         # 模板：获取第 k 小的子集
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         lst = LexicoGraphicalOrder().get_kth_subset(n, k)
         ac.lst(lst)
         return
@@ -70,7 +70,7 @@ class Solution:
     def lg_p3014(ac=FastIO()):
 
         # 模板：康托展开也可以使用字典序贪心计算
-        n, q = ac.read_ints()
+        n, q = ac.read_list_ints()
         og = LexicoGraphicalOrder()
         # ct = CantorExpands(n, mod=math.factorial(n + 2))
         for _ in range(q):

@@ -8,7 +8,7 @@ import random
 
 from cytoolz import accumulate
 
-from src.fast_io import FastIO, inf
+from utils.fast_io import FastIO, inf
 from src.data_structure.sorted_list import LocalSortedList
 
 

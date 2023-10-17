@@ -166,10 +166,10 @@ class Solution:
     @staticmethod
     def ac_4309(ac=FastIO()):
         # 模板：经典直线斜率计算
-        n, x0, y0 = ac.read_ints()
+        n, x0, y0 = ac.read_list_ints()
         dct = set()
         for _ in range(n):
-            x, y = ac.read_ints()
+            x, y = ac.read_list_ints()
             g = math.gcd(x - x0, y - y0)
             a = (x - x0) // g
             b = (y - y0) // g
@@ -186,7 +186,7 @@ class Solution:
     @staticmethod
     def ac_4499(ac=FastIO()):
         # 模板：经典几何，使用一元二次方程求解
-        r, x1, y1, x2, y2 = ac.read_ints()
+        r, x1, y1, x2, y2 = ac.read_list_ints()
         if (x1 - x2)**2 + (y1 - y2)**2 > r * r:
             ans = [x1, y1, r]
             ac.lst(["%.6f" % x for x in ans])

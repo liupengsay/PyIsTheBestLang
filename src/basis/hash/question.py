@@ -4,7 +4,7 @@ import random
 from itertools import accumulate
 from typing import List
 
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 
 """
 算法：哈希、贡献法
@@ -118,11 +118,11 @@ class Solution:
     @staticmethod
     def abc_45d(ac=FastIO()):
         # 模板：经典哈希容斥计数
-        h, w, n = ac.read_ints()
+        h, w, n = ac.read_list_ints()
         cnt = [0]*10
         dct = defaultdict(int)
         for _ in range(n):
-            a, b = ac.read_ints()
+            a, b = ac.read_list_ints()
             for x in range(3):
                 for y in range(3):
                     if 3 <= x+a <= h and 3 <= y+b <= w:
@@ -188,7 +188,7 @@ class Solution:
     @staticmethod
     def lg_p4889(ac=FastIO()):
         # 模板：枚举计数
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         height = ac.read_list_ints()
         cnt = defaultdict(int)
         ans = 0

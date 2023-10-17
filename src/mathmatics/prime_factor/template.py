@@ -7,7 +7,7 @@ from itertools import permutations
 from math import inf
 from typing import List
 
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 from src.mathmatics.number_theory import NumberTheory
 
 

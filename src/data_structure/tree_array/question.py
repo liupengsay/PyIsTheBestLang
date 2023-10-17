@@ -115,14 +115,14 @@ class Solution:
     @staticmethod
     def lg_p2280(ac=FastIO()):
         # 模板：树状数组单点更新区间查询最大值与最小值
-        n, q = ac.read_ints()
+        n, q = ac.read_list_ints()
         tree = PointAscendRangeMax(n)
         for i in range(n):
             tree.a[i + 1] = ac.read_int()
             tree.add(i + 1, tree.a[i + 1])
 
         for _ in range(q):
-            a, b = ac.read_ints()
+            a, b = ac.read_list_ints()
             ac.st(tree.find_max(a, b) - tree.find_min(a, b))
         return
 
@@ -210,14 +210,14 @@ class Solution:
     def lg_p1816(ac=FastIO()):
 
         # 模板：树状数组查询静态区间最小值
-        m, n = ac.read_ints()
+        m, n = ac.read_list_ints()
         nums = ac.read_list_ints()
         tree = PointAscendRangeMax(m)
         for i in range(m):
             tree.add(i+1, nums[i])
         ans = []
         for _ in range(n):
-            x, y = ac.read_ints()
+            x, y = ac.read_list_ints()
             ans.append(tree.find_min(x, y))
         ac.lst(ans)
         return
@@ -225,11 +225,11 @@ class Solution:
     @staticmethod
     def lg_p3374(ac=FastIO()):
         # 模板：树状数组 单点增减 查询前缀和与区间和
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         tree = PointAddRangeSum(n)
         tree.build(ac.read_list_ints())
         for _ in range(m):
-            op, x, y = ac.read_ints()
+            op, x, y = ac.read_list_ints()
             if op == 1:
                 tree.point_add(x, y)
             else:
@@ -239,7 +239,7 @@ class Solution:
     @staticmethod
     def lg_p3368(ac=FastIO()):
         # 模板：树状数组 区间增减 查询前缀和与区间和
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         tree = RangeAddRangeSum(n)
         tree.build(ac.read_list_ints())
         for _ in range(m):
@@ -296,7 +296,7 @@ class Solution:
     @staticmethod
     def main(ac=FastIO()):
         # 模板：二维树状数组 区间增减 区间查询
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         tree = RangeAddRangeSum2D(n, m)
         while True:
             lst = ac.read_list_ints()
@@ -313,7 +313,7 @@ class Solution:
     @staticmethod
     def lg_p1725(ac=FastIO()):
         # 模板：树状数组倒序线性DP，单点更新与区间查询最大值
-        n, a, b = ac.read_ints()
+        n, a, b = ac.read_list_ints()
         n += 1
         nums = ac.read_list_ints()
         tree = PointAscendRangeMax(n+1)
@@ -331,7 +331,7 @@ class Solution:
     @staticmethod
     def lg_p3586(ac=FastIO()):
         # 模板：离线查询、离散化树状数组，单点增减，前缀和查询
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         value = {0}
         lst = []
         for _ in range(m):
@@ -380,7 +380,7 @@ class Solution:
     @staticmethod
     def lg_p1198(ac=FastIO()):
         # 模板：树状数组查询区间最大值
-        m, d = ac.read_ints()
+        m, d = ac.read_list_ints()
         t = 0
         tree = PointAscendRangeMax(m+1)
         i = 1
@@ -400,7 +400,7 @@ class Solution:
     def lg_p4868(ac=FastIO()):
         # 模板：经典转换公式，使用两个树状数组维护前缀和的前缀和
 
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         tree1 = PointAddRangeSum(n)
         tree1.build(nums)
@@ -441,7 +441,7 @@ class Solution:
     @staticmethod
     def lg_p6225(ac=FastIO()):
         # 模板：经典使用树状数组维护前缀异或和
-        n, q = ac.read_ints()
+        n, q = ac.read_list_ints()
         nums = ac.read_list_ints()
 
         tree_odd = PointChangePreRangeXor(n)

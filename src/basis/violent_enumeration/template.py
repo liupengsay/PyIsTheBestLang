@@ -7,7 +7,7 @@ from itertools import combinations, permutations
 from operator import mul, or_
 from typing import List
 
-from src.fast_io import FastIO, inf
+from utils.fast_io import FastIO, inf
 
 
 

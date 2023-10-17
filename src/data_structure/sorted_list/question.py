@@ -113,7 +113,7 @@ class Solution:
     @staticmethod
     def cf_1005e2(ac=FastIO()):
         # 模板：经典特定中位数的连续子数组个数，使用容斥原理加前缀和有序列表二分
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
 
         def check(x):
@@ -167,7 +167,7 @@ class Solution:
     @staticmethod
     def ac_127(ac=FastIO()):
         # 模板：经典二维排序贪心
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         machine = [ac.read_list_ints() for _ in range(n)]
         task = [ac.read_list_ints() for _ in range(m)]
         machine.sort(reverse=True)
@@ -232,7 +232,7 @@ class Solution:
     @staticmethod
     def lg_p2804(ac=FastIO()):
         # 模板：前缀和加 STL 计算平均值大于 m 的连续子数组个数
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         mod = 92084931
         pre = 0
@@ -254,7 +254,7 @@ class Solution:
         lst = []
         lst_set = []
         for _ in range(q):
-            op, x = ac.read_ints()
+            op, x = ac.read_list_ints()
             if op == 1:
                 i = bisect.bisect_left(lst, x)
                 ac.st(i + 1)
@@ -299,7 +299,7 @@ class Solution:
     @staticmethod
     def lg_p5459(ac=FastIO()):
         # 模板：前缀和与有序列表二分查找
-        n, low, high = ac.read_ints()
+        n, low, high = ac.read_list_ints()
         a = ac.read_list_ints()
         ans = 0
         lst = []

@@ -4,7 +4,7 @@ from collections import deque
 from typing import List
 
 from src.data_structure.tree_array import RangeAddRangeSum
-from src.fast_io import FastIO, inf
+from utils.fast_io import FastIO, inf
 
 
 

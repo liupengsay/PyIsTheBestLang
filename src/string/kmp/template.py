@@ -2,7 +2,7 @@ import unittest
 from collections import Counter
 from itertools import permutations
 
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 from src.mathmatics.fast_power import MatrixFastPower
 
 

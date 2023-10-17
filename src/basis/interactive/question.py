@@ -8,7 +8,7 @@ from itertools import accumulate
 from typing import List
 from operator import mul, add, xor, and_, or_
 
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 
 """
 算法：二分查找、交互题

@@ -31,7 +31,7 @@ class Solution:
     @staticmethod
     def abc_42b(ac=FastIO()):
         # 模板：自定义排序
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         nums = [ac.read_str() for _ in range(n)]
 
         def compare(a, b):

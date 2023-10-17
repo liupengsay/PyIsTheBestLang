@@ -118,7 +118,7 @@ class Solution:
     @staticmethod
     def lg_p1894(ac=FastIO()):
         # 模板：二分图最大权匹配（不带权也可以使用匈牙利算法）
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         s = n + m + 1
         t = n + m + 2
         # 集合个数n与集合个数m
@@ -155,10 +155,10 @@ class Solution:
     @staticmethod
     def lg_3386(ac=FastIO()):
         # 模板：匈牙利算法二分图不带权最大匹配
-        n, m, e = ac.read_ints()
+        n, m, e = ac.read_list_ints()
         dct = [[] for _ in range(m)]
         for _ in range(e):
-            i, j = ac.read_ints()
+            i, j = ac.read_list_ints()
             i -= 1
             j -= 1
             dct[j].append(i)

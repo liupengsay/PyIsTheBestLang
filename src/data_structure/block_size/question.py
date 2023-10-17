@@ -27,7 +27,7 @@ class Solution:
     def abc_132f(ac=FastIO()):
         # 模板：分组线性计数DP，使用前缀和优化
         mod = 10**9 + 7
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         cnt, _ = BlockSize().get_divisor_split(n)
         m = len(cnt)
         dp = cnt[:]
@@ -40,7 +40,7 @@ class Solution:
     @staticmethod
     def cf_220b(ac=FastIO()):
         # 模板：查询区间内符合条件的元素个数
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         size = int(n ** 0.5) + 1  # 分块的大小
 
@@ -95,7 +95,7 @@ class Solution:
     @staticmethod
     def cf_86d(ac=FastIO()):
         # 模板：查询区间内的函数值
-        n, t = ac.read_ints()
+        n, t = ac.read_list_ints()
         nums = ac.read_list_ints()
         size = int(n**0.5) + 1
 
@@ -148,7 +148,7 @@ class Solution:
     @staticmethod
     def cf_617e(ac=FastIO()):
         # 模板：查询区间内的异或对数
-        n, m, k = ac.read_ints()
+        n, m, k = ac.read_list_ints()
         nums = ac.read_list_ints()
         pre = list(accumulate(nums, xor, initial=0))
 

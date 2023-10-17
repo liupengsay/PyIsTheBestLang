@@ -8,7 +8,7 @@ from math import inf
 from typing import List, Optional
 
 from src.dp.tree_dp import TreeDiameterInfo
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 from src.graph.union_find import UnionFind
 
 

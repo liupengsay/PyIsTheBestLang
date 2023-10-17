@@ -6,7 +6,7 @@ from typing import List
 
 from sortedcontainers import SortedList
 
-from src.basis.binary_search import BinarySearch
+from basis.binary_search.template import BinarySearch
 from src.fast_io import inf, FastIO
 
 """
@@ -244,7 +244,7 @@ class Solution:
     @staticmethod
     def lg_p3372(ac=FastIO()):
         # 模板：线段树 区间增减 与区间和查询
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         segment = SegmentTreeRangeUpdateQuerySumMinMax(n)
         segment.build(ac.read_list_ints())
 
@@ -261,7 +261,7 @@ class Solution:
     @staticmethod
     def lg_p3870(ac=FastIO()):
         # 模板：区间异或 0 与 1 翻转
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         segment = SegmentTreeRangeUpdateXORSum(n)
 
         for _ in range(m):
@@ -277,7 +277,7 @@ class Solution:
     @staticmethod
     def lg_p1438(ac=FastIO()):
         # 模板：差分数组区间增减加线段树查询区间和
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         segment = SegmentTreeRangeUpdateQuerySumMinMax(n)
 
@@ -305,7 +305,7 @@ class Solution:
     def lg_p1253(ac=FastIO()):
 
         # 模板：区间增减与区间修改并使用线段树查询区间和
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         segment = SegmentTreeRangeUpdateChangeQueryMax(ac.read_list_ints())
 
         for _ in range(m):
@@ -325,7 +325,7 @@ class Solution:
     def lg_p3373(ac=FastIO()):
 
         # 模板：区间乘法与区间加法并使用线段树查询区间和
-        n, m, p = ac.read_ints()
+        n, m, p = ac.read_list_ints()
         nums = ac.read_list_ints()
         segment = SegmentTreeRangeUpdateMulQuerySum(nums, p)
         stack = deque()
@@ -345,7 +345,7 @@ class Solution:
     def lg_p4513(ac=FastIO()):
 
         # 模板：单点修改后区间查询最大的子段和
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
         segment = SegmentTreeRangeSubConSum(nums)
         for _ in range(m):
@@ -364,7 +364,7 @@ class Solution:
     @staticmethod
     def lg_p1471(ac=FastIO()):
         # 模板：区间增减，维护区间和与区间数字平方的和，以计算均差与方差
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         tree = SegmentTreeRangeUpdateAvgDev(n)
         tree.build(ac.read_list_floats())
         for _ in range(m):
@@ -434,7 +434,7 @@ class Solution:
     @staticmethod
     def lg_p6492(ac=FastIO()):
         # 模板：单点修改，查找最长的01交替字符子串连续区间
-        n, q = ac.read_ints()
+        n, q = ac.read_list_ints()
         tree = SegmentTreePointChangeLongCon(n)
         for _ in range(q):
             i = ac.read_int() - 1
@@ -473,7 +473,7 @@ class Solution:
             ans = ans if ans > pre else pre
             return ans
 
-        # n, m = ac.read_ints()
+        # n, m = ac.read_list_ints()
         for s in range(100):
             # random.seed(s)
             print(f"seed_{s}")
@@ -519,7 +519,7 @@ class Solution:
     @staticmethod
     def lg_p1558(ac=FastIO()):
         # 模板：线段树区间值修改，区间或值查询
-        n, t, q = ac.read_ints()
+        n, t, q = ac.read_list_ints()
         tree = SegmentTreeRangeChangeQueryOr(n)
         tree.update(0, n - 1, 0, n - 1, 1, 1)
         for _ in range(q):
@@ -541,7 +541,7 @@ class Solution:
     @staticmethod
     def lg_p3740(ac=FastIO()):
         # 模板：离散化线段树区间修改与单点查询
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         nums = []
         while len(nums) < m * 2:
             nums.extend(ac.read_list_ints())
@@ -577,10 +577,10 @@ class Solution:
     def lg_p4588(ac=FastIO()):
         # 模板：转化为线段树单点值修改与区间乘积取模
         for _ in range(ac.read_int()):
-            q, mod = ac.read_ints()
+            q, mod = ac.read_list_ints()
             tree = SegmentTreePointUpdateRangeMulQuery(q, mod)
             for i in range(q):
-                op, num = ac.read_ints()
+                op, num = ac.read_list_ints()
                 if op == 1:
                     tree.update(i, i, 0, q - 1, num % mod, 1)
                 else:
@@ -636,12 +636,12 @@ class Solution:
     @staticmethod
     def lg_p8812(ac=FastIO()):
         # 模板：线段树查询和更新区间最小值
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         goods = [[] for _ in range(n)]
         for _ in range(m):
-            s, t, p, c = ac.read_ints()
+            s, t, p, c = ac.read_list_ints()
             for _ in range(c):
-                a, b = ac.read_ints()
+                a, b = ac.read_list_ints()
                 a -= 1
                 goods[a].append([1, 10 ** 9 + 1, b])
                 b = b * p // 100

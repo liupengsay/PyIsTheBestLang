@@ -10,7 +10,7 @@ from typing import List
 
 from src.basis.diff_array import PreFixSumMatrix
 from src.data_structure.tree_array import PointDescendPreMin
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 from src.mathmatics.comb_perm import Combinatorics
 
 

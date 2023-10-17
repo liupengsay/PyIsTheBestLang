@@ -77,7 +77,7 @@ class Solution:
         # 模板：利用取模分组计数与快速幂计算 1**b+2**b+..+a**b % mod 的值
         mod = 10 ** 4
         for _ in range(ac.read_int()):
-            a, b = ac.read_ints()
+            a, b = ac.read_list_ints()
             rest = [0] + [pow(i, b, mod) for i in range(1, mod)]
             ans = sum(rest) * (a // mod) + sum(rest[:a % mod + 1])
             ac.st(ans % mod)
@@ -104,7 +104,7 @@ class Solution:
     def lg_p3509(ac=FastIO()):
 
         # 模板：双指针模拟寻找第k远的距离，快速幂原理跳转
-        n, k, m = ac.read_ints()
+        n, k, m = ac.read_list_ints()
         nums = ac.read_list_ints()
 
         ans = list(range(n))
@@ -134,7 +134,7 @@ class Solution:
     @staticmethod
     def lg_p1349(ac=FastIO()):
         # 模板：矩阵快速幂
-        p, q, a1, a2, n, m = ac.read_ints()
+        p, q, a1, a2, n, m = ac.read_list_ints()
         if n == 1:
             ac.st(a1 % m)
             return
@@ -183,14 +183,14 @@ class Solution:
     @staticmethod
     def lg_p3758(ac=FastIO()):
         # 模板：矩阵 DP 使用快速幂优化
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         # 转移矩阵
         grid = [[0] * (n + 1) for _ in range(n + 1)]
         for i in range(n + 1):
             grid[i][i] = 1
             grid[0][i] = 1
         for _ in range(m):
-            u, v = ac.read_ints()
+            u, v = ac.read_list_ints()
             grid[u][v] = grid[v][u] = 1
         # 快速幂与最终状态计算
         initial = [0] * (n + 1)
@@ -244,7 +244,7 @@ class Solution:
     def lg_p8557(ac=FastIO()):
         # 模板：脑筋急转弯快速幂计数
         mod = 998244353
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         ans = pow((pow(2, k, mod) - 1) % mod, n, mod)
         ac.st(ans)
         return
@@ -253,7 +253,7 @@ class Solution:
     def lg_p8624(ac=FastIO()):
         # 模板：矩阵 DP 与快速幂
         mod = 10 ** 9 + 7
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         rem = [[0] * 6 for _ in range(6)]
         for _ in range(m):
             i, j = ac.read_ints_minus_one()

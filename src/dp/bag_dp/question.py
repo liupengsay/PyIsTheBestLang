@@ -119,7 +119,7 @@ class Solution:
     @staticmethod
     def cf_1433f(ac=FastIO()):
         # 模板：两层背包DP，矩阵动态规划转移
-        m, n, k = ac.read_ints()
+        m, n, k = ac.read_list_ints()
         pre = [-inf] * k
         pre[0] = 0
         x = n // 2
@@ -148,7 +148,7 @@ class Solution:
     @staticmethod
     def cf_543a(ac=FastIO()):
         # 模板：分组背包 DP 有限作为无限
-        n, m, b, mod = ac.read_ints()
+        n, m, b, mod = ac.read_list_ints()
         nums = ac.read_list_ints()
         pre = [[0] * (b + 1) for _ in range(m + 1)]
         pre[0][0] = 1
@@ -205,7 +205,7 @@ class Solution:
     @staticmethod
     def lg_p6567(ac=FastIO()):
         # 模板：一维有限二进制优化背包
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         target = ac.read_list_ints()
         ceil = max(target)
@@ -311,7 +311,7 @@ class Solution:
     def abc_118d(ac=FastIO()):
         # 模板：贪心背包DP，并还原方案
         score = [2, 5, 5, 4, 5, 6, 3, 7, 6]
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         nums.sort(reverse=True)
         dp = [-inf]*(n+1)
@@ -337,7 +337,7 @@ class Solution:
     @staticmethod
     def abc_145e(ac=FastIO()):
         # 模板：思维题01背包，需要先排序，使用刷表法解决计算
-        n, t = ac.read_ints()
+        n, t = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort()
         dp = [0] * (t+3010)
@@ -351,11 +351,11 @@ class Solution:
     @staticmethod
     def ac_6(ac=FastIO()):
         # 模板：单调队列优化的多重背包问题，即限定个数和体积价值求最大值
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dp = [0]*(m+1)
         for _ in range(n):
             # 体积 价值 数量
-            v, w, s = ac.read_ints()
+            v, w, s = ac.read_list_ints()
             for r in range(v):
                 stack = deque()
                 for i in range(r, m+1, v):
@@ -372,14 +372,14 @@ class Solution:
     def ac_10(ac=FastIO()):
 
         # 模板：树上背包
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         vol = []
         weight = []
         parent = [-1] * n
         dct = [[] for _ in range(n)]
         root = 0
         for i in range(n):
-            v, w, p = ac.read_ints()
+            v, w, p = ac.read_list_ints()
             p -= 1
             parent[i] = p
             if p != -2:
@@ -413,12 +413,12 @@ class Solution:
     @staticmethod
     def ac_11(ac=FastIO()):
         # 模板：01背包求方案数
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dp = [0]*(m+1)
         cnt = [1]*(m+1)  # 注意方案数都初始化为1
         mod = 10**9 + 7
         for _ in range(n):
-            v, w = ac.read_ints()
+            v, w = ac.read_list_ints()
             for i in range(m, v-1, -1):
                 if dp[i-v] + w > dp[i]:
                     dp[i] = dp[i-v] + w
@@ -432,7 +432,7 @@ class Solution:
     @staticmethod
     def ac_12_1(ac=FastIO()):
         # 模板：01背包求具体方案
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dp = [[0] * (m + 1) for _ in range(n + 1)]
         nums = [ac.read_list_ints() for _ in range(n)]
 
@@ -458,10 +458,10 @@ class Solution:
     @staticmethod
     def ac_12_2(ac=FastIO()):
         # 模板：01背包求具体方案
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dp = [[0, [-1]] for _ in range(m+1)]
         for ind in range(n):
-            v, w = ac.read_ints()
+            v, w = ac.read_list_ints()
             for i in range(m, v-1, -1):
                 if dp[i-v][0] + w > dp[i][0] or (dp[i-v][0] + w == dp[i][0] and dp[i-v][1]+[ind+1] < dp[i][1]):
                     dp[i] = [dp[i-v][0] + w, dp[i-v][1]+[ind+1]]
@@ -471,11 +471,11 @@ class Solution:
     @staticmethod
     def lg_p1064(ac=FastIO()):
         # 模板：有依赖的分组背包
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dct = [[] for _ in range(m)]
         sub = [[] for _ in range(m)]
         for i in range(m):
-            v, p, q = ac.read_ints()
+            v, p, q = ac.read_list_ints()
             if q == 0:
                 dct[i].append([v, p])
             else:
@@ -501,7 +501,7 @@ class Solution:
     @staticmethod
     def lg_p1156(ac=FastIO()):
         # 模板：变形背包
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
 
         dct = [ac.read_list_ints() for _ in range(m)]
         dct.sort(key=lambda it: it[0])
@@ -528,7 +528,7 @@ class Solution:
     @staticmethod
     def lg_p1273(ac=FastIO()):
         # 模板：树上分组背包
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for j in range(n-m):
             lst = ac.read_list_ints()
@@ -618,7 +618,7 @@ class Solution:
     @staticmethod
     def lg_p1441(ac=FastIO()):
         # 模板：枚举加背包DP
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         a = ac.read_list_ints()
         ans = 0
         s = sum(a)
@@ -672,7 +672,7 @@ class Solution:
     def lg_p1541(ac=FastIO()):
 
         # 模板：四维背包
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         cnt = Counter(ac.read_list_ints())
         a, b, c, d = cnt[1], cnt[2], cnt[3], cnt[4]
@@ -702,7 +702,7 @@ class Solution:
     @staticmethod
     def lg_p1759(ac=FastIO()):
         # 模板：二维背包输出字典序最小的方案
-        m, v, n = ac.read_ints()
+        m, v, n = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         dp = [[[0, []] for _ in range(v + 1)] for _ in range(m + 1)]
         # 同时记录时间与字典序最小的方案
@@ -721,10 +721,10 @@ class Solution:
     @staticmethod
     def lg_p1776(ac=FastIO()):
         # 模板：单调队列优化的多重背包问题，即限定个数和体积价值求最大值
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dp = [0]*(m+1)
         for _ in range(n):
-            a, b, c = ac.read_ints()
+            a, b, c = ac.read_list_ints()
             # 体积 价值 数量
             v, w, s = b, a, c
             for r in range(v):
@@ -770,7 +770,7 @@ class Solution:
         t = check(e) - check(s)
         dp = [0] * (t + 1)
         for _ in range(int(n)):
-            tt, cc, p = ac.read_ints()
+            tt, cc, p = ac.read_list_ints()
             if not p:
                 for i in range(tt, t + 1):
                     dp[i] = ac.max(dp[i], dp[i - tt] + cc)
@@ -791,11 +791,11 @@ class Solution:
     @staticmethod
     def lg_p2014(ac=FastIO()):
         # 模板：增加一个虚拟源点将DAG转换为树上背包
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dct = [[] for _ in range(n + 1)]
         nums = [0]
         for i in range(n):
-            k, s = ac.read_ints()
+            k, s = ac.read_list_ints()
             nums.append(s)
             dct[k].append(i + 1)
         dp = [[0] * (m + 2) for _ in range(n + 1)]
@@ -823,12 +823,12 @@ class Solution:
     @staticmethod
     def lg_p2079(ac=FastIO()):
         # 模板：滚动哈希背包DP，使用两层哈希节省空间
-        n, v = ac.read_ints()
+        n, v = ac.read_list_ints()
         dp = [defaultdict(lambda: defaultdict(lambda: -inf)), defaultdict(lambda: defaultdict(lambda: -inf))]
         pre = 0
         dp[pre][0][0] = 0
         for i in range(n):
-            c, x, y = ac.read_ints()
+            c, x, y = ac.read_list_ints()
             cur = 1-pre
             for c1 in dp[pre]:
                 for x1 in dp[pre][c1]:
@@ -847,7 +847,7 @@ class Solution:
     @staticmethod
     def lg_p2170(ac=FastIO()):
         # 模板：连通块加二进制01背包优化
-        n, m, k = ac.read_ints()
+        n, m, k = ac.read_list_ints()
         uf = UnionFind(n)
         for _ in range(k):
             i, j = ac.read_ints_minus_one()
@@ -878,7 +878,7 @@ class Solution:
     @staticmethod
     def lg_p2214(ac=FastIO()):
         # 模板：变种背包DP贪心
-        n, b = ac.read_ints()
+        n, b = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(b)]
         voice = [ac.read_int() for _ in range(n)]
 
@@ -904,10 +904,10 @@ class Solution:
     @staticmethod
     def lg_p2306(ac=FastIO()):
         # 模板：根据数据范围计数后进行二进制优化的01背包计算
-        n, m, k = ac.read_ints()
+        n, m, k = ac.read_list_ints()
         cnt = defaultdict(lambda: defaultdict(int))
         for _ in range(n):
-            a, b = ac.read_ints()
+            a, b = ac.read_list_ints()
             cnt[a][b] += 1
         dp = [0] * (m + 1)
         for a in cnt:
@@ -957,7 +957,7 @@ class Solution:
     @staticmethod
     def lg_p2760(ac=FastIO()):
         # 模板：单调队列优化的多重背包
-        m, n, p, t = ac.read_ints()
+        m, n, p, t = ac.read_list_ints()
         rest = ac.min(p, t - 1)
         dp = [0] * (rest + 1)
         grid = [ac.read_list_ints() for _ in range(m)]
@@ -981,7 +981,7 @@ class Solution:
     @staticmethod
     def lg_p2854(ac=FastIO()):
         # 模板：分组01背包
-        length, n, b = ac.read_ints()
+        length, n, b = ac.read_list_ints()
         dp = [[-inf] * (b + 1) for _ in range(length + 1)]
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort()
@@ -1000,7 +1000,7 @@ class Solution:
     @staticmethod
     def lg_p2938(ac=FastIO()):
         # 模板：分组完全背包
-        s, d, m = ac.read_ints()
+        s, d, m = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(s)]
         for i in range(1, d):
             dp = [0] * (m + 1)
@@ -1016,7 +1016,7 @@ class Solution:
     @staticmethod
     def lg_p2979(ac=FastIO()):
         # 模板：分组01背包
-        n, t, k = ac.read_ints()
+        n, t, k = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         m = 5*t//4 + 1
 
@@ -1109,7 +1109,7 @@ class Solution:
     @staticmethod
     def lg_p5322(ac=FastIO()):
         # 模板：典型二维 DP 转换为分组背包
-        s, n, m = ac.read_ints()
+        s, n, m = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(s)]
         dp = [0] * (m + 1)
         for i in range(n):
@@ -1127,7 +1127,7 @@ class Solution:
     @staticmethod
     def lg_p5365(ac=FastIO()):
         # 模板：01背包 DP 枚举数量
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         kk = ac.read_list_ints()
         cc = ac.read_list_ints()
         s = sum(kk[i] * cc[i] for i in range(n))
@@ -1149,7 +1149,7 @@ class Solution:
     @staticmethod
     def lg_p5662(ac=FastIO()):
         # 模板：完全背包变形贪心题目
-        t, n, m = ac.read_ints()
+        t, n, m = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(t)]
         for i in range(1, t):
             dp = [0] * (m + 1)
@@ -1166,7 +1166,7 @@ class Solution:
     @staticmethod
     def lg_p1417(ac=FastIO()):
         # 模板：经典贪心排序后计算 01 背包最大值
-        t, n = ac.read_ints()
+        t, n = ac.read_list_ints()
         a = ac.read_list_ints()
         b = ac.read_list_ints()
         c = ac.read_list_ints()
@@ -1184,7 +1184,7 @@ class Solution:
     def ac_4081(ac=FastIO()):
         # 模板：经典矩阵DP类似背包思想
 
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
 
         def check2(x):

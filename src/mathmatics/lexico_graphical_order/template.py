@@ -3,7 +3,7 @@ import random
 import unittest
 from itertools import permutations, combinations
 
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 
 
 

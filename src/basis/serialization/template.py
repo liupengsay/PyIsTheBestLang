@@ -3,7 +3,7 @@ from collections import deque
 from typing import Optional
 
 from src.basis.tree_node import TreeNode
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 
 
 

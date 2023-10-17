@@ -35,7 +35,7 @@ class Solution:
     @staticmethod
     def lg_p3387(ac=FastIO()):
         # 模板：有向图使用强连通分量将环进行缩点后求最长路
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         weight = ac.read_list_ints()
         edge = [set() for _ in range(n)]
         for _ in range(m):

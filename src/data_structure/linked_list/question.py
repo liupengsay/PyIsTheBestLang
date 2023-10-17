@@ -40,7 +40,7 @@ class Solution:
     def cf_1154e(ac=FastIO()):
 
         # 模板：使用链表维护前后的节点信息
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
         ans = [0] * n
         pre = [i - 1 for i in range(n)]
@@ -79,7 +79,7 @@ class Solution:
     @staticmethod
     def nc_247577(ac=FastIO()):
         # 模板：使用链表维护前后的节点信息
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         pre = list(range(-1, n + 1))
         post = list(range(1, n + 3))
         assert len(pre) == len(post) == n + 2
@@ -307,7 +307,7 @@ class Solution:
     @staticmethod
     def ac_4943(ac=FastIO()):
         # 模板：经典BFS加链表，维护四个方向上的未访问点
-        m, n, k = ac.read_ints()
+        m, n, k = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
         x1, y1, x2, y2 = ac.read_ints_minus_one()
 

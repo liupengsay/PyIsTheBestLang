@@ -3,7 +3,7 @@ import unittest
 from functools import lru_cache
 from typing import List
 
-from src.fast_io import FastIO, inf
+from utils.fast_io import FastIO, inf
 from collections import Counter, defaultdict, deque
 
 from src.mathmatics.number_theory import NumberTheory

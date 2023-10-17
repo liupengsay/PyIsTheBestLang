@@ -1,7 +1,7 @@
 import unittest
 from typing import List
 
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 from src.graph.union_find import UnionFind
 
 """
@@ -48,7 +48,7 @@ class Solution:
     @staticmethod
     def lg_p7771(ac=FastIO()):
         # 模板：有向图欧拉路径或者欧拉回路
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         # 存储图关系
         pairs = [ac.read_list_ints_minus_one() for _ in range(m)]
         # 注意可能包括自环与重边
@@ -155,7 +155,7 @@ class Solution:
     @staticmethod
     def lg_p6606(ac=FastIO()):
         # 模板：有向图欧拉路径或者欧拉回路
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         # 最关键的建图
         pairs = []
         for _ in range(m):

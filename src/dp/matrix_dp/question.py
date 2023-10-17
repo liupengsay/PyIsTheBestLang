@@ -456,7 +456,7 @@ class Solution:
     @staticmethod
     def lg_p1544(ac=FastIO()):
         # 模板：三维矩阵DP
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         dp = [[[-inf]*(k+1) for _ in range(n)] for _ in range(2)]
         nums = []
         while len(nums) < n*(n+1)//2:
@@ -521,7 +521,7 @@ class Solution:
     @staticmethod
     def lg_p1006(ac=FastIO()):
         # 模板：经典取数四维转三维DP，路径不能有交叠
-        m, n = ac.read_ints()
+        m, n = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
 
         dp = [[[0] * m for _ in range(n)] for _ in range(m)]
@@ -545,7 +545,7 @@ class Solution:
     @staticmethod
     def lg_p1107(ac=FastIO()):
         # 模板：矩阵DP加前缀数组最值优化
-        n, h, d = ac.read_ints()
+        n, h, d = ac.read_list_ints()
         cnt = [[0]*(h+1) for _ in range(n)]
         for i in range(n):
             lst = ac.read_list_ints()
@@ -587,7 +587,7 @@ class Solution:
     @staticmethod
     def lg_p1353(ac=FastIO()):
         # 模板：矩阵DP
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
         dp = [[-inf]*(m+1) for _ in range(n+1)]
         dp[0][0] = 0
@@ -603,7 +603,7 @@ class Solution:
     @staticmethod
     def lg_p1854(ac=FastIO()):
         # 模板：矩阵DP，并输出匹配方案
-        m, n = ac.read_ints()
+        m, n = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
         dp = [[-inf]*(n+1) for _ in range(m+1)]
         dp[0] = [0]*(n+1)
@@ -633,7 +633,7 @@ class Solution:
     @staticmethod
     def lg_p2140(ac=FastIO()):
         # 模板：矩阵四维DP，可以使用记忆化与迭代计算
-        m, n, u = ac.read_ints()
+        m, n, u = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
         m, n = len(grid), len(grid[0])
         pre = [[0] * (n + 1) for _ in range(m + 1)]
@@ -698,7 +698,7 @@ class Solution:
     def lg_p2217(ac=FastIO()):
 
         # 模板：矩阵四维DP，可以使用记忆化与迭代计算
-        m, n, k = ac.read_ints()
+        m, n, k = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
         avg = sum(sum(g) for g in grid)/k
         m, n = len(grid), len(grid[0])
@@ -848,7 +848,7 @@ class Solution:
     def lg_p2380(ac=FastIO()):
         # 模板：前缀和计算与矩阵DP
         while True:
-            m, n = ac.read_ints()
+            m, n = ac.read_list_ints()
             if m == n == 0:
                 break
 
@@ -873,7 +873,7 @@ class Solution:
     @staticmethod
     def lg_p2401(ac=FastIO()):
         # 模板：二维DP
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         dp = [[0] * (k + 1) for _ in range(2)]
         pre = 0
         dp[pre][0] = 1
@@ -891,7 +891,7 @@ class Solution:
     def lg_p2528(ac=FastIO()):
 
         # 模板：逆序对矩阵 DP 与模拟构造
-        n, t = ac.read_ints()
+        n, t = ac.read_list_ints()
         dp = [[0] * (t + 1) for _ in range(n + 1)]
         dp[0][0] = 1
         for i in range(n):
@@ -940,7 +940,7 @@ class Solution:
     def lg_p2736(ac=FastIO()):
 
         # 模板：矩阵 DP
-        n, t, m = ac.read_ints()
+        n, t, m = ac.read_list_ints()
         nums = ac.read_list_ints()
 
         # @lru_cache(None)
@@ -1011,7 +1011,7 @@ class Solution:
     @staticmethod
     def lg_p3012(ac=FastIO()):
         # 模板：矩阵 DP 可以按照顺序进行转移
-        u, l, p = ac.read_ints()
+        u, l, p = ac.read_list_ints()
         dct = defaultdict(list)
         nodes = set()
         for _ in range(p):
@@ -1050,7 +1050,7 @@ class Solution:
     @staticmethod
     def lg_p3860(ac=FastIO()):
         # 模板：矩阵 DP 并计算具体转移方案
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
         dp = [[inf] * (n + 1) for _ in range(m + 1)]
         dp[0][0] = 0
@@ -1108,7 +1108,7 @@ class Solution:
     @staticmethod
     def lg_p5144(ac=FastIO()):
         # 模板：线性 DP 二维加前缀异或和
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dp = [[0]*m for _ in range(n)]
         nums = ac.read_list_ints()
         dp[0][0] = nums[0]
@@ -1127,7 +1127,7 @@ class Solution:
     @staticmethod
     def lg_p5858(ac=FastIO()):
         # 模板：矩阵 DP 加单调队列优化
-        n, w, s = ac.read_ints()
+        n, w, s = ac.read_list_ints()
         nums = ac.read_list_ints()
         dp = [[-inf] * w for _ in range(2)]
         pre = 0
@@ -1187,7 +1187,7 @@ class Solution:
     def lg_p6323(ac=FastIO()):
         # 模板：经典 DP 逆序对为指定数量时的排列个数使用前缀和优化
         mod = 10**9 + 7
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         dp = [[0] * (k + 1) for _ in range(2)]
         pre = 0
         dp[pre][0] = 1
@@ -1204,7 +1204,7 @@ class Solution:
     @staticmethod
     def lg_p6394(ac=FastIO()):
         # 模板：矩阵 DP 加前缀和优化
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         s = ac.read_list_ints()
         if sum(s) < n:
             ac.st("impossible")
@@ -1539,7 +1539,7 @@ class Solution:
     @staticmethod
     def ac_4418(ac=FastIO()):
         # 模板：经典单调队列优化矩阵DP
-        n, k, x = ac.read_ints()
+        n, k, x = ac.read_list_ints()
         nums = ac.read_list_ints()
         # dp[i][j]表示选第i个元素，且选了j个元素的最大和
         dp = [[-inf]*(x+1) for _ in range(n+1)]
@@ -1617,7 +1617,7 @@ class Solution:
     @staticmethod
     def lg_p8325(ac=FastIO()):
         # 模板：经典动态规划枚举，类似最大正方形矩阵 DP 变形
-        m, n = ac.read_ints()
+        m, n = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
 
         up = [[0] * n for _ in range(m)]
@@ -1677,7 +1677,7 @@ class Solution:
     @staticmethod
     def lg_p8614(ac=FastIO()):
         # 模板：经典矩阵 DP 关键在于取模作为一维状态
-        n, s, a, b = ac.read_ints()
+        n, s, a, b = ac.read_list_ints()
         mod = 100000007
         dp = [[0] * n for _ in range(n)]
         pre = 0
@@ -1725,7 +1725,7 @@ class Solution:
             return res % mod
 
         mod = 10**9 + 7
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         ans = dfs(n, m, 2)
         ac.st(ans)
         return
@@ -1777,7 +1777,7 @@ class Solution:
     @staticmethod
     def ac_4378(ac=FastIO()):
         # 模板：典型矩阵DP
-        n, m, k = ac.read_ints()
+        n, m, k = ac.read_list_ints()
         dp = [[-inf] * (k + 1) for _ in range(n + 1)]
         dp[0][0] = 0
         nums = ac.read_list_ints()
@@ -1799,7 +1799,7 @@ class Solution:
     @staticmethod
     def abc_130e(ac=FastIO()):
         # 模板：二维前缀和优化矩阵DP
-        m, n = ac.read_ints()
+        m, n = ac.read_list_ints()
         mod = 10**9 + 7
         s = ac.read_list_ints()
         t = ac.read_list_ints()

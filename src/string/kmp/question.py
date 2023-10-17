@@ -165,7 +165,7 @@ class Solution:
     @staticmethod
     def ac_160(ac=FastIO()):
         # 模板：z函数模板题
-        n, m, q = ac.read_ints()
+        n, m, q = ac.read_list_ints()
         s = ac.read_str()
         t = ac.read_str()
         st = t+"#"+s

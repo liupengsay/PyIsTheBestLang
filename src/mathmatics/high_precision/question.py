@@ -131,7 +131,7 @@ class Solution:
     @staticmethod
     def lg_p1530(ac=FastIO()):
         # 模板：最简分数转化为有理数
-        n, d = ac.read_ints()
+        n, d = ac.read_list_ints()
         ans = HighPrecision().fraction_to_decimal(n, d)
         while ans:
             ac.st(ans[:76])

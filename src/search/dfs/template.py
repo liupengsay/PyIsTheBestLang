@@ -12,7 +12,7 @@ from typing import List, Optional
 
 from src.basis.diff_array import PreFixSumMatrix
 from src.basis.tree_node import TreeNode
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 from src.graph.lca import TreeAncestor
 
 

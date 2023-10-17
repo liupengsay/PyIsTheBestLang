@@ -326,7 +326,7 @@ class Solution:
     @staticmethod
     def cf_1458a(ac=FastIO()):
         # 模板：gcd公式变换求解gcd(x,y)=gcd(x-y,y)
-        m, n = ac.read_ints()
+        m, n = ac.read_list_ints()
         a = ac.read_list_ints()
         b = ac.read_list_ints()
         g = 0
@@ -423,7 +423,7 @@ class Solution:
     @staticmethod
     def ac_199(ac=FastIO()):
         # 模板：计算 sum(k%i for i in range(n))
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         ans = n * k
         left = 1
         while left <= min(n, k):
@@ -436,7 +436,7 @@ class Solution:
     @staticmethod
     def lc_p2429(ac=FastIO()):
         # 模板：枚举质因数组合加容斥原理计数
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         primes = sorted(ac.read_list_ints())
 
         def dfs(i):
@@ -468,7 +468,7 @@ class Solution:
     @staticmethod
     def lg_p2527(ac=FastIO()):
         # 模板：丑数即只含特定质因子的数
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         primes = ac.read_list_ints()
         dp = [1] * (k + 1)
         pointer = [0] * n
@@ -484,7 +484,7 @@ class Solution:
     @staticmethod
     def lg_p5248(ac=FastIO()):
         # 模板：经典进制题目
-        m, fm = ac.read_ints()
+        m, fm = ac.read_list_ints()
         lst = []
         while fm:
             lst.append(fm % m)
@@ -592,7 +592,7 @@ class Solution:
 
         for _ in range(ac.read_int()):
             def check():
-                n, k = ac.read_ints()
+                n, k = ac.read_list_ints()
                 cnt = Counter()
                 for num in ac.read_list_ints():
                     lst = []
@@ -614,7 +614,7 @@ class Solution:
     @staticmethod
     def ac_4319(ac=FastIO()):
         # 模板：质因数分解后前缀哈希计数
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         a = ac.read_list_ints()
         nt = PrimeFactor(max(a))
         pre = defaultdict(int)
@@ -647,7 +647,7 @@ class Solution:
 
                 return q == 1
 
-            p, q, b = ac.read_ints()
+            p, q, b = ac.read_list_ints()
             g = math.gcd(p, q)
             p //= g
             q //= g
@@ -658,7 +658,7 @@ class Solution:
     @staticmethod
     def ac_5049(ac=FastIO()):
         # 模板：使用质因数分解计算组合数
-        n, m, h = ac.read_ints()
+        n, m, h = ac.read_list_ints()
         a = ac.read_list_ints()
         h -= 1
         s = sum(a)

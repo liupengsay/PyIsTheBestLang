@@ -32,7 +32,7 @@ class Solution:
     def abc_82d(ac=FastIO()):
         # 模板：思维题，分开BFS平面坐标的x与y轴移动，使用bitset优化
         s = ac.read_str()
-        x, y = ac.read_ints()
+        x, y = ac.read_list_ints()
         ls = [len(t) for t in s.split("T")]
         pre_x = 1 << ls[0] + 8000
         for d in ls[2::2]:
@@ -66,7 +66,7 @@ class Solution:
     @staticmethod
     def abc_147f(ac=FastIO()):
         # 模板：矩阵DP使用bitset表示01状态优化
-        m, n = ac.read_ints()
+        m, n = ac.read_list_ints()
         grid_a = [ac.read_list_ints() for _ in range(m)]
         grid_b = [ac.read_list_ints() for _ in range(m)]
         pre = [0 for _ in range(n)]

@@ -7,7 +7,7 @@ from operator import add
 from itertools import accumulate
 from typing import List
 
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 
 
 

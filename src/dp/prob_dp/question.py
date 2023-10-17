@@ -5,7 +5,7 @@ from collections import deque
 
 from functools import lru_cache
 
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 
 """
 算法：概率DP
@@ -92,12 +92,12 @@ class Solution:
     @staticmethod
     def lg_p4316(ac=FastIO()):
         # 模板：期望 DP 反向建图与拓扑排序
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dp = [0 for _ in range(n)]
         degree = [0] * n
         dct = [dict() for _ in range(n)]
         for _ in range(m):
-            a, b, w = ac.read_ints()
+            a, b, w = ac.read_list_ints()
             a -= 1
             b -= 1
             dct[b][a] = w
@@ -121,7 +121,7 @@ class Solution:
     @staticmethod
     def lg_p6154(ac=FastIO()):
         # 模板：经典反向建图期望树形 DP 与有理数取模
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         degree = [0] * n
         for _ in range(m):
@@ -158,7 +158,7 @@ class Solution:
     @staticmethod
     def ac_5058(ac=FastIO()):
         # 模板：经典概率DP
-        w, b = ac.read_ints()
+        w, b = ac.read_list_ints()
         dp = [[0]*(b+1) for _ in range(w+1)]
         for i in range(1, w+1):
             dp[i][0] = 1

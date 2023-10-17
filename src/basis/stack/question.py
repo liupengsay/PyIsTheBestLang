@@ -6,7 +6,7 @@ from heapq import heappush, heappop
 from itertools import permutations
 from typing import List
 
-from src.fast_io import FastIO, inf
+from utils.fast_io import FastIO, inf
 
 """
 

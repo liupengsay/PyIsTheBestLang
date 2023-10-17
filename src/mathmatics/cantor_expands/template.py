@@ -1,7 +1,7 @@
 import math
 import unittest
 
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 from src.mathmatics.lexico_graphical_order import LexicoGraphicalOrder
 
 

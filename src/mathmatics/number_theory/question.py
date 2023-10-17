@@ -239,7 +239,7 @@ class Solution:
     def cf_1295d(ac=FastIO()):
         # 模板：欧拉函数求解
         for _ in range(ac.read_int()):
-            a, m = ac.read_ints()
+            a, m = ac.read_list_ints()
             g = math.gcd(a, m)
             mm = m // g
             ans = NumberTheory().euler_phi(mm)
@@ -249,7 +249,7 @@ class Solution:
     @staticmethod
     def cf_1458a(ac=FastIO()):
         # 模板：gcd公式变换求解gcd(x,y)=gcd(x-y,y)
-        m, n = ac.read_ints()
+        m, n = ac.read_list_ints()
         a = ac.read_list_ints()
         b = ac.read_list_ints()
         g = 0
@@ -297,7 +297,7 @@ class Solution:
     @staticmethod
     def ac_97_1(ac=FastIO()):
         # 模板：a^b的所有约数之和
-        a, b = ac.read_ints()
+        a, b = ac.read_list_ints()
         lst = NumberTheory().get_prime_factor(a)
         mod = 9901
         ans = 1
@@ -320,7 +320,7 @@ class Solution:
                 return (1 + pow(pp, (cc + 1) // 2, mod)) * check(pp, (cc - 1) // 2)
             return (1 + pow(pp, (cc + 0) // 2, mod)) * check(pp, (cc - 1) // 2) + pow(pp, cc, mod)
 
-        a, b = ac.read_ints()
+        a, b = ac.read_list_ints()
         if a == 0:
             ac.st(0)
             return
@@ -450,7 +450,7 @@ class Solution:
     @staticmethod
     def ac_199(ac=FastIO()):
         # 模板：计算 sum(k%i for i in range(n))
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         ans = n*k
         left = 1
         while left <= min(n, k):
@@ -488,7 +488,7 @@ class Solution:
         # 模板：枚举所有因数
         nt = NumberTheory()
         for _ in range(ac.read_int()):
-            a0, a1, b0, b1 = ac.read_ints()
+            a0, a1, b0, b1 = ac.read_list_ints()
             factor = [num for num in nt.get_all_factor(b1)
                       if num % a1 == 0 and math.gcd(num, a0) == a1
                       and b0 * num // math.gcd(num, b0) == b1]
@@ -499,7 +499,7 @@ class Solution:
     def lg_p1593(ac=FastIO()):
         # 模板：使用质因数分解与快速幂计算a^b的所有因子之和
         mod = 9901
-        a, b = ac.read_ints()
+        a, b = ac.read_list_ints()
         if a == 1 or b == 0:
             ac.st(1)
         else:
@@ -525,7 +525,7 @@ class Solution:
     @staticmethod
     def lc_p2429(ac=FastIO()):
         # 模板：枚举质因数组合加容斥原理计数
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         primes = sorted(ac.read_list_ints())
 
         def dfs(i):
@@ -556,7 +556,7 @@ class Solution:
     @staticmethod
     def lg_p2527(ac=FastIO()):
         # 模板：丑数即只含特定质因子的数
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         primes = ac.read_list_ints()
         dp = [1] * (k + 1)
         pointer = [0] * n
@@ -572,7 +572,7 @@ class Solution:
     @staticmethod
     def lg_p2557(ac=FastIO()):
         # 模板：利用质因数分解与等比数列计算因子之和
-        a, b = ac.read_ints()
+        a, b = ac.read_list_ints()
         if a == 1 or b == 0:
             ac.st(1)
         else:
@@ -625,7 +625,7 @@ class Solution:
         # 模板：判断除数是否为质数
         nt = NumberTheory()
         for _ in range(ac.read_int()):
-            ac.read_ints()
+            ac.read_list_ints()
             cnt = Counter(sorted(ac.read_list_ints()))
             if cnt[0]:
                 ac.st("NO")
@@ -654,7 +654,7 @@ class Solution:
     @staticmethod
     def lg_p5248(ac=FastIO()):
         # 模板：经典进制题目
-        m, fm = ac.read_ints()
+        m, fm = ac.read_list_ints()
         lst = []
         while fm:
             lst.append(fm % m)
@@ -795,7 +795,7 @@ class Solution:
 
         for _ in range(ac.read_int()):
             def check():
-                n, k = ac.read_ints()
+                n, k = ac.read_list_ints()
                 cnt = Counter()
                 for num in ac.read_list_ints():
                     lst = []
@@ -828,7 +828,7 @@ class Solution:
 
                 return q == 1
 
-            p, q, b = ac.read_ints()
+            p, q, b = ac.read_list_ints()
             g = math.gcd(p, q)
             p //= g
             q //= g

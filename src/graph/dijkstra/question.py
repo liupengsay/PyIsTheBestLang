@@ -9,7 +9,7 @@ from operator import add
 from typing import List, Set
 from collections import Counter
 
-from src.fast_io import FastIO, inf
+from utils.fast_io import FastIO, inf
 
 """
 算法：Dijkstra（单源最短路经算法）、严格次短路、要保证加和最小因此只支持非负数权值、或者取反全部为非正数计算最长路、最短路生成树
@@ -134,11 +134,11 @@ class Solution:
     @staticmethod
     def lg_p6175_1(ac=FastIO()):
         # 模板：使用Dijkstra枚举边的方式计算最小环
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dct = [defaultdict(lambda: inf) for _ in range(n)]
         edges = []
         for _ in range(m):
-            i, j, w = ac.read_ints()
+            i, j, w = ac.read_list_ints()
             dct[i - 1][j - 1] = ac.min(dct[i - 1][j - 1], w)
             dct[j - 1][i - 1] = ac.min(dct[j - 1][i - 1], w)
         for i in range(n):
@@ -152,10 +152,10 @@ class Solution:
     @staticmethod
     def lg_p6175_2(ac=FastIO()):
         # 模板：使用Dijkstra枚举点的方式计算最小环
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dct = [defaultdict(lambda: inf) for _ in range(n)]
         for _ in range(m):
-            i, j, w = ac.read_ints()
+            i, j, w = ac.read_list_ints()
             dct[i - 1][j - 1] = ac.min(dct[i - 1][j - 1], w)
             dct[j - 1][i - 1] = ac.min(dct[j - 1][i - 1], w)
         ans = UnDirectedShortestCycle().find_shortest_cycle_with_node(n, dct)
@@ -375,11 +375,11 @@ class Solution:
     @staticmethod
     def lg_p1462(ac=FastIO()):
         # 模板：Dijkstra 带约束的最短路
-        n, m, s = ac.read_ints()
+        n, m, s = ac.read_list_ints()
         cost = [ac.read_int() for _ in range(n)]
         dct = [dict() for _ in range(n)]
         for _ in range(m):
-            a, b, c = ac.read_ints()
+            a, b, c = ac.read_list_ints()
             a -= 1
             b -= 1
             # 取权值较小的边
@@ -412,7 +412,7 @@ class Solution:
     @staticmethod
     def lg_p4568(ac=FastIO()):
         # 模板：建立 k+1 层图计算最短路
-        n, m, k = ac.read_ints()
+        n, m, k = ac.read_list_ints()
         s, t = ac.read_ints_minus_one()
         dct = [dict() for _ in range(n * (k + 1))]
 
@@ -421,7 +421,7 @@ class Solution:
             return
 
         for _ in range(m):
-            a, b, c = ac.read_ints()
+            a, b, c = ac.read_list_ints()
             a -= 1
             b -= 1
             d = dct[a].get(b, inf)
@@ -445,11 +445,11 @@ class Solution:
     @staticmethod
     def lg_p1629(ac=FastIO()):
         # 模板：正反方向建图加两边最短路计算加和即可
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dct = [dict() for _ in range(n)]
         rev = [dict() for _ in range(n)]
         for _ in range(m):
-            u, v, w = ac.read_ints()
+            u, v, w = ac.read_list_ints()
             u -= 1
             v -= 1
             c = dct[u].get(v, inf)
@@ -465,10 +465,10 @@ class Solution:
     @staticmethod
     def lg_p2865(ac=FastIO()):
         # 模板：严格次短路计算模板题
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for _ in range(m):
-            u, v, w = ac.read_ints()
+            u, v, w = ac.read_list_ints()
             u -= 1
             v -= 1
             dct[u].append([v, w])
@@ -563,7 +563,7 @@ class Solution:
     @staticmethod
     def lg_p1073(ac=FastIO()):
         # 模板：正反两遍建图，计算两个最短路
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         rev = [[] for _ in range(n)]
@@ -609,7 +609,7 @@ class Solution:
     @staticmethod
     def lg_p1300(ac=FastIO()):
         # 模板：Dijkstra求最短路
-        m, n = ac.read_ints()
+        m, n = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
         ind = [[0, 1], [1, 0], [0, -1], [-1, 0]]
         dct = {"E": 0, "S": 1, "W": 2, "N": 3}
@@ -701,10 +701,10 @@ class Solution:
     @staticmethod
     def lg_p1608(ac=FastIO()):
         # 模板：使用Dijkstra计算有向与无向、带权与不带权的最短路数量（最短路计数）
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dct = [dict() for _ in range(n)]
         for _ in range(m):
-            i, j, w = ac.read_ints()
+            i, j, w = ac.read_list_ints()
             dct[i - 1][j - 1] = ac.min(dct[i - 1].get(j - 1, inf), w)
         cnt, dis = Dijkstra().get_dijkstra_cnt(dct, 0)
         if dis[-1] == inf:
@@ -717,7 +717,7 @@ class Solution:
     def lg_p1828(ac=FastIO()):
 
         # 模板：多个单源Dijkstra最短路计算
-        n, p, c = ac.read_ints()
+        n, p, c = ac.read_list_ints()
         pos = [ac.read_int() - 1 for _ in range(n)]
         dct = [dict() for _ in range(p)]
         for _ in range(c):
@@ -739,10 +739,10 @@ class Solution:
     @staticmethod
     def lg_p2047(ac=FastIO()):
         # 模板：Dijkstra计算经过每个点的所有最短路条数占比
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dct = [dict() for _ in range(n)]
         for _ in range(m):
-            a, b, c = ac.read_ints()
+            a, b, c = ac.read_list_ints()
             a -= 1
             b -= 1
             dct[a][b] = dct[b][a] = c
@@ -770,7 +770,7 @@ class Solution:
     def lg_p2176(ac=FastIO()):
 
         # 模板：枚举最短路上的边修改后，重新计算最短路
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dct = [dict() for _ in range(n)]
         for _ in range(m):
             i, j, w = ac.read_ints_minus_one()
@@ -792,7 +792,7 @@ class Solution:
     @staticmethod
     def lg_p2269(ac=FastIO()):
         # 模板：比较两个维度的Dijkstra计算
-        n, src, dst = ac.read_ints()
+        n, src, dst = ac.read_list_ints()
         src -= 1
         dst -= 1
         time = [ac.read_list_ints() for _ in range(n)]
@@ -825,10 +825,10 @@ class Solution:
     def lg_p2349(ac=FastIO()):
 
         # 模板：比较两个项相加的最短路
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dct = [dict() for _ in range(n)]
         for _ in range(m):
-            u, v, w = ac.read_ints()
+            u, v, w = ac.read_list_ints()
             u -= 1
             v -= 1
             dct[u][v] = ac.min(dct[u].get(v, inf), w)
@@ -864,7 +864,7 @@ class Solution:
             res = ((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5
             return res if res <= m else inf
 
-        n, w = ac.read_ints()
+        n, w = ac.read_list_ints()
         m = ac.read_float()
         nums = [ac.read_list_ints() for _ in range(n)]
         dct = [set() for _ in range(n)]
@@ -948,7 +948,7 @@ class Solution:
     @staticmethod
     def cf_715b(ac=FastIO()):
         # 模板：经典两遍最短路，贪心动态更新路径权值
-        n, m, target, source, destination = ac.read_ints()
+        n, m, target, source, destination = ac.read_list_ints()
         edges = []
         dct = [[] for _ in range(n)]
         book = [0] * m
@@ -1010,11 +1010,11 @@ class Solution:
     @staticmethod
     def lg_p3753(ac=FastIO()):
         # 模板：最短路变形两个维度的比较
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dct = [dict() for _ in range(n)]
         cnt = 0
         for _ in range(m):
-            x, y, s = ac.read_ints()
+            x, y, s = ac.read_list_ints()
             cnt += s
             x -= 1
             y -= 1
@@ -1043,10 +1043,10 @@ class Solution:
     def lg_p3956(ac=FastIO()):
         # 模板：Dijkstra计算最小代价
 
-        m, n = ac.read_ints()
+        m, n = ac.read_list_ints()
         grid = [[-1] * m for _ in range(m)]
         for _ in range(n):
-            x, y, c = ac.read_ints()
+            x, y, c = ac.read_list_ints()
             grid[x - 1][y - 1] = c
 
         stack = [[0, 0, grid[0][0], 0, 0]]
@@ -1117,7 +1117,7 @@ class Solution:
     @staticmethod
     def lg_p4943(ac=FastIO()):
         # 模板：枚举路径跑四遍最短路
-        n, m, k = ac.read_ints()
+        n, m, k = ac.read_list_ints()
         if k:
             visit = set(ac.read_list_ints_minus_one())
         else:
@@ -1142,7 +1142,7 @@ class Solution:
     @staticmethod
     def lg_p5201(ac=FastIO()):
         # 模板：经典 最短路生成树 建图，再使用树形 DP 计算最优解
-        n, m, t = ac.read_ints()
+        n, m, t = ac.read_list_ints()
         nums = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for _ in range(m):
@@ -1199,7 +1199,7 @@ class Solution:
     @staticmethod
     def lg_p5663(ac=FastIO()):
         # 模板：使用 01 BFS 计算最短的奇数与偶数距离
-        n, m, q = ac.read_ints()
+        n, m, q = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for i in range(m):
             x, y = ac.read_ints_minus_one()
@@ -1208,7 +1208,7 @@ class Solution:
 
         dis = Dijkstra().get_shortest_by_bfs_inf_odd(dct, 0)
         for _ in range(q):
-            x, y = ac.read_ints()
+            x, y = ac.read_list_ints()
             x -= 1
             # 只要同奇偶性的最短距离小于等于 y 就有解
             if dis[x][y % 2] > y:
@@ -1221,7 +1221,7 @@ class Solution:
     @staticmethod
     def lg_p5683(ac=FastIO()):
         # 模板：计算三遍最短路枚举中间节点到三者之间的距离
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         nums = []
         while len(nums) < 2 * m:
@@ -1231,7 +1231,7 @@ class Solution:
             dct[x].append(y)
             dct[y].append(x)
         # 出发与时间约束
-        s1, t1, s2, t2 = ac.read_ints()
+        s1, t1, s2, t2 = ac.read_list_ints()
         s1 -= 1
         s2 -= 1
         dis0 = Dijkstra().get_shortest_by_bfs_inf(dct, 0)
@@ -1249,10 +1249,10 @@ class Solution:
     @staticmethod
     def lg_p5837(ac=FastIO()):
         # 模板：Dijkstra变形问题，带多个状态
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for _ in range(m):
-            i, j, c, f = ac.read_ints()
+            i, j, c, f = ac.read_list_ints()
             dct[i - 1].append([j - 1, c, f])
             dct[j - 1].append([i - 1, c, f])
 
@@ -1274,7 +1274,7 @@ class Solution:
     @staticmethod
     def lg_p5930(ac=FastIO()):
         # 模板：经典接雨水使用 Dijkstra 进行计算
-        m, n = ac.read_ints()
+        m, n = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
         visit = [[inf] * n for _ in range(n)]
         stack = []
@@ -1308,7 +1308,7 @@ class Solution:
     @staticmethod
     def lg_p6063(ac=FastIO()):
         # 模板：经典Dijkstra应用接雨水
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
 
         # 使用虚拟化超级汇点初始化起点
@@ -1473,7 +1473,7 @@ class Solution:
     @staticmethod
     def lg_p6512(ac=FastIO()):
         # 模板：经典最短路加DP
-        n, m, k = ac.read_ints()
+        n, m, k = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for _ in range(m):
             i, j, w = ac.read_ints_minus_one()
@@ -1609,7 +1609,7 @@ class Solution:
     @staticmethod
     def abc_142f(ac=FastIO()):
         # 模板：经典子图寻找，转换为有向图的最小环问题（可使用BFS优化）
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dct = [set() for _ in range(n)]
         edges = []
         for _ in range(m):
@@ -1640,10 +1640,10 @@ class Solution:
     @staticmethod
     def ac_3628(ac=FastIO()):
         # 模板：经典最短路生成树模板题
-        n, m, k = ac.read_ints()
+        n, m, k = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for ind in range(m):
-            x, y, w = ac.read_ints()
+            x, y, w = ac.read_list_ints()
             x -= 1
             y -= 1
             dct[x].append([y, w, ind])
@@ -1695,7 +1695,7 @@ class Solution:
     @staticmethod
     def ac_3772(ac=FastIO()):
         # 模板：经典建立反图并使用Dijkstra最短路计数贪心模拟
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         rev = [[] for _ in range(n)]
         for _ in range(m):
             u, v = ac.read_ints_minus_one()
@@ -1727,7 +1727,7 @@ class Solution:
     @staticmethod
     def ac_3797(ac=FastIO()):
         # 模板：经典最短路枚举增边排序贪心
-        n, m, k = ac.read_ints()
+        n, m, k = ac.read_list_ints()
         nums = ac.read_list_ints_minus_one()
         dct = [[] for _ in range(n)]
         for _ in range(m):
@@ -1756,10 +1756,10 @@ class Solution:
     @staticmethod
     def ac_4196(ac=FastIO()):
         # 模板：计算最短路长度与返回任意一条最短路
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for _ in range(m):
-            i, j, w = ac.read_ints()
+            i, j, w = ac.read_list_ints()
             i -= 1
             j -= 1
             dct[i].append([j, w])

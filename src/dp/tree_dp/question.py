@@ -185,7 +185,7 @@ class Solution:
 
     @staticmethod
     def cf_1388c(ac):
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         person = ac.read_list_ints()
         h = ac.read_list_ints()
         edge = [[] for _ in range(n)]
@@ -300,7 +300,7 @@ class Solution:
 
     @staticmethod
     def cf_337d(ac=FastIO()):
-        n, m, d = ac.read_ints()
+        n, m, d = ac.read_list_ints()
         evil = set(ac.read_list_ints_minus_one())
         edge = [[] for _ in range(n)]
         for _ in range(n - 1):
@@ -570,7 +570,7 @@ class Solution:
         n = ac.read_int()
         dct = [[] for _ in range(n)]
         for _ in range(n - 1):
-            i, j = ac.read_ints()
+            i, j = ac.read_list_ints()
             dct[i - 1].append(j - 1)
             dct[j - 1].append(i - 1)
 
@@ -598,7 +598,7 @@ class Solution:
         n = ac.read_int()
         dct = [[] for _ in range(n)]
         for _ in range(n - 1):
-            i, j = ac.read_ints()
+            i, j = ac.read_list_ints()
             dct[i - 1].append(j - 1)
             dct[j - 1].append(i - 1)
 
@@ -611,7 +611,7 @@ class Solution:
     def cf_1822f(ac=FastIO()):
         # 模板：换根 DP 计算树中节点其余节点最大的距离
         for _ in range(ac.read_int()):
-            n, k, c = ac.read_ints()
+            n, k, c = ac.read_list_ints()
             dct = [[] for _ in range(n)]
             for _ in range(n - 1):
                 i, j = ac.read_ints_minus_one()
@@ -672,10 +672,10 @@ class Solution:
     @staticmethod
     def lg_p2015(ac=FastIO()):
         # 模板：树形DP
-        n, q = ac.read_ints()
+        n, q = ac.read_list_ints()
         dct = [dict() for _ in range(n)]
         for _ in range(n - 1):
-            x, y, z = ac.read_ints()
+            x, y, z = ac.read_list_ints()
             dct[x - 1][y - 1] = z
             dct[y - 1][x - 1] = z
         dp = [[0] * (q + 1) for _ in range(n)]
@@ -702,11 +702,11 @@ class Solution:
     @staticmethod
     def lg_p2014(ac=FastIO()):
         # 模板：树形DP加背包DP
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dct = [[] for _ in range(n + 1)]
         nums = [0]
         for i in range(n):
-            k, s = ac.read_ints()
+            k, s = ac.read_list_ints()
             nums.append(s)
             dct[k].append(i + 1)
         dp = [[0] * (m + 2) for _ in range(n + 1)]
@@ -734,12 +734,12 @@ class Solution:
     @staticmethod
     def lg_p4316(ac=FastIO()):
         # 模板：反向建图加拓扑排序树形概率DP
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dp = [0 for _ in range(n)]
         degree = [0] * n
         dct = [dict() for _ in range(n)]
         for _ in range(m):
-            a, b, w = ac.read_ints()
+            a, b, w = ac.read_list_ints()
             a -= 1
             b -= 1
             dct[b][a] = w
@@ -805,7 +805,7 @@ class Solution:
         n = ac.read_int()
         dct = [dict() for _ in range(n)]
         for _ in range(n - 1):
-            i, j, k = ac.read_ints()
+            i, j, k = ac.read_list_ints()
             i -= 1
             j -= 1
             dct[i][j] = dct[j][i] = k
@@ -852,11 +852,11 @@ class Solution:
     def lg_3408(ac=FastIO()):
 
         # 模板：树形 DP 模拟
-        n, t, c = ac.read_ints()
+        n, t, c = ac.read_list_ints()
         dct = [[] for _ in range(n + 1)]
         nums = [c]
         for i in range(n):
-            b, a = ac.read_ints()
+            b, a = ac.read_list_ints()
             dct[b].append(i + 1)
             nums.append(a)
 
@@ -906,7 +906,7 @@ class Solution:
     @staticmethod
     def lg_p3931(ac=FastIO()):
         # 模板：树形 DP 模拟
-        n, root = ac.read_ints()
+        n, root = ac.read_list_ints()
         root -= 1
         dct = [dict() for _ in range(n)]
         for _ in range(n - 1):

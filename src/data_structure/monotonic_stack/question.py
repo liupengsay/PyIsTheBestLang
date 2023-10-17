@@ -6,7 +6,7 @@ from collections import defaultdict, Counter
 from typing import List
 
 from src.data_structure.sparse_table import SparseTable1
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 
 """
 算法：单调栈、贡献法
@@ -207,7 +207,7 @@ class Solution:
     @staticmethod
     def lg_p1323(ac=FastIO()):
         # 模板：二叉堆与单调栈，计算最大字典序数字
-        k, m = ac.read_ints()
+        k, m = ac.read_list_ints()
         dct = set()
         ans = []
         stack = [1]
@@ -292,7 +292,7 @@ class Solution:
                 ans = ans if ans > cur else cur
             return ans
 
-        length, n = ac.read_ints()
+        length, n = ac.read_list_ints()
         q = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(q)]
         node_row = defaultdict(list)
@@ -358,7 +358,7 @@ class Solution:
     @staticmethod
     def lg_p4147(ac=FastIO()):
         # 模板：单调栈计算最大矩形面积
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         pre = [0] * m
         ans = 0
         for _ in range(n):
@@ -375,7 +375,7 @@ class Solution:
     @staticmethod
     def lg_p1950(ac=FastIO()):
         # 模板：单调栈计算矩形个数
-        m, n = ac.read_ints()
+        m, n = ac.read_list_ints()
         ans = 0
         pre = [0] * n
         for _ in range(m):

@@ -196,11 +196,11 @@ class Solution:
     @staticmethod
     def lg_p5318(ac=FastIO()):
         # 模板：深搜与广搜序获取
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         dct = [[] for _ in range(n + 1)]
         degree = [0] * (n + 1)
         for _ in range(m):
-            x, y = ac.read_ints()
+            x, y = ac.read_list_ints()
             dct[x].append(y)
             degree[y] += 1
         for i in range(1, n + 1):
@@ -598,7 +598,7 @@ class Solution:
     def cf_570d_2(ac=FastIO()):
         # 模板：使用迭代顺序实现深搜序，利用异或和来判断是否能形成回文
 
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         parent = ac.read_list_ints_minus_one()
         edge = [[] for _ in range(n)]
         for i in range(n - 1):
@@ -607,7 +607,7 @@ class Solution:
 
         queries = [[] for _ in range(n)]
         for i in range(m):
-            v, h = ac.read_ints()
+            v, h = ac.read_list_ints()
             queries[v - 1].append([h - 1, i])
 
         ans = [0] * m
@@ -654,7 +654,7 @@ class Solution:
 
         ans = []
         for _ in range(ac.read_int()):
-            v, p = ac.read_ints()
+            v, p = ac.read_list_ints()
             if tree.depth[v] - 1 < p:
                 ans.append(0)
                 continue
@@ -669,7 +669,7 @@ class Solution:
     @staticmethod
     def lg_p8838(ac=FastIO()):
         # 模板：深度优先搜索与回溯
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         a = ac.read_list_ints()
         b = ac.read_list_ints()
 
@@ -701,7 +701,7 @@ class Solution:
     @staticmethod
     def ac_4310(ac=FastIO()):
         # 模板：经典深搜序模板题
-        n, q = ac.read_ints()
+        n, q = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         nums = ac.read_list_ints_minus_one()
         for i in range(n - 1):
@@ -712,7 +712,7 @@ class Solution:
         start, end = DFS().gen_bfs_order_iteration(dct)
         ind = {num: i for i, num in enumerate(start)}
         for _ in range(q):
-            u, k = ac.read_ints()
+            u, k = ac.read_list_ints()
             u -= 1
             if end[u] - start[u] + 1 < k:
                 ac.st(-1)
@@ -723,11 +723,11 @@ class Solution:
     @staticmethod
     def abc_133f(ac=FastIO()):
         # 模板：欧拉序在线查找树上距离，结合二分与前缀和计算变化情况
-        n, q = ac.read_ints()
+        n, q = ac.read_list_ints()
         dct = [dict() for _ in range(n)]
         edges = [[] for _ in range(n)]
         for _ in range(n - 1):
-            a, b, c, d = ac.read_ints()
+            a, b, c, d = ac.read_list_ints()
             a -= 1
             b -= 1
             dct[a][b] = [c, d]
@@ -771,7 +771,7 @@ class Solution:
                     color_neg_pre[-c].append(color_neg_pre[-c][-1] + d)
 
         for _ in range(q):
-            x, y, u, v = ac.read_ints()
+            x, y, u, v = ac.read_list_ints()
             u -= 1
             v -= 1
             ancestor = tree.get_lca(u, v)

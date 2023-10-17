@@ -7,7 +7,7 @@ from math import inf
 from sortedcontainers import SortedList
 
 from src.data_structure.sorted_list import LocalSortedList
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 from src.mathmatics.number_theory import NumberTheory
 
 

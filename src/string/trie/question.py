@@ -204,7 +204,7 @@ class Solution:
 
         dct = [dict() for _ in range(n)]
         for _ in range(n - 1):
-            i, j, k = ac.read_ints()
+            i, j, k = ac.read_list_ints()
             dct[i - 1][j - 1] = k
             dct[j - 1][i - 1] = k
 
@@ -224,7 +224,7 @@ class Solution:
     @staticmethod
     def lg_p5283(ac=FastIO()):
         # 模板：计算数组中最大的 k 组异或对
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         nums = [0] + ac.read_list_ints()
         for i in range(1, n + 1):
             nums[i] ^= nums[i - 1]
@@ -248,7 +248,7 @@ class Solution:
     def cf_241b(ac=FastIO()):
         # 模板：计算数组中最大的 k 组异或对
         mod = 10 ** 9 + 7
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
         trie = TrieZeroOneXorMaxKth(len(bin(max(nums))))
         for i, num in enumerate(nums):
@@ -283,7 +283,7 @@ class Solution:
         n = ac.read_int()
         dct = [dict() for _ in range(n)]
         for _ in range(n - 1):
-            i, j, w = ac.read_ints()
+            i, j, w = ac.read_list_ints()
             dct[i][j] = w
             dct[j][i] = w
 
@@ -335,7 +335,7 @@ class Solution:
     @staticmethod
     def lg_p2922(ac=FastIO()):
         # 模板：字典树进行前缀匹配
-        m, n = ac.read_ints()
+        m, n = ac.read_list_ints()
         dct = dict()
         for _ in range(m):
             b = ac.read_list_ints()
@@ -380,7 +380,7 @@ class Solution:
     @staticmethod
     def lg_p8420(ac=FastIO()):
         # 模板：字典树贪心匹配
-        n, m, length = ac.read_ints()
+        n, m, length = ac.read_list_ints()
 
         # 计算后缀 0 1 匹配的代价和
         cnt = [0] * length
@@ -450,7 +450,7 @@ class Solution:
 
     @staticmethod
     def cf_665e(ac=FastIO()):
-        n, k = ac.read_ints()
+        n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
         for i in range(1, n):
             nums[i] ^= nums[i - 1]

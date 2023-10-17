@@ -4,8 +4,8 @@ from collections import defaultdict, deque
 from itertools import accumulate
 from typing import List
 
-from src.basis.binary_search import BinarySearch
-from src.fast_io import FastIO
+from basis.binary_search.template import BinarySearch
+from utils.fast_io import FastIO
 import bisect
 from math import inf
 

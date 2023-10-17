@@ -3,7 +3,7 @@ from collections import defaultdict, Counter
 from itertools import accumulate
 from operator import xor
 
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 
 
 

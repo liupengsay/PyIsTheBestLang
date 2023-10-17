@@ -5,7 +5,7 @@ from typing import List
 import random
 
 import time
-from src.fast_io import FastIO
+from utils.fast_io import FastIO
 import sys
 
 from src.mathmatics.comb_perm import Combinatorics

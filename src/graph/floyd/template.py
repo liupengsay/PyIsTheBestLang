@@ -4,8 +4,8 @@ from heapq import heappop, heappush
 from math import inf
 from typing import List
 
-from src.basis.binary_search import BinarySearch
-from src.fast_io import FastIO
+from basis.binary_search.template import BinarySearch
+from utils.fast_io import FastIO
 from src.graph.dijkstra import Dijkstra
 
 
@@ -58,7 +58,7 @@ class Graph:
     @staticmethod
     def lg_p1613(ac=FastIO()):
         # 模板：经典Floyd动态规划，使用两遍最短路综合计算
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
 
         # dp[i][j][k] 表示 i 到 j 有无花费为 k 秒即距离为 2**k 的的路径
         dp = [[[0] * 32 for _ in range(n)] for _ in range(n)]

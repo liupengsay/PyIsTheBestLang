@@ -41,7 +41,7 @@ class Solution:
     def lg_3517(ac=FastIO()):
 
         # 模板：随机增量法求最小圆覆盖
-        n, m = ac.read_ints()
+        n, m = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
 
         def check(r):
