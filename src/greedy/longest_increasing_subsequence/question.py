@@ -269,7 +269,7 @@ class Solution:
         nums = ac.read_list_ints()
         ind = {num: i for i, num in enumerate(sorted(list(set(nums))))}
         n = len(ind)
-        tree = SegmentTreeRangeAddMax(n)
+        tree = RangeAscendRangeMax(n)
         for num in nums:
             if ind[num] == 0:
                 tree.update(0, 0, 0, n - 1, num, 1)

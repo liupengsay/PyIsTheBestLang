@@ -6,12 +6,13 @@ from typing import List
 from sortedcontainers import SortedList
 
 from basis.binary_search.template import BinarySearch
-from data_structure.segment_tree.template import SegmentTreeRangeAddMax, SegmentTreeUpdateQueryMin, \
+from data_structure.segment_tree.template import RangeAscendRangeMax, SegmentTreeUpdateQueryMin, \
     SegmentTreeRangeUpdateQuerySumMinMax, SegmentTreeRangeUpdateXORSum, SegmentTreeRangeUpdateChangeQueryMax, \
     SegmentTreeRangeUpdateMulQuerySum, SegmentTreeRangeSubConSum, SegmentTreeRangeXORQuery, \
     SegmentTreePointChangeLongCon, SegmentTreeRangeSqrtSum, SegmentTreeRangeAndOrXOR, SegmentTreeRangeChangeQueryOr, \
     SegmentTreeRangeUpdateAvgDev, SegmentTreeRangeUpdateQuery, SegmentTreePointUpdateRangeMulQuery, \
-    SegmentTreeRangeUpdateQuerySum, SegmentTreeRangeChangeQuerySumMinMaxDefaultDict, SegmentTreeLongestSubSame
+    SegmentTreeRangeUpdateQuerySum, SegmentTreeRangeChangeQuerySumMinMaxDefaultDict, SegmentTreeLongestSubSame, \
+    RangeOrRangeAnd
 from utils.fast_io import FastIO
 
 """
@@ -60,7 +61,7 @@ P8856 [POI2002]火车线路（https://www.luogu.com.cn/problem/solution/P8856）
 
 ================================CodeForces================================
 
-https://codeforces.com/problemset/problem/482/B（区间按位或赋值、按位与查询）
+B. Interesting Array（https://codeforces.com/problemset/problem/482/B）区间按位或赋值、按位与查询
 C. Sereja and Brackets（https://codeforces.com/problemset/problem/380/C）线段树查询区间内所有合法连续子序列括号串的总长度
 C. Circular RMQ（https://codeforces.com/problemset/problem/52/C）线段树更新和查询循环数组区间最小值
 D. The Child and Sequence（https://codeforces.com/problemset/problem/438/D）使用线段树维护区间取模，区间和，修改单点值，和区间最大值
@@ -114,9 +115,9 @@ class Solution:
     def lg_p1904(ac=FastIO()):
 
         # 模板：使用线段树，区间更新最大值并单点查询计算天际线
-        low = 0
         high = 10 ** 4
-        segment = SegmentTreeRangeAddMax(high)
+        segment = RangeAscendRangeMax(high)
+        segment.build([0]*high)
         nums = set()
         while True:
             s = ac.read_str()
@@ -125,10 +126,10 @@ class Solution:
             x, h, y = [int(w) for w in s.split() if w]
             nums.add(x)
             nums.add(y)
-            segment.update(x, y - 1, low, high, h, 1)
+            segment.range_ascend(x, y - 1, h)
         nums = sorted(list(nums))
         n = len(nums)
-        height = [segment.query(num, num, low, high, 1) for num in nums]
+        height = [segment.range_max(num, num) for num in nums]
         ans = []
         pre = -1
         for i in range(n):
@@ -169,14 +170,15 @@ class Solution:
         n = len(lst)
         dct = {x: i for i, x in enumerate(lst)}
         # 离散化更新线段树
-        segment = SegmentTreeRangeAddMax(n)
+        segment = RangeAscendRangeMax(n)
+        segment.build([0]*n)
         for left, right, height in buildings:
-            segment.update(dct[left], dct[right] - 1, 0, n - 1, height, 1)
+            segment.range_ascend(dct[left], dct[right] - 1, height)
         # 按照端点进行关键点查询
         pre = -1
         ans = []
         for pos in lst:
-            h = segment.query(dct[pos], dct[pos], 0, n - 1, 1)
+            h = segment.range_max(dct[pos], dct[pos])
             if h != pre:
                 ans.append([pos, h])
                 pre = h
@@ -697,6 +699,21 @@ class Solution:
         return
 
     @staticmethod
+    def cf_482b(ac=FastIO()):
+        n, m = ac.read_list_ints()
+        tree = RangeOrRangeAnd(n)
+        nums = [ac.read_list_ints() for _ in range(m)]
+        for a, b, c in nums:
+            if c:
+                tree.range_or(a, b, c)
+        if all(tree.range_and(a, b) == c for a, b, c in nums):
+            ac.st("YES")
+            ac.lst(tree.get())
+        else:
+            ac.st("NO")
+        return
+
+    @staticmethod
     def cf_987c(ac=FastIO()):
         # 模板：枚举中间数组，使用线段树维护前后缀最小值
         n = ac.read_int()
@@ -760,7 +777,8 @@ class Solution:
         dct = defaultdict(list)
         for i, num in enumerate(nums):
             dct[num].append(i)
-        tree = SegmentTreeRangeAddMax(n)
+        tree = RangeAscendRangeMax(n)
+        tree.build([0]*n)
         for num in sorted(dct):
             cur = []
             for i in dct[num]:
@@ -769,12 +787,12 @@ class Solution:
                     left = i - d
                 if right > i + d:
                     right = i + d
-                x = tree.query(left, right, 0, n - 1, 1)
+                x = tree.range_max(left, right)
                 cur.append([x + 1, i])
 
             for x, i in cur:
-                tree.update(i, i, 0, n - 1, x, 1)
-        return tree.query(0, n - 1, 0, n - 1, 1)
+                tree.range_ascend(i, i, x)
+        return tree.range_max(0, n - 1)
 
 
 class CountIntervalsLC2276:

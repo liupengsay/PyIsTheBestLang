@@ -45,59 +45,101 @@ class SegTreeBrackets:
         return a1
 
 
-class SegmentTreeRangeAddMax:
+class RangeAscendRangeMax:
     # 模板：线段树区间更新、持续增加最大值
     def __init__(self, n):
-        self.floor = 0
-        self.height = [self.floor] * (4 * n)
-        self.lazy = [self.floor] * (4 * n)
+        self.n = n
+        self.cover = [-inf] * (4 * n)
+        self.lazy = [-inf] * (4 * n)
 
     @staticmethod
-    def max(a, b):
+    def _max(a, b):
         return a if a > b else b
-
-    def push_down(self, i):
-        # 懒标记下放，注意取最大值
-        if self.lazy[i]:
-            self.height[2 * i] = self.max(self.height[2 * i], self.lazy[i])
-            self.height[2 * i + 1] = self.max(self.height[2 * i + 1], self.lazy[i])
-            self.lazy[2 * i] = self.max(self.lazy[2 * i], self.lazy[i])
-            self.lazy[2 * i + 1] = self.max(self.lazy[2 * i + 1], self.lazy[i])
-            self.lazy[i] = self.floor
+    
+    def _make_tag(self, i, val) -> None:
+        self.cover[i] = self._max(self.cover[i], val)
+        self.lazy[i] = self._max(self.lazy[i], val)
+        return
+    
+    def _push_up(self, i):
+        self.cover[i] = self._max(self.cover[2 * i], self.cover[2 * i + 1])
         return
 
-    def update(self, left, right, s, t, val, i):
+    def _push_down(self, i):
+        # 懒标记下放，注意取最大值
+        if self.lazy[i] != -inf:
+            self.cover[2 * i] = self._max(self.cover[2 * i], self.lazy[i])
+            self.cover[2 * i + 1] = self._max(self.cover[2 * i + 1], self.lazy[i])
+            self.lazy[2 * i] = self._max(self.lazy[2 * i], self.lazy[i])
+            self.lazy[2 * i + 1] = self._max(self.lazy[2 * i + 1], self.lazy[i])
+            self.lazy[i] = -inf
+        return
+
+    def build(self, nums: List[int]) -> None:
+        # 使用数组初始化线段树
+        assert self.n == len(nums)
+        stack = [[0, self.n - 1, 1]]
+        while stack:
+            s, t, ind = stack.pop()
+            if ind >= 0:
+                if s == t:
+                    self._make_tag(ind, nums[s])
+                else:
+                    stack.append([s, t, ~ind])
+                    m = s + (t - s) // 2
+                    stack.append([s, m, 2 * ind])
+                    stack.append([m + 1, t, 2 * ind + 1])
+            else:
+                ind = ~ind
+                self._push_up(ind)
+        return
+    
+    def get(self):
+        # 查询区间的所有值
+        stack = [[0, self.n - 1, 1]]
+        nums = [0] * self.n
+        while stack:
+            s, t, i = stack.pop()
+            if s == t:
+                nums[s] = self.cover[i]
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i)
+            stack.append([s, m, 2 * i])
+            stack.append([m + 1, t, 2 * i + 1])
+        return nums
+    
+    def range_ascend(self, left, right, val):
         # 更新区间最大值
-        stack = [[s, t, i]]
+        stack = [[0, self.n - 1, 1]]
         while stack:
             a, b, i = stack.pop()
             if i >= 0:
                 if left <= a and b <= right:
-                    self.height[i] = self.max(self.height[i], val)
-                    self.lazy[i] = self.max(self.lazy[i], val)
+                    self._make_tag(i, val)
                     continue
-                self.push_down(i)
+                self._push_down(i)
                 stack.append([a, b, ~i])
                 m = a + (b - a) // 2
-                if left <= m:  # 注意左右子树的边界与范围
+                if left <= m: 
                     stack.append([a, m, 2 * i])
                 if right > m:
                     stack.append([m + 1, b, 2 * i + 1])
             else:
                 i = ~i
-                self.height[i] = self.max(self.height[2 * i], self.height[2 * i + 1])
+                self._push_up(i)
         return
 
-    def query(self, left, right, s, t, i):
+    def range_max(self, left, right):
         # 查询区间的最大值
-        stack = [[s, t, i]]
-        highest = self.floor
+        stack = [[0, self.n - 1, 1]]
+        highest = -inf
         while stack:
             a, b, i = stack.pop()
             if left <= a and b <= right:
-                highest = self.max(highest, self.height[i])
+                highest = self._max(highest, self.cover[i])
                 continue
-            self.push_down(i)
+            self._push_down(i)
             m = a + (b - a) // 2
             if left <= m:
                 stack.append([a, m, 2 * i])
@@ -120,7 +162,7 @@ class SegmentTreeUpdateQueryMin:
             s, t, ind = stack.pop()
             if ind >= 0:
                 if s == t:
-                    self.make_tag(ind, nums[s])
+                    self._make_tag(ind, nums[s])
                 else:
                     stack.append([s, t, ~ind])
                     m = s + (t - s) // 2
@@ -128,7 +170,7 @@ class SegmentTreeUpdateQueryMin:
                     stack.append([m + 1, t, 2 * ind + 1])
             else:
                 ind = ~ind
-                self.push_up(ind)
+                self._push_up(ind)
         return
 
     def get(self):
@@ -141,7 +183,7 @@ class SegmentTreeUpdateQueryMin:
                 nums[s] = self.height[i]
                 continue
             m = s + (t - s) // 2
-            self.push_down(i)
+            self._push_down(i)
             stack.append([s, m, 2 * i])
             stack.append([m + 1, t, 2 * i + 1])
         return nums
@@ -150,7 +192,7 @@ class SegmentTreeUpdateQueryMin:
     def min(a, b):
         return a if a < b else b
 
-    def push_down(self, i):
+    def _push_down(self, i):
         # 懒标记下放，注意取最小值
         if self.lazy[i] != inf:
             self.height[2 * i] = self.min(self.height[2 * i], self.lazy[i])
@@ -162,12 +204,12 @@ class SegmentTreeUpdateQueryMin:
             self.lazy[i] = inf
         return
 
-    def make_tag(self, i, val):
+    def _make_tag(self, i, val):
         self.height[i] = self.min(self.height[i], val)
         self.lazy[i] = self.min(self.lazy[i], val)
         return
 
-    def push_up(self, i):
+    def _push_up(self, i):
         self.height[i] = self.min(self.height[2 * i], self.height[2 * i + 1])
         return
 
@@ -178,10 +220,10 @@ class SegmentTreeUpdateQueryMin:
             a, b, i = stack.pop()
             if i >= 0:
                 if left <= a and b <= right:
-                    self.make_tag(i, val)
+                    self._make_tag(i, val)
                     continue
 
-                self.push_down(i)
+                self._push_down(i)
                 stack.append([a, b, ~i])
                 m = a + (b - a) // 2
                 if left <= m:  # 注意左右子树的边界与范围
@@ -190,16 +232,16 @@ class SegmentTreeUpdateQueryMin:
                     stack.append([m + 1, b, 2 * i + 1])
             else:
                 i = ~i
-                self.push_up(i)
+                self._push_up(i)
         return
 
     def update_point(self, left, right, s, t, val, i):
         # 更新单点最小值
         while True:
             if left <= s and t <= right:
-                self.make_tag(i, val)
+                self._make_tag(i, val)
                 break
-            self.push_down(i)
+            self._push_down(i)
             m = s + (t - s) // 2
             if left <= m:  # 注意左右子树的边界与范围
                 s, t, i = s, m, 2 * i
@@ -208,7 +250,7 @@ class SegmentTreeUpdateQueryMin:
 
         while i > 1:
             i //= 2
-            self.push_up(i)
+            self._push_up(i)
         return
 
     def query_range(self, left, right, s, t, i):
@@ -220,7 +262,7 @@ class SegmentTreeUpdateQueryMin:
             if left <= a and b <= right:
                 floor = self.min(floor, self.height[i])
                 continue
-            self.push_down(i)
+            self._push_down(i)
             m = a + (b - a) // 2
             if left <= m:
                 stack.append([a, m, 2 * i])
@@ -235,7 +277,7 @@ class SegmentTreeUpdateQueryMin:
             if left <= a and b <= right:
                 ans = self.height[i]
                 break
-            self.push_down(i)
+            self._push_down(i)
             m = a + (b - a) // 2
             if left <= m:
                 a, b, i = a, m, 2 * i
@@ -255,7 +297,7 @@ class SegmentTreeRangeUpdateQuerySumMinMax:
         return
 
     @staticmethod
-    def max(a: int, b: int) -> int:
+    def _max(a: int, b: int) -> int:
         return a if a > b else b
 
     @staticmethod
@@ -270,7 +312,7 @@ class SegmentTreeRangeUpdateQuerySumMinMax:
             s, t, ind = stack.pop()
             if ind >= 0:
                 if s == t:
-                    self.make_tag(ind, s, t, nums[s])
+                    self._make_tag(ind, s, t, nums[s])
                 else:
                     stack.append([s, t, ~ind])
                     m = s + (t - s) // 2
@@ -278,10 +320,10 @@ class SegmentTreeRangeUpdateQuerySumMinMax:
                     stack.append([m + 1, t, 2 * ind + 1])
             else:
                 ind = ~ind
-                self.push_up(ind)
+                self._push_up(ind)
         return
 
-    def push_down(self, i: int, s: int, m: int, t: int) -> None:
+    def _push_down(self, i: int, s: int, m: int, t: int) -> None:
         # 下放懒标记
         if self.lazy[i]:
             self.cover[2 * i] += self.lazy[i] * (m - s + 1)
@@ -298,13 +340,13 @@ class SegmentTreeRangeUpdateQuerySumMinMax:
 
             self.lazy[i] = 0
 
-    def push_up(self, i) -> None:
+    def _push_up(self, i) -> None:
         self.cover[i] = self.cover[2 * i] + self.cover[2 * i + 1]
-        self.ceil[i] = self.max(self.ceil[2 * i], self.ceil[2 * i + 1])
+        self.ceil[i] = self._max(self.ceil[2 * i], self.ceil[2 * i + 1])
         self.floor[i] = self.min(self.floor[2 * i], self.floor[2 * i + 1])
         return
 
-    def make_tag(self, i, s, t, val) -> None:
+    def _make_tag(self, i, s, t, val) -> None:
         self.cover[i] += val * (t - s + 1)
         self.floor[i] += val
         self.ceil[i] += val
@@ -318,11 +360,11 @@ class SegmentTreeRangeUpdateQuerySumMinMax:
             s, t, i = stack.pop()
             if i >= 0:
                 if left <= s and t <= right:
-                    self.make_tag(i, s, t, val)
+                    self._make_tag(i, s, t, val)
                     continue
 
                 m = s + (t - s) // 2
-                self.push_down(i, s, m, t)
+                self._push_down(i, s, m, t)
                 stack.append([s, t, ~i])
 
                 if left <= m:  # 注意左右子树的边界与范围
@@ -331,7 +373,7 @@ class SegmentTreeRangeUpdateQuerySumMinMax:
                     stack.append([m + 1, t, 2 * i + 1])
             else:
                 i = ~i
-                self.push_up(i)
+                self._push_up(i)
         return
 
     def update_point(self, left: int, right: int, s: int, t: int, val: int, i: int) -> None:
@@ -339,17 +381,17 @@ class SegmentTreeRangeUpdateQuerySumMinMax:
 
         while True:
             if left <= s and t <= right:
-                self.make_tag(i, s, t, val)
+                self._make_tag(i, s, t, val)
                 break
             m = s + (t - s) // 2
-            self.push_down(i, s, m, t)
+            self._push_down(i, s, m, t)
             if left <= m:  # 注意左右子树的边界与范围
                 s, t, i = s, m, 2 * i
             if right > m:
                 s, t, i = m + 1, t, 2 * i + 1
         while i > 1:
             i //= 2
-            self.push_up(i)
+            self._push_up(i)
         return
 
     def query_sum(self, left: int, right: int, s: int, t: int, i: int) -> int:
@@ -362,7 +404,7 @@ class SegmentTreeRangeUpdateQuerySumMinMax:
                 ans += self.cover[i]
                 continue
             m = s + (t - s) // 2
-            self.push_down(i, s, m, t)
+            self._push_down(i, s, m, t)
             if left <= m:
                 stack.append([s, m, 2 * i])
             if right > m:
@@ -379,7 +421,7 @@ class SegmentTreeRangeUpdateQuerySumMinMax:
                 highest = self.min(highest, self.floor[i])
                 continue
             m = s + (t - s) // 2
-            self.push_down(i, s, m, t)
+            self._push_down(i, s, m, t)
             if left <= m:
                 stack.append([s, m, 2 * i])
             if right > m:
@@ -394,10 +436,10 @@ class SegmentTreeRangeUpdateQuerySumMinMax:
         while stack:
             s, t, i = stack.pop()
             if left <= s and t <= right:
-                highest = self.max(highest, self.ceil[i])
+                highest = self._max(highest, self.ceil[i])
                 continue
             m = s + (t - s) // 2
-            self.push_down(i, s, m, t)
+            self._push_down(i, s, m, t)
             if left <= m:
                 stack.append([s, m, 2 * i])
             if right > m:
@@ -414,7 +456,7 @@ class SegmentTreeRangeUpdateQuerySumMinMax:
                 nums[s] = self.cover[i]
                 continue
             m = s + (t - s) // 2
-            self.push_down(i, s, m, t)
+            self._push_down(i, s, m, t)
             stack.append([s, m, 2 * i])
             stack.append([m + 1, t, 2 * i + 1])
         return nums
@@ -432,7 +474,7 @@ class SegmentTreeRangeChangeQuerySumMinMax:
         self.build()  # 初始化数组
 
     @staticmethod
-    def max(a, b):
+    def _max(a, b):
         return a if a > b else b
 
     @staticmethod
@@ -446,7 +488,7 @@ class SegmentTreeRangeChangeQuerySumMinMax:
             s, t, ind = stack.pop()
             if ind >= 0:
                 if s == t:
-                    self.make_tag(ind, s, t, self.nums[s])
+                    self._make_tag(ind, s, t, self.nums[s])
                 else:
                     stack.append([s, t, ~ind])
                     m = s + (t - s) // 2
@@ -454,10 +496,10 @@ class SegmentTreeRangeChangeQuerySumMinMax:
                     stack.append([m + 1, t, 2 * ind + 1])
             else:
                 ind = ~ind
-                self.push_up(ind)
+                self._push_up(ind)
         return
 
-    def push_down(self, i, s, m, t):
+    def _push_down(self, i, s, m, t):
         if self.lazy[i] != inf:
             self.cover[2 * i] = self.lazy[i] * (m - s + 1)
             self.cover[2 * i + 1] = self.lazy[i] * (t - m)
@@ -473,13 +515,13 @@ class SegmentTreeRangeChangeQuerySumMinMax:
 
             self.lazy[i] = inf
 
-    def push_up(self, i) -> None:
+    def _push_up(self, i) -> None:
         self.cover[i] = self.cover[2 * i] + self.cover[2 * i + 1]
-        self.ceil[i] = self.max(self.ceil[2 * i], self.ceil[2 * i + 1])
+        self.ceil[i] = self._max(self.ceil[2 * i], self.ceil[2 * i + 1])
         self.floor[i] = self.min(self.floor[2 * i], self.floor[2 * i + 1])
         return
 
-    def make_tag(self, i, s, t, val) -> None:
+    def _make_tag(self, i, s, t, val) -> None:
         self.cover[i] = val * (t - s + 1)
         self.floor[i] = val
         self.ceil[i] = val
@@ -493,11 +535,11 @@ class SegmentTreeRangeChangeQuerySumMinMax:
             s, t, i = stack.pop()
             if i >= 0:
                 if left <= s and t <= right:
-                    self.make_tag(i, s, t, val)
+                    self._make_tag(i, s, t, val)
                     continue
 
                 m = s + (t - s) // 2
-                self.push_down(i, s, m, t)
+                self._push_down(i, s, m, t)
                 stack.append([s, t, ~i])
 
                 if left <= m:  # 注意左右子树的边界与范围
@@ -506,7 +548,7 @@ class SegmentTreeRangeChangeQuerySumMinMax:
                     stack.append([m + 1, t, 2 * i + 1])
             else:
                 i = ~i
-                self.push_up(i)
+                self._push_up(i)
         return
 
     def change_point(self, left: int, right: int, s: int, t: int, val: int, i: int) -> None:
@@ -514,17 +556,17 @@ class SegmentTreeRangeChangeQuerySumMinMax:
 
         while True:
             if left <= s and t <= right:
-                self.make_tag(i, s, t, val)
+                self._make_tag(i, s, t, val)
                 break
             m = s + (t - s) // 2
-            self.push_down(i, s, m, t)
+            self._push_down(i, s, m, t)
             if left <= m:  # 注意左右子树的边界与范围
                 s, t, i = s, m, 2 * i
             if right > m:
                 s, t, i = m + 1, t, 2 * i + 1
         while i > 1:
             i //= 2
-            self.push_up(i)
+            self._push_up(i)
         return
 
     def query_sum(self, left, right, s, t, i):
@@ -537,7 +579,7 @@ class SegmentTreeRangeChangeQuerySumMinMax:
                 ans += self.cover[i]
                 continue
             m = s + (t - s) // 2
-            self.push_down(i, s, m, t)
+            self._push_down(i, s, m, t)
             if left <= m:
                 stack.append([s, m, 2 * i])
             if right > m:
@@ -554,7 +596,7 @@ class SegmentTreeRangeChangeQuerySumMinMax:
                 highest = self.min(highest, self.floor[i])
                 continue
             m = s + (t - s) // 2
-            self.push_down(i, s, m, t)
+            self._push_down(i, s, m, t)
             if left <= m:
                 stack.append([s, m, 2 * i])
             if right > m:
@@ -569,10 +611,10 @@ class SegmentTreeRangeChangeQuerySumMinMax:
         while stack:
             s, t, i = stack.pop()
             if left <= s and t <= right:
-                highest = self.max(highest, self.ceil[i])
+                highest = self._max(highest, self.ceil[i])
                 continue
             m = s + (t - s) // 2
-            self.push_down(i, s, m, t)
+            self._push_down(i, s, m, t)
             if left <= m:
                 stack.append([s, m, 2 * i])
             if right > m:
@@ -588,7 +630,7 @@ class SegmentTreeRangeChangeQuerySumMinMax:
                 self.nums[s] = self.cover[i]
                 continue
             m = s + (t - s) // 2
-            self.push_down(i, s, m, t)
+            self._push_down(i, s, m, t)
             stack.append([s, m, 2 * i])
             stack.append([m + 1, t, 2 * i + 1])
         return
@@ -603,14 +645,14 @@ class SegmentTreeRangeChangeQuerySumMinMaxDefaultDict:
         self.ceil = defaultdict(int)  # 最大值  # 注意初始化值
 
     @staticmethod
-    def max(a, b):
+    def _max(a, b):
         return a if a > b else b
 
     @staticmethod
     def min(a, b):
         return a if a < b else b
 
-    def push_down(self, i, s, m, t):
+    def _push_down(self, i, s, m, t):
         if self.lazy[i]:
             self.cover[2 * i] = self.lazy[i] * (m - s + 1)
             self.cover[2 * i + 1] = self.lazy[i] * (t - m)
@@ -626,13 +668,13 @@ class SegmentTreeRangeChangeQuerySumMinMaxDefaultDict:
 
             self.lazy[i] = 0
 
-    def push_up(self, i) -> None:
+    def _push_up(self, i) -> None:
         self.cover[i] = self.cover[2 * i] + self.cover[2 * i + 1]
-        self.ceil[i] = self.max(self.ceil[2 * i], self.ceil[2 * i + 1])
+        self.ceil[i] = self._max(self.ceil[2 * i], self.ceil[2 * i + 1])
         self.floor[i] = self.min(self.floor[2 * i], self.floor[2 * i + 1])
         return
 
-    def make_tag(self, i, s, t, val) -> None:
+    def _make_tag(self, i, s, t, val) -> None:
         self.cover[i] = val * (t - s + 1)
         self.floor[i] = val
         self.ceil[i] = val
@@ -646,11 +688,11 @@ class SegmentTreeRangeChangeQuerySumMinMaxDefaultDict:
             s, t, i = stack.pop()
             if i >= 0:
                 if left <= s and t <= right:
-                    self.make_tag(i, s, t, val)
+                    self._make_tag(i, s, t, val)
                     continue
 
                 m = s + (t - s) // 2
-                self.push_down(i, s, m, t)
+                self._push_down(i, s, m, t)
                 stack.append([s, t, ~i])
 
                 if left <= m:  # 注意左右子树的边界与范围
@@ -659,7 +701,7 @@ class SegmentTreeRangeChangeQuerySumMinMaxDefaultDict:
                     stack.append([m + 1, t, 2 * i + 1])
             else:
                 i = ~i
-                self.push_up(i)
+                self._push_up(i)
         return
 
     def update_point(self, left: int, right: int, s: int, t: int, val: int, i: int) -> None:
@@ -667,17 +709,17 @@ class SegmentTreeRangeChangeQuerySumMinMaxDefaultDict:
 
         while True:
             if left <= s and t <= right:
-                self.make_tag(i, s, t, val)
+                self._make_tag(i, s, t, val)
                 break
             m = s + (t - s) // 2
-            self.push_down(i, s, m, t)
+            self._push_down(i, s, m, t)
             if left <= m:  # 注意左右子树的边界与范围
                 s, t, i = s, m, 2 * i
             if right > m:
                 s, t, i = m + 1, t, 2 * i + 1
         while i > 1:
             i //= 2
-            self.push_up(i)
+            self._push_up(i)
         return
 
     def query_sum(self, left, right, s, t, i):
@@ -690,7 +732,7 @@ class SegmentTreeRangeChangeQuerySumMinMaxDefaultDict:
                 ans += self.cover[i]
                 continue
             m = s + (t - s) // 2
-            self.push_down(i, s, m, t)
+            self._push_down(i, s, m, t)
             if left <= m:
                 stack.append([s, m, 2 * i])
             if right > m:
@@ -707,7 +749,7 @@ class SegmentTreeRangeChangeQuerySumMinMaxDefaultDict:
                 highest = self.min(highest, self.floor[i])
                 continue
             m = s + (t - s) // 2
-            self.push_down(i, s, m, t)
+            self._push_down(i, s, m, t)
             if left <= m:
                 stack.append([s, m, 2 * i])
             if right > m:
@@ -722,10 +764,10 @@ class SegmentTreeRangeChangeQuerySumMinMaxDefaultDict:
         while stack:
             s, t, i = stack.pop()
             if left <= s and t <= right:
-                highest = self.max(highest, self.ceil[i])
+                highest = self._max(highest, self.ceil[i])
                 continue
             m = s + (t - s) // 2
-            self.push_down(i, s, m, t)
+            self._push_down(i, s, m, t)
             if left <= m:
                 stack.append([s, m, 2 * i])
             if right > m:
@@ -741,20 +783,20 @@ class SegmentTreeRangeUpdateQuerySum:
         self.lazy = [0] * (4 * self.n)
         return
 
-    def push_up(self, i):
+    def _push_up(self, i):
         # 合并区间的函数
         self.sum[i] = self.sum[2 * i] + self.sum[2 * i + 1]
         return
 
-    def make_tag(self, s, t, i, val):
+    def _make_tag(self, s, t, i, val):
         self.sum[i] = val * (t - s + 1)
         self.lazy[i] = val
         return
 
-    def push_down(self, i, s, m, t):
+    def _push_down(self, i, s, m, t):
         if self.lazy[i]:
-            self.make_tag(s, m, 2 * i, self.lazy[i])
-            self.make_tag(m + 1, t, 2 * i + 1, self.lazy[i])
+            self._make_tag(s, m, 2 * i, self.lazy[i])
+            self._make_tag(m + 1, t, 2 * i + 1, self.lazy[i])
             self.lazy[i] = 0
 
     def update_range(self, left: int, right: int, s: int, t: int, val: int, i: int) -> None:
@@ -764,10 +806,10 @@ class SegmentTreeRangeUpdateQuerySum:
             s, t, i = stack.pop()
             if i >= 0:
                 if left <= s and t <= right:
-                    self.make_tag(s, t, i, val)
+                    self._make_tag(s, t, i, val)
                     continue
                 m = s + (t - s) // 2
-                self.push_down(i, s, m, t)
+                self._push_down(i, s, m, t)
                 stack.append([s, t, ~i])
                 if left <= m:  # 注意左右子树的边界与范围
                     stack.append([s, m, 2 * i])
@@ -775,7 +817,7 @@ class SegmentTreeRangeUpdateQuerySum:
                     stack.append([m + 1, t, 2 * i + 1])
             else:
                 i = ~i
-                self.push_up(i)
+                self._push_up(i)
         return
 
     def query_range(self, left: int, right: int, s: int, t: int, i: int):
@@ -788,7 +830,7 @@ class SegmentTreeRangeUpdateQuerySum:
                 ans += self.sum[i]
                 continue
             m = s + (t - s) // 2
-            self.push_down(i, s, m, t)
+            self._push_down(i, s, m, t)
             if left <= m:  # 注意左右子树的边界与范围
                 stack.append([s, m, 2 * i])
             if right > m:
@@ -807,7 +849,7 @@ class SegmentTreeRangeUpdateChangeQueryMax:
         return
 
     @staticmethod
-    def max(a: int, b: int) -> int:
+    def _max(a: int, b: int) -> int:
         return a if a > b else b
 
     @staticmethod
@@ -829,10 +871,10 @@ class SegmentTreeRangeUpdateChangeQueryMax:
                     stack.append([m + 1, t, 2 * ind + 1])
             else:
                 ind = ~ind
-                self.ceil[ind] = self.max(self.ceil[2 * ind], self.ceil[2 * ind + 1])
+                self.ceil[ind] = self._max(self.ceil[2 * ind], self.ceil[2 * ind + 1])
         return
 
-    def push_down(self, i: int, s: int, m: int, t: int) -> None:
+    def _push_down(self, i: int, s: int, m: int, t: int) -> None:
         # 下放懒标记
         if self.lazy[i] != [inf, 0]:
             a, b = self.lazy[i]  # 分别表示修改为 a 与 增加 b
@@ -867,7 +909,7 @@ class SegmentTreeRangeUpdateChangeQueryMax:
                     continue
 
                 m = s + (t - s) // 2
-                self.push_down(i, s, m, t)
+                self._push_down(i, s, m, t)
                 stack.append([s, t, ~i])
 
                 if left <= m:  # 注意左右子树的边界与范围
@@ -876,7 +918,7 @@ class SegmentTreeRangeUpdateChangeQueryMax:
                     stack.append([m + 1, t, 2 * i + 1])
             else:
                 i = ~i
-                self.ceil[i] = self.max(self.ceil[2 * i], self.ceil[2 * i + 1])
+                self.ceil[i] = self._max(self.ceil[2 * i], self.ceil[2 * i + 1])
         return
 
     def query_max(self, left: int, right: int, s: int, t: int, i: int) -> int:
@@ -887,10 +929,10 @@ class SegmentTreeRangeUpdateChangeQueryMax:
         while stack:
             s, t, i = stack.pop()
             if left <= s and t <= right:
-                highest = self.max(highest, self.ceil[i])
+                highest = self._max(highest, self.ceil[i])
                 continue
             m = s + (t - s) // 2
-            self.push_down(i, s, m, t)
+            self._push_down(i, s, m, t)
             if left <= m:
                 stack.append([s, m, 2 * i])
             if right > m:
@@ -898,13 +940,20 @@ class SegmentTreeRangeUpdateChangeQueryMax:
         return highest
 
 
-class SegmentTreeOrUpdateAndQuery:
-    def __init__(self):
-        # 模板：区间按位或赋值、按位与查询
-        self.cover = defaultdict(int)
-        self.lazy = defaultdict(int)
+class RangeOrRangeAnd:
+    def __init__(self, n):
+        # 区间按位或赋值、与按位与查询
+        self.n = n
+        self.cover = [0] * 4 * n
+        self.lazy = [0] * 4 * n
+        return
 
-    def push_down(self, i):
+    def _make_tag(self, i, val) -> None:
+        self.cover[i] |= val
+        self.lazy[i] |= val
+        return
+
+    def _push_down(self, i):
         if self.lazy[i]:
             self.cover[2 * i] |= self.lazy[i]
             self.cover[2 * i + 1] |= self.lazy[i]
@@ -914,31 +963,80 @@ class SegmentTreeOrUpdateAndQuery:
 
             self.lazy[i] = 0
 
-    def update(self, left, r, s, t, val, i):
-        if left <= s and t <= r:
-            self.cover[i] |= val
-            self.lazy[i] |= val
-            return
-        m = s + (t - s) // 2
-        self.push_down(i)
-        if left <= m:
-            self.update(left, r, s, m, val, 2 * i)
-        if r > m:
-            self.update(left, r, m + 1, t, val, 2 * i + 1)
+    def _push_up(self, i):
         self.cover[i] = self.cover[2 * i] & self.cover[2 * i + 1]
         return
 
-    def query(self, left, r, s, t, i):
-        if left <= s and t <= r:
-            return self.cover[i]
-        m = s + (t - s) // 2
-        self.push_down(i)
+    def build(self, nums: List[int]) -> None:
+        # 使用数组初始化线段树
+        assert self.n == len(nums)
+        stack = [[0, self.n - 1, 1]]
+        while stack:
+            s, t, ind = stack.pop()
+            if ind >= 0:
+                if s == t:
+                    self._make_tag(ind, nums[s])
+                else:
+                    stack.append([s, t, ~ind])
+                    m = s + (t - s) // 2
+                    stack.append([s, m, 2 * ind])
+                    stack.append([m + 1, t, 2 * ind + 1])
+            else:
+                ind = ~ind
+                self._push_up(ind)
+        return
+
+    def range_or(self, left, r, val):
+        stack = [[0, self.n - 1, 1]]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if left <= s and t <= r:
+                    self.cover[i] |= val
+                    self.lazy[i] |= val
+                    continue
+                m = s + (t - s) // 2
+                self._push_down(i)
+                stack.append([s, t, ~i])
+                if left <= m:
+                    stack.append([s, m, 2 * i])
+                if r > m:
+                    stack.append([m + 1, t, 2 * i + 1])
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def range_and(self, left, r):
+        stack = [[0, self.n - 1, 1]]
         ans = (1 << 31) - 1
-        if left <= m:
-            ans &= self.query(left, r, s, m, 2 * i)
-        if r > m:
-            ans &= self.query(left, r, m + 1, t, 2 * i + 1)
+        while stack and ans:
+            s, t, i = stack.pop()
+            if left <= s and t <= r:
+                ans &= self.cover[i]
+                continue
+            self._push_down(i)
+            m = s + (t - s) // 2
+            if left <= m:
+                stack.append([s, m, 2 * i])
+            if r > m:
+                stack.append([m + 1, t, 2 * i + 1])
         return ans
+
+    def get(self):
+        # 查询区间的所有值
+        stack = [[0, self.n - 1, 1]]
+        nums = [0] * self.n
+        while stack:
+            s, t, i = stack.pop()
+            if s == t:
+                nums[s] = self.cover[i]
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i)
+            stack.append([s, m, 2 * i])
+            stack.append([m + 1, t, 2 * i + 1])
+        return nums
 
 
 class SegmentTreeRangeUpdateXORSum:
@@ -967,7 +1065,7 @@ class SegmentTreeRangeUpdateXORSum:
                 self.cover[i] = self.cover[2 * i] + self.cover[2 * i + 1]
         return
 
-    def push_down(self, i: int, s: int, m: int, t: int) -> None:
+    def _push_down(self, i: int, s: int, m: int, t: int) -> None:
         if self.lazy[i]:
             self.cover[2 * i] = m - s + 1 - self.cover[2 * i]
             self.cover[2 * i + 1] = t - m - self.cover[2 * i + 1]
@@ -990,7 +1088,7 @@ class SegmentTreeRangeUpdateXORSum:
                     continue
 
                 m = s + (t - s) // 2
-                self.push_down(i, s, m, t)
+                self._push_down(i, s, m, t)
                 stack.append([s, t, ~i])
 
                 if left <= m:  # 注意左右子树的边界与范围
@@ -1012,7 +1110,7 @@ class SegmentTreeRangeUpdateXORSum:
                 ans += self.cover[i]
                 continue
             m = s + (t - s) // 2
-            self.push_down(i, s, m, t)
+            self._push_down(i, s, m, t)
             if left <= m:
                 stack.append([s, m, 2 * i])
             if right > m:
@@ -1026,7 +1124,7 @@ class SegmentTreeRangeAddSum:
         self.cover = defaultdict(int)
         self.lazy = defaultdict(int)
 
-    def push_down(self, i, s, m, t):
+    def _push_down(self, i, s, m, t):
         if self.lazy[i]:
             self.cover[2 * i] += self.lazy[i] * (m - s + 1)
             self.cover[2 * i + 1] += self.lazy[i] * (t - m)
@@ -1042,7 +1140,7 @@ class SegmentTreeRangeAddSum:
             self.lazy[i] += val
             return
         m = s + (t - s) // 2
-        self.push_down(i, s, m, t)
+        self._push_down(i, s, m, t)
         if left <= m:
             self.update(left, r, s, m, val, 2 * i)
         if r > m:
@@ -1054,7 +1152,7 @@ class SegmentTreeRangeAddSum:
         if left <= s and t <= r:
             return self.cover[i]
         m = s + (t - s) // 2
-        self.push_down(i, s, m, t)
+        self._push_down(i, s, m, t)
         ans = 0
         if left <= m:
             ans += self.query(left, r, s, m, 2 * i)
@@ -1071,7 +1169,7 @@ class SegmentTreeRangeAddMulSum:
         self.cover = [0] * 4 * n
         self.lazy = [[] for _ in range(4 * n)]
 
-    def push_down(self, i, s, m, t):
+    def _push_down(self, i, s, m, t):
 
         if self.lazy[i]:
             for op, val in self.lazy[i]:
@@ -1103,7 +1201,7 @@ class SegmentTreeRangeAddMulSum:
             self.cover[i] %= self.p
             return
         m = s + (t - s) // 2
-        self.push_down(i, s, m, t)
+        self._push_down(i, s, m, t)
         if left <= m:
             self.update(left, r, s, m, op, val, 2 * i)
         if r > m:
@@ -1116,7 +1214,7 @@ class SegmentTreeRangeAddMulSum:
         if left <= s and t <= r:
             return self.cover[i]
         m = s + (t - s) // 2
-        self.push_down(i, s, m, t)
+        self._push_down(i, s, m, t)
         ans = 0
         if left <= m:
             ans += self.query(left, r, s, m, 2 * i)
@@ -1131,7 +1229,7 @@ class SegmentTreeRangeUpdateSum:
         self.cover = defaultdict(int)
         self.lazy = defaultdict(int)
 
-    def push_down(self, i, s, m, t):
+    def _push_down(self, i, s, m, t):
         if self.lazy[i]:
             self.cover[2 * i] = self.lazy[i] * (m - s + 1)
             self.cover[2 * i + 1] = self.lazy[i] * (t - m)
@@ -1147,7 +1245,7 @@ class SegmentTreeRangeUpdateSum:
             self.lazy[i] = val
             return
         m = s + (t - s) // 2
-        self.push_down(i, s, m, t)
+        self._push_down(i, s, m, t)
         if left <= m:
             self.update(left, r, s, m, val, 2 * i)
         if r > m:
@@ -1159,7 +1257,7 @@ class SegmentTreeRangeUpdateSum:
         if left <= s and t <= r:
             return self.cover[i]
         m = s + (t - s) // 2
-        self.push_down(i, s, m, t)
+        self._push_down(i, s, m, t)
         ans = 0
         if left <= m:
             ans += self.query(left, r, s, m, 2 * i)
@@ -1174,7 +1272,7 @@ class SegmentTreePointAddSumMaxMin:
         self.n = n
         self.min = [0] * (n * 4)
         self.sum = [0] * (n * 4)
-        self.max = [0] * (n * 4)
+        self._max = [0] * (n * 4)
 
     # 将 idx 上的元素值增加 val
     def add(self, o: int, l: int, r: int, idx: int, val: int) -> None:
@@ -1182,7 +1280,7 @@ class SegmentTreePointAddSumMaxMin:
         if l == r:
             self.min[o] += val
             self.sum[o] += val
-            self.max[o] += val
+            self._max[o] += val
             return
         m = (l + r) // 2
         if idx <= m:
@@ -1190,7 +1288,7 @@ class SegmentTreePointAddSumMaxMin:
         else:
             self.add(o * 2 + 1, m + 1, r, idx, val)
         self.min[o] = min(self.min[o * 2], self.min[o * 2 + 1])
-        self.max[o] = max(self.max[o * 2], self.max[o * 2 + 1])
+        self._max[o] = _max(self._max[o * 2], self._max[o * 2 + 1])
         self.sum[o] = self.sum[o * 2] + self.sum[o * 2 + 1]
 
     # 返回区间 [L,R] 内的元素和
@@ -1223,13 +1321,13 @@ class SegmentTreePointAddSumMaxMin:
     def query_max(self, o: int, l: int, r: int, L: int, R: int) -> int:
         # 索引从 1 开始
         if L <= l and r <= R:
-            return self.max[o]
+            return self._max[o]
         res = 0
         m = (l + r) // 2
         if L <= m:
-            res = max(res, self.query_max(o * 2, l, m, L, R))
+            res = _max(res, self.query_max(o * 2, l, m, L, R))
         if R > m:
-            res = max(res, self.query_max(o * 2 + 1, m + 1, r, L, R))
+            res = _max(res, self.query_max(o * 2 + 1, m + 1, r, L, R))
         return res
 
 
@@ -1241,19 +1339,19 @@ class SegmentTreeRangeChangeQueryOr:
         self.cover = [0] * (4 * self.n)  # 区间或操作初始值为 1
         return
 
-    def make_tag(self, val: int, i: int) -> None:
+    def _make_tag(self, val: int, i: int) -> None:
         self.cover[i] = val
         self.lazy[i] = val
         return
 
-    def push_down(self, i: int) -> None:
+    def _push_down(self, i: int) -> None:
         # 下放懒标记
         if self.lazy[i]:
-            self.make_tag(self.lazy[i], 2 * i)
-            self.make_tag(self.lazy[i], 2 * i + 1)
+            self._make_tag(self.lazy[i], 2 * i)
+            self._make_tag(self.lazy[i], 2 * i + 1)
             self.lazy[i] = 0
 
-    def push_up(self, i: int) -> None:
+    def _push_up(self, i: int) -> None:
         self.cover[i] = self.cover[2 * i] | self.cover[2 * i + 1]
 
     def update(self, left: int, right: int, s: int, t: int, val: int, i: int) -> None:
@@ -1263,10 +1361,10 @@ class SegmentTreeRangeChangeQueryOr:
             s, t, i = stack.pop()
             if i >= 0:
                 if left <= s and t <= right:
-                    self.make_tag(val, i)
+                    self._make_tag(val, i)
                     continue
                 m = s + (t - s) // 2
-                self.push_down(i)
+                self._push_down(i)
                 stack.append([s, t, ~i])
 
                 if left <= m:  # 注意左右子树的边界与范围
@@ -1275,7 +1373,7 @@ class SegmentTreeRangeChangeQueryOr:
                     stack.append([m + 1, t, 2 * i + 1])
             else:
                 i = ~i
-                self.push_up(i)
+                self._push_up(i)
         return
 
     def query_or(self, left: int, right: int, s: int, t: int, i: int) -> int:
@@ -1288,7 +1386,7 @@ class SegmentTreeRangeChangeQueryOr:
                 ans |= self.cover[i]
                 continue
             m = s + (t - s) // 2
-            self.push_down(i)
+            self._push_down(i)
             if left <= m:
                 stack.append([s, m, 2 * i])
             if right > m:
@@ -1302,7 +1400,7 @@ class SegmentTreeRangeUpdateMax:
         self.height = defaultdict(lambda: float("-inf"))
         self.lazy = defaultdict(int)
 
-    def push_down(self, i):
+    def _push_down(self, i):
         # 懒标记下放，注意取最大值
         if self.lazy[i]:
             self.height[2 * i] = self.lazy[i]
@@ -1320,7 +1418,7 @@ class SegmentTreeRangeUpdateMax:
             self.height[i] = val
             self.lazy[i] = val
             return
-        self.push_down(i)
+        self._push_down(i)
         m = s + (t - s) // 2
         if l <= m:  # 注意左右子树的边界与范围
             self.update(l, r, s, m, val, 2 * i)
@@ -1333,7 +1431,7 @@ class SegmentTreeRangeUpdateMax:
         # 查询区间的最大值
         if l <= s and t <= r:
             return self.height[i]
-        self.push_down(i)
+        self._push_down(i)
         m = s + (t - s) // 2
         highest = float("-inf")
         if l <= m:
@@ -1360,7 +1458,7 @@ class SegmentTreeRangeUpdateMulQuerySum:
         return
 
     @staticmethod
-    def max(a: int, b: int) -> int:
+    def _max(a: int, b: int) -> int:
         return a if a > b else b
 
     @staticmethod
@@ -1385,7 +1483,7 @@ class SegmentTreeRangeUpdateMulQuerySum:
                 self.cover[i] = self.cover[2 * i] + self.cover[2 * i + 1]
         return
 
-    def make_tag(self, s: int, t: int, x: int, flag: int, i: int) -> None:
+    def _make_tag(self, s: int, t: int, x: int, flag: int, i: int) -> None:
         if flag == 1:  # 乘法
             self.lazy_mul[i] = (self.lazy_mul[i] * x) % self.p
             self.lazy_add[i] = (self.lazy_add[i] * x) % self.p
@@ -1395,16 +1493,16 @@ class SegmentTreeRangeUpdateMulQuerySum:
             self.cover[i] = (self.cover[i] + x * (t - s + 1)) % self.p
         return
 
-    def push_down(self, i: int, s: int, m: int, t: int) -> None:
+    def _push_down(self, i: int, s: int, m: int, t: int) -> None:
         # 下放懒标记
         if self.lazy_mul[i] != 1:
-            self.make_tag(s, m, self.lazy_mul[i], 1, 2 * i)
-            self.make_tag(m + 1, t, self.lazy_mul[i], 1, 2 * i + 1)
+            self._make_tag(s, m, self.lazy_mul[i], 1, 2 * i)
+            self._make_tag(m + 1, t, self.lazy_mul[i], 1, 2 * i + 1)
             self.lazy_mul[i] = 1
 
         if self.lazy_add[i] != 0:
-            self.make_tag(s, m, self.lazy_add[i], 2, 2 * i)
-            self.make_tag(m + 1, t, self.lazy_add[i], 2, 2 * i + 1)
+            self._make_tag(s, m, self.lazy_add[i], 2, 2 * i)
+            self._make_tag(m + 1, t, self.lazy_add[i], 2, 2 * i + 1)
             self.lazy_add[i] = 0
 
     def update(self, left: int, right: int, s: int, t: int, val: int, flag: int, i: int) -> None:
@@ -1424,7 +1522,7 @@ class SegmentTreeRangeUpdateMulQuerySum:
                     continue
 
                 m = s + (t - s) // 2
-                self.push_down(i, s, m, t)
+                self._push_down(i, s, m, t)
                 stack.append([s, t, ~i])
 
                 if left <= m:  # 注意左右子树的边界与范围
@@ -1447,7 +1545,7 @@ class SegmentTreeRangeUpdateMulQuerySum:
                 ans += self.cover[i]
                 continue
             m = s + (t - s) // 2
-            self.push_down(i, s, m, t)
+            self._push_down(i, s, m, t)
             if left <= m:
                 stack.append([s, m, 2 * i])
             if right > m:
@@ -1515,7 +1613,7 @@ class SegmentTreeRangeSubConSum:
         return
 
     @staticmethod
-    def max(a, b):
+    def _max(a, b):
         return a if a > b else b
 
     @staticmethod
@@ -1525,14 +1623,14 @@ class SegmentTreeRangeSubConSum:
     def check(self, a, b):
         if a >= 0 and b >= 0:
             return a + b
-        return self.max(a, b)
+        return self._max(a, b)
 
-    def push_up(self, i):
+    def _push_up(self, i):
         # 合并区间的函数
-        self.cover[i] = self.max(self.cover[2 * i], self.cover[2 * i + 1])
-        self.cover[i] = self.max(self.cover[i], self.right[2 * i] + self.left[2 * i + 1])
-        self.left[i] = self.max(self.left[2 * i], self.sum[2 * i] + self.left[2 * i + 1])
-        self.right[i] = self.max(self.right[2 * i + 1], self.sum[2 * i + 1] + self.right[2 * i])
+        self.cover[i] = self._max(self.cover[2 * i], self.cover[2 * i + 1])
+        self.cover[i] = self._max(self.cover[i], self.right[2 * i] + self.left[2 * i + 1])
+        self.left[i] = self._max(self.left[2 * i], self.sum[2 * i] + self.left[2 * i + 1])
+        self.right[i] = self._max(self.right[2 * i + 1], self.sum[2 * i + 1] + self.right[2 * i])
         self.sum[i] = self.sum[2 * i] + self.sum[2 * i + 1]
         return
 
@@ -1554,7 +1652,7 @@ class SegmentTreeRangeSubConSum:
                 stack.append([m + 1, t, 2 * i + 1])
             else:
                 i = ~i
-                self.push_up(i)
+                self._push_up(i)
         return
 
     def update(self, left: int, right: int, s: int, t: int, val: int, i: int) -> None:
@@ -1577,7 +1675,7 @@ class SegmentTreeRangeSubConSum:
                     stack.append([m + 1, t, 2 * i + 1])
             else:
                 i = ~i
-                self.push_up(i)
+                self._push_up(i)
         return
 
     def query_max(self, left: int, right: int, s: int, t: int, i: int):
@@ -1597,10 +1695,10 @@ class SegmentTreeRangeSubConSum:
 
         # 参照区间递归方式
         res = [0] * 4
-        res[0] = self.max(res1[0], res2[0])
-        res[0] = self.max(res[0], res1[2] + res2[1])
-        res[1] = self.max(res1[1], res1[3] + res2[1])
-        res[2] = self.max(res2[2], res2[3] + res1[2])
+        res[0] = self._max(res1[0], res2[0])
+        res[0] = self._max(res[0], res1[2] + res2[1])
+        res[1] = self._max(res1[1], res1[3] + res2[1])
+        res[2] = self._max(res2[2], res2[3] + res1[2])
         res[3] = res1[3] + res2[3]
         return res
 
@@ -1619,7 +1717,7 @@ class SegmentTreeRangeUpdateSubConSum:
         return
 
     @staticmethod
-    def max(a, b):
+    def _max(a, b):
         return a if a > b else b
 
     @staticmethod
@@ -1629,18 +1727,18 @@ class SegmentTreeRangeUpdateSubConSum:
     def check(self, a, b):
         if a >= 0 and b >= 0:
             return a + b
-        return self.max(a, b)
+        return self._max(a, b)
 
-    def push_up(self, i):
+    def _push_up(self, i):
         # 合并区间的函数
-        self.cover[i] = self.max(self.cover[2 * i], self.cover[2 * i + 1])
-        self.cover[i] = self.max(self.cover[i], self.right[2 * i] + self.left[2 * i + 1])
-        self.left[i] = self.max(self.left[2 * i], self.sum[2 * i] + self.left[2 * i + 1])
-        self.right[i] = self.max(self.right[2 * i + 1], self.sum[2 * i + 1] + self.right[2 * i])
+        self.cover[i] = self._max(self.cover[2 * i], self.cover[2 * i + 1])
+        self.cover[i] = self._max(self.cover[i], self.right[2 * i] + self.left[2 * i + 1])
+        self.left[i] = self._max(self.left[2 * i], self.sum[2 * i] + self.left[2 * i + 1])
+        self.right[i] = self._max(self.right[2 * i + 1], self.sum[2 * i + 1] + self.right[2 * i])
         self.sum[i] = self.sum[2 * i] + self.sum[2 * i + 1]
         return
 
-    def make_tag(self, s, t, i, val):
+    def _make_tag(self, s, t, i, val):
         self.sum[i] = val * (t - s + 1)
         self.cover[i] = val if val < 0 else val * (t - s + 1)
         self.left[i] = val if val < 0 else val * (t - s + 1)
@@ -1648,10 +1746,10 @@ class SegmentTreeRangeUpdateSubConSum:
         self.lazy[i] = val
         return
 
-    def push_down(self, i, s, m, t):
+    def _push_down(self, i, s, m, t):
         if self.lazy[i] != inf:
-            self.make_tag(s, m, 2 * i, self.lazy[i])
-            self.make_tag(m + 1, t, 2 * i + 1, self.lazy[i])
+            self._make_tag(s, m, 2 * i, self.lazy[i])
+            self._make_tag(m + 1, t, 2 * i + 1, self.lazy[i])
             self.lazy[i] = inf
 
     def build(self) -> None:
@@ -1672,7 +1770,7 @@ class SegmentTreeRangeUpdateSubConSum:
                 stack.append([m + 1, t, 2 * i + 1])
             else:
                 i = ~i
-                self.push_up(i)
+                self._push_up(i)
         return
 
     def update(self, left: int, right: int, s: int, t: int, val: int, i: int) -> None:
@@ -1689,7 +1787,7 @@ class SegmentTreeRangeUpdateSubConSum:
                     self.lazy[i] = val
                     continue
                 m = s + (t - s) // 2
-                self.push_down(i, s, m, t)
+                self._push_down(i, s, m, t)
                 stack.append([s, t, ~i])
                 if left <= m:  # 注意左右子树的边界与范围
                     stack.append([s, m, 2 * i])
@@ -1697,7 +1795,7 @@ class SegmentTreeRangeUpdateSubConSum:
                     stack.append([m + 1, t, 2 * i + 1])
             else:
                 i = ~i
-                self.push_up(i)
+                self._push_up(i)
         return
 
     def query_max(self, left: int, right: int, s: int, t: int, i: int):
@@ -1706,7 +1804,7 @@ class SegmentTreeRangeUpdateSubConSum:
             return [self.cover[i], self.left[i], self.right[i], self.sum[i]]
 
         m = s + (t - s) // 2
-        self.push_down(i, s, m, t)
+        self._push_down(i, s, m, t)
 
         if right <= m:
             return self.query_max(left, right, s, m, 2 * i)
@@ -1718,10 +1816,10 @@ class SegmentTreeRangeUpdateSubConSum:
 
         # 参照区间递归方式
         res = [0] * 4
-        res[0] = self.max(res1[0], res2[0])
-        res[0] = self.max(res[0], res1[2] + res2[1])
-        res[1] = self.max(res1[1], res1[3] + res2[1])
-        res[2] = self.max(res2[2], res2[3] + res1[2])
+        res[0] = self._max(res1[0], res2[0])
+        res[0] = self._max(res[0], res1[2] + res2[1])
+        res[1] = self._max(res1[1], res1[3] + res2[1])
+        res[2] = self._max(res2[2], res2[3] + res1[2])
         res[3] = res1[3] + res2[3]
         return res
 
@@ -1732,7 +1830,7 @@ class SegmentTreeRangeUpdateMin:
         self.height = defaultdict(lambda: float("inf"))
         self.lazy = defaultdict(int)
 
-    def push_down(self, i):
+    def _push_down(self, i):
         # 懒标记下放，注意取最大值
         if self.lazy[i]:
             self.height[2 * i] = self.lazy[i]
@@ -1750,7 +1848,7 @@ class SegmentTreeRangeUpdateMin:
             self.height[i] = val
             self.lazy[i] = val
             return
-        self.push_down(i)
+        self._push_down(i)
         m = s + (t - s) // 2
         if ll <= m:  # 注意左右子树的边界与范围
             self.update(ll, r, s, m, val, 2 * i)
@@ -1763,7 +1861,7 @@ class SegmentTreeRangeUpdateMin:
         # 查询区间的最大值
         if l <= s and t <= r:
             return self.height[i]
-        self.push_down(i)
+        self._push_down(i)
         m = s + (t - s) // 2
         highest = inf
         if l <= m:
@@ -1784,7 +1882,7 @@ class SegmentTreeRangeUpdateQuery:
         self.lazy = [0] * (4 * self.n)
         return
 
-    def push_down(self, i):
+    def _push_down(self, i):
         if self.lazy[i]:
             self.lazy[2 * i] = self.lazy[2 * i + 1] = self.lazy[i]
             self.lazy[i] = 0
@@ -1798,7 +1896,7 @@ class SegmentTreeRangeUpdateQuery:
                 self.lazy[i] = val
                 continue
             m = s + (t - s) // 2
-            self.push_down(i)
+            self._push_down(i)
             if left <= m:  # 注意左右子树的边界与范围
                 stack.append([s, m, 2 * i])
             if right > m:
@@ -1809,7 +1907,7 @@ class SegmentTreeRangeUpdateQuery:
         # 查询单点值
         while not (left <= s and t <= right):
             m = s + (t - s) // 2
-            self.push_down(i)
+            self._push_down(i)
             if right <= m:
                 s, t, i = s, m, 2 * i
             elif left > m:
@@ -1827,29 +1925,29 @@ class SegmentTreeRangeUpdateAvgDev:
         return
 
     @staticmethod
-    def max(a, b):
+    def _max(a, b):
         return a if a > b else b
 
     @staticmethod
     def min(a: int, b: int) -> int:
         return a if a < b else b
 
-    def push_up(self, i):
+    def _push_up(self, i):
         # 合并区间的函数
         self.cover[i] = self.cover[2 * i] + self.cover[2 * i + 1]
         self.cover_2[i] = self.cover_2[2 * i] + self.cover_2[2 * i + 1]
         return
 
-    def make_tag(self, s, t, i, val):
+    def _make_tag(self, s, t, i, val):
         self.cover_2[i] += self.cover[i] * 2 * val + (t - s + 1) * val * val
         self.cover[i] += val * (t - s + 1)
         self.lazy[i] += val
         return
 
-    def push_down(self, i, s, m, t):
+    def _push_down(self, i, s, m, t):
         if self.lazy[i]:
-            self.make_tag(s, m, 2 * i, self.lazy[i])
-            self.make_tag(m + 1, t, 2 * i + 1, self.lazy[i])
+            self._make_tag(s, m, 2 * i, self.lazy[i])
+            self._make_tag(m + 1, t, 2 * i + 1, self.lazy[i])
             self.lazy[i] = 0
 
     def build(self, nums) -> None:
@@ -1868,7 +1966,7 @@ class SegmentTreeRangeUpdateAvgDev:
                 stack.append([m + 1, t, 2 * i + 1])
             else:
                 i = ~i
-                self.push_up(i)
+                self._push_up(i)
         return
 
     def update(self, left: int, right: int, s: int, t: int, val: int, i: int) -> None:
@@ -1878,10 +1976,10 @@ class SegmentTreeRangeUpdateAvgDev:
             s, t, i = stack.pop()
             if i >= 0:
                 if left <= s and t <= right:
-                    self.make_tag(s, t, i, val)
+                    self._make_tag(s, t, i, val)
                     continue
                 m = s + (t - s) // 2
-                self.push_down(i, s, m, t)
+                self._push_down(i, s, m, t)
                 stack.append([s, t, ~i])
                 if left <= m:  # 注意左右子树的边界与范围
                     stack.append([s, m, 2 * i])
@@ -1889,7 +1987,7 @@ class SegmentTreeRangeUpdateAvgDev:
                     stack.append([m + 1, t, 2 * i + 1])
             else:
                 i = ~i
-                self.push_up(i)
+                self._push_up(i)
         return
 
     def query(self, left: int, right: int, s: int, t: int, i: int):
@@ -1903,7 +2001,7 @@ class SegmentTreeRangeUpdateAvgDev:
                 ans2 += self.cover_2[i]
                 continue
             m = s + (t - s) // 2
-            self.push_down(i, s, m, t)
+            self._push_down(i, s, m, t)
             if left <= m:
                 stack.append([s, m, 2 * i])
             if right > m:
@@ -1924,18 +2022,18 @@ class SegmentTreePointChangeLongCon:
         return
 
     @staticmethod
-    def max(a, b):
+    def _max(a, b):
         return a if a > b else b
 
     @staticmethod
     def min(a: int, b: int) -> int:
         return a if a < b else b
 
-    def push_up(self, i, s, m, t):
+    def _push_up(self, i, s, m, t):
         # 合并区间的函数
-        self.cover[i] = self.max(self.cover[2 * i], self.cover[2 * i + 1])
-        self.cover[i] = self.max(self.cover[i], self.right_0[2 * i] + self.left_1[2 * i + 1])
-        self.cover[i] = self.max(self.cover[i], self.right_1[2 * i] + self.left_0[2 * i + 1])
+        self.cover[i] = self._max(self.cover[2 * i], self.cover[2 * i + 1])
+        self.cover[i] = self._max(self.cover[i], self.right_0[2 * i] + self.left_1[2 * i + 1])
+        self.cover[i] = self._max(self.cover[i], self.right_1[2 * i] + self.left_0[2 * i + 1])
 
         self.left_0[i] = self.left_0[2 * i]
         if self.left_0[2 * i] == m - s + 1:
@@ -1972,7 +2070,7 @@ class SegmentTreePointChangeLongCon:
             else:
                 i = ~i
                 m = s + (t - s) // 2
-                self.push_up(i, s, m, t)
+                self._push_up(i, s, m, t)
         return
 
     def update(self, left: int, right: int, s: int, t: int, i: int) -> None:
@@ -1997,7 +2095,7 @@ class SegmentTreePointChangeLongCon:
             else:
                 i = ~i
                 m = s + (t - s) // 2
-                self.push_up(i, s, m, t)
+                self._push_up(i, s, m, t)
         return
 
     def query(self):
@@ -2019,20 +2117,20 @@ class SegmentTreeRangeAndOrXOR:
         return
 
     @staticmethod
-    def max(a, b):
+    def _max(a, b):
         return a if a > b else b
 
     @staticmethod
     def min(a: int, b: int) -> int:
         return a if a < b else b
 
-    def push_up(self, i, s, m, t):
+    def _push_up(self, i, s, m, t):
         # 合并区间的函数
-        self.cover_1[i] = self.max(self.cover_1[2 * i], self.cover_1[2 * i + 1])
-        self.cover_1[i] = self.max(self.cover_1[i], self.right_1[2 * i] + self.left_1[2 * i + 1])
+        self.cover_1[i] = self._max(self.cover_1[2 * i], self.cover_1[2 * i + 1])
+        self.cover_1[i] = self._max(self.cover_1[i], self.right_1[2 * i] + self.left_1[2 * i + 1])
 
-        self.cover_0[i] = self.max(self.cover_0[2 * i], self.cover_0[2 * i + 1])
-        self.cover_0[i] = self.max(self.cover_0[i], self.right_0[2 * i] + self.left_0[2 * i + 1])
+        self.cover_0[i] = self._max(self.cover_0[2 * i], self.cover_0[2 * i + 1])
+        self.cover_0[i] = self._max(self.cover_0[i], self.right_0[2 * i] + self.left_0[2 * i + 1])
 
         self.sum[i] = self.sum[2 * i] + self.sum[2 * i + 1]
 
@@ -2054,7 +2152,7 @@ class SegmentTreeRangeAndOrXOR:
 
         return
 
-    def make_tag(self, s, t, i, val):
+    def _make_tag(self, s, t, i, val):
         if val == 0:
             self.cover_1[i] = 0
             self.sum[i] = 0
@@ -2075,10 +2173,10 @@ class SegmentTreeRangeAndOrXOR:
         self.lazy[i] = val
         return
 
-    def push_down(self, i, s, m, t):
+    def _push_down(self, i, s, m, t):
         if self.lazy[i] != inf:
-            self.make_tag(s, m, 2 * i, self.lazy[i])
-            self.make_tag(m + 1, t, 2 * i + 1, self.lazy[i])
+            self._make_tag(s, m, 2 * i, self.lazy[i])
+            self._make_tag(m + 1, t, 2 * i + 1, self.lazy[i])
             self.lazy[i] = inf
 
     def build(self, nums) -> None:
@@ -2108,7 +2206,7 @@ class SegmentTreeRangeAndOrXOR:
             else:
                 i = ~i
                 m = s + (t - s) // 2
-                self.push_up(i, s, m, t)
+                self._push_up(i, s, m, t)
         return
 
     def update(self, left: int, right: int, s: int, t: int, val: int, i: int) -> None:
@@ -2119,9 +2217,9 @@ class SegmentTreeRangeAndOrXOR:
             if i >= 0:
                 m = s + (t - s) // 2
                 if s < t:
-                    self.push_down(i, s, m, t)
+                    self._push_down(i, s, m, t)
                 if left <= s and t <= right:
-                    self.make_tag(s, t, i, val)
+                    self._make_tag(s, t, i, val)
                     continue
 
                 stack.append([s, t, ~i])
@@ -2132,7 +2230,7 @@ class SegmentTreeRangeAndOrXOR:
             else:
                 i = ~i
                 m = s + (t - s) // 2
-                self.push_up(i, s, m, t)
+                self._push_up(i, s, m, t)
         return
 
     def query_sum(self, left: int, right: int, s: int, t: int, i: int):
@@ -2145,7 +2243,7 @@ class SegmentTreeRangeAndOrXOR:
                 ans += self.sum[i]
                 continue
             m = s + (t - s) // 2
-            self.push_down(i, s, m, t)
+            self._push_down(i, s, m, t)
             if left <= m:
                 stack.append([s, m, 2 * i])
             if right > m:
@@ -2158,7 +2256,7 @@ class SegmentTreeRangeAndOrXOR:
             return self.cover_1[i], self.left_1[i], self.right_1[i]
 
         m = s + (t - s) // 2
-        self.push_down(i, s, m, t)
+        self._push_down(i, s, m, t)
 
         if right <= m:
             return self.query_max_length(left, right, s, m, 2 * i)
@@ -2170,8 +2268,8 @@ class SegmentTreeRangeAndOrXOR:
 
         # 参照区间递归方式
         res = [0] * 3
-        res[0] = self.max(res1[0], res2[0])
-        res[0] = self.max(res[0], res1[2] + res2[1])
+        res[0] = self._max(res1[0], res2[0])
+        res[0] = self._max(res[0], res1[2] + res2[1])
 
         res[1] = res1[1]
         if res[1] == m - s + 1:
@@ -2201,7 +2299,7 @@ class SegmentTreeLongestSubSame:
             s, t, ind = stack.pop()
             if ind >= 0:
                 if s == t:
-                    self.make_tag(ind)
+                    self._make_tag(ind)
                 else:
                     stack.append([s, t, ~ind])
                     m = s + (t - s) // 2
@@ -2209,17 +2307,17 @@ class SegmentTreeLongestSubSame:
                     stack.append([m + 1, t, 2 * ind + 1])
             else:
                 ind = ~ind
-                self.push_up(ind, s, t)
+                self._push_up(ind, s, t)
         return
 
-    def make_tag(self, i):
+    def _make_tag(self, i):
         # 只有此时 i 对应的区间 s==t 才打标记
         self.pref[i] = 1
         self.suf[i] = 1
         self.ceil[i] = 1
         return
 
-    def push_up(self, i, s, t):
+    def _push_up(self, i, s, t):
         m = s + (t - s) // 2
         # 左右区间段分别为 [s, m] 与 [m+1, t] 保证 s < t
         self.pref[i] = self.pref[2 * i]
@@ -2246,7 +2344,7 @@ class SegmentTreeLongestSubSame:
         while True:
             stack.append([s, t, i])
             if left <= s <= t <= right:
-                self.make_tag(i)
+                self._make_tag(i)
                 break
             m = s + (t - s) // 2
             if left <= m:  # 注意左右子树的边界与范围
@@ -2256,7 +2354,7 @@ class SegmentTreeLongestSubSame:
         stack.pop()
         while stack:
             s, t, i = stack.pop()
-            self.push_up(i, s, t)
+            self._push_up(i, s, t)
         assert i == 1
         # 获取当前最大的连续子串
         return self.ceil[1]
@@ -2270,20 +2368,20 @@ class SegmentTreeRangeXORQuery:
         self.lazy = [0] * (4 * self.n)
         return
 
-    def push_up(self, i):
+    def _push_up(self, i):
         # 合并区间的函数
         self.cover[i] = self.cover[2 * i] ^ self.cover[2 * i + 1]
         return
 
-    def make_tag(self, i, val):
+    def _make_tag(self, i, val):
         self.cover[i] ^= val
         self.lazy[i] ^= val
         return
 
-    def push_down(self, i):
+    def _push_down(self, i):
         if self.lazy[i]:
-            self.make_tag(2 * i, self.lazy[i])
-            self.make_tag(2 * i + 1, self.lazy[i])
+            self._make_tag(2 * i, self.lazy[i])
+            self._make_tag(2 * i + 1, self.lazy[i])
             self.lazy[i] = 0
 
     def update_range(self, left: int, right: int, s: int, t: int, val: int, i: int) -> None:
@@ -2294,9 +2392,9 @@ class SegmentTreeRangeXORQuery:
             if i >= 0:
                 m = s + (t - s) // 2
                 if left <= s and t <= right:
-                    self.make_tag(i, val)
+                    self._make_tag(i, val)
                     continue
-                self.push_down(i)
+                self._push_down(i)
                 stack.append([s, t, ~i])
                 if left <= m:  # 注意左右子树的边界与范围
                     stack.append([s, m, 2 * i])
@@ -2304,7 +2402,7 @@ class SegmentTreeRangeXORQuery:
                     stack.append([m + 1, t, 2 * i + 1])
             else:
                 i = ~i
-                self.push_up(i)
+                self._push_up(i)
         return
 
     def update_point(self, left: int, right: int, s: int, t: int, val: int, i: int) -> None:
@@ -2312,9 +2410,9 @@ class SegmentTreeRangeXORQuery:
         assert left == right
         while True:
             if left <= s and t <= right:
-                self.make_tag(i, val)
+                self._make_tag(i, val)
                 break
-            self.push_down(i)
+            self._push_down(i)
             m = s + (t - s) // 2
             if left <= m:  # 注意左右子树的边界与范围
                 s, t, i = s, m, 2 * i
@@ -2322,7 +2420,7 @@ class SegmentTreeRangeXORQuery:
                 s, t, i = m + 1, t, 2 * i + 1
         while i > 1:
             i //= 2
-            self.push_up(i)
+            self._push_up(i)
         return
 
     def query(self, left: int, right: int, s: int, t: int, i: int):
@@ -2335,7 +2433,7 @@ class SegmentTreeRangeXORQuery:
                 ans ^= self.cover[i]
                 continue
             m = s + (t - s) // 2
-            self.push_down(i)
+            self._push_down(i)
             if left <= m:
                 stack.append([s, m, 2 * i])
             if right > m:
@@ -2351,7 +2449,7 @@ class SegmentTreeRangeXORQuery:
                 ans ^= self.cover[i]
                 break
             m = s + (t - s) // 2
-            self.push_down(i)
+            self._push_down(i)
             if left <= m:
                 s, t, i = s, m, 2 * i
             if right > m:

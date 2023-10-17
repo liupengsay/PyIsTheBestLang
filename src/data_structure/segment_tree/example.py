@@ -1,10 +1,10 @@
 import random
 import unittest
 
-from data_structure.segment_tree.template import SegmentTreePointAddSumMaxMin, SegmentTreeRangeAddMax, \
+from data_structure.segment_tree.template import SegmentTreePointAddSumMaxMin, RangeAscendRangeMax, \
     SegmentTreeRangeUpdateMax, SegmentTreeRangeUpdateMin, SegmentTreeUpdateQueryMin, \
     SegmentTreeRangeUpdateQuerySumMinMax, SegmentTreeRangeChangeQuerySumMinMax, SegmentTreeRangeUpdateSubConSum, \
-    SegmentTreeRangeUpdateQuery, SegmentTreeRangeUpdateSum, SegmentTreeRangeAddSum
+    SegmentTreeRangeUpdateQuery, SegmentTreeRangeUpdateSum, SegmentTreeRangeAddSum, RangeOrRangeAnd
 
 
 class TestGeneral(unittest.TestCase):
@@ -75,6 +75,30 @@ class TestGeneral(unittest.TestCase):
                 nums[left:right + 1])
         return
 
+    def test_range_or_range_and(self):
+        low = 0
+        high = (1 << 31) - 1
+        n = 1000
+        nums = [random.randint(low, high) for _ in range(n)]
+        segment_tree = RangeOrRangeAnd(n)
+        segment_tree.build(nums)
+        for _ in range(1000):
+            ll = random.randint(0, n-1)
+            rr = random.randint(ll, n-1)
+            num = random.randint(low, high)
+            for i in range(ll, rr+1):
+                nums[i] |= num
+            segment_tree.range_or(ll, rr, num)
+
+            ll = random.randint(0, n-1)
+            rr = random.randint(ll, n-1)
+            res = high
+            for i in range(ll, rr+1):
+                res &= nums[i]
+            assert res == segment_tree.range_and(ll, rr)
+        assert nums == segment_tree.get()
+        return
+
     def test_segment_tree_point_add_sum_max_min(self):
         low = 0
         high = 10000
@@ -117,38 +141,34 @@ class TestGeneral(unittest.TestCase):
         low = 0
         high = 10000
         nums = [random.randint(low, high) for _ in range(high)]
-        stra = SegmentTreeRangeAddMax(high)
-        for i in range(high):
-            stra.update(i, i, low, high, nums[i], 1)
-            assert stra.query(i, i, low, high, 1) == max(nums[i:i + 1])
-
+        segment_tree = RangeAscendRangeMax(high)
+        segment_tree.build(nums)
+        assert segment_tree.get() == nums
         for _ in range(high):
             # 区间更新最大值
             left = random.randint(0, high - 1)
             right = random.randint(left, high - 1)
             num = random.randint(low, high)
-            stra.update(left, right, low, high, num, 1)
+            segment_tree.range_ascend(left, right, num)
             for i in range(left, right + 1):
                 nums[i] = nums[i] if nums[i] > num else num
             left = random.randint(0, high - 1)
             right = random.randint(left, high - 1)
-            assert stra.query(left, right, low, high, 1) == max(
-                nums[left:right + 1])
+            assert segment_tree.range_max(left, right) == max(nums[left:right + 1])
 
             # 单点更新最大值
             left = random.randint(0, high - 1)
             right = left
             num = random.randint(low, high)
-            stra.update(left, right, low, high, num, 1)
+            segment_tree.range_ascend(left, right, num)
             for i in range(left, right + 1):
                 nums[i] = nums[i] if nums[i] > num else num
-            assert stra.query(left, right, low, high, 1) == max(
-                nums[left:right + 1])
+            assert segment_tree.range_max(left, right) == max(nums[left:right + 1])
 
             left = random.randint(0, high - 1)
             right = random.randint(left, high - 1)
-            assert stra.query(left, right, low, high, 1) == max(
-                nums[left:right + 1])
+            assert segment_tree.range_max(left, right) == max(nums[left:right + 1])
+        assert segment_tree.get() == nums
         return
 
     def test_segment_tree_range_update_max(self):
