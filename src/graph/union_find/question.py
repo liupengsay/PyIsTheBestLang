@@ -154,7 +154,7 @@ class Solution:
         n, m = ac.read_list_ints()
         edge = set()
         for _ in range(m):
-            u, v = ac.read_ints_minus_one()
+            u, v = ac.read_list_ints_minus_one()
             edge.add((u, v))
         ans = []
         not_visit = set(range(n))
@@ -474,7 +474,7 @@ class Solution:
         n, m, k, q = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for _ in range(m):
-            i, j = ac.read_ints_minus_one()
+            i, j = ac.read_list_ints_minus_one()
             dct[i].append(j)
             dct[j].append(i)
 
@@ -640,7 +640,7 @@ class Solution:
             n, m = ac.read_list_ints()
             uf = UnionFind(n)
             for _ in range(m):
-                i, j = ac.read_ints_minus_one()
+                i, j = ac.read_list_ints_minus_one()
                 uf.union(i, j)
             if uf.is_connected(0, n-1):
                 ac.st(0)
@@ -825,7 +825,7 @@ class Solution:
             uf = UnionFind(n)
             edge = []
             for _ in range(m):
-                i, j = ac.read_ints_minus_one()
+                i, j = ac.read_list_ints_minus_one()
                 uf.union(i, j)
                 edge.append([i, j])
             cnt = 0
@@ -956,12 +956,12 @@ class Solution:
         n, k, ll = ac.read_list_ints()
         ufa = UnionFind(n)
         for _ in range(k):
-            p, q = ac.read_ints_minus_one()
+            p, q = ac.read_list_ints_minus_one()
             ufa.union(p, q)
 
         ufb = UnionFind(n)
         for _ in range(ll):
-            p, q = ac.read_ints_minus_one()
+            p, q = ac.read_list_ints_minus_one()
             ufb.union(p, q)
         pre = defaultdict(int)
         for i in range(n):
@@ -1015,7 +1015,7 @@ class Solution:
         lst = LocalSortedList([1] * n)
         pre = 0
         for i in range(d):
-            x, y = ac.read_ints_minus_one()
+            x, y = ac.read_list_ints_minus_one()
             if uf.is_connected(x, y):
                 pre += 1
             else:

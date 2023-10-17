@@ -579,7 +579,7 @@ class Solution:
         del edge
 
         for _ in range(m):
-            v, he = ac.read_ints_minus_one()
+            v, he = ac.read_list_ints_minus_one()
             he += 1
             if he > ceil:
                 ac.st("Yes")

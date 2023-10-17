@@ -1,14 +1,3 @@
-import math
-import random
-import unittest
-from functools import reduce
-from math import gcd
-from operator import add
-from itertools import accumulate
-from typing import List
-from operator import mul, add, xor, and_, or_
-from algorithm.src.fast_io import FastIO
-
 """
 Algorithm：
 Ability：
@@ -35,19 +24,3 @@ class XXX:
 class Solution:
     def __int__(self):
         return
-
-    @staticmethod
-    def xx_xxxx(ac=FastIO()):
-        pass
-        return
-
-
-class TestGeneral(unittest.TestCase):
-
-    def test_xxxx(self):
-        pass
-        return
-
-
-if __name__ == '__main__':
-    unittest.main()

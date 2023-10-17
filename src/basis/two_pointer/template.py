@@ -1,16 +1,3 @@
-import math
-import random
-import unittest
-from collections import defaultdict, Counter
-from functools import reduce
-from math import gcd
-from itertools import accumulate
-from typing import List
-from operator import mul, add, xor, and_, or_
-from utils.fast_io import FastIO
-from math import inf
-
-
 INF = int(1e64)
 
 
@@ -24,7 +11,8 @@ class TwoPointer:
         ans = j = 0
         dct = dict()
         for i in range(n):
-            while j < n and (nums[j] in dct or not dct or (abs(max(dct) - nums[j]) <= 2 and abs(min(dct) - nums[j]) <= 2)):
+            while j < n and (nums[j] in dct or not dct
+                             or (abs(max(dct) - nums[j]) <= 2 and abs(min(dct) - nums[j]) <= 2)):
                 dct[nums[j]] = dct.get(nums[j], 0) + 1
                 j += 1
             ans += j - i
@@ -151,7 +139,3 @@ class SlidingWindowAggregation:
 
     def __len__(self):
         return self.size
-
-
-
-

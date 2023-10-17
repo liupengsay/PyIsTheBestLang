@@ -39,7 +39,7 @@ class Solution:
         weight = ac.read_list_ints()
         edge = [set() for _ in range(n)]
         for _ in range(m):
-            x, y = ac.read_ints_minus_one()
+            x, y = ac.read_list_ints_minus_one()
             edge[x].add(y)
         edge = [list(e) for e in edge]
 

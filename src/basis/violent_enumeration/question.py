@@ -1,3 +1,13 @@
+import bisect
+import math
+from collections import defaultdict, deque
+from functools import reduce, lru_cache
+from itertools import combinations, permutations
+from math import inf
+from operator import mul, or_
+from typing import List
+
+from utils.fast_io import FastIO
 
 """
 算法：暴力枚举、旋转矩阵、螺旋矩阵（也叫brute_force）、贡献法
@@ -139,7 +149,6 @@ C - Sugar Water（https://atcoder.jp/contests/abc074/tasks/arc083_a）经典枚�
 """
 
 
-
 class Solution:
     def __int__(self):
         return
@@ -173,8 +182,8 @@ class Solution:
                 return True
             if (x % 6 != 1) and (x % 6 != 5):
                 return False
-            for i in range(5, int(math.sqrt(x)) + 1, 6):
-                if (x % i == 0) or (x % (i + 2) == 0):
+            for ii in range(5, int(math.sqrt(x)) + 1, 6):
+                if (x % ii == 0) or (x % (ii + 2) == 0):
                     return False
             return True
 
@@ -228,6 +237,8 @@ class Solution:
                 x = int("".join(cur))
                 ans = ans if ans > x else x
             return ans
+
+        check()
         return check2()
 
     @staticmethod
@@ -382,7 +393,7 @@ class Solution:
         def check1():
             nonlocal ans
             for x in range(1, m):
-                lst = [x*n, (m-x)*(n//2), (m-x)*(n//2+n%2)]
+                lst = [x*n, (m - x)*(n//2), (m - x)*(n//2 + n % 2)]
                 cur = max(lst) - min(lst)
                 if cur < ans:
                     ans = cur
@@ -391,7 +402,7 @@ class Solution:
         def check2():
             nonlocal ans
             for x in range(1, m-1):
-                lst = [x * n, ((m - x)//2) * n, ((m - x)//2+(m-x)%2) * n]
+                lst = [x * n, ((m - x)//2) * n, ((m - x)//2 + (m - x) % 2) * n]
                 cur = max(lst) - min(lst)
                 if cur < ans:
                     ans = cur
@@ -1178,7 +1189,7 @@ class Solution:
             degree[j] += 1
             dct[j].add(i)
         for i, j in edges:
-            if degree[i] < degree[j] or (degree[i]==degree[j] and i < j):
+            if degree[i] < degree[j] or (degree[i] == degree[j] and i < j):
                 directed[i].add(j)
             else:
                 directed[j].add(i)
@@ -1245,22 +1256,22 @@ class Solution:
         return ans[:3]
 
     @staticmethod
-    def lc_2212(numArrows: int, aliceArrows: List[int]) -> List[int]:
+    def lc_2212(x: int, y: List[int]) -> List[int]:
         # 模板：位运算枚举或者回溯计算
-        n = len(aliceArrows)
+        n = len(y)
         ans = [0]*n
-        ans[0] = numArrows
+        ans[0] = x
         res = 0
-        for i in range(1<<n):
+        for i in range(1 << n):
             lst = [0]*n
             cur = 0
             for j in range(n):
-                if i & (1<<j):
-                    lst[j] = aliceArrows[j] + 1
+                if i & (1 << j):
+                    lst[j] = y[j] + 1
                     cur += j
             s = sum(lst)
-            if s <= numArrows:
-                lst[0] += numArrows - s
+            if s <= x:
+                lst[0] += x - s
                 if cur > res:
                     res = cur
                     ans = lst[:]

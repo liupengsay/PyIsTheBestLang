@@ -1,6 +1,4 @@
 
-
-
 """
 算法：双指针、快慢指针、先后指针、桶计数
 功能：通过相对移动，来减少计算复杂度，分为同向双指针，相反双指针，以及中心扩展法
@@ -59,6 +57,18 @@ D - Equal Cut（https://atcoder.jp/contests/abc102/tasks/arc100_b）经典双指
 
 参考：OI WiKi（xx）
 """
+import math
+from collections import Counter, defaultdict
+from functools import reduce
+from itertools import accumulate
+from math import gcd, inf
+from operator import add
+from typing import List
+
+from basis.two_pointer.template import SlidingWindowAggregation, INF
+from utils.fast_io import FastIO
+
+
 class Solution:
     def __int__(self):
         return
@@ -424,7 +434,6 @@ class Solution:
                 ans += s - cnt.get(nums[i], 0)
             ac.st(ans)
         return
-
 
     @staticmethod
     def ac_4217(ac=FastIO()):

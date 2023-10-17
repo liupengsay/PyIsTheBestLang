@@ -850,7 +850,7 @@ class Solution:
         n, m, k = ac.read_list_ints()
         uf = UnionFind(n)
         for _ in range(k):
-            i, j = ac.read_ints_minus_one()
+            i, j = ac.read_list_ints_minus_one()
             uf.union(i, j)
         dct = defaultdict(int)
         for i in range(n):

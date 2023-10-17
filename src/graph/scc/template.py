@@ -220,7 +220,7 @@ class TwoSAT:
         # 建图并把索引编码
         edge = [[] for _ in range(4 * n)]
         for _ in range(m):
-            a, b = ac.read_ints_minus_one()
+            a, b = ac.read_list_ints_minus_one()
             edge[a * 2 + 1].append(b * 2)
             edge[b * 2 + 1].append(a * 2)
 

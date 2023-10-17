@@ -1,3 +1,5 @@
+import time
+from datetime import datetime, timedelta, date
 
 
 class DateTime:
@@ -9,8 +11,8 @@ class DateTime:
     @staticmethod
     def day_interval(y1, m1, d1, y2, m2, d2):
         # 模板: 计算两个日期之间的间隔天数
-        day1 = datetime.datetime(y1, m1, d1)
-        day2 = datetime.datetime(y2, m2, d2)
+        day1 = datetime(y1, m1, d1)
+        day2 = datetime(y2, m2, d2)
         return (day1 - day2).days
 
     @staticmethod
@@ -41,8 +43,8 @@ class DateTime:
     @staticmethod
     def get_n_days(yy, mm, dd, n):
         # 模板: 获取当前日期往后天数的日期
-        now = datetime.datetime(yy, mm, dd, 0, 0, 0, 0)
-        delta = datetime.timedelta(days=n)
+        now = datetime(yy, mm, dd, 0, 0, 0, 0)
+        delta = timedelta(days=n)
         n_days = now + delta
         return n_days.strftime("%Y-%m-%d")
 
@@ -50,13 +52,13 @@ class DateTime:
     def is_valid_date(date_str):
         # 模板: 判断日期是否合法
         try:
-            datetime.date.fromisoformat(date_str)
+            date.fromisoformat(date_str)
         except ValueError as _:
             return False
         else:
             return True
 
-    def all_palidrome_date(self):
+    def all_palindrome_date(self):
         # 模板: 枚举出所有的八位回文日期 1000-01-01到9999-12-31
         ans = []
         for y in range(1000, 10000):

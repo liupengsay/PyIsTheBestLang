@@ -526,7 +526,7 @@ class Solution:
         n, m = ac.read_list_ints()
         degree = [0] * n
         for _ in range(m):
-            x, y = ac.read_ints_minus_one()
+            x, y = ac.read_list_ints_minus_one()
             degree[x] += 1
             degree[y] += 1
         ans = 0

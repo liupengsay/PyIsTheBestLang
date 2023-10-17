@@ -332,7 +332,7 @@ class Solution:
         row = [0] * m
         col = [0] * n
         for _ in range(t):
-            xx, yy = ac.read_ints_minus_one()
+            xx, yy = ac.read_list_ints_minus_one()
             row[xx] += 1
             col[yy] += 1
         ans1 = check(row)

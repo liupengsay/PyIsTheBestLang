@@ -27,6 +27,9 @@ C. Yet Another Counting Problem（https://codeforces.com/problemset/problem/1342
 
 参考：OI WiKi（xx）
 """
+from typing import List
+
+from utils.fast_io import FastIO
 
 
 class Solution:

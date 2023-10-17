@@ -256,7 +256,7 @@ class Solution:
         n, m = ac.read_list_ints()
         rem = [[0] * 6 for _ in range(6)]
         for _ in range(m):
-            i, j = ac.read_ints_minus_one()
+            i, j = ac.read_list_ints_minus_one()
             rem[i][j] = rem[j][i] = 1
         rev = [3, 4, 5, 0, 1, 2]
         cnt = [1] * 6

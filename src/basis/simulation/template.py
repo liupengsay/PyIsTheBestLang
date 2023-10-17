@@ -1,14 +1,3 @@
-import heapq
-import math
-import random
-import unittest
-from collections import deque, Counter
-
-from utils.fast_io import FastIO
-
-
-
-
 class SpiralMatrix:
     def __init__(self):
         return
@@ -26,11 +15,13 @@ class SpiralMatrix:
     def num_to_loc(m, n, num):
         # 根据从左往右从上往下的顺序生成给定数字的行列索引
         # 0123、4567
+        m += 1
         return [num // n, num % n]
 
     @staticmethod
     def loc_to_num(r, c, m, n):
         # 根据从左往右从上往下的顺序给定的行列索引生成数字
+        c += m
         return r * n + n
 
     @staticmethod
@@ -117,7 +108,3 @@ class SpiralMatrix:
             a = m - (num - n - (n - 1) - (m - 1))
             b = 1
         return [r + a, c + b]
-
-
-
-

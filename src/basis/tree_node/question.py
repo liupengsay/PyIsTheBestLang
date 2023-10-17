@@ -1,6 +1,6 @@
-
-import unittest
 from typing import List, Optional
+
+from basis.tree_node.template import TreeNode, TreeOrder
 
 """
 算法：二叉树、N叉树、先序遍历、中序遍历、后序遍历、迭代实现、前序遍历
@@ -32,7 +32,6 @@ class Solution:
     def lc_94(root: Optional[TreeNode]) -> List[int]:
         return TreeOrder().in_order(root)
 
-    @staticmethoda
+    @staticmethod
     def lc_144(root: Optional[TreeNode]) -> List[int]:
         return TreeOrder().pre_order(root)
-

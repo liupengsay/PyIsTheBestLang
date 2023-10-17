@@ -1,3 +1,5 @@
+import math
+from decimal import Decimal
 
 
 class TriPartSearch:
@@ -154,5 +156,3 @@ class TriPartPackTriPart:
         res_x, r = optimize(low)
         res_y = low
         return [res_x, res_y, math.sqrt(r)]
-
-

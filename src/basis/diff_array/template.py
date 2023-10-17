@@ -1,16 +1,3 @@
-import math
-import unittest
-from collections import defaultdict, deque
-from itertools import accumulate
-from typing import List
-
-from basis.binary_search.template import BinarySearch
-from utils.fast_io import FastIO
-import bisect
-from math import inf
-
-
-
 class PreFixSumMatrix:
     def __init__(self, mat):
         self.mat = mat
@@ -24,8 +11,7 @@ class PreFixSumMatrix:
 
     def query(self, xa, ya, xb, yb):
         # 二维子矩阵和查询，索引从 0 开始，左上角 [xa, ya] 右下角 [xb, yb]
-        return self.pre[xb + 1][yb + 1] - self.pre[xb +
-                                                   1][ya] - self.pre[xa][yb + 1] + self.pre[xa][ya]
+        return self.pre[xb + 1][yb + 1] - self.pre[xb + 1][ya] - self.pre[xa][yb + 1] + self.pre[xa][ya]
 
 
 class DiffArray:
@@ -115,5 +101,3 @@ class DiffMatrix:
         # 二维子矩阵和
         return pre[xb + 1][yb + 1] - pre[xb + 1][ya] - \
             pre[xa][yb + 1] + pre[xa][ya]
-
-

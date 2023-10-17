@@ -204,7 +204,7 @@ class Solution:
         n, m = ac.read_list_ints()
         dct = [set() for _ in range(n)]
         for _ in range(m):
-            i, j = ac.read_ints_minus_one()
+            i, j = ac.read_list_ints_minus_one()
             dct[i].add(j)
             dct[j].add(i)
         cut_node, _ = TarjanCC().get_cutting_point_and_cutting_edge_bfs(n, [list(d) for d in dct])
@@ -220,7 +220,7 @@ class Solution:
         edge = [set() for _ in range(n)]
         degree = [0] * n
         for _ in range(m):
-            x, y = ac.read_ints_minus_one()
+            x, y = ac.read_list_ints_minus_one()
             # 注意自环的特殊处理
             if x != y:
                 edge[x].add(y)
@@ -244,7 +244,7 @@ class Solution:
         n, m = ac.read_list_ints()
         edge = [set() for _ in range(n)]
         for _ in range(m):
-            a, b = ac.read_ints_minus_one()
+            a, b = ac.read_list_ints_minus_one()
             # 需要处理自环与重边
             if a > b:
                 a, b = b, a
@@ -281,7 +281,7 @@ class Solution:
         s -= 1
         edges = [set() for _ in range(n)]
         for _ in range(m):
-            x, y = ac.read_ints_minus_one()
+            x, y = ac.read_list_ints_minus_one()
             edges[x].add(y)
         scc_id, scc_node_id, node_scc_id = TarjanCC().get_strongly_connected_component_bfs(n, [list(e) for e in edges])
         # 建立新图
@@ -362,7 +362,7 @@ class Solution:
         n, m = ac.read_list_ints()
         dct = [set() for _ in range(n)]
         for _ in range(m):
-            i, j = ac.read_ints_minus_one()
+            i, j = ac.read_list_ints_minus_one()
             dct[i].add(j)
             dct[j].add(i)
         cut_node, cut_edge = TarjanCC().get_cutting_point_and_cutting_edge_bfs(n, [list(d) for d in dct])
@@ -379,7 +379,7 @@ class Solution:
         degree = defaultdict(int)
         pre = set()
         for _ in range(m):
-            a, b = ac.read_ints_minus_one()
+            a, b = ac.read_list_ints_minus_one()
             # 需要处理自环与重边
             if a > b:
                 a, b = b, a
@@ -453,7 +453,7 @@ class Solution:
         n, m = ac.read_list_ints()
         edge = [set() for _ in range(n)]
         for _ in range(m):
-            a, b = ac.read_ints_minus_one()
+            a, b = ac.read_list_ints_minus_one()
             edge[a].add(b)
         _, group, _ = TarjanCC().get_strongly_connected_component_bfs(n, [list(e) for e in edge])
 
@@ -470,7 +470,7 @@ class Solution:
         nums = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for _ in range(ac.read_int()):
-            x, y = ac.read_ints_minus_one()
+            x, y = ac.read_list_ints_minus_one()
             dct[x].append(y)
         _, group, _ = TarjanCC().get_strongly_connected_component_bfs(n, dct)
         ans = 1
@@ -548,7 +548,7 @@ class Solution:
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for _ in range(m):
-            a, b, t = ac.read_ints_minus_one()
+            a, b, t = ac.read_list_ints_minus_one()
             dct[a].append(b)
             if t == 1:
                 # 双向通行
@@ -570,7 +570,7 @@ class Solution:
         n, m = ac.read_list_ints()
         dct = [set() for _ in range(n)]
         for _ in range(m):
-            i, j = ac.read_ints_minus_one()
+            i, j = ac.read_list_ints_minus_one()
             if i != j:
                 dct[i].add(j)
         # 必须要使用缩点，否则单独一个环没办法获取消息
@@ -632,7 +632,7 @@ class Solution:
         n, m = ac.read_list_ints()
         edge = [set() for _ in range(n)]
         for _ in range(m):
-            a, b = ac.read_ints_minus_one()
+            a, b = ac.read_list_ints_minus_one()
             edge[a].add(b)
         _, group, _ = TarjanCC().get_strongly_connected_component_bfs(n, [list(e) for e in edge])
         ans = 0
@@ -726,7 +726,7 @@ class Solution:
                     for x in sub[j]:
                         sub[i].add(x)
         for _ in range(q):
-            a, b = ac.read_ints_minus_one()
+            a, b = ac.read_list_ints_minus_one()
             x, y = node_scc_id[a], node_scc_id[b]
             ac.st("DA" if y in sub[x] else "NE")
         return
@@ -796,7 +796,7 @@ class Solution:
         s = ac.read_str()
         dct = [set() for _ in range(n)]
         for _ in range(m):
-            a, b = ac.read_ints_minus_one()
+            a, b = ac.read_list_ints_minus_one()
             if a == b:
                 ac.st(-1)
                 return

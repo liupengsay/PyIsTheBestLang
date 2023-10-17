@@ -300,7 +300,7 @@ class Solution:
             dct = [[] for _ in range(n)]
             degree = [0] * n
             for _ in range(m):
-                i, j = ac.read_ints_minus_one()
+                i, j = ac.read_list_ints_minus_one()
                 dct[j].append(i)
                 degree[i] += 1
             ans = []
@@ -328,7 +328,7 @@ class Solution:
         n, k = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for _ in range(n - 1):
-            i, j = ac.read_ints_minus_one()
+            i, j = ac.read_list_ints_minus_one()
             dct[i].append(j)
             dct[j].append(i)
         x, y, _, path = TreeDiameterInfo().get_diameter_info(dct)
@@ -367,7 +367,7 @@ class Solution:
         dct = [[] for _ in range(n)]
         degree = [0] * n
         for _ in range(n - 1):
-            i, j = ac.read_ints_minus_one()
+            i, j = ac.read_list_ints_minus_one()
             dct[i].append(j)
             dct[j].append(i)
             degree[i] += 1
@@ -448,7 +448,7 @@ class Solution:
         degree = [0] * n
         uf = UnionFind(n)
         for _ in range(m):  # 简单无向图即没有环套环
-            i, j = ac.read_ints_minus_one()
+            i, j = ac.read_list_ints_minus_one()
             degree[j] += 1
             degree[i] += 1
             dct[i].append(j)
@@ -542,13 +542,13 @@ class Solution:
         dct = [[] for _ in range(n)]
         degree = [[0, -1, 0] for _ in range(n)]
         for _ in range(m):
-            i, j = ac.read_ints_minus_one()
+            i, j = ac.read_list_ints_minus_one()
             dct[j].append(i)
             degree[i][0] += 1
 
         visit = [[-1, 0] for _ in range(n)]
         for ind in range(q):
-            s, e = ac.read_ints_minus_one()
+            s, e = ac.read_list_ints_minus_one()
             visit[s] = [ind, 0]
             stack = deque([x for x in range(n) if not degree[x][0] or x == e])
             for i in stack:
@@ -579,7 +579,7 @@ class Solution:
         dct = [[] for _ in range(n)]
         degree = [0] * n
         for _ in range(n):
-            i, j = ac.read_ints_minus_one()
+            i, j = ac.read_list_ints_minus_one()
             dct[i].append(j)
             dct[j].append(i)
             degree[i] += 1
@@ -602,7 +602,7 @@ class Solution:
         degree = [0] * n
         dct = [[] for _ in range(n)]
         for _ in range(n):
-            x, y = ac.read_ints_minus_one()
+            x, y = ac.read_list_ints_minus_one()
             dct[x].append(y)
             dct[y].append(x)
             degree[x] += 1
@@ -649,7 +649,7 @@ class Solution:
             d += 1
 
         for _ in range(q):
-            x, y = ac.read_ints_minus_one()
+            x, y = ac.read_list_ints_minus_one()
             if dis[x] == 0:
                 ac.st("Survive" if x != y else "Deception")
                 continue

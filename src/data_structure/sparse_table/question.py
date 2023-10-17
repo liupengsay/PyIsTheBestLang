@@ -79,7 +79,7 @@ class Solution:
         st_gcd = SparseTable1(nums, "gcd")
         st_min = SparseTable1(nums, "min")
         for _ in range(ac.read_int()):
-            x, y = ac.read_ints_minus_one()
+            x, y = ac.read_list_ints_minus_one()
             num1 = st_gcd.query(x + 1, y + 1)
             num2 = st_min.query(x + 1, y + 1)
             if num1 == num2:

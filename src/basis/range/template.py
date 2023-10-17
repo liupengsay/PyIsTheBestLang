@@ -1,13 +1,5 @@
-import bisect
-import unittest
-from collections import defaultdict, deque
 from math import inf
 from typing import List
-
-from src.data_structure.sorted_list import LocalSortedList
-from utils.fast_io import FastIO
-
-
 
 
 class Range:
@@ -111,13 +103,10 @@ class Range:
     def disjoint_most(lst):
         # 模板：最多不相交的区间
         lst.sort(key=lambda x: x[1])
-        n = len(lst)
         ans = 0
-        end = float("-inf")
+        end = inf
         for a, b in lst:
             if a >= end:
                 ans += 1
                 end = b
         return ans
-
-

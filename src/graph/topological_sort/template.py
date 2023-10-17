@@ -72,7 +72,7 @@ class TopologicalSort:
     #
     #     degree = [0] * n
     #     for _ in range(n):
-    #         u, v = ac.read_ints_minus_one()
+    #         u, v = ac.read_list_ints_minus_one()
     #         edge[u].append(v)
     #         edge[v].append(u)
     #         degree[u] += 1
@@ -94,7 +94,7 @@ class TopologicalSort:
     #
     #     q = ac.read_int()
     #     for _ in range(q):
-    #         x, y = ac.read_ints_minus_one()
+    #         x, y = ac.read_list_ints_minus_one()
     #         if uf.is_connected(x, y):
     #             ac.st("Yes")
     #         else:

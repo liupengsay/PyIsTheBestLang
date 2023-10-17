@@ -269,7 +269,7 @@ class Solution:
                         dp[i][j] = dp[j][i] = cur
 
         for _ in range(ac.read_int()):
-            x, y = ac.read_ints_minus_one()
+            x, y = ac.read_list_ints_minus_one()
             ans = dp[x][y]
             ac.st(ans if ans < inf  else -1)
         return
@@ -310,7 +310,7 @@ class Solution:
         # 表示节点i与j之间距离为2^k的路径是否存在
         dp = [[[0] * 32 for _ in range(n)] for _ in range(n)]
         for _ in range(m):
-            u, v = ac.read_ints_minus_one()
+            u, v = ac.read_list_ints_minus_one()
             dp[u][v][0] = 1
 
         # 结合倍增思想进行Floyd建新图
@@ -346,7 +346,7 @@ class Solution:
             dis[i][i] = 0
 
         for _ in range(m):
-            a, b, c = ac.read_ints_minus_one()
+            a, b, c = ac.read_list_ints_minus_one()
             c += 1
             dis[a][b] = ac.min(dis[a][b], c)
 

@@ -1,3 +1,8 @@
+import unittest
+
+from basis.violent_enumeration.template import ViolentEnumeration
+
+
 class TestGeneral(unittest.TestCase):
 
     def test_violent_enumeration(self):

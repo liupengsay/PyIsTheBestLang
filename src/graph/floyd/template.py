@@ -63,7 +63,7 @@ class Graph:
         # dp[i][j][k] 表示 i 到 j 有无花费为 k 秒即距离为 2**k 的的路径
         dp = [[[0] * 32 for _ in range(n)] for _ in range(n)]
         for _ in range(m):
-            u, v = ac.read_ints_minus_one()
+            u, v = ac.read_list_ints_minus_one()
             dp[u][v][0] = 1
         for x in range(1, 32):
             for k in range(n):

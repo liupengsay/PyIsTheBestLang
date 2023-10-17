@@ -1,4 +1,4 @@
-
+from typing import Optional, List
 
 
 class TreeNode:
@@ -89,6 +89,3 @@ class TreeOrder:
         if i == len(ans) - 1:
             return
         return ans[i + 1]
-
-
-

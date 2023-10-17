@@ -1,14 +1,13 @@
 
 import bisect
 import math
-import unittest
 import random
 from collections import defaultdict
-from typing import List
-from decimal import Decimal
-from utils.fast_io import FastIO
 from math import inf
+from typing import List
 
+from basis.tripart_search.template import TriPartSearch, TriPartPackTriPart
+from utils.fast_io import FastIO
 
 """
 算法：三分查找求一维极值、三分套三分求二维极值、梯度下降法、爬山法、ternary search三元搜索
@@ -31,6 +30,7 @@ F - Minimum Bounding Box（https://atcoder.jp/contests/abc130/tasks/abc130_f）�
 
 参考：OI WiKi（xx）
 """
+
 
 class Solution:
     def __init__(self):
@@ -104,7 +104,7 @@ class Solution:
     @staticmethod
     def lg_p3382(ac=FastIO()):
         # 模板：三分查找取得最大值的函数点
-        n, l, r = ac.read_floats()
+        n, l, r = ac.read_list_floats()
         n = int(n)
         lst = ac.read_list_floats()
         lst.reverse()
@@ -215,7 +215,7 @@ class Solution:
             random.shuffle(positions)
             for i in range(0, n, batch_size):
                 dx = dy = 0.0
-                j = i+batch_size if i+batch_size<n else n
+                j = i+batch_size if i+batch_size < n else n
                 for k in range(i, j):
                     pos = positions[k]
                     dx += (x-pos[0])/((x-pos[0])*(x-pos[0])+(y-pos[1])*(y-pos[1])+eps)**0.5

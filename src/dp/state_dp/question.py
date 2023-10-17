@@ -427,7 +427,7 @@ class Solution:
         # 建图
         dct = [[] for _ in range(n)]
         for _ in range(m):
-            i, j = ac.read_ints_minus_one()
+            i, j = ac.read_list_ints_minus_one()
             dct[i].append(j)
             dct[j].append(i)
 

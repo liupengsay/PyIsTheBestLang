@@ -159,7 +159,7 @@ class Solution:
         # 最关键的建图
         pairs = []
         for _ in range(m):
-            u, v = ac.read_ints_minus_one()
+            u, v = ac.read_list_ints_minus_one()
             # 每条边两个方向各走一遍
             pairs.append([u, v])
             pairs.append([v, u])

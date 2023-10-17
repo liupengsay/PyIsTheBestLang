@@ -72,6 +72,13 @@ C. Gargari and Bishops（https://codeforces.com/problemset/problem/463/C）选�
 
 参考：OI WiKi（xx）
 """
+import heapq
+import math
+from collections import deque, Counter
+
+from basis.simulation.template import SpiralMatrix
+from utils.fast_io import FastIO
+
 
 class Solution:
     def __int__(self):
@@ -113,11 +120,12 @@ class Solution:
         # 模板：根据指令进行方格组合移动
         def check():
             lst = deque([[25, j] for j in range(11, 31)])
-            direc = {"E": [0, 1], "S": [1, 0], "W": [0, -1], "N": [-1, 0]}
+            dire = {"E": [0, 1], "S": [1, 0], "W": [0, -1], "N": [-1, 0]}
+            m = 0
             for i, w in enumerate(s):
                 m = i + 1
                 x, y = lst[-1]
-                a, b = direc[w]
+                a, b = dire[w]
                 x += a
                 y += b
                 if not (1 <= x <= 50 and 1 <= y <= 50):
@@ -282,7 +290,7 @@ class Solution:
     @staticmethod
     def lg_p8611(ac=FastIO()):
         # 模板：经典蚂蚁碰撞模拟分类讨论
-        n = ac.read_int()
+        ac.read_int()
         nums = ac.read_list_ints()
         a = nums[0]
         x = y = 0
@@ -376,7 +384,7 @@ class Solution:
         n, m, c = ac.read_list_ints()
         cnt = [0, 0]
         for _ in range(c):
-            i, j = ac.read_ints_minus_one()
+            i, j = ac.read_list_ints_minus_one()
             cnt[(i + j) % 2] += 1
 
         total = [0, 0]
@@ -387,7 +395,7 @@ class Solution:
             total[1] = m * n // 2
 
         for _ in range(ac.read_int()):
-            x1, y1, x2, y2, p = ac.read_ints_minus_one()
+            x1, y1, x2, y2, p = ac.read_list_ints_minus_one()
             p += 1
             cur = [0, 0]
             while p:

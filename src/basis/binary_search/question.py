@@ -5,6 +5,11 @@ from itertools import accumulate, combinations
 from math import inf
 from typing import List
 
+from basis.binary_search.template import BinarySearch
+from data_structure.sorted_list.template import LocalSortedList
+from graph.lca.template import OfflineLCA
+from graph.union_find.template import UnionFind
+from mathmatics.number_theory.template import NumberTheory
 from utils.fast_io import FastIO
 
 """
@@ -1064,7 +1069,7 @@ class Solution:
         n, k = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for _ in range(n - 1):
-            x, y, z = ac.read_ints_minus_one()
+            x, y, z = ac.read_list_ints_minus_one()
             dct[x].append([y, z + 1])
             dct[y].append([x, z + 1])
         if n == 1:
@@ -1332,7 +1337,7 @@ class Solution:
     @staticmethod
     def ac_5048(ac=FastIO()):
         # 模板：经典浮点数二分并求出具体方案
-        n = ac.read_int()
+        ac.read_int()
         nums = ac.read_list_ints()
         nums.sort()
 

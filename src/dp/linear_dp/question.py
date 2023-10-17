@@ -735,7 +735,7 @@ class Solution:
             if i:
                 nums[i] = ac.max(nums[i], nums[i - 1])
         for _ in range(q):
-            left, right = ac.read_ints_minus_one()
+            left, right = ac.read_list_ints_minus_one()
             ac.st("Yes" if nums[right] < left else "No")
         return
 

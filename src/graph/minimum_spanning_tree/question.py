@@ -242,7 +242,7 @@ class Solution:
         nums = [ac.read_list_ints() for _ in range(n)]
         dct = [dict() for _ in range(n)]
         for i in range(m):
-            u, v = ac.read_ints_minus_one()
+            u, v = ac.read_list_ints_minus_one()
             dct[u][v] = dct[v][u] = 0
         # 初始化最短距离
         ans = nex = 0
@@ -613,7 +613,7 @@ class Solution:
         ans = 0
         for _ in range(m):
             # 先将大于等于 k 的连接起来
-            i, j = ac.read_ints_minus_one()
+            i, j = ac.read_list_ints_minus_one()
             if i >= k and j >= k:
                 uf.union(i, j)
             else:

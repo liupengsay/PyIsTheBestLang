@@ -1,5 +1,6 @@
+import unittest
 
-
+from basis.range.template import Range
 
 
 class TestGeneral(unittest.TestCase):

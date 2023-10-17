@@ -309,7 +309,7 @@ class Solution:
         # 模板：经典BFS加链表，维护四个方向上的未访问点
         m, n, k = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
-        x1, y1, x2, y2 = ac.read_ints_minus_one()
+        x1, y1, x2, y2 = ac.read_list_ints_minus_one()
 
         dis = [[inf] * n for _ in range(m)]
         row_nex = [list(range(1, n + 1)) for _ in range(m)]

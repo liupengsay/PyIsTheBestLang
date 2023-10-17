@@ -125,7 +125,7 @@ class Solution:
         dct = [[] for _ in range(n)]
         degree = [0] * n
         for _ in range(m):
-            x, y = ac.read_ints_minus_one()
+            x, y = ac.read_list_ints_minus_one()
             dct[y].append(x)
             degree[x] += 1
         # 当前节点为起点的路径总长度

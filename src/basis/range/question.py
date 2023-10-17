@@ -51,6 +51,15 @@ F2. Same Sum Blocks (Hard)（https://codeforces.com/contest/1141/problem/F2）�
 
 参考：OI WiKi（xx）
 """
+import bisect
+from collections import defaultdict, deque
+from math import inf
+from typing import List
+
+from basis.range.template import Range
+from data_structure.sorted_list.template import LocalSortedList
+from utils.fast_io import FastIO
+
 
 class Solution:
     def __init__(self):
@@ -225,7 +234,6 @@ class Solution:
         ans = Range().cover_less(0, t, lst, False)
         ac.st(ans)
         return
-
 
     @staticmethod
     def lg_p2887(ac=FastIO()):

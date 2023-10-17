@@ -1,3 +1,8 @@
+import random
+import unittest
+
+from basis.various_sort.template import VariousSort
+
 
 class TestGeneral(unittest.TestCase):
 

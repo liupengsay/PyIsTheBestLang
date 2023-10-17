@@ -52,7 +52,7 @@ class Solution:
         n, m = ac.read_list_ints()
         dct = [dict() for _ in range(n)]
         for _ in range(m):
-            x, y = ac.read_ints_minus_one()
+            x, y = ac.read_list_ints_minus_one()
             if x != y:
                 dct[y][x] = dct[x][y] = dct[x].get(y, 0) + 1
 
@@ -67,7 +67,7 @@ class Solution:
         d, p, c, f = ac.read_list_ints()
         dct = [dict() for _ in range(c)]
         for _ in range(p):
-            a, b = ac.read_ints_minus_one()
+            a, b = ac.read_list_ints_minus_one()
             # 直接权值取负数变为判断是否存在负环与计算最短路
             dct[a][b] = -d
         for _ in range(f):
@@ -124,7 +124,7 @@ class Solution:
         s -= 1
         dct = [dict() for _ in range(c)]
         for _ in range(p):
-            a, b = ac.read_ints_minus_one()
+            a, b = ac.read_list_ints_minus_one()
             # 直接权值取负数变为判断是否存在负环与计算最短路
             dct[a][b] = -d
         for _ in range(f):

@@ -18,11 +18,7 @@ xx（xxx）xxx
 
 """
 
+
 class Solution:
     def __int__(self):
-        return
-
-    @staticmethod
-    def xx_xxxx(ac=FastIO()):
-        pass
         return

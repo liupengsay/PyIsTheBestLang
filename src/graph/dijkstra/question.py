@@ -175,7 +175,7 @@ class Solution:
 
             dct = [[] for _ in range(n)]
             for _ in range(m):
-                u, v = ac.read_ints_minus_one()
+                u, v = ac.read_list_ints_minus_one()
                 dct[u].append(v)
                 dct[v].append(u)
 
@@ -413,7 +413,7 @@ class Solution:
     def lg_p4568(ac=FastIO()):
         # 模板：建立 k+1 层图计算最短路
         n, m, k = ac.read_list_ints()
-        s, t = ac.read_ints_minus_one()
+        s, t = ac.read_list_ints_minus_one()
         dct = [dict() for _ in range(n * (k + 1))]
 
         def add_edge(x, y, w):
@@ -568,7 +568,7 @@ class Solution:
         dct = [[] for _ in range(n)]
         rev = [[] for _ in range(n)]
         for _ in range(m):
-            x, y, z = ac.read_ints_minus_one()
+            x, y, z = ac.read_list_ints_minus_one()
             dct[x].append(y)
             rev[y].append(x)
             if z == 1:
@@ -773,7 +773,7 @@ class Solution:
         n, m = ac.read_list_ints()
         dct = [dict() for _ in range(n)]
         for _ in range(m):
-            i, j, w = ac.read_ints_minus_one()
+            i, j, w = ac.read_list_ints_minus_one()
             dct[i][j] = dct[j][i] = w + 1
         path, dis = Dijkstra().dijkstra_src_to_dst_path(dct, 0, n - 1)
 
@@ -869,7 +869,7 @@ class Solution:
         nums = [ac.read_list_ints() for _ in range(n)]
         dct = [set() for _ in range(n)]
         for _ in range(w):
-            i, j = ac.read_ints_minus_one()
+            i, j = ac.read_list_ints_minus_one()
             dct[i].add(j)
             dct[j].add(i)
 
@@ -1124,9 +1124,9 @@ class Solution:
             visit = set()
         dct = [dict() for _ in range(n)]
         for _ in range(m):
-            a, b, c = ac.read_ints_minus_one()
+            a, b, c = ac.read_list_ints_minus_one()
             dct[a][b] = dct[b][a] = ac.min(dct[a].get(a, inf), c + 1)
-        x, y = ac.read_ints_minus_one()
+        x, y = ac.read_list_ints_minus_one()
 
         dis1 = Dijkstra().get_dijkstra_result_limit(dct, 0, visit, {0, x, y})
         dis11 = Dijkstra().get_dijkstra_result_limit(dct, x, visit, {0, x, y})
@@ -1146,7 +1146,7 @@ class Solution:
         nums = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for _ in range(m):
-            a, b, c = ac.read_ints_minus_one()
+            a, b, c = ac.read_list_ints_minus_one()
             dct[a].append([b, c + 1])
             dct[b].append([a, c + 1])
         for i in range(n):
@@ -1202,7 +1202,7 @@ class Solution:
         n, m, q = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for i in range(m):
-            x, y = ac.read_ints_minus_one()
+            x, y = ac.read_list_ints_minus_one()
             dct[x].append(y)
             dct[y].append(x)
 
@@ -1476,7 +1476,7 @@ class Solution:
         n, m, k = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for _ in range(m):
-            i, j, w = ac.read_ints_minus_one()
+            i, j, w = ac.read_list_ints_minus_one()
             dct[i].append([j, w + 1])
             dct[j].append([i, w + 1])
         dis = []
@@ -1501,7 +1501,7 @@ class Solution:
         price = [ac.read_int() for _ in range(n)]
         dct = [[] for _ in range(2 * n)]
         for _ in range(ac.read_int()):
-            a, b, c = ac.read_ints_minus_one()
+            a, b, c = ac.read_list_ints_minus_one()
             c += 1
             dct[a].append([b, c])
             dct[a + n].append([b + n, c])
@@ -1613,7 +1613,7 @@ class Solution:
         dct = [set() for _ in range(n)]
         edges = []
         for _ in range(m):
-            x, y = ac.read_ints_minus_one()
+            x, y = ac.read_list_ints_minus_one()
             dct[x].add((y, 1))
             edges.append([x, y])
 
@@ -1698,7 +1698,7 @@ class Solution:
         n, m = ac.read_list_ints()
         rev = [[] for _ in range(n)]
         for _ in range(m):
-            u, v = ac.read_ints_minus_one()
+            u, v = ac.read_list_ints_minus_one()
             rev[v].append([u, 1])
 
         k = ac.read_int()
@@ -1731,7 +1731,7 @@ class Solution:
         nums = ac.read_list_ints_minus_one()
         dct = [[] for _ in range(n)]
         for _ in range(m):
-            x, y = ac.read_ints_minus_one()
+            x, y = ac.read_list_ints_minus_one()
             dct[x].append(y)
             dct[y].append(x)
         dis0 = Dijkstra().get_shortest_by_bfs(dct, 0)

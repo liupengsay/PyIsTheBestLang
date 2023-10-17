@@ -1,3 +1,11 @@
+import random
+import unittest
+from functools import reduce
+from math import gcd
+from operator import mul, add, xor, and_, or_
+
+from basis.two_pointer.template import TwoPointer, SlidingWindowAggregation, INF
+
 
 class TestGeneral(unittest.TestCase):
 
@@ -33,7 +41,6 @@ class TestGeneral(unittest.TestCase):
                         res.append(reduce(op, lst))
                 assert len(res) == len(ans)
                 assert res == ans
-
 
 
 if __name__ == '__main__':

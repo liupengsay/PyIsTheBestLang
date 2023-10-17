@@ -78,7 +78,7 @@ class Solution:
         n = ac.read_int()
         edges = [[] for _ in range(n)]
         for _ in range(n - 1):
-            x, y = ac.read_ints_minus_one()
+            x, y = ac.read_list_ints_minus_one()
             edges[x].append(y)
             edges[y].append(x)
 
@@ -99,7 +99,7 @@ class Solution:
         dfs(0, -1)
 
         for _ in range(ac.read_int()):
-            x, y = ac.read_ints_minus_one()
+            x, y = ac.read_list_ints_minus_one()
             if x == y:
                 ac.st(n)
                 continue
@@ -129,7 +129,7 @@ class Solution:
         n, m = ac.read_list_ints()
         edge = [[] for _ in range(n)]
         for _ in range(n - 1):
-            u, v = ac.read_ints_minus_one()
+            u, v = ac.read_list_ints_minus_one()
             edge[u].append(v)
             edge[v].append(u)
 
@@ -170,13 +170,13 @@ class Solution:
         s -= 1
         edge = [[] for _ in range(n)]
         for _ in range(n - 1):
-            x, y = ac.read_ints_minus_one()
+            x, y = ac.read_list_ints_minus_one()
             edge[x].append(y)
             edge[y].append(x)
         # 需要改 s 为默认根
         tree = TreeAncestor(edge)
         for _ in range(m):
-            x, y = ac.read_ints_minus_one()
+            x, y = ac.read_list_ints_minus_one()
             ac.st(tree.get_lca(x, y) + 1)
         return
 
@@ -205,7 +205,7 @@ class Solution:
                     stack.append([j, i])
                     dis[j] = dis[i] + w
         for _ in range(q):
-            a, b = ac.read_ints_minus_one()
+            a, b = ac.read_list_ints_minus_one()
             c1 = tree.get_lca(a, k)
             c2 = tree.get_lca(b, k)
             ans1 = dis[a] + dis[k] - 2 * dis[c1]
@@ -279,7 +279,7 @@ class Solution:
         n, k = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for _ in range(n - 1):
-            i, j = ac.read_ints_minus_one()
+            i, j = ac.read_list_ints_minus_one()
             dct[i].append(j)
             dct[j].append(i)
         queries = [ac.read_list_ints_minus_one() for _ in range(k)]
@@ -300,7 +300,7 @@ class Solution:
         nums = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for _ in range(n - 1):
-            i, j = ac.read_ints_minus_one()
+            i, j = ac.read_list_ints_minus_one()
             dct[i].append(j)
             dct[j].append(i)
         heavy = HeavyChain(dct, r)
@@ -338,12 +338,12 @@ class Solution:
         r -= 1
         dct = [[] for _ in range(n)]
         for _ in range(n - 1):
-            i, j = ac.read_ints_minus_one()
+            i, j = ac.read_list_ints_minus_one()
             dct[i].append(j)
             dct[j].append(i)
         heavy = HeavyChain(dct, r)
         for _ in range(m):
-            x, y = ac.read_ints_minus_one()
+            x, y = ac.read_list_ints_minus_one()
             ac.st(heavy.query_lca(x, y) + 1)
         return
 
@@ -401,7 +401,7 @@ class Solution:
         root = nums[0]
         dct = [[] for _ in range(n)]
         for _ in range(n - 1):
-            i, j = ac.read_ints_minus_one()
+            i, j = ac.read_list_ints_minus_one()
             dct[i].append(j)
             dct[j].append(i)
 

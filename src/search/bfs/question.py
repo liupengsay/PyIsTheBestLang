@@ -333,7 +333,7 @@ class Solution:
         degree = [0] * n
         out_degree = [0] * n
         for _ in range(m):
-            i, j = ac.read_ints_minus_one()
+            i, j = ac.read_list_ints_minus_one()
             edge[i].append(j)
             degree[j] += 1
             out_degree[i] += 1
@@ -541,7 +541,7 @@ class Solution:
         n = ac.read_int()
         edge = [[] for _ in range(n)]
         for _ in range(n - 1):
-            i, j = ac.read_ints_minus_one()
+            i, j = ac.read_list_ints_minus_one()
             edge[i].append(j)
             edge[j].append(i)
 
@@ -677,7 +677,7 @@ class Solution:
         dct = [[] for _ in range(n)]
         degree = [0]*n
         for _ in range(n-1):
-            i, j = ac.read_ints_minus_one()
+            i, j = ac.read_list_ints_minus_one()
             dct[i].append(j)
             dct[j].append(i)
             degree[i] += 1
@@ -1020,7 +1020,7 @@ class Solution:
     def lg_p2226(ac=FastIO()):
         # 模板：有限制地BDS转向计算
         m, n = ac.read_list_ints()
-        s1, s2, e1, e2 = ac.read_ints_minus_one()
+        s1, s2, e1, e2 = ac.read_list_ints_minus_one()
         grid = [ac.read_list_ints() for _ in range(m)]
         ind = [[0, 1], [1, 0], [0, -1], [-1, 0]]
         for t in range(1, 11):
@@ -1051,11 +1051,11 @@ class Solution:
         dct = [set() for _ in range(n)]
         rev = [set() for _ in range(n)]
         for _ in range(m):
-            x, y = ac.read_ints_minus_one()
+            x, y = ac.read_list_ints_minus_one()
             if x != y:
                 dct[x].add(y)
                 rev[y].add(x)
-        s, t = ac.read_ints_minus_one()
+        s, t = ac.read_list_ints_minus_one()
 
         # 终点可达
         reach = [0] * n
@@ -1268,7 +1268,7 @@ class Solution:
         pos = dict()
         ind = dict()
         for i in range(k):
-            a, b, c, d = ac.read_ints_minus_one()
+            a, b, c, d = ac.read_list_ints_minus_one()
             if (c, d) not in ind:
                 ind[(c, d)] = len(ind)
             if (a, b) not in pos:
@@ -1387,7 +1387,7 @@ class Solution:
             cao[ac.read_int() - 1] = i
 
         for _ in range(m):
-            a, b, c = ac.read_ints_minus_one()
+            a, b, c = ac.read_list_ints_minus_one()
             dct[a][b] = dct[b][a] = c + 1
         visit = [[0] * (1 << k) for _ in range(n)]
         cnt = [bin(x).count("1") for x in range(1 << k)]
@@ -1791,7 +1791,7 @@ class Solution:
             n, m = ac.read_list_ints()
             dct = [[] for _ in range(n)]
             for _ in range(m):
-                u, v = ac.read_ints_minus_one()
+                u, v = ac.read_list_ints_minus_one()
                 dct[u].append(v)
                 dct[v].append(u)
 
@@ -1832,7 +1832,7 @@ class Solution:
         n, m = ac.read_list_ints()
         edge = [[] for _ in range(n)]
         for _ in range(m):
-            u, v = ac.read_ints_minus_one()
+            u, v = ac.read_list_ints_minus_one()
             edge[u].append(v)
             edge[v].append(u)
 
@@ -1867,7 +1867,7 @@ class Solution:
     def ac_4481(ac=FastIO()):
         # 模板：经典01BFS
         m, n = ac.read_list_ints()
-        r, c = ac.read_ints_minus_one()
+        r, c = ac.read_list_ints_minus_one()
         x, y = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
 

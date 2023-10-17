@@ -1,4 +1,6 @@
+import unittest
 
+from basis.tripart_search.template import TriPartSearch, TriPartPackTriPart
 
 
 class TestGeneral(unittest.TestCase):

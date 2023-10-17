@@ -1,9 +1,7 @@
-
-import unittest
 from functools import lru_cache
 from typing import Optional, List
 
-from src.basis.tree_node import TreeNode
+from basis.tree_node.template import TreeNode
 from utils.fast_io import FastIO
 
 """
@@ -172,10 +170,10 @@ class Solution:
             # 四叉树中心邻居节点
             lst = [[x0, y0], [x0, y0 + 1], [x0 + 1, y0], [x0 + 1, y0 + 1]]
             nex = []
-            for i in range(4):
-                if i != flag:
-                    ans[lst[i][0]][lst[i][1]] = ind
-                    nex.append(lst[i])
+            for ii in range(4):
+                if ii != flag:
+                    ans[lst[ii][0]][lst[ii][1]] = ind
+                    nex.append(lst[ii])
                 else:
                     nex.append([a, b])
             ind += 1
@@ -218,7 +216,7 @@ class Solution:
     @staticmethod
     def cf_448c(ac=FastIO()):
         # 模板：贪心递归DP
-        n = ac.read_int()
+        ac.read_int()
         nums = ac.read_list_ints()
 
         @ac.bootstrap

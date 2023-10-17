@@ -48,7 +48,12 @@ F - XOR Matching（https://atcoder.jp/contests/abc126/tasks/abc126_f）思维题
 
 参考：OI WiKi（xx）
 """
+import math
+from collections import deque, Counter, defaultdict
+from typing import List
 
+from mathmatics.number_theory.template import NumberTheory
+from utils.fast_io import FastIO
 
 
 class Solution:

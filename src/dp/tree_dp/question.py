@@ -122,7 +122,7 @@ class Solution:
         n = ac.read_int()
         edge = [[] for _ in range(n)]
         for _ in range(n - 1):
-            u, v = ac.read_ints_minus_one()
+            u, v = ac.read_list_ints_minus_one()
             edge[u].append(v)
             edge[v].append(u)
         tree = TreeDiameterDis(edge)
@@ -190,7 +190,7 @@ class Solution:
         h = ac.read_list_ints()
         edge = [[] for _ in range(n)]
         for _ in range(n - 1):
-            x, y = ac.read_ints_minus_one()
+            x, y = ac.read_list_ints_minus_one()
             edge[x].append(y)
             edge[y].append(x)
 
@@ -260,7 +260,7 @@ class Solution:
         nums = ac.read_list_ints()
         edge = [[] for _ in range(n)]
         for _ in range(n - 1):
-            x, y = ac.read_ints_minus_one()
+            x, y = ac.read_list_ints_minus_one()
             edge[x].append(y)
             edge[y].append(x)
 
@@ -304,7 +304,7 @@ class Solution:
         evil = set(ac.read_list_ints_minus_one())
         edge = [[] for _ in range(n)]
         for _ in range(n - 1):
-            u, v = ac.read_ints_minus_one()
+            u, v = ac.read_list_ints_minus_one()
             edge[u].append(v)
             edge[v].append(u)
 
@@ -477,7 +477,7 @@ class Solution:
         colors = ac.read_list_ints()
         edge = [[] for _ in range(n)]
         for _ in range(n - 1):
-            i, j = ac.read_ints_minus_one()
+            i, j = ac.read_list_ints_minus_one()
             edge[i].append(j)
             edge[j].append(i)
         # 深搜序自下而上以及父子信息获取
@@ -529,7 +529,7 @@ class Solution:
         nums = ac.read_list_ints()
         edge = [[] for _ in range(n)]
         for _ in range(n - 1):
-            u, v = ac.read_ints_minus_one()
+            u, v = ac.read_list_ints_minus_one()
             edge[u].append(v)
             edge[v].append(u)
 
@@ -614,7 +614,7 @@ class Solution:
             n, k, c = ac.read_list_ints()
             dct = [[] for _ in range(n)]
             for _ in range(n - 1):
-                i, j = ac.read_ints_minus_one()
+                i, j = ac.read_list_ints_minus_one()
                 dct[i].append(j)
                 dct[j].append(i)
 
@@ -641,7 +641,7 @@ class Solution:
         dct = [[] for _ in range(n)]
         degree = [0] * n
         for _ in range(n - 1):
-            x, y = ac.read_ints_minus_one()
+            x, y = ac.read_list_ints_minus_one()
             dct[y].append(x)
             degree[x] += 1
 
@@ -767,7 +767,7 @@ class Solution:
         n = ac.read_int()
         dct = [[] for _ in range(n)]
         for _ in range(n - 1):
-            i, j = ac.read_ints_minus_one()
+            i, j = ac.read_list_ints_minus_one()
             dct[i].append(j)
             dct[j].append(i)
         nums = ac.read_list_ints()
@@ -892,7 +892,7 @@ class Solution:
         n = ac.read_int()
         dct = [[] for _ in range(n)]
         for _ in range(n - 1):
-            i, j = ac.read_ints_minus_one()
+            i, j = ac.read_list_ints_minus_one()
             dct[i].append(j)
             dct[j].append(i)
         dis = ReRootDP().get_tree_distance(dct)
@@ -910,7 +910,7 @@ class Solution:
         root -= 1
         dct = [dict() for _ in range(n)]
         for _ in range(n - 1):
-            i, j, c = ac.read_ints_minus_one()
+            i, j, c = ac.read_list_ints_minus_one()
             c += 1
             dct[i][j] = dct[j][i] = c
         stack = [[root, -1]]
@@ -942,7 +942,7 @@ class Solution:
         sub = [[inf] * (ceil + 1) for _ in range(n)]
         dct = [[] for _ in range(n)]
         for _ in range(n - 1):
-            i, j = ac.read_ints_minus_one()
+            i, j = ac.read_list_ints_minus_one()
             dct[i].append(j)
             dct[j].append(i)
 
@@ -986,7 +986,7 @@ class Solution:
         sub = [0] * n
         dct = [[] for _ in range(n)]
         for _ in range(n - 1):
-            i, j = ac.read_ints_minus_one()
+            i, j = ac.read_list_ints_minus_one()
             dct[i].append(j)
             dct[j].append(i)
         stack = [[0, -1]]
@@ -1107,7 +1107,7 @@ class Solution:
         n = ac.read_int()
         dct = [[] for _ in range(n)]
         for _ in range(n - 1):
-            x, y = ac.read_ints_minus_one()
+            x, y = ac.read_list_ints_minus_one()
             dct[x].append([y, 0])
             dct[y].append([x, 1])
 

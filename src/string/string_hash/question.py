@@ -63,7 +63,7 @@ class Solution:
             n = ac.read_int()
             edge = [[] for _ in range(n)]
             for _ in range(n-1):
-                u, v = ac.read_ints_minus_one()
+                u, v = ac.read_list_ints_minus_one()
                 edge[u].append(v)
                 edge[v].append(u)
 
