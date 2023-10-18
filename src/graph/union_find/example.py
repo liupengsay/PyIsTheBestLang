@@ -1,6 +1,5 @@
 import unittest
 
-from graph.union_find.question import Solution
 from graph.union_find.template import UnionFind, PersistentUnionFind
 
 
