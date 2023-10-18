@@ -7,12 +7,12 @@ from sortedcontainers import SortedList
 
 from basis.binary_search.template import BinarySearch
 from data_structure.segment_tree.template import RangeAscendRangeMax, RangeDescendRangeMin, \
-    SegmentTreeRangeUpdateQuerySumMinMax, SegmentTreeRangeUpdateXORSum, SegmentTreeRangeUpdateChangeQueryMax, \
+    RangeAddRangeSumMinMax, SegmentTreeRangeUpdateXORSum, SegmentTreeRangeUpdateChangeQueryMax, \
     SegmentTreeRangeUpdateMulQuerySum, SegmentTreeRangeSubConSum, SegmentTreeRangeXORQuery, \
-    SegmentTreePointChangeLongCon, SegmentTreeRangeSqrtSum, SegmentTreeRangeAndOrXOR, SegmentTreeRangeChangeQueryOr, \
-    SegmentTreeRangeUpdateAvgDev, SegmentTreeRangeUpdateQuery, SegmentTreePointUpdateRangeMulQuery, \
-    SegmentTreeRangeUpdateQuerySum, SegmentTreeRangeChangeQuerySumMinMaxDefaultDict, SegmentTreeLongestSubSame, \
-    RangeOrRangeAnd
+    SegmentTreePointChangeLongCon, SegmentTreeRangeSqrtSum, SegmentTreeRangeAndOrXOR, RangeChangeRangeOr, \
+    SegmentTreeRangeUpdateAvgDev, SegmentTreePointUpdateRangeMulQuery, \
+    RangeChangeRangeSumMinMaxDynamic, SegmentTreeLongestSubSame, \
+    RangeOrRangeAnd, RangeChangeRangeSumMinMax
 from utils.fast_io import FastIO
 
 """
@@ -253,17 +253,17 @@ class Solution:
     def lg_p3372(ac=FastIO()):
         # 模板：线段树 区间增减 与区间和查询
         n, m = ac.read_list_ints()
-        segment = SegmentTreeRangeUpdateQuerySumMinMax(n)
+        segment = RangeAddRangeSumMinMax(n)
         segment.build(ac.read_list_ints())
 
         for _ in range(m):
             lst = ac.read_list_ints()
             if lst[0] == 1:
                 x, y, k = lst[1:]
-                segment.update_range(x - 1, y - 1, 0, n - 1, k, 1)
+                segment.range_add(x - 1, y - 1,  k)
             else:
                 x, y = lst[1:]
-                ac.st(segment.query_sum(x - 1, y - 1, 0, n - 1, 1))
+                ac.st(segment.range_sum(x - 1, y - 1))
         return
 
     @staticmethod
@@ -287,26 +287,26 @@ class Solution:
         # 模板：差分数组区间增减加线段树查询区间和
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
-        segment = SegmentTreeRangeUpdateQuerySumMinMax(n)
+        segment = RangeAddRangeSumMinMax(n)
 
         for _ in range(m):
             lst = ac.read_list_ints()
             if lst[0] == 1:
                 x, y, k, d = lst[1:]
                 if x == y:
-                    segment.update_range(x - 1, x - 1, 0, n - 1, k, 1)
+                    segment.range_add(x - 1, x - 1, k)
                     if y <= n - 1:
-                        segment.update_point(y, y, 0, n - 1, -k, 1)
+                        segment.range_add(y, y, -k)
                 else:
                     # 经典使用差分数组进行区间的等差数列加减
-                    segment.update_point(x - 1, x - 1, 0, n - 1, k, 1)
-                    segment.update_range(x, y - 1, 0, n - 1, d, 1)
+                    segment.range_add(x - 1, x - 1, k)
+                    segment.range_add(x, y - 1, d)
                     cnt = y - x
                     if y <= n - 1:
-                        segment.update_point(y, y, 0, n - 1, -cnt * d - k, 1)
+                        segment.range_add(y, y, -cnt * d - k)
             else:
                 x = lst[1]
-                ac.st(segment.query_sum(0, x - 1, 0, n - 1, 1) + nums[x - 1])
+                ac.st(segment.range_sum(0, x - 1) + nums[x - 1])
         return
 
     @staticmethod
@@ -526,10 +526,10 @@ class Solution:
 
     @staticmethod
     def lg_p1558(ac=FastIO()):
-        # 模板：线段树区间值修改，区间或值查询
+        # 模板：线段树区间修改，区间或查询
         n, t, q = ac.read_list_ints()
-        tree = SegmentTreeRangeChangeQueryOr(n)
-        tree.update(0, n - 1, 0, n - 1, 1, 1)
+        tree = RangeChangeRangeOr(n)
+        tree.range_change(0, n - 1, 1)
         for _ in range(q):
             lst = ac.read_list_strs()
             if lst[0] == "C":
@@ -537,13 +537,13 @@ class Solution:
                 if a > b:
                     a, b = b, a
                 # 修改区间值
-                tree.update(a - 1, b - 1, 0, n - 1, 1 << (c - 1), 1)
+                tree.range_change(a - 1, b - 1, 1 << (c - 1))
             else:
                 a, b = [int(w) for w in lst[1:]]
                 if a > b:
                     a, b = b, a
                 # 区间值或查询
-                ac.st(bin(tree.query_or(a - 1, b - 1, 0, n - 1, 1)).count("1"))
+                ac.st(bin(tree.range_or(a - 1, b - 1)).count("1"))
         return
 
     @staticmethod
@@ -567,18 +567,15 @@ class Solution:
 
         # 区间修改
         n = len(nodes)
-        tree = SegmentTreeRangeUpdateQuery(n)
+        tree = RangeChangeRangeSumMinMax(n)
+        tree.build([0]*n)
         for i in range(m):
             a, b = nums[i]
-            tree.update(ind[a], ind[b], 0, n - 1, i + 1, 1)
+            tree.range_change(ind[a], ind[b], i + 1)
 
         # 单点查询
-        ans = set()
-        for i in range(n):
-            c = tree.query(i, i, 0, n - 1, 1)
-            if c:
-                ans.add(c)
-        ac.st(len(ans))
+        ans = tree.get()
+        ac.st(len(set(c for c in ans if c)))
         return
 
     @staticmethod
@@ -601,7 +598,7 @@ class Solution:
         # 模板：线段树区间修改、区间加和查询
         n = ac.read_int()
         nums = ac.read_list_ints()
-        tree = SegmentTreeRangeUpdateQuerySum(n)
+        tree = RangeChangeRangeSumMinMax(n)
         pre = 0
         ceil = 0
         for i in range(n):
@@ -612,15 +609,15 @@ class Solution:
                     ceil = max(ceil, pre)
                     low, high = i - 3 * pre, i - pre - 1
                     if high >= 0:
-                        tree.update_range(ac.max(0, low), high, 0, n - 1, 1, 1)
+                        tree.range_change(ac.max(0, low), high, 1)
                 pre = 0
         if pre:
             ceil = max(ceil, pre)
             low, high = n - 3 * pre, n - pre - 1
             if high >= 0:
-                tree.update_range(ac.max(0, low), high, 0, n - 1, 1, 1)
+                tree.range_change(ac.max(0, low), high, 1)
 
-        ans = tree.query_range(0, n - 1, 0, n - 1, 1)
+        ans = tree.range_sum(0, n - 1)
         pre = 0
         res = 0
         for i in range(n):
@@ -631,13 +628,13 @@ class Solution:
                     low, high = i - 4 * pre, i - 3 * pre - 1
                     low = ac.max(low, 0)
                     if low <= high:
-                        res = ac.max(res, high - low + 1 - tree.query_range(low, high, 0, n - 1, 1))
+                        res = ac.max(res, high - low + 1 - tree.range_sum(low, high))
                 pre = 0
         if pre == ceil:
             low, high = n - 4 * pre, n - 3 * pre - 1
             low = ac.max(low, 0)
             if low <= high:
-                res = ac.max(res, high - low + 1 - tree.query_range(low, high, 0, n - 1, 1))
+                res = ac.max(res, high - low + 1 - tree.range_sum(low, high))
         ac.st(ans + res)
         return
 
@@ -794,43 +791,29 @@ class Solution:
                 tree.range_ascend(i, i, x)
         return tree.range_max(0, n - 1)
 
-
-class CountIntervalsLC2276:
-
-    def __init__(self):
-        # 模板：动态开点线段树
-        self.n = 10 ** 9 + 7
-        self.tree = SegmentTreeRangeChangeQuerySumMinMaxDefaultDict()
-
-    def add(self, left: int, right: int) -> None:
-        self.tree.update_range(left, right, 0, self.n - 1, 1, 1)
-
-    def count(self) -> int:
-        return self.tree.cover[1]
-
     @staticmethod
     def ac_3805(ac=FastIO()):
         # 模板：区间增减与最小值查询
         n = ac.read_int()
-        tree = SegmentTreeRangeUpdateQuerySumMinMax(n)
+        tree = RangeAddRangeSumMinMax(n)
         tree.build(ac.read_list_ints())
         for _ in range(ac.read_int()):
             lst = ac.read_list_ints()
             if len(lst) == 2:
-                l, r = lst
-                if l <= r:
-                    ac.st(tree.query_min(l, r, 0, n - 1, 1))
+                ll, r = lst
+                if ll <= r:
+                    ac.st(tree.range_min(ll, r))
                 else:
-                    ans1 = tree.query_min(l, n - 1, 0, n - 1, 1)
-                    ans2 = tree.query_min(0, r, 0, n - 1, 1)
+                    ans1 = tree.range_min(ll, n - 1)
+                    ans2 = tree.range_min(0, r)
                     ac.st(ac.min(ans1, ans2))
             else:
-                l, r, d = lst
-                if l <= r:
-                    tree.update_range(l, r, 0, n - 1, d, 1)
+                ll, r, d = lst
+                if ll <= r:
+                    tree.range_add(ll, r, d)
                 else:
-                    tree.update_range(l, n - 1, 0, n - 1, d, 1)
-                    tree.update_range(0, r, 0, n - 1, d, 1)
+                    tree.range_add(ll, n - 1, d)
+                    tree.range_add(0, r, d)
         return
 
     @staticmethod
@@ -861,35 +844,49 @@ class CountIntervalsLC2276:
         return
 
 
+class CountIntervalsLC2276:
+
+    def __init__(self):
+        # 模板：动态开点线段树
+        self.n = 10 ** 9 + 7
+        self.segment_tree = RangeChangeRangeSumMinMaxDynamic(self.n)
+
+    def add(self, left: int, right: int) -> None:
+        self.segment_tree.range_change(left, right, 1)
+
+    def count(self) -> int:
+        return self.segment_tree.cover[1]
+
+
 class BookMyShowLC2286:
 
     def __init__(self, n: int, m: int):
         self.n = n
         self.m = m
-        self.tree = SegmentTreeRangeUpdateQuerySumMinMax(n)
+        self.tree = RangeAddRangeSumMinMax(n)
         self.cnt = [0] * n
         self.null = SortedList(list(range(n)))
 
     def gather(self, k: int, max_row: int) -> List[int]:
         max_row += 1
-        low = self.tree.query_min(0, max_row - 1, 0, self.n - 1, 1)
+        low = self.tree.range_min(0, max_row - 1)
         if self.m - low < k:
             return []
 
         def check(x):
-            return self.m - self.tree.query_min(0, x, 0, self.n - 1, 1) >= k
+            return self.m - self.tree.range_min(0, x) >= k
 
         # 模板：经典二分加线段树维护最小值与和
         y = BinarySearch().find_int_left(0, max_row - 1, check)
         self.cnt[y] += k
-        self.tree.update_point(y, y, 0, self.n - 1, k, 1)
+        self.tree.range_add(y, y, k)
         if self.cnt[y] == self.m:
             self.null.discard(y)
         return [y, self.cnt[y] - k]
 
     def scatter(self, k: int, max_row: int) -> bool:
         max_row += 1
-        s = self.tree.query_sum(0, max_row - 1, 0, self.n - 1, 1)
+        s = self.tree.range_sum(0, max_row - 1)
         if self.m * max_row - s < k:
             return False
         while k:
@@ -897,7 +894,7 @@ class BookMyShowLC2286:
             rest = k if k < self.m - self.cnt[x] else self.m - self.cnt[x]
             k -= rest
             self.cnt[x] += rest
-            self.tree.update_point(x, x, 0, self.n - 1, rest, 1)
+            self.tree.range_add(x, x, rest)
             if self.cnt[x] == self.m:
                 self.null.pop(0)
         return True
