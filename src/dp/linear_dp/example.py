@@ -1,3 +1,7 @@
+import unittest
+
+from dp.linear_dp.template import LinearDP
+
 
 class TestGeneral(unittest.TestCase):
 

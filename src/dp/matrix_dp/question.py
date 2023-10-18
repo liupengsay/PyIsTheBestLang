@@ -1,4 +1,3 @@
-
 """
 算法：矩阵DP、二维DP、记忆化搜索（记忆化形式的DP，可以自顶向下也可以自底向上，就是另一种写法的DP）、LCS
 功能：在二维矩阵上进行转移的DP，经典的有矩阵前缀和，矩阵区间和，正方形最大边长或面积，编辑距离，公共子序列，最长回文子串
@@ -123,6 +122,19 @@ E - Common Subsequence（https://atcoder.jp/contests/abc130/tasks/abc130_e）二
 参考：OI WiKi（xx）
 """
 
+import heapq
+from collections import defaultdict, deque
+from functools import lru_cache
+from itertools import permutations, accumulate
+from math import inf
+from typing import List
+
+from basis.diff_array.template import PreFixSumMatrix
+from data_structure.tree_array.template import PointDescendPreMin
+from greedy.longest_increasing_subsequence.template import LcsLis
+from mathmatics.comb_perm.template import Combinatorics
+from utils.fast_io import FastIO
+
 
 class Solution:
     def __init__(self):
@@ -141,9 +153,9 @@ class Solution:
     @staticmethod
     def lc_920(n: int, goal: int, k: int) -> int:
         # 模板：经典矩阵DP（记忆化深搜刷表法实现）
-        mod = 10**9 + 7
+        mod = 10 ** 9 + 7
 
-        @lru_cache(None)   # 前 i 首播放了 r 首不同的歌
+        @lru_cache(None)  # 前 i 首播放了 r 首不同的歌
         def dfs(i, r):
             if i == goal:
                 return 1 if r == n else 0
@@ -164,7 +176,7 @@ class Solution:
         for num in rods:
             cur = pre.copy()
             for p in pre:
-                cur[p+num] = max(cur[p+num], pre[p])
+                cur[p + num] = max(cur[p + num], pre[p])
                 cur[p - num] = max(cur[p - num], pre[p] + num)
             pre = cur
         return pre[0]
@@ -317,18 +329,18 @@ class Solution:
 
         # 考虑 0 的存在影响
         zero = False
-        for i in range(n):
-            for j in range(n):
-                if grid[i][j] == 0:
+        for ii in range(n):
+            for jj in range(n):
+                if grid[ii][jj] == 0:
                     zero = True
         if not zero:
             return ans
 
         if ans[0] > 1:
-            for i in range(n):
-                for j in range(n):
-                    if grid[i][j] == 0:
-                        cur = "D" * i + "R" * j + "D" * (n - 1 - i) + "R" * (n - 1 - j)
+            for ii in range(n):
+                for jj in range(n):
+                    if grid[ii][jj] == 0:
+                        cur = "D" * ii + "R" * jj + "D" * (n - 1 - ii) + "R" * (n - 1 - jj)
                         ans = [1, cur]
                         return ans
         return ans
@@ -359,7 +371,7 @@ class Solution:
 
     @staticmethod
     def lc_2478(s: str, k: int, min_length: int) -> int:
-        mod = 10**9 + 7
+        mod = 10 ** 9 + 7
         # 模板：前缀和优化二维矩阵DP
         start = set("2357")
         if s[0] not in start:
@@ -457,33 +469,33 @@ class Solution:
     def lg_p1544(ac=FastIO()):
         # 模板：三维矩阵DP
         n, k = ac.read_list_ints()
-        dp = [[[-inf]*(k+1) for _ in range(n)] for _ in range(2)]
+        dp = [[[-inf] * (k + 1) for _ in range(n)] for _ in range(2)]
         nums = []
-        while len(nums) < n*(n+1)//2:
+        while len(nums) < n * (n + 1) // 2:
             nums.extend(ac.read_list_ints())
 
         pre = 0
         num = nums[0]
         dp[pre][0][0] = num
-        dp[pre][0][1] = num*3
+        dp[pre][0][1] = num * 3
         s = 1
         for i in range(1, n):
-            lst = nums[s:s+i+1]
-            s += i+1
-            cur = 1-pre
-            dp[cur] = [[-inf]*(k+1) for _ in range(n)]
-            for j in range(i+1):
-                for p in range(k+1):
+            lst = nums[s:s + i + 1]
+            s += i + 1
+            cur = 1 - pre
+            dp[cur] = [[-inf] * (k + 1) for _ in range(n)]
+            for j in range(i + 1):
+                for p in range(k + 1):
                     if j and p:
-                        a = ac.max(dp[pre][j][p], dp[pre][j-1][p]) + lst[j]
-                        b = ac.max(dp[pre][j][p-1], dp[pre][j-1][p-1]) + lst[j]*3
+                        a = ac.max(dp[pre][j][p], dp[pre][j - 1][p]) + lst[j]
+                        b = ac.max(dp[pre][j][p - 1], dp[pre][j - 1][p - 1]) + lst[j] * 3
                         dp[cur][j][p] = ac.max(a, b)
                     elif j:
-                        dp[cur][j][p] = ac.max(dp[pre][j][p], dp[pre][j-1][p]) + lst[j]
+                        dp[cur][j][p] = ac.max(dp[pre][j][p], dp[pre][j - 1][p]) + lst[j]
                     elif p:
-                        dp[cur][j][p] = ac.max(dp[pre][j][p]+lst[j], dp[pre][j][p-1]+lst[j]*3)
+                        dp[cur][j][p] = ac.max(dp[pre][j][p] + lst[j], dp[pre][j][p - 1] + lst[j] * 3)
                     else:
-                        dp[cur][j][p] = dp[pre][j][p]+lst[j]
+                        dp[cur][j][p] = dp[pre][j][p] + lst[j]
             pre = cur
         ac.st(max(max(d) for d in dp[pre]))
         return
@@ -503,9 +515,9 @@ class Solution:
         dp = [[[0] * n for _ in range(n)] for _ in range(n)]
         for x1 in range(n - 1, -1, -1):
             for y1 in range(n - 1, -1, -1):
-                high = ac.min(n-1, x1+y1)
-                low = ac.max(0, x1+y1-(n-1))
-                for x2 in range(high, low-1, -1):
+                high = ac.min(n - 1, x1 + y1)
+                low = ac.max(0, x1 + y1 - (n - 1))
+                for x2 in range(high, low - 1, -1):
                     y2 = x1 + y1 - x2
                     post = 0
                     for a, b in [[x1 + 1, y1], [x1, y1 + 1]]:
@@ -527,9 +539,9 @@ class Solution:
         dp = [[[0] * m for _ in range(n)] for _ in range(m)]
         for x1 in range(m - 1, -1, -1):
             for y1 in range(n - 1, -1, -1):
-                high = ac.min(m-1, x1+y1)
-                low = ac.max(0, x1+y1-(n-1))
-                for x2 in range(high, low-1, -1):
+                high = ac.min(m - 1, x1 + y1)
+                low = ac.max(0, x1 + y1 - (n - 1))
+                for x2 in range(high, low - 1, -1):
                     y2 = x1 + y1 - x2
                     post = 0
                     for a, b in [[x1 + 1, y1], [x1, y1 + 1]]:
@@ -537,7 +549,7 @@ class Solution:
                             if 0 <= a < m and 0 <= b < n and 0 <= c < m and 0 <= d < n:
                                 post = ac.max(post, dp[a][b][c])
                     dp[x1][y1][x2] = post + grid[x1][y1] + grid[x2][y2]
-                    if x1 == x2 and y1 == y2 and [x1, y1] not in [[0, 0], [m-1, n-1]]:
+                    if x1 == x2 and y1 == y2 and [x1, y1] not in [[0, 0], [m - 1, n - 1]]:
                         dp[x1][y1][x2] = -inf
         ac.st(dp[0][0][0])
         return
@@ -546,21 +558,21 @@ class Solution:
     def lg_p1107(ac=FastIO()):
         # 模板：矩阵DP加前缀数组最值优化
         n, h, d = ac.read_list_ints()
-        cnt = [[0]*(h+1) for _ in range(n)]
+        cnt = [[0] * (h + 1) for _ in range(n)]
         for i in range(n):
             lst = ac.read_list_ints()
             for j in lst[1:]:
                 cnt[i][j] += 1
 
-        ceil = [0]*(h+1)
-        dp = [[0]*n for _ in range(2)]
+        ceil = [0] * (h + 1)
+        dp = [[0] * n for _ in range(2)]
         pre = 0
         for i in range(h, -1, -1):
-            cur = 1-pre
+            cur = 1 - pre
             for j in range(n):
-                dp[cur][j] = dp[pre][j]+cnt[j][i]
-                if i+d <= h and ceil[i+d] > dp[pre][j]:
-                    dp[cur][j] = ceil[i+d]+cnt[j][i]
+                dp[cur][j] = dp[pre][j] + cnt[j][i]
+                if i + d <= h and ceil[i + d] > dp[pre][j]:
+                    dp[cur][j] = ceil[i + d] + cnt[j][i]
             pre = cur
             ceil[i] = max(dp[pre])
         ac.st(ceil[0])
@@ -573,14 +585,14 @@ class Solution:
         t = ac.read_str()
         k = ac.read_int()
         m, n = len(s), len(t)
-        dp = [[inf]*(n+1) for _ in range(m+1)]
+        dp = [[inf] * (n + 1) for _ in range(m + 1)]
         dp[0][0] = 0
         for j in range(n):
-            dp[0][j+1] = dp[0][j]+k
+            dp[0][j + 1] = dp[0][j] + k
         for i in range(m):
-            dp[i+1][0] = dp[i][0]+k
+            dp[i + 1][0] = dp[i][0] + k
             for j in range(n):
-                dp[i+1][j+1] = min(dp[i][j]+abs(ord(s[i])-ord(t[j])), dp[i+1][j]+k, dp[i][j+1]+k)
+                dp[i + 1][j + 1] = min(dp[i][j] + abs(ord(s[i]) - ord(t[j])), dp[i + 1][j] + k, dp[i][j + 1] + k)
         ac.st(dp[-1][-1])
         return
 
@@ -589,14 +601,14 @@ class Solution:
         # 模板：矩阵DP
         n, m = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
-        dp = [[-inf]*(m+1) for _ in range(n+1)]
+        dp = [[-inf] * (m + 1) for _ in range(n + 1)]
         dp[0][0] = 0
         for i in range(n):
-            dp[i+1][0] = dp[i][0]
-            for j in range(1, min(i+2, m+1)):
-                dp[i+1][0] = ac.max(dp[i+1][0], dp[i+1-j][j])
-            for j in range(1, m+1):
-                dp[i+1][j] = dp[i][j-1]+nums[i]
+            dp[i + 1][0] = dp[i][0]
+            for j in range(1, min(i + 2, m + 1)):
+                dp[i + 1][0] = ac.max(dp[i + 1][0], dp[i + 1 - j][j])
+            for j in range(1, m + 1):
+                dp[i + 1][j] = dp[i][j - 1] + nums[i]
         ac.st(dp[n][0])
         return
 
@@ -605,9 +617,9 @@ class Solution:
         # 模板：矩阵DP，并输出匹配方案
         m, n = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
-        dp = [[-inf]*(n+1) for _ in range(m+1)]
-        dp[0] = [0]*(n+1)
-        pre = [[-1]*(n+1) for _ in range(m+1)]
+        dp = [[-inf] * (n + 1) for _ in range(m + 1)]
+        dp[0] = [0] * (n + 1)
+        pre = [[-1] * (n + 1) for _ in range(m + 1)]
         for i in range(m):
             x = dp[i][i]
             ind = i
@@ -615,10 +627,10 @@ class Solution:
                 if dp[i][j] > x:
                     x = dp[i][j]
                     ind = j
-                if dp[i+1][j+1] < x + grid[i][j]:
-                    dp[i+1][j+1] = x + grid[i][j]
+                if dp[i + 1][j + 1] < x + grid[i][j]:
+                    dp[i + 1][j + 1] = x + grid[i][j]
                     # 记录上一行转移顺序
-                    pre[i+1][j+1] = ind
+                    pre[i + 1][j + 1] = ind
 
         # 倒序输出具体方案
         res = max(dp[m])
@@ -669,8 +681,8 @@ class Solution:
         # ac.lst(ans)
 
         dp = [[[[[-inf, -inf] for _ in range(n)] for _ in range(m)] for _ in range(n)] for _ in range(m)]
-        for xa in range(m-1, -1, -1):
-            for ya in range(n-1, -1, -1):
+        for xa in range(m - 1, -1, -1):
+            for ya in range(n - 1, -1, -1):
                 for xb in range(xa, m):
                     for yb in range(ya, n):
                         w = pre[xb + 1][yb + 1] - pre[xb + 1][ya] - pre[xa][yb + 1] + pre[xa][ya]
@@ -680,18 +692,18 @@ class Solution:
 
                         for xx in range(xa, xb):
                             nex1 = dp[xa][ya][xx][yb]
-                            nex2 = dp[xx+1][ya][xb][yb]
+                            nex2 = dp[xx + 1][ya][xb][yb]
                             nex = [nex1[0] + nex2[0], ac.min(nex1[1], nex2[1])]
                             if nex > res:
                                 res = nex[:]
                         for yy in range(ya, yb):
                             nex1 = dp[xa][ya][xb][yy]
-                            nex2 = dp[xa][yy+1][xb][yb]
+                            nex2 = dp[xa][yy + 1][xb][yb]
                             nex = [nex1[0] + nex2[0], ac.min(nex1[1], nex2[1])]
                             if nex > res:
                                 res = nex[:]
                         dp[xa][ya][xb][yb] = res
-        ac.lst(dp[0][0][m-1][n-1])
+        ac.lst(dp[0][0][m - 1][n - 1])
         return
 
     @staticmethod
@@ -700,7 +712,7 @@ class Solution:
         # 模板：矩阵四维DP，可以使用记忆化与迭代计算
         m, n, k = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
-        avg = sum(sum(g) for g in grid)/k
+        avg = sum(sum(g) for g in grid) / k
         m, n = len(grid), len(grid[0])
         pre = [[0] * (n + 1) for _ in range(m + 1)]
         for i in range(m):
@@ -779,7 +791,7 @@ class Solution:
                     for y in range(j, n):
                         for w in range(k + 1):
                             if w == 1:
-                                res = (pre[x + 1][y + 1] - pre[x + 1][j] - pre[i][y + 1] + pre[i][j])**2
+                                res = (pre[x + 1][y + 1] - pre[x + 1][j] - pre[i][y + 1] + pre[i][j]) ** 2
                                 dp[i][j][x][y][w] = res
                                 continue
                             res = inf
@@ -829,7 +841,7 @@ class Solution:
                     for y in range(j, n):
                         for w in range(k + 1):
                             if w == 1:
-                                res = (pre[x + 1][y + 1] - pre[x + 1][j] - pre[i][y + 1] + pre[i][j]-avg)**2
+                                res = (pre[x + 1][y + 1] - pre[x + 1][j] - pre[i][y + 1] + pre[i][j] - avg) ** 2
                                 dp[i][j][x][y][w] = res
                                 continue
                             res = inf
@@ -840,7 +852,7 @@ class Solution:
                                 res = ac.min(res, dp[i][j][x][b][1] + dp[i][b + 1][x][y][w - 1])
                                 res = ac.min(res, dp[i][j][x][b][w - 1] + dp[i][b + 1][x][y][1])
                             dp[i][j][x][y][w] = res
-        ans = (dp[0][0][m - 1][n - 1][k]/k)**0.5
+        ans = (dp[0][0][m - 1][n - 1][k] / k) ** 0.5
         ac.st("%.3f" % ans)
         return
 
@@ -857,16 +869,16 @@ class Solution:
                 lst = ac.read_list_ints()
                 grid_west.append(ac.accumulate(lst))
 
-            grid_north = [[0]*(n+1)]
+            grid_north = [[0] * (n + 1)]
             for _ in range(m):
                 lst = ac.read_list_ints()
-                grid_north.append([grid_north[-1][i]+lst[i] for i in range(n)])
+                grid_north.append([grid_north[-1][i] + lst[i] for i in range(n)])
 
             dp = [[0] * (n + 1) for _ in range(m + 1)]
             for i in range(m):
                 for j in range(n):
                     # 只能往左或者往上挖
-                    dp[i+1][j+1] = ac.max(dp[i][j+1] + grid_west[i][j+1], dp[i+1][j] + grid_north[i+1][j])
+                    dp[i + 1][j + 1] = ac.max(dp[i][j + 1] + grid_west[i][j + 1], dp[i + 1][j] + grid_north[i + 1][j])
             ac.st(dp[-1][-1])
         return
 
@@ -1081,7 +1093,7 @@ class Solution:
     @staticmethod
     def lg_p4958(ac=FastIO()):
         # 模板：三维线性 DP使用前缀和优化
-        mod = 10**9 + 7
+        mod = 10 ** 9 + 7
         ind = {chr(i + ord("a")): i for i in range(26)}
         ind["#"] = 26
         s = ac.read_str()
@@ -1109,17 +1121,17 @@ class Solution:
     def lg_p5144(ac=FastIO()):
         # 模板：线性 DP 二维加前缀异或和
         n, m = ac.read_list_ints()
-        dp = [[0]*m for _ in range(n)]
+        dp = [[0] * m for _ in range(n)]
         nums = ac.read_list_ints()
         dp[0][0] = nums[0]
         for i in range(1, n):
-            dp[i][0] = dp[i-1][0] ^ nums[i]
+            dp[i][0] = dp[i - 1][0] ^ nums[i]
             for j in range(1, m):
                 if j > i:
                     break
                 cur = nums[i]
-                for k in range(i-1, -1, -1):
-                    dp[i][j] = ac.max(dp[k][j-1]+cur, dp[i][j])
+                for k in range(i - 1, -1, -1):
+                    dp[i][j] = ac.max(dp[k][j - 1] + cur, dp[i][j])
                     cur ^= nums[k]
         ac.st(dp[-1][-1])
         return
@@ -1138,7 +1150,7 @@ class Solution:
             stack = deque()
             x = 0
             for j in range(w):
-                if j > i+1:
+                if j > i + 1:
                     break
                 # 单调队列优化求区间内最大值
                 while stack and stack[0][0] < j - 1:
@@ -1186,7 +1198,7 @@ class Solution:
     @staticmethod
     def lg_p6323(ac=FastIO()):
         # 模板：经典 DP 逆序对为指定数量时的排列个数使用前缀和优化
-        mod = 10**9 + 7
+        mod = 10 ** 9 + 7
         n, k = ac.read_list_ints()
         dp = [[0] * (k + 1) for _ in range(2)]
         pre = 0
@@ -1336,7 +1348,7 @@ class Solution:
         dfs()
         ans = [[0] * n for _ in range(n)]
         check()
-        ac.st(dct[(0, 0, n-1, n-1)][-1])
+        ac.st(dct[(0, 0, n - 1, n - 1)][-1])
         for a in ans:
             ac.st("".join(str(x) for x in a))
         return
@@ -1393,17 +1405,17 @@ class Solution:
         for i in range(m - 1, -1, -1):
             for j in range(n - 1, -1, -1):
                 if i == m - 1 and j == n - 1:
-                    row[i].update(n, 1)
-                    col[j].update(m, 1)
+                    row[i].point_descend(n, 1)
+                    col[j].point_descend(m, 1)
                     continue
                 right = grid[i][j] + j + 1 if grid[i][j] + j + 1 < n else n
-                val1 = row[i].query(right)
+                val1 = row[i].pre_min(right)
 
                 down = grid[i][j] + i + 1 if grid[i][j] + i + 1 < m else m
-                val2 = col[j].query(down)
+                val2 = col[j].pre_min(down)
                 dp[i][j] = val1 + 1 if val1 < val2 else val2 + 1
-                row[i].update(j + 1, dp[i][j])
-                col[j].update(i + 1, dp[i][j])
+                row[i].point_descend(j + 1, dp[i][j])
+                col[j].point_descend(i + 1, dp[i][j])
         return dp[0][0] if dp[0][0] < inf else -1
 
     @staticmethod
@@ -1491,6 +1503,7 @@ class Solution:
                 ind = i
         change = [[[-1, -1] for _ in range(b + 1)] for _ in range(n + 1)]
         for i in range(n):
+            j = -1
             for j in range(i, ac.max(-1, i - 5), -1):
                 val = int(s[j:i + 1])
                 for x in range(b + 1 - val):
@@ -1499,7 +1512,7 @@ class Solution:
                         change[i + 1][x + val] = [j, x]
             if pre[j] < i - 5:
                 j = pre[j] + 1
-                val = int(s[j:i + 1])
+                val = int(s[j: i + 1])
                 for x in range(b + 1 - val):
                     if dp[j][x] + 1 < dp[i + 1][x + val]:
                         dp[i + 1][x + val] = dp[j][x] + 1
@@ -1517,7 +1530,7 @@ class Solution:
     def lg_p6870(ac=FastIO()):
         # 模板：矩阵 DP 与组合数优化计数
         n = ac.read_int()
-        mod = 10**9 + 7
+        mod = 10 ** 9 + 7
         cb = Combinatorics(n, mod)
         dp = [[0] * (n + 1) for _ in range(n + 1)]
         dp[0][0] = 1
@@ -1542,21 +1555,21 @@ class Solution:
         n, k, x = ac.read_list_ints()
         nums = ac.read_list_ints()
         # dp[i][j]表示选第i个元素，且选了j个元素的最大和
-        dp = [[-inf]*(x+1) for _ in range(n+1)]
+        dp = [[-inf] * (x + 1) for _ in range(n + 1)]
         dp[0][0] = 0
-        stack = [deque() for _ in range(x+1)]
+        stack = [deque() for _ in range(x + 1)]
         stack[0].append((0, 0))
-        for i in range(1, n+1):
+        for i in range(1, n + 1):
             for j in range(x, 0, -1):
-                while stack[j-1] and stack[j-1][0][0] < i-k:
-                    stack[j-1].popleft()
-                if stack[j-1]:
-                    dp[i][j] = stack[j-1][0][1] + nums[i-1]
+                while stack[j - 1] and stack[j - 1][0][0] < i - k:
+                    stack[j - 1].popleft()
+                if stack[j - 1]:
+                    dp[i][j] = stack[j - 1][0][1] + nums[i - 1]
                 while stack[j] and stack[j][-1][1] <= dp[i][j]:
                     stack[j].pop()
                 stack[j].append((i, dp[i][j]))
 
-        ans = max(dp[i][x] for i in range(n-k+1, n+1))
+        ans = max(dp[i][x] for i in range(n - k + 1, n + 1))
         ac.st(ans if ans > -inf else -1)
         return
 
@@ -1579,7 +1592,6 @@ class Solution:
                     dp[i][j] = a
         return n - dp[0][n - 1] <= k
 
-
     @staticmethod
     def lg_p7995(ac=FastIO()):
         # 模板：矩阵 DP 计算
@@ -1587,7 +1599,7 @@ class Solution:
             n, k = ac.read_list_ints()
             k += 1
             grid = [ac.read_str() for _ in range(n)]
-            dp = [[[[0, 0, 0] for _ in range(k+1)] for _ in range(n)] for _ in range(n)]
+            dp = [[[[0, 0, 0] for _ in range(k + 1)] for _ in range(n)] for _ in range(n)]
             dp[0][0][0] = [1, 0, 0]
             for i in range(n):
                 for j in range(n):
@@ -1595,20 +1607,20 @@ class Solution:
                         continue
                     if i:
                         d = 1
-                        for x in range(k+1):
+                        for x in range(k + 1):
                             for y in range(3):
                                 kk = x + int(y != d)
                                 if kk <= k:
-                                    dp[i][j][kk][d] += dp[i-1][j][x][y]
+                                    dp[i][j][kk][d] += dp[i - 1][j][x][y]
                     if j:
                         d = 2
-                        for x in range(k+1):
+                        for x in range(k + 1):
                             for y in range(3):
                                 kk = x + int(y != d)
                                 if kk <= k:
-                                    dp[i][j][kk][d] += dp[i][j-1][x][y]
+                                    dp[i][j][kk][d] += dp[i][j - 1][x][y]
             ans = 0
-            for x in range(k+1):
+            for x in range(k + 1):
                 ans += sum(dp[-1][-1][x])
             ac.st(ans)
 
@@ -1696,14 +1708,14 @@ class Solution:
         # 模板：经典矩阵 DP 最长回文子序列
         s = ac.read_str()
         n = len(s)
-        dp = [[0]*n for _ in range(n)]
-        for i in range(n-1, -1, -1):
+        dp = [[0] * n for _ in range(n)]
+        for i in range(n - 1, -1, -1):
             dp[i][i] = 1
-            for j in range(i+1, n):
-                dp[i][j] = ac.max(dp[i+1][j], dp[i][j-1])
-                if s[i] == s[j] and dp[i+1][j-1] + 2 > dp[i][j]:
-                    dp[i][j] = dp[i+1][j-1] + 2
-        ac.st(n-dp[0][n-1])
+            for j in range(i + 1, n):
+                dp[i][j] = ac.max(dp[i + 1][j], dp[i][j - 1])
+                if s[i] == s[j] and dp[i + 1][j - 1] + 2 > dp[i][j]:
+                    dp[i][j] = dp[i + 1][j - 1] + 2
+        ac.st(n - dp[0][n - 1])
         return
 
     @staticmethod
@@ -1724,7 +1736,7 @@ class Solution:
                 res += dfs(x, y - 1, wine - 1)
             return res % mod
 
-        mod = 10**9 + 7
+        mod = 10 ** 9 + 7
         n, m = ac.read_list_ints()
         ans = dfs(n, m, 2)
         ac.st(ans)
@@ -1791,7 +1803,7 @@ class Solution:
             if i >= m - 1:
                 for j in range(1, k + 1):
                     a, b = dp[i][j], dp[i - m + 1][j - 1] + \
-                        pre[i + 1] - pre[i - m + 1]
+                                     pre[i + 1] - pre[i - m + 1]
                     dp[i + 1][j] = a if a > b else b
         ac.st(dp[n][k])
         return
@@ -1800,17 +1812,17 @@ class Solution:
     def abc_130e(ac=FastIO()):
         # 模板：二维前缀和优化矩阵DP
         m, n = ac.read_list_ints()
-        mod = 10**9 + 7
+        mod = 10 ** 9 + 7
         s = ac.read_list_ints()
         t = ac.read_list_ints()
-        dp = [[0]*n for _ in range(m)]
-        pre = [[0]*(n+1) for _ in range(m+1)]
+        dp = [[0] * n for _ in range(m)]
+        pre = [[0] * (n + 1) for _ in range(m + 1)]
         for i in range(m):
             for j in range(n):
                 if s[i] == t[j]:
                     dp[i][j] = (pre[i][j] + 1) % mod
             for j in range(n):
-                pre[i+1][j+1] = (pre[i+1][j]+pre[i][j+1] - pre[i][j] + dp[i][j]) % mod
+                pre[i + 1][j + 1] = (pre[i + 1][j] + pre[i][j + 1] - pre[i][j] + dp[i][j]) % mod
         ans = sum(sum(d) for d in dp) + 1
         ac.st(ans % mod)
         return
@@ -1820,7 +1832,7 @@ class Solution:
         # 模板：经典问题求解最长公共子序列LCS的长度与个数
         a = ac.read_str()[:-1]
         b = ac.read_str()[:-1]
-        mod = 10**8
+        mod = 10 ** 8
 
         # 使用滚动数组优化
         m, n = len(a), len(b)
@@ -1889,16 +1901,16 @@ class Solution:
                 dct[w][i] += 1
 
         m = len(target)
-        dp = [[0]*(n+1) for _ in range(m+1)]
+        dp = [[0] * (n + 1) for _ in range(m + 1)]
         dp[0][0] = 1
-        mod = 10**9 + 7
+        mod = 10 ** 9 + 7
         for i in range(m):
-            dp[i+1][0] = 0
+            dp[i + 1][0] = 0
             pre = dp[i][0]
             for j in range(n):
                 c = dct[target[i]][j]
-                dp[i+1][j+1] = (pre*c) % mod
-                pre += dp[i][j+1]
+                dp[i + 1][j + 1] = (pre * c) % mod
+                pre += dp[i][j + 1]
         return sum(dp[-1]) % mod
 
     @staticmethod
@@ -1938,9 +1950,9 @@ class Solution:
                     a, b = dp[i][j], dp[i + 1][j - 1] + 2
                     dp[i][j] = a if a > b else b
         for i in range(m):
-            for j in range(m+n-1, m-1, -1):
+            for j in range(m + n - 1, m - 1, -1):
                 if s[i] == s[j]:
-                    a, b = ans, dp[i+1][j-1]+2
+                    a, b = ans, dp[i + 1][j - 1] + 2
                     ans = a if a > b else b
                     break
         return ans
@@ -1952,16 +1964,16 @@ class Solution:
         pre = points[0][:]
 
         for i in range(1, m):
-            left = [0]*n
+            left = [0] * n
             for j in range(n):
-                a = -inf if not j else left[j-1]
-                b = pre[j]+j
+                a = -inf if not j else left[j - 1]
+                b = pre[j] + j
                 left[j] = a if a > b else b
 
             right = [0] * n
-            for j in range(n-1, -1, -1):
-                a = -inf if j == n-1 else right[j+1]
-                b = pre[j] -j
+            for j in range(n - 1, -1, -1):
+                a = -inf if j == n - 1 else right[j + 1]
+                b = pre[j] - j
                 right[j] = a if a > b else b
 
             for j in range(n):
@@ -2086,4 +2098,3 @@ class Solution:
             return False
 
         return dfs(0, 0, 0)
-

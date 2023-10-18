@@ -1,49 +1,6 @@
-import heapq
-import unittest
-from bisect import bisect_left
-from collections import defaultdict, deque
-from functools import lru_cache
-from itertools import permutations, accumulate
 from math import inf
 
 from typing import List
-
-from src.basis.diff_array import PreFixSumMatrix
-from src.data_structure.tree_array import PointDescendPreMin
-from utils.fast_io import FastIO
-from src.mathmatics.comb_perm import Combinatorics
-
-
-class LcsLis:
-    def __init__(self):
-        return
-
-    def longest_common_subsequence(self, s1, s2) -> int:
-        # 使用LIS的办法求LCS
-        if len(s1) > len(s2):
-            s1, s2 = s2, s1
-        m = len(s2)
-        mapper = defaultdict(list)
-        for i in range(m-1, -1, -1):
-            mapper[s2[i]].append(i)
-        nums = []
-        for c in s1:
-            if c in mapper:
-                nums.extend(mapper[c])
-        return self.longest_increasing_subsequence(nums)
-
-    @staticmethod
-    def longest_increasing_subsequence(nums: List[int]) -> int:
-        # 使用贪心二分求LIS
-        stack = []
-        for x in nums:
-            idx = bisect_left(stack, x)
-            if idx < len(stack):
-                stack[idx] = x
-            else:
-                stack.append(x)
-        # 还可以返回stack获得最长公共子序列
-        return len(stack)
 
 
 class MatrixDP:
@@ -139,4 +96,3 @@ class MatrixDP:
                                 dp[i + 1][j + 1][p + 1] = dp[i + a][j + b][p + c]
                                 res[i + 1][j + 1][p + 1] = res[i + a][j + b][p + c]
         return res[m][n][k]
-

@@ -1,3 +1,8 @@
+import unittest
+from functools import lru_cache
+
+from dp.digital_dp.template import DigitalDP
+from utils.fast_io import FastIO
 
 """
 算法：数位DP
@@ -33,6 +38,7 @@ P1836 数页码（https://www.luogu.com.cn/problem/P1836）数位DP计算1~n内�
 参考：OI WiKi（xx）
 """
 
+
 class Solution:
     def __init__(self):
         return
@@ -58,6 +64,7 @@ class Solution:
                     res += dfs(i + 1, cnt + int(i == d and x == 1),
                                is_limit and ceil == x, True)
                 return res
+
             if num <= 0:
                 return 0
             s = bin(num)[2:]
@@ -69,6 +76,7 @@ class Solution:
                 if c % 2:
                     ans += 1 << (n - d - 1)
             return ans
+
         a, b = ac.read_list_ints()
         ac.st(count(b) ^ count(a - 1))
         return
@@ -87,11 +95,12 @@ class Solution:
             low = 0 if is_num else 1
             high = int(st[i]) if is_limit else 9
             for x in range(low, high + 1):
-                y = pre*x if is_num else x
+                y = pre * x if is_num else x
                 if y > k:
-                    y = k+1
+                    y = k + 1
                 res += dfs(i + 1, is_limit and high == x, True, y)
             return res
+
         n, k = ac.read_list_ints()
         st = str(n)
         m = len(st)
@@ -199,7 +208,7 @@ class Solution:
         n = ac.read_int()
         ans = 0
         for d in range(1, 10):
-            ans += d*DigitalDP().count_digit_iteration(n, d)
+            ans += d * DigitalDP().count_digit_iteration(n, d)
         ac.st(ans)
         return
 
@@ -207,4 +216,4 @@ class Solution:
     def lc_1067(d: int, low: int, high: int) -> int:
         # 模板：计算区间计数，使用右端点减去左端点，数位DP容斥模板题
         dd = DigitalDP()
-        return dd.count_digit(high, d) - dd.count_digit(low-1, d)
+        return dd.count_digit(high, d) - dd.count_digit(low - 1, d)

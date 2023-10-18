@@ -1,15 +1,11 @@
-
-
-import unittest
 from functools import lru_cache
 from itertools import accumulate
+from math import inf
 from typing import List
 
-from utils.fast_io import FastIO, inf
-
+from utils.fast_io import FastIO
 
 MOD = 10 ** 9 + 7
-
 
 """
 算法：区间DP
@@ -110,18 +106,18 @@ class Solution:
     def lc_1312(s: str) -> int:
         # 模板：经典区间DP，最长回文子序列
         n = len(s)
-        dp = [[0]*n for _ in range(n)]
-        for i in range(n-1, -1, -1):
+        dp = [[0] * n for _ in range(n)]
+        for i in range(n - 1, -1, -1):
             dp[i][i] = 1
-            if i+1 < n:
-                dp[i][i+1] = 2 if s[i] == s[i+1] else 1
-            for j in range(i+2, n):
-                a, b = dp[i+1][j], dp[i][j-1]
+            if i + 1 < n:
+                dp[i][i + 1] = 2 if s[i] == s[i + 1] else 1
+            for j in range(i + 2, n):
+                a, b = dp[i + 1][j], dp[i][j - 1]
                 a = a if a > b else b
-                b = dp[i+1][j-1] + 2*int(s[i] == s[j])
+                b = dp[i + 1][j - 1] + 2 * int(s[i] == s[j])
 
                 dp[i][j] = a if a > b else b
-        return n-dp[0][n-1]
+        return n - dp[0][n - 1]
 
     @staticmethod
     def lc_1547(n: int, cuts: List[int]) -> int:
@@ -130,11 +126,11 @@ class Solution:
         cuts.insert(0, 0)
         cuts.append(n)
         m = len(cuts)
-        dp = [[0]*(m+1) for _ in range(m+1)]
-        for i in range(m-1, -1, -1):
-            for j in range(i+2, m):
-                dp[i][j] = cuts[j]-cuts[i] + min(dp[i][k] + dp[k][j] for k in range(i+1, j))
-        return dp[0][m-1]
+        dp = [[0] * (m + 1) for _ in range(m + 1)]
+        for i in range(m - 1, -1, -1):
+            for j in range(i + 2, m):
+                dp[i][j] = cuts[j] - cuts[i] + min(dp[i][k] + dp[k][j] for k in range(i + 1, j))
+        return dp[0][m - 1]
 
     @staticmethod
     def lc_1690(stones: List[int]) -> int:
@@ -182,7 +178,7 @@ class Solution:
         dp = [[[0, 0] for _ in range(n)] for _ in range(2)]
         pre = 0
         for i in range(n - 1, -1, -1):
-            cur = 1-pre
+            cur = 1 - pre
             dp[cur][i][0] = 1
             for j in range(i + 1, n):
                 x = 0
@@ -209,33 +205,33 @@ class Solution:
         n = ac.read_int()
         nums = ac.read_list_ints()
 
-        dp = [[0]*n for _ in range(n)]
-        for i in range(n-1, -1, -1):
+        dp = [[0] * n for _ in range(n)]
+        for i in range(n - 1, -1, -1):
             dp[i][i] = nums[i]
             if i + 1 < n:
-                dp[i][i+1] = nums[i] + nums[i+1]
-            for j in range(i+2, n):
-                dp[i][j] = max(dp[i][k-1]*dp[k+1][j]+dp[k][k] for k in range(i+1, j))
+                dp[i][i + 1] = nums[i] + nums[i + 1]
+            for j in range(i + 2, n):
+                dp[i][j] = max(dp[i][k - 1] * dp[k + 1][j] + dp[k][k] for k in range(i + 1, j))
 
         # 使用栈模拟进行方案还原
         ans = []
-        stack = [[0, n-1]]
+        stack = [[0, n - 1]]
         while stack:
             i, j = stack.pop()
             if i == j:
-                ans.append(i+1)
+                ans.append(i + 1)
                 continue
-            if i == j-1:
-                ans.append(i+1)
-                ans.append(j+1)
+            if i == j - 1:
+                ans.append(i + 1)
+                ans.append(j + 1)
                 continue
-            for k in range(i+1, j):
-                if dp[i][j] == dp[i][k-1]*dp[k+1][j]+dp[k][k]:
-                    ans.append(k+1)
-                    stack.append([k+1, j])
-                    stack.append([i, k-1])
+            for k in range(i + 1, j):
+                if dp[i][j] == dp[i][k - 1] * dp[k + 1][j] + dp[k][k]:
+                    ans.append(k + 1)
+                    stack.append([k + 1, j])
+                    stack.append([i, k - 1])
                     break
-        ac.st(dp[0][n-1])
+        ac.st(dp[0][n - 1])
         ac.lst(ans)
         return
 
@@ -245,24 +241,24 @@ class Solution:
         for _ in range(ac.read_int()):
             nums = ac.read_list_ints()
             n = nums.pop(0)
-            pre = [0]*(n+1)
+            pre = [0] * (n + 1)
             for i in range(n):
-                pre[i+1] = pre[i]+nums[i]
+                pre[i + 1] = pre[i] + nums[i]
 
-            dp = [0]*n
-            post = [0]*n
-            for i in range(n-1, -1, -1):
+            dp = [0] * n
+            post = [0] * n
+            for i in range(n - 1, -1, -1):
                 dp[i] = nums[i]
                 post[i] = ac.min(nums[i], post[i])
                 floor = ac.min(0, nums[i])
-                for j in range(i+1, n):
-                    s = pre[j+1]-pre[i]
+                for j in range(i + 1, n):
+                    s = pre[j + 1] - pre[i]
                     dp[j] = s
-                    dp[j] = ac.max(dp[j], s-post[j])
-                    dp[j] = ac.max(dp[j], s-floor)
+                    dp[j] = ac.max(dp[j], s - post[j])
+                    dp[j] = ac.max(dp[j], s - floor)
                     floor = ac.min(floor, dp[j])
                     post[j] = ac.min(post[j], dp[j])
-            ac.st(dp[n-1])
+            ac.st(dp[n - 1])
         return
 
     @staticmethod
@@ -335,7 +331,8 @@ class Solution:
         for i in range(n - 1, -1, -1):
             dp[i][i] = nums[i]
             for j in range(i + 1, n):
-                dp[i][j] = ac.max(nums[i] + pre[j + 1] - pre[i + 1] - dp[i + 1][j], nums[j] + pre[j] - pre[i] - dp[i][j - 1])
+                dp[i][j] = ac.max(nums[i] + pre[j + 1] - pre[i + 1] - dp[i + 1][j],
+                                  nums[j] + pre[j] - pre[i] - dp[i][j - 1])
         a = dp[0][n - 1]
         ac.lst([a, pre[-1] - a])
         return
@@ -352,42 +349,10 @@ class Solution:
             y = 1 - x
             dp[y][i] = nums[i]
             for j in range(i + 1, n):
-                dp[y][j] = ac.max(pre[j + 1] - pre[i + 1] - dp[x][j] + nums[i], pre[j] - pre[i] - dp[y][j - 1] + nums[j])
+                dp[y][j] = ac.max(pre[j + 1] - pre[i + 1] - dp[x][j] + nums[i],
+                                  pre[j] - pre[i] - dp[y][j - 1] + nums[j])
             x = y
         ac.st(dp[x][n - 1])
-        return
-
-    @staticmethod
-    def lg_p3205(ac=FastIO()):
-        # 模板：区间 DP 使用滚动数组优化
-        n = ac.read_int()
-        nums = ac.read_list_ints()
-        mod = 19650827
-        dp = [[[0, 0] for _ in range(n)] for _ in range(2)]
-        pre = 0
-        for i in range(n - 1, -1, -1):
-
-            cur = 1 - pre
-            dp[cur][i][0] = 1
-            for j in range(i + 1, n):
-                x = 0
-                # 后 j
-                # dp[i][j][1]表示区间[i,j]以j为最后一个的方案数
-                if nums[j - 1] < nums[j]:
-                    x += dp[cur][j - 1][1]
-                if nums[i] < nums[j]:
-                    x += dp[cur][j - 1][0]
-                dp[cur][j][1] = x % mod
-                x = 0
-                # 后 i
-                # dp[i][j][0]表示区间[i,j]以i为最后一个的方案数
-                if nums[i + 1] > nums[i]:
-                    x += dp[pre][j][0]
-                if nums[j] > nums[i]:
-                    x += dp[pre][j][1]
-                dp[cur][j][0] = x % mod
-            pre = cur
-        ac.st(sum(dp[pre][n - 1]) % mod)
         return
 
     @staticmethod
@@ -407,11 +372,10 @@ class Solution:
         ac.st(dp[0][n - 1])
         return
 
-
     @staticmethod
     def ac_3996(ac=FastIO()):
         # 模板：经典区间 DP 最长回文子序列变形
-        n = ac.read_int()
+        ac.read_int()
         nums = ac.read_list_ints()
         pre = []
         for num in nums:
@@ -420,14 +384,14 @@ class Solution:
             pre.append(num)
         nums = pre[:]
         n = len(nums)
-        dp = [[0]*n for _ in range(n)]
-        for i in range(n-1, -1, -1):
-            for j in range(i+1, n):
+        dp = [[0] * n for _ in range(n)]
+        for i in range(n - 1, -1, -1):
+            for j in range(i + 1, n):
                 if nums[i] == nums[j]:
-                    dp[i][j] = dp[i+1][j-1] + 1
+                    dp[i][j] = dp[i + 1][j - 1] + 1
                 else:
-                    dp[i][j] = ac.min(dp[i+1][j], dp[i][j-1]) + 1
-        ac.st(dp[0][n-1])
+                    dp[i][j] = ac.min(dp[i + 1][j], dp[i][j - 1]) + 1
+        ac.st(dp[0][n - 1])
         return
 
     @staticmethod
@@ -435,18 +399,17 @@ class Solution:
         # 模板：经典预处理双重区间DP进行计算
         n = len(s)
 
-        cost = [[0]*n for _ in range(n)]
-        for i in range(n-1, -1, -1):
-            if i+1<n:
-                j = i+1
+        cost = [[0] * n for _ in range(n)]
+        for i in range(n - 1, -1, -1):
+            if i + 1 < n:
+                j = i + 1
                 cost[i][j] = 1 if s[i] != s[j] else 0
-            for j in range(i+2, n):
-                cost[i][j] = cost[i+1][j-1] + int(s[i]!=s[j])
+            for j in range(i + 2, n):
+                cost[i][j] = cost[i + 1][j - 1] + int(s[i] != s[j])
 
-        dp = [[n]*k for _ in range(n+1)]
+        dp = [[n] * k for _ in range(n + 1)]
         for i in range(n):
-            dp[i+1][0] = cost[0][i]
+            dp[i + 1][0] = cost[0][i]
             for j in range(1, k):
-                dp[i+1][j] = min(dp[x][j-1]+cost[x][i] for x in range(i+1))
-        return dp[n][k-1]
-
+                dp[i + 1][j] = min(dp[x][j - 1] + cost[x][i] for x in range(i + 1))
+        return dp[n][k - 1]

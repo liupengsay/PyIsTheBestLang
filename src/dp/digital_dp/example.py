@@ -1,4 +1,6 @@
+import unittest
 
+from dp.digital_dp.template import DigitalDP
 
 
 class TestGeneral(unittest.TestCase):

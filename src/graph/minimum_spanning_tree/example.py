@@ -1,3 +1,7 @@
+import unittest
+
+from graph.minimum_spanning_tree.template import MinimumSpanningTree
+
 
 class TestGeneral(unittest.TestCase):
 

@@ -1,12 +1,12 @@
-import heapq
 import math
-import unittest
-from collections import deque, defaultdict
+from collections import defaultdict
 from heapq import heappop, heappush
+from math import inf
 from typing import List
 
-from utils.fast_io import FastIO, inf
-from src.graph.union_find import UnionFind
+from graph.minimum_spanning_tree.template import TreeAncestorWeightSecond, MinimumSpanningTree
+from graph.union_find.template import UnionFind
+from utils.fast_io import FastIO
 
 """
 
@@ -247,7 +247,7 @@ class Solution:
         # 初始化最短距离
         ans = nex = 0
         rest = set(list(range(1, n)))
-        visit = [inf] * n
+        visit = [math.inf] * n
         visit[nex] = 0
         while rest:
             # 点优先选择距离当前集合最近的点合并
@@ -298,7 +298,7 @@ class Solution:
                     return
 
         # Prim 贪心按照权值选择边进行连通合并
-        dis = [inf] * n
+        dis = [math.inf] * n
         dis[0] = 0
         visit = [0] * n
         stack = [[0, 0, -1]]
@@ -720,8 +720,8 @@ class Solution:
     def lc_1584_2(nums: List[List[int]]) -> int:
 
         # 模板：使用prim计算最小生成树，适合稠密图场景
-        def dis(x1, y1, x2, y2):
-            res = abs(x1 - x2) + abs(y1 - y2)
+        def dis(xx1, yy1, xx2, yy2):
+            res = abs(xx1 - xx2) + abs(yy1 - yy2)
             return res
 
         n = len(nums)
@@ -844,3 +844,38 @@ class Solution:
                 ac.lst([a, b])
         return
 
+
+class DistanceLimitedPathsExist:
+    # 模板：LC1724
+    def __init__(self, n: int, edge_list: List[List[int]]):
+        uf = UnionFind(n)
+        edge = []
+        for i, j, d in sorted(edge_list, key=lambda it: it[-1]):
+            if uf.union(i, j):
+                edge.append([i, j, d])
+
+        self.nodes = []
+        part = uf.get_root_part()
+        self.root = [0] * n
+        for p in part:
+            self.nodes.append(part[p])
+            i = len(self.nodes) - 1
+            for x in part[p]:
+                self.root[x] = i
+        self.ind = [{num: i for i, num in enumerate(node)} for node in self.nodes]
+        dct = [[dict() for _ in range(len(node))] for node in self.nodes]
+
+        for i, j, d in edge:
+            r = self.root[i]
+            dct[r][self.ind[r][i]][self.ind[r][j]] = d
+            dct[r][self.ind[r][j]][self.ind[r][i]] = d
+        # 使用倍增维护查询任意两点路径的最大边权值
+        self.tree = [TreeAncestorWeightSecond(dc) for dc in dct]
+
+    def query(self, p: int, q: int, limit: int) -> bool:
+        if self.root[p] != self.root[q]:
+            return False
+        r = self.root[p]
+        i = self.ind[r][p]
+        j = self.ind[r][q]
+        return self.tree[r].get_dist_weight_max_second(i, j)[0] < limit

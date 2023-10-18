@@ -115,6 +115,14 @@ E - Sum Equals Xor（https://atcoder.jp/contests/abc129/tasks/abc129_e）思维�
 
 参考：OI WiKi（xx）
 """
+import bisect
+from collections import defaultdict, Counter, deque
+from functools import lru_cache
+from math import inf
+from typing import List
+
+from mathmatics.number_theory.template import NumberTheory
+from utils.fast_io import FastIO
 
 
 class Solution:
@@ -283,18 +291,17 @@ class Solution:
     def cf_1525d(ac=FastIO()):
         n = ac.read_int()
         nums = ac.read_list_ints()
-        occu = [i for i in range(n) if nums[i]]
+        busy = [i for i in range(n) if nums[i]]
         free = [i for i in range(n) if not nums[i]]
-        if not occu:
+        if not busy:
             ac.st(0)
             return
-        a, b = len(occu), len(free)
+        a, b = len(busy), len(free)
         dp = [[inf] * (b + 1) for _ in range(a + 1)]
         dp[0] = [0] * (b + 1)
         for i in range(a):
             for j in range(b):
-                dp[i + 1][j + 1] = ac.min(dp[i + 1][j],
-                                          dp[i][j] + abs(occu[i] - free[j]))
+                dp[i + 1][j + 1] = ac.min(dp[i + 1][j], dp[i][j] + abs(busy[i] - free[j]))
         ac.st(dp[-1][-1])
         return
 
@@ -625,7 +632,7 @@ class Solution:
         # 模板：矩阵二维 DP 线性遍历
         n, k = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
-        dis = [[0] * (n) for _ in range(n)]
+        dis = [[0] * n for _ in range(n)]
         for i in range(n):
             x1, y1 = nums[i]
             for j in range(i + 1, n):
@@ -950,7 +957,7 @@ class Solution:
     @staticmethod
     def ac_4414(ac=FastIO()):
         # 模板：经典线性子序列DP
-        n = ac.read_int()
+        ac.read_int()
         nums = ac.read_list_ints()
         ans = -inf
         pre = [-inf, -inf]
@@ -1026,4 +1033,3 @@ class Solution:
             return a if a < b else b
 
         return dfs(n)
-

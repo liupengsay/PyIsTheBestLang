@@ -1,3 +1,16 @@
+import math
+import random
+import unittest
+from collections import defaultdict, deque, Counter
+from functools import lru_cache
+from itertools import combinations
+from typing import List
+from math import inf
+
+from dp.bag_dp.template import BagDP
+from graph.union_find.template import UnionFind
+from mathmatics.number_theory.template import NumberTheory
+from utils.fast_io import FastIO
 
 """
 算法：背包DP、分组背包、一维（无限有限）背包、二维背包、多重背包、分组背包、限制背包、填表法（过去状态预测未来状态）、刷表法（当前状态预测未来状态）、可撤销背包
@@ -197,7 +210,7 @@ class Solution:
             # 注意这里需要进行拷贝
             nex = cur[:]
             for j in range(1, k + 1):
-                for x in range(min(n+1, j+1)):
+                for x in range(min(n + 1, j + 1)):
                     nex[j] = max(nex[j], cur[j - x] + pre[x])
             cur = nex[:]
         return cur[-1]
@@ -261,7 +274,7 @@ class Solution:
     @staticmethod
     def lc_2518(nums: List[int], k: int) -> int:
         # 模板：经典01背包计数
-        mod = 10**9 + 7
+        mod = 10 ** 9 + 7
         dp = [0] * k
         s = sum(nums)
         if s < 2 * k:
@@ -299,12 +312,12 @@ class Solution:
         m = len(lst)
         dp = defaultdict(list)
         dp[1] = [[]]
-        for i in range(1, m-1):
+        for i in range(1, m - 1):
             for j in range(i, m):
                 if lst[j] % lst[i] == 0:
                     x = lst[j] // lst[i]
                     for p in dp[x]:
-                        dp[lst[j]].append(p+[lst[i]])
+                        dp[lst[j]].append(p + [lst[i]])
         return [ls for ls in dp[n] if ls]
 
     @staticmethod
@@ -314,19 +327,19 @@ class Solution:
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         nums.sort(reverse=True)
-        dp = [-inf]*(n+1)
+        dp = [-inf] * (n + 1)
         dp[0] = 0
         for num in nums:
-            val = score[num-1]
-            for i in range(val, n+1):
-                if dp[i-val] + 1 > dp[i]:
-                    dp[i] = dp[i-val]+1
+            val = score[num - 1]
+            for i in range(val, n + 1):
+                if dp[i - val] + 1 > dp[i]:
+                    dp[i] = dp[i - val] + 1
         ans = []
         i = n
         while i:
             for num in nums:
-                val = score[num-1]
-                if i >= val and dp[i] == dp[i-val]+1:
+                val = score[num - 1]
+                if i >= val and dp[i] == dp[i - val] + 1:
                     ans.append(num)
                     i -= val
                     break
@@ -340,11 +353,11 @@ class Solution:
         n, t = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort()
-        dp = [0] * (t+3010)
+        dp = [0] * (t + 3010)
         for x, y in nums:
-            for i in range(t-1, -1, -1):
-                if dp[i] + y > dp[i+x]:
-                    dp[i+x] = dp[i] + y
+            for i in range(t - 1, -1, -1):
+                if dp[i] + y > dp[i + x]:
+                    dp[i + x] = dp[i] + y
         ac.st(max(dp))
         return
 
@@ -352,19 +365,19 @@ class Solution:
     def ac_6(ac=FastIO()):
         # 模板：单调队列优化的多重背包问题，即限定个数和体积价值求最大值
         n, m = ac.read_list_ints()
-        dp = [0]*(m+1)
+        dp = [0] * (m + 1)
         for _ in range(n):
             # 体积 价值 数量
             v, w, s = ac.read_list_ints()
             for r in range(v):
                 stack = deque()
-                for i in range(r, m+1, v):
-                    while stack and stack[0][0] < i-s*v:
+                for i in range(r, m + 1, v):
+                    while stack and stack[0][0] < i - s * v:
                         stack.popleft()
                     while stack and stack[-1][1] + (i - stack[-1][0]) // v * w <= dp[i]:
                         stack.pop()
                     stack.append([i, dp[i]])
-                    dp[i] = stack[0][1] + (i-stack[0][0])//v*w
+                    dp[i] = stack[0][1] + (i - stack[0][0]) // v * w
         ac.st(dp[-1])
         return
 
@@ -414,17 +427,17 @@ class Solution:
     def ac_11(ac=FastIO()):
         # 模板：01背包求方案数
         n, m = ac.read_list_ints()
-        dp = [0]*(m+1)
-        cnt = [1]*(m+1)  # 注意方案数都初始化为1
-        mod = 10**9 + 7
+        dp = [0] * (m + 1)
+        cnt = [1] * (m + 1)  # 注意方案数都初始化为1
+        mod = 10 ** 9 + 7
         for _ in range(n):
             v, w = ac.read_list_ints()
-            for i in range(m, v-1, -1):
-                if dp[i-v] + w > dp[i]:
-                    dp[i] = dp[i-v] + w
-                    cnt[i] = cnt[i-v]
-                elif dp[i-v] + w == dp[i]:
-                    cnt[i] += cnt[i-v]
+            for i in range(m, v - 1, -1):
+                if dp[i - v] + w > dp[i]:
+                    dp[i] = dp[i - v] + w
+                    cnt[i] = cnt[i - v]
+                elif dp[i - v] + w == dp[i]:
+                    cnt[i] += cnt[i - v]
                     cnt[i] %= mod
         ac.st(cnt[-1])
         return
@@ -459,12 +472,13 @@ class Solution:
     def ac_12_2(ac=FastIO()):
         # 模板：01背包求具体方案
         n, m = ac.read_list_ints()
-        dp = [[0, [-1]] for _ in range(m+1)]
+        dp = [[0, [-1]] for _ in range(m + 1)]
         for ind in range(n):
             v, w = ac.read_list_ints()
-            for i in range(m, v-1, -1):
-                if dp[i-v][0] + w > dp[i][0] or (dp[i-v][0] + w == dp[i][0] and dp[i-v][1]+[ind+1] < dp[i][1]):
-                    dp[i] = [dp[i-v][0] + w, dp[i-v][1]+[ind+1]]
+            for i in range(m, v - 1, -1):
+                if dp[i - v][0] + w > dp[i][0] or (
+                        dp[i - v][0] + w == dp[i][0] and dp[i - v][1] + [ind + 1] < dp[i][1]):
+                    dp[i] = [dp[i - v][0] + w, dp[i - v][1] + [ind + 1]]
         ac.lst(dp[-1][1][1:])
         return
 
@@ -506,7 +520,7 @@ class Solution:
         dct = [ac.read_list_ints() for _ in range(m)]
         dct.sort(key=lambda it: it[0])
 
-        dp = [-inf]*(n+1)   # dp[height]=life 到达该高度后剩余的生命值
+        dp = [-inf] * (n + 1)  # dp[height]=life 到达该高度后剩余的生命值
         dp[0] = 10
         for t, f, h in dct:
             if dp[0] < t:
@@ -514,12 +528,12 @@ class Solution:
                 return
             for i in range(n, -1, -1):
                 if dp[i] >= t:
-                    if i+h >= n:
+                    if i + h >= n:
                         ac.st(t)
                         return
                     # 不吃
-                    if i+h <= n:
-                        dp[i+h] = ac.max(dp[i+h], dp[i])
+                    if i + h <= n:
+                        dp[i + h] = ac.max(dp[i + h], dp[i])
                     # 吃掉
                     dp[i] += f
         ac.st(dp[0])
@@ -530,13 +544,13 @@ class Solution:
         # 模板：树上分组背包
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
-        for j in range(n-m):
+        for j in range(n - m):
             lst = ac.read_list_ints()
             for i in range(1, len(lst), 2):
                 # 边的成本
-                dct[j].append([lst[i]-1, lst[i+1]])
+                dct[j].append([lst[i] - 1, lst[i + 1]])
         # 节点收益
-        nums = [0]*(n-m) + ac.read_list_ints()
+        nums = [0] * (n - m) + ac.read_list_ints()
         sub = [[] for _ in range(n)]
         stack = [0]
         while stack:
@@ -549,22 +563,22 @@ class Solution:
                 i = ~i
                 # sub[i][j]表示人数为j时的最大收益
                 sub[i].append(0)
-                if i >= n-m:
+                if i >= n - m:
                     sub[i].append(nums[i])
                     continue
 
                 for j, cost in dct[i]:
                     cur = sub[i][:]
-                    for k1 in range(m+1):
+                    for k1 in range(m + 1):
                         if k1 >= len(sub[i]):
                             break
-                        for k2 in range(m-k1+1):
+                        for k2 in range(m - k1 + 1):
                             if k2 >= len(sub[j]):
                                 break
-                            if len(cur) < k1+k2+1:
-                                cur.extend([-inf]*(k1+k2+1-len(cur)))
+                            if len(cur) < k1 + k2 + 1:
+                                cur.extend([-inf] * (k1 + k2 + 1 - len(cur)))
                             # 左边k1右边k2个用户时聚拢的最大收益
-                            cur[k1+k2] = ac.max(cur[k1+k2], sub[j][k2]+sub[i][k1]-cost)
+                            cur[k1 + k2] = ac.max(cur[k1 + k2], sub[j][k2] + sub[i][k1] - cost)
                     sub[j] = []
                     sub[i] = cur[:]
         for x in range(m, -1, -1):
@@ -622,15 +636,15 @@ class Solution:
         a = ac.read_list_ints()
         ans = 0
         s = sum(a)
-        for item in combinations(a, n-m):
-            dp = [0]*(s+1)
+        for item in combinations(a, n - m):
+            dp = [0] * (s + 1)
             dp[0] = 1
             for num in item:
-                for i in range(s, num-1, -1):
-                    if dp[i-num]:
+                for i in range(s, num - 1, -1):
+                    if dp[i - num]:
                         dp[i] = 1
-            cur = sum(dp)-1
-            ans= ac.max(ans, cur)
+            cur = sum(dp) - 1
+            ans = ac.max(ans, cur)
         ac.st(ans)
         return
 
@@ -645,21 +659,21 @@ class Solution:
 
             case += 1
             ac.st(f"Collection #{case}:")
-            s = sum(lst[i]*(i+1) for i in range(6))
+            s = sum(lst[i] * (i + 1) for i in range(6))
             if s % 2:
                 ac.st("Can't be divided.")
                 ac.st("")
                 continue
 
-            m = s//2
+            m = s // 2
             dp = [0] * (m + 1)
             dp[0] = 1
             for x in range(6):
-                w, s = x+1, lst[x]
+                w, s = x + 1, lst[x]
                 if s:
                     for num in BagDP().bin_split_1(s):
-                        for i in range(m, w*num-1, -1):
-                            if dp[i-num*w]:
+                        for i in range(m, w * num - 1, -1):
+                            if dp[i - num * w]:
                                 dp[i] = 1
             if dp[-1]:
                 ac.st("Can be divided.")
@@ -722,20 +736,20 @@ class Solution:
     def lg_p1776(ac=FastIO()):
         # 模板：单调队列优化的多重背包问题，即限定个数和体积价值求最大值
         n, m = ac.read_list_ints()
-        dp = [0]*(m+1)
+        dp = [0] * (m + 1)
         for _ in range(n):
             a, b, c = ac.read_list_ints()
             # 体积 价值 数量
             v, w, s = b, a, c
             for r in range(v):
                 stack = deque()
-                for i in range(r, m+1, v):
-                    while stack and stack[0][0] < i-s*v:
+                for i in range(r, m + 1, v):
+                    while stack and stack[0][0] < i - s * v:
                         stack.popleft()
                     while stack and stack[-1][1] + (i - stack[-1][0]) // v * w <= dp[i]:
                         stack.pop()
                     stack.append([i, dp[i]])
-                    dp[i] = stack[0][1] + (i-stack[0][0])//v*w
+                    dp[i] = stack[0][1] + (i - stack[0][0]) // v * w
         ac.st(dp[-1])
         return
 
@@ -829,11 +843,11 @@ class Solution:
         dp[pre][0][0] = 0
         for i in range(n):
             c, x, y = ac.read_list_ints()
-            cur = 1-pre
+            cur = 1 - pre
             for c1 in dp[pre]:
                 for x1 in dp[pre][c1]:
-                    if c1+c<=v:
-                        dp[cur][c1+c][x1+x] = ac.max(dp[cur][c1+c][x1+x], dp[pre][c1][x1]+y)
+                    if c1 + c <= v:
+                        dp[cur][c1 + c][x1 + x] = ac.max(dp[cur][c1 + c][x1 + x], dp[pre][c1][x1] + y)
                     dp[cur][c1][x1] = ac.max(dp[cur][c1][x1], dp[pre][c1][x1])
             pre = cur
         ans = -inf
@@ -939,7 +953,7 @@ class Solution:
     def lg_p2737(ac=FastIO()):
         # 模板：完全背包变种问题
         n = ac.read_int()
-        ceil = 256**2 + 1
+        ceil = 256 ** 2 + 1
         nums = [ac.read_int() for _ in range(n)]
         dp = [0] * (ceil + 1)
         dp[0] = 1
@@ -1018,7 +1032,7 @@ class Solution:
         # 模板：分组01背包
         n, t, k = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
-        m = 5*t//4 + 1
+        m = 5 * t // 4 + 1
 
         # 先算不缩减高度的
         dp1 = [0] * (m + 1)
@@ -1031,7 +1045,7 @@ class Solution:
         for v, h in nums:
             if h >= k:
                 for i in range(t, h - 1, -1):
-                    ans = ac.max(ans, dp1[(i - h)*5//4] + v)
+                    ans = ac.max(ans, dp1[(i - h) * 5 // 4] + v)
         ac.st(ans)
         return
 
@@ -1170,13 +1184,13 @@ class Solution:
         a = ac.read_list_ints()
         b = ac.read_list_ints()
         c = ac.read_list_ints()
-        dp = [0]*(t+1)
+        dp = [0] * (t + 1)
         ind = list(range(n))
-        ind.sort(key=lambda it: -b[it]/c[it])
+        ind.sort(key=lambda it: -b[it] / c[it])
         for i in ind:
             aa, bb, cc = a[i], b[i], c[i]
-            for j in range(t, cc-1, -1):
-                dp[j] = ac.max(dp[j], dp[j-cc]+aa-j*bb)
+            for j in range(t, cc - 1, -1):
+                dp[j] = ac.max(dp[j], dp[j - cc] + aa - j * bb)
         ac.st(max(dp))
         return
 
@@ -1187,18 +1201,18 @@ class Solution:
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
 
-        def check2(x):
+        def check2(xx):
             res = 0
-            while x % 2 == 0:
+            while xx % 2 == 0:
                 res += 1
-                x //= 2
+                xx //= 2
             return res
 
-        def check5(x):
+        def check5(xx):
             res = 0
-            while x % 5 == 0:
+            while xx % 5 == 0:
                 res += 1
-                x //= 5
+                xx //= 5
             return res
 
         cnt2 = [check2(num) for num in nums]
@@ -1224,7 +1238,7 @@ class Solution:
         return
 
     @staticmethod
-    def lc_100029(self, nums: List[int], l: int, r: int) -> int:
+    def lc_100029(nums: List[int], ll: int, r: int) -> int:
         # 模板：按照单调队列的思想进行取模分组DP，使用前缀和优化，也有容斥的思想
         cnt = Counter(nums)
         mod = 10 ** 9 + 7
@@ -1239,21 +1253,21 @@ class Solution:
                     for j in range(i, r + 1, num):
                         val = pre[-1] + dp[j]
                         dp[j] += pre[x]
-                        if x-c >= 0:
-                            dp[j] -= pre[x-c]
+                        if x - c >= 0:
+                            dp[j] -= pre[x - c]
                         dp[j] %= mod
                         pre.append(val % mod)
                         x += 1
-        return sum(dp[l:]) * (cnt[0] + 1) % mod
+        return sum(dp[ll:]) * (cnt[0] + 1) % mod
 
     @staticmethod
     def lc_1049(stones: List[int]) -> int:
         # 模板：经典问题，转化为01背包求解
         s = sum(stones)
-        dp = [0]*(s//2 + 1)
+        dp = [0] * (s // 2 + 1)
         dp[0] = 1
         for num in stones:
-            for i in range(s//2, num-1, -1):
-                if dp[i-num]:
+            for i in range(s // 2, num - 1, -1):
+                if dp[i - num]:
                     dp[i] = 1
-        return min(abs(s-2*i) for i in range(s//2 + 1) if dp[i])
+        return min(abs(s - 2 * i) for i in range(s // 2 + 1) if dp[i])

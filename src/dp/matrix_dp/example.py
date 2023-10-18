@@ -1,4 +1,6 @@
+import unittest
 
+from dp.matrix_dp.template import MatrixDP
 
 
 class TestGeneral(unittest.TestCase):

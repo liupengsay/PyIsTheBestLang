@@ -1,3 +1,7 @@
+import unittest
+
+from dp.bag_dp.template import BagDP
+
 
 class TestGeneral(unittest.TestCase):
 

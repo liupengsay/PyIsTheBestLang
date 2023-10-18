@@ -1,3 +1,10 @@
+from functools import lru_cache
+from functools import reduce
+from operator import xor
+
+from dp.game_dp.template import DateTime
+from mathmatics.number_theory.template import NumberTheory
+from utils.fast_io import FastIO
 
 """
 算法：博弈类DP、玩游戏、必胜态、必输态
@@ -24,6 +31,7 @@ P2953 [USACO09OPEN]Cow Digit Game S（https://www.luogu.com.cn/problem/P2953）�
 参考：OI WiKi（xx）
 """
 
+
 class Solution:
     def __init__(self):
         return
@@ -41,7 +49,7 @@ class Solution:
                     a, b = b, a
                 if a % b == 0:
                     return True
-                if a//b >= 2:  # 注意分类贪心进行必胜态考量
+                if a // b >= 2:  # 注意分类贪心进行必胜态考量
                     return True
                 for i in range(1, a // b + 1):
                     if not dfs(a - i * b, b):
@@ -66,7 +74,7 @@ class Solution:
         else:
             for i in range(k):
                 if nums[i] ^ x < nums[i]:
-                    res = [nums[i] - (nums[i] ^ x), i+1]
+                    res = [nums[i] - (nums[i] ^ x), i + 1]
                     ac.lst(res)
                     nums[i] = x ^ nums[i]
                     ac.lst(nums)
@@ -152,4 +160,3 @@ class Solution:
             else:
                 ac.st("NO")
         return
-
