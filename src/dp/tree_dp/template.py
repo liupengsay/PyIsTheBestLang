@@ -1,23 +1,12 @@
-import math
-import unittest
-from collections import deque, Counter
-from functools import lru_cache
-from heapq import nlargest
-from itertools import accumulate
-from operator import add
-from typing import List, Optional
-
-from src.basis.tree_node import TreeNode
-from src.data_structure.list_node import ListNode
-from utils.fast_io import FastIO, inf
-from src.graph.union_find import UnionFind
-
+from collections import deque
+from math import inf
+from typing import List
 
 
 class ReRootDP:
     def __init__(self):
-        return 
-    
+        return
+
     @staticmethod
     def get_tree_distance_weight(dct: List[List[int]], weight) -> List[int]:
         # 模板：计算树的每个节点到其余所有的节点的总距离（带权重）
@@ -50,13 +39,13 @@ class ReRootDP:
                     ans[j] = ans[i] - sub[j] + s - sub[j]
                     stack.append([j, i])
         return ans
-    
+
     @staticmethod
     def get_tree_centroid(dct: List[List[int]]) -> int:
         # 模板：获取树的编号最小的重心
         n = len(dct)
-        sub = [1]*n  # 以 0 为根的有根树节点 i 的子树节点数
-        ma = [0]*n  # 以 i 为根最大的子树节点数
+        sub = [1] * n  # 以 0 为根的有根树节点 i 的子树节点数
+        ma = [0] * n  # 以 i 为根最大的子树节点数
         ma[0] = n
         center = 0
         stack = [[0, -1, 1]]
@@ -73,7 +62,7 @@ class ReRootDP:
                         sub[i] += sub[j]
                         ma[i] = ma[i] if ma[i] > sub[j] else sub[j]
                 # 类似换根 DP 计算最大子树节点数
-                ma[i] = ma[i] if ma[i] > n-sub[i] else n-sub[i]
+                ma[i] = ma[i] if ma[i] > n - sub[i] else n - sub[i]
                 if ma[i] < ma[center] or (ma[i] == ma[center] and i < center):
                     center = i
         # 树的重心等同于最大子树最小的节点也等同于到其余所有节点距离之和最小的节点
@@ -132,10 +121,10 @@ class ReRootDP:
                 a, b = sub[i]
                 for j in dct[i]:
                     if j != fa:
-                        x = sub[j][0]+1
+                        x = sub[j][0] + 1
                         if x >= a:
                             a, b = x, a
-                        elif x>=b:
+                        elif x >= b:
                             b = x
                 sub[i] = [a, b]
 
@@ -148,17 +137,17 @@ class ReRootDP:
             for j in dct[i]:
                 if j != fa:
                     nex = d
-                    x = sub[j][0]+1
+                    x = sub[j][0] + 1
                     a, b = sub[i]
                     # 排除当前子节点的距离
                     if x == a:
                         nex = nex if nex > b else b
                     else:
                         nex = nex if nex > a else a
-                    stack.append([j, i, nex+1])
+                    stack.append([j, i, nex + 1])
         return ans
-    
-    
+
+
 class TreeDiameterWeighted:
     def __init__(self):
         return
@@ -203,8 +192,6 @@ class TreeDiameter:
                     if nex != pre:
                         q.append((nex, node, d + 1))
             return node, d
-
-        n = len(edge)
 
         # 这个算法依赖于一个性质，对于树中的任一个点，距离它最远的点一定是树上一条直径的一个端点
         x, _ = bfs(0)
@@ -311,5 +298,3 @@ class TreeDiameterDis:
                         dis[j] = dis[i] + 1
             stack = nex[:]
         return dis
-    
-

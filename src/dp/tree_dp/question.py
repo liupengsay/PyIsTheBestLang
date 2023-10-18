@@ -1,5 +1,17 @@
 
+import math
+from collections import deque, Counter
+from functools import lru_cache
+from itertools import accumulate
+from math import inf
+from operator import add
+from typing import List, Optional
 
+from basis.tree_node.template import TreeNode
+from data_structure.list_node.template import ListNode
+from dp.tree_dp.template import TreeDiameterDis, ReRootDP, TreeDiameter, TreeDiameterWeighted
+from graph.union_find.template import UnionFind
+from utils.fast_io import FastIO
 
 """
 算法：树形DP、树的直径、树上差分、树的重心（以及树的每个节点到其余节点的总距离和）、树的最小偏心距
@@ -284,7 +296,7 @@ class Solution:
             ans[i] = son[i] + pre + 2 * nums[i] - 1
 
             lst = [son[j] + 2 * nums[j] - 1 for j in edge[i] if j != fa]
-            s = sum([y for y in lst if y >= 0])
+            s = sum([yy for yy in lst if yy >= 0])
             for j in edge[i]:
                 if j != fa:
                     tmp = son[j] + 2 * nums[j] - 1
@@ -310,7 +322,7 @@ class Solution:
 
         @ac.bootstrap
         def dfs(i, fa):
-            res = -inf
+            res = -math.inf
             for j in edge[i]:
                 if j != fa:
                     yield dfs(j, i)
@@ -321,7 +333,7 @@ class Solution:
             yield
 
         # 计算子节点最远的evil
-        son = [-inf] * n
+        son = [-math.inf] * n
         dfs(0, -1)
 
         @ac.bootstrap
@@ -749,7 +761,7 @@ class Solution:
         stack = deque([n - 1])
         while stack:
             i = stack.popleft()
-            k = len(dct[i])
+            len(dct[i])
             a = dp[i]
             for j in dct[i]:
                 dp[j] += a + dct[i][j]
@@ -1130,7 +1142,6 @@ class Solution:
                 sub[i] = cur
 
         # 第二遍DP计算祖先节点与兄弟节点的影响
-        cnt = [0] * n
         stack = [[0, -1, 0]]
         while stack:
             i, fa, pre = stack.pop()
@@ -1176,7 +1187,7 @@ class Solution:
                         sub_cnt[x] += sub_cnt[y]
                         sub_one[x] += sub_one[y] + w
         ans = [pre_one[i] + (sub_cnt[i] - sub_one[i]) + (
-                    n - 1 - pre_cnt[i] - sub_cnt[i] - (sub_one[0] - sub_one[i] - pre_one[i])) for i in range(n)]
+                n - 1 - pre_cnt[i] - sub_cnt[i] - (sub_one[0] - sub_one[i] - pre_one[i])) for i in range(n)]
         return ans
 
     @staticmethod

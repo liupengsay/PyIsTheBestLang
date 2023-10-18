@@ -1,14 +1,13 @@
+import heapq
+import math
 import sys
-import unittest
+from collections import Counter
+from functools import lru_cache
+from functools import reduce
+from itertools import combinations, accumulate
+from math import inf
 from operator import or_
 from typing import List
-import math
-from collections import Counter
-from functools import reduce
-from functools import lru_cache
-from itertools import combinations, accumulate
-import heapq
-from math import inf
 
 from utils.fast_io import FastIO
 
@@ -831,5 +830,3 @@ class Solution:
                     cur = dp[sub] + (nums[pre] & (j + 1))
                     dp[sub + 3 ** j] = max(dp[sub + 3 ** j], cur)
         return max(dp)
-
-

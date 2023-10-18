@@ -1,4 +1,3 @@
-import unittest
 from functools import lru_cache
 from itertools import chain
 from typing import List
@@ -273,4 +272,3 @@ class Solution:
                 dp[nex][state] = res
             pre = nex
         return dp[pre][0]
-
