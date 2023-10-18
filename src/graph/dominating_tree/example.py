@@ -1,3 +1,7 @@
+import unittest
+
+from graph.dominating_tree.template import DominatingTree
+
 
 class TestGeneral(unittest.TestCase):
     def test_dominate_tree(self):

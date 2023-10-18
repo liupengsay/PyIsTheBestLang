@@ -1,18 +1,3 @@
-
-import copy
-import heapq
-import math
-import unittest
-from collections import defaultdict, deque
-from math import inf
-from typing import List, Optional
-
-from src.dp.tree_dp import TreeDiameterInfo
-from utils.fast_io import FastIO
-from src.graph.union_find import UnionFind
-
-
-
 class TopologicalSort:
     def __init__(self):
         return
@@ -20,12 +5,12 @@ class TopologicalSort:
     @staticmethod
     def get_rank(n, edges):
         dct = [list() for _ in range(n)]
-        degree = [0]*n
+        degree = [0] * n
         for i, j in edges:
             degree[j] += 1
             dct[i].append(j)
         stack = [i for i in range(n) if not degree[i]]
-        visit = [-1]*n
+        visit = [-1] * n
         step = 0
         while stack:
             for i in stack:
@@ -62,7 +47,6 @@ class TopologicalSort:
                         nex.append(j)
             stack = nex
         return cnt
-
 
     # 内向基环树写法 https://atcoder.jp/contests/abc266/submissions/37717739
     # def main(ac=FastIO()):
@@ -133,7 +117,7 @@ class TopologicalSort:
                     if not degree[j]:
                         nex.append(j)
             stack = nex
-        return all(x==0 for x in degree)
+        return all(x == 0 for x in degree)
 
     @staticmethod
     def bfs_topologic_order(n, dct, degree):
@@ -161,7 +145,3 @@ class TreeNode:
         self.val = val
         self.left = left
         self.right = right
-
-
-
-

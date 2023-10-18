@@ -1,5 +1,3 @@
-
-
 """
 
 算法：拓扑排序、内向基环树（有向或者无向，连通块有k个节点以及k条边）、bfs序、拓扑序
@@ -52,6 +50,19 @@ F - Well-defined Path Queries on a Namori（https://atcoder.jp/contests/abc266/�
 
 参考：OI WiKi（xx）
 """
+
+import copy
+import math
+from collections import defaultdict, deque
+from heapq import heapify, heappop, heappush
+from math import inf
+from typing import List, Optional
+
+from basis.tree_node.template import TreeNode
+from dp.tree_dp.template import TreeDiameterInfo
+from graph.union_find.template import UnionFind
+from utils.fast_io import FastIO
+
 
 class Solution:
     def __init__(self):
@@ -205,14 +216,14 @@ class Solution:
     @staticmethod
     def lg_p1347(ac=FastIO()):
         # 模板：拓扑排序确定字典序与矛盾或者无唯一解
-        n, m = [int(w) for w in input().strip().split() if w]
-        dct = defaultdict(list)
-        degree = defaultdict(int)
+        n, m = ac.read_list_ints()
+        dct_ = defaultdict(list)
+        degree_ = defaultdict(int)
 
-        def check(dct, degree, nodes, x):
+        def check(dct, degree, nodes):
             # 每次都判断结果
             stack = [k for k in nodes if not degree[k]]
-            m = len(nodes)
+
             res = []
             unique = True
             while stack:
@@ -228,25 +239,26 @@ class Solution:
                 stack = nex
             # 稳定的拓扑排序
             if unique and len(res) == n:
-                s = "".join(res)
-                return True, f"Sorted sequence determined after {x} relations: {s}."
+                ss = "".join(res)
+                return True, f"Sorted sequence determined after {x} relations: {ss}."
             # 存在环
             if len(res) < m:
                 return True, f"Inconsistency found after {x} relations."
             # 不稳定的拓扑排序
             return False, "Sorted sequence cannot be determined."
 
-        nodes = set()
+        nodes_ = set()
         res_ans = ""
         for x in range(1, m + 1):
             s = input().strip()
             if res_ans:
                 continue
-            dct[s[0]].append(s[2])
-            degree[s[2]] += 1
-            nodes.add(s[0])
-            nodes.add(s[2])
-            flag, ans = check(copy.deepcopy(dct), copy.deepcopy(degree), copy.deepcopy(nodes), x)
+            dct_[s[0]].append(s[2])
+            degree_[s[2]] += 1
+            nodes_.add(s[0])
+            nodes_.add(s[2])
+            m = len(nodes_)
+            flag, ans = check(copy.deepcopy(dct_), copy.deepcopy(degree_), copy.deepcopy(nodes_))
             if flag:
                 res_ans = ans
         if res_ans:
@@ -803,14 +815,14 @@ class Solution:
                     return
                 nodes.add(node.val)
                 if node.left:
-                    x = node.left.val
-                    dct[node.val].append(x)
-                    degree[x] += 1
+                    xxx = node.left.val
+                    dct[node.val].append(xxx)
+                    degree[xxx] += 1
                     dfs(node.left)
                 if node.right:
-                    x = node.right.val
-                    dct[node.val].append(x)
-                    degree[x] += 1
+                    xxx = node.right.val
+                    dct[node.val].append(xxx)
+                    degree[xxx] += 1
                     dfs(node.right)
                 return
 
@@ -849,19 +861,19 @@ class Solution:
 
         # 二叉搜索特性
 
-        def dfs(x, floor, ceil):
+        def dfs(w, floor, ceil):
             nonlocal ans
             if not ans:
                 return
-            if not floor < x < ceil:
+            if not floor < w < ceil:
                 ans = False
                 return
-            node = TreeNode(x)
-            for y in dct[x]:
-                if y < x:
-                    node.left = dfs(y, floor, x)
+            node = TreeNode(w)
+            for z in dct[w]:
+                if z < w:
+                    node.left = dfs(z, floor, w)
                 else:
-                    node.right = dfs(y, x, ceil)
+                    node.right = dfs(z, w, ceil)
             return node
 
         ans = True

@@ -1,4 +1,10 @@
+from heapq import heappop, heappush
+from math import inf
+from typing import List
 
+from basis.binary_search.template import BinarySearch
+from graph.dijkstra.template import Dijkstra
+from utils.fast_io import FastIO
 
 """
 
@@ -41,6 +47,7 @@ E - Travel by Car（https://atcoder.jp/contests/abc143/tasks/abc143_e）Floyd建
 
 """
 
+
 class Solution:
     def __init__(self):
         return
@@ -51,7 +58,7 @@ class Solution:
         n, m = ac.read_list_ints()
         repair = ac.read_list_ints()
         # 设置初始值距离
-        dis = [[ac.inf] * n for _ in range(n)]
+        dis = [[inf] * n for _ in range(n)]
         for i in range(m):
             a, b, c = ac.read_list_ints()
             dis[a][b] = dis[b][a] = c
@@ -69,7 +76,7 @@ class Solution:
                     for b in range(a + 1, n):
                         dis[a][b] = dis[b][a] = ac.min(dis[a][k] + dis[k][b], dis[b][a])
                 k += 1
-            if dis[x][y] < ac.inf and x < k and y < k:
+            if dis[x][y] < inf and x < k and y < k:
                 ac.st(dis[x][y])
             else:
                 ac.st(-1)
@@ -80,7 +87,7 @@ class Solution:
         # 模板：Floyd 求索引从 1 到 n 的最长路并求所有在最长路上的点（有向图）
         n = ac.read_int() + 1
         m = ac.read_int()
-        dp = [[-ac.inf] * (n + 1) for _ in range(n + 1)]
+        dp = [[-inf] * (n + 1) for _ in range(n + 1)]
         for _ in range(m):
             i, j, k = ac.read_list_ints()
             dp[i][j] = k
@@ -106,7 +113,7 @@ class Solution:
     def lg_p3906(ac=FastIO()):
         # 模板：Floyd 求索引从 u 到 v 的最短路并求所有在最短路上的点（无向图）
         n, m = ac.read_list_ints()
-        dp = [[ac.inf] * (n + 1) for _ in range(n + 1)]
+        dp = [[inf] * (n + 1) for _ in range(n + 1)]
         for _ in range(m):
             i, j = ac.read_list_ints()
             dp[i][j] = dp[j][i] = 1
@@ -271,7 +278,7 @@ class Solution:
         for _ in range(ac.read_int()):
             x, y = ac.read_list_ints_minus_one()
             ans = dp[x][y]
-            ac.st(ans if ans < inf  else -1)
+            ac.st(ans if ans < inf else -1)
         return
 
     @staticmethod
@@ -373,18 +380,18 @@ class Solution:
 
         def get_dijkstra_result_mat(mat: List[List[int]], src: int) -> List[float]:
             # 模板: Dijkstra求最短路，变成负数求可以求最长路（还是正权值）
-            n = len(mat)
+            len(mat)
             dis = [inf] * n
             stack = [[0, src]]
             dis[src] = 0
             visit = set(list(range(n)))
             while stack:
-                d, i = heappop(stack)
-                if dis[i] < d:
+                d, ii = heappop(stack)
+                if dis[ii] < d:
                     continue
-                visit.discard(i)
+                visit.discard(ii)
                 for j in visit:
-                    dj = mat[i][j] + d
+                    dj = mat[ii][j] + d
                     if dj < dis[j]:
                         dis[j] = dj
                         heappush(stack, [dj, j])
@@ -437,7 +444,7 @@ class Solution:
 
         low = 1
         high = n * 10**5
+        BinarySearch().find_int_left(low, high, check)
         ans = BinarySearch().find_int_left(low, high, check2)
         ac.st(ans)
         return
-

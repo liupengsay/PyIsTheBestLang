@@ -1,5 +1,3 @@
-
-
 """
 算法：SPFA路径边数优先的广度优先搜索（可以使用带负权值）也可以计算最短路、差分约束、最短路条数
 
@@ -41,6 +39,14 @@ E - Coins Respawn（https://atcoder.jp/contests/abc137/tasks/abc137_e）使用 S
 参考：
 差分约束（https://oi-wiki.org/graph/diff-constraints/）
 """
+from collections import deque
+from math import inf
+from typing import List
+
+from graph.dijkstra.template import Dijkstra
+from graph.spfa.template import SPFA
+from utils.fast_io import FastIO
+
 
 class Solution:
     def __init__(self):
@@ -75,7 +81,7 @@ class Solution:
             j -= 1
             k -= 1
             dct[j][k] = -(d - t)
-        res = -ac.inf
+        res = -inf
         for s in range(c):
             ans, dis, _ = SPFA().negative_circle(dct, s, -d)
             if ans == "YES":
@@ -94,7 +100,7 @@ class Solution:
             a, b, c = ac.read_list_ints()
             a -= 1
             b -= 1
-            dct[a][b] = ac.min(dct[a].get(a, ac.inf), -c)
+            dct[a][b] = ac.min(dct[a].get(a, inf), -c)
         ans1, dis1, _ = SPFA().negative_circle(dct, 0)
         ans2, dis2, _ = SPFA().negative_circle(dct, n - 1)
         ac.st("Forever love" if ans1 == "YES" or ans2 == "YES" else ac.min(dis1[n - 1], dis2[0]))
@@ -110,9 +116,9 @@ class Solution:
                 u, v, w = ac.read_list_ints()
                 u -= 1
                 v -= 1
-                dct[u][v] = ac.min(dct[u].get(v, ac.inf), w)
+                dct[u][v] = ac.min(dct[u].get(v, inf), w)
                 if w >= 0:
-                    dct[v][u] = ac.min(dct[v].get(u, ac.inf), w)
+                    dct[v][u] = ac.min(dct[v].get(u, inf), w)
             ans, _, _ = SPFA().negative_circle(dct)
             ac.st(ans)
         return
@@ -140,7 +146,7 @@ class Solution:
     def lg_p1993(ac=FastIO()):
         # 模板：差分约束转换为负环判断求解
         n, m = ac.read_list_ints()
-        dct = [dict() for _ in range(n+1)]
+        dct = [dict() for _ in range(n + 1)]
         # 超级源点有向边出发
         for i in range(1, n + 1):
             dct[0][i] = 0
@@ -178,7 +184,7 @@ class Solution:
 
         # 条件约束
         for s, e, c in tasks:
-            if s-1 not in dct[e]:
+            if s - 1 not in dct[e]:
                 dct[e][s - 1] = -c
             else:
                 # 注意重边的约束
@@ -216,7 +222,7 @@ class Solution:
         else:
             res = dis[1:]
             floor = min(res)
-            res = [num-floor for num in res]
+            res = [num - floor for num in res]
             for a in res:
                 ac.st(a)
         return
@@ -320,11 +326,11 @@ class Solution:
             a, b, c = ac.read_list_ints()
             a -= 1
             b -= 1
-            dct[a].append([b, p-c])
-            rev[b].append([a, p-c])
-            edges.append([a, b, p-c])
+            dct[a].append([b, p - c])
+            rev[b].append([a, p - c])
+            edges.append([a, b, p - c])
         # 首先判断可达性
-        visit = [0]*n
+        visit = [0] * n
         stack = [0]
         visit[0] = 1
         while stack:
@@ -338,8 +344,8 @@ class Solution:
             return
         # 过滤起点不能到达与不能到达终点的点
         visit2 = [0] * n
-        stack = [n-1]
-        visit2[n-1] = 1
+        stack = [n - 1]
+        visit2[n - 1] = 1
         while stack:
             i = stack.pop()
             for j, _ in rev[i]:
@@ -361,7 +367,7 @@ class Solution:
         dct = [[] for _ in range(n)]
         for a, b, c in edges:
             dct[a].append([b, c])
-        res, dis, cnt = SPFA().negative_circle_edge(dct, n-1, 0)
+        res, dis, cnt = SPFA().negative_circle_edge(dct, n - 1, 0)
         if res == "YES":
             ac.st(-1)
             return
@@ -370,7 +376,7 @@ class Solution:
         return
 
     @staticmethod
-    def lc_2589(self, tasks: List[List[int]]) -> int:
+    def lc_2589(tasks: List[List[int]]) -> int:
         # 模板：根据前缀和进行差分约束求解
         lst = []
         for a, b, c in tasks:
@@ -423,9 +429,9 @@ class Solution:
                     visit[u] = False
                     # 更新当前节点的相邻节点的距离
                     for v in dct[u]:
-                        w = dct[u][v]
-                        if dis[v] > dis[u] + w:
-                            dis[v] = dis[u] + w
+                        ww = dct[u][v]
+                        if dis[v] > dis[u] + ww:
+                            dis[v] = dis[u] + ww
                             cnt[v] = cnt[u] + 1
                             if cnt[v] >= n:
                                 return "YES", dis, cnt
@@ -509,7 +515,7 @@ class Solution:
             dis = dj.get_dijkstra_result_edge(dct, i)
             for j in range(1, n + 1):
                 # 还原之后才为原图最短路
-                ans += j * (dis[j] + h[j] - h[i]) if dis[j] < inf else j * 10**9
+                ans += j * (dis[j] + h[j] - h[i]) if dis[j] < inf else j * 10 ** 9
             ac.st(ans)
         return
 
@@ -554,4 +560,3 @@ class Solution:
         dis = Dijkstra().get_dijkstra_result(dct, 0)
         ac.st(dis[n])
         return
-

@@ -1,15 +1,12 @@
-
-
-import heapq
-import unittest
-from collections import defaultdict, deque
-from heapq import heappush, heappop
+from collections import defaultdict, deque, Counter
+from heapq import heappush, heappop, heapify
 from itertools import accumulate
+from math import inf
 from operator import add
-from typing import List, Set
-from collections import Counter
+from typing import List
 
-from utils.fast_io import FastIO, inf
+from graph.dijkstra.template import UnDirectedShortestCycle, Dijkstra
+from utils.fast_io import FastIO
 
 """
 算法：Dijkstra（单源最短路经算法）、严格次短路、要保证加和最小因此只支持非负数权值、或者取反全部为非正数计算最长路、最短路生成树
@@ -268,7 +265,7 @@ class Solution:
         return dis[-1][1]
 
     @staticmethod
-    def lc_2065(values: List[int], edges: List[List[int]], maxTime: int) -> int:
+    def lc_2065(values: List[int], edges: List[List[int]], max_time: int) -> int:
         # 模板：经典回溯，正解使用Dijkstra跑最短路剪枝
         n = len(values)
         dct = [[] for _ in range(n)]
@@ -282,12 +279,12 @@ class Solution:
         visit = {tuple(sorted({0}) + [0]): 0}
         while stack:
             t, x, nodes = heappop(stack)
-            if dis[x] + t <= maxTime:
+            if dis[x] + t <= max_time:
                 cur = sum(values[j] for j in nodes)
                 if cur > ans:
                     ans = cur
             for y, w in dct[x]:
-                if t + w + dis[y] <= maxTime:
+                if t + w + dis[y] <= max_time:
                     state = tuple(sorted(nodes.union({y})) + [y])
                     if visit.get(state, inf) > t + w:
                         visit[state] = t + w
@@ -664,7 +661,7 @@ class Solution:
         nodes = [[0, 5], [10, 5]]
         line = []
         for _ in range(n):
-            x, a1, a2, b1, b2 = ac.read_floats()
+            x, a1, a2, b1, b2 = ac.read_list_ints()
             nodes.append([x, a1])
             nodes.append([x, a2])
             nodes.append([x, b1])
@@ -672,9 +669,9 @@ class Solution:
             line.append([x, a1, a2, b1, b2])
 
         def check():
-            for x, a1, a2, b1, b2 in line:
+            for xx, aa1, aa2, bb1, bb2 in line:
                 if left <= x <= right:
-                    if not (a1 <= k * x + bb <= a2) and not (b1 <= k * x + bb <= b2):
+                    if not (aa1 <= k * xx + bb <= aa2) and not (bb1 <= k * xx + bb <= bb2):
                         return False
             return True
 
@@ -1771,4 +1768,3 @@ class Solution:
             path.reverse()
             ac.lst([x + 1 for x in path])
         return
-

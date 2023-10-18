@@ -1,3 +1,6 @@
+import unittest
+
+from graph.prufer.template import PruferAndTree
 
 
 class TestGeneral(unittest.TestCase):

@@ -1,13 +1,6 @@
-import copy
-import unittest
-from collections import defaultdict, deque
+from collections import defaultdict
 from math import inf
 from typing import DefaultDict, Set, List, Tuple
-from collections import Counter
-from src.dp.tree_dp import TreeCentroid
-from utils.fast_io import FastIO
-from src.graph.union_find import UnionFind
-
 
 
 class TarjanCC:
@@ -26,7 +19,7 @@ class TarjanCC:
         scc_id = 0
         scc_node_id = defaultdict(set)
         node_scc_id = [-1] * n
-        parent = [-1]*n
+        parent = [-1] * n
         for node in range(n):
             if not visit[node]:
                 stack = [[node, 0]]
@@ -69,7 +62,7 @@ class TarjanCC:
                 a, b = node_scc_id[i], node_scc_id[j]
                 if a != b:
                     new_dct[a].add(b)
-        new_degree = [0]*scc_id
+        new_degree = [0] * scc_id
         for i in range(scc_id):
             for j in new_dct[i]:
                 new_degree[j] += 1
@@ -77,7 +70,7 @@ class TarjanCC:
         return scc_id, scc_node_id, node_scc_id
 
     @staticmethod
-    def get_point_doubly_connected_component_bfs(n: int, edge: List[List[int]])\
+    def get_point_doubly_connected_component_bfs(n: int, edge: List[List[int]]) \
             -> Tuple[int, DefaultDict[int, Set[int]], List[Set[int]]]:
         # 模板：Tarjan求解无向图的点双连通分量
 
@@ -85,11 +78,11 @@ class TarjanCC:
         order, low = [inf] * n, [inf] * n
         visit = [False] * n
         out = []
-        parent = [-1]*n
+        parent = [-1] * n
         group_id = 0  # 点双个数
         group_node = defaultdict(set)  # 每个点双包含哪些点
         node_group_id = [set() for _ in range(n)]  # 每个点属于哪些点双，属于多个点双的点就是割点
-        child = [0]*n
+        child = [0] * n
         for node in range(n):
             if not visit[node]:
                 stack = [[node, 0]]
@@ -150,7 +143,7 @@ class TarjanCC:
             edge[j].discard(i)
 
         # 将所有的割边删掉剩下的都是边双连通分量，处理出割边，再对整个无向图进行一次BFS
-        visit = [0]*n
+        visit = [0] * n
         ans = []
         for i in range(n):
             if visit[i]:
@@ -176,8 +169,8 @@ class TarjanCC:
         visit = [0] * n
         cutting_point = set()
         cutting_edge = []
-        child = [0]*n
-        parent = [-1]*n
+        child = [0] * n
+        parent = [-1] * n
         dfs_id = 0
         for i in range(n):
             if not visit[i]:
@@ -342,4 +335,3 @@ class TarjanDirected:
                 tarjan(k)
 
         return cut_edge, cut_node, sub_group
-

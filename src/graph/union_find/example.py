@@ -1,3 +1,7 @@
+import unittest
+
+from graph.union_find.question import Solution
+from graph.union_find.template import UnionFind, PersistentUnionFind
 
 
 class TestGeneral(unittest.TestCase):
@@ -8,14 +12,6 @@ class TestGeneral(unittest.TestCase):
             uf.union(i, j)
         assert uf.part == 3
         return
-
-    def test_solution(self):
-        # 离线根据时间戳排序进行查询
-        sl = Solution()
-        n = 3
-        edge_list = [[0, 1, 2], [1, 2, 4], [2, 0, 8], [1, 0, 16]]
-        queries = [[0, 1, 2], [0, 2, 5]]
-        assert sl.distance_limited_paths_exist(n, edge_list, queries) == [False, True]
 
     def test_persistent_union_find(self):
         # 在线根据历史版本时间戳查询

@@ -1,3 +1,7 @@
+import unittest
+
+from graph.lgv.template import LGV
+
 
 class TestGeneral(unittest.TestCase):
     def test_euler_phi(self):

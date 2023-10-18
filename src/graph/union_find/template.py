@@ -1,21 +1,6 @@
-import decimal
-import math
-import unittest
-from heapq import heappop
+from collections import defaultdict
 
-from typing import List, Optional
-from collections import defaultdict, Counter, deque
-
-from src.basis.tree_node import TreeNode
-from src.data_structure.sorted_list import LocalSortedList
-from utils.fast_io import FastIO
-import heapq
-
-from src.graph.dijkstra import Dijkstra
-from src.mathmatics.comb_perm import Combinatorics
-from src.mathmatics.number_theory import NumberTheory
 from math import inf
-
 
 
 # 标准并查集
@@ -167,3 +152,52 @@ class PersistentUnionFind:
         return self.find(x, tm) == self.find(y, tm)
 
 
+class UnionFindLeftRoot:
+    def __init__(self, n: int) -> None:
+        self.root = [i for i in range(n)]
+        self.part = n
+        return
+
+    def find(self, x):
+        lst = []
+        while x != self.root[x]:
+            lst.append(x)
+            # 在查询的时候合并到顺带直接根节点
+            x = self.root[x]
+        for w in lst:
+            self.root[w] = x
+        return x
+
+    def union(self, x, y):
+        root_x = self.find(x)
+        root_y = self.find(y)
+        if root_x == root_y:
+            return False
+        if root_x <= root_y:
+            root_x, root_y = root_y, root_x
+        self.root[root_x] = root_y
+        return True
+
+
+class UnionFindSpecial:
+    def __init__(self, n: int) -> None:
+        self.root = [i for i in range(n)]
+        return
+
+    def find(self, x):
+        lst = []
+        while x != self.root[x]:
+            lst.append(x)
+            # 在查询的时候合并到顺带直接根节点
+            x = self.root[x]
+        for w in lst:
+            self.root[w] = x
+        return x
+
+    def union(self, x, y):
+        root_x = self.find(x)
+        root_y = self.find(y)
+        if root_x < root_y:
+            root_x, root_y = root_y, root_x
+        self.root[root_x] = root_y
+        return

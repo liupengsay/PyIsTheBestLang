@@ -1,14 +1,9 @@
-import unittest
-
-from typing import List
+# EK算法
+from collections import defaultdict, deque
+from math import inf
 
 import numpy as np
 
-from math import inf
-
-
-# EK算法
-from collections import defaultdict, deque
 
 class BipartiteMatching:
     def __init__(self, n, m):
@@ -267,5 +262,3 @@ class KM:
         for i in range(self.row):
             result.append((i, match[i] if match[i] < self.col else -1))  # 没有对应的值给-1
         return result
-
-

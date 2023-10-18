@@ -1,3 +1,7 @@
+import unittest
+
+from graph.spfa.template import SPFA
+
 
 class TestGeneral(unittest.TestCase):
 

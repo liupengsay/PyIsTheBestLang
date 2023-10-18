@@ -50,7 +50,15 @@ E. Split Into Two Sets（https://codeforces.com/contest/1702/problem/E）使用�
 3 Two-Edge-Connected Components（https://judge.yosupo.jp/problem/two_edge_connected_components）template of edge doubly connected
 
 """
-from graph.tarjan.template import TarjanCC
+import copy
+from collections import Counter
+from collections import defaultdict, deque
+from math import inf
+from typing import List
+
+from dp.tree_dp.template import ReRootDP
+from graph.tarjan.template import TarjanCC, TarjanUndirected, TarjanDirected
+from graph.union_find.template import UnionFind
 from utils.fast_io import FastIO
 
 
@@ -115,7 +123,7 @@ class Solution:
                 a, b = node_scc_id[i], node_scc_id[j]
                 if a != b:
                     new_dct[a].add(b)
-        new_degree = [0]*scc_id
+        new_degree = [0] * scc_id
         for i in range(scc_id):
             for j in new_dct[i]:
                 new_degree[j] += 1
@@ -191,7 +199,7 @@ class Solution:
         for i in range(n):
             if edges[i] != -1:
                 edge[i] = [edges[i]]
-        _, _, sub_group = TarjanDirected().check_graph(edge,  n)
+        _, _, sub_group = TarjanDirected().check_graph(edge, n)
         ans = -1
         for sub in sub_group:
             if len(sub) > 1 and len(sub) > ans:
@@ -210,7 +218,7 @@ class Solution:
         cut_node, _ = TarjanCC().get_cutting_point_and_cutting_edge_bfs(n, [list(d) for d in dct])
         cut_node = sorted(list(cut_node))
         ac.st(len(cut_node))
-        ac.lst([x+1 for x in cut_node])
+        ac.lst([x + 1 for x in cut_node])
         return
 
     @staticmethod
@@ -291,7 +299,7 @@ class Solution:
                 a, b = node_scc_id[i], node_scc_id[j]
                 if a != b:
                     new_dct[a].add(b)
-        new_degree = [0]*scc_id
+        new_degree = [0] * scc_id
         for i in range(scc_id):
             for j in new_dct[i]:
                 new_degree[j] += 1
@@ -332,6 +340,7 @@ class Solution:
 
                 ac.st("YES")
                 return
+
             check()
 
         return
@@ -432,7 +441,7 @@ class Solution:
         dct = [list(s) for s in dct]
 
         # 求树的质心
-        center = TreeCentroid().get_tree_centroid(dct)
+        center = ReRootDP().get_tree_centroid(dct)
         stack = [[center, -1]]
         ans = 0
         while stack:
@@ -444,7 +453,7 @@ class Solution:
                     cnt += 1
             if not cnt:
                 ans += 1
-        ac.st((ans+1)//2)
+        ac.st((ans + 1) // 2)
         return
 
     @staticmethod
@@ -475,7 +484,7 @@ class Solution:
         _, group, _ = TarjanCC().get_strongly_connected_component_bfs(n, dct)
         ans = 1
         cost = 0
-        mod = 10**9+7
+        mod = 10 ** 9 + 7
         for g in group:
             cnt = Counter([nums[i] for i in group[g]])
             x = min(cnt)
@@ -493,14 +502,14 @@ class Solution:
         edges = []
         for _ in range(m):
             a, b, c, d = ac.read_list_strs()
-            a = int(a)-1
-            b = int(b)-1
+            a = int(a) - 1
+            b = int(b) - 1
             c = int(c)
             d = float(d)
             edges.append([a, b, c, d])
             if a != b:
                 edge[a].add(b)
-        s = ac.read_int()-1
+        s = ac.read_int() - 1
         scc_id, scc_node_id, node_scc_id = TarjanCC().get_strongly_connected_component_bfs(n, [list(x) for x in edge])
         cnt = defaultdict(int)
         dis = [defaultdict(int) for _ in range(scc_id)]
@@ -510,7 +519,7 @@ class Solution:
                 x = 0
                 while c:
                     x += c
-                    c = int(c*d)
+                    c = int(c * d)
                 cnt[node_scc_id[i]] += x
             else:
                 a, b = node_scc_id[i], node_scc_id[j]
@@ -627,21 +636,6 @@ class Solution:
         return
 
     @staticmethod
-    def lg_p2863(ac=FastIO()):
-        # 模板：强连通分量scc模板题
-        n, m = ac.read_list_ints()
-        edge = [set() for _ in range(n)]
-        for _ in range(m):
-            a, b = ac.read_list_ints_minus_one()
-            edge[a].add(b)
-        _, group, _ = TarjanCC().get_strongly_connected_component_bfs(n, [list(e) for e in edge])
-        ans = 0
-        for g in group:
-            ans += len(group[g]) > 1
-        ac.st(ans)
-        return
-
-    @staticmethod
     def lg_p7033(ac=FastIO()):
         # 模板：经典scc缩点后使用 DAG 进行树形 DP
         n = ac.read_int()
@@ -697,7 +691,7 @@ class Solution:
         for _ in range(m):
             lst = ac.read_list_ints()
             for i in range(n):
-                dct[i].add(lst[i]-1)
+                dct[i].add(lst[i] - 1)
         dct = [list(e) for e in dct]
         scc_id, scc_node_id, node_scc_id = TarjanCC().get_strongly_connected_component_bfs(n, dct)
 
@@ -707,7 +701,7 @@ class Solution:
                 a, b = node_scc_id[i], node_scc_id[j]
                 if a != b:
                     new_dct[a].add(b)
-        degree = [0]*scc_id
+        degree = [0] * scc_id
         for i in range(scc_id):
             for j in new_dct[i]:
                 degree[j] += 1
@@ -779,9 +773,9 @@ class Solution:
             p = ac.read_list_ints()
             dct = [[] for _ in range(n)]
             for i in range(n):
-                dct[i].append(p[i]-1)
+                dct[i].append(p[i] - 1)
             _, group, _ = TarjanCC().get_strongly_connected_component_bfs(n, dct)
-            ans = [0]*n
+            ans = [0] * n
             for g in group:
                 x = len(group[g])
                 for i in group[g]:
@@ -806,8 +800,8 @@ class Solution:
             ac.st(-1)
             return
 
-        cur = [[0]*26 for _ in range(n)]
-        degree = [0]*n
+        cur = [[0] * 26 for _ in range(n)]
+        degree = [0] * n
         for i in range(n):
             for j in dct[i]:
                 degree[j] += 1
@@ -831,4 +825,3 @@ class Solution:
             stack = nex[:]
         ac.st(ans)
         return
-

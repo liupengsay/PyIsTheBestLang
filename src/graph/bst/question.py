@@ -1,3 +1,8 @@
+from typing import List
+
+from graph.bst.template import BST, ans1, BinarySearchTreeByArray
+from mathmatics.comb_perm.template import Combinatorics
+from utils.fast_io import FastIO
 
 """
 算法：BST二叉搜索树
@@ -23,7 +28,7 @@ class Solution:
     @staticmethod
     def lg_p2171_1(ac=FastIO()):
         # 模板: bst 标准插入 O(n^2)
-        n = ac.read_int()
+        ac.read_int()
         nums = ac.read_list_ints()
         bst = BST(nums[0])
         for num in nums[1:]:
@@ -158,4 +163,3 @@ class Solution:
                 stack.append([j, d+1])
                 ans = ans if ans > d + 1 else d + 1
         return ans
-

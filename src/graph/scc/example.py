@@ -1,3 +1,6 @@
+import unittest
+
+from graph.scc.template import Kosaraju, Tarjan
 
 
 class TestGeneral(unittest.TestCase):

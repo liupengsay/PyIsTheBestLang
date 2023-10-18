@@ -1,4 +1,4 @@
-
+from collections import deque
 
 
 class DirectedEulerPath:
@@ -150,4 +150,3 @@ class UnDirectedEulerPath:
         if len(self.nodes) == len(self.pairs) + 1:
             self.exist = True
         return
-

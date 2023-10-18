@@ -1,3 +1,7 @@
+import unittest
+
+from graph.euler_path.template import DirectedEulerPath
+
 
 class TestGeneral(unittest.TestCase):
 

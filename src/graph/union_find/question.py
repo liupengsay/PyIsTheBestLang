@@ -1,5 +1,3 @@
-
-
 """
 
 算法：并查集、可持久化并查集、置换环
@@ -80,6 +78,20 @@ F - Must Be Rectangular!（https://atcoder.jp/contests/abc131/tasks/abc131_f）�
 
 参考：OI WiKi（xx）
 """
+import decimal
+import math
+from collections import defaultdict, Counter, deque
+from heapq import heappop, heapify, heappush
+from math import inf
+from typing import List, Optional
+
+from basis.tree_node.template import TreeNode
+from data_structure.sorted_list.template import LocalSortedList
+from graph.dijkstra.template import Dijkstra
+from graph.union_find.template import UnionFind, UnionFindWeighted, UnionFindRightRange, UnionFindLeftRoot, \
+    UnionFindSpecial
+from mathmatics.comb_perm.template import Combinatorics
+from mathmatics.number_theory.template import NumberTheory
 from utils.fast_io import FastIO
 
 
@@ -180,7 +192,6 @@ class Solution:
         ac.lst(ans)
         return
 
-
     @staticmethod
     def lc_1697(n: int, edge_list: List[List[int]], queries: List[List[int]]) -> List[bool]:
         # 模板：并查集与离线排序查询结合
@@ -232,7 +243,7 @@ class Solution:
         ind.sort(key=lambda d: queries[d])
 
         # 根据查询值的大小利用指针持续更新并查集
-        ans = [0]*k
+        ans = [0] * k
         j = 0
         length = len(dct)
         for i in ind:
@@ -314,7 +325,7 @@ class Solution:
                 if root_x != root_y:
                     ac.st(-1)
                 else:
-                    ac.st(abs(uf.front[i]-uf.front[j])-1)
+                    ac.st(abs(uf.front[i] - uf.front[j]) - 1)
         return
 
     @staticmethod
@@ -336,8 +347,8 @@ class Solution:
                     if j not in out:
                         uf.union(i, j)
         ans = []
-        for i in range(k-1, -1, -1):
-            ans.append(uf.part-i-1)
+        for i in range(k - 1, -1, -1):
+            ans.append(uf.part - i - 1)
             out.discard(rem[i])
             for j in dct[rem[i]]:
                 if j not in out:
@@ -642,26 +653,15 @@ class Solution:
             for _ in range(m):
                 i, j = ac.read_list_ints_minus_one()
                 uf.union(i, j)
-            if uf.is_connected(0, n-1):
+            if uf.is_connected(0, n - 1):
                 ac.st(0)
                 continue
 
-            dis_0 = [inf]*n
-            dis_1 = [inf]*n
+            dis_0 = [inf] * n
+            dis_1 = [inf] * n
 
             pre_0 = pre_1 = -1
             for i in range(n):
-                if uf.is_connected(0, i):
-                    pre_0 = i
-                if uf.is_connected(n-1, i):
-                    pre_1 = i
-                if pre_0 != -1:
-                    dis_0[uf.find(i)] = ac.min(dis_0[uf.find(i)], (i - pre_0) ** 2)
-                if pre_1 != -1:
-                    dis_1[uf.find(i)] = ac.min(dis_1[uf.find(i)], (i - pre_1) ** 2)
-
-            pre_0 = pre_1 = -1
-            for i in range(n-1, -1, -1):
                 if uf.is_connected(0, i):
                     pre_0 = i
                 if uf.is_connected(n - 1, i):
@@ -670,7 +670,18 @@ class Solution:
                     dis_0[uf.find(i)] = ac.min(dis_0[uf.find(i)], (i - pre_0) ** 2)
                 if pre_1 != -1:
                     dis_1[uf.find(i)] = ac.min(dis_1[uf.find(i)], (i - pre_1) ** 2)
-            ans = min(dis_0[i]+dis_1[i] for i in range(n))
+
+            pre_0 = pre_1 = -1
+            for i in range(n - 1, -1, -1):
+                if uf.is_connected(0, i):
+                    pre_0 = i
+                if uf.is_connected(n - 1, i):
+                    pre_1 = i
+                if pre_0 != -1:
+                    dis_0[uf.find(i)] = ac.min(dis_0[uf.find(i)], (i - pre_0) ** 2)
+                if pre_1 != -1:
+                    dis_1[uf.find(i)] = ac.min(dis_1[uf.find(i)], (i - pre_1) ** 2)
+            ans = min(dis_0[i] + dis_1[i] for i in range(n))
             ac.st(ans)
         return
 
@@ -720,7 +731,7 @@ class Solution:
             grid = [ac.read_list_ints() for _ in range(m)]
             lst = []
             end = [-1, -1]
-            uf = UnionFind(m*n)
+            uf = UnionFind(m * n)
             for i in range(m):
                 for j in range(n):
                     w = grid[i][j]
@@ -736,7 +747,7 @@ class Solution:
             for val, i, j in lst:
                 if val > ans:
                     break
-                if uf.is_connected(start[0]*n+start[1], i*n+j):
+                if uf.is_connected(start[0] * n + start[1], i * n + j):
                     if ans >= val:
                         if val > 0:
                             ans += val
@@ -764,33 +775,6 @@ class Solution:
     @staticmethod
     def lg_p8787(ac=FastIO()):
         # 模板：经典贪心二叉堆模拟与并查集灵活应用
-
-        class UnionFindLeftRoot:
-            def __init__(self, n: int) -> None:
-                self.root = [i for i in range(n)]
-                self.part = n
-                return
-
-            def find(self, x):
-                lst = []
-                while x != self.root[x]:
-                    lst.append(x)
-                    # 在查询的时候合并到顺带直接根节点
-                    x = self.root[x]
-                for w in lst:
-                    self.root[w] = x
-                return x
-
-            def union(self, x, y):
-                root_x = self.find(x)
-                root_y = self.find(y)
-                if root_x == root_y:
-                    return False
-                if root_x <= root_y:
-                    root_x, root_y = root_y, root_x
-                self.root[root_x] = root_y
-                return True
-
         n = ac.read_int()
         nums = ac.read_list_ints()
         stack = [[-nums[i], -i] for i in range(n)]
@@ -807,11 +791,11 @@ class Solution:
                 break
             if i != uf.find(i):
                 continue
-            if i and nums[uf.find(i-1)] == val:
-                uf.union(i-1, i)
+            if i and nums[uf.find(i - 1)] == val:
+                uf.union(i - 1, i)
                 continue
             ans += 1
-            val = int(((val // 2) + 1)**0.5)
+            val = int(((val // 2) + 1) ** 0.5)
             nums[i] = val
             heappush(stack, [-nums[i], -i])
         ac.st(ans)
@@ -840,7 +824,7 @@ class Solution:
         # 模板：可使用向右合并的区间并查集，正解为贪心
         nums.sort()
         ans = 0
-        uf = UnionFindRightRange(max(nums)+len(nums) + 2)
+        uf = UnionFindRightRange(max(nums) + len(nums) + 2)
         for num in nums:
             # 其根节点就是当前还未被占据的节点
             x = uf.find(num)
@@ -866,31 +850,8 @@ class Solution:
     @staticmethod
     def lc_1569(nums: List[int]) -> int:
 
-        class UnionFindSpecial:
-            def __init__(self, n: int) -> None:
-                self.root = [i for i in range(n)]
-                return
-
-            def find(self, x):
-                lst = []
-                while x != self.root[x]:
-                    lst.append(x)
-                    # 在查询的时候合并到顺带直接根节点
-                    x = self.root[x]
-                for w in lst:
-                    self.root[w] = x
-                return x
-
-            def union(self, x, y):
-                root_x = self.find(x)
-                root_y = self.find(y)
-                if root_x < root_y:
-                    root_x, root_y = root_y, root_x
-                self.root[root_x] = root_y
-                return
-
         # 模板：逆序思维，排列组合加并查集
-        n = len(nums)
+        len(nums)
         mod = 10 ** 9 + 7
         n = 10 ** 3
         cb = Combinatorics(n, mod)
@@ -936,7 +897,7 @@ class Solution:
     @staticmethod
     def lc_2158(paint: List[List[int]]) -> List[int]:
         # 模板：区间并查集
-        m = 5*10**4+10
+        m = 5 * 10 ** 4 + 10
         uf = UnionFindRightRange(m)
         ans = []
         for a, b in paint:
@@ -945,7 +906,7 @@ class Solution:
                 a = uf.find(a)
                 if a < b:
                     cnt += 1
-                    uf.union(a, a+1)
+                    uf.union(a, a + 1)
                     a += 1
             ans.append(cnt)
         return ans
@@ -974,7 +935,7 @@ class Solution:
     def abc_131f(ac=FastIO()):
         # 模板：思维题并查集计数
         n = ac.read_int()
-        m = 10**5
+        m = 10 ** 5
         uf = UnionFind(2 * m)
         for _ in range(n):
             x, y = ac.read_list_ints()
@@ -996,14 +957,14 @@ class Solution:
         # 模板：经典向右合并的区间并查集
         n = ac.read_int()
         a = ac.read_list_ints()
-        uf = UnionFindRightRange(n*2+2)
+        uf = UnionFindRightRange(n * 2 + 2)
         a.sort()
         ans = 0
         for num in a:
             # 其根节点就是当前还未被占据的节点
             x = uf.find(num)
-            ans += x-num
-            uf.union(x, x+1)
+            ans += x - num
+            uf.union(x, x + 1)
         ac.st(ans)
         return
 
@@ -1060,4 +1021,3 @@ class Solution:
                     nex.append(node.right)
             stack = nex[:]
         return ans
-

@@ -1,12 +1,7 @@
 import math
-import unittest
 from collections import deque
 from typing import List
-
-from src.data_structure.tree_array import RangeAddRangeSum
-from utils.fast_io import FastIO, inf
-
-
+from math import inf
 
 
 class UnionFindLCA:
@@ -360,11 +355,13 @@ class TreeCentroid:
                     size[u] = 1
                     dfs_order.append(u)
                     for v in to[u]:
-                        if v == parent[u] or is_removed[v]: continue
+                        if v == parent[u] or is_removed[v]:
+                            continue
                         parent[v] = u
                         stack.append(v)
                 for u in dfs_order[::-1]:
-                    if u == root: break
+                    if u == root:
+                        break
                     size[parent[u]] += size[u]
             c = root
             while 1:
@@ -372,7 +369,8 @@ class TreeCentroid:
                 for v in to[c]:
                     if v == parent[c] or is_removed[v]:
                         continue
-                    if size[v] > mx: mx, u = size[v], v
+                    if size[v] > mx:
+                        mx, u = size[v], v
                 if u == -1:
                     break
                 c = u
@@ -467,5 +465,3 @@ class HeavyChain:
             x = self.parent[self.top[x]]
         # 返回的是节点真实的编号而不是 dfs 序即 dfn
         return x if self.depth[x] < self.depth[y] else y
-
-

@@ -1,42 +1,6 @@
-
-import bisect
-import random
-import re
-import unittest
-
-from typing import List
-import heapq
 import math
-from collections import defaultdict, Counter, deque
-from functools import lru_cache
-from itertools import combinations
-from sortedcontainers import SortedList, SortedDict, SortedSet
 
-from sortedcontainers import SortedDict
-from functools import reduce
-from operator import xor
-from functools import lru_cache
-
-import random
-from itertools import permutations, combinations
 import numpy as np
-
-from decimal import Decimal
-
-import heapq
-import copy
-
-"""
-
-算法：LGV引理
-功能：用来处理有向无环图上不相交路径计数问题
-题目：
-
-===================================洛谷===================================
-P6657 【模板】LGV 引理（https://www.luogu.com.cn/problem/P6657）
-参考：OI WiKi（https://oi-wiki.org/graph/lgv/）
-"""
-
 
 
 class LGV:
@@ -46,7 +10,7 @@ class LGV:
     @staticmethod
     def get_result(a, b, c, d):
         """从[a,b]走到[c,d]的方案数"""
-        return math.comb(d+c-a-b, c-a)
+        return math.comb(d + c - a - b, c - a)
 
     def compute(self, start, end, n):
         """从[start_i,1]到[end_j,n]的走法"""
@@ -58,7 +22,6 @@ class LGV:
                     grid[i][j] = self.get_result(start[i], 1, end[j], n)
         ans = np.linalg.det(np.array(grid))
         return int(np.around(ans))
-
 
     def gao_si(self, m1):
         """
@@ -105,48 +68,47 @@ class LGV:
                 if end[j] >= start[i]:
                     grid[i][j] = self.get_result(start[i], 1, end[j], n)
 
-        #assert self.gao_si(np.array(grid)) == self.get_det(np.array(grid))
+        # assert self.gao_si(np.array(grid)) == self.get_det(np.array(grid))
         ans = self.gao_si(np.array(grid))
         return int(np.around(ans))
 
     # 自己编写算法求解
     def get_det(self, a):
-        mutifier=1
-        i_value,j_value=a.shape
+        mutifier = 1
+        i_value, j_value = a.shape
         # 如果第一行第一列不为0
-        if a[0][0]!=0:
+        if a[0][0] != 0:
             for col in range(j_value):
                 for i in range(i_value):
-                    if i>=col+1:
-                    # 需要消元的列
+                    if i >= col + 1:
+                        # 需要消元的列
                         # 如果不等于0,消元
-                        if a[i][col]!=0:
-                            k=-1*a[i][col]/a[0+col][col]
-                            for j in range(col,j_value):
-                                a[i][j]=a[i][j]+k*a[0+col][j]
-            value=mutifier
+                        if a[i][col] != 0:
+                            k = -1 * a[i][col] / a[0 + col][col]
+                            for j in range(col, j_value):
+                                a[i][j] = a[i][j] + k * a[0 + col][j]
+            value = mutifier
             for i in range(i_value):
                 for j in range(j_value):
-                    if i==j:
-                        value*=a[i][j]
+                    if i == j:
+                        value *= a[i][j]
             return value
-        if a[0][0]==0:
-            col=0
+        if a[0][0] == 0:
+            col = 0
             for j in range(j_value):
-                if a[0][j]!=0:
-                    if col==0:
-                        col=j
+                if a[0][j] != 0:
+                    if col == 0:
+                        col = j
             # 如果一行为0，值为0
-            if col==0:
+            if col == 0:
                 return 0
             # 如若不是，就交换两列
             else:
-                first_result=[]
-                second_result=[]
+                first_result = []
+                second_result = []
                 for i in range(i_value):
                     first_result.append(a[i][0])
                     second_result.append(a[i][col])
-                a[:,0]=second_result
-                a[:,col]=first_result
-                return -1*self.get_det(a)
-
+                a[:, 0] = second_result
+                a[:, col] = first_result
+                return -1 * self.get_det(a)

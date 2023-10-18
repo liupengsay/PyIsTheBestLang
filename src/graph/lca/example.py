@@ -1,3 +1,7 @@
+import unittest
+
+from graph.lca.template import TreeAncestor
+
 
 class TestGeneral(unittest.TestCase):
 
@@ -28,4 +32,3 @@ class TestGeneral(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-

@@ -1,10 +1,6 @@
-
-import unittest
-
-from collections import defaultdict, deque
+from collections import defaultdict
 
 from utils.fast_io import FastIO
-
 
 
 class Kosaraju:
@@ -48,7 +44,7 @@ class Kosaraju:
             if not self.color[self.s[i]]:
                 self.sccCnt += 1
                 self.dfs2(self.s[i])
-        self.color = [c-1 for c in self.color]
+        self.color = [c - 1 for c in self.color]
         return
 
     def gen_new_edges(self, weight):
@@ -109,7 +105,6 @@ class Tarjan:
         yield
 
 
-
 class TwoSAT:
     def __init__(self):
         return
@@ -140,7 +135,7 @@ class TwoSAT:
             # 按照强连通进行缩点
             tarjan = Tarjan(edge)
             # 进行方案赋予，先出现的确定值
-            ans = [0] * m*n
+            ans = [0] * m * n
             pre = set()
             for sc in tarjan.scc:
                 for node in sc:
@@ -253,7 +248,7 @@ class TwoSAT:
                 if i not in pre:
                     ans[i] = node % 2
                 pre.add(i)
-        res = [i+1 for i in range(2 * n) if ans[i]]
+        res = [i + 1 for i in range(2 * n) if ans[i]]
         for a in res:
             ac.st(a)
         #####################################################

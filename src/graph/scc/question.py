@@ -1,4 +1,3 @@
-
 """
 
 算法：强连通分量、2-SAT、最大环、最小环
@@ -26,6 +25,11 @@ C. Engineer Artem（https://codeforces.com/problemset/problem/1438/C）2-SAT 问
 
 参考：OI WiKi（https://oi-wiki.org/graph/scc/）
 """
+
+from collections import deque
+
+from graph.scc.template import Tarjan
+from utils.fast_io import FastIO
 
 
 class Solution:
@@ -95,17 +99,17 @@ class Solution:
                 if a[x] or b[x]:
                     return
                 a[x] = 1
-                dfs(edge[x], sum_+dct[x])
+                dfs(edge[x], sum_ + dct[x])
                 a[x] = 0
                 return
 
-            a = [0]*n
-            b = [0]*n
+            a = [0] * n
+            b = [0] * n
             ans = 0
             for st in range(n):
                 dfs(edge[st], dct[st])
                 b[st] = 1
             return ans
-        # 经典题目也可用 scc 或者拓扑排序求解
-        return largest_circle(len(edges), edges, [1]*len(edges))
 
+        # 经典题目也可用 scc 或者拓扑排序求解
+        return largest_circle(len(edges), edges, [1] * len(edges))

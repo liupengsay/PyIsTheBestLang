@@ -1,3 +1,7 @@
+import unittest
+
+from graph.dijkstra.template import Dijkstra
+
 
 class TestGeneral(unittest.TestCase):
 

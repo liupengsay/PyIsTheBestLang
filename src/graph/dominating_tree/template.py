@@ -1,5 +1,3 @@
-
-
 # 定义一个支配树类
 class DominatingTree:
     def __init__(self, n):
@@ -37,4 +35,3 @@ class DominatingTree:
     def get_dominators(self):
         # 返回每个点的支配点
         return self.dominators
-

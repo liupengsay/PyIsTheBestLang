@@ -1,8 +1,8 @@
-import unittest
 from typing import List
 
+from graph.euler_path.template import DirectedEulerPath, UnDirectedEulerPath
+from graph.union_find.template import UnionFind
 from utils.fast_io import FastIO
-from src.graph.union_find import UnionFind
 
 """
 
@@ -40,6 +40,7 @@ OI WiKi（https://oi-wiki.org/graph/euler/）
 https://www.jianshu.com/p/8394b8e5b878
 https://www.luogu.com.cn/problem/solution/P7771
 """
+
 
 class Solution:
     def __init__(self):
@@ -214,4 +215,3 @@ class Solution:
         dt = DirectedEulerPath(n, pairs)
         ac.lst([nums[x] for x in dt.nodes])
         return
-
