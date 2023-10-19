@@ -34,6 +34,7 @@ E. MEX of LCM（https://codeforces.com/contest/1834/problem/E）经典计算连�
 E. Iva & Pav（https://codeforces.com/contest/1878/problem/E）经典计算连续子数组的and信息
 F. Array Stabilization (GCD version)（https://codeforces.com/contest/1547/problem/F）经典计算连续子数组的gcd信息
 F. Array Stabilization (AND version)（https://codeforces.com/contest/1579/problem/F）经典循环节计算连续子数组的and信息
+D. Rorororobot（https://codeforces.com/contest/1709/problem/D）use sparse table to compute static range max and implemention
 
 ================================AcWing====================================
 109. 天才ACM（https://www.acwing.com/problem/content/111/）贪心加倍增计算最少分段数
@@ -236,6 +237,30 @@ class Solution:
             post = cur
             ans[i] = post[max(post)] - i + 1
         return ans
+
+    @staticmethod
+    def cf_1709d(ac=FastIO()):
+        n, m = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        st = SparseTable1(nums, "max")
+        for _ in range(ac.read_int()):
+            x1, y1, x2, y2, k = ac.read_list_ints()
+            if x1 % k != x2 % k or y1 % k != y2 % k:
+                ac.st("NO")
+                continue
+            if y1 == y2:
+                ac.st("YES")
+                continue
+            if y1 > y2:
+                y1, y2 = y2, y1
+            ceil = st.query(y1, y2)
+            y = (n - x1) // k
+            w = k * y + x1
+            if w <= ceil:
+                ac.st("NO")
+            else:
+                ac.st("YES")
+        return
 
     @staticmethod
     def cf_1878e(ac=FastIO()):
