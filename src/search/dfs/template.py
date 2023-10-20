@@ -1,23 +1,3 @@
-
-import unittest
-import bisect
-from bisect import bisect_right, bisect_left
-from collections import defaultdict
-from functools import reduce
-from itertools import accumulate
-from math import inf
-from operator import xor
-
-from typing import List, Optional
-
-from src.basis.diff_array import PreFixSumMatrix
-from src.basis.tree_node import TreeNode
-from utils.fast_io import FastIO
-from src.graph.lca import TreeAncestor
-
-
-
-
 class DFS:
     def __init__(self):
         return
@@ -30,11 +10,11 @@ class DFS:
             dct[i].sort(reverse=True)  # 按照子节点编号从小到大进行遍历
         order = 0
         start = [-1] * n  # 每个原始节点的dfs序号开始点也是node_to_order
-        end = [-1]*n  # 每个原始节点的dfs序号结束点
-        parent = [-1]*n  # 每个原始节点的父节点
+        end = [-1] * n  # 每个原始节点的dfs序号结束点
+        parent = [-1] * n  # 每个原始节点的父节点
         stack = [[root, -1]]
-        depth = [0]*n  # 每个原始节点的深度
-        order_to_node = [-1]*n  # 每个dfs序号对应的原始节点编号
+        depth = [0] * n  # 每个原始节点的深度
+        order_to_node = [-1] * n  # 每个dfs序号对应的原始节点编号
         while stack:
             i, fa = stack.pop()
             if i >= 0:
@@ -106,6 +86,3 @@ class DfsEulerOrder:
             if self.euler_in[num] == -1:
                 self.euler_in[num] = i
         return
-
-
-

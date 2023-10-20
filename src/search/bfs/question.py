@@ -1,8 +1,3 @@
-import unittest
-from collections import deque, defaultdict
-from typing import List
-from utils.fast_io import FastIO, inf
-
 """
 算法：广度优先搜索、双端队列BFS、离散化BFS、有边界的BFS、染色法、奇数环
 功能：在有向图与无向图进行扩散，多源BFS、双向BFS，0-1BFS（类似SPFA）双向BFS或者A-star启发式搜索
@@ -106,6 +101,13 @@ E - Virus Tree 2（https://atcoder.jp/contests/abc133/tasks/abc133_e）BFS染色
 
 参考：OI WiKi（xx）
 """
+
+from collections import deque, defaultdict
+from math import inf
+from typing import List
+
+from graph.union_find.template import UnionFind
+from utils.fast_io import FastIO
 
 
 class Solution:
@@ -338,7 +340,7 @@ class Solution:
             degree[j] += 1
             out_degree[i] += 1
         ind = [i for i in range(n) if degree[i] and not out_degree[i]]
-        cnt = [0]*n
+        cnt = [0] * n
         stack = [i for i in range(n) if not degree[i]]
         for x in stack:
             cnt[x] = 1
@@ -412,13 +414,14 @@ class Solution:
             d, x, y = q.popleft()
             for nx, ny in (x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1):
                 if 0 <= nx < m and 0 <= ny < n and not visit[nx][ny]:
-                    if [nx, ny] == [m-1, n-1]:
+                    if [nx, ny] == [m - 1, n - 1]:
                         return d + grid[nx][ny]
                     visit[nx][ny] = 1
                     if not grid[nx][ny]:
                         q.appendleft((d, nx, ny))
                     else:
                         q.append((d + 1, nx, ny))
+        return -1
 
     @staticmethod
     def lc_2493(n: int, edges: List[List[int]]) -> int:
@@ -501,7 +504,6 @@ class Solution:
                     maze[x][y] = "+"
         return -1
 
-
     @staticmethod
     def cf_1572a(ac=FastIO()):
         # 模板：BFS 判断 DAG 是否有环和无环时的最长路（注意起点可能有多个）
@@ -577,15 +579,15 @@ class Solution:
         # 模板：求最小偏心距在树的直径上进行双指针与单调队列计算
         n, s = ac.read_list_ints()
         dct = [dict() for _ in range(n)]
-        for _ in range(n-1):
+        for _ in range(n - 1):
             i, j, w = ac.read_list_ints()
-            dct[i-1][j-1] = w
-            dct[j-1][i-1] = w
+            dct[i - 1][j - 1] = w
+            dct[j - 1][i - 1] = w
 
         def bfs_diameter(src):
             res, node = 0, src
             stack = [[src, 0]]
-            parent = [-1]*n
+            parent = [-1] * n
             while stack:
                 u, dis = stack.pop()
                 if dis > res:
@@ -594,7 +596,7 @@ class Solution:
                 for v in dct[u]:
                     if v != parent[u]:
                         parent[v] = u
-                        stack.append([v, dis+dct[u][v]])
+                        stack.append([v, dis + dct[u][v]])
             pa = [node]
             while parent[pa[-1]] != -1:
                 pa.append(parent[pa[-1]])
@@ -606,7 +608,7 @@ class Solution:
         end, path = bfs_diameter(start)
 
         def bfs_distance(src):
-            dis = [0]*n
+            dis = [0] * n
             stack = [[src, -1, 1]]
             while stack:
                 u, fa, state = stack.pop()
@@ -619,7 +621,7 @@ class Solution:
                     x = 0
                     for v in dct[u]:
                         if v != fa:
-                            x = ac.max(x, dct[u][v]+dis[v])
+                            x = ac.max(x, dct[u][v] + dis[v])
                     dis[u] = x
             return dis
 
@@ -635,7 +637,7 @@ class Solution:
                 res = ac.max(res, dis)
                 for v in dct[u]:
                     if v != fa and v not in diameter:
-                        stack.append([v, u, dis+dct[u][v]])
+                        stack.append([v, u, dis + dct[u][v]])
             diameter[src] = res
             return
 
@@ -655,14 +657,14 @@ class Solution:
             while q and q[0][1] < i:
                 q.popleft()
             if i:
-                gap -= dct[path[i-1]][path[i]]
+                gap -= dct[path[i - 1]][path[i]]
 
             # 双指针与单调队列
-            while j+1 < m and gap + dct[path[j]][path[j+1]] <= s:
+            while j + 1 < m and gap + dct[path[j]][path[j + 1]] <= s:
                 gap += dct[path[j]][path[j + 1]]
-                while q and q[-1][0] < diameter[path[j+1]]:
+                while q and q[-1][0] < diameter[path[j + 1]]:
                     q.pop()
-                q.append([diameter[path[j+1]], j+1])
+                q.append([diameter[path[j + 1]], j + 1])
                 j += 1
 
             ans = ac.min(ans, max(dis2[path[i]], dis1[path[j]], q[0][0]))
@@ -675,8 +677,8 @@ class Solution:
         n, k = ac.read_list_ints()
         mod = 1000000007
         dct = [[] for _ in range(n)]
-        degree = [0]*n
-        for _ in range(n-1):
+        degree = [0] * n
+        for _ in range(n - 1):
             i, j = ac.read_list_ints_minus_one()
             dct[i].append(j)
             dct[j].append(i)
@@ -691,17 +693,17 @@ class Solution:
         while stack:
             i, fa, pre, c = stack.pop()
             if pre == 0:
-                ans *= (k-c)
+                ans *= (k - c)
             elif pre == 1:
-                ans *= (k - 1-c)
+                ans *= (k - 1 - c)
             else:
-                ans *= (k - 2-c)
+                ans *= (k - 2 - c)
             ans %= mod
             cnt = 0
             for j in dct[i]:
                 if j != fa:
                     cnt += 1
-                    stack.append([j, i, pre+1, cnt-1])
+                    stack.append([j, i, pre + 1, cnt - 1])
         ac.st(ans)
         return
 
@@ -721,8 +723,8 @@ class Solution:
         while stack:
             nex = []
             for i, j in stack:
-                for x, y in [[i-1, j], [i+1, j], [i, j-1], [i, j+1]]:
-                    if 0<=x<m and 0<=y<n and grid[x][y] == inf:
+                for x, y in [[i - 1, j], [i + 1, j], [i, j - 1], [i, j + 1]]:
+                    if 0 <= x < m and 0 <= y < n and grid[x][y] == inf:
                         nex.append([x, y])
                         grid[x][y] = grid[i][j] + 1
             stack = nex[:]
@@ -741,7 +743,7 @@ class Solution:
             for i in range(m):
                 for j in range(n):
                     x1, x2, x3, x4 = i * (n + 1) + j, i * (n + 1) + j + 1, \
-                        (i + 1) * (n + 1) + j, (i + 1) * (n + 1) + j + 1
+                                     (i + 1) * (n + 1) + j, (i + 1) * (n + 1) + j + 1
                     if grid[i][j] == "/":
                         dct[x2][x3] = dct[x3][x2] = 0
                         dct[x1][x4] = dct[x4][x1] = 1
@@ -807,8 +809,8 @@ class Solution:
                 for _ in range(2):
                     nex_ghost = []
                     for i, j in stack_ghost:
-                        for x, y in [[i-1, j], [i+1, j], [i, j-1], [i, j+1]]:
-                            if 0<=x<m and 0<=y<n and dis_ghost[x][y] == inf:
+                        for x, y in [[i - 1, j], [i + 1, j], [i, j - 1], [i, j + 1]]:
+                            if 0 <= x < m and 0 <= y < n and dis_ghost[x][y] == inf:
                                 dis_ghost[x][y] = pre
                                 nex_ghost.append([x, y])
                     stack_ghost = nex_ghost[:]
@@ -818,7 +820,8 @@ class Solution:
                     for i, j in stack_boy:
                         if dis_ghost[i][j] == inf:
                             for x, y in [[i - 1, j], [i + 1, j], [i, j - 1], [i, j + 1]]:
-                                if 0 <= x < m and 0 <= y < n and dis_boy[x][y] == inf and grid[x][y] != "X" and dis_ghost[x][y]==inf:
+                                if 0 <= x < m and 0 <= y < n and dis_boy[x][y] == inf and grid[x][y] != "X" and \
+                                        dis_ghost[x][y] == inf:
                                     dis_boy[x][y] = pre
                                     nex_boy.append([x, y])
                                     if dis_girl[x][y] < inf:
@@ -844,7 +847,7 @@ class Solution:
     @staticmethod
     def lg_p1213(ac=FastIO()):
         # 模板：使用状态压缩优化进行01BFS
-        nex = {0:1, 1:2, 2:3, 3:0}
+        nex = {0: 1, 1: 2, 2: 3, 3: 0}
         lst = "ABDE,ABC,BCEF,ADG,BDEFH,CFI,DEGH,GHI,EFHI".split(",")
         ind = dict()
         for i, st in enumerate(lst):
@@ -852,7 +855,7 @@ class Solution:
 
         grid = []
         for _ in range(3):
-            grid.extend([(num-3)//3 for num in ac.read_list_ints()])
+            grid.extend([(num - 3) // 3 for num in ac.read_list_ints()])
 
         def list_to_num(ls):
             res = 0
@@ -864,7 +867,7 @@ class Solution:
         def num_to_list(num):
             res = []
             while num:
-                res.append(num%4)
+                res.append(num % 4)
                 num //= 4
             while len(res) < 9:
                 res.append(0)
@@ -872,10 +875,10 @@ class Solution:
 
         ans = ""
         start = list_to_num(grid)
-        target = list_to_num([3]*9)
+        target = list_to_num([3] * 9)
 
         stack = deque([start])
-        visit= dict()
+        visit = dict()
         visit[start] = ""
         if start == target:
             ac.st("")
@@ -887,18 +890,18 @@ class Solution:
             if ans and len(pre) > len(ans):
                 continue
             if state == target:
-                if len(pre) < len(ans) or (len(pre)==len(ans) and pre < ans) or not ans:
+                if len(pre) < len(ans) or (len(pre) == len(ans) and pre < ans) or not ans:
                     ans = pre
                 continue
 
             state = num_to_list(state)
             for i in range(9):
                 tmp = state[:]
-                for w in ind[i+1]:
+                for w in ind[i + 1]:
                     tmp[w] = nex[tmp[w]]
                 cur = list_to_num(tmp)
                 if cur not in visit:
-                    visit[cur] = pre+str(i+1)
+                    visit[cur] = pre + str(i + 1)
                     stack.append(cur)
         ac.lst(list(ans))
         return
@@ -1151,7 +1154,7 @@ class Solution:
         # 模板：使用 BFS 与周边进行山峰山谷计算
         n = ac.read_int()
         grid = [ac.read_list_ints() for _ in range(n)]
-        visit = [[0]*n for _ in range(n)]
+        visit = [[0] * n for _ in range(n)]
         ceil = floor = 0
         for x in range(n):
             for y in range(n):
@@ -1201,7 +1204,8 @@ class Solution:
             if i == m - 1 and j == n - 1:
                 ac.st(visit[i][j][s])
                 return
-            if s == 0 and 0 <= i + d < m and 0 <= j + r < n and not visit[i + d][j + r][1] and grid[i + d][j + r] != "#":
+            if s == 0 and 0 <= i + d < m and 0 <= j + r < n and not visit[i + d][j + r][1] and grid[i + d][
+                j + r] != "#":
                 visit[i + d][j + r][1] = visit[i][j][s] + 1
                 stack.append([i + d, j + r, 1])
             for x, y in [[i - 1, j], [i, j + 1], [i + 1, j], [i, j - 1]]:
@@ -1349,17 +1353,17 @@ class Solution:
         # 模板：使用 01BFS 进行模拟计算
         m, n = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
-        dct = [dict() for _ in range((m+1)*(n+1))]
+        dct = [dict() for _ in range((m + 1) * (n + 1))]
         for i in range(m):
             for j in range(n):
-                x1, x2, x3, x4 = i*(n+1)+j, i*(n+1)+j+1, (i+1)*(n+1)+j, (i+1)*(n+1)+j+1
+                x1, x2, x3, x4 = i * (n + 1) + j, i * (n + 1) + j + 1, (i + 1) * (n + 1) + j, (i + 1) * (n + 1) + j + 1
                 if grid[i][j] == "/":
                     dct[x2][x3] = dct[x3][x2] = 0
                     dct[x1][x4] = dct[x4][x1] = 1
                 else:
                     dct[x2][x3] = dct[x3][x2] = 1
                     dct[x1][x4] = dct[x4][x1] = 0
-        visit = [inf]*((m+1)*(n+1))
+        visit = [inf] * ((m + 1) * (n + 1))
         visit[0] = 0
         stack = deque([[0, 0]])
         while stack and visit[-1] == inf:
@@ -1370,7 +1374,7 @@ class Solution:
                 dd = d + dct[i][j]
                 if dd < visit[j]:  # 注意这里和dijkstra非常类似也需要判断更小值
                     visit[j] = dd
-                    if dd == d+1:
+                    if dd == d + 1:
                         stack.append([j, dd])
                     else:
                         stack.appendleft([j, dd])
@@ -1551,39 +1555,39 @@ class Solution:
         m, n = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
 
-        up = [[-1]*n for _ in range(m)]
+        up = [[-1] * n for _ in range(m)]
         for j in range(n):
             for i in range(1, m):
-                if grid[i][j] == grid[i-1][j]:
-                    up[i][j] = up[i-1][j]
+                if grid[i][j] == grid[i - 1][j]:
+                    up[i][j] = up[i - 1][j]
                 else:
-                    up[i][j] = i-1
+                    up[i][j] = i - 1
 
-        down = [[-1]*n for _ in range(m)]
+        down = [[-1] * n for _ in range(m)]
         for j in range(n):
-            for i in range(m-2, -1, -1):
-                if grid[i][j] == grid[i+1][j]:
-                    down[i][j] = down[i+1][j]
+            for i in range(m - 2, -1, -1):
+                if grid[i][j] == grid[i + 1][j]:
+                    down[i][j] = down[i + 1][j]
                 else:
-                    down[i][j] = i+1
+                    down[i][j] = i + 1
 
         left = [[-1] * n for _ in range(m)]
         for i in range(m):
             for j in range(1, n):
-                if grid[i][j] == grid[i][j-1]:
-                    left[i][j] = left[i][j-1]
+                if grid[i][j] == grid[i][j - 1]:
+                    left[i][j] = left[i][j - 1]
                 else:
-                    left[i][j] = j-1
+                    left[i][j] = j - 1
 
         right = [[-1] * n for _ in range(m)]
         for i in range(m):
-            for j in range(n-2, -1, -1):
+            for j in range(n - 2, -1, -1):
                 if grid[i][j] == grid[i][j + 1]:
                     right[i][j] = right[i][j + 1]
                 else:
                     right[i][j] = j + 1
 
-        s = ac.read_str()+"*"
+        s = ac.read_str() + "*"
         k = len(s)
         visit = [[-1] * n for _ in range(m)]
         visit[0][0] = 0
@@ -1634,8 +1638,8 @@ class Solution:
             dis[s1][s2] = 0
             stack.append([0, s1, s2])
             while stack:
-                d, i, j = stack.popleft()
-                for x, y in [[i - 1, j], [i + 1, j], [i, j - 1], [i, j + 1]]:
+                d, ii, jj = stack.popleft()
+                for x, y in [[ii - 1, jj], [ii + 1, jj], [ii, jj - 1], [ii, jj + 1]]:
                     if 0 <= x < m and 0 <= y < n and d + 1 < dis[x][y] and grid[x][y]:
                         dis[x][y] = d + 1
                         stack.append([d + 1, x, y])
@@ -1696,10 +1700,10 @@ class Solution:
         while stack:
             i, j, d = stack.popleft()
             ans = d
-            for x, y in [[i+1, j], [i-1, j], [i, j+1], [i, j-1]]:
-                if 0<=x<m and 0<=y<n and grid[x][y] == 1:
+            for x, y in [[i + 1, j], [i - 1, j], [i, j + 1], [i, j - 1]]:
+                if 0 <= x < m and 0 <= y < n and grid[x][y] == 1:
                     grid[x][y] = 2
-                    stack.append([x, y, d+1])
+                    stack.append([x, y, d + 1])
         for i in range(m):
             for j in range(n):
                 if grid[i][j] == 1:
@@ -1724,10 +1728,10 @@ class Solution:
                     break
             return visit
 
-        n = 10**6
+        n = 10 ** 6
         block = set(tuple(b) for b in blocked)
         m = len(block)
-        ceil = m*m
+        ceil = m * m
         visit_s = check(source)
         visit_t = check(target)
         return len(visit_s.intersection(visit_t)) > 0 or (len(visit_s) >= ceil and len(visit_t) >= ceil)
@@ -1735,8 +1739,8 @@ class Solution:
     @staticmethod
     def lc_1036_2(blocked: List[List[int]], source: List[int], target: List[int]) -> bool:
         # 模板：经典带边界的BFS和离散化BFS两种解法
-        nodes_r = {0, 10 ** 6-1}
-        nodes_c = {0, 10 ** 6-1}
+        nodes_r = {0, 10 ** 6 - 1}
+        nodes_c = {0, 10 ** 6 - 1}
         for a, b in blocked + [source] + [target]:
             nodes_r.add(a)
             nodes_c.add(b)
@@ -1822,6 +1826,7 @@ class Solution:
                     ans %= mod
             ac.st(ans)
             return
+
         for _ in range(ac.read_int()):
             check()
         return
@@ -1900,4 +1905,3 @@ class Solution:
                     ans += 1
         ac.st(ans)
         return
-

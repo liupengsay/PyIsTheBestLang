@@ -233,5 +233,5 @@ class LocalSortedList:
                 for value in reversed(_list))
 
     def __repr__(self):
-        """Return string representation of sorted list."""
+        """Return strings representation of sorted list."""
         return 'SortedList({0})'.format(list(self))

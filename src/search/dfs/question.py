@@ -64,6 +64,22 @@ F - Colorful Tree（https://atcoder.jp/contests/abc133/tasks/abc133_f）欧拉�
 
 """
 
+import bisect
+from bisect import bisect_right, bisect_left
+from collections import defaultdict
+from functools import reduce
+from itertools import accumulate
+from math import inf
+from operator import xor
+from typing import List, Optional
+
+from basis.diff_array.template import PreFixSumMatrix
+from basis.tree_node.template import TreeNode
+from graph.lca.template import TreeAncestor
+from search.dfs.template import DFS, DfsEulerOrder
+from utils.fast_io import FastIO
+
+
 class Solution:
     def __init__(self):
         return
@@ -489,8 +505,8 @@ class Solution:
             dct[i].append(j)
             dct[j].append(i)
 
-        visit, interval = DFS().gen_dfs_order_recursion(dct)
-        # 也可以使用 DFS().gen_bfs_order_iteration(dct)
+        visit, interval = DFS().gen_bfs_order_iteration(dct)
+        # 也可以使用
         diff = [0] * n
         for u, v in guesses:
             if visit[u] <= visit[v]:

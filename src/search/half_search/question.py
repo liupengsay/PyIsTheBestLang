@@ -1,12 +1,3 @@
-import unittest
-import bisect
-from collections import defaultdict
-from itertools import combinations
-from math import inf
-from typing import List
-
-from utils.fast_io import FastIO
-
 """
 算法：折半搜索、meet in middle
 功能：常见于 1<<n 较大的情况，对半分开进行枚举 
@@ -28,6 +19,14 @@ F. Xor-Paths（https://codeforces.com/contest/1006/problem/F）前缀和哈希�
 
 参考：OI WiKi（xx）
 """
+
+import bisect
+from collections import defaultdict
+from itertools import combinations
+from math import inf
+from typing import List
+
+from utils.fast_io import FastIO
 
 
 class Solution:
@@ -187,7 +186,7 @@ class Solution:
                             for p in dct:
                                 cur[p ^ x] += dct[p]
                 if i:
-                    pre[i-1][j] = defaultdict(int)
+                    pre[i - 1][j] = defaultdict(int)
                 pre[i][j] = cur
 
         ans = 0
@@ -209,7 +208,7 @@ class Solution:
                                 cur[p ^ x] += dct[p]
                 post[i][j] = cur
 
-                if i+1 < m:
+                if i + 1 < m:
                     post[i + 1][j] = defaultdict(int)
 
                 if m - 1 - i + n - 1 - j == right:
@@ -238,20 +237,20 @@ class Solution:
                 if i == m:
                     cur.add(x)
                     continue
-                stack.append([x+tmp[i], i+1])
-                stack.append([x, i+1])
+                stack.append([x + tmp[i], i + 1])
+                stack.append([x, i + 1])
             return cur
 
-        pre = sorted(list(check(lst[:n//2])))
-        post = sorted(list(check(lst[n//2:])))
+        pre = sorted(list(check(lst[:n // 2])))
+        post = sorted(list(check(lst[n // 2:])))
         if len(pre) > len(post):
             pre, post = post, pre
         ans = 0
         for num in pre:
-            j = bisect.bisect_right(post, w-num)-1
+            j = bisect.bisect_right(post, w - num) - 1
             ans = max(ans, num)
             if 0 <= j < len(post):
-                ans = max(ans, num+post[j])
+                ans = max(ans, num + post[j])
         ac.st(ans)
         return
 
@@ -320,4 +319,3 @@ class Solution:
             ac.st(ans)
             return
         return
-

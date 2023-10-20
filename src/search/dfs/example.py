@@ -1,4 +1,9 @@
 
+import unittest
+
+from search.dfs.template import DFS, DfsEulerOrder
+
+
 class TestGeneral(unittest.TestCase):
 
     def test_dfs(self):
