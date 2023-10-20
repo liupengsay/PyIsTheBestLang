@@ -1,14 +1,3 @@
-import unittest
-from collections import defaultdict, Counter
-from functools import lru_cache
-from functools import reduce
-from math import inf
-from operator import xor, or_
-from typing import List
-
-from utils.fast_io import FastIO
-
-
 class BitOperation:
     def __init__(self):
         return
@@ -73,5 +62,3 @@ class BitOperation:
         for i in range(1, n):
             code.extend([(1 << i) + num for num in code[::-1]])
         return code
-
-

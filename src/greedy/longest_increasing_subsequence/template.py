@@ -1,13 +1,7 @@
 import bisect
-import random
-import unittest
 from bisect import bisect_left
 from collections import deque, defaultdict
 from typing import List
-
-from src.data_structure.segment_tree import RangeAscendRangeMax
-from src.data_structure.tree_array import PointAscendPreMax
-from utils.fast_io import FastIO
 
 
 class LongestIncreasingSubsequence:
@@ -187,7 +181,7 @@ class LcsLis:
         return s[-1]
 
     @staticmethod
-    def longest_common_subsequence_length_and_cnt(s1, s2, mod=10**9+7):
+    def longest_common_subsequence_length_and_cnt(s1, s2, mod=10 ** 9 + 7):
         # 模板：经典使用求 LIS 子序列的个数 O(nlogn) 做法求解 LCS 的长度与个数
 
         # 使用LIS的办法求LCS生成索引数组
@@ -229,5 +223,3 @@ class LcsLis:
                 s[length] %= mod
                 q[length].append([num, s[length - 1]])
         return len(dp), s[-1]
-
-

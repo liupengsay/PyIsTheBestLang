@@ -68,6 +68,16 @@ E - Cell Distance（https://atcoder.jp/contests/abc127/tasks/abc127_e）经典�
 参考：OI WiKi（xx）
 卡特兰数（https://oi-wiki.org/math/combinatorics/catalan/）
 """
+import math
+from collections import Counter, defaultdict
+from functools import lru_cache
+from typing import List
+
+from mathmatics.comb_perm.template import Combinatorics, Lucas
+from mathmatics.number_theory.template import NumberTheory
+from mathmatics.prime_factor.template import PrimeFactor
+from utils.fast_io import FastIO
+
 
 class Solution:
     def __int__(self):
@@ -77,11 +87,11 @@ class Solution:
     def abc_110d(ac=FastIO()):
         # 模板：质因数分解与隔板法计数
         n, m = ac.read_list_ints()
-        mod = 10**9 + 7
-        cb = Combinatorics(n+100, mod)  # 注意这里会超出n
+        mod = 10 ** 9 + 7
+        cb = Combinatorics(n + 100, mod)  # 注意这里会超出n
         ans = 1
         for _, c in NumberTheory().get_prime_factor(m):
-            ans *= cb.comb(c+n-1, n-1)  # 经典n个正整数和为c+n转换
+            ans *= cb.comb(c + n - 1, n - 1)  # 经典n个正整数和为c+n转换
             # 等价于sum(cb.comb(n, k)*cb.comb(c-1, k-1) for k in range(1, c+1))
             ans %= mod
         ac.st(ans)
@@ -97,10 +107,10 @@ class Solution:
         left = 0
         right = n
         while left < right:
-            mid = (left+right)//2
+            mid = (left + right) // 2
             if mid <= pos:
                 small += int(mid != pos)
-                left = mid+1
+                left = mid + 1
             else:
                 right = mid
                 big += 1
@@ -108,10 +118,10 @@ class Solution:
         if small >= x or big > n - x:
             ac.st(0)
             return
-        mod = 10**9+7
+        mod = 10 ** 9 + 7
         comb = Combinatorics(n, mod)
-        ans = comb.comb(n-x, big)*comb.factorial(big)*math.comb(x-1, small)*math.factorial(small)
-        ans *= comb.factorial(n-big-small-1)
+        ans = comb.comb(n - x, big) * comb.factorial(big) * math.comb(x - 1, small) * math.factorial(small)
+        ans *= comb.factorial(n - big - small - 1)
         ac.st(ans % mod)
         return
 
@@ -183,14 +193,14 @@ class Solution:
         # 类似题目也有长为 2n 合法的括号匹配数 h(n) = h(n-1)*(4*n-2)//(n+1)
         # 也可以使用 h(n) = math.comb(2*n, n)//(n+1) 求解
         ans = math.comb(2 * n, n) - math.comb(2 * n, n - 1)
-        assert ans == math.comb(2*n, n)//(n+1)  # 不需要取模时可以直接用这个计算
+        assert ans == math.comb(2 * n, n) // (n + 1)  # 不需要取模时可以直接用这个计算
         ac.st(ans)
         return
 
     @staticmethod
     def lc_634(n):
         # 模板：求错位排列组合数
-        mod = 10**9+7
+        mod = 10 ** 9 + 7
         fault = [0, 0, 1, 2]
         for i in range(4, n + 1):
             fault.append((i - 1) * (fault[i - 1] + fault[i - 2]) % mod)
@@ -200,7 +210,7 @@ class Solution:
     def cf_300c(ac=FastIO()):
         mod = 10 ** 9 + 7
         a, b, n = ac.read_list_ints()
-        c = Combinatorics(n+1, mod)
+        c = Combinatorics(n + 1, mod)
 
         dct = set(f"{a}{b}")
         ans = 0
@@ -231,14 +241,14 @@ class Solution:
     @staticmethod
     def lg_p4017(ac=FastIO()):
         # 模板：组合数与错位排列求解
-        mod = 10**9+7
-        cb = Combinatorics(10**6, mod)
+        mod = 10 ** 9 + 7
+        cb = Combinatorics(10 ** 6, mod)
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
             if m > n:
                 ac.st(0)
                 continue
-            ans = cb.comb(n, m)*cb.fault[n-m]
+            ans = cb.comb(n, m) * cb.fault[n - m]
             ans %= mod
             ac.st(ans)
         return
@@ -266,7 +276,7 @@ class Solution:
         n, r = ac.read_list_ints()
         ans = 0
         for k in range(r):
-            cur = ((-1)**k)*math.comb(r, k)*((r-k)**n)
+            cur = ((-1) ** k) * math.comb(r, k) * ((r - k) ** n)
             ans += cur
         ac.st(ans)
         return
@@ -281,7 +291,7 @@ class Solution:
             return
 
         ans = 1
-        for x in range(n-2*m+2, n-m+2):
+        for x in range(n - 2 * m + 2, n - m + 2):
             ans *= x
             ans %= p
         ac.st(ans)
@@ -299,21 +309,21 @@ class Solution:
     @staticmethod
     def abc_42d(ac=FastIO()):
         # 模板：容斥原理组合计数
-        mod = 10**9 + 7
+        mod = 10 ** 9 + 7
         h, w, a, b = ac.read_list_ints()
-        cb = Combinatorics(h+w+2, mod)
-        ans = cb.comb(h+w-2, h-1)
-        for x in range(h-a+1, h+1):
+        cb = Combinatorics(h + w + 2, mod)
+        ans = cb.comb(h + w - 2, h - 1)
+        for x in range(h - a + 1, h + 1):
             y = b
-            cur = cb.comb(x+y-2, x-1)*cb.comb(h-x+w-y-1, h-x)
-            ans = (ans-cur) % mod
+            cur = cb.comb(x + y - 2, x - 1) * cb.comb(h - x + w - y - 1, h - x)
+            ans = (ans - cur) % mod
         ac.st(ans)
         return
 
     @staticmethod
     def abc_65d(ac=FastIO()):
         # 模板：经典容斥原理组合计数
-        mod = 10**9 + 7
+        mod = 10 ** 9 + 7
         n = ac.read_int()
         nums = ac.read_list_ints()
         ind = [-1, -1]
@@ -336,18 +346,18 @@ class Solution:
     @staticmethod
     def abc_127e(ac=FastIO()):
         # 模板：经典贡献法组合计数
-        mod = 10**9 + 7
+        mod = 10 ** 9 + 7
         m, n, k = ac.read_list_ints()
-        cb = Combinatorics(m*n, mod)
-        cnt = cb.comb(m*n-2, k-2)
+        cb = Combinatorics(m * n, mod)
+        cnt = cb.comb(m * n - 2, k - 2)
         ans = 0
         for i in range(m):
             for j in range(n):
-                up = n*i*(i+1)//2 if i else 0
-                down = n*(m-1-i+1)*(m-1-i)//2 if i < m-1 else 0
-                left = m*j*(j+1)//2 if j else 0
-                right = m*(n-1-j+1)*(n-1-j)//2 if j < n-1 else 0
-                ans += cnt*(left+right+up+down)
+                up = n * i * (i + 1) // 2 if i else 0
+                down = n * (m - 1 - i + 1) * (m - 1 - i) // 2 if i < m - 1 else 0
+                left = m * j * (j + 1) // 2 if j else 0
+                right = m * (n - 1 - j + 1) * (n - 1 - j) // 2 if j < n - 1 else 0
+                ans += cnt * (left + right + up + down)
                 ans %= mod
         ans *= pow(2, -1, mod)
         ans %= mod
@@ -358,9 +368,9 @@ class Solution:
     def ac_130(ac=FastIO()):
         # 模板：超大范围的卡特兰数计算 h(n) = C(2n, n)//(n+1) = ((n+1)*..*(2*n))//(1*2*..*(n+1))
         n = ac.read_int()
-        nt = NumberTheoryPrimeFactor(2*n+1)
+        nt = PrimeFactor(2 * n + 1)
         cnt = defaultdict(int)
-        for i in range(1, 2*n+1):
+        for i in range(1, 2 * n + 1):
             for num, y in nt.prime_factor[i]:
                 if i <= n:
                     cnt[num] -= y
@@ -368,8 +378,8 @@ class Solution:
                     cnt[num] += y
         ans = 1
         for w in cnt:
-            ans *= w**cnt[w]
-        ac.st(ans // (n+1))
+            ans *= w ** cnt[w]
+        ac.st(ans // (n + 1))
         return
 
     @staticmethod
@@ -397,7 +407,7 @@ class Solution:
         n -= sum([ac.read_int() for _ in range(m)])
         m -= 1
         n -= 1
-        p = 10**9+7
+        p = 10 ** 9 + 7
         ans = Lucas().comb(n, m, p)
         ac.st(ans)
         return
@@ -407,7 +417,7 @@ class Solution:
         # 模板：排列组合，计算comb(n+m, m)
         mod = 1000000007
         n, m = ac.read_list_ints()
-        ans = Lucas().comb(n+m, m, mod)
+        ans = Lucas().comb(n + m, m, mod)
         ac.st(ans)
         return
 
@@ -474,8 +484,8 @@ class Solution:
     @staticmethod
     def main(ac=FastIO()):
         # 模板：选择 n 个元素刚好有 m 个错位排列的方案数
-        mod = 10**9 + 7
-        cb = Combinatorics(10**6, mod)
+        mod = 10 ** 9 + 7
+        cb = Combinatorics(10 ** 6, mod)
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
             if m > n:
@@ -490,7 +500,7 @@ class Solution:
     def lg_p5684(ac=FastIO()):
         # 模板：容斥原理与组合计数
         n = ac.read_int()
-        mod = 10**9 + 7
+        mod = 10 ** 9 + 7
         cb = Combinatorics(n, mod)
         s = ac.read_str()
         cnt = Counter(s)
@@ -540,7 +550,7 @@ class Solution:
     def cf_414b(ac=FastIO()):
         mod = 10 ** 9 + 7
         n, k = ac.read_list_ints()
-        mp = NumberTheoryPrimeFactor(n)
+        mp = PrimeFactor(n)
         rp = Combinatorics(15 + 1, mod)
         cnt = [0] * (n + 1)  # 当前值 last 的最小质因数幂次
         res = [0] * (n + 1)  # 结尾为 last 的数组个数
@@ -561,7 +571,7 @@ class Solution:
     @staticmethod
     def lc_1735(queries: List[List[int]]) -> List[int]:
         mod = 10 ** 9 + 7
-        nt = NumberTheoryPrimeFactor(10 ** 4)
+        nt = PrimeFactor(10 ** 4)
         cb = Combinatorics(10 ** 4 + 15, mod)
 
         # 模板：经典质数分解与隔板法应用
@@ -569,7 +579,7 @@ class Solution:
         for n, k in queries:
             cur = 1
             for _, c in nt.prime_factor[k]:
-                cur *= cb.comb(n+c-1, n-1)
+                cur *= cb.comb(n + c - 1, n - 1)
                 cur %= mod
             ans.append(cur)
         return ans
@@ -577,19 +587,19 @@ class Solution:
     @staticmethod
     def lc_1866(n: int, k: int) -> int:
         # 模板：第一类斯特林数
-        mod = 10**9 + 7
-        dp = [[0]*(k+1) for _ in range(n+1)]
+        mod = 10 ** 9 + 7
+        dp = [[0] * (k + 1) for _ in range(n + 1)]
         dp[0][0] = 1
         for i in range(n):
             for j in range(k):
-                dp[i+1][j+1] = (dp[i][j] + dp[i][j+1]*i)%mod
+                dp[i + 1][j + 1] = (dp[i][j] + dp[i][j + 1] * i) % mod
         return dp[n][k]
 
     @staticmethod
     def abc_132d(ac=FastIO()):
         # 模板：组合数学经典计数，和为 X 的长为 Y 的正整数与非负整数方程解个数
         n, k = ac.read_list_ints()
-        mod = 10**9 + 7
+        mod = 10 ** 9 + 7
         cb = Combinatorics(n, mod)
         for i in range(1, k + 1):
             if n - k < i - 1:
@@ -612,8 +622,8 @@ class Solution:
     def ac_4002(ac=FastIO()):
         # 模板：矩阵DP转化为隔板法组合数求解
         m, n = ac.read_list_ints()
-        cb = Combinatorics(2*n+m, 10**9+7)
-        ac.st(cb.comb(2*n+m-1, m-1))
+        cb = Combinatorics(2 * n + m, 10 ** 9 + 7)
+        ac.st(cb.comb(2 * n + m - 1, m - 1))
         return
 
     @staticmethod
@@ -629,9 +639,8 @@ class Solution:
     @staticmethod
     def ac_5055(ac=FastIO()):
         # 模板：经典组合数学取模求解
-        mod = 10**9 + 7
+        mod = 10 ** 9 + 7
         n, m, k = ac.read_list_ints()
         cb = Combinatorics(m + n, mod)
         ac.st(cb.comb(n - 1, 2 * k) * cb.comb(m - 1, 2 * k) % mod)
         return
-

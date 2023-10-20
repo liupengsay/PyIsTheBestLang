@@ -16,6 +16,12 @@ P5367 【模板】康托展开（https://www.luogu.com.cn/problem/P5367）计算
 参考：OI WiKi（https://oi-wiki.org/math/combinatorics/cantor/）
 """
 
+import math
+
+from mathmatics.cantor_expands.template import CantorExpands
+from mathmatics.lexico_graphical_order.template import LexicoGraphicalOrder
+from utils.fast_io import FastIO
+
 
 class Solution:
     def __init__(self):
@@ -63,28 +69,28 @@ class Solution:
     def ac_5052(ac=FastIO()):
         # 模板：经典康托展开与BFS搜索，根据排列数确定最多末尾重排的长度
         n, k = ac.read_list_ints()
-        low = ac.max(1, n-12)
+        low = ac.max(1, n - 12)
         high = n
 
-        if math.factorial(high-low+1) < k:
+        if math.factorial(high - low + 1) < k:
             ac.st(-1)
             return
 
-        lst = list(range(low, high+1))
-        m = high-low+1
-        ce = CantorExpands(m, 10**20)
+        lst = list(range(low, high + 1))
+        m = high - low + 1
+        ce = CantorExpands(m, 10 ** 20)
         ind = ce.rank_to_array(m, k)
-        perm = [lst[i-1] for i in ind]
+        perm = [lst[i - 1] for i in ind]
         ans = 0
         stack = [0]
         while stack:
             x = stack.pop()
             if x > n:
                 continue
-            stack.append(x*10+4)
-            stack.append(x*10+7)
+            stack.append(x * 10 + 4)
+            stack.append(x * 10 + 7)
             if 1 <= x <= n:
-                a_x = x if x < low else perm[x-low]
+                a_x = x if x < low else perm[x - low]
                 if all(w in "47" for w in str(a_x)):
                     ans += 1
         ac.st(ans)

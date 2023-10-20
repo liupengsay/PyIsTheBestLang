@@ -1,3 +1,9 @@
+import random
+import unittest
+from collections import defaultdict
+
+from greedy.longest_increasing_subsequence.template import LongestIncreasingSubsequence, LcsLis
+
 
 class TestGeneral(unittest.TestCase):
 
@@ -17,7 +23,7 @@ class TestGeneral(unittest.TestCase):
             for i in range(1, 1 << n):
                 lst = [nums[j] for j in range(n) if i & (1 << j)]
                 m = len(lst)
-                if lst == sorted(lst) and all(lst[j+1] > lst[j] for j in range(m-1)):
+                if lst == sorted(lst) and all(lst[j + 1] > lst[j] for j in range(m - 1)):
                     a, b = cur[m], sum(lst)
                     cur[m] = a if a > b else b
             length = max(cur)

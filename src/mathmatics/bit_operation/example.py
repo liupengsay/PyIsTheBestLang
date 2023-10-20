@@ -1,3 +1,7 @@
+import unittest
+
+from mathmatics.bit_operation.template import BitOperation
+
 
 class TestGeneral(unittest.TestCase):
 

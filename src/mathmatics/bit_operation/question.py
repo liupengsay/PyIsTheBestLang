@@ -71,6 +71,15 @@ D - Xor Sum 4（https://atcoder.jp/contests/abc147/tasks/abc147_d）典型按位
 参考：OI WiKi（xx）
 https://blog.csdn.net/qq_35473473/article/details/106320878
 """
+from collections import defaultdict, Counter
+from functools import lru_cache
+from functools import reduce
+from math import inf
+from operator import xor, or_
+from typing import List
+
+from mathmatics.bit_operation.template import BitOperation
+from utils.fast_io import FastIO
 
 
 class Solution:
@@ -238,47 +247,35 @@ class Solution:
                 return 0
             if bin(n).count("1") == 1:
                 return 1
-            lowbit = n & (-n)
-            return 1 + min(dfs(n - lowbit), dfs(n + lowbit))
-
-        def greedy(n):
-            # 对应有 O(logn) 贪心解法
-            s = bin(n)[2:][::-1]
-            ans = cnt = 0
-            m = len(s)
-            for i in range(m):
-                if s[i] == "1":
-                    cnt += 1
-                else:
-                    # 中心思想是连续的 111 可以通过加 1 变成 1000 再减去其中的 1 即操作两次
-                    if cnt == 1:
-                        ans += 1
-                        cnt = 0
-                    elif cnt >= 2:
-                        if i + 1 < m and s[i + 1] == "1":
-                            ans += 1
-                            cnt = 1
-                        else:
-                            ans += 2
-                            cnt = 0
-            if cnt:
-                ans += 1 if cnt == 1 else 2
-            return ans
+            low = n & (-n)
+            return 1 + min(dfs(n - low), dfs(n + low))
 
         # 更优解法 bin(n ^ (3 * n)).count("1")
         return dfs(num)
 
     @staticmethod
-    def lc_260(nums):
-        # 模板：找出数组当中两个只出现一次的数（其余数保证出现两次）
-        s = reduce(xor, nums)
-        low = s & (-s)
-        ans = [0, 0]
-        for num in nums:
-            if num & low:
-                ans[0] ^= num
+    def lc_6365_2(num):
+        # 对应有 O(logn) 贪心解法
+        s = bin(num)[2:][::-1]
+        ans = cnt = 0
+        m = len(s)
+        for i in range(m):
+            if s[i] == "1":
+                cnt += 1
             else:
-                ans[1] ^= num
+                # 中心思想是连续的 111 可以通过加 1 变成 1000 再减去其中的 1 即操作两次
+                if cnt == 1:
+                    ans += 1
+                    cnt = 0
+                elif cnt >= 2:
+                    if i + 1 < m and s[i + 1] == "1":
+                        ans += 1
+                        cnt = 1
+                    else:
+                        ans += 2
+                        cnt = 0
+        if cnt:
+            ans += 1 if cnt == 1 else 2
         return ans
 
     @staticmethod
@@ -611,4 +608,3 @@ class Solution:
 
             ac.st(res[int("0b" + t, 2)][k])
         return
-

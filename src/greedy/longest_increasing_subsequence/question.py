@@ -1,4 +1,3 @@
-
 """
 
 算法：最长上升（或不降）子序列 Longest Increasing Subsequence（LIS）Longest Decreasing Subsequence（LDS）统称 Longest Monotonic Subsequence（LMS）
@@ -48,6 +47,14 @@ P1410 子序列（https://www.luogu.com.cn/problem/P1410）使用dilworth定理�
 E - Sequence Decomposing（https://atcoder.jp/contests/abc134/tasks/abc134_e）分成最少组数的上升子序列，等于最长不上升的子序列长度
 
 """
+
+import bisect
+from typing import List
+
+from data_structure.segment_tree.template import RangeAscendRangeMax
+from data_structure.tree_array.template import PointAscendPreMax
+from greedy.longest_increasing_subsequence.template import LongestIncreasingSubsequence, LcsLis
+from utils.fast_io import FastIO
 
 
 class Solution:
@@ -256,10 +263,10 @@ class Solution:
 
         for num in nums:
             if ind[num] == 0:
-                tree.update(1, num)
+                tree.point_ascend(1, num)
             else:
-                tree.update(ind[num] + 1, tree.query(ind[num]) + num)
-        ac.st(tree.query(n))
+                tree.point_ascend(ind[num] + 1, tree.pre_max(ind[num]) + num)
+        ac.st(tree.pre_max(n))
         return
 
     @staticmethod
@@ -272,21 +279,20 @@ class Solution:
         tree = RangeAscendRangeMax(n)
         for num in nums:
             if ind[num] == 0:
-                tree.update(0, 0, 0, n - 1, num, 1)
+                tree.range_ascend(0, 0, num)
             else:
-                pre = tree.query(0, ind[num] - 1, 0, n - 1, 1)
-                tree.update(ind[num], ind[num], 0, n - 1, pre + num, 1)
-        ac.st(tree.query(0, n - 1, 0, n - 1, 1))
+                pre = tree.range_max(0, ind[num] - 1)
+                tree.range_ascend(ind[num], ind[num], pre + num)
+        ac.st(tree.range_max(0, n - 1))
         return
 
     @staticmethod
     def ac_2694(ac=FastIO()):
         # 模板：使用LIS的方法求解LCS的长度与个数
-        mod = 10**8
+        mod = 10 ** 8
         s1 = ac.read_str()[:-1]
         s2 = ac.read_str()[:-1]
         length, cnt = LcsLis().longest_common_subsequence_length_and_cnt(s1, s2, mod)
         ac.st(length)
         ac.st(cnt % mod)
         return
-

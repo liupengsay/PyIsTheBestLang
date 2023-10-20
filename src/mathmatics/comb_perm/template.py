@@ -1,14 +1,4 @@
-import unittest
-from typing import List
-from collections import Counter, defaultdict
-from utils.fast_io import FastIO
 import math
-from functools import lru_cache
-
-from src.mathmatics.number_theory import NumberTheory
-from src.mathmatics.prime_factor import NumberTheoryPrimeFactor
-
-
 
 
 class Combinatorics:
@@ -122,5 +112,3 @@ class Lucas:
     def extend_lucas(self, n, m, p):
         # 模板：扩展卢卡斯定理，求 math.comb(n, m) % p，不要求p为质数
         return
-
-

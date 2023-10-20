@@ -1,4 +1,6 @@
+import unittest
 
+from greedy.brain_storming.template import BrainStorming
 
 
 class TestGeneral(unittest.TestCase):

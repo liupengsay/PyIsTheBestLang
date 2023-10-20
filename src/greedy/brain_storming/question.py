@@ -1,4 +1,3 @@
-
 """
 
 算法：贪心、逆向思维、抽屉原理、鸽巢原理、容斥原理、自定义排序、思维、脑筋急转弯、构造
@@ -185,6 +184,19 @@ D - Summer Vacation（https://atcoder.jp/contests/abc137/tasks/abc137_d）经典
 参考：OI WiKi（xx）
 """
 
+import heapq
+import math
+from bisect import insort_left, bisect_left
+from collections import Counter, deque, defaultdict
+from typing import List
+
+from sortedcontainers import SortedList
+
+from data_structure.sorted_list.template import LocalSortedList
+from mathmatics.number_theory.template import NumberTheory
+from utils.fast_io import FastIO
+
+
 class Solution:
     def __int__(self):
         return
@@ -209,6 +221,7 @@ class Solution:
                 res += s
                 dct[cur ^ ac.random_seed] += 1
             return res
+
         ac.st(check(m) - check(m + 1))
         return
 
@@ -281,15 +294,15 @@ class Solution:
         # 模板：经典环形均分纸牌问题
         n = ac.read_int()
         nums = [ac.read_int() for _ in range(n)]
-        m = sum(nums)//n
+        m = sum(nums) // n
         x = 0
         pre = []
         for i in range(n):
             x += m - nums[i]
             pre.append(x)
         pre.sort()
-        y = pre[n//2]
-        ans = sum(abs(num-y) for num in pre)
+        y = pre[n // 2]
+        ans = sum(abs(num - y) for num in pre)
         ac.st(ans)
         return
 
@@ -300,12 +313,12 @@ class Solution:
         a = b = 1
         for _ in range(n):
             x, y = ac.read_list_ints()
-            z1 = a //x + int(a%x>0)
-            z2 = b //y + int(b%y>0)
+            z1 = a // x + int(a % x > 0)
+            z2 = b // y + int(b % y > 0)
             z = ac.max(z1, z2)
-            a = z*x
-            b = z*y
-        ac.st(a+b)
+            a = z * x
+            b = z * y
+        ac.st(a + b)
         return
 
     @staticmethod
@@ -358,14 +371,14 @@ class Solution:
             lst_y.append(y)
             lst_x.append(x)
         lst_y.sort()
-        mid = lst_y[n//2]
-        ans = sum(abs(pos-mid) for pos in lst_y)
+        mid = lst_y[n // 2]
+        ans = sum(abs(pos - mid) for pos in lst_y)
 
         lst_x.sort()
-        lst_x = [lst_x[i]-i for i in range(n)]
+        lst_x = [lst_x[i] - i for i in range(n)]
         lst_x.sort()
-        mid = lst_x[n//2]
-        ans += sum(abs(pos-mid) for pos in lst_x)
+        mid = lst_x[n // 2]
+        ans += sum(abs(pos - mid) for pos in lst_x)
         ac.st(ans)
         return
 
@@ -374,11 +387,11 @@ class Solution:
         # 模板：经典贪心思路，邻项交换
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
-        nums.sort(key=lambda it: it[0]+it[1])
+        nums.sort(key=lambda it: it[0] + it[1])
         ans = -math.inf
         pre = 0
         for w, s in nums:
-            ans = ac.max(ans, pre-s)
+            ans = ac.max(ans, pre - s)
             pre += w
         ac.st(ans)
         return
@@ -402,7 +415,7 @@ class Solution:
             if ind < len(lst):
                 lst.pop(ind)
                 ans += 1
-                money += 500*tm + 2*level
+                money += 500 * tm + 2 * level
         ac.lst([ans, money])
         return
 
@@ -428,7 +441,7 @@ class Solution:
             stack = []
             for p, d in cur:
                 heapq.heappush(stack, p)
-                if len(stack) == d+1:
+                if len(stack) == d + 1:
                     heapq.heappop(stack)
             ac.st(sum(stack))
         return
@@ -529,7 +542,7 @@ class Solution:
             if (0 <= i < len(lst) and lst[i] > num) or i == len(lst):
                 i -= 1
             if 0 <= i < len(lst):
-                lst.add(lst.pop(i)+1)
+                lst.add(lst.pop(i) + 1)
             else:
                 lst.add(1)
         ac.st(len(lst))
@@ -664,11 +677,11 @@ class Solution:
         light_a = light_b = 0
         while i < n or j < n:
             if i < n and (a - light_b < b - light_a or j == n):
-                a += nums1[i]-1
+                a += nums1[i] - 1
                 i += 1
                 light_a += 1
             else:
-                b += nums2[j]-1
+                b += nums2[j] - 1
                 j += 1
                 light_b += 1
             ans = ac.max(ans, ac.min(a - light_b, b - light_a))
@@ -725,7 +738,7 @@ class Solution:
     @staticmethod
     def lg_p6196(ac=FastIO()):
         # 模板：贪心使用 1 进行分段计算代价
-        n = ac.read_int()
+        ac.read_int()
         nums = ac.read_list_ints()
         ans = 0
         lst = []
@@ -755,14 +768,14 @@ class Solution:
         a = ac.read_list_ints()
         b = ac.read_list_ints()
         for i in range(n):
-            w = abs(i-n//2)
+            w = abs(i - n // 2)
             a[i] -= w
             b[i] -= w
         a.extend(b)
         del b
         a.sort()
         x = ac.max(0, a[n])
-        ac.st(sum(abs(x-num) for num in a))
+        ac.st(sum(abs(x - num) for num in a))
         return
 
     @staticmethod
@@ -828,16 +841,16 @@ class Solution:
     def ac_4313(ac=FastIO()):
         # 模板：经典满二叉树树形DP贪心
         n = ac.read_int()
-        m = 2**(n+1)
-        dp = [0]*m
+        m = 2 ** (n + 1)
+        dp = [0] * m
         nums = ac.read_list_ints()
         ans = 0
-        for i in range(m//2-1, 0, -1):
-            left = dp[i*2] + nums[i*2-2]
-            right = dp[i*2+1] + nums[i*2-1]
+        for i in range(m // 2 - 1, 0, -1):
+            left = dp[i * 2] + nums[i * 2 - 2]
+            right = dp[i * 2 + 1] + nums[i * 2 - 1]
             x = ac.max(left, right)
             dp[i] = x
-            ans += x*2 - left - right
+            ans += x * 2 - left - right
         ac.st(ans)
         return
 
@@ -874,7 +887,7 @@ class Solution:
             if pre % 2:  # 奇数位没得选
                 ans[x] = s[x] - ss
             else:
-                lst = []   # 偶数位贪心取最大值
+                lst = []  # 偶数位贪心取最大值
                 for y in dct[x]:
                     lst.append(s[y])
                 if lst:
@@ -975,11 +988,11 @@ class Solution:
         # 模板：脑筋急转弯分为奇数与偶数讨论
         n = ac.read_int()
         if n % 2 == 0:
-            ac.st(n//2)
+            ac.st(n // 2)
         else:
             lst = NumberTheory().get_prime_factor(n)
             x = lst[0][0]
-            ac.st(1 + (n-x)//2)
+            ac.st(1 + (n - x) // 2)
         return
 
     @staticmethod
@@ -1048,28 +1061,28 @@ class Solution:
     @staticmethod
     def lc_1675(nums: List[int]) -> int:
         # 模板：脑筋急转弯思维题贪心
-        lst = SortedList([num if num % 2 == 0 else num*2 for num in nums])
+        lst = SortedList([num if num % 2 == 0 else num * 2 for num in nums])
         ans = lst[-1] - lst[0]
         while True:
             cur = lst[-1] - lst[0]
             ans = ans if ans < cur else cur
             if lst[-1] % 2:
                 break
-            lst.add(lst.pop()//2)
+            lst.add(lst.pop() // 2)
         return ans
 
     @staticmethod
     def lc_1808(prime_factors: int) -> int:
         # 模板：按照模3的因子个数贪心处理，经典将和拆分成最大乘积
-        mod = 10**9 + 7
+        mod = 10 ** 9 + 7
         if prime_factors <= 2:
             return prime_factors
         if prime_factors % 3 == 0:
-            return pow(3, prime_factors//3, mod)
+            return pow(3, prime_factors // 3, mod)
         elif prime_factors % 3 == 1:
-            return (4*pow(3, prime_factors//3 - 1, mod)) % mod
+            return (4 * pow(3, prime_factors // 3 - 1, mod)) % mod
         else:
-            return (2*pow(3, prime_factors//3, mod)) % mod
+            return (2 * pow(3, prime_factors // 3, mod)) % mod
 
     @staticmethod
     def lc_1927(num: str) -> bool:
@@ -1133,4 +1146,3 @@ class Solution:
             if 1 << i not in dct:
                 return 1 << i
         return -1
-

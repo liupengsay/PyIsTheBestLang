@@ -1,13 +1,5 @@
-import math
-import unittest
-
-from utils.fast_io import FastIO
-from src.mathmatics.lexico_graphical_order import LexicoGraphicalOrder
-
-
-
 class CantorExpands:
-    def __init__(self, n, mod=10**9 + 7):
+    def __init__(self, n, mod=10 ** 9 + 7):
         self.mod = mod
         self.dp = [1] * (n + 1)
         for i in range(2, n):
@@ -36,4 +28,3 @@ class CantorExpands:
             ans.append(nums.pop(i))
             k -= i * single
         return ans
-
