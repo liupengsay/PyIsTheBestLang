@@ -1,7 +1,5 @@
 
 
-
-
 """
 算法：凸包、最小圆覆盖
 功能：求点集的子集组成最小凸包上
@@ -16,6 +14,12 @@ P3517 [POI2011]WYK-Plot（https://www.luogu.com.cn/problem/P3517）二分套二�
 
 参考：OI WiKi（xx）
 """
+
+from typing import List
+
+from mathmatics.convex_hull.template import MinCircleOverlap
+from utils.fast_io import FastIO
+
 
 class Solution:
     def __init__(self):

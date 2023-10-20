@@ -38,6 +38,11 @@ P8624 [蓝桥杯 2015 省 AB] 垒骰子（https://www.luogu.com.cn/problem/P8624
 参考：OI WiKi（xx）
 
 """
+import math
+
+from mathmatics.fast_power.template import MatrixFastPower, FastPower
+from src.string.kmp import KMP
+from utils.fast_io import FastIO
 
 
 class Solution:

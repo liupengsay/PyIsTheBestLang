@@ -1,16 +1,7 @@
-"""
 
-"""
-from utils.fast_io import FastIO
-
-
-
-import unittest
-
-from typing import List
 import math
-
 import random
+from typing import List
 
 
 class MinCircleOverlap:
@@ -72,5 +63,3 @@ class MinCircleOverlap:
                 cc1 = cc2
 
         return cc1
-
-

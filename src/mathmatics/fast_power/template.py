@@ -1,13 +1,3 @@
-import copy
-import math
-import random
-import unittest
-
-from utils.fast_io import FastIO
-from src.string.kmp import KMP
-
-
-
 class FastPower:
     def __init__(self):
         return
@@ -28,7 +18,7 @@ class FastPower:
         return res
 
     @staticmethod
-    def float_fast_pow(x: float, n: int) -> float:
+    def float_fast_pow(x: float, m: int) -> float:
         # 浮点数快速幂
         def quick_mul(n):
             if n == 0:
@@ -36,7 +26,7 @@ class FastPower:
             y = quick_mul(n // 2)
             return y * y if n % 2 == 0 else y * y * x
 
-        return quick_mul(n) if n >= 0 else 1.0 / quick_mul(-n)
+        return quick_mul(m) if m >= 0 else 1.0 / quick_mul(-m)
 
 
 class MatrixFastPower:
@@ -44,7 +34,7 @@ class MatrixFastPower:
         return
 
     @staticmethod
-    def matrix_mul(a, b, mod=10**9 + 7):
+    def matrix_mul(a, b, mod=10 ** 9 + 7):
         n = len(a)
         res = [[0] * n for _ in range(n)]
         for i in range(n):
@@ -54,7 +44,7 @@ class MatrixFastPower:
                     res[i][j] %= mod
         return res
 
-    def matrix_pow(self, base, p, mod=10**9 + 7):
+    def matrix_pow(self, base, p, mod=10 ** 9 + 7):
         n = len(base)
         ans = [[0] * n for _ in range(n)]
         for i in range(n):
@@ -86,5 +76,3 @@ class PowerReverse:
             raise Exception("No solution.")
         else:
             return (x + p) % p  # 防止负数
-
-

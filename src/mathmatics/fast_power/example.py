@@ -1,3 +1,9 @@
+import copy
+import random
+import unittest
+
+from mathmatics.fast_power.template import FastPower, MatrixFastPower
+
 
 class TestGeneral(unittest.TestCase):
 
@@ -23,10 +29,8 @@ class TestGeneral(unittest.TestCase):
             assert cur == mfp.matrix_pow(
                 mat, n, mod) == mfp.matrix_pow(mat, n, mod)
 
-        base = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
-        assert mfp.matrix_pow(
-            mat, 0, mod) == mfp.matrix_pow(
-            mat, 0, mod) == base
+        ba = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
+        assert mfp.matrix_pow(mat, 0, mod) == mfp.matrix_pow(mat, 0, mod) == ba
         return
 
 

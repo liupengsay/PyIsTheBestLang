@@ -1,3 +1,7 @@
+import unittest
+
+from mathmatics.extend_crt.template import ExtendCRT, CRT
+
 
 class TestGeneral(unittest.TestCase):
 
@@ -6,9 +10,9 @@ class TestGeneral(unittest.TestCase):
         crt = CRT()
         assert crt.chinese_remainder(pairs) == 16
 
-        excrt = ExtendCRT()
+        exc = ExtendCRT()
         pairs = [(6, 11), (9, 25), (17, 33)]
-        assert excrt.pipline(pairs)[0] == 809
+        assert exc.pipline(pairs)[0] == 809
         return
 
 
