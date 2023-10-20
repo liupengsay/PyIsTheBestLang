@@ -1,12 +1,3 @@
-import math
-import random
-import unittest
-from collections import Counter
-
-from utils.fast_io import FastIO
-
-
-
 class MultiplicativeInverse:
     def __init__(self):
         return
@@ -30,7 +21,3 @@ class MultiplicativeInverse:
         if q != 1:
             raise Exception("No solution.")
         return (x + p) % p
-
-
-
-

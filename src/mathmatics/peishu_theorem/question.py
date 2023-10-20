@@ -13,6 +13,10 @@ P4549 裴蜀定理（https://www.luogu.com.cn/problem/P4549）计算所有元素
 参考：OI WiKi（https://oi-wiki.org/math/number-theory/bezouts/）
 """
 
+from typing import List
+
+from mathmatics.peishu_theorem.template import PeiShuTheorem
+from utils.fast_io import FastIO
 
 
 class Solution:
@@ -27,8 +31,7 @@ class Solution:
     @staticmethod
     def lg_p4549(ac=FastIO()):
         # 模板：转化为裴蜀定理计算数组最大公约数求解
-        n = ac.read_int()
+        ac.read_int()
         nums = ac.read_list_ints()
         ac.st(PeiShuTheorem().get_lst_gcd(nums))
         return
-

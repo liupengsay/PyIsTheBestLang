@@ -16,6 +16,8 @@ P1904 天际线（https://www.luogu.com.cn/problem/P1904）扫描线计算建筑
 
 参考：[OI WiKi]（https://oi-wiki.org/geometry/scanning/)
 """
+from mathmatics.scan_line.template import ScanLine
+from utils.fast_io import FastIO
 
 
 class Solution:
@@ -37,4 +39,3 @@ class Solution:
         ans = ScanLine().get_rec_area(lst)
         ac.st(ans)
         return
-

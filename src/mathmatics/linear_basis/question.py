@@ -1,9 +1,4 @@
-
-import unittest
-
-from functools import reduce
-from operator import xor
-
+from mathmatics.linear_basis.template import LinearBasis
 from utils.fast_io import FastIO
 
 """
@@ -25,7 +20,7 @@ class Solution:
     @staticmethod
     def lg_p3812(ac=FastIO()):
         # 模板：线性基查询数组取任何子集得到的 xor 最大值
-        n = ac.read_int()
+        ac.read_int()
         nums = ac.read_list_ints()
         lb = LinearBasis(nums)
         ac.st(lb.query_max())

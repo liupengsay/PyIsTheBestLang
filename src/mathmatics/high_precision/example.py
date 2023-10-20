@@ -1,4 +1,6 @@
+import unittest
 
+from mathmatics.high_precision.template import HighPrecision, FloatToFrac
 
 
 class TestGeneral(unittest.TestCase):

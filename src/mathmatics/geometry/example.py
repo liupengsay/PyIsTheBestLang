@@ -1,7 +1,9 @@
+import unittest
+
+from mathmatics.geometry.template import Geometry
 
 
 class TestGeneral(unittest.TestCase):
-
 
     def test_geometry(self):
         gm = Geometry()

@@ -1,15 +1,6 @@
 import math
 import random
-import time
-import unittest
 from collections import Counter
-from collections import defaultdict
-from functools import reduce
-from math import inf
-from operator import mul
-from typing import List
-
-from utils.fast_io import FastIO
 
 
 class NumberTheory:
@@ -52,17 +43,17 @@ class NumberTheory:
     @staticmethod
     def get_min_prime_and_prime_factor():
         # 模板：计算 1 到 ceil 所有数字的最小质数因子
-        ceil = 10**6
-        min_prime = [0]*(ceil+1)
-        for i in range(2, ceil+1):
+        ceil = 10 ** 6
+        min_prime = [0] * (ceil + 1)
+        for i in range(2, ceil + 1):
             if not min_prime[i]:
                 min_prime[i] = i
-                for j in range(i*i, ceil+1, i):
+                for j in range(i * i, ceil + 1, i):
                     min_prime[j] = i
 
         # 模板：计算 1 到 ceil 所有数字的质数分解
-        prime_factor = [[] for _ in range(ceil+1)]
-        for num in range(2, ceil+1):
+        prime_factor = [[] for _ in range(ceil + 1)]
+        for num in range(2, ceil + 1):
             i = num
             while num > 1:
                 p = min_prime[num]
@@ -72,7 +63,7 @@ class NumberTheory:
                     cnt += 1
                 prime_factor[i].append([p, cnt])
         return
-        
+
     @staticmethod
     def get_num_prime_factor(ceil):
         # 模板：快速计算 1~ceil 的所有质数因子
@@ -89,7 +80,8 @@ class NumberTheory:
     def int_to_roman(num: int) -> str:
 
         # 模板: 罗马数字转整数
-        lst = [['I', 1], ['IV', 4], ['V', 5], ['IX', 9], ['X', 10], ['XL', 40], ['L', 50], ['XC', 90], ['C', 100], ['CD', 400], ['D', 500], ['CM', 900], ['M', 1000]]
+        lst = [['I', 1], ['IV', 4], ['V', 5], ['IX', 9], ['X', 10], ['XL', 40], ['L', 50], ['XC', 90], ['C', 100],
+               ['CD', 400], ['D', 500], ['CM', 900], ['M', 1000]]
         n = len(lst)
         i = n - 1
         ans = ''
@@ -106,7 +98,8 @@ class NumberTheory:
 
     @staticmethod
     def roman_to_int(s: str) -> int:
-        dct = {'IV': 4, 'IX': 9, 'XL': 40, 'XC': 90, 'CD': 400, 'CM': 900, 'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
+        dct = {'IV': 4, 'IX': 9, 'XL': 40, 'XC': 90, 'CD': 400, 'CM': 900, 'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100,
+               'D': 500, 'M': 1000}
         ans = i = 0
         n = len(s)
         while i < n:
@@ -150,11 +143,11 @@ class NumberTheory:
     @staticmethod
     def get_factor_upper(n):
         # 模板：使用素数筛类似的方法获取小于等于 n 的所有数除 1 与自身之外的所有因数（倍数法）
-        factor = [[] for _ in range(n+1)]
-        for i in range(2, n+1):
+        factor = [[] for _ in range(n + 1)]
+        for i in range(2, n + 1):
             x = 2
-            while i*x <= n:
-                factor[i*x].append(i)
+            while i * x <= n:
+                factor[i * x].append(i)
                 x += 1
         return factor
 
@@ -373,6 +366,5 @@ class NumberTheory:
         if n <= 1:
             return Counter()  # 注意特例返回
         f = self.pollard_rho(n)
-        return Counter([n]) if f == n else self.get_prime_factors_with_pollard_rho(f) + self.get_prime_factors_with_pollard_rho(n // f)
-
-
+        return Counter([n]) if f == n else self.get_prime_factors_with_pollard_rho(
+            f) + self.get_prime_factors_with_pollard_rho(n // f)

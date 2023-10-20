@@ -1,3 +1,7 @@
+import unittest
+
+from mathmatics.nim_game.template import Nim
+
 
 class TestGeneral(unittest.TestCase):
     def test_euler_phi(self):

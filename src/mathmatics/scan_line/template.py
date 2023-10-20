@@ -1,9 +1,5 @@
-import unittest
-
-from typing import List
-
 import heapq
-
+from typing import List
 
 
 class ScanLine:
@@ -72,4 +68,3 @@ class ScanLine:
             # 表示区[x1,x2]内的矩形覆盖高度为height
             ans += width * height
         return ans
-

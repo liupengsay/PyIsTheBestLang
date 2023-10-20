@@ -1,7 +1,3 @@
-import unittest
-import heapq
-from functools import reduce
-from operator import xor
 
 """
 
@@ -18,6 +14,8 @@ B. Stoned Game（https://codeforces.com/problemset/problem/1396/B）博弈贪心
 参考：OI WiKi（https://oi-wiki.org/graph/lgv/）
 
 """
+
+import heapq
 
 
 class Solution:
@@ -39,4 +37,3 @@ class Solution:
             pre = tmp
             order = 1 - order
         return "HL" if not order else "T"
-

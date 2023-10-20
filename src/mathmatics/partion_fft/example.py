@@ -1,3 +1,9 @@
+import unittest
+
+import numpy as np
+
+from mathmatics.partion_fft.question import fft_v
+
 
 class TestGeneral(unittest.TestCase):
     def test_euler_phi(self):

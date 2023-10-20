@@ -1,4 +1,3 @@
-
 """
 算法：大数分解、素数判断、高精度计算、使用分数代替浮点数运算
 功能：xxx
@@ -32,6 +31,14 @@ E - Double Factorial（https://atcoder.jp/contests/abc148/tasks/abc148_e）奇�
 
 参考：OI WiKi（xx）
 """
+
+import math
+from decimal import Decimal
+from typing import List
+
+from mathmatics.high_precision.template import HighPrecision, FloatToFrac
+from utils.fast_io import FastIO
+
 
 class Solution:
     def __init__(self):
@@ -182,4 +189,3 @@ class Solution:
             if dp[n - 1][j] + cost[-1] <= hours:
                 return j
         return -1
-

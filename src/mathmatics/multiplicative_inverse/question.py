@@ -16,6 +16,11 @@ F. Ira and Flamenco（https://codeforces.com/contest/1833/problem/F）使用前�
 
 
 """
+from collections import Counter
+
+from mathmatics.multiplicative_inverse.template import MultiplicativeInverse
+from utils.fast_io import FastIO
+
 
 class Solution:
     def __init__(self):

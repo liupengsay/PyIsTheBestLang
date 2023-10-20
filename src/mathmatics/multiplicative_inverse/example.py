@@ -1,3 +1,9 @@
+import math
+import random
+import unittest
+
+from mathmatics.multiplicative_inverse.template import MultiplicativeInverse
+
 
 class TestGeneral(unittest.TestCase):
 

@@ -1,4 +1,3 @@
-
 """
 算法：数论、欧拉筛、线性筛、素数、欧拉函数、因子分解、素因子分解、进制转换、因数分解
 功能：有时候数位DP类型题目可以使用N进制来求取，质因数分解、因数分解、素数筛、线性筛、欧拉函数、pollard_rho、Meissel–Lehmer 算法（计算范围内素数个数）
@@ -108,6 +107,16 @@ D - Preparing Boxes（https://atcoder.jp/contests/abc134/tasks/abc134_d）逆向
 
 参考：OI WiKi（xx）
 """
+import math
+from collections import Counter
+from collections import defaultdict
+from functools import reduce
+from math import inf
+from operator import mul
+from typing import List
+
+from mathmatics.number_theory.template import NumberTheory
+from utils.fast_io import FastIO
 
 
 class Solution:
@@ -174,7 +183,7 @@ class Solution:
 
     @staticmethod
     def cf_1366d(ac=FastIO()):
-        n = ac.read_int()
+        ac.read_int()
         nums = ac.read_list_ints()
         ceil = max(nums)
 
@@ -213,7 +222,7 @@ class Solution:
     @staticmethod
     def lc_6309(nums: List[int]) -> int:
         # 模板：计算 1 到 n 的数所有的质因子并使用差分确定作用范围
-        prime = NumberTheory().get_num_prime_factor(10**6)
+        prime = NumberTheory().get_num_prime_factor(10 ** 6)
         n = len(nums)
         dct = defaultdict(list)
         for i, num in enumerate(nums):
@@ -255,8 +264,8 @@ class Solution:
         g = 0
         # 推广到n维
         for i in range(1, m):
-            g = math.gcd(g, a[i]-a[i-1])
-        ans = [math.gcd(g, a[0]+num) for num in b]
+            g = math.gcd(g, a[i] - a[i - 1])
+        ans = [math.gcd(g, a[0] + num) for num in b]
         ac.lst(ans)
         return
 
@@ -265,7 +274,7 @@ class Solution:
         # 模板：预先枚举质因子，再进行质因数分解
         primes = NumberTheory().euler_flag_prime((4 * 10 ** 3))
         for _ in range(ac.read_int()):
-            n = ac.read_int()
+            ac.read_int()
             nums = ac.read_list_ints()
             cnt = defaultdict(int)
             for num in nums:
@@ -302,7 +311,7 @@ class Solution:
         mod = 9901
         ans = 1
         for p, c in lst:
-            ans *= (pow(p, b*c+1, mod)-1) * pow(p-1, -1, mod)
+            ans *= (pow(p, b * c + 1, mod) - 1) * pow(p - 1, -1, mod)
             ans %= mod
         ac.st(ans)
         return
@@ -432,7 +441,6 @@ class Solution:
             x //= primes.pop()
         # 充要条件为 2^c1*3^c2...且c1>=c2
         m = len(primes)
-        ans = 1
         ans = [1, 1]
         stack = [[1, 1, int(math.log2(n)) + 1, 0]]
         while stack:
@@ -442,8 +450,8 @@ class Solution:
                     ans = [x, cnt]
                 continue
             for y in range(mi, -1, -1):
-                if x * primes[i]**y <= n:
-                    stack.append([x * primes[i]**y, cnt * (y + 1), y, i + 1])
+                if x * primes[i] ** y <= n:
+                    stack.append([x * primes[i] ** y, cnt * (y + 1), y, i + 1])
         ac.st(ans[0])
         return
 
@@ -451,19 +459,19 @@ class Solution:
     def ac_199(ac=FastIO()):
         # 模板：计算 sum(k%i for i in range(n))
         n, k = ac.read_list_ints()
-        ans = n*k
+        ans = n * k
         left = 1
         while left <= min(n, k):
-            right = min(k//(k//left), n)
-            ans -= (k//left)*(left+right)*(right-left+1)//2
-            left = right+1
+            right = min(k // (k // left), n)
+            ans -= (k // left) * (left + right) * (right - left + 1) // 2
+            left = right + 1
         ac.st(ans)
         return
 
     @staticmethod
     def lg_p1069(ac=FastIO()):
         # 模板：质因数分解，贪心匹配模拟
-        n = ac.read_int()
+        ac.read_int()
         m1, m2 = ac.read_list_ints()
         lst = NumberTheory().get_prime_factor(m1)
         ans = inf
@@ -477,7 +485,7 @@ class Solution:
                 while tmp % p == 0:
                     tmp //= p
                     x += 1
-                res = ac.max(res, math.ceil(c*m2/x))
+                res = ac.max(res, math.ceil(c * m2 / x))
             else:
                 ans = ac.min(ans, res)
         ac.st(ans if ans < inf else -1)
@@ -546,6 +554,7 @@ class Solution:
             value //= primes[i]
             dfs(i + 1)
             return
+
         cnt = ans = 0
         value = 1
         mod = 376544743
@@ -584,14 +593,14 @@ class Solution:
             ans = 1
             for k in cnt:
                 c = cnt[k] * b
-                ans *= (k**(c + 1) - 1) // (k - 1)
+                ans *= (k ** (c + 1) - 1) // (k - 1)
             ac.st(ans)
         return
 
     @staticmethod
     def lg_p4446(ac=FastIO()):
         # 模板：预先处理出素数然后计算最大的完全立方数因子
-        prime = NumberTheory().sieve_of_eratosthenes(int(10**(18 / 4)) + 1)
+        prime = NumberTheory().sieve_of_eratosthenes(int(10 ** (18 / 4)) + 1)
         ac.read_int()
         for num in ac.read_list_ints():
             ans = 1
@@ -602,20 +611,20 @@ class Solution:
                 while num % p == 0:
                     c += 1
                     num //= p
-                ans *= p**(c // 3)
+                ans *= p ** (c // 3)
 
             # 使用二分判断数字是否为完全立方数
             low = 1
-            high = int(num**(1 / 3)) + 1
+            high = int(num ** (1 / 3)) + 1
             while low < high - 1:
                 mid = low + (high - low) // 2
-                if mid**3 <= num:
+                if mid ** 3 <= num:
                     low = mid
                 else:
                     high = mid
-            if high**3 == num:
+            if high ** 3 == num:
                 ans *= high
-            elif low**3 == num:
+            elif low ** 3 == num:
                 ans *= low
             ac.st(ans)
         return
@@ -678,7 +687,7 @@ class Solution:
     @staticmethod
     def lg_p7960(ac=FastIO()):
         # 模板：类似埃氏筛的思路进行预处理
-        n = 10**7
+        n = 10 ** 7
         dp = [0] * (n + 1)
         for x in range(1, n + 1):
             if "7" in str(x):
@@ -686,7 +695,7 @@ class Solution:
                 while x * y <= n:
                     dp[x * y] = 1
                     y += 1
-        post = 10**7 + 1
+        post = 10 ** 7 + 1
         for i in range(n, -1, -1):
             if dp[i] == 1:
                 dp[i] = -1
@@ -731,13 +740,13 @@ class Solution:
         n = ac.read_int()
         nums = [ac.read_int() for _ in range(n)]
         s = 10000
-        dp = [0]*(s+1)
+        dp = [0] * (s + 1)
         dp[0] = 1
         for num in nums:
-            for i in range(num, s+1):
-                if dp[i-num]:
+            for i in range(num, s + 1):
+                if dp[i - num]:
                     dp[i] = 1
-        ans = s+1-sum(dp)
+        ans = s + 1 - sum(dp)
         if reduce(math.gcd, nums) != 1:
             ac.st("INF")
         else:
@@ -751,9 +760,9 @@ class Solution:
 
         def check(xx):
             for r in range(2, 6):
-                a = int(xx**(1/r))
-                for ww in [a-1, a, a+1, a+2]:
-                    if ww**r == xx:
+                a = int(xx ** (1 / r))
+                for ww in [a - 1, a, a + 1, a + 2]:
+                    if ww ** r == xx:
                         return True
             return False
 
@@ -783,7 +792,7 @@ class Solution:
         def check(tmp):
             res = 0
             for num in tmp:
-                res = (-2)*res + num
+                res = (-2) * res + num
             return res
 
         ans = check(arr1) + check(arr2)
@@ -809,6 +818,7 @@ class Solution:
                             return
                 ac.st("YES")
                 return
+
             check()
 
         return
@@ -873,7 +883,7 @@ class Solution:
         elif n % 2 == 0:
             ac.st(2)
         else:
-            if NumberTheory().is_prime4(n-2):
+            if NumberTheory().is_prime4(n - 2):
                 ac.st(2)
             else:
                 ac.st(3)
@@ -891,18 +901,19 @@ class Solution:
             def check():
                 for x in lst_a:
                     for y in lst_b:
-                        g = x*y
-                        yy = a*b//g
-                        low_1 = a//g+1
-                        high_1 = c//g
+                        g = x * y
+                        yy = a * b // g
+                        low_1 = a // g + 1
+                        high_1 = c // g
 
-                        low_2 = b//yy+1
-                        high_2 = d//yy
+                        low_2 = b // yy + 1
+                        high_2 = d // yy
                         if low_2 <= high_2 and low_1 <= high_1:
-                            ac.lst([low_1*g, low_2*yy])
+                            ac.lst([low_1 * g, low_2 * yy])
                             return
                 ac.lst([-1, -1])
                 return
+
             check()
         return
 
@@ -911,4 +922,3 @@ class Solution:
         # 模板：负进制转换模板题
         lst = NumberTheory().get_k_bin_of_n(n, -2)
         return "".join(str(x) for x in lst)
-

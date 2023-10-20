@@ -1,4 +1,6 @@
+import unittest
 
+from mathmatics.peishu_theorem.template import PeiShuTheorem
 
 
 class TestGeneral(unittest.TestCase):

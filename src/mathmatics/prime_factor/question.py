@@ -1,4 +1,3 @@
-
 """
 算法：数论、欧拉筛、线性筛、素数、欧拉函数、因子分解、素因子分解、进制转换、因数分解
 功能：有时候数位DP类型题目可以使用N进制来求取，质因数分解、因数分解、素数筛、线性筛、欧拉函数、pollard_rho、Meissel–Lehmer 算法（计算范围内素数个数）
@@ -107,6 +106,17 @@ D - 756（https://atcoder.jp/contests/abc114/tasks/abc114_d）质因数分解计
 
 参考：OI WiKi（xx）
 """
+import math
+from collections import Counter
+from collections import defaultdict
+from functools import reduce
+from itertools import permutations
+from math import inf
+from typing import List
+
+from mathmatics.number_theory.template import NumberTheory
+from mathmatics.prime_factor.template import PrimeFactor
+from utils.fast_io import FastIO
 
 
 class Solution:
@@ -173,7 +183,7 @@ class Solution:
 
     @staticmethod
     def cf_1366d(ac=FastIO()):
-        n = ac.read_int()
+        ac.read_int()
         nums = ac.read_list_ints()
         ceil = max(nums)
 
@@ -244,7 +254,7 @@ class Solution:
         return dp[-1] if dp[-1] < inf else -1
 
     @staticmethod
-    def lc_8041(self, nums: List[int]) -> int:
+    def lc_8041(nums: List[int]) -> int:
         # 模板：经典预处理幂次为奇数的质因子哈希分组计数
         n = len(nums)
         nt = PrimeFactor(n)

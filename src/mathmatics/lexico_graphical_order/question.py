@@ -26,6 +26,8 @@ B. K-th Beautiful String（https://codeforces.com/problemset/problem/1328/B）�
 
 参考：OI WiKi（xx）
 """
+from mathmatics.lexico_graphical_order.template import LexicoGraphicalOrder
+from utils.fast_io import FastIO
 
 
 class Solution:
@@ -89,4 +91,3 @@ class Solution:
         #  模板：全排列的第 k 个排列
         ans = LexicoGraphicalOrder().get_kth_subset_perm(n, k)
         return "".join(str(x) for x in ans)
-

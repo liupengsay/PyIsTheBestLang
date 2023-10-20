@@ -1,15 +1,22 @@
+import math
+import random
+import time
+import unittest
+
+from mathmatics.number_theory.template import NumberTheory
+
 
 class TestGeneral(unittest.TestCase):
 
     def test_get_prime_factor(self):
         for i in range(1, 10):
-            x = random.randint(i, 10**10)
+            x = random.randint(i, 10 ** 10)
             t0 = time.time()
             cnt1 = NumberTheory().get_prime_factor(x)
             t1 = time.time()
             cnt2 = NumberTheory().get_prime_factor(x)
             t2 = time.time()
-            print(t1-t0, t2-t1)
+            print(t1 - t0, t2 - t1)
             assert cnt1 == cnt2
 
     def test_get_prime_factor_pollard(self):
@@ -29,13 +36,13 @@ class TestGeneral(unittest.TestCase):
         assert nt.get_prime_factor(num) == [[2, 1]]
         num = 1
         assert nt.get_prime_factor(num) == []
-        num = 2 * (3**2) * 7 * (11**3)
+        num = 2 * (3 ** 2) * 7 * (11 ** 3)
         assert nt.get_prime_factor(num) == [[2, 1], [3, 2], [7, 1], [11, 3]]
         return
 
     def test_euler_phi(self):
         nt = NumberTheory()
-        assert nt.euler_phi(10**11 + 131) == 66666666752
+        assert nt.euler_phi(10 ** 11 + 131) == 66666666752
         return
 
     def test_euler_shai(self):
@@ -43,12 +50,12 @@ class TestGeneral(unittest.TestCase):
         label = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
         pred = nt.euler_flag_prime(30)
         assert label == pred
-        assert len(nt.euler_flag_prime(10**6)) == 78498
+        assert len(nt.euler_flag_prime(10 ** 6)) == 78498
         return
 
     def test_eratosthenes_shai(self):
         nt = NumberTheory()
-        assert len(nt.sieve_of_eratosthenes(10**6)) == 78498
+        assert len(nt.sieve_of_eratosthenes(10 ** 6)) == 78498
         return
 
     def test_factorial_zero_count(self):
@@ -83,13 +90,13 @@ class TestGeneral(unittest.TestCase):
         assert nt.is_prime(5)
         assert not nt.is_prime(51)
         for _ in range(10):
-            i = random.randint(1, 10**3)
+            i = random.randint(1, 10 ** 3)
             assert nt.is_prime(i) == nt.is_prime4(i) == nt.is_prime5(i)
 
         for _ in range(1):
-            x = random.randint(10**8, 10**9)
-            y = x + 10**6
-            for num in range(x, y+1):
+            x = random.randint(10 ** 8, 10 ** 9)
+            y = x + 10 ** 6
+            for num in range(x, y + 1):
                 nt.is_prime4(x)
         return
 
@@ -105,7 +112,7 @@ class TestGeneral(unittest.TestCase):
 
         num = 1000
         ans = nt.get_factor_upper(num)
-        for i in range(1, num+1):
+        for i in range(1, num + 1):
             assert ans[i] == nt.get_all_factor(i)[1:-1]
         return
 
@@ -113,7 +120,7 @@ class TestGeneral(unittest.TestCase):
         nt = NumberTheory()
 
         num = 1000
-        for i in range(1, num+1):
+        for i in range(1, num + 1):
             assert nt.roman_to_int(nt.int_to_roman(i)) == i
         return
 

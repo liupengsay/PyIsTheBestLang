@@ -1,5 +1,3 @@
-
-
 class LinearBasis:
     def __init__(self, lst):
         """线性基类由原数组lst生成"""
@@ -70,4 +68,3 @@ class LinearBasis:
                 ans ^= (1 << i)
                 num ^= self.linear_basis[i]
         return ans + 1 if not num else -1
-

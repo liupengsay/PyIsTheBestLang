@@ -1,15 +1,10 @@
-
 import math
 import sys
-import unittest
 from decimal import Decimal, getcontext, MAX_PREC
 from typing import List
 
-from utils.fast_io import FastIO
-
 getcontext().prec = MAX_PREC
 sys.set_int_max_str_digits(0)  # 力扣大数的范围坑
-
 
 
 class HighPrecision:
@@ -157,4 +152,3 @@ class FloatToFrac:
         # 要求分母a1与a2均不为0
         b, a = frac
         return math.ceil(b / a)
-

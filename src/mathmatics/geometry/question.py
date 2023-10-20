@@ -1,8 +1,3 @@
-
-
-
-
-
 """
 算法：计算几何、设计到平面坐标系上的一些问题求解、平面最近点对
 功能：xxx
@@ -45,6 +40,16 @@ D. Tricky Function（https://codeforces.com/problemset/problem/429/D）经典平
 
 参考：OI WiKi（xx）
 """
+import math
+from audioop import add
+from collections import defaultdict
+from itertools import pairwise
+from typing import List
+
+from cytoolz import accumulate
+
+from mathmatics.geometry.template import Geometry, ClosetPair
+from utils.fast_io import FastIO
 
 
 class Solution:
@@ -87,9 +92,9 @@ class Solution:
         for i in range(n):
             dct = defaultdict(int)
             dct[0] = 0
-            for j in range(i+1, n):
+            for j in range(i + 1, n):
                 dct[gm.compute_slope2(points[i], points[j])] += 1
-            ans = max(ans, max(dct.values())+1)
+            ans = max(ans, max(dct.values()) + 1)
         return ans
 
     @staticmethod
@@ -102,7 +107,7 @@ class Solution:
         m = len(lst)
         for i in range(m):
             x1, y1 = lst[i]
-            for j in range(i+1, m):
+            for j in range(i + 1, m):
                 x2, y2 = lst[j]
                 point1, point2 = Geometry.compute_square_point(x1, y1, x2, y2)
 
@@ -118,7 +123,7 @@ class Solution:
 
                 if point1 in dct and point2 in dct:
                     ans += 1
-        ac.st(ans//2)
+        ac.st(ans // 2)
         return
 
     @staticmethod
@@ -143,7 +148,7 @@ class Solution:
             nums1 = [ac.read_list_ints() for _ in range(n)]
             nums2 = [ac.read_list_ints() for _ in range(n)]
             ans = ClosetPair().bucket_grid_inter_set(n, nums1, nums2)
-            ac.st("%.3f" % (ans**0.5))
+            ac.st("%.3f" % (ans ** 0.5))
         return
 
     @staticmethod
@@ -187,12 +192,12 @@ class Solution:
     def ac_4499(ac=FastIO()):
         # 模板：经典几何，使用一元二次方程求解
         r, x1, y1, x2, y2 = ac.read_list_ints()
-        if (x1 - x2)**2 + (y1 - y2)**2 > r * r:
+        if (x1 - x2) ** 2 + (y1 - y2) ** 2 > r * r:
             ans = [x1, y1, r]
             ac.lst(["%.6f" % x for x in ans])
             return
 
-        dis = ((x1 - x2)**2 + (y1 - y2)**2)**0.5 + r
+        dis = ((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5 + r
         ans = [0, 0, dis / 2]
         if x1 == x2:
             if y1 > y2:
@@ -205,11 +210,11 @@ class Solution:
             k = (y2 - y1) / (x2 - x1)
             b = y1 - k * x1
 
-            aa = k**2 + 1
+            aa = k ** 2 + 1
             bb = -2 * k * (y2 - b) - 2 * x2
-            cc = (y2 - b)**2 - dis**2 + x2**2
-            for xx in [(-bb + (bb * bb - 4 * aa * cc)**0.5) / 2 / aa,
-                       (-bb - (bb * bb - 4 * aa * cc)**0.5) / 2 / aa]:
+            cc = (y2 - b) ** 2 - dis ** 2 + x2 ** 2
+            for xx in [(-bb + (bb * bb - 4 * aa * cc) ** 0.5) / 2 / aa,
+                       (-bb - (bb * bb - 4 * aa * cc) ** 0.5) / 2 / aa]:
                 yy = k * xx + b
                 if int(x2 - xx > 0) == int(x2 - x1 > 0):
                     ans[0] = (xx + x2) / 2
@@ -217,4 +222,3 @@ class Solution:
                     break
         ac.lst(["%.6f" % x for x in ans])
         return
-

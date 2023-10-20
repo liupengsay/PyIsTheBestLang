@@ -1,15 +1,9 @@
 import math
-import unittest
-from audioop import add
-from collections import defaultdict
-from itertools import pairwise
-from typing import List
 import random
+from math import inf
+from typing import List
 
-from cytoolz import accumulate
-
-from utils.fast_io import FastIO, inf
-from src.data_structure.sorted_list import LocalSortedList
+from data_structure.sorted_list.template import LocalSortedList
 
 
 class Geometry:
@@ -88,7 +82,7 @@ class Geometry:
         # 模板：已知矩形对角线上的两个点且保证两点不同，求另外两个点的坐标
         assert [x0, y0] != [x2, y2]
         # 判断正方形
-        assert abs(x0-x2) == abs(y0-y2)
+        assert abs(x0 - x2) == abs(y0 - y2)
         return (x0, y2), (x2, y0)
 
     @staticmethod
@@ -109,7 +103,7 @@ class Geometry:
         x2, y2 = end1
         x3, y3 = start2
         x4, y4 = end2
-        det = lambda a, b, c, d: a * d - b * c
+        det = lambda a, b, c, dd: a * dd - b * c
         d = det(x1 - x2, x4 - x3, y1 - y2, y4 - y3)
         p = det(x4 - x2, x4 - x3, y4 - y2, y4 - y3)
         q = det(x1 - x2, x4 - x2, y1 - y2, y4 - y2)
@@ -316,5 +310,3 @@ class ClosetPair:
                     update(check(nums1[x]), x)
         # 返回值为欧几里得距离的平方
         return ans
-
-

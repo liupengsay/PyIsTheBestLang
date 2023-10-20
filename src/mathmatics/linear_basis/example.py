@@ -1,4 +1,9 @@
+import unittest
 
+from functools import reduce
+from operator import xor
+
+from mathmatics.linear_basis.template import LinearBasis
 
 
 class TestGeneral(unittest.TestCase):
