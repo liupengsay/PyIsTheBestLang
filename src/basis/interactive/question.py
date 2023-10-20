@@ -12,6 +12,7 @@ xx（xxx）xxxxxxxxxxxxxxxxxxxx
 
 ================================CodeForces================================
 F. Interacdive Problem（https://codeforces.com/contest/1624/problem/F）二分查找交互
+D. Tournament Countdown（https://codeforces.com/contest/1713/problem/D）
 
 """
 

@@ -99,7 +99,7 @@ class FastIO:
 
     def inter_ask(self, lst):
         # CF交互题输出询问并读取结果
-        self.st(lst)
+        self.lst(lst)
         sys.stdout.flush()
         res = self.read_int()
         # 记得任何一个输出之后都要 sys.stdout.flush() 刷新
@@ -107,7 +107,7 @@ class FastIO:
 
     def inter_out(self, lst):
         # CF交互题输出最终答案
-        self.st(lst)
+        self.lst(lst)
         sys.stdout.flush()
         return
 
