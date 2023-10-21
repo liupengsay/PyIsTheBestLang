@@ -11,15 +11,16 @@ class TreeExpression:
     def __init__(self):
         return
 
-    def exp_tree(self, s: str) -> 'Node':
-        # 只剩数字的情况
+    def exp_tree(self, s: str) -> Node:
+
         try:
             int(s)
+            # number rest only
             return Node(s)
         except ValueError as _:
             pass
 
-        # 处理-(开头的情形
+        # case start with -(
         if len(s) >= 2 and s[0] == "-" and s[1] == "(":
             cnt = 0
             for i, w in enumerate(s):
@@ -31,8 +32,7 @@ class TreeExpression:
                         pre = s[1:i].replace("+", "-").replace("-", "+")
                         s = pre + s[i:]
                         break
-
-        # 处理-开头的情形
+        # case start with -
         neg = ""
         if s[0] == "-":
             neg = "-"

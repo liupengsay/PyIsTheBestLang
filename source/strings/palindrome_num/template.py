@@ -4,10 +4,10 @@ class PalindromeNum:
 
     @staticmethod
     def get_palindrome_num_1(n):
-        # 模板：计算出长度小于等于 n 的所有正回文数
+        """template of get all positive palindrome number not greater than n"""
         dp = [[""], [str(i) for i in range(10)]]
         for k in range(2, n + 1):
-            # 使用动态规划模拟对称的回文子串添加
+            # like dp to add palindrome character
             if k % 2 == 1:
                 m = k // 2
                 lst = []
@@ -22,20 +22,18 @@ class PalindromeNum:
                         lst.append(str(i) + st + str(i))
                 dp.append(lst)
 
-        # 取出所有的回文数字并排序
         nums = []
         for lst in dp:
             for num in lst:
                 if num and num[0] != "0":
                     nums.append(int(num))
         nums.sort()
-        # 计算出长度小于等于 n 的所有正回文数
         return nums
 
     @staticmethod
     def get_palindrome_num_2(n):
         assert n >= 1
-        # 模板：计算出长度小于等于 n 的所有正回文数
+        """template of get all positive palindrome number whose length not greater than n"""
         nums = list(range(1, 10))
         x = 1
         while len(str(x)) * 2 <= n:
@@ -50,11 +48,7 @@ class PalindromeNum:
 
     @staticmethod
     def get_recent_palindrome_num(n: str) -> list:
-        # 用原数的前半部分加一后的结果替换后半部分得到的回文整数。
-        # 用原数的前半部分减一后的结果替换后半部分得到的回文整数。
-        # 为防止位数变化导致构造的回文整数错误，因此直接构造 999…999 和 100…001 作为备选答案
-        # 计算正整数 n 附近的回文数，获得最近的最小或者最大的回文数
-
+        """template of recentest palindrome num of n"""
         m = len(n)
         candidates = [10 ** (m - 1) - 1, 10 ** m + 1]
         prefix = int(n[:(m + 1) // 2])

@@ -2,9 +2,10 @@ class LyndonDecomposition:
     def __init__(self):
         return
 
-    # duval_algorithm
+    #
     @staticmethod
     def solve_by_duval(s):
+        """template of duval algorithm"""
         n, i = len(s), 0
         factorization = []
         while i < n:
@@ -20,9 +21,9 @@ class LyndonDecomposition:
                 i += j - k
         return factorization
 
-    # smallest_cyclic_string
     @staticmethod
     def min_cyclic_string(s):
+        """template of smallest cyclic string"""
         s += s
         n = len(s)
         i, ans = 0, 0
@@ -41,14 +42,14 @@ class LyndonDecomposition:
 
     @staticmethod
     def min_express(sec):
-        # 最小表示法
+        """template of minimum lexicographic expression"""
         n = len(sec)
         k, i, j = 0, 0, 1
         while k < n and i < n and j < n:
             if sec[(i + k) % n] == sec[(j + k) % n]:
                 k += 1
             else:
-                if sec[(i + k) % n] > sec[(j + k) % n]:  # 最小表示法
+                if sec[(i + k) % n] > sec[(j + k) % n]:
                     i = i + k + 1
                 else:
                     j = j + k + 1
@@ -60,14 +61,14 @@ class LyndonDecomposition:
 
     @staticmethod
     def max_express(sec):
-        # 最大表示法
+        """template of maximum lexicographic expression"""
         n = len(sec)
         k, i, j = 0, 0, 1
         while k < n and i < n and j < n:
             if sec[(i + k) % n] == sec[(j + k) % n]:
                 k += 1
             else:
-                if sec[(i + k) % n] < sec[(j + k) % n]:  # 最大表示法
+                if sec[(i + k) % n] < sec[(j + k) % n]:
                     i = i + k + 1
                 else:
                     j = j + k + 1

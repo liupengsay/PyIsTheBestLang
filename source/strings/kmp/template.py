@@ -1,10 +1,13 @@
+from typing import List
+
+
 class KMP:
     def __init__(self):
         return
 
     @staticmethod
     def prefix_function(s):
-        # 计算s[:i]与s[:i]的最长公共真前缀与真后缀
+        """calculate the longest common true prefix and true suffix for s [:i] and s [:i]"""
         n = len(s)
         pi = [0] * n
         for i in range(1, n):
@@ -13,13 +16,13 @@ class KMP:
                 j = pi[j - 1]
             if s[i] == s[j]:
                 j += 1
-            pi[i] = j
+            pi[i] = j  # pi[i]<=i
         # pi[0] = 0
         return pi
 
     @staticmethod
     def z_function(s):
-        # 计算 s[i:] 与 s 的最长公共前缀
+        """calculate the longest common prefix between s[i:] and s"""
         n = len(s)
         z = [0] * n
         left, r = 0, 0
@@ -36,8 +39,8 @@ class KMP:
         # z[0] = 0
         return z
 
-    def find(self, s1, s2):
-        # 查找 s2 在 s1 中的索引位置
+    def find(self, s1: str, s2: str) -> List[int]:
+        """find the index position of s2 in s1"""
         n, m = len(s1), len(s2)
         pi = self.prefix_function(s2 + "#" + s1)
         ans = []
@@ -46,8 +49,8 @@ class KMP:
                 ans.append(i - m - m)
         return ans
 
-    def find_longest_palindrome(self, s, pos="prefix"):
-        # 计算最长前缀与最长后缀回文子串
+    def find_longest_palindrome(self, s: str, pos="prefix") -> int:
+        """calculate the longest prefix and longest suffix palindrome substring"""
         if pos == "prefix":
             return self.prefix_function(s + "#" + s[::-1])[-1]
         return self.prefix_function(s[::-1] + "#" + s)[-1]

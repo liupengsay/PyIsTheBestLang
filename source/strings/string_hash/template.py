@@ -2,8 +2,8 @@ import random
 
 
 class StringHash:
-    # 注意哈希碰撞，需要取两个质数与模进行区分
     def __init__(self, n, s):
+        """two mod to avoid hash crush"""
         self.n = n
         self.p = [random.randint(26, 100), random.randint(26, 100)]
         self.mod = [random.randint(10 ** 9 + 7, 2 ** 31 - 1), random.randint(10 ** 9 + 7, 2 ** 31 - 1)]
@@ -16,7 +16,7 @@ class StringHash:
         return
 
     def query(self, x, y):
-        # 模板：字符串区间的哈希值，索引从 0 开始
+        """range hash value index start from 0"""
         ans = [0, 0]
         for i in range(2):
             if x <= y:
