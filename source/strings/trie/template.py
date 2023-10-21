@@ -3,18 +3,15 @@ from math import inf
 
 class TrieZeroOneXorRange:
     def __init__(self, n):
-        # 使用字典数据结构实现
         self.dct = dict()
-        # 确定序列长度
         self.n = n
         return
 
     def update(self, num, cnt):
         cur = self.dct
         for i in range(self.n, -1, -1):
-            # 更新当前哈希下的数字个数
+            # update cnt of subtree number
             cur["cnt"] = cur.get("cnt", 0) + cnt
-            # 哈希的键
             w = 1 if num & (1 << i) else 0
             if w not in cur:
                 cur[w] = dict()
@@ -25,20 +22,19 @@ class TrieZeroOneXorRange:
     def query(self, num, ceil):
 
         def dfs(xor, cur, i):
-            # 前缀异或和，当前哈希树，以及剩余序列所处的位数
+            # params are prefix xor and cur trie and i-th bit
             nonlocal res
-            # 超出范围剪枝
+            # prune by out of range
             if xor > ceil:
                 return
-            # 搜索完毕剪枝
+            # done
             if i == -1:
                 res += cur["cnt"]
                 return
-            # 最大值也不超出范围剪枝
+            # prune by ceil
             if xor + (1 << (i + 2) - 1) <= ceil:
                 res += cur["cnt"]
                 return
-            # 当前哈希的键
             w = 1 if num & (1 << i) else 0
             if 1 - w in cur:
                 dfs(xor | (1 << i), cur[1 - w], i - 1)
@@ -46,18 +42,16 @@ class TrieZeroOneXorRange:
                 dfs(xor, cur[w], i - 1)
             return
 
-        # 使用深搜查询异或值不超出范围的数对个数
+        # check the cnt of number with limit range of xor
         res = 0
         dfs(0, self.dct, self.n)
         return res
 
 
 class TrieZeroOneXorMax:
-    # 模板：使用01Trie维护与查询数组最大异或值
+    """template of add num and query the maximum xor with assign num"""
     def __init__(self, n):
-        # 使用字典数据结构实现
         self.dct = dict()
-        # 确定序列长度
         self.n = n
         self.inf = inf
         return
@@ -72,7 +66,6 @@ class TrieZeroOneXorMax:
         return
 
     def query_xor_max(self, num):
-        # 计算与num异或可以得到的最大值
         cur = self.dct
         ans = 0
         for i in range(self.n, -1, -1):
@@ -88,13 +81,12 @@ class TrieZeroOneXorMax:
 
 
 class TriePrefixKeyValue:
-    # 模板：更新单词的键值对与查询对应字符串前缀的值的和
+    """template of word prefix cnt and query"""
     def __init__(self):
         self.dct = dict()
         return
 
     def update(self, word, val):
-        # 更新单词与前缀计数
         cur = self.dct
         for w in word:
             if w not in cur:
@@ -104,7 +96,6 @@ class TriePrefixKeyValue:
         return
 
     def query(self, word):
-        # 查询前缀单词个数
         cur = self.dct
         for w in word:
             if w not in cur:
@@ -130,7 +121,6 @@ class TrieCount:
         return
 
     def update(self, word):
-        # 更新单词与前缀计数
         cur = self.dct
         for w in word:
             if w not in cur:
@@ -140,7 +130,6 @@ class TrieCount:
         return
 
     def query(self, word):
-        # 查询前缀单词个数
         cur = self.dct
         for w in word:
             if w not in cur:
@@ -151,12 +140,11 @@ class TrieCount:
 
 class TrieBit:
     def __init__(self, n=32):
-        # 长度为n的二进制序列字典树
+        """template of add and remove num for maximum xor query"""
         self.dct = dict()
         self.n = n
         return
 
-    # 加入新的值到字典树中
     def update(self, num):
         cur = self.dct
         for i in range(self.n, -1, -1):
@@ -167,8 +155,8 @@ class TrieBit:
             cur["cnt"] = cur.get("cnt", 0) + 1
         return
 
-    # 查询字典树最大异或值
     def query(self, num):
+        """query maximum xor value"""
         cur = self.dct
         ans = 0
         for i in range(self.n, -1, -1):
@@ -180,8 +168,8 @@ class TrieBit:
                 cur = cur[w]
         return ans
 
-    # 从二进制序列中删除
     def delete(self, num):
+        """remove one num"""
         cur = self.dct
         for i in range(self.n, -1, -1):
             w = 1 if num & (1 << i) else 0
@@ -220,7 +208,6 @@ class TrieKeyWordSearchInText:
 
 
 class TriePrefixCount:
-    # 模板：更新单词集合，并计算给定字符串作为前缀的单词个数
     def __init__(self):
         self.dct = dict()
         return
@@ -246,11 +233,9 @@ class TriePrefixCount:
 
 
 class TrieZeroOneXorMaxKth:
-    # 模板：使用01Trie维护与查询数组的第 k 大异或值
     def __init__(self, n):
-        # 使用字典数据结构实现
+        """template of query the k-th xor value of assign num"""
         self.dct = dict()
-        # 确定序列长度
         self.n = n
         self.inf = inf
         return
@@ -266,7 +251,6 @@ class TrieZeroOneXorMaxKth:
         return
 
     def query_xor_kth_max(self, num, k):
-        # 计算与 num 异或可以得到的第 k 大值
         cur = self.dct
         ans = 0
         for i in range(self.n, -1, -1):

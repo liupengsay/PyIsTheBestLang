@@ -6,13 +6,12 @@ RANDOM = random.randint(0, 10 ** 9 + 7)
 
 
 class Wrapper(int):
-    # 用来规避 py 哈希碰撞的问题和进行加速
+    # deel with hash crush
     def __init__(self, x):
         int.__init__(x)
-        # 原理是异或一个随机种子
 
     def __hash__(self):
-        # 也可以将数组排序后进行哈希计数
+        # xor the num as hashmap key
         return super(Wrapper, self).__hash__() ^ RANDOM
 
 
@@ -92,18 +91,14 @@ class FastIO:
         return pre
 
     def inter_ask(self, lst):
-        # CF交互题输出询问并读取结果
-        self.st(lst)
-        sys.stdout.flush()
+        self.lst(lst)
+        sys.stdout.flush()  # which is necessary
         res = self.read_int()
-        # 记得任何一个输出之后都要 sys.stdout.flush() 刷新
         return res
 
     def inter_out(self, lst):
-        # CF交互题输出最终答案
-        self.st(lst)
-        sys.stdout.flush()
-        return
+        self.lst(lst)
+        sys.stdout.flush()   # which is necessary
 
     @staticmethod
     def bootstrap(f, queue=[]):
