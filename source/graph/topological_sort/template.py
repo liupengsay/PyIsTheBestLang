@@ -27,7 +27,7 @@ class TopologicalSort:
 
     @staticmethod
     def count_dag_path(n, edges):
-        # 模板: 计算有向无环连通图路径条数
+        # Calculate the number of paths in a directed acyclic connected graph
         edge = [[] for _ in range(n)]
         degree = [0] * n
         for i, j in edges:
@@ -37,7 +37,7 @@ class TopologicalSort:
         stack = [i for i in range(n) if not degree[i]]
         for x in stack:
             cnt[x] = 1
-        while stack:  # 也可以使用深搜
+        while stack:
             nex = []
             for i in stack:
                 for j in edge[i]:
@@ -48,47 +48,9 @@ class TopologicalSort:
             stack = nex
         return cnt
 
-    # 内向基环树写法 https://atcoder.jp/contests/abc266/submissions/37717739
-    # def main(ac=FastIO()):
-    #     n = ac.read_int()
-    #     edge = [[] for _ in range(n)]
-    #     uf = UnionFind(n)
-    #
-    #     degree = [0] * n
-    #     for _ in range(n):
-    #         u, v = ac.read_list_ints_minus_one()
-    #         edge[u].append(v)
-    #         edge[v].append(u)
-    #         degree[u] += 1
-    #         degree[v] += 1
-    #
-    #     que = deque()
-    #     for i in range(n):
-    #         if degree[i] == 1:
-    #             que.append(i)
-    #     while que:
-    #         now = que.popleft()
-    #         nex = edge[now][0]
-    #         degree[now] -= 1
-    #         degree[nex] -= 1
-    #         edge[nex].remove(now)
-    #         uf.union(now, nex)
-    #         if degree[nex] == 1:
-    #             que.append(nex)
-    #
-    #     q = ac.read_int()
-    #     for _ in range(q):
-    #         x, y = ac.read_list_ints_minus_one()
-    #         if uf.is_connected(x, y):
-    #             ac.st("Yes")
-    #         else:
-    #             ac.st("No")
-    #     return
-
     @staticmethod
     def is_topology_unique(dct, degree, n):
-
-        # 保证存在拓扑排序的情况下判断是否唯一
+        # Determine whether it is unique while ensuring the existence of topological sorting
         ans = []
         stack = [i for i in range(n) if not degree[i]]
         while stack:
@@ -106,8 +68,7 @@ class TopologicalSort:
 
     @staticmethod
     def is_topology_loop(edge, degree, n):
-
-        # 使用拓扑排序判断有向图是否存在环
+        # using Topological Sorting to Determine the Existence of Rings in a Directed Graph
         stack = [i for i in range(n) if not degree[i]]
         while stack:
             nex = []
@@ -121,7 +82,8 @@ class TopologicalSort:
 
     @staticmethod
     def bfs_topologic_order(n, dct, degree):
-        # 拓扑排序判断有向图是否存在环，同时记录节点的拓扑顺序
+        # topological sorting determines whether there are rings in a directed graph
+        # while recording the topological order of nodes
         order = [0] * n
         stack = [i for i in range(n) if degree[i] == 0]
         ind = 0

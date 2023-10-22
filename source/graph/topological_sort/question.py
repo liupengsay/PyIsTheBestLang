@@ -69,6 +69,43 @@ class Solution:
         return
 
     @staticmethod
+    def abc_266f(ac=FastIO()):
+        n = ac.read_int()
+        edge = [[] for _ in range(n)]
+        uf = UnionFind(n)
+
+        degree = [0] * n
+        for _ in range(n):
+            u, v = ac.read_list_ints_minus_one()
+            edge[u].append(v)
+            edge[v].append(u)
+            degree[u] += 1
+            degree[v] += 1
+
+        que = deque()
+        for i in range(n):
+            if degree[i] == 1:
+                que.append(i)
+        while que:
+            now = que.popleft()
+            nex = edge[now][0]
+            degree[now] -= 1
+            degree[nex] -= 1
+            edge[nex].remove(now)
+            uf.union(now, nex)
+            if degree[nex] == 1:
+                que.append(nex)
+
+        q = ac.read_int()
+        for _ in range(q):
+            x, y = ac.read_list_ints_minus_one()
+            if uf.is_connected(x, y):
+                ac.st("Yes")
+            else:
+                ac.st("No")
+        return
+
+    @staticmethod
     def ac_3696(ac=FastIO()):
         # 模板：经典bfs序即拓扑序与DAG构造
         for _ in range(ac.read_int()):

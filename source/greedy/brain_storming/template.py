@@ -7,10 +7,10 @@ class BrainStorming:
 
     @staticmethod
     def minimal_coin_need(n, m, nums):
-
+        # there are n selectable and infinite coins
+        # and the minimum number of coins required to form all combinations of 1-m
         nums += [m + 1]
         nums.sort()
-        # 有 n 个可选取且无限的硬币，为了形成 1-m 所有组合需要的最少硬币个数
         if nums[0] != 1:
             return -1
         ans = sum_ = 0

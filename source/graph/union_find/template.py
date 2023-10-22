@@ -1,9 +1,9 @@
 from collections import defaultdict
 
 from math import inf
+from typing import DefaultDict, List
 
 
-# 标准并查集
 class UnionFind:
     def __init__(self, n: int) -> None:
         self.root = [i for i in range(n)]
@@ -15,7 +15,7 @@ class UnionFind:
         lst = []
         while x != self.root[x]:
             lst.append(x)
-            # 在查询的时候合并到顺带直接根节点
+            # merge to the direct root node after query
             x = self.root[x]
         for w in lst:
             self.root[w] = x
@@ -30,7 +30,7 @@ class UnionFind:
             root_x, root_y = root_y, root_x
         self.root[root_x] = root_y
         self.size[root_y] += self.size[root_x]
-        # 将非根节点的秩赋0
+        # assign the rank of non-root nodes to 0
         self.size[root_x] = 0
         self.part -= 1
         return True
@@ -38,16 +38,16 @@ class UnionFind:
     def is_connected(self, x, y):
         return self.find(x) == self.find(y)
 
-    def get_root_part(self):
-        # 获取每个根节点对应的组
+    def get_root_part(self) -> DefaultDict[List[int]]:
+        # get the nodes list of every root
         part = defaultdict(list)
         n = len(self.root)
         for i in range(n):
             part[self.find(i)].append(i)
         return part
 
-    def get_root_size(self):
-        # 获取每个根节点对应的组大小
+    def get_root_size(self) -> DefaultDict[int]:
+        # get the size of every root
         size = defaultdict(int)
         n = len(self.root)
         for i in range(n):
@@ -56,7 +56,6 @@ class UnionFind:
 
 
 class UnionFindRightRange:
-    # 模板：向右合并的并查集
     def __init__(self, n: int) -> None:
         self.root = [i for i in range(n)]
         return
@@ -65,7 +64,6 @@ class UnionFindRightRange:
         lst = []
         while x != self.root[x]:
             lst.append(x)
-            # 在查询的时候合并到顺带直接根节点
             x = self.root[x]
         for w in lst:
             self.root[w] = x
@@ -76,6 +74,7 @@ class UnionFindRightRange:
         root_y = self.find(y)
         if root_x == root_y:
             return False
+        # select the bigger node as root
         if root_x > root_y:
             root_x, root_y = root_y, root_x
         self.root[root_x] = root_y
@@ -84,18 +83,16 @@ class UnionFindRightRange:
 
 class UnionFindWeighted:
     def __init__(self, n: int) -> None:
-        # 模板：带权并查集
         self.root = [i for i in range(n)]
         self.size = [1] * n
         self.part = n
-        self.front = [0]*n  # 离队头的距离
+        self.front = [0]*n
         return
 
     def find(self, x):
         lst = []
         while x != self.root[x]:
             lst.append(x)
-            # 在查询的时候合并到顺带直接根节点
             x = self.root[x]
         for w in lst:
             self.root[w] = x
@@ -108,11 +105,9 @@ class UnionFindWeighted:
     def union(self, x, y):
         root_x = self.find(x)
         root_y = self.find(y)
-        # 将 root_x 拼接到 root_y 后面
         self.front[root_x] += self.size[root_y]
         self.root[root_x] = root_y
         self.size[root_y] += self.size[root_x]
-        # 将非根节点的秩赋0
         self.size[root_x] = 0
         self.part -= 1
         return True
@@ -121,7 +116,6 @@ class UnionFindWeighted:
         return self.find(x) == self.find(y)
 
 
-# 可持久化并查集
 class PersistentUnionFind:
     def __init__(self, n):
         self.rank = [0] * n
@@ -143,7 +137,7 @@ class PersistentUnionFind:
             return True
         return False
 
-    def find(self, x, tm=float("inf")):
+    def find(self, x, tm=inf):
         if x == self.root[x] or self.version[x] >= tm:
             return x
         return self.find(self.root[x], tm)
@@ -162,7 +156,6 @@ class UnionFindLeftRoot:
         lst = []
         while x != self.root[x]:
             lst.append(x)
-            # 在查询的时候合并到顺带直接根节点
             x = self.root[x]
         for w in lst:
             self.root[w] = x
@@ -173,6 +166,7 @@ class UnionFindLeftRoot:
         root_y = self.find(y)
         if root_x == root_y:
             return False
+        # select the smaller node as root
         if root_x <= root_y:
             root_x, root_y = root_y, root_x
         self.root[root_x] = root_y
@@ -188,7 +182,6 @@ class UnionFindSpecial:
         lst = []
         while x != self.root[x]:
             lst.append(x)
-            # 在查询的时候合并到顺带直接根节点
             x = self.root[x]
         for w in lst:
             self.root[w] = x
