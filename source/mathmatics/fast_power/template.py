@@ -19,7 +19,7 @@ class FastPower:
 
     @staticmethod
     def float_fast_pow(x: float, m: int) -> float:
-        # 浮点数快速幂
+
         def quick_mul(n):
             if n == 0:
                 return 1.0
@@ -55,24 +55,3 @@ class MatrixFastPower:
             base = self.matrix_mul(base, base, mod)
             p >>= 1
         return ans
-
-
-class PowerReverse:
-    def __init__(self):
-        return
-
-    # 扩展欧几里得求乘法逆元
-    def ex_gcd(self, a, b):
-        if b == 0:
-            return 1, 0, a
-        else:
-            x, y, q = self.ex_gcd(b, a % b)
-            x, y = y, (x - (a // b) * y)
-            return x, y, q
-
-    def mod_reverse(self, a, p):
-        x, y, q = self.ex_gcd(a, p)
-        if q != 1:
-            raise Exception("No solution.")
-        else:
-            return (x + p) % p  # 防止负数

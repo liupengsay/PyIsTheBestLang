@@ -3,24 +3,22 @@ import math
 
 class Combinatorics:
     def __init__(self, n, mod):
-        # 模板：求全排列组合数，使用时注意 n 的取值范围
         n += 10
         self.perm = [1] * n
         self.rev = [1] * n
         self.mod = mod
         for i in range(1, n):
-            # 阶乘数 i! 取模
+            # (i!) % mod
             self.perm[i] = self.perm[i - 1] * i
             self.perm[i] %= self.mod
-        self.rev[-1] = self.mod_reverse(self.perm[-1], self.mod)  # 等价于pow(self.perm[-1], -1, self.mod)
+        self.rev[-1] = self.mod_reverse(self.perm[-1], self.mod)  # equal to pow(self.perm[-1], -1, self.mod)
         for i in range(n - 2, 0, -1):
-            self.rev[i] = (self.rev[i + 1] * (i + 1) % mod)  # 阶乘 i! 取逆元
+            self.rev[i] = (self.rev[i + 1] * (i + 1) % mod)  # pow(i!, -1, mod)
         self.fault = [0] * n
         self.fault_perm()
         return
 
     def ex_gcd(self, a, b):
-        # 扩展欧几里得求乘法逆元
         if b == 0:
             return 1, 0, a
         else:
@@ -29,26 +27,24 @@ class Combinatorics:
             return x, y, q
 
     def mod_reverse(self, a, p):
+        assert math.gcd(a, p) == 1
         x, y, q = self.ex_gcd(a, p)
-        if q != 1:
-            raise Exception("No solution.")   # 逆元要求a与p互质
-        else:
-            return (x + p) % p  # 防止负数
+        return (x + p) % p
 
     def comb(self, a, b):
         if a < b:
             return 0
-        # 组合数根据乘法逆元求解
+        # C(a, b) % mod
         res = self.perm[a] * self.rev[b] * self.rev[a - b]
         return res % self.mod
 
     def factorial(self, a):
-        # 组合数根据乘法逆元求解
+        # (a!) % mod
         res = self.perm[a]
         return res % self.mod
 
     def fault_perm(self):
-        # 求错位排列组合数
+        # number of fault combinations
         self.fault[0] = 1
         self.fault[2] = 1
         for i in range(3, len(self.fault)):
@@ -57,29 +53,27 @@ class Combinatorics:
         return
 
     def inv(self, n):
-        # 求 pow(n, -1, mod)
+        # pow(n, -1, mod)
         return self.perm[n - 1] * self.rev[n] % self.mod
 
     def catalan(self, n):
-        # 求卡特兰数
         return (self.comb(2 * n, n) - self.comb(2 * n, n - 1)) % self.mod
 
 
 class Lucas:
     def __init__(self):
-        # 模板：快速求Comb(a,b)%p
+        # Comb(a,b) % p
         return
 
-    @staticmethod
     def lucas(self, n, m, p):
-        # 模板：卢卡斯定理，求 math.comb(n, m) % p，要求p为质数
+        # math.comb(n, m) % p where p is prime
         if m == 0:
             return 1
         return ((math.comb(n % p, m % p) % p) * self.lucas(n // p, m // p, p)) % p
 
     @staticmethod
     def comb(n, m, p):
-        # 模板：利用乘法逆元求comb(n,m)%p
+        # comb(n, m ) % p
         ans = 1
         for x in range(n - m + 1, n + 1):
             ans *= x
@@ -90,7 +84,7 @@ class Lucas:
         return ans
 
     def lucas_iter(self, n, m, p):
-        # 模板：卢卡斯定理，求 math.comb(n, m) % p，要求p为质数
+        # math.comb(n, m) % p where p is prime
         if m == 0:
             return 1
         stack = [[n, m]]
@@ -110,5 +104,5 @@ class Lucas:
 
     @staticmethod
     def extend_lucas(self, n, m, p):
-        # 模板：扩展卢卡斯定理，求 math.comb(n, m) % p，不要求p为质数
+        # math.comb(n, m) % p where p is not necessary prime
         return

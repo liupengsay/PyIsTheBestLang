@@ -12,7 +12,7 @@ class Geometry:
 
     @staticmethod
     def compute_center(x1, y1, x2, y2, r):
-        # 模板：计算经过两个不同的点与确定半径的两处圆心
+        # Calculate the centers of two circles passing through two different points and determining the radius
         px, py = (x1 + x2) / 2, (y1 + y2) / 2
         dx, dy = x1 - x2, y1 - y2
         h = math.sqrt(r * r - (dx * dx + dy * dy) / 4)
@@ -25,7 +25,7 @@ class Geometry:
 
     @staticmethod
     def same_line(point1, point2, point3):
-        # 模板: 计算三点共线
+        # calculating three point collinearity
         x1, y1 = point1
         x2, y2 = point2
         x3, y3 = point3
@@ -34,7 +34,7 @@ class Geometry:
     @staticmethod
     def compute_slope2(point1, point2):
         assert point1 != point2
-        # 模板: 根据两不同的点确定直线斜率
+        # Determine the slope of a straight line based on two different points
         x1, y1 = point1
         x2, y2 = point2
         a, b = x2 - x1, y2 - y1
@@ -44,14 +44,14 @@ class Geometry:
         if a < 0:
             a *= -1
             b *= -1
-        elif a == 0:  # 注意此时的正负号
+        elif a == 0:
             b = abs(b)
         return a, b
 
     @staticmethod
     def compute_slope(x1, y1, x2, y2):
         assert [x1, y1] != [x2, y2]
-        # 模板: 根据两不同的点确定直线斜率
+        # Determine the slope of a straight line based on two different points
         if x1 == x2:
             ans = "x"
         else:
@@ -61,44 +61,48 @@ class Geometry:
             if b < 0:
                 a *= -1
                 b *= -1
-            # 使用最简分数来表示斜率
             ans = [a // g, b // g]
         return ans
 
     @staticmethod
     def compute_square_point(x0, y0, x2, y2):
         assert [x0, y0] != [x2, y2]
-        # 模板：已知矩形对角线上的两个点且保证两点不同，求另外两个点的坐标
+        # Given two points on the diagonal of a rectangle and ensuring that they are different
+        # calculate the coordinates of the other two points
         x1 = (x0 + x2 + y2 - y0) / 2
         y1 = (y0 + y2 + x0 - x2) / 2
         x3 = (x0 + x2 - y2 + y0) / 2
         y3 = (y0 + y2 - x0 + x2) / 2
-        # 判断正方形
+        # Judging a square
         assert abs(x0 - x2) == abs(y0 - y2)
         return (x1, y1), (x3, y3)
 
     @staticmethod
     def compute_square_point_2(x0, y0, x2, y2):
-        # 模板：已知矩形对角线上的两个点且保证两点不同，求另外两个点的坐标
+        # Given two points on the diagonal of a rectangle and ensuring that they are different
+        # calculate the coordinates of the other two points
         assert [x0, y0] != [x2, y2]
-        # 判断正方形
+        # Judging a square
         assert abs(x0 - x2) == abs(y0 - y2)
         return (x0, y2), (x2, y0)
 
     @staticmethod
     def compute_square_area(x0, y0, x2, y2):
-        # 已知正方形对角线上的点，求正方形面积，注意是整数
+        # Given the points on the diagonal of a square
+        # calculate the area of the square, taking into account that it is an integer
+
         ans = (x0 - x2) * (x0 - x2) + (y0 - y2) * (y0 - y2)
         return ans // 2
 
     @staticmethod
     def compute_triangle_area(x1, y1, x2, y2, x3, y3):
-        # 可用于判断点与三角形的位置关系
+        # Can be used to determine the positional relationship between points and triangles
         return abs((x1 * y2 - x2 * y1) + (x2 * y3 - x3 * y2) + (x3 * y1 - x1 * y3)) / 2
 
     @staticmethod
     def line_intersection_line(start1: List[int], end1: List[int], start2: List[int], end2: List[int]) -> List[float]:
-        # 模板：计算两条线段最靠下最靠左的交点，没有交点则返回空
+        # Calculate the intersection point of two line segments that are bottommost and leftmost
+        # If there is no intersection point, return empty
         x1, y1 = start1
         x2, y2 = end1
         x3, y3 = start2
@@ -126,8 +130,7 @@ class ClosetPair:
 
     @staticmethod
     def bucket_grid(n: int, nums: List[List[int]]):
-
-        # 模板：使用随机增量法分网格计算平面最近的点对
+        # Use random increment method to divide the grid and calculate the closest point pairs on the plane
         def dis(p1, p2):
             return (p1[0] - p2[0]) * (p1[0] - p2[0]) + (p1[1] - p2[1]) * (p1[1] - p2[1])
 
@@ -145,7 +148,7 @@ class ClosetPair:
         assert n >= 2
         random.shuffle(nums)
 
-        # 初始化
+        # initialization
         dct = dict()
         ans = dis(nums[0], nums[1])
         ss = ans ** 0.5
@@ -154,7 +157,7 @@ class ClosetPair:
         if ans == 0:
             return 0
 
-        # 遍历进行随机增量
+        # traverse with random increments
         for i in range(2, n):
             a, b = check(nums[i])
             res = ans
@@ -165,10 +168,10 @@ class ClosetPair:
                         for j in dct[cur]:
                             now = dis(nums[i], nums[j])
                             res = res if res < now else now
-            if res == 0:  # 距离为 0 直接返回
+            if res == 0:  # Directly return at a distance of 0
                 return 0
             if res < ans:
-                # 重置初始化
+                # initialization again
                 ans = res
                 ss = ans ** 0.5
                 dct = dict()
@@ -176,13 +179,13 @@ class ClosetPair:
                     update(check(nums[x]), x)
             else:
                 update(check(nums[i]), i)
-        # 返回值为欧几里得距离的平方
+        # The return value is the square of the Euclidean distance
         return ans
 
     @staticmethod
     def divide_and_conquer(lst):
 
-        # 模板：使用分治求解平面最近点对
+        # Using Divide and Conquer to Solve the Pairs of Nearest Points in a Plane
         lst.sort(key=lambda p: p[0])
 
         def distance(p1, p2):
@@ -226,7 +229,7 @@ class ClosetPair:
 
     @staticmethod
     def sorted_pair(points) -> float:
-        # 模板：使用有序列表进行平面最近点对计算
+        # Using an ordered list for calculating the closest point pairs on a plane
         def dis(p1, p2):
             return (p1[0] - p2[0]) * (p1[0] - p2[0]) + (p1[1] - p2[1]) * (p1[1] - p2[1])
 
@@ -259,7 +262,9 @@ class ClosetPair:
     @staticmethod
     def bucket_grid_inter_set(n: int, nums1: List[List[int]], nums2):
 
-        # 模板：使用随机增量法分网格计算两个平面点集最近的点对
+        # Using the Random Incremental Method to Divide Grids and
+        # Calculate the Nearest Point Pairs of Two Planar Point Sets
+
         def dis(p1, p2):
             return (p1[0] - p2[0]) * (p1[0] - p2[0]) + (p1[1] - p2[1]) * (p1[1] - p2[1])
 
@@ -277,7 +282,6 @@ class ClosetPair:
         random.shuffle(nums1)
         random.shuffle(nums2)
 
-        # 初始化
         dct = dict()
         ans = inf
         for i in range(n):
@@ -288,7 +292,7 @@ class ClosetPair:
             return 0
         for i in range(n):
             update(check(nums1[i]), i)
-        # 遍历进行随机增量
+
         for i in range(1, n):
             a, b = check(nums2[i])
             res = ans
@@ -299,14 +303,13 @@ class ClosetPair:
                         for j in dct[cur]:
                             now = dis(nums2[i], nums1[j])
                             res = res if res < now else now
-            if res == 0:  # 距离为 0 直接返回
+            if res == 0:
                 return 0
             if res < ans:
-                # 重置初始化
                 ans = res
                 ss = ans ** 0.5
                 dct = dict()
                 for x in range(n):
                     update(check(nums1[x]), x)
-        # 返回值为欧几里得距离的平方
+        # The return value is the square of the Euclidean distance
         return ans

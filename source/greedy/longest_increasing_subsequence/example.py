@@ -2,7 +2,7 @@ import random
 import unittest
 from collections import defaultdict
 
-from greedy.longest_increasing_subsequence.template import LongestIncreasingSubsequence, LcsLis
+from greedy.length_of_lis.template import LongestIncreasingSubsequence, LcsLis
 
 
 class TestGeneral(unittest.TestCase):
@@ -17,7 +17,7 @@ class TestGeneral(unittest.TestCase):
 
         for _ in range(10):
             nums = [random.randint(0, 100) for _ in range(10)]
-            ans = LcsLis().longest_increasing_subsequence_max_sum(nums)
+            ans = LcsLis().length_and_max_sum_of_lis(nums)
             cur = defaultdict(int)
             n = len(nums)
             for i in range(1, 1 << n):

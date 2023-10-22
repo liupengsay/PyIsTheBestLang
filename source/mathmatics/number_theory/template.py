@@ -9,7 +9,7 @@ class NumberTheory:
 
     @staticmethod
     def get_prime_factor(x):
-        # 模板：质因数分解最多支持 1**12
+        # prime factor decomposition supports up to 10**12
         ans = []
         j = 2
         while j * j <= x:
@@ -26,7 +26,8 @@ class NumberTheory:
 
     @staticmethod
     def least_square_sum(n: int) -> int:
-        # 模板：四平方数定理（每个数最多用四个数的完全平方和就可以表示）
+        # Four Squares Theorem
+        # Each number can be represented by the complete sum of squares of at most four numbers
         while n % 4 == 0:
             n //= 4
         if n % 8 == 7:
@@ -41,45 +42,7 @@ class NumberTheory:
         return 3
 
     @staticmethod
-    def get_min_prime_and_prime_factor():
-        # 模板：计算 1 到 ceil 所有数字的最小质数因子
-        ceil = 10 ** 6
-        min_prime = [0] * (ceil + 1)
-        for i in range(2, ceil + 1):
-            if not min_prime[i]:
-                min_prime[i] = i
-                for j in range(i * i, ceil + 1, i):
-                    min_prime[j] = i
-
-        # 模板：计算 1 到 ceil 所有数字的质数分解
-        prime_factor = [[] for _ in range(ceil + 1)]
-        for num in range(2, ceil + 1):
-            i = num
-            while num > 1:
-                p = min_prime[num]
-                cnt = 0
-                while num % p == 0:
-                    num //= p
-                    cnt += 1
-                prime_factor[i].append([p, cnt])
-        return
-
-    @staticmethod
-    def get_num_prime_factor(ceil):
-        # 模板：快速计算 1~ceil 的所有质数因子
-        prime = [[] for _ in range(ceil + 1)]
-        for i in range(2, ceil + 1):
-            if not prime[i]:
-                prime[i].append(i)
-                # 从 i*i 开始作为 prime[j] 的最小质数因子
-                for j in range(i * 2, ceil + 1, i):
-                    prime[j].append(i)
-        return prime
-
-    @staticmethod
     def int_to_roman(num: int) -> str:
-
-        # 模板: 罗马数字转整数
         lst = [['I', 1], ['IV', 4], ['V', 5], ['IX', 9], ['X', 10], ['XL', 40], ['L', 50], ['XC', 90], ['C', 100],
                ['CD', 400], ['D', 500], ['CM', 900], ['M', 1000]]
         n = len(lst)
@@ -113,8 +76,8 @@ class NumberTheory:
 
     @staticmethod
     def nth_super_ugly_number(n: int, primes) -> int:
-
-        # 计算只含 primes 中的质因数的第 n 个丑数，注意这里包含了 1
+        # calculate the nth ugly number that only contains the prime factor in primes
+        # note that this includes 1
         dp = [1] * n
         m = len(primes)
         points = [0] * m
@@ -131,29 +94,18 @@ class NumberTheory:
 
     @staticmethod
     def gcd(x, y):
-        # 模板: 迭代法求最大公约数
+        # iterative method for finding the maximum common divisor
         while y:
             x, y = y, x % y
         return x
 
     def lcm(self, x, y):
-        # 最小公倍数
+        # Least common multiple
         return x * y // self.gcd(x, y)
 
     @staticmethod
-    def get_factor_upper(n):
-        # 模板：使用素数筛类似的方法获取小于等于 n 的所有数除 1 与自身之外的所有因数（倍数法）
-        factor = [[] for _ in range(n + 1)]
-        for i in range(2, n + 1):
-            x = 2
-            while i * x <= n:
-                factor[i * x].append(i)
-                x += 1
-        return factor
-
-    @staticmethod
     def factorial_zero_count(num):
-        # 阶乘后的后缀零个数
+        # count of suffix zero of n!
         cnt = 0
         while num > 0:
             cnt += num // 5
@@ -162,13 +114,14 @@ class NumberTheory:
 
     @staticmethod
     def get_k_bin_of_n(n, k):
-        # 整数n的k进制计算（支持正数进制与负数进制）二进制、三进制、十六进制、负进制
+        # K-base calculation of integer n
+        # supports both positive and negative bases
+        # binary, ternary, hexadecimal, and negative bases
         if n == 0:
             return [0]
         if k == 0:
             return []
-        assert abs(k) >= 2  # 原则上要求
-        # 支持正负数
+        assert abs(k) >= 2  # In principle, requirements
         pos = 1 if k > 0 else -1
         k = abs(k)
         lst = []  # 0123456789" + "".join(chr(i+ord("A")) for i in range(26))
@@ -177,12 +130,11 @@ class NumberTheory:
             n //= k
             n *= pos
         lst.reverse()
-        # 最高支持三十六进制的表达
         return lst
 
     @staticmethod
     def k_bin_to_ten(k, st: str) -> str:
-        # k进制字符转为 10 进制字符
+        # convert k-base characters to decimal characters
         order = "0123456789" + "".join(chr(i + ord("a")) for i in range(26))
         ind = {w: i for i, w in enumerate(order)}
         m = len(st)
@@ -193,14 +145,14 @@ class NumberTheory:
         return str(ans)
 
     def ten_to_k_bin(self, k, st: str) -> str:
-        # 10 进制字符转为 k 进制字符
+        # convert 10 base characters to k base characters
         order = "0123456789" + "".join(chr(i + ord("a")) for i in range(26))
         lst = self.get_k_bin_of_n(int(st), k)
         return "".join(order[i] for i in lst)
 
     @staticmethod
     def is_prime(num):
-        # 判断数是否为质数
+        # determine whether a number is prime
         if num <= 1:
             return False
         for i in range(2, min(int(math.sqrt(num)) + 2, num)):
@@ -210,11 +162,8 @@ class NumberTheory:
 
     @staticmethod
     def is_prime4(x):
-        """https://zhuanlan.zhihu.com/p/107300262
-        任何一个自然数，总可以表示成以下六种形式之一：6n，6n+1，6n+2，6n+3，6n+4，6n+5（n=0,1,2...）
-        我们可以发现，除了2和3，只有形如6n+1和6n+5的数有可能是质数。
-        且形如6n+1和6n+5的数如果不是质数，它们的因数也会含有形如6n+1或者6n+5的数，因此可以得到如下算法：
-        """
+        """https://zhuanlan.zhihu.com/p/107300262"""
+        # determine whether a number is prime
         if x == 1:
             return False
         if (x == 2) or (x == 3):
@@ -243,11 +192,9 @@ class NumberTheory:
     @staticmethod
     def rational_number_to_fraction(st):
         """
-        # 有理数循环小数化为分数
+        recurrent decimalization of rational numbers to fractions
         1.2727... = (27 / 99) + 1
         1.571428571428... = (571428 / 999999) + 1
-        有n位循环 = (循环部分 / n位9) + 整数部分
-        最后约简
         """
         n = len(st)
         a = int(st)
@@ -259,8 +206,8 @@ class NumberTheory:
 
     @staticmethod
     def euler_phi(n):
-        # 欧拉函数返回小于等于n的与n互质的个数
-        # 注意1和1互质，而大于1的质数与1不互质
+        """the euler function returns the number of coprime with n that are less than or equal to n"""
+        # Note that 1 and 1 are coprime, while prime numbers greater than 1 are not coprime with 1
         ans = n
         for i in range(2, int(math.sqrt(n)) + 1):
             if n % i == 0:
@@ -273,8 +220,7 @@ class NumberTheory:
 
     @staticmethod
     def euler_flag_prime(n):
-        # 欧拉线性筛素数，欧拉筛
-        # 说明：返回小于等于 n 的所有素数
+        """euler linear sieve prime number"""
         flag = [False for _ in range(n + 1)]
         prime_numbers = []
         for num in range(2, n + 1):
@@ -284,27 +230,26 @@ class NumberTheory:
                 if num * prime > n:
                     break
                 flag[num * prime] = True
-                if num % prime == 0:  # 这句是最有意思的地方  下面解释
+                if num % prime == 0:
                     break
         return prime_numbers
 
     @staticmethod
-    def sieve_of_eratosthenes(n):  # 埃拉托色尼筛选法，返回小于等于n的素数，质数筛
-        primes = [True] * (n + 1)  # 范围0到n的列表
-        p = 2  # 这是最小的素数
-        while p * p <= n:  # 一直筛到sqrt(n)就行了
-            if primes[p]:  # 如果没被筛，一定是素数
-                for i in range(p * 2, n + 1, p):  # 筛掉它的倍数即可
+    def sieve_of_eratosthenes(n):
+        """Eratosthenes screening method returns prime numbers less than or equal to n"""
+        primes = [True] * (n + 1)
+        p = 2
+        while p * p <= n:
+            if primes[p]:
+                for i in range(p * 2, n + 1, p):
                     primes[i] = False
             p += 1
-        primes = [
-            element for element in range(
-                2, n + 1) if primes[element]]  # 得到所有小于等于n的素数
+        primes = [element for element in range(2, n + 1) if primes[element]]
         return primes
 
     @staticmethod
     def linear_sieve(n):
-        # 模板：线性筛素数并计算出所有的质因子
+        """Linear screening of prime numbers and calculating all prime factors"""
         is_prime = [True] * (n + 1)
         primes = []
         min_prime = [0] * (n + 1)
@@ -321,7 +266,7 @@ class NumberTheory:
 
     @staticmethod
     def get_all_factor(num):
-        # 获取整数所有的因子包括 1 和它自己
+        """Obtain all factors of an integer, including 1 and itself"""
         factor = set()
         for i in range(1, int(math.sqrt(num)) + 1):
             if num % i == 0:
@@ -330,7 +275,7 @@ class NumberTheory:
         return sorted(list(factor))
 
     def pollard_rho(self, n):
-        # 随机返回一个 n 的因数 [1, 10**9]
+        # Randomly return a factor of n [1, 10**9]
         if n & 1 == 0:
             return 2
         if n % 3 == 0:
@@ -362,9 +307,9 @@ class NumberTheory:
         return n
 
     def get_prime_factors_with_pollard_rho(self, n):
-        # 返回 n 的质因数分解与对应因子个数
+        """Returns the prime factorization of n and the corresponding number of factors"""
         if n <= 1:
-            return Counter()  # 注意特例返回
+            return Counter() # special case
         f = self.pollard_rho(n)
         return Counter([n]) if f == n else self.get_prime_factors_with_pollard_rho(
             f) + self.get_prime_factors_with_pollard_rho(n // f)

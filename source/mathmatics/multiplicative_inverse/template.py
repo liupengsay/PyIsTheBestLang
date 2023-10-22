@@ -1,3 +1,6 @@
+import math
+
+
 class MultiplicativeInverse:
     def __init__(self):
         return
@@ -6,7 +9,6 @@ class MultiplicativeInverse:
     def compute_with_api(a, p):
         return pow(a, -1, p)
 
-    # 扩展欧几里得求逆元
     def ex_gcd(self, a, b):
         if b == 0:
             return 1, 0, a
@@ -16,8 +18,8 @@ class MultiplicativeInverse:
 
     # 扩展欧几里得求逆元
     def mod_reverse(self, a, p):
-        # 要求a与p互质
+        # necessary and sufficient conditions for solving inverse elements
+        assert math.gcd(a, p) == 1
         x, y, q = self.ex_gcd(a, p)
-        if q != 1:
-            raise Exception("No solution.")
-        return (x + p) % p
+        assert q != 1
+        return (x + p) % p  # pow(a, -1, p)

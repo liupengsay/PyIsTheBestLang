@@ -10,7 +10,7 @@ class LongestIncreasingSubsequence:
 
     @staticmethod
     def definitely_increase(nums):
-        # 最长单调递增子序列（严格上升）
+        # longest strictly increasing subsequence
         dp = []
         for num in nums:
             i = bisect.bisect_left(dp, num)
@@ -22,7 +22,7 @@ class LongestIncreasingSubsequence:
 
     @staticmethod
     def definitely_not_reduce(nums):
-        # 最长单调不减子序列（不降）
+        # longest non-decreasing subsequence
         dp = []
         for num in nums:
             i = bisect.bisect_right(dp, num)
@@ -33,12 +33,12 @@ class LongestIncreasingSubsequence:
         return len(dp)
 
     def definitely_reduce(self, nums):
-        # 最长单调递减子序列（严格下降）
+        # longest strictly decreasing subsequence
         nums = [-num for num in nums]
         return self.definitely_increase(nums)
 
     def definitely_not_increase(self, nums):
-        # 最长单调不增子序列（不升）
+        # longest strictly non-increasing subsequence
         nums = [-num for num in nums]
         return self.definitely_not_reduce(nums)
 
@@ -47,8 +47,9 @@ class LcsLis:
     def __init__(self):
         return
 
-    def longest_common_subsequence(self, s1, s2) -> int:
-        # 使用LIS的办法求LCS
+    def length_of_lcs(self, s1, s2) -> int:
+        """compute lcs with lis"""
+        # O(n**2)
         if len(s1) > len(s2):
             s1, s2 = s2, s1
         m = len(s2)
@@ -60,11 +61,11 @@ class LcsLis:
             if c in mapper:
                 nums.extend(mapper[c])
 
-        return self.longest_increasing_subsequence(nums)
+        return self.length_of_lis(nums)
 
     @staticmethod
-    def longest_increasing_subsequence(nums: List[int]) -> int:
-        # 使用贪心二分求LIS
+    def length_of_lis(nums: List[int]) -> int:
+        # greedy and binary search to check lis
         stack = []
         for x in nums:
             idx = bisect_left(stack, x)
@@ -72,11 +73,11 @@ class LcsLis:
                 stack[idx] = x
             else:
                 stack.append(x)
-        # 还可以返回stack获得最长公共子序列
+        # length of lis
         return len(stack)
 
-    def longest_common_subsequence_stack(self, s1, s2) -> List[int]:
-        # 使用LIS的办法求LCS
+    def index_of_lcs(self, s1, s2) -> List[int]:
+        # greedy and binary search to check lis output the index
         if len(s1) > len(s2):
             s1, s2 = s2, s1
         m = len(s2)
@@ -87,13 +88,14 @@ class LcsLis:
         for c in s1:
             if c in mapper:
                 nums.extend(mapper[c])
-        # 这里返回的是 s2 的索引不是具体的值
-        res = self.longest_increasing_subsequence_stack(nums)
+        # return the index of lcs in s2
+        res = self.minimum_lexicographical_order_of_lis(nums)
         return res
 
     @staticmethod
-    def longest_increasing_subsequence_stack(nums: List[int]) -> List[int]:
-        # 使用贪心二分求LIS
+    def minimum_lexicographical_order_of_lis(nums: List[int]) -> List[int]:
+        """template of minimum lexicographical order lis"""
+        # greedy and binary search to check lis output the index
         if not nums:
             return []
         n = len(nums)
@@ -116,15 +118,15 @@ class LcsLis:
             if piles[i] == j:
                 lis.append(nums[i])
                 j -= 1
-        lis.reverse()  # 反转列表，输出字典序最小的方案
-        # 还可以返回stack获得最长公共子序列
+        lis.reverse()
         return lis
 
     @staticmethod
-    def longest_increasing_subsequence_max_sum(nums):
-        # 模板：经典最长上升且和最大的子序列的长度与和（同理可扩展到下降、不严格、最小和等）
-        dp = []  # 维护 LIS 数组
-        q = []  # 长度对应的末尾值与最大和
+    def length_and_max_sum_of_lis(nums):
+        """the maximum sum of lis with maximum length"""
+        # which can be extended to non-decreasing non-increasing minimum sum and so on
+        dp = []
+        q = []
         for num in nums:
             if not dp or num > dp[-1]:
                 dp.append(num)
@@ -139,22 +141,21 @@ class LcsLis:
             if length == 1:
                 q[length].append([num, num])
             else:
-                # 使用队列与计数加和维护
                 while q[length - 1] and q[length - 1][0][0] >= num:
                     q[length - 1].popleft()
                 cur = q[length - 1][0][1] + num
                 while q[length] and q[length][-1][1] <= cur:
                     q[length].pop()
                 q[length].append([num, cur])
-        # 可以进一步变换求非严格递增子序列的个数
         return q[-1][0][1]
 
     @staticmethod
-    def longest_increasing_subsequence_cnt(nums):
-        # 模板：经典求 LIS 子序列的个数 O(nlogn) 做法模板题
-        dp = []  # 维护 LIS 数组
-        s = []  # 长度对应的方案和
-        q = []  # 长度对应的末尾值与个数
+    def length_and_cnt_of_lis(nums):
+        """template to finding the number of LIS"""
+        # O(nlogn)
+        dp = []  # LIS array
+        s = []  # index if length and value is sum
+        q = []  # index if length and value is [num, cnt]
         for num in nums:
             if not dp or num > dp[-1]:
                 dp.append(num)
@@ -172,19 +173,15 @@ class LcsLis:
                 s[length] += 1
                 q[length].append([num, 1])
             else:
-                # 使用队列与计数加和维护
                 while q[length - 1] and q[length - 1][0][0] >= num:
                     s[length - 1] -= q[length - 1].popleft()[1]
                 s[length] += s[length - 1]
                 q[length].append([num, s[length - 1]])
-        # 可以进一步变换求非严格递增子序列的个数
         return s[-1]
 
     @staticmethod
-    def longest_common_subsequence_length_and_cnt(s1, s2, mod=10 ** 9 + 7):
-        # 模板：经典使用求 LIS 子序列的个数 O(nlogn) 做法求解 LCS 的长度与个数
-
-        # 使用LIS的办法求LCS生成索引数组
+    def length_and_cnt_of_lcs(s1, s2, mod=10 ** 9 + 7):
+        """template of number of lcs calculated by lis"""
         if len(s1) > len(s2):
             s1, s2 = s2, s1
         m = len(s2)
@@ -196,9 +193,9 @@ class LcsLis:
             if c in mapper:
                 nums.extend(mapper[c])
 
-        dp = []  # 维护 LIS 数组
-        s = []  # 长度对应的方案和
-        q = []  # 长度对应的末尾值与个数
+        dp = []
+        s = []
+        q = []
         for num in nums:
             if not dp or num > dp[-1]:
                 dp.append(num)
@@ -216,7 +213,6 @@ class LcsLis:
                 s[length] += 1
                 q[length].append([num, 1])
             else:
-                # 使用队列与计数加和维护
                 while q[length - 1] and q[length - 1][0][0] >= num:
                     s[length - 1] -= q[length - 1].popleft()[1]
                 s[length] += s[length - 1]

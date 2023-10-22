@@ -4,7 +4,7 @@ from decimal import Decimal, getcontext, MAX_PREC
 from typing import List
 
 getcontext().prec = MAX_PREC
-sys.set_int_max_str_digits(0)  # 力扣大数的范围坑
+sys.set_int_max_str_digits(0)  # important in leetcode big number!
 
 
 class HighPrecision:
@@ -13,7 +13,7 @@ class HighPrecision:
 
     @staticmethod
     def factorial_to_factorial(n):
-        # 模板: 计算1!*2!***n!的后缀0个数
+        """Compute number of suffixes 0 with 1!*2!***n!"""
         ans = 0
         num = 5
         while num <= n:
@@ -24,7 +24,7 @@ class HighPrecision:
 
     @staticmethod
     def factorial_to_zero(n):
-        # 模板: 计算n!的后缀0个数
+        """Compute number of suffixes 0 with n!"""
         ans = 0
         while n:
             ans += n // 5
@@ -33,14 +33,14 @@ class HighPrecision:
 
     @staticmethod
     def float_pow(r, n):
-        # 高精度计算小数的幂值
+        """High precision calculation of the power of decimals"""
         ans = (Decimal(r) ** int(n)).normalize()
         ans = "{:f}".format(ans)
         return ans
 
     @staticmethod
     def fraction_to_decimal(numerator: int, denominator: int) -> str:
-        # 分数转换为有理数或者无限循环小数
+        """Convert fractions to rational numbers or infinitely recurring decimals"""
         if numerator % denominator == 0:
             return str(numerator // denominator) + ".0"
         ans = []
@@ -66,9 +66,8 @@ class HighPrecision:
 
     @staticmethod
     def decimal_to_fraction(st):
-        # 模板：小数转分数
+        # Decimal to Fraction
         def sum_fraction(tmp):
-            # 分数相加
             mu = tmp[0][1]
             for ls in tmp[1:]:
                 mu = math.lcm(mu, ls[1])
@@ -76,7 +75,7 @@ class HighPrecision:
             mz = math.gcd(mu, zi)
             return [zi // mz, mu // mz]
 
-        # 有理数或无限循环小数转换为分数
+        # Converting rational numbers or infinite recurring decimals to fractions
         if "." in st:
             lst = st.split(".")
             integer = [int(lst[0]), 1] if lst[0] else [0, 1]
@@ -99,12 +98,12 @@ class HighPrecision:
 
 class FloatToFrac:
     def __init__(self):
-        # 将浮点数运算转换为分数计算
+        # Convert floating-point operations to fractional calculations
         return
 
     @staticmethod
     def frac_add(frac1: List[int], frac2: List[int]) -> List[int]:
-        # 要求分母a1与a2均不为0
+        # Both denominators a1 and a2 are required to be non-zero
         b1, a1 = frac1
         b2, a2 = frac2
         a = math.lcm(a1, a2)
@@ -119,7 +118,7 @@ class FloatToFrac:
 
     @staticmethod
     def frac_max(frac1: List[int], frac2: List[int]) -> List[int]:
-        # 要求分母a1与a2均不为0
+        # Both denominators a1 and a2 are required to be non-zero
         b1, a1 = frac1
         b2, a2 = frac2
         if a1 < 0:
@@ -134,7 +133,7 @@ class FloatToFrac:
 
     @staticmethod
     def frac_min(frac1: List[int], frac2: List[int]) -> List[int]:
-        # 要求分母a1与a2均不为0
+        # Both denominators a1 and a2 are required to be non-zero
         b1, a1 = frac1
         b2, a2 = frac2
         if a1 < 0:
@@ -149,6 +148,6 @@ class FloatToFrac:
 
     @staticmethod
     def frac_ceil(frac: List[int]) -> int:
-        # 要求分母a1与a2均不为0
+        # Both denominators a1 and a2 are required to be non-zero
         b, a = frac
         return math.ceil(b / a)

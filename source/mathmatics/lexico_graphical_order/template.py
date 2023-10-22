@@ -7,7 +7,7 @@ class LexicoGraphicalOrder:
 
     @staticmethod
     def get_kth_num(n, k):
-        # 模板：求 1 到 n 范围内字典序第 k 小的数字
+        # find the k-th smallest digit in the dictionary order within the range of 1 to n
         def check():
             c = 0
             first = last = num
@@ -16,7 +16,6 @@ class LexicoGraphicalOrder:
                 last = last * 10 + 9
                 first *= 10
             return c
-
         # assert k <= n
         num = 1
         k -= 1
@@ -31,12 +30,12 @@ class LexicoGraphicalOrder:
         return num
 
     def get_num_kth(self, n, num):
-        # 模板：求 1 到 n 范围内数字 num 的字典序
+        # Find the dictionary order of the number num within the range of 1 to n
         x = str(num)
         low = 1
         high = n
         while low < high - 1:
-            # 使用二分进行逆向工程
+            # Using bisection for reverse engineering
             mid = low + (high - low) // 2
             st = str(self.get_kth_num(n, mid))
             if st < x:
@@ -49,12 +48,11 @@ class LexicoGraphicalOrder:
 
     @staticmethod
     def get_kth_subset(n, k):
-
-        # 集合 [1,..,n] 的第 k 小的子集，总共有 1<<n 个子集
+        # The k-th smallest subset of set [1,...,n], with a total of 1<<n subsets
         # assert k <= (1 << n)
         ans = []
         if k == 1:
-            # 空子集输出 0
+            # Empty subset output 0
             ans.append(0)
         k -= 1
         for i in range(1, n + 1):
@@ -68,8 +66,7 @@ class LexicoGraphicalOrder:
         return ans
 
     def get_subset_kth(self, n, lst):
-
-        # 集合 [1,..,n] 的子集 lst 的字典序
+        # Dictionary order of subsets lst of set [1,..., n]
         low = 1
         high = n
         while low < high - 1:
@@ -85,9 +82,8 @@ class LexicoGraphicalOrder:
 
     @staticmethod
     def get_kth_subset_comb(n, m, k):
-        # 集合 [1,..,n] 中选取 m 个元素的第 k 个 comb 选取排列
+        # Select the k-th comb of m elements from the set [1,...,n] to arrange the selection
         # assert k <= math.comb(n, m)
-
         nums = list(range(1, n + 1))
         ans = []
         while k and nums and len(ans) < m:
@@ -101,7 +97,7 @@ class LexicoGraphicalOrder:
         return ans
 
     def get_subset_comb_kth(self, n, m, lst):
-        # 集合 [1,..,n] 中选取 m 个元素的排列 lst 的字典序
+        # The lexicographic order of selecting m elements in the set [1,...,n]
 
         low = 1
         high = math.comb(n, m)
@@ -118,7 +114,7 @@ class LexicoGraphicalOrder:
 
     @staticmethod
     def get_kth_subset_perm(n, k):
-        # 集合 [1,..,n] 中选取 n 个元素的第 k 个 perm 选取排列
+        # Select the k-th perm of n elements from the set [1,...,n] to arrange the perm selection
         s = math.factorial(n)
         assert 1 <= k <= s
         nums = list(range(1, n + 1))
@@ -132,8 +128,7 @@ class LexicoGraphicalOrder:
         return ans
 
     def get_subset_perm_kth(self, n, lst):
-        # 集合 [1,..,n] 中选取 n 个元素的 perm 全排列 lst 的字典序
-
+        # Dictionary order of perm permutation LST for n elements selected from set [1,...,n]
         low = 1
         high = math.factorial(n)
         while low < high - 1:
