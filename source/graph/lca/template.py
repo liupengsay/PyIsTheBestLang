@@ -14,7 +14,6 @@ class UnionFindLCA:
         lst = []
         while x != self.root[x]:
             lst.append(x)
-            # 在查询的时候合并到顺带直接根节点
             x = self.root[x]
         for w in lst:
             self.root[w] = x
@@ -25,6 +24,7 @@ class UnionFindLCA:
         root_y = self.find(y)
         if root_x == root_y:
             return False
+        # union to the smaller dfs order
         if self.order[root_x] < self.order[root_y]:
             root_x, root_y = root_y, root_x
         self.root[root_x] = root_y
@@ -37,23 +37,25 @@ class OfflineLCA:
 
     @staticmethod
     def bfs_iteration(dct: List[List[int]], queries: List[List[int]], root=0) -> List[int]:
-
-        # 模板：离线查询LCA
+        """Offline query of LCA"""
         n = len(dct)
         ans = [dict() for _ in range(n)]
-        for i, j in queries:  # 需要查询的节点对
+        for i, j in queries:  # Node pairs that need to be queried
             ans[i][j] = -1
             ans[j][i] = -1
         ind = 1
-        stack = [root]  # 使用栈记录访问过程
-        visit = [0] * n  # 访问状态数组 0 为未访问 1 为访问但没有遍历完子树 2 为访问且遍历完子树
-        parent = [-1] * n  # 父节点
+        stack = [root]
+        # 0 is not visited
+        # 1 is visited but not visit all its subtree nodes
+        # 2 is visited included all its subtree nodes
+        visit = [0] * n
+        parent = [-1] * n
         uf = UnionFindLCA(n)
         depth = [0] * n
         while stack:
             i = stack.pop()
             if i >= 0:
-                uf.order[i] = ind  # dfs序
+                uf.order[i] = ind  # dfs order
                 ind += 1
                 visit[i] = 1
                 stack.append(~i)
@@ -77,7 +79,6 @@ class OfflineLCA:
     @staticmethod
     def dfs_recursion(dct: List[List[int]], queries: List[List[int]], root=0) -> List[int]:
 
-        # 模板：离线查询LCA
         n = len(dct)
         ans = [dict() for _ in range(n)]
         for i, j in queries:
@@ -111,12 +112,13 @@ class OfflineLCA:
 
 class TreeDiffArray:
 
-    # 模板：树上差分、点差分、边差分
     def __init__(self):
+        # node and edge differential method on tree
         return
 
     @staticmethod
     def bfs_iteration(dct: List[List[int]], queries: List[List[int]], root=0) -> List[int]:
+        """node differential method"""
         n = len(dct)
         stack = [root]
         parent = [-1] * n
@@ -127,17 +129,16 @@ class TreeDiffArray:
                     stack.append(j)
                     parent[j] = i
 
-        # 进行点差分计数
         diff = [0] * n
         for u, v, ancestor in queries:
-            # 将 u 与 c 到 ancestor 的路径经过的节点进行差分修改
+            # update on the path u to ancestor and v to ancestor
             diff[u] += 1
             diff[v] += 1
             diff[ancestor] -= 1
             if parent[ancestor] != -1:
                 diff[parent[ancestor]] -= 1
 
-        # 自底向上进行差分加和
+        # differential summation from bottom to top
         stack = [root]
         while stack:
             i = stack.pop()
@@ -155,7 +156,8 @@ class TreeDiffArray:
 
     @staticmethod
     def bfs_iteration_edge(dct: List[List[int]], queries: List[List[int]], root=0) -> List[int]:
-        # 模板：树上边差分计算，将边的计数下放到对应的子节点
+        # Differential calculation of edges on the tree
+        # where the count of edge is dropped to the corresponding down node
         n = len(dct)
         stack = [root]
         parent = [-1] * n
@@ -166,15 +168,16 @@ class TreeDiffArray:
                     stack.append(j)
                     parent[j] = i
 
-        # 进行边差分计数
+        # Perform edge difference counting
         diff = [0] * n
         for u, v, ancestor in queries:
-            # 将 u 与 v 到 ancestor 的路径的边下放到节点
+            # update the edge on the path u to ancestor and v to ancestor
             diff[u] += 1
             diff[v] += 1
+            # make the down node represent the edge count
             diff[ancestor] -= 2
 
-        # 自底向上进行边差分加和
+        # differential summation from bottom to top
         stack = [[root, 1]]
         while stack:
             i, state = stack.pop()
@@ -202,7 +205,6 @@ class TreeDiffArray:
                     stack.append(j)
                     parent[j] = i
 
-        # 进行差分计数
         diff = [0] * n
         for u, v, ancestor in queries:
             diff[u] += 1
@@ -224,7 +226,7 @@ class TreeDiffArray:
 class TreeAncestorPool:
 
     def __init__(self, edges: List[List[int]], weight):
-        # 以 0 为根节点
+        # node 0 as root
         n = len(edges)
         self.n = n
         self.parent = [-1] * n
@@ -239,16 +241,15 @@ class TreeAncestorPool:
                     self.parent[j] = i
                     stack.append(j)
 
-        # 根据节点规模设置层数
+        # Set the number of layers based on the node size
         self.cols = max(2, math.ceil(math.log2(n)))
         self.dp = [[-1] * self.cols for _ in range(n)]
         self.weight = [[inf] * self.cols for _ in range(n)]
         for i in range(n):
-            # weight维护向上积累的水量和
+            # the amount of water accumulated during weight maintenance
             self.dp[i][0] = self.parent[i]
             self.weight[i][0] = weight[i]
 
-        # 动态规划设置祖先初始化, dp[node][j] 表示 node 往前推第 2^j 个祖先
         for j in range(1, self.cols):
             for i in range(n):
                 father = self.dp[i][j - 1]
@@ -258,7 +259,7 @@ class TreeAncestorPool:
         return
 
     def get_final_ancestor(self, node: int, v: int) -> int:
-        # 倍增查询水最后流入的水池
+        # query the final inflow of water into the pool with Multiplication method
         for i in range(self.cols - 1, -1, -1):
             if v > self.weight[node][i]:
                 v -= self.weight[node][i]
@@ -269,7 +270,6 @@ class TreeAncestorPool:
 class TreeAncestor:
 
     def __init__(self, edges: List[List[int]]):
-        # 默认以 0 为根节点
         n = len(edges)
         self.parent = [-1] * n
         self.depth = [-1] * n
@@ -283,12 +283,11 @@ class TreeAncestor:
                     self.parent[j] = i
                     stack.append(j)
 
-        # 根据节点规模设置层数
         self.cols = max(2, math.ceil(math.log2(n)))
         self.dp = [[-1] * self.cols for _ in range(n)]
         for i in range(n):
             self.dp[i][0] = self.parent[i]
-        # 动态规划设置祖先初始化, dp[node][j] 表示 node 往前推第 2^j 个祖先
+
         for j in range(1, self.cols):
             for i in range(n):
                 father = self.dp[i][j-1]
@@ -297,7 +296,6 @@ class TreeAncestor:
         return
 
     def get_kth_ancestor(self, node: int, k: int) -> int:
-        # 查询节点的第 k 个祖先
         for i in range(self.cols - 1, -1, -1):
             if k & (1 << i):
                 node = self.dp[node][i]
@@ -306,7 +304,6 @@ class TreeAncestor:
         return node
 
     def get_lca(self, x: int, y: int) -> int:
-        # 计算任意两点的最近公共祖先 LCA
         if self.depth[x] < self.depth[y]:
             x, y = y, x
         while self.depth[x] > self.depth[y]:
@@ -321,7 +318,6 @@ class TreeAncestor:
         return self.dp[x][0]
 
     def get_dist(self, u: int, v: int) -> int:
-        # 计算任意点的最短路距离
         lca = self.get_lca(u, v)
         depth_u = self.depth[u]
         depth_v = self.depth[v]
@@ -335,7 +331,7 @@ class TreeCentroid:
 
     @staticmethod
     def centroid_finder(to, root=0):
-        # 模板：将有根数进行质心递归划分
+        # recursive centroid partitioning of rooted trees
         centroids = []
         pre_cent = []
         subtree_size = []
@@ -382,29 +378,35 @@ class TreeCentroid:
                 if is_removed[v]:
                     continue
                 roots.append((v, c, v == parent[c]))
-        # 树的质心数组，质心对应的父节点，以及质心作为根的子树规模
+        # the centroid array of the tree
+        # the parent node corresponding to the centroid
+        # the size of the subtree with the centroid as the root
         return centroids, pre_cent, subtree_size
 
 
 class HeavyChain:
     def __init__(self, dct: List[List[int]], root=0) -> None:
-        # 模板：对树进行重链剖分
         self.n = len(dct)
         self.dct = dct
-        self.parent = [-1]*self.n  # 父节点
-        self.cnt_son = [1]*self.n  # 子树节点数
-        self.weight_son = [-1]*self.n  # 重孩子
-        self.top = [-1]*self.n  # 链式前向星
-        self.dfn = [0]*self.n  # 节点对应的深搜序
-        self.rev_dfn = [0]*self.n  # 深搜序对应的节点
-        self.depth = [0]*self.n  # 节点的深度信息
-        # 初始化
+        # father of node
+        self.parent = [-1]*self.n
+        # number of subtree nodes
+        self.cnt_son = [1]*self.n
+        # heavy son
+        self.weight_son = [-1]*self.n
+        # chain forward star
+        self.top = [-1]*self.n
+        # index is original node and value is its dfs order
+        self.dfn = [0]*self.n
+        # index is dfs order and value is its original node
+        self.rev_dfn = [0]*self.n
+        self.depth = [0]*self.n
         self.build_weight(root)
         self.build_dfs(root)
         return
 
     def build_weight(self, root) -> None:
-        # 生成树的重孩子信息
+        # get the info of heavy children of the tree
         stack = [root]
         while stack:
             i = stack.pop()
@@ -425,7 +427,7 @@ class HeavyChain:
         return
 
     def build_dfs(self, root) -> None:
-        # 生成树的深搜序信息
+        # get the info of dfs order
         stack = [[root, root]]
         order = 0
         while stack:
@@ -434,7 +436,7 @@ class HeavyChain:
             self.rev_dfn[order] = i
             self.top[i] = tp
             order += 1
-            # 先访问重孩子再访问轻孩子
+            # visit heavy children first, then visit light children
             w = self.weight_son[i]
             for j in self.dct[i]:
                 if j != self.parent[i] and j != w:
@@ -444,7 +446,7 @@ class HeavyChain:
         return
 
     def query_chain(self, x, y):
-        # 查询 x 到 y 的最短路径经过的链路段
+        # Query the shortest path from x to y that passes through the chain segment
         lst = []
         while self.top[x] != self.top[y]:
             if self.depth[self.top[x]] < self.depth[self.top[y]]:
@@ -454,14 +456,15 @@ class HeavyChain:
         a, b = self.dfn[x], self.dfn[y]
         if a > b:
             a, b = b, a
-        lst.append([a, b])  # 返回的路径是链条的 dfs 序即 dfn
+        # The returned path is the dfs order of the chain, also known as dfn
+        lst.append([a, b])
         return lst
 
     def query_lca(self, x, y):
-        # 查询 x 与 y 的 LCA 最近公共祖先
+        # Query the LCA nearest common ancestor of x and y
         while self.top[x] != self.top[y]:
             if self.depth[self.top[x]] < self.depth[self.top[y]]:
                 x, y = y, x
             x = self.parent[self.top[x]]
-        # 返回的是节点真实的编号而不是 dfs 序即 dfn
+        # What is returned is the actual number of the node, not the dfn
         return x if self.depth[x] < self.depth[y] else y
