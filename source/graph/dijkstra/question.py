@@ -176,9 +176,9 @@ class Solution:
                 dct[u].append(v)
                 dct[v].append(u)
 
-            dis_a = Dijkstra().get_shortest_by_bfs(dct, a)
-            dis_b = Dijkstra().get_shortest_by_bfs(dct, b)
-            dis_c = Dijkstra().get_shortest_by_bfs(dct, c)
+            dis_a = Dijkstra().get_shortest_path_by_bfs(dct, a)
+            dis_b = Dijkstra().get_shortest_path_by_bfs(dct, b)
+            dis_c = Dijkstra().get_shortest_path_by_bfs(dct, c)
             ans = inf
             for x in range(n):
                 up = dis_b[x]
@@ -203,7 +203,7 @@ class Solution:
                 dct[x].append([y, 1])
                 dct[y].append([x, 1])
 
-            dis, cnt = Dijkstra().get_second_shortest_path_cnt(dct, s, mod)
+            dis, cnt = Dijkstra().get_cnt_of_second_shortest_path(dct, s, mod)
             ans = cnt[t][0]
             if dis[t][1] == dis[t][0] + 1:
                 ans += cnt[t][1]
@@ -272,7 +272,7 @@ class Solution:
         for i, j, t in edges:
             dct[i].append([j, t])
             dct[j].append([i, t])
-        dis = Dijkstra().get_dijkstra_result(dct, 0)
+        dis = Dijkstra().get_shortest_path(dct, 0)
 
         stack = [[0, 0, {0}]]
         ans = 0
@@ -326,7 +326,7 @@ class Solution:
             dct[i].append([j, c + 1])
             dct[j].append([i, c + 1])
 
-        dis = Dijkstra().get_dijkstra_result(dct, 0)
+        dis = Dijkstra().get_shortest_path(dct, 0)
 
         ans = sum(dis[i] <= max_moves for i in range(n))
         for i, j, c in edges:
@@ -432,7 +432,7 @@ class Solution:
                 add_edge(b + (i - 1) * n, a + i * n, 0)
                 add_edge(a + (i - 1) * n, b + i * n, 0)
 
-        dis = Dijkstra().get_dijkstra_result(dct, s)
+        dis = Dijkstra().get_shortest_path(dct, s)
         ans = inf
         for i in range(k + 1):
             ans = ac.min(ans, dis[t + i * n])
@@ -453,8 +453,8 @@ class Solution:
             c = ac.min(c, w)
             dct[u][v] = c
             rev[v][u] = c
-        dis1 = Dijkstra().get_dijkstra_result(dct, 0)
-        dis2 = Dijkstra().get_dijkstra_result(rev, 0)
+        dis1 = Dijkstra().get_shortest_path(dct, 0)
+        dis2 = Dijkstra().get_shortest_path(rev, 0)
         ans = sum(dis1[i] + dis2[i] for i in range(n))
         ac.st(ans)
         return
@@ -691,7 +691,7 @@ class Solution:
                 if check():
                     x = dis(a, b, c, d)
                     dct[i][j] = dct[j][i] = x
-        ans = Dijkstra().get_dijkstra_result(dct, start)[end]
+        ans = Dijkstra().get_shortest_path(dct, start)[end]
         ac.st("%.2f" % ans)
         return
 
@@ -703,7 +703,7 @@ class Solution:
         for _ in range(m):
             i, j, w = ac.read_list_ints()
             dct[i - 1][j - 1] = ac.min(dct[i - 1].get(j - 1, inf), w)
-        cnt, dis = Dijkstra().get_dijkstra_cnt(dct, 0)
+        cnt, dis = Dijkstra().get_cnt_of_shortest_path(dct, 0)
         if dis[-1] == inf:
             ac.st("No answer")
         else:
@@ -727,7 +727,7 @@ class Solution:
         cnt = Counter(pos)
         total = [0] * p
         for i in cnt:
-            dis = Dijkstra().get_dijkstra_result(dct, i)
+            dis = Dijkstra().get_shortest_path(dct, i)
             for j in range(p):
                 total[j] += dis[j] * cnt[i]
         ac.st(min(total))
@@ -748,7 +748,7 @@ class Solution:
         dis = []
         cnt = []
         for i in range(n):
-            cc, dd = Dijkstra().get_dijkstra_cnt(dct, i)
+            cc, dd = Dijkstra().get_cnt_of_shortest_path(dct, i)
             dis.append(dd)
             cnt.append(cc)
 
@@ -772,7 +772,7 @@ class Solution:
         for _ in range(m):
             i, j, w = ac.read_list_ints_minus_one()
             dct[i][j] = dct[j][i] = w + 1
-        path, dis = Dijkstra().dijkstra_src_to_dst_path(dct, 0, n - 1)
+        path, dis = Dijkstra().get_shortest_path_from_src_to_dst(dct, 0, n - 1)
 
         # 枚举边重新计算最短路
         ans = 0
@@ -780,7 +780,7 @@ class Solution:
         for a in range(k - 1):
             i, j = path[a], path[a + 1]
             dct[i][j] = dct[j][i] = dct[j][i] * 2
-            _, cur = Dijkstra().dijkstra_src_to_dst_path(dct, 0, n - 1)
+            _, cur = Dijkstra().get_shortest_path_from_src_to_dst(dct, 0, n - 1)
             ans = ac.max(ans, cur - dis)
             dct[i][j] = dct[j][i] = dct[j][i] // 2
         ac.st(ans)
@@ -1092,7 +1092,7 @@ class Solution:
             y -= 1
             dct[x][y] = dct[y][x] = z
 
-        dis = Dijkstra().get_dijkstra_result(dct, b)
+        dis = Dijkstra().get_shortest_path(dct, b)
 
         t = lst.popleft()
         if not t:
@@ -1203,7 +1203,7 @@ class Solution:
             dct[x].append(y)
             dct[y].append(x)
 
-        dis = Dijkstra().get_shortest_by_bfs_inf_odd(dct, 0)
+        dis = Dijkstra().get_shortest_path_by_bfs(dct, 0, inf)
         for _ in range(q):
             x, y = ac.read_list_ints()
             x -= 1
@@ -1231,9 +1231,9 @@ class Solution:
         s1, t1, s2, t2 = ac.read_list_ints()
         s1 -= 1
         s2 -= 1
-        dis0 = Dijkstra().get_shortest_by_bfs_inf(dct, 0)
-        dis1 = Dijkstra().get_shortest_by_bfs_inf(dct, s1)
-        dis2 = Dijkstra().get_shortest_by_bfs_inf(dct, s2)
+        dis0 = Dijkstra().get_shortest_path_by_bfs(dct, 0, inf)
+        dis1 = Dijkstra().get_shortest_path_by_bfs(dct, s1, inf)
+        dis2 = Dijkstra().get_shortest_path_by_bfs(dct, s2, inf)
         ans = inf
         for i in range(n):
             cur = dis0[i] + dis1[i] + dis2[i]
@@ -1478,7 +1478,7 @@ class Solution:
             dct[j].append([i, w + 1])
         dis = []
         for i in range(n):
-            dis.append(Dijkstra().get_dijkstra_result_edge(dct, i))
+            dis.append(Dijkstra().get_shortest_path(dct, i))
         dp = [-inf] * (k + 1)
         dp[0] = 0
         pos = [[0, 0]] + [ac.read_list_ints() for _ in range(k)]
@@ -1601,7 +1601,7 @@ class Solution:
         dct = [dict() for _ in range(n)]
         for i, j, t in roads:
             dct[i][j] = dct[j][i] = t
-        return Dijkstra().get_dijkstra_cnt(dct, 0)[0][n - 1] % mod
+        return Dijkstra().get_cnt_of_shortest_path(dct, 0)[0][n - 1] % mod
 
     @staticmethod
     def abc_142f(ac=FastIO()):
@@ -1621,7 +1621,7 @@ class Solution:
             dct[x].discard((y, 1))
 
             # 使用dijkstra寻找最小环信息
-            path, dis = Dijkstra().dijkstra_src_to_dst_path([list(e) for e in dct], y, x)
+            path, dis = Dijkstra().get_shortest_path_from_src_to_dst([list(e) for e in dct], y, x)
             if dis < ans:
                 ans = dis
                 res = path[:]
@@ -1700,7 +1700,7 @@ class Solution:
 
         k = ac.read_int()
         p = ac.read_list_ints_minus_one()
-        cnt, dis = Dijkstra().get_dijkstra_cnt(rev, p[-1])
+        cnt, dis = Dijkstra().get_cnt_of_shortest_path(rev, p[-1])
 
         floor = 0
         for i in range(k - 1):
@@ -1731,8 +1731,8 @@ class Solution:
             x, y = ac.read_list_ints_minus_one()
             dct[x].append(y)
             dct[y].append(x)
-        dis0 = Dijkstra().get_shortest_by_bfs(dct, 0)
-        dis1 = Dijkstra().get_shortest_by_bfs(dct, n - 1)
+        dis0 = Dijkstra().get_shortest_path_by_bfs(dct, 0)
+        dis1 = Dijkstra().get_shortest_path_by_bfs(dct, n - 1)
         nums.sort(key=lambda it: dis0[it] - dis1[it])
 
         ans = -1
@@ -1761,7 +1761,7 @@ class Solution:
             j -= 1
             dct[i].append([j, w])
             dct[j].append([i, w])
-        path, ans = Dijkstra().dijkstra_src_to_dst_path(dct, 0, n - 1)
+        path, ans = Dijkstra().get_shortest_path_from_src_to_dst(dct, 0, n - 1)
         if ans == inf:
             ac.st(-1)
         else:

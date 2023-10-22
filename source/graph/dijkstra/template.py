@@ -9,8 +9,9 @@ class Dijkstra:
         return
 
     @staticmethod
-    def get_dijkstra_result(dct: List[List[int]], src: int) -> List[float]:
-        # 模板: Dijkstra求最短路，变成负数求可以求最长路（还是正权值）
+    def get_shortest_path(dct: List[List[int]], src: int) -> List[float]:
+        """template of shortest path by dijkstra"""
+        #  which can to changed to be the longest path problem by opposite number
         n = len(dct)
         dis = [inf]*n
         stack = [(0, src)]
@@ -28,8 +29,8 @@ class Dijkstra:
         return dis
 
     @staticmethod
-    def get_dijkstra_cnt(dct: List[List[int]], src: int) -> (List[int], List[any]):
-        # 模板: Dijkstra求最短路条数（最短路计算）
+    def get_cnt_of_shortest_path(dct: List[List[int]], src: int) -> (List[int], List[any]):
+        """number of shortest path"""
         n = len(dct)
         dis = [inf]*n
         stack = [(0, src)]
@@ -44,23 +45,21 @@ class Dijkstra:
                 dj = w + d
                 if dj < dis[j]:
                     dis[j] = dj
-                    # 最短距离更新，重置计数
                     cnt[j] = cnt[i]
+                    # smaller than the shortest path
                     heappush(stack, (dj, j))
                 elif dj == dis[j]:
-                    # 最短距离一致，增加计数
+                    # equal to the shortest path
                     cnt[j] += cnt[i]
         return cnt, dis
 
     @staticmethod
     def get_dijkstra_result_limit(dct: List[List[int]], src: int, limit: Set[int], target: Set[int]) -> List[float]:
-        # 模板: Dijkstra求最短路，变成负数求可以求最长路（还是正权值）
         n = len(dct)
-        dis = [float("inf")] * n
+        dis = [inf] * n
 
         dis[src] = 0 if src not in limit else inf
         stack = [(dis[src], src)]
-        # 限制只能跑 limit 的点到 target 中的点
         while stack and target:
             d, i = heappop(stack)
             if i in target:
@@ -76,13 +75,12 @@ class Dijkstra:
         return dis
 
     @staticmethod
-    def dijkstra_src_to_dst_path(dct: List[List[int]], src: int, dst: int) -> (List[int], any):
-        # 模板: Dijkstra求起终点的最短路，注意只能是正权值可以提前返回结果，并返回对应经过的路径
+    def get_shortest_path_from_src_to_dst(dct: List[List[int]], src: int, dst: int) -> (List[int], any):
         n = len(dct)
         dis = [inf] * n
         stack = [(0, src)]
         dis[src] = 0
-        father = [-1] * n  # 记录最短路的上一跳
+        father = [-1] * n
         while stack:
             d, i = heappop(stack)
             if dis[i] < d:
@@ -97,7 +95,7 @@ class Dijkstra:
                     heappush(stack, (dj, j))
         if dis[dst] == inf:
             return [], inf
-        # 向上回溯路径
+        # backtrack for the path
         path = []
         i = dst
         while i != -1:
@@ -106,10 +104,8 @@ class Dijkstra:
         return path, dis[dst]
 
     @staticmethod
-    def gen_dijkstra_max_result(dct, src, dsc):
-
-        # 求乘积最大的路，取反后求最短路径
-        dis = defaultdict(lambda: float("-inf"))
+    def gen_maximum_product_path(dct, src, dsc):
+        dis = defaultdict(lambda: inf)
         stack = [(-1, src)]
         dis[src] = 1
         while stack:
@@ -125,23 +121,8 @@ class Dijkstra:
         return dis[dsc]
 
     @staticmethod
-    def get_shortest_by_bfs(dct: List[List[int]], src):
-        # 模板: 使用01BFS求最短路
-        n = len(dct)
-        dis = [-1] * n
-        stack = deque([src])
-        dis[src] = 0
-        while stack:
-            i = stack.popleft()
-            for j in dct[i]:
-                if dis[j] == -1:
-                    dis[j] = dis[i] + 1
-                    stack.append(j)
-        return dis
-
-    @staticmethod
     def get_second_shortest_path(dct: List[List[int]], src):
-        # 模板：使用Dijkstra计算严格次短路  # 也可以计算非严格次短路
+        """template of strictly second shorter path"""
         n = len(dct)
         dis = [[inf] * 2 for _ in range(n)]
         dis[src][0] = 0
@@ -155,14 +136,14 @@ class Dijkstra:
                     dis[j][1] = dis[j][0]
                     dis[j][0] = d + w
                     heappush(stack, (d + w, j))
-                elif dis[j][0] < d + w < dis[j][1]:  # 非严格修改为 d+w < dis[j][1]
+                elif dis[j][0] < d + w < dis[j][1]:  # if not strictly then change to d+w < dis[j][1]
                     dis[j][1] = d + w
                     heappush(stack, (d + w, j))
         return dis
 
     @staticmethod
-    def get_second_shortest_path_cnt(dct: List[List[int]], src, mod=-1):
-        # 模板：使用Dijkstra计算严格次短路的条数   # 也可以计算非严格次短路
+    def get_cnt_of_second_shortest_path(dct: List[List[int]], src, mod=-1):
+        """number of strictly second shorter path"""
         n = len(dct)
         dis = [[inf] * 2 for _ in range(n)]
         dis[src][0] = 0
@@ -184,7 +165,7 @@ class Dijkstra:
                     cnt[j][0] += pre
                     if mod != -1:
                         cnt[j][0] %= mod
-                elif dis[j][0] < dd < dis[j][1]:  # 非严格修改为 d+w < dis[j][1]
+                elif dis[j][0] < dd < dis[j][1]:  # if not strictly then change to d+w < dis[j][1]
                     dis[j][1] = d + w
                     cnt[j][1] = pre
                     heappush(stack, (d + w, j, 1))
@@ -195,8 +176,23 @@ class Dijkstra:
         return dis, cnt
 
     @staticmethod
+    def get_shortest_path_by_bfs(dct: List[List[int]], src, initial=-1):
+        """shortest path implemention by 01 bfs """
+        n = len(dct)
+        dis = [initial] * n
+        stack = deque([src])
+        dis[src] = 0
+        while stack:
+            i = stack.popleft()
+            for j in dct[i]:
+                if dis[j] == -1:
+                    dis[j] = dis[i] + 1
+                    stack.append(j)
+        return dis
+
+    @staticmethod
     def get_shortest_by_bfs_inf_odd(dct: List[List[int]], src):
-        # 模板: 使用 01BFS 求最短的奇数距离与偶数距离
+        """shortest odd path and even path"""
         n = len(dct)
         dis = [[inf, inf] for _ in range(n)]
         stack = deque([[src, 0]])
@@ -210,40 +206,6 @@ class Dijkstra:
                     stack.append([j, x + 1])
         return dis
 
-    @staticmethod
-    def get_shortest_by_bfs_inf(dct: List[List[int]], src):
-        # 模板: 使用 01 BFS 求最短路
-        n = len(dct)
-        dis = [inf] * n
-        stack = deque([src])
-        dis[src] = 0
-        while stack:
-            i = stack.popleft()
-            for j in dct[i]:
-                if dis[j] == inf:
-                    dis[j] = dis[i] + 1
-                    stack.append(j)
-        return dis
-
-    @staticmethod
-    def get_dijkstra_result_edge(dct: List[List[int]], src: int) -> List[float]:
-        # 模板: Dijkstra求最短路，变成负数求可以求最长路（还是正权值）
-        n = len(dct)
-        dis = [inf] * n
-        stack = [(0, src)]
-        dis[src] = 0
-
-        while stack:
-            d, i = heappop(stack)
-            if dis[i] < d:
-                continue
-            for j, w in dct[i]:  # 链式前向星支持自环与重边
-                dj = w + d
-                if dj < dis[j]:
-                    dis[j] = dj
-                    heappush(stack, (dj, j))
-        return dis
-
 
 class UnDirectedShortestCycle:
     def __init__(self):
@@ -251,22 +213,22 @@ class UnDirectedShortestCycle:
 
     @staticmethod
     def find_shortest_cycle_with_node(n: int, dct) -> int:
-        # 模板：求无向图的最小环长度，枚举点
+        # brute force by point
         ans = inf
         for i in range(n):
             dist = [inf] * n
             par = [-1] * n
             dist[i] = 0
-            q = [[0, i]]
-            while q:
-                _, x = heappop(q)
+            stack = [(0, i)]
+            while stack:
+                _, x = heappop(stack)
                 for child in dct[x]:
                     if dist[x] > ans:
                         break
                     if dist[child] > dct[x][child] + dist[x]:
                         dist[child] = dct[x][child] + dist[x]
                         par[child] = x
-                        heappush(q, [dist[child], child])
+                        heappush(stack, (dist[child], child))
                     elif par[x] != child and par[child] != x:
                         cur = dist[x] + dist[child] + dct[x][child]
                         ans = ans if ans < cur else cur
@@ -274,7 +236,7 @@ class UnDirectedShortestCycle:
 
     @staticmethod
     def find_shortest_cycle_with_edge(n: int, dct, edges) -> int:
-        # 模板：求无向图的最小环长度，枚举边
+        # brute force by edge
 
         ans = inf
         for x, y, w in edges:
@@ -282,7 +244,7 @@ class UnDirectedShortestCycle:
             dct[y].pop(x)
 
             dis = [inf] * n
-            stack = [[0, x]]
+            stack = [(0, x)]
             dis[x] = 0
 
             while stack:
