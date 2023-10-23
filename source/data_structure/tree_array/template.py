@@ -3,30 +3,28 @@ from typing import List
 
 
 class PointAddRangeSum:
-    # 模板：树状数组 单点增减 查询前缀和与区间和
     def __init__(self, n: int) -> None:
-        # 索引从 1 到 n
+        # index from 1 to n
         self.n = n
-        self.t = [0] * (self.n + 1)  # 默认nums=[0]*n
-        # 树状数组中每个位置保存的是其向前 _lowest_bit 的区间和
+        self.t = [0] * (self.n + 1)  # default nums = [0]*n
         return
 
     @staticmethod
     def _lowest_bit(i: int) -> int:
-        # 经典 _lowest_bit 即最后一位二进制为 1 所表示的数
         return i & (-i)
 
     def build(self, nums: List[int]) -> None:
-        # 索引从 1 开始使用数组初始化树状数组
+        # initialize
         assert len(nums) == self.n
         pre = [0] * (self.n + 1)
         for i in range(self.n):
             pre[i + 1] = pre[i] + nums[i]
+            # meaning of self.t[i+1]
             self.t[i + 1] = pre[i + 1] - pre[i + 1 - self._lowest_bit(i + 1)]
         return
 
     def point_add(self, i: int, mi: int) -> None:
-        # 索引从 1 开始，索引 i 的值增加 mi 且 mi 可正可负
+        # index start from 1 and the value mi can be any inter including positive and negtive number
         assert 1 <= i <= self.n
         while i < len(self.t):
             self.t[i] += mi
@@ -34,14 +32,14 @@ class PointAddRangeSum:
         return
 
     def get(self) -> List[int]:
-        # 索引从 1 开始使用数组初始化树状数组
+        # get the original nums sometimes for debug
         nums = [self._pre_sum(i) for i in range(1, self.n + 1)]
         for i in range(self.n - 1, 0, -1):
             nums[i] -= nums[i - 1]
         return nums
 
     def _pre_sum(self, i: int) -> int:
-        # 索引从 1 开始，查询 1 到 i 的前缀区间和
+        # index start from 1 and the prefix sum of nums[1:i+1]
         assert 1 <= i <= self.n
         mi = 0
         while i:
@@ -50,7 +48,7 @@ class PointAddRangeSum:
         return mi
 
     def range_sum(self, x: int, y: int) -> int:
-        # 索引从 1 开始，查询 x 到 y 的值
+        # index start from 1 and the range sum of nums[x:y+1]
         assert 1 <= x <= y <= self.n
         res = self._pre_sum(y) - self._pre_sum(x - 1) if x > 1 else self._pre_sum(y)
         return res
@@ -58,10 +56,9 @@ class PointAddRangeSum:
 
 class PointAddRangeSum2D:
     def __init__(self, m: int, n: int) -> None:
-        # 模板：二维树状数组 单点增减 区间和查询
-        self.m = m  # 行数
-        self.n = n  # 列数
-        self.tree = [[0] * (n + 1) for _ in range(m + 1)]  # 初始化树状数组
+        self.m = m
+        self.n = n
+        self.tree = [[0] * (n + 1) for _ in range(m + 1)]
         return
 
     def point_add(self, x: int, y: int, val: int) -> None:

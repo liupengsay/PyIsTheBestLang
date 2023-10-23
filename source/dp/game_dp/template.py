@@ -5,10 +5,9 @@ class DateTime:
         return
 
     def is_leap_year(self, yy):
-        # 模板: 判断是否为闰年
+        # Determine whether it is a leap year
         assert sum(self.leap_month) == 366
         assert sum(self.not_leap_month) == 365
-        # 闰年天数
         return yy % 400 == 0 or (yy % 4 == 0 and yy % 100 != 0)
 
     def year_month_day_cnt(self, yy, mm):

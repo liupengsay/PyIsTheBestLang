@@ -1,6 +1,6 @@
 from collections import deque
 from math import inf
-from typing import List
+from typing import List, Dict
 
 
 class ReRootDP:
@@ -9,13 +9,15 @@ class ReRootDP:
 
     @staticmethod
     def get_tree_distance_weight(dct: List[List[int]], weight) -> List[int]:
-        # 模板：计算树的每个节点到其余所有的节点的总距离（带权重）
+        # Calculate the total distance from each node of the tree to all other nodes
+        # each node has weight
 
         n = len(dct)
-        sub = weight[:]  # 子树节点个数
-        s = sum(weight)  # 节点的权重值，默认为[1]*n
-        ans = [0] * n  # 到其余所有节点的距离之和
-        # 第一遍 BFS 自下而上计算子树节点数与 ans[0]
+        sub = weight[:]
+        s = sum(weight)  # default equal to [1]*n
+        ans = [0] * n  # distance to all other nodes
+
+        # first bfs to get ans[0] and subtree weight from bottom to top
         stack = [[0, -1, 1]]
         while stack:
             i, fa, state = stack.pop()
@@ -30,22 +32,27 @@ class ReRootDP:
                         sub[i] += sub[j]
                         ans[i] += ans[j] + sub[j]
 
-        # 第二遍 BFS 自上而下计算距离
+        # second bfs to get all ans[i]
         stack = [[0, -1]]
         while stack:
             i, fa = stack.pop()
             for j in dct[i]:
                 if j != fa:
+                    # sub[j] equal j up to i
+                    # s - sub[j] equal to i down to j
+                    # change = -sub[j] + s - sub[j]
                     ans[j] = ans[i] - sub[j] + s - sub[j]
                     stack.append([j, i])
         return ans
 
     @staticmethod
     def get_tree_centroid(dct: List[List[int]]) -> int:
-        # 模板：获取树的编号最小的重心
+        # the smallest centroid of tree
+        # equal the node with minimum of maximum subtree node cnt
+        # equivalent to the node which has the shortest distance from all other nodes
         n = len(dct)
-        sub = [1] * n  # 以 0 为根的有根树节点 i 的子树节点数
-        ma = [0] * n  # 以 i 为根最大的子树节点数
+        sub = [1] * n  # subtree size of i-th node rooted by 0
+        ma = [0] * n  # maximum subtree node cnt or i-rooted
         ma[0] = n
         center = 0
         stack = [[0, -1, 1]]
@@ -61,54 +68,57 @@ class ReRootDP:
                     if j != fa:
                         sub[i] += sub[j]
                         ma[i] = ma[i] if ma[i] > sub[j] else sub[j]
-                # 类似换根 DP 计算最大子树节点数
+                # like re-rooted dp to check the maximum subtree size
                 ma[i] = ma[i] if ma[i] > n - sub[i] else n - sub[i]
                 if ma[i] < ma[center] or (ma[i] == ma[center] and i < center):
                     center = i
-        # 树的重心等同于最大子树最小的节点也等同于到其余所有节点距离之和最小的节点
         return center
 
     @staticmethod
     def get_tree_distance(dct: List[List[int]]) -> List[int]:
-        # 模板：计算树的每个节点到其余所有的节点的总距离
+        # Calculate the total distance from each node of the tree to all other nodes
 
         n = len(dct)
-        sub = [1] * n  # 子树节点个数
-        ans = [0] * n  # 到其余所有节点的距离之和
+        sub = [1] * n  # Number of subtree nodes
+        ans = [0] * n  # The sum of distances to all other nodes
 
-        # 第一遍 BFS 自下而上计算子树节点数与 ans[0]
-        stack = [[0, -1, 1]]
+        # first bfs to get ans[0] and subtree weight from bottom to top
+        stack = [(0, -1, 1)]
         while stack:
             i, fa, state = stack.pop()
             if state:
-                stack.append([i, fa, 0])
+                stack.append((i, fa, 0))
                 for j in dct[i]:
                     if j != fa:
-                        stack.append([j, i, 1])
+                        stack.append((j, i, 1))
             else:
                 for j in dct[i]:
                     if j != fa:
                         sub[i] += sub[j]
                         ans[i] += ans[j] + sub[j]
 
-        # 第二遍 BFS 自上而下计算距离
-        stack = [[0, -1]]
+        # second bfs to get all ans[i]
+        stack = [(0, -1)]
         while stack:
             i, fa = stack.pop()
             for j in dct[i]:
                 if j != fa:
+                    # sub[j] equal j up to i
+                    # s - sub[j] equal to i down to j
+                    # change = -sub[j] + s - sub[j]
                     ans[j] = ans[i] - sub[j] + n - sub[j]
-                    stack.append([j, i])
+                    stack.append((j, i))
         return ans
 
     @staticmethod
     def get_tree_distance_max(dct: List[List[int]]) -> List[int]:
-        # 模板：计算树的每个节点到其余所有的节点的最大距离（也可以使用直径上的点BFS）
+        # Calculate the maximum distance from each node of the tree to all other nodes
+        # point BFS on diameter can also be used
 
         n = len(dct)
         sub = [[0, 0] for _ in range(n)]
 
-        # 第一遍 BFS 自下而上计算子树的最大距离与次大距离
+        # first BFS compute the largest distance and second large distance from bottom to up
         stack = [[0, -1, 1]]
         while stack:
             i, fa, state = stack.pop()
@@ -128,8 +138,8 @@ class ReRootDP:
                             b = x
                 sub[i] = [a, b]
 
-        # 第二遍 BFS 自上而下更新最大距离
-        stack = [[0, -1, 0]]
+        # second BFS compute large distance from up to bottom
+        stack = [(0, -1, 0)]
         ans = [s[0] for s in sub]
         while stack:
             i, fa, d = stack.pop()
@@ -139,12 +149,12 @@ class ReRootDP:
                     nex = d
                     x = sub[j][0] + 1
                     a, b = sub[i]
-                    # 排除当前子节点的距离
+                    # distance from current child nodes excluded
                     if x == a:
                         nex = nex if nex > b else b
                     else:
                         nex = nex if nex > a else a
-                    stack.append([j, i, nex + 1])
+                    stack.append((j, i, nex + 1))
         return ans
 
 
@@ -153,8 +163,8 @@ class TreeDiameterWeighted:
         return
 
     @staticmethod
-    def bfs(dct, src):
-        # 模板：使用 BFS 计算获取带权树的直径端点以及直径长度
+    def bfs(dct: List[Dict[int]], src: int) -> (int, List[int], int):
+        # Using BFS calculation to obtain the diameter endpoint and diameter length of a weighted tree
         n = len(dct)
         res = [inf] * n
         stack = [src]
@@ -183,7 +193,7 @@ class TreeDiameter:
     def get_diameter_bfs(edge):
 
         def bfs(node):
-            # 模板：使用BFS计算获取树的直径端点以及直径长度
+            # Use BFS calculation to obtain the diameter endpoint and diameter length of the tree
             d = 0
             q = deque([(node, -1, d)])
             while q:
@@ -193,9 +203,13 @@ class TreeDiameter:
                         q.append((nex, node, d + 1))
             return node, d
 
-        # 这个算法依赖于一个性质，对于树中的任一个点，距离它最远的点一定是树上一条直径的一个端点
+        # This algorithm relies on a property that for any point in the tree
+        # the farthest point from it must be an endpoint of a diameter on the tree
         x, _ = bfs(0)
-        # 任取树中的一个节点x，找出距离它最远的点y，那么点y就是这棵树中一条直径的一个端点。我们再从y出发，找出距离y最远的点就找到了一条直径
+        # Take any node x in the tree
+        # find the farthest point y from it
+        # and point y is the endpoint of a diameter in the tree
+        # We start from y and find the point farthest from y to find a diameter
         y, dis = bfs(x)
         return dis
 
@@ -215,7 +229,7 @@ class TreeDiameter:
             ans = ans if ans > a + b else a + b
             return a + 1 if a > b else b + 1
 
-        # 模板：使用DFS与动态规划计算直径
+        # Calculate diameter using DFS and dynamic programming
         ans = 0
         dfs(0, -1)
         return ans
@@ -227,7 +241,8 @@ class TreeDiameterInfo:
 
     @staticmethod
     def get_diameter_info(edge: List[List[int]], root=0):
-        # 模板：使用两遍 BFS 计算获取不带权的树直径端点以及直径长度和具体直径经过的点
+        # Use two rounds of BFS calculation to obtain the endpoint of the tree diameter without weight
+        # as well as the diameter length and the specific point through which the diameter passes
         n = len(edge)
 
         stack = deque([[root, -1]])
@@ -263,8 +278,7 @@ class TreeDiameterInfo:
 
 
 class TreeDiameterDis:
-    # 任取树中的一个节点x，找出距离它最远的点y，那么点y就是这棵树中一条直径的一个端点。我们再从y出发，找出距离y最远的点就找到了一条直径。
-    # 这个算法依赖于一个性质：对于树中的任一个点，距离它最远的点一定是树上一条直径的一个端点。
+
     def __init__(self, edge):
         self.edge = edge
         self.n = len(self.edge)
@@ -280,7 +294,6 @@ class TreeDiameterDis:
         return node
 
     def get_diameter_node(self):
-        # 获取树的直径端点
         x = self.get_furthest(0)
         y = self.get_furthest(x)
         return x, y

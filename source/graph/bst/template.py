@@ -10,7 +10,6 @@ class UnionFindSpecial:
         lst = []
         while x != self.root[x]:
             lst.append(x)
-            # 在查询的时候合并到顺带直接根节点
             x = self.root[x]
         for w in lst:
             self.root[w] = x
@@ -19,6 +18,7 @@ class UnionFindSpecial:
     def union(self, x, y):
         root_x = self.find(x)
         root_y = self.find(y)
+        # union to the smaller root
         if root_x < root_y:
             root_x, root_y = root_y, root_x
         self.root[root_x] = root_y

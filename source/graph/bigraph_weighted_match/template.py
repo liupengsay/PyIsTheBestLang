@@ -1,4 +1,4 @@
-# EK算法
+
 from collections import defaultdict, deque
 from math import inf
 
@@ -57,12 +57,11 @@ class BipartiteMatching:
 
 class Hungarian:
     def __init__(self):
-        # 模板：二分图不带权最大匹配
+        # Bipartite graph maximum math without weight
         return
 
     @staticmethod
     def dfs_recursion(n, m, dct):
-        # 递归版写法
         assert len(dct) == m
 
         def hungarian(i):
@@ -74,11 +73,11 @@ class Hungarian:
                         return True
             return False
 
-        # 待匹配组大小为 n
+        # left group size is n
         match = [-1] * n
         ans = 0
         for x in range(m):
-            # 匹配组大小为 m
+            # right group size is m
             visit = [False] * n
             if hungarian(x):
                 ans += 1
@@ -86,7 +85,7 @@ class Hungarian:
 
     @staticmethod
     def bfs_iteration(n, m, dct):
-        # 迭代版写法
+
         assert len(dct) == m
 
         match = [-1] * n
@@ -96,14 +95,12 @@ class Hungarian:
             visit = [0] * n
             stack = [[i, 0]]
             while stack:
-                # 当前匹配点，与匹配对象索引
                 x, ind = stack[-1]
                 if ind == len(dct[x]) or hungarian[x]:
                     stack.pop()
                     continue
                 y = dct[x][ind]
                 if not visit[y]:
-                    # 未访问过
                     visit[y] = 1
                     if match[y] == -1:
                         match[y] = x
@@ -111,7 +108,6 @@ class Hungarian:
                     else:
                         stack.append([match[y], 0])
                 else:
-                    # 访问过且继任存在对应匹配
                     if hungarian[match[y]]:
                         match[y] = x
                         hungarian[x] = 1
@@ -181,14 +177,14 @@ class KM:
     def __init__(self):
         self.matrix = None
         self.max_weight = 0
-        self.row, self.col = 0, 0  # 源数据行列
-        self.size = 0   # 方阵大小
-        self.lx = None  # 左侧权值
-        self.ly = None  # 右侧权值
-        self.match = None   # 匹配结果
-        self.slack = None   # 边权和顶标最小的差值
-        self.visx = None    # 左侧是否加入增广路
-        self.visy = None    # 右侧是否加入增广路
+        self.row, self.col = 0, 0 
+        self.size = 0 
+        self.lx = None
+        self.ly = None 
+        self.match = None   
+        self.slack = None  
+        self.visit_x = None   
+        self.visit_y = None 
 
     # 调整数据
     def pad_matrix(self, min):
@@ -196,26 +192,26 @@ class KM:
             max = self.matrix.max() + 1
             self.matrix = max-self.matrix
 
-        if self.row > self.col:   # 行大于列，添加列
+        if self.row > self.col:
             self.matrix = np.c_[self.matrix, np.array([[0] * (self.row - self.col)] * self.row)]
-        elif self.col > self.row:  # 列大于行，添加行
+        elif self.col > self.row:
             self.matrix = np.r_[self.matrix, np.array([[0] * self.col] * (self.col - self.row))]
 
     def reset_slack(self):
         self.slack.fill(self.max_weight + 1)
 
     def reset_vis(self):
-        self.visx.fill(False)
-        self.visy.fill(False)
+        self.visit_x.fill(False)
+        self.visit_y.fill(False)
 
     def find_path(self, x):
-        self.visx[x] = True
+        self.visit_x[x] = True
         for y in range(self.size):
-            if self.visy[y]:
+            if self.visit_y[y]:
                 continue
             tmp_delta = self.lx[x] + self.ly[y] - self.matrix[x][y]
             if tmp_delta == 0:
-                self.visy[y] = True
+                self.visit_y[y] = True
                 if self.match[y] == -1 or self.find_path(self.match[y]):
                     self.match[y] = x
                     return True
@@ -232,33 +228,29 @@ class KM:
                 if self.find_path(x):
                     break
                 else:  # update slack
-                    delta = self.slack[~self.visy].min()
-                    self.lx[self.visx] -= delta
-                    self.ly[self.visy] += delta
-                    self.slack[~self.visy] -= delta
+                    delta = self.slack[~self.visit_y].min()
+                    self.lx[self.visit_x] -= delta
+                    self.ly[self.visit_y] += delta
+                    self.slack[~self.visit_y] -= delta
 
     def compute(self, datas, min=False):
-        """
-        :param datas: 权值矩阵
-        :param min: 是否取最小组合，默认最大组合
-        :return: 输出行对应的结果位置
-        """
+        """default compute maximum match"""
         self.matrix = np.array(datas) if not isinstance(datas, np.ndarray) else datas
         self.max_weight = self.matrix.sum()
-        self.row, self.col = self.matrix.shape  # 源数据行列
+        self.row, self.col = self.matrix.shape
         self.size = max(self.row, self.col)
         self.pad_matrix(min)
         self.lx = self.matrix.max(1)
         self.ly = np.array([0] * self.size, dtype=int)
         self.match = np.array([-1] * self.size, dtype=int)
         self.slack = np.array([0] * self.size, dtype=int)
-        self.visx = np.array([False] * self.size, dtype=bool)
-        self.visy = np.array([False] * self.size, dtype=bool)
+        self.visit_x = np.array([False] * self.size, dtype=bool)
+        self.visit_y = np.array([False] * self.size, dtype=bool)
 
         self.km_cal()
 
         match = [i[0] for i in sorted(enumerate(self.match), key=lambda x: x[1])]
         result = []
         for i in range(self.row):
-            result.append((i, match[i] if match[i] < self.col else -1))  # 没有对应的值给-1
+            result.append((i, match[i] if match[i] < self.col else -1))
         return result

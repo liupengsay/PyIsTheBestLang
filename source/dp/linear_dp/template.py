@@ -4,7 +4,7 @@ class LinearDP:
 
     @staticmethod
     def liner_dp_template(nums):
-        # 线性 DP 递推模板（以最长上升子序列长度为例）
+        # example of lis（longest increasing sequence）
         n = len(nums)
         dp = [0] * (n + 1)
         for i in range(n):

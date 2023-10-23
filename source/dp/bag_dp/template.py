@@ -9,7 +9,8 @@ class BagDP:
 
     @staticmethod
     def bin_split_1(num):
-        # 二进制优化是指 1.2.4.x这样连续的而不是二进制10101对应的1
+        # binary optimization refers to continuous operations such as 1.2.4.x
+        # instead of binary 10101 corresponding to 1
         if not num:
             return []
         lst = []
@@ -24,7 +25,7 @@ class BagDP:
 
     @staticmethod
     def bin_split_2(num):
-        # 从大到小拆分保证没有 1 以外的相同正数
+        # split from large to small to ensure that there are no identical positive numbers other than 1
         if not num:
             return []
         lst = []
@@ -36,7 +37,7 @@ class BagDP:
 
     @staticmethod
     def one_dimension_limited(n, nums):
-        # 一维有限背包
+        # 01 backpack
         dp = [0] * (n + 1)
         dp[0] = 1
         for num in nums:
@@ -46,7 +47,7 @@ class BagDP:
 
     @staticmethod
     def one_dimension_unlimited(n, nums):
-        # 一维无限背包
+        # complete backpack
         dp = [0] * (n + 1)
         dp[0] = 1
         for num in nums:
@@ -56,7 +57,7 @@ class BagDP:
 
     @staticmethod
     def two_dimension_limited(m, n, nums):
-        # 二维有限背包（多维背包类似）
+        # 2D 01 backpack
         dp = [[0] * (n + 1) for _ in range(m + 1)]
         dp[0][0] = 1
         for a, b in nums:
@@ -67,7 +68,7 @@ class BagDP:
 
     @staticmethod
     def two_dimension_unlimited(m, n, nums):
-        # 二维无限背包（多维背包类似）
+        # 2D complete backpack
         dp = [[0] * (n + 1) for _ in range(m + 1)]
         dp[0][0] = 1
         for a, b in nums:
@@ -77,7 +78,7 @@ class BagDP:
         return dp[m][n]
 
     def continuous_bag_with_bin_split(self, n, nums):
-        # 使用二进制优化的连续背包（以一维有限背包为例）
+        # Continuous 01 Backpack Using Binary Optimization
         dp = [0] * (n + 1)
         dp[0] = 1
         for num in nums:
@@ -88,11 +89,11 @@ class BagDP:
 
     @staticmethod
     def group_bag_limited(n, d, nums):
-        # 分组背包（以一维有限背包为例）计算出租车的最小花费
+        # group backpack
         pre = [inf] * (n + 1)
         pre[0] = 0
         for r, z in nums:
-            cur = pre[:]  # 关键在于这里需要分组背包
+            cur = pre[:]  # The key is that we need group backpacks here
             for x in range(1, z + 1):
                 cost = d + x * r
                 for i in range(n, x - 1, -1):
@@ -105,7 +106,7 @@ class BagDP:
 
     @staticmethod
     def group_bag_unlimited(nums):
-        # 分组背包（以一维无限背包为例）计算 n 分解成四个数的平方和的方案数
+        # Calculate the number of solutions for decomposing n into the sum of squares of four numbers
         n = max(nums)
         dp = [[0] * 5 for _ in range(n + 1)]
         dp[0][0] = 1
@@ -119,8 +120,10 @@ class BagDP:
 
     @staticmethod
     def one_dimension_limited_use_dct(nums):
-        # 一维有限背包（带负数的情况下使用字典做转移记录）
+        # One dimensional finite backpack
+        # using a dictionary for transfer records with negative numbers
         pre = defaultdict(lambda: -inf)
+        # can also use [0]*2*s where s is the sum(abs(x) for x in nums)
         pre[0] = 0
         for s, f in nums:
             cur = pre.copy()

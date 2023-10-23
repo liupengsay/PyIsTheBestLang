@@ -7,7 +7,8 @@ class DigitalDP:
 
     @staticmethod
     def count_bin(n):
-        # 模板: 计算 1 到 n 的正整数二进制位 1 出现的次数
+        # calculate the number of occurrences of positive integer binary bit 1 from 1 to n
+
         @lru_cache(None)
         def dfs(i, is_limit, is_num, cnt):
             if i == m:
@@ -25,7 +26,7 @@ class DigitalDP:
 
         st = bin(n)[2:]
         m = len(st)
-        ans = []  # 从二进制高位到二进制低位
+        ans = []  # From binary high to binary low
         for w in range(m):
             cur = dfs(0, True, False, 0)
             ans.append(cur)
@@ -34,7 +35,8 @@ class DigitalDP:
 
     @staticmethod
     def count_digit(num, d):
-        # 模板: 计算 1到 num 内数位 d 出现的个数
+        # Calculate the number of occurrences of digit d within 1 to num
+
         @lru_cache(None)
         def dfs(i, cnt, is_limit, is_num):
             if i == n:
@@ -57,7 +59,7 @@ class DigitalDP:
 
     @staticmethod
     def count_digit_iteration(num, d):
-        # 模板: 计算 1到 num 内数位 d 出现的个数
+        # Calculate the number of occurrences of digit d within 1 to num by iteration
         assert num >= 1
         s = str(num)
         n = len(s)
@@ -82,8 +84,8 @@ class DigitalDP:
 
     @staticmethod
     def count_num_base(num, d):
-        # 模板: 使用进制计算 1 到 num 内不含数位 d 的数字个数
-        assert 1 <= d <= 9  # 不含 0 则使用数位 DP 进行计算
+        # Use decimal to calculate the number of digits from 1 to num without the digit d
+        assert 1 <= d <= 9  # If 0 is not included, use digital DP for calculation
         s = str(num)
         i = s.find(str(d))
         if i != -1:
@@ -98,7 +100,7 @@ class DigitalDP:
             lst.append(num % 10)
             if d and lst[-1] >= d:
                 lst[-1] -= 1
-            elif not d and lst[-1] == 0:  # 不含 0 应该怎么算
+            elif not d and lst[-1] == 0:
                 num *= 10
                 num -= 1
                 lst.append(num % 10)
@@ -114,7 +116,7 @@ class DigitalDP:
     @staticmethod
     def count_num_dp(num, d):
 
-        # 模板: 使用进制计算 1 到 num 内不含数位 d 的数字个数
+        # Use decimal to calculate the number of digits from 1 to num without the digit d
         assert 0 <= d <= 9
 
         @lru_cache(None)
@@ -123,10 +125,10 @@ class DigitalDP:
                 return int(is_num)
 
             res = 0
-            if not is_num:  # 可以跳过当前数位
+            if not is_num:
                 res = dfs(i + 1, False, False)
             up = int(s[i]) if is_limit else 9
-            for x in range(0 if is_num else 1, up + 1):  # 枚举要填入的数字 d
+            for x in range(0 if is_num else 1, up + 1):
                 if x != d:
                     res += dfs(i + 1, is_limit and x == up, True)
             return res
@@ -137,7 +139,8 @@ class DigitalDP:
 
     @staticmethod
     def get_kth_without_d(k, d):
-        # 模板: 使用进制计算第 k 个不含数位 d 的数 0<=d<=9
+        # Use decimal to calculate the k-th digit without digit d 0<=d<=9
+        assert 0 <= d <= 9
         lst = []
         st = list(range(10))
         st.remove(d)
@@ -149,6 +152,6 @@ class DigitalDP:
                 lst.append((k - 1) % 9)
                 k = (k - 1) // 9
         lst.reverse()
-        # 也可以使用二分加数位 DP 进行求解
+        # It can also be solved using binary search and digit DP
         ans = [str(st[i]) for i in lst]
         return int("".join(ans))
