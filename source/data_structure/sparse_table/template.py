@@ -6,7 +6,7 @@ from operator import or_, and_
 
 class SparseTable1:
     def __init__(self, lst, fun="max"):
-        # 只要fun满足单调性就可以进行静态区间查询
+        # Static interval queries can be performed as long as fun satisfies monotonicity
         self.fun = fun
         self.n = len(lst)
         self.lst = lst
@@ -16,7 +16,7 @@ class SparseTable1:
         return
 
     def gen_sparse_table(self):
-        # 相当于一条链的树倍增求LCA
+        # like multiplication method for lca
         for i in range(1, self.n + 1):
             self.f[i][0] = self.lst[i - 1]
         for j in range(1, int(math.log2(self.n)) + 1):
@@ -39,7 +39,8 @@ class SparseTable1:
         return
 
     def query(self, left, right):
-        # 查询数组的索引 left 和 right 从 1 开始
+        # index start from 1
+        assert 1 <= left <= right <= self.n
         k = int(math.log2(right - left + 1))
         a = self.f[left][k]
         b = self.f[right - (1 << k) + 1][k]
@@ -59,7 +60,8 @@ class SparseTable1:
 
 class SparseTable2:
     def __init__(self, data, fun="max"):
-        self.note = [0] * (len(data) + 1)
+        self.n = len(data)
+        self.note = [0] * (self.n + 1)
         self.fun = fun
         left, right, v = 1, 2, 0
         while True:
@@ -88,7 +90,8 @@ class SparseTable2:
         return
 
     def query(self, left, right):
-        # 查询数组的索引 left 和 right 从 0 开始
+        # index start from index 0
+        assert 0 <= left <= right <= self.n - 1
         pos = self.note[right-left+1]
         a, b = self.ST[pos][left], self.ST[pos][right - (1 << pos) + 1]
         if self.fun == "max":
@@ -163,7 +166,7 @@ class SparseTable2D:
         return reduce(and_, args)
 
     def query(self, x, y, x1, y1):
-        # 索引从0开始
+        # index start from 0 and left up corner is (x, y) and right down corner is (x1, y1)
         k = int(math.log2(x1 - x + 1))
         p = int(math.log2(y1 - y + 1))
         ans = self.fun([self.dp[x][y][k][p],
@@ -175,7 +178,8 @@ class SparseTable2D:
 
 class SparseTableIndex:
     def __init__(self, lst, fun="max"):
-        # 只要fun满足单调性就可以进行静态区间查询极值所在的索引
+        # as long as Fun satisfies monotonicity
+        # static interval queries can be performed on the index where the maximum is located
         self.fun = fun
         self.n = len(lst)
         self.lst = lst
@@ -185,7 +189,6 @@ class SparseTableIndex:
         return
 
     def gen_sparse_table(self):
-        # 相当于一条链的树倍增求LCA
         for i in range(1, self.n + 1):
             self.f[i][0] = i - 1
         for j in range(1, int(math.log2(self.n)) + 1):
@@ -199,7 +202,7 @@ class SparseTableIndex:
         return
 
     def query(self, left, right):
-        # 查询数组的索引 left 和 right 从 1 开始
+        assert 1 <= left <= right <= self.n
         k = int(math.log2(right - left + 1))
         a = self.f[left][k]
         b = self.f[right - (1 << k) + 1][k]
