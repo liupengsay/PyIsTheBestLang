@@ -1,6 +1,6 @@
 import unittest
 
-from basis.diff_array.template import DiffArray, DiffMatrix
+from basis.diff_array.template import DiffArray, DiffMatrix, PreFixSumMatrix
 
 
 class TestGeneral(unittest.TestCase):
@@ -37,12 +37,13 @@ class TestGeneral(unittest.TestCase):
         shifts = [[x - 1 for x in ls[:-1]] + [ls[-1]] for ls in shifts]
         assert dam.get_diff_matrix2(m, n, shifts) == diff
 
-        pre = dam.get_matrix_prefix_sum(diff)
-        assert pre == [[0, 0, 0, 0], [0, 1, 2, 5],
-                       [0, 2, 7, 11], [0, 2, 8, 13]]
+    def test_pre_fix_sum_matrix(self):
+        diff = [[1, 1, 3], [1, 4, 1], [0, 1, 1]]
+        pre = PreFixSumMatrix(diff)
+        assert pre.pre == [[0, 0, 0, 0], [0, 1, 2, 5], [0, 2, 7, 11], [0, 2, 8, 13]]
 
         xa, ya, xb, yb = 1, 1, 2, 2
-        assert dam.get_matrix_range_sum(pre, xa, ya, xb, yb) == 7
+        assert pre.query(xa, ya, xb, yb) == sum(sum(d[ya: yb+1]) for d in diff[xa: xb+1])
         return
 
 

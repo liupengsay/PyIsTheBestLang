@@ -38,7 +38,7 @@ class SegTreeBrackets:
             r >>= 1
         a1 = b1 = c1 = 0
         for a2, b2, c2 in left + right[::-1]:
-            t = _min(b1, c2)
+            t = b1 if b1 < c2 else c2
             a1 += a2 + 2 * t
             b1 += b2 - t
             c1 += c2 - t
@@ -46,7 +46,6 @@ class SegTreeBrackets:
 
 
 class RangeAscendRangeMax:
-    # 模板：线段树区间更新、持续增加最大值
     def __init__(self, n):
         self.n = n
         self.cover = [-inf] * (4 * n)
@@ -66,7 +65,6 @@ class RangeAscendRangeMax:
         return
 
     def _push_down(self, i):
-        # 懒标记下放，注意取最大值
         if self.lazy[i] != -inf:
             self.cover[2 * i] = self._max(self.cover[2 * i], self.lazy[i])
             self.cover[2 * i + 1] = self._max(self.cover[2 * i + 1], self.lazy[i])
@@ -76,7 +74,6 @@ class RangeAscendRangeMax:
         return
 
     def build(self, nums: List[int]) -> None:
-        # 使用数组初始化线段树
         assert self.n == len(nums)
         stack = [(0, self.n - 1, 1)]
         while stack:
@@ -95,7 +92,6 @@ class RangeAscendRangeMax:
         return
 
     def get(self):
-        # 查询区间的所有值
         stack = [(0, self.n - 1, 1)]
         nums = [0] * self.n
         while stack:
@@ -110,7 +106,8 @@ class RangeAscendRangeMax:
         return nums
 
     def range_ascend(self, left, right, val):
-        # 更新区间最大值
+        # update the range ascend
+        assert 0 <= left <= right <= self.n - 1
         stack = [(0, self.n - 1, 1)]
         while stack:
             a, b, i = stack.pop()
@@ -131,7 +128,8 @@ class RangeAscendRangeMax:
         return
 
     def range_max(self, left, right):
-        # 查询区间的最大值
+        # query the range max
+        assert 0 <= left <= right <= self.n - 1
         stack = [(0, self.n - 1, 1)]
         highest = -inf
         while stack:
@@ -149,7 +147,6 @@ class RangeAscendRangeMax:
 
 
 class RangeDescendRangeMin:
-    # 模板：线段树区间更新、持续减少最小值
     def __init__(self, n):
         self.n = n
         self.cover = [inf] * (4 * n)
@@ -169,7 +166,6 @@ class RangeDescendRangeMin:
         return
 
     def _push_down(self, i):
-        # 懒标记下放，注意取最大值
         if self.lazy[i] != inf:
             self.cover[2 * i] = self._min(self.cover[2 * i], self.lazy[i])
             self.cover[2 * i + 1] = self._min(self.cover[2 * i + 1], self.lazy[i])
@@ -179,7 +175,6 @@ class RangeDescendRangeMin:
         return
 
     def build(self, nums: List[int]) -> None:
-        # 使用数组初始化线段树
         assert self.n == len(nums)
         stack = [(0, self.n - 1, 1)]
         while stack:
@@ -198,7 +193,6 @@ class RangeDescendRangeMin:
         return
 
     def get(self):
-        # 查询区间的所有值
         stack = [(0, self.n - 1, 1)]
         nums = [0] * self.n
         while stack:
@@ -213,7 +207,8 @@ class RangeDescendRangeMin:
         return nums
 
     def range_descend(self, left, right, val):
-        # 更新区间最大值
+        # update the range descend
+        assert 0 <= left <= right <= self.n - 1
         stack = [(0, self.n - 1, 1)]
         while stack:
             a, b, i = stack.pop()
@@ -234,7 +229,8 @@ class RangeDescendRangeMin:
         return
 
     def range_min(self, left, right):
-        # 查询区间的最大值
+        # query the range min
+        assert 0 <= left <= right <= self.n - 1
         stack = [(0, self.n - 1, 1)]
         lowest = inf
         while stack:
@@ -253,12 +249,11 @@ class RangeDescendRangeMin:
 
 class RangeAddRangeSumMinMax:
     def __init__(self, n) -> None:
-        # 模板：区间值增减、区间和查询、区间最小值查询、区间最大值查询
         self.n = n
-        self.cover = [0] * (4 * self.n)  # 区间和
-        self.lazy = [0] * (4 * self.n)  # 懒标记
-        self.floor = [0] * (4 * self.n)  # 最小值
-        self.ceil = [0] * (4 * self.n)  # 最大值
+        self.cover = [0] * (4 * self.n)  # range sum
+        self.lazy = [0] * (4 * self.n)  # lazy tag
+        self.floor = [0] * (4 * self.n)  # range min
+        self.ceil = [0] * (4 * self.n)  # range max
         return
 
     @staticmethod
@@ -270,7 +265,6 @@ class RangeAddRangeSumMinMax:
         return a if a < b else b
 
     def build(self, nums: List[int]) -> None:
-        # 使用数组初始化线段树
         assert self.n == len(nums)
         stack = [(0, self.n - 1, 1)]
         while stack:
@@ -289,7 +283,6 @@ class RangeAddRangeSumMinMax:
         return
 
     def _push_down(self, i: int, s: int, m: int, t: int) -> None:
-        # 下放懒标记
         if self.lazy[i]:
             self.cover[2 * i] += self.lazy[i] * (m - s + 1)
             self.cover[2 * i + 1] += self.lazy[i] * (t - m)
@@ -319,7 +312,8 @@ class RangeAddRangeSumMinMax:
         return
 
     def range_add(self, left: int, right: int, val: int) -> None:
-        # 增减区间值 left 与 right 取值为 0 到 n-1 而 i 从 1 开始
+        # update the range add
+        assert 0 <= left <= right <= self.n - 1
         stack = [(0, self.n-1, 1)]
         while stack:
             s, t, i = stack.pop()
@@ -332,7 +326,7 @@ class RangeAddRangeSumMinMax:
                 self._push_down(i, s, m, t)
                 stack.append((s, t, ~i))
 
-                if left <= m:  # 注意左右子树的边界与范围
+                if left <= m:
                     stack.append((s, m, 2 * i))
                 if right > m:
                     stack.append((m + 1, t, 2 * i + 1))
@@ -342,7 +336,7 @@ class RangeAddRangeSumMinMax:
         return
 
     def range_sum(self, left: int, right: int) -> int:
-        # 查询区间的和
+        # query the range sum
         stack = [(0, self.n - 1, 1)]
         ans = 0
         while stack:
@@ -359,7 +353,7 @@ class RangeAddRangeSumMinMax:
         return ans
 
     def range_min(self, left: int, right: int) -> int:
-        # 查询区间的最小值
+        # query the range min
         stack = [(0, self.n-1, 1)]
         lowest = inf
         while stack:
@@ -376,8 +370,7 @@ class RangeAddRangeSumMinMax:
         return lowest
 
     def range_max(self, left: int, right: int) -> int:
-
-        # 查询区间的最大值
+        # query the rang max
         stack = [(0, self.n-1, 1)]
         highest = -inf
         while stack:
@@ -394,7 +387,6 @@ class RangeAddRangeSumMinMax:
         return highest
 
     def get(self) -> List[int]:
-        # 查询区间的所有值
         stack = [(0, self.n - 1, 1)]
         nums = [0] * self.n
         while stack:
@@ -411,12 +403,11 @@ class RangeAddRangeSumMinMax:
 
 class RangeChangeRangeSumMinMax:
     def __init__(self, n):
-        # 模板：区间值修改、区间和查询、区间最小值查询、区间最大值查询
         self.n = n
-        self.cover = [0] * (4 * self.n)  # 区间和
-        self.lazy = [inf] * (4 * self.n)  # 懒标记只能初始化为inf
-        self.floor = [inf] * (4 * self.n)  # 最小值也可初始化为inf
-        self.ceil = [-inf] * (4 * self.n)  # 最大值也可初始化为-inf
+        self.cover = [0] * (4 * self.n)  # range sum
+        self.lazy = [inf] * (4 * self.n)  # because range change can to be 0 the lazy tag must be inf
+        self.floor = [inf] * (4 * self.n)  # because range change can to be any integer the floor initial must be inf
+        self.ceil = [-inf] * (4 * self.n) # because range change can to be any integer the ceil initial must be -inf
         return
 
     @staticmethod
@@ -474,7 +465,6 @@ class RangeChangeRangeSumMinMax:
         return
 
     def get(self):
-        # 查询区间的所有值
         stack = [(0, self.n - 1, 1)]
         nums = [0] * self.n
         while stack:
@@ -489,7 +479,8 @@ class RangeChangeRangeSumMinMax:
         return nums
 
     def range_change(self, left, right, val):
-        # 更新区间值
+        # update the range change
+        assert 0 <= left <= right <= self.n - 1
         stack = [(0, self.n - 1, 1)]
         while stack:
             s, t, i = stack.pop()
@@ -512,7 +503,8 @@ class RangeChangeRangeSumMinMax:
         return
 
     def range_sum(self, left, right):
-        # 查询区间的和
+        # query the range sum
+        assert 0 <= left <= right <= self.n - 1
         stack = [(0, self.n - 1, 1)]
         ans = 0
         while stack:
@@ -529,7 +521,8 @@ class RangeChangeRangeSumMinMax:
         return ans
 
     def range_min(self, left, right):
-        # 查询区间的最小值
+        # query the range min
+        assert 0 <= left <= right <= self.n - 1
         stack = [(0, self.n - 1, 1)]
         lowest = inf
         while stack:
@@ -546,8 +539,8 @@ class RangeChangeRangeSumMinMax:
         return lowest
 
     def range_max(self, left, right):
-
-        # 查询区间的最大值
+        # query the range max
+        assert 0 <= left <= right <= self.n - 1
         stack = [(0, self.n - 1, 1)]
         highest = -inf
         while stack:
@@ -566,12 +559,12 @@ class RangeChangeRangeSumMinMax:
 
 class RangeChangeRangeSumMinMaxDynamic:
     def __init__(self, n):
-        # 模板：区间值修改、区间和查询、区间最小值查询、区间最大值查询（动态开点线段树，n可达1e9）
+        # dynamic adding point segment tree in which n can be 1e9
         self.n = n
-        self.cover = defaultdict(int)  # 区间和  # 注意初始化值
-        self.lazy = defaultdict(lambda: inf)  # 懒标记  # 注意初始化值
-        self.floor = defaultdict(int)  # 最小值  # 注意初始化值可为inf
-        self.ceil = defaultdict(int)  # 最大值  # 注意初始化值可为-inf
+        self.cover = defaultdict(int)  # range sum must be initial 0
+        self.lazy = defaultdict(lambda: inf)  # lazy tag must be initial inf
+        self.floor = defaultdict(int)  # range min can be inf
+        self.ceil = defaultdict(int)  # range max can be -inf
         return
 
     @staticmethod
@@ -612,7 +605,8 @@ class RangeChangeRangeSumMinMaxDynamic:
         return
 
     def range_change(self, left, right, val):
-        # 修改区间值
+        # update the range change
+        assert 0 <= left <= right <= self.n - 1
         stack = [(0, self.n - 1, 1)]
         while stack:
             s, t, i = stack.pop()
@@ -625,7 +619,7 @@ class RangeChangeRangeSumMinMaxDynamic:
                 self._push_down(i, s, m, t)
                 stack.append((s, t, ~i))
 
-                if left <= m:  # 注意左右子树的边界与范围
+                if left <= m:
                     stack.append((s, m, 2 * i))
                 if right > m:
                     stack.append((m + 1, t, 2 * i + 1))
@@ -635,7 +629,7 @@ class RangeChangeRangeSumMinMaxDynamic:
         return
 
     def range_sum(self, left, right):
-        # 查询区间的和
+        assert 0 <= left <= right <= self.n - 1
         stack = [(0, self.n - 1, 1)]
         ans = 0
         while stack:
@@ -652,7 +646,7 @@ class RangeChangeRangeSumMinMaxDynamic:
         return ans
 
     def range_min(self, left, right):
-        # 查询区间的最小值
+        assert 0 <= left <= right <= self.n - 1
         stack = [(0, self.n - 1, 1)]
         highest = inf
         while stack:
@@ -669,7 +663,7 @@ class RangeChangeRangeSumMinMaxDynamic:
         return highest
 
     def range_max(self, left, right):
-        # 查询区间的最大值
+        assert 0 <= left <= right <= self.n - 1
         stack = [(0, self.n - 1, 1)]
         highest = -inf
         while stack:

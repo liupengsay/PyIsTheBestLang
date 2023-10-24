@@ -24,6 +24,7 @@ P1883 函数（https://www.luogu.com.cn/problem/P1883）三分求下凸函数最
 ================================CodeForces================================
 E. Maximize!（https://codeforces.com/problemset/problem/939/E）贪心使用双指针或者三分进行求解，整数函数最大值
 D. Devu and his Brother（http://codeforces.com/problemset/problem/439/D）利用单调性变换使用三分查找求解
+B. Meeting on the Line（https://codeforces.com/contest/1730/problem/B）template of ternary search
 
 ================================AtCoder================================
 F - Minimum Bounding Box（https://atcoder.jp/contests/abc130/tasks/abc130_f）三分模板题求函数最小值需要高精度
@@ -183,6 +184,20 @@ class Solution:
                     if 0 <= y <= n - 1:
                         ans = ac.max(ans, check(y))
                 ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1730b(ac=FastIO()):
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            x = ac.read_list_ints()
+            t = ac.read_list_ints()
+
+            def check(x0):
+                return max(t[i] + abs(x[i]-x0) for i in range(n))
+
+            ans = TriPartSearch().find_floor_point_float(check, min(x), max(x), 1e-8)
+            ac.st(ans)
         return
 
     @staticmethod
