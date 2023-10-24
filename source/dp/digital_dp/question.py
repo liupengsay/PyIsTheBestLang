@@ -29,11 +29,15 @@ from utils.fast_io import FastIO
 ===================================AtCoder===================================
 D - XOR World（https://atcoder.jp/contests/abc121/tasks/abc121_d）正解为(2*n)^(2*n+1)=1的性质，可使用数位DP计算 1^2^...^num的值
 E - Digit Products（https://atcoder.jp/contests/abc208/tasks/abc208_e）脑筋急转弯，有技巧地处理数位DP结果计算
+
 ===================================洛谷===================================
 P1590 失踪的7（https://www.luogu.com.cn/problem/P1590）计算 n 以内不含7的个数
 P1239 计数器（https://www.luogu.com.cn/problem/P1239）计算 n 以内每个数字0-9的个数
 P3908 数列之异或（https://www.luogu.com.cn/problem/P3908）计算 1^2..^n的异或和，可以使用数位DP计数也可以用相邻的奇偶数计算
 P1836 数页码（https://www.luogu.com.cn/problem/P1836）数位DP计算1~n内所有数字的数位和
+
+
+神奇数（https://www.lanqiao.cn/problems/5891/learning/?contest_id=145）容斥原理与数位DP
 
 参考：OI WiKi（xx）
 """
