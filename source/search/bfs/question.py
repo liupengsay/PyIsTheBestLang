@@ -110,7 +110,7 @@ from typing import List
 
 from graph.dijkstra.template import Dijkstra
 from graph.union_find.template import UnionFind
-from search.bfs.template import TreeDiameterWeighted, TreeDiameterDis, TreeDiameter
+from search.bfs.template import TreeDiameter
 from utils.fast_io import FastIO
 
 
@@ -515,35 +515,36 @@ class Solution:
         edge = [[] for _ in range(n)]
         for _ in range(n - 1):
             u, v = ac.read_list_ints_minus_one()
-            edge[u].append(v)
-            edge[v].append(u)
-        tree = TreeDiameterDis(edge)
-        u, v = tree.get_diameter_node()
-        dis1 = tree.get_bfs_dis(u)
-        dis2 = tree.get_bfs_dis(v)
+            edge[u].append([v, 1])
+            edge[v].append([u, 1])
+        tree = TreeDiameter(edge)
+        u, v = tree.get_diameter_info()[:2]
+        dis1, _ = tree.get_bfs_dis(u)
+        dis2, _ = tree.get_bfs_dis(v)
         diff = [0] * n
         for i in range(n):
             diff[ac.max(dis1[i], dis2[i])] += 1
         diff[0] = 1
-        diff = list(accumulate(diff, add))
+        diff = ac.accumulate(diff)[1:]
         ac.lst([ac.min(x, n) for x in diff])
         return
-
 
     @staticmethod
     def lg_p3304(ac=FastIO()):
         # 模板：经典计算带权无向图的直径以及直径的必经边
         n = ac.read_int()
-        dct = [dict() for _ in range(n)]
+        dct = [[] for _ in range(n)]
+        original = [dict() for _ in range(n)]
         for _ in range(n - 1):
             i, j, k = ac.read_list_ints()
             i -= 1
             j -= 1
-            dct[i][j] = dct[j][i] = k
+            dct[i].append([j, k])
+            dct[j].append([i, k])
+            original[i][j] = original[j][i] = k
         # 首先计算直径
-        tree = TreeDiameterWeighted()
-        x, _, _ = tree.bfs(dct, 0)
-        y, path, dia = tree.bfs(dct, x)
+        tree = TreeDiameter(dct)
+        x, y, path, dia = tree.get_diameter_info()
         ac.st(dia)
         # 确定直径上每个点的最远端距离
         nodes = set(path)
@@ -552,16 +553,16 @@ class Solution:
             q = [[x, -1, 0]]
             while q:
                 i, fa, d = q.pop()
-                for j in dct[i]:
+                for j, w in dct[i]:
                     if j != fa and j not in nodes:
-                        dis[x] = d + dct[i][j]
-                        q.append([j, i, d + dct[i][j]])
+                        dis[x] = d + w
+                        q.append([j, i, d + w])
 
         # 计算直径必经边的最右边端点
         m = len(path)
         pre = right = 0
         for j in range(1, m):
-            pre += dct[path[j - 1]][path[j]]
+            pre += original[path[j - 1]][path[j]]
             right = j
             if dis[path[j]] == dia - pre:  # 此时点下面有非当前直径的最远路径
                 break
@@ -570,7 +571,7 @@ class Solution:
         left = m - 1
         post = 0
         for j in range(m - 2, -1, -1):
-            post += dct[path[j]][path[j + 1]]
+            post += original[path[j]][path[j + 1]]
             left = j
             if dis[path[j]] == dia - post:  # 此时点下面有非当前直径的最远路径
                 break
@@ -593,13 +594,13 @@ class Solution:
                 u -= 1
                 v -= 1
                 if u in ind and v in ind:
-                    dct[ind[u]].append(ind[v])
-                    dct[ind[v]].append(ind[u])
+                    dct[ind[u]].append([ind[v], 1])
+                    dct[ind[v]].append([ind[u], 1])
                     uf.union(ind[u], ind[v])
             if uf.part != 1:
                 continue
-            # 计算直径或者是get_diameter_bfs都可以
-            ans[TreeDiameter().get_diameter_dfs(dct)] += 1
+            tree = TreeDiameter(dct)
+            ans[tree.get_diameter_info()[-1]] += 1
         return ans[1:]
 
     @staticmethod
@@ -1302,8 +1303,7 @@ class Solution:
             if i == m - 1 and j == n - 1:
                 ac.st(visit[i][j][s])
                 return
-            if s == 0 and 0 <= i + d < m and 0 <= j + r < n and not visit[i + d][j + r][1] and grid[i + d][
-                j + r] != "#":
+            if s == 0 and 0 <= i + d < m and 0 <= j + r < n and not visit[i + d][j + r][1] and grid[i + d][j + r] != "#":
                 visit[i + d][j + r][1] = visit[i][j][s] + 1
                 stack.append([i + d, j + r, 1])
             for x, y in [[i - 1, j], [i, j + 1], [i + 1, j], [i, j - 1]]:
@@ -1769,11 +1769,8 @@ class Solution:
             dct[u].append([v, w])
             dct[v].append([u, w])
             ans += w*2
-        dis = Dijkstra().get_shortest_path(dct, 0)
-        x = dis.index(max(dis))
-
-        dis = Dijkstra().get_shortest_path(dct, x)
-        ans -= max(dis)
+        dis = TreeDiameter(dct).get_diameter_info()[-1]
+        ans -= dis
         ac.st(ans)
         return
 

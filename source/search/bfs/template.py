@@ -1,64 +1,35 @@
-
-from collections import deque
 from math import inf
-from typing import List, Dict
-
-from graph.dijkstra.template import Dijkstra
+from typing import List
 
 
-class TreeDiameterInfo:
-    def __init__(self):
+class TreeDiameter:
+    def __init__(self, dct):
+        self.n = len(dct)
+        self.dct = dct
         return
 
-    @staticmethod
-    def get_diameter_info(edge: List[List[int]], root=0):
-        # Use two rounds of BFS calculation to obtain the endpoint of the tree diameter without weight
-        # as well as the diameter length and the specific point through which the diameter passes
-        n = len(edge)
-
-        stack = deque([[root, -1]])
-        parent = [-1] * n
-        dis = [0] * n
-        x = -1
+    def get_bfs_dis(self, root):
+        dis = [inf] * self.n
+        stack = [root]
+        dis[root] = 0
+        parent = [-1] * self.n
         while stack:
-            i, fa = stack.popleft()
-            x = i
-            for j in edge[i]:
-                if j != fa:
+            i = stack.pop()
+            for j, w in self.dct[i]:
+                if j != parent[i]:
                     parent[j] = i
-                    dis[j] = dis[i] + 1
-                    stack.append([j, i])
+                    dis[j] = dis[i] + w
+                    stack.append(j)
+        return dis, parent
 
-        stack = deque([[x, -1]])
-        parent = [-1] * n
-        dis = [0] * n
-        y = -1
-        while stack:
-            i, fa = stack.popleft()
-            y = i
-            for j in edge[i]:
-                if j != fa:
-                    parent[j] = i
-                    dis[j] = dis[i] + 1
-                    stack.append([j, i])
-
+    def get_diameter_info(self) -> (int, int, List[int], any):
+        # get tree diameter detail by bfs twice
+        dis, _ = self.get_bfs_dis(0)
+        x = dis.index(max(dis))
+        dis, parent = self.get_bfs_dis(x)
+        y = dis.index(max(dis))
         path = [y]
         while path[-1] != x:
             path.append(parent[path[-1]])
-        return x, y, dis, path
-
-
-class TreeDiameterWeight:
-    def __init__(self):
-        return
-
-    @staticmethod
-    def get_diameter_with_dijkstra(dct):
-        """template of find the diameter with weighted undirected edge"""
-        dis = Dijkstra().get_shortest_path(dct, 0)
-        x = dis.index(max(dis))
-
-        dis = Dijkstra().get_shortest_path(dct, x)
-        y = dis.index(max(dis))
-        path, dis = Dijkstra().get_shortest_path_from_src_to_dst(dct, x, y)
-        return path, dis
+        path.reverse()
+        return x, y, path, dis[y]
