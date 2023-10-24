@@ -9,7 +9,7 @@ from typing import List, Optional
 
 from basis.tree_node.template import TreeNode
 from data_structure.list_node.template import ListNode
-from dp.tree_dp.template import TreeDiameterDis, ReRootDP, TreeDiameter, TreeDiameterWeighted
+from dp.tree_dp.template import ReRootDP
 from graph.union_find.template import UnionFind
 from utils.fast_io import FastIO
 
@@ -126,27 +126,6 @@ class Solution:
                     sub[i] = x
                     ans += x == 0
             ac.st(ans)
-        return
-
-    @staticmethod
-    def cf_1805d(ac=FastIO()):
-        # 模板：使用树的直径与端点距离，计算节点对距离至少为k的连通块个数
-        n = ac.read_int()
-        edge = [[] for _ in range(n)]
-        for _ in range(n - 1):
-            u, v = ac.read_list_ints_minus_one()
-            edge[u].append(v)
-            edge[v].append(u)
-        tree = TreeDiameterDis(edge)
-        u, v = tree.get_diameter_node()
-        dis1 = tree.get_bfs_dis(u)
-        dis2 = tree.get_bfs_dis(v)
-        diff = [0] * n
-        for i in range(n):
-            diff[ac.max(dis1[i], dis2[i])] += 1
-        diff[0] = 1
-        diff = list(accumulate(diff, add))
-        ac.lst([ac.min(x, n) for x in diff])
         return
 
     @staticmethod
@@ -419,29 +398,6 @@ class Solution:
             return dfs(head, node.left) or dfs(head, node.right)
 
         return dfs(head, root)
-
-    @staticmethod
-    def lc_1617(n: int, edges: List[List[int]]) -> List[int]:
-        # 模板：枚举子集使用并查集判断连通性再计算树的直径
-        ans = [0] * n
-        for state in range(1, 1 << n):
-            node = [i for i in range(n) if state & (1 << i)]
-            ind = {num: i for i, num in enumerate(node)}
-            m = len(node)
-            dct = [[] for _ in range(m)]
-            uf = UnionFind(m)
-            for u, v in edges:
-                u -= 1
-                v -= 1
-                if u in ind and v in ind:
-                    dct[ind[u]].append(ind[v])
-                    dct[ind[v]].append(ind[u])
-                    uf.union(ind[u], ind[v])
-            if uf.part != 1:
-                continue
-            # 计算直径或者是get_diameter_bfs都可以
-            ans[TreeDiameter().get_diameter_dfs(dct)] += 1
-        return ans[1:]
 
     @staticmethod
     def cf_1187e(ac=FastIO()):
@@ -809,55 +765,6 @@ class Solution:
                 ceil = ac.max(ceil, a * b)
 
         ac.lst([ceil, ans])
-        return
-
-    @staticmethod
-    def lg_p3304(ac=FastIO()):
-        # 模板：经典计算带权无向图的直径以及直径的必经边
-        n = ac.read_int()
-        dct = [dict() for _ in range(n)]
-        for _ in range(n - 1):
-            i, j, k = ac.read_list_ints()
-            i -= 1
-            j -= 1
-            dct[i][j] = dct[j][i] = k
-        # 首先计算直径
-        tree = TreeDiameterWeighted()
-        x, _, _ = tree.bfs(dct, 0)
-        y, path, dia = tree.bfs(dct, x)
-        ac.st(dia)
-        # 确定直径上每个点的最远端距离
-        nodes = set(path)
-        dis = [0] * n
-        for x in path:
-            q = [[x, -1, 0]]
-            while q:
-                i, fa, d = q.pop()
-                for j in dct[i]:
-                    if j != fa and j not in nodes:
-                        dis[x] = d + dct[i][j]
-                        q.append([j, i, d + dct[i][j]])
-
-        # 计算直径必经边的最右边端点
-        m = len(path)
-        pre = right = 0
-        for j in range(1, m):
-            pre += dct[path[j - 1]][path[j]]
-            right = j
-            if dis[path[j]] == dia - pre:  # 此时点下面有非当前直径的最远路径
-                break
-
-        # 计算直径必经边的最左边端点
-        left = m - 1
-        post = 0
-        for j in range(m - 2, -1, -1):
-            post += dct[path[j]][path[j + 1]]
-            left = j
-            if dis[path[j]] == dia - post:  # 此时点下面有非当前直径的最远路径
-                break
-
-        ans = ac.max(0, right - left)
-        ac.st(ans)
         return
 
     @staticmethod
