@@ -784,7 +784,6 @@ class SegmentTreeRangeUpdateChangeQueryMax:
 
 class RangeOrRangeAnd:
     def __init__(self, n):
-        # 区间按位或赋值、与按位与查询
         self.n = n
         self.cover = [0] * 4 * n
         self.lazy = [0] * 4 * n
@@ -829,6 +828,8 @@ class RangeOrRangeAnd:
         return
 
     def range_or(self, left, r, val):
+        """update the range or"""
+        assert 0 <= left <= r <= self.n - 1
         stack = [(0, self.n - 1, 1)]
         while stack:
             s, t, i = stack.pop()
@@ -850,6 +851,8 @@ class RangeOrRangeAnd:
         return
 
     def range_and(self, left, r):
+        """query the range and"""
+        assert 0 <= left <= r <= self.n - 1
         stack = [(0, self.n - 1, 1)]
         ans = (1 << 31) - 1
         while stack and ans:
@@ -866,7 +869,6 @@ class RangeOrRangeAnd:
         return ans
 
     def get(self):
-        # 查询区间的所有值
         stack = [(0, self.n - 1, 1)]
         nums = [0] * self.n
         while stack:

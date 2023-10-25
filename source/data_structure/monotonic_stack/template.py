@@ -7,52 +7,56 @@ class QuickMonotonicStack:
 
     @staticmethod
     def pipline_general(nums):
-        # 模板：经典单调栈前后边界下标计算
+        """template of index as pre bound and post bound in monotonic stack"""
         n = len(nums)
-        post = [n - 1] * n  # 这里可以是n/n-1/null，取决于用途
-        pre = [0] * n  # 这里可以是0/-1/null，取决于用途
+        post = [n - 1] * n  # initial can be n or n-1 or -1 dependent on usage
+        pre = [0] * n  # initial can be 0 or -1 dependent on usage
         stack = []
-        for i in range(n):  # 这里也可以是从n-1到0倒序计算，取决于用途
-            while stack and nums[stack[-1]] < nums[i]:  # 这里可以是"<" ">" "<=" ">="，取决于需要判断的大小关系
-                post[stack.pop()] = i - 1  # 这里可以是i或者i-1，取决于是否包含i作为右端点
-            if stack:  # 这里不一定可以同时计算，比如前后都是大于等于时，只有前后所求范围互斥时，可以计算
-                pre[i] = stack[-1] + 1  # 这里可以是stack[-1]或者stack[-1]+1，取决于是否包含stack[-1]作为左端点
+        for i in range(n):  # can be also range(n-1, -1, -1) dependent on usage
+            while stack and nums[stack[-1]] < nums[i]:  # can be < or > or <=  or >=  dependent on usage
+                post[stack.pop()] = i - 1  # can be i or i-1 dependent on usage
+            if stack:  # which can be done only pre and post are no-repeat such as post bigger and pre not-bigger
+                pre[i] = stack[-1] + 1  # can be stack[-1] or stack[-1]-1 dependent on usage
             stack.append(i)
 
-        # 前后严格更小的边界
-        post_min = [n - 1] * n  # 这里可以是n/n-1/null，取决于用途
-        pre_min = [0] * n  # 这里可以是0/-1/null，取决于用途
+        # strictly smaller at pre or post
+        post_min = [n - 1] * n
+        pre_min = [0] * n
         stack = []
-        for i in range(n):  # 这里也可以是从n-1到0倒序计算，取决于用途
-            while stack and nums[i] < nums[stack[-1]]:  # 这里可以是"<" ">" "<=" ">="，取决于需要判断的大小关系
-                post_min[stack.pop()] = i - 1  # 这里可以是i或者i-1，取决于是否包含i作为右端点
+        for i in range(n):
+            while stack and nums[i] < nums[stack[-1]]:
+                post_min[stack.pop()] = i - 1
             stack.append(i)
         stack = []
-        for i in range(n - 1, -1, -1):  # 这里也可以是从n-1到0倒序计算，取决于用途
-            while stack and nums[i] < nums[stack[-1]]:  # 这里可以是"<" ">" "<=" ">="，取决于需要判断的大小关系
-                pre_min[stack.pop()] = i + 1  # 这里可以是i或者i-1，取决于是否包含i作为右端点
+        for i in range(n - 1, -1, -1):
+            while stack and nums[i] < nums[stack[-1]]:
+                pre_min[stack.pop()] = i + 1
             stack.append(i)
 
-        # 前后严格更大的边界
-        post_max = [n - 1] * n  # 这里可以是n/n-1/null，取决于用途
-        pre_max = [0] * n  # 这里可以是0/-1/null，取决于用途
+        # strictly bigger at pre or post
+        post_max = [n - 1] * n
+        pre_max = [0] * n
         stack = []
-        for i in range(n):  # 这里也可以是从n-1到0倒序计算，取决于用途
-            while stack and nums[i] > nums[stack[-1]]:  # 这里可以是"<" ">" "<=" ">="，取决于需要判断的大小关系
-                post_max[stack.pop()] = i - 1  # 这里可以是i或者i-1，取决于是否包含i作为右端点
+        for i in range(n):
+            while stack and nums[i] > nums[stack[-1]]:
+                post_max[stack.pop()] = i - 1
             stack.append(i)
         stack = []
-        for i in range(n - 1, -1, -1):  # 这里也可以是从n-1到0倒序计算，取决于用途
-            while stack and nums[i] > nums[stack[-1]]:  # 这里可以是"<" ">" "<=" ">="，取决于需要判断的大小关系
-                pre_max[stack.pop()] = i + 1  # 这里可以是i或者i-1，取决于是否包含i作为右端点
+        for i in range(n - 1, -1, -1):
+            while stack and nums[i] > nums[stack[-1]]:
+                pre_max[stack.pop()] = i + 1
             stack.append(i)
         return
 
     @staticmethod
     def pipline_general_2(nums):
-        # 模板：经典单调栈求下个与下下个严格更大元素与上个与上个个严格更大元素（可使用二分离线查询拓展到 k ）
+        """template of post second strictly larger or pre second strictly larger
+        which can also be solved by offline queries with sorting and binary search
+        """
         n = len(nums)
+        # next strictly larger elements
         post = [-1] * n
+        # next and next strictly larger elements
         post2 = [-1] * n
         stack1 = []
         stack2 = []
@@ -65,7 +69,9 @@ class QuickMonotonicStack:
                 heapq.heappush(stack2, [nums[j], j])
             stack1.append(i)
 
+        # previous strictly larger elements
         pre = [-1] * n
+        # previous and previous strictly larger elements
         pre2 = [-1] * n
         stack1 = []
         stack2 = []
@@ -77,6 +83,7 @@ class QuickMonotonicStack:
                 pre[j] = i
                 heapq.heappush(stack2, [nums[j], j])
             stack1.append(i)
+        return
 
 
 class MonotonicStack:

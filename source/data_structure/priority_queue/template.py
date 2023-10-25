@@ -9,7 +9,6 @@ class PriorityQueue:
     @staticmethod
     def sliding_window(nums: List[int], k: int, method="max") -> List[int]:
         assert k >= 1
-        # 模板: 计算滑动窗口最大值与最小值
         if method == "min":
             nums = [-num for num in nums]
         n = len(nums)
@@ -30,7 +29,6 @@ class PriorityQueue:
     @staticmethod
     def sliding_window_all(nums: List[int], k: int, method="max") -> List[int]:
         assert k >= 1
-        # 模板: 计算滑动窗口最大值与最小值
         if method == "min":
             nums = [-num for num in nums]
         n = len(nums)
