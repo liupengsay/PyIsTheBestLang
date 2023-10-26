@@ -23,7 +23,7 @@ class TwoPointer:
 
     @staticmethod
     def circle_array(arr):
-        # 模板：环形数组指针移动
+        """circular array pointer movement"""
         n = len(arr)
         ans = 0
         for i in range(n):
@@ -32,7 +32,7 @@ class TwoPointer:
 
     @staticmethod
     def fast_and_slow(head):
-        # 模板：快慢指针判断链表是否存在环
+        """fast and slow pointers to determine whether there are rings in the linked list"""
         fast = slow = head
         while fast and fast.next:
             fast = fast.next.next
@@ -43,23 +43,21 @@ class TwoPointer:
 
     @staticmethod
     def same_direction(nums):
-        # 模板: 相同方向双指针（寻找最长不含重复元素的子序列）
+        """two pointers in the same direction to find the longest subsequence without repeating elements"""
         n = len(nums)
         ans = j = 0
         pre = set()
         for i in range(n):
-            # 特别注意指针的移动情况
             while j < n and nums[j] not in pre:
                 pre.add(nums[j])
                 j += 1
-            # 视情况更新返回值
             ans = ans if ans > j - i else j - i
             pre.discard(nums[i])
         return ans
 
     @staticmethod
     def opposite_direction(nums, target):
-        # 模板: 相反方向双指针（寻找升序数组是否存在两个数和为target）
+        """two pointers in the opposite direction to find two numbers equal target in ascending array"""
         n = len(nums)
         i, j = 0, n - 1
         while i < j:
@@ -83,7 +81,7 @@ class SlidingWindowAggregation:
     """
 
     def __init__(self, e, op):
-        # 模板：滑动窗口维护和查询聚合信息
+        # Sliding Window Maintenance and Query Aggregated Information
         """
         Args:
             e: unit element

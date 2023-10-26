@@ -10,7 +10,6 @@ class VariousSort:
 
     @staticmethod
     def insertion_sort(nums):
-        # 模板: 插入排序
         n = len(nums)
         for i in range(1, n):
             key = nums[i]
@@ -23,7 +22,6 @@ class VariousSort:
 
     @staticmethod
     def counting_sort(nums):
-        # 模板: 计数排序
         count = Counter(nums)
         keys = sorted(count.keys())
         rank = 0
@@ -36,14 +34,13 @@ class VariousSort:
 
     @staticmethod
     def quick_sort_two(lst: List[int]) -> List[int]:
-        # 模板: 比较好理解和记忆的两路快排
         n = len(lst)
 
         def quick_sort(i, j):
             if i >= j:
                 return
 
-            # 先找到左边比较小的分治排序
+            # First find the smaller divide and conquer sort
             val = lst[random.randint(i, j)]
             left = i
             for k in range(i, j + 1):
@@ -52,7 +49,7 @@ class VariousSort:
                     left += 1
             quick_sort(i, left - 1)
 
-            # 再找到右边比较大的分治排序
+            # Then find the larger divide and conquer sort on the right
             for k in range(i, j + 1):
                 if lst[k] == val:
                     lst[k], lst[left] = lst[left], lst[k]
@@ -64,7 +61,7 @@ class VariousSort:
         return lst
 
     def merge_sort(self, nums):
-        # 模板: 归并排序
+
         if len(nums) > 1:
             mid = len(nums) // 2
             left = nums[:mid]
@@ -73,7 +70,7 @@ class VariousSort:
             self.merge_sort(left)
             self.merge_sort(right)
 
-            # 使用指针合并有序列表
+            # Merge ordered lists using pointers
             i = j = k = 0
             while i < len(left) and j < len(right):
                 if left[i] < right[j]:
@@ -98,19 +95,18 @@ class VariousSort:
     @staticmethod
     def merge_sort_inverse_pair(nums, n):
 
-        # 模板: 使用归并排序计算在只交换相邻元素的情况下至少需要多少次才能使数组变得有序
+        # Use merge sort to calculate the minimum number of times needed
+        # to make an array sorted by exchanging only adjacent elements
 
         def merge(left, right):
             nonlocal ans
             if left >= right:
                 return
 
-            # 递归进行排序
             mid = (left + right) // 2
             merge(left, mid)
             merge(mid + 1, right)
 
-            # 合并有序列表
             i, j = left, mid + 1
             k = left
             while i <= mid and j <= right:
@@ -120,7 +116,6 @@ class VariousSort:
                 else:
                     arr[k] = nums[j]
                     j += 1
-                    # 此时出现了逆序对移动记录次数
                     ans += mid - i + 1
                 k += 1
             while i <= mid:
@@ -132,36 +127,34 @@ class VariousSort:
                 j += 1
                 k += 1
 
-            # 将值赋到原数组
             for i in range(left, right + 1):
                 nums[i] = arr[i]
             return
 
-        # 使用归并排序进行求解
         ans = 0
         arr = [0] * n
         merge(0, n - 1)
-        # 也可以使用 2*n 长度的树状数组与线段树进行模拟计算
-        # 结果等同于数组逆序对的数目
-        # 参考题目P1774
+        # You can also use a tree array with a length of 2 * n and a line segment tree for simulation calculations
+        # The result is equivalent to the number of inverse pairs in the array
+        # Reference question P1774
         return ans
 
     @staticmethod
     def heap_sort(nums):
-        # 模板: 堆排序
+
         def sift_down(start, end):
-            # 计算父结点和子结点的下标
+
             parent = int(start)
             child = int(parent * 2 + 1)
-            # 子结点下标在范围内才做比较
+
             while child <= end:
-                # 先比较两个子结点大小，选择最大的
+
                 if child + 1 <= end and nums[child] < nums[child + 1]:
                     child += 1
-                # 如果父结点比子结点大，代表调整完毕，直接跳出函数
+
                 if nums[parent] >= nums[child]:
                     return
-                # 否则交换父子内容，子结点再和孙结点比较
+
                 else:
                     nums[parent], nums[child] = nums[child], nums[parent]
                     parent = child
@@ -169,12 +162,12 @@ class VariousSort:
             return
 
         length = len(nums)
-        # 从最后一个节点的父节点开始 sift down 以完成堆化 (heapify)
+
         i = (length - 1 - 1) / 2
         while i >= 0:
             sift_down(i, length - 1)
             i -= 1
-        # 先将第一个元素和已经排好的元素前一位做交换，再重新调整（刚调整的元素之前的元素），直到排序完毕
+
         i = length - 1
         while i > 0:
             nums[0], nums[i] = nums[i], nums[0]
@@ -184,7 +177,6 @@ class VariousSort:
 
     @staticmethod
     def shell_sort(nums):
-        # 模板: 希尔排序
         length = len(nums)
         h = 1
         while h < length / 3:
@@ -200,18 +192,13 @@ class VariousSort:
 
     @staticmethod
     def bucket_sort(nums):
-        # 模板: 桶排序
         min_num = min(nums)
         max_num = max(nums)
-        # 桶的大小
         bucket_range = (max_num - min_num) / len(nums)
-        # 桶数组
         count_list = [[] for _ in range(len(nums) + 1)]
-        # 向桶数组填数
         for i in nums:
             count_list[int((i - min_num) // bucket_range)].append(i)
         nums.clear()
-        # 回填，这里桶内部排序直接调用了sorted
         for i in count_list:
             for j in sorted(i):
                 nums.append(j)
@@ -219,7 +206,6 @@ class VariousSort:
 
     @staticmethod
     def bubble_sort(nums):
-        # 模板: 冒泡排序
         n = len(nums)
         flag = True
         while flag:
@@ -232,7 +218,6 @@ class VariousSort:
 
     @staticmethod
     def selection_sort(nums):
-        # 模板: 选择排序
         n = len(nums)
         for i in range(n):
             ith = i
@@ -245,10 +230,7 @@ class VariousSort:
     @staticmethod
     def defined_sort(nums):
 
-        # 模板: 自定义排序
-
         def compare(a, b):
-            # 比较函数
             if a < b:
                 return -1
             elif a > b:
@@ -256,7 +238,6 @@ class VariousSort:
             return 0
 
         def compare2(x, y):
-            # 比较函数
             a = int(x+y)
             b = int(y+x)
             if a < b:
@@ -266,7 +247,6 @@ class VariousSort:
             return 0
 
         def compare3(x, y):
-            # 比较函数
             a = x+y
             b = y+x
             if a < b:
@@ -281,23 +261,7 @@ class VariousSort:
         return nums
 
     @staticmethod
-    def ac_113(compare, n):
-
-        # 模板：自定义排序
-
-        def compare_(x, y):
-            # 比较函数
-            if compare(x, y):
-                return -1
-            return 1
-
-        nums = list(range(1, n+1))
-        nums.sort(key=cmp_to_key(compare_))
-        return nums
-
-    @staticmethod
     def minimum_money(transactions: List[List[int]]) -> int:
-        # 模板：贪心选择顺序，自定义排序方式
 
         def check(ls):
             x, y = ls[0], ls[1]

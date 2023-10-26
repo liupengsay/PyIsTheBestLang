@@ -69,6 +69,18 @@ class Solution:
         return lst
 
     @staticmethod
+    def ac_113(compare, n):
+
+        def compare_(x, y):
+            if compare(x, y):
+                return -1
+            return 1
+
+        nums = list(range(1, n+1))
+        nums.sort(key=cmp_to_key(compare_))
+        return nums
+
+    @staticmethod
     def abc_42b(ac=FastIO()):
         # 模板：自定义排序
         n, m = ac.read_list_ints()

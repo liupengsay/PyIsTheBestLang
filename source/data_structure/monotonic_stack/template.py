@@ -91,55 +91,51 @@ class MonotonicStack:
         self.nums = nums
         self.n = len(nums)
 
-        # 视情况可给不存在前序相关最值的值赋 i 或者 0
-        self.pre_bigger = [-1] * self.n  # 上一个更大值
-        self.pre_bigger_equal = [-1] * self.n  # 上一个大于等于值
-        self.pre_smaller = [-1] * self.n  # 上一个更小值
-        self.pre_smaller_equal = [-1] * self.n  # 上一个小于等于值
+        self.pre_bigger = [-1] * self.n
+        self.pre_bigger_equal = [-1] * self.n
+        self.pre_smaller = [-1] * self.n
+        self.pre_smaller_equal = [-1] * self.n
 
-        # 视情况可给不存在前序相关最值的值赋 i 或者 n-1
-        self.post_bigger = [-1] * self.n  # 下一个更大值
-        self.post_bigger_equal = [-1] * self.n  # 下一个大于等于值
-        self.post_smaller = [-1] * self.n  # 下一个更小值
-        self.post_smaller_equal = [-1] * self.n  # 下一个小于等于值
+        self.post_bigger = [-1] * self.n
+        self.post_bigger_equal = [-1] * self.n
+        self.post_smaller = [-1] * self.n
+        self.post_smaller_equal = [-1] * self.n
 
         self.gen_result()
         return
 
     def gen_result(self):
 
-        # 从前往后遍历
         stack = []
         for i in range(self.n):
             while stack and self.nums[i] >= self.nums[stack[-1]]:
-                self.post_bigger_equal[stack.pop()] = i  # 有时也用 i-1 作为边界
+                self.post_bigger_equal[stack.pop()] = i
             if stack:
-                self.pre_bigger[i] = stack[-1]  # 有时也用 stack[-1]+1 做为边界
+                self.pre_bigger[i] = stack[-1]
             stack.append(i)
 
         stack = []
         for i in range(self.n):
             while stack and self.nums[i] <= self.nums[stack[-1]]:
-                self.post_smaller_equal[stack.pop()] = i  # 有时也用 i-1 作为边界
+                self.post_smaller_equal[stack.pop()] = i
             if stack:
-                self.pre_smaller[i] = stack[-1]  # 有时也用 stack[-1]+1 做为边界
+                self.pre_smaller[i] = stack[-1]
             stack.append(i)
 
-        # 从后往前遍历
         stack = []
         for i in range(self.n - 1, -1, -1):
             while stack and self.nums[i] >= self.nums[stack[-1]]:
-                self.pre_bigger_equal[stack.pop()] = i  # 有时也用 i-1 作为边界
+                self.pre_bigger_equal[stack.pop()] = i
             if stack:
-                self.post_bigger[i] = stack[-1]  # 有时也用 stack[-1]-1 做为边界
+                self.post_bigger[i] = stack[-1]
             stack.append(i)
 
         stack = []
         for i in range(self.n - 1, -1, -1):
             while stack and self.nums[i] <= self.nums[stack[-1]]:
-                self.pre_smaller_equal[stack.pop()] = i  # 有时也用 i-1 作为边界
+                self.pre_smaller_equal[stack.pop()] = i
             if stack:
-                self.post_smaller[i] = stack[-1]  # 有时也用 stack[-1]-1 做为边界
+                self.post_smaller[i] = stack[-1]
             stack.append(i)
 
         return
@@ -151,7 +147,7 @@ class Rectangle:
 
     @staticmethod
     def compute_area(pre):
-        # 模板：使用单调栈根据高度计算最大矩形面积
+        """Calculate maximum rectangle area based on height using monotonic stack"""
 
         m = len(pre)
         left = [0] * m
@@ -160,8 +156,8 @@ class Rectangle:
         for i in range(m):
             while stack and pre[stack[-1]] > pre[i]:
                 right[stack.pop()] = i - 1
-            if stack:  # 这里可以同时求得数组前后的下一个大于等于值
-                left[i] = stack[-1] + 1  # 这里将相同的值视为右边的更大且并不会影响计算
+            if stack:
+                left[i] = stack[-1] + 1
             stack.append(i)
 
         ans = 0
@@ -172,8 +168,7 @@ class Rectangle:
 
     @staticmethod
     def compute_number(pre):
-        # 模板：使用单调栈根据高度计算矩形个数
-
+        """Use monotonic stack to calculate the number of rectangles based on height"""
         n = len(pre)
         right = [n - 1] * n
         left = [0] * n
@@ -181,7 +176,7 @@ class Rectangle:
         for j in range(n):
             while stack and pre[stack[-1]] > pre[j]:
                 right[stack.pop()] = j - 1
-            if stack:  # 这个单调栈过程和上述求面积的一样
+            if stack:
                 left[j] = stack[-1] + 1
             stack.append(j)
 

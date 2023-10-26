@@ -3,14 +3,13 @@ from decimal import Decimal
 
 
 class TriPartSearch:
-    # 三分查找
     def __init__(self):
+        """Ternary Search"""
         return
 
     @staticmethod
     def find_ceil_point_float(fun, left, right, error=1e-9, high_precision=False):
-
-        # 求解上凸函数函数取得最大值时的点
+        """the float point at which the upper convex function obtains its maximum value"""
         while left < right - error:
             diff = Decimal(right - left) / 3 if high_precision else (right - left) / 3
             mid1 = left + diff
@@ -28,7 +27,7 @@ class TriPartSearch:
 
     @staticmethod
     def find_ceil_point_int(fun, left, right, error=1):
-        # 求解上凸函数函数取得最大值时的点
+        """the int point at which the upper convex function obtains its maximum value"""
         while left < right - error:
             diff = (right - left) // 3
             mid1 = left + diff
@@ -46,8 +45,7 @@ class TriPartSearch:
 
     @staticmethod
     def find_floor_point_float(fun, left, right, error=1e-9, high_precision=False):
-
-        # 求解下凸函数取得最小值时的点
+        """The float point when solving the convex function to obtain the minimum value"""
         while left < right - error:
             diff = Decimal(right - left) / 3 if high_precision else (right - left) / 3
             mid1 = left + diff
@@ -64,9 +62,25 @@ class TriPartSearch:
         return left
 
     @staticmethod
-    def find_ceil_value_float(fun, left, right, error=1e-9, high_precision=False):
+    def find_floor_point_int(fun, left, right, error=1):
+        """The int point when solving the convex function to obtain the minimum value"""
+        while left < right - error:
+            diff = Decimal(right - left) // 3
+            mid1 = left + diff
+            mid2 = left + 2 * diff
+            dist1 = fun(mid1)
+            dist2 = fun(mid2)
+            if dist1 < dist2:
+                right = mid2
+            elif dist1 > dist2:
+                left = mid1
+            else:
+                left = mid1
+                right = mid2
+        return left
 
-        # 求解上凸函数取得的最大值
+    @staticmethod
+    def find_ceil_value_float(fun, left, right, error=1e-9, high_precision=False):
         f1, f2 = fun(left), fun(right)
         while abs(f1 - f2) > error:
             diff = Decimal(right - left) / 3 if high_precision else (right - left) / 3
@@ -88,7 +102,6 @@ class TriPartSearch:
 
     @staticmethod
     def find_floor_value_float(fun, left, right, error=1e-9, high_precision=False):
-        # 求解下凸函数取得的最小值
         f1, f2 = fun(left), fun(right)
         while abs(f1 - f2) > error:
             diff = Decimal(right - left) / 3 if high_precision else (right - left) / 3
@@ -110,17 +123,16 @@ class TriPartSearch:
 
 
 class TriPartPackTriPart:
-    # 模板：三分套三分
     def __init__(self):
         return
 
     @staticmethod
     def find_floor_point_float(target, left_x, right_x, low_y, high_y):
-        # 求最小的坐标[x,y]使得目标函数target最小
+        # Find the smallest coordinate [x, y] to minimize the target of the objective function
         error = 5e-8
         
         def optimize(y):
-            # 套三分里面的损失函数
+            # The loss function
             low_ = left_x
             high_ = right_x
             while low_ < high_ - error:

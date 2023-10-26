@@ -4,7 +4,7 @@ class BlockSize:
 
     @staticmethod
     def get_divisor_split(n):
-        # 模板：将区间 [1, n] 分解为每个区间对 n 的除数不超过范围
+        # Decompose the interval [1, n] into each interval whose divisor of n does not exceed the range
         if n == 1:
             return [1], [[1, 1]]
         m = int(n ** 0.5)
