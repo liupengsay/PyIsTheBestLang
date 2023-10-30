@@ -351,7 +351,7 @@ class RangeAddRangeSum2D:
 
     def _query(self, x: int, y: int) -> int:
         # index start from 1 and query the sum(sum(g[:y]) for g in grid[:x]) which is 0-index
-        assert 1 <= x <= self.m and 1 <= y <= self.n
+        assert 0 <= x <= self.m and 0 <= y <= self.n
         res = 0
         i = x
         while i:
