@@ -39,6 +39,28 @@ def ac_min(a, b):
 
 
 
+lst = []
+for i in range(2, 65):
+    ll = 1<<i
+    rr = (1<<(i+1))-1
+    lst.append([i, ll, rr])
+
+    low = int(math.log(i, ll))
+    high = math.ceil(math.log(i, rr))
+    for j in range(low, high+1):
+        aa = i**j
+        bb = i**(j+1) - 1
+        xx = ac.max(aa, ll)
+        yy = ac.min(bb, rr)
+print(lst)
+
+
+# for x in range(4, 100001):
+#     y = len(bin(x)[2:])-1
+#     z = 0
+#     while y**(z+1) <= x:
+#         z += 1
+#     print(x, y, z)
 
 
 
@@ -46,4 +68,3 @@ def ac_min(a, b):
 
 
 
-assert Solution()

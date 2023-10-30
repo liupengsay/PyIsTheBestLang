@@ -113,7 +113,6 @@ class RangeAddRangeSum:
             nums[i] = self.range_sum(i + 1, i + 1)
         return nums
 
-    # 更新单点的差分数值
     def _add(self, k: int, v: int) -> None:
         # start from index 1 and v can be any integer
         v1 = k * v
@@ -137,7 +136,6 @@ class RangeAddRangeSum:
         self._add(right + 1, -v)
         return
 
-    # 求数组的前缀区间和
     def range_sum(self, left: int, right: int) -> int:
         # index start from 1 and query the sum(nums[left-1: right]) which is 0-index array
         a = (right + 1) * self._sum(self.t1, right) - self._sum(self.t2, right)

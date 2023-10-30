@@ -1496,6 +1496,7 @@ class SegmentTreeRangeUpdateSubConSum:
         res[3] = res1[3] + res2[3]
         return res
 
+
 class SegmentTreeRangeUpdateAvgDev:
     def __init__(self, n) -> None:
         # 模板：区间增减、区间平均值与区间方差
