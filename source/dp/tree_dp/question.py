@@ -129,6 +129,41 @@ class Solution:
         return
 
     @staticmethod
+    def lc_2003(parents: List[int], nums: List[int]) -> List[int]:
+        # heuristic merging from bottom to up
+        n = len(nums)
+        dct = [[] for _ in range(n)]
+        for i in range(1, n):
+            dct[parents[i]].append(i)
+
+        sub = [set() for _ in range(n)]
+        stack = [0]
+        ans = [-1] * n
+        while stack:
+            i = stack.pop()
+            if i >= 0:
+                stack.append(~i)
+                for j in dct[i]:
+                    stack.append(j)
+            else:
+                i = ~i
+                x = 1
+                pre = {nums[i]}
+                for j in dct[i]:
+                    cur = sub[j]
+                    if len(cur) > len(pre):
+                        pre, cur = cur, pre
+                    pre.update(cur)
+                    sub[j] = set()
+                    if ans[j] > x:
+                        x = ans[j]
+                while x in pre:
+                    x += 1
+                ans[i] = x
+                sub[i] = pre
+        return ans
+
+    @staticmethod
     def lc_2458(root, queries: List[int]) -> List[int]:
         # 模板：经典类似换根 DP 的思想跑两遍 DFS
         def dfs(node, d):
