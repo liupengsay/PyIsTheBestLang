@@ -3,7 +3,7 @@ from typing import List
 
 
 class DirectedEulerPath:
-    def __init__(self, n, pairs: List[int]):
+    def __init__(self, n, pairs: List[List[int]]):
         self.n = n
         # directed edge
         self.pairs = pairs

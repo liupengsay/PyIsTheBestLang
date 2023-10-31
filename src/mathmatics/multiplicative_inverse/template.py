@@ -7,6 +7,7 @@ class MultiplicativeInverse:
 
     @staticmethod
     def compute_with_api(a, p):
+        assert math.gcd(a, p) == 1
         return pow(a, -1, p)
 
     def ex_gcd(self, a, b):
@@ -21,5 +22,4 @@ class MultiplicativeInverse:
         # necessary and sufficient conditions for solving inverse elements
         assert math.gcd(a, p) == 1
         x, y, q = self.ex_gcd(a, p)
-        assert q != 1
         return (x + p) % p  # pow(a, -1, p)

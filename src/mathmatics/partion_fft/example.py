@@ -7,7 +7,7 @@ from src.mathmatics.partion_fft.question import fft_v
 
 class TestGeneral(unittest.TestCase):
     def test_euler_phi(self):
-        x = np.array([3, 1, 2])
+        x = np.array([[3, 1, 2, 4]])
         # 调用fft函数计算x的FFT
         x_fft = fft_v(x)
 

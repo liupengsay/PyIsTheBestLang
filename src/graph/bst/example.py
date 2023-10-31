@@ -2,7 +2,7 @@ import random
 import time
 import unittest
 
-from src.graph.bst.template import BST
+from src.graph.bst.template import BST, BinarySearchTreeByArray
 from src.utils.fast_io import FastIO
 
 

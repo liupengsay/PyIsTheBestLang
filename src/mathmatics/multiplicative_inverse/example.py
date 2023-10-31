@@ -10,7 +10,9 @@ class TestGeneral(unittest.TestCase):
     def test_multiplicative_inverse(self):
         mt = MultiplicativeInverse()
         assert mt.mod_reverse(10, 13) == 4
+        assert mt.compute_with_api(10, 13) == 4
         assert mt.mod_reverse(10, 1) == 0
+        assert mt.compute_with_api(10, 1) == 0
         mod = 10**9 + 7
         for _ in range(1000):
             num = random.randint(1, 10**9)

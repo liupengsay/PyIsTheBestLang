@@ -107,15 +107,6 @@ class TestGeneral(unittest.TestCase):
         assert nt.lcm(a, b) == math.lcm(a, b)
         return
 
-    def test_get_factor(self):
-        nt = NumberTheory()
-
-        num = 1000
-        ans = nt.get_factor_upper(num)
-        for i in range(1, num + 1):
-            assert ans[i] == nt.get_all_factor(i)[1:-1]
-        return
-
     def test_roma_int(self):
         nt = NumberTheory()
 

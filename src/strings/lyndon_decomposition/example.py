@@ -12,7 +12,7 @@ class TestGeneral(unittest.TestCase):
     def test_min_cyclic_string(self):
         ld = LyndonDecomposition()
         assert ld.min_cyclic_string("ababa") == "aabab"
-        assert ld.min_express("ababa") == "aabab"
+        assert ld.min_express("ababa")[1] == "aabab"
         return
 
 

@@ -13,7 +13,7 @@ class TestGeneral(unittest.TestCase):
         assert dt.is_valid_date("2023-02-28") is True
         assert dt.is_valid_date("0001-02-27") is True
 
-        res = dt.all_palidrome_date()
+        res = dt.all_palindrome_date()
         assert len(res) == 331
 
         assert dt.is_leap_year(2000) is True
