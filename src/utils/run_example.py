@@ -7,7 +7,7 @@ def run_example_files(path):
             if file == 'example.py':
                 file_path = os.path.join(root, file)
                 print(f"Running: {file_path}")
-                os.system(f"python3 {file_path}")  # 在命令行中运行 example.py 文件
+                os.system(f"python {file_path}")  # 在命令行中运行 example.py 文件
     return
 
 
