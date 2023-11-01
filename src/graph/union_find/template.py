@@ -46,7 +46,7 @@ class UnionFind:
             part[self.find(i)].append(i)
         return part
 
-    def get_root_size(self) -> DefaultDict[int]:
+    def get_root_size(self) -> DefaultDict[int, int]:
         # get the size of every root
         size = defaultdict(int)
         n = len(self.root)
