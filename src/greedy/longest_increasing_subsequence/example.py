@@ -2,7 +2,7 @@ import random
 import unittest
 from collections import defaultdict
 
-from src.greedy.length_of_lis.template import LongestIncreasingSubsequence, LcsLis
+from src.greedy.longest_increasing_subsequence.template import LongestIncreasingSubsequence, LcsLis
 
 
 class TestGeneral(unittest.TestCase):

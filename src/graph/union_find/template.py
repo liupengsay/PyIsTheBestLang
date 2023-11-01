@@ -38,7 +38,7 @@ class UnionFind:
     def is_connected(self, x, y):
         return self.find(x) == self.find(y)
 
-    def get_root_part(self) -> DefaultDict[List[int]]:
+    def get_root_part(self):
         # get the nodes list of every root
         part = defaultdict(list)
         n = len(self.root)

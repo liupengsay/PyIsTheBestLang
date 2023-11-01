@@ -4,7 +4,7 @@ from decimal import Decimal, getcontext, MAX_PREC
 from typing import List
 
 getcontext().prec = MAX_PREC
-sys.set_int_max_str_digits(0)  # important in leetcode big number!
+# sys.set_int_max_str_digits(0)  # important in leetcode big number!
 
 
 class HighPrecision:

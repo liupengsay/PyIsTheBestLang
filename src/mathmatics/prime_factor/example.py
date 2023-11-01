@@ -8,7 +8,7 @@ from math import inf
 from typing import List
 
 from src.utils.fast_io import FastIO
-from src.mathmatics.number_theory import NumberTheory
+from src.mathmatics.number_theory.template import NumberTheory
 
 
 class TestGeneral(unittest.TestCase):
