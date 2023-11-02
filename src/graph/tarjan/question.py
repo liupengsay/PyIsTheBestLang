@@ -39,6 +39,7 @@ E. Reachability from the Capital（https://codeforces.com/contest/999/problem/E�
 F. Unstable String Sort（https://codeforces.com/contest/1213/problem/F）使用SCC缩点后拓扑排序贪心
 G. How Many Paths?（https://codeforces.com/contest/1547/problem/G）使用SCC缩点后利用可达性建立新图，计算路径条数
 E. Split Into Two Sets（https://codeforces.com/contest/1702/problem/E）使用点双进行无向图找环，判断有无奇数环
+D. Lucky Permutation（https://codeforces.com/contest/1768/problem/D）置换环与tarjan求环
 
 ===================================AcWing===================================
 3579. 数字移动（https://www.acwing.com/problem/content/3582/）强连通分量模板题
