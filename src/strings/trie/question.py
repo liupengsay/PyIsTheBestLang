@@ -507,7 +507,7 @@ class Solution:
 
     @staticmethod
     def lc_421(nums: List[int]) -> int:
-        # 模板：求解数组最大的异或对
+        # 模板：求解数组最大的异或对，经典题，有更快解法
         trie = TrieZeroOneXorMax(32)
         ans = 0
         for num in nums:
@@ -515,6 +515,28 @@ class Solution:
             ans = ans if ans > cur else cur
             trie.add(num)
         return ans
+
+    @staticmethod
+    def lc_421_2(nums: List[int]) -> int:
+        # 模板：更快解法
+        res = 0
+        mask = 0
+        max_len = len(bin(max(nums))) - 2
+        # 最大长度不会超过最大值，异或的特性
+        for i in range(max_len - 1, -1, -1):
+            cur = 1 << i
+            mask = mask | cur
+            res |= cur
+            d = {}
+            find = 0
+            for num in nums:
+                d[num & mask] = 1
+                if (num & mask) ^ res in d:
+                    find = 1
+                    break
+            if not find:
+                res ^= 1 << i
+        return res
 
     @staticmethod
     def cf_282e(ac=FastIO()):
