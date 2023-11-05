@@ -1,5 +1,5 @@
 
-**Some Templates, Examples and Problems Of Data Structure and Algorithm**
+**Some Templates, Examples and Problems Of Data Structure and Algorithm Powered by Python3**
 ***
 # Overview
 This project is orgnaized by the following structure
@@ -16,16 +16,17 @@ This project is orgnaized by the following structure
 >>> **example.py** have some unit tests of the related templates
 >>> **problem.py** have some problems which can be solved by the related 
 
-
 > **tests** serve as work space during competitions
 > > **codeforces** prepared for the oj on which you need to handle input and output yourself
 > > **leetcode** prepared for leetcode
 >>> **template.py** is a available template for copy and paste before starting to solve the problem
 
+***
 # Profile
 Welcome to follow or star in my profile in different platform
 ## leetcode
-[liupengsay](https://leetcode.cn/u/liupengsay/)        
+[liupengsay](https://leetcode.cn/u/liupengsay/)
+
 [PyIsTheBestLang](https://leetcode.cn/u/pyisthebestlang/)
 
 ## codeforces
@@ -43,4 +44,4 @@ Welcome to follow or star in my profile in different platform
 [PyIsTheBestLang](https://www.luogu.com.cn/user/1184053)
 
 ***
-Thanks for Reading and Good Luck on Training！
+**Thanks for Reading, and Good Luck on Training！**
