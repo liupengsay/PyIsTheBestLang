@@ -1,202 +1,145 @@
 
-<font size=20>**疯狂的数据结构与算法**</font>
-***
-![liupengsay](https://github.com/liupengsay/Algorithm/blob/main/algorithm/picture/title_liupengsay.png?raw=true)
-***
+<font size=10>**Some Templates and Problems Of Data Structure and Algorithm**</font>
 
-- [1. 基础](#1-基础)
-  - [1.1. 二分查找](#11-二分查找)
-  - [1.2. 循环节](#12-循环节)
-  - [1.3. 构造](#13-构造)
-  - [1.4. 日期](#14-日期)
-  - [1.5. 差分数组](#15-差分数组)
-  - [1.6. 哈希](#16-哈希)
-  - [1.7. 区间](#17-区间)
-  - [1.8. 递归](#18-递归)
-  - [1.9. 模拟](#19-模拟)
-  - [1.10. 栈](#110-栈)
-  - [1.11. 三分查找](#111-三分查找)
-  - [1.12. 双指针](#112-双指针)
-  - [1.13. 排序](#113-排序)
-  - [1.14. 枚举](#114-枚举)
-- [2. 数据结构](#2-数据结构)
-  - [2.1. 位集](#21-位集)
-  - [2.2. 分块](#22-分块)
-  - [2.3. 链表](#23-链表)
-  - [2.4. 单调栈](#24-单调栈)
-  - [2.5. 优先队列](#25-优先队列)
-  - [2.6. 堆](#26-堆)
-  - [2.7. 线段树](#27-线段树)
-  - [2.8. 有序列表](#28-有序列表)
-  - [2.9. 稀疏表](#29-稀疏表)
-  - [2.10. 树状数组](#210-树状数组)
-- [3. 动态规划](#3-动态规划)
-  - [3.1. 背包DP](#31-背包dp)
-  - [3.2. 环形DP](#32-环形dp)
-  - [3.3. 数位DP](#33-数位dp)
-  - [3.4. 博弈DP](#34-博弈dp)
-  - [3.5. 区间DP](#35-区间dp)
-  - [3.6. 线性DP](#36-线性dp)
-  - [3.7. 矩阵DP](#37-矩阵dp)
-  - [3.8. 概率DP](#38-概率dp)
-  - [3.9. 状压DP](#39-状压dp)
-  - [3.10. 树形DP](#310-树形dp)
-- [4. 图论](#4-图论)
-  - [4.1. 二分图匹配](#41-二分图匹配)
-  - [4.2. 平衡二叉搜索树](#42-平衡二叉搜索树)
-  - [4.3. Dijkstra单源最短路](#43-dijkstra单源最短路)
-  - [4.4. 支配树](#44-支配树)
-  - [4.5. 欧拉路径](#45-欧拉路径)
-  - [4.6. Floyd多源最短路](#46-floyd多源最短路)
-  - [4.7. 最近公共祖先](#47-最近公共祖先)
-  - [4.8. 最小生成树](#48-最小生成树)
-  - [4.9. 强连通分量](#49-强连通分量)
-  - [4.10. SPFA最短路](#410-spfa最短路)
-  - [4.11. Tarjan点边双连通](#411-tarjan点边双连通)
-  - [4.12. 拓扑排序](#412-拓扑排序)
-  - [4.13. 并查集](#413-并查集)
-- [5. 贪心](#5-贪心)
-  - [5.1. 脑筋急转弯](#51-脑筋急转弯)
-  - [5.2. 最长递增子序列](#52-最长递增子序列)
-- [6. 数学](#6-数学)
-  - [6.1. 位运算](#61-位运算)
-  - [6.2. 康托展开](#62-康托展开)
-  - [6.3. 组合数](#63-组合数)
-  - [6.4. 凸包](#64-凸包)
-  - [6.5. 中国剩余定理](#65-中国剩余定理)
-  - [6.6. 扩展gcd](#66-扩展gcd)
-  - [6.7. 快速幂](#67-快速幂)
-  - [6.8. 集合](#68-集合)
-  - [6.9. 高精度](#69-高精度)
-  - [6.10. 字典序](#610-字典序)
-  - [6.11. 线性基](#611-线性基)
-  - [6.12. 乘法逆元](#612-乘法逆元)
-  - [6.13. 数论](#613-数论)
-  - [6.14. 裴蜀定理](#614-裴蜀定理)
-- [7. 搜索](#7-搜索)
-  - [7.1. 广度优先搜索](#71-广度优先搜索)
-  - [7.2. 深度优先搜索](#72-深度优先搜索)
-  - [7.3. 折半搜索](#73-折半搜索)
-- [8. 字符串](#8-字符串)
-  - [8.1. AC自动机](#81-ac自动机)
-  - [8.2. 表达式求解](#82-表达式求解)
-  - [8.3. KMP](#83-kmp)
-  - [8.4. 马拉车](#84-马拉车)
-  - [8.5. 回文数字](#85-回文数字)
-  - [8.6. 字符串哈希](#86-字符串哈希)
-  - [8.7. 后缀数组](#87-后缀数组)
-  - [8.8. 字典树](#88-字典树)
-- [9. 参考](#9-参考)
-- [10. 力扣周赛双周赛题解](#10-力扣周赛双周赛题解)
-- [11. 附录](#11-附录)
-
-
-***
-
-# 1. 基础
-## 1.1. 二分查找
-## 1.2. 循环节
-## 1.3. 构造
-
-## 1.4. 日期
-## 1.5. 差分数组
-## 1.6. 哈希
-## 1.7. 区间
-## 1.8. 递归
-## 1.9. 模拟
-## 1.10. 栈
-## 1.11. 三分查找
-## 1.12. 双指针
-## 1.13. 排序
-## 1.14. 枚举
-# 2. 数据结构
-## 2.1. 位集
-## 2.2. 分块
-## 2.3. 链表
-## 2.4. 单调栈
-## 2.5. 优先队列
-## 2.6. 堆
-## 2.7. 线段树
-## 2.8. 有序列表
-## 2.9. 稀疏表
-## 2.10. 树状数组
-# 3. 动态规划
-## 3.1. 背包DP
-## 3.2. 环形DP
-## 3.3. 数位DP
-## 3.4. 博弈DP
-## 3.5. 区间DP
-## 3.6. 线性DP
-## 3.7. 矩阵DP
-## 3.8. 概率DP
-## 3.9. 状压DP
-## 3.10. 树形DP
-# 4. 图论
-## 4.1. 二分图匹配
-## 4.2. 平衡二叉搜索树
-## 4.3. Dijkstra单源最短路
-## 4.4. 支配树
-## 4.5. 欧拉路径
-## 4.6. Floyd多源最短路
-## 4.7. 最近公共祖先
-## 4.8. 最小生成树
-## 4.9. 强连通分量
-## 4.10. SPFA最短路
-## 4.11. Tarjan点边双连通
-## 4.12. 拓扑排序
-## 4.13. 并查集
-# 5. 贪心
-## 5.1. 脑筋急转弯
-## 5.2. 最长递增子序列
-# 6. 数学
-## 6.1. 位运算
-## 6.2. 康托展开
-## 6.3. 组合数
-## 6.4. 凸包
-## 6.5. 中国剩余定理
-## 6.6. 扩展gcd
-## 6.7. 快速幂
-## 6.8. 集合
-## 6.9. 高精度
-## 6.10. 字典序
-## 6.11. 线性基
-## 6.12. 乘法逆元
-## 6.13. 数论
-## 6.14. 裴蜀定理
-
-# 7. 搜索
-## 7.1. 广度优先搜索
-## 7.2. 深度优先搜索
-## 7.3. 折半搜索
-
-# 8. 字符串
-## 8.1. AC自动机
-## 8.2. 表达式求解
-## 8.3. KMP
-## 8.4. 马拉车
-## 8.5. 回文数字
-## 8.6. 字符串哈希
-## 8.7. 后缀数组
-## 8.8. 字典树
-
-# 9. 参考
-
-# 10. 力扣周赛双周赛题解
+# Overview
+This project is orgnaized by the following structure
+> <font size=8>src</font> serve as template records for training
+> ><font size=6>basis</font> are some basic usage of date structure and algorithm
+> ><font size=6>data_strcuture</font> are some commonly used data structures
+> ><font size=6>dp</font> are summaries of dynamic programming
+> ><font size=6>graph</font> are some simple and classic graph theory algorithms 
+> ><font size=6>greedy</font> are some classic greedy problems
+> ><font size=6>mathmatics</font> are mathematics related algorithms
+>> <font size=6>search</font> are bfs, dfs and meet in middle
+>> <font size=6>strings</font> are some classic usages of strings
+>>> <font size=5>template.py</font> have some data structure and algorithm templates
+>>> <font size=5>example.py</font> have some unit tests of the related templates
+>>> <font size=5>problem.py</font> have some problems which can be solved by the related 
 
 
 
-# 11. 附录
+> <font size=8>tests</font> serve as work space during competitions
+> > <font size=6>codeforces</font> prepared for the oj on which you need to handle input and output yourself
+> > <font size=6>leetcode</font> prepared for leetcode
+>>> <font size=5>template.py</font> is a available template for copy and paste before starting to solve the problem
 
-<font size=5>**力扣个人主页**</font>
+# Template
+## src
+### src.basis
+#### src.basis.binary_search
+#### src.basis.circular_section
+#### src.basis.construction
+#### src.basis.date
+#### src.basis.diff_array
+#### src.basis.hash
+#### src.basis.interactive
+#### src.basis.performance
+#### src.basis.range
+#### src.basis.recursion
+#### src.basis.serialization
+#### src.basis.simulation
+#### src.basis.stack
+#### src.basis.tree_node
+#### src.basis.tripart_search
+#### src.basis.two_pointer
+#### src.basis.various_sort
+#### src.basis.violent_enumeration
+### src.data_structure
+#### src.data_structure.associative_array
+#### src.data_structure.bit_set
+#### src.data_structure.block_size
+#### src.data_structure.linked_list
+#### src.data_structure.list_node
+#### src.data_structure.monotonic_stack
+#### src.data_structure.priority_queue
+#### src.data_structure.segment_tree
+#### src.data_structure.small_heapq
+#### src.data_structure.sorted_list
+#### src.data_structure.sparse_table
+#### src.data_structure.tree_array
+### src.dp
+#### src.dp.bag_dp
+#### src.dp.circle_dp
+#### src.dp.digital_dp
+#### src.dp.game_dp
+#### src.dp.interval_dp
+#### src.dp.linear_dp
+#### src.dp.matrix_dp
+#### src.dp.outline_dp
+#### src.dp.prob_dp
+#### src.dp.state_dp
+#### src.dp.tree_dp
+### src.graph
+#### src.graph.bigraph_weighted_match
+#### src.graph.bst
+#### src.graph.dijkstra
+#### src.graph.dominating_tree
+#### src.graph.euler_path
+#### src.graph.floyd
+#### src.graph.lca
+#### src.graph.lgv
+#### src.graph.minimum_spanning_tree
+#### src.graph.prufer
+#### src.graph.scc
+#### src.graph.spfa
+#### src.graph.tarjan
+#### src.graph.topological_sort
+#### src.graph.union_find
+### src.greedy
+#### src.greedy.brain_storming
+#### src.greedy.longest_increasing_subsequence
+### src.mathmatics
+#### src.mathmatics.bit_operation
+#### src.mathmatics.cantor_expands
+#### src.mathmatics.comb_perm
+#### src.mathmatics.convex_hull
+#### src.mathmatics.extend_crt
+#### src.mathmatics.extend_gcd
+#### src.mathmatics.fast_power
+#### src.mathmatics.geometry
+#### src.mathmatics.high_precision
+#### src.mathmatics.lexico_graphical_order
+#### src.mathmatics.linear_basis
+#### src.mathmatics.multiplicative_inverse
+#### src.mathmatics.nim_game
+#### src.mathmatics.number_theory
+#### src.mathmatics.partion_fft
+#### src.mathmatics.peishu_theorem
+#### src.mathmatics.prime_factor
+#### src.mathmatics.scan_line
+### src.search
+#### src.search.bfs
+#### src.search.dfs
+#### src.search.half_search
+### src.strings
+#### src.strings.ac_auto_machine
+#### src.strings.expression
+#### src.strings.kmp
+#### src.strings.lyndon_decomposition
+#### src.strings.manacher_palindrome
+#### src.strings.palindrome_num
+#### src.strings.string_hash
+#### src.strings.suffix_array
+#### src.strings.trie
+### src.utils
+## tests
+### tests.codeforces
+### tests.leetcode
 
-[![力扣个人主页](https://github.com/liupengsay/Algorithm/blob/main/algorithm/picture/leetcode_liupengsay.png?raw=true)](https://leetcode.cn/u/liupengsay/)
+# Profile
+Welcome to follow or star in my profile in different platform
+## leetcode
 
+https://leetcode.cn/u/liupengsay/
+https://leetcode.cn/u/pyisthebestlang/
+## codeforces
+https://codeforces.com/profile/liupengsay
+https://codeforces.com/profile/PyIsTheBestLang
+## atcoder
+https://atcoder.jp/users/liupengsay
+https://atcoder.jp/users/PyIsTheBestLang
+## luogu
+https://www.luogu.com.cn/user/739032
+https://www.luogu.com.cn/user/1184053
 
-<font size=5>**CF个人主页**</font>
-
-[![CF个人主页](https://github.com/liupengsay/Algorithm/blob/main/algorithm/picture/codeforces_liupengsay.png?raw=true)](https://codeforces.com/profile/liupengsay)
-
-
-<font size=5>**洛谷个人主页**</font>
-
-[![洛谷个人主页](https://github.com/liupengsay/Algorithm/blob/main/algorithm/picture/luogu_liupengsay.png?raw=true)](https://www.luogu.com.cn/user/739032/)
+# Thanks for Reading and Good Luck on Training！
