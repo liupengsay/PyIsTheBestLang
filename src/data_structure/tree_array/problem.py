@@ -4,6 +4,7 @@ from typing import List
 
 from sortedcontainers import SortedList
 
+from src.data_structure.segment_tree.template import RangeAscendRangeMax
 from src.data_structure.sorted_list.template import LocalSortedList
 from src.data_structure.tree_array.template import PointAddRangeSum, PointDescendPreMin, RangeAddRangeSum, \
     PointAscendPreMax, PointAscendRangeMax, PointAddRangeSum2D, RangeAddRangeSum2D, PointXorRangeXor, \
@@ -25,6 +26,7 @@ from src.utils.fast_io import FastIO
 1505. 最多 K 次交换相邻数位后得到的最小整数（https://leetcode.cn/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/）经典树状数组模拟计数移动，也可以使用SortedList
 2193. 得到回文串的最少操作次数（https://leetcode.cn/problems/minimum-number-of-moves-to-make-palindrome/description/）使用树状数组贪心模拟交换构建回文串，相同题目（P5041求回文串）
 2407. 最长递增子序列 II（https://leetcode.cn/problems/longest-increasing-subsequence-ii/description/）树状数组加线性DP
+100112. 平衡子序列的最大和（https://leetcode.cn/problems/maximum-balanced-subsequence-sum/）离散化树状数组加线性DP
 
 ===================================洛谷===================================
 P2068 统计和（https://www.luogu.com.cn/problem/P2068）单点更新与区间求和
@@ -90,6 +92,55 @@ class Solution:
                 ind = dfs_euler.start[u]
                 tree.point_add(ind + 1, x)
         return
+
+    @staticmethod
+    def lc_100112_1(nums: List[int]) -> int:
+        # 树状数组（单点持续更新为更大值）（区间查询最大值）2380ms
+        n = len(nums)
+        tmp = [nums[i] - i for i in range(n)]
+        ind = sorted(list(set(tmp)))
+        dct = {x: i for i, x in enumerate(ind)}
+        tree = PointAscendRangeMax(n, -inf)
+        for j in range(n):
+            num = nums[j]
+            i = dct[num - j]
+            pre = tree.range_max(1, i + 1) if i + 1 >= 1 else 0
+            pre = 0 if pre < 0 else pre
+            tree.point_ascend(i + 1, pre + num)
+        return tree.range_max(1, n)
+
+    @staticmethod
+    def lc_100112_2(nums: List[int]) -> int:
+        # 树状数组（单点持续更新为更大值）（前缀区间查询最大值）1748ms
+        n = len(nums)
+        tmp = [nums[i] - i for i in range(n)]
+        ind = sorted(list(set(tmp)))
+        dct = {x: i for i, x in enumerate(ind)}
+        tree = PointAscendPreMax(n)
+        for j in range(n):
+            num = nums[j]
+            i = dct[num - j]
+            pre = tree.pre_max(i + 1)
+            pre = 0 if pre < 0 else pre
+            tree.point_ascend(i + 1, pre + num)
+        return tree.pre_max(n)
+
+    @staticmethod
+    def lc_100112_3(nums: List[int]) -> int:
+        # 线段树（单点持续更新为更大值）（区间查询最大值）7980ms
+        n = len(nums)
+        tmp = [nums[i] - i for i in range(n)]
+        ind = sorted(list(set(tmp)))
+        dct = {x: i for i, x in enumerate(ind)}
+        tree = RangeAscendRangeMax(n)
+        for j in range(n):
+            num = nums[j]
+            i = dct[num - j]
+            pre = tree.range_max(0, i)
+            pre = 0 if pre < 0 else pre
+            tree.range_ascend(i, i, pre + num)
+        ans = tree.range_max(0, n - 1)
+        return ans
 
     @staticmethod
     def lg_5094(ac=FastIO()):
