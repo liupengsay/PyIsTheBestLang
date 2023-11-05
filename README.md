@@ -1,6 +1,6 @@
 
 ***
-# Some Templates, Examples and Problems Of Data Structure and Algorithm
+# Templates, Examples and Problems Of Data Structure and Algorithm
 ***
 # Overview
 This project is orgnaized by the following structure
