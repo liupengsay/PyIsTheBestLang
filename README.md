@@ -4,26 +4,26 @@
 ***
 # Overview
 This project is orgnaized by the following structure
-> **src** serve as template records for training
-> >**basis** are some basic usage of date structure and algorithm
+> **[src](https://github.com/liupengsay/PyIsTheBestLang/tree/main/src)** serve as template records for training
+> >**[basis](https://github.com/liupengsay/PyIsTheBestLang/tree/main/src/basis)** are some basic usage of date structure and algorithm
 
-> >**data_strcuture** are some commonly used data structures
+> >**[data_strcuture](https://github.com/liupengsay/PyIsTheBestLang/tree/main/src/data_strcuture)** are some commonly used data structures
 
-> >**dp** are summaries of dynamic programming
-
-
-> >**graph** are some simple and classic graph theory algorithms 
+> >**[dp](https://github.com/liupengsay/PyIsTheBestLang/tree/main/src/dp)** are summaries of dynamic programming
 
 
-> >**greedy** are some classic greedy problems
+> >**[graph](https://github.com/liupengsay/PyIsTheBestLang/tree/main/src/graph)** are some simple and classic graph theory algorithms 
 
 
-> >**mathmatics** are mathematics related algorithms
+> >**[greedy](https://github.com/liupengsay/PyIsTheBestLang/tree/main/src/greedy)** are some classic greedy problems
 
 
->> **search** are bfs, dfs and meet in middle
+> >**[mathmatics](https://github.com/liupengsay/PyIsTheBestLang/tree/main/src/mathmatics)** are mathematics related algorithms
 
->> **strings** are some classic usages of strings
+
+>> **[search](https://github.com/liupengsay/PyIsTheBestLang/tree/main/src/search)** are bfs, dfs and meet in middle
+
+>> **[strings](https://github.com/liupengsay/PyIsTheBestLang/tree/main/src/strings)** are some classic usages of strings
 
 >>> **template.py** have some data structure and algorithm templates
 
@@ -37,11 +37,11 @@ This project is orgnaized by the following structure
 
 
 
-> **tests** serve as work space during competitions
+> **[tests](https://github.com/liupengsay/PyIsTheBestLang/tree/main/tests)** serve as work space during competitions
 
-> > **codeforces** prepared for codeforces, luogu, atcoder, acwing and so on
+> > **[codeforces](https://github.com/liupengsay/PyIsTheBestLang/tree/main/tests/codeforces)** prepared for codeforces, luogu, atcoder, acwing and so on
 
-> > **leetcode** prepared for leetcode only
+> > **[leetcode](https://github.com/liupengsay/PyIsTheBestLang/tree/main/tests/leetcode)** prepared for leetcode only
 
 >>> **template.py** is a template for copy and paste before starting to solve the problem
 
