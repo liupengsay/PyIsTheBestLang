@@ -47,7 +47,7 @@ This project is orgnaized by the following structure
 
 ***
 # Profile
-Welcome to follow or star in my profile in different platform
+Welcome to follow or star in my profile on different platform
 > leetcode
 >> [liupengsay](https://leetcode.cn/u/liupengsay/)
 >> [PyIsTheBestLang](https://leetcode.cn/u/pyisthebestlang/)
