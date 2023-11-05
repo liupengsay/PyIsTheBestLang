@@ -8,7 +8,6 @@ This project is orgnaized by the following structure
 
 > >**basis** are some basic usage of date structure and algorithm
 
-
 > >**data_strcuture** are some commonly used data structures
 
 
