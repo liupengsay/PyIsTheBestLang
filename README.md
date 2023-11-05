@@ -48,5 +48,5 @@ Welcome to follow or star in my profile in different platform
 [PyIsTheBestLang](https://www.luogu.com.cn/user/1184053)
 
 ***
-# Thanks for Reading, and Good Luck on Training！
+## Thanks for Reading, and Good Luck on Training
 ***
