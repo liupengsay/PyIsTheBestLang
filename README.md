@@ -48,23 +48,10 @@ This project is orgnaized by the following structure
 ***
 # Profile
 Welcome to follow or star in my profile on different platform
-> leetcode
->> [liupengsay](https://leetcode.cn/u/liupengsay/)
->> [PyIsTheBestLang](https://leetcode.cn/u/pyisthebestlang/)
-
-> codeforces
->> [liupengsay](https://codeforces.com/profile/liupengsay)
->> [PyIsTheBestLang](https://codeforces.com/profile/PyIsTheBestLang)
-
-
-> atcoder
->> [liupengsay](https://atcoder.jp/users/liupengsay)
->> [PyIsTheBestLang](https://atcoder.jp/users/PyIsTheBestLang)
-
-
-> luogu
->> [liupengsay](https://www.luogu.com.cn/user/739032)
->> [PyIsTheBestLang](https://www.luogu.com.cn/user/1184053)
+> [leetcode](https://leetcode.cn/u/liupengsay/)
+> [codeforces](https://codeforces.com/profile/liupengsay)
+> [atcoder](https://atcoder.jp/users/liupengsay)
+> [luogu](https://www.luogu.com.cn/user/739032)
 
 ***
 ## Thanks for Reading, and Good Luck on Training
