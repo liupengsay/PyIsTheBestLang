@@ -57,6 +57,7 @@ G. Orray（https://codeforces.com/contest/1742/problem/G）重排数组使得前
 F. Lisa and the Martians（https://codeforces.com/contest/1851/problem/F）经典数组的最小异或对，一定是排序后相邻的数
 D. Sum of XOR Functions（https://codeforces.com/contest/1879/problem/D）经典按位计算贡献与前缀和计数与前缀下标加和
 D. AND, OR and square sum（https://codeforces.com/problemset/problem/1368/D）经典按位模拟贪心
+C. The Very Beautiful Blanket（https://codeforces.com/contest/1802/problem/C）construction with the property of xor
 
 ================================AtCoder================================
 D - XXOR（https://atcoder.jp/contests/abc117/tasks/abc117_d）从高位到低位按位贪心，思维题
