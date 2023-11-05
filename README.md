@@ -5,12 +5,8 @@
 # Overview
 This project is orgnaized by the following structure
 > **src** serve as template records for training
-
 > >**basis** are some basic usage of date structure and algorithm
-
 > >**data_strcuture** are some commonly used data structures
-
-
 > >**dp** are summaries of dynamic programming
 
 
