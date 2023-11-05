@@ -70,6 +70,183 @@ class Solution:
         return
 
     @staticmethod
+    def lc_1626(scores: List[int], ages: List[int]) -> int:
+        # 模板：动态规划与树状数组维护前缀最大值
+        n = max(ages)
+        tree_array = PointAscendPreMax(n)
+        for score, age in sorted(zip(scores, ages)):
+            cur = tree_array.pre_max(age) + score
+            tree_array.point_ascend(age, cur)
+        return tree_array.pre_max(n)
+
+    @staticmethod
+    def lc_2193_1(s: str) -> int:
+        # 模板：使用树状数组贪心模拟交换构建回文串
+
+        n = len(s)
+        lst = list(s)
+        ans = 0
+        dct = defaultdict(deque)
+        for i in range(n):
+            dct[lst[i]].append(i)
+        tree = PointAddRangeSum(n)
+        i, j = 0, n - 1
+        while i < j:
+            if lst[i] == "":
+                i += 1
+                continue
+            if lst[j] == "":
+                j -= 1
+                continue
+            if lst[i] == lst[j]:
+                dct[lst[i]].popleft()
+                dct[lst[j]].pop()
+                i += 1
+                j -= 1
+                continue
+
+            if len(dct[lst[j]]) >= 2:
+                left = dct[lst[j]][0]
+                ans += left - i - tree.range_sum(i + 1, left + 1)
+                x = dct[lst[j]].popleft()
+                dct[lst[j]].pop()
+                lst[x] = ""
+                tree.point_add(x + 1, 1)
+                j -= 1
+            else:
+                right = dct[lst[i]][-1]
+                ans += j - right - tree.range_sum(right + 1, j + 1)
+                x = dct[lst[i]].pop()
+                dct[lst[i]].popleft()
+                tree.point_add(x + 1, 1)
+                lst[x] = ""
+                i += 1
+        return ans
+
+    @staticmethod
+    def lc_2193_2(s: str) -> int:
+        # 模板：使用字符串特性贪心模拟交换构建回文串
+        n = len(s)
+        ans = 0
+        for _ in range(n // 2):
+            j = s.rindex(s[0])
+            if j == 0:
+                i = s.index(s[-1])
+                ans += i
+                s = s[:i] + s[i + 1:-1]
+            else:
+                ans += len(s) - 1 - j
+                s = s[1:j] + s[j + 1:]
+
+        return ans
+
+    @staticmethod
+    def lc_2407(nums: List[int], k: int) -> int:
+        # 模板：树状数组加线性DP
+        n = max(nums)
+        ans = 0
+        tree = PointAscendRangeMax(n)
+        tree.ceil = [0] * (n + 1)
+        tree.floor = [0] * (n + 1)
+        for num in nums:
+            low = num - k
+            high = num - 1
+            if low < 1:
+                low = 1
+            if low <= high:
+                cur = tree.range_max(low, high)
+                cur += 1
+            else:
+                cur = 1
+            if cur > ans:
+                ans = cur
+            tree.point_ascend(num, cur)
+        return ans
+
+    @staticmethod
+    def lc_2659(nums: List[int]) -> int:
+        # 模板：经典模拟删除，可以使用树状数组也可以使用SortedList也可以使用贪心
+        n = len(nums)
+        ans = 0
+        pre = 1
+        dct = {num: i + 1 for i, num in enumerate(nums)}
+        tree = PointAddRangeSum(n)
+        for num in sorted(nums):
+            i = dct[num]
+            if pre <= i:
+                ans += i - pre + 1 - tree.range_sum(pre, i)
+            else:
+                ans += n - pre + 1 - tree.range_sum(pre, n) + i - 1 + 1 - tree.range_sum(1, i)
+            tree.point_add(i, 1)
+            pre = i
+        return ans
+
+    @staticmethod
+    def lc_6353(grid: List[List[int]]) -> int:
+        n, m = len(grid), len(grid[0])
+        dp = [[inf] * m for _ in range(n)]
+        r, c = [PointDescendPreMin(m) for _ in range(n)], [PointDescendPreMin(n) for _ in range(m)]
+        dp[n - 1][m - 1] = 1
+        for i in range(n - 1, -1, -1):
+            for j in range(m - 1, -1, -1):
+                if grid[i][j] > 0:
+                    dp[i][j] = min(r[i].pre_min(min(j + grid[i][j] + 1, m)),
+                                   c[j].pre_min(min(i + grid[i][j] + 1, n))) + 1
+                if dp[i][j] <= n * m:
+                    r[i].point_descend(j + 1, dp[i][j])
+                    c[j].point_descend(i + 1, dp[i][j])
+        return -1 if dp[0][0] > n * m else dp[0][0]
+
+    @staticmethod
+    def lc_100112_1(nums: List[int]) -> int:
+        # 树状数组（单点持续更新为更大值）（区间查询最大值）2380ms
+        n = len(nums)
+        tmp = [nums[i] - i for i in range(n)]
+        ind = sorted(list(set(tmp)))
+        dct = {x: i for i, x in enumerate(ind)}
+        tree = PointAscendRangeMax(n, -inf)
+        for j in range(n):
+            num = nums[j]
+            i = dct[num - j]
+            pre = tree.range_max(1, i + 1) if i + 1 >= 1 else 0
+            pre = 0 if pre < 0 else pre
+            tree.point_ascend(i + 1, pre + num)
+        return tree.range_max(1, n)
+
+    @staticmethod
+    def lc_100112_2(nums: List[int]) -> int:
+        # 树状数组（单点持续更新为更大值）（前缀区间查询最大值）1748ms
+        n = len(nums)
+        tmp = [nums[i] - i for i in range(n)]
+        ind = sorted(list(set(tmp)))
+        dct = {x: i for i, x in enumerate(ind)}
+        tree = PointAscendPreMax(n)
+        for j in range(n):
+            num = nums[j]
+            i = dct[num - j]
+            pre = tree.pre_max(i + 1)
+            pre = 0 if pre < 0 else pre
+            tree.point_ascend(i + 1, pre + num)
+        return tree.pre_max(n)
+
+    @staticmethod
+    def lc_100112_3(nums: List[int]) -> int:
+        # 线段树（单点持续更新为更大值）（区间查询最大值）7980ms
+        n = len(nums)
+        tmp = [nums[i] - i for i in range(n)]
+        ind = sorted(list(set(tmp)))
+        dct = {x: i for i, x in enumerate(ind)}
+        tree = RangeAscendRangeMax(n)
+        for j in range(n):
+            num = nums[j]
+            i = dct[num - j]
+            pre = tree.range_max(0, i)
+            pre = 0 if pre < 0 else pre
+            tree.range_ascend(i, i, pre + num)
+        ans = tree.range_max(0, n - 1)
+        return ans
+
+    @staticmethod
     def lib_c(ac=FastIO()):
         """template of vertex add subtree sum"""
         n, q = ac.read_list_ints()
@@ -184,21 +361,6 @@ class Solution:
         return
 
     @staticmethod
-    def lc_6353(grid: List[List[int]]) -> int:
-        n, m = len(grid), len(grid[0])
-        dp = [[inf] * m for _ in range(n)]
-        r, c = [PointDescendPreMin(m) for _ in range(n)], [PointDescendPreMin(n) for _ in range(m)]
-        dp[n - 1][m - 1] = 1
-        for i in range(n - 1, -1, -1):
-            for j in range(m - 1, -1, -1):
-                if grid[i][j] > 0:
-                    dp[i][j] = min(r[i].pre_min(min(j + grid[i][j] + 1, m)), c[j].pre_min(min(i + grid[i][j] + 1, n))) + 1
-                if dp[i][j] <= n * m:
-                    r[i].point_descend(j + 1, dp[i][j])
-                    c[j].point_descend(i + 1, dp[i][j])
-        return -1 if dp[0][0] > n * m else dp[0][0]
-
-    @staticmethod
     def cf_1311f(ac=FastIO()):
         # 模板：经典两个离散化树状数组，计数与加和
         n = ac.read_int()
@@ -252,16 +414,6 @@ class Solution:
             else:
                 ac.st(tree.range_sum(a, b))
         return
-
-    @staticmethod
-    def lc_1626(scores: List[int], ages: List[int]) -> int:
-        # 模板：动态规划与树状数组维护前缀最大值
-        n = max(ages)
-        tree_array = PointAscendPreMax(n)
-        for score, age in sorted(zip(scores, ages)):
-            cur = tree_array.pre_max(age) + score
-            tree_array.point_ascend(age, cur)
-        return tree_array.pre_max(n)
 
     @staticmethod
     def lg_p1816(ac=FastIO()):
@@ -511,108 +663,6 @@ class Solution:
                     else:
                         ac.st(tree_even.range_xor(left, right))
         return
-
-    @staticmethod
-    def lc_2193_1(s: str) -> int:
-        # 模板：使用树状数组贪心模拟交换构建回文串
-
-        n = len(s)
-        lst = list(s)
-        ans = 0
-        dct = defaultdict(deque)
-        for i in range(n):
-            dct[lst[i]].append(i)
-        tree = PointAddRangeSum(n)
-        i, j = 0, n - 1
-        while i < j:
-            if lst[i] == "":
-                i += 1
-                continue
-            if lst[j] == "":
-                j -= 1
-                continue
-            if lst[i] == lst[j]:
-                dct[lst[i]].popleft()
-                dct[lst[j]].pop()
-                i += 1
-                j -= 1
-                continue
-
-            if len(dct[lst[j]]) >= 2:
-                left = dct[lst[j]][0]
-                ans += left - i - tree.range_sum(i + 1, left + 1)
-                x = dct[lst[j]].popleft()
-                dct[lst[j]].pop()
-                lst[x] = ""
-                tree.point_add(x + 1, 1)
-                j -= 1
-            else:
-                right = dct[lst[i]][-1]
-                ans += j - right - tree.range_sum(right + 1, j + 1)
-                x = dct[lst[i]].pop()
-                dct[lst[i]].popleft()
-                tree.point_add(x + 1, 1)
-                lst[x] = ""
-                i += 1
-        return ans
-
-    @staticmethod
-    def lc_2193_2(s: str) -> int:
-        # 模板：使用字符串特性贪心模拟交换构建回文串
-        n = len(s)
-        ans = 0
-        for _ in range(n // 2):
-            j = s.rindex(s[0])
-            if j == 0:
-                i = s.index(s[-1])
-                ans += i
-                s = s[:i] + s[i + 1:-1]
-            else:
-                ans += len(s) - 1 - j
-                s = s[1:j] + s[j + 1:]
-
-        return ans
-
-    @staticmethod
-    def lc_2407(nums: List[int], k: int) -> int:
-        # 模板：树状数组加线性DP
-        n = max(nums)
-        ans = 0
-        tree = PointAscendRangeMax(n)
-        tree.ceil = [0] * (n + 1)
-        tree.floor = [0] * (n + 1)
-        for num in nums:
-            low = num - k
-            high = num - 1
-            if low < 1:
-                low = 1
-            if low <= high:
-                cur = tree.range_max(low, high)
-                cur += 1
-            else:
-                cur = 1
-            if cur > ans:
-                ans = cur
-            tree.point_ascend(num, cur)
-        return ans
-
-    @staticmethod
-    def lc_2659(nums: List[int]) -> int:
-        # 模板：经典模拟删除，可以使用树状数组也可以使用SortedList也可以使用贪心
-        n = len(nums)
-        ans = 0
-        pre = 1
-        dct = {num: i + 1 for i, num in enumerate(nums)}
-        tree = PointAddRangeSum(n)
-        for num in sorted(nums):
-            i = dct[num]
-            if pre <= i:
-                ans += i - pre + 1 - tree.range_sum(pre, i)
-            else:
-                ans += n - pre + 1 - tree.range_sum(pre, n) + i - 1 + 1 - tree.range_sum(1, i)
-            tree.point_add(i, 1)
-            pre = i
-        return ans
 
     @staticmethod
     def abc_127f(ac=FastIO()):
