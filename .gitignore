@@ -1,5 +1,2 @@
 /.pytest_cache/
-/.idea/*
-/algorithm/sample/*
-/machine_learning/src/data/
-/machine_learning/src/datasets/
+/.idea/
