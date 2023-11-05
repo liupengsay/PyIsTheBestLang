@@ -1,6 +1,6 @@
 
 ***
-# Some Templates, Examples and Problems Of Data Structure and Algorithm Powered by Python3
+# Some Templates, Examples and Problems Of Data Structure and Algorithm
 ***
 # Overview
 This project is orgnaized by the following structure
