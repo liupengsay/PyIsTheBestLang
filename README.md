@@ -1,7 +1,7 @@
 
-***
+
 # Templates, Examples and Problems Of Data Structure and Algorithm
-***
+
 # Overview
 This project is orgnaized by the following structure
 > **[src](https://github.com/liupengsay/PyIsTheBestLang/tree/main/src)** serve as template records for training
@@ -45,7 +45,7 @@ This project is orgnaized by the following structure
 
 >>> **template.py** is a template for copy and paste before starting to solve the problem
 
-***
+
 # Profile
 Welcome to follow or star in my profile on different platform
 > [leetcode](https://leetcode.cn/u/liupengsay/)
@@ -53,6 +53,5 @@ Welcome to follow or star in my profile on different platform
 > [atcoder](https://atcoder.jp/users/liupengsay)
 > [luogu](https://www.luogu.com.cn/user/739032)
 
-***
+
 ## Thanks for Reading, and Good Luck on Training
-***
