@@ -42,6 +42,7 @@ E. Number of Simple Paths（https://codeforces.com/contest/1454/problem/E）经�
 
 ==================================AtCoder=================================
 F - Well-defined Path Queries on a Namori（https://atcoder.jp/contests/abc266/）（无向图的内向基环树，求简单路径的树枝连通）
+最喜欢的数列（https://www.hackerrank.com/challenges/favourite-sequence/problem?isFullScreen=true）topological and heap for minimum lexi order
 
 ==================================AcWing=================================
 3696. 构造有向无环图（https://www.acwing.com/problem/content/description/3699/）经典bfs序即拓扑序与DAG构造
@@ -59,7 +60,6 @@ from math import inf
 from typing import List, Optional
 
 from src.basis.tree_node.template import TreeNode
-from src.dp.tree_dp.template import TreeDiameterInfo
 from src.graph.union_find.template import UnionFind
 from src.utils.fast_io import FastIO
 
