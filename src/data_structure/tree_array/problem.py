@@ -57,6 +57,7 @@ F. Range Update Point Query（https://codeforces.com/problemset/problem/1791/F�
 H2. Maximum Crossings (Hard Version)（https://codeforces.com/contest/1676/problem/H2）树状数组维护前缀区间和
 C. Three displays（https://codeforces.com/problemset/problem/987/C）枚举中间数组，使用树状数组维护前后缀最小值
 F. Moving Points（https://codeforces.com/contest/1311/problem/F）经典两个离散化树状数组，计数与加和
+C. Game on Permutation（https://codeforces.com/contest/1860/problem/C）PointDescendRangeMin
 
 135. 二维树状数组3（https://loj.ac/p/135）区间修改，区间查询
 134. 二维树状数组2（https://loj.ac/p/134）区间修改，单点查询
@@ -730,6 +731,30 @@ class Solution:
         if n >= 3:
             ans = min(pre[i] + post[i] + c[i] for i in range(1, n - 1))
         ac.st(ans if ans < inf else -1)
+        return
+
+    @staticmethod
+    def cf_1860c(ac=FastIO()):
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = ac.read_list_ints_minus_one()
+            tree = PointDescendRangeMin(n, 2)
+
+            for i in range(n):
+                x = nums[i]
+                if x == 0:
+                    cur = 1
+                else:
+                    low = tree.range_min(1, x)
+                    if low == 0:
+                        cur = 1
+                    elif low == 1:
+                        cur = 0
+                    else:
+                        cur = 1
+                tree.point_descend(x + 1, cur)
+            ans = [tree.range_min(x, x) for x in range(1, n + 1)]
+            ac.st(n - sum(ans))
         return
 
     @staticmethod
