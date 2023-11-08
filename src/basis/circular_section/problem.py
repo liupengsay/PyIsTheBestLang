@@ -23,7 +23,7 @@ P6148 [USACO20FEB] Swapity Swapity Swap S（https://www.luogu.com.cn/problem/P61
 
 ================================CodeForces================================
 C. Yet Another Counting Problem（https://codeforces.com/problemset/problem/1342/C）循环节计数
-
+B. Jellyfish and Game（https://codeforces.com/contest/1875/problem/B）circle section find with hash and list
 
 参考：OI WiKi（xx）
 """
