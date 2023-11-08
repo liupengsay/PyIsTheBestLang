@@ -75,7 +75,7 @@ from typing import List, Optional
 
 from src.basis.diff_array.template import PreFixSumMatrix
 from src.basis.tree_node.template import TreeNode
-from src.graph.lca.template import TreeAncestor
+from src.graph.tree_lca.template import TreeAncestor
 from src.search.dfs.template import DFS, DfsEulerOrder
 from src.utils.fast_io import FastIO
 

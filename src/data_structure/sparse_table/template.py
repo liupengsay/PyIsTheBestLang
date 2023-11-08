@@ -16,7 +16,7 @@ class SparseTable1:
         return
 
     def gen_sparse_table(self):
-        # like multiplication method for lca
+        # like multiplication method for tree_lca
         for i in range(1, self.n + 1):
             self.f[i][0] = self.lst[i - 1]
         for j in range(1, int(math.log2(self.n)) + 1):

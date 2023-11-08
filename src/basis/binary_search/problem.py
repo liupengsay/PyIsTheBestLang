@@ -7,7 +7,7 @@ from typing import List
 
 from src.basis.binary_search.template import BinarySearch
 from src.data_structure.sorted_list.template import LocalSortedList
-from src.graph.lca.template import OfflineLCA
+from src.graph.tree_lca.template import OfflineLCA
 from src.graph.union_find.template import UnionFind
 from src.mathmatics.number_theory.template import NumberTheory
 from src.utils.fast_io import FastIO

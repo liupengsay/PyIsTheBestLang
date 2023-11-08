@@ -1,10 +1,8 @@
 import math
-import unittest
-from collections import deque
-from typing import List
 
-
-
+from src.data_structure.tree_array.template import RangeAddRangeSum
+from src.graph.tree_lca.template import OfflineLCA, TreeAncestor, TreeCentroid, HeavyChain, TreeAncestorPool
+from src.utils.fast_io import FastIO
 
 """
 
@@ -71,7 +69,7 @@ class Solution:
             edge[n - parent[i]].append(n - i)
 
         # LCA预处理
-        weight = [x for _, x in nums] + [inf]
+        weight = [x for _, x in nums] + [math.inf]
         tree = TreeAncestorPool(edge, weight[::-1])
 
         # 查询
@@ -240,67 +238,6 @@ class Solution:
         return
 
     @staticmethod
-    def lc_6738(n: int, edges: List[List[int]], price: List[int], trips: List[List[int]]) -> int:
-
-        # 模板：离线LCA加树上差分加树形DP
-        dct = [[] for _ in range(n)]
-        for i, j in edges:
-            dct[i].append(j)
-            dct[j].append(i)
-
-        # 离线LCA
-        res = OfflineLCA().bfs_iteration(dct, trips)
-        # res = OfflineLCA().dfs_recursion(dct, trips)   # 也可以使用递归
-
-        # 树上差分
-        m = len(trips)
-        queries = [trips[i] + [res[i]] for i in range(m)]
-        cnt = TreeDiffArray().bfs_iteration(dct, queries)
-        # cnt = TreeDiffArray().dfs_recursion(dct, queries)  # 也可以使用递归
-
-        # 迭代版的树形DP
-        stack = [0]
-        sub = [[] for _ in range(n)]
-        parent = [-1] * n
-        while stack:
-            i = stack.pop()
-            if i >= 0:
-                stack.append(~i)
-                for j in dct[i]:
-                    if j != parent[i]:
-                        parent[j] = i
-                        stack.append(j)
-            else:
-                i = ~i
-                res = [cnt[i] * price[i], cnt[i] * price[i] // 2]
-                for j in dct[i]:
-                    if j != parent[i]:
-                        a, b = sub[j]
-                        res[0] += a if a < b else b
-                        res[1] += a
-                sub[i] = res
-
-        return min(sub[0])
-
-    @staticmethod
-    def lg_p3128(ac=FastIO()):
-        # 模板：离线LCA加树上差分
-        n, k = ac.read_list_ints()
-        dct = [[] for _ in range(n)]
-        for _ in range(n - 1):
-            i, j = ac.read_list_ints_minus_one()
-            dct[i].append(j)
-            dct[j].append(i)
-        queries = [ac.read_list_ints_minus_one() for _ in range(k)]
-        res = OfflineLCA().bfs_iteration(dct, queries)
-        # res = OfflineLCA().dfs_recursion(dct, trips)  # 也可以使用递归
-        queries = [queries[i] + [res[i]] for i in range(k)]
-        cnt = TreeDiffArray().bfs_iteration(dct, queries)
-        # cnt = TreeDiffArray().dfs_recursion(dct, queries)  # 也可以使用递归
-        ac.st(max(cnt))
-        return
-
-    @staticmethod
     def lg_p3384(ac=FastIO()):
         # 模板：使用树链剖分和深搜序进行节点值修改与区间和查询
         n, m, r, p = ac.read_list_ints()
@@ -368,7 +305,7 @@ class Solution:
             dct[i][j] = dct[j][i] = w
 
         # 根节点bfs计算距离
-        dis = [inf] * n
+        dis = [math.inf] * n
         dis[0] = 0
         stack = [[0, -1]]
         while stack:
@@ -467,40 +404,6 @@ class Solution:
         return
 
     @staticmethod
-    def lc_2646(n: int, edges: List[List[int]], price: List[int], trips: List[List[int]]) -> int:
-        # 模板：离线LCA与树上差分计数，再使用树形 DP 计算
-        dct = [[] for _ in range(n)]
-        for i, j in edges:
-            dct[i].append(j)
-            dct[j].append(i)
-        res = OfflineLCA().bfs_iteration(dct, trips)
-        m = len(trips)
-        queries = [trips[i] + [res[i]] for i in range(m)]
-        cnt = TreeDiffArray().bfs_iteration(dct, queries)
-
-        stack = [[0, 1]]
-        sub = [[] for _ in range(n)]
-        parent = [-1] * n
-        while stack:
-            i, state = stack.pop()
-            if state:
-                stack.append([i, 0])
-                for j in dct[i]:
-                    if j != parent[i]:
-                        parent[j] = i
-                        stack.append([j, 1])
-            else:
-                res = [cnt[i] * price[i], cnt[i] * price[i] // 2]
-                for j in dct[i]:
-                    if j != parent[i]:
-                        a, b = sub[j]
-                        res[0] += a if a < b else b
-                        res[1] += a
-                sub[i] = res
-
-        return min(sub[0])
-
-    @staticmethod
     def lg_p6969(ac=FastIO()):
         # 模板：离线 LCA 查询与树上边差分计算
         n = ac.read_int()
@@ -536,4 +439,3 @@ class Solution:
                     ans += ac.min(cnt * c1, c2)
         ac.st(ans)
         return
-

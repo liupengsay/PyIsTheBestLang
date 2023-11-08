@@ -1,6 +1,6 @@
 import unittest
 
-from src.graph.lca.template import TreeAncestor
+from src.graph.tree_lca.template import TreeAncestor
 
 
 class TestGeneral(unittest.TestCase):
