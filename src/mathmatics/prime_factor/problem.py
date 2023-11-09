@@ -84,6 +84,7 @@ A. Row GCD（https://codeforces.com/problemset/problem/1458/A）gcd公式变换�
 A. Division（https://codeforces.com/problemset/problem/1444/A）贪心枚举质数因子
 C. Strongly Composite（https://codeforces.com/contest/1823/problem/C）质因数分解进行贪心计算
 D. Recover it!（https://codeforces.com/contest/1176/problem/D）经典构造题，贪心模拟，记录合数最大不等于自身的因子，以及质数列表的顺序
+D. Counting Rhyme（https://codeforces.com/contest/1884/problem/D）factor dp and cnt
 
 ================================AtCoder================================
 D - 756（https://atcoder.jp/contests/abc114/tasks/abc114_d）质因数分解计数
