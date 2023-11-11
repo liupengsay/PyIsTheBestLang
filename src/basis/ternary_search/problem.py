@@ -6,7 +6,7 @@ from collections import defaultdict
 from math import inf
 from typing import List
 
-from src.basis.tripart_search.template import TriPartSearch, TriPartPackTriPart
+from src.basis.ternary_search.template import TernarySearch, TriPartPackTriPart
 from src.utils.fast_io import FastIO
 
 """
@@ -80,7 +80,7 @@ class Solution:
             y_high = max(dis_y)
             return (x_high-x_low)*(y_high-y_low)
 
-        ans = TriPartSearch().find_floor_value_float(check, 0, 10**8, error=1e-10, high_precision=True)
+        ans = TernarySearch().find_floor_value_float(check, 0, 10**8, error=1e-10, high_precision=True)
         ac.st(ans)
         return
 
@@ -96,7 +96,7 @@ class Solution:
             def fun(x):
                 return max(a * x * x + b * x + c for a, b, c in nums)
 
-            ans = TriPartSearch().find_floor_value_float(fun, 0, 1000)
+            ans = TernarySearch().find_floor_value_float(fun, 0, 1000)
             ans = ac.round_5(ans * 10 ** 4)
             ans /= 10 ** 4
             ac.st("%.4f" % ans)
@@ -118,7 +118,7 @@ class Solution:
                 res += mul * lst[i]
             return res
 
-        ans = TriPartSearch().find_ceil_point_float(check, l, r)
+        ans = TernarySearch().find_ceil_point_float(check, l, r)
         ac.st(ans)
         return
 
@@ -153,7 +153,7 @@ class Solution:
             cost += pre_b[-1] - pre_b[ii] - (m - ii) * xx
             return cost
 
-        point = int(TriPartSearch().find_floor_point_float(check, floor, ceil, 1))
+        point = int(TernarySearch().find_floor_point_float(check, floor, ceil, 1))
 
         ans = inf
         for x in [-1, 0, 1]:
@@ -178,7 +178,7 @@ class Solution:
                 pre.append(pre[-1] + nums[-1])
             else:
                 n = len(nums)
-                x = TriPartSearch().find_ceil_point_int(check, 0, n - 1)
+                x = TernarySearch().find_ceil_point_int(check, 0, n - 1)
                 ans = -inf
                 for y in [x - 1, x, x + 1, x + 2]:
                     if 0 <= y <= n - 1:
@@ -196,7 +196,7 @@ class Solution:
             def check(x0):
                 return max(t[i] + abs(x[i]-x0) for i in range(n))
 
-            ans = TriPartSearch().find_floor_point_float(check, min(x), max(x), 1e-8)
+            ans = TernarySearch().find_floor_point_float(check, min(x), max(x), 1e-8)
             ac.st(ans)
         return
 

@@ -1,12 +1,12 @@
 import unittest
 
-from src.basis.tripart_search.template import TriPartSearch, TriPartPackTriPart
+from src.basis.ternary_search.template import TernarySearch, TriPartPackTriPart
 
 
 class TestGeneral(unittest.TestCase):
 
     def test_tri_part_search(self):
-        tps = TriPartSearch()
+        tps = TernarySearch()
         def fun1(x): return (x - 1) * (x - 1)
         assert abs(tps.find_floor_point_float(fun1, -5, 100) - 1) < 1e-5
 

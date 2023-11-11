@@ -1,11 +1,13 @@
+from typing import List
+
+
 class SpiralMatrix:
     def __init__(self):
         return
 
     @staticmethod
     def joseph_ring(n, m):
-        # 模板: 约瑟夫环计算最后的幸存者
-        # 0.1..n-1每次选取第m个消除之后剩下的编号
+        """the last rest for remove the m-th every time in [0,1,...,n-1]"""
         f = 0
         for x in range(2, n + 1):
             f = (m + f) % x
@@ -13,20 +15,22 @@ class SpiralMatrix:
 
     @staticmethod
     def num_to_loc(m, n, num):
-        # 根据从左往右从上往下的顺序生成给定数字的行列索引
-        # 0123、4567
+        """matrix pos from num to loc"""
+        # 0123
+        # 4567
         m += 1
         return [num // n, num % n]
 
     @staticmethod
     def loc_to_num(r, c, m, n):
-        # 根据从左往右从上往下的顺序给定的行列索引生成数字
+        """matrix pos from loc to num"""
         c += m
         return r * n + n
 
     @staticmethod
-    def get_spiral_matrix_num1(m, n, r, c):  # 顺时针螺旋
-        # 获取 m*n 矩阵的 [r, c] 元素位置（元素从 1 开始索引从 1 开始）
+    def get_spiral_matrix_num1(m, n, r, c) -> int:
+        """clockwise spiral num at pos [r, c] start from 1"""
+        assert 1 <= r <= m and 1 <= c <= n
         num = 1
         while r not in [1, m] and c not in [1, n]:
             num += 2 * m + 2 * n - 4
@@ -35,23 +39,25 @@ class SpiralMatrix:
             n -= 2
             m -= 2
 
-        # 复杂度 O(m+n)
+        # time complexity is O(m+n)
         x = y = 1
-        direc = [[0, 1], [1, 0], [0, -1], [-1, 0]]
+        directions = [[0, 1], [1, 0], [0, -1], [-1, 0]]
         d = 0
         while [x, y] != [r, c]:
-            a, b = direc[d]
+            a, b = directions[d]
             if not (1 <= x + a <= m and 1 <= y + b <= n):
                 d += 1
-                a, b = direc[d]
+                a, b = directions[d]
             x += a
             y += b
             num += 1
         return num
 
     @staticmethod
-    def get_spiral_matrix_num2(m, n, r, c):  # 顺时针螺旋: 索引到数字序
-        # 获取 m*n 矩阵的 [r, c] 元素位置（元素从 1 开始索引从 1 开始）
+    def get_spiral_matrix_num2(m, n, r, c) -> int:
+
+        """clockwise spiral num at pos [r, c] start from 1"""
+        assert 1 <= r <= m and 1 <= c <= n
 
         rem = min(r - 1, m - r, c - 1, n - c)
         num = 2 * rem * (m - rem + 1) + 2 * rem * (n - rem + 1) - 4 * rem
@@ -60,7 +66,7 @@ class SpiralMatrix:
         r -= rem
         c -= rem
 
-        # 复杂度 O(1)
+        # time complexity is O(1)
         if r == 1:
             num += c
         elif 1 < r <= m and c == n:
@@ -72,8 +78,9 @@ class SpiralMatrix:
         return num
 
     @staticmethod
-    def get_spiral_matrix_loc(m, n, num):  # 顺时针螺旋: 数字序到索引
-        # 获取 m*n 矩阵的元素 num 位置
+    def get_spiral_matrix_loc(m, n, num) -> List[int]:
+        """clockwise spiral pos of num start from 1"""
+        assert 1 <= num <= m * n
 
         def check(x):
             res = 2 * x * (m - x + 1) + 2 * x * (n - x + 1) - 4 * x

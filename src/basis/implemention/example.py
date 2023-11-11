@@ -1,7 +1,7 @@
 import random
 import unittest
 
-from src.basis.simulation.template import SpiralMatrix
+from src.basis.implemention.template import SpiralMatrix
 
 
 class TestGeneral(unittest.TestCase):

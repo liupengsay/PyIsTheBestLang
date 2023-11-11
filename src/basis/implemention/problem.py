@@ -76,7 +76,7 @@ import heapq
 import math
 from collections import deque, Counter
 
-from src.basis.simulation.template import SpiralMatrix
+from src.basis.implemention.template import SpiralMatrix
 from src.utils.fast_io import FastIO
 
 

@@ -6,7 +6,7 @@ from typing import List
 from src.utils.fast_io import FastIO
 
 """
-算法：哈希、贡献法
+算法：哈希、贡献法、矩阵哈希、字符串哈希、前缀哈希、后缀哈希
 功能：前后缀计数、索引、加和
 题目：
 

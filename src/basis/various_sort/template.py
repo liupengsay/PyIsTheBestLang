@@ -134,7 +134,7 @@ class VariousSort:
         ans = 0
         arr = [0] * n
         merge(0, n - 1)
-        # You can also use a tree array with a length of 2 * n and a line segment tree for simulation calculations
+        # You can also use a tree array with a length of 2 * n and a line segment tree for implemention calculations
         # The result is equivalent to the number of inverse pairs in the array
         # Reference question P1774
         return ans

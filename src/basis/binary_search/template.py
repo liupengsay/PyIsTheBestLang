@@ -7,7 +7,7 @@ class BinarySearch:
 
     @staticmethod
     def find_int_left(low: int, high: int, check: Callable) -> int:
-        # find the minimum int x which make check true
+        """find the minimum int x which make check true"""
         while low < high - 1:
             mid = low + (high - low) // 2
             if check(mid):
@@ -18,7 +18,7 @@ class BinarySearch:
 
     @staticmethod
     def find_int_right(low: int, high: int, check: Callable) -> int:
-        # find the maximum int x which make check true
+        """find the maximum int x which make check true"""
         while low < high - 1:
             mid = low + (high - low) // 2
             if check(mid):
@@ -29,7 +29,7 @@ class BinarySearch:
 
     @staticmethod
     def find_float_left(low: float, high: float, check: Callable, error=1e-6) -> float:
-        # find the minimum float x which make check true
+        """find the minimum float x which make check true"""
         while low < high - error:
             mid = low + (high - low) / 2
             if check(mid):
@@ -40,7 +40,7 @@ class BinarySearch:
 
     @staticmethod
     def find_float_right(low: float, high: float, check: Callable, error=1e-6) -> float:
-        # find the maximum float x which make check true
+        """find the maximum float x which make check true"""
         while low < high - error:
             mid = low + (high - low) / 2
             if check(mid):

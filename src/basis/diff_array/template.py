@@ -1,13 +1,17 @@
+from typing import List
+
+
 class PreFixSumMatrix:
-    def __init__(self, mat):
+    def __init__(self, mat: List[List[int]]):
         self.mat = mat
         self.m, self.n = len(mat), len(mat[0])
         self.pre = [[0] * (self.n + 1) for _ in range(self.m + 1)]
         for i in range(self.m):
             for j in range(self.n):
                 self.pre[i + 1][j + 1] = self.pre[i][j + 1] + self.pre[i + 1][j] - self.pre[i][j] + mat[i][j]
+        return
 
-    def query(self, xa, ya, xb, yb):
+    def query(self, xa: int, ya: int, xb: int, yb: int) -> int:
         assert 0 <= xa <= xb <= self.m - 1
         assert 0 <= ya <= yb <= self.n - 1
         # left up corner is (xa, ya) and right down corner is (xb, yb)
@@ -19,7 +23,7 @@ class DiffArray:
         return
 
     @staticmethod
-    def get_diff_array(n, shifts):
+    def get_diff_array(n: int, shifts: List[int]) -> List[int]:
         diff = [0] * n
         for i, j, d in shifts:
             if j + 1 < n:
@@ -30,14 +34,14 @@ class DiffArray:
         return diff
 
     @staticmethod
-    def get_array_prefix_sum(n, lst):
+    def get_array_prefix_sum(n: int, lst: List[int]) -> List[int]:
         pre = [0] * (n + 1)
         for i in range(n):
             pre[i + 1] = pre[i] + lst[i]
         return pre
 
     @staticmethod
-    def get_array_range_sum(pre, left, right):
+    def get_array_range_sum(pre: List[int], left: int, right: int) -> int:
         return pre[right + 1] - pre[left]
 
 
@@ -46,7 +50,7 @@ class DiffMatrix:
         return
 
     @staticmethod
-    def get_diff_matrix(m, n, shifts):
+    def get_diff_matrix(m: int, n: int, shifts: List[int]) -> List[List[int]]:
         # two dimensional differential array
         diff = [[0] * (n + 2) for _ in range(m + 2)]
         # left up corner is (xa, ya) and right down corner is (xb, yb)

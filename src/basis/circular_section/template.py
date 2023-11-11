@@ -4,26 +4,23 @@ class CircleSection:
 
     @staticmethod
     def compute_circle_result(n: int, m: int, x: int, tm: int) -> int:
-
-        # 模板: 使用哈希与列表模拟记录循环节开始位置
+        """use hash table and list to record the first pos of circle section"""
         dct = dict()
-        # 计算 x 每次加 m 加了 tm 次后模 n 的循环态
+        # example is x = (x + m) % n
         lst = []
         while x not in dct:
             dct[x] = len(lst)
             lst.append(x)
             x = (x + m) % n
 
-        # 此时加 m 次数状态为 0.1...length-1
         length = len(lst)
-        # 在 ind 次处出现循节
+        # the first pos of circle section
         ind = dct[x]
-
-        # 所求次数不超出循环节
+        # current lst is enough
         if tm < length:
             return lst[tm]
 
-        # 所求次数进入循环节
+        # compute by circle section
         circle = length - ind
         tm -= length
         j = tm % circle
@@ -31,7 +28,7 @@ class CircleSection:
 
     @staticmethod
     def circle_section_pre(n, grid, c, sta, cur, h):
-        # 模板: 需要计算前缀和与循环节
+        """circle section with prefix sum"""
         dct = dict()
         lst = []
         cnt = []
@@ -49,20 +46,16 @@ class CircleSection:
                         c += num
                         cur ^= (num % 2) * (1 << j)
 
-        # 此时次数状态为 0.1...length-1
         length = len(lst)
-        # 在 ind 次处出现循节
         ind = dct[sta]
         pre = [0] * (length + 1)
         for i in range(length):
             pre[i + 1] = pre[i] + cnt[i]
 
         ans = 0
-        # 所求次数不超出循环节
         if h < length:
             return ans + pre[h]
 
-        # 所求次数进入循环节
         circle = length - ind
         circle_cnt = pre[length] - pre[ind]
 

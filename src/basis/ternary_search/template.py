@@ -2,9 +2,8 @@ import math
 from decimal import Decimal
 
 
-class TriPartSearch:
+class TernarySearch:
     def __init__(self):
-        """Ternary Search"""
         return
 
     @staticmethod

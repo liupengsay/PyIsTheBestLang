@@ -1,6 +1,6 @@
 import unittest
 
-from src.basis.violent_enumeration.template import ViolentEnumeration
+from src.basis.brute_force.template import ViolentEnumeration
 
 
 class TestGeneral(unittest.TestCase):

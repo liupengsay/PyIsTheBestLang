@@ -35,3 +35,29 @@ class Solution:
     @staticmethod
     def lc_144(root: Optional[TreeNode]) -> List[int]:
         return TreeOrder().pre_order(root)
+
+    @staticmethod
+    def ac_19(q):
+
+        x = q
+        while q.father:
+            q = q.father
+
+        ans = []
+        stack = [[q, 1]] if q else []
+        while stack:
+            node, state = stack.pop()
+            if state:
+                if node.right:
+                    stack.append([node.right, 1])
+                # 中序
+                stack.append([node, 0])
+                if node.left:
+                    stack.append([node.left, 1])
+            else:
+                ans.append(node)
+
+        i = ans.index(x)
+        if i == len(ans) - 1:
+            return
+        return ans[i + 1]
