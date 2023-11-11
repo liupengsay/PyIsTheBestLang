@@ -7,6 +7,7 @@ class CantorExpands:
         return
 
     def array_to_rank(self, nums):
+        """"permutation rank of nums"""
         lens = len(nums)
         out = 1
         for i in range(lens):
@@ -20,6 +21,7 @@ class CantorExpands:
         return out
 
     def rank_to_array(self, n, k):
+        """"nums with permutation rank k"""
         nums = list(range(1, n + 1))
         ans = []
         while k and nums:

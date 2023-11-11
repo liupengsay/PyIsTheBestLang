@@ -1,10 +1,13 @@
+from typing import List
+
+
 class BitOperation:
     def __init__(self):
         return
 
     @staticmethod
     def sum_xor(n):
-        # 模板：计算 [0, x] 区间整数的异或和
+        """xor num of range(0, x+1)"""
         if n % 4 == 0:
             return n
         # (4*i)^(4*i+1)^(4*i+2)^(4*i+3)=0
@@ -16,7 +19,7 @@ class BitOperation:
 
     @staticmethod
     def sum_xor_2(n):
-        # 模板：计算 [0, x] 区间整数的异或和
+        """xor num of range(0, x+1)"""
         if n % 4 == 0:
             return n
         # (4*i)^(4*i+1)^(4*i+2)^(4*i+3)=0
@@ -28,7 +31,6 @@ class BitOperation:
 
     @staticmethod
     def graycode_to_integer(graycode):
-        # 格雷码转二进制
         graycode_len = len(graycode)
         binary = list()
         binary.append(graycode[0])
@@ -42,12 +44,11 @@ class BitOperation:
 
     @staticmethod
     def integer_to_graycode(integer):
-        # 二进制转格雷码
         binary = bin(integer).replace('0b', '')
         graycode = list()
-        binay_len = len(binary)
+        binary_len = len(binary)
         graycode.append(binary[0])
-        for i in range(1, binay_len):
+        for i in range(1, binary_len):
             if binary[i - 1] == binary[i]:
                 g = 0
             else:
@@ -56,8 +57,8 @@ class BitOperation:
         return ''.join(graycode)
 
     @staticmethod
-    def get_graycode(n):
-        # n位数格雷码
+    def get_graycode(n: int) -> List[int]:
+        """all graycode number whose length small or equal to n"""
         code = [0, 1]
         for i in range(1, n):
             code.extend([(1 << i) + num for num in code[::-1]])

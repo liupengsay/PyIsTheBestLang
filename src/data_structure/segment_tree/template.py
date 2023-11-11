@@ -17,7 +17,7 @@ class SegTreeBrackets:
             self.b[i + self.n] = 1 if self.s[i] == "(" else 0
             self.c[i + self.n] = 1 if self.s[i] == ")" else 0
         for i in range(self.n - 1, 0, -1):
-            t = self._min(self.b[i << 1], self.c[i << 1 | 1])
+            t = min(self.b[i << 1], self.c[i << 1 | 1])
             self.a[i] = self.a[i << 1] + self.a[i << 1 | 1] + 2 * t
             self.b[i] = self.b[i << 1] + self.b[i << 1 | 1] - t
             self.c[i] = self.c[i << 1] + self.c[i << 1 | 1] - t

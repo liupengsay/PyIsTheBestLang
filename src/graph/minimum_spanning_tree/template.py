@@ -47,7 +47,7 @@ class MinimumSpanningTree:
                 # cost of mst
                 self.cost += d
                 # number of connected node
-                self.cnt += 1  # 连通的节点数
+                self.cnt += 1
                 for j in dct[i]:
                     w = dct[i][j]
                     if w < dis[j]:

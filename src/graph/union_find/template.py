@@ -55,7 +55,7 @@ class UnionFind:
         return size
 
 
-class UnionFindRightRange:
+class UnionFindRightRoot:
     def __init__(self, n: int) -> None:
         self.root = [i for i in range(n)]
         return
@@ -171,26 +171,3 @@ class UnionFindLeftRoot:
             root_x, root_y = root_y, root_x
         self.root[root_x] = root_y
         return True
-
-
-class UnionFindSpecial:
-    def __init__(self, n: int) -> None:
-        self.root = [i for i in range(n)]
-        return
-
-    def find(self, x):
-        lst = []
-        while x != self.root[x]:
-            lst.append(x)
-            x = self.root[x]
-        for w in lst:
-            self.root[w] = x
-        return x
-
-    def union(self, x, y):
-        root_x = self.find(x)
-        root_y = self.find(y)
-        if root_x < root_y:
-            root_x, root_y = root_y, root_x
-        self.root[root_x] = root_y
-        return

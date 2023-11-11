@@ -89,8 +89,8 @@ from typing import List, Optional
 from src.basis.tree_node.template import TreeNode
 from src.data_structure.sorted_list.template import LocalSortedList
 from src.graph.dijkstra.template import Dijkstra
-from src.graph.union_find.template import UnionFind, UnionFindWeighted, UnionFindRightRange, UnionFindLeftRoot, \
-    UnionFindSpecial
+from src.graph.union_find.template import UnionFind, UnionFindWeighted, UnionFindRightRoot, UnionFindLeftRoot, \
+    UnionFindRightRoot
 from src.mathmatics.comb_perm.template import Combinatorics
 from src.mathmatics.number_theory.template import NumberTheory
 from src.utils.fast_io import FastIO
@@ -825,7 +825,7 @@ class Solution:
         # 模板：可使用向右合并的区间并查集，正解为贪心
         nums.sort()
         ans = 0
-        uf = UnionFindRightRange(max(nums) + len(nums) + 2)
+        uf = UnionFindRightRoot(max(nums) + len(nums) + 2)
         for num in nums:
             # 其根节点就是当前还未被占据的节点
             x = uf.find(num)
@@ -859,7 +859,7 @@ class Solution:
 
         # 逆向思维，倒序利用并查集建立二叉搜索树
         dct = [[] for _ in range(n)]
-        uf = UnionFindSpecial(n)
+        uf = UnionFindRightRoot(n)
         post = {}
         for i in range(n - 1, -1, -1):
             x = nums[i]
@@ -899,7 +899,7 @@ class Solution:
     def lc_2158(paint: List[List[int]]) -> List[int]:
         # 模板：区间并查集
         m = 5 * 10 ** 4 + 10
-        uf = UnionFindRightRange(m)
+        uf = UnionFindRightRoot(m)
         ans = []
         for a, b in paint:
             cnt = 0
@@ -958,7 +958,7 @@ class Solution:
         # 模板：经典向右合并的区间并查集
         n = ac.read_int()
         a = ac.read_list_ints()
-        uf = UnionFindRightRange(n * 2 + 2)
+        uf = UnionFindRightRoot(n * 2 + 2)
         a.sort()
         ans = 0
         for num in a:

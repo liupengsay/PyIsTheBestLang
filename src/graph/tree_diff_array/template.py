@@ -1,7 +1,5 @@
-import math
-from collections import deque
 from typing import List
-from math import inf
+
 
 class TreeDiffArray:
 
@@ -114,4 +112,3 @@ class TreeDiffArray:
 
         dfs(0, -1)
         return diff
-

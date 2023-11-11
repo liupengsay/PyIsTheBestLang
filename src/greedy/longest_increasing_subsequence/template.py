@@ -43,7 +43,7 @@ class LongestIncreasingSubsequence:
         return self.definitely_not_reduce(nums)
 
 
-class LcsLis:
+class LcsComputeByLis:
     def __init__(self):
         return
 

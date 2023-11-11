@@ -132,7 +132,7 @@ from typing import List
 
 from src.basis.diff_array.template import PreFixSumMatrix
 from src.data_structure.tree_array.template import PointDescendPreMin
-from src.greedy.longest_increasing_subsequence.template import LcsLis
+from src.greedy.longest_increasing_subsequence.template import LcsComputeByLis
 from src.mathmatics.comb_perm.template import Combinatorics
 from src.utils.fast_io import FastIO
 
@@ -144,12 +144,12 @@ class Solution:
     @staticmethod
     def lc_1305(nums1: List[int], nums2: List[int]) -> int:
         # 模板：使用LIS的办法求LCS
-        return LcsLis().longest_common_subsequence(nums1, nums2)
+        return LcsComputeByLis().longest_common_subsequence(nums1, nums2)
 
     @staticmethod
     def lc_1143(s1: str, s2: str) -> int:
         # 模板：使用LIS的办法求LCS
-        return LcsLis().longest_common_subsequence(s1, s2)
+        return LcsComputeByLis().longest_common_subsequence(s1, s2)
 
     @staticmethod
     def lc_920(n: int, goal: int, k: int) -> int:

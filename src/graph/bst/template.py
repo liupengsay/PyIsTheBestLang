@@ -1,45 +1,24 @@
 from typing import List
 
-
-class UnionFindSpecial:
-    def __init__(self, n: int) -> None:
-        self.root = [i for i in range(n)]
-        return
-
-    def find(self, x):
-        lst = []
-        while x != self.root[x]:
-            lst.append(x)
-            x = self.root[x]
-        for w in lst:
-            self.root[w] = x
-        return x
-
-    def union(self, x, y):
-        root_x = self.find(x)
-        root_y = self.find(y)
-        # union to the smaller root
-        if root_x < root_y:
-            root_x, root_y = root_y, root_x
-        self.root[root_x] = root_y
-        return
+from src.graph.union_find.template import UnionFindLeftRoot
 
 
 class BinarySearchTreeByArray:
-    # 模板：根据数组生成二叉树的有向图结构
+
     def __init__(self):
         return
 
     @staticmethod
-    def build_with_unionfind(nums: List[int]):
-        # 模板：按顺序生成二叉树，返回二叉树的索引父子信息，为有向图
+    def build_with_unionfind(nums: List[int]) -> List[List[int]]:
+        """build binary search tree by the order of nums with unionfind"""
+
         n = len(nums)
         ind = list(range(n))
-        ind.sort(key=lambda it: nums[it])  # 索引按照原始值排序
-        rank = {idx: i for i, idx in enumerate(ind)}  # 排序
+        ind.sort(key=lambda it: nums[it])
+        rank = {idx: i for i, idx in enumerate(ind)}
 
-        dct = [[] for _ in range(n)]  # 二叉树按照索引的有向图结构
-        uf = UnionFindSpecial(n)
+        dct = [[] for _ in range(n)]
+        uf = UnionFindLeftRoot(n)
         post = {}
         for i in range(n - 1, -1, -1):
             x = rank[i]
@@ -55,19 +34,21 @@ class BinarySearchTreeByArray:
         return dct
 
     @staticmethod
-    def build_with_stack(nums: List[int]):
-        # 模板：按顺序生成二叉树，返回二叉树的索引父子信息，为有向图
+    def build_with_stack(nums: List[int]) -> List[List[int]]:
+        """build binary search tree by the order of nums with stack"""
+
         n = len(nums)
-        # 先按照大小关系编码成 1..n
+
         lst = sorted(nums)
         dct = {num: i + 1 for i, num in enumerate(lst)}
         ind = {num: i for i, num in enumerate(nums)}
+
         order = [dct[i] for i in nums]
         father, occur, stack = [0] * (n + 1), [0] * (n + 1), []
         deep = [0] * (n + 1)
         for i, x in enumerate(order, 1):
             occur[x] = i
-        # 记录原数组索引的父子关系
+
         for x, i in enumerate(occur):
             while stack and occur[stack[-1]] > i:
                 if occur[father[stack[-1]]] < i:
@@ -86,7 +67,6 @@ class BinarySearchTreeByArray:
                 u, v = father[i]-1, i-1
                 x, y = ind[lst[u]], ind[lst[v]]
                 dct[x].append(y)
-
         return dct
 
 

@@ -53,7 +53,7 @@ from typing import List
 
 from src.data_structure.segment_tree.template import RangeAscendRangeMax
 from src.data_structure.tree_array.template import PointAscendPreMax
-from src.greedy.length_of_lis.template import LongestIncreasingSubsequence, LcsLis
+from src.greedy.length_of_lis.template import LongestIncreasingSubsequence, LcsComputeByLis
 from src.utils.fast_io import FastIO
 
 
@@ -194,14 +194,14 @@ class Solution:
 
     @staticmethod
     def lc_673(nums: List[int]) -> int:
-        return LcsLis().length_and_cnt_of_lis(nums)
+        return LcsComputeByLis().length_and_cnt_of_lis(nums)
 
     @staticmethod
     def lc_1092(str1: str, str2: str) -> str:
         # 模板：经典利用LIS求LCS的最短公共超序列
         if len(str1) > len(str2):
             str1, str2 = str2, str1
-        lcs_lis = LcsLis().index_of_lcs(str1, str2)
+        lcs_lis = LcsComputeByLis().index_of_lcs(str1, str2)
         i = j = 0
         ans = ""
         for ind in lcs_lis:
@@ -292,7 +292,7 @@ class Solution:
         mod = 10 ** 8
         s1 = ac.read_str()[:-1]
         s2 = ac.read_str()[:-1]
-        length, cnt = LcsLis().length_and_cnt_of_lcs(s1, s2, mod)
+        length, cnt = LcsComputeByLis().length_and_cnt_of_lcs(s1, s2, mod)
         ac.st(length)
         ac.st(cnt % mod)
         return
