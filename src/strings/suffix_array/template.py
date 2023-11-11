@@ -1,6 +1,6 @@
 class SuffixArray:
     def __init__(self, ind: dict):
-        # key if character and value is rank
+        # key is character and value is rank
         self.ind = ind
         return
 
