@@ -5,7 +5,7 @@ from math import inf
 
 from src.data_structure.tree_array.template import PointAddRangeSum, PointDescendPreMin, RangeAddRangeSum, \
     PointAscendPreMax, PointAscendRangeMax, PointAddRangeSum2D, RangeAddRangeSum2D, \
-    PointChangeMaxMin2D, PointXorRangeXor, PointDescendRangeMin
+    PointChangeMaxMin2D, PointXorRangeXor, PointDescendRangeMin, PointChangeRangeSum
 
 
 class TestGeneral(unittest.TestCase):
@@ -22,6 +22,25 @@ class TestGeneral(unittest.TestCase):
                 i = random.randint(0, ceil - 1)
                 nums[i] += d
                 tree_array.point_add(i + 1, d)
+
+                left = random.randint(0, ceil - 1)
+                right = random.randint(left, ceil - 1)
+                assert sum(nums[left: right + 1]) == tree_array.range_sum(left + 1, right + 1)
+                assert nums == tree_array.get()
+        return
+
+    def test_point_change_range_sum(self):
+
+        for _ in range(10):
+            ceil = random.randint(10, 1000)
+            nums = [random.randint(-ceil, ceil) for _ in range(ceil)]
+            tree_array = PointChangeRangeSum(ceil)
+            tree_array.build(nums)
+            for _ in range(ceil):
+                d = random.randint(-ceil, ceil)
+                i = random.randint(0, ceil - 1)
+                nums[i] = d
+                tree_array.point_change(i + 1, d)
 
                 left = random.randint(0, ceil - 1)
                 right = random.randint(left, ceil - 1)

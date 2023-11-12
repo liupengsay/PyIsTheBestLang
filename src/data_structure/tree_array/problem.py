@@ -8,7 +8,7 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax
 from src.data_structure.sorted_list.template import LocalSortedList
 from src.data_structure.tree_array.template import PointAddRangeSum, PointDescendPreMin, RangeAddRangeSum, \
     PointAscendPreMax, PointAscendRangeMax, PointAddRangeSum2D, RangeAddRangeSum2D, PointXorRangeXor, \
-    PointDescendRangeMin
+    PointDescendRangeMin, PointChangeRangeSum
 from src.search.dfs.template import DfsEulerOrder
 from src.utils.fast_io import FastIO
 
@@ -18,6 +18,7 @@ from src.utils.fast_io import FastIO
 题目：
 
 ===================================力扣===================================
+307. 区域和检索 - 数组可修改（https://leetcode.cn/problems/range-sum-query-mutable）PointChangeRangeSum
 1409. 查询带键的排列（https://leetcode.cn/problems/queries-on-a-permutation-with-key/）经典树状数组模拟
 1626. 无矛盾的最佳球队（https://leetcode.cn/problems/best-team-with-no-conflicts/）树状数组维护前缀最大值，也可使用动态规划求解
 6353. 网格图中最少访问的格子数（https://leetcode.cn/problems/minimum-number-of-visited-cells-in-a-grid/）树状数组维护前缀区间最小值单点更新
@@ -810,6 +811,20 @@ class Solution:
                         k -= dis + j - i
                         break
         return ans
+
+
+class LC307:
+
+    def __init__(self, nums: List[int]):
+        n = len(nums)
+        self.tree = PointChangeRangeSum(n)
+        self.tree.build(nums)
+
+    def update(self, index: int, val: int) -> None:
+        self.tree.point_change(index+1, val)
+
+    def sum_range(self, left: int, right: int) -> int:
+        return self.tree.range_sum(left+1, right+1)
 
 
 class LC308:
