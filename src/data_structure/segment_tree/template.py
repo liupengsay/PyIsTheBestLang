@@ -407,7 +407,7 @@ class RangeChangeRangeSumMinMax:
         self.cover = [0] * (4 * self.n)  # range sum
         self.lazy = [inf] * (4 * self.n)  # because range change can to be 0 the lazy tag must be inf
         self.floor = [inf] * (4 * self.n)  # because range change can to be any integer the floor initial must be inf
-        self.ceil = [-inf] * (4 * self.n) # because range change can to be any integer the ceil initial must be -inf
+        self.ceil = [-inf] * (4 * self.n)  # because range change can to be any integer the ceil initial must be -inf
         return
 
     @staticmethod
