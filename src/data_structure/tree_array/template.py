@@ -23,11 +23,11 @@ class PointAddRangeSum:
             self.t[i + 1] = pre[i + 1] - pre[i + 1 - self._lowest_bit(i + 1)]
         return
 
-    def point_add(self, i: int, mi: int) -> None:
-        # index start from 1 and the value mi can be any inter including positive and negative number
+    def point_add(self, i: int, val: int) -> None:
+        # index start from 1 and the value val can be any inter including positive and negative number
         assert 1 <= i <= self.n
         while i < len(self.t):
-            self.t[i] += mi
+            self.t[i] += val
             i += self._lowest_bit(i)
         return
 
@@ -41,11 +41,11 @@ class PointAddRangeSum:
     def _pre_sum(self, i: int) -> int:
         # index start from 1 and the prefix sum of nums[:i] which is 0-index
         assert 1 <= i <= self.n
-        mi = 0
+        val = 0
         while i:
-            mi += self.t[i]
+            val += self.t[i]
             i -= self._lowest_bit(i)
-        return mi
+        return val
 
     def range_sum(self, x: int, y: int) -> int:
         # index start from 1 and the range sum of nums[x-1:y]  which is 0-index
@@ -75,11 +75,11 @@ class PointChangeRangeSum:
             self.t[i + 1] = pre[i + 1] - pre[i + 1 - self._lowest_bit(i + 1)]
         return
 
-    def point_change(self, i: int, mi: int) -> None:
-        # index start from 1 and the value mi can be any inter including positive and negative number
+    def point_change(self, i: int, val: int) -> None:
+        # index start from 1 and the value val can be any inter including positive and negative number
         assert 1 <= i <= self.n
         pre = self.range_sum(i, i)
-        gap = mi - pre
+        gap = val - pre
         if gap:
             while i < len(self.t):
                 self.t[i] += gap
@@ -96,11 +96,11 @@ class PointChangeRangeSum:
     def _pre_sum(self, i: int) -> int:
         # index start from 1 and the prefix sum of nums[:i] which is 0-index
         assert 1 <= i <= self.n
-        mi = 0
+        val = 0
         while i:
-            mi += self.t[i]
+            val += self.t[i]
             i -= self._lowest_bit(i)
-        return mi
+        return val
 
     def range_sum(self, x: int, y: int) -> int:
         # index start from 1 and the range sum of nums[x-1:y]  which is 0-index
@@ -210,11 +210,11 @@ class PointXorRangeXor:
 
     def _pre_xor(self, i: int) -> int:
         assert 1 <= i <= self.n
-        mi = 0
+        val = 0
         while i:
-            mi ^= self.t[i]
+            val ^= self.t[i]
             i -= self._lowest_bit(i)
-        return mi
+        return val
 
     def build(self, nums: List[int]) -> None:
         assert len(nums) == self.n
@@ -227,10 +227,10 @@ class PointXorRangeXor:
     def get(self) -> List[int]:
         return [self.range_xor(i + 1, i + 1) for i in range(self.n)]
 
-    def point_xor(self, i: int, mi: int) -> None:
+    def point_xor(self, i: int, val: int) -> None:
         assert 1 <= i <= self.n
         while i <= self.n:
-            self.t[i] ^= mi
+            self.t[i] ^= val
             i += self._lowest_bit(i)
         return
 
@@ -317,16 +317,16 @@ class PointDescendPreMin:
 
     def pre_min(self, i):
         assert 1 <= i <= self.n
-        mi = self.initial
+        val = self.initial
         while i:
-            mi = mi if mi < self.t[i] else self.t[i]
+            val = val if val < self.t[i] else self.t[i]
             i -= self._lowest_bit(i)
-        return mi
+        return val
 
-    def point_descend(self, i, mi):
+    def point_descend(self, i, val):
         assert 1 <= i <= self.n
         while i < len(self.t):
-            self.t[i] = self.t[i] if self.t[i] < mi else mi
+            self.t[i] = self.t[i] if self.t[i] < val else val
             i += self._lowest_bit(i)
         return
 
