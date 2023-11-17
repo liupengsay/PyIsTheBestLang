@@ -28,6 +28,7 @@ from src.utils.fast_io import FastIO
 2193. 得到回文串的最少操作次数（https://leetcode.cn/problems/minimum-number-of-moves-to-make-palindrome/description/）使用树状数组贪心模拟交换构建回文串，相同题目（P5041求回文串）
 2407. 最长递增子序列 II（https://leetcode.cn/problems/longest-increasing-subsequence-ii/description/）树状数组加线性DP
 100112. 平衡子序列的最大和（https://leetcode.cn/problems/maximum-balanced-subsequence-sum/）离散化树状数组加线性DP
+2736. 最大和查询（https://leetcode.cn/problems/maximum-sum-queries/）PointAddPreMax
 
 ===================================洛谷===================================
 P2068 统计和（https://www.luogu.com.cn/problem/P2068）单点更新与区间求和
@@ -181,6 +182,34 @@ class Solution:
                 ans += n - pre + 1 - tree.range_sum(pre, n) + i - 1 + 1 - tree.range_sum(1, i)
             tree.point_add(i, 1)
             pre = i
+        return ans
+
+    @staticmethod
+    def lc_2736(nums1: List[int], nums2: List[int], queries: List[List[int]]) -> List[int]:
+
+        nodes = set(nums1+nums2)
+        for x, y in queries:
+            nodes.add(x)
+            nodes.add(y)
+        nodes = sorted(nodes)
+        dct = {num: i for i, num in enumerate(nodes)}
+        k = len(nodes)
+        n = len(nums1)
+        m = len(queries)
+        ans = [-1]*m
+        ind = list(range(m))
+        ind.sort(key=lambda it: queries[it][0], reverse=True)
+        index = list(range(n))
+        index.sort(key=lambda it: nums1[it], reverse=True)
+        i = 0
+        tree = PointAscendPreMax(k, -1)
+        for j in ind:
+            x, y = queries[j]
+            while i < n and nums1[index[i]] >= x:
+                value = nums1[index[i]] + nums2[index[i]]
+                tree.point_ascend(k-dct[nums2[index[i]]], value)
+                i += 1
+            ans[j] = tree.pre_max(k-dct[y])
         return ans
 
     @staticmethod
