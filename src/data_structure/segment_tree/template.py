@@ -782,6 +782,68 @@ class SegmentTreeRangeUpdateChangeQueryMax:
         return highest
 
 
+class RangeKSmallest:
+    def __init__(self, n, k) -> None:
+        self.n = n
+        self.k = k
+        self.cover = [[] for _ in range(4 * self.n)]
+        return
+
+    def build(self, nums: List[int]) -> None:
+        assert self.n == len(nums)
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, ind = stack.pop()
+            if ind >= 0:
+                if s == t:
+                    self.cover[ind].append(nums[s])
+                    continue
+                else:
+                    stack.append([s, t, ~ind])
+                    m = s + (t - s) // 2
+                    stack.append([s, m, 2 * ind])
+                    stack.append([m + 1, t, 2 * ind + 1])
+            else:
+                ind = ~ind
+                self._push_up(ind)
+        return
+
+    def _merge(self, lst1, lst2):
+        res = []
+        m, n = len(lst1), len(lst2)
+        i = j = 0
+        while i < m and j < n:
+            if lst1[i] < lst2[j]:
+                res.append(lst1[i])
+                i += 1
+            else:
+                res.append(lst2[j])
+                j += 1
+        res.extend(lst1[i:])
+        res.extend(lst2[j:])
+        return res[:self.k]
+
+    def _push_up(self, i) -> None:
+        self.cover[i] = self._merge(self.cover[2 * i][:], self.cover[2 * i + 1][:])
+        return
+
+    def range_k_smallest(self, left: int, right: int) -> int:
+        # query the range sum
+        stack = [(0, self.n - 1, 1)]
+        ans = []
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                ans = self._merge(ans, self.cover[i][:])
+                continue
+            m = s + (t - s) // 2
+            if left <= m:
+                stack.append((s, m, 2 * i))
+            if right > m:
+                stack.append((m + 1, t, 2 * i + 1))
+        return ans
+
+
 class RangeOrRangeAnd:
     def __init__(self, n):
         self.n = n

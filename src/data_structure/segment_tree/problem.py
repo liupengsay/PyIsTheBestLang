@@ -12,7 +12,7 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeD
     SegmentTreePointChangeLongCon, SegmentTreeRangeSqrtSum, SegmentTreeRangeAndOrXOR, RangeChangeRangeOr, \
     SegmentTreeRangeUpdateAvgDev, SegmentTreePointUpdateRangeMulQuery, \
     RangeChangeRangeSumMinMaxDynamic, SegmentTreeLongestSubSame, \
-    RangeOrRangeAnd, RangeChangeRangeSumMinMax
+    RangeOrRangeAnd, RangeChangeRangeSumMinMax, RangeKSmallest
 from src.utils.fast_io import FastIO
 
 """
@@ -70,6 +70,7 @@ D. Water Tree（https://codeforces.com/problemset/problem/343/D）dfs序加线�
 E. XOR on Segment（https://codeforces.com/problemset/problem/242/E）线段树区间异或，与区间加和
 C. Three displays（https://codeforces.com/problemset/problem/987/C）枚举中间数组，使用线段树维护前后缀最小值
 F. Wi-Fi（https://codeforces.com/contest/1216/problem/F）经典线段树加DP，正解为单调队列优化DP
+E. MinimizOR（https://codeforces.com/contest/1665/problem/E）
 
 ================================AcWing================================
 3805. 环形数组（https://www.acwing.com/problem/content/3808/）区间增减与最小值查询
@@ -157,6 +158,30 @@ class Solution:
                 cur = pre + i + 1
                 tree.range_descend(i, i, cur)
         ac.st(tree.range_min(n - 1, n - 1))
+        return
+
+    @staticmethod
+    def cf_1665e(ac=FastIO()):
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = ac.read_list_ints()
+            tree = RangeKSmallest(n, 31)
+            tree.build(nums)
+            for _ in range(ac.read_int()):
+                ll, rr = ac.read_list_ints_minus_one()
+                lst = tree.range_k_smallest(ll, rr)
+                ans = inf
+                m = len(lst)
+                for i in range(m):
+                    x = lst[i]
+                    if x > ans:
+                        break
+                    for j in range(i + 1, m):
+                        y = lst[j]
+                        if x > ans:
+                            break
+                        ans = ac.min(ans, x | y)
+                ac.st(ans)
         return
 
     @staticmethod
