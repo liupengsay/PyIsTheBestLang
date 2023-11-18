@@ -57,7 +57,7 @@ class MinimumSpanningTree:
 
 
 class TreeAncestorWeightSecond:
-
+    """"get some info of strictly second minimum spanning tree"""
     def __init__(self, dct):
         # default node 0 as root
         n = len(dct)
