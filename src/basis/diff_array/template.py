@@ -12,9 +12,9 @@ class PreFixSumMatrix:
         return
 
     def query(self, xa: int, ya: int, xb: int, yb: int) -> int:
+        """left up corner is (xa, ya) and right down corner is (xb, yb)"""
         assert 0 <= xa <= xb <= self.m - 1
         assert 0 <= ya <= yb <= self.n - 1
-        # left up corner is (xa, ya) and right down corner is (xb, yb)
         return self.pre[xb + 1][yb + 1] - self.pre[xb + 1][ya] - self.pre[xa][yb + 1] + self.pre[xa][ya]
 
 
@@ -51,7 +51,7 @@ class DiffMatrix:
 
     @staticmethod
     def get_diff_matrix(m: int, n: int, shifts: List[int]) -> List[List[int]]:
-        # two dimensional differential array
+        """two dimensional differential array"""
         diff = [[0] * (n + 2) for _ in range(m + 2)]
         # left up corner is (xa, ya) and right down corner is (xb, yb)
         for xa, xb, ya, yb, d in shifts:
@@ -64,8 +64,7 @@ class DiffMatrix:
 
         for i in range(1, m + 2):
             for j in range(1, n + 2):
-                diff[i][j] += diff[i - 1][j] + \
-                              diff[i][j - 1] - diff[i - 1][j - 1]
+                diff[i][j] += diff[i - 1][j] + diff[i][j - 1] - diff[i - 1][j - 1]
 
         for i in range(1, m + 1):
             diff[i] = diff[i][1:n + 1]
@@ -73,8 +72,8 @@ class DiffMatrix:
 
     @staticmethod
     def get_diff_matrix2(m, n, shifts):
+        """left up corner is (xa, ya) and right down corner is (xb, yb)"""
         diff = [[0] * (n + 1) for _ in range(m + 1)]
-        # left up corner is (xa, ya) and right down corner is (xb, yb)
         for xa, xb, ya, yb, d in shifts:
             assert 0 <= xa <= xb <= m - 1
             assert 0 <= ya <= yb <= n - 1
@@ -86,6 +85,5 @@ class DiffMatrix:
         res = [[0] * (n + 1) for _ in range(m + 1)]
         for i in range(m):
             for j in range(n):
-                res[i + 1][j + 1] = res[i + 1][j] + \
-                                    res[i][j + 1] - res[i][j] + diff[i][j]
+                res[i + 1][j + 1] = res[i + 1][j] + res[i][j + 1] - res[i][j] + diff[i][j]
         return [item[1:] for item in res[1:]]

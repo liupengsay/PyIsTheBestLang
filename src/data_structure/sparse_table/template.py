@@ -6,7 +6,7 @@ from operator import or_, and_
 
 class SparseTable1:
     def __init__(self, lst, fun="max"):
-        # Static interval queries can be performed as long as fun satisfies monotonicity
+        """static range queries can be performed as long as the merge fun satisfies monotonicity"""
         self.fun = fun
         self.n = len(lst)
         self.lst = lst
@@ -16,7 +16,7 @@ class SparseTable1:
         return
 
     def gen_sparse_table(self):
-        # like multiplication method for tree_lca
+        """the same as multiplication method for tree_lca"""
         for i in range(1, self.n + 1):
             self.f[i][0] = self.lst[i - 1]
         for j in range(1, int(math.log2(self.n)) + 1):
@@ -35,11 +35,10 @@ class SparseTable1:
                     self.f[i][j] = a & b
                 elif self.fun == "or":
                     self.f[i][j] = a | b
-
         return
 
     def query(self, left, right):
-        # index start from 1
+        """index start from 1"""
         assert 1 <= left <= right <= self.n
         k = int(math.log2(right - left + 1))
         a = self.f[left][k]
@@ -90,7 +89,7 @@ class SparseTable2:
         return
 
     def query(self, left, right):
-        # index start from index 0
+        """index start from index 0"""
         assert 0 <= left <= right <= self.n - 1
         pos = self.note[right-left+1]
         a, b = self.ST[pos][left], self.ST[pos][right - (1 << pos) + 1]

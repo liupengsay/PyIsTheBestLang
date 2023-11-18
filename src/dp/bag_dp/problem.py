@@ -25,7 +25,7 @@ from src.utils.fast_io import FastIO
 2742. 给墙壁刷油漆（https://leetcode.cn/problems/painting-the-walls/description/）经典剪枝DP，可以转换为01背包求解
 2518. 好分区的数目（https://leetcode.cn/problems/number-of-great-partitions/）经典01背包计数
 1155. 掷骰子等于目标和的方法数（https://leetcode.cn/problems/number-of-dice-rolls-with-target-sum/description/）类似分组背包，可使用线性刷表法与填表法
-100029. 和带限制的子多重集合的数目（https://leetcode.cn/problems/count-of-sub-multisets-with-bounded-sum/description/）按照单调队列的思想进行取模分组DP，使用前缀和优化，也有容斥的思想
+2902. 和带限制的子多重集合的数目（https://leetcode.cn/problems/count-of-sub-multisets-with-bounded-sum/description/）按照单调队列的思想进行取模分组DP，使用前缀和优化，也有容斥的思想，可撤销背包
 
 ===================================洛谷===================================
 P1048 采药（https://www.luogu.com.cn/problem/P1048）一维背包DP，数量有限，从后往前遍历

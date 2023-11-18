@@ -1,5 +1,4 @@
 class MaxStack:
-    # 模板：经典最大栈
     def __init__(self):
         return
 
@@ -8,7 +7,6 @@ class MaxStack:
 
 
 class MinStack:
-    # 模板：经典最小栈
     def __init__(self):
         return
 

@@ -3,18 +3,27 @@ from typing import List
 
 
 class PointAddRangeSum:
-    def __init__(self, n: int) -> None:
-        # index from 1 to n
+    def __init__(self, n: int, initial=0) -> None:
+        """index from 1 to n"""
         self.n = n
-        self.t = [0] * (self.n + 1)  # default nums = [0]*n
+        self.t = [initial] * (self.n + 1)  # default nums = [0]*n
         return
 
     @staticmethod
     def _lowest_bit(i: int) -> int:
         return i & (-i)
 
+    def _pre_sum(self, i: int) -> int:
+        """index start from 1 and the prefix sum of nums[:i] which is 0-index"""
+        assert 1 <= i <= self.n
+        val = 0
+        while i:
+            val += self.t[i]
+            i -= self._lowest_bit(i)
+        return val
+
     def build(self, nums: List[int]) -> None:
-        # initialize
+        """initialize the tree array"""
         assert len(nums) == self.n
         pre = [0] * (self.n + 1)
         for i in range(self.n):
@@ -23,32 +32,23 @@ class PointAddRangeSum:
             self.t[i + 1] = pre[i + 1] - pre[i + 1 - self._lowest_bit(i + 1)]
         return
 
+    def get(self) -> List[int]:
+        """get the original nums sometimes for debug"""
+        nums = [self._pre_sum(i) for i in range(1, self.n + 1)]
+        for i in range(self.n - 1, 0, -1):
+            nums[i] -= nums[i - 1]
+        return nums
+
     def point_add(self, i: int, val: int) -> None:
-        # index start from 1 and the value val can be any inter including positive and negative number
+        """index start from 1 and the value val can be any inter including positive and negative number"""
         assert 1 <= i <= self.n
         while i < len(self.t):
             self.t[i] += val
             i += self._lowest_bit(i)
         return
 
-    def get(self) -> List[int]:
-        # get the original nums sometimes for debug
-        nums = [self._pre_sum(i) for i in range(1, self.n + 1)]
-        for i in range(self.n - 1, 0, -1):
-            nums[i] -= nums[i - 1]
-        return nums
-
-    def _pre_sum(self, i: int) -> int:
-        # index start from 1 and the prefix sum of nums[:i] which is 0-index
-        assert 1 <= i <= self.n
-        val = 0
-        while i:
-            val += self.t[i]
-            i -= self._lowest_bit(i)
-        return val
-
     def range_sum(self, x: int, y: int) -> int:
-        # index start from 1 and the range sum of nums[x-1:y]  which is 0-index
+        """index start from 1 and the range sum of nums[x-1:y]  which is 0-index"""
         assert 1 <= x <= y <= self.n
         res = self._pre_sum(y) - self._pre_sum(x - 1) if x > 1 else self._pre_sum(y)
         return res
@@ -64,6 +64,15 @@ class PointChangeRangeSum:
     @staticmethod
     def _lowest_bit(i: int) -> int:
         return i & (-i)
+
+    def _pre_sum(self, i: int) -> int:
+        # index start from 1 and the prefix sum of nums[:i] which is 0-index
+        assert 1 <= i <= self.n
+        val = 0
+        while i:
+            val += self.t[i]
+            i -= self._lowest_bit(i)
+        return val
 
     def build(self, nums: List[int]) -> None:
         # initialize
@@ -92,15 +101,6 @@ class PointChangeRangeSum:
         for i in range(self.n - 1, 0, -1):
             nums[i] -= nums[i - 1]
         return nums
-
-    def _pre_sum(self, i: int) -> int:
-        # index start from 1 and the prefix sum of nums[:i] which is 0-index
-        assert 1 <= i <= self.n
-        val = 0
-        while i:
-            val += self.t[i]
-            i -= self._lowest_bit(i)
-        return val
 
     def range_sum(self, x: int, y: int) -> int:
         # index start from 1 and the range sum of nums[x-1:y]  which is 0-index

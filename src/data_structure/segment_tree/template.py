@@ -784,6 +784,7 @@ class SegmentTreeRangeUpdateChangeQueryMax:
 
 class RangeKSmallest:
     def __init__(self, n, k) -> None:
+        """query the k smallest value of static range which can also change to support dynamic"""
         self.n = n
         self.k = k
         self.cover = [[] for _ in range(4 * self.n)]

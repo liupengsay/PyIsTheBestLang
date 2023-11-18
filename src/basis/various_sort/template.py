@@ -94,9 +94,9 @@ class VariousSort:
 
     @staticmethod
     def merge_sort_inverse_pair(nums, n):
-
-        # Use merge sort to calculate the minimum number of times needed
-        # to make an array sorted by exchanging only adjacent elements
+        """Use merge sort to calculate the minimum number of times needed
+        to make an array sorted by exchanging only adjacent elements
+        """
 
         def merge(left, right):
             nonlocal ans
