@@ -54,6 +54,7 @@ E. Blood Cousins（https://codeforces.com/contest/208/problem/E）深搜序加LC
 D. Choosing Capital for Treeland（https://codeforces.com/contest/219/problem/D）迭代法实现树形换根DP计算，或者一遍DFS或者dfs序加差分
 E. Military Problem（https://codeforces.com/contest/1006/problem/E）经典dfs序模板题
 G2. Passable Paths (hard version)（https://codeforces.com/contest/1702/problem/G2）使用dfs序与lca组合判断是否为简单路径集合
+G. Unusual Entertainment（https://codeforces.com/contest/1899/problem/G）dfs with tolerance and exclusion by PointAddRangeSum
 
 ================================AtCoder================================
 F - Colorful Tree（https://atcoder.jp/contests/abc133/tasks/abc133_f）欧拉序在线查找树上距离，结合二分与前缀和计算变化情况
@@ -75,6 +76,7 @@ from typing import List, Optional
 
 from src.basis.diff_array.template import PreFixSumMatrix
 from src.basis.tree_node.template import TreeNode
+from src.data_structure.tree_array.template import PointAddRangeSum
 from src.graph.tree_lca.template import TreeAncestor
 from src.search.dfs.template import DFS, DfsEulerOrder
 from src.utils.fast_io import FastIO
@@ -174,6 +176,47 @@ class Solution:
                 ac.st(-1)
             else:
                 ac.st(dfs.order_to_node[x+k-1] + 1)
+        return
+
+    @staticmethod
+    def cf_1899g(ac=FastIO()):
+        for _ in range(ac.read_int()):
+            n, q = ac.read_list_ints()
+            dct = [[] for _ in range(n)]
+            for _ in range(n - 1):
+                i, j = ac.read_list_ints_minus_one()
+                dct[i].append(j)
+                dct[j].append(i)
+            p = ac.read_list_ints_minus_one()
+
+            ind = [-1] * n
+            for i in range(n):
+                ind[p[i]] = i
+
+            qs = [[] for _ in range(n)]
+            ans = [0] * q
+            for i in range(q):
+                ll, rr, xx = ac.read_list_ints_minus_one()
+                qs[xx].append((ll, rr, i))
+
+            tree = PointAddRangeSum(n)
+            stack = [(0, -1)]
+            while stack:
+                i, fa = stack.pop()
+                if i >= 0:
+                    stack.append((~i, fa))
+                    for ll, rr, xx in qs[i]:
+                        ans[xx] -= tree.range_sum(ll + 1, rr + 1)
+                    tree.point_add(ind[i] + 1, 1)
+                    for j in dct[i]:
+                        if j != fa:
+                            stack.append((j, i))
+                else:
+                    i = ~i
+                    for ll, rr, xx in qs[i]:
+                        ans[xx] += tree.range_sum(ll + 1, rr + 1)
+            for a in ans:
+                ac.st("YES" if a > 0 else "NO")
         return
 
     @staticmethod
