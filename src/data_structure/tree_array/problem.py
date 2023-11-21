@@ -60,6 +60,7 @@ H2. Maximum Crossings (Hard Version)（https://codeforces.com/contest/1676/probl
 C. Three displays（https://codeforces.com/problemset/problem/987/C）枚举中间数组，使用树状数组维护前后缀最小值
 F. Moving Points（https://codeforces.com/contest/1311/problem/F）经典两个离散化树状数组，计数与加和
 C. Game on Permutation（https://codeforces.com/contest/1860/problem/C）PointDescendRangeMin
+C. Manhattan Subarrays（https://codeforces.com/contest/1550/problem/C）PointAscendPreMax
 
 135. 二维树状数组3（https://loj.ac/p/135）区间修改，区间查询
 134. 二维树状数组2（https://loj.ac/p/134）区间修改，单点查询
