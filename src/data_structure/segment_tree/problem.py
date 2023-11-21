@@ -8,11 +8,11 @@ from sortedcontainers import SortedList
 from src.basis.binary_search.template import BinarySearch
 from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeDescendRangeMin, \
     RangeAddRangeSumMinMax, SegmentTreeRangeUpdateXORSum, SegmentTreeRangeUpdateChangeQueryMax, \
-    SegmentTreeRangeUpdateMulQuerySum, SegmentTreeRangeSubConSum, SegmentTreeRangeXORQuery, \
+    SegmentTreeRangeUpdateMulQuerySum, SegmentTreeRangeXORQuery, \
     SegmentTreePointChangeLongCon, SegmentTreeRangeSqrtSum, SegmentTreeRangeAndOrXOR, RangeChangeRangeOr, \
     SegmentTreeRangeUpdateAvgDev, SegmentTreePointUpdateRangeMulQuery, \
     RangeChangeRangeSumMinMaxDynamic, SegmentTreeLongestSubSame, \
-    RangeOrRangeAnd, RangeChangeRangeSumMinMax, RangeKSmallest
+    RangeOrRangeAnd, RangeChangeRangeSumMinMax, RangeKSmallest, PointChangeRangeMaxNonEmpConSubSum
 from src.utils.fast_io import FastIO
 
 """
@@ -376,22 +376,19 @@ class Solution:
 
     @staticmethod
     def lg_p4513(ac=FastIO()):
-
-        # 模板：单点修改后区间查询最大的子段和
         n, m = ac.read_list_ints()
-        nums = [ac.read_int() for _ in range(n)]
-        segment = SegmentTreeRangeSubConSum(nums)
+        segment = PointChangeRangeMaxNonEmpConSubSum(n, 1000)
+        segment.build([ac.read_int() for _ in range(n)])
         for _ in range(m):
             lst = ac.read_list_ints()
             if lst[0] == 1:
                 a, b = lst[1:]
                 a, b = ac.min(a, b), ac.max(a, b)
-                ans = segment.query_max(a - 1, b - 1, 0, n - 1, 1)[0]
+                ans = segment.range_max_non_emp_con_sub_sum(a - 1, b - 1)[0]
                 ac.st(ans)
             else:
                 a, s = lst[1:]
-                segment.update(a - 1, a - 1, 0, n - 1, s, 1)
-                nums[a - 1] = s
+                segment.range_change(a - 1, a - 1, s)
         return
 
     @staticmethod

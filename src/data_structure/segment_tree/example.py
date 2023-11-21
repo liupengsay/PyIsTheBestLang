@@ -5,7 +5,7 @@ from operator import or_
 
 from src.data_structure.segment_tree.template import RangeAscendRangeMax, \
     RangeDescendRangeMin, \
-    RangeAddRangeSumMinMax, RangeChangeRangeSumMinMax, SegmentTreeRangeUpdateSubConSum, \
+    RangeAddRangeSumMinMax, RangeChangeRangeSumMinMax, PointChangeRangeMaxNonEmpConSubSum, \
     RangeOrRangeAnd, \
     RangeChangeRangeSumMinMaxDynamic, RangeChangeRangeOr
 
@@ -277,7 +277,6 @@ class TestGeneral(unittest.TestCase):
         assert segment_tree.range_sum(0, n - 1) == sum(nums)
         return
 
-
     def test_segment_tree_range_sub_con_max(self):
 
         def check(lst):
@@ -290,21 +289,22 @@ class TestGeneral(unittest.TestCase):
         low = 0
         high = 10000
         nums = [random.randint(low, high) for _ in range(high)]
-        segment_tree = SegmentTreeRangeUpdateSubConSum(nums)
-
-        assert segment_tree.query_max(0, high - 1, low, high - 1, 1)[0] == check(nums)
-
-        for _ in range(high):
+        segment_tree = PointChangeRangeMaxNonEmpConSubSum(high, high)
+        segment_tree.build(nums)
+        assert segment_tree.range_max_non_emp_con_sub_sum(0, high - 1)[0] == check(nums)
+        assert segment_tree.get() == nums
+        for _ in range(100):
             # 区间更新值
             left = random.randint(0, high - 1)
             right = random.randint(left, high - 1)
             num = random.randint(-high, high)
-            segment_tree.update(left, right, low, high - 1, num, 1)
+            segment_tree.range_change(left, right, num)
             for i in range(left, right + 1):
                 nums[i] = num
             left = random.randint(0, high - 1)
             right = random.randint(left, high - 1)
-            assert segment_tree.query_max(left, right, low, high - 1, 1)[0] == check(nums[left:right + 1])
+            assert segment_tree.get() == nums
+            assert segment_tree.range_max_non_emp_con_sub_sum(left, right)[0] == check(nums[left:right + 1])
         return
 
 
