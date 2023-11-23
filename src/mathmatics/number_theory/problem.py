@@ -84,6 +84,7 @@ A. Row GCD（https://codeforces.com/problemset/problem/1458/A）gcd公式变换�
 A. Division（https://codeforces.com/problemset/problem/1444/A）贪心枚举质数因子
 C. Strongly Composite（https://codeforces.com/contest/1823/problem/C）质因数分解进行贪心计算
 E2. Divisible Numbers (hard version)（https://codeforces.com/contest/1744/problem/E2）枚举因数分解组合作为最大公约数
+D. X-Magic Pair（https://codeforces.com/contest/1612/problem/D）使用gcd的思想进行辗转相减法
 
 ================================AtCoder================================
 D - 756（https://atcoder.jp/contests/abc114/tasks/abc114_d）质因数分解计数
@@ -887,6 +888,30 @@ class Solution:
                 ac.st(2)
             else:
                 ac.st(3)
+
+        return
+
+    @staticmethod
+    def cf_1612d(ac=FastIO()):
+        for _ in range(ac.read_int()):
+            a, b, x = ac.read_list_ints()
+            while True:
+                if a < b:
+                    a, b = b, a
+                if x == a or x == b:
+                    ac.st("YES")
+                    break
+                if x > a or b == 0:
+                    ac.st("NO")
+                    break
+                if (a-x) % b == 0:
+                    ac.st("YES")
+                    break
+                y = ac.ceil(a, b) - 1
+                a -= y*b
+                if y == 0:
+                    ac.st("NO")
+                    break
 
         return
 
