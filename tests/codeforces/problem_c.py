@@ -59,6 +59,15 @@ class FastIO:
     def read_list_str():
         return list(sys.stdin.readline().strip())
 
+    def read_graph(self, n, directed=False):
+        dct = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            i, j = self.read_list_ints_minus_one()
+            dct[i].append(j)
+            if not directed:
+                dct[j].append(i)
+        return dct
+
     @staticmethod
     def st(x):
         return print(x)
