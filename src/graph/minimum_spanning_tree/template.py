@@ -37,7 +37,7 @@ class MinimumSpanningTree:
                 dct[i][j] = dct[j][i] = c
             dis = [inf] * self.n
             dis[0] = 0
-            visit = [0]*self.n
+            visit = [0] * self.n
             stack = [[0, 0]]
             while stack:
                 d, i = heappop(stack)
@@ -58,6 +58,7 @@ class MinimumSpanningTree:
 
 class TreeAncestorWeightSecond:
     """"get some info of strictly second minimum spanning tree"""
+
     def __init__(self, dct):
         # default node 0 as root
         n = len(dct)
@@ -87,10 +88,10 @@ class TreeAncestorWeightSecond:
         for j in range(1, self.cols):
             for i in range(n):
                 father = self.dp[i][j - 1]
-                self.weight[i][j] = self.update(self.weight[i][j], self.weight[i][j-1])
+                self.weight[i][j] = self.update(self.weight[i][j], self.weight[i][j - 1])
                 if father != -1:
                     self.dp[i][j] = self.dp[father][j - 1]
-                    self.weight[i][j] = self.update(self.weight[i][j], self.weight[father][j-1])
+                    self.weight[i][j] = self.update(self.weight[i][j], self.weight[father][j - 1])
         return
 
     @staticmethod

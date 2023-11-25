@@ -49,7 +49,7 @@ class Solution:
     def lc_2143(nums1: List[int], nums2: List[int]) -> int:
         # 模板：经典使用哈希计数模拟线性 DP 转移
         n = len(nums1)
-        mod = 10**9 + 7
+        mod = 10 ** 9 + 7
         pre = defaultdict(int)
         pre[-nums1[0]] += 1
         pre[nums2[0]] += 1
@@ -76,11 +76,11 @@ class Solution:
         ans = -1 if s != x else 0
         for i, w in enumerate(nums):
             cur += w
-            if cur - (s-x) in pre and i - pre[cur - (s-x)] > ans:  # 要求非空
-                ans = i - pre[cur - (s-x)]
+            if cur - (s - x) in pre and i - pre[cur - (s - x)] > ans:  # 要求非空
+                ans = i - pre[cur - (s - x)]
             if cur not in pre:
                 pre[cur] = i
-        return n-ans if ans > -1 else ans
+        return n - ans if ans > -1 else ans
 
     @staticmethod
     def lc_2025(nums: List[int], k: int) -> int:
@@ -118,18 +118,18 @@ class Solution:
     def abc_45d(ac=FastIO()):
         # 模板：经典哈希容斥计数
         h, w, n = ac.read_list_ints()
-        cnt = [0]*10
+        cnt = [0] * 10
         dct = defaultdict(int)
         for _ in range(n):
             a, b = ac.read_list_ints()
             for x in range(3):
                 for y in range(3):
-                    if 3 <= x+a <= h and 3 <= y+b <= w:
-                        dct[(x+a, y+b)] += 1
+                    if 3 <= x + a <= h and 3 <= y + b <= w:
+                        dct[(x + a, y + b)] += 1
         for k in dct:
             cnt[dct[k]] += 1
 
-        cnt[0] = (h-2)*(w-2) - sum(cnt[1:])
+        cnt[0] = (h - 2) * (w - 2) - sum(cnt[1:])
         for a in cnt:
             ac.st(a)
         return
@@ -158,9 +158,9 @@ class Solution:
         def check():
             res = []
             for ii in range(6):
-                cu = tuple(lst[ii:]+lst[:ii])
+                cu = tuple(lst[ii:] + lst[:ii])
                 res.append(compute(cu))
-                cu = tuple(lst[:ii+1][::-1]+lst[ii+1:][::-1])
+                cu = tuple(lst[:ii + 1][::-1] + lst[ii + 1:][::-1])
                 res.append(compute(cu))
             return res
 
@@ -225,7 +225,7 @@ class Solution:
         pre = defaultdict(int)
         pre[tuple(cnt)] = 1
         ans = 0
-        mod = 10**9 + 7
+        mod = 10 ** 9 + 7
         for w in s:
             if w == st[x]:
                 # 其余所有字符减 1

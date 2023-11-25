@@ -32,7 +32,7 @@ def fft_v(x):
         x_even = xx[:, :int(xx.shape[1] / 2)]
         x_odd = xx[:, int(xx.shape[1] / 2):]
         terms = np.exp(-1j * np.pi * np.arange(xx.shape[0])
-                        / xx.shape[0])[:, None]
+                       / xx.shape[0])[:, None]
         xx = np.vstack([x_even + terms * x_odd,
-                       x_even - terms * x_odd])
+                        x_even - terms * x_odd])
     return xx.ravel()

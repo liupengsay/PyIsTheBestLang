@@ -1,4 +1,3 @@
-
 """
 算法：字典序与字典序排名解析
 功能：计算字典序第K小和某个对象的字典序rank、计算subset的字典序与解析、计算comb的字典序与解析、计算perm的字典序与解析
@@ -40,10 +39,10 @@ class Solution:
         # 模板：计算comb选取的字典序
         for _ in range(ac.read_int()):
             n, k = ac.read_list_ints()
-            ind = LexicoGraphicalOrder().get_kth_subset_comb(n, 2, n*(n-1)//2-k+1)
-            ans = ["a"]*n
+            ind = LexicoGraphicalOrder().get_kth_subset_comb(n, 2, n * (n - 1) // 2 - k + 1)
+            ans = ["a"] * n
             for i in ind:
-                ans[i-1] = "b"
+                ans[i - 1] = "b"
             ac.st("".join(ans))
         return
 

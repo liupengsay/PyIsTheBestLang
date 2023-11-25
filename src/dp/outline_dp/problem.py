@@ -70,7 +70,8 @@ class Solution:
         s = 3 ** (n - 1)
         cross = [[0, 0, 0], [0, -60, -10], [40, -10, 40]]
         # 手写记忆化进行内存优化
-        dp = [[[[-1] * (extroverts + 1) for _ in range(introverts + 1)] for _ in range(s * 3)] for _ in range(m * n + 1)]
+        dp = [[[[-1] * (extroverts + 1) for _ in range(introverts + 1)] for _ in range(s * 3)] for _ in
+              range(m * n + 1)]
         return dfs(0, 0, introverts, extroverts)
 
     @staticmethod
@@ -161,7 +162,7 @@ class Solution:
 
         m, n = len(seats), len(seats[0])
         s = 2 ** n
-        dp = [[-1]*(1 << (n + 1)) for _ in range(m*n + 1)]
+        dp = [[-1] * (1 << (n + 1)) for _ in range(m * n + 1)]
         return dfs(0, 0)
 
     @staticmethod
@@ -194,12 +195,12 @@ class Solution:
         # 模板：轮廓线 DP 经典题目转成一维数组后更好写
         @lru_cache(None)
         def dfs(i, state):  # 一共四种初始转移方式即 i 为 0 或者 m*n 而 state 为 0 或者 (1<<(m*n))-1
-            if i == m*n:
+            if i == m * n:
                 return 0
-            nex_state = (state - (state & 1))//2
-            res = dfs(i+1, nex_state)
-            left = not (state & (1 << 0) and i//n and i % n)
-            left_up = not (state & (1 << 2) and i//n and i % n < n-1)
+            nex_state = (state - (state & 1)) // 2
+            res = dfs(i + 1, nex_state)
+            left = not (state & (1 << 0) and i // n and i % n)
+            left_up = not (state & (1 << 2) and i // n and i % n < n - 1)
             right_up = not (state & (1 << n) and i % n)
             if lst[i] == "." and left and left_up and right_up:
                 cur = 1 + dfs(i + 1, nex_state | (1 << n))  # 填表法
@@ -241,7 +242,7 @@ class Solution:
         grid = [[0] * m for _ in range(n)]
         for a, b in broken:
             grid[a][b] = 1
-        dp = [[-1]*(1 << m) for _ in range(m * n + 1)]
+        dp = [[-1] * (1 << m) for _ in range(m * n + 1)]
         return dfs(0, 0)
 
     @staticmethod

@@ -1,4 +1,3 @@
-
 """
 算法：线性DP
 功能：遍历数组，根据前序或者后序结果进行更新，最大非空连续子序列和
@@ -160,7 +159,7 @@ class Solution:
             x = arr[i]
             for j in range(i):
                 y = arr[j]
-                if y*y > x:
+                if y * y > x:
                     break
                 if x % y == 0 and x // y in dct:
                     if y == x // y:
@@ -421,7 +420,7 @@ class Solution:
     @staticmethod
     def lg_p1385(ac=FastIO()):
         # 模板：线性DP与前缀和优化
-        mod = 10**9 + 7
+        mod = 10 ** 9 + 7
         for _ in range(ac.read_int()):
             s = ac.read_str()
             n = len(s)
@@ -542,7 +541,7 @@ class Solution:
         for num in primes:
             pre[num[1:]] += 1
         # 转移计算
-        mod = 10**9 + 9
+        mod = 10 ** 9 + 9
         n = ac.read_int()
         for _ in range(n - 3):
             cur = defaultdict(int)
@@ -622,7 +621,7 @@ class Solution:
 
         ac.read_int()
         color = ac.read_list_ints()
-        mod = 10**9 + 7
+        mod = 10 ** 9 + 7
         cnt = Counter(color)
         ac.st(dfs(cnt[1], cnt[2], cnt[3], cnt[4], cnt[5], -1))
         return
@@ -807,7 +806,7 @@ class Solution:
     def lg_p6040(ac=FastIO()):
         # 模板：单调队列优化的线性 DP
         n, k, d, x, tp = ac.read_list_ints()
-        mod = 10**9
+        mod = 10 ** 9
         nums = []
         seed = 0
         xx = int("0x66CCFF", 16)
@@ -867,7 +866,7 @@ class Solution:
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort(key=lambda it: it[0])
-        mod = 10**9 + 7
+        mod = 10 ** 9 + 7
         pp = [1] * (n + 1)
         for i in range(1, n + 1):
             pp[i] = (pp[i - 1] * 2) % mod

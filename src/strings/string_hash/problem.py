@@ -60,7 +60,7 @@ class Solution:
         for _ in range(ac.read_int()):
             n = ac.read_int()
             edge = [[] for _ in range(n)]
-            for _ in range(n-1):
+            for _ in range(n - 1):
                 u, v = ac.read_list_ints_minus_one()
                 edge[u].append(v)
                 edge[v].append(u)
@@ -83,7 +83,7 @@ class Solution:
 
             # 使用深搜或者迭代预先将子树进行哈希编码
             tree_hash = [-1] * n
-            sub = [0]*n
+            sub = [0] * n
             seen = dict()
             dfs(0, -1)
 
@@ -221,10 +221,10 @@ class Solution:
             if x == 0:
                 return True
             pre = dict()
-            for i in range(x-1, n):
-                cur = sh.query(i-x+1, i)
+            for i in range(x - 1, n):
+                cur = sh.query(i - x + 1, i)
                 if tuple(cur) in pre:
-                    if i-pre[tuple(cur)] >= x:
+                    if i - pre[tuple(cur)] >= x:
                         return True
                 else:
                     pre[tuple(cur)] = i
@@ -363,7 +363,7 @@ class Solution:
             # 生成树的最小表示法
             n = ind + 1
             stack = [0]
-            sub = [""]*n
+            sub = [""] * n
             while stack:
                 i = stack.pop()
                 if i >= 0:
@@ -374,7 +374,7 @@ class Solution:
                     i = ~i
                     lst = []
                     for j in dct[i]:
-                        lst.append("0"+sub[j]+"1")
+                        lst.append("0" + sub[j] + "1")
                         sub[j] = ""
                     lst.sort()
                     sub[i] = "".join(lst)
@@ -392,7 +392,7 @@ class Solution:
     @staticmethod
     def lc_2851(s: str, t: str, k: int) -> int:
         # 模板：使用KMP与快速幂进行转移计算，也可使用字符串哈希（超时）
-        mod = 10**9 + 7
+        mod = 10 ** 9 + 7
         n = len(s)
         sh = StringHash(3 * n + 1, t + "#" + s + s)
         target = sh.query(0, n - 1)
@@ -560,7 +560,7 @@ class Solution:
             for j in range(n):
                 va = tuple()
                 for k in range(2):
-                    va += tuple([pre_hash[j][k][i]]) + tuple([post_hash[j][k][i+1]])
+                    va += tuple([pre_hash[j][k][i]]) + tuple([post_hash[j][k][i + 1]])
                 if va in pre:
                     return True
                 pre.add(va)
@@ -628,10 +628,10 @@ class Solution:
         for i in range(n):
             lst = [0, 0]
             for j in range(i, n):
-                if pre[j+1] - pre[i] <= k:
+                if pre[j + 1] - pre[i] <= k:
                     for x in range(2):
-                        lst[x] = (lst[x]*p[x]+nums[j]) % mod[x]
-                    ans.add((j-i+1,) + tuple(lst))
+                        lst[x] = (lst[x] * p[x] + nums[j]) % mod[x]
+                    ans.add((j - i + 1,) + tuple(lst))
                 else:
                     break
         return len(ans)

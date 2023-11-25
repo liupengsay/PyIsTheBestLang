@@ -189,7 +189,7 @@ class Solution:
 
         # 模板：将正整数分解为最多三个质数的和
         n = ac.read_int()
-        assert 3 <= n < 10**9
+        assert 3 <= n < 10 ** 9
 
         if is_prime4(n):
             ac.st(1)
@@ -334,16 +334,16 @@ class Solution:
         if s > n:
             ac.st(-1)
         elif s == n:
-            ac.st(n+1)
+            ac.st(n + 1)
         else:
             # (n-s) % (b-1) == 0
             ans = inf
-            for x in range(1, n-s+1):
-                if x*x > n-s:
+            for x in range(1, n - s + 1):
+                if x * x > n - s:
                     break
-                if (n-s) % x == 0:
+                if (n - s) % x == 0:
                     # 枚举 b-1 的值为 n-s 的因子
-                    y = (n-s) // x
+                    y = (n - s) // x
                     b = x + 1
                     if check():
                         ans = b if ans > b else ans
@@ -364,7 +364,7 @@ class Solution:
             pre += nums[i]
             if i % 2 == 0:
                 if pre <= 0:
-                    ans1 += 1-pre
+                    ans1 += 1 - pre
                     pre = 1
             else:
                 if pre >= 0:
@@ -393,7 +393,7 @@ class Solution:
         def check1():
             nonlocal ans
             for x in range(1, m):
-                lst = [x*n, (m - x)*(n//2), (m - x)*(n//2 + n % 2)]
+                lst = [x * n, (m - x) * (n // 2), (m - x) * (n // 2 + n % 2)]
                 cur = max(lst) - min(lst)
                 if cur < ans:
                     ans = cur
@@ -401,8 +401,8 @@ class Solution:
 
         def check2():
             nonlocal ans
-            for x in range(1, m-1):
-                lst = [x * n, ((m - x)//2) * n, ((m - x)//2 + (m - x) % 2) * n]
+            for x in range(1, m - 1):
+                lst = [x * n, ((m - x) // 2) * n, ((m - x) // 2 + (m - x) % 2) * n]
                 cur = max(lst) - min(lst)
                 if cur < ans:
                     ans = cur
@@ -494,7 +494,7 @@ class Solution:
         for item in combinations(list(range(1, n)), k):
             cur = nums[:]
             for i in item:
-                cur[i] = "*"+cur[i]
+                cur[i] = "*" + cur[i]
             res = [int(w) for w in ("".join(cur)).split("*")]
             cur = reduce(mul, res)
             ans = ac.max(ans, cur)
@@ -506,10 +506,10 @@ class Solution:
         # 模板：线性枚举计数，每次重置避免重复计数
         n, k, p = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
-        cnt = [0]*k
+        cnt = [0] * k
         for i in range(n):
             cnt[nums[i][0]] += 1
-        pre = [0]*k
+        pre = [0] * k
         ans = 0
         for i in range(n):
             c = nums[i][0]
@@ -517,13 +517,13 @@ class Solution:
             if nums[i][1] <= p:
                 for j in range(k):
                     if j != c:
-                        ans += pre[j]*(cnt[j]-pre[j])
+                        ans += pre[j] * (cnt[j] - pre[j])
                     else:
-                        ans += pre[j]-1
-                        ans += cnt[j]-pre[j]
-                        ans += (pre[j]-1)*(cnt[j]-pre[j])
+                        ans += pre[j] - 1
+                        ans += cnt[j] - pre[j]
+                        ans += (pre[j] - 1) * (cnt[j] - pre[j])
                     cnt[j] -= pre[j]
-                pre = [0]*k
+                pre = [0] * k
         ac.st(ans)
         return
 
@@ -686,7 +686,7 @@ class Solution:
             pre_y[y] = ac.accumulate(dct_y[y])
 
         ans = 0
-        mod = 10**9 + 7
+        mod = 10 ** 9 + 7
         for x, y in nums:
             # 二分找到中间点 xi 计算两侧距离
             xi = bisect.bisect_left(dct_y[y], x)
@@ -739,10 +739,10 @@ class Solution:
     def lc_2591(money: int, children: int) -> int:
         # 模板：经典枚举考虑边界条件
         ans = -1
-        for x in range(children+1):
-            if x*8 > money:
+        for x in range(children + 1):
+            if x * 8 > money:
                 break
-            rest_money = money - x*8
+            rest_money = money - x * 8
             rest_people = children - x
             if rest_money < rest_people:
                 continue
@@ -756,7 +756,7 @@ class Solution:
     @staticmethod
     def lc_2681(nums: List[int]) -> int:
         # 模板：按照贡献法枚举计数
-        mod = 10**9 + 7
+        mod = 10 ** 9 + 7
         nums.sort()
         ans = pre = 0
         for num in nums:
@@ -776,7 +776,7 @@ class Solution:
             a, b, c, d = c, d, a, b
 
         ans = inf
-        for x in range(10**5 + 1):
+        for x in range(10 ** 5 + 1):
             cur = x * d + b * ac.max(math.ceil((n - x * c) / a), 0)
             ans = ac.min(ans, cur)
         ac.st(ans)
@@ -802,8 +802,8 @@ class Solution:
                     if w in cur:
                         tt += w
                 if ss == tt:
-                    pre.add(lst[i]+lst[j])
-                    pre.add(lst[j]+lst[i])
+                    pre.add(lst[i] + lst[j])
+                    pre.add(lst[j] + lst[i])
         ans = ""
         for _ in range(ac.read_int()):
             st = ac.read_str()
@@ -811,7 +811,7 @@ class Solution:
             flag = True
             for i in range(m):
                 for j in range(i, m):
-                    if st[i]+st[j] not in pre:
+                    if st[i] + st[j] not in pre:
                         flag = False
                         break
                 if not flag:
@@ -833,21 +833,21 @@ class Solution:
         for item in permutations("BAT", 3):
             t = ""
             for w in item:
-                t += dct[w]*w
+                t += dct[w] * w
             cnt = defaultdict(int)
             for i in range(n):
                 if s[i] != t[i]:
-                    cnt[s[i]+t[i]] += 1
+                    cnt[s[i] + t[i]] += 1
             cur = 0
             for w in item:
                 for p in item:
                     if w != p:
-                        x = ac.min(cnt[w+p], cnt[p+w])
+                        x = ac.min(cnt[w + p], cnt[p + w])
                         cur += x
-                        cnt[w+p] -= x
-                        cnt[p+w] -= x
+                        cnt[w + p] -= x
+                        cnt[p + w] -= x
             rest = sum(cnt.values())
-            cur += rest*2 // 3
+            cur += rest * 2 // 3
             ans = ac.min(ans, cur)
         ac.st(ans)
         return
@@ -858,15 +858,15 @@ class Solution:
         n = ac.read_int()
         ans = 0
         pre = set()
-        for a in range(1, int(n**0.5)+1):
+        for a in range(1, int(n ** 0.5) + 1):
             if n % a == 0:
-                for bc in [n//a-1, a-1]:
+                for bc in [n // a - 1, a - 1]:
                     if bc in pre:
                         continue
                     pre.add(bc)
-                    for x in range(2, bc+1):
+                    for x in range(2, bc + 1):
                         if bc % x == 0:
-                            y = bc//x-1
+                            y = bc // x - 1
                             if y > 1:
                                 ans += 1
                         if bc // x <= 2:
@@ -902,11 +902,11 @@ class Solution:
         # 模板：经典枚举取模计数
         mod = 100000007
         n, k = ac.read_list_ints()
-        num = 9 * 10**(n - 1)
+        num = 9 * 10 ** (n - 1)
         x = num // k
         x %= mod
         ans = [x] * k
-        for y in range(10**(n - 1) + x * k, 10**(n - 1) + x * k + num % k):
+        for y in range(10 ** (n - 1) + x * k, 10 ** (n - 1) + x * k + num % k):
             ans[y % k] += 1
         ac.lst([x % mod for x in ans])
         return
@@ -960,7 +960,7 @@ class Solution:
                 if p <= s <= q:
                     ans += pre[i] * post[i + 1] * s
                     ans %= mod
-                if pre[i+1] == 0:
+                if pre[i + 1] == 0:
                     break
         ac.st(ans)
         return
@@ -1135,8 +1135,8 @@ class Solution:
         for x in [1, -1]:
             for y in [1, -1]:
                 for z in [1, -1]:
-                    a1 = max(x*arr1[i]+y*arr2[i]+z*i for i in range(n))
-                    a2 = min(x*arr1[i]+y*arr2[i]+z*i for i in range(n))
+                    a1 = max(x * arr1[i] + y * arr2[i] + z * i for i in range(n))
+                    a2 = min(x * arr1[i] + y * arr2[i] + z * i for i in range(n))
                     if a1 - a2 > ans:
                         ans = a1 - a2
         return ans
@@ -1164,23 +1164,23 @@ class Solution:
         # 模板：枚举子字符串对开头位置也可使用DP枚举
         m = len(s)
         n = len(t)
-        cnt = [[0]*(n+1) for _ in range(m+1)]
-        same = [[0]*(n+1) for _ in range(m+1)]
+        cnt = [[0] * (n + 1) for _ in range(m + 1)]
+        same = [[0] * (n + 1) for _ in range(m + 1)]
         for i in range(m):
             for j in range(n):
                 if s[i] == t[j]:
-                    same[i+1][j+1] = same[i][j] + 1  # 以i,j为结尾的最长连续子串长度
-                    cnt[i+1][j+1] = cnt[i][j]  # 以i,j为结尾的子串对数
+                    same[i + 1][j + 1] = same[i][j] + 1  # 以i,j为结尾的最长连续子串长度
+                    cnt[i + 1][j + 1] = cnt[i][j]  # 以i,j为结尾的子串对数
                 else:
-                    same[i+1][j+1] = 0  # 转移可以使用对角线方向转移则只需要O(1)空间
-                    cnt[i+1][j+1] = same[i][j] + 1
+                    same[i + 1][j + 1] = 0  # 转移可以使用对角线方向转移则只需要O(1)空间
+                    cnt[i + 1][j + 1] = same[i][j] + 1
         return sum(sum(d) for d in cnt)
 
     @staticmethod
     def lc_1761(n: int, edges: List[List[int]]) -> int:
         # 模板：经典无向图转为有向图进行枚举
-        edges = [[i-1, j-1] for i, j in edges]
-        degree = [0]*n
+        edges = [[i - 1, j - 1] for i, j in edges]
+        degree = [0] * n
         dct = [set() for _ in range(n)]
         directed = [set() for _ in range(n)]
         for i, j in edges:
@@ -1198,7 +1198,7 @@ class Solution:
             for j in directed[i]:
                 for k in directed[j]:
                     if k in dct[i]:
-                        x = degree[i]+degree[j]+degree[k] - 6
+                        x = degree[i] + degree[j] + degree[k] - 6
                         if x < ans:
                             ans = x
         return ans if ans < inf else -1
@@ -1259,11 +1259,11 @@ class Solution:
     def lc_2212(x: int, y: List[int]) -> List[int]:
         # 模板：位运算枚举或者回溯计算
         n = len(y)
-        ans = [0]*n
+        ans = [0] * n
         ans[0] = x
         res = 0
         for i in range(1 << n):
-            lst = [0]*n
+            lst = [0] * n
             cur = 0
             for j in range(n):
                 if i & (1 << j):

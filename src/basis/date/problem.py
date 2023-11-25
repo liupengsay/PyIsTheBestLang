@@ -1,4 +1,3 @@
-
 import datetime
 from datetime import datetime, timedelta
 
@@ -38,4 +37,3 @@ class Solution:
             end_date = start_date + timedelta(seconds=x)
             ac.lst([end_date.year, end_date.month, end_date.day, end_date.hour, end_date.minute, end_date.second])
         return
-

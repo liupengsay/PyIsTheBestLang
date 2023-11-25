@@ -1,6 +1,3 @@
-
-
-
 """
 
 算法：构造
@@ -107,8 +104,8 @@ class Solution:
         # 模板：摆动排序数组构造
         nums.sort()
         n = len(nums)
-        ans = [0]*n
-        j = n-1
+        ans = [0] * n
+        j = n - 1
         for i in range(1, n, 2):
             ans[i] = nums[j]
             j -= 1
@@ -181,11 +178,11 @@ class Solution:
         n, k = ac.read_list_ints()
         ans = []
         for p, c in NumberTheory().get_prime_factor(n):
-            ans.extend([p]*c)
+            ans.extend([p] * c)
         if sum(ans) > k:
             ac.st(-1)
         else:
-            ans.extend([1]*(k-sum(ans)))
+            ans.extend([1] * (k - sum(ans)))
             ac.st(len(ans))
             ac.lst(ans)
         return
@@ -239,7 +236,7 @@ class Solution:
 
         ac.st(x - 1)
         # 将终点替换为最大的编号
-        ind = {end: x-1, x-1: end}
+        ind = {end: x - 1, x - 1: end}
         for i in range(1, x):
             i = ind.get(i, i)
             ans = [ind.get(j, j) for j in dct[i]]
@@ -260,7 +257,7 @@ class Solution:
             s = n * (n + 1) // 2
             lst = [a, b]
             ans = []
-            for i in range(n // 2 + 1):   # 枚举起始的连续段
+            for i in range(n // 2 + 1):  # 枚举起始的连续段
                 if ans:
                     break
                 x = n // 2 - i

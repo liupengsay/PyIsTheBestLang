@@ -1,4 +1,3 @@
-
 import unittest
 
 from src.search.dfs.template import DFS, DfsEulerOrder
@@ -11,7 +10,7 @@ class TestGeneral(unittest.TestCase):
         dct = [[1, 2], [0, 3], [0, 4], [1], [2]]
         start, end = dfs.gen_bfs_order_iteration([d[::-1] for d in dct])
         assert start == [x - 1 for x in [1, 2, 4, 3, 5]]
-        assert end == [b-1 for _, b in [[1, 5], [2, 3], [4, 5], [3, 3], [5, 5]]]
+        assert end == [b - 1 for _, b in [[1, 5], [2, 3], [4, 5], [3, 3], [5, 5]]]
         return
 
     def test_dfs_euler(self):
@@ -24,4 +23,3 @@ class TestGeneral(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-

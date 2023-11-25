@@ -13,7 +13,6 @@ class TestGeneral(unittest.TestCase):
         return
 
     def test_english_number(self):
-
         en = EnglishNumber()
         num = 5208
         assert en.number_to_english(num) == "five thousand two hundred and eight"

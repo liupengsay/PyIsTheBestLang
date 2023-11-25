@@ -70,7 +70,7 @@ class ExtendGcd:
             high = (y1 * gcd) // a
             # low<=t<=high
             if low <= high:
-                x = x1 + (b//gcd) * low
+                x = x1 + (b // gcd) * low
                 ac.st("YES")
                 ac.lst([x, (n - a * x) // b])
             else:

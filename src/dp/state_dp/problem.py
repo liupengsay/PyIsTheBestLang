@@ -405,7 +405,7 @@ class Solution:
             for j in range(1 << n):
                 for num in range(k + 1):
                     cur = [x for x in range(n) if not j & (1 << x) and (x == 0 or not j & (1 << (x - 1))) and (
-                                x == n - 1 or not j & (1 << (x + 1)))]
+                            x == n - 1 or not j & (1 << (x + 1)))]
                     for y in range(1, len(cur) + 1):
                         if num + y <= k:
                             for item in combinations(cur, y):

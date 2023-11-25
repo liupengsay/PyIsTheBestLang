@@ -210,7 +210,7 @@ class Solution:
         for i in range(n):
             for j in range(n):
                 if j != i:
-                    if nums[j] == nums[i]*2 or nums[j]*3 == nums[i]:
+                    if nums[j] == nums[i] * 2 or nums[j] * 3 == nums[i]:
                         pairs.append([i, j])
         dt = DirectedEulerPath(n, pairs)
         ac.lst([nums[x] for x in dt.nodes])

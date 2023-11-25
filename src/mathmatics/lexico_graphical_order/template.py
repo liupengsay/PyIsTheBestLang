@@ -16,6 +16,7 @@ class LexicoGraphicalOrder:
                 last = last * 10 + 9
                 first *= 10
             return c
+
         # assert k <= n
         num = 1
         k -= 1
@@ -120,7 +121,7 @@ class LexicoGraphicalOrder:
         nums = list(range(1, n + 1))
         ans = []
         while k and nums:
-            single = s//len(nums)
+            single = s // len(nums)
             i = (k - 1) // single
             ans.append(nums.pop(i))
             k -= i * single

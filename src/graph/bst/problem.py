@@ -113,7 +113,7 @@ class Solution:
                 stack.append([~i, d])
                 dct[i].sort(key=lambda it: -nums[it])
                 for j in dct[i]:
-                    stack.append([j, d+1])
+                    stack.append([j, d + 1])
             else:
                 i = ~i
                 depth = depth if depth > d else d
@@ -131,8 +131,8 @@ class Solution:
         cb = Combinatorics(100000, mod)  # 预处理计算
         stack = [0]
         n = len(nums)
-        ans = [0]*n
-        sub = [0]*n
+        ans = [0] * n
+        sub = [0] * n
         while stack:
             i = stack.pop()
             if i >= 0:
@@ -145,7 +145,7 @@ class Solution:
                 cur_sub = sum(sub[j] for j in dct[i])
                 sub[i] = cur_sub + 1
                 for j in dct[i]:
-                    cur_ans *= cb.comb(cur_sub, sub[j])*ans[j]
+                    cur_ans *= cb.comb(cur_sub, sub[j]) * ans[j]
                     cur_sub -= sub[j]
                     cur_ans %= mod
                 ans[i] = cur_ans
@@ -160,6 +160,6 @@ class Solution:
         while stack:
             i, d = stack.pop()
             for j in dct[i]:
-                stack.append([j, d+1])
+                stack.append([j, d + 1])
                 ans = ans if ans > d + 1 else d + 1
         return ans

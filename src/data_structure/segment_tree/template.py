@@ -314,7 +314,7 @@ class RangeAddRangeSumMinMax:
     def range_add(self, left: int, right: int, val: int) -> None:
         # update the range add
         assert 0 <= left <= right <= self.n - 1
-        stack = [(0, self.n-1, 1)]
+        stack = [(0, self.n - 1, 1)]
         while stack:
             s, t, i = stack.pop()
             if i >= 0:
@@ -354,7 +354,7 @@ class RangeAddRangeSumMinMax:
 
     def range_min(self, left: int, right: int) -> int:
         # query the range min
-        stack = [(0, self.n-1, 1)]
+        stack = [(0, self.n - 1, 1)]
         lowest = inf
         while stack:
             s, t, i = stack.pop()
@@ -371,7 +371,7 @@ class RangeAddRangeSumMinMax:
 
     def range_max(self, left: int, right: int) -> int:
         # query the rang max
-        stack = [(0, self.n-1, 1)]
+        stack = [(0, self.n - 1, 1)]
         highest = -inf
         while stack:
             s, t, i = stack.pop()
@@ -1024,6 +1024,7 @@ class SegmentTreeRangeUpdateXORSum:
                 stack.append((m + 1, t, 2 * i + 1))
         return ans
 
+
 class SegmentTreeRangeAddMulSum:
 
     def __init__(self, p, n):
@@ -1084,7 +1085,7 @@ class SegmentTreeRangeAddMulSum:
         if r > m:
             ans += self.query(left, r, m + 1, t, 2 * i + 1)
         return ans
-    
+
 
 class RangeChangeRangeOr:
     def __init__(self, n) -> None:

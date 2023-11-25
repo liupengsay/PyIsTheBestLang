@@ -95,18 +95,18 @@ class Solution:
         a = ac.read_list_ints_minus_one()
         node = []
         ans = []
-        for ind in range(n-1, -1, -1):
+        for ind in range(n - 1, -1, -1):
             x = a[ind]
             node.append(x)
             cur = 0
             for i in node:
                 for j in node:
-                    dp[i][x] = ac.min(dp[i][x], dp[i][j]+dp[j][x])
-                    dp[x][i] = ac.min(dp[x][i], dp[x][j]+dp[j][i])
+                    dp[i][x] = ac.min(dp[i][x], dp[i][j] + dp[j][x])
+                    dp[x][i] = ac.min(dp[x][i], dp[x][j] + dp[j][i])
 
             for i in node:
                 for j in node:
-                    dp[i][j] = ac.min(dp[i][j], dp[i][x]+dp[x][j])
+                    dp[i][j] = ac.min(dp[i][j], dp[i][x] + dp[x][j])
                     cur += dp[i][j]
             ans.append(cur)
 
@@ -210,7 +210,7 @@ class Solution:
     def abc_51d_1(ac=FastIO()):
         # 模板：经典脑筋急转弯Floyd计算最短路的必经边，也可直接使用Dijkstra
         n, m = ac.read_list_ints()
-        dp = [[inf]*n for _ in range(n)]
+        dp = [[inf] * n for _ in range(n)]
         for i in range(n):
             dp[i][i] = 0
 
@@ -222,7 +222,7 @@ class Solution:
 
         for k in range(n):  # 中间节点
             for i in range(n):  # 起始节点
-                for j in range(i+1, n):  # 结束节点
+                for j in range(i + 1, n):  # 结束节点
                     a, b = dp[i][j], dp[i][k] + dp[k][j]
                     dp[i][j] = dp[j][i] = a if a < b else b
         ans = 0
@@ -273,11 +273,11 @@ class Solution:
 
         edges = []
         for i in range(n):
-            for j in range(i+1, n):
+            for j in range(i + 1, n):
                 edges.append([i, j, grid[i][j]])
         edges.sort(key=lambda it: it[2])
         ans = 0
-        dis = [[inf]*n for _ in range(n)]
+        dis = [[inf] * n for _ in range(n)]
         for i in range(n):
             dis[i][i] = 0
         # 逐渐更新最短距离
@@ -289,10 +289,10 @@ class Solution:
                 continue
             ans += w
             for x in range(n):
-                for y in range(x+1, n):
-                    a, b = dis[x][y], dis[x][i]+w+dis[j][y]
+                for y in range(x + 1, n):
+                    a, b = dis[x][y], dis[x][i] + w + dis[j][y]
                     a = a if a < b else b
-                    b = dis[x][j]+w+dis[i][y]
+                    b = dis[x][j] + w + dis[i][y]
                     a = a if a < b else b
                     dis[x][y] = dis[y][x] = a
         ac.st(ans)
@@ -318,21 +318,21 @@ class Solution:
         for k in range(n):
             for i in range(n):
                 for j in range(i + 1, n):
-                    cur = dis[i][k]+dis[k][j]
+                    cur = dis[i][k] + dis[k][j]
                     if cur < dis[i][j]:
                         dis[i][j] = dis[j][i] = cur
 
-        dp = [[inf]*n for _ in range(n)]
+        dp = [[inf] * n for _ in range(n)]
         for i in range(n):
             dp[i][i] = 0
-            for j in range(i+1, n):
+            for j in range(i + 1, n):
                 if dis[i][j] <= ll:
                     dp[i][j] = dp[j][i] = 0
 
         for k in range(n):
             for i in range(n):
                 for j in range(i + 1, n):
-                    cur = dp[i][k]+dp[k][j]+1
+                    cur = dp[i][k] + dp[k][j] + 1
                     if cur < dp[i][j]:
                         dp[i][j] = dp[j][i] = cur
 
@@ -351,7 +351,7 @@ class Solution:
             if grid[i][i]:
                 ac.st("NO")
                 return
-            for j in range(i+1, n):
+            for j in range(i + 1, n):
                 if grid[i][j] != grid[j][i] or not grid[i][j]:
                     ac.st("NO")
                     return
@@ -364,7 +364,7 @@ class Solution:
                 if grid[i][j] < grid[i][r] and i != j:
                     r = j
             for k in range(n):
-                if abs(grid[i][k]-grid[r][k]) != grid[i][r]:
+                if abs(grid[i][k] - grid[r][k]) != grid[i][r]:
                     ac.st("NO")
                     return
         ac.st("YES")
@@ -499,12 +499,12 @@ class Solution:
             # Floyd计算全源最短路
             for k in range(n):
                 for a in range(n):
-                    for b in range(a+1, n):
-                        cur[a][b] = cur[b][a] = ac.min(cur[a][b], cur[a][k]+cur[k][b])
+                    for b in range(a + 1, n):
+                        cur[a][b] = cur[b][a] = ac.min(cur[a][b], cur[a][k] + cur[k][b])
             return sum(sum(c) for c in cur) <= q
 
         low = 1
-        high = n * 10**5
+        high = n * 10 ** 5
         BinarySearch().find_int_left(low, high, check)
         ans = BinarySearch().find_int_left(low, high, check2)
         ac.st(ans)

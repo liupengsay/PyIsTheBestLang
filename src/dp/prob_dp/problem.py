@@ -60,30 +60,30 @@ class Solution:
         # 模板：线性DP求期望，使用分数加减运算
         n = ac.read_int()
         ans = [1, 1]
-        for x in range(2, n+1):
+        for x in range(2, n + 1):
             a, b = ans
             c, d = 1, x
             # 使用gcd进行加减
             g = math.gcd(b, d)
-            lcm = b*d//g
-            a, b = a*lcm//b+c*lcm//d, lcm
+            lcm = b * d // g
+            a, b = a * lcm // b + c * lcm // d, lcm
             g = math.gcd(a, b)
-            ans = [a//g, b//g]
+            ans = [a // g, b // g]
         # f[i] = f[i-1] + n/(n-i+1) 表示已经有 i-1 个再要有新的一个的期望为 n/(n-i+1)
         a, b = ans
         a *= n
-        x = a//b
+        x = a // b
         a %= b
         if a == 0:
             ac.st(x)
             return
         # 加和化简
         g = math.gcd(a, b)
-        ans = [a//g, b//g]
+        ans = [a // g, b // g]
         a, b = ans
-        ac.st(len(str(x))*" " + str(a))
-        ac.st(str(x)+"-"*len(str(b)))
-        ac.st(len(str(x))*" " + str(b))
+        ac.st(len(str(x)) * " " + str(a))
+        ac.st(str(x) + "-" * len(str(b)))
+        ac.st(len(str(x)) * " " + str(b))
         return
 
     @staticmethod
@@ -156,16 +156,16 @@ class Solution:
     def ac_5058(ac=FastIO()):
         # 模板：经典概率DP
         w, b = ac.read_list_ints()
-        dp = [[0]*(b+1) for _ in range(w+1)]
-        for i in range(1, w+1):
+        dp = [[0] * (b + 1) for _ in range(w + 1)]
+        for i in range(1, w + 1):
             dp[i][0] = 1
-        for i in range(1, w+1):
-            for j in range(1, b+1):
-                p = i/(i+j)
+        for i in range(1, w + 1):
+            for j in range(1, b + 1):
+                p = i / (i + j)
                 if j > 1:
-                    p += j/(i+j)*(j-1)/(i+j-1)*i/(i+j-2)*dp[i-1][j-2]
+                    p += j / (i + j) * (j - 1) / (i + j - 1) * i / (i + j - 2) * dp[i - 1][j - 2]
                 if j > 2:
-                    p += j/(i+j)*(j-1)/(i+j-1)*(j-2)/(i+j-2)*dp[i][j-3]
+                    p += j / (i + j) * (j - 1) / (i + j - 1) * (j - 2) / (i + j - 2) * dp[i][j - 3]
                 dp[i][j] = p
         ac.st(dp[w][b])
         return

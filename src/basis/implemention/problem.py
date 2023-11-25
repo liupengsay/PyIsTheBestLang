@@ -218,20 +218,20 @@ class Solution:
         # 模板：经典字典序应用题，依据相邻项的字典序大小来确认排序
         n = ac.read_int()
         s = ac.read_str()
-        ans = [0]*n
-        i, j = 0, n-1
+        ans = [0] * n
+        i, j = 0, n - 1
         idx = 0
         for x in range(1, n):
-            if s[x] > s[x-1]:
+            if s[x] > s[x - 1]:
                 # 前面的直接扔到后面必然是最大的（去掉小的s[x-1]）
-                for y in range(x-1, idx-1, -1):
-                    ans[j] = y+1
+                for y in range(x - 1, idx - 1, -1):
+                    ans[j] = y + 1
                     j -= 1
                 idx = x
-            if s[x] < s[x-1]:
+            if s[x] < s[x - 1]:
                 # 前面的直接扔到前面必然是最小的（去掉大的s[x-1]）
                 for y in range(idx, x):
-                    ans[i] = y+1
+                    ans[i] = y + 1
                     i += 1
                 idx = x
         for x in range(idx, n):
@@ -312,8 +312,8 @@ class Solution:
         m = ac.read_int()
         n = ac.read_int()
         k = ac.read_int()
-        row = [0]*(m+1)
-        col = [0]*(n+1)
+        row = [0] * (m + 1)
+        col = [0] * (n + 1)
         for _ in range(k):
             lst = ac.read_list_strs()
             x = int(lst[1])
@@ -333,9 +333,9 @@ class Solution:
     def lg_p8895(ac=FastIO()):
         # 模板：模拟与组合计数
         n, m, p = ac.read_list_ints()
-        dp = [1]*(n+1)
-        for i in range(1, n+1):
-            dp[i] = dp[i-1]*2 % p
+        dp = [1] * (n + 1)
+        for i in range(1, n + 1):
+            dp[i] = dp[i - 1] * 2 % p
         nums = ac.read_list_ints()
         cnt = Counter(nums)
         stack = nums[:]
@@ -402,7 +402,7 @@ class Solution:
                 lst = ac.read_list_ints()
                 if not lst:
                     continue
-                i, j = [x-1 for x in lst]
+                i, j = [x - 1 for x in lst]
                 cur[(i + j) % 2] += 1
                 p -= 1
 
@@ -419,7 +419,7 @@ class Solution:
                     cur_total[0] = mm * nn // 2
 
             if cur[0] <= cnt[0] and cur[1] <= cnt[1] \
-                    and total[0] - cur_total[0] >= cnt[0] - cur[0]\
+                    and total[0] - cur_total[0] >= cnt[0] - cur[0] \
                     and total[1] - cur_total[1] >= cnt[1] - cur[1]:
                 ac.st("YES")
             else:
@@ -447,7 +447,7 @@ class Solution:
                 return
             # 先前走过附近的
             for a, b in [[-1, 0], [0, 1], [1, 0], [0, -1]]:
-                if (x+a, y+b) in pre and (x+a, y+b) != cur:
+                if (x + a, y + b) in pre and (x + a, y + b) != cur:
                     ac.st("NO")
                     return
             pre.add((x, y))

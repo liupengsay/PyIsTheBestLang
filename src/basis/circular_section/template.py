@@ -67,6 +67,3 @@ class CircleSection:
         j = h % circle
         ans += pre[ind + j] - pre[ind]
         return ans
-
-
-

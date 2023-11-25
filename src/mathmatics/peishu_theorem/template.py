@@ -9,4 +9,3 @@ class PeiShuTheorem:
     @staticmethod
     def get_lst_gcd(lst):
         return reduce(math.gcd, lst)
-

@@ -64,7 +64,7 @@ class BinarySearchTreeByArray:
         dct = [[] for _ in range(n)]
         for i in range(1, n + 1):
             if father[i]:
-                u, v = father[i]-1, i-1
+                u, v = father[i] - 1, i - 1
                 x, y = ind[lst[u]], ind[lst[v]]
                 dct[x].append(y)
         return dct

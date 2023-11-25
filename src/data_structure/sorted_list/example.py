@@ -12,11 +12,11 @@ class TestGeneral(unittest.TestCase):
 
         # 验证手写的SortedList与系统包的一致性
         for _ in range(10):
-            floor = -10**8
-            ceil = 10**8
-            low = -5 * 10**7
-            high = 6 * 10**8
-            n = 10**4
+            floor = -10 ** 8
+            ceil = 10 ** 8
+            low = -5 * 10 ** 7
+            high = 6 * 10 ** 8
+            n = 10 ** 4
             # add
             lst = SortedList()
             local_lst = LocalSortedList()

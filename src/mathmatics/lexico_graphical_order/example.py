@@ -10,7 +10,7 @@ class TestGeneral(unittest.TestCase):
     def test_lexico_graphical_order(self):
         lgo = LexicoGraphicalOrder()
 
-        n = 10**5
+        n = 10 ** 5
         nums = sorted([str(x) for x in range(1, n + 1)])
         for _ in range(100):
             i = random.randint(0, n - 1)
@@ -33,17 +33,17 @@ class TestGeneral(unittest.TestCase):
         n = 10
         m = 4
         nums = []
-        for item in combinations(list(range(1, n+1)), m):
+        for item in combinations(list(range(1, n + 1)), m):
             nums.append(list(item))
         for _ in range(100):
             i = random.randint(0, len(nums) - 1)
             lst = nums[i]
-            assert lgo.get_kth_subset_comb(n, m, i+1) == lst
+            assert lgo.get_kth_subset_comb(n, m, i + 1) == lst
             assert lgo.get_subset_comb_kth(n, m, lst) == i + 1
 
         n = 8
         nums = []
-        for item in permutations(list(range(1, n+1)), n):
+        for item in permutations(list(range(1, n + 1)), n):
             nums.append(list(item))
         for i, lst in enumerate(nums):
             lst = nums[i]

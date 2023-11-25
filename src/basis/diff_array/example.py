@@ -43,7 +43,7 @@ class TestGeneral(unittest.TestCase):
         assert pre.pre == [[0, 0, 0, 0], [0, 1, 2, 5], [0, 2, 7, 11], [0, 2, 8, 13]]
 
         xa, ya, xb, yb = 1, 1, 2, 2
-        assert pre.query(xa, ya, xb, yb) == sum(sum(d[ya: yb+1]) for d in diff[xa: xb+1])
+        assert pre.query(xa, ya, xb, yb) == sum(sum(d[ya: yb + 1]) for d in diff[xa: xb + 1])
         return
 
 

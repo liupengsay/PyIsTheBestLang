@@ -103,7 +103,7 @@ class Solution:
         # 模板：使用递归分治进行构造经典
         if n == 1:
             return [1]
-        return [2*x-1 for x in self.lc_932((n+1)//2)] + [2*x for x in self.lc_932(n//2)]
+        return [2 * x - 1 for x in self.lc_932((n + 1) // 2)] + [2 * x for x in self.lc_932(n // 2)]
 
     @staticmethod
     def lc_1028(traversal: str) -> Optional[TreeNode]:
@@ -142,12 +142,12 @@ class Solution:
 
             if n == 1 and k == 1:
                 return '0'
-            if k == 2**(n-1):
+            if k == 2 ** (n - 1):
                 return '1'
-            if k < 2**(n-1):
-                return dfs(n-1, k)
-            k -= 2**(n-1)
-            ans = dfs(n-1, 2**(n-1)-k)
+            if k < 2 ** (n - 1):
+                return dfs(n - 1, k)
+            k -= 2 ** (n - 1)
+            ans = dfs(n - 1, 2 ** (n - 1) - k)
             return '1' if ans == '0' else '0'
 
         return dfs(a, b)
@@ -223,7 +223,7 @@ class Solution:
         def dfs(arr):
             m = len(arr)
             low = min(arr)
-            cur = [num-low for num in arr]
+            cur = [num - low for num in arr]
             ans = low
             i = 0
             while i < m:
@@ -274,7 +274,7 @@ class Solution:
                             else:
                                 x, y = 2 * length - y - 1, length - x - 1
                         else:
-                            stack.append([nn-1, mm % cc])
+                            stack.append([nn - 1, mm % cc])
                 return x, y
 
             x1, y1 = check(n, a)
@@ -287,6 +287,7 @@ class Solution:
     @staticmethod
     def ac_93_1(ac=FastIO()):
         n, m = ac.read_list_ints()
+
         # 模板：递归实现选取
 
         def dfs(i):
@@ -356,7 +357,7 @@ class Solution:
             n = ac.read_int()
             if n == -1:
                 break
-            for a in dp[n-1]:
+            for a in dp[n - 1]:
                 ac.st(a)
             ac.st("-")
 

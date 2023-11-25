@@ -98,7 +98,7 @@ class FastIO:
 
     def inter_out(self, lst):
         self.lst(lst)
-        sys.stdout.flush()   # which is necessary
+        sys.stdout.flush()  # which is necessary
 
     @staticmethod
     def bootstrap(f, queue=[]):

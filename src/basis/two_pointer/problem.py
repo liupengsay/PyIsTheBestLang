@@ -1,4 +1,3 @@
-
 """
 算法：双指针、快慢指针、先后指针、桶计数
 功能：通过相对移动，来减少计算复杂度，分为同向双指针，相反双指针，以及中心扩展法
@@ -187,8 +186,8 @@ class Solution:
             while j < n and cnt[s[j]] - dct[s[j]] - 1 >= k:
                 dct[s[j]] += 1
                 j += 1
-            if j-i > ans:
-                ans = j-i
+            if j - i > ans:
+                ans = j - i
             dct[s[i]] -= 1
         return n - ans
 
@@ -213,7 +212,7 @@ class Solution:
     def lc_2747(n: int, logs: List[List[int]], x: int, queries: List[int]) -> List[int]:
         # 模板：经典离线查询与三指针，即快慢双指针维护连续区间的不同值个数
         m = len(queries)
-        ans = [0]*m
+        ans = [0] * m
         ind = list(range(m))
         ind.sort(key=lambda it: queries[it])
         logs.sort(key=lambda it: it[1])
@@ -221,7 +220,7 @@ class Solution:
         k = len(logs)
         dct = dict()
         for j in ind:
-            left = queries[j]-x
+            left = queries[j] - x
             right = queries[j]
             while i2 < k and logs[i2][1] <= right:
                 dct[logs[i2][0]] = dct.get(logs[i2][0], 0) + 1
@@ -269,7 +268,7 @@ class Solution:
                 j2 += 1
 
             if len(pre1) == k:
-                ans += j2-j1+1
+                ans += j2 - j1 + 1
             pre1[nums[i]] -= 1
             if not pre1[nums[i]]:
                 pre1.pop(nums[i])
@@ -295,7 +294,7 @@ class Solution:
     @staticmethod
     def lc_1537(nums1: List[int], nums2: List[int]) -> int:
         # 模板：双指针加线性DP或者拓扑排序做
-        mod = 10**9 + 7
+        mod = 10 ** 9 + 7
         m, n = len(nums1), len(nums2)
         i = j = pre1 = pre2 = 0
         while i < m and j < n:
@@ -318,7 +317,7 @@ class Solution:
     @staticmethod
     def lc_1712(nums: List[int]) -> int:
         # 模板：经典三指针，即快慢双指针维护满足条件的分割点个数
-        mod = 10**9 + 7
+        mod = 10 ** 9 + 7
         ans = 0
         pre = list(accumulate(nums, initial=0))
         j1 = j2 = 0

@@ -118,7 +118,7 @@ class Solution:
         # 模板：使用线段树，区间更新最大值并单点查询计算天际线
         high = 10 ** 4
         segment = RangeAscendRangeMax(high)
-        segment.build([0]*high)
+        segment.build([0] * high)
         nums = set()
         while True:
             s = ac.read_str()
@@ -196,7 +196,7 @@ class Solution:
         dct = {x: i for i, x in enumerate(lst)}
         # 离散化更新线段树
         segment = RangeAscendRangeMax(n)
-        segment.build([0]*n)
+        segment.build([0] * n)
         for left, right, height in buildings:
             segment.range_ascend(dct[left], dct[right] - 1, height)
         # 按照端点进行关键点查询
@@ -285,7 +285,7 @@ class Solution:
             lst = ac.read_list_ints()
             if lst[0] == 1:
                 x, y, k = lst[1:]
-                segment.range_add(x - 1, y - 1,  k)
+                segment.range_add(x - 1, y - 1, k)
             else:
                 x, y = lst[1:]
                 ac.st(segment.range_sum(x - 1, y - 1))
@@ -590,7 +590,7 @@ class Solution:
         # 区间修改
         n = len(nodes)
         tree = RangeChangeRangeSumMinMax(n)
-        tree.build([0]*n)
+        tree.build([0] * n)
         for i in range(m):
             a, b = nums[i]
             tree.range_change(ind[a], ind[b], i + 1)
@@ -769,7 +769,7 @@ class Solution:
         ceil = len(lst)
         tree = RangeDescendRangeMin(ceil)
         for a, b in intervals:
-            tree.range_descend(ind[a], ind[b],  b - a + 1)
+            tree.range_descend(ind[a], ind[b], b - a + 1)
         ans = [tree.range_min(ind[num], ind[num]) for num in queries]
         return [x if x != inf else -1 for x in ans]
 
@@ -797,7 +797,7 @@ class Solution:
         for i, num in enumerate(nums):
             dct[num].append(i)
         tree = RangeAscendRangeMax(n)
-        tree.build([0]*n)
+        tree.build([0] * n)
         for num in sorted(dct):
             cur = []
             for i in dct[num]:

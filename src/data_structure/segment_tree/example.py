@@ -20,17 +20,17 @@ class TestGeneral(unittest.TestCase):
         segment_tree = RangeOrRangeAnd(n)
         segment_tree.build(nums)
         for _ in range(1000):
-            ll = random.randint(0, n-1)
-            rr = random.randint(ll, n-1)
+            ll = random.randint(0, n - 1)
+            rr = random.randint(ll, n - 1)
             num = random.randint(low, high)
-            for i in range(ll, rr+1):
+            for i in range(ll, rr + 1):
                 nums[i] |= num
             segment_tree.range_or(ll, rr, num)
 
-            ll = random.randint(0, n-1)
-            rr = random.randint(ll, n-1)
+            ll = random.randint(0, n - 1)
+            rr = random.randint(ll, n - 1)
             res = high
-            for i in range(ll, rr+1):
+            for i in range(ll, rr + 1):
                 res &= nums[i]
             assert res == segment_tree.range_and(ll, rr)
         assert nums == segment_tree.get()
@@ -230,7 +230,7 @@ class TestGeneral(unittest.TestCase):
     def test_range_change_range_sum_min_max_dynamic(self):
         high = 10000
         n = 10000
-        nums = [0]*n
+        nums = [0] * n
         segment_tree = RangeChangeRangeSumMinMaxDynamic(n)
 
         for _ in range(high):

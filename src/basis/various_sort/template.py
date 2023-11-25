@@ -238,8 +238,8 @@ class VariousSort:
             return 0
 
         def compare2(x, y):
-            a = int(x+y)
-            b = int(y+x)
+            a = int(x + y)
+            b = int(y + x)
             if a < b:
                 return -1
             elif a > b:
@@ -247,8 +247,8 @@ class VariousSort:
             return 0
 
         def compare3(x, y):
-            a = x+y
-            b = y+x
+            a = x + y
+            b = y + x
             if a < b:
                 return -1
             elif a > b:
@@ -278,7 +278,7 @@ class VariousSort:
         ans = cur = 0
         for a, b in transactions:
             if cur < a:
-                ans += a-cur
+                ans += a - cur
                 cur = a
-            cur += b-a
+            cur += b - a
         return ans

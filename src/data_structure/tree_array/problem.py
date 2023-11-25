@@ -188,7 +188,7 @@ class Solution:
     @staticmethod
     def lc_2736(nums1: List[int], nums2: List[int], queries: List[List[int]]) -> List[int]:
 
-        nodes = set(nums1+nums2)
+        nodes = set(nums1 + nums2)
         for x, y in queries:
             nodes.add(x)
             nodes.add(y)
@@ -197,7 +197,7 @@ class Solution:
         k = len(nodes)
         n = len(nums1)
         m = len(queries)
-        ans = [-1]*m
+        ans = [-1] * m
         ind = list(range(m))
         ind.sort(key=lambda it: queries[it][0], reverse=True)
         index = list(range(n))
@@ -208,9 +208,9 @@ class Solution:
             x, y = queries[j]
             while i < n and nums1[index[i]] >= x:
                 value = nums1[index[i]] + nums2[index[i]]
-                tree.point_ascend(k-dct[nums2[index[i]]], value)
+                tree.point_ascend(k - dct[nums2[index[i]]], value)
                 i += 1
-            ans[j] = tree.pre_max(k-dct[y])
+            ans[j] = tree.pre_max(k - dct[y])
         return ans
 
     @staticmethod
@@ -851,10 +851,10 @@ class LC307:
         self.tree.build(nums)
 
     def update(self, index: int, val: int) -> None:
-        self.tree.point_change(index+1, val)
+        self.tree.point_change(index + 1, val)
 
     def sum_range(self, left: int, right: int) -> int:
-        return self.tree.range_sum(left+1, right+1)
+        return self.tree.range_sum(left + 1, right + 1)
 
 
 class LC308:

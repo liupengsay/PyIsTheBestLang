@@ -1,6 +1,5 @@
 from src.utils.fast_io import FastIO
 
-
 """
 Algorithm：use xor of random seed as key of mapping
 Ability：speed up and avoid hash crush

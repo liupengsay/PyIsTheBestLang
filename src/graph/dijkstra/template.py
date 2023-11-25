@@ -13,7 +13,7 @@ class Dijkstra:
         """template of shortest path by dijkstra"""
         #  which can to changed to be the longest path problem by opposite number
         n = len(dct)
-        dis = [inf]*n
+        dis = [inf] * n
         stack = [(0, src)]
         dis[src] = 0
 
@@ -32,10 +32,10 @@ class Dijkstra:
     def get_cnt_of_shortest_path(dct: List[List[int]], src: int) -> (List[int], List[any]):
         """number of shortest path"""
         n = len(dct)
-        dis = [inf]*n
+        dis = [inf] * n
         stack = [(0, src)]
         dis[src] = 0
-        cnt = [0]*n
+        cnt = [0] * n
         cnt[src] = 1
         while stack:
             d, i = heappop(stack)
@@ -148,7 +148,7 @@ class Dijkstra:
         dis = [[inf] * 2 for _ in range(n)]
         dis[src][0] = 0
         stack = [(0, src, 0)]
-        cnt = [[0]*2 for _ in range(n)]
+        cnt = [[0] * 2 for _ in range(n)]
         cnt[src][0] = 1
         while stack:
             d, i, state = heappop(stack)
@@ -156,7 +156,7 @@ class Dijkstra:
                 continue
             pre = cnt[i][state]
             for j, w in dct[i]:
-                dd = d+w
+                dd = d + w
                 if dis[j][0] > dd:
                     dis[j][0] = dd
                     cnt[j][0] = pre

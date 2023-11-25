@@ -309,7 +309,7 @@ class NumberTheory:
     def get_prime_factors_with_pollard_rho(self, n):
         """Returns the prime factorization of n and the corresponding number of factors"""
         if n <= 1:
-            return Counter() # special case
+            return Counter()  # special case
         f = self.pollard_rho(n)
         return Counter([n]) if f == n else self.get_prime_factors_with_pollard_rho(
             f) + self.get_prime_factors_with_pollard_rho(n // f)

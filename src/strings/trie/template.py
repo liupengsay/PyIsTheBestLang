@@ -50,6 +50,7 @@ class TrieZeroOneXorRange:
 
 class TrieZeroOneXorMax:
     """template of add num and query the maximum xor with assign num"""
+
     def __init__(self, n):
         self.dct = dict()
         self.n = n
@@ -82,6 +83,7 @@ class TrieZeroOneXorMax:
 
 class TriePrefixKeyValue:
     """template of word prefix cnt and query"""
+
     def __init__(self):
         self.dct = dict()
         return
@@ -110,6 +112,7 @@ class TriePrefixKeyValue:
                 if s != "val":
                     dfs(dct[s])
             return
+
         res = 0
         dfs(cur)
         return res

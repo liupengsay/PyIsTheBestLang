@@ -13,9 +13,9 @@ class TestGeneral(unittest.TestCase):
         assert mt.compute_with_api(10, 13) == 4
         assert mt.mod_reverse(10, 1) == 0
         assert mt.compute_with_api(10, 1) == 0
-        mod = 10**9 + 7
+        mod = 10 ** 9 + 7
         for _ in range(1000):
-            num = random.randint(1, 10**9)
+            num = random.randint(1, 10 ** 9)
             assert pow(num, -1, mod) == mt.mod_reverse(num, mod)
 
             a, b = random.randint(10, 1000), random.randint(10, 10000)

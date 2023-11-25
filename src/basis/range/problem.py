@@ -160,7 +160,7 @@ class Solution:
             dct[nums[i]].append(i)
         lst = [[dct[num][0], dct[num][-1]] for num in dct]
         ans = len(Range().merge(lst))
-        ac.st(pow(2, ans-1, mod))
+        ac.st(pow(2, ans - 1, mod))
         return
 
     @staticmethod
@@ -202,7 +202,7 @@ class Solution:
             return
         for i in range(n):
             x, y = lst[i]
-            r = (d * d - y * y)**0.5
+            r = (d * d - y * y) ** 0.5
             lst[i] = [x - r, x + r]
         lst.sort(key=lambda it: it[0])
         ans = 0
@@ -276,16 +276,16 @@ class Solution:
         # 模板：区间点覆盖贪心
         n, r = ac.read_list_ints()
         lst = []
-        while len(lst) < 2*n:
+        while len(lst) < 2 * n:
             lst.extend(ac.read_list_ints())
         nums = []
         for i in range(n):
-            x, y = lst[2*i], lst[2*i+1]
-            if r*r < y*y:
+            x, y = lst[2 * i], lst[2 * i + 1]
+            if r * r < y * y:
                 ac.st(-1)
                 return
-            d = (r*r-y*y)**0.5
-            nums.append([x-d, x+d])
+            d = (r * r - y * y) ** 0.5
+            nums.append([x - d, x + d])
         nums.sort(key=lambda it: it[1])
         ans = 1
         a, b = nums[0]
@@ -363,9 +363,9 @@ class Solution:
         lst = []
         for i in range(n):
             if nums[i]:
-                a, b = i-r+1, i+r-1
+                a, b = i - r + 1, i + r - 1
                 a = ac.max(a, 0)
                 lst.append([a, b])
-        ans = Range().cover_less(0, n-1, lst, False)
+        ans = Range().cover_less(0, n - 1, lst, False)
         ac.st(ans)
         return

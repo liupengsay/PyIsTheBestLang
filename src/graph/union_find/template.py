@@ -86,7 +86,7 @@ class UnionFindWeighted:
         self.root = [i for i in range(n)]
         self.size = [1] * n
         self.part = n
-        self.front = [0]*n
+        self.front = [0] * n
         return
 
     def find(self, x):
@@ -98,8 +98,8 @@ class UnionFindWeighted:
             self.root[w] = x
         lst.append(x)
         m = len(lst)
-        for i in range(m-2, -1, -1):
-            self.front[lst[i]] += self.front[lst[i+1]]
+        for i in range(m - 2, -1, -1):
+            self.front[lst[i]] += self.front[lst[i + 1]]
         return x
 
     def union(self, x, y):

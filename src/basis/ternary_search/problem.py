@@ -1,4 +1,3 @@
-
 import bisect
 import math
 import random
@@ -72,15 +71,15 @@ class Solution:
                     lst_y.append([y, ind[d][1]])
 
         def check(t):
-            dis_x = [xx+t*aa for xx, aa in lst_x]
-            dis_y = [xx+t*aa for xx, aa in lst_y]
+            dis_x = [xx + t * aa for xx, aa in lst_x]
+            dis_y = [xx + t * aa for xx, aa in lst_y]
             x_low = min(dis_x)
             x_high = max(dis_x)
             y_low = min(dis_y)
             y_high = max(dis_y)
-            return (x_high-x_low)*(y_high-y_low)
+            return (x_high - x_low) * (y_high - y_low)
 
-        ans = TernarySearch().find_floor_value_float(check, 0, 10**8, error=1e-10, high_precision=True)
+        ans = TernarySearch().find_floor_value_float(check, 0, 10 ** 8, error=1e-10, high_precision=True)
         ac.st(ans)
         return
 
@@ -194,7 +193,7 @@ class Solution:
             t = ac.read_list_ints()
 
             def check(x0):
-                return max(t[i] + abs(x[i]-x0) for i in range(n))
+                return max(t[i] + abs(x[i] - x0) for i in range(n))
 
             ans = TernarySearch().find_floor_point_float(check, min(x), max(x), 1e-8)
             ac.st(ans)
@@ -230,18 +229,18 @@ class Solution:
             random.shuffle(positions)
             for i in range(0, n, batch_size):
                 dx = dy = 0.0
-                j = i+batch_size if i+batch_size < n else n
+                j = i + batch_size if i + batch_size < n else n
                 for k in range(i, j):
                     pos = positions[k]
-                    dx += (x-pos[0])/((x-pos[0])*(x-pos[0])+(y-pos[1])*(y-pos[1])+eps)**0.5
-                    dy += (y-pos[1])/((x-pos[0])*(x-pos[0])+(y-pos[1])*(y-pos[1])+eps)**0.5
-                x -= alpha*dx
-                y -= alpha*dy
-            alpha *= (1-decay)
-            if ((x-x_pre)*(x-x_pre)+(y-y_pre)*(y-y_pre))**0.5 < eps:
+                    dx += (x - pos[0]) / ((x - pos[0]) * (x - pos[0]) + (y - pos[1]) * (y - pos[1]) + eps) ** 0.5
+                    dy += (y - pos[1]) / ((x - pos[0]) * (x - pos[0]) + (y - pos[1]) * (y - pos[1]) + eps) ** 0.5
+                x -= alpha * dx
+                y -= alpha * dy
+            alpha *= (1 - decay)
+            if ((x - x_pre) * (x - x_pre) + (y - y_pre) * (y - y_pre)) ** 0.5 < eps:
                 break
 
-        ans = sum(((x-x0)*(x-x0)+(y-y0)*(y-y0))**0.5 for x0, y0 in positions)
+        ans = sum(((x - x0) * (x - x0) + (y - y0) * (y - y0)) ** 0.5 for x0, y0 in positions)
         return ans
 
     @staticmethod

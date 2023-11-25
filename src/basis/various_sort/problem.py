@@ -76,7 +76,7 @@ class Solution:
                 return -1
             return 1
 
-        nums = list(range(1, n+1))
+        nums = list(range(1, n + 1))
         nums.sort(key=cmp_to_key(compare_))
         return nums
 
@@ -88,11 +88,12 @@ class Solution:
 
         def compare(a, b):
             # 比较函数
-            if a+b < b+a:
+            if a + b < b + a:
                 return -1
-            elif a+b > b+a:
+            elif a + b > b + a:
                 return 1
             return 0
+
         nums.sort(key=cmp_to_key(compare))
         ac.st("".join(nums))
         return
@@ -120,7 +121,7 @@ class Solution:
         # 模板：快速排序迭代实现
         n = ac.read_int()
         nums = ac.read_list_ints()
-        stack = [[0, n-1]]
+        stack = [[0, n - 1]]
         while stack:
             left, right = stack.pop()
             mid = nums[random.randint(left, right)]
@@ -179,7 +180,7 @@ class Solution:
         ans = cur = 0
         for a, b in transactions:
             if cur < a:
-                ans += a-cur
+                ans += a - cur
                 cur = a
             cur += b - a
         return ans

@@ -60,4 +60,5 @@ class MatrixHash:
                         tmp.append(cur)
                 matrix_hash_table.append(tmp[:])
             return matrix_hash_table
+
         return check(p1, mod1), check(p2, mod2)

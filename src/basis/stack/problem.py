@@ -75,21 +75,21 @@ class Solution:
             if len(stack) > k:
                 pre -= heapq.heappop(stack)
             if len(stack) == k:
-                if pre*nums2[i] > ans:
-                    ans = pre*nums2[i]
+                if pre * nums2[i] > ans:
+                    ans = pre * nums2[i]
         return ans
 
     @staticmethod
     def lc_2462(costs: List[int], k: int, candidates: int) -> int:
         # 模板：使用堆进行贪心模拟
         n = len(costs)
-        visit = [0]*n
+        visit = [0] * n
         pre = [[costs[i], i] for i in range(candidates)]
-        post = [[costs[i], i] for i in range(n-candidates, n)]
+        post = [[costs[i], i] for i in range(n - candidates, n)]
         heapq.heapify(pre)
         heapq.heapify(post)
         pre_ind = candidates
-        post_ind = n-candidates-1
+        post_ind = n - candidates - 1
         ans = 0
         for _ in range(k):
             while pre and visit[pre[0][1]]:
@@ -152,7 +152,7 @@ class Solution:
         stack = []
         while i < n or stack:
             if i < n and apples[i]:
-                heappush(stack, [i+days[i]-1, apples[i]])
+                heappush(stack, [i + days[i] - 1, apples[i]])
             while stack and (stack[0][0] < i or not stack[0][1]):
                 heappop(stack)
             if stack:
@@ -293,7 +293,7 @@ class Solution:
             lst = ac.read_list_strs()
             if lst[0] == "I":
                 pre.append(int(lst[1]))
-                pre_sum.append(pre_sum[-1]+int(lst[1]))
+                pre_sum.append(pre_sum[-1] + int(lst[1]))
                 pre_ceil.append(ac.max(pre_ceil[-1], pre_sum[-1]))
             elif lst[0] == "D":
                 if pre:
@@ -321,7 +321,7 @@ class Solution:
         n = ac.read_int()
         m = ac.min(5, n)
 
-        pre = list(range(1, n+1))
+        pre = list(range(1, n + 1))
 
         def check(lst):
             lst = deque(lst)
@@ -334,8 +334,8 @@ class Solution:
             return not stack
 
         cnt = 0
-        for item in permutations(list(range(n-m+1, n+1)), m):
-            cur = list(range(1, n-m+1)) + list(item)
+        for item in permutations(list(range(n - m + 1, n + 1)), m):
+            cur = list(range(1, n - m + 1)) + list(item)
             if check(cur):
                 ac.st("".join(str(x) for x in cur))
                 cnt += 1
@@ -358,7 +358,7 @@ class Solution:
 
             if pre:
                 res.append(pre.pop())
-                dfs(i+1)
+                dfs(i + 1)
                 pre.append(res.pop())
 
             if post:
@@ -368,7 +368,7 @@ class Solution:
             return
 
         n = ac.read_int()
-        post = deque(list(range(1, n+1)))
+        post = deque(list(range(1, n + 1)))
         res = []
         pre = []
         cnt = 0
@@ -388,9 +388,9 @@ class Solution:
                 ac.st("".join(str(x) for x in res))
             else:
                 if ind + 1 <= n:
-                    stack.append([pre+[ind+1], res[:], ind+1])
+                    stack.append([pre + [ind + 1], res[:], ind + 1])
                 if pre:
-                    stack.append([pre[:-1], res+[pre[-1]], ind])
+                    stack.append([pre[:-1], res + [pre[-1]], ind])
         return
 
     @staticmethod
@@ -432,7 +432,7 @@ class Solution:
         m = ac.read_int()
         lst = ac.read_list_strs()
         n = len(lst)
-        if n != m*2-1:
+        if n != m * 2 - 1:
             ac.st("Error occurred")
             return
         if m == 1:
@@ -467,10 +467,10 @@ class Solution:
         # 模板：经典栈倒序模拟
         s = ac.read_str()
         n = len(s)
-        ans = [0]*n
+        ans = [0] * n
         right = 0
         post = deque()
-        for i in range(n-1, -1, -1):
+        for i in range(n - 1, -1, -1):
             if s[i] == "#":
                 post.append(i)
             elif s[i] == "(":

@@ -17,7 +17,7 @@ class DirectedEulerPath:
 
     def get_euler_path(self):
         # in and out degree sum of node
-        degree = [0]*self.n
+        degree = [0] * self.n
         edge = [[] for _ in range(self.n)]
         for i, j in self.pairs:
             degree[i] += 1
@@ -79,7 +79,7 @@ class UnDirectedEulerPath:
         return
 
     def get_euler_path(self):
-        degree = [0]*self.n
+        degree = [0] * self.n
         edge = [dict() for _ in range(self.n)]
         for i, j in self.pairs:
             degree[i] += 1

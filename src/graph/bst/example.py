@@ -87,7 +87,7 @@ class TestGeneral(unittest.TestCase):
                 stack.append([~i, d])
                 dct[i].sort(key=lambda it: -nums[it])
                 for j in dct[i]:
-                    stack.append([j, d+1])
+                    stack.append([j, d + 1])
             else:
                 i = ~i
                 depth = depth if depth > d else d
@@ -107,7 +107,7 @@ class TestGeneral(unittest.TestCase):
                 stack.append([~i, d])
                 dct[i].sort(key=lambda it: -nums[it])
                 for j in dct[i]:
-                    stack.append([j, d+1])
+                    stack.append([j, d + 1])
             else:
                 i = ~i
                 depth = depth if depth > d else d
@@ -129,9 +129,9 @@ class TestGeneral(unittest.TestCase):
         t4 = time.time()
         self.lg_2171_3_input_2(n, nums[:])
         t5 = time.time()
-        print(n, t2-t1, t3 - t2, t4 - t3, t5-t4)
+        print(n, t2 - t1, t3 - t2, t4 - t3, t5 - t4)
 
-        nums = list(range(1, n+1))
+        nums = list(range(1, n + 1))
         t2 = time.time()
         self.lg_2171_2_input(n, nums[:])
         t3 = time.time()
@@ -139,7 +139,7 @@ class TestGeneral(unittest.TestCase):
         t4 = time.time()
         self.lg_2171_3_input_2(n, nums[:])
         t5 = time.time()
-        print(n, t3 - t2, t4 - t3, t5-t4)
+        print(n, t3 - t2, t4 - t3, t5 - t4)
 
         return
 

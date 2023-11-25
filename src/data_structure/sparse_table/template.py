@@ -10,7 +10,7 @@ class SparseTable1:
         self.fun = fun
         self.n = len(lst)
         self.lst = lst
-        self.f = [[0] * (int(math.log2(self.n)) + 1) for _ in range(self.n+1)]
+        self.f = [[0] * (int(math.log2(self.n)) + 1) for _ in range(self.n + 1)]
         self.gen_sparse_table()
 
         return
@@ -30,7 +30,7 @@ class SparseTable1:
                 elif self.fun == "gcd":
                     self.f[i][j] = math.gcd(a, b)
                 elif self.fun == "lcm":
-                    self.f[i][j] = a*b//math.gcd(a, b)
+                    self.f[i][j] = a * b // math.gcd(a, b)
                 elif self.fun == "and":
                     self.f[i][j] = a & b
                 elif self.fun == "or":
@@ -75,11 +75,11 @@ class SparseTable2:
                 continue
             break
 
-        self.ST = [[0] * len(data) for _ in range(self.note[-1]+1)]
+        self.ST = [[0] * len(data) for _ in range(self.note[-1] + 1)]
         self.ST[0] = data
         for i in range(1, len(self.ST)):
             for j in range(len(data) - (1 << i) + 1):
-                a, b = self.ST[i-1][j], self.ST[i-1][j + (1 << (i-1))]
+                a, b = self.ST[i - 1][j], self.ST[i - 1][j + (1 << (i - 1))]
                 if self.fun == "max":
                     self.ST[i][j] = a if a > b else b
                 elif self.fun == "min":
@@ -91,7 +91,7 @@ class SparseTable2:
     def query(self, left, right):
         """index start from index 0"""
         assert 0 <= left <= right <= self.n - 1
-        pos = self.note[right-left+1]
+        pos = self.note[right - left + 1]
         a, b = self.ST[pos][left], self.ST[pos][right - (1 << pos) + 1]
         if self.fun == "max":
             return a if a > b else b
@@ -137,7 +137,8 @@ class SparseTable2D:
                             self.dp[x][y][i][j] = self.fun([self.dp[x][y][i - 1][j - 1],
                                                             self.dp[x + (1 << (i - 1))][y][i - 1][j - 1],
                                                             self.dp[x][y + (1 << (j - 1))][i - 1][j - 1],
-                                                            self.dp[x + (1 << (i - 1))][y + (1 << (j - 1))][i - 1][j - 1]])
+                                                            self.dp[x + (1 << (i - 1))][y + (1 << (j - 1))][i - 1][
+                                                                j - 1]])
         return
 
     @staticmethod

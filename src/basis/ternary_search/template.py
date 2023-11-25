@@ -129,7 +129,7 @@ class TriPartPackTriPart:
     def find_floor_point_float(target, left_x, right_x, low_y, high_y):
         # Find the smallest coordinate [x, y] to minimize the target of the objective function
         error = 5e-8
-        
+
         def optimize(y):
             # The loss function
             low_ = left_x

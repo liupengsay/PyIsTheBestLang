@@ -87,7 +87,7 @@ class DateTime:
         else:
             day += sum(self.not_leap_month[:m - 1])
         res = day * 24 * 60 + h * 60 + minute
-        return res//(24*60)
+        return res // (24 * 60)
 
     def unix_second(self, s):
         """seconds start from 0000-00-00-00:00"""

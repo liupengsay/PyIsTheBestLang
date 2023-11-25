@@ -12,5 +12,3 @@ class MinStack:
 
     def gen_result(self):
         return
-
-

@@ -504,7 +504,6 @@ class Solution:
                     maze[x][y] = "+"
         return -1
 
-
     @staticmethod
     def cf_1572a(ac=FastIO()):
         # 模板：BFS 判断 DAG 是否有环和无环时的最长路（注意起点可能有多个）
@@ -1205,7 +1204,8 @@ class Solution:
             if i == m - 1 and j == n - 1:
                 ac.st(visit[i][j][s])
                 return
-            if s == 0 and 0 <= i + d < m and 0 <= j + r < n and not visit[i + d][j + r][1] and grid[i + d][j + r] != "#":
+            if s == 0 and 0 <= i + d < m and 0 <= j + r < n and not visit[i + d][j + r][1] and grid[i + d][
+                j + r] != "#":
                 visit[i + d][j + r][1] = visit[i][j][s] + 1
                 stack.append([i + d, j + r, 1])
             for x, y in [[i - 1, j], [i, j + 1], [i + 1, j], [i, j - 1]]:
@@ -1658,7 +1658,6 @@ class Solution:
                 ans = ac.min(ans, cur)
         ac.st(ans if ans < inf else -1)
         return
-
 
     @staticmethod
     def lc_909(board: List[List[int]]) -> int:

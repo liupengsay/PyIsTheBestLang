@@ -1,4 +1,3 @@
-
 """
 
 算法：位运算相关技巧（也叫bitmasks）
@@ -197,8 +196,8 @@ class Solution:
         # 模板：涉及到 MEX 转换为求 n^ans>=m+1 的最小值ans
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
-            assert 0 <= n <= 10**9
-            assert 0 <= m <= 10**9
+            assert 0 <= n <= 10 ** 9
+            assert 0 <= m <= 10 ** 9
             p = m + 1
             ans = 0
             for i in range(30, -1, -1):
@@ -214,15 +213,15 @@ class Solution:
     @staticmethod
     def lc_1787(nums: List[int], k: int) -> int:
         # 模板：经典按照异或特性分组并利用值域枚举DP
-        m = max(len(bin(num))-2 for num in nums)
-        pre = [inf]*(1 << m)
+        m = max(len(bin(num)) - 2 for num in nums)
+        pre = [inf] * (1 << m)
         pre[0] = 0
         for i in range(k):
             lst = nums[i::k]
             n = len(lst)
             cnt = Counter(lst)
             low = min(pre)
-            cur = [low+n for x in pre]
+            cur = [low + n for x in pre]
             for j in range(1 << m):
                 for num in cnt:
                     a, b = cur[j], pre[j ^ num] + n - cnt[num]
@@ -447,9 +446,9 @@ class Solution:
                         ans |= (1 << i)
                         nums = [
                             num ^ (
-                                1 << i) for num in nums if num & (
-                                1 << i) and num ^ (
-                                1 << i)]
+                                    1 << i) for num in nums if num & (
+                                    1 << i) and num ^ (
+                                    1 << i)]
                         break
                 else:
                     nums = []
@@ -553,7 +552,7 @@ class Solution:
             for k in range(21):
                 if x & (1 << k):
                     ans += (1 << (k + 1)) - (1 << k) - \
-                        (prime[(1 << (k + 1)) - 1] - prime[(1 << k) - 1])
+                           (prime[(1 << (k + 1)) - 1] - prime[(1 << k) - 1])
             ac.st(ans)
         return
 

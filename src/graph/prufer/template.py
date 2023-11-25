@@ -61,7 +61,7 @@ class PruferAndTree:
         n = len(code) + 2
 
         # 根据度确定初始叶节点
-        degree = [1]*n
+        degree = [1] * n
         for i in code:
             degree[i] += 1
         ptr = 0

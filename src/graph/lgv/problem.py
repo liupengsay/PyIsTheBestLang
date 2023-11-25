@@ -8,4 +8,3 @@
 P6657 【模板】LGV 引理（https://www.luogu.com.cn/problem/P6657）
 参考：OI WiKi（https://oi-wiki.org/graph/lgv/）
 """
-

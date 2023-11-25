@@ -1,4 +1,3 @@
-
 from collections import defaultdict, deque
 from math import inf
 
@@ -177,20 +176,21 @@ class KM:
     def __init__(self):
         self.matrix = None
         self.max_weight = 0
-        self.row, self.col = 0, 0 
-        self.size = 0 
+        self.row, self.col = 0, 0
+        self.size = 0
         self.lx = None
-        self.ly = None 
-        self.match = None   
-        self.slack = None  
-        self.visit_x = None   
-        self.visit_y = None 
+        self.ly = None
+        self.match = None
+        self.slack = None
+        self.visit_x = None
+        self.visit_y = None
 
-    # 调整数据
+        # 调整数据
+
     def pad_matrix(self, min):
         if min:
             max = self.matrix.max() + 1
-            self.matrix = max-self.matrix
+            self.matrix = max - self.matrix
 
         if self.row > self.col:
             self.matrix = np.c_[self.matrix, np.array([[0] * (self.row - self.col)] * self.row)]

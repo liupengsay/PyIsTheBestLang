@@ -904,11 +904,11 @@ class Solution:
                 if x > a or b == 0:
                     ac.st("NO")
                     break
-                if (a-x) % b == 0:
+                if (a - x) % b == 0:
                     ac.st("YES")
                     break
                 y = ac.ceil(a, b) - 1
-                a -= y*b
+                a -= y * b
                 if y == 0:
                     ac.st("NO")
                     break

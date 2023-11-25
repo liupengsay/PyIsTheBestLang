@@ -1,5 +1,3 @@
-
-
 """
 算法：马拉车算法、回文连续子串、回文不连续子串
 功能：用来处理字符串的回文相关问题，可以有暴力、DP、中心扩展法、马拉车
@@ -44,9 +42,9 @@ class Solution:
         n = len(t)
 
         for i in range(n):
-            x = 2*dp[i] - 1
-            if t[i+dp[i]-1] == "#":
-                dp[i] = (x-1)//2
+            x = 2 * dp[i] - 1
+            if t[i + dp[i] - 1] == "#":
+                dp[i] = (x - 1) // 2
             else:
                 dp[i] = (x + 1) // 2
         ac.lst(dp)
@@ -59,7 +57,7 @@ class Solution:
         dct = [set(ls) for ls in end]
         for i in start[0]:
             for j in end[-1]:
-                if i < j and i+1 in dct[j-1]:
+                if i < j and i + 1 in dct[j - 1]:
                     return True
         return False
 
@@ -76,7 +74,7 @@ class Solution:
         # 模板：计算字符串的最长回文子串，转换为求字符开头以及结尾的最长回文子串
         post, pre = ManacherPlindrome().palindrome_longest(s)
         i = post.index(max(post))
-        return s[i: i+post[i]]
+        return s[i: i + post[i]]
 
     @staticmethod
     def ac_139(ac=FastIO()):
@@ -110,7 +108,7 @@ class Solution:
     def lg_p6297(ac=FastIO()):
         # 模板：中心扩展法并使用变量维护
         n, k = ac.read_list_ints()
-        mod = 10**9 + 7
+        mod = 10 ** 9 + 7
         nums = ac.read_list_ints()
         ans = 0
         for i in range(n):
@@ -176,7 +174,7 @@ class Solution:
         end = [len(x) for x in end]
         pre = ans = 0
         for i in range(n):
-            ans += pre*start[i]
+            ans += pre * start[i]
             pre += end[i]
         ac.st(ans)
         return

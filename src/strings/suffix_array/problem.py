@@ -31,7 +31,7 @@ class Solution:
     def lc_1754_1(word1: str, word2: str) -> str:
         # 模板：后缀数组计算后缀的字典序大小，贪心拼接两个字符串使得字典序最大
         ind = {chr(ord("a") - 1 + i): i for i in range(27)}
-        word = word1 + chr(ord("a")-1) + word2
+        word = word1 + chr(ord("a") - 1) + word2
         sa, rk, height = SuffixArray(ind).get_array(word)
         m, n = len(word1), len(word2)
         i = 0
@@ -73,7 +73,7 @@ class Solution:
             word2 = ac.read_str().lower()
 
             ind = {chr(ord("a") + i): i for i in range(27)}
-            word = word1 + chr(ord("z")+1) + word2 + chr(ord("z")+1)
+            word = word1 + chr(ord("z") + 1) + word2 + chr(ord("z") + 1)
             sa, rk, height = SuffixArray(ind).get_array(word)
             m, n = len(word1), len(word2)
             i = 0
@@ -108,11 +108,11 @@ class Solution:
     @staticmethod
     def library_check_1(ac=FastIO()):
         s = ac.read_str()
-        ind = {chr(ord("a")+i): i for i in range(26)}
+        ind = {chr(ord("a") + i): i for i in range(26)}
         sa, rk, height = SuffixArray(ind).get_array(s)
         n = len(s)
         ans = sum(height)
-        ac.st(n*(n+1)//2-ans)
+        ac.st(n * (n + 1) // 2 - ans)
         return
 
     @staticmethod
@@ -132,4 +132,4 @@ class Solution:
         sa, rk, height = SuffixArray(ind).get_array(s)
         n = len(s)
         print(height)
-        return n*(n+1)//2 - sum(height)
+        return n * (n + 1) // 2 - sum(height)

@@ -12,7 +12,7 @@ class TestGeneral(unittest.TestCase):
 
         km = KM()
         min_ = km.compute(a.copy(), True)
-        print("最小组合:", min_,  a[[i[0] for i in min_], [i[1] for i in min_]])
+        print("最小组合:", min_, a[[i[0] for i in min_], [i[1] for i in min_]])
 
         max_ = km.compute(a.copy())
         print("最大组合:", max_, a[[i[0] for i in max_], [i[1] for i in max_]])

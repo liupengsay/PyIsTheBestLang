@@ -177,9 +177,9 @@ class TreeAncestor:
 
         for j in range(1, self.cols):
             for i in range(n):
-                father = self.dp[i][j-1]
+                father = self.dp[i][j - 1]
                 if father != -1:
-                    self.dp[i][j] = self.dp[father][j-1]
+                    self.dp[i][j] = self.dp[father][j - 1]
         return
 
     def get_kth_ancestor(self, node: int, k: int) -> int:
@@ -194,7 +194,7 @@ class TreeAncestor:
         if self.depth[x] < self.depth[y]:
             x, y = y, x
         while self.depth[x] > self.depth[y]:
-            d = self.depth[x]-self.depth[y]
+            d = self.depth[x] - self.depth[y]
             x = self.dp[x][int(math.log2(d))]
         if x == y:
             return x
@@ -276,18 +276,18 @@ class HeavyChain:
         self.n = len(dct)
         self.dct = dct
         # father of node
-        self.parent = [-1]*self.n
+        self.parent = [-1] * self.n
         # number of subtree nodes
-        self.cnt_son = [1]*self.n
+        self.cnt_son = [1] * self.n
         # heavy son
-        self.weight_son = [-1]*self.n
+        self.weight_son = [-1] * self.n
         # chain forward star
-        self.top = [-1]*self.n
+        self.top = [-1] * self.n
         # index is original node and value is its dfs order
-        self.dfn = [0]*self.n
+        self.dfn = [0] * self.n
         # index is dfs order and value is its original node
-        self.rev_dfn = [0]*self.n
-        self.depth = [0]*self.n
+        self.rev_dfn = [0] * self.n
+        self.depth = [0] * self.n
         self.build_weight(root)
         self.build_dfs(root)
         return

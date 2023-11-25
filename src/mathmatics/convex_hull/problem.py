@@ -1,5 +1,3 @@
-
-
 """
 算法：凸包、最小圆覆盖
 功能：求点集的子集组成最小凸包上
@@ -58,17 +56,17 @@ class Solution:
             res = []
             while i < n:
                 left = i
-                right = n-1
-                while left < right-1:
-                    mm = left+(right-left)//2
-                    if circle(nums[i:mm+1])[2] <= r:
+                right = n - 1
+                while left < right - 1:
+                    mm = left + (right - left) // 2
+                    if circle(nums[i:mm + 1])[2] <= r:
                         left = mm
                     else:
                         right = mm
-                ll = circle(nums[i:right+1])
+                ll = circle(nums[i:right + 1])
                 if ll[2] > r:
-                    ll = circle(nums[i:left+1])
-                    i = left+1
+                    ll = circle(nums[i:left + 1])
+                    i = left + 1
                 else:
                     i = right + 1
                 res.append(ll[:-1])
@@ -76,10 +74,10 @@ class Solution:
             return res, cnt <= m
 
         low = 0
-        high = 4*10**6
-        error = 10**(-6)
-        while low < high-error:
-            mid = low+(high-low)/2
+        high = 4 * 10 ** 6
+        error = 10 ** (-6)
+        while low < high - error:
+            mid = low + (high - low) / 2
             if check(mid)[1]:
                 high = mid
             else:
@@ -95,4 +93,3 @@ class Solution:
         for a in nodes:
             ac.lst([round(a[0], 10), round(a[1], 10)])
         return
-

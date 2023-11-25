@@ -163,8 +163,8 @@ class Solution:
         n, q = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         p = ac.read_list_ints_minus_one()
-        for i in range(n-1):
-            dct[p[i]].append(i+1)
+        for i in range(n - 1):
+            dct[p[i]].append(i + 1)
         for i in range(n):
             dct[i].reverse()
         dfs = DfsEulerOrder(dct)
@@ -172,10 +172,10 @@ class Solution:
             u, k = ac.read_list_ints()
             u -= 1
             x = dfs.start[u]
-            if n-x < k or dfs.start[dfs.order_to_node[x+k-1]] > dfs.end[u]:
+            if n - x < k or dfs.start[dfs.order_to_node[x + k - 1]] > dfs.end[u]:
                 ac.st(-1)
             else:
-                ac.st(dfs.order_to_node[x+k-1] + 1)
+                ac.st(dfs.order_to_node[x + k - 1] + 1)
         return
 
     @staticmethod
@@ -358,9 +358,9 @@ class Solution:
                 return
             if not set(arr[i]).intersection(pre):
                 pre |= set(arr[i])
-                dfs(i+1)
+                dfs(i + 1)
                 pre -= set(arr[i])
-            dfs(i+1)
+            dfs(i + 1)
             return
 
         pre = set()
@@ -573,7 +573,7 @@ class Solution:
     def cf_219d(ac=FastIO()):
         # 模板：迭代法实现树形换根DP计算，或者一遍DFS或者dfs序加差分
         n = ac.read_int()
-        edges = [ac.read_list_ints_minus_one() for _ in range(n-1)]
+        edges = [ac.read_list_ints_minus_one() for _ in range(n - 1)]
 
         dct = [[] for _ in range(n)]
         for i, j in edges:

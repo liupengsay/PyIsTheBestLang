@@ -538,7 +538,7 @@ class Solution:
         nums.sort()
 
         def check(i):
-            dp = [0]*k
+            dp = [0] * k
             dp[0] = 1
             xx = nums[i]
             if xx >= k:
@@ -547,17 +547,17 @@ class Solution:
             for j in range(n):
                 if j != i:
                     x = nums[j]
-                    for p in range(k-1, x-1, -1):
-                        if dp[p-x]:
+                    for p in range(k - 1, x - 1, -1):
+                        if dp[p - x]:
                             dp[p] = 1
                             if p + xx >= k:
                                 return False  # 此时为必要
 
             return True  # 为非必要的目标元素
 
-        ans = BinarySearch().find_int_right(0, n-1, check)  # 非必要具有单调性，更小的也为非必要
+        ans = BinarySearch().find_int_right(0, n - 1, check)  # 非必要具有单调性，更小的也为非必要
         if check(ans):
-            ac.st(ans+1)
+            ac.st(ans + 1)
         else:
             ac.st(0)
         return
@@ -571,8 +571,8 @@ class Solution:
         def check(s):
             res = 0
             for num in nums:
-                if num > s*b:
-                    res += ac.ceil((num-s*b), (a-b))
+                if num > s * b:
+                    res += ac.ceil((num - s * b), (a - b))
             return res <= s
 
         ans = BinarySearch().find_int_left(0, ac.ceil(max(nums), b), check)
@@ -661,6 +661,7 @@ class Solution:
                         if not cnt[words[i - x + 1]]:
                             cc -= 1
             return False
+
         # 贪心选取所有能背的单词
         s = len(cur)
         ac.st(s)
@@ -692,7 +693,7 @@ class Solution:
                     res += (x // cur) * (-1) ** (i + 1)
             return x - res >= k
 
-        ans = BinarySearch().find_int_left(1, n*k, check)
+        ans = BinarySearch().find_int_left(1, n * k, check)
         ac.st(ans)
         return
 
@@ -710,7 +711,7 @@ class Solution:
                 while stack and stack[-1][1] >= pre[i] - x * i:
                     stack.pop()
                 stack.append([i, pre[i] - x * i])
-                res.append(stack[0][1])   # 记录长度在 k 左右的最小前缀变化和
+                res.append(stack[0][1])  # 记录长度在 k 左右的最小前缀变化和
                 if i >= s - 1:
                     if pre[i + 1] - x * (i + 1) >= res[i - s + 1]:
                         return True
@@ -800,7 +801,7 @@ class Solution:
                     t1 = [x, 1]
             return True
 
-        ans = BinarySearch().find_float_left(1e-4, 10**7, check)
+        ans = BinarySearch().find_float_left(1e-4, 10 ** 7, check)
         ac.st("%.2f" % ans)
         return
 
@@ -1127,13 +1128,13 @@ class Solution:
         def check(x):
             ss = s = 0
             for i in range(n):
-                ss += nums[i]**2
+                ss += nums[i] ** 2
                 s += nums[i]
                 if i >= x - 1:
                     # 方差变形公式转换为整数乘法
                     if x * ss - s * s <= x * m:
                         return True
-                    ss -= nums[i - x + 1]**2
+                    ss -= nums[i - x + 1] ** 2
                     s -= nums[i - x + 1]
             return False
 
@@ -1152,8 +1153,8 @@ class Solution:
             res = 0
             pre = LocalSortedList()
             for a, c in nums:
-                res += pre.bisect_right(a*c-x*a)
-                pre.add(-(a*c-x*a))
+                res += pre.bisect_right(a * c - x * a)
+                pre.add(-(a * c - x * a))
                 if res >= k:
                     return True
             return res >= k
@@ -1220,12 +1221,12 @@ class Solution:
                     else:
                         res += m
                         res += (x - a[i] * m + b[i] - 1) // b[i]
-                if res > m*n:
+                if res > m * n:
                     return False
             return res <= m * n
 
         low = 0
-        high = 10**18
+        high = 10 ** 18
         ans = BinarySearch().find_int_right(low, high, check)
         ac.st(ans)
         return
@@ -1247,7 +1248,7 @@ class Solution:
             res += 1
             return res <= k
 
-        low = max(nums)**2
+        low = max(nums) ** 2
         high = sum(num * num for num in nums)
         ans = BinarySearch().find_int_left(low, high, check)
         ac.st(ans)
@@ -1276,7 +1277,7 @@ class Solution:
                 res += w
             return True
 
-        floor = BinarySearch().find_int_left(0, n-1, check)
+        floor = BinarySearch().find_int_left(0, n - 1, check)
         if check(floor):
             ans = ["N" if nums[x] < lst[floor] else "T" for x in range(n)]
             ac.st("".join(ans))
@@ -1296,15 +1297,15 @@ class Solution:
         def check(x):
             i = 0
             for num in nums:
-                while i < m and not (pos[i]-x <= num <= pos[i]+x):
+                while i < m and not (pos[i] - x <= num <= pos[i] + x):
                     i += 1
                 if i == m:
                     return False
             return True
 
-        ans = BinarySearch().find_float_left(0, 2*10**9, check)
+        ans = BinarySearch().find_float_left(0, 2 * 10 ** 9, check)
         if ans - int(ans) >= 0.5:
-            ac.st(int(ans)+1)
+            ac.st(int(ans) + 1)
         else:
             ac.st(int(ans))
         return
@@ -1331,7 +1332,7 @@ class Solution:
                     return True
                 return max(row) >= 2
 
-            ac.st(BinarySearch().find_int_right(0, 10**9, check))
+            ac.st(BinarySearch().find_int_right(0, 10 ** 9, check))
         return
 
     @staticmethod
@@ -1346,8 +1347,8 @@ class Solution:
             res = []
             for num in nums:
                 if num > pre:
-                    res.append(num+r)
-                    pre = num+2*r
+                    res.append(num + r)
+                    pre = num + 2 * r
                     if len(res) > 3:
                         break
             return res
@@ -1355,10 +1356,10 @@ class Solution:
         def check(r):
             return len(compute(r)) <= 3
 
-        x = BinarySearch().find_float_left(0, nums[-1]-nums[0], check, 1e-6)
+        x = BinarySearch().find_float_left(0, nums[-1] - nums[0], check, 1e-6)
         ac.st(x)
         ans = compute(x)
         while len(ans) < 3:
-            ans.append(ans[-1]+1)
+            ans.append(ans[-1] + 1)
         ac.lst(ans)
         return

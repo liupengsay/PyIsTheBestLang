@@ -50,10 +50,12 @@ class CodecDFS:
     def serialize(root: TreeNode) -> str:
         """Encodes a tree to a single strings.
         """
+
         def dfs(node):
             if not node:
                 return "n"
             return dfs(node.right) + "," + dfs(node.left) + "," + str(node.val)
+
         return dfs(root)
 
     @staticmethod
@@ -72,4 +74,5 @@ class CodecDFS:
             root.left = dfs()
             root.right = dfs()
             return root
+
         return dfs()

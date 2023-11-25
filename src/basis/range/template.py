@@ -75,7 +75,7 @@ class Range:
 
         if inter:
             # inter=True is necessary
-            post = [0]*time
+            post = [0] * time
             for a, b in clips:
                 if a < time:
                     post[a] = post[a] if post[a] > b else b

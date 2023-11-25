@@ -1,5 +1,3 @@
-
-
 """
 算法：循环节
 功能：通过模拟找出循环节进行状态计算
@@ -53,7 +51,7 @@ class Solution:
         # 进行模拟状态
         while day < n:
             busy = set([i for i in range(1, m - 1)
-                       if cells[i - 1] == cells[i + 1]])
+                        if cells[i - 1] == cells[i + 1]])
             cells = [1 if i in busy else 0 for i in range(m)]
             day += 1
             state.append(cells[:])

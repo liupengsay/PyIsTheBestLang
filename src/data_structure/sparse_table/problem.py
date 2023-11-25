@@ -1,5 +1,3 @@
-
-
 """
 算法：ST（Sparse-Table）稀疏表、倍增、数组积性函数聚合性质、连续子数组的聚合运算
 功能：计算静态区间内的最大值、最小值、最大公约数、最大与、最大或
@@ -65,7 +63,7 @@ class Solution:
         st2 = SparseTable1(nums, "min")
         for _ in range(q):
             a, b = ac.read_list_ints()
-            ac.st(st1.query(a, b)-st2.query(a, b))
+            ac.st(st1.query(a, b) - st2.query(a, b))
         return
 
     @staticmethod
@@ -157,7 +155,7 @@ class Solution:
         # 模板：使用倍增 ST 表查询区间最大值的索引，使用单调栈建树计算距离
         n, t = ac.read_list_ints()
         nums = ac.read_list_ints()
-        post = [n]*n
+        post = [n] * n
         stack = []
         for i in range(n):
             while stack and nums[stack[-1]] < nums[i]:

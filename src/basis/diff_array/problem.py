@@ -1,5 +1,3 @@
-
-
 import bisect
 import math
 from collections import defaultdict, deque
@@ -197,7 +195,7 @@ class Solution:
             for i in range(m):
                 for j in range(n):
                     pre[i + 1][j + 1] = pre[i + 1][j] + \
-                        pre[i][j + 1] - pre[i][j] + dp[i][j]
+                                        pre[i][j + 1] - pre[i][j] + dp[i][j]
 
             for hs, ws, hb, wb in qur:
                 hb -= 1
@@ -205,7 +203,7 @@ class Solution:
                 hs += 1
                 ws += 1
                 ans = pre[hb + 1][wb + 1] - pre[hs][wb + 1] - \
-                    pre[hb + 1][ws] + pre[hs][ws]
+                      pre[hb + 1][ws] + pre[hs][ws]
                 ac.st(ans)
         return
 
@@ -368,13 +366,13 @@ class Solution:
         stack = []
         for i in range(n):  # 这里也可以是从n-1到0倒序计算，取决于用途
             while stack and nums[stack[-1]
-                                 ] > nums[i]:  # 这里可以是"<" ">" "<=" ">="，取决于需要判断的大小关系
+            ] > nums[i]:  # 这里可以是"<" ">" "<=" ">="，取决于需要判断的大小关系
                 post[stack.pop()] = i - 1  # 这里可以是i或者i-1，取决于是否包含i作为右端点
             if stack:  # 这里不一定可以同时计算，比如前后都是大于等于时，只有前后所求范围互斥时，可以计算
                 # 这里可以是stack[-1]或者stack[-1]+1，取决于是否包含stack[-1]作为左端点
                 pre[i] = stack[-1] + 1
             stack.append(i)
-        mod = 10**9 + 7
+        mod = 10 ** 9 + 7
         s = list(accumulate(nums, initial=0))
         ss = list(accumulate(s, initial=0))
         ans = 0
@@ -382,7 +380,7 @@ class Solution:
             left = pre[i]
             right = post[i]
             ans += nums[i] * ((i - left + 1) * (ss[right + 2] - \
-                              ss[i + 1]) - (right - i + 1) * (ss[i + 1] - ss[left]))
+                                                ss[i + 1]) - (right - i + 1) * (ss[i + 1] - ss[left]))
             ans %= mod
         return ans
 
@@ -418,7 +416,7 @@ class Solution:
         for i in range(n):
             left, right = pre[i], post[i]
             ans += strength[i] * ((i - left + 1) * (ss[right + 2] -
-                                  ss[i + 1]) - (right - i + 1) * (ss[i + 1] - ss[left]))
+                                                    ss[i + 1]) - (right - i + 1) * (ss[i + 1] - ss[left]))
             ans %= mod
         return ans
 
@@ -525,7 +523,7 @@ class Solution:
         for i in range(length):
             for j in range(length):
                 dp[i + 1][j + 1] = dp[i][j + 1] + \
-                    dp[i + 1][j] - dp[i][j] + grid[i][j]
+                                   dp[i + 1][j] - dp[i][j] + grid[i][j]
                 a, b = max(i - m + 1, 0), max(j - m + 1, 0)
                 cur = dp[i + 1][j + 1] - dp[i + 1][b] - dp[a][j + 1] + dp[a][b]
                 ans = ans if ans > cur else cur
@@ -578,7 +576,7 @@ class Solution:
         for i in range(1, m + 1):
             for j in range(1, n + 1):
                 grid[i][j] = grid[i - 1][j] + grid[i][j - 1] - \
-                    grid[i - 1][j - 1] + grid[i][j]
+                             grid[i - 1][j - 1] + grid[i][j]
 
         def check(xx):
             up = 0
@@ -590,7 +588,7 @@ class Solution:
                     while right < n and lst_y[right] - lst_y[j] <= xx - 1:
                         right += 1
                     cur = grid[up][right] - grid[up][j] - \
-                        grid[i][right] + grid[i][j]
+                          grid[i][right] + grid[i][j]
                     if cur >= c:
                         return True
 
@@ -663,7 +661,7 @@ class Solution:
     def lg_p1895(ac=FastIO()):
 
         # 模板：前缀和计数加二分查找，最多不超多10**5
-        n = 10**5
+        n = 10 ** 5
         dp = [0] * (n + 1)
         for i in range(1, n + 1):  # 序列1234..
             dp[i] = dp[i - 1] + len(str(i))
@@ -894,7 +892,7 @@ class Solution:
             x -= 1
             y -= 1
             if pm.query(x + 1, y + 1, x + k - 1, y +
-                        k - 1) == (k - 1) * (k - 1):
+                                                 k - 1) == (k - 1) * (k - 1):
                 ac.st("Y")
             else:
                 ac.st("N")
@@ -916,7 +914,7 @@ class Solution:
                 ac.st("NE")
                 continue
             if all(pre[b + 1][j] - pre[a][j] == pre[d + 1]
-                   [j] - pre[c][j] for j in range(26)):
+            [j] - pre[c][j] for j in range(26)):
                 ac.st("DA")
             else:
                 ac.st("NE")
@@ -926,7 +924,7 @@ class Solution:
     def lg_p4623(ac=FastIO()):
         # 模板：离散化差分计数
         n = ac.read_int()
-        m = 10**6 + 1
+        m = 10 ** 6 + 1
         diff_x = [0] * m
         diff_y = [0] * m
         for _ in range(n):
@@ -1000,7 +998,7 @@ class Solution:
         for i in range(n):
             for j in range(n):
                 diff[i + 1][j + 1] += diff[i + 1][j] + \
-                    diff[i][j + 1] - diff[i][j]
+                                      diff[i][j + 1] - diff[i][j]
                 d = diff[i + 1][j + 1] + grid[i][j]
                 # 二维差分，索引从 0 开始， 注意这里的行列索引范围，是从左上角到右下角
                 if d:
@@ -1353,9 +1351,9 @@ class Solution:
                     for k1 in range(1, c + 1):
                         # 前缀和计算索引从 1 开始
                         diff[i1][j1][k1] += diff[i1 - 1][j1][k1] + diff[i1][j1 - 1][k1] + diff[i1][j1][k1 - 1] - \
-                            diff[i1][j1 - 1][k1 - 1] - diff[i1 - 1][j1][k1 - 1] - diff[i1 - 1][j1 - 1][
-                            k1] + \
-                            diff[i1 - 1][j1 - 1][k1 - 1]
+                                            diff[i1][j1 - 1][k1 - 1] - diff[i1 - 1][j1][k1 - 1] - diff[i1 - 1][j1 - 1][
+                                                k1] + \
+                                            diff[i1 - 1][j1 - 1][k1 - 1]
                         if diff[i1][j1][k1] > grid[i1][j1][k1]:
                             return True
 
