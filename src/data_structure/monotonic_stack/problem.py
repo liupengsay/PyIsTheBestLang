@@ -1,12 +1,3 @@
-import bisect
-import heapq
-from collections import defaultdict, Counter
-from typing import List
-
-from src.data_structure.monotonic_stack.template import Rectangle
-from src.data_structure.sparse_table.template import SparseTable1
-from src.utils.fast_io import FastIO
-
 """
 算法：单调栈、贡献法
 功能：用来计算数组前后的更大值更小值信息
@@ -74,6 +65,14 @@ E - Second Sum（https://atcoder.jp/contests/abc140/tasks/abc140_e）经典单�
 
 参考：OI WiKi（xx）
 """
+import bisect
+import heapq
+from collections import defaultdict, Counter
+from typing import List
+
+from src.data_structure.monotonic_stack.template import Rectangle
+from src.data_structure.sparse_table.template import SparseTable1
+from src.utils.fast_io import FastIO
 
 
 class Solution:

@@ -1,9 +1,3 @@
-import math
-
-from src.data_structure.tree_array.template import RangeAddRangeSum
-from src.graph.tree_lca.template import OfflineLCA, TreeAncestor, TreeCentroid, HeavyChain, TreeAncestorPool
-from src.utils.fast_io import FastIO
-
 """
 
 算法：LCA、倍增算法、树链剖分、树的质心、树的重心、离线LCA与树上差分
@@ -45,6 +39,11 @@ D - Transit Tree Path（https://atcoder.jp/contests/abc070/tasks/abc070_d）典�
 CSDN（https://blog.csdn.net/weixin_42001089/article/details/83590686）
 
 """
+import math
+
+from src.data_structure.tree_array.template import RangeAddRangeSum
+from src.graph.tree_lca.template import OfflineLCA, TreeAncestor, TreeCentroid, HeavyChain, TreeAncestorPool
+from src.utils.fast_io import FastIO
 
 
 class Solution:

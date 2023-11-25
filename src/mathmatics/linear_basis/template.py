@@ -24,14 +24,14 @@ class LinearBasis:
         return
 
     def query_xor(self, num):
-        """查询数字是否可以由原数组中数字异或得到"""
+        """查询数字是否可以由原数组中数字的子集异或得到"""
         for i in range(self.n, -1, -1):
             if num & (1 << i):
                 num ^= self.linear_basis[i]
         return num == 0
 
     def query_max(self):
-        """查询原数组的最大异或和"""
+        """查询原数组的最大子集异或和"""
         ans = 0
         for i in range(self.n - 1, -1, -1):
             if ans ^ self.linear_basis[i] > ans:
@@ -39,7 +39,7 @@ class LinearBasis:
         return ans
 
     def query_min(self):
-        """查询原数组的最小异或和"""
+        """查询原数组的最小子集异或和"""
         if 0 in self.lst or self.query_xor(0):
             return 0
         for i in range(0, self.n + 1):
@@ -48,7 +48,7 @@ class LinearBasis:
         return 0
 
     def query_k_rank(self, k):
-        """查询原数组异或和的第K小"""
+        """查询原数组异或和子集的第K小"""
         if self.query_xor(0):
             k -= 1
         ans = 0
@@ -59,7 +59,7 @@ class LinearBasis:
         return ans if not k else -1
 
     def query_k_smallest(self, num):
-        """查询数字是原数组中数字异或的第K小"""
+        """查询数字是原数组中数字异或子集的第K小"""
         if num == 0:
             return 1 if self.query_xor(0) else -1
         ans = 0

@@ -51,9 +51,10 @@ E - Sequence Decomposing（https://atcoder.jp/contests/abc134/tasks/abc134_e）�
 import bisect
 from typing import List
 
+from src.greedy.length_of_lis.template import LongestIncreasingSubsequence, LcsComputeByLis
+
 from src.data_structure.segment_tree.template import RangeAscendRangeMax
 from src.data_structure.tree_array.template import PointAscendPreMax
-from src.greedy.length_of_lis.template import LongestIncreasingSubsequence, LcsComputeByLis
 from src.utils.fast_io import FastIO
 
 

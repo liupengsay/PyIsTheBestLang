@@ -1,17 +1,3 @@
-import math
-from collections import deque, Counter
-from functools import lru_cache
-from itertools import accumulate
-from math import inf
-from operator import add
-from typing import List, Optional
-
-from src.basis.tree_node.template import TreeNode
-from src.data_structure.list_node.template import ListNode
-from src.dp.tree_dp.template import ReRootDP
-from src.graph.union_find.template import UnionFind
-from src.utils.fast_io import FastIO
-
 """
 算法：树形DP、树的直径、树上差分、树的重心（以及树的每个节点到其余节点的总距离和）、树的最小偏心距
 功能：在树形或者图结构上进行DP，有换根DP，自顶向下和自底向上DP
@@ -92,6 +78,16 @@ G. Moving to the Capital（https://codeforces.com/contest/1472/problem/G）经�
 
 参考：OI WiKi（xx）
 """
+import math
+from collections import deque, Counter
+from functools import lru_cache
+from math import inf
+from typing import List, Optional
+
+from src.basis.tree_node.template import TreeNode
+from src.data_structure.list_node.template import ListNode
+from src.dp.tree_dp.template import ReRootDP
+from src.utils.fast_io import FastIO
 
 
 class Solution:

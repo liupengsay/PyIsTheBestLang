@@ -1,13 +1,3 @@
-import heapq
-import math
-from collections import defaultdict, deque
-from heapq import heappush, heappop
-from itertools import permutations
-from math import inf
-from typing import List
-
-from src.utils.fast_io import FastIO
-
 """
 
 算法：栈、RBS（合法括号子序列）
@@ -54,6 +44,15 @@ D - 3N Numbers（https://atcoder.jp/contests/abc062/tasks/arc074_b）经典堆�
 
 参考：OI WiKi（xx）
 """
+import heapq
+import math
+from collections import defaultdict, deque
+from heapq import heappush, heappop
+from itertools import permutations
+from math import inf
+from typing import List
+
+from src.utils.fast_io import FastIO
 
 
 class Solution:

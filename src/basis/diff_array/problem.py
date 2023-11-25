@@ -1,17 +1,6 @@
-import bisect
-import math
-from collections import defaultdict, deque
-from itertools import accumulate
-from math import inf
-from typing import List
-
-from src.basis.binary_search.template import BinarySearch
-from src.basis.diff_array.template import DiffMatrix, PreFixSumMatrix
-from src.utils.fast_io import FastIO
-
 """
 
-算法：差分数组与前缀和、后缀和、前缀最大子序列和、后缀最大子序列和、二维差分、离散化差分、三维差分、二位前缀和
+算法：差分数组与前缀和、后缀和、前缀最大子序列和、后缀最大子序列和、二维差分、离散化差分、三维差分、二维前缀和
 功能：用来解决一维数组或者二维数组的加和问题，以及前缀和计算，还有前缀和的前缀和
 题目：
 
@@ -116,6 +105,16 @@ D - AtCoder Express 2（https://atcoder.jp/contests/abc106/tasks/abc106_d）前�
 
 参考：OI WiKi（xx）
 """
+import bisect
+import math
+from collections import defaultdict, deque
+from itertools import accumulate
+from math import inf
+from typing import List
+
+from src.basis.binary_search.template import BinarySearch
+from src.basis.diff_array.template import DiffMatrix, PreFixSumMatrix
+from src.utils.fast_io import FastIO
 
 
 class Solution:

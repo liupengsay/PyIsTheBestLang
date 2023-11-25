@@ -1,5 +1,3 @@
-from src.utils.fast_io import FastIO
-
 """
 Algorithm：use xor of random seed as key of mapping
 Ability：speed up and avoid hash crush
@@ -10,6 +8,7 @@ Associative Array（https://judge.yosupo.jp/problem/associative_array）use xor 
 
 
 """
+from src.utils.fast_io import FastIO
 
 
 class Solution:

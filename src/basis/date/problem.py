@@ -1,8 +1,3 @@
-import datetime
-from datetime import datetime, timedelta
-
-from src.utils.fast_io import FastIO
-
 """
 算法：日期时间
 功能：计算日期时间之间的变化，年月日时分秒与星期信息
@@ -18,6 +13,10 @@ P5440 【XR-2】奇迹（https://www.luogu.com.cn/problem/P5440）枚举日期�
 
 参考：OI WiKi（xx）
 """
+import datetime
+from datetime import datetime, timedelta
+
+from src.utils.fast_io import FastIO
 
 
 class Solution:

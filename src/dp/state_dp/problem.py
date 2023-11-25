@@ -1,16 +1,3 @@
-import heapq
-import math
-import sys
-from collections import Counter
-from functools import lru_cache
-from functools import reduce
-from itertools import combinations, accumulate
-from math import inf
-from operator import or_
-from typing import List
-
-from src.utils.fast_io import FastIO
-
 """
 算法：状态压缩DP、轮廓线DP、记忆化搜索DP、刷表法、填表法
 功能：使用二进制数字表示转移状态，计算相应的转移方程，通常可以先计算满足条件的子集，有时通过深搜回溯枚举全部子集的办法比位运算枚举效率更高
@@ -69,6 +56,18 @@ F. Three Paths on a Tree（https://codeforces.com/contest/1294/problem/F）典�
 
 参考：OI WiKi（xx）
 """
+import heapq
+import math
+import sys
+from collections import Counter
+from functools import lru_cache
+from functools import reduce
+from itertools import combinations, accumulate
+from math import inf
+from operator import or_
+from typing import List
+
+from src.utils.fast_io import FastIO
 
 
 class Solution:

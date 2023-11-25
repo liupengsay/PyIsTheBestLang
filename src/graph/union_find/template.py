@@ -1,7 +1,7 @@
 from collections import defaultdict
 
 from math import inf
-from typing import DefaultDict, List
+from typing import DefaultDict
 
 
 class UnionFind:

@@ -1,5 +1,4 @@
 import unittest
-
 from functools import reduce
 from operator import xor
 

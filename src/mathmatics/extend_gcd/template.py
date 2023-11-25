@@ -1,9 +1,6 @@
 import math
 
 from src.utils.fast_io import FastIO
-import math
-
-from src.utils.fast_io import FastIO
 
 
 class ExtendGcd:

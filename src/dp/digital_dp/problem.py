@@ -1,9 +1,3 @@
-import unittest
-from functools import lru_cache
-
-from src.dp.digital_dp.template import DigitalDP
-from src.utils.fast_io import FastIO
-
 """
 算法：数位DP
 功能：统计满足一定条件的自然数个数，也可以根据字典序大小特点统计一些特定字符串的个数，是一种计数常用的DP思想
@@ -41,6 +35,10 @@ P1836 数页码（https://www.luogu.com.cn/problem/P1836）数位DP计算1~n内�
 
 参考：OI WiKi（xx）
 """
+from functools import lru_cache
+
+from src.dp.digital_dp.template import DigitalDP
+from src.utils.fast_io import FastIO
 
 
 class Solution:

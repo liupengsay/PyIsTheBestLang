@@ -1,17 +1,3 @@
-import bisect
-import math
-from collections import deque, defaultdict
-from itertools import accumulate, combinations
-from math import inf
-from typing import List
-
-from src.basis.binary_search.template import BinarySearch
-from src.data_structure.sorted_list.template import LocalSortedList
-from src.graph.tree_lca.template import OfflineLCA
-from src.graph.union_find.template import UnionFind
-from src.mathmatics.number_theory.template import NumberTheory
-from src.utils.fast_io import FastIO
-
 """
 
 算法：二分查找
@@ -115,6 +101,19 @@ D - Widespread（https://atcoder.jp/contests/abc063/tasks/arc075_b）经典利�
 
 参考：OI WiKi（xx）
 """
+import bisect
+import math
+from collections import deque, defaultdict
+from itertools import accumulate, combinations
+from math import inf
+from typing import List
+
+from src.basis.binary_search.template import BinarySearch
+from src.data_structure.sorted_list.template import LocalSortedList
+from src.graph.tree_lca.template import OfflineLCA
+from src.graph.union_find.template import UnionFind
+from src.mathmatics.number_theory.template import NumberTheory
+from src.utils.fast_io import FastIO
 
 
 class Solution:

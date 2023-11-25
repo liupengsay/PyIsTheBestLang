@@ -1,13 +1,3 @@
-import bisect
-import math
-import random
-from collections import defaultdict
-from math import inf
-from typing import List
-
-from src.basis.ternary_search.template import TernarySearch, TriPartPackTriPart
-from src.utils.fast_io import FastIO
-
 """
 算法：三分查找求一维极值、三分套三分求二维极值、梯度下降法、爬山法、ternary search三元搜索
 功能：用来寻找区间至多具有一个峰顶点或者一个谷底点的函数极值解
@@ -30,6 +20,15 @@ F - Minimum Bounding Box（https://atcoder.jp/contests/abc130/tasks/abc130_f）�
 
 参考：OI WiKi（xx）
 """
+import bisect
+import math
+import random
+from collections import defaultdict
+from math import inf
+from typing import List
+
+from src.basis.ternary_search.template import TernarySearch, TriPartPackTriPart
+from src.utils.fast_io import FastIO
 
 
 class Solution:

@@ -89,7 +89,7 @@ from typing import List, Optional
 from src.basis.tree_node.template import TreeNode
 from src.data_structure.sorted_list.template import LocalSortedList
 from src.graph.dijkstra.template import Dijkstra
-from src.graph.union_find.template import UnionFind, UnionFindWeighted, UnionFindRightRoot, UnionFindLeftRoot, \
+from src.graph.union_find.template import UnionFind, UnionFindWeighted, UnionFindLeftRoot, \
     UnionFindRightRoot
 from src.mathmatics.comb_perm.template import Combinatorics
 from src.mathmatics.number_theory.template import NumberTheory

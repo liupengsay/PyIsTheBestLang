@@ -1,25 +1,6 @@
-import sys
-import bisect
-import decimal
-import heapq
-from types import GeneratorType
-from math import inf
 import random
-from bisect import bisect_left, bisect_right
-from heapq import heappush, heappop, heappushpop
-from functools import cmp_to_key
-from collections import defaultdict, Counter, deque
-import math
-from functools import lru_cache
-from heapq import nlargest
-from functools import reduce
-from decimal import Decimal
-
-from itertools import combinations, permutations
-from operator import xor, add
-from operator import mul
-from typing import List, Callable, Dict, Set, Tuple, DefaultDict
-from heapq import heappush, heappop, heapify
+import sys
+from types import GeneratorType
 
 
 class FastIO:

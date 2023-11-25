@@ -1,22 +1,5 @@
-import random
-from collections import defaultdict, deque
-from math import inf
-from typing import List
-
-from sortedcontainers import SortedList
-
-from src.basis.binary_search.template import BinarySearch
-from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeDescendRangeMin, \
-    RangeAddRangeSumMinMax, SegmentTreeRangeUpdateXORSum, SegmentTreeRangeUpdateChangeQueryMax, \
-    SegmentTreeRangeUpdateMulQuerySum, SegmentTreeRangeXORQuery, \
-    SegmentTreePointChangeLongCon, SegmentTreeRangeSqrtSum, SegmentTreeRangeAndOrXOR, RangeChangeRangeOr, \
-    SegmentTreeRangeUpdateAvgDev, SegmentTreePointUpdateRangeMulQuery, \
-    RangeChangeRangeSumMinMaxDynamic, SegmentTreeLongestSubSame, \
-    RangeOrRangeAnd, RangeChangeRangeSumMinMax, RangeKSmallest, PointChangeRangeMaxNonEmpConSubSum
-from src.utils.fast_io import FastIO
-
 """
-算法：线段树
+算法：线段树、线段树二分
 功能：用以修改和查询区间的值信息，支持增减、修改，区间和、区间最大值、区间最小值、动态开点线段树（即使用defaultdict而不是数组实现）
 题目：
 
@@ -33,7 +16,7 @@ from src.utils.fast_io import FastIO
 2276. 统计区间中的整数数目（https://leetcode.cn/problems/count-integers-in-intervals/）动态开点线段树模板题，维护区间并集的长度，也可使用SortedList
 1340. 跳跃游戏 V（https://leetcode.cn/problems/jump-game-v/）可以使用线段树DP进行解决
 2569. 更新数组后处理求和查询（https://leetcode.cn/problems/handling-sum-queries-after-update/）经典01线段树区间翻转与求和，也可以使用BitSet
-
+2940. 找到 Alice 和 Bob 可以相遇的建筑（https://leetcode.cn/problems/find-building-where-alice-and-bob-can-meet/）可使用线段树二分做，线段树二分模板题
 
 ===================================洛谷===================================
 P2846 [USACO08NOV]Light Switching G（https://www.luogu.com.cn/problem/P2846）线段树统计区间翻转和
@@ -79,6 +62,22 @@ E. MinimizOR（https://codeforces.com/contest/1665/problem/E）
 
 参考：OI WiKi（xx）
 """
+import random
+from collections import defaultdict, deque
+from math import inf
+from typing import List
+
+from sortedcontainers import SortedList
+
+from src.basis.binary_search.template import BinarySearch
+from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeDescendRangeMin, \
+    RangeAddRangeSumMinMax, SegmentTreeRangeUpdateXORSum, SegmentTreeRangeUpdateChangeQueryMax, \
+    SegmentTreeRangeUpdateMulQuerySum, SegmentTreeRangeXORQuery, \
+    SegmentTreePointChangeLongCon, SegmentTreeRangeSqrtSum, SegmentTreeRangeAndOrXOR, RangeChangeRangeOr, \
+    SegmentTreeRangeUpdateAvgDev, SegmentTreePointUpdateRangeMulQuery, \
+    RangeChangeRangeSumMinMaxDynamic, SegmentTreeLongestSubSame, \
+    RangeOrRangeAnd, RangeChangeRangeSumMinMax, RangeKSmallest, PointChangeRangeMaxNonEmpConSubSum
+from src.utils.fast_io import FastIO
 
 
 class Solution:

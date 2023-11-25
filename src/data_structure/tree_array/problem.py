@@ -1,17 +1,3 @@
-from collections import defaultdict, deque
-from math import inf
-from typing import List
-
-from sortedcontainers import SortedList
-
-from src.data_structure.segment_tree.template import RangeAscendRangeMax
-from src.data_structure.sorted_list.template import LocalSortedList
-from src.data_structure.tree_array.template import PointAddRangeSum, PointDescendPreMin, RangeAddRangeSum, \
-    PointAscendPreMax, PointAscendRangeMax, PointAddRangeSum2D, RangeAddRangeSum2D, PointXorRangeXor, \
-    PointDescendRangeMin, PointChangeRangeSum
-from src.search.dfs.template import DfsEulerOrder
-from src.utils.fast_io import FastIO
-
 """
 算法：树状数组、二维树状数组
 功能：进行数组区间加减，和区间值求和（单点可转换为区间）
@@ -67,6 +53,19 @@ C. Manhattan Subarrays（https://codeforces.com/contest/1550/problem/C）PointAs
 
 参考：OI WiKi（https://oi-wiki.org/ds/fenwick/）
 """
+from collections import defaultdict, deque
+from math import inf
+from typing import List
+
+from sortedcontainers import SortedList
+
+from src.data_structure.segment_tree.template import RangeAscendRangeMax
+from src.data_structure.sorted_list.template import LocalSortedList
+from src.data_structure.tree_array.template import PointAddRangeSum, PointDescendPreMin, RangeAddRangeSum, \
+    PointAscendPreMax, PointAscendRangeMax, PointAddRangeSum2D, RangeAddRangeSum2D, PointXorRangeXor, \
+    PointDescendRangeMin, PointChangeRangeSum
+from src.search.dfs.template import DfsEulerOrder
+from src.utils.fast_io import FastIO
 
 
 class Solution:

@@ -1,9 +1,3 @@
-from typing import List
-
-from src.graph.bst.template import BST, ans1, BinarySearchTreeByArray
-from src.mathmatics.comb_perm.template import Combinatorics
-from src.utils.fast_io import FastIO
-
 """
 算法：BST二叉搜索树
 功能：根据数字顺序建立二叉搜索树、实时维护
@@ -19,6 +13,11 @@ P2171 Hz吐泡泡（https://www.luogu.com.cn/problem/P2171）依次输入数据�
 
 参考：OI WiKi（xx）
 """
+from typing import List
+
+from src.graph.bst.template import BST, ans1, BinarySearchTreeByArray
+from src.mathmatics.comb_perm.template import Combinatorics
+from src.utils.fast_io import FastIO
 
 
 class Solution:

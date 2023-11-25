@@ -1,9 +1,3 @@
-import math
-from collections import deque
-from functools import lru_cache
-
-from src.utils.fast_io import FastIO
-
 """
 算法：概率DP
 功能：根据组合数与转移方案求解概率或者期望
@@ -24,6 +18,11 @@ P6154 游走（https://www.luogu.com.cn/problem/P6154）经典反向建图期望
 
 参考：OI WiKi（xx）
 """
+import math
+from collections import deque
+from functools import lru_cache
+
+from src.utils.fast_io import FastIO
 
 
 class Solution:

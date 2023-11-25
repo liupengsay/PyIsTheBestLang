@@ -1,11 +1,3 @@
-from collections import deque
-from math import inf
-from typing import List
-
-from src.basis.binary_search.template import BinarySearch
-from src.data_structure.priority_queue.template import PriorityQueue
-from src.utils.fast_io import FastIO
-
 """
 算法：单调队列、双端队列
 功能：维护单调性，计算滑动窗口最大值最小值
@@ -43,6 +35,13 @@ P4392 [BOI2007]Sound 静音问题（https://www.luogu.com.cn/problem/P4392）单
 
 参考：OI WiKi（xx）
 """
+from collections import deque
+from math import inf
+from typing import List
+
+from src.basis.binary_search.template import BinarySearch
+from src.data_structure.priority_queue.template import PriorityQueue
+from src.utils.fast_io import FastIO
 
 
 class Solution:

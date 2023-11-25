@@ -1,12 +1,3 @@
-from functools import lru_cache
-from itertools import accumulate
-from math import inf
-from typing import List
-
-from src.utils.fast_io import FastIO
-
-MOD = 10 ** 9 + 7
-
 """
 算法：区间DP
 功能：前缀和优化区间DP（需要在状态转移的时候更新代价距离）、预处理区间DP（需要预处理一个DP再计算最终DP）
@@ -54,6 +45,14 @@ B. Zuma（https://codeforces.com/problemset/problem/607/B）区间DP，经典通
 
 参考：OI WiKi（xx）
 """
+from functools import lru_cache
+from itertools import accumulate
+from math import inf
+from typing import List
+
+from src.utils.fast_io import FastIO
+
+MOD = 10 ** 9 + 7
 
 
 class Solution:

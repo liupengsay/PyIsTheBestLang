@@ -1,11 +1,5 @@
-from functools import lru_cache
-from typing import Optional, List
-
-from src.basis.tree_node.template import TreeNode
-from src.utils.fast_io import FastIO
-
 """
-算法：分治、递归、二叉树、四叉树、十叉树、N叉树、先序、中序、后序遍历，也叫（divide and conquer）
+算法：分治、递归、二叉树、四叉树、十叉树、N叉树、先序、中序、后序遍历、divide and conquer
 功能：递归进行处理，与迭代是处理相同问题的两种不同方式，迭代效率高于递归
 题目：
 
@@ -36,6 +30,11 @@ C. Painting Fence（https://codeforces.com/contest/448/problem/C）贪心递归D
 
 参考：OI WiKi（xx）
 """
+from functools import lru_cache
+from typing import Optional, List
+
+from src.basis.tree_node.template import TreeNode
+from src.utils.fast_io import FastIO
 
 
 class Solution:

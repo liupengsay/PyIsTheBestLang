@@ -1,11 +1,3 @@
-from functools import lru_cache
-from functools import reduce
-from operator import xor
-
-from src.dp.game_dp.template import DateTime
-from src.mathmatics.number_theory.template import NumberTheory
-from src.utils.fast_io import FastIO
-
 """
 算法：博弈类DP、玩游戏、必胜态、必输态
 功能：通常使用枚举、区间DP加模拟贪心的方式，和记忆化搜索进行状态转移
@@ -30,6 +22,13 @@ P2953 [USACO09OPEN]Cow Digit Game S（https://www.luogu.com.cn/problem/P2953）�
 
 参考：OI WiKi（xx）
 """
+from functools import lru_cache
+from functools import reduce
+from operator import xor
+
+from src.dp.game_dp.template import DateTime
+from src.mathmatics.number_theory.template import NumberTheory
+from src.utils.fast_io import FastIO
 
 
 class Solution:

@@ -1,13 +1,3 @@
-import math
-from collections import defaultdict
-from heapq import heappop, heappush
-from math import inf
-from typing import List
-
-from src.graph.minimum_spanning_tree.template import TreeAncestorWeightSecond, MinimumSpanningTree
-from src.graph.union_find.template import UnionFind
-from src.utils.fast_io import FastIO
-
 """
 
 算法：最小生成树（Kruskal算法和Prim算法两种）、严格次小生成树（使用LCA枚举替换边计算可得）、最短路生成树
@@ -70,6 +60,15 @@ Directed MST（https://judge.yosupo.jp/problem/directedmst）
 
 参考：OI WiKi（xx）
 """
+import math
+from collections import defaultdict
+from heapq import heappop, heappush
+from math import inf
+from typing import List
+
+from src.graph.minimum_spanning_tree.template import TreeAncestorWeightSecond, MinimumSpanningTree
+from src.graph.union_find.template import UnionFind
+from src.utils.fast_io import FastIO
 
 
 class Solution:

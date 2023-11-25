@@ -1,7 +1,3 @@
-from typing import List, Optional
-
-from src.basis.tree_node.template import TreeNode, TreeOrder
-
 """
 算法：二叉树、N叉树、先序遍历、中序遍历、后序遍历、迭代实现、前序遍历
 功能：
@@ -18,6 +14,9 @@ from src.basis.tree_node.template import TreeNode, TreeOrder
 
 
 """
+from typing import List, Optional
+
+from src.basis.tree_node.template import TreeNode, TreeOrder
 
 
 class Solution:

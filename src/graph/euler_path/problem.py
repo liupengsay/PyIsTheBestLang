@@ -1,9 +1,3 @@
-from typing import List
-
-from src.graph.euler_path.template import DirectedEulerPath, UnDirectedEulerPath
-from src.graph.union_find.template import UnionFind
-from src.utils.fast_io import FastIO
-
 """
 
 算法：欧拉路径（使用深度优先搜索里面的Hierholzer算法）
@@ -40,6 +34,11 @@ OI WiKi（https://oi-wiki.org/graph/euler/）
 https://www.jianshu.com/p/8394b8e5b878
 https://www.luogu.com.cn/problem/solution/P7771
 """
+from typing import List
+
+from src.graph.euler_path.template import DirectedEulerPath, UnDirectedEulerPath
+from src.graph.union_find.template import UnionFind
+from src.utils.fast_io import FastIO
 
 
 class Solution:

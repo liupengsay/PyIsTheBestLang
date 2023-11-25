@@ -1,13 +1,3 @@
-from collections import defaultdict, deque, Counter
-from heapq import heappush, heappop, heapify
-from itertools import accumulate
-from math import inf
-from operator import add
-from typing import List
-
-from src.graph.dijkstra.template import UnDirectedShortestCycle, Dijkstra
-from src.utils.fast_io import FastIO
-
 """
 算法：Dijkstra（单源最短路经算法）、严格次短路、要保证加和最小因此只支持非负数权值、或者取反全部为非正数计算最长路、最短路生成树
 功能：计算点到有向或者无向图里面其他点的最近距离、带约束的最短路、分层Dijkstra、有向图最小环、无向图最小环
@@ -122,6 +112,15 @@ Shortest Path（https://judge.yosupo.jp/problem/shortest_path）find distance fr
 
 参考：OI WiKi（xx）
 """
+from collections import defaultdict, deque, Counter
+from heapq import heappush, heappop, heapify
+from itertools import accumulate
+from math import inf
+from operator import add
+from typing import List
+
+from src.graph.dijkstra.template import UnDirectedShortestCycle, Dijkstra
+from src.utils.fast_io import FastIO
 
 
 class Solution:

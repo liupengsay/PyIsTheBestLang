@@ -1,14 +1,3 @@
-from collections import defaultdict, deque, Counter
-from functools import lru_cache
-from itertools import combinations
-from math import inf
-from typing import List
-
-from src.dp.bag_dp.template import BagDP
-from src.graph.union_find.template import UnionFind
-from src.mathmatics.number_theory.template import NumberTheory
-from src.utils.fast_io import FastIO
-
 """
 算法：背包DP、分组背包、一维（无限有限）背包、二维背包、多重背包、分组背包、限制背包、填表法（过去状态预测未来状态）、刷表法（当前状态预测未来状态）、可撤销背包
 功能：一重背包DP，数量有限从后往前遍历，数量无限则从前往后遍历；多重背包DP，可使用二进制优化进行拆分
@@ -120,6 +109,16 @@ E - All-you-can-eat（https://atcoder.jp/contests/abc145/tasks/abc145_e）思维
 
 参考：OI WiKi（xx）
 """
+from collections import defaultdict, deque, Counter
+from functools import lru_cache
+from itertools import combinations
+from math import inf
+from typing import List
+
+from src.dp.bag_dp.template import BagDP
+from src.graph.union_find.template import UnionFind
+from src.mathmatics.number_theory.template import NumberTheory
+from src.utils.fast_io import FastIO
 
 
 class Solution:

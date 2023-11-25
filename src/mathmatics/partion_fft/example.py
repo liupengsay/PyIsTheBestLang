@@ -2,7 +2,7 @@ import unittest
 
 import numpy as np
 
-from src.mathmatics.partion_fft.question import fft_v
+from src.mathmatics.partion_fft.problem import fft_v
 
 
 class TestGeneral(unittest.TestCase):

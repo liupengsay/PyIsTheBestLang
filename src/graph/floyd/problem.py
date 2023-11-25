@@ -1,11 +1,3 @@
-from heapq import heappop, heappush
-from math import inf
-from typing import List
-
-from src.basis.binary_search.template import BinarySearch
-from src.graph.dijkstra.template import Dijkstra
-from src.utils.fast_io import FastIO
-
 """
 
 算法：Floyd（多源最短路经算法）、可以处理有向图无向图以及正负权边、也可以检测负环
@@ -46,6 +38,13 @@ E - Travel by Car（https://atcoder.jp/contests/abc143/tasks/abc143_e）Floyd建
 4872. 最短路之和（https://www.acwing.com/problem/content/submission/4875/）经典Floyd逆序逆向思维更新最短路对
 
 """
+from heapq import heappop, heappush
+from math import inf
+from typing import List
+
+from src.basis.binary_search.template import BinarySearch
+from src.graph.dijkstra.template import Dijkstra
+from src.utils.fast_io import FastIO
 
 
 class Solution:

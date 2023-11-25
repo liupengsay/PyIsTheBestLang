@@ -12,5 +12,5 @@ def run_example_files(path):
 
 
 # 示例用法
-directory = 'D:\\AlgorithmPY\\src'
+directory = 'D:\\PyIsTheBestLang\\src'
 run_example_files(directory)

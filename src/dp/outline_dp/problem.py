@@ -1,7 +1,3 @@
-from functools import lru_cache
-from itertools import chain
-from typing import List
-
 """
 算法：轮廓线DP
 功能：
@@ -24,6 +20,9 @@ xx（xxx）xxxxxxxxxxxxxxxxxxxx
 Mondriaan's Dream（https://vjudge.net/problem/HDU-1400）轮廓线 DP 经典题目
 
 """
+from functools import lru_cache
+from itertools import chain
+from typing import List
 
 
 class Solution:
