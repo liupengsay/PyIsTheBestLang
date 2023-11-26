@@ -146,6 +146,126 @@ class RangeAscendRangeMax:
         return highest
 
 
+class RangeAscendRangeMaxBinarySearchFindLeft:
+    def __init__(self, n):
+        self.n = n
+        self.cover = [-inf] * (4 * n)
+        self.lazy = [-inf] * (4 * n)
+
+    @staticmethod
+    def _max(a, b):
+        return a if a > b else b
+
+    def _make_tag(self, i, val) -> None:
+        self.cover[i] = self._max(self.cover[i], val)
+        self.lazy[i] = self._max(self.lazy[i], val)
+        return
+
+    def _push_up(self, i):
+        self.cover[i] = self._max(self.cover[2 * i], self.cover[2 * i + 1])
+        return
+
+    def _push_down(self, i):
+        if self.lazy[i] != -inf:
+            self.cover[2 * i] = self._max(self.cover[2 * i], self.lazy[i])
+            self.cover[2 * i + 1] = self._max(self.cover[2 * i + 1], self.lazy[i])
+            self.lazy[2 * i] = self._max(self.lazy[2 * i], self.lazy[i])
+            self.lazy[2 * i + 1] = self._max(self.lazy[2 * i + 1], self.lazy[i])
+            self.lazy[i] = -inf
+        return
+
+    def build(self, nums: List[int]) -> None:
+        assert self.n == len(nums)
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, ind = stack.pop()
+            if ind >= 0:
+                if s == t:
+                    self._make_tag(ind, nums[s])
+                else:
+                    stack.append([s, t, ~ind])
+                    m = s + (t - s) // 2
+                    stack.append([s, m, 2 * ind])
+                    stack.append([m + 1, t, 2 * ind + 1])
+            else:
+                ind = ~ind
+                self._push_up(ind)
+        return
+
+    def get(self):
+        stack = [(0, self.n - 1, 1)]
+        nums = [0] * self.n
+        while stack:
+            s, t, i = stack.pop()
+            if s == t:
+                nums[s] = self.cover[i]
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i)
+            stack.append((s, m, 2 * i))
+            stack.append((m + 1, t, 2 * i + 1))
+        return nums
+
+    def range_ascend(self, left, right, val):
+        # update the range ascend
+        assert 0 <= left <= right <= self.n - 1
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            a, b, i = stack.pop()
+            if i >= 0:
+                if left <= a and b <= right:
+                    self._make_tag(i, val)
+                    continue
+                self._push_down(i)
+                stack.append([a, b, ~i])
+                m = a + (b - a) // 2
+                if left <= m:
+                    stack.append([a, m, 2 * i])
+                if right > m:
+                    stack.append([m + 1, b, 2 * i + 1])
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def range_max(self, left, right):
+        # query the range max
+        assert 0 <= left <= right <= self.n - 1
+        stack = [(0, self.n - 1, 1)]
+        highest = -inf
+        while stack:
+            a, b, i = stack.pop()
+            if left <= a and b <= right:
+                highest = self._max(highest, self.cover[i])
+                continue
+            self._push_down(i)
+            m = a + (b - a) // 2
+            if left <= m:
+                stack.append([a, m, 2 * i])
+            if right > m:
+                stack.append([m + 1, b, 2 * i + 1])
+        return highest
+
+    def binary_search_find_left(self, left, right, val):
+        """binary search with segment tree like"""
+        assert 0 <= left <= right <= self.n - 1
+        stack = [(0, self.n - 1, 1)]
+        res = -1
+        while stack and res == -1:
+            a, b, i = stack.pop()
+            if left <= a == b <= right:
+                if self.cover[i] >= val:
+                    res = a
+                continue
+            self._push_down(i)
+            m = a + (b - a) // 2
+            if right > m and self.cover[2 * i + 1] >= val:
+                stack.append([m + 1, b, 2 * i + 1])
+            if left <= m and self.cover[2 * i] >= val:
+                stack.append([a, m, 2 * i])
+        return res
+
+
 class RangeDescendRangeMin:
     def __init__(self, n):
         self.n = n

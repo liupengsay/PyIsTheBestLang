@@ -76,7 +76,8 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeD
     SegmentTreePointChangeLongCon, SegmentTreeRangeSqrtSum, SegmentTreeRangeAndOrXOR, RangeChangeRangeOr, \
     SegmentTreeRangeUpdateAvgDev, SegmentTreePointUpdateRangeMulQuery, \
     RangeChangeRangeSumMinMaxDynamic, SegmentTreeLongestSubSame, \
-    RangeOrRangeAnd, RangeChangeRangeSumMinMax, RangeKSmallest, PointChangeRangeMaxNonEmpConSubSum
+    RangeOrRangeAnd, RangeChangeRangeSumMinMax, RangeKSmallest, PointChangeRangeMaxNonEmpConSubSum, \
+    RangeAscendRangeMaxBinarySearchFindLeft
 from src.utils.fast_io import FastIO
 
 
@@ -487,6 +488,30 @@ class Solution:
             else:
                 ac.st(tree.query_sum(a, b, 0, n - 1, 1))
         return
+
+    @staticmethod
+    def lc_2940(heights: List[int], queries: List[List[int]]) -> List[int]:
+        n = len(heights)
+        tree = RangeAscendRangeMaxBinarySearchFindLeft(n)
+        tree.build(heights)
+        ans = []
+        for ll, rr in queries:
+            if ll > rr:
+                ll, rr = rr, ll
+            if heights[ll] < heights[rr]:
+                ans.append(rr)
+                continue
+            if ll == rr:
+                ans.append(ll)
+                continue
+            if rr == n - 1:
+                ans.append(-1)
+                continue
+            h = heights[ll] if heights[ll] > heights[rr] else heights[rr]
+            left = tree.binary_search_find_left(rr + 1, n - 1, h + 1)
+
+            ans.append(left)
+        return ans
 
     @staticmethod
     def lg_2572(ac=FastIO()):
