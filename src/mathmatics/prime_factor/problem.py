@@ -85,6 +85,7 @@ A. Division（https://codeforces.com/problemset/problem/1444/A）贪心枚举质
 C. Strongly Composite（https://codeforces.com/contest/1823/problem/C）质因数分解进行贪心计算
 D. Recover it!（https://codeforces.com/contest/1176/problem/D）经典构造题，贪心模拟，记录合数最大不等于自身的因子，以及质数列表的顺序
 D. Counting Rhyme（https://codeforces.com/contest/1884/problem/D）factor dp and cnt, count the number of pair with gcd=x
+D. Small GCD（https://codeforces.com/contest/1900/problem/D）经典根据容斥原理计算gcd的pair对数
 
 ================================AtCoder================================
 D - 756（https://atcoder.jp/contests/abc114/tasks/abc114_d）质因数分解计数
@@ -570,6 +571,42 @@ class Solution:
         if reduce(math.gcd, nums) != 1:
             ac.st("INF")
         else:
+            ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1900d(ac=FastIO()):
+        pf = PrimeFactor(10 ** 5)
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = ac.read_list_ints()
+            tot = [0] * (10 ** 5 + 1)
+            for num in nums:
+                tot[num] += 1
+
+            pre = [0] * (10 ** 5 + 1)
+            ans = 0
+            post = n
+            for i in range(1, 10 ** 5 + 1):
+                lst = pf.all_factor[i]
+                tot_i = tot[i]
+                post -= tot_i
+                if tot_i:
+                    m = len(lst)
+                    cnt = [0] * m
+                    for j in range(m - 1, -1, -1):
+                        xx = lst[j]
+                        cur = pre[xx]
+                        for k in range(j + 1, m):
+                            if lst[k] % xx == 0:
+                                cur -= cnt[k]
+                        ans += cur * xx * tot_i * post
+                        ans += cur * xx * tot_i * (tot_i - 1) // 2
+                        cnt[j] = cur
+                    ans += tot_i * (tot_i - 1) * i * post // 2
+                    ans += tot_i * (tot_i - 2) * (tot_i - 1) // 6 * i
+                    for x in lst:
+                        pre[x] += tot_i
             ac.st(ans)
         return
 
