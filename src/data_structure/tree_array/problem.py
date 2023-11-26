@@ -34,6 +34,7 @@ P1198 [JSOI2008] 最大数（https://www.luogu.com.cn/problem/P1198）树状数�
 P4868 Preprefix sum（https://www.luogu.com.cn/problem/P4868）经典转换公式单点修改，使用两个树状数组维护前缀和的前缀和
 P5463 小鱼比可爱（加强版）（https://www.luogu.com.cn/problem/P5463）经典使用树状数组维护前缀计数，枚举最大值计算所有区间数贡献
 P6225 [eJOI2019] 异或橙子（https://www.luogu.com.cn/problem/P6225）经典使用树状数组维护前缀异或和
+P1972 [SDOI2009] HH的项链（https://www.luogu.com.cn/problem/P1972）经典使用树状数组离线查询区间不同数的个数 PointChangeRangeSum OfflineQuery
 
 ================================AtCoder================================
 D - Islands War（https://atcoder.jp/contests/abc103/tasks/abc103_d）经典贪心加树状数组
@@ -429,6 +430,31 @@ class Solution:
                 tree.point_add(num, 1)
                 x += 1
             ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p1972(ac=FastIO()):
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        m = ac.read_int()
+        queries = [ac.read_list_ints_minus_one() + [i] for i in range(m)]
+        ans = [0] * m
+        tree = PointAddRangeSum(n)
+        queries.sort(key=lambda it: it[1])
+        pre = [-1]*(max(nums)+1)
+        i = 0
+        for ll, rr, ii in queries:
+            while i <= rr:
+                d = nums[i]
+                if pre[d] != -1:
+                    tree.point_add(pre[d] + 1, -1)
+                pre[d] = i
+                tree.point_add(i + 1, 1)
+                i += 1
+
+            ans[ii] = tree.range_sum(ll + 1, rr + 1)
+        for a in ans:
+            ac.st(a)
         return
 
     @staticmethod
