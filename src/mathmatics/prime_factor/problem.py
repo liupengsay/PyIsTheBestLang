@@ -635,6 +635,30 @@ class Solution:
         return ans
 
     @staticmethod
+    def cf_1884d(ac=FastIO()):
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = ac.read_list_ints()
+            cnt = [0] * (n + 1)
+            dp = [0] * (n + 1)
+            for num in nums:
+                cnt[num] += 1
+            for num in range(n, 0, -1):
+                tot = post = 0
+                y = 1
+                while num * y <= n:
+                    post += dp[num * y]
+                    tot += cnt[num * y]
+                    y += 1
+                dp[num] = tot * (tot - 1) // 2 - post
+            for num in range(1, n + 1):
+                if cnt[num]:
+                    for x in range(num, n + 1, num):
+                        dp[x] = 0
+            ac.st(sum(dp))
+        return
+
+    @staticmethod
     def ac_3727(ac=FastIO()):
         # 模板：脑筋急转弯转换成进制表达问题
 
