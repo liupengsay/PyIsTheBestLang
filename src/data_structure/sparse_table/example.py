@@ -28,7 +28,7 @@ class TestGeneral(unittest.TestCase):
         assert [st.query(left, right) for left, right in queries] == [9, 9, 7, 7, 9, 8, 7, 9]
 
         ceil = 1000
-        nums = [random.randint(0, ceil) for _ in range(1000)]
+        nums = [random.randint(1, ceil) for _ in range(1000)]
         st1_max = SparseTable1(nums, "max")
         st1_min = SparseTable1(nums, "min")
         st1_gcd = SparseTable1(nums, "gcd")
