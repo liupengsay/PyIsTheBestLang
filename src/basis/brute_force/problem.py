@@ -123,6 +123,7 @@ C. Arithmetic Progression（https://codeforces.com/problemset/problem/382/C）�
 D - Remainder Reminder（https://atcoder.jp/contests/abc090/tasks/arc091_b）典型枚举
 D - Katana Thrower（https://atcoder.jp/contests/abc085/tasks/abc085_d）典型枚举
 E. Divisibility by 25（https://codeforces.com/contest/988/problem/E）思维题贪心枚举
+B. Getting Zero（https://codeforces.com/contest/1661/problem/B）经典枚举
 
 ================================AtCoder================================
 D - Digit Sum（https://atcoder.jp/contests/abc044/tasks/arc060_b）经典进制计算与分情况枚举因子
