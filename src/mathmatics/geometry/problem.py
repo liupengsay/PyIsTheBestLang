@@ -36,7 +36,7 @@ D. Tricky Function（https://codeforces.com/problemset/problem/429/D）经典平
 119. 袭击（https://www.acwing.com/problem/content/121/）经典平面点集最近点对问题使用分治求解、还有哈希分块、有序列表
 4309. 消灭老鼠（https://www.acwing.com/problem/content/4312/）经典直线斜率计算
 4499. 画圆（https://www.acwing.com/problem/content/4502/）经典几何，使用一元二次方程求解
-
+游戏专项（https://www.hackerrank.com/contests/2023-1024-1/challenges/challenge-4219）随机化共线性判断
 
 参考：OI WiKi（xx）
 """
