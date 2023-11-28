@@ -576,38 +576,34 @@ class Solution:
 
     @staticmethod
     def cf_1900d(ac=FastIO()):
-        pf = PrimeFactor(10 ** 5)
+        ceil = 10 ** 5 + 1
         for _ in range(ac.read_int()):
             n = ac.read_int()
             nums = ac.read_list_ints()
-            tot = [0] * (10 ** 5 + 1)
-            for num in nums:
-                tot[num] += 1
+            nums.sort()
+            cnt = [0] * ceil
+            last = [-1] * ceil
+            for i, num in enumerate(nums):
+                cnt[num] += 1
+                last[num] = i
 
-            pre = [0] * (10 ** 5 + 1)
-            ans = 0
-            post = n
-            for i in range(1, 10 ** 5 + 1):
-                lst = pf.all_factor[i]
-                tot_i = tot[i]
-                post -= tot_i
-                if tot_i:
-                    m = len(lst)
-                    cnt = [0] * m
-                    for j in range(m - 1, -1, -1):
-                        xx = lst[j]
-                        cur = pre[xx]
-                        for k in range(j + 1, m):
-                            if lst[k] % xx == 0:
-                                cur -= cnt[k]
-                        ans += cur * xx * tot_i * post
-                        ans += cur * xx * tot_i * (tot_i - 1) // 2
-                        cnt[j] = cur
-                    ans += tot_i * (tot_i - 1) * i * post // 2
-                    ans += tot_i * (tot_i - 2) * (tot_i - 1) // 6 * i
-                    for x in lst:
-                        pre[x] += tot_i
-            ac.st(ans)
+            gcd = [0] * ceil
+            for g in range(1, ceil):
+                small = 0
+                for mid in range(g, ceil, g):
+                    if not cnt[mid]:
+                        continue
+                    cur = cnt[mid]
+                    cur2 = cur * (cur - 1) // 2
+                    cur3 = cur * (cur - 1) * (cur - 2) // 6
+                    bigger = n - last[mid] - 1
+                    gcd[g] += small * bigger * cur + small * cur2 + bigger * cur2 + cur3
+                    small += cur
+
+            for g in range(ceil - 1, 0, -1):
+                for gg in range(2 * g, ceil, g):
+                    gcd[g] -= gcd[gg]
+            ac.st(sum(gcd[i] * i for i in range(ceil)))
         return
 
     @staticmethod
