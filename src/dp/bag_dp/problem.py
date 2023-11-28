@@ -90,6 +90,7 @@ B. Modulo Sum（https://codeforces.com/problemset/problem/577/B）取模计数�
 A. Writing Code（https://codeforces.com/problemset/problem/543/A）二维有限背包DP，当作无限进行处理
 E. Porcelain（https://codeforces.com/problemset/problem/148/E）01背包枚举，两层动态规划
 F. Zero Remainder Sum（https://codeforces.com/problemset/problem/1433/F）01背包枚举，两层动态规划
+D. For Gamers. By Gamers.（https://codeforces.com/contest/1657/problem/D）一维无限乘积背包预处理，欧拉级数复杂度，结合二分查找贪心
 
 ================================AtCoder================================
 D - Mixing Experiment（https://atcoder.jp/contests/abc054/tasks/abc054_d）二维01背包
@@ -109,6 +110,7 @@ E - All-you-can-eat（https://atcoder.jp/contests/abc145/tasks/abc145_e）思维
 
 参考：OI WiKi（xx）
 """
+import bisect
 from collections import defaultdict, deque, Counter
 from functools import lru_cache
 from itertools import combinations
@@ -300,6 +302,30 @@ class Solution:
                         cur[x * m + j] += pre[j]
             pre = [num % mod for num in cur]
         return pre[-1]
+
+    @staticmethod
+    def cf_1657d(ac=FastIO()):
+        n, c = ac.read_list_ints()
+        dp = [0] * (c + 1)
+        for _ in range(n):
+            cc, dd, hh = ac.read_list_ints()
+            dp[cc] = ac.max(dp[cc], dd * hh)
+
+        for i in range(1, c + 1):
+            dp[i] = ac.max(dp[i], dp[i - 1])
+            x = dp[i]
+            for y in range(i * 2, c + 1, i):
+                dp[y] = ac.max(dp[y], x * (y // i))
+
+        ans = []
+        for _ in range(ac.read_int()):
+            h, d = ac.read_list_ints()
+            if h * d >= dp[c]:
+                ans.append(-1)
+            else:
+                ans.append(bisect.bisect_right(dp, h * d))
+        ac.lst(ans)
+        return
 
     @staticmethod
     def lc_254(n: int) -> List[List[int]]:
