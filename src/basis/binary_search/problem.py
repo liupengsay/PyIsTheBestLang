@@ -87,6 +87,7 @@ D. Max Median（https://codeforces.com/problemset/problem/1486/D）利用单调�
 D2. Coffee and Coursework (Hard Version)（https://codeforces.com/problemset/problem/1118/D2）利用单调性贪心二分
 I. Photo Processing（https://codeforces.com/problemset/problem/883/I）二分加双指针dp
 G. Gift Set（https://codeforces.com/contest/1538/problem/G）二分加枚举不等式验证
+C. Binary String（https://codeforces.com/contest/1680/problem/C）二分加贪心双指针check
 
 ================================AtCoder================================
 D - No Need （https://atcoder.jp/contests/abc056/tasks/arc070_b）经典利用单调性进行二分，用背包DP进行check
@@ -281,6 +282,32 @@ class Solution:
                 high = mid
         ans = high if check(high) else low
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1680c(ac=FastIO()):
+        for _ in range(ac.read_int()):
+            s = ac.read_str()
+            n = len(s)
+            tot_1 = s.count("1")
+
+            def check(x):
+                j = cnt = ceil_1 = 0
+                cnt_1 = 0
+                for i in range(n):
+                    while j < n and (cnt + int(s[j] == "0")) <= x:
+                        cnt += s[j] == "0"
+                        cnt_1 += s[j] == "1"
+                        j += 1
+                    if cnt <= x:
+                        ceil_1 = ac.max(ceil_1, cnt_1)
+                    if s[i] == "0":
+                        cnt -= 1
+                    else:
+                        cnt_1 -= 1
+                return tot_1 - ceil_1 <= x
+
+            ac.st(BinarySearch().find_int_left(0, n, check))
         return
 
     @staticmethod
