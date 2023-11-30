@@ -36,6 +36,7 @@ D. Multiples and Power Differences（https://codeforces.com/problemset/problem/1
 G. Even-Odd XOR（https://codeforces.com/problemset/problem/1722/G）根据奇偶性和异或和特点进行构造
 D. Super-Permutation（https://codeforces.com/contest/1822/problem/D）构造前缀和取模互不相同的排列
 D - Make Them Even（https://atcoder.jp/contests/abc109/tasks/abc109_d）根据奇偶性与遍历顺序构造
+D. Binary Literature（https://codeforces.com/contest/1509/problem/D）LCS最短公共超序列构造，特殊值域下的O(n)鸽巢原理
 
 ==================================AtCoder=================================
 B - Construct Sequences（https://atcoder.jp/contests/agc007/tasks/agc007_b）脑筋急转弯思维构造公式
