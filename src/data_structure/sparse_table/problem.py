@@ -33,6 +33,7 @@ E. Iva & Pav（https://codeforces.com/contest/1878/problem/E）经典计算连�
 F. Array Stabilization (GCD version)（https://codeforces.com/contest/1547/problem/F）经典计算连续子数组的gcd信息
 F. Array Stabilization (AND version)（https://codeforces.com/contest/1579/problem/F）经典循环节计算连续子数组的and信息
 D. Rorororobot（https://codeforces.com/contest/1709/problem/D）use sparse table to compute static range max and implemention
+D. Cut（https://codeforces.com/contest/1516/problem/D）经典数组区间向右倍增计算
 
 ================================AcWing====================================
 109. 天才ACM（https://www.acwing.com/problem/content/111/）贪心加倍增计算最少分段数
@@ -47,6 +48,7 @@ from math import inf
 from typing import List
 
 from src.data_structure.sparse_table.template import SparseTable1, SparseTableIndex
+from src.mathmatics.prime_factor.template import PrimeFactor
 from src.utils.fast_io import FastIO
 
 
@@ -235,6 +237,40 @@ class Solution:
             post = cur
             ans[i] = post[max(post)] - i + 1
         return ans
+
+    @staticmethod
+    def cf_1516d(ac=FastIO()):
+        pf = PrimeFactor(10 ** 5)
+        n, q = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        post = [n] * (n + 1)
+        ind = [n] * (10 ** 5)
+        for i in range(n - 1, -1, -1):
+            right = post[i + 1]
+            for p, _ in pf.prime_factor[nums[i]]:
+                right = ac.min(ind[p], right)
+                ind[p] = i
+            post[i] = right
+
+        col = max(2, math.ceil(math.log2(n)))
+        dp = [[n] * col for _ in range(n)]
+        for i in range(n):
+            dp[i][0] = post[i]
+        for j in range(1, col):
+            for i in range(n):
+                father = dp[i][j - 1]
+                if father <= n - 1:
+                    dp[i][j] = dp[father][j - 1]
+
+        for _ in range(q):
+            x, y = ac.read_list_ints_minus_one()
+            ans = 0
+            for j in range(col - 1, -1, -1):
+                if dp[x][j] <= y:
+                    x = dp[x][j]
+                    ans += 1 << j
+            ac.st(ans + 1)
+        return
 
     @staticmethod
     def cf_1709d(ac=FastIO()):
