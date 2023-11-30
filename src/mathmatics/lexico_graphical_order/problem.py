@@ -23,6 +23,7 @@ P3014 [USACO11FEB]Cow Line S（https://www.luogu.com.cn/problem/P3014）计算�
 ================================CodeForces================================
 B. K-th Beautiful String（https://codeforces.com/problemset/problem/1328/B）计算comb的字典序
 C. BA-String（https://codeforces.com/contest/1620/problem/C）经典逆向思维字典序
+E. Almost Sorted（https://codeforces.com/contest/1509/problem/E）字典序典题，计算rank k的数组
 
 参考：OI WiKi（xx）
 """
