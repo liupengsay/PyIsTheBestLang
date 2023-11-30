@@ -4,6 +4,7 @@
 题目：
 
 ===================================力扣===================================
+1157. 子数组中占绝大多数的元素（https://leetcode.cn/problems/online-majority-element-in-subarray/description/）查询区间的超级众数，即区间出现超过一半的数，同cf1514_d正解为随机化猜众数，或者位运算计算众数，或者线段树合并众数
 
 ===================================洛谷===================================
 
@@ -11,12 +12,15 @@
 B. Little Elephant and Array（https://codeforces.com/contest/220/problem/B）分块矩阵计数模板题
 D. Powerful array（https://codeforces.com/contest/86/problem/D）分块矩阵求函数值模板题
 E. XOR and Favorite Number（https://codeforces.com/contest/617/problem/E）分块矩阵求异或对计数模板题
+D. Cut and Stick（https://codeforces.com/contest/1514/problem/D）离散查询分块超时，正解为随机化猜众数，或者位运算计算众数，或者线段树合并众数
 
 ================================AtCoder================================
 F - Small Products（https://atcoder.jp/contests/abc132/tasks/abc132_f）分组线性计数DP，使用前缀和优化
 
+
 参考：OI WiKi（https://oi-wiki.org/ds/fenwick/）
 """
+import bisect
 from collections import defaultdict, Counter
 from itertools import accumulate
 from operator import xor
@@ -41,6 +45,100 @@ class Solution:
             pre = list(ac.accumulate(dp)[1:])[::-1]
             dp = [(cnt[i] * pre[i]) % mod for i in range(m)]
         ac.st(sum(dp) % mod)
+        return
+
+    @staticmethod
+    def cf1514_d(ac=FastIO()):
+        # 分块超时，正解为随机化猜众数，或者位运算计算众数，或者线段树合并众数
+        n, m = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        cnt = [0] * (n + 1)
+        freq = [0] * (n + 1)
+        size = int(n ** 0.5) + 500  # 分块的大小
+
+        queries = [[] for _ in range(size)]
+        # 将查询分段
+        for i in range(m):
+            a, b = ac.read_list_ints_minus_one()
+            queries[b // size].append([a, b, i])
+
+        # 更新区间信息
+        def update(num, p):
+            nonlocal cnt, ceil
+            if p == 1:
+                cnt[num] += 1
+                freq[cnt[num] - 1] -= 1
+                freq[cnt[num]] += 1
+                if cnt[num] > ceil:
+                    ceil = cnt[num]
+            else:
+                cnt[num] += -1
+                freq[cnt[num] + 1] -= 1
+                freq[cnt[num]] += 1
+                if not freq[cnt[num] + 1] and ceil == cnt[num] + 1:
+                    ceil = cnt[num]
+            return
+
+        ans = [0] * m
+        x = y = 0
+        cnt[nums[0]] = 1
+        freq[1] = 1
+        ceil = 1
+        for i in range(size):
+            # 按照分块后单独排序
+            if i % 2:
+                queries[i].sort(key=lambda it: -it[0])
+            else:
+                queries[i].sort(key=lambda it: it[0])
+            # 移动双指针
+            for a, b, j in queries[i]:
+                while y > b:
+                    update(nums[y], -1)
+                    y -= 1
+                while y < b:
+                    y += 1
+                    update(nums[y], 1)
+                while x > a:
+                    x -= 1
+                    update(nums[x], 1)
+                while x < a:
+                    update(nums[x], -1)
+                    x += 1
+                if ceil * 2 <= b - a + 1:
+                    ans[j] = 1
+                else:
+                    ans[j] = ceil - (b - a + 1 - ceil + 1) + 1
+        for a in ans:
+            ac.st(a)
+        return
+
+    @staticmethod
+    def cf1514_d_2(ac=FastIO()):
+
+        n, m = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        ind = [[] for _ in range(1 << 20)]
+        cnt = [0] * 20
+        pre = [cnt[:]]
+        for i, num in enumerate(nums):
+            ind[num].append(i)
+            for j in range(20):
+                if num & (1 << j):
+                    cnt[j] += 1
+            pre.append(cnt[:])
+        for _ in range(m):
+            x, y = ac.read_list_ints_minus_one()
+            num = 0
+            length = y - x + 1
+            for j in range(20):
+                if pre[y + 1][j] - pre[x][j] >= length / 2:
+                    num |= 1 << j
+
+            ceil = bisect.bisect_right(ind[num], y) - bisect.bisect_left(ind[num], x)
+            if ceil * 2 <= length:
+                ac.st(1)
+            else:
+                ac.st(ceil - (length - ceil + 1) + 1)
         return
 
     @staticmethod
