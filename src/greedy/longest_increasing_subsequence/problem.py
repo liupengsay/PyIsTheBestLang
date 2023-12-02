@@ -25,6 +25,7 @@ dilworth定理：
 3662. 最大上升子序列和（https://www.acwing.com/problem/content/description/3665/）所有长度的严格上升子序列的最大子序列和，使用离散化树状数组与线性DP计算，也可使用线段树
 2826. 将三个组排序（https://leetcode.cn/problems/sorting-three-groups/）转换为求最长不降子序列
 1964. 找出到每个位置为止最长的有效障碍赛跑路线（https://leetcode.cn/problems/find-the-longest-valid-obstacle-course-at-each-position/）经典LIS求以每个位置结尾的最长不降子序列长度
+2945. 找到最大非递减数组的长度（https://leetcode.cn/problems/find-maximum-non-decreasing-array-length/description/）经典贪心单调队列DP，将数组拆分成最长不递减子数组段
 
 ===================================洛谷===================================
 P1020 导弹拦截（https://www.luogu.com.cn/problem/P1020）使用贪心加二分计算最长单调不减和单调不增子序列的长度

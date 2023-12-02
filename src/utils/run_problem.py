@@ -6,7 +6,7 @@ import time
 def process_file(file_path):
     with open(file_path, "r", encoding="utf-8", errors="ignore") as file:
         lines = file.readlines()
-    filtered_lines = [line.strip("\n") for line in lines if "https" in line and "（https" not in line]
+    filtered_lines = ["https" + line.strip("\n").split("（https")[1].split("）")[0] for line in lines if "（https" in line]
     tot.extend(filtered_lines)
     return
 
@@ -28,7 +28,7 @@ s = time.time()
 tot = []
 process_directory(os.path.join(grandparent_path, "src"))
 random.shuffle(tot)
-with open(os.path.join(grandparent_path, "data/problem.txt"), 'w', encoding="utf-8", errors="ignore") as f:
+with open(os.path.join(grandparent_path, "data/Problem.md"), 'w', encoding="utf-8", errors="ignore") as f:
     f.writelines("\n".join(tot))
 
 print("总耗时: ", int(time.time() - s), "s")
