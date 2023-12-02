@@ -112,7 +112,7 @@ P8894 「UOI-R1」求和（https://www.luogu.com.cn/problem/P8894）按照区间
 P8872 [传智杯 #5 初赛] D-莲子的物理热力学（https://www.luogu.com.cn/problem/P8872）排序后前后缀移动次数枚举
 
 ================================CodeForces================================
-https://codeforces.com/problemset/problem/1426/F（分类枚举中间的b计数两边的?ac，并使用快速幂进行求解）
+F. Number of Subsequences（https://codeforces.com/problemset/problem/1426/F）分类枚举中间的b计数两边的?ac，并使用快速幂进行求解
 D. Zigzags（https://codeforces.com/problemset/problem/1400/D）枚举+二分
 D. Moscow Gorillas（https://codeforces.com/contest/1793/problem/D）枚举计数
 D. Dima and Lisa（https://codeforces.com/problemset/problem/584/D）确定一个质数3，枚举第二三个质数，小于 10**9 的任何数都可以分解为最多三个质数的和

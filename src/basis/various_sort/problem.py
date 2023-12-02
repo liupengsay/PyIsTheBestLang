@@ -21,7 +21,7 @@ P1774 最接近神的人（https://www.luogu.com.cn/problem/P1774）使用归并
 P1177 【模板】快速排序（https://www.luogu.com.cn/problem/P1177）快速排序
 
 ================================CodeForces================================
-https://codeforces.com/problemset/problem/922/D（贪心加自定义排序）
+D. Robot Vacuum Cleaner（https://codeforces.com/problemset/problem/922/D）贪心加自定义排序
 
 ================================AtCoder================================
 B - Iroha Loves Strings（https://atcoder.jp/contests/abc042/tasks/abc042_b）自定义排序

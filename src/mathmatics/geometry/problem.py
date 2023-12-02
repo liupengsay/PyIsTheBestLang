@@ -29,7 +29,7 @@ P1429 平面最近点对（加强版）（https://www.luogu.com.cn/problem/P1429
 
 
 ================================CodeForces================================
-D. Pair Of Lines (https://codeforces.com/contest/961/problem/D) 抽屉原理枚举初始共线点并计算其他点的共线性情况
+D. Pair Of Lines （https://codeforces.com/contest/961/problem/D)）抽屉原理枚举初始共线点并计算其他点的共线性情况
 D. Tricky Function（https://codeforces.com/problemset/problem/429/D）经典平面点集最近点对
 
 ================================AcWing====================================

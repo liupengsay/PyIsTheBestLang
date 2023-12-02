@@ -6,7 +6,7 @@ import time
 def process_file(file_path):
     with open(file_path, "r", encoding="utf-8", errors="ignore") as file:
         lines = file.readlines()
-    filtered_lines = [line.strip("\n") for line in lines if "https" in line]
+    filtered_lines = [line.strip("\n") for line in lines if "https" in line and "（https" not in line]
     tot.extend(filtered_lines)
     return
 

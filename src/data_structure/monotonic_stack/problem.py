@@ -52,7 +52,7 @@ P8094 [USACO22JAN] Cow Frisbee S（https://www.luogu.com.cn/problem/P8094）单�
 
 ================================CodeForces================================
 E. Explosions（https://codeforces.com/problemset/problem/1795/E）经典单调栈优化线性DP，贪心计数枚举，前后缀DP转移
-C2. Skyscrapers (https://codeforces.com/problemset/problem/1313/C2）经典单调栈优化线性DP
+C2. Skyscrapers （https://codeforces.com/problemset/problem/1313/C2）经典单调栈优化线性DP
 F. Array Partition（https://codeforces.com/contest/1454/problem/F）经典单调栈枚举题
 
 ================================AtCoder================================

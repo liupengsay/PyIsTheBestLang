@@ -23,9 +23,9 @@ P8910 [RC-06] Operation Sequence（https://www.luogu.com.cn/problem/P8910）经�
 P8880 无知时诋毁原神（https://www.luogu.com.cn/problem/P8880）脑筋急转弯构造分奇数与偶数讨论
 
 ================================CodeForces================================
-https://codeforces.com/problemset/problem/1396/A（贪心构造）
-https://codeforces.com/problemset/problem/1118/E（模拟贪心构造）
-https://codeforces.com/problemset/problem/960/C（贪心构造）
+A. Multiples of Length（https://codeforces.com/problemset/problem/1396/A）贪心构造
+E. Yet Another Ball Problem（https://codeforces.com/problemset/problem/1118/E）模拟贪心构造
+C. Subsequence Counting（https://codeforces.com/problemset/problem/960/C）贪心构造
 B. Fedya and Array（https://codeforces.com/contest/1793/problem/B）思维题贪心构造
 D. Replace by MEX（https://codeforces.com/problemset/problem/1375/D）经典MEX的构造题，使得数组非降，即最小的未出现在数组中的数
 D. Phoenix and Science（https://codeforces.com/problemset/problem/1348/D）利用二进制优化将数分割，并利用分裂特点进行计算

@@ -82,9 +82,9 @@ P8715 [蓝桥杯 2020 省 AB2] 子串分值（https://www.luogu.com.cn/problem/P
 P8783 [蓝桥杯 2022 省 B] 统计子矩阵（https://www.luogu.com.cn/problem/P8783）经典O(n^3)与双指针枚举计算子矩阵个数
 
 ================================CodeForces================================
-https://codeforces.com/problemset/problem/33/C（前后缀最大变换和与分割点枚举，经典类型题目）
-https://codeforces.com/problemset/problem/797/C（后缀最小值字典序模拟）
-https://codeforces.com/problemset/problem/75/D（压缩数组最大子段和）
+C. Wonderful Randomized Sum（https://codeforces.com/problemset/problem/33/C）前后缀最大变换和与分割点枚举，经典类型题目
+C. Minimal string（https://codeforces.com/problemset/problem/797/C）后缀最小值字典序模拟
+D. Big Maximum Sum（https://codeforces.com/problemset/problem/75/D）压缩数组最大子段和
 C. Count Triangles（https://codeforces.com/problemset/problem/1355/C）经典使用作用域差分计算，合法三角形边长个数
 C. Tea Tasting（https://codeforces.com/problemset/problem/1795/C）前缀和二分后，经典使用差分计数模拟加和
 D. Constant Palindrome Sum（https://codeforces.com/problemset/problem/1343/D）枚举x使用差分数组进行范围计数
