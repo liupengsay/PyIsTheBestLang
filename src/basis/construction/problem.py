@@ -38,6 +38,7 @@ D. Super-Permutation（https://codeforces.com/contest/1822/problem/D）构造前
 D - Make Them Even（https://atcoder.jp/contests/abc109/tasks/abc109_d）根据奇偶性与遍历顺序构造
 D. Binary Literature（https://codeforces.com/contest/1509/problem/D）LCS最短公共超序列构造，特殊值域下的O(n)鸽巢原理
 C. No More Inversions（https://codeforces.com/contest/1473/problem/C）special property of inverse pair of s1s2..sn..s2s1
+D. Ceil Divisions（https://codeforces.com/contest/1469/problem/D）square ceil greedy implemention
 
 ==================================AtCoder=================================
 B - Construct Sequences（https://atcoder.jp/contests/agc007/tasks/agc007_b）脑筋急转弯思维构造公式
