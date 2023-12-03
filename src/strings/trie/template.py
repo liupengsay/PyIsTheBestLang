@@ -1,3 +1,4 @@
+import random
 from math import inf
 
 
@@ -211,27 +212,33 @@ class TrieKeyWordSearchInText:
 
 
 class TriePrefixCount:
+    """use array and dict to produce trie"""
+
     def __init__(self):
-        self.dct = dict()
+        self.seed = random.randint(0, 10 ** 9 + 7)
+        self.ind = dict()
+        self.cnt = [0]
         return
 
     def update(self, word):
-        cur = self.dct
+        i = 0
         for w in word:
-            if w not in cur:
-                cur[w] = dict()
-            cur = cur[w]
-            cur['cnt'] = cur.get("cnt", 0) + 1
+            j = i * 26 + ord(w) - ord("a")
+            if j ^ self.seed not in self.ind:
+                self.ind[j ^ self.seed] = len(self.cnt)
+                self.cnt.append(0)
+            i = self.ind[j ^ self.seed]
+            self.cnt[i] += 1
         return
 
     def query(self, word):
-        cur = self.dct
-        res = 0
+        res = i = 0
         for w in word:
-            if w not in cur:
-                return False
-            cur = cur[w]
-            res += cur['cnt']
+            j = i * 26 + ord(w) - ord("a")
+            if j ^ self.seed not in self.ind:
+                break
+            i = self.ind[j ^ self.seed]
+            res += self.cnt[i]
         return res
 
 

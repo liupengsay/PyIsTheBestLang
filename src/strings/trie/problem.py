@@ -33,6 +33,7 @@ B. Friends（https://codeforces.com/contest/241/problem/B）经典01Trie计算�
 E. Beautiful Subarrays（https://codeforces.com/contest/665/problem/E）统计连续区间异或对数目
 E. Sausage Maximization（https://codeforces.com/contest/282/problem/E）转换为 01Trie 求数组最大异或值
 Set Xor-Min（https://judge.yosupo.jp/problem/set_xor_min）template dynamic xor min
+E. Collapsing Strings（https://codeforces.com/contest/1902/problem/E）trie|prefix count
 
 =====================================AcWing=====================================
 142（https://www.acwing.com/problem/content/144/）字典树前缀统计
@@ -137,6 +138,37 @@ class Solution:
                 trie.remove(int(x))
             else:
                 ac.st(trie.max_xor(int(x)))
+        return
+
+    @staticmethod
+    def cf_1902e(ac=FastIO()):
+        n = ac.read_int()
+        words = [ac.read_str() for _ in range(n)]
+
+        ans = 0
+        for i in range(2):
+            trie = TriePrefixCount()
+            pre = 0
+            for j, word in enumerate(words):
+                ans -= trie.query(word[::-1]) * 2
+                ans += j * len(word) + pre
+                pre += len(word)
+                trie.update(word)
+            if i == 0:
+                words.reverse()
+
+        for word in words:
+            n = len(word)
+            i = n - 1
+            j = 0
+            while i >= 0:
+                if word[i] == word[j]:
+                    i -= 1
+                    j += 1
+                else:
+                    break
+            ans += 2 * (i + 1)
+        ac.st(ans)
         return
 
     @staticmethod
