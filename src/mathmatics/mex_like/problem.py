@@ -4,7 +4,9 @@ Ability：brain storming like or g greedy
 Reference：
 
 ===================================LeetCode===================================
-xx（xxx）xxxxxxxxxxxxxxxxxxxx
+330. Patching Array（https://leetcode.com/problems/patching-array/）greedy|sorting|implemention1798. Maximum Number of Consecutive Values You Can Make（https://leetcode.com/problems/maximum-number-of-consecutive-values-you-can-make/）看似背包实则贪心
+1798. Maximum Number of Consecutive Values You Can Make（https://leetcode.com/problems/maximum-number-of-consecutive-values-you-can-make/）greedy|sorting|implemention
+2952. Minimum Number of Coins to be Added （https://leetcode.com/problems/minimum-number-of-coins-to-be-added/）greedy|sorting|implemention
 
 ===================================Luogu=====================================
 P9202 「GMOI R2-T2」猫耳小（加强版）（https://www.luogu.com.cn/problem/P9202）最少修改次数使得任意非空连续子数组的mex不等于k
@@ -15,6 +17,7 @@ xx（xxx）xxxxxxxxxxxxxxxxxxxx
 
 =============================================================================
 """
+from typing import List
 
 
 class XXX:
@@ -26,18 +29,44 @@ class Solution:
     def __int__(self):
         return
 
+
     @staticmethod
-    def xx_xxxx(ac=FastIO()):
-        pass
-        return
+    def lc_330(nums: List[int], n: int) -> int:
+        nums.sort()
+        m = len(nums)
+        i = 0
+        mex = 1
+        ans = 0
+        while mex <= n:
+            if i < m and nums[i] <= mex:
+                mex += nums[i]
+                i += 1
+            else:
+                ans += 1
+                mex *= 2
+        return ans
 
+    @staticmethod
+    def lc_2952(nums: List[int], n: int) -> int:
+        nums.sort()
+        m = len(nums)
+        i = 0
+        mex = 1
+        ans = 0
+        while mex <= n:
+            if i < m and nums[i] <= mex:
+                mex += nums[i]
+                i += 1
+            else:
+                ans += 1
+                mex *= 2
+        return ans
 
-class TestGeneral(unittest.TestCase):
-
-    def test_xxxx(self):
-        pass
-        return
-
-
-if __name__ == '__main__':
-    unittest.main()
+    @staticmethod
+    def lc_1798(coins: List[int]) -> int:
+        coins.sort()
+        mex = 1
+        for coin in coins:
+            if coin <= mex:
+                mex += coin
+        return mex
