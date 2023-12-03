@@ -4,7 +4,7 @@
 功能：模拟题中常见，如括号之类的，后进先出，升级版应用有单调栈、最大栈和最小栈
 题目：
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 2197（https://leetcode.com/problems/replace-non-coprime-numbers-in-array/）结合数学使用栈进行模拟
 394（https://leetcode.com/problems/decode-string/）经典解码带括号成倍的字符和数字
 1096（https://leetcode.com/problems/brace-expansion-ii/）使用栈进行字符解码
@@ -17,7 +17,7 @@
 1750（https://leetcode.com/problems/minimum-length-of-string-after-deleting-similar-ends/description/）经典栈模拟
 2296（https://leetcode.com/problems/design-a-text-editor/description/）经典左右两个栈进行模拟
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 1944（https://www.luogu.com.cn/problem/P1944）最长连续合法括号字串长度
 2201（https://www.luogu.com.cn/problem/P2201）双栈模拟指针移动同时记录前缀和与前序最大前缀和
 4387（https://www.luogu.com.cn/problem/P4387）模拟入栈出栈队列判断是否可行
@@ -27,15 +27,15 @@
 3551（https://www.luogu.com.cn/problem/P3551）栈与计数指针
 3719（https://www.luogu.com.cn/problem/P3719）栈模拟
 
-================================CodeForces================================
+===================================CodeForces===================================
 C. Longest Regular Bracket Sequence（https://codeforces.com/problemset/problem/5/C）最长连续合法括号子序列以及个数
 E. Almost Regular Bracket Sequence（https://codeforces.com/problemset/problem/1095/E）计算改变一个括号后是的字符串合法的位置数
 
-================================AtCoder================================
+====================================AtCoder=====================================
 D - 3N Numbers（https://atcoder.jp/contests/abc062/tasks/arc074_b）经典堆与前后缀结合
 
 
-================================AcWing===================================
+=====================================AcWing=====================================
 128（https://www.acwing.com/problem/content/130/）堆栈模拟
 129（https://www.acwing.com/problem/content/131/）经典卡特兰数，栈模拟判定出栈入栈合法性
 132（https://www.acwing.com/problem/content/134/）双端队列依次出队入队

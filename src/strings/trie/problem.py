@@ -3,7 +3,7 @@
 功能：处理字符串以及结合位运算相关，01Trie通用用于查询位运算极值
 题目：
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 421（https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/）经典 01 Trie
 638（https://leetcode.com/problems/shopping-offers/）经典使用字典树与记忆化搜索
 2416（https://leetcode.com/problems/sum-of-prefix-scores-of-strings/）单词组前缀计数
@@ -15,7 +15,7 @@
 1938（https://leetcode.com/problems/maximum-genetic-difference-query/）使用深搜回溯与01Trie查询最大异或值
 1032（https://leetcode.com/problems/stream-of-characters/description/）字典树典型应用，倒序存储
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 8306（https://www.luogu.com.cn/problem/P8306）
 4551（https://www.luogu.com.cn/problem/P4551）关键是利用异或的性质，将任意根节点作为中转站
 3864（https://www.luogu.com.cn/problem/P3864）使用哈希枚举或者进行字典树存储
@@ -26,7 +26,7 @@
 1738（https://www.luogu.com.cn/problem/P1738）字典树键计数
 8420（https://www.luogu.com.cn/problem/P8420）字典树贪心匹配
 
-================================CodeForces================================
+===================================CodeForces===================================
 Fixed Prefix Permutations（https://codeforces.com/problemset/problem/1792/D）变形后使用字典树进行计数查询
 D. Vasiliy's Multiset（https://codeforces.com/problemset/problem/706/D）经典01Trie，增加与删除数字，最大异或值查询
 B. Friends（https://codeforces.com/contest/241/problem/B）经典01Trie计算第 K 大的异或对，并使用堆贪心选取
@@ -34,7 +34,7 @@ E. Beautiful Subarrays（https://codeforces.com/contest/665/problem/E）统计�
 E. Sausage Maximization（https://codeforces.com/contest/282/problem/E）转换为 01Trie 求数组最大异或值
 Set Xor-Min（https://judge.yosupo.jp/problem/set_xor_min）template dynamic xor min
 
-================================AcWing====================================
+=====================================AcWing=====================================
 142（https://www.acwing.com/problem/content/144/）字典树前缀统计
 143（https://www.acwing.com/problem/content/145/）模板题计算最大异或对
 144（https://www.acwing.com/problem/content/description/146/）经典使用01Trie计算树中最长异或路径

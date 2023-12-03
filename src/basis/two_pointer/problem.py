@@ -4,7 +4,7 @@
 
 题目：
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 167（https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/）经典双指针应用
 259（https://leetcode.com/problems/3sum-smaller/）使用双指针或者计数枚举的方式
 2444（https://leetcode.com/problems/count-subarrays-with-fixed-bounds/）通向双指针的移动来根据两个指针的位置来进行计数
@@ -31,7 +31,7 @@
 948（https://leetcode.com/problems/bag-of-tokens/description/）经典双指针贪心
 2953（https://leetcode.com/contest/weekly-contest-374/problems/count-complete-substrings/）two pointers|brute force
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 2381（https://www.luogu.com.cn/problem/P2381）环形数组，滑动窗口双指针
 3353（https://www.luogu.com.cn/problem/P3353）滑动窗口加双指针
 3662（https://www.luogu.com.cn/problem/P3662）滑动子数组和
@@ -44,15 +44,15 @@
 6465（https://www.luogu.com.cn/problem/P6465）滑动窗口与双指针计数
 
 
-================================CodeForces================================
+===================================CodeForces===================================
 D. Carousel（https://codeforces.com/problemset/problem/1328/D）环形数组滑动窗口，记录变化次数并根据奇偶变换次数与环形首尾元素确定染色数量
 C. Eugene and an array（https://codeforces.com/problemset/problem/1333/C）双指针，计算前缀和不重复即没有区间段和为0的个数
 A2. Prefix Flip (Hard Version)（https://codeforces.com/problemset/problem/1381/A2）双指针模拟翻转匹配与贪心
 
-================================AtCoder================================
+====================================AtCoder=====================================
 D - Equal Cut（https://atcoder.jp/contests/abc102/tasks/arc100_b）经典双指针枚举
 
-================================AcWing================================
+=====================================AcWing=====================================
 4217（https://www.acwing.com/problem/content/4220/）经典双指针滑动窗口题目
 
 参考：OI WiKi（xx）

@@ -5,13 +5,13 @@
 - Tarjan 算法可以也可以求解有向图的强连通分量，进一步地可以求有向图的必经点与必经边，转换为DAG问题
 参考：60 分钟搞定图论中的 Tarjan 算法（https://zhuanlan.zhihu.com/p/101923309）
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 1192（https://leetcode.com/problems/critical-connections-in-a-network/）无向有环图求割边
 2360（https://leetcode.com/problems/longest-cycle-in-a-graph/solution/by-liupengsay-4ff6/）经典求有向图最长环
 2204（https://leetcode.com/problems/distance-to-a-cycle-in-undirected-graph/description/）求无向图中每个点到环的距离
 1568（https://leetcode.com/problems/minimum-number-of-days-to-disconnect-island/solution/by-liupengsay-zd7w/）无向有环图求求割点数量
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 3388（https://www.luogu.com.cn/problem/P3388）有自环与重边，求无向图割点
 8435（https://www.luogu.com.cn/problem/P8435）有自环与重边，只关注孤立自环即可
 8436（https://www.luogu.com.cn/problem/P8436）有自环与重边，通过虚拟节点进行扩边
@@ -41,7 +41,7 @@ G. How Many Paths?（https://codeforces.com/contest/1547/problem/G）使用SCC�
 E. Split Into Two Sets（https://codeforces.com/contest/1702/problem/E）使用点双进行无向图找环，判断有无奇数环
 D. Lucky Permutation（https://codeforces.com/contest/1768/problem/D）置换环与tarjan求环
 
-===================================AcWing===================================
+=====================================AcWing=====================================
 3579（https://www.acwing.com/problem/content/3582/）强连通分量模板题
 3813（https://www.acwing.com/problem/content/submission/3816/）强连通分量模板与拓扑排序DP
 

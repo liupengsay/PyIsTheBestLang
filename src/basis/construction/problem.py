@@ -4,14 +4,14 @@
 功能：通常需要根据题目要求，进行贪心排序之后的构造出合理可行的答案
 题目：xx（xx）
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 280（https://leetcode.com/problems/wiggle-sort/）按照降序先赋给奇数索引再给偶数索引
 2663（https://leetcode.com/problems/lexicographically-smallest-beautiful-string/）贪心构造不含任何回文子串的字典序最小的字符串
 1982（https://leetcode.com/problems/find-array-given-subset-sums/）经典构造
 1253（https://leetcode.com/problems/reconstruct-a-2-row-binary-matrix/）经典构造贪心思维
 2573（https://leetcode.com/problems/find-the-string-with-lcp/）经典LCP构造与验证，类似并查集思想
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 8846（https://www.luogu.com.cn/problem/P8846）厘清题意进行贪心构造
 2902（https://www.luogu.com.cn/problem/P2902）构造不同颜色对
 5823（https://www.luogu.com.cn/problem/P5823）构造相同元素间隔为等差1的数组
@@ -22,7 +22,7 @@
 8910（https://www.luogu.com.cn/problem/P8910）经典置换环构造
 8880（https://www.luogu.com.cn/problem/P8880）脑筋急转弯构造分奇数与偶数讨论
 
-================================CodeForces================================
+===================================CodeForces===================================
 A. Multiples of Length（https://codeforces.com/problemset/problem/1396/A）贪心构造
 E. Yet Another Ball Problem（https://codeforces.com/problemset/problem/1118/E）模拟贪心构造
 C. Subsequence Counting（https://codeforces.com/problemset/problem/960/C）贪心构造
@@ -40,7 +40,7 @@ D. Binary Literature（https://codeforces.com/contest/1509/problem/D）LCS最短
 C. No More Inversions（https://codeforces.com/contest/1473/problem/C）special property of inverse pair of s1s2..sn..s2s1
 D. Ceil Divisions（https://codeforces.com/contest/1469/problem/D）square ceil greedy implemention
 
-==================================AtCoder=================================
+====================================AtCoder=====================================
 B - Construct Sequences（https://atcoder.jp/contests/agc007/tasks/agc007_b）脑筋急转弯思维构造公式
 D - Non-decreasing（https://atcoder.jp/contests/abc081/tasks/arc086_b）经典贪心构造分类讨论
 D - Grid Components（https://atcoder.jp/contests/abc092/tasks/arc093_b）思维题构造

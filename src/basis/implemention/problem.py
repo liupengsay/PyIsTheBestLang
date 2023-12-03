@@ -3,7 +3,7 @@
 功能：根据题意进行模拟，有经典模拟结论约瑟夫环问题
 题目：
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 2296（https://leetcode.com/problems/design-a-text-editor/）使用指针维护结果进行模拟
 54（https://leetcode.com/problems/spiral-matrix/）https://leetcode.com/problems/spiral-matrix/ 两种方式，数字到索引，以及索引到数字
 59（https://leetcode.com/problems/spiral-matrix-ii/）
@@ -20,7 +20,7 @@
 1914（https://leetcode.com/problems/cyclically-rotating-a-grid/description/）使用指针进行循环模拟
 1834（https://leetcode.com/contest/weekly-contest-237/problems/single-threaded-cpu/）使用堆和指针模拟
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 1815（https://www.luogu.com.cn/problem/P1815）模拟类似贪吃蛇的移动
 1538（https://www.luogu.com.cn/problem/P1538）模拟数字文本的打印
 1535（https://www.luogu.com.cn/problem/P1535）动态规划模拟计数
@@ -63,10 +63,10 @@
 8884（https://www.luogu.com.cn/problem/P8884）分矩阵位置的奇偶性讨论
 8873（https://www.luogu.com.cn/problem/P8873）等差数列计算
 
-================================CodeForces================================
+===================================CodeForces===================================
 C. Gargari and Bishops（https://codeforces.com/problemset/problem/463/C）选取两组互不相交的主副对角线使得和最大
 
-================================AcWing================================
+=====================================AcWing=====================================
 4318（https://www.acwing.com/problem/content/description/4321/）使用哈希贪心模拟构造
 
 

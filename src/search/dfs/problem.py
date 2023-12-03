@@ -6,7 +6,7 @@
 
 参考：基于欧拉序的维护树上距离的在线算法（https://zhuanlan.zhihu.com/p/84236967）
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 473（https://leetcode.com/problems/matchsticks-to-square/）暴力搜索木棍拼接组成正方形
 301（https://leetcode.com/problems/remove-invalid-parentheses/）深搜回溯与剪枝
 2581（https://leetcode.com/contest/biweekly-contest-99/problems/count-number-of-possible-root-nodes/）深搜序加差分计数
@@ -21,7 +21,7 @@
 100041（https://www.acwing.com/problem/content/description/4384/）迭代法实现树形换根DP计算，或者一遍DFS或者dfs序加差分
 2458（https://leetcode.com/contest/weekly-contest-317/problems/height-of-binary-tree-after-subtree-removal-queries/）dfs序模板题目
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 2383（https://www.luogu.com.cn/problem/P2383）暴力搜索木棍拼接组成正方形
 1120（https://www.luogu.com.cn/problem/P1120）把数组分成和相等的子数组
 1692（https://www.luogu.com.cn/problem/P1692）暴力搜索枚举字典序最大可行的连通块
@@ -48,7 +48,7 @@
 8838（https://www.luogu.com.cn/problem/P8838）深度优先搜索与回溯
 
 
-================================CodeForces================================
+===================================CodeForces===================================
 D. Tree Requests（https://codeforces.com/contest/570/problem/D）dfs序与二分查找，也可以使用离线查询
 E. Blood Cousins（https://codeforces.com/contest/208/problem/E）深搜序加LCA加二分查找计数
 D. Choosing Capital for Treeland（https://codeforces.com/contest/219/problem/D）迭代法实现树形换根DP计算，或者一遍DFS或者dfs序加差分
@@ -56,10 +56,10 @@ E. Military Problem（https://codeforces.com/contest/1006/problem/E）经典dfs�
 G2. Passable Paths (hard version)（https://codeforces.com/contest/1702/problem/G2）使用dfs序与lca组合判断是否为简单路径集合
 G. Unusual Entertainment（https://codeforces.com/contest/1899/problem/G）dfs with tolerance and exclusion by PointAddRangeSum
 
-================================AtCoder================================
+====================================AtCoder=====================================
 F - Colorful Tree（https://atcoder.jp/contests/abc133/tasks/abc133_f）欧拉序在线查找树上距离，结合二分与前缀和计算变化情况
 
-================================AcWing================================
+=====================================AcWing=====================================
 4310（https://www.acwing.com/problem/content/4313/）经典深搜序模板题
 23（https://www.acwing.com/problem/content/description/21/）回溯模板题
 

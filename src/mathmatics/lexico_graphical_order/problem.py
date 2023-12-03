@@ -3,7 +3,7 @@
 功能：计算字典序第K小和某个对象的字典序rank、计算subset的字典序与解析、计算comb的字典序与解析、计算perm的字典序与解析
 题目：
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 60（https://leetcode.com/problems/permutation-sequence/）全排列的第 k 个排列
 440（https://leetcode.com/problems/k-th-smallest-in-lexicographical-order/）经典面试题使用十叉树求解
 1415（https://leetcode.com/problems/the-k-th-lexicographical-string-of-all-happy-strings-of-length-n/）类似思路经典字典序构造
@@ -12,7 +12,7 @@
 1842（https://leetcode.com/problems/next-palindrome-using-same-digits/）经典字典序贪心
 1850（https://leetcode.com/problems/minimum-adjacent-swaps-to-reach-the-kth-smallest-number/）经典下一个字典序与冒泡贪心交换次数
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 1243（https://www.luogu.com.cn/problem/P1243）求出第K小的子集
 1338（https://www.luogu.com.cn/problem/P1338）结合逆序对计数的字典序
 
@@ -20,7 +20,7 @@
 2525（https://www.luogu.com.cn/problem/P2525）计算全排列的上一个排列
 3014（https://www.luogu.com.cn/problem/P3014）计算全排列的排名与排名对应的全排列
 
-================================CodeForces================================
+===================================CodeForces===================================
 B. K-th Beautiful String（https://codeforces.com/problemset/problem/1328/B）计算comb的字典序
 C. BA-String（https://codeforces.com/contest/1620/problem/C）经典逆向思维字典序
 E. Almost Sorted（https://codeforces.com/contest/1509/problem/E）字典序典题，计算rank k的数组

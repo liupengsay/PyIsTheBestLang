@@ -3,7 +3,7 @@
 功能：将一定长度的字符串映射为多项式函数值，并进行比较或者计数，通常结合滑动窗口进行计算，注意防止哈希碰撞
 题目：
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 214（https://leetcode.com/problems/shortest-palindrome/）使用正向与反向字符串哈希计算字符串前缀最长回文子串，也可以用KMP与马拉车
 572（https://leetcode.com/problems/subtree-of-another-tree/）经典树结构哈希
 1044（https://leetcode.com/problems/shortest-palindrome/）利用二分查找加字符串哈希确定具有最长长度的重复子串
@@ -16,7 +16,7 @@
 2261（https://leetcode.com/problems/k-divisible-elements-subarrays/submissions/）使用字符串哈希对数组进行编码
 2851（https://leetcode.com/problems/string-transformation/description/）使用KMP与快速幂进行转移计算，也可使用字符串哈希
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 8835（https://www.luogu.com.cn/record/list?user=739032&status=12&page=14）字符串哈希或者KMP查找匹配的连续子串
 6140（https://www.luogu.com.cn/problem/P6140）贪心模拟与字典序比较，使用字符串哈希与二分查找比较正序与倒序最长公共子串
 2870（https://www.luogu.com.cn/problem/P2870）贪心模拟与字典序比较，使用字符串哈希与二分查找比较正序与倒序最长公共子串
@@ -25,13 +25,13 @@
 4656（https://www.luogu.com.cn/problem/P4656）使用字符串哈希贪心选取
 6739（https://www.luogu.com.cn/problem/P6739）前后缀字符串哈希
 
-================================CodeForces================================
+===================================CodeForces===================================
 D. Remove Two Letters（https://codeforces.com/problemset/problem/1800/D）字符串前后缀哈希加和变换
 
-================================AtCoder================================
+====================================AtCoder=====================================
 E - Who Says a Pun?（https://atcoder.jp/contests/abc141/tasks/abc141_e）二分加字符串哈希check
 
-================================AcWing================================
+=====================================AcWing=====================================
 138（https://www.acwing.com/problem/content/140/）字符串哈希，计算子串是否完全相等
 156（https://www.acwing.com/problem/content/description/158/）经典矩阵哈希
 157（https://www.acwing.com/problem/content/description/159/）经典树哈希，树的最小表示法

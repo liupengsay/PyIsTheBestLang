@@ -4,15 +4,15 @@
 参考：
 题目：
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 428（https://leetcode.com/problems/serialize-and-deserialize-n-ary-tree/）序列化模板题
 297（https://leetcode.com/problems/serialize-and-deserialize-binary-tree/）序列化模板题
 449（https://leetcode.com/problems/serialize-and-deserialize-bst/）序列化模板题
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 xx（xxx）xxx
 
-================================CodeForces================================
+===================================CodeForces===================================
 xx（xxx）xxx
 
 """

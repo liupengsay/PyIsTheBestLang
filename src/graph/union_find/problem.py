@@ -4,7 +4,7 @@
 功能：用来处理图论相关的联通问题，通常结合逆向思考、置换环或者离线查询进行求解，连通块不一定是秩大小，也可以是最大最小值、和等
 题目：
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 765（https://leetcode.com/problems/couples-holding-hands/）经典并查集
 1697（https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/）排序后离线查询两点间所有路径的最大边权值
 2503（https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/）排序后离线查询与起点相连的连通块的大小
@@ -27,7 +27,7 @@
 947（https://leetcode.com/contest/weekly-contest-112/problems/most-stones-removed-with-same-row-or-column/）脑筋急转弯并查集
 100047（https://leetcode.com/problems/count-valid-paths-in-a-tree/description/）树形DP，并查集或者BFS实现
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 3367（https://www.luogu.com.cn/problem/P3367）计算连通分块的数量
 5836（https://www.luogu.com.cn/problem/P5836）使用两个并查集进行不同方面的查询
 3144（https://www.luogu.com.cn/problem/P3144）逆序并查集，考察连通块的数量
@@ -56,7 +56,7 @@
 8787（https://www.luogu.com.cn/problem/P8787）经典贪心二叉堆模拟与并查集灵活应用
 8881（https://www.luogu.com.cn/problem/P8881）脑筋急转弯，使用并查集判断所属连通分量是否有环
 
-================================CodeForces================================
+===================================CodeForces===================================
 D. Roads not only in Berland（https://codeforces.com/problemset/problem/25/D）并查集将原来的边断掉重新来连接使得成为一整个连通集
 E. Monsters（https://codeforces.com/contest/1810/problem/E）并查集加启发式搜索，使用BFS与堆优化实现
 E. Connected Components?（https://codeforces.com/contest/920/problem/E）并查集，加线性动态维护剩余节点
@@ -64,12 +64,12 @@ C. Ice Cave（https://codeforces.com/problemset/problem/540/C）路径可达
 E2. Unforgivable Curse (hard version)（https://codeforces.com/problemset/problem/1800/E2）使用并查集分组计算可达
 E. Number of Groups（https://codeforces.com/contest/1691/problem/E）经典线段并查集
 
-================================AtCoder================================
+====================================AtCoder=====================================
 D - Connectivity（https://atcoder.jp/contests/abc049/tasks/arc065_b）经典双并查集应用
 E - 1 or 2（https://atcoder.jp/contests/abc126/tasks/abc126_e）经典双并查集的并查集应用
 F - Must Be Rectangular!（https://atcoder.jp/contests/abc131/tasks/abc131_f）思维题并查集计数
 
-================================AcWing================================
+=====================================AcWing=====================================
 4306（https://www.acwing.com/problem/content/description/4309/）经典向右合并的区间并查集
 4866（https://www.acwing.com/problem/content/description/4869/）经典并查集模拟维护连通块大小与多余的边数量
 5145（https://www.acwing.com/problem/content/5148/）使用并查集判矩阵四元及以上的环

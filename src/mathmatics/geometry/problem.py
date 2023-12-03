@@ -3,7 +3,7 @@
 功能：xxx
 题目：
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 149（https://leetcode.com/problems/max-points-on-a-line/）用直线斜率判断一条线上最多的点数
 1453（https://leetcode.com/problems/maximum-number-of-darts-inside-of-a-circular-dartboard/）计算经过两个不同的点与确定半径的两处圆心
 939（https://leetcode.com/problems/minimum-area-rectangle/）枚举矩形对角顶点计算另外两个顶点
@@ -13,7 +13,7 @@
 2280（https://leetcode.com/problems/minimum-lines-to-represent-a-line-chart/）使用分数代表斜率计算
 1401（https://leetcode.com/problems/circle-and-rectangle-overlapping/）经典几何题，寻找圆离矩形最近的点
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 1665（https://www.luogu.com.cn/problem/P1665）枚举正方形对角线顶点计算可行个数
 2313（https://www.luogu.com.cn/problem/P2313）判断点在矩形中或者圆形中
 2358（https://www.luogu.com.cn/problem/P2358）计算几何判断正方体上表面的点到下表面的点最短距离
@@ -28,11 +28,11 @@
 
 
 
-================================CodeForces================================
+===================================CodeForces===================================
 D. Pair Of Lines （https://codeforces.com/contest/961/problem/D)）抽屉原理枚举初始共线点并计算其他点的共线性情况
 D. Tricky Function（https://codeforces.com/problemset/problem/429/D）经典平面点集最近点对
 
-================================AcWing====================================
+=====================================AcWing=====================================
 119（https://www.acwing.com/problem/content/121/）经典平面点集最近点对问题使用分治求解、还有哈希分块、有序列表
 4309（https://www.acwing.com/problem/content/4312/）经典直线斜率计算
 4499（https://www.acwing.com/problem/content/4502/）经典几何，使用一元二次方程求解

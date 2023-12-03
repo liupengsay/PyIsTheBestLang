@@ -3,7 +3,7 @@
 功能：计算点到有向或者无向图里面其他点的最近距离、带约束的最短路、分层Dijkstra、有向图最小环、无向图最小环
 题目：
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 42（https://leetcode.com/problems/trapping-rain-water/）一维接雨水，计算前后缀最大值的最小值再减去自身值
 407（https://leetcode.com/problems/trapping-rain-water-ii/）经典最短路变种问题，求解路径上边权的最大值
 787（https://leetcode.com/problems/cheapest-flights-within-k-stops/）使用带约束的最短路计算最终结果
@@ -25,7 +25,7 @@ LCP 75（https://leetcode.com/problems/rdmXM7/）首先BFS之后计算最大值�
 2577（https://leetcode.com/problems/minimum-time-to-visit-a-cell-in-a-grid/）Dijkstra经典变形二维矩阵题目
 2065（https://leetcode.com/problems/maximum-path-quality-of-a-graph/）经典回溯，正解使用Dijkstra跑最短路剪枝
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 3371（https://www.luogu.com.cn/problem/P3371）最短路模板题
 4779（https://www.luogu.com.cn/problem/P4779）最短路模板题
 1629（https://www.luogu.com.cn/problem/P1629）正反两个方向的最短路进行计算往返路程
@@ -90,17 +90,17 @@ LCP 75（https://leetcode.com/problems/rdmXM7/）首先BFS之后计算最大值�
 8802（https://www.luogu.com.cn/problem/P8802）Dijkstra基础权重变形题
 2176（https://www.luogu.com.cn/problem/P2176）枚举最短路上的边修改后，重新计算最短路
 
-================================CodeForces================================
+===================================CodeForces===================================
 C. Dijkstra?（https://codeforces.com/problemset/problem/20/C）正权值最短路计算，并记录返回生成路径
 E. Weights Distributing（https://codeforces.com/problemset/problem/1343/E）使用三个01BFS求最短路加贪心枚举计算
 B. Complete The Graph（https://codeforces.com/contest/715/problem/B）经典两遍最短路，贪心动态更新路径权值
 G. Reducing Delivery Cost（https://codeforces.com/contest/1433/problem/G）经典全源Dijkstra最短路枚举
 G. Counting Shortcuts（https://codeforces.com/contest/1650/problem/G）经典Dijkstra最短路与严格次短路计数，正解为01BFS
 
-================================AtCoder================================
+====================================AtCoder=====================================
 F - Pure（https://atcoder.jp/contests/abc142/tasks/abc142_f）经典子图寻找，转换为有向图的最小环问题
 
-================================AcWing====================================
+=====================================AcWing=====================================
 176（https://www.acwing.com/problem/content/178/）经典加油题，使用dijkstra模仿状态
 3628（https://www.acwing.com/problem/content/3631/）经典最短路生成树模板题
 3772（https://www.acwing.com/problem/content/description/3775/）经典建立反图并使用Dijkstra最短路计数贪心模拟

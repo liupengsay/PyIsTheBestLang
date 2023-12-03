@@ -4,7 +4,7 @@
 功能：各种可证明不可证明的头脑风暴
 题目：
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 134（https://leetcode.com/problems/gas-station/）经典贪心
 330（https://leetcode.com/problems/patching-array/）经典贪心
 1199（https://leetcode.com/problems/minimum-time-to-build-blocks/）经典哈夫曼树Huffman Tree贪心从小到大合并，类似合并果子
@@ -47,7 +47,7 @@
 1540（https://leetcode.com/problems/can-convert-string-in-k-moves/）贪心思维题，使用指针记录
 1121（https://leetcode.com/problems/divide-array-into-increasing-sequences/description/）经典思维题贪心，只考虑最大值的分组影响
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 1031（https://www.luogu.com.cn/problem/P1031）贪心计算每个点的前缀和流量，需要补齐或者输出时进行计数
 1684（https://www.luogu.com.cn/problem/P1684）线性贪心满足条件即增加计数
 1658（https://www.luogu.com.cn/problem/P1658）看似背包实则贪心
@@ -128,7 +128,7 @@
 8732（https://www.luogu.com.cn/problem/P8732）经典贪心枚举两项计算优先级公式
 8887（https://www.luogu.com.cn/problem/P8887）脑筋急转弯贪心
 
-================================CodeForces================================
+===================================CodeForces===================================
 D. Vus the Cossack and Numbers（https://codeforces.com/problemset/problem/1186/D）贪心取floor，再根据加和为0的特质进行补充加1成为ceil
 C. Divide by Three（https://codeforces.com/contest/792/problem/C）分类进行贪心取数比较，取最长的返回结果
 E. Tetrahedron（https://codeforces.com/problemset/problem/166/E）思维模拟DP
@@ -155,13 +155,13 @@ E. Making Anti-Palindromes（https://codeforces.com/contest/1822/problem/E）贪
 E2. Median on Segments（https://codeforces.com/contest/1005/problem/E2）经典特定中位数的连续子数组个数，使用容斥原理加前缀和有序列表二分，同LC2488
 E. Permutation by Sum（https://codeforces.com/contest/1512/problem/E）思维题从大到小贪心
 
-================================AtCoder======================================
+====================================AtCoder=====================================
 C - AtCoDeer and Election Report（https://atcoder.jp/contests/abc046/tasks/arc062_a）思维题，使用不等式进行贪心
 D - Wide Flip（https://atcoder.jp/contests/abc083/tasks/arc088_b）经典思维题贪心
 D - Various Sushi（https://atcoder.jp/contests/abc116/tasks/abc116_d）经典思维题贪心
 D - Summer Vacation（https://atcoder.jp/contests/abc137/tasks/abc137_d）经典逆序思维题贪心
 
-================================AcWing======================================
+=====================================AcWing=====================================
 104（https://www.acwing.com/problem/content/106/）中位数贪心
 1536（https://www.acwing.com/problem/content/description/1538/）贪心均分纸牌
 105（https://www.acwing.com/problem/content/description/1538/）经典环形均分纸牌问题

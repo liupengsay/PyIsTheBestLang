@@ -7,11 +7,12 @@ def process_file(file_path):
         lines = [ls.strip("\n") for ls in file.readlines()]
     lst = []
     for line in lines:
-        spl = "https://www.acwing.com"
-        if spl in line:
-            tmp = line.split(spl)
-            tmp[0] = tmp[0].split(".")[0] + "（"
-            line = spl.join(tmp)
+        st = "AcWing"
+        m = len(st)
+        pre = (80 - m) // 2
+        post = 80 - m - pre
+        if f"={st}=" in line:
+            line = "=" * pre + st + "=" * post
             lst.append(line)
         else:
             lst.append(line)

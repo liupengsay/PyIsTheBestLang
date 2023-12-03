@@ -5,7 +5,7 @@
 题目：
 Lucas定理（comb(n, m)%p = comb(n%p, m%p)*comb(n//p, m//p)）%p
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 96（https://leetcode.com/problems/unique-binary-search-trees/）经典卡特兰数
 95（https://leetcode.com/problems/unique-binary-search-trees/）经典卡特兰数思想进行递归，生成具体方案
 634（https://leetcode.com/problems/find-the-derangement-of-an-array/）错位排列计数使用动态规划转移计算
@@ -17,7 +17,7 @@ Lucas定理（comb(n, m)%p = comb(n%p, m%p)*comb(n//p, m//p)）%p
 1916（https://leetcode.com/problems/count-ways-to-build-rooms-in-an-ant-colony/）树形DP加组合数学计数
 D - Blue and Red Balls（https://atcoder.jp/contests/abc132/tasks/abc132_d）组合数学经典计数，和为 X 的长为 Y 的正整数与非负整数方程解个数
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 4071（https://www.luogu.com.cn/problem/P4071）通过乘法逆元快速求解组合数与全排列数，同时递归计算错位排列数
 1287（https://www.luogu.com.cn/problem/P1287）第二类斯特林数形式的DP，以及全排列数
 1375（https://www.luogu.com.cn/problem/P1375）卡特兰数
@@ -43,7 +43,7 @@ D - Blue and Red Balls（https://atcoder.jp/contests/abc132/tasks/abc132_d）组
 5684（https://www.luogu.com.cn/problem/P5684）容斥原理与组合计数
 6057（https://www.luogu.com.cn/problem/P6057）容斥原理计数
 
-================================CodeForces================================
+===================================CodeForces===================================
 D. Triangle Coloring（https://codeforces.com/problemset/problem/1795/D）组合计数取模与乘法逆元快速计算
 C. Beautiful Numbers（https://codeforces.com/problemset/problem/300/C）枚举个数并使用组合数计算方案数
 C. Gerald and Giant Chess（https://codeforces.com/problemset/problem/559/C）容斥原理组合计数
@@ -52,13 +52,13 @@ B. Mashmokh and ACM（https://codeforces.com/problemset/problem/414/B）经典�
 C. Make it Alternating（https://codeforces.com/contest/1879/problem/C）贪心枚举与组合计数
 
 
-================================AtCoder================================
+====================================AtCoder=====================================
 D - Iroha and a Grid（https://atcoder.jp/contests/abc042/tasks/arc058_b）容斥原理组合计数
 D - 11（https://atcoder.jp/contests/abc066/tasks/arc077_b）经典容斥原理组合计数
 D - Factorization（https://atcoder.jp/contests/abc110/tasks/abc110_d）质因数分解与隔板法计数
 E - Cell Distance（https://atcoder.jp/contests/abc127/tasks/abc127_e）经典贡献法组合计数
 
-================================AcWing==================================
+=====================================AcWing=====================================
 130（https://www.acwing.com/problem/content/132/）超大数字的卡特兰数计算
 4002（https://www.acwing.com/problem/content/4005/）经典矩阵DP转换为隔板法计算求解
 4496（https://www.acwing.com/problem/content/4499/）经典隔板法计数

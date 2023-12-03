@@ -3,7 +3,7 @@
 功能：递归进行处理，与迭代是处理相同问题的两种不同方式，迭代效率高于递归
 题目：
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 1545（https://leetcode.com/problems/find-kth-bit-in-nth-binary-string/）经典递归计算模拟
 894（https://leetcode.com/problems/all-possible-full-binary-trees/）经典类似卡特兰数的递归模拟计算生成
 880（https://leetcode.com/problems/decoded-string-at-index/）经典递归计算模拟
@@ -11,7 +11,7 @@
 889（https://leetcode.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/）使用递归经典分治构造
 1028（https://leetcode.com/problems/recover-a-tree-from-preorder-traversal/description/）根据先序遍历递归构造二叉树
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 1911（https://www.luogu.com.cn/problem/P1911）使用四叉树递归计算
 5461（https://www.luogu.com.cn/problem/P5461）递归计算四叉树左上角
 5551（https://www.luogu.com.cn/problem/P5551）先序遍历的完全二叉树递归计算
@@ -21,7 +21,7 @@
 1228（https://www.luogu.com.cn/problem/P1228）四叉树分治递归
 1185（https://www.luogu.com.cn/problem/P1185）二叉树递归进行绘制
 
-================================CodeForces================================
+===================================CodeForces===================================
 C. Painting Fence（https://codeforces.com/contest/448/problem/C）贪心递归DP
 
 98（https://www.acwing.com/problem/content/100/）四叉树递归与坐标旋转变换

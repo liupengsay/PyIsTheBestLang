@@ -3,7 +3,7 @@
 功能：有时候数位DP类型题目可以使用N进制来求取，质因数分解、因数分解、素数筛、线性筛、欧拉函数、pollard_rho、Meissel–Lehmer 算法（计算范围内素数个数）
 题目：
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 264（https://leetcode.com/problems/ugly-number-ii/）只含2、3、5质因数的第 n 个丑数
 1201（https://leetcode.com/problems/ugly-number-iii/）只含特定因子数即能被其中一个数整除的第 n 个丑数
 313（https://leetcode.com/problems/super-ugly-number/）只含某些特定质因数的第 n 个丑数
@@ -26,7 +26,7 @@ LCP 14（https://leetcode.com/problems/qie-fen-shu-zu/）计算 1 到 n 的每�
 1073（https://leetcode.com/problems/adding-two-negabinary-numbers/）经典负进制计算题
 8041（https://leetcode.com/problems/maximum-element-sum-of-a-complete-subset-of-indices/description/）经典质因数分解，奇数幂次的质因子组合哈希
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 1865（https://www.luogu.com.cn/problem/P1865）通过线性筛素数后进行二分查询区间素数个数
 1748（https://www.luogu.com.cn/problem/P1748）丑数可以使用堆模拟可以使用指针递增也可以使用容斥原理与二分进行计算
 2723（https://www.luogu.com.cn/problem/P2723）第n小的只含给定素因子的丑数
@@ -72,7 +72,7 @@ LCP 14（https://leetcode.com/problems/qie-fen-shu-zu/）计算 1 到 n 的每�
 8778（https://www.luogu.com.cn/problem/P8778）经典枚举素因子后O(n^0.25)计算是否为完全平方数与立方数
 8782（https://www.luogu.com.cn/problem/P8782）多种进制结合贪心计算，经典好题
 
-================================CodeForces================================
+===================================CodeForces===================================
 C. Hossam and Trainees（https://codeforces.com/problemset/problem/1771/C）使用pollard_rho进行质因数分解
 A. Enlarge GCD（https://codeforces.com/problemset/problem/1034/A）经典求 1 到 n 所有数字的质因子个数总和
 C. Hossam and Trainees（https://codeforces.com/problemset/problem/1771/C）使用pollard_rho进行质因数分解
@@ -86,11 +86,11 @@ C. Strongly Composite（https://codeforces.com/contest/1823/problem/C）质因�
 E2. Divisible Numbers (hard version)（https://codeforces.com/contest/1744/problem/E2）枚举因数分解组合作为最大公约数
 D. X-Magic Pair（https://codeforces.com/contest/1612/problem/D）使用gcd的思想进行辗转相减法
 
-================================AtCoder================================
+====================================AtCoder=====================================
 D - 756（https://atcoder.jp/contests/abc114/tasks/abc114_d）质因数分解计数
 D - Preparing Boxes（https://atcoder.jp/contests/abc134/tasks/abc134_d）逆向思维，类似筛法进行构造
 
-================================AcWing================================
+=====================================AcWing=====================================
 97（https://www.acwing.com/problem/content/99/）计算a^b的所有约数之和
 124（https://www.acwing.com/problem/content/126/）不同进制的转换，注意0的处理
 197（https://www.acwing.com/problem/content/199/）计算n!阶乘的质因数分解即因子与因子的个数

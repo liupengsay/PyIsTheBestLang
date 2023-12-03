@@ -5,7 +5,7 @@
 最多点匹配覆盖（每条线段选一个点匹配，最多匹配数有点类似二分图）
 题目：
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 45（https://leetcode.com/problems/jump-game-ii/）转换为最少区间覆盖问题
 452（https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/）贪心等价为最多不想交的区间
 1326（https://leetcode.com/problems/minimum-number-of-taps-to-open-to-water-a-garden/）转换为最少区间覆盖问题
@@ -21,7 +21,7 @@
 2589（https://leetcode.com/problems/minimum-time-to-complete-all-tasks/）贪心选取最少的点集合，使得每个区间包含其中要求的k个点
 LCP 32（https://leetcode.com/problems/t3fKg1/）贪心选取最少的点集合，使得每个区间包含其中要求的k个点
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 2082（https://www.luogu.com.cn/problem/P2082）经典区间合并确定覆盖范围
 2434（https://www.luogu.com.cn/problem/P2434）经典区间合并为不相交的区间
 2970（https://www.luogu.com.cn/problem/P2970）最多不相交的区间，使用贪心或者二分DP
@@ -37,14 +37,14 @@ LCP 32（https://leetcode.com/problems/t3fKg1/）贪心选取最少的点集合�
 1868（https://www.luogu.com.cn/problem/P1868）线性DP加二分查找优化，选取并集最大且不想交的区间
 2439（https://www.luogu.com.cn/problem/P2439）线性DP加二分查找优化，选取并集最大且不想交的区间
 
-================================CodeForces================================
+===================================CodeForces===================================
 A. String Reconstruction（https://codeforces.com/problemset/problem/827/A）区间合并为不相交的区间，再贪心赋值
 D. Nested Segments（https://codeforces.com/problemset/problem/652/D）二位偏序，转换为区间包含问题
 D. Non-zero Segments（https://codeforces.com/problemset/problem/1426/D）贪心选取最少的点集合，使得每个区间包含其中至少一个点
 E. Monotonic Renumeration（https://codeforces.com/contest/1102/problem/E）区间合并为不相交的区间
 F2. Same Sum Blocks (Hard)（https://codeforces.com/contest/1141/problem/F2）利用前缀和枚举，转化为最多不相交的区间问题
 
-================================AcWing================================
+=====================================AcWing=====================================
 112（https://www.acwing.com/problem/content/114/）作用范围进行区间贪心
 4421（https://www.acwing.com/problem/content/4424/）经典最少区间覆盖范围问题，相邻可以不相交
 

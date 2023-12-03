@@ -3,7 +3,7 @@
 功能：用以修改和查询区间的值信息，支持增减、修改，区间和、区间最大值、区间最小值、动态开点线段树（即使用defaultdict而不是数组实现）
 题目：
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 218（https://leetcode.com/problems/the-skyline-problem/solution/by-liupengsay-isfo/）区间值修改与计算最大值
 2286（https://leetcode.com/problems/booking-concert-tickets-in-groups/）区间值增减与计算区间和、区间最大值、区间最小值
 2407（https://leetcode.com/problems/longest-increasing-subsequence-ii/）维护与查询区间最大值，然后进行DP更新
@@ -18,7 +18,7 @@
 2569（https://leetcode.com/problems/handling-sum-queries-after-update/）经典01线段树区间翻转与求和，也可以使用BitSet
 2940（https://leetcode.com/problems/find-building-where-alice-and-bob-can-meet/）可使用线段树二分做，线段树二分模板题
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 2846（https://www.luogu.com.cn/problem/P2846）线段树统计区间翻转和
 2574（https://www.luogu.com.cn/problem/P2574）线段树统计区间翻转和
 3130（https://www.luogu.com.cn/problem/P3130）区间增减、区间最小值查询、区间和查询
@@ -42,7 +42,7 @@
 8812（https://www.luogu.com.cn/problem/P8812）线段树查询和更新区间最小值
 8856（https://www.luogu.com.cn/problem/solution/P8856）区间增减与区间最大值查询
 
-================================CodeForces================================
+===================================CodeForces===================================
 
 B. Interesting Array（https://codeforces.com/problemset/problem/482/B）区间按位或赋值、按位与查询
 C. Sereja and Brackets（https://codeforces.com/problemset/problem/380/C）线段树查询区间内所有合法连续子序列括号串的总长度
@@ -55,7 +55,7 @@ C. Three displays（https://codeforces.com/problemset/problem/987/C）枚举中�
 F. Wi-Fi（https://codeforces.com/contest/1216/problem/F）经典线段树加DP，正解为单调队列优化DP
 E. MinimizOR（https://codeforces.com/contest/1665/problem/E）
 
-================================AcWing================================
+=====================================AcWing=====================================
 3805（https://www.acwing.com/problem/content/3808/）区间增减与最小值查询
 5037（https://www.acwing.com/problem/content/5040/）同CF242E，使用二十多个01线段树维护区间异或与区间加和
 

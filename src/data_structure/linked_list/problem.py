@@ -5,7 +5,7 @@
 
 题目：xx（xx）
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 2617（https://leetcode.com/problems/minimum-number-of-visited-cells-in-a-grid/）经典BFS加链表，使用数组维护链表的前后节点信息
 2612（https://leetcode.com/problems/minimum-reverse-operations/）经典BFS加链表，使用数组维护链表的前后节点信息
 1562（https://leetcode.com/problems/find-latest-group-of-size-m/）使用类似并查集的前后缀链表求解
@@ -15,14 +15,14 @@
 ===================================牛客===================================
 牛牛排队伍（https://ac.nowcoder.com/acm/contest/49888/C）使用数组维护链表的前后节点信息
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 5462（https://www.luogu.com.cn/problem/P5462）经典使用双向链表贪心选取最大字典序队列
 6155（https://www.luogu.com.cn/problem/P6155）经典排序贪心使用并查集思想寻找右边最近的空位
 
-================================CodeForces================================
+===================================CodeForces===================================
 E. Two Teams（https://codeforces.com/contest/1154/problem/E）使用数组维护链表的前后节点信息
 
-================================AcWing===================================
+=====================================AcWing=====================================
 136（https://www.acwing.com/problem/content/138/）链表逆序删除，查找前后最接近的值
 4943（https://www.acwing.com/problem/content/description/4946/）经典BFS加链表，维护四个方向上的未访问点
 5034（https://www.acwing.com/problem/content/5037/）经典堆贪心加链表进行处理

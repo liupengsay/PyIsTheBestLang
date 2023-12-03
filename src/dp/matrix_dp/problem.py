@@ -4,7 +4,7 @@
 头脑风暴：求包含两个字符串最长公共子序列的各自最短子串
 题目：
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 174（https://leetcode.com/problems/dungeon-game/）经典矩阵 DP 逆向递推
 2478（https://leetcode.com/problems/number-of-beautiful-partitions/）
 2463（https://leetcode.com/problems/minimum-total-distance-traveled/）
@@ -42,7 +42,7 @@
 1458（https://leetcode.com/problems/max-dot-product-of-two-subsequences/description/）经典矩阵DP
 1745（https://leetcode.com/problems/palindrome-partitioning-iv/description/）经典矩阵DP判断是否为回文子串，或者使用马拉车然后枚举
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 2701（https://www.luogu.com.cn/problem/P2701）求全为 "." 的最大正方形面积，如果不要求实心只能做到O(n^3)复杂度
 2049（https://www.luogu.com.cn/problem/P2049）求左上角到右下角所有路径的乘积取模数
 2138（https://www.luogu.com.cn/problem/P2138）最长公共子序列
@@ -103,7 +103,7 @@
 8638（https://www.luogu.com.cn/problem/P8638）经典矩阵 DP 最长回文子序列
 8786（https://www.luogu.com.cn/problem/P8786）典型三维矩阵 DP 模拟使用记忆化搜索
 
-================================CodeForces================================
+===================================CodeForces===================================
 B. Catching Cheaters（https://codeforces.com/problemset/problem/1446/B）最长公共子序列LCS变形问题，理解贡献
 B. Working out（https://codeforces.com/problemset/problem/429/B）四个方向的矩阵DP
 D. Colored Rectangles（https://codeforces.com/problemset/problem/1398/D）三维DP，选取两个不同数组的数乘积，计算最大总和
@@ -112,9 +112,9 @@ B. Unmerge（https://codeforces.com/problemset/problem/1381/B）二维矩阵DP�
 D. Rarity and New Dress（https://codeforces.com/problemset/problem/1393/D）经典二维DP计算金字塔个数
 D. Valiant's New Map（https://codeforces.com/contest/1731/problem/D）经典二分加最大正方形边长
 
-================================AtCoder================================
+====================================AtCoder=====================================
 E - Common Subsequence（https://atcoder.jp/contests/abc130/tasks/abc130_e）二维前缀和优化矩阵DP
-================================AcWing================================
+=====================================AcWing=====================================
 4378（https://www.acwing.com/problem/content/4381/）典型矩阵DP
 4418（https://www.acwing.com/problem/content/description/4421/）经典单调队列优化矩阵DP
 2694（https://www.acwing.com/problem/content/description/2696/）经典问题求解最长公共子序列LCS的长度与个数

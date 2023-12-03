@@ -3,7 +3,7 @@
 功能：前后缀计数、索引、加和
 题目：
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 2143（https://leetcode.com/problems/choose-numbers-from-two-arrays-in-range/）前缀和哈希计数转换为求连续子数组和为 0 的个数
 面试题 17（https://leetcode.com/problems/find-longest-subarray-lcci/）和为0的最长连续子数组，使用前缀和哈希求解
 1590（https://leetcode.com/problems/make-sum-divisible-by-p/）求和模p与整个子数组模p相等的最短子数组，使用前缀和哈希求解
@@ -16,18 +16,18 @@
 1658（https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/description/）前缀和哈希，加脑筋急转弯贪心
 2227（https://leetcode.com/problems/encrypt-and-decrypt-strings/）经典脑筋急转弯逆向思维
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 2697（https://www.luogu.com.cn/problem/P2697）哈希记录前缀和与对应索引
 1114（https://www.luogu.com.cn/record/list?user=739032&status=12&page=13）哈希记录前缀和与对应索引
 4889（https://www.luogu.com.cn/problem/P4889）经典公式变换使用哈希计数
 6273（https://www.luogu.com.cn/problem/P6273）经典哈希前缀计数
 8630（https://www.luogu.com.cn/problem/P8630）哈希计数与排列枚举
 
-===================================AtCoder===================================
+====================================AtCoder=====================================
 D - Snuke's Coloring（https://atcoder.jp/contests/abc045/tasks/arc061_b）经典哈希容斥计数
 C. Train and QueriesC. Train and Queries（https://codeforces.com/contest/1702/problem/C）卡哈希，需要用异或进行变换
 
-===================================AcWing===================================
+=====================================AcWing=====================================
 137（https://www.acwing.com/problem/content/139/）哈希找相同雪花
 
 参考：OI WiKi（xx）

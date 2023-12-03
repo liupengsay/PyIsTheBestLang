@@ -3,7 +3,7 @@
 功能：进行数组区间加减，和区间值求和（单点可转换为区间）
 题目：
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 307（https://leetcode.com/problems/range-sum-query-mutable）PointChangeRangeSum
 1409（https://leetcode.com/problems/queries-on-a-permutation-with-key/）经典树状数组模拟
 1626（https://leetcode.com/problems/best-team-with-no-conflicts/）树状数组维护前缀最大值，也可使用动态规划求解
@@ -16,7 +16,7 @@
 100112（https://leetcode.com/problems/maximum-balanced-subsequence-sum/）离散化树状数组加线性DP
 2736（https://leetcode.com/problems/maximum-sum-queries/）PointAddPreMax
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 2068（https://www.luogu.com.cn/problem/P2068）单点更新与区间求和
 2345（https://www.luogu.com.cn/problem/P2345）使用两个树状数组计数与加和更新查询
 2357（https://www.luogu.com.cn/problem/P2357）区间更新与区间求和
@@ -36,12 +36,12 @@
 6225（https://www.luogu.com.cn/problem/P6225）经典使用树状数组维护前缀异或和
 1972（https://www.luogu.com.cn/problem/P1972）经典使用树状数组离线查询区间不同数的个数 PointChangeRangeSum OfflineQuery
 
-================================AtCoder================================
+====================================AtCoder=====================================
 D - Islands War（https://atcoder.jp/contests/abc103/tasks/abc103_d）经典贪心加树状数组
 F - Absolute Minima （https://atcoder.jp/contests/abc127/tasks/abc127_f）经典离散化与两个树状数组进行加和与计数
 Vertex Add Subtree Sum（https://judge.yosupo.jp/problem/vertex_add_subtree_sum）use tree array and dfs order
 
-================================CodeForces================================
+===================================CodeForces===================================
 F. Range Update Point Query（https://codeforces.com/problemset/problem/1791/F）树状数组维护区间操作数与查询单点值
 H2. Maximum Crossings (Hard Version)（https://codeforces.com/contest/1676/problem/H2）树状数组维护前缀区间和
 C. Three displays（https://codeforces.com/problemset/problem/987/C）枚举中间数组，使用树状数组维护前后缀最小值

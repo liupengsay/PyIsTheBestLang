@@ -3,7 +3,7 @@
 功能：遍历数组，根据前序或者后序结果进行更新，最大非空连续子序列和
 题目：
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 87（https://leetcode.com/problems/scramble-string/）经典线性DP记忆化深搜
 2361（https://leetcode.com/problems/minimum-costs-using-the-train-line/）当前状态只跟前一个状态有关
 2318（https://leetcode.com/problems/number-of-distinct-roll-sequences/）当前状态只跟前一个状态有关使用枚举计数
@@ -36,7 +36,7 @@
 2327（https://leetcode.com/problems/number-of-people-aware-of-a-secret/description/）经典前缀和或者差分数组优化线性DP
 2572（https://leetcode.com/problems/count-the-number-of-square-free-subsets/description/）经典线性DP计数
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 1970（https://www.luogu.com.cn/problem/P1970）使用贪心与动态规划计算最长的山脉子数组
 1564（https://www.luogu.com.cn/problem/P1564）线性DP
 1481（https://www.luogu.com.cn/problem/P1481）线性DP
@@ -94,7 +94,7 @@
 8786（https://www.luogu.com.cn/problem/P8786）线性 DP 记忆化搜索模拟
 8816（https://www.luogu.com.cn/problem/P8816）典型线性矩阵 DP 模拟
 
-================================CodeForces================================
+===================================CodeForces===================================
 D. Big Maximum Sum（https://codeforces.com/problemset/problem/75/D）经典压缩数组，最大子段和升级
 C. The Fair Nut and String（https://codeforces.com/problemset/problem/1084/C）线性DP加前缀和优化
 E. Tetrahedron（https://codeforces.com/problemset/problem/166/E）经典线性DP计数
@@ -105,10 +105,10 @@ A. Garland（https://codeforces.com/problemset/problem/1286/A）线性经典dp
 D. Make The Fence Great Again（https://codeforces.com/problemset/problem/1221/D）线性DP，最多变化为增加0、1、2
 E. Funny Game（https://codeforces.com/contest/731/problem/E）前缀和倒序DP
 
-================================AtCoder====================================
+====================================AtCoder=====================================
 E - Sum Equals Xor（https://atcoder.jp/contests/abc129/tasks/abc129_e）思维题，类似数位DP
 
-================================AcWing====================================
+=====================================AcWing=====================================
 96（https://www.acwing.com/problem/content/98/）经典的汉诺塔问题，可推广到n个盘子与m个柱子
 4414（https://www.acwing.com/problem/content/description/4417/）经典线性子序列DP
 

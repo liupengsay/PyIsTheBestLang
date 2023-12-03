@@ -5,7 +5,7 @@
 题目：经典问题abc_121d 求 1^2^...^n
 异或经典性质：(4*i)^(4*i+1)^(4*i+2)^(4*i+3)=0  (2*n)^(2*n+1)=1
 异或经典性质：(a&b)^(a&c) = a&(b^c)
-===================================LeetCode===================================
+====================================LeetCode====================================
 
 2354（https://leetcode.com/problems/number-of-excellent-pairs/）需要脑筋急转弯确定位 1 的规律进行哈希计数枚举即可
 260（https://leetcode.com/problems/single-number-iii/）利用位运算两个相同元素异或和为0的特点，以及lowbit进行分组确定两个只出现一次的元素
@@ -28,7 +28,7 @@
 2680（https://leetcode.com/problems/maximum-or/description/）贪心枚举，前后缀或分解
 100087（https://leetcode.com/problems/apply-operations-on-array-to-maximize-sum-of-squares/description/）经典按位贪心
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 5657（https://www.luogu.com.cn/problem/P5657）计算编号为 k 的二进制符，并补前缀 0 为 n 位
 6102（https://www.luogu.com.cn/problem/P6102）经典位运算加和题目，按位计算，按照位0与位1的数量进行讨论
 7442（https://www.luogu.com.cn/problem/P7442）观察操作规律，使用位运算模拟操作
@@ -45,7 +45,7 @@
 8842（https://www.luogu.com.cn/problem/P8842）经典质数个数前缀和与异或不等式区间计数
 8965（https://www.luogu.com.cn/problem/P8965）树形 DP 与异或计算
 
-================================CodeForces================================
+===================================CodeForces===================================
 C. Ivan and Powers of Two（https://codeforces.com/problemset/problem/305/C）利用二进制加减的思想进行解题
 A. Short Program（https://codeforces.com/problemset/problem/878/A）位运算的操作理解
 C. XOR and OR（http://codeforces.com/problemset/problem/282/C）利用位运算的特性进行判断
@@ -58,12 +58,12 @@ D. Sum of XOR Functions（https://codeforces.com/contest/1879/problem/D）经典
 D. AND, OR and square sum（https://codeforces.com/problemset/problem/1368/D）经典按位模拟贪心
 C. The Very Beautiful Blanket（https://codeforces.com/contest/1802/problem/C）construction with the property of xor
 
-================================AtCoder================================
+====================================AtCoder=====================================
 D - XXOR（https://atcoder.jp/contests/abc117/tasks/abc117_d）从高位到低位按位贪心，思维题
 D - XOR World（https://atcoder.jp/contests/abc121/tasks/abc121_d）正解为(2*n)^(2*n+1)=1的性质，可使用数位DP计算 1^2^...^num的值
 D - Xor Sum 4（https://atcoder.jp/contests/abc147/tasks/abc147_d）典型按位异或和计算贡献
 
-================================AcWing===================================
+=====================================AcWing=====================================
 998（https://www.acwing.com/problem/content/1000/）按位进行或、异或、与操作后贪心选取最大值
 4614（https://www.acwing.com/problem/content/4617/）位运算枚举与前缀和预处理
 

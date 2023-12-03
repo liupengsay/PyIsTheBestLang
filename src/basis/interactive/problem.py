@@ -4,13 +4,13 @@
 参考：
 题目：
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 xx（xxx）xxxxxxxxxxxxxxxxxxxx
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 xx（xxx）xxxxxxxxxxxxxxxxxxxx
 
-================================CodeForces================================
+===================================CodeForces===================================
 F. Interacdive Problem（https://codeforces.com/contest/1624/problem/F）二分查找交互
 D. Tournament Countdown（https://codeforces.com/contest/1713/problem/D）
 D. Guess The String（https://codeforces.com/contest/1697/problem/D）经典二分查找交互，严格非红蓝二分写法

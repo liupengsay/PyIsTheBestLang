@@ -13,20 +13,20 @@
 注2：图有欧拉路径必须满足将它的有向边视为无向边后它是连通的（不考虑度为 0 的孤立点）连通性的判断我们可以使用并查集或 dfs 
 
 题目：
-===================================LeetCode===================================
+====================================LeetCode====================================
 332（https://leetcode.com/problems/reconstruct-itinerary/）欧拉回路模板题
 753（https://leetcode.com/problems/cracking-the-safe/solution/er-xu-cheng-ming-jiu-xu-zui-by-liupengsa-lm77/）
 2097（https://leetcode.com/problems/valid-arrangement-of-pairs/submissions/）欧拉路径模板题，注意确定首尾点
 1743（https://leetcode.com/problems/restore-the-array-from-adjacent-pairs/）无向图欧拉路径模板题, 离散化解决，也是弱化版本的欧拉路径可直接模拟遍历记录父节点
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 7771（https://www.luogu.com.cn/problem/P7771）欧拉路径模板题
 6066（https://www.luogu.com.cn/problem/P6066）欧拉路径模板题
 1127（https://www.luogu.com.cn/problem/P1127）经过每个顶点一次有向边不确定且字典序最小（转换为有向图欧拉路径或者回路）
 2731（https://www.luogu.com.cn/problem/P2731）经过每条确定无向边一次且字典序最小（需要使用邻接矩阵转换为无向图欧拉路径或者回路）
 1341（https://www.luogu.com.cn/problem/P1341）经过每条确定无向边一次且字典序最小（需要使用邻接矩阵转换为无向图欧拉路径或者回路）
 
-===================================AcWing===================================
+=====================================AcWing=====================================
 4211（https://www.acwing.com/problem/content/4214/）有向图欧拉路径合法方案计算
 
 参考：

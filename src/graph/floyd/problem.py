@@ -6,11 +6,11 @@
 参考：OI WiKi（https://oi-wiki.org/graph/shortest-path/）
 题目：
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 2642（https://leetcode.com/problems/design-graph-with-shortest-path-calculator/）Floyd动态更新最短路
 1462（https://leetcode.com/problems/course-schedule-iv/）可考虑使用传递闭包Floyd求解
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 1119（https://www.luogu.com.cn/problem/P1119）离线查询加Floyd动态更新经过中转站的起终点距离，修复增加维护的是点
 1476（https://www.luogu.com.cn/problem/P1476）Floyd 求索引从 1 到 n 的最长路并求所有在最长路上的点
 3906（https://www.luogu.com.cn/problem/P3906）Floyd算法计算最短路径上经过的点集合
@@ -26,15 +26,15 @@
 8794（https://www.luogu.com.cn/problem/P8794）经典二分加Floyd计算
 
 
-================================CodeForces================================
+===================================CodeForces===================================
 D. Design Tutorial: Inverse the Problem（https://codeforces.com/problemset/problem/472/D）使用Floyd判断构造给定的点对最短路距离是否存在
 
-================================AtCoder================================
+====================================AtCoder=====================================
 D - Candidates of No Shortest Paths（https://atcoder.jp/contests/abc051/tasks/abc051_d）经典Floyd计算最短路的必经边
 D - Restoring Road Network（https://atcoder.jp/contests/abc074/tasks/arc083_b）经典最短路生成图，使用Floyd维护最小生成图
 E - Travel by Car（https://atcoder.jp/contests/abc143/tasks/abc143_e）Floyd建图最短路，两种最短路，建两次图
 
-===================================AcWing===================================
+=====================================AcWing=====================================
 4872（https://www.acwing.com/problem/content/submission/4875/）经典Floyd逆序逆向思维更新最短路对
 
 """

@@ -5,14 +5,14 @@ ST表算法全称Sparse-Table算法，是由Tarjan提出的一种解决RMQ问题
 
 题目：
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 1521（https://leetcode.com/problems/find-a-value-of-a-mysterious-function-closest-to-target/）经典计算与目标值最接近的连续子数组位运算与值
 2411（https://leetcode.com/problems/smallest-subarrays-with-maximum-bitwise-or/）经典计算最大或值的最短连续子数组
 2447（https://leetcode.com/problems/number-of-subarrays-with-gcd-equal-to-k/）经典计算最大公因数为 k 的连续子数组个数，可推广到位运算或与异或
 2470（https://leetcode.com/problems/number-of-subarrays-with-lcm-equal-to-k/）经典计算最小公倍为 k 的连续子数组个数，可推广到位运算或与异或
 2654（https://leetcode.com/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/）经典计算最大公因数为 1 的最短连续子数组
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 3865（https://www.luogu.com.cn/problem/P3865）使用ST表静态查询区间最大值
 2880（https://www.luogu.com.cn/problem/P2880）使用ST表预处理区间最大值与最小值
 1890（https://www.luogu.com.cn/problem/P3865）使用ST表预处理区间的gcd
@@ -22,7 +22,7 @@ ST表算法全称Sparse-Table算法，是由Tarjan提出的一种解决RMQ问题
 5097（https://www.luogu.com.cn/problem/P5097）静态区间最小值
 5648（https://www.luogu.com.cn/problem/P5648）使用倍增 ST 表查询区间最大值的索引，使用单调栈建树计算距离
 
-================================CodeForces================================
+===================================CodeForces===================================
 D. Max GEQ Sum（https://codeforces.com/problemset/problem/1691/D）单调栈枚举加ST表最大值最小值查询
 D. Friends and Subsequences（https://codeforces.com/problemset/problem/689/D）根据单调性使用二分加ST表进行个数计算
 D. Yet Another Yet Another Task（https://codeforces.com/problemset/problem/1359/D）单调栈枚举加ST表最大值最小值查询
@@ -35,7 +35,7 @@ F. Array Stabilization (AND version)（https://codeforces.com/contest/1579/probl
 D. Rorororobot（https://codeforces.com/contest/1709/problem/D）use sparse table to compute static range max and implemention
 D. Cut（https://codeforces.com/contest/1516/problem/D）经典数组区间向右倍增计算
 
-================================AcWing====================================
+=====================================AcWing=====================================
 109（https://www.acwing.com/problem/content/111/）贪心加倍增计算最少分段数
 
 参考：OI WiKi（xx）

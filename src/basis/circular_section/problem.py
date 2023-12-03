@@ -3,13 +3,13 @@
 功能：通过模拟找出循环节进行状态计算
 题目：
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 957（https://leetcode.com/problems/prison-cells-after-n-days/）循环节计算
 418（https://leetcode.com/problems/sentence-screen-fitting/）循环节计算
 466（https://leetcode.com/problems/count-the-repetitions/）循环节计算
 1806（https://leetcode.com/problems/minimum-number-of-operations-to-reinitialize-a-permutation/description/）根据有限状态判断循环节的大小
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 1965（https://www.luogu.com.cn/problem/P1965）循环节计算
 1532（https://www.luogu.com.cn/problem/P1532）循环节计算
 2203（https://www.luogu.com.cn/problem/P2203）循环节计算
@@ -19,7 +19,7 @@
 1468（https://www.luogu.com.cn/problem/P1468）状态压缩求循环节
 6148（https://www.luogu.com.cn/problem/P6148）经典计算循环节后模拟
 
-================================CodeForces================================
+===================================CodeForces===================================
 C. Yet Another Counting Problem（https://codeforces.com/problemset/problem/1342/C）循环节计数
 B. Jellyfish and Game（https://codeforces.com/contest/1875/problem/B）circle section find with hash and list
 

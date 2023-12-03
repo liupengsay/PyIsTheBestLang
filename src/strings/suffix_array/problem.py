@@ -4,14 +4,14 @@
 参考：OI WiKi（https://oi-wiki.org/string/sa/）
 题目：
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 1754（https://leetcode.com/problems/largest-merge-of-two-strings/）
 1698（https://leetcode.com/problems/number-of-distinct-substrings-in-a-string/）经典后缀数组应用题，利用height特性
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 3809（https://www.luogu.com.cn/problem/P3809）
 
-===================================AcWing=====================================
+=====================================AcWing=====================================
 140（https://www.acwing.com/problem/content/142/）后缀数组模板题
 
 Morgan and a String（https://www.hackerrank.com/challenges/morgan-and-a-string/problem?isFullScreen=true）拼接两个字符串使得字典序最小

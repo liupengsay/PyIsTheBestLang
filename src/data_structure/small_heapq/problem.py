@@ -3,7 +3,7 @@
 功能：通常用于需要贪心的场景
 题目：
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 630（https://leetcode.com/problems/course-schedule-iii/）用一个堆延迟选择贪心维护最优
 2454（https://leetcode.com/problems/next-greater-element-iv/）使用两个堆维护下下个更大元素即出队两次时遇见的元素，也可以使用经典的哈希加SortedList
 2402（https://leetcode.com/problems/meeting-rooms-iii/）使用两个堆模拟进行会议室安排并进行计数
@@ -14,7 +14,7 @@
 2542（https://leetcode.com/problems/maximum-subsequence-score/）贪心排序枚举加堆维护最大的k个数进行计算
 2263（https://leetcode.com/problems/make-array-non-decreasing-or-non-increasing/）大根堆贪心使得序列非降的最小操作次数
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 1168（https://www.luogu.com.cn/problem/P1168） 用两个堆维护中位数
 1801（https://www.luogu.com.cn/problem/P1801）用两个堆维护第K小
 2085（https://www.luogu.com.cn/problem/P2085）用数学加一个堆维护前K小
@@ -31,7 +31,7 @@
 6033（https://www.luogu.com.cn/problem/P6033）经典贪心升级版可用双端队列优化
 4597（https://www.luogu.com.cn/problem/P4597）大根堆贪心使得序列非降的最小操作次数
 
-===================================AcWing======================================
+=====================================AcWing=====================================
 146（https://www.acwing.com/problem/content/description/148/）小顶堆计算经典问题m个数组最小的n个子序列和，同样可以计算最大的
 147（https://www.acwing.com/problem/content/description/149/）贪心思想加二叉堆与双向链表优化
 148（https://www.acwing.com/problem/content/150/）贪心二叉堆，霍夫曼树Huffman Tree的思想，每次优先合并较小的

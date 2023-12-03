@@ -3,7 +3,7 @@
 功能：一重背包DP，数量有限从后往前遍历，数量无限则从前往后遍历；多重背包DP，可使用二进制优化进行拆分
 题目：
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 140（https://leetcode.com/problems/word-break-ii/）经典 01 背包生成具体方案
 2218（https://leetcode.com/problems/maximum-value-of-k-coins-from-piles/）分组背包DP
 2585（https://leetcode.com/contest/weekly-contest-335/problems/number-of-ways-to-earn-points/）看似二进制优化背包，实则数量转移
@@ -16,7 +16,7 @@
 1155（https://leetcode.com/problems/number-of-dice-rolls-with-target-sum/description/）类似分组背包，可使用线性刷表法与填表法
 2902（https://leetcode.com/problems/count-of-sub-multisets-with-bounded-sum/description/）按照单调队列的思想进行取模分组DP，使用前缀和优化，也有容斥的思想，可撤销背包
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 1048（https://www.luogu.com.cn/problem/P1048）一维背包DP，数量有限，从后往前遍历
 1049（https://www.luogu.com.cn/problem/P1049）一维背包DP
 1776（https://www.luogu.com.cn/problem/P1776）多重背包，使用二进制拆分进行优化，进一步使用单调队列优化
@@ -85,19 +85,19 @@
 5662（https://www.luogu.com.cn/problem/P5662）完全背包变形贪心题目
 1417（https://www.luogu.com.cn/problem/P1417）经典贪心排序后计算 01 背包最大值
 
-================================CodeForces================================
+===================================CodeForces===================================
 B. Modulo Sum（https://codeforces.com/problemset/problem/577/B）取模计数二进制优化与背包DP，寻找非空子序列的和整除给定的数
 A. Writing Code（https://codeforces.com/problemset/problem/543/A）二维有限背包DP，当作无限进行处理
 E. Porcelain（https://codeforces.com/problemset/problem/148/E）01背包枚举，两层动态规划
 F. Zero Remainder Sum（https://codeforces.com/problemset/problem/1433/F）01背包枚举，两层动态规划
 D. For Gamers. By Gamers.（https://codeforces.com/contest/1657/problem/D）一维无限乘积背包预处理，欧拉级数复杂度，结合二分查找贪心
 
-================================AtCoder================================
+====================================AtCoder=====================================
 D - Mixing Experiment（https://atcoder.jp/contests/abc054/tasks/abc054_d）二维01背包
 D - Match Matching（https://atcoder.jp/contests/abc118/tasks/abc118_d）贪心背包DP，并还原方案
 E - All-you-can-eat（https://atcoder.jp/contests/abc145/tasks/abc145_e）思维题01背包，需要先排序，使用刷表法解决计算
 
-================================AcWing=====================================
+=====================================AcWing=====================================
 4（https://www.acwing.com/problem/content/4/）二进制优化多重背包
 6（https://www.acwing.com/problem/content/description/6/）单调队列优化多重背包
 7（https://www.acwing.com/problem/content/7/）01背包、完全背包与多重背包混合使用

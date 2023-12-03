@@ -5,7 +5,7 @@
 
 题目：xx（xx）
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 295（https://leetcode.com/problems/find-median-from-data-stream/）使用一个SortedList即可
 2426 满足不等式的数对数目（https://leetcode.com/problems/number-of-pairs-satisfying-inequality/）根据不等式变换和有序集合进行二分查找
 2179 统计数组中好三元组数目（https://leetcode.com/problems/count-good-triplets-in-an-array/）维护区间范围内的个数
@@ -17,7 +17,7 @@
 1825（https://leetcode.com/problems/finding-mk-average/）经典SortedList与deque应用
 2250（https://leetcode.com/problems/count-number-of-rectangles-containing-each-point/）离线查询，指针排序二分
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 1577（https://www.luogu.com.cn/problem/P1577）数学整除向下取整与二分
 1570（https://www.luogu.com.cn/problem/P1570）公式转换后使用贪心加二分
 1843（https://www.luogu.com.cn/problem/P1843）贪心加二分
@@ -56,7 +56,7 @@
 7912（https://www.luogu.com.cn/problem/P7912）经典 STL 应用模拟题
 8667（https://www.luogu.com.cn/problem/P8667）典型STL应用题
 
-================================CodeForces================================
+===================================CodeForces===================================
 D. Pashmak and Parmida's problem（https://codeforces.com/problemset/problem/459/D）使用有序集合进行大小计数查找
 E. Enemy is weak（https://codeforces.com/problemset/problem/61/E）典型应用场景，前后缀大于小于值计数
 D. Multiset（https://codeforces.com/problemset/problem/1354/D）有序列表的维护与查询

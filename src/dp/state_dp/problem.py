@@ -3,7 +3,7 @@
 功能：使用二进制数字表示转移状态，计算相应的转移方程，通常可以先计算满足条件的子集，有时通过深搜回溯枚举全部子集的办法比位运算枚举效率更高
 题目：
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 465（https://leetcode.com/problems/optimal-account-balancing/）经典枚举子集状压DP
 1349（https://leetcode.com/problems/maximum-students-taking-exam/）按行状态枚举所有的摆放可能性
 1723（https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs/）通过位运算枚举分配工作DP最小化的最大值，枚举子集预处理，枚举子集模板
@@ -28,7 +28,7 @@
 980（https://leetcode.com/problems/unique-paths-iii/description/）典型状压DP或者回溯
 2571（https://leetcode.com/problems/minimum-operations-to-reduce-an-integer-to-0/description/）思维题记忆化DP
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 1896（https://www.luogu.com.cn/problem/P1896）按行状态与行个数枚举所有的摆放可能性
 2704（https://www.luogu.com.cn/problem/P2704）记录两个前序状态进行转移
 
@@ -45,13 +45,13 @@
 8687（https://www.luogu.com.cn/problem/P8687）经典状压 DP 结合背包 DP 思想
 8733（https://www.luogu.com.cn/problem/P8733）使用Floyd最短路计算并使用状压 DP
 
-================================CodeForces================================
+===================================CodeForces===================================
 D. Kefa and Dishes（https://codeforces.com/problemset/problem/580/D）状态压缩DP结合前后相邻的增益计算最优解
 E. Compatible Numbers（https://codeforces.com/problemset/problem/165/E）线性DP，状态压缩枚举，类似子集思想求解可能存在的与为0的数对
 D. A Simple Task（https://codeforces.com/contest/11/problem/D）状压DP，无向图简单环计数
 F. Three Paths on a Tree（https://codeforces.com/contest/1294/problem/F）典型树的直径应用题
 
-================================AcWing================================
+=====================================AcWing=====================================
 3735（https://www.acwing.com/problem/content/3738/）经典倒序状压DP与输出具体方案
 
 参考：OI WiKi（xx）

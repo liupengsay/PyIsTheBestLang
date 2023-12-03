@@ -3,7 +3,7 @@
 功能：用来计算数组前后的更大值更小值信息
 题目：
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 85（https://leetcode.com/problems/maximal-rectangle/）枚举矩形下边界，使用单调栈计算最大矩形面积 
 316（https://leetcode.com/problems/remove-duplicate-letters/）经典单调栈结合哈希与计数进行计算
 321（https://leetcode.com/problems/create-maximum-number/）经典枚举加单调栈
@@ -27,7 +27,7 @@
 907（https://leetcode.com/problems/sum-of-subarray-minimums/）经典单调栈模拟计算
 2454（https://leetcode.com/problems/next-greater-element-iv/description/）经典单调栈计算下下个更大元素
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 1950（https://www.luogu.com.cn/problem/P1950）通过枚举下边界，结合单调栈计算矩形个数
 1901（https://www.luogu.com.cn/problem/P1901）由不相同的数组成的数组求其前后的更大值
 2866（https://www.luogu.com.cn/problem/P2866）单调栈
@@ -50,15 +50,15 @@
 6801（https://www.luogu.com.cn/problem/P6801）经典单调栈计算矩形个数
 8094（https://www.luogu.com.cn/problem/P8094）单调栈典型应用前一个更大与后一个更大
 
-================================CodeForces================================
+===================================CodeForces===================================
 E. Explosions（https://codeforces.com/problemset/problem/1795/E）经典单调栈优化线性DP，贪心计数枚举，前后缀DP转移
 C2. Skyscrapers （https://codeforces.com/problemset/problem/1313/C2）经典单调栈优化线性DP
 F. Array Partition（https://codeforces.com/contest/1454/problem/F）经典单调栈枚举题
 
-================================AtCoder================================
+====================================AtCoder=====================================
 E - Second Sum（https://atcoder.jp/contests/abc140/tasks/abc140_e）经典单调栈求下个与下下个严格更大元素与上个与上个个严格更大元素
 
-================================AcWing====================================
+=====================================AcWing=====================================
 131（https://www.acwing.com/problem/content/133/）单调栈求最大矩形
 152（https://www.acwing.com/problem/content/description/154/）单调栈求最大矩形
 3780（https://www.acwing.com/problem/content/description/3783/）经典单调栈线性贪心DP构造

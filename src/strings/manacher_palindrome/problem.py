@@ -3,7 +3,7 @@
 功能：用来处理字符串的回文相关问题，可以有暴力、DP、中心扩展法、马拉车
 题目：
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 5（https://leetcode.com/problems/longest-palindromic-substring/）计算字符串的最长回文连续子串
 132（https://leetcode.com/problems/palindrome-partitioning-ii/）经典线性 DP 与马拉车判断以每个位置为结尾的回文串
 214（https://leetcode.com/problems/shortest-palindrome/）计算字符串前缀最长回文子串
@@ -11,7 +11,7 @@
 2472（https://leetcode.com/problems/maximum-number-of-non-overlapping-palindrome-substrings/）预处理线性回文子串 DP 优化外加结果计算线性 DP 也可以使用马拉车回文串获取回文信息
 1745（https://leetcode.com/problems/palindrome-partitioning-iv/description/）经典矩阵DP判断是否为回文子串，或者使用马拉车然后枚举
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 4555（https://www.luogu.com.cn/problem/P4555）计算以当前索引为开头以及结尾的最长回文子串
 1210（https://www.luogu.com.cn/problem/P1210）寻找最长的连续回文子串
 4888（https://www.luogu.com.cn/problem/P4888）中心扩展法双指针

@@ -11,7 +11,7 @@ dilworth定理：
 反过来，分成上升子序列最小组数等于最大不上升的长度，分成下降子序列最小组数等于最大不下降子序列的长度。
 
 参考题目：
-===================================LeetCode===================================
+====================================LeetCode====================================
 354（https://leetcode.com/problems/russian-doll-envelopes/）经典二维偏序最长递增子序列问题
 673（https://leetcode.com/problems/number-of-longest-increasing-subsequence/）经典O(n^2)与O(nlogn)的LIS计数问题做法模板题
 1092（https://leetcode.com/problems/shortest-common-supersequence/）经典利用LIS求LCS的最短公共超序列
@@ -27,7 +27,7 @@ dilworth定理：
 1964（https://leetcode.com/problems/find-the-longest-valid-obstacle-course-at-each-position/）经典LIS求以每个位置结尾的最长不降子序列长度
 2945（https://leetcode.com/problems/find-maximum-non-decreasing-array-length/description/）linear dp|deque|greedy|prefix sum
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 1020（https://www.luogu.com.cn/problem/P1020）使用贪心加二分计算最长单调不减和单调不增子序列的长度
 1439（https://www.luogu.com.cn/problem/P1439）使用贪心加二分计算最长单调递增子序列的长度
 1091（https://www.luogu.com.cn/problem/P1091）可以往前以及往后计算最长单调子序列
@@ -40,11 +40,11 @@ dilworth定理：
 7957（https://www.luogu.com.cn/problem/P7957）经典 LMS 逆问题构造
 1410（https://www.luogu.com.cn/problem/P1410）使用dilworth定理求最长不上升子序列长度小于等于2
 
-===================================AcWing===================================
+=====================================AcWing=====================================
 3549（https://www.acwing.com/problem/content/3552/）经典线性DP动态规划贪心
 2694（https://www.acwing.com/problem/content/description/2696/）使用LIS求解LCS的长度与个数
 
-===================================AtCoder===================================
+====================================AtCoder=====================================
 E - Sequence Decomposing（https://atcoder.jp/contests/abc134/tasks/abc134_e）分成最少组数的上升子序列，等于最长不上升的子序列长度
 
 """

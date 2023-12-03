@@ -5,7 +5,7 @@
 题目：xx（xx）
 内向基环树介绍：https://leetcode.com/problems/maximum-employees-to-be-invited-to-a-meeting/solution/nei-xiang-ji-huan-shu-tuo-bu-pai-xu-fen-c1i1b/
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 360（https://leetcode.com/problems/longest-cycle-in-a-graph/）拓扑排序计算有向图内向基环树最长环
 2392（https://leetcode.com/problems/build-a-matrix-with-conditions/）分别通过行列的拓扑排序来确定数字所在索引，数字可能相同，需要使用并查集
 2371（https://leetcode.com/problems/minimize-maximum-value-in-a-grid/）分别通过行列的拓扑排序来确定数字所在索引，数字都不同可以使用贪心
@@ -20,7 +20,7 @@
 2192（https://leetcode.com/problems/all-ancestors-of-a-node-in-a-directed-acyclic-graph/）经典有向图DAG拓扑排序
 
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 1960（https://www.luogu.com.cn/problem/P1960）计算拓扑排序是否唯一
 1992（https://www.luogu.com.cn/problem/P1992）拓扑排序计算有向图是否有环
 2712（https://www.luogu.com.cn/problem/P2712）拓扑排序计算非环节点数
@@ -37,14 +37,14 @@
 8655（https://www.luogu.com.cn/problem/P8655）使用拓扑排序计算有向基环树的环
 8943（https://www.luogu.com.cn/problem/P8943）经典无向图基环树博弈
 
-==================================CodeForces=================================
+===================================CodeForces===================================
 E. Number of Simple Paths（https://codeforces.com/contest/1454/problem/E）经典基环树计数枚举
 
-==================================AtCoder=================================
+====================================AtCoder=====================================
 F - Well-defined Path Queries on a Namori（https://atcoder.jp/contests/abc266/）（无向图的内向基环树，求简单路径的树枝连通）
 最喜欢的数列（https://www.hackerrank.com/challenges/favourite-sequence/problem?isFullScreen=true）topological and heap for minimum lexi order
 
-==================================AcWing=================================
+=====================================AcWing=====================================
 3696（https://www.acwing.com/problem/content/description/3699/）经典bfs序即拓扑序与DAG构造
 3828（https://www.acwing.com/problem/content/description/3831/）有向图DAG拓扑排序DP模板题并判断有无环
 4626（https://www.acwing.com/problem/content/description/4629/）有向图内向基环树判断每个环的大小

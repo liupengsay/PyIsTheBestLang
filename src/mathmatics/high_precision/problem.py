@@ -3,14 +3,14 @@
 功能：xxx
 题目：
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 166（https://leetcode.com/problems/fraction-to-recurring-decimal/）经典分数转换为有理数无限循环小数
 172（https://leetcode.com/problems/factorial-trailing-zeroes/）阶乘后缀0的个数
 1883（https://leetcode.com/problems/minimum-skips-to-arrive-at-meeting-on-time/description/）经典二维矩阵DP使用分数进行高精度浮点数计算
 2117（https://leetcode.com/problems/abbreviating-the-product-of-a-range/）大数计算或者前后缀模拟计算
 972（https://leetcode.com/problems/equal-rational-numbers/）有理数转为分数判断
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 2388（https://www.luogu.com.cn/problem/P2388）阶乘之乘后缀0的个数
 
 1920（https://www.luogu.com.cn/problem/P1920）预估高精度计算与公式 -ln(1-x) = sum(x**i/i for in range(1, n+1)) 其中 n 趋近于无穷
@@ -26,7 +26,7 @@
 ===================================CodeForces===================================
 E. Median String（https://codeforces.com/contest/1144/problem/E）超大整数加减与乘除
 
-===================================AtCoder===================================
+====================================AtCoder=====================================
 E - Double Factorial（https://atcoder.jp/contests/abc148/tasks/abc148_e）奇数阶乘与偶数阶乘的尾随零个数
 
 参考：OI WiKi（xx）

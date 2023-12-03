@@ -3,7 +3,7 @@
 功能：前缀和优化区间DP（需要在状态转移的时候更新代价距离）、预处理区间DP（需要预处理一个DP再计算最终DP）
 题目：
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 375（https://leetcode.com/problems/guess-number-higher-or-lower-ii/）经典区间DP
 1130（https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/）经典单调栈也可以使用区间DP
 
@@ -15,7 +15,7 @@
 1690（https://leetcode.com/problems/stone-game-vii/description/）经典区间DP
 1312（https://leetcode.com/problems/minimum-insertion-steps-to-make-a-string-palindrome/）经典区间DP，最长回文子序列
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 1521（https://www.luogu.com.cn/problem/P1521）使用归并排序计算移动次数，也可以使用倍增的树状数组
 1775（https://www.luogu.com.cn/problem/P1775）典型区间DP和前缀和预处理
 2426（https://www.luogu.com.cn/problem/P2426）典型区间DP
@@ -36,11 +36,11 @@
 3205（https://www.luogu.com.cn/problem/P3205）区间 DP 使用滚动数组优化
 4170（https://www.luogu.com.cn/problem/P4170）经典区间 DP 注意转移方程计算
 
-================================CodeForces================================
+===================================CodeForces===================================
 C. The Sports Festival（https://codeforces.com/problemset/problem/1509/C）转换为区间DP进行求解
 B. Zuma（https://codeforces.com/problemset/problem/607/B）区间DP，经典通过消除回文子序列删除整个数组的最少次数
 
-================================AcWing================================
+=====================================AcWing=====================================
 3996（https://www.acwing.com/problem/content/3999/）经典区间 DP 最长回文子序列变形
 
 参考：OI WiKi（xx）

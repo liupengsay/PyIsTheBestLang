@@ -4,11 +4,11 @@
 功能：来求一棵树的最近公共祖先（LCA）也可以使用
 题目：
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 1483（https://leetcode.com/problems/kth-ancestor-of-a-tree-node/）动态规划与二进制跳转维护祖先信息，类似ST表的思想与树状数组的思想，经典LCA应用题
 2646（https://leetcode.com/problems/minimize-the-total-price-of-the-trips/）离线LCA与树上差分计数，再使用树形DP计算
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 3379（https://www.luogu.com.cn/problem/P3379）最近公共祖先模板题
 7128（https://www.luogu.com.cn/problem/P7128）完全二叉树进行LCA路径模拟交换，使得数组有序
 3128（https://www.luogu.com.cn/problem/P3128）离线LCA与树上差分
@@ -22,16 +22,16 @@
 ==================================LibreOJ==================================
 #10135. 「一本通 4.4 练习 2」祖孙询问（https://loj.ac/p/10135）lca查询与判断
 
-================================CodeForces================================
+===================================CodeForces===================================
 E. Tree Queries（https://codeforces.com/problemset/problem/1328/E）利用 LCA 判定节点组是否符合条件，也可以使用 dfs 序
 C. Ciel the Commander（https://codeforces.com/problemset/problem/321/C）使用树的质心递归，依次切割形成平衡树赋值
 E. A and B and Lecture Rooms（https://codeforces.com/problemset/problem/519/E）LCA经典运用题目，查询距离与第k个祖先节点，与子树节点计数
 F. Berland Beauty（https://codeforces.com/contest/1296/problem/F）使用离线或者在线查询lca贪心构造，正解可能为倍增
 
-================================AtCoder================================
+====================================AtCoder=====================================
 D - Transit Tree Path（https://atcoder.jp/contests/abc070/tasks/abc070_d）典型LCA查询运用题，也可离线实现
 
-================================AcWing================================
+=====================================AcWing=====================================
 4202（https://www.acwing.com/problem/content/4205/）使用位运算进行计算，也可使用包含关系建树，查询LCA计算距离
 
 

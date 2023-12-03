@@ -4,7 +4,7 @@
 
 题目：
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 233（https://leetcode.com/problems/number-of-digit-one/）数字 1 的个数
 357（https://leetcode.com/problems/count-numbers-with-unique-digits/）排列组合也可用数位 DP 求解
 600（https://leetcode.com/problems/non-negative-integers-without-consecutive-ones/）不含连续 1 的非负整数
@@ -20,11 +20,11 @@
 
 面试题 17（https://leetcode.com/problems/number-of-2s-in-range-lcci/）所有数位出现 2 的次数
 
-===================================AtCoder===================================
+====================================AtCoder=====================================
 D - XOR World（https://atcoder.jp/contests/abc121/tasks/abc121_d）正解为(2*n)^(2*n+1)=1的性质，可使用数位DP计算 1^2^...^num的值
 E - Digit Products（https://atcoder.jp/contests/abc208/tasks/abc208_e）脑筋急转弯，有技巧地处理数位DP结果计算
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 1590（https://www.luogu.com.cn/problem/P1590）计算 n 以内不含7的个数
 1239（https://www.luogu.com.cn/problem/P1239）计算 n 以内每个数字0-9的个数
 3908（https://www.luogu.com.cn/problem/P3908）计算 1^2..^n的异或和，可以使用数位DP计数也可以用相邻的奇偶数计算

@@ -3,13 +3,13 @@
 功能：维护单调性，计算滑动窗口最大值最小值
 题目：
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 239（https://leetcode.com/problems/sliding-window-maximum/）滑动区间最大值
 1696（https://leetcode.com/problems/jump-game-vi/）经典优先队列 DP
 862（https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/description/）前缀和加单调双端队列DP
 1425（https://leetcode.com/problems/constrained-subsequence-sum/）单调队列DP模板题
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 2251（https://www.luogu.com.cn/problem/P2251）滑动区间最小值
 2032（https://www.luogu.com.cn/problem/P2032）滑动区间最大值
 1750（https://www.luogu.com.cn/problem/P1750）经典题目，滑动指针窗口栈加队列
@@ -29,7 +29,7 @@
 4085（https://www.luogu.com.cn/problem/P4085）双指针加优先队列滑动窗口最小值
 4392（https://www.luogu.com.cn/problem/P4392）单调队列计算滑动窗口最大值
 
-===================================AcWing=====================================
+=====================================AcWing=====================================
 133（https://www.acwing.com/problem/content/135/）三个优先队列加一个偏移量
 135（https://www.acwing.com/problem/content/137/）双端队列计算不超过一定长度的最大子段和
 

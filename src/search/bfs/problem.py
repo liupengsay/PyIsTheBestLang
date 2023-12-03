@@ -3,7 +3,7 @@
 功能：在有向图与无向图进行扩散，多源BFS、双向BFS，0-1BFS（类似SPFA）双向BFS或者A-star启发式搜索
 题目：
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 1036（https://leetcode.com/problems/escape-a-large-maze/）经典带边界的BFS和离散化BFS两种解法
 2493（https://leetcode.com/problems/divide-nodes-into-the-maximum-number-of-groups/）利用并查集和广度优先搜索进行连通块分组并枚举最佳方案，也就是染色法判断是否可以形成二分图
 2290（https://leetcode.com/problems/minimum-obstacle-removal-to-reach-corner/）使用0-1 BFS进行优化计算最小代价
@@ -20,7 +20,7 @@
 928（https://leetcode.com/problems/minimize-malware-spread-ii/description/）枚举起始点计算BFS
 994（https://leetcode.com/problems/rotting-oranges/description/）经典BFS使用队列模拟
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 1747（https://www.luogu.com.cn/problem/P1747）双向BFS搜索最短距离
 5507（https://www.luogu.com.cn/problem/P5507）双向BFS进行搜索
 2040（https://www.luogu.com.cn/problem/P2040）定义状态进行 BFS 搜索
@@ -83,17 +83,17 @@
 9065（https://www.luogu.com.cn/problem/P9065）脑筋急转弯BFS枚举
 6175（https://www.luogu.com.cn/problem/P6175）经典使用Floyd枚举三个点之间的距离和，O(n^3)，也可以使用BFS或者Dijkstra计算
 
-================================CodeForces================================
+===================================CodeForces===================================
 E. Nearest Opposite Parity（https://codeforces.com/problemset/problem/1272/E）经典反向建图，多源BFS
 A. Book（https://codeforces.com/problemset/problem/1572/A）脑筋急转弯建图，广度优先搜索计算是否存在环与无环时从任意起点的DAG最长路
 D. Valid BFS?（https://codeforces.com/problemset/problem/1037/D）经典BDS好题，结合队列与集合进行模拟
 D. The Number of Imposters（https://codeforces.com/contest/1594/problem/D）经典建图后使用染色法BFS判断二分图
 
-================================AtCoder================================
+====================================AtCoder=====================================
 D - People on a Line（https://atcoder.jp/contests/abc087/tasks/arc090_b）BFS判断经典类差分约束问题，差分约束问题复杂度O(n^2)，本题1e5的等式使用BFS计算
 E - Virus Tree 2（https://atcoder.jp/contests/abc133/tasks/abc133_e）BFS染色法计数
 
-================================AcWing================================
+=====================================AcWing=====================================
 173（https://www.acwing.com/problem/content/175/）多源BFS模板题
 175（https://www.acwing.com/problem/content/177/）双端优先队列 BFS
 177（https://www.acwing.com/problem/content/179/）多源双向BFS

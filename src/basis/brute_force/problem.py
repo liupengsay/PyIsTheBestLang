@@ -3,7 +3,7 @@
 功能：根据题意，在复杂度有限的情况下，进行所有可能情况的枚举
 题目：
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 670（https://leetcode.com/problems/maximum-swap/）看似贪心，在复杂度允许的情况下使用枚举暴力保险
 395（https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters/）经典枚举分治
 1330（https://leetcode.com/problems/reverse-subarray-to-maximize-array-value/）经典枚举绝对值正负数
@@ -44,7 +44,7 @@
 2122（https://leetcode.com/problems/recover-the-original-array/）枚举间隔哈希模拟可行性
 1782（https://leetcode.com/problems/count-pairs-of-nodes/description/）使用枚举所有的点对
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 1548（https://www.luogu.com.cn/problem/P1548）枚举正方形与长方形的右小角计算个数
 1632（https://www.luogu.com.cn/problem/P1632）枚举横坐标和纵坐标的所有组合移动距离
 2128（https://www.luogu.com.cn/problem/P2128）枚举完全图的顶点组合，平面图最多四个点
@@ -111,7 +111,7 @@
 8894（https://www.luogu.com.cn/problem/P8894）按照区间范围值进行枚举前后缀计数
 8872（https://www.luogu.com.cn/problem/P8872）排序后前后缀移动次数枚举
 
-================================CodeForces================================
+===================================CodeForces===================================
 F. Number of Subsequences（https://codeforces.com/problemset/problem/1426/F）分类枚举中间的b计数两边的?ac，并使用快速幂进行求解
 D. Zigzags（https://codeforces.com/problemset/problem/1400/D）枚举+二分
 D. Moscow Gorillas（https://codeforces.com/contest/1793/problem/D）枚举计数
@@ -125,7 +125,7 @@ D - Katana Thrower（https://atcoder.jp/contests/abc085/tasks/abc085_d）典型�
 E. Divisibility by 25（https://codeforces.com/contest/988/problem/E）思维题贪心枚举
 B. Getting Zero（https://codeforces.com/contest/1661/problem/B）经典枚举
 
-================================AtCoder================================
+====================================AtCoder=====================================
 D - Digit Sum（https://atcoder.jp/contests/abc044/tasks/arc060_b）经典进制计算与分情况枚举因子
 D - Menagerie （https://atcoder.jp/contests/abc055/tasks/arc069_b）思维题脑筋急转弯枚举
 C - Sequence（https://atcoder.jp/contests/abc059/tasks/arc072_a）枚举前缀和的符号贪心增减

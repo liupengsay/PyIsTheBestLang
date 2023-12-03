@@ -3,7 +3,7 @@
 功能：用来处理字符串的前缀后缀相关问题
 题目：
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 214（https://leetcode.com/problems/shortest-palindrome/）计算字符串前缀最长回文子串
 796（https://leetcode.com/problems/rotate-string/）计算字符串是否可以旋转得到
 25（https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/）计算子字符串第一次出现的位置
@@ -12,16 +12,16 @@
 6918（https://leetcode.com/problems/shortest-string-that-contains-three-strings/）kmp求字符串之间的最长公共前后缀，进行贪心拼接
 2851（https://leetcode.com/problems/string-transformation/description/）使用KMP与快速幂进行转移计算，也可使用字符串哈希
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 3375（https://www.luogu.com.cn/problem/P3375）计算子字符串出现的位置，与最长公共前后缀的子字符串长度
 4391（https://www.luogu.com.cn/problem/P4391）脑经急转弯加KMP算法，最优结果为 n-pi[n-1]
 
-================================CodeForces================================
+===================================CodeForces===================================
 D2. Prefix-Suffix Palindrome (Hard version)（https://codeforces.com/problemset/problem/1326/D2）利用马拉车的贪心思想贪心取前后缀，再判断剩余字符的最长前后缀回文子串
 D. Prefixes and Suffixes（https://codeforces.com/contest/432/problem/D）扩展kmp与kmp结合使用计数，经典z函数与前缀函数结合应用题
 E. Test（https://codeforces.com/contest/25/problem/E）kmp求字符串之间的最长公共前后缀，进行贪心拼接
 
-================================AcWing================================
+=====================================AcWing=====================================
 
 141（https://www.acwing.com/problem/content/143/）利用KMP求每个字符串前缀的最小循环节
 160（https://www.acwing.com/problem/content/162/）z函数模板题

@@ -3,7 +3,7 @@
 算法：二分查找
 功能：利用单调性确定最优选择，通常可以使用SortedList、Bisect，还可以使用精度控制二分
 题目：xx（xx）
-===================================LeetCode===================================
+====================================LeetCode====================================
 4（https://leetcode.com/problems/median-of-two-sorted-arrays/）经典二分思想查找题
 81（https://leetcode.com/problems/search-in-rotated-sorted-array-ii/）经典有重复数字的旋转数组
 154（https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/）经典有重复数字的旋转数组
@@ -25,7 +25,7 @@
 2560（https://leetcode.com/problems/house-robber-iv/）经典二分DP来check
 2234（https://leetcode.com/problems/maximum-total-beauty-of-the-gardens/description/）前缀和加二分枚举
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 1577（https://www.luogu.com.cn/problem/P1577）数学整除向下取整与二分
 1570（https://www.luogu.com.cn/problem/P1570）公式转换后使用贪心加二分
 1843（https://www.luogu.com.cn/problem/P1843）贪心加二分
@@ -71,7 +71,7 @@
 8198（https://www.luogu.com.cn/problem/P8198）经典二分加指针
 9050（https://www.luogu.com.cn/problem/P9050）经典二分注意值域区间与贪心模拟
 
-================================CodeForces================================
+===================================CodeForces===================================
 D. Salary Changing（https://codeforces.com/problemset/problem/1251/D）使用贪心进行中位数二分求解
 A. Office Keys（https://codeforces.com/problemset/problem/830/A）使用贪心进行距离点覆盖二分求解
 E. Packmen（https://codeforces.com/problemset/problem/847/E）使用贪心二分与指针进行判断
@@ -88,11 +88,11 @@ I. Photo Processing（https://codeforces.com/problemset/problem/883/I）二分�
 G. Gift Set（https://codeforces.com/contest/1538/problem/G）二分加枚举不等式验证
 C. Binary String（https://codeforces.com/contest/1680/problem/C）二分加贪心双指针check
 
-================================AtCoder================================
+====================================AtCoder=====================================
 D - No Need （https://atcoder.jp/contests/abc056/tasks/arc070_b）经典利用单调性进行二分，用背包DP进行check
 D - Widespread（https://atcoder.jp/contests/abc063/tasks/arc075_b）经典利用单调性进行二分，贪心进行check
 
-================================AcWing================================
+=====================================AcWing=====================================
 120（https://www.acwing.com/problem/content/122/）根据单调性二分
 14（https://www.acwing.com/problem/content/description/15/）利用鸽巢原理二分查找重复的数，修改数组且只用O(1)空间
 3973（https://www.acwing.com/problem/content/3976/）浮点数二分与滑动窗口双指针

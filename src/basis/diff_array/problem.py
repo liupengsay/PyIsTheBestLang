@@ -4,7 +4,7 @@
 功能：用来解决一维数组或者二维数组的加和问题，以及前缀和计算，还有前缀和的前缀和
 题目：
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 152（https://leetcode.com/problems/maximum-product-subarray/）前缀最大最小乘积，计算最大连续子数组乘积
 598（https://leetcode.com/problems/range-addition-ii/）二维差分
 2281（https://leetcode.com/problems/sum-of-total-strength-of-wizards/）枚举当前元素作为最小值的子数组和并使用前缀和的前缀和计算
@@ -33,7 +33,7 @@
 1703（https://leetcode.com/problems/minimum-adjacent-swaps-for-k-consecutive-ones/）前缀和加中位数贪心，同1520E
 2167（https://leetcode.com/problems/minimum-time-to-remove-all-cars-containing-illegal-goods/）经典公式变换进行前缀和枚举
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 8772（https://www.luogu.com.cn/record/list?user=739032&status=12&page=15）后缀和计算
 2367（https://www.luogu.com.cn/problem/P2367）差分数组记录区间增减变化，最后还原计算最小值
 2280（https://www.luogu.com.cn/problem/P2280）二维前缀和
@@ -81,7 +81,7 @@
 8715（https://www.luogu.com.cn/problem/P8715）前后缀贡献计数
 8783（https://www.luogu.com.cn/problem/P8783）经典O(n^3)与双指针枚举计算子矩阵个数
 
-================================CodeForces================================
+===================================CodeForces===================================
 C. Wonderful Randomized Sum（https://codeforces.com/problemset/problem/33/C）前后缀最大变换和与分割点枚举，经典类型题目
 C. Minimal string（https://codeforces.com/problemset/problem/797/C）后缀最小值字典序模拟
 D. Big Maximum Sum（https://codeforces.com/problemset/problem/75/D）压缩数组最大子段和
@@ -91,10 +91,10 @@ D. Constant Palindrome Sum（https://codeforces.com/problemset/problem/1343/D）
 E. Counting Rectangles（https://codeforces.com/problemset/problem/1722/E）根据数字取值范围使用二位前缀和计算
 D. Absolute Sorting（https://codeforces.com/contest/1772/problem/D）离散差分作用域计数
 
-================================AtCoder================================
+====================================AtCoder=====================================
 D - AtCoder Express 2（https://atcoder.jp/contests/abc106/tasks/abc106_d）前缀和优化DP计数
 
-================================AcWing===================================
+=====================================AcWing=====================================
 99（https://www.acwing.com/problem/content/description/101/）二维前缀和
 100（https://www.acwing.com/problem/content/102/）差分数组经典题目，明晰本质
 101（https://www.acwing.com/problem/content/103/）查分数组，贪心得出结论

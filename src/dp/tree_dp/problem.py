@@ -3,7 +3,7 @@
 功能：在树形或者图结构上进行DP，有换根DP，自顶向下和自底向上DP
 题目：
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 2458 移除子树后的二叉树高度（https://leetcode.com/problems/height-of-binary-tree-after-subtree-removal-queries/）跑两边DFS进行自顶向下和自底向上DP结合
 2440 创建价值相同的连通块（https://leetcode.com/problems/create-components-with-same-value/）利用总和的因子和树形递归判断连通块是否可行
 1569 将子数组重新排序得到同一个二叉查找树的方案数（https://leetcode.com/problems/number-of-ways-to-reorder-array-to-get-same-bst/solution/by-liupengsay-yi3h/）
@@ -24,7 +24,7 @@
 100041（https://www.acwing.com/problem/content/description/4384/）迭代法实现树形换根DP计算，或者一遍DFS或者dfs序加差分
 100047（https://leetcode.com/problems/count-valid-paths-in-a-tree/description/）树形DP，并查集或者BFS实现
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 1395（https://www.luogu.com.cn/problem/P1395）树的总距离，求树的重心，单个节点距离其他所有节点的最大距离，换根DP可以做
 1352（https://www.luogu.com.cn/problem/P1352）树形DP，隔层进行动态规划转移
 1922（https://www.luogu.com.cn/problem/P1922）树形DP，贪心进行子树与叶子节点的分配
@@ -55,11 +55,11 @@
 8625（https://www.luogu.com.cn/problem/P8625）树形 DP 典型
 8744（https://www.luogu.com.cn/problem/P8744）简单树形 DP
 
-==================================AtCoder=================================
+====================================AtCoder=====================================
 F - Expensive Expense （https://atcoder.jp/contests/abc222/tasks/abc222_f）换根DP
 D. Distance in Tree（https://codeforces.com/problemset/problem/161/D）树形DP计数，记录距离为k的点对数
 
-================================CodeForces================================
+===================================CodeForces===================================
 C. Uncle Bogdan and Country Happiness（https://codeforces.com/problemset/problem/1388/C）树形DP模拟计算，递归获取子树信息，逆向从上往下还原
 F. Maximum White Subtree（https://codeforces.com/problemset/problem/1324/F）经典换根DP题，两遍dfs搜索更新计算
 D. Book of Evil（https://codeforces.com/problemset/problem/337/D）经典换根DP题，两遍dfs搜索更新计算
@@ -72,7 +72,7 @@ D. Choosing Capital for Treeland（https://codeforces.com/contest/219/problem/D�
 F. Tree with Maximum Cost（https://codeforces.com/contest/1092/problem/F）带权重树中的总距离，迭代法实现树形换根DP计算
 G. Moving to the Capital（https://codeforces.com/contest/1472/problem/G）经典根据最短路进行从下到上与从上到下的DP
 
-================================AcWing================================
+=====================================AcWing=====================================
 3760（https://www.acwing.com/problem/content/description/3763/）脑筋急转弯转化为树形DP迭代方式求解
 4381（https://www.acwing.com/problem/content/description/4384/）迭代法实现树形换根DP计算，或者一遍DFS或者dfs序加差分
 

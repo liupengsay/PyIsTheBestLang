@@ -3,13 +3,13 @@
 功能：高效计算整数的幂次方取模
 题目：
 
-===================================LeetCode===================================
+====================================LeetCode====================================
 450（https://leetcode.com/problems/number-of-distinct-binary-strings-after-applying-operations/）脑筋急转弯快速幂计算
 1931（https://leetcode.com/problems/painting-a-grid-with-three-different-colors/）转移DP可以使用快速幂进行计算
 8020（https://leetcode.com/problems/string-transformation/description/）使用KMP与快速幂进行转移计算
 1622（https://leetcode.com/problems/fancy-sequence/description/）经典逆向思维，乘法逆元运用，类似容斥原理
 
-===================================LuoGu==================================
+=====================================LuoGu======================================
 1630（https://www.luogu.com.cn/problem/P1630）快速幂计算，利用同模进行计数加和
 1939（https://www.luogu.com.cn/problem/P1939）矩阵快速幂递推求解
 1962（https://www.luogu.com.cn/problem/P1962）矩阵快速幂递推求解
@@ -31,7 +31,7 @@
 8557（https://www.luogu.com.cn/problem/P8557）脑筋急转弯快速幂计数
 8624（https://www.luogu.com.cn/problem/P8624）矩阵 DP 与快速幂
 
-===================================AcWing===================================
+=====================================AcWing=====================================
 27（https://www.acwing.com/problem/content/26/）浮点数快速幂
 
 

@@ -6,7 +6,7 @@ from src.utils.fast_io import FastIO
 功能：求解数组子集的异或和、排第K的异或和、以及异或和排第几、更新线性基即原始数组等
 
 题目：
-===================================LuoGu==================================
+=====================================LuoGu======================================
 3812（https://www.luogu.com.cn/problem/P3812）
 
 参考：https://oi-wiki.org/math/linear-algebra/basis/
