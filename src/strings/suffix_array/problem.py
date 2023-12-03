@@ -4,15 +4,15 @@
 参考：OI WiKi（https://oi-wiki.org/string/sa/）
 题目：
 
-===================================力扣===================================
-1754. 构造字典序最大的合并字符串（https://leetcode.com/problems/largest-merge-of-two-strings/）
-1698. 字符串的不同子字符串个数（https://leetcode.com/problems/number-of-distinct-substrings-in-a-string/）经典后缀数组应用题，利用height特性
+===================================LeetCode===================================
+1754（https://leetcode.com/problems/largest-merge-of-two-strings/）
+1698（https://leetcode.com/problems/number-of-distinct-substrings-in-a-string/）经典后缀数组应用题，利用height特性
 
-===================================洛谷===================================
-P3809 【模板】后缀排序（https://www.luogu.com.cn/problem/P3809）
+===================================LuoGu==================================
+3809（https://www.luogu.com.cn/problem/P3809）
 
 ===================================AcWing=====================================
-140. 后缀数组（https://www.acwing.com/problem/content/142/）后缀数组模板题
+140（https://www.acwing.com/problem/content/142/）后缀数组模板题
 
 Morgan and a String（https://www.hackerrank.com/challenges/morgan-and-a-string/problem?isFullScreen=true）拼接两个字符串使得字典序最小
 Suffix Array（https://judge.yosupo.jp/problem/suffixarray）

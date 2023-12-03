@@ -4,82 +4,82 @@
 功能：用来解决一维数组或者二维数组的加和问题，以及前缀和计算，还有前缀和的前缀和
 题目：
 
-===================================力扣===================================
-152. 乘积最大子数组（https://leetcode.com/problems/maximum-product-subarray/）前缀最大最小乘积，计算最大连续子数组乘积
-598. 范围求和 II（https://leetcode.com/problems/range-addition-ii/）二维差分
-2281. 巫师的总力量（https://leetcode.com/problems/sum-of-total-strength-of-wizards/）枚举当前元素作为最小值的子数组和并使用前缀和的前缀和计算
-2251. 花期内花的数目（https://leetcode.com/problems/number-of-flowers-in-full-bloom/）离散化差分数组
-2132. 用邮票贴满网格图（https://leetcode.com/problems/stamping-the-grid/）用前缀和枚举可行的邮票左上端点，然后查看空白格点左上方是否有可行的邮票点，也可以使用经典的二维差分滚动模拟覆盖进行解决
-1229. 安排会议日程（https://leetcode.com/problems/meeting-scheduler/）离散化差分数组
-6292. 子矩阵元素加 1（https://leetcode.com/problems/increment-submatrices-by-one/)二维差分前缀和
-2565. 最少得分子序列（https://leetcode.com/problems/subsequence-with-the-minimum-score/）使用前后缀指针枚举匹配最长前后缀
-644. 子数组最大平均数 II（https://leetcode.com/problems/maximum-average-subarray-ii/）前缀和加二分计算不短于k的子数组最大平均值
-1292. 元素和小于等于阈值的正方形的最大边长（https://leetcode.com/problems/maximum-side-length-of-a-square-with-sum-less-than-or-equal-to-threshold/）经典O(mn)复杂度枚举
-1674. 使数组互补的最少操作次数（https://leetcode.com/problems/minimum-moves-to-make-array-complementary/）经典差分数组作用域计数
-1714. 数组中特殊等间距元素的和（https://leetcode.com/problems/sum-of-special-evenly-spaced-elements-in-array/）经典分组加前缀和
-1738. 找出第 K 大的异或坐标值（https://leetcode.com/problems/find-kth-largest-xor-coordinate-value/）经典二维前缀异或和
-1895. 最大的幻方（https://leetcode.com/problems/largest-magic-square/）二维前缀和枚举优化
-1943. 描述绘画结果（https://leetcode.com/problems/describe-the-painting/）经典离散化差分
-2021. 街上最亮的位置（https://leetcode.com/problems/brightest-position-on-street/）经典离散化差分
-837. 新 21 点（https://leetcode.com/problems/new-21-game/description/）使用差分数组模拟进行概率计算
-891. 子序列宽度之和（https://leetcode.com/problems/sum-of-subsequence-widths/description/）前后缀枚举最大值与最小值计数
-1191. K 次串联后最大子数组之和（https://leetcode.com/problems/k-concatenation-maximum-sum/description/）经典前后缀最大连续子序列和
-1074. 元素和为目标值的子矩阵数量（https://leetcode.com/problems/number-of-submatrices-that-sum-to-target/description/）经典二维前缀和枚举上下边计算目标子矩阵的数量
-1139. 最大的以 1 为边界的正方形（https://leetcode.com/problems/largest-1-bordered-square/）经典利用二位前缀和计数枚举边长
-2281. 巫师的总力量和（https://leetcode.com/problems/sum-of-total-strength-of-wizards/description/）单调栈计数与前缀和的前缀和计算
-995. K 连续位的最小翻转次数（https://leetcode.com/problems/minimum-number-of-k-consecutive-bit-flips/description/）贪心加差分数组模拟
-986. 区间列表的交集（https://leetcode.com/problems/interval-list-intersections/description/）离散化差分，双指针归并
-1744. 你能在你最喜欢的那天吃到你最喜欢的糖果吗？（https://leetcode.com/problems/can-you-eat-your-favorite-candy-on-your-favorite-day/description/）前缀和贪心模拟
-1703. 得到连续 K 个 1 的最少相邻交换次数（https://leetcode.com/problems/minimum-adjacent-swaps-for-k-consecutive-ones/）前缀和加中位数贪心，同1520E
-2167. 移除所有载有违禁货物车厢所需的最少时间（https://leetcode.com/problems/minimum-time-to-remove-all-cars-containing-illegal-goods/）经典公式变换进行前缀和枚举
+===================================LeetCode===================================
+152（https://leetcode.com/problems/maximum-product-subarray/）前缀最大最小乘积，计算最大连续子数组乘积
+598（https://leetcode.com/problems/range-addition-ii/）二维差分
+2281（https://leetcode.com/problems/sum-of-total-strength-of-wizards/）枚举当前元素作为最小值的子数组和并使用前缀和的前缀和计算
+2251（https://leetcode.com/problems/number-of-flowers-in-full-bloom/）离散化差分数组
+2132（https://leetcode.com/problems/stamping-the-grid/）用前缀和枚举可行的邮票左上端点，然后查看空白格点左上方是否有可行的邮票点，也可以使用经典的二维差分滚动模拟覆盖进行解决
+1229（https://leetcode.com/problems/meeting-scheduler/）离散化差分数组
+6292（https://leetcode.com/problems/increment-submatrices-by-one/)二维差分前缀和
+2565（https://leetcode.com/problems/subsequence-with-the-minimum-score/）使用前后缀指针枚举匹配最长前后缀
+644（https://leetcode.com/problems/maximum-average-subarray-ii/）前缀和加二分计算不短于k的子数组最大平均值
+1292（https://leetcode.com/problems/maximum-side-length-of-a-square-with-sum-less-than-or-equal-to-threshold/）经典O(mn)复杂度枚举
+1674（https://leetcode.com/problems/minimum-moves-to-make-array-complementary/）经典差分数组作用域计数
+1714（https://leetcode.com/problems/sum-of-special-evenly-spaced-elements-in-array/）经典分组加前缀和
+1738（https://leetcode.com/problems/find-kth-largest-xor-coordinate-value/）经典二维前缀异或和
+1895（https://leetcode.com/problems/largest-magic-square/）二维前缀和枚举优化
+1943（https://leetcode.com/problems/describe-the-painting/）经典离散化差分
+2021（https://leetcode.com/problems/brightest-position-on-street/）经典离散化差分
+837（https://leetcode.com/problems/new-21-game/description/）使用差分数组模拟进行概率计算
+891（https://leetcode.com/problems/sum-of-subsequence-widths/description/）前后缀枚举最大值与最小值计数
+1191（https://leetcode.com/problems/k-concatenation-maximum-sum/description/）经典前后缀最大连续子序列和
+1074（https://leetcode.com/problems/number-of-submatrices-that-sum-to-target/description/）经典二维前缀和枚举上下边计算目标子矩阵的数量
+1139（https://leetcode.com/problems/largest-1-bordered-square/）经典利用二位前缀和计数枚举边长
+2281（https://leetcode.com/problems/sum-of-total-strength-of-wizards/description/）单调栈计数与前缀和的前缀和计算
+995（https://leetcode.com/problems/minimum-number-of-k-consecutive-bit-flips/description/）贪心加差分数组模拟
+986（https://leetcode.com/problems/interval-list-intersections/description/）离散化差分，双指针归并
+1744（https://leetcode.com/problems/can-you-eat-your-favorite-candy-on-your-favorite-day/description/）前缀和贪心模拟
+1703（https://leetcode.com/problems/minimum-adjacent-swaps-for-k-consecutive-ones/）前缀和加中位数贪心，同1520E
+2167（https://leetcode.com/problems/minimum-time-to-remove-all-cars-containing-illegal-goods/）经典公式变换进行前缀和枚举
 
-===================================洛谷===================================
-P8772 [蓝桥杯 2022 省 A] 求和（https://www.luogu.com.cn/record/list?user=739032&status=12&page=15）后缀和计算
-P2367 语文成绩（https://www.luogu.com.cn/problem/P2367）差分数组记录区间增减变化，最后还原计算最小值
-P2280 [HNOI2003]激光炸弹（https://www.luogu.com.cn/problem/P2280）二维前缀和
-P3138 [USACO16FEB]Load Balancing S（https://www.luogu.com.cn/problem/P3138）二维前缀和
-P3406 海底高铁（https://www.luogu.com.cn/problem/P3406）差分数组计算每段路经过次数，再贪心新选择买卡还是单刷
-P3655 不成熟的梦想家 (未熟 DREAMER)（https://www.luogu.com.cn/problem/P3655）差分数组变形模拟
-P5542 [USACO19FEB]Painting The Barn S（https://www.luogu.com.cn/problem/P5542）二维差分，需要适配覆盖区间
-P5686 [CSP-S2019 江西] 和积和（https://www.luogu.com.cn/problem/P5686）前缀和的前缀和
-P6180 [USACO15DEC]Breed Counting S（https://www.luogu.com.cn/problem/P6180）前缀和计数
-P6481 [COCI2006-2007] FIREFLY（https://www.luogu.com.cn/problem/P6481）区间更新后进行所有前缀查询
-P2956 [USACO09OCT]The Robot Plow G（https://www.luogu.com.cn/problem/P2956）二维差分前缀和
-P3397 地毯（https://www.luogu.com.cn/problem/P3397）二维差分前缀和
-P1869 愚蠢的组合数（https://www.luogu.com.cn/problem/P1869）使用前缀和记录1-N的因子2的个数继而计算C(N,K)的奇偶性
-P7667 [JOI2018] Art Exhibition（https://www.luogu.com.cn/problem/P7667）公式变换，排序后使用前缀和
-P2671 [NOIP2015 普及组] 求和（https://www.luogu.com.cn/problem/P2671）前缀加和与前缀计数枚举，分奇偶性讨论
-P1719 最大加权矩形（https://www.luogu.com.cn/problem/P1719）求最大子矩阵和，经典枚举矩阵上下边界并使用前缀和计算
-P2882 [USACO07MAR]Face The Right Way G（https://www.luogu.com.cn/problem/P2882）贪心枚举加差分验证
-P4552 [Poetize6] IncDec Sequence（https://www.luogu.com.cn/problem/P4552）差分数组经典题，明晰差分本质
-P1627 [CQOI2009] 中位数（https://www.luogu.com.cn/problem/P1627）经典前后缀中位数大小值差值计数
-P1895 数字序列（https://www.luogu.com.cn/problem/P1895）前缀和计数加二分查找，最多不超多10**5
-P1982 [NOIP2013 普及组] 小朋友的数字（https://www.luogu.com.cn/problem/P1982）前缀最大连续子段和与前缀最大值
-P2070 刷墙（https://www.luogu.com.cn/problem/P2070）哈希离散化差分数组计数
-P2190 小Z的车厢（https://www.luogu.com.cn/problem/P2190）环形数组差分
-P2352 队爷的新书（https://www.luogu.com.cn/problem/P2352）离散化差分
-P2363 马农（https://www.luogu.com.cn/problem/P2363）二维前缀和与枚举
-P2706 巧克力（https://www.luogu.com.cn/problem/P2706）不包含障碍点的最大子矩阵和
-P2879 [USACO07JAN] Tallest Cow S（https://www.luogu.com.cn/problem/P2879）差分数组经典题与贪心
-P3028 [USACO10OCT]Soda Machine G（https://www.luogu.com.cn/problem/P3028）离散化差分计算覆盖区间最多的点
-P4030 [Code+#2]可做题1（https://www.luogu.com.cn/problem/P4030）脑筋急转弯加二维前缀和计算
-P4440 [COCI2017-2018#3] Programiranje（https://www.luogu.com.cn/problem/P4440）典型前缀和计数
-P4623 [COCI2012-2013#6] BUREK（https://www.luogu.com.cn/problem/P4623）离散化差分计数
-P6032 选择客栈 加强版（https://www.luogu.com.cn/problem/P6032）经典前后缀计数
-P6070 『MdOI R1』Decrease（https://www.luogu.com.cn/problem/P6070）经典二维差分贪心修改实时维护差分与计算前缀和即矩阵最新值
-P6278 [USACO20OPEN]Haircut G（https://www.luogu.com.cn/problem/P6278）经典逆序对作用域与差分前缀和计算
-P6537 [COCI2013-2014#1] RATAR（https://www.luogu.com.cn/problem/P6537）预处理前缀和加枚举
-P6877 [JOI 2020 Final] 長いだけのネクタイ（https://www.luogu.com.cn/problem/P6877）排序贪心前后缀 DP 枚举
-P6878 [JOI 2020 Final] JJOOII 2（https://www.luogu.com.cn/problem/P6878）前后缀枚举
-P8081 [COCI2011-2012#4] ZIMA（https://www.luogu.com.cn/problem/P8081）差分计数计算作用域
-P8033 [COCI2015-2016#7] Prozor（https://www.luogu.com.cn/problem/P8033）二维前缀和计数
-P7992 [USACO21DEC] Convoluted Intervals S（https://www.luogu.com.cn/problem/P7992）经典桶计数与作用域差分计数
-P7948 [✗✓OI R1] 前方之风（https://www.luogu.com.cn/problem/P7948）排序后预处理前后缀信息指针查询
-P8343 [COCI2021-2022#6] Zemljište（https://www.luogu.com.cn/problem/P8343）经典子矩阵前缀和枚举与双指针
-P8551 Bassline（https://www.luogu.com.cn/problem/P8551）差分数组经典灵活应用
-P8666 [蓝桥杯 2018 省 A] 三体攻击（https://www.luogu.com.cn/problem/P8666）二分加三维差分经典题，滚动模拟覆盖计算
-P8715 [蓝桥杯 2020 省 AB2] 子串分值（https://www.luogu.com.cn/problem/P8715）前后缀贡献计数
-P8783 [蓝桥杯 2022 省 B] 统计子矩阵（https://www.luogu.com.cn/problem/P8783）经典O(n^3)与双指针枚举计算子矩阵个数
+===================================LuoGu==================================
+8772（https://www.luogu.com.cn/record/list?user=739032&status=12&page=15）后缀和计算
+2367（https://www.luogu.com.cn/problem/P2367）差分数组记录区间增减变化，最后还原计算最小值
+2280（https://www.luogu.com.cn/problem/P2280）二维前缀和
+3138（https://www.luogu.com.cn/problem/P3138）二维前缀和
+3406（https://www.luogu.com.cn/problem/P3406）差分数组计算每段路经过次数，再贪心新选择买卡还是单刷
+3655（https://www.luogu.com.cn/problem/P3655）差分数组变形模拟
+5542（https://www.luogu.com.cn/problem/P5542）二维差分，需要适配覆盖区间
+5686（https://www.luogu.com.cn/problem/P5686）前缀和的前缀和
+6180（https://www.luogu.com.cn/problem/P6180）前缀和计数
+6481（https://www.luogu.com.cn/problem/P6481）区间更新后进行所有前缀查询
+2956（https://www.luogu.com.cn/problem/P2956）二维差分前缀和
+3397（https://www.luogu.com.cn/problem/P3397）二维差分前缀和
+1869（https://www.luogu.com.cn/problem/P1869）使用前缀和记录1-N的因子2的个数继而计算C(N,K)的奇偶性
+7667（https://www.luogu.com.cn/problem/P7667）公式变换，排序后使用前缀和
+2671（https://www.luogu.com.cn/problem/P2671）前缀加和与前缀计数枚举，分奇偶性讨论
+1719（https://www.luogu.com.cn/problem/P1719）求最大子矩阵和，经典枚举矩阵上下边界并使用前缀和计算
+2882（https://www.luogu.com.cn/problem/P2882）贪心枚举加差分验证
+4552（https://www.luogu.com.cn/problem/P4552）差分数组经典题，明晰差分本质
+1627（https://www.luogu.com.cn/problem/P1627）经典前后缀中位数大小值差值计数
+1895（https://www.luogu.com.cn/problem/P1895）前缀和计数加二分查找，最多不超多10**5
+1982（https://www.luogu.com.cn/problem/P1982）前缀最大连续子段和与前缀最大值
+2070（https://www.luogu.com.cn/problem/P2070）哈希离散化差分数组计数
+2190（https://www.luogu.com.cn/problem/P2190）环形数组差分
+2352（https://www.luogu.com.cn/problem/P2352）离散化差分
+2363（https://www.luogu.com.cn/problem/P2363）二维前缀和与枚举
+2706（https://www.luogu.com.cn/problem/P2706）不包含障碍点的最大子矩阵和
+2879（https://www.luogu.com.cn/problem/P2879）差分数组经典题与贪心
+3028（https://www.luogu.com.cn/problem/P3028）离散化差分计算覆盖区间最多的点
+4030（https://www.luogu.com.cn/problem/P4030）脑筋急转弯加二维前缀和计算
+4440（https://www.luogu.com.cn/problem/P4440）典型前缀和计数
+4623（https://www.luogu.com.cn/problem/P4623）离散化差分计数
+6032（https://www.luogu.com.cn/problem/P6032）经典前后缀计数
+6070（https://www.luogu.com.cn/problem/P6070）经典二维差分贪心修改实时维护差分与计算前缀和即矩阵最新值
+6278（https://www.luogu.com.cn/problem/P6278）经典逆序对作用域与差分前缀和计算
+6537（https://www.luogu.com.cn/problem/P6537）预处理前缀和加枚举
+6877（https://www.luogu.com.cn/problem/P6877）排序贪心前后缀 DP 枚举
+6878（https://www.luogu.com.cn/problem/P6878）前后缀枚举
+8081（https://www.luogu.com.cn/problem/P8081）差分计数计算作用域
+8033（https://www.luogu.com.cn/problem/P8033）二维前缀和计数
+7992（https://www.luogu.com.cn/problem/P7992）经典桶计数与作用域差分计数
+7948（https://www.luogu.com.cn/problem/P7948）排序后预处理前后缀信息指针查询
+8343（https://www.luogu.com.cn/problem/P8343）经典子矩阵前缀和枚举与双指针
+8551（https://www.luogu.com.cn/problem/P8551）差分数组经典灵活应用
+8666（https://www.luogu.com.cn/problem/P8666）二分加三维差分经典题，滚动模拟覆盖计算
+8715（https://www.luogu.com.cn/problem/P8715）前后缀贡献计数
+8783（https://www.luogu.com.cn/problem/P8783）经典O(n^3)与双指针枚举计算子矩阵个数
 
 ================================CodeForces================================
 C. Wonderful Randomized Sum（https://codeforces.com/problemset/problem/33/C）前后缀最大变换和与分割点枚举，经典类型题目
@@ -95,13 +95,13 @@ D. Absolute Sorting（https://codeforces.com/contest/1772/problem/D）离散差�
 D - AtCoder Express 2（https://atcoder.jp/contests/abc106/tasks/abc106_d）前缀和优化DP计数
 
 ================================AcWing===================================
-99. 激光炸弹（https://www.acwing.com/problem/content/description/101/）二维前缀和
-100. 增减序列（https://www.acwing.com/problem/content/102/）差分数组经典题目，明晰本质
-101. 最高的牛（https://www.acwing.com/problem/content/103/）查分数组，贪心得出结论
-102. 最佳牛围栏（https://www.acwing.com/problem/content/104/）前缀和加二分计算不短于k的子数组最大平均值
-121. 赶牛入圈（https://www.acwing.com/problem/content/description/123/）经典离散化前缀和，双指针加二分
-126. 最大的和（https://www.acwing.com/problem/content/128/）经典最大子矩形和
-3993. 石子游戏（https://www.acwing.com/problem/content/description/3996/）后缀和值域思维题
+99（https://www.acwing.com/problem/content/description/101/）二维前缀和
+100（https://www.acwing.com/problem/content/102/）差分数组经典题目，明晰本质
+101（https://www.acwing.com/problem/content/103/）查分数组，贪心得出结论
+102（https://www.acwing.com/problem/content/104/）前缀和加二分计算不短于k的子数组最大平均值
+121（https://www.acwing.com/problem/content/description/123/）经典离散化前缀和，双指针加二分
+126（https://www.acwing.com/problem/content/128/）经典最大子矩形和
+3993（https://www.acwing.com/problem/content/description/3996/）后缀和值域思维题
 
 参考：OI WiKi（xx）
 """

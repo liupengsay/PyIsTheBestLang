@@ -3,22 +3,22 @@
 功能：用来处理字符串的回文相关问题，可以有暴力、DP、中心扩展法、马拉车
 题目：
 
-===================================力扣===================================
-5. 最长回文子串（https://leetcode.com/problems/longest-palindromic-substring/）计算字符串的最长回文连续子串
-132. 分割回文串 II（https://leetcode.com/problems/palindrome-partitioning-ii/）经典线性 DP 与马拉车判断以每个位置为结尾的回文串
-214. 最短回文串（https://leetcode.com/problems/shortest-palindrome/）计算字符串前缀最长回文子串
-1960. 两个回文子字符串长度的最大乘积（https://leetcode.com/problems/maximum-product-of-the-length-of-two-palindromic-substrings/）利用马拉车求解每个位置前后最长回文子串
-2472. 不重叠回文子字符串的最大数目（https://leetcode.com/problems/maximum-number-of-non-overlapping-palindrome-substrings/）预处理线性回文子串 DP 优化外加结果计算线性 DP 也可以使用马拉车回文串获取回文信息
-1745. 分割回文串 IV（https://leetcode.com/problems/palindrome-partitioning-iv/description/）经典矩阵DP判断是否为回文子串，或者使用马拉车然后枚举
+===================================LeetCode===================================
+5（https://leetcode.com/problems/longest-palindromic-substring/）计算字符串的最长回文连续子串
+132（https://leetcode.com/problems/palindrome-partitioning-ii/）经典线性 DP 与马拉车判断以每个位置为结尾的回文串
+214（https://leetcode.com/problems/shortest-palindrome/）计算字符串前缀最长回文子串
+1960（https://leetcode.com/problems/maximum-product-of-the-length-of-two-palindromic-substrings/）利用马拉车求解每个位置前后最长回文子串
+2472（https://leetcode.com/problems/maximum-number-of-non-overlapping-palindrome-substrings/）预处理线性回文子串 DP 优化外加结果计算线性 DP 也可以使用马拉车回文串获取回文信息
+1745（https://leetcode.com/problems/palindrome-partitioning-iv/description/）经典矩阵DP判断是否为回文子串，或者使用马拉车然后枚举
 
-===================================洛谷===================================
-P4555 最长双回文串（https://www.luogu.com.cn/problem/P4555）计算以当前索引为开头以及结尾的最长回文子串
-P1210 [USACO1.3]最长的回文 Calf Flac（https://www.luogu.com.cn/problem/P1210）寻找最长的连续回文子串
-P4888 三去矩阵（https://www.luogu.com.cn/problem/P4888）中心扩展法双指针
-P1872 回文串计数（https://www.luogu.com.cn/problem/P1872）回文串对数统计，利用马拉车计算以当前字母开头与结尾的回文串数
-P6297 替换（https://www.luogu.com.cn/problem/P6297）中心扩展法并使用变量维护
+===================================LuoGu==================================
+4555（https://www.luogu.com.cn/problem/P4555）计算以当前索引为开头以及结尾的最长回文子串
+1210（https://www.luogu.com.cn/problem/P1210）寻找最长的连续回文子串
+4888（https://www.luogu.com.cn/problem/P4888）中心扩展法双指针
+1872（https://www.luogu.com.cn/problem/P1872）回文串对数统计，利用马拉车计算以当前字母开头与结尾的回文串数
+6297（https://www.luogu.com.cn/problem/P6297）中心扩展法并使用变量维护
 
-139. 回文子串的最大长度（https://www.acwing.com/problem/content/141/）马拉车计算最长回文子串长度，也可使用二分查找加哈希
+139（https://www.acwing.com/problem/content/141/）马拉车计算最长回文子串长度，也可使用二分查找加哈希
 
 ===================================LibraryChecker===================================
 1 Enumerate Palindromes（https://judge.yosupo.jp/problem/enumerate_palindromes）

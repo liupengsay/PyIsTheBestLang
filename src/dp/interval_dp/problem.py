@@ -3,45 +3,45 @@
 功能：前缀和优化区间DP（需要在状态转移的时候更新代价距离）、预处理区间DP（需要预处理一个DP再计算最终DP）
 题目：
 
-===================================力扣===================================
-375. 猜数字大小 II（https://leetcode.com/problems/guess-number-higher-or-lower-ii/）经典区间DP
-1130. 叶值的最小代价生成树（https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/）经典单调栈也可以使用区间DP
+===================================LeetCode===================================
+375（https://leetcode.com/problems/guess-number-higher-or-lower-ii/）经典区间DP
+1130（https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/）经典单调栈也可以使用区间DP
 
-1039. 多边形三角剖分的最低得分（https://leetcode.com/problems/minimum-score-triangulation-of-polygon/）经典环形数组区间 DP
-2472. 不重叠回文子字符串的最大数目（https://leetcode.com/problems/maximum-number-of-non-overlapping-palindrome-substrings/）预处理线性回文子串 DP 优化外加结果计算线性 DP 也可以使用马拉车回文串获取回文信息
-2430. 对字母串可执行的最大删除数（https://leetcode.com/problems/maximum-deletions-on-a-string/）最长公共前缀DP加线性DP
-1547. 切棍子的最小成本（https://leetcode.com/problems/minimum-cost-to-cut-a-stick/）区间DP模拟
-1278. 分割回文串 III（https://leetcode.com/problems/palindrome-partitioning-iii/）经典预处理双重区间DP进行计算
-1690. 石子游戏 VII（https://leetcode.com/problems/stone-game-vii/description/）经典区间DP
-1312. 让字符串成为回文串的最少插入次数（https://leetcode.com/problems/minimum-insertion-steps-to-make-a-string-palindrome/）经典区间DP，最长回文子序列
+1039（https://leetcode.com/problems/minimum-score-triangulation-of-polygon/）经典环形数组区间 DP
+2472（https://leetcode.com/problems/maximum-number-of-non-overlapping-palindrome-substrings/）预处理线性回文子串 DP 优化外加结果计算线性 DP 也可以使用马拉车回文串获取回文信息
+2430（https://leetcode.com/problems/maximum-deletions-on-a-string/）最长公共前缀DP加线性DP
+1547（https://leetcode.com/problems/minimum-cost-to-cut-a-stick/）区间DP模拟
+1278（https://leetcode.com/problems/palindrome-partitioning-iii/）经典预处理双重区间DP进行计算
+1690（https://leetcode.com/problems/stone-game-vii/description/）经典区间DP
+1312（https://leetcode.com/problems/minimum-insertion-steps-to-make-a-string-palindrome/）经典区间DP，最长回文子序列
 
-===================================洛谷===================================
-P1521 求逆序对（https://www.luogu.com.cn/problem/P1521）使用归并排序计算移动次数，也可以使用倍增的树状数组
-P1775 石子合并（弱化版）（https://www.luogu.com.cn/problem/P1775）典型区间DP和前缀和预处理
-P2426 删数（https://www.luogu.com.cn/problem/P2426）典型区间DP
-P2690 [USACO04NOV]Apple Catching G（https://www.luogu.com.cn/problem/P2690）区间DP记忆化搜索模拟
-P1435 [IOI2000] 回文字串（https://www.luogu.com.cn/problem/P1435）典型区间DP求最长不连续回文子序列
-P1388 算式（https://www.luogu.com.cn/problem/P1388）回溯枚举符号组合，再使用区间DP进行最大值求解
-P1103 书本整理（https://www.luogu.com.cn/problem/P1103）三维DP
-P2858 [USACO06FEB]Treats for the Cows G/S（https://www.luogu.com.cn/problem/P2858）典型区间DP
-P1880 石子合并（https://www.luogu.com.cn/problem/P1880）将数组复制成两遍进行区间DP
-P3205 [HNOI2010]合唱队（https://www.luogu.com.cn/problem/P3205）区间DP使用滚动数组
-P1880 [NOI1995] 石子合并（https://www.luogu.com.cn/problem/P1880）环形数组区间DP合并求最大值最小值
-P1040 [NOIP2003 提高组] 加分二叉树（https://www.luogu.com.cn/problem/P1040）区间DP与路径还原
-P1043 [NOIP2003 普及组] 数字游戏（https://www.luogu.com.cn/problem/P1043）环形区间DP
-P1430 序列取数（https://www.luogu.com.cn/problem/P1430）区间DP加前缀数组优化
-P2308 添加括号（https://www.luogu.com.cn/problem/P2308）经典区间DP，并使用递归方式反解括号添加方式以及每一步的和
-P2734 [USACO3.3]游戏 A Game（https://www.luogu.com.cn/problem/P2734）前缀和加区间DP
-P3004 [USACO10DEC]Treasure Chest S（https://www.luogu.com.cn/problem/P3004）简单区间 DP 
-P3205 [HNOI2010]合唱队（https://www.luogu.com.cn/problem/P3205）区间 DP 使用滚动数组优化
-P4170 [CQOI2007]涂色（https://www.luogu.com.cn/problem/P4170）经典区间 DP 注意转移方程计算
+===================================LuoGu==================================
+1521（https://www.luogu.com.cn/problem/P1521）使用归并排序计算移动次数，也可以使用倍增的树状数组
+1775（https://www.luogu.com.cn/problem/P1775）典型区间DP和前缀和预处理
+2426（https://www.luogu.com.cn/problem/P2426）典型区间DP
+2690（https://www.luogu.com.cn/problem/P2690）区间DP记忆化搜索模拟
+1435（https://www.luogu.com.cn/problem/P1435）典型区间DP求最长不连续回文子序列
+1388（https://www.luogu.com.cn/problem/P1388）回溯枚举符号组合，再使用区间DP进行最大值求解
+1103（https://www.luogu.com.cn/problem/P1103）三维DP
+2858（https://www.luogu.com.cn/problem/P2858）典型区间DP
+1880（https://www.luogu.com.cn/problem/P1880）将数组复制成两遍进行区间DP
+3205（https://www.luogu.com.cn/problem/P3205）区间DP使用滚动数组
+1880（https://www.luogu.com.cn/problem/P1880）环形数组区间DP合并求最大值最小值
+1040（https://www.luogu.com.cn/problem/P1040）区间DP与路径还原
+1043（https://www.luogu.com.cn/problem/P1043）环形区间DP
+1430（https://www.luogu.com.cn/problem/P1430）区间DP加前缀数组优化
+2308（https://www.luogu.com.cn/problem/P2308）经典区间DP，并使用递归方式反解括号添加方式以及每一步的和
+2734（https://www.luogu.com.cn/problem/P2734）前缀和加区间DP
+3004（https://www.luogu.com.cn/problem/P3004）简单区间 DP 
+3205（https://www.luogu.com.cn/problem/P3205）区间 DP 使用滚动数组优化
+4170（https://www.luogu.com.cn/problem/P4170）经典区间 DP 注意转移方程计算
 
 ================================CodeForces================================
 C. The Sports Festival（https://codeforces.com/problemset/problem/1509/C）转换为区间DP进行求解
 B. Zuma（https://codeforces.com/problemset/problem/607/B）区间DP，经典通过消除回文子序列删除整个数组的最少次数
 
 ================================AcWing================================
-3996. 涂色（https://www.acwing.com/problem/content/3999/）经典区间 DP 最长回文子序列变形
+3996（https://www.acwing.com/problem/content/3999/）经典区间 DP 最长回文子序列变形
 
 参考：OI WiKi（xx）
 """

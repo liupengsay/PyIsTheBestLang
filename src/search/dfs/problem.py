@@ -6,46 +6,46 @@
 
 参考：基于欧拉序的维护树上距离的在线算法（https://zhuanlan.zhihu.com/p/84236967）
 
-===================================力扣===================================
-473. 火柴拼正方形（https://leetcode.com/problems/matchsticks-to-square/）暴力搜索木棍拼接组成正方形
-301. 删除无效的括号（https://leetcode.com/problems/remove-invalid-parentheses/）深搜回溯与剪枝
-2581. 统计可能的树根数目（https://leetcode.com/contest/biweekly-contest-99/problems/count-number-of-possible-root-nodes/）深搜序加差分计数
-1059. 从始点到终点的所有路径（https://leetcode.com/problems/all-paths-from-source-lead-to-destination/）记忆化搜索DFS深搜且回溯
-1718. 构建字典序最大的可行序列（https://leetcode.com/problems/construct-the-lexicographically-largest-valid-sequence/）经典回溯
-2065. 最大化一张图中的路径价值（https://leetcode.com/problems/maximum-path-quality-of-a-graph/）经典回溯，正解使用Dijkstra跑最短路剪枝
-2322. 从树中删除边的最小分数（https://leetcode.com/problems/minimum-score-after-removals-on-a-tree/）使用深搜序dfs序枚举
-1240. 铺瓷砖（https://leetcode.com/problems/tiling-a-rectangle-with-the-fewest-squares/）经典DFS回溯与剪枝
-1239. 串联字符串的最大长度（https://leetcode.com/problems/maximum-length-of-a-concatenated-string-with-unique-characters/）经典DFS回溯进行二进制枚举
-1080. 根到叶路径上的不足节点（https://leetcode.com/problems/insufficient-nodes-in-root-to-leaf-paths/description/）经典dfs自上而下后又自下而上
-2056. 棋盘上有效移动组合的数目（https://leetcode.com/problems/number-of-valid-move-combinations-on-chessboard/description/）经典回溯枚举
-100041. 可以到达每一个节点的最少边反转次数（https://www.acwing.com/problem/content/description/4384/）迭代法实现树形换根DP计算，或者一遍DFS或者dfs序加差分
-2458. 移除子树后的二叉树高度（https://leetcode.com/contest/weekly-contest-317/problems/height-of-binary-tree-after-subtree-removal-queries/）dfs序模板题目
+===================================LeetCode===================================
+473（https://leetcode.com/problems/matchsticks-to-square/）暴力搜索木棍拼接组成正方形
+301（https://leetcode.com/problems/remove-invalid-parentheses/）深搜回溯与剪枝
+2581（https://leetcode.com/contest/biweekly-contest-99/problems/count-number-of-possible-root-nodes/）深搜序加差分计数
+1059（https://leetcode.com/problems/all-paths-from-source-lead-to-destination/）记忆化搜索DFS深搜且回溯
+1718（https://leetcode.com/problems/construct-the-lexicographically-largest-valid-sequence/）经典回溯
+2065（https://leetcode.com/problems/maximum-path-quality-of-a-graph/）经典回溯，正解使用Dijkstra跑最短路剪枝
+2322（https://leetcode.com/problems/minimum-score-after-removals-on-a-tree/）使用深搜序dfs序枚举
+1240（https://leetcode.com/problems/tiling-a-rectangle-with-the-fewest-squares/）经典DFS回溯与剪枝
+1239（https://leetcode.com/problems/maximum-length-of-a-concatenated-string-with-unique-characters/）经典DFS回溯进行二进制枚举
+1080（https://leetcode.com/problems/insufficient-nodes-in-root-to-leaf-paths/description/）经典dfs自上而下后又自下而上
+2056（https://leetcode.com/problems/number-of-valid-move-combinations-on-chessboard/description/）经典回溯枚举
+100041（https://www.acwing.com/problem/content/description/4384/）迭代法实现树形换根DP计算，或者一遍DFS或者dfs序加差分
+2458（https://leetcode.com/contest/weekly-contest-317/problems/height-of-binary-tree-after-subtree-removal-queries/）dfs序模板题目
 
-===================================洛谷===================================
-P2383 狗哥玩木棒（https://www.luogu.com.cn/problem/P2383）暴力搜索木棍拼接组成正方形
-P1120 小木棍（https://www.luogu.com.cn/problem/P1120）把数组分成和相等的子数组
-P1692 部落卫队（https://www.luogu.com.cn/problem/P1692）暴力搜索枚举字典序最大可行的连通块
-P1612 [yLOI2018] 树上的链（https://www.luogu.com.cn/problem/P1612）使用dfs记录路径的前缀和并使用二分确定最长链条
-P1475 [USACO2.3]控制公司 Controlling Companies（https://www.luogu.com.cn/problem/P1475）深搜确定可以控制的公司对
-P2080 增进感情（https://www.luogu.com.cn/problem/P2080）深搜回溯与剪枝
-P2090 数字对（https://www.luogu.com.cn/problem/P2090）深搜贪心回溯剪枝与辗转相减法
-P2420 让我们异或吧（https://www.luogu.com.cn/problem/P2420）脑筋急转弯使用深搜确定到根路径的异或结果以及异或特性获得任意两点之间最短路的异或结果
-P1473 [USACO2.3]零的数列 Zero Sum（https://www.luogu.com.cn/problem/P1473）深搜枚举符号数
-P1461 [USACO2.1]海明码 Hamming Codes（https://www.luogu.com.cn/problem/P1461）汉明距离计算与深搜回溯枚举
-P1394 山上的国度（https://www.luogu.com.cn/problem/P1394）深搜进行可达性确认
-P1180 驾车旅游（https://www.luogu.com.cn/problem/P1180）深搜进行模拟
-P1118 [USACO06FEB]Backward Digit Sums G/S（https://www.luogu.com.cn/problem/P1118）使用单位矩阵模拟计算杨辉三角的系数，再进行暴搜寻找最小字典序结果
-P3252 [JLOI2012]树（https://www.luogu.com.cn/problem/P3252）深搜回溯加前缀和哈希
-P4913 【深基16.例3】二叉树深度（https://www.luogu.com.cn/problem/P4913）深搜确定深度
-P5118 [USACO18DEC]Back and Forth B（https://www.luogu.com.cn/problem/P5118）深搜回溯与哈希记录进行模拟
-P5197 [USACO19JAN]Grass Planting S（https://www.luogu.com.cn/problem/P5197）树形DP模拟与染色法，利用父亲与自己的染色确定儿子们的染色
-P5198 [USACO19JAN]Icy Perimeter S（https://www.luogu.com.cn/problem/P5198）经典计算连通块的周长与面积
-P5318 【深基18.例3】查找文献（https://www.luogu.com.cn/problem/P5318）经典广搜拓扑排序与深搜序生成与获取
-P6691 选择题（https://www.luogu.com.cn/problem/P6691）染色法，进行二分图可行性方案计数与最大最小染色
-P7370 [COCI2018-2019#4] Wand（https://www.luogu.com.cn/problem/P7370）所有可能的祖先节点，注意特别情况没有任何祖先节点则自身可达
-P1036 [NOIP2002 普及组] 选数（https://www.luogu.com.cn/problem/P1036）回溯剪枝
-P8578 [CoE R5] So What Do We Do Now?（https://www.luogu.com.cn/problem/P8578）贪心使用深搜序
-P8838 [传智杯 #3 决赛] 面试（https://www.luogu.com.cn/problem/P8838）深度优先搜索与回溯
+===================================LuoGu==================================
+2383（https://www.luogu.com.cn/problem/P2383）暴力搜索木棍拼接组成正方形
+1120（https://www.luogu.com.cn/problem/P1120）把数组分成和相等的子数组
+1692（https://www.luogu.com.cn/problem/P1692）暴力搜索枚举字典序最大可行的连通块
+1612（https://www.luogu.com.cn/problem/P1612）使用dfs记录路径的前缀和并使用二分确定最长链条
+1475（https://www.luogu.com.cn/problem/P1475）深搜确定可以控制的公司对
+2080（https://www.luogu.com.cn/problem/P2080）深搜回溯与剪枝
+2090（https://www.luogu.com.cn/problem/P2090）深搜贪心回溯剪枝与辗转相减法
+2420（https://www.luogu.com.cn/problem/P2420）脑筋急转弯使用深搜确定到根路径的异或结果以及异或特性获得任意两点之间最短路的异或结果
+1473（https://www.luogu.com.cn/problem/P1473）深搜枚举符号数
+1461（https://www.luogu.com.cn/problem/P1461）汉明距离计算与深搜回溯枚举
+1394（https://www.luogu.com.cn/problem/P1394）深搜进行可达性确认
+1180（https://www.luogu.com.cn/problem/P1180）深搜进行模拟
+1118（https://www.luogu.com.cn/problem/P1118）使用单位矩阵模拟计算杨辉三角的系数，再进行暴搜寻找最小字典序结果
+3252（https://www.luogu.com.cn/problem/P3252）深搜回溯加前缀和哈希
+4913（https://www.luogu.com.cn/problem/P4913）深搜确定深度
+5118（https://www.luogu.com.cn/problem/P5118）深搜回溯与哈希记录进行模拟
+5197（https://www.luogu.com.cn/problem/P5197）树形DP模拟与染色法，利用父亲与自己的染色确定儿子们的染色
+5198（https://www.luogu.com.cn/problem/P5198）经典计算连通块的周长与面积
+5318（https://www.luogu.com.cn/problem/P5318）经典广搜拓扑排序与深搜序生成与获取
+6691（https://www.luogu.com.cn/problem/P6691）染色法，进行二分图可行性方案计数与最大最小染色
+7370（https://www.luogu.com.cn/problem/P7370）所有可能的祖先节点，注意特别情况没有任何祖先节点则自身可达
+1036（https://www.luogu.com.cn/problem/P1036）回溯剪枝
+8578（https://www.luogu.com.cn/problem/P8578）贪心使用深搜序
+8838（https://www.luogu.com.cn/problem/P8838）深度优先搜索与回溯
 
 
 ================================CodeForces================================
@@ -60,8 +60,8 @@ G. Unusual Entertainment（https://codeforces.com/contest/1899/problem/G）dfs w
 F - Colorful Tree（https://atcoder.jp/contests/abc133/tasks/abc133_f）欧拉序在线查找树上距离，结合二分与前缀和计算变化情况
 
 ================================AcWing================================
-4310. 树的DFS（https://www.acwing.com/problem/content/4313/）经典深搜序模板题
-23. 矩阵中的路径（https://www.acwing.com/problem/content/description/21/）回溯模板题
+4310（https://www.acwing.com/problem/content/4313/）经典深搜序模板题
+23（https://www.acwing.com/problem/content/description/21/）回溯模板题
 
 """
 

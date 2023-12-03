@@ -3,44 +3,44 @@
 功能：用以修改和查询区间的值信息，支持增减、修改，区间和、区间最大值、区间最小值、动态开点线段树（即使用defaultdict而不是数组实现）
 题目：
 
-===================================力扣===================================
-218. 天际线问题（https://leetcode.com/problems/the-skyline-problem/solution/by-liupengsay-isfo/）区间值修改与计算最大值
-2286. 以组为单位订音乐会的门票（https://leetcode.com/problems/booking-concert-tickets-in-groups/）区间值增减与计算区间和、区间最大值、区间最小值
-2407. 最长递增子序列 II（https://leetcode.com/problems/longest-increasing-subsequence-ii/）维护与查询区间最大值，然后进行DP更新
-2179. 统计数组中好三元组数目（https://leetcode.com/problems/count-good-triplets-in-an-array/）维护区间范围内的个数
-2158. 每天绘制新区域的数量（https://leetcode.com/problems/amount-of-new-area-painted-each-day/）线段树维护区间范围的覆盖
-6318. 完成所有任务的最少时间（https://leetcode.com/contest/weekly-contest-336/problems/minimum-time-to-complete-all-tasks/）线段树，贪心加二分
-732. 我的日程安排表 III（https://leetcode.com/problems/my-calendar-iii/）使用defaultdict进行动态开点线段树
-1851. 包含每个查询的最小区间（https://leetcode.com/problems/minimum-interval-to-include-each-query/）区间更新最小值、单点查询，也可以用离线查询与优先队列维护计算
-2213. 由单个字符重复的最长子字符串（https://leetcode.com/problems/longest-substring-of-one-repeating-character/）单点字母更新，最长具有相同字母的连续子数组查询
-2276. 统计区间中的整数数目（https://leetcode.com/problems/count-integers-in-intervals/）动态开点线段树模板题，维护区间并集的长度，也可使用SortedList
-1340. 跳跃游戏 V（https://leetcode.com/problems/jump-game-v/）可以使用线段树DP进行解决
-2569. 更新数组后处理求和查询（https://leetcode.com/problems/handling-sum-queries-after-update/）经典01线段树区间翻转与求和，也可以使用BitSet
-2940. 找到 Alice 和 Bob 可以相遇的建筑（https://leetcode.com/problems/find-building-where-alice-and-bob-can-meet/）可使用线段树二分做，线段树二分模板题
+===================================LeetCode===================================
+218（https://leetcode.com/problems/the-skyline-problem/solution/by-liupengsay-isfo/）区间值修改与计算最大值
+2286（https://leetcode.com/problems/booking-concert-tickets-in-groups/）区间值增减与计算区间和、区间最大值、区间最小值
+2407（https://leetcode.com/problems/longest-increasing-subsequence-ii/）维护与查询区间最大值，然后进行DP更新
+2179（https://leetcode.com/problems/count-good-triplets-in-an-array/）维护区间范围内的个数
+2158（https://leetcode.com/problems/amount-of-new-area-painted-each-day/）线段树维护区间范围的覆盖
+6318（https://leetcode.com/contest/weekly-contest-336/problems/minimum-time-to-complete-all-tasks/）线段树，贪心加二分
+732（https://leetcode.com/problems/my-calendar-iii/）使用defaultdict进行动态开点线段树
+1851（https://leetcode.com/problems/minimum-interval-to-include-each-query/）区间更新最小值、单点查询，也可以用离线查询与优先队列维护计算
+2213（https://leetcode.com/problems/longest-substring-of-one-repeating-character/）单点字母更新，最长具有相同字母的连续子数组查询
+2276（https://leetcode.com/problems/count-integers-in-intervals/）动态开点线段树模板题，维护区间并集的长度，也可使用SortedList
+1340（https://leetcode.com/problems/jump-game-v/）可以使用线段树DP进行解决
+2569（https://leetcode.com/problems/handling-sum-queries-after-update/）经典01线段树区间翻转与求和，也可以使用BitSet
+2940（https://leetcode.com/problems/find-building-where-alice-and-bob-can-meet/）可使用线段树二分做，线段树二分模板题
 
-===================================洛谷===================================
-P2846 [USACO08NOV]Light Switching G（https://www.luogu.com.cn/problem/P2846）线段树统计区间翻转和
-P2574 XOR的艺术（https://www.luogu.com.cn/problem/P2574）线段树统计区间翻转和
-P3130 [USACO15DEC] Counting Haybale P（https://www.luogu.com.cn/problem/P3130）区间增减、区间最小值查询、区间和查询
-P3870 [TJOI2009] 开关（https://www.luogu.com.cn/problem/P3870） 区间值01翻转与区间和查询
-P5057 [CQOI2006] 简单题（https://www.luogu.com.cn/problem/P5057） 区间值01翻转与区间和查询
-P3372 【模板】线段树 1（https://www.luogu.com.cn/problem/P3372）区间值增减与求和
-P2880 [USACO07JAN] Balanced Lineup G（https://www.luogu.com.cn/problem/P2880）查询区间最大值与最小值
-P1904 天际线（https://www.luogu.com.cn/problem/P1904）使用线段树，区间更新最大值并单点查询计算天际线
-P1438 无聊的数列（https://www.luogu.com.cn/problem/P1438）差分数组区间增减加线段树查询区间和
-P1253 扶苏的问题（https://www.luogu.com.cn/problem/P1253）区间增减与区间修改并使用线段树查询区间和
-P3373 【模板】线段树 2（https://www.luogu.com.cn/problem/P3373）区间乘法与区间加法并使用线段树查询区间和
-P4513 小白逛公园（https://www.luogu.com.cn/problem/P4513）单点修改与区间最大连续子数组和查询，可升级为区间修改
-P1471 方差（https://www.luogu.com.cn/problem/P1471）区间增减，维护区间和与区间数字平方的和，以计算均差与方差
-P6492 [COCI2010-2011#6] STEP（https://www.luogu.com.cn/problem/P6492）单点修改，查找最长的01交替字符子串连续区间
-P4145 上帝造题的七分钟 2 / 花神游历各国（https://www.luogu.com.cn/problem/P4145）区间值开方向下取整，区间和查询
-P1558 色板游戏（https://www.luogu.com.cn/problem/P1558）线段树区间值修改，区间或值查询
-P3740 [HAOI2014]贴海报（https://www.luogu.com.cn/problem/P3740）离散化线段树区间修改与单点查询
-P4588 [TJOI2018]数学计算（https://www.luogu.com.cn/problem/P4588）转化为线段树单点值修改与区间乘积取模
-P6627 [省选联考 2020 B 卷] 幸运数字（https://www.luogu.com.cn/problem/P6627）线段树维护和查询区间异或值
-P8081 [COCI2011-2012#4] ZIMA（https://www.luogu.com.cn/problem/P8081）差分计数计算作用域，也可以线段树区间修改、区间加和查询
-P8812 [蓝桥杯 2022 国 C] 打折（https://www.luogu.com.cn/problem/P8812）线段树查询和更新区间最小值
-P8856 [POI2002]火车线路（https://www.luogu.com.cn/problem/solution/P8856）区间增减与区间最大值查询
+===================================LuoGu==================================
+2846（https://www.luogu.com.cn/problem/P2846）线段树统计区间翻转和
+2574（https://www.luogu.com.cn/problem/P2574）线段树统计区间翻转和
+3130（https://www.luogu.com.cn/problem/P3130）区间增减、区间最小值查询、区间和查询
+3870（https://www.luogu.com.cn/problem/P3870） 区间值01翻转与区间和查询
+5057（https://www.luogu.com.cn/problem/P5057） 区间值01翻转与区间和查询
+3372（https://www.luogu.com.cn/problem/P3372）区间值增减与求和
+2880（https://www.luogu.com.cn/problem/P2880）查询区间最大值与最小值
+1904（https://www.luogu.com.cn/problem/P1904）使用线段树，区间更新最大值并单点查询计算天际线
+1438（https://www.luogu.com.cn/problem/P1438）差分数组区间增减加线段树查询区间和
+1253（https://www.luogu.com.cn/problem/P1253）区间增减与区间修改并使用线段树查询区间和
+3373（https://www.luogu.com.cn/problem/P3373）区间乘法与区间加法并使用线段树查询区间和
+4513（https://www.luogu.com.cn/problem/P4513）单点修改与区间最大连续子数组和查询，可升级为区间修改
+1471（https://www.luogu.com.cn/problem/P1471）区间增减，维护区间和与区间数字平方的和，以计算均差与方差
+6492（https://www.luogu.com.cn/problem/P6492）单点修改，查找最长的01交替字符子串连续区间
+4145（https://www.luogu.com.cn/problem/P4145）区间值开方向下取整，区间和查询
+1558（https://www.luogu.com.cn/problem/P1558）线段树区间值修改，区间或值查询
+3740（https://www.luogu.com.cn/problem/P3740）离散化线段树区间修改与单点查询
+4588（https://www.luogu.com.cn/problem/P4588）转化为线段树单点值修改与区间乘积取模
+6627（https://www.luogu.com.cn/problem/P6627）线段树维护和查询区间异或值
+8081（https://www.luogu.com.cn/problem/P8081）差分计数计算作用域，也可以线段树区间修改、区间加和查询
+8812（https://www.luogu.com.cn/problem/P8812）线段树查询和更新区间最小值
+8856（https://www.luogu.com.cn/problem/solution/P8856）区间增减与区间最大值查询
 
 ================================CodeForces================================
 
@@ -56,8 +56,8 @@ F. Wi-Fi（https://codeforces.com/contest/1216/problem/F）经典线段树加DP�
 E. MinimizOR（https://codeforces.com/contest/1665/problem/E）
 
 ================================AcWing================================
-3805. 环形数组（https://www.acwing.com/problem/content/3808/）区间增减与最小值查询
-5037. 区间异或（https://www.acwing.com/problem/content/5040/）同CF242E，使用二十多个01线段树维护区间异或与区间加和
+3805（https://www.acwing.com/problem/content/3808/）区间增减与最小值查询
+5037（https://www.acwing.com/problem/content/5040/）同CF242E，使用二十多个01线段树维护区间异或与区间加和
 
 
 参考：OI WiKi（xx）

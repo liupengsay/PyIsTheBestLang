@@ -3,38 +3,39 @@
 功能：通常用于需要贪心的场景
 题目：
 
-===================================力扣===================================
-630. 课程表 III（https://leetcode.com/problems/course-schedule-iii/）用一个堆延迟选择贪心维护最优
-2454. 下一个更大元素 IV（https://leetcode.com/problems/next-greater-element-iv/）使用两个堆维护下下个更大元素即出队两次时遇见的元素，也可以使用经典的哈希加SortedList
-2402. 会议室 III（https://leetcode.com/problems/meeting-rooms-iii/）使用两个堆模拟进行会议室安排并进行计数
-2386. 找出数组的第 K 大和（https://leetcode.com/problems/find-the-k-sum-of-an-array/）转换思路使用堆维护最大和第 K 次出队的则为目标结果
-2163. 删除元素后和的最小差值（https://leetcode.com/problems/minimum-difference-in-sums-after-removal-of-elements/）预处理前缀后缀最大最小的 K 个数和再进行枚举分割点
-1792. 最大平均通过率（https://leetcode.com/problems/maximum-average-pass-ratio/）贪心依次给增幅最大的班级人数加 1
-295. 数据流的中位数（https://leetcode.com/problems/find-median-from-data-stream/）用两个堆维护中位数
-2542. 最大子序列的分数（https://leetcode.com/problems/maximum-subsequence-score/）贪心排序枚举加堆维护最大的k个数进行计算
-2263. 数组变为有序的最小操作次数（https://leetcode.com/problems/make-array-non-decreasing-or-non-increasing/）大根堆贪心使得序列非降的最小操作次数
-===================================洛谷===================================
-P1168 中位数（https://www.luogu.com.cn/problem/P1168） 用两个堆维护中位数
-P1801 黑匣子（https://www.luogu.com.cn/problem/P1801）用两个堆维护第K小
-P2085 最小函数值（https://www.luogu.com.cn/problem/P2085）用数学加一个堆维护前K小
-P1631 序列合并（https://www.luogu.com.cn/problem/P1631）用一个堆和指针组合维护前K小
-P4053 建筑抢修（https://www.luogu.com.cn/problem/P4053）用一个堆延迟选择贪心维护最优，经典课程表 III
-P1878 舞蹈课（https://www.luogu.com.cn/problem/P1878）用哈希加一个堆进行模拟计算
-P3620 [APIO/CTSC2007] 数据备份（https://www.luogu.com.cn/problem/P3620）贪心思想加二叉堆与双向链表优
-P2168 [NOI2015] 荷马史诗（https://www.luogu.com.cn/problem/P2168）霍夫曼树与二叉堆贪心
-P2278 [HNOI2003]操作系统（https://www.luogu.com.cn/problem/P2278）使用二叉堆模拟CPU占用
-P1717 钓鱼（https://www.luogu.com.cn/problem/P1717）枚举最远到达地点进行二叉堆贪心选取
-P1905 堆放货物（https://www.luogu.com.cn/problem/P1905）二叉堆从大到小贪心摆放
-P2409 Y的积木（https://www.luogu.com.cn/problem/P2409）经典二叉堆，计算最小的k个和
-P2949 [USACO09OPEN]Work Scheduling G（https://www.luogu.com.cn/problem/P2949）二叉堆贪心模拟懒惰延迟删除
-P6033 [NOIP2004 提高组] 合并果子 加强版（https://www.luogu.com.cn/problem/P6033）经典贪心升级版可用双端队列优化
-P4597 序列 sequence（https://www.luogu.com.cn/problem/P4597）大根堆贪心使得序列非降的最小操作次数
+===================================LeetCode===================================
+630（https://leetcode.com/problems/course-schedule-iii/）用一个堆延迟选择贪心维护最优
+2454（https://leetcode.com/problems/next-greater-element-iv/）使用两个堆维护下下个更大元素即出队两次时遇见的元素，也可以使用经典的哈希加SortedList
+2402（https://leetcode.com/problems/meeting-rooms-iii/）使用两个堆模拟进行会议室安排并进行计数
+2386（https://leetcode.com/problems/find-the-k-sum-of-an-array/）转换思路使用堆维护最大和第 K 次出队的则为目标结果
+2163（https://leetcode.com/problems/minimum-difference-in-sums-after-removal-of-elements/）预处理前缀后缀最大最小的 K 个数和再进行枚举分割点
+1792（https://leetcode.com/problems/maximum-average-pass-ratio/）贪心依次给增幅最大的班级人数加 1
+295（https://leetcode.com/problems/find-median-from-data-stream/）用两个堆维护中位数
+2542（https://leetcode.com/problems/maximum-subsequence-score/）贪心排序枚举加堆维护最大的k个数进行计算
+2263（https://leetcode.com/problems/make-array-non-decreasing-or-non-increasing/）大根堆贪心使得序列非降的最小操作次数
+
+===================================LuoGu==================================
+1168（https://www.luogu.com.cn/problem/P1168） 用两个堆维护中位数
+1801（https://www.luogu.com.cn/problem/P1801）用两个堆维护第K小
+2085（https://www.luogu.com.cn/problem/P2085）用数学加一个堆维护前K小
+1631（https://www.luogu.com.cn/problem/P1631）用一个堆和指针组合维护前K小
+4053（https://www.luogu.com.cn/problem/P4053）用一个堆延迟选择贪心维护最优，经典课程表 III
+1878（https://www.luogu.com.cn/problem/P1878）用哈希加一个堆进行模拟计算
+3620（https://www.luogu.com.cn/problem/P3620）贪心思想加二叉堆与双向链表优
+2168（https://www.luogu.com.cn/problem/P2168）霍夫曼树与二叉堆贪心
+2278（https://www.luogu.com.cn/problem/P2278）使用二叉堆模拟CPU占用
+1717（https://www.luogu.com.cn/problem/P1717）枚举最远到达地点进行二叉堆贪心选取
+1905（https://www.luogu.com.cn/problem/P1905）二叉堆从大到小贪心摆放
+2409（https://www.luogu.com.cn/problem/P2409）经典二叉堆，计算最小的k个和
+2949（https://www.luogu.com.cn/problem/P2949）二叉堆贪心模拟懒惰延迟删除
+6033（https://www.luogu.com.cn/problem/P6033）经典贪心升级版可用双端队列优化
+4597（https://www.luogu.com.cn/problem/P4597）大根堆贪心使得序列非降的最小操作次数
 
 ===================================AcWing======================================
-146. 序列（https://www.acwing.com/problem/content/description/148/）小顶堆计算经典问题m个数组最小的n个子序列和，同样可以计算最大的
-147. 数据备份（https://www.acwing.com/problem/content/description/149/）贪心思想加二叉堆与双向链表优化
-148. 合并果子（https://www.acwing.com/problem/content/150/）贪心二叉堆，霍夫曼树Huffman Tree的思想，每次优先合并较小的
-149. 荷马史诗（https://www.acwing.com/problem/content/description/151/）霍夫曼树与二叉堆贪心
+146（https://www.acwing.com/problem/content/description/148/）小顶堆计算经典问题m个数组最小的n个子序列和，同样可以计算最大的
+147（https://www.acwing.com/problem/content/description/149/）贪心思想加二叉堆与双向链表优化
+148（https://www.acwing.com/problem/content/150/）贪心二叉堆，霍夫曼树Huffman Tree的思想，每次优先合并较小的
+149（https://www.acwing.com/problem/content/description/151/）霍夫曼树与二叉堆贪心
 
 
 

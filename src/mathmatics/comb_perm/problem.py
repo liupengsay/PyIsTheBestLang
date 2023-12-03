@@ -5,43 +5,43 @@
 题目：
 Lucas定理（comb(n, m)%p = comb(n%p, m%p)*comb(n//p, m//p)）%p
 
-===================================力扣===================================
-96. 不同的二叉搜索树（https://leetcode.com/problems/unique-binary-search-trees/）经典卡特兰数
-95. 不同的二叉搜索树 II（https://leetcode.com/problems/unique-binary-search-trees/）经典卡特兰数思想进行递归，生成具体方案
-634. 寻找数组的错位排列（https://leetcode.com/problems/find-the-derangement-of-an-array/）错位排列计数使用动态规划转移计算
-1259. 不相交的握手（https://leetcode.com/problems/handshakes-that-dont-cross/）经典卡特兰数
-2338. 统计理想数组的数目（https://leetcode.com/problems/count-the-number-of-ideal-arrays/）使用隔板法与因数分解进行组合方案数求解
-1735. 生成乘积数组的方案数（https://leetcode.com/problems/count-ways-to-make-array-with-product/）经典质数分解与隔板法应用
-1621. 大小为 K 的不重叠线段的数目（https://leetcode.com/problems/number-of-sets-of-k-non-overlapping-line-segments/）类似隔板法的思想
-1866. 恰有 K 根木棍可以看到的排列数目（https://leetcode.com/problems/number-of-ways-to-rearrange-sticks-with-k-sticks-visible/）第一类斯特林数
-1916. 统计为蚁群构筑房间的不同顺序（https://leetcode.com/problems/count-ways-to-build-rooms-in-an-ant-colony/）树形DP加组合数学计数
+===================================LeetCode===================================
+96（https://leetcode.com/problems/unique-binary-search-trees/）经典卡特兰数
+95（https://leetcode.com/problems/unique-binary-search-trees/）经典卡特兰数思想进行递归，生成具体方案
+634（https://leetcode.com/problems/find-the-derangement-of-an-array/）错位排列计数使用动态规划转移计算
+1259（https://leetcode.com/problems/handshakes-that-dont-cross/）经典卡特兰数
+2338（https://leetcode.com/problems/count-the-number-of-ideal-arrays/）使用隔板法与因数分解进行组合方案数求解
+1735（https://leetcode.com/problems/count-ways-to-make-array-with-product/）经典质数分解与隔板法应用
+1621（https://leetcode.com/problems/number-of-sets-of-k-non-overlapping-line-segments/）类似隔板法的思想
+1866（https://leetcode.com/problems/number-of-ways-to-rearrange-sticks-with-k-sticks-visible/）第一类斯特林数
+1916（https://leetcode.com/problems/count-ways-to-build-rooms-in-an-ant-colony/）树形DP加组合数学计数
 D - Blue and Red Balls（https://atcoder.jp/contests/abc132/tasks/abc132_d）组合数学经典计数，和为 X 的长为 Y 的正整数与非负整数方程解个数
 
-===================================洛谷===================================
-P4071 排列计数（https://www.luogu.com.cn/problem/P4071）通过乘法逆元快速求解组合数与全排列数，同时递归计算错位排列数
-P1287 盒子与球（https://www.luogu.com.cn/problem/P1287）第二类斯特林数形式的DP，以及全排列数
-P1375 小猫（https://www.luogu.com.cn/problem/P1375）卡特兰数
-P1754 球迷购票问题（https://www.luogu.com.cn/problem/P1754）卡特兰数
-P2193 HXY和序列（https://www.luogu.com.cn/problem/P2193）使用隔板法与因数分解进行组合方案数求解
-P1338 末日的传说（https://www.luogu.com.cn/problem/P1338）枚举满足个数的逆序对排列，即找特定逆序对个数的最小排列
-P1313 [NOIP2011 提高组] 计算系数（https://www.luogu.com.cn/problem/P1313）二项式展开的系数计算
-P1061 [NOIP2006 普及组] Jam 的计数法（https://www.luogu.com.cn/problem/P1061）模拟计算下一个字典序排列
-P3197 [HNOI2008]越狱（https://www.luogu.com.cn/problem/P3197）计数快速幂计算加容斥原理
-P3414 SAC#1 - 组合数（https://www.luogu.com.cn/problem/P3414）组合数奇偶对半开，快速幂计算
-P4369 [Code+#4]组合数问题（https://www.luogu.com.cn/problem/P4369）脑筋急转弯进行组合数加和构造
-P5520 [yLOI2019] 青原樱（https://www.luogu.com.cn/problem/P5520）隔板法计算组合数
-P3807 【模板】卢卡斯定理/Lucas 定理（https://www.luogu.com.cn/problem/P3807）卢卡斯模板题
-P1044 [NOIP2003 普及组] 栈（https://www.luogu.com.cn/problem/P1044）卡特兰数
-P1655 小朋友的球（https://www.luogu.com.cn/problem/P1655）矩阵DP，斯特林数
-P1680 奇怪的分组（https://www.luogu.com.cn/problem/P1680）隔板法计算不同分组的个数，使用乘法逆元与Lucas定理快速计算Comb(a,b)%m
-P2265 路边的水沟（https://www.luogu.com.cn/problem/P2265）排列组合，计算comb(n+m, m)
-P2638 安全系统（https://www.luogu.com.cn/problem/P2638）隔板法 a 个球放入 n 个盒子不要求每个都放也不要求放完的方案数
-P2822 [NOIP2016 提高组] 组合数问题（https://www.luogu.com.cn/problem/P2822）组合数 comb(i, j) % k == 0 的个数计算
-P3223 [HNOI2012] 排队（https://www.luogu.com.cn/problem/P3223）使用容斥原理和隔板法计算
-P3904 三只小猪（https://www.luogu.com.cn/problem/P3904）递推第二类斯特林数
-P4071 [SDOI2016]排列计数（https://www.luogu.com.cn/problem/P4071）经典错排选择 n 个元素刚好有 m 个错位排列的方案数
-P5684 [CSP-J2019 江西] 非回文串（https://www.luogu.com.cn/problem/P5684）容斥原理与组合计数
-P6057 [加油武汉]七步洗手法（https://www.luogu.com.cn/problem/P6057）容斥原理计数
+===================================LuoGu==================================
+4071（https://www.luogu.com.cn/problem/P4071）通过乘法逆元快速求解组合数与全排列数，同时递归计算错位排列数
+1287（https://www.luogu.com.cn/problem/P1287）第二类斯特林数形式的DP，以及全排列数
+1375（https://www.luogu.com.cn/problem/P1375）卡特兰数
+1754（https://www.luogu.com.cn/problem/P1754）卡特兰数
+2193（https://www.luogu.com.cn/problem/P2193）使用隔板法与因数分解进行组合方案数求解
+1338（https://www.luogu.com.cn/problem/P1338）枚举满足个数的逆序对排列，即找特定逆序对个数的最小排列
+1313（https://www.luogu.com.cn/problem/P1313）二项式展开的系数计算
+1061（https://www.luogu.com.cn/problem/P1061）模拟计算下一个字典序排列
+3197（https://www.luogu.com.cn/problem/P3197）计数快速幂计算加容斥原理
+3414（https://www.luogu.com.cn/problem/P3414）组合数奇偶对半开，快速幂计算
+4369（https://www.luogu.com.cn/problem/P4369）脑筋急转弯进行组合数加和构造
+5520（https://www.luogu.com.cn/problem/P5520）隔板法计算组合数
+3807（https://www.luogu.com.cn/problem/P3807）卢卡斯模板题
+1044（https://www.luogu.com.cn/problem/P1044）卡特兰数
+1655（https://www.luogu.com.cn/problem/P1655）矩阵DP，斯特林数
+1680（https://www.luogu.com.cn/problem/P1680）隔板法计算不同分组的个数，使用乘法逆元与Lucas定理快速计算Comb(a,b)%m
+2265（https://www.luogu.com.cn/problem/P2265）排列组合，计算comb(n+m, m)
+2638（https://www.luogu.com.cn/problem/P2638）隔板法 a 个球放入 n 个盒子不要求每个都放也不要求放完的方案数
+2822（https://www.luogu.com.cn/problem/P2822）组合数 comb(i, j) % k == 0 的个数计算
+3223（https://www.luogu.com.cn/problem/P3223）使用容斥原理和隔板法计算
+3904（https://www.luogu.com.cn/problem/P3904）递推第二类斯特林数
+4071（https://www.luogu.com.cn/problem/P4071）经典错排选择 n 个元素刚好有 m 个错位排列的方案数
+5684（https://www.luogu.com.cn/problem/P5684）容斥原理与组合计数
+6057（https://www.luogu.com.cn/problem/P6057）容斥原理计数
 
 ================================CodeForces================================
 D. Triangle Coloring（https://codeforces.com/problemset/problem/1795/D）组合计数取模与乘法逆元快速计算
@@ -59,10 +59,10 @@ D - Factorization（https://atcoder.jp/contests/abc110/tasks/abc110_d）质因�
 E - Cell Distance（https://atcoder.jp/contests/abc127/tasks/abc127_e）经典贡献法组合计数
 
 ================================AcWing==================================
-130. 火车进出栈问题（https://www.acwing.com/problem/content/132/）超大数字的卡特兰数计算
-4002. 构造数组（https://www.acwing.com/problem/content/4005/）经典矩阵DP转换为隔板法计算求解
-4496. 吃水果（https://www.acwing.com/problem/content/4499/）经典隔板法计数
-5055. 画矩形（https://www.acwing.com/problem/content/5058/）经典组合数学取模求解
+130（https://www.acwing.com/problem/content/132/）超大数字的卡特兰数计算
+4002（https://www.acwing.com/problem/content/4005/）经典矩阵DP转换为隔板法计算求解
+4496（https://www.acwing.com/problem/content/4499/）经典隔板法计数
+5055（https://www.acwing.com/problem/content/5058/）经典组合数学取模求解
 
 
 参考：OI WiKi（xx）

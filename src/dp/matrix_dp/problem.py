@@ -4,104 +4,104 @@
 头脑风暴：求包含两个字符串最长公共子序列的各自最短子串
 题目：
 
-===================================力扣===================================
-174. 地下城游戏（https://leetcode.com/problems/dungeon-game/）经典矩阵 DP 逆向递推
-2478. 完美分割的方案数（https://leetcode.com/problems/number-of-beautiful-partitions/）
-2463. 最小移动总距离（https://leetcode.com/problems/minimum-total-distance-traveled/）
-2435. 矩阵中和能被 K 整除的路径（https://leetcode.com/problems/paths-in-matrix-whose-sum-is-divisible-by-k/）利用模 K 的特点进行路径计算
-2088. 统计农场中肥沃金字塔的数目（https://leetcode.com/problems/count-fertile-pyramids-in-a-land/）类似求正方形的边长和面积进行矩阵DP
-221. 最大正方形（https://leetcode.com/problems/maximal-square/）求全为 1 的最大正方形面积
-72. 编辑距离（https://leetcode.com/problems/edit-distance/）矩阵DP
-329. 矩阵中的最长递增路径（https://leetcode.com/problems/longest-increasing-path-in-a-matrix/）二维矩阵DP
-1478. 安排邮筒（https://leetcode.com/problems/allocate-mailboxes/）二维DP与一个计算不带权中位数距离的区间DP
-6363. 找出对应 LCP 矩阵的字符串（https://leetcode.com/problems/find-the-string-with-lcp/）贪心构造符合条件的字符串，并通过计算LCP进行确认
-2328. 网格图中递增路径的数目（https://leetcode.com/problems/number-of-increasing-paths-in-a-grid/）计算严格递增的路径数量
-2312. 卖木头块（https://leetcode.com/problems/selling-pieces-of-wood/）自顶向下搜索最佳方案
-2267. 检查是否有合法括号字符串路径（https://leetcode.com/problems/check-if-there-is-a-valid-parentheses-string-path/）记忆化搜索合法路径
-1092. 最短公共超序列（https://leetcode.com/problems/shortest-common-supersequence/）经典从后往前动态规划加从前往后构造，计算最长公共子序列，并构造包含两个字符串的最短公共超序列
-1143. 最长公共子序列（https://leetcode.com/problems/longest-common-subsequence/）使用LIS的方法求LCS
-1035. 不相交的线（https://leetcode.com/problems/uncrossed-lines/）使用LIS的方法求LCS
-2617. 网格图中最少访问的格子数（https://leetcode.com/problems/minimum-number-of-visited-cells-in-a-grid/）倒序矩阵 DP 并使用树状数组记录更新前缀最小值
-1092. 最短公共超序列（https://leetcode.com/problems/shortest-common-supersequence/）经典LCS问题并输出方案，可使用LIS求解
-1692. 计算分配糖果的不同方式（https://leetcode.com/problems/count-ways-to-distribute-candies/）矩阵DP计算方案数
-1771. 由子序列构造的最长回文串的长度（https://leetcode.com/problems/maximize-palindrome-length-from-subsequences/）经典最长回文子序列矩阵DP
-1883. 准时抵达会议现场的最小跳过休息次数（https://leetcode.com/problems/minimum-skips-to-arrive-at-meeting-on-time/）矩阵 DP
-1977. 划分数字的方案数（https://leetcode.com/problems/number-of-ways-to-separate-numbers/）经典两个矩阵DP含LCP进行计算优化，或者使用前缀优化DP
-2430. 对字母串可执行的最大删除数（https://leetcode.com/problems/maximum-deletions-on-a-string/）双重DP进行LCP与矩阵DP
-1216. 验证回文字符串 III（https://leetcode.com/problems/valid-palindrome-iii/）经典DP求最长回文子序列
-2060. 同源字符串检测（https://leetcode.com/problems/check-if-an-original-string-exists-given-two-encoded-strings/description/）二维矩阵DP枚举记忆化搜索
-2556. 二进制矩阵中翻转最多一次使路径不连通（https://leetcode.com/problems/disconnect-path-in-a-binary-matrix-by-at-most-one-flip/description/）经典矩阵DP思维题，判断割点可行性
-920. 播放列表的数量（https://leetcode.com/problems/number-of-music-playlists/）经典矩阵DP
-1594. 矩阵的最大非负积（https://leetcode.com/problems/maximum-non-negative-product-in-a-matrix/）经典矩阵DP最大与最小乘积转移
-1639. 通过给定词典构造目标字符串的方案数（https://leetcode.com/problems/number-of-ways-to-form-a-target-string-given-a-dictionary/description/）前缀和优化二维DP
-956. 最高的广告牌（https://leetcode.com/problems/tallest-billboard/description/）经典矩阵DP
-1301. 最大得分的路径数目（https://leetcode.com/contest/biweekly-contest-16/problems/number-of-paths-with-max-score/）经典矩阵DP计算路径最大值与方案数
-1937. 扣分后的最大得分（https://leetcode.com/problems/maximum-number-of-points-with-cost/）经典矩阵前缀和后缀和优化的DP
-1751. 最多可以参加的会议数目 II（https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended-ii/）经典矩阵二维DP使用二分优化
-1959. K 次调整数组大小浪费的最小总空间（https://leetcode.com/problems/minimum-total-space-wasted-with-k-resizing-operations/description/）经典矩阵二维DP使用前缀和优化
-1458. 两个子序列的最大点积（https://leetcode.com/problems/max-dot-product-of-two-subsequences/description/）经典矩阵DP
-1745. 分割回文串 IV（https://leetcode.com/problems/palindrome-partitioning-iv/description/）经典矩阵DP判断是否为回文子串，或者使用马拉车然后枚举
+===================================LeetCode===================================
+174（https://leetcode.com/problems/dungeon-game/）经典矩阵 DP 逆向递推
+2478（https://leetcode.com/problems/number-of-beautiful-partitions/）
+2463（https://leetcode.com/problems/minimum-total-distance-traveled/）
+2435（https://leetcode.com/problems/paths-in-matrix-whose-sum-is-divisible-by-k/）利用模 K 的特点进行路径计算
+2088（https://leetcode.com/problems/count-fertile-pyramids-in-a-land/）类似求正方形的边长和面积进行矩阵DP
+221（https://leetcode.com/problems/maximal-square/）求全为 1 的最大正方形面积
+72（https://leetcode.com/problems/edit-distance/）矩阵DP
+329（https://leetcode.com/problems/longest-increasing-path-in-a-matrix/）二维矩阵DP
+1478（https://leetcode.com/problems/allocate-mailboxes/）二维DP与一个计算不带权中位数距离的区间DP
+6363（https://leetcode.com/problems/find-the-string-with-lcp/）贪心构造符合条件的字符串，并通过计算LCP进行确认
+2328（https://leetcode.com/problems/number-of-increasing-paths-in-a-grid/）计算严格递增的路径数量
+2312（https://leetcode.com/problems/selling-pieces-of-wood/）自顶向下搜索最佳方案
+2267（https://leetcode.com/problems/check-if-there-is-a-valid-parentheses-string-path/）记忆化搜索合法路径
+1092（https://leetcode.com/problems/shortest-common-supersequence/）经典从后往前动态规划加从前往后构造，计算最长公共子序列，并构造包含两个字符串的最短公共超序列
+1143（https://leetcode.com/problems/longest-common-subsequence/）使用LIS的方法求LCS
+1035（https://leetcode.com/problems/uncrossed-lines/）使用LIS的方法求LCS
+2617（https://leetcode.com/problems/minimum-number-of-visited-cells-in-a-grid/）倒序矩阵 DP 并使用树状数组记录更新前缀最小值
+1092（https://leetcode.com/problems/shortest-common-supersequence/）经典LCS问题并输出方案，可使用LIS求解
+1692（https://leetcode.com/problems/count-ways-to-distribute-candies/）矩阵DP计算方案数
+1771（https://leetcode.com/problems/maximize-palindrome-length-from-subsequences/）经典最长回文子序列矩阵DP
+1883（https://leetcode.com/problems/minimum-skips-to-arrive-at-meeting-on-time/）矩阵 DP
+1977（https://leetcode.com/problems/number-of-ways-to-separate-numbers/）经典两个矩阵DP含LCP进行计算优化，或者使用前缀优化DP
+2430（https://leetcode.com/problems/maximum-deletions-on-a-string/）双重DP进行LCP与矩阵DP
+1216（https://leetcode.com/problems/valid-palindrome-iii/）经典DP求最长回文子序列
+2060（https://leetcode.com/problems/check-if-an-original-string-exists-given-two-encoded-strings/description/）二维矩阵DP枚举记忆化搜索
+2556（https://leetcode.com/problems/disconnect-path-in-a-binary-matrix-by-at-most-one-flip/description/）经典矩阵DP思维题，判断割点可行性
+920（https://leetcode.com/problems/number-of-music-playlists/）经典矩阵DP
+1594（https://leetcode.com/problems/maximum-non-negative-product-in-a-matrix/）经典矩阵DP最大与最小乘积转移
+1639（https://leetcode.com/problems/number-of-ways-to-form-a-target-string-given-a-dictionary/description/）前缀和优化二维DP
+956（https://leetcode.com/problems/tallest-billboard/description/）经典矩阵DP
+1301（https://leetcode.com/contest/biweekly-contest-16/problems/number-of-paths-with-max-score/）经典矩阵DP计算路径最大值与方案数
+1937（https://leetcode.com/problems/maximum-number-of-points-with-cost/）经典矩阵前缀和后缀和优化的DP
+1751（https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended-ii/）经典矩阵二维DP使用二分优化
+1959（https://leetcode.com/problems/minimum-total-space-wasted-with-k-resizing-operations/description/）经典矩阵二维DP使用前缀和优化
+1458（https://leetcode.com/problems/max-dot-product-of-two-subsequences/description/）经典矩阵DP
+1745（https://leetcode.com/problems/palindrome-partitioning-iv/description/）经典矩阵DP判断是否为回文子串，或者使用马拉车然后枚举
 
-===================================洛谷===================================
-P2701 [USACO5.3]巨大的牛棚Big Barn（https://www.luogu.com.cn/problem/P2701）求全为 "." 的最大正方形面积，如果不要求实心只能做到O(n^3)复杂度
-P2049 魔术棋子（https://www.luogu.com.cn/problem/P2049）求左上角到右下角所有路径的乘积取模数
-P2138 小Z的关系距离（https://www.luogu.com.cn/problem/P2138）最长公共子序列
-P1681 最大正方形II（https://www.luogu.com.cn/problem/P1681）求黑白格子相间的最大正方形面积
-P2268 [HNOI2002]DNA分子的最佳比对（https://www.luogu.com.cn/problem/P2268）类似编辑距离
-P2301 就是干！（https://www.luogu.com.cn/problem/P2301）矩阵DP，注意最小值的更新处理
-P2364 胖男孩（https://www.luogu.com.cn/problem/P2364）三维DP求最长公共子序列LCS并且输出LCS
-P2543 [AHOI2004]奇怪的字符串（https://www.luogu.com.cn/problem/P2543）二维DP求最长公共子序列LCS长度
-P2513 [HAOI2009]逆序对数列（https://www.luogu.com.cn/record/list?user=739032&status=12&page=2）二维矩阵DP加前缀和优化
-P1434 [SHOI2002] 滑雪（https://www.luogu.com.cn/problem/P1434）二维矩阵DP计算最长上升的路径
-P1140 相似基因（https://www.luogu.com.cn/problem/P1140）二维矩阵DP
-P1057 [NOIP2008 普及组] 传球游戏（https://www.luogu.com.cn/problem/P1057）二维DP可做成转移的
-P8825 [传智杯 #3 初赛] 运气（https://www.luogu.com.cn/problem/P8825）结合取模进行滚动更新计算
-P2758 编辑距离（https://www.luogu.com.cn/problem/P2758）二维DP编辑距离
-P2803 学校选址 II（https://www.luogu.com.cn/problem/P2803）二维DP与一个计算带权中位数距离的区间DP
-P2946 [USACO09MAR]Cow Frisbee Team S（https://www.luogu.com.cn/problem/P2946）计算何为某个数字倍数的连续子序列个数
-P2427 Wave（https://www.luogu.com.cn/problem/P2427）以矩阵中点为正方形中心的最大正方形边长，使用左上、左下、右上和右下的四个DP
-P7074 [CSP-J2020] 方格取数（https://www.luogu.com.cn/problem/P7074）经典DP，三个方向进行转移更新
-P7160 「dWoi R1」Sixth Monokuma's Son（https://www.luogu.com.cn/problem/P7160）三个维度DP的枚举计数
-P7266 [BalticOI 2000] Honeycomb Problem（https://www.luogu.com.cn/problem/P7266）蜂窝形状的矩阵DP
-P3399 丝绸之路（https://www.luogu.com.cn/problem/P3399）二维矩阵DP
-P2516 [HAOI2010]最长公共子序列（https://www.luogu.com.cn/problem/P2516）经典DP最长公共子序列以及最长公共子序列的长度
-P1544 三倍经验（https://www.luogu.com.cn/problem/P1544）三维矩阵DP
-P1004 [NOIP2000 提高组] 方格取数（https://www.luogu.com.cn/problem/P1004）经典DP，三个方向转移
-P1006 [NOIP2008 提高组] 传纸条（https://www.luogu.com.cn/problem/P1006）经典DP，三个方向转移
-P1107 [BJWC2008]雷涛的小猫（https://www.luogu.com.cn/problem/P1107）二维DP加前缀最值优化
-P1279 字串距离（https://www.luogu.com.cn/problem/P1279）经典编辑距离DP的变形
-P1353 [USACO08JAN]Running S（https://www.luogu.com.cn/problem/P1353）矩阵DP
-P1410 子序列（https://www.luogu.com.cn/problem/P1410）二维DP
-P1799 数列（https://www.luogu.com.cn/problem/P1799）矩阵二维DP
-P1854 花店橱窗布置（https://www.luogu.com.cn/problem/P1854）前缀最大值优化矩阵DP，并输出匹配方案
-P2140 小Z的电力管制（https://www.luogu.com.cn/problem/P2140）矩阵四维DP，可以使用记忆化与迭代计算
-P2217 [HAOI2007]分割矩阵（https://www.luogu.com.cn/problem/P2217）矩阵四维DP，可以使用记忆化与迭代计算
-P1436 棋盘分割（https://www.luogu.com.cn/problem/P1436）矩阵四维DP，可以使用记忆化与迭代计算
-P5752 [NOI1999] 棋盘分割（https://www.luogu.com.cn/problem/P5752）矩阵四维DP，可以使用记忆化与迭代计算
-P2380 狗哥采矿（https://www.luogu.com.cn/problem/P2380）矩阵DP
-P2401 不等数列（https://www.luogu.com.cn/problem/P2401）二维DP
-P2528 [SHOI2001]排序工作量之新任务（https://www.luogu.com.cn/problem/P2528）逆序对矩阵 DP 与模拟构造
-P2733 [USACO3.3]家的范围 Home on the Range（https://www.luogu.com.cn/problem/P2733）经典DP通过边长与差分数组计算正方形子矩阵的个数
-P2736 [USACO3.4]“破锣摇滚”乐队 Raucous Rockers（https://www.luogu.com.cn/problem/P2736）矩阵DP
-P2769 猴子上树（https://www.luogu.com.cn/problem/P2769）矩阵 DP 注意初始化条件
-P3012 [USACO11FEB]Cowlphabet G（https://www.luogu.com.cn/problem/P3012https://www.luogu.com.cn/problem/P3012）三维矩阵DP
-P3860 [TJOI2009] 火星人的手机（https://www.luogu.com.cn/problem/P3860）矩阵 DP 并计算具体转移方案
-P4958 [COCI2017-2018#6] Mate（https://www.luogu.com.cn/problem/P4958）三维线性 DP使用前缀和优化
-P5144 蜈蚣（https://www.luogu.com.cn/problem/P5144）线性 DP 二维加前缀异或和
-P5858 「SWTR-03」Golden Sword（https://www.luogu.com.cn/problem/P5858）矩阵 DP 加单调队列优化
-P5879 放棋子（https://www.luogu.com.cn/problem/P5879）矩阵 DP 加前缀和优化
-P6119 [USACO17FEB]Why Did the Cow Cross the Road II G（https://www.luogu.com.cn/problem/P6119）经典矩阵 DP 为 LCS 的变形题
-P6323 [COCI2006-2007#4] ZBRKA（https://www.luogu.com.cn/problem/P6323）经典 DP 逆序对为指定数量时的排列个数使用前缀和优化
-P6394 樱花，还有你（https://www.luogu.com.cn/problem/P6394）矩阵 DP 加前缀和优化
-P6433 「EZEC-1」出题（https://www.luogu.com.cn/problem/P6433）贪心分类讨论使用矩阵 DP 计算
-P6451 [COCI2008-2009#4] SLIKAR（https://www.luogu.com.cn/problem/P6451）使用迭代方式实现四维 DP 并枚举四叉树获取对应最小代价和状态
-P6509 [CRCI2007-2008] JEDNAKOST（https://www.luogu.com.cn/problem/P6509）典型矩阵 DP 并记录对应的状态转移
-P6870 [COCI2019-2020#5] Zapina（https://www.luogu.com.cn/problem/P6870）矩阵 DP 与组合数优化计数
-P7995 [USACO21DEC] Walking Home B（https://www.luogu.com.cn/problem/P7995）矩阵 DP
-P8325 [COCI2021-2022#5] Dijamant（https://www.luogu.com.cn/problem/P8325）经典动态规划枚举，类似最大正方形矩阵 DP 变形
-P8614 [蓝桥杯 2014 省 A] 波动数列（https://www.luogu.com.cn/problem/P8614）经典矩阵 DP 关键在于取模作为一维状态
-P8638 [蓝桥杯 2016 省 A] 密码脱落（https://www.luogu.com.cn/problem/P8638）经典矩阵 DP 最长回文子序列
-P8786 [蓝桥杯 2022 省 B] 李白打酒加强版（https://www.luogu.com.cn/problem/P8786）典型三维矩阵 DP 模拟使用记忆化搜索
+===================================LuoGu==================================
+2701（https://www.luogu.com.cn/problem/P2701）求全为 "." 的最大正方形面积，如果不要求实心只能做到O(n^3)复杂度
+2049（https://www.luogu.com.cn/problem/P2049）求左上角到右下角所有路径的乘积取模数
+2138（https://www.luogu.com.cn/problem/P2138）最长公共子序列
+1681（https://www.luogu.com.cn/problem/P1681）求黑白格子相间的最大正方形面积
+2268（https://www.luogu.com.cn/problem/P2268）类似编辑距离
+2301（https://www.luogu.com.cn/problem/P2301）矩阵DP，注意最小值的更新处理
+2364（https://www.luogu.com.cn/problem/P2364）三维DP求最长公共子序列LCS并且输出LCS
+2543（https://www.luogu.com.cn/problem/P2543）二维DP求最长公共子序列LCS长度
+2513（https://www.luogu.com.cn/record/list?user=739032&status=12&page=2）二维矩阵DP加前缀和优化
+1434（https://www.luogu.com.cn/problem/P1434）二维矩阵DP计算最长上升的路径
+1140（https://www.luogu.com.cn/problem/P1140）二维矩阵DP
+1057（https://www.luogu.com.cn/problem/P1057）二维DP可做成转移的
+8825（https://www.luogu.com.cn/problem/P8825）结合取模进行滚动更新计算
+2758（https://www.luogu.com.cn/problem/P2758）二维DP编辑距离
+2803（https://www.luogu.com.cn/problem/P2803）二维DP与一个计算带权中位数距离的区间DP
+2946（https://www.luogu.com.cn/problem/P2946）计算何为某个数字倍数的连续子序列个数
+2427（https://www.luogu.com.cn/problem/P2427）以矩阵中点为正方形中心的最大正方形边长，使用左上、左下、右上和右下的四个DP
+7074（https://www.luogu.com.cn/problem/P7074）经典DP，三个方向进行转移更新
+7160（https://www.luogu.com.cn/problem/P7160）三个维度DP的枚举计数
+7266（https://www.luogu.com.cn/problem/P7266）蜂窝形状的矩阵DP
+3399（https://www.luogu.com.cn/problem/P3399）二维矩阵DP
+2516（https://www.luogu.com.cn/problem/P2516）经典DP最长公共子序列以及最长公共子序列的长度
+1544（https://www.luogu.com.cn/problem/P1544）三维矩阵DP
+1004（https://www.luogu.com.cn/problem/P1004）经典DP，三个方向转移
+1006（https://www.luogu.com.cn/problem/P1006）经典DP，三个方向转移
+1107（https://www.luogu.com.cn/problem/P1107）二维DP加前缀最值优化
+1279（https://www.luogu.com.cn/problem/P1279）经典编辑距离DP的变形
+1353（https://www.luogu.com.cn/problem/P1353）矩阵DP
+1410（https://www.luogu.com.cn/problem/P1410）二维DP
+1799（https://www.luogu.com.cn/problem/P1799）矩阵二维DP
+1854（https://www.luogu.com.cn/problem/P1854）前缀最大值优化矩阵DP，并输出匹配方案
+2140（https://www.luogu.com.cn/problem/P2140）矩阵四维DP，可以使用记忆化与迭代计算
+2217（https://www.luogu.com.cn/problem/P2217）矩阵四维DP，可以使用记忆化与迭代计算
+1436（https://www.luogu.com.cn/problem/P1436）矩阵四维DP，可以使用记忆化与迭代计算
+5752（https://www.luogu.com.cn/problem/P5752）矩阵四维DP，可以使用记忆化与迭代计算
+2380（https://www.luogu.com.cn/problem/P2380）矩阵DP
+2401（https://www.luogu.com.cn/problem/P2401）二维DP
+2528（https://www.luogu.com.cn/problem/P2528）逆序对矩阵 DP 与模拟构造
+2733（https://www.luogu.com.cn/problem/P2733）经典DP通过边长与差分数组计算正方形子矩阵的个数
+2736（https://www.luogu.com.cn/problem/P2736）矩阵DP
+2769（https://www.luogu.com.cn/problem/P2769）矩阵 DP 注意初始化条件
+3012（https://www.luogu.com.cn/problem/P3012https://www.luogu.com.cn/problem/P3012）三维矩阵DP
+3860（https://www.luogu.com.cn/problem/P3860）矩阵 DP 并计算具体转移方案
+4958（https://www.luogu.com.cn/problem/P4958）三维线性 DP使用前缀和优化
+5144（https://www.luogu.com.cn/problem/P5144）线性 DP 二维加前缀异或和
+5858（https://www.luogu.com.cn/problem/P5858）矩阵 DP 加单调队列优化
+5879（https://www.luogu.com.cn/problem/P5879）矩阵 DP 加前缀和优化
+6119（https://www.luogu.com.cn/problem/P6119）经典矩阵 DP 为 LCS 的变形题
+6323（https://www.luogu.com.cn/problem/P6323）经典 DP 逆序对为指定数量时的排列个数使用前缀和优化
+6394（https://www.luogu.com.cn/problem/P6394）矩阵 DP 加前缀和优化
+6433（https://www.luogu.com.cn/problem/P6433）贪心分类讨论使用矩阵 DP 计算
+6451（https://www.luogu.com.cn/problem/P6451）使用迭代方式实现四维 DP 并枚举四叉树获取对应最小代价和状态
+6509（https://www.luogu.com.cn/problem/P6509）典型矩阵 DP 并记录对应的状态转移
+6870（https://www.luogu.com.cn/problem/P6870）矩阵 DP 与组合数优化计数
+7995（https://www.luogu.com.cn/problem/P7995）矩阵 DP
+8325（https://www.luogu.com.cn/problem/P8325）经典动态规划枚举，类似最大正方形矩阵 DP 变形
+8614（https://www.luogu.com.cn/problem/P8614）经典矩阵 DP 关键在于取模作为一维状态
+8638（https://www.luogu.com.cn/problem/P8638）经典矩阵 DP 最长回文子序列
+8786（https://www.luogu.com.cn/problem/P8786）典型三维矩阵 DP 模拟使用记忆化搜索
 
 ================================CodeForces================================
 B. Catching Cheaters（https://codeforces.com/problemset/problem/1446/B）最长公共子序列LCS变形问题，理解贡献
@@ -115,9 +115,9 @@ D. Valiant's New Map（https://codeforces.com/contest/1731/problem/D）经典二
 ================================AtCoder================================
 E - Common Subsequence（https://atcoder.jp/contests/abc130/tasks/abc130_e）二维前缀和优化矩阵DP
 ================================AcWing================================
-4378. 选取数对（https://www.acwing.com/problem/content/4381/）典型矩阵DP
-4418. 选元素（https://www.acwing.com/problem/content/description/4421/）经典单调队列优化矩阵DP
-2694. 最长公共子序列的长度与个数（https://www.acwing.com/problem/content/description/2696/）经典问题求解最长公共子序列LCS的长度与个数
+4378（https://www.acwing.com/problem/content/4381/）典型矩阵DP
+4418（https://www.acwing.com/problem/content/description/4421/）经典单调队列优化矩阵DP
+2694（https://www.acwing.com/problem/content/description/2696/）经典问题求解最长公共子序列LCS的长度与个数
 
 
 参考：OI WiKi（xx）

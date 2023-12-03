@@ -3,30 +3,30 @@
 功能：递归进行处理，与迭代是处理相同问题的两种不同方式，迭代效率高于递归
 题目：
 
-===================================力扣===================================
-1545. 找出第 N 个二进制字符串中的第 K 位（https://leetcode.com/problems/find-kth-bit-in-nth-binary-string/）经典递归计算模拟
-894. 所有可能的真二叉树（https://leetcode.com/problems/all-possible-full-binary-trees/）经典类似卡特兰数的递归模拟计算生成
-880. 索引处的解码字符串（https://leetcode.com/problems/decoded-string-at-index/）经典递归计算模拟
-932. 漂亮数组（https://leetcode.com/problems/beautiful-array/description/）使用递归分治进行构造经典
-889. 根据前序和后序遍历构造二叉树（https://leetcode.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/）使用递归经典分治构造
-1028. 从先序遍历还原二叉树（https://leetcode.com/problems/recover-a-tree-from-preorder-traversal/description/）根据先序遍历递归构造二叉树
+===================================LeetCode===================================
+1545（https://leetcode.com/problems/find-kth-bit-in-nth-binary-string/）经典递归计算模拟
+894（https://leetcode.com/problems/all-possible-full-binary-trees/）经典类似卡特兰数的递归模拟计算生成
+880（https://leetcode.com/problems/decoded-string-at-index/）经典递归计算模拟
+932（https://leetcode.com/problems/beautiful-array/description/）使用递归分治进行构造经典
+889（https://leetcode.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/）使用递归经典分治构造
+1028（https://leetcode.com/problems/recover-a-tree-from-preorder-traversal/description/）根据先序遍历递归构造二叉树
 
-===================================洛谷===================================
-P1911 L 国的战斗之排兵布阵（https://www.luogu.com.cn/problem/P1911）使用四叉树递归计算
-P5461 赦免战俘（https://www.luogu.com.cn/problem/P5461）递归计算四叉树左上角
-P5551 Chino的树学（https://www.luogu.com.cn/problem/P5551）先序遍历的完全二叉树递归计算
-P5626 【AFOI-19】数码排序（https://www.luogu.com.cn/problem/P5626）分治DP，归并排序需要的比较次数最少，但是可能内存占用超过快排
-P2907 [USACO08OPEN]Roads Around The Farm S（https://www.luogu.com.cn/problem/P2907）分析复杂度之后采用递归模拟
-P7673 [COCI2013-2014#5] OBILAZAK（https://www.luogu.com.cn/problem/P7673）根据中序遍历，递归还原完全二叉树
-P1228 地毯填补问题（https://www.luogu.com.cn/problem/P1228）四叉树分治递归
-P1185 绘制二叉树（https://www.luogu.com.cn/problem/P1185）二叉树递归进行绘制
+===================================LuoGu==================================
+1911（https://www.luogu.com.cn/problem/P1911）使用四叉树递归计算
+5461（https://www.luogu.com.cn/problem/P5461）递归计算四叉树左上角
+5551（https://www.luogu.com.cn/problem/P5551）先序遍历的完全二叉树递归计算
+5626（https://www.luogu.com.cn/problem/P5626）分治DP，归并排序需要的比较次数最少，但是可能内存占用超过快排
+2907（https://www.luogu.com.cn/problem/P2907）分析复杂度之后采用递归模拟
+7673（https://www.luogu.com.cn/problem/P7673）根据中序遍历，递归还原完全二叉树
+1228（https://www.luogu.com.cn/problem/P1228）四叉树分治递归
+1185（https://www.luogu.com.cn/problem/P1185）二叉树递归进行绘制
 
 ================================CodeForces================================
 C. Painting Fence（https://codeforces.com/contest/448/problem/C）贪心递归DP
 
-98. 分形之城（https://www.acwing.com/problem/content/100/）四叉树递归与坐标旋转变换
-93. 递归实现组合型枚举（https://www.acwing.com/problem/content/95/）递归与迭代两种方式实现组合数选取
-118. 分形（https://www.acwing.com/problem/content/120/）递归生成分形
+98（https://www.acwing.com/problem/content/100/）四叉树递归与坐标旋转变换
+93（https://www.acwing.com/problem/content/95/）递归与迭代两种方式实现组合数选取
+118（https://www.acwing.com/problem/content/120/）递归生成分形
 
 参考：OI WiKi（xx）
 """

@@ -3,17 +3,17 @@
 功能：根据组合数与转移方案求解概率或者期望
 题目：
 
-===================================力扣===================================
-1227. 飞机座位分配概率（https://leetcode.com/problems/airplane-seat-assignment-probability/）概率DP
+===================================LeetCode===================================
+1227（https://leetcode.com/problems/airplane-seat-assignment-probability/）概率DP
 
-===================================洛谷===================================
-P2719 搞笑世界杯（https://www.luogu.com.cn/record/list?user=739032&status=12&page=1）二维DP求概率
-P1291 [SHOI2002] 百事世界杯之旅（https://www.luogu.com.cn/problem/P1291）线性DP求期望
-P4316 绿豆蛙的归宿（https://www.luogu.com.cn/problem/P4316）经典期望 DP 反向建图与拓扑排序
-P6154 游走（https://www.luogu.com.cn/problem/P6154）经典反向建图期望树形 DP 与有理数取模
+===================================LuoGu==================================
+2719（https://www.luogu.com.cn/record/list?user=739032&status=12&page=1）二维DP求概率
+1291（https://www.luogu.com.cn/problem/P1291）线性DP求期望
+4316（https://www.luogu.com.cn/problem/P4316）经典期望 DP 反向建图与拓扑排序
+6154（https://www.luogu.com.cn/problem/P6154）经典反向建图期望树形 DP 与有理数取模
 
 ===================================AcWing===================================
-5058. 双色球（https://www.acwing.com/problem/content/description/5061/）经典概率DP
+5058（https://www.acwing.com/problem/content/description/5061/）经典概率DP
 
 
 参考：OI WiKi（xx）

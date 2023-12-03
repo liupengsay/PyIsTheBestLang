@@ -3,87 +3,87 @@
 功能：一重背包DP，数量有限从后往前遍历，数量无限则从前往后遍历；多重背包DP，可使用二进制优化进行拆分
 题目：
 
-===================================力扣===================================
-140. 单词拆分 II（https://leetcode.com/problems/word-break-ii/）经典 01 背包生成具体方案
-2218. 从栈中取出 K 个硬币的最大面值和（https://leetcode.com/problems/maximum-value-of-k-coins-from-piles/）分组背包DP
-2585. 获得分数的方法数（https://leetcode.com/contest/weekly-contest-335/problems/number-of-ways-to-earn-points/）看似二进制优化背包，实则数量转移
-2189. 建造纸牌屋的方法数（https://leetcode.com/problems/number-of-ways-to-build-house-of-cards/）转换为01背包求解
-254. 因子的组合（https://leetcode.com/problems/factor-combinations/）乘法结合背包DP
-1449. 数位成本和为目标值的最大数字（https://leetcode.com/problems/form-largest-integer-with-digits-that-add-up-to-target/）代价一定情况下的最大数值
-1049. 最后一块石头的重量 II（https://leetcode.com/problems/last-stone-weight-ii/）经典问题，转化为01背包求解
-2742. 给墙壁刷油漆（https://leetcode.com/problems/painting-the-walls/description/）经典剪枝DP，可以转换为01背包求解
-2518. 好分区的数目（https://leetcode.com/problems/number-of-great-partitions/）经典01背包计数
-1155. 掷骰子等于目标和的方法数（https://leetcode.com/problems/number-of-dice-rolls-with-target-sum/description/）类似分组背包，可使用线性刷表法与填表法
-2902. 和带限制的子多重集合的数目（https://leetcode.com/problems/count-of-sub-multisets-with-bounded-sum/description/）按照单调队列的思想进行取模分组DP，使用前缀和优化，也有容斥的思想，可撤销背包
+===================================LeetCode===================================
+140（https://leetcode.com/problems/word-break-ii/）经典 01 背包生成具体方案
+2218（https://leetcode.com/problems/maximum-value-of-k-coins-from-piles/）分组背包DP
+2585（https://leetcode.com/contest/weekly-contest-335/problems/number-of-ways-to-earn-points/）看似二进制优化背包，实则数量转移
+2189（https://leetcode.com/problems/number-of-ways-to-build-house-of-cards/）转换为01背包求解
+254（https://leetcode.com/problems/factor-combinations/）乘法结合背包DP
+1449（https://leetcode.com/problems/form-largest-integer-with-digits-that-add-up-to-target/）代价一定情况下的最大数值
+1049（https://leetcode.com/problems/last-stone-weight-ii/）经典问题，转化为01背包求解
+2742（https://leetcode.com/problems/painting-the-walls/description/）经典剪枝DP，可以转换为01背包求解
+2518（https://leetcode.com/problems/number-of-great-partitions/）经典01背包计数
+1155（https://leetcode.com/problems/number-of-dice-rolls-with-target-sum/description/）类似分组背包，可使用线性刷表法与填表法
+2902（https://leetcode.com/problems/count-of-sub-multisets-with-bounded-sum/description/）按照单调队列的思想进行取模分组DP，使用前缀和优化，也有容斥的思想，可撤销背包
 
-===================================洛谷===================================
-P1048 采药（https://www.luogu.com.cn/problem/P1048）一维背包DP，数量有限，从后往前遍历
-P1049 [NOIP2001 普及组] 装箱问题（https://www.luogu.com.cn/problem/P1049）一维背包DP
-P1776 宝物筛选（https://www.luogu.com.cn/problem/P1776）多重背包，使用二进制拆分进行优化，进一步使用单调队列优化
-P1509 找啊找啊找GF（https://www.luogu.com.cn/problem/P1509）四重背包
-P1060 [NOIP2006 普及组] 开心的金明（https://www.luogu.com.cn/problem/P1509）一维背包DP
-P1566 加等式（https://www.luogu.com.cn/problem/P1566#submit）限制计数背包
-P1759 通天之潜水（https://www.luogu.com.cn/problem/P1759）二重背包并输出方案
-P1794 装备运输（https://www.luogu.com.cn/problem/P1794）二重背包
-P1806 跑步（https://www.luogu.com.cn/problem/P1806）连续值一维有限背包计数
-P1853 投资的最大效益（https://www.luogu.com.cn/problem/P1853）一维无限背包有技巧成倍缩小背包范围
-P1874 快速求和（https://www.luogu.com.cn/problem/P1874）类似区间与背包的结合枚举前一个字符串加号分割点求和
-P1977 出租车拼车（https://www.luogu.com.cn/problem/P1977）分组有限背包
-P1586 四方定理（https://www.luogu.com.cn/problem/P1586）分组无限背包
-P1566 加等式（https://www.luogu.com.cn/problem/P1566）一维有限背包计数
-P1509 找啊找啊找GF（https://www.luogu.com.cn/problem/P1509）二重背包，转移的时候比较优先级有两个
-P1504 积木城堡（https://www.luogu.com.cn/problem/P1504）一维有限背包DP
-P2066 机器分配（https://www.luogu.com.cn/problem/P2066）分组有限背包，转移的时候比较优先级有两个
-P2340 [USACO03FALL]Cow Exhibition G（https://www.luogu.com.cn/problem/P2340）经典01背包变种问题还带负数加和
-P2370 yyy2015c01 的 U 盘（https://www.luogu.com.cn/problem/P2370）使用最小生成树的思想排序后贪心进行背包放入，达成条件后即中止
-P2386 放苹果（https://www.luogu.com.cn/problem/P2386）背包DP进行去重组合加和计数
-P2623 物品选取（https://www.luogu.com.cn/problem/P2623）综合经典背包，函数取最大值进行一维有限背包，连续个数使用二进制优化背包，无限个数背包
-P1474 [USACO2.3]Money System / [USACO07OCT]Cow Cash G（https://www.luogu.com.cn/problem/P1474）一维无限背包计数
-P1466 [USACO2.2]集合 Subset Sums（https://www.luogu.com.cn/problem/P1466）一维有限背包加和计数
-P1455 搭配购买（https://www.luogu.com.cn/problem/P1455）并查集进行搭配购买组合加一维有限背包
-P1230 智力大冲浪（https://www.luogu.com.cn/problem/P1230）排序后根据时间限制进行动态更新一维有限背包
-P1077 [NOIP2012 普及组] 摆花（https://www.luogu.com.cn/problem/P1077）一维有限背包计数
-P2725 [USACO3.1]邮票 Stamps（https://www.luogu.com.cn/problem/P2725）01无限背包计数
-P2918 [USACO08NOV]Buying Hay S（https://www.luogu.com.cn/problem/P2918）一维无限背包，需要根据题意增加背包容量上限计算
-P3027 [USACO10OCT]Making Money G（https://www.luogu.com.cn/problem/P3027）一维无限背包，需要根据题意进行利润计算
-P3030 [USACO11NOV]Tile Exchanging S（https://www.luogu.com.cn/problem/P3030）分组枚举有限背包
-P3040 [USACO12JAN]Bale Share S（https://www.luogu.com.cn/problem/P3040）二维变种背包
-P4817 [USACO15DEC]Fruit Feast G（https://www.luogu.com.cn/problem/P4817）一维有限背包DP变种
-P5087 数学（https://www.luogu.com.cn/problem/P5087）二维有限背包变种问题
-P6205 [USACO06JAN]Dollar Dayz S（https://www.luogu.com.cn/problem/P6205）一维无限背包
-P6389 [COCI2007-2008#4] MUZICARI（https://www.luogu.com.cn/problem/P6389）一维有限背包变种问题，寻找和尽可能接近的两个分组
-P6567 [NOI Online #3 入门组] 买表（https://www.luogu.com.cn/problem/P6567）一维二进制优化有限背包，即物品数为连续值时需要使用二进制优化
-P6771 [USACO05MAR]Space Elevator 太空电梯（https://www.luogu.com.cn/problem/P6771）排序后，一维有限变种背包，使用二进制优化
-P2842 纸币问题 1（https://www.luogu.com.cn/problem/P2842）一维无限背包DP不区分顺序
-P2840 纸币问题 2（https://www.luogu.com.cn/problem/P2840）一维无限背包DP区分顺序
-P2834 纸币问题 3（https://www.luogu.com.cn/problem/P2834）一维无限背包DP不区分顺序
-P1064 [NOIP2006 提高组] 金明的预算方案（https://www.luogu.com.cn/problem/P1064）有依赖的01背包，枚举状态进行分组讨论，分组背包
-P1156 垃圾陷阱（https://www.luogu.com.cn/problem/P1156）转换为背包01DP求解
-P1273 有线电视网（https://www.luogu.com.cn/problem/P1273）树上分组背包
-P1284 三角形牧场（https://www.luogu.com.cn/problem/P1284）枚举三角形两边作为二维bool背包，并使用三角形面积计算公式
-P1441 砝码称重（https://www.luogu.com.cn/problem/P1441）枚举加背包DP
-P1537 弹珠（https://www.luogu.com.cn/problem/P1537）经典问题二进制背包优化bool背包，划分成和相等的两部分
-P1541 [NOIP2010 提高组] 乌龟棋（https://www.luogu.com.cn/problem/P1541）四维背包枚举，填表法
-P1759 通天之潜水（https://www.luogu.com.cn/problem/P1759）二维背包并输出字典序最小的方案
-P1833 樱花（https://www.luogu.com.cn/problem/P1833）完全背包与单点队列优化多重背包组合
-P2014 [CTSC1997] 选课（https://www.luogu.com.cn/problem/P2014）增加一个虚拟源点将DAG转换为树上背包
-P2079 烛光晚餐（https://www.luogu.com.cn/problem/P2079）滚动哈希背包DP，使用两层哈希节省空间
-P2170 选学霸（https://www.luogu.com.cn/problem/P2170）连通块加二进制01背包优化
-P2214 [USACO14MAR]Mooo Moo S（https://www.luogu.com.cn/problem/P2214）变种背包DP贪心
-P2306 被 yyh 虐的 mzc（https://www.luogu.com.cn/problem/P2306）根据数据范围计数后进行二进制优化的01背包计算
-P2320 [HNOI2006] 鬼谷子的钱袋（https://www.luogu.com.cn/problem/P2320）二进制分解贪心反向计算
-P2737 [USACO4.1]麦香牛块Beef McNuggets（https://www.luogu.com.cn/problem/P2737）模板：完全背包变种问题
-P2760 科技庄园（https://www.luogu.com.cn/problem/P2760）单调队列优化的多重背包
-P2854 [USACO06DEC]Cow Roller Coaster S（https://www.luogu.com.cn/problem/P2854）分组01背包
-P2938 [USACO09FEB]Stock Market G（https://www.luogu.com.cn/problem/P2938）分组完全背包
-P2979 [USACO10JAN]Cheese Towers S（https://www.luogu.com.cn/problem/P2979）分组01背包
-P3010 [USACO11JAN]Dividing the Gold S（https://www.luogu.com.cn/problem/P3010）经典变形01背包，计算两堆差值最小的分配方案数
-P3423 [POI2005]BAN-Bank Notes（https://www.luogu.com.cn/problem/P3423）二进制优化多重背包与方案输出
-P3983 赛斯石（赛后强化版）（https://www.luogu.com.cn/problem/P3983）两个分组完全背包计算
-P5322 [BJOI2019] 排兵布阵（https://www.luogu.com.cn/problem/P5322）典型二维 DP 转换为分组背包
-P5365 [SNOI2017] 英雄联盟（https://www.luogu.com.cn/problem/P5365）01背包 DP 枚举数量
-P5662 [CSP-J2019] 纪念品（https://www.luogu.com.cn/problem/P5662）完全背包变形贪心题目
-P1417 烹调方案（https://www.luogu.com.cn/problem/P1417）经典贪心排序后计算 01 背包最大值
+===================================LuoGu==================================
+1048（https://www.luogu.com.cn/problem/P1048）一维背包DP，数量有限，从后往前遍历
+1049（https://www.luogu.com.cn/problem/P1049）一维背包DP
+1776（https://www.luogu.com.cn/problem/P1776）多重背包，使用二进制拆分进行优化，进一步使用单调队列优化
+1509（https://www.luogu.com.cn/problem/P1509）四重背包
+1060（https://www.luogu.com.cn/problem/P1509）一维背包DP
+1566（https://www.luogu.com.cn/problem/P1566#submit）限制计数背包
+1759（https://www.luogu.com.cn/problem/P1759）二重背包并输出方案
+1794（https://www.luogu.com.cn/problem/P1794）二重背包
+1806（https://www.luogu.com.cn/problem/P1806）连续值一维有限背包计数
+1853（https://www.luogu.com.cn/problem/P1853）一维无限背包有技巧成倍缩小背包范围
+1874（https://www.luogu.com.cn/problem/P1874）类似区间与背包的结合枚举前一个字符串加号分割点求和
+1977（https://www.luogu.com.cn/problem/P1977）分组有限背包
+1586（https://www.luogu.com.cn/problem/P1586）分组无限背包
+1566（https://www.luogu.com.cn/problem/P1566）一维有限背包计数
+1509（https://www.luogu.com.cn/problem/P1509）二重背包，转移的时候比较优先级有两个
+1504（https://www.luogu.com.cn/problem/P1504）一维有限背包DP
+2066（https://www.luogu.com.cn/problem/P2066）分组有限背包，转移的时候比较优先级有两个
+2340（https://www.luogu.com.cn/problem/P2340）经典01背包变种问题还带负数加和
+2370（https://www.luogu.com.cn/problem/P2370）使用最小生成树的思想排序后贪心进行背包放入，达成条件后即中止
+2386（https://www.luogu.com.cn/problem/P2386）背包DP进行去重组合加和计数
+2623（https://www.luogu.com.cn/problem/P2623）综合经典背包，函数取最大值进行一维有限背包，连续个数使用二进制优化背包，无限个数背包
+1474（https://www.luogu.com.cn/problem/P1474）一维无限背包计数
+1466（https://www.luogu.com.cn/problem/P1466）一维有限背包加和计数
+1455（https://www.luogu.com.cn/problem/P1455）并查集进行搭配购买组合加一维有限背包
+1230（https://www.luogu.com.cn/problem/P1230）排序后根据时间限制进行动态更新一维有限背包
+1077（https://www.luogu.com.cn/problem/P1077）一维有限背包计数
+2725（https://www.luogu.com.cn/problem/P2725）01无限背包计数
+2918（https://www.luogu.com.cn/problem/P2918）一维无限背包，需要根据题意增加背包容量上限计算
+3027（https://www.luogu.com.cn/problem/P3027）一维无限背包，需要根据题意进行利润计算
+3030（https://www.luogu.com.cn/problem/P3030）分组枚举有限背包
+3040（https://www.luogu.com.cn/problem/P3040）二维变种背包
+4817（https://www.luogu.com.cn/problem/P4817）一维有限背包DP变种
+5087（https://www.luogu.com.cn/problem/P5087）二维有限背包变种问题
+6205（https://www.luogu.com.cn/problem/P6205）一维无限背包
+6389（https://www.luogu.com.cn/problem/P6389）一维有限背包变种问题，寻找和尽可能接近的两个分组
+6567（https://www.luogu.com.cn/problem/P6567）一维二进制优化有限背包，即物品数为连续值时需要使用二进制优化
+6771（https://www.luogu.com.cn/problem/P6771）排序后，一维有限变种背包，使用二进制优化
+2842（https://www.luogu.com.cn/problem/P2842）一维无限背包DP不区分顺序
+2840（https://www.luogu.com.cn/problem/P2840）一维无限背包DP区分顺序
+2834（https://www.luogu.com.cn/problem/P2834）一维无限背包DP不区分顺序
+1064（https://www.luogu.com.cn/problem/P1064）有依赖的01背包，枚举状态进行分组讨论，分组背包
+1156（https://www.luogu.com.cn/problem/P1156）转换为背包01DP求解
+1273（https://www.luogu.com.cn/problem/P1273）树上分组背包
+1284（https://www.luogu.com.cn/problem/P1284）枚举三角形两边作为二维bool背包，并使用三角形面积计算公式
+1441（https://www.luogu.com.cn/problem/P1441）枚举加背包DP
+1537（https://www.luogu.com.cn/problem/P1537）经典问题二进制背包优化bool背包，划分成和相等的两部分
+1541（https://www.luogu.com.cn/problem/P1541）四维背包枚举，填表法
+1759（https://www.luogu.com.cn/problem/P1759）二维背包并输出字典序最小的方案
+1833（https://www.luogu.com.cn/problem/P1833）完全背包与单点队列优化多重背包组合
+2014（https://www.luogu.com.cn/problem/P2014）增加一个虚拟源点将DAG转换为树上背包
+2079（https://www.luogu.com.cn/problem/P2079）滚动哈希背包DP，使用两层哈希节省空间
+2170（https://www.luogu.com.cn/problem/P2170）连通块加二进制01背包优化
+2214（https://www.luogu.com.cn/problem/P2214）变种背包DP贪心
+2306（https://www.luogu.com.cn/problem/P2306）根据数据范围计数后进行二进制优化的01背包计算
+2320（https://www.luogu.com.cn/problem/P2320）二进制分解贪心反向计算
+2737（https://www.luogu.com.cn/problem/P2737）模板：完全背包变种问题
+2760（https://www.luogu.com.cn/problem/P2760）单调队列优化的多重背包
+2854（https://www.luogu.com.cn/problem/P2854）分组01背包
+2938（https://www.luogu.com.cn/problem/P2938）分组完全背包
+2979（https://www.luogu.com.cn/problem/P2979）分组01背包
+3010（https://www.luogu.com.cn/problem/P3010）经典变形01背包，计算两堆差值最小的分配方案数
+3423（https://www.luogu.com.cn/problem/P3423）二进制优化多重背包与方案输出
+3983（https://www.luogu.com.cn/problem/P3983）两个分组完全背包计算
+5322（https://www.luogu.com.cn/problem/P5322）典型二维 DP 转换为分组背包
+5365（https://www.luogu.com.cn/problem/P5365）01背包 DP 枚举数量
+5662（https://www.luogu.com.cn/problem/P5662）完全背包变形贪心题目
+1417（https://www.luogu.com.cn/problem/P1417）经典贪心排序后计算 01 背包最大值
 
 ================================CodeForces================================
 B. Modulo Sum（https://codeforces.com/problemset/problem/577/B）取模计数二进制优化与背包DP，寻找非空子序列的和整除给定的数
@@ -98,15 +98,15 @@ D - Match Matching（https://atcoder.jp/contests/abc118/tasks/abc118_d）贪心�
 E - All-you-can-eat（https://atcoder.jp/contests/abc145/tasks/abc145_e）思维题01背包，需要先排序，使用刷表法解决计算
 
 ================================AcWing=====================================
-4. 多重背包问题 I（https://www.acwing.com/problem/content/4/）二进制优化多重背包
-6. 多重背包问题 III（https://www.acwing.com/problem/content/description/6/）单调队列优化多重背包
-7. 混合背包问题（https://www.acwing.com/problem/content/7/）01背包、完全背包与多重背包混合使用
-8. 二维费用的背包问题（https://www.acwing.com/problem/content/8/）二维01背包
-9. 分组背包问题（https://www.acwing.com/problem/content/9/）分组01背包问题
-10. 有依赖的背包问题（https://www.acwing.com/problem/content/10/）树上背包
-11. 背包问题求方案数（https://www.acwing.com/problem/content/description/11/）背包问题求方案数
-12. 背包问题求具体方案（https://www.acwing.com/problem/content/12/）背包问题求具体方案，有两种写法
-4081. 选数（https://www.acwing.com/problem/content/4084/）转换为二维背包问题求解
+4（https://www.acwing.com/problem/content/4/）二进制优化多重背包
+6（https://www.acwing.com/problem/content/description/6/）单调队列优化多重背包
+7（https://www.acwing.com/problem/content/7/）01背包、完全背包与多重背包混合使用
+8（https://www.acwing.com/problem/content/8/）二维01背包
+9（https://www.acwing.com/problem/content/9/）分组01背包问题
+10（https://www.acwing.com/problem/content/10/）树上背包
+11（https://www.acwing.com/problem/content/description/11/）背包问题求方案数
+12（https://www.acwing.com/problem/content/12/）背包问题求具体方案，有两种写法
+4081（https://www.acwing.com/problem/content/4084/）转换为二维背包问题求解
 
 参考：OI WiKi（xx）
 """

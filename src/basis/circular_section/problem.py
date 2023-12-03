@@ -3,21 +3,21 @@
 功能：通过模拟找出循环节进行状态计算
 题目：
 
-===================================力扣===================================
-957. N 天后的牢房（https://leetcode.com/problems/prison-cells-after-n-days/）循环节计算
-418. 屏幕可显示句子的数量（https://leetcode.com/problems/sentence-screen-fitting/）循环节计算
-466. 统计重复个数（https://leetcode.com/problems/count-the-repetitions/）循环节计算
-1806. 还原排列的最少操作步数（https://leetcode.com/problems/minimum-number-of-operations-to-reinitialize-a-permutation/description/）根据有限状态判断循环节的大小
+===================================LeetCode===================================
+957（https://leetcode.com/problems/prison-cells-after-n-days/）循环节计算
+418（https://leetcode.com/problems/sentence-screen-fitting/）循环节计算
+466（https://leetcode.com/problems/count-the-repetitions/）循环节计算
+1806（https://leetcode.com/problems/minimum-number-of-operations-to-reinitialize-a-permutation/description/）根据有限状态判断循环节的大小
 
-===================================洛谷===================================
-P1965 [NOIP2013 提高组] 转圈游戏（https://www.luogu.com.cn/problem/P1965）循环节计算
-P1532 卡布列克圆舞曲（https://www.luogu.com.cn/problem/P1532）循环节计算
-P2203 Blink（https://www.luogu.com.cn/problem/P2203）循环节计算
-P5550 Chino的数列（https://www.luogu.com.cn/problem/P5550）循环节计算也可以使用矩阵快速幂递推
-P7318 「PMOI-4」人赢の梦（https://www.luogu.com.cn/problem/P7318）二维元素，再增加虚拟开始状态，进行循环节计算
-P7681 [COCI2008-2009#5] LUBENICA（https://www.luogu.com.cn/problem/P7681）带前缀和的循环节，注意定义循环状态
-P1468 [USACO2.2] 派对灯 Party Lamps（https://www.luogu.com.cn/problem/P1468）状态压缩求循环节
-P6148 [USACO20FEB] Swapity Swapity Swap S（https://www.luogu.com.cn/problem/P6148）经典计算循环节后模拟
+===================================LuoGu==================================
+1965（https://www.luogu.com.cn/problem/P1965）循环节计算
+1532（https://www.luogu.com.cn/problem/P1532）循环节计算
+2203（https://www.luogu.com.cn/problem/P2203）循环节计算
+5550（https://www.luogu.com.cn/problem/P5550）循环节计算也可以使用矩阵快速幂递推
+7318（https://www.luogu.com.cn/problem/P7318）二维元素，再增加虚拟开始状态，进行循环节计算
+7681（https://www.luogu.com.cn/problem/P7681）带前缀和的循环节，注意定义循环状态
+1468（https://www.luogu.com.cn/problem/P1468）状态压缩求循环节
+6148（https://www.luogu.com.cn/problem/P6148）经典计算循环节后模拟
 
 ================================CodeForces================================
 C. Yet Another Counting Problem（https://codeforces.com/problemset/problem/1342/C）循环节计数

@@ -4,13 +4,13 @@ Ability：brain storming like or g greedy
 Reference：
 
 ===================================LeetCode===================================
-330. Patching Array（https://leetcode.com/problems/patching-array/）greedy|sorting|implemention1798. Maximum Number of Consecutive Values You Can Make（https://leetcode.com/problems/maximum-number-of-consecutive-values-you-can-make/）看似背包实则贪心
-1798. Maximum Number of Consecutive Values You Can Make（https://leetcode.com/problems/maximum-number-of-consecutive-values-you-can-make/）greedy|sorting|implemention
-2952. Minimum Number of Coins to be Added （https://leetcode.com/problems/minimum-number-of-coins-to-be-added/）greedy|sorting|implemention
+330（https://leetcode.com/problems/patching-array/）greedy|sorting|implemention1798. Maximum Number of Consecutive Values You Can Make（https://leetcode.com/problems/maximum-number-of-consecutive-values-you-can-make/）看似背包实则贪心
+1798（https://leetcode.com/problems/maximum-number-of-consecutive-values-you-can-make/）greedy|sorting|implemention
+2952（https://leetcode.com/problems/minimum-number-of-coins-to-be-added/）greedy|sorting|implemention
 
 ===================================Luogu=====================================
-P9202 「GMOI R2-T2」猫耳小（加强版）（https://www.luogu.com.cn/problem/P9202）最少修改次数使得任意非空连续子数组的mex不等于k
-P9199 「GMOI R2-T2」猫耳小（https://www.luogu.com.cn/problem/P9199）最少修改次数使得任意非空连续子数组的mex不等于k
+9202（https://www.luogu.com.cn/problem/P9202）最少修改次数使得任意非空连续子数组的mex不等于k
+9199（https://www.luogu.com.cn/problem/P9199）最少修改次数使得任意非空连续子数组的mex不等于k
 
 ================================CodeForces===================================
 xx（xxx）xxxxxxxxxxxxxxxxxxxx

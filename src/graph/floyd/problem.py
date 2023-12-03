@@ -6,24 +6,24 @@
 参考：OI WiKi（https://oi-wiki.org/graph/shortest-path/）
 题目：
 
-===================================力扣===================================
-2642. 设计可以求最短路径的图类（https://leetcode.com/problems/design-graph-with-shortest-path-calculator/）Floyd动态更新最短路
-1462. 课程表 IV（https://leetcode.com/problems/course-schedule-iv/）可考虑使用传递闭包Floyd求解
+===================================LeetCode===================================
+2642（https://leetcode.com/problems/design-graph-with-shortest-path-calculator/）Floyd动态更新最短路
+1462（https://leetcode.com/problems/course-schedule-iv/）可考虑使用传递闭包Floyd求解
 
-===================================洛谷===================================
-P1119 灾后重建 （https://www.luogu.com.cn/problem/P1119）离线查询加Floyd动态更新经过中转站的起终点距离，修复增加维护的是点
-P1476 休息中的小呆（https://www.luogu.com.cn/problem/P1476）Floyd 求索引从 1 到 n 的最长路并求所有在最长路上的点
-P3906 Geodetic集合（https://www.luogu.com.cn/problem/P3906）Floyd算法计算最短路径上经过的点集合
+===================================LuoGu==================================
+1119（https://www.luogu.com.cn/problem/P1119）离线查询加Floyd动态更新经过中转站的起终点距离，修复增加维护的是点
+1476（https://www.luogu.com.cn/problem/P1476）Floyd 求索引从 1 到 n 的最长路并求所有在最长路上的点
+3906（https://www.luogu.com.cn/problem/P3906）Floyd算法计算最短路径上经过的点集合
 
-P2009 跑步（https://www.luogu.com.cn/problem/P2009）Floyd求最短路
-P2419 [USACO08JAN]Cow Contest S（https://www.luogu.com.cn/problem/P2419）看似拓扑排序其实是使用Floyd进行拓扑排序
-P2910 [USACO08OPEN]Clear And Present Danger S（https://www.luogu.com.cn/problem/P2910）最短路计算之后进行查询，Floyd模板题
-P6464 [传智杯 #2 决赛] 传送门（https://www.luogu.com.cn/problem/P6464）枚举边之后进行Floyd算法更新计算，经典理解Floyd的原理题，经典借助中间两点更新最短距离
-P6175 无向图的最小环问题（https://www.luogu.com.cn/problem/P6175）经典使用Floyd枚举三个点之间的距离和，O(n^3)，也可以使用BFS或者Dijkstra计算
-B3611 【模板】传递闭包（https://www.luogu.com.cn/problem/B3611）传递闭包模板题，使用FLoyd解法
-P1613 跑路（https://www.luogu.com.cn/problem/P1613）经典Floyd动态规划，使用两遍最短路综合计算
-P8312 [COCI2021-2022#4] Autobus（https://www.luogu.com.cn/problem/P8312）经典最多k条边的最短路跑k遍Floyd
-P8794 [蓝桥杯 2022 国 A] 环境治理（https://www.luogu.com.cn/problem/P8794）经典二分加Floyd计算
+2009（https://www.luogu.com.cn/problem/P2009）Floyd求最短路
+2419（https://www.luogu.com.cn/problem/P2419）看似拓扑排序其实是使用Floyd进行拓扑排序
+2910（https://www.luogu.com.cn/problem/P2910）最短路计算之后进行查询，Floyd模板题
+6464（https://www.luogu.com.cn/problem/P6464）枚举边之后进行Floyd算法更新计算，经典理解Floyd的原理题，经典借助中间两点更新最短距离
+6175（https://www.luogu.com.cn/problem/P6175）经典使用Floyd枚举三个点之间的距离和，O(n^3)，也可以使用BFS或者Dijkstra计算
+3611（https://www.luogu.com.cn/problem/B3611）传递闭包模板题，使用FLoyd解法
+1613（https://www.luogu.com.cn/problem/P1613）经典Floyd动态规划，使用两遍最短路综合计算
+8312（https://www.luogu.com.cn/problem/P8312）经典最多k条边的最短路跑k遍Floyd
+8794（https://www.luogu.com.cn/problem/P8794）经典二分加Floyd计算
 
 
 ================================CodeForces================================
@@ -35,7 +35,7 @@ D - Restoring Road Network（https://atcoder.jp/contests/abc074/tasks/arc083_b�
 E - Travel by Car（https://atcoder.jp/contests/abc143/tasks/abc143_e）Floyd建图最短路，两种最短路，建两次图
 
 ===================================AcWing===================================
-4872. 最短路之和（https://www.acwing.com/problem/content/submission/4875/）经典Floyd逆序逆向思维更新最短路对
+4872（https://www.acwing.com/problem/content/submission/4875/）经典Floyd逆序逆向思维更新最短路对
 
 """
 from heapq import heappop, heappush

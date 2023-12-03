@@ -3,96 +3,96 @@
 功能：遍历数组，根据前序或者后序结果进行更新，最大非空连续子序列和
 题目：
 
-===================================力扣===================================
-87. 扰乱字符串（https://leetcode.com/problems/scramble-string/）经典线性DP记忆化深搜
-2361. 乘坐火车路线的最少费用（https://leetcode.com/problems/minimum-costs-using-the-train-line/）当前状态只跟前一个状态有关
-2318. 不同骰子序列的数目（https://leetcode.com/problems/number-of-distinct-roll-sequences/）当前状态只跟前一个状态有关使用枚举计数
-2263. 数组变为有序的最小操作次数（https://leetcode.com/problems/make-array-non-decreasing-or-non-increasing/）当前状态只跟前一个状态有关
-2209. 用地毯覆盖后的最少白色砖块（https://leetcode.com/problems/minimum-white-tiles-after-covering-with-carpets/）前缀优化与处理进行转移
-2188. 完成比赛的最少时间（https://leetcode.com/problems/minimum-time-to-finish-the-race/）预处理DP
-2167. 移除所有载有违禁货物车厢所需的最少时间（https://leetcode.com/problems/minimum-time-to-remove-all-cars-containing-illegal-goods/）使用前缀后缀DP预处理后进行枚举
-2431. 最大限度地提高购买水果的口味（https://leetcode.com/problems/maximize-total-tastiness-of-purchased-fruits/）线性DP进行模拟计算
-6355. 质数减法运算（https://leetcode.com/contest/weekly-contest-338/problems/collect-coins-in-a-tree/）线性DP
-2547. 拆分数组的最小代价（https://leetcode.com/problems/minimum-cost-to-split-an-array/）线性DP并使用一个变量维护计数
-2638. 统计 K-Free 子集的总数（https://leetcode.com/problems/count-the-number-of-k-free-subsets/）经典线性DP计数
-2597. 美丽子集的数目（https://leetcode.com/problems/the-number-of-beautiful-subsets/）·
-2713. 矩阵中严格递增的单元格数（https://leetcode.com/problems/maximum-strictly-increasing-cells-in-a-matrix/）按照值域分层线性 DP
-1526. 形成目标数组的子数组最少增加次数（https://leetcode.com/problems/minimum-number-of-increments-on-subarrays-to-form-a-target-array/）经典线性 DP 与贪心
-1553. 吃掉 N 个橘子的最少天数（https://leetcode.com/problems/minimum-number-of-days-to-eat-n-oranges/）脑筋急转弯贪心记忆化搜索线性DP
-1872. 石子游戏 VIII（https://leetcode.com/problems/stone-game-viii/）前缀和倒序DP
-1770. 执行乘法运算的最大分数（https://leetcode.com/problems/maximum-score-from-performing-multiplication-operations/）经典数组匹配线性DP
-823. 带因子的二叉树（https://leetcode.com/problems/binary-trees-with-factors/description/）经典线性DP计数
-2289. 使数组按非递减顺序排列（https://leetcode.com/problems/steps-to-make-array-non-decreasing/description/）经典单调栈优化的线性DP，也可用BFS加链表求解
-2746. 字符串连接删减字母（https://leetcode.com/problems/decremental-string-concatenation/）经典哈希线性DP模拟实现
-1911. 最大子序列交替和（https://leetcode.com/problems/maximum-alternating-subsequence-sum/）经典线性DP
-2321. 拼接数组的最大分数（https://leetcode.com/problems/maximum-score-of-spliced-array/description/）最大连续子数组和变种
-2320. 统计放置房子的方式数（https://leetcode.com/problems/count-number-of-ways-to-place-houses/）经典线性DP
-1824. 最少侧跳次数（https://leetcode.com/problems/minimum-sideway-jumps/description/）经典线性DP滚动数组
-978. 最长湍流子数组（https://leetcode.com/problems/longest-turbulent-subarray/description/）经典线性DP滚动变量
-1027. 最长等差数列（https://leetcode.com/problems/longest-arithmetic-subsequence/）经典线性DP计算最长等差子序列
-1987. 不同的好子序列数目（https://leetcode.com/problems/number-of-unique-good-subsequences/description/）经典线性计数DP
-2355. 你能拿走的最大图书数量（https://leetcode.com/problems/maximum-number-of-books-you-can-take/）经典单调栈加线性DP，使用下标使用巧妙地转换，计算严格递增子序列的和
-100048. 美丽塔 II（https://leetcode.com/problems/beautiful-towers-ii/）经典单调栈加线性DP，计算山脉子序列的和，前后缀单调栈优化线性DP
-2327. 知道秘密的人数（https://leetcode.com/problems/number-of-people-aware-of-a-secret/description/）经典前缀和或者差分数组优化线性DP
-2572. 无平方子集计数（https://leetcode.com/problems/count-the-number-of-square-free-subsets/description/）经典线性DP计数
+===================================LeetCode===================================
+87（https://leetcode.com/problems/scramble-string/）经典线性DP记忆化深搜
+2361（https://leetcode.com/problems/minimum-costs-using-the-train-line/）当前状态只跟前一个状态有关
+2318（https://leetcode.com/problems/number-of-distinct-roll-sequences/）当前状态只跟前一个状态有关使用枚举计数
+2263（https://leetcode.com/problems/make-array-non-decreasing-or-non-increasing/）当前状态只跟前一个状态有关
+2209（https://leetcode.com/problems/minimum-white-tiles-after-covering-with-carpets/）前缀优化与处理进行转移
+2188（https://leetcode.com/problems/minimum-time-to-finish-the-race/）预处理DP
+2167（https://leetcode.com/problems/minimum-time-to-remove-all-cars-containing-illegal-goods/）使用前缀后缀DP预处理后进行枚举
+2431（https://leetcode.com/problems/maximize-total-tastiness-of-purchased-fruits/）线性DP进行模拟计算
+6355（https://leetcode.com/contest/weekly-contest-338/problems/collect-coins-in-a-tree/）线性DP
+2547（https://leetcode.com/problems/minimum-cost-to-split-an-array/）线性DP并使用一个变量维护计数
+2638（https://leetcode.com/problems/count-the-number-of-k-free-subsets/）经典线性DP计数
+2597（https://leetcode.com/problems/the-number-of-beautiful-subsets/）·
+2713（https://leetcode.com/problems/maximum-strictly-increasing-cells-in-a-matrix/）按照值域分层线性 DP
+1526（https://leetcode.com/problems/minimum-number-of-increments-on-subarrays-to-form-a-target-array/）经典线性 DP 与贪心
+1553（https://leetcode.com/problems/minimum-number-of-days-to-eat-n-oranges/）脑筋急转弯贪心记忆化搜索线性DP
+1872（https://leetcode.com/problems/stone-game-viii/）前缀和倒序DP
+1770（https://leetcode.com/problems/maximum-score-from-performing-multiplication-operations/）经典数组匹配线性DP
+823（https://leetcode.com/problems/binary-trees-with-factors/description/）经典线性DP计数
+2289（https://leetcode.com/problems/steps-to-make-array-non-decreasing/description/）经典单调栈优化的线性DP，也可用BFS加链表求解
+2746（https://leetcode.com/problems/decremental-string-concatenation/）经典哈希线性DP模拟实现
+1911（https://leetcode.com/problems/maximum-alternating-subsequence-sum/）经典线性DP
+2321（https://leetcode.com/problems/maximum-score-of-spliced-array/description/）最大连续子数组和变种
+2320（https://leetcode.com/problems/count-number-of-ways-to-place-houses/）经典线性DP
+1824（https://leetcode.com/problems/minimum-sideway-jumps/description/）经典线性DP滚动数组
+978（https://leetcode.com/problems/longest-turbulent-subarray/description/）经典线性DP滚动变量
+1027（https://leetcode.com/problems/longest-arithmetic-subsequence/）经典线性DP计算最长等差子序列
+1987（https://leetcode.com/problems/number-of-unique-good-subsequences/description/）经典线性计数DP
+2355（https://leetcode.com/problems/maximum-number-of-books-you-can-take/）经典单调栈加线性DP，使用下标使用巧妙地转换，计算严格递增子序列的和
+100048（https://leetcode.com/problems/beautiful-towers-ii/）经典单调栈加线性DP，计算山脉子序列的和，前后缀单调栈优化线性DP
+2327（https://leetcode.com/problems/number-of-people-aware-of-a-secret/description/）经典前缀和或者差分数组优化线性DP
+2572（https://leetcode.com/problems/count-the-number-of-square-free-subsets/description/）经典线性DP计数
 
-===================================洛谷===================================
-P1970 [NOIP2013 提高组] 花匠（https://www.luogu.com.cn/problem/P1970）使用贪心与动态规划计算最长的山脉子数组
-P1564 膜拜（https://www.luogu.com.cn/problem/P1564）线性DP
-P1481 魔族密码（https://www.luogu.com.cn/problem/P1481）线性DP
-P2029 跳舞（https://www.luogu.com.cn/problem/P2029）线性DP
-P2031 脑力达人之分割字串（https://www.luogu.com.cn/problem/P2031）线性DP
-P2062 分队问题（https://www.luogu.com.cn/problem/P2062）线性DP+前缀最大值DP剪枝优化
-P2072 宗教问题（https://www.luogu.com.cn/problem/P2072）两个线性DP
-P2096 最佳旅游线路（https://www.luogu.com.cn/problem/P2096）最大连续子序列和变种
-P5761 [NOI1997] 最佳游览（https://www.luogu.com.cn/problem/P5761）最大连续子序列和变种
-P2285 [HNOI2004]打鼹鼠（https://www.luogu.com.cn/problem/P2285）线性DP+前缀最大值DP剪枝优化
-P2642 双子序列最大和（https://www.luogu.com.cn/problem/P2642）枚举前后两个非空的最大子序列和
-P1470 [USACO2.3]最长前缀 Longest Prefix（https://www.luogu.com.cn/problem/P1470）线性DP
-P1096 [NOIP2007 普及组] Hanoi 双塔问题（https://www.luogu.com.cn/problem/P1096）经典线性DP
-P2896 [USACO08FEB]Eating Together S（https://www.luogu.com.cn/problem/P2896）前后缀动态规划
-P2904 [USACO08MAR]River Crossing S（https://www.luogu.com.cn/problem/P2904）前缀和预处理加线性DP
-P3062 [USACO12DEC]Wifi Setup S（https://www.luogu.com.cn/problem/P3062）线性DP枚举
-P3842 [TJOI2007]线段（https://www.luogu.com.cn/problem/P3842）线性DP进行模拟
-P3903 导弹拦截III（https://www.luogu.com.cn/problem/P3903）线性DP枚举当前元素作为谷底与山峰的子序列长度
-P5414 [YNOI2019] 排序（https://www.luogu.com.cn/problem/P5414）贪心，使用线性DP计算最大不降子序列和
-P6191 [USACO09FEB]Bulls And Cows S（https://www.luogu.com.cn/problem/P6191）线性DP枚举计数
-P6208 [USACO06OCT] Cow Pie Treasures G（https://www.luogu.com.cn/problem/P6208）线性DP模拟
-P7404 [JOI 2021 Final] とてもたのしい家庭菜園 4（https://www.luogu.com.cn/problem/P7404）动态规划枚举，计算变成山脉数组的最少操作次数
-P7541 [COCI2009-2010#1] DOBRA（https://www.luogu.com.cn/problem/P7541）线性DP记忆化搜索，类似数位DP
-P7767 [COCI 2011/2012 #5] DNA（https://www.luogu.com.cn/problem/P7767）线性DP，计算前缀变成全部相同字符的最少操作次数
-P2246 SAC#1 - Hello World（升级版）（https://www.luogu.com.cn/problem/P2246）字符串计数线性DP
-P4933 大师（https://www.luogu.com.cn/problem/P4933）线性DP使用等差数列计数
-P1874 快速求和（https://www.luogu.com.cn/problem/P1874）线性DP
-P2513 [HAOI2009]逆序对数列（https://www.luogu.com.cn/problem/P2513）前缀和优化DP
-P1280 尼克的任务（https://www.luogu.com.cn/problem/P1280）经典逆序线性 DP
-P1282 多米诺骨牌（https://www.luogu.com.cn/problem/P1282）典型线性DP，使用哈希实现
-P1356 数列的整除性（https://www.luogu.com.cn/problem/P1356）典型线性取模DP
-P1385 密令（https://www.luogu.com.cn/problem/P1385）线性DP与前缀和优化，脑筋急转弯字符串字典序总和不变
-P1809 过河问题（https://www.luogu.com.cn/problem/P1809）思维题线性DP，经典贪心
-P1868 饥饿的奶牛（https://www.luogu.com.cn/problem/P1868）线性DP加二分查找优化
-P1978 集合（https://www.luogu.com.cn/problem/P1978）经典线性DP，乘积互斥
-P2432 zxbsmk爱查错（https://www.luogu.com.cn/problem/P2432）线性DP加指针
-P2439 [SDOI2005]阶梯教室设备利用（https://www.luogu.com.cn/problem/P2439）线性DP加二分
-P2476 [SCOI2008]着色方案（https://www.luogu.com.cn/problem/P2476）计数分组线性 DP 记忆化搜索
-P2849 [USACO14DEC]Marathon S（https://www.luogu.com.cn/problem/P2849）矩阵二维 DP 线性遍历
-P3448 [POI2006]MIS-Teddies（https://www.luogu.com.cn/problem/P3448）经典线性DP计数
-P3558 [POI2013]BAJ-Bytecomputer（https://www.luogu.com.cn/problem/P3558）线性 DP 模拟
-B3734 [信息与未来 2017] 加强版密码锁（https://www.luogu.com.cn/problem/B3734）
-P3901 数列找不同（https://www.luogu.com.cn/problem/P3901）经典指针加线性 DP 记录前一个相同数的指针
-P4401 [IOI2007]Miners 矿工配餐（https://www.luogu.com.cn/problem/P4401）
-P4933 大师（https://www.luogu.com.cn/problem/P4933）经典等差数列线性 DP 计数
-P5095 [USACO12OPEN]Bookshelf S（https://www.luogu.com.cn/problem/P5095）典型线性 DP
-P5810 [SCOI2004]文本的输入（https://www.luogu.com.cn/problem/P5810）经典线性 DP
-P6040 「ACOI2020」课后期末考试滑溜滑溜补习班（https://www.luogu.com.cn/problem/P6040）单调队列优化的线性 DP
-P6120 [USACO17JAN]Hoof, Paper, Scissor S（https://www.luogu.com.cn/problem/P6120）线性 DP 模拟
-P6146 [USACO20FEB]Help Yourself G（https://www.luogu.com.cn/problem/P6146）线性 DP 枚举计数
-P7994 [USACO21DEC] Air Cownditioning B（https://www.luogu.com.cn/problem/P7994）经典线性 DP 修改连续区间值加一减一的最少操作次数
-P8656 [蓝桥杯 2017 国 B] 对局匹配（https://www.luogu.com.cn/problem/P8656）经典分组线性 DP
-P8725 [蓝桥杯 2020 省 AB3] 画中漂流（https://www.luogu.com.cn/problem/P8725）典型矩阵 DP 使用指针关系减少维度
-P8784 [蓝桥杯 2022 省 B] 积木画（https://www.luogu.com.cn/problem/P8784）线性 DP 可以使用矩阵幂优化
-P8786 [蓝桥杯 2022 省 B] 李白打酒加强版（https://www.luogu.com.cn/problem/P8786）线性 DP 记忆化搜索模拟
-P8816 [CSP-J 2022] 上升点列（https://www.luogu.com.cn/problem/P8816）典型线性矩阵 DP 模拟
+===================================LuoGu==================================
+1970（https://www.luogu.com.cn/problem/P1970）使用贪心与动态规划计算最长的山脉子数组
+1564（https://www.luogu.com.cn/problem/P1564）线性DP
+1481（https://www.luogu.com.cn/problem/P1481）线性DP
+2029（https://www.luogu.com.cn/problem/P2029）线性DP
+2031（https://www.luogu.com.cn/problem/P2031）线性DP
+2062（https://www.luogu.com.cn/problem/P2062）线性DP+前缀最大值DP剪枝优化
+2072（https://www.luogu.com.cn/problem/P2072）两个线性DP
+2096（https://www.luogu.com.cn/problem/P2096）最大连续子序列和变种
+5761（https://www.luogu.com.cn/problem/P5761）最大连续子序列和变种
+2285（https://www.luogu.com.cn/problem/P2285）线性DP+前缀最大值DP剪枝优化
+2642（https://www.luogu.com.cn/problem/P2642）枚举前后两个非空的最大子序列和
+1470（https://www.luogu.com.cn/problem/P1470）线性DP
+1096（https://www.luogu.com.cn/problem/P1096）经典线性DP
+2896（https://www.luogu.com.cn/problem/P2896）前后缀动态规划
+2904（https://www.luogu.com.cn/problem/P2904）前缀和预处理加线性DP
+3062（https://www.luogu.com.cn/problem/P3062）线性DP枚举
+3842（https://www.luogu.com.cn/problem/P3842）线性DP进行模拟
+3903（https://www.luogu.com.cn/problem/P3903）线性DP枚举当前元素作为谷底与山峰的子序列长度
+5414（https://www.luogu.com.cn/problem/P5414）贪心，使用线性DP计算最大不降子序列和
+6191（https://www.luogu.com.cn/problem/P6191）线性DP枚举计数
+6208（https://www.luogu.com.cn/problem/P6208）线性DP模拟
+7404（https://www.luogu.com.cn/problem/P7404）动态规划枚举，计算变成山脉数组的最少操作次数
+7541（https://www.luogu.com.cn/problem/P7541）线性DP记忆化搜索，类似数位DP
+7767（https://www.luogu.com.cn/problem/P7767）线性DP，计算前缀变成全部相同字符的最少操作次数
+2246（https://www.luogu.com.cn/problem/P2246）字符串计数线性DP
+4933（https://www.luogu.com.cn/problem/P4933）线性DP使用等差数列计数
+1874（https://www.luogu.com.cn/problem/P1874）线性DP
+2513（https://www.luogu.com.cn/problem/P2513）前缀和优化DP
+1280（https://www.luogu.com.cn/problem/P1280）经典逆序线性 DP
+1282（https://www.luogu.com.cn/problem/P1282）典型线性DP，使用哈希实现
+1356（https://www.luogu.com.cn/problem/P1356）典型线性取模DP
+1385（https://www.luogu.com.cn/problem/P1385）线性DP与前缀和优化，脑筋急转弯字符串字典序总和不变
+1809（https://www.luogu.com.cn/problem/P1809）思维题线性DP，经典贪心
+1868（https://www.luogu.com.cn/problem/P1868）线性DP加二分查找优化
+1978（https://www.luogu.com.cn/problem/P1978）经典线性DP，乘积互斥
+2432（https://www.luogu.com.cn/problem/P2432）线性DP加指针
+2439（https://www.luogu.com.cn/problem/P2439）线性DP加二分
+2476（https://www.luogu.com.cn/problem/P2476）计数分组线性 DP 记忆化搜索
+2849（https://www.luogu.com.cn/problem/P2849）矩阵二维 DP 线性遍历
+3448（https://www.luogu.com.cn/problem/P3448）经典线性DP计数
+3558（https://www.luogu.com.cn/problem/P3558）线性 DP 模拟
+3734（https://www.luogu.com.cn/problem/B3734）
+3901（https://www.luogu.com.cn/problem/P3901）经典指针加线性 DP 记录前一个相同数的指针
+4401（https://www.luogu.com.cn/problem/P4401）
+4933（https://www.luogu.com.cn/problem/P4933）经典等差数列线性 DP 计数
+5095（https://www.luogu.com.cn/problem/P5095）典型线性 DP
+5810（https://www.luogu.com.cn/problem/P5810）经典线性 DP
+6040（https://www.luogu.com.cn/problem/P6040）单调队列优化的线性 DP
+6120（https://www.luogu.com.cn/problem/P6120）线性 DP 模拟
+6146（https://www.luogu.com.cn/problem/P6146）线性 DP 枚举计数
+7994（https://www.luogu.com.cn/problem/P7994）经典线性 DP 修改连续区间值加一减一的最少操作次数
+8656（https://www.luogu.com.cn/problem/P8656）经典分组线性 DP
+8725（https://www.luogu.com.cn/problem/P8725）典型矩阵 DP 使用指针关系减少维度
+8784（https://www.luogu.com.cn/problem/P8784）线性 DP 可以使用矩阵幂优化
+8786（https://www.luogu.com.cn/problem/P8786）线性 DP 记忆化搜索模拟
+8816（https://www.luogu.com.cn/problem/P8816）典型线性矩阵 DP 模拟
 
 ================================CodeForces================================
 D. Big Maximum Sum（https://codeforces.com/problemset/problem/75/D）经典压缩数组，最大子段和升级
@@ -109,8 +109,8 @@ E. Funny Game（https://codeforces.com/contest/731/problem/E）前缀和倒序DP
 E - Sum Equals Xor（https://atcoder.jp/contests/abc129/tasks/abc129_e）思维题，类似数位DP
 
 ================================AcWing====================================
-96. 奇怪的汉诺塔（https://www.acwing.com/problem/content/98/）经典的汉诺塔问题，可推广到n个盘子与m个柱子
-4414. 子序列（https://www.acwing.com/problem/content/description/4417/）经典线性子序列DP
+96（https://www.acwing.com/problem/content/98/）经典的汉诺塔问题，可推广到n个盘子与m个柱子
+4414（https://www.acwing.com/problem/content/description/4417/）经典线性子序列DP
 
 参考：OI WiKi（xx）
 """

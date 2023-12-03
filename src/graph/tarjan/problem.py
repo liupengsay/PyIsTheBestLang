@@ -5,31 +5,31 @@
 - Tarjan 算法可以也可以求解有向图的强连通分量，进一步地可以求有向图的必经点与必经边，转换为DAG问题
 参考：60 分钟搞定图论中的 Tarjan 算法（https://zhuanlan.zhihu.com/p/101923309）
 
-===================================力扣===================================
-1192. 查找集群内的关键连接（https://leetcode.com/problems/critical-connections-in-a-network/）无向有环图求割边
-2360. 图中的最长环（https://leetcode.com/problems/longest-cycle-in-a-graph/solution/by-liupengsay-4ff6/）经典求有向图最长环
-2204. 无向图中到环的距离（https://leetcode.com/problems/distance-to-a-cycle-in-undirected-graph/description/）求无向图中每个点到环的距离
-1568. 使陆地分离的最少天数（https://leetcode.com/problems/minimum-number-of-days-to-disconnect-island/solution/by-liupengsay-zd7w/）无向有环图求求割点数量
+===================================LeetCode===================================
+1192（https://leetcode.com/problems/critical-connections-in-a-network/）无向有环图求割边
+2360（https://leetcode.com/problems/longest-cycle-in-a-graph/solution/by-liupengsay-4ff6/）经典求有向图最长环
+2204（https://leetcode.com/problems/distance-to-a-cycle-in-undirected-graph/description/）求无向图中每个点到环的距离
+1568（https://leetcode.com/problems/minimum-number-of-days-to-disconnect-island/solution/by-liupengsay-zd7w/）无向有环图求求割点数量
 
-===================================洛谷===================================
-P3388 【模板】割点（割顶）（https://www.luogu.com.cn/problem/P3388）有自环与重边，求无向图割点
-P8435 【模板】点双连通分量（https://www.luogu.com.cn/problem/P8435）有自环与重边，只关注孤立自环即可
-P8436 【模板】边双连通分量（https://www.luogu.com.cn/problem/P8436）有自环与重边，通过虚拟节点进行扩边
-P2860 [USACO06JAN]Redundant Paths G（https://www.luogu.com.cn/problem/P2860）无向图边双缩点后求树的质心为根时的叶子两两配对数
-P2863 [USACO06JAN]The Cow Prom S（https://www.luogu.com.cn/problem/P2863）tarjan求强联通分量
+===================================LuoGu==================================
+3388（https://www.luogu.com.cn/problem/P3388）有自环与重边，求无向图割点
+8435（https://www.luogu.com.cn/problem/P8435）有自环与重边，只关注孤立自环即可
+8436（https://www.luogu.com.cn/problem/P8436）有自环与重边，通过虚拟节点进行扩边
+2860（https://www.luogu.com.cn/problem/P2860）无向图边双缩点后求树的质心为根时的叶子两两配对数
+2863（https://www.luogu.com.cn/problem/P2863）tarjan求强联通分量
 
-P1656 炸铁路（https://www.luogu.com.cn/problem/P1656）求割边
-P1793 跑步（https://www.luogu.com.cn/problem/P1793）求连通图两个指定点之间的割点，使用枚举与并查集的方式进行求解
-P2656 采蘑菇（https://www.luogu.com.cn/problem/P2656）使用scc缩点后，计算DAG最长路
-P1726 上白泽慧音（https://www.luogu.com.cn/problem/P1726）强连通分量裸题
-P2002 消息扩散（https://www.luogu.com.cn/problem/P2002）强连通分量缩点后，计算入度为0的节点个数
-P2341 [USACO03FALL/HAOI2006] 受欢迎的牛 G（https://www.luogu.com.cn/problem/P2341）使用scc缩点后计算出度为 0 的点集个数与大小
-P2835 刻录光盘（https://www.luogu.com.cn/problem/P2835）强连通分量scc缩点后计算入度为 0 的点数
-P2863 [USACO06JAN]The Cow Prom S（https://www.luogu.com.cn/problem/P2863）强连通分量scc模板题
-B3609 [图论与代数结构 701] 强连通分量（https://www.luogu.com.cn/problem/B3609）强连通分量scc模板题
-B3610 [图论与代数结构 801] 无向图的块（https://www.luogu.com.cn/problem/B3610）点双连通分量
-P7033 [NWRRC2016]CodeCoder vs TopForces（https://www.luogu.com.cn/problem/P7033）经典scc缩点后使用 DAG 进行树形 DP
-P7965 [COCI2021-2022#2] Kutije（https://www.luogu.com.cn/problem/P7965）经典scc缩点后使用 DAG 进行树形 DP
+1656（https://www.luogu.com.cn/problem/P1656）求割边
+1793（https://www.luogu.com.cn/problem/P1793）求连通图两个指定点之间的割点，使用枚举与并查集的方式进行求解
+2656（https://www.luogu.com.cn/problem/P2656）使用scc缩点后，计算DAG最长路
+1726（https://www.luogu.com.cn/problem/P1726）强连通分量裸题
+2002（https://www.luogu.com.cn/problem/P2002）强连通分量缩点后，计算入度为0的节点个数
+2341（https://www.luogu.com.cn/problem/P2341）使用scc缩点后计算出度为 0 的点集个数与大小
+2835（https://www.luogu.com.cn/problem/P2835）强连通分量scc缩点后计算入度为 0 的点数
+2863（https://www.luogu.com.cn/problem/P2863）强连通分量scc模板题
+3609（https://www.luogu.com.cn/problem/B3609）强连通分量scc模板题
+3610（https://www.luogu.com.cn/problem/B3610）点双连通分量
+7033（https://www.luogu.com.cn/problem/P7033）经典scc缩点后使用 DAG 进行树形 DP
+7965（https://www.luogu.com.cn/problem/P7965）经典scc缩点后使用 DAG 进行树形 DP
 
 ===================================CodeForces===================================
 F. Is It Flower?（https://codeforces.com/contest/1811/problem/F）无向图求连通分量
@@ -42,8 +42,8 @@ E. Split Into Two Sets（https://codeforces.com/contest/1702/problem/E）使用�
 D. Lucky Permutation（https://codeforces.com/contest/1768/problem/D）置换环与tarjan求环
 
 ===================================AcWing===================================
-3579. 数字移动（https://www.acwing.com/problem/content/3582/）强连通分量模板题
-3813. 最大路径权值（https://www.acwing.com/problem/content/submission/3816/）强连通分量模板与拓扑排序DP
+3579（https://www.acwing.com/problem/content/3582/）强连通分量模板题
+3813（https://www.acwing.com/problem/content/submission/3816/）强连通分量模板与拓扑排序DP
 
 ===================================LibraryChecker===================================
 1 Cycle Detection (Directed)（https://judge.yosupo.jp/problem/cycle_detection）detect any circle in a directed graph

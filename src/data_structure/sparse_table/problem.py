@@ -5,22 +5,22 @@ ST表算法全称Sparse-Table算法，是由Tarjan提出的一种解决RMQ问题
 
 题目：
 
-===================================力扣===================================
-1521. 找到最接近目标值的函数值（https://leetcode.com/problems/find-a-value-of-a-mysterious-function-closest-to-target/）经典计算与目标值最接近的连续子数组位运算与值
-2411. 按位或最大的最小子数组长度（https://leetcode.com/problems/smallest-subarrays-with-maximum-bitwise-or/）经典计算最大或值的最短连续子数组
-2447. 最大公因数等于 K 的子数组数目（https://leetcode.com/problems/number-of-subarrays-with-gcd-equal-to-k/）经典计算最大公因数为 k 的连续子数组个数，可推广到位运算或与异或
-2470. 最小公倍数为 K 的子数组数目（https://leetcode.com/problems/number-of-subarrays-with-lcm-equal-to-k/）经典计算最小公倍为 k 的连续子数组个数，可推广到位运算或与异或
-2654. 使数组所有元素变成 1 的最少操作次数（https://leetcode.com/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/）经典计算最大公因数为 1 的最短连续子数组
+===================================LeetCode===================================
+1521（https://leetcode.com/problems/find-a-value-of-a-mysterious-function-closest-to-target/）经典计算与目标值最接近的连续子数组位运算与值
+2411（https://leetcode.com/problems/smallest-subarrays-with-maximum-bitwise-or/）经典计算最大或值的最短连续子数组
+2447（https://leetcode.com/problems/number-of-subarrays-with-gcd-equal-to-k/）经典计算最大公因数为 k 的连续子数组个数，可推广到位运算或与异或
+2470（https://leetcode.com/problems/number-of-subarrays-with-lcm-equal-to-k/）经典计算最小公倍为 k 的连续子数组个数，可推广到位运算或与异或
+2654（https://leetcode.com/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/）经典计算最大公因数为 1 的最短连续子数组
 
-===================================洛谷===================================
-P3865 ST 表（https://www.luogu.com.cn/problem/P3865）使用ST表静态查询区间最大值
-P2880 Balanced Lineup G（https://www.luogu.com.cn/problem/P2880）使用ST表预处理区间最大值与最小值
-P1890 gcd区间（https://www.luogu.com.cn/problem/P3865）使用ST表预处理区间的gcd
-P1816 忠诚（https://www.luogu.com.cn/problem/P1816）使用ST表预处理区间的最小值
-P2412 查单词（https://www.luogu.com.cn/problem/P2412）预处理字典序之后使用ST表查询静态区间最大字典序
-P2880 [USACO07JAN] Balanced Lineup G（https://www.luogu.com.cn/problem/P2880）查询区间最大值与最小值
-P5097 [USACO04OPEN]Cave Cows 2（https://www.luogu.com.cn/problem/P5097）静态区间最小值
-P5648 Mivik的神力（https://www.luogu.com.cn/problem/P5648）使用倍增 ST 表查询区间最大值的索引，使用单调栈建树计算距离
+===================================LuoGu==================================
+3865（https://www.luogu.com.cn/problem/P3865）使用ST表静态查询区间最大值
+2880（https://www.luogu.com.cn/problem/P2880）使用ST表预处理区间最大值与最小值
+1890（https://www.luogu.com.cn/problem/P3865）使用ST表预处理区间的gcd
+1816（https://www.luogu.com.cn/problem/P1816）使用ST表预处理区间的最小值
+2412（https://www.luogu.com.cn/problem/P2412）预处理字典序之后使用ST表查询静态区间最大字典序
+2880（https://www.luogu.com.cn/problem/P2880）查询区间最大值与最小值
+5097（https://www.luogu.com.cn/problem/P5097）静态区间最小值
+5648（https://www.luogu.com.cn/problem/P5648）使用倍增 ST 表查询区间最大值的索引，使用单调栈建树计算距离
 
 ================================CodeForces================================
 D. Max GEQ Sum（https://codeforces.com/problemset/problem/1691/D）单调栈枚举加ST表最大值最小值查询
@@ -36,7 +36,7 @@ D. Rorororobot（https://codeforces.com/contest/1709/problem/D）use sparse tabl
 D. Cut（https://codeforces.com/contest/1516/problem/D）经典数组区间向右倍增计算
 
 ================================AcWing====================================
-109. 天才ACM（https://www.acwing.com/problem/content/111/）贪心加倍增计算最少分段数
+109（https://www.acwing.com/problem/content/111/）贪心加倍增计算最少分段数
 
 参考：OI WiKi（xx）
 """

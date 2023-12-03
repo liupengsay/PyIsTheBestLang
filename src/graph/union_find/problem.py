@@ -4,57 +4,57 @@
 功能：用来处理图论相关的联通问题，通常结合逆向思考、置换环或者离线查询进行求解，连通块不一定是秩大小，也可以是最大最小值、和等
 题目：
 
-===================================力扣===================================
-765. 情侣牵手（https://leetcode.com/problems/couples-holding-hands/）经典并查集
-1697. 检查边长度限制的路径是否存在（https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/）排序后离线查询两点间所有路径的最大边权值
-2503. 矩阵查询可获得的最大分数（https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/）排序后离线查询与起点相连的连通块的大小
-2421. 好路径的数目（https://leetcode.com/problems/number-of-good-paths/）根据权值进行排序更新并查集计算连通分块满足条件的节点对数
-2382. 删除操作后的最大子段和（https://leetcode.com/problems/maximum-segment-sum-after-removals/）逆向进行访问查询并更新连通块的结果
-2334. 元素值大于变化阈值的子数组（https://leetcode.com/problems/subarray-with-elements-greater-than-varying-threshold/）排序后枚举动态维护并查集连通块
-2158. 每天绘制新区域的数量（https://leetcode.com/problems/amount-of-new-area-painted-each-day/）使用并查集维护区间左端点，不断进行合并
-2157. 字符串分组（https://leetcode.com/problems/groups-of-strings/）利用字母的有限数量进行变换枚举分组
-2076. 处理含限制条件的好友请求（https://leetcode.com/problems/process-restricted-friend-requests/）使用并查集变种，维护群体的不喜欢关系
-2459. 通过移动项目到空白区域来排序数组（https://leetcode.com/problems/sort-array-by-moving-items-to-empty-space/）置换环经典题目
-2709. 最大公约数遍历（https://leetcode.com/problems/greatest-common-divisor-traversal/）经典并查集计算具有相同质因数的连通块
-2612. 最少翻转操作数（https://leetcode.com/problems/minimum-reverse-operations/）经典并查集应用 find_merge 灵活使用
-1559. 二维网格图中探测环（https://leetcode.com/problems/detect-cycles-in-2d-grid/）经典并查集判环
-1569. 将子数组重新排序得到同一个二叉搜索树的方案数（https://leetcode.com/problems/number-of-ways-to-reorder-array-to-get-same-bst/）逆序思维，倒序利用并查集建立二叉搜索树，排列组合加并查集
-1970. 你能穿过矩阵的最后一天（https://leetcode.com/problems/last-day-where-you-can-still-cross/）经典逆序思维并查集
-1998. 数组的最大公因数排序（https://leetcode.com/problems/gcd-sort-of-an-array/）经典并查集加质因数分解
-2158. 每天绘制新区域的数量（https://leetcode.com/problems/amount-of-new-area-painted-each-day/）经典区间并查集
-2471. 逐层排序二叉树所需的最少操作数目（https://leetcode.com/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/description/）经典离散化置换环
-945. 使数组唯一的最小增量（https://leetcode.com/problems/minimum-increment-to-make-array-unique/description/）可使用向右合并的区间并查集，正解为贪心
-947. 移除最多的同行或同列石头（https://leetcode.com/contest/weekly-contest-112/problems/most-stones-removed-with-same-row-or-column/）脑筋急转弯并查集
-100047. 统计树中的合法路径数目（https://leetcode.com/problems/count-valid-paths-in-a-tree/description/）树形DP，并查集或者BFS实现
+===================================LeetCode===================================
+765（https://leetcode.com/problems/couples-holding-hands/）经典并查集
+1697（https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/）排序后离线查询两点间所有路径的最大边权值
+2503（https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/）排序后离线查询与起点相连的连通块的大小
+2421（https://leetcode.com/problems/number-of-good-paths/）根据权值进行排序更新并查集计算连通分块满足条件的节点对数
+2382（https://leetcode.com/problems/maximum-segment-sum-after-removals/）逆向进行访问查询并更新连通块的结果
+2334（https://leetcode.com/problems/subarray-with-elements-greater-than-varying-threshold/）排序后枚举动态维护并查集连通块
+2158（https://leetcode.com/problems/amount-of-new-area-painted-each-day/）使用并查集维护区间左端点，不断进行合并
+2157（https://leetcode.com/problems/groups-of-strings/）利用字母的有限数量进行变换枚举分组
+2076（https://leetcode.com/problems/process-restricted-friend-requests/）使用并查集变种，维护群体的不喜欢关系
+2459（https://leetcode.com/problems/sort-array-by-moving-items-to-empty-space/）置换环经典题目
+2709（https://leetcode.com/problems/greatest-common-divisor-traversal/）经典并查集计算具有相同质因数的连通块
+2612（https://leetcode.com/problems/minimum-reverse-operations/）经典并查集应用 find_merge 灵活使用
+1559（https://leetcode.com/problems/detect-cycles-in-2d-grid/）经典并查集判环
+1569（https://leetcode.com/problems/number-of-ways-to-reorder-array-to-get-same-bst/）逆序思维，倒序利用并查集建立二叉搜索树，排列组合加并查集
+1970（https://leetcode.com/problems/last-day-where-you-can-still-cross/）经典逆序思维并查集
+1998（https://leetcode.com/problems/gcd-sort-of-an-array/）经典并查集加质因数分解
+2158（https://leetcode.com/problems/amount-of-new-area-painted-each-day/）经典区间并查集
+2471（https://leetcode.com/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/description/）经典离散化置换环
+945（https://leetcode.com/problems/minimum-increment-to-make-array-unique/description/）可使用向右合并的区间并查集，正解为贪心
+947（https://leetcode.com/contest/weekly-contest-112/problems/most-stones-removed-with-same-row-or-column/）脑筋急转弯并查集
+100047（https://leetcode.com/problems/count-valid-paths-in-a-tree/description/）树形DP，并查集或者BFS实现
 
-===================================洛谷===================================
-P3367 并查集（https://www.luogu.com.cn/problem/P3367）计算连通分块的数量
-P5836 Milk Visits S（https://www.luogu.com.cn/problem/P5836）使用两个并查集进行不同方面的查询
-P3144 [USACO16OPEN]Closing the Farm S（https://www.luogu.com.cn/problem/P3144）逆序并查集，考察连通块的数量
-P5836 [USACO19DEC]Milk Visits S（https://www.luogu.com.cn/problem/P5836）两个并查集进行连通情况查询
-P5877 棋盘游戏（https://www.luogu.com.cn/problem/P5877）正向模拟实时计算更新连通块的数量
-P6111 [USACO18JAN]MooTube S（https://www.luogu.com.cn/problem/P6111）并查集加离线查询进行计算
-P6121 [USACO16OPEN]Closing the Farm G（https://www.luogu.com.cn/problem/P6121）逆序并查集根据连通块大小进行连通性判定
-P6153 询问（https://www.luogu.com.cn/problem/P6153）经典并查集思想贪心题，体现了并查集的思想
-P1955 [NOI2015] 程序自动分析（https://www.luogu.com.cn/problem/P1955）并查集裸题
-P1196 [NOI2002] 银河英雄传说（https://www.luogu.com.cn/problem/P1196）带权并查集
-P1197 [JSOI2008] 星球大战（https://www.luogu.com.cn/problem/P1197）逆序并查集，倒序枚举计算联通块个数
-P1522 [USACO2.4] 牛的旅行 Cow Tours（https://www.luogu.com.cn/problem/P1522）连通块，枚举新增路径并高精度计算联通块直径
-P1621 集合（https://www.luogu.com.cn/problem/P1621）利用素数筛的思想对数复杂度合并公共质因数大于p的数并计算连通块数量
-P1892 [BOI2003] 团伙（https://www.luogu.com.cn/problem/P1892）经典并查集，敌人与朋友关系
-P2189 小Z的传感器（https://www.luogu.com.cn/problem/P2189）并查集经典题，确定访问顺序的合法性
-P2307 迷宫（https://www.luogu.com.cn/problem/P2307）并查集判定树的生成是否合法
-P3420 [POI2005]SKA-Piggy Banks（https://www.luogu.com.cn/problem/P3420）经典并查集变形问题
-P5429 [USACO19OPEN]Fence Planning S（https://www.luogu.com.cn/problem/P5429）简单并查集应用题
-P6193 [USACO07FEB]Cow Sorting G（https://www.luogu.com.cn/problem/P6193）经典置换环计算交换代价
-P6706 [COCI2010-2011#7] KUGLICE（https://www.luogu.com.cn/problem/P6706）经典有向图并查集逆序更新边 find_merge 灵活使用
-P7991 [USACO21DEC] Connecting Two Barns S（https://www.luogu.com.cn/problem/P7991）经典并查集计算连通块缩点使得 1 和 n 连通最多加两条路的代价
-P8230 [AGM 2022 资格赛] 地牢（https://www.luogu.com.cn/problem/P8230）分层并查集加模拟
-P8637 [蓝桥杯 2016 省 B] 交换瓶子（https://www.luogu.com.cn/problem/P8637）经典并查集置换环
-P8686 [蓝桥杯 2019 省 A] 修改数组（https://www.luogu.com.cn/problem/P8686）经典并查集灵活应用
-P8785 [蓝桥杯 2022 省 B] 扫雷（https://www.luogu.com.cn/problem/P8785）根据边界进行并查集构建计数
-P8787 [蓝桥杯 2022 省 B] 砍竹子（https://www.luogu.com.cn/problem/P8787）经典贪心二叉堆模拟与并查集灵活应用
-P8881 懂事时理解原神（https://www.luogu.com.cn/problem/P8881）脑筋急转弯，使用并查集判断所属连通分量是否有环
+===================================LuoGu==================================
+3367（https://www.luogu.com.cn/problem/P3367）计算连通分块的数量
+5836（https://www.luogu.com.cn/problem/P5836）使用两个并查集进行不同方面的查询
+3144（https://www.luogu.com.cn/problem/P3144）逆序并查集，考察连通块的数量
+5836（https://www.luogu.com.cn/problem/P5836）两个并查集进行连通情况查询
+5877（https://www.luogu.com.cn/problem/P5877）正向模拟实时计算更新连通块的数量
+6111（https://www.luogu.com.cn/problem/P6111）并查集加离线查询进行计算
+6121（https://www.luogu.com.cn/problem/P6121）逆序并查集根据连通块大小进行连通性判定
+6153（https://www.luogu.com.cn/problem/P6153）经典并查集思想贪心题，体现了并查集的思想
+1955（https://www.luogu.com.cn/problem/P1955）并查集裸题
+1196（https://www.luogu.com.cn/problem/P1196）带权并查集
+1197（https://www.luogu.com.cn/problem/P1197）逆序并查集，倒序枚举计算联通块个数
+1522（https://www.luogu.com.cn/problem/P1522）连通块，枚举新增路径并高精度计算联通块直径
+1621（https://www.luogu.com.cn/problem/P1621）利用素数筛的思想对数复杂度合并公共质因数大于p的数并计算连通块数量
+1892（https://www.luogu.com.cn/problem/P1892）经典并查集，敌人与朋友关系
+2189（https://www.luogu.com.cn/problem/P2189）并查集经典题，确定访问顺序的合法性
+2307（https://www.luogu.com.cn/problem/P2307）并查集判定树的生成是否合法
+3420（https://www.luogu.com.cn/problem/P3420）经典并查集变形问题
+5429（https://www.luogu.com.cn/problem/P5429）简单并查集应用题
+6193（https://www.luogu.com.cn/problem/P6193）经典置换环计算交换代价
+6706（https://www.luogu.com.cn/problem/P6706）经典有向图并查集逆序更新边 find_merge 灵活使用
+7991（https://www.luogu.com.cn/problem/P7991）经典并查集计算连通块缩点使得 1 和 n 连通最多加两条路的代价
+8230（https://www.luogu.com.cn/problem/P8230）分层并查集加模拟
+8637（https://www.luogu.com.cn/problem/P8637）经典并查集置换环
+8686（https://www.luogu.com.cn/problem/P8686）经典并查集灵活应用
+8785（https://www.luogu.com.cn/problem/P8785）根据边界进行并查集构建计数
+8787（https://www.luogu.com.cn/problem/P8787）经典贪心二叉堆模拟与并查集灵活应用
+8881（https://www.luogu.com.cn/problem/P8881）脑筋急转弯，使用并查集判断所属连通分量是否有环
 
 ================================CodeForces================================
 D. Roads not only in Berland（https://codeforces.com/problemset/problem/25/D）并查集将原来的边断掉重新来连接使得成为一整个连通集
@@ -70,9 +70,9 @@ E - 1 or 2（https://atcoder.jp/contests/abc126/tasks/abc126_e）经典双并查
 F - Must Be Rectangular!（https://atcoder.jp/contests/abc131/tasks/abc131_f）思维题并查集计数
 
 ================================AcWing================================
-4306. 序列处理（https://www.acwing.com/problem/content/description/4309/）经典向右合并的区间并查集
-4866. 最大数量（https://www.acwing.com/problem/content/description/4869/）经典并查集模拟维护连通块大小与多余的边数量
-5145. 同色环（https://www.acwing.com/problem/content/5148/）使用并查集判矩阵四元及以上的环
+4306（https://www.acwing.com/problem/content/description/4309/）经典向右合并的区间并查集
+4866（https://www.acwing.com/problem/content/description/4869/）经典并查集模拟维护连通块大小与多余的边数量
+5145（https://www.acwing.com/problem/content/5148/）使用并查集判矩阵四元及以上的环
 
 ================================LibraryChecker================================
 1 Cycle Detection (Undirected)（https://judge.yosupo.jp/problem/cycle_detection_undirected）use unionfind to detect circle in undirected graph

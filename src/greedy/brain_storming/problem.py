@@ -4,129 +4,129 @@
 功能：各种可证明不可证明的头脑风暴
 题目：
 
-===================================力扣===================================
-134. 加油站（https://leetcode.com/problems/gas-station/）经典贪心
-330. 按要求补齐数组（https://leetcode.com/problems/patching-array/）经典贪心
-1199. 建造街区的最短时间（https://leetcode.com/problems/minimum-time-to-build-blocks/）经典哈夫曼树Huffman Tree贪心从小到大合并，类似合并果子
-2499. 让数组不相等的最小总代价（https://leetcode.com/problems/minimum-total-cost-to-make-arrays-unequal/）利用鸽巢原理贪心计算最小代价
-2449. 使数组相似的最少操作次数（https://leetcode.com/problems/minimum-total-cost-to-make-arrays-unequal/）转换题意进行排序后用奇偶数贪心变换得到
-2448. 使数组相等的最小开销（https://leetcode.com/problems/minimum-cost-to-make-array-equal/）利用中位数的特点变换到带权重广义下中位数的位置是最优的贪心进行增减
-2412. 完成所有交易的初始最少钱数（https://leetcode.com/problems/minimum-money-required-before-transactions/）根据交易增长特点进行自定义排序
-2366. 将数组排序的最少替换次数（https://leetcode.com/problems/minimum-replacements-to-sort-the-array/）倒序贪心不断分解得到满足要求且尽可能大的值
-2350. 不可能得到的最短骰子序列（https://leetcode.com/problems/shortest-impossible-sequence-of-rolls/）脑筋急转弯本质上是求全排列出现的轮数
-2344. 使数组可以被整除的最少删除次数（https://leetcode.com/problems/minimum-deletions-to-make-array-divisible/）利用最大公约数贪心删除最少的元素
-2136. 全部开花的最早一天（https://leetcode.com/problems/earliest-possible-day-of-full-bloom/）贪心安排成长时间最长的先种
-2071. 你可以安排的最多任务数目（https://leetcode.com/problems/maximum-number-of-tasks-you-can-assign/）使用贪心加二分进行极值判断
-517. 超级洗衣机（https://leetcode.com/problems/super-washing-machines/）类似上题，计算最小的左右移动次数以及往左右的移动次数
-1798. 你能构造出连续值的最大数目（https://leetcode.com/problems/maximum-number-of-consecutive-values-you-can-make/）看似背包实则贪心
-625. 最小因式分解（https://leetcode.com/problems/minimum-factorization/）贪心进行因式分解，类似质因数分解
-2568. 最小无法得到的或值（https://leetcode.com/problems/minimum-impossible-or/）脑筋急转弯贪心，可以根据暴力打表观察规律
-6361. 修改两个元素的最小分数（https://leetcode.com/problems/minimum-score-by-changing-two-elements/）脑筋急转弯贪心
-6316. 重排数组以得到最大前缀分数（https://leetcode.com/contest/weekly-contest-336/problems/rearrange-array-to-maximize-prefix-score/）贪心，加前缀和
-2436. 使子数组最大公约数大于一的最小分割数（https://leetcode.com/problems/minimum-split-into-subarrays-with-gcd-greater-than-one/）贪心计算
-1029. 两地调度（https://leetcode.com/problems/two-city-scheduling/）经典贪心题目，可使用举例两个计算、再进行归纳确定排序规则
-1353. 最多可以参加的会议数目（https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended/）经典枚举贪心
-1402. 做菜顺序（https://leetcode.com/problems/reducing-dishes/）经典前缀和贪心
-1665. 完成所有任务的最少初始能量（https://leetcode.com/problems/minimum-initial-energy-to-finish-tasks/）经典贪心不同项比较公式排序模拟，同CF1203F
-1675. 数组的最小偏移量（https://leetcode.com/problems/minimize-deviation-in-array/）脑筋急转弯思维题贪心
-1686. 石子游戏 VI（https://leetcode.com/problems/stone-game-vi/）经典贪心采用列式子确定排序方式
-1808. 好因子的最大数目（https://leetcode.com/problems/maximize-number-of-nice-divisors/）按照模3的因子个数贪心处理，经典将和拆分成最大乘积
-1953. 你可以工作的最大周数（https://leetcode.com/problems/maximum-number-of-weeks-for-which-you-can-work/）经典贪心只看最大值的影响
-2856. 删除数对后的最小数组长度（https://leetcode.com/problems/minimum-array-length-after-pair-removals/）经典贪心只看最大值的影响
-858. 镜面反射（https://leetcode.com/problems/mirror-reflection/description/）经典脑筋急转弯思维题
-1927. 求和游戏（https://leetcode.com/problems/sum-game/description/）经典博弈思维题分类讨论
-2592. 最大化数组的伟大值（https://leetcode.com/problems/maximize-greatness-of-an-array/）典型贪心排序后使用双指针计算
-1503. 所有蚂蚁掉下来前的最后一刻（https://leetcode.com/problems/last-moment-before-all-ants-fall-out-of-a-plank/）经典脑筋急转弯题目，相撞不影响结果
-991. 坏了的计算器（https://leetcode.com/problems/broken-calculator/）经典逆向计算贪心，偶数除2奇数加1
-2745. 构造最长的新字符串（https://leetcode.com/problems/construct-the-longest-new-string/）脑筋急转弯贪心思维题
-1657. 确定两个字符串是否接近（https://leetcode.com/problems/determine-if-two-strings-are-close/description/）脑筋急转弯贪心思维题
-2561. 重排水果（https://leetcode.com/problems/rearranging-fruits/）思维题贪心交换
-843. 猜猜这个单词（https://leetcode.com/problems/guess-the-word/）思维题贪心模拟交互
-1946. 子字符串突变后可能得到的最大整数（https://leetcode.com/problems/largest-number-after-mutating-substring/description/）易错贪心
-1840. 最高建筑高度（https://leetcode.com/problems/maximum-building-height/）经典单调栈贪心，也可以使用前后缀数组模拟计算
-1540. K 次操作转变字符串（https://leetcode.com/problems/can-convert-string-in-k-moves/）贪心思维题，使用指针记录
-1121. 将数组分成几个递增序列（https://leetcode.com/problems/divide-array-into-increasing-sequences/description/）经典思维题贪心，只考虑最大值的分组影响
+===================================LeetCode===================================
+134（https://leetcode.com/problems/gas-station/）经典贪心
+330（https://leetcode.com/problems/patching-array/）经典贪心
+1199（https://leetcode.com/problems/minimum-time-to-build-blocks/）经典哈夫曼树Huffman Tree贪心从小到大合并，类似合并果子
+2499（https://leetcode.com/problems/minimum-total-cost-to-make-arrays-unequal/）利用鸽巢原理贪心计算最小代价
+2449（https://leetcode.com/problems/minimum-total-cost-to-make-arrays-unequal/）转换题意进行排序后用奇偶数贪心变换得到
+2448（https://leetcode.com/problems/minimum-cost-to-make-array-equal/）利用中位数的特点变换到带权重广义下中位数的位置是最优的贪心进行增减
+2412（https://leetcode.com/problems/minimum-money-required-before-transactions/）根据交易增长特点进行自定义排序
+2366（https://leetcode.com/problems/minimum-replacements-to-sort-the-array/）倒序贪心不断分解得到满足要求且尽可能大的值
+2350（https://leetcode.com/problems/shortest-impossible-sequence-of-rolls/）脑筋急转弯本质上是求全排列出现的轮数
+2344（https://leetcode.com/problems/minimum-deletions-to-make-array-divisible/）利用最大公约数贪心删除最少的元素
+2136（https://leetcode.com/problems/earliest-possible-day-of-full-bloom/）贪心安排成长时间最长的先种
+2071（https://leetcode.com/problems/maximum-number-of-tasks-you-can-assign/）使用贪心加二分进行极值判断
+517（https://leetcode.com/problems/super-washing-machines/）类似上题，计算最小的左右移动次数以及往左右的移动次数
+1798（https://leetcode.com/problems/maximum-number-of-consecutive-values-you-can-make/）看似背包实则贪心
+625（https://leetcode.com/problems/minimum-factorization/）贪心进行因式分解，类似质因数分解
+2568（https://leetcode.com/problems/minimum-impossible-or/）脑筋急转弯贪心，可以根据暴力打表观察规律
+6361（https://leetcode.com/problems/minimum-score-by-changing-two-elements/）脑筋急转弯贪心
+6316（https://leetcode.com/contest/weekly-contest-336/problems/rearrange-array-to-maximize-prefix-score/）贪心，加前缀和
+2436（https://leetcode.com/problems/minimum-split-into-subarrays-with-gcd-greater-than-one/）贪心计算
+1029（https://leetcode.com/problems/two-city-scheduling/）经典贪心题目，可使用举例两个计算、再进行归纳确定排序规则
+1353（https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended/）经典枚举贪心
+1402（https://leetcode.com/problems/reducing-dishes/）经典前缀和贪心
+1665（https://leetcode.com/problems/minimum-initial-energy-to-finish-tasks/）经典贪心不同项比较公式排序模拟，同CF1203F
+1675（https://leetcode.com/problems/minimize-deviation-in-array/）脑筋急转弯思维题贪心
+1686（https://leetcode.com/problems/stone-game-vi/）经典贪心采用列式子确定排序方式
+1808（https://leetcode.com/problems/maximize-number-of-nice-divisors/）按照模3的因子个数贪心处理，经典将和拆分成最大乘积
+1953（https://leetcode.com/problems/maximum-number-of-weeks-for-which-you-can-work/）经典贪心只看最大值的影响
+2856（https://leetcode.com/problems/minimum-array-length-after-pair-removals/）经典贪心只看最大值的影响
+858（https://leetcode.com/problems/mirror-reflection/description/）经典脑筋急转弯思维题
+1927（https://leetcode.com/problems/sum-game/description/）经典博弈思维题分类讨论
+2592（https://leetcode.com/problems/maximize-greatness-of-an-array/）典型贪心排序后使用双指针计算
+1503（https://leetcode.com/problems/last-moment-before-all-ants-fall-out-of-a-plank/）经典脑筋急转弯题目，相撞不影响结果
+991（https://leetcode.com/problems/broken-calculator/）经典逆向计算贪心，偶数除2奇数加1
+2745（https://leetcode.com/problems/construct-the-longest-new-string/）脑筋急转弯贪心思维题
+1657（https://leetcode.com/problems/determine-if-two-strings-are-close/description/）脑筋急转弯贪心思维题
+2561（https://leetcode.com/problems/rearranging-fruits/）思维题贪心交换
+843（https://leetcode.com/problems/guess-the-word/）思维题贪心模拟交互
+1946（https://leetcode.com/problems/largest-number-after-mutating-substring/description/）易错贪心
+1840（https://leetcode.com/problems/maximum-building-height/）经典单调栈贪心，也可以使用前后缀数组模拟计算
+1540（https://leetcode.com/problems/can-convert-string-in-k-moves/）贪心思维题，使用指针记录
+1121（https://leetcode.com/problems/divide-array-into-increasing-sequences/description/）经典思维题贪心，只考虑最大值的分组影响
 
-===================================洛谷===================================
-P1031 均分纸牌（https://www.luogu.com.cn/problem/P1031）贪心计算每个点的前缀和流量，需要补齐或者输出时进行计数
-P1684 考验（https://www.luogu.com.cn/problem/P1684）线性贪心满足条件即增加计数
-P1658 购物（https://www.luogu.com.cn/problem/P1658）看似背包实则贪心
-P2001 硬币的面值（https://www.luogu.com.cn/problem/P2001）看似背包实则贪心
-P1620 漂亮字串（https://www.luogu.com.cn/problem/P1620）分类讨论进行贪心
-P2773 漂亮字串（https://www.luogu.com.cn/problem/P2773）分类讨论进行贪心
-P2255 [USACO14JAN]Recording the Moolympics S（https://www.luogu.com.cn/problem/P2255）两个指针进行贪心
-P2327 [SCOI2005]扫雷（https://www.luogu.com.cn/problem/P2327）脑筋急转弯进行枚举
-P2777 [AHOI2016初中组]自行车比赛（https://www.luogu.com.cn/problem/P2777）贪心枚举最佳得分组合，加前后缀记录最大值
-P2649 游戏预言（https://www.luogu.com.cn/problem/P2649）贪心，输的时候输最惨，赢的时候微弱优势
-P1367 蚂蚁（https://www.luogu.com.cn/problem/P1367）脑筋急转弯，蚂蚁的相对移动位置排序还是不变
-P1362 兔子数（https://www.luogu.com.cn/problem/P1362）找规律之后，进行广度优先搜索枚举
-P1090 [NOIP2004 提高组] 合并果子 / [USACO06NOV] Fence Repair G（https://www.luogu.com.cn/record/list?user=739032&status=12&page=11）从小到大贪心合并
-P1334 瑞瑞的木板（https://www.luogu.com.cn/problem/P1334）逆向思维的合并果子，从小到大合并
-P1325 雷达安装（https://www.luogu.com.cn/problem/P1325）排序后进行贪心修建更新
-P1250 种树（https://www.luogu.com.cn/problem/P1250）区间的贪心题，使用线段树修改区间与查询和，以及二分进行计算
-P1230 智力大冲浪（https://www.luogu.com.cn/problem/P1230）排序后进行选取贪心
-P1159 排行榜（https://www.luogu.com.cn/problem/P1159）使用队列贪心进行模拟
-P1095 [NOIP2007 普及组] 守望者的逃离（https://www.luogu.com.cn/problem/P1095）贪心模拟也可以理解为动态规划转移
-P1056 [NOIP2008 普及组] 排座椅（https://www.luogu.com.cn/record/list?user=739032&status=12&page=14）根据题意进行计数排序贪心选择
-P8847 [JRKSJ R5] 1-1 A（https://www.luogu.com.cn/problem/P8847）分类讨论和贪心进行
-P8845 [传智杯 #4 初赛] 小卡和质数（https://www.luogu.com.cn/problem/solution/P8845）脑筋急转弯，只有2是偶数质数
-P2772 寻找平面上的极大点（https://www.luogu.com.cn/problem/P2772）按照两个维度排序，再按照其中一个维度顺序比较最大值
-P2878 [USACO07JAN] Protecting the Flowers S（https://www.luogu.com.cn/problem/P2878）经典贪心题目，可使用举例两个计算、再进行归纳确定排序规则
-P2920 [USACO08NOV]Time Management S（https://www.luogu.com.cn/problem/P2920）排序后进行贪心计算
-P2983 [USACO10FEB]Chocolate Buying S（https://www.luogu.com.cn/problem/P2983）看起来是背包其实是贪心优先选择最便宜的奶牛满足
-P3173 [HAOI2009]巧克力（https://www.luogu.com.cn/problem/P3173）从大到小排序进行贪心计算
-P5098 [USACO04OPEN]Cave Cows 3（https://www.luogu.com.cn/problem/P5098）贪心按照一个维度排序后再按照另一个维度分类讨论，记录前缀最小值
-P5159 WD与矩阵（https://www.luogu.com.cn/problem/P5159）利用异或的特点枚举计数并进行快速幂计算
-P5497 [LnOI2019SP]龟速单项式变换(SMT)（https://www.luogu.com.cn/problem/P5497）抽屉原理进行分类讨论
-P5682 [CSP-J2019 江西] 次大值（https://www.luogu.com.cn/problem/P5682）脑筋急转弯进行排序后贪心枚举确定
-P5804 [SEERC2019]Absolute Game（https://www.luogu.com.cn/problem/P5804）排序贪心枚举和二分查找优化
-P5963 [BalticOI ?] Card 卡牌游戏【来源请求】（https://www.luogu.com.cn/problem/P5963）经典贪心题目，可使用举例两个计算、再进行归纳确定排序规则
-P6023 走路（https://www.luogu.com.cn/problem/P6023）可证明集中在某天是最佳结果，然后使用指针进行模拟计算
-P6243 [USACO06OPEN]The Milk Queue G（https://www.luogu.com.cn/problem/P6243）经典贪心举例之后进行优先级比较，再自定义排序
-P6179 [USACO15DEC]High Card Wins S（https://www.luogu.com.cn/problem/list?difficulty=3&page=13）经典贪心
-P6380 『MdOI R2』Mayuri（https://www.luogu.com.cn/problem/P6380）贪心模拟进行赋值
-P6446 [COCI2010-2011#1] TABOVI（https://www.luogu.com.cn/problem/P6446）贪心进行操作，经典使得数组所有值相等的最少操作次数变形题目，每次操作可以使得连续区间加1或者减1
-P5019 [NOIP2018 提高组] 铺设道路（https://www.luogu.com.cn/problem/P5019）贪心进行操作，经典使得数组所有值相等的最少操作次数变形题目，每次操作可以使得连续区间加1或者减1
-P6462 [传智杯 #2 决赛] 补刀（https://www.luogu.com.cn/problem/P6462）贪心进行分类计算
-P6549 [COCI2010-2011#2] KNJIGE（https://www.luogu.com.cn/problem/P6549）逆向思维，使用插入排序的思想进行模拟
-P6785 「EZEC-3」排列（https://www.luogu.com.cn/problem/P6785）脑筋急转弯进行，条件判断与贪心计数
-P6851 onu（https://www.luogu.com.cn/problem/P6851）贪心模拟，均从大到小排序，先选择赢的牌，再计算输的牌
-P7176 [COCI2014-2015#4] PRIPREME（https://www.luogu.com.cn/problem/P7176）贪心策略，结论题
-P7228 [COCI2015-2016#3] MOLEKULE（https://www.luogu.com.cn/problem/P7228）脑筋急转弯贪心加树形dfs计算
-P7260 [COCI2009-2010#3] RAZGOVOR（https://www.luogu.com.cn/problem/P7260）贪心与动态规划，经典使得数组所有值从0变化等于给定升序数组的最少操作次数，每次操作可以使得连续区间加1
-P7319 「PMOI-4」生成树（https://www.luogu.com.cn/problem/P7319）公式变形后使用排序不等式进行贪心计算
-P7412 [USACO21FEB] Year of the Cow S（https://www.luogu.com.cn/problem/P7412）贪心，将问题转换为去掉最长的k-1个非零距离
-P7522 ⎌ Nurture ⎌（https://www.luogu.com.cn/problem/P7522）进行分类贪心讨论
-P7633 [COCI2010-2011#5] BRODOVI（https://www.luogu.com.cn/problem/P7633）使用埃氏筛法思想，进行模拟贪心计算
-P7714 「EZEC-10」排列排序（https://www.luogu.com.cn/problem/P7714）经典子序列排序使得整体有序，使用前缀最大值与指针计数确认子数组分割点
-P7787 [COCI2016-2017#6] Turnir（https://www.luogu.com.cn/problem/P7787）脑筋急转弯，借助完全二叉树的思想
-P7813 谜（https://www.luogu.com.cn/problem/P7813）贪心计算最大选取值
-P1031 [NOIP2002 提高组] 均分纸牌（https://www.luogu.com.cn/problem/P1031）经典线性均分纸牌问题
-P2512 [HAOI2008]糖果传递（https://www.luogu.com.cn/problem/P2512）经典线性环形均分纸牌问题
-P1080 [NOIP2012 提高组] 国王游戏（https://www.luogu.com.cn/problem/P1080）经典贪心，举例两项确定排序公式
-P1650 田忌赛马（https://www.luogu.com.cn/problem/P1650）经典贪心，优先上对上其次下对下最后下对上
-P2088 果汁店的难题（https://www.luogu.com.cn/problem/P2088）贪心，取空闲的，或者下一个离得最远的使用
-P2816 宋荣子搭积木（https://www.luogu.com.cn/problem/P2816）排序后从小到大贪心放置，使用STL维护当前积木列高度
-P3819 松江 1843 路（https://www.luogu.com.cn/problem/P3819）经典中位数贪心题
-P3918 [国家集训队]特技飞行（https://www.luogu.com.cn/problem/P3918）脑筋急转弯贪心
-P4025 [PA2014]Bohater（https://www.luogu.com.cn/problem/P4025）经典贪心血量与增幅自定义排序
-P4266 [USACO18FEB]Rest Stops SP4266 [USACO18FEB]Rest Stops S（https://www.luogu.com.cn/problem/P4266）后缀最大值贪心模拟
-P4447 [AHOI2018初中组]分组（https://www.luogu.com.cn/problem/P4447）经典贪心队列使得连续值序列最少的分组长度最大
-P4575 [CQOI2013]图的逆变换（https://www.luogu.com.cn/problem/P4575）脑筋急转弯加状压运算
-P4653 [CEOI2017] Sure Bet（https://www.luogu.com.cn/problem/P4653）看似二分使用指针贪心选取
-P5093 [USACO04OPEN]The Cow Lineup（https://www.luogu.com.cn/problem/P5093）经典脑筋急转弯使用集合确定轮数
-P5425 [USACO19OPEN]I Would Walk 500 Miles G（https://www.luogu.com.cn/problem/P5425）看似最小生成树，实则脑筋急转弯贪心计算距离
-P5884 [IOI2014]game 游戏（https://www.luogu.com.cn/problem/P5884）脑筋急转弯
-P5948 [POI2003]Chocolate（https://www.luogu.com.cn/problem/P5948）贪心模拟进行计算
-P6196 [EER1]代价（https://www.luogu.com.cn/problem/P6196）贪心使用 1 进行分段计算代价
-P6874 [COCI2013-2014#6] KOCKICE（https://www.luogu.com.cn/problem/P6874）经典变换公式转为中位数贪心
-P8050 [ZYOI Round1] Chessboard game/棋盘游戏（https://www.luogu.com.cn/problem/P8050）脑筋急转弯黑白染色法任意操作不改变黑白元素和的差值
-P7935 [COCI2007-2008#5] AVOGADRO（https://www.luogu.com.cn/problem/P7935）脑筋急转弯
-P8109 [Cnoi2021]幻想乡程序设计大赛（https://www.luogu.com.cn/problem/P8109）经典STL贪心分配求解
-P8669 [蓝桥杯 2018 省 B] 乘积最大（https://www.luogu.com.cn/problem/P8669）贪心选取 k 个数乘积最大
-P8709 [蓝桥杯 2020 省 A1] 超级胶水（https://www.luogu.com.cn/problem/P8709）脑筋急转弯模拟计算
-P8732 [蓝桥杯 2020 国 ABC] 答疑（https://www.luogu.com.cn/problem/P8732）经典贪心枚举两项计算优先级公式
-P8887 [DMOI-R1] 柯基棋（https://www.luogu.com.cn/problem/P8887）脑筋急转弯贪心
+===================================LuoGu==================================
+1031（https://www.luogu.com.cn/problem/P1031）贪心计算每个点的前缀和流量，需要补齐或者输出时进行计数
+1684（https://www.luogu.com.cn/problem/P1684）线性贪心满足条件即增加计数
+1658（https://www.luogu.com.cn/problem/P1658）看似背包实则贪心
+2001（https://www.luogu.com.cn/problem/P2001）看似背包实则贪心
+1620（https://www.luogu.com.cn/problem/P1620）分类讨论进行贪心
+2773（https://www.luogu.com.cn/problem/P2773）分类讨论进行贪心
+2255（https://www.luogu.com.cn/problem/P2255）两个指针进行贪心
+2327（https://www.luogu.com.cn/problem/P2327）脑筋急转弯进行枚举
+2777（https://www.luogu.com.cn/problem/P2777）贪心枚举最佳得分组合，加前后缀记录最大值
+2649（https://www.luogu.com.cn/problem/P2649）贪心，输的时候输最惨，赢的时候微弱优势
+1367（https://www.luogu.com.cn/problem/P1367）脑筋急转弯，蚂蚁的相对移动位置排序还是不变
+1362（https://www.luogu.com.cn/problem/P1362）找规律之后，进行广度优先搜索枚举
+1090（https://www.luogu.com.cn/record/list?user=739032&status=12&page=11）从小到大贪心合并
+1334（https://www.luogu.com.cn/problem/P1334）逆向思维的合并果子，从小到大合并
+1325（https://www.luogu.com.cn/problem/P1325）排序后进行贪心修建更新
+1250（https://www.luogu.com.cn/problem/P1250）区间的贪心题，使用线段树修改区间与查询和，以及二分进行计算
+1230（https://www.luogu.com.cn/problem/P1230）排序后进行选取贪心
+1159（https://www.luogu.com.cn/problem/P1159）使用队列贪心进行模拟
+1095（https://www.luogu.com.cn/problem/P1095）贪心模拟也可以理解为动态规划转移
+1056（https://www.luogu.com.cn/record/list?user=739032&status=12&page=14）根据题意进行计数排序贪心选择
+8847（https://www.luogu.com.cn/problem/P8847）分类讨论和贪心进行
+8845（https://www.luogu.com.cn/problem/solution/P8845）脑筋急转弯，只有2是偶数质数
+2772（https://www.luogu.com.cn/problem/P2772）按照两个维度排序，再按照其中一个维度顺序比较最大值
+2878（https://www.luogu.com.cn/problem/P2878）经典贪心题目，可使用举例两个计算、再进行归纳确定排序规则
+2920（https://www.luogu.com.cn/problem/P2920）排序后进行贪心计算
+2983（https://www.luogu.com.cn/problem/P2983）看起来是背包其实是贪心优先选择最便宜的奶牛满足
+3173（https://www.luogu.com.cn/problem/P3173）从大到小排序进行贪心计算
+5098（https://www.luogu.com.cn/problem/P5098）贪心按照一个维度排序后再按照另一个维度分类讨论，记录前缀最小值
+5159（https://www.luogu.com.cn/problem/P5159）利用异或的特点枚举计数并进行快速幂计算
+5497（https://www.luogu.com.cn/problem/P5497）抽屉原理进行分类讨论
+5682（https://www.luogu.com.cn/problem/P5682）脑筋急转弯进行排序后贪心枚举确定
+5804（https://www.luogu.com.cn/problem/P5804）排序贪心枚举和二分查找优化
+5963（https://www.luogu.com.cn/problem/P5963）经典贪心题目，可使用举例两个计算、再进行归纳确定排序规则
+6023（https://www.luogu.com.cn/problem/P6023）可证明集中在某天是最佳结果，然后使用指针进行模拟计算
+6243（https://www.luogu.com.cn/problem/P6243）经典贪心举例之后进行优先级比较，再自定义排序
+6179（https://www.luogu.com.cn/problem/list?difficulty=3&page=13）经典贪心
+6380（https://www.luogu.com.cn/problem/P6380）贪心模拟进行赋值
+6446（https://www.luogu.com.cn/problem/P6446）贪心进行操作，经典使得数组所有值相等的最少操作次数变形题目，每次操作可以使得连续区间加1或者减1
+5019（https://www.luogu.com.cn/problem/P5019）贪心进行操作，经典使得数组所有值相等的最少操作次数变形题目，每次操作可以使得连续区间加1或者减1
+6462（https://www.luogu.com.cn/problem/P6462）贪心进行分类计算
+6549（https://www.luogu.com.cn/problem/P6549）逆向思维，使用插入排序的思想进行模拟
+6785（https://www.luogu.com.cn/problem/P6785）脑筋急转弯进行，条件判断与贪心计数
+6851（https://www.luogu.com.cn/problem/P6851）贪心模拟，均从大到小排序，先选择赢的牌，再计算输的牌
+7176（https://www.luogu.com.cn/problem/P7176）贪心策略，结论题
+7228（https://www.luogu.com.cn/problem/P7228）脑筋急转弯贪心加树形dfs计算
+7260（https://www.luogu.com.cn/problem/P7260）贪心与动态规划，经典使得数组所有值从0变化等于给定升序数组的最少操作次数，每次操作可以使得连续区间加1
+7319（https://www.luogu.com.cn/problem/P7319）公式变形后使用排序不等式进行贪心计算
+7412（https://www.luogu.com.cn/problem/P7412）贪心，将问题转换为去掉最长的k-1个非零距离
+7522（https://www.luogu.com.cn/problem/P7522）进行分类贪心讨论
+7633（https://www.luogu.com.cn/problem/P7633）使用埃氏筛法思想，进行模拟贪心计算
+7714（https://www.luogu.com.cn/problem/P7714）经典子序列排序使得整体有序，使用前缀最大值与指针计数确认子数组分割点
+7787（https://www.luogu.com.cn/problem/P7787）脑筋急转弯，借助完全二叉树的思想
+7813（https://www.luogu.com.cn/problem/P7813）贪心计算最大选取值
+1031（https://www.luogu.com.cn/problem/P1031）经典线性均分纸牌问题
+2512（https://www.luogu.com.cn/problem/P2512）经典线性环形均分纸牌问题
+1080（https://www.luogu.com.cn/problem/P1080）经典贪心，举例两项确定排序公式
+1650（https://www.luogu.com.cn/problem/P1650）经典贪心，优先上对上其次下对下最后下对上
+2088（https://www.luogu.com.cn/problem/P2088）贪心，取空闲的，或者下一个离得最远的使用
+2816（https://www.luogu.com.cn/problem/P2816）排序后从小到大贪心放置，使用STL维护当前积木列高度
+3819（https://www.luogu.com.cn/problem/P3819）经典中位数贪心题
+3918（https://www.luogu.com.cn/problem/P3918）脑筋急转弯贪心
+4025（https://www.luogu.com.cn/problem/P4025）经典贪心血量与增幅自定义排序
+4266（https://www.luogu.com.cn/problem/P4266）后缀最大值贪心模拟
+4447（https://www.luogu.com.cn/problem/P4447）经典贪心队列使得连续值序列最少的分组长度最大
+4575（https://www.luogu.com.cn/problem/P4575）脑筋急转弯加状压运算
+4653（https://www.luogu.com.cn/problem/P4653）看似二分使用指针贪心选取
+5093（https://www.luogu.com.cn/problem/P5093）经典脑筋急转弯使用集合确定轮数
+5425（https://www.luogu.com.cn/problem/P5425）看似最小生成树，实则脑筋急转弯贪心计算距离
+5884（https://www.luogu.com.cn/problem/P5884）脑筋急转弯
+5948（https://www.luogu.com.cn/problem/P5948）贪心模拟进行计算
+6196（https://www.luogu.com.cn/problem/P6196）贪心使用 1 进行分段计算代价
+6874（https://www.luogu.com.cn/problem/P6874）经典变换公式转为中位数贪心
+8050（https://www.luogu.com.cn/problem/P8050）脑筋急转弯黑白染色法任意操作不改变黑白元素和的差值
+7935（https://www.luogu.com.cn/problem/P7935）脑筋急转弯
+8109（https://www.luogu.com.cn/problem/P8109）经典STL贪心分配求解
+8669（https://www.luogu.com.cn/problem/P8669）贪心选取 k 个数乘积最大
+8709（https://www.luogu.com.cn/problem/P8709）脑筋急转弯模拟计算
+8732（https://www.luogu.com.cn/problem/P8732）经典贪心枚举两项计算优先级公式
+8887（https://www.luogu.com.cn/problem/P8887）脑筋急转弯贪心
 
 ================================CodeForces================================
 D. Vus the Cossack and Numbers（https://codeforces.com/problemset/problem/1186/D）贪心取floor，再根据加和为0的特质进行补充加1成为ceil
@@ -162,24 +162,24 @@ D - Various Sushi（https://atcoder.jp/contests/abc116/tasks/abc116_d）经典�
 D - Summer Vacation（https://atcoder.jp/contests/abc137/tasks/abc137_d）经典逆序思维题贪心
 
 ================================AcWing======================================
-104. 货仓选址（https://www.acwing.com/problem/content/106/）中位数贪心
-1536. 均分纸牌（https://www.acwing.com/problem/content/description/1538/）贪心均分纸牌
-105. 七夕祭（https://www.acwing.com/problem/content/description/1538/）经典环形均分纸牌问题
-110. 防晒（https://www.acwing.com/problem/content/112/）贪心匹配最多组合
-123. 士兵（https://www.acwing.com/problem/content/description/125/）中位数贪心扩展问题
-125. 耍杂技的牛（https://www.acwing.com/problem/content/127/）经典贪心思路，邻项交换
-127. 任务（https://www.acwing.com/problem/content/description/129/）经典二维排序贪心
-145. 超市（https://www.acwing.com/problem/content/147/）经典使用二叉堆贪心
-122. 糖果传递（https://www.acwing.com/problem/content/124/）经典线性环形均分纸牌问题
-4204. 构造矩阵（https://www.acwing.com/problem/content/description/4207/）经典构造
-4307. 数字重构（https://www.acwing.com/problem/content/description/4310/）经典字典序枚举贪心
-4313. 满二叉树等长路径（https://www.acwing.com/problem/content/4316/）经典满二叉树树形DP贪心（同LC2673）
-4426. 整除子串（https://www.acwing.com/problem/content/4429/）思维题脑筋急转弯，等价于末尾两位数字可以被4整除
-4427. 树中节点和（https://www.acwing.com/problem/content/4430/）经典树形贪心构造
-4429. 无线网络（https://www.acwing.com/problem/content/description/4432/）经典计算邻项公式贪心排序，使用前后缀枚举
-4430. 括号序列（https://www.acwing.com/problem/content/description/4433/）经典括号匹配枚举，前后缀遍历计算
-4492. 减法操作（https://www.acwing.com/problem/content/description/4495/）脑筋急转弯分为奇数与偶数讨论
-4623. 买糖果（https://www.acwing.com/problem/content/description/4626/）贪心模拟
+104（https://www.acwing.com/problem/content/106/）中位数贪心
+1536（https://www.acwing.com/problem/content/description/1538/）贪心均分纸牌
+105（https://www.acwing.com/problem/content/description/1538/）经典环形均分纸牌问题
+110（https://www.acwing.com/problem/content/112/）贪心匹配最多组合
+123（https://www.acwing.com/problem/content/description/125/）中位数贪心扩展问题
+125（https://www.acwing.com/problem/content/127/）经典贪心思路，邻项交换
+127（https://www.acwing.com/problem/content/description/129/）经典二维排序贪心
+145（https://www.acwing.com/problem/content/147/）经典使用二叉堆贪心
+122（https://www.acwing.com/problem/content/124/）经典线性环形均分纸牌问题
+4204（https://www.acwing.com/problem/content/description/4207/）经典构造
+4307（https://www.acwing.com/problem/content/description/4310/）经典字典序枚举贪心
+4313（https://www.acwing.com/problem/content/4316/）经典满二叉树树形DP贪心（同LC2673）
+4426（https://www.acwing.com/problem/content/4429/）思维题脑筋急转弯，等价于末尾两位数字可以被4整除
+4427（https://www.acwing.com/problem/content/4430/）经典树形贪心构造
+4429（https://www.acwing.com/problem/content/description/4432/）经典计算邻项公式贪心排序，使用前后缀枚举
+4430（https://www.acwing.com/problem/content/description/4433/）经典括号匹配枚举，前后缀遍历计算
+4492（https://www.acwing.com/problem/content/description/4495/）脑筋急转弯分为奇数与偶数讨论
+4623（https://www.acwing.com/problem/content/description/4626/）贪心模拟
 
 参考：OI WiKi（xx）
 """

@@ -5,37 +5,37 @@
 题目：xx（xx）
 内向基环树介绍：https://leetcode.com/problems/maximum-employees-to-be-invited-to-a-meeting/solution/nei-xiang-ji-huan-shu-tuo-bu-pai-xu-fen-c1i1b/
 
-===================================力扣===================================
-360. 图中的最长环（https://leetcode.com/problems/longest-cycle-in-a-graph/）拓扑排序计算有向图内向基环树最长环
-2392. 给定条件下构造矩阵（https://leetcode.com/problems/build-a-matrix-with-conditions/）分别通过行列的拓扑排序来确定数字所在索引，数字可能相同，需要使用并查集
-2371. 最小化网格中的最大值（https://leetcode.com/problems/minimize-maximum-value-in-a-grid/）分别通过行列的拓扑排序来确定数字所在索引，数字都不同可以使用贪心
-2127. 参加会议的最多员工数（https://leetcode.com/problems/maximum-employees-to-be-invited-to-a-meeting/）拓扑排序确定DAG内向基环，按照环的大小进行分类讨论
-127. 参加会议的最多员工数（https://leetcode.com/problems/maximum-employees-to-be-invited-to-a-meeting/）
-269. 火星词典（https://leetcode.com/problems/alien-dictionary/）经典按照字典序建图，与拓扑排序的应用
-2603. 收集树中金币（https://leetcode.com/contest/weekly-contest-338/problems/collect-coins-in-a-tree/）无向图拓扑排序内向基环树
-2204. 无向图中到环的距离（https://leetcode.com/problems/distance-to-a-cycle-in-undirected-graph/https://leetcode.com/problems/distance-to-a-cycle-in-undirected-graph/）无向图拓扑排序
-1857. 有向图中最大颜色值（https://leetcode.com/problems/largest-color-value-in-a-directed-graph/）经典拓扑排序DP
-1932. 合并多棵二叉搜索树（https://leetcode.com/problems/merge-bsts-to-create-single-bst/）经典连通性、拓扑排序与二叉搜索树判断
-1591. 奇怪的打印机 II（https://leetcode.com/contest/biweekly-contest-35/problems/strange-printer-ii/）经典建图判断拓扑排序是否无环
-2192. 有向无环图中一个节点的所有祖先（https://leetcode.com/problems/all-ancestors-of-a-node-in-a-directed-acyclic-graph/）经典有向图DAG拓扑排序
+===================================LeetCode===================================
+360（https://leetcode.com/problems/longest-cycle-in-a-graph/）拓扑排序计算有向图内向基环树最长环
+2392（https://leetcode.com/problems/build-a-matrix-with-conditions/）分别通过行列的拓扑排序来确定数字所在索引，数字可能相同，需要使用并查集
+2371（https://leetcode.com/problems/minimize-maximum-value-in-a-grid/）分别通过行列的拓扑排序来确定数字所在索引，数字都不同可以使用贪心
+2127（https://leetcode.com/problems/maximum-employees-to-be-invited-to-a-meeting/）拓扑排序确定DAG内向基环，按照环的大小进行分类讨论
+127（https://leetcode.com/problems/maximum-employees-to-be-invited-to-a-meeting/）
+269（https://leetcode.com/problems/alien-dictionary/）经典按照字典序建图，与拓扑排序的应用
+2603（https://leetcode.com/contest/weekly-contest-338/problems/collect-coins-in-a-tree/）无向图拓扑排序内向基环树
+2204（https://leetcode.com/problems/distance-to-a-cycle-in-undirected-graph/https://leetcode.com/problems/distance-to-a-cycle-in-undirected-graph/）无向图拓扑排序
+1857（https://leetcode.com/problems/largest-color-value-in-a-directed-graph/）经典拓扑排序DP
+1932（https://leetcode.com/problems/merge-bsts-to-create-single-bst/）经典连通性、拓扑排序与二叉搜索树判断
+1591（https://leetcode.com/contest/biweekly-contest-35/problems/strange-printer-ii/）经典建图判断拓扑排序是否无环
+2192（https://leetcode.com/problems/all-ancestors-of-a-node-in-a-directed-acyclic-graph/）经典有向图DAG拓扑排序
 
 
-===================================洛谷===================================
-P1960 郁闷的记者（https://www.luogu.com.cn/problem/P1960）计算拓扑排序是否唯一
-P1992 不想兜圈的老爷爷（https://www.luogu.com.cn/problem/P1992）拓扑排序计算有向图是否有环
-P2712 摄像头（https://www.luogu.com.cn/problem/P2712）拓扑排序计算非环节点数
-P6145 [USACO20FEB]Timeline G（https://www.luogu.com.cn/problem/P6145）经典拓扑排序计算每个节点最晚的访问时间点
-P1137 旅行计划（https://www.luogu.com.cn/problem/P1137）拓扑排序，计算可达的最长距离
-P1347 排序（https://www.luogu.com.cn/problem/P1347）拓扑排序确定字典序与矛盾或者无唯一解
-P1685 游览（https://www.luogu.com.cn/problem/P1685）经典DAG拓扑排序DP计算路径条数与耗时
-P3243 [HNOI2015]菜肴制作（https://www.luogu.com.cn/problem/P3243）经典反向建图拓扑排序结合二叉堆进行顺序模拟
-P5536 【XR-3】核心城市（https://www.luogu.com.cn/problem/P5536）经典使用无向图拓扑排序从外到内消除最外圈的节点
-P6037 Ryoku 的探索（https://www.luogu.com.cn/problem/P6037）经典无向图基环树并查集拓扑排序与环模拟计算
-P6255 [ICPC2019 WF]Dead-End Detector（https://www.luogu.com.cn/problem/P6255）简单无向图并查集计算连通块后使用拓扑排序寻找环的信息
-P6417 [COCI2014-2015#1] MAFIJA（https://www.luogu.com.cn/problem/P6417）有向图基环树贪心应用拓扑排序由外向内
-P6560 [SBCOI2020] 时光的流逝（https://www.luogu.com.cn/problem/P6560）经典反向建图拓扑排序与博弈必胜态
-P8655 [蓝桥杯 2017 国 B] 发现环（https://www.luogu.com.cn/problem/P8655）使用拓扑排序计算有向基环树的环
-P8943 Deception Point（https://www.luogu.com.cn/problem/P8943）经典无向图基环树博弈
+===================================LuoGu==================================
+1960（https://www.luogu.com.cn/problem/P1960）计算拓扑排序是否唯一
+1992（https://www.luogu.com.cn/problem/P1992）拓扑排序计算有向图是否有环
+2712（https://www.luogu.com.cn/problem/P2712）拓扑排序计算非环节点数
+6145（https://www.luogu.com.cn/problem/P6145）经典拓扑排序计算每个节点最晚的访问时间点
+1137（https://www.luogu.com.cn/problem/P1137）拓扑排序，计算可达的最长距离
+1347（https://www.luogu.com.cn/problem/P1347）拓扑排序确定字典序与矛盾或者无唯一解
+1685（https://www.luogu.com.cn/problem/P1685）经典DAG拓扑排序DP计算路径条数与耗时
+3243（https://www.luogu.com.cn/problem/P3243）经典反向建图拓扑排序结合二叉堆进行顺序模拟
+5536（https://www.luogu.com.cn/problem/P5536）经典使用无向图拓扑排序从外到内消除最外圈的节点
+6037（https://www.luogu.com.cn/problem/P6037）经典无向图基环树并查集拓扑排序与环模拟计算
+6255（https://www.luogu.com.cn/problem/P6255）简单无向图并查集计算连通块后使用拓扑排序寻找环的信息
+6417（https://www.luogu.com.cn/problem/P6417）有向图基环树贪心应用拓扑排序由外向内
+6560（https://www.luogu.com.cn/problem/P6560）经典反向建图拓扑排序与博弈必胜态
+8655（https://www.luogu.com.cn/problem/P8655）使用拓扑排序计算有向基环树的环
+8943（https://www.luogu.com.cn/problem/P8943）经典无向图基环树博弈
 
 ==================================CodeForces=================================
 E. Number of Simple Paths（https://codeforces.com/contest/1454/problem/E）经典基环树计数枚举
@@ -45,9 +45,9 @@ F - Well-defined Path Queries on a Namori（https://atcoder.jp/contests/abc266/�
 最喜欢的数列（https://www.hackerrank.com/challenges/favourite-sequence/problem?isFullScreen=true）topological and heap for minimum lexi order
 
 ==================================AcWing=================================
-3696. 构造有向无环图（https://www.acwing.com/problem/content/description/3699/）经典bfs序即拓扑序与DAG构造
-3828. 行走路径（https://www.acwing.com/problem/content/description/3831/）有向图DAG拓扑排序DP模板题并判断有无环
-4626. 最小移动距离（https://www.acwing.com/problem/content/description/4629/）有向图内向基环树判断每个环的大小
+3696（https://www.acwing.com/problem/content/description/3699/）经典bfs序即拓扑序与DAG构造
+3828（https://www.acwing.com/problem/content/description/3831/）有向图DAG拓扑排序DP模板题并判断有无环
+4626（https://www.acwing.com/problem/content/description/4629/）有向图内向基环树判断每个环的大小
 
 参考：OI WiKi（xx）
 """

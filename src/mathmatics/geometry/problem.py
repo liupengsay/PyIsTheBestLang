@@ -3,28 +3,28 @@
 功能：xxx
 题目：
 
-===================================力扣===================================
-149. 直线上最多的点数（https://leetcode.com/problems/max-points-on-a-line/）用直线斜率判断一条线上最多的点数
-1453. 圆形靶内的最大飞镖数量（https://leetcode.com/problems/maximum-number-of-darts-inside-of-a-circular-dartboard/）计算经过两个不同的点与确定半径的两处圆心
-939. 最小面积矩形（https://leetcode.com/problems/minimum-area-rectangle/）枚举矩形对角顶点计算另外两个顶点
-面试题 16.03. 交点（https://leetcode.com/problems/intersection-lcci/）计算两条线段最靠左靠下的交点
-面试题 16.14. 最佳直线（https://leetcode.com/problems/best-line-lcci/）用直线斜率判断一条线上最多的点数
-2013. 检测正方形（https://leetcode.com/problems/detect-squares/）已知正方形对角顶点计算另外两个顶点，经典枚举哈希计数
-2280. 表示一个折线图的最少线段数（https://leetcode.com/problems/minimum-lines-to-represent-a-line-chart/）使用分数代表斜率计算
-1401. 圆和矩形是否有重叠（https://leetcode.com/problems/circle-and-rectangle-overlapping/）经典几何题，寻找圆离矩形最近的点
+===================================LeetCode===================================
+149（https://leetcode.com/problems/max-points-on-a-line/）用直线斜率判断一条线上最多的点数
+1453（https://leetcode.com/problems/maximum-number-of-darts-inside-of-a-circular-dartboard/）计算经过两个不同的点与确定半径的两处圆心
+939（https://leetcode.com/problems/minimum-area-rectangle/）枚举矩形对角顶点计算另外两个顶点
+面试题 16（https://leetcode.com/problems/intersection-lcci/）计算两条线段最靠左靠下的交点
+面试题 16（https://leetcode.com/problems/best-line-lcci/）用直线斜率判断一条线上最多的点数
+2013（https://leetcode.com/problems/detect-squares/）已知正方形对角顶点计算另外两个顶点，经典枚举哈希计数
+2280（https://leetcode.com/problems/minimum-lines-to-represent-a-line-chart/）使用分数代表斜率计算
+1401（https://leetcode.com/problems/circle-and-rectangle-overlapping/）经典几何题，寻找圆离矩形最近的点
 
-===================================洛谷===================================
-P1665 正方形计数（https://www.luogu.com.cn/problem/P1665）枚举正方形对角线顶点计算可行个数
-P2313 [HNOI2005]汤姆的游戏（https://www.luogu.com.cn/problem/P2313）判断点在矩形中或者圆形中
-P2358 蚂蚁搬家（https://www.luogu.com.cn/problem/P2358）计算几何判断正方体上表面的点到下表面的点最短距离
-P2665 [USACO08FEB]Game of Lines S（https://www.luogu.com.cn/problem/P2665）不同的斜率计算
-P1355 神秘大三角（https://www.luogu.com.cn/problem/P1355）使用三角形面积计算判断点与三角形的位置关系
-P1142 轰炸（https://www.luogu.com.cn/problem/P1142）利用斜率计算一条直线上最多的点
-P2778 [AHOI2016初中组]迷宫（https://www.luogu.com.cn/problem/P2778）枚举圆与点的位置关系
-P3021 [USACO11MAR]Bovine Bridge Battle S（https://www.luogu.com.cn/problem/P3021）容斥原理计数加枚举中心对称点
-P1257 平面上的最接近点对（https://www.luogu.com.cn/problem/P1257）经典平面点集最近点对问题使用分治求解、还有哈希分块、有序列表
-P7883 平面最近点对（加强加强版）（https://www.luogu.com.cn/problem/P7883）经典平面点集最近点对问题使用分治求解、还有哈希分块、有序列表
-P1429 平面最近点对（加强版）（https://www.luogu.com.cn/problem/P1429）经典平面点集最近点对问题使用分治求解、还有哈希分块、有序列表
+===================================LuoGu==================================
+1665（https://www.luogu.com.cn/problem/P1665）枚举正方形对角线顶点计算可行个数
+2313（https://www.luogu.com.cn/problem/P2313）判断点在矩形中或者圆形中
+2358（https://www.luogu.com.cn/problem/P2358）计算几何判断正方体上表面的点到下表面的点最短距离
+2665（https://www.luogu.com.cn/problem/P2665）不同的斜率计算
+1355（https://www.luogu.com.cn/problem/P1355）使用三角形面积计算判断点与三角形的位置关系
+1142（https://www.luogu.com.cn/problem/P1142）利用斜率计算一条直线上最多的点
+2778（https://www.luogu.com.cn/problem/P2778）枚举圆与点的位置关系
+3021（https://www.luogu.com.cn/problem/P3021）容斥原理计数加枚举中心对称点
+1257（https://www.luogu.com.cn/problem/P1257）经典平面点集最近点对问题使用分治求解、还有哈希分块、有序列表
+7883（https://www.luogu.com.cn/problem/P7883）经典平面点集最近点对问题使用分治求解、还有哈希分块、有序列表
+1429（https://www.luogu.com.cn/problem/P1429）经典平面点集最近点对问题使用分治求解、还有哈希分块、有序列表
 
 
 
@@ -33,9 +33,9 @@ D. Pair Of Lines （https://codeforces.com/contest/961/problem/D)）抽屉原理
 D. Tricky Function（https://codeforces.com/problemset/problem/429/D）经典平面点集最近点对
 
 ================================AcWing====================================
-119. 袭击（https://www.acwing.com/problem/content/121/）经典平面点集最近点对问题使用分治求解、还有哈希分块、有序列表
-4309. 消灭老鼠（https://www.acwing.com/problem/content/4312/）经典直线斜率计算
-4499. 画圆（https://www.acwing.com/problem/content/4502/）经典几何，使用一元二次方程求解
+119（https://www.acwing.com/problem/content/121/）经典平面点集最近点对问题使用分治求解、还有哈希分块、有序列表
+4309（https://www.acwing.com/problem/content/4312/）经典直线斜率计算
+4499（https://www.acwing.com/problem/content/4502/）经典几何，使用一元二次方程求解
 游戏专项（https://www.hackerrank.com/contests/2023-1024-1/challenges/challenge-4219）随机化共线性判断
 
 参考：OI WiKi（xx）

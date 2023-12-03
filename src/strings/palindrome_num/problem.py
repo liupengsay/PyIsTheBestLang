@@ -3,15 +3,15 @@
 功能：xxx
 题目：
 
-===================================力扣===================================
-2081. k 镜像数字的和（https://leetcode.com/problems/sum-of-k-mirror-numbers/）枚举 10 进制回文数字并判断其 k 进制是否依然回文
-866. 回文素数（https://leetcode.com/problems/prime-palindrome/）枚举回文素数
-564. 寻找最近的回文数（https://leetcode.com/problems/find-the-closest-palindrome/）枚举字符的前半部分与后半部分
-906. 超级回文数（https://leetcode.com/problems/super-palindromes/）经典预处理所有的回文数其开方也是回文数
-1088. 易混淆数 II（https://leetcode.com/problems/confusing-number-ii/description/）模拟枚举所有的易混淆数
+===================================LeetCode===================================
+2081（https://leetcode.com/problems/sum-of-k-mirror-numbers/）枚举 10 进制回文数字并判断其 k 进制是否依然回文
+866（https://leetcode.com/problems/prime-palindrome/）枚举回文素数
+564（https://leetcode.com/problems/find-the-closest-palindrome/）枚举字符的前半部分与后半部分
+906（https://leetcode.com/problems/super-palindromes/）经典预处理所有的回文数其开方也是回文数
+1088（https://leetcode.com/problems/confusing-number-ii/description/）模拟枚举所有的易混淆数
 
-===================================洛谷===================================
-P1609 最小回文数（https://www.luogu.com.cn/problem/P1609）枚举字符的前半部分与后半部分
+===================================LuoGu==================================
+1609（https://www.luogu.com.cn/problem/P1609）枚举字符的前半部分与后半部分
 
 
 参考：OI WiKi（xx）

@@ -4,12 +4,12 @@
 题目：
 
 
-===================================力扣===================================
-1569. 将子数组重新排序得到同一个二叉搜索树的方案数（https://leetcode.com/problems/number-of-ways-to-reorder-array-to-get-same-bst/）按照顺序建立二叉树，使用DP与组合计数求方案数
-1902. 给定二叉搜索树的插入顺序求深度（https://leetcode.com/problems/depth-of-bst-given-insertion-order/）按照顺序建立二叉树求深度
+===================================LeetCode===================================
+1569（https://leetcode.com/problems/number-of-ways-to-reorder-array-to-get-same-bst/）按照顺序建立二叉树，使用DP与组合计数求方案数
+1902（https://leetcode.com/problems/depth-of-bst-given-insertion-order/）按照顺序建立二叉树求深度
 
-===================================洛谷===================================
-P2171 Hz吐泡泡（https://www.luogu.com.cn/problem/P2171）依次输入数据生成二叉搜索树，可使用逆序并查集
+===================================LuoGu==================================
+2171（https://www.luogu.com.cn/problem/P2171）依次输入数据生成二叉搜索树，可使用逆序并查集
 
 参考：OI WiKi（xx）
 """

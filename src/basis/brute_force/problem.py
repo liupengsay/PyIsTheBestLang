@@ -3,113 +3,113 @@
 功能：根据题意，在复杂度有限的情况下，进行所有可能情况的枚举
 题目：
 
-===================================力扣===================================
-670. 最大交换（https://leetcode.com/problems/maximum-swap/）看似贪心，在复杂度允许的情况下使用枚举暴力保险
-395. 至少有 K 个重复字符的最长子串（https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters/）经典枚举分治
-1330. 翻转子数组得到最大的数组值（https://leetcode.com/problems/reverse-subarray-to-maximize-array-value/）经典枚举绝对值正负数
-2488. 统计中位数为 K 的子数组（https://leetcode.com/problems/count-subarrays-with-median-k/）利用中位数的定义枚举前后子序列中满足大于 K 和小于 K 的数个数相等的子数组
-2484. 统计回文子序列数目（https://leetcode.com/problems/count-palindromic-subsequences/）利用前后缀哈希计数枚举当前索引作为回文中心的回文子串的前后缀个数
-2322. 从树中删除边的最小分数（https://leetcode.com/problems/minimum-score-after-removals-on-a-tree/）枚举删除的第一条边后使用树形递归再枚举第二条边计算连通块异或差值最小分数
-2321. 拼接数组的最大分数（https://leetcode.com/problems/maximum-score-of-spliced-array/）借助经典的最大最小子数组和枚举交换的连续子序列
-2306. 公司命名（https://leetcode.com/problems/naming-a-company/）利用字母个数有限的特点枚举首字母交换对
-2272. 最大波动的子字符串（https://leetcode.com/problems/substring-with-largest-variance/）利用字母个数有限的特点进行最大字符与最小字符枚举
-2183. 统计可以被 K 整除的下标对数目（https://leetcode.com/problems/count-array-pairs-divisible-by-k/）按照最大公约数进行分组枚举
-2151. 基于陈述统计最多好人数（https://leetcode.com/problems/maximum-good-people-based-on-statements/）使用状态压缩进行枚举并判定是否合法
-2147. 分隔长廊的方案数（https://leetcode.com/problems/number-of-ways-to-divide-a-long-corridor/）根据题意进行分隔点枚举计数
-2122. 还原原数组（https://leetcode.com/problems/recover-the-original-array/）枚举差值 k 判断是否合法
+===================================LeetCode===================================
+670（https://leetcode.com/problems/maximum-swap/）看似贪心，在复杂度允许的情况下使用枚举暴力保险
+395（https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters/）经典枚举分治
+1330（https://leetcode.com/problems/reverse-subarray-to-maximize-array-value/）经典枚举绝对值正负数
+2488（https://leetcode.com/problems/count-subarrays-with-median-k/）利用中位数的定义枚举前后子序列中满足大于 K 和小于 K 的数个数相等的子数组
+2484（https://leetcode.com/problems/count-palindromic-subsequences/）利用前后缀哈希计数枚举当前索引作为回文中心的回文子串的前后缀个数
+2322（https://leetcode.com/problems/minimum-score-after-removals-on-a-tree/）枚举删除的第一条边后使用树形递归再枚举第二条边计算连通块异或差值最小分数
+2321（https://leetcode.com/problems/maximum-score-of-spliced-array/）借助经典的最大最小子数组和枚举交换的连续子序列
+2306（https://leetcode.com/problems/naming-a-company/）利用字母个数有限的特点枚举首字母交换对
+2272（https://leetcode.com/problems/substring-with-largest-variance/）利用字母个数有限的特点进行最大字符与最小字符枚举
+2183（https://leetcode.com/problems/count-array-pairs-divisible-by-k/）按照最大公约数进行分组枚举
+2151（https://leetcode.com/problems/maximum-good-people-based-on-statements/）使用状态压缩进行枚举并判定是否合法
+2147（https://leetcode.com/problems/number-of-ways-to-divide-a-long-corridor/）根据题意进行分隔点枚举计数
+2122（https://leetcode.com/problems/recover-the-original-array/）枚举差值 k 判断是否合法
 2468 根据限制分割消息（https://leetcode.com/problems/split-message-based-on-limit/）根据长度限制进行二分
-2417. 最近的公平整数（https://leetcode.com/problems/closest-fair-integer/）按照位数贪心枚举加和
-2681. 英雄的力量（https://leetcode.com/problems/power-of-heroes/）按照贡献法枚举计数
-1625. 执行操作后字典序最小的字符串（https://leetcode.com/problems/lexicographically-smallest-string-after-applying-operations/）经典枚举计算最小的字典序
-1819. 序列中不同最大公约数的数目（https://leetcode.com/problems/number-of-different-subsequences-gcds/）经典调和级数枚举
-1862. 向下取整数对和（https://leetcode.com/submissions/detail/371754298/）枚举商并利用调和级数的复杂度进行计算
-2014. 重复 K 次的最长子序列（https://leetcode.com/problems/longest-subsequence-repeated-k-times/）经典利用数据范围进行枚举，贪心使用permutations
-2077. 殊途同归（https://leetcode.com/problems/paths-in-maze-that-lead-to-same-room/）经典使用位运算枚举
-2081. k 镜像数字的和（https://leetcode.com/problems/sum-of-k-mirror-numbers/）经典回文串进制数据枚举
-2170. 使数组变成交替数组的最少操作数（https://leetcode.com/problems/minimum-operations-to-make-the-array-alternating/）经典枚举，运用最大值与次大值技巧
-1215. 步进数（https://leetcode.com/problems/stepping-numbers/）经典根据数据范围使用回溯枚举所有满足条件的数
-2245. 转角路径的乘积中最多能有几个尾随零（https://leetcode.com/problems/maximum-trailing-zeros-in-a-cornered-path/）经典四个方向的前缀和与两两组合枚举
-1878. 矩阵中最大的三个菱形和（https://leetcode.com/problems/get-biggest-three-rhombus-sums-in-a-grid/）经典两个方向上的前缀和计算与边长枚举
-2018. 判断单词是否能放入填字游戏内（https://leetcode.com/problems/check-if-word-can-be-placed-in-crossword/description/）经典枚举空挡位置与矩阵行列取数
-2591. 将钱分给最多的儿童（https://leetcode.com/problems/distribute-money-to-maximum-children/）经典枚举考虑边界条件
-910. 最小差值 II（https://leetcode.com/problems/smallest-range-ii/description/）经典枚举操作的范围，计算最大值与最小值
-1131. 绝对值表达式的最大值（https://leetcode.com/problems/maximum-of-absolute-value-expression/description/）经典曼哈顿距离计算，枚举可能的符号组合
-1761. 一个图中连通三元组的最小度数（https://leetcode.com/problems/minimum-degree-of-a-connected-trio-in-a-graph/description/?envType=daily-question&envId=2023-08-31）经典无向图转为有向图进行枚举
-1178. 猜字谜（https://leetcode.com/problems/number-of-valid-words-for-each-puzzle/）典型哈希计数枚举，使用位运算
-1638. 统计只差一个字符的子串数目（https://leetcode.com/problems/count-substrings-that-differ-by-one-character/description/）枚举子字符串对开头位置也可使用DP枚举
-2212. 射箭比赛中的最大得分（https://leetcode.com/problems/maximum-points-in-an-archery-competition/）位运算枚举或者回溯计算
-2749. 得到整数零需要执行的最少操作数（https://leetcode.com/problems/minimum-operations-to-make-the-integer-zero/）枚举操作次数使用位运算计算可行性
-2094. 找出 3 位偶数（https://leetcode.com/problems/finding-3-digit-even-numbers/description/）脑筋急转弯枚举，有技巧地缩小范围
-842. 将数组拆分成斐波那契序列（https://leetcode.com/problems/split-array-into-fibonacci-sequence/description/）脑筋急转弯枚举数列前两项也可以使用DFS回溯计算
-2122. 还原原数组（https://leetcode.com/problems/recover-the-original-array/）枚举间隔哈希模拟可行性
-1782. 统计点对的数目（https://leetcode.com/problems/count-pairs-of-nodes/description/）使用枚举所有的点对
+2417（https://leetcode.com/problems/closest-fair-integer/）按照位数贪心枚举加和
+2681（https://leetcode.com/problems/power-of-heroes/）按照贡献法枚举计数
+1625（https://leetcode.com/problems/lexicographically-smallest-string-after-applying-operations/）经典枚举计算最小的字典序
+1819（https://leetcode.com/problems/number-of-different-subsequences-gcds/）经典调和级数枚举
+1862（https://leetcode.com/submissions/detail/371754298/）枚举商并利用调和级数的复杂度进行计算
+2014（https://leetcode.com/problems/longest-subsequence-repeated-k-times/）经典利用数据范围进行枚举，贪心使用permutations
+2077（https://leetcode.com/problems/paths-in-maze-that-lead-to-same-room/）经典使用位运算枚举
+2081（https://leetcode.com/problems/sum-of-k-mirror-numbers/）经典回文串进制数据枚举
+2170（https://leetcode.com/problems/minimum-operations-to-make-the-array-alternating/）经典枚举，运用最大值与次大值技巧
+1215（https://leetcode.com/problems/stepping-numbers/）经典根据数据范围使用回溯枚举所有满足条件的数
+2245（https://leetcode.com/problems/maximum-trailing-zeros-in-a-cornered-path/）经典四个方向的前缀和与两两组合枚举
+1878（https://leetcode.com/problems/get-biggest-three-rhombus-sums-in-a-grid/）经典两个方向上的前缀和计算与边长枚举
+2018（https://leetcode.com/problems/check-if-word-can-be-placed-in-crossword/description/）经典枚举空挡位置与矩阵行列取数
+2591（https://leetcode.com/problems/distribute-money-to-maximum-children/）经典枚举考虑边界条件
+910（https://leetcode.com/problems/smallest-range-ii/description/）经典枚举操作的范围，计算最大值与最小值
+1131（https://leetcode.com/problems/maximum-of-absolute-value-expression/description/）经典曼哈顿距离计算，枚举可能的符号组合
+1761（https://leetcode.com/problems/minimum-degree-of-a-connected-trio-in-a-graph/description/?envType=daily-question&envId=2023-08-31）经典无向图转为有向图进行枚举
+1178（https://leetcode.com/problems/number-of-valid-words-for-each-puzzle/）典型哈希计数枚举，使用位运算
+1638（https://leetcode.com/problems/count-substrings-that-differ-by-one-character/description/）枚举子字符串对开头位置也可使用DP枚举
+2212（https://leetcode.com/problems/maximum-points-in-an-archery-competition/）位运算枚举或者回溯计算
+2749（https://leetcode.com/problems/minimum-operations-to-make-the-integer-zero/）枚举操作次数使用位运算计算可行性
+2094（https://leetcode.com/problems/finding-3-digit-even-numbers/description/）脑筋急转弯枚举，有技巧地缩小范围
+842（https://leetcode.com/problems/split-array-into-fibonacci-sequence/description/）脑筋急转弯枚举数列前两项也可以使用DFS回溯计算
+2122（https://leetcode.com/problems/recover-the-original-array/）枚举间隔哈希模拟可行性
+1782（https://leetcode.com/problems/count-pairs-of-nodes/description/）使用枚举所有的点对
 
-===================================洛谷===================================
-P1548 棋盘问题（https://www.luogu.com.cn/problem/P1548）枚举正方形与长方形的右小角计算个数
-P1632 点的移动（https://www.luogu.com.cn/problem/P1632）枚举横坐标和纵坐标的所有组合移动距离
-P2128 赤壁之战（https://www.luogu.com.cn/problem/P2128）枚举完全图的顶点组合，平面图最多四个点
-P2191 小Z的情书（https://www.luogu.com.cn/problem/P2191）逆向思维旋转矩阵
-P2699 【数学1】小浩的幂次运算（https://www.luogu.com.cn/problem/P2699）分类讨论、暴力枚举模拟
-P1371 NOI元丹（https://www.luogu.com.cn/problem/P1371）前后缀枚举计数
-P1369 矩形（https://www.luogu.com.cn/problem/P1369）矩阵DP与有贪心枚举在矩形边上的最多点个数
-P1158 [NOIP2010 普及组] 导弹拦截（https://www.luogu.com.cn/problem/P1158）按照距离的远近进行预处理排序枚举，使用后缀最大值进行更新
-P8928 「TERRA-OI R1」你不是神，但你的灵魂依然是我的盛宴（https://www.luogu.com.cn/problem/P8928）枚举取模计数的组合
-P8892 「UOI-R1」磁铁（https://www.luogu.com.cn/problem/P8892）枚举字符串的分割点，经典查看一个字符串是否为另一个字符串的子序列
-P8799 [蓝桥杯 2022 国 B] 齿轮（https://www.luogu.com.cn/problem/P8799）暴力枚举是否有组合相除得到查询值
-P3142 [USACO16OPEN]Field Reduction S（https://www.luogu.com.cn/problem/P3142）暴力枚举临近左右上下边界的点进行最小面积计算
-P3143 [USACO16OPEN] Diamond Collector S（https://www.luogu.com.cn/problem/P3143）枚举前缀与后缀序列的最多个数相加
-P3670 [USACO17OPEN]Bovine Genomics S（https://www.luogu.com.cn/problem/P3670）哈希枚举计数
-P3799 妖梦拼木棒（https://www.luogu.com.cn/problem/P3799）枚举正三角形的木棒边长
-P3910 纪念邮票（https://www.luogu.com.cn/problem/P3910）结合因数分解枚举可行的连续数组和为目标数字
-P4086 [USACO17DEC]My Cow Ate My Homework S（https://www.luogu.com.cn/problem/P4086）利用后缀进行倒序枚举
-P4596 [COCI2011-2012#5] RAZBIBRIGA（https://www.luogu.com.cn/problem/P4596）枚举可行的正方形单词与方案数
-P4759 [CERC2014]Sums（https://www.luogu.com.cn/problem/P4759）结合因数分解枚举可行的连续数组和为目标数字
-P6267 [SHOI2002]N的连续数拆分（https://www.luogu.com.cn/problem/P6267）结合因数分解枚举可行的连续数组和为目标数字
-P5077 Tweetuzki 爱等差数列（https://www.luogu.com.cn/problem/P5077）结合因数分解枚举可行的连续数组和为目标数字
-P4960 血小板与凝血因子（https://www.luogu.com.cn/problem/P4960）按照题意模拟枚举
-P4994 终于结束的起点（https://www.luogu.com.cn/problem/P4994）暴力模拟，皮萨诺周期可以证明pi(n)<=6n
-P5190 [COCI2009-2010#5] PROGRAM（https://www.luogu.com.cn/problem/P5190）使用埃氏筛的思想进行计数与前缀和计算查询，复杂度为调和级数O(nlogn)
-P5614 [MtOI2019]膜Siyuan（https://www.luogu.com.cn/problem/P5614）根据题意枚举其中两个数，计算满足条件的另一个数的个数
-P6014 [CSGRound3]斗牛（https://www.luogu.com.cn/problem/P6014）使用哈希计算整体取模与每个单个数字确定互补取模计数
-P6067 [USACO05JAN]Moo Volume S（https://www.luogu.com.cn/problem/P6067）排序后使用前后缀和进行枚举计算
-P6248 准备战斗，选择你的英雄（https://www.luogu.com.cn/problem/P6248）计算可能性进行暴力枚举
-P6355 [COCI2007-2008#3] DEJAVU（https://www.luogu.com.cn/problem/P6355）枚举直角三角形的直角点进行计数
-P6365 [传智杯 #2 初赛] 众数出现的次数（https://www.luogu.com.cn/problem/P6365）使用容斥原理进行枚举计数
-P6439 [COCI2011-2012#6] ZAGRADE（https://www.luogu.com.cn/problem/P6439）枚举删除的位置组合，使用几集合进行去重
-P6686 混凝土数学（https://www.luogu.com.cn/problem/P6686）枚举等腰三角形的边长计数
-P2666 [USACO07OCT]Bessie's Secret Pasture S（https://www.luogu.com.cn/problem/P2666）枚举计数，计算将n拆解为4个数的平方和的方案数
-P2705 小球（https://www.luogu.com.cn/problem/P2705）枚举红色小球放在蓝色盒子的数量计算
-P5690 [CSP-S2019 江西] 日期（https://www.luogu.com.cn/problem/P5690）对于日期，典型地暴力进行枚举确认
-P7076 [CSP-S2020] 动物园（https://www.luogu.com.cn/problem/P7076）位运算枚举计数
-P7094 [yLOI2020] 金陵谣（https://www.luogu.com.cn/problem/P7094）变换公式根据，数据范围进行枚举
-P7273 ix35 的等差数列（https://www.luogu.com.cn/problem/P7273）经典公差枚举，计算使得首项相同的个数，贪心选择最佳
-P7286 「EZEC-5」人赢（https://www.luogu.com.cn/problem/P7286）排序后枚举最小值，选择最优结果计数
-P7626 [COCI2011-2012#1] MATRIX（https://www.luogu.com.cn/problem/P7626）枚举正方形子矩阵的主对角线与副对角线之差
-P7799 [COCI2015-2016#6] PIANINO（https://www.luogu.com.cn/problem/P7799）哈希枚举计数
-P1018 [NOIP2000 提高组] 乘积最大（https://www.luogu.com.cn/problem/P1018）枚举乘号位置
-P1311 [NOIP2011 提高组] 选择客栈（https://www.luogu.com.cn/problem/P1311）线性枚举计数，每次重置避免重复计数
-P2119 [NOIP2016 普及组] 魔法阵（https://www.luogu.com.cn/problem/P2119）枚举差值，并计算前后缀个数
-P2652 同花顺（https://www.luogu.com.cn/problem/P2652）枚举花色与双指针计算长度
-P2994 [USACO10OCT]Dinner Time S（https://www.luogu.com.cn/problem/P2994）按照座位枚举分配人员
-P3985 不开心的金明（https://www.luogu.com.cn/problem/P3985）看似背包实则枚举
-P4181 [USACO18JAN]Rental Service S（https://www.luogu.com.cn/problem/P4181）贪心枚举与后缀和
-P6149 [USACO20FEB] Triangles S（https://www.luogu.com.cn/problem/P6149）经典枚举三角形的直角点使用前缀和与二分计算距离和
-P6393 隔离的日子（https://www.luogu.com.cn/problem/P6393）经典利用值域范围进行枚举计算
-P6767 [BalticOI 2020/2012 Day0] Roses（https://www.luogu.com.cn/problem/P6767）
-P8270 [USACO22OPEN] Subset Equality S（https://www.luogu.com.cn/problem/P8270）经典脑筋急转弯枚举，转换为两两字母比较
-P8587 新的家乡（https://www.luogu.com.cn/problem/P8587）桶计数枚举
-P8663 [蓝桥杯 2018 省 A] 倍数问题（https://www.luogu.com.cn/problem/P8663）桶计数枚举
-P8672 [蓝桥杯 2018 国 C] 交换次数（https://www.luogu.com.cn/problem/P8672）字符串枚举与经典置换环计数
-P8712 [蓝桥杯 2020 省 B1] 整数拼接（https://www.luogu.com.cn/problem/P8712）整数长度枚举
-P8749 [蓝桥杯 2021 省 B] 杨辉三角形（https://www.luogu.com.cn/problem/P8749）利用杨辉三角形特点进行枚举
-P8808 [蓝桥杯 2022 国 C] 斐波那契数组（https://www.luogu.com.cn/problem/P8808）利用斐波那契数组的特点进行枚举
-P8809 [蓝桥杯 2022 国 C] 近似 GCD（https://www.luogu.com.cn/problem/P8809）枚举加贡献计数
-P9076 [PA2018] PIN（https://www.luogu.com.cn/problem/P9076）根据数字的因数进行枚举
-P9008 [入门赛 #9] 大碗宽面 (Hard Version)（https://www.luogu.com.cn/problem/P9008）经典朋友敌人陌生人容斥枚举计数
-P9006 [入门赛 #9] 神树大人挥动魔杖 (Hard Version)（https://www.luogu.com.cn/problem/P9006）经典枚举取模计数
-P8948 [YsOI2022]NOIp和省选（https://www.luogu.com.cn/problem/P8948）预处理和枚举所有情况
-P8894 「UOI-R1」求和（https://www.luogu.com.cn/problem/P8894）按照区间范围值进行枚举前后缀计数
-P8872 [传智杯 #5 初赛] D-莲子的物理热力学（https://www.luogu.com.cn/problem/P8872）排序后前后缀移动次数枚举
+===================================LuoGu==================================
+1548（https://www.luogu.com.cn/problem/P1548）枚举正方形与长方形的右小角计算个数
+1632（https://www.luogu.com.cn/problem/P1632）枚举横坐标和纵坐标的所有组合移动距离
+2128（https://www.luogu.com.cn/problem/P2128）枚举完全图的顶点组合，平面图最多四个点
+2191（https://www.luogu.com.cn/problem/P2191）逆向思维旋转矩阵
+2699（https://www.luogu.com.cn/problem/P2699）分类讨论、暴力枚举模拟
+1371（https://www.luogu.com.cn/problem/P1371）前后缀枚举计数
+1369（https://www.luogu.com.cn/problem/P1369）矩阵DP与有贪心枚举在矩形边上的最多点个数
+1158（https://www.luogu.com.cn/problem/P1158）按照距离的远近进行预处理排序枚举，使用后缀最大值进行更新
+8928（https://www.luogu.com.cn/problem/P8928）枚举取模计数的组合
+8892（https://www.luogu.com.cn/problem/P8892）枚举字符串的分割点，经典查看一个字符串是否为另一个字符串的子序列
+8799（https://www.luogu.com.cn/problem/P8799）暴力枚举是否有组合相除得到查询值
+3142（https://www.luogu.com.cn/problem/P3142）暴力枚举临近左右上下边界的点进行最小面积计算
+3143（https://www.luogu.com.cn/problem/P3143）枚举前缀与后缀序列的最多个数相加
+3670（https://www.luogu.com.cn/problem/P3670）哈希枚举计数
+3799（https://www.luogu.com.cn/problem/P3799）枚举正三角形的木棒边长
+3910（https://www.luogu.com.cn/problem/P3910）结合因数分解枚举可行的连续数组和为目标数字
+4086（https://www.luogu.com.cn/problem/P4086）利用后缀进行倒序枚举
+4596（https://www.luogu.com.cn/problem/P4596）枚举可行的正方形单词与方案数
+4759（https://www.luogu.com.cn/problem/P4759）结合因数分解枚举可行的连续数组和为目标数字
+6267（https://www.luogu.com.cn/problem/P6267）结合因数分解枚举可行的连续数组和为目标数字
+5077（https://www.luogu.com.cn/problem/P5077）结合因数分解枚举可行的连续数组和为目标数字
+4960（https://www.luogu.com.cn/problem/P4960）按照题意模拟枚举
+4994（https://www.luogu.com.cn/problem/P4994）暴力模拟，皮萨诺周期可以证明pi(n)<=6n
+5190（https://www.luogu.com.cn/problem/P5190）使用埃氏筛的思想进行计数与前缀和计算查询，复杂度为调和级数O(nlogn)
+5614（https://www.luogu.com.cn/problem/P5614）根据题意枚举其中两个数，计算满足条件的另一个数的个数
+6014（https://www.luogu.com.cn/problem/P6014）使用哈希计算整体取模与每个单个数字确定互补取模计数
+6067（https://www.luogu.com.cn/problem/P6067）排序后使用前后缀和进行枚举计算
+6248（https://www.luogu.com.cn/problem/P6248）计算可能性进行暴力枚举
+6355（https://www.luogu.com.cn/problem/P6355）枚举直角三角形的直角点进行计数
+6365（https://www.luogu.com.cn/problem/P6365）使用容斥原理进行枚举计数
+6439（https://www.luogu.com.cn/problem/P6439）枚举删除的位置组合，使用几集合进行去重
+6686（https://www.luogu.com.cn/problem/P6686）枚举等腰三角形的边长计数
+2666（https://www.luogu.com.cn/problem/P2666）枚举计数，计算将n拆解为4个数的平方和的方案数
+2705（https://www.luogu.com.cn/problem/P2705）枚举红色小球放在蓝色盒子的数量计算
+5690（https://www.luogu.com.cn/problem/P5690）对于日期，典型地暴力进行枚举确认
+7076（https://www.luogu.com.cn/problem/P7076）位运算枚举计数
+7094（https://www.luogu.com.cn/problem/P7094）变换公式根据，数据范围进行枚举
+7273（https://www.luogu.com.cn/problem/P7273）经典公差枚举，计算使得首项相同的个数，贪心选择最佳
+7286（https://www.luogu.com.cn/problem/P7286）排序后枚举最小值，选择最优结果计数
+7626（https://www.luogu.com.cn/problem/P7626）枚举正方形子矩阵的主对角线与副对角线之差
+7799（https://www.luogu.com.cn/problem/P7799）哈希枚举计数
+1018（https://www.luogu.com.cn/problem/P1018）枚举乘号位置
+1311（https://www.luogu.com.cn/problem/P1311）线性枚举计数，每次重置避免重复计数
+2119（https://www.luogu.com.cn/problem/P2119）枚举差值，并计算前后缀个数
+2652（https://www.luogu.com.cn/problem/P2652）枚举花色与双指针计算长度
+2994（https://www.luogu.com.cn/problem/P2994）按照座位枚举分配人员
+3985（https://www.luogu.com.cn/problem/P3985）看似背包实则枚举
+4181（https://www.luogu.com.cn/problem/P4181）贪心枚举与后缀和
+6149（https://www.luogu.com.cn/problem/P6149）经典枚举三角形的直角点使用前缀和与二分计算距离和
+6393（https://www.luogu.com.cn/problem/P6393）经典利用值域范围进行枚举计算
+6767（https://www.luogu.com.cn/problem/P6767）
+8270（https://www.luogu.com.cn/problem/P8270）经典脑筋急转弯枚举，转换为两两字母比较
+8587（https://www.luogu.com.cn/problem/P8587）桶计数枚举
+8663（https://www.luogu.com.cn/problem/P8663）桶计数枚举
+8672（https://www.luogu.com.cn/problem/P8672）字符串枚举与经典置换环计数
+8712（https://www.luogu.com.cn/problem/P8712）整数长度枚举
+8749（https://www.luogu.com.cn/problem/P8749）利用杨辉三角形特点进行枚举
+8808（https://www.luogu.com.cn/problem/P8808）利用斐波那契数组的特点进行枚举
+8809（https://www.luogu.com.cn/problem/P8809）枚举加贡献计数
+9076（https://www.luogu.com.cn/problem/P9076）根据数字的因数进行枚举
+9008（https://www.luogu.com.cn/problem/P9008）经典朋友敌人陌生人容斥枚举计数
+9006（https://www.luogu.com.cn/problem/P9006）经典枚举取模计数
+8948（https://www.luogu.com.cn/problem/P8948）预处理和枚举所有情况
+8894（https://www.luogu.com.cn/problem/P8894）按照区间范围值进行枚举前后缀计数
+8872（https://www.luogu.com.cn/problem/P8872）排序后前后缀移动次数枚举
 
 ================================CodeForces================================
 F. Number of Subsequences（https://codeforces.com/problemset/problem/1426/F）分类枚举中间的b计数两边的?ac，并使用快速幂进行求解
@@ -133,7 +133,7 @@ C - Chocolate Bar（https://atcoder.jp/contests/abc062/tasks/arc074_a）枚举�
 C - Sugar Water（https://atcoder.jp/contests/abc074/tasks/arc083_a）经典枚举系数利用公式计算边界
 
 ================================Acwing===================================
-95. 费解的开关（https://www.acwing.com/problem/content/description/97/）枚举第一行的开关按钮使用状态
+95（https://www.acwing.com/problem/content/description/97/）枚举第一行的开关按钮使用状态
 
 参考：OI WiKi（xx）
 """

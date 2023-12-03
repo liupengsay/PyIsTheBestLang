@@ -4,23 +4,23 @@
 功能：通常需要根据题目要求，进行贪心排序之后的构造出合理可行的答案
 题目：xx（xx）
 
-===================================力扣===================================
-280. 摆动排序（https://leetcode.com/problems/wiggle-sort/）按照降序先赋给奇数索引再给偶数索引
-2663. 字典序最小的美丽字符串（https://leetcode.com/problems/lexicographically-smallest-beautiful-string/）贪心构造不含任何回文子串的字典序最小的字符串
-1982. 从子集的和还原数组（https://leetcode.com/problems/find-array-given-subset-sums/）经典构造
-1253. 重构 2 行二进制矩阵（https://leetcode.com/problems/reconstruct-a-2-row-binary-matrix/）经典构造贪心思维
-2573. 找出对应 LCP 矩阵的字符串（https://leetcode.com/problems/find-the-string-with-lcp/）经典LCP构造与验证，类似并查集思想
+===================================LeetCode===================================
+280（https://leetcode.com/problems/wiggle-sort/）按照降序先赋给奇数索引再给偶数索引
+2663（https://leetcode.com/problems/lexicographically-smallest-beautiful-string/）贪心构造不含任何回文子串的字典序最小的字符串
+1982（https://leetcode.com/problems/find-array-given-subset-sums/）经典构造
+1253（https://leetcode.com/problems/reconstruct-a-2-row-binary-matrix/）经典构造贪心思维
+2573（https://leetcode.com/problems/find-the-string-with-lcp/）经典LCP构造与验证，类似并查集思想
 
-===================================洛谷===================================
-P8846 『JROI-7』PMK 配匹串符字（https://www.luogu.com.cn/problem/P8846）厘清题意进行贪心构造
-P2902 [USACO08MAR]Pearl Pairing G（https://www.luogu.com.cn/problem/P2902）构造不同颜色对
-P5823 【L&K R-03】课表的排列（https://www.luogu.com.cn/problem/P5823）构造相同元素间隔为等差1的数组
-P7383 「EZEC-6」加减（https://www.luogu.com.cn/problem/P7383）贪心构造
-P7947 [✗✓OI R1] 铝锤制作（https://www.luogu.com.cn/problem/P7947）贪心构造积为 n 和为 k 的数列，乘积分解成质因数其和最小
-P9101 [PA2020] Skierowany graf acykliczny（https://www.luogu.com.cn/problem/P9101）构造恰好 k 条路径的有向无环图
-P8976 「DTOI-4」排列（https://www.luogu.com.cn/problem/P8976）经典枚举连续段进行构造数组的前半段与后半段和满足要求
-P8910 [RC-06] Operation Sequence（https://www.luogu.com.cn/problem/P8910）经典置换环构造
-P8880 无知时诋毁原神（https://www.luogu.com.cn/problem/P8880）脑筋急转弯构造分奇数与偶数讨论
+===================================LuoGu==================================
+8846（https://www.luogu.com.cn/problem/P8846）厘清题意进行贪心构造
+2902（https://www.luogu.com.cn/problem/P2902）构造不同颜色对
+5823（https://www.luogu.com.cn/problem/P5823）构造相同元素间隔为等差1的数组
+7383（https://www.luogu.com.cn/problem/P7383）贪心构造
+7947（https://www.luogu.com.cn/problem/P7947）贪心构造积为 n 和为 k 的数列，乘积分解成质因数其和最小
+9101（https://www.luogu.com.cn/problem/P9101）构造恰好 k 条路径的有向无环图
+8976（https://www.luogu.com.cn/problem/P8976）经典枚举连续段进行构造数组的前半段与后半段和满足要求
+8910（https://www.luogu.com.cn/problem/P8910）经典置换环构造
+8880（https://www.luogu.com.cn/problem/P8880）脑筋急转弯构造分奇数与偶数讨论
 
 ================================CodeForces================================
 A. Multiples of Length（https://codeforces.com/problemset/problem/1396/A）贪心构造

@@ -3,22 +3,22 @@
 功能：
 题目：
 
-===================================力扣===================================
-1820. 最多邀请的个数（https://leetcode.com/problems/maximum-number-of-accepted-invitations/）使用匈牙利算法或者二分图最大权KM算法解决
-1066. 校园自行车分配 II（https://leetcode.com/problems/campus-bikes-ii/）二分图最小权KM算法解决
-1947. 最大兼容性评分和（https://leetcode.com/problems/maximum-compatibility-score-sum/）二分图最大权匹配，也可用状压DP
+===================================LeetCode===================================
+1820（https://leetcode.com/problems/maximum-number-of-accepted-invitations/）使用匈牙利算法或者二分图最大权KM算法解决
+1066（https://leetcode.com/problems/campus-bikes-ii/）二分图最小权KM算法解决
+1947（https://leetcode.com/problems/maximum-compatibility-score-sum/）二分图最大权匹配，也可用状压DP
 
-===================================洛谷===================================
-P3386 【模板】二分图最大匹配（https://www.luogu.com.cn/problem/P3386）二分图最大匹配
-P6577 【模板】二分图最大权完美匹配（https://www.luogu.com.cn/problem/P6577）二分图最大权完美匹配
-P1894 [USACO4.2]完美的牛栏The Perfect Stall（https://www.luogu.com.cn/problem/P1894）二分图最大匹配，转换为网络流求解
-B3605 [图论与代数结构 401] 二分图匹配（https://www.luogu.com.cn/problem/B3605）匈牙利算法二分图不带权最大匹配
+===================================LuoGu==================================
+3386（https://www.luogu.com.cn/problem/P3386）二分图最大匹配
+6577（https://www.luogu.com.cn/problem/P6577）二分图最大权完美匹配
+1894（https://www.luogu.com.cn/problem/P1894）二分图最大匹配，转换为网络流求解
+3605（https://www.luogu.com.cn/problem/B3605）匈牙利算法二分图不带权最大匹配
 
 ================================CodeForces================================
 C. Chef Monocarp（https://codeforces.com/problemset/problem/1437/C）二分图最小权匹配
 
 ================================AcWing================================
-4298. 搭档（https://www.acwing.com/problem/content/4301/）匈牙利算法二分图模板题
+4298（https://www.acwing.com/problem/content/4301/）匈牙利算法二分图模板题
 
 ================================LibraryChecker================================
 1 Matching on Bipartite Graph（https://judge.yosupo.jp/problem/bipartitematching）unweighted match

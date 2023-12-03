@@ -3,47 +3,47 @@
 功能：使用二进制数字表示转移状态，计算相应的转移方程，通常可以先计算满足条件的子集，有时通过深搜回溯枚举全部子集的办法比位运算枚举效率更高
 题目：
 
-===================================力扣===================================
-465. 最优账单平衡（https://leetcode.com/problems/optimal-account-balancing/）经典枚举子集状压DP
-1349. 参加考试的最大学生数（https://leetcode.com/problems/maximum-students-taking-exam/）按行状态枚举所有的摆放可能性
-1723. 完成所有工作的最短时间（https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs/）通过位运算枚举分配工作DP最小化的最大值，枚举子集预处理，枚举子集模板
-1986. 完成任务的最少工作时间段（https://leetcode.com/problems/minimum-number-of-work-sessions-to-finish-the-tasks/）预处理计算子集后进行记忆化状态转移，经典子集枚举，也可使用两个状态
-698. 划分为k个相等的子集（https://leetcode.com/problems/partition-to-k-equal-sum-subsets/）预处理计算子集后进行记忆化状态转移
-2172. 数组的最大与和（https://leetcode.com/problems/maximum-and-sum-of-array/）使用位运算和状态压缩进行转移，经典三进制状压DP（天平就是三进制）
-1255. 得分最高的单词集合（https://leetcode.com/problems/maximum-score-words-formed-by-letters/）状压DP
-2403. 杀死所有怪物的最短时间（https://leetcode.com/problems/minimum-time-to-kill-all-monsters/）状压DP
-1681. 最小不兼容性（https://leetcode.com/problems/minimum-incompatibility/）状态压缩分组DP，状态压缩和组合数选取结合使用
-1125. 最小的必要团队（https://leetcode.com/problems/smallest-sufficient-team/）经典状压DP
-1467. 两个盒子中球的颜色数相同的概率（https://leetcode.com/problems/probability-of-a-two-boxes-having-the-same-number-of-distinct-balls/）记忆化搜索与组合数学计数
-1531. 压缩字符串 II（https://leetcode.com/problems/string-compression-ii/submissions/）线性DP模拟
-1595. 连通两组点的最小成本（https://leetcode.com/problems/minimum-cost-to-connect-two-groups-of-points/）经典状压DP，需要一点变形
-1655. 分配重复整数（https://leetcode.com/problems/distribute-repeating-integers/）经典状压 DP
-1879. 两个数组最小的异或值之和（https://leetcode.com/problems/minimum-xor-sum-of-two-arrays/）经典状压 DP
-2019. 解出数学表达式的学生分数（https://leetcode.com/problems/the-score-of-students-solving-math-expression/）经典记忆化DP，可以使用刷表法与填表法迭代实现
-943. 最短超级串（https://leetcode.com/problems/find-the-shortest-superstring/）字符串贪心最短长度拼接状压DP
-1434. 每个人戴不同帽子的方案数（https://leetcode.com/problems/number-of-ways-to-wear-different-hats-to-each-other/description/）经典状压DP逆向思维
-847. 访问所有节点的最短路径（https://leetcode.com/problems/shortest-path-visiting-all-nodes/）经典最短路Floyd或者Dijkstra预处理最短路加状压DP
-2741. 特别的排列（https://leetcode.com/problems/special-permutations/description/）经典状压DP
-2305. 公平分发饼干（https://leetcode.com/problems/fair-distribution-of-cookies/description/）典型状压DP枚举子集
-980. 不同路径 III（https://leetcode.com/problems/unique-paths-iii/description/）典型状压DP或者回溯
-2571. 将整数减少到零需要的最少操作数（https://leetcode.com/problems/minimum-operations-to-reduce-an-integer-to-0/description/）思维题记忆化DP
+===================================LeetCode===================================
+465（https://leetcode.com/problems/optimal-account-balancing/）经典枚举子集状压DP
+1349（https://leetcode.com/problems/maximum-students-taking-exam/）按行状态枚举所有的摆放可能性
+1723（https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs/）通过位运算枚举分配工作DP最小化的最大值，枚举子集预处理，枚举子集模板
+1986（https://leetcode.com/problems/minimum-number-of-work-sessions-to-finish-the-tasks/）预处理计算子集后进行记忆化状态转移，经典子集枚举，也可使用两个状态
+698（https://leetcode.com/problems/partition-to-k-equal-sum-subsets/）预处理计算子集后进行记忆化状态转移
+2172（https://leetcode.com/problems/maximum-and-sum-of-array/）使用位运算和状态压缩进行转移，经典三进制状压DP（天平就是三进制）
+1255（https://leetcode.com/problems/maximum-score-words-formed-by-letters/）状压DP
+2403（https://leetcode.com/problems/minimum-time-to-kill-all-monsters/）状压DP
+1681（https://leetcode.com/problems/minimum-incompatibility/）状态压缩分组DP，状态压缩和组合数选取结合使用
+1125（https://leetcode.com/problems/smallest-sufficient-team/）经典状压DP
+1467（https://leetcode.com/problems/probability-of-a-two-boxes-having-the-same-number-of-distinct-balls/）记忆化搜索与组合数学计数
+1531（https://leetcode.com/problems/string-compression-ii/submissions/）线性DP模拟
+1595（https://leetcode.com/problems/minimum-cost-to-connect-two-groups-of-points/）经典状压DP，需要一点变形
+1655（https://leetcode.com/problems/distribute-repeating-integers/）经典状压 DP
+1879（https://leetcode.com/problems/minimum-xor-sum-of-two-arrays/）经典状压 DP
+2019（https://leetcode.com/problems/the-score-of-students-solving-math-expression/）经典记忆化DP，可以使用刷表法与填表法迭代实现
+943（https://leetcode.com/problems/find-the-shortest-superstring/）字符串贪心最短长度拼接状压DP
+1434（https://leetcode.com/problems/number-of-ways-to-wear-different-hats-to-each-other/description/）经典状压DP逆向思维
+847（https://leetcode.com/problems/shortest-path-visiting-all-nodes/）经典最短路Floyd或者Dijkstra预处理最短路加状压DP
+2741（https://leetcode.com/problems/special-permutations/description/）经典状压DP
+2305（https://leetcode.com/problems/fair-distribution-of-cookies/description/）典型状压DP枚举子集
+980（https://leetcode.com/problems/unique-paths-iii/description/）典型状压DP或者回溯
+2571（https://leetcode.com/problems/minimum-operations-to-reduce-an-integer-to-0/description/）思维题记忆化DP
 
-===================================洛谷===================================
-P1896 互不侵犯（https://www.luogu.com.cn/problem/P1896）按行状态与行个数枚举所有的摆放可能性
-P2704 炮兵阵地（https://www.luogu.com.cn/problem/P2704）记录两个前序状态进行转移
+===================================LuoGu==================================
+1896（https://www.luogu.com.cn/problem/P1896）按行状态与行个数枚举所有的摆放可能性
+2704（https://www.luogu.com.cn/problem/P2704）记录两个前序状态进行转移
 
-P2196 [NOIP1996 提高组] 挖地雷（https://www.luogu.com.cn/problem/P2196）有向图最长路径加状压DP
-P1690 贪婪的Copy（https://www.luogu.com.cn/problem/P1690）最短路加状压DP
-P1294 高手去散步（https://www.luogu.com.cn/problem/P1294）图问题使用状压DP求解最长直径
-P1123 取数游戏（https://www.luogu.com.cn/problem/P1123）类似占座位的经典状压DP
-P1433 吃奶酪（https://www.luogu.com.cn/problem/P1433）状压DP
-P1896 [SCOI2005] 互不侵犯（https://www.luogu.com.cn/problem/P1896）状压DP
-P1556 幸福的路（https://www.luogu.com.cn/problem/P1556）状态压缩DP计算最短路方案数
-P3052 [USACO12MAR]Cows in a Skyscraper G（https://www.luogu.com.cn/problem/P3052）经典状态压缩 DP 使用二维优化
-P5997 [PA2014]Pakowanie（https://www.luogu.com.cn/problem/P5997）经典贪心背包与状压 DP 结合
-P6883 [COCI2016-2017#3] Kroničan（https://www.luogu.com.cn/problem/P6883）典型状压 DP 
-P8687 [蓝桥杯 2019 省 A] 糖果（https://www.luogu.com.cn/problem/P8687）经典状压 DP 结合背包 DP 思想
-P8733 [蓝桥杯 2020 国 C] 补给（https://www.luogu.com.cn/problem/P8733）使用Floyd最短路计算并使用状压 DP
+2196（https://www.luogu.com.cn/problem/P2196）有向图最长路径加状压DP
+1690（https://www.luogu.com.cn/problem/P1690）最短路加状压DP
+1294（https://www.luogu.com.cn/problem/P1294）图问题使用状压DP求解最长直径
+1123（https://www.luogu.com.cn/problem/P1123）类似占座位的经典状压DP
+1433（https://www.luogu.com.cn/problem/P1433）状压DP
+1896（https://www.luogu.com.cn/problem/P1896）状压DP
+1556（https://www.luogu.com.cn/problem/P1556）状态压缩DP计算最短路方案数
+3052（https://www.luogu.com.cn/problem/P3052）经典状态压缩 DP 使用二维优化
+5997（https://www.luogu.com.cn/problem/P5997）经典贪心背包与状压 DP 结合
+6883（https://www.luogu.com.cn/problem/P6883）典型状压 DP 
+8687（https://www.luogu.com.cn/problem/P8687）经典状压 DP 结合背包 DP 思想
+8733（https://www.luogu.com.cn/problem/P8733）使用Floyd最短路计算并使用状压 DP
 
 ================================CodeForces================================
 D. Kefa and Dishes（https://codeforces.com/problemset/problem/580/D）状态压缩DP结合前后相邻的增益计算最优解
@@ -52,7 +52,7 @@ D. A Simple Task（https://codeforces.com/contest/11/problem/D）状压DP，无�
 F. Three Paths on a Tree（https://codeforces.com/contest/1294/problem/F）典型树的直径应用题
 
 ================================AcWing================================
-3735. 构造完全图（https://www.acwing.com/problem/content/3738/）经典倒序状压DP与输出具体方案
+3735（https://www.acwing.com/problem/content/3738/）经典倒序状压DP与输出具体方案
 
 参考：OI WiKi（xx）
 """

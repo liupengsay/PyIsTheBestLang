@@ -3,25 +3,25 @@
 功能：xxx
 题目：
 
-===================================力扣===================================
-166. 分数到小数（https://leetcode.com/problems/fraction-to-recurring-decimal/）经典分数转换为有理数无限循环小数
-172. 阶乘后的零（https://leetcode.com/problems/factorial-trailing-zeroes/）阶乘后缀0的个数
-1883. 准时抵达会议现场的最小跳过休息次数（https://leetcode.com/problems/minimum-skips-to-arrive-at-meeting-on-time/description/）经典二维矩阵DP使用分数进行高精度浮点数计算
-2117. 一个区间内所有数乘积的缩写（https://leetcode.com/problems/abbreviating-the-product-of-a-range/）大数计算或者前后缀模拟计算
-972. 相等的有理数（https://leetcode.com/problems/equal-rational-numbers/）有理数转为分数判断
+===================================LeetCode===================================
+166（https://leetcode.com/problems/fraction-to-recurring-decimal/）经典分数转换为有理数无限循环小数
+172（https://leetcode.com/problems/factorial-trailing-zeroes/）阶乘后缀0的个数
+1883（https://leetcode.com/problems/minimum-skips-to-arrive-at-meeting-on-time/description/）经典二维矩阵DP使用分数进行高精度浮点数计算
+2117（https://leetcode.com/problems/abbreviating-the-product-of-a-range/）大数计算或者前后缀模拟计算
+972（https://leetcode.com/problems/equal-rational-numbers/）有理数转为分数判断
 
-===================================洛谷===================================
-P2388 阶乘之乘（https://www.luogu.com.cn/problem/P2388）阶乘之乘后缀0的个数
+===================================LuoGu==================================
+2388（https://www.luogu.com.cn/problem/P2388）阶乘之乘后缀0的个数
 
-P1920 成功密码（https://www.luogu.com.cn/problem/P1920）预估高精度计算与公式 -ln(1-x) = sum(x**i/i for in range(1, n+1)) 其中 n 趋近于无穷
-P1729 计算e（https://www.luogu.com.cn/problem/P1729）高精度计算e小数位
-P1727 计算π（https://www.luogu.com.cn/problem/P1727）高精度计算π小数位
-P1517 高精求小数幂（https://www.luogu.com.cn/record/list?user=739032&status=12&page=5）高精度计算小数的幂值
-P2394 yyy loves Chemistry I（https://www.luogu.com.cn/problem/P2394）高精度计算
-P2393 yyy loves Maths II（https://www.luogu.com.cn/problem/P2393）高精度计算
+1920（https://www.luogu.com.cn/problem/P1920）预估高精度计算与公式 -ln(1-x) = sum(x**i/i for in range(1, n+1)) 其中 n 趋近于无穷
+1729（https://www.luogu.com.cn/problem/P1729）高精度计算e小数位
+1727（https://www.luogu.com.cn/problem/P1727）高精度计算π小数位
+1517（https://www.luogu.com.cn/record/list?user=739032&status=12&page=5）高精度计算小数的幂值
+2394（https://www.luogu.com.cn/problem/P2394）高精度计算
+2393（https://www.luogu.com.cn/problem/P2393）高精度计算
 
-P2399 non hates math（https://www.luogu.com.cn/problem/P2399）小数有理数转换为最简分数
-P1530 [USACO2.4]分数化小数 Fractions to Decimals（https://www.luogu.com.cn/problem/P1530）分数化为小数
+2399（https://www.luogu.com.cn/problem/P2399）小数有理数转换为最简分数
+1530（https://www.luogu.com.cn/problem/P1530）分数化为小数
 
 ===================================CodeForces===================================
 E. Median String（https://codeforces.com/contest/1144/problem/E）超大整数加减与乘除

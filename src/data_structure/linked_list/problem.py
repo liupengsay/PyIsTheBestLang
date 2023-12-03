@@ -5,27 +5,27 @@
 
 题目：xx（xx）
 
-===================================力扣===================================
-2617. 网格图中最少访问的格子数（https://leetcode.com/problems/minimum-number-of-visited-cells-in-a-grid/）经典BFS加链表，使用数组维护链表的前后节点信息
-2612. 最少翻转操作数（https://leetcode.com/problems/minimum-reverse-operations/）经典BFS加链表，使用数组维护链表的前后节点信息
-1562. 查找大小为 M 的最新分组（https://leetcode.com/problems/find-latest-group-of-size-m/）使用类似并查集的前后缀链表求解
-2382. 删除操作后的最大子段和（https://leetcode.com/problems/maximum-segment-sum-after-removals/）逆向进行访问查询并更新连通块的结果，也可以使用双向链表维护
-2289. 使数组按非递减顺序排列（https://leetcode.com/problems/steps-to-make-array-non-decreasing/description/）经典单调栈优化的线性DP，也可用BFS加链表求解
+===================================LeetCode===================================
+2617（https://leetcode.com/problems/minimum-number-of-visited-cells-in-a-grid/）经典BFS加链表，使用数组维护链表的前后节点信息
+2612（https://leetcode.com/problems/minimum-reverse-operations/）经典BFS加链表，使用数组维护链表的前后节点信息
+1562（https://leetcode.com/problems/find-latest-group-of-size-m/）使用类似并查集的前后缀链表求解
+2382（https://leetcode.com/problems/maximum-segment-sum-after-removals/）逆向进行访问查询并更新连通块的结果，也可以使用双向链表维护
+2289（https://leetcode.com/problems/steps-to-make-array-non-decreasing/description/）经典单调栈优化的线性DP，也可用BFS加链表求解
 
 ===================================牛客===================================
 牛牛排队伍（https://ac.nowcoder.com/acm/contest/49888/C）使用数组维护链表的前后节点信息
 
-===================================洛谷===================================
-P5462 X龙珠（https://www.luogu.com.cn/problem/P5462）经典使用双向链表贪心选取最大字典序队列
-P6155 修改（https://www.luogu.com.cn/problem/P6155）经典排序贪心使用并查集思想寻找右边最近的空位
+===================================LuoGu==================================
+5462（https://www.luogu.com.cn/problem/P5462）经典使用双向链表贪心选取最大字典序队列
+6155（https://www.luogu.com.cn/problem/P6155）经典排序贪心使用并查集思想寻找右边最近的空位
 
 ================================CodeForces================================
 E. Two Teams（https://codeforces.com/contest/1154/problem/E）使用数组维护链表的前后节点信息
 
 ================================AcWing===================================
-136. 邻值查找（https://www.acwing.com/problem/content/138/）链表逆序删除，查找前后最接近的值
-4943. 方格迷宫（https://www.acwing.com/problem/content/description/4946/）经典BFS加链表，维护四个方向上的未访问点
-5034. 配对（https://www.acwing.com/problem/content/5037/）经典堆贪心加链表进行处理
+136（https://www.acwing.com/problem/content/138/）链表逆序删除，查找前后最接近的值
+4943（https://www.acwing.com/problem/content/description/4946/）经典BFS加链表，维护四个方向上的未访问点
+5034（https://www.acwing.com/problem/content/5037/）经典堆贪心加链表进行处理
 
 参考：OI WiKi（xx）
 """

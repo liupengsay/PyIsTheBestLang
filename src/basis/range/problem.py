@@ -5,37 +5,37 @@
 最多点匹配覆盖（每条线段选一个点匹配，最多匹配数有点类似二分图）
 题目：
 
-===================================力扣===================================
-45. 跳跃游戏 II（https://leetcode.com/problems/jump-game-ii/）转换为最少区间覆盖问题
-452. 用最少数量的箭引爆气球（https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/）贪心等价为最多不想交的区间
-1326. 灌溉花园的最少水龙头数目（https://leetcode.com/problems/minimum-number-of-taps-to-open-to-water-a-garden/）转换为最少区间覆盖问题
-1024. 视频拼接（https://leetcode.com/problems/video-stitching/）转换为最少区间覆盖问题
-1520. 最多的不重叠子字符串（https://leetcode.com/problems/maximum-number-of-non-overlapping-substrings/）转化为最多不相交区间进行处理
-1353. 最多可以参加的会议数目（https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended/）贪心选取最多的点，使得每个点一一对应一个区间
-2406. 将区间分为最少组数（https://leetcode.com/problems/divide-intervals-into-minimum-number-of-groups/）将区间分为不相交的最少组数使用贪心与差分数组计数解决
-435. 无重叠区间（https://leetcode.com/problems/non-overlapping-intervals/）最多不相交的区间，使用贪心或者二分DP
-763. 划分字母区间（https://leetcode.com/problems/partition-labels/）经典将区间合并为不相交的区间
-6313. 统计将重叠区间合并成组的方案数（https://leetcode.com/contest/biweekly-contest-99/problems/count-ways-to-group-overlapping-ranges/）经典将区间合并为不相交的区间，再使用快速幂计数
-2345. 寻找可见山的数量（https://leetcode.com/problems/finding-the-number-of-visible-mountains/）二维偏序，转换为区间包含问题
-757. 设置交集大小至少为2（https://leetcode.com/problems/set-intersection-size-at-least-two/）贪心选取最少的点集合，使得每个区间包含其中至少两个点
-2589. 完成所有任务的最少时间（https://leetcode.com/problems/minimum-time-to-complete-all-tasks/）贪心选取最少的点集合，使得每个区间包含其中要求的k个点
-LCP 32. 批量处理任务（https://leetcode.com/problems/t3fKg1/）贪心选取最少的点集合，使得每个区间包含其中要求的k个点
+===================================LeetCode===================================
+45（https://leetcode.com/problems/jump-game-ii/）转换为最少区间覆盖问题
+452（https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/）贪心等价为最多不想交的区间
+1326（https://leetcode.com/problems/minimum-number-of-taps-to-open-to-water-a-garden/）转换为最少区间覆盖问题
+1024（https://leetcode.com/problems/video-stitching/）转换为最少区间覆盖问题
+1520（https://leetcode.com/problems/maximum-number-of-non-overlapping-substrings/）转化为最多不相交区间进行处理
+1353（https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended/）贪心选取最多的点，使得每个点一一对应一个区间
+2406（https://leetcode.com/problems/divide-intervals-into-minimum-number-of-groups/）将区间分为不相交的最少组数使用贪心与差分数组计数解决
+435（https://leetcode.com/problems/non-overlapping-intervals/）最多不相交的区间，使用贪心或者二分DP
+763（https://leetcode.com/problems/partition-labels/）经典将区间合并为不相交的区间
+6313（https://leetcode.com/contest/biweekly-contest-99/problems/count-ways-to-group-overlapping-ranges/）经典将区间合并为不相交的区间，再使用快速幂计数
+2345（https://leetcode.com/problems/finding-the-number-of-visible-mountains/）二维偏序，转换为区间包含问题
+757（https://leetcode.com/problems/set-intersection-size-at-least-two/）贪心选取最少的点集合，使得每个区间包含其中至少两个点
+2589（https://leetcode.com/problems/minimum-time-to-complete-all-tasks/）贪心选取最少的点集合，使得每个区间包含其中要求的k个点
+LCP 32（https://leetcode.com/problems/t3fKg1/）贪心选取最少的点集合，使得每个区间包含其中要求的k个点
 
-===================================洛谷===================================
-P2082 区间覆盖（加强版）（https://www.luogu.com.cn/problem/P2082）经典区间合并确定覆盖范围
-P2434 [SDOI2005]区间（https://www.luogu.com.cn/problem/P2434）经典区间合并为不相交的区间
-P2970 [USACO09DEC]Selfish Grazing S（https://www.luogu.com.cn/problem/P2970）最多不相交的区间，使用贪心或者二分DP
-P6123 [NEERC2016]Hard Refactoring（https://www.luogu.com.cn/problem/P6123）区间合并变形问题
-P2684 搞清洁（https://www.luogu.com.cn/problem/P2684）最小区间覆盖，选取最少的区间来进行覆盖
-P1233 木棍加工（https://www.luogu.com.cn/problem/P1233）按照一个维度排序后计算另一个维度的最长严格递增子序列的长度，二位偏序，转换为区间包含问题
-P1496 火烧赤壁（https://www.luogu.com.cn/problem/P1496）经典区间合并确定覆盖范围
-P1668 [USACO04DEC] Cleaning Shifts S（https://www.luogu.com.cn/problem/P1668）转换为最少区间覆盖问题
-P2887 [USACO07NOV] Sunscreen G（https://www.luogu.com.cn/problem/P2887）最多点匹配覆盖，每条线段选一个点匹配，最多匹配数有点类似二分图
-P3661 [USACO17FEB]Why Did the Cow Cross the Road I S（https://www.luogu.com.cn/problem/P3661）经典区间与点集贪心匹配
-P3737 [HAOI2014]遥感监测（https://www.luogu.com.cn/problem/P3737）经典区间点覆盖贪心
-P5199 [USACO19JAN]Mountain View S（https://www.luogu.com.cn/problem/P5199）经典区间包含贪心计算最多互不包含的区间个数
-P1868 饥饿的奶牛（https://www.luogu.com.cn/problem/P1868）线性DP加二分查找优化，选取并集最大且不想交的区间
-P2439 [SDOI2005] 阶梯教室设备利用（https://www.luogu.com.cn/problem/P2439）线性DP加二分查找优化，选取并集最大且不想交的区间
+===================================LuoGu==================================
+2082（https://www.luogu.com.cn/problem/P2082）经典区间合并确定覆盖范围
+2434（https://www.luogu.com.cn/problem/P2434）经典区间合并为不相交的区间
+2970（https://www.luogu.com.cn/problem/P2970）最多不相交的区间，使用贪心或者二分DP
+6123（https://www.luogu.com.cn/problem/P6123）区间合并变形问题
+2684（https://www.luogu.com.cn/problem/P2684）最小区间覆盖，选取最少的区间来进行覆盖
+1233（https://www.luogu.com.cn/problem/P1233）按照一个维度排序后计算另一个维度的最长严格递增子序列的长度，二位偏序，转换为区间包含问题
+1496（https://www.luogu.com.cn/problem/P1496）经典区间合并确定覆盖范围
+1668（https://www.luogu.com.cn/problem/P1668）转换为最少区间覆盖问题
+2887（https://www.luogu.com.cn/problem/P2887）最多点匹配覆盖，每条线段选一个点匹配，最多匹配数有点类似二分图
+3661（https://www.luogu.com.cn/problem/P3661）经典区间与点集贪心匹配
+3737（https://www.luogu.com.cn/problem/P3737）经典区间点覆盖贪心
+5199（https://www.luogu.com.cn/problem/P5199）经典区间包含贪心计算最多互不包含的区间个数
+1868（https://www.luogu.com.cn/problem/P1868）线性DP加二分查找优化，选取并集最大且不想交的区间
+2439（https://www.luogu.com.cn/problem/P2439）线性DP加二分查找优化，选取并集最大且不想交的区间
 
 ================================CodeForces================================
 A. String Reconstruction（https://codeforces.com/problemset/problem/827/A）区间合并为不相交的区间，再贪心赋值
@@ -45,8 +45,8 @@ E. Monotonic Renumeration（https://codeforces.com/contest/1102/problem/E）区�
 F2. Same Sum Blocks (Hard)（https://codeforces.com/contest/1141/problem/F2）利用前缀和枚举，转化为最多不相交的区间问题
 
 ================================AcWing================================
-112. 雷达设备（https://www.acwing.com/problem/content/114/）作用范围进行区间贪心
-4421. 信号（https://www.acwing.com/problem/content/4424/）经典最少区间覆盖范围问题，相邻可以不相交
+112（https://www.acwing.com/problem/content/114/）作用范围进行区间贪心
+4421（https://www.acwing.com/problem/content/4424/）经典最少区间覆盖范围问题，相邻可以不相交
 
 
 参考：OI WiKi（xx）

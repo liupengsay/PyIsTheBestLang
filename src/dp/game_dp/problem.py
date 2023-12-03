@@ -3,22 +3,22 @@
 功能：通常使用枚举、区间DP加模拟贪心的方式，和记忆化搜索进行状态转移
 题目：
 
-===================================力扣===================================
-375. 猜数字大小 II（https://leetcode.com/problems/guess-number-higher-or-lower-ii/）使用区间DP求解的典型博弈DP
-1140. 石子游戏 II（https://leetcode.com/problems/stone-game-ii/）前缀和优化记忆化DP
+===================================LeetCode===================================
+375（https://leetcode.com/problems/guess-number-higher-or-lower-ii/）使用区间DP求解的典型博弈DP
+1140（https://leetcode.com/problems/stone-game-ii/）前缀和优化记忆化DP
 
-===================================洛谷===================================
-P1290 欧几里德的游戏（https://www.luogu.com.cn/problem/P1290）典型的博弈DP题
-P5635 【CSGRound1】天下第一（https://www.luogu.com.cn/problem/P5635）博弈DP模拟与手写记忆化搜索，避免陷入死循环
-P3150 pb的游戏（1）（https://www.luogu.com.cn/problem/P3150）博弈分析必胜策略与最优选择，只跟奇数偶数有关
-P4702 取石子（https://www.luogu.com.cn/problem/P4702）博弈分析必胜策略与最优选择，只跟奇数偶数有关
-P1247 取火柴游戏（https://www.luogu.com.cn/problem/P1247）nim博弈，使用异或求解
-P1512 伊甸园日历游戏（https://www.luogu.com.cn/problem/P1512）博弈DP与日期操作
-P2092 数字游戏（https://www.luogu.com.cn/problem/P2092）根据质数的个数来判断必胜态
-P2953 [USACO09OPEN]Cow Digit Game S（https://www.luogu.com.cn/problem/P2953）必胜态线性DP
+===================================LuoGu==================================
+1290（https://www.luogu.com.cn/problem/P1290）典型的博弈DP题
+5635（https://www.luogu.com.cn/problem/P5635）博弈DP模拟与手写记忆化搜索，避免陷入死循环
+3150（https://www.luogu.com.cn/problem/P3150）博弈分析必胜策略与最优选择，只跟奇数偶数有关
+4702（https://www.luogu.com.cn/problem/P4702）博弈分析必胜策略与最优选择，只跟奇数偶数有关
+1247（https://www.luogu.com.cn/problem/P1247）nim博弈，使用异或求解
+1512（https://www.luogu.com.cn/problem/P1512）博弈DP与日期操作
+2092（https://www.luogu.com.cn/problem/P2092）根据质数的个数来判断必胜态
+2953（https://www.luogu.com.cn/problem/P2953）必胜态线性DP
 
 ===================================AcWing===================================
-4005. 取石子游戏（https://www.acwing.com/problem/content/description/4008/）典型博弈思维题分情况讨论
+4005（https://www.acwing.com/problem/content/description/4008/）典型博弈思维题分情况讨论
 
 参考：OI WiKi（xx）
 """

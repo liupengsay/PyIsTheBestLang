@@ -3,18 +3,18 @@
 功能：用来处理字符串的前缀后缀相关问题
 题目：
 
-===================================力扣===================================
-214. 最短回文串（https://leetcode.com/problems/shortest-palindrome/）计算字符串前缀最长回文子串
-796. 旋转字符串（https://leetcode.com/problems/rotate-string/）计算字符串是否可以旋转得到
-25. 找出字符串中第一个匹配项的下标（https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/）计算子字符串第一次出现的位置
-1392. 最长快乐前缀（https://leetcode.com/problems/longest-happy-prefix/）计算最长的公共前后缀，KMP与Z函数模板题
-2223. 构造字符串的总得分和（https://leetcode.com/problems/longest-happy-prefix/）利用扩展KMP计算Z函数
-6918. 包含三个字符串的最短字符串（https://leetcode.com/problems/shortest-string-that-contains-three-strings/）kmp求字符串之间的最长公共前后缀，进行贪心拼接
-2851. 字符串转换（https://leetcode.com/problems/string-transformation/description/）使用KMP与快速幂进行转移计算，也可使用字符串哈希
+===================================LeetCode===================================
+214（https://leetcode.com/problems/shortest-palindrome/）计算字符串前缀最长回文子串
+796（https://leetcode.com/problems/rotate-string/）计算字符串是否可以旋转得到
+25（https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/）计算子字符串第一次出现的位置
+1392（https://leetcode.com/problems/longest-happy-prefix/）计算最长的公共前后缀，KMP与Z函数模板题
+2223（https://leetcode.com/problems/longest-happy-prefix/）利用扩展KMP计算Z函数
+6918（https://leetcode.com/problems/shortest-string-that-contains-three-strings/）kmp求字符串之间的最长公共前后缀，进行贪心拼接
+2851（https://leetcode.com/problems/string-transformation/description/）使用KMP与快速幂进行转移计算，也可使用字符串哈希
 
-===================================洛谷===================================
-P3375 KMP字符串匹配（https://www.luogu.com.cn/problem/P3375）计算子字符串出现的位置，与最长公共前后缀的子字符串长度
-P4391 [BOI2009]Radio Transmission 无线传输（https://www.luogu.com.cn/problem/P4391）脑经急转弯加KMP算法，最优结果为 n-pi[n-1]
+===================================LuoGu==================================
+3375（https://www.luogu.com.cn/problem/P3375）计算子字符串出现的位置，与最长公共前后缀的子字符串长度
+4391（https://www.luogu.com.cn/problem/P4391）脑经急转弯加KMP算法，最优结果为 n-pi[n-1]
 
 ================================CodeForces================================
 D2. Prefix-Suffix Palindrome (Hard version)（https://codeforces.com/problemset/problem/1326/D2）利用马拉车的贪心思想贪心取前后缀，再判断剩余字符的最长前后缀回文子串
@@ -23,9 +23,9 @@ E. Test（https://codeforces.com/contest/25/problem/E）kmp求字符串之间的
 
 ================================AcWing================================
 
-141. 周期（https://www.acwing.com/problem/content/143/）利用KMP求每个字符串前缀的最小循环节
-160. 匹配统计（https://www.acwing.com/problem/content/162/）z函数模板题
-3823. 寻找字符串（https://www.acwing.com/problem/content/3826/）KMP与扩展KMP即z函数应用模板题
+141（https://www.acwing.com/problem/content/143/）利用KMP求每个字符串前缀的最小循环节
+160（https://www.acwing.com/problem/content/162/）z函数模板题
+3823（https://www.acwing.com/problem/content/3826/）KMP与扩展KMP即z函数应用模板题
 
 参考：OI WiKi（https://oi-wiki.org/string/kmp/）
 

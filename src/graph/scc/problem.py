@@ -7,18 +7,18 @@
 2-SAT：简单的说就是给出 n 个集合，每个集合有两个元素，已知若干个 <a,b>，表示 a 与 b 矛盾（其中 a 与 b 属于不同的集合）。然后从每个集合选择一个元素，判断能否一共选 n 个两两不矛盾的元素。显然可能有多种选择方案，一般题中只需要求出一种即可。
 题目：
 
-===================================力扣===================================
-2360. 图中的最长环（https://leetcode.com/problems/longest-cycle-in-a-graph/）求最长的环长度（有向图scc、内向基环树没有环套环，N个节点N条边，也可以使用拓扑排序）
+===================================LeetCode===================================
+2360（https://leetcode.com/problems/longest-cycle-in-a-graph/）求最长的环长度（有向图scc、内向基环树没有环套环，N个节点N条边，也可以使用拓扑排序）
 
-===================================洛谷===================================
-P3387 【模板】缩点 （https://www.luogu.com.cn/problem/solution/P3387）允许多次经过点和边求一条路径最大权值和、强连通分量
-P2661 [NOIP2015 提高组] 信息传递（https://www.luogu.com.cn/problem/P2661）求最小的环长度（有向图、内向基环树没有环套环，N个节点N条边，也可以使用拓扑排序）
-P4089 [USACO17DEC]The Bovine Shuffle S（https://www.luogu.com.cn/problem/P4089）求所有环的长度和，注意自环
-P5145 漂浮的鸭子（https://www.luogu.com.cn/problem/P5145）内向基环树求最大权值和的环
+===================================LuoGu==================================
+3387（https://www.luogu.com.cn/problem/solution/P3387）允许多次经过点和边求一条路径最大权值和、强连通分量
+2661（https://www.luogu.com.cn/problem/P2661）求最小的环长度（有向图、内向基环树没有环套环，N个节点N条边，也可以使用拓扑排序）
+4089（https://www.luogu.com.cn/problem/P4089）求所有环的长度和，注意自环
+5145（https://www.luogu.com.cn/problem/P5145）内向基环树求最大权值和的环
 
-P4782 【模板】2-SAT 问题（https://www.luogu.com.cn/problem/P4782）2-SAT 问题模板题
-P5782 [POI2001] 和平委员会（https://www.luogu.com.cn/problem/P5782）2-SAT 问题模板题
-P4171 [JSOI2010] 满汉全席（https://www.luogu.com.cn/problem/P4171）2-SAT 问题模板题
+4782（https://www.luogu.com.cn/problem/P4782）2-SAT 问题模板题
+5782（https://www.luogu.com.cn/problem/P5782）2-SAT 问题模板题
+4171（https://www.luogu.com.cn/problem/P4171）2-SAT 问题模板题
 ================================CodeForces================================
 C. Engineer Artem（https://codeforces.com/problemset/problem/1438/C）2-SAT 问题模板题
 

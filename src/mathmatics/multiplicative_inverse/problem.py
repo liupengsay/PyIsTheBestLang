@@ -4,11 +4,11 @@
 参考：OI WiKi（xx）
 题目：
 
-===================================洛谷===================================
-P3811 乘法逆元（https://www.luogu.com.cn/problem/P3811）使用乘法逆元计算
-P5431 乘法逆元（https://www.luogu.com.cn/problem/P5431）使用乘法逆元计算
-P2613 有理数取余（https://www.luogu.com.cn/problem/P2613）使用乘法逆元计算
-P5431 【模板】乘法逆元 2（https://www.luogu.com.cn/problem/P5431）转换为前缀积与后缀积计算求解
+===================================LuoGu==================================
+3811（https://www.luogu.com.cn/problem/P3811）使用乘法逆元计算
+5431（https://www.luogu.com.cn/problem/P5431）使用乘法逆元计算
+2613（https://www.luogu.com.cn/problem/P2613）使用乘法逆元计算
+5431（https://www.luogu.com.cn/problem/P5431）转换为前缀积与后缀积计算求解
 
 ===================================CodeForces===================================
 F. Ira and Flamenco（https://codeforces.com/contest/1833/problem/F）使用前缀乘积计算区间取模

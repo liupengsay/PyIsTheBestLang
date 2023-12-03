@@ -3,35 +3,35 @@
 功能：维护单调性，计算滑动窗口最大值最小值
 题目：
 
-===================================力扣===================================
-239. 滑动窗口最大值（https://leetcode.com/problems/sliding-window-maximum/）滑动区间最大值
-1696. 跳跃游戏 VI（https://leetcode.com/problems/jump-game-vi/）经典优先队列 DP
-862. 和至少为 K 的最短子数组（https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/description/）前缀和加单调双端队列DP
-1425. 带限制的子序列和（https://leetcode.com/problems/constrained-subsequence-sum/）单调队列DP模板题
+===================================LeetCode===================================
+239（https://leetcode.com/problems/sliding-window-maximum/）滑动区间最大值
+1696（https://leetcode.com/problems/jump-game-vi/）经典优先队列 DP
+862（https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/description/）前缀和加单调双端队列DP
+1425（https://leetcode.com/problems/constrained-subsequence-sum/）单调队列DP模板题
 
-===================================洛谷===================================
-P2251 质量检测（https://www.luogu.com.cn/problem/P2251）滑动区间最小值
-P2032 扫描（https://www.luogu.com.cn/problem/P2032）滑动区间最大值
-P1750 出栈序列（https://www.luogu.com.cn/problem/P1750）经典题目，滑动指针窗口栈加队列
-P2311 loidc，想想看（https://www.luogu.com.cn/problem/P2311）不定长滑动窗口最大值索引
-P7175 [COCI2014-2015#4] PŠENICA（https://www.luogu.com.cn/problem/P7175）使用有序优先队列进行模拟
-P7793 [COCI2014-2015#7] ACM（https://www.luogu.com.cn/problem/P7793）双端单调队列，进行最小值计算
-P2216 [HAOI2007]理想的正方形（https://www.luogu.com.cn/problem/P2216）二维区间的滑动窗口最大最小值
-P1886 滑动窗口 /【模板】单调队列（https://www.luogu.com.cn/problem/P1886）计算滑动窗口的最大值与最小值
-P1725 琪露诺（https://www.luogu.com.cn/problem/P1725）单调队列和指针维护滑动窗口最大值加线性DP
-P2827 [NOIP2016 提高组] 蚯蚓（https://www.luogu.com.cn/problem/P2827）经典单调队列
-P3800 Power收集（https://www.luogu.com.cn/problem/P3800）单调队列优化矩阵DP
-P1016 [NOIP1999 提高组] 旅行家的预算（https://www.luogu.com.cn/problem/P1016）单调队列，贪心模拟油箱，还可以增加每个站的油量限制
-P1714 切蛋糕（https://www.luogu.com.cn/problem/P1714）前缀和加滑动窗口最小值，单调队列计算小于一定长度的最大连续子段和
-P2629 好消息，坏消息（https://www.luogu.com.cn/problem/P2629）环形数组前缀和与滑动窗口最小值
-P3522 [POI2011]TEM-Temperature（https://www.luogu.com.cn/problem/P3522）看不懂的队列与单调栈思想
-P3957 [NOIP2017 普及组] 跳房子（https://www.luogu.com.cn/problem/P3957）二分加优先队列加DP
-P4085 [USACO17DEC]Haybale Feast G（https://www.luogu.com.cn/problem/P4085）双指针加优先队列滑动窗口最小值
-P4392 [BOI2007]Sound 静音问题（https://www.luogu.com.cn/problem/P4392）单调队列计算滑动窗口最大值
+===================================LuoGu==================================
+2251（https://www.luogu.com.cn/problem/P2251）滑动区间最小值
+2032（https://www.luogu.com.cn/problem/P2032）滑动区间最大值
+1750（https://www.luogu.com.cn/problem/P1750）经典题目，滑动指针窗口栈加队列
+2311（https://www.luogu.com.cn/problem/P2311）不定长滑动窗口最大值索引
+7175（https://www.luogu.com.cn/problem/P7175）使用有序优先队列进行模拟
+7793（https://www.luogu.com.cn/problem/P7793）双端单调队列，进行最小值计算
+2216（https://www.luogu.com.cn/problem/P2216）二维区间的滑动窗口最大最小值
+1886（https://www.luogu.com.cn/problem/P1886）计算滑动窗口的最大值与最小值
+1725（https://www.luogu.com.cn/problem/P1725）单调队列和指针维护滑动窗口最大值加线性DP
+2827（https://www.luogu.com.cn/problem/P2827）经典单调队列
+3800（https://www.luogu.com.cn/problem/P3800）单调队列优化矩阵DP
+1016（https://www.luogu.com.cn/problem/P1016）单调队列，贪心模拟油箱，还可以增加每个站的油量限制
+1714（https://www.luogu.com.cn/problem/P1714）前缀和加滑动窗口最小值，单调队列计算小于一定长度的最大连续子段和
+2629（https://www.luogu.com.cn/problem/P2629）环形数组前缀和与滑动窗口最小值
+3522（https://www.luogu.com.cn/problem/P3522）看不懂的队列与单调栈思想
+3957（https://www.luogu.com.cn/problem/P3957）二分加优先队列加DP
+4085（https://www.luogu.com.cn/problem/P4085）双指针加优先队列滑动窗口最小值
+4392（https://www.luogu.com.cn/problem/P4392）单调队列计算滑动窗口最大值
 
 ===================================AcWing=====================================
-133. 蚯蚓（https://www.acwing.com/problem/content/135/）三个优先队列加一个偏移量
-135. 最大子序和（https://www.acwing.com/problem/content/137/）双端队列计算不超过一定长度的最大子段和
+133（https://www.acwing.com/problem/content/135/）三个优先队列加一个偏移量
+135（https://www.acwing.com/problem/content/137/）双端队列计算不超过一定长度的最大子段和
 
 参考：OI WiKi（xx）
 """

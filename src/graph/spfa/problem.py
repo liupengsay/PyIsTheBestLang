@@ -12,30 +12,30 @@
 Dijkstra：路径权值优先的深度优先搜索（只适用正权值）
 
 题目：
-===================================力扣===================================
-2589. 完成所有任务的最少时间（https://leetcode.com/problems/minimum-time-to-complete-all-tasks/）差分约束模板题，也可用贪心求解
+===================================LeetCode===================================
+2589（https://leetcode.com/problems/minimum-time-to-complete-all-tasks/）差分约束模板题，也可用贪心求解
 
-===================================洛谷===================================
-P3385 负环（https://www.luogu.com.cn/problem/P3385）通过最短路径更新的边数来计算从起点出发是否存在负环
-P1938 [USACO09NOV]Job Hunt S（https://www.luogu.com.cn/problem/P1938）使用负环判断正环，以及使用最短路求最长路即最大正权路径值
-P2136 拉近距离（https://www.luogu.com.cn/problem/P2136）计算可能有负权环的最短距离
-P2648 赚钱（https://www.luogu.com.cn/problem/P2648）判断是否存在正权环以及最长路
-P1144 最短路计数（https://www.luogu.com.cn/problem/P1144）无向无权图最短路计数
-P1993 小 K 的农场（https://www.luogu.com.cn/problem/P1993）差分约束判断是否存在负环
-P5960 【模板】差分约束算法（https://www.luogu.com.cn/problem/P5960）差分约束模板题
-P1260 工程规划（https://www.luogu.com.cn/problem/P1260）差分约束模板题
-P1931 套利（https://www.luogu.com.cn/problem/P1931）判断计算乘积是否有大于1的环
-P1986 元旦晚会（https://www.luogu.com.cn/problem/P1986）差分约束求解区间和
-P2850 [USACO06DEC]Wormholes G（https://www.luogu.com.cn/problem/P2850）计算从任意起点出发是否存在负环
-P4878 [USACO05DEC]Layout G（https://www.luogu.com.cn/problem/P4878）经典差分数组与Dijkstra计算最短路
-P5751 [NOI1999] 01串（https://www.luogu.com.cn/problem/P5751）经典前缀和转换为差分约束求解，并计算最大值
-P5905 【模板】Johnson 全源最短路（https://www.luogu.com.cn/problem/P5905）有向带权图可能有负权 Johnson 全源最短路计算所有点对的最短路
+===================================LuoGu==================================
+3385（https://www.luogu.com.cn/problem/P3385）通过最短路径更新的边数来计算从起点出发是否存在负环
+1938（https://www.luogu.com.cn/problem/P1938）使用负环判断正环，以及使用最短路求最长路即最大正权路径值
+2136（https://www.luogu.com.cn/problem/P2136）计算可能有负权环的最短距离
+2648（https://www.luogu.com.cn/problem/P2648）判断是否存在正权环以及最长路
+1144（https://www.luogu.com.cn/problem/P1144）无向无权图最短路计数
+1993（https://www.luogu.com.cn/problem/P1993）差分约束判断是否存在负环
+5960（https://www.luogu.com.cn/problem/P5960）差分约束模板题
+1260（https://www.luogu.com.cn/problem/P1260）差分约束模板题
+1931（https://www.luogu.com.cn/problem/P1931）判断计算乘积是否有大于1的环
+1986（https://www.luogu.com.cn/problem/P1986）差分约束求解区间和
+2850（https://www.luogu.com.cn/problem/P2850）计算从任意起点出发是否存在负环
+4878（https://www.luogu.com.cn/problem/P4878）经典差分数组与Dijkstra计算最短路
+5751（https://www.luogu.com.cn/problem/P5751）经典前缀和转换为差分约束求解，并计算最大值
+5905（https://www.luogu.com.cn/problem/P5905）有向带权图可能有负权 Johnson 全源最短路计算所有点对的最短路
 
 ===================================AtCoder===================================
 D - Score Attack （https://atcoder.jp/contests/abc061/tasks/abc061_d）经典反向建图后判断是否有正环并计算最长路
 E - Coins Respawn（https://atcoder.jp/contests/abc137/tasks/abc137_e）使用 SPFA 与 BFS 判断是否存在起点到终点的正权环
 
-===================================力扣===================================
+===================================LeetCode===================================
 参考：
 差分约束（https://oi-wiki.org/graph/diff-constraints/）
 """

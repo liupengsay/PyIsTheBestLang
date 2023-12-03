@@ -3,52 +3,52 @@
 功能：用来计算数组前后的更大值更小值信息
 题目：
 
-===================================力扣===================================
-85. 最大矩形（https://leetcode.com/problems/maximal-rectangle/）枚举矩形下边界，使用单调栈计算最大矩形面积 
-316. 去除重复字母（https://leetcode.com/problems/remove-duplicate-letters/）经典单调栈结合哈希与计数进行计算
-321. 拼接最大数（https://leetcode.com/problems/create-maximum-number/）经典枚举加单调栈
-1081. 不同字符的最小子序列（https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/）经典单调栈结合哈希与计数进行计算
-2334. 元素值大于变化阈值的子数组（https://leetcode.com/problems/subarray-with-elements-greater-than-varying-threshold/）排序后枚举最小值左右两边的影响范围
-2262. 字符串的总引力（https://leetcode.com/problems/total-appeal-of-a-string/）计算下一个或者上一个不同字符的位置
-2355. 你能拿走的最大图书数量（https://leetcode.com/problems/maximum-number-of-books-you-can-take/）经典单调栈加线性DP，使用巧妙地转换
-255. 验证前序遍历序列二叉搜索树（https://leetcode.com/problems/verify-preorder-sequence-in-binary-search-tree/）单调栈经典使用，判断数组是否为二叉搜索树的前序遍历，同样地可验证后序遍历
-654. 最大二叉树（https://leetcode.com/problems/maximum-binary-tree/）经典单调栈应用题
-1130. 叶值的最小代价生成树（https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/）经典单调栈也可以使用区间DP
-1504. 统计全 1 子矩形（https://leetcode.com/problems/count-submatrices-with-all-ones/）经典枚举上下边界单调栈计算全为 1 的子矩形个数
-1673. 找出最具竞争力的子序列（https://leetcode.com/problems/find-the-most-competitive-subsequence/）经典单调栈贪心删除选取
-1776. 车队 II（https://leetcode.com/problems/car-fleet-ii/）经典单调栈与并查集链表思想模拟计算
-1840. 最高建筑高度（https://leetcode.com/problems/maximum-building-height/）经典单调栈贪心，也可以使用前后缀数组模拟计算
-1944. 队列中可以看到的人数（https://leetcode.com/problems/number-of-visible-people-in-a-queue/）经典逆序单调栈
-1950. 所有子数组最小值中的最大值（https://leetcode.com/problems/maximum-of-minimum-values-in-all-subarrays/）经典单调栈利用计算
-2030. 含特定字母的最小子序列（https://leetcode.com/problems/smallest-k-length-subsequence-with-occurrences-of-a-letter/）经典单调栈删除获得满足条件的最小字典序使用
-2104. 子数组范围和（https://leetcode.com/problems/sum-of-subarray-ranges/）经典单调栈计算贡献
-2282. 在一个网格中可以看到的人数（https://leetcode.com/problems/number-of-people-that-can-be-seen-in-a-grid/）经典单调栈
-2289. 使数组按非递减顺序排列（https://leetcode.com/problems/steps-to-make-array-non-decreasing/）经典单调栈模拟计算
-907. 子数组的最小值之和（https://leetcode.com/problems/sum-of-subarray-minimums/）经典单调栈模拟计算
-2454. 下一个更大元素 IV（https://leetcode.com/problems/next-greater-element-iv/description/）经典单调栈计算下下个更大元素
+===================================LeetCode===================================
+85（https://leetcode.com/problems/maximal-rectangle/）枚举矩形下边界，使用单调栈计算最大矩形面积 
+316（https://leetcode.com/problems/remove-duplicate-letters/）经典单调栈结合哈希与计数进行计算
+321（https://leetcode.com/problems/create-maximum-number/）经典枚举加单调栈
+1081（https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/）经典单调栈结合哈希与计数进行计算
+2334（https://leetcode.com/problems/subarray-with-elements-greater-than-varying-threshold/）排序后枚举最小值左右两边的影响范围
+2262（https://leetcode.com/problems/total-appeal-of-a-string/）计算下一个或者上一个不同字符的位置
+2355（https://leetcode.com/problems/maximum-number-of-books-you-can-take/）经典单调栈加线性DP，使用巧妙地转换
+255（https://leetcode.com/problems/verify-preorder-sequence-in-binary-search-tree/）单调栈经典使用，判断数组是否为二叉搜索树的前序遍历，同样地可验证后序遍历
+654（https://leetcode.com/problems/maximum-binary-tree/）经典单调栈应用题
+1130（https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/）经典单调栈也可以使用区间DP
+1504（https://leetcode.com/problems/count-submatrices-with-all-ones/）经典枚举上下边界单调栈计算全为 1 的子矩形个数
+1673（https://leetcode.com/problems/find-the-most-competitive-subsequence/）经典单调栈贪心删除选取
+1776（https://leetcode.com/problems/car-fleet-ii/）经典单调栈与并查集链表思想模拟计算
+1840（https://leetcode.com/problems/maximum-building-height/）经典单调栈贪心，也可以使用前后缀数组模拟计算
+1944（https://leetcode.com/problems/number-of-visible-people-in-a-queue/）经典逆序单调栈
+1950（https://leetcode.com/problems/maximum-of-minimum-values-in-all-subarrays/）经典单调栈利用计算
+2030（https://leetcode.com/problems/smallest-k-length-subsequence-with-occurrences-of-a-letter/）经典单调栈删除获得满足条件的最小字典序使用
+2104（https://leetcode.com/problems/sum-of-subarray-ranges/）经典单调栈计算贡献
+2282（https://leetcode.com/problems/number-of-people-that-can-be-seen-in-a-grid/）经典单调栈
+2289（https://leetcode.com/problems/steps-to-make-array-non-decreasing/）经典单调栈模拟计算
+907（https://leetcode.com/problems/sum-of-subarray-minimums/）经典单调栈模拟计算
+2454（https://leetcode.com/problems/next-greater-element-iv/description/）经典单调栈计算下下个更大元素
 
-===================================洛谷===================================
-P1950 长方形（https://www.luogu.com.cn/problem/P1950）通过枚举下边界，结合单调栈计算矩形个数
-P1901 发射站（https://www.luogu.com.cn/problem/P1901）由不相同的数组成的数组求其前后的更大值
-P2866 [USACO06NOV]Bad Hair Day S（https://www.luogu.com.cn/problem/P2866）单调栈
-P2947 [USACO09MAR]Look Up S（https://www.luogu.com.cn/problem/P2947）单调栈裸题
-P4147 玉蟾宫（https://www.luogu.com.cn/problem/P4147）枚举矩形的下边界，使用单调栈计算最大矩形面积
-P5788 【模板】单调栈（https://www.luogu.com.cn/problem/P5788）单调栈模板题
-P7314 [COCI2018-2019#3] Pismo（https://www.luogu.com.cn/problem/P7314）枚举当前最小值，使用单调栈确定前后第一个比它大的值
-P7399 [COCI2020-2021#5] Po（https://www.luogu.com.cn/problem/P7399）单调栈变形题目，贪心进行赋值，区间操作达成目标数组
-P7410 [USACO21FEB] Just Green Enough S（https://www.luogu.com.cn/problem/P7410）通过容斥原理与单调栈计算01矩阵个数
-P7762 [COCI2016-2017#5] Unija（https://www.luogu.com.cn/problem/P7762）类似单调栈的思想，按照宽度进行贪心排序，计算每个高度的面积贡献
-P1578 奶牛浴场（https://www.luogu.com.cn/problem/P1578）使用单调栈离散化枚举障碍点的最大面积矩形
-P3467 [POI2008]PLA-Postering（https://www.luogu.com.cn/problem/P3467）贪心单调栈
-P1191 矩形（https://www.luogu.com.cn/problem/P1191）经典单调栈求矩形个数
-P1323 删数问题（https://www.luogu.com.cn/problem/P1323）二叉堆与单调栈，计算最大字典序数字
-P2422 良好的感觉（https://www.luogu.com.cn/problem/P2422）单调栈与前缀和
-P3467 [POI2008]PLA-Postering（https://www.luogu.com.cn/problem/P3467）看不懂的单调栈
-P6404 [COCI2014-2015#2] BOB（https://www.luogu.com.cn/problem/P6404）经典单调栈计算具有相同数字的子矩形个数
-P6503 [COCI2010-2011#3] DIFERENCIJA（https://www.luogu.com.cn/problem/P6503）经典单调栈连续子序列的最大值最小值贡献计数
-P6510 奶牛排队（https://www.luogu.com.cn/problem/P6510）单调栈稀疏表加哈希二分
-P6801 [CEOI2020] 花式围栏（https://www.luogu.com.cn/problem/P6801）经典单调栈计算矩形个数
-P8094 [USACO22JAN] Cow Frisbee S（https://www.luogu.com.cn/problem/P8094）单调栈典型应用前一个更大与后一个更大
+===================================LuoGu==================================
+1950（https://www.luogu.com.cn/problem/P1950）通过枚举下边界，结合单调栈计算矩形个数
+1901（https://www.luogu.com.cn/problem/P1901）由不相同的数组成的数组求其前后的更大值
+2866（https://www.luogu.com.cn/problem/P2866）单调栈
+2947（https://www.luogu.com.cn/problem/P2947）单调栈裸题
+4147（https://www.luogu.com.cn/problem/P4147）枚举矩形的下边界，使用单调栈计算最大矩形面积
+5788（https://www.luogu.com.cn/problem/P5788）单调栈模板题
+7314（https://www.luogu.com.cn/problem/P7314）枚举当前最小值，使用单调栈确定前后第一个比它大的值
+7399（https://www.luogu.com.cn/problem/P7399）单调栈变形题目，贪心进行赋值，区间操作达成目标数组
+7410（https://www.luogu.com.cn/problem/P7410）通过容斥原理与单调栈计算01矩阵个数
+7762（https://www.luogu.com.cn/problem/P7762）类似单调栈的思想，按照宽度进行贪心排序，计算每个高度的面积贡献
+1578（https://www.luogu.com.cn/problem/P1578）使用单调栈离散化枚举障碍点的最大面积矩形
+3467（https://www.luogu.com.cn/problem/P3467）贪心单调栈
+1191（https://www.luogu.com.cn/problem/P1191）经典单调栈求矩形个数
+1323（https://www.luogu.com.cn/problem/P1323）二叉堆与单调栈，计算最大字典序数字
+2422（https://www.luogu.com.cn/problem/P2422）单调栈与前缀和
+3467（https://www.luogu.com.cn/problem/P3467）看不懂的单调栈
+6404（https://www.luogu.com.cn/problem/P6404）经典单调栈计算具有相同数字的子矩形个数
+6503（https://www.luogu.com.cn/problem/P6503）经典单调栈连续子序列的最大值最小值贡献计数
+6510（https://www.luogu.com.cn/problem/P6510）单调栈稀疏表加哈希二分
+6801（https://www.luogu.com.cn/problem/P6801）经典单调栈计算矩形个数
+8094（https://www.luogu.com.cn/problem/P8094）单调栈典型应用前一个更大与后一个更大
 
 ================================CodeForces================================
 E. Explosions（https://codeforces.com/problemset/problem/1795/E）经典单调栈优化线性DP，贪心计数枚举，前后缀DP转移
@@ -59,9 +59,9 @@ F. Array Partition（https://codeforces.com/contest/1454/problem/F）经典单�
 E - Second Sum（https://atcoder.jp/contests/abc140/tasks/abc140_e）经典单调栈求下个与下下个严格更大元素与上个与上个个严格更大元素
 
 ================================AcWing====================================
-131. 直方图中最大的矩形（https://www.acwing.com/problem/content/133/）单调栈求最大矩形
-152. 城市游戏（https://www.acwing.com/problem/content/description/154/）单调栈求最大矩形
-3780. 构造数组（https://www.acwing.com/problem/content/description/3783/）经典单调栈线性贪心DP构造
+131（https://www.acwing.com/problem/content/133/）单调栈求最大矩形
+152（https://www.acwing.com/problem/content/description/154/）单调栈求最大矩形
+3780（https://www.acwing.com/problem/content/description/3783/）经典单调栈线性贪心DP构造
 
 参考：OI WiKi（xx）
 """

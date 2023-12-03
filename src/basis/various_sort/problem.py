@@ -3,22 +3,22 @@
 功能：各种排序的实现以及特点变形题目，如逆序对
 题目：xx（xx）
 
-===================================力扣===================================
-164. 最大间距（https://leetcode.com/problems/maximum-gap/）经典桶排序
-179. 最大数（https://leetcode.com/problems/largest-number/）自定义拼接最大数
-912. 排序数组（https://leetcode.com/problems/sort-an-array/）快速排序
-1585. 检查字符串是否可以通过排序子字符串得到另一个字符串（https://leetcode.com/problems/check-if-string-is-transformable-with-substring-sort-operations/）经典冒泡排序思想进行模拟
-面试题45. 把数组排成最小的数（https://leetcode.com/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/）自定义拼接成最小的数
-2412. 完成所有交易的初始最少钱数（https://leetcode.com/problems/minimum-money-required-before-transactions/）自定义排序贪心选择顺序
-1665. 完成所有任务的最少初始能量（https://leetcode.com/problems/minimum-initial-energy-to-finish-tasks/）自定义排序确定贪心排序公式
+===================================LeetCode===================================
+164（https://leetcode.com/problems/maximum-gap/）经典桶排序
+179（https://leetcode.com/problems/largest-number/）自定义拼接最大数
+912（https://leetcode.com/problems/sort-an-array/）快速排序
+1585（https://leetcode.com/problems/check-if-string-is-transformable-with-substring-sort-operations/）经典冒泡排序思想进行模拟
+面试题45（https://leetcode.com/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/）自定义拼接成最小的数
+2412（https://leetcode.com/problems/minimum-money-required-before-transactions/）自定义排序贪心选择顺序
+1665（https://leetcode.com/problems/minimum-initial-energy-to-finish-tasks/）自定义排序确定贪心排序公式
 
-===================================洛谷===================================
-P2310 loidc，看看海（https://www.luogu.com.cn/problem/P2310）预处理排序之后进行遍历
-P4378 [USACO18OPEN]Out of Sorts S（https://www.luogu.com.cn/problem/P4378）枚举元素向左冒泡的移动轮数，计算最大轮数
-P5626 【AFOI-19】数码排序（https://www.luogu.com.cn/problem/P5626）分治DP，归并排序需要的比较次数最少，但是可能内存占用超过快排
-P6243 [USACO06OPEN]The Milk Queue G（https://www.luogu.com.cn/problem/P6243）经典贪心举例之后进行自定义排序
-P1774 最接近神的人（https://www.luogu.com.cn/problem/P1774）使用归并排序确定在只交换相邻元素的情况下最少的交换次数使得数组有序
-P1177 【模板】快速排序（https://www.luogu.com.cn/problem/P1177）快速排序
+===================================LuoGu==================================
+2310（https://www.luogu.com.cn/problem/P2310）预处理排序之后进行遍历
+4378（https://www.luogu.com.cn/problem/P4378）枚举元素向左冒泡的移动轮数，计算最大轮数
+5626（https://www.luogu.com.cn/problem/P5626）分治DP，归并排序需要的比较次数最少，但是可能内存占用超过快排
+6243（https://www.luogu.com.cn/problem/P6243）经典贪心举例之后进行自定义排序
+1774（https://www.luogu.com.cn/problem/P1774）使用归并排序确定在只交换相邻元素的情况下最少的交换次数使得数组有序
+1177（https://www.luogu.com.cn/problem/P1177）快速排序
 
 ================================CodeForces================================
 D. Robot Vacuum Cleaner（https://codeforces.com/problemset/problem/922/D）贪心加自定义排序
@@ -27,7 +27,7 @@ D. Robot Vacuum Cleaner（https://codeforces.com/problemset/problem/922/D）贪�
 B - Iroha Loves Strings（https://atcoder.jp/contests/abc042/tasks/abc042_b）自定义排序
 
 ================================AcWing====================================
-113. 特殊排序（https://www.acwing.com/problem/content/description/115/）自定义排序调用函数进行比较
+113（https://www.acwing.com/problem/content/description/115/）自定义排序调用函数进行比较
 
 参考：OI WiKi（xx）
 """

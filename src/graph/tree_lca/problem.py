@@ -4,20 +4,20 @@
 功能：来求一棵树的最近公共祖先（LCA）也可以使用
 题目：
 
-===================================力扣===================================
-1483. 树节点的第 K 个祖先（https://leetcode.com/problems/kth-ancestor-of-a-tree-node/）动态规划与二进制跳转维护祖先信息，类似ST表的思想与树状数组的思想，经典LCA应用题
-2646. 最小化旅行的价格总和（https://leetcode.com/problems/minimize-the-total-price-of-the-trips/）离线LCA与树上差分计数，再使用树形DP计算
+===================================LeetCode===================================
+1483（https://leetcode.com/problems/kth-ancestor-of-a-tree-node/）动态规划与二进制跳转维护祖先信息，类似ST表的思想与树状数组的思想，经典LCA应用题
+2646（https://leetcode.com/problems/minimize-the-total-price-of-the-trips/）离线LCA与树上差分计数，再使用树形DP计算
 
-===================================洛谷===================================
-P3379 【模板】最近公共祖先（LCA）（https://www.luogu.com.cn/problem/P3379）最近公共祖先模板题
-P7128 「RdOI R1」序列(sequence)（https://www.luogu.com.cn/problem/P7128）完全二叉树进行LCA路径模拟交换，使得数组有序
-P3128 [USACO15DEC]Max Flow P（https://www.luogu.com.cn/problem/P3128）离线LCA与树上差分
-P7167 [eJOI2020 Day1] Fountain（https://www.luogu.com.cn/problem/P7167）单调栈建树倍增在线LCA查询
-P3384 【模板】重链剖分/树链剖分（https://www.luogu.com.cn/problem/P3384）树链剖分与树状数组模拟
-P2912 [USACO08OCT]Pasture Walking G（https://www.luogu.com.cn/problem/P2912）离线LCA查询与任意点对之间距离计算
-P3019 [USACO11MAR]Meeting Place S（https://www.luogu.com.cn/problem/P3019）离线查询 LCA 最近公共祖先
-P3258 [JLOI2014]松鼠的新家（https://www.luogu.com.cn/problem/P3258）离线LCA加树上差分加树形DP
-P6869 [COCI2019-2020#5] Putovanje（https://www.luogu.com.cn/problem/P6869）离线 LCA 查询与树上边差分计算
+===================================LuoGu==================================
+3379（https://www.luogu.com.cn/problem/P3379）最近公共祖先模板题
+7128（https://www.luogu.com.cn/problem/P7128）完全二叉树进行LCA路径模拟交换，使得数组有序
+3128（https://www.luogu.com.cn/problem/P3128）离线LCA与树上差分
+7167（https://www.luogu.com.cn/problem/P7167）单调栈建树倍增在线LCA查询
+3384（https://www.luogu.com.cn/problem/P3384）树链剖分与树状数组模拟
+2912（https://www.luogu.com.cn/problem/P2912）离线LCA查询与任意点对之间距离计算
+3019（https://www.luogu.com.cn/problem/P3019）离线查询 LCA 最近公共祖先
+3258（https://www.luogu.com.cn/problem/P3258）离线LCA加树上差分加树形DP
+6869（https://www.luogu.com.cn/problem/P6869）离线 LCA 查询与树上边差分计算
 
 ==================================LibreOJ==================================
 #10135. 「一本通 4.4 练习 2」祖孙询问（https://loj.ac/p/10135）lca查询与判断
@@ -32,7 +32,7 @@ F. Berland Beauty（https://codeforces.com/contest/1296/problem/F）使用离线
 D - Transit Tree Path（https://atcoder.jp/contests/abc070/tasks/abc070_d）典型LCA查询运用题，也可离线实现
 
 ================================AcWing================================
-4202. 穿过圆（https://www.acwing.com/problem/content/4205/）使用位运算进行计算，也可使用包含关系建树，查询LCA计算距离
+4202（https://www.acwing.com/problem/content/4205/）使用位运算进行计算，也可使用包含关系建树，查询LCA计算距离
 
 
 参考：

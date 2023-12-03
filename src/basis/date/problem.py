@@ -4,11 +4,11 @@
 
 题目：
 
-===================================洛谷===================================
-P2655 2038年问题（https://www.luogu.com.cn/problem/P2655）计算指定日期时分秒过了一定秒数后的具体日期时分秒
-P1167 刷题（https://www.luogu.com.cn/problem/P1167#submit）计算两个日期之间经过的秒数
-P5407 [THUPC2019]历史行程（https://www.luogu.com.cn/problem/P5407）确定两个日期间隔
-P5440 【XR-2】奇迹（https://www.luogu.com.cn/problem/P5440）枚举日期是否合法且为质数
+===================================LuoGu==================================
+2655（https://www.luogu.com.cn/problem/P2655）计算指定日期时分秒过了一定秒数后的具体日期时分秒
+1167（https://www.luogu.com.cn/problem/P1167#submit）计算两个日期之间经过的秒数
+5407（https://www.luogu.com.cn/problem/P5407）确定两个日期间隔
+5440（https://www.luogu.com.cn/problem/P5440）枚举日期是否合法且为质数
 
 
 参考：OI WiKi（xx）

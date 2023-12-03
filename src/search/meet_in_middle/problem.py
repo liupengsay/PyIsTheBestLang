@@ -3,18 +3,18 @@
 功能：常见于 1<<n 较大的情况，对半分开进行枚举 
 题目：
 
-===================================力扣===================================
-1755. 最接近目标值的子序列和（https://leetcode.com/problems/closest-subsequence-sum/）经典折半搜索
-2035. 将数组分成两个数组并最小化数组和的差（https://leetcode.com/problems/partition-array-into-two-arrays-to-minimize-sum-difference/）经典折半搜索排序加二分或者双指针
-956. 最高的广告牌（https://leetcode.com/problems/tallest-billboard/description/）可使用折半搜索计算
+===================================LeetCode===================================
+1755（https://leetcode.com/problems/closest-subsequence-sum/）经典折半搜索
+2035（https://leetcode.com/problems/partition-array-into-two-arrays-to-minimize-sum-difference/）经典折半搜索排序加二分或者双指针
+956（https://leetcode.com/problems/tallest-billboard/description/）可使用折半搜索计算
 
-===================================洛谷===================================
-P5194 [USACO05DEC]Scales S（https://www.luogu.com.cn/problem/P5194）利用Fibonacci数列的长度特点进行折半搜索枚举，与二分查找确定可行的最大值
-Anya and Cubes（https://www.luogu.com.cn/problem/CF525E）折半搜索计算长度
-P5691 [NOI2001] 方程的解数（https://www.luogu.com.cn/problem/P5691）折半搜索与有序集合双指针枚举
+===================================LuoGu==================================
+5194（https://www.luogu.com.cn/problem/P5194）利用Fibonacci数列的长度特点进行折半搜索枚举，与二分查找确定可行的最大值
+nya（https://www.luogu.com.cn/problem/CF525E）折半搜索计算长度
+5691（https://www.luogu.com.cn/problem/P5691）折半搜索与有序集合双指针枚举
 
 ===================================AcWing======================================
-171. 送礼物（https://www.acwing.com/problem/content/173/）经典折半搜索查找最接近目标值的子数组和
+171（https://www.acwing.com/problem/content/173/）经典折半搜索查找最接近目标值的子数组和
 F. Xor-Paths（https://codeforces.com/contest/1006/problem/F）前缀和哈希计数，矩阵折半搜索
 
 参考：OI WiKi（xx）

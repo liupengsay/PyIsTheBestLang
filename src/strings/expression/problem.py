@@ -4,12 +4,12 @@
 功能：xxx
 题目：
 
-===================================力扣===================================
-1597. 根据中缀表达式构造二叉表达式树（https://leetcode.com/problems/build-binary-expression-tree-from-infix-expression/）
+===================================LeetCode===================================
+1597（https://leetcode.com/problems/build-binary-expression-tree-from-infix-expression/）
 
-===================================洛谷===================================
-P1175 表达式的转换（https://www.luogu.com.cn/problem/P1175）
-P1617 爱与愁的一千个伤心的理由（https://www.luogu.com.cn/problem/P1617）把数字转换为美式英语
-P1322 logo语言（https://www.luogu.com.cn/problem/P1322）使用字符串替换与函数式编程
+===================================LuoGu==================================
+1175（https://www.luogu.com.cn/problem/P1175）
+1617（https://www.luogu.com.cn/problem/P1617）把数字转换为美式英语
+1322（https://www.luogu.com.cn/problem/P1322）使用字符串替换与函数式编程
 参考：OI WiKi（xx）
 """

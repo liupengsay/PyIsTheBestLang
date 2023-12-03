@@ -3,27 +3,27 @@
 功能：将一定长度的字符串映射为多项式函数值，并进行比较或者计数，通常结合滑动窗口进行计算，注意防止哈希碰撞
 题目：
 
-===================================力扣===================================
-214. 最短回文串（https://leetcode.com/problems/shortest-palindrome/）使用正向与反向字符串哈希计算字符串前缀最长回文子串，也可以用KMP与马拉车
-572. 另一棵树的子树（https://leetcode.com/problems/subtree-of-another-tree/）经典树结构哈希
-1044. 最长重复子串（https://leetcode.com/problems/shortest-palindrome/）利用二分查找加字符串哈希确定具有最长长度的重复子串
-1316. 不同的循环子字符串（https://leetcode.com/problems/shortest-palindrome/）利用字符串哈希确定不同循环子串的个数
-2156. 查找给定哈希值的子串（https://leetcode.com/problems/find-substring-with-given-hash-value/）逆向进行字符串哈希的计算
-652. 寻找重复的子树（https://leetcode.com/problems/find-duplicate-subtrees/）树哈希，确定重复子树
-1554. 只有一个不同字符的字符串（https://leetcode.com/problems/strings-differ-by-one-character/）字符串前后缀哈希求解
-1923. 最长公共子路径（https://leetcode.com/problems/longest-common-subpath/）经典二分查找加滚动哈希
-1948. 删除系统中的重复文件夹（https://leetcode.com/problems/delete-duplicate-folders-in-system/）字典树与树哈希去重
-2261. 含最多 K 个可整除元素的子数组（https://leetcode.com/problems/k-divisible-elements-subarrays/submissions/）使用字符串哈希对数组进行编码
-2851. 字符串转换（https://leetcode.com/problems/string-transformation/description/）使用KMP与快速幂进行转移计算，也可使用字符串哈希
+===================================LeetCode===================================
+214（https://leetcode.com/problems/shortest-palindrome/）使用正向与反向字符串哈希计算字符串前缀最长回文子串，也可以用KMP与马拉车
+572（https://leetcode.com/problems/subtree-of-another-tree/）经典树结构哈希
+1044（https://leetcode.com/problems/shortest-palindrome/）利用二分查找加字符串哈希确定具有最长长度的重复子串
+1316（https://leetcode.com/problems/shortest-palindrome/）利用字符串哈希确定不同循环子串的个数
+2156（https://leetcode.com/problems/find-substring-with-given-hash-value/）逆向进行字符串哈希的计算
+652（https://leetcode.com/problems/find-duplicate-subtrees/）树哈希，确定重复子树
+1554（https://leetcode.com/problems/strings-differ-by-one-character/）字符串前后缀哈希求解
+1923（https://leetcode.com/problems/longest-common-subpath/）经典二分查找加滚动哈希
+1948（https://leetcode.com/problems/delete-duplicate-folders-in-system/）字典树与树哈希去重
+2261（https://leetcode.com/problems/k-divisible-elements-subarrays/submissions/）使用字符串哈希对数组进行编码
+2851（https://leetcode.com/problems/string-transformation/description/）使用KMP与快速幂进行转移计算，也可使用字符串哈希
 
-===================================洛谷===================================
-P8835 [传智杯 #3 决赛] 子串（https://www.luogu.com.cn/record/list?user=739032&status=12&page=14）字符串哈希或者KMP查找匹配的连续子串
-P6140 [USACO07NOV]Best Cow Line S（https://www.luogu.com.cn/problem/P6140）贪心模拟与字典序比较，使用字符串哈希与二分查找比较正序与倒序最长公共子串
-P2870 [USACO07DEC]Best Cow Line G（https://www.luogu.com.cn/problem/P2870）贪心模拟与字典序比较，使用字符串哈希与二分查找比较正序与倒序最长公共子串
-P5832 [USACO19DEC]Where Am I? B（https://www.luogu.com.cn/problem/P5832）可以使用字符串哈希进行最长的长度使得所有对应长度的子串均是唯一的
-P2852 [USACO06DEC]Milk Patterns G（https://www.luogu.com.cn/problem/P2852）二分加字符串哈希计算出现超过 k 次的最长连续子数组
-P4656 [CEOI2017] Palindromic Partitions（https://www.luogu.com.cn/problem/P4656）使用字符串哈希贪心选取
-P6739 [BalticOI 2014 Day1] Three Friends（https://www.luogu.com.cn/problem/P6739）前后缀字符串哈希
+===================================LuoGu==================================
+8835（https://www.luogu.com.cn/record/list?user=739032&status=12&page=14）字符串哈希或者KMP查找匹配的连续子串
+6140（https://www.luogu.com.cn/problem/P6140）贪心模拟与字典序比较，使用字符串哈希与二分查找比较正序与倒序最长公共子串
+2870（https://www.luogu.com.cn/problem/P2870）贪心模拟与字典序比较，使用字符串哈希与二分查找比较正序与倒序最长公共子串
+5832（https://www.luogu.com.cn/problem/P5832）可以使用字符串哈希进行最长的长度使得所有对应长度的子串均是唯一的
+2852（https://www.luogu.com.cn/problem/P2852）二分加字符串哈希计算出现超过 k 次的最长连续子数组
+4656（https://www.luogu.com.cn/problem/P4656）使用字符串哈希贪心选取
+6739（https://www.luogu.com.cn/problem/P6739）前后缀字符串哈希
 
 ================================CodeForces================================
 D. Remove Two Letters（https://codeforces.com/problemset/problem/1800/D）字符串前后缀哈希加和变换
@@ -32,9 +32,9 @@ D. Remove Two Letters（https://codeforces.com/problemset/problem/1800/D）字�
 E - Who Says a Pun?（https://atcoder.jp/contests/abc141/tasks/abc141_e）二分加字符串哈希check
 
 ================================AcWing================================
-138. 兔子与兔子（https://www.acwing.com/problem/content/140/）字符串哈希，计算子串是否完全相等
-156. 矩阵（https://www.acwing.com/problem/content/description/158/）经典矩阵哈希
-157. 树形地铁系统（https://www.acwing.com/problem/content/description/159/）经典树哈希，树的最小表示法
+138（https://www.acwing.com/problem/content/140/）字符串哈希，计算子串是否完全相等
+156（https://www.acwing.com/problem/content/description/158/）经典矩阵哈希
+157（https://www.acwing.com/problem/content/description/159/）经典树哈希，树的最小表示法
 
 参考：OI WiKi（xx）
 """

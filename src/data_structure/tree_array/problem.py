@@ -3,38 +3,38 @@
 功能：进行数组区间加减，和区间值求和（单点可转换为区间）
 题目：
 
-===================================力扣===================================
-307. 区域和检索 - 数组可修改（https://leetcode.com/problems/range-sum-query-mutable）PointChangeRangeSum
-1409. 查询带键的排列（https://leetcode.com/problems/queries-on-a-permutation-with-key/）经典树状数组模拟
-1626. 无矛盾的最佳球队（https://leetcode.com/problems/best-team-with-no-conflicts/）树状数组维护前缀最大值，也可使用动态规划求解
-6353. 网格图中最少访问的格子数（https://leetcode.com/problems/minimum-number-of-visited-cells-in-a-grid/）树状数组维护前缀区间最小值单点更新
-308. 二维区域和检索 - 可变（https://leetcode.com/problems/range-sum-query-2d-mutable/）二维树状数组，单点增减与区间和查询
-2659. 将数组清空（https://leetcode.com/problems/make-array-empty/submissions/）经典模拟删除，可以使用树状数组也可以使用SortedList也可以使用贪心
-1505. 最多 K 次交换相邻数位后得到的最小整数（https://leetcode.com/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/）经典树状数组模拟计数移动，也可以使用SortedList
-2193. 得到回文串的最少操作次数（https://leetcode.com/problems/minimum-number-of-moves-to-make-palindrome/description/）使用树状数组贪心模拟交换构建回文串，相同题目（P5041求回文串）
-2407. 最长递增子序列 II（https://leetcode.com/problems/longest-increasing-subsequence-ii/description/）树状数组加线性DP
-100112. 平衡子序列的最大和（https://leetcode.com/problems/maximum-balanced-subsequence-sum/）离散化树状数组加线性DP
-2736. 最大和查询（https://leetcode.com/problems/maximum-sum-queries/）PointAddPreMax
+===================================LeetCode===================================
+307（https://leetcode.com/problems/range-sum-query-mutable）PointChangeRangeSum
+1409（https://leetcode.com/problems/queries-on-a-permutation-with-key/）经典树状数组模拟
+1626（https://leetcode.com/problems/best-team-with-no-conflicts/）树状数组维护前缀最大值，也可使用动态规划求解
+6353（https://leetcode.com/problems/minimum-number-of-visited-cells-in-a-grid/）树状数组维护前缀区间最小值单点更新
+308（https://leetcode.com/problems/range-sum-query-2d-mutable/）二维树状数组，单点增减与区间和查询
+2659（https://leetcode.com/problems/make-array-empty/submissions/）经典模拟删除，可以使用树状数组也可以使用SortedList也可以使用贪心
+1505（https://leetcode.com/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/）经典树状数组模拟计数移动，也可以使用SortedList
+2193（https://leetcode.com/problems/minimum-number-of-moves-to-make-palindrome/description/）使用树状数组贪心模拟交换构建回文串，相同题目（P5041求回文串）
+2407（https://leetcode.com/problems/longest-increasing-subsequence-ii/description/）树状数组加线性DP
+100112（https://leetcode.com/problems/maximum-balanced-subsequence-sum/）离散化树状数组加线性DP
+2736（https://leetcode.com/problems/maximum-sum-queries/）PointAddPreMax
 
-===================================洛谷===================================
-P2068 统计和（https://www.luogu.com.cn/problem/P2068）单点更新与区间求和
-P2345 [USACO04OPEN] MooFest G（https://www.luogu.com.cn/problem/P2345）使用两个树状数组计数与加和更新查询
-P2357 守墓人（https://www.luogu.com.cn/problem/P2357）区间更新与区间求和
-P2781 传教（https://www.luogu.com.cn/problem/P2781）区间更新与区间求和
-P5200 [USACO19JAN]Sleepy Cow Sorting G（https://www.luogu.com.cn/problem/P5200）树状数组加贪心模拟
-P3374 树状数组 1（https://www.luogu.com.cn/problem/P3374）区间值更新与求和
-P3368 树状数组 2（https://www.luogu.com.cn/problem/P3368）区间值更新与求和
-P5677 配对统计（https://www.luogu.com.cn/problem/P5677）区间值更新与求和
-P5094 [USACO04OPEN] MooFest G 加强版（https://www.luogu.com.cn/problem/P5094）单点更新增加值与前缀区间和查询
-P1816 忠诚（https://www.luogu.com.cn/problem/P1816）树状数组查询静态区间最小值
-P1908 逆序对（https://www.luogu.com.cn/problem/P1908）树状数组求逆序对
-P1725 琪露诺（https://www.luogu.com.cn/problem/P1725）倒序线性DP，单点更新值，查询区间最大值
-P3586 [POI2015] LOG（https://www.luogu.com.cn/problem/P3586）离线查询、离散化树状数组，单点增减，前缀和查询
-P1198 [JSOI2008] 最大数（https://www.luogu.com.cn/problem/P1198）树状数组，查询区间最大值
-P4868 Preprefix sum（https://www.luogu.com.cn/problem/P4868）经典转换公式单点修改，使用两个树状数组维护前缀和的前缀和
-P5463 小鱼比可爱（加强版）（https://www.luogu.com.cn/problem/P5463）经典使用树状数组维护前缀计数，枚举最大值计算所有区间数贡献
-P6225 [eJOI2019] 异或橙子（https://www.luogu.com.cn/problem/P6225）经典使用树状数组维护前缀异或和
-P1972 [SDOI2009] HH的项链（https://www.luogu.com.cn/problem/P1972）经典使用树状数组离线查询区间不同数的个数 PointChangeRangeSum OfflineQuery
+===================================LuoGu==================================
+2068（https://www.luogu.com.cn/problem/P2068）单点更新与区间求和
+2345（https://www.luogu.com.cn/problem/P2345）使用两个树状数组计数与加和更新查询
+2357（https://www.luogu.com.cn/problem/P2357）区间更新与区间求和
+2781（https://www.luogu.com.cn/problem/P2781）区间更新与区间求和
+5200（https://www.luogu.com.cn/problem/P5200）树状数组加贪心模拟
+3374（https://www.luogu.com.cn/problem/P3374）区间值更新与求和
+3368（https://www.luogu.com.cn/problem/P3368）区间值更新与求和
+5677（https://www.luogu.com.cn/problem/P5677）区间值更新与求和
+5094（https://www.luogu.com.cn/problem/P5094）单点更新增加值与前缀区间和查询
+1816（https://www.luogu.com.cn/problem/P1816）树状数组查询静态区间最小值
+1908（https://www.luogu.com.cn/problem/P1908）树状数组求逆序对
+1725（https://www.luogu.com.cn/problem/P1725）倒序线性DP，单点更新值，查询区间最大值
+3586（https://www.luogu.com.cn/problem/P3586）离线查询、离散化树状数组，单点增减，前缀和查询
+1198（https://www.luogu.com.cn/problem/P1198）树状数组，查询区间最大值
+4868（https://www.luogu.com.cn/problem/P4868）经典转换公式单点修改，使用两个树状数组维护前缀和的前缀和
+5463（https://www.luogu.com.cn/problem/P5463）经典使用树状数组维护前缀计数，枚举最大值计算所有区间数贡献
+6225（https://www.luogu.com.cn/problem/P6225）经典使用树状数组维护前缀异或和
+1972（https://www.luogu.com.cn/problem/P1972）经典使用树状数组离线查询区间不同数的个数 PointChangeRangeSum OfflineQuery
 
 ================================AtCoder================================
 D - Islands War（https://atcoder.jp/contests/abc103/tasks/abc103_d）经典贪心加树状数组

@@ -3,36 +3,36 @@
 功能：高效计算整数的幂次方取模
 题目：
 
-===================================力扣===================================
-450. 应用操作后不同二进制字符串的数量（https://leetcode.com/problems/number-of-distinct-binary-strings-after-applying-operations/）脑筋急转弯快速幂计算
-1931. 用三种不同颜色为网格涂色（https://leetcode.com/problems/painting-a-grid-with-three-different-colors/）转移DP可以使用快速幂进行计算
-8020. 字符串转换（https://leetcode.com/problems/string-transformation/description/）使用KMP与快速幂进行转移计算
-1622. 奇妙序列（https://leetcode.com/problems/fancy-sequence/description/）经典逆向思维，乘法逆元运用，类似容斥原理
+===================================LeetCode===================================
+450（https://leetcode.com/problems/number-of-distinct-binary-strings-after-applying-operations/）脑筋急转弯快速幂计算
+1931（https://leetcode.com/problems/painting-a-grid-with-three-different-colors/）转移DP可以使用快速幂进行计算
+8020（https://leetcode.com/problems/string-transformation/description/）使用KMP与快速幂进行转移计算
+1622（https://leetcode.com/problems/fancy-sequence/description/）经典逆向思维，乘法逆元运用，类似容斥原理
 
-===================================洛谷===================================
-P1630 求和（https://www.luogu.com.cn/problem/P1630）快速幂计算，利用同模进行计数加和
-P1939 【模板】矩阵加速（数列）（https://www.luogu.com.cn/problem/P1939）矩阵快速幂递推求解
-P1962 斐波那契数列（https://www.luogu.com.cn/problem/P1962）矩阵快速幂递推求解
-P3390 【模板】矩阵快速幂（https://www.luogu.com.cn/problem/P3390）矩阵快速幂计算
-P3811 【模板】乘法逆元（https://www.luogu.com.cn/problem/P3811）乘法逆元模板题
-P5775 [AHOI2006]斐波卡契的兔子（https://www.luogu.com.cn/problem/P5775）从背包模拟、前缀和优化、到数列变换使用矩阵快速幂再到纯模拟
-P5550 Chino的数列（https://www.luogu.com.cn/problem/P5550）循环节计算也可以使用矩阵快速幂递推
-P6045 后缀树（https://www.luogu.com.cn/problem/P6045）脑筋急转弯进行组合计数与快速幂枚举计算
-P6075 [JSOI2015]子集选取（https://www.luogu.com.cn/problem/P6075）组合计数后进行快速幂计算
-P6392 中意（https://www.luogu.com.cn/problem/P6392）公式拆解变换后进行快速幂计算
-P1045 [NOIP2003 普及组] 麦森数（https://www.luogu.com.cn/problem/P1045）位数公式转换与快速幂计算
-P3509 [POI2010]ZAB-Frog（https://www.luogu.com.cn/problem/P3509）双指针模拟寻找第k远的距离，快速幂原理跳转
-P1349 广义斐波那契数列（https://www.luogu.com.cn/problem/P1349）矩阵快速幂
-P2233 [HNOI2002]公交车路线（https://www.luogu.com.cn/problem/P2233）矩阵快速幂
-P2613 【模板】有理数取余（https://www.luogu.com.cn/problem/P2613）乘法逆元
-P3758 [TJOI2017]可乐（https://www.luogu.com.cn/problem/P3758）矩阵 DP 使用快速幂优化
-P5789 [TJOI2017]可乐（数据加强版）（https://www.luogu.com.cn/problem/P5789）矩阵 DP 使用快速幂优化
-P5343 【XR-1】分块（https://www.luogu.com.cn/problem/P5343）线性 DP 使用矩阵幂加速计算
-P8557 炼金术（Alchemy）（https://www.luogu.com.cn/problem/P8557）脑筋急转弯快速幂计数
-P8624 [蓝桥杯 2015 省 AB] 垒骰子（https://www.luogu.com.cn/problem/P8624）矩阵 DP 与快速幂
+===================================LuoGu==================================
+1630（https://www.luogu.com.cn/problem/P1630）快速幂计算，利用同模进行计数加和
+1939（https://www.luogu.com.cn/problem/P1939）矩阵快速幂递推求解
+1962（https://www.luogu.com.cn/problem/P1962）矩阵快速幂递推求解
+3390（https://www.luogu.com.cn/problem/P3390）矩阵快速幂计算
+3811（https://www.luogu.com.cn/problem/P3811）乘法逆元模板题
+5775（https://www.luogu.com.cn/problem/P5775）从背包模拟、前缀和优化、到数列变换使用矩阵快速幂再到纯模拟
+5550（https://www.luogu.com.cn/problem/P5550）循环节计算也可以使用矩阵快速幂递推
+6045（https://www.luogu.com.cn/problem/P6045）脑筋急转弯进行组合计数与快速幂枚举计算
+6075（https://www.luogu.com.cn/problem/P6075）组合计数后进行快速幂计算
+6392（https://www.luogu.com.cn/problem/P6392）公式拆解变换后进行快速幂计算
+1045（https://www.luogu.com.cn/problem/P1045）位数公式转换与快速幂计算
+3509（https://www.luogu.com.cn/problem/P3509）双指针模拟寻找第k远的距离，快速幂原理跳转
+1349（https://www.luogu.com.cn/problem/P1349）矩阵快速幂
+2233（https://www.luogu.com.cn/problem/P2233）矩阵快速幂
+2613（https://www.luogu.com.cn/problem/P2613）乘法逆元
+3758（https://www.luogu.com.cn/problem/P3758）矩阵 DP 使用快速幂优化
+5789（https://www.luogu.com.cn/problem/P5789）矩阵 DP 使用快速幂优化
+5343（https://www.luogu.com.cn/problem/P5343）线性 DP 使用矩阵幂加速计算
+8557（https://www.luogu.com.cn/problem/P8557）脑筋急转弯快速幂计数
+8624（https://www.luogu.com.cn/problem/P8624）矩阵 DP 与快速幂
 
 ===================================AcWing===================================
-27. 数值的整数次方（https://www.acwing.com/problem/content/26/）浮点数快速幂
+27（https://www.acwing.com/problem/content/26/）浮点数快速幂
 
 
 参考：OI WiKi（xx）

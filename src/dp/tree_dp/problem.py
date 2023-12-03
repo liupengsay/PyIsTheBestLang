@@ -3,57 +3,57 @@
 功能：在树形或者图结构上进行DP，有换根DP，自顶向下和自底向上DP
 题目：
 
-===================================力扣===================================
+===================================LeetCode===================================
 2458 移除子树后的二叉树高度（https://leetcode.com/problems/height-of-binary-tree-after-subtree-removal-queries/）跑两边DFS进行自顶向下和自底向上DP结合
 2440 创建价值相同的连通块（https://leetcode.com/problems/create-components-with-same-value/）利用总和的因子和树形递归判断连通块是否可行
 1569 将子数组重新排序得到同一个二叉查找树的方案数（https://leetcode.com/problems/number-of-ways-to-reorder-array-to-get-same-bst/solution/by-liupengsay-yi3h/）
-968. 监控二叉树（https://leetcode.com/problems/binary-tree-cameras/）树形DP监控每个节点
-2538. 最大价值和与最小价值和的差值（https://leetcode.com/problems/difference-between-maximum-and-minimum-price-sum/）树形换根DP，求去掉其中一个叶子节点的最大直径
-124. 二叉树中的最大路径和（https://leetcode.com/problems/binary-tree-maximum-path-sum/）树形DP
-1617. 统计子树中城市之间最大距离（https://leetcode.com/problems/count-subtrees-with-max-distance-between-cities/）二进制枚举加树的直径计算
-2378. 选择边来最大化树的得分（https://leetcode.com/problems/choose-edges-to-maximize-score-in-a-tree/）树形DP
-2445. 值为 1 的节点数（https://leetcode.com/problems/number-of-nodes-with-value-one/）自上而下DP模拟
-834. 树中距离之和（https://leetcode.com/problems/sum-of-distances-in-tree/）树的总距离，求树的重心
-1617. 统计子树中城市之间最大距离（https://leetcode.com/problems/count-subtrees-with-max-distance-between-cities/）经典枚举直径端点与乘法原理树形DP进行计算
-2003. 每棵子树内缺失的最小基因值（https://leetcode.com/problems/smallest-missing-genetic-value-in-each-subtree/）树形DP启发式合并
-2673. 使二叉树所有路径值相等的最小代价（https://leetcode.com/problems/make-costs-of-paths-equal-in-a-binary-tree/）经典树形DP贪心
-1367. 二叉树中的链表（https://leetcode.com/problems/linked-list-in-binary-tree/description/）典型二叉树与链表比较的记忆化DP
-979. 在二叉树中分配硬币（https://leetcode.com/problems/distribute-coins-in-binary-tree/description/）经典树形DP贪心
-1373. 二叉搜索子树的最大键值和（https://leetcode.com/problems/maximum-sum-bst-in-binary-tree/）经典树形DP二叉树校验
-971. 翻转二叉树以匹配先序遍历（https://leetcode.com/problems/flip-binary-tree-to-match-preorder-traversal/description/）树形DP贪心模拟
-100041. 可以到达每一个节点的最少边反转次数（https://www.acwing.com/problem/content/description/4384/）迭代法实现树形换根DP计算，或者一遍DFS或者dfs序加差分
-100047. 统计树中的合法路径数目（https://leetcode.com/problems/count-valid-paths-in-a-tree/description/）树形DP，并查集或者BFS实现
+968（https://leetcode.com/problems/binary-tree-cameras/）树形DP监控每个节点
+2538（https://leetcode.com/problems/difference-between-maximum-and-minimum-price-sum/）树形换根DP，求去掉其中一个叶子节点的最大直径
+124（https://leetcode.com/problems/binary-tree-maximum-path-sum/）树形DP
+1617（https://leetcode.com/problems/count-subtrees-with-max-distance-between-cities/）二进制枚举加树的直径计算
+2378（https://leetcode.com/problems/choose-edges-to-maximize-score-in-a-tree/）树形DP
+2445（https://leetcode.com/problems/number-of-nodes-with-value-one/）自上而下DP模拟
+834（https://leetcode.com/problems/sum-of-distances-in-tree/）树的总距离，求树的重心
+1617（https://leetcode.com/problems/count-subtrees-with-max-distance-between-cities/）经典枚举直径端点与乘法原理树形DP进行计算
+2003（https://leetcode.com/problems/smallest-missing-genetic-value-in-each-subtree/）树形DP启发式合并
+2673（https://leetcode.com/problems/make-costs-of-paths-equal-in-a-binary-tree/）经典树形DP贪心
+1367（https://leetcode.com/problems/linked-list-in-binary-tree/description/）典型二叉树与链表比较的记忆化DP
+979（https://leetcode.com/problems/distribute-coins-in-binary-tree/description/）经典树形DP贪心
+1373（https://leetcode.com/problems/maximum-sum-bst-in-binary-tree/）经典树形DP二叉树校验
+971（https://leetcode.com/problems/flip-binary-tree-to-match-preorder-traversal/description/）树形DP贪心模拟
+100041（https://www.acwing.com/problem/content/description/4384/）迭代法实现树形换根DP计算，或者一遍DFS或者dfs序加差分
+100047（https://leetcode.com/problems/count-valid-paths-in-a-tree/description/）树形DP，并查集或者BFS实现
 
-===================================洛谷===================================
-P1395 会议（https://www.luogu.com.cn/problem/P1395）树的总距离，求树的重心，单个节点距离其他所有节点的最大距离，换根DP可以做
-P1352 没有上司的舞会（https://www.luogu.com.cn/problem/P1352）树形DP，隔层进行动态规划转移
-P1922 女仆咖啡厅桌游吧（https://www.luogu.com.cn/problem/P1922）树形DP，贪心进行子树与叶子节点的分配
-P2016 战略游戏（https://www.luogu.com.cn/problem/P2016）树形DP瞭望每条边
-P1122 最大子树和（https://www.luogu.com.cn/problem/P1122）计算最大的连通块和
-P2932 [USACO09JAN]Earthquake Damage G（https://www.luogu.com.cn/problem/P2932）树形DP统计子树个数与贪心安排最小损坏个数
-P2996 [USACO10NOV]Visiting Cows G（https://www.luogu.com.cn/problem/P2996）树形DP
-P3074 [USACO13FEB]Milk Scheduling S（https://www.luogu.com.cn/problem/P3074）树的最长路径（广搜DP记录最长时间也可以）
-P3884 [JLOI2009]二叉树问题（https://www.luogu.com.cn/problem/P3884）基础树形DP计算两点间路径变种长度
-P3915 树的分解（https://www.luogu.com.cn/problem/P3915）递归拆解生成等大小的连通块
-P4615 [COCI2017-2018#5] Birokracija（https://www.luogu.com.cn/problem/P4615）树形DP
-P5002 专心OI - 找祖先（https://www.luogu.com.cn/problem/P5002）使用树形DP与容斥原理进行计数
-P5651 基础最短路练习题（https://www.luogu.com.cn/problem/P5651）脑筋急转弯使用并查集去环，转换为树形DP里面任意两点路径的异或和
-P6591 [YsOI2020]植树（https://www.luogu.com.cn/problem/P6591）换根DP，即无根树递归判断每个节点作为根节点的情况
-P7159 「dWoi R1」Sweet Fruit Chocolate（https://www.luogu.com.cn/problem/P7159）树形DP枚举计数与快速幂计算
-P2015 二叉苹果树（https://www.luogu.com.cn/problem/P2015）树形DP，有点像树上背包
-P2014 [CTSC1997] 选课（https://www.luogu.com.cn/problem/P2014）树形DP
-P4316 绿豆蛙的归宿（https://www.luogu.com.cn/problem/P4316）逆向建图，拓扑排序DP
-P1351 [NOIP2014 提高组] 联合权值（https://www.luogu.com.cn/problem/P1351#submit）树形DP
-P3304 [SDOI2013]直径（https://www.luogu.com.cn/problem/P3304）经典计算带权无向图的直径以及直径的必经边
-P3408 恋爱（https://www.luogu.com.cn/problem/P3408）树形DP
-P3478 [POI2008] STA-Station（https://www.luogu.com.cn/problem/P3478）树的质心
-P3931 SAC E#1 - 一道难题 Tree（https://www.luogu.com.cn/problem/P3931）典型树形DP
-P4084 [USACO17DEC]Barn Painting G（https://www.luogu.com.cn/problem/P4084）典型树形DP
-P4395 [BOI2003]Gem 气垫车（https://www.luogu.com.cn/problem/P4395）经典树形 DP 贪心标权值使得整棵树总价值最小
-P5765 [CQOI2005]珠宝（https://www.luogu.com.cn/problem/P5765）同P4395
-P8602 [蓝桥杯 2013 省 A] 大臣的旅费（https://www.luogu.com.cn/problem/P8602）经典树的直径可用两遍BFS也可用树形DP求解
-P8625 [蓝桥杯 2015 省 B] 生命之树（https://www.luogu.com.cn/problem/P8625）树形 DP 典型
-P8744 [蓝桥杯 2021 省 A] 左孩子右兄弟（https://www.luogu.com.cn/problem/P8744）简单树形 DP
+===================================LuoGu==================================
+1395（https://www.luogu.com.cn/problem/P1395）树的总距离，求树的重心，单个节点距离其他所有节点的最大距离，换根DP可以做
+1352（https://www.luogu.com.cn/problem/P1352）树形DP，隔层进行动态规划转移
+1922（https://www.luogu.com.cn/problem/P1922）树形DP，贪心进行子树与叶子节点的分配
+2016（https://www.luogu.com.cn/problem/P2016）树形DP瞭望每条边
+1122（https://www.luogu.com.cn/problem/P1122）计算最大的连通块和
+2932（https://www.luogu.com.cn/problem/P2932）树形DP统计子树个数与贪心安排最小损坏个数
+2996（https://www.luogu.com.cn/problem/P2996）树形DP
+3074（https://www.luogu.com.cn/problem/P3074）树的最长路径（广搜DP记录最长时间也可以）
+3884（https://www.luogu.com.cn/problem/P3884）基础树形DP计算两点间路径变种长度
+3915（https://www.luogu.com.cn/problem/P3915）递归拆解生成等大小的连通块
+4615（https://www.luogu.com.cn/problem/P4615）树形DP
+5002（https://www.luogu.com.cn/problem/P5002）使用树形DP与容斥原理进行计数
+5651（https://www.luogu.com.cn/problem/P5651）脑筋急转弯使用并查集去环，转换为树形DP里面任意两点路径的异或和
+6591（https://www.luogu.com.cn/problem/P6591）换根DP，即无根树递归判断每个节点作为根节点的情况
+7159（https://www.luogu.com.cn/problem/P7159）树形DP枚举计数与快速幂计算
+2015（https://www.luogu.com.cn/problem/P2015）树形DP，有点像树上背包
+2014（https://www.luogu.com.cn/problem/P2014）树形DP
+4316（https://www.luogu.com.cn/problem/P4316）逆向建图，拓扑排序DP
+1351（https://www.luogu.com.cn/problem/P1351#submit）树形DP
+3304（https://www.luogu.com.cn/problem/P3304）经典计算带权无向图的直径以及直径的必经边
+3408（https://www.luogu.com.cn/problem/P3408）树形DP
+3478（https://www.luogu.com.cn/problem/P3478）树的质心
+3931（https://www.luogu.com.cn/problem/P3931）典型树形DP
+4084（https://www.luogu.com.cn/problem/P4084）典型树形DP
+4395（https://www.luogu.com.cn/problem/P4395）经典树形 DP 贪心标权值使得整棵树总价值最小
+5765（https://www.luogu.com.cn/problem/P5765）同P4395
+8602（https://www.luogu.com.cn/problem/P8602）经典树的直径可用两遍BFS也可用树形DP求解
+8625（https://www.luogu.com.cn/problem/P8625）树形 DP 典型
+8744（https://www.luogu.com.cn/problem/P8744）简单树形 DP
 
 ==================================AtCoder=================================
 F - Expensive Expense （https://atcoder.jp/contests/abc222/tasks/abc222_f）换根DP
@@ -73,8 +73,8 @@ F. Tree with Maximum Cost（https://codeforces.com/contest/1092/problem/F）带�
 G. Moving to the Capital（https://codeforces.com/contest/1472/problem/G）经典根据最短路进行从下到上与从上到下的DP
 
 ================================AcWing================================
-3760. 最大剩余油量（https://www.acwing.com/problem/content/description/3763/）脑筋急转弯转化为树形DP迭代方式求解
-4381. 翻转树边（https://www.acwing.com/problem/content/description/4384/）迭代法实现树形换根DP计算，或者一遍DFS或者dfs序加差分
+3760（https://www.acwing.com/problem/content/description/3763/）脑筋急转弯转化为树形DP迭代方式求解
+4381（https://www.acwing.com/problem/content/description/4384/）迭代法实现树形换根DP计算，或者一遍DFS或者dfs序加差分
 
 参考：OI WiKi（xx）
 """

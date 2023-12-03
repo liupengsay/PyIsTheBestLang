@@ -4,31 +4,31 @@
 
 题目：
 
-===================================力扣===================================
-233. 数字 1 的个数（https://leetcode.com/problems/number-of-digit-one/）数字 1 的个数
-357. 统计各位数字都不同的数字个数（https://leetcode.com/problems/count-numbers-with-unique-digits/）排列组合也可用数位 DP 求解
-600. 不含连续 1 的非负整数（https://leetcode.com/problems/non-negative-integers-without-consecutive-ones/）不含连续 1 的非负整数
-902. 最大为 N 的数字组合（https://leetcode.com/problems/numbers-at-most-n-given-digit-set/）限定字符情况下小于等于 n 的个数
-1012. 至少有 1 位重复的数字（https://leetcode.com/problems/numbers-with-repeated-digits/）容斥原理计算没有重复数字的个数
-1067. 范围内的数字计数（https://leetcode.com/problems/digit-count-in-range/）计算区间计数，使用右端点减去左端点，数位DP容斥模板题
-1397. 找到所有好字符串（https://leetcode.com/problems/find-all-good-strings/）使用数位DP思想进行模拟
-2376. 统计特殊整数（https://leetcode.com/problems/count-special-integers/）计算小于 n 的特殊正整数个数
-2719. 统计整数数目（https://leetcode.com/problems/count-of-integers/）数位DP容斥模板题
-2801. 统计范围内的步进数字数目（https://leetcode.com/problems/count-stepping-numbers-in-range/）数位DP容斥模板题
-2827. 范围中美丽整数的数目（https://leetcode.com/problems/number-of-beautiful-integers-in-the-range/）数位DP容斥模板题
+===================================LeetCode===================================
+233（https://leetcode.com/problems/number-of-digit-one/）数字 1 的个数
+357（https://leetcode.com/problems/count-numbers-with-unique-digits/）排列组合也可用数位 DP 求解
+600（https://leetcode.com/problems/non-negative-integers-without-consecutive-ones/）不含连续 1 的非负整数
+902（https://leetcode.com/problems/numbers-at-most-n-given-digit-set/）限定字符情况下小于等于 n 的个数
+1012（https://leetcode.com/problems/numbers-with-repeated-digits/）容斥原理计算没有重复数字的个数
+1067（https://leetcode.com/problems/digit-count-in-range/）计算区间计数，使用右端点减去左端点，数位DP容斥模板题
+1397（https://leetcode.com/problems/find-all-good-strings/）使用数位DP思想进行模拟
+2376（https://leetcode.com/problems/count-special-integers/）计算小于 n 的特殊正整数个数
+2719（https://leetcode.com/problems/count-of-integers/）数位DP容斥模板题
+2801（https://leetcode.com/problems/count-stepping-numbers-in-range/）数位DP容斥模板题
+2827（https://leetcode.com/problems/number-of-beautiful-integers-in-the-range/）数位DP容斥模板题
 
 
-面试题 17.06. 2出现的次数（https://leetcode.com/problems/number-of-2s-in-range-lcci/）所有数位出现 2 的次数
+面试题 17（https://leetcode.com/problems/number-of-2s-in-range-lcci/）所有数位出现 2 的次数
 
 ===================================AtCoder===================================
 D - XOR World（https://atcoder.jp/contests/abc121/tasks/abc121_d）正解为(2*n)^(2*n+1)=1的性质，可使用数位DP计算 1^2^...^num的值
 E - Digit Products（https://atcoder.jp/contests/abc208/tasks/abc208_e）脑筋急转弯，有技巧地处理数位DP结果计算
 
-===================================洛谷===================================
-P1590 失踪的7（https://www.luogu.com.cn/problem/P1590）计算 n 以内不含7的个数
-P1239 计数器（https://www.luogu.com.cn/problem/P1239）计算 n 以内每个数字0-9的个数
-P3908 数列之异或（https://www.luogu.com.cn/problem/P3908）计算 1^2..^n的异或和，可以使用数位DP计数也可以用相邻的奇偶数计算
-P1836 数页码（https://www.luogu.com.cn/problem/P1836）数位DP计算1~n内所有数字的数位和
+===================================LuoGu==================================
+1590（https://www.luogu.com.cn/problem/P1590）计算 n 以内不含7的个数
+1239（https://www.luogu.com.cn/problem/P1239）计算 n 以内每个数字0-9的个数
+3908（https://www.luogu.com.cn/problem/P3908）计算 1^2..^n的异或和，可以使用数位DP计数也可以用相邻的奇偶数计算
+1836（https://www.luogu.com.cn/problem/P1836）数位DP计算1~n内所有数字的数位和
 
 
 神奇数（https://www.lanqiao.cn/problems/5891/learning/?contest_id=145）容斥原理与数位DP

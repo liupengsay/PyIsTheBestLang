@@ -7,41 +7,41 @@ Prim在稠密图中比Kruskal优，在稀疏图中比Kruskal劣。Prim是以更�
 
 题目：
 
-===================================力扣===================================
-1489. 找到最小生成树里的关键边和伪关键边（https://leetcode.com/problems/find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree/）计算最小生成树的关键边与伪关键边
-1584. 连接所有点的最小费用（https://leetcode.com/problems/min-cost-to-connect-all-points/）稠密图使用 prim 生成最小生成树
-1724. 检查边长度限制的路径是否存在 II（https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths-ii/）经典使用最小生成树与倍增求解任意点对之间简单路径的最大边权值
+===================================LeetCode===================================
+1489（https://leetcode.com/problems/find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree/）计算最小生成树的关键边与伪关键边
+1584（https://leetcode.com/problems/min-cost-to-connect-all-points/）稠密图使用 prim 生成最小生成树
+1724（https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths-ii/）经典使用最小生成树与倍增求解任意点对之间简单路径的最大边权值
 
-===================================洛谷===================================
-P3366 最小生成树（https://www.luogu.com.cn/problem/P3366）最小生成树裸题
-P2820 局域网（https://www.luogu.com.cn/problem/P2820）逆向思维，求最小生成树权值和
-P1991 无线通讯网（https://www.luogu.com.cn/problem/P1991）计算保证k个连通块下最小的边权值
+===================================LuoGu==================================
+3366（https://www.luogu.com.cn/problem/P3366）最小生成树裸题
+2820（https://www.luogu.com.cn/problem/P2820）逆向思维，求最小生成树权值和
+1991（https://www.luogu.com.cn/problem/P1991）计算保证k个连通块下最小的边权值
 
-P1661 扩散（https://www.luogu.com.cn/problem/P1661）最小生成树的边最大权值
-P1547 [USACO05MAR]Out of Hay S（https://www.luogu.com.cn/problem/P1547）最小生成树的边最大权值
-P2121 拆地毯（https://www.luogu.com.cn/problem/P2121）保留 k 条边的最大生成树权值
-P2126 Mzc家中的男家丁（https://www.luogu.com.cn/problem/P2126）转化为最小生成树求解
-P2872 Building Roads S（https://www.luogu.com.cn/problem/P2872）使用prim计算最小生成树
-P2330 [SCOI2005]繁忙的都市（https://www.luogu.com.cn/problem/P2330）最小生成树边数量与最大边权值
-P2504 [HAOI2006]聪明的猴子（https://www.luogu.com.cn/problem/P2504）识别为最小生成树求解
-P2700 逐个击破（https://www.luogu.com.cn/problem/P2700）逆向思维与最小生成树，选取最大权组合，修改并查集size
-P1195 口袋的天空（https://www.luogu.com.cn/record/list?user=739032&status=12&page=13）最小生成树生成K个连通块
-P1194 买礼物（https://www.luogu.com.cn/problem/P1194）最小生成树变种问题
-P2916 [USACO08NOV]Cheering up the Cow G（https://www.luogu.com.cn/problem/P2916）需要自定义排序之后计算最小生成树的好题
-P4955 [USACO14JAN]Cross Country Skiing S（https://www.luogu.com.cn/problem/P4955）最小生成树，自定义中止条件
-P6705 [COCI2010-2011#7] POŠTAR（https://www.luogu.com.cn/problem/P6705）枚举最小值，使用最小生成树，与自定义权值进行计算
-P7775 [COCI2009-2010#2] VUK（https://www.luogu.com.cn/problem/P7775）BFS加最小生成树思想，求解
-P2658 汽车拉力比赛（https://www.luogu.com.cn/problem/P2658）典型最小生成树计算
-P4180 [BJWC2010] 严格次小生成树（https://www.luogu.com.cn/problem/P4180）使用最小生成树与LCA倍增查询计算严格次小生成树
-P1265 公路修建（https://www.luogu.com.cn/problem/P1265）使用prim求解最小生成树
-P1340 兽径管理（https://www.luogu.com.cn/problem/P1340）逆序并查集，维护最小生成树的边
-P1550 [USACO08OCT]Watering Hole G（https://www.luogu.com.cn/problem/P1550）经典题目，建立虚拟源点，转换为最小生成树问题
-P2212 [USACO14MAR]Watering the Fields S（https://www.luogu.com.cn/problem/P2212）经典题目，使用prim计算稠密图最小生成树
-P2847 [USACO16DEC]Moocast G（https://www.luogu.com.cn/problem/P2847）使用prim计算最小生成树，适合稠密图场景
-P3535 [POI2012]TOU-Tour de Byteotia（https://www.luogu.com.cn/problem/P3535）最小生成树思想与并查集判环
-P4047 [JSOI2010]部落划分（https://www.luogu.com.cn/problem/P4047）使用最小生成树进行最优聚类距离计算
-P6171 [USACO16FEB]Fenced In G（https://www.luogu.com.cn/problem/P6171）稀疏图使用 Kruskal 计算最小生成树
-P1550 [USACO08OCT] Watering Hole G（https://www.luogu.com.cn/problem/P1550）经典最小生成树，增加虚拟源点
+1661（https://www.luogu.com.cn/problem/P1661）最小生成树的边最大权值
+1547（https://www.luogu.com.cn/problem/P1547）最小生成树的边最大权值
+2121（https://www.luogu.com.cn/problem/P2121）保留 k 条边的最大生成树权值
+2126（https://www.luogu.com.cn/problem/P2126）转化为最小生成树求解
+2872（https://www.luogu.com.cn/problem/P2872）使用prim计算最小生成树
+2330（https://www.luogu.com.cn/problem/P2330）最小生成树边数量与最大边权值
+2504（https://www.luogu.com.cn/problem/P2504）识别为最小生成树求解
+2700（https://www.luogu.com.cn/problem/P2700）逆向思维与最小生成树，选取最大权组合，修改并查集size
+1195（https://www.luogu.com.cn/record/list?user=739032&status=12&page=13）最小生成树生成K个连通块
+1194（https://www.luogu.com.cn/problem/P1194）最小生成树变种问题
+2916（https://www.luogu.com.cn/problem/P2916）需要自定义排序之后计算最小生成树的好题
+4955（https://www.luogu.com.cn/problem/P4955）最小生成树，自定义中止条件
+6705（https://www.luogu.com.cn/problem/P6705）枚举最小值，使用最小生成树，与自定义权值进行计算
+7775（https://www.luogu.com.cn/problem/P7775）BFS加最小生成树思想，求解
+2658（https://www.luogu.com.cn/problem/P2658）典型最小生成树计算
+4180（https://www.luogu.com.cn/problem/P4180）使用最小生成树与LCA倍增查询计算严格次小生成树
+1265（https://www.luogu.com.cn/problem/P1265）使用prim求解最小生成树
+1340（https://www.luogu.com.cn/problem/P1340）逆序并查集，维护最小生成树的边
+1550（https://www.luogu.com.cn/problem/P1550）经典题目，建立虚拟源点，转换为最小生成树问题
+2212（https://www.luogu.com.cn/problem/P2212）经典题目，使用prim计算稠密图最小生成树
+2847（https://www.luogu.com.cn/problem/P2847）使用prim计算最小生成树，适合稠密图场景
+3535（https://www.luogu.com.cn/problem/P3535）最小生成树思想与并查集判环
+4047（https://www.luogu.com.cn/problem/P4047）使用最小生成树进行最优聚类距离计算
+6171（https://www.luogu.com.cn/problem/P6171）稀疏图使用 Kruskal 计算最小生成树
+1550（https://www.luogu.com.cn/problem/P1550）经典最小生成树，增加虚拟源点
 
 ================================CodeForces================================
 D. Design Tutorial: Inverse the Problem（https://codeforces.com/problemset/problem/472/D）使用最小生成树判断构造给定的点对最短路距离是否存在，使用prim算法复杂度更优
@@ -52,7 +52,7 @@ F. MST Unification（https://codeforces.com/contest/1108/problem/F）使得最�
 D - Built?（https://atcoder.jp/contests/abc065/tasks/arc076_b）最小生成树变形问题
 
 ================================AcWing================================
-3728. 城市通电（https://www.acwing.com/problem/content/3731/）使用prim计算最小生成树，适合稠密图场景，并获取具体连边方案，也可直接使用Kruskal（超时）
+3728（https://www.acwing.com/problem/content/3731/）使用prim计算最小生成树，适合稠密图场景，并获取具体连边方案，也可直接使用Kruskal（超时）
 
 ================================LibraryChecker================================
 Manhattan MST（https://judge.yosupo.jp/problem/manhattanmst）

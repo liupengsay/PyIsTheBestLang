@@ -3,8 +3,8 @@
 功能：快速计算傅里叶变换的多项式子函数
 题目：
 
-===================================洛谷===================================
-P4721 【模板】分治 FFT（https://www.luogu.com.cn/problem/P4721）
+===================================LuoGu==================================
+4721（https://www.luogu.com.cn/problem/P4721）
 参考：OI WiKi（https://oi-wiki.org/math/poly/fft/）
 
 https://cmwqf.github.io/2019/02/18/%E5%88%86%E6%B2%BBFFT%E8%AF%A6%E8%A7%A3/

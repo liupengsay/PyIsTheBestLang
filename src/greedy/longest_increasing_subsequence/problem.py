@@ -11,38 +11,38 @@ dilworth定理：
 反过来，分成上升子序列最小组数等于最大不上升的长度，分成下降子序列最小组数等于最大不下降子序列的长度。
 
 参考题目：
-===================================力扣===================================
-354. 俄罗斯套娃信封问题（https://leetcode.com/problems/russian-doll-envelopes/）经典二维偏序最长递增子序列问题
-673. 最长递增子序列的个数（https://leetcode.com/problems/number-of-longest-increasing-subsequence/）经典O(n^2)与O(nlogn)的LIS计数问题做法模板题
-1092. 最短公共超序列（https://leetcode.com/problems/shortest-common-supersequence/）经典利用LIS求LCS的最短公共超序列
-1671. 得到山形数组的最少删除次数（https://leetcode.com/problems/minimum-number-of-removals-to-make-mountain-array/）经典山脉数组LIS变形问题
-2111. 使数组 K 递增的最少操作次数（https://leetcode.com/problems/minimum-operations-to-make-the-array-k-increasing/）分成 K 组计算每组的最长递增子序列
-面试题 17.08. 马戏团人塔（https://leetcode.com/problems/circus-tower-lcci/）按照两个维度贪心排序后，计算最长递增子序列
+===================================LeetCode===================================
+354（https://leetcode.com/problems/russian-doll-envelopes/）经典二维偏序最长递增子序列问题
+673（https://leetcode.com/problems/number-of-longest-increasing-subsequence/）经典O(n^2)与O(nlogn)的LIS计数问题做法模板题
+1092（https://leetcode.com/problems/shortest-common-supersequence/）经典利用LIS求LCS的最短公共超序列
+1671（https://leetcode.com/problems/minimum-number-of-removals-to-make-mountain-array/）经典山脉数组LIS变形问题
+2111（https://leetcode.com/problems/minimum-operations-to-make-the-array-k-increasing/）分成 K 组计算每组的最长递增子序列
+面试题 17（https://leetcode.com/problems/circus-tower-lcci/）按照两个维度贪心排序后，计算最长递增子序列
 最长递增子序列（https://www.nowcoder.com/questionTerminal/30fb9b3cab9742ecae9acda1c75bf927?orderByHotValue=1&questionTypes=000100&difficulty=11111&mutiTagIds=593&page=10&onlyReference=false）最长且字典序最小的递增子序列
-1691. 堆叠长方体的最大高度（https://leetcode.com/problems/maximum-height-by-stacking-cuboids/submissions/）经典三维偏序LIS问题
-1713. 得到子序列的最少操作次数（https://leetcode.com/problems/minimum-operations-to-make-a-subsequence/）经典LCS问题转换为LIS
-1940. 排序数组之间的最长公共子序列（https://leetcode.com/problems/longest-common-subsequence-between-sorted-arrays/）经典LCS问题转为LIS问题
-3662. 最大上升子序列和（https://www.acwing.com/problem/content/description/3665/）所有长度的严格上升子序列的最大子序列和，使用离散化树状数组与线性DP计算，也可使用线段树
-2826. 将三个组排序（https://leetcode.com/problems/sorting-three-groups/）转换为求最长不降子序列
-1964. 找出到每个位置为止最长的有效障碍赛跑路线（https://leetcode.com/problems/find-the-longest-valid-obstacle-course-at-each-position/）经典LIS求以每个位置结尾的最长不降子序列长度
-2945. Find Maximum Non-decreasing Array Length（https://leetcode.com/problems/find-maximum-non-decreasing-array-length/description/）linear dp|deque|greedy|prefix sum
+1691（https://leetcode.com/problems/maximum-height-by-stacking-cuboids/submissions/）经典三维偏序LIS问题
+1713（https://leetcode.com/problems/minimum-operations-to-make-a-subsequence/）经典LCS问题转换为LIS
+1940（https://leetcode.com/problems/longest-common-subsequence-between-sorted-arrays/）经典LCS问题转为LIS问题
+3662（https://www.acwing.com/problem/content/description/3665/）所有长度的严格上升子序列的最大子序列和，使用离散化树状数组与线性DP计算，也可使用线段树
+2826（https://leetcode.com/problems/sorting-three-groups/）转换为求最长不降子序列
+1964（https://leetcode.com/problems/find-the-longest-valid-obstacle-course-at-each-position/）经典LIS求以每个位置结尾的最长不降子序列长度
+2945（https://leetcode.com/problems/find-maximum-non-decreasing-array-length/description/）linear dp|deque|greedy|prefix sum
 
-===================================洛谷===================================
-P1020 导弹拦截（https://www.luogu.com.cn/problem/P1020）使用贪心加二分计算最长单调不减和单调不增子序列的长度
-P1439 【模板】最长公共子序列（https://www.luogu.com.cn/problem/P1439）使用贪心加二分计算最长单调递增子序列的长度
-P1091 合唱队形（https://www.luogu.com.cn/problem/P1091）可以往前以及往后计算最长单调子序列
-P1233 木棍加工（https://www.luogu.com.cn/problem/P1233）按照一个维度排序后计算另一个维度的，最长严格递增子序列的长度
-P2782 友好城市（https://www.luogu.com.cn/problem/P2782）按照一个维度排序后计算另一个维度的，最长严格递增子序列的长度（也可以考虑使用线段树求区间最大值）
-P3902 递增（https://www.luogu.com.cn/problem/P3902）最长严格上升子序列
-P6403 [COCI2014-2015#2] STUDENTSKO（https://www.luogu.com.cn/problem/P6403）问题转化为最长不降子序列
-P5939 [POI1998]折线（https://www.luogu.com.cn/problem/P5939）旋转后转换为 LIS 问题
-P5978 [CEOI2018] Global warming（https://www.luogu.com.cn/problem/P5978）经典 LIS 变形问题，贪心枚举前半部分
-P7957 [COCI2014-2015#6] KRATKI（https://www.luogu.com.cn/problem/P7957）经典 LMS 逆问题构造
-P1410 子序列（https://www.luogu.com.cn/problem/P1410）使用dilworth定理求最长不上升子序列长度小于等于2
+===================================LuoGu==================================
+1020（https://www.luogu.com.cn/problem/P1020）使用贪心加二分计算最长单调不减和单调不增子序列的长度
+1439（https://www.luogu.com.cn/problem/P1439）使用贪心加二分计算最长单调递增子序列的长度
+1091（https://www.luogu.com.cn/problem/P1091）可以往前以及往后计算最长单调子序列
+1233（https://www.luogu.com.cn/problem/P1233）按照一个维度排序后计算另一个维度的，最长严格递增子序列的长度
+2782（https://www.luogu.com.cn/problem/P2782）按照一个维度排序后计算另一个维度的，最长严格递增子序列的长度（也可以考虑使用线段树求区间最大值）
+3902（https://www.luogu.com.cn/problem/P3902）最长严格上升子序列
+6403（https://www.luogu.com.cn/problem/P6403）问题转化为最长不降子序列
+5939（https://www.luogu.com.cn/problem/P5939）旋转后转换为 LIS 问题
+5978（https://www.luogu.com.cn/problem/P5978）经典 LIS 变形问题，贪心枚举前半部分
+7957（https://www.luogu.com.cn/problem/P7957）经典 LMS 逆问题构造
+1410（https://www.luogu.com.cn/problem/P1410）使用dilworth定理求最长不上升子序列长度小于等于2
 
 ===================================AcWing===================================
-3549. 最长非递减子序列（https://www.acwing.com/problem/content/3552/）经典线性DP动态规划贪心
-2694. 最长公共子序列（https://www.acwing.com/problem/content/description/2696/）使用LIS求解LCS的长度与个数
+3549（https://www.acwing.com/problem/content/3552/）经典线性DP动态规划贪心
+2694（https://www.acwing.com/problem/content/description/2696/）使用LIS求解LCS的长度与个数
 
 ===================================AtCoder===================================
 E - Sequence Decomposing（https://atcoder.jp/contests/abc134/tasks/abc134_e）分成最少组数的上升子序列，等于最长不上升的子序列长度

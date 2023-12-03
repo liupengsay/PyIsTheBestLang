@@ -3,28 +3,28 @@
 功能：处理字符串以及结合位运算相关，01Trie通用用于查询位运算极值
 题目：
 
-===================================力扣===================================
-421. 数组中两个数的最大异或值（https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/）经典 01 Trie
-638. 大礼包（https://leetcode.com/problems/shopping-offers/）经典使用字典树与记忆化搜索
-2416. 字符串的前缀分数和（https://leetcode.com/problems/sum-of-prefix-scores-of-strings/）单词组前缀计数
-1803. 统计异或值在范围内的数对有多少（https://leetcode.com/problems/count-pairs-with-xor-in-a-range/）经典01Trie，查询异或值在一定范围的数组对，可以使用数组实现
-677. 键值映射（https://leetcode.com/problems/map-sum-pairs/）更新与查询给定字符串作为单词键前缀的对应值的和
-2479. 两个不重叠子树的最大异或值（https://leetcode.com/problems/maximum-xor-of-two-non-overlapping-subtrees/）01Trie计算最大异或值
-面试题 17.17. 多次搜索（https://leetcode.com/problems/multi-search-lcci/）AC自动机计数，也可直接使用字典树逆向思维，字典树存关键字，再搜索文本，和单词矩阵一样的套路
-1707. 与数组中元素的最大异或值（https://leetcode.com/problems/maximum-xor-with-an-element-from-array/）经典排序后离线查询并使用 01 Trie求解
-1938. 查询最大基因差（https://leetcode.com/problems/maximum-genetic-difference-query/）使用深搜回溯与01Trie查询最大异或值
-1032. 字符流（https://leetcode.com/problems/stream-of-characters/description/）字典树典型应用，倒序存储
+===================================LeetCode===================================
+421（https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/）经典 01 Trie
+638（https://leetcode.com/problems/shopping-offers/）经典使用字典树与记忆化搜索
+2416（https://leetcode.com/problems/sum-of-prefix-scores-of-strings/）单词组前缀计数
+1803（https://leetcode.com/problems/count-pairs-with-xor-in-a-range/）经典01Trie，查询异或值在一定范围的数组对，可以使用数组实现
+677（https://leetcode.com/problems/map-sum-pairs/）更新与查询给定字符串作为单词键前缀的对应值的和
+2479（https://leetcode.com/problems/maximum-xor-of-two-non-overlapping-subtrees/）01Trie计算最大异或值
+面试题 17（https://leetcode.com/problems/multi-search-lcci/）AC自动机计数，也可直接使用字典树逆向思维，字典树存关键字，再搜索文本，和单词矩阵一样的套路
+1707（https://leetcode.com/problems/maximum-xor-with-an-element-from-array/）经典排序后离线查询并使用 01 Trie求解
+1938（https://leetcode.com/problems/maximum-genetic-difference-query/）使用深搜回溯与01Trie查询最大异或值
+1032（https://leetcode.com/problems/stream-of-characters/description/）字典树典型应用，倒序存储
 
-===================================洛谷===================================
-P8306 字典树（https://www.luogu.com.cn/problem/P8306）
-P4551 最长异或路径（https://www.luogu.com.cn/problem/P4551）关键是利用异或的性质，将任意根节点作为中转站
-P3864 [USACO1.2]命名那个数字 Name That Number（https://www.luogu.com.cn/problem/P3864）使用哈希枚举或者进行字典树存储
-P5755 [NOI2000] 单词查找树（https://www.luogu.com.cn/problem/P5755）字典树节点计数
-P1481 魔族密码（https://www.luogu.com.cn/problem/P1481）最长词链
-P5283 [十二省联考 2019] 异或粽子（https://www.luogu.com.cn/problem/P5283）字典树查询第k大异或值，并使用堆贪心选取
-P2922 [USACO08DEC]Secret Message G（https://www.luogu.com.cn/problem/P2922）字典树好题，前缀计数
-P1738 洛谷的文件夹（https://www.luogu.com.cn/problem/P1738）字典树键计数
-P8420 [THUPC2022 决赛] 匹配（https://www.luogu.com.cn/problem/P8420）字典树贪心匹配
+===================================LuoGu==================================
+8306（https://www.luogu.com.cn/problem/P8306）
+4551（https://www.luogu.com.cn/problem/P4551）关键是利用异或的性质，将任意根节点作为中转站
+3864（https://www.luogu.com.cn/problem/P3864）使用哈希枚举或者进行字典树存储
+5755（https://www.luogu.com.cn/problem/P5755）字典树节点计数
+1481（https://www.luogu.com.cn/problem/P1481）最长词链
+5283（https://www.luogu.com.cn/problem/P5283）字典树查询第k大异或值，并使用堆贪心选取
+2922（https://www.luogu.com.cn/problem/P2922）字典树好题，前缀计数
+1738（https://www.luogu.com.cn/problem/P1738）字典树键计数
+8420（https://www.luogu.com.cn/problem/P8420）字典树贪心匹配
 
 ================================CodeForces================================
 Fixed Prefix Permutations（https://codeforces.com/problemset/problem/1792/D）变形后使用字典树进行计数查询
@@ -35,10 +35,10 @@ E. Sausage Maximization（https://codeforces.com/contest/282/problem/E）转换�
 Set Xor-Min（https://judge.yosupo.jp/problem/set_xor_min）template dynamic xor min
 
 ================================AcWing====================================
-142. 前缀统计（https://www.acwing.com/problem/content/144/）字典树前缀统计
-143. 最大异或对（https://www.acwing.com/problem/content/145/）模板题计算最大异或对
-144. 最长异或值路径（https://www.acwing.com/problem/content/description/146/）经典使用01Trie计算树中最长异或路径
-161. 电话列表（https://www.acwing.com/problem/content/163/）使用字典树判断是否存在单词前缀包含
+142（https://www.acwing.com/problem/content/144/）字典树前缀统计
+143（https://www.acwing.com/problem/content/145/）模板题计算最大异或对
+144（https://www.acwing.com/problem/content/description/146/）经典使用01Trie计算树中最长异或路径
+161（https://www.acwing.com/problem/content/163/）使用字典树判断是否存在单词前缀包含
 
 参考：OI WiKi（）
 """

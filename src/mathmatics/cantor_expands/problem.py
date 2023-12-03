@@ -3,14 +3,14 @@
 功能：康托展开可以用来求一个 1~n 的任意排列的排名，以及任意排名的 1~n 排列
 题目：
 
-===================================洛谷===================================
-P3014 [USACO11FEB]Cow Line S（https://www.luogu.com.cn/problem/P3014）计算全排列的排名与排名对应的全排列
-P5367 【模板】康托展开（https://www.luogu.com.cn/problem/P5367）计算排列的排名
+===================================LuoGu==================================
+3014（https://www.luogu.com.cn/problem/P3014）计算全排列的排名与排名对应的全排列
+5367（https://www.luogu.com.cn/problem/P5367）计算排列的排名
 
 
 
 ===================================AcWing===================================
-5052. 排列（https://www.acwing.com/problem/content/5055/）经典康托展开与BFS搜索，根据排列数确定最多末尾重排的长度
+5052（https://www.acwing.com/problem/content/5055/）经典康托展开与BFS搜索，根据排列数确定最多末尾重排的长度
 
 
 参考：OI WiKi（https://oi-wiki.org/math/combinatorics/cantor/）
