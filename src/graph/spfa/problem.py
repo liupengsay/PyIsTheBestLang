@@ -13,7 +13,7 @@ Dijkstra：路径权值优先的深度优先搜索（只适用正权值）
 
 题目：
 ===================================力扣===================================
-2589. 完成所有任务的最少时间（https://leetcode.cn/problems/minimum-time-to-complete-all-tasks/）差分约束模板题，也可用贪心求解
+2589. 完成所有任务的最少时间（https://leetcode.com/problems/minimum-time-to-complete-all-tasks/）差分约束模板题，也可用贪心求解
 
 ===================================洛谷===================================
 P3385 负环（https://www.luogu.com.cn/problem/P3385）通过最短路径更新的边数来计算从起点出发是否存在负环

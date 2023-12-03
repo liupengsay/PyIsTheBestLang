@@ -4,11 +4,11 @@
 题目：
 
 ===================================力扣===================================
-166. 分数到小数（https://leetcode.cn/problems/fraction-to-recurring-decimal/）经典分数转换为有理数无限循环小数
-172. 阶乘后的零（https://leetcode.cn/problems/factorial-trailing-zeroes/）阶乘后缀0的个数
-1883. 准时抵达会议现场的最小跳过休息次数（https://leetcode.cn/problems/minimum-skips-to-arrive-at-meeting-on-time/description/）经典二维矩阵DP使用分数进行高精度浮点数计算
-2117. 一个区间内所有数乘积的缩写（https://leetcode.cn/problems/abbreviating-the-product-of-a-range/）大数计算或者前后缀模拟计算
-972. 相等的有理数（https://leetcode.cn/problems/equal-rational-numbers/）有理数转为分数判断
+166. 分数到小数（https://leetcode.com/problems/fraction-to-recurring-decimal/）经典分数转换为有理数无限循环小数
+172. 阶乘后的零（https://leetcode.com/problems/factorial-trailing-zeroes/）阶乘后缀0的个数
+1883. 准时抵达会议现场的最小跳过休息次数（https://leetcode.com/problems/minimum-skips-to-arrive-at-meeting-on-time/description/）经典二维矩阵DP使用分数进行高精度浮点数计算
+2117. 一个区间内所有数乘积的缩写（https://leetcode.com/problems/abbreviating-the-product-of-a-range/）大数计算或者前后缀模拟计算
+972. 相等的有理数（https://leetcode.com/problems/equal-rational-numbers/）有理数转为分数判断
 
 ===================================洛谷===================================
 P2388 阶乘之乘（https://www.luogu.com.cn/problem/P2388）阶乘之乘后缀0的个数

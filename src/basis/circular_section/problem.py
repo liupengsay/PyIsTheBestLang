@@ -4,10 +4,10 @@
 题目：
 
 ===================================力扣===================================
-957. N 天后的牢房（https://leetcode.cn/problems/prison-cells-after-n-days/）循环节计算
-418. 屏幕可显示句子的数量（https://leetcode.cn/problems/sentence-screen-fitting/）循环节计算
-466. 统计重复个数（https://leetcode.cn/problems/count-the-repetitions/）循环节计算
-1806. 还原排列的最少操作步数（https://leetcode.cn/problems/minimum-number-of-operations-to-reinitialize-a-permutation/description/）根据有限状态判断循环节的大小
+957. N 天后的牢房（https://leetcode.com/problems/prison-cells-after-n-days/）循环节计算
+418. 屏幕可显示句子的数量（https://leetcode.com/problems/sentence-screen-fitting/）循环节计算
+466. 统计重复个数（https://leetcode.com/problems/count-the-repetitions/）循环节计算
+1806. 还原排列的最少操作步数（https://leetcode.com/problems/minimum-number-of-operations-to-reinitialize-a-permutation/description/）根据有限状态判断循环节的大小
 
 ===================================洛谷===================================
 P1965 [NOIP2013 提高组] 转圈游戏（https://www.luogu.com.cn/problem/P1965）循环节计算

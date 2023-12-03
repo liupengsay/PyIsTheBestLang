@@ -5,30 +5,31 @@
 题目：
 
 ===================================力扣===================================
-167. 两数之和 II - 输入有序数组（https://leetcode.cn/problems/two-sum-ii-input-array-is-sorted/）经典双指针应用
-259. 较小的三数之和（https://leetcode.cn/problems/3sum-smaller/）使用双指针或者计数枚举的方式
-2444. 统计定界子数组的数目（https://leetcode.cn/problems/count-subarrays-with-fixed-bounds/）通向双指针的移动来根据两个指针的位置来进行计数
-2398. 预算内的最多机器人数目（https://leetcode.cn/problems/maximum-number-of-robots-within-budget/）同向双指针移动的条件限制有两个需要用有序集合来维护滑动窗口过程
-2302. 统计得分小于 K 的子数组数目（https://leetcode.cn/problems/count-subarrays-with-score-less-than-k/）同向双指针维护指针位置与计数
-2301. 替换字符后匹配（https://leetcode.cn/problems/match-substring-after-replacement/）枚举匹配字符起点并使用双指针维护可行长度
-2106. 摘水果（https://leetcode.cn/problems/maximum-fruits-harvested-after-at-most-k-steps/）巧妙利用行走距离的计算更新双指针
-6293. 统计好子数组的数目（https://leetcode.cn/problems/count-the-number-of-good-subarrays/）双指针计数
-16. 最接近的三数之和（https://leetcode.cn/problems/3sum-closest/）三指针确定最接近目标值的和
-15. 三数之和（https://leetcode.cn/problems/3sum/）寻找三个元素和为 0 的不重复组合
-2422. 使用合并操作将数组转换为回文序列（https://leetcode.cn/problems/merge-operations-to-turn-array-into-a-palindrome/）相反方向双指针贪心加和
-2524. Maximum Frequency Score of a Subarray（https://leetcode.cn/problems/maximum-frequency-score-of-a-subarray/）滑动窗口维护计算数字数量与幂次取模
-239. 滑动窗口最大值（https://leetcode.cn/problems/sliding-window-maximum/）滑动窗口最大值，使用滑动窗口类维护
-2447. 最大公因数等于 K 的子数组数目（https://leetcode.cn/problems/number-of-subarrays-with-gcd-equal-to-k/）滑动窗口区间 gcd，使用滑动窗口类维护
-6392. 使数组所有元素变成 1 的最少操作次数（https://leetcode.cn/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/）滑动窗口区间 gcd，使用滑动窗口类维护
-1163. 按字典序排在最后的子串（https://leetcode.cn/problems/last-substring-in-lexicographical-order/）经典类似最小表示法的双指针
-2555. 两个线段获得的最多奖品（https://leetcode.cn/problems/maximize-win-from-two-segments/description/）经典同向双指针加线性DP
-992. K 个不同整数的子数组（https://leetcode.cn/problems/subarrays-with-k-different-integers/）经典三指针，即快慢双指针维护连续子区间个数
-2747. 统计没有收到请求的服务器数目（https://leetcode.cn/problems/count-zero-request-servers/）经典离线查询与三指针，即快慢双指针维护连续区间的不同值个数
-2516. 每种字符至少取 K 个（https://leetcode.cn/problems/take-k-of-each-character-from-left-and-right/）逆向思维容斥原理经典双指针
-1537. 最大得分（https://leetcode.cn/problems/get-the-maximum-score/description/）双指针加线性DP或者拓扑排序做
-1712. 将数组分成三个子数组的方案数（https://leetcode.cn/problems/ways-to-split-array-into-three-subarrays/description/）经典三指针，即快慢双指针维护满足条件的分割点个数
-986. 区间列表的交集（https://leetcode.cn/problems/interval-list-intersections/description/）离散化差分，双指针归并
-948. 令牌放置（https://leetcode.cn/problems/bag-of-tokens/description/）经典双指针贪心
+167. 两数之和 II - 输入有序数组（https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/）经典双指针应用
+259. 较小的三数之和（https://leetcode.com/problems/3sum-smaller/）使用双指针或者计数枚举的方式
+2444. 统计定界子数组的数目（https://leetcode.com/problems/count-subarrays-with-fixed-bounds/）通向双指针的移动来根据两个指针的位置来进行计数
+2398. 预算内的最多机器人数目（https://leetcode.com/problems/maximum-number-of-robots-within-budget/）同向双指针移动的条件限制有两个需要用有序集合来维护滑动窗口过程
+2302. 统计得分小于 K 的子数组数目（https://leetcode.com/problems/count-subarrays-with-score-less-than-k/）同向双指针维护指针位置与计数
+2301. 替换字符后匹配（https://leetcode.com/problems/match-substring-after-replacement/）枚举匹配字符起点并使用双指针维护可行长度
+2106. 摘水果（https://leetcode.com/problems/maximum-fruits-harvested-after-at-most-k-steps/）巧妙利用行走距离的计算更新双指针
+6293. 统计好子数组的数目（https://leetcode.com/problems/count-the-number-of-good-subarrays/）双指针计数
+16. 最接近的三数之和（https://leetcode.com/problems/3sum-closest/）三指针确定最接近目标值的和
+15. 三数之和（https://leetcode.com/problems/3sum/）寻找三个元素和为 0 的不重复组合
+2422. 使用合并操作将数组转换为回文序列（https://leetcode.com/problems/merge-operations-to-turn-array-into-a-palindrome/）相反方向双指针贪心加和
+2524. Maximum Frequency Score of a Subarray（https://leetcode.com/problems/maximum-frequency-score-of-a-subarray/）滑动窗口维护计算数字数量与幂次取模
+239. 滑动窗口最大值（https://leetcode.com/problems/sliding-window-maximum/）滑动窗口最大值，使用滑动窗口类维护
+2447. 最大公因数等于 K 的子数组数目（https://leetcode.com/problems/number-of-subarrays-with-gcd-equal-to-k/）滑动窗口区间 gcd，使用滑动窗口类维护
+6392. 使数组所有元素变成 1 的最少操作次数（https://leetcode.com/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/）滑动窗口区间 gcd，使用滑动窗口类维护
+1163. 按字典序排在最后的子串（https://leetcode.com/problems/last-substring-in-lexicographical-order/）经典类似最小表示法的双指针
+2555. 两个线段获得的最多奖品（https://leetcode.com/problems/maximize-win-from-two-segments/description/）经典同向双指针加线性DP
+992. K 个不同整数的子数组（https://leetcode.com/problems/subarrays-with-k-different-integers/）经典三指针，即快慢双指针维护连续子区间个数
+2747. 统计没有收到请求的服务器数目（https://leetcode.com/problems/count-zero-request-servers/）经典离线查询与三指针，即快慢双指针维护连续区间的不同值个数
+2516. 每种字符至少取 K 个（https://leetcode.com/problems/take-k-of-each-character-from-left-and-right/）逆向思维容斥原理经典双指针
+1537. 最大得分（https://leetcode.com/problems/get-the-maximum-score/description/）双指针加线性DP或者拓扑排序做
+1712. 将数组分成三个子数组的方案数（https://leetcode.com/problems/ways-to-split-array-into-three-subarrays/description/）经典三指针，即快慢双指针维护满足条件的分割点个数
+986. 区间列表的交集（https://leetcode.com/problems/interval-list-intersections/description/）离散化差分，双指针归并
+948. 令牌放置（https://leetcode.com/problems/bag-of-tokens/description/）经典双指针贪心
+2953. Count Complete Substrings（https://leetcode.com/contest/weekly-contest-374/problems/count-complete-substrings/）two pointers|brute force
 
 ===================================洛谷===================================
 P2381 圆圆舞蹈（https://www.luogu.com.cn/problem/P2381）环形数组，滑动窗口双指针

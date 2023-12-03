@@ -5,7 +5,7 @@
 题目：
 
 ===================================力扣===================================
-6914. 翻倍以链表形式表示的数字（https://leetcode.cn/contest/weekly-contest-358/problems/double-a-number-represented-as-a-linked-list/）链表形式的数字与整数相乘
+6914. 翻倍以链表形式表示的数字（https://leetcode.com/contest/weekly-contest-358/problems/double-a-number-represented-as-a-linked-list/）链表形式的数字与整数相乘
 
 """
 from typing import Optional

@@ -6,10 +6,10 @@
 参考：60 分钟搞定图论中的 Tarjan 算法（https://zhuanlan.zhihu.com/p/101923309）
 
 ===================================力扣===================================
-1192. 查找集群内的关键连接（https://leetcode.cn/problems/critical-connections-in-a-network/）无向有环图求割边
-2360. 图中的最长环（https://leetcode.cn/problems/longest-cycle-in-a-graph/solution/by-liupengsay-4ff6/）经典求有向图最长环
-2204. 无向图中到环的距离（https://leetcode.cn/problems/distance-to-a-cycle-in-undirected-graph/description/）求无向图中每个点到环的距离
-1568. 使陆地分离的最少天数（https://leetcode.cn/problems/minimum-number-of-days-to-disconnect-island/solution/by-liupengsay-zd7w/）无向有环图求求割点数量
+1192. 查找集群内的关键连接（https://leetcode.com/problems/critical-connections-in-a-network/）无向有环图求割边
+2360. 图中的最长环（https://leetcode.com/problems/longest-cycle-in-a-graph/solution/by-liupengsay-4ff6/）经典求有向图最长环
+2204. 无向图中到环的距离（https://leetcode.com/problems/distance-to-a-cycle-in-undirected-graph/description/）求无向图中每个点到环的距离
+1568. 使陆地分离的最少天数（https://leetcode.com/problems/minimum-number-of-days-to-disconnect-island/solution/by-liupengsay-zd7w/）无向有环图求求割点数量
 
 ===================================洛谷===================================
 P3388 【模板】割点（割顶）（https://www.luogu.com.cn/problem/P3388）有自环与重边，求无向图割点

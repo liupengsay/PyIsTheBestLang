@@ -4,28 +4,28 @@
 题目：
 
 ===================================力扣===================================
-85. 最大矩形（https://leetcode.cn/problems/maximal-rectangle/）枚举矩形下边界，使用单调栈计算最大矩形面积 
-316. 去除重复字母（https://leetcode.cn/problems/remove-duplicate-letters/）经典单调栈结合哈希与计数进行计算
-321. 拼接最大数（https://leetcode.cn/problems/create-maximum-number/）经典枚举加单调栈
-1081. 不同字符的最小子序列（https://leetcode.cn/problems/smallest-subsequence-of-distinct-characters/）经典单调栈结合哈希与计数进行计算
-2334. 元素值大于变化阈值的子数组（https://leetcode.cn/problems/subarray-with-elements-greater-than-varying-threshold/）排序后枚举最小值左右两边的影响范围
-2262. 字符串的总引力（https://leetcode.cn/problems/total-appeal-of-a-string/）计算下一个或者上一个不同字符的位置
-2355. 你能拿走的最大图书数量（https://leetcode.cn/problems/maximum-number-of-books-you-can-take/）经典单调栈加线性DP，使用巧妙地转换
-255. 验证前序遍历序列二叉搜索树（https://leetcode.cn/problems/verify-preorder-sequence-in-binary-search-tree/）单调栈经典使用，判断数组是否为二叉搜索树的前序遍历，同样地可验证后序遍历
-654. 最大二叉树（https://leetcode.cn/problems/maximum-binary-tree/）经典单调栈应用题
-1130. 叶值的最小代价生成树（https://leetcode.cn/problems/minimum-cost-tree-from-leaf-values/）经典单调栈也可以使用区间DP
-1504. 统计全 1 子矩形（https://leetcode.cn/problems/count-submatrices-with-all-ones/）经典枚举上下边界单调栈计算全为 1 的子矩形个数
-1673. 找出最具竞争力的子序列（https://leetcode.cn/problems/find-the-most-competitive-subsequence/）经典单调栈贪心删除选取
-1776. 车队 II（https://leetcode.cn/problems/car-fleet-ii/）经典单调栈与并查集链表思想模拟计算
-1840. 最高建筑高度（https://leetcode.cn/problems/maximum-building-height/）经典单调栈贪心，也可以使用前后缀数组模拟计算
-1944. 队列中可以看到的人数（https://leetcode.cn/problems/number-of-visible-people-in-a-queue/）经典逆序单调栈
-1950. 所有子数组最小值中的最大值（https://leetcode.cn/problems/maximum-of-minimum-values-in-all-subarrays/）经典单调栈利用计算
-2030. 含特定字母的最小子序列（https://leetcode.cn/problems/smallest-k-length-subsequence-with-occurrences-of-a-letter/）经典单调栈删除获得满足条件的最小字典序使用
-2104. 子数组范围和（https://leetcode.cn/problems/sum-of-subarray-ranges/）经典单调栈计算贡献
-2282. 在一个网格中可以看到的人数（https://leetcode.cn/problems/number-of-people-that-can-be-seen-in-a-grid/）经典单调栈
-2289. 使数组按非递减顺序排列（https://leetcode.cn/problems/steps-to-make-array-non-decreasing/）经典单调栈模拟计算
-907. 子数组的最小值之和（https://leetcode.cn/problems/sum-of-subarray-minimums/）经典单调栈模拟计算
-2454. 下一个更大元素 IV（https://leetcode.cn/problems/next-greater-element-iv/description/）经典单调栈计算下下个更大元素
+85. 最大矩形（https://leetcode.com/problems/maximal-rectangle/）枚举矩形下边界，使用单调栈计算最大矩形面积 
+316. 去除重复字母（https://leetcode.com/problems/remove-duplicate-letters/）经典单调栈结合哈希与计数进行计算
+321. 拼接最大数（https://leetcode.com/problems/create-maximum-number/）经典枚举加单调栈
+1081. 不同字符的最小子序列（https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/）经典单调栈结合哈希与计数进行计算
+2334. 元素值大于变化阈值的子数组（https://leetcode.com/problems/subarray-with-elements-greater-than-varying-threshold/）排序后枚举最小值左右两边的影响范围
+2262. 字符串的总引力（https://leetcode.com/problems/total-appeal-of-a-string/）计算下一个或者上一个不同字符的位置
+2355. 你能拿走的最大图书数量（https://leetcode.com/problems/maximum-number-of-books-you-can-take/）经典单调栈加线性DP，使用巧妙地转换
+255. 验证前序遍历序列二叉搜索树（https://leetcode.com/problems/verify-preorder-sequence-in-binary-search-tree/）单调栈经典使用，判断数组是否为二叉搜索树的前序遍历，同样地可验证后序遍历
+654. 最大二叉树（https://leetcode.com/problems/maximum-binary-tree/）经典单调栈应用题
+1130. 叶值的最小代价生成树（https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/）经典单调栈也可以使用区间DP
+1504. 统计全 1 子矩形（https://leetcode.com/problems/count-submatrices-with-all-ones/）经典枚举上下边界单调栈计算全为 1 的子矩形个数
+1673. 找出最具竞争力的子序列（https://leetcode.com/problems/find-the-most-competitive-subsequence/）经典单调栈贪心删除选取
+1776. 车队 II（https://leetcode.com/problems/car-fleet-ii/）经典单调栈与并查集链表思想模拟计算
+1840. 最高建筑高度（https://leetcode.com/problems/maximum-building-height/）经典单调栈贪心，也可以使用前后缀数组模拟计算
+1944. 队列中可以看到的人数（https://leetcode.com/problems/number-of-visible-people-in-a-queue/）经典逆序单调栈
+1950. 所有子数组最小值中的最大值（https://leetcode.com/problems/maximum-of-minimum-values-in-all-subarrays/）经典单调栈利用计算
+2030. 含特定字母的最小子序列（https://leetcode.com/problems/smallest-k-length-subsequence-with-occurrences-of-a-letter/）经典单调栈删除获得满足条件的最小字典序使用
+2104. 子数组范围和（https://leetcode.com/problems/sum-of-subarray-ranges/）经典单调栈计算贡献
+2282. 在一个网格中可以看到的人数（https://leetcode.com/problems/number-of-people-that-can-be-seen-in-a-grid/）经典单调栈
+2289. 使数组按非递减顺序排列（https://leetcode.com/problems/steps-to-make-array-non-decreasing/）经典单调栈模拟计算
+907. 子数组的最小值之和（https://leetcode.com/problems/sum-of-subarray-minimums/）经典单调栈模拟计算
+2454. 下一个更大元素 IV（https://leetcode.com/problems/next-greater-element-iv/description/）经典单调栈计算下下个更大元素
 
 ===================================洛谷===================================
 P1950 长方形（https://www.luogu.com.cn/problem/P1950）通过枚举下边界，结合单调栈计算矩形个数

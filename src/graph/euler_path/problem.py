@@ -14,10 +14,10 @@
 
 题目：
 ===================================力扣===================================
-332. 重新安排行程（https://leetcode.cn/problems/reconstruct-itinerary/）欧拉回路模板题
-753. 破解保险箱（https://leetcode.cn/problems/cracking-the-safe/solution/er-xu-cheng-ming-jiu-xu-zui-by-liupengsa-lm77/）
-2097. 合法重新排列数对（https://leetcode.cn/problems/valid-arrangement-of-pairs/submissions/）欧拉路径模板题，注意确定首尾点
-1743. 从相邻元素对还原数组（https://leetcode.cn/problems/restore-the-array-from-adjacent-pairs/）无向图欧拉路径模板题, 离散化解决，也是弱化版本的欧拉路径可直接模拟遍历记录父节点
+332. 重新安排行程（https://leetcode.com/problems/reconstruct-itinerary/）欧拉回路模板题
+753. 破解保险箱（https://leetcode.com/problems/cracking-the-safe/solution/er-xu-cheng-ming-jiu-xu-zui-by-liupengsa-lm77/）
+2097. 合法重新排列数对（https://leetcode.com/problems/valid-arrangement-of-pairs/submissions/）欧拉路径模板题，注意确定首尾点
+1743. 从相邻元素对还原数组（https://leetcode.com/problems/restore-the-array-from-adjacent-pairs/）无向图欧拉路径模板题, 离散化解决，也是弱化版本的欧拉路径可直接模拟遍历记录父节点
 
 ===================================洛谷===================================
 P7771 【模板】欧拉路径（https://www.luogu.com.cn/problem/P7771）欧拉路径模板题

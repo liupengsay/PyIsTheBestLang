@@ -5,7 +5,7 @@
 题目：
 
 ===================================力扣===================================
-100110. 找到 Alice 和 Bob 可以相遇的建筑（https://leetcode.cn/contest/weekly-contest-372/problems/find-building-where-alice-and-bob-can-meet/）offline query after sorting
+100110. 找到 Alice 和 Bob 可以相遇的建筑（https://leetcode.com/contest/weekly-contest-372/problems/find-building-where-alice-and-bob-can-meet/）offline query after sorting
 
 ===================================洛谷===================================
 xx（xxx）xxxxxxxxxxxxxxxxxxxx

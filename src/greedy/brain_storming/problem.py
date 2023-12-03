@@ -5,47 +5,47 @@
 题目：
 
 ===================================力扣===================================
-134. 加油站（https://leetcode.cn/problems/gas-station/）经典贪心
-330. 按要求补齐数组（https://leetcode.cn/problems/patching-array/）经典贪心
-1199. 建造街区的最短时间（https://leetcode.cn/problems/minimum-time-to-build-blocks/）经典哈夫曼树Huffman Tree贪心从小到大合并，类似合并果子
-2499. 让数组不相等的最小总代价（https://leetcode.cn/problems/minimum-total-cost-to-make-arrays-unequal/）利用鸽巢原理贪心计算最小代价
-2449. 使数组相似的最少操作次数（https://leetcode.cn/problems/minimum-total-cost-to-make-arrays-unequal/）转换题意进行排序后用奇偶数贪心变换得到
-2448. 使数组相等的最小开销（https://leetcode.cn/problems/minimum-cost-to-make-array-equal/）利用中位数的特点变换到带权重广义下中位数的位置是最优的贪心进行增减
-2412. 完成所有交易的初始最少钱数（https://leetcode.cn/problems/minimum-money-required-before-transactions/）根据交易增长特点进行自定义排序
-2366. 将数组排序的最少替换次数（https://leetcode.cn/problems/minimum-replacements-to-sort-the-array/）倒序贪心不断分解得到满足要求且尽可能大的值
-2350. 不可能得到的最短骰子序列（https://leetcode.cn/problems/shortest-impossible-sequence-of-rolls/）脑筋急转弯本质上是求全排列出现的轮数
-2344. 使数组可以被整除的最少删除次数（https://leetcode.cn/problems/minimum-deletions-to-make-array-divisible/）利用最大公约数贪心删除最少的元素
-2136. 全部开花的最早一天（https://leetcode.cn/problems/earliest-possible-day-of-full-bloom/）贪心安排成长时间最长的先种
-2071. 你可以安排的最多任务数目（https://leetcode.cn/problems/maximum-number-of-tasks-you-can-assign/）使用贪心加二分进行极值判断
-517. 超级洗衣机（https://leetcode.cn/problems/super-washing-machines/）类似上题，计算最小的左右移动次数以及往左右的移动次数
-1798. 你能构造出连续值的最大数目（https://leetcode.cn/problems/maximum-number-of-consecutive-values-you-can-make/）看似背包实则贪心
-625. 最小因式分解（https://leetcode.cn/problems/minimum-factorization/）贪心进行因式分解，类似质因数分解
-2568. 最小无法得到的或值（https://leetcode.cn/problems/minimum-impossible-or/）脑筋急转弯贪心，可以根据暴力打表观察规律
-6361. 修改两个元素的最小分数（https://leetcode.cn/problems/minimum-score-by-changing-two-elements/）脑筋急转弯贪心
-6316. 重排数组以得到最大前缀分数（https://leetcode.cn/contest/weekly-contest-336/problems/rearrange-array-to-maximize-prefix-score/）贪心，加前缀和
-2436. 使子数组最大公约数大于一的最小分割数（https://leetcode.cn/problems/minimum-split-into-subarrays-with-gcd-greater-than-one/）贪心计算
-1029. 两地调度（https://leetcode.cn/problems/two-city-scheduling/）经典贪心题目，可使用举例两个计算、再进行归纳确定排序规则
-1353. 最多可以参加的会议数目（https://leetcode.cn/problems/maximum-number-of-events-that-can-be-attended/）经典枚举贪心
-1402. 做菜顺序（https://leetcode.cn/problems/reducing-dishes/）经典前缀和贪心
-1665. 完成所有任务的最少初始能量（https://leetcode.cn/problems/minimum-initial-energy-to-finish-tasks/）经典贪心不同项比较公式排序模拟，同CF1203F
-1675. 数组的最小偏移量（https://leetcode.cn/problems/minimize-deviation-in-array/）脑筋急转弯思维题贪心
-1686. 石子游戏 VI（https://leetcode.cn/problems/stone-game-vi/）经典贪心采用列式子确定排序方式
-1808. 好因子的最大数目（https://leetcode.cn/problems/maximize-number-of-nice-divisors/）按照模3的因子个数贪心处理，经典将和拆分成最大乘积
-1953. 你可以工作的最大周数（https://leetcode.cn/problems/maximum-number-of-weeks-for-which-you-can-work/）经典贪心只看最大值的影响
-2856. 删除数对后的最小数组长度（https://leetcode.cn/problems/minimum-array-length-after-pair-removals/）经典贪心只看最大值的影响
-858. 镜面反射（https://leetcode.cn/problems/mirror-reflection/description/）经典脑筋急转弯思维题
-1927. 求和游戏（https://leetcode.cn/problems/sum-game/description/）经典博弈思维题分类讨论
-2592. 最大化数组的伟大值（https://leetcode.cn/problems/maximize-greatness-of-an-array/）典型贪心排序后使用双指针计算
-1503. 所有蚂蚁掉下来前的最后一刻（https://leetcode.cn/problems/last-moment-before-all-ants-fall-out-of-a-plank/）经典脑筋急转弯题目，相撞不影响结果
-991. 坏了的计算器（https://leetcode.cn/problems/broken-calculator/）经典逆向计算贪心，偶数除2奇数加1
-2745. 构造最长的新字符串（https://leetcode.cn/problems/construct-the-longest-new-string/）脑筋急转弯贪心思维题
-1657. 确定两个字符串是否接近（https://leetcode.cn/problems/determine-if-two-strings-are-close/description/）脑筋急转弯贪心思维题
-2561. 重排水果（https://leetcode.cn/problems/rearranging-fruits/）思维题贪心交换
-843. 猜猜这个单词（https://leetcode.cn/problems/guess-the-word/）思维题贪心模拟交互
-1946. 子字符串突变后可能得到的最大整数（https://leetcode.cn/problems/largest-number-after-mutating-substring/description/）易错贪心
-1840. 最高建筑高度（https://leetcode.cn/problems/maximum-building-height/）经典单调栈贪心，也可以使用前后缀数组模拟计算
-1540. K 次操作转变字符串（https://leetcode.cn/problems/can-convert-string-in-k-moves/）贪心思维题，使用指针记录
-1121. 将数组分成几个递增序列（https://leetcode.cn/problems/divide-array-into-increasing-sequences/description/）经典思维题贪心，只考虑最大值的分组影响
+134. 加油站（https://leetcode.com/problems/gas-station/）经典贪心
+330. 按要求补齐数组（https://leetcode.com/problems/patching-array/）经典贪心
+1199. 建造街区的最短时间（https://leetcode.com/problems/minimum-time-to-build-blocks/）经典哈夫曼树Huffman Tree贪心从小到大合并，类似合并果子
+2499. 让数组不相等的最小总代价（https://leetcode.com/problems/minimum-total-cost-to-make-arrays-unequal/）利用鸽巢原理贪心计算最小代价
+2449. 使数组相似的最少操作次数（https://leetcode.com/problems/minimum-total-cost-to-make-arrays-unequal/）转换题意进行排序后用奇偶数贪心变换得到
+2448. 使数组相等的最小开销（https://leetcode.com/problems/minimum-cost-to-make-array-equal/）利用中位数的特点变换到带权重广义下中位数的位置是最优的贪心进行增减
+2412. 完成所有交易的初始最少钱数（https://leetcode.com/problems/minimum-money-required-before-transactions/）根据交易增长特点进行自定义排序
+2366. 将数组排序的最少替换次数（https://leetcode.com/problems/minimum-replacements-to-sort-the-array/）倒序贪心不断分解得到满足要求且尽可能大的值
+2350. 不可能得到的最短骰子序列（https://leetcode.com/problems/shortest-impossible-sequence-of-rolls/）脑筋急转弯本质上是求全排列出现的轮数
+2344. 使数组可以被整除的最少删除次数（https://leetcode.com/problems/minimum-deletions-to-make-array-divisible/）利用最大公约数贪心删除最少的元素
+2136. 全部开花的最早一天（https://leetcode.com/problems/earliest-possible-day-of-full-bloom/）贪心安排成长时间最长的先种
+2071. 你可以安排的最多任务数目（https://leetcode.com/problems/maximum-number-of-tasks-you-can-assign/）使用贪心加二分进行极值判断
+517. 超级洗衣机（https://leetcode.com/problems/super-washing-machines/）类似上题，计算最小的左右移动次数以及往左右的移动次数
+1798. 你能构造出连续值的最大数目（https://leetcode.com/problems/maximum-number-of-consecutive-values-you-can-make/）看似背包实则贪心
+625. 最小因式分解（https://leetcode.com/problems/minimum-factorization/）贪心进行因式分解，类似质因数分解
+2568. 最小无法得到的或值（https://leetcode.com/problems/minimum-impossible-or/）脑筋急转弯贪心，可以根据暴力打表观察规律
+6361. 修改两个元素的最小分数（https://leetcode.com/problems/minimum-score-by-changing-two-elements/）脑筋急转弯贪心
+6316. 重排数组以得到最大前缀分数（https://leetcode.com/contest/weekly-contest-336/problems/rearrange-array-to-maximize-prefix-score/）贪心，加前缀和
+2436. 使子数组最大公约数大于一的最小分割数（https://leetcode.com/problems/minimum-split-into-subarrays-with-gcd-greater-than-one/）贪心计算
+1029. 两地调度（https://leetcode.com/problems/two-city-scheduling/）经典贪心题目，可使用举例两个计算、再进行归纳确定排序规则
+1353. 最多可以参加的会议数目（https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended/）经典枚举贪心
+1402. 做菜顺序（https://leetcode.com/problems/reducing-dishes/）经典前缀和贪心
+1665. 完成所有任务的最少初始能量（https://leetcode.com/problems/minimum-initial-energy-to-finish-tasks/）经典贪心不同项比较公式排序模拟，同CF1203F
+1675. 数组的最小偏移量（https://leetcode.com/problems/minimize-deviation-in-array/）脑筋急转弯思维题贪心
+1686. 石子游戏 VI（https://leetcode.com/problems/stone-game-vi/）经典贪心采用列式子确定排序方式
+1808. 好因子的最大数目（https://leetcode.com/problems/maximize-number-of-nice-divisors/）按照模3的因子个数贪心处理，经典将和拆分成最大乘积
+1953. 你可以工作的最大周数（https://leetcode.com/problems/maximum-number-of-weeks-for-which-you-can-work/）经典贪心只看最大值的影响
+2856. 删除数对后的最小数组长度（https://leetcode.com/problems/minimum-array-length-after-pair-removals/）经典贪心只看最大值的影响
+858. 镜面反射（https://leetcode.com/problems/mirror-reflection/description/）经典脑筋急转弯思维题
+1927. 求和游戏（https://leetcode.com/problems/sum-game/description/）经典博弈思维题分类讨论
+2592. 最大化数组的伟大值（https://leetcode.com/problems/maximize-greatness-of-an-array/）典型贪心排序后使用双指针计算
+1503. 所有蚂蚁掉下来前的最后一刻（https://leetcode.com/problems/last-moment-before-all-ants-fall-out-of-a-plank/）经典脑筋急转弯题目，相撞不影响结果
+991. 坏了的计算器（https://leetcode.com/problems/broken-calculator/）经典逆向计算贪心，偶数除2奇数加1
+2745. 构造最长的新字符串（https://leetcode.com/problems/construct-the-longest-new-string/）脑筋急转弯贪心思维题
+1657. 确定两个字符串是否接近（https://leetcode.com/problems/determine-if-two-strings-are-close/description/）脑筋急转弯贪心思维题
+2561. 重排水果（https://leetcode.com/problems/rearranging-fruits/）思维题贪心交换
+843. 猜猜这个单词（https://leetcode.com/problems/guess-the-word/）思维题贪心模拟交互
+1946. 子字符串突变后可能得到的最大整数（https://leetcode.com/problems/largest-number-after-mutating-substring/description/）易错贪心
+1840. 最高建筑高度（https://leetcode.com/problems/maximum-building-height/）经典单调栈贪心，也可以使用前后缀数组模拟计算
+1540. K 次操作转变字符串（https://leetcode.com/problems/can-convert-string-in-k-moves/）贪心思维题，使用指针记录
+1121. 将数组分成几个递增序列（https://leetcode.com/problems/divide-array-into-increasing-sequences/description/）经典思维题贪心，只考虑最大值的分组影响
 
 ===================================洛谷===================================
 P1031 均分纸牌（https://www.luogu.com.cn/problem/P1031）贪心计算每个点的前缀和流量，需要补齐或者输出时进行计数

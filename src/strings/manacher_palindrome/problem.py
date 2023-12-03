@@ -4,12 +4,12 @@
 题目：
 
 ===================================力扣===================================
-5. 最长回文子串（https://leetcode.cn/problems/longest-palindromic-substring/）计算字符串的最长回文连续子串
-132. 分割回文串 II（https://leetcode.cn/problems/palindrome-partitioning-ii/）经典线性 DP 与马拉车判断以每个位置为结尾的回文串
-214. 最短回文串（https://leetcode.cn/problems/shortest-palindrome/）计算字符串前缀最长回文子串
-1960. 两个回文子字符串长度的最大乘积（https://leetcode.cn/problems/maximum-product-of-the-length-of-two-palindromic-substrings/）利用马拉车求解每个位置前后最长回文子串
-2472. 不重叠回文子字符串的最大数目（https://leetcode.cn/problems/maximum-number-of-non-overlapping-palindrome-substrings/）预处理线性回文子串 DP 优化外加结果计算线性 DP 也可以使用马拉车回文串获取回文信息
-1745. 分割回文串 IV（https://leetcode.cn/problems/palindrome-partitioning-iv/description/）经典矩阵DP判断是否为回文子串，或者使用马拉车然后枚举
+5. 最长回文子串（https://leetcode.com/problems/longest-palindromic-substring/）计算字符串的最长回文连续子串
+132. 分割回文串 II（https://leetcode.com/problems/palindrome-partitioning-ii/）经典线性 DP 与马拉车判断以每个位置为结尾的回文串
+214. 最短回文串（https://leetcode.com/problems/shortest-palindrome/）计算字符串前缀最长回文子串
+1960. 两个回文子字符串长度的最大乘积（https://leetcode.com/problems/maximum-product-of-the-length-of-two-palindromic-substrings/）利用马拉车求解每个位置前后最长回文子串
+2472. 不重叠回文子字符串的最大数目（https://leetcode.com/problems/maximum-number-of-non-overlapping-palindrome-substrings/）预处理线性回文子串 DP 优化外加结果计算线性 DP 也可以使用马拉车回文串获取回文信息
+1745. 分割回文串 IV（https://leetcode.com/problems/palindrome-partitioning-iv/description/）经典矩阵DP判断是否为回文子串，或者使用马拉车然后枚举
 
 ===================================洛谷===================================
 P4555 最长双回文串（https://www.luogu.com.cn/problem/P4555）计算以当前索引为开头以及结尾的最长回文子串

@@ -4,9 +4,9 @@
 题目：
 
 ===================================力扣===================================
-1820. 最多邀请的个数（https://leetcode.cn/problems/maximum-number-of-accepted-invitations/）使用匈牙利算法或者二分图最大权KM算法解决
-1066. 校园自行车分配 II（https://leetcode.cn/problems/campus-bikes-ii/）二分图最小权KM算法解决
-1947. 最大兼容性评分和（https://leetcode.cn/problems/maximum-compatibility-score-sum/）二分图最大权匹配，也可用状压DP
+1820. 最多邀请的个数（https://leetcode.com/problems/maximum-number-of-accepted-invitations/）使用匈牙利算法或者二分图最大权KM算法解决
+1066. 校园自行车分配 II（https://leetcode.com/problems/campus-bikes-ii/）二分图最小权KM算法解决
+1947. 最大兼容性评分和（https://leetcode.com/problems/maximum-compatibility-score-sum/）二分图最大权匹配，也可用状压DP
 
 ===================================洛谷===================================
 P3386 【模板】二分图最大匹配（https://www.luogu.com.cn/problem/P3386）二分图最大匹配

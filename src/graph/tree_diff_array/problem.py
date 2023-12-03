@@ -5,8 +5,8 @@
 题目：
 
 ===================================力扣===================================
-1483. 树节点的第 K 个祖先（https://leetcode.cn/problems/kth-ancestor-of-a-tree-node/）动态规划与二进制跳转维护祖先信息，类似ST表的思想与树状数组的思想，经典LCA应用题
-2646. 最小化旅行的价格总和（https://leetcode.cn/problems/minimize-the-total-price-of-the-trips/）离线LCA与树上差分计数，再使用树形DP计算
+1483. 树节点的第 K 个祖先（https://leetcode.com/problems/kth-ancestor-of-a-tree-node/）动态规划与二进制跳转维护祖先信息，类似ST表的思想与树状数组的思想，经典LCA应用题
+2646. 最小化旅行的价格总和（https://leetcode.com/problems/minimize-the-total-price-of-the-trips/）离线LCA与树上差分计数，再使用树形DP计算
 
 ===================================洛谷===================================
 P3379 【模板】最近公共祖先（LCA）（https://www.luogu.com.cn/problem/P3379）最近公共祖先模板题

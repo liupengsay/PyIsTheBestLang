@@ -4,21 +4,21 @@
 题目：
 
 ===================================力扣===================================
-1036. 逃离大迷宫（https://leetcode.cn/problems/escape-a-large-maze/）经典带边界的BFS和离散化BFS两种解法
-2493. 将节点分成尽可能多的组（https://leetcode.cn/problems/divide-nodes-into-the-maximum-number-of-groups/）利用并查集和广度优先搜索进行连通块分组并枚举最佳方案，也就是染色法判断是否可以形成二分图
-2290. 到达角落需要移除障碍物的最小数（https://leetcode.cn/problems/minimum-obstacle-removal-to-reach-corner/）使用0-1 BFS进行优化计算最小代价
-1368. 使网格图至少有一条有效路径的最小代价（https://leetcode.cn/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/）使用0-1 BFS进行优化计算最小代价
-2258. 逃离火灾（https://leetcode.cn/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/）使用二分查找加双源BFS进行模拟
-2092. 找出知晓秘密的所有专家（https://leetcode.cn/problems/find-all-people-with-secret/）按照时间排序，在同一时间进行BFS扩散
-2608. 图中的最短环（https://leetcode.cn/contest/biweekly-contest-101/problems/shortest-cycle-in-a-graph/）使用BFS求无向图的最短环，还可以删除边计算两点最短路成为环，或者以任意边为起点，逐渐加边
-1197. 进击的骑士（https://leetcode.cn/problems/minimum-knight-moves/?envType=study-plan-v2&id=premium-algo-100）双向BFS，或者经典BFS确定边界
-1654. 到家的最少跳跃次数（https://leetcode.cn/problems/minimum-jumps-to-reach-home/）经典BFS，证明确定上界模拟
-1926. 迷宫中离入口最近的出口（https://leetcode.cn/problems/nearest-exit-from-entrance-in-maze/）经典双端队列01BFS原地哈希
-909. 蛇梯棋（https://leetcode.cn/problems/snakes-and-ladders/）经典01BFS模拟
-1210. 穿过迷宫的最少移动次数（https://leetcode.cn/problems/minimum-moves-to-reach-target-with-rotations/description/）经典01BFS模拟
-1298. 你能从盒子里获得的最大糖果数（https://leetcode.cn/problems/maximum-candies-you-can-get-from-boxes/）经典BFS
-928. 尽量减少恶意软件的传播 II（https://leetcode.cn/problems/minimize-malware-spread-ii/description/）枚举起始点计算BFS
-994. 腐烂的橘子（https://leetcode.cn/problems/rotting-oranges/description/）经典BFS使用队列模拟
+1036. 逃离大迷宫（https://leetcode.com/problems/escape-a-large-maze/）经典带边界的BFS和离散化BFS两种解法
+2493. 将节点分成尽可能多的组（https://leetcode.com/problems/divide-nodes-into-the-maximum-number-of-groups/）利用并查集和广度优先搜索进行连通块分组并枚举最佳方案，也就是染色法判断是否可以形成二分图
+2290. 到达角落需要移除障碍物的最小数（https://leetcode.com/problems/minimum-obstacle-removal-to-reach-corner/）使用0-1 BFS进行优化计算最小代价
+1368. 使网格图至少有一条有效路径的最小代价（https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/）使用0-1 BFS进行优化计算最小代价
+2258. 逃离火灾（https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/）使用二分查找加双源BFS进行模拟
+2092. 找出知晓秘密的所有专家（https://leetcode.com/problems/find-all-people-with-secret/）按照时间排序，在同一时间进行BFS扩散
+2608. 图中的最短环（https://leetcode.com/contest/biweekly-contest-101/problems/shortest-cycle-in-a-graph/）使用BFS求无向图的最短环，还可以删除边计算两点最短路成为环，或者以任意边为起点，逐渐加边
+1197. 进击的骑士（https://leetcode.com/problems/minimum-knight-moves/?envType=study-plan-v2&id=premium-algo-100）双向BFS，或者经典BFS确定边界
+1654. 到家的最少跳跃次数（https://leetcode.com/problems/minimum-jumps-to-reach-home/）经典BFS，证明确定上界模拟
+1926. 迷宫中离入口最近的出口（https://leetcode.com/problems/nearest-exit-from-entrance-in-maze/）经典双端队列01BFS原地哈希
+909. 蛇梯棋（https://leetcode.com/problems/snakes-and-ladders/）经典01BFS模拟
+1210. 穿过迷宫的最少移动次数（https://leetcode.com/problems/minimum-moves-to-reach-target-with-rotations/description/）经典01BFS模拟
+1298. 你能从盒子里获得的最大糖果数（https://leetcode.com/problems/maximum-candies-you-can-get-from-boxes/）经典BFS
+928. 尽量减少恶意软件的传播 II（https://leetcode.com/problems/minimize-malware-spread-ii/description/）枚举起始点计算BFS
+994. 腐烂的橘子（https://leetcode.com/problems/rotting-oranges/description/）经典BFS使用队列模拟
 
 ===================================洛谷===================================
 P1747 好奇怪的游戏（https://www.luogu.com.cn/problem/P1747）双向BFS搜索最短距离

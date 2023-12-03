@@ -7,8 +7,8 @@
 题目：
 
 ===================================力扣===================================
-2642. 设计可以求最短路径的图类（https://leetcode.cn/problems/design-graph-with-shortest-path-calculator/）Floyd动态更新最短路
-1462. 课程表 IV（https://leetcode.cn/problems/course-schedule-iv/）可考虑使用传递闭包Floyd求解
+2642. 设计可以求最短路径的图类（https://leetcode.com/problems/design-graph-with-shortest-path-calculator/）Floyd动态更新最短路
+1462. 课程表 IV（https://leetcode.com/problems/course-schedule-iv/）可考虑使用传递闭包Floyd求解
 
 ===================================洛谷===================================
 P1119 灾后重建 （https://www.luogu.com.cn/problem/P1119）离线查询加Floyd动态更新经过中转站的起终点距离，修复增加维护的是点

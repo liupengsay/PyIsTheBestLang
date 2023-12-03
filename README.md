@@ -48,7 +48,7 @@ This project is orgnaized by the following structure
 
 # Profile
 Welcome to follow or star in my profile on different platform
-> [leetcode](https://leetcode.cn/u/liupengsay/)
+> [leetcode](https://leetcode.com/u/liupengsay/)
 > [codeforces](https://codeforces.com/profile/liupengsay)
 > [atcoder](https://atcoder.jp/users/liupengsay)
 > [luogu](https://www.luogu.com.cn/user/739032)

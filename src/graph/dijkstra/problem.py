@@ -4,26 +4,26 @@
 题目：
 
 ===================================力扣===================================
-42. 接雨水（https://leetcode.cn/problems/trapping-rain-water/）一维接雨水，计算前后缀最大值的最小值再减去自身值
-407. 接雨水 II（https://leetcode.cn/problems/trapping-rain-water-ii/）经典最短路变种问题，求解路径上边权的最大值
-787. K 站中转内最便宜的航班（https://leetcode.cn/problems/cheapest-flights-within-k-stops/）使用带约束的最短路计算最终结果
-1293. 网格中的最短路径（https://leetcode.cn/problems/shortest-path-in-a-grid-with-obstacles-elimination/）使用带约束的最短路计算最终结果
-2203. 得到要求路径的最小带权子图（https://leetcode.cn/problems/minimum-weighted-subgraph-with-the-required-paths/）使用三个Dijkstra最短路获得结果
-2258. 逃离火灾（https://leetcode.cn/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/）使用双源BFS计算等待时间后最短路求出路径上最小等待时间的最大值
-2290. 到达角落需要移除障碍物的最小数（https://leetcode.cn/problems/minimum-obstacle-removal-to-reach-corner/）计算最小代价
-499. 迷宫 III（https://leetcode.cn/problems/the-maze-iii/?envType=study-plan-v2&id=premium-algo-100）两个参数变量的最短路
-6442. 修改图中的边权（https://leetcode.cn/problems/modify-graph-edge-weights/）经典两遍最短路，贪心动态更新路径权值
-2714. 找到最短路径的 K 次跨越（https://leetcode.cn/problems/find-shortest-path-with-k-hops/）经典带约束的最短路，也可以使用分层Dijkstra求解
-2699. 修改图中的边权（https://leetcode.cn/problems/modify-graph-edge-weights/）经典Dijkstra最短路贪心应用
-1786. 从第一个节点出发到最后一个节点的受限路径数（https://leetcode.cn/problems/number-of-restricted-paths-from-first-to-last-node/）经典dijkstra受限最短路计数（类似最短路计数），也可以将无向图转换为DAG问题
-1928. 规定时间内到达终点的最小花费（https://leetcode.cn/problems/minimum-cost-to-reach-destination-in-time/）经典Dijkstra带约束的最短路，也可根据无后效性类似Floyd的动态规划求解
-LCP 75. 传送卷轴（https://leetcode.cn/problems/rdmXM7/）首先BFS之后计算最大值最小的最短路
-1976. 到达目的地的方案数（https://leetcode.cn/problems/number-of-ways-to-arrive-at-destination/）经典Dijkstra最短路计数模板题
-2045. 到达目的地的第二短时间（https://leetcode.cn/problems/second-minimum-time-to-reach-destination/）严格次短路计算模板题，距离更新时需要注意变化
-2093. 前往目标城市的最小费用（https://leetcode.cn/problems/minimum-cost-to-reach-city-with-discounts/）经典Dijkstra带约束的最短路
-882. 细分图中的可到达节点（https://leetcode.cn/problems/reachable-nodes-in-subdivided-graph/description/）Dijkstra模板题
-2577. 在网格图中访问一个格子的最少时间（https://leetcode.cn/problems/minimum-time-to-visit-a-cell-in-a-grid/）Dijkstra经典变形二维矩阵题目
-2065. 最大化一张图中的路径价值（https://leetcode.cn/problems/maximum-path-quality-of-a-graph/）经典回溯，正解使用Dijkstra跑最短路剪枝
+42. 接雨水（https://leetcode.com/problems/trapping-rain-water/）一维接雨水，计算前后缀最大值的最小值再减去自身值
+407. 接雨水 II（https://leetcode.com/problems/trapping-rain-water-ii/）经典最短路变种问题，求解路径上边权的最大值
+787. K 站中转内最便宜的航班（https://leetcode.com/problems/cheapest-flights-within-k-stops/）使用带约束的最短路计算最终结果
+1293. 网格中的最短路径（https://leetcode.com/problems/shortest-path-in-a-grid-with-obstacles-elimination/）使用带约束的最短路计算最终结果
+2203. 得到要求路径的最小带权子图（https://leetcode.com/problems/minimum-weighted-subgraph-with-the-required-paths/）使用三个Dijkstra最短路获得结果
+2258. 逃离火灾（https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/）使用双源BFS计算等待时间后最短路求出路径上最小等待时间的最大值
+2290. 到达角落需要移除障碍物的最小数（https://leetcode.com/problems/minimum-obstacle-removal-to-reach-corner/）计算最小代价
+499. 迷宫 III（https://leetcode.com/problems/the-maze-iii/?envType=study-plan-v2&id=premium-algo-100）两个参数变量的最短路
+6442. 修改图中的边权（https://leetcode.com/problems/modify-graph-edge-weights/）经典两遍最短路，贪心动态更新路径权值
+2714. 找到最短路径的 K 次跨越（https://leetcode.com/problems/find-shortest-path-with-k-hops/）经典带约束的最短路，也可以使用分层Dijkstra求解
+2699. 修改图中的边权（https://leetcode.com/problems/modify-graph-edge-weights/）经典Dijkstra最短路贪心应用
+1786. 从第一个节点出发到最后一个节点的受限路径数（https://leetcode.com/problems/number-of-restricted-paths-from-first-to-last-node/）经典dijkstra受限最短路计数（类似最短路计数），也可以将无向图转换为DAG问题
+1928. 规定时间内到达终点的最小花费（https://leetcode.com/problems/minimum-cost-to-reach-destination-in-time/）经典Dijkstra带约束的最短路，也可根据无后效性类似Floyd的动态规划求解
+LCP 75. 传送卷轴（https://leetcode.com/problems/rdmXM7/）首先BFS之后计算最大值最小的最短路
+1976. 到达目的地的方案数（https://leetcode.com/problems/number-of-ways-to-arrive-at-destination/）经典Dijkstra最短路计数模板题
+2045. 到达目的地的第二短时间（https://leetcode.com/problems/second-minimum-time-to-reach-destination/）严格次短路计算模板题，距离更新时需要注意变化
+2093. 前往目标城市的最小费用（https://leetcode.com/problems/minimum-cost-to-reach-city-with-discounts/）经典Dijkstra带约束的最短路
+882. 细分图中的可到达节点（https://leetcode.com/problems/reachable-nodes-in-subdivided-graph/description/）Dijkstra模板题
+2577. 在网格图中访问一个格子的最少时间（https://leetcode.com/problems/minimum-time-to-visit-a-cell-in-a-grid/）Dijkstra经典变形二维矩阵题目
+2065. 最大化一张图中的路径价值（https://leetcode.com/problems/maximum-path-quality-of-a-graph/）经典回溯，正解使用Dijkstra跑最短路剪枝
 
 ===================================洛谷===================================
 P3371 单源最短路径（弱化版）（https://www.luogu.com.cn/problem/P3371）最短路模板题

@@ -4,26 +4,26 @@
 功能：利用单调性确定最优选择，通常可以使用SortedList、Bisect，还可以使用精度控制二分
 题目：xx（xx）
 ===================================力扣===================================
-4. 寻找两个正序数组的中位数（https://leetcode.cn/problems/median-of-two-sorted-arrays/）经典二分思想查找题
-81. 搜索旋转排序数组 II（https://leetcode.cn/problems/search-in-rotated-sorted-array-ii/）经典有重复数字的旋转数组
-154. 寻找旋转排序数组中的最小值 II（https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array-ii/）经典有重复数字的旋转数组
-162. 寻找峰值（https://leetcode.cn/problems/find-peak-element/）经典二分思想查找题
-2426. 满足不等式的数对数目（https://leetcode.cn/problems/number-of-pairs-satisfying-inequality/）根据不等式变换和有序集合进行二分查找
-2179. 统计数组中好三元组数目（https://leetcode.cn/problems/count-good-triplets-in-an-array/）维护区间范围内的个数
-2141. 同时运行 N 台电脑的最长时间（https://leetcode.cn/problems/maximum-running-time-of-n-computers/）贪心选择最大的 N 个电池作为基底，然后二分确定在其余电池的加持下可以运行的最长时间
-2102. 序列顺序查询（https://leetcode.cn/problems/sequentially-ordinal-rank-tracker/）使用有序集合维护优先级姓名实时查询
-2563. 统计公平数对的数目（https://leetcode.cn/problems/count-the-number-of-fair-pairs/）使用二分查找确定范围个数
-2604. 吃掉所有谷子的最短时间（https://leetcode.cn/problems/minimum-time-to-eat-all-grains/）二分加指针贪心 check
-1201. 丑数 III（https://leetcode.cn/problems/ugly-number-iii/）二分加容斥原理计数
-1739. 放置盒子（https://leetcode.cn/problems/building-boxes/）可推公式二分也可数学方法计算
-1889. 装包裹的最小浪费空间（https://leetcode.cn/problems/minimum-space-wasted-from-packaging/）排序加前缀和预处理与贪心二分
-2071. 你可以安排的最多任务数目（https://leetcode.cn/problems/maximum-number-of-tasks-you-can-assign/）经典二分加贪心
-2594. 修车的最少时间（https://leetcode.cn/problems/minimum-time-to-repair-cars/）经典二分
-2517. 礼盒的最大甜蜜度（https://leetcode.cn/problems/maximum-tastiness-of-candy-basket/）经典二分
-1482. 制作 m 束花所需的最少天数（https://leetcode.cn/problems/minimum-number-of-days-to-make-m-bouquets/）经典二分
-2528. 最大化城市的最小供电站数目（https://leetcode.cn/problems/maximize-the-minimum-powered-city/description/）经典二分使用前缀和差分数组贪心验证
-2560. 打家劫舍 IV（https://leetcode.cn/problems/house-robber-iv/）经典二分DP来check
-2234. 花园的最大总美丽值（https://leetcode.cn/problems/maximum-total-beauty-of-the-gardens/description/）前缀和加二分枚举
+4. 寻找两个正序数组的中位数（https://leetcode.com/problems/median-of-two-sorted-arrays/）经典二分思想查找题
+81. 搜索旋转排序数组 II（https://leetcode.com/problems/search-in-rotated-sorted-array-ii/）经典有重复数字的旋转数组
+154. 寻找旋转排序数组中的最小值 II（https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/）经典有重复数字的旋转数组
+162. 寻找峰值（https://leetcode.com/problems/find-peak-element/）经典二分思想查找题
+2426. 满足不等式的数对数目（https://leetcode.com/problems/number-of-pairs-satisfying-inequality/）根据不等式变换和有序集合进行二分查找
+2179. 统计数组中好三元组数目（https://leetcode.com/problems/count-good-triplets-in-an-array/）维护区间范围内的个数
+2141. 同时运行 N 台电脑的最长时间（https://leetcode.com/problems/maximum-running-time-of-n-computers/）贪心选择最大的 N 个电池作为基底，然后二分确定在其余电池的加持下可以运行的最长时间
+2102. 序列顺序查询（https://leetcode.com/problems/sequentially-ordinal-rank-tracker/）使用有序集合维护优先级姓名实时查询
+2563. 统计公平数对的数目（https://leetcode.com/problems/count-the-number-of-fair-pairs/）使用二分查找确定范围个数
+2604. 吃掉所有谷子的最短时间（https://leetcode.com/problems/minimum-time-to-eat-all-grains/）二分加指针贪心 check
+1201. 丑数 III（https://leetcode.com/problems/ugly-number-iii/）二分加容斥原理计数
+1739. 放置盒子（https://leetcode.com/problems/building-boxes/）可推公式二分也可数学方法计算
+1889. 装包裹的最小浪费空间（https://leetcode.com/problems/minimum-space-wasted-from-packaging/）排序加前缀和预处理与贪心二分
+2071. 你可以安排的最多任务数目（https://leetcode.com/problems/maximum-number-of-tasks-you-can-assign/）经典二分加贪心
+2594. 修车的最少时间（https://leetcode.com/problems/minimum-time-to-repair-cars/）经典二分
+2517. 礼盒的最大甜蜜度（https://leetcode.com/problems/maximum-tastiness-of-candy-basket/）经典二分
+1482. 制作 m 束花所需的最少天数（https://leetcode.com/problems/minimum-number-of-days-to-make-m-bouquets/）经典二分
+2528. 最大化城市的最小供电站数目（https://leetcode.com/problems/maximize-the-minimum-powered-city/description/）经典二分使用前缀和差分数组贪心验证
+2560. 打家劫舍 IV（https://leetcode.com/problems/house-robber-iv/）经典二分DP来check
+2234. 花园的最大总美丽值（https://leetcode.com/problems/maximum-total-beauty-of-the-gardens/description/）前缀和加二分枚举
 
 ===================================洛谷===================================
 P1577 切绳子（https://www.luogu.com.cn/problem/P1577）数学整除向下取整与二分

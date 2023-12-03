@@ -4,8 +4,8 @@
 题目：
 
 ===================================力扣===================================
-218. 天际线问题（https://leetcode.cn/problems/the-skyline-problem/）扫描线计算建筑物的轮廓
-850. 矩形面积 II（https://leetcode.cn/problems/rectangle-area-ii/）扫描线计算覆盖面积，线段树加离散化应该有 nlogn 的解法
+218. 天际线问题（https://leetcode.com/problems/the-skyline-problem/）扫描线计算建筑物的轮廓
+850. 矩形面积 II（https://leetcode.com/problems/rectangle-area-ii/）扫描线计算覆盖面积，线段树加离散化应该有 nlogn 的解法
 
 ===================================洛谷===================================
 P6265 [COCI2014-2015#3] SILUETA（https://www.luogu.com.cn/problem/P6265）计算建筑物的扫描线轮廓

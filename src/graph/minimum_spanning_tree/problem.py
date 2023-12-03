@@ -8,9 +8,9 @@ Prim在稠密图中比Kruskal优，在稀疏图中比Kruskal劣。Prim是以更�
 题目：
 
 ===================================力扣===================================
-1489. 找到最小生成树里的关键边和伪关键边（https://leetcode.cn/problems/find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree/）计算最小生成树的关键边与伪关键边
-1584. 连接所有点的最小费用（https://leetcode.cn/problems/min-cost-to-connect-all-points/）稠密图使用 prim 生成最小生成树
-1724. 检查边长度限制的路径是否存在 II（https://leetcode.cn/problems/checking-existence-of-edge-length-limited-paths-ii/）经典使用最小生成树与倍增求解任意点对之间简单路径的最大边权值
+1489. 找到最小生成树里的关键边和伪关键边（https://leetcode.com/problems/find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree/）计算最小生成树的关键边与伪关键边
+1584. 连接所有点的最小费用（https://leetcode.com/problems/min-cost-to-connect-all-points/）稠密图使用 prim 生成最小生成树
+1724. 检查边长度限制的路径是否存在 II（https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths-ii/）经典使用最小生成树与倍增求解任意点对之间简单路径的最大边权值
 
 ===================================洛谷===================================
 P3366 最小生成树（https://www.luogu.com.cn/problem/P3366）最小生成树裸题

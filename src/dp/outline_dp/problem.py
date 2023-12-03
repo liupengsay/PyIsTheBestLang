@@ -5,9 +5,9 @@
 题目：
 
 ===================================力扣===================================
-1659. 最大化网格幸福感（https://leetcode.cn/problems/maximize-grid-happiness/）轮廓线 DP 经典题目
-1349. 参加考试的最大学生数（https://leetcode.cn/problems/maximum-students-taking-exam/）轮廓线 DP 经典题目
-LCP 04. 覆盖（https://leetcode.cn/problems/broken-board-dominoes/）轮廓线 DP 经典题目
+1659. 最大化网格幸福感（https://leetcode.com/problems/maximize-grid-happiness/）轮廓线 DP 经典题目
+1349. 参加考试的最大学生数（https://leetcode.com/problems/maximum-students-taking-exam/）轮廓线 DP 经典题目
+LCP 04. 覆盖（https://leetcode.com/problems/broken-board-dominoes/）轮廓线 DP 经典题目
 
 ===================================洛谷===================================
 xx（xxx）xxxxxxxxxxxxxxxxxxxx

@@ -6,20 +6,20 @@
 题目：
 
 ===================================力扣===================================
-45. 跳跃游戏 II（https://leetcode.cn/problems/jump-game-ii/）转换为最少区间覆盖问题
-452. 用最少数量的箭引爆气球（https://leetcode.cn/problems/minimum-number-of-arrows-to-burst-balloons/）贪心等价为最多不想交的区间
-1326. 灌溉花园的最少水龙头数目（https://leetcode.cn/problems/minimum-number-of-taps-to-open-to-water-a-garden/）转换为最少区间覆盖问题
-1024. 视频拼接（https://leetcode.cn/problems/video-stitching/）转换为最少区间覆盖问题
-1520. 最多的不重叠子字符串（https://leetcode.cn/problems/maximum-number-of-non-overlapping-substrings/）转化为最多不相交区间进行处理
-1353. 最多可以参加的会议数目（https://leetcode.cn/problems/maximum-number-of-events-that-can-be-attended/）贪心选取最多的点，使得每个点一一对应一个区间
-2406. 将区间分为最少组数（https://leetcode.cn/problems/divide-intervals-into-minimum-number-of-groups/）将区间分为不相交的最少组数使用贪心与差分数组计数解决
-435. 无重叠区间（https://leetcode.cn/problems/non-overlapping-intervals/）最多不相交的区间，使用贪心或者二分DP
-763. 划分字母区间（https://leetcode.cn/problems/partition-labels/）经典将区间合并为不相交的区间
-6313. 统计将重叠区间合并成组的方案数（https://leetcode.cn/contest/biweekly-contest-99/problems/count-ways-to-group-overlapping-ranges/）经典将区间合并为不相交的区间，再使用快速幂计数
-2345. 寻找可见山的数量（https://leetcode.cn/problems/finding-the-number-of-visible-mountains/）二维偏序，转换为区间包含问题
-757. 设置交集大小至少为2（https://leetcode.cn/problems/set-intersection-size-at-least-two/）贪心选取最少的点集合，使得每个区间包含其中至少两个点
-2589. 完成所有任务的最少时间（https://leetcode.cn/problems/minimum-time-to-complete-all-tasks/）贪心选取最少的点集合，使得每个区间包含其中要求的k个点
-LCP 32. 批量处理任务（https://leetcode.cn/problems/t3fKg1/）贪心选取最少的点集合，使得每个区间包含其中要求的k个点
+45. 跳跃游戏 II（https://leetcode.com/problems/jump-game-ii/）转换为最少区间覆盖问题
+452. 用最少数量的箭引爆气球（https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/）贪心等价为最多不想交的区间
+1326. 灌溉花园的最少水龙头数目（https://leetcode.com/problems/minimum-number-of-taps-to-open-to-water-a-garden/）转换为最少区间覆盖问题
+1024. 视频拼接（https://leetcode.com/problems/video-stitching/）转换为最少区间覆盖问题
+1520. 最多的不重叠子字符串（https://leetcode.com/problems/maximum-number-of-non-overlapping-substrings/）转化为最多不相交区间进行处理
+1353. 最多可以参加的会议数目（https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended/）贪心选取最多的点，使得每个点一一对应一个区间
+2406. 将区间分为最少组数（https://leetcode.com/problems/divide-intervals-into-minimum-number-of-groups/）将区间分为不相交的最少组数使用贪心与差分数组计数解决
+435. 无重叠区间（https://leetcode.com/problems/non-overlapping-intervals/）最多不相交的区间，使用贪心或者二分DP
+763. 划分字母区间（https://leetcode.com/problems/partition-labels/）经典将区间合并为不相交的区间
+6313. 统计将重叠区间合并成组的方案数（https://leetcode.com/contest/biweekly-contest-99/problems/count-ways-to-group-overlapping-ranges/）经典将区间合并为不相交的区间，再使用快速幂计数
+2345. 寻找可见山的数量（https://leetcode.com/problems/finding-the-number-of-visible-mountains/）二维偏序，转换为区间包含问题
+757. 设置交集大小至少为2（https://leetcode.com/problems/set-intersection-size-at-least-two/）贪心选取最少的点集合，使得每个区间包含其中至少两个点
+2589. 完成所有任务的最少时间（https://leetcode.com/problems/minimum-time-to-complete-all-tasks/）贪心选取最少的点集合，使得每个区间包含其中要求的k个点
+LCP 32. 批量处理任务（https://leetcode.com/problems/t3fKg1/）贪心选取最少的点集合，使得每个区间包含其中要求的k个点
 
 ===================================洛谷===================================
 P2082 区间覆盖（加强版）（https://www.luogu.com.cn/problem/P2082）经典区间合并确定覆盖范围

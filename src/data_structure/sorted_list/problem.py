@@ -6,16 +6,16 @@
 题目：xx（xx）
 
 ===================================力扣===================================
-295. 数据流的中位数（https://leetcode.cn/problems/find-median-from-data-stream/）使用一个SortedList即可
-2426 满足不等式的数对数目（https://leetcode.cn/problems/number-of-pairs-satisfying-inequality/）根据不等式变换和有序集合进行二分查找
-2179 统计数组中好三元组数目（https://leetcode.cn/problems/count-good-triplets-in-an-array/）维护区间范围内的个数
-2141 同时运行 N 台电脑的最长时间（https://leetcode.cn/problems/maximum-running-time-of-n-computers/）贪心选择最大的 N 个电池作为基底，然后二分确定在其余电池的加持下可以运行的最长时间
-2102 序列顺序查询（https://leetcode.cn/problems/sequentially-ordinal-rank-tracker/）使用有序集合维护优先级姓名实时查询
-2519. Count the Number of K-Big Indices（https://leetcode.cn/problems/count-the-number-of-k-big-indices/）使用有序集合维护计算数量
-2276. 统计区间中的整数数目（https://leetcode.cn/problems/count-integers-in-intervals/）动态开点线段树模板题，维护区间并集的长度，也可使用SortedList
-1912. 设计电影租借系统（https://leetcode.cn/problems/design-movie-rental-system/）典型SortedList应用
-1825. 求出 MK 平均值（https://leetcode.cn/problems/finding-mk-average/）经典SortedList与deque应用
-2250. 统计包含每个点的矩形数目（https://leetcode.cn/problems/count-number-of-rectangles-containing-each-point/）离线查询，指针排序二分
+295. 数据流的中位数（https://leetcode.com/problems/find-median-from-data-stream/）使用一个SortedList即可
+2426 满足不等式的数对数目（https://leetcode.com/problems/number-of-pairs-satisfying-inequality/）根据不等式变换和有序集合进行二分查找
+2179 统计数组中好三元组数目（https://leetcode.com/problems/count-good-triplets-in-an-array/）维护区间范围内的个数
+2141 同时运行 N 台电脑的最长时间（https://leetcode.com/problems/maximum-running-time-of-n-computers/）贪心选择最大的 N 个电池作为基底，然后二分确定在其余电池的加持下可以运行的最长时间
+2102 序列顺序查询（https://leetcode.com/problems/sequentially-ordinal-rank-tracker/）使用有序集合维护优先级姓名实时查询
+2519. Count the Number of K-Big Indices（https://leetcode.com/problems/count-the-number-of-k-big-indices/）使用有序集合维护计算数量
+2276. 统计区间中的整数数目（https://leetcode.com/problems/count-integers-in-intervals/）动态开点线段树模板题，维护区间并集的长度，也可使用SortedList
+1912. 设计电影租借系统（https://leetcode.com/problems/design-movie-rental-system/）典型SortedList应用
+1825. 求出 MK 平均值（https://leetcode.com/problems/finding-mk-average/）经典SortedList与deque应用
+2250. 统计包含每个点的矩形数目（https://leetcode.com/problems/count-number-of-rectangles-containing-each-point/）离线查询，指针排序二分
 
 ===================================洛谷===================================
 P1577 切绳子（https://www.luogu.com.cn/problem/P1577）数学整除向下取整与二分

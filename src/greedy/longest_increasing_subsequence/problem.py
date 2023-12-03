@@ -12,20 +12,20 @@ dilworth定理：
 
 参考题目：
 ===================================力扣===================================
-354. 俄罗斯套娃信封问题（https://leetcode.cn/problems/russian-doll-envelopes/）经典二维偏序最长递增子序列问题
-673. 最长递增子序列的个数（https://leetcode.cn/problems/number-of-longest-increasing-subsequence/）经典O(n^2)与O(nlogn)的LIS计数问题做法模板题
-1092. 最短公共超序列（https://leetcode.cn/problems/shortest-common-supersequence/）经典利用LIS求LCS的最短公共超序列
-1671. 得到山形数组的最少删除次数（https://leetcode.cn/problems/minimum-number-of-removals-to-make-mountain-array/）经典山脉数组LIS变形问题
-2111. 使数组 K 递增的最少操作次数（https://leetcode.cn/problems/minimum-operations-to-make-the-array-k-increasing/）分成 K 组计算每组的最长递增子序列
-面试题 17.08. 马戏团人塔（https://leetcode.cn/problems/circus-tower-lcci/）按照两个维度贪心排序后，计算最长递增子序列
+354. 俄罗斯套娃信封问题（https://leetcode.com/problems/russian-doll-envelopes/）经典二维偏序最长递增子序列问题
+673. 最长递增子序列的个数（https://leetcode.com/problems/number-of-longest-increasing-subsequence/）经典O(n^2)与O(nlogn)的LIS计数问题做法模板题
+1092. 最短公共超序列（https://leetcode.com/problems/shortest-common-supersequence/）经典利用LIS求LCS的最短公共超序列
+1671. 得到山形数组的最少删除次数（https://leetcode.com/problems/minimum-number-of-removals-to-make-mountain-array/）经典山脉数组LIS变形问题
+2111. 使数组 K 递增的最少操作次数（https://leetcode.com/problems/minimum-operations-to-make-the-array-k-increasing/）分成 K 组计算每组的最长递增子序列
+面试题 17.08. 马戏团人塔（https://leetcode.com/problems/circus-tower-lcci/）按照两个维度贪心排序后，计算最长递增子序列
 最长递增子序列（https://www.nowcoder.com/questionTerminal/30fb9b3cab9742ecae9acda1c75bf927?orderByHotValue=1&questionTypes=000100&difficulty=11111&mutiTagIds=593&page=10&onlyReference=false）最长且字典序最小的递增子序列
-1691. 堆叠长方体的最大高度（https://leetcode.cn/problems/maximum-height-by-stacking-cuboids/submissions/）经典三维偏序LIS问题
-1713. 得到子序列的最少操作次数（https://leetcode.cn/problems/minimum-operations-to-make-a-subsequence/）经典LCS问题转换为LIS
-1940. 排序数组之间的最长公共子序列（https://leetcode.cn/problems/longest-common-subsequence-between-sorted-arrays/）经典LCS问题转为LIS问题
+1691. 堆叠长方体的最大高度（https://leetcode.com/problems/maximum-height-by-stacking-cuboids/submissions/）经典三维偏序LIS问题
+1713. 得到子序列的最少操作次数（https://leetcode.com/problems/minimum-operations-to-make-a-subsequence/）经典LCS问题转换为LIS
+1940. 排序数组之间的最长公共子序列（https://leetcode.com/problems/longest-common-subsequence-between-sorted-arrays/）经典LCS问题转为LIS问题
 3662. 最大上升子序列和（https://www.acwing.com/problem/content/description/3665/）所有长度的严格上升子序列的最大子序列和，使用离散化树状数组与线性DP计算，也可使用线段树
-2826. 将三个组排序（https://leetcode.cn/problems/sorting-three-groups/）转换为求最长不降子序列
-1964. 找出到每个位置为止最长的有效障碍赛跑路线（https://leetcode.cn/problems/find-the-longest-valid-obstacle-course-at-each-position/）经典LIS求以每个位置结尾的最长不降子序列长度
-2945. 找到最大非递减数组的长度（https://leetcode.cn/problems/find-maximum-non-decreasing-array-length/description/）经典贪心单调队列DP，将数组拆分成最长不递减子数组段
+2826. 将三个组排序（https://leetcode.com/problems/sorting-three-groups/）转换为求最长不降子序列
+1964. 找出到每个位置为止最长的有效障碍赛跑路线（https://leetcode.com/problems/find-the-longest-valid-obstacle-course-at-each-position/）经典LIS求以每个位置结尾的最长不降子序列长度
+2945. Find Maximum Non-decreasing Array Length（https://leetcode.com/problems/find-maximum-non-decreasing-array-length/description/）linear dp|deque|greedy|prefix sum
 
 ===================================洛谷===================================
 P1020 导弹拦截（https://www.luogu.com.cn/problem/P1020）使用贪心加二分计算最长单调不减和单调不增子序列的长度
@@ -50,9 +50,11 @@ E - Sequence Decomposing（https://atcoder.jp/contests/abc134/tasks/abc134_e）�
 """
 
 import bisect
+from collections import deque
+from itertools import accumulate
 from typing import List
 
-from src.greedy.length_of_lis.template import LongestIncreasingSubsequence, LcsComputeByLis
+from src.greedy.longest_increasing_subsequence.template import LongestIncreasingSubsequence, LcsComputeByLis
 
 from src.data_structure.segment_tree.template import RangeAscendRangeMax
 from src.data_structure.tree_array.template import PointAscendPreMax
@@ -108,6 +110,23 @@ class Solution:
         # 模板：转换为求最长不降子序列
         n = len(nums)
         return n - LongestIncreasingSubsequence().definitely_not_reduce(nums)
+
+    @staticmethod
+    def lc_2945(nums: List[int]) -> int:
+        n = len(nums)
+        stack = deque([0])
+        dp = [0] * (n + 1)
+        last = [0] * (n + 1)
+        pre = list(accumulate(nums, initial=0))
+        for i in range(n):
+            while len(stack) > 1 and last[stack[1]] + pre[stack[1]] <= pre[i + 1]:
+                stack.popleft()
+            dp[i + 1] = dp[stack[0]] + 1
+            last[i + 1] = pre[i + 1] - pre[stack[0]]
+            while stack and last[stack[-1]] + pre[stack[-1]] >= last[i + 1] + pre[i + 1]:
+                stack.pop()
+            stack.append(i + 1)
+        return dp[n]
 
     @staticmethod
     def lc_p1020(ac=FastIO()):

@@ -4,25 +4,25 @@
 题目：
 
 ===================================力扣===================================
-2458 移除子树后的二叉树高度（https://leetcode.cn/problems/height-of-binary-tree-after-subtree-removal-queries/）跑两边DFS进行自顶向下和自底向上DP结合
-2440 创建价值相同的连通块（https://leetcode.cn/problems/create-components-with-same-value/）利用总和的因子和树形递归判断连通块是否可行
-1569 将子数组重新排序得到同一个二叉查找树的方案数（https://leetcode.cn/problems/number-of-ways-to-reorder-array-to-get-same-bst/solution/by-liupengsay-yi3h/）
-968. 监控二叉树（https://leetcode.cn/problems/binary-tree-cameras/）树形DP监控每个节点
-2538. 最大价值和与最小价值和的差值（https://leetcode.cn/problems/difference-between-maximum-and-minimum-price-sum/）树形换根DP，求去掉其中一个叶子节点的最大直径
-124. 二叉树中的最大路径和（https://leetcode.cn/problems/binary-tree-maximum-path-sum/）树形DP
-1617. 统计子树中城市之间最大距离（https://leetcode.cn/problems/count-subtrees-with-max-distance-between-cities/）二进制枚举加树的直径计算
-2378. 选择边来最大化树的得分（https://leetcode.cn/problems/choose-edges-to-maximize-score-in-a-tree/）树形DP
-2445. 值为 1 的节点数（https://leetcode.cn/problems/number-of-nodes-with-value-one/）自上而下DP模拟
-834. 树中距离之和（https://leetcode.cn/problems/sum-of-distances-in-tree/）树的总距离，求树的重心
-1617. 统计子树中城市之间最大距离（https://leetcode.cn/problems/count-subtrees-with-max-distance-between-cities/）经典枚举直径端点与乘法原理树形DP进行计算
-2003. 每棵子树内缺失的最小基因值（https://leetcode.cn/problems/smallest-missing-genetic-value-in-each-subtree/）树形DP启发式合并
-2673. 使二叉树所有路径值相等的最小代价（https://leetcode.cn/problems/make-costs-of-paths-equal-in-a-binary-tree/）经典树形DP贪心
-1367. 二叉树中的链表（https://leetcode.cn/problems/linked-list-in-binary-tree/description/）典型二叉树与链表比较的记忆化DP
-979. 在二叉树中分配硬币（https://leetcode.cn/problems/distribute-coins-in-binary-tree/description/）经典树形DP贪心
-1373. 二叉搜索子树的最大键值和（https://leetcode.cn/problems/maximum-sum-bst-in-binary-tree/）经典树形DP二叉树校验
-971. 翻转二叉树以匹配先序遍历（https://leetcode.cn/problems/flip-binary-tree-to-match-preorder-traversal/description/）树形DP贪心模拟
+2458 移除子树后的二叉树高度（https://leetcode.com/problems/height-of-binary-tree-after-subtree-removal-queries/）跑两边DFS进行自顶向下和自底向上DP结合
+2440 创建价值相同的连通块（https://leetcode.com/problems/create-components-with-same-value/）利用总和的因子和树形递归判断连通块是否可行
+1569 将子数组重新排序得到同一个二叉查找树的方案数（https://leetcode.com/problems/number-of-ways-to-reorder-array-to-get-same-bst/solution/by-liupengsay-yi3h/）
+968. 监控二叉树（https://leetcode.com/problems/binary-tree-cameras/）树形DP监控每个节点
+2538. 最大价值和与最小价值和的差值（https://leetcode.com/problems/difference-between-maximum-and-minimum-price-sum/）树形换根DP，求去掉其中一个叶子节点的最大直径
+124. 二叉树中的最大路径和（https://leetcode.com/problems/binary-tree-maximum-path-sum/）树形DP
+1617. 统计子树中城市之间最大距离（https://leetcode.com/problems/count-subtrees-with-max-distance-between-cities/）二进制枚举加树的直径计算
+2378. 选择边来最大化树的得分（https://leetcode.com/problems/choose-edges-to-maximize-score-in-a-tree/）树形DP
+2445. 值为 1 的节点数（https://leetcode.com/problems/number-of-nodes-with-value-one/）自上而下DP模拟
+834. 树中距离之和（https://leetcode.com/problems/sum-of-distances-in-tree/）树的总距离，求树的重心
+1617. 统计子树中城市之间最大距离（https://leetcode.com/problems/count-subtrees-with-max-distance-between-cities/）经典枚举直径端点与乘法原理树形DP进行计算
+2003. 每棵子树内缺失的最小基因值（https://leetcode.com/problems/smallest-missing-genetic-value-in-each-subtree/）树形DP启发式合并
+2673. 使二叉树所有路径值相等的最小代价（https://leetcode.com/problems/make-costs-of-paths-equal-in-a-binary-tree/）经典树形DP贪心
+1367. 二叉树中的链表（https://leetcode.com/problems/linked-list-in-binary-tree/description/）典型二叉树与链表比较的记忆化DP
+979. 在二叉树中分配硬币（https://leetcode.com/problems/distribute-coins-in-binary-tree/description/）经典树形DP贪心
+1373. 二叉搜索子树的最大键值和（https://leetcode.com/problems/maximum-sum-bst-in-binary-tree/）经典树形DP二叉树校验
+971. 翻转二叉树以匹配先序遍历（https://leetcode.com/problems/flip-binary-tree-to-match-preorder-traversal/description/）树形DP贪心模拟
 100041. 可以到达每一个节点的最少边反转次数（https://www.acwing.com/problem/content/description/4384/）迭代法实现树形换根DP计算，或者一遍DFS或者dfs序加差分
-100047. 统计树中的合法路径数目（https://leetcode.cn/problems/count-valid-paths-in-a-tree/description/）树形DP，并查集或者BFS实现
+100047. 统计树中的合法路径数目（https://leetcode.com/problems/count-valid-paths-in-a-tree/description/）树形DP，并查集或者BFS实现
 
 ===================================洛谷===================================
 P1395 会议（https://www.luogu.com.cn/problem/P1395）树的总距离，求树的重心，单个节点距离其他所有节点的最大距离，换根DP可以做

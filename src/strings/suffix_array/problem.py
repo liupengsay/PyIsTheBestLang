@@ -5,8 +5,8 @@
 题目：
 
 ===================================力扣===================================
-1754. 构造字典序最大的合并字符串（https://leetcode.cn/problems/largest-merge-of-two-strings/）
-1698. 字符串的不同子字符串个数（https://leetcode.cn/problems/number-of-distinct-substrings-in-a-string/）经典后缀数组应用题，利用height特性
+1754. 构造字典序最大的合并字符串（https://leetcode.com/problems/largest-merge-of-two-strings/）
+1698. 字符串的不同子字符串个数（https://leetcode.com/problems/number-of-distinct-substrings-in-a-string/）经典后缀数组应用题，利用height特性
 
 ===================================洛谷===================================
 P3809 【模板】后缀排序（https://www.luogu.com.cn/problem/P3809）

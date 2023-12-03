@@ -4,29 +4,29 @@
 题目：
 
 ===================================力扣===================================
-465. 最优账单平衡（https://leetcode.cn/problems/optimal-account-balancing/）经典枚举子集状压DP
-1349. 参加考试的最大学生数（https://leetcode.cn/problems/maximum-students-taking-exam/）按行状态枚举所有的摆放可能性
-1723. 完成所有工作的最短时间（https://leetcode.cn/problems/find-minimum-time-to-finish-all-jobs/）通过位运算枚举分配工作DP最小化的最大值，枚举子集预处理，枚举子集模板
-1986. 完成任务的最少工作时间段（https://leetcode.cn/problems/minimum-number-of-work-sessions-to-finish-the-tasks/）预处理计算子集后进行记忆化状态转移，经典子集枚举，也可使用两个状态
-698. 划分为k个相等的子集（https://leetcode.cn/problems/partition-to-k-equal-sum-subsets/）预处理计算子集后进行记忆化状态转移
-2172. 数组的最大与和（https://leetcode.cn/problems/maximum-and-sum-of-array/）使用位运算和状态压缩进行转移，经典三进制状压DP（天平就是三进制）
-1255. 得分最高的单词集合（https://leetcode.cn/problems/maximum-score-words-formed-by-letters/）状压DP
-2403. 杀死所有怪物的最短时间（https://leetcode.cn/problems/minimum-time-to-kill-all-monsters/）状压DP
-1681. 最小不兼容性（https://leetcode.cn/problems/minimum-incompatibility/）状态压缩分组DP，状态压缩和组合数选取结合使用
-1125. 最小的必要团队（https://leetcode.cn/problems/smallest-sufficient-team/）经典状压DP
-1467. 两个盒子中球的颜色数相同的概率（https://leetcode.cn/problems/probability-of-a-two-boxes-having-the-same-number-of-distinct-balls/）记忆化搜索与组合数学计数
-1531. 压缩字符串 II（https://leetcode.cn/problems/string-compression-ii/submissions/）线性DP模拟
-1595. 连通两组点的最小成本（https://leetcode.cn/problems/minimum-cost-to-connect-two-groups-of-points/）经典状压DP，需要一点变形
-1655. 分配重复整数（https://leetcode.cn/problems/distribute-repeating-integers/）经典状压 DP
-1879. 两个数组最小的异或值之和（https://leetcode.cn/problems/minimum-xor-sum-of-two-arrays/）经典状压 DP
-2019. 解出数学表达式的学生分数（https://leetcode.cn/problems/the-score-of-students-solving-math-expression/）经典记忆化DP，可以使用刷表法与填表法迭代实现
-943. 最短超级串（https://leetcode.cn/problems/find-the-shortest-superstring/）字符串贪心最短长度拼接状压DP
-1434. 每个人戴不同帽子的方案数（https://leetcode.cn/problems/number-of-ways-to-wear-different-hats-to-each-other/description/）经典状压DP逆向思维
-847. 访问所有节点的最短路径（https://leetcode.cn/problems/shortest-path-visiting-all-nodes/）经典最短路Floyd或者Dijkstra预处理最短路加状压DP
-2741. 特别的排列（https://leetcode.cn/problems/special-permutations/description/）经典状压DP
-2305. 公平分发饼干（https://leetcode.cn/problems/fair-distribution-of-cookies/description/）典型状压DP枚举子集
-980. 不同路径 III（https://leetcode.cn/problems/unique-paths-iii/description/）典型状压DP或者回溯
-2571. 将整数减少到零需要的最少操作数（https://leetcode.cn/problems/minimum-operations-to-reduce-an-integer-to-0/description/）思维题记忆化DP
+465. 最优账单平衡（https://leetcode.com/problems/optimal-account-balancing/）经典枚举子集状压DP
+1349. 参加考试的最大学生数（https://leetcode.com/problems/maximum-students-taking-exam/）按行状态枚举所有的摆放可能性
+1723. 完成所有工作的最短时间（https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs/）通过位运算枚举分配工作DP最小化的最大值，枚举子集预处理，枚举子集模板
+1986. 完成任务的最少工作时间段（https://leetcode.com/problems/minimum-number-of-work-sessions-to-finish-the-tasks/）预处理计算子集后进行记忆化状态转移，经典子集枚举，也可使用两个状态
+698. 划分为k个相等的子集（https://leetcode.com/problems/partition-to-k-equal-sum-subsets/）预处理计算子集后进行记忆化状态转移
+2172. 数组的最大与和（https://leetcode.com/problems/maximum-and-sum-of-array/）使用位运算和状态压缩进行转移，经典三进制状压DP（天平就是三进制）
+1255. 得分最高的单词集合（https://leetcode.com/problems/maximum-score-words-formed-by-letters/）状压DP
+2403. 杀死所有怪物的最短时间（https://leetcode.com/problems/minimum-time-to-kill-all-monsters/）状压DP
+1681. 最小不兼容性（https://leetcode.com/problems/minimum-incompatibility/）状态压缩分组DP，状态压缩和组合数选取结合使用
+1125. 最小的必要团队（https://leetcode.com/problems/smallest-sufficient-team/）经典状压DP
+1467. 两个盒子中球的颜色数相同的概率（https://leetcode.com/problems/probability-of-a-two-boxes-having-the-same-number-of-distinct-balls/）记忆化搜索与组合数学计数
+1531. 压缩字符串 II（https://leetcode.com/problems/string-compression-ii/submissions/）线性DP模拟
+1595. 连通两组点的最小成本（https://leetcode.com/problems/minimum-cost-to-connect-two-groups-of-points/）经典状压DP，需要一点变形
+1655. 分配重复整数（https://leetcode.com/problems/distribute-repeating-integers/）经典状压 DP
+1879. 两个数组最小的异或值之和（https://leetcode.com/problems/minimum-xor-sum-of-two-arrays/）经典状压 DP
+2019. 解出数学表达式的学生分数（https://leetcode.com/problems/the-score-of-students-solving-math-expression/）经典记忆化DP，可以使用刷表法与填表法迭代实现
+943. 最短超级串（https://leetcode.com/problems/find-the-shortest-superstring/）字符串贪心最短长度拼接状压DP
+1434. 每个人戴不同帽子的方案数（https://leetcode.com/problems/number-of-ways-to-wear-different-hats-to-each-other/description/）经典状压DP逆向思维
+847. 访问所有节点的最短路径（https://leetcode.com/problems/shortest-path-visiting-all-nodes/）经典最短路Floyd或者Dijkstra预处理最短路加状压DP
+2741. 特别的排列（https://leetcode.com/problems/special-permutations/description/）经典状压DP
+2305. 公平分发饼干（https://leetcode.com/problems/fair-distribution-of-cookies/description/）典型状压DP枚举子集
+980. 不同路径 III（https://leetcode.com/problems/unique-paths-iii/description/）典型状压DP或者回溯
+2571. 将整数减少到零需要的最少操作数（https://leetcode.com/problems/minimum-operations-to-reduce-an-integer-to-0/description/）思维题记忆化DP
 
 ===================================洛谷===================================
 P1896 互不侵犯（https://www.luogu.com.cn/problem/P1896）按行状态与行个数枚举所有的摆放可能性

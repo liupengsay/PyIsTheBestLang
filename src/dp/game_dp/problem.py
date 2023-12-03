@@ -4,8 +4,8 @@
 题目：
 
 ===================================力扣===================================
-375. 猜数字大小 II（https://leetcode.cn/problems/guess-number-higher-or-lower-ii/）使用区间DP求解的典型博弈DP
-1140. 石子游戏 II（https://leetcode.cn/problems/stone-game-ii/）前缀和优化记忆化DP
+375. 猜数字大小 II（https://leetcode.com/problems/guess-number-higher-or-lower-ii/）使用区间DP求解的典型博弈DP
+1140. 石子游戏 II（https://leetcode.com/problems/stone-game-ii/）前缀和优化记忆化DP
 
 ===================================洛谷===================================
 P1290 欧几里德的游戏（https://www.luogu.com.cn/problem/P1290）典型的博弈DP题

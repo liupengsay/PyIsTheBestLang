@@ -4,17 +4,17 @@
 题目：
 
 ===================================力扣===================================
-307. 区域和检索 - 数组可修改（https://leetcode.cn/problems/range-sum-query-mutable）PointChangeRangeSum
-1409. 查询带键的排列（https://leetcode.cn/problems/queries-on-a-permutation-with-key/）经典树状数组模拟
-1626. 无矛盾的最佳球队（https://leetcode.cn/problems/best-team-with-no-conflicts/）树状数组维护前缀最大值，也可使用动态规划求解
-6353. 网格图中最少访问的格子数（https://leetcode.cn/problems/minimum-number-of-visited-cells-in-a-grid/）树状数组维护前缀区间最小值单点更新
-308. 二维区域和检索 - 可变（https://leetcode.cn/problems/range-sum-query-2d-mutable/）二维树状数组，单点增减与区间和查询
-2659. 将数组清空（https://leetcode.cn/problems/make-array-empty/submissions/）经典模拟删除，可以使用树状数组也可以使用SortedList也可以使用贪心
-1505. 最多 K 次交换相邻数位后得到的最小整数（https://leetcode.cn/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/）经典树状数组模拟计数移动，也可以使用SortedList
-2193. 得到回文串的最少操作次数（https://leetcode.cn/problems/minimum-number-of-moves-to-make-palindrome/description/）使用树状数组贪心模拟交换构建回文串，相同题目（P5041求回文串）
-2407. 最长递增子序列 II（https://leetcode.cn/problems/longest-increasing-subsequence-ii/description/）树状数组加线性DP
-100112. 平衡子序列的最大和（https://leetcode.cn/problems/maximum-balanced-subsequence-sum/）离散化树状数组加线性DP
-2736. 最大和查询（https://leetcode.cn/problems/maximum-sum-queries/）PointAddPreMax
+307. 区域和检索 - 数组可修改（https://leetcode.com/problems/range-sum-query-mutable）PointChangeRangeSum
+1409. 查询带键的排列（https://leetcode.com/problems/queries-on-a-permutation-with-key/）经典树状数组模拟
+1626. 无矛盾的最佳球队（https://leetcode.com/problems/best-team-with-no-conflicts/）树状数组维护前缀最大值，也可使用动态规划求解
+6353. 网格图中最少访问的格子数（https://leetcode.com/problems/minimum-number-of-visited-cells-in-a-grid/）树状数组维护前缀区间最小值单点更新
+308. 二维区域和检索 - 可变（https://leetcode.com/problems/range-sum-query-2d-mutable/）二维树状数组，单点增减与区间和查询
+2659. 将数组清空（https://leetcode.com/problems/make-array-empty/submissions/）经典模拟删除，可以使用树状数组也可以使用SortedList也可以使用贪心
+1505. 最多 K 次交换相邻数位后得到的最小整数（https://leetcode.com/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/）经典树状数组模拟计数移动，也可以使用SortedList
+2193. 得到回文串的最少操作次数（https://leetcode.com/problems/minimum-number-of-moves-to-make-palindrome/description/）使用树状数组贪心模拟交换构建回文串，相同题目（P5041求回文串）
+2407. 最长递增子序列 II（https://leetcode.com/problems/longest-increasing-subsequence-ii/description/）树状数组加线性DP
+100112. 平衡子序列的最大和（https://leetcode.com/problems/maximum-balanced-subsequence-sum/）离散化树状数组加线性DP
+2736. 最大和查询（https://leetcode.com/problems/maximum-sum-queries/）PointAddPreMax
 
 ===================================洛谷===================================
 P2068 统计和（https://www.luogu.com.cn/problem/P2068）单点更新与区间求和

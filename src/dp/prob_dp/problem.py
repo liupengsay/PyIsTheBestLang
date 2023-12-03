@@ -4,7 +4,7 @@
 题目：
 
 ===================================力扣===================================
-1227. 飞机座位分配概率（https://leetcode.cn/problems/airplane-seat-assignment-probability/）概率DP
+1227. 飞机座位分配概率（https://leetcode.com/problems/airplane-seat-assignment-probability/）概率DP
 
 ===================================洛谷===================================
 P2719 搞笑世界杯（https://www.luogu.com.cn/record/list?user=739032&status=12&page=1）二维DP求概率

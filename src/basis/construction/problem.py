@@ -5,11 +5,11 @@
 题目：xx（xx）
 
 ===================================力扣===================================
-280. 摆动排序（https://leetcode.cn/problems/wiggle-sort/）按照降序先赋给奇数索引再给偶数索引
-2663. 字典序最小的美丽字符串（https://leetcode.cn/problems/lexicographically-smallest-beautiful-string/）贪心构造不含任何回文子串的字典序最小的字符串
-1982. 从子集的和还原数组（https://leetcode.cn/problems/find-array-given-subset-sums/）经典构造
-1253. 重构 2 行二进制矩阵（https://leetcode.cn/problems/reconstruct-a-2-row-binary-matrix/）经典构造贪心思维
-2573. 找出对应 LCP 矩阵的字符串（https://leetcode.cn/problems/find-the-string-with-lcp/）经典LCP构造与验证，类似并查集思想
+280. 摆动排序（https://leetcode.com/problems/wiggle-sort/）按照降序先赋给奇数索引再给偶数索引
+2663. 字典序最小的美丽字符串（https://leetcode.com/problems/lexicographically-smallest-beautiful-string/）贪心构造不含任何回文子串的字典序最小的字符串
+1982. 从子集的和还原数组（https://leetcode.com/problems/find-array-given-subset-sums/）经典构造
+1253. 重构 2 行二进制矩阵（https://leetcode.com/problems/reconstruct-a-2-row-binary-matrix/）经典构造贪心思维
+2573. 找出对应 LCP 矩阵的字符串（https://leetcode.com/problems/find-the-string-with-lcp/）经典LCP构造与验证，类似并查集思想
 
 ===================================洛谷===================================
 P8846 『JROI-7』PMK 配匹串符字（https://www.luogu.com.cn/problem/P8846）厘清题意进行贪心构造

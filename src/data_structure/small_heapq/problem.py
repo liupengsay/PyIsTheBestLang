@@ -4,15 +4,15 @@
 题目：
 
 ===================================力扣===================================
-630. 课程表 III（https://leetcode.cn/problems/course-schedule-iii/）用一个堆延迟选择贪心维护最优
-2454. 下一个更大元素 IV（https://leetcode.cn/problems/next-greater-element-iv/）使用两个堆维护下下个更大元素即出队两次时遇见的元素，也可以使用经典的哈希加SortedList
-2402. 会议室 III（https://leetcode.cn/problems/meeting-rooms-iii/）使用两个堆模拟进行会议室安排并进行计数
-2386. 找出数组的第 K 大和（https://leetcode.cn/problems/find-the-k-sum-of-an-array/）转换思路使用堆维护最大和第 K 次出队的则为目标结果
-2163. 删除元素后和的最小差值（https://leetcode.cn/problems/minimum-difference-in-sums-after-removal-of-elements/）预处理前缀后缀最大最小的 K 个数和再进行枚举分割点
-1792. 最大平均通过率（https://leetcode.cn/problems/maximum-average-pass-ratio/）贪心依次给增幅最大的班级人数加 1
-295. 数据流的中位数（https://leetcode.cn/problems/find-median-from-data-stream/）用两个堆维护中位数
-2542. 最大子序列的分数（https://leetcode.cn/problems/maximum-subsequence-score/）贪心排序枚举加堆维护最大的k个数进行计算
-2263. 数组变为有序的最小操作次数（https://leetcode.cn/problems/make-array-non-decreasing-or-non-increasing/）大根堆贪心使得序列非降的最小操作次数
+630. 课程表 III（https://leetcode.com/problems/course-schedule-iii/）用一个堆延迟选择贪心维护最优
+2454. 下一个更大元素 IV（https://leetcode.com/problems/next-greater-element-iv/）使用两个堆维护下下个更大元素即出队两次时遇见的元素，也可以使用经典的哈希加SortedList
+2402. 会议室 III（https://leetcode.com/problems/meeting-rooms-iii/）使用两个堆模拟进行会议室安排并进行计数
+2386. 找出数组的第 K 大和（https://leetcode.com/problems/find-the-k-sum-of-an-array/）转换思路使用堆维护最大和第 K 次出队的则为目标结果
+2163. 删除元素后和的最小差值（https://leetcode.com/problems/minimum-difference-in-sums-after-removal-of-elements/）预处理前缀后缀最大最小的 K 个数和再进行枚举分割点
+1792. 最大平均通过率（https://leetcode.com/problems/maximum-average-pass-ratio/）贪心依次给增幅最大的班级人数加 1
+295. 数据流的中位数（https://leetcode.com/problems/find-median-from-data-stream/）用两个堆维护中位数
+2542. 最大子序列的分数（https://leetcode.com/problems/maximum-subsequence-score/）贪心排序枚举加堆维护最大的k个数进行计算
+2263. 数组变为有序的最小操作次数（https://leetcode.com/problems/make-array-non-decreasing-or-non-increasing/）大根堆贪心使得序列非降的最小操作次数
 ===================================洛谷===================================
 P1168 中位数（https://www.luogu.com.cn/problem/P1168） 用两个堆维护中位数
 P1801 黑匣子（https://www.luogu.com.cn/problem/P1801）用两个堆维护第K小

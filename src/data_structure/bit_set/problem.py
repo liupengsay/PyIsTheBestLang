@@ -5,7 +5,7 @@
 题目：
 
 ===================================力扣===================================
-2569. 更新数组后处理求和查询（https://leetcode.cn/problems/handling-sum-queries-after-update/）经典01线段树区间翻转与求和，也可以使用BitSet
+2569. 更新数组后处理求和查询（https://leetcode.com/problems/handling-sum-queries-after-update/）经典01线段树区间翻转与求和，也可以使用BitSet
 
 ===================================洛谷===================================
 xx（xxx）xxxxxxxxxxxxxxxxxxxx

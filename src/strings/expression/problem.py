@@ -5,7 +5,7 @@
 题目：
 
 ===================================力扣===================================
-1597. 根据中缀表达式构造二叉表达式树（https://leetcode.cn/problems/build-binary-expression-tree-from-infix-expression/）
+1597. 根据中缀表达式构造二叉表达式树（https://leetcode.com/problems/build-binary-expression-tree-from-infix-expression/）
 
 ===================================洛谷===================================
 P1175 表达式的转换（https://www.luogu.com.cn/problem/P1175）

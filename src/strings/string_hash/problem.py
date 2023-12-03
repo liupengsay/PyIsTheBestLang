@@ -4,17 +4,17 @@
 题目：
 
 ===================================力扣===================================
-214. 最短回文串（https://leetcode.cn/problems/shortest-palindrome/）使用正向与反向字符串哈希计算字符串前缀最长回文子串，也可以用KMP与马拉车
-572. 另一棵树的子树（https://leetcode.cn/problems/subtree-of-another-tree/）经典树结构哈希
-1044. 最长重复子串（https://leetcode.cn/problems/shortest-palindrome/）利用二分查找加字符串哈希确定具有最长长度的重复子串
-1316. 不同的循环子字符串（https://leetcode.cn/problems/shortest-palindrome/）利用字符串哈希确定不同循环子串的个数
-2156. 查找给定哈希值的子串（https://leetcode.cn/problems/find-substring-with-given-hash-value/）逆向进行字符串哈希的计算
-652. 寻找重复的子树（https://leetcode.cn/problems/find-duplicate-subtrees/）树哈希，确定重复子树
-1554. 只有一个不同字符的字符串（https://leetcode.cn/problems/strings-differ-by-one-character/）字符串前后缀哈希求解
-1923. 最长公共子路径（https://leetcode.cn/problems/longest-common-subpath/）经典二分查找加滚动哈希
-1948. 删除系统中的重复文件夹（https://leetcode.cn/problems/delete-duplicate-folders-in-system/）字典树与树哈希去重
-2261. 含最多 K 个可整除元素的子数组（https://leetcode.cn/problems/k-divisible-elements-subarrays/submissions/）使用字符串哈希对数组进行编码
-2851. 字符串转换（https://leetcode.cn/problems/string-transformation/description/）使用KMP与快速幂进行转移计算，也可使用字符串哈希
+214. 最短回文串（https://leetcode.com/problems/shortest-palindrome/）使用正向与反向字符串哈希计算字符串前缀最长回文子串，也可以用KMP与马拉车
+572. 另一棵树的子树（https://leetcode.com/problems/subtree-of-another-tree/）经典树结构哈希
+1044. 最长重复子串（https://leetcode.com/problems/shortest-palindrome/）利用二分查找加字符串哈希确定具有最长长度的重复子串
+1316. 不同的循环子字符串（https://leetcode.com/problems/shortest-palindrome/）利用字符串哈希确定不同循环子串的个数
+2156. 查找给定哈希值的子串（https://leetcode.com/problems/find-substring-with-given-hash-value/）逆向进行字符串哈希的计算
+652. 寻找重复的子树（https://leetcode.com/problems/find-duplicate-subtrees/）树哈希，确定重复子树
+1554. 只有一个不同字符的字符串（https://leetcode.com/problems/strings-differ-by-one-character/）字符串前后缀哈希求解
+1923. 最长公共子路径（https://leetcode.com/problems/longest-common-subpath/）经典二分查找加滚动哈希
+1948. 删除系统中的重复文件夹（https://leetcode.com/problems/delete-duplicate-folders-in-system/）字典树与树哈希去重
+2261. 含最多 K 个可整除元素的子数组（https://leetcode.com/problems/k-divisible-elements-subarrays/submissions/）使用字符串哈希对数组进行编码
+2851. 字符串转换（https://leetcode.com/problems/string-transformation/description/）使用KMP与快速幂进行转移计算，也可使用字符串哈希
 
 ===================================洛谷===================================
 P8835 [传智杯 #3 决赛] 子串（https://www.luogu.com.cn/record/list?user=739032&status=12&page=14）字符串哈希或者KMP查找匹配的连续子串

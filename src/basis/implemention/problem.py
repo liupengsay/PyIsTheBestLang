@@ -4,21 +4,21 @@
 题目：
 
 ===================================力扣===================================
-2296. 设计一个文本编辑器（https://leetcode.cn/problems/design-a-text-editor/）使用指针维护结果进行模拟
-54. 螺旋矩阵（https://leetcode.cn/problems/spiral-matrix/）https://leetcode.cn/problems/spiral-matrix/ 两种方式，数字到索引，以及索引到数字
-59. 螺旋矩阵 II（https://leetcode.cn/problems/spiral-matrix-ii/）
-2326. 螺旋矩阵 IV（https://leetcode.cn/problems/spiral-matrix-iv/）
-剑指 Offer 62. 圆圈中最后剩下的数字（https://leetcode.cn/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/）约瑟夫环
-2534. 通过门的时间（https://leetcode.cn/problems/time-taken-to-cross-the-door/）根据题意进行模拟
-460. LFU 缓存（https://leetcode.cn/problems/lfu-cache/）经典OrderDict应用与数据结构自定义题目
-146. LRU 缓存（https://leetcode.cn/problems/lru-cache/）经典OrderDict应用与数据结构自定义题目
-2534. 通过门的时间（https://leetcode.cn/problems/time-taken-to-cross-the-door/）按照时间与题意进行模拟
-1823. 找出游戏的获胜者（https://leetcode.cn/contest/weekly-contest-236/problems/find-the-winner-of-the-circular-game/）约瑟夫环
-927. 三等分（https://leetcode.cn/problems/three-equal-parts/description/）根据二进制特点确定三部分是否相等
-1599. 经营摩天轮的最大利润（https://leetcode.cn/problems/maximum-profit-of-operating-a-centennial-wheel/description/）典型模拟题枚举计算
-2295. 替换数组中的元素（https://leetcode.cn/problems/replace-elements-in-an-array/description/）逆序思维，或者类似链表思想
-1914. 循环轮转矩阵（https://leetcode.cn/problems/cyclically-rotating-a-grid/description/）使用指针进行循环模拟
-1834. 单线程 CPU（https://leetcode.cn/contest/weekly-contest-237/problems/single-threaded-cpu/）使用堆和指针模拟
+2296. 设计一个文本编辑器（https://leetcode.com/problems/design-a-text-editor/）使用指针维护结果进行模拟
+54. 螺旋矩阵（https://leetcode.com/problems/spiral-matrix/）https://leetcode.com/problems/spiral-matrix/ 两种方式，数字到索引，以及索引到数字
+59. 螺旋矩阵 II（https://leetcode.com/problems/spiral-matrix-ii/）
+2326. 螺旋矩阵 IV（https://leetcode.com/problems/spiral-matrix-iv/）
+剑指 Offer 62. 圆圈中最后剩下的数字（https://leetcode.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/）约瑟夫环
+2534. 通过门的时间（https://leetcode.com/problems/time-taken-to-cross-the-door/）根据题意进行模拟
+460. LFU 缓存（https://leetcode.com/problems/lfu-cache/）经典OrderDict应用与数据结构自定义题目
+146. LRU 缓存（https://leetcode.com/problems/lru-cache/）经典OrderDict应用与数据结构自定义题目
+2534. 通过门的时间（https://leetcode.com/problems/time-taken-to-cross-the-door/）按照时间与题意进行模拟
+1823. 找出游戏的获胜者（https://leetcode.com/contest/weekly-contest-236/problems/find-the-winner-of-the-circular-game/）约瑟夫环
+927. 三等分（https://leetcode.com/problems/three-equal-parts/description/）根据二进制特点确定三部分是否相等
+1599. 经营摩天轮的最大利润（https://leetcode.com/problems/maximum-profit-of-operating-a-centennial-wheel/description/）典型模拟题枚举计算
+2295. 替换数组中的元素（https://leetcode.com/problems/replace-elements-in-an-array/description/）逆序思维，或者类似链表思想
+1914. 循环轮转矩阵（https://leetcode.com/problems/cyclically-rotating-a-grid/description/）使用指针进行循环模拟
+1834. 单线程 CPU（https://leetcode.com/contest/weekly-contest-237/problems/single-threaded-cpu/）使用堆和指针模拟
 
 ===================================洛谷===================================
 P1815 蠕虫游戏（https://www.luogu.com.cn/problem/P1815）模拟类似贪吃蛇的移动

@@ -5,27 +5,27 @@
 题目：
 
 ===================================力扣===================================
-765. 情侣牵手（https://leetcode.cn/problems/couples-holding-hands/）经典并查集
-1697. 检查边长度限制的路径是否存在（https://leetcode.cn/problems/checking-existence-of-edge-length-limited-paths/）排序后离线查询两点间所有路径的最大边权值
-2503. 矩阵查询可获得的最大分数（https://leetcode.cn/problems/checking-existence-of-edge-length-limited-paths/）排序后离线查询与起点相连的连通块的大小
-2421. 好路径的数目（https://leetcode.cn/problems/number-of-good-paths/）根据权值进行排序更新并查集计算连通分块满足条件的节点对数
-2382. 删除操作后的最大子段和（https://leetcode.cn/problems/maximum-segment-sum-after-removals/）逆向进行访问查询并更新连通块的结果
-2334. 元素值大于变化阈值的子数组（https://leetcode.cn/problems/subarray-with-elements-greater-than-varying-threshold/）排序后枚举动态维护并查集连通块
-2158. 每天绘制新区域的数量（https://leetcode.cn/problems/amount-of-new-area-painted-each-day/）使用并查集维护区间左端点，不断进行合并
-2157. 字符串分组（https://leetcode.cn/problems/groups-of-strings/）利用字母的有限数量进行变换枚举分组
-2076. 处理含限制条件的好友请求（https://leetcode.cn/problems/process-restricted-friend-requests/）使用并查集变种，维护群体的不喜欢关系
-2459. 通过移动项目到空白区域来排序数组（https://leetcode.cn/problems/sort-array-by-moving-items-to-empty-space/）置换环经典题目
-2709. 最大公约数遍历（https://leetcode.cn/problems/greatest-common-divisor-traversal/）经典并查集计算具有相同质因数的连通块
-2612. 最少翻转操作数（https://leetcode.cn/problems/minimum-reverse-operations/）经典并查集应用 find_merge 灵活使用
-1559. 二维网格图中探测环（https://leetcode.cn/problems/detect-cycles-in-2d-grid/）经典并查集判环
-1569. 将子数组重新排序得到同一个二叉搜索树的方案数（https://leetcode.cn/problems/number-of-ways-to-reorder-array-to-get-same-bst/）逆序思维，倒序利用并查集建立二叉搜索树，排列组合加并查集
-1970. 你能穿过矩阵的最后一天（https://leetcode.cn/problems/last-day-where-you-can-still-cross/）经典逆序思维并查集
-1998. 数组的最大公因数排序（https://leetcode.cn/problems/gcd-sort-of-an-array/）经典并查集加质因数分解
-2158. 每天绘制新区域的数量（https://leetcode.cn/problems/amount-of-new-area-painted-each-day/）经典区间并查集
-2471. 逐层排序二叉树所需的最少操作数目（https://leetcode.cn/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/description/）经典离散化置换环
-945. 使数组唯一的最小增量（https://leetcode.cn/problems/minimum-increment-to-make-array-unique/description/）可使用向右合并的区间并查集，正解为贪心
-947. 移除最多的同行或同列石头（https://leetcode.cn/contest/weekly-contest-112/problems/most-stones-removed-with-same-row-or-column/）脑筋急转弯并查集
-100047. 统计树中的合法路径数目（https://leetcode.cn/problems/count-valid-paths-in-a-tree/description/）树形DP，并查集或者BFS实现
+765. 情侣牵手（https://leetcode.com/problems/couples-holding-hands/）经典并查集
+1697. 检查边长度限制的路径是否存在（https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/）排序后离线查询两点间所有路径的最大边权值
+2503. 矩阵查询可获得的最大分数（https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/）排序后离线查询与起点相连的连通块的大小
+2421. 好路径的数目（https://leetcode.com/problems/number-of-good-paths/）根据权值进行排序更新并查集计算连通分块满足条件的节点对数
+2382. 删除操作后的最大子段和（https://leetcode.com/problems/maximum-segment-sum-after-removals/）逆向进行访问查询并更新连通块的结果
+2334. 元素值大于变化阈值的子数组（https://leetcode.com/problems/subarray-with-elements-greater-than-varying-threshold/）排序后枚举动态维护并查集连通块
+2158. 每天绘制新区域的数量（https://leetcode.com/problems/amount-of-new-area-painted-each-day/）使用并查集维护区间左端点，不断进行合并
+2157. 字符串分组（https://leetcode.com/problems/groups-of-strings/）利用字母的有限数量进行变换枚举分组
+2076. 处理含限制条件的好友请求（https://leetcode.com/problems/process-restricted-friend-requests/）使用并查集变种，维护群体的不喜欢关系
+2459. 通过移动项目到空白区域来排序数组（https://leetcode.com/problems/sort-array-by-moving-items-to-empty-space/）置换环经典题目
+2709. 最大公约数遍历（https://leetcode.com/problems/greatest-common-divisor-traversal/）经典并查集计算具有相同质因数的连通块
+2612. 最少翻转操作数（https://leetcode.com/problems/minimum-reverse-operations/）经典并查集应用 find_merge 灵活使用
+1559. 二维网格图中探测环（https://leetcode.com/problems/detect-cycles-in-2d-grid/）经典并查集判环
+1569. 将子数组重新排序得到同一个二叉搜索树的方案数（https://leetcode.com/problems/number-of-ways-to-reorder-array-to-get-same-bst/）逆序思维，倒序利用并查集建立二叉搜索树，排列组合加并查集
+1970. 你能穿过矩阵的最后一天（https://leetcode.com/problems/last-day-where-you-can-still-cross/）经典逆序思维并查集
+1998. 数组的最大公因数排序（https://leetcode.com/problems/gcd-sort-of-an-array/）经典并查集加质因数分解
+2158. 每天绘制新区域的数量（https://leetcode.com/problems/amount-of-new-area-painted-each-day/）经典区间并查集
+2471. 逐层排序二叉树所需的最少操作数目（https://leetcode.com/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/description/）经典离散化置换环
+945. 使数组唯一的最小增量（https://leetcode.com/problems/minimum-increment-to-make-array-unique/description/）可使用向右合并的区间并查集，正解为贪心
+947. 移除最多的同行或同列石头（https://leetcode.com/contest/weekly-contest-112/problems/most-stones-removed-with-same-row-or-column/）脑筋急转弯并查集
+100047. 统计树中的合法路径数目（https://leetcode.com/problems/count-valid-paths-in-a-tree/description/）树形DP，并查集或者BFS实现
 
 ===================================洛谷===================================
 P3367 并查集（https://www.luogu.com.cn/problem/P3367）计算连通分块的数量

@@ -5,33 +5,33 @@
 题目：
 
 ===================================力扣===================================
-152. 乘积最大子数组（https://leetcode.cn/problems/maximum-product-subarray/）前缀最大最小乘积，计算最大连续子数组乘积
-598. 范围求和 II（https://leetcode.cn/problems/range-addition-ii/）二维差分
-2281. 巫师的总力量（https://leetcode.cn/problems/sum-of-total-strength-of-wizards/）枚举当前元素作为最小值的子数组和并使用前缀和的前缀和计算
-2251. 花期内花的数目（https://leetcode.cn/problems/number-of-flowers-in-full-bloom/）离散化差分数组
-2132. 用邮票贴满网格图（https://leetcode.cn/problems/stamping-the-grid/）用前缀和枚举可行的邮票左上端点，然后查看空白格点左上方是否有可行的邮票点，也可以使用经典的二维差分滚动模拟覆盖进行解决
-1229. 安排会议日程（https://leetcode.cn/problems/meeting-scheduler/）离散化差分数组
-6292. 子矩阵元素加 1（https://leetcode.cn/problems/increment-submatrices-by-one/)二维差分前缀和
-2565. 最少得分子序列（https://leetcode.cn/problems/subsequence-with-the-minimum-score/）使用前后缀指针枚举匹配最长前后缀
-644. 子数组最大平均数 II（https://leetcode.cn/problems/maximum-average-subarray-ii/）前缀和加二分计算不短于k的子数组最大平均值
-1292. 元素和小于等于阈值的正方形的最大边长（https://leetcode.cn/problems/maximum-side-length-of-a-square-with-sum-less-than-or-equal-to-threshold/）经典O(mn)复杂度枚举
-1674. 使数组互补的最少操作次数（https://leetcode.cn/problems/minimum-moves-to-make-array-complementary/）经典差分数组作用域计数
-1714. 数组中特殊等间距元素的和（https://leetcode.cn/problems/sum-of-special-evenly-spaced-elements-in-array/）经典分组加前缀和
-1738. 找出第 K 大的异或坐标值（https://leetcode.cn/problems/find-kth-largest-xor-coordinate-value/）经典二维前缀异或和
-1895. 最大的幻方（https://leetcode.cn/problems/largest-magic-square/）二维前缀和枚举优化
-1943. 描述绘画结果（https://leetcode.cn/problems/describe-the-painting/）经典离散化差分
-2021. 街上最亮的位置（https://leetcode.cn/problems/brightest-position-on-street/）经典离散化差分
-837. 新 21 点（https://leetcode.cn/problems/new-21-game/description/）使用差分数组模拟进行概率计算
-891. 子序列宽度之和（https://leetcode.cn/problems/sum-of-subsequence-widths/description/）前后缀枚举最大值与最小值计数
-1191. K 次串联后最大子数组之和（https://leetcode.cn/problems/k-concatenation-maximum-sum/description/）经典前后缀最大连续子序列和
-1074. 元素和为目标值的子矩阵数量（https://leetcode.cn/problems/number-of-submatrices-that-sum-to-target/description/）经典二维前缀和枚举上下边计算目标子矩阵的数量
-1139. 最大的以 1 为边界的正方形（https://leetcode.cn/problems/largest-1-bordered-square/）经典利用二位前缀和计数枚举边长
-2281. 巫师的总力量和（https://leetcode.cn/problems/sum-of-total-strength-of-wizards/description/）单调栈计数与前缀和的前缀和计算
-995. K 连续位的最小翻转次数（https://leetcode.cn/problems/minimum-number-of-k-consecutive-bit-flips/description/）贪心加差分数组模拟
-986. 区间列表的交集（https://leetcode.cn/problems/interval-list-intersections/description/）离散化差分，双指针归并
-1744. 你能在你最喜欢的那天吃到你最喜欢的糖果吗？（https://leetcode.cn/problems/can-you-eat-your-favorite-candy-on-your-favorite-day/description/）前缀和贪心模拟
-1703. 得到连续 K 个 1 的最少相邻交换次数（https://leetcode.cn/problems/minimum-adjacent-swaps-for-k-consecutive-ones/）前缀和加中位数贪心，同1520E
-2167. 移除所有载有违禁货物车厢所需的最少时间（https://leetcode.cn/problems/minimum-time-to-remove-all-cars-containing-illegal-goods/）经典公式变换进行前缀和枚举
+152. 乘积最大子数组（https://leetcode.com/problems/maximum-product-subarray/）前缀最大最小乘积，计算最大连续子数组乘积
+598. 范围求和 II（https://leetcode.com/problems/range-addition-ii/）二维差分
+2281. 巫师的总力量（https://leetcode.com/problems/sum-of-total-strength-of-wizards/）枚举当前元素作为最小值的子数组和并使用前缀和的前缀和计算
+2251. 花期内花的数目（https://leetcode.com/problems/number-of-flowers-in-full-bloom/）离散化差分数组
+2132. 用邮票贴满网格图（https://leetcode.com/problems/stamping-the-grid/）用前缀和枚举可行的邮票左上端点，然后查看空白格点左上方是否有可行的邮票点，也可以使用经典的二维差分滚动模拟覆盖进行解决
+1229. 安排会议日程（https://leetcode.com/problems/meeting-scheduler/）离散化差分数组
+6292. 子矩阵元素加 1（https://leetcode.com/problems/increment-submatrices-by-one/)二维差分前缀和
+2565. 最少得分子序列（https://leetcode.com/problems/subsequence-with-the-minimum-score/）使用前后缀指针枚举匹配最长前后缀
+644. 子数组最大平均数 II（https://leetcode.com/problems/maximum-average-subarray-ii/）前缀和加二分计算不短于k的子数组最大平均值
+1292. 元素和小于等于阈值的正方形的最大边长（https://leetcode.com/problems/maximum-side-length-of-a-square-with-sum-less-than-or-equal-to-threshold/）经典O(mn)复杂度枚举
+1674. 使数组互补的最少操作次数（https://leetcode.com/problems/minimum-moves-to-make-array-complementary/）经典差分数组作用域计数
+1714. 数组中特殊等间距元素的和（https://leetcode.com/problems/sum-of-special-evenly-spaced-elements-in-array/）经典分组加前缀和
+1738. 找出第 K 大的异或坐标值（https://leetcode.com/problems/find-kth-largest-xor-coordinate-value/）经典二维前缀异或和
+1895. 最大的幻方（https://leetcode.com/problems/largest-magic-square/）二维前缀和枚举优化
+1943. 描述绘画结果（https://leetcode.com/problems/describe-the-painting/）经典离散化差分
+2021. 街上最亮的位置（https://leetcode.com/problems/brightest-position-on-street/）经典离散化差分
+837. 新 21 点（https://leetcode.com/problems/new-21-game/description/）使用差分数组模拟进行概率计算
+891. 子序列宽度之和（https://leetcode.com/problems/sum-of-subsequence-widths/description/）前后缀枚举最大值与最小值计数
+1191. K 次串联后最大子数组之和（https://leetcode.com/problems/k-concatenation-maximum-sum/description/）经典前后缀最大连续子序列和
+1074. 元素和为目标值的子矩阵数量（https://leetcode.com/problems/number-of-submatrices-that-sum-to-target/description/）经典二维前缀和枚举上下边计算目标子矩阵的数量
+1139. 最大的以 1 为边界的正方形（https://leetcode.com/problems/largest-1-bordered-square/）经典利用二位前缀和计数枚举边长
+2281. 巫师的总力量和（https://leetcode.com/problems/sum-of-total-strength-of-wizards/description/）单调栈计数与前缀和的前缀和计算
+995. K 连续位的最小翻转次数（https://leetcode.com/problems/minimum-number-of-k-consecutive-bit-flips/description/）贪心加差分数组模拟
+986. 区间列表的交集（https://leetcode.com/problems/interval-list-intersections/description/）离散化差分，双指针归并
+1744. 你能在你最喜欢的那天吃到你最喜欢的糖果吗？（https://leetcode.com/problems/can-you-eat-your-favorite-candy-on-your-favorite-day/description/）前缀和贪心模拟
+1703. 得到连续 K 个 1 的最少相邻交换次数（https://leetcode.com/problems/minimum-adjacent-swaps-for-k-consecutive-ones/）前缀和加中位数贪心，同1520E
+2167. 移除所有载有违禁货物车厢所需的最少时间（https://leetcode.com/problems/minimum-time-to-remove-all-cars-containing-illegal-goods/）经典公式变换进行前缀和枚举
 
 ===================================洛谷===================================
 P8772 [蓝桥杯 2022 省 A] 求和（https://www.luogu.com.cn/record/list?user=739032&status=12&page=15）后缀和计算

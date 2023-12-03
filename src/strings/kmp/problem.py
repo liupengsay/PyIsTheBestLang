@@ -4,13 +4,13 @@
 题目：
 
 ===================================力扣===================================
-214. 最短回文串（https://leetcode.cn/problems/shortest-palindrome/）计算字符串前缀最长回文子串
-796. 旋转字符串（https://leetcode.cn/problems/rotate-string/）计算字符串是否可以旋转得到
-25. 找出字符串中第一个匹配项的下标（https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/）计算子字符串第一次出现的位置
-1392. 最长快乐前缀（https://leetcode.cn/problems/longest-happy-prefix/）计算最长的公共前后缀，KMP与Z函数模板题
-2223. 构造字符串的总得分和（https://leetcode.cn/problems/longest-happy-prefix/）利用扩展KMP计算Z函数
-6918. 包含三个字符串的最短字符串（https://leetcode.cn/problems/shortest-string-that-contains-three-strings/）kmp求字符串之间的最长公共前后缀，进行贪心拼接
-2851. 字符串转换（https://leetcode.cn/problems/string-transformation/description/）使用KMP与快速幂进行转移计算，也可使用字符串哈希
+214. 最短回文串（https://leetcode.com/problems/shortest-palindrome/）计算字符串前缀最长回文子串
+796. 旋转字符串（https://leetcode.com/problems/rotate-string/）计算字符串是否可以旋转得到
+25. 找出字符串中第一个匹配项的下标（https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/）计算子字符串第一次出现的位置
+1392. 最长快乐前缀（https://leetcode.com/problems/longest-happy-prefix/）计算最长的公共前后缀，KMP与Z函数模板题
+2223. 构造字符串的总得分和（https://leetcode.com/problems/longest-happy-prefix/）利用扩展KMP计算Z函数
+6918. 包含三个字符串的最短字符串（https://leetcode.com/problems/shortest-string-that-contains-three-strings/）kmp求字符串之间的最长公共前后缀，进行贪心拼接
+2851. 字符串转换（https://leetcode.com/problems/string-transformation/description/）使用KMP与快速幂进行转移计算，也可使用字符串哈希
 
 ===================================洛谷===================================
 P3375 KMP字符串匹配（https://www.luogu.com.cn/problem/P3375）计算子字符串出现的位置，与最长公共前后缀的子字符串长度

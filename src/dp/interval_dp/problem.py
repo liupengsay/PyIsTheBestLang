@@ -4,16 +4,16 @@
 题目：
 
 ===================================力扣===================================
-375. 猜数字大小 II（https://leetcode.cn/problems/guess-number-higher-or-lower-ii/）经典区间DP
-1130. 叶值的最小代价生成树（https://leetcode.cn/problems/minimum-cost-tree-from-leaf-values/）经典单调栈也可以使用区间DP
+375. 猜数字大小 II（https://leetcode.com/problems/guess-number-higher-or-lower-ii/）经典区间DP
+1130. 叶值的最小代价生成树（https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/）经典单调栈也可以使用区间DP
 
-1039. 多边形三角剖分的最低得分（https://leetcode.cn/problems/minimum-score-triangulation-of-polygon/）经典环形数组区间 DP
-2472. 不重叠回文子字符串的最大数目（https://leetcode.cn/problems/maximum-number-of-non-overlapping-palindrome-substrings/）预处理线性回文子串 DP 优化外加结果计算线性 DP 也可以使用马拉车回文串获取回文信息
-2430. 对字母串可执行的最大删除数（https://leetcode.cn/problems/maximum-deletions-on-a-string/）最长公共前缀DP加线性DP
-1547. 切棍子的最小成本（https://leetcode.cn/problems/minimum-cost-to-cut-a-stick/）区间DP模拟
-1278. 分割回文串 III（https://leetcode.cn/problems/palindrome-partitioning-iii/）经典预处理双重区间DP进行计算
-1690. 石子游戏 VII（https://leetcode.cn/problems/stone-game-vii/description/）经典区间DP
-1312. 让字符串成为回文串的最少插入次数（https://leetcode.cn/problems/minimum-insertion-steps-to-make-a-string-palindrome/）经典区间DP，最长回文子序列
+1039. 多边形三角剖分的最低得分（https://leetcode.com/problems/minimum-score-triangulation-of-polygon/）经典环形数组区间 DP
+2472. 不重叠回文子字符串的最大数目（https://leetcode.com/problems/maximum-number-of-non-overlapping-palindrome-substrings/）预处理线性回文子串 DP 优化外加结果计算线性 DP 也可以使用马拉车回文串获取回文信息
+2430. 对字母串可执行的最大删除数（https://leetcode.com/problems/maximum-deletions-on-a-string/）最长公共前缀DP加线性DP
+1547. 切棍子的最小成本（https://leetcode.com/problems/minimum-cost-to-cut-a-stick/）区间DP模拟
+1278. 分割回文串 III（https://leetcode.com/problems/palindrome-partitioning-iii/）经典预处理双重区间DP进行计算
+1690. 石子游戏 VII（https://leetcode.com/problems/stone-game-vii/description/）经典区间DP
+1312. 让字符串成为回文串的最少插入次数（https://leetcode.com/problems/minimum-insertion-steps-to-make-a-string-palindrome/）经典区间DP，最长回文子序列
 
 ===================================洛谷===================================
 P1521 求逆序对（https://www.luogu.com.cn/problem/P1521）使用归并排序计算移动次数，也可以使用倍增的树状数组

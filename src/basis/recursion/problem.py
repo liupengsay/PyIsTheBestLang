@@ -4,12 +4,12 @@
 题目：
 
 ===================================力扣===================================
-1545. 找出第 N 个二进制字符串中的第 K 位（https://leetcode.cn/problems/find-kth-bit-in-nth-binary-string/）经典递归计算模拟
-894. 所有可能的真二叉树（https://leetcode.cn/problems/all-possible-full-binary-trees/）经典类似卡特兰数的递归模拟计算生成
-880. 索引处的解码字符串（https://leetcode.cn/problems/decoded-string-at-index/）经典递归计算模拟
-932. 漂亮数组（https://leetcode.cn/problems/beautiful-array/description/）使用递归分治进行构造经典
-889. 根据前序和后序遍历构造二叉树（https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-postorder-traversal/）使用递归经典分治构造
-1028. 从先序遍历还原二叉树（https://leetcode.cn/problems/recover-a-tree-from-preorder-traversal/description/）根据先序遍历递归构造二叉树
+1545. 找出第 N 个二进制字符串中的第 K 位（https://leetcode.com/problems/find-kth-bit-in-nth-binary-string/）经典递归计算模拟
+894. 所有可能的真二叉树（https://leetcode.com/problems/all-possible-full-binary-trees/）经典类似卡特兰数的递归模拟计算生成
+880. 索引处的解码字符串（https://leetcode.com/problems/decoded-string-at-index/）经典递归计算模拟
+932. 漂亮数组（https://leetcode.com/problems/beautiful-array/description/）使用递归分治进行构造经典
+889. 根据前序和后序遍历构造二叉树（https://leetcode.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/）使用递归经典分治构造
+1028. 从先序遍历还原二叉树（https://leetcode.com/problems/recover-a-tree-from-preorder-traversal/description/）根据先序遍历递归构造二叉树
 
 ===================================洛谷===================================
 P1911 L 国的战斗之排兵布阵（https://www.luogu.com.cn/problem/P1911）使用四叉树递归计算

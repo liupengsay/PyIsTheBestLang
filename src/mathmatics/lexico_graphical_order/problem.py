@@ -4,13 +4,13 @@
 题目：
 
 ===================================力扣===================================
-60. 排列序列（https://leetcode.cn/problems/permutation-sequence/）全排列的第 k 个排列
-440. 字典序的第K小数字（https://leetcode.cn/problems/k-th-smallest-in-lexicographical-order/）经典面试题使用十叉树求解
-1415. 长度为 n 的开心字符串中字典序第 k 小的字符串（https://leetcode.cn/problems/the-k-th-lexicographical-string-of-all-happy-strings-of-length-n/）类似思路经典字典序构造
-1643. 第 K 条最小指令（https://leetcode.cn/problems/kth-smallest-instructions/）根据字典序进行处理
-1830. 使字符串有序的最少操作次数（https://leetcode.cn/problems/minimum-number-of-operations-to-make-string-sorted/）经典计算字符串的字典序 rank，也可以反向计算rank的字典序
-1842. 下个由相同数字构成的回文串（https://leetcode.cn/problems/next-palindrome-using-same-digits/）经典字典序贪心
-1850. 邻位交换的最小次数（https://leetcode.cn/problems/minimum-adjacent-swaps-to-reach-the-kth-smallest-number/）经典下一个字典序与冒泡贪心交换次数
+60. 排列序列（https://leetcode.com/problems/permutation-sequence/）全排列的第 k 个排列
+440. 字典序的第K小数字（https://leetcode.com/problems/k-th-smallest-in-lexicographical-order/）经典面试题使用十叉树求解
+1415. 长度为 n 的开心字符串中字典序第 k 小的字符串（https://leetcode.com/problems/the-k-th-lexicographical-string-of-all-happy-strings-of-length-n/）类似思路经典字典序构造
+1643. 第 K 条最小指令（https://leetcode.com/problems/kth-smallest-instructions/）根据字典序进行处理
+1830. 使字符串有序的最少操作次数（https://leetcode.com/problems/minimum-number-of-operations-to-make-string-sorted/）经典计算字符串的字典序 rank，也可以反向计算rank的字典序
+1842. 下个由相同数字构成的回文串（https://leetcode.com/problems/next-palindrome-using-same-digits/）经典字典序贪心
+1850. 邻位交换的最小次数（https://leetcode.com/problems/minimum-adjacent-swaps-to-reach-the-kth-smallest-number/）经典下一个字典序与冒泡贪心交换次数
 
 ===================================洛谷===================================
 P1243 排序集合（https://www.luogu.com.cn/problem/P1243）求出第K小的子集

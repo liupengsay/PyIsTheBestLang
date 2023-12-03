@@ -5,17 +5,17 @@
 题目：
 
 ===================================力扣===================================
-2197. 替换数组中的非互质数（https://leetcode.cn/problems/replace-non-coprime-numbers-in-array/）结合数学使用栈进行模拟
-394. 字符串解码（https://leetcode.cn/problems/decode-string/）经典解码带括号成倍的字符和数字
-1096. 花括号展开 II（https://leetcode.cn/problems/brace-expansion-ii/）使用栈进行字符解码
-2116. 判断一个括号字符串是否有效（https://leetcode.cn/problems/check-if-a-parentheses-string-can-be-valid/）经典栈贪心匹配括号
-857. 雇佣 K 名工人的最低成本（https://leetcode.cn/problems/minimum-cost-to-hire-k-workers/）经典贪心排序枚举，使用堆维护K个最小值的和
-2542. 最大子序列的分数（https://leetcode.cn/problems/maximum-subsequence-score/）经典排序后枚举使用堆维护K最大的和，类似LC857
-2813. 子序列最大优雅度（https://leetcode.cn/problems/maximum-elegance-of-a-k-length-subsequence/）经典思维题排序后枚举，维护长度为K的子序列最大函数值
-2462. 雇佣 K 位工人的总代价（https://leetcode.cn/problems/total-cost-to-hire-k-workers/）使用堆进行贪心模拟
-1705. 吃苹果的最大数目（https://leetcode.cn/problems/maximum-number-of-eaten-apples/）使用堆进行贪心模拟
-1750. 删除字符串两端相同字符后的最短长度（https://leetcode.cn/problems/minimum-length-of-string-after-deleting-similar-ends/description/）经典栈模拟
-2296. 设计一个文本编辑器（https://leetcode.cn/problems/design-a-text-editor/description/）经典左右两个栈进行模拟
+2197. 替换数组中的非互质数（https://leetcode.com/problems/replace-non-coprime-numbers-in-array/）结合数学使用栈进行模拟
+394. 字符串解码（https://leetcode.com/problems/decode-string/）经典解码带括号成倍的字符和数字
+1096. 花括号展开 II（https://leetcode.com/problems/brace-expansion-ii/）使用栈进行字符解码
+2116. 判断一个括号字符串是否有效（https://leetcode.com/problems/check-if-a-parentheses-string-can-be-valid/）经典栈贪心匹配括号
+857. 雇佣 K 名工人的最低成本（https://leetcode.com/problems/minimum-cost-to-hire-k-workers/）经典贪心排序枚举，使用堆维护K个最小值的和
+2542. 最大子序列的分数（https://leetcode.com/problems/maximum-subsequence-score/）经典排序后枚举使用堆维护K最大的和，类似LC857
+2813. 子序列最大优雅度（https://leetcode.com/problems/maximum-elegance-of-a-k-length-subsequence/）经典思维题排序后枚举，维护长度为K的子序列最大函数值
+2462. 雇佣 K 位工人的总代价（https://leetcode.com/problems/total-cost-to-hire-k-workers/）使用堆进行贪心模拟
+1705. 吃苹果的最大数目（https://leetcode.com/problems/maximum-number-of-eaten-apples/）使用堆进行贪心模拟
+1750. 删除字符串两端相同字符后的最短长度（https://leetcode.com/problems/minimum-length-of-string-after-deleting-similar-ends/description/）经典栈模拟
+2296. 设计一个文本编辑器（https://leetcode.com/problems/design-a-text-editor/description/）经典左右两个栈进行模拟
 
 ===================================洛谷===================================
 P1944 最长括号匹配（https://www.luogu.com.cn/problem/P1944）最长连续合法括号字串长度

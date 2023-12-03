@@ -4,27 +4,27 @@
 题目：
 
 ===================================力扣===================================
-264. 丑数 II（https://leetcode.cn/problems/ugly-number-ii/）只含2、3、5质因数的第 n 个丑数
-1201. 丑数 III（https://leetcode.cn/problems/ugly-number-iii/）只含特定因子数即能被其中一个数整除的第 n 个丑数
-313. 超级丑数（https://leetcode.cn/problems/super-ugly-number/）只含某些特定质因数的第 n 个丑数
-12. 整数转罗马数字（https://leetcode.cn/problems/integer-to-roman/）整数转罗马数字
-13. 罗马数字转整数（https://leetcode.cn/problems/roman-to-integer/）罗马数字转整数
-264. 丑数 II（https://leetcode.cn/problems/ugly-number-ii/）只含2、3、5质因数的第 n 个丑数
-1201. 丑数 III（https://leetcode.cn/problems/ugly-number-iii/）只含特定因子数即能被其中一个数整除的第 n 个丑数
-313. 超级丑数（https://leetcode.cn/problems/super-ugly-number/）只含某些特定质因数的第 n 个丑数
-6364. 无平方子集计数（https://leetcode.cn/problems/count-the-number-of-square-free-subsets/）非空子集乘积不含除 1 之外任何平方整除数，即乘积质数因子的幂次均为 1（背包DP计数）
-1994. 好子集的数目（https://leetcode.cn/problems/the-number-of-good-subsets/）非空子集乘积不含除 1 之外任何平方整除数，即乘积质数因子的幂次均为 1（背包DP计数）
-6309. 分割数组使乘积互质（https://leetcode.cn/contest/weekly-contest-335/problems/split-the-array-to-make-coprime-products/）计算 1 到 n 的每个数所有的质因子，并使用差分进行影响因子计数
-2464. 有效分割中的最少子数组数目（https://leetcode.cn/problems/minimum-subarrays-in-a-valid-split/）计算 1 到 n 的每个数所有的质因子，并使用动态规划计数
-LCP 14. 切分数组（https://leetcode.cn/problems/qie-fen-shu-zu/）计算 1 到 n 的每个数所有的质因子，并使用动态规划计数
-279. 完全平方数（https://leetcode.cn/problems/perfect-squares/）四平方数定理
-650. 只有两个键的键盘（https://leetcode.cn/problems/2-keys-keyboard/）经典分解质因数
-1735. 生成乘积数组的方案数（https://leetcode.cn/problems/count-ways-to-make-array-with-product/）经典质数分解与隔板法应用
-1390. 四因数（https://leetcode.cn/contest/weekly-contest-181/problems/four-divisors/）预处理所有数的所有因子
-1819. 序列中不同最大公约数的数目（https://leetcode.cn/problems/number-of-different-subsequences-gcds/）预处理所有整数的所有因子，再枚举gcd计算
-1017. 负二进制转换（https://leetcode.cn/contest/weekly-contest-130/problems/convert-to-base-2/）负进制转换模板题
-1073. 负二进制数相加（https://leetcode.cn/problems/adding-two-negabinary-numbers/）经典负进制计算题
-8041. 完全子集的最大元素和（https://leetcode.cn/problems/maximum-element-sum-of-a-complete-subset-of-indices/description/）经典质因数分解，奇数幂次的质因子组合哈希
+264. 丑数 II（https://leetcode.com/problems/ugly-number-ii/）只含2、3、5质因数的第 n 个丑数
+1201. 丑数 III（https://leetcode.com/problems/ugly-number-iii/）只含特定因子数即能被其中一个数整除的第 n 个丑数
+313. 超级丑数（https://leetcode.com/problems/super-ugly-number/）只含某些特定质因数的第 n 个丑数
+12. 整数转罗马数字（https://leetcode.com/problems/integer-to-roman/）整数转罗马数字
+13. 罗马数字转整数（https://leetcode.com/problems/roman-to-integer/）罗马数字转整数
+264. 丑数 II（https://leetcode.com/problems/ugly-number-ii/）只含2、3、5质因数的第 n 个丑数
+1201. 丑数 III（https://leetcode.com/problems/ugly-number-iii/）只含特定因子数即能被其中一个数整除的第 n 个丑数
+313. 超级丑数（https://leetcode.com/problems/super-ugly-number/）只含某些特定质因数的第 n 个丑数
+6364. 无平方子集计数（https://leetcode.com/problems/count-the-number-of-square-free-subsets/）非空子集乘积不含除 1 之外任何平方整除数，即乘积质数因子的幂次均为 1（背包DP计数）
+1994. 好子集的数目（https://leetcode.com/problems/the-number-of-good-subsets/）非空子集乘积不含除 1 之外任何平方整除数，即乘积质数因子的幂次均为 1（背包DP计数）
+6309. 分割数组使乘积互质（https://leetcode.com/contest/weekly-contest-335/problems/split-the-array-to-make-coprime-products/）计算 1 到 n 的每个数所有的质因子，并使用差分进行影响因子计数
+2464. 有效分割中的最少子数组数目（https://leetcode.com/problems/minimum-subarrays-in-a-valid-split/）计算 1 到 n 的每个数所有的质因子，并使用动态规划计数
+LCP 14. 切分数组（https://leetcode.com/problems/qie-fen-shu-zu/）计算 1 到 n 的每个数所有的质因子，并使用动态规划计数
+279. 完全平方数（https://leetcode.com/problems/perfect-squares/）四平方数定理
+650. 只有两个键的键盘（https://leetcode.com/problems/2-keys-keyboard/）经典分解质因数
+1735. 生成乘积数组的方案数（https://leetcode.com/problems/count-ways-to-make-array-with-product/）经典质数分解与隔板法应用
+1390. 四因数（https://leetcode.com/contest/weekly-contest-181/problems/four-divisors/）预处理所有数的所有因子
+1819. 序列中不同最大公约数的数目（https://leetcode.com/problems/number-of-different-subsequences-gcds/）预处理所有整数的所有因子，再枚举gcd计算
+1017. 负二进制转换（https://leetcode.com/contest/weekly-contest-130/problems/convert-to-base-2/）负进制转换模板题
+1073. 负二进制数相加（https://leetcode.com/problems/adding-two-negabinary-numbers/）经典负进制计算题
+8041. 完全子集的最大元素和（https://leetcode.com/problems/maximum-element-sum-of-a-complete-subset-of-indices/description/）经典质因数分解，奇数幂次的质因子组合哈希
 
 ===================================洛谷===================================
 P1865 A % B Problem（https://www.luogu.com.cn/problem/P1865）通过线性筛素数后进行二分查询区间素数个数

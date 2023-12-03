@@ -4,16 +4,16 @@
 题目：
 
 ===================================力扣===================================
-421. 数组中两个数的最大异或值（https://leetcode.cn/problems/maximum-xor-of-two-numbers-in-an-array/）经典 01 Trie
-638. 大礼包（https://leetcode.cn/problems/shopping-offers/）经典使用字典树与记忆化搜索
-2416. 字符串的前缀分数和（https://leetcode.cn/problems/sum-of-prefix-scores-of-strings/）单词组前缀计数
-1803. 统计异或值在范围内的数对有多少（https://leetcode.cn/problems/count-pairs-with-xor-in-a-range/）经典01Trie，查询异或值在一定范围的数组对，可以使用数组实现
-677. 键值映射（https://leetcode.cn/problems/map-sum-pairs/）更新与查询给定字符串作为单词键前缀的对应值的和
-2479. 两个不重叠子树的最大异或值（https://leetcode.cn/problems/maximum-xor-of-two-non-overlapping-subtrees/）01Trie计算最大异或值
-面试题 17.17. 多次搜索（https://leetcode.cn/problems/multi-search-lcci/）AC自动机计数，也可直接使用字典树逆向思维，字典树存关键字，再搜索文本，和单词矩阵一样的套路
-1707. 与数组中元素的最大异或值（https://leetcode.cn/problems/maximum-xor-with-an-element-from-array/）经典排序后离线查询并使用 01 Trie求解
-1938. 查询最大基因差（https://leetcode.cn/problems/maximum-genetic-difference-query/）使用深搜回溯与01Trie查询最大异或值
-1032. 字符流（https://leetcode.cn/problems/stream-of-characters/description/）字典树典型应用，倒序存储
+421. 数组中两个数的最大异或值（https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/）经典 01 Trie
+638. 大礼包（https://leetcode.com/problems/shopping-offers/）经典使用字典树与记忆化搜索
+2416. 字符串的前缀分数和（https://leetcode.com/problems/sum-of-prefix-scores-of-strings/）单词组前缀计数
+1803. 统计异或值在范围内的数对有多少（https://leetcode.com/problems/count-pairs-with-xor-in-a-range/）经典01Trie，查询异或值在一定范围的数组对，可以使用数组实现
+677. 键值映射（https://leetcode.com/problems/map-sum-pairs/）更新与查询给定字符串作为单词键前缀的对应值的和
+2479. 两个不重叠子树的最大异或值（https://leetcode.com/problems/maximum-xor-of-two-non-overlapping-subtrees/）01Trie计算最大异或值
+面试题 17.17. 多次搜索（https://leetcode.com/problems/multi-search-lcci/）AC自动机计数，也可直接使用字典树逆向思维，字典树存关键字，再搜索文本，和单词矩阵一样的套路
+1707. 与数组中元素的最大异或值（https://leetcode.com/problems/maximum-xor-with-an-element-from-array/）经典排序后离线查询并使用 01 Trie求解
+1938. 查询最大基因差（https://leetcode.com/problems/maximum-genetic-difference-query/）使用深搜回溯与01Trie查询最大异或值
+1032. 字符流（https://leetcode.com/problems/stream-of-characters/description/）字典树典型应用，倒序存储
 
 ===================================洛谷===================================
 P8306 字典树（https://www.luogu.com.cn/problem/P8306）

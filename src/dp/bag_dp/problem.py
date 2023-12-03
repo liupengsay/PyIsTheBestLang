@@ -4,17 +4,17 @@
 题目：
 
 ===================================力扣===================================
-140. 单词拆分 II（https://leetcode.cn/problems/word-break-ii/）经典 01 背包生成具体方案
-2218. 从栈中取出 K 个硬币的最大面值和（https://leetcode.cn/problems/maximum-value-of-k-coins-from-piles/）分组背包DP
-2585. 获得分数的方法数（https://leetcode.cn/contest/weekly-contest-335/problems/number-of-ways-to-earn-points/）看似二进制优化背包，实则数量转移
-2189. 建造纸牌屋的方法数（https://leetcode.cn/problems/number-of-ways-to-build-house-of-cards/）转换为01背包求解
-254. 因子的组合（https://leetcode.cn/problems/factor-combinations/）乘法结合背包DP
-1449. 数位成本和为目标值的最大数字（https://leetcode.cn/problems/form-largest-integer-with-digits-that-add-up-to-target/）代价一定情况下的最大数值
-1049. 最后一块石头的重量 II（https://leetcode.cn/problems/last-stone-weight-ii/）经典问题，转化为01背包求解
-2742. 给墙壁刷油漆（https://leetcode.cn/problems/painting-the-walls/description/）经典剪枝DP，可以转换为01背包求解
-2518. 好分区的数目（https://leetcode.cn/problems/number-of-great-partitions/）经典01背包计数
-1155. 掷骰子等于目标和的方法数（https://leetcode.cn/problems/number-of-dice-rolls-with-target-sum/description/）类似分组背包，可使用线性刷表法与填表法
-2902. 和带限制的子多重集合的数目（https://leetcode.cn/problems/count-of-sub-multisets-with-bounded-sum/description/）按照单调队列的思想进行取模分组DP，使用前缀和优化，也有容斥的思想，可撤销背包
+140. 单词拆分 II（https://leetcode.com/problems/word-break-ii/）经典 01 背包生成具体方案
+2218. 从栈中取出 K 个硬币的最大面值和（https://leetcode.com/problems/maximum-value-of-k-coins-from-piles/）分组背包DP
+2585. 获得分数的方法数（https://leetcode.com/contest/weekly-contest-335/problems/number-of-ways-to-earn-points/）看似二进制优化背包，实则数量转移
+2189. 建造纸牌屋的方法数（https://leetcode.com/problems/number-of-ways-to-build-house-of-cards/）转换为01背包求解
+254. 因子的组合（https://leetcode.com/problems/factor-combinations/）乘法结合背包DP
+1449. 数位成本和为目标值的最大数字（https://leetcode.com/problems/form-largest-integer-with-digits-that-add-up-to-target/）代价一定情况下的最大数值
+1049. 最后一块石头的重量 II（https://leetcode.com/problems/last-stone-weight-ii/）经典问题，转化为01背包求解
+2742. 给墙壁刷油漆（https://leetcode.com/problems/painting-the-walls/description/）经典剪枝DP，可以转换为01背包求解
+2518. 好分区的数目（https://leetcode.com/problems/number-of-great-partitions/）经典01背包计数
+1155. 掷骰子等于目标和的方法数（https://leetcode.com/problems/number-of-dice-rolls-with-target-sum/description/）类似分组背包，可使用线性刷表法与填表法
+2902. 和带限制的子多重集合的数目（https://leetcode.com/problems/count-of-sub-multisets-with-bounded-sum/description/）按照单调队列的思想进行取模分组DP，使用前缀和优化，也有容斥的思想，可撤销背包
 
 ===================================洛谷===================================
 P1048 采药（https://www.luogu.com.cn/problem/P1048）一维背包DP，数量有限，从后往前遍历

@@ -3,21 +3,21 @@
 算法：拓扑排序、内向基环树（有向或者无向，连通块有k个节点以及k条边）、bfs序、拓扑序
 功能：有向图进行排序，无向图在选定根节点的情况下也可以进行拓扑排序
 题目：xx（xx）
-内向基环树介绍：https://leetcode.cn/problems/maximum-employees-to-be-invited-to-a-meeting/solution/nei-xiang-ji-huan-shu-tuo-bu-pai-xu-fen-c1i1b/
+内向基环树介绍：https://leetcode.com/problems/maximum-employees-to-be-invited-to-a-meeting/solution/nei-xiang-ji-huan-shu-tuo-bu-pai-xu-fen-c1i1b/
 
 ===================================力扣===================================
-360. 图中的最长环（https://leetcode.cn/problems/longest-cycle-in-a-graph/）拓扑排序计算有向图内向基环树最长环
-2392. 给定条件下构造矩阵（https://leetcode.cn/problems/build-a-matrix-with-conditions/）分别通过行列的拓扑排序来确定数字所在索引，数字可能相同，需要使用并查集
-2371. 最小化网格中的最大值（https://leetcode.cn/problems/minimize-maximum-value-in-a-grid/）分别通过行列的拓扑排序来确定数字所在索引，数字都不同可以使用贪心
-2127. 参加会议的最多员工数（https://leetcode.cn/problems/maximum-employees-to-be-invited-to-a-meeting/）拓扑排序确定DAG内向基环，按照环的大小进行分类讨论
-127. 参加会议的最多员工数（https://leetcode.cn/problems/maximum-employees-to-be-invited-to-a-meeting/）
-269. 火星词典（https://leetcode.cn/problems/alien-dictionary/）经典按照字典序建图，与拓扑排序的应用
-2603. 收集树中金币（https://leetcode.cn/contest/weekly-contest-338/problems/collect-coins-in-a-tree/）无向图拓扑排序内向基环树
-2204. 无向图中到环的距离（https://leetcode.cn/problems/distance-to-a-cycle-in-undirected-graph/https://leetcode.cn/problems/distance-to-a-cycle-in-undirected-graph/）无向图拓扑排序
-1857. 有向图中最大颜色值（https://leetcode.cn/problems/largest-color-value-in-a-directed-graph/）经典拓扑排序DP
-1932. 合并多棵二叉搜索树（https://leetcode.cn/problems/merge-bsts-to-create-single-bst/）经典连通性、拓扑排序与二叉搜索树判断
-1591. 奇怪的打印机 II（https://leetcode.cn/contest/biweekly-contest-35/problems/strange-printer-ii/）经典建图判断拓扑排序是否无环
-2192. 有向无环图中一个节点的所有祖先（https://leetcode.cn/problems/all-ancestors-of-a-node-in-a-directed-acyclic-graph/）经典有向图DAG拓扑排序
+360. 图中的最长环（https://leetcode.com/problems/longest-cycle-in-a-graph/）拓扑排序计算有向图内向基环树最长环
+2392. 给定条件下构造矩阵（https://leetcode.com/problems/build-a-matrix-with-conditions/）分别通过行列的拓扑排序来确定数字所在索引，数字可能相同，需要使用并查集
+2371. 最小化网格中的最大值（https://leetcode.com/problems/minimize-maximum-value-in-a-grid/）分别通过行列的拓扑排序来确定数字所在索引，数字都不同可以使用贪心
+2127. 参加会议的最多员工数（https://leetcode.com/problems/maximum-employees-to-be-invited-to-a-meeting/）拓扑排序确定DAG内向基环，按照环的大小进行分类讨论
+127. 参加会议的最多员工数（https://leetcode.com/problems/maximum-employees-to-be-invited-to-a-meeting/）
+269. 火星词典（https://leetcode.com/problems/alien-dictionary/）经典按照字典序建图，与拓扑排序的应用
+2603. 收集树中金币（https://leetcode.com/contest/weekly-contest-338/problems/collect-coins-in-a-tree/）无向图拓扑排序内向基环树
+2204. 无向图中到环的距离（https://leetcode.com/problems/distance-to-a-cycle-in-undirected-graph/https://leetcode.com/problems/distance-to-a-cycle-in-undirected-graph/）无向图拓扑排序
+1857. 有向图中最大颜色值（https://leetcode.com/problems/largest-color-value-in-a-directed-graph/）经典拓扑排序DP
+1932. 合并多棵二叉搜索树（https://leetcode.com/problems/merge-bsts-to-create-single-bst/）经典连通性、拓扑排序与二叉搜索树判断
+1591. 奇怪的打印机 II（https://leetcode.com/contest/biweekly-contest-35/problems/strange-printer-ii/）经典建图判断拓扑排序是否无环
+2192. 有向无环图中一个节点的所有祖先（https://leetcode.com/problems/all-ancestors-of-a-node-in-a-directed-acyclic-graph/）经典有向图DAG拓扑排序
 
 
 ===================================洛谷===================================

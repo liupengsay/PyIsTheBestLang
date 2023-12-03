@@ -4,19 +4,19 @@
 题目：
 
 ===================================力扣===================================
-218. 天际线问题（https://leetcode.cn/problems/the-skyline-problem/solution/by-liupengsay-isfo/）区间值修改与计算最大值
-2286. 以组为单位订音乐会的门票（https://leetcode.cn/problems/booking-concert-tickets-in-groups/）区间值增减与计算区间和、区间最大值、区间最小值
-2407. 最长递增子序列 II（https://leetcode.cn/problems/longest-increasing-subsequence-ii/）维护与查询区间最大值，然后进行DP更新
-2179. 统计数组中好三元组数目（https://leetcode.cn/problems/count-good-triplets-in-an-array/）维护区间范围内的个数
-2158. 每天绘制新区域的数量（https://leetcode.cn/problems/amount-of-new-area-painted-each-day/）线段树维护区间范围的覆盖
-6318. 完成所有任务的最少时间（https://leetcode.cn/contest/weekly-contest-336/problems/minimum-time-to-complete-all-tasks/）线段树，贪心加二分
-732. 我的日程安排表 III（https://leetcode.cn/problems/my-calendar-iii/）使用defaultdict进行动态开点线段树
-1851. 包含每个查询的最小区间（https://leetcode.cn/problems/minimum-interval-to-include-each-query/）区间更新最小值、单点查询，也可以用离线查询与优先队列维护计算
-2213. 由单个字符重复的最长子字符串（https://leetcode.cn/problems/longest-substring-of-one-repeating-character/）单点字母更新，最长具有相同字母的连续子数组查询
-2276. 统计区间中的整数数目（https://leetcode.cn/problems/count-integers-in-intervals/）动态开点线段树模板题，维护区间并集的长度，也可使用SortedList
-1340. 跳跃游戏 V（https://leetcode.cn/problems/jump-game-v/）可以使用线段树DP进行解决
-2569. 更新数组后处理求和查询（https://leetcode.cn/problems/handling-sum-queries-after-update/）经典01线段树区间翻转与求和，也可以使用BitSet
-2940. 找到 Alice 和 Bob 可以相遇的建筑（https://leetcode.cn/problems/find-building-where-alice-and-bob-can-meet/）可使用线段树二分做，线段树二分模板题
+218. 天际线问题（https://leetcode.com/problems/the-skyline-problem/solution/by-liupengsay-isfo/）区间值修改与计算最大值
+2286. 以组为单位订音乐会的门票（https://leetcode.com/problems/booking-concert-tickets-in-groups/）区间值增减与计算区间和、区间最大值、区间最小值
+2407. 最长递增子序列 II（https://leetcode.com/problems/longest-increasing-subsequence-ii/）维护与查询区间最大值，然后进行DP更新
+2179. 统计数组中好三元组数目（https://leetcode.com/problems/count-good-triplets-in-an-array/）维护区间范围内的个数
+2158. 每天绘制新区域的数量（https://leetcode.com/problems/amount-of-new-area-painted-each-day/）线段树维护区间范围的覆盖
+6318. 完成所有任务的最少时间（https://leetcode.com/contest/weekly-contest-336/problems/minimum-time-to-complete-all-tasks/）线段树，贪心加二分
+732. 我的日程安排表 III（https://leetcode.com/problems/my-calendar-iii/）使用defaultdict进行动态开点线段树
+1851. 包含每个查询的最小区间（https://leetcode.com/problems/minimum-interval-to-include-each-query/）区间更新最小值、单点查询，也可以用离线查询与优先队列维护计算
+2213. 由单个字符重复的最长子字符串（https://leetcode.com/problems/longest-substring-of-one-repeating-character/）单点字母更新，最长具有相同字母的连续子数组查询
+2276. 统计区间中的整数数目（https://leetcode.com/problems/count-integers-in-intervals/）动态开点线段树模板题，维护区间并集的长度，也可使用SortedList
+1340. 跳跃游戏 V（https://leetcode.com/problems/jump-game-v/）可以使用线段树DP进行解决
+2569. 更新数组后处理求和查询（https://leetcode.com/problems/handling-sum-queries-after-update/）经典01线段树区间翻转与求和，也可以使用BitSet
+2940. 找到 Alice 和 Bob 可以相遇的建筑（https://leetcode.com/problems/find-building-where-alice-and-bob-can-meet/）可使用线段树二分做，线段树二分模板题
 
 ===================================洛谷===================================
 P2846 [USACO08NOV]Light Switching G（https://www.luogu.com.cn/problem/P2846）线段树统计区间翻转和

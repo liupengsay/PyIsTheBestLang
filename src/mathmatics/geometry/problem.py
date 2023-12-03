@@ -4,14 +4,14 @@
 题目：
 
 ===================================力扣===================================
-149. 直线上最多的点数（https://leetcode.cn/problems/max-points-on-a-line/）用直线斜率判断一条线上最多的点数
-1453. 圆形靶内的最大飞镖数量（https://leetcode.cn/problems/maximum-number-of-darts-inside-of-a-circular-dartboard/）计算经过两个不同的点与确定半径的两处圆心
-939. 最小面积矩形（https://leetcode.cn/problems/minimum-area-rectangle/）枚举矩形对角顶点计算另外两个顶点
-面试题 16.03. 交点（https://leetcode.cn/problems/intersection-lcci/）计算两条线段最靠左靠下的交点
-面试题 16.14. 最佳直线（https://leetcode.cn/problems/best-line-lcci/）用直线斜率判断一条线上最多的点数
-2013. 检测正方形（https://leetcode.cn/problems/detect-squares/）已知正方形对角顶点计算另外两个顶点，经典枚举哈希计数
-2280. 表示一个折线图的最少线段数（https://leetcode.cn/problems/minimum-lines-to-represent-a-line-chart/）使用分数代表斜率计算
-1401. 圆和矩形是否有重叠（https://leetcode.cn/problems/circle-and-rectangle-overlapping/）经典几何题，寻找圆离矩形最近的点
+149. 直线上最多的点数（https://leetcode.com/problems/max-points-on-a-line/）用直线斜率判断一条线上最多的点数
+1453. 圆形靶内的最大飞镖数量（https://leetcode.com/problems/maximum-number-of-darts-inside-of-a-circular-dartboard/）计算经过两个不同的点与确定半径的两处圆心
+939. 最小面积矩形（https://leetcode.com/problems/minimum-area-rectangle/）枚举矩形对角顶点计算另外两个顶点
+面试题 16.03. 交点（https://leetcode.com/problems/intersection-lcci/）计算两条线段最靠左靠下的交点
+面试题 16.14. 最佳直线（https://leetcode.com/problems/best-line-lcci/）用直线斜率判断一条线上最多的点数
+2013. 检测正方形（https://leetcode.com/problems/detect-squares/）已知正方形对角顶点计算另外两个顶点，经典枚举哈希计数
+2280. 表示一个折线图的最少线段数（https://leetcode.com/problems/minimum-lines-to-represent-a-line-chart/）使用分数代表斜率计算
+1401. 圆和矩形是否有重叠（https://leetcode.com/problems/circle-and-rectangle-overlapping/）经典几何题，寻找圆离矩形最近的点
 
 ===================================洛谷===================================
 P1665 正方形计数（https://www.luogu.com.cn/problem/P1665）枚举正方形对角线顶点计算可行个数

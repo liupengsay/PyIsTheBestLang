@@ -5,42 +5,42 @@
 题目：
 
 ===================================力扣===================================
-174. 地下城游戏（https://leetcode.cn/problems/dungeon-game/）经典矩阵 DP 逆向递推
-2478. 完美分割的方案数（https://leetcode.cn/problems/number-of-beautiful-partitions/）
-2463. 最小移动总距离（https://leetcode.cn/problems/minimum-total-distance-traveled/）
-2435. 矩阵中和能被 K 整除的路径（https://leetcode.cn/problems/paths-in-matrix-whose-sum-is-divisible-by-k/）利用模 K 的特点进行路径计算
-2088. 统计农场中肥沃金字塔的数目（https://leetcode.cn/problems/count-fertile-pyramids-in-a-land/）类似求正方形的边长和面积进行矩阵DP
-221. 最大正方形（https://leetcode.cn/problems/maximal-square/）求全为 1 的最大正方形面积
-72. 编辑距离（https://leetcode.cn/problems/edit-distance/）矩阵DP
-329. 矩阵中的最长递增路径（https://leetcode.cn/problems/longest-increasing-path-in-a-matrix/）二维矩阵DP
-1478. 安排邮筒（https://leetcode.cn/problems/allocate-mailboxes/）二维DP与一个计算不带权中位数距离的区间DP
-6363. 找出对应 LCP 矩阵的字符串（https://leetcode.cn/problems/find-the-string-with-lcp/）贪心构造符合条件的字符串，并通过计算LCP进行确认
-2328. 网格图中递增路径的数目（https://leetcode.cn/problems/number-of-increasing-paths-in-a-grid/）计算严格递增的路径数量
-2312. 卖木头块（https://leetcode.cn/problems/selling-pieces-of-wood/）自顶向下搜索最佳方案
-2267. 检查是否有合法括号字符串路径（https://leetcode.cn/problems/check-if-there-is-a-valid-parentheses-string-path/）记忆化搜索合法路径
-1092. 最短公共超序列（https://leetcode.cn/problems/shortest-common-supersequence/）经典从后往前动态规划加从前往后构造，计算最长公共子序列，并构造包含两个字符串的最短公共超序列
-1143. 最长公共子序列（https://leetcode.cn/problems/longest-common-subsequence/）使用LIS的方法求LCS
-1035. 不相交的线（https://leetcode.cn/problems/uncrossed-lines/）使用LIS的方法求LCS
-2617. 网格图中最少访问的格子数（https://leetcode.cn/problems/minimum-number-of-visited-cells-in-a-grid/）倒序矩阵 DP 并使用树状数组记录更新前缀最小值
-1092. 最短公共超序列（https://leetcode.cn/problems/shortest-common-supersequence/）经典LCS问题并输出方案，可使用LIS求解
-1692. 计算分配糖果的不同方式（https://leetcode.cn/problems/count-ways-to-distribute-candies/）矩阵DP计算方案数
-1771. 由子序列构造的最长回文串的长度（https://leetcode.cn/problems/maximize-palindrome-length-from-subsequences/）经典最长回文子序列矩阵DP
-1883. 准时抵达会议现场的最小跳过休息次数（https://leetcode.cn/problems/minimum-skips-to-arrive-at-meeting-on-time/）矩阵 DP
-1977. 划分数字的方案数（https://leetcode.cn/problems/number-of-ways-to-separate-numbers/）经典两个矩阵DP含LCP进行计算优化，或者使用前缀优化DP
-2430. 对字母串可执行的最大删除数（https://leetcode.cn/problems/maximum-deletions-on-a-string/）双重DP进行LCP与矩阵DP
-1216. 验证回文字符串 III（https://leetcode.cn/problems/valid-palindrome-iii/）经典DP求最长回文子序列
-2060. 同源字符串检测（https://leetcode.cn/problems/check-if-an-original-string-exists-given-two-encoded-strings/description/）二维矩阵DP枚举记忆化搜索
-2556. 二进制矩阵中翻转最多一次使路径不连通（https://leetcode.cn/problems/disconnect-path-in-a-binary-matrix-by-at-most-one-flip/description/）经典矩阵DP思维题，判断割点可行性
-920. 播放列表的数量（https://leetcode.cn/problems/number-of-music-playlists/）经典矩阵DP
-1594. 矩阵的最大非负积（https://leetcode.cn/problems/maximum-non-negative-product-in-a-matrix/）经典矩阵DP最大与最小乘积转移
-1639. 通过给定词典构造目标字符串的方案数（https://leetcode.cn/problems/number-of-ways-to-form-a-target-string-given-a-dictionary/description/）前缀和优化二维DP
-956. 最高的广告牌（https://leetcode.cn/problems/tallest-billboard/description/）经典矩阵DP
-1301. 最大得分的路径数目（https://leetcode.cn/contest/biweekly-contest-16/problems/number-of-paths-with-max-score/）经典矩阵DP计算路径最大值与方案数
-1937. 扣分后的最大得分（https://leetcode.cn/problems/maximum-number-of-points-with-cost/）经典矩阵前缀和后缀和优化的DP
-1751. 最多可以参加的会议数目 II（https://leetcode.cn/problems/maximum-number-of-events-that-can-be-attended-ii/）经典矩阵二维DP使用二分优化
-1959. K 次调整数组大小浪费的最小总空间（https://leetcode.cn/problems/minimum-total-space-wasted-with-k-resizing-operations/description/）经典矩阵二维DP使用前缀和优化
-1458. 两个子序列的最大点积（https://leetcode.cn/problems/max-dot-product-of-two-subsequences/description/）经典矩阵DP
-1745. 分割回文串 IV（https://leetcode.cn/problems/palindrome-partitioning-iv/description/）经典矩阵DP判断是否为回文子串，或者使用马拉车然后枚举
+174. 地下城游戏（https://leetcode.com/problems/dungeon-game/）经典矩阵 DP 逆向递推
+2478. 完美分割的方案数（https://leetcode.com/problems/number-of-beautiful-partitions/）
+2463. 最小移动总距离（https://leetcode.com/problems/minimum-total-distance-traveled/）
+2435. 矩阵中和能被 K 整除的路径（https://leetcode.com/problems/paths-in-matrix-whose-sum-is-divisible-by-k/）利用模 K 的特点进行路径计算
+2088. 统计农场中肥沃金字塔的数目（https://leetcode.com/problems/count-fertile-pyramids-in-a-land/）类似求正方形的边长和面积进行矩阵DP
+221. 最大正方形（https://leetcode.com/problems/maximal-square/）求全为 1 的最大正方形面积
+72. 编辑距离（https://leetcode.com/problems/edit-distance/）矩阵DP
+329. 矩阵中的最长递增路径（https://leetcode.com/problems/longest-increasing-path-in-a-matrix/）二维矩阵DP
+1478. 安排邮筒（https://leetcode.com/problems/allocate-mailboxes/）二维DP与一个计算不带权中位数距离的区间DP
+6363. 找出对应 LCP 矩阵的字符串（https://leetcode.com/problems/find-the-string-with-lcp/）贪心构造符合条件的字符串，并通过计算LCP进行确认
+2328. 网格图中递增路径的数目（https://leetcode.com/problems/number-of-increasing-paths-in-a-grid/）计算严格递增的路径数量
+2312. 卖木头块（https://leetcode.com/problems/selling-pieces-of-wood/）自顶向下搜索最佳方案
+2267. 检查是否有合法括号字符串路径（https://leetcode.com/problems/check-if-there-is-a-valid-parentheses-string-path/）记忆化搜索合法路径
+1092. 最短公共超序列（https://leetcode.com/problems/shortest-common-supersequence/）经典从后往前动态规划加从前往后构造，计算最长公共子序列，并构造包含两个字符串的最短公共超序列
+1143. 最长公共子序列（https://leetcode.com/problems/longest-common-subsequence/）使用LIS的方法求LCS
+1035. 不相交的线（https://leetcode.com/problems/uncrossed-lines/）使用LIS的方法求LCS
+2617. 网格图中最少访问的格子数（https://leetcode.com/problems/minimum-number-of-visited-cells-in-a-grid/）倒序矩阵 DP 并使用树状数组记录更新前缀最小值
+1092. 最短公共超序列（https://leetcode.com/problems/shortest-common-supersequence/）经典LCS问题并输出方案，可使用LIS求解
+1692. 计算分配糖果的不同方式（https://leetcode.com/problems/count-ways-to-distribute-candies/）矩阵DP计算方案数
+1771. 由子序列构造的最长回文串的长度（https://leetcode.com/problems/maximize-palindrome-length-from-subsequences/）经典最长回文子序列矩阵DP
+1883. 准时抵达会议现场的最小跳过休息次数（https://leetcode.com/problems/minimum-skips-to-arrive-at-meeting-on-time/）矩阵 DP
+1977. 划分数字的方案数（https://leetcode.com/problems/number-of-ways-to-separate-numbers/）经典两个矩阵DP含LCP进行计算优化，或者使用前缀优化DP
+2430. 对字母串可执行的最大删除数（https://leetcode.com/problems/maximum-deletions-on-a-string/）双重DP进行LCP与矩阵DP
+1216. 验证回文字符串 III（https://leetcode.com/problems/valid-palindrome-iii/）经典DP求最长回文子序列
+2060. 同源字符串检测（https://leetcode.com/problems/check-if-an-original-string-exists-given-two-encoded-strings/description/）二维矩阵DP枚举记忆化搜索
+2556. 二进制矩阵中翻转最多一次使路径不连通（https://leetcode.com/problems/disconnect-path-in-a-binary-matrix-by-at-most-one-flip/description/）经典矩阵DP思维题，判断割点可行性
+920. 播放列表的数量（https://leetcode.com/problems/number-of-music-playlists/）经典矩阵DP
+1594. 矩阵的最大非负积（https://leetcode.com/problems/maximum-non-negative-product-in-a-matrix/）经典矩阵DP最大与最小乘积转移
+1639. 通过给定词典构造目标字符串的方案数（https://leetcode.com/problems/number-of-ways-to-form-a-target-string-given-a-dictionary/description/）前缀和优化二维DP
+956. 最高的广告牌（https://leetcode.com/problems/tallest-billboard/description/）经典矩阵DP
+1301. 最大得分的路径数目（https://leetcode.com/contest/biweekly-contest-16/problems/number-of-paths-with-max-score/）经典矩阵DP计算路径最大值与方案数
+1937. 扣分后的最大得分（https://leetcode.com/problems/maximum-number-of-points-with-cost/）经典矩阵前缀和后缀和优化的DP
+1751. 最多可以参加的会议数目 II（https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended-ii/）经典矩阵二维DP使用二分优化
+1959. K 次调整数组大小浪费的最小总空间（https://leetcode.com/problems/minimum-total-space-wasted-with-k-resizing-operations/description/）经典矩阵二维DP使用前缀和优化
+1458. 两个子序列的最大点积（https://leetcode.com/problems/max-dot-product-of-two-subsequences/description/）经典矩阵DP
+1745. 分割回文串 IV（https://leetcode.com/problems/palindrome-partitioning-iv/description/）经典矩阵DP判断是否为回文子串，或者使用马拉车然后枚举
 
 ===================================洛谷===================================
 P2701 [USACO5.3]巨大的牛棚Big Barn（https://www.luogu.com.cn/problem/P2701）求全为 "." 的最大正方形面积，如果不要求实心只能做到O(n^3)复杂度

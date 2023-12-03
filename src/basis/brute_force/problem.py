@@ -4,45 +4,45 @@
 题目：
 
 ===================================力扣===================================
-670. 最大交换（https://leetcode.cn/problems/maximum-swap/）看似贪心，在复杂度允许的情况下使用枚举暴力保险
-395. 至少有 K 个重复字符的最长子串（https://leetcode.cn/problems/longest-substring-with-at-least-k-repeating-characters/）经典枚举分治
-1330. 翻转子数组得到最大的数组值（https://leetcode.cn/problems/reverse-subarray-to-maximize-array-value/）经典枚举绝对值正负数
-2488. 统计中位数为 K 的子数组（https://leetcode.cn/problems/count-subarrays-with-median-k/）利用中位数的定义枚举前后子序列中满足大于 K 和小于 K 的数个数相等的子数组
-2484. 统计回文子序列数目（https://leetcode.cn/problems/count-palindromic-subsequences/）利用前后缀哈希计数枚举当前索引作为回文中心的回文子串的前后缀个数
-2322. 从树中删除边的最小分数（https://leetcode.cn/problems/minimum-score-after-removals-on-a-tree/）枚举删除的第一条边后使用树形递归再枚举第二条边计算连通块异或差值最小分数
-2321. 拼接数组的最大分数（https://leetcode.cn/problems/maximum-score-of-spliced-array/）借助经典的最大最小子数组和枚举交换的连续子序列
-2306. 公司命名（https://leetcode.cn/problems/naming-a-company/）利用字母个数有限的特点枚举首字母交换对
-2272. 最大波动的子字符串（https://leetcode.cn/problems/substring-with-largest-variance/）利用字母个数有限的特点进行最大字符与最小字符枚举
-2183. 统计可以被 K 整除的下标对数目（https://leetcode.cn/problems/count-array-pairs-divisible-by-k/）按照最大公约数进行分组枚举
-2151. 基于陈述统计最多好人数（https://leetcode.cn/problems/maximum-good-people-based-on-statements/）使用状态压缩进行枚举并判定是否合法
-2147. 分隔长廊的方案数（https://leetcode.cn/problems/number-of-ways-to-divide-a-long-corridor/）根据题意进行分隔点枚举计数
-2122. 还原原数组（https://leetcode.cn/problems/recover-the-original-array/）枚举差值 k 判断是否合法
-2468 根据限制分割消息（https://leetcode.cn/problems/split-message-based-on-limit/）根据长度限制进行二分
-2417. 最近的公平整数（https://leetcode.cn/problems/closest-fair-integer/）按照位数贪心枚举加和
-2681. 英雄的力量（https://leetcode.cn/problems/power-of-heroes/）按照贡献法枚举计数
-1625. 执行操作后字典序最小的字符串（https://leetcode.cn/problems/lexicographically-smallest-string-after-applying-operations/）经典枚举计算最小的字典序
-1819. 序列中不同最大公约数的数目（https://leetcode.cn/problems/number-of-different-subsequences-gcds/）经典调和级数枚举
-1862. 向下取整数对和（https://leetcode.cn/submissions/detail/371754298/）枚举商并利用调和级数的复杂度进行计算
-2014. 重复 K 次的最长子序列（https://leetcode.cn/problems/longest-subsequence-repeated-k-times/）经典利用数据范围进行枚举，贪心使用permutations
-2077. 殊途同归（https://leetcode.cn/problems/paths-in-maze-that-lead-to-same-room/）经典使用位运算枚举
-2081. k 镜像数字的和（https://leetcode.cn/problems/sum-of-k-mirror-numbers/）经典回文串进制数据枚举
-2170. 使数组变成交替数组的最少操作数（https://leetcode.cn/problems/minimum-operations-to-make-the-array-alternating/）经典枚举，运用最大值与次大值技巧
-1215. 步进数（https://leetcode.cn/problems/stepping-numbers/）经典根据数据范围使用回溯枚举所有满足条件的数
-2245. 转角路径的乘积中最多能有几个尾随零（https://leetcode.cn/problems/maximum-trailing-zeros-in-a-cornered-path/）经典四个方向的前缀和与两两组合枚举
-1878. 矩阵中最大的三个菱形和（https://leetcode.cn/problems/get-biggest-three-rhombus-sums-in-a-grid/）经典两个方向上的前缀和计算与边长枚举
-2018. 判断单词是否能放入填字游戏内（https://leetcode.cn/problems/check-if-word-can-be-placed-in-crossword/description/）经典枚举空挡位置与矩阵行列取数
-2591. 将钱分给最多的儿童（https://leetcode.cn/problems/distribute-money-to-maximum-children/）经典枚举考虑边界条件
-910. 最小差值 II（https://leetcode.cn/problems/smallest-range-ii/description/）经典枚举操作的范围，计算最大值与最小值
-1131. 绝对值表达式的最大值（https://leetcode.cn/problems/maximum-of-absolute-value-expression/description/）经典曼哈顿距离计算，枚举可能的符号组合
-1761. 一个图中连通三元组的最小度数（https://leetcode.cn/problems/minimum-degree-of-a-connected-trio-in-a-graph/description/?envType=daily-question&envId=2023-08-31）经典无向图转为有向图进行枚举
-1178. 猜字谜（https://leetcode.cn/problems/number-of-valid-words-for-each-puzzle/）典型哈希计数枚举，使用位运算
-1638. 统计只差一个字符的子串数目（https://leetcode.cn/problems/count-substrings-that-differ-by-one-character/description/）枚举子字符串对开头位置也可使用DP枚举
-2212. 射箭比赛中的最大得分（https://leetcode.cn/problems/maximum-points-in-an-archery-competition/）位运算枚举或者回溯计算
-2749. 得到整数零需要执行的最少操作数（https://leetcode.cn/problems/minimum-operations-to-make-the-integer-zero/）枚举操作次数使用位运算计算可行性
-2094. 找出 3 位偶数（https://leetcode.cn/problems/finding-3-digit-even-numbers/description/）脑筋急转弯枚举，有技巧地缩小范围
-842. 将数组拆分成斐波那契序列（https://leetcode.cn/problems/split-array-into-fibonacci-sequence/description/）脑筋急转弯枚举数列前两项也可以使用DFS回溯计算
-2122. 还原原数组（https://leetcode.cn/problems/recover-the-original-array/）枚举间隔哈希模拟可行性
-1782. 统计点对的数目（https://leetcode.cn/problems/count-pairs-of-nodes/description/）使用枚举所有的点对
+670. 最大交换（https://leetcode.com/problems/maximum-swap/）看似贪心，在复杂度允许的情况下使用枚举暴力保险
+395. 至少有 K 个重复字符的最长子串（https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters/）经典枚举分治
+1330. 翻转子数组得到最大的数组值（https://leetcode.com/problems/reverse-subarray-to-maximize-array-value/）经典枚举绝对值正负数
+2488. 统计中位数为 K 的子数组（https://leetcode.com/problems/count-subarrays-with-median-k/）利用中位数的定义枚举前后子序列中满足大于 K 和小于 K 的数个数相等的子数组
+2484. 统计回文子序列数目（https://leetcode.com/problems/count-palindromic-subsequences/）利用前后缀哈希计数枚举当前索引作为回文中心的回文子串的前后缀个数
+2322. 从树中删除边的最小分数（https://leetcode.com/problems/minimum-score-after-removals-on-a-tree/）枚举删除的第一条边后使用树形递归再枚举第二条边计算连通块异或差值最小分数
+2321. 拼接数组的最大分数（https://leetcode.com/problems/maximum-score-of-spliced-array/）借助经典的最大最小子数组和枚举交换的连续子序列
+2306. 公司命名（https://leetcode.com/problems/naming-a-company/）利用字母个数有限的特点枚举首字母交换对
+2272. 最大波动的子字符串（https://leetcode.com/problems/substring-with-largest-variance/）利用字母个数有限的特点进行最大字符与最小字符枚举
+2183. 统计可以被 K 整除的下标对数目（https://leetcode.com/problems/count-array-pairs-divisible-by-k/）按照最大公约数进行分组枚举
+2151. 基于陈述统计最多好人数（https://leetcode.com/problems/maximum-good-people-based-on-statements/）使用状态压缩进行枚举并判定是否合法
+2147. 分隔长廊的方案数（https://leetcode.com/problems/number-of-ways-to-divide-a-long-corridor/）根据题意进行分隔点枚举计数
+2122. 还原原数组（https://leetcode.com/problems/recover-the-original-array/）枚举差值 k 判断是否合法
+2468 根据限制分割消息（https://leetcode.com/problems/split-message-based-on-limit/）根据长度限制进行二分
+2417. 最近的公平整数（https://leetcode.com/problems/closest-fair-integer/）按照位数贪心枚举加和
+2681. 英雄的力量（https://leetcode.com/problems/power-of-heroes/）按照贡献法枚举计数
+1625. 执行操作后字典序最小的字符串（https://leetcode.com/problems/lexicographically-smallest-string-after-applying-operations/）经典枚举计算最小的字典序
+1819. 序列中不同最大公约数的数目（https://leetcode.com/problems/number-of-different-subsequences-gcds/）经典调和级数枚举
+1862. 向下取整数对和（https://leetcode.com/submissions/detail/371754298/）枚举商并利用调和级数的复杂度进行计算
+2014. 重复 K 次的最长子序列（https://leetcode.com/problems/longest-subsequence-repeated-k-times/）经典利用数据范围进行枚举，贪心使用permutations
+2077. 殊途同归（https://leetcode.com/problems/paths-in-maze-that-lead-to-same-room/）经典使用位运算枚举
+2081. k 镜像数字的和（https://leetcode.com/problems/sum-of-k-mirror-numbers/）经典回文串进制数据枚举
+2170. 使数组变成交替数组的最少操作数（https://leetcode.com/problems/minimum-operations-to-make-the-array-alternating/）经典枚举，运用最大值与次大值技巧
+1215. 步进数（https://leetcode.com/problems/stepping-numbers/）经典根据数据范围使用回溯枚举所有满足条件的数
+2245. 转角路径的乘积中最多能有几个尾随零（https://leetcode.com/problems/maximum-trailing-zeros-in-a-cornered-path/）经典四个方向的前缀和与两两组合枚举
+1878. 矩阵中最大的三个菱形和（https://leetcode.com/problems/get-biggest-three-rhombus-sums-in-a-grid/）经典两个方向上的前缀和计算与边长枚举
+2018. 判断单词是否能放入填字游戏内（https://leetcode.com/problems/check-if-word-can-be-placed-in-crossword/description/）经典枚举空挡位置与矩阵行列取数
+2591. 将钱分给最多的儿童（https://leetcode.com/problems/distribute-money-to-maximum-children/）经典枚举考虑边界条件
+910. 最小差值 II（https://leetcode.com/problems/smallest-range-ii/description/）经典枚举操作的范围，计算最大值与最小值
+1131. 绝对值表达式的最大值（https://leetcode.com/problems/maximum-of-absolute-value-expression/description/）经典曼哈顿距离计算，枚举可能的符号组合
+1761. 一个图中连通三元组的最小度数（https://leetcode.com/problems/minimum-degree-of-a-connected-trio-in-a-graph/description/?envType=daily-question&envId=2023-08-31）经典无向图转为有向图进行枚举
+1178. 猜字谜（https://leetcode.com/problems/number-of-valid-words-for-each-puzzle/）典型哈希计数枚举，使用位运算
+1638. 统计只差一个字符的子串数目（https://leetcode.com/problems/count-substrings-that-differ-by-one-character/description/）枚举子字符串对开头位置也可使用DP枚举
+2212. 射箭比赛中的最大得分（https://leetcode.com/problems/maximum-points-in-an-archery-competition/）位运算枚举或者回溯计算
+2749. 得到整数零需要执行的最少操作数（https://leetcode.com/problems/minimum-operations-to-make-the-integer-zero/）枚举操作次数使用位运算计算可行性
+2094. 找出 3 位偶数（https://leetcode.com/problems/finding-3-digit-even-numbers/description/）脑筋急转弯枚举，有技巧地缩小范围
+842. 将数组拆分成斐波那契序列（https://leetcode.com/problems/split-array-into-fibonacci-sequence/description/）脑筋急转弯枚举数列前两项也可以使用DFS回溯计算
+2122. 还原原数组（https://leetcode.com/problems/recover-the-original-array/）枚举间隔哈希模拟可行性
+1782. 统计点对的数目（https://leetcode.com/problems/count-pairs-of-nodes/description/）使用枚举所有的点对
 
 ===================================洛谷===================================
 P1548 棋盘问题（https://www.luogu.com.cn/problem/P1548）枚举正方形与长方形的右小角计算个数

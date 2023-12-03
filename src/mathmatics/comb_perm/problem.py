@@ -6,15 +6,15 @@
 Lucas定理（comb(n, m)%p = comb(n%p, m%p)*comb(n//p, m//p)）%p
 
 ===================================力扣===================================
-96. 不同的二叉搜索树（https://leetcode.cn/problems/unique-binary-search-trees/）经典卡特兰数
-95. 不同的二叉搜索树 II（https://leetcode.cn/problems/unique-binary-search-trees/）经典卡特兰数思想进行递归，生成具体方案
-634. 寻找数组的错位排列（https://leetcode.cn/problems/find-the-derangement-of-an-array/）错位排列计数使用动态规划转移计算
-1259. 不相交的握手（https://leetcode.cn/problems/handshakes-that-dont-cross/）经典卡特兰数
-2338. 统计理想数组的数目（https://leetcode.cn/problems/count-the-number-of-ideal-arrays/）使用隔板法与因数分解进行组合方案数求解
-1735. 生成乘积数组的方案数（https://leetcode.cn/problems/count-ways-to-make-array-with-product/）经典质数分解与隔板法应用
-1621. 大小为 K 的不重叠线段的数目（https://leetcode.cn/problems/number-of-sets-of-k-non-overlapping-line-segments/）类似隔板法的思想
-1866. 恰有 K 根木棍可以看到的排列数目（https://leetcode.cn/problems/number-of-ways-to-rearrange-sticks-with-k-sticks-visible/）第一类斯特林数
-1916. 统计为蚁群构筑房间的不同顺序（https://leetcode.cn/problems/count-ways-to-build-rooms-in-an-ant-colony/）树形DP加组合数学计数
+96. 不同的二叉搜索树（https://leetcode.com/problems/unique-binary-search-trees/）经典卡特兰数
+95. 不同的二叉搜索树 II（https://leetcode.com/problems/unique-binary-search-trees/）经典卡特兰数思想进行递归，生成具体方案
+634. 寻找数组的错位排列（https://leetcode.com/problems/find-the-derangement-of-an-array/）错位排列计数使用动态规划转移计算
+1259. 不相交的握手（https://leetcode.com/problems/handshakes-that-dont-cross/）经典卡特兰数
+2338. 统计理想数组的数目（https://leetcode.com/problems/count-the-number-of-ideal-arrays/）使用隔板法与因数分解进行组合方案数求解
+1735. 生成乘积数组的方案数（https://leetcode.com/problems/count-ways-to-make-array-with-product/）经典质数分解与隔板法应用
+1621. 大小为 K 的不重叠线段的数目（https://leetcode.com/problems/number-of-sets-of-k-non-overlapping-line-segments/）类似隔板法的思想
+1866. 恰有 K 根木棍可以看到的排列数目（https://leetcode.com/problems/number-of-ways-to-rearrange-sticks-with-k-sticks-visible/）第一类斯特林数
+1916. 统计为蚁群构筑房间的不同顺序（https://leetcode.com/problems/count-ways-to-build-rooms-in-an-ant-colony/）树形DP加组合数学计数
 D - Blue and Red Balls（https://atcoder.jp/contests/abc132/tasks/abc132_d）组合数学经典计数，和为 X 的长为 Y 的正整数与非负整数方程解个数
 
 ===================================洛谷===================================

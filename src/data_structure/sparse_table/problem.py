@@ -6,11 +6,11 @@ ST表算法全称Sparse-Table算法，是由Tarjan提出的一种解决RMQ问题
 题目：
 
 ===================================力扣===================================
-1521. 找到最接近目标值的函数值（https://leetcode.cn/problems/find-a-value-of-a-mysterious-function-closest-to-target/）经典计算与目标值最接近的连续子数组位运算与值
-2411. 按位或最大的最小子数组长度（https://leetcode.cn/problems/smallest-subarrays-with-maximum-bitwise-or/）经典计算最大或值的最短连续子数组
-2447. 最大公因数等于 K 的子数组数目（https://leetcode.cn/problems/number-of-subarrays-with-gcd-equal-to-k/）经典计算最大公因数为 k 的连续子数组个数，可推广到位运算或与异或
-2470. 最小公倍数为 K 的子数组数目（https://leetcode.cn/problems/number-of-subarrays-with-lcm-equal-to-k/）经典计算最小公倍为 k 的连续子数组个数，可推广到位运算或与异或
-2654. 使数组所有元素变成 1 的最少操作次数（https://leetcode.cn/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/）经典计算最大公因数为 1 的最短连续子数组
+1521. 找到最接近目标值的函数值（https://leetcode.com/problems/find-a-value-of-a-mysterious-function-closest-to-target/）经典计算与目标值最接近的连续子数组位运算与值
+2411. 按位或最大的最小子数组长度（https://leetcode.com/problems/smallest-subarrays-with-maximum-bitwise-or/）经典计算最大或值的最短连续子数组
+2447. 最大公因数等于 K 的子数组数目（https://leetcode.com/problems/number-of-subarrays-with-gcd-equal-to-k/）经典计算最大公因数为 k 的连续子数组个数，可推广到位运算或与异或
+2470. 最小公倍数为 K 的子数组数目（https://leetcode.com/problems/number-of-subarrays-with-lcm-equal-to-k/）经典计算最小公倍为 k 的连续子数组个数，可推广到位运算或与异或
+2654. 使数组所有元素变成 1 的最少操作次数（https://leetcode.com/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/）经典计算最大公因数为 1 的最短连续子数组
 
 ===================================洛谷===================================
 P3865 ST 表（https://www.luogu.com.cn/problem/P3865）使用ST表静态查询区间最大值

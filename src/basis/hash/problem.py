@@ -4,17 +4,17 @@
 题目：
 
 ===================================力扣===================================
-2143. 在两个数组的区间中选取数字（https://leetcode.cn/problems/choose-numbers-from-two-arrays-in-range/）前缀和哈希计数转换为求连续子数组和为 0 的个数
-面试题 17.05.  字母与数字（https://leetcode.cn/problems/find-longest-subarray-lcci/）和为0的最长连续子数组，使用前缀和哈希求解
-1590. 使数组和能被 P 整除（https://leetcode.cn/problems/make-sum-divisible-by-p/）求和模p与整个子数组模p相等的最短子数组，使用前缀和哈希求解
-6317. 统计美丽子数组数目（https://leetcode.cn/contest/weekly-contest-336/problems/count-the-number-of-beautiful-subarrays/）前缀和哈希计数
-题目-02. 销售出色区间（https://leetcode.cn/contest/hhrc2022/problems/0Wx4Pc/）前缀和哈希，加脑筋急转弯贪心
-题目-03. 重复的彩灯树（https://leetcode.cn/contest/hhrc2022/problems/VAc7h3/）二叉树序列化
-2031. 1 比 0 多的子数组个数（https://leetcode.cn/problems/count-subarrays-with-more-ones-than-zeros/）经典前缀和哈希计数
-2025. 分割数组的最多方案数（https://leetcode.cn/problems/maximum-number-of-ways-to-partition-an-array/description/）厘清边界使用哈希贡献法计数
-895. 最大频率栈（https://leetcode.cn/problems/maximum-frequency-stack/description/）经典哈希与栈的结合应用题
-1658. 将 x 减到 0 的最小操作数（https://leetcode.cn/problems/minimum-operations-to-reduce-x-to-zero/description/）前缀和哈希，加脑筋急转弯贪心
-2227. 加密解密字符串（https://leetcode.cn/problems/encrypt-and-decrypt-strings/）经典脑筋急转弯逆向思维
+2143. 在两个数组的区间中选取数字（https://leetcode.com/problems/choose-numbers-from-two-arrays-in-range/）前缀和哈希计数转换为求连续子数组和为 0 的个数
+面试题 17.05.  字母与数字（https://leetcode.com/problems/find-longest-subarray-lcci/）和为0的最长连续子数组，使用前缀和哈希求解
+1590. 使数组和能被 P 整除（https://leetcode.com/problems/make-sum-divisible-by-p/）求和模p与整个子数组模p相等的最短子数组，使用前缀和哈希求解
+6317. 统计美丽子数组数目（https://leetcode.com/contest/weekly-contest-336/problems/count-the-number-of-beautiful-subarrays/）前缀和哈希计数
+题目-02. 销售出色区间（https://leetcode.com/contest/hhrc2022/problems/0Wx4Pc/）前缀和哈希，加脑筋急转弯贪心
+题目-03. 重复的彩灯树（https://leetcode.com/contest/hhrc2022/problems/VAc7h3/）二叉树序列化
+2031. 1 比 0 多的子数组个数（https://leetcode.com/problems/count-subarrays-with-more-ones-than-zeros/）经典前缀和哈希计数
+2025. 分割数组的最多方案数（https://leetcode.com/problems/maximum-number-of-ways-to-partition-an-array/description/）厘清边界使用哈希贡献法计数
+895. 最大频率栈（https://leetcode.com/problems/maximum-frequency-stack/description/）经典哈希与栈的结合应用题
+1658. 将 x 减到 0 的最小操作数（https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/description/）前缀和哈希，加脑筋急转弯贪心
+2227. 加密解密字符串（https://leetcode.com/problems/encrypt-and-decrypt-strings/）经典脑筋急转弯逆向思维
 
 ===================================洛谷===================================
 P2697 宝石串（https://www.luogu.com.cn/problem/P2697）哈希记录前缀和与对应索引

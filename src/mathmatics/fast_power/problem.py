@@ -4,10 +4,10 @@
 题目：
 
 ===================================力扣===================================
-450. 应用操作后不同二进制字符串的数量（https://leetcode.cn/problems/number-of-distinct-binary-strings-after-applying-operations/）脑筋急转弯快速幂计算
-1931. 用三种不同颜色为网格涂色（https://leetcode.cn/problems/painting-a-grid-with-three-different-colors/）转移DP可以使用快速幂进行计算
-8020. 字符串转换（https://leetcode.cn/problems/string-transformation/description/）使用KMP与快速幂进行转移计算
-1622. 奇妙序列（https://leetcode.cn/problems/fancy-sequence/description/）经典逆向思维，乘法逆元运用，类似容斥原理
+450. 应用操作后不同二进制字符串的数量（https://leetcode.com/problems/number-of-distinct-binary-strings-after-applying-operations/）脑筋急转弯快速幂计算
+1931. 用三种不同颜色为网格涂色（https://leetcode.com/problems/painting-a-grid-with-three-different-colors/）转移DP可以使用快速幂进行计算
+8020. 字符串转换（https://leetcode.com/problems/string-transformation/description/）使用KMP与快速幂进行转移计算
+1622. 奇妙序列（https://leetcode.com/problems/fancy-sequence/description/）经典逆向思维，乘法逆元运用，类似容斥原理
 
 ===================================洛谷===================================
 P1630 求和（https://www.luogu.com.cn/problem/P1630）快速幂计算，利用同模进行计数加和

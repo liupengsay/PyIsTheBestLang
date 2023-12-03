@@ -7,26 +7,26 @@
 异或经典性质：(a&b)^(a&c) = a&(b^c)
 ===================================力扣===================================
 
-2354. 优质数对的数目（https://leetcode.cn/problems/number-of-excellent-pairs/）需要脑筋急转弯确定位 1 的规律进行哈希计数枚举即可
-260. 只出现一次的数字 III（https://leetcode.cn/problems/single-number-iii/）利用位运算两个相同元素异或和为0的特点，以及lowbit进行分组确定两个只出现一次的元素
-6365. 将整数减少到零需要的最少操作数（https://leetcode.cn/problems/minimum-operations-to-reduce-an-integer-to-0/）n 加上或减去 2 的某个幂使得 n 变为 0 的最少操作数
-6360. 最小无法得到的或值（https://leetcode.cn/problems/minimum-impossible-or/）利用贪心思想，类似硬币凑金额推理得出结论
-2564. 子字符串异或查询（https://leetcode.cn/problems/substring-xor-queries/）利用二进制字符串无前置0时长度不超过10的特点进行查询
-1238. 循环码排列（https://leetcode.cn/problems/circular-permutation-in-binary-representation/）生成格雷码，使得循环数组相邻数字二进制位只有一位不同
-89. 格雷编码（https://leetcode.cn/problems/gray-code/）生成 0 开头的 n 位格雷码序列
-137. 只出现一次的数字 II（https://leetcode.cn/problems/single-number-ii/）使用位运算按位计数
-剑指 Offer 56 - I. 数组中数字出现的次数（https://leetcode.cn/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-lcof/）使用位运算按位计数
-260. 只出现一次的数字 III（https://leetcode.cn/problems/single-number-iii/）使用位运算按位计数
-2546. 执行逐位运算使字符串相等（https://leetcode.cn/problems/apply-bitwise-operations-to-make-strings-equal/）按照异或特点脑筋急转弯
-1486. 数组异或操作（https://leetcode.cn/problems/xor-operation-in-an-array/）经典异或公式计算
-1734. 解码异或后的排列（https://leetcode.cn/problems/decode-xored-permutation/）经典变换公式，解码相邻异或值编码，并利用奇数排列的异或性质
-1787. 使所有区间的异或结果为零（https://leetcode.cn/problems/make-the-xor-of-all-segments-equal-to-zero/）经典按照异或特性分组并利用值域枚举DP
-1835. 所有数对按位与结果的异或和（https://leetcode.cn/problems/find-xor-sum-of-all-pairs-bitwise-and/）按位操作模拟
-1611. 使整数变为 0 的最少操作次数（https://leetcode.cn/problems/minimum-one-bit-operations-to-make-integers-zero/）格雷码的操作，直接计算格雷码对应的二进制数字
-2275. 按位与结果大于零的最长组合（https://leetcode.cn/problems/largest-combination-with-bitwise-and-greater-than-zero/）求按位与不为0的最长子序列，不要求连续
-2527. 查询数组 Xor 美丽值（https://leetcode.cn/problems/find-xor-beauty-of-array/description/）按位枚举脑筋急转弯
-2680. 最大或值（https://leetcode.cn/problems/maximum-or/description/）贪心枚举，前后缀或分解
-100087. 对数组执行操作使平方和最大（https://leetcode.cn/problems/apply-operations-on-array-to-maximize-sum-of-squares/description/）经典按位贪心
+2354. 优质数对的数目（https://leetcode.com/problems/number-of-excellent-pairs/）需要脑筋急转弯确定位 1 的规律进行哈希计数枚举即可
+260. 只出现一次的数字 III（https://leetcode.com/problems/single-number-iii/）利用位运算两个相同元素异或和为0的特点，以及lowbit进行分组确定两个只出现一次的元素
+6365. 将整数减少到零需要的最少操作数（https://leetcode.com/problems/minimum-operations-to-reduce-an-integer-to-0/）n 加上或减去 2 的某个幂使得 n 变为 0 的最少操作数
+6360. 最小无法得到的或值（https://leetcode.com/problems/minimum-impossible-or/）利用贪心思想，类似硬币凑金额推理得出结论
+2564. 子字符串异或查询（https://leetcode.com/problems/substring-xor-queries/）利用二进制字符串无前置0时长度不超过10的特点进行查询
+1238. 循环码排列（https://leetcode.com/problems/circular-permutation-in-binary-representation/）生成格雷码，使得循环数组相邻数字二进制位只有一位不同
+89. 格雷编码（https://leetcode.com/problems/gray-code/）生成 0 开头的 n 位格雷码序列
+137. 只出现一次的数字 II（https://leetcode.com/problems/single-number-ii/）使用位运算按位计数
+剑指 Offer 56 - I. 数组中数字出现的次数（https://leetcode.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-lcof/）使用位运算按位计数
+260. 只出现一次的数字 III（https://leetcode.com/problems/single-number-iii/）使用位运算按位计数
+2546. 执行逐位运算使字符串相等（https://leetcode.com/problems/apply-bitwise-operations-to-make-strings-equal/）按照异或特点脑筋急转弯
+1486. 数组异或操作（https://leetcode.com/problems/xor-operation-in-an-array/）经典异或公式计算
+1734. 解码异或后的排列（https://leetcode.com/problems/decode-xored-permutation/）经典变换公式，解码相邻异或值编码，并利用奇数排列的异或性质
+1787. 使所有区间的异或结果为零（https://leetcode.com/problems/make-the-xor-of-all-segments-equal-to-zero/）经典按照异或特性分组并利用值域枚举DP
+1835. 所有数对按位与结果的异或和（https://leetcode.com/problems/find-xor-sum-of-all-pairs-bitwise-and/）按位操作模拟
+1611. 使整数变为 0 的最少操作次数（https://leetcode.com/problems/minimum-one-bit-operations-to-make-integers-zero/）格雷码的操作，直接计算格雷码对应的二进制数字
+2275. 按位与结果大于零的最长组合（https://leetcode.com/problems/largest-combination-with-bitwise-and-greater-than-zero/）求按位与不为0的最长子序列，不要求连续
+2527. 查询数组 Xor 美丽值（https://leetcode.com/problems/find-xor-beauty-of-array/description/）按位枚举脑筋急转弯
+2680. 最大或值（https://leetcode.com/problems/maximum-or/description/）贪心枚举，前后缀或分解
+100087. 对数组执行操作使平方和最大（https://leetcode.com/problems/apply-operations-on-array-to-maximize-sum-of-squares/description/）经典按位贪心
 
 ===================================洛谷===================================
 P5657 格雷码（https://www.luogu.com.cn/problem/P5657）计算编号为 k 的二进制符，并补前缀 0 为 n 位
