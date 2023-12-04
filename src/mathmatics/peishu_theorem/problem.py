@@ -6,6 +6,9 @@
 ====================================LeetCode====================================
 1250（https://leetcode.com/problems/check-if-it-is-a-good-array/）计算所有元素的最大公约数是否为1
 
+===================================CodeForces===================================
+D. Nezzar and Board（https://codeforces.com/contest/1478/problem/D）peishu_theorem|number_theory|math
+
 =====================================LuoGu======================================
 4549（https://www.luogu.com.cn/problem/P4549）计算所有元素能加权生成的最小正数和即所有整数的最大公约数
 
