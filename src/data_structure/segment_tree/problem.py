@@ -54,6 +54,8 @@ E. XOR on Segment（https://codeforces.com/problemset/problem/242/E）线段树�
 C. Three displays（https://codeforces.com/problemset/problem/987/C）枚举中间数组，使用线段树维护前后缀最小值
 F. Wi-Fi（https://codeforces.com/contest/1216/problem/F）经典线段树加DP，正解为单调队列优化DP
 E. MinimizOR（https://codeforces.com/contest/1665/problem/E）
+E. Nezzar and Binary String（https://codeforces.com/contest/1478/problem/E）RangeChangeRangeSumMinMax|backward_thinking|implemention
+
 
 =====================================AcWing=====================================
 3805（https://www.acwing.com/problem/content/3808/）区间增减与最小值查询
@@ -158,6 +160,35 @@ class Solution:
                 cur = pre + i + 1
                 tree.range_descend(i, i, cur)
         ac.st(tree.range_min(n - 1, n - 1))
+        return
+
+    @staticmethod
+    def cf_1478e(ac=FastIO()):
+        for _ in range(ac.read_int()):
+            def check():
+                n, q = ac.read_list_ints()
+                s = [int(w) for w in ac.read_str()]
+                t = [int(w) for w in ac.read_str()]
+                queries = [ac.read_list_ints_minus_one() for _ in range(q)]
+                queries.reverse()
+                tree = RangeChangeRangeSumMinMax(n)
+                tree.build(t)
+                for ll, rr in queries:
+                    cur_sum = tree.range_sum(ll, rr)
+                    if cur_sum < rr - ll + 1 - cur_sum:
+                        tree.range_change(ll, rr, 0)
+                    elif cur_sum > rr - ll + 1 - cur_sum:
+                        tree.range_change(ll, rr, 1)
+                    else:
+                        ac.st("NO")
+                        return
+                if tree.get() == s:
+                    ac.st("YES")
+                else:
+                    ac.st("NO")
+                return
+
+            check()
         return
 
     @staticmethod
