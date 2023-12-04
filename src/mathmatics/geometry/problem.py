@@ -29,8 +29,8 @@
 
 
 ===================================CodeForces===================================
-D. Pair Of Lines （https://codeforces.com/contest/961/problem/D)）抽屉原理枚举初始共线点并计算其他点的共线性情况
-D. Tricky Function（https://codeforces.com/problemset/problem/429/D）经典平面点集最近点对
+961D)（https://codeforces.com/contest/961/problem/D)）抽屉原理枚举初始共线点并计算其他点的共线性情况
+429D（https://codeforces.com/problemset/problem/429/D）经典平面点集最近点对
 
 =====================================AcWing=====================================
 119（https://www.acwing.com/problem/content/121/）经典平面点集最近点对问题使用分治求解、还有哈希分块、有序列表

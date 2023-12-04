@@ -38,11 +38,11 @@ LCP 32（https://leetcode.com/problems/t3fKg1/）贪心选取最少的点集合�
 2439（https://www.luogu.com.cn/problem/P2439）线性DP加二分查找优化，选取并集最大且不想交的区间
 
 ===================================CodeForces===================================
-A. String Reconstruction（https://codeforces.com/problemset/problem/827/A）区间合并为不相交的区间，再贪心赋值
-D. Nested Segments（https://codeforces.com/problemset/problem/652/D）二位偏序，转换为区间包含问题
-D. Non-zero Segments（https://codeforces.com/problemset/problem/1426/D）贪心选取最少的点集合，使得每个区间包含其中至少一个点
-E. Monotonic Renumeration（https://codeforces.com/contest/1102/problem/E）区间合并为不相交的区间
-F2. Same Sum Blocks (Hard)（https://codeforces.com/contest/1141/problem/F2）利用前缀和枚举，转化为最多不相交的区间问题
+827A（https://codeforces.com/problemset/problem/827/A）区间合并为不相交的区间，再贪心赋值
+652D（https://codeforces.com/problemset/problem/652/D）二位偏序，转换为区间包含问题
+1426D（https://codeforces.com/problemset/problem/1426/D）贪心选取最少的点集合，使得每个区间包含其中至少一个点
+1102E（https://codeforces.com/contest/1102/problem/E）区间合并为不相交的区间
+1141F2（https://codeforces.com/contest/1141/problem/F2）利用前缀和枚举，转化为最多不相交的区间问题
 
 =====================================AcWing=====================================
 112（https://www.acwing.com/problem/content/114/）作用范围进行区间贪心

@@ -57,20 +57,20 @@
 
 ====================================AtCoder=====================================
 F - Expensive Expense （https://atcoder.jp/contests/abc222/tasks/abc222_f）换根DP
-D. Distance in Tree（https://codeforces.com/problemset/problem/161/D）树形DP计数，记录距离为k的点对数
+161D（https://codeforces.com/problemset/problem/161/D）树形DP计数，记录距离为k的点对数
 
 ===================================CodeForces===================================
-C. Uncle Bogdan and Country Happiness（https://codeforces.com/problemset/problem/1388/C）树形DP模拟计算，递归获取子树信息，逆向从上往下还原
-F. Maximum White Subtree（https://codeforces.com/problemset/problem/1324/F）经典换根DP题，两遍dfs搜索更新计算
-D. Book of Evil（https://codeforces.com/problemset/problem/337/D）经典换根DP题，两遍dfs搜索更新计算
-E. Tree Painting（https://codeforces.com/problemset/problem/1187/E）经典换根DP题，两遍dfs搜索更新计算
-E. Lomsat gelral（https://codeforces.com/problemset/problem/600/E）迭代方式写深搜序，按秩合并，由小到大
-D. A Wide, Wide Graph（https://codeforces.com/problemset/problem/1805/D）树的直径计算，任意点到直径的某个端点的距离最长
-G. White-Black Balanced Subtrees（https://codeforces.com/contest/1676/problem/G）使用迭代的方式进行树形DP计算
-F. Gardening Friends（https://codeforces.com/contest/1822/problem/F）计算树中节点到其余节点的最大距离
-D. Choosing Capital for Treeland（https://codeforces.com/contest/219/problem/D）迭代法实现树形换根DP计算，或者一遍DFS或者dfs序加差分
-F. Tree with Maximum Cost（https://codeforces.com/contest/1092/problem/F）带权重树中的总距离，迭代法实现树形换根DP计算
-G. Moving to the Capital（https://codeforces.com/contest/1472/problem/G）经典根据最短路进行从下到上与从上到下的DP
+1388C（https://codeforces.com/problemset/problem/1388/C）树形DP模拟计算，递归获取子树信息，逆向从上往下还原
+1324F（https://codeforces.com/problemset/problem/1324/F）经典换根DP题，两遍dfs搜索更新计算
+337D（https://codeforces.com/problemset/problem/337/D）经典换根DP题，两遍dfs搜索更新计算
+1187E（https://codeforces.com/problemset/problem/1187/E）经典换根DP题，两遍dfs搜索更新计算
+600E（https://codeforces.com/problemset/problem/600/E）迭代方式写深搜序，按秩合并，由小到大
+1805D（https://codeforces.com/problemset/problem/1805/D）树的直径计算，任意点到直径的某个端点的距离最长
+1676G（https://codeforces.com/contest/1676/problem/G）使用迭代的方式进行树形DP计算
+1822F（https://codeforces.com/contest/1822/problem/F）计算树中节点到其余节点的最大距离
+219D（https://codeforces.com/contest/219/problem/D）迭代法实现树形换根DP计算，或者一遍DFS或者dfs序加差分
+1092F（https://codeforces.com/contest/1092/problem/F）带权重树中的总距离，迭代法实现树形换根DP计算
+1472G（https://codeforces.com/contest/1472/problem/G）经典根据最短路进行从下到上与从上到下的DP
 
 =====================================AcWing=====================================
 3760（https://www.acwing.com/problem/content/description/3763/）脑筋急转弯转化为树形DP迭代方式求解

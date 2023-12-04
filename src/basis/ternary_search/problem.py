@@ -11,9 +11,9 @@
 1883（https://www.luogu.com.cn/problem/P1883）三分求下凸函数最小值
 
 ===================================CodeForces===================================
-E. Maximize!（https://codeforces.com/problemset/problem/939/E）贪心使用双指针或者三分进行求解，整数函数最大值
+939E（https://codeforces.com/problemset/problem/939/E）贪心使用双指针或者三分进行求解，整数函数最大值
 D. Devu and his Brother（http://codeforces.com/problemset/problem/439/D）利用单调性变换使用三分查找求解
-B. Meeting on the Line（https://codeforces.com/contest/1730/problem/B）template of ternary search
+1730B（https://codeforces.com/contest/1730/problem/B）template of ternary search
 
 ====================================AtCoder=====================================
 F - Minimum Bounding Box（https://atcoder.jp/contests/abc130/tasks/abc130_f）三分模板题求函数最小值需要高精度

@@ -17,9 +17,9 @@
 4391（https://www.luogu.com.cn/problem/P4391）脑经急转弯加KMP算法，最优结果为 n-pi[n-1]
 
 ===================================CodeForces===================================
-D2. Prefix-Suffix Palindrome (Hard version)（https://codeforces.com/problemset/problem/1326/D2）利用马拉车的贪心思想贪心取前后缀，再判断剩余字符的最长前后缀回文子串
-D. Prefixes and Suffixes（https://codeforces.com/contest/432/problem/D）扩展kmp与kmp结合使用计数，经典z函数与前缀函数结合应用题
-E. Test（https://codeforces.com/contest/25/problem/E）kmp求字符串之间的最长公共前后缀，进行贪心拼接
+1326D2（https://codeforces.com/problemset/problem/1326/D2）利用马拉车的贪心思想贪心取前后缀，再判断剩余字符的最长前后缀回文子串
+432D（https://codeforces.com/contest/432/problem/D）扩展kmp与kmp结合使用计数，经典z函数与前缀函数结合应用题
+25E（https://codeforces.com/contest/25/problem/E）kmp求字符串之间的最长公共前后缀，进行贪心拼接
 
 =====================================AcWing=====================================
 

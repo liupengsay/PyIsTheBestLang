@@ -45,9 +45,9 @@
 
 
 ===================================CodeForces===================================
-D. Carousel（https://codeforces.com/problemset/problem/1328/D）环形数组滑动窗口，记录变化次数并根据奇偶变换次数与环形首尾元素确定染色数量
-C. Eugene and an array（https://codeforces.com/problemset/problem/1333/C）双指针，计算前缀和不重复即没有区间段和为0的个数
-A2. Prefix Flip (Hard Version)（https://codeforces.com/problemset/problem/1381/A2）双指针模拟翻转匹配与贪心
+1328D（https://codeforces.com/problemset/problem/1328/D）环形数组滑动窗口，记录变化次数并根据奇偶变换次数与环形首尾元素确定染色数量
+1333C（https://codeforces.com/problemset/problem/1333/C）双指针，计算前缀和不重复即没有区间段和为0的个数
+1381A2（https://codeforces.com/problemset/problem/1381/A2）双指针模拟翻转匹配与贪心
 
 ====================================AtCoder=====================================
 D - Equal Cut（https://atcoder.jp/contests/abc102/tasks/arc100_b）经典双指针枚举

@@ -23,23 +23,23 @@
 8880（https://www.luogu.com.cn/problem/P8880）脑筋急转弯构造分奇数与偶数讨论
 
 ===================================CodeForces===================================
-A. Multiples of Length（https://codeforces.com/problemset/problem/1396/A）贪心构造
-E. Yet Another Ball Problem（https://codeforces.com/problemset/problem/1118/E）模拟贪心构造
-C. Subsequence Counting（https://codeforces.com/problemset/problem/960/C）贪心构造
-B. Fedya and Array（https://codeforces.com/contest/1793/problem/B）思维题贪心构造
-D. Replace by MEX（https://codeforces.com/problemset/problem/1375/D）经典MEX的构造题，使得数组非降，即最小的未出现在数组中的数
-D. Phoenix and Science（https://codeforces.com/problemset/problem/1348/D）利用二进制优化将数分割，并利用分裂特点进行计算
-D. Diane（https://codeforces.com/problemset/problem/1554/D）构造，将n取一半向下取整
-C. Matching Numbers（https://codeforces.com/problemset/problem/1788/C）构造，选取 1 到 2n 的数两两配对且和为连续数
-D. Task On The Board（https://codeforces.com/problemset/problem/1367/D）逆向思维模拟构造
-D. Multiples and Power Differences（https://codeforces.com/problemset/problem/1485/D）按照数据范围进行构造
-G. Even-Odd XOR（https://codeforces.com/problemset/problem/1722/G）根据奇偶性和异或和特点进行构造
-D. Super-Permutation（https://codeforces.com/contest/1822/problem/D）构造前缀和取模互不相同的排列
+1396A（https://codeforces.com/problemset/problem/1396/A）贪心构造
+1118E（https://codeforces.com/problemset/problem/1118/E）模拟贪心构造
+960C（https://codeforces.com/problemset/problem/960/C）贪心构造
+1793B（https://codeforces.com/contest/1793/problem/B）思维题贪心构造
+1375D（https://codeforces.com/problemset/problem/1375/D）经典MEX的构造题，使得数组非降，即最小的未出现在数组中的数
+1348D（https://codeforces.com/problemset/problem/1348/D）利用二进制优化将数分割，并利用分裂特点进行计算
+1554D（https://codeforces.com/problemset/problem/1554/D）构造，将n取一半向下取整
+1788C（https://codeforces.com/problemset/problem/1788/C）构造，选取 1 到 2n 的数两两配对且和为连续数
+1367D（https://codeforces.com/problemset/problem/1367/D）逆向思维模拟构造
+1485D（https://codeforces.com/problemset/problem/1485/D）按照数据范围进行构造
+1722G（https://codeforces.com/problemset/problem/1722/G）根据奇偶性和异或和特点进行构造
+1822D（https://codeforces.com/contest/1822/problem/D）构造前缀和取模互不相同的排列
 D - Make Them Even（https://atcoder.jp/contests/abc109/tasks/abc109_d）根据奇偶性与遍历顺序构造
-D. Binary Literature（https://codeforces.com/contest/1509/problem/D）LCS最短公共超序列构造，特殊值域下的O(n)鸽巢原理
-C. No More Inversions（https://codeforces.com/contest/1473/problem/C）special property of inverse pair of s1s2..sn..s2s1
-D. Ceil Divisions（https://codeforces.com/contest/1469/problem/D）square ceil greedy implemention
-B. Nezzar and Lucky Number（https://codeforces.com/contest/1478/problem/B）brute_force|bag_dp|construction
+1509D（https://codeforces.com/contest/1509/problem/D）LCS最短公共超序列构造，特殊值域下的O(n)鸽巢原理
+1473C（https://codeforces.com/contest/1473/problem/C）special property of inverse pair of s1s2..sn..s2s1
+1469D（https://codeforces.com/contest/1469/problem/D）square ceil greedy implemention
+1478B（https://codeforces.com/contest/1478/problem/B）brute_force|bag_dp|construction
 
 ====================================AtCoder=====================================
 B - Construct Sequences（https://atcoder.jp/contests/agc007/tasks/agc007_b）脑筋急转弯思维构造公式

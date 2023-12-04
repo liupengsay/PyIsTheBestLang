@@ -57,13 +57,13 @@
 8881（https://www.luogu.com.cn/problem/P8881）脑筋急转弯，使用并查集判断所属连通分量是否有环
 
 ===================================CodeForces===================================
-D. Roads not only in Berland（https://codeforces.com/problemset/problem/25/D）并查集将原来的边断掉重新来连接使得成为一整个连通集
-E. Monsters（https://codeforces.com/contest/1810/problem/E）并查集加启发式搜索，使用BFS与堆优化实现
-E. Connected Components?（https://codeforces.com/contest/920/problem/E）并查集，加线性动态维护剩余节点
-C. Ice Cave（https://codeforces.com/problemset/problem/540/C）路径可达
-E2. Unforgivable Curse (hard version)（https://codeforces.com/problemset/problem/1800/E2）使用并查集分组计算可达
-E. Number of Groups（https://codeforces.com/contest/1691/problem/E）经典线段并查集
-A. String Reconstruction（https://codeforces.com/problemset/problem/827/A）UnionFindRightRoot|implemention|greedy
+25D（https://codeforces.com/problemset/problem/25/D）并查集将原来的边断掉重新来连接使得成为一整个连通集
+1810E（https://codeforces.com/contest/1810/problem/E）并查集加启发式搜索，使用BFS与堆优化实现
+920E（https://codeforces.com/contest/920/problem/E）并查集，加线性动态维护剩余节点
+540C（https://codeforces.com/problemset/problem/540/C）路径可达
+1800E2（https://codeforces.com/problemset/problem/1800/E2）使用并查集分组计算可达
+1691E（https://codeforces.com/contest/1691/problem/E）经典线段并查集
+827A（https://codeforces.com/problemset/problem/827/A）UnionFindRightRoot|implemention|greedy
 
 ====================================AtCoder=====================================
 D - Connectivity（https://atcoder.jp/contests/abc049/tasks/arc065_b）经典双并查集应用

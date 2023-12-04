@@ -51,9 +51,9 @@
 8094（https://www.luogu.com.cn/problem/P8094）单调栈典型应用前一个更大与后一个更大
 
 ===================================CodeForces===================================
-E. Explosions（https://codeforces.com/problemset/problem/1795/E）经典单调栈优化线性DP，贪心计数枚举，前后缀DP转移
-C2. Skyscrapers （https://codeforces.com/problemset/problem/1313/C2）经典单调栈优化线性DP
-F. Array Partition（https://codeforces.com/contest/1454/problem/F）经典单调栈枚举题
+1795E（https://codeforces.com/problemset/problem/1795/E）经典单调栈优化线性DP，贪心计数枚举，前后缀DP转移
+1313C2（https://codeforces.com/problemset/problem/1313/C2）经典单调栈优化线性DP
+1454F（https://codeforces.com/contest/1454/problem/F）经典单调栈枚举题
 
 ====================================AtCoder=====================================
 E - Second Sum（https://atcoder.jp/contests/abc140/tasks/abc140_e）经典单调栈求下个与下下个严格更大元素与上个与上个个严格更大元素

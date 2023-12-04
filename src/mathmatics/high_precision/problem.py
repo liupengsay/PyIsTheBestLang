@@ -24,7 +24,7 @@
 1530（https://www.luogu.com.cn/problem/P1530）分数化为小数
 
 ===================================CodeForces===================================
-E. Median String（https://codeforces.com/contest/1144/problem/E）超大整数加减与乘除
+1144E（https://codeforces.com/contest/1144/problem/E）超大整数加减与乘除
 
 ====================================AtCoder=====================================
 E - Double Factorial（https://atcoder.jp/contests/abc148/tasks/abc148_e）奇数阶乘与偶数阶乘的尾随零个数

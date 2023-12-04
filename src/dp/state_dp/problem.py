@@ -46,10 +46,10 @@
 8733（https://www.luogu.com.cn/problem/P8733）使用Floyd最短路计算并使用状压 DP
 
 ===================================CodeForces===================================
-D. Kefa and Dishes（https://codeforces.com/problemset/problem/580/D）状态压缩DP结合前后相邻的增益计算最优解
-E. Compatible Numbers（https://codeforces.com/problemset/problem/165/E）线性DP，状态压缩枚举，类似子集思想求解可能存在的与为0的数对
-D. A Simple Task（https://codeforces.com/contest/11/problem/D）状压DP，无向图简单环计数
-F. Three Paths on a Tree（https://codeforces.com/contest/1294/problem/F）典型树的直径应用题
+580D（https://codeforces.com/problemset/problem/580/D）状态压缩DP结合前后相邻的增益计算最优解
+165E（https://codeforces.com/problemset/problem/165/E）线性DP，状态压缩枚举，类似子集思想求解可能存在的与为0的数对
+11D（https://codeforces.com/contest/11/problem/D）状压DP，无向图简单环计数
+1294F（https://codeforces.com/contest/1294/problem/F）典型树的直径应用题
 
 =====================================AcWing=====================================
 3735（https://www.acwing.com/problem/content/3738/）经典倒序状压DP与输出具体方案

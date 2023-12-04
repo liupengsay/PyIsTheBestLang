@@ -46,17 +46,17 @@
 8965（https://www.luogu.com.cn/problem/P8965）树形 DP 与异或计算
 
 ===================================CodeForces===================================
-C. Ivan and Powers of Two（https://codeforces.com/problemset/problem/305/C）利用二进制加减的思想进行解题
-A. Short Program（https://codeforces.com/problemset/problem/878/A）位运算的操作理解
+305C（https://codeforces.com/problemset/problem/305/C）利用二进制加减的思想进行解题
+878A（https://codeforces.com/problemset/problem/878/A）位运算的操作理解
 C. XOR and OR（http://codeforces.com/problemset/problem/282/C）利用位运算的特性进行判断
-C. Mikasa（https://codeforces.com/problemset/problem/1554/C）经典位运算操作贪心计算
-F. Dasha and Nightmares（https://codeforces.com/contest/1800/problem/F）位运算枚举计数
-D. Little Girl and Maximum XOR（https://codeforces.com/problemset/problem/276/D）范围[l,r]区间的最大异或和
-G. Orray（https://codeforces.com/contest/1742/problem/G）重排数组使得前缀或值的字典序最大
-F. Lisa and the Martians（https://codeforces.com/contest/1851/problem/F）经典数组的最小异或对，一定是排序后相邻的数
-D. Sum of XOR Functions（https://codeforces.com/contest/1879/problem/D）经典按位计算贡献与前缀和计数与前缀下标加和
-D. AND, OR and square sum（https://codeforces.com/problemset/problem/1368/D）经典按位模拟贪心
-C. The Very Beautiful Blanket（https://codeforces.com/contest/1802/problem/C）construction with the property of xor
+1554C（https://codeforces.com/problemset/problem/1554/C）经典位运算操作贪心计算
+1800F（https://codeforces.com/contest/1800/problem/F）位运算枚举计数
+276D（https://codeforces.com/problemset/problem/276/D）范围[l,r]区间的最大异或和
+1742G（https://codeforces.com/contest/1742/problem/G）重排数组使得前缀或值的字典序最大
+1851F（https://codeforces.com/contest/1851/problem/F）经典数组的最小异或对，一定是排序后相邻的数
+1879D（https://codeforces.com/contest/1879/problem/D）经典按位计算贡献与前缀和计数与前缀下标加和
+1368D（https://codeforces.com/problemset/problem/1368/D）经典按位模拟贪心
+1802C（https://codeforces.com/contest/1802/problem/C）construction with the property of xor
 
 ====================================AtCoder=====================================
 D - XXOR（https://atcoder.jp/contests/abc117/tasks/abc117_d）从高位到低位按位贪心，思维题

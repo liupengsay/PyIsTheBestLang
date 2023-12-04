@@ -82,14 +82,14 @@
 8783（https://www.luogu.com.cn/problem/P8783）经典O(n^3)与双指针枚举计算子矩阵个数
 
 ===================================CodeForces===================================
-C. Wonderful Randomized Sum（https://codeforces.com/problemset/problem/33/C）前后缀最大变换和与分割点枚举，经典类型题目
-C. Minimal string（https://codeforces.com/problemset/problem/797/C）后缀最小值字典序模拟
-D. Big Maximum Sum（https://codeforces.com/problemset/problem/75/D）压缩数组最大子段和
-C. Count Triangles（https://codeforces.com/problemset/problem/1355/C）经典使用作用域差分计算，合法三角形边长个数
-C. Tea Tasting（https://codeforces.com/problemset/problem/1795/C）前缀和二分后，经典使用差分计数模拟加和
-D. Constant Palindrome Sum（https://codeforces.com/problemset/problem/1343/D）枚举x使用差分数组进行范围计数
-E. Counting Rectangles（https://codeforces.com/problemset/problem/1722/E）根据数字取值范围使用二位前缀和计算
-D. Absolute Sorting（https://codeforces.com/contest/1772/problem/D）离散差分作用域计数
+33C（https://codeforces.com/problemset/problem/33/C）前后缀最大变换和与分割点枚举，经典类型题目
+797C（https://codeforces.com/problemset/problem/797/C）后缀最小值字典序模拟
+75D（https://codeforces.com/problemset/problem/75/D）压缩数组最大子段和
+1355C（https://codeforces.com/problemset/problem/1355/C）经典使用作用域差分计算，合法三角形边长个数
+1795C（https://codeforces.com/problemset/problem/1795/C）前缀和二分后，经典使用差分计数模拟加和
+1343D（https://codeforces.com/problemset/problem/1343/D）枚举x使用差分数组进行范围计数
+1722E（https://codeforces.com/problemset/problem/1722/E）根据数字取值范围使用二位前缀和计算
+1772D（https://codeforces.com/contest/1772/problem/D）离散差分作用域计数
 
 ====================================AtCoder=====================================
 D - AtCoder Express 2（https://atcoder.jp/contests/abc106/tasks/abc106_d）前缀和优化DP计数

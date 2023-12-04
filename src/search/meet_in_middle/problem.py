@@ -15,7 +15,7 @@ nya（https://www.luogu.com.cn/problem/CF525E）折半搜索计算长度
 
 =====================================AcWing=====================================
 171（https://www.acwing.com/problem/content/173/）经典折半搜索查找最接近目标值的子数组和
-F. Xor-Paths（https://codeforces.com/contest/1006/problem/F）前缀和哈希计数，矩阵折半搜索
+1006F（https://codeforces.com/contest/1006/problem/F）前缀和哈希计数，矩阵折半搜索
 
 参考：OI WiKi（xx）
 """

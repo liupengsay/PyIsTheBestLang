@@ -8,7 +8,7 @@
 2197（https://www.luogu.com.cn/problem/P2197）有一个神奇的结论：当n堆石子的数量异或和等于0时，先手必胜，否则先手必败
 
 ===================================CodeForces===================================
-B. Stoned Game（https://codeforces.com/problemset/problem/1396/B）博弈贪心，使用大顶堆优先选取最大数量的石头做选择
+1396B（https://codeforces.com/problemset/problem/1396/B）博弈贪心，使用大顶堆优先选取最大数量的石头做选择
 
 参考：OI WiKi（https://oi-wiki.org/graph/lgv/）
 

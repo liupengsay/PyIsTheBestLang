@@ -23,17 +23,17 @@ ST表算法全称Sparse-Table算法，是由Tarjan提出的一种解决RMQ问题
 5648（https://www.luogu.com.cn/problem/P5648）使用倍增 ST 表查询区间最大值的索引，使用单调栈建树计算距离
 
 ===================================CodeForces===================================
-D. Max GEQ Sum（https://codeforces.com/problemset/problem/1691/D）单调栈枚举加ST表最大值最小值查询
-D. Friends and Subsequences（https://codeforces.com/problemset/problem/689/D）根据单调性使用二分加ST表进行个数计算
-D. Yet Another Yet Another Task（https://codeforces.com/problemset/problem/1359/D）单调栈枚举加ST表最大值最小值查询
-B. Integers Have Friends（https://codeforces.com/problemset/problem/1548/B）ST表查询区间gcd并枚举数组开头，二分确定长度
-F. Ant colony（https://codeforces.com/problemset/problem/474/F）稀疏表计算最小值和gcd，并使用二分查找计数
-E. MEX of LCM（https://codeforces.com/contest/1834/problem/E）经典计算连续子数组的lcm信息
-E. Iva & Pav（https://codeforces.com/contest/1878/problem/E）经典计算连续子数组的and信息
-F. Array Stabilization (GCD version)（https://codeforces.com/contest/1547/problem/F）经典计算连续子数组的gcd信息
-F. Array Stabilization (AND version)（https://codeforces.com/contest/1579/problem/F）经典循环节计算连续子数组的and信息
-D. Rorororobot（https://codeforces.com/contest/1709/problem/D）use sparse table to compute static range max and implemention
-D. Cut（https://codeforces.com/contest/1516/problem/D）经典数组区间向右倍增计算
+1691D（https://codeforces.com/problemset/problem/1691/D）单调栈枚举加ST表最大值最小值查询
+689D（https://codeforces.com/problemset/problem/689/D）根据单调性使用二分加ST表进行个数计算
+1359D（https://codeforces.com/problemset/problem/1359/D）单调栈枚举加ST表最大值最小值查询
+1548B（https://codeforces.com/problemset/problem/1548/B）ST表查询区间gcd并枚举数组开头，二分确定长度
+474F（https://codeforces.com/problemset/problem/474/F）稀疏表计算最小值和gcd，并使用二分查找计数
+1834E（https://codeforces.com/contest/1834/problem/E）经典计算连续子数组的lcm信息
+1878E（https://codeforces.com/contest/1878/problem/E）经典计算连续子数组的and信息
+1547F（https://codeforces.com/contest/1547/problem/F）经典计算连续子数组的gcd信息
+1579F（https://codeforces.com/contest/1579/problem/F）经典循环节计算连续子数组的and信息
+1709D（https://codeforces.com/contest/1709/problem/D）use sparse table to compute static range max and implemention
+1516D（https://codeforces.com/contest/1516/problem/D）经典数组区间向右倍增计算
 
 =====================================AcWing=====================================
 109（https://www.acwing.com/problem/content/111/）贪心加倍增计算最少分段数

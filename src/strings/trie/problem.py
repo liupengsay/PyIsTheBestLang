@@ -27,13 +27,13 @@
 8420（https://www.luogu.com.cn/problem/P8420）字典树贪心匹配
 
 ===================================CodeForces===================================
-Fixed Prefix Permutations（https://codeforces.com/problemset/problem/1792/D）变形后使用字典树进行计数查询
-D. Vasiliy's Multiset（https://codeforces.com/problemset/problem/706/D）经典01Trie，增加与删除数字，最大异或值查询
-B. Friends（https://codeforces.com/contest/241/problem/B）经典01Trie计算第 K 大的异或对，并使用堆贪心选取
-E. Beautiful Subarrays（https://codeforces.com/contest/665/problem/E）统计连续区间异或对数目
-E. Sausage Maximization（https://codeforces.com/contest/282/problem/E）转换为 01Trie 求数组最大异或值
+1792D（https://codeforces.com/problemset/problem/1792/D）变形后使用字典树进行计数查询
+706D（https://codeforces.com/problemset/problem/706/D）经典01Trie，增加与删除数字，最大异或值查询
+241B（https://codeforces.com/contest/241/problem/B）经典01Trie计算第 K 大的异或对，并使用堆贪心选取
+665E（https://codeforces.com/contest/665/problem/E）统计连续区间异或对数目
+282E（https://codeforces.com/contest/282/problem/E）转换为 01Trie 求数组最大异或值
 Set Xor-Min（https://judge.yosupo.jp/problem/set_xor_min）template dynamic xor min
-E. Collapsing Strings（https://codeforces.com/contest/1902/problem/E）trie|prefix count
+1902E（https://codeforces.com/contest/1902/problem/E）trie|prefix count
 
 =====================================AcWing=====================================
 142（https://www.acwing.com/problem/content/144/）字典树前缀统计

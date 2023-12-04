@@ -37,8 +37,8 @@
 4170（https://www.luogu.com.cn/problem/P4170）经典区间 DP 注意转移方程计算
 
 ===================================CodeForces===================================
-C. The Sports Festival（https://codeforces.com/problemset/problem/1509/C）转换为区间DP进行求解
-B. Zuma（https://codeforces.com/problemset/problem/607/B）区间DP，经典通过消除回文子序列删除整个数组的最少次数
+1509C（https://codeforces.com/problemset/problem/1509/C）转换为区间DP进行求解
+607B（https://codeforces.com/problemset/problem/607/B）区间DP，经典通过消除回文子序列删除整个数组的最少次数
 
 =====================================AcWing=====================================
 3996（https://www.acwing.com/problem/content/3999/）经典区间 DP 最长回文子序列变形

@@ -91,11 +91,11 @@ LCP 75（https://leetcode.com/problems/rdmXM7/）首先BFS之后计算最大值�
 2176（https://www.luogu.com.cn/problem/P2176）枚举最短路上的边修改后，重新计算最短路
 
 ===================================CodeForces===================================
-C. Dijkstra?（https://codeforces.com/problemset/problem/20/C）正权值最短路计算，并记录返回生成路径
-E. Weights Distributing（https://codeforces.com/problemset/problem/1343/E）使用三个01BFS求最短路加贪心枚举计算
-B. Complete The Graph（https://codeforces.com/contest/715/problem/B）经典两遍最短路，贪心动态更新路径权值
-G. Reducing Delivery Cost（https://codeforces.com/contest/1433/problem/G）经典全源Dijkstra最短路枚举
-G. Counting Shortcuts（https://codeforces.com/contest/1650/problem/G）经典Dijkstra最短路与严格次短路计数，正解为01BFS
+20C（https://codeforces.com/problemset/problem/20/C）正权值最短路计算，并记录返回生成路径
+1343E（https://codeforces.com/problemset/problem/1343/E）使用三个01BFS求最短路加贪心枚举计算
+715B（https://codeforces.com/contest/715/problem/B）经典两遍最短路，贪心动态更新路径权值
+1433G（https://codeforces.com/contest/1433/problem/G）经典全源Dijkstra最短路枚举
+1650G（https://codeforces.com/contest/1650/problem/G）经典Dijkstra最短路与严格次短路计数，正解为01BFS
 
 ====================================AtCoder=====================================
 F - Pure（https://atcoder.jp/contests/abc142/tasks/abc142_f）经典子图寻找，转换为有向图的最小环问题

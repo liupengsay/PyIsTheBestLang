@@ -21,7 +21,7 @@
 1177（https://www.luogu.com.cn/problem/P1177）快速排序
 
 ===================================CodeForces===================================
-D. Robot Vacuum Cleaner（https://codeforces.com/problemset/problem/922/D）贪心加自定义排序
+922D（https://codeforces.com/problemset/problem/922/D）贪心加自定义排序
 
 ====================================AtCoder=====================================
 B - Iroha Loves Strings（https://atcoder.jp/contests/abc042/tasks/abc042_b）自定义排序

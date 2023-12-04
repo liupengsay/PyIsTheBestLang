@@ -104,13 +104,13 @@
 8786（https://www.luogu.com.cn/problem/P8786）典型三维矩阵 DP 模拟使用记忆化搜索
 
 ===================================CodeForces===================================
-B. Catching Cheaters（https://codeforces.com/problemset/problem/1446/B）最长公共子序列LCS变形问题，理解贡献
-B. Working out（https://codeforces.com/problemset/problem/429/B）四个方向的矩阵DP
-D. Colored Rectangles（https://codeforces.com/problemset/problem/1398/D）三维DP，选取两个不同数组的数乘积，计算最大总和
-B. The least round way（https://codeforces.com/problemset/problem/2/B）矩阵DP，计算路径上乘积最少的后缀0个数，经典题目
-B. Unmerge（https://codeforces.com/problemset/problem/1381/B）二维矩阵DP加单调栈优化
-D. Rarity and New Dress（https://codeforces.com/problemset/problem/1393/D）经典二维DP计算金字塔个数
-D. Valiant's New Map（https://codeforces.com/contest/1731/problem/D）经典二分加最大正方形边长
+1446B（https://codeforces.com/problemset/problem/1446/B）最长公共子序列LCS变形问题，理解贡献
+429B（https://codeforces.com/problemset/problem/429/B）四个方向的矩阵DP
+1398D（https://codeforces.com/problemset/problem/1398/D）三维DP，选取两个不同数组的数乘积，计算最大总和
+2B（https://codeforces.com/problemset/problem/2/B）矩阵DP，计算路径上乘积最少的后缀0个数，经典题目
+1381B（https://codeforces.com/problemset/problem/1381/B）二维矩阵DP加单调栈优化
+1393D（https://codeforces.com/problemset/problem/1393/D）经典二维DP计算金字塔个数
+1731D（https://codeforces.com/contest/1731/problem/D）经典二分加最大正方形边长
 
 ====================================AtCoder=====================================
 E - Common Subsequence（https://atcoder.jp/contests/abc130/tasks/abc130_e）二维前缀和优化矩阵DP

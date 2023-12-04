@@ -95,15 +95,15 @@
 8816（https://www.luogu.com.cn/problem/P8816）典型线性矩阵 DP 模拟
 
 ===================================CodeForces===================================
-D. Big Maximum Sum（https://codeforces.com/problemset/problem/75/D）经典压缩数组，最大子段和升级
-C. The Fair Nut and String（https://codeforces.com/problemset/problem/1084/C）线性DP加前缀和优化
-E. Tetrahedron（https://codeforces.com/problemset/problem/166/E）经典线性DP计数
-D. Make The Fence Great Again（https://codeforces.com/problemset/problem/1221/D）线性DP模拟
-C. Chef Monocarp（https://codeforces.com/problemset/problem/1437/C）二维线性DP，两个数组线性移动进行匹配计算最大或者最小值
-D. Armchairs（https://codeforces.com/problemset/problem/1525/D）二维线性DP，两个数组线性移动进行匹配计算最大或者最小值
-A. Garland（https://codeforces.com/problemset/problem/1286/A）线性经典dp
-D. Make The Fence Great Again（https://codeforces.com/problemset/problem/1221/D）线性DP，最多变化为增加0、1、2
-E. Funny Game（https://codeforces.com/contest/731/problem/E）前缀和倒序DP
+75D（https://codeforces.com/problemset/problem/75/D）经典压缩数组，最大子段和升级
+1084C（https://codeforces.com/problemset/problem/1084/C）线性DP加前缀和优化
+166E（https://codeforces.com/problemset/problem/166/E）经典线性DP计数
+1221D（https://codeforces.com/problemset/problem/1221/D）线性DP模拟
+1437C（https://codeforces.com/problemset/problem/1437/C）二维线性DP，两个数组线性移动进行匹配计算最大或者最小值
+1525D（https://codeforces.com/problemset/problem/1525/D）二维线性DP，两个数组线性移动进行匹配计算最大或者最小值
+1286A（https://codeforces.com/problemset/problem/1286/A）线性经典dp
+1221D（https://codeforces.com/problemset/problem/1221/D）线性DP，最多变化为增加0、1、2
+731E（https://codeforces.com/contest/731/problem/E）前缀和倒序DP
 
 ====================================AtCoder=====================================
 E - Sum Equals Xor（https://atcoder.jp/contests/abc129/tasks/abc129_e）思维题，类似数位DP

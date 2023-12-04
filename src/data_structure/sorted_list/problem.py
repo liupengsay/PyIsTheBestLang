@@ -57,11 +57,11 @@
 8667（https://www.luogu.com.cn/problem/P8667）典型STL应用题
 
 ===================================CodeForces===================================
-D. Pashmak and Parmida's problem（https://codeforces.com/problemset/problem/459/D）使用有序集合进行大小计数查找
-E. Enemy is weak（https://codeforces.com/problemset/problem/61/E）典型应用场景，前后缀大于小于值计数
-D. Multiset（https://codeforces.com/problemset/problem/1354/D）有序列表的维护与查询
-E2. Median on Segments（https://codeforces.com/contest/1005/problem/E2）经典特定中位数的连续子数组个数，使用容斥原理加前缀和有序列表二分
-E. MEX and Increments（https://codeforces.com/contest/1619/problem/E）经典MEX贪心
+459D（https://codeforces.com/problemset/problem/459/D）使用有序集合进行大小计数查找
+61E（https://codeforces.com/problemset/problem/61/E）典型应用场景，前后缀大于小于值计数
+1354D（https://codeforces.com/problemset/problem/1354/D）有序列表的维护与查询
+1005E2（https://codeforces.com/contest/1005/problem/E2）经典特定中位数的连续子数组个数，使用容斥原理加前缀和有序列表二分
+1619E（https://codeforces.com/contest/1619/problem/E）经典MEX贪心
 
 参考：OI WiKi（xx）
 """

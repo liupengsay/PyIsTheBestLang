@@ -22,7 +22,7 @@
 1185（https://www.luogu.com.cn/problem/P1185）二叉树递归进行绘制
 
 ===================================CodeForces===================================
-C. Painting Fence（https://codeforces.com/contest/448/problem/C）贪心递归DP
+448C（https://codeforces.com/contest/448/problem/C）贪心递归DP
 
 98（https://www.acwing.com/problem/content/100/）四叉树递归与坐标旋转变换
 93（https://www.acwing.com/problem/content/95/）递归与迭代两种方式实现组合数选取

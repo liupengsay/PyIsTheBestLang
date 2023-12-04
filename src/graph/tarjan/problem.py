@@ -32,14 +32,14 @@
 7965（https://www.luogu.com.cn/problem/P7965）经典scc缩点后使用 DAG 进行树形 DP
 
 ===================================CodeForces===================================
-F. Is It Flower?（https://codeforces.com/contest/1811/problem/F）无向图求连通分量
-C. Checkposts（https://codeforces.com/problemset/problem/427/C）有向图的强联通分量进行缩点
-A. Cutting Figure（https://codeforces.com/contest/193/problem/A）脑筋急转弯计算有无割点
-E. Reachability from the Capital（https://codeforces.com/contest/999/problem/E）使用SCC缩点后查看入度为0的点个数
-F. Unstable String Sort（https://codeforces.com/contest/1213/problem/F）使用SCC缩点后拓扑排序贪心
-G. How Many Paths?（https://codeforces.com/contest/1547/problem/G）使用SCC缩点后利用可达性建立新图，计算路径条数
-E. Split Into Two Sets（https://codeforces.com/contest/1702/problem/E）使用点双进行无向图找环，判断有无奇数环
-D. Lucky Permutation（https://codeforces.com/contest/1768/problem/D）置换环与tarjan求环
+1811F（https://codeforces.com/contest/1811/problem/F）无向图求连通分量
+427C（https://codeforces.com/problemset/problem/427/C）有向图的强联通分量进行缩点
+193A（https://codeforces.com/contest/193/problem/A）脑筋急转弯计算有无割点
+999E（https://codeforces.com/contest/999/problem/E）使用SCC缩点后查看入度为0的点个数
+1213F（https://codeforces.com/contest/1213/problem/F）使用SCC缩点后拓扑排序贪心
+1547G（https://codeforces.com/contest/1547/problem/G）使用SCC缩点后利用可达性建立新图，计算路径条数
+1702E（https://codeforces.com/contest/1702/problem/E）使用点双进行无向图找环，判断有无奇数环
+1768D（https://codeforces.com/contest/1768/problem/D）置换环与tarjan求环
 
 =====================================AcWing=====================================
 3579（https://www.acwing.com/problem/content/3582/）强连通分量模板题

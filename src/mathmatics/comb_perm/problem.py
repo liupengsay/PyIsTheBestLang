@@ -44,12 +44,12 @@ D - Blue and Red Balls（https://atcoder.jp/contests/abc132/tasks/abc132_d）组
 6057（https://www.luogu.com.cn/problem/P6057）容斥原理计数
 
 ===================================CodeForces===================================
-D. Triangle Coloring（https://codeforces.com/problemset/problem/1795/D）组合计数取模与乘法逆元快速计算
-C. Beautiful Numbers（https://codeforces.com/problemset/problem/300/C）枚举个数并使用组合数计算方案数
-C. Gerald and Giant Chess（https://codeforces.com/problemset/problem/559/C）容斥原理组合计数
-C. Binary Search（https://codeforces.com/problemset/problem/1436/C）二分加组合数计算
-B. Mashmokh and ACM（https://codeforces.com/problemset/problem/414/B）经典使用最小质因数与隔板法计数 DP
-C. Make it Alternating（https://codeforces.com/contest/1879/problem/C）贪心枚举与组合计数
+1795D（https://codeforces.com/problemset/problem/1795/D）组合计数取模与乘法逆元快速计算
+300C（https://codeforces.com/problemset/problem/300/C）枚举个数并使用组合数计算方案数
+559C（https://codeforces.com/problemset/problem/559/C）容斥原理组合计数
+1436C（https://codeforces.com/problemset/problem/1436/C）二分加组合数计算
+414B（https://codeforces.com/problemset/problem/414/B）经典使用最小质因数与隔板法计数 DP
+1879C（https://codeforces.com/contest/1879/problem/C）贪心枚举与组合计数
 
 
 ====================================AtCoder=====================================

@@ -11,9 +11,9 @@ xx（xxx）xxxxxxxxxxxxxxxxxxxx
 xx（xxx）xxxxxxxxxxxxxxxxxxxx
 
 ===================================CodeForces===================================
-F. Interacdive Problem（https://codeforces.com/contest/1624/problem/F）二分查找交互
-D. Tournament Countdown（https://codeforces.com/contest/1713/problem/D）
-D. Guess The String（https://codeforces.com/contest/1697/problem/D）经典二分查找交互，严格非红蓝二分写法
+1624F（https://codeforces.com/contest/1624/problem/F）二分查找交互
+1713D（https://codeforces.com/contest/1713/problem/D）
+1697D（https://codeforces.com/contest/1697/problem/D）经典二分查找交互，严格非红蓝二分写法
 
 
 """

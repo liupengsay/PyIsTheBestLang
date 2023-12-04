@@ -64,7 +64,7 @@
 8873（https://www.luogu.com.cn/problem/P8873）等差数列计算
 
 ===================================CodeForces===================================
-C. Gargari and Bishops（https://codeforces.com/problemset/problem/463/C）选取两组互不相交的主副对角线使得和最大
+463C（https://codeforces.com/problemset/problem/463/C）选取两组互不相交的主副对角线使得和最大
 
 =====================================AcWing=====================================
 4318（https://www.acwing.com/problem/content/description/4321/）使用哈希贪心模拟构造

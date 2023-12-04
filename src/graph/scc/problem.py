@@ -20,7 +20,7 @@
 5782（https://www.luogu.com.cn/problem/P5782）2-SAT 问题模板题
 4171（https://www.luogu.com.cn/problem/P4171）2-SAT 问题模板题
 ===================================CodeForces===================================
-C. Engineer Artem（https://codeforces.com/problemset/problem/1438/C）2-SAT 问题模板题
+1438C（https://codeforces.com/problemset/problem/1438/C）2-SAT 问题模板题
 
 
 参考：OI WiKi（https://oi-wiki.org/graph/scc/）

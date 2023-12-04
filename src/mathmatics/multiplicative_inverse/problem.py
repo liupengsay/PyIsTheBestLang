@@ -11,7 +11,7 @@
 5431（https://www.luogu.com.cn/problem/P5431）转换为前缀积与后缀积计算求解
 
 ===================================CodeForces===================================
-F. Ira and Flamenco（https://codeforces.com/contest/1833/problem/F）使用前缀乘积计算区间取模
+1833F（https://codeforces.com/contest/1833/problem/F）使用前缀乘积计算区间取模
 
 
 """

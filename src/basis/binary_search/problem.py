@@ -72,22 +72,22 @@
 9050（https://www.luogu.com.cn/problem/P9050）经典二分注意值域区间与贪心模拟
 
 ===================================CodeForces===================================
-D. Salary Changing（https://codeforces.com/problemset/problem/1251/D）使用贪心进行中位数二分求解
-A. Office Keys（https://codeforces.com/problemset/problem/830/A）使用贪心进行距离点覆盖二分求解
-E. Packmen（https://codeforces.com/problemset/problem/847/E）使用贪心二分与指针进行判断
-D. Exams（https://codeforces.com/problemset/problem/732/D）使用贪心二分与指针进行判断
-A. String Game（https://codeforces.com/problemset/problem/778/A）二分和使用指针判断是否check
-C. Party Lemonade（https://codeforces.com/problemset/problem/913/C）DP预处理最优单价，再二分加贪心进行模拟求解
-G2. Teleporters (Hard Version)（https://codeforces.com/problemset/problem/1791/G2）贪心排序，前缀和枚举二分
-D. Multiplication Table（https://codeforces.com/problemset/problem/448/D）经典二分查找计算n*m的乘法表第k大元素
-D. Cleaning the Phone（https://codeforces.com/problemset/problem/1475/D）贪心排序，前缀和枚举二分
-D. Odd-Even Subsequence（https://codeforces.com/problemset/problem/1370/D）利用单调性二分，再使用贪心check
-D. Max Median（https://codeforces.com/problemset/problem/1486/D）利用单调性二分，再使用经典哈希前缀和计算和为正数的最长连续子序列
-D2. Coffee and Coursework (Hard Version)（https://codeforces.com/problemset/problem/1118/D2）利用单调性贪心二分
-I. Photo Processing（https://codeforces.com/problemset/problem/883/I）二分加双指针dp
-G. Gift Set（https://codeforces.com/contest/1538/problem/G）二分加枚举不等式验证
-C. Binary String（https://codeforces.com/contest/1680/problem/C）二分加贪心双指针check
-D. Salary Changing（https://codeforces.com/contest/1251/problem/D）greedy|binary search
+1251D（https://codeforces.com/problemset/problem/1251/D）使用贪心进行中位数二分求解
+830A（https://codeforces.com/problemset/problem/830/A）使用贪心进行距离点覆盖二分求解
+847E（https://codeforces.com/problemset/problem/847/E）使用贪心二分与指针进行判断
+732D（https://codeforces.com/problemset/problem/732/D）使用贪心二分与指针进行判断
+778A（https://codeforces.com/problemset/problem/778/A）二分和使用指针判断是否check
+913C（https://codeforces.com/problemset/problem/913/C）DP预处理最优单价，再二分加贪心进行模拟求解
+1791G2（https://codeforces.com/problemset/problem/1791/G2）贪心排序，前缀和枚举二分
+448D（https://codeforces.com/problemset/problem/448/D）经典二分查找计算n*m的乘法表第k大元素
+1475D（https://codeforces.com/problemset/problem/1475/D）贪心排序，前缀和枚举二分
+1370D（https://codeforces.com/problemset/problem/1370/D）利用单调性二分，再使用贪心check
+1486D（https://codeforces.com/problemset/problem/1486/D）利用单调性二分，再使用经典哈希前缀和计算和为正数的最长连续子序列
+1118D2（https://codeforces.com/problemset/problem/1118/D2）利用单调性贪心二分
+883I（https://codeforces.com/problemset/problem/883/I）二分加双指针dp
+1538G（https://codeforces.com/contest/1538/problem/G）二分加枚举不等式验证
+1680C（https://codeforces.com/contest/1680/problem/C）二分加贪心双指针check
+1251D（https://codeforces.com/contest/1251/problem/D）greedy|binary search
 
 ====================================AtCoder=====================================
 D - No Need （https://atcoder.jp/contests/abc056/tasks/arc070_b）经典利用单调性进行二分，用背包DP进行check

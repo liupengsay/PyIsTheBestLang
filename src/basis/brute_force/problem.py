@@ -112,18 +112,18 @@
 8872（https://www.luogu.com.cn/problem/P8872）排序后前后缀移动次数枚举
 
 ===================================CodeForces===================================
-F. Number of Subsequences（https://codeforces.com/problemset/problem/1426/F）分类枚举中间的b计数两边的?ac，并使用快速幂进行求解
-D. Zigzags（https://codeforces.com/problemset/problem/1400/D）枚举+二分
-D. Moscow Gorillas（https://codeforces.com/contest/1793/problem/D）枚举计数
-D. Dima and Lisa（https://codeforces.com/problemset/problem/584/D）确定一个质数3，枚举第二三个质数，小于 10**9 的任何数都可以分解为最多三个质数的和
-D. Three Integers（https://codeforces.com/problemset/problem/1311/D）根据题意，确定一个上限值，贪心枚举
-C. Flag（https://codeforces.com/problemset/problem/1181/C）按列进行枚举
-B. Maximum Value（https://codeforces.com/problemset/problem/484/B）排序后进行枚举，并使用二分查找进行确认
-C. Arithmetic Progression（https://codeforces.com/problemset/problem/382/C）分类讨论
+1426F（https://codeforces.com/problemset/problem/1426/F）分类枚举中间的b计数两边的?ac，并使用快速幂进行求解
+1400D（https://codeforces.com/problemset/problem/1400/D）枚举+二分
+1793D（https://codeforces.com/contest/1793/problem/D）枚举计数
+584D（https://codeforces.com/problemset/problem/584/D）确定一个质数3，枚举第二三个质数，小于 10**9 的任何数都可以分解为最多三个质数的和
+1311D（https://codeforces.com/problemset/problem/1311/D）根据题意，确定一个上限值，贪心枚举
+1181C（https://codeforces.com/problemset/problem/1181/C）按列进行枚举
+484B（https://codeforces.com/problemset/problem/484/B）排序后进行枚举，并使用二分查找进行确认
+382C（https://codeforces.com/problemset/problem/382/C）分类讨论
 D - Remainder Reminder（https://atcoder.jp/contests/abc090/tasks/arc091_b）典型枚举
 D - Katana Thrower（https://atcoder.jp/contests/abc085/tasks/abc085_d）典型枚举
-E. Divisibility by 25（https://codeforces.com/contest/988/problem/E）思维题贪心枚举
-B. Getting Zero（https://codeforces.com/contest/1661/problem/B）经典枚举
+988E（https://codeforces.com/contest/988/problem/E）思维题贪心枚举
+1661B（https://codeforces.com/contest/1661/problem/B）经典枚举
 
 ====================================AtCoder=====================================
 D - Digit Sum（https://atcoder.jp/contests/abc044/tasks/arc060_b）经典进制计算与分情况枚举因子

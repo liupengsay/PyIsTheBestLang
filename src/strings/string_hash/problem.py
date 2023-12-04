@@ -26,7 +26,7 @@
 6739（https://www.luogu.com.cn/problem/P6739）前后缀字符串哈希
 
 ===================================CodeForces===================================
-D. Remove Two Letters（https://codeforces.com/problemset/problem/1800/D）字符串前后缀哈希加和变换
+1800D（https://codeforces.com/problemset/problem/1800/D）字符串前后缀哈希加和变换
 
 ====================================AtCoder=====================================
 E - Who Says a Pun?（https://atcoder.jp/contests/abc141/tasks/abc141_e）二分加字符串哈希check

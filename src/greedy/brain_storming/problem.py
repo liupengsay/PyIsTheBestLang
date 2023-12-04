@@ -129,31 +129,31 @@
 8887（https://www.luogu.com.cn/problem/P8887）脑筋急转弯贪心
 
 ===================================CodeForces===================================
-D. Vus the Cossack and Numbers（https://codeforces.com/problemset/problem/1186/D）贪心取floor，再根据加和为0的特质进行补充加1成为ceil
-C. Divide by Three（https://codeforces.com/contest/792/problem/C）分类进行贪心取数比较，取最长的返回结果
-E. Tetrahedron（https://codeforces.com/problemset/problem/166/E）思维模拟DP
-C. Plasticine zebra（https://codeforces.com/problemset/problem/1025/C）脑筋急转弯
-C. Array Product（https://codeforces.com/problemset/problem/1042/C）贪心分类模拟
-C. Devu and Partitioning of the Array（https://codeforces.com/problemset/problem/439/C）贪心分类讨论
-E. New Year Parties（https://codeforces.com/problemset/problem/1283/E）贪心分类讨论
-C. Prefixes and Suffixes（https://codeforces.com/contest/1092/problem/C）脑筋急转弯思维分类题
-B. Beingawesomeism（https://codeforces.com/problemset/problem/1280/B）脑筋急转弯思维分类题
-C. Polycarp at the Radio（https://codeforces.com/problemset/problem/723/C）贪心模拟构造
-C. Memory and De-Evolution（https://codeforces.com/problemset/problem/712/C）逆向思维反向模拟
-D. Winter Is Coming（https://codeforces.com/problemset/problem/747/D）贪心模拟求解
-D. Dirty Deeds Done Dirt Cheap（https://codeforces.com/problemset/problem/1148/D）贪心，自定义排序选择构造
-C. Divide by Three（https://codeforces.com/contest/792/problem/C）分类进行贪心讨论
-A. Office Keys（https://codeforces.com/problemset/problem/830/A）按照影响区间排序，然后贪心分配时间
-C. Table Decorations（https://codeforces.com/problemset/problem/478/C）贪心结论题a<=b<=c则有min((a+b+c)//3, a+b)
-A. Dreamoon Likes Coloring（https://codeforces.com/problemset/problem/1329/A）贪心+指针+模拟
-D. Maximum Distributed Tree（https://codeforces.com/problemset/problem/1401/D）贪心dfs枚举经过边的路径计数
-C. Make Palindrome（https://codeforces.com/problemset/problem/600/C）回文子串计数贪心
-D. Slime（https://codeforces.com/problemset/problem/1038/D）贪心模拟，分类讨论
-B. Color the Fence（https://codeforces.com/problemset/problem/349/B）贪心模拟
-C. Number Game（https://codeforces.com/problemset/problem/1370/C）贪心模拟必胜态
-E. Making Anti-Palindromes（https://codeforces.com/contest/1822/problem/E）贪心进行模拟计数
-E2. Median on Segments（https://codeforces.com/contest/1005/problem/E2）经典特定中位数的连续子数组个数，使用容斥原理加前缀和有序列表二分，同LC2488
-E. Permutation by Sum（https://codeforces.com/contest/1512/problem/E）思维题从大到小贪心
+1186D（https://codeforces.com/problemset/problem/1186/D）贪心取floor，再根据加和为0的特质进行补充加1成为ceil
+792C（https://codeforces.com/contest/792/problem/C）分类进行贪心取数比较，取最长的返回结果
+166E（https://codeforces.com/problemset/problem/166/E）思维模拟DP
+1025C（https://codeforces.com/problemset/problem/1025/C）脑筋急转弯
+1042C（https://codeforces.com/problemset/problem/1042/C）贪心分类模拟
+439C（https://codeforces.com/problemset/problem/439/C）贪心分类讨论
+1283E（https://codeforces.com/problemset/problem/1283/E）贪心分类讨论
+1092C（https://codeforces.com/contest/1092/problem/C）脑筋急转弯思维分类题
+1280B（https://codeforces.com/problemset/problem/1280/B）脑筋急转弯思维分类题
+723C（https://codeforces.com/problemset/problem/723/C）贪心模拟构造
+712C（https://codeforces.com/problemset/problem/712/C）逆向思维反向模拟
+747D（https://codeforces.com/problemset/problem/747/D）贪心模拟求解
+1148D（https://codeforces.com/problemset/problem/1148/D）贪心，自定义排序选择构造
+792C（https://codeforces.com/contest/792/problem/C）分类进行贪心讨论
+830A（https://codeforces.com/problemset/problem/830/A）按照影响区间排序，然后贪心分配时间
+478C（https://codeforces.com/problemset/problem/478/C）贪心结论题a<=b<=c则有min((a+b+c)//3, a+b)
+1329A（https://codeforces.com/problemset/problem/1329/A）贪心+指针+模拟
+1401D（https://codeforces.com/problemset/problem/1401/D）贪心dfs枚举经过边的路径计数
+600C（https://codeforces.com/problemset/problem/600/C）回文子串计数贪心
+1038D（https://codeforces.com/problemset/problem/1038/D）贪心模拟，分类讨论
+349B（https://codeforces.com/problemset/problem/349/B）贪心模拟
+1370C（https://codeforces.com/problemset/problem/1370/C）贪心模拟必胜态
+1822E（https://codeforces.com/contest/1822/problem/E）贪心进行模拟计数
+1005E2（https://codeforces.com/contest/1005/problem/E2）经典特定中位数的连续子数组个数，使用容斥原理加前缀和有序列表二分，同LC2488
+1512E（https://codeforces.com/contest/1512/problem/E）思维题从大到小贪心
 
 ====================================AtCoder=====================================
 C - AtCoDeer and Election Report（https://atcoder.jp/contests/abc046/tasks/arc062_a）思维题，使用不等式进行贪心

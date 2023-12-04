@@ -27,7 +27,7 @@
 
 
 ===================================CodeForces===================================
-D. Design Tutorial: Inverse the Problem（https://codeforces.com/problemset/problem/472/D）使用Floyd判断构造给定的点对最短路距离是否存在
+472D（https://codeforces.com/problemset/problem/472/D）使用Floyd判断构造给定的点对最短路距离是否存在
 
 ====================================AtCoder=====================================
 D - Candidates of No Shortest Paths（https://atcoder.jp/contests/abc051/tasks/abc051_d）经典Floyd计算最短路的必经边

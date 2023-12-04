@@ -44,17 +44,17 @@
 
 ===================================CodeForces===================================
 
-B. Interesting Array（https://codeforces.com/problemset/problem/482/B）区间按位或赋值、按位与查询
-C. Sereja and Brackets（https://codeforces.com/problemset/problem/380/C）线段树查询区间内所有合法连续子序列括号串的总长度
-C. Circular RMQ（https://codeforces.com/problemset/problem/52/C）线段树更新和查询循环数组区间最小值
-D. The Child and Sequence（https://codeforces.com/problemset/problem/438/D）使用线段树维护区间取模，区间和，修改单点值，和区间最大值
-E. A Simple Task（https://codeforces.com/contest/558/problem/E）26个线段树维护区间排序信息
-D. Water Tree（https://codeforces.com/problemset/problem/343/D）dfs序加线段树
-E. XOR on Segment（https://codeforces.com/problemset/problem/242/E）线段树区间异或，与区间加和
-C. Three displays（https://codeforces.com/problemset/problem/987/C）枚举中间数组，使用线段树维护前后缀最小值
-F. Wi-Fi（https://codeforces.com/contest/1216/problem/F）经典线段树加DP，正解为单调队列优化DP
-E. MinimizOR（https://codeforces.com/contest/1665/problem/E）
-E. Nezzar and Binary String（https://codeforces.com/contest/1478/problem/E）RangeChangeRangeSumMinMax|backward_thinking|implemention
+482B（https://codeforces.com/problemset/problem/482/B）区间按位或赋值、按位与查询
+380C（https://codeforces.com/problemset/problem/380/C）线段树查询区间内所有合法连续子序列括号串的总长度
+52C（https://codeforces.com/problemset/problem/52/C）线段树更新和查询循环数组区间最小值
+438D（https://codeforces.com/problemset/problem/438/D）使用线段树维护区间取模，区间和，修改单点值，和区间最大值
+558E（https://codeforces.com/contest/558/problem/E）26个线段树维护区间排序信息
+343D（https://codeforces.com/problemset/problem/343/D）dfs序加线段树
+242E（https://codeforces.com/problemset/problem/242/E）线段树区间异或，与区间加和
+987C（https://codeforces.com/problemset/problem/987/C）枚举中间数组，使用线段树维护前后缀最小值
+1216F（https://codeforces.com/contest/1216/problem/F）经典线段树加DP，正解为单调队列优化DP
+1665E（https://codeforces.com/contest/1665/problem/E）
+1478E（https://codeforces.com/contest/1478/problem/E）RangeChangeRangeSumMinMax|backward_thinking|implemention
 
 
 =====================================AcWing=====================================

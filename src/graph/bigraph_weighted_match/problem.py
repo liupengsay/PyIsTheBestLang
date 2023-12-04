@@ -15,7 +15,7 @@
 3605（https://www.luogu.com.cn/problem/B3605）匈牙利算法二分图不带权最大匹配
 
 ===================================CodeForces===================================
-C. Chef Monocarp（https://codeforces.com/problemset/problem/1437/C）二分图最小权匹配
+1437C（https://codeforces.com/problemset/problem/1437/C）二分图最小权匹配
 
 =====================================AcWing=====================================
 4298（https://www.acwing.com/problem/content/4301/）匈牙利算法二分图模板题

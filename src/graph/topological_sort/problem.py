@@ -38,7 +38,7 @@
 8943（https://www.luogu.com.cn/problem/P8943）经典无向图基环树博弈
 
 ===================================CodeForces===================================
-E. Number of Simple Paths（https://codeforces.com/contest/1454/problem/E）经典基环树计数枚举
+1454E（https://codeforces.com/contest/1454/problem/E）经典基环树计数枚举
 
 ====================================AtCoder=====================================
 F - Well-defined Path Queries on a Namori（https://atcoder.jp/contests/abc266/）（无向图的内向基环树，求简单路径的树枝连通）

@@ -28,8 +28,8 @@
 3719（https://www.luogu.com.cn/problem/P3719）栈模拟
 
 ===================================CodeForces===================================
-C. Longest Regular Bracket Sequence（https://codeforces.com/problemset/problem/5/C）最长连续合法括号子序列以及个数
-E. Almost Regular Bracket Sequence（https://codeforces.com/problemset/problem/1095/E）计算改变一个括号后是的字符串合法的位置数
+5C（https://codeforces.com/problemset/problem/5/C）最长连续合法括号子序列以及个数
+1095E（https://codeforces.com/problemset/problem/1095/E）计算改变一个括号后是的字符串合法的位置数
 
 ====================================AtCoder=====================================
 D - 3N Numbers（https://atcoder.jp/contests/abc062/tasks/arc074_b）经典堆与前后缀结合

@@ -86,11 +86,11 @@
 1417（https://www.luogu.com.cn/problem/P1417）经典贪心排序后计算 01 背包最大值
 
 ===================================CodeForces===================================
-B. Modulo Sum（https://codeforces.com/problemset/problem/577/B）取模计数二进制优化与背包DP，寻找非空子序列的和整除给定的数
-A. Writing Code（https://codeforces.com/problemset/problem/543/A）二维有限背包DP，当作无限进行处理
-E. Porcelain（https://codeforces.com/problemset/problem/148/E）01背包枚举，两层动态规划
-F. Zero Remainder Sum（https://codeforces.com/problemset/problem/1433/F）01背包枚举，两层动态规划
-D. For Gamers. By Gamers.（https://codeforces.com/contest/1657/problem/D）一维无限乘积背包预处理，欧拉级数复杂度，结合二分查找贪心
+577B（https://codeforces.com/problemset/problem/577/B）取模计数二进制优化与背包DP，寻找非空子序列的和整除给定的数
+543A（https://codeforces.com/problemset/problem/543/A）二维有限背包DP，当作无限进行处理
+148E（https://codeforces.com/problemset/problem/148/E）01背包枚举，两层动态规划
+1433F（https://codeforces.com/problemset/problem/1433/F）01背包枚举，两层动态规划
+1657D（https://codeforces.com/contest/1657/problem/D）一维无限乘积背包预处理，欧拉级数复杂度，结合二分查找贪心
 
 ====================================AtCoder=====================================
 D - Mixing Experiment（https://atcoder.jp/contests/abc054/tasks/abc054_d）二维01背包

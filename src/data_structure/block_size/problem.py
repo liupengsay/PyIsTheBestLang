@@ -9,10 +9,10 @@
 =====================================LuoGu======================================
 
 ===================================CodeForces===================================
-B. Little Elephant and Array（https://codeforces.com/contest/220/problem/B）分块矩阵计数模板题
-D. Powerful array（https://codeforces.com/contest/86/problem/D）分块矩阵求函数值模板题
-E. XOR and Favorite Number（https://codeforces.com/contest/617/problem/E）分块矩阵求异或对计数模板题
-D. Cut and Stick（https://codeforces.com/contest/1514/problem/D）离散查询分块超时，正解为随机化猜众数，或者位运算计算众数，或者线段树合并众数
+220B（https://codeforces.com/contest/220/problem/B）分块矩阵计数模板题
+86D（https://codeforces.com/contest/86/problem/D）分块矩阵求函数值模板题
+617E（https://codeforces.com/contest/617/problem/E）分块矩阵求异或对计数模板题
+1514D（https://codeforces.com/contest/1514/problem/D）离散查询分块超时，正解为随机化猜众数，或者位运算计算众数，或者线段树合并众数
 
 ====================================AtCoder=====================================
 F - Small Products（https://atcoder.jp/contests/abc132/tasks/abc132_f）分组线性计数DP，使用前缀和优化

@@ -44,9 +44,9 @@ Prim在稠密图中比Kruskal优，在稀疏图中比Kruskal劣。Prim是以更�
 1550（https://www.luogu.com.cn/problem/P1550）经典最小生成树，增加虚拟源点
 
 ===================================CodeForces===================================
-D. Design Tutorial: Inverse the Problem（https://codeforces.com/problemset/problem/472/D）使用最小生成树判断构造给定的点对最短路距离是否存在，使用prim算法复杂度更优
-E. Minimum spanning tree for each edge（https://codeforces.com/problemset/problem/609/E）使用LCA的思想维护树中任意两点的路径边权最大值，并贪心替换获得边作为最小生成树时的最小权值和，有点类似于关键边与非关键边，但二者并不相同，即为严格次小生成树
-F. MST Unification（https://codeforces.com/contest/1108/problem/F）使得最小生成树的边组合唯一时，需要增加权重的最少边数量
+472D（https://codeforces.com/problemset/problem/472/D）使用最小生成树判断构造给定的点对最短路距离是否存在，使用prim算法复杂度更优
+609E（https://codeforces.com/problemset/problem/609/E）使用LCA的思想维护树中任意两点的路径边权最大值，并贪心替换获得边作为最小生成树时的最小权值和，有点类似于关键边与非关键边，但二者并不相同，即为严格次小生成树
+1108F（https://codeforces.com/contest/1108/problem/F）使得最小生成树的边组合唯一时，需要增加权重的最少边数量
 
 ====================================AtCoder=====================================
 D - Built?（https://atcoder.jp/contests/abc065/tasks/arc076_b）最小生成树变形问题

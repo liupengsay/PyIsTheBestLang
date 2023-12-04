@@ -42,12 +42,12 @@ F - Absolute Minima （https://atcoder.jp/contests/abc127/tasks/abc127_f）经�
 Vertex Add Subtree Sum（https://judge.yosupo.jp/problem/vertex_add_subtree_sum）use tree array and dfs order
 
 ===================================CodeForces===================================
-F. Range Update Point Query（https://codeforces.com/problemset/problem/1791/F）树状数组维护区间操作数与查询单点值
-H2. Maximum Crossings (Hard Version)（https://codeforces.com/contest/1676/problem/H2）树状数组维护前缀区间和
-C. Three displays（https://codeforces.com/problemset/problem/987/C）枚举中间数组，使用树状数组维护前后缀最小值
-F. Moving Points（https://codeforces.com/contest/1311/problem/F）经典两个离散化树状数组，计数与加和
-C. Game on Permutation（https://codeforces.com/contest/1860/problem/C）PointDescendRangeMin
-C. Manhattan Subarrays（https://codeforces.com/contest/1550/problem/C）PointAscendPreMax
+1791F（https://codeforces.com/problemset/problem/1791/F）树状数组维护区间操作数与查询单点值
+1676H2（https://codeforces.com/contest/1676/problem/H2）树状数组维护前缀区间和
+987C（https://codeforces.com/problemset/problem/987/C）枚举中间数组，使用树状数组维护前后缀最小值
+1311F（https://codeforces.com/contest/1311/problem/F）经典两个离散化树状数组，计数与加和
+1860C（https://codeforces.com/contest/1860/problem/C）PointDescendRangeMin
+1550C（https://codeforces.com/contest/1550/problem/C）PointAscendPreMax
 
 135. 二维树状数组3（https://loj.ac/p/135）区间修改，区间查询
 134. 二维树状数组2（https://loj.ac/p/134）区间修改，单点查询

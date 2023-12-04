@@ -20,7 +20,7 @@
 6155（https://www.luogu.com.cn/problem/P6155）经典排序贪心使用并查集思想寻找右边最近的空位
 
 ===================================CodeForces===================================
-E. Two Teams（https://codeforces.com/contest/1154/problem/E）使用数组维护链表的前后节点信息
+1154E（https://codeforces.com/contest/1154/problem/E）使用数组维护链表的前后节点信息
 
 =====================================AcWing=====================================
 136（https://www.acwing.com/problem/content/138/）链表逆序删除，查找前后最接近的值

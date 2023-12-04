@@ -84,10 +84,10 @@
 6175（https://www.luogu.com.cn/problem/P6175）经典使用Floyd枚举三个点之间的距离和，O(n^3)，也可以使用BFS或者Dijkstra计算
 
 ===================================CodeForces===================================
-E. Nearest Opposite Parity（https://codeforces.com/problemset/problem/1272/E）经典反向建图，多源BFS
-A. Book（https://codeforces.com/problemset/problem/1572/A）脑筋急转弯建图，广度优先搜索计算是否存在环与无环时从任意起点的DAG最长路
-D. Valid BFS?（https://codeforces.com/problemset/problem/1037/D）经典BDS好题，结合队列与集合进行模拟
-D. The Number of Imposters（https://codeforces.com/contest/1594/problem/D）经典建图后使用染色法BFS判断二分图
+1272E（https://codeforces.com/problemset/problem/1272/E）经典反向建图，多源BFS
+1572A（https://codeforces.com/problemset/problem/1572/A）脑筋急转弯建图，广度优先搜索计算是否存在环与无环时从任意起点的DAG最长路
+1037D（https://codeforces.com/problemset/problem/1037/D）经典BDS好题，结合队列与集合进行模拟
+1594D（https://codeforces.com/contest/1594/problem/D）经典建图后使用染色法BFS判断二分图
 
 ====================================AtCoder=====================================
 D - People on a Line（https://atcoder.jp/contests/abc087/tasks/arc090_b）BFS判断经典类差分约束问题，差分约束问题复杂度O(n^2)，本题1e5的等式使用BFS计算
