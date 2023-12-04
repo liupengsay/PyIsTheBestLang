@@ -87,6 +87,7 @@ D2. Coffee and Coursework (Hard Version)（https://codeforces.com/problemset/pro
 I. Photo Processing（https://codeforces.com/problemset/problem/883/I）二分加双指针dp
 G. Gift Set（https://codeforces.com/contest/1538/problem/G）二分加枚举不等式验证
 C. Binary String（https://codeforces.com/contest/1680/problem/C）二分加贪心双指针check
+D. Salary Changing（https://codeforces.com/contest/1251/problem/D）greedy|binary search
 
 ====================================AtCoder=====================================
 D - No Need （https://atcoder.jp/contests/abc056/tasks/arc070_b）经典利用单调性进行二分，用背包DP进行check
