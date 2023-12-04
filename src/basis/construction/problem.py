@@ -39,6 +39,7 @@ D - Make Them Even（https://atcoder.jp/contests/abc109/tasks/abc109_d）根据�
 D. Binary Literature（https://codeforces.com/contest/1509/problem/D）LCS最短公共超序列构造，特殊值域下的O(n)鸽巢原理
 C. No More Inversions（https://codeforces.com/contest/1473/problem/C）special property of inverse pair of s1s2..sn..s2s1
 D. Ceil Divisions（https://codeforces.com/contest/1469/problem/D）square ceil greedy implemention
+B. Nezzar and Lucky Number（https://codeforces.com/contest/1478/problem/B）brute_force|bag_dp|construction
 
 ====================================AtCoder=====================================
 B - Construct Sequences（https://atcoder.jp/contests/agc007/tasks/agc007_b）脑筋急转弯思维构造公式
@@ -58,6 +59,26 @@ from src.utils.fast_io import FastIO
 
 class Solution:
     def __int__(self):
+        return
+
+    @staticmethod
+    def cf_1478b(ac=FastIO()):
+        for _ in range(ac.read_int()):
+            q, d = ac.read_list_ints()
+            queries = ac.read_list_ints()
+            ceil = 10 * d + 9
+            dp = [0] * (ceil + 1)
+            dp[0] = 1
+            for i in range(1, ceil + 1):
+                if str(d) in str(i):
+                    for j in range(i, ceil + 1):
+                        if dp[j - i]:
+                            dp[j] = 1
+            for num in queries:
+                if num >= 10 * d + 9 or dp[num]:
+                    ac.st("YES")
+                else:
+                    ac.st("NO")
         return
 
     @staticmethod
