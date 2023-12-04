@@ -63,6 +63,7 @@ E. Connected Components?（https://codeforces.com/contest/920/problem/E）并查
 C. Ice Cave（https://codeforces.com/problemset/problem/540/C）路径可达
 E2. Unforgivable Curse (hard version)（https://codeforces.com/problemset/problem/1800/E2）使用并查集分组计算可达
 E. Number of Groups（https://codeforces.com/contest/1691/problem/E）经典线段并查集
+A. String Reconstruction（https://codeforces.com/problemset/problem/827/A）UnionFindRightRoot|implemention|greedy
 
 ====================================AtCoder=====================================
 D - Connectivity（https://atcoder.jp/contests/abc049/tasks/arc065_b）经典双并查集应用
@@ -159,6 +160,29 @@ class Solution:
                 ac.st("Yes")
                 return
         ac.st("No")
+        return
+
+    @staticmethod
+    def cf_872a(ac=FastIO()):
+        n = ac.read_int()
+        nums = [ac.read_list_strs() for _ in range(n)]
+        length = max(int(ls[-1]) + len(ls[0]) - 1 for ls in nums)
+        uf = UnionFindRightRoot(length + 1)
+        ans = ["a"] * length
+        for ls in nums:
+            st = ls[0]
+            m = len(st)
+            for x in ls[2:]:
+                x = int(x) - 1
+                start = x
+                while x <= start + m - 1:
+                    x = uf.find(x)
+                    if x <= start + m - 1:
+                        ans[x] = st[x - start]
+                        uf.union(x, x + 1)
+                    else:
+                        break
+        ac.st("".join(ans))
         return
 
     @staticmethod
