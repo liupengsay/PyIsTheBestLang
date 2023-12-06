@@ -16,7 +16,7 @@ Function：用来处理字符串的回文相关问题，可以有暴力、DP、�
 
 ===================================CodeForces===================================
 1682A（https://codeforces.com/contest/1682/problem/A）palindromic|center_extension
-139（https://www.acwing.com/problem/content/141/）马拉车计算最长回文子串长度，也可使用二分查找加哈希
+139（https://www.acwing.com/problem/content/141/）马拉车计算最长回文子串长度，也可使用binary_search加哈希
 
 ===================================LibraryChecker===================================
 1 Enumerate Palindromes（https://judge.yosupo.jp/problem/enumerate_palindromes）

@@ -68,7 +68,7 @@ Function：遍历数组，根据前序或者后序结果进行更新，最大非
 1356（https://www.luogu.com.cn/problem/P1356）典型线性取模DP
 1385（https://www.luogu.com.cn/problem/P1385）线性DP与前缀和优化，脑筋急转弯字符串字典序总和不变
 1809（https://www.luogu.com.cn/problem/P1809）思维题线性DP，经典贪心
-1868（https://www.luogu.com.cn/problem/P1868）线性DP加二分查找优化
+1868（https://www.luogu.com.cn/problem/P1868）线性DP加binary_search优化
 1978（https://www.luogu.com.cn/problem/P1978）经典线性DP，乘积互斥
 2432（https://www.luogu.com.cn/problem/P2432）线性DP加指针
 2439（https://www.luogu.com.cn/problem/P2439）线性DP加二分
@@ -461,7 +461,7 @@ class Solution:
 
     @staticmethod
     def lg_p1868(ac=FastIO()):
-        # 模板：线性DP加二分查找优化
+        # 模板：线性DP加binary_search优化
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         dp = [0] * (n + 1)

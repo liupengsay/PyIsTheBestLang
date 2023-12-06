@@ -45,8 +45,8 @@ Function：常与回溯枚举结合使用，比较经典的还有DFS序
 
 
 ===================================CodeForces===================================
-570D（https://codeforces.com/contest/570/problem/D）dfs序与二分查找，也可以使用离线查询
-208E（https://codeforces.com/contest/208/problem/E）深搜序加LCA加二分查找计数
+570D（https://codeforces.com/contest/570/problem/D）dfs序与binary_search，也可以使用离线查询
+208E（https://codeforces.com/contest/208/problem/E）深搜序加LCA加binary_search计数
 1006E（https://codeforces.com/contest/1006/problem/E）经典dfs序模板题
 1702G2（https://codeforces.com/contest/1702/problem/G2）使用dfs序与lca组合判断是否为简单路径集合
 1899G（https://codeforces.com/contest/1899/problem/G）dfs with tolerance and exclusion by PointAddRangeSum
@@ -687,7 +687,7 @@ class Solution:
 
     @staticmethod
     def cf_208e(ac=FastIO()):
-        # 模板：深搜序加LCA加二分查找计数
+        # 模板：深搜序加LCA加binary_search计数
         n = ac.read_int()
         parent = ac.read_list_ints()
 

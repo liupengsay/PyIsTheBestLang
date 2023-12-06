@@ -1,5 +1,5 @@
 """
-Algorithm：二分查找、交互题
+Algorithm：binary_search、交互题
 Function：
 
 ====================================LeetCode====================================
@@ -9,9 +9,9 @@ xx（xxx）xxxxxxxxxxxxxxxxxxxx
 xx（xxx）xxxxxxxxxxxxxxxxxxxx
 
 ===================================CodeForces===================================
-1624F（https://codeforces.com/contest/1624/problem/F）二分查找交互
+1624F（https://codeforces.com/contest/1624/problem/F）binary_search交互
 1713D（https://codeforces.com/contest/1713/problem/D）
-1697D（https://codeforces.com/contest/1697/problem/D）经典二分查找交互，严格非红蓝二分写法
+1697D（https://codeforces.com/contest/1697/problem/D）经典binary_search交互，严格非红蓝二分写法
 
 
 """

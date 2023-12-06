@@ -77,7 +77,7 @@ Function：各种可证明不可证明的头脑风暴
 5159（https://www.luogu.com.cn/problem/P5159）利用异或的特点枚举计数并进行快速幂计算
 5497（https://www.luogu.com.cn/problem/P5497）抽屉原理进行分类讨论
 5682（https://www.luogu.com.cn/problem/P5682）脑筋急转弯进行排序后贪心枚举确定
-5804（https://www.luogu.com.cn/problem/P5804）排序贪心枚举和二分查找优化
+5804（https://www.luogu.com.cn/problem/P5804）排序贪心枚举和binary_search优化
 5963（https://www.luogu.com.cn/problem/P5963）经典贪心题目，可使用举例两个计算、再进行归纳确定排序规则
 6023（https://www.luogu.com.cn/problem/P6023）可证明集中在某天是最佳结果，然后使用指针进行模拟计算
 6243（https://www.luogu.com.cn/problem/P6243）经典贪心举例之后进行优先级比较，再自定义排序

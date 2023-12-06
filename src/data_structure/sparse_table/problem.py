@@ -25,7 +25,7 @@ ST表算法全称Sparse-Table算法，是由Tarjan提出的一种解决RMQ问题
 689D（https://codeforces.com/problemset/problem/689/D）根据单调性使用二分加ST表进行个数计算
 1359D（https://codeforces.com/problemset/problem/1359/D）单调栈枚举加ST表最大值最小值查询
 1548B（https://codeforces.com/problemset/problem/1548/B）ST表查询区间gcd并枚举数组开头，二分确定长度
-474F（https://codeforces.com/problemset/problem/474/F）稀疏表计算最小值和gcd，并使用二分查找计数
+474F（https://codeforces.com/problemset/problem/474/F）稀疏表计算最小值和gcd，并使用binary_search计数
 1834E（https://codeforces.com/contest/1834/problem/E）经典计算连续子数组的lcm信息
 1878E（https://codeforces.com/contest/1878/problem/E）经典计算连续子数组的and信息
 1547F（https://codeforces.com/contest/1547/problem/F）经典计算连续子数组的gcd信息

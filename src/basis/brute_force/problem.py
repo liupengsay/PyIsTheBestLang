@@ -117,7 +117,7 @@ Function：根据题意，在复杂度有限的情况下，进行所有可能情
 584D（https://codeforces.com/problemset/problem/584/D）确定一个质数3，枚举第二三个质数，小于 10**9 的任何数都可以分解为最多三个质数的和
 1311D（https://codeforces.com/problemset/problem/1311/D）根据题意，确定一个上限值，贪心枚举
 1181C（https://codeforces.com/problemset/problem/1181/C）按列进行枚举
-484B（https://codeforces.com/problemset/problem/484/B）排序后进行枚举，并使用二分查找进行确认
+484B（https://codeforces.com/problemset/problem/484/B）排序后进行枚举，并使用binary_search进行确认
 382C（https://codeforces.com/problemset/problem/382/C）分类讨论
 D - Remainder Reminder（https://atcoder.jp/contests/abc090/tasks/arc091_b）典型枚举
 D - Katana Thrower（https://atcoder.jp/contests/abc085/tasks/abc085_d）典型枚举

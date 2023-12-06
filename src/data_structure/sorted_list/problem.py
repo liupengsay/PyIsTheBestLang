@@ -6,7 +6,7 @@ Function：利用单调性确定最优选择，通常可以使用SortedList用�
 
 ====================================LeetCode====================================
 295（https://leetcode.com/problems/find-median-from-data-stream/）使用一个SortedList即可
-2426 满足不等式的数对数目（https://leetcode.com/problems/number-of-pairs-satisfying-inequality/）根据不等式变换和有序集合进行二分查找
+2426 满足不等式的数对数目（https://leetcode.com/problems/number-of-pairs-satisfying-inequality/）根据不等式变换和有序集合进行binary_search
 2179 统计数组中好三元组数目（https://leetcode.com/problems/count-good-triplets-in-an-array/）维护区间范围内的个数
 2141 同时运行 N 台电脑的最长时间（https://leetcode.com/problems/maximum-running-time-of-n-computers/）贪心选择最大的 N 个电池作为基底，然后二分确定在其余电池的加持下可以运行的最长时间
 2102 序列顺序查询（https://leetcode.com/problems/sequentially-ordinal-rank-tracker/）使用有序集合维护优先级姓名实时查询
@@ -14,6 +14,7 @@ Function：利用单调性确定最优选择，通常可以使用SortedList用�
 1912（https://leetcode.com/problems/design-movie-rental-system/）典型SortedList应用
 1825（https://leetcode.com/problems/finding-mk-average/）经典SortedList与deque应用
 2250（https://leetcode.com/problems/count-number-of-rectangles-containing-each-point/）离线查询，指针排序二分
+2426（https://leetcode.com/problems/number-of-pairs-satisfying-inequality/）根据不等式变换和有序集合进行binary_search
 
 =====================================LuoGu======================================
 7333（https://www.luogu.com.cn/problem/P7333）经典排序预处理后，动态更新使用有序集合进行查询，注意是环形数组
@@ -29,7 +30,7 @@ Function：利用单调性确定最优选择，通常可以使用SortedList用�
 3608（https://www.luogu.com.cn/problem/P3608）典型STL应用题
 5076（https://www.luogu.com.cn/problem/P5076）使用有序列表与有序集合进行名次模拟
 5149（https://www.luogu.com.cn/problem/P5149）经典逆序对计算使用 bisect 实现
-5459（https://www.luogu.com.cn/problem/P5459）前缀和与有序列表二分查找
+5459（https://www.luogu.com.cn/problem/P5459）前缀和与有序列表binary_search
 6538（https://www.luogu.com.cn/problem/P6538）典型STL维护贪心
 7912（https://www.luogu.com.cn/problem/P7912）经典 STL 应用模拟题
 8667（https://www.luogu.com.cn/problem/P8667）典型STL应用题
@@ -116,7 +117,7 @@ class Solution:
 
     @staticmethod
     def lc_2426(nums1: List[int], nums2: List[int], diff: int) -> int:
-        # 模板：经典使用公式变换与有序集合二分查找进行计数
+        # 模板：经典使用公式变换与有序集合binary_search进行计数
         n = len(nums1)
         ans = 0
         lst = SortedList([nums1[n - 1] - nums2[n - 1] + diff])
@@ -284,7 +285,7 @@ class Solution:
 
     @staticmethod
     def lg_p5459(ac=FastIO()):
-        # 模板：前缀和与有序列表二分查找
+        # 模板：前缀和与有序列表binary_search
         n, low, high = ac.read_list_ints()
         a = ac.read_list_ints()
         ans = 0

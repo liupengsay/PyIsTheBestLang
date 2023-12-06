@@ -7,7 +7,7 @@ Function：在有向图与无向图进行扩散，多源BFS、双向BFS，0-1BFS
 2493（https://leetcode.com/problems/divide-nodes-into-the-maximum-number-of-groups/）利用并查集和广度优先搜索进行连通块分组并枚举最佳方案，也就是染色法判断是否可以形成二分图
 2290（https://leetcode.com/problems/minimum-obstacle-removal-to-reach-corner/）使用0-1 BFS进行优化计算最小代价
 1368（https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/）使用0-1 BFS进行优化计算最小代价
-2258（https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/）使用二分查找加双源BFS进行模拟
+2258（https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/）使用binary_search加双源BFS进行模拟
 2092（https://leetcode.com/problems/find-all-people-with-secret/）按照时间排序，在同一时间进行BFS扩散
 2608（https://leetcode.com/contest/biweekly-contest-101/problems/shortest-cycle-in-a-graph/）使用BFS求无向图的最短环，还可以删除边计算两点最短路成为环，或者以任意边为起点，逐渐加边
 1197（https://leetcode.com/problems/minimum-knight-moves/?envType=study-plan-v2&id=premium-algo-100）双向BFS，或者经典BFS确定边界

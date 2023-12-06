@@ -33,8 +33,8 @@ LCP 32（https://leetcode.com/problems/t3fKg1/）贪心选取最少的点集合�
 3661（https://www.luogu.com.cn/problem/P3661）经典区间与点集贪心匹配
 3737（https://www.luogu.com.cn/problem/P3737）经典区间点覆盖贪心
 5199（https://www.luogu.com.cn/problem/P5199）经典区间包含贪心计算最多互不包含的区间个数
-1868（https://www.luogu.com.cn/problem/P1868）线性DP加二分查找优化，选取并集最大且不想交的区间
-2439（https://www.luogu.com.cn/problem/P2439）线性DP加二分查找优化，选取并集最大且不想交的区间
+1868（https://www.luogu.com.cn/problem/P1868）线性DP加binary_search优化，选取并集最大且不想交的区间
+2439（https://www.luogu.com.cn/problem/P2439）线性DP加binary_search优化，选取并集最大且不想交的区间
 
 ===================================CodeForces===================================
 827A（https://codeforces.com/problemset/problem/827/A）区间合并为不相交的区间，再贪心赋值

@@ -52,7 +52,7 @@ Function：用来解决一维数组或者二维数组的加和问题，以及前
 2882（https://www.luogu.com.cn/problem/P2882）贪心枚举加差分验证
 4552（https://www.luogu.com.cn/problem/P4552）差分数组经典题，明晰差分本质
 1627（https://www.luogu.com.cn/problem/P1627）经典前后缀中位数大小值差值计数
-1895（https://www.luogu.com.cn/problem/P1895）前缀和计数加二分查找，最多不超多10**5
+1895（https://www.luogu.com.cn/problem/P1895）前缀和计数加binary_search，最多不超多10**5
 1982（https://www.luogu.com.cn/problem/P1982）前缀最大连续子段和与前缀最大值
 2070（https://www.luogu.com.cn/problem/P2070）哈希离散化差分数组计数
 2190（https://www.luogu.com.cn/problem/P2190）环形数组差分
@@ -657,7 +657,7 @@ class Solution:
     @staticmethod
     def lg_p1895(ac=FastIO()):
 
-        # 模板：前缀和计数加二分查找，最多不超多10**5
+        # 模板：前缀和计数加binary_search，最多不超多10**5
         n = 10 ** 5
         dp = [0] * (n + 1)
         for i in range(1, n + 1):  # 序列1234..

@@ -89,7 +89,7 @@ Function：一重背包DP，数量有限从后往前遍历，数量无限则从�
 543A（https://codeforces.com/problemset/problem/543/A）二维有限背包DP，当作无限进行处理
 148E（https://codeforces.com/problemset/problem/148/E）01背包枚举，两层动态规划
 1433F（https://codeforces.com/problemset/problem/1433/F）01背包枚举，两层动态规划
-1657D（https://codeforces.com/contest/1657/problem/D）一维无限乘积背包预处理，欧拉级数复杂度，结合二分查找贪心
+1657D（https://codeforces.com/contest/1657/problem/D）一维无限乘积背包预处理，欧拉级数复杂度，结合binary_search贪心
 
 ====================================AtCoder=====================================
 D - Mixing Experiment（https://atcoder.jp/contests/abc054/tasks/abc054_d）二维01背包

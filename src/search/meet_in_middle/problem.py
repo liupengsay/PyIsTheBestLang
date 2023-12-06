@@ -8,7 +8,7 @@ Function：常见于 1<<n 较大的情况，对半分开进行枚举
 956（https://leetcode.com/problems/tallest-billboard/description/）可使用折半搜索计算
 
 =====================================LuoGu======================================
-5194（https://www.luogu.com.cn/problem/P5194）利用Fibonacci数列的长度特点进行折半搜索枚举，与二分查找确定可行的最大值
+5194（https://www.luogu.com.cn/problem/P5194）利用Fibonacci数列的长度特点进行折半搜索枚举，与binary_search确定可行的最大值
 nya（https://www.luogu.com.cn/problem/CF525E）折半搜索计算长度
 5691（https://www.luogu.com.cn/problem/P5691）折半搜索与有序集合双指针枚举
 

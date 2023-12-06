@@ -1,17 +1,16 @@
 """
 
-Algorithm：二分查找
-Function：利用单调性确定最优选择，通常可以使用SortedList、Bisect，还可以使用精度控制二分
+Algorithm：binary_search
+Function：monotonicity is necessary for solution like these, which always work together with SortedList, or can also use Bisect, sometimes with high precision
 ====================================LeetCode====================================
-4（https://leetcode.com/problems/median-of-two-sorted-arrays/）经典二分思想查找题
-81（https://leetcode.com/problems/search-in-rotated-sorted-array-ii/）经典有重复数字的旋转数组
-154（https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/）经典有重复数字的旋转数组
-162（https://leetcode.com/problems/find-peak-element/）经典二分思想查找题
-2426（https://leetcode.com/problems/number-of-pairs-satisfying-inequality/）根据不等式变换和有序集合进行二分查找
+4（https://leetcode.com/problems/median-of-two-sorted-arrays/）binary_search|median|two_arrays|same_direction_pointer
+81（https://leetcode.com/problems/search-in-rotated-sorted-array-ii/）binary_search|rotated_array|sorting
+154（https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/）binary_search|rotated_array|sorting|duplicate_nums
+162（https://leetcode.com/problems/find-peak-element/）binary_search|peak_index
 2179（https://leetcode.com/problems/count-good-triplets-in-an-array/）维护区间范围内的个数
 2141（https://leetcode.com/problems/maximum-running-time-of-n-computers/）贪心选择最大的 N 个电池作为基底，然后二分确定在其余电池的加持下可以运行的最长时间
 2102（https://leetcode.com/problems/sequentially-ordinal-rank-tracker/）使用有序集合维护优先级姓名实时查询
-2563（https://leetcode.com/problems/count-the-number-of-fair-pairs/）使用二分查找确定范围个数
+2563（https://leetcode.com/problems/count-the-number-of-fair-pairs/）使用binary_search确定范围个数
 2604（https://leetcode.com/problems/minimum-time-to-eat-all-grains/）二分加指针贪心 check
 1201（https://leetcode.com/problems/ugly-number-iii/）二分加容斥原理计数
 1739（https://leetcode.com/problems/building-boxes/）可推公式二分也可数学方法计算
@@ -36,11 +35,11 @@ Function：利用单调性确定最优选择，通常可以使用SortedList、Bi
 2855（https://www.luogu.com.cn/problem/P2855）使用贪心加二分
 2884（https://www.luogu.com.cn/problem/P2884）最大最小之类的经典二分问题
 2985（https://www.luogu.com.cn/problem/P2985）使用贪心加二分进行模拟
-3184（https://www.luogu.com.cn/problem/P3184）二分查找区间范围内个数
+3184（https://www.luogu.com.cn/problem/P3184）binary_search区间范围内个数
 3611（https://www.luogu.com.cn/problem/P3611）二分贪心加堆优化模拟
-3743（https://www.luogu.com.cn/problem/P3743）经典二分查找注意check函数
-4058（https://www.luogu.com.cn/problem/P4058）经典二分查找注意check函数
-4670（https://www.luogu.com.cn/problem/P4670）排序后二分查找计数
+3743（https://www.luogu.com.cn/problem/P3743）经典binary_search注意check函数
+4058（https://www.luogu.com.cn/problem/P4058）经典binary_search注意check函数
+4670（https://www.luogu.com.cn/problem/P4670）排序后binary_search计数
 5119（https://www.luogu.com.cn/problem/P5119）经典贪心加二分问题
 5250（https://www.luogu.com.cn/problem/P5250）维护一个有序集合
 6174（https://www.luogu.com.cn/problem/P6174）经典贪心加二分问题
@@ -55,7 +54,7 @@ Function：利用单调性确定最优选择，通常可以使用SortedList、Bi
 1419（https://www.luogu.com.cn/problem/P1419）二分加优先队列
 1525（https://www.luogu.com.cn/problem/P1525）经典二分加BFS进行二分图划分，可以使用染色法或者并查集
 1542（https://www.luogu.com.cn/problem/P1542）二分加使用分数进行高精度计算
-2237（https://www.luogu.com.cn/problem/P2237）脑筋急转弯排序后二分查找
+2237（https://www.luogu.com.cn/problem/P2237）脑筋急转弯排序后binary_search
 2810（https://www.luogu.com.cn/problem/P2810）二分加枚举
 3718（https://www.luogu.com.cn/problem/P3718）二分加贪心
 3853（https://www.luogu.com.cn/problem/P3853）经典二分贪心题
@@ -78,7 +77,7 @@ Function：利用单调性确定最优选择，通常可以使用SortedList、Bi
 778A（https://codeforces.com/problemset/problem/778/A）二分和使用指针判断是否check
 913C（https://codeforces.com/problemset/problem/913/C）DP预处理最优单价，再二分加贪心进行模拟求解
 1791G2（https://codeforces.com/problemset/problem/1791/G2）贪心排序，前缀和枚举二分
-448D（https://codeforces.com/problemset/problem/448/D）经典二分查找计算n*m的乘法表第k大元素
+448D（https://codeforces.com/problemset/problem/448/D）经典binary_search计算n*m的乘法表第k大元素
 1475D（https://codeforces.com/problemset/problem/1475/D）贪心排序，前缀和枚举二分
 1370D（https://codeforces.com/problemset/problem/1370/D）利用单调性二分，再使用贪心check
 1486D（https://codeforces.com/problemset/problem/1486/D）利用单调性二分，再使用经典哈希前缀和计算和为正数的最长连续子序列
@@ -94,7 +93,7 @@ D - Widespread（https://atcoder.jp/contests/abc063/tasks/arc075_b）经典利�
 
 =====================================AcWing=====================================
 120（https://www.acwing.com/problem/content/122/）根据单调性二分
-14（https://www.acwing.com/problem/content/description/15/）利用鸽巢原理二分查找重复的数，修改数组且只用O(1)空间
+14（https://www.acwing.com/problem/content/description/15/）利用鸽巢原理binary_search重复的数，修改数组且只用O(1)空间
 3973（https://www.acwing.com/problem/content/3976/）浮点数二分与滑动窗口双指针
 4863（https://www.acwing.com/problem/content/description/4866/）经典二分加鸽巢原理
 5048（https://www.acwing.com/problem/content/description/5051/）经典浮点数二分并求出具体方案
@@ -876,7 +875,7 @@ class Solution:
 
     @staticmethod
     def lg_p2237(ac=FastIO()):
-        # 模板：脑筋急转弯排序后二分查找
+        # 模板：脑筋急转弯排序后binary_search
         w, n = ac.read_list_ints()
         nums = [ac.read_str() for _ in range(w)]
         ind = list(range(w))

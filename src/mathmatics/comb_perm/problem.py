@@ -98,7 +98,7 @@ class Solution:
     @staticmethod
     def cf_1436c(ac=FastIO()):
 
-        # 模板：二分查找加组合数计算
+        # 模板：binary_search加组合数计算
         n, x, pos = ac.read_list_ints()
         big = small = 0
 

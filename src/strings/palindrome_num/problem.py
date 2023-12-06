@@ -36,7 +36,7 @@ class Solution:
 
     @staticmethod
     def lc_1088(n: int) -> int:
-        # 模板：预处理后进行二分查找
+        # 模板：预处理后进行binary_search
         ind = {0: 0, 1: 1, 6: 9, 8: 8, 9: 6}
         pre = [0, 1, 6, 8, 9]
         res = pre[:]
