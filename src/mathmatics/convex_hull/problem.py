@@ -1,7 +1,6 @@
 """
-算法：凸包、最小圆覆盖
-功能：求点集的子集组成最小凸包上
-题目：
+Algorithm：凸包、最小圆覆盖
+Function：求点集的子集组成最小凸包上
 
 ====================================LeetCode====================================
 1924 安装栅栏 II（https://leetcode.com/problems/erect-the-fence-ii/）求出最小凸包后使用三分套三分求解最小圆覆盖，随机增量法求最小圆覆盖
@@ -10,7 +9,6 @@
 1742（https://www.luogu.com.cn/problem/P1742）随机增量法求最小圆覆盖
 3517（https://www.luogu.com.cn/problem/P3517）二分套二分，随机增量法求最小圆覆盖
 
-参考：OI WiKi（xx）
 """
 
 from typing import List

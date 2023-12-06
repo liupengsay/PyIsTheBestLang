@@ -1,8 +1,7 @@
 """
 
-算法：LCA、倍增算法、树链剖分、树的质心、树的重心、离线LCA与树上差分
-功能：来求一棵树的最近公共祖先（LCA）也可以使用
-题目：
+Algorithm：LCA、倍增算法、树链剖分、树的质心、树的重心、离线LCA与树上差分
+Function：来求一棵树的最近公共祖先（LCA）也可以使用
 
 ====================================LeetCode====================================
 1483（https://leetcode.com/problems/kth-ancestor-of-a-tree-node/）动态规划与二进制跳转维护祖先信息，类似ST表的思想与树状数组的思想，经典LCA应用题
@@ -35,7 +34,6 @@ D - Transit Tree Path（https://atcoder.jp/contests/abc070/tasks/abc070_d）典�
 4202（https://www.acwing.com/problem/content/4205/）使用位运算进行计算，也可使用包含关系建树，查询LCA计算距离
 
 
-参考：
 CSDN（https://blog.csdn.net/weixin_42001089/article/details/83590686）
 
 """

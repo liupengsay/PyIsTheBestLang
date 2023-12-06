@@ -1,7 +1,7 @@
 """
 
-算法：欧拉路径（使用深度优先搜索里面的Hierholzer算法）
-功能：求解有向图与无向图中的欧拉路径，定义比较复杂且不统一，须根据实际情况作适配与调整
+Algorithm：欧拉路径（使用深度优先搜索里面的Hierholzer算法）
+Function：求解有向图与无向图中的欧拉路径，定义比较复杂且不统一，须根据实际情况作适配与调整
 有向图欧拉路径：图中恰好存在 1 个点出度比入度多 1（这个点即为起点） 1 个点出度比入度少 1（这个点即为终点）其余相等
 有向图欧拉回路：所有节点出度等于入度，起终点可以为任意点
 无向图欧拉路径：图中恰好存在 2 个点的度数是奇数，其余节点的度数为偶数，这两个度数为奇数的点即为欧拉路径的起点和终点 
@@ -12,7 +12,6 @@
 注1：存在欧拉回路（即满足存在欧拉回路的条件），也一定存在欧拉路径，
 注2：图有欧拉路径必须满足将它的有向边视为无向边后它是连通的（不考虑度为 0 的孤立点）连通性的判断我们可以使用并查集或 dfs 
 
-题目：
 ====================================LeetCode====================================
 332（https://leetcode.com/problems/reconstruct-itinerary/）欧拉回路模板题
 753（https://leetcode.com/problems/cracking-the-safe/solution/er-xu-cheng-ming-jiu-xu-zui-by-liupengsa-lm77/）
@@ -29,7 +28,6 @@
 =====================================AcWing=====================================
 4211（https://www.acwing.com/problem/content/4214/）有向图欧拉路径合法方案计算
 
-参考：
 OI WiKi（https://oi-wiki.org/graph/euler/）
 https://www.jianshu.com/p/8394b8e5b878
 https://www.luogu.com.cn/problem/solution/P7771

@@ -1,8 +1,7 @@
 """
-算法：环形线性或者区间DP
-功能：计算环形数组上的操作，比较简单的方式是将数组复制成两遍进行区间或者线性DP
+Algorithm：环形线性或者区间DP
+Function：计算环形数组上的操作，比较简单的方式是将数组复制成两遍进行区间或者线性DP
 
-题目：
 
 ====================================LeetCode====================================
 918（https://leetcode.com/problems/maximum-sum-circular-subarray/）枚举可能的最大与最小区间
@@ -16,5 +15,4 @@
 1043（https://www.luogu.com.cn/problem/P1043）环形区间DP
 1133（https://www.luogu.com.cn/problem/P1133）环形动态规划
 
-参考：OI WiKi（xx）
 """

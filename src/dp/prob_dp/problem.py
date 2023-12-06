@@ -1,7 +1,6 @@
 """
-算法：概率DP
-功能：根据组合数与转移方案求解概率或者期望
-题目：
+Algorithm：概率DP
+Function：根据组合数与转移方案求解概率或者期望
 
 ====================================LeetCode====================================
 1227（https://leetcode.com/problems/airplane-seat-assignment-probability/）概率DP
@@ -16,7 +15,6 @@
 5058（https://www.acwing.com/problem/content/description/5061/）经典概率DP
 
 
-参考：OI WiKi（xx）
 """
 import math
 from collections import deque

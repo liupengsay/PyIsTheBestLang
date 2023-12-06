@@ -1,7 +1,6 @@
 """
-算法：单调栈、贡献法
-功能：用来计算数组前后的更大值更小值信息
-题目：
+Algorithm：单调栈、贡献法
+Function：用来计算数组前后的更大值更小值信息
 
 ====================================LeetCode====================================
 85（https://leetcode.com/problems/maximal-rectangle/）枚举矩形下边界，使用单调栈计算最大矩形面积 
@@ -63,7 +62,6 @@ E - Second Sum（https://atcoder.jp/contests/abc140/tasks/abc140_e）经典单�
 152（https://www.acwing.com/problem/content/description/154/）单调栈求最大矩形
 3780（https://www.acwing.com/problem/content/description/3783/）经典单调栈线性贪心DP构造
 
-参考：OI WiKi（xx）
 """
 import bisect
 import heapq

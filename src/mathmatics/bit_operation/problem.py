@@ -1,8 +1,7 @@
 """
 
-算法：位运算相关技巧（也叫bitmasks）
-功能：进行二进制上的位操作，包括与、异或、或、取反，通常使用按位思考与举例的方式寻找规律
-题目：经典问题abc_121d 求 1^2^...^n
+Algorithm：位运算相关技巧（也叫bitmasks）
+Function：进行二进制上的位操作，包括与、异或、或、取反，通常使用按位思考与举例的方式寻找规律
 异或经典性质：(4*i)^(4*i+1)^(4*i+2)^(4*i+3)=0  (2*n)^(2*n+1)=1
 异或经典性质：(a&b)^(a&c) = a&(b^c)
 ====================================LeetCode====================================
@@ -67,7 +66,6 @@ D - Xor Sum 4（https://atcoder.jp/contests/abc147/tasks/abc147_d）典型按位
 4614（https://www.acwing.com/problem/content/4617/）位运算枚举与前缀和预处理
 
 
-参考：OI WiKi（xx）
 https://blog.csdn.net/qq_35473473/article/details/106320878
 """
 from collections import defaultdict, Counter

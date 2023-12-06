@@ -1,7 +1,6 @@
 """
-算法：Dijkstra（单源最短路经算法）、严格次短路、要保证加和最小因此只支持非负数权值、或者取反全部为非正数计算最长路、最短路生成树
-功能：计算点到有向或者无向图里面其他点的最近距离、带约束的最短路、分层Dijkstra、有向图最小环、无向图最小环
-题目：
+Algorithm：Dijkstra（单源最短路经算法）、严格次短路、要保证加和最小因此只支持非负数权值、或者取反全部为非正数计算最长路、最短路生成树
+Function：计算点到有向或者无向图里面其他点的最近距离、带约束的最短路、分层Dijkstra、有向图最小环、无向图最小环
 
 ====================================LeetCode====================================
 42（https://leetcode.com/problems/trapping-rain-water/）一维接雨水，计算前后缀最大值的最小值再减去自身值
@@ -110,7 +109,6 @@ F - Pure（https://atcoder.jp/contests/abc142/tasks/abc142_f）经典子图寻�
 ================================LibraryChecker====================================
 Shortest Path（https://judge.yosupo.jp/problem/shortest_path）find distance from src to dsc and relative path
 
-参考：OI WiKi（xx）
 """
 from collections import defaultdict, deque, Counter
 from heapq import heappush, heappop, heapify

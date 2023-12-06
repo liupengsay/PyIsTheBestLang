@@ -1,8 +1,7 @@
 """
-算法：日期时间
-功能：计算日期时间之间的变化，年月日时分秒与星期信息
+Algorithm：日期时间
+Function：计算日期时间之间的变化，年月日时分秒与星期信息
 
-题目：
 
 =====================================LuoGu======================================
 2655（https://www.luogu.com.cn/problem/P2655）计算指定日期时分秒过了一定秒数后的具体日期时分秒
@@ -11,7 +10,6 @@
 5440（https://www.luogu.com.cn/problem/P5440）枚举日期是否合法且为质数
 
 
-参考：OI WiKi（xx）
 """
 import datetime
 from datetime import datetime, timedelta

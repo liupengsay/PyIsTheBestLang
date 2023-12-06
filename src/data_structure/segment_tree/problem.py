@@ -1,7 +1,6 @@
 """
-算法：线段树、线段树二分
-功能：用以修改和查询区间的值信息，支持增减、修改，区间和、区间最大值、区间最小值、动态开点线段树（即使用defaultdict而不是数组实现）
-题目：
+Algorithm：线段树、线段树二分
+Function：用以修改和查询区间的值信息，支持增减、修改，区间和、区间最大值、区间最小值、动态开点线段树（即使用defaultdict而不是数组实现）
 
 ====================================LeetCode====================================
 218（https://leetcode.com/problems/the-skyline-problem/solution/by-liupengsay-isfo/）区间值修改与计算最大值
@@ -59,7 +58,6 @@
 3805（https://www.acwing.com/problem/content/3808/）区间增减与最小值查询
 
 
-参考：OI WiKi（xx）
 """
 import random
 from collections import defaultdict, deque

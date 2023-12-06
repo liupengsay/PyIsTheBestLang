@@ -1,7 +1,6 @@
 """
-算法：字符串哈希、树哈希、矩阵哈希、树的最小表示法、最长前缀回文子串、最长后缀回文子串
-功能：将一定长度的字符串映射为多项式函数值，并进行比较或者计数，通常结合滑动窗口进行计算，注意防止哈希碰撞
-题目：
+Algorithm：字符串哈希、树哈希、矩阵哈希、树的最小表示法、最长前缀回文子串、最长后缀回文子串
+Function：将一定长度的字符串映射为多项式函数值，并进行比较或者计数，通常结合滑动窗口进行计算，注意防止哈希碰撞
 
 ====================================LeetCode====================================
 214（https://leetcode.com/problems/shortest-palindrome/）使用正向与反向字符串哈希计算字符串前缀最长回文子串，也可以用KMP与马拉车
@@ -35,7 +34,6 @@ E - Who Says a Pun?（https://atcoder.jp/contests/abc141/tasks/abc141_e）二分
 156（https://www.acwing.com/problem/content/description/158/）经典矩阵哈希
 157（https://www.acwing.com/problem/content/description/159/）经典树哈希，树的最小表示法
 
-参考：OI WiKi（xx）
 """
 
 import random

@@ -1,7 +1,6 @@
 """
-算法：回文数字枚举
-功能：xxx
-题目：
+Algorithm：回文数字枚举
+Function：xxx
 
 ====================================LeetCode====================================
 2081（https://leetcode.com/problems/sum-of-k-mirror-numbers/）枚举 10 进制回文数字并判断其 k 进制是否依然回文
@@ -14,7 +13,6 @@
 1609（https://www.luogu.com.cn/problem/P1609）枚举字符的前半部分与后半部分
 
 
-参考：OI WiKi（xx）
 """
 import bisect
 from collections import defaultdict

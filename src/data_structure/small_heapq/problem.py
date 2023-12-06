@@ -1,7 +1,6 @@
 """
-算法：堆（优先队列）、Huffman树（霍夫曼树）
-功能：通常用于需要贪心的场景
-题目：
+Algorithm：堆（优先队列）、Huffman树（霍夫曼树）
+Function：通常用于需要贪心的场景
 
 ====================================LeetCode====================================
 630（https://leetcode.com/problems/course-schedule-iii/）用一个堆延迟选择贪心维护最优
@@ -39,7 +38,6 @@
 
 
 
-参考：OI WiKi（xx）
 """
 
 import heapq

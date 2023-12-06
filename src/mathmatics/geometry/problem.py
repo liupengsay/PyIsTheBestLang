@@ -1,7 +1,6 @@
 """
-算法：计算几何、设计到平面坐标系上的一些问题求解、平面最近点对
-功能：xxx
-题目：
+Algorithm：计算几何、设计到平面坐标系上的一些问题求解、平面最近点对
+Function：xxx
 
 ====================================LeetCode====================================
 149（https://leetcode.com/problems/max-points-on-a-line/）用直线斜率判断一条线上最多的点数
@@ -38,7 +37,6 @@
 4499（https://www.acwing.com/problem/content/4502/）经典几何，使用一元二次方程求解
 游戏专项（https://www.hackerrank.com/contests/2023-1024-1/challenges/challenge-4219）随机化共线性判断
 
-参考：OI WiKi（xx）
 """
 import math
 from audioop import add

@@ -1,8 +1,6 @@
 """
-算法：链表、两个链表表示的整数相加、链表表示的整数与整数相乘
-功能：
-参考：
-题目：
+Algorithm：链表、两个链表表示的整数相加、链表表示的整数与整数相乘
+Function：
 
 ====================================LeetCode====================================
 6914（https://leetcode.com/contest/weekly-contest-358/problems/double-a-number-represented-as-a-linked-list/）链表形式的数字与整数相乘

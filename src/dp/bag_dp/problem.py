@@ -1,7 +1,6 @@
 """
-算法：背包DP、分组背包、一维（无限有限）背包、二维背包、多重背包、分组背包、限制背包、填表法（过去状态预测未来状态）、刷表法（当前状态预测未来状态）、可撤销背包
-功能：一重背包DP，数量有限从后往前遍历，数量无限则从前往后遍历；多重背包DP，可使用二进制优化进行拆分
-题目：
+Algorithm：背包DP、分组背包、一维（无限有限）背包、二维背包、多重背包、分组背包、限制背包、填表法（过去状态预测未来状态）、刷表法（当前状态预测未来状态）、可撤销背包
+Function：一重背包DP，数量有限从后往前遍历，数量无限则从前往后遍历；多重背包DP，可使用二进制优化进行拆分
 
 ====================================LeetCode====================================
 140（https://leetcode.com/problems/word-break-ii/）经典 01 背包生成具体方案
@@ -108,7 +107,6 @@ E - All-you-can-eat（https://atcoder.jp/contests/abc145/tasks/abc145_e）思维
 12（https://www.acwing.com/problem/content/12/）背包问题求具体方案，有两种写法
 4081（https://www.acwing.com/problem/content/4084/）转换为二维背包问题求解
 
-参考：OI WiKi（xx）
 """
 import bisect
 from collections import defaultdict, deque, Counter

@@ -1,15 +1,13 @@
 """
-算法：Lyndon 分解（使用Duval 算法求解）、最小表示法、最大表示法
-功能：用来将字符串s分解成Lyndon串s1s2s3...
+Algorithm：Lyndon 分解（使用Duval 算法求解）、最小表示法、最大表示法
+Function：用来将字符串s分解成Lyndon串s1s2s3...
 Lyndon子串定义为：当且仅当s的字典序严格小于它的所有非平凡的（非平凡：非空且不同于自身）循环同构串时， s才是 Lyndon 串。
-题目：
 
 ====================================LeetCode====================================
 1163（https://leetcode.com/problems/last-substring-in-lexicographical-order/）脑筋急转弯，转化为最大表示法，利用最小表示法求最大表示法
 
 
 =====================================LuoGu======================================
-参考：OI WiKi（https://oi-wiki.org/string/lyndon/）Duval 可以在 O(n)的时间内求出一个串的 Lyndon 分解
 
 =====================================AcWing=====================================
 158（https://www.acwing.com/problem/content/160/）字符串的最小表示法模板题

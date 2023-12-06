@@ -166,6 +166,42 @@ class TestGeneral(unittest.TestCase):
         print(f"total drop_dup：{drop_dup}")
         return
 
+    @unittest.skip
+    def test_remove_ref_and_problem(self):
+
+        def process_file(file_path):
+            nonlocal rem
+            with open(file_path, "r", encoding="utf-8", errors="ignore") as file:
+                lines = [ls.strip("\n") for ls in file.readlines()]
+            lst = []
+            for line in lines:
+                if "题目：" in line or "参考：" in line:
+                    rem += 1
+                    continue
+                else:
+                    lst.append(line)
+                    pre.add(line)
+            with open(file_path, "w", encoding="utf-8", errors="ignore") as file:
+                file.write("\n".join(lst))
+            return
+
+        def process_directory(directory):
+            for root, dirs, files in os.walk(directory):
+                for file in files:
+                    if file == "problem.py":
+                        file_path = os.path.join(root, file)
+                        process_file(file_path)
+            return
+
+        current_path = os.getcwd()
+        parent_path = os.path.abspath(os.path.join(current_path, os.pardir))
+        grandparent_path = os.path.abspath(os.path.join(parent_path, os.pardir))
+        pre = set()
+        rem = 0
+        process_directory(os.path.join(grandparent_path, "src"))
+        print(f"total rem：{rem}")
+        return
+
 
 if __name__ == '__main__':
     unittest.main()

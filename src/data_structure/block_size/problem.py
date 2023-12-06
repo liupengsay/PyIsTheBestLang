@@ -1,7 +1,6 @@
 """
-算法：分块查询、双指针
-功能：将查询区间进行分块排序，交替移动双指针进行动态维护查询值
-题目：
+Algorithm：分块查询、双指针
+Function：将查询区间进行分块排序，交替移动双指针进行动态维护查询值
 
 ====================================LeetCode====================================
 1157（https://leetcode.com/problems/online-majority-element-in-subarray/description/）查询区间的超级众数，即区间出现超过一半的数，同cf1514_d正解为随机化猜众数，或者位运算计算众数，或者线段树合并众数
@@ -18,7 +17,6 @@
 F - Small Products（https://atcoder.jp/contests/abc132/tasks/abc132_f）分组线性计数DP，使用前缀和优化
 
 
-参考：OI WiKi（https://oi-wiki.org/ds/fenwick/）
 """
 import bisect
 from collections import defaultdict, Counter

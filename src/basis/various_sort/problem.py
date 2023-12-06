@@ -1,7 +1,6 @@
 """
-算法：排序、冒泡排序、归并排序（期望比较次数最少）、快速排序（期望性能最好）、自定义排序（灵活）
-功能：各种排序的实现以及特点变形题目，如逆序对
-题目：xx（xx）
+Algorithm：排序、冒泡排序、归并排序（期望比较次数最少）、快速排序（期望性能最好）、自定义排序（灵活）
+Function：各种排序的实现以及特点变形题目，如逆序对
 
 ====================================LeetCode====================================
 164（https://leetcode.com/problems/maximum-gap/）经典桶排序
@@ -28,7 +27,6 @@ B - Iroha Loves Strings（https://atcoder.jp/contests/abc042/tasks/abc042_b）�
 =====================================AcWing=====================================
 113（https://www.acwing.com/problem/content/description/115/）自定义排序调用函数进行比较
 
-参考：OI WiKi（xx）
 """
 import random
 from functools import cmp_to_key

@@ -1,8 +1,7 @@
 """
 
-算法：数学排列组合计数、乘法逆元（也叫combinatorics）、Lucas定理
-功能：全排列计数，选取comb计数，隔板法，错位排列，斯特林数、卡特兰数，容斥原理，可以通过乘法逆元快速求解组合数与全排列数
-题目：
+Algorithm：数学排列组合计数、乘法逆元（也叫combinatorics）、Lucas定理
+Function：全排列计数，选取comb计数，隔板法，错位排列，斯特林数、卡特兰数，容斥原理，可以通过乘法逆元快速求解组合数与全排列数
 Lucas定理（comb(n, m)%p = comb(n%p, m%p)*comb(n//p, m//p)）%p
 
 ====================================LeetCode====================================
@@ -65,7 +64,6 @@ E - Cell Distance（https://atcoder.jp/contests/abc127/tasks/abc127_e）经典�
 5055（https://www.acwing.com/problem/content/5058/）经典组合数学取模求解
 
 
-参考：OI WiKi（xx）
 卡特兰数（https://oi-wiki.org/math/combinatorics/catalan/）
 """
 import math

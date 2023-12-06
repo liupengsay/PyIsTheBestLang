@@ -1,8 +1,6 @@
 """
-算法：离线查询、预处理排序
-功能：通过指针移动来进行查询值更新
-参考：
-题目：
+Algorithm：离线查询、预处理排序
+Function：通过指针移动来进行查询值更新
 
 ====================================LeetCode====================================
 100110（https://leetcode.com/contest/weekly-contest-372/problems/find-building-where-alice-and-bob-can-meet/）offline query after sorting

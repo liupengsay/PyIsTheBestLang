@@ -1,8 +1,7 @@
 """
 
-算法：差分数组与前缀和、后缀和、前缀最大子序列和、后缀最大子序列和、二维差分、离散化差分、三维差分、二维前缀和
-功能：用来解决一维数组或者二维数组的加和问题，以及前缀和计算，还有前缀和的前缀和
-题目：
+Algorithm：差分数组与前缀和、后缀和、前缀最大子序列和、后缀最大子序列和、二维差分、离散化差分、三维差分、二维前缀和
+Function：用来解决一维数组或者二维数组的加和问题，以及前缀和计算，还有前缀和的前缀和
 
 ====================================LeetCode====================================
 152（https://leetcode.com/problems/maximum-product-subarray/）前缀最大最小乘积，计算最大连续子数组乘积
@@ -103,7 +102,6 @@ D - AtCoder Express 2（https://atcoder.jp/contests/abc106/tasks/abc106_d）前�
 126（https://www.acwing.com/problem/content/128/）经典最大子矩形和
 3993（https://www.acwing.com/problem/content/description/3996/）后缀和值域思维题
 
-参考：OI WiKi（xx）
 """
 import bisect
 import math

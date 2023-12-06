@@ -1,8 +1,7 @@
 """
 
-算法：拓扑排序、内向基环树（有向或者无向，连通块有k个节点以及k条边）、bfs序、拓扑序
-功能：有向图进行排序，无向图在选定根节点的情况下也可以进行拓扑排序
-题目：xx（xx）
+Algorithm：拓扑排序、内向基环树（有向或者无向，连通块有k个节点以及k条边）、bfs序、拓扑序
+Function：有向图进行排序，无向图在选定根节点的情况下也可以进行拓扑排序
 内向基环树介绍：https://leetcode.com/problems/maximum-employees-to-be-invited-to-a-meeting/solution/nei-xiang-ji-huan-shu-tuo-bu-pai-xu-fen-c1i1b/
 
 ====================================LeetCode====================================
@@ -50,7 +49,6 @@ F - Well-defined Path Queries on a Namori（https://atcoder.jp/contests/abc266/�
 3828（https://www.acwing.com/problem/content/description/3831/）有向图DAG拓扑排序DP模板题并判断有无环
 4626（https://www.acwing.com/problem/content/description/4629/）有向图内向基环树判断每个环的大小
 
-参考：OI WiKi（xx）
 """
 
 import copy

@@ -1,8 +1,7 @@
 """
 
-算法：构造
-功能：通常需要根据题目要求，进行贪心排序之后的构造出合理可行的答案
-题目：xx（xx）
+Algorithm：构造
+Function：通常需要根据题目要求，进行贪心排序之后的构造出合理可行的答案
 
 ====================================LeetCode====================================
 280（https://leetcode.com/problems/wiggle-sort/）按照降序先赋给奇数索引再给偶数索引
@@ -48,7 +47,6 @@ D - Non-decreasing（https://atcoder.jp/contests/abc081/tasks/arc086_b）经典�
 D - Grid Components（https://atcoder.jp/contests/abc092/tasks/arc093_b）思维题构造
 F - XOR Matching（https://atcoder.jp/contests/abc126/tasks/abc126_f）思维题构造，利用0^1^2^..^(2**m-1)=0的特点
 
-参考：OI WiKi（xx）
 """
 import math
 from collections import deque, Counter, defaultdict

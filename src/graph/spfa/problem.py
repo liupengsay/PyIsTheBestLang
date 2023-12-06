@@ -1,17 +1,16 @@
 """
-算法：SPFA路径边数优先的广度优先搜索（可以使用带负权值）也可以计算最短路、差分约束、最短路条数
+Algorithm：SPFA路径边数优先的广度优先搜索（可以使用带负权值）也可以计算最短路、差分约束、最短路条数
 
-功能：SPFA（Shortest Path Faster Algorithm）是一种用于计算单源最短路径的算法。它通过使用队列和松弛操作来不断更新路径长度，从而更快地找到最短路径。
+Function：SPFA（Shortest Path Faster Algorithm）是一种用于计算单源最短路径的算法。它通过使用队列和松弛操作来不断更新路径长度，从而更快地找到最短路径。
 
 下面是一个简单的 Python SPFA 模板，其中 graph 是图的邻接表表示，iflytek_ads 是源节点，dist 是各节点到源节点的最短距离，prev 是各节点的前驱节点。
 上面的代码只是一个简单的 SPFA 模板，实际使用时可能需要添加更多的特判和优化。例如，SPFA 算法在某些情况下容易陷入死循环，因此需要添加防止死循环的机制。此外，SPFA 算法的时间复杂度与输入图
 
 的稠密程度有关，因此可能需要使用一些优化方法来提高它的效率。
 
-功能：SPFA 算法是一种简单易用的最短路径算法，它通过使用队列和松弛操作来快速求解单源最短路径问题。它的时间复杂度与输入图的稠密程度有关，并且容易陷入死循环，因此需要注意这些问题。
+Function：SPFA 算法是一种简单易用的最短路径算法，它通过使用队列和松弛操作来快速求解单源最短路径问题。它的时间复杂度与输入图的稠密程度有关，并且容易陷入死循环，因此需要注意这些问题。
 Dijkstra：路径权值优先的深度优先搜索（只适用正权值）
 
-题目：
 ====================================LeetCode====================================
 2589（https://leetcode.com/problems/minimum-time-to-complete-all-tasks/）差分约束模板题，也可用贪心求解
 
@@ -36,7 +35,6 @@ D - Score Attack （https://atcoder.jp/contests/abc061/tasks/abc061_d）经典�
 E - Coins Respawn（https://atcoder.jp/contests/abc137/tasks/abc137_e）使用 SPFA 与 BFS 判断是否存在起点到终点的正权环
 
 ====================================LeetCode====================================
-参考：
 差分约束（https://oi-wiki.org/graph/diff-constraints/）
 """
 from collections import deque

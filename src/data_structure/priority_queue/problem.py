@@ -1,7 +1,6 @@
 """
-算法：单调队列、双端队列
-功能：维护单调性，计算滑动窗口最大值最小值
-题目：
+Algorithm：单调队列、双端队列
+Function：维护单调性，计算滑动窗口最大值最小值
 
 ====================================LeetCode====================================
 239（https://leetcode.com/problems/sliding-window-maximum/）滑动区间最大值
@@ -33,7 +32,6 @@
 133（https://www.acwing.com/problem/content/135/）三个优先队列加一个偏移量
 135（https://www.acwing.com/problem/content/137/）双端队列计算不超过一定长度的最大子段和
 
-参考：OI WiKi（xx）
 """
 from collections import deque
 from math import inf

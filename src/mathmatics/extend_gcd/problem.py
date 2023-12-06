@@ -1,7 +1,6 @@
 """
-算法：扩展欧几里得定理、extended_gcd、binary_gcd、二进制gcd、裴蜀定理
-功能：用于求解单个同余方程
-题目：
+Algorithm：扩展欧几里得定理、extended_gcd、binary_gcd、二进制gcd、裴蜀定理
+Function：用于求解单个同余方程
 
 ====================================LeetCode====================================
 365（https://leetcode.com/problems/water-and-jug-problem/）经典裴蜀定理贪心
@@ -17,5 +16,4 @@
 =====================================AcWing=====================================
 4296（https://www.acwing.com/problem/content/4299/）扩展欧几里得求解ax+by=n的非负整数解
 
-参考：OI WiKi（xx）
 """

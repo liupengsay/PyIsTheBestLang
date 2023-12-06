@@ -1,7 +1,6 @@
 """
-算法：折半搜索、meet in middle
-功能：常见于 1<<n 较大的情况，对半分开进行枚举 
-题目：
+Algorithm：折半搜索、meet in middle
+Function：常见于 1<<n 较大的情况，对半分开进行枚举 
 
 ====================================LeetCode====================================
 1755（https://leetcode.com/problems/closest-subsequence-sum/）经典折半搜索
@@ -17,7 +16,6 @@ nya（https://www.luogu.com.cn/problem/CF525E）折半搜索计算长度
 171（https://www.acwing.com/problem/content/173/）经典折半搜索查找最接近目标值的子数组和
 1006F（https://codeforces.com/contest/1006/problem/F）前缀和哈希计数，矩阵折半搜索
 
-参考：OI WiKi（xx）
 """
 
 import bisect

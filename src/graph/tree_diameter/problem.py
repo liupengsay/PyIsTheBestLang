@@ -1,7 +1,6 @@
 """
-算法：广度优先搜索、双端队列BFS、离散化BFS、有边界的BFS、染色法、奇数环
-功能：在有向图与无向图进行扩散，多源BFS、双向BFS，0-1BFS（类似SPFA）双向BFS或者A-star启发式搜索
-题目：
+Algorithm：广度优先搜索、双端队列BFS、离散化BFS、有边界的BFS、染色法、奇数环
+Function：在有向图与无向图进行扩散，多源BFS、双向BFS，0-1BFS（类似SPFA）双向BFS或者A-star启发式搜索
 
 ====================================LeetCode====================================
 1036（https://leetcode.com/problems/escape-a-large-maze/）经典带边界的BFS和离散化BFS两种解法
@@ -98,7 +97,6 @@ E - Virus Tree 2（https://atcoder.jp/contests/abc133/tasks/abc133_e）BFS染色
 4415（https://www.acwing.com/problem/content/description/4418）经典BFS染色法，判断有无奇数环，方案计数
 4481（https://www.acwing.com/problem/content/description/4484/）经典01BFS
 
-参考：OI WiKi（xx）
 """
 
 from typing import List

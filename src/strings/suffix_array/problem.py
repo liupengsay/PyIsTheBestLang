@@ -1,8 +1,6 @@
 """
-算法：后缀数组
-功能：生成字符串的后缀排序
-参考：OI WiKi（https://oi-wiki.org/string/sa/）
-题目：
+Algorithm：后缀数组
+Function：生成字符串的后缀排序
 
 ====================================LeetCode====================================
 1754（https://leetcode.com/problems/largest-merge-of-two-strings/）

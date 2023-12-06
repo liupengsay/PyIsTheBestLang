@@ -1,6 +1,6 @@
 """
 
-算法：最长上升（或不降）子序列 Longest Increasing Subsequence（LIS）Longest Decreasing Subsequence（LDS）统称 Longest Monotonic Subsequence（LMS）
+Algorithm：最长上升（或不降）子序列 Longest Increasing Subsequence（LIS）Longest Decreasing Subsequence（LDS）统称 Longest Monotonic Subsequence（LMS）
 最长单调递增子序列（严格上升）：<
 最长单调不减子序列（不降）：<=
 最长单调递减子序列（严格下降）：>
@@ -10,7 +10,6 @@ dilworth定理：
 分成不下降子序列最小组数等于最大上升子序列的长度，分成不上升子序列最小组数等于最大下降子序列的长度；
 反过来，分成上升子序列最小组数等于最大不上升的长度，分成下降子序列最小组数等于最大不下降子序列的长度。
 
-参考题目：
 ====================================LeetCode====================================
 354（https://leetcode.com/problems/russian-doll-envelopes/）经典二维偏序最长递增子序列问题
 673（https://leetcode.com/problems/number-of-longest-increasing-subsequence/）经典O(n^2)与O(nlogn)的LIS计数问题做法模板题

@@ -1,7 +1,6 @@
 """
-算法：区间DP
-功能：前缀和优化区间DP（需要在状态转移的时候更新代价距离）、预处理区间DP（需要预处理一个DP再计算最终DP）
-题目：
+Algorithm：区间DP
+Function：前缀和优化区间DP（需要在状态转移的时候更新代价距离）、预处理区间DP（需要预处理一个DP再计算最终DP）
 
 ====================================LeetCode====================================
 375（https://leetcode.com/problems/guess-number-higher-or-lower-ii/）经典区间DP
@@ -40,7 +39,6 @@
 =====================================AcWing=====================================
 3996（https://www.acwing.com/problem/content/3999/）经典区间 DP 最长回文子序列变形
 
-参考：OI WiKi（xx）
 """
 from functools import lru_cache
 from itertools import accumulate

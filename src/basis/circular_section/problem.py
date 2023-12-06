@@ -1,7 +1,6 @@
 """
-算法：循环节
-功能：通过模拟找出循环节进行状态计算
-题目：
+Algorithm：循环节
+Function：通过模拟找出循环节进行状态计算
 
 ====================================LeetCode====================================
 957（https://leetcode.com/problems/prison-cells-after-n-days/）循环节计算
@@ -23,7 +22,6 @@
 1342C（https://codeforces.com/problemset/problem/1342/C）循环节计数
 1875B（https://codeforces.com/contest/1875/problem/B）circle section find with hash and list
 
-参考：OI WiKi（xx）
 """
 from typing import List
 

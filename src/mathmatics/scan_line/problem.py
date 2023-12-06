@@ -1,7 +1,6 @@
 """
-算法：扫描线
-功能：计算平面几何面积或者立体体积
-题目：
+Algorithm：扫描线
+Function：计算平面几何面积或者立体体积
 
 ====================================LeetCode====================================
 218（https://leetcode.com/problems/the-skyline-problem/）扫描线计算建筑物的轮廓
@@ -13,7 +12,6 @@
 1884（https://www.luogu.com.cn/problem/P1884）扫描线计算覆盖面积
 1904（https://www.luogu.com.cn/problem/P1904）扫描线计算建筑物的轮廓
 
-参考：[OI WiKi]（https://oi-wiki.org/geometry/scanning/)
 """
 from src.mathmatics.scan_line.template import ScanLine
 from src.utils.fast_io import FastIO

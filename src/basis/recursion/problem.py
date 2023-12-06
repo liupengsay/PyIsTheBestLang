@@ -1,7 +1,6 @@
 """
-算法：分治、递归、二叉树、四叉树、十叉树、N叉树、先序、中序、后序遍历、divide and conquer
-功能：递归进行处理，与迭代是处理相同问题的两种不同方式，迭代效率高于递归
-题目：
+Algorithm：分治、递归、二叉树、四叉树、十叉树、N叉树、先序、中序、后序遍历、divide and conquer
+Function：递归进行处理，与迭代是处理相同问题的两种不同方式，迭代效率高于递归
 
 ====================================LeetCode====================================
 1545（https://leetcode.com/problems/find-kth-bit-in-nth-binary-string/）经典递归计算模拟
@@ -28,7 +27,6 @@
 93（https://www.acwing.com/problem/content/95/）递归与迭代两种方式实现组合数选取
 118（https://www.acwing.com/problem/content/120/）递归生成分形
 
-参考：OI WiKi（xx）
 """
 from functools import lru_cache
 from typing import Optional, List

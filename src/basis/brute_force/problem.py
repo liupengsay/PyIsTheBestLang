@@ -1,7 +1,6 @@
 """
-算法：暴力枚举、旋转矩阵、螺旋矩阵、brute_force、贡献法
-功能：根据题意，在复杂度有限的情况下，进行所有可能情况的枚举
-题目：
+Algorithm：暴力枚举、旋转矩阵、螺旋矩阵、brute_force、贡献法
+Function：根据题意，在复杂度有限的情况下，进行所有可能情况的枚举
 
 ====================================LeetCode====================================
 670（https://leetcode.com/problems/maximum-swap/）看似贪心，在复杂度允许的情况下使用枚举暴力保险
@@ -135,7 +134,6 @@ C - Sugar Water（https://atcoder.jp/contests/abc074/tasks/arc083_a）经典枚�
 ================================Acwing===================================
 95（https://www.acwing.com/problem/content/description/97/）枚举第一行的开关按钮使用状态
 
-参考：OI WiKi（xx）
 """
 import bisect
 import math

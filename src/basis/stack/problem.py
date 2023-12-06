@@ -1,8 +1,7 @@
 """
 
-算法：栈、RBS（合法括号子序列）
-功能：模拟题中常见，如括号之类的，后进先出，升级版应用有单调栈、最大栈和最小栈
-题目：
+Algorithm：栈、RBS（合法括号子序列）
+Function：模拟题中常见，如括号之类的，后进先出，升级版应用有单调栈、最大栈和最小栈
 
 ====================================LeetCode====================================
 2197（https://leetcode.com/problems/replace-non-coprime-numbers-in-array/）结合数学使用栈进行模拟
@@ -42,7 +41,6 @@ D - 3N Numbers（https://atcoder.jp/contests/abc062/tasks/arc074_b）经典堆�
 4865（https://www.acwing.com/problem/content/4868/）经典栈模拟
 5136（https://www.acwing.com/problem/content/description/5139/）经典栈倒序模拟
 
-参考：OI WiKi（xx）
 """
 import heapq
 import math

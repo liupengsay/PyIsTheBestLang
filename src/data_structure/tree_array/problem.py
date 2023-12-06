@@ -1,7 +1,6 @@
 """
-算法：树状数组、二维树状数组
-功能：进行数组区间加减，和区间值求和（单点可转换为区间）
-题目：
+Algorithm：树状数组、二维树状数组
+Function：进行数组区间加减，和区间值求和（单点可转换为区间）
 
 ====================================LeetCode====================================
 307（https://leetcode.com/problems/range-sum-query-mutable）PointChangeRangeSum

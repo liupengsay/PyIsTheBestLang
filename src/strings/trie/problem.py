@@ -1,7 +1,6 @@
 """
-算法：Trie字典树，也叫前缀树
-功能：处理字符串以及结合位运算相关，01Trie通用用于查询位运算极值
-题目：
+Algorithm：Trie字典树，也叫前缀树
+Function：处理字符串以及结合位运算相关，01Trie通用用于查询位运算极值
 
 ====================================LeetCode====================================
 421（https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/）经典 01 Trie
@@ -41,7 +40,6 @@ Set Xor-Min（https://judge.yosupo.jp/problem/set_xor_min）template dynamic xor
 144（https://www.acwing.com/problem/content/description/146/）经典使用01Trie计算树中最长异或路径
 161（https://www.acwing.com/problem/content/163/）使用字典树判断是否存在单词前缀包含
 
-参考：OI WiKi（）
 """
 import heapq
 import math

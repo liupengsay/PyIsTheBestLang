@@ -1,8 +1,6 @@
 """
-算法：轮廓线DP
-功能：
-参考：
-题目：
+Algorithm：轮廓线DP
+Function：
 
 ====================================LeetCode====================================
 1659（https://leetcode.com/problems/maximize-grid-happiness/）轮廓线 DP 经典题目

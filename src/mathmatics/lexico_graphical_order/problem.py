@@ -1,7 +1,6 @@
 """
-算法：字典序与字典序排名解析
-功能：计算字典序第K小和某个对象的字典序rank、计算subset的字典序与解析、计算comb的字典序与解析、计算perm的字典序与解析
-题目：
+Algorithm：字典序与字典序排名解析
+Function：计算字典序第K小和某个对象的字典序rank、计算subset的字典序与解析、计算comb的字典序与解析、计算perm的字典序与解析
 
 ====================================LeetCode====================================
 60（https://leetcode.com/problems/permutation-sequence/）全排列的第 k 个排列
@@ -24,7 +23,6 @@
 1620C（https://codeforces.com/contest/1620/problem/C）经典逆向思维字典序
 1509E（https://codeforces.com/contest/1509/problem/E）字典序典题，计算rank k的数组
 
-参考：OI WiKi（xx）
 """
 from src.mathmatics.lexico_graphical_order.template import LexicoGraphicalOrder
 from src.utils.fast_io import FastIO

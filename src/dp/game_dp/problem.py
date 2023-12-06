@@ -1,7 +1,6 @@
 """
-算法：博弈类DP、玩游戏、必胜态、必输态
-功能：通常使用枚举、区间DP加模拟贪心的方式，和记忆化搜索进行状态转移
-题目：
+Algorithm：博弈类DP、玩游戏、必胜态、必输态
+Function：通常使用枚举、区间DP加模拟贪心的方式，和记忆化搜索进行状态转移
 
 ====================================LeetCode====================================
 375（https://leetcode.com/problems/guess-number-higher-or-lower-ii/）使用区间DP求解的典型博弈DP
@@ -20,7 +19,6 @@
 =====================================AcWing=====================================
 4005（https://www.acwing.com/problem/content/description/4008/）典型博弈思维题分情况讨论
 
-参考：OI WiKi（xx）
 """
 from functools import lru_cache
 from functools import reduce

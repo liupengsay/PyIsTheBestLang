@@ -1,7 +1,6 @@
 """
-算法：三分查找求一维极值、三分套三分求二维极值、梯度下降法、爬山法、ternary search三元搜索
-功能：用来寻找区间至多具有一个峰顶点或者一个谷底点的函数极值解
-题目：
+Algorithm：三分查找求一维极值、三分套三分求二维极值、梯度下降法、爬山法、ternary search三元搜索
+Function：用来寻找区间至多具有一个峰顶点或者一个谷底点的函数极值解
 
 =====================================LuoGu======================================
 1515（https://leetcode.com/problems/best-position-for-a-service-centre/）三分套三分求凸函数极小值，也可以使用梯度下降法与爬山法求解
@@ -18,7 +17,6 @@ D. Devu and his Brother（http://codeforces.com/problemset/problem/439/D）利�
 ====================================AtCoder=====================================
 F - Minimum Bounding Box（https://atcoder.jp/contests/abc130/tasks/abc130_f）三分模板题求函数最小值需要高精度
 
-参考：OI WiKi（xx）
 """
 import bisect
 import math

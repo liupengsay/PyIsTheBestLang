@@ -1,8 +1,7 @@
 """
-算法：矩阵DP、二维DP、记忆化搜索（记忆化形式的DP，可以自顶向下也可以自底向上，就是另一种写法的DP）、LCS
-功能：在二维矩阵上进行转移的DP，经典的有矩阵前缀和，矩阵区间和，正方形最大边长或面积，编辑距离，公共子序列，最长回文子串
+Algorithm：矩阵DP、二维DP、记忆化搜索（记忆化形式的DP，可以自顶向下也可以自底向上，就是另一种写法的DP）、LCS
+Function：在二维矩阵上进行转移的DP，经典的有矩阵前缀和，矩阵区间和，正方形最大边长或面积，编辑距离，公共子序列，最长回文子串
 头脑风暴：求包含两个字符串最长公共子序列的各自最短子串
-题目：
 
 ====================================LeetCode====================================
 174（https://leetcode.com/problems/dungeon-game/）经典矩阵 DP 逆向递推
@@ -120,7 +119,6 @@ E - Common Subsequence（https://atcoder.jp/contests/abc130/tasks/abc130_e）二
 2694（https://www.acwing.com/problem/content/description/2696/）经典问题求解最长公共子序列LCS的长度与个数
 
 
-参考：OI WiKi（xx）
 """
 
 import heapq

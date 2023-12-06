@@ -1,8 +1,6 @@
 """
-算法：二叉树、N叉树、先序遍历、中序遍历、后序遍历、迭代实现、前序遍历
-功能：
-参考：
-题目：
+Algorithm：二叉树、N叉树、先序遍历、中序遍历、后序遍历、迭代实现、前序遍历
+Function：
 
 ====================================LeetCode====================================
 94（https://leetcode.com/problems/binary-tree-inorder-traversal/description/）中序遍历迭代写法

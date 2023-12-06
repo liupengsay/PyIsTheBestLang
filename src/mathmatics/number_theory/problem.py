@@ -1,7 +1,6 @@
 """
-算法：数论、欧拉筛、线性筛、素数、欧拉函数、因子分解、素因子分解、进制转换、因数分解
-功能：有时候数位DP类型题目可以使用N进制来求取，质因数分解、因数分解、素数筛、线性筛、欧拉函数、pollard_rho、Meissel–Lehmer 算法（计算范围内素数个数）
-题目：
+Algorithm：数论、欧拉筛、线性筛、素数、欧拉函数、因子分解、素因子分解、进制转换、因数分解
+Function：有时候数位DP类型题目可以使用N进制来求取，质因数分解、因数分解、素数筛、线性筛、欧拉函数、pollard_rho、Meissel–Lehmer 算法（计算范围内素数个数）
 
 ====================================LeetCode====================================
 264（https://leetcode.com/problems/ugly-number-ii/）只含2、3、5质因数的第 n 个丑数
@@ -91,7 +90,6 @@ D - Preparing Boxes（https://atcoder.jp/contests/abc134/tasks/abc134_d）逆向
 5049（https://www.acwing.com/problem/content/description/5052/）使用质因数分解计算组合数
 
 
-参考：OI WiKi（xx）
 """
 import math
 from collections import Counter

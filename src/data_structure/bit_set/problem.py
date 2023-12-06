@@ -1,8 +1,6 @@
 """
-算法：BitSet、位集合、模拟区间状态变换、区间翻转
-功能：
-参考：
-题目：
+Algorithm：BitSet、位集合、模拟区间状态变换、区间翻转
+Function：
 
 ====================================LeetCode====================================
 2569（https://leetcode.com/problems/handling-sum-queries-after-update/）经典01线段树区间翻转与求和，也可以使用BitSet

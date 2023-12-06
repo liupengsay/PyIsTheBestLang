@@ -1,7 +1,6 @@
 """
-算法：二分图最大最小权值匹配、KM算法
-功能：
-题目：
+Algorithm：二分图最大最小权值匹配、KM算法
+Function：
 
 ====================================LeetCode====================================
 1820（https://leetcode.com/problems/maximum-number-of-accepted-invitations/）使用匈牙利算法或者二分图最大权KM算法解决
@@ -23,7 +22,6 @@
 ================================LibraryChecker================================
 1 Matching on Bipartite Graph（https://judge.yosupo.jp/problem/bipartitematching）unweighted match
 
-参考：OI WiKi（xx）
 """
 
 # EK算法

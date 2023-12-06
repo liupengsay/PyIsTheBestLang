@@ -1,9 +1,8 @@
 """
 
-算法：有序集合
-功能：利用单调性确定最优选择，通常可以使用SortedList用于维护和查询有序集合信息
+Algorithm：有序集合
+Function：利用单调性确定最优选择，通常可以使用SortedList用于维护和查询有序集合信息
 
-题目：xx（xx）
 
 ====================================LeetCode====================================
 295（https://leetcode.com/problems/find-median-from-data-stream/）使用一个SortedList即可
@@ -42,7 +41,6 @@
 1005E2（https://codeforces.com/contest/1005/problem/E2）经典特定中位数的连续子数组个数，使用容斥原理加前缀和有序列表二分
 1619E（https://codeforces.com/contest/1619/problem/E）经典MEX贪心
 
-参考：OI WiKi（xx）
 """
 import bisect
 from bisect import insort_left, bisect_left

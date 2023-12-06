@@ -1,7 +1,6 @@
 """
-算法：线性DP
-功能：遍历数组，根据前序或者后序结果进行更新，最大非空连续子序列和
-题目：
+Algorithm：线性DP
+Function：遍历数组，根据前序或者后序结果进行更新，最大非空连续子序列和
 
 ====================================LeetCode====================================
 87（https://leetcode.com/problems/scramble-string/）经典线性DP记忆化深搜
@@ -111,7 +110,6 @@ E - Sum Equals Xor（https://atcoder.jp/contests/abc129/tasks/abc129_e）思维�
 96（https://www.acwing.com/problem/content/98/）经典的汉诺塔问题，可推广到n个盘子与m个柱子
 4414（https://www.acwing.com/problem/content/description/4417/）经典线性子序列DP
 
-参考：OI WiKi（xx）
 """
 import bisect
 from collections import defaultdict, Counter, deque

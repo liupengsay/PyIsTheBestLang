@@ -1,8 +1,7 @@
 """
 
-算法：二分查找
-功能：利用单调性确定最优选择，通常可以使用SortedList、Bisect，还可以使用精度控制二分
-题目：xx（xx）
+Algorithm：二分查找
+Function：利用单调性确定最优选择，通常可以使用SortedList、Bisect，还可以使用精度控制二分
 ====================================LeetCode====================================
 4（https://leetcode.com/problems/median-of-two-sorted-arrays/）经典二分思想查找题
 81（https://leetcode.com/problems/search-in-rotated-sorted-array-ii/）经典有重复数字的旋转数组
@@ -100,7 +99,6 @@ D - Widespread（https://atcoder.jp/contests/abc063/tasks/arc075_b）经典利�
 4863（https://www.acwing.com/problem/content/description/4866/）经典二分加鸽巢原理
 5048（https://www.acwing.com/problem/content/description/5051/）经典浮点数二分并求出具体方案
 
-参考：OI WiKi（xx）
 """
 import bisect
 import math

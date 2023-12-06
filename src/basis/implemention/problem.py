@@ -1,7 +1,6 @@
 """
-算法：模拟、implemention、大模拟
-功能：根据题意进行模拟，有经典模拟结论约瑟夫环问题
-题目：
+Algorithm：模拟、implemention、大模拟
+Function：根据题意进行模拟，有经典模拟结论约瑟夫环问题
 
 ====================================LeetCode====================================
 2296（https://leetcode.com/problems/design-a-text-editor/）使用指针维护结果进行模拟
@@ -70,7 +69,6 @@
 4318（https://www.acwing.com/problem/content/description/4321/）使用哈希贪心模拟构造
 
 
-参考：OI WiKi（xx）
 """
 import heapq
 import math

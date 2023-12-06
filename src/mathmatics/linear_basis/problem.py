@@ -2,14 +2,12 @@ from src.mathmatics.linear_basis.template import LinearBasis
 from src.utils.fast_io import FastIO
 
 """
-算法：线性基也叫Hamel基
-功能：求解数组子集的异或和、排第K的异或和、以及异或和排第几、更新线性基即原始数组等
+Algorithm：线性基也叫Hamel基
+Function：求解数组子集的异或和、排第K的异或和、以及异或和排第几、更新线性基即原始数组等
 
-题目：
 =====================================LuoGu======================================
 3812（https://www.luogu.com.cn/problem/P3812）
 
-参考：https://oi-wiki.org/math/linear-algebra/basis/
 """
 
 

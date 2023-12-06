@@ -1,7 +1,6 @@
 """
-算法：KMP算法
-功能：用来处理字符串的前缀后缀相关问题
-题目：
+Algorithm：KMP算法
+Function：用来处理字符串的前缀后缀相关问题
 
 ====================================LeetCode====================================
 214（https://leetcode.com/problems/shortest-palindrome/）计算字符串前缀最长回文子串
@@ -27,7 +26,6 @@
 160（https://www.acwing.com/problem/content/162/）z函数模板题
 3823（https://www.acwing.com/problem/content/3826/）KMP与扩展KMP即z函数应用模板题
 
-参考：OI WiKi（https://oi-wiki.org/string/kmp/）
 
 """
 

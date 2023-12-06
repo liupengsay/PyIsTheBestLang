@@ -1,8 +1,7 @@
 """
-算法：双指针、快慢指针、先后指针、桶计数
-功能：通过相对移动，来减少计算复杂度，分为同向双指针，相反双指针，以及中心扩展法
+Algorithm：双指针、快慢指针、先后指针、桶计数
+Function：通过相对移动，来减少计算复杂度，分为同向双指针，相反双指针，以及中心扩展法
 
-题目：
 
 ====================================LeetCode====================================
 167（https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/）经典双指针应用
@@ -54,7 +53,6 @@ D - Equal Cut（https://atcoder.jp/contests/abc102/tasks/arc100_b）经典双指
 =====================================AcWing=====================================
 4217（https://www.acwing.com/problem/content/4220/）经典双指针滑动窗口题目
 
-参考：OI WiKi（xx）
 """
 import math
 from collections import Counter, defaultdict

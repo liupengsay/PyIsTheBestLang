@@ -1,8 +1,7 @@
 """
-算法：数位DP
-功能：统计满足一定条件的自然数个数，也可以根据字典序大小特点统计一些特定字符串的个数，是一种计数常用的DP思想
+Algorithm：数位DP
+Function：统计满足一定条件的自然数个数，也可以根据字典序大小特点统计一些特定字符串的个数，是一种计数常用的DP思想
 
-题目：
 
 ====================================LeetCode====================================
 233（https://leetcode.com/problems/number-of-digit-one/）数字 1 的个数
@@ -33,7 +32,6 @@ E - Digit Products（https://atcoder.jp/contests/abc208/tasks/abc208_e）脑筋�
 
 神奇数（https://www.lanqiao.cn/problems/5891/learning/?contest_id=145）容斥原理与数位DP
 
-参考：OI WiKi（xx）
 """
 from functools import lru_cache
 

@@ -1,11 +1,10 @@
 """
 
-算法：最小生成树（Kruskal算法和Prim算法两种）、严格次小生成树（使用LCA枚举替换边计算可得）、最短路生成树
-功能：计算无向图边权值和最小的生成树
+Algorithm：最小生成树（Kruskal算法和Prim算法两种）、严格次小生成树（使用LCA枚举替换边计算可得）、最短路生成树
+Function：计算无向图边权值和最小的生成树
 Prim在稠密图中比Kruskal优，在稀疏图中比Kruskal劣。Prim是以更新过的节点的连边找最小值，Kruskal是直接将边排序。
 两者其实都是运用贪心的思路，Kruskal相对比较常用
 
-题目：
 
 ====================================LeetCode====================================
 1489（https://leetcode.com/problems/find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree/）计算最小生成树的关键边与伪关键边
@@ -58,7 +57,6 @@ D - Built?（https://atcoder.jp/contests/abc065/tasks/arc076_b）最小生成树
 Manhattan MST（https://judge.yosupo.jp/problem/manhattanmst）
 Directed MST（https://judge.yosupo.jp/problem/directedmst）
 
-参考：OI WiKi（xx）
 """
 import math
 from collections import defaultdict

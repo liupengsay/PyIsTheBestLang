@@ -1,7 +1,6 @@
 """
-算法：大数分解、素数判断、高精度计算、使用分数代替浮点数运算
-功能：xxx
-题目：
+Algorithm：大数分解、素数判断、高精度计算、使用分数代替浮点数运算
+Function：xxx
 
 ====================================LeetCode====================================
 166（https://leetcode.com/problems/fraction-to-recurring-decimal/）经典分数转换为有理数无限循环小数
@@ -29,7 +28,6 @@
 ====================================AtCoder=====================================
 E - Double Factorial（https://atcoder.jp/contests/abc148/tasks/abc148_e）奇数阶乘与偶数阶乘的尾随零个数
 
-参考：OI WiKi（xx）
 """
 
 import math

@@ -1,7 +1,6 @@
 """
-算法：树形DP、树的直径、树上差分、树的重心（以及树的每个节点到其余节点的总距离和）、树的最小偏心距
-功能：在树形或者图结构上进行DP，有换根DP，自顶向下和自底向上DP
-题目：
+Algorithm：树形DP、树的直径、树上差分、树的重心（以及树的每个节点到其余节点的总距离和）、树的最小偏心距
+Function：在树形或者图结构上进行DP，有换根DP，自顶向下和自底向上DP
 
 ====================================LeetCode====================================
 2458 移除子树后的二叉树高度（https://leetcode.com/problems/height-of-binary-tree-after-subtree-removal-queries/）跑两边DFS进行自顶向下和自底向上DP结合
@@ -76,7 +75,6 @@ F - Expensive Expense （https://atcoder.jp/contests/abc222/tasks/abc222_f）换
 3760（https://www.acwing.com/problem/content/description/3763/）脑筋急转弯转化为树形DP迭代方式求解
 4381（https://www.acwing.com/problem/content/description/4384/）迭代法实现树形换根DP计算，或者一遍DFS或者dfs序加差分
 
-参考：OI WiKi（xx）
 """
 import math
 from collections import deque, Counter

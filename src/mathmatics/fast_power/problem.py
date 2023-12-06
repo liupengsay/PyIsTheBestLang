@@ -1,7 +1,6 @@
 """
-算法：快速幂、矩阵快速幂DP、乘法逆元
-功能：高效计算整数的幂次方取模
-题目：
+Algorithm：快速幂、矩阵快速幂DP、乘法逆元
+Function：高效计算整数的幂次方取模
 
 ====================================LeetCode====================================
 450（https://leetcode.com/problems/number-of-distinct-binary-strings-after-applying-operations/）脑筋急转弯快速幂计算
@@ -34,7 +33,6 @@
 27（https://www.acwing.com/problem/content/26/）浮点数快速幂
 
 
-参考：OI WiKi（xx）
 
 """
 import math

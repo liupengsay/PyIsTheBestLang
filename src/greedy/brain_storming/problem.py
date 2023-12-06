@@ -1,8 +1,7 @@
 """
 
-算法：贪心、逆向思维、抽屉原理、鸽巢原理、容斥原理、自定义排序、思维、脑筋急转弯、构造
-功能：各种可证明不可证明的头脑风暴
-题目：
+Algorithm：贪心、逆向思维、抽屉原理、鸽巢原理、容斥原理、自定义排序、思维、脑筋急转弯、构造
+Function：各种可证明不可证明的头脑风暴
 
 ====================================LeetCode====================================
 134（https://leetcode.com/problems/gas-station/）经典贪心
@@ -180,7 +179,6 @@ D - Summer Vacation（https://atcoder.jp/contests/abc137/tasks/abc137_d）经典
 4492（https://www.acwing.com/problem/content/description/4495/）脑筋急转弯分为奇数与偶数讨论
 4623（https://www.acwing.com/problem/content/description/4626/）贪心模拟
 
-参考：OI WiKi（xx）
 """
 
 import heapq

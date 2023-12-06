@@ -1,9 +1,8 @@
 """
 
-算法：使用数组作为链表维护前驱后驱
-功能：
+Algorithm：使用数组作为链表维护前驱后驱
+Function：
 
-题目：xx（xx）
 
 ====================================LeetCode====================================
 2617（https://leetcode.com/problems/minimum-number-of-visited-cells-in-a-grid/）经典BFS加链表，使用数组维护链表的前后节点信息
@@ -27,7 +26,6 @@
 4943（https://www.acwing.com/problem/content/description/4946/）经典BFS加链表，维护四个方向上的未访问点
 5034（https://www.acwing.com/problem/content/5037/）经典堆贪心加链表进行处理
 
-参考：OI WiKi（xx）
 """
 import heapq
 from collections import deque
