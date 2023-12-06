@@ -1,16 +1,16 @@
 """
 Algorithm：扫描线
-Function：计算平面几何面积或者立体体积
+Function：平面几何面积或者立体体积
 
 ====================================LeetCode====================================
-218（https://leetcode.com/problems/the-skyline-problem/）扫描线计算建筑物的轮廓
-850（https://leetcode.com/problems/rectangle-area-ii/）扫描线计算覆盖面积，线段树加离散化应该有 nlogn 的解法
+218（https://leetcode.com/problems/the-skyline-problem/）扫描线建筑物的轮廓
+850（https://leetcode.com/problems/rectangle-area-ii/）扫描线覆盖面积，线段树|离散化应该有 nlogn 的解法
 
 =====================================LuoGu======================================
-6265（https://www.luogu.com.cn/problem/P6265）计算建筑物的扫描线轮廓
-5490（https://www.luogu.com.cn/problem/P5490）扫描线计算覆盖面积
-1884（https://www.luogu.com.cn/problem/P1884）扫描线计算覆盖面积
-1904（https://www.luogu.com.cn/problem/P1904）扫描线计算建筑物的轮廓
+6265（https://www.luogu.com.cn/problem/P6265）建筑物的扫描线轮廓
+5490（https://www.luogu.com.cn/problem/P5490）扫描线覆盖面积
+1884（https://www.luogu.com.cn/problem/P1884）扫描线覆盖面积
+1904（https://www.luogu.com.cn/problem/P1904）扫描线建筑物的轮廓
 
 """
 from src.mathmatics.scan_line.template import ScanLine
@@ -23,7 +23,7 @@ class Solution:
 
     @staticmethod
     def lg_p1884(ac=FastIO()):
-        # 模板：计算矩形覆盖面积
+        # 矩形覆盖面积
         n = ac.read_int()
         lst = []
         for _ in range(n):

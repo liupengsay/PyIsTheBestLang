@@ -19,7 +19,7 @@ class TestGeneral(unittest.TestCase):
 
     @staticmethod
     def lg_2171_2_input(n, nums, ac=FastIO):
-        # 模板: bst 链表与二叉树模拟插入 O(nlogn)（离线）
+        # 模板: bst 链表与二叉树implemention插入 O(nlogn)（离线）
 
         @ac.bootstrap
         def dfs(rt):
@@ -30,7 +30,7 @@ class TestGeneral(unittest.TestCase):
             yield
 
         m = n + 10
-        # 排序后离散化
+        # sorting后离散化
         a = [0] + nums
         b = a[:]
         a.sort()
@@ -77,7 +77,7 @@ class TestGeneral(unittest.TestCase):
     @staticmethod
     def lg_2171_3_input(n, nums):
         dct = BinarySearchTreeByArray().build_with_unionfind(nums)
-        # 使用迭代的方式计算后序遍历（离线）
+        # 迭代的方式后序遍历（离线）
         ans = []
         depth = 0
         stack = [[0, 1]]
@@ -97,7 +97,7 @@ class TestGeneral(unittest.TestCase):
     @staticmethod
     def lg_2171_3_input_2(n, nums):
         dct = BinarySearchTreeByArray().build_with_stack(nums)
-        # 使用迭代的方式计算后序遍历（离线）
+        # 迭代的方式后序遍历（离线）
         ans = []
         depth = 0
         stack = [[0, 1]]

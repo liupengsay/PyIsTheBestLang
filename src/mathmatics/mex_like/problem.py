@@ -4,7 +4,7 @@ Ability：brain storming like or g greedy
 Reference：
 
 ====================================LeetCode====================================
-330（https://leetcode.com/problems/patching-array/）greedy|sorting|implemention1798. Maximum Number of Consecutive Values You Can Make（https://leetcode.com/problems/maximum-number-of-consecutive-values-you-can-make/）看似背包实则贪心
+330（https://leetcode.com/problems/patching-array/）greedy|sorting|implemention1798. Maximum Number of Consecutive Values You Can Make（https://leetcode.com/problems/maximum-number-of-consecutive-values-you-can-make/）看似背包实则greedy
 1798（https://leetcode.com/problems/maximum-number-of-consecutive-values-you-can-make/）greedy|sorting|implemention
 2952（https://leetcode.com/problems/minimum-number-of-coins-to-be-added/）greedy|sorting|implemention
 

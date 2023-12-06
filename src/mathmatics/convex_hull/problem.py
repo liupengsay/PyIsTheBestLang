@@ -3,11 +3,11 @@ Algorithm：凸包、最小圆覆盖
 Function：求点集的子集组成最小凸包上
 
 ====================================LeetCode====================================
-1924 安装栅栏 II（https://leetcode.com/problems/erect-the-fence-ii/）求出最小凸包后使用三分套三分求解最小圆覆盖，随机增量法求最小圆覆盖
+1924 安装栅栏 II（https://leetcode.com/problems/erect-the-fence-ii/）求出最小凸包后三分套三分求解最小圆覆盖，随机增量法求最小圆覆盖
 
 =====================================LuoGu======================================
 1742（https://www.luogu.com.cn/problem/P1742）随机增量法求最小圆覆盖
-3517（https://www.luogu.com.cn/problem/P3517）二分套二分，随机增量法求最小圆覆盖
+3517（https://www.luogu.com.cn/problem/P3517）binary_search套binary_search，随机增量法求最小圆覆盖
 
 """
 
@@ -23,13 +23,13 @@ class Solution:
 
     @staticmethod
     def lc_1924(trees: List[List[int]]) -> List[float]:
-        # 模板：随机增量法求最小圆覆盖
+        # 随机增量法求最小圆覆盖
         ans = MinCircleOverlap().get_min_circle_overlap(trees)
         return list(ans)
 
     @staticmethod
     def lg_p1742(ac=FastIO()):
-        # 模板：随机增量法求最小圆覆盖
+        # 随机增量法求最小圆覆盖
         n = ac.read_int()
         nums = [ac.read_list_floats() for _ in range(n)]
         x, y, r = MinCircleOverlap().get_min_circle_overlap(nums)
@@ -40,7 +40,7 @@ class Solution:
     @staticmethod
     def lg_3517(ac=FastIO()):
 
-        # 模板：随机增量法求最小圆覆盖
+        # 随机增量法求最小圆覆盖
         n, m = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
 

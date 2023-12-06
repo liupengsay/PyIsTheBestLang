@@ -1,45 +1,45 @@
 """
-Algorithm：矩阵DP、二维DP、记忆化搜索（记忆化形式的DP，可以自顶向下也可以自底向上，就是另一种写法的DP）、LCS
-Function：在二维矩阵上进行转移的DP，经典的有矩阵前缀和，矩阵区间和，正方形最大边长或面积，编辑距离，公共子序列，最长回文子串
+Algorithm：matrix_dp、二维DP、记忆化搜索（记忆化形式的DP，可以自顶向下也可以自底向上，就是另一种写法的DP）、LCS
+Function：在二维矩阵上转移的DP，的有矩阵prefix_sum，矩阵区间和，正方形最大边长或面积，编辑距离，公共子序列，最长palindrome_substring
 头脑风暴：求包含两个字符串最长公共子序列的各自最短子串
 
 ====================================LeetCode====================================
-174（https://leetcode.com/problems/dungeon-game/）经典矩阵 DP 逆向递推
+174（https://leetcode.com/problems/dungeon-game/）矩阵 DP 逆向递推
 2478（https://leetcode.com/problems/number-of-beautiful-partitions/）
 2463（https://leetcode.com/problems/minimum-total-distance-traveled/）
-2435（https://leetcode.com/problems/paths-in-matrix-whose-sum-is-divisible-by-k/）利用模 K 的特点进行路径计算
-2088（https://leetcode.com/problems/count-fertile-pyramids-in-a-land/）类似求正方形的边长和面积进行矩阵DP
+2435（https://leetcode.com/problems/paths-in-matrix-whose-sum-is-divisible-by-k/）利用模 K 的特点路径
+2088（https://leetcode.com/problems/count-fertile-pyramids-in-a-land/）类似求正方形的边长和面积matrix_dp
 221（https://leetcode.com/problems/maximal-square/）求全为 1 的最大正方形面积
-72（https://leetcode.com/problems/edit-distance/）矩阵DP
-329（https://leetcode.com/problems/longest-increasing-path-in-a-matrix/）二维矩阵DP
-1478（https://leetcode.com/problems/allocate-mailboxes/）二维DP与一个计算不带权中位数距离的区间DP
-6363（https://leetcode.com/problems/find-the-string-with-lcp/）贪心构造符合条件的字符串，并通过计算LCP进行确认
-2328（https://leetcode.com/problems/number-of-increasing-paths-in-a-grid/）计算严格递增的路径数量
+72（https://leetcode.com/problems/edit-distance/）matrix_dp
+329（https://leetcode.com/problems/longest-increasing-path-in-a-matrix/）二维matrix_dp
+1478（https://leetcode.com/problems/allocate-mailboxes/）二维DP与一个不带权median距离的区间DP
+6363（https://leetcode.com/problems/find-the-string-with-lcp/）greedy构造符合条件的字符串，并通过LCP确认
+2328（https://leetcode.com/problems/number-of-increasing-paths-in-a-grid/）严格递增的路径数量
 2312（https://leetcode.com/problems/selling-pieces-of-wood/）自顶向下搜索最佳方案
 2267（https://leetcode.com/problems/check-if-there-is-a-valid-parentheses-string-path/）记忆化搜索合法路径
-1092（https://leetcode.com/problems/shortest-common-supersequence/）经典从后往前动态规划加从前往后构造，计算最长公共子序列，并构造包含两个字符串的最短公共超序列
-1143（https://leetcode.com/problems/longest-common-subsequence/）使用LIS的方法求LCS
-1035（https://leetcode.com/problems/uncrossed-lines/）使用LIS的方法求LCS
-2617（https://leetcode.com/problems/minimum-number-of-visited-cells-in-a-grid/）倒序矩阵 DP 并使用树状数组记录更新前缀最小值
-1092（https://leetcode.com/problems/shortest-common-supersequence/）经典LCS问题并输出方案，可使用LIS求解
-1692（https://leetcode.com/problems/count-ways-to-distribute-candies/）矩阵DP计算方案数
-1771（https://leetcode.com/problems/maximize-palindrome-length-from-subsequences/）经典最长回文子序列矩阵DP
+1092（https://leetcode.com/problems/shortest-common-supersequence/）从后往前动态规划|从前往后构造，最长公共子序列，并构造包含两个字符串的最短公共超序列
+1143（https://leetcode.com/problems/longest-common-subsequence/）LIS的方法求LCS
+1035（https://leetcode.com/problems/uncrossed-lines/）LIS的方法求LCS
+2617（https://leetcode.com/problems/minimum-number-of-visited-cells-in-a-grid/）倒序矩阵 DP 并树状数组记录更新前缀最小值
+1092（https://leetcode.com/problems/shortest-common-supersequence/）LCS问题并specific_plans，可LIS求解
+1692（https://leetcode.com/problems/count-ways-to-distribute-candies/）matrix_dp方案数
+1771（https://leetcode.com/problems/maximize-palindrome-length-from-subsequences/）最长回文子序列matrix_dp
 1883（https://leetcode.com/problems/minimum-skips-to-arrive-at-meeting-on-time/）矩阵 DP
-1977（https://leetcode.com/problems/number-of-ways-to-separate-numbers/）经典两个矩阵DP含LCP进行计算优化，或者使用前缀优化DP
-2430（https://leetcode.com/problems/maximum-deletions-on-a-string/）双重DP进行LCP与矩阵DP
-1216（https://leetcode.com/problems/valid-palindrome-iii/）经典DP求最长回文子序列
-2060（https://leetcode.com/problems/check-if-an-original-string-exists-given-two-encoded-strings/description/）二维矩阵DP枚举记忆化搜索
-2556（https://leetcode.com/problems/disconnect-path-in-a-binary-matrix-by-at-most-one-flip/description/）经典矩阵DP思维题，判断割点可行性
-920（https://leetcode.com/problems/number-of-music-playlists/）经典矩阵DP
-1594（https://leetcode.com/problems/maximum-non-negative-product-in-a-matrix/）经典矩阵DP最大与最小乘积转移
-1639（https://leetcode.com/problems/number-of-ways-to-form-a-target-string-given-a-dictionary/description/）前缀和优化二维DP
-956（https://leetcode.com/problems/tallest-billboard/description/）经典矩阵DP
-1301（https://leetcode.com/contest/biweekly-contest-16/problems/number-of-paths-with-max-score/）经典矩阵DP计算路径最大值与方案数
-1937（https://leetcode.com/problems/maximum-number-of-points-with-cost/）经典矩阵前缀和后缀和优化的DP
-1751（https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended-ii/）经典矩阵二维DP使用二分优化
-1959（https://leetcode.com/problems/minimum-total-space-wasted-with-k-resizing-operations/description/）经典矩阵二维DP使用前缀和优化
-1458（https://leetcode.com/problems/max-dot-product-of-two-subsequences/description/）经典矩阵DP
-1745（https://leetcode.com/problems/palindrome-partitioning-iv/description/）经典矩阵DP判断是否为回文子串，或者使用马拉车然后枚举
+1977（https://leetcode.com/problems/number-of-ways-to-separate-numbers/）两个matrix_dp含LCP优化，或者前缀优化DP
+2430（https://leetcode.com/problems/maximum-deletions-on-a-string/）双重DPLCP与matrix_dp
+1216（https://leetcode.com/problems/valid-palindrome-iii/）DP求最长回文子序列
+2060（https://leetcode.com/problems/check-if-an-original-string-exists-given-two-encoded-strings/description/）二维matrix_dpbrute_force记忆化搜索
+2556（https://leetcode.com/problems/disconnect-path-in-a-binary-matrix-by-at-most-one-flip/description/）matrix_dp思维题，判断割点可行性
+920（https://leetcode.com/problems/number-of-music-playlists/）matrix_dp
+1594（https://leetcode.com/problems/maximum-non-negative-product-in-a-matrix/）matrix_dp最大与最小乘积转移
+1639（https://leetcode.com/problems/number-of-ways-to-form-a-target-string-given-a-dictionary/description/）prefix_sum优化二维DP
+956（https://leetcode.com/problems/tallest-billboard/description/）matrix_dp
+1301（https://leetcode.com/contest/biweekly-contest-16/problems/number-of-paths-with-max-score/）matrix_dp路径最大值与方案数
+1937（https://leetcode.com/problems/maximum-number-of-points-with-cost/）矩阵prefix_sum后缀和优化的DP
+1751（https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended-ii/）矩阵二维DPbinary_search优化
+1959（https://leetcode.com/problems/minimum-total-space-wasted-with-k-resizing-operations/description/）矩阵二维DPprefix_sum优化
+1458（https://leetcode.com/problems/max-dot-product-of-two-subsequences/description/）matrix_dp
+1745（https://leetcode.com/problems/palindrome-partitioning-iv/description/）matrix_dp判断是否为palindrome_substring，或者马拉车然后brute_force
 
 =====================================LuoGu======================================
 2701（https://www.luogu.com.cn/problem/P2701）求全为 "." 的最大正方形面积，如果不要求实心只能做到O(n^3)复杂度
@@ -47,76 +47,76 @@ Function：在二维矩阵上进行转移的DP，经典的有矩阵前缀和，�
 2138（https://www.luogu.com.cn/problem/P2138）最长公共子序列
 1681（https://www.luogu.com.cn/problem/P1681）求黑白格子相间的最大正方形面积
 2268（https://www.luogu.com.cn/problem/P2268）类似编辑距离
-2301（https://www.luogu.com.cn/problem/P2301）矩阵DP，注意最小值的更新处理
+2301（https://www.luogu.com.cn/problem/P2301）matrix_dp，注意最小值的更新处理
 2364（https://www.luogu.com.cn/problem/P2364）三维DP求最长公共子序列LCS并且输出LCS
 2543（https://www.luogu.com.cn/problem/P2543）二维DP求最长公共子序列LCS长度
-2513（https://www.luogu.com.cn/record/list?user=739032&status=12&page=2）二维矩阵DP加前缀和优化
-1434（https://www.luogu.com.cn/problem/P1434）二维矩阵DP计算最长上升的路径
-1140（https://www.luogu.com.cn/problem/P1140）二维矩阵DP
+2513（https://www.luogu.com.cn/record/list?user=739032&status=12&page=2）二维matrix_dp|prefix_sum优化
+1434（https://www.luogu.com.cn/problem/P1434）二维matrix_dp最长上升的路径
+1140（https://www.luogu.com.cn/problem/P1140）二维matrix_dp
 1057（https://www.luogu.com.cn/problem/P1057）二维DP可做成转移的
-8825（https://www.luogu.com.cn/problem/P8825）结合取模进行滚动更新计算
+8825（https://www.luogu.com.cn/problem/P8825）结合取模滚动更新
 2758（https://www.luogu.com.cn/problem/P2758）二维DP编辑距离
-2803（https://www.luogu.com.cn/problem/P2803）二维DP与一个计算带权中位数距离的区间DP
-2946（https://www.luogu.com.cn/problem/P2946）计算何为某个数字倍数的连续子序列个数
-2427（https://www.luogu.com.cn/problem/P2427）以矩阵中点为正方形中心的最大正方形边长，使用左上、左下、右上和右下的四个DP
-7074（https://www.luogu.com.cn/problem/P7074）经典DP，三个方向进行转移更新
-7160（https://www.luogu.com.cn/problem/P7160）三个维度DP的枚举计数
-7266（https://www.luogu.com.cn/problem/P7266）蜂窝形状的矩阵DP
-3399（https://www.luogu.com.cn/problem/P3399）二维矩阵DP
-2516（https://www.luogu.com.cn/problem/P2516）经典DP最长公共子序列以及最长公共子序列的长度
-1544（https://www.luogu.com.cn/problem/P1544）三维矩阵DP
-1004（https://www.luogu.com.cn/problem/P1004）经典DP，三个方向转移
-1006（https://www.luogu.com.cn/problem/P1006）经典DP，三个方向转移
-1107（https://www.luogu.com.cn/problem/P1107）二维DP加前缀最值优化
-1279（https://www.luogu.com.cn/problem/P1279）经典编辑距离DP的变形
-1353（https://www.luogu.com.cn/problem/P1353）矩阵DP
+2803（https://www.luogu.com.cn/problem/P2803）二维DP与一个带权median距离的区间DP
+2946（https://www.luogu.com.cn/problem/P2946）何为某个数字倍数的连续子序列个数
+2427（https://www.luogu.com.cn/problem/P2427）以矩阵中点为正方形中心的最大正方形边长，左上、左下、右上和右下的四个DP
+7074（https://www.luogu.com.cn/problem/P7074）DP，三个方向转移更新
+7160（https://www.luogu.com.cn/problem/P7160）三个维度DP的brute_forcecounter
+7266（https://www.luogu.com.cn/problem/P7266）蜂窝形状的matrix_dp
+3399（https://www.luogu.com.cn/problem/P3399）二维matrix_dp
+2516（https://www.luogu.com.cn/problem/P2516）DP最长公共子序列以及最长公共子序列的长度
+1544（https://www.luogu.com.cn/problem/P1544）三维matrix_dp
+1004（https://www.luogu.com.cn/problem/P1004）DP，三个方向转移
+1006（https://www.luogu.com.cn/problem/P1006）DP，三个方向转移
+1107（https://www.luogu.com.cn/problem/P1107）二维DP|前缀最值优化
+1279（https://www.luogu.com.cn/problem/P1279）编辑距离DP的变形
+1353（https://www.luogu.com.cn/problem/P1353）matrix_dp
 1410（https://www.luogu.com.cn/problem/P1410）二维DP
 1799（https://www.luogu.com.cn/problem/P1799）矩阵二维DP
-1854（https://www.luogu.com.cn/problem/P1854）前缀最大值优化矩阵DP，并输出匹配方案
-2140（https://www.luogu.com.cn/problem/P2140）矩阵四维DP，可以使用记忆化与迭代计算
-2217（https://www.luogu.com.cn/problem/P2217）矩阵四维DP，可以使用记忆化与迭代计算
-1436（https://www.luogu.com.cn/problem/P1436）矩阵四维DP，可以使用记忆化与迭代计算
-5752（https://www.luogu.com.cn/problem/P5752）矩阵四维DP，可以使用记忆化与迭代计算
-2380（https://www.luogu.com.cn/problem/P2380）矩阵DP
+1854（https://www.luogu.com.cn/problem/P1854）前缀最大值优化matrix_dp，并输出匹配方案
+2140（https://www.luogu.com.cn/problem/P2140）矩阵四维DP，可以记忆化与迭代
+2217（https://www.luogu.com.cn/problem/P2217）矩阵四维DP，可以记忆化与迭代
+1436（https://www.luogu.com.cn/problem/P1436）矩阵四维DP，可以记忆化与迭代
+5752（https://www.luogu.com.cn/problem/P5752）矩阵四维DP，可以记忆化与迭代
+2380（https://www.luogu.com.cn/problem/P2380）matrix_dp
 2401（https://www.luogu.com.cn/problem/P2401）二维DP
-2528（https://www.luogu.com.cn/problem/P2528）逆序对矩阵 DP 与模拟构造
-2733（https://www.luogu.com.cn/problem/P2733）经典DP通过边长与差分数组计算正方形子矩阵的个数
-2736（https://www.luogu.com.cn/problem/P2736）矩阵DP
+2528（https://www.luogu.com.cn/problem/P2528）逆序对矩阵 DP 与implemention构造
+2733（https://www.luogu.com.cn/problem/P2733）DP通过边长与差分数组正方形子矩阵的个数
+2736（https://www.luogu.com.cn/problem/P2736）matrix_dp
 2769（https://www.luogu.com.cn/problem/P2769）矩阵 DP 注意初始化条件
-3012（https://www.luogu.com.cn/problem/P3012https://www.luogu.com.cn/problem/P3012）三维矩阵DP
-3860（https://www.luogu.com.cn/problem/P3860）矩阵 DP 并计算具体转移方案
-4958（https://www.luogu.com.cn/problem/P4958）三维线性 DP使用前缀和优化
-5144（https://www.luogu.com.cn/problem/P5144）线性 DP 二维加前缀异或和
-5858（https://www.luogu.com.cn/problem/P5858）矩阵 DP 加单调队列优化
-5879（https://www.luogu.com.cn/problem/P5879）矩阵 DP 加前缀和优化
-6119（https://www.luogu.com.cn/problem/P6119）经典矩阵 DP 为 LCS 的变形题
-6323（https://www.luogu.com.cn/problem/P6323）经典 DP 逆序对为指定数量时的排列个数使用前缀和优化
-6394（https://www.luogu.com.cn/problem/P6394）矩阵 DP 加前缀和优化
-6433（https://www.luogu.com.cn/problem/P6433）贪心分类讨论使用矩阵 DP 计算
-6451（https://www.luogu.com.cn/problem/P6451）使用迭代方式实现四维 DP 并枚举四叉树获取对应最小代价和状态
+3012（https://www.luogu.com.cn/problem/P3012https://www.luogu.com.cn/problem/P3012）三维matrix_dp
+3860（https://www.luogu.com.cn/problem/P3860）矩阵 DP 并具体转移方案
+4958（https://www.luogu.com.cn/problem/P4958）三维线性 DPprefix_sum优化
+5144（https://www.luogu.com.cn/problem/P5144）线性 DP 二维|前缀异或和
+5858（https://www.luogu.com.cn/problem/P5858）矩阵 DP |单调队列优化
+5879（https://www.luogu.com.cn/problem/P5879）矩阵 DP |prefix_sum优化
+6119（https://www.luogu.com.cn/problem/P6119）矩阵 DP 为 LCS 的变形题
+6323（https://www.luogu.com.cn/problem/P6323） DP 逆序对为指定数量时的排列个数prefix_sum优化
+6394（https://www.luogu.com.cn/problem/P6394）矩阵 DP |prefix_sum优化
+6433（https://www.luogu.com.cn/problem/P6433）greedyclassification_discussion矩阵 DP 
+6451（https://www.luogu.com.cn/problem/P6451）迭代方式实现四维 DP 并brute_force四叉树获取对应最小代价和状态
 6509（https://www.luogu.com.cn/problem/P6509）典型矩阵 DP 并记录对应的状态转移
-6870（https://www.luogu.com.cn/problem/P6870）矩阵 DP 与组合数优化计数
+6870（https://www.luogu.com.cn/problem/P6870）矩阵 DP 与组合数优化counter
 7995（https://www.luogu.com.cn/problem/P7995）矩阵 DP
-8325（https://www.luogu.com.cn/problem/P8325）经典动态规划枚举，类似最大正方形矩阵 DP 变形
-8614（https://www.luogu.com.cn/problem/P8614）经典矩阵 DP 关键在于取模作为一维状态
-8638（https://www.luogu.com.cn/problem/P8638）经典矩阵 DP 最长回文子序列
-8786（https://www.luogu.com.cn/problem/P8786）典型三维矩阵 DP 模拟使用记忆化搜索
+8325（https://www.luogu.com.cn/problem/P8325）动态规划brute_force，类似最大正方形矩阵 DP 变形
+8614（https://www.luogu.com.cn/problem/P8614）矩阵 DP 关键在于取模作为一维状态
+8638（https://www.luogu.com.cn/problem/P8638）矩阵 DP 最长回文子序列
+8786（https://www.luogu.com.cn/problem/P8786）典型三维矩阵 DP implemention记忆化搜索
 
 ===================================CodeForces===================================
 1446B（https://codeforces.com/problemset/problem/1446/B）最长公共子序列LCS变形问题，理解贡献
-429B（https://codeforces.com/problemset/problem/429/B）四个方向的矩阵DP
-1398D（https://codeforces.com/problemset/problem/1398/D）三维DP，选取两个不同数组的数乘积，计算最大总和
-2B（https://codeforces.com/problemset/problem/2/B）矩阵DP，计算路径上乘积最少的后缀0个数，经典题目
-1381B（https://codeforces.com/problemset/problem/1381/B）二维矩阵DP加单调栈优化
-1393D（https://codeforces.com/problemset/problem/1393/D）经典二维DP计算金字塔个数
-1731D（https://codeforces.com/contest/1731/problem/D）经典二分加最大正方形边长
+429B（https://codeforces.com/problemset/problem/429/B）四个方向的matrix_dp
+1398D（https://codeforces.com/problemset/problem/1398/D）三维DP，选取两个不同数组的数乘积，最大总和
+2B（https://codeforces.com/problemset/problem/2/B）matrix_dp，路径上乘积最少的后缀0个数，题目
+1381B（https://codeforces.com/problemset/problem/1381/B）二维matrix_dp|单调栈优化
+1393D（https://codeforces.com/problemset/problem/1393/D）二维DP金字塔个数
+1731D（https://codeforces.com/contest/1731/problem/D）binary_search|最大正方形边长
 
 ====================================AtCoder=====================================
-E - Common Subsequence（https://atcoder.jp/contests/abc130/tasks/abc130_e）二维前缀和优化矩阵DP
+E - Common Subsequence（https://atcoder.jp/contests/abc130/tasks/abc130_e）二维prefix_sum优化matrix_dp
 =====================================AcWing=====================================
-4378（https://www.acwing.com/problem/content/4381/）典型矩阵DP
-4418（https://www.acwing.com/problem/content/description/4421/）经典单调队列优化矩阵DP
-2694（https://www.acwing.com/problem/content/description/2696/）经典问题求解最长公共子序列LCS的长度与个数
+4378（https://www.acwing.com/problem/content/4381/）典型matrix_dp
+4418（https://www.acwing.com/problem/content/description/4421/）单调队列优化matrix_dp
+2694（https://www.acwing.com/problem/content/description/2696/）问题求解最长公共子序列LCS的长度与个数
 
 
 """
@@ -141,17 +141,17 @@ class Solution:
 
     @staticmethod
     def lc_1305(nums1: List[int], nums2: List[int]) -> int:
-        # 模板：使用LIS的办法求LCS
+        # LIS的办法求LCS
         return LcsComputeByLis().longest_common_subsequence(nums1, nums2)
 
     @staticmethod
     def lc_1143(s1: str, s2: str) -> int:
-        # 模板：使用LIS的办法求LCS
+        # LIS的办法求LCS
         return LcsComputeByLis().longest_common_subsequence(s1, s2)
 
     @staticmethod
     def lc_920(n: int, goal: int, k: int) -> int:
-        # 模板：经典矩阵DP（记忆化深搜刷表法实现）
+        # matrix_dp（记忆化深搜刷表法实现）
         mod = 10 ** 9 + 7
 
         @lru_cache(None)  # 前 i 首播放了 r 首不同的歌
@@ -169,7 +169,7 @@ class Solution:
 
     @staticmethod
     def lc_956(rods: List[int]) -> int:
-        # 模板：经典矩阵DP
+        # matrix_dp
         pre = defaultdict(int)
         pre[0] = 0
         for num in rods:
@@ -182,7 +182,7 @@ class Solution:
 
     @staticmethod
     def lc_1092(str1: str, str2: str) -> str:
-        # 模板：计算最长公共子序列，并构造包含两个字符串的最短公共超序列
+        # 最长公共子序列，并构造包含两个字符串的最短公共超序列
         m, n = len(str1), len(str2)
         dp = [[0] * (n + 1) for _ in range(m + 1)]
 
@@ -213,7 +213,7 @@ class Solution:
 
     @staticmethod
     def lc_2435(grid: List[List[int]], k: int) -> int:
-        # 模板：标准矩阵 DP 左上到右下的状态转移
+        # 标准矩阵 DP 左上到右下的状态转移
         mod = 10 ** 9 + 7
         m, n = len(grid), len(grid[0])
         dp = [[[0] * k for _ in range(n)] for _ in range(m)]
@@ -238,7 +238,7 @@ class Solution:
 
     @staticmethod
     def lc_6363(lcp: List[List[int]]) -> str:
-        # 模板：根据 LCP 矩阵生成字典序最小的符合条件的字符串
+        # 根据 LCP 矩阵生成lexicographical_order最小的符合条件的字符串
         n = len(lcp)
         ans = [""] * n
         ind = 0
@@ -270,7 +270,7 @@ class Solution:
 
     @staticmethod
     def cf_2b(ac, n, grid):
-        # 模板：计算乘积后缀0最少的个数以及对应的路径
+        # 乘积后缀0最少的个数以及对应的路径
         def f_2(num):
             if not num:
                 return 1
@@ -346,7 +346,7 @@ class Solution:
 
     @staticmethod
     def cf_1398d(ac, r, g, b, lst):
-        # 模板：三维DP，选取两个不同数组的数乘积，计算最大总和
+        # 三维DP，选取两个不同数组的数乘积，最大总和
         @ac.bootstrap
         def dfs(i, j, k):
             if dp[i][j][k] != -1:
@@ -371,7 +371,7 @@ class Solution:
     @staticmethod
     def lc_2478(s: str, k: int, min_length: int) -> int:
         mod = 10 ** 9 + 7
-        # 模板：前缀和优化二维矩阵DP
+        # prefix_sum优化二维matrix_dp
         start = set("2357")
         if s[0] not in start:
             return 0
@@ -396,7 +396,7 @@ class Solution:
 
     @staticmethod
     def lc_2463(robot, factory):
-        # 模板：两个数组使用指针移动方向与前缀和优化求解
+        # 两个数组pointer移动方向与prefix_sum优化求解
         robot.sort()
         factory.sort()
         m, n = len(factory), len(robot)
@@ -417,12 +417,12 @@ class Solution:
 
     @staticmethod
     def lg_p2516(ac=FastIO()):
-        # 模板：最长公共子序列的长度以及个数DP计算
+        # 最长公共子序列的长度以及个数DP
         s = ac.read_str()[:-1]
         t = ac.read_str()[:-1]
         m, n = len(s), len(t)
         mod = 10 ** 8
-        # 使用滚动数组进行优化
+        # 滚动数组优化
         dp = [[0] * (n + 1) for _ in range(2)]
         cnt = [[0] * (n + 1) for _ in range(2)]
         pre = 0
@@ -454,7 +454,7 @@ class Solution:
                 elif dp[pre][j + 1] == dp[cur][j + 1]:
                     cnt[cur][j + 1] += cnt[pre][j + 1]
 
-                # 长度未变则设计重复计算
+                # 长度未变则设计重复
                 if dp[pre][j] == dp[cur][j + 1]:
                     cnt[cur][j + 1] -= cnt[pre][j]
                 cnt[cur][j + 1] %= mod
@@ -466,7 +466,7 @@ class Solution:
 
     @staticmethod
     def lg_p1544(ac=FastIO()):
-        # 模板：三维矩阵DP
+        # 三维matrix_dp
         n, k = ac.read_list_ints()
         dp = [[[-inf] * (k + 1) for _ in range(n)] for _ in range(2)]
         nums = []
@@ -501,7 +501,7 @@ class Solution:
 
     @staticmethod
     def lg_p1004(ac=FastIO()):
-        # 模板：经典取数四维转三维DP，路径可以有交叠
+        # 取数四维转三维DP，路径可以有交叠
         n = ac.read_int()
         grid = [[0] * n for _ in range(n)]
         while True:
@@ -531,7 +531,7 @@ class Solution:
 
     @staticmethod
     def lg_p1006(ac=FastIO()):
-        # 模板：经典取数四维转三维DP，路径不能有交叠
+        # 取数四维转三维DP，路径不能有交叠
         m, n = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
 
@@ -555,7 +555,7 @@ class Solution:
 
     @staticmethod
     def lg_p1107(ac=FastIO()):
-        # 模板：矩阵DP加前缀数组最值优化
+        # matrix_dp|前缀数组最值优化
         n, h, d = ac.read_list_ints()
         cnt = [[0] * (h + 1) for _ in range(n)]
         for i in range(n):
@@ -579,7 +579,7 @@ class Solution:
 
     @staticmethod
     def lg_p1279(ac=FastIO()):
-        # 模板：编辑距离 DP 变形
+        # 编辑距离 DP 变形
         s = ac.read_str()
         t = ac.read_str()
         k = ac.read_int()
@@ -597,7 +597,7 @@ class Solution:
 
     @staticmethod
     def lg_p1353(ac=FastIO()):
-        # 模板：矩阵DP
+        # matrix_dp
         n, m = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
         dp = [[-inf] * (m + 1) for _ in range(n + 1)]
@@ -613,7 +613,7 @@ class Solution:
 
     @staticmethod
     def lg_p1854(ac=FastIO()):
-        # 模板：矩阵DP，并输出匹配方案
+        # matrix_dp，并输出匹配方案
         m, n = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
         dp = [[-inf] * (n + 1) for _ in range(m + 1)]
@@ -631,7 +631,7 @@ class Solution:
                     # 记录上一行转移顺序
                     pre[i + 1][j + 1] = ind
 
-        # 倒序输出具体方案
+        # 倒序输出specific_plan
         res = max(dp[m])
         ac.st(res)
         ans = [dp[m].index(res)]
@@ -643,7 +643,7 @@ class Solution:
 
     @staticmethod
     def lg_p2140(ac=FastIO()):
-        # 模板：矩阵四维DP，可以使用记忆化与迭代计算
+        # 矩阵四维DP，可以记忆化与迭代
         m, n, u = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
         m, n = len(grid), len(grid[0])
@@ -708,7 +708,7 @@ class Solution:
     @staticmethod
     def lg_p2217(ac=FastIO()):
 
-        # 模板：矩阵四维DP，可以使用记忆化与迭代计算
+        # 矩阵四维DP，可以记忆化与迭代
         m, n, k = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
         avg = sum(sum(g) for g in grid) / k
@@ -759,7 +759,7 @@ class Solution:
     @staticmethod
     def lg_p1436(ac=FastIO()):
 
-        # 模板：矩阵四维DP，可以使用记忆化与迭代计算
+        # 矩阵四维DP，可以记忆化与迭代
         k = ac.read_int()
         m = n = 8
         grid = [ac.read_list_ints() for _ in range(m)]
@@ -808,7 +808,7 @@ class Solution:
     @staticmethod
     def lg_p5752(ac=FastIO()):
 
-        # 模板：矩阵四维DP，可以使用记忆化与迭代计算
+        # 矩阵四维DP，可以记忆化与迭代
         k = ac.read_int()
         m = n = 8
         grid = [ac.read_list_ints() for _ in range(m)]
@@ -857,7 +857,7 @@ class Solution:
 
     @staticmethod
     def lg_p2380(ac=FastIO()):
-        # 模板：前缀和计算与矩阵DP
+        # prefix_sum与matrix_dp
         while True:
             m, n = ac.read_list_ints()
             if m == n == 0:
@@ -883,7 +883,7 @@ class Solution:
 
     @staticmethod
     def lg_p2401(ac=FastIO()):
-        # 模板：二维DP
+        # 二维DP
         n, k = ac.read_list_ints()
         dp = [[0] * (k + 1) for _ in range(2)]
         pre = 0
@@ -901,7 +901,7 @@ class Solution:
     @staticmethod
     def lg_p2528(ac=FastIO()):
 
-        # 模板：逆序对矩阵 DP 与模拟构造
+        # 逆序对矩阵 DP 与implemention构造
         n, t = ac.read_list_ints()
         dp = [[0] * (t + 1) for _ in range(n + 1)]
         dp[0][0] = 1
@@ -926,7 +926,7 @@ class Solution:
 
     @staticmethod
     def lg_p2733(ac=FastIO()):
-        # 模板：经典DP通过边长与差分数组计算正方形子矩阵的个数
+        # DP通过边长与差分数组正方形子矩阵的个数
         n = ac.read_int()
         grid = [ac.read_str() for _ in range(n)]
         dp = [[0] * (n + 1) for _ in range(n + 1)]
@@ -950,7 +950,7 @@ class Solution:
     @staticmethod
     def lg_p2736(ac=FastIO()):
 
-        # 模板：矩阵 DP
+        # 矩阵 DP
         n, t, m = ac.read_list_ints()
         nums = ac.read_list_ints()
 
@@ -986,7 +986,7 @@ class Solution:
     @staticmethod
     def lg_p2769(ac=FastIO()):
 
-        # 模板：矩阵 DP 注意初始化条件
+        # 矩阵 DP 注意初始化条件
         n = ac.read_int()
         a = ac.read_list_ints()
         a.sort()
@@ -1021,7 +1021,7 @@ class Solution:
 
     @staticmethod
     def lg_p3012(ac=FastIO()):
-        # 模板：矩阵 DP 可以按照顺序进行转移
+        # 矩阵 DP 可以按照顺序转移
         u, l, p = ac.read_list_ints()
         dct = defaultdict(list)
         nodes = set()
@@ -1043,7 +1043,7 @@ class Solution:
             else:
                 dp[0][1][ind[w]] = 1
 
-        # 从小到大计算
+        # 从小到大
         for i in range(u + 1):
             for j in range(l + 1):
                 for k in range(m):
@@ -1060,7 +1060,7 @@ class Solution:
 
     @staticmethod
     def lg_p3860(ac=FastIO()):
-        # 模板：矩阵 DP 并计算具体转移方案
+        # 矩阵 DP 并具体转移方案
         n, m = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
         dp = [[inf] * (n + 1) for _ in range(m + 1)]
@@ -1091,7 +1091,7 @@ class Solution:
 
     @staticmethod
     def lg_p4958(ac=FastIO()):
-        # 模板：三维线性 DP使用前缀和优化
+        # 三维线性 DPprefix_sum优化
         mod = 10 ** 9 + 7
         ind = {chr(i + ord("a")): i for i in range(26)}
         ind["#"] = 26
@@ -1118,7 +1118,7 @@ class Solution:
 
     @staticmethod
     def lg_p5144(ac=FastIO()):
-        # 模板：线性 DP 二维加前缀异或和
+        # 线性 DP 二维|前缀异或和
         n, m = ac.read_list_ints()
         dp = [[0] * m for _ in range(n)]
         nums = ac.read_list_ints()
@@ -1137,7 +1137,7 @@ class Solution:
 
     @staticmethod
     def lg_p5858(ac=FastIO()):
-        # 模板：矩阵 DP 加单调队列优化
+        # 矩阵 DP |单调队列优化
         n, w, s = ac.read_list_ints()
         nums = ac.read_list_ints()
         dp = [[-inf] * w for _ in range(2)]
@@ -1167,7 +1167,7 @@ class Solution:
 
     @staticmethod
     def lg_p5879(ac=FastIO()):
-        # 模板：矩阵 DP 使用后缀和优化
+        # 矩阵 DP 后缀和优化
         n = ac.read_int()
         pre = [1] * (n + 1)
         pre[0] = 0
@@ -1183,7 +1183,7 @@ class Solution:
 
     @staticmethod
     def lg_p6119(ac=FastIO()):
-        # 模板：经典矩阵 DP 为 LCS 的变形题
+        # 矩阵 DP 为 LCS 的变形题
         n = ac.read_int()
         a = [ac.read_int() for _ in range(n)]
         b = [ac.read_int() for _ in range(n)]
@@ -1196,7 +1196,7 @@ class Solution:
 
     @staticmethod
     def lg_p6323(ac=FastIO()):
-        # 模板：经典 DP 逆序对为指定数量时的排列个数使用前缀和优化
+        #  DP 逆序对为指定数量时的排列个数prefix_sum优化
         mod = 10 ** 9 + 7
         n, k = ac.read_list_ints()
         dp = [[0] * (k + 1) for _ in range(2)]
@@ -1214,7 +1214,7 @@ class Solution:
 
     @staticmethod
     def lg_p6394(ac=FastIO()):
-        # 模板：矩阵 DP 加前缀和优化
+        # 矩阵 DP |prefix_sum优化
         n, k = ac.read_list_ints()
         s = ac.read_list_ints()
         if sum(s) < n:
@@ -1239,7 +1239,7 @@ class Solution:
 
     @staticmethod
     def lg_p6433(ac=FastIO()):
-        # 模板：贪心分类讨论使用矩阵 DP 计算
+        # greedyclassification_discussion矩阵 DP 
         n, m, k = ac.read_list_ints()
 
         nums = [ac.read_list_ints() for _ in range(n)]
@@ -1267,7 +1267,7 @@ class Solution:
 
     @staticmethod
     def lg_p6451(ac=FastIO()):
-        # 模板：使用迭代方式实现四维 DP 并枚举四叉树获取对应最小代价和状态
+        # 迭代方式实现四维 DP 并brute_force四叉树获取对应最小代价和状态
         n = ac.read_int()
         grid = [[int(w) for w in ac.read_str()] for _ in range(n)]
         pre = PreFixSumMatrix(grid)
@@ -1276,7 +1276,7 @@ class Solution:
         ind = {state: i for i, state in enumerate(states)}
 
         def dfs():
-            # 计算最小代价
+            # 最小代价
             stack = [[0, 0, n - 1, n - 1]]
             while stack:
                 x1, y1, x2, y2 = stack.pop()
@@ -1318,7 +1318,7 @@ class Solution:
             return
 
         def check():
-            # 通过转移状态进行结果赋值
+            # 通过转移状态结果赋值
             stack = [[0, 0, n - 1, n - 1]]
             while stack:
                 x1, y1, x2, y2 = stack.pop()
@@ -1355,7 +1355,7 @@ class Solution:
     @staticmethod
     def lc_2556(grid: List[List[int]]) -> bool:
 
-        # 模板：经典矩阵DP思维题，判断割点可行性
+        # matrix_dp思维题，判断割点可行性
         m, n = len(grid), len(grid[0])
 
         left = [[0] * n for _ in range(m)]
@@ -1395,7 +1395,7 @@ class Solution:
 
     @staticmethod
     def lc_2617_1(grid: List[List[int]]) -> int:
-        # 模板：倒序矩阵 DP 并使用树状数组记录更新前缀最小值
+        # 倒序矩阵 DP 并树状数组记录更新前缀最小值
         m, n = len(grid), len(grid[0])
         dp = [[inf] * n for _ in range(m)]
         dp[-1][-1] = 1
@@ -1419,7 +1419,7 @@ class Solution:
 
     @staticmethod
     def lc_2617_2(grid: List[List[int]]) -> int:
-        # 模板：矩阵 DP 使用优先队列或者单调队列进行优化
+        # 矩阵 DP priority_queue或者单调队列优化
         m, n = len(grid), len(grid[0])
         dp = [[inf] * n for _ in range(m)]
         dp[0][0] = 1
@@ -1444,7 +1444,7 @@ class Solution:
 
     @staticmethod
     def lc_2617_3(grid: List[List[int]]) -> int:
-        # 模板：矩阵 DP 使用 BFS 加并查集的方式进行计算
+        # 矩阵 DP  BFS |union_find的方式
         m, n = len(grid), len(grid[0])
         row = [list(range(1, n + 1)) for _ in range(m)]
         col = [list(range(1, m + 1)) for _ in range(n)]
@@ -1458,7 +1458,7 @@ class Solution:
                 return d
             val = grid[i][j]
 
-            # 使用并查集或者类似链表进行合并
+            # union_find或者类似链表合并
             lst = [j]
             # 查到下一个就可以移动到的未访问格子
             while lst[-1] <= j + val and lst[-1] < n:
@@ -1471,7 +1471,7 @@ class Solution:
                 row[i][x] = last
             row[i][j] = last
 
-            # 使用并查集或者类似链表进行合并
+            # union_find或者类似链表合并
             lst = [i]
             while lst[-1] <= i + val and lst[-1] < m:
                 lst.append(col[j][lst[-1]])
@@ -1487,7 +1487,7 @@ class Solution:
 
     @staticmethod
     def lg_p6509(ac=FastIO()):
-        # 模板：典型矩阵 DP 并记录对应的状态转移
+        # 典型矩阵 DP 并记录对应的状态转移
         s = ac.read_str().split("=")
         b = int(s[1])
         s = s[0]
@@ -1527,7 +1527,7 @@ class Solution:
 
     @staticmethod
     def lg_p6870(ac=FastIO()):
-        # 模板：矩阵 DP 与组合数优化计数
+        # 矩阵 DP 与组合数优化counter
         n = ac.read_int()
         mod = 10 ** 9 + 7
         cb = Combinatorics(n, mod)
@@ -1550,7 +1550,7 @@ class Solution:
 
     @staticmethod
     def ac_4418(ac=FastIO()):
-        # 模板：经典单调队列优化矩阵DP
+        # 单调队列优化matrix_dp
         n, k, x = ac.read_list_ints()
         nums = ac.read_list_ints()
         # dp[i][j]表示选第i个元素，且选了j个元素的最大和
@@ -1575,7 +1575,7 @@ class Solution:
     @staticmethod
     def lc_1216(s: str, k: int) -> bool:
 
-        # 模板：经典DP求最长回文子序列
+        # DP求最长回文子序列
         n = len(s)
         dp = [[0] * n for _ in range(n)]
         for i in range(n - 1, -1, -1):
@@ -1593,7 +1593,7 @@ class Solution:
 
     @staticmethod
     def lg_p7995(ac=FastIO()):
-        # 模板：矩阵 DP 计算
+        # 矩阵 DP 
         for _ in range(ac.read_int()):
             n, k = ac.read_list_ints()
             k += 1
@@ -1627,7 +1627,7 @@ class Solution:
 
     @staticmethod
     def lg_p8325(ac=FastIO()):
-        # 模板：经典动态规划枚举，类似最大正方形矩阵 DP 变形
+        # 动态规划brute_force，类似最大正方形矩阵 DP 变形
         m, n = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
 
@@ -1687,7 +1687,7 @@ class Solution:
 
     @staticmethod
     def lg_p8614(ac=FastIO()):
-        # 模板：经典矩阵 DP 关键在于取模作为一维状态
+        # 矩阵 DP 关键在于取模作为一维状态
         n, s, a, b = ac.read_list_ints()
         mod = 100000007
         dp = [[0] * n for _ in range(n)]
@@ -1704,7 +1704,7 @@ class Solution:
 
     @staticmethod
     def lg_p8638(ac=FastIO()):
-        # 模板：经典矩阵 DP 最长回文子序列
+        # 矩阵 DP 最长回文子序列
         s = ac.read_str()
         n = len(s)
         dp = [[0] * n for _ in range(n)]
@@ -1719,7 +1719,7 @@ class Solution:
 
     @staticmethod
     def lg_p8786(ac=FastIO()):
-        # 模板：典型三维矩阵 DP 模拟使用记忆化搜索
+        # 典型三维矩阵 DP implemention记忆化搜索
 
         @lru_cache(None)
         def dfs(x, y, wine):
@@ -1744,7 +1744,7 @@ class Solution:
     @staticmethod
     def lc_2088(grid: List[List[int]]) -> int:
 
-        # 模板：类似求正方形的边长和面积进行矩阵DP
+        # 类似求正方形的边长和面积matrix_dp
         def check():
             nonlocal ans
             dp = [[0] * n for _ in range(m)]
@@ -1770,7 +1770,7 @@ class Solution:
 
     @staticmethod
     def lc_2430(s: str) -> int:
-        # 模板：双重DP进行LCP与矩阵DP
+        # 双重DPLCP与matrix_dp
         n = len(s)
         lcp = [[0] * (n + 1) for _ in range(n + 1)]
         for i in range(n - 1, -1, -1):
@@ -1787,7 +1787,7 @@ class Solution:
 
     @staticmethod
     def ac_4378(ac=FastIO()):
-        # 模板：典型矩阵DP
+        # 典型matrix_dp
         n, m, k = ac.read_list_ints()
         dp = [[-inf] * (k + 1) for _ in range(n + 1)]
         dp[0][0] = 0
@@ -1809,7 +1809,7 @@ class Solution:
 
     @staticmethod
     def abc_130e(ac=FastIO()):
-        # 模板：二维前缀和优化矩阵DP
+        # 二维prefix_sum优化matrix_dp
         m, n = ac.read_list_ints()
         mod = 10 ** 9 + 7
         s = ac.read_list_ints()
@@ -1828,12 +1828,12 @@ class Solution:
 
     @staticmethod
     def ac_2694(ac=FastIO()):
-        # 模板：经典问题求解最长公共子序列LCS的长度与个数
+        # 问题求解最长公共子序列LCS的长度与个数
         a = ac.read_str()[:-1]
         b = ac.read_str()[:-1]
         mod = 10 ** 8
 
-        # 使用滚动数组优化
+        # 滚动数组优化
         m, n = len(a), len(b)
         dp = [[0] * (n + 1) for _ in range(2)]
         cnt = [[0] * (n + 1) for _ in range(2)]
@@ -1867,7 +1867,7 @@ class Solution:
     @staticmethod
     def lc_1594(grid: List[List[int]]) -> int:
 
-        # 模板：经典矩阵DP最大与最小乘积转移
+        # matrix_dp最大与最小乘积转移
         m, n = len(grid), len(grid[0])
 
         @lru_cache(None)
@@ -1892,7 +1892,7 @@ class Solution:
 
     @staticmethod
     def lc_1639(words: List[str], target: str) -> int:
-        # 模板：前缀和优化二维DP
+        # prefix_sum优化二维DP
         dct = defaultdict(lambda: defaultdict(int))
         n = len(words[0])
         for word in words:
@@ -1914,7 +1914,7 @@ class Solution:
 
     @staticmethod
     def lc_1745(s: str) -> bool:
-        # 模板：经典矩阵DP判断是否为回文子串，或者使用马拉车然后枚举
+        # matrix_dp判断是否为palindrome_substring，或者马拉车然后brute_force
         n = len(s)
         dp = [[0] * n for _ in range(n)]
         for i in range(n - 1, -1, -1):
@@ -1933,7 +1933,7 @@ class Solution:
 
     @staticmethod
     def lc_1771(word1: str, word2: str) -> int:
-        # 模板：经典最长回文子序列矩阵DP
+        # 最长回文子序列matrix_dp
         m, n = len(word1), len(word2)
         s = word1 + word2
         ans = 0
@@ -1958,7 +1958,7 @@ class Solution:
 
     @staticmethod
     def lc_1937(points: List[List[int]]) -> int:
-        # 模板：经典矩阵前缀和后缀和优化的DP
+        # 矩阵prefix_sum后缀和优化的DP
         m, n = len(points), len(points[0])
         pre = points[0][:]
 
@@ -1984,7 +1984,7 @@ class Solution:
 
     @staticmethod
     def lc_1977(num: str) -> int:
-        # 模板：经典两个矩阵DP含LCP进行计算优化，或者使用前缀优化DP
+        # 两个matrix_dp含LCP优化，或者前缀优化DP
         mod = 10 ** 9 + 7
         n = len(num)
         lcp = [[0] * (n + 1) for _ in range(n + 1)]
@@ -1995,7 +1995,7 @@ class Solution:
 
         # 以索引 i 结尾且末尾数字长为 j 的方案数
         dp = [[0] * (n + 1) for _ in range(n + 1)]
-        dp[0] = [1] * (n + 1)  # 边界条件前缀和
+        dp[0] = [1] * (n + 1)  # 边界条件prefix_sum
         for i in range(1, n + 1):
             # i 从 1 到 n 表示
             for j in range(1, i + 1):
@@ -2010,7 +2010,7 @@ class Solution:
                 else:
                     dp[i][j] = dp[i - j][j - 1]
             for j in range(1, n + 1):
-                # 前缀和优化
+                # prefix_sum优化
                 dp[i][j] += dp[i][j - 1]
                 dp[i][j] %= mod
         return dp[n][n]
@@ -2018,7 +2018,7 @@ class Solution:
     @staticmethod
     def lc_2060(s1: str, s2: str) -> bool:
 
-        # 模板：二维矩阵DP枚举记忆化搜索
+        # 二维matrix_dpbrute_force记忆化搜索
 
         def check(st):
             if len(st) == 1:

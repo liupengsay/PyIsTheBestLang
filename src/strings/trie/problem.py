@@ -1,34 +1,34 @@
 """
 Algorithm：Trie字典树，也叫前缀树
-Function：处理字符串以及结合位运算相关，01Trie通用用于查询位运算极值
+Function：处理字符串以及结合bit_operation相关，01Trie通用用于查询bit_operation极值
 
 ====================================LeetCode====================================
-421（https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/）经典 01 Trie
-638（https://leetcode.com/problems/shopping-offers/）经典使用字典树与记忆化搜索
-2416（https://leetcode.com/problems/sum-of-prefix-scores-of-strings/）单词组前缀计数
-1803（https://leetcode.com/problems/count-pairs-with-xor-in-a-range/）经典01Trie，查询异或值在一定范围的数组对，可以使用数组实现
+421（https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/） 01 Trie
+638（https://leetcode.com/problems/shopping-offers/）字典树与记忆化搜索
+2416（https://leetcode.com/problems/sum-of-prefix-scores-of-strings/）单词组前缀counter
+1803（https://leetcode.com/problems/count-pairs-with-xor-in-a-range/）01Trie，查询异或值在一定范围的数组对，可以数组实现
 677（https://leetcode.com/problems/map-sum-pairs/）更新与查询给定字符串作为单词键前缀的对应值的和
-2479（https://leetcode.com/problems/maximum-xor-of-two-non-overlapping-subtrees/）01Trie计算最大异或值
-面试题 17（https://leetcode.com/problems/multi-search-lcci/）AC自动机计数，也可直接使用字典树逆向思维，字典树存关键字，再搜索文本，和单词矩阵一样的套路
-1707（https://leetcode.com/problems/maximum-xor-with-an-element-from-array/）经典排序后离线查询并使用 01 Trie求解
-1938（https://leetcode.com/problems/maximum-genetic-difference-query/）使用深搜回溯与01Trie查询最大异或值
+2479（https://leetcode.com/problems/maximum-xor-of-two-non-overlapping-subtrees/）01Trie最大异或值
+面试题 17（https://leetcode.com/problems/multi-search-lcci/）AC自动机counter，也可直接字典树reverse_thinking，字典树存关键字，再搜索文本，和单词矩阵一样的套路
+1707（https://leetcode.com/problems/maximum-xor-with-an-element-from-array/）sorting后离线查询并 01 Trie求解
+1938（https://leetcode.com/problems/maximum-genetic-difference-query/）深搜back_track与01Trie查询最大异或值
 1032（https://leetcode.com/problems/stream-of-characters/description/）字典树典型应用，倒序存储
 
 =====================================LuoGu======================================
 8306（https://www.luogu.com.cn/problem/P8306）
 4551（https://www.luogu.com.cn/problem/P4551）关键是利用异或的性质，将任意根节点作为中转站
-3864（https://www.luogu.com.cn/problem/P3864）使用哈希枚举或者进行字典树存储
-5755（https://www.luogu.com.cn/problem/P5755）字典树节点计数
+3864（https://www.luogu.com.cn/problem/P3864）hashbrute_force或者字典树存储
+5755（https://www.luogu.com.cn/problem/P5755）字典树节点counter
 1481（https://www.luogu.com.cn/problem/P1481）最长词链
-5283（https://www.luogu.com.cn/problem/P5283）字典树查询第k大异或值，并使用堆贪心选取
-2922（https://www.luogu.com.cn/problem/P2922）字典树好题，前缀计数
-1738（https://www.luogu.com.cn/problem/P1738）字典树键计数
-8420（https://www.luogu.com.cn/problem/P8420）字典树贪心匹配
+5283（https://www.luogu.com.cn/problem/P5283）字典树查询第k大异或值，并堆greedy选取
+2922（https://www.luogu.com.cn/problem/P2922）字典树好题，前缀counter
+1738（https://www.luogu.com.cn/problem/P1738）字典树键counter
+8420（https://www.luogu.com.cn/problem/P8420）字典树greedy匹配
 
 ===================================CodeForces===================================
-1792D（https://codeforces.com/problemset/problem/1792/D）变形后使用字典树进行计数查询
-706D（https://codeforces.com/problemset/problem/706/D）经典01Trie，增加与删除数字，最大异或值查询
-241B（https://codeforces.com/contest/241/problem/B）经典01Trie计算第 K 大的异或对，并使用堆贪心选取
+1792D（https://codeforces.com/problemset/problem/1792/D）变形后字典树counter查询
+706D（https://codeforces.com/problemset/problem/706/D）01Trie，增|与删除数字，最大异或值查询
+241B（https://codeforces.com/contest/241/problem/B）01Trie第 K 大的异或对，并堆greedy选取
 665E（https://codeforces.com/contest/665/problem/E）统计连续区间异或对数目
 282E（https://codeforces.com/contest/282/problem/E）转换为 01Trie 求数组最大异或值
 Set Xor-Min（https://judge.yosupo.jp/problem/set_xor_min）template dynamic xor min
@@ -36,9 +36,9 @@ Set Xor-Min（https://judge.yosupo.jp/problem/set_xor_min）template dynamic xor
 
 =====================================AcWing=====================================
 142（https://www.acwing.com/problem/content/144/）字典树前缀统计
-143（https://www.acwing.com/problem/content/145/）模板题计算最大异或对
-144（https://www.acwing.com/problem/content/description/146/）经典使用01Trie计算树中最长异或路径
-161（https://www.acwing.com/problem/content/163/）使用字典树判断是否存在单词前缀包含
+143（https://www.acwing.com/problem/content/145/）模板题最大异或对
+144（https://www.acwing.com/problem/content/description/146/）01Trie树中最长异或路径
+161（https://www.acwing.com/problem/content/163/）字典树判断是否存在单词前缀包含
 
 """
 import heapq
@@ -58,7 +58,7 @@ class Solution:
 
     @staticmethod
     def lc_1717(big: str, smalls: List[str]) -> List[List[int]]:
-        # 模板：AC自动机类似题目，查询关键词在文本中的出现索引
+        # AC自动机类似题目，查询关键词在文本中的出现索引
         trie = TrieKeyWordSearchInText()
         for i, word in enumerate(smalls):
             trie.add_key_word(word, i)
@@ -72,7 +72,7 @@ class Solution:
 
     @staticmethod
     def lc_677():
-        # 模板：更新与查询给定字符串作为单词键前缀的对应值的和
+        # 更新与查询给定字符串作为单词键前缀的对应值的和
         class MapSum:
             def __init__(self):
                 self.trie = TriePrefixKeyValue()
@@ -88,7 +88,7 @@ class Solution:
 
     @staticmethod
     def lc_1803(nums: List[int], low: int, high: int) -> int:
-        # 模板：使用01字典树查询异或值在有一定范围内的数对个数
+        # 01字典树查询异或值在有一定范围内的数对个数
         count = Counter(nums)
         # 确定二进制序列的长度
         big = max(nums)
@@ -106,7 +106,7 @@ class Solution:
 
     @staticmethod
     def lc_1803_2(nums: List[int], low: int, high: int) -> int:
-        # 模板：统计范围内的异或对数目
+        # 统计范围内的异或对数目
         ans, cnt = 0, Counter(nums)
         high += 1
         while high:
@@ -124,7 +124,7 @@ class Solution:
 
     @staticmethod
     def cf_706d(ac=FastIO()):
-        # 模板：使用01字典树增加与删除数字后查询最大异或值
+        # 01字典树增|与删除数字后查询最大异或值
         trie = BinaryTrie(32)
         q = ac.read_int()
         trie.add(0)
@@ -171,7 +171,7 @@ class Solution:
 
     @staticmethod
     def lc_2479(n: int, edges: List[List[int]], values: List[int]) -> int:
-        # 模板：借助深搜的顺序进行01字典树查询最大异或数对值
+        # 借助深搜的顺序01字典树查询最大异或数对值
         dct = [[] for _ in range(n)]
         for i, j in edges:
             dct[i].append(j)
@@ -200,7 +200,7 @@ class Solution:
             trie.add(son[x])
             return
 
-        # 根据题意使用深搜序和01字典树动态维护查询
+        # 根据题意dfs_order和01字典树动态维护查询
         trie = TrieZeroOneXorMax(int(math.log2(sum(values)) + 2))
         ans = 0
         dfs2(0, -1)
@@ -215,7 +215,7 @@ class Solution:
 
     @staticmethod
     def lg_p1481(ac=FastIO()):
-        # 模板：字典树计算最长词链
+        # 字典树最长词链
         n = ac.read_int()
 
         dct = dict()
@@ -237,7 +237,7 @@ class Solution:
 
     @staticmethod
     def lg_p4551(ac=FastIO()):
-        # 模板：计算树中异或值最长的路径
+        # 树中异或值最长的路径
         n = ac.read_int()
         trie = TrieZeroOneXorMax(32)
 
@@ -262,7 +262,7 @@ class Solution:
 
     @staticmethod
     def lg_p5283(ac=FastIO()):
-        # 模板：计算数组中最大的 k 组异或对
+        # 数组中最大的 k 组异或对
         n, k = ac.read_list_ints()
         nums = [0] + ac.read_list_ints()
         for i in range(1, n + 1):
@@ -285,7 +285,7 @@ class Solution:
 
     @staticmethod
     def cf_241b(ac=FastIO()):
-        # 模板：计算数组中最大的 k 组异或对
+        # 数组中最大的 k 组异或对
         mod = 10 ** 9 + 7
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -305,7 +305,7 @@ class Solution:
 
     @staticmethod
     def ac_143(ac=FastIO()):
-        # 模板：计算最大异或对
+        # 最大异或对
         ac.read_int()
         ans = 0
         trie = TrieZeroOneXorMax(32)
@@ -318,7 +318,7 @@ class Solution:
     @staticmethod
     def ac_144(ac=FastIO()):
 
-        # 模板：经典使用01Trie计算树中最长异或路径
+        # 01Trie树中最长异或路径
         n = ac.read_int()
         dct = [dict() for _ in range(n)]
         for _ in range(n - 1):
@@ -345,7 +345,7 @@ class Solution:
 
     @staticmethod
     def ac_161(ac=FastIO()):
-        # 模板：经典O(n)使用字典树判断是否存在单词前缀包含
+        # O(n)字典树判断是否存在单词前缀包含
         for _ in range(ac.read_int()):
             n = ac.read_int()
             dct = dict()
@@ -373,7 +373,7 @@ class Solution:
 
     @staticmethod
     def lg_p2922(ac=FastIO()):
-        # 模板：字典树进行前缀匹配
+        # 字典树前缀匹配
         m, n = ac.read_list_ints()
         dct = dict()
         for _ in range(m):
@@ -401,7 +401,7 @@ class Solution:
 
     @staticmethod
     def lg_p1738(ac=FastIO()):
-        # 模板：动态维护字典树键个数
+        # 动态维护字典树键个数
         n = ac.read_int()
         dct = dict()
         ans = 0
@@ -418,10 +418,10 @@ class Solution:
 
     @staticmethod
     def lg_p8420(ac=FastIO()):
-        # 模板：字典树贪心匹配
+        # 字典树greedy匹配
         n, m, length = ac.read_list_ints()
 
-        # 计算后缀 0 1 匹配的代价和
+        # 后缀 0 1 匹配的代价和
         cnt = [0] * length
         for _ in range(n):
             s = ac.read_str()
@@ -431,7 +431,7 @@ class Solution:
         for i in range(length - 1, -1, -1):
             post[i] = post[i + 1] + ac.min(n - cnt[i], cnt[i])
 
-        # 使用禁用词构建字典
+        # 禁用词构建字典
         dct = dict()
         for _ in range(m):
             s = ac.read_str()
@@ -448,7 +448,7 @@ class Solution:
             if "1" in cur_dct:
                 dfs(x + 1, cur_dct["1"], p + n - cnt[x])
             else:
-                # 当前键为空时进行贪心匹配
+                # 当前键为空时greedy匹配
                 ans = ac.min(ans, p + n - cnt[x] + post[x + 1])
             if "0" in cur_dct:
                 dfs(x + 1, cur_dct["0"], p + cnt[x])
@@ -463,17 +463,17 @@ class Solution:
 
     @staticmethod
     def lc_1707(nums: List[int], queries: List[List[int]]) -> List[int]:
-        # 模板：经典排序后离线查询并使用 01 Trie求解最大异或值
+        # sorting后离线查询并 01 Trie求解最大异或值
         n = len(nums)
         nums.sort()
 
-        # 添加指针
+        # 添|pointer
         m = len(queries)
         for i in range(m):
             queries[i].append(i)
         queries.sort(key=lambda it: it[1])
 
-        # 使用指针进行离线查询
+        # pointer离线查询
         trie = TrieZeroOneXorMax(32)
         ans = [-1] * m
         j = 0
@@ -496,7 +496,7 @@ class Solution:
         cnt = {0: 1}
         for num in nums:
             cnt[num] = cnt.get(num, 0) + 1
-        # 模板：统计范围内的异或对数目
+        # 统计范围内的异或对数目
         ans = 0
         del nums
         high = 1 << 30
@@ -537,7 +537,7 @@ class Solution:
 
     @staticmethod
     def lc_421(nums: List[int]) -> int:
-        # 模板：求解数组最大的异或对，经典题，有更快解法
+        # 求解数组最大的异或对，题，有更快解法
         trie = TrieZeroOneXorMax(32)
         ans = 0
         for num in nums:
@@ -548,7 +548,7 @@ class Solution:
 
     @staticmethod
     def lc_421_2(nums: List[int]) -> int:
-        # 模板：更快解法
+        # 更快解法
         res = 0
         mask = 0
         max_len = len(bin(max(nums))) - 2
@@ -570,7 +570,7 @@ class Solution:
 
     @staticmethod
     def cf_282e(ac=FastIO()):
-        # 模板：维护和查询最大异或数值对
+        # 维护和查询最大异或数值对
         n = ac.read_int()
         nums = ac.read_list_ints()
         ans = pre = 0
@@ -590,7 +590,7 @@ class Solution:
 
     @staticmethod
     def lc_1938(parents: List[int], queries: List[List[int]]) -> List[int]:
-        # 模板：深搜回溯结合01Trie离线查询最大异或值对
+        # 深搜back_track结合01Trie离线查询最大异或值对
         n = len(parents)
         x = -1
         dct = [[] for _ in range(n)]
@@ -619,7 +619,7 @@ class Solution:
 
     @staticmethod
     def lc_1938_2(parents: List[int], queries: List[List[int]]) -> List[int]:
-        # 模板：深搜回溯结合01Trie离线查询最大异或值对
+        # 深搜back_track结合01Trie离线查询最大异或值对
         n = len(parents)
         dct = [[] for _ in range(n)]
         root = -1

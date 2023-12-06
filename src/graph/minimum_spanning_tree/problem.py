@@ -1,57 +1,57 @@
 """
 
-Algorithm：最小生成树（Kruskal算法和Prim算法两种）、严格次小生成树（使用LCA枚举替换边计算可得）、最短路生成树
-Function：计算无向图边权值和最小的生成树
-Prim在稠密图中比Kruskal优，在稀疏图中比Kruskal劣。Prim是以更新过的节点的连边找最小值，Kruskal是直接将边排序。
-两者其实都是运用贪心的思路，Kruskal相对比较常用
+Algorithm：最小生成树（Kruskal算法和Prim算法两种）、严格次小生成树（LCAbrute_force替换边可得）、最短路生成树
+Function：无向图边权值和最小的生成树
+Prim在稠密图中比Kruskal优，在稀疏图中比Kruskal劣。Prim是以更新过的节点的连边找最小值，Kruskal是直接将边sorting。
+两者其实都是运用greedy的思路，Kruskal相对比较常用
 
 
 ====================================LeetCode====================================
-1489（https://leetcode.com/problems/find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree/）计算最小生成树的关键边与伪关键边
-1584（https://leetcode.com/problems/min-cost-to-connect-all-points/）稠密图使用 prim 生成最小生成树
-1724（https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths-ii/）经典使用最小生成树与倍增求解任意点对之间简单路径的最大边权值
+1489（https://leetcode.com/problems/find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree/）最小生成树的关键边与伪关键边
+1584（https://leetcode.com/problems/min-cost-to-connect-all-points/）稠密图 prim 生成最小生成树
+1724（https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths-ii/）最小生成树与倍增求解任意点对之间简单路径的最大边权值
 
 =====================================LuoGu======================================
 3366（https://www.luogu.com.cn/problem/P3366）最小生成树裸题
-2820（https://www.luogu.com.cn/problem/P2820）逆向思维，求最小生成树权值和
-1991（https://www.luogu.com.cn/problem/P1991）计算保证k个连通块下最小的边权值
+2820（https://www.luogu.com.cn/problem/P2820）reverse_thinking，求最小生成树权值和
+1991（https://www.luogu.com.cn/problem/P1991）保证k个连通块下最小的边权值
 
 1661（https://www.luogu.com.cn/problem/P1661）最小生成树的边最大权值
 1547（https://www.luogu.com.cn/problem/P1547）最小生成树的边最大权值
 2121（https://www.luogu.com.cn/problem/P2121）保留 k 条边的最大生成树权值
 2126（https://www.luogu.com.cn/problem/P2126）转化为最小生成树求解
-2872（https://www.luogu.com.cn/problem/P2872）使用prim计算最小生成树
+2872（https://www.luogu.com.cn/problem/P2872）prim最小生成树
 2330（https://www.luogu.com.cn/problem/P2330）最小生成树边数量与最大边权值
 2504（https://www.luogu.com.cn/problem/P2504）识别为最小生成树求解
-2700（https://www.luogu.com.cn/problem/P2700）逆向思维与最小生成树，选取最大权组合，修改并查集size
+2700（https://www.luogu.com.cn/problem/P2700）reverse_thinking与最小生成树，选取最大权组合，修改union_findsize
 1195（https://www.luogu.com.cn/record/list?user=739032&status=12&page=13）最小生成树生成K个连通块
 1194（https://www.luogu.com.cn/problem/P1194）最小生成树变种问题
-2916（https://www.luogu.com.cn/problem/P2916）需要自定义排序之后计算最小生成树的好题
+2916（https://www.luogu.com.cn/problem/P2916）需要自定义sorting之后最小生成树的好题
 4955（https://www.luogu.com.cn/problem/P4955）最小生成树，自定义中止条件
-6705（https://www.luogu.com.cn/problem/P6705）枚举最小值，使用最小生成树，与自定义权值进行计算
-7775（https://www.luogu.com.cn/problem/P7775）BFS加最小生成树思想，求解
-2658（https://www.luogu.com.cn/problem/P2658）典型最小生成树计算
-4180（https://www.luogu.com.cn/problem/P4180）使用最小生成树与LCA倍增查询计算严格次小生成树
-1265（https://www.luogu.com.cn/problem/P1265）使用prim求解最小生成树
-1340（https://www.luogu.com.cn/problem/P1340）逆序并查集，维护最小生成树的边
-1550（https://www.luogu.com.cn/problem/P1550）经典题目，建立虚拟源点，转换为最小生成树问题
-2212（https://www.luogu.com.cn/problem/P2212）经典题目，使用prim计算稠密图最小生成树
-2847（https://www.luogu.com.cn/problem/P2847）使用prim计算最小生成树，适合稠密图场景
-3535（https://www.luogu.com.cn/problem/P3535）最小生成树思想与并查集判环
-4047（https://www.luogu.com.cn/problem/P4047）使用最小生成树进行最优聚类距离计算
-6171（https://www.luogu.com.cn/problem/P6171）稀疏图使用 Kruskal 计算最小生成树
-1550（https://www.luogu.com.cn/problem/P1550）经典最小生成树，增加虚拟源点
+6705（https://www.luogu.com.cn/problem/P6705）brute_force最小值，最小生成树，与自定义权值
+7775（https://www.luogu.com.cn/problem/P7775）BFS|最小生成树思想，求解
+2658（https://www.luogu.com.cn/problem/P2658）典型最小生成树
+4180（https://www.luogu.com.cn/problem/P4180）最小生成树与LCA倍增查询严格次小生成树
+1265（https://www.luogu.com.cn/problem/P1265）prim求解最小生成树
+1340（https://www.luogu.com.cn/problem/P1340）逆序union_find，维护最小生成树的边
+1550（https://www.luogu.com.cn/problem/P1550）题目，建立虚拟源点，转换为最小生成树问题
+2212（https://www.luogu.com.cn/problem/P2212）题目，prim稠密图最小生成树
+2847（https://www.luogu.com.cn/problem/P2847）prim最小生成树，适合稠密图场景
+3535（https://www.luogu.com.cn/problem/P3535）最小生成树思想与union_find判环
+4047（https://www.luogu.com.cn/problem/P4047）最小生成树最优聚类距离
+6171（https://www.luogu.com.cn/problem/P6171）稀疏图 Kruskal 最小生成树
+1550（https://www.luogu.com.cn/problem/P1550）最小生成树，增|虚拟源点
 
 ===================================CodeForces===================================
-472D（https://codeforces.com/problemset/problem/472/D）使用最小生成树判断构造给定的点对最短路距离是否存在，使用prim算法复杂度更优
-609E（https://codeforces.com/problemset/problem/609/E）使用LCA的思想维护树中任意两点的路径边权最大值，并贪心替换获得边作为最小生成树时的最小权值和，有点类似于关键边与非关键边，但二者并不相同，即为严格次小生成树
-1108F（https://codeforces.com/contest/1108/problem/F）使得最小生成树的边组合唯一时，需要增加权重的最少边数量
+472D（https://codeforces.com/problemset/problem/472/D）最小生成树判断构造给定的点对最短路距离是否存在，prim算法复杂度更优
+609E（https://codeforces.com/problemset/problem/609/E）LCA的思想维护树中任意两点的路径边权最大值，并greedy替换获得边作为最小生成树时的最小权值和，有点类似于关键边与非关键边，但二者并不相同，即为严格次小生成树
+1108F（https://codeforces.com/contest/1108/problem/F）使得最小生成树的边组合唯一时，需要增|权重的最少边数量
 
 ====================================AtCoder=====================================
 D - Built?（https://atcoder.jp/contests/abc065/tasks/arc076_b）最小生成树变形问题
 
 =====================================AcWing=====================================
-3728（https://www.acwing.com/problem/content/3731/）使用prim计算最小生成树，适合稠密图场景，并获取具体连边方案，也可直接使用Kruskal（超时）
+3728（https://www.acwing.com/problem/content/3731/）prim最小生成树，适合稠密图场景，并获取具体连边方案，也可直接Kruskal（超时）
 
 ================================LibraryChecker================================
 Manhattan MST（https://judge.yosupo.jp/problem/manhattanmst）
@@ -75,7 +75,7 @@ class Solution:
 
     @staticmethod
     def lg_p1991(ac=FastIO()):
-        # 模板：利用最小生成树计算 k 个连通块所需的最大边权值
+        # 利用最小生成树 k 个连通块所需的最大边权值
         k, n = ac.read_list_ints()
         pos = [ac.read_list_ints() for _ in range(n)]
         edge = []
@@ -99,7 +99,7 @@ class Solution:
 
     @staticmethod
     def lg_2820(ac=FastIO()):
-        # 模板：求删除最大权值和使得存在回路的连通图变成最小生成树
+        # 求删除最大权值和使得存在回路的连通图变成最小生成树
         n, m = ac.read_list_ints()
         edge = [ac.read_list_ints() for _ in range(m)]
         uf = UnionFind(n)
@@ -113,7 +113,7 @@ class Solution:
 
     @staticmethod
     def lg_p3366_1(ac=FastIO()):
-        # 模板：kruskal求最小生成树
+        # kruskal求最小生成树
         n, m = ac.read_list_ints()
         edges = []
         for _ in range(m):
@@ -130,7 +130,7 @@ class Solution:
 
     @staticmethod
     def lg_p3366_2(ac=FastIO()):
-        # 模板：prim求最小生成树
+        # prim求最小生成树
         n, m = ac.read_list_ints()
         edges = []
         for _ in range(m):
@@ -147,7 +147,7 @@ class Solution:
 
     @staticmethod
     def cf_1108f(ac=FastIO()):
-        # 模板：使得最小生成树的边组合唯一时，需要增加权重的最少边数量
+        # 使得最小生成树的边组合唯一时，需要增|权重的最少边数量
         n, m = ac.read_list_ints()
         edges = []
         for _ in range(m):
@@ -155,7 +155,7 @@ class Solution:
             if i != j:  # 去除自环
                 edges.append([i - 1, j - 1, w])
 
-        # 计算kruskal最小生成树
+        # kruskal最小生成树
         uf = UnionFind(n)
         dct = [dict() for _ in range(n)]
         cost = 0
@@ -166,7 +166,7 @@ class Solution:
             if uf.part == 1:
                 break
         del uf
-        # 枚举新增的边
+        # brute_force新增的边
         tree = TreeAncestorWeightSecond(dct)
         ans = 0
         # 使得最小生成树唯一等价于有某条边参与时依旧代价最小的该边数量
@@ -182,13 +182,13 @@ class Solution:
 
     @staticmethod
     def lc_1489(n: int, edges: List[List[int]]) -> List[List[int]]:
-        # 模板：求最小生成树的关键边与伪关键边
+        # 求最小生成树的关键边与伪关键边
         m = len(edges)
-        # 代价排序
+        # 代价sorting
         lst = list(range(m))
         lst.sort(key=lambda it: edges[it][2])
 
-        # 计算最小生成树代价
+        # 最小生成树代价
         min_cost = 0
         uf = UnionFind(n)
         for i in lst:
@@ -196,7 +196,7 @@ class Solution:
             if uf.union(x, y):
                 min_cost += cost
 
-        # 枚举关键边
+        # brute_force关键边
         key = set()
         for i in lst:
             cur_cost = 0
@@ -209,13 +209,13 @@ class Solution:
             if cur_cost > min_cost or uf.part != 1:
                 key.add(i)
 
-        # 枚举伪关键边
+        # brute_force伪关键边
         fake = set()
         for i in lst:
             if i not in key:
                 cur_cost = edges[i][2]
                 uf = UnionFind(n)
-                # 先将当前边加入生成树
+                # 先将当前边|入生成树
                 uf.union(edges[i][0], edges[i][1])
                 for j in lst:
                     x, y, cost = edges[j]
@@ -230,7 +230,7 @@ class Solution:
     @staticmethod
     def lg_p2872(ac=FastIO()):
 
-        # 模板：使用prim计算最小生成树，适合稠密图场景
+        # prim最小生成树，适合稠密图场景
         def dis(x1, y1, x2, y2):
             res = (x1 - x2) ** 2 + (y1 - y2) ** 2
             return res ** 0.5
@@ -268,7 +268,7 @@ class Solution:
 
     @staticmethod
     def lg_p1194(ac=FastIO()):
-        # 模板：使用超级源点建图计算最小生成树
+        # 超级源点建图最小生成树
         a, b = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(b)]
         edge = [[0, i, a] for i in range(1, b + 1)]
@@ -282,7 +282,7 @@ class Solution:
 
     @staticmethod
     def cf_472d(ac=FastIO()):
-        # 模板：使用 prim 校验最小生成树是否存在
+        #  prim 校验最小生成树是否存在
         n = ac.read_int()
         grid = [ac.read_list_ints() for _ in range(n)]
         for i in range(n):
@@ -294,7 +294,7 @@ class Solution:
                     ac.st("NO")
                     return
 
-        # Prim 贪心按照权值选择边进行连通合并
+        # Prim greedy按照权值选择边连通合并
         dis = [math.inf] * n
         dis[0] = 0
         visit = [0] * n
@@ -319,7 +319,7 @@ class Solution:
                     heappush(stack, [w, j, i])
         del stack
 
-        # BFS 计算根节点到所有节点的距离
+        # BFS 根节点到所有节点的距离
         for i in range(n):
             cur = [inf] * n
             stack = [i]
@@ -338,7 +338,7 @@ class Solution:
 
     @staticmethod
     def lg_p4180(ac=FastIO()):
-        # 模板：使用最小生成树与LCA倍增查询计算严格次小生成树
+        # 最小生成树与LCA倍增查询严格次小生成树
         n, m = ac.read_list_ints()
         edges = []
         for _ in range(m):
@@ -346,7 +346,7 @@ class Solution:
             if i != j:  # 去除自环
                 edges.append([i - 1, j - 1, w])
 
-        # 计算kruskal最小生成树
+        # kruskal最小生成树
         edges.sort(key=lambda it: it[2])
         uf = UnionFind(n)
         dct = [dict() for _ in range(n)]
@@ -358,7 +358,7 @@ class Solution:
             if uf.part == 1:
                 break
 
-        # 枚举新增的边
+        # brute_force新增的边
         tree = TreeAncestorWeightSecond(dct)
         ans = inf
         for i, j, w in edges:
@@ -372,7 +372,7 @@ class Solution:
 
     @staticmethod
     def cf_609e(ac=FastIO()):
-        # 模板：计算最小生成树有指定边参与时的最小权值和，由此也可计算严格次小生成树
+        # 最小生成树有指定边参与时的最小权值和，由此也可严格次小生成树
         n, m = ac.read_list_ints()
         edges = []
         for _ in range(m):
@@ -380,7 +380,7 @@ class Solution:
             if i != j:  # 去除自环
                 edges.append([i - 1, j - 1, w])
 
-        # 计算kruskal最小生成树
+        # kruskal最小生成树
         uf = UnionFind(n)
         dct = [dict() for _ in range(n)]
         cost = 0
@@ -391,7 +391,7 @@ class Solution:
             if uf.part == 1:
                 break
 
-        # 枚举新增的边
+        # brute_force新增的边
         tree = TreeAncestorWeightSecond(dct)
         for i, j, w in edges:
             if j in dct[i] and dct[i][j] == w:
@@ -403,7 +403,7 @@ class Solution:
 
     @staticmethod
     def lg_p1265(ac=FastIO()):
-        # 模板：使用prim计算最小生成树，适合稠密图场景
+        # prim最小生成树，适合稠密图场景
 
         def dis(x1, y1, x2, y2):
             return (x1 - x2) ** 2 + (y1 - y2) ** 2
@@ -436,10 +436,10 @@ class Solution:
 
     @staticmethod
     def lg_p1340(ac=FastIO()):
-        # 模板：逆序并查集，维护最小生成树的边
+        # 逆序union_find，维护最小生成树的边
         n, w = ac.read_list_ints()
 
-        # 离线查询处理，按照边权排序
+        # 离线查询处理，按照边权sorting
         edges = [ac.read_list_ints() for _ in range(w)]
         ind = list(range(w))
         ind.sort(key=lambda it: edges[it][-1])
@@ -464,7 +464,7 @@ class Solution:
                 ans.append(-1)
                 break
             ans.append(cost)
-            if i in select:  # 当前路径不可用，重置并查集
+            if i in select:  # 当前路径不可用，重置union_find
                 uf = UnionFind(n)
                 select = set()
                 cost = 0
@@ -478,7 +478,7 @@ class Solution:
 
     @staticmethod
     def lg_p1550(ac=FastIO()):
-        # 模板：建立虚拟源点，转换为最小生成树问题
+        # 建立虚拟源点，转换为最小生成树问题
         n = ac.read_int()
         edges = []
         for i in range(n):
@@ -503,7 +503,7 @@ class Solution:
     @staticmethod
     def lg_p2212(ac=FastIO()):
 
-        # 模板：使用prim计算最小生成树，适合稠密图场景
+        # prim最小生成树，适合稠密图场景
         def dis(x1, y1, x2, y2):
             res = (x1 - x2) ** 2 + (y1 - y2) ** 2
             return res if res >= c else inf
@@ -536,7 +536,7 @@ class Solution:
 
     @staticmethod
     def lg_p2658(ac=FastIO()):
-        # 模板：典型最小生成树计算
+        # 典型最小生成树
         m, n = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
         uf = UnionFind(m * n)
@@ -570,7 +570,7 @@ class Solution:
     @staticmethod
     def lg_p2847(ac=FastIO()):
 
-        # 模板：使用prim计算最小生成树，适合稠密图场景
+        # prim最小生成树，适合稠密图场景
         def dis(x1, y1, x2, y2):
             res = (x1 - x2) ** 2 + (y1 - y2) ** 2
             return res
@@ -603,7 +603,7 @@ class Solution:
 
     @staticmethod
     def lg_p3535(ac=FastIO()):
-        # 模板：最小生成树思想与并查集判环
+        # 最小生成树思想与union_find判环
         n, m, k = ac.read_list_ints()
         edge = []
         uf = UnionFind(n)
@@ -628,7 +628,7 @@ class Solution:
         def dis():
             return (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)
 
-        # 模板：使用最小生成树进行最优聚类距离计算
+        # 最小生成树最优聚类距离
         n, k = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         edge = []
@@ -639,7 +639,7 @@ class Solution:
                 edge.append([i, j, dis()])
         edge.sort(key=lambda it: it[2])
 
-        # 当分成 k 个联通块时计算最短距离
+        # 当分成 k 个联通块时最短距离
         uf = UnionFind(n)
         ans = 0
         for i, j, d in edge:
@@ -655,7 +655,7 @@ class Solution:
 
     @staticmethod
     def lg_p6171(ac=FastIO()):
-        # 模板：稀疏图使用 Kruskal 计算最小生成树
+        # 稀疏图 Kruskal 最小生成树
         a, b, n, m = ac.read_list_ints()
         nums1 = [0, a] + [ac.read_int() for _ in range(n)]
         nums2 = [0, b] + [ac.read_int() for _ in range(m)]
@@ -684,7 +684,7 @@ class Solution:
     @staticmethod
     def lc_1584_1(nums: List[List[int]]) -> int:
 
-        # 模板：使用prim计算最小生成树，适合稠密图场景
+        # prim最小生成树，适合稠密图场景
         def dis(x1, y1, x2, y2):
             res = abs(x1 - x2) + abs(y1 - y2)
             return res
@@ -716,7 +716,7 @@ class Solution:
     @staticmethod
     def lc_1584_2(nums: List[List[int]]) -> int:
 
-        # 模板：使用prim计算最小生成树，适合稠密图场景
+        # prim最小生成树，适合稠密图场景
         def dis(xx1, yy1, xx2, yy2):
             res = abs(xx1 - xx2) + abs(yy1 - yy2)
             return res
@@ -734,7 +734,7 @@ class Solution:
 
     @staticmethod
     def lg_p1556(ac=FastIO()):
-        # 模板：经典最小生成树，增加虚拟源点
+        # 最小生成树，增|虚拟源点
         n = ac.read_int()
         edges = []
         for i in range(n):
@@ -759,7 +759,7 @@ class Solution:
 
     @staticmethod
     def abc_65d(ac=FastIO()):
-        # 模板：最小生成树变形问题
+        # 最小生成树变形问题
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         ind = list(range(n))
@@ -786,7 +786,7 @@ class Solution:
     @staticmethod
     def ac_3728(ac=FastIO()):
 
-        # 模板：使用prim计算最小生成树，适合稠密图场景，并获取具体连边方案，也可直接使用Kruskal（超时）
+        # prim最小生成树，适合稠密图场景，并获取具体连边方案，也可直接Kruskal（超时）
 
         def dis(aa, bb):
             if aa == 0:
@@ -843,7 +843,7 @@ class Solution:
 
 
 class DistanceLimitedPathsExist:
-    # 模板：LC1724
+    # LC1724
     def __init__(self, n: int, edge_list: List[List[int]]):
         uf = UnionFind(n)
         edge = []
@@ -866,7 +866,7 @@ class DistanceLimitedPathsExist:
             r = self.root[i]
             dct[r][self.ind[r][i]][self.ind[r][j]] = d
             dct[r][self.ind[r][j]][self.ind[r][i]] = d
-        # 使用倍增维护查询任意两点路径的最大边权值
+        # 倍增维护查询任意两点路径的最大边权值
         self.tree = [TreeAncestorWeightSecond(dc) for dc in dct]
 
     def query(self, p: int, q: int, limit: int) -> bool:

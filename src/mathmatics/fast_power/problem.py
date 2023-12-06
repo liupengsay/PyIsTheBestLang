@@ -1,32 +1,32 @@
 """
 Algorithm：快速幂、矩阵快速幂DP、乘法逆元
-Function：高效计算整数的幂次方取模
+Function：高效整数的幂次方取模
 
 ====================================LeetCode====================================
-450（https://leetcode.com/problems/number-of-distinct-binary-strings-after-applying-operations/）脑筋急转弯快速幂计算
-1931（https://leetcode.com/problems/painting-a-grid-with-three-different-colors/）转移DP可以使用快速幂进行计算
-8020（https://leetcode.com/problems/string-transformation/description/）使用KMP与快速幂进行转移计算
-1622（https://leetcode.com/problems/fancy-sequence/description/）经典逆向思维，乘法逆元运用，类似容斥原理
+450（https://leetcode.com/problems/number-of-distinct-binary-strings-after-applying-operations/）brain_teaser快速幂
+1931（https://leetcode.com/problems/painting-a-grid-with-three-different-colors/）转移DP可以快速幂
+8020（https://leetcode.com/problems/string-transformation/description/）KMP与快速幂转移
+1622（https://leetcode.com/problems/fancy-sequence/description/）reverse_thinking，乘法逆元运用，类似inclusion_exclusion
 
 =====================================LuoGu======================================
-1630（https://www.luogu.com.cn/problem/P1630）快速幂计算，利用同模进行计数加和
+1630（https://www.luogu.com.cn/problem/P1630）快速幂，利用同模counter|和
 1939（https://www.luogu.com.cn/problem/P1939）矩阵快速幂递推求解
 1962（https://www.luogu.com.cn/problem/P1962）矩阵快速幂递推求解
-3390（https://www.luogu.com.cn/problem/P3390）矩阵快速幂计算
+3390（https://www.luogu.com.cn/problem/P3390）矩阵快速幂
 3811（https://www.luogu.com.cn/problem/P3811）乘法逆元模板题
-5775（https://www.luogu.com.cn/problem/P5775）从背包模拟、前缀和优化、到数列变换使用矩阵快速幂再到纯模拟
-6045（https://www.luogu.com.cn/problem/P6045）脑筋急转弯进行组合计数与快速幂枚举计算
-6075（https://www.luogu.com.cn/problem/P6075）组合计数后进行快速幂计算
-6392（https://www.luogu.com.cn/problem/P6392）公式拆解变换后进行快速幂计算
-1045（https://www.luogu.com.cn/problem/P1045）位数公式转换与快速幂计算
-3509（https://www.luogu.com.cn/problem/P3509）双指针模拟寻找第k远的距离，快速幂原理跳转
+5775（https://www.luogu.com.cn/problem/P5775）从背包implemention、prefix_sum优化、到数列变换矩阵快速幂再到纯implemention
+6045（https://www.luogu.com.cn/problem/P6045）brain_teaser组合counter与快速幂brute_force
+6075（https://www.luogu.com.cn/problem/P6075）组合counter后快速幂
+6392（https://www.luogu.com.cn/problem/P6392）公式拆解变换后快速幂
+1045（https://www.luogu.com.cn/problem/P1045）位数公式转换与快速幂
+3509（https://www.luogu.com.cn/problem/P3509）two_pointerimplemention寻找第k远的距离，快速幂原理跳转
 1349（https://www.luogu.com.cn/problem/P1349）矩阵快速幂
 2233（https://www.luogu.com.cn/problem/P2233）矩阵快速幂
 2613（https://www.luogu.com.cn/problem/P2613）乘法逆元
-3758（https://www.luogu.com.cn/problem/P3758）矩阵 DP 使用快速幂优化
-5789（https://www.luogu.com.cn/problem/P5789）矩阵 DP 使用快速幂优化
-5343（https://www.luogu.com.cn/problem/P5343）线性 DP 使用矩阵幂加速计算
-8557（https://www.luogu.com.cn/problem/P8557）脑筋急转弯快速幂计数
+3758（https://www.luogu.com.cn/problem/P3758）矩阵 DP 快速幂优化
+5789（https://www.luogu.com.cn/problem/P5789）矩阵 DP 快速幂优化
+5343（https://www.luogu.com.cn/problem/P5343）线性 DP 矩阵幂|速
+8557（https://www.luogu.com.cn/problem/P8557）brain_teaser快速幂counter
 8624（https://www.luogu.com.cn/problem/P8624）矩阵 DP 与快速幂
 
 =====================================AcWing=====================================
@@ -48,7 +48,7 @@ class Solution:
 
     @staticmethod
     def lc_8020(s: str, t: str, k: int) -> int:
-        # 模板：使用KMP与快速幂进行转移计算
+        # KMP与快速幂转移
         mod = 10 ** 9 + 7
         n = len(s)
         kmp = KMP()
@@ -63,7 +63,7 @@ class Solution:
 
     @staticmethod
     def lg_p1045(ac=FastIO()):
-        # 模板：位数计算与快速幂保留后几百位数字
+        # 位数与快速幂保留后几百位数字
         p = ac.read_int()
         ans1 = int(p * math.log10(2)) + 1
         ans2 = pow(2, p, 10 ** 501) - 1
@@ -76,7 +76,7 @@ class Solution:
 
     @staticmethod
     def lg_p1630(ac=FastIO()):
-        # 模板：利用取模分组计数与快速幂计算 1**b+2**b+..+a**b % mod 的值
+        # 利用取模分组counter与快速幂 1**b+2**b+..+a**b % mod 的值
         mod = 10 ** 4
         for _ in range(ac.read_int()):
             a, b = ac.read_list_ints()
@@ -87,7 +87,7 @@ class Solution:
 
     @staticmethod
     def lg_p1939(ac=FastIO()):
-        # 模板：利用转移矩阵乘法公式和快速幂计算值
+        # 利用转移矩阵乘法公式和快速幂值
         mat = [[1, 0, 1], [1, 0, 0], [0, 1, 0]]
         lst = [1, 1, 1]
         mod = 10 ** 9 + 7
@@ -105,13 +105,13 @@ class Solution:
     @staticmethod
     def lg_p3509(ac=FastIO()):
 
-        # 模板：双指针模拟寻找第k远的距离，快速幂原理跳转
+        # two_pointerimplemention寻找第k远的距离，快速幂原理跳转
         n, k, m = ac.read_list_ints()
         nums = ac.read_list_ints()
 
         ans = list(range(n))
 
-        # 双指针找出下一跳
+        # two_pointer找出下一跳
         nex = [0] * n
         head = 0
         tail = k
@@ -124,7 +124,7 @@ class Solution:
                 nex[i] = head
             else:
                 nex[i] = tail
-        # 快速幂倍增计算
+        # 快速幂倍增
         while m:
             if m & 1:
                 ans = [nex[ans[i]] for i in range(n)]
@@ -135,7 +135,7 @@ class Solution:
 
     @staticmethod
     def lg_p1349(ac=FastIO()):
-        # 模板：矩阵快速幂
+        # 矩阵快速幂
         p, q, a1, a2, n, m = ac.read_list_ints()
         if n == 1:
             ac.st(a1 % m)
@@ -146,7 +146,7 @@ class Solution:
         # 建立快速幂矩阵
         mat = [[p, q], [1, 0]]
         res = MatrixFastPower().matrix_pow(mat, n - 2, m)
-        # 计算结果
+        # 结果
         ans = res[0][0] * a2 + res[0][1] * a1
         ans %= m
         ac.st(ans)
@@ -154,7 +154,7 @@ class Solution:
 
     @staticmethod
     def lg_p2233(ac=FastIO()):
-        # 模板：矩阵快速幂
+        # 矩阵快速幂
         n = ac.read_int()
         mat = [[0, 1, 0, 0, 0, 0, 0, 1],
                [1, 0, 1, 0, 0, 0, 0, 0],
@@ -173,7 +173,7 @@ class Solution:
 
     @staticmethod
     def lg_p2613(ac=FastIO()):
-        # 模板：乘法逆元求解
+        # 乘法逆元求解
         mod = 19260817
         a = ac.read_int()
         b = ac.read_int()
@@ -184,7 +184,7 @@ class Solution:
 
     @staticmethod
     def lg_p3758(ac=FastIO()):
-        # 模板：矩阵 DP 使用快速幂优化
+        # 矩阵 DP 快速幂优化
         n, m = ac.read_list_ints()
         # 转移矩阵
         grid = [[0] * (n + 1) for _ in range(n + 1)]
@@ -194,7 +194,7 @@ class Solution:
         for _ in range(m):
             u, v = ac.read_list_ints()
             grid[u][v] = grid[v][u] = 1
-        # 快速幂与最终状态计算
+        # 快速幂与最终状态
         initial = [0] * (n + 1)
         initial[1] = 1
         mod = 2017
@@ -209,7 +209,7 @@ class Solution:
 
     @staticmethod
     def lg_p5343(ac=FastIO()):
-        # 模板：线性 DP 使用矩阵幂加速计算
+        # 线性 DP 矩阵幂|速
         mod = 10 ** 9 + 7
         n = ac.read_int()
         ac.read_int()
@@ -228,7 +228,7 @@ class Solution:
         if n <= size:
             ac.st(dp[n])
             return
-        # 矩阵幂加速
+        # 矩阵幂|速
         mat = [[0] * (size + 1) for _ in range(size + 1)]
         for i in range(size, 0, -1):
             mat[i][-(size - i + 2)] = 1
@@ -244,7 +244,7 @@ class Solution:
 
     @staticmethod
     def lg_p8557(ac=FastIO()):
-        # 模板：脑筋急转弯快速幂计数
+        # brain_teaser快速幂counter
         mod = 998244353
         n, k = ac.read_list_ints()
         ans = pow((pow(2, k, mod) - 1) % mod, n, mod)
@@ -253,7 +253,7 @@ class Solution:
 
     @staticmethod
     def lg_p8624(ac=FastIO()):
-        # 模板：矩阵 DP 与快速幂
+        # 矩阵 DP 与快速幂
         mod = 10 ** 9 + 7
         n, m = ac.read_list_ints()
         rem = [[0] * 6 for _ in range(6)]
@@ -277,7 +277,7 @@ class Solution:
 
     @staticmethod
     def ac_27(base, exponent):
-        # 模板：浮点数快速幂
+        # 浮点数快速幂
         if base == 0:
             return 0
         if exponent == 0:

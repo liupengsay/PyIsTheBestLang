@@ -1,50 +1,50 @@
 """
 Algorithm：树状数组、二维树状数组
-Function：进行数组区间加减，和区间值求和（单点可转换为区间）
+Function：数组区间|减，和区间值求和（单点可转换为区间）
 
 ====================================LeetCode====================================
 307（https://leetcode.com/problems/range-sum-query-mutable）PointChangeRangeSum
-1409（https://leetcode.com/problems/queries-on-a-permutation-with-key/）经典树状数组模拟
-1626（https://leetcode.com/problems/best-team-with-no-conflicts/）树状数组维护前缀最大值，也可使用动态规划求解
+1409（https://leetcode.com/problems/queries-on-a-permutation-with-key/）树状数组implemention
+1626（https://leetcode.com/problems/best-team-with-no-conflicts/）树状数组维护前缀最大值，也可动态规划求解
 6353（https://leetcode.com/problems/minimum-number-of-visited-cells-in-a-grid/）树状数组维护前缀区间最小值单点更新
 308（https://leetcode.com/problems/range-sum-query-2d-mutable/）二维树状数组，单点增减与区间和查询
-2659（https://leetcode.com/problems/make-array-empty/submissions/）经典模拟删除，可以使用树状数组也可以使用SortedList也可以使用贪心
-1505（https://leetcode.com/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/）经典树状数组模拟计数移动，也可以使用SortedList
-2193（https://leetcode.com/problems/minimum-number-of-moves-to-make-palindrome/description/）使用树状数组贪心模拟交换构建回文串，相同题目（P5041求回文串）
-2407（https://leetcode.com/problems/longest-increasing-subsequence-ii/description/）树状数组加线性DP
-100112（https://leetcode.com/problems/maximum-balanced-subsequence-sum/）离散化树状数组加线性DP
+2659（https://leetcode.com/problems/make-array-empty/submissions/）implemention删除，可以树状数组也可以SortedList也可以greedy
+1505（https://leetcode.com/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/）树状数组implementioncounter移动，也可以SortedList
+2193（https://leetcode.com/problems/minimum-number-of-moves-to-make-palindrome/description/）树状数组greedyimplemention交换构建回文串，相同题目（P5041求回文串）
+2407（https://leetcode.com/problems/longest-increasing-subsequence-ii/description/）树状数组|线性DP
+100112（https://leetcode.com/problems/maximum-balanced-subsequence-sum/）离散化树状数组|线性DP
 2736（https://leetcode.com/problems/maximum-sum-queries/）PointAddPreMax
 
 =====================================LuoGu======================================
 2068（https://www.luogu.com.cn/problem/P2068）单点更新与区间求和
-2345（https://www.luogu.com.cn/problem/P2345）使用两个树状数组计数与加和更新查询
+2345（https://www.luogu.com.cn/problem/P2345）两个树状数组counter与|和更新查询
 2357（https://www.luogu.com.cn/problem/P2357）区间更新与区间求和
 2781（https://www.luogu.com.cn/problem/P2781）区间更新与区间求和
-5200（https://www.luogu.com.cn/problem/P5200）树状数组加贪心模拟
+5200（https://www.luogu.com.cn/problem/P5200）树状数组|greedyimplemention
 3374（https://www.luogu.com.cn/problem/P3374）区间值更新与求和
 3368（https://www.luogu.com.cn/problem/P3368）区间值更新与求和
 5677（https://www.luogu.com.cn/problem/P5677）区间值更新与求和
-5094（https://www.luogu.com.cn/problem/P5094）单点更新增加值与前缀区间和查询
+5094（https://www.luogu.com.cn/problem/P5094）单点更新增|值与前缀区间和查询
 1816（https://www.luogu.com.cn/problem/P1816）树状数组查询静态区间最小值
 1908（https://www.luogu.com.cn/problem/P1908）树状数组求逆序对
 1725（https://www.luogu.com.cn/problem/P1725）倒序线性DP，单点更新值，查询区间最大值
-3586（https://www.luogu.com.cn/problem/P3586）离线查询、离散化树状数组，单点增减，前缀和查询
+3586（https://www.luogu.com.cn/problem/P3586）离线查询、离散化树状数组，单点增减，prefix_sum查询
 1198（https://www.luogu.com.cn/problem/P1198）树状数组，查询区间最大值
-4868（https://www.luogu.com.cn/problem/P4868）经典转换公式单点修改，使用两个树状数组维护前缀和的前缀和
-5463（https://www.luogu.com.cn/problem/P5463）经典使用树状数组维护前缀计数，枚举最大值计算所有区间数贡献
-6225（https://www.luogu.com.cn/problem/P6225）经典使用树状数组维护前缀异或和
-1972（https://www.luogu.com.cn/problem/P1972）经典使用树状数组离线查询区间不同数的个数 PointChangeRangeSum OfflineQuery
+4868（https://www.luogu.com.cn/problem/P4868）转换公式单点修改，两个树状数组维护prefix_sum的prefix_sum
+5463（https://www.luogu.com.cn/problem/P5463）树状数组维护前缀counter，brute_force最大值所有区间数贡献
+6225（https://www.luogu.com.cn/problem/P6225）树状数组维护前缀异或和
+1972（https://www.luogu.com.cn/problem/P1972）树状数组离线查询区间不同数的个数 PointChangeRangeSum OfflineQuery
 
 ====================================AtCoder=====================================
-D - Islands War（https://atcoder.jp/contests/abc103/tasks/abc103_d）经典贪心加树状数组
-F - Absolute Minima （https://atcoder.jp/contests/abc127/tasks/abc127_f）经典离散化与两个树状数组进行加和与计数
+D - Islands War（https://atcoder.jp/contests/abc103/tasks/abc103_d）greedy|树状数组
+F - Absolute Minima （https://atcoder.jp/contests/abc127/tasks/abc127_f）离散化与两个树状数组|和与counter
 Vertex Add Subtree Sum（https://judge.yosupo.jp/problem/vertex_add_subtree_sum）use tree array and dfs order
 
 ===================================CodeForces===================================
 1791F（https://codeforces.com/problemset/problem/1791/F）树状数组维护区间操作数与查询单点值
 1676H2（https://codeforces.com/contest/1676/problem/H2）树状数组维护前缀区间和
-987C（https://codeforces.com/problemset/problem/987/C）枚举中间数组，使用树状数组维护前后缀最小值
-1311F（https://codeforces.com/contest/1311/problem/F）经典两个离散化树状数组，计数与加和
+987C（https://codeforces.com/problemset/problem/987/C）brute_force中间数组，树状数组维护prefix_suffix最小值
+1311F（https://codeforces.com/contest/1311/problem/F）两个离散化树状数组，counter与|和
 1860C（https://codeforces.com/contest/1860/problem/C）PointDescendRangeMin
 1550C（https://codeforces.com/contest/1550/problem/C）PointAscendPreMax
 
@@ -73,7 +73,7 @@ class Solution:
 
     @staticmethod
     def lc_1626(scores: List[int], ages: List[int]) -> int:
-        # 模板：动态规划与树状数组维护前缀最大值
+        # 动态规划与树状数组维护前缀最大值
         n = max(ages)
         tree_array = PointAscendPreMax(n)
         for score, age in sorted(zip(scores, ages)):
@@ -83,7 +83,7 @@ class Solution:
 
     @staticmethod
     def lc_2193_1(s: str) -> int:
-        # 模板：使用树状数组贪心模拟交换构建回文串
+        # 树状数组greedyimplemention交换构建回文串
 
         n = len(s)
         lst = list(s)
@@ -127,7 +127,7 @@ class Solution:
 
     @staticmethod
     def lc_2193_2(s: str) -> int:
-        # 模板：使用字符串特性贪心模拟交换构建回文串
+        # 字符串特性greedyimplemention交换构建回文串
         n = len(s)
         ans = 0
         for _ in range(n // 2):
@@ -144,7 +144,7 @@ class Solution:
 
     @staticmethod
     def lc_2407(nums: List[int], k: int) -> int:
-        # 模板：树状数组加线性DP
+        # 树状数组|线性DP
         n = max(nums)
         ans = 0
         tree = PointAscendRangeMax(n)
@@ -167,7 +167,7 @@ class Solution:
 
     @staticmethod
     def lc_2659(nums: List[int]) -> int:
-        # 模板：经典模拟删除，可以使用树状数组也可以使用SortedList也可以使用贪心
+        # implemention删除，可以树状数组也可以SortedList也可以greedy
         n = len(nums)
         ans = 0
         pre = 1
@@ -352,7 +352,7 @@ class Solution:
     @staticmethod
     def lg_5094(ac=FastIO()):
 
-        # 模板：树状数组单点增加值与前缀区间和查询
+        # 树状数组单点增|值与前缀区间和查询
         n = ac.read_int()
         m = 5 * 10 ** 4
 
@@ -376,7 +376,7 @@ class Solution:
 
     @staticmethod
     def lg_p2280(ac=FastIO()):
-        # 模板：树状数组单点更新区间查询最大值与最小值
+        # 树状数组单点更新区间查询最大值与最小值
         n, q = ac.read_list_ints()
         tree = PointAscendRangeMax(n)
         tree2 = PointDescendRangeMin(n)
@@ -392,7 +392,7 @@ class Solution:
 
     @staticmethod
     def cf_1311f(ac=FastIO()):
-        # 模板：经典两个离散化树状数组，计数与加和
+        # 两个离散化树状数组，counter与|和
         n = ac.read_int()
         ind = list(range(n))
         x = ac.read_list_ints()
@@ -415,7 +415,7 @@ class Solution:
 
     @staticmethod
     def cf_1676h2(ac=FastIO()):
-        # 模板：树状数组维护前缀区间和
+        # 树状数组维护前缀区间和
         for _ in range(ac.read_int()):
             ac.read_int()
             a = ac.read_list_ints()
@@ -457,7 +457,7 @@ class Solution:
 
     @staticmethod
     def lg_p2068(ac=FastIO()):
-        # 模板：树状数组单点更新与区间和查询
+        # 树状数组单点更新与区间和查询
         n = ac.read_int()
         w = ac.read_int()
         tree = RangeAddRangeSum(n)
@@ -473,7 +473,7 @@ class Solution:
     @staticmethod
     def lg_p1816(ac=FastIO()):
 
-        # 模板：树状数组查询静态区间最小值
+        # 树状数组查询静态区间最小值
         m, n = ac.read_list_ints()
         nums = ac.read_list_ints()
         tree = PointDescendRangeMin(m)
@@ -488,7 +488,7 @@ class Solution:
 
     @staticmethod
     def lg_p3374(ac=FastIO()):
-        # 模板：树状数组 单点增减 查询前缀和与区间和
+        # 树状数组 单点增减 查询prefix_sum与区间和
         n, m = ac.read_list_ints()
         tree = PointAddRangeSum(n)
         tree.build(ac.read_list_ints())
@@ -502,7 +502,7 @@ class Solution:
 
     @staticmethod
     def lg_p3368(ac=FastIO()):
-        # 模板：树状数组 区间增减 查询前缀和与区间和
+        # 树状数组 区间增减 查询prefix_sum与区间和
         n, m = ac.read_list_ints()
         tree = RangeAddRangeSum(n)
         tree.build(ac.read_list_ints())
@@ -517,7 +517,7 @@ class Solution:
 
     @staticmethod
     def lg_p1908(ac=FastIO()):
-        # 模板：树状数组求逆序对
+        # 树状数组求逆序对
         n = ac.read_int()
         nums = ac.read_list_ints()
         ind = list(range(n))
@@ -539,7 +539,7 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
-        # 模板：二维树状数组 区间增减 区间查询
+        # 二维树状数组 区间增减 区间查询
         n, m = ac.read_list_ints()
         tree = RangeAddRangeSum2D(n, m)
         while True:
@@ -556,7 +556,7 @@ class Solution:
 
     @staticmethod
     def lg_p1725(ac=FastIO()):
-        # 模板：树状数组倒序线性DP，单点更新与区间查询最大值
+        # 树状数组倒序线性DP，单点更新与区间查询最大值
         n, a, b = ac.read_list_ints()
         n += 1
         nums = ac.read_list_ints()
@@ -574,7 +574,7 @@ class Solution:
 
     @staticmethod
     def lg_p3586(ac=FastIO()):
-        # 模板：离线查询、离散化树状数组，单点增减，前缀和查询
+        # 离线查询、离散化树状数组，单点增减，prefix_sum查询
         n, m = ac.read_list_ints()
         value = {0}
         lst = []
@@ -623,7 +623,7 @@ class Solution:
 
     @staticmethod
     def lg_p1198(ac=FastIO()):
-        # 模板：树状数组查询区间最大值
+        # 树状数组查询区间最大值
         m, d = ac.read_list_ints()
         t = 0
         tree = PointAscendRangeMax(m + 1)
@@ -642,7 +642,7 @@ class Solution:
 
     @staticmethod
     def lg_p4868(ac=FastIO()):
-        # 模板：经典转换公式，使用两个树状数组维护前缀和的前缀和
+        # 转换公式，两个树状数组维护prefix_sum的prefix_sum
 
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -665,7 +665,7 @@ class Solution:
 
     @staticmethod
     def lg_p5463(ac=FastIO()):
-        # 模板：经典使用树状数组维护前缀计数，枚举最大值计算所有区间数贡献
+        # 树状数组维护前缀counter，brute_force最大值所有区间数贡献
         n = ac.read_int()
         nums = ac.read_list_ints()
         lst = sorted(list(set(nums)))
@@ -684,14 +684,14 @@ class Solution:
 
     @staticmethod
     def lg_p6225(ac=FastIO()):
-        # 模板：经典使用树状数组维护前缀异或和
+        # 树状数组维护前缀异或和
         n, q = ac.read_list_ints()
         nums = ac.read_list_ints()
 
         tree_odd = PointXorRangeXor(n)
         tree_even = PointXorRangeXor(n)
         for i in range(n):
-            # 也可以使用对应子数组进行初始化
+            # 也可以对应子数组初始化
             if i % 2 == 0:
                 tree_odd.point_xor(i + 1, nums[i])
             else:
@@ -721,7 +721,7 @@ class Solution:
 
     @staticmethod
     def abc_127f(ac=FastIO()):
-        # 模板：经典离散化与两个树状数组进行加和与计数
+        # 离散化与两个树状数组|和与counter
         queries = [ac.read_list_ints() for _ in range(ac.read_int())]
         nodes = set()
         for lst in queries:
@@ -760,7 +760,7 @@ class Solution:
 
     @staticmethod
     def cf_987c(ac=FastIO()):
-        # 模板：枚举中间数组，使用树状数组维护前后缀最小值
+        # brute_force中间数组，树状数组维护prefix_suffix最小值
         n = ac.read_int()
         s = ac.read_list_ints()
         c = ac.read_list_ints()
@@ -814,23 +814,23 @@ class Solution:
     @staticmethod
     def lc_1505_1(num: str, k: int) -> str:
 
-        # 模板：经典使用树状数组模拟
+        # 树状数组implemention
         n = len(num)
         dct = defaultdict(deque)
         for i, d in enumerate(num):
             dct[d].append(i)
-        # 使用树状数组模拟交换过程
+        # 树状数组implemention交换过程
         tree = PointAddRangeSum(n)
         ans = ""
         for i in range(n):
-            # 添加第 i 个数字
+            # 添|第 i 个数字
             cur = i
             for d in range(10):
                 # 找还有的数字
                 if dct[str(d)]:
                     i = dct[str(d)][0]
                     ind = i + tree.range_sum(i + 1, n)
-                    # 索引加上移动之后的位置与第i个相隔距离在代价承受范围内
+                    # 索引|上移动之后的位置与第i个相隔距离在代价承受范围内
                     if ind - cur <= k:
                         ans += str(d)
                         k -= ind - cur
@@ -851,13 +851,13 @@ class Solution:
         move = SortedList()
         ans = ""
         for i in range(n):
-            # 添加第i个数字
+            # 添|第i个数字
             for x in range(10):
                 if ind[x]:
                     # 找还有的数字
                     j = ind[x][0]
                     dis = len(move) - move.bisect_right(j)
-                    # 索引加上移动之后的位置与第i个相隔距离在代价承受范围内
+                    # 索引|上移动之后的位置与第i个相隔距离在代价承受范围内
                     if dis + j - i <= k:
                         move.add(ind[x].popleft())
                         ans += str(x)

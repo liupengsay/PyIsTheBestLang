@@ -3,9 +3,9 @@ Algorithm：轮廓线DP
 Function：
 
 ====================================LeetCode====================================
-1659（https://leetcode.com/problems/maximize-grid-happiness/）轮廓线 DP 经典题目
-1349（https://leetcode.com/problems/maximum-students-taking-exam/）轮廓线 DP 经典题目
-LCP 04（https://leetcode.com/problems/broken-board-dominoes/）轮廓线 DP 经典题目
+1659（https://leetcode.com/problems/maximize-grid-happiness/）轮廓线 DP 题目
+1349（https://leetcode.com/problems/maximum-students-taking-exam/）轮廓线 DP 题目
+LCP 04（https://leetcode.com/problems/broken-board-dominoes/）轮廓线 DP 题目
 
 =====================================LuoGu======================================
 xx（xxx）xxxxxxxxxxxxxxxxxxxx
@@ -15,7 +15,7 @@ xx（xxx）xxxxxxxxxxxxxxxxxxxx
 
 
 ===================================Others=================================
-Mondriaan's Dream（https://vjudge.net/problem/HDU-1400）轮廓线 DP 经典题目
+Mondriaan's Dream（https://vjudge.net/problem/HDU-1400）轮廓线 DP 题目
 
 """
 from functools import lru_cache
@@ -29,7 +29,7 @@ class Solution:
 
     @staticmethod
     def lc_1659_1(m: int, n: int, introverts: int, extroverts: int) -> int:
-        # 模板：记忆化深搜进行轮廓线 DP
+        # 记忆化深搜轮廓线 DP
         def dfs(pos, state, intro, ext):
             # 当前网格位置，前 n 个格子压缩状态，剩余内向人数，剩余外向人数
             res = dp[pos][state][intro][ext]
@@ -66,19 +66,19 @@ class Solution:
 
         s = 3 ** (n - 1)
         cross = [[0, 0, 0], [0, -60, -10], [40, -10, 40]]
-        # 手写记忆化进行内存优化
+        # 手写记忆化内存优化
         dp = [[[[-1] * (extroverts + 1) for _ in range(introverts + 1)] for _ in range(s * 3)] for _ in
               range(m * n + 1)]
         return dfs(0, 0, introverts, extroverts)
 
     @staticmethod
     def lc_1659_2(m: int, n: int, introverts: int, extroverts: int) -> int:
-        # 模板：迭代进行轮廓线 DP
+        # 迭代轮廓线 DP
         s = 3 ** (n - 1)
         cross = [[0, 0, 0], [0, -60, -10], [40, -10, 40]]
         dp = [[[[0] * (extroverts + 1) for _ in range(introverts + 1)] for _ in range(s * 3)] for _ in range(m * n + 1)]
         for pos in range(m * n - 1, -1, -1):
-            # 还可以进行滚动数组优化
+            # 还可以滚动数组优化
             i, j = pos // n, pos % n
             for state in range(s * 3):
                 for intro in range(introverts + 1):
@@ -110,13 +110,13 @@ class Solution:
     @staticmethod
     def lc_1659_3(m: int, n: int, introverts: int, extroverts: int) -> int:
 
-        # 模板：记忆化深搜进行轮廓线 DP
+        # 记忆化深搜轮廓线 DP
         @lru_cache(None)
         def dfs(i, state, intro, ext):
             if i == m * n:
                 return 0
-            up = state // w if i // n else 0  # 轮廓线经典边界状态计算
-            left = state % 3 if i % n else 0  # 轮廓线经典边界状态计算
+            up = state // w if i // n else 0  # 轮廓线边界状态
+            left = state % 3 if i % n else 0  # 轮廓线边界状态
             res = dfs(i + 1, (state - up * w) * 3, intro, ext)
             if intro:
                 cur = dfs(i + 1, (state - up * w) * 3 + 1, intro - 1, ext) + 120
@@ -136,7 +136,7 @@ class Solution:
 
     @staticmethod
     def lc_1349_1(seats: List[List[str]]) -> int:
-        # 模板：记忆化深搜轮廓线 DP
+        # 记忆化深搜轮廓线 DP
 
         def dfs(pos, state):
             res = dp[pos][state]
@@ -164,7 +164,7 @@ class Solution:
 
     @staticmethod
     def lc_1349_2(seats: List[List[str]]) -> int:
-        # 模板：滚动数组迭代轮廓线 DP
+        # 滚动数组迭代轮廓线 DP
         m, n = len(seats), len(seats[0])
         s = 2 ** n
         dp = [[-1] * (2 * s) for _ in range(2)]
@@ -189,7 +189,7 @@ class Solution:
     @staticmethod
     def lc_1349_3(seats: List[List[str]]) -> int:
 
-        # 模板：轮廓线 DP 经典题目转成一维数组后更好写
+        # 轮廓线 DP 题目转成一维数组后更好写
         @lru_cache(None)
         def dfs(i, state):  # 一共四种初始转移方式即 i 为 0 或者 m*n 而 state 为 0 或者 (1<<(m*n))-1
             if i == m * n:
@@ -211,7 +211,7 @@ class Solution:
 
     @staticmethod
     def lcp_4_1(n: int, m: int, broken: List[List[int]]) -> int:
-        # 模板：记忆化深搜轮廓线 DP
+        # 记忆化深搜轮廓线 DP
 
         def dfs(pos, state):
             # 当前位置，前 m 个格子状态
@@ -244,7 +244,7 @@ class Solution:
 
     @staticmethod
     def lcp_4_2(n: int, m: int, broken: List[List[int]]) -> int:
-        # 模板：滚动数组优化迭代轮廓线 DP
+        # 滚动数组优化迭代轮廓线 DP
 
         s = 1 << (m - 1)
         grid = [[0] * m for _ in range(n)]

@@ -1,39 +1,39 @@
 """
 
 Algorithm：Floyd（多源最短路经算法）、可以处理有向图无向图以及正负权边、也可以检测负环
-Function：计算点到有向或者无向图里面其他点的最短路，也可以计算最长路，以及所有最长路最短路上经过的点（关键节点）
+Function：点到有向或者无向图里面其他点的最短路，也可以最长路，以及所有最长路最短路上经过的点（关键节点）
 方案： Floyd 就要记录 dp[i][j]对 应的 pre[i][j] = k; 而 Bellman-Ford 和 Dijkstra 一般记录 pre[v] = u
 
 ====================================LeetCode====================================
 2642（https://leetcode.com/problems/design-graph-with-shortest-path-calculator/）Floyd动态更新最短路
-1462（https://leetcode.com/problems/course-schedule-iv/）可考虑使用传递闭包Floyd求解
+1462（https://leetcode.com/problems/course-schedule-iv/）可考虑传递闭包Floyd求解
 
 =====================================LuoGu======================================
-1119（https://www.luogu.com.cn/problem/P1119）离线查询加Floyd动态更新经过中转站的起终点距离，修复增加维护的是点
+1119（https://www.luogu.com.cn/problem/P1119）离线查询|Floyd动态更新经过中转站的起终点距离，修复增|维护的是点
 1476（https://www.luogu.com.cn/problem/P1476）Floyd 求索引从 1 到 n 的最长路并求所有在最长路上的点
-3906（https://www.luogu.com.cn/problem/P3906）Floyd算法计算最短路径上经过的点集合
+3906（https://www.luogu.com.cn/problem/P3906）Floyd算法最短路径上经过的点集合
 
 2009（https://www.luogu.com.cn/problem/P2009）Floyd求最短路
-2419（https://www.luogu.com.cn/problem/P2419）看似拓扑排序其实是使用Floyd进行拓扑排序
-2910（https://www.luogu.com.cn/problem/P2910）最短路计算之后进行查询，Floyd模板题
-6464（https://www.luogu.com.cn/problem/P6464）枚举边之后进行Floyd算法更新计算，经典理解Floyd的原理题，经典借助中间两点更新最短距离
-6175（https://www.luogu.com.cn/problem/P6175）经典使用Floyd枚举三个点之间的距离和，O(n^3)，也可以使用BFS或者Dijkstra计算
-3611（https://www.luogu.com.cn/problem/B3611）传递闭包模板题，使用FLoyd解法
-1613（https://www.luogu.com.cn/problem/P1613）经典Floyd动态规划，使用两遍最短路综合计算
-8312（https://www.luogu.com.cn/problem/P8312）经典最多k条边的最短路跑k遍Floyd
-8794（https://www.luogu.com.cn/problem/P8794）经典二分加Floyd计算
+2419（https://www.luogu.com.cn/problem/P2419）看似拓扑sorting其实是Floyd拓扑sorting
+2910（https://www.luogu.com.cn/problem/P2910）最短路之后查询，Floyd模板题
+6464（https://www.luogu.com.cn/problem/P6464）brute_force边之后Floyd算法更新，理解Floyd的原理题，借助中间两点更新最短距离
+6175（https://www.luogu.com.cn/problem/P6175）Floydbrute_force三个点之间的距离和，O(n^3)，也可以BFS或者Dijkstra
+3611（https://www.luogu.com.cn/problem/B3611）传递闭包模板题，FLoyd解法
+1613（https://www.luogu.com.cn/problem/P1613）Floyd动态规划，两遍最短路综合
+8312（https://www.luogu.com.cn/problem/P8312）最多k条边的最短路跑k遍Floyd
+8794（https://www.luogu.com.cn/problem/P8794）binary_search|Floyd
 
 
 ===================================CodeForces===================================
-472D（https://codeforces.com/problemset/problem/472/D）使用Floyd判断构造给定的点对最短路距离是否存在
+472D（https://codeforces.com/problemset/problem/472/D）Floyd判断构造给定的点对最短路距离是否存在
 
 ====================================AtCoder=====================================
-D - Candidates of No Shortest Paths（https://atcoder.jp/contests/abc051/tasks/abc051_d）经典Floyd计算最短路的必经边
-D - Restoring Road Network（https://atcoder.jp/contests/abc074/tasks/arc083_b）经典最短路生成图，使用Floyd维护最小生成图
+D - Candidates of No Shortest Paths（https://atcoder.jp/contests/abc051/tasks/abc051_d）Floyd最短路的必经边
+D - Restoring Road Network（https://atcoder.jp/contests/abc074/tasks/arc083_b）最短路生成图，Floyd维护最小生成图
 E - Travel by Car（https://atcoder.jp/contests/abc143/tasks/abc143_e）Floyd建图最短路，两种最短路，建两次图
 
 =====================================AcWing=====================================
-4872（https://www.acwing.com/problem/content/submission/4875/）经典Floyd逆序逆向思维更新最短路对
+4872（https://www.acwing.com/problem/content/submission/4875/）Floyd逆序reverse_thinking更新最短路对
 
 """
 from heapq import heappop, heappush
@@ -51,7 +51,7 @@ class Solution:
 
     @staticmethod
     def lg_p1613(ac=FastIO()):
-        # 模板：经典Floyd动态规划，使用两遍最短路综合计算
+        # Floyd动态规划，两遍最短路综合
         n, m = ac.read_list_ints()
 
         # dp[i][j][k] 表示 i 到 j 有无花费为 k 秒即距离为 2**k 的的路径
@@ -86,7 +86,7 @@ class Solution:
 
     @staticmethod
     def ac_4872(ac=FastIO()):
-        # 模板：经典Floyd逆序逆向思维更新最短路对
+        # Floyd逆序reverse_thinking更新最短路对
         n = ac.read_int()
         dp = [ac.read_list_ints() for _ in range(n)]
         a = ac.read_list_ints_minus_one()
@@ -112,7 +112,7 @@ class Solution:
 
     @staticmethod
     def lg_p1119(ac=FastIO()):
-        # 模板：利用 Floyd 算法特点和修复的中转站更新最短距离（无向图）
+        # 利用 Floyd 算法特点和修复的中转站更新最短距离（无向图）
         n, m = ac.read_list_ints()
         repair = ac.read_list_ints()
         # 设置初始值距离
@@ -142,7 +142,7 @@ class Solution:
 
     @staticmethod
     def lg_p1476(ac=FastIO()):
-        # 模板：Floyd 求索引从 1 到 n 的最长路并求所有在最长路上的点（有向图）
+        # Floyd 求索引从 1 到 n 的最长路并求所有在最长路上的点（有向图）
         n = ac.read_int() + 1
         m = ac.read_int()
         dp = [[-inf] * (n + 1) for _ in range(n + 1)]
@@ -169,7 +169,7 @@ class Solution:
 
     @staticmethod
     def lg_p3906(ac=FastIO()):
-        # 模板：Floyd 求索引从 u 到 v 的最短路并求所有在最短路上的点（无向图）
+        # Floyd 求索引从 u 到 v 的最短路并求所有在最短路上的点（无向图）
         n, m = ac.read_list_ints()
         dp = [[inf] * (n + 1) for _ in range(n + 1)]
         for _ in range(m):
@@ -191,7 +191,7 @@ class Solution:
 
     @staticmethod
     def lg_b3611(ac=FastIO()):
-        # 模板：传递闭包模板题
+        # 传递闭包模板题
         n = ac.read_int()
         dp = [ac.read_list_ints() for _ in range(n)]
         for k in range(n):
@@ -205,7 +205,7 @@ class Solution:
 
     @staticmethod
     def abc_51d_1(ac=FastIO()):
-        # 模板：经典脑筋急转弯Floyd计算最短路的必经边，也可直接使用Dijkstra
+        # brain_teaserFloyd最短路的必经边，也可直接Dijkstra
         n, m = ac.read_list_ints()
         dp = [[inf] * n for _ in range(n)]
         for i in range(n):
@@ -233,7 +233,7 @@ class Solution:
 
     @staticmethod
     def abc_51d_2(ac=FastIO()):
-        # 模板：经典脑筋急转弯Floyd计算最短路的必经边，也可直接使用Dijkstra
+        # brain_teaserFloyd最短路的必经边，也可直接Dijkstra
         n, m = ac.read_list_ints()
         edges = [ac.read_list_ints() for _ in range(m)]
         dct = [[] for _ in range(n)]
@@ -256,7 +256,7 @@ class Solution:
 
     @staticmethod
     def abc_74d(ac=FastIO()):
-        # 模板：经典最短路生成图，使用Floyd维护最小生成图
+        # 最短路生成图，Floyd维护最小生成图
         n = ac.read_int()
         grid = [ac.read_list_ints() for _ in range(n)]
         for i in range(n):
@@ -297,7 +297,7 @@ class Solution:
 
     @staticmethod
     def abc_143e(ac=FastIO()):
-        # 模板：Floyd建图最短路，两种最短路，建两次图
+        # Floyd建图最短路，两种最短路，建两次图
         n, m, ll = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         dis = [[inf] * n for _ in range(n)]
@@ -341,7 +341,7 @@ class Solution:
 
     @staticmethod
     def cf_472d(ac=FastIO()):
-        # 模板：使用 Floyd 的思想判断最短路矩阵是否合理存在
+        #  Floyd 的思想判断最短路矩阵是否合理存在
         n = ac.read_int()
         grid = [ac.read_list_ints() for _ in range(n)]
         for i in range(n):
@@ -369,7 +369,7 @@ class Solution:
 
     @staticmethod
     def lg_p1613(ac=FastIO()):
-        # 模板：建立新图计算Floyd最短路
+        # 建立新图Floyd最短路
         n, m = ac.read_list_ints()
 
         # 表示节点i与j之间距离为2^k的路径是否存在
@@ -378,7 +378,7 @@ class Solution:
             u, v = ac.read_list_ints_minus_one()
             dp[u][v][0] = 1
 
-        # 结合倍增思想进行Floyd建新图
+        # 结合倍增思想Floyd建新图
         for x in range(1, 32):
             for k in range(n):
                 for i in range(n):
@@ -394,7 +394,7 @@ class Solution:
                         dis[i][j] = 1
                         break
 
-        # Floyd新图计算最短路
+        # Floyd新图最短路
         for k in range(n):
             for i in range(n):
                 for j in range(n):
@@ -404,7 +404,7 @@ class Solution:
 
     @staticmethod
     def lg_p8312(ac=FastIO()):
-        # 模板：经典最多k条边的最短路跑k遍Floyd
+        # 最多k条边的最短路跑k遍Floyd
         n, m = ac.read_list_ints()
         dis = [[inf] * n for _ in range(n)]
         for i in range(n):
@@ -434,7 +434,7 @@ class Solution:
 
     @staticmethod
     def lg_p8794(ac=FastIO()):
-        # 模板：经典二分加Floyd计算
+        # binary_search|Floyd
 
         def get_dijkstra_result_mat(mat: List[List[int]], src: int) -> List[float]:
             # 模板: Dijkstra求最短路，变成负数求可以求最长路（还是正权值）
@@ -493,7 +493,7 @@ class Solution:
             for a in range(n):
                 for b in range(n):
                     cur[a][b] = ac.max(lower[a][b], grid[a][b] - cnt[a] - cnt[b])
-            # Floyd计算全源最短路
+            # Floyd全源最短路
             for k in range(n):
                 for a in range(n):
                     for b in range(a + 1, n):

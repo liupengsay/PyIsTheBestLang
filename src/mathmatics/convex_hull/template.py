@@ -10,7 +10,7 @@ class MinCircleOverlap:
         return
 
     def get_min_circle_overlap(self, points: List[List[int]]):
-        # 模板：随机增量法求解最小圆覆盖
+        # 随机增量法求解最小圆覆盖
 
         def cross(a, b):
             return a[0] * b[1] - b[0] * a[1]

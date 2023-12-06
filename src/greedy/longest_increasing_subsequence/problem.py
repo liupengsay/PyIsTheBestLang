@@ -5,46 +5,46 @@ Algorithm：最长上升（或不降）子序列 Longest Increasing Subsequence�
 最长单调不减子序列（不降）：<=
 最长单调递减子序列（严格下降）：>
 最长单调不增子序列（不升）：>=
-对于数组来说，正数反可以将后两个问题3和4转换为前两个问题1和2进行解决，可以算全局的最长单调子序列，也可以计算前后缀的最长单调子序列
+对于数组来说，正数反可以将后两个问题3和4转换为前两个问题1和2解决，可以算全局的最长单调子序列，也可以prefix_suffix的最长单调子序列
 dilworth定理：
 分成不下降子序列最小组数等于最大上升子序列的长度，分成不上升子序列最小组数等于最大下降子序列的长度；
 反过来，分成上升子序列最小组数等于最大不上升的长度，分成下降子序列最小组数等于最大不下降子序列的长度。
 
 ====================================LeetCode====================================
-354（https://leetcode.com/problems/russian-doll-envelopes/）经典二维偏序最长递增子序列问题
-673（https://leetcode.com/problems/number-of-longest-increasing-subsequence/）经典O(n^2)与O(nlogn)的LIS计数问题做法模板题
-1092（https://leetcode.com/problems/shortest-common-supersequence/）经典利用LIS求LCS的最短公共超序列
-1671（https://leetcode.com/problems/minimum-number-of-removals-to-make-mountain-array/）经典山脉数组LIS变形问题
-2111（https://leetcode.com/problems/minimum-operations-to-make-the-array-k-increasing/）分成 K 组计算每组的最长递增子序列
-面试题 17（https://leetcode.com/problems/circus-tower-lcci/）按照两个维度贪心排序后，计算最长递增子序列
-最长递增子序列（https://www.nowcoder.com/questionTerminal/30fb9b3cab9742ecae9acda1c75bf927?orderByHotValue=1&questionTypes=000100&difficulty=11111&mutiTagIds=593&page=10&onlyReference=false）最长且字典序最小的递增子序列
-1691（https://leetcode.com/problems/maximum-height-by-stacking-cuboids/submissions/）经典三维偏序LIS问题
-1713（https://leetcode.com/problems/minimum-operations-to-make-a-subsequence/）经典LCS问题转换为LIS
-1940（https://leetcode.com/problems/longest-common-subsequence-between-sorted-arrays/）经典LCS问题转为LIS问题
-3662（https://www.acwing.com/problem/content/description/3665/）所有长度的严格上升子序列的最大子序列和，使用离散化树状数组与线性DP计算，也可使用线段树
+354（https://leetcode.com/problems/russian-doll-envelopes/）二维偏序最长递增子序列问题
+673（https://leetcode.com/problems/number-of-longest-increasing-subsequence/）O(n^2)与O(nlogn)的LIScounter问题做法模板题
+1092（https://leetcode.com/problems/shortest-common-supersequence/）利用LIS求LCS的最短公共超序列
+1671（https://leetcode.com/problems/minimum-number-of-removals-to-make-mountain-array/）山脉数组LIS变形问题
+2111（https://leetcode.com/problems/minimum-operations-to-make-the-array-k-increasing/）分成 K 组每组的最长递增子序列
+面试题 17（https://leetcode.com/problems/circus-tower-lcci/）按照两个维度greedysorting后，最长递增子序列
+最长递增子序列（https://www.nowcoder.com/questionTerminal/30fb9b3cab9742ecae9acda1c75bf927?orderByHotValue=1&questionTypes=000100&difficulty=11111&mutiTagIds=593&page=10&onlyReference=false）最长且lexicographical_order最小的递增子序列
+1691（https://leetcode.com/problems/maximum-height-by-stacking-cuboids/submissions/）三维偏序LIS问题
+1713（https://leetcode.com/problems/minimum-operations-to-make-a-subsequence/）LCS问题转换为LIS
+1940（https://leetcode.com/problems/longest-common-subsequence-between-sorted-arrays/）LCS问题转为LIS问题
+3662（https://www.acwing.com/problem/content/description/3665/）所有长度的严格上升子序列的最大子序列和，离散化树状数组与线性DP，也可线段树
 2826（https://leetcode.com/problems/sorting-three-groups/）转换为求最长不降子序列
-1964（https://leetcode.com/problems/find-the-longest-valid-obstacle-course-at-each-position/）经典LIS求以每个位置结尾的最长不降子序列长度
+1964（https://leetcode.com/problems/find-the-longest-valid-obstacle-course-at-each-position/）LIS求以每个位置结尾的最长不降子序列长度
 2945（https://leetcode.com/problems/find-maximum-non-decreasing-array-length/description/）linear dp|deque|greedy|prefix sum
 
 ===================================CodeForces===================================
 1682C（https://codeforces.com/contest/1682/problem/C）lis|lds|greedy|counter
 
 =====================================LuoGu======================================
-1020（https://www.luogu.com.cn/problem/P1020）使用贪心加二分计算最长单调不减和单调不增子序列的长度
-1439（https://www.luogu.com.cn/problem/P1439）使用贪心加二分计算最长单调递增子序列的长度
-1091（https://www.luogu.com.cn/problem/P1091）可以往前以及往后计算最长单调子序列
-1233（https://www.luogu.com.cn/problem/P1233）按照一个维度排序后计算另一个维度的，最长严格递增子序列的长度
-2782（https://www.luogu.com.cn/problem/P2782）按照一个维度排序后计算另一个维度的，最长严格递增子序列的长度（也可以考虑使用线段树求区间最大值）
+1020（https://www.luogu.com.cn/problem/P1020）greedy|binary_search最长单调不减和单调不增子序列的长度
+1439（https://www.luogu.com.cn/problem/P1439）greedy|binary_search最长单调递增子序列的长度
+1091（https://www.luogu.com.cn/problem/P1091）可以往前以及往后最长单调子序列
+1233（https://www.luogu.com.cn/problem/P1233）按照一个维度sorting后另一个维度的，最长严格递增子序列的长度
+2782（https://www.luogu.com.cn/problem/P2782）按照一个维度sorting后另一个维度的，最长严格递增子序列的长度（也可以考虑线段树求区间最大值）
 3902（https://www.luogu.com.cn/problem/P3902）最长严格上升子序列
 6403（https://www.luogu.com.cn/problem/P6403）问题转化为最长不降子序列
 5939（https://www.luogu.com.cn/problem/P5939）旋转后转换为 LIS 问题
-5978（https://www.luogu.com.cn/problem/P5978）经典 LIS 变形问题，贪心枚举前半部分
-7957（https://www.luogu.com.cn/problem/P7957）经典 LMS 逆问题构造
-1410（https://www.luogu.com.cn/problem/P1410）使用dilworth定理求最长不上升子序列长度小于等于2
+5978（https://www.luogu.com.cn/problem/P5978） LIS 变形问题，greedybrute_force前半部分
+7957（https://www.luogu.com.cn/problem/P7957） LMS 逆问题构造
+1410（https://www.luogu.com.cn/problem/P1410）dilworth定理求最长不上升子序列长度小于等于2
 
 =====================================AcWing=====================================
-3549（https://www.acwing.com/problem/content/3552/）经典线性DP动态规划贪心
-2694（https://www.acwing.com/problem/content/description/2696/）使用LIS求解LCS的长度与个数
+3549（https://www.acwing.com/problem/content/3552/）线性DP动态规划greedy
+2694（https://www.acwing.com/problem/content/description/2696/）LIS求解LCS的长度与个数
 
 ====================================AtCoder=====================================
 E - Sequence Decomposing（https://atcoder.jp/contests/abc134/tasks/abc134_e）分成最少组数的上升子序列，等于最长不上升的子序列长度
@@ -69,7 +69,7 @@ class Solution:
 
     @staticmethod
     def abc_134e(ac=FastIO()):
-        # 模板：分成最少组数的上升子序列，等于最长不上升的子序列长度
+        # 分成最少组数的上升子序列，等于最长不上升的子序列长度
         n = ac.read_int()
         nums = [ac.read_int() for _ in range(n)]
         ans = LongestIncreasingSubsequence().definitely_not_increase(nums)
@@ -78,14 +78,14 @@ class Solution:
 
     @staticmethod
     def lc_1713(target: List[int], arr: List[int]) -> int:
-        # 模板：最长递增子序列模板题
+        # 最长递增子序列模板题
         ind = {num: i for i, num in enumerate(target)}
         lst = [ind[num] for num in arr if num in ind]
         return len(target) - LongestIncreasingSubsequence().definitely_increase(lst)
 
     @staticmethod
     def lc_1964(obstacles: List[int]) -> List[int]:
-        # 模板：经典LIS求以每个位置结尾的最长不降子序列长度
+        # LIS求以每个位置结尾的最长不降子序列长度
         pre = []
         dp = []
         for num in obstacles:
@@ -100,7 +100,7 @@ class Solution:
 
     @staticmethod
     def lc_2111(arr: List[int], k: int) -> int:
-        # 模板：最长不降子序列
+        # 最长不降子序列
         ans = 0
         for i in range(k):
             lst = arr[i::k]
@@ -109,7 +109,7 @@ class Solution:
 
     @staticmethod
     def lc_2826(nums: List[int]) -> int:
-        # 模板：转换为求最长不降子序列
+        # 转换为求最长不降子序列
         n = len(nums)
         return n - LongestIncreasingSubsequence().definitely_not_reduce(nums)
 
@@ -132,7 +132,7 @@ class Solution:
 
     @staticmethod
     def lc_p1020(ac=FastIO()):
-        # 模板：根据 dilworth 最长不升子序列的长度与分成不降子序列的最小组数（最长上升子序列的长度）
+        # 根据 dilworth 最长不升子序列的长度与分成不降子序列的最小组数（最长上升子序列的长度）
         nums = ac.read_list_ints()
         lis = LongestIncreasingSubsequence()
         ac.st(lis.definitely_not_increase(nums))
@@ -141,7 +141,7 @@ class Solution:
 
     @staticmethod
     def lg_1439(ac=FastIO()):
-        # 模板：最长公共子序列求解使用哈希映射转换为最长上升子序列
+        # 最长公共子序列求解hash映射转换为最长上升子序列
         n = ac.read_int()
         nums = ac.read_list_ints()
         ind = [0] * (n + 1)
@@ -153,7 +153,7 @@ class Solution:
 
     @staticmethod
     def lg_p5939(ac=FastIO()):
-        # 模板：旋转后转换为 LIS 问题
+        # 旋转后转换为 LIS 问题
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         nums = [[x + y, y - x] for x, y in nums]
@@ -170,7 +170,7 @@ class Solution:
 
     @staticmethod
     def lg_p5978(ac=FastIO()):
-        # 模板：经典 LIS 变形问题，贪心枚举前半部分
+        #  LIS 变形问题，greedybrute_force前半部分
         n, x = ac.read_list_ints()
         nums = ac.read_list_ints()
         # 预处理后缀部分的最长 LIS 序列
@@ -184,7 +184,7 @@ class Solution:
             else:
                 dp.append(-nums[i])
 
-        # 贪心减少前缀值并维护最长子序列
+        # greedy减少前缀值并维护最长子序列
         ans = max(post)
         dp = []
         for i in range(n):
@@ -200,7 +200,7 @@ class Solution:
 
     @staticmethod
     def lg_p7957(ac=FastIO()):
-        # 模板：经典 LMS 逆问题构造
+        #  LMS 逆问题构造
         n, k = ac.read_list_ints()
         if k * k < n:
             ac.st(-1)
@@ -236,7 +236,7 @@ class Solution:
 
     @staticmethod
     def lc_1092(str1: str, str2: str) -> str:
-        # 模板：经典利用LIS求LCS的最短公共超序列
+        # 利用LIS求LCS的最短公共超序列
         if len(str1) > len(str2):
             str1, str2 = str2, str1
         lcs_lis = LcsComputeByLis().index_of_lcs(str1, str2)
@@ -258,7 +258,7 @@ class Solution:
 
     @staticmethod
     def lg_p1410(ac=FastIO()):
-        # 模板：最长不上升子序列
+        # 最长不上升子序列
         while True:
             lst = ac.read_list_ints()
             if not lst:
@@ -276,7 +276,7 @@ class Solution:
 
     @staticmethod
     def ac_3549(ac=FastIO()):
-        # 模板：经典翻转连续子数组获得最长不降子序列
+        # 翻转连续子数组获得最长不降子序列
         ac.read_int()
         nums = ac.read_list_ints()
         s1 = s12 = s121 = s1212 = 0
@@ -292,7 +292,7 @@ class Solution:
 
     @staticmethod
     def ac_3662_1(ac=FastIO()):
-        # 模板：所有长度的严格上升子序列的最大子序列和，使用离散化树状数组与线性DP计算，也可使用线段树
+        # 所有长度的严格上升子序列的最大子序列和，离散化树状数组与线性DP，也可线段树
         ac.read_int()
         nums = ac.read_list_ints()
         ind = {num: i for i, num in enumerate(sorted(list(set(nums))))}
@@ -309,7 +309,7 @@ class Solution:
 
     @staticmethod
     def ac_3662_2(ac=FastIO()):
-        # 模板：所有长度的严格上升子序列的最大子序列和，使用离散化树状数组与线性DP计算，也可使用线段树
+        # 所有长度的严格上升子序列的最大子序列和，离散化树状数组与线性DP，也可线段树
         ac.read_int()
         nums = ac.read_list_ints()
         ind = {num: i for i, num in enumerate(sorted(list(set(nums))))}
@@ -326,7 +326,7 @@ class Solution:
 
     @staticmethod
     def ac_2694(ac=FastIO()):
-        # 模板：使用LIS的方法求解LCS的长度与个数
+        # LIS的方法求解LCS的长度与个数
         mod = 10 ** 8
         s1 = ac.read_str()[:-1]
         s2 = ac.read_str()[:-1]

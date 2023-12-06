@@ -1,19 +1,19 @@
 """
-Algorithm：线段树、线段树二分
-Function：用以修改和查询区间的值信息，支持增减、修改，区间和、区间最大值、区间最小值、动态开点线段树（即使用defaultdict而不是数组实现）
+Algorithm：线段树、线段树binary_search
+Function：用以修改和查询区间的值信息，支持增减、修改，区间和、区间最大值、区间最小值、动态开点线段树（即defaultdict而不是数组实现）
 
 ====================================LeetCode====================================
-218（https://leetcode.com/problems/the-skyline-problem/solution/by-liupengsay-isfo/）区间值修改与计算最大值
-2286（https://leetcode.com/problems/booking-concert-tickets-in-groups/）区间值增减与计算区间和、区间最大值、区间最小值
-2407（https://leetcode.com/problems/longest-increasing-subsequence-ii/）维护与查询区间最大值，然后进行DP更新
+218（https://leetcode.com/problems/the-skyline-problem/solution/by-liupengsay-isfo/）区间值修改与最大值
+2286（https://leetcode.com/problems/booking-concert-tickets-in-groups/）区间值增减与区间和、区间最大值、区间最小值
+2407（https://leetcode.com/problems/longest-increasing-subsequence-ii/）维护与查询区间最大值，然后DP更新
 2158（https://leetcode.com/problems/amount-of-new-area-painted-each-day/）线段树维护区间范围的覆盖
-6318（https://leetcode.com/contest/weekly-contest-336/problems/minimum-time-to-complete-all-tasks/）线段树，贪心加二分
-732（https://leetcode.com/problems/my-calendar-iii/）使用defaultdict进行动态开点线段树
-1851（https://leetcode.com/problems/minimum-interval-to-include-each-query/）区间更新最小值、单点查询，也可以用离线查询与优先队列维护计算
+6318（https://leetcode.com/contest/weekly-contest-336/problems/minimum-time-to-complete-all-tasks/）线段树，greedy|binary_search
+732（https://leetcode.com/problems/my-calendar-iii/）defaultdict动态开点线段树
+1851（https://leetcode.com/problems/minimum-interval-to-include-each-query/）区间更新最小值、单点查询，也可以用离线查询与priority_queue维护
 2213（https://leetcode.com/problems/longest-substring-of-one-repeating-character/）单点字母更新，最长具有相同字母的连续子数组查询
-2276（https://leetcode.com/problems/count-integers-in-intervals/）动态开点线段树模板题，维护区间并集的长度，也可使用SortedList
-1340（https://leetcode.com/problems/jump-game-v/）可以使用线段树DP进行解决
-2940（https://leetcode.com/problems/find-building-where-alice-and-bob-can-meet/）可使用线段树二分做，线段树二分模板题
+2276（https://leetcode.com/problems/count-integers-in-intervals/）动态开点线段树模板题，维护区间并集的长度，也可SortedList
+1340（https://leetcode.com/problems/jump-game-v/）可以线段树DP解决
+2940（https://leetcode.com/problems/find-building-where-alice-and-bob-can-meet/）可线段树binary_search做，线段树binary_search模板题
 
 =====================================LuoGu======================================
 2846（https://www.luogu.com.cn/problem/P2846）线段树统计区间翻转和
@@ -23,19 +23,19 @@ Function：用以修改和查询区间的值信息，支持增减、修改，区
 5057（https://www.luogu.com.cn/problem/P5057） 区间值01翻转与区间和查询
 3372（https://www.luogu.com.cn/problem/P3372）区间值增减与求和
 2880（https://www.luogu.com.cn/problem/P2880）查询区间最大值与最小值
-1904（https://www.luogu.com.cn/problem/P1904）使用线段树，区间更新最大值并单点查询计算天际线
-1438（https://www.luogu.com.cn/problem/P1438）差分数组区间增减加线段树查询区间和
-1253（https://www.luogu.com.cn/problem/P1253）区间增减与区间修改并使用线段树查询区间和
-3373（https://www.luogu.com.cn/problem/P3373）区间乘法与区间加法并使用线段树查询区间和
+1904（https://www.luogu.com.cn/problem/P1904）线段树，区间更新最大值并单点查询天际线
+1438（https://www.luogu.com.cn/problem/P1438）差分数组区间增减|线段树查询区间和
+1253（https://www.luogu.com.cn/problem/P1253）区间增减与区间修改并线段树查询区间和
+3373（https://www.luogu.com.cn/problem/P3373）区间乘法与区间|法并线段树查询区间和
 4513（https://www.luogu.com.cn/problem/P4513）单点修改与区间最大连续子数组和查询，可升级为区间修改
-1471（https://www.luogu.com.cn/problem/P1471）区间增减，维护区间和与区间数字平方的和，以计算均差与方差
+1471（https://www.luogu.com.cn/problem/P1471）区间增减，维护区间和与区间数字平方的和，以均差与方差
 6492（https://www.luogu.com.cn/problem/P6492）单点修改，查找最长的01交替字符子串连续区间
 4145（https://www.luogu.com.cn/problem/P4145）区间值开方向下取整，区间和查询
 1558（https://www.luogu.com.cn/problem/P1558）线段树区间值修改，区间或值查询
 3740（https://www.luogu.com.cn/problem/P3740）离散化线段树区间修改与单点查询
 4588（https://www.luogu.com.cn/problem/P4588）转化为线段树单点值修改与区间乘积取模
 6627（https://www.luogu.com.cn/problem/P6627）线段树维护和查询区间异或值
-8081（https://www.luogu.com.cn/problem/P8081）差分计数计算作用域，也可以线段树区间修改、区间加和查询
+8081（https://www.luogu.com.cn/problem/P8081）差分counter作用域，也可以线段树区间修改、区间|和查询
 8812（https://www.luogu.com.cn/problem/P8812）线段树查询和更新区间最小值
 8856（https://www.luogu.com.cn/problem/solution/P8856）区间增减与区间最大值查询
 
@@ -44,12 +44,12 @@ Function：用以修改和查询区间的值信息，支持增减、修改，区
 482B（https://codeforces.com/problemset/problem/482/B）区间按位或赋值、按位与查询
 380C（https://codeforces.com/problemset/problem/380/C）线段树查询区间内所有合法连续子序列括号串的总长度
 52C（https://codeforces.com/problemset/problem/52/C）线段树更新和查询循环数组区间最小值
-438D（https://codeforces.com/problemset/problem/438/D）使用线段树维护区间取模，区间和，修改单点值，和区间最大值
-558E（https://codeforces.com/contest/558/problem/E）26个线段树维护区间排序信息
-343D（https://codeforces.com/problemset/problem/343/D）dfs序加线段树
-242E（https://codeforces.com/problemset/problem/242/E）线段树区间异或，与区间加和
-987C（https://codeforces.com/problemset/problem/987/C）枚举中间数组，使用线段树维护前后缀最小值
-1216F（https://codeforces.com/contest/1216/problem/F）经典线段树加DP，正解为单调队列优化DP
+438D（https://codeforces.com/problemset/problem/438/D）线段树维护区间取模，区间和，修改单点值，和区间最大值
+558E（https://codeforces.com/contest/558/problem/E）26个线段树维护区间sorting信息
+343D（https://codeforces.com/problemset/problem/343/D）dfs序|线段树
+242E（https://codeforces.com/problemset/problem/242/E）线段树区间异或，与区间|和
+987C（https://codeforces.com/problemset/problem/987/C）brute_force中间数组，线段树维护prefix_suffix最小值
+1216F（https://codeforces.com/contest/1216/problem/F）线段树|DP，正解为单调队列优化DP
 1665E（https://codeforces.com/contest/1665/problem/E）
 1478E（https://codeforces.com/contest/1478/problem/E）RangeChangeRangeSumMinMax|backward_thinking|implemention
 
@@ -84,7 +84,7 @@ class Solution:
 
     @staticmethod
     def lc_2213(s: str, word: str, indices: List[int]) -> List[int]:
-        # 模板：单点字母更新，最长具有相同字母的连续子数组查询
+        # 单点字母更新，最长具有相同字母的连续子数组查询
         n = len(s)
         tree = SegmentTreeLongestSubSame(n, [ord(w) - ord("a") for w in s])
         ans = []
@@ -94,7 +94,7 @@ class Solution:
 
     @staticmethod
     def lc_2569_1(nums1: List[int], nums2: List[int], queries: List[List[int]]) -> List[int]:
-        # 模板：经典01线段树区间翻转与求和，也可以使用BitSet
+        # 01线段树区间翻转与求和，也可以BitSet
         n = len(nums1)
         tree = SegmentTreeRangeUpdateXORSum(n)
         tree.build(nums1)
@@ -112,7 +112,7 @@ class Solution:
     @staticmethod
     def lg_p1904(ac=FastIO()):
 
-        # 模板：使用线段树，区间更新最大值并单点查询计算天际线
+        # 线段树，区间更新最大值并单点查询天际线
         high = 10 ** 4
         segment = RangeAscendRangeMax(high)
         segment.build([0] * high)
@@ -139,7 +139,7 @@ class Solution:
 
     @staticmethod
     def cf_1216f(ac=FastIO()):
-        # 模板：经典线段树加DP
+        # 线段树|DP
         n, k = ac.read_list_ints()
         s = ac.read_str()
         tree = RangeDescendRangeMin(n)
@@ -212,7 +212,7 @@ class Solution:
 
     @staticmethod
     def lc_218(buildings: List[List[int]]) -> List[List[int]]:
-        # 模板：线段树离散化区间且持续增加最大值
+        # 线段树离散化区间且持续增|最大值
         pos = set()
         for left, right, _ in buildings:
             pos.add(left)
@@ -225,7 +225,7 @@ class Solution:
         segment.build([0] * n)
         for left, right, height in buildings:
             segment.range_ascend(dct[left], dct[right] - 1, height)
-        # 按照端点进行关键点查询
+        # 按照端点关键点查询
         pre = -1
         ans = []
         for pos in lst:
@@ -239,7 +239,7 @@ class Solution:
     def cf_380c(ac=FastIO()):
         word = []
         queries = []
-        # 模板：线段树进行分治并使用dp合并
+        # 线段树divide_and_conquer并dp合并
         n = len(word)
         a = [0] * (4 * n)
         b = [0] * (4 * n)
@@ -302,7 +302,7 @@ class Solution:
 
     @staticmethod
     def lg_p3372(ac=FastIO()):
-        # 模板：线段树 区间增减 与区间和查询
+        # 线段树 区间增减 与区间和查询
         n, m = ac.read_list_ints()
         segment = RangeAddRangeSumMinMax(n)
         segment.build(ac.read_list_ints())
@@ -319,7 +319,7 @@ class Solution:
 
     @staticmethod
     def lg_p3870(ac=FastIO()):
-        # 模板：区间异或 0 与 1 翻转
+        # 区间异或 0 与 1 翻转
         n, m = ac.read_list_ints()
         segment = SegmentTreeRangeUpdateXORSum(n)
 
@@ -335,7 +335,7 @@ class Solution:
 
     @staticmethod
     def lg_p1438(ac=FastIO()):
-        # 模板：差分数组区间增减加线段树查询区间和
+        # 差分数组区间增减|线段树查询区间和
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         segment = RangeAddRangeSumMinMax(n)
@@ -349,7 +349,7 @@ class Solution:
                     if y <= n - 1:
                         segment.range_add(y, y, -k)
                 else:
-                    # 经典使用差分数组进行区间的等差数列加减
+                    # 差分数组区间的等差数列|减
                     segment.range_add(x - 1, x - 1, k)
                     segment.range_add(x, y - 1, d)
                     cnt = y - x
@@ -363,7 +363,7 @@ class Solution:
     @staticmethod
     def lg_p1253(ac=FastIO()):
 
-        # 模板：区间增减与区间修改并使用线段树查询区间和
+        # 区间增减与区间修改并线段树查询区间和
         n, m = ac.read_list_ints()
         segment = SegmentTreeRangeUpdateChangeQueryMax(ac.read_list_ints())
 
@@ -383,7 +383,7 @@ class Solution:
     @staticmethod
     def lg_p3373(ac=FastIO()):
 
-        # 模板：区间乘法与区间加法并使用线段树查询区间和
+        # 区间乘法与区间|法并线段树查询区间和
         n, m, p = ac.read_list_ints()
         nums = ac.read_list_ints()
         segment = SegmentTreeRangeUpdateMulQuerySum(nums, p)
@@ -419,7 +419,7 @@ class Solution:
 
     @staticmethod
     def lg_p1471(ac=FastIO()):
-        # 模板：区间增减，维护区间和与区间数字平方的和，以计算均差与方差
+        # 区间增减，维护区间和与区间数字平方的和，以均差与方差
         n, m = ac.read_list_ints()
         tree = SegmentTreeRangeUpdateAvgDev(n)
         tree.build(ac.read_list_floats())
@@ -447,7 +447,7 @@ class Solution:
 
     @staticmethod
     def lg_p6627(ac=FastIO()):
-        # 模板：线段树维护和查询区间异或值
+        # 线段树维护和查询区间异或值
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         nodes = {0, -10 ** 9 - 1, 10 ** 9 + 1}
@@ -469,12 +469,12 @@ class Solution:
                 tree.update_range(ind[a], ind[b], 0, n - 1, w, 1)
             elif lst[0] == 2:
                 a, w = lst[1:]
-                arr[ind[a]] ^= w  # 使用数组代替
+                arr[ind[a]] ^= w  # 数组代替
                 # tree.update_point(ind[a], ind[a], 0, n-1, w, 1)
             else:
                 a, w = lst[1:]
                 tree.update_range(0, n - 1, 0, n - 1, w, 1)
-                arr[ind[a]] ^= w  # 使用数组代替
+                arr[ind[a]] ^= w  # 数组代替
                 # tree.update_point(ind[a], ind[a], 0, n - 1, w, 1)
         ans = inf
         res = -inf
@@ -489,7 +489,7 @@ class Solution:
 
     @staticmethod
     def lg_p6492(ac=FastIO()):
-        # 模板：单点修改，查找最长的01交替字符子串连续区间
+        # 单点修改，查找最长的01交替字符子串连续区间
         n, q = ac.read_list_ints()
         tree = SegmentTreePointChangeLongCon(n)
         for _ in range(q):
@@ -500,7 +500,7 @@ class Solution:
 
     @staticmethod
     def lg_p4145(ac=FastIO()):
-        # 模板：区间值开方向下取整，区间和查询
+        # 区间值开方向下取整，区间和查询
         n = ac.read_int()
         tree = SegmentTreeRangeSqrtSum(n)
         tree.build(ac.read_list_ints())
@@ -541,7 +541,7 @@ class Solution:
 
     @staticmethod
     def lg_2572(ac=FastIO()):
-        # 模板：区间修改成01或者翻转，区间查询最多有多少连续的1，以及总共有多少1
+        # 区间修改成01或者翻转，区间查询最多有多少连续的1，以及总共有多少1
         def check(tmp):
             ans = pre = 0
             for num in tmp:
@@ -598,7 +598,7 @@ class Solution:
 
     @staticmethod
     def lg_p1558(ac=FastIO()):
-        # 模板：线段树区间修改，区间或查询
+        # 线段树区间修改，区间或查询
         n, t, q = ac.read_list_ints()
         tree = RangeChangeRangeOr(n)
         tree.range_change(0, n - 1, 1)
@@ -620,7 +620,7 @@ class Solution:
 
     @staticmethod
     def lg_p3740(ac=FastIO()):
-        # 模板：离散化线段树区间修改与单点查询
+        # 离散化线段树区间修改与单点查询
         n, m = ac.read_list_ints()
         nums = []
         while len(nums) < m * 2:
@@ -632,7 +632,7 @@ class Solution:
         for a, b in nums:
             nodes.add(a)
             nodes.add(b)
-            # 离散化特别注意需要增加右端点进行连续区间的区分
+            # 离散化特别注意需要增|右端点连续区间的区分
             nodes.add(b + 1)
         nodes = list(sorted(nodes))
         ind = {num: i for i, num in enumerate(nodes)}
@@ -652,7 +652,7 @@ class Solution:
 
     @staticmethod
     def lg_p4588(ac=FastIO()):
-        # 模板：转化为线段树单点值修改与区间乘积取模
+        # 转化为线段树单点值修改与区间乘积取模
         for _ in range(ac.read_int()):
             q, mod = ac.read_list_ints()
             tree = SegmentTreePointUpdateRangeMulQuery(q, mod)
@@ -667,7 +667,7 @@ class Solution:
 
     @staticmethod
     def lg_p8081(ac=FastIO()):
-        # 模板：线段树区间修改、区间加和查询
+        # 线段树区间修改、区间|和查询
         n = ac.read_int()
         nums = ac.read_list_ints()
         tree = RangeChangeRangeSumMinMax(n)
@@ -712,7 +712,7 @@ class Solution:
 
     @staticmethod
     def lg_p8812(ac=FastIO()):
-        # 模板：线段树查询和更新区间最小值
+        # 线段树查询和更新区间最小值
         n, m = ac.read_list_ints()
         goods = [[] for _ in range(n)]
         for _ in range(m):
@@ -784,7 +784,7 @@ class Solution:
 
     @staticmethod
     def cf_987c(ac=FastIO()):
-        # 模板：枚举中间数组，使用线段树维护前后缀最小值
+        # brute_force中间数组，线段树维护prefix_suffix最小值
         n = ac.read_int()
         s = ac.read_list_ints()
         c = ac.read_list_ints()
@@ -808,7 +808,7 @@ class Solution:
 
     @staticmethod
     def lc_1851(intervals: List[List[int]], queries: List[int]) -> List[int]:
-        # 模板：区间更新最小值、单点查询
+        # 区间更新最小值、单点查询
         port = []
         for inter in intervals:
             port.extend(inter)
@@ -826,7 +826,7 @@ class Solution:
     @staticmethod
     def lc_1340(nums: List[int], d: int) -> int:
 
-        # 模板：可以使用线段树DP进行解决
+        # 可以线段树DP解决
         n = len(nums)
         post = [n - 1] * n
         stack = []
@@ -842,7 +842,7 @@ class Solution:
                 pre[stack.pop()] = i + 1
             stack.append(i)
 
-        # 分桶排序转移
+        # 分桶sorting转移
         dct = defaultdict(list)
         for i, num in enumerate(nums):
             dct[num].append(i)
@@ -865,7 +865,7 @@ class Solution:
 
     @staticmethod
     def ac_3805(ac=FastIO()):
-        # 模板：区间增减与最小值查询
+        # 区间增减与最小值查询
         n = ac.read_int()
         tree = RangeAddRangeSumMinMax(n)
         tree.build(ac.read_list_ints())
@@ -890,7 +890,7 @@ class Solution:
 
     @staticmethod
     def ac_5037_1(ac=FastIO()):
-        # 模板：同CF242E，使用二十多个01线段树维护区间异或与区间加和
+        # 同CF242E，二十多个01线段树维护区间异或与区间|和
         n = ac.read_int()
         nums = ac.read_list_ints()
         tree = [SegmentTreeRangeUpdateXORSum(n) for _ in range(22)]
@@ -919,7 +919,7 @@ class Solution:
 class CountIntervalsLC2276:
 
     def __init__(self):
-        # 模板：动态开点线段树
+        # 动态开点线段树
         self.n = 10 ** 9 + 7
         self.segment_tree = RangeChangeRangeSumMinMaxDynamic(self.n)
 
@@ -948,7 +948,7 @@ class BookMyShowLC2286:
         def check(x):
             return self.m - self.tree.range_min(0, x) >= k
 
-        # 模板：经典二分加线段树维护最小值与和
+        # binary_search|线段树维护最小值与和
         y = BinarySearch().find_int_left(0, max_row - 1, check)
         self.cnt[y] += k
         self.tree.range_add(y, y, k)

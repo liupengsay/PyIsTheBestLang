@@ -11,7 +11,7 @@ xx（xxx）xxxxxxxxxxxxxxxxxxxx
 ===================================CodeForces===================================
 1624F（https://codeforces.com/contest/1624/problem/F）binary_search交互
 1713D（https://codeforces.com/contest/1713/problem/D）
-1697D（https://codeforces.com/contest/1697/problem/D）经典binary_search交互，严格非红蓝二分写法
+1697D（https://codeforces.com/contest/1697/problem/D）binary_search交互，严格非红蓝binary_search写法
 
 
 """

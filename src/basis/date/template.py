@@ -11,7 +11,7 @@ class DateTime:
     @staticmethod
     def day_interval(y1, m1, d1, y2, m2, d2):
         """the number of days between two date"""
-        # 模板: 计算两个日期之间的间隔天数
+        # 模板: 两个日期之间的间隔天数
         day1 = datetime(y1, m1, d1)
         day2 = datetime(y2, m2, d2)
         return (day1 - day2).days

@@ -1,15 +1,15 @@
 """
-Algorithm：乘法逆元、组合数求幂快速计算
-Function：求逆元取模，注意取的模必须为互质数，且不能整除该质数，否则不存在对应的乘法逆元，如果不互质，需要排除公因数进行单独计算
+Algorithm：乘法逆元、组合数求幂快速
+Function：求逆元取模，注意取的模必须为coprime数，且不能整除该质数，否则不存在对应的乘法逆元，如果不coprime，需要排除公因数单独
 
 =====================================LuoGu======================================
-3811（https://www.luogu.com.cn/problem/P3811）使用乘法逆元计算
-5431（https://www.luogu.com.cn/problem/P5431）使用乘法逆元计算
-2613（https://www.luogu.com.cn/problem/P2613）使用乘法逆元计算
-5431（https://www.luogu.com.cn/problem/P5431）转换为前缀积与后缀积计算求解
+3811（https://www.luogu.com.cn/problem/P3811）乘法逆元
+5431（https://www.luogu.com.cn/problem/P5431）乘法逆元
+2613（https://www.luogu.com.cn/problem/P2613）乘法逆元
+5431（https://www.luogu.com.cn/problem/P5431）转换为前缀积与后缀积求解
 
 ===================================CodeForces===================================
-1833F（https://codeforces.com/contest/1833/problem/F）使用前缀乘积计算区间取模
+1833F（https://codeforces.com/contest/1833/problem/F）前缀乘积区间取模
 
 
 """
@@ -56,7 +56,7 @@ class Solution:
 
     @staticmethod
     def lg_p5431(ac=FastIO()):
-        # 模板：转换为前缀积与后缀积计算求解
+        # 转换为前缀积与后缀积求解
         n, p, k = ac.read_list_ints()
         a = ac.read_list_ints()
         post = [1] * (n + 1)

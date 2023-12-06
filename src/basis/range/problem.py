@@ -1,51 +1,51 @@
 """
-Algorithm：区间合并、区间覆盖、区间计数
-Function：涉及到区间的一些合并查询和操作，也可以使用差分数组与树状数组、线段树进行解决
+Algorithm：区间合并、区间覆盖、区间counter
+Function：涉及到区间的一些合并查询和操作，也可以差分数组与树状数组、线段树解决
 用法：合并为不相交的区间、最少区间覆盖问题、最多不相交的区间、最小点覆盖（每条线段至少一个点需要多少点覆盖）、将区间分为不相交的最少组数
-最多点匹配覆盖（每条线段选一个点匹配，最多匹配数有点类似二分图）
+最多点匹配覆盖（每条线段选一个点匹配，最多匹配数有点类似bipartite_graph）
 
 ====================================LeetCode====================================
 45（https://leetcode.com/problems/jump-game-ii/）转换为最少区间覆盖问题
-452（https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/）贪心等价为最多不想交的区间
+452（https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/）greedy等价为最多不想交的区间
 1326（https://leetcode.com/problems/minimum-number-of-taps-to-open-to-water-a-garden/）转换为最少区间覆盖问题
 1024（https://leetcode.com/problems/video-stitching/）转换为最少区间覆盖问题
-1520（https://leetcode.com/problems/maximum-number-of-non-overlapping-substrings/）转化为最多不相交区间进行处理
-1353（https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended/）贪心选取最多的点，使得每个点一一对应一个区间
-2406（https://leetcode.com/problems/divide-intervals-into-minimum-number-of-groups/）将区间分为不相交的最少组数使用贪心与差分数组计数解决
-435（https://leetcode.com/problems/non-overlapping-intervals/）最多不相交的区间，使用贪心或者二分DP
-763（https://leetcode.com/problems/partition-labels/）经典将区间合并为不相交的区间
-6313（https://leetcode.com/contest/biweekly-contest-99/problems/count-ways-to-group-overlapping-ranges/）经典将区间合并为不相交的区间，再使用快速幂计数
+1520（https://leetcode.com/problems/maximum-number-of-non-overlapping-substrings/）转化为最多不相交区间处理
+1353（https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended/）greedy选取最多的点，使得每个点一一对应一个区间
+2406（https://leetcode.com/problems/divide-intervals-into-minimum-number-of-groups/）将区间分为不相交的最少组数greedy与差分数组counter解决
+435（https://leetcode.com/problems/non-overlapping-intervals/）最多不相交的区间，greedy或者binary_searchDP
+763（https://leetcode.com/problems/partition-labels/）将区间合并为不相交的区间
+6313（https://leetcode.com/contest/biweekly-contest-99/problems/count-ways-to-group-overlapping-ranges/）将区间合并为不相交的区间，再快速幂counter
 2345（https://leetcode.com/problems/finding-the-number-of-visible-mountains/）二维偏序，转换为区间包含问题
-757（https://leetcode.com/problems/set-intersection-size-at-least-two/）贪心选取最少的点集合，使得每个区间包含其中至少两个点
-2589（https://leetcode.com/problems/minimum-time-to-complete-all-tasks/）贪心选取最少的点集合，使得每个区间包含其中要求的k个点
-LCP 32（https://leetcode.com/problems/t3fKg1/）贪心选取最少的点集合，使得每个区间包含其中要求的k个点
+757（https://leetcode.com/problems/set-intersection-size-at-least-two/）greedy选取最少的点集合，使得每个区间包含其中至少两个点
+2589（https://leetcode.com/problems/minimum-time-to-complete-all-tasks/）greedy选取最少的点集合，使得每个区间包含其中要求的k个点
+LCP 32（https://leetcode.com/problems/t3fKg1/）greedy选取最少的点集合，使得每个区间包含其中要求的k个点
 
 =====================================LuoGu======================================
-2082（https://www.luogu.com.cn/problem/P2082）经典区间合并确定覆盖范围
-2434（https://www.luogu.com.cn/problem/P2434）经典区间合并为不相交的区间
-2970（https://www.luogu.com.cn/problem/P2970）最多不相交的区间，使用贪心或者二分DP
+2082（https://www.luogu.com.cn/problem/P2082）区间合并确定覆盖范围
+2434（https://www.luogu.com.cn/problem/P2434）区间合并为不相交的区间
+2970（https://www.luogu.com.cn/problem/P2970）最多不相交的区间，greedy或者binary_searchDP
 6123（https://www.luogu.com.cn/problem/P6123）区间合并变形问题
-2684（https://www.luogu.com.cn/problem/P2684）最小区间覆盖，选取最少的区间来进行覆盖
-1233（https://www.luogu.com.cn/problem/P1233）按照一个维度排序后计算另一个维度的最长严格递增子序列的长度，二位偏序，转换为区间包含问题
-1496（https://www.luogu.com.cn/problem/P1496）经典区间合并确定覆盖范围
+2684（https://www.luogu.com.cn/problem/P2684）最小区间覆盖，选取最少的区间来覆盖
+1233（https://www.luogu.com.cn/problem/P1233）按照一个维度sorting后另一个维度的最长严格递增子序列的长度，二位偏序，转换为区间包含问题
+1496（https://www.luogu.com.cn/problem/P1496）区间合并确定覆盖范围
 1668（https://www.luogu.com.cn/problem/P1668）转换为最少区间覆盖问题
-2887（https://www.luogu.com.cn/problem/P2887）最多点匹配覆盖，每条线段选一个点匹配，最多匹配数有点类似二分图
-3661（https://www.luogu.com.cn/problem/P3661）经典区间与点集贪心匹配
-3737（https://www.luogu.com.cn/problem/P3737）经典区间点覆盖贪心
-5199（https://www.luogu.com.cn/problem/P5199）经典区间包含贪心计算最多互不包含的区间个数
-1868（https://www.luogu.com.cn/problem/P1868）线性DP加binary_search优化，选取并集最大且不想交的区间
-2439（https://www.luogu.com.cn/problem/P2439）线性DP加binary_search优化，选取并集最大且不想交的区间
+2887（https://www.luogu.com.cn/problem/P2887）最多点匹配覆盖，每条线段选一个点匹配，最多匹配数有点类似bipartite_graph
+3661（https://www.luogu.com.cn/problem/P3661）区间与点集greedy匹配
+3737（https://www.luogu.com.cn/problem/P3737）区间点覆盖greedy
+5199（https://www.luogu.com.cn/problem/P5199）区间包含greedy最多互不包含的区间个数
+1868（https://www.luogu.com.cn/problem/P1868）线性DP|binary_search优化，选取并集最大且不想交的区间
+2439（https://www.luogu.com.cn/problem/P2439）线性DP|binary_search优化，选取并集最大且不想交的区间
 
 ===================================CodeForces===================================
-827A（https://codeforces.com/problemset/problem/827/A）区间合并为不相交的区间，再贪心赋值
+827A（https://codeforces.com/problemset/problem/827/A）区间合并为不相交的区间，再greedy赋值
 652D（https://codeforces.com/problemset/problem/652/D）二位偏序，转换为区间包含问题
-1426D（https://codeforces.com/problemset/problem/1426/D）贪心选取最少的点集合，使得每个区间包含其中至少一个点
+1426D（https://codeforces.com/problemset/problem/1426/D）greedy选取最少的点集合，使得每个区间包含其中至少一个点
 1102E（https://codeforces.com/contest/1102/problem/E）区间合并为不相交的区间
-1141F2（https://codeforces.com/contest/1141/problem/F2）利用前缀和枚举，转化为最多不相交的区间问题
+1141F2（https://codeforces.com/contest/1141/problem/F2）利用prefix_sumbrute_force，转化为最多不相交的区间问题
 
 =====================================AcWing=====================================
-112（https://www.acwing.com/problem/content/114/）作用范围进行区间贪心
-4421（https://www.acwing.com/problem/content/4424/）经典最少区间覆盖范围问题，相邻可以不相交
+112（https://www.acwing.com/problem/content/114/）作用范围区间greedy
+4421（https://www.acwing.com/problem/content/4424/）最少区间覆盖范围问题，相邻可以不相交
 
 
 """
@@ -65,7 +65,7 @@ class Solution:
 
     @staticmethod
     def lg_p1496(ac=FastIO()):
-        # 模板：经典区间合并确定覆盖范围
+        # 区间合并确定覆盖范围
         n = ac.read_int()
         lst = []
         for _ in range(n):
@@ -85,7 +85,7 @@ class Solution:
 
     @staticmethod
     def lc_1326_1(n, ranges):
-        # 模板：最少区间覆盖模板题
+        # 最少区间覆盖模板题
         m = n + 1
         lst = []
         for i in range(m):
@@ -94,7 +94,7 @@ class Solution:
 
     @staticmethod
     def lc_1326_2(n: int, ranges: List[int]) -> int:
-        # 模板：最少区间覆盖模板题
+        # 最少区间覆盖模板题
         lst = []
         for i, r in enumerate(ranges):
             a, b = i - r, i + r
@@ -105,12 +105,12 @@ class Solution:
 
     @staticmethod
     def lc_1024_1(clips, time) -> int:
-        # 模板：最少区间覆盖模板题
+        # 最少区间覆盖模板题
         return Range().cover_less(0, time, clips)
 
     @staticmethod
     def lc_1024_2(clips: List[List[int]], time: int) -> int:
-        # 模板：最少区间覆盖模板题
+        # 最少区间覆盖模板题
         return Range().minimum_interval_coverage(clips, time, True)
 
     @staticmethod
@@ -122,13 +122,13 @@ class Solution:
 
     @staticmethod
     def lc_435(intervals):
-        # 模板：合并区间
+        # 合并区间
         n = len(intervals)
         return n - Range().disjoint_most(intervals)
 
     @staticmethod
     def lc_763(s: str) -> List[int]:
-        # 模板：合并区间
+        # 合并区间
         dct = defaultdict(list)
         for i, w in enumerate(s):
             if len(dct[w]) >= 2:
@@ -142,14 +142,14 @@ class Solution:
 
     @staticmethod
     def lc_6313(ranges: List[List[int]]) -> int:
-        # 模板：合并为不相交的区间
+        # 合并为不相交的区间
         cnt = len(Range().merge(ranges))
         mod = 10 ** 9 + 7
         return pow(2, cnt, mod)
 
     @staticmethod
     def cf_1102e(ac=FastIO()):
-        # 模板：区间合并为不相交的区间
+        # 区间合并为不相交的区间
         mod = 998244353
         n = ac.read_int()
         nums = ac.read_list_ints()
@@ -163,7 +163,7 @@ class Solution:
 
     @staticmethod
     def cf_1426d(ac=FastIO()):
-        # 模板：选取最少的点集合，使得每个区间包含其中至少一个点
+        # 选取最少的点集合，使得每个区间包含其中至少一个点
         n = ac.read_int()
         nums = ac.read_list_ints()
         pre = 0
@@ -192,7 +192,7 @@ class Solution:
 
     @staticmethod
     def ac_112(ac=FastIO()):
-        # 模板：区间类型的贪心
+        # 区间类型的greedy
         n, d = ac.read_list_ints()
         lst = [ac.read_list_ints() for _ in range(n)]
         if any(abs(y) > d for _, y in lst):
@@ -216,7 +216,7 @@ class Solution:
 
     @staticmethod
     def lg_p1668(ac=FastIO()):
-        # 模板：最少区间覆盖问题
+        # 最少区间覆盖问题
         n, t = ac.read_list_ints()
         lst = [ac.read_list_ints() for _ in range(n)]
         ans = Range().cover_less(1, t, lst, False)
@@ -225,7 +225,7 @@ class Solution:
 
     @staticmethod
     def lg_p1668_2(ac=FastIO()):
-        # 模板：最少区间覆盖问题
+        # 最少区间覆盖问题
         n, t = ac.read_list_ints()
         t -= 1
         lst = [ac.read_list_ints_minus_one() for _ in range(n)]
@@ -235,7 +235,7 @@ class Solution:
 
     @staticmethod
     def lg_p2887(ac=FastIO()):
-        # 模板：最多点匹配覆盖，每条线段选一个点匹配，最多匹配数有点类似二分图
+        # 最多点匹配覆盖，每条线段选一个点匹配，最多匹配数有点类似bipartite_graph
         n, m = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort(key=lambda it: it[1])
@@ -253,11 +253,11 @@ class Solution:
 
     @staticmethod
     def lg_p3661(ac=FastIO()):
-        # 模板：区间与点集贪心匹配
+        # 区间与点集greedy匹配
         n, m = ac.read_list_ints()
         lst = LocalSortedList([ac.read_int() for _ in range(n)])
         nums = [ac.read_list_ints() for _ in range(m)]
-        # 按照右边端点排序
+        # 按照右边端点sorting
         nums.sort(key=lambda it: it[1])
         ans = 0
         for a, b in nums:
@@ -271,7 +271,7 @@ class Solution:
 
     @staticmethod
     def lg_p3737(ac=FastIO()):
-        # 模板：区间点覆盖贪心
+        # 区间点覆盖greedy
         n, r = ac.read_list_ints()
         lst = []
         while len(lst) < 2 * n:
@@ -298,7 +298,7 @@ class Solution:
 
     @staticmethod
     def lg_p5199(ac=FastIO()):
-        # 模板：经典区间包含贪心计算最多互不包含的区间个数
+        # 区间包含greedy最多互不包含的区间个数
         n = ac.read_int()
         nums = []
         for _ in range(n):
@@ -319,10 +319,10 @@ class Solution:
     @staticmethod
     def lc_1520(s: str) -> List[str]:
 
-        # 模板：转化为最多不相交的区间进行求解
+        # 转化为最多不相交的区间求解
 
         ind = defaultdict(deque)
-        for i, w in enumerate(s):  # 枚举每种字符的起终点索引
+        for i, w in enumerate(s):  # brute_force每种字符的起终点索引
             ind[w].append(i)
 
         # 将每种字符两端中间部分的字符也扩展到包含所有对应的字符范围
@@ -345,7 +345,7 @@ class Solution:
             ind[w].append(y)
             lst.append([x, y])
 
-        # 贪心取最多且最短距离的区间覆盖
+        # greedy取最多且最短距离的区间覆盖
         lst.sort(key=lambda ls: ls[1])
         ans = []
         for x, y in lst:
@@ -355,7 +355,7 @@ class Solution:
 
     @staticmethod
     def ac_4421_1(ac=FastIO()):
-        # 模板：经典最少区间覆盖范围问题，相邻可以不相交
+        # 最少区间覆盖范围问题，相邻可以不相交
         n, r = ac.read_list_ints()
         nums = ac.read_list_ints()
         lst = []

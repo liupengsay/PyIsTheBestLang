@@ -10,7 +10,7 @@ class TestGeneral(unittest.TestCase):
         lst = [0, 1, 2, 4, 8, 16]
         m = len(lst)
 
-        # 计算所有的异或和
+        # 所有的异或和
         nums = []
         for i in range(1, 1 << m):
             nums.append(reduce(xor, [lst[j] for j in range(m) if i & (1 << j)]))

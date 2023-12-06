@@ -8,7 +8,7 @@ Function：
 145（https://leetcode.com/problems/binary-tree-postorder-traversal/）后序遍历迭代写法
 
 =====================================AcWing=====================================
-19（https://www.acwing.com/problem/content/description/31/）使用中序遍历找到其节点后序下一个
+19（https://www.acwing.com/problem/content/description/31/）中序遍历找到其节点后序下一个
 
 
 """

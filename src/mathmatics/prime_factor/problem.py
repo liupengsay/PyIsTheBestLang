@@ -1,16 +1,16 @@
 """
 Algorithm：数论、欧拉筛、线性筛、素数、欧拉函数、因子分解、素因子分解、进制转换、因数分解
-Function：有时候数位DP类型题目可以使用N进制来求取，质因数分解、因数分解、素数筛、线性筛、欧拉函数、pollard_rho、Meissel–Lehmer 算法（计算范围内素数个数）
+Function：有时候数位DP类型题目可以N进制来求取，质因数分解、因数分解、素数筛、线性筛、欧拉函数、pollard_rho、Meissel–Lehmer 算法（范围内素数个数）
 
 ====================================LeetCode====================================
-2183（https://leetcode.com/problems/count-array-pairs-divisible-by-k/description/）可以使用所有因子遍历枚举计数解决，正解为按照 k 的最大公因数分组
+2183（https://leetcode.com/problems/count-array-pairs-divisible-by-k/description/）可以所有因子遍历brute_forcecounter解决，正解为按照 k 的最大公因数分组
 
 =====================================LuoGu======================================
 
 ===================================CodeForces===================================
-1176D（https://codeforces.com/contest/1176/problem/D）经典构造题，贪心模拟，记录合数最大不等于自身的因子，以及质数列表的顺序
+1176D（https://codeforces.com/contest/1176/problem/D）构造题，greedyimplemention，记录合数最大不等于自身的因子，以及质数列表的顺序
 1884D（https://codeforces.com/contest/1884/problem/D）factor dp and cnt, count the number of pair with gcd=x
-1900D（https://codeforces.com/contest/1900/problem/D）经典根据容斥原理计算gcd的pair对数
+1900D（https://codeforces.com/contest/1900/problem/D）根据inclusion_exclusiongcd的pair对数
 
 ====================================AtCoder=====================================
 
@@ -42,7 +42,7 @@ class Solution:
         nums = ac.read_list_ints()
         ceil = max(nums)
 
-        # 模板：快速计算 1~ceil 的质数因子数
+        # 快速 1~ceil 的质数因子数
         p = [0] * (ceil + 1)
         for i in range(2, ceil + 1):
             if p[i] == 0:
@@ -51,15 +51,15 @@ class Solution:
                 for j in range(i * i, ceil + 1, i):
                     p[j] = i
 
-        # 计算gcd
+        # gcd
         g = reduce(math.gcd, nums)
         cnt = [0] * (ceil + 1)
         for i in range(n):
             b = nums[i] // g
             while b > 1:
-                # 计算 num[i] 除掉 g 以后的质数因子数
+                #  num[i] 除掉 g 以后的质数因子数
                 fac = p[b]
-                # 计数加 1 也可以记录由多少个因子
+                # counter| 1 也可以记录由多少个因子
                 cnt[fac] += 1
                 while b % fac == 0:
                     b //= fac
@@ -72,7 +72,7 @@ class Solution:
 
     @staticmethod
     def lc_6334(nums: List[int]) -> int:
-        # 模板：非空子集乘积不含除 1 之外任何平方整除数，即乘积质数因子的幂次均为 1（背包DP计数）
+        # 非空子集乘积不含除 1 之外任何平方整除数，即乘积质数因子的幂次均为 1（背包DPcounter）
         dct = {2, 3, 5, 6, 7, 10, 11, 13, 14, 15, 17, 19, 21, 22, 23, 26, 29, 30}
         # 集合为质数因子幂次均为 1
         mod = 10 ** 9 + 7
@@ -99,7 +99,7 @@ class Solution:
         nums = ac.read_list_ints()
         ceil = max(nums)
 
-        # 模板：利用线性筛的思想计算最小的质因数
+        # 利用线性筛的思想最小的质因数
         min_div = [i for i in range(ceil + 1)]
         for i in range(2, len(min_div)):
             if min_div[i] != i:
@@ -133,7 +133,7 @@ class Solution:
 
     @staticmethod
     def lc_2183(nums: List[int], k: int) -> int:
-        # 模板：可以使用所有因子遍历枚举计数解决，正解为按照 k 的最大公因数分组
+        # 可以所有因子遍历brute_forcecounter解决，正解为按照 k 的最大公因数分组
         nt = PrimeFactor(10 ** 5)
         ans = 0
         dct = defaultdict(int)
@@ -146,7 +146,7 @@ class Solution:
 
     @staticmethod
     def lc_2464(nums: List[int]) -> int:
-        # 模板：计算 1 到 n 的数所有的质因子并使用动态规划计数
+        #  1 到 n 的数所有的质因子并动态规划counter
         nt = PrimeFactor(max(nums))
         ind = dict()
         n = len(nums)
@@ -167,7 +167,7 @@ class Solution:
 
     @staticmethod
     def lc_8041(nums: List[int]) -> int:
-        # 模板：经典预处理幂次为奇数的质因子哈希分组计数
+        # 预处理幂次为奇数的质因子hash分组counter
         n = len(nums)
         nt = PrimeFactor(n)
         dct = defaultdict(int)
@@ -179,7 +179,7 @@ class Solution:
 
     @staticmethod
     def lc_lcp14(nums: List[int]) -> int:
-        # 模板：计算 1 到 n 的数所有的质因子并使用动态规划计数
+        #  1 到 n 的数所有的质因子并动态规划counter
         nt = PrimeFactor(max(nums))
         ind = dict()
         n = len(nums)
@@ -200,7 +200,7 @@ class Solution:
 
     @staticmethod
     def cf_1176d(ac=FastIO()):
-        # 模板：经典构造题，贪心模拟，记录合数最大不等于自身的因子，以及质数列表的顺序
+        # 构造题，greedyimplemention，记录合数最大不等于自身的因子，以及质数列表的顺序
         ac.read_int()
         nt = PrimeFactor(2 * 10 ** 5)
         prime_numbers = NumberTheory().euler_flag_prime(3 * 10 ** 6)
@@ -227,7 +227,7 @@ class Solution:
 
     @staticmethod
     def cf_1349a(ac=FastIO()):
-        # 模板：质因数分解，枚举最终结果当中质因子的幂次
+        # 质因数分解，brute_force最终结果当中质因子的幂次
         n = ac.read_int()
         nums = ac.read_list_ints()
         nmp = PrimeFactor(max(nums))
@@ -247,7 +247,7 @@ class Solution:
 
     @staticmethod
     def cf_1458a(ac=FastIO()):
-        # 模板：gcd公式变换求解gcd(x,y)=gcd(x-y,y)
+        # gcd公式变换求解gcd(x,y)=gcd(x-y,y)
         m, n = ac.read_list_ints()
         a = ac.read_list_ints()
         b = ac.read_list_ints()
@@ -261,7 +261,7 @@ class Solution:
 
     @staticmethod
     def abc_114d(ac=FastIO()):
-        # 模板：质因数分解计数
+        # 质因数分解counter
         n = ac.read_int()
         nt = PrimeFactor(n + 10)
         cnt = Counter()
@@ -290,7 +290,7 @@ class Solution:
 
     @staticmethod
     def ac_124(ac=FastIO()):
-        # 模板：不同进制之间的转换
+        # 不同进制之间的转换
         st = "0123456789"
         for i in range(26):
             st += chr(i + ord("A"))
@@ -318,17 +318,17 @@ class Solution:
 
     @staticmethod
     def ac_197(ac=FastIO()):
-        # 模板：计算n!阶乘的质因数分解即因子与因子的个数
+        # n!阶乘的质因数分解即因子与因子的个数
         ceil = ac.read_int()
         min_prime = [0] * (ceil + 1)
-        # 模板：计算 1 到 ceil 所有数字的最小质数因子
+        #  1 到 ceil 所有数字的最小质数因子
         for i in range(2, ceil + 1):
             if not min_prime[i]:
                 min_prime[i] = i
                 for j in range(i * i, ceil + 1, i):
                     min_prime[j] = i
 
-        # 模板：计算 1 到 ceil 所有数字的质数分解结果
+        #  1 到 ceil 所有数字的质数分解结果
         dct = defaultdict(int)
         for num in range(2, ceil + 1):
             while num > 1:
@@ -344,7 +344,7 @@ class Solution:
 
     @staticmethod
     def ac_199(ac=FastIO()):
-        # 模板：计算 sum(k%i for i in range(n))
+        #  sum(k%i for i in range(n))
         n, k = ac.read_list_ints()
         ans = n * k
         left = 1
@@ -357,7 +357,7 @@ class Solution:
 
     @staticmethod
     def lc_p2429(ac=FastIO()):
-        # 模板：枚举质因数组合加容斥原理计数
+        # brute_force质因数组合|inclusion_exclusioncounter
         n, m = ac.read_list_ints()
         primes = sorted(ac.read_list_ints())
 
@@ -389,7 +389,7 @@ class Solution:
 
     @staticmethod
     def lg_p2527(ac=FastIO()):
-        # 模板：丑数即只含特定质因子的数
+        # 丑数即只含特定质因子的数
         n, k = ac.read_list_ints()
         primes = ac.read_list_ints()
         dp = [1] * (k + 1)
@@ -405,7 +405,7 @@ class Solution:
 
     @staticmethod
     def lg_p5248(ac=FastIO()):
-        # 模板：经典进制题目
+        # 进制题目
         m, fm = ac.read_list_ints()
         lst = []
         while fm:
@@ -417,7 +417,7 @@ class Solution:
 
     @staticmethod
     def lg_p7960(ac=FastIO()):
-        # 模板：类似埃氏筛的思路进行预处理
+        # 类似埃氏筛的思路预处理
         n = 10 ** 7
         dp = [0] * (n + 1)
         for x in range(1, n + 1):
@@ -440,13 +440,13 @@ class Solution:
 
     @staticmethod
     def lg_p8319(ac=FastIO()):
-        # 模板：质因数分解进行贪心计算
+        # 质因数分解greedy
         n = 2 * 10 ** 6
         f = [1] * (n + 1)
         prime = [0] * (n + 1)
         for x in range(2, n + 1):
             if not prime[x]:
-                # 计算当前值作为质因子的花费次数
+                # 当前值作为质因子的花费次数
                 t = 1
                 while t * x <= n:
                     c = 1
@@ -458,7 +458,7 @@ class Solution:
                     prime[t * x] = 1
                     t += 1
 
-        # 进行前缀最大值计算处理
+        # 前缀最大值处理
         for i in range(1, n + 1):
             f[i] = ac.max(f[i - 1], f[i])
         for _ in range(ac.read_int()):
@@ -467,7 +467,7 @@ class Solution:
 
     @staticmethod
     def lg_p8646(ac=FastIO()):
-        # 模板：经典裴蜀定理与背包 DP
+        # 裴蜀定理与背包 DP
         n = ac.read_int()
         nums = [ac.read_int() for _ in range(n)]
         s = 10000
@@ -518,7 +518,7 @@ class Solution:
 
     @staticmethod
     def lc_1390(nums: List[int]) -> int:
-        # 模板：预处理所有数的所有因子
+        # 预处理所有数的所有因子
         nt = PrimeFactor(10 ** 5)
         ans = 0
         for num in nums:
@@ -528,7 +528,7 @@ class Solution:
 
     @staticmethod
     def lc_1819(nums: List[int]) -> int:
-        # 模板：预处理所有整数的所有因子，再枚举gcd计算
+        # 预处理所有整数的所有因子，再brute_forcegcd
         nt = PrimeFactor(2 * 10 ** 5 + 10)
         dct = defaultdict(list)
         for num in set(nums):
@@ -566,7 +566,7 @@ class Solution:
 
     @staticmethod
     def ac_3727(ac=FastIO()):
-        # 模板：脑筋急转弯转换成进制表达问题
+        # brain_teaser转换成进制表达问题
 
         for _ in range(ac.read_int()):
             def check():
@@ -591,7 +591,7 @@ class Solution:
 
     @staticmethod
     def ac_4319(ac=FastIO()):
-        # 模板：质因数分解后前缀哈希计数
+        # 质因数分解后前缀hashcounter
         n, k = ac.read_list_ints()
         a = ac.read_list_ints()
         nt = PrimeFactor(max(a))
@@ -612,7 +612,7 @@ class Solution:
 
     @staticmethod
     def ac_4484(ac=FastIO()):
-        # 模板：分数在某个进制下是否为有限小数问题
+        # 分数在某个进制下是否为有限小数问题
         for _ in range(ac.read_int()):
 
             def check():
@@ -635,7 +635,7 @@ class Solution:
 
     @staticmethod
     def ac_5049(ac=FastIO()):
-        # 模板：使用质因数分解计算组合数
+        # 质因数分解组合数
         n, m, h = ac.read_list_ints()
         a = ac.read_list_ints()
         h -= 1

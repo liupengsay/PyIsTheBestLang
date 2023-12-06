@@ -1,10 +1,10 @@
 """
 Algorithm：后缀数组
-Function：生成字符串的后缀排序
+Function：生成字符串的后缀sorting
 
 ====================================LeetCode====================================
 1754（https://leetcode.com/problems/largest-merge-of-two-strings/）
-1698（https://leetcode.com/problems/number-of-distinct-substrings-in-a-string/）经典后缀数组应用题，利用height特性
+1698（https://leetcode.com/problems/number-of-distinct-substrings-in-a-string/）后缀数组应用题，利用height特性
 
 =====================================LuoGu======================================
 3809（https://www.luogu.com.cn/problem/P3809）
@@ -12,7 +12,7 @@ Function：生成字符串的后缀排序
 =====================================AcWing=====================================
 140（https://www.acwing.com/problem/content/142/）后缀数组模板题
 
-Morgan and a String（https://www.hackerrank.com/challenges/morgan-and-a-string/problem?isFullScreen=true）拼接两个字符串使得字典序最小
+Morgan and a String（https://www.hackerrank.com/challenges/morgan-and-a-string/problem?isFullScreen=true）拼接两个字符串使得lexicographical_order最小
 Suffix Array（https://judge.yosupo.jp/problem/suffixarray）
 1 Number of Substrings（https://judge.yosupo.jp/problem/number_of_substrings）use sa to compute number of different substring
 
@@ -27,7 +27,7 @@ class Solution:
 
     @staticmethod
     def lc_1754_1(word1: str, word2: str) -> str:
-        # 模板：后缀数组计算后缀的字典序大小，贪心拼接两个字符串使得字典序最大
+        # 后缀数组后缀的lexicographical_order大小，greedy拼接两个字符串使得lexicographical_order最大
         ind = {chr(ord("a") - 1 + i): i for i in range(27)}
         word = word1 + chr(ord("a") - 1) + word2
         sa, rk, height = SuffixArray(ind).get_array(word)
@@ -48,7 +48,7 @@ class Solution:
 
     @staticmethod
     def lc_1754_2(word1: str, word2: str) -> str:
-        # 模板：贪心比较后缀的字典序大小
+        # greedy比较后缀的lexicographical_order大小
         merge = ""
         i = j = 0
         m, n = len(word1), len(word2)
@@ -65,7 +65,7 @@ class Solution:
 
     @staticmethod
     def hr_1(ac=FastIO()):
-        # 模板：拼接两个字符串使得字典序最小
+        # 拼接两个字符串使得lexicographical_order最小
         for _ in range(ac.read_int()):
             word1 = ac.read_str().lower()
             word2 = ac.read_str().lower()
@@ -93,7 +93,7 @@ class Solution:
 
     @staticmethod
     def lg_3809(ac=FastIO()):
-        # 模板：计算数组的后缀排序
+        # 数组的后缀sorting
         words = [str(x) for x in range(10)] + [chr(i + ord("A")) for i in range(26)] + [chr(i + ord("a")) for i in
                                                                                         range(26)]
         ind = {st: i for i, st in enumerate(words)}
@@ -115,7 +115,7 @@ class Solution:
 
     @staticmethod
     def ac_140(ac=FastIO()):
-        # 模板：后缀数组模板题
+        # 后缀数组模板题
         ind = {chr(ord("a") + i): i for i in range(26)}
         sa, rk, height = SuffixArray(ind).get_array(ac.read_str())
         ac.lst(sa)
@@ -124,7 +124,7 @@ class Solution:
 
     @staticmethod
     def lc_1698(s: str) -> int:
-        # 模板：经典后缀数组应用题，利用 height 特性
+        # 后缀数组应用题，利用 height 特性
         ind = {chr(ord("a") + i): i for i in range(26)}
         # 高度数组的定义，所有高度之和就是相同子串的个数
         sa, rk, height = SuffixArray(ind).get_array(s)

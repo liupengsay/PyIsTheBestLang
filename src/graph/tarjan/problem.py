@@ -6,43 +6,43 @@ Function：Tarjan 算法是基于深度优先搜索的算法，用于求解图�
 
 ====================================LeetCode====================================
 1192（https://leetcode.com/problems/critical-connections-in-a-network/）无向有环图求割边
-2360（https://leetcode.com/problems/longest-cycle-in-a-graph/solution/by-liupengsay-4ff6/）经典求有向图最长环
+2360（https://leetcode.com/problems/longest-cycle-in-a-graph/solution/by-liupengsay-4ff6/）求有向图最长环
 2204（https://leetcode.com/problems/distance-to-a-cycle-in-undirected-graph/description/）求无向图中每个点到环的距离
 1568（https://leetcode.com/problems/minimum-number-of-days-to-disconnect-island/solution/by-liupengsay-zd7w/）无向有环图求求割点数量
 
 =====================================LuoGu======================================
 3388（https://www.luogu.com.cn/problem/P3388）有自环与重边，求无向图割点
 8435（https://www.luogu.com.cn/problem/P8435）有自环与重边，只关注孤立自环即可
-8436（https://www.luogu.com.cn/problem/P8436）有自环与重边，通过虚拟节点进行扩边
+8436（https://www.luogu.com.cn/problem/P8436）有自环与重边，通过虚拟节点扩边
 2860（https://www.luogu.com.cn/problem/P2860）无向图边双缩点后求树的质心为根时的叶子两两配对数
 2863（https://www.luogu.com.cn/problem/P2863）tarjan求强联通分量
 
 1656（https://www.luogu.com.cn/problem/P1656）求割边
-1793（https://www.luogu.com.cn/problem/P1793）求连通图两个指定点之间的割点，使用枚举与并查集的方式进行求解
-2656（https://www.luogu.com.cn/problem/P2656）使用scc缩点后，计算DAG最长路
+1793（https://www.luogu.com.cn/problem/P1793）求连通图两个指定点之间的割点，brute_force与union_find的方式求解
+2656（https://www.luogu.com.cn/problem/P2656）scc缩点后，DAG最长路
 1726（https://www.luogu.com.cn/problem/P1726）强连通分量裸题
-2002（https://www.luogu.com.cn/problem/P2002）强连通分量缩点后，计算入度为0的节点个数
-2341（https://www.luogu.com.cn/problem/P2341）使用scc缩点后计算出度为 0 的点集个数与大小
-2835（https://www.luogu.com.cn/problem/P2835）强连通分量scc缩点后计算入度为 0 的点数
+2002（https://www.luogu.com.cn/problem/P2002）强连通分量缩点后，入度为0的节点个数
+2341（https://www.luogu.com.cn/problem/P2341）scc缩点后出度为 0 的点集个数与大小
+2835（https://www.luogu.com.cn/problem/P2835）强连通分量scc缩点后入度为 0 的点数
 2863（https://www.luogu.com.cn/problem/P2863）强连通分量scc模板题
 3609（https://www.luogu.com.cn/problem/B3609）强连通分量scc模板题
 3610（https://www.luogu.com.cn/problem/B3610）点双连通分量
-7033（https://www.luogu.com.cn/problem/P7033）经典scc缩点后使用 DAG 进行树形 DP
-7965（https://www.luogu.com.cn/problem/P7965）经典scc缩点后使用 DAG 进行树形 DP
+7033（https://www.luogu.com.cn/problem/P7033）scc缩点后 DAG 树形 DP
+7965（https://www.luogu.com.cn/problem/P7965）scc缩点后 DAG 树形 DP
 
 ===================================CodeForces===================================
 1811F（https://codeforces.com/contest/1811/problem/F）无向图求连通分量
-427C（https://codeforces.com/problemset/problem/427/C）有向图的强联通分量进行缩点
-193A（https://codeforces.com/contest/193/problem/A）脑筋急转弯计算有无割点
-999E（https://codeforces.com/contest/999/problem/E）使用SCC缩点后查看入度为0的点个数
-1213F（https://codeforces.com/contest/1213/problem/F）使用SCC缩点后拓扑排序贪心
-1547G（https://codeforces.com/contest/1547/problem/G）使用SCC缩点后利用可达性建立新图，计算路径条数
-1702E（https://codeforces.com/contest/1702/problem/E）使用点双进行无向图找环，判断有无奇数环
+427C（https://codeforces.com/problemset/problem/427/C）有向图的强联通分量缩点
+193A（https://codeforces.com/contest/193/problem/A）brain_teaser有无割点
+999E（https://codeforces.com/contest/999/problem/E）SCC缩点后查看入度为0的点个数
+1213F（https://codeforces.com/contest/1213/problem/F）SCC缩点后拓扑sortinggreedy
+1547G（https://codeforces.com/contest/1547/problem/G）SCC缩点后利用可达性建立新图，路径条数
+1702E（https://codeforces.com/contest/1702/problem/E）点双无向图找环，判断有无奇数环
 1768D（https://codeforces.com/contest/1768/problem/D）置换环与tarjan求环
 
 =====================================AcWing=====================================
 3579（https://www.acwing.com/problem/content/3582/）强连通分量模板题
-3813（https://www.acwing.com/problem/content/submission/3816/）强连通分量模板与拓扑排序DP
+3813（https://www.acwing.com/problem/content/submission/3816/）强连通分量模板与拓扑sortingDP
 
 ===================================LibraryChecker===================================
 1 Cycle Detection (Directed)（https://judge.yosupo.jp/problem/cycle_detection）detect any circle in a directed graph
@@ -181,7 +181,7 @@ class Solution:
 
     @staticmethod
     def lc_2360_1(edges: List[int]) -> int:
-        # 模板：TarjanCC 求 scc 有向图强连通分量
+        # TarjanCC 求 scc 有向图强连通分量
         n = len(edges)
         edge = [set() for _ in range(n)]
         for i in range(n):
@@ -193,7 +193,7 @@ class Solution:
 
     @staticmethod
     def lc_2360_2(edges: List[int]) -> int:
-        # 模板：有向图 Tarjan 求 scc 有向图强连通分量
+        # 有向图 Tarjan 求 scc 有向图强连通分量
         n = len(edges)
         edge = [[] for _ in range(n)]
         for i in range(n):
@@ -284,7 +284,7 @@ class Solution:
 
     @staticmethod
     def cf_999e(ac=FastIO()):
-        # 模板：使用SCC缩点后查看入度为0的点个数
+        # SCC缩点后查看入度为0的点个数
         n, m, s = ac.read_list_ints()
         s -= 1
         edges = [set() for _ in range(n)]
@@ -310,7 +310,7 @@ class Solution:
 
     @staticmethod
     def cf_1702e(ac=FastIO()):
-        # 模板：使用点双进行无向图找环，判断有无奇数环
+        # 点双无向图找环，判断有无奇数环
         for _ in range(ac.read_int()):
             def check():
                 n = ac.read_int()
@@ -347,7 +347,7 @@ class Solution:
 
     @staticmethod
     def lc_1192_1(n: int, connections: List[List[int]]) -> List[List[int]]:
-        # 模板：使用 TarjanCC 求割边
+        #  TarjanCC 求割边
         edge = [set() for _ in range(n)]
         for i, j in connections:
             edge[i].add(j)
@@ -357,7 +357,7 @@ class Solution:
 
     @staticmethod
     def lc_1192_2(n: int, connections: List[List[int]]) -> List[List[int]]:
-        # 模板：使用 Tarjan 求割边
+        #  Tarjan 求割边
         edge = [[] for _ in range(n)]
         for i, j in connections:
             edge[i].append(j)
@@ -367,7 +367,7 @@ class Solution:
 
     @staticmethod
     def lg_p1656(ac=FastIO()):
-        # 模板：tarjan求无向图割边
+        # tarjan求无向图割边
         n, m = ac.read_list_ints()
         dct = [set() for _ in range(n)]
         for _ in range(m):
@@ -382,7 +382,7 @@ class Solution:
 
     @staticmethod
     def lg_p2860(ac=FastIO()):
-        # 模板: TarjanCC 求无向图边双连通分量进行缩点后，计算质心为根时的叶子数
+        # 模板: TarjanCC 求无向图边双连通分量缩点后，质心为根时的叶子数
         n, m = ac.read_list_ints()
         edge = [set() for _ in range(n)]
         degree = defaultdict(int)
@@ -474,7 +474,7 @@ class Solution:
 
     @staticmethod
     def cf_427c(ac=FastIO()):
-        # 模板：tarjan进行有向图缩点后计数
+        # tarjan有向图缩点后counter
         n = ac.read_int()
         nums = ac.read_list_ints()
         dct = [[] for _ in range(n)]
@@ -496,7 +496,7 @@ class Solution:
 
     @staticmethod
     def lg_p2656(ac=FastIO()):
-        # 模板：使用scc缩点后，计算DAG最长路
+        # scc缩点后，DAG最长路
         n, m = ac.read_list_ints()
         edge = [set() for _ in range(n)]
         edges = []
@@ -526,7 +526,7 @@ class Solution:
                 dis[a][b] = ac.max(dis[a][b], c)
                 pre[b].add(a)
 
-        # 注意这里可能有 0 之外的入度为 0 的点，需要先进行拓扑消除
+        # 注意这里可能有 0 之外的入度为 0 的点，需要先拓扑消除
         stack = deque([i for i in range(scc_id) if not pre[i] and i != node_scc_id[s]])
         while stack:
             i = stack.popleft()
@@ -535,7 +535,7 @@ class Solution:
                 if not pre[j]:
                     stack.append(j)
 
-        # 广搜计算最长路，进一步还可以确定相应的具体路径
+        # 广搜最长路，进一步还可以确定相应的具体路径
         visit = [-inf] * scc_id
         visit[node_scc_id[s]] = cnt[node_scc_id[s]]
         stack = deque([node_scc_id[s]])
@@ -553,7 +553,7 @@ class Solution:
 
     @staticmethod
     def lg_p1726(ac=FastIO()):
-        # 模板：强连通分量裸题
+        # 强连通分量裸题
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for _ in range(m):
@@ -575,17 +575,17 @@ class Solution:
 
     @staticmethod
     def lg_p2002(ac=FastIO()):
-        # 模板：强连通分量缩点后，计算入度为0的节点个数
+        # 强连通分量缩点后，入度为0的节点个数
         n, m = ac.read_list_ints()
         dct = [set() for _ in range(n)]
         for _ in range(m):
             i, j = ac.read_list_ints_minus_one()
             if i != j:
                 dct[i].add(j)
-        # 必须要使用缩点，否则单独一个环没办法获取消息
+        # 必须要缩点，否则单独一个环没办法获取消息
         scc_id, _, node_scc_id = TarjanCC().get_strongly_connected_component_bfs(n, [list(e) for e in dct])
 
-        # 计算新图
+        # 新图
         in_degree = [0] * scc_id
         for i in range(n):
             a = node_scc_id[i]
@@ -598,7 +598,7 @@ class Solution:
 
     @staticmethod
     def lg_p2341(ac=FastIO()):
-        # 模板：使用scc缩点后计算出度为 0 的点集个数与大小
+        # scc缩点后出度为 0 的点集个数与大小
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for _ in range(m):
@@ -622,7 +622,7 @@ class Solution:
 
     @staticmethod
     def lg_p2835(ac=FastIO()):
-        # 模板：强连通分量scc缩点后计算入度为 0 的点数
+        # 强连通分量scc缩点后入度为 0 的点数
         n = ac.read_int()
         edge = [ac.read_list_ints_minus_one()[:-1] for _ in range(n)]
         scc_id, scc_node_id, node_scc_id = TarjanCC().get_strongly_connected_component_bfs(n, edge)
@@ -637,7 +637,7 @@ class Solution:
 
     @staticmethod
     def lg_p7033(ac=FastIO()):
-        # 模板：经典scc缩点后使用 DAG 进行树形 DP
+        # scc缩点后 DAG 树形 DP
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         ind = list(range(n))
@@ -670,7 +670,7 @@ class Solution:
             for j in new_dct[i]:
                 new_degree[j] += 1
 
-        # 计算结果
+        # 结果
         ans_group = [0] * scc_id
         stack = [i for i in range(scc_id) if not new_degree[i]]
         while stack:
@@ -685,7 +685,7 @@ class Solution:
 
     @staticmethod
     def lg_p7965(ac=FastIO()):
-        # 模板：经典scc缩点后使用 DAG 进行树形 DP
+        # scc缩点后 DAG 树形 DP
         n, m, q = ac.read_list_ints()
         dct = [set() for _ in range(n)]
         for _ in range(m):
@@ -727,7 +727,7 @@ class Solution:
 
     @staticmethod
     def lc_1568(grid: List[List[int]]) -> int:
-        # 模板：经典求连通分量与割点数量题
+        # 求连通分量与割点数量题
         m, n = len(grid), len(grid[0])
 
         # 建图
@@ -767,7 +767,7 @@ class Solution:
 
     @staticmethod
     def ac_3549(ac=FastIO()):
-        # 模板：强连通分量模板题
+        # 强连通分量模板题
         for _ in range(ac.read_int()):
             n = ac.read_int()
             p = ac.read_list_ints()
@@ -785,7 +785,7 @@ class Solution:
 
     @staticmethod
     def ac_3813(ac=FastIO()):
-        # 模板：强连通分量模板与拓扑排序DP
+        # 强连通分量模板与拓扑sortingDP
         n, m = ac.read_list_ints()
         s = ac.read_str()
         dct = [set() for _ in range(n)]

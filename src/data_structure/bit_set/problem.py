@@ -1,9 +1,9 @@
 """
-Algorithm：BitSet、位集合、模拟区间状态变换、区间翻转
+Algorithm：BitSet、位集合、implemention区间状态变换、区间翻转
 Function：
 
 ====================================LeetCode====================================
-2569（https://leetcode.com/problems/handling-sum-queries-after-update/）经典01线段树区间翻转与求和，也可以使用BitSet
+2569（https://leetcode.com/problems/handling-sum-queries-after-update/）01线段树区间翻转与求和，也可以BitSet
 
 =====================================LuoGu======================================
 xx（xxx）xxxxxxxxxxxxxxxxxxxx
@@ -12,11 +12,11 @@ xx（xxx）xxxxxxxxxxxxxxxxxxxx
 xx（xxx）xxxxxxxxxxxxxxxxxxxx
 
 ====================================AtCoder=====================================
-D - FT Robot（https://atcoder.jp/contests/abc082/tasks/arc087_b）思维题，分开BFS平面坐标的x与y轴移动，使用bitset优化
-E - Balanced Path（https://atcoder.jp/contests/abc147/tasks/abc147_e）矩阵DP使用bitset表示01状态优化
+D - FT Robot（https://atcoder.jp/contests/abc082/tasks/arc087_b）思维题，分开BFS平面坐标的x与y轴移动，bitset优化
+E - Balanced Path（https://atcoder.jp/contests/abc147/tasks/abc147_e）matrix_dpbitset表示01状态优化
 
 =====================================AcWing=====================================
-5037（https://www.acwing.com/problem/content/5040/）同CF242E，使用二十多个01线段树维护区间异或与区间加和
+5037（https://www.acwing.com/problem/content/5040/）同CF242E，二十多个01线段树维护区间异或与区间|和
 
 """
 from typing import List
@@ -31,7 +31,7 @@ class Solution:
 
     @staticmethod
     def abc_82d(ac=FastIO()):
-        # 模板：思维题，分开BFS平面坐标的x与y轴移动，使用bitset优化
+        # 思维题，分开BFS平面坐标的x与y轴移动，bitset优化
         s = ac.read_str()
         x, y = ac.read_list_ints()
         ls = [len(t) for t in s.split("T")]
@@ -47,7 +47,7 @@ class Solution:
 
     @staticmethod
     def lc_2569_2(nums1: List[int], nums2: List[int], queries: List[List[int]]) -> List[int]:
-        # 模板：经典01线段树区间翻转与求和，也可以使用BitSet
+        # 01线段树区间翻转与求和，也可以BitSet
         res = []
         seg = SegmentTreeBitSet()
         n = len(nums1)
@@ -66,7 +66,7 @@ class Solution:
 
     @staticmethod
     def abc_147f(ac=FastIO()):
-        # 模板：矩阵DP使用bitset表示01状态优化
+        # matrix_dpbitset表示01状态优化
         m, n = ac.read_list_ints()
         grid_a = [ac.read_list_ints() for _ in range(m)]
         grid_b = [ac.read_list_ints() for _ in range(m)]
@@ -100,7 +100,7 @@ class Solution:
 
     @staticmethod
     def ac_5037_2(ac=FastIO()):
-        # 模板：同CF242E，使用二十多个01线段树维护区间异或与区间加和
+        # 同CF242E，二十多个01线段树维护区间异或与区间|和
         n = ac.read_int()
         nums = ac.read_list_ints()
         tree = [SegmentTreeBitSet() for _ in range(22)]

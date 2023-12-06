@@ -1,33 +1,33 @@
 """
-Algorithm：哈希、贡献法、矩阵哈希、字符串哈希、前缀哈希、后缀哈希、哈希碰撞
-Function：前后缀计数、索引、加和
+Algorithm：hash、contribution_method、矩阵hash、字符串hash、前缀hash、后缀hash、hash碰撞
+Function：prefix_suffixcounter、索引、|和
 
 ====================================LeetCode====================================
-2143（https://leetcode.com/problems/choose-numbers-from-two-arrays-in-range/）前缀和哈希计数转换为求连续子数组和为 0 的个数
-面试题 17（https://leetcode.com/problems/find-longest-subarray-lcci/）和为0的最长连续子数组，使用前缀和哈希求解
-1590（https://leetcode.com/problems/make-sum-divisible-by-p/）求和模p与整个子数组模p相等的最短子数组，使用前缀和哈希求解
-6317（https://leetcode.com/contest/weekly-contest-336/problems/count-the-number-of-beautiful-subarrays/）前缀和哈希计数
-题目-02（https://leetcode.com/contest/hhrc2022/problems/0Wx4Pc/）前缀和哈希，加脑筋急转弯贪心
+2143（https://leetcode.com/problems/choose-numbers-from-two-arrays-in-range/）prefix_sumhashcounter转换为求连续子数组和为 0 的个数
+面试题 17（https://leetcode.com/problems/find-longest-subarray-lcci/）和为0的最长连续子数组，prefix_sumhash求解
+1590（https://leetcode.com/problems/make-sum-divisible-by-p/）求和模p与整个子数组模p相等的最短子数组，prefix_sumhash求解
+6317（https://leetcode.com/contest/weekly-contest-336/problems/count-the-number-of-beautiful-subarrays/）prefix_sumhashcounter
+题目-02（https://leetcode.com/contest/hhrc2022/problems/0Wx4Pc/）prefix_sumhash，|brain_teasergreedy
 题目-03（https://leetcode.com/contest/hhrc2022/problems/VAc7h3/）二叉树序列化
-2031（https://leetcode.com/problems/count-subarrays-with-more-ones-than-zeros/）经典前缀和哈希计数
-2025（https://leetcode.com/problems/maximum-number-of-ways-to-partition-an-array/description/）厘清边界使用哈希贡献法计数
-895（https://leetcode.com/problems/maximum-frequency-stack/description/）经典哈希与栈的结合应用题
-1658（https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/description/）前缀和哈希，加脑筋急转弯贪心
-2227（https://leetcode.com/problems/encrypt-and-decrypt-strings/）经典脑筋急转弯逆向思维
+2031（https://leetcode.com/problems/count-subarrays-with-more-ones-than-zeros/）prefix_sumhashcounter
+2025（https://leetcode.com/problems/maximum-number-of-ways-to-partition-an-array/description/）厘清边界hashcontribution_methodcounter
+895（https://leetcode.com/problems/maximum-frequency-stack/description/）hash与栈的结合应用题
+1658（https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/description/）prefix_sumhash，|brain_teasergreedy
+2227（https://leetcode.com/problems/encrypt-and-decrypt-strings/）brain_teaserreverse_thinking
 
 =====================================LuoGu======================================
-2697（https://www.luogu.com.cn/problem/P2697）哈希记录前缀和与对应索引
-1114（https://www.luogu.com.cn/record/list?user=739032&status=12&page=13）哈希记录前缀和与对应索引
-4889（https://www.luogu.com.cn/problem/P4889）经典公式变换使用哈希计数
-6273（https://www.luogu.com.cn/problem/P6273）经典哈希前缀计数
-8630（https://www.luogu.com.cn/problem/P8630）哈希计数与排列枚举
+2697（https://www.luogu.com.cn/problem/P2697）hash记录prefix_sum与对应索引
+1114（https://www.luogu.com.cn/record/list?user=739032&status=12&page=13）hash记录prefix_sum与对应索引
+4889（https://www.luogu.com.cn/problem/P4889）公式变换hashcounter
+6273（https://www.luogu.com.cn/problem/P6273）hash前缀counter
+8630（https://www.luogu.com.cn/problem/P8630）hashcounter与排列brute_force
 
 ====================================AtCoder=====================================
-D - Snuke's Coloring（https://atcoder.jp/contests/abc045/tasks/arc061_b）经典哈希容斥计数
-1702C（https://codeforces.com/contest/1702/problem/C）卡哈希，需要用异或进行变换
+D - Snuke's Coloring（https://atcoder.jp/contests/abc045/tasks/arc061_b）hash容斥counter
+1702C（https://codeforces.com/contest/1702/problem/C）卡hash，需要用异或变换
 
 =====================================AcWing=====================================
-137（https://www.acwing.com/problem/content/139/）哈希找相同雪花
+137（https://www.acwing.com/problem/content/139/）hash找相同雪花
 
 """
 import random
@@ -44,7 +44,7 @@ class Solution:
 
     @staticmethod
     def lc_2143(nums1: List[int], nums2: List[int]) -> int:
-        # 模板：经典使用哈希计数模拟线性 DP 转移
+        # hashcounterimplemention线性 DP 转移
         n = len(nums1)
         mod = 10 ** 9 + 7
         pre = defaultdict(int)
@@ -65,7 +65,7 @@ class Solution:
 
     @staticmethod
     def lc_1658(nums: List[int], x: int) -> int:
-        # 模板：前缀和哈希，加脑筋急转弯贪心
+        # prefix_sumhash，|brain_teasergreedy
         pre = {0: -1}
         cur = 0
         n = len(nums)
@@ -82,7 +82,7 @@ class Solution:
     @staticmethod
     def lc_2025(nums: List[int], k: int) -> int:
 
-        # 模板：厘清边界使用哈希贡献法计数
+        # 厘清边界hashcontribution_methodcounter
         n = len(nums)
         ans = 0
         pre = list(accumulate(nums, initial=0))
@@ -113,7 +113,7 @@ class Solution:
 
     @staticmethod
     def abc_45d(ac=FastIO()):
-        # 模板：经典哈希容斥计数
+        # hash容斥counter
         h, w, n = ac.read_list_ints()
         cnt = [0] * 10
         dct = defaultdict(int)
@@ -183,7 +183,7 @@ class Solution:
 
     @staticmethod
     def lg_p4889(ac=FastIO()):
-        # 模板：枚举计数
+        # brute_forcecounter
         n, m = ac.read_list_ints()
         height = ac.read_list_ints()
         cnt = defaultdict(int)
@@ -205,7 +205,7 @@ class Solution:
 
     @staticmethod
     def lg_p6273(ac=FastIO()):
-        # 模板：经典哈希前缀计数
+        # hash前缀counter
         ac.read_int()
         s = ac.read_str()
         # 选择最少出现的字符作为减数
@@ -230,10 +230,10 @@ class Solution:
                     if i != ind[w]:
                         cnt[i] -= 1
             else:
-                # 减数字符加 1
+                # 减数字符| 1
                 cnt[ind[w]] += 1
             tp = tuple(cnt)
-            # sa-ta = sb-tb 则有 sa-sb = ta-tb 因此这样计数
+            # sa-ta = sb-tb 则有 sa-sb = ta-tb 因此这样counter
             ans += pre[tp]
             pre[tp] += 1
             ans %= mod
@@ -242,7 +242,7 @@ class Solution:
 
 
 class LC895:
-    # 模板：经典哈希与栈的结合应用题
+    # hash与栈的结合应用题
     def __init__(self):
         self.freq = defaultdict(list)
         self.dct = defaultdict(int)

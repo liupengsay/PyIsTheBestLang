@@ -1,7 +1,7 @@
 """
 
 Algorithm：LCA、倍增算法、树链剖分、树的质心、树的重心、离线LCA与树上差分
-Function：来求一棵树的最近公共祖先（LCA）也可以使用
+Function：来求一棵树的最近公共祖先（LCA）也可以
 
 ====================================LeetCode====================================
 
@@ -32,10 +32,10 @@ class Solution:
     @staticmethod
     def lg_p7167(ac=FastIO()):
 
-        # 模板：单调栈加倍增LCA计算
+        # 单调栈|倍增LCA
         n, q = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
-        # 使用单调栈建树
+        # 单调栈建树
         parent = [n] * n
         edge = [[] for _ in range(n + 1)]
         stack = []
@@ -59,7 +59,7 @@ class Solution:
 
     @staticmethod
     def cf_519e(ac=FastIO()):
-        # 模板：使用LCA计算第k个祖先与节点之间的距离
+        # LCA第k个祖先与节点之间的距离
         n = ac.read_int()
         edges = [[] for _ in range(n)]
         for _ in range(n - 1):
@@ -110,7 +110,7 @@ class Solution:
 
     @staticmethod
     def cf_1328e(ac=FastIO()):
-        # 模板：利用 LCA 的方式查询是否为一条链上距离不超过 1 的点
+        # 利用 LCA 的方式查询是否为一条链上距离不超过 1 的点
         n, m = ac.read_list_ints()
         edge = [[] for _ in range(n)]
         for _ in range(n - 1):
@@ -138,7 +138,7 @@ class Solution:
 
     @staticmethod
     def lc_1483(parent, node, k):
-        # 模板：查询任意节点的第 k 个祖先
+        # 查询任意节点的第 k 个祖先
         n = len(parent)
         edges = [[] for _ in range(n)]
         for i in range(n):
@@ -150,7 +150,7 @@ class Solution:
 
     @staticmethod
     def lg_p3379_1(ac=FastIO()):
-        # 模板：使用倍增查询任意两个节点的 LCA
+        # 倍增查询任意两个节点的 LCA
         n, m, s = ac.read_list_ints()
         s -= 1
         edge = [[] for _ in range(n)]
@@ -167,7 +167,7 @@ class Solution:
 
     @staticmethod
     def abc_70d(ac=FastIO()):
-        # 模板：典型LCA查询运用题，也可离线实现
+        # 典型LCA查询运用题，也可离线实现
         n = ac.read_int()
         edges = [[] for _ in range(n)]
         dct = [[] for _ in range(n)]
@@ -200,7 +200,7 @@ class Solution:
 
     @staticmethod
     def cf_321c(ac=FastIO()):
-        # 模板：使用质心算法进行树的递归切割
+        # 质心算法树的递归切割
         n = ac.read_int()
         to = [[] for _ in range(n)]
         for _ in range(n - 1):
@@ -217,7 +217,7 @@ class Solution:
 
     @staticmethod
     def lg_p3384(ac=FastIO()):
-        # 模板：使用树链剖分和深搜序进行节点值修改与区间和查询
+        # 树链剖分和dfs_order节点值修改与区间和查询
         n, m, r, p = ac.read_list_ints()
         r -= 1
         tree = RangeAddRangeSum(n)
@@ -257,7 +257,7 @@ class Solution:
 
     @staticmethod
     def lg_p3379_2(ac=FastIO()):
-        # 模板：使用树链剖分求 LCA
+        # 树链剖分求 LCA
         n, m, r = ac.read_list_ints()
         r -= 1
         dct = [[] for _ in range(n)]
@@ -273,7 +273,7 @@ class Solution:
 
     @staticmethod
     def lg_p2912(ac=FastIO()):
-        # 模板：离线LCA查询与任意点对之间距离计算
+        # 离线LCA查询与任意点对之间距离
         n, q = ac.read_list_ints()
         dct = [dict() for _ in range(n)]
         for _ in range(n - 1):
@@ -282,7 +282,7 @@ class Solution:
             j -= 1
             dct[i][j] = dct[j][i] = w
 
-        # 根节点bfs计算距离
+        # 根节点bfs距离
         dis = [math.inf] * n
         dis[0] = 0
         stack = [[0, -1]]
@@ -306,7 +306,7 @@ class Solution:
 
     @staticmethod
     def lg_p3019(ac=FastIO()):
-        # 模板：离线查询 LCA 最近公共祖先
+        # 离线查询 LCA 最近公共祖先
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for i in range(n - 1):
@@ -319,7 +319,7 @@ class Solution:
 
     @staticmethod
     def lg_p3258(ac=FastIO()):
-        # 模板：离线LCA加树上差分加树形DP
+        # 离线LCA|树上差分|树形DP
         n = ac.read_int()
         nums = ac.read_list_ints_minus_one()
         root = nums[0]
@@ -349,7 +349,7 @@ class Solution:
         diff = [0] * n
         for i in range(n - 1):
             u, v, ancestor = trips[i] + [res[i]]
-            # 将 u 与 v 到 ancestor 的路径经过的节点进行差分修改（不包含u）
+            # 将 u 与 v 到 ancestor 的路径经过的节点差分修改（不包含u）
             if u != ancestor:
                 u = parent[u]
                 diff[u] += 1
@@ -361,7 +361,7 @@ class Solution:
                 diff[v] += 1
                 diff[u] -= 1
 
-        # 自底向上进行差分加和
+        # 自底向上差分|和
         stack = [root]
         while stack:
             i = stack.pop()
@@ -383,7 +383,7 @@ class Solution:
 
     @staticmethod
     def lg_p6969(ac=FastIO()):
-        # 模板：离线 LCA 查询与树上边差分计算
+        # offline_lca 查询与树上边差分
         n = ac.read_int()
         dct = [[] for _ in range(n)]
         cost = [dict() for _ in range(n)]
@@ -411,7 +411,7 @@ class Solution:
                 if j != parent[i]:
                     stack.append(j)
                     parent[j] = i
-                    # 边计数下放到节点上
+                    # 边counter下放到节点上
                     cnt = diff[j]
                     c1, c2 = cost[i][j]
                     ans += ac.min(cnt * c1, c2)

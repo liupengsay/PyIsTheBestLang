@@ -3,19 +3,19 @@ Algorithm：三分查找求一维极值、三分套三分求二维极值、梯�
 Function：用来寻找区间至多具有一个峰顶点或者一个谷底点的函数极值解
 
 =====================================LuoGu======================================
-1515（https://leetcode.com/problems/best-position-for-a-service-centre/）三分套三分求凸函数极小值，也可以使用梯度下降法与爬山法求解
+1515（https://leetcode.com/problems/best-position-for-a-service-centre/）三分套三分求凸函数极小值，也可以梯度下降法与爬山法求解
 
 =====================================LuoGu======================================
 3382（https://www.luogu.com.cn/problem/P3382）利用三分求区间函数极值点
 1883（https://www.luogu.com.cn/problem/P1883）三分求下凸函数最小值
 
 ===================================CodeForces===================================
-939E（https://codeforces.com/problemset/problem/939/E）贪心使用双指针或者三分进行求解，整数函数最大值
-D. Devu and his Brother（http://codeforces.com/problemset/problem/439/D）利用单调性变换使用三分查找求解
+939E（https://codeforces.com/problemset/problem/939/E）greedytwo_pointer或者三分求解，整数函数最大值
+D. Devu and his Brother（http://codeforces.com/problemset/problem/439/D）变换三分查找求解
 1730B（https://codeforces.com/contest/1730/problem/B）template of ternary search
 
 ====================================AtCoder=====================================
-F - Minimum Bounding Box（https://atcoder.jp/contests/abc130/tasks/abc130_f）三分模板题求函数最小值需要高精度
+F - Minimum Bounding Box（https://atcoder.jp/contests/abc130/tasks/abc130_f）三分模板题求函数最小值需要high_precision
 
 """
 import bisect
@@ -35,7 +35,7 @@ class Solution:
 
     @staticmethod
     def abc_130f(ac=FastIO()):
-        # 模板：三分模板题求函数最小值需要高精度
+        # 三分模板题求函数最小值需要high_precision
         n = ac.read_int()
         ind = {"L": [-1, 0], "R": [1, 0], "U": [0, 1], "D": [0, -1]}
         dct_x = defaultdict(lambda: [inf, -inf])
@@ -82,7 +82,7 @@ class Solution:
 
     @staticmethod
     def lg_1883(ac=FastIO()):
-        # 模板：三分模板题求函数最小值，不需要高精度
+        # 三分模板题求函数最小值，不需要high_precision
         t = ac.read_int()
 
         for _ in range(t):
@@ -100,7 +100,7 @@ class Solution:
 
     @staticmethod
     def lg_p3382(ac=FastIO()):
-        # 模板：三分查找取得最大值的函数点
+        # 三分查找取得最大值的函数点
         n, l, r = ac.read_list_floats()
         n = int(n)
         lst = ac.read_list_floats()
@@ -120,7 +120,7 @@ class Solution:
 
     @staticmethod
     def cf_439d(ac=FastIO()):
-        # 模板：求函数取得最小值时的点
+        # 求函数取得最小值时的点
         n, m = ac.read_list_ints()
         a = ac.read_list_ints()
         b = ac.read_list_ints()
@@ -160,7 +160,7 @@ class Solution:
 
     @staticmethod
     def cf_939e(ac=FastIO()):
-        # 模板：整数三分查找，计算上凸函数最大值
+        # 整数三分查找，上凸函数最大值
         nums = []
         pre = [0]
 
@@ -199,7 +199,7 @@ class Solution:
     @staticmethod
     def lc_1515_1(stack: List[List[int]]) -> float:
 
-        # 模板：三分套三分求凸函数极值
+        # 三分套三分求凸函数极值
         def target(x, y):
             return sum([math.sqrt((x - p[0]) ** 2 + (y - p[1]) ** 2) for p in stack])
 
@@ -212,7 +212,7 @@ class Solution:
 
     @staticmethod
     def lc_1515_2(positions: List[List[int]]) -> float:
-        # 模板：梯度下降法求解凸函数极值
+        # 梯度下降法求解凸函数极值
         eps = 1e-10
         alpha = 1.0
         decay = 0.001
@@ -242,7 +242,7 @@ class Solution:
 
     @staticmethod
     def lc_1515_3(positions: List[List[int]]) -> float:
-        # 模板：爬山法计算凸函数极小值
+        # 爬山法凸函数极小值
         dirs = [(-1, 0), (1, 0), (0, -1), (0, 1)]
         eps = 1e-6
         step = 1.0

@@ -1,29 +1,29 @@
 """
-Algorithm：大数分解、素数判断、高精度计算、使用分数代替浮点数运算
+Algorithm：大数分解、素数判断、high_precision、分数代替浮点数运算
 Function：xxx
 
 ====================================LeetCode====================================
-166（https://leetcode.com/problems/fraction-to-recurring-decimal/）经典分数转换为有理数无限循环小数
+166（https://leetcode.com/problems/fraction-to-recurring-decimal/）分数转换为有理数无限循环小数
 172（https://leetcode.com/problems/factorial-trailing-zeroes/）阶乘后缀0的个数
-1883（https://leetcode.com/problems/minimum-skips-to-arrive-at-meeting-on-time/description/）经典二维矩阵DP使用分数进行高精度浮点数计算
-2117（https://leetcode.com/problems/abbreviating-the-product-of-a-range/）大数计算或者前后缀模拟计算
+1883（https://leetcode.com/problems/minimum-skips-to-arrive-at-meeting-on-time/description/）二维matrix_dp分数high_precision浮点数
+2117（https://leetcode.com/problems/abbreviating-the-product-of-a-range/）大数或者prefix_suffiximplemention
 972（https://leetcode.com/problems/equal-rational-numbers/）有理数转为分数判断
 
 =====================================LuoGu======================================
 2388（https://www.luogu.com.cn/problem/P2388）阶乘之乘后缀0的个数
 
-1920（https://www.luogu.com.cn/problem/P1920）预估高精度计算与公式 -ln(1-x) = sum(x**i/i for in range(1, n+1)) 其中 n 趋近于无穷
-1729（https://www.luogu.com.cn/problem/P1729）高精度计算e小数位
-1727（https://www.luogu.com.cn/problem/P1727）高精度计算π小数位
-1517（https://www.luogu.com.cn/record/list?user=739032&status=12&page=5）高精度计算小数的幂值
-2394（https://www.luogu.com.cn/problem/P2394）高精度计算
-2393（https://www.luogu.com.cn/problem/P2393）高精度计算
+1920（https://www.luogu.com.cn/problem/P1920）预估high_precision与公式 -ln(1-x) = sum(x**i/i for in range(1, n+1)) 其中 n 趋近于无穷
+1729（https://www.luogu.com.cn/problem/P1729）high_precisione小数位
+1727（https://www.luogu.com.cn/problem/P1727）high_precisionπ小数位
+1517（https://www.luogu.com.cn/record/list?user=739032&status=12&page=5）high_precision小数的幂值
+2394（https://www.luogu.com.cn/problem/P2394）high_precision
+2393（https://www.luogu.com.cn/problem/P2393）high_precision
 
 2399（https://www.luogu.com.cn/problem/P2399）小数有理数转换为最简分数
 1530（https://www.luogu.com.cn/problem/P1530）分数化为小数
 
 ===================================CodeForces===================================
-1144E（https://codeforces.com/contest/1144/problem/E）超大整数加减与乘除
+1144E（https://codeforces.com/contest/1144/problem/E）超大整数|减与乘除
 
 ====================================AtCoder=====================================
 E - Double Factorial（https://atcoder.jp/contests/abc148/tasks/abc148_e）奇数阶乘与偶数阶乘的尾随零个数
@@ -44,7 +44,7 @@ class Solution:
 
     @staticmethod
     def abc_148e(ac=FastIO()):
-        # 模板：奇数阶乘与偶数阶乘的尾随零个数
+        # 奇数阶乘与偶数阶乘的尾随零个数
         n = ac.read_int()
         if n % 2:
             ac.st(0)
@@ -55,7 +55,7 @@ class Solution:
 
     @staticmethod
     def cf_1144e(ac=FastIO()):
-        # 模板：超大整数加减与乘除
+        # 超大整数|减与乘除
         n = ac.read_int()
         s = ac.read_str()
         t = ac.read_str()
@@ -85,7 +85,7 @@ class Solution:
 
     @staticmethod
     def lc_972(s: str, t: str) -> bool:
-        # 模板：有理数转为分数判断
+        # 有理数转为分数判断
         hp = HighPrecision()
         return hp.decimal_to_fraction(s) == hp.decimal_to_fraction(t)
 
@@ -98,7 +98,7 @@ class Solution:
 
     @staticmethod
     def lg_p2399(ac=FastIO()):
-        # 模板：有理数转最简分数
+        # 有理数转最简分数
         s = ac.read_str()
         a, b = HighPrecision().decimal_to_fraction(s)
         ac.st(f"{a}/{b}")
@@ -106,7 +106,7 @@ class Solution:
 
     @staticmethod
     def lc_2217(left: int, right: int) -> str:
-        # 模板：大数计算或者前后缀模拟计算
+        # 大数或者prefix_suffiximplemention
         mod = 10 ** 20
         base = 10 ** 10
         zero = 0
@@ -135,7 +135,7 @@ class Solution:
 
     @staticmethod
     def lg_p1530(ac=FastIO()):
-        # 模板：最简分数转化为有理数
+        # 最简分数转化为有理数
         n, d = ac.read_list_ints()
         ans = HighPrecision().fraction_to_decimal(n, d)
         while ans:
@@ -146,7 +146,7 @@ class Solution:
     @staticmethod
     def lc_1883_1(dist: List[int], speed: int, hours: int) -> int:
 
-        # 模板：经典二维矩阵DP使用分数进行高精度浮点数计算
+        # 二维matrix_dp分数high_precision浮点数
         n = len(dist)
         if sum(dist) > hours * speed:
             return -1
@@ -169,13 +169,13 @@ class Solution:
     @staticmethod
     def lc_1883_2(dist: List[int], speed: int, hours: int) -> int:
 
-        # 模板：经典二维矩阵DP使用分数进行高精度浮点数计算
+        # 二维matrix_dp分数high_precision浮点数
         cost = [Decimal(d) / Decimal(speed) for d in dist]
         n = len(dist)
         dp = [[hours * 2] * (n + 1) for _ in range(n + 1)]
         dp[0][0] = 0
         for i in range(1, n):
-            # 使用浮点数计算
+            # 浮点数
             dp[i][0] = dp[i - 1][0] + math.ceil(cost[i - 1])
             for j in range(1, i):
                 a, b = dp[i - 1][j - 1] + cost[i - 1], math.ceil(dp[i - 1][j] + cost[i - 1])

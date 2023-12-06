@@ -4,11 +4,11 @@ Function：根据数字顺序建立二叉搜索树、实时维护
 
 
 ====================================LeetCode====================================
-1569（https://leetcode.com/problems/number-of-ways-to-reorder-array-to-get-same-bst/）按照顺序建立二叉树，使用DP与组合计数求方案数
+1569（https://leetcode.com/problems/number-of-ways-to-reorder-array-to-get-same-bst/）按照顺序建立二叉树，DP与组合counter求方案数
 1902（https://leetcode.com/problems/depth-of-bst-given-insertion-order/）按照顺序建立二叉树求深度
 
 =====================================LuoGu======================================
-2171（https://www.luogu.com.cn/problem/P2171）依次输入数据生成二叉搜索树，可使用逆序并查集
+2171（https://www.luogu.com.cn/problem/P2171）依次输入数据生成二叉搜索树，可逆序union_find
 
 """
 from typing import List
@@ -37,7 +37,7 @@ class Solution:
     @staticmethod
     def lg_p2171_2(ac=FastIO()):
 
-        # 模板: bst 链表与二叉树模拟插入 O(nlogn)
+        # 模板: bst 链表与二叉树implemention插入 O(nlogn)
         @ac.bootstrap
         def dfs(rt):
             if ls[rt]:
@@ -50,7 +50,7 @@ class Solution:
         n = ac.read_int()
         m = n + 10
 
-        # 排序后离散化
+        # sorting后离散化
         a = [0] + ac.read_list_ints()
         b = a[:]
         a.sort()
@@ -100,7 +100,7 @@ class Solution:
         ac.read_int()
         nums = ac.read_list_ints()
         dct = BinarySearchTreeByArray().build_with_unionfind(nums)  # 或者是 build_with_stack
-        # 使用迭代的方式计算后序遍历
+        # 迭代的方式后序遍历
         ans = []
         depth = 0
         stack = [[0, 1]]
@@ -122,10 +122,10 @@ class Solution:
 
     @staticmethod
     def lc_1569(nums: List[int]) -> int:
-        # 模板：按照顺序建立二叉树，使用DP与组合计数求方案数
+        # 按照顺序建立二叉树，DP与组合counter求方案数
         dct = BinarySearchTreeByArray().build_with_unionfind(nums)
         mod = 10 ** 9 + 7
-        cb = Combinatorics(100000, mod)  # 预处理计算
+        cb = Combinatorics(100000, mod)  # 预处理
         stack = [0]
         n = len(nums)
         ans = [0] * n
@@ -150,8 +150,8 @@ class Solution:
 
     @staticmethod
     def lc_1902(order: List[int]) -> int:
-        # 模板：按照顺序建立二叉树求深度
-        dct = BinarySearchTreeByArray().build_with_unionfind(order)  # 也可以使用 build_with_stack
+        # 按照顺序建立二叉树求深度
+        dct = BinarySearchTreeByArray().build_with_unionfind(order)  # 也可以 build_with_stack
         stack = [[0, 1]]
         ans = 1
         while stack:

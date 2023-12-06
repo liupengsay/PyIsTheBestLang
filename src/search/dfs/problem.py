@@ -1,62 +1,62 @@
 """
 
-Algorithm：深度优先搜索、染色法、枚举回溯、欧拉序、dfs序
-Function：常与回溯枚举结合使用，比较经典的还有DFS序
+Algorithm：深度优先搜索、染色法、brute_forceback_track、欧拉序、dfs序
+Function：常与back_trackbrute_force结合，比较的还有DFS序
 
 
 ====================================LeetCode====================================
-473（https://leetcode.com/problems/matchsticks-to-square/）暴力搜索木棍拼接组成正方形
-301（https://leetcode.com/problems/remove-invalid-parentheses/）深搜回溯与剪枝
-2581（https://leetcode.com/contest/biweekly-contest-99/problems/count-number-of-possible-root-nodes/）深搜序加差分计数
-1059（https://leetcode.com/problems/all-paths-from-source-lead-to-destination/）记忆化搜索DFS深搜且回溯
-1718（https://leetcode.com/problems/construct-the-lexicographically-largest-valid-sequence/）经典回溯
-2322（https://leetcode.com/problems/minimum-score-after-removals-on-a-tree/）使用深搜序dfs序枚举
-1240（https://leetcode.com/problems/tiling-a-rectangle-with-the-fewest-squares/）经典DFS回溯与剪枝
-1239（https://leetcode.com/problems/maximum-length-of-a-concatenated-string-with-unique-characters/）经典DFS回溯进行二进制枚举
-1080（https://leetcode.com/problems/insufficient-nodes-in-root-to-leaf-paths/description/）经典dfs自上而下后又自下而上
-2056（https://leetcode.com/problems/number-of-valid-move-combinations-on-chessboard/description/）经典回溯枚举
+473（https://leetcode.com/problems/matchsticks-to-square/）搜索木棍拼接组成正方形
+301（https://leetcode.com/problems/remove-invalid-parentheses/）深搜back_track与剪枝
+2581（https://leetcode.com/contest/biweekly-contest-99/problems/count-number-of-possible-root-nodes/）dfs_order|差分counter
+1059（https://leetcode.com/problems/all-paths-from-source-lead-to-destination/）记忆化搜索DFS深搜且back_track
+1718（https://leetcode.com/problems/construct-the-lexicographically-largest-valid-sequence/）back_track
+2322（https://leetcode.com/problems/minimum-score-after-removals-on-a-tree/）dfs_orderdfs序brute_force
+1240（https://leetcode.com/problems/tiling-a-rectangle-with-the-fewest-squares/）DFSback_track与剪枝
+1239（https://leetcode.com/problems/maximum-length-of-a-concatenated-string-with-unique-characters/）DFSback_track二进制brute_force
+1080（https://leetcode.com/problems/insufficient-nodes-in-root-to-leaf-paths/description/）dfs自上而下后又自下而上
+2056（https://leetcode.com/problems/number-of-valid-move-combinations-on-chessboard/description/）back_trackbrute_force
 2458（https://leetcode.com/contest/weekly-contest-317/problems/height-of-binary-tree-after-subtree-removal-queries/）dfs序模板题目
 
 =====================================LuoGu======================================
-2383（https://www.luogu.com.cn/problem/P2383）暴力搜索木棍拼接组成正方形
+2383（https://www.luogu.com.cn/problem/P2383）搜索木棍拼接组成正方形
 1120（https://www.luogu.com.cn/problem/P1120）把数组分成和相等的子数组
-1692（https://www.luogu.com.cn/problem/P1692）暴力搜索枚举字典序最大可行的连通块
-1612（https://www.luogu.com.cn/problem/P1612）使用dfs记录路径的前缀和并使用二分确定最长链条
+1692（https://www.luogu.com.cn/problem/P1692）搜索brute_forcelexicographical_order最大可行的连通块
+1612（https://www.luogu.com.cn/problem/P1612）dfs记录路径的prefix_sum并binary_search确定最长链条
 1475（https://www.luogu.com.cn/problem/P1475）深搜确定可以控制的公司对
-2080（https://www.luogu.com.cn/problem/P2080）深搜回溯与剪枝
-2090（https://www.luogu.com.cn/problem/P2090）深搜贪心回溯剪枝与辗转相减法
-2420（https://www.luogu.com.cn/problem/P2420）脑筋急转弯使用深搜确定到根路径的异或结果以及异或特性获得任意两点之间最短路的异或结果
-1473（https://www.luogu.com.cn/problem/P1473）深搜枚举符号数
-1461（https://www.luogu.com.cn/problem/P1461）汉明距离计算与深搜回溯枚举
-1394（https://www.luogu.com.cn/problem/P1394）深搜进行可达性确认
-1180（https://www.luogu.com.cn/problem/P1180）深搜进行模拟
-1118（https://www.luogu.com.cn/problem/P1118）使用单位矩阵模拟计算杨辉三角的系数，再进行暴搜寻找最小字典序结果
-3252（https://www.luogu.com.cn/problem/P3252）深搜回溯加前缀和哈希
+2080（https://www.luogu.com.cn/problem/P2080）深搜back_track与剪枝
+2090（https://www.luogu.com.cn/problem/P2090）深搜greedyback_track剪枝与辗转相减法
+2420（https://www.luogu.com.cn/problem/P2420）brain_teaser深搜确定到根路径的异或结果以及异或特性获得任意两点之间最短路的异或结果
+1473（https://www.luogu.com.cn/problem/P1473）深搜brute_force符号数
+1461（https://www.luogu.com.cn/problem/P1461）汉明距离与深搜back_trackbrute_force
+1394（https://www.luogu.com.cn/problem/P1394）深搜可达性确认
+1180（https://www.luogu.com.cn/problem/P1180）深搜implemention
+1118（https://www.luogu.com.cn/problem/P1118）单位矩阵implemention杨辉三角的系数，再暴搜寻找最小lexicographical_order结果
+3252（https://www.luogu.com.cn/problem/P3252）深搜back_track|prefix_sumhash
 4913（https://www.luogu.com.cn/problem/P4913）深搜确定深度
-5118（https://www.luogu.com.cn/problem/P5118）深搜回溯与哈希记录进行模拟
-5197（https://www.luogu.com.cn/problem/P5197）树形DP模拟与染色法，利用父亲与自己的染色确定儿子们的染色
-5198（https://www.luogu.com.cn/problem/P5198）经典计算连通块的周长与面积
-5318（https://www.luogu.com.cn/problem/P5318）经典广搜拓扑排序与深搜序生成与获取
-6691（https://www.luogu.com.cn/problem/P6691）染色法，进行二分图可行性方案计数与最大最小染色
+5118（https://www.luogu.com.cn/problem/P5118）深搜back_track与hash记录implemention
+5197（https://www.luogu.com.cn/problem/P5197）树形DPimplemention与染色法，利用父亲与自己的染色确定儿子们的染色
+5198（https://www.luogu.com.cn/problem/P5198）连通块的周长与面积
+5318（https://www.luogu.com.cn/problem/P5318）广搜拓扑sorting与dfs_order生成与获取
+6691（https://www.luogu.com.cn/problem/P6691）染色法，bipartite_graph可行性方案counter与最大最小染色
 7370（https://www.luogu.com.cn/problem/P7370）所有可能的祖先节点，注意特别情况没有任何祖先节点则自身可达
-1036（https://www.luogu.com.cn/problem/P1036）回溯剪枝
-8578（https://www.luogu.com.cn/problem/P8578）贪心使用深搜序
-8838（https://www.luogu.com.cn/problem/P8838）深度优先搜索与回溯
+1036（https://www.luogu.com.cn/problem/P1036）back_track剪枝
+8578（https://www.luogu.com.cn/problem/P8578）greedydfs_order
+8838（https://www.luogu.com.cn/problem/P8838）深度优先搜索与back_track
 
 
 ===================================CodeForces===================================
-570D（https://codeforces.com/contest/570/problem/D）dfs序与binary_search，也可以使用离线查询
-208E（https://codeforces.com/contest/208/problem/E）深搜序加LCA加binary_search计数
-1006E（https://codeforces.com/contest/1006/problem/E）经典dfs序模板题
-1702G2（https://codeforces.com/contest/1702/problem/G2）使用dfs序与lca组合判断是否为简单路径集合
+570D（https://codeforces.com/contest/570/problem/D）dfs序与binary_search，也可以离线查询
+208E（https://codeforces.com/contest/208/problem/E）dfs_order|LCA|binary_searchcounter
+1006E（https://codeforces.com/contest/1006/problem/E）dfs序模板题
+1702G2（https://codeforces.com/contest/1702/problem/G2）dfs序与lca组合判断是否为简单路径集合
 1899G（https://codeforces.com/contest/1899/problem/G）dfs with tolerance and exclusion by PointAddRangeSum
 
 ====================================AtCoder=====================================
-F - Colorful Tree（https://atcoder.jp/contests/abc133/tasks/abc133_f）欧拉序在线查找树上距离，结合二分与前缀和计算变化情况
+F - Colorful Tree（https://atcoder.jp/contests/abc133/tasks/abc133_f）欧拉序在线查找树上距离，结合binary_search与prefix_sum变化情况
 
 =====================================AcWing=====================================
-4310（https://www.acwing.com/problem/content/4313/）经典深搜序模板题
-23（https://www.acwing.com/problem/content/description/21/）回溯模板题
+4310（https://www.acwing.com/problem/content/4313/）dfs_order模板题
+23（https://www.acwing.com/problem/content/description/21/）back_track模板题
 
 """
 
@@ -83,7 +83,7 @@ class Solution:
 
     @staticmethod
     def lc_473(matchsticks: List[int]) -> bool:
-        # 模板: 深搜加回溯判断能否将数组分成正方形
+        # 模板: 深搜|back_track判断能否将数组分成正方形
         n, s = len(matchsticks), sum(matchsticks)
         if s % 4 or max(matchsticks) > s // 4:
             return False
@@ -129,7 +129,7 @@ class Solution:
 
     @staticmethod
     def lc_100041(n: int, edges: List[List[int]]) -> List[int]:
-        # 模板：迭代法实现树形换根DP计算，或者一遍DFS或者dfs序加差分
+        # 迭代法实现树形换根DP，或者一遍DFS或者dfs序|差分
         dct = [[] for _ in range(n)]
         for i, j in edges:
             dct[i].append(j)
@@ -154,7 +154,7 @@ class Solution:
 
     @staticmethod
     def cf_1006e(ac=FastIO()):
-        # 模板：经典dfs序模板题
+        # dfs序模板题
         n, q = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         p = ac.read_list_ints_minus_one()
@@ -216,7 +216,7 @@ class Solution:
 
     @staticmethod
     def lc_301(s):
-        # 模板：深搜回溯计算删除最少数量的无效括号使得子串合法有效
+        # 深搜back_track删除最少数量的无效括号使得子串合法有效
 
         def dfs(i):
             nonlocal ans, pre, left, right
@@ -249,7 +249,7 @@ class Solution:
 
     @staticmethod
     def lg_p5318(ac=FastIO()):
-        # 模板：深搜与广搜序获取
+        # 深搜与广搜序获取
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n + 1)]
         degree = [0] * (n + 1)
@@ -260,7 +260,7 @@ class Solution:
         for i in range(1, n + 1):
             dct[i].sort()
 
-        # 深搜序值获取
+        # dfs_order值获取
         @ac.bootstrap
         def dfs(a):
             ans.append(a)
@@ -275,7 +275,7 @@ class Solution:
         dfs(1)
         ac.lst(ans)
 
-        # 拓扑排序广搜
+        # 拓扑sorting广搜
         ans = []
         stack = [1]
         visit = [0] * (n + 1)
@@ -295,7 +295,7 @@ class Solution:
     @staticmethod
     def add_to_n(n):
 
-        # 计算将 [1, 1] 通过 [a, b] 到 [a, a+b] 或者 [a+b, a] 的方式最少次数变成 a == n or b == n
+        # 将 [1, 1] 通过 [a, b] 到 [a, a+b] 或者 [a+b, a] 的方式最少次数变成 a == n or b == n
         if n == 1:
             return 0
 
@@ -308,7 +308,7 @@ class Solution:
                 ans = ans if ans < c + a - 1 else c + a - 1
                 return
 
-            # 逆向思维计算保证使 b 减少到 a 以下
+            # reverse_thinking保证使 b 减少到 a 以下
             gcd_minus(b, a % b, c + a // b)
             return
 
@@ -320,7 +320,7 @@ class Solution:
     @staticmethod
     def lc_1080(root: Optional[TreeNode], limit: int) -> Optional[TreeNode]:
 
-        # 模板：经典dfs自上而下后又自下而上
+        # dfs自上而下后又自下而上
         def dfs(node, lmt):
             if not node:
                 return
@@ -340,7 +340,7 @@ class Solution:
 
     @staticmethod
     def lc_1239(arr: List[str]) -> int:
-        # 模板：经典DFS回溯进行二进制枚举
+        # DFSback_track二进制brute_force
         ans = 0
         arr = [word for word in arr if len(set(word)) == len(word)]
         n = len(arr)
@@ -364,7 +364,7 @@ class Solution:
 
     @staticmethod
     def lc_1240(n: int, m: int) -> int:
-        # 模板：经典DFS回溯与剪枝
+        # DFSback_track与剪枝
 
         def dfs():
             nonlocal cnt, ans
@@ -383,7 +383,7 @@ class Solution:
                         ceil = m - i
                         if n - j < ceil:
                             ceil = n - j
-                        # 枚举此时左上端点正方形的长度
+                        # brute_force此时左上端点正方形的长度
                         for x in range(ceil, 0, -1):
                             if pre.query(i, j, i + x - 1, j + x - 1) == 0 and cnt + 1 < ans:
                                 for a in range(i, i + x):
@@ -407,7 +407,7 @@ class Solution:
 
     @staticmethod
     def lc_2056(pieces: List[str], positions: List[List[int]]) -> int:
-        # 模板：经典回溯枚举
+        # back_trackbrute_force
         dct = dict()
         dct["rook"] = [[-1, 0], [1, 0], [0, -1], [0, 1]]
         dct["queen"] = [[-1, 0], [1, 0], [0, -1], [0, 1], [-1, 1], [1, 1], [1, -1], [-1, -1]]
@@ -451,7 +451,7 @@ class Solution:
 
     @staticmethod
     def lc_2322(nums: List[int], edges: List[List[int]]) -> int:
-        # 模板：使用深搜序dfs序枚举
+        # dfs_orderdfs序brute_force
         n = len(nums)
         dct = [[] for _ in range(n)]
         for i, j in edges:
@@ -476,7 +476,7 @@ class Solution:
         sub = [0] * n
         dfs(0, -1)
         ans = inf
-        # 枚举边对
+        # brute_force边对
         for i in range(n - 1):
             x, y = edges[i]
             if parent[x] == y:
@@ -499,7 +499,7 @@ class Solution:
 
     @staticmethod
     def lc_2458(root: Optional[TreeNode], queries: List[int]) -> List[int]:
-        # 模板：dfs序模板题目
+        # dfs序模板题目
 
         def dfs(node):
             nonlocal n
@@ -536,7 +536,7 @@ class Solution:
 
     @staticmethod
     def lc_2581(edges: List[List[int]], guesses: List[List[int]], k: int) -> int:
-        # 模板：使用深搜序确定猜测的查询范围，并使用差分数组计数
+        # dfs_order确定猜测的查询范围，并差分数组counter
         n = len(edges) + 1
         dct = [[] for _ in range(n)]
         for i, j in edges:
@@ -544,7 +544,7 @@ class Solution:
             dct[j].append(i)
 
         visit, interval = DFS().gen_bfs_order_iteration(dct)
-        # 也可以使用
+        # 也可以
         diff = [0] * n
         for u, v in guesses:
             if visit[u] <= visit[v]:
@@ -566,7 +566,7 @@ class Solution:
 
     @staticmethod
     def cf_219d(ac=FastIO()):
-        # 模板：迭代法实现树形换根DP计算，或者一遍DFS或者dfs序加差分
+        # 迭代法实现树形换根DP，或者一遍DFS或者dfs序|差分
         n = ac.read_int()
         edges = [ac.read_list_ints_minus_one() for _ in range(n - 1)]
 
@@ -598,7 +598,7 @@ class Solution:
 
     @staticmethod
     def cf_570d_1(ac=FastIO()):
-        # 模板：使用dfs序与二分进行计数统计（超时）
+        # dfs序与binary_searchcounter统计（超时）
         n, m = ac.read_list_ints()
         parent = ac.read_list_ints()
         edge = [[] for _ in range(n)]
@@ -607,7 +607,7 @@ class Solution:
         del parent
         s = ac.read_str()
 
-        # 模板：生成深搜序即 dfs 序以及对应子树编号区间
+        # 生成dfs_order即 dfs 序以及对应子树编号区间
         @ac.bootstrap
         def dfs(x, h):
             nonlocal order, ceil
@@ -622,7 +622,7 @@ class Solution:
             interval[x] = [start, order - 1]
             yield
 
-        # 计算高度与深搜区间
+        # 高度与深搜区间
         order = 0
         ceil = 0
         # 存储字符对应的高度以及dfs序
@@ -650,7 +650,7 @@ class Solution:
 
     @staticmethod
     def cf_570d_2(ac=FastIO()):
-        # 模板：使用迭代顺序实现深搜序，利用异或和来判断是否能形成回文
+        # 迭代顺序实现dfs_order，利用异或和来判断是否能形成回文
 
         n, m = ac.read_list_ints()
         parent = ac.read_list_ints_minus_one()
@@ -687,7 +687,7 @@ class Solution:
 
     @staticmethod
     def cf_208e(ac=FastIO()):
-        # 模板：深搜序加LCA加binary_search计数
+        # dfs_order|LCA|binary_searchcounter
         n = ac.read_int()
         parent = ac.read_list_ints()
 
@@ -722,7 +722,7 @@ class Solution:
 
     @staticmethod
     def lg_p8838(ac=FastIO()):
-        # 模板：深度优先搜索与回溯
+        # 深度优先搜索与back_track
         n, k = ac.read_list_ints()
         a = ac.read_list_ints()
         b = ac.read_list_ints()
@@ -754,7 +754,7 @@ class Solution:
 
     @staticmethod
     def ac_4310(ac=FastIO()):
-        # 模板：经典深搜序模板题
+        # dfs_order模板题
         n, q = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         nums = ac.read_list_ints_minus_one()
@@ -776,7 +776,7 @@ class Solution:
 
     @staticmethod
     def abc_133f(ac=FastIO()):
-        # 模板：欧拉序在线查找树上距离，结合二分与前缀和计算变化情况
+        # 欧拉序在线查找树上距离，结合binary_search与prefix_sum变化情况
         n, q = ac.read_list_ints()
         dct = [dict() for _ in range(n)]
         edges = [[] for _ in range(n)]
@@ -806,7 +806,7 @@ class Solution:
         euler_order = DfsEulerOrder(edges).euler_order[:]
         m = len(euler_order)
         euler_ind = [-1] * n
-        # 预处理欧拉序所经过的路径前缀和
+        # 预处理欧拉序所经过的路径prefix_sum
         color_pos_ind = defaultdict(list)  # 从上往下
         color_neg_ind = defaultdict(list)  # 从下往上
         color_pos_pre = defaultdict(lambda: [0])
@@ -833,7 +833,7 @@ class Solution:
                 u, v = v, u
             cur_dis = dict()
             for w in [u, v, ancestor]:
-                # 使用欧拉序维护距离的变化
+                # 欧拉序维护距离的变化
                 start, end = euler_ind[0] + 1, euler_ind[w]
                 pos_range = [bisect_left(color_pos_ind[x], start), bisect_right(color_pos_ind[x], end)]
                 neg_range = [bisect_left(color_neg_ind[x], start), bisect_right(color_neg_ind[x], end)]
@@ -844,13 +844,13 @@ class Solution:
                 # 变更代价后的路径和
                 post_color_cnt = pos_range[1] - pos_range[0] - (neg_range[1] - neg_range[0])
                 cur_dis[w] = dis[w] - pre_color + post_color_cnt * y
-            # 使用最近公共祖先距离计算任意两点之间的距离
+            # 最近公共祖先距离任意两点之间的距离
             ac.st(cur_dis[u] + cur_dis[v] - 2 * cur_dis[ancestor])
         return
 
     @staticmethod
     def ac_23(matrix, string):
-        # 模板：回溯模板题
+        # back_track模板题
         if not matrix:
             return False
 

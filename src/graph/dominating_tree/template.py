@@ -7,12 +7,12 @@ class DominatingTree:
         self.dominators = [-1] * n  # 存储每个点的支配点
 
     def add_edge(self, u, v):
-        # 添加一条从点 u 到点 v 的边
+        # 添|一条从点 u 到点 v 的边
         self.edges.append((u, v))
 
     def build(self):
         # 构建支配树
-        # 使用并查集维护每个点的支配点
+        # union_find维护每个点的支配点
         parent = [i for i in range(self.n)]
 
         # 遍历图中的每条边，更新支配点
@@ -27,7 +27,7 @@ class DominatingTree:
             self.dominators[i] = self.find(parent, i)
 
     def find(self, parent, i):
-        # 并查集的 find 操作
+        # union_find的 find 操作
         if parent[i] != i:
             parent[i] = self.find(parent, parent[i])
         return parent[i]

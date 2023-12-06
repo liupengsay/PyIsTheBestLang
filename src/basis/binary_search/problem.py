@@ -7,96 +7,96 @@ Function：monotonicity is necessary for solution like these, which always work 
 81（https://leetcode.com/problems/search-in-rotated-sorted-array-ii/）binary_search|rotated_array|sorting
 154（https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/）binary_search|rotated_array|sorting|duplicate_nums
 162（https://leetcode.com/problems/find-peak-element/）binary_search|peak_index
-2179（https://leetcode.com/problems/count-good-triplets-in-an-array/）维护区间范围内的个数
-2141（https://leetcode.com/problems/maximum-running-time-of-n-computers/）贪心选择最大的 N 个电池作为基底，然后二分确定在其余电池的加持下可以运行的最长时间
-2102（https://leetcode.com/problems/sequentially-ordinal-rank-tracker/）使用有序集合维护优先级姓名实时查询
-2563（https://leetcode.com/problems/count-the-number-of-fair-pairs/）使用binary_search确定范围个数
-2604（https://leetcode.com/problems/minimum-time-to-eat-all-grains/）二分加指针贪心 check
-1201（https://leetcode.com/problems/ugly-number-iii/）二分加容斥原理计数
-1739（https://leetcode.com/problems/building-boxes/）可推公式二分也可数学方法计算
-1889（https://leetcode.com/problems/minimum-space-wasted-from-packaging/）排序加前缀和预处理与贪心二分
-2071（https://leetcode.com/problems/maximum-number-of-tasks-you-can-assign/）经典二分加贪心
-2594（https://leetcode.com/problems/minimum-time-to-repair-cars/）经典二分
-2517（https://leetcode.com/problems/maximum-tastiness-of-candy-basket/）经典二分
-1482（https://leetcode.com/problems/minimum-number-of-days-to-make-m-bouquets/）经典二分
-2528（https://leetcode.com/problems/maximize-the-minimum-powered-city/description/）经典二分使用前缀和差分数组贪心验证
-2560（https://leetcode.com/problems/house-robber-iv/）经典二分DP来check
-2234（https://leetcode.com/problems/maximum-total-beauty-of-the-gardens/description/）前缀和加二分枚举
+2179（https://leetcode.com/problems/count-good-triplets-in-an-array/）binary_search|sorted_list
+2141（https://leetcode.com/problems/maximum-running-time-of-n-computers/）greedy|binary_search|implemention
+2102（https://leetcode.com/problems/sequentially-ordinal-rank-tracker/）binary_search|sorted_list
+2563（https://leetcode.com/problems/count-the-number-of-fair-pairs/）binary_search|sorted_list
+2604（https://leetcode.com/problems/minimum-time-to-eat-all-grains/）binary_search|greedy|pointer
+1201（https://leetcode.com/problems/ugly-number-iii/）binary_search|counter|inclusion_exclusion
+1739（https://leetcode.com/problems/building-boxes/）math|binary_search
+1889（https://leetcode.com/problems/minimum-space-wasted-from-packaging/）sorting|prefix_sum|greedy|binary_search
+2071（https://leetcode.com/problems/maximum-number-of-tasks-you-can-assign/）binary_search|greedy
+2594（https://leetcode.com/problems/minimum-time-to-repair-cars/）binary_search
+2517（https://leetcode.com/problems/maximum-tastiness-of-candy-basket/）binary_search
+1482（https://leetcode.com/problems/minimum-number-of-days-to-make-m-bouquets/）binary_search
+2528（https://leetcode.com/problems/maximize-the-minimum-powered-city/description/）binary_search|prefix_sum|diff_array|greedy
+2560（https://leetcode.com/problems/house-robber-iv/）binary_search|dp
+2234（https://leetcode.com/problems/maximum-total-beauty-of-the-gardens/description/）prefix_sum|binary_search|brute_force
 
 =====================================LuoGu======================================
-1577（https://www.luogu.com.cn/problem/P1577）数学整除向下取整与二分
-1570（https://www.luogu.com.cn/problem/P1570）公式转换后使用贪心加二分
-1843（https://www.luogu.com.cn/problem/P1843）贪心加二分
-2309（https://www.luogu.com.cn/problem/P2309）使用前缀和有序列表加二分求解和为正数的子串个数
-2390（https://www.luogu.com.cn/problem/P2390）枚举加二分起始也可以使用双指针
-2759（https://www.luogu.com.cn/problem/P2759）公式变换后使用二分求解
-1404（https://www.luogu.com.cn/problem/P1404）公式变换后使用前缀和加二分
-1592（https://www.luogu.com.cn/problem/P1592）使用二分与容斥原理计算与 n 互质的第 k 个正整数
-2855（https://www.luogu.com.cn/problem/P2855）使用贪心加二分
-2884（https://www.luogu.com.cn/problem/P2884）最大最小之类的经典二分问题
-2985（https://www.luogu.com.cn/problem/P2985）使用贪心加二分进行模拟
-3184（https://www.luogu.com.cn/problem/P3184）binary_search区间范围内个数
-3611（https://www.luogu.com.cn/problem/P3611）二分贪心加堆优化模拟
-3743（https://www.luogu.com.cn/problem/P3743）经典binary_search注意check函数
-4058（https://www.luogu.com.cn/problem/P4058）经典binary_search注意check函数
-4670（https://www.luogu.com.cn/problem/P4670）排序后binary_search计数
-5119（https://www.luogu.com.cn/problem/P5119）经典贪心加二分问题
-5250（https://www.luogu.com.cn/problem/P5250）维护一个有序集合
-6174（https://www.luogu.com.cn/problem/P6174）经典贪心加二分问题
-6281（https://www.luogu.com.cn/problem/P6281）经典贪心加二分问题
-6423（https://www.luogu.com.cn/problem/P6423）利用单调性进行二分计算
-7177（https://www.luogu.com.cn/problem/P7177）二分加树形dfs模拟
-1314（https://www.luogu.com.cn/problem/P1314）经典二分寻找最接近目标值的和
-3017（https://www.luogu.com.cn/problem/P3017）经典二分将矩阵分成a*b个子矩阵且子矩阵和的最小值最大
-1083（https://www.luogu.com.cn/problem/P1083）经典二分结合差分进行寻找第一个失效点
-1281（https://www.luogu.com.cn/problem/P1281）典型二分并输出方案
-1381（https://www.luogu.com.cn/problem/P1381）典型二分加滑动窗口check，脑筋急转弯
-1419（https://www.luogu.com.cn/problem/P1419）二分加优先队列
-1525（https://www.luogu.com.cn/problem/P1525）经典二分加BFS进行二分图划分，可以使用染色法或者并查集
-1542（https://www.luogu.com.cn/problem/P1542）二分加使用分数进行高精度计算
-2237（https://www.luogu.com.cn/problem/P2237）脑筋急转弯排序后binary_search
-2810（https://www.luogu.com.cn/problem/P2810）二分加枚举
-3718（https://www.luogu.com.cn/problem/P3718）二分加贪心
-3853（https://www.luogu.com.cn/problem/P3853）经典二分贪心题
-4343（https://www.luogu.com.cn/problem/P4343）上下界二分加模拟
-5844（https://www.luogu.com.cn/problem/P5844）经典中位数贪心与前缀和二分
-5878（https://www.luogu.com.cn/problem/P5878）经典二分加枚举
-6004（https://www.luogu.com.cn/problem/P6004）经典二分加并查集
-6058（https://www.luogu.com.cn/problem/P6058）使用深搜序与离线 LCA 计算相邻叶子之间距离并二分确定时间
-6069（https://www.luogu.com.cn/problem/P6069）经典方差计算公式变形，使用二分加变量维护区间的方差值大小
-6733（https://www.luogu.com.cn/problem/P6733）二分加STL进行 Check
-8161（https://www.luogu.com.cn/problem/P8161）经典贪心加二分求解
-8198（https://www.luogu.com.cn/problem/P8198）经典二分加指针
-9050（https://www.luogu.com.cn/problem/P9050）经典二分注意值域区间与贪心模拟
+1577（https://www.luogu.com.cn/problem/P1577）math|floor|binary_search
+1570（https://www.luogu.com.cn/problem/P1570）math|greedy|binary_search
+1843（https://www.luogu.com.cn/problem/P1843）greedy|binary_search
+2309（https://www.luogu.com.cn/problem/P2309）prefix_sum|sorted_list|binary_search|counter|sub_consequence_sum
+2390（https://www.luogu.com.cn/problem/P2390）brute_force|binary_search|two_pointer
+2759（https://www.luogu.com.cn/problem/P2759）math|binary_search
+1404（https://www.luogu.com.cn/problem/P1404）math|prefix_sum|binary_search
+1592（https://www.luogu.com.cn/problem/P1592）binary_search|inclusion_exclusion|kth_coprime_of_n
+2855（https://www.luogu.com.cn/problem/P2855）greedy|binary_search
+2884（https://www.luogu.com.cn/problem/P2884）binary_search
+2985（https://www.luogu.com.cn/problem/P2985）greedy|binary_search|implemention
+3184（https://www.luogu.com.cn/problem/P3184）binary_search|counter
+3611（https://www.luogu.com.cn/problem/P3611）binary_search|greedy|heapq|implemention
+3743（https://www.luogu.com.cn/problem/P3743）binary_search
+4058（https://www.luogu.com.cn/problem/P4058）binary_search
+4670（https://www.luogu.com.cn/problem/P4670）sorting|binary_search|counter
+5119（https://www.luogu.com.cn/problem/P5119）greedy|binary_search
+5250（https://www.luogu.com.cn/problem/P5250）sorted_list
+6174（https://www.luogu.com.cn/problem/P6174）greedy|binary_search
+6281（https://www.luogu.com.cn/problem/P6281）greedy|binary_search
+6423（https://www.luogu.com.cn/problem/P6423）binary_search
+7177（https://www.luogu.com.cn/problem/P7177）binary_search|tree|dfs|implemention
+1314（https://www.luogu.com.cn/problem/P1314）binary_search|sum_nearest_subsequence
+3017（https://www.luogu.com.cn/problem/P3017）binary_search|sub_matrix_sum|max_min
+1083（https://www.luogu.com.cn/problem/P1083）binary_search|diff_array
+1281（https://www.luogu.com.cn/problem/P1281）binary_search|specific_plans
+1381（https://www.luogu.com.cn/problem/P1381）binary_search|sliding_window|brain_teaser
+1419（https://www.luogu.com.cn/problem/P1419）binary_search|priority_queue
+1525（https://www.luogu.com.cn/problem/P1525）binary_search|bfs|bipartite_graph|unionfind|coloring
+1542（https://www.luogu.com.cn/problem/P1542）binary_search|fraction|high_precision
+2237（https://www.luogu.com.cn/problem/P2237）brain_teaser|sorting|binary_search
+2810（https://www.luogu.com.cn/problem/P2810）binary_search|brute_force
+3718（https://www.luogu.com.cn/problem/P3718）binary_search|greedy
+3853（https://www.luogu.com.cn/problem/P3853）binary_search|greedy
+4343（https://www.luogu.com.cn/problem/P4343）bound|binary_search|implemention
+5844（https://www.luogu.com.cn/problem/P5844）median|greedy|prefix_sum|binary_search
+5878（https://www.luogu.com.cn/problem/P5878）binary_search|brute_force
+6004（https://www.luogu.com.cn/problem/P6004）binary_search|union_find
+6058（https://www.luogu.com.cn/problem/P6058）dfs_order|offline_lca|binary_search
+6069（https://www.luogu.com.cn/problem/P6069）math|binary_search
+6733（https://www.luogu.com.cn/problem/P6733）binary_search|sorted_list
+8161（https://www.luogu.com.cn/problem/P8161）greedy|binary_search
+8198（https://www.luogu.com.cn/problem/P8198）binary_search|pointer
+9050（https://www.luogu.com.cn/problem/P9050）binary_search|data_range|greedy|implemention
 
 ===================================CodeForces===================================
-1251D（https://codeforces.com/problemset/problem/1251/D）使用贪心进行中位数二分求解
-830A（https://codeforces.com/problemset/problem/830/A）使用贪心进行距离点覆盖二分求解
-847E（https://codeforces.com/problemset/problem/847/E）使用贪心二分与指针进行判断
-732D（https://codeforces.com/problemset/problem/732/D）使用贪心二分与指针进行判断
-778A（https://codeforces.com/problemset/problem/778/A）二分和使用指针判断是否check
-913C（https://codeforces.com/problemset/problem/913/C）DP预处理最优单价，再二分加贪心进行模拟求解
-1791G2（https://codeforces.com/problemset/problem/1791/G2）贪心排序，前缀和枚举二分
-448D（https://codeforces.com/problemset/problem/448/D）经典binary_search计算n*m的乘法表第k大元素
-1475D（https://codeforces.com/problemset/problem/1475/D）贪心排序，前缀和枚举二分
-1370D（https://codeforces.com/problemset/problem/1370/D）利用单调性二分，再使用贪心check
-1486D（https://codeforces.com/problemset/problem/1486/D）利用单调性二分，再使用经典哈希前缀和计算和为正数的最长连续子序列
-1118D2（https://codeforces.com/problemset/problem/1118/D2）利用单调性贪心二分
-883I（https://codeforces.com/problemset/problem/883/I）二分加双指针dp
-1538G（https://codeforces.com/contest/1538/problem/G）二分加枚举不等式验证
-1680C（https://codeforces.com/contest/1680/problem/C）二分加贪心双指针check
-1251D（https://codeforces.com/contest/1251/problem/D）greedy|binary search
+1251D（https://codeforces.com/problemset/problem/1251/D）greedy|median|binary_search
+830A（https://codeforces.com/problemset/problem/830/A）greedy|point_coverage|binary_search
+847E（https://codeforces.com/problemset/problem/847/E）greedy|binary_search|pointer
+732D（https://codeforces.com/problemset/problem/732/D）greedy|binary_search|pointer
+778A（https://codeforces.com/problemset/problem/778/A）binary_search|pointer
+913C（https://codeforces.com/problemset/problem/913/C）dp|binary_search|greedy|implemention
+1791G2（https://codeforces.com/problemset/problem/1791/G2）greedy|sorting|prefix_sum|brute_force|binary_search
+448D（https://codeforces.com/problemset/problem/448/D）binary_search|kth_max_of_n_mul_m_table
+1475D（https://codeforces.com/problemset/problem/1475/D）greedy|sorting|prefix_sum|brute_force|binary_search
+1370D（https://codeforces.com/problemset/problem/1370/D）binary_search|greedy|check
+1486D（https://codeforces.com/problemset/problem/1486/D）binary_search|hash|prefix_sum|maximum_length_of_sub_consequence_with_pos_sum
+1118D2（https://codeforces.com/problemset/problem/1118/D2）greedy|binary_search
+883I（https://codeforces.com/problemset/problem/883/I）binary_search|two_pointer|dp
+1538G（https://codeforces.com/contest/1538/problem/G）binary_search|brute_force|math
+1680C（https://codeforces.com/contest/1680/problem/C）binary_search|greedy|two_pointer|check
+1251D（https://codeforces.com/contest/1251/problem/D）greedy|binary_search
 
 ====================================AtCoder=====================================
-D - No Need （https://atcoder.jp/contests/abc056/tasks/arc070_b）经典利用单调性进行二分，用背包DP进行check
-D - Widespread（https://atcoder.jp/contests/abc063/tasks/arc075_b）经典利用单调性进行二分，贪心进行check
+D - No Need （https://atcoder.jp/contests/abc056/tasks/arc070_b）binary_search|bag_dp
+D - Widespread（https://atcoder.jp/contests/abc063/tasks/arc075_b）binary_search|greedy
 
 =====================================AcWing=====================================
-120（https://www.acwing.com/problem/content/122/）根据单调性二分
-14（https://www.acwing.com/problem/content/description/15/）利用鸽巢原理binary_search重复的数，修改数组且只用O(1)空间
-3973（https://www.acwing.com/problem/content/3976/）浮点数二分与滑动窗口双指针
-4863（https://www.acwing.com/problem/content/description/4866/）经典二分加鸽巢原理
-5048（https://www.acwing.com/problem/content/description/5051/）经典浮点数二分并求出具体方案
+120（https://www.acwing.com/problem/content/122/）binary_search
+14（https://www.acwing.com/problem/content/description/15/）pigeonhole|binary_search
+3973（https://www.acwing.com/problem/content/3976/）high_precision|binary_search|sliding_window|two_pointer
+4863（https://www.acwing.com/problem/content/description/4866/）binary_search|pigeonhole
+5048（https://www.acwing.com/problem/content/description/5051/）high_precision|binary_search|specific_plan
 
 """
 import bisect
@@ -121,7 +121,7 @@ class Solution:
     @staticmethod
     def lg_p1314(ac=FastIO()):
 
-        # 模板：经典二分寻找最接近目标值的和
+        # binary_search寻找最接近目标值的和
         n, m, s = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         queries = [ac.read_list_ints() for _ in range(m)]
@@ -154,7 +154,7 @@ class Solution:
 
     @staticmethod
     def cf_448d(ac=FastIO()):
-        # 模板：计算 n*m 乘法矩阵内的第 k 大元素
+        #  n*m 乘法矩阵内的第 k 大元素
         n, m, k = ac.read_list_ints()
 
         def check(num):
@@ -177,7 +177,7 @@ class Solution:
         nums = list(map(int, input().split()))
 
         def check(x):
-            # 奇偶交替，依次枚举奇数索引与偶数索引不超过x
+            # 奇偶交替，依次brute_force奇数索引与偶数索引不超过x
             for ind in [0, 1]:
                 cnt = 0
                 for num in nums:
@@ -200,7 +200,7 @@ class Solution:
 
     @staticmethod
     def cf_1475d(ac=FastIO()):
-        # 模板：贪心排序后，枚举并使用前缀和进行二分查询
+        # greedysorting后，brute_force并prefix_sumbinary_search查询
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
             a = ac.read_list_ints()
@@ -209,19 +209,19 @@ class Solution:
                 ac.st(-1)
                 continue
 
-            # 排序
+            # sorting
             a1 = [a[i] for i in range(n) if b[i] == 1]
             a2 = [a[i] for i in range(n) if b[i] == 2]
             a1.sort(reverse=True)
             a2.sort(reverse=True)
 
-            # 前缀和
+            # prefix_sum
             x, y = len(a1), len(a2)
             pre1 = [0] * (x + 1)
             for i in range(x):
                 pre1[i + 1] = pre1[i] + a1[i]
 
-            # 初始化后进行二分枚举
+            # 初始化后binary_searchbrute_force
             ans = inf
             pre = 0
             j = bisect.bisect_left(pre1, m - pre)
@@ -240,7 +240,7 @@ class Solution:
     @staticmethod
     def lg_p3017(ac=FastIO()):
 
-        # 模板：经典二分将矩阵分成a*b个子矩阵且子矩阵和的最小值最大
+        # binary_search将矩阵分成a*b个子矩阵且子矩阵和的最小值最大
         def check(x):
 
             def cut():
@@ -309,7 +309,7 @@ class Solution:
 
     @staticmethod
     def cf_1791g2(ac=FastIO()):
-        # 模板：find_int_right
+        # find_int_right
         for _ in range(ac.read_int()):
 
             n, c = ac.read_list_ints()
@@ -339,7 +339,7 @@ class Solution:
 
     @staticmethod
     def lc_1889(packages: List[int], boxes: List[List[int]]) -> int:
-        # 模板：排序加前缀和预处理与贪心二分
+        # sorting|prefix_sum预处理与greedybinary_search
         packages.sort()
         pre = list(accumulate(packages, initial=0))
         n = len(packages)
@@ -365,7 +365,7 @@ class Solution:
 
     @staticmethod
     def lc_2141(n: int, batteries: List[int]) -> int:
-        # 模板：经典贪心二分
+        # greedybinary_search
 
         batteries.sort(reverse=True)
         rest = sum(batteries[n:])
@@ -381,7 +381,7 @@ class Solution:
 
     @staticmethod
     def lc_2528(stations: List[int], r: int, k: int) -> int:
-        # 模板：经典二分使用前缀和差分数组贪心验证
+        # binary_searchprefix_sum差分数组greedy验证
         n = len(stations)
         nums = [0] * n
         for i in range(n):
@@ -409,7 +409,7 @@ class Solution:
 
     @staticmethod
     def lc_2563(nums, lower, upper):
-        # 模板：查找数值和在一定范围的数对个数
+        # 查找数值和在一定范围的数对个数
         nums.sort()
         n = len(nums)
         ans = 0
@@ -421,7 +421,7 @@ class Solution:
 
     @staticmethod
     def lc_4(nums1: List[int], nums2: List[int]) -> float:
-        # 模板：经典双指针二分移动查找两个正序数组的中位数
+        # two_pointerbinary_search移动查找两个正序数组的median
         def get_kth_num(k):
             ind1 = ind2 = 0
             while k:
@@ -452,7 +452,7 @@ class Solution:
 
     @staticmethod
     def cf_1486d(ac=FastIO()):
-        # 模板：经典转换为二分和哈希前缀求最长和为正数的最长连续子序列
+        # 转换为binary_search和hash前缀求最长和为正数的最长连续子序列
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
         low = 0
@@ -468,7 +468,7 @@ class Solution:
                 pre += 1 if num >= x else -1
                 if pre > 0 and i + 1 >= k:
                     return True
-                # 为负数时，只需贪心考虑第一次为 pre-1 时的长度即可
+                # 为负数时，只需greedy考虑第一次为 pre-1 时的长度即可
                 if pre - 1 in dct and i - dct[pre - 1] >= k:
                     return True
                 if pre not in dct:
@@ -488,7 +488,7 @@ class Solution:
     @staticmethod
     def lg_p1083(ac=FastIO()):
 
-        # 模板：经典二分结合差分进行寻找第一个失效点
+        # binary_search结合差分寻找第一个失效点
 
         def check(s):
             diff = [0] * n
@@ -533,7 +533,7 @@ class Solution:
                     res += (pos - s) % d == 0
             return [pos, res]
 
-        # 模板：利用单调性二分
+        # binary_search
         for _ in range(ac.read_int()):
             n = ac.read_int()
             nums = [ac.read_list_ints() for _ in range(n)]
@@ -555,7 +555,7 @@ class Solution:
 
     @staticmethod
     def abc_56d(ac=FastIO()):
-        # 模板：经典利用单调性进行二分，用背包DP进行check
+        # binary_search，用背包DPcheck
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
         nums.sort()
@@ -587,7 +587,7 @@ class Solution:
 
     @staticmethod
     def abc_63d(ac=FastIO()):
-        # 模板：经典利用单调性进行二分，贪心进行check
+        # binary_search，greedycheck
         n, a, b = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
 
@@ -604,7 +604,7 @@ class Solution:
 
     @staticmethod
     def ac_14(nums):
-        # 模板：利用鸽巢原理进行二分
+        # 利用pigeonholebinary_search
         n = len(nums) - 1
         low = 1
         high = n
@@ -623,7 +623,7 @@ class Solution:
 
     @staticmethod
     def lg_p1281(ac=FastIO()):
-        # 模板：典型二分并输出方案
+        # 典型binary_search并specific_plans
         m, k = ac.read_list_ints()
         nums = ac.read_list_ints()
 
@@ -657,7 +657,7 @@ class Solution:
 
     @staticmethod
     def lg_p1381(ac=FastIO()):
-        # 模板：典型二分
+        # 典型binary_search
         n = ac.read_int()
         dct = set([ac.read_str() for _ in range(n)])
         m = ac.read_int()
@@ -671,7 +671,7 @@ class Solution:
             cnt = defaultdict(int)
             cc = 0
             for i in range(m):
-                # 滑动窗口判断是否可行
+                # sliding_window判断是否可行
                 if words[i] in dct:
                     cnt[words[i]] += 1
                     if cnt[words[i]] == 1:
@@ -685,7 +685,7 @@ class Solution:
                             cc -= 1
             return False
 
-        # 贪心选取所有能背的单词
+        # greedy选取所有能背的单词
         s = len(cur)
         ac.st(s)
         if not s:
@@ -706,7 +706,7 @@ class Solution:
         m = len(prime)
 
         def check(x):
-            # 容斥原理计算与 n 不互质且小于等于 x 的数个数
+            # inclusion_exclusion与 n 不coprime且小于等于 x 的数个数
             res = 0
             for i in range(1, m + 1):
                 for item in combinations(prime, i):
@@ -723,7 +723,7 @@ class Solution:
     @staticmethod
     def lg_p1419(ac=FastIO()):
 
-        # 模板：二分加优先队列
+        # binary_search|priority_queue
         def check(x):
             stack = deque()
             res = []
@@ -749,7 +749,7 @@ class Solution:
         for j in range(n):
             pre[j + 1] = pre[j] + nums[j]
 
-        # 二分最大平均值
+        # binary_search最大平均值
         k = t - s
         ans = BinarySearch().find_float_right(min(nums), max(nums), check)
         ac.st("%.3f" % ans)
@@ -757,7 +757,7 @@ class Solution:
 
     @staticmethod
     def lg_p1525(ac=FastIO()):
-        # 模板：经典二分加BFS进行二分图划分
+        # binary_search|BFSbipartite_graph划分
         n, m = ac.read_list_ints()
         lst = [ac.read_list_ints() for _ in range(m)]
 
@@ -767,7 +767,7 @@ class Solution:
             for i, j in edges:
                 dct[i].append(j)
                 dct[j].append(i)
-            # 使用染色法判断是否可以二分
+            # 染色法判断是否可以binary_search
             visit = [0] * (n + 1)
             for i in range(1, n + 1):
                 if visit[i] == 0:
@@ -786,7 +786,7 @@ class Solution:
 
             return all(visit[i] != visit[j] for i, j in edges)
 
-        # 二分最小的最大值
+        # binary_search最小的最大值
         low = 0
         high = max(ls[-1] for ls in lst)
         ans = BinarySearch().find_int_left(low, high, check)
@@ -795,12 +795,12 @@ class Solution:
 
     @staticmethod
     def lg_p1542(ac=FastIO()):
-        # 模板：二分加使用分数进行高精度计算
+        # binary_search|分数high_precision
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
 
         def add(lst1, lst2):
-            # 进行分数加减
+            # 分数|减
             a, b = lst1
             c, d = lst2
             d1 = a * d + c * b
@@ -831,7 +831,7 @@ class Solution:
     @staticmethod
     def cf_1118d2(ac=FastIO()):
 
-        # 模板：贪心二分
+        # greedybinary_search
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         s = sum(nums)
@@ -852,7 +852,7 @@ class Solution:
 
     @staticmethod
     def cf_883i(ac=FastIO()):
-        # 模板：二分加双指针dp
+        # binary_search|two_pointerdp
         n, k = ac.read_list_ints()
         nums = sorted(ac.read_list_ints())
 
@@ -875,7 +875,7 @@ class Solution:
 
     @staticmethod
     def lg_p2237(ac=FastIO()):
-        # 模板：脑筋急转弯排序后binary_search
+        # brain_teasersorting后binary_search
         w, n = ac.read_list_ints()
         nums = [ac.read_str() for _ in range(w)]
         ind = list(range(w))
@@ -894,7 +894,7 @@ class Solution:
     @staticmethod
     def lg_p2810(ac=FastIO()):
 
-        # 模板：二分加枚举
+        # binary_search|brute_force
         n = ac.read_int()
 
         low = 0
@@ -925,7 +925,7 @@ class Solution:
 
     @staticmethod
     def lg_p3718(ac=FastIO()):
-        # 模板：二分加贪心
+        # binary_search|greedy
         n, k = ac.read_list_ints()
         s = ac.read_str()
 
@@ -962,7 +962,7 @@ class Solution:
 
     @staticmethod
     def lg_p3853(ac=FastIO()):
-        # 模板：经典二分贪心题
+        # binary_searchgreedy题
         length, n, k = ac.read_list_ints()
         lst = ac.read_list_ints()
         lst.sort()
@@ -978,7 +978,7 @@ class Solution:
 
     @staticmethod
     def lg_p4343(ac=FastIO()):
-        # 模板：上下界二分加模拟
+        # 上下界binary_search|implemention
         l, k = ac.read_list_ints()
         lst = []
         for _ in range(l):
@@ -1002,7 +1002,7 @@ class Solution:
         def check2(n):
             return compute(n) <= k
 
-        # 经典的二分函数写法与出方案
+        # 的binary_search函数写法与出方案
         ceil = BinarySearch().find_int_right(low, high, check1)
         if compute(ceil) != k:
             ac.st(-1)
@@ -1013,7 +1013,7 @@ class Solution:
 
     @staticmethod
     def lg_p5844(ac=FastIO()):
-        # 模板：经典中位数贪心与前缀和二分
+        # mediangreedy与prefix_sumbinary_search
         n, m, b = ac.read_list_ints()
         pos = [ac.read_int() for _ in range(n)]
         ans = j = 0
@@ -1026,7 +1026,7 @@ class Solution:
             return left + right
 
         for i in range(n):
-            # 枚举左端点二分右端点
+            # brute_force左端点binary_search右端点
             while j < n and check(i, j) <= b:
                 j += 1
             ans = ac.max(ans, j - i)
@@ -1035,7 +1035,7 @@ class Solution:
 
     @staticmethod
     def lg_p5878(ac=FastIO()):
-        # 模板：使用二分加枚举计算
+        # binary_search|brute_force
         n, m = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
 
@@ -1046,7 +1046,7 @@ class Solution:
                 if need <= 0:
                     continue
                 cur = inf
-                # 枚举小包装个数
+                # brute_force小包装个数
                 for i in range(need + 1):
                     rest = need - i * sm
                     if rest > 0:
@@ -1066,7 +1066,7 @@ class Solution:
 
     @staticmethod
     def lg_p6004(ac=FastIO()):
-        # 模板：二分加并查集计算
+        # binary_search|union_find
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints_minus_one()
         edges = [ac.read_list_ints() for _ in range(m)]
@@ -1089,7 +1089,7 @@ class Solution:
 
     @staticmethod
     def lg_p6058(ac=FastIO()):
-        # 模板：使用深搜序与离线 LCA 计算相邻叶子之间距离并二分确定时间
+        # dfs_order与offline_lca 相邻叶子之间距离并binary_search确定时间
         n, k = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for _ in range(n - 1):
@@ -1116,7 +1116,7 @@ class Solution:
         c = len(leaf)
         pairs = [[leaf[i - 1], leaf[i]] for i in range(1, c)]
         edge = [[ls[0] for ls in lst] for lst in dct]
-        # 计算叶子之间的距离
+        # 叶子之间的距离
         ces = OfflineLCA().bfs_iteration(edge, pairs, 0)
         pairs_dis = [dis[leaf[i - 1]] + dis[leaf[i]] - 2 * dis[ces[i - 1]] for i in range(1, c)]
         pre = ac.accumulate(pairs_dis)
@@ -1136,14 +1136,14 @@ class Solution:
                 ii = post + 1
             return part <= k
 
-        # 二分进行计算
+        # binary_search
         ans = BinarySearch().find_int_left(max(dis[i] * 2 for i in leaf), sum(dis[i] * 2 for i in leaf), check)
         ac.st(ans)
         return
 
     @staticmethod
     def lg_p6069(ac=FastIO()):
-        # 模板：经典方差计算公式变形，使用二分加变量维护区间的方差值大小
+        # 方差公式变形，binary_search|变量维护区间的方差值大小
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         nums.sort()
@@ -1167,7 +1167,7 @@ class Solution:
 
     @staticmethod
     def lg_p6633(ac=FastIO()):
-        # 模板：二分加STL进行 Check
+        # binary_search|STL Check
         n, k = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort(key=lambda it: -it[1])
@@ -1188,7 +1188,7 @@ class Solution:
 
     @staticmethod
     def lc_2594(ranks: List[int], cars: int) -> int:
-        #  模板：经典二分
+        #  binary_search
 
         def check(x):
             res = 0
@@ -1200,7 +1200,7 @@ class Solution:
 
     @staticmethod
     def lc_2604(hens: List[int], grains: List[int]) -> int:
-        # 模板：二分加指针贪心 check
+        # binary_search|pointergreedy check
         hens.sort()
         grains.sort()
         m, n = len(hens), len(grains)
@@ -1228,7 +1228,7 @@ class Solution:
 
     @staticmethod
     def lg_p8161(ac=FastIO()):
-        # 模板：经典贪心加二分
+        # greedy|binary_search
         n, m = ac.read_list_ints()
         a = ac.read_list_ints()
         b = ac.read_list_ints()
@@ -1256,7 +1256,7 @@ class Solution:
 
     @staticmethod
     def lg_p8198(ac=FastIO()):
-        # 模板：经典二分加指针
+        # binary_search|pointer
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
 
@@ -1279,7 +1279,7 @@ class Solution:
 
     @staticmethod
     def lg_p9050(ac=FastIO()):
-        # 模板：经典二分注意值域区间与贪心模拟
+        # binary_search注意data_range区间与greedyimplemention
         n = ac.read_int()
         if n == 1:
             ac.st("T")
@@ -1310,7 +1310,7 @@ class Solution:
 
     @staticmethod
     def ac_3973(ac=FastIO()):
-        # 模板：浮点数二分与滑动窗口双指针
+        # 浮点数binary_search与sliding_windowtwo_pointer
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         pos = ac.read_list_ints()
@@ -1335,7 +1335,7 @@ class Solution:
 
     @staticmethod
     def ac_4683(ac=FastIO()):
-        # 模板：经典二分加鸽巢原理
+        # binary_search|pigeonhole
         for _ in range(ac.read_int()):
             ac.read_str()
             m, n = ac.read_list_ints()
@@ -1360,7 +1360,7 @@ class Solution:
 
     @staticmethod
     def ac_5048(ac=FastIO()):
-        # 模板：经典浮点数二分并求出具体方案
+        # 浮点数binary_search并求出specific_plan
         ac.read_int()
         nums = ac.read_list_ints()
         nums.sort()

@@ -69,7 +69,7 @@ class PruferAndTree:
             ptr += 1
         leaf = ptr
 
-        # 逆向工程进行还原
+        # 逆向工程还原
         adj = [[] for _ in range(n)]
         for v in code:
             adj[v].append(leaf)

@@ -1,57 +1,57 @@
 """
-Algorithm：状态压缩DP、轮廓线DP、记忆化搜索DP、刷表法、填表法
-Function：使用二进制数字表示转移状态，计算相应的转移方程，通常可以先计算满足条件的子集，有时通过深搜回溯枚举全部子集的办法比位运算枚举效率更高
+Algorithm：state_compressionDP、轮廓线DP、记忆化搜索DP、刷表法、填表法
+Function：二进制数字表示转移状态，相应的转移方程，通常可以先满足条件的子集，有时通过深搜back_trackbrute_force全部子集的办法比bit_operationbrute_force效率更高
 
 ====================================LeetCode====================================
-465（https://leetcode.com/problems/optimal-account-balancing/）经典枚举子集状压DP
-1349（https://leetcode.com/problems/maximum-students-taking-exam/）按行状态枚举所有的摆放可能性
-1723（https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs/）通过位运算枚举分配工作DP最小化的最大值，枚举子集预处理，枚举子集模板
-1986（https://leetcode.com/problems/minimum-number-of-work-sessions-to-finish-the-tasks/）预处理计算子集后进行记忆化状态转移，经典子集枚举，也可使用两个状态
-698（https://leetcode.com/problems/partition-to-k-equal-sum-subsets/）预处理计算子集后进行记忆化状态转移
-2172（https://leetcode.com/problems/maximum-and-sum-of-array/）使用位运算和状态压缩进行转移，经典三进制状压DP（天平就是三进制）
+465（https://leetcode.com/problems/optimal-account-balancing/）brute_force子集状压DP
+1349（https://leetcode.com/problems/maximum-students-taking-exam/）按行状态brute_force所有的摆放可能性
+1723（https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs/）通过bit_operationbrute_force分配工作DP最小化的最大值，brute_force子集预处理，brute_force子集模板
+1986（https://leetcode.com/problems/minimum-number-of-work-sessions-to-finish-the-tasks/）预处理子集后记忆化状态转移，子集brute_force，也可两个状态
+698（https://leetcode.com/problems/partition-to-k-equal-sum-subsets/）预处理子集后记忆化状态转移
+2172（https://leetcode.com/problems/maximum-and-sum-of-array/）bit_operation和state_compression转移，三进制状压DP（天平就是三进制）
 1255（https://leetcode.com/problems/maximum-score-words-formed-by-letters/）状压DP
 2403（https://leetcode.com/problems/minimum-time-to-kill-all-monsters/）状压DP
-1681（https://leetcode.com/problems/minimum-incompatibility/）状态压缩分组DP，状态压缩和组合数选取结合使用
-1125（https://leetcode.com/problems/smallest-sufficient-team/）经典状压DP
-1467（https://leetcode.com/problems/probability-of-a-two-boxes-having-the-same-number-of-distinct-balls/）记忆化搜索与组合数学计数
-1531（https://leetcode.com/problems/string-compression-ii/submissions/）线性DP模拟
-1595（https://leetcode.com/problems/minimum-cost-to-connect-two-groups-of-points/）经典状压DP，需要一点变形
-1655（https://leetcode.com/problems/distribute-repeating-integers/）经典状压 DP
-1879（https://leetcode.com/problems/minimum-xor-sum-of-two-arrays/）经典状压 DP
-2019（https://leetcode.com/problems/the-score-of-students-solving-math-expression/）经典记忆化DP，可以使用刷表法与填表法迭代实现
-943（https://leetcode.com/problems/find-the-shortest-superstring/）字符串贪心最短长度拼接状压DP
-1434（https://leetcode.com/problems/number-of-ways-to-wear-different-hats-to-each-other/description/）经典状压DP逆向思维
-847（https://leetcode.com/problems/shortest-path-visiting-all-nodes/）经典最短路Floyd或者Dijkstra预处理最短路加状压DP
-2741（https://leetcode.com/problems/special-permutations/description/）经典状压DP
-2305（https://leetcode.com/problems/fair-distribution-of-cookies/description/）典型状压DP枚举子集
-980（https://leetcode.com/problems/unique-paths-iii/description/）典型状压DP或者回溯
+1681（https://leetcode.com/problems/minimum-incompatibility/）state_compression分组DP，state_compression和组合数选取结合
+1125（https://leetcode.com/problems/smallest-sufficient-team/）状压DP
+1467（https://leetcode.com/problems/probability-of-a-two-boxes-having-the-same-number-of-distinct-balls/）记忆化搜索与组合mathcounter
+1531（https://leetcode.com/problems/string-compression-ii/submissions/）线性DPimplemention
+1595（https://leetcode.com/problems/minimum-cost-to-connect-two-groups-of-points/）状压DP，需要一点变形
+1655（https://leetcode.com/problems/distribute-repeating-integers/）状压 DP
+1879（https://leetcode.com/problems/minimum-xor-sum-of-two-arrays/）状压 DP
+2019（https://leetcode.com/problems/the-score-of-students-solving-math-expression/）记忆化DP，可以刷表法与填表法迭代实现
+943（https://leetcode.com/problems/find-the-shortest-superstring/）字符串greedy最短长度拼接状压DP
+1434（https://leetcode.com/problems/number-of-ways-to-wear-different-hats-to-each-other/description/）状压DPreverse_thinking
+847（https://leetcode.com/problems/shortest-path-visiting-all-nodes/）最短路Floyd或者Dijkstra预处理最短路|状压DP
+2741（https://leetcode.com/problems/special-permutations/description/）状压DP
+2305（https://leetcode.com/problems/fair-distribution-of-cookies/description/）典型状压DPbrute_force子集
+980（https://leetcode.com/problems/unique-paths-iii/description/）典型状压DP或者back_track
 2571（https://leetcode.com/problems/minimum-operations-to-reduce-an-integer-to-0/description/）思维题记忆化DP
 
 =====================================LuoGu======================================
-1896（https://www.luogu.com.cn/problem/P1896）按行状态与行个数枚举所有的摆放可能性
-2704（https://www.luogu.com.cn/problem/P2704）记录两个前序状态进行转移
+1896（https://www.luogu.com.cn/problem/P1896）按行状态与行个数brute_force所有的摆放可能性
+2704（https://www.luogu.com.cn/problem/P2704）记录两个前序状态转移
 
-2196（https://www.luogu.com.cn/problem/P2196）有向图最长路径加状压DP
-1690（https://www.luogu.com.cn/problem/P1690）最短路加状压DP
-1294（https://www.luogu.com.cn/problem/P1294）图问题使用状压DP求解最长直径
-1123（https://www.luogu.com.cn/problem/P1123）类似占座位的经典状压DP
+2196（https://www.luogu.com.cn/problem/P2196）有向图最长路径|状压DP
+1690（https://www.luogu.com.cn/problem/P1690）最短路|状压DP
+1294（https://www.luogu.com.cn/problem/P1294）图问题状压DP求解最长直径
+1123（https://www.luogu.com.cn/problem/P1123）类似占座位的状压DP
 1433（https://www.luogu.com.cn/problem/P1433）状压DP
 1896（https://www.luogu.com.cn/problem/P1896）状压DP
-1556（https://www.luogu.com.cn/problem/P1556）状态压缩DP计算最短路方案数
-3052（https://www.luogu.com.cn/problem/P3052）经典状态压缩 DP 使用二维优化
-5997（https://www.luogu.com.cn/problem/P5997）经典贪心背包与状压 DP 结合
+1556（https://www.luogu.com.cn/problem/P1556）state_compressionDP最短路方案数
+3052（https://www.luogu.com.cn/problem/P3052）state_compression DP 二维优化
+5997（https://www.luogu.com.cn/problem/P5997）greedy背包与状压 DP 结合
 6883（https://www.luogu.com.cn/problem/P6883）典型状压 DP 
-8687（https://www.luogu.com.cn/problem/P8687）经典状压 DP 结合背包 DP 思想
-8733（https://www.luogu.com.cn/problem/P8733）使用Floyd最短路计算并使用状压 DP
+8687（https://www.luogu.com.cn/problem/P8687）状压 DP 结合背包 DP 思想
+8733（https://www.luogu.com.cn/problem/P8733）Floyd最短路并状压 DP
 
 ===================================CodeForces===================================
-580D（https://codeforces.com/problemset/problem/580/D）状态压缩DP结合前后相邻的增益计算最优解
-165E（https://codeforces.com/problemset/problem/165/E）线性DP，状态压缩枚举，类似子集思想求解可能存在的与为0的数对
-11D（https://codeforces.com/contest/11/problem/D）状压DP，无向图简单环计数
+580D（https://codeforces.com/problemset/problem/580/D）state_compressionDP结合前后相邻的增益最优解
+165E（https://codeforces.com/problemset/problem/165/E）线性DP，state_compressionbrute_force，类似子集思想求解可能存在的与为0的数对
+11D（https://codeforces.com/contest/11/problem/D）状压DP，无向图简单环counter
 1294F（https://codeforces.com/contest/1294/problem/F）典型树的直径应用题
 
 =====================================AcWing=====================================
-3735（https://www.acwing.com/problem/content/3738/）经典倒序状压DP与输出具体方案
+3735（https://www.acwing.com/problem/content/3738/）倒序状压DP与输出specific_plan
 
 """
 import heapq
@@ -74,7 +74,7 @@ class Solution:
 
     @staticmethod
     def lc_1681(nums: List[int], k: int) -> int:
-        # 模板：状态压缩和组合数选取结合使用
+        # state_compression和组合数选取结合
 
         @lru_cache(None)
         def dfs(state):
@@ -111,7 +111,7 @@ class Solution:
 
     @staticmethod
     def lc_1723(jobs: List[int], k: int) -> int:
-        # 模板：通过位运算枚举分配工作DP最小化的最大值，枚举子集预处理
+        # 通过bit_operationbrute_force分配工作DP最小化的最大值，brute_force子集预处理
 
         @lru_cache(None)
         def dfs(i, state):
@@ -129,7 +129,7 @@ class Solution:
                         cost = nex
                     if cost < res:
                         res = cost
-                # 枚举子集模板
+                # brute_force子集模板
                 sub = (sub - 1) & state
             return res
 
@@ -143,7 +143,7 @@ class Solution:
     @staticmethod
     def lc_1879_1(nums1: List[int], nums2: List[int]) -> int:
 
-        # 模板：经典记忆化深搜状压DP写法
+        # 记忆化深搜状压DP写法
 
         @lru_cache(None)
         def dfs(i, state):
@@ -162,7 +162,7 @@ class Solution:
 
     @staticmethod
     def lc_1879_2(nums1: List[int], nums2: List[int]) -> int:
-        # 模板：经典状压DP迭代写法，刷表法
+        # 状压DP迭代写法，刷表法
         n = len(nums1)
         s = sum(nums1) + sum(nums2)
         dp = [s] * (1 << n)
@@ -177,7 +177,7 @@ class Solution:
 
     @staticmethod
     def lc_1879_3(nums1: List[int], nums2: List[int]) -> int:
-        # 模板：经典状压DP迭代写法，填表法
+        # 状压DP迭代写法，填表法
         n = len(nums1)
         s = sum(nums1) + sum(nums2)
         dp = [s] * (1 << n)
@@ -192,7 +192,7 @@ class Solution:
 
     @staticmethod
     def cf_165e(ac=FastIO()):
-        # 模板：线性状态压缩DP，类似子集思想求解可能存在的与为0的数对
+        # 线性state_compressionDP，类似子集思想求解可能存在的与为0的数对
         n = ac.read_int()
         nums = ac.read_list_ints()
         ceil = max(nums).bit_length()
@@ -218,7 +218,7 @@ class Solution:
     @staticmethod
     def cf_580d(ac):
 
-        # 模板：bitmask位运算状态压缩转移，从 1 少的状态向多的转移，并枚举前一个 1 的位置计算增益
+        # bitmaskbit_operationstate_compression转移，从 1 少的状态向多的转移，并brute_force前一个 1 的位置增益
         n, m, k = ac.read_list_ints()
         ind = {1 << i: i for i in range(n + 1)}
         nums = ac.read_list_ints()
@@ -249,7 +249,7 @@ class Solution:
 
     @staticmethod
     def lc_847(graph: List[List[int]]) -> int:
-        # 模板：经典最短路Floyd或者Dijkstra预处理最短路加状压DP
+        # 最短路Floyd或者Dijkstra预处理最短路|状压DP
         n = len(graph)
         dis = [[inf] * n for _ in range(n)]
         for i in range(n):
@@ -275,7 +275,7 @@ class Solution:
     @staticmethod
     def lc_1349(seats: List[List[str]]) -> int:
 
-        # 模板：经典考试就座状态压缩 DP
+        # 考试就座state_compression DP
 
         lst = []
         for se in seats:
@@ -312,7 +312,7 @@ class Solution:
 
     @staticmethod
     def lc_1434_1(hats: List[List[int]]) -> int:
-        # 模板：经典状压DP逆向思维，记忆化实现
+        # 状压DPreverse_thinking，记忆化实现
         mod = 10 ** 9 + 7
         n = len(hats)
         people = [[] for _ in range(40)]
@@ -337,7 +337,7 @@ class Solution:
 
     @staticmethod
     def lc_1434_2(hats: List[List[int]]) -> int:
-        # 模板：经典状压DP逆向思维，填表法迭代实现
+        # 状压DPreverse_thinking，填表法迭代实现
         mod = 10 ** 9 + 7
         n = len(hats)
         people = [[] for _ in range(40)]
@@ -359,7 +359,7 @@ class Solution:
 
     @staticmethod
     def lc_2403_1(power: List[int]) -> int:
-        # 模板：状态压缩DP数组形式
+        # state_compressionDP数组形式
         m = len(power)
         dp = [0] * (1 << m)
         for state in range(1, 1 << m):
@@ -374,7 +374,7 @@ class Solution:
 
     @staticmethod
     def lc_2403_2(power: List[int]) -> int:
-        # 模板：状态压缩DP记忆化形式
+        # state_compressionDP记忆化形式
 
         @lru_cache(None)
         def dfs(state):
@@ -393,7 +393,7 @@ class Solution:
 
     @staticmethod
     def lg_p1896(ac=FastIO()):
-        # 模板：状压DP迭代写法
+        # 状压DP迭代写法
         n, k = ac.read_list_ints()
         dp = [[[0] * (k + 1) for _ in range(1 << n)] for _ in range(n + 1)]
         dp[0][0][0] = 1
@@ -417,7 +417,7 @@ class Solution:
     @staticmethod
     def cf_11d(ac=FastIO()):
 
-        # 模板：状压DP无向图简单环计数
+        # 状压DP无向图简单环counter
         n, m = ac.read_list_ints()
 
         # 建图
@@ -456,7 +456,7 @@ class Solution:
 
     @staticmethod
     def lg_p1433(ac=FastIO()):
-        # 模板：状压DP
+        # 状压DP
         n = ac.read_int()
         lst = [[0, 0]]
         for _ in range(n):
@@ -492,12 +492,12 @@ class Solution:
 
     @staticmethod
     def lg_p1556(ac=FastIO()):
-        # 模板：状态压缩计算最短路
+        # state_compression最短路
         n = ac.read_int()
-        # 增加虚拟的起终点
+        # 增|虚拟的起终点
         nums = [[0, 0]] + [ac.read_list_ints() for _ in range(n)] + [[0, 0]]
         n += 2
-        # 根据题意进行建图，表示起终点与方向
+        # 根据题意建图，表示起终点与方向
         dct = [[] for _ in range(n)]
         for i in range(n):
             a, b = nums[i]
@@ -519,18 +519,18 @@ class Solution:
                     if x == n - 1:
                         dp[state][x][f] = 1 if not state else 0
                     res = 0
-                    # 枚举上一个点与方向是否可以转移过来
+                    # brute_force上一个点与方向是否可以转移过来
                     for y, ff in dct[x]:
                         if state & (1 << y) and ff != f:
                             res += dp[state ^ (1 << y)][y][ff]
                     dp[state][x][f] = res
-        # 使用 0 表示初始任意不同于 1234 的方向总和
+        #  0 表示初始任意不同于 1234 的方向总和
         ac.st(dp[(1 << n) - 1 - 1][0][0])
         return
 
     @staticmethod
     def lg_p3052(ac=FastIO()):
-        # 模板：经典状态压缩 DP 使用二维优化
+        # state_compression DP 二维优化
         n, w = ac.read_list_ints()
         nums = []
         while len(nums) < n:
@@ -555,7 +555,7 @@ class Solution:
 
     @staticmethod
     def lg_p5997(ac=FastIO()):
-        # 模板：经典贪心背包与状压 DP 结合
+        # greedy背包与状压 DP 结合
         n, m = ac.read_list_ints()
         a = ac.read_list_ints()
         c = ac.read_list_ints()
@@ -586,7 +586,7 @@ class Solution:
 
     @staticmethod
     def lg_p6883(ac=FastIO()):
-        # 模板：典型状压 DP
+        # 典型状压 DP
         n, k = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(n)]
         dp = [inf] * (1 << n)
@@ -605,7 +605,7 @@ class Solution:
 
     @staticmethod
     def lg_p8687(ac=FastIO()):
-        # 模板：经典状压 DP 结合背包 DP 思想
+        # 状压 DP 结合背包 DP 思想
         n, m, k = ac.read_list_ints()
         dp = [inf] * (1 << m)
         dp[0] = 0
@@ -621,7 +621,7 @@ class Solution:
     @staticmethod
     def lc_1467(balls: List[int]) -> float:
 
-        # 模板：记忆化搜索与组合数学计数
+        # 记忆化搜索与组合mathcounter
 
         @lru_cache(None)
         def dfs(i, s, c1, c2):
@@ -648,7 +648,7 @@ class Solution:
     @staticmethod
     def lc_1595(cost: List[List[int]]) -> int:
 
-        # 模板：经典状压DP，需要一点变形
+        # 状压DP，需要一点变形
         m, n = len(cost), len(cost[0])
         low = [min(cost[i][j] for i in range(m)) for j in range(n)]
 
@@ -666,7 +666,7 @@ class Solution:
 
     @staticmethod
     def lc_1655(nums: List[int], quantity: List[int]) -> bool:
-        # 模板：经典线性索引加枚举子集状压DP
+        # 线性索引|brute_force子集状压DP
         @lru_cache(None)
         def dfs(i, state):
             if not state:
@@ -690,7 +690,7 @@ class Solution:
 
     @staticmethod
     def lc_2019(s: str, answers: List[int]) -> int:
-        # 模板：类似分治的思想进行记忆化搜索
+        # 类似divide_and_conquer的思想记忆化搜索
         @lru_cache(None)
         def dfs(state):
             if len(state) == 1:
@@ -716,7 +716,7 @@ class Solution:
 
     @staticmethod
     def lc_1986_1(tasks: List[int], session: int):
-        # 模板：预处理计算子集后进行记忆化状态转移，经典子集枚举，也可使用两个状态
+        # 预处理子集后记忆化状态转移，子集brute_force，也可两个状态
         n = len(tasks)
         valid = [False] * (1 << n)
         for mask in range(1, 1 << n):
@@ -731,7 +731,7 @@ class Solution:
         f[0] = 0
         for mask in range(1, 1 << n):
             subset = mask
-            while subset:  # 状压子集枚举
+            while subset:  # 状压子集brute_force
                 if valid[subset]:
                     a, b = f[mask], f[mask ^ subset] + 1
                     f[mask] = a if a < b else b
@@ -740,7 +740,7 @@ class Solution:
 
     @staticmethod
     def lc_1986_2(tasks: List[int], session: int):
-        # 模板：预处理计算子集后进行记忆化状态转移，经典子集枚举，也可使用两个状态
+        # 预处理子集后记忆化状态转移，子集brute_force，也可两个状态
 
         @lru_cache(None)
         def dfs(state, rest):
@@ -762,7 +762,7 @@ class Solution:
 
     @staticmethod
     def ac_3735(ac=FastIO()):
-        # 模板：经典倒序状压DP与输出具体方案
+        # 倒序状压DP与输出specific_plan
         n, m = ac.read_list_ints()
         if m == n * (n - 1) // 2:
             ac.st(0)
@@ -805,9 +805,9 @@ class Solution:
 
     @staticmethod
     def lc_2172(nums: List[int], num_slots: int) -> int:
-        # 模板：使用位运算和状态压缩进行转移，经典三进制状压DP（天平就是三进制）
+        # bit_operation和state_compression转移，三进制状压DP（天平就是三进制）
 
-        def get_k_bin_of_n(n: int, k: int, m: int):  # 使用进制与数字转换进行状压DP
+        def get_k_bin_of_n(n: int, k: int, m: int):  # 进制与数字转换状压DP
             lst = []
             while n:
                 lst.append(n % k)

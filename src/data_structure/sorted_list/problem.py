@@ -1,46 +1,46 @@
 """
 
-Algorithm：有序集合
-Function：利用单调性确定最优选择，通常可以使用SortedList用于维护和查询有序集合信息
+Algorithm：sorted_list
+Function：确定最优选择，通常可以SortedList用于维护和查询sorted_list信息
 
 
 ====================================LeetCode====================================
-295（https://leetcode.com/problems/find-median-from-data-stream/）使用一个SortedList即可
-2426 满足不等式的数对数目（https://leetcode.com/problems/number-of-pairs-satisfying-inequality/）根据不等式变换和有序集合进行binary_search
-2179 统计数组中好三元组数目（https://leetcode.com/problems/count-good-triplets-in-an-array/）维护区间范围内的个数
-2141 同时运行 N 台电脑的最长时间（https://leetcode.com/problems/maximum-running-time-of-n-computers/）贪心选择最大的 N 个电池作为基底，然后二分确定在其余电池的加持下可以运行的最长时间
-2102 序列顺序查询（https://leetcode.com/problems/sequentially-ordinal-rank-tracker/）使用有序集合维护优先级姓名实时查询
-2519（https://leetcode.com/problems/count-the-number-of-k-big-indices/）使用有序集合维护计算数量
+295（https://leetcode.com/problems/find-median-from-data-stream/）一个SortedList即可
+2426（https://leetcode.com/problems/number-of-pairs-satisfying-inequality/）根据不等式变换和sorted_listbinary_search
+2179（https://leetcode.com/problems/count-good-triplets-in-an-array/）维护区间范围内的个数
+2141（https://leetcode.com/problems/maximum-running-time-of-n-computers/）greedy选择最大的 N 个电池作为基底，然后binary_search确定在其余电池的|持下可以运行的最长时间
+2102（https://leetcode.com/problems/sequentially-ordinal-rank-tracker/）sorted_list维护优先级姓名实时查询
+2519（https://leetcode.com/problems/count-the-number-of-k-big-indices/）sorted_list维护数量
 1912（https://leetcode.com/problems/design-movie-rental-system/）典型SortedList应用
-1825（https://leetcode.com/problems/finding-mk-average/）经典SortedList与deque应用
-2250（https://leetcode.com/problems/count-number-of-rectangles-containing-each-point/）离线查询，指针排序二分
-2426（https://leetcode.com/problems/number-of-pairs-satisfying-inequality/）根据不等式变换和有序集合进行binary_search
+1825（https://leetcode.com/problems/finding-mk-average/）SortedList与deque应用
+2250（https://leetcode.com/problems/count-number-of-rectangles-containing-each-point/）离线查询，pointersortingbinary_search
+2426（https://leetcode.com/problems/number-of-pairs-satisfying-inequality/）根据不等式变换和sorted_listbinary_search
 
 =====================================LuoGu======================================
-7333（https://www.luogu.com.cn/problem/P7333）经典排序预处理后，动态更新使用有序集合进行查询，注意是环形数组
-7391（https://www.luogu.com.cn/problem/P7391）有序集合进行贪心模拟，延迟替换，类似课程表3
-7910（https://www.luogu.com.cn/problem/P7910）使用有序列表进行维护
-4375（https://www.luogu.com.cn/problem/P4375）冒泡排序，使用有序列表维护
-1908（https://www.luogu.com.cn/problem/P1908）经典问题求逆序对，可以使用归并排序
-1966（https://www.luogu.com.cn/problem/P1966）逆序对经典贪心题目
+7333（https://www.luogu.com.cn/problem/P7333）sorting预处理后，动态更新sorted_list查询，注意是环形数组
+7391（https://www.luogu.com.cn/problem/P7391）sorted_listgreedyimplemention，延迟替换，类似课程表3
+7910（https://www.luogu.com.cn/problem/P7910）sorted_list维护
+4375（https://www.luogu.com.cn/problem/P4375）冒泡sorting，sorted_list维护
+1908（https://www.luogu.com.cn/problem/P1908）问题求逆序对，可以归并sorting
+1966（https://www.luogu.com.cn/problem/P1966）逆序对greedy题目
 2161（https://www.luogu.com.cn/problem/P2161）区间合并与删除处理
-1637（https://www.luogu.com.cn/problem/P1637）典型STL应用题，前后缀大小值计数
+1637（https://www.luogu.com.cn/problem/P1637）典型STL应用题，prefix_suffix大小值counter
 2234（https://www.luogu.com.cn/problem/P2234）典型STL应用题
-2804（https://www.luogu.com.cn/problem/P2804）前缀和加 STL 计算平均值大于 m 的连续子数组个数
+2804（https://www.luogu.com.cn/problem/P2804）prefix_sum| STL 平均值大于 m 的连续子数组个数
 3608（https://www.luogu.com.cn/problem/P3608）典型STL应用题
-5076（https://www.luogu.com.cn/problem/P5076）使用有序列表与有序集合进行名次模拟
-5149（https://www.luogu.com.cn/problem/P5149）经典逆序对计算使用 bisect 实现
-5459（https://www.luogu.com.cn/problem/P5459）前缀和与有序列表binary_search
-6538（https://www.luogu.com.cn/problem/P6538）典型STL维护贪心
-7912（https://www.luogu.com.cn/problem/P7912）经典 STL 应用模拟题
+5076（https://www.luogu.com.cn/problem/P5076）sorted_list与sorted_list名次implemention
+5149（https://www.luogu.com.cn/problem/P5149）逆序对 bisect 实现
+5459（https://www.luogu.com.cn/problem/P5459）prefix_sum与sorted_listbinary_search
+6538（https://www.luogu.com.cn/problem/P6538）典型STL维护greedy
+7912（https://www.luogu.com.cn/problem/P7912） STL 应用implemention题
 8667（https://www.luogu.com.cn/problem/P8667）典型STL应用题
 
 ===================================CodeForces===================================
-459D（https://codeforces.com/problemset/problem/459/D）使用有序集合进行大小计数查找
-61E（https://codeforces.com/problemset/problem/61/E）典型应用场景，前后缀大于小于值计数
-1354D（https://codeforces.com/problemset/problem/1354/D）有序列表的维护与查询
-1005E2（https://codeforces.com/contest/1005/problem/E2）经典特定中位数的连续子数组个数，使用容斥原理加前缀和有序列表二分
-1619E（https://codeforces.com/contest/1619/problem/E）经典MEX贪心
+459D（https://codeforces.com/problemset/problem/459/D）sorted_list大小counter查找
+61E（https://codeforces.com/problemset/problem/61/E）典型应用场景，prefix_suffix大于小于值counter
+1354D（https://codeforces.com/problemset/problem/1354/D）sorted_list的维护与查询
+1005E2（https://codeforces.com/contest/1005/problem/E2）特定median的连续子数组个数，inclusion_exclusion|prefix_sumsorted_listbinary_search
+1619E（https://codeforces.com/contest/1619/problem/E）MEXgreedy
 
 """
 import bisect
@@ -60,7 +60,7 @@ class Solution:
 
     @staticmethod
     def lg_4375d(ac=FastIO()):
-        # 模板：双向冒泡排序所需要的比较轮数
+        # 双向冒泡sorting所需要的比较轮数
         n = ac.read_int()
         ans = 1
         nums = [ac.read_int() for _ in range(n)]
@@ -75,7 +75,7 @@ class Solution:
 
     @staticmethod
     def cf_61e(ac=FastIO()):
-        # 模板：典型计算 i < j < k 但是 nums[i] > nums[j] > nums[k] 的组合数
+        # 典型 i < j < k 但是 nums[i] > nums[j] > nums[k] 的组合数
         n = ac.read_int()
         nums = ac.read_list_ints()
         pre = [0] * (n + 1)
@@ -98,7 +98,7 @@ class Solution:
 
     @staticmethod
     def cf_1005e2(ac=FastIO()):
-        # 模板：经典特定中位数的连续子数组个数，使用容斥原理加前缀和有序列表二分
+        # 特定median的连续子数组个数，inclusion_exclusion|prefix_sumsorted_listbinary_search
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
 
@@ -117,7 +117,7 @@ class Solution:
 
     @staticmethod
     def lc_2426(nums1: List[int], nums2: List[int], diff: int) -> int:
-        # 模板：经典使用公式变换与有序集合binary_search进行计数
+        # 公式变换与sorted_listbinary_searchcounter
         n = len(nums1)
         ans = 0
         lst = SortedList([nums1[n - 1] - nums2[n - 1] + diff])
@@ -129,7 +129,7 @@ class Solution:
 
     @staticmethod
     def lg_1966(ac=FastIO()):
-        # 模板：逆序对经典贪心题目
+        # 逆序对greedy题目
         n = ac.read_int()
         ans = 0
         mod = 10 ** 8 - 3
@@ -153,7 +153,7 @@ class Solution:
 
     @staticmethod
     def ac_127(ac=FastIO()):
-        # 模板：经典二维排序贪心
+        # 二维sortinggreedy
         n, m = ac.read_list_ints()
         machine = [ac.read_list_ints() for _ in range(n)]
         task = [ac.read_list_ints() for _ in range(m)]
@@ -164,7 +164,7 @@ class Solution:
         for i in range(m):
             tm, level = task[i]
             while j < n and machine[j][0] >= tm:
-                insort_left(lst, machine[j][1])  # 使用bisect代替Sortedlist
+                insort_left(lst, machine[j][1])  # bisect代替Sortedlist
                 j += 1
             ind = bisect_left(lst, level)
             if ind < len(lst):
@@ -176,7 +176,7 @@ class Solution:
 
     @staticmethod
     def lg_p1637(ac=FastIO()):
-        # 模板：典型STL应用题，前后缀大小值计数
+        # 典型STL应用题，prefix_suffix大小值counter
         n = ac.read_int()
         nums = ac.read_list_ints()
 
@@ -197,7 +197,7 @@ class Solution:
 
     @staticmethod
     def lg_p2234(ac=FastIO()):
-        # 模板：典型STL应用题
+        # 典型STL应用题
         n = ac.read_int()
         ans = 0
         lst = LocalSortedList()
@@ -218,7 +218,7 @@ class Solution:
 
     @staticmethod
     def lg_p2804(ac=FastIO()):
-        # 模板：前缀和加 STL 计算平均值大于 m 的连续子数组个数
+        # prefix_sum| STL 平均值大于 m 的连续子数组个数
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         mod = 92084931
@@ -235,7 +235,7 @@ class Solution:
 
     @staticmethod
     def lg_p5076(ac=FastIO()):
-        # 模板：使用有序列表与有序集合进行名次模拟
+        # sorted_list与sorted_list名次implemention
         q = ac.read_int()
         dct = set()
         lst = []
@@ -270,7 +270,7 @@ class Solution:
 
     @staticmethod
     def lg_p5149(ac=FastIO()):
-        # 模板：经典逆序对计算使用 bisect 实现
+        # 逆序对 bisect 实现
         ac.read_int()
         lst = ac.read_list_strs()
         ind = {st: i for i, st in enumerate(lst)}
@@ -285,7 +285,7 @@ class Solution:
 
     @staticmethod
     def lg_p5459(ac=FastIO()):
-        # 模板：前缀和与有序列表binary_search
+        # prefix_sum与sorted_listbinary_search
         n, low, high = ac.read_list_ints()
         a = ac.read_list_ints()
         ans = 0
@@ -302,7 +302,7 @@ class Solution:
 
     @staticmethod
     def lg_p7912(ac=FastIO()):
-        # 模板：经典 STL 应用模拟题使用 STL 模拟删除
+        #  STL 应用implemention题 STL implemention删除
         n = ac.read_int()
         nums = ac.read_list_ints()
         lst = [LocalSortedList([i + 1 for i in range(n) if not nums[i]]),

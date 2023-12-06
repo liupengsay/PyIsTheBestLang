@@ -64,7 +64,7 @@ class DigitalDP:
         s = str(num)
         n = len(s)
         dp = [[[[0] * 2 for _ in range(2)] for _ in range(n + 2)] for _ in range(n + 1)]
-        # 数位 计数 是否受限 是否为数字
+        # 数位 counter 是否受限 是否为数字
         for i in range(n, -1, -1):
             for cnt in range(n, -1, -1):
                 for is_limit in range(1, -1, -1):

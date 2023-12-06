@@ -1,30 +1,30 @@
 """
 
-Algorithm：使用数组作为链表维护前驱后驱
+Algorithm：数组作为链表维护前驱后驱
 Function：
 
 
 ====================================LeetCode====================================
-2617（https://leetcode.com/problems/minimum-number-of-visited-cells-in-a-grid/）经典BFS加链表，使用数组维护链表的前后节点信息
-2612（https://leetcode.com/problems/minimum-reverse-operations/）经典BFS加链表，使用数组维护链表的前后节点信息
-1562（https://leetcode.com/problems/find-latest-group-of-size-m/）使用类似并查集的前后缀链表求解
-2382（https://leetcode.com/problems/maximum-segment-sum-after-removals/）逆向进行访问查询并更新连通块的结果，也可以使用双向链表维护
-2289（https://leetcode.com/problems/steps-to-make-array-non-decreasing/description/）经典单调栈优化的线性DP，也可用BFS加链表求解
+2617（https://leetcode.com/problems/minimum-number-of-visited-cells-in-a-grid/）BFS|链表，数组维护链表的前后节点信息
+2612（https://leetcode.com/problems/minimum-reverse-operations/）BFS|链表，数组维护链表的前后节点信息
+1562（https://leetcode.com/problems/find-latest-group-of-size-m/）类似union_find的prefix_suffix链表求解
+2382（https://leetcode.com/problems/maximum-segment-sum-after-removals/）逆向访问查询并更新连通块的结果，也可以双向链表维护
+2289（https://leetcode.com/problems/steps-to-make-array-non-decreasing/description/）单调栈优化的线性DP，也可用BFS|链表求解
 
 ===================================牛客===================================
-牛牛排队伍（https://ac.nowcoder.com/acm/contest/49888/C）使用数组维护链表的前后节点信息
+牛牛排队伍（https://ac.nowcoder.com/acm/contest/49888/C）数组维护链表的前后节点信息
 
 =====================================LuoGu======================================
-5462（https://www.luogu.com.cn/problem/P5462）经典使用双向链表贪心选取最大字典序队列
-6155（https://www.luogu.com.cn/problem/P6155）经典排序贪心使用并查集思想寻找右边最近的空位
+5462（https://www.luogu.com.cn/problem/P5462）双向链表greedy选取最大lexicographical_order队列
+6155（https://www.luogu.com.cn/problem/P6155）sortinggreedyunion_find思想寻找右边最近的空位
 
 ===================================CodeForces===================================
-1154E（https://codeforces.com/contest/1154/problem/E）使用数组维护链表的前后节点信息
+1154E（https://codeforces.com/contest/1154/problem/E）数组维护链表的前后节点信息
 
 =====================================AcWing=====================================
 136（https://www.acwing.com/problem/content/138/）链表逆序删除，查找前后最接近的值
-4943（https://www.acwing.com/problem/content/description/4946/）经典BFS加链表，维护四个方向上的未访问点
-5034（https://www.acwing.com/problem/content/5037/）经典堆贪心加链表进行处理
+4943（https://www.acwing.com/problem/content/description/4946/）BFS|链表，维护四个方向上的未访问点
+5034（https://www.acwing.com/problem/content/5037/）堆greedy|链表处理
 
 """
 import heapq
@@ -42,7 +42,7 @@ class Solution:
     @staticmethod
     def cf_1154e(ac=FastIO()):
 
-        # 模板：使用链表维护前后的节点信息
+        # 链表维护前后的节点信息
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
         ans = [0] * n
@@ -81,7 +81,7 @@ class Solution:
 
     @staticmethod
     def nc_247577(ac=FastIO()):
-        # 模板：使用链表维护前后的节点信息
+        # 链表维护前后的节点信息
         n, k = ac.read_list_ints()
         pre = list(range(-1, n + 1))
         post = list(range(1, n + 3))
@@ -103,7 +103,7 @@ class Solution:
     @staticmethod
     def lc_2289(nums: List[int]) -> int:
 
-        # 模板：经典单调栈优化的线性DP，也可用BFS加链表求解
+        # 单调栈优化的线性DP，也可用BFS|链表求解
         n = len(nums)
         post = list(range(1, n + 1))
         nums.append(10 ** 9 + 7)
@@ -121,7 +121,7 @@ class Solution:
 
     @staticmethod
     def lc_2617(grid: List[List[int]]) -> int:
-        # 模板：经典BFS加两个方向上的链表，也可以使用并查集代替
+        # BFS|两个方向上的链表，也可以union_find代替
         m, n = len(grid), len(grid[0])
         dis = [[inf] * n for _ in range(m)]
         row_nex = [list(range(1, n + 1)) for _ in range(m)]
@@ -173,7 +173,7 @@ class Solution:
 
     @staticmethod
     def ac_136(ac=FastIO()):
-        # 模板：链表逆序删除，查找前后最接近的值，也可直接使用SortedList
+        # 链表逆序删除，查找前后最接近的值，也可直接SortedList
         n = ac.read_int()
         nums = ac.read_list_ints()
         ind = list(range(n))
@@ -211,7 +211,7 @@ class Solution:
 
     @staticmethod
     def lg_p5462(ac=FastIO()):
-        # 模板：经典使用双向链表贪心选取最大字典序队列
+        # 双向链表greedy选取最大lexicographical_order队列
         n = ac.read_int()
         nums = ac.read_list_ints()
         pre = [-1] * (n + 1)
@@ -240,7 +240,7 @@ class Solution:
 
     @staticmethod
     def lg_p6155(ac=FastIO()):
-        # 模板：经典排序贪心使用并查集思想寻找右边最近的空位
+        # sortinggreedyunion_find思想寻找右边最近的空位
         n = ac.read_int()
         a = ac.read_list_ints()
         b = ac.read_list_ints()
@@ -251,7 +251,7 @@ class Solution:
         pre = {}
         for num in a:
             y = num
-            # 类似并查集寻找右边最近的空位
+            # 类似union_find寻找右边最近的空位
             lst = [num]
             while y in pre:
                 lst.append(y)
@@ -269,7 +269,7 @@ class Solution:
 
     @staticmethod
     def lc_1562(arr: List[int], m: int) -> int:
-        # 模板：使用类似并查集的前后缀链表求解
+        # 类似union_find的prefix_suffix链表求解
         n = len(arr)
         left = [-1] * n
         right = [-1] * n
@@ -310,7 +310,7 @@ class Solution:
 
     @staticmethod
     def ac_4943(ac=FastIO()):
-        # 模板：经典BFS加链表，维护四个方向上的未访问点
+        # BFS|链表，维护四个方向上的未访问点
         m, n, k = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
         x1, y1, x2, y2 = ac.read_list_ints_minus_one()
@@ -392,7 +392,7 @@ class Solution:
 
     @staticmethod
     def ac_5034(ac=FastIO()):
-        # 模板：经典堆贪心加链表进行处理
+        # 堆greedy|链表处理
         n = ac.read_int()
         s = ac.read_str()
         nums = ac.read_list_ints()
@@ -402,7 +402,7 @@ class Solution:
         for i in range(n - 1):
             if s[i] != s[i + 1]:
                 heapq.heappush(stack, [abs(nums[i + 1] - nums[i]), i, i + 1])
-        # 模拟出队并使用链表维护前后关系
+        # implemention出队并链表维护前后关系
         ans = []
         visit = [0] * n
         while stack:

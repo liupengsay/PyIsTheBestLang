@@ -1,43 +1,43 @@
 """
 
-Algorithm：拓扑排序、内向基环树（有向或者无向，连通块有k个节点以及k条边）、bfs序、拓扑序
-Function：有向图进行排序，无向图在选定根节点的情况下也可以进行拓扑排序
+Algorithm：拓扑sorting、内向基环树（有向或者无向，连通块有k个节点以及k条边）、bfs序、拓扑序
+Function：有向图sorting，无向图在选定根节点的情况下也可以拓扑sorting
 内向基环树介绍：https://leetcode.com/problems/maximum-employees-to-be-invited-to-a-meeting/solution/nei-xiang-ji-huan-shu-tuo-bu-pai-xu-fen-c1i1b/
 
 ====================================LeetCode====================================
-360（https://leetcode.com/problems/longest-cycle-in-a-graph/）拓扑排序计算有向图内向基环树最长环
-2392（https://leetcode.com/problems/build-a-matrix-with-conditions/）分别通过行列的拓扑排序来确定数字所在索引，数字可能相同，需要使用并查集
-2371（https://leetcode.com/problems/minimize-maximum-value-in-a-grid/）分别通过行列的拓扑排序来确定数字所在索引，数字都不同可以使用贪心
-2127（https://leetcode.com/problems/maximum-employees-to-be-invited-to-a-meeting/）拓扑排序确定DAG内向基环，按照环的大小进行分类讨论
+360（https://leetcode.com/problems/longest-cycle-in-a-graph/）拓扑sorting有向图内向基环树最长环
+2392（https://leetcode.com/problems/build-a-matrix-with-conditions/）分别通过行列的拓扑sorting来确定数字所在索引，数字可能相同，需要union_find
+2371（https://leetcode.com/problems/minimize-maximum-value-in-a-grid/）分别通过行列的拓扑sorting来确定数字所在索引，数字都不同可以greedy
+2127（https://leetcode.com/problems/maximum-employees-to-be-invited-to-a-meeting/）拓扑sorting确定DAG内向基环，按照环的大小classification_discussion
 127（https://leetcode.com/problems/maximum-employees-to-be-invited-to-a-meeting/）
-269（https://leetcode.com/problems/alien-dictionary/）经典按照字典序建图，与拓扑排序的应用
-2603（https://leetcode.com/contest/weekly-contest-338/problems/collect-coins-in-a-tree/）无向图拓扑排序内向基环树
-2204（https://leetcode.com/problems/distance-to-a-cycle-in-undirected-graph/https://leetcode.com/problems/distance-to-a-cycle-in-undirected-graph/）无向图拓扑排序
-1857（https://leetcode.com/problems/largest-color-value-in-a-directed-graph/）经典拓扑排序DP
-1932（https://leetcode.com/problems/merge-bsts-to-create-single-bst/）经典连通性、拓扑排序与二叉搜索树判断
-1591（https://leetcode.com/contest/biweekly-contest-35/problems/strange-printer-ii/）经典建图判断拓扑排序是否无环
-2192（https://leetcode.com/problems/all-ancestors-of-a-node-in-a-directed-acyclic-graph/）经典有向图DAG拓扑排序
+269（https://leetcode.com/problems/alien-dictionary/）按照lexicographical_order建图，与拓扑sorting的应用
+2603（https://leetcode.com/contest/weekly-contest-338/problems/collect-coins-in-a-tree/）无向图拓扑sorting内向基环树
+2204（https://leetcode.com/problems/distance-to-a-cycle-in-undirected-graph/https://leetcode.com/problems/distance-to-a-cycle-in-undirected-graph/）无向图拓扑sorting
+1857（https://leetcode.com/problems/largest-color-value-in-a-directed-graph/）拓扑sortingDP
+1932（https://leetcode.com/problems/merge-bsts-to-create-single-bst/）连通性、拓扑sorting与二叉搜索树判断
+1591（https://leetcode.com/contest/biweekly-contest-35/problems/strange-printer-ii/）建图判断拓扑sorting是否无环
+2192（https://leetcode.com/problems/all-ancestors-of-a-node-in-a-directed-acyclic-graph/）有向图DAG拓扑sorting
 
 
 =====================================LuoGu======================================
-1960（https://www.luogu.com.cn/problem/P1960）计算拓扑排序是否唯一
-1992（https://www.luogu.com.cn/problem/P1992）拓扑排序计算有向图是否有环
-2712（https://www.luogu.com.cn/problem/P2712）拓扑排序计算非环节点数
-6145（https://www.luogu.com.cn/problem/P6145）经典拓扑排序计算每个节点最晚的访问时间点
-1137（https://www.luogu.com.cn/problem/P1137）拓扑排序，计算可达的最长距离
-1347（https://www.luogu.com.cn/problem/P1347）拓扑排序确定字典序与矛盾或者无唯一解
-1685（https://www.luogu.com.cn/problem/P1685）经典DAG拓扑排序DP计算路径条数与耗时
-3243（https://www.luogu.com.cn/problem/P3243）经典反向建图拓扑排序结合二叉堆进行顺序模拟
-5536（https://www.luogu.com.cn/problem/P5536）经典使用无向图拓扑排序从外到内消除最外圈的节点
-6037（https://www.luogu.com.cn/problem/P6037）经典无向图基环树并查集拓扑排序与环模拟计算
-6255（https://www.luogu.com.cn/problem/P6255）简单无向图并查集计算连通块后使用拓扑排序寻找环的信息
-6417（https://www.luogu.com.cn/problem/P6417）有向图基环树贪心应用拓扑排序由外向内
-6560（https://www.luogu.com.cn/problem/P6560）经典反向建图拓扑排序与博弈必胜态
-8655（https://www.luogu.com.cn/problem/P8655）使用拓扑排序计算有向基环树的环
-8943（https://www.luogu.com.cn/problem/P8943）经典无向图基环树博弈
+1960（https://www.luogu.com.cn/problem/P1960）拓扑sorting是否唯一
+1992（https://www.luogu.com.cn/problem/P1992）拓扑sorting有向图是否有环
+2712（https://www.luogu.com.cn/problem/P2712）拓扑sorting非环节点数
+6145（https://www.luogu.com.cn/problem/P6145）拓扑sorting每个节点最晚的访问时间点
+1137（https://www.luogu.com.cn/problem/P1137）拓扑sorting，可达的最长距离
+1347（https://www.luogu.com.cn/problem/P1347）拓扑sorting确定lexicographical_order与矛盾或者无唯一解
+1685（https://www.luogu.com.cn/problem/P1685）DAG拓扑sortingDP路径条数与耗时
+3243（https://www.luogu.com.cn/problem/P3243）反向建图拓扑sorting结合二叉堆顺序implemention
+5536（https://www.luogu.com.cn/problem/P5536）无向图拓扑sorting从外到内消除最外圈的节点
+6037（https://www.luogu.com.cn/problem/P6037）无向图基环树union_find拓扑sorting与环implemention
+6255（https://www.luogu.com.cn/problem/P6255）简单无向图union_find连通块后拓扑sorting寻找环的信息
+6417（https://www.luogu.com.cn/problem/P6417）有向图基环树greedy应用拓扑sorting由外向内
+6560（https://www.luogu.com.cn/problem/P6560）反向建图拓扑sorting与博弈必胜态
+8655（https://www.luogu.com.cn/problem/P8655）拓扑sorting有向基环树的环
+8943（https://www.luogu.com.cn/problem/P8943）无向图基环树博弈
 
 ===================================CodeForces===================================
-1454E（https://codeforces.com/contest/1454/problem/E）经典基环树计数枚举
+1454E（https://codeforces.com/contest/1454/problem/E）基环树counterbrute_force
 1907G（https://codeforces.com/contest/1907/problem/G）directed_circle_based_tree|greedy|implemention|topological_sort
 
 ====================================AtCoder=====================================
@@ -45,8 +45,8 @@ F - Well-defined Path Queries on a Namori（https://atcoder.jp/contests/abc266/�
 最喜欢的数列（https://www.hackerrank.com/challenges/favourite-sequence/problem?isFullScreen=true）topological and heap for minimum lexi order
 
 =====================================AcWing=====================================
-3696（https://www.acwing.com/problem/content/description/3699/）经典bfs序即拓扑序与DAG构造
-3828（https://www.acwing.com/problem/content/description/3831/）有向图DAG拓扑排序DP模板题并判断有无环
+3696（https://www.acwing.com/problem/content/description/3699/）bfs序即拓扑序与DAG构造
+3828（https://www.acwing.com/problem/content/description/3831/）有向图DAG拓扑sortingDP模板题并判断有无环
 4626（https://www.acwing.com/problem/content/description/4629/）有向图内向基环树判断每个环的大小
 
 """
@@ -106,7 +106,7 @@ class Solution:
 
     @staticmethod
     def ac_3696(ac=FastIO()):
-        # 模板：经典bfs序即拓扑序与DAG构造
+        # bfs序即拓扑序与DAG构造
         for _ in range(ac.read_int()):
             def check():
                 n, m = ac.read_list_ints()
@@ -125,7 +125,7 @@ class Solution:
                     else:
                         edges.append([x, y])
 
-                # 拓扑排序判断有向图是否存在环，同时记录节点的拓扑顺序
+                # 拓扑sorting判断有向图是否存在环，同时记录节点的拓扑顺序
                 order = [0] * n
                 stack = [i for i in range(n) if degree[i] == 0]
                 ind = 0
@@ -159,7 +159,7 @@ class Solution:
 
     @staticmethod
     def lc_2360(edges: List[int]) -> int:
-        # 模板：拓扑排序计算有向图内向基环树最长环
+        # 拓扑sorting有向图内向基环树最长环
         n = len(edges)
         # 记录入度
         degree = defaultdict(int)
@@ -194,7 +194,7 @@ class Solution:
     @staticmethod
     def lc_2392(k: int, row_conditions: List[List[int]], col_conditions: List[List[int]]) -> List[List[int]]:
 
-        # 模板：经典使用行列拓扑排序构造矩阵
+        # 行列拓扑sorting构造矩阵
         def check(cond):
             dct = defaultdict(list)
             degree = defaultdict(int)
@@ -228,7 +228,7 @@ class Solution:
 
     @staticmethod
     def lg_p1137(ac=FastIO()):
-        # 模板：拓扑排序计算最长链条
+        # 拓扑sorting最长链条
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         degree = [0] * n
@@ -251,7 +251,7 @@ class Solution:
 
     @staticmethod
     def lg_p1347(ac=FastIO()):
-        # 模板：拓扑排序确定字典序与矛盾或者无唯一解
+        # 拓扑sorting确定lexicographical_order与矛盾或者无唯一解
         n, m = ac.read_list_ints()
         dct_ = defaultdict(list)
         degree_ = defaultdict(int)
@@ -273,14 +273,14 @@ class Solution:
                         if not degree[j]:
                             nex.append(j)
                 stack = nex
-            # 稳定的拓扑排序
+            # 稳定的拓扑sorting
             if unique and len(res) == n:
                 ss = "".join(res)
                 return True, f"Sorted sequence determined after {x} relations: {ss}."
             # 存在环
             if len(res) < m:
                 return True, f"Inconsistency found after {x} relations."
-            # 不稳定的拓扑排序
+            # 不稳定的拓扑sorting
             return False, "Sorted sequence cannot be determined."
 
         nodes_ = set()
@@ -305,7 +305,7 @@ class Solution:
 
     @staticmethod
     def lg_p1685(ac=FastIO()):
-        # 模板：拓扑排序计算经过每条边的路径条数
+        # 拓扑sorting经过每条边的路径条数
         n, m, s, e, t = ac.read_list_ints()
         s -= 1
         e -= 1
@@ -342,7 +342,7 @@ class Solution:
 
     @staticmethod
     def lg_p3243(ac=FastIO()):
-        # 模板：经典反向建图拓扑排序结合二叉堆进行顺序模拟
+        # 反向建图拓扑sorting结合二叉堆顺序implemention
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
             dct = [[] for _ in range(n)]
@@ -363,7 +363,7 @@ class Solution:
                     if not degree[j]:
                         heappush(stack, -j)
             if len(ans) == n:
-                # 翻转后则字典序最小
+                # 翻转后则lexicographical_order最小
                 ans.reverse()
                 ac.lst([x + 1 for x in ans])
             else:
@@ -372,7 +372,7 @@ class Solution:
 
     @staticmethod
     def lg_p5536_1(ac=FastIO()):
-        # 模板：使用直径的贪心方式选取以树的直径中点向外辐射的节点
+        # 直径的greedy方式选取以树的直径中点向外辐射的节点
         n, k = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for _ in range(n - 1):
@@ -381,7 +381,7 @@ class Solution:
             dct[j].append(i)
         x, y, _, path = TreeDiameterInfo().get_diameter_info(dct)
 
-        # 树形 DP 计算每个节点的深度与子树最大节点深度
+        # 树形 DP 每个节点的深度与子树最大节点深度
         root = path[len(path) // 2]
         deep = [0] * n
         max_deep = [0] * n
@@ -410,7 +410,7 @@ class Solution:
     @staticmethod
     def lg_p5536_2(ac=FastIO()):
 
-        # 模板：使用无向图拓扑排序从外到内消除最外圈的节点
+        # 无向图拓扑sorting从外到内消除最外圈的节点
         n, k = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         degree = [0] * n
@@ -421,7 +421,7 @@ class Solution:
             degree[i] += 1
             degree[j] += 1
 
-        # 按照度为 1 进行 BFS 消除
+        # 按照度为 1  BFS 消除
         rem = n - k
         ans = 0
         stack = deque([[i, 1] for i in range(n) if degree[i] == 1])
@@ -439,7 +439,7 @@ class Solution:
 
     @staticmethod
     def lg_p6037(ac=FastIO()):
-        # 模板：经典无向图基环树并查集拓扑排序与环模拟计算
+        # 无向图基环树union_find拓扑sorting与环implemention
         n = ac.read_int()
         dct = [[] for _ in range(n)]
         # 首先分割连通分量
@@ -456,11 +456,11 @@ class Solution:
             edge.append([u, v, w])
             degree[u] += 1
             degree[v] += 1
-        # 其次对每个分量计算结果
+        # 其次对每个分量结果
         part = uf.get_root_part()
         ans = [-1] * n
         for p in part:
-            # 拓扑排序找出环
+            # 拓扑sorting找出环
             stack = deque([i for i in part[p] if degree[i] == 1])
             visit = set()
             while stack:
@@ -470,7 +470,7 @@ class Solution:
                     degree[j] -= 1
                     if degree[j] == 1:
                         stack.append(j)
-            # 根据环贪心计算结果
+            # 根据环greedy结果
             circle = [i for i in part[p] if i not in visit]
             s = sum(w for i, _, w in edge if uf.find(i) == p)
             for x in circle:
@@ -490,7 +490,7 @@ class Solution:
 
     @staticmethod
     def lg_p6255(ac=FastIO()):
-        # 模板：简单无向图并查集计算连通块后使用拓扑排序寻找环的信息
+        # 简单无向图union_find连通块后拓扑sorting寻找环的信息
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         degree = [0] * n
@@ -502,12 +502,12 @@ class Solution:
             dct[i].append(j)
             dct[j].append(i)
             uf.union(i, j)
-        # 计算连通块
+        # 连通块
         part = uf.get_root_part()
         ans = []
         for p in part:
             lst = part[p]
-            # 拓扑排序找环
+            # 拓扑sorting找环
             nodes = [i for i in lst if degree[i] == 1]
             stack = nodes[:]
             visit = set()
@@ -543,7 +543,7 @@ class Solution:
 
     @staticmethod
     def lg_p6417(ac=FastIO()):
-        # 模板：有向图基环树贪心应用拓扑排序由外向内
+        # 有向图基环树greedy应用拓扑sorting由外向内
         n = ac.read_int()
         dct = [ac.read_int() - 1 for _ in range(n)]
         degree = [0] * n
@@ -559,7 +559,7 @@ class Solution:
             nex = []
             for i in stack:
                 degree[dct[i]] -= 1
-                # 确定坏蛋或者是平民的角色后根据度进行角色指定
+                # 确定坏蛋或者是平民的角色后根据度角色指定
                 if (not degree[dct[i]] or visit[i] == 1) and visit[dct[i]] == -1:
                     if visit[i] == 1:
                         # 父亲是坏蛋必然是平民
@@ -573,7 +573,7 @@ class Solution:
 
         for i in range(n):
             x = 0
-            # 计算剩余环的大小
+            # 剩余环的大小
             while visit[i] == -1:
                 visit[i] = 1
                 x += 1
@@ -585,7 +585,7 @@ class Solution:
 
     @staticmethod
     def lg_p6560(ac=FastIO()):
-        # 模板：经典反向建图拓扑排序与博弈必胜态
+        # 反向建图拓扑sorting与博弈必胜态
         n, m, q = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         degree = [[0, -1, 0] for _ in range(n)]
@@ -645,7 +645,7 @@ class Solution:
 
     @staticmethod
     def lg_p8943(ac=FastIO()):
-        # 模板：经典无向图基环树博弈
+        # 无向图基环树博弈
         n, q = ac.read_list_ints()
         degree = [0] * n
         dct = [[] for _ in range(n)]
@@ -679,7 +679,7 @@ class Solution:
         path = [p for p, _ in path]
         ind = {num: i for i, num in enumerate(path)}
 
-        # 计算每个点到环上的祖先节点与距离
+        # 每个点到环上的祖先节点与距离
         parent = [-1] * n
         for i in stack:
             parent[i] = i
@@ -714,7 +714,7 @@ class Solution:
 
     @staticmethod
     def lc_2127(favorite: List[int]) -> int:
-        # 模板：拓扑排序确定DAG内向基环，按照环的大小进行分类讨论
+        # 拓扑sorting确定DAG内向基环，按照环的大小classification_discussion
         n = len(favorite)
         degree = [0] * n
         for i in range(n):
@@ -755,7 +755,7 @@ class Solution:
 
     @staticmethod
     def lc_2192(n: int, edges: List[List[int]]) -> List[List[int]]:
-        # 模板：经典有向图DAG拓扑排序
+        # 有向图DAG拓扑sorting
         ans = [set() for _ in range(n)]
         degree = [0] * n
         dct = [[] for _ in range(n)]
@@ -778,7 +778,7 @@ class Solution:
 
     @staticmethod
     def lc_2204(n: int, edges: List[List[int]]) -> List[int]:
-        # 模板：无向图拓扑排序
+        # 无向图拓扑sorting
         dct = [[] for _ in range(n)]
         degree = [0] * n
         for i, j in edges:
@@ -809,7 +809,7 @@ class Solution:
     @staticmethod
     def lc_1857(colors: str, edges: List[List[int]]) -> int:
 
-        # 模板：经典拓扑排序DP
+        # 拓扑sortingDP
         n = len(colors)
         dct = [[] for _ in range(n)]
         degree = [0] * n
@@ -839,7 +839,7 @@ class Solution:
 
     @staticmethod
     def lc_1932(trees: List[TreeNode]) -> Optional[TreeNode]:
-        # 模板：经典连通性、拓扑排序与二叉搜索树判断
+        # 连通性、拓扑sorting与二叉搜索树判断
 
         nodes = set()
         dct = defaultdict(list)
@@ -876,7 +876,7 @@ class Solution:
         if uf.part != 1:
             return
 
-        # 二叉性与拓扑排序唯一根
+        # 二叉性与拓扑sorting唯一根
         for num in nodes:
             if len(dct[num]) > 2:
                 return
@@ -921,7 +921,7 @@ class Solution:
 
     @staticmethod
     def ac_3828(ac=FastIO()):
-        # 模板：有向图DAG拓扑排序DP模板题并判断有无环
+        # 有向图DAG拓扑sortingDP模板题并判断有无环
         m, n = ac.read_list_ints()
         ind = {w: i for i, w in enumerate("QWER")}
         grid = [ac.read_str() for _ in range(m)]
@@ -939,7 +939,7 @@ class Solution:
                             dct[i * n + j].append(a * n + b)
                             degree[a * n + b] += 1
 
-        # 拓扑排序DP
+        # 拓扑sortingDP
         pre = [0] * (m * n)
         stack = [i for i in range(m * n) if not degree[i]]
         for i in stack:
@@ -969,7 +969,7 @@ class Solution:
 
     @staticmethod
     def ac_4626(ac=FastIO()):
-        # 模板：有向图内向基环树判断每个环的大小
+        # 有向图内向基环树判断每个环的大小
         n = ac.read_int()
         a = ac.read_list_ints_minus_one()
         dct = [[] for _ in range(n)]
@@ -981,7 +981,7 @@ class Solution:
         if any(d == 0 for d in degree):
             ac.st(-1)
             return
-        # 使用BFS判断每个环的大小并累计结果
+        # BFS判断每个环的大小并累计结果
         ans = 1
         for i in range(n):
             if degree[i] == 0:
@@ -1005,7 +1005,7 @@ class Solution:
 
     @staticmethod
     def lc_1591(grid: List[List[int]]) -> bool:
-        # 模板：经典建图判断拓扑排序是否无环
+        # 建图判断拓扑sorting是否无环
         color = defaultdict(list)
         m, n = len(grid), len(grid[0])
         for i in range(m):

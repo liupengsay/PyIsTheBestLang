@@ -27,7 +27,7 @@ class CRT:
 
 
 class ExtendCRT:
-    # 在模数不互质的情况下，计算最小的非负整数解
+    # 在模数不coprime的情况下，最小的非负整数解
     def __init__(self):
         return
 

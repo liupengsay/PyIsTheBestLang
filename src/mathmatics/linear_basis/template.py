@@ -13,7 +13,7 @@ class LinearBasis:
         return
 
     def add(self, num):
-        """加入新数字到线性基"""
+        """|入新数字到线性基"""
         for i in range(self.n - 1, -1, -1):
             if num & (1 << i):
                 if self.linear_basis[i]:

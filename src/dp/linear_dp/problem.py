@@ -1,41 +1,41 @@
 """
 Algorithm：线性DP
-Function：遍历数组，根据前序或者后序结果进行更新，最大非空连续子序列和
+Function：遍历数组，根据前序或者后序结果更新，最大非空连续子序列和
 
 ====================================LeetCode====================================
-87（https://leetcode.com/problems/scramble-string/）经典线性DP记忆化深搜
+87（https://leetcode.com/problems/scramble-string/）线性DP记忆化深搜
 2361（https://leetcode.com/problems/minimum-costs-using-the-train-line/）当前状态只跟前一个状态有关
-2318（https://leetcode.com/problems/number-of-distinct-roll-sequences/）当前状态只跟前一个状态有关使用枚举计数
+2318（https://leetcode.com/problems/number-of-distinct-roll-sequences/）当前状态只跟前一个状态有关brute_forcecounter
 2263（https://leetcode.com/problems/make-array-non-decreasing-or-non-increasing/）当前状态只跟前一个状态有关
-2209（https://leetcode.com/problems/minimum-white-tiles-after-covering-with-carpets/）前缀优化与处理进行转移
+2209（https://leetcode.com/problems/minimum-white-tiles-after-covering-with-carpets/）前缀优化与处理转移
 2188（https://leetcode.com/problems/minimum-time-to-finish-the-race/）预处理DP
-2167（https://leetcode.com/problems/minimum-time-to-remove-all-cars-containing-illegal-goods/）使用前缀后缀DP预处理后进行枚举
-2431（https://leetcode.com/problems/maximize-total-tastiness-of-purchased-fruits/）线性DP进行模拟计算
+2167（https://leetcode.com/problems/minimum-time-to-remove-all-cars-containing-illegal-goods/）前缀后缀DP预处理后brute_force
+2431（https://leetcode.com/problems/maximize-total-tastiness-of-purchased-fruits/）线性DPimplemention
 6355（https://leetcode.com/contest/weekly-contest-338/problems/collect-coins-in-a-tree/）线性DP
-2547（https://leetcode.com/problems/minimum-cost-to-split-an-array/）线性DP并使用一个变量维护计数
-2638（https://leetcode.com/problems/count-the-number-of-k-free-subsets/）经典线性DP计数
+2547（https://leetcode.com/problems/minimum-cost-to-split-an-array/）线性DP并一个变量维护counter
+2638（https://leetcode.com/problems/count-the-number-of-k-free-subsets/）线性DPcounter
 2597（https://leetcode.com/problems/the-number-of-beautiful-subsets/）·
-2713（https://leetcode.com/problems/maximum-strictly-increasing-cells-in-a-matrix/）按照值域分层线性 DP
-1526（https://leetcode.com/problems/minimum-number-of-increments-on-subarrays-to-form-a-target-array/）经典线性 DP 与贪心
-1553（https://leetcode.com/problems/minimum-number-of-days-to-eat-n-oranges/）脑筋急转弯贪心记忆化搜索线性DP
-1872（https://leetcode.com/problems/stone-game-viii/）前缀和倒序DP
-1770（https://leetcode.com/problems/maximum-score-from-performing-multiplication-operations/）经典数组匹配线性DP
-823（https://leetcode.com/problems/binary-trees-with-factors/description/）经典线性DP计数
-2746（https://leetcode.com/problems/decremental-string-concatenation/）经典哈希线性DP模拟实现
-1911（https://leetcode.com/problems/maximum-alternating-subsequence-sum/）经典线性DP
+2713（https://leetcode.com/problems/maximum-strictly-increasing-cells-in-a-matrix/）按照data_range分层线性 DP
+1526（https://leetcode.com/problems/minimum-number-of-increments-on-subarrays-to-form-a-target-array/）线性 DP 与greedy
+1553（https://leetcode.com/problems/minimum-number-of-days-to-eat-n-oranges/）brain_teasergreedy记忆化搜索线性DP
+1872（https://leetcode.com/problems/stone-game-viii/）prefix_sum倒序DP
+1770（https://leetcode.com/problems/maximum-score-from-performing-multiplication-operations/）数组匹配线性DP
+823（https://leetcode.com/problems/binary-trees-with-factors/description/）线性DPcounter
+2746（https://leetcode.com/problems/decremental-string-concatenation/）hash线性DPimplemention实现
+1911（https://leetcode.com/problems/maximum-alternating-subsequence-sum/）线性DP
 2321（https://leetcode.com/problems/maximum-score-of-spliced-array/description/）最大连续子数组和变种
-2320（https://leetcode.com/problems/count-number-of-ways-to-place-houses/）经典线性DP
-1824（https://leetcode.com/problems/minimum-sideway-jumps/description/）经典线性DP滚动数组
-978（https://leetcode.com/problems/longest-turbulent-subarray/description/）经典线性DP滚动变量
-1027（https://leetcode.com/problems/longest-arithmetic-subsequence/）经典线性DP计算最长等差子序列
-1987（https://leetcode.com/problems/number-of-unique-good-subsequences/description/）经典线性计数DP
-2355（https://leetcode.com/problems/maximum-number-of-books-you-can-take/）经典单调栈加线性DP，使用下标使用巧妙地转换，计算严格递增子序列的和
-100048（https://leetcode.com/problems/beautiful-towers-ii/）经典单调栈加线性DP，计算山脉子序列的和，前后缀单调栈优化线性DP
-2327（https://leetcode.com/problems/number-of-people-aware-of-a-secret/description/）经典前缀和或者差分数组优化线性DP
-2572（https://leetcode.com/problems/count-the-number-of-square-free-subsets/description/）经典线性DP计数
+2320（https://leetcode.com/problems/count-number-of-ways-to-place-houses/）线性DP
+1824（https://leetcode.com/problems/minimum-sideway-jumps/description/）线性DP滚动数组
+978（https://leetcode.com/problems/longest-turbulent-subarray/description/）线性DP滚动变量
+1027（https://leetcode.com/problems/longest-arithmetic-subsequence/）线性DP最长等差子序列
+1987（https://leetcode.com/problems/number-of-unique-good-subsequences/description/）线性counterDP
+2355（https://leetcode.com/problems/maximum-number-of-books-you-can-take/）单调栈|线性DP，下标巧妙地转换，严格递增子序列的和
+100048（https://leetcode.com/problems/beautiful-towers-ii/）单调栈|线性DP，山脉子序列的和，prefix_suffix单调栈优化线性DP
+2327（https://leetcode.com/problems/number-of-people-aware-of-a-secret/description/）prefix_sum或者差分数组优化线性DP
+2572（https://leetcode.com/problems/count-the-number-of-square-free-subsets/description/）线性DPcounter
 
 =====================================LuoGu======================================
-1970（https://www.luogu.com.cn/problem/P1970）使用贪心与动态规划计算最长的山脉子数组
+1970（https://www.luogu.com.cn/problem/P1970）greedy与动态规划最长的山脉子数组
 1564（https://www.luogu.com.cn/problem/P1564）线性DP
 1481（https://www.luogu.com.cn/problem/P1481）线性DP
 2029（https://www.luogu.com.cn/problem/P2029）线性DP
@@ -45,70 +45,70 @@ Function：遍历数组，根据前序或者后序结果进行更新，最大非
 2096（https://www.luogu.com.cn/problem/P2096）最大连续子序列和变种
 5761（https://www.luogu.com.cn/problem/P5761）最大连续子序列和变种
 2285（https://www.luogu.com.cn/problem/P2285）线性DP+前缀最大值DP剪枝优化
-2642（https://www.luogu.com.cn/problem/P2642）枚举前后两个非空的最大子序列和
+2642（https://www.luogu.com.cn/problem/P2642）brute_force前后两个非空的最大子序列和
 1470（https://www.luogu.com.cn/problem/P1470）线性DP
-1096（https://www.luogu.com.cn/problem/P1096）经典线性DP
-2896（https://www.luogu.com.cn/problem/P2896）前后缀动态规划
-2904（https://www.luogu.com.cn/problem/P2904）前缀和预处理加线性DP
-3062（https://www.luogu.com.cn/problem/P3062）线性DP枚举
-3842（https://www.luogu.com.cn/problem/P3842）线性DP进行模拟
-3903（https://www.luogu.com.cn/problem/P3903）线性DP枚举当前元素作为谷底与山峰的子序列长度
-5414（https://www.luogu.com.cn/problem/P5414）贪心，使用线性DP计算最大不降子序列和
-6191（https://www.luogu.com.cn/problem/P6191）线性DP枚举计数
-6208（https://www.luogu.com.cn/problem/P6208）线性DP模拟
-7404（https://www.luogu.com.cn/problem/P7404）动态规划枚举，计算变成山脉数组的最少操作次数
+1096（https://www.luogu.com.cn/problem/P1096）线性DP
+2896（https://www.luogu.com.cn/problem/P2896）prefix_suffix动态规划
+2904（https://www.luogu.com.cn/problem/P2904）prefix_sum预处理|线性DP
+3062（https://www.luogu.com.cn/problem/P3062）线性DPbrute_force
+3842（https://www.luogu.com.cn/problem/P3842）线性DPimplemention
+3903（https://www.luogu.com.cn/problem/P3903）线性DPbrute_force当前元素作为谷底与山峰的子序列长度
+5414（https://www.luogu.com.cn/problem/P5414）greedy，线性DP最大不降子序列和
+6191（https://www.luogu.com.cn/problem/P6191）线性DPbrute_forcecounter
+6208（https://www.luogu.com.cn/problem/P6208）线性DPimplemention
+7404（https://www.luogu.com.cn/problem/P7404）动态规划brute_force，变成山脉数组的最少操作次数
 7541（https://www.luogu.com.cn/problem/P7541）线性DP记忆化搜索，类似数位DP
-7767（https://www.luogu.com.cn/problem/P7767）线性DP，计算前缀变成全部相同字符的最少操作次数
-2246（https://www.luogu.com.cn/problem/P2246）字符串计数线性DP
-4933（https://www.luogu.com.cn/problem/P4933）线性DP使用等差数列计数
+7767（https://www.luogu.com.cn/problem/P7767）线性DP，前缀变成全部相同字符的最少操作次数
+2246（https://www.luogu.com.cn/problem/P2246）字符串counter线性DP
+4933（https://www.luogu.com.cn/problem/P4933）线性DP等差数列counter
 1874（https://www.luogu.com.cn/problem/P1874）线性DP
-2513（https://www.luogu.com.cn/problem/P2513）前缀和优化DP
-1280（https://www.luogu.com.cn/problem/P1280）经典逆序线性 DP
-1282（https://www.luogu.com.cn/problem/P1282）典型线性DP，使用哈希实现
+2513（https://www.luogu.com.cn/problem/P2513）prefix_sum优化DP
+1280（https://www.luogu.com.cn/problem/P1280）逆序线性 DP
+1282（https://www.luogu.com.cn/problem/P1282）典型线性DP，hash实现
 1356（https://www.luogu.com.cn/problem/P1356）典型线性取模DP
-1385（https://www.luogu.com.cn/problem/P1385）线性DP与前缀和优化，脑筋急转弯字符串字典序总和不变
-1809（https://www.luogu.com.cn/problem/P1809）思维题线性DP，经典贪心
-1868（https://www.luogu.com.cn/problem/P1868）线性DP加binary_search优化
-1978（https://www.luogu.com.cn/problem/P1978）经典线性DP，乘积互斥
-2432（https://www.luogu.com.cn/problem/P2432）线性DP加指针
-2439（https://www.luogu.com.cn/problem/P2439）线性DP加二分
-2476（https://www.luogu.com.cn/problem/P2476）计数分组线性 DP 记忆化搜索
+1385（https://www.luogu.com.cn/problem/P1385）线性DP与prefix_sum优化，brain_teaser字符串lexicographical_order总和不变
+1809（https://www.luogu.com.cn/problem/P1809）思维题线性DP，greedy
+1868（https://www.luogu.com.cn/problem/P1868）线性DP|binary_search优化
+1978（https://www.luogu.com.cn/problem/P1978）线性DP，乘积互斥
+2432（https://www.luogu.com.cn/problem/P2432）线性DP|pointer
+2439（https://www.luogu.com.cn/problem/P2439）线性DP|binary_search
+2476（https://www.luogu.com.cn/problem/P2476）counter分组线性 DP 记忆化搜索
 2849（https://www.luogu.com.cn/problem/P2849）矩阵二维 DP 线性遍历
-3448（https://www.luogu.com.cn/problem/P3448）经典线性DP计数
-3558（https://www.luogu.com.cn/problem/P3558）线性 DP 模拟
+3448（https://www.luogu.com.cn/problem/P3448）线性DPcounter
+3558（https://www.luogu.com.cn/problem/P3558）线性 DP implemention
 3734（https://www.luogu.com.cn/problem/B3734）
-3901（https://www.luogu.com.cn/problem/P3901）经典指针加线性 DP 记录前一个相同数的指针
+3901（https://www.luogu.com.cn/problem/P3901）pointer|线性 DP 记录前一个相同数的pointer
 4401（https://www.luogu.com.cn/problem/P4401）
-4933（https://www.luogu.com.cn/problem/P4933）经典等差数列线性 DP 计数
+4933（https://www.luogu.com.cn/problem/P4933）等差数列线性 DP counter
 5095（https://www.luogu.com.cn/problem/P5095）典型线性 DP
-5810（https://www.luogu.com.cn/problem/P5810）经典线性 DP
+5810（https://www.luogu.com.cn/problem/P5810）线性 DP
 6040（https://www.luogu.com.cn/problem/P6040）单调队列优化的线性 DP
-6120（https://www.luogu.com.cn/problem/P6120）线性 DP 模拟
-6146（https://www.luogu.com.cn/problem/P6146）线性 DP 枚举计数
-7994（https://www.luogu.com.cn/problem/P7994）经典线性 DP 修改连续区间值加一减一的最少操作次数
-8656（https://www.luogu.com.cn/problem/P8656）经典分组线性 DP
-8725（https://www.luogu.com.cn/problem/P8725）典型矩阵 DP 使用指针关系减少维度
-8784（https://www.luogu.com.cn/problem/P8784）线性 DP 可以使用矩阵幂优化
-8786（https://www.luogu.com.cn/problem/P8786）线性 DP 记忆化搜索模拟
-8816（https://www.luogu.com.cn/problem/P8816）典型线性矩阵 DP 模拟
+6120（https://www.luogu.com.cn/problem/P6120）线性 DP implemention
+6146（https://www.luogu.com.cn/problem/P6146）线性 DP brute_forcecounter
+7994（https://www.luogu.com.cn/problem/P7994）线性 DP 修改连续区间值|一减一的最少操作次数
+8656（https://www.luogu.com.cn/problem/P8656）分组线性 DP
+8725（https://www.luogu.com.cn/problem/P8725）典型矩阵 DP pointer关系减少维度
+8784（https://www.luogu.com.cn/problem/P8784）线性 DP 可以矩阵幂优化
+8786（https://www.luogu.com.cn/problem/P8786）线性 DP 记忆化搜索implemention
+8816（https://www.luogu.com.cn/problem/P8816）典型线性矩阵 DP implemention
 
 ===================================CodeForces===================================
-75D（https://codeforces.com/problemset/problem/75/D）经典压缩数组，最大子段和升级
-1084C（https://codeforces.com/problemset/problem/1084/C）线性DP加前缀和优化
-166E（https://codeforces.com/problemset/problem/166/E）经典线性DP计数
-1221D（https://codeforces.com/problemset/problem/1221/D）线性DP模拟
-1437C（https://codeforces.com/problemset/problem/1437/C）二维线性DP，两个数组线性移动进行匹配计算最大或者最小值
-1525D（https://codeforces.com/problemset/problem/1525/D）二维线性DP，两个数组线性移动进行匹配计算最大或者最小值
-1286A（https://codeforces.com/problemset/problem/1286/A）线性经典dp
-1221D（https://codeforces.com/problemset/problem/1221/D）线性DP，最多变化为增加0、1、2
-731E（https://codeforces.com/contest/731/problem/E）前缀和倒序DP
+75D（https://codeforces.com/problemset/problem/75/D）压缩数组，最大子段和升级
+1084C（https://codeforces.com/problemset/problem/1084/C）线性DP|prefix_sum优化
+166E（https://codeforces.com/problemset/problem/166/E）线性DPcounter
+1221D（https://codeforces.com/problemset/problem/1221/D）线性DPimplemention
+1437C（https://codeforces.com/problemset/problem/1437/C）二维线性DP，两个数组线性移动匹配最大或者最小值
+1525D（https://codeforces.com/problemset/problem/1525/D）二维线性DP，两个数组线性移动匹配最大或者最小值
+1286A（https://codeforces.com/problemset/problem/1286/A）线性dp
+1221D（https://codeforces.com/problemset/problem/1221/D）线性DP，最多变化为增|0、1、2
+731E（https://codeforces.com/contest/731/problem/E）prefix_sum倒序DP
 
 ====================================AtCoder=====================================
 E - Sum Equals Xor（https://atcoder.jp/contests/abc129/tasks/abc129_e）思维题，类似数位DP
 
 =====================================AcWing=====================================
-96（https://www.acwing.com/problem/content/98/）经典的汉诺塔问题，可推广到n个盘子与m个柱子
-4414（https://www.acwing.com/problem/content/description/4417/）经典线性子序列DP
+96（https://www.acwing.com/problem/content/98/）的汉诺塔问题，可推广到n个盘子与m个柱子
+4414（https://www.acwing.com/problem/content/description/4417/）线性子序列DP
 
 """
 import bisect
@@ -127,7 +127,7 @@ class Solution:
 
     @staticmethod
     def lc_1770(nums: List[int], multipliers: List[int]) -> int:
-        # 模板：经典数组匹配线性DP
+        # 数组匹配线性DP
 
         @lru_cache(None)
         def dfs(i, j):
@@ -143,7 +143,7 @@ class Solution:
 
     @staticmethod
     def lc_823(arr: List[int]) -> int:
-        # 模板：经典线性DP计数
+        # 线性DPcounter
         mod = 10 ** 9 + 7
         n = len(arr)
         arr.sort()
@@ -168,7 +168,7 @@ class Solution:
 
     @staticmethod
     def lc_2289(nums: List[int]) -> int:
-        # 模板：经典单调栈优化的线性DP，也可用BFS加链表求解
+        # 单调栈优化的线性DP，也可用BFS|链表求解
         n = len(nums)
         stack = []
         for i in range(n - 1, -1, -1):
@@ -184,7 +184,7 @@ class Solution:
             regular: List[int],
             express: List[int],
             express_cost: int) -> List[int]:
-        # 模板：线性 DP 转移
+        # 线性 DP 转移
         n = len(regular)
         cost = [[0, 0] for _ in range(n + 1)]
         cost[0][1] = express_cost
@@ -203,7 +203,7 @@ class Solution:
         ex = set(nums)
         cnt = Counter([i % 2 for i in range(1, n + 1) if i not in ex])
 
-        # 模板：经典记忆化搜索的模拟线性DP写法
+        # 记忆化搜索的implemention线性DP写法
         @ac.bootstrap
         def dfs(i, single, double, pre):
             if (i, single, double, pre) in dct:
@@ -242,7 +242,7 @@ class Solution:
 
     @staticmethod
     def lc_2638(nums: List[int], k: int) -> int:
-        # 模板：经典线性DP计数
+        # 线性DPcounter
         n = len(nums)
         dp = [1] * (n + 1)
         dp[1] = 2
@@ -261,7 +261,7 @@ class Solution:
 
     @staticmethod
     def lc_2597(nums: List[int], k: int) -> int:
-        # 模板：经典线性DP计数
+        # 线性DPcounter
         power = [1 << i for i in range(21)]
 
         def check(tmp):
@@ -303,7 +303,7 @@ class Solution:
 
     @staticmethod
     def cf_1437c(n, nums):
-        # 模板：两个数组线性移动进行匹配计算最大或者最小值
+        # 两个数组线性移动匹配最大或者最小值
         nums.sort()
         m = 2 * n
         dp = [[inf] * (n + 1) for _ in range(m + 1)]
@@ -317,7 +317,7 @@ class Solution:
 
     @staticmethod
     def lg_p4933(ac=FastIO()):
-        # 模板：不同等差子序列的个数
+        # 不同等差子序列的个数
         n = ac.read_int()
         nums = ac.read_list_ints()
         mod = 998244353
@@ -335,7 +335,7 @@ class Solution:
 
     @staticmethod
     def ac_96(ac=FastIO()):
-        # 模板：两层线性DP，经典汉诺塔问题
+        # 两层线性DP，汉诺塔问题
         n = 12
         dp3 = [inf] * (n + 1)  # 三个柱子
         dp3[0] = 0
@@ -355,7 +355,7 @@ class Solution:
 
     @staticmethod
     def lg_p1280(ac=FastIO()):
-        # 模板：线性DP倒序模拟优化
+        # 线性DP倒序implemention优化
         n, k = ac.read_list_ints()
         dct = [[] for _ in range(n + 1)]
         for _ in range(k):
@@ -373,19 +373,19 @@ class Solution:
 
     @staticmethod
     def lg_p1282(ac=FastIO()):
-        # 模板：典型线性DP使用哈希滚动
+        # 典型线性DPhash滚动
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         pre = defaultdict(lambda: inf)
         pre[0] = 0
         for i in range(n):
-            # 枚举当前是否进行翻转
+            # brute_force当前是否翻转
             a, b = nums[i]
             cur = defaultdict(lambda: inf)
             for p in pre:
                 cur[p + a - b] = ac.min(cur[p + a - b], pre[p])
                 cur[p + b - a] = ac.min(cur[p + b - a], pre[p] + 1)
-            # 哈希记录差值为 x 时的最小翻转次数
+            # hash记录差值为 x 时的最小翻转次数
             pre = cur.copy()
         x = min(abs(v) for v in pre.keys())
         ans = inf
@@ -397,7 +397,7 @@ class Solution:
 
     @staticmethod
     def lg_p1356(ac=FastIO()):
-        # 模板：线性DP
+        # 线性DP
         m = ac.read_int()
         for _ in range(m):
             n, k = ac.read_list_ints()
@@ -416,7 +416,7 @@ class Solution:
 
     @staticmethod
     def lg_p1385(ac=FastIO()):
-        # 模板：线性DP与前缀和优化
+        # 线性DP与prefix_sum优化
         mod = 10 ** 9 + 7
         for _ in range(ac.read_int()):
             s = ac.read_str()
@@ -424,10 +424,10 @@ class Solution:
             t = sum(ord(w) - ord("a") + 1 for w in s)
             pre = [0] * (t + 1)
             pre[0] = 1
-            # dp[i][j] 表长为 i+1 字典序和为 j 的方案数
+            # dp[i][j] 表长为 i+1 lexicographical_order和为 j 的方案数
             for _ in range(n):
                 cur = [0] * (t + 1)
-                x = 0  # 前缀和优化
+                x = 0  # prefix_sum优化
                 for i in range(t + 1):
                     cur[i] = x
                     x += pre[i]
@@ -441,7 +441,7 @@ class Solution:
 
     @staticmethod
     def lg_p1809(ac=FastIO()):
-        # 模板：思维题线性DP
+        # 思维题线性DP
         n = ac.read_int()
         nums = [ac.read_int() for _ in range(n)]
         if n == 1:
@@ -461,7 +461,7 @@ class Solution:
 
     @staticmethod
     def lg_p1868(ac=FastIO()):
-        # 模板：线性DP加binary_search优化
+        # 线性DP|binary_search优化
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         dp = [0] * (n + 1)
@@ -478,7 +478,7 @@ class Solution:
 
     @staticmethod
     def lg_p1978(ac=FastIO()):
-        # 模板：经典线性DP，乘积互斥
+        # 线性DP，乘积互斥
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
         dct = set(nums)
@@ -497,7 +497,7 @@ class Solution:
 
     @staticmethod
     def lg_p2246(ac=FastIO()):
-        # 模板：字符串计数线性DP
+        # 字符串counter线性DP
         s = ""
         while True:
             cur = ac.read_str()
@@ -527,7 +527,7 @@ class Solution:
 
     @staticmethod
     def lg_p2359(ac=FastIO()):
-        # 模板：预处理素数加线性DP
+        # 预处理素数|线性DP
         primes = NumberTheory().sieve_of_eratosthenes(10000)
         primes = [str(num) for num in primes if 1000 >
                   num >= 100 and "0" not in str(num)]
@@ -537,7 +537,7 @@ class Solution:
         pre = defaultdict(int)
         for num in primes:
             pre[num[1:]] += 1
-        # 转移计算
+        # 转移
         mod = 10 ** 9 + 9
         n = ac.read_int()
         for _ in range(n - 3):
@@ -555,7 +555,7 @@ class Solution:
     @staticmethod
     def lg_p2432(ac=FastIO()):
 
-        # 模板：线性DP加指针
+        # 线性DP|pointer
         w, n = ac.read_list_ints()
         sentence = ac.read_str()
         words = [ac.read_str()[::-1] for _ in range(w)]
@@ -579,7 +579,7 @@ class Solution:
 
     @staticmethod
     def lg_p2439(ac=FastIO()):
-        # 模板：线性DP加二分
+        # 线性DP|binary_search
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort(key=lambda it: it[1])
@@ -596,7 +596,7 @@ class Solution:
     @staticmethod
     def lg_p2476(ac=FastIO()):
 
-        # 模板：计数分组线性 DP 记忆化搜索
+        # counter分组线性 DP 记忆化搜索
 
         @lru_cache(None)
         def dfs(a, b, c, d, e, pre):
@@ -625,7 +625,7 @@ class Solution:
 
     @staticmethod
     def lg_p2849(ac=FastIO()):
-        # 模板：矩阵二维 DP 线性遍历
+        # 矩阵二维 DP 线性遍历
         n, k = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         dis = [[0] * n for _ in range(n)]
@@ -650,7 +650,7 @@ class Solution:
 
     @staticmethod
     def lg_p3558(ac=FastIO()):
-        # 模板：线性 DP 模拟
+        # 线性 DP implemention
         ac.read_int()
         nums = ac.read_list_ints()
         pre = [inf, inf, inf]
@@ -669,7 +669,7 @@ class Solution:
 
     @staticmethod
     def lc_2746(words: List[str]) -> int:
-        # 模板：经典哈希线性DP模拟实现
+        # hash线性DPimplemention实现
         pre = defaultdict(int)
         pre[words[0][0] + words[0][-1]] = len(words[0])
 
@@ -695,14 +695,14 @@ class Solution:
 
     @staticmethod
     def lg_b3734(ac=FastIO()):
-        # 模板：线性矩阵 DP 模拟
+        # 线性矩阵 DP implemention
         n, r1 = ac.read_list_ints()
         nums = [r1]
         while len(nums) < n:
             nums.append((nums[-1] * 6807 + 2831) % 201701)
         nums = [num % 100 for num in nums]
 
-        # 使用滚动数组优化
+        # 滚动数组优化
         dp = [[inf] * 100 for _ in range(2)]
         # 初始化
         pre = 0
@@ -724,7 +724,7 @@ class Solution:
 
     @staticmethod
     def lg_p3901(ac=FastIO()):
-        # 模板：经典指针加线性 DP 记录前一个相同数的指针
+        # pointer|线性 DP 记录前一个相同数的pointer
         n, q = ac.read_list_ints()
         nums = ac.read_list_ints()
         ind = dict()
@@ -744,7 +744,7 @@ class Solution:
 
     @staticmethod
     def lg_p4401(ac=FastIO()):
-        # 模板：线性 DP
+        # 线性 DP
         ac.read_int()
         s = ac.read_str()
         pre = defaultdict(int)
@@ -766,7 +766,7 @@ class Solution:
 
     @staticmethod
     def lg_p5095(ac=FastIO()):
-        # 模板：典型线性 DP
+        # 典型线性 DP
         n, length = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         dp = [inf] * (n + 1)
@@ -785,7 +785,7 @@ class Solution:
 
     @staticmethod
     def lg_p5810(ac=FastIO()):
-        # 模板：经典线性 DP 枚举
+        # 线性 DP brute_force
         n = ac.read_int()
         dp = [0]
         while dp[-1] < n:
@@ -801,7 +801,7 @@ class Solution:
 
     @staticmethod
     def lg_p6040(ac=FastIO()):
-        # 模板：单调队列优化的线性 DP
+        # 单调队列优化的线性 DP
         n, k, d, x, tp = ac.read_list_ints()
         mod = 10 ** 9
         nums = []
@@ -812,7 +812,7 @@ class Solution:
         else:
             seed = ac.read_int()
             seed = (seed * xx % mod + 20120712) % mod
-        # 使用公式变换确定要计算的单调队列值
+        # 公式变换确定要的单调队列值
         pre = nums[0] if not tp else seed
         stack = deque([[0, pre - d]])
         for i in range(1, n):
@@ -822,7 +822,7 @@ class Solution:
                 stack.popleft()
             cur = pre + seed + k
             if stack:
-                # 当前最小值计算
+                # 当前最小值
                 cur = ac.min(cur, stack[0][1] + i * d + seed + k)
             # 进队
             while stack and stack[-1][1] >= cur - i * d - d:
@@ -834,7 +834,7 @@ class Solution:
 
     @staticmethod
     def lg_p6120(ac=FastIO()):
-        # 模板：典型线性规划
+        # 典型线性规划
         n = ac.read_int()
         ind = {w: i for i, w in enumerate("HSP")}
         # 滚动数组更新
@@ -859,7 +859,7 @@ class Solution:
 
     @staticmethod
     def lg_p6146(ac=FastIO()):
-        # 模板：经典区间排序与所有子集连通块个数计算
+        # 区间sorting与所有子集连通块个数
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort(key=lambda it: it[0])
@@ -873,7 +873,7 @@ class Solution:
         lst = [nums[0][1]]
         for i in range(1, n):
             a, b = nums[i]
-            j = bisect.bisect_left(lst, a)  # 作为 i 单独连通块新增的计数即与前面区间无交集
+            j = bisect.bisect_left(lst, a)  # 作为 i 单独连通块新增的counter即与前面区间无交集
             # 选当前 i 与不选当前 i 区间的连通块数量
             dp[i] = 2 * dp[i - 1] + pp[j]
             dp[i] %= mod
@@ -883,7 +883,7 @@ class Solution:
 
     @staticmethod
     def lc_2713(mat: List[List[int]]) -> int:
-        # 模板：按照值域分层线性 DP
+        # 按照data_range分层线性 DP
         m, n = len(mat), len(mat[0])
         dct = defaultdict(list)
         for i in range(m):
@@ -905,7 +905,7 @@ class Solution:
 
     @staticmethod
     def lg_p7994(ac=FastIO()):
-        # 模板：经典线性 DP 修改连续区间值加一减一的最少操作次数
+        # 线性 DP 修改连续区间值|一减一的最少操作次数
         n = ac.read_int()
         a = ac.read_list_ints()
         b = ac.read_list_ints()
@@ -931,7 +931,7 @@ class Solution:
 
     @staticmethod
     def lg_p8816(ac=FastIO()):
-        # 模板：典型线性矩阵 DP 模拟
+        # 典型线性矩阵 DP implemention
         n, k = ac.read_list_ints()
         nums = sorted([ac.read_list_ints() for _ in range(n)])
         dp = [list(range(1, k + 2)) for _ in range(n)]
@@ -952,14 +952,14 @@ class Solution:
 
     @staticmethod
     def ac_4414(ac=FastIO()):
-        # 模板：经典线性子序列DP
+        # 线性子序列DP
         ac.read_int()
         nums = ac.read_list_ints()
         ans = -inf
         pre = [-inf, -inf]
         for num in nums:
             cur = pre[:]
-            # 枚举所有子序列加和
+            # brute_force所有子序列|和
             for i in range(2):
                 j = (i + num) % 2
                 cur[j] = ac.max(cur[j], pre[i] + num)
@@ -972,7 +972,7 @@ class Solution:
 
     @staticmethod
     def lc_1824(obstacles: List[int]) -> int:
-        # 模板：经典线性DP滚动数组
+        # 线性DP滚动数组
         n = len(obstacles)
         dp = [1, 0, 1]
         for i in range(n):
@@ -987,7 +987,7 @@ class Solution:
 
     @staticmethod
     def lc_978(arr: List[int]) -> int:
-        # 模板：经典线性DP滚动变量
+        # 线性DP滚动变量
         n = len(arr)
         ans = dp0 = dp1 = 1
         for i in range(1, n):
@@ -1005,7 +1005,7 @@ class Solution:
 
     @staticmethod
     def lc_1027(nums: List[int]) -> int:
-        # 模板：经典线性DP计算最长等差子序列
+        # 线性DP最长等差子序列
         seen = set()
         count = dict()
         for num in nums:
@@ -1018,7 +1018,7 @@ class Solution:
     @staticmethod
     def lc_1553(n: int) -> int:
 
-        # 模板：脑筋急转弯贪心记忆化搜索线性DP
+        # brain_teasergreedy记忆化搜索线性DP
 
         @lru_cache(None)
         def dfs(num):

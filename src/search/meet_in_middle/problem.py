@@ -1,20 +1,20 @@
 """
 Algorithm：折半搜索、meet in middle
-Function：常见于 1<<n 较大的情况，对半分开进行枚举 
+Function：常见于 1<<n 较大的情况，对半分开brute_force 
 
 ====================================LeetCode====================================
-1755（https://leetcode.com/problems/closest-subsequence-sum/）经典折半搜索
-2035（https://leetcode.com/problems/partition-array-into-two-arrays-to-minimize-sum-difference/）经典折半搜索排序加二分或者双指针
-956（https://leetcode.com/problems/tallest-billboard/description/）可使用折半搜索计算
+1755（https://leetcode.com/problems/closest-subsequence-sum/）折半搜索
+2035（https://leetcode.com/problems/partition-array-into-two-arrays-to-minimize-sum-difference/）折半搜索sorting|binary_search或者two_pointer
+956（https://leetcode.com/problems/tallest-billboard/description/）可折半搜索
 
 =====================================LuoGu======================================
-5194（https://www.luogu.com.cn/problem/P5194）利用Fibonacci数列的长度特点进行折半搜索枚举，与binary_search确定可行的最大值
-nya（https://www.luogu.com.cn/problem/CF525E）折半搜索计算长度
-5691（https://www.luogu.com.cn/problem/P5691）折半搜索与有序集合双指针枚举
+5194（https://www.luogu.com.cn/problem/P5194）利用Fibonacci数列的长度特点折半搜索brute_force，与binary_search确定可行的最大值
+nya（https://www.luogu.com.cn/problem/CF525E）折半搜索长度
+5691（https://www.luogu.com.cn/problem/P5691）折半搜索与sorted_listtwo_pointerbrute_force
 
 =====================================AcWing=====================================
-171（https://www.acwing.com/problem/content/173/）经典折半搜索查找最接近目标值的子数组和
-1006F（https://codeforces.com/contest/1006/problem/F）前缀和哈希计数，矩阵折半搜索
+171（https://www.acwing.com/problem/content/173/）折半搜索查找最接近目标值的子数组和
+1006F（https://codeforces.com/contest/1006/problem/F）prefix_sumhashcounter，矩阵折半搜索
 
 """
 
@@ -34,7 +34,7 @@ class Solution:
     @staticmethod
     def lc_956(rods: List[int]) -> int:
 
-        # 模板：可使用折半搜索计算
+        # 可折半搜索
 
         def check(tmp):
             dct = dict()
@@ -70,16 +70,16 @@ class Solution:
 
     @staticmethod
     def lc_2035(nums: List[int]) -> int:
-        # 模板：经典折半搜索排序加二分或者双指针
+        # 折半搜索sorting|binary_search或者two_pointer
 
         def check(lst):
-            # 枚举列表元素所有个数的子集和
+            # brute_force列表元素所有个数的子集和
             m = len(lst)
             total = sum(lst)
             res = [set() for _ in range(m + 1)]
             res[0].add(0)
             res[m].add(total)
-            # 类似计算数的因子的思想只需要搜索到一半即可，另一半做差得到
+            # 类似数的因子的思想只需要搜索到一半即可，另一半做差得到
             for k in range(1, m // 2 + 1):
                 for item in combinations(lst, k):
                     cur = sum(item)
@@ -88,7 +88,7 @@ class Solution:
             return res
 
         def find(left, right):
-            # 双指针查找最接近target的绝对差值
+            # two_pointer查找最接近target的绝对差值
             a, b = len(left), len(right)
             res = float("inf")
             i = 0
@@ -104,7 +104,7 @@ class Solution:
                     i += 1
             return res
 
-        # 枚举前一半个数与后一半对应的个数子集和，找到绝对差最小的结果
+        # brute_force前一半个数与后一半对应的个数子集和，找到绝对差最小的结果
         n = len(nums) // 2
         pre = check(nums[:n])
         post = check(nums[n:])
@@ -117,7 +117,7 @@ class Solution:
 
     @staticmethod
     def lg_p5194(ac=FastIO()):
-        # 模板：折半搜索枚举后使用二分寻找最接近目标值的数
+        # 折半搜索brute_force后binary_search寻找最接近目标值的数
         n, c = ac.read_list_ints()
         val = [ac.read_int() for _ in range(n)]
 
@@ -154,7 +154,7 @@ class Solution:
 
     @staticmethod
     def cf_1006f(ac=FastIO()):
-        # 模板：前缀和哈希计数，矩阵折半搜索
+        # prefix_sumhashcounter，矩阵折半搜索
         m, n, k = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
         if m == 1 or n == 1:
@@ -217,7 +217,7 @@ class Solution:
 
     @staticmethod
     def ac_171(ac=FastIO()):
-        # 模板：经典折半搜索查找最接近目标值的子数组和
+        # 折半搜索查找最接近目标值的子数组和
 
         w, n = ac.read_list_ints()
         lst = [ac.read_int() for _ in range(n)]
@@ -227,7 +227,7 @@ class Solution:
             m = len(tmp)
             cur = set()
             stack = [[0, 0]]
-            # 使用迭代方式枚举
+            # 迭代方式brute_force
             while stack:
                 x, i = stack.pop()
                 if x > w:
@@ -254,7 +254,7 @@ class Solution:
 
     @staticmethod
     def lg_p5691(ac=FastIO()):
-        # 模板：折半搜索与枚举
+        # 折半搜索与brute_force
         n = ac.read_int()
         m = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
@@ -283,7 +283,7 @@ class Solution:
             ac.st(ans)
             return
 
-        # 枚举前半部分
+        # brute_force前半部分
         dct = dict()
         for x1 in range(1, m + 1):
             for x2 in range(1, m + 1):
@@ -291,7 +291,7 @@ class Solution:
                     cur = nums[0][0] * x1 ** nums[0][1] + nums[1][0] * x2 ** nums[1][1] + nums[2][0] * x3 ** nums[2][1]
                     dct[cur] = dct.get(cur, 0) + 1
 
-        # 计算后半部分
+        # 后半部分
         nums = nums[3:]
         n = len(nums)
         if n == 1:

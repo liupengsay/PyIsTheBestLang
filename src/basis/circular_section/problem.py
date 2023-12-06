@@ -1,25 +1,25 @@
 """
 Algorithm：循环节
-Function：通过模拟找出循环节进行状态计算
+Function：通过implemention找出循环节状态
 
 ====================================LeetCode====================================
-957（https://leetcode.com/problems/prison-cells-after-n-days/）循环节计算
-418（https://leetcode.com/problems/sentence-screen-fitting/）循环节计算
-466（https://leetcode.com/problems/count-the-repetitions/）循环节计算
+957（https://leetcode.com/problems/prison-cells-after-n-days/）循环节
+418（https://leetcode.com/problems/sentence-screen-fitting/）循环节
+466（https://leetcode.com/problems/count-the-repetitions/）循环节
 1806（https://leetcode.com/problems/minimum-number-of-operations-to-reinitialize-a-permutation/description/）根据有限状态判断循环节的大小
 
 =====================================LuoGu======================================
-1965（https://www.luogu.com.cn/problem/P1965）循环节计算
-1532（https://www.luogu.com.cn/problem/P1532）循环节计算
-2203（https://www.luogu.com.cn/problem/P2203）循环节计算
-5550（https://www.luogu.com.cn/problem/P5550）循环节计算也可以使用矩阵快速幂递推
-7318（https://www.luogu.com.cn/problem/P7318）二维元素，再增加虚拟开始状态，进行循环节计算
-7681（https://www.luogu.com.cn/problem/P7681）带前缀和的循环节，注意定义循环状态
-1468（https://www.luogu.com.cn/problem/P1468）状态压缩求循环节
-6148（https://www.luogu.com.cn/problem/P6148）经典计算循环节后模拟
+1965（https://www.luogu.com.cn/problem/P1965）循环节
+1532（https://www.luogu.com.cn/problem/P1532）循环节
+2203（https://www.luogu.com.cn/problem/P2203）循环节
+5550（https://www.luogu.com.cn/problem/P5550）循环节也可以矩阵快速幂递推
+7318（https://www.luogu.com.cn/problem/P7318）二维元素，再增|虚拟开始状态，循环节
+7681（https://www.luogu.com.cn/problem/P7681）带prefix_sum的循环节，注意定义循环状态
+1468（https://www.luogu.com.cn/problem/P1468）state_compression求循环节
+6148（https://www.luogu.com.cn/problem/P6148）循环节后implemention
 
 ===================================CodeForces===================================
-1342C（https://codeforces.com/problemset/problem/1342/C）循环节计数
+1342C（https://codeforces.com/problemset/problem/1342/C）循环节counter
 1875B（https://codeforces.com/contest/1875/problem/B）circle section find with hash and list
 
 """
@@ -34,9 +34,9 @@ class Solution:
 
     @staticmethod
     def lc_957(cells: List[int], n: int) -> List[int]:
-        # 模板：N 天后的牢房经典循环节
+        # N 天后的牢房循环节
         def compute_loop(i, j, n):
-            # 此时只需计算k即可，即最后一次的状态
+            # 此时只需k即可，即最后一次的状态
             if j == n:
                 return n
             k = i + (n - i) % (j - i)
@@ -46,7 +46,7 @@ class Solution:
         dct = dict()
         state = []
         day = 0
-        # 进行模拟状态
+        # implemention状态
         while day < n:
             busy = set([i for i in range(1, m - 1)
                         if cells[i - 1] == cells[i + 1]])
@@ -57,7 +57,7 @@ class Solution:
                 break
             dct[tuple(cells)] = day
 
-        # 计算循环节信息
+        # 循环节信息
         i = dct[tuple(cells)]
         j = day
         k = compute_loop(i, j, n)
@@ -65,7 +65,7 @@ class Solution:
 
     @staticmethod
     def lc_1806(n: int) -> int:
-        # 模板：根据有限状态判断循环节的大小
+        # 根据有限状态判断循环节的大小
         ans = 0
         visit = [0] * n
         for i in range(n):
@@ -86,14 +86,14 @@ class Solution:
 
     @staticmethod
     def lg_p1468(ac=FastIO()):
-        # 模板：状态压缩求循环节
+        # state_compression求循环节
         n = ac.read_int()
         op1 = (1 << n) - 1
         op2 = sum(1 << i for i in range(0, n, 2))
         op3 = sum(1 << i for i in range(1, n, 2))
         op4 = sum(1 << i for i in range(0, n, 3))
         stack = [[(1 << n) - 1]]
-        # 进行所有的操作模拟与循环节计算
+        # 所有的操作implemention与循环节
         ans = []
         while stack:
             path = stack.pop()
@@ -125,7 +125,7 @@ class Solution:
 
     @staticmethod
     def lg_p6148(ac=FastIO()):
-        # 模板：经典计算循环节后模拟
+        # 循环节后implemention
         n, m, k = ac.read_list_ints()
         nums = [ac.read_list_ints_minus_one() for _ in range(m)]
         nex = [-1] * n
@@ -145,7 +145,7 @@ class Solution:
                 lst.append(nex[lst[-1]])
             m = len(lst)
             for j in range(m):
-                # 进行相应的移动
+                # 相应的移动
                 ans[lst[(j + k) % m]] = lst[j] + 1
         for a in ans:
             ac.st(a)

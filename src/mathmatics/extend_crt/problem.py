@@ -7,7 +7,7 @@ Function：求解取模方程组
 
 =====================================LuoGu======================================
 1495（https://www.luogu.com.cn/problem/p1495）同余方程求解
-4777（https://www.luogu.com.cn/problem/P4777）模数不互质的情况下的同余方程求解
+4777（https://www.luogu.com.cn/problem/P4777）模数不coprime的情况下的同余方程求解
 3868（https://www.luogu.com.cn/problem/P3868）excrt求最小非负整数解，注意负数要先取余
 
 ====================================AtCoder=====================================

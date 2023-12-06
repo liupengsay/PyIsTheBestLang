@@ -802,7 +802,7 @@ class RangeChangeRangeSumMinMaxDynamic:
 
 class SegmentTreeRangeUpdateChangeQueryMax:
     def __init__(self, nums: List[int]) -> None:
-        # 模板：区间值增减、区间值修改、区间最大值查询
+        # 区间值增减、区间值修改、区间最大值查询
         self.n = len(nums)
         self.nums = nums
         self.lazy = [[inf, 0]] * (4 * self.n)  # 懒标记
@@ -819,7 +819,7 @@ class SegmentTreeRangeUpdateChangeQueryMax:
         return a if a < b else b
 
     def build(self) -> None:
-        # 使用数组初始化线段树
+        # 数组初始化线段树
         stack = [(0, self.n - 1, 1)]
         while stack:
             s, t, ind = stack.pop()
@@ -839,7 +839,7 @@ class SegmentTreeRangeUpdateChangeQueryMax:
     def _push_down(self, i: int, s: int, m: int, t: int) -> None:
         # 下放懒标记
         if self.lazy[i] != [inf, 0]:
-            a, b = self.lazy[i]  # 分别表示修改为 a 与 增加 b
+            a, b = self.lazy[i]  # 分别表示修改为 a 与 增| b
             if a == inf:
                 self.ceil[2 * i] += b
                 self.ceil[2 * i + 1] += b
@@ -992,7 +992,7 @@ class RangeOrRangeAnd:
         return
 
     def build(self, nums: List[int]) -> None:
-        # 使用数组初始化线段树
+        # 数组初始化线段树
         assert self.n == len(nums)
         stack = [(0, self.n - 1, 1)]
         while stack:
@@ -1068,14 +1068,14 @@ class RangeOrRangeAnd:
 
 class SegmentTreeRangeUpdateXORSum:
     def __init__(self, n):
-        # 模板：区间值01翻转与区间和查询
+        # 区间值01翻转与区间和查询
         self.n = n
         self.cover = [0] * (4 * self.n)  # 区间和
         self.lazy = [0] * (4 * self.n)  # 懒标记
         return
 
     def build(self, nums) -> None:
-        # 使用数组初始化线段树
+        # 数组初始化线段树
         stack = [(0, self.n - 1, 1)]
         while stack:
             s, t, i = stack.pop()
@@ -1097,8 +1097,8 @@ class SegmentTreeRangeUpdateXORSum:
             self.cover[2 * i] = m - s + 1 - self.cover[2 * i]
             self.cover[2 * i + 1] = t - m - self.cover[2 * i + 1]
 
-            self.lazy[2 * i] ^= self.lazy[i]  # 注意使用异或抵消查询
-            self.lazy[2 * i + 1] ^= self.lazy[i]  # 注意使用异或抵消查询
+            self.lazy[2 * i] ^= self.lazy[i]  # 注意异或抵消查询
+            self.lazy[2 * i + 1] ^= self.lazy[i]  # 注意异或抵消查询
 
             self.lazy[i] = 0
         return
@@ -1111,7 +1111,7 @@ class SegmentTreeRangeUpdateXORSum:
             if i >= 0:
                 if left <= s and t <= right:
                     self.cover[i] = t - s + 1 - self.cover[i]
-                    self.lazy[i] ^= val  # 注意使用异或抵消查询
+                    self.lazy[i] ^= val  # 注意异或抵消查询
                     continue
 
                 m = s + (t - s) // 2
@@ -1149,7 +1149,7 @@ class SegmentTreeRangeAddMulSum:
 
     def __init__(self, p, n):
         self.p = p
-        # 模板：区间值增减乘积与区间和查询
+        # 区间值增减乘积与区间和查询
         self.cover = [0] * 4 * n
         self.lazy = [[] for _ in range(4 * n)]
 
@@ -1209,7 +1209,7 @@ class SegmentTreeRangeAddMulSum:
 
 class RangeChangeRangeOr:
     def __init__(self, n) -> None:
-        # 模板：区间值修改，区间或查询
+        # 区间值修改，区间或查询
         self.n = n
         self.lazy = [inf] * (4 * self.n)  # 懒标记
         self.cover = [0] * (4 * self.n)  # 区间或
@@ -1304,7 +1304,7 @@ class RangeChangeRangeOr:
 
 class SegmentTreeRangeUpdateMulQuerySum:
     def __init__(self, nums: List[int], p) -> None:
-        # 模板：区间值增减、区间值乘法、区间值修改、区间最大值查询
+        # 区间值增减、区间值乘法、区间值修改、区间最大值查询
         self.p = p
         self.n = len(nums)
         self.nums = nums
@@ -1323,7 +1323,7 @@ class SegmentTreeRangeUpdateMulQuerySum:
         return a if a < b else b
 
     def build(self) -> None:
-        # 使用数组初始化线段树
+        # 数组初始化线段树
         stack = [(0, self.n - 1, 1)]
         while stack:
             s, t, i = stack.pop()
@@ -1412,7 +1412,7 @@ class SegmentTreeRangeUpdateMulQuerySum:
 
 class SegmentTreePointUpdateRangeMulQuery:
     def __init__(self, n, mod) -> None:
-        # 模板：单点值修改、区间乘取模
+        # 单点值修改、区间乘取模
         self.n = n
         self.mod = mod
         self.cover = [1] * (4 * self.n)  # 区间乘积取模
@@ -1459,7 +1459,7 @@ class SegmentTreePointUpdateRangeMulQuery:
 
 class PointChangeRangeMaxNonEmpConSubSum:
     def __init__(self, n, initial=inf) -> None:
-        # 模板：区间值修改、区间最大非空连续子段和查询
+        # 区间值修改、区间最大非空连续子段和查询
         self.n = n
         self.initial = initial
         self.cover = [-initial] * (4 * self.n)
@@ -1586,7 +1586,7 @@ class PointChangeRangeMaxNonEmpConSubSum:
 
 class SegmentTreeRangeUpdateAvgDev:
     def __init__(self, n) -> None:
-        # 模板：区间增减、区间平均值与区间方差
+        # 区间增减、区间平均值与区间方差
         self.n = n
         self.cover = [0] * (4 * self.n)
         self.cover_2 = [0] * (4 * self.n)
@@ -1620,7 +1620,7 @@ class SegmentTreeRangeUpdateAvgDev:
             self.lazy[i] = 0
 
     def build(self, nums) -> None:
-        # 使用数组初始化线段树
+        # 数组初始化线段树
         stack = [(0, self.n - 1, 1)]
         while stack:
             s, t, i = stack.pop()
@@ -1639,7 +1639,7 @@ class SegmentTreeRangeUpdateAvgDev:
         return
 
     def update(self, left: int, right: int, s: int, t: int, val: int, i: int) -> None:
-        # 修改点值 [left  right] 取值为 0 到 n-1 增加 val 而 i 从 1 开始，直接修改到底
+        # 修改点值 [left  right] 取值为 0 到 n-1 增| val 而 i 从 1 开始，直接修改到底
         stack = [[s, t, i]]
         while stack:
             s, t, i = stack.pop()
@@ -1680,7 +1680,7 @@ class SegmentTreeRangeUpdateAvgDev:
 
 class SegmentTreePointChangeLongCon:
     def __init__(self, n) -> None:
-        # 模板：单点修改，查找最长的01交替字符子串连续区间
+        # 单点修改，查找最长的01交替字符子串连续区间
         self.n = n
         self.cover = [0] * (4 * self.n)
         self.left_0 = [0] * (4 * self.n)
@@ -1722,7 +1722,7 @@ class SegmentTreePointChangeLongCon:
         return
 
     def build(self) -> None:
-        # 使用数组初始化线段树
+        # 数组初始化线段树
         stack = [(0, self.n - 1, 1)]
         while stack:
             s, t, i = stack.pop()
@@ -1743,7 +1743,7 @@ class SegmentTreePointChangeLongCon:
         return
 
     def update(self, left: int, right: int, s: int, t: int, i: int) -> None:
-        # 修改点值 [left  right] 取值为 0 到 n-1 增加 val 而 i 从 1 开始，直接修改到底
+        # 修改点值 [left  right] 取值为 0 到 n-1 增| val 而 i 从 1 开始，直接修改到底
         stack = [[s, t, i]]
         while stack:
             s, t, i = stack.pop()
@@ -1773,7 +1773,7 @@ class SegmentTreePointChangeLongCon:
 
 class SegmentTreeRangeAndOrXOR:
     def __init__(self, n) -> None:
-        # 模板：区间修改成01或者翻转，区间查询最多有多少连续的1，以及总共有多少1
+        # 区间修改成01或者翻转，区间查询最多有多少连续的1，以及总共有多少1
         self.n = n
         self.cover_1 = [0] * (4 * self.n)
         self.cover_0 = [0] * (4 * self.n)
@@ -1849,7 +1849,7 @@ class SegmentTreeRangeAndOrXOR:
             self.lazy[i] = inf
 
     def build(self, nums) -> None:
-        # 使用数组初始化线段树
+        # 数组初始化线段树
         stack = [(0, self.n - 1, 1)]
         while stack:
             s, t, i = stack.pop()
@@ -1879,7 +1879,7 @@ class SegmentTreeRangeAndOrXOR:
         return
 
     def update(self, left: int, right: int, s: int, t: int, val: int, i: int) -> None:
-        # 修改点值 [left  right] 取值为 0 到 n-1 增加 val 而 i 从 1 开始，直接修改到底
+        # 修改点值 [left  right] 取值为 0 到 n-1 增| val 而 i 从 1 开始，直接修改到底
         stack = [[s, t, i]]
         while stack:
             s, t, i = stack.pop()
@@ -1951,7 +1951,7 @@ class SegmentTreeRangeAndOrXOR:
 
 
 class SegmentTreeLongestSubSame:
-    # 模板：单点字母更新，最长具有相同字母的连续子数组查询
+    # 单点字母更新，最长具有相同字母的连续子数组查询
     def __init__(self, n, lst):
         self.n = n
         self.lst = lst
@@ -1962,7 +1962,7 @@ class SegmentTreeLongestSubSame:
         return
 
     def build(self):
-        # 使用数组初始化线段树
+        # 数组初始化线段树
         stack = [(0, self.n - 1, 1)]
         while stack:
             s, t, ind = stack.pop()
@@ -2031,7 +2031,7 @@ class SegmentTreeLongestSubSame:
 
 class SegmentTreeRangeXORQuery:
     def __init__(self, n) -> None:
-        # 模板：区间异或修改、单点异或查询
+        # 区间异或修改、单点异或查询
         self.n = n
         self.cover = [0] * (4 * self.n)
         self.lazy = [0] * (4 * self.n)
@@ -2128,7 +2128,7 @@ class SegmentTreeRangeXORQuery:
 
 class SegmentTreeRangeSqrtSum:
     def __init__(self, n):
-        # 模板：区间值开方向下取整，区间和查询
+        # 区间值开方向下取整，区间和查询
         self.n = n
         self.cover = [0] * (4 * self.n)  # 区间和
         self.lazy = [inf] * (4 * self.n)  # 懒标记

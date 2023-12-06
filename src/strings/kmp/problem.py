@@ -3,22 +3,22 @@ Algorithm：KMP算法
 Function：用来处理字符串的前缀后缀相关问题
 
 ====================================LeetCode====================================
-214（https://leetcode.com/problems/shortest-palindrome/）计算字符串前缀最长回文子串
-796（https://leetcode.com/problems/rotate-string/）计算字符串是否可以旋转得到
-25（https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/）计算子字符串第一次出现的位置
-1392（https://leetcode.com/problems/longest-happy-prefix/）计算最长的公共前后缀，KMP与Z函数模板题
-2223（https://leetcode.com/problems/longest-happy-prefix/）利用扩展KMP计算Z函数
-6918（https://leetcode.com/problems/shortest-string-that-contains-three-strings/）kmp求字符串之间的最长公共前后缀，进行贪心拼接
-2851（https://leetcode.com/problems/string-transformation/description/）使用KMP与快速幂进行转移计算，也可使用字符串哈希
+214（https://leetcode.com/problems/shortest-palindrome/）字符串前缀最长palindrome_substring
+796（https://leetcode.com/problems/rotate-string/）字符串是否可以旋转得到
+25（https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/）子字符串第一次出现的位置
+1392（https://leetcode.com/problems/longest-happy-prefix/）最长的公共prefix_suffix，KMP与Z函数模板题
+2223（https://leetcode.com/problems/longest-happy-prefix/）利用扩展KMPZ函数
+6918（https://leetcode.com/problems/shortest-string-that-contains-three-strings/）kmp求字符串之间的最长公共prefix_suffix，greedy拼接
+2851（https://leetcode.com/problems/string-transformation/description/）KMP与快速幂转移，也可字符串hash
 
 =====================================LuoGu======================================
-3375（https://www.luogu.com.cn/problem/P3375）计算子字符串出现的位置，与最长公共前后缀的子字符串长度
-4391（https://www.luogu.com.cn/problem/P4391）脑经急转弯加KMP算法，最优结果为 n-pi[n-1]
+3375（https://www.luogu.com.cn/problem/P3375）子字符串出现的位置，与最长公共prefix_suffix的子字符串长度
+4391（https://www.luogu.com.cn/problem/P4391）脑经急转弯|KMP算法，最优结果为 n-pi[n-1]
 
 ===================================CodeForces===================================
-1326D2（https://codeforces.com/problemset/problem/1326/D2）利用马拉车的贪心思想贪心取前后缀，再判断剩余字符的最长前后缀回文子串
-432D（https://codeforces.com/contest/432/problem/D）扩展kmp与kmp结合使用计数，经典z函数与前缀函数结合应用题
-25E（https://codeforces.com/contest/25/problem/E）kmp求字符串之间的最长公共前后缀，进行贪心拼接
+1326D2（https://codeforces.com/problemset/problem/1326/D2）利用马拉车的greedy思想greedy取prefix_suffix，再判断剩余字符的最长prefix_suffixpalindrome_substring
+432D（https://codeforces.com/contest/432/problem/D）扩展kmp与kmp结合counter，z函数与前缀函数结合应用题
+25E（https://codeforces.com/contest/25/problem/E）kmp求字符串之间的最长公共prefix_suffix，greedy拼接
 
 =====================================AcWing=====================================
 
@@ -43,7 +43,7 @@ class Solution:
 
     @staticmethod
     def lg_p3375(ac=FastIO()):
-        # 模板：KMP字符串匹配
+        # KMP字符串匹配
         s1 = ac.read_str()
         s2 = ac.read_str()
         m, n = len(s1), len(s2)
@@ -56,7 +56,7 @@ class Solution:
 
     @staticmethod
     def cf_1326d2(ac=FastIO()):
-        # 模板：使用 KMP 计算最长回文前缀与后缀
+        #  KMP 最长回文前缀与后缀
         for _ in range(ac.read_int()):
             s = ac.read_str()
             n = len(s)
@@ -85,7 +85,7 @@ class Solution:
 
     @staticmethod
     def lc_214(s: str) -> str:
-        # 模板：使用 KMP 计算最长回文前缀
+        #  KMP 最长回文前缀
         k = KMP().find_longest_palindrome(s)
         return s[k:][::-1] + s
 
@@ -101,19 +101,19 @@ class Solution:
 
     @staticmethod
     def lc_1392(s: str) -> str:
-        # 模板：字符串的最长非空真前缀（同时也是非空真后缀）
+        # 字符串的最长非空真前缀（同时也是非空真后缀）
         lst = KMP().prefix_function(s)
         return s[:lst[-1]]
 
     @staticmethod
     def lc_2223(s: str) -> int:
-        # 模板：z 函数计算最长公共前缀
+        # z 函数最长公共前缀
         ans = sum(KMP().z_function(s)) + len(s)
         return ans
 
     @staticmethod
     def lg_p4391(ac=FastIO()):
-        # 模板：计算最小的循环子串使得其不断重复包含给定字符串
+        # 最小的循环子串使得其不断重复包含给定字符串
         n = ac.read_int()
         s = ac.read_str()
         pi = KMP().prefix_function(s)
@@ -122,7 +122,7 @@ class Solution:
 
     @staticmethod
     def cf_432d(ac=FastIO()):
-        # 模板：z函数与kmp算法共同使用，并使用倒序计数
+        # z函数与kmp算法共同，并倒序counter
         s = ac.read_str()
 
         n = len(s)
@@ -149,7 +149,7 @@ class Solution:
 
     @staticmethod
     def ac_141(ac=FastIO()):
-        # 模板：利用KMP求每个字符串前缀的最小循环节
+        # 利用KMP求每个字符串前缀的最小循环节
         ind = 0
         while True:
             n = ac.read_int()
@@ -167,7 +167,7 @@ class Solution:
 
     @staticmethod
     def ac_160(ac=FastIO()):
-        # 模板：z函数模板题
+        # z函数模板题
         n, m, q = ac.read_list_ints()
         s = ac.read_str()
         t = ac.read_str()
@@ -182,7 +182,7 @@ class Solution:
     @staticmethod
     def cf_25e(ac=FastIO()):
 
-        # 模板：kmp求字符串之间的最长公共前后缀，进行贪心拼接
+        # kmp求字符串之间的最长公共prefix_suffix，greedy拼接
         s = [ac.read_str() for _ in range(3)]
 
         def check(a, b):
@@ -216,7 +216,7 @@ class Solution:
             x = f[-1]
             return a + b[x:]
 
-        # 模板：kmp求字符串之间的最长公共前后缀，进行贪心拼接
+        # kmp求字符串之间的最长公共prefix_suffix，greedy拼接
         s = [aa, bb, cc]
         ind = list(range(3))
         ans = "".join(s)
@@ -229,7 +229,7 @@ class Solution:
 
     @staticmethod
     def lc_2851(s: str, t: str, k: int) -> int:
-        # 模板：使用KMP与快速幂进行转移计算，也可使用字符串哈希
+        # KMP与快速幂转移，也可字符串hash
         n = len(s)
         mod = 10 ** 9 + 7
         kmp = KMP()
@@ -244,7 +244,7 @@ class Solution:
 
     @staticmethod
     def ac_3823(ac=FastIO()):
-        # 模板：KMP与扩展KMP即z函数应用模板题
+        # KMP与扩展KMP即z函数应用模板题
         kmp = KMP()
         for _ in range(ac.read_int()):
             s = ac.read_str()

@@ -10,7 +10,7 @@ class AhoCorasick(object):
         def __init__(self, name: str):
             self.name = name  # 节点代表的字符
             self.children = {}  # 节点的孩子，键为字符，值为节点对象
-            self.fail = None  # fail指针，root的指针为None
+            self.fail = None  # failpointer，root的pointer为None
             self.exist = []  # 如果节点为单词结尾，存放单词的长度
 
     def __init__(self, keywords: Iterable[str] = None):
@@ -40,19 +40,19 @@ class AhoCorasick(object):
         return bool(node.exist)
 
     def finalize(self):
-        """构建fail指针"""
+        """构建failpointer"""
         queue = Queue()
         queue.put(self.root)
-        # 对树进行层次遍历
+        # 对树层次遍历
         while not queue.empty():
             node = queue.get()
             for char in node.children:
                 child = node.children[char]
                 f_node = node.fail
-                # 关键点！需要沿着fail指针向上追溯直至根节点
+                # 关键点！需要沿着failpointer向上追溯直至根节点
                 while f_node is not None:
                     if char in f_node.children:
-                        # 如果该指针指向的节点的孩子中有该字符，则字符节点的fail指针需指向它
+                        # 如果该pointer指向的节点的孩子中有该字符，则字符节点的failpointer需指向它
                         f_child = f_node.children[char]
                         child.fail = f_child
                         # 同时将长度合并过来，以便最后输出
@@ -60,7 +60,7 @@ class AhoCorasick(object):
                             child.exist.extend(f_child.exist)
                         break
                     f_node = f_node.fail
-                # 如果到根节点也没找到，则将fail指针指向根节点
+                # 如果到根节点也没找到，则将failpointer指向根节点
                 if f_node is None:
                     child.fail = self.root
                 queue.put(child)
@@ -76,11 +76,11 @@ class AhoCorasick(object):
             matched = True
             # 如果当前节点的孩子中找不到该字符
             while char not in node.children:
-                # fail指针为None，说明走到了根节点，找不到匹配的
+                # failpointer为None，说明走到了根节点，找不到匹配的
                 if node.fail is None:
                     matched = False
                     break
-                # 将fail指针指向的节点作为当前节点
+                # 将failpointer指向的节点作为当前节点
                 node = node.fail
             if matched:
                 # 找到匹配，将匹配到的孩子节点作为当前节点
@@ -102,7 +102,7 @@ class TrieNode:
         self.fail_to = None
         self.is_word = False
         '''
-        下面节点值可以根据具体场景进行赋值
+        下面节点值可以根据具体场景赋值
         '''
         self.str_ = ''
         self.num = 0

@@ -1,5 +1,5 @@
 """
-Algorithm：链表、两个链表表示的整数相加、链表表示的整数与整数相乘
+Algorithm：链表、两个链表表示的整数相|、链表表示的整数与整数相乘
 Function：
 
 ====================================LeetCode====================================
@@ -17,7 +17,7 @@ class Solution:
 
     @staticmethod
     def lc_6914_1(head: Optional[ListNode]) -> Optional[ListNode]:
-        # 模板：链表与整数相乘
+        # 链表与整数相乘
         lno = ListNodeOperation()
         lst = lno.node_to_lst(head)[::-1]
 

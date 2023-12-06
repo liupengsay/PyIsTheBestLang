@@ -16,7 +16,7 @@ class ExtendGcd:
             return gcd, y - (b // a) * x, x
 
     def solve_equal(self, a, b, m=1):
-        # 模板：扩展gcd求解ax+by=m方程组的所有解
+        # 扩展gcd求解ax+by=m方程组的所有解
         gcd, x0, y0 = self.extend_gcd(a, b)
         # 方程有解当且仅当m是gcd(a,b)的倍数
         assert a * x0 + b * y0 == 1
@@ -32,7 +32,7 @@ class ExtendGcd:
 
     @staticmethod
     def binary_gcd(a, b):
-        # 模板：二进制gcd，使用二进制求两个正数的gcd
+        # 二进制gcd，二进制求两个正数的gcd
         assert a > 0 and b > 0
         c = 1
         while a - b:
@@ -55,7 +55,7 @@ class ExtendGcd:
 
     @staticmethod
     def ac_4296(ac=FastIO()):
-        # 模板：扩展欧几里得求解ax+by=n的非负整数解
+        # 扩展欧几里得求解ax+by=n的非负整数解
         n, a, b = [ac.read_int() for _ in range(3)]
         g = math.gcd(a, b)
         if n % g:

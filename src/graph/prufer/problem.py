@@ -4,6 +4,6 @@ Function：Prufer 序列 (Prufer code)，这是一种将带标号的无根树用
 
 =====================================LuoGu======================================
 6086（https://www.luogu.com.cn/problem/P6086）Prufer 序列裸题
-2817（https://www.luogu.com.cn/problem/P2817）Cayley公式计算方案数
+2817（https://www.luogu.com.cn/problem/P2817）Cayley公式方案数
 
 """

@@ -1,23 +1,23 @@
 """
-Algorithm：二分图最大最小权值匹配、KM算法
+Algorithm：bipartite_graph最大最小权值匹配、KM算法
 Function：
 
 ====================================LeetCode====================================
-1820（https://leetcode.com/problems/maximum-number-of-accepted-invitations/）使用匈牙利算法或者二分图最大权KM算法解决
-1066（https://leetcode.com/problems/campus-bikes-ii/）二分图最小权KM算法解决
-1947（https://leetcode.com/problems/maximum-compatibility-score-sum/）二分图最大权匹配，也可用状压DP
+1820（https://leetcode.com/problems/maximum-number-of-accepted-invitations/）匈牙利算法或者bipartite_graph最大权KM算法解决
+1066（https://leetcode.com/problems/campus-bikes-ii/）bipartite_graph最小权KM算法解决
+1947（https://leetcode.com/problems/maximum-compatibility-score-sum/）bipartite_graph最大权匹配，也可用状压DP
 
 =====================================LuoGu======================================
-3386（https://www.luogu.com.cn/problem/P3386）二分图最大匹配
-6577（https://www.luogu.com.cn/problem/P6577）二分图最大权完美匹配
-1894（https://www.luogu.com.cn/problem/P1894）二分图最大匹配，转换为网络流求解
-3605（https://www.luogu.com.cn/problem/B3605）匈牙利算法二分图不带权最大匹配
+3386（https://www.luogu.com.cn/problem/P3386）bipartite_graph最大匹配
+6577（https://www.luogu.com.cn/problem/P6577）bipartite_graph最大权完美匹配
+1894（https://www.luogu.com.cn/problem/P1894）bipartite_graph最大匹配，转换为网络流求解
+3605（https://www.luogu.com.cn/problem/B3605）匈牙利算法bipartite_graph不带权最大匹配
 
 ===================================CodeForces===================================
-1437C（https://codeforces.com/problemset/problem/1437/C）二分图最小权匹配
+1437C（https://codeforces.com/problemset/problem/1437/C）bipartite_graph最小权匹配
 
 =====================================AcWing=====================================
-4298（https://www.acwing.com/problem/content/4301/）匈牙利算法二分图模板题
+4298（https://www.acwing.com/problem/content/4301/）匈牙利算法bipartite_graph模板题
 
 ================================LibraryChecker================================
 1 Matching on Bipartite Graph（https://judge.yosupo.jp/problem/bipartitematching）unweighted match
@@ -54,7 +54,7 @@ class Solution:
 
     @staticmethod
     def lc_1820(grid):
-        # 模板：匈牙利算法模板建图计算最大匹配
+        # 匈牙利算法模板建图最大匹配
         m, n = len(grid), len(grid[0])
         dct = defaultdict(list)
         for i in range(m):
@@ -81,7 +81,7 @@ class Solution:
 
     @staticmethod
     def lc_1820_2(grid: List[List[int]]) -> int:
-        # 模板：EK网络最大流算法模板建图计算最大匹配
+        # EK网络最大流算法模板建图最大匹配
         n = len(grid)
         m = len(grid[0])
         s = n + m + 1
@@ -99,7 +99,7 @@ class Solution:
 
     @staticmethod
     def lc_1820_3(grid):
-        # 模板：KM算法模板建图计算最大匹配
+        # KM算法模板建图最大匹配
         n = max(len(grid), len(grid[0]))
         lst = [[0] * n for _ in range(n)]
         ind = 0
@@ -121,7 +121,7 @@ class Solution:
 
     @staticmethod
     def lg_p1894(ac=FastIO()):
-        # 模板：二分图最大权匹配（不带权也可以使用匈牙利算法）
+        # bipartite_graph最大权匹配（不带权也可以匈牙利算法）
         n, m = ac.read_list_ints()
         s = n + m + 1
         t = n + m + 2
@@ -130,9 +130,9 @@ class Solution:
         for i in range(n):
             lst = ac.read_list_ints()[1:]
             for j in lst:
-                # 增加边
+                # 增|边
                 ek.add_edge(i, n + j - 1, 1)
-        # 增加超级源点与汇点
+        # 增|超级源点与汇点
         for i in range(n):
             ek.add_edge(s, i, 1)
         for i in range(m):
@@ -142,7 +142,7 @@ class Solution:
 
     @staticmethod
     def lc_1947(students: List[List[int]], mentors: List[List[int]]) -> int:
-        # 解法：二分图最大权匹配，也可用状压DP
+        # bipartite_graph最大权匹配，也可用状压DP
         m, n = len(students), len(students[0])
 
         # 建立权值矩阵
@@ -151,14 +151,14 @@ class Solution:
             for j in range(m):
                 grid[i][j] = sum([students[i][k] == mentors[j][k] for k in range(n)])
 
-        # KM算法计算二分图最大权匹配
+        # KM算法bipartite_graph最大权匹配
         km = KM()
         max_ = km.compute(np.array(grid))
         return sum([grid[i][j] for i, j in max_])
 
     @staticmethod
     def lg_3386(ac=FastIO()):
-        # 模板：匈牙利算法二分图不带权最大匹配
+        # 匈牙利算法bipartite_graph不带权最大匹配
         n, m, e = ac.read_list_ints()
         dct = [[] for _ in range(m)]
         for _ in range(e):
@@ -172,7 +172,7 @@ class Solution:
 
     @staticmethod
     def lc_1066(workers: List[List[int]], bikes: List[List[int]]) -> int:
-        # 模板：二分图最小权匹配
+        # bipartite_graph最小权匹配
         n = len(workers)
         m = len(bikes)
         grid = [[0] * m for _ in range(m)]
@@ -190,7 +190,7 @@ class Solution:
 
     @staticmethod
     def ac_4298(ac=FastIO()):
-        # 模板：匈牙利算法二分图模板题
+        # 匈牙利算法bipartite_graph模板题
         m = ac.read_int()
         a = ac.read_list_ints()
         n = ac.read_int()

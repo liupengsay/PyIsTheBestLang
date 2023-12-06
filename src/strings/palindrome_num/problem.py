@@ -1,16 +1,16 @@
 """
-Algorithm：回文数字枚举
+Algorithm：回文数字brute_force
 Function：xxx
 
 ====================================LeetCode====================================
-2081（https://leetcode.com/problems/sum-of-k-mirror-numbers/）枚举 10 进制回文数字并判断其 k 进制是否依然回文
-866（https://leetcode.com/problems/prime-palindrome/）枚举回文素数
-564（https://leetcode.com/problems/find-the-closest-palindrome/）枚举字符的前半部分与后半部分
-906（https://leetcode.com/problems/super-palindromes/）经典预处理所有的回文数其开方也是回文数
-1088（https://leetcode.com/problems/confusing-number-ii/description/）模拟枚举所有的易混淆数
+2081（https://leetcode.com/problems/sum-of-k-mirror-numbers/）brute_force 10 进制回文数字并判断其 k 进制是否依然回文
+866（https://leetcode.com/problems/prime-palindrome/）brute_force回文素数
+564（https://leetcode.com/problems/find-the-closest-palindrome/）brute_force字符的前半部分与后半部分
+906（https://leetcode.com/problems/super-palindromes/）预处理所有的回文数其开方也是回文数
+1088（https://leetcode.com/problems/confusing-number-ii/description/）implementionbrute_force所有的易混淆数
 
 =====================================LuoGu======================================
-1609（https://www.luogu.com.cn/problem/P1609）枚举字符的前半部分与后半部分
+1609（https://www.luogu.com.cn/problem/P1609）brute_force字符的前半部分与后半部分
 
 
 """
@@ -27,7 +27,7 @@ class Solution:
 
     @staticmethod
     def lc_906(left: str, right: str) -> int:
-        # 模板：经典预处理所有的回文数其开方也是回文数
+        # 预处理所有的回文数其开方也是回文数
         nums = PalindromeNum().get_palindrome_num_2(10)
         res = [num * num for num in nums if str(num * num)[::-1] == str(num * num)]
         left = int(left)
@@ -36,7 +36,7 @@ class Solution:
 
     @staticmethod
     def lc_1088(n: int) -> int:
-        # 模板：预处理后进行binary_search
+        # 预处理后binary_search
         ind = {0: 0, 1: 1, 6: 9, 8: 8, 9: 6}
         pre = [0, 1, 6, 8, 9]
         res = pre[:]
@@ -44,7 +44,7 @@ class Solution:
             nex = []
             for num in pre:
                 for d in ind:
-                    # 经典枚举方式
+                    # brute_force方式
                     nex.append(num * 10 + d)
             res.extend(nex)
             pre = nex[:]
@@ -64,7 +64,7 @@ class Solution:
 
     @staticmethod
     def lc_2081(k: int, n: int) -> int:
-        # 模板：枚举 10 进制回文数字并判断其 k 进制是否依然回文
+        # brute_force 10 进制回文数字并判断其 k 进制是否依然回文
         dct = defaultdict(list)
         # 放到预处理
         nums = PalindromeNum().get_palindrome_num_2(12)

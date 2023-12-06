@@ -1,40 +1,40 @@
 """
-Algorithm：堆（优先队列）、Huffman树（霍夫曼树）
-Function：通常用于需要贪心的场景
+Algorithm：堆（priority_queue）、Huffman树（霍夫曼树）
+Function：通常用于需要greedy的场景
 
 ====================================LeetCode====================================
-630（https://leetcode.com/problems/course-schedule-iii/）用一个堆延迟选择贪心维护最优
-2454（https://leetcode.com/problems/next-greater-element-iv/）使用两个堆维护下下个更大元素即出队两次时遇见的元素，也可以使用经典的哈希加SortedList
-2402（https://leetcode.com/problems/meeting-rooms-iii/）使用两个堆模拟进行会议室安排并进行计数
-2386（https://leetcode.com/problems/find-the-k-sum-of-an-array/）转换思路使用堆维护最大和第 K 次出队的则为目标结果
-2163（https://leetcode.com/problems/minimum-difference-in-sums-after-removal-of-elements/）预处理前缀后缀最大最小的 K 个数和再进行枚举分割点
-1792（https://leetcode.com/problems/maximum-average-pass-ratio/）贪心依次给增幅最大的班级人数加 1
-295（https://leetcode.com/problems/find-median-from-data-stream/）用两个堆维护中位数
-2542（https://leetcode.com/problems/maximum-subsequence-score/）贪心排序枚举加堆维护最大的k个数进行计算
-2263（https://leetcode.com/problems/make-array-non-decreasing-or-non-increasing/）大根堆贪心使得序列非降的最小操作次数
+630（https://leetcode.com/problems/course-schedule-iii/）用一个堆延迟选择greedy维护最优
+2454（https://leetcode.com/problems/next-greater-element-iv/）两个堆维护下下个更大元素即出队两次时遇见的元素，也可以的hash|SortedList
+2402（https://leetcode.com/problems/meeting-rooms-iii/）两个堆implemention会议室安排并counter
+2386（https://leetcode.com/problems/find-the-k-sum-of-an-array/）转换思路堆维护最大和第 K 次出队的则为目标结果
+2163（https://leetcode.com/problems/minimum-difference-in-sums-after-removal-of-elements/）预处理前缀后缀最大最小的 K 个数和再brute_force分割点
+1792（https://leetcode.com/problems/maximum-average-pass-ratio/）greedy依次给增幅最大的班级人数| 1
+295（https://leetcode.com/problems/find-median-from-data-stream/）用两个堆维护median
+2542（https://leetcode.com/problems/maximum-subsequence-score/）greedysortingbrute_force|堆维护最大的k个数
+2263（https://leetcode.com/problems/make-array-non-decreasing-or-non-increasing/）大根堆greedy使得序列非降的最小操作次数
 
 =====================================LuoGu======================================
-1168（https://www.luogu.com.cn/problem/P1168） 用两个堆维护中位数
+1168（https://www.luogu.com.cn/problem/P1168） 用两个堆维护median
 1801（https://www.luogu.com.cn/problem/P1801）用两个堆维护第K小
-2085（https://www.luogu.com.cn/problem/P2085）用数学加一个堆维护前K小
-1631（https://www.luogu.com.cn/problem/P1631）用一个堆和指针组合维护前K小
-4053（https://www.luogu.com.cn/problem/P4053）用一个堆延迟选择贪心维护最优，经典课程表 III
-1878（https://www.luogu.com.cn/problem/P1878）用哈希加一个堆进行模拟计算
-3620（https://www.luogu.com.cn/problem/P3620）贪心思想加二叉堆与双向链表优
-2168（https://www.luogu.com.cn/problem/P2168）霍夫曼树与二叉堆贪心
-2278（https://www.luogu.com.cn/problem/P2278）使用二叉堆模拟CPU占用
-1717（https://www.luogu.com.cn/problem/P1717）枚举最远到达地点进行二叉堆贪心选取
-1905（https://www.luogu.com.cn/problem/P1905）二叉堆从大到小贪心摆放
-2409（https://www.luogu.com.cn/problem/P2409）经典二叉堆，计算最小的k个和
-2949（https://www.luogu.com.cn/problem/P2949）二叉堆贪心模拟懒惰延迟删除
-6033（https://www.luogu.com.cn/problem/P6033）经典贪心升级版可用双端队列优化
-4597（https://www.luogu.com.cn/problem/P4597）大根堆贪心使得序列非降的最小操作次数
+2085（https://www.luogu.com.cn/problem/P2085）用math|一个堆维护前K小
+1631（https://www.luogu.com.cn/problem/P1631）用一个堆和pointer组合维护前K小
+4053（https://www.luogu.com.cn/problem/P4053）用一个堆延迟选择greedy维护最优，课程表 III
+1878（https://www.luogu.com.cn/problem/P1878）用hash|一个堆implemention
+3620（https://www.luogu.com.cn/problem/P3620）greedy思想|二叉堆与双向链表优
+2168（https://www.luogu.com.cn/problem/P2168）霍夫曼树与二叉堆greedy
+2278（https://www.luogu.com.cn/problem/P2278）二叉堆implementionCPU占用
+1717（https://www.luogu.com.cn/problem/P1717）brute_force最远到达地点二叉堆greedy选取
+1905（https://www.luogu.com.cn/problem/P1905）二叉堆从大到小greedy摆放
+2409（https://www.luogu.com.cn/problem/P2409）二叉堆，最小的k个和
+2949（https://www.luogu.com.cn/problem/P2949）二叉堆greedyimplemention懒惰延迟删除
+6033（https://www.luogu.com.cn/problem/P6033）greedy升级版可用双端队列优化
+4597（https://www.luogu.com.cn/problem/P4597）大根堆greedy使得序列非降的最小操作次数
 
 =====================================AcWing=====================================
-146（https://www.acwing.com/problem/content/description/148/）小顶堆计算经典问题m个数组最小的n个子序列和，同样可以计算最大的
-147（https://www.acwing.com/problem/content/description/149/）贪心思想加二叉堆与双向链表优化
-148（https://www.acwing.com/problem/content/150/）贪心二叉堆，霍夫曼树Huffman Tree的思想，每次优先合并较小的
-149（https://www.acwing.com/problem/content/description/151/）霍夫曼树与二叉堆贪心
+146（https://www.acwing.com/problem/content/description/148/）小顶堆问题m个数组最小的n个子序列和，同样可以最大的
+147（https://www.acwing.com/problem/content/description/149/）greedy思想|二叉堆与双向链表优化
+148（https://www.acwing.com/problem/content/150/）greedy二叉堆，霍夫曼树Huffman Tree的思想，每次优先合并较小的
+149（https://www.acwing.com/problem/content/description/151/）霍夫曼树与二叉堆greedy
 
 
 
@@ -58,7 +58,7 @@ class Solution:
 
     @staticmethod
     def lc_2454_1(nums: List[int]) -> List[int]:
-        # 模板：经典哈希排序加SortedList
+        # hashsorting|SortedList
         n = len(nums)
         dct = defaultdict(list)
         for i in range(n):
@@ -77,7 +77,7 @@ class Solution:
     @staticmethod
     def lc_2454_2(nums: List[int]) -> List[int]:
 
-        # 模板：经典单调栈加小顶堆
+        # 单调栈|小顶堆
         n = len(nums)
         ans = [-1] * n
         mono_stack = []
@@ -95,7 +95,7 @@ class Solution:
 
     @staticmethod
     def lg_1198(ac=FastIO()):
-        # 模板：使用两个堆维护中位数
+        # 两个堆维护median
         n = ac.read_int()
         nums = ac.read_list_ints()
         arr = MedianFinder()
@@ -107,7 +107,7 @@ class Solution:
 
     @staticmethod
     def lc_1792(classes, extra_students):
-        # 模板：使用堆进行贪心模拟每次选择最优
+        # 堆greedyimplemention每次选择最优
         stack = []
         for p, t in classes:
             heapq.heappush(stack, [p / t - (p + 1) / (t + 1), p, t])
@@ -121,9 +121,9 @@ class Solution:
 
     @staticmethod
     def lc_630(courses: List[List[int]]) -> int:
-        # 模板：经典反悔堆，遍历过程选择使用更优的
+        # 反悔堆，遍历过程选择更优的
         courses.sort(key=lambda x: x[1])
-        # 按照结束时间排序
+        # 按照结束时间sorting
         stack = []
         day = 0
         for duration, last in courses:
@@ -131,7 +131,7 @@ class Solution:
                 day += duration
                 heapq.heappush(stack, -duration)
             else:
-                # 如果有学习时间更短的课程则进行替换
+                # 如果有学习时间更短的课程则替换
                 if stack and -stack[0] > duration:
                     day += heapq.heappop(stack) + duration
                     heapq.heappush(stack, -duration)
@@ -139,7 +139,7 @@ class Solution:
 
     @staticmethod
     def ac_146(ac=FastIO()):
-        # 模板：小顶堆计算经典问题m个数组最小的n个子序列和，同样可以计算最大的
+        # 小顶堆问题m个数组最小的n个子序列和，同样可以最大的
         for _ in range(ac.read_int()):
             m, n = ac.read_list_ints()
             grid = [sorted(ac.read_list_ints()) for _ in range(m)]
@@ -168,7 +168,7 @@ class Solution:
 
     @staticmethod
     def ac_147(ac=FastIO()):
-        # 模板：贪心思想加二叉堆与双向链表优化
+        # greedy思想|二叉堆与双向链表优化
 
         n, k = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
@@ -191,7 +191,7 @@ class Solution:
                 continue
             ans += diff[i]
 
-            # 加入新点删除旧点
+            # |入新点删除旧点
             left = diff[pre[i]]
             right = diff[post[i]]
             new = left + right - diff[i]
@@ -211,7 +211,7 @@ class Solution:
 
     @staticmethod
     def lg_p2168(ac=FastIO()):
-        # 模板：二叉堆贪心与霍夫曼树Huffman Tree
+        # 二叉堆greedy与霍夫曼树Huffman Tree
         n, k = ac.read_list_ints()
         stack = [[ac.read_int(), 0] for _ in range(n)]
         heapq.heapify(stack)
@@ -233,13 +233,13 @@ class Solution:
 
     @staticmethod
     def lg_p1631(ac=FastIO()):
-        # 模板：求两个数组的前 n 个最小的元素和
+        # 求两个数组的前 n 个最小的元素和
         n = ac.read_int()
         nums1 = ac.read_list_ints()
         nums2 = ac.read_list_ints()
-        # 初始时加入所有第二个数组的索引位置
+        # 初始时|入所有第二个数组的索引位置
         stack = [[nums1[0] + nums2[j], 0, j] for j in range(n)]
-        # 不重不漏枚举所有索引组合
+        # 不重不漏brute_force所有索引组合
         heapq.heapify(stack)
         ans = []
         for _ in range(n):
@@ -252,7 +252,7 @@ class Solution:
 
     @staticmethod
     def lg_p4053(ac=FastIO()):
-        # 模板：懒惰删除，模拟贪心
+        # 懒惰删除，implementiongreedy
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort(key=lambda it: it[1])
@@ -272,7 +272,7 @@ class Solution:
 
     @staticmethod
     def lg_p2085(ac=FastIO()):
-        # 模板：利用一元二次方程的单调性与指针堆优化进行贪心选取
+        # 利用一元二次方程的单调性与pointerheapqgreedy选取
         n, m = ac.read_list_ints()
         stack = []
         for _ in range(n):
@@ -289,7 +289,7 @@ class Solution:
 
     @staticmethod
     def lg_p2278(ac=FastIO()):
-        # 模板：使用堆模拟应用
+        # 堆implemention应用
         now = []  # idx, reach, need, level, end
         ans = []
         stack = []  # -level, reach, need, idx
@@ -319,7 +319,7 @@ class Solution:
                 idx, reach, need, level = lst
                 heapq.heappush(stack, [-level, reach, need, idx])
             elif now:
-                # 当前任务等级更高，进行替换，注意剩余时间
+                # 当前任务等级更高，替换，注意剩余时间
                 idx, reach, need, level, end = now
                 heapq.heappush(stack, [-level, reach, end - lst[1], idx])
                 idx, reach, need, level = lst
@@ -342,7 +342,7 @@ class Solution:
 
     @staticmethod
     def lg_p1717(ac=FastIO()):
-        # 模板：枚举最远到达地点进行二叉堆贪心选取
+        # brute_force最远到达地点二叉堆greedy选取
         ans = 0
         n = ac.read_int()
         h = ac.read_int() * 60
@@ -367,7 +367,7 @@ class Solution:
 
     @staticmethod
     def lg_p1905(ac=FastIO()):
-        # 模板：二叉堆从大到小贪心摆放
+        # 二叉堆从大到小greedy摆放
         ac.read_int()
         p = ac.read_int()
         lst = ac.read_list_ints()
@@ -385,7 +385,7 @@ class Solution:
 
     @staticmethod
     def lg_p2409(ac=FastIO()):
-        # 模板：经典二叉堆，计算最小的k个和
+        # 二叉堆，最小的k个和
         n, k = ac.read_list_ints()
         pre = ac.read_list_ints()[1:]
         pre.sort()
@@ -406,7 +406,7 @@ class Solution:
 
     @staticmethod
     def lg_p2949(ac=FastIO()):
-        # 模板：二叉堆贪心模拟懒惰延迟删除
+        # 二叉堆greedyimplemention懒惰延迟删除
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort(key=lambda it: it[0])
@@ -422,7 +422,7 @@ class Solution:
 
     @staticmethod
     def lg_p6033(ac=FastIO()):
-        # 模板：经典队列 O(n) 模拟合并果子
+        # 队列 O(n) implemention合并果子
         ac.read_int()
         pre = deque(sorted(ac.read_list_ints()))
         post = deque()
@@ -455,7 +455,7 @@ class Solution:
     def lc_2263(nums: List[int]) -> int:
 
         def helper(lst: List[int]) -> int:
-            # 模板：大根堆贪心使得序列非降的最小操作次数
+            # 大根堆greedy使得序列非降的最小操作次数
             res, pq = 0, []  # 大根堆
             for num in lst:
                 if not pq:
@@ -472,7 +472,7 @@ class Solution:
 
     @staticmethod
     def lc_2386(nums: List[int], k: int) -> int:
-        # 模板：转换思路使用堆维护最大和第 K 次出队的则为目标结果
+        # 转换思路堆维护最大和第 K 次出队的则为目标结果
         n = len(nums)
         tot = 0
         for i in range(n):
@@ -481,7 +481,7 @@ class Solution:
             else:
                 nums[i] = -nums[i]
         nums.sort()
-        # 经典思维题，类似Dijkstra的思想从大到小枚举子序列的和
+        # 思维题，类似Dijkstra的思想从大到小brute_force子序列的和
         stack = [[nums[0], 0]]
         for _ in range(k - 1):
             pre, i = heappop(stack)

@@ -1,38 +1,38 @@
 """
-Algorithm：SPFA路径边数优先的广度优先搜索（可以使用带负权值）也可以计算最短路、差分约束、最短路条数
+Algorithm：SPFA路径边数优先的广度优先搜索（可以带负权值）也可以最短路、差分约束、最短路条数
 
-Function：SPFA（Shortest Path Faster Algorithm）是一种用于计算单源最短路径的算法。它通过使用队列和松弛操作来不断更新路径长度，从而更快地找到最短路径。
+Function：SPFA（Shortest Path Faster Algorithm）是一种用于单源最短路径的算法。它通过队列和松弛操作来不断更新路径长度，从而更快地找到最短路径。
 
 下面是一个简单的 Python SPFA 模板，其中 graph 是图的邻接表表示，iflytek_ads 是源节点，dist 是各节点到源节点的最短距离，prev 是各节点的前驱节点。
-上面的代码只是一个简单的 SPFA 模板，实际使用时可能需要添加更多的特判和优化。例如，SPFA 算法在某些情况下容易陷入死循环，因此需要添加防止死循环的机制。此外，SPFA 算法的时间复杂度与输入图
+上面的代码只是一个简单的 SPFA 模板，实际时可能需要添|更多的特判和优化。例如，SPFA 算法在某些情况下容易陷入死循环，因此需要添|防止死循环的机制。此外，SPFA 算法的时间复杂度与输入图
 
-的稠密程度有关，因此可能需要使用一些优化方法来提高它的效率。
+的稠密程度有关，因此可能需要一些优化方法来提高它的效率。
 
-Function：SPFA 算法是一种简单易用的最短路径算法，它通过使用队列和松弛操作来快速求解单源最短路径问题。它的时间复杂度与输入图的稠密程度有关，并且容易陷入死循环，因此需要注意这些问题。
+Function：SPFA 算法是一种简单易用的最短路径算法，它通过队列和松弛操作来快速求解单源最短路径问题。它的时间复杂度与输入图的稠密程度有关，并且容易陷入死循环，因此需要注意这些问题。
 Dijkstra：路径权值优先的深度优先搜索（只适用正权值）
 
 ====================================LeetCode====================================
-2589（https://leetcode.com/problems/minimum-time-to-complete-all-tasks/）差分约束模板题，也可用贪心求解
+2589（https://leetcode.com/problems/minimum-time-to-complete-all-tasks/）差分约束模板题，也可用greedy求解
 
 =====================================LuoGu======================================
-3385（https://www.luogu.com.cn/problem/P3385）通过最短路径更新的边数来计算从起点出发是否存在负环
-1938（https://www.luogu.com.cn/problem/P1938）使用负环判断正环，以及使用最短路求最长路即最大正权路径值
-2136（https://www.luogu.com.cn/problem/P2136）计算可能有负权环的最短距离
+3385（https://www.luogu.com.cn/problem/P3385）通过最短路径更新的边数来从起点出发是否存在负环
+1938（https://www.luogu.com.cn/problem/P1938）负环判断正环，以及最短路求最长路即最大正权路径值
+2136（https://www.luogu.com.cn/problem/P2136）可能有负权环的最短距离
 2648（https://www.luogu.com.cn/problem/P2648）判断是否存在正权环以及最长路
-1144（https://www.luogu.com.cn/problem/P1144）无向无权图最短路计数
+1144（https://www.luogu.com.cn/problem/P1144）无向无权图最短路counter
 1993（https://www.luogu.com.cn/problem/P1993）差分约束判断是否存在负环
 5960（https://www.luogu.com.cn/problem/P5960）差分约束模板题
 1260（https://www.luogu.com.cn/problem/P1260）差分约束模板题
-1931（https://www.luogu.com.cn/problem/P1931）判断计算乘积是否有大于1的环
+1931（https://www.luogu.com.cn/problem/P1931）判断乘积是否有大于1的环
 1986（https://www.luogu.com.cn/problem/P1986）差分约束求解区间和
-2850（https://www.luogu.com.cn/problem/P2850）计算从任意起点出发是否存在负环
-4878（https://www.luogu.com.cn/problem/P4878）经典差分数组与Dijkstra计算最短路
-5751（https://www.luogu.com.cn/problem/P5751）经典前缀和转换为差分约束求解，并计算最大值
-5905（https://www.luogu.com.cn/problem/P5905）有向带权图可能有负权 Johnson 全源最短路计算所有点对的最短路
+2850（https://www.luogu.com.cn/problem/P2850）从任意起点出发是否存在负环
+4878（https://www.luogu.com.cn/problem/P4878）差分数组与Dijkstra最短路
+5751（https://www.luogu.com.cn/problem/P5751）prefix_sum转换为差分约束求解，并最大值
+5905（https://www.luogu.com.cn/problem/P5905）有向带权图可能有负权 Johnson 全源最短路所有点对的最短路
 
 ====================================AtCoder=====================================
-D - Score Attack （https://atcoder.jp/contests/abc061/tasks/abc061_d）经典反向建图后判断是否有正环并计算最长路
-E - Coins Respawn（https://atcoder.jp/contests/abc137/tasks/abc137_e）使用 SPFA 与 BFS 判断是否存在起点到终点的正权环
+D - Score Attack （https://atcoder.jp/contests/abc061/tasks/abc061_d）反向建图后判断是否有正环并最长路
+E - Coins Respawn（https://atcoder.jp/contests/abc137/tasks/abc137_e） SPFA 与 BFS 判断是否存在起点到终点的正权环
 
 ====================================LeetCode====================================
 差分约束（https://oi-wiki.org/graph/diff-constraints/）
@@ -52,7 +52,7 @@ class Solution:
 
     @staticmethod
     def lg_p1144(ac=FastIO()):
-        # 模板：无向无权图起点出发的最短路计数问题
+        # 无向无权图起点出发的最短路counter问题
         n, m = ac.read_list_ints()
         dct = [dict() for _ in range(n)]
         for _ in range(m):
@@ -67,12 +67,12 @@ class Solution:
 
     @staticmethod
     def lg_p3648(ac=FastIO()):
-        # 模板：判断不同起点出发是否存在正环并计算最长路
+        # 判断不同起点出发是否存在正环并最长路
         d, p, c, f = ac.read_list_ints()
         dct = [dict() for _ in range(c)]
         for _ in range(p):
             a, b = ac.read_list_ints_minus_one()
-            # 直接权值取负数变为判断是否存在负环与计算最短路
+            # 直接权值取负数变为判断是否存在负环与最短路
             dct[a][b] = -d
         for _ in range(f):
             j, k, t = ac.read_list_ints()
@@ -91,7 +91,7 @@ class Solution:
 
     @staticmethod
     def lg_p2136(ac=FastIO()):
-        # 模板：判断不同起点出发是否存在负环并计算最短路
+        # 判断不同起点出发是否存在负环并最短路
         n, m = ac.read_list_ints()
         dct = [dict() for _ in range(n)]
         for _ in range(m):
@@ -106,7 +106,7 @@ class Solution:
 
     @staticmethod
     def lg_p3385(ac=FastIO()):
-        # 模板：SPFA 判断是否存在负环与计算最短路
+        # SPFA 判断是否存在负环与最短路
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
             dct = [dict() for _ in range(n)]
@@ -123,13 +123,13 @@ class Solution:
 
     @staticmethod
     def lg_1938(ac=FastIO()):
-        # 模板：SPFA 判断是否存在正环与计算最长路
+        # SPFA 判断是否存在正环与最长路
         d, p, c, f, s = ac.read_list_ints()
         s -= 1
         dct = [dict() for _ in range(c)]
         for _ in range(p):
             a, b = ac.read_list_ints_minus_one()
-            # 直接权值取负数变为判断是否存在负环与计算最短路
+            # 直接权值取负数变为判断是否存在负环与最短路
             dct[a][b] = -d
         for _ in range(f):
             j, k, t = ac.read_list_ints()
@@ -142,7 +142,7 @@ class Solution:
 
     @staticmethod
     def lg_p1993(ac=FastIO()):
-        # 模板：差分约束转换为负环判断求解
+        # 差分约束转换为负环判断求解
         n, m = ac.read_list_ints()
         dct = [dict() for _ in range(n + 1)]
         # 超级源点有向边出发
@@ -150,7 +150,7 @@ class Solution:
             dct[0][i] = 0
         for _ in range(m):
             lst = ac.read_list_ints()
-            # xa - xb <= c 则增加有向边 [xb, xa, c] 其中 xb => xa
+            # xa - xb <= c 则增|有向边 [xb, xa, c] 其中 xb => xa
             if lst[0] == 1:
                 a, b, c = lst[1:]
                 dct[a][b] = -c
@@ -170,9 +170,9 @@ class Solution:
 
     @staticmethod
     def lc_6318(tasks: List[List[int]]) -> int:
-        # 模板：差分约束转换为负环判断求解
+        # 差分约束转换为负环判断求解
         n = max(it[1] for it in tasks)
-        # xa - xb <= c 则增加有向边 [xb, xa, c] 其中 xb => xa
+        # xa - xb <= c 则增|有向边 [xb, xa, c] 其中 xb => xa
         dct = [dict() for _ in range(n + 2)]
 
         # 邻项约束
@@ -198,7 +198,7 @@ class Solution:
 
     @staticmethod
     def lg_p5960(ac=FastIO()):
-        # 模板：差分约束模板题
+        # 差分约束模板题
         n, m = ac.read_list_ints()
         edges = [ac.read_list_ints() for _ in range(m)]
         ans, dis = SPFA().differential_constraint(edges, n)
@@ -210,7 +210,7 @@ class Solution:
 
     @staticmethod
     def lg_p1260(ac=FastIO()):
-        # 模板：差分约束模板题
+        # 差分约束模板题
         n, m = ac.read_list_ints()
         # edges里面索引从 1 开始
         edges = [ac.read_list_ints() for _ in range(m)]
@@ -227,7 +227,7 @@ class Solution:
 
     @staticmethod
     def lg_p1931(ac=FastIO()):
-        # 模板：计算路径乘积是否有大于1的环
+        # 路径乘积是否有大于1的环
         case = 0
         while True:
             n = ac.read_int()
@@ -253,7 +253,7 @@ class Solution:
 
     @staticmethod
     def lg_p1986(ac=FastIO()):
-        # 模板：根据前缀和进行差分约束求解
+        # 根据prefix_sum差分约束求解
         n, m = ac.read_list_ints()
 
         # 区间关系
@@ -268,17 +268,17 @@ class Solution:
             lst.append([i, i - 1, 1])
             lst.append([i - 1, i, 0])
 
-        # 计算差分约束，注意索引从 1 开始
+        # 差分约束，注意索引从 1 开始
         lst = [[a + 1, b + 1, c] for a, b, c in lst]
         ans, dis = SPFA().differential_constraint(lst, n + 1)
 
-        # 即为前缀和 pre[n+1] - pre[1]
+        # 即为prefix_sum pre[n+1] - pre[1]
         ac.st(dis[n + 1] - dis[1])
         return
 
     @staticmethod
     def abc_61d(ac=FastIO()):
-        # 模板：经典反向建图后判断是否有正环并计算最长路
+        # 反向建图后判断是否有正环并最长路
         n, m = ac.read_list_ints()
         edges = [ac.read_list_ints() for _ in range(m)]
         rev = [[] for _ in range(n)]
@@ -315,7 +315,7 @@ class Solution:
 
     @staticmethod
     def abc_137e(ac=FastIO()):
-        # 模板：使用 SPFA 与 BFS 判断是否存在起点到终点的正权环
+        #  SPFA 与 BFS 判断是否存在起点到终点的正权环
         n, m, p = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         rev = [[] for _ in range(n)]
@@ -375,7 +375,7 @@ class Solution:
 
     @staticmethod
     def lc_2589(tasks: List[List[int]]) -> int:
-        # 模板：根据前缀和进行差分约束求解
+        # 根据prefix_sum差分约束求解
         lst = []
         for a, b, c in tasks:
             if a > b:
@@ -394,7 +394,7 @@ class Solution:
     @staticmethod
     def lg_p2850(ac=FastIO()):
         for _ in range(ac.read_int()):
-            # 模板：计算从任意起点出发是否存在负环
+            # 从任意起点出发是否存在负环
             n, m, w = ac.read_list_ints()
             dct = [dict() for _ in range(n)]
             for _ in range(m):
@@ -433,7 +433,7 @@ class Solution:
                             cnt[v] = cnt[u] + 1
                             if cnt[v] >= n:
                                 return "YES", dis, cnt
-                            # 如果相邻节点还没有在队列中，将它加入队列
+                            # 如果相邻节点还没有在队列中，将它|入队列
                             if not visit[v]:
                                 queue.append(v)
                                 visit[v] = True
@@ -442,7 +442,7 @@ class Solution:
 
             for src in range(n):
                 if not visit[src]:
-                    # 使用 visit 记录已经计算过的节点
+                    #  visit 记录已经过的节点
                     ans, _, _ = negative_circle()
                     if ans == "YES":
                         ac.st("YES")
@@ -453,7 +453,7 @@ class Solution:
 
     @staticmethod
     def lg_p4878(ac=FastIO()):
-        # 模板：经典差分数组与Dijkstra计算最短路
+        # 差分数组与Dijkstra最短路
         n, ml, md = ac.read_list_ints()
         edge = []
         for _ in range(ml):
@@ -468,12 +468,12 @@ class Solution:
             edge.append([a, b, -d])
         for i in range(1, n):
             edge.append([i, i + 1, 0])
-        # 首先使用差分数组判环
+        # 首先差分数组判环
         ans, dis = SPFA().differential_constraint(edge, n)
         if ans == "YES":
             ac.st(-1)
         else:
-            # 其次计算最大解即最短路（求最小解则是最长路）
+            # 其次最大解即最短路（求最小解则是最长路）
             dct = [dict() for _ in range(n)]
             for a, b, c in edge:  # a-b<=c
                 a -= 1
@@ -488,7 +488,7 @@ class Solution:
 
     @staticmethod
     def lg_p5905(ac=FastIO()):
-        # 模板：有向带权图可能有负权 Johnson 全源最短路计算所有点对的最短路
+        # 有向带权图可能有负权 Johnson 全源最短路所有点对的最短路
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n + 1)]
         for _ in range(m):
@@ -496,12 +496,12 @@ class Solution:
             dct[u].append([v, w])
         for i in range(1, n + 1):
             dct[0].append([i, 0])
-        # 首先使用 Bellman-Ford 的队列实现算法 SPFA 判断有没有负环
+        # 首先 Bellman-Ford 的队列实现算法 SPFA 判断有没有负环
         flag, h, _ = SPFA().negative_circle_edge(dct)
         if flag == "YES":
             ac.st(-1)
             return
-        # 其次建立新图枚举起点跑 Dijkstra
+        # 其次建立新图brute_force起点跑 Dijkstra
         for i in range(n + 1):
             k = len(dct[i])
             for x in range(k):
@@ -519,7 +519,7 @@ class Solution:
 
     @staticmethod
     def lg_p5751(ac=FastIO()):
-        # 模板：经典转换为前缀和进行差分约束求解，并使用最短路求解最大值
+        # 转换为prefix_sum差分约束求解，并最短路求解最大值
         n, a0, b0, l0, a1, b1, l1 = ac.read_list_ints()
 
         # 区间关系
@@ -537,14 +537,14 @@ class Solution:
             lst.append([i, i - 1, 1])
             lst.append([i - 1, i, 0])
 
-        # 计算差分约束，注意索引从 1 开始
+        # 差分约束，注意索引从 1 开始
         lst = [[a + 1, b + 1, c] for a, b, c in lst]
         ans, dis = SPFA().differential_constraint(lst, n + 1)
         if ans == "YES":
             ac.st(-1)
             return
 
-        # 其次计算最大解即最短路（求最小解则是最长路）
+        # 其次最大解即最短路（求最小解则是最长路）
         dct = [dict() for _ in range(n + 1)]
         for a, b, c in lst:  # a-b<=c
             a -= 1

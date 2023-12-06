@@ -1,27 +1,27 @@
 """
-Algorithm：分治、递归、二叉树、四叉树、十叉树、N叉树、先序、中序、后序遍历、divide and conquer
-Function：递归进行处理，与迭代是处理相同问题的两种不同方式，迭代效率高于递归
+Algorithm：divide_and_conquer、递归、二叉树、四叉树、十叉树、N叉树、先序、中序、后序遍历、divide and conquer
+Function：递归处理，与迭代是处理相同问题的两种不同方式，迭代效率高于递归
 
 ====================================LeetCode====================================
-1545（https://leetcode.com/problems/find-kth-bit-in-nth-binary-string/）经典递归计算模拟
-894（https://leetcode.com/problems/all-possible-full-binary-trees/）经典类似卡特兰数的递归模拟计算生成
-880（https://leetcode.com/problems/decoded-string-at-index/）经典递归计算模拟
-932（https://leetcode.com/problems/beautiful-array/description/）使用递归分治进行构造经典
-889（https://leetcode.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/）使用递归经典分治构造
+1545（https://leetcode.com/problems/find-kth-bit-in-nth-binary-string/）递归implemention
+894（https://leetcode.com/problems/all-possible-full-binary-trees/）类似卡特兰数的递归implemention生成
+880（https://leetcode.com/problems/decoded-string-at-index/）递归implemention
+932（https://leetcode.com/problems/beautiful-array/description/）递归divide_and_conquer构造
+889（https://leetcode.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/）递归divide_and_conquer构造
 1028（https://leetcode.com/problems/recover-a-tree-from-preorder-traversal/description/）根据先序遍历递归构造二叉树
 
 =====================================LuoGu======================================
-1911（https://www.luogu.com.cn/problem/P1911）使用四叉树递归计算
-5461（https://www.luogu.com.cn/problem/P5461）递归计算四叉树左上角
-5551（https://www.luogu.com.cn/problem/P5551）先序遍历的完全二叉树递归计算
-5626（https://www.luogu.com.cn/problem/P5626）分治DP，归并排序需要的比较次数最少，但是可能内存占用超过快排
-2907（https://www.luogu.com.cn/problem/P2907）分析复杂度之后采用递归模拟
+1911（https://www.luogu.com.cn/problem/P1911）四叉树递归
+5461（https://www.luogu.com.cn/problem/P5461）递归四叉树左上角
+5551（https://www.luogu.com.cn/problem/P5551）先序遍历的完全二叉树递归
+5626（https://www.luogu.com.cn/problem/P5626）divide_and_conquerDP，归并sorting需要的比较次数最少，但是可能内存占用超过快排
+2907（https://www.luogu.com.cn/problem/P2907）分析复杂度之后采用递归implemention
 7673（https://www.luogu.com.cn/problem/P7673）根据中序遍历，递归还原完全二叉树
-1228（https://www.luogu.com.cn/problem/P1228）四叉树分治递归
-1185（https://www.luogu.com.cn/problem/P1185）二叉树递归进行绘制
+1228（https://www.luogu.com.cn/problem/P1228）四叉树divide_and_conquer递归
+1185（https://www.luogu.com.cn/problem/P1185）二叉树递归绘制
 
 ===================================CodeForces===================================
-448C（https://codeforces.com/contest/448/problem/C）贪心递归DP
+448C（https://codeforces.com/contest/448/problem/C）greedy递归DP
 
 98（https://www.acwing.com/problem/content/100/）四叉树递归与坐标旋转变换
 93（https://www.acwing.com/problem/content/95/）递归与迭代两种方式实现组合数选取
@@ -41,7 +41,7 @@ class Solution:
 
     @staticmethod
     def lc_880(t: str, m: int) -> str:
-        # 模板：经典递归计算模拟
+        # 递归implemention
 
         def dfs(s, k):
             n = len(s)
@@ -60,7 +60,7 @@ class Solution:
         return dfs(t, m)
 
     def lc_889(self, preorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
-        # 模板：使用递归经典分治构造
+        # 递归divide_and_conquer构造
         if not preorder:
             return
 
@@ -79,7 +79,7 @@ class Solution:
     @lru_cache(None)
     def lc_894(self, n: int) -> List[Optional[TreeNode]]:
 
-        # 模板：经典类似卡特兰数的递归模拟计算生成
+        # 类似卡特兰数的递归implemention生成
         if n % 2 == 0:
             return []
         if n == 1:
@@ -97,7 +97,7 @@ class Solution:
 
     @lru_cache(None)
     def lc_932(self, n: int) -> List[int]:
-        # 模板：使用递归分治进行构造经典
+        # 递归divide_and_conquer构造
         if n == 1:
             return [1]
         return [2 * x - 1 for x in self.lc_932((n + 1) // 2)] + [2 * x for x in self.lc_932(n // 2)]
@@ -105,7 +105,7 @@ class Solution:
     @staticmethod
     def lc_1028(traversal: str) -> Optional[TreeNode]:
 
-        # 模板：根据先序遍历递归构造二叉树
+        # 根据先序遍历递归构造二叉树
         ans = ""
         pre = 0
         for w in traversal:
@@ -134,7 +134,7 @@ class Solution:
     @staticmethod
     def lc_1345(a: int, b: int) -> str:
 
-        # 模板：经典递归计算模拟
+        # 递归implemention
         def dfs(n, k):
 
             if n == 1 and k == 1:
@@ -152,7 +152,7 @@ class Solution:
     @staticmethod
     def lg_p1911(n, x, y):
 
-        # 模板：递归处理四叉树
+        # 递归处理四叉树
 
         def dfs(x1, y1, x2, y2, a, b):
             nonlocal ind
@@ -200,7 +200,7 @@ class Solution:
         # 递归生成
         dfs(0, 0, m - 1, m - 1, x, y)
 
-        # 哈希化处理
+        # hash化处理
         dct = dict()
         dct[0] = 0
         for i in range(m):
@@ -212,7 +212,7 @@ class Solution:
 
     @staticmethod
     def cf_448c(ac=FastIO()):
-        # 模板：贪心递归DP
+        # greedy递归DP
         ac.read_int()
         nums = ac.read_list_ints()
 
@@ -240,7 +240,7 @@ class Solution:
     @staticmethod
     def ac_98(ac=FastIO()):
 
-        # 模板：四叉树递归与坐标旋转变换
+        # 四叉树递归与坐标旋转变换
         for _ in range(ac.read_int()):
             n, a, b = ac.read_list_ints()
             a -= 1
@@ -285,7 +285,7 @@ class Solution:
     def ac_93_1(ac=FastIO()):
         n, m = ac.read_list_ints()
 
-        # 模板：递归实现选取
+        # 递归实现选取
 
         def dfs(i):
             if len(pre) == m:
@@ -308,7 +308,7 @@ class Solution:
     def ac_93_2(ac=FastIO()):
         n, m = ac.read_list_ints()
 
-        # 模板：迭代实现选取
+        # 迭代实现选取
         pre = []
         stack = [[0, 0]]
         while stack:
@@ -330,7 +330,7 @@ class Solution:
 
     @staticmethod
     def ac_118(ac=FastIO()):
-        # 模板：使用迭代方式进行递归计算
+        # 迭代方式递归
         dp = []
         for i in range(1, 8):
             n = 3 ** (i - 1)

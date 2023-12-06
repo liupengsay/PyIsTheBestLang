@@ -1,13 +1,13 @@
 """
 Algorithm：广度优先搜索、双端队列BFS、离散化BFS、有边界的BFS、染色法、奇数环
-Function：在有向图与无向图进行扩散，多源BFS、双向BFS，0-1BFS（类似SPFA）双向BFS或者A-star启发式搜索
+Function：在有向图与无向图扩散，多源BFS、双向BFS，0-1BFS（类似SPFA）双向BFS或者A-star启发式搜索
 
 ====================================LeetCode====================================
 
 =====================================LuoGu======================================
 
 ===================================CodeForces===================================
-1594D（https://codeforces.com/contest/1594/problem/D）经典建图后使用染色法BFS判断二分图
+1594D（https://codeforces.com/contest/1594/problem/D）建图后染色法BFS判断bipartite_graph
 
 ====================================AtCoder=====================================
 
@@ -30,7 +30,7 @@ class Solution:
     @staticmethod
     def lc_2608_1(n: int, edges: List[List[int]]) -> int:
 
-        # 模板：求无向图的最小环
+        # 求无向图的最小环
         graph = [[] for _ in range(n)]
         for x, y in edges:
             graph[x].append(y)
@@ -59,7 +59,7 @@ class Solution:
     @staticmethod
     def lc_2608_2(n: int, edges: List[List[int]]) -> int:
 
-        # 模板：求无向图的最小环
+        # 求无向图的最小环
         graph = [[] for _ in range(n)]
         for u, v in edges:
             graph[u].append(v)
@@ -86,7 +86,7 @@ class Solution:
 
     @staticmethod
     def lc_2608_3(n: int, edges: List[List[int]]) -> int:
-        # 模板：求无向图的最小环
+        # 求无向图的最小环
         inf = float('inf')
         g = [[] for _ in range(n)]
         for x, y in edges:
@@ -115,7 +115,7 @@ class Solution:
 
     @staticmethod
     def lc_2608_4(n: int, edges: List[List[int]]) -> int:
-        # 模板：求无向图的最小环，枚举边
+        # 求无向图的最小环，brute_force边
         graph = [set() for _ in range(n)]
         for x, y in edges:
             graph[x].add(y)
@@ -143,7 +143,7 @@ class Solution:
 
     @staticmethod
     def lg_p1807_1(ac=FastIO()):
-        # 模板：有向无环图 DAG 使用拓扑排序求最长路
+        # 有向无环图 DAG 拓扑sorting求最长路
         n, m = ac.read_list_ints()
         edge = [dict() for _ in range(n)]
         pre = [set() for _ in range(n)]
@@ -154,7 +154,7 @@ class Solution:
             edge[u][v] = ac.max(edge[u].get(v, -ac.inf), w)
             pre[v].add(u)
 
-        # 注意这里可能有 0 之外的入度为 0 的点，需要先进行拓扑消除
+        # 注意这里可能有 0 之外的入度为 0 的点，需要先拓扑消除
         stack = deque([i for i in range(1, n) if not pre[i]])
         while stack:
             i = stack.popleft()
@@ -163,7 +163,7 @@ class Solution:
                 if not pre[j]:
                     stack.append(j)
 
-        # 广搜计算最长路，进一步还可以确定相应的具体路径
+        # 广搜最长路，进一步还可以确定相应的具体路径
         visit = [-ac.inf] * n
         visit[0] = 0
         stack = deque([0])
@@ -182,7 +182,7 @@ class Solution:
 
     @staticmethod
     def lg_p1807_2(ac=FastIO()):
-        # 模板：有向无环图 DAG 使用深搜求最长路
+        # 有向无环图 DAG 深搜求最长路
         n, m = ac.read_list_ints()
         edge = [dict() for _ in range(n)]
         for _ in range(m):
@@ -211,7 +211,7 @@ class Solution:
 
     @staticmethod
     def cf_1272e(ac=FastIO()):
-        # 模板：反向建图与多源 BFS 计算
+        # 反向建图与多源 BFS 
         n = ac.read_int()
         nums = ac.read_list_ints()
         ans = [-1] * n
@@ -242,7 +242,7 @@ class Solution:
 
     @staticmethod
     def lg_p3183(ac=FastIO()):
-        # 模板: 计算有向无环图路径条数
+        # 模板: 有向无环图路径条数
         n, m = ac.read_list_ints()
         edge = [[] for _ in range(n)]
         degree = [0] * n
@@ -257,7 +257,7 @@ class Solution:
         stack = [i for i in range(n) if not degree[i]]
         for x in stack:
             cnt[x] = 1
-        while stack:  # 也可以使用深搜
+        while stack:  # 也可以深搜
             nex = []
             for i in stack:
                 for j in edge[i]:
@@ -271,7 +271,7 @@ class Solution:
 
     @staticmethod
     def lg_p1747(ac=FastIO()):
-        # 模板：双向 BFS 搜索
+        # 双向 BFS 搜索
         x0, y0 = ac.read_list_ints()
         x2, y2 = ac.read_list_ints()
 
@@ -318,12 +318,12 @@ class Solution:
 
     @staticmethod
     def lc_2290(grid: List[List[int]]) -> int:
-        # 模板：使用队列实现0-1 BFS 即优先选择距离较短的路线
+        # 队列实现0-1 BFS 即优先选择距离较短的路线
         m, n = len(grid), len(grid[0])
         visit = [[0] * n for _ in range(m)]
         q = deque([(0, 0, 0)])
         while q:
-            # 也可以使用 Dijkstra 进行求解
+            # 也可以 Dijkstra 求解
             d, x, y = q.popleft()
             for nx, ny in (x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1):
                 if 0 <= nx < m and 0 <= ny < n and not visit[nx][ny]:
@@ -338,7 +338,7 @@ class Solution:
 
     @staticmethod
     def lc_2493(n: int, edges: List[List[int]]) -> int:
-        # 模板：利用并查集和广度优先搜索进行连通块分组并枚举最佳方案，也就是染色法判断是否可以形成二分图
+        # 利用union_find和广度优先搜索连通块分组并brute_force最佳方案，也就是染色法判断是否可以形成bipartite_graph
         dct = [[] for _ in range(n)]
         uf = UnionFind(n)
         for i, j in edges:
@@ -375,7 +375,7 @@ class Solution:
 
     @staticmethod
     def lc_1368(grid: List[List[int]]) -> int:
-        # 模板：使用队列实现0-1 BFS 即优先选择距离较短的路线
+        # 队列实现0-1 BFS 即优先选择距离较短的路线
         m, n = len(grid), len(grid[0])
         ceil = int(1e9)
         dist = [0] + [ceil] * (m * n - 1)
@@ -383,7 +383,7 @@ class Solution:
         q = deque([(0, 0)])
 
         while q:
-            # 也可以使用 Dijkstra 进行求解
+            # 也可以 Dijkstra 求解
             x, y = q.popleft()
             if (x, y) in seen:
                 continue
@@ -402,7 +402,7 @@ class Solution:
 
     @staticmethod
     def lc_1926(maze: List[List[str]], entrance: List[int]) -> int:
-        # 模板：经典双端队列01BFS原地哈希
+        # 双端队列01BFS原地hash
         m, n = len(maze), len(maze[0])
         x0, y0 = entrance[:]
         stack = deque([[x0, y0, 0]])
@@ -419,7 +419,7 @@ class Solution:
 
     @staticmethod
     def cf_1572a(ac=FastIO()):
-        # 模板：BFS 判断 DAG 是否有环和无环时的最长路（注意起点可能有多个）
+        # BFS 判断 DAG 是否有环和无环时的最长路（注意起点可能有多个）
         for _ in range(ac.read_int()):
             n = ac.read_int()
             dct = [dict() for _ in range(n)]
@@ -438,7 +438,7 @@ class Solution:
                 for i in stack:
                     for j in dct[i]:
                         degree[j] -= 1
-                        # 拓扑排序的同时更新最长路
+                        # 拓扑sorting的同时更新最长路
                         if visit[i] + dct[i][j] > visit[j]:
                             visit[j] = visit[i] + dct[i][j]
                         if not degree[j]:
@@ -452,7 +452,7 @@ class Solution:
 
     @staticmethod
     def cf_1037d(ac=FastIO()):
-        # 模板：使用队列与集合判断 bfs序 即广搜序
+        # 队列与集合判断 bfs序 即广搜序
         n = ac.read_int()
         edge = [[] for _ in range(n)]
         for _ in range(n - 1):
@@ -489,7 +489,7 @@ class Solution:
 
     @staticmethod
     def lg_p1099(ac=FastIO()):
-        # 模板：求最小偏心距在树的直径上进行双指针与单调队列计算
+        # 求最小偏心距在树的直径上two_pointer与单调队列
         n, s = ac.read_list_ints()
         dct = [dict() for _ in range(n)]
         for _ in range(n - 1):
@@ -516,7 +516,7 @@ class Solution:
             pa.reverse()
             return node, pa
 
-        # 计算直径与路径
+        # 直径与路径
         start, _ = bfs_diameter(0)
         end, path = bfs_diameter(start)
 
@@ -538,7 +538,7 @@ class Solution:
                     dis[u] = x
             return dis
 
-        # 计算直径上的端点往 start 与往 end 方向的最长距离
+        # 直径上的端点往 start 与往 end 方向的最长距离
         dis1 = bfs_distance(start)  # start -> end
         dis2 = bfs_distance(end)  # end -> start
 
@@ -554,12 +554,12 @@ class Solution:
             diameter[src] = res
             return
 
-        # 计算直径上的端点往非直径端点上的最远距离
+        # 直径上的端点往非直径端点上的最远距离
         diameter = {node: 0 for node in path}
         for node in diameter:
             bfs_node(node)
 
-        # 使用双指针加滑动窗口单调队列记录直径范围点往非直径方向延申的最远距离
+        # two_pointer|sliding_window单调队列记录直径范围点往非直径方向延申的最远距离
         m = len(path)
         ans = inf
         gap = 0
@@ -572,7 +572,7 @@ class Solution:
             if i:
                 gap -= dct[path[i - 1]][path[i]]
 
-            # 双指针与单调队列
+            # two_pointer与单调队列
             while j + 1 < m and gap + dct[path[j]][path[j + 1]] <= s:
                 gap += dct[path[j]][path[j + 1]]
                 while q and q[-1][0] < diameter[path[j + 1]]:
@@ -586,7 +586,7 @@ class Solution:
 
     @staticmethod
     def abc_133e(ac=FastIO()):
-        # 模板：BFS染色法计数
+        # BFS染色法counter
         n, k = ac.read_list_ints()
         mod = 1000000007
         dct = [[] for _ in range(n)]
@@ -622,7 +622,7 @@ class Solution:
 
     @staticmethod
     def ac_173(ac=FastIO()):
-        # 模板：多源BFS模板题
+        # 多源BFS模板题
         m, n = ac.read_list_ints()
         grid = [ac.read_list_str() for _ in range(m)]
         stack = []
@@ -649,7 +649,7 @@ class Solution:
     def ac_175(ac=FastIO()):
         for _ in range(ac.read_int()):
 
-            # 模板：经典双端优先队列 01 BFS模板题注意建图
+            # 双端priority_queue 01 BFS模板题注意建图
             m, n = ac.read_list_ints()
             grid = [ac.read_str() for _ in range(m)]
             dct = [dict() for _ in range((m + 1) * (n + 1))]
@@ -683,7 +683,7 @@ class Solution:
     @staticmethod
     def ac_177(ac=FastIO()):
         for _ in range(ac.read_int()):
-            # 模板：多源双向BFS
+            # 多源双向BFS
             m, n = ac.read_list_ints()
             grid = [ac.read_str() for _ in range(m)]
             ghost = []
@@ -759,7 +759,7 @@ class Solution:
 
     @staticmethod
     def lg_p1213(ac=FastIO()):
-        # 模板：使用状态压缩优化进行01BFS
+        # state_compression优化01BFS
         nex = {0: 1, 1: 2, 2: 3, 3: 0}
         lst = "ABDE,ABC,BCEF,ADG,BDEFH,CFI,DEGH,GHI,EFHI".split(",")
         ind = dict()
@@ -821,7 +821,7 @@ class Solution:
 
     @staticmethod
     def lg_p1902(ac=FastIO()):
-        # 模板：二分加BFS与原地哈希计算路径最大值的最小值
+        # binary_search|BFS与原地hash路径最大值的最小值
         m, n = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
         for j in range(n):
@@ -829,7 +829,7 @@ class Solution:
         dct = dict()
 
         def check(x):
-            # 使用原地哈希节省空间
+            # 原地hash节省空间
             stack = [(0, j) for j in range(n)]
             cnt = 0
             while stack and cnt < n:
@@ -859,7 +859,7 @@ class Solution:
                     if x >= w >= 0:
                         stack.append((a, b))
                         grid[a][b] = -w - 1
-            # 原地哈希复原
+            # 原地hash复原
             for i in range(1, m):
                 for j in range(n):
                     w = grid[i][j]
@@ -889,7 +889,7 @@ class Solution:
     @staticmethod
     def lg_p2199(ac=FastIO()):
 
-        # 模板：队列01BFS判定距离最近的可视范围
+        # 队列01BFS判定距离最近的可视范围
         m, n = ac.read_list_ints()
         grid = [ac.read_list_str() for _ in range(m)]
         ind = [[0, 1], [0, -1], [1, 0], [-1, 0],
@@ -934,7 +934,7 @@ class Solution:
 
     @staticmethod
     def lg_p2226(ac=FastIO()):
-        # 模板：有限制地BDS转向计算
+        # 有限制地BDS转向
         m, n = ac.read_list_ints()
         s1, s2, e1, e2 = ac.read_list_ints_minus_one()
         grid = [ac.read_list_ints() for _ in range(m)]
@@ -962,7 +962,7 @@ class Solution:
 
     @staticmethod
     def lg_p2296(ac=FastIO()):
-        # 模板：正向与反向建图跑两次BFS
+        # 正向与反向建图跑两次BFS
         n, m = ac.read_list_ints()
         dct = [set() for _ in range(n)]
         rev = [set() for _ in range(n)]
@@ -1003,7 +1003,7 @@ class Solution:
     @staticmethod
     def lg_p2919(ac=FastIO()):
 
-        # 模板：经典bfs按元素值排序后从大到小遍历
+        # bfs按元素值sorting后从大到小遍历
         m, n = ac.read_list_ints()
         grid = []
         for _ in range(m):
@@ -1034,7 +1034,7 @@ class Solution:
 
     @staticmethod
     def lg_p2937(ac=FastIO()):
-        # 模板：使用01BFS优先队列计算
+        # 01BFSpriority_queue
         n, m = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
         visit = [[[inf] * 4 for _ in range(n)] for _ in range(m)]
@@ -1064,7 +1064,7 @@ class Solution:
 
     @staticmethod
     def lg_p3456(ac=FastIO()):
-        # 模板：使用 BFS 与周边进行山峰山谷计算
+        #  BFS 与周边山峰山谷
         n = ac.read_int()
         grid = [ac.read_list_ints() for _ in range(n)]
         visit = [[0] * n for _ in range(n)]
@@ -1104,7 +1104,7 @@ class Solution:
 
     @staticmethod
     def lg_p3818(ac=FastIO()):
-        # 模板：使用队列进行 01BFS 状态广搜
+        # 队列 01BFS 状态广搜
         m, n, d, r = ac.read_list_ints()
         grid = []
         for _ in range(m):
@@ -1131,7 +1131,7 @@ class Solution:
     @staticmethod
     def lg_p3855(ac=FastIO()):
 
-        # 模板：定义四维状态的广度优先搜索
+        # 定义四维状态的广度优先搜索
         m, n = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
         gg = [-1, -1]
@@ -1178,7 +1178,7 @@ class Solution:
 
     @staticmethod
     def lg_p3869(ac=FastIO()):
-        # 模板：广搜加状压记录最少次数
+        # 广搜|状压记录最少次数
         m, n = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
         k = ac.read_int()
@@ -1234,7 +1234,7 @@ class Solution:
 
     @staticmethod
     def lg_p4554(ac=FastIO()):
-        # 模板：典型 01BFS 进行模拟
+        # 典型 01BFS implemention
         while True:
             lst = ac.read_list_ints()
             if lst == [0, 0]:
@@ -1263,7 +1263,7 @@ class Solution:
 
     @staticmethod
     def lg_p4667(ac=FastIO()):
-        # 模板：使用 01BFS 进行模拟计算
+        #  01BFS implemention
         m, n = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
         dct = [dict() for _ in range((m + 1) * (n + 1))]
@@ -1296,7 +1296,7 @@ class Solution:
 
     @staticmethod
     def lg_p5096(ac=FastIO()):
-        # 模板：状压加广搜 BFS 模拟
+        # 状压|广搜 BFS implemention
         n, m, k = ac.read_list_ints()
         dct = [dict() for _ in range(n)]
         cao = dict()
@@ -1334,7 +1334,7 @@ class Solution:
 
     @staticmethod
     def lg_p5099(ac=FastIO()):
-        # 模板：队列 01BFS 广搜模拟
+        # 队列 01BFS 广搜implemention
         n, t = ac.read_list_ints()
         dct = dict()
         for i in range(n):
@@ -1359,7 +1359,7 @@ class Solution:
 
     @staticmethod
     def lg_p5195(ac=FastIO()):
-        # 模板：记录遇到灌木与否的状态进行 BFS 计算
+        # 记录遇到灌木与否的状态 BFS 
         n, m = ac.read_list_ints()
         lst = []
         while len(lst) < m * n:
@@ -1375,7 +1375,7 @@ class Solution:
                     pos_2 = [i, j]
                 elif w == 4:
                     wood.append([i, j])
-        # 使用队列实现的广搜
+        # 队列实现的广搜
         visit = [[[inf, inf] for _ in range(n)] for _ in range(m)]
         stack = deque([pos_2 + [0]])
         visit[pos_2[0]][pos_2[1]][0] = 0
@@ -1405,7 +1405,7 @@ class Solution:
 
     @staticmethod
     def lg_p6131(ac=FastIO()):
-        # 模板：经典 BFS 计算不同连通块之间的距离
+        #  BFS 不同连通块之间的距离
         m, n = ac.read_list_ints()
         grid = [ac.read_list_str() for _ in range(m)]
 
@@ -1430,7 +1430,7 @@ class Solution:
 
         dis = [[0] * n for _ in range(m)]
         for c in range(3):
-            # 分别计算连通块到每个点的距离
+            # 分别连通块到每个点的距离
             stack = deque(dct[c])
             cur = [[inf] * n for _ in range(m)]
             for i, j in stack:
@@ -1444,18 +1444,18 @@ class Solution:
                                 cur[x][y] = cur[a][b]
                                 stack.append([x, y])
                         else:
-                            # 只有遇到 "."才需要增加距离
+                            # 只有遇到 "."才需要增|距离
                             if cur[x][y] > cur[a][b] + 1:
                                 cur[x][y] = cur[a][b] + 1
                                 stack.append([x, y])
             for i in range(m):
                 for j in range(n):
                     dis[i][j] += cur[i][j]
-        # 枚举交互节点
+        # brute_force交互节点
         ans = inf
         for i in range(m):
             for j in range(n):
-                if grid[i][j] == ".":  # 三个连通块重复计数需要减去二
+                if grid[i][j] == ".":  # 三个连通块重复counter需要减去二
                     ans = ac.min(ans, dis[i][j] - 2)
                 else:
                     ans = ac.min(ans, dis[i][j])
@@ -1464,7 +1464,7 @@ class Solution:
 
     @staticmethod
     def lg_p6909(ac=FastIO()):
-        # 模板：预处理加 BFS
+        # 预处理| BFS
         m, n = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
 
@@ -1540,7 +1540,7 @@ class Solution:
 
     @staticmethod
     def lg_p9065(ac=FastIO()):
-        # 模板：脑筋急转弯BFS枚举
+        # brain_teaserBFSbrute_force
         m, n, k = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
         pos = set(tuple(ac.read_list_ints_minus_one()) for _ in range(k))
@@ -1618,7 +1618,7 @@ class Solution:
 
     @staticmethod
     def lc_909(board: List[List[int]]) -> int:
-        # 模板：经典01BFS模拟
+        # 01BFSimplemention
         def position(num):
             i = (num - 1) // n
             j = (num - 1) % n
@@ -1646,7 +1646,7 @@ class Solution:
 
     @staticmethod
     def lc_994(grid: List[List[int]]) -> int:
-        # 模板：经典BFS使用队列模拟
+        # BFS队列implemention
         m, n = len(grid), len(grid[0])
         stack = deque()
         for i in range(m):
@@ -1669,7 +1669,7 @@ class Solution:
 
     @staticmethod
     def lc_1036_1(blocked: List[List[int]], source: List[int], target: List[int]) -> bool:
-        # 模板：经典带边界的BFS和离散化BFS两种解法
+        # 带边界的BFS和离散化BFS两种解法
         def check(node):
             stack = [node]
             visit = {tuple(node)}
@@ -1695,7 +1695,7 @@ class Solution:
 
     @staticmethod
     def lc_1036_2(blocked: List[List[int]], source: List[int], target: List[int]) -> bool:
-        # 模板：经典带边界的BFS和离散化BFS两种解法
+        # 带边界的BFS和离散化BFS两种解法
         nodes_r = {0, 10 ** 6 - 1}
         nodes_c = {0, 10 ** 6 - 1}
         for a, b in blocked + [source] + [target]:
@@ -1745,7 +1745,7 @@ class Solution:
 
     @staticmethod
     def ac_4415(ac=FastIO()):
-        # 模板：经典BFS染色法，判断有无奇数环，方案计数
+        # BFS染色法，判断有无奇数环，方案counter
         mod = 998244353
 
         def check():
@@ -1778,7 +1778,7 @@ class Solution:
                                     ac.st(0)
                                     return
                         stack = nex
-                    res = pow(2, cnt[0], mod) + pow(2, cnt[1], mod)  # 方案计数
+                    res = pow(2, cnt[0], mod) + pow(2, cnt[1], mod)  # 方案counter
                     ans *= res
                     ans %= mod
             ac.st(ans)
@@ -1790,7 +1790,7 @@ class Solution:
 
     @staticmethod
     def lg_p1330(ac=FastIO()):
-        # 模板：经典BFS隔层染色法，判断有无奇数环
+        # BFS隔层染色法，判断有无奇数环
         n, m = ac.read_list_ints()
         edge = [[] for _ in range(n)]
         for _ in range(m):
@@ -1827,7 +1827,7 @@ class Solution:
 
     @staticmethod
     def ac_4481(ac=FastIO()):
-        # 模板：经典01BFS
+        # 01BFS
         m, n = ac.read_list_ints()
         r, c = ac.read_list_ints_minus_one()
         x, y = ac.read_list_ints()

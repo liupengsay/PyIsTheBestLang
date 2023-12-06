@@ -1,6 +1,6 @@
 """
 Algorithm：数位DP
-Function：统计满足一定条件的自然数个数，也可以根据字典序大小特点统计一些特定字符串的个数，是一种计数常用的DP思想
+Function：统计满足一定条件的自然数个数，也可以根据lexicographical_order大小特点统计一些特定字符串的个数，是一种counter常用的DP思想
 
 
 ====================================LeetCode====================================
@@ -8,10 +8,10 @@ Function：统计满足一定条件的自然数个数，也可以根据字典序
 357（https://leetcode.com/problems/count-numbers-with-unique-digits/）排列组合也可用数位 DP 求解
 600（https://leetcode.com/problems/non-negative-integers-without-consecutive-ones/）不含连续 1 的非负整数
 902（https://leetcode.com/problems/numbers-at-most-n-given-digit-set/）限定字符情况下小于等于 n 的个数
-1012（https://leetcode.com/problems/numbers-with-repeated-digits/）容斥原理计算没有重复数字的个数
-1067（https://leetcode.com/problems/digit-count-in-range/）计算区间计数，使用右端点减去左端点，数位DP容斥模板题
-1397（https://leetcode.com/problems/find-all-good-strings/）使用数位DP思想进行模拟
-2376（https://leetcode.com/problems/count-special-integers/）计算小于 n 的特殊正整数个数
+1012（https://leetcode.com/problems/numbers-with-repeated-digits/）inclusion_exclusion没有重复数字的个数
+1067（https://leetcode.com/problems/digit-count-in-range/）区间counter，右端点减去左端点，数位DP容斥模板题
+1397（https://leetcode.com/problems/find-all-good-strings/）数位DP思想implemention
+2376（https://leetcode.com/problems/count-special-integers/）小于 n 的特殊正整数个数
 2719（https://leetcode.com/problems/count-of-integers/）数位DP容斥模板题
 2801（https://leetcode.com/problems/count-stepping-numbers-in-range/）数位DP容斥模板题
 2827（https://leetcode.com/problems/number-of-beautiful-integers-in-the-range/）数位DP容斥模板题
@@ -20,17 +20,17 @@ Function：统计满足一定条件的自然数个数，也可以根据字典序
 面试题 17（https://leetcode.com/problems/number-of-2s-in-range-lcci/）所有数位出现 2 的次数
 
 ====================================AtCoder=====================================
-D - XOR World（https://atcoder.jp/contests/abc121/tasks/abc121_d）正解为(2*n)^(2*n+1)=1的性质，可使用数位DP计算 1^2^...^num的值
-E - Digit Products（https://atcoder.jp/contests/abc208/tasks/abc208_e）脑筋急转弯，有技巧地处理数位DP结果计算
+D - XOR World（https://atcoder.jp/contests/abc121/tasks/abc121_d）正解为(2*n)^(2*n+1)=1的性质，可数位DP 1^2^...^num的值
+E - Digit Products（https://atcoder.jp/contests/abc208/tasks/abc208_e）brain_teaser，有技巧地处理数位DP结果
 
 =====================================LuoGu======================================
-1590（https://www.luogu.com.cn/problem/P1590）计算 n 以内不含7的个数
-1239（https://www.luogu.com.cn/problem/P1239）计算 n 以内每个数字0-9的个数
-3908（https://www.luogu.com.cn/problem/P3908）计算 1^2..^n的异或和，可以使用数位DP计数也可以用相邻的奇偶数计算
-1836（https://www.luogu.com.cn/problem/P1836）数位DP计算1~n内所有数字的数位和
+1590（https://www.luogu.com.cn/problem/P1590） n 以内不含7的个数
+1239（https://www.luogu.com.cn/problem/P1239） n 以内每个数字0-9的个数
+3908（https://www.luogu.com.cn/problem/P3908） 1^2..^n的异或和，可以数位DPcounter也可以用相邻的奇偶数
+1836（https://www.luogu.com.cn/problem/P1836）数位DP1~n内所有数字的数位和
 
 
-神奇数（https://www.lanqiao.cn/problems/5891/learning/?contest_id=145）容斥原理与数位DP
+神奇数（https://www.lanqiao.cn/problems/5891/learning/?contest_id=145）inclusion_exclusion与数位DP
 
 """
 from functools import lru_cache
@@ -45,9 +45,9 @@ class Solution:
 
     @staticmethod
     def abc_121d(ac=FastIO()):
-        # 模板：正解为 n^(n+1) == 1 (n%2==0) 的性质
+        # 正解为 n^(n+1) == 1 (n%2==0) 的性质
         def count(num):
-            # 模板：使用数位DP计算 1^2^...^num的值
+            # 数位DP 1^2^...^num的值
             @lru_cache(None)
             def dfs(i, cnt, is_limit, is_num):
                 if i == n:
@@ -83,7 +83,7 @@ class Solution:
 
     @staticmethod
     def abc_208e(ac=FastIO()):
-        # 模板：有技巧地处理数位DP结果计算
+        # 有技巧地处理数位DP结果
 
         @lru_cache(None)
         def dfs(i, is_limit, is_num, pre):
@@ -110,14 +110,14 @@ class Solution:
 
     @staticmethod
     def lc_233(n: int) -> int:
-        # 模板：计算 0 到 n 有数位 1 的出现次数
+        #  0 到 n 有数位 1 的出现次数
         if not n:
             return 0
         return DigitalDP().count_digit(n, 1)
 
     @staticmethod
     def lc_2719(num1: str, num2: str, min_sum: int, max_sum: int) -> int:
-        # 模板：数位DP容斥模板题
+        # 数位DP容斥模板题
 
         def check(num):
             @lru_cache(None)
@@ -151,7 +151,7 @@ class Solution:
 
     @staticmethod
     def lc_2801(low: str, high: str) -> int:
-        # 模板：数位DP容斥模板题
+        # 数位DP容斥模板题
 
         def check(num):
             @lru_cache(None)
@@ -178,7 +178,7 @@ class Solution:
 
     @staticmethod
     def lc_2827(low: int, high: int, k: int) -> int:
-        # 模板：数位DP容斥模板题
+        # 数位DP容斥模板题
 
         def check(num):
             @lru_cache(None)
@@ -204,7 +204,7 @@ class Solution:
 
     @staticmethod
     def lg_p1836(ac=FastIO()):
-        # 模板：数位DP计算1~n内所有数字的数位和
+        # 数位DP1~n内所有数字的数位和
         n = ac.read_int()
         ans = 0
         for d in range(1, 10):
@@ -214,6 +214,6 @@ class Solution:
 
     @staticmethod
     def lc_1067(d: int, low: int, high: int) -> int:
-        # 模板：计算区间计数，使用右端点减去左端点，数位DP容斥模板题
+        # 区间counter，右端点减去左端点，数位DP容斥模板题
         dd = DigitalDP()
         return dd.count_digit(high, d) - dd.count_digit(low - 1, d)

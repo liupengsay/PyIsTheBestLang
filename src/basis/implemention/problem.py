@@ -1,72 +1,72 @@
 """
-Algorithm：模拟、implemention、大模拟
-Function：根据题意进行模拟，有经典模拟结论约瑟夫环问题
+Algorithm：implemention、implemention、大implemention
+Function：根据题意implemention，有implemention结论约瑟夫环问题
 
 ====================================LeetCode====================================
-2296（https://leetcode.com/problems/design-a-text-editor/）使用指针维护结果进行模拟
+2296（https://leetcode.com/problems/design-a-text-editor/）pointer维护结果implemention
 54（https://leetcode.com/problems/spiral-matrix/）https://leetcode.com/problems/spiral-matrix/ 两种方式，数字到索引，以及索引到数字
 59（https://leetcode.com/problems/spiral-matrix-ii/）
 2326（https://leetcode.com/problems/spiral-matrix-iv/）
 剑指 Offer 62（https://leetcode.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/）约瑟夫环
-2534（https://leetcode.com/problems/time-taken-to-cross-the-door/）根据题意进行模拟
-460（https://leetcode.com/problems/lfu-cache/）经典OrderDict应用与数据结构自定义题目
-146（https://leetcode.com/problems/lru-cache/）经典OrderDict应用与数据结构自定义题目
-2534（https://leetcode.com/problems/time-taken-to-cross-the-door/）按照时间与题意进行模拟
+2534（https://leetcode.com/problems/time-taken-to-cross-the-door/）根据题意implemention
+460（https://leetcode.com/problems/lfu-cache/）OrderDict应用与数据结构自定义题目
+146（https://leetcode.com/problems/lru-cache/）OrderDict应用与数据结构自定义题目
+2534（https://leetcode.com/problems/time-taken-to-cross-the-door/）按照时间与题意implemention
 1823（https://leetcode.com/contest/weekly-contest-236/problems/find-the-winner-of-the-circular-game/）约瑟夫环
 927（https://leetcode.com/problems/three-equal-parts/description/）根据二进制特点确定三部分是否相等
-1599（https://leetcode.com/problems/maximum-profit-of-operating-a-centennial-wheel/description/）典型模拟题枚举计算
+1599（https://leetcode.com/problems/maximum-profit-of-operating-a-centennial-wheel/description/）典型implemention题brute_force
 2295（https://leetcode.com/problems/replace-elements-in-an-array/description/）逆序思维，或者类似链表思想
-1914（https://leetcode.com/problems/cyclically-rotating-a-grid/description/）使用指针进行循环模拟
-1834（https://leetcode.com/contest/weekly-contest-237/problems/single-threaded-cpu/）使用堆和指针模拟
+1914（https://leetcode.com/problems/cyclically-rotating-a-grid/description/）pointer循环implemention
+1834（https://leetcode.com/contest/weekly-contest-237/problems/single-threaded-cpu/）堆和pointerimplemention
 
 =====================================LuoGu======================================
-1815（https://www.luogu.com.cn/problem/P1815）模拟类似贪吃蛇的移动
-1538（https://www.luogu.com.cn/problem/P1538）模拟数字文本的打印
-1535（https://www.luogu.com.cn/problem/P1535）动态规划模拟计数
-2239（https://www.luogu.com.cn/problem/P2239）模拟螺旋矩阵的赋值
-2338（https://www.luogu.com.cn/problem/P2338）按照题意进行时间与距离的模拟
-2366（https://www.luogu.com.cn/problem/P2366）字符串模拟与变量赋值计算
-2552（https://www.luogu.com.cn/problem/P2552）经典矩阵赋值模拟
-2696（https://www.luogu.com.cn/problem/P2696）约瑟夫环模拟与差分计算
-1234（https://www.luogu.com.cn/problem/P1234）计算矩阵每个点四个方向特定长为4的单词个数
-1166（https://www.luogu.com.cn/problem/P1166）按照题意复杂的模拟题
-1076（https://www.luogu.com.cn/problem/P1076）模拟进行操作即可
-8924（https://www.luogu.com.cn/problem/P8924）模拟的同时使用进制的思想进行求解
-8889（https://www.luogu.com.cn/problem/P8889）经典01序列分段计数
-8870（https://www.luogu.com.cn/problem/P8870）按照进制进行加法模拟
-3880（https://www.luogu.com.cn/problem/P3880）按照题意模拟加密字符串
-3111（https://www.luogu.com.cn/problem/P3111）逆向思维使用行进距离模拟分组，类似力扣车队题目
-4346（https://www.luogu.com.cn/problem/P4346）模拟数字与字符串的转换与进行加减
-5079（https://www.luogu.com.cn/problem/P5079）字符串模拟
-5483（https://www.luogu.com.cn/problem/P5483）模拟进行表格拼接
-5587（https://www.luogu.com.cn/problem/P5587）按照题意模拟统计
-5759（https://www.luogu.com.cn/problem/P5759）按照题意模拟统计，使用将除法转换为乘法避免引起精度问题的处理技巧
-5989（https://www.luogu.com.cn/problem/P5989）模拟计数确定每个点左右角上方移除点的个数
-5995（https://www.luogu.com.cn/problem/P5995）动态模拟更新结果
-6264（https://www.luogu.com.cn/problem/P6264）进行模拟和循环判断
-6282（https://www.luogu.com.cn/problem/P6282）逆向思维进行，倒序分配模拟
-6410（https://www.luogu.com.cn/problem/P6410）按照题意和经典数独问题进行模拟
-6480（https://www.luogu.com.cn/problem/P6480）模拟摆放位置计数
-7186（https://www.luogu.com.cn/problem/P7186）脑筋急转弯，使用有限数据与作用域进行模拟
-7338（https://www.luogu.com.cn/problem/P7338）进行贪心模拟赋值
-2129（https://www.luogu.com.cn/problem/P2129）使用栈和指针模拟
-3407（https://www.luogu.com.cn/problem/P3407）经典模拟移动与相遇
-5329（https://www.luogu.com.cn/problem/P5329）经典字典序应用题，依据相邻项的字典序大小来确认排序
-6397（https://www.luogu.com.cn/problem/P6397）经典贪心模拟
-8247（https://www.luogu.com.cn/problem/P8247）经典模拟按照相对位置比例进行区分
-8611（https://www.luogu.com.cn/problem/P8611）经典蚂蚁碰撞模拟分类讨论
-8755（https://www.luogu.com.cn/problem/P8755）使用二叉堆进行模拟计算
-9023（https://www.luogu.com.cn/problem/P9023）经典矩阵翻转模拟计数
-8898（https://www.luogu.com.cn/problem/P8898）贪心模拟
-8895（https://www.luogu.com.cn/problem/P8895）模拟与组合计数
+1815（https://www.luogu.com.cn/problem/P1815）implemention类似贪吃蛇的移动
+1538（https://www.luogu.com.cn/problem/P1538）implemention数字文本的打印
+1535（https://www.luogu.com.cn/problem/P1535）动态规划implementioncounter
+2239（https://www.luogu.com.cn/problem/P2239）implementionmatrix_spiral的赋值
+2338（https://www.luogu.com.cn/problem/P2338）按照题意时间与距离的implemention
+2366（https://www.luogu.com.cn/problem/P2366）字符串implemention与变量赋值
+2552（https://www.luogu.com.cn/problem/P2552）矩阵赋值implemention
+2696（https://www.luogu.com.cn/problem/P2696）约瑟夫环implemention与差分
+1234（https://www.luogu.com.cn/problem/P1234）矩阵每个点四个方向特定长为4的单词个数
+1166（https://www.luogu.com.cn/problem/P1166）按照题意复杂的implemention题
+1076（https://www.luogu.com.cn/problem/P1076）implemention操作即可
+8924（https://www.luogu.com.cn/problem/P8924）implemention的同时进制的思想求解
+8889（https://www.luogu.com.cn/problem/P8889）01序列分段counter
+8870（https://www.luogu.com.cn/problem/P8870）按照进制|法implemention
+3880（https://www.luogu.com.cn/problem/P3880）按照题意implemention|密字符串
+3111（https://www.luogu.com.cn/problem/P3111）reverse_thinking行进距离implemention分组，类似力扣车队题目
+4346（https://www.luogu.com.cn/problem/P4346）implemention数字与字符串的转换与|减
+5079（https://www.luogu.com.cn/problem/P5079）字符串implemention
+5483（https://www.luogu.com.cn/problem/P5483）implemention表格拼接
+5587（https://www.luogu.com.cn/problem/P5587）按照题意implemention统计
+5759（https://www.luogu.com.cn/problem/P5759）按照题意implemention统计，将除法转换为乘法避免引起精度问题的处理技巧
+5989（https://www.luogu.com.cn/problem/P5989）implementioncounter确定每个点左右角上方移除点的个数
+5995（https://www.luogu.com.cn/problem/P5995）动态implemention更新结果
+6264（https://www.luogu.com.cn/problem/P6264）implemention和循环判断
+6282（https://www.luogu.com.cn/problem/P6282）reverse_thinking，倒序分配implemention
+6410（https://www.luogu.com.cn/problem/P6410）按照题意和数独问题implemention
+6480（https://www.luogu.com.cn/problem/P6480）implemention摆放位置counter
+7186（https://www.luogu.com.cn/problem/P7186）brain_teaser，有限数据与作用域implemention
+7338（https://www.luogu.com.cn/problem/P7338）greedyimplemention赋值
+2129（https://www.luogu.com.cn/problem/P2129）栈和pointerimplemention
+3407（https://www.luogu.com.cn/problem/P3407）implemention移动与相遇
+5329（https://www.luogu.com.cn/problem/P5329）lexicographical_order应用题，依据相邻项的lexicographical_order大小来确认sorting
+6397（https://www.luogu.com.cn/problem/P6397）greedyimplemention
+8247（https://www.luogu.com.cn/problem/P8247）implemention按照相对位置比例区分
+8611（https://www.luogu.com.cn/problem/P8611）蚂蚁碰撞implementionclassification_discussion
+8755（https://www.luogu.com.cn/problem/P8755）二叉堆implemention
+9023（https://www.luogu.com.cn/problem/P9023）矩阵翻转implementioncounter
+8898（https://www.luogu.com.cn/problem/P8898）greedyimplemention
+8895（https://www.luogu.com.cn/problem/P8895）implemention与组合counter
 8884（https://www.luogu.com.cn/problem/P8884）分矩阵位置的奇偶性讨论
-8873（https://www.luogu.com.cn/problem/P8873）等差数列计算
+8873（https://www.luogu.com.cn/problem/P8873）等差数列
 
 ===================================CodeForces===================================
 463C（https://codeforces.com/problemset/problem/463/C）选取两组互不相交的主副对角线使得和最大
 
 =====================================AcWing=====================================
-4318（https://www.acwing.com/problem/content/description/4321/）使用哈希贪心模拟构造
+4318（https://www.acwing.com/problem/content/description/4321/）hashgreedyimplemention构造
 
 
 """
@@ -84,7 +84,7 @@ class Solution:
 
     @staticmethod
     def lc_1823(n: int, m: int) -> int:
-        # 模板: 约瑟夫环计算最后的幸存者
+        # 模板: 约瑟夫环最后的幸存者
         return SpiralMatrix.joseph_ring(n, m) + 1
 
     @staticmethod
@@ -115,7 +115,7 @@ class Solution:
 
     @staticmethod
     def lg_p1815(ac=FastIO()):
-        # 模板：根据指令进行方格组合移动
+        # 根据指令方格组合移动
         def check():
             lst = deque([[25, j] for j in range(11, 31)])
             dire = {"E": [0, 1], "S": [1, 0], "W": [0, -1], "N": [-1, 0]}
@@ -144,7 +144,7 @@ class Solution:
 
     @staticmethod
     def lg_p2129(ac=FastIO()):
-        # 模板：使用栈和指针模拟
+        # 栈和pointerimplemention
         n, m = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         lst_x = []
@@ -178,7 +178,7 @@ class Solution:
 
     @staticmethod
     def lg_p3407(ac=FastIO()):
-        # 模板：经典模拟相向而行
+        # implemention相向而行
         n, t, q = ac.read_list_ints()
         nums = deque([ac.read_list_ints() for _ in range(n)])
         pos = [-1] * n
@@ -194,7 +194,7 @@ class Solution:
             x = nums[i][0]
             pos[i] = x + t
 
-        # 对相向而行的区间段计算是否到达相遇点
+        # 对相向而行的区间段是否到达相遇点
         while ind:
             left = []
             while ind and nums[ind[0]][1] == 1:
@@ -213,7 +213,7 @@ class Solution:
 
     @staticmethod
     def lg_p5329(ac=FastIO()):
-        # 模板：经典字典序应用题，依据相邻项的字典序大小来确认排序
+        # lexicographical_order应用题，依据相邻项的lexicographical_order大小来确认sorting
         n = ac.read_int()
         s = ac.read_str()
         ans = [0] * n
@@ -240,16 +240,16 @@ class Solution:
 
     @staticmethod
     def lg_p6397(ac=FastIO()):
-        # 模板：经典贪心模拟
+        # greedyimplemention
         k = ac.read_float()
         nums = [ac.read_float() for _ in range(ac.read_int())]
         pre = nums[0]
         ans = 0
         for num in nums[1:]:
             # 记录当前位置与当前耗时
-            if num - ans <= pre + k <= num + ans:  # 直接通知到位修改位置不增加时间
+            if num - ans <= pre + k <= num + ans:  # 直接通知到位修改位置不增|时间
                 pre += k
-            elif pre + k > num + ans:  # 直接通知到位不增加时间位置受限
+            elif pre + k > num + ans:  # 直接通知到位不增|时间位置受限
                 pre = ac.max(pre, num + ans)
             else:  # 需要相向而行花费时间
                 gap = (num - ans - pre - k) / 2.0
@@ -260,7 +260,7 @@ class Solution:
 
     @staticmethod
     def lg_p8247(ac=FastIO()):
-        # 模板：经典模拟按照相对位置比例进行区分
+        # implemention按照相对位置比例区分
         m, n = ac.read_list_ints()
         start = [-1, -1]
         dct = []
@@ -287,7 +287,7 @@ class Solution:
 
     @staticmethod
     def lg_p8611(ac=FastIO()):
-        # 模板：经典蚂蚁碰撞模拟分类讨论
+        # 蚂蚁碰撞implementionclassification_discussion
         ac.read_int()
         nums = ac.read_list_ints()
         a = nums[0]
@@ -306,7 +306,7 @@ class Solution:
 
     @staticmethod
     def lg_p9023(ac=FastIO()):
-        # 模板：经典矩阵翻转模拟计数
+        # 矩阵翻转implementioncounter
         m = ac.read_int()
         n = ac.read_int()
         k = ac.read_int()
@@ -329,7 +329,7 @@ class Solution:
 
     @staticmethod
     def lg_p8895(ac=FastIO()):
-        # 模板：模拟与组合计数
+        # implemention与组合counter
         n, m, p = ac.read_list_ints()
         dp = [1] * (n + 1)
         for i in range(1, n + 1):
@@ -378,7 +378,7 @@ class Solution:
 
     @staticmethod
     def lg_p8884(ac=FastIO()):
-        # 模板：分矩阵位置的奇偶性讨论
+        # 分矩阵位置的奇偶性讨论
         n, m, c = ac.read_list_ints()
         cnt = [0, 0]
         for _ in range(c):
@@ -427,7 +427,7 @@ class Solution:
 
     @staticmethod
     def ac_4318(ac=FastIO()):
-        # 模板：使用哈希贪心模拟构造
+        # hashgreedyimplemention构造
         x = y = 0
         ind = dict()
         ind["U"] = [-1, 0]

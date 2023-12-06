@@ -17,7 +17,7 @@ class Solution:
 
     @staticmethod
     def lg_p3812(ac=FastIO()):
-        # 模板：线性基查询数组取任何子集得到的 xor 最大值
+        # 线性基查询数组取任何子集得到的 xor 最大值
         ac.read_int()
         nums = ac.read_list_ints()
         lb = LinearBasis(nums)

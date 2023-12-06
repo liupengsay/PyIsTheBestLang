@@ -8,7 +8,7 @@ class TestGeneral(unittest.TestCase):
         # 创建支配树对象
         dt = DominatingTree(5)
 
-        # 添加图中的边
+        # 添|图中的边
         dt.add_edge(0, 1)
         dt.add_edge(1, 2)
         dt.add_edge(2, 3)

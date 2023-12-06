@@ -1,38 +1,38 @@
 """
-Algorithm：字符串哈希、树哈希、矩阵哈希、树的最小表示法、最长前缀回文子串、最长后缀回文子串
-Function：将一定长度的字符串映射为多项式函数值，并进行比较或者计数，通常结合滑动窗口进行计算，注意防止哈希碰撞
+Algorithm：字符串hash、树hash、矩阵hash、树的最小表示法、最长前缀palindrome_substring、最长后缀palindrome_substring
+Function：将一定长度的字符串映射为多项式函数值，并比较或者counter，通常结合sliding_window，注意防止hash碰撞
 
 ====================================LeetCode====================================
-214（https://leetcode.com/problems/shortest-palindrome/）使用正向与反向字符串哈希计算字符串前缀最长回文子串，也可以用KMP与马拉车
-572（https://leetcode.com/problems/subtree-of-another-tree/）经典树结构哈希
-1044（https://leetcode.com/problems/shortest-palindrome/）利用binary_search加字符串哈希确定具有最长长度的重复子串
-1316（https://leetcode.com/problems/shortest-palindrome/）利用字符串哈希确定不同循环子串的个数
-2156（https://leetcode.com/problems/find-substring-with-given-hash-value/）逆向进行字符串哈希的计算
-652（https://leetcode.com/problems/find-duplicate-subtrees/）树哈希，确定重复子树
-1554（https://leetcode.com/problems/strings-differ-by-one-character/）字符串前后缀哈希求解
-1923（https://leetcode.com/problems/longest-common-subpath/）经典binary_search加滚动哈希
-1948（https://leetcode.com/problems/delete-duplicate-folders-in-system/）字典树与树哈希去重
-2261（https://leetcode.com/problems/k-divisible-elements-subarrays/submissions/）使用字符串哈希对数组进行编码
+214（https://leetcode.com/problems/shortest-palindrome/）正向与反向字符串hash字符串前缀最长palindrome_substring，也可以用KMP与马拉车
+572（https://leetcode.com/problems/subtree-of-another-tree/）树结构hash
+1044（https://leetcode.com/problems/shortest-palindrome/）利用binary_search|字符串hash确定具有最长长度的重复子串
+1316（https://leetcode.com/problems/shortest-palindrome/）利用字符串hash确定不同循环子串的个数
+2156（https://leetcode.com/problems/find-substring-with-given-hash-value/）逆向字符串hash的
+652（https://leetcode.com/problems/find-duplicate-subtrees/）树hash，确定重复子树
+1554（https://leetcode.com/problems/strings-differ-by-one-character/）字符串prefix_suffixhash求解
+1923（https://leetcode.com/problems/longest-common-subpath/）binary_search|滚动hash
+1948（https://leetcode.com/problems/delete-duplicate-folders-in-system/）字典树与树hash去重
+2261（https://leetcode.com/problems/k-divisible-elements-subarrays/submissions/）字符串hash对数组编码
 
 =====================================LuoGu======================================
-8835（https://www.luogu.com.cn/record/list?user=739032&status=12&page=14）字符串哈希或者KMP查找匹配的连续子串
-6140（https://www.luogu.com.cn/problem/P6140）贪心模拟与字典序比较，使用字符串哈希与binary_search比较正序与倒序最长公共子串
-2870（https://www.luogu.com.cn/problem/P2870）贪心模拟与字典序比较，使用字符串哈希与binary_search比较正序与倒序最长公共子串
-5832（https://www.luogu.com.cn/problem/P5832）可以使用字符串哈希进行最长的长度使得所有对应长度的子串均是唯一的
-2852（https://www.luogu.com.cn/problem/P2852）二分加字符串哈希计算出现超过 k 次的最长连续子数组
-4656（https://www.luogu.com.cn/problem/P4656）使用字符串哈希贪心选取
-6739（https://www.luogu.com.cn/problem/P6739）前后缀字符串哈希
+8835（https://www.luogu.com.cn/record/list?user=739032&status=12&page=14）字符串hash或者KMP查找匹配的连续子串
+6140（https://www.luogu.com.cn/problem/P6140）greedyimplemention与lexicographical_order比较，字符串hash与binary_search比较正序与倒序最长公共子串
+2870（https://www.luogu.com.cn/problem/P2870）greedyimplemention与lexicographical_order比较，字符串hash与binary_search比较正序与倒序最长公共子串
+5832（https://www.luogu.com.cn/problem/P5832）可以字符串hash最长的长度使得所有对应长度的子串均是唯一的
+2852（https://www.luogu.com.cn/problem/P2852）binary_search|字符串hash出现超过 k 次的最长连续子数组
+4656（https://www.luogu.com.cn/problem/P4656）字符串hashgreedy选取
+6739（https://www.luogu.com.cn/problem/P6739）prefix_suffix字符串hash
 
 ===================================CodeForces===================================
-1800D（https://codeforces.com/problemset/problem/1800/D）字符串前后缀哈希加和变换
+1800D（https://codeforces.com/problemset/problem/1800/D）字符串prefix_suffixhash|和变换
 
 ====================================AtCoder=====================================
-E - Who Says a Pun?（https://atcoder.jp/contests/abc141/tasks/abc141_e）二分加字符串哈希check
+E - Who Says a Pun?（https://atcoder.jp/contests/abc141/tasks/abc141_e）binary_search|字符串hashcheck
 
 =====================================AcWing=====================================
-138（https://www.acwing.com/problem/content/140/）字符串哈希，计算子串是否完全相等
-156（https://www.acwing.com/problem/content/description/158/）经典矩阵哈希
-157（https://www.acwing.com/problem/content/description/159/）经典树哈希，树的最小表示法
+138（https://www.acwing.com/problem/content/140/）字符串hash，子串是否完全相等
+156（https://www.acwing.com/problem/content/description/158/）矩阵hash
+157（https://www.acwing.com/problem/content/description/159/）树hash，树的最小表示法
 
 """
 
@@ -53,7 +53,7 @@ class Solution:
 
     @staticmethod
     def cf_1800g(ac=FastIO()):
-        # 模板：使用树哈希编码判断树是否对称
+        # 树hash编码判断树是否对称
         for _ in range(ac.read_int()):
             n = ac.read_int()
             edge = [[] for _ in range(n)]
@@ -78,13 +78,13 @@ class Solution:
                 sub[i] = cnt
                 yield
 
-            # 使用深搜或者迭代预先将子树进行哈希编码
+            # 深搜或者迭代预先将子树hash编码
             tree_hash = [-1] * n
             sub = [0] * n
             seen = dict()
             dfs(0, -1)
 
-            # 逐层判断哈希值不为0的子树是否对称
+            # 逐层判断hash值不为0的子树是否对称
             u = 0
             father = -1
             ans = "YES"
@@ -107,10 +107,10 @@ class Solution:
 
     @staticmethod
     def lc_214(s: str) -> str:
-        # 模板：使用正向与反向字符串哈希计算字符串前缀最长回文子串，也可以用KMP与马拉车
+        # 正向与反向字符串hash字符串前缀最长palindrome_substring，也可以用KMP与马拉车
 
         def query(x, y):
-            # 模板：字符串区间的哈希值，索引从 0 开始
+            # 字符串区间的hash值，索引从 0 开始
             ans = [0, 0]
             for ii in range(2):
                 if x <= y:
@@ -118,7 +118,7 @@ class Solution:
             return ans
 
         def query_rev(x, y):
-            # 模板：字符串区间的哈希值，索引从 0 开始
+            # 字符串区间的hash值，索引从 0 开始
             ans = [0, 0]
             for ii in range(2):
                 if x <= y:
@@ -151,7 +151,7 @@ class Solution:
 
     @staticmethod
     def lc_652(root):
-        # 使用树哈希编码序列化子树，查找重复子树
+        # 树hash编码序列化子树，查找重复子树
         def dfs(node):
             if not node:
                 return 0
@@ -172,7 +172,7 @@ class Solution:
     @staticmethod
     def cf_1800d(ac=FastIO()):
 
-        # 模板：字符串前后缀哈希加和，使用两个哈希避免碰撞
+        # 字符串prefix_suffixhash|和，两个hash避免碰撞
         n = 2 * 10 ** 5
         p1 = random.randint(26, 100)
         p2 = random.randint(26, 100)
@@ -213,7 +213,7 @@ class Solution:
 
     @staticmethod
     def abc_141e(ac=FastIO()):
-        # 模板：二分加字符串哈希check
+        # binary_search|字符串hashcheck
         def check(x):
             if x == 0:
                 return True
@@ -236,7 +236,7 @@ class Solution:
     @staticmethod
     def ac_138(ac=FastIO()):
 
-        # 模板：字符串哈希，计算子串是否完全相等
+        # 字符串hash，子串是否完全相等
         p1 = random.randint(26, 100)
         p2 = random.randint(26, 100)
         mod1 = random.randint(10 ** 9 + 7, 2 ** 31 - 1)
@@ -273,11 +273,11 @@ class Solution:
 
     @staticmethod
     def ac_156(ac=FastIO()):
-        # 模板：二维矩阵哈希查找子矩阵是否存在
+        # 二维矩阵hash查找子矩阵是否存在
         m, n, a, b = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
 
-        # 经典双哈希防止碰撞
+        # 双hash防止碰撞
         p1 = random.randint(26, 100)
         p2 = random.randint(26, 100)
         mod1 = random.randint(10 ** 9 + 7, 2 ** 31 - 1)
@@ -291,13 +291,13 @@ class Solution:
                 for j in range(n):
                     col[i + 1][j] = (col[i][j] * p + int(grid[i][j])) % mod
 
-            # 计算当前点往列向上 a 长度的哈希值
+            # 当前点往列向上 a 长度的hash值
             pa = pow(p % mod, a, mod)
             for j in range(n):
                 for i in range(m - 1, a - 2, -1):
                     col[i + 1][j] = (col[i + 1][j] - col[i - a + 1][j] * pa) % mod
 
-            # 计算每一个形状为 a*b 的子矩阵哈希值
+            # 每一个形状为 a*b 的子矩阵hash值
             pre = set()
             pab = pow(pa, b, mod)  # 注意此时的模数
             for i in range(a - 1, m):
@@ -309,7 +309,7 @@ class Solution:
                     x %= mod
                     lst.append(x)
                     if j >= b - 1:
-                        # 计算向左 b 长度的哈希值
+                        # 向左 b 长度的hash值
                         cur = (lst[j + 1] - (lst[j - b + 1] % mod) * pab) % mod
                         pre.add(cur)
             return pre
@@ -342,7 +342,7 @@ class Solution:
     def ac_157(ac=FastIO()):
 
         def check(st):
-            # 模板：解码原始树的字符串表示，再计算树的最小表示法
+            # 解码原始树的字符串表示，再树的最小表示法
 
             parent = [-1]
             pa = 0
@@ -388,7 +388,7 @@ class Solution:
 
     @staticmethod
     def lc_2851(s: str, t: str, k: int) -> int:
-        # 模板：使用KMP与快速幂进行转移计算，也可使用字符串哈希（超时）
+        # KMP与快速幂转移，也可字符串hash（超时）
         mod = 10 ** 9 + 7
         n = len(s)
         sh = StringHash(3 * n + 1, t + "#" + s + s)
@@ -404,7 +404,7 @@ class Solution:
     @staticmethod
     def lg_p2852(ac=FastIO()):
 
-        # 模板；二分加字符串哈希计算出现超过 k 次的最长连续子数组
+        # 模板；binary_search|字符串hash出现超过 k 次的最长连续子数组
         p1 = random.randint(26, 100)
         p2 = random.randint(26, 100)
         mod1 = random.randint(10 ** 9 + 7, 2 ** 31 - 1)
@@ -432,7 +432,7 @@ class Solution:
 
     @staticmethod
     def lg_p4656(ac=FastIO()):
-        # 模板：使用字符串哈希贪心选取
+        # 字符串hashgreedy选取
 
         p1 = random.randint(26, 100)
         p2 = random.randint(26, 100)
@@ -445,7 +445,7 @@ class Solution:
             n = len(s)
             i, j = 0, n - 1
             while j - i + 1 >= 2:
-                # 从两边依次进行选取
+                # 从两边依次选取
                 flag = False
                 pre1 = post1 = pre2 = post2 = 0
                 pp1 = pp2 = 1
@@ -469,7 +469,7 @@ class Solution:
                     pp2 = (pp2 * p2) % mod2
                     x += 1
                     y -= 1
-                # 如果构成一对回文增加 2 否则增加 1
+                # 如果构成一对回文增| 2 否则增| 1
                 if flag:
                     ans += 2
                 else:
@@ -485,7 +485,7 @@ class Solution:
 
     @staticmethod
     def lg_p6739(ac=FastIO()):
-        # 模板：前后缀字符串哈希
+        # prefix_suffix字符串hash
         n = ac.read_int()
         s = ac.read_str()
         sth = StringHash(n, s)
@@ -527,7 +527,7 @@ class Solution:
 
     @staticmethod
     def lc_1554(lst: List[str]) -> bool:
-        # 模板：字符串前后缀哈希求解
+        # 字符串prefix_suffixhash求解
         m = len(lst[0])
         p = [random.randint(26, 100), random.randint(26, 100)]
         mod = [random.randint(10 ** 9 + 7, 2 ** 31 - 1), random.randint(10 ** 9 + 7, 2 ** 31 - 1)]
@@ -565,7 +565,7 @@ class Solution:
 
     @staticmethod
     def lc_1948(paths: List[List[str]]) -> List[List[str]]:
-        # 模板：使用树哈希进行字典树的子树编码
+        # 树hash字典树的子树编码
 
         dct = dict()  # 建树
         for path in paths:
@@ -576,7 +576,7 @@ class Solution:
                 cur = cur[w]
             cur["**"] = 1
 
-        def dfs(node, cur_w):  # 哈希
+        def dfs(node, cur_w):  # hash
             if not node:
                 return tuple([0])
 
@@ -608,7 +608,7 @@ class Solution:
                     pre.pop()
             return
 
-        # 回溯取出路径
+        # back_track取出路径
         ans = []
         pre = []
         dfs(dct)
@@ -616,7 +616,7 @@ class Solution:
 
     @staticmethod
     def lc_2261(nums: List[int], k: int, p: int) -> int:
-        # 模板：使用字符串哈希对数组进行编码
+        # 字符串hash对数组编码
         n = len(nums)
         pre = list(accumulate([int(num % p == 0) for num in nums], initial=0))
         p = [random.randint(26, 100), random.randint(26, 100)]
@@ -635,7 +635,7 @@ class Solution:
 
     @staticmethod
     def lc_1104(s: str) -> str:
-        # 模板：利用binary_search加字符串哈希确定具有最长长度的重复子串
+        # 利用binary_search|字符串hash确定具有最长长度的重复子串
 
         def compute(x):
             pre = set()
@@ -661,7 +661,7 @@ class Solution:
 
     @staticmethod
     def lc_1316(text: str) -> int:
-        # 模板：字符串哈希判断循环子串
+        # 字符串hash判断循环子串
         n = len(text)
         sh = StringHash(n, text)
 
@@ -672,7 +672,7 @@ class Solution:
                 ans1 = sh.query(i, i + x - 1)
                 ans2 = sh.query(i + x, i + 2 * x - 1)
                 if ans1 == ans2:
-                    # 注意只有长度与哈希值相同字符串才相同
+                    # 注意只有长度与hash值相同字符串才相同
                     cur.add(tuple(ans1))
             ans += len(cur)
         return ans

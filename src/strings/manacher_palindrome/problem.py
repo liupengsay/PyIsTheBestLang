@@ -1,22 +1,22 @@
 """
 Algorithm：马拉车算法、回文连续子串、回文不连续子串
-Function：用来处理字符串的回文相关问题，可以有暴力、DP、中心扩展法、马拉车
+Function：用来处理字符串的回文相关问题，可以有、DP、中心扩展法、马拉车
 
 ====================================LeetCode====================================
-5（https://leetcode.com/problems/longest-palindromic-substring/）计算字符串的最长回文连续子串
-132（https://leetcode.com/problems/palindrome-partitioning-ii/）经典线性 DP 与马拉车判断以每个位置为结尾的回文串
-1960（https://leetcode.com/problems/maximum-product-of-the-length-of-two-palindromic-substrings/）利用马拉车求解每个位置前后最长回文子串
+5（https://leetcode.com/problems/longest-palindromic-substring/）字符串的最长回文连续子串
+132（https://leetcode.com/problems/palindrome-partitioning-ii/）线性 DP 与马拉车判断以每个位置为结尾的回文串
+1960（https://leetcode.com/problems/maximum-product-of-the-length-of-two-palindromic-substrings/）利用马拉车求解每个位置前后最长palindrome_substring
 
 =====================================LuoGu======================================
-4555（https://www.luogu.com.cn/problem/P4555）计算以当前索引为开头以及结尾的最长回文子串
-1210（https://www.luogu.com.cn/problem/P1210）寻找最长的连续回文子串
-4888（https://www.luogu.com.cn/problem/P4888）中心扩展法双指针
-1872（https://www.luogu.com.cn/problem/P1872）回文串对数统计，利用马拉车计算以当前字母开头与结尾的回文串数
-6297（https://www.luogu.com.cn/problem/P6297）中心扩展法并使用变量维护
+4555（https://www.luogu.com.cn/problem/P4555）以当前索引为开头以及结尾的最长palindrome_substring
+1210（https://www.luogu.com.cn/problem/P1210）寻找最长的连续palindrome_substring
+4888（https://www.luogu.com.cn/problem/P4888）中心扩展法two_pointer
+1872（https://www.luogu.com.cn/problem/P1872）回文串对数统计，利用马拉车以当前字母开头与结尾的回文串数
+6297（https://www.luogu.com.cn/problem/P6297）中心扩展法并变量维护
 
 ===================================CodeForces===================================
 1682A（https://codeforces.com/contest/1682/problem/A）palindromic|center_extension
-139（https://www.acwing.com/problem/content/141/）马拉车计算最长回文子串长度，也可使用binary_search加哈希
+139（https://www.acwing.com/problem/content/141/）马拉车最长palindrome_substring长度，也可binary_search|hash
 
 ===================================LibraryChecker===================================
 1 Enumerate Palindromes（https://judge.yosupo.jp/problem/enumerate_palindromes）
@@ -50,7 +50,7 @@ class Solution:
 
     @staticmethod
     def lc_1745(s: str) -> bool:
-        # 模板：经典矩阵DP判断是否为回文子串，或者使用马拉车然后枚举
+        # matrix_dp判断是否为palindrome_substring，或者马拉车然后brute_force
         start, end = ManacherPlindrome().palindrome(s)
         dct = [set(ls) for ls in end]
         for i in start[0]:
@@ -61,7 +61,7 @@ class Solution:
 
     @staticmethod
     def lg_4555(s):
-        # 模板：计算长度和最大的两个回文子串的长度和，转换为求字符开头以及结尾的最长回文子串
+        # 长度和最大的两个palindrome_substring的长度和，转换为求字符开头以及结尾的最长palindrome_substring
         n = len(s)
         post, pre = ManacherPlindrome().palindrome_longest(s)
         ans = max(post[i + 1] + pre[i] for i in range(n - 1))
@@ -69,14 +69,14 @@ class Solution:
 
     @staticmethod
     def lc_5(s: str) -> str:
-        # 模板：计算字符串的最长回文子串，转换为求字符开头以及结尾的最长回文子串
+        # 字符串的最长palindrome_substring，转换为求字符开头以及结尾的最长palindrome_substring
         post, pre = ManacherPlindrome().palindrome_longest(s)
         i = post.index(max(post))
         return s[i: i + post[i]]
 
     @staticmethod
     def ac_139(ac=FastIO()):
-        # 模板：马拉车计算最长回文子串的长度
+        # 马拉车最长palindrome_substring的长度
         ind = 0
         while True:
             s = ac.read_str()
@@ -89,7 +89,7 @@ class Solution:
 
     @staticmethod
     def lg_p1876(ac=FastIO()):
-        # 模板：回文串对数统计，利用马拉车计算以当前字母开头与结尾的回文串数
+        # 回文串对数统计，利用马拉车以当前字母开头与结尾的回文串数
         s = ac.read_str()
         n = len(s)
         start, end = ManacherPlindrome().palindrome(s)
@@ -104,7 +104,7 @@ class Solution:
 
     @staticmethod
     def lg_p6297(ac=FastIO()):
-        # 模板：中心扩展法并使用变量维护
+        # 中心扩展法并变量维护
         n, k = ac.read_list_ints()
         mod = 10 ** 9 + 7
         nums = ac.read_list_ints()
@@ -143,7 +143,7 @@ class Solution:
 
     @staticmethod
     def lc_1960(s: str) -> int:
-        # 模板：利用马拉车求解每个位置前后最长回文子串
+        # 利用马拉车求解每个位置前后最长palindrome_substring
         post, pre = ManacherPlindrome().palindrome_longest(s)
 
         n = len(s)
@@ -164,7 +164,7 @@ class Solution:
 
     @staticmethod
     def lg_p1782(ac=FastIO()):
-        # 模板：回文串对数统计，利用马拉车计算以当前字母开头与结尾的回文串数
+        # 回文串对数统计，利用马拉车以当前字母开头与结尾的回文串数
         s = ac.read_str()
         n = len(s)
         start, end = ManacherPlindrome().palindrome(s)
@@ -179,7 +179,7 @@ class Solution:
 
     @staticmethod
     def lc_2472(s: str, k: int) -> int:
-        # 模板：预处理线性回文子串 DP 优化外加结果计算线性 DP 也可以使用马拉车回文串获取回文信息
+        # 预处理线性palindrome_substring DP 优化外|结果线性 DP 也可以马拉车回文串获取回文信息
         n = len(s)
         _, end = ManacherPlindrome().palindrome(s)
         dp = [0] * (n + 1)

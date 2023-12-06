@@ -1,77 +1,77 @@
 """
 
-Algorithm：并查集、可持久化并查集、置换环
-Function：用来处理图论相关的联通问题，通常结合逆向思考、置换环或者离线查询进行求解，连通块不一定是秩大小，也可以是最大最小值、和等
+Algorithm：union_find、可持久化union_find、置换环
+Function：用来处理图论相关的联通问题，通常结合逆向思考、置换环或者离线查询求解，连通块不一定是秩大小，也可以是最大最小值、和等
 
 ====================================LeetCode====================================
-765（https://leetcode.com/problems/couples-holding-hands/）经典并查集
-1697（https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/）排序后离线查询两点间所有路径的最大边权值
-2503（https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/）排序后离线查询与起点相连的连通块的大小
-2421（https://leetcode.com/problems/number-of-good-paths/）根据权值进行排序更新并查集计算连通分块满足条件的节点对数
-2382（https://leetcode.com/problems/maximum-segment-sum-after-removals/）逆向进行访问查询并更新连通块的结果
-2334（https://leetcode.com/problems/subarray-with-elements-greater-than-varying-threshold/）排序后枚举动态维护并查集连通块
-2158（https://leetcode.com/problems/amount-of-new-area-painted-each-day/）使用并查集维护区间左端点，不断进行合并
-2157（https://leetcode.com/problems/groups-of-strings/）利用字母的有限数量进行变换枚举分组
-2076（https://leetcode.com/problems/process-restricted-friend-requests/）使用并查集变种，维护群体的不喜欢关系
-2459（https://leetcode.com/problems/sort-array-by-moving-items-to-empty-space/）置换环经典题目
-2709（https://leetcode.com/problems/greatest-common-divisor-traversal/）经典并查集计算具有相同质因数的连通块
-2612（https://leetcode.com/problems/minimum-reverse-operations/）经典并查集应用 find_merge 灵活使用
-1559（https://leetcode.com/problems/detect-cycles-in-2d-grid/）经典并查集判环
-1569（https://leetcode.com/problems/number-of-ways-to-reorder-array-to-get-same-bst/）逆序思维，倒序利用并查集建立二叉搜索树，排列组合加并查集
-1970（https://leetcode.com/problems/last-day-where-you-can-still-cross/）经典逆序思维并查集
-1998（https://leetcode.com/problems/gcd-sort-of-an-array/）经典并查集加质因数分解
-2158（https://leetcode.com/problems/amount-of-new-area-painted-each-day/）经典区间并查集
-2471（https://leetcode.com/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/description/）经典离散化置换环
-945（https://leetcode.com/problems/minimum-increment-to-make-array-unique/description/）可使用向右合并的区间并查集，正解为贪心
-947（https://leetcode.com/contest/weekly-contest-112/problems/most-stones-removed-with-same-row-or-column/）脑筋急转弯并查集
+765（https://leetcode.com/problems/couples-holding-hands/）union_find
+1697（https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/）sorting后离线查询两点间所有路径的最大边权值
+2503（https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/）sorting后离线查询与起点相连的连通块的大小
+2421（https://leetcode.com/problems/number-of-good-paths/）根据权值sorting更新union_find连通分块满足条件的节点对数
+2382（https://leetcode.com/problems/maximum-segment-sum-after-removals/）逆向访问查询并更新连通块的结果
+2334（https://leetcode.com/problems/subarray-with-elements-greater-than-varying-threshold/）sorting后brute_force动态维护union_find连通块
+2158（https://leetcode.com/problems/amount-of-new-area-painted-each-day/）union_find维护区间左端点，不断合并
+2157（https://leetcode.com/problems/groups-of-strings/）利用字母的有限数量变换brute_force分组
+2076（https://leetcode.com/problems/process-restricted-friend-requests/）union_find变种，维护群体的不喜欢关系
+2459（https://leetcode.com/problems/sort-array-by-moving-items-to-empty-space/）置换环题目
+2709（https://leetcode.com/problems/greatest-common-divisor-traversal/）union_find具有相同质因数的连通块
+2612（https://leetcode.com/problems/minimum-reverse-operations/）union_find应用 find_merge 灵活
+1559（https://leetcode.com/problems/detect-cycles-in-2d-grid/）union_find判环
+1569（https://leetcode.com/problems/number-of-ways-to-reorder-array-to-get-same-bst/）逆序思维，倒序利用union_find建立二叉搜索树，排列组合|union_find
+1970（https://leetcode.com/problems/last-day-where-you-can-still-cross/）逆序思维union_find
+1998（https://leetcode.com/problems/gcd-sort-of-an-array/）union_find|质因数分解
+2158（https://leetcode.com/problems/amount-of-new-area-painted-each-day/）区间union_find
+2471（https://leetcode.com/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/description/）离散化置换环
+945（https://leetcode.com/problems/minimum-increment-to-make-array-unique/description/）可向右合并的区间union_find，正解为greedy
+947（https://leetcode.com/contest/weekly-contest-112/problems/most-stones-removed-with-same-row-or-column/）brain_teaserunion_find
 
 =====================================LuoGu======================================
-3367（https://www.luogu.com.cn/problem/P3367）计算连通分块的数量
-5836（https://www.luogu.com.cn/problem/P5836）使用两个并查集进行不同方面的查询
-3144（https://www.luogu.com.cn/problem/P3144）逆序并查集，考察连通块的数量
-5836（https://www.luogu.com.cn/problem/P5836）两个并查集进行连通情况查询
-5877（https://www.luogu.com.cn/problem/P5877）正向模拟实时计算更新连通块的数量
-6111（https://www.luogu.com.cn/problem/P6111）并查集加离线查询进行计算
-6121（https://www.luogu.com.cn/problem/P6121）逆序并查集根据连通块大小进行连通性判定
-6153（https://www.luogu.com.cn/problem/P6153）经典并查集思想贪心题，体现了并查集的思想
-1955（https://www.luogu.com.cn/problem/P1955）并查集裸题
-1196（https://www.luogu.com.cn/problem/P1196）带权并查集
-1197（https://www.luogu.com.cn/problem/P1197）逆序并查集，倒序枚举计算联通块个数
-1522（https://www.luogu.com.cn/problem/P1522）连通块，枚举新增路径并高精度计算联通块直径
-1621（https://www.luogu.com.cn/problem/P1621）利用素数筛的思想对数复杂度合并公共质因数大于p的数并计算连通块数量
-1892（https://www.luogu.com.cn/problem/P1892）经典并查集，敌人与朋友关系
-2189（https://www.luogu.com.cn/problem/P2189）并查集经典题，确定访问顺序的合法性
-2307（https://www.luogu.com.cn/problem/P2307）并查集判定树的生成是否合法
-3420（https://www.luogu.com.cn/problem/P3420）经典并查集变形问题
-5429（https://www.luogu.com.cn/problem/P5429）简单并查集应用题
-6193（https://www.luogu.com.cn/problem/P6193）经典置换环计算交换代价
-6706（https://www.luogu.com.cn/problem/P6706）经典有向图并查集逆序更新边 find_merge 灵活使用
-7991（https://www.luogu.com.cn/problem/P7991）经典并查集计算连通块缩点使得 1 和 n 连通最多加两条路的代价
-8230（https://www.luogu.com.cn/problem/P8230）分层并查集加模拟
-8637（https://www.luogu.com.cn/problem/P8637）经典并查集置换环
-8686（https://www.luogu.com.cn/problem/P8686）经典并查集灵活应用
-8785（https://www.luogu.com.cn/problem/P8785）根据边界进行并查集构建计数
-8787（https://www.luogu.com.cn/problem/P8787）经典贪心二叉堆模拟与并查集灵活应用
-8881（https://www.luogu.com.cn/problem/P8881）脑筋急转弯，使用并查集判断所属连通分量是否有环
+3367（https://www.luogu.com.cn/problem/P3367）连通分块的数量
+5836（https://www.luogu.com.cn/problem/P5836）两个union_find不同方面的查询
+3144（https://www.luogu.com.cn/problem/P3144）逆序union_find，考察连通块的数量
+5836（https://www.luogu.com.cn/problem/P5836）两个union_find连通情况查询
+5877（https://www.luogu.com.cn/problem/P5877）正向implemention实时更新连通块的数量
+6111（https://www.luogu.com.cn/problem/P6111）union_find|离线查询
+6121（https://www.luogu.com.cn/problem/P6121）逆序union_find根据连通块大小连通性判定
+6153（https://www.luogu.com.cn/problem/P6153）union_find思想greedy题，体现了union_find的思想
+1955（https://www.luogu.com.cn/problem/P1955）union_find裸题
+1196（https://www.luogu.com.cn/problem/P1196）带权union_find
+1197（https://www.luogu.com.cn/problem/P1197）逆序union_find，倒序brute_force联通块个数
+1522（https://www.luogu.com.cn/problem/P1522）连通块，brute_force新增路径并high_precision联通块直径
+1621（https://www.luogu.com.cn/problem/P1621）利用素数筛的思想对数复杂度合并公共质因数大于p的数并连通块数量
+1892（https://www.luogu.com.cn/problem/P1892）union_find，敌人与朋友关系
+2189（https://www.luogu.com.cn/problem/P2189）union_find题，确定访问顺序的合法性
+2307（https://www.luogu.com.cn/problem/P2307）union_find判定树的生成是否合法
+3420（https://www.luogu.com.cn/problem/P3420）union_find变形问题
+5429（https://www.luogu.com.cn/problem/P5429）简单union_find应用题
+6193（https://www.luogu.com.cn/problem/P6193）置换环交换代价
+6706（https://www.luogu.com.cn/problem/P6706）有向图union_find逆序更新边 find_merge 灵活
+7991（https://www.luogu.com.cn/problem/P7991）union_find连通块缩点使得 1 和 n 连通最多|两条路的代价
+8230（https://www.luogu.com.cn/problem/P8230）分层union_find|implemention
+8637（https://www.luogu.com.cn/problem/P8637）union_find置换环
+8686（https://www.luogu.com.cn/problem/P8686）union_find灵活应用
+8785（https://www.luogu.com.cn/problem/P8785）根据边界union_find构建counter
+8787（https://www.luogu.com.cn/problem/P8787）greedy二叉堆implemention与union_find灵活应用
+8881（https://www.luogu.com.cn/problem/P8881）brain_teaser，union_find判断所属连通分量是否有环
 
 ===================================CodeForces===================================
-25D（https://codeforces.com/problemset/problem/25/D）并查集将原来的边断掉重新来连接使得成为一整个连通集
-1810E（https://codeforces.com/contest/1810/problem/E）并查集加启发式搜索，使用BFS与堆优化实现
-920E（https://codeforces.com/contest/920/problem/E）并查集，加线性动态维护剩余节点
+25D（https://codeforces.com/problemset/problem/25/D）union_find将原来的边断掉重新来连接使得成为一整个连通集
+1810E（https://codeforces.com/contest/1810/problem/E）union_find|启发式搜索，BFS与heapq实现
+920E（https://codeforces.com/contest/920/problem/E）union_find，|线性动态维护剩余节点
 540C（https://codeforces.com/problemset/problem/540/C）路径可达
-1800E2（https://codeforces.com/problemset/problem/1800/E2）使用并查集分组计算可达
-1691E（https://codeforces.com/contest/1691/problem/E）经典线段并查集
+1800E2（https://codeforces.com/problemset/problem/1800/E2）union_find分组可达
+1691E（https://codeforces.com/contest/1691/problem/E）线段union_find
 827A（https://codeforces.com/problemset/problem/827/A）UnionFindRightRoot|implemention|greedy
 
 ====================================AtCoder=====================================
-D - Connectivity（https://atcoder.jp/contests/abc049/tasks/arc065_b）经典双并查集应用
-E - 1 or 2（https://atcoder.jp/contests/abc126/tasks/abc126_e）经典双并查集的并查集应用
-F - Must Be Rectangular!（https://atcoder.jp/contests/abc131/tasks/abc131_f）思维题并查集计数
+D - Connectivity（https://atcoder.jp/contests/abc049/tasks/arc065_b）双union_find应用
+E - 1 or 2（https://atcoder.jp/contests/abc126/tasks/abc126_e）双union_find的union_find应用
+F - Must Be Rectangular!（https://atcoder.jp/contests/abc131/tasks/abc131_f）思维题union_findcounter
 
 =====================================AcWing=====================================
-4306（https://www.acwing.com/problem/content/description/4309/）经典向右合并的区间并查集
-4866（https://www.acwing.com/problem/content/description/4869/）经典并查集模拟维护连通块大小与多余的边数量
-5145（https://www.acwing.com/problem/content/5148/）使用并查集判矩阵四元及以上的环
+4306（https://www.acwing.com/problem/content/description/4309/）向右合并的区间union_find
+4866（https://www.acwing.com/problem/content/description/4869/）union_findimplemention维护连通块大小与多余的边数量
+5145（https://www.acwing.com/problem/content/5148/）union_find判矩阵四元及以上的环
 
 ================================LibraryChecker================================
 1 Cycle Detection (Undirected)（https://judge.yosupo.jp/problem/cycle_detection_undirected）use unionfind to detect circle in undirected graph
@@ -100,7 +100,7 @@ class Solution:
 
     @staticmethod
     def cf_1810e(ac=FastIO()):
-        # 模板：并查集加启发式搜索，使用线性遍历维护
+        # union_find|启发式搜索，线性遍历维护
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
             nums = ac.read_list_ints()
@@ -135,7 +135,7 @@ class Solution:
 
     @staticmethod
     def ac_5145(ac=FastIO()):
-        # 模板：使用并查集判矩阵四元及以上的环
+        # union_find判矩阵四元及以上的环
         m, n = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
         edges = []
@@ -152,7 +152,7 @@ class Solution:
         for i, j in edges:
             degree[uf.find(i)] += 1
         for g in group:
-            # 并查集多边必然是四元环及以上
+            # union_find多边必然是四元环及以上
             if degree[g] >= len(group[g]) >= 4:
                 ac.st("Yes")
                 return
@@ -184,7 +184,7 @@ class Solution:
 
     @staticmethod
     def cf_920e(ac=FastIO()):
-        # 模板：并查集线性更新，使用集合进行维护
+        # union_find线性更新，集合维护
         n, m = ac.read_list_ints()
         edge = set()
         for _ in range(m):
@@ -216,14 +216,14 @@ class Solution:
 
     @staticmethod
     def lc_1697(n: int, edge_list: List[List[int]], queries: List[List[int]]) -> List[bool]:
-        # 模板：并查集与离线排序查询结合
+        # union_find与离线sorting查询结合
         m = len(queries)
 
-        # 按照 limit 排序
+        # 按照 limit sorting
         ind = list(range(m))
         ind.sort(key=lambda x: queries[x][2])
 
-        # 按照边权值排序
+        # 按照边权值sorting
         edge_list.sort(key=lambda x: x[2])
         uf = UnionFind(n)
         i = 0
@@ -231,7 +231,7 @@ class Solution:
         ans = []
         # 查询 queries 里面的 [p, q, limit] 即 p 和 q 之间存在最大边权值严格小于 limit 的路径是否成立
         for j in ind:
-            # 实时加入可用于连通的边并查询结果
+            # 实时|入可用于连通的边并查询结果
             p, q, limit = queries[j]
             while i < k and edge_list[i][2] < limit:
                 uf.union(edge_list[i][0], edge_list[i][1])
@@ -244,9 +244,9 @@ class Solution:
 
     @staticmethod
     def lc_2503(grid: List[List[int]], queries: List[int]) -> List[int]:
-        # 模板：并查集与离线排序查询结合
+        # union_find与离线sorting查询结合
         dct = []
-        # 根据邻居关系进行建图处理
+        # 根据邻居关系建图处理
         m, n = len(grid), len(grid[0])
         for i in range(m):
             for j in range(n):
@@ -259,12 +259,12 @@ class Solution:
         dct.sort(key=lambda d: d[2])
         uf = UnionFind(m * n)
 
-        # 按照查询值的大小排序，依次进行查询
+        # 按照查询值的大小sorting，依次查询
         k = len(queries)
         ind = list(range(k))
         ind.sort(key=lambda d: queries[d])
 
-        # 根据查询值的大小利用指针持续更新并查集
+        # 根据查询值的大小利用pointer持续更新union_find
         ans = [0] * k
         j = 0
         length = len(dct)
@@ -279,14 +279,14 @@ class Solution:
 
     @staticmethod
     def lc_2421(vals: List[int], edges: List[List[int]]) -> int:
-        # 模板：并查集与离线排序查询结合
+        # union_find与离线sorting查询结合
         n = len(vals)
         index = defaultdict(list)
         for i in range(n):
             index[vals[i]].append(i)
         edges.sort(key=lambda x: max(vals[x[0]], vals[x[1]]))
         uf = UnionFind(n)
-        # 离线查询计数
+        # 离线查询counter
         i = 0
         m = len(edges)
         ans = 0
@@ -334,7 +334,7 @@ class Solution:
 
     @staticmethod
     def lg_p1196(ac=FastIO()):
-        # 模板：计算带权并查集
+        # 带权union_find
         uf = UnionFindWeighted(30000)
         for _ in range(ac.read_int()):
             lst = ac.read_list_strs()
@@ -352,7 +352,7 @@ class Solution:
 
     @staticmethod
     def lg_p1197(ac=FastIO()):
-        # 模板：逆序并查集，倒序枚举计算联通块个数
+        # 逆序union_find，倒序brute_force联通块个数
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for _ in range(m):
@@ -384,7 +384,7 @@ class Solution:
     @staticmethod
     def lg_p1522(ac=FastIO()):
 
-        # 模板：连通块，枚举新增路径并高精度计算联通块直径
+        # 连通块，brute_force新增路径并high_precision联通块直径
 
         def dis(x1, y1, x2, y2):
             return math.sqrt(decimal.Decimal(((x1 - x2) ** 2 + (y1 - y2) ** 2)))
@@ -426,13 +426,13 @@ class Solution:
 
     @staticmethod
     def lg_p1621(ac=FastIO()):
-        # 模板：利用素数筛的思想对数复杂度合并公共质因数大于p的数并计算连通块数量
+        # 利用素数筛的思想对数复杂度合并公共质因数大于p的数并连通块数量
         a, b, p = ac.read_list_ints()
         nums = list(range(a, b + 1))
         ind = {num: num - a for num in nums}
         primes = [x for x in NumberTheory().sieve_of_eratosthenes(b) if x >= p]
 
-        # 利用素数进行合并
+        # 利用素数合并
         uf = UnionFind(b - a + 1)
         for x in primes:
             lst = []
@@ -449,7 +449,7 @@ class Solution:
 
     @staticmethod
     def lg_p1892(ac=FastIO()):
-        # 模板：经典并查集，敌人与朋友关系
+        # union_find，敌人与朋友关系
         n = ac.read_int()
         m = ac.read_int()
         uf = UnionFind(n)
@@ -474,7 +474,7 @@ class Solution:
 
     @staticmethod
     def lg_p1955(ac=FastIO()):
-        # 模板：并查集裸题
+        # union_find裸题
         t = ac.read_int()
         for _ in range(t):
             n = ac.read_int()
@@ -503,7 +503,7 @@ class Solution:
     @staticmethod
     def lg_p2189(ac=FastIO()):
 
-        # 模板：并查集经典题，确定访问顺序的合法性
+        # union_find题，确定访问顺序的合法性
         n, m, k, q = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for _ in range(m):
@@ -542,7 +542,7 @@ class Solution:
 
     @staticmethod
     def lg_p2307(ac=FastIO()):
-        # 模板：并查集判定树的生成是否合法
+        # union_find判定树的生成是否合法
         while True:
             ans = []
             while True:
@@ -568,7 +568,7 @@ class Solution:
 
     @staticmethod
     def lg_p3420(ac=FastIO()):
-        # 模板：特殊图 n 个节点 n 条边的联通块数量
+        # 特殊图 n 个节点 n 条边的联通块数量
         n = ac.read_int()
         uf = UnionFind(n)
         for i in range(n):
@@ -579,7 +579,7 @@ class Solution:
 
     @staticmethod
     def lg_p6193(ac=FastIO()):
-        # 模板：经典置换环计算交换代价
+        # 置换环交换代价
         n = ac.read_int()
         nums = [ac.read_int() for _ in range(n)]
         lst = sorted(nums)
@@ -598,9 +598,9 @@ class Solution:
             m = len(part[p])
             if m == 1:
                 continue
-            #  使用当前置换环最小值交换
+            #  当前置换环最小值交换
             cost1 = s + (m - 2) * y
-            # 或者使用全局最小值交换
+            # 或者全局最小值交换
             cost2 = s - y + x + (m - 2) * x + (x + y) * 2
             ans += ac.min(cost1, cost2)
         ac.st(ans)
@@ -608,8 +608,8 @@ class Solution:
 
     @staticmethod
     def lc_2709(nums: List[int]) -> bool:
-        # 模板：经典并查集计算具有相同质因数的连通块
-        prime_factor = NumberTheory().get_num_prime_factor(10 ** 5)  # 放在全局计算
+        # union_find具有相同质因数的连通块
+        prime_factor = NumberTheory().get_num_prime_factor(10 ** 5)  # 放在全局
         n = len(nums)
         uf = UnionFind(n)
         pre = dict()
@@ -623,7 +623,7 @@ class Solution:
 
     @staticmethod
     def lg_p6706(ac=FastIO()):
-        # 模板：经典有向图并查集逆序更新边 find_merge 灵活使用
+        # 有向图union_find逆序更新边 find_merge 灵活
         n = ac.read_int()
         edge = ac.read_list_ints_minus_one()
         q = ac.read_int()
@@ -668,7 +668,7 @@ class Solution:
 
     @staticmethod
     def lg_p7991(ac=FastIO()):
-        # 模板：经典并查集计算连通块缩点使得 1 和 n 连通最多加两条路的代价
+        # union_find连通块缩点使得 1 和 n 连通最多|两条路的代价
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
             uf = UnionFind(n)
@@ -711,7 +711,7 @@ class Solution:
     def lc_2612(n: int, p: int, banned: List[int], k: int) -> List[int]:
 
         def find_merge(x):
-            # 并查集父节点表示下一个为访问的点类似链表
+            # union_find父节点表示下一个为访问的点类似链表
             tmp = []
             while x != fa[x]:
                 tmp.append(x)
@@ -745,7 +745,7 @@ class Solution:
 
     @staticmethod
     def lg_p8230(ac=FastIO()):
-        # 模板：分层并查集加模拟
+        # 分层union_find|implemention
         k, m, n = ac.read_list_ints()
         ans = 1
         start = [0, 0]
@@ -779,7 +779,7 @@ class Solution:
 
     @staticmethod
     def lg_p8686(ac=FastIO()):
-        # 模板：经典并查集灵活应用
+        # union_find灵活应用
         ac.read_int()
         nums = ac.read_list_ints()
         post = dict()
@@ -796,7 +796,7 @@ class Solution:
 
     @staticmethod
     def lg_p8787(ac=FastIO()):
-        # 模板：经典贪心二叉堆模拟与并查集灵活应用
+        # greedy二叉堆implemention与union_find灵活应用
         n = ac.read_int()
         nums = ac.read_list_ints()
         stack = [[-nums[i], -i] for i in range(n)]
@@ -825,7 +825,7 @@ class Solution:
 
     @staticmethod
     def lg_p8881(ac=FastIO()):
-        # 模板：脑筋急转弯，使用并查集判断所属连通分量是否有环
+        # brain_teaser，union_find判断所属连通分量是否有环
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
             uf = UnionFind(n)
@@ -843,7 +843,7 @@ class Solution:
 
     @staticmethod
     def lc_945(nums: List[int]) -> int:
-        # 模板：可使用向右合并的区间并查集，正解为贪心
+        # 可向右合并的区间union_find，正解为greedy
         nums.sort()
         ans = 0
         uf = UnionFindRightRoot(max(nums) + len(nums) + 2)
@@ -856,7 +856,7 @@ class Solution:
 
     @staticmethod
     def lc_1559(grid: List[List[str]]) -> bool:
-        # 模板：经典并查集判环
+        # union_find判环
         m, n = len(grid), len(grid[0])
         uf = UnionFind(m * n)
         for i in range(m):
@@ -872,13 +872,13 @@ class Solution:
     @staticmethod
     def lc_1569(nums: List[int]) -> int:
 
-        # 模板：逆序思维，排列组合加并查集
+        # 逆序思维，排列组合|union_find
         len(nums)
         mod = 10 ** 9 + 7
         n = 10 ** 3
         cb = Combinatorics(n, mod)
 
-        # 逆向思维，倒序利用并查集建立二叉搜索树
+        # reverse_thinking，倒序利用union_find建立二叉搜索树
         dct = [[] for _ in range(n)]
         uf = UnionFindRightRoot(n)
         post = {}
@@ -918,7 +918,7 @@ class Solution:
 
     @staticmethod
     def lc_2158(paint: List[List[int]]) -> List[int]:
-        # 模板：区间并查集
+        # 区间union_find
         m = 5 * 10 ** 4 + 10
         uf = UnionFindRightRoot(m)
         ans = []
@@ -935,7 +935,7 @@ class Solution:
 
     @staticmethod
     def abc_49d(ac=FastIO()):
-        # 模板：经典双并查集应用
+        # 双union_find应用
         n, k, ll = ac.read_list_ints()
         ufa = UnionFind(n)
         for _ in range(k):
@@ -955,7 +955,7 @@ class Solution:
 
     @staticmethod
     def abc_131f(ac=FastIO()):
-        # 模板：思维题并查集计数
+        # 思维题union_findcounter
         n = ac.read_int()
         m = 10 ** 5
         uf = UnionFind(2 * m)
@@ -976,7 +976,7 @@ class Solution:
 
     @staticmethod
     def ac_4306(ac=FastIO()):
-        # 模板：经典向右合并的区间并查集
+        # 向右合并的区间union_find
         n = ac.read_int()
         a = ac.read_list_ints()
         uf = UnionFindRightRoot(n * 2 + 2)
@@ -992,7 +992,7 @@ class Solution:
 
     @staticmethod
     def ac_4866(ac=FastIO()):
-        # 模板：经典并查集模拟维护连通块大小与多余的边数量
+        # union_findimplemention维护连通块大小与多余的边数量
         n, d = ac.read_list_ints()
         uf = UnionFind(n)
         lst = LocalSortedList([1] * n)
@@ -1015,7 +1015,7 @@ class Solution:
 
     @staticmethod
     def lc_2471(root: Optional[TreeNode]) -> int:
-        # 模板：经典离散化置换环
+        # 离散化置换环
 
         def check():
             nonlocal ans

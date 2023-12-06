@@ -1,106 +1,106 @@
 """
 
-Algorithm：差分数组与前缀和、后缀和、前缀最大子序列和、后缀最大子序列和、二维差分、离散化差分、三维差分、二维前缀和
-Function：用来解决一维数组或者二维数组的加和问题，以及前缀和计算，还有前缀和的前缀和
+Algorithm：差分数组与prefix_sum、后缀和、前缀最大子序列和、后缀最大子序列和、二维差分、离散化差分、三维差分、二维prefix_sum
+Function：用来解决一维数组或者二维数组的|和问题，以及prefix_sum，还有prefix_sum的prefix_sum
 
 ====================================LeetCode====================================
-152（https://leetcode.com/problems/maximum-product-subarray/）前缀最大最小乘积，计算最大连续子数组乘积
+152（https://leetcode.com/problems/maximum-product-subarray/）前缀最大最小乘积，最大连续子数组乘积
 598（https://leetcode.com/problems/range-addition-ii/）二维差分
-2281（https://leetcode.com/problems/sum-of-total-strength-of-wizards/）枚举当前元素作为最小值的子数组和并使用前缀和的前缀和计算
+2281（https://leetcode.com/problems/sum-of-total-strength-of-wizards/）brute_force当前元素作为最小值的子数组和并prefix_sum的prefix_sum
 2251（https://leetcode.com/problems/number-of-flowers-in-full-bloom/）离散化差分数组
-2132（https://leetcode.com/problems/stamping-the-grid/）用前缀和枚举可行的邮票左上端点，然后查看空白格点左上方是否有可行的邮票点，也可以使用经典的二维差分滚动模拟覆盖进行解决
+2132（https://leetcode.com/problems/stamping-the-grid/）用prefix_sumbrute_force可行的邮票左上端点，然后查看空白格点左上方是否有可行的邮票点，也可以的二维差分滚动implemention覆盖解决
 1229（https://leetcode.com/problems/meeting-scheduler/）离散化差分数组
-6292（https://leetcode.com/problems/increment-submatrices-by-one/)二维差分前缀和
-2565（https://leetcode.com/problems/subsequence-with-the-minimum-score/）使用前后缀指针枚举匹配最长前后缀
-644（https://leetcode.com/problems/maximum-average-subarray-ii/）前缀和加二分计算不短于k的子数组最大平均值
-1292（https://leetcode.com/problems/maximum-side-length-of-a-square-with-sum-less-than-or-equal-to-threshold/）经典O(mn)复杂度枚举
-1674（https://leetcode.com/problems/minimum-moves-to-make-array-complementary/）经典差分数组作用域计数
-1714（https://leetcode.com/problems/sum-of-special-evenly-spaced-elements-in-array/）经典分组加前缀和
-1738（https://leetcode.com/problems/find-kth-largest-xor-coordinate-value/）经典二维前缀异或和
-1895（https://leetcode.com/problems/largest-magic-square/）二维前缀和枚举优化
-1943（https://leetcode.com/problems/describe-the-painting/）经典离散化差分
-2021（https://leetcode.com/problems/brightest-position-on-street/）经典离散化差分
-837（https://leetcode.com/problems/new-21-game/description/）使用差分数组模拟进行概率计算
-891（https://leetcode.com/problems/sum-of-subsequence-widths/description/）前后缀枚举最大值与最小值计数
-1191（https://leetcode.com/problems/k-concatenation-maximum-sum/description/）经典前后缀最大连续子序列和
-1074（https://leetcode.com/problems/number-of-submatrices-that-sum-to-target/description/）经典二维前缀和枚举上下边计算目标子矩阵的数量
-1139（https://leetcode.com/problems/largest-1-bordered-square/）经典利用二位前缀和计数枚举边长
-2281（https://leetcode.com/problems/sum-of-total-strength-of-wizards/description/）单调栈计数与前缀和的前缀和计算
-995（https://leetcode.com/problems/minimum-number-of-k-consecutive-bit-flips/description/）贪心加差分数组模拟
-986（https://leetcode.com/problems/interval-list-intersections/description/）离散化差分，双指针归并
-1744（https://leetcode.com/problems/can-you-eat-your-favorite-candy-on-your-favorite-day/description/）前缀和贪心模拟
-1703（https://leetcode.com/problems/minimum-adjacent-swaps-for-k-consecutive-ones/）前缀和加中位数贪心，同1520E
-2167（https://leetcode.com/problems/minimum-time-to-remove-all-cars-containing-illegal-goods/）经典公式变换进行前缀和枚举
+6292（https://leetcode.com/problems/increment-submatrices-by-one/)二维差分prefix_sum
+2565（https://leetcode.com/problems/subsequence-with-the-minimum-score/）prefix_suffixpointerbrute_force匹配最长prefix_suffix
+644（https://leetcode.com/problems/maximum-average-subarray-ii/）prefix_sum|binary_search不短于k的子数组最大平均值
+1292（https://leetcode.com/problems/maximum-side-length-of-a-square-with-sum-less-than-or-equal-to-threshold/）O(mn)复杂度brute_force
+1674（https://leetcode.com/problems/minimum-moves-to-make-array-complementary/）差分数组作用域counter
+1714（https://leetcode.com/problems/sum-of-special-evenly-spaced-elements-in-array/）分组|prefix_sum
+1738（https://leetcode.com/problems/find-kth-largest-xor-coordinate-value/）二维前缀异或和
+1895（https://leetcode.com/problems/largest-magic-square/）二维prefix_sumbrute_force优化
+1943（https://leetcode.com/problems/describe-the-painting/）离散化差分
+2021（https://leetcode.com/problems/brightest-position-on-street/）离散化差分
+837（https://leetcode.com/problems/new-21-game/description/）差分数组implemention概率
+891（https://leetcode.com/problems/sum-of-subsequence-widths/description/）prefix_suffixbrute_force最大值与最小值counter
+1191（https://leetcode.com/problems/k-concatenation-maximum-sum/description/）prefix_suffix最大连续子序列和
+1074（https://leetcode.com/problems/number-of-submatrices-that-sum-to-target/description/）二维prefix_sumbrute_force上下边目标子矩阵的数量
+1139（https://leetcode.com/problems/largest-1-bordered-square/）利用二位prefix_sumcounterbrute_force边长
+2281（https://leetcode.com/problems/sum-of-total-strength-of-wizards/description/）单调栈counter与prefix_sum的prefix_sum
+995（https://leetcode.com/problems/minimum-number-of-k-consecutive-bit-flips/description/）greedy|差分数组implemention
+986（https://leetcode.com/problems/interval-list-intersections/description/）离散化差分，two_pointer归并
+1744（https://leetcode.com/problems/can-you-eat-your-favorite-candy-on-your-favorite-day/description/）prefix_sumgreedyimplemention
+1703（https://leetcode.com/problems/minimum-adjacent-swaps-for-k-consecutive-ones/）prefix_sum|mediangreedy，同1520E
+2167（https://leetcode.com/problems/minimum-time-to-remove-all-cars-containing-illegal-goods/）公式变换prefix_sumbrute_force
 
 =====================================LuoGu======================================
-8772（https://www.luogu.com.cn/record/list?user=739032&status=12&page=15）后缀和计算
-2367（https://www.luogu.com.cn/problem/P2367）差分数组记录区间增减变化，最后还原计算最小值
-2280（https://www.luogu.com.cn/problem/P2280）二维前缀和
-3138（https://www.luogu.com.cn/problem/P3138）二维前缀和
-3406（https://www.luogu.com.cn/problem/P3406）差分数组计算每段路经过次数，再贪心新选择买卡还是单刷
-3655（https://www.luogu.com.cn/problem/P3655）差分数组变形模拟
+8772（https://www.luogu.com.cn/record/list?user=739032&status=12&page=15）后缀和
+2367（https://www.luogu.com.cn/problem/P2367）差分数组记录区间增减变化，最后还原最小值
+2280（https://www.luogu.com.cn/problem/P2280）二维prefix_sum
+3138（https://www.luogu.com.cn/problem/P3138）二维prefix_sum
+3406（https://www.luogu.com.cn/problem/P3406）差分数组每段路经过次数，再greedy新选择买卡还是单刷
+3655（https://www.luogu.com.cn/problem/P3655）差分数组变形implemention
 5542（https://www.luogu.com.cn/problem/P5542）二维差分，需要适配覆盖区间
-5686（https://www.luogu.com.cn/problem/P5686）前缀和的前缀和
-6180（https://www.luogu.com.cn/problem/P6180）前缀和计数
-6481（https://www.luogu.com.cn/problem/P6481）区间更新后进行所有前缀查询
-2956（https://www.luogu.com.cn/problem/P2956）二维差分前缀和
-3397（https://www.luogu.com.cn/problem/P3397）二维差分前缀和
-1869（https://www.luogu.com.cn/problem/P1869）使用前缀和记录1-N的因子2的个数继而计算C(N,K)的奇偶性
-7667（https://www.luogu.com.cn/problem/P7667）公式变换，排序后使用前缀和
-2671（https://www.luogu.com.cn/problem/P2671）前缀加和与前缀计数枚举，分奇偶性讨论
-1719（https://www.luogu.com.cn/problem/P1719）求最大子矩阵和，经典枚举矩阵上下边界并使用前缀和计算
-2882（https://www.luogu.com.cn/problem/P2882）贪心枚举加差分验证
-4552（https://www.luogu.com.cn/problem/P4552）差分数组经典题，明晰差分本质
-1627（https://www.luogu.com.cn/problem/P1627）经典前后缀中位数大小值差值计数
-1895（https://www.luogu.com.cn/problem/P1895）前缀和计数加binary_search，最多不超多10**5
+5686（https://www.luogu.com.cn/problem/P5686）prefix_sum的prefix_sum
+6180（https://www.luogu.com.cn/problem/P6180）prefix_sumcounter
+6481（https://www.luogu.com.cn/problem/P6481）区间更新后所有前缀查询
+2956（https://www.luogu.com.cn/problem/P2956）二维差分prefix_sum
+3397（https://www.luogu.com.cn/problem/P3397）二维差分prefix_sum
+1869（https://www.luogu.com.cn/problem/P1869）prefix_sum记录1-N的因子2的个数继而C(N,K)的奇偶性
+7667（https://www.luogu.com.cn/problem/P7667）公式变换，sorting后prefix_sum
+2671（https://www.luogu.com.cn/problem/P2671）前缀|和与前缀counterbrute_force，分奇偶性讨论
+1719（https://www.luogu.com.cn/problem/P1719）求最大子矩阵和，brute_force矩阵上下边界并prefix_sum
+2882（https://www.luogu.com.cn/problem/P2882）greedybrute_force|差分验证
+4552（https://www.luogu.com.cn/problem/P4552）差分数组题，明晰差分本质
+1627（https://www.luogu.com.cn/problem/P1627）prefix_suffixmedian大小值差值counter
+1895（https://www.luogu.com.cn/problem/P1895）prefix_sumcounter|binary_search，最多不超多10**5
 1982（https://www.luogu.com.cn/problem/P1982）前缀最大连续子段和与前缀最大值
-2070（https://www.luogu.com.cn/problem/P2070）哈希离散化差分数组计数
+2070（https://www.luogu.com.cn/problem/P2070）hash离散化差分数组counter
 2190（https://www.luogu.com.cn/problem/P2190）环形数组差分
 2352（https://www.luogu.com.cn/problem/P2352）离散化差分
-2363（https://www.luogu.com.cn/problem/P2363）二维前缀和与枚举
+2363（https://www.luogu.com.cn/problem/P2363）二维prefix_sum与brute_force
 2706（https://www.luogu.com.cn/problem/P2706）不包含障碍点的最大子矩阵和
-2879（https://www.luogu.com.cn/problem/P2879）差分数组经典题与贪心
-3028（https://www.luogu.com.cn/problem/P3028）离散化差分计算覆盖区间最多的点
-4030（https://www.luogu.com.cn/problem/P4030）脑筋急转弯加二维前缀和计算
-4440（https://www.luogu.com.cn/problem/P4440）典型前缀和计数
-4623（https://www.luogu.com.cn/problem/P4623）离散化差分计数
-6032（https://www.luogu.com.cn/problem/P6032）经典前后缀计数
-6070（https://www.luogu.com.cn/problem/P6070）经典二维差分贪心修改实时维护差分与计算前缀和即矩阵最新值
-6278（https://www.luogu.com.cn/problem/P6278）经典逆序对作用域与差分前缀和计算
-6537（https://www.luogu.com.cn/problem/P6537）预处理前缀和加枚举
-6877（https://www.luogu.com.cn/problem/P6877）排序贪心前后缀 DP 枚举
-6878（https://www.luogu.com.cn/problem/P6878）前后缀枚举
-8081（https://www.luogu.com.cn/problem/P8081）差分计数计算作用域
-8033（https://www.luogu.com.cn/problem/P8033）二维前缀和计数
-7992（https://www.luogu.com.cn/problem/P7992）经典桶计数与作用域差分计数
-7948（https://www.luogu.com.cn/problem/P7948）排序后预处理前后缀信息指针查询
-8343（https://www.luogu.com.cn/problem/P8343）经典子矩阵前缀和枚举与双指针
-8551（https://www.luogu.com.cn/problem/P8551）差分数组经典灵活应用
-8666（https://www.luogu.com.cn/problem/P8666）二分加三维差分经典题，滚动模拟覆盖计算
-8715（https://www.luogu.com.cn/problem/P8715）前后缀贡献计数
-8783（https://www.luogu.com.cn/problem/P8783）经典O(n^3)与双指针枚举计算子矩阵个数
+2879（https://www.luogu.com.cn/problem/P2879）差分数组题与greedy
+3028（https://www.luogu.com.cn/problem/P3028）离散化差分覆盖区间最多的点
+4030（https://www.luogu.com.cn/problem/P4030）brain_teaser|二维prefix_sum
+4440（https://www.luogu.com.cn/problem/P4440）典型prefix_sumcounter
+4623（https://www.luogu.com.cn/problem/P4623）离散化差分counter
+6032（https://www.luogu.com.cn/problem/P6032）prefix_suffixcounter
+6070（https://www.luogu.com.cn/problem/P6070）二维差分greedy修改实时维护差分与prefix_sum即矩阵最新值
+6278（https://www.luogu.com.cn/problem/P6278）逆序对作用域与差分prefix_sum
+6537（https://www.luogu.com.cn/problem/P6537）预处理prefix_sum|brute_force
+6877（https://www.luogu.com.cn/problem/P6877）sortinggreedyprefix_suffix DP brute_force
+6878（https://www.luogu.com.cn/problem/P6878）prefix_suffixbrute_force
+8081（https://www.luogu.com.cn/problem/P8081）差分counter作用域
+8033（https://www.luogu.com.cn/problem/P8033）二维prefix_sumcounter
+7992（https://www.luogu.com.cn/problem/P7992）桶counter与作用域差分counter
+7948（https://www.luogu.com.cn/problem/P7948）sorting后预处理prefix_suffix信息pointer查询
+8343（https://www.luogu.com.cn/problem/P8343）子矩阵prefix_sumbrute_force与two_pointer
+8551（https://www.luogu.com.cn/problem/P8551）差分数组灵活应用
+8666（https://www.luogu.com.cn/problem/P8666）binary_search|三维差分题，滚动implemention覆盖
+8715（https://www.luogu.com.cn/problem/P8715）prefix_suffix贡献counter
+8783（https://www.luogu.com.cn/problem/P8783）O(n^3)与two_pointerbrute_force子矩阵个数
 
 ===================================CodeForces===================================
-33C（https://codeforces.com/problemset/problem/33/C）前后缀最大变换和与分割点枚举，经典类型题目
-797C（https://codeforces.com/problemset/problem/797/C）后缀最小值字典序模拟
+33C（https://codeforces.com/problemset/problem/33/C）prefix_suffix最大变换和与分割点brute_force，类型题目
+797C（https://codeforces.com/problemset/problem/797/C）后缀最小值lexicographical_orderimplemention
 75D（https://codeforces.com/problemset/problem/75/D）压缩数组最大子段和
-1355C（https://codeforces.com/problemset/problem/1355/C）经典使用作用域差分计算，合法三角形边长个数
-1795C（https://codeforces.com/problemset/problem/1795/C）前缀和二分后，经典使用差分计数模拟加和
-1343D（https://codeforces.com/problemset/problem/1343/D）枚举x使用差分数组进行范围计数
-1722E（https://codeforces.com/problemset/problem/1722/E）根据数字取值范围使用二位前缀和计算
-1772D（https://codeforces.com/contest/1772/problem/D）离散差分作用域计数
+1355C（https://codeforces.com/problemset/problem/1355/C）作用域差分，合法三角形边长个数
+1795C（https://codeforces.com/problemset/problem/1795/C）prefix_sumbinary_search后，差分counterimplemention|和
+1343D（https://codeforces.com/problemset/problem/1343/D）brute_forcex差分数组范围counter
+1722E（https://codeforces.com/problemset/problem/1722/E）根据数字取值范围二位prefix_sum
+1772D（https://codeforces.com/contest/1772/problem/D）离散差分作用域counter
 
 ====================================AtCoder=====================================
-D - AtCoder Express 2（https://atcoder.jp/contests/abc106/tasks/abc106_d）前缀和优化DP计数
+D - AtCoder Express 2（https://atcoder.jp/contests/abc106/tasks/abc106_d）prefix_sum优化DPcounter
 
 =====================================AcWing=====================================
-99（https://www.acwing.com/problem/content/description/101/）二维前缀和
-100（https://www.acwing.com/problem/content/102/）差分数组经典题目，明晰本质
-101（https://www.acwing.com/problem/content/103/）查分数组，贪心得出结论
-102（https://www.acwing.com/problem/content/104/）前缀和加二分计算不短于k的子数组最大平均值
-121（https://www.acwing.com/problem/content/description/123/）经典离散化前缀和，双指针加二分
-126（https://www.acwing.com/problem/content/128/）经典最大子矩形和
-3993（https://www.acwing.com/problem/content/description/3996/）后缀和值域思维题
+99（https://www.acwing.com/problem/content/description/101/）二维prefix_sum
+100（https://www.acwing.com/problem/content/102/）差分数组题目，明晰本质
+101（https://www.acwing.com/problem/content/103/）查分数组，greedy得出结论
+102（https://www.acwing.com/problem/content/104/）prefix_sum|binary_search不短于k的子数组最大平均值
+121（https://www.acwing.com/problem/content/description/123/）离散化prefix_sum，two_pointer|binary_search
+126（https://www.acwing.com/problem/content/128/）最大子矩形和
+3993（https://www.acwing.com/problem/content/description/3996/）后缀和data_range思维题
 
 """
 import bisect
@@ -121,7 +121,7 @@ class Solution:
 
     @staticmethod
     def lg_p3397(ac=FastIO()):
-        # 模板：二维差分前缀和
+        # 二维差分prefix_sum
         n, m = ac.read_list_ints()
         shifts = []
         for _ in range(m):
@@ -134,7 +134,7 @@ class Solution:
 
     @staticmethod
     def lg_p4552(ac=FastIO()):
-        # 模板：差分数组经典题，明晰差分本质
+        # 差分数组题，明晰差分本质
         n = ac.read_int()
         pre = -1
         pos = 0
@@ -154,7 +154,7 @@ class Solution:
     @staticmethod
     def lg_p1719(ac=FastIO()):
 
-        # 模板：求最大子矩阵和，经典枚举矩阵上下边界并使用前缀和计算
+        # 求最大子矩阵和，brute_force矩阵上下边界并prefix_sum
         n = ac.read_int()
         total = []
         while len(total) < n * n:
@@ -179,7 +179,7 @@ class Solution:
 
     @staticmethod
     def cf_1722e(ac=FastIO()):
-        # 模板：根据数字范围，使用二位前缀和，求解子矩阵元素和
+        # 根据数字范围，二位prefix_sum，求解子矩阵元素和
         for _ in range(ac.read_int()):
             k, q = ac.read_list_ints()
             rec = [ac.read_list_ints() for _ in range(k)]
@@ -206,7 +206,7 @@ class Solution:
 
     @staticmethod
     def lg_p2671(ac=FastIO()):
-        # 模板：前后缀计数加和，分奇偶性讨论
+        # prefix_suffixcounter|和，分奇偶性讨论
         n, m = ac.read_list_ints()
         number = ac.read_list_ints()
         colors = ac.read_list_ints()
@@ -215,7 +215,7 @@ class Solution:
         ans = 0
         pre_sum = [[0, 0] for _ in range(m + 1)]
         pre_cnt = [[0, 0] for _ in range(m + 1)]
-        for i in range(n):  # 枚举 z 计算 z*ax+z*az
+        for i in range(n):  # brute_force z  z*ax+z*az
             num, color = number[i], colors[i]
             k = i % 2
             z_ax = (i + 1) * pre_sum[color][k]
@@ -227,7 +227,7 @@ class Solution:
 
         pre_sum = [[0, 0] for _ in range(m + 1)]
         pre_cnt = [[0, 0] for _ in range(m + 1)]
-        for i in range(n - 1, -1, -1):  # 枚举 x 计算 x*ax+x*az
+        for i in range(n - 1, -1, -1):  # brute_force x  x*ax+x*az
             num, color = number[i], colors[i]
             k = i % 2
             x_az = (i + 1) * pre_sum[color][k]
@@ -242,7 +242,7 @@ class Solution:
 
     @staticmethod
     def cf_1795c(ac=FastIO()):
-        # 模板：根据作用域进行差分数组计数
+        # 根据作用域差分数组counter
         for _ in range(ac.read_int()):
             n = ac.read_int()
             a = ac.read_list_ints()
@@ -273,7 +273,7 @@ class Solution:
 
     @staticmethod
     def lc_995(nums: List[int], k: int) -> int:
-        # 模板：贪心加差分数组模拟
+        # greedy|差分数组implemention
         n = len(nums)
         ans = 0
         diff = [0] * (n + 1)
@@ -294,7 +294,7 @@ class Solution:
 
     @staticmethod
     def lc_1074(matrix: List[List[int]], target: int) -> int:
-        # 模板：经典二维前缀和枚举上下边计算目标子矩阵的数量
+        # 二维prefix_sumbrute_force上下边目标子矩阵的数量
         m, n = len(matrix), len(matrix[0])
         pre = PreFixSumMatrix(matrix)
         ans = 0
@@ -310,7 +310,7 @@ class Solution:
 
     @staticmethod
     def lc_1191(arr: List[int], k: int) -> int:
-        # 模板：经典前后缀最大连续子序列和
+        # prefix_suffix最大连续子序列和
         mod = 10 ** 9 + 7
         n = len(arr)
         s = sum(arr)
@@ -337,7 +337,7 @@ class Solution:
 
     @staticmethod
     def cf_1355c(a, b, c, d):
-        # 模板: 经典使用作用域差分计算，合法三角形边长个数
+        # 模板: 作用域差分，合法三角形边长个数
         diff = [0] * (b + c + 1)
         for x in range(a, b + 1):
             diff[x + b] += 1
@@ -356,16 +356,16 @@ class Solution:
 
     @staticmethod
     def lc_2281(nums: List[int]) -> int:
-        # 模板：单调栈计数与前缀和的前缀和计算
+        # 单调栈counter与prefix_sum的prefix_sum
         n = len(nums)
         post = [n - 1] * n  # 这里可以是n/n-1/null，取决于用途
         pre = [0] * n  # 这里可以是0/-1/null，取决于用途
         stack = []
-        for i in range(n):  # 这里也可以是从n-1到0倒序计算，取决于用途
+        for i in range(n):  # 这里也可以是从n-1到0倒序，取决于用途
             while stack and nums[stack[-1]
             ] > nums[i]:  # 这里可以是"<" ">" "<=" ">="，取决于需要判断的大小关系
                 post[stack.pop()] = i - 1  # 这里可以是i或者i-1，取决于是否包含i作为右端点
-            if stack:  # 这里不一定可以同时计算，比如前后都是大于等于时，只有前后所求范围互斥时，可以计算
+            if stack:  # 这里不一定可以同时，比如前后都是大于等于时，只有前后所求范围互斥时，可以
                 # 这里可以是stack[-1]或者stack[-1]+1，取决于是否包含stack[-1]作为左端点
                 pre[i] = stack[-1] + 1
             stack.append(i)
@@ -383,7 +383,7 @@ class Solution:
 
     @staticmethod
     def lc_2281(strength: List[int]) -> int:
-        # 模板：使用单调栈确定加和范围，再使用前缀和的前缀和进行计数
+        # 单调栈确定|和范围，再prefix_sum的prefix_sumcounter
         n = len(strength)
         mod = 10 ** 9 + 7
 
@@ -398,17 +398,17 @@ class Solution:
                 pre[i] = stack[-1] + 1
             stack.append(i)
 
-        # 前缀和
+        # prefix_sum
         s = [0] * (n + 1)
         for i in range(n):
             s[i + 1] = s[i] + strength[i]
 
-        # 前缀和的前缀和
+        # prefix_sum的prefix_sum
         ss = [0] * (n + 2)
         for i in range(n + 1):
             ss[i + 1] = ss[i] + s[i]
 
-        # 遍历加和
+        # 遍历|和
         ans = 0
         for i in range(n):
             left, right = pre[i], post[i]
@@ -419,7 +419,7 @@ class Solution:
 
     @staticmethod
     def lc_2565(s: str, t: str) -> int:
-        # 模板：使用前后缀贪心枚举前后缀最长匹配
+        # prefix_suffixgreedybrute_forceprefix_suffix最长匹配
         m, n = len(s), len(t)
         pre = [0] * (m + 1)
         ind = 0
@@ -443,7 +443,7 @@ class Solution:
     @staticmethod
     def lg_p2882(ac=FastIO()):
 
-        # 模板：贪心枚举加差分验证
+        # greedybrute_force|差分验证
         n = ac.read_int()
         lst = [int(ac.read_str() == "F") for _ in range(n)]
         ans = [inf, 0]
@@ -473,7 +473,7 @@ class Solution:
 
     @staticmethod
     def cf_1772d(ac=FastIO()):
-        # 模板：离散化差分数组作用域计数
+        # 离散化差分数组作用域counter
         ceil = 10 ** 9
         for _ in range(ac.read_int()):
             n = ac.read_int()
@@ -507,7 +507,7 @@ class Solution:
 
     @staticmethod
     def ac_99(ac=FastIO()):
-        # 模板：二维前缀和
+        # 二维prefix_sum
         n, m = ac.read_list_ints()
 
         lst = [ac.read_list_ints() for _ in range(n)]
@@ -530,7 +530,7 @@ class Solution:
     @staticmethod
     def ac_102(ac=FastIO()):
 
-        # 模板：前缀和加二分计算不短于k的子数组最大平均值
+        # prefix_sum|binary_search不短于k的子数组最大平均值
         n, f = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
 
@@ -558,7 +558,7 @@ class Solution:
 
     @staticmethod
     def ac_121(ac=FastIO()):
-        # 模板：离散化前缀和，双指针加二分
+        # 离散化prefix_sum，two_pointer|binary_search
         c, b = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(b)]
         lst_x = sorted(list(set([x for x, _ in nums])))
@@ -605,7 +605,7 @@ class Solution:
 
     @staticmethod
     def ac_126(ac=FastIO()):
-        # 模板：经典最大子矩形和
+        # 最大子矩形和
         n = ac.read_int()
         nums = []
         while len(nums) < n * n:
@@ -628,12 +628,12 @@ class Solution:
 
     @staticmethod
     def lg_p1627(ac=FastIO()):
-        # 模板：经典前后缀中位数大小值差值计数
+        # prefix_suffixmedian大小值差值counter
         n, b = ac.read_list_ints()
         nums = ac.read_list_ints()
         i = nums.index(b)
 
-        # 前缀差值计数
+        # 前缀差值counter
         pre = defaultdict(int)
         cnt = ans = 0
         for j in range(i - 1, -1, -1):
@@ -643,12 +643,12 @@ class Solution:
             if cnt == 0:  # 只取前缀
                 ans += 1
 
-        # 后缀差值计数
+        # 后缀差值counter
         cnt = 0
         for j in range(i + 1, n):
             num = nums[j]
             cnt += 1 if num > b else -1
-            ans += pre[-cnt]  # 取前后缀
+            ans += pre[-cnt]  # 取prefix_suffix
             ans += 1 if not cnt else 0  # 只取后缀
         ans += 1
         ac.st(ans)
@@ -657,7 +657,7 @@ class Solution:
     @staticmethod
     def lg_p1895(ac=FastIO()):
 
-        # 模板：前缀和计数加binary_search，最多不超多10**5
+        # prefix_sumcounter|binary_search，最多不超多10**5
         n = 10 ** 5
         dp = [0] * (n + 1)
         for i in range(1, n + 1):  # 序列1234..
@@ -683,7 +683,7 @@ class Solution:
     @staticmethod
     def lg_p1982(ac=FastIO()):
 
-        # 模板：前缀最大连续子段和与前缀最大值
+        # 前缀最大连续子段和与前缀最大值
         n, p = ac.read_list_ints()
         nums = ac.read_list_ints()
         pre = 0
@@ -705,7 +705,7 @@ class Solution:
 
     @staticmethod
     def lg_p2070(ac=FastIO()):
-        # 模板：哈希离散化差分数组计数
+        # hash离散化差分数组counter
         n = ac.read_int()
         pos = 0
         diff = defaultdict(int)
@@ -720,7 +720,7 @@ class Solution:
                 diff[pos] += 1
                 diff[pos + dis] -= 1
                 pos += dis
-        # 从小到大计算区间占有次数
+        # 从小到大区间占有次数
         axis = sorted(diff.keys())
         m = len(axis)
         ans = 0
@@ -733,7 +733,7 @@ class Solution:
 
     @staticmethod
     def lg_p2190(ac=FastIO()):
-        # 模板：环形数组差分
+        # 环形数组差分
         n, m = ac.read_list_ints()
         diff = [0] * n
         for _ in range(m):
@@ -755,7 +755,7 @@ class Solution:
 
     @staticmethod
     def lg_p2352(ac=FastIO()):
-        # 模板：离散化差分
+        # 离散化差分
         diff = defaultdict(int)
         for _ in range(ac.read_int()):
             a, b = ac.read_list_ints()
@@ -773,7 +773,7 @@ class Solution:
 
     @staticmethod
     def lg_p2363(ac=FastIO()):
-        # 模板：二维前缀和与枚举
+        # 二维prefix_sum与brute_force
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         pre = PreFixSumMatrix(nums)
@@ -800,7 +800,7 @@ class Solution:
 
     @staticmethod
     def lg_p2706(ac=FastIO()):
-        # 模板：不包含障碍点的最大子矩阵和
+        # 不包含障碍点的最大子矩阵和
         m, n = ac.read_list_ints()
         grid = []
         while len(grid) < m * n:
@@ -823,7 +823,7 @@ class Solution:
 
     @staticmethod
     def lg_p2879(ac=FastIO()):
-        # 模板：差分数组经典题与贪心
+        # 差分数组题与greedy
         n, i, h, r = ac.read_list_ints()
         diff = [0] * n
         pre = set()
@@ -847,7 +847,7 @@ class Solution:
 
     @staticmethod
     def lg_p3028(ac=FastIO()):
-        # 模板：离散化差分计算覆盖区间最多的点
+        # 离散化差分覆盖区间最多的点
         n = ac.read_int()
         diff = defaultdict(int)
         for _ in range(n):
@@ -856,7 +856,7 @@ class Solution:
                 a, b = b, a
             diff[a] += 1
             diff[b + 1] -= 1
-            # 增加右端点避免离散化带来重合
+            # 增|右端点避免离散化带来重合
             diff[b] += 0
         axis = sorted(list(diff.keys()))
         ans = diff[axis[0]]
@@ -870,7 +870,7 @@ class Solution:
 
     @staticmethod
     def lg_p4030(ac=FastIO()):
-        # 模板：脑筋急转弯加二维前缀和计算
+        # brain_teaser|二维prefix_sum
         m, n, t = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
         mat = [[0] * n for _ in range(m)]
@@ -897,7 +897,7 @@ class Solution:
 
     @staticmethod
     def lg_p4440(ac=FastIO()):
-        # 模板：典型前缀和计数
+        # 典型prefix_sumcounter
         s = ac.read_str()
         pre = []
         cnt = [0] * 26
@@ -919,7 +919,7 @@ class Solution:
 
     @staticmethod
     def lg_p4623(ac=FastIO()):
-        # 模板：离散化差分计数
+        # 离散化差分counter
         n = ac.read_int()
         m = 10 ** 6 + 1
         diff_x = [0] * m
@@ -935,7 +935,7 @@ class Solution:
             diff_y[low_y + 1] += 1
             diff_y[high_y] -= 1
 
-        # 进行差分计算
+        # 差分
         for i in range(1, m):
             diff_x[i] += diff_x[i - 1]
         for i in range(1, m):
@@ -953,7 +953,7 @@ class Solution:
 
     @staticmethod
     def lg_p6032(ac=FastIO()):
-        # 模板：经典前后缀计数
+        # prefix_suffixcounter
         n, k, p = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         post = [0] * k
@@ -983,7 +983,7 @@ class Solution:
 
     @staticmethod
     def lg_p6070(ac=FastIO()):
-        # 模板：经典二维差分贪心修改实时维护差分与计算前缀和即矩阵最新值
+        # 二维差分greedy修改实时维护差分与prefix_sum即矩阵最新值
         n, m, k = ac.read_list_ints()
         grid = [[0] * n for _ in range(n)]
         for _ in range(m):
@@ -1012,7 +1012,7 @@ class Solution:
 
     @staticmethod
     def lg_p6278(ac=FastIO()):
-        # 模板：经典逆序对作用域与差分前缀和计算
+        # 逆序对作用域与差分prefix_sum
         n = ac.read_int()
         nums = ac.read_list_ints()
         diff = [0] * (n + 1)
@@ -1029,7 +1029,7 @@ class Solution:
 
     @staticmethod
     def lg_p6537(ac=FastIO()):
-        # 模板：预处理前缀和加枚举
+        # 预处理prefix_sum|brute_force
         n = ac.read_int()
         grid = [ac.read_list_ints() for _ in range(n)]
         pre = PreFixSumMatrix(grid)
@@ -1061,7 +1061,7 @@ class Solution:
 
     @staticmethod
     def lg_p6877(ac=FastIO()):
-        # 模板：排序贪心前后缀 DP 枚举
+        # sortinggreedyprefix_suffix DP brute_force
         n = ac.read_int()
         a = ac.read_list_ints()
         b = ac.read_list_ints()
@@ -1085,7 +1085,7 @@ class Solution:
 
     @staticmethod
     def lg_p6878(ac=FastIO()):
-        # 模板：前后缀枚举
+        # prefix_suffixbrute_force
         n, k = ac.read_list_ints()
         s = ac.read_str()
         pre = [-1] * n
@@ -1127,7 +1127,7 @@ class Solution:
 
     @staticmethod
     def lg_p8081(ac=FastIO()):
-        # 模板：差分计数计算作用域
+        # 差分counter作用域
         n = ac.read_int()
         nums = ac.read_list_ints()
         diff = [0] * (n + 1)
@@ -1177,7 +1177,7 @@ class Solution:
 
     @staticmethod
     def lg_p8033(ac=FastIO()):
-        # 模板：二维前缀和计数
+        # 二维prefix_sumcounter
         m, n, k = ac.read_list_ints()
         grid = [list(ac.read_str()) for _ in range(m)]
         mat = [[int(w == "*") for w in lst] for lst in grid]
@@ -1208,7 +1208,7 @@ class Solution:
 
     @staticmethod
     def lg_p7992(ac=FastIO()):
-        # 模板：经典桶计数与作用域差分计数
+        # 桶counter与作用域差分counter
         n, m = ac.read_list_ints()
         a = [0] * (m + 1)
         b = [0] * (m + 1)
@@ -1229,7 +1229,7 @@ class Solution:
 
     @staticmethod
     def lg_p7948(ac=FastIO()):
-        # 模板：排序后预处理前后缀信息指针查询
+        # sorting后预处理prefix_suffix信息pointer查询
         for _ in range(ac.read_int()):
             n, q = ac.read_list_ints()
             a = ac.read_list_ints()
@@ -1255,7 +1255,7 @@ class Solution:
 
     @staticmethod
     def lg_p8343(ac=FastIO()):
-        # 模板：经典子矩阵前缀和枚举与双指针
+        # 子矩阵prefix_sumbrute_force与two_pointer
         m, n, a, b = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
         if a > b:
@@ -1291,7 +1291,7 @@ class Solution:
 
     @staticmethod
     def lg_p8551(ac=FastIO()):
-        # 模板：差分数组经典灵活应用
+        # 差分数组灵活应用
         n = ac.read_int()
         m = 3 * 10 ** 5 + 1
         diff = [0] * (m + 2)
@@ -1314,7 +1314,7 @@ class Solution:
 
     @staticmethod
     def lg_p8666(ac=FastIO()):
-        # 模板：二分加三维差分经典题
+        # binary_search|三维差分题
         a, b, c, m = ac.read_list_ints()
         grid = [[[0] * (c + 1) for _ in range(b + 1)] for _ in range(a + 1)]
         nums = ac.read_list_ints()
@@ -1326,7 +1326,7 @@ class Solution:
         lst = [ac.read_list_ints() for _ in range(m)]
 
         def check(x):
-            # 模板：三位差分计算
+            # 三位差分
             diff = [[[0] * (c + 2) for _ in range(b + 2)]
                     for _ in range(a + 2)]
             for i1, i2, j1, j2, k1, k2, h in lst[:x]:
@@ -1346,7 +1346,7 @@ class Solution:
             for i1 in range(1, a + 1):
                 for j1 in range(1, b + 1):
                     for k1 in range(1, c + 1):
-                        # 前缀和计算索引从 1 开始
+                        # prefix_sum索引从 1 开始
                         diff[i1][j1][k1] += diff[i1 - 1][j1][k1] + diff[i1][j1 - 1][k1] + diff[i1][j1][k1 - 1] - \
                                             diff[i1][j1 - 1][k1 - 1] - diff[i1 - 1][j1][k1 - 1] - diff[i1 - 1][j1 - 1][
                                                 k1] + \
@@ -1362,7 +1362,7 @@ class Solution:
 
     @staticmethod
     def lc_891(nums: List[int]) -> int:
-        # 模板：前后缀枚举最大值与最小值计数
+        # prefix_suffixbrute_force最大值与最小值counter
         mod = 10 ** 9 + 7
         dp = [1]
         for i in range(10 ** 5):
@@ -1378,7 +1378,7 @@ class Solution:
 
     @staticmethod
     def lc_1292(mat: List[List[int]], threshold: int) -> int:
-        # 模板：经典O(mn)复杂度枚举
+        # O(mn)复杂度brute_force
         m, n = len(mat), len(mat[0])
         ans = 0
         pre = PreFixSumMatrix(mat)
@@ -1394,7 +1394,7 @@ class Solution:
 
     @staticmethod
     def lc_1674(nums: List[int], limit: int) -> int:
-        # 模板：经典差分数组作用域计数
+        # 差分数组作用域counter
         n = len(nums)
         diff = [0] * (2 * limit + 2)
         for i in range(n // 2):
@@ -1422,9 +1422,9 @@ class Solution:
     @staticmethod
     def lc_1738(matrix: List[List[int]], k: int) -> int:
 
-        # 模板：经典二维前缀异或和
+        # 二维前缀异或和
         m, n = len(matrix), len(matrix[0])
-        # 原地进行异或运算
+        # 原地异或运算
         for i in range(1, m):
             matrix[i][0] = matrix[i][0] ^ matrix[i - 1][0]
         for j in range(1, n):
@@ -1434,7 +1434,7 @@ class Solution:
                 matrix[i][j] = matrix[i - 1][j - 1] ^ matrix[i -
                                                              1][j] ^ matrix[i][j - 1] ^ matrix[i][j]
 
-        # 排序后返回结果
+        # sorting后返回结果
         lst = []
         for i in range(m):
             lst.extend(matrix[i])
@@ -1443,10 +1443,10 @@ class Solution:
 
     @staticmethod
     def lc_2132(grid: List[List[int]], h: int, w: int) -> bool:
-        # 模板：用前缀和枚举可行的邮票左上端点，然后查看空白格点左上方是否有可行的邮票点，也可以使用经典的二维差分滚动模拟覆盖进行解决
+        # 用prefix_sumbrute_force可行的邮票左上端点，然后查看空白格点左上方是否有可行的邮票点，也可以的二维差分滚动implemention覆盖解决
         m, n = len(grid), len(grid[0])
 
-        # 枚举可以贴邮票的左上角位置
+        # brute_force可以贴邮票的左上角位置
         pre = PreFixSumMatrix(grid)
         dp = [[0] * n for _ in range(m)]
         for i in range(m - h + 1):
@@ -1454,7 +1454,7 @@ class Solution:
                 cur = pre.query(i, j, i + h - 1, j + w - 1)
                 if cur == 0:
                     dp[i][j] = 1
-        # 计算位置的前缀和
+        # 位置的prefix_sum
         pre = PreFixSumMatrix(dp)
         for i in range(m):
             for j in range(n):
@@ -1469,7 +1469,7 @@ class Solution:
 
     @staticmethod
     def ac_3993(ac=FastIO()):
-        # 模板：后缀和值域思维题
+        # 后缀和data_range思维题
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
         low = min(nums)
@@ -1477,13 +1477,13 @@ class Solution:
         if low == high:
             ac.st(0)
             return
-        # 按照值域计数
+        # 按照data_rangecounter
         cnt = [0] * (high - low + 1)
         for num in nums:
             cnt[num - low] += 1
         ans = post_cnt = post_sum = 0
         for i in range(high - low, 0, -1):
-            post_cnt += cnt[i]  # 计数
+            post_cnt += cnt[i]  # counter
             post_sum += post_cnt  # 变为i-1需要的代价
             # 假如往下变为 i-1的代价不可行，则先变为 i
             if post_sum > k:
@@ -1496,7 +1496,7 @@ class Solution:
 
     @staticmethod
     def lc_837(n: int, k: int, max_pts: int) -> float:
-        # 模板：使用差分数组模拟进行概率计算
+        # 差分数组implemention概率
         s = k + max_pts
         dp = [0] * (s + 1)
         dp[0] = 1

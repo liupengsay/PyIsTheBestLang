@@ -1,6 +1,6 @@
 """
 
-Algorithm：中缀、后缀表达式、字符串计算、类似栈的表达式计算
+Algorithm：中缀、后缀表达式、字符串、类似栈的表达式
 Function：xxx
 
 ====================================LeetCode====================================
@@ -9,5 +9,5 @@ Function：xxx
 =====================================LuoGu======================================
 1175（https://www.luogu.com.cn/problem/P1175）
 1617（https://www.luogu.com.cn/problem/P1617）把数字转换为美式英语
-1322（https://www.luogu.com.cn/problem/P1322）使用字符串替换与函数式编程
+1322（https://www.luogu.com.cn/problem/P1322）字符串替换与函数式编程
 """

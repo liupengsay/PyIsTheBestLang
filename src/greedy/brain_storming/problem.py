@@ -1,183 +1,183 @@
 """
 
-Algorithm：贪心、逆向思维、抽屉原理、鸽巢原理、容斥原理、自定义排序、思维、脑筋急转弯、构造
+Algorithm：greedy、reverse_thinking、抽屉原理、pigeonhole、inclusion_exclusion、自定义sorting、思维、brain_teaser、构造
 Function：各种可证明不可证明的头脑风暴
 
 ====================================LeetCode====================================
-134（https://leetcode.com/problems/gas-station/）经典贪心
-330（https://leetcode.com/problems/patching-array/）经典贪心
-1199（https://leetcode.com/problems/minimum-time-to-build-blocks/）经典哈夫曼树Huffman Tree贪心从小到大合并，类似合并果子
-2499（https://leetcode.com/problems/minimum-total-cost-to-make-arrays-unequal/）利用鸽巢原理贪心计算最小代价
-2449（https://leetcode.com/problems/minimum-total-cost-to-make-arrays-unequal/）转换题意进行排序后用奇偶数贪心变换得到
-2448（https://leetcode.com/problems/minimum-cost-to-make-array-equal/）利用中位数的特点变换到带权重广义下中位数的位置是最优的贪心进行增减
-2412（https://leetcode.com/problems/minimum-money-required-before-transactions/）根据交易增长特点进行自定义排序
-2366（https://leetcode.com/problems/minimum-replacements-to-sort-the-array/）倒序贪心不断分解得到满足要求且尽可能大的值
-2350（https://leetcode.com/problems/shortest-impossible-sequence-of-rolls/）脑筋急转弯本质上是求全排列出现的轮数
-2344（https://leetcode.com/problems/minimum-deletions-to-make-array-divisible/）利用最大公约数贪心删除最少的元素
-2136（https://leetcode.com/problems/earliest-possible-day-of-full-bloom/）贪心安排成长时间最长的先种
-2071（https://leetcode.com/problems/maximum-number-of-tasks-you-can-assign/）使用贪心加二分进行极值判断
-517（https://leetcode.com/problems/super-washing-machines/）类似上题，计算最小的左右移动次数以及往左右的移动次数
-1798（https://leetcode.com/problems/maximum-number-of-consecutive-values-you-can-make/）看似背包实则贪心
-625（https://leetcode.com/problems/minimum-factorization/）贪心进行因式分解，类似质因数分解
-2568（https://leetcode.com/problems/minimum-impossible-or/）脑筋急转弯贪心，可以根据暴力打表观察规律
-6361（https://leetcode.com/problems/minimum-score-by-changing-two-elements/）脑筋急转弯贪心
-6316（https://leetcode.com/contest/weekly-contest-336/problems/rearrange-array-to-maximize-prefix-score/）贪心，加前缀和
-2436（https://leetcode.com/problems/minimum-split-into-subarrays-with-gcd-greater-than-one/）贪心计算
-1029（https://leetcode.com/problems/two-city-scheduling/）经典贪心题目，可使用举例两个计算、再进行归纳确定排序规则
-1353（https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended/）经典枚举贪心
-1402（https://leetcode.com/problems/reducing-dishes/）经典前缀和贪心
-1665（https://leetcode.com/problems/minimum-initial-energy-to-finish-tasks/）经典贪心不同项比较公式排序模拟，同CF1203F
-1675（https://leetcode.com/problems/minimize-deviation-in-array/）脑筋急转弯思维题贪心
-1686（https://leetcode.com/problems/stone-game-vi/）经典贪心采用列式子确定排序方式
-1808（https://leetcode.com/problems/maximize-number-of-nice-divisors/）按照模3的因子个数贪心处理，经典将和拆分成最大乘积
-1953（https://leetcode.com/problems/maximum-number-of-weeks-for-which-you-can-work/）经典贪心只看最大值的影响
-2856（https://leetcode.com/problems/minimum-array-length-after-pair-removals/）经典贪心只看最大值的影响
-858（https://leetcode.com/problems/mirror-reflection/description/）经典脑筋急转弯思维题
-1927（https://leetcode.com/problems/sum-game/description/）经典博弈思维题分类讨论
-2592（https://leetcode.com/problems/maximize-greatness-of-an-array/）典型贪心排序后使用双指针计算
-1503（https://leetcode.com/problems/last-moment-before-all-ants-fall-out-of-a-plank/）经典脑筋急转弯题目，相撞不影响结果
-991（https://leetcode.com/problems/broken-calculator/）经典逆向计算贪心，偶数除2奇数加1
-2745（https://leetcode.com/problems/construct-the-longest-new-string/）脑筋急转弯贪心思维题
-1657（https://leetcode.com/problems/determine-if-two-strings-are-close/description/）脑筋急转弯贪心思维题
-2561（https://leetcode.com/problems/rearranging-fruits/）思维题贪心交换
-843（https://leetcode.com/problems/guess-the-word/）思维题贪心模拟交互
-1946（https://leetcode.com/problems/largest-number-after-mutating-substring/description/）易错贪心
-1540（https://leetcode.com/problems/can-convert-string-in-k-moves/）贪心思维题，使用指针记录
-1121（https://leetcode.com/problems/divide-array-into-increasing-sequences/description/）经典思维题贪心，只考虑最大值的分组影响
+134（https://leetcode.com/problems/gas-station/）greedy
+330（https://leetcode.com/problems/patching-array/）greedy
+1199（https://leetcode.com/problems/minimum-time-to-build-blocks/）哈夫曼树Huffman Treegreedy从小到大合并，类似合并果子
+2499（https://leetcode.com/problems/minimum-total-cost-to-make-arrays-unequal/）利用pigeonholegreedy最小代价
+2449（https://leetcode.com/problems/minimum-total-cost-to-make-arrays-unequal/）转换题意sorting后用奇偶数greedy变换得到
+2448（https://leetcode.com/problems/minimum-cost-to-make-array-equal/）利用median的特点变换到带权重广义下median的位置是最优的greedy增减
+2412（https://leetcode.com/problems/minimum-money-required-before-transactions/）根据交易增长特点自定义sorting
+2366（https://leetcode.com/problems/minimum-replacements-to-sort-the-array/）倒序greedy不断分解得到满足要求且尽可能大的值
+2350（https://leetcode.com/problems/shortest-impossible-sequence-of-rolls/）brain_teaser本质上是求全排列出现的轮数
+2344（https://leetcode.com/problems/minimum-deletions-to-make-array-divisible/）利用最大公约数greedy删除最少的元素
+2136（https://leetcode.com/problems/earliest-possible-day-of-full-bloom/）greedy安排成长时间最长的先种
+2071（https://leetcode.com/problems/maximum-number-of-tasks-you-can-assign/）greedy|binary_search极值判断
+517（https://leetcode.com/problems/super-washing-machines/）类似上题，最小的左右移动次数以及往左右的移动次数
+1798（https://leetcode.com/problems/maximum-number-of-consecutive-values-you-can-make/）看似背包实则greedy
+625（https://leetcode.com/problems/minimum-factorization/）greedy因式分解，类似质因数分解
+2568（https://leetcode.com/problems/minimum-impossible-or/）brain_teasergreedy，可以根据打表观察规律
+6361（https://leetcode.com/problems/minimum-score-by-changing-two-elements/）brain_teasergreedy
+6316（https://leetcode.com/contest/weekly-contest-336/problems/rearrange-array-to-maximize-prefix-score/）greedy，|prefix_sum
+2436（https://leetcode.com/problems/minimum-split-into-subarrays-with-gcd-greater-than-one/）greedy
+1029（https://leetcode.com/problems/two-city-scheduling/）greedy题目，可举例两个、再归纳确定sorting规则
+1353（https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended/）brute_forcegreedy
+1402（https://leetcode.com/problems/reducing-dishes/）prefix_sumgreedy
+1665（https://leetcode.com/problems/minimum-initial-energy-to-finish-tasks/）greedy不同项比较公式sortingimplemention，同CF1203F
+1675（https://leetcode.com/problems/minimize-deviation-in-array/）brain_teaser思维题greedy
+1686（https://leetcode.com/problems/stone-game-vi/）greedy采用列式子确定sorting方式
+1808（https://leetcode.com/problems/maximize-number-of-nice-divisors/）按照模3的因子个数greedy处理，将和拆分成最大乘积
+1953（https://leetcode.com/problems/maximum-number-of-weeks-for-which-you-can-work/）greedy只看最大值的影响
+2856（https://leetcode.com/problems/minimum-array-length-after-pair-removals/）greedy只看最大值的影响
+858（https://leetcode.com/problems/mirror-reflection/description/）brain_teaser思维题
+1927（https://leetcode.com/problems/sum-game/description/）博弈思维题classification_discussion
+2592（https://leetcode.com/problems/maximize-greatness-of-an-array/）典型greedysorting后two_pointer
+1503（https://leetcode.com/problems/last-moment-before-all-ants-fall-out-of-a-plank/）brain_teaser题目，相撞不影响结果
+991（https://leetcode.com/problems/broken-calculator/）逆向greedy，偶数除2奇数|1
+2745（https://leetcode.com/problems/construct-the-longest-new-string/）brain_teasergreedy思维题
+1657（https://leetcode.com/problems/determine-if-two-strings-are-close/description/）brain_teasergreedy思维题
+2561（https://leetcode.com/problems/rearranging-fruits/）思维题greedy交换
+843（https://leetcode.com/problems/guess-the-word/）思维题greedyimplemention交互
+1946（https://leetcode.com/problems/largest-number-after-mutating-substring/description/）易错greedy
+1540（https://leetcode.com/problems/can-convert-string-in-k-moves/）greedy思维题，pointer记录
+1121（https://leetcode.com/problems/divide-array-into-increasing-sequences/description/）思维题greedy，只考虑最大值的分组影响
 
 =====================================LuoGu======================================
-1031（https://www.luogu.com.cn/problem/P1031）贪心计算每个点的前缀和流量，需要补齐或者输出时进行计数
-1684（https://www.luogu.com.cn/problem/P1684）线性贪心满足条件即增加计数
-1658（https://www.luogu.com.cn/problem/P1658）看似背包实则贪心
-2001（https://www.luogu.com.cn/problem/P2001）看似背包实则贪心
-1620（https://www.luogu.com.cn/problem/P1620）分类讨论进行贪心
-2773（https://www.luogu.com.cn/problem/P2773）分类讨论进行贪心
-2255（https://www.luogu.com.cn/problem/P2255）两个指针进行贪心
-2327（https://www.luogu.com.cn/problem/P2327）脑筋急转弯进行枚举
-2777（https://www.luogu.com.cn/problem/P2777）贪心枚举最佳得分组合，加前后缀记录最大值
-2649（https://www.luogu.com.cn/problem/P2649）贪心，输的时候输最惨，赢的时候微弱优势
-1367（https://www.luogu.com.cn/problem/P1367）脑筋急转弯，蚂蚁的相对移动位置排序还是不变
-1362（https://www.luogu.com.cn/problem/P1362）找规律之后，进行广度优先搜索枚举
-1090（https://www.luogu.com.cn/record/list?user=739032&status=12&page=11）从小到大贪心合并
-1334（https://www.luogu.com.cn/problem/P1334）逆向思维的合并果子，从小到大合并
-1325（https://www.luogu.com.cn/problem/P1325）排序后进行贪心修建更新
-1250（https://www.luogu.com.cn/problem/P1250）区间的贪心题，使用线段树修改区间与查询和，以及二分进行计算
-1230（https://www.luogu.com.cn/problem/P1230）排序后进行选取贪心
-1159（https://www.luogu.com.cn/problem/P1159）使用队列贪心进行模拟
-1095（https://www.luogu.com.cn/problem/P1095）贪心模拟也可以理解为动态规划转移
-1056（https://www.luogu.com.cn/record/list?user=739032&status=12&page=14）根据题意进行计数排序贪心选择
-8847（https://www.luogu.com.cn/problem/P8847）分类讨论和贪心进行
-8845（https://www.luogu.com.cn/problem/solution/P8845）脑筋急转弯，只有2是偶数质数
-2772（https://www.luogu.com.cn/problem/P2772）按照两个维度排序，再按照其中一个维度顺序比较最大值
-2878（https://www.luogu.com.cn/problem/P2878）经典贪心题目，可使用举例两个计算、再进行归纳确定排序规则
-2920（https://www.luogu.com.cn/problem/P2920）排序后进行贪心计算
-2983（https://www.luogu.com.cn/problem/P2983）看起来是背包其实是贪心优先选择最便宜的奶牛满足
-3173（https://www.luogu.com.cn/problem/P3173）从大到小排序进行贪心计算
-5098（https://www.luogu.com.cn/problem/P5098）贪心按照一个维度排序后再按照另一个维度分类讨论，记录前缀最小值
-5159（https://www.luogu.com.cn/problem/P5159）利用异或的特点枚举计数并进行快速幂计算
-5497（https://www.luogu.com.cn/problem/P5497）抽屉原理进行分类讨论
-5682（https://www.luogu.com.cn/problem/P5682）脑筋急转弯进行排序后贪心枚举确定
-5804（https://www.luogu.com.cn/problem/P5804）排序贪心枚举和binary_search优化
-5963（https://www.luogu.com.cn/problem/P5963）经典贪心题目，可使用举例两个计算、再进行归纳确定排序规则
-6023（https://www.luogu.com.cn/problem/P6023）可证明集中在某天是最佳结果，然后使用指针进行模拟计算
-6243（https://www.luogu.com.cn/problem/P6243）经典贪心举例之后进行优先级比较，再自定义排序
-6179（https://www.luogu.com.cn/problem/list?difficulty=3&page=13）经典贪心
-6380（https://www.luogu.com.cn/problem/P6380）贪心模拟进行赋值
-6446（https://www.luogu.com.cn/problem/P6446）贪心进行操作，经典使得数组所有值相等的最少操作次数变形题目，每次操作可以使得连续区间加1或者减1
-5019（https://www.luogu.com.cn/problem/P5019）贪心进行操作，经典使得数组所有值相等的最少操作次数变形题目，每次操作可以使得连续区间加1或者减1
-6462（https://www.luogu.com.cn/problem/P6462）贪心进行分类计算
-6549（https://www.luogu.com.cn/problem/P6549）逆向思维，使用插入排序的思想进行模拟
-6785（https://www.luogu.com.cn/problem/P6785）脑筋急转弯进行，条件判断与贪心计数
-6851（https://www.luogu.com.cn/problem/P6851）贪心模拟，均从大到小排序，先选择赢的牌，再计算输的牌
-7176（https://www.luogu.com.cn/problem/P7176）贪心策略，结论题
-7228（https://www.luogu.com.cn/problem/P7228）脑筋急转弯贪心加树形dfs计算
-7260（https://www.luogu.com.cn/problem/P7260）贪心与动态规划，经典使得数组所有值从0变化等于给定升序数组的最少操作次数，每次操作可以使得连续区间加1
-7319（https://www.luogu.com.cn/problem/P7319）公式变形后使用排序不等式进行贪心计算
-7412（https://www.luogu.com.cn/problem/P7412）贪心，将问题转换为去掉最长的k-1个非零距离
-7522（https://www.luogu.com.cn/problem/P7522）进行分类贪心讨论
-7633（https://www.luogu.com.cn/problem/P7633）使用埃氏筛法思想，进行模拟贪心计算
-7714（https://www.luogu.com.cn/problem/P7714）经典子序列排序使得整体有序，使用前缀最大值与指针计数确认子数组分割点
-7787（https://www.luogu.com.cn/problem/P7787）脑筋急转弯，借助完全二叉树的思想
-7813（https://www.luogu.com.cn/problem/P7813）贪心计算最大选取值
-1031（https://www.luogu.com.cn/problem/P1031）经典线性均分纸牌问题
-2512（https://www.luogu.com.cn/problem/P2512）经典线性环形均分纸牌问题
-1080（https://www.luogu.com.cn/problem/P1080）经典贪心，举例两项确定排序公式
-1650（https://www.luogu.com.cn/problem/P1650）经典贪心，优先上对上其次下对下最后下对上
-2088（https://www.luogu.com.cn/problem/P2088）贪心，取空闲的，或者下一个离得最远的使用
-2816（https://www.luogu.com.cn/problem/P2816）排序后从小到大贪心放置，使用STL维护当前积木列高度
-3819（https://www.luogu.com.cn/problem/P3819）经典中位数贪心题
-3918（https://www.luogu.com.cn/problem/P3918）脑筋急转弯贪心
-4025（https://www.luogu.com.cn/problem/P4025）经典贪心血量与增幅自定义排序
-4266（https://www.luogu.com.cn/problem/P4266）后缀最大值贪心模拟
-4447（https://www.luogu.com.cn/problem/P4447）经典贪心队列使得连续值序列最少的分组长度最大
-4575（https://www.luogu.com.cn/problem/P4575）脑筋急转弯加状压运算
-4653（https://www.luogu.com.cn/problem/P4653）看似二分使用指针贪心选取
-5093（https://www.luogu.com.cn/problem/P5093）经典脑筋急转弯使用集合确定轮数
-5425（https://www.luogu.com.cn/problem/P5425）看似最小生成树，实则脑筋急转弯贪心计算距离
-5884（https://www.luogu.com.cn/problem/P5884）脑筋急转弯
-5948（https://www.luogu.com.cn/problem/P5948）贪心模拟进行计算
-6196（https://www.luogu.com.cn/problem/P6196）贪心使用 1 进行分段计算代价
-6874（https://www.luogu.com.cn/problem/P6874）经典变换公式转为中位数贪心
-8050（https://www.luogu.com.cn/problem/P8050）脑筋急转弯黑白染色法任意操作不改变黑白元素和的差值
-7935（https://www.luogu.com.cn/problem/P7935）脑筋急转弯
-8109（https://www.luogu.com.cn/problem/P8109）经典STL贪心分配求解
-8669（https://www.luogu.com.cn/problem/P8669）贪心选取 k 个数乘积最大
-8709（https://www.luogu.com.cn/problem/P8709）脑筋急转弯模拟计算
-8732（https://www.luogu.com.cn/problem/P8732）经典贪心枚举两项计算优先级公式
-8887（https://www.luogu.com.cn/problem/P8887）脑筋急转弯贪心
+1031（https://www.luogu.com.cn/problem/P1031）greedy每个点的prefix_sum流量，需要补齐或者输出时counter
+1684（https://www.luogu.com.cn/problem/P1684）线性greedy满足条件即增|counter
+1658（https://www.luogu.com.cn/problem/P1658）看似背包实则greedy
+2001（https://www.luogu.com.cn/problem/P2001）看似背包实则greedy
+1620（https://www.luogu.com.cn/problem/P1620）classification_discussiongreedy
+2773（https://www.luogu.com.cn/problem/P2773）classification_discussiongreedy
+2255（https://www.luogu.com.cn/problem/P2255）两个pointergreedy
+2327（https://www.luogu.com.cn/problem/P2327）brain_teaserbrute_force
+2777（https://www.luogu.com.cn/problem/P2777）greedybrute_force最佳得分组合，|prefix_suffix记录最大值
+2649（https://www.luogu.com.cn/problem/P2649）greedy，输的时候输最惨，赢的时候微弱优势
+1367（https://www.luogu.com.cn/problem/P1367）brain_teaser，蚂蚁的相对移动位置sorting还是不变
+1362（https://www.luogu.com.cn/problem/P1362）找规律之后，广度优先搜索brute_force
+1090（https://www.luogu.com.cn/record/list?user=739032&status=12&page=11）从小到大greedy合并
+1334（https://www.luogu.com.cn/problem/P1334）reverse_thinking的合并果子，从小到大合并
+1325（https://www.luogu.com.cn/problem/P1325）sorting后greedy修建更新
+1250（https://www.luogu.com.cn/problem/P1250）区间的greedy题，线段树修改区间与查询和，以及binary_search
+1230（https://www.luogu.com.cn/problem/P1230）sorting后选取greedy
+1159（https://www.luogu.com.cn/problem/P1159）队列greedyimplemention
+1095（https://www.luogu.com.cn/problem/P1095）greedyimplemention也可以理解为动态规划转移
+1056（https://www.luogu.com.cn/record/list?user=739032&status=12&page=14）根据题意countersortinggreedy选择
+8847（https://www.luogu.com.cn/problem/P8847）classification_discussion和greedy
+8845（https://www.luogu.com.cn/problem/solution/P8845）brain_teaser，只有2是偶数质数
+2772（https://www.luogu.com.cn/problem/P2772）按照两个维度sorting，再按照其中一个维度顺序比较最大值
+2878（https://www.luogu.com.cn/problem/P2878）greedy题目，可举例两个、再归纳确定sorting规则
+2920（https://www.luogu.com.cn/problem/P2920）sorting后greedy
+2983（https://www.luogu.com.cn/problem/P2983）看起来是背包其实是greedy优先选择最便宜的奶牛满足
+3173（https://www.luogu.com.cn/problem/P3173）从大到小sortinggreedy
+5098（https://www.luogu.com.cn/problem/P5098）greedy按照一个维度sorting后再按照另一个维度classification_discussion，记录前缀最小值
+5159（https://www.luogu.com.cn/problem/P5159）利用异或的特点brute_forcecounter并快速幂
+5497（https://www.luogu.com.cn/problem/P5497）抽屉原理classification_discussion
+5682（https://www.luogu.com.cn/problem/P5682）brain_teasersorting后greedybrute_force确定
+5804（https://www.luogu.com.cn/problem/P5804）sortinggreedybrute_force和binary_search优化
+5963（https://www.luogu.com.cn/problem/P5963）greedy题目，可举例两个、再归纳确定sorting规则
+6023（https://www.luogu.com.cn/problem/P6023）可证明集中在某天是最佳结果，然后pointerimplemention
+6243（https://www.luogu.com.cn/problem/P6243）greedy举例之后优先级比较，再自定义sorting
+6179（https://www.luogu.com.cn/problem/list?difficulty=3&page=13）greedy
+6380（https://www.luogu.com.cn/problem/P6380）greedyimplemention赋值
+6446（https://www.luogu.com.cn/problem/P6446）greedy操作，使得数组所有值相等的最少操作次数变形题目，每次操作可以使得连续区间|1或者减1
+5019（https://www.luogu.com.cn/problem/P5019）greedy操作，使得数组所有值相等的最少操作次数变形题目，每次操作可以使得连续区间|1或者减1
+6462（https://www.luogu.com.cn/problem/P6462）greedy分类
+6549（https://www.luogu.com.cn/problem/P6549）reverse_thinking，插入sorting的思想implemention
+6785（https://www.luogu.com.cn/problem/P6785）brain_teaser，条件判断与greedycounter
+6851（https://www.luogu.com.cn/problem/P6851）greedyimplemention，均从大到小sorting，先选择赢的牌，再输的牌
+7176（https://www.luogu.com.cn/problem/P7176）greedy策略，结论题
+7228（https://www.luogu.com.cn/problem/P7228）brain_teasergreedy|树形dfs
+7260（https://www.luogu.com.cn/problem/P7260）greedy与动态规划，使得数组所有值从0变化等于给定升序数组的最少操作次数，每次操作可以使得连续区间|1
+7319（https://www.luogu.com.cn/problem/P7319）公式变形后sorting不等式greedy
+7412（https://www.luogu.com.cn/problem/P7412）greedy，将问题转换为去掉最长的k-1个非零距离
+7522（https://www.luogu.com.cn/problem/P7522）分类greedy讨论
+7633（https://www.luogu.com.cn/problem/P7633）埃氏筛法思想，implementiongreedy
+7714（https://www.luogu.com.cn/problem/P7714）子序列sorting使得整体有序，前缀最大值与pointercounter确认子数组分割点
+7787（https://www.luogu.com.cn/problem/P7787）brain_teaser，借助完全二叉树的思想
+7813（https://www.luogu.com.cn/problem/P7813）greedy最大选取值
+1031（https://www.luogu.com.cn/problem/P1031）线性均分纸牌问题
+2512（https://www.luogu.com.cn/problem/P2512）线性环形均分纸牌问题
+1080（https://www.luogu.com.cn/problem/P1080）greedy，举例两项确定sorting公式
+1650（https://www.luogu.com.cn/problem/P1650）greedy，优先上对上其次下对下最后下对上
+2088（https://www.luogu.com.cn/problem/P2088）greedy，取空闲的，或者下一个离得最远的
+2816（https://www.luogu.com.cn/problem/P2816）sorting后从小到大greedy放置，STL维护当前积木列高度
+3819（https://www.luogu.com.cn/problem/P3819）mediangreedy题
+3918（https://www.luogu.com.cn/problem/P3918）brain_teasergreedy
+4025（https://www.luogu.com.cn/problem/P4025）greedy血量与增幅自定义sorting
+4266（https://www.luogu.com.cn/problem/P4266）后缀最大值greedyimplemention
+4447（https://www.luogu.com.cn/problem/P4447）greedy队列使得连续值序列最少的分组长度最大
+4575（https://www.luogu.com.cn/problem/P4575）brain_teaser|状压运算
+4653（https://www.luogu.com.cn/problem/P4653）看似binary_searchpointergreedy选取
+5093（https://www.luogu.com.cn/problem/P5093）brain_teaser集合确定轮数
+5425（https://www.luogu.com.cn/problem/P5425）看似最小生成树，实则brain_teasergreedy距离
+5884（https://www.luogu.com.cn/problem/P5884）brain_teaser
+5948（https://www.luogu.com.cn/problem/P5948）greedyimplemention
+6196（https://www.luogu.com.cn/problem/P6196）greedy 1 分段代价
+6874（https://www.luogu.com.cn/problem/P6874）变换公式转为mediangreedy
+8050（https://www.luogu.com.cn/problem/P8050）brain_teaser黑白染色法任意操作不改变黑白元素和的差值
+7935（https://www.luogu.com.cn/problem/P7935）brain_teaser
+8109（https://www.luogu.com.cn/problem/P8109）STLgreedy分配求解
+8669（https://www.luogu.com.cn/problem/P8669）greedy选取 k 个数乘积最大
+8709（https://www.luogu.com.cn/problem/P8709）brain_teaserimplemention
+8732（https://www.luogu.com.cn/problem/P8732）greedybrute_force两项优先级公式
+8887（https://www.luogu.com.cn/problem/P8887）brain_teasergreedy
 
 ===================================CodeForces===================================
-1186D（https://codeforces.com/problemset/problem/1186/D）贪心取floor，再根据加和为0的特质进行补充加1成为ceil
-792C（https://codeforces.com/contest/792/problem/C）分类进行贪心取数比较，取最长的返回结果
-166E（https://codeforces.com/problemset/problem/166/E）思维模拟DP
-1025C（https://codeforces.com/problemset/problem/1025/C）脑筋急转弯
-1042C（https://codeforces.com/problemset/problem/1042/C）贪心分类模拟
-439C（https://codeforces.com/problemset/problem/439/C）贪心分类讨论
-1283E（https://codeforces.com/problemset/problem/1283/E）贪心分类讨论
-1092C（https://codeforces.com/contest/1092/problem/C）脑筋急转弯思维分类题
-1280B（https://codeforces.com/problemset/problem/1280/B）脑筋急转弯思维分类题
-723C（https://codeforces.com/problemset/problem/723/C）贪心模拟构造
-712C（https://codeforces.com/problemset/problem/712/C）逆向思维反向模拟
-747D（https://codeforces.com/problemset/problem/747/D）贪心模拟求解
-1148D（https://codeforces.com/problemset/problem/1148/D）贪心，自定义排序选择构造
-792C（https://codeforces.com/contest/792/problem/C）分类进行贪心讨论
-830A（https://codeforces.com/problemset/problem/830/A）按照影响区间排序，然后贪心分配时间
-478C（https://codeforces.com/problemset/problem/478/C）贪心结论题a<=b<=c则有min((a+b+c)//3, a+b)
-1329A（https://codeforces.com/problemset/problem/1329/A）贪心+指针+模拟
-1401D（https://codeforces.com/problemset/problem/1401/D）贪心dfs枚举经过边的路径计数
-600C（https://codeforces.com/problemset/problem/600/C）回文子串计数贪心
-1038D（https://codeforces.com/problemset/problem/1038/D）贪心模拟，分类讨论
-349B（https://codeforces.com/problemset/problem/349/B）贪心模拟
-1370C（https://codeforces.com/problemset/problem/1370/C）贪心模拟必胜态
-1822E（https://codeforces.com/contest/1822/problem/E）贪心进行模拟计数
-1005E2（https://codeforces.com/contest/1005/problem/E2）经典特定中位数的连续子数组个数，使用容斥原理加前缀和有序列表二分，同LC2488
-1512E（https://codeforces.com/contest/1512/problem/E）思维题从大到小贪心
+1186D（https://codeforces.com/problemset/problem/1186/D）greedy取floor，再根据|和为0的特质补充|1成为ceil
+792C（https://codeforces.com/contest/792/problem/C）分类greedy取数比较，取最长的返回结果
+166E（https://codeforces.com/problemset/problem/166/E）思维implementionDP
+1025C（https://codeforces.com/problemset/problem/1025/C）brain_teaser
+1042C（https://codeforces.com/problemset/problem/1042/C）greedy分类implemention
+439C（https://codeforces.com/problemset/problem/439/C）greedyclassification_discussion
+1283E（https://codeforces.com/problemset/problem/1283/E）greedyclassification_discussion
+1092C（https://codeforces.com/contest/1092/problem/C）brain_teaser思维分类题
+1280B（https://codeforces.com/problemset/problem/1280/B）brain_teaser思维分类题
+723C（https://codeforces.com/problemset/problem/723/C）greedyimplemention构造
+712C（https://codeforces.com/problemset/problem/712/C）reverse_thinking反向implemention
+747D（https://codeforces.com/problemset/problem/747/D）greedyimplemention求解
+1148D（https://codeforces.com/problemset/problem/1148/D）greedy，自定义sorting选择构造
+792C（https://codeforces.com/contest/792/problem/C）分类greedy讨论
+830A（https://codeforces.com/problemset/problem/830/A）按照影响区间sorting，然后greedy分配时间
+478C（https://codeforces.com/problemset/problem/478/C）greedy结论题a<=b<=c则有min((a+b+c)//3, a+b)
+1329A（https://codeforces.com/problemset/problem/1329/A）greedy+pointer+implemention
+1401D（https://codeforces.com/problemset/problem/1401/D）greedydfsbrute_force经过边的路径counter
+600C（https://codeforces.com/problemset/problem/600/C）palindrome_substringcountergreedy
+1038D（https://codeforces.com/problemset/problem/1038/D）greedyimplemention，classification_discussion
+349B（https://codeforces.com/problemset/problem/349/B）greedyimplemention
+1370C（https://codeforces.com/problemset/problem/1370/C）greedyimplemention必胜态
+1822E（https://codeforces.com/contest/1822/problem/E）greedyimplementioncounter
+1005E2（https://codeforces.com/contest/1005/problem/E2）特定median的连续子数组个数，inclusion_exclusion|prefix_sumsorted_listbinary_search，同LC2488
+1512E（https://codeforces.com/contest/1512/problem/E）思维题从大到小greedy
 
 ====================================AtCoder=====================================
-C - AtCoDeer and Election Report（https://atcoder.jp/contests/abc046/tasks/arc062_a）思维题，使用不等式进行贪心
-D - Wide Flip（https://atcoder.jp/contests/abc083/tasks/arc088_b）经典思维题贪心
-D - Various Sushi（https://atcoder.jp/contests/abc116/tasks/abc116_d）经典思维题贪心
-D - Summer Vacation（https://atcoder.jp/contests/abc137/tasks/abc137_d）经典逆序思维题贪心
+C - AtCoDeer and Election Report（https://atcoder.jp/contests/abc046/tasks/arc062_a）思维题，不等式greedy
+D - Wide Flip（https://atcoder.jp/contests/abc083/tasks/arc088_b）思维题greedy
+D - Various Sushi（https://atcoder.jp/contests/abc116/tasks/abc116_d）思维题greedy
+D - Summer Vacation（https://atcoder.jp/contests/abc137/tasks/abc137_d）逆序思维题greedy
 
 =====================================AcWing=====================================
-104（https://www.acwing.com/problem/content/106/）中位数贪心
-1536（https://www.acwing.com/problem/content/description/1538/）贪心均分纸牌
-105（https://www.acwing.com/problem/content/description/1538/）经典环形均分纸牌问题
-110（https://www.acwing.com/problem/content/112/）贪心匹配最多组合
-123（https://www.acwing.com/problem/content/description/125/）中位数贪心扩展问题
-125（https://www.acwing.com/problem/content/127/）经典贪心思路，邻项交换
-127（https://www.acwing.com/problem/content/description/129/）经典二维排序贪心
-145（https://www.acwing.com/problem/content/147/）经典使用二叉堆贪心
-122（https://www.acwing.com/problem/content/124/）经典线性环形均分纸牌问题
-4204（https://www.acwing.com/problem/content/description/4207/）经典构造
-4307（https://www.acwing.com/problem/content/description/4310/）经典字典序枚举贪心
-4313（https://www.acwing.com/problem/content/4316/）经典满二叉树树形DP贪心（同LC2673）
-4426（https://www.acwing.com/problem/content/4429/）思维题脑筋急转弯，等价于末尾两位数字可以被4整除
-4427（https://www.acwing.com/problem/content/4430/）经典树形贪心构造
-4429（https://www.acwing.com/problem/content/description/4432/）经典计算邻项公式贪心排序，使用前后缀枚举
-4430（https://www.acwing.com/problem/content/description/4433/）经典括号匹配枚举，前后缀遍历计算
-4492（https://www.acwing.com/problem/content/description/4495/）脑筋急转弯分为奇数与偶数讨论
-4623（https://www.acwing.com/problem/content/description/4626/）贪心模拟
+104（https://www.acwing.com/problem/content/106/）mediangreedy
+1536（https://www.acwing.com/problem/content/description/1538/）greedy均分纸牌
+105（https://www.acwing.com/problem/content/description/1538/）环形均分纸牌问题
+110（https://www.acwing.com/problem/content/112/）greedy匹配最多组合
+123（https://www.acwing.com/problem/content/description/125/）mediangreedy扩展问题
+125（https://www.acwing.com/problem/content/127/）greedy思路，邻项交换
+127（https://www.acwing.com/problem/content/description/129/）二维sortinggreedy
+145（https://www.acwing.com/problem/content/147/）二叉堆greedy
+122（https://www.acwing.com/problem/content/124/）线性环形均分纸牌问题
+4204（https://www.acwing.com/problem/content/description/4207/）构造
+4307（https://www.acwing.com/problem/content/description/4310/）lexicographical_orderbrute_forcegreedy
+4313（https://www.acwing.com/problem/content/4316/）满二叉树树形DPgreedy（同LC2673）
+4426（https://www.acwing.com/problem/content/4429/）思维题brain_teaser，等价于末尾两位数字可以被4整除
+4427（https://www.acwing.com/problem/content/4430/）树形greedy构造
+4429（https://www.acwing.com/problem/content/description/4432/）邻项公式greedysorting，prefix_suffixbrute_force
+4430（https://www.acwing.com/problem/content/description/4433/）括号匹配brute_force，prefix_suffix遍历
+4492（https://www.acwing.com/problem/content/description/4495/）brain_teaser分为奇数与偶数讨论
+4623（https://www.acwing.com/problem/content/description/4626/）greedyimplemention
 
 """
 
@@ -200,7 +200,7 @@ class Solution:
 
     @staticmethod
     def cf_1005e2(ac=FastIO()):
-        # 模板：经典特定中位数的连续子数组个数，使用容斥原理加前缀和有序列表二分
+        # 特定median的连续子数组个数，inclusion_exclusion|prefix_sumsorted_listbinary_search
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
 
@@ -224,7 +224,7 @@ class Solution:
 
     @staticmethod
     def cf_1038d(ac=FastIO()):
-        # 模板：分类讨论贪心模拟
+        # classification_discussiongreedyimplemention
         n = ac.read_int()
         nums = ac.read_list_ints()
         if n == 1:
@@ -288,7 +288,7 @@ class Solution:
 
     @staticmethod
     def lg_p2512(ac=FastIO()):
-        # 模板：经典环形均分纸牌问题
+        # 环形均分纸牌问题
         n = ac.read_int()
         nums = [ac.read_int() for _ in range(n)]
         m = sum(nums) // n
@@ -305,7 +305,7 @@ class Solution:
 
     @staticmethod
     def abc_46b(ac=FastIO()):
-        # 模板：思维题，使用不等式进行贪心
+        # 思维题，不等式greedy
         n = ac.read_int()
         a = b = 1
         for _ in range(n):
@@ -359,7 +359,7 @@ class Solution:
 
     @staticmethod
     def ac_123(ac=FastIO()):
-        # 模板：经典中位数贪心扩展问题，连续相邻排序减去下标后再排序
+        # mediangreedy扩展问题，连续相邻sorting减去下标后再sorting
         n = ac.read_int()
         lst_x = []
         lst_y = []
@@ -381,7 +381,7 @@ class Solution:
 
     @staticmethod
     def ac_125(ac=FastIO()):
-        # 模板：经典贪心思路，邻项交换
+        # greedy思路，邻项交换
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort(key=lambda it: it[0] + it[1])
@@ -395,7 +395,7 @@ class Solution:
 
     @staticmethod
     def ac_127(ac=FastIO()):
-        # 模板：经典二维排序贪心
+        # 二维sortinggreedy
         n, m = ac.read_list_ints()
         machine = [ac.read_list_ints() for _ in range(n)]
         task = [ac.read_list_ints() for _ in range(m)]
@@ -418,7 +418,7 @@ class Solution:
 
     @staticmethod
     def ac_145(ac=FastIO()):
-        # 模板：使用二叉堆贪心计算
+        # 二叉堆greedy
         lst = []
         cnt = 0
         while cnt < 10000:
@@ -445,12 +445,12 @@ class Solution:
 
     @staticmethod
     def lc_2745(x: int, y: int, z: int) -> int:
-        # 模板：脑筋急转弯贪心思维题
+        # brain_teasergreedy思维题
         return z * 2 + min(x, y) * 4 + int((max(x, y) - min(x, y)) > 0) * 2
 
     @staticmethod
     def lg_p1080(ac=FastIO()):
-        # 模板：经典贪心，举例两项确定排序公式
+        # greedy，举例两项确定sorting公式
         n = ac.read_int()
         a, b = ac.read_list_ints()
         lst = [ac.read_list_ints() for _ in range(n)]
@@ -465,7 +465,7 @@ class Solution:
 
     @staticmethod
     def lg_p1650(ac=FastIO()):
-        # 模板：经典贪心，优先上对上其次下对下最后下对上
+        # greedy，优先上对上其次下对下最后下对上
         ac.read_int()
         a = deque(sorted(ac.read_list_ints(), reverse=True))
         b = deque(sorted(ac.read_list_ints(), reverse=True))
@@ -495,7 +495,7 @@ class Solution:
 
     @staticmethod
     def lg_p2088(ac=FastIO()):
-        # 模板：使用队列集合贪心，取空闲的，或者下一个离得最远的使用
+        # 队列集合greedy，取空闲的，或者下一个离得最远的
         ans = 0
         k, n = ac.read_list_ints()
         nums = []
@@ -529,7 +529,7 @@ class Solution:
 
     @staticmethod
     def lg_p2816(ac=FastIO()):
-        # 模板：排序后从小到大贪心放置，使用STL维护当前积木列高度
+        # sorting后从小到大greedy放置，STL维护当前积木列高度
         lst = LocalSortedList()
         ac.read_int()
         nums = ac.read_list_ints()
@@ -547,7 +547,7 @@ class Solution:
 
     @staticmethod
     def lg_p3819(ac=FastIO()):
-        # 模板：经典中位数贪心题
+        # mediangreedy题
         length, n = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         s = sum(x for _, x in nums)
@@ -563,7 +563,7 @@ class Solution:
 
     @staticmethod
     def lg_p4025(ac=FastIO()):
-        # 模板：经典贪心血量与增幅自定义排序
+        # greedy血量与增幅自定义sorting
         n, z = ac.read_list_ints()
         pos = []
         neg = []
@@ -589,7 +589,7 @@ class Solution:
 
     @staticmethod
     def lg_p4266(ac=FastIO()):
-        # 模板：后缀最大值贪心模拟
+        # 后缀最大值greedyimplemention
         length, n, rf, rb = ac.read_list_ints()
         nums = [[0, 0]] + [ac.read_list_ints() for _ in range(n)]
         n += 1
@@ -603,7 +603,7 @@ class Solution:
         path = [post[0]]
         while post[path[-1]] != path[-1]:
             path.append(post[path[-1]])
-        # 模拟
+        # implemention
         ans = t = pre = 0
         for i in path:
             cur = nums[i][0]
@@ -616,7 +616,7 @@ class Solution:
 
     @staticmethod
     def lg_p4447(ac=FastIO()):
-        # 模板：经典贪心队列使得连续值序列最少的分组长度最大
+        # greedy队列使得连续值序列最少的分组长度最大
         ac.read_int()
         lst = ac.read_list_ints()
         lst.sort()
@@ -635,7 +635,7 @@ class Solution:
 
     @staticmethod
     def lg_p4575(ac=FastIO()):
-        # 模板：脑筋急转弯加状压运算
+        # brain_teaser|状压运算
         for _ in range(ac.read_int()):
             m = ac.read_int()
             k = ac.read_int()
@@ -659,7 +659,7 @@ class Solution:
     @staticmethod
     def lg_p4653(ac=FastIO()):
 
-        # 模板：看似二分使用指针贪心选取
+        # 看似binary_searchpointergreedy选取
         n = ac.read_int()
         nums1 = []
         nums2 = []
@@ -669,7 +669,7 @@ class Solution:
             nums2.append(y)
         nums1.sort(reverse=True)
         nums2.sort(reverse=True)
-        # 双指针选择
+        # two_pointer选择
         ans = i = j = a = b = 0
         light_a = light_b = 0
         while i < n or j < n:
@@ -687,7 +687,7 @@ class Solution:
 
     @staticmethod
     def lg_p5093(ac=FastIO()):
-        # 模板：经典脑筋急转弯使用集合确定轮数
+        # brain_teaser集合确定轮数
         n, k = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
         pre = set()
@@ -702,7 +702,7 @@ class Solution:
 
     @staticmethod
     def lg_p5425(ac=FastIO()):
-        # 模板：看似最小生成树，实则脑筋急转弯贪心计算距离
+        # 看似最小生成树，实则brain_teasergreedy距离
         n, k = ac.read_list_ints()
         ans = (2019201913 * (k - 1) + 2019201949 * n) % 2019201997
         ac.st(ans)
@@ -710,7 +710,7 @@ class Solution:
 
     @staticmethod
     def lg_p5884(ac=FastIO()):
-        # 模板：脑筋急转弯
+        # brain_teaser
         n = ac.read_int()
         degree = [0] * n
         edge = []
@@ -734,7 +734,7 @@ class Solution:
 
     @staticmethod
     def lg_p6196(ac=FastIO()):
-        # 模板：贪心使用 1 进行分段计算代价
+        # greedy 1 分段代价
         ac.read_int()
         nums = ac.read_list_ints()
         ans = 0
@@ -760,7 +760,7 @@ class Solution:
 
     @staticmethod
     def lg_p6874(ac=FastIO()):
-        # 模板：经典变换公式转为中位数贪心
+        # 变换公式转为mediangreedy
         n = ac.read_int()
         a = ac.read_list_ints()
         b = ac.read_list_ints()
@@ -777,7 +777,7 @@ class Solution:
 
     @staticmethod
     def lg_p8050(ac=FastIO()):
-        # 模板：脑筋急转弯黑白染色法任意操作不改变黑白元素和的差值
+        # brain_teaser黑白染色法任意操作不改变黑白元素和的差值
         m1, n1, m2, n2, k = ac.read_list_ints()
         black = white = cnt = state = 0
         for i in range(m1 + m2):
@@ -800,7 +800,7 @@ class Solution:
 
     @staticmethod
     def lg_p8732(ac=FastIO()):
-        # 模板：经典贪心枚举两项计算优先级公式
+        # greedybrute_force两项优先级公式
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort(key=lambda it: sum(it))
@@ -814,7 +814,7 @@ class Solution:
 
     @staticmethod
     def ac_4307(ac=FastIO()):
-        # 模板：经典字典序枚举贪心
+        # lexicographical_orderbrute_forcegreedy
         a = [int(w) for w in str(ac.read_int())]
         b = [int(w) for w in str(ac.read_int())]
         a.sort()
@@ -836,7 +836,7 @@ class Solution:
 
     @staticmethod
     def ac_4313(ac=FastIO()):
-        # 模板：经典满二叉树树形DP贪心
+        # 满二叉树树形DPgreedy
         n = ac.read_int()
         m = 2 ** (n + 1)
         dp = [0] * m
@@ -854,7 +854,7 @@ class Solution:
     @staticmethod
     def ac_4426(ac=FastIO()):
 
-        # 模板：思维题脑筋急转弯，等价于末尾两位数字可以被4整除
+        # 思维题brain_teaser，等价于末尾两位数字可以被4整除
         s = ac.read_str()
         ans = 0
         n = len(s)
@@ -868,7 +868,7 @@ class Solution:
 
     @staticmethod
     def ac_4427(ac=FastIO()):
-        # 模板：树形贪心构造
+        # 树形greedy构造
         n = ac.read_int()
         dct = [[] for _ in range(n)]
         parent = ac.read_list_ints_minus_one()
@@ -884,7 +884,7 @@ class Solution:
             if pre % 2:  # 奇数位没得选
                 ans[x] = s[x] - ss
             else:
-                lst = []  # 偶数位贪心取最大值
+                lst = []  # 偶数位greedy取最大值
                 for y in dct[x]:
                     lst.append(s[y])
                 if lst:
@@ -898,12 +898,12 @@ class Solution:
 
     @staticmethod
     def ac_4429(ac=FastIO()):
-        # 模板：经典计算邻项公式贪心排序，使用前后缀枚举
+        # 邻项公式greedysorting，prefix_suffixbrute_force
         n, x1, y1, x2, y2 = ac.read_list_ints()
         pos = [ac.read_list_ints() for _ in range(n)]
         dis1 = [(x - x1) * (x - x1) + (y - y1) * (y - y1) for x, y in pos]
         dis2 = [(x - x2) * (x - x2) + (y - y2) * (y - y2) for x, y in pos]
-        # 排序
+        # sorting
         ind = list(range(n))
         ind.sort(key=lambda it: dis1[it] - dis2[it])
         # 后缀最大值
@@ -913,7 +913,7 @@ class Solution:
             ceil = ac.max(dis2[ind[i]], ceil)
             post[i] = ceil
 
-        # 枚举前缀
+        # brute_force前缀
         ans = post[0]
         pre = 0
         for i in range(n):
@@ -925,7 +925,7 @@ class Solution:
 
     @staticmethod
     def ac_4430(ac=FastIO()):
-        # 模板：经典括号匹配枚举，前后缀遍历计算
+        # 括号匹配brute_force，prefix_suffix遍历
         n = ac.read_int()
         s = ac.read_str()
         ans = 0
@@ -982,7 +982,7 @@ class Solution:
 
     @staticmethod
     def ac_4492(ac=FastIO()):
-        # 模板：脑筋急转弯分为奇数与偶数讨论
+        # brain_teaser分为奇数与偶数讨论
         n = ac.read_int()
         if n % 2 == 0:
             ac.st(n // 2)
@@ -994,7 +994,7 @@ class Solution:
 
     @staticmethod
     def ac_4623(ac=FastIO()):
-        # 模板：贪心模拟
+        # greedyimplemention
         n, t = ac.read_list_ints()
         a = ac.read_list_ints()
         ans = 0
@@ -1015,7 +1015,7 @@ class Solution:
     @staticmethod
     def lc_858(p: int, q: int) -> int:
 
-        # 模板：经典脑筋急转弯思维题
+        # brain_teaser思维题
 
         g = math.gcd(p, q)
         # 求解等式 k*p = m*q
@@ -1033,7 +1033,7 @@ class Solution:
 
     @staticmethod
     def lc_991(start: int, target: int) -> int:
-        # 模板：经典逆向计算贪心，偶数除2奇数加1
+        # 逆向greedy，偶数除2奇数|1
         ans = 0
         while target > start:
             if target % 2:
@@ -1045,7 +1045,7 @@ class Solution:
 
     @staticmethod
     def lc_1503(n: int, left: List[int], right: List[int]) -> int:
-        # 模板：
+        # 
         ans = 0
         for x in left:
             if x > ans:
@@ -1057,7 +1057,7 @@ class Solution:
 
     @staticmethod
     def lc_1675(nums: List[int]) -> int:
-        # 模板：脑筋急转弯思维题贪心
+        # brain_teaser思维题greedy
         lst = SortedList([num if num % 2 == 0 else num * 2 for num in nums])
         ans = lst[-1] - lst[0]
         while True:
@@ -1070,7 +1070,7 @@ class Solution:
 
     @staticmethod
     def lc_1808(prime_factors: int) -> int:
-        # 模板：按照模3的因子个数贪心处理，经典将和拆分成最大乘积
+        # 按照模3的因子个数greedy处理，将和拆分成最大乘积
         mod = 10 ** 9 + 7
         if prime_factors <= 2:
             return prime_factors
@@ -1083,7 +1083,7 @@ class Solution:
 
     @staticmethod
     def lc_1927(num: str) -> bool:
-        # 模板：经典博弈思维题分类讨论
+        # 博弈思维题classification_discussion
         def check(s):
             res = 0
             cnt = 0
@@ -1094,7 +1094,7 @@ class Solution:
                     cnt += 1
             return [res, cnt]
 
-        # 计算左右两边的数字和以及问号个数
+        # 左右两边的数字和以及问号个数
         n = len(num)
         a, x = check(num[:n // 2])
         b, y = check(num[n // 2:])
@@ -1122,7 +1122,7 @@ class Solution:
 
     @staticmethod
     def lc_2592(nums: List[int]) -> int:
-        # 模板：典型贪心排序后使用双指针计算
+        # 典型greedysorting后two_pointer
         n = len(nums)
         nums.sort()
         j = 0
@@ -1137,7 +1137,7 @@ class Solution:
 
     @staticmethod
     def lc_2568(nums: List[int]) -> int:
-        # 模板：脑筋急转弯贪心，可以根据暴力打表观察规律
+        # brain_teasergreedy，可以根据打表观察规律
         dct = set(nums)
         for i in range(34):
             if 1 << i not in dct:

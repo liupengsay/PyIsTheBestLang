@@ -9,9 +9,9 @@ class ScanLine:
     @staticmethod
     def get_sky_line(buildings: List[List[int]]) -> List[List[int]]:
 
-        # 模板：扫描线提取建筑物轮廓
+        # 扫描线提取建筑物轮廓
         events = []
-        # 生成左右端点事件并排序
+        # 生成左右端点事件并sorting
         for left, right, height in buildings:
             # [x,y,h]分别为左右端点与高度
             events.append([left, -height, right])
@@ -25,7 +25,7 @@ class ScanLine:
             # 超出管辖范围的先出队
             while left >= stack[0][1]:
                 heapq.heappop(stack)
-            # 加入备选天际线队列
+            # |入备选天际线队列
             if height < 0:
                 heapq.heappush(stack, [height, right])
             # 高度发生变化出现新的关键点
@@ -36,7 +36,7 @@ class ScanLine:
     @staticmethod
     def get_rec_area(rectangles: List[List[int]]) -> int:
 
-        # 模板：扫描线提取矩形x轴的端点并排序（也可以取y轴的端点是一个意思）
+        # 扫描线提取矩形x轴的端点并sorting（也可以取y轴的端点是一个意思）
         axis = set()
         # [x1,y1,x2,y2] 为左下角到右上角坐标
         for rec in rectangles:
@@ -47,7 +47,7 @@ class ScanLine:
         n = len(axis)
         for i in range(n - 1):
 
-            # 枚举两个点之间的宽度
+            # brute_force两个点之间的宽度
             x1, x2 = axis[i], axis[i + 1]
             width = x2 - x1
             if not width:

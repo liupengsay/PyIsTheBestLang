@@ -1,20 +1,20 @@
 """
-Algorithm：分块查询、双指针
-Function：将查询区间进行分块排序，交替移动双指针进行动态维护查询值
+Algorithm：分块查询、two_pointer
+Function：将查询区间分块sorting，交替移动two_pointer动态维护查询值
 
 ====================================LeetCode====================================
-1157（https://leetcode.com/problems/online-majority-element-in-subarray/description/）查询区间的超级众数，即区间出现超过一半的数，同cf1514_d正解为随机化猜众数，或者位运算计算众数，或者线段树合并众数
+1157（https://leetcode.com/problems/online-majority-element-in-subarray/description/）查询区间的超级众数，即区间出现超过一半的数，同cf1514_d正解为随机化猜众数，或者bit_operation众数，或者线段树合并众数
 
 =====================================LuoGu======================================
 
 ===================================CodeForces===================================
-220B（https://codeforces.com/contest/220/problem/B）分块矩阵计数模板题
+220B（https://codeforces.com/contest/220/problem/B）分块矩阵counter模板题
 86D（https://codeforces.com/contest/86/problem/D）分块矩阵求函数值模板题
-617E（https://codeforces.com/contest/617/problem/E）分块矩阵求异或对计数模板题
-1514D（https://codeforces.com/contest/1514/problem/D）离散查询分块超时，正解为随机化猜众数，或者位运算计算众数，或者线段树合并众数
+617E（https://codeforces.com/contest/617/problem/E）分块矩阵求异或对counter模板题
+1514D（https://codeforces.com/contest/1514/problem/D）离散查询分块超时，正解为随机化猜众数，或者bit_operation众数，或者线段树合并众数
 
 ====================================AtCoder=====================================
-F - Small Products（https://atcoder.jp/contests/abc132/tasks/abc132_f）分组线性计数DP，使用前缀和优化
+F - Small Products（https://atcoder.jp/contests/abc132/tasks/abc132_f）分组线性counterDP，prefix_sum优化
 
 
 """
@@ -33,7 +33,7 @@ class Solution:
 
     @staticmethod
     def abc_132f(ac=FastIO()):
-        # 模板：分组线性计数DP，使用前缀和优化
+        # 分组线性counterDP，prefix_sum优化
         mod = 10 ** 9 + 7
         n, k = ac.read_list_ints()
         cnt, _ = BlockSize().get_divisor_split(n)
@@ -47,7 +47,7 @@ class Solution:
 
     @staticmethod
     def cf1514_d(ac=FastIO()):
-        # 分块超时，正解为随机化猜众数，或者位运算计算众数，或者线段树合并众数
+        # 分块超时，正解为随机化猜众数，或者bit_operation众数，或者线段树合并众数
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         cnt = [0] * (n + 1)
@@ -83,12 +83,12 @@ class Solution:
         freq[1] = 1
         ceil = 1
         for i in range(size):
-            # 按照分块后单独排序
+            # 按照分块后单独sorting
             if i % 2:
                 queries[i].sort(key=lambda it: -it[0])
             else:
                 queries[i].sort(key=lambda it: it[0])
-            # 移动双指针
+            # 移动two_pointer
             for a, b, j in queries[i]:
                 while y > b:
                     update(nums[y], -1)
@@ -141,7 +141,7 @@ class Solution:
 
     @staticmethod
     def cf_220b(ac=FastIO()):
-        # 模板：查询区间内符合条件的元素个数
+        # 查询区间内符合条件的元素个数
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         size = int(n ** 0.5) + 1  # 分块的大小
@@ -170,12 +170,12 @@ class Solution:
         if nums[0] == 1:
             cur += 1
         for i in range(size):
-            # 按照分块后单独排序
+            # 按照分块后单独sorting
             if i % 2:
                 queries[i].sort(key=lambda it: -it[0])
             else:
                 queries[i].sort(key=lambda it: it[0])
-            # 移动双指针
+            # 移动two_pointer
             for a, b, j in queries[i]:
                 while y > b:
                     update(nums[y], -1)
@@ -196,7 +196,7 @@ class Solution:
 
     @staticmethod
     def cf_86d(ac=FastIO()):
-        # 模板：查询区间内的函数值
+        # 查询区间内的函数值
         n, t = ac.read_list_ints()
         nums = ac.read_list_ints()
         size = int(n ** 0.5) + 1
@@ -222,7 +222,7 @@ class Solution:
         cur = nums[0]
         cnt[nums[0]] = 1
         for i in range(size):
-            # 按照分块后单独排序
+            # 按照分块后单独sorting
             if i % 2:
                 queries[i].sort(key=lambda it: -it[0])
             else:
@@ -249,7 +249,7 @@ class Solution:
 
     @staticmethod
     def cf_617e(ac=FastIO()):
-        # 模板：查询区间内的异或对数
+        # 查询区间内的异或对数
         n, m, k = ac.read_list_ints()
         nums = ac.read_list_ints()
         pre = list(accumulate(nums, xor, initial=0))
@@ -277,12 +277,12 @@ class Solution:
         dct[pre[0]] += 1
         cur = 0
         for i in range(size):
-            # 按照分块后单独排序
+            # 按照分块后单独sorting
             if i % 2:
                 queries[i].sort(key=lambda it: -it[0])
             else:
                 queries[i].sort(key=lambda it: it[0])
-            # 移动双指针
+            # 移动two_pointer
             for a, b, j in queries[i]:
                 a -= 1
                 while y > b:

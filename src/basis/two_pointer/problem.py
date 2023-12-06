@@ -1,57 +1,57 @@
 """
-Algorithm：双指针、快慢指针、先后指针、桶计数
-Function：通过相对移动，来减少计算复杂度，分为同向双指针，相反双指针，以及中心扩展法
+Algorithm：two_pointer、快慢pointer、先后pointer、桶counter
+Function：通过相对移动，来减少复杂度，分为同向two_pointer，相反two_pointer，以及中心扩展法
 
 
 ====================================LeetCode====================================
-167（https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/）经典双指针应用
-259（https://leetcode.com/problems/3sum-smaller/）使用双指针或者计数枚举的方式
-2444（https://leetcode.com/problems/count-subarrays-with-fixed-bounds/）通向双指针的移动来根据两个指针的位置来进行计数
-2398（https://leetcode.com/problems/maximum-number-of-robots-within-budget/）同向双指针移动的条件限制有两个需要用有序集合来维护滑动窗口过程
-2302（https://leetcode.com/problems/count-subarrays-with-score-less-than-k/）同向双指针维护指针位置与计数
-2301（https://leetcode.com/problems/match-substring-after-replacement/）枚举匹配字符起点并使用双指针维护可行长度
-2106（https://leetcode.com/problems/maximum-fruits-harvested-after-at-most-k-steps/）巧妙利用行走距离的计算更新双指针
-6293（https://leetcode.com/problems/count-the-number-of-good-subarrays/）双指针计数
-16（https://leetcode.com/problems/3sum-closest/）三指针确定最接近目标值的和
+167（https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/）two_pointer应用
+259（https://leetcode.com/problems/3sum-smaller/）two_pointer或者counterbrute_force的方式
+2444（https://leetcode.com/problems/count-subarrays-with-fixed-bounds/）通向two_pointer的移动来根据两个pointer的位置来counter
+2398（https://leetcode.com/problems/maximum-number-of-robots-within-budget/）同向two_pointer移动的条件限制有两个需要用sorted_list来维护sliding_window过程
+2302（https://leetcode.com/problems/count-subarrays-with-score-less-than-k/）同向two_pointer维护pointer位置与counter
+2301（https://leetcode.com/problems/match-substring-after-replacement/）brute_force匹配字符起点并two_pointer维护可行长度
+2106（https://leetcode.com/problems/maximum-fruits-harvested-after-at-most-k-steps/）巧妙利用行走距离的更新two_pointer
+6293（https://leetcode.com/problems/count-the-number-of-good-subarrays/）two_pointercounter
+16（https://leetcode.com/problems/3sum-closest/）三pointer确定最接近目标值的和
 15（https://leetcode.com/problems/3sum/）寻找三个元素和为 0 的不重复组合
-2422（https://leetcode.com/problems/merge-operations-to-turn-array-into-a-palindrome/）相反方向双指针贪心加和
-2524（https://leetcode.com/problems/maximum-frequency-score-of-a-subarray/）滑动窗口维护计算数字数量与幂次取模
-239（https://leetcode.com/problems/sliding-window-maximum/）滑动窗口最大值，使用滑动窗口类维护
-2447（https://leetcode.com/problems/number-of-subarrays-with-gcd-equal-to-k/）滑动窗口区间 gcd，使用滑动窗口类维护
-6392（https://leetcode.com/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/）滑动窗口区间 gcd，使用滑动窗口类维护
-1163（https://leetcode.com/problems/last-substring-in-lexicographical-order/）经典类似最小表示法的双指针
-2555（https://leetcode.com/problems/maximize-win-from-two-segments/description/）经典同向双指针加线性DP
-992（https://leetcode.com/problems/subarrays-with-k-different-integers/）经典三指针，即快慢双指针维护连续子区间个数
-2747（https://leetcode.com/problems/count-zero-request-servers/）经典离线查询与三指针，即快慢双指针维护连续区间的不同值个数
-2516（https://leetcode.com/problems/take-k-of-each-character-from-left-and-right/）逆向思维容斥原理经典双指针
-1537（https://leetcode.com/problems/get-the-maximum-score/description/）双指针加线性DP或者拓扑排序做
-1712（https://leetcode.com/problems/ways-to-split-array-into-three-subarrays/description/）经典三指针，即快慢双指针维护满足条件的分割点个数
-948（https://leetcode.com/problems/bag-of-tokens/description/）经典双指针贪心
+2422（https://leetcode.com/problems/merge-operations-to-turn-array-into-a-palindrome/）相反方向two_pointergreedy|和
+2524（https://leetcode.com/problems/maximum-frequency-score-of-a-subarray/）sliding_window维护数字数量与幂次取模
+239（https://leetcode.com/problems/sliding-window-maximum/）sliding_window最大值，sliding_window类维护
+2447（https://leetcode.com/problems/number-of-subarrays-with-gcd-equal-to-k/）sliding_window区间 gcd，sliding_window类维护
+6392（https://leetcode.com/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/）sliding_window区间 gcd，sliding_window类维护
+1163（https://leetcode.com/problems/last-substring-in-lexicographical-order/）类似最小表示法的two_pointer
+2555（https://leetcode.com/problems/maximize-win-from-two-segments/description/）同向two_pointer|线性DP
+992（https://leetcode.com/problems/subarrays-with-k-different-integers/）三pointer，即快慢two_pointer维护连续子区间个数
+2747（https://leetcode.com/problems/count-zero-request-servers/）离线查询与三pointer，即快慢two_pointer维护连续区间的不同值个数
+2516（https://leetcode.com/problems/take-k-of-each-character-from-left-and-right/）reverse_thinkinginclusion_exclusiontwo_pointer
+1537（https://leetcode.com/problems/get-the-maximum-score/description/）two_pointer|线性DP或者拓扑sorting做
+1712（https://leetcode.com/problems/ways-to-split-array-into-three-subarrays/description/）三pointer，即快慢two_pointer维护满足条件的分割点个数
+948（https://leetcode.com/problems/bag-of-tokens/description/）two_pointergreedy
 2953（https://leetcode.com/contest/weekly-contest-374/problems/count-complete-substrings/）two pointers|brute force
 
 =====================================LuoGu======================================
-2381（https://www.luogu.com.cn/problem/P2381）环形数组，滑动窗口双指针
-3353（https://www.luogu.com.cn/problem/P3353）滑动窗口加双指针
+2381（https://www.luogu.com.cn/problem/P2381）环形数组，sliding_windowtwo_pointer
+3353（https://www.luogu.com.cn/problem/P3353）sliding_window|two_pointer
 3662（https://www.luogu.com.cn/problem/P3662）滑动子数组和
-4995（https://www.luogu.com.cn/problem/P4995）排序后利用贪心与双指针进行模拟
-2207（https://www.luogu.com.cn/problem/P2207）贪心加同向双指针
-7542（https://www.luogu.com.cn/problem/P7542）桶计数加双指针进行计算
-4653（https://www.luogu.com.cn/problem/P4653）贪心排序后使用双指针计算
-3029（https://www.luogu.com.cn/problem/P3029）双指针记录包含k个不同颜色的最短连续子序列
-5583（https://www.luogu.com.cn/problem/P5583）经典双指针
-6465（https://www.luogu.com.cn/problem/P6465）滑动窗口与双指针计数
+4995（https://www.luogu.com.cn/problem/P4995）sorting后利用greedy与two_pointerimplemention
+2207（https://www.luogu.com.cn/problem/P2207）greedy|同向two_pointer
+7542（https://www.luogu.com.cn/problem/P7542）桶counter|two_pointer
+4653（https://www.luogu.com.cn/problem/P4653）greedysorting后two_pointer
+3029（https://www.luogu.com.cn/problem/P3029）two_pointer记录包含k个不同颜色的最短连续子序列
+5583（https://www.luogu.com.cn/problem/P5583）two_pointer
+6465（https://www.luogu.com.cn/problem/P6465）sliding_window与two_pointercounter
 
 
 ===================================CodeForces===================================
-1328D（https://codeforces.com/problemset/problem/1328/D）环形数组滑动窗口，记录变化次数并根据奇偶变换次数与环形首尾元素确定染色数量
-1333C（https://codeforces.com/problemset/problem/1333/C）双指针，计算前缀和不重复即没有区间段和为0的个数
-1381A2（https://codeforces.com/problemset/problem/1381/A2）双指针模拟翻转匹配与贪心
+1328D（https://codeforces.com/problemset/problem/1328/D）环形数组sliding_window，记录变化次数并根据奇偶变换次数与环形首尾元素确定染色数量
+1333C（https://codeforces.com/problemset/problem/1333/C）two_pointer，prefix_sum不重复即没有区间段和为0的个数
+1381A2（https://codeforces.com/problemset/problem/1381/A2）two_pointerimplemention翻转匹配与greedy
 
 ====================================AtCoder=====================================
-D - Equal Cut（https://atcoder.jp/contests/abc102/tasks/arc100_b）经典双指针枚举
+D - Equal Cut（https://atcoder.jp/contests/abc102/tasks/arc100_b）two_pointerbrute_force
 
 =====================================AcWing=====================================
-4217（https://www.acwing.com/problem/content/4220/）经典双指针滑动窗口题目
+4217（https://www.acwing.com/problem/content/4220/）two_pointersliding_window题目
 
 """
 import math
@@ -73,7 +73,7 @@ class Solution:
     @staticmethod
     def lg_p4653(ac=FastIO()):
 
-        # 模板：贪心排序后使用双指针计算
+        # greedysorting后two_pointer
         n = ac.read_int()
 
         nums1 = []
@@ -100,14 +100,14 @@ class Solution:
 
     @staticmethod
     def lc_16(nums, target):
-        # 模板：寻找最接近目标值的三个元素和
+        # 寻找最接近目标值的三个元素和
         n = len(nums)
         nums.sort()
         ans = nums[0] + nums[1] + nums[2]
         for i in range(n - 2):
             j, k = i + 1, n - 1
             x = nums[i]
-            while j < k:  # 经典遍历数组作为第一个指针，另外两个指针相向而行
+            while j < k:  # 遍历数组作为第一个pointer，另外两个pointer相向而行
                 cur = x + nums[j] + nums[k]
                 ans = ans if abs(target - ans) < abs(target - cur) else cur
                 if cur > target:
@@ -120,7 +120,7 @@ class Solution:
 
     @staticmethod
     def lc_15(nums):
-        # 模板：寻找三个元素和为 0 的不重复组合
+        # 寻找三个元素和为 0 的不重复组合
         nums.sort()
         n = len(nums)
         ans = set()
@@ -141,7 +141,7 @@ class Solution:
 
     @staticmethod
     def lc_259(nums: List[int], target: int) -> int:
-        # 模板：使用相反方向的双指针统计和小于 target 的三元组数量
+        # 相反方向的two_pointer统计和小于 target 的三元组数量
         nums.sort()
         n = len(nums)
         ans = 0
@@ -159,7 +159,7 @@ class Solution:
 
     @staticmethod
     def lc_239(nums: List[int], k: int) -> List[int]:
-        # 模板：滑动窗口最大值
+        # sliding_window最大值
         n = len(nums)
         swa = SlidingWindowAggregation(-INF, max)
         ans = []
@@ -172,7 +172,7 @@ class Solution:
 
     @staticmethod
     def lc_2516(s: str, k: int) -> int:
-        # 模板：逆向思维容斥原理经典双指针
+        # reverse_thinkinginclusion_exclusiontwo_pointer
         cnt = Counter(s)
         n = len(s)
         if any(cnt[w] < k for w in "abc"):
@@ -191,7 +191,7 @@ class Solution:
 
     @staticmethod
     def lc_2555(prize_positions: List[int], k: int) -> int:
-        # 模板：经典同向双指针加线性DP
+        # 同向two_pointer|线性DP
         n = len(prize_positions)
 
         pre = [0] * n
@@ -208,7 +208,7 @@ class Solution:
 
     @staticmethod
     def lc_2747(n: int, logs: List[List[int]], x: int, queries: List[int]) -> List[int]:
-        # 模板：经典离线查询与三指针，即快慢双指针维护连续区间的不同值个数
+        # 离线查询与三pointer，即快慢two_pointer维护连续区间的不同值个数
         m = len(queries)
         ans = [0] * m
         ind = list(range(m))
@@ -233,7 +233,7 @@ class Solution:
 
     @staticmethod
     def lc_6392(nums: List[int]) -> int:
-        # 模板：滑动窗口维护区间 gcd 为 1 的长度信息
+        # sliding_window维护区间 gcd 为 1 的长度信息
         if gcd(*nums) != 1:
             return -1
         if 1 in nums:
@@ -241,7 +241,7 @@ class Solution:
 
         swa = SlidingWindowAggregation(0, gcd)
         res, n = INF, len(nums)
-        # 枚举右端点
+        # brute_force右端点
         for i in range(n):
             swa.append(nums[i])
             while swa and swa.query() == 1:
@@ -251,7 +251,7 @@ class Solution:
 
     @staticmethod
     def lc_992(nums: List[int], k: int) -> int:
-        # 模板：经典三指针，即快慢双指针维护连续子区间个数
+        # 三pointer，即快慢two_pointer维护连续子区间个数
         n = len(nums)
         ans = j1 = j2 = 0
         pre1 = dict()
@@ -277,7 +277,7 @@ class Solution:
 
     @staticmethod
     def lc_1163(s: str) -> str:
-        # 双指针进行计算
+        # two_pointer
         i, j, n = 0, 1, len(s)
         while j < n:
             k = 0
@@ -291,7 +291,7 @@ class Solution:
 
     @staticmethod
     def lc_1537(nums1: List[int], nums2: List[int]) -> int:
-        # 模板：双指针加线性DP或者拓扑排序做
+        # two_pointer|线性DP或者拓扑sorting做
         mod = 10 ** 9 + 7
         m, n = len(nums1), len(nums2)
         i = j = pre1 = pre2 = 0
@@ -314,7 +314,7 @@ class Solution:
 
     @staticmethod
     def lc_1712(nums: List[int]) -> int:
-        # 模板：经典三指针，即快慢双指针维护满足条件的分割点个数
+        # 三pointer，即快慢two_pointer维护满足条件的分割点个数
         mod = 10 ** 9 + 7
         ans = 0
         pre = list(accumulate(nums, initial=0))
@@ -332,7 +332,7 @@ class Solution:
 
     @staticmethod
     def lc_2447(nums: List[int], k: int) -> int:
-        # 模板：滑动窗口双指针三指针维护区间 gcd 为 k 的子数组数量信息
+        # sliding_windowtwo_pointer三pointer维护区间 gcd 为 k 的子数组数量信息
         n = len(nums)
         e = reduce(math.lcm, nums + [k])
         e *= 2
@@ -368,7 +368,7 @@ class Solution:
 
     @staticmethod
     def lg_p5583(ac=FastIO()):
-        # 模板：双指针与变量维护区间信息
+        # two_pointer与变量维护区间信息
         n, m, d = ac.read_list_ints()
         nums = ac.read_list_ints()
         cnt = dict()
@@ -383,7 +383,7 @@ class Solution:
         cur_cnt = defaultdict(int)
         cur_power = cur_not_like = j = 0
         for i in range(n):
-            # 移动右指针
+            # 移动右pointer
             while j < n and (flag < len(cnt) or all(num in cnt for num in nums[j][2:])):
                 cur_power += nums[j][0]
                 for num in nums[j][2:]:
@@ -398,7 +398,7 @@ class Solution:
                     not_like = cur_not_like
                     power = cur_power
                     ans = [i + 1, j]
-            # 删除左指针
+            # 删除左pointer
             cur_power -= nums[i][0]
             for num in nums[i][2:]:
                 cur_cnt[num] -= 1
@@ -411,7 +411,7 @@ class Solution:
 
     @staticmethod
     def lg_p6465(ac=FastIO()):
-        # 模板：滑动窗口与双指针计数
+        # sliding_window与two_pointercounter
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
             nums = ac.read_list_ints()
@@ -434,7 +434,7 @@ class Solution:
 
     @staticmethod
     def ac_4217(ac=FastIO()):
-        # 模板：经典双指针移动
+        # two_pointer移动
         n = ac.read_int()
         s = ac.read_str()
         a, b = ac.read_list_ints()
