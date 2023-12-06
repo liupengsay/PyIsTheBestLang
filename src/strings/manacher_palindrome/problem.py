@@ -6,10 +6,7 @@
 ====================================LeetCode====================================
 5（https://leetcode.com/problems/longest-palindromic-substring/）计算字符串的最长回文连续子串
 132（https://leetcode.com/problems/palindrome-partitioning-ii/）经典线性 DP 与马拉车判断以每个位置为结尾的回文串
-214（https://leetcode.com/problems/shortest-palindrome/）计算字符串前缀最长回文子串
 1960（https://leetcode.com/problems/maximum-product-of-the-length-of-two-palindromic-substrings/）利用马拉车求解每个位置前后最长回文子串
-2472（https://leetcode.com/problems/maximum-number-of-non-overlapping-palindrome-substrings/）预处理线性回文子串 DP 优化外加结果计算线性 DP 也可以使用马拉车回文串获取回文信息
-1745（https://leetcode.com/problems/palindrome-partitioning-iv/description/）经典矩阵DP判断是否为回文子串，或者使用马拉车然后枚举
 
 =====================================LuoGu======================================
 4555（https://www.luogu.com.cn/problem/P4555）计算以当前索引为开头以及结尾的最长回文子串
@@ -18,6 +15,8 @@
 1872（https://www.luogu.com.cn/problem/P1872）回文串对数统计，利用马拉车计算以当前字母开头与结尾的回文串数
 6297（https://www.luogu.com.cn/problem/P6297）中心扩展法并使用变量维护
 
+===================================CodeForces===================================
+1682A（https://codeforces.com/contest/1682/problem/A）palindromic|center_extension
 139（https://www.acwing.com/problem/content/141/）马拉车计算最长回文子串长度，也可使用二分查找加哈希
 
 ===================================LibraryChecker===================================

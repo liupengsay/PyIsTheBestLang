@@ -43,7 +43,6 @@
 2561（https://leetcode.com/problems/rearranging-fruits/）思维题贪心交换
 843（https://leetcode.com/problems/guess-the-word/）思维题贪心模拟交互
 1946（https://leetcode.com/problems/largest-number-after-mutating-substring/description/）易错贪心
-1840（https://leetcode.com/problems/maximum-building-height/）经典单调栈贪心，也可以使用前后缀数组模拟计算
 1540（https://leetcode.com/problems/can-convert-string-in-k-moves/）贪心思维题，使用指针记录
 1121（https://leetcode.com/problems/divide-array-into-increasing-sequences/description/）经典思维题贪心，只考虑最大值的分组影响
 

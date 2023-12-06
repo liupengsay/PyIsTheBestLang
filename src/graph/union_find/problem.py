@@ -25,7 +25,6 @@
 2471（https://leetcode.com/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/description/）经典离散化置换环
 945（https://leetcode.com/problems/minimum-increment-to-make-array-unique/description/）可使用向右合并的区间并查集，正解为贪心
 947（https://leetcode.com/contest/weekly-contest-112/problems/most-stones-removed-with-same-row-or-column/）脑筋急转弯并查集
-100047（https://leetcode.com/problems/count-valid-paths-in-a-tree/description/）树形DP，并查集或者BFS实现
 
 =====================================LuoGu======================================
 3367（https://www.luogu.com.cn/problem/P3367）计算连通分块的数量

@@ -52,7 +52,6 @@ Vertex Add Subtree Sum（https://judge.yosupo.jp/problem/vertex_add_subtree_sum�
 135. 二维树状数组3（https://loj.ac/p/135）区间修改，区间查询
 134. 二维树状数组2（https://loj.ac/p/134）区间修改，单点查询
 
-参考：OI WiKi（https://oi-wiki.org/ds/fenwick/）
 """
 from collections import defaultdict, deque
 from math import inf

@@ -10,7 +10,6 @@
 ===================================CodeForces===================================
 1396B（https://codeforces.com/problemset/problem/1396/B）博弈贪心，使用大顶堆优先选取最大数量的石头做选择
 
-参考：OI WiKi（https://oi-wiki.org/graph/lgv/）
 
 """
 

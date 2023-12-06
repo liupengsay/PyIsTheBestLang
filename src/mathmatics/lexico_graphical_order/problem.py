@@ -18,7 +18,6 @@
 
 2524（https://www.luogu.com.cn/problem/P2524）计算全排列的字典序排名
 2525（https://www.luogu.com.cn/problem/P2525）计算全排列的上一个排列
-3014（https://www.luogu.com.cn/problem/P3014）计算全排列的排名与排名对应的全排列
 
 ===================================CodeForces===================================
 1328B（https://codeforces.com/problemset/problem/1328/B）计算comb的字典序

@@ -5,7 +5,6 @@
 
 ====================================LeetCode====================================
 375（https://leetcode.com/problems/guess-number-higher-or-lower-ii/）经典区间DP
-1130（https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/）经典单调栈也可以使用区间DP
 
 1039（https://leetcode.com/problems/minimum-score-triangulation-of-polygon/）经典环形数组区间 DP
 2472（https://leetcode.com/problems/maximum-number-of-non-overlapping-palindrome-substrings/）预处理线性回文子串 DP 优化外加结果计算线性 DP 也可以使用马拉车回文串获取回文信息
@@ -26,9 +25,7 @@
 2858（https://www.luogu.com.cn/problem/P2858）典型区间DP
 1880（https://www.luogu.com.cn/problem/P1880）将数组复制成两遍进行区间DP
 3205（https://www.luogu.com.cn/problem/P3205）区间DP使用滚动数组
-1880（https://www.luogu.com.cn/problem/P1880）环形数组区间DP合并求最大值最小值
 1040（https://www.luogu.com.cn/problem/P1040）区间DP与路径还原
-1043（https://www.luogu.com.cn/problem/P1043）环形区间DP
 1430（https://www.luogu.com.cn/problem/P1430）区间DP加前缀数组优化
 2308（https://www.luogu.com.cn/problem/P2308）经典区间DP，并使用递归方式反解括号添加方式以及每一步的和
 2734（https://www.luogu.com.cn/problem/P2734）前缀和加区间DP

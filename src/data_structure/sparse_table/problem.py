@@ -18,7 +18,6 @@ ST表算法全称Sparse-Table算法，是由Tarjan提出的一种解决RMQ问题
 1890（https://www.luogu.com.cn/problem/P3865）使用ST表预处理区间的gcd
 1816（https://www.luogu.com.cn/problem/P1816）使用ST表预处理区间的最小值
 2412（https://www.luogu.com.cn/problem/P2412）预处理字典序之后使用ST表查询静态区间最大字典序
-2880（https://www.luogu.com.cn/problem/P2880）查询区间最大值与最小值
 5097（https://www.luogu.com.cn/problem/P5097）静态区间最小值
 5648（https://www.luogu.com.cn/problem/P5648）使用倍增 ST 表查询区间最大值的索引，使用单调栈建树计算距离
 

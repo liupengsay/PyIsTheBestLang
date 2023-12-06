@@ -16,7 +16,6 @@
 3390（https://www.luogu.com.cn/problem/P3390）矩阵快速幂计算
 3811（https://www.luogu.com.cn/problem/P3811）乘法逆元模板题
 5775（https://www.luogu.com.cn/problem/P5775）从背包模拟、前缀和优化、到数列变换使用矩阵快速幂再到纯模拟
-5550（https://www.luogu.com.cn/problem/P5550）循环节计算也可以使用矩阵快速幂递推
 6045（https://www.luogu.com.cn/problem/P6045）脑筋急转弯进行组合计数与快速幂枚举计算
 6075（https://www.luogu.com.cn/problem/P6075）组合计数后进行快速幂计算
 6392（https://www.luogu.com.cn/problem/P6392）公式拆解变换后进行快速幂计算

@@ -27,7 +27,6 @@
 2516（https://leetcode.com/problems/take-k-of-each-character-from-left-and-right/）逆向思维容斥原理经典双指针
 1537（https://leetcode.com/problems/get-the-maximum-score/description/）双指针加线性DP或者拓扑排序做
 1712（https://leetcode.com/problems/ways-to-split-array-into-three-subarrays/description/）经典三指针，即快慢双指针维护满足条件的分割点个数
-986（https://leetcode.com/problems/interval-list-intersections/description/）离散化差分，双指针归并
 948（https://leetcode.com/problems/bag-of-tokens/description/）经典双指针贪心
 2953（https://leetcode.com/contest/weekly-contest-374/problems/count-complete-substrings/）two pointers|brute force
 

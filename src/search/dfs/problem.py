@@ -12,13 +12,11 @@
 2581（https://leetcode.com/contest/biweekly-contest-99/problems/count-number-of-possible-root-nodes/）深搜序加差分计数
 1059（https://leetcode.com/problems/all-paths-from-source-lead-to-destination/）记忆化搜索DFS深搜且回溯
 1718（https://leetcode.com/problems/construct-the-lexicographically-largest-valid-sequence/）经典回溯
-2065（https://leetcode.com/problems/maximum-path-quality-of-a-graph/）经典回溯，正解使用Dijkstra跑最短路剪枝
 2322（https://leetcode.com/problems/minimum-score-after-removals-on-a-tree/）使用深搜序dfs序枚举
 1240（https://leetcode.com/problems/tiling-a-rectangle-with-the-fewest-squares/）经典DFS回溯与剪枝
 1239（https://leetcode.com/problems/maximum-length-of-a-concatenated-string-with-unique-characters/）经典DFS回溯进行二进制枚举
 1080（https://leetcode.com/problems/insufficient-nodes-in-root-to-leaf-paths/description/）经典dfs自上而下后又自下而上
 2056（https://leetcode.com/problems/number-of-valid-move-combinations-on-chessboard/description/）经典回溯枚举
-100041（https://www.acwing.com/problem/content/description/4384/）迭代法实现树形换根DP计算，或者一遍DFS或者dfs序加差分
 2458（https://leetcode.com/contest/weekly-contest-317/problems/height-of-binary-tree-after-subtree-removal-queries/）dfs序模板题目
 
 =====================================LuoGu======================================
@@ -51,7 +49,6 @@
 ===================================CodeForces===================================
 570D（https://codeforces.com/contest/570/problem/D）dfs序与二分查找，也可以使用离线查询
 208E（https://codeforces.com/contest/208/problem/E）深搜序加LCA加二分查找计数
-219D（https://codeforces.com/contest/219/problem/D）迭代法实现树形换根DP计算，或者一遍DFS或者dfs序加差分
 1006E（https://codeforces.com/contest/1006/problem/E）经典dfs序模板题
 1702G2（https://codeforces.com/contest/1702/problem/G2）使用dfs序与lca组合判断是否为简单路径集合
 1899G（https://codeforces.com/contest/1899/problem/G）dfs with tolerance and exclusion by PointAddRangeSum

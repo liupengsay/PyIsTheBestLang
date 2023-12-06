@@ -12,32 +12,11 @@
 2141 同时运行 N 台电脑的最长时间（https://leetcode.com/problems/maximum-running-time-of-n-computers/）贪心选择最大的 N 个电池作为基底，然后二分确定在其余电池的加持下可以运行的最长时间
 2102 序列顺序查询（https://leetcode.com/problems/sequentially-ordinal-rank-tracker/）使用有序集合维护优先级姓名实时查询
 2519（https://leetcode.com/problems/count-the-number-of-k-big-indices/）使用有序集合维护计算数量
-2276（https://leetcode.com/problems/count-integers-in-intervals/）动态开点线段树模板题，维护区间并集的长度，也可使用SortedList
 1912（https://leetcode.com/problems/design-movie-rental-system/）典型SortedList应用
 1825（https://leetcode.com/problems/finding-mk-average/）经典SortedList与deque应用
 2250（https://leetcode.com/problems/count-number-of-rectangles-containing-each-point/）离线查询，指针排序二分
 
 =====================================LuoGu======================================
-1577（https://www.luogu.com.cn/problem/P1577）数学整除向下取整与二分
-1570（https://www.luogu.com.cn/problem/P1570）公式转换后使用贪心加二分
-1843（https://www.luogu.com.cn/problem/P1843）贪心加二分
-2309（https://www.luogu.com.cn/problem/P2309）使用前缀和有序列表加二分求解和为正数的子串个数
-2390（https://www.luogu.com.cn/problem/P2390）枚举加二分起始也可以使用双指针
-2759（https://www.luogu.com.cn/problem/P2759）公式变换后使用二分求解
-1404（https://www.luogu.com.cn/problem/P1404）公式变换后使用前缀和加二分
-2855（https://www.luogu.com.cn/problem/P2855）使用贪心加二分
-2884（https://www.luogu.com.cn/problem/P2884）最大最小之类的经典二分问题
-2985（https://www.luogu.com.cn/problem/P2985）使用贪心加二分进行模拟
-3184（https://www.luogu.com.cn/problem/P3184）二分查找区间范围内个数
-3611（https://www.luogu.com.cn/problem/P3611）二分贪心加堆优化模拟
-3743（https://www.luogu.com.cn/problem/P3743）经典二分查找注意check函数
-4058（https://www.luogu.com.cn/problem/P4058）经典二分查找注意check函数
-4670（https://www.luogu.com.cn/problem/P4670）排序后二分查找计数
-5119（https://www.luogu.com.cn/problem/P5119）经典贪心加二分问题
-5250（https://www.luogu.com.cn/problem/P5250）维护一个有序集合
-6174（https://www.luogu.com.cn/problem/P6174）经典贪心加二分问题
-6281（https://www.luogu.com.cn/problem/P6281）经典贪心加二分问题
-6423（https://www.luogu.com.cn/problem/P6423）利用单调性进行二分计算
 7333（https://www.luogu.com.cn/problem/P7333）经典排序预处理后，动态更新使用有序集合进行查询，注意是环形数组
 7391（https://www.luogu.com.cn/problem/P7391）有序集合进行贪心模拟，延迟替换，类似课程表3
 7910（https://www.luogu.com.cn/problem/P7910）使用有序列表进行维护

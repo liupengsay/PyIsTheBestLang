@@ -14,7 +14,6 @@
 1923（https://leetcode.com/problems/longest-common-subpath/）经典二分查找加滚动哈希
 1948（https://leetcode.com/problems/delete-duplicate-folders-in-system/）字典树与树哈希去重
 2261（https://leetcode.com/problems/k-divisible-elements-subarrays/submissions/）使用字符串哈希对数组进行编码
-2851（https://leetcode.com/problems/string-transformation/description/）使用KMP与快速幂进行转移计算，也可使用字符串哈希
 
 =====================================LuoGu======================================
 8835（https://www.luogu.com.cn/record/list?user=739032&status=12&page=14）字符串哈希或者KMP查找匹配的连续子串

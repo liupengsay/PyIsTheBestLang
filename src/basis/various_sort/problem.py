@@ -15,7 +15,6 @@
 =====================================LuoGu======================================
 2310（https://www.luogu.com.cn/problem/P2310）预处理排序之后进行遍历
 4378（https://www.luogu.com.cn/problem/P4378）枚举元素向左冒泡的移动轮数，计算最大轮数
-5626（https://www.luogu.com.cn/problem/P5626）分治DP，归并排序需要的比较次数最少，但是可能内存占用超过快排
 6243（https://www.luogu.com.cn/problem/P6243）经典贪心举例之后进行自定义排序
 1774（https://www.luogu.com.cn/problem/P1774）使用归并排序确定在只交换相邻元素的情况下最少的交换次数使得数组有序
 1177（https://www.luogu.com.cn/problem/P1177）快速排序

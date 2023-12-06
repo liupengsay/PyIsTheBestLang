@@ -27,6 +27,9 @@ dilworth定理：
 1964（https://leetcode.com/problems/find-the-longest-valid-obstacle-course-at-each-position/）经典LIS求以每个位置结尾的最长不降子序列长度
 2945（https://leetcode.com/problems/find-maximum-non-decreasing-array-length/description/）linear dp|deque|greedy|prefix sum
 
+===================================CodeForces===================================
+1682C（https://codeforces.com/contest/1682/problem/C）lis|lds|greedy|counter
+
 =====================================LuoGu======================================
 1020（https://www.luogu.com.cn/problem/P1020）使用贪心加二分计算最长单调不减和单调不增子序列的长度
 1439（https://www.luogu.com.cn/problem/P1439）使用贪心加二分计算最长单调递增子序列的长度
@@ -50,7 +53,7 @@ E - Sequence Decomposing（https://atcoder.jp/contests/abc134/tasks/abc134_e）�
 """
 
 import bisect
-from collections import deque
+from collections import deque, Counter
 from itertools import accumulate
 from typing import List
 
@@ -211,6 +214,21 @@ class Solution:
                 ans.append(y)
             x = x + rest
         ac.lst(ans)
+        return
+
+    @staticmethod
+    def cf_1682c(ac=FastIO()):
+        for _ in range(ac.read_int()):
+            ac.read_int()
+            nums = ac.read_list_ints()
+            cnt = Counter([num ^ ac.random_seed for num in nums])
+            s = t = 0
+            for va in cnt.values():
+                if va >= 2:
+                    s += 1
+                else:
+                    t += 1
+            ac.st(s + (t + 1) // 2)
         return
 
     @staticmethod

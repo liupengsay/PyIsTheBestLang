@@ -40,6 +40,7 @@ D - Make Them Even（https://atcoder.jp/contests/abc109/tasks/abc109_d）根据�
 1473C（https://codeforces.com/contest/1473/problem/C）special property of inverse pair of s1s2..sn..s2s1
 1469D（https://codeforces.com/contest/1469/problem/D）square ceil greedy implemention
 1478B（https://codeforces.com/contest/1478/problem/B）brute_force|bag_dp|construction
+1682B（https://codeforces.com/contest/1682/problem/B）bitwise_and|construction|permutation_ring
 
 ====================================AtCoder=====================================
 B - Construct Sequences（https://atcoder.jp/contests/agc007/tasks/agc007_b）脑筋急转弯思维构造公式

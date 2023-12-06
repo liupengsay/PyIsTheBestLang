@@ -22,7 +22,6 @@
 1872（https://leetcode.com/problems/stone-game-viii/）前缀和倒序DP
 1770（https://leetcode.com/problems/maximum-score-from-performing-multiplication-operations/）经典数组匹配线性DP
 823（https://leetcode.com/problems/binary-trees-with-factors/description/）经典线性DP计数
-2289（https://leetcode.com/problems/steps-to-make-array-non-decreasing/description/）经典单调栈优化的线性DP，也可用BFS加链表求解
 2746（https://leetcode.com/problems/decremental-string-concatenation/）经典哈希线性DP模拟实现
 1911（https://leetcode.com/problems/maximum-alternating-subsequence-sum/）经典线性DP
 2321（https://leetcode.com/problems/maximum-score-of-spliced-array/description/）最大连续子数组和变种

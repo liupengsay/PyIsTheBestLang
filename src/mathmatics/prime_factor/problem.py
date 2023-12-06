@@ -4,106 +4,18 @@
 题目：
 
 ====================================LeetCode====================================
-264（https://leetcode.com/problems/ugly-number-ii/）只含2、3、5质因数的第 n 个丑数
-1201（https://leetcode.com/problems/ugly-number-iii/）只含特定因子数即能被其中一个数整除的第 n 个丑数
-313（https://leetcode.com/problems/super-ugly-number/）只含某些特定质因数的第 n 个丑数
-12（https://leetcode.com/problems/integer-to-roman/）整数转罗马数字
-13（https://leetcode.com/problems/roman-to-integer/）罗马数字转整数
-264（https://leetcode.com/problems/ugly-number-ii/）只含2、3、5质因数的第 n 个丑数
-1201（https://leetcode.com/problems/ugly-number-iii/）只含特定因子数即能被其中一个数整除的第 n 个丑数
-313（https://leetcode.com/problems/super-ugly-number/）只含某些特定质因数的第 n 个丑数
-6364（https://leetcode.com/problems/count-the-number-of-square-free-subsets/）非空子集乘积不含除 1 之外任何平方整除数，即乘积质数因子的幂次均为 1（背包DP计数）
-1994（https://leetcode.com/problems/the-number-of-good-subsets/）非空子集乘积不含除 1 之外任何平方整除数，即乘积质数因子的幂次均为 1（背包DP计数）
-6309（https://leetcode.com/contest/weekly-contest-335/problems/split-the-array-to-make-coprime-products/）计算 1 到 n 的每个数所有的质因子，并使用差分进行影响因子计数
-2464（https://leetcode.com/problems/minimum-subarrays-in-a-valid-split/）计算 1 到 n 的每个数所有的质因子，并使用动态规划计数
-LCP 14（https://leetcode.com/problems/qie-fen-shu-zu/）计算 1 到 n 的每个数所有的质因子，并使用动态规划计数
-279（https://leetcode.com/problems/perfect-squares/）四平方数定理
-650（https://leetcode.com/problems/2-keys-keyboard/）经典分解质因数
-1735（https://leetcode.com/problems/count-ways-to-make-array-with-product/）经典质数分解与隔板法应用
-1390（https://leetcode.com/contest/weekly-contest-181/problems/four-divisors/）预处理所有数的所有因子
-1819（https://leetcode.com/problems/number-of-different-subsequences-gcds/）预处理所有整数的所有因子，再枚举gcd计算
-1017（https://leetcode.com/contest/weekly-contest-130/problems/convert-to-base-2/）负进制转换模板题
-1073（https://leetcode.com/problems/adding-two-negabinary-numbers/）经典负进制计算题
-8041（https://leetcode.com/problems/maximum-element-sum-of-a-complete-subset-of-indices/description/）经典质因数分解，奇数幂次的质因子组合哈希
 2183（https://leetcode.com/problems/count-array-pairs-divisible-by-k/description/）可以使用所有因子遍历枚举计数解决，正解为按照 k 的最大公因数分组
 
 =====================================LuoGu======================================
-1865（https://www.luogu.com.cn/problem/P1865）通过线性筛素数后进行二分查询区间素数个数
-1748（https://www.luogu.com.cn/problem/P1748）丑数可以使用堆模拟可以使用指针递增也可以使用容斥原理与二分进行计算
-2723（https://www.luogu.com.cn/problem/P2723）第n小的只含给定素因子的丑数
-1952（https://www.luogu.com.cn/problem/P1952）N进制加法
-1555（https://www.luogu.com.cn/problem/P1555）二进制与三进制
-1465（https://www.luogu.com.cn/problem/P1465）整数转罗马数字
-1112（https://www.luogu.com.cn/problem/P1112）枚举波浪数计算其不同进制下是否满足条件
-2926（https://www.luogu.com.cn/problem/P2926）素数筛或者因数分解计数统计可被数列其他数整除的个数
-5535（https://www.luogu.com.cn/problem/P5535）素数is_prime5判断加贪心脑筋急转弯
-1876（https://www.luogu.com.cn/problem/P1876）经典好题，理解完全平方数的因子个数为奇数，其余为偶数
-1887（https://www.luogu.com.cn/problem/P1887）在和一定的情况下，数组分散越平均，其乘积越大
-2043（https://www.luogu.com.cn/problem/P2043）使用素数筛法的思想，计算阶乘n!的质因子与对应的个数
-2192（https://www.luogu.com.cn/problem/P2192）一个数能整除9当且仅当其数位和能整除9
-7191（https://www.luogu.com.cn/problem/P7191）取模公式变换，转换为计算最大公约数，与所有因数分解计算
-7517（https://www.luogu.com.cn/problem/P7517）利用埃氏筛的思想，从小到大，进行因数枚举计数
-7588（https://www.luogu.com.cn/problem/P7588）素数枚举计算，优先使用is_prime4
-7696（https://www.luogu.com.cn/problem/P7696）数组，每个数进行质因数分解，然后均匀分配质因子
-4718（https://www.luogu.com.cn/problem/P4718）使用pollard_rho进行质因数分解与素数判断
-1865（https://www.luogu.com.cn/problem/P1865）通过线性筛素数后进行二分查询区间素数个数
-1748（https://www.luogu.com.cn/problem/P1748）丑数可以使用堆模拟可以使用指针递增也可以使用容斥原理与二分进行计算
-2723（https://www.luogu.com.cn/problem/P2723）第n小的只含给定素因子的丑数
-2429（https://www.luogu.com.cn/problem/P2429）枚举质因数组合加容斥原理计数
-2926（https://www.luogu.com.cn/problem/P2926）素数筛或者因数分解计数统计可被数列其他数整除的个数
-5535（https://www.luogu.com.cn/problem/P5535）素数is_prime5判断加贪心脑筋急转弯
-1876（https://www.luogu.com.cn/problem/P1876）经典好题，理解完全平方数的因子个数为奇数，其余为偶数
-7588（https://www.luogu.com.cn/problem/P7588）素数枚举计算，优先使用is_prime4
-7696（https://www.luogu.com.cn/problem/P7696）数组，每个数进行质因数分解，然后均匀分配质因子
-4718（https://www.luogu.com.cn/problem/P4718）使用pollard_rho进行质因数分解与素数判断
-1069（https://www.luogu.com.cn/problem/P1069）质因数分解，转换为因子计数翻倍整除
-1072（https://www.luogu.com.cn/problem/P1072）枚举所有因数，需要计算所有因数
-1593（https://www.luogu.com.cn/problem/P1593）使用质因数分解与快速幂计算a^b的所有因子之和
-2527（https://www.luogu.com.cn/problem/P2527）丑数即只含特定质因子的数
-2557（https://www.luogu.com.cn/problem/P2557）使用质因数分解计算a^b的所有因子之和
-4446（https://www.luogu.com.cn/problem/P4446）预先处理出素数然后计算最大的完全立方数因子
-4752（https://www.luogu.com.cn/problem/P4752）判断除数是否为质数
-5248（https://www.luogu.com.cn/problem/P5248）经典进制题目
-5253（https://www.luogu.com.cn/problem/P5253）经典方程变换计算 (x-n)*(y-n)=n^2 的对数
-7960（https://www.luogu.com.cn/problem/P7960）类似埃氏筛的思路进行预处理
-8319（https://www.luogu.com.cn/problem/P8319）质因数分解与因子计数
-8646（https://www.luogu.com.cn/problem/P8646）经典裴蜀定理与背包 DP
-8762（https://www.luogu.com.cn/problem/P8762）容斥原理加前缀和计数
-8778（https://www.luogu.com.cn/problem/P8778）经典枚举素因子后O(n^0.25)计算是否为完全平方数与立方数
-8782（https://www.luogu.com.cn/problem/P8782）多种进制结合贪心计算，经典好题
 
 ===================================CodeForces===================================
-1771C（https://codeforces.com/problemset/problem/1771/C）使用pollard_rho进行质因数分解
-1034A（https://codeforces.com/problemset/problem/1034/A）经典求 1 到 n 所有数字的质因子个数总和
-1771C（https://codeforces.com/problemset/problem/1771/C）使用pollard_rho进行质因数分解
-1366D（https://codeforces.com/problemset/problem/1366/D）计算最小的质因子，使用构造判断是否符合条件
-1349A（https://codeforces.com/contest/1349/problem/A）质因数分解，枚举最终结果当中质因子的幂次
-1295D（https://codeforces.com/problemset/problem/1295/D）利用最大公因数的特性转换为欧拉函数求解，即比 n 小且与 n 互质的数个数
-1538D（https://codeforces.com/problemset/problem/1538/D）使用pollard_rho进行质因数分解
-1458A（https://codeforces.com/problemset/problem/1458/A）gcd公式变换求解
-1444A（https://codeforces.com/problemset/problem/1444/A）贪心枚举质数因子
-1823C（https://codeforces.com/contest/1823/problem/C）质因数分解进行贪心计算
 1176D（https://codeforces.com/contest/1176/problem/D）经典构造题，贪心模拟，记录合数最大不等于自身的因子，以及质数列表的顺序
 1884D（https://codeforces.com/contest/1884/problem/D）factor dp and cnt, count the number of pair with gcd=x
 1900D（https://codeforces.com/contest/1900/problem/D）经典根据容斥原理计算gcd的pair对数
 
 ====================================AtCoder=====================================
-D - 756（https://atcoder.jp/contests/abc114/tasks/abc114_d）质因数分解计数
 
 =====================================AcWing=====================================
-97（https://www.acwing.com/problem/content/99/）计算a^b的所有约数之和
-124（https://www.acwing.com/problem/content/126/）不同进制的转换，注意0的处理
-197（https://www.acwing.com/problem/content/199/）计算n!阶乘的质因数分解即因子与因子的个数
-196（https://www.acwing.com/problem/content/198/）经典计算质数距离对
-198（https://www.acwing.com/problem/content/200/）经典计算最大的反质数（反素数，即约数或者说因数个数大于任何小于它的数的因数个数）
-199（https://www.acwing.com/problem/content/description/201/）经典枚举因数计算之和
-3727（https://www.acwing.com/solution/content/54479/）脑筋急转弯转换成进制表达问题
-3999（https://www.acwing.com/problem/content/description/4002/）同CF1295D
-4319（https://www.acwing.com/problem/content/4322/）质因数分解后前缀哈希计数
-4484（https://www.acwing.com/problem/content/4487/）分数在某个进制下是否为有限小数问题
-4486（https://www.acwing.com/problem/content/description/4489/）经典质数分解贪心题
-4622（https://www.acwing.com/problem/content/description/4625/）思维题贪心构造
-5049（https://www.acwing.com/problem/content/description/5052/）使用质因数分解计算组合数
 
 
 参考：OI WiKi（xx）

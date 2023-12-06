@@ -60,7 +60,6 @@ C. XOR and OR（http://codeforces.com/problemset/problem/282/C）利用位运算
 
 ====================================AtCoder=====================================
 D - XXOR（https://atcoder.jp/contests/abc117/tasks/abc117_d）从高位到低位按位贪心，思维题
-D - XOR World（https://atcoder.jp/contests/abc121/tasks/abc121_d）正解为(2*n)^(2*n+1)=1的性质，可使用数位DP计算 1^2^...^num的值
 D - Xor Sum 4（https://atcoder.jp/contests/abc147/tasks/abc147_d）典型按位异或和计算贡献
 
 =====================================AcWing=====================================

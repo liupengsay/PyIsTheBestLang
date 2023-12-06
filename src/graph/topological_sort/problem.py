@@ -39,6 +39,7 @@
 
 ===================================CodeForces===================================
 1454E（https://codeforces.com/contest/1454/problem/E）经典基环树计数枚举
+1907G（https://codeforces.com/contest/1907/problem/G）directed_circle_based_tree|greedy|implemention|topological_sort
 
 ====================================AtCoder=====================================
 F - Well-defined Path Queries on a Namori（https://atcoder.jp/contests/abc266/）（无向图的内向基环树，求简单路径的树枝连通）

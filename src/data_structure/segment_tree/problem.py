@@ -7,7 +7,6 @@
 218（https://leetcode.com/problems/the-skyline-problem/solution/by-liupengsay-isfo/）区间值修改与计算最大值
 2286（https://leetcode.com/problems/booking-concert-tickets-in-groups/）区间值增减与计算区间和、区间最大值、区间最小值
 2407（https://leetcode.com/problems/longest-increasing-subsequence-ii/）维护与查询区间最大值，然后进行DP更新
-2179（https://leetcode.com/problems/count-good-triplets-in-an-array/）维护区间范围内的个数
 2158（https://leetcode.com/problems/amount-of-new-area-painted-each-day/）线段树维护区间范围的覆盖
 6318（https://leetcode.com/contest/weekly-contest-336/problems/minimum-time-to-complete-all-tasks/）线段树，贪心加二分
 732（https://leetcode.com/problems/my-calendar-iii/）使用defaultdict进行动态开点线段树
@@ -15,7 +14,6 @@
 2213（https://leetcode.com/problems/longest-substring-of-one-repeating-character/）单点字母更新，最长具有相同字母的连续子数组查询
 2276（https://leetcode.com/problems/count-integers-in-intervals/）动态开点线段树模板题，维护区间并集的长度，也可使用SortedList
 1340（https://leetcode.com/problems/jump-game-v/）可以使用线段树DP进行解决
-2569（https://leetcode.com/problems/handling-sum-queries-after-update/）经典01线段树区间翻转与求和，也可以使用BitSet
 2940（https://leetcode.com/problems/find-building-where-alice-and-bob-can-meet/）可使用线段树二分做，线段树二分模板题
 
 =====================================LuoGu======================================
@@ -59,7 +57,6 @@
 
 =====================================AcWing=====================================
 3805（https://www.acwing.com/problem/content/3808/）区间增减与最小值查询
-5037（https://www.acwing.com/problem/content/5040/）同CF242E，使用二十多个01线段树维护区间异或与区间加和
 
 
 参考：OI WiKi（xx）
