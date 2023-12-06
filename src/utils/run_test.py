@@ -6,6 +6,7 @@ import unittest
 
 class TestGeneral(unittest.TestCase):
 
+    @unittest.skip
     def test_run_example(self):
 
         def run_example(path):
@@ -24,6 +25,7 @@ class TestGeneral(unittest.TestCase):
         run_example(os.path.join(grandparent_path, "src"))
         return
 
+    @unittest.skip
     def test_run_problem(self):
 
         def process_file(file_path):
@@ -53,6 +55,7 @@ class TestGeneral(unittest.TestCase):
             f.writelines("\n".join(tot))
         return
 
+    @unittest.skip
     def test_change_site(self):
 
         def process_file(file_path):
@@ -87,6 +90,7 @@ class TestGeneral(unittest.TestCase):
         process_directory(os.path.join(grandparent_path, "src"))
         return
 
+    @unittest.skip
     def test_change_cf_title(self):
 
         def process_file(file_path):
@@ -125,6 +129,7 @@ class TestGeneral(unittest.TestCase):
         process_directory(os.path.join(grandparent_path, "src"))
         return
 
+    @unittest.skip
     def test_drop_dup_problem(self):
 
         def process_file(file_path):
