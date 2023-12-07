@@ -10,9 +10,9 @@ Function：处理字符串以及结合bit_operation相关，01Trie通用用于�
 677（https://leetcode.com/problems/map-sum-pairs/）更新与查询给定字符串作为单词键前缀的对应值的和
 2479（https://leetcode.com/problems/maximum-xor-of-two-non-overlapping-subtrees/）01Trie最大异或值
 面试题 17（https://leetcode.com/problems/multi-search-lcci/）AC自动机counter，也可直接字典树reverse_thinking，字典树存关键字，再搜索文本，和单词矩阵一样的套路
-1707（https://leetcode.com/problems/maximum-xor-with-an-element-from-array/）sorting后离线查询并 01 Trie求解
+1707（https://leetcode.com/problems/maximum-xor-with-an-element-from-array/）sorting后offline_query并 01 Trie求解
 1938（https://leetcode.com/problems/maximum-genetic-difference-query/）深搜back_track与01Trie查询最大异或值
-1032（https://leetcode.com/problems/stream-of-characters/description/）字典树典型应用，倒序存储
+1032（https://leetcode.com/problems/stream-of-characters/description/）字典树典型应用，reverse_order|存储
 
 =====================================LuoGu======================================
 8306（https://www.luogu.com.cn/problem/P8306）
@@ -463,7 +463,7 @@ class Solution:
 
     @staticmethod
     def lc_1707(nums: List[int], queries: List[List[int]]) -> List[int]:
-        # sorting后离线查询并 01 Trie求解最大异或值
+        # sorting后offline_query并 01 Trie求解最大异或值
         n = len(nums)
         nums.sort()
 
@@ -473,7 +473,7 @@ class Solution:
             queries[i].append(i)
         queries.sort(key=lambda it: it[1])
 
-        # pointer离线查询
+        # pointeroffline_query
         trie = TrieZeroOneXorMax(32)
         ans = [-1] * m
         j = 0
@@ -590,7 +590,7 @@ class Solution:
 
     @staticmethod
     def lc_1938(parents: List[int], queries: List[List[int]]) -> List[int]:
-        # 深搜back_track结合01Trie离线查询最大异或值对
+        # 深搜back_track结合01Trieoffline_query最大异或值对
         n = len(parents)
         x = -1
         dct = [[] for _ in range(n)]
@@ -619,7 +619,7 @@ class Solution:
 
     @staticmethod
     def lc_1938_2(parents: List[int], queries: List[List[int]]) -> List[int]:
-        # 深搜back_track结合01Trie离线查询最大异或值对
+        # 深搜back_track结合01Trieoffline_query最大异或值对
         n = len(parents)
         dct = [[] for _ in range(n)]
         root = -1

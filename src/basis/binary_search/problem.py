@@ -381,7 +381,7 @@ class Solution:
 
     @staticmethod
     def lc_2528(stations: List[int], r: int, k: int) -> int:
-        # binary_searchprefix_sum差分数组greedy验证
+        # binary_searchprefix_sumdiff_array|greedy验证
         n = len(stations)
         nums = [0] * n
         for i in range(n):

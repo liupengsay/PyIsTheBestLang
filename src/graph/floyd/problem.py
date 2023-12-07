@@ -9,7 +9,7 @@ Function：点到有向或者无向图里面其他点的最短路，也可以最
 1462（https://leetcode.com/problems/course-schedule-iv/）可考虑传递闭包Floyd求解
 
 =====================================LuoGu======================================
-1119（https://www.luogu.com.cn/problem/P1119）离线查询|Floyd动态更新经过中转站的起终点距离，修复增|维护的是点
+1119（https://www.luogu.com.cn/problem/P1119）offline_query|Floyd动态更新经过中转站的起终点距离，修复增|维护的是点
 1476（https://www.luogu.com.cn/problem/P1476）Floyd 求索引从 1 到 n 的最长路并求所有在最长路上的点
 3906（https://www.luogu.com.cn/problem/P3906）Floyd算法最短路径上经过的点集合
 
@@ -25,7 +25,7 @@ Function：点到有向或者无向图里面其他点的最短路，也可以最
 
 
 ===================================CodeForces===================================
-472D（https://codeforces.com/problemset/problem/472/D）Floyd判断构造给定的点对最短路距离是否存在
+472D（https://codeforces.com/problemset/problem/472/D）Floyd判断construction给定的点对最短路距离是否存在
 
 ====================================AtCoder=====================================
 D - Candidates of No Shortest Paths（https://atcoder.jp/contests/abc051/tasks/abc051_d）Floyd最短路的必经边

@@ -18,7 +18,7 @@ Function：遍历数组，根据前序或者后序结果更新，最大非空连
 2713（https://leetcode.com/problems/maximum-strictly-increasing-cells-in-a-matrix/）按照data_range分层线性 DP
 1526（https://leetcode.com/problems/minimum-number-of-increments-on-subarrays-to-form-a-target-array/）线性 DP 与greedy
 1553（https://leetcode.com/problems/minimum-number-of-days-to-eat-n-oranges/）brain_teasergreedy记忆化搜索线性DP
-1872（https://leetcode.com/problems/stone-game-viii/）prefix_sum倒序DP
+1872（https://leetcode.com/problems/stone-game-viii/）prefix_sumreverse_order|DP
 1770（https://leetcode.com/problems/maximum-score-from-performing-multiplication-operations/）数组匹配线性DP
 823（https://leetcode.com/problems/binary-trees-with-factors/description/）线性DPcounter
 2746（https://leetcode.com/problems/decremental-string-concatenation/）hash线性DPimplemention实现
@@ -29,9 +29,9 @@ Function：遍历数组，根据前序或者后序结果更新，最大非空连
 978（https://leetcode.com/problems/longest-turbulent-subarray/description/）线性DP滚动变量
 1027（https://leetcode.com/problems/longest-arithmetic-subsequence/）线性DP最长等差子序列
 1987（https://leetcode.com/problems/number-of-unique-good-subsequences/description/）线性counterDP
-2355（https://leetcode.com/problems/maximum-number-of-books-you-can-take/）单调栈|线性DP，下标巧妙地转换，严格递增子序列的和
-100048（https://leetcode.com/problems/beautiful-towers-ii/）单调栈|线性DP，山脉子序列的和，prefix_suffix单调栈优化线性DP
-2327（https://leetcode.com/problems/number-of-people-aware-of-a-secret/description/）prefix_sum或者差分数组优化线性DP
+2355（https://leetcode.com/problems/maximum-number-of-books-you-can-take/）monotonic_stack||线性DP，下标巧妙地转换，严格递增子序列的和
+100048（https://leetcode.com/problems/beautiful-towers-ii/）monotonic_stack||线性DP，山脉子序列的和，prefix_suffixmonotonic_stack|优化线性DP
+2327（https://leetcode.com/problems/number-of-people-aware-of-a-secret/description/）prefix_sum或者diff_array|优化线性DP
 2572（https://leetcode.com/problems/count-the-number-of-square-free-subsets/description/）线性DPcounter
 
 =====================================LuoGu======================================
@@ -65,9 +65,9 @@ Function：遍历数组，根据前序或者后序结果更新，最大非空连
 2513（https://www.luogu.com.cn/problem/P2513）prefix_sum优化DP
 1280（https://www.luogu.com.cn/problem/P1280）逆序线性 DP
 1282（https://www.luogu.com.cn/problem/P1282）典型线性DP，hash实现
-1356（https://www.luogu.com.cn/problem/P1356）典型线性取模DP
+1356（https://www.luogu.com.cn/problem/P1356）典型线性mod|DP
 1385（https://www.luogu.com.cn/problem/P1385）线性DP与prefix_sum优化，brain_teaser字符串lexicographical_order总和不变
-1809（https://www.luogu.com.cn/problem/P1809）思维题线性DP，greedy
+1809（https://www.luogu.com.cn/problem/P1809）brain_teaser|线性DP，greedy
 1868（https://www.luogu.com.cn/problem/P1868）线性DP|binary_search优化
 1978（https://www.luogu.com.cn/problem/P1978）线性DP，乘积互斥
 2432（https://www.luogu.com.cn/problem/P2432）线性DP|pointer
@@ -101,10 +101,10 @@ Function：遍历数组，根据前序或者后序结果更新，最大非空连
 1525D（https://codeforces.com/problemset/problem/1525/D）二维线性DP，两个数组线性移动匹配最大或者最小值
 1286A（https://codeforces.com/problemset/problem/1286/A）线性dp
 1221D（https://codeforces.com/problemset/problem/1221/D）线性DP，最多变化为增|0、1、2
-731E（https://codeforces.com/contest/731/problem/E）prefix_sum倒序DP
+731E（https://codeforces.com/contest/731/problem/E）prefix_sumreverse_order|DP
 
 ====================================AtCoder=====================================
-E - Sum Equals Xor（https://atcoder.jp/contests/abc129/tasks/abc129_e）思维题，类似数位DP
+E - Sum Equals Xor（https://atcoder.jp/contests/abc129/tasks/abc129_e）brain_teaser|，类似数位DP
 
 =====================================AcWing=====================================
 96（https://www.acwing.com/problem/content/98/）的汉诺塔问题，可推广到n个盘子与m个柱子
@@ -168,7 +168,7 @@ class Solution:
 
     @staticmethod
     def lc_2289(nums: List[int]) -> int:
-        # 单调栈优化的线性DP，也可用BFS|链表求解
+        # monotonic_stack|优化的线性DP，也可用BFS|链表求解
         n = len(nums)
         stack = []
         for i in range(n - 1, -1, -1):
@@ -355,7 +355,7 @@ class Solution:
 
     @staticmethod
     def lg_p1280(ac=FastIO()):
-        # 线性DP倒序implemention优化
+        # 线性DPreverse_order|implemention优化
         n, k = ac.read_list_ints()
         dct = [[] for _ in range(n + 1)]
         for _ in range(k):
@@ -441,7 +441,7 @@ class Solution:
 
     @staticmethod
     def lg_p1809(ac=FastIO()):
-        # 思维题线性DP
+        # brain_teaser|线性DP
         n = ac.read_int()
         nums = [ac.read_int() for _ in range(n)]
         if n == 1:
@@ -812,7 +812,7 @@ class Solution:
         else:
             seed = ac.read_int()
             seed = (seed * xx % mod + 20120712) % mod
-        # 公式变换确定要的单调队列值
+        # math|确定要的单调队列值
         pre = nums[0] if not tp else seed
         stack = deque([[0, pre - d]])
         for i in range(1, n):

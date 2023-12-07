@@ -12,7 +12,7 @@ xx（xxx）xxxxxxxxxxxxxxxxxxxx
 xx（xxx）xxxxxxxxxxxxxxxxxxxx
 
 ====================================AtCoder=====================================
-D - FT Robot（https://atcoder.jp/contests/abc082/tasks/arc087_b）思维题，分开BFS平面坐标的x与y轴移动，bitset优化
+D - FT Robot（https://atcoder.jp/contests/abc082/tasks/arc087_b）brain_teaser|，分开BFS平面坐标的x与y轴移动，bitset优化
 E - Balanced Path（https://atcoder.jp/contests/abc147/tasks/abc147_e）matrix_dpbitset表示01状态优化
 
 =====================================AcWing=====================================
@@ -31,7 +31,7 @@ class Solution:
 
     @staticmethod
     def abc_82d(ac=FastIO()):
-        # 思维题，分开BFS平面坐标的x与y轴移动，bitset优化
+        # brain_teaser|，分开BFS平面坐标的x与y轴移动，bitset优化
         s = ac.read_str()
         x, y = ac.read_list_ints()
         ls = [len(t) for t in s.split("T")]

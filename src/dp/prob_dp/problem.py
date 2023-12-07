@@ -9,7 +9,7 @@ Function：根据组合数与转移方案求解概率或者期望
 2719（https://www.luogu.com.cn/record/list?user=739032&status=12&page=1）二维DP求概率
 1291（https://www.luogu.com.cn/problem/P1291）线性DP求期望
 4316（https://www.luogu.com.cn/problem/P4316）期望 DP 反向建图与拓扑sorting
-6154（https://www.luogu.com.cn/problem/P6154）反向建图期望树形 DP 与有理数取模
+6154（https://www.luogu.com.cn/problem/P6154）反向建图期望树形 DP 与有理数mod|
 
 =====================================AcWing=====================================
 5058（https://www.acwing.com/problem/content/description/5061/）概率DP
@@ -114,7 +114,7 @@ class Solution:
 
     @staticmethod
     def lg_p6154(ac=FastIO()):
-        # 反向建图期望树形 DP 与有理数取模
+        # 反向建图期望树形 DP 与有理数mod|
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         degree = [0] * n

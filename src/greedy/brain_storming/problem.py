@@ -1,6 +1,6 @@
 """
 
-Algorithm：greedy、reverse_thinking、抽屉原理、pigeonhole、inclusion_exclusion、自定义sorting、思维、brain_teaser、构造
+Algorithm：greedy、reverse_thinking、抽屉原理、pigeonhole、inclusion_exclusion、自定义sorting、思维、brain_teaser、construction
 Function：各种可证明不可证明的头脑风暴
 
 ====================================LeetCode====================================
@@ -11,14 +11,14 @@ Function：各种可证明不可证明的头脑风暴
 2449（https://leetcode.com/problems/minimum-total-cost-to-make-arrays-unequal/）转换题意sorting后用奇偶数greedy变换得到
 2448（https://leetcode.com/problems/minimum-cost-to-make-array-equal/）利用median的特点变换到带权重广义下median的位置是最优的greedy增减
 2412（https://leetcode.com/problems/minimum-money-required-before-transactions/）根据交易增长特点自定义sorting
-2366（https://leetcode.com/problems/minimum-replacements-to-sort-the-array/）倒序greedy不断分解得到满足要求且尽可能大的值
+2366（https://leetcode.com/problems/minimum-replacements-to-sort-the-array/）reverse_order|greedy不断分解得到满足要求且尽可能大的值
 2350（https://leetcode.com/problems/shortest-impossible-sequence-of-rolls/）brain_teaser本质上是求全排列出现的轮数
 2344（https://leetcode.com/problems/minimum-deletions-to-make-array-divisible/）利用最大公约数greedy删除最少的元素
 2136（https://leetcode.com/problems/earliest-possible-day-of-full-bloom/）greedy安排成长时间最长的先种
 2071（https://leetcode.com/problems/maximum-number-of-tasks-you-can-assign/）greedy|binary_search极值判断
 517（https://leetcode.com/problems/super-washing-machines/）类似上题，最小的左右移动次数以及往左右的移动次数
 1798（https://leetcode.com/problems/maximum-number-of-consecutive-values-you-can-make/）看似背包实则greedy
-625（https://leetcode.com/problems/minimum-factorization/）greedy因式分解，类似质因数分解
+625（https://leetcode.com/problems/minimum-factorization/）greedy因式分解，类似质factorization|
 2568（https://leetcode.com/problems/minimum-impossible-or/）brain_teasergreedy，可以根据打表观察规律
 6361（https://leetcode.com/problems/minimum-score-by-changing-two-elements/）brain_teasergreedy
 6316（https://leetcode.com/contest/weekly-contest-336/problems/rearrange-array-to-maximize-prefix-score/）greedy，|prefix_sum
@@ -27,23 +27,23 @@ Function：各种可证明不可证明的头脑风暴
 1353（https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended/）brute_forcegreedy
 1402（https://leetcode.com/problems/reducing-dishes/）prefix_sumgreedy
 1665（https://leetcode.com/problems/minimum-initial-energy-to-finish-tasks/）greedy不同项比较公式sortingimplemention，同CF1203F
-1675（https://leetcode.com/problems/minimize-deviation-in-array/）brain_teaser思维题greedy
+1675（https://leetcode.com/problems/minimize-deviation-in-array/）brain_teaserbrain_teaser|greedy
 1686（https://leetcode.com/problems/stone-game-vi/）greedy采用列式子确定sorting方式
 1808（https://leetcode.com/problems/maximize-number-of-nice-divisors/）按照模3的因子个数greedy处理，将和拆分成最大乘积
 1953（https://leetcode.com/problems/maximum-number-of-weeks-for-which-you-can-work/）greedy只看最大值的影响
 2856（https://leetcode.com/problems/minimum-array-length-after-pair-removals/）greedy只看最大值的影响
-858（https://leetcode.com/problems/mirror-reflection/description/）brain_teaser思维题
-1927（https://leetcode.com/problems/sum-game/description/）博弈思维题classification_discussion
+858（https://leetcode.com/problems/mirror-reflection/description/）brain_teaserbrain_teaser|
+1927（https://leetcode.com/problems/sum-game/description/）博弈brain_teaser|classification_discussion
 2592（https://leetcode.com/problems/maximize-greatness-of-an-array/）典型greedysorting后two_pointer
 1503（https://leetcode.com/problems/last-moment-before-all-ants-fall-out-of-a-plank/）brain_teaser题目，相撞不影响结果
 991（https://leetcode.com/problems/broken-calculator/）逆向greedy，偶数除2奇数|1
-2745（https://leetcode.com/problems/construct-the-longest-new-string/）brain_teasergreedy思维题
-1657（https://leetcode.com/problems/determine-if-two-strings-are-close/description/）brain_teasergreedy思维题
-2561（https://leetcode.com/problems/rearranging-fruits/）思维题greedy交换
-843（https://leetcode.com/problems/guess-the-word/）思维题greedyimplemention交互
+2745（https://leetcode.com/problems/construct-the-longest-new-string/）brain_teasergreedybrain_teaser|
+1657（https://leetcode.com/problems/determine-if-two-strings-are-close/description/）brain_teasergreedybrain_teaser|
+2561（https://leetcode.com/problems/rearranging-fruits/）brain_teaser|greedy交换
+843（https://leetcode.com/problems/guess-the-word/）brain_teaser|greedyimplemention交互
 1946（https://leetcode.com/problems/largest-number-after-mutating-substring/description/）易错greedy
-1540（https://leetcode.com/problems/can-convert-string-in-k-moves/）greedy思维题，pointer记录
-1121（https://leetcode.com/problems/divide-array-into-increasing-sequences/description/）思维题greedy，只考虑最大值的分组影响
+1540（https://leetcode.com/problems/can-convert-string-in-k-moves/）greedybrain_teaser|，pointer记录
+1121（https://leetcode.com/problems/divide-array-into-increasing-sequences/description/）brain_teaser|greedy，只考虑最大值的分组影响
 
 =====================================LuoGu======================================
 1031（https://www.luogu.com.cn/problem/P1031）greedy每个点的prefix_sum流量，需要补齐或者输出时counter
@@ -74,7 +74,7 @@ Function：各种可证明不可证明的头脑风暴
 2983（https://www.luogu.com.cn/problem/P2983）看起来是背包其实是greedy优先选择最便宜的奶牛满足
 3173（https://www.luogu.com.cn/problem/P3173）从大到小sortinggreedy
 5098（https://www.luogu.com.cn/problem/P5098）greedy按照一个维度sorting后再按照另一个维度classification_discussion，记录前缀最小值
-5159（https://www.luogu.com.cn/problem/P5159）利用异或的特点brute_forcecounter并快速幂
+5159（https://www.luogu.com.cn/problem/P5159）利用异或的特点brute_forcecounter并fast_power|
 5497（https://www.luogu.com.cn/problem/P5497）抽屉原理classification_discussion
 5682（https://www.luogu.com.cn/problem/P5682）brain_teasersorting后greedybrute_force确定
 5804（https://www.luogu.com.cn/problem/P5804）sortinggreedybrute_force和binary_search优化
@@ -85,7 +85,7 @@ Function：各种可证明不可证明的头脑风暴
 6380（https://www.luogu.com.cn/problem/P6380）greedyimplemention赋值
 6446（https://www.luogu.com.cn/problem/P6446）greedy操作，使得数组所有值相等的最少操作次数变形题目，每次操作可以使得连续区间|1或者减1
 5019（https://www.luogu.com.cn/problem/P5019）greedy操作，使得数组所有值相等的最少操作次数变形题目，每次操作可以使得连续区间|1或者减1
-6462（https://www.luogu.com.cn/problem/P6462）greedy分类
+6462（https://www.luogu.com.cn/problem/P6462）greedyclassification_discussion|
 6549（https://www.luogu.com.cn/problem/P6549）reverse_thinking，插入sorting的思想implemention
 6785（https://www.luogu.com.cn/problem/P6785）brain_teaser，条件判断与greedycounter
 6851（https://www.luogu.com.cn/problem/P6851）greedyimplemention，均从大到小sorting，先选择赢的牌，再输的牌
@@ -94,7 +94,7 @@ Function：各种可证明不可证明的头脑风暴
 7260（https://www.luogu.com.cn/problem/P7260）greedy与动态规划，使得数组所有值从0变化等于给定升序数组的最少操作次数，每次操作可以使得连续区间|1
 7319（https://www.luogu.com.cn/problem/P7319）公式变形后sorting不等式greedy
 7412（https://www.luogu.com.cn/problem/P7412）greedy，将问题转换为去掉最长的k-1个非零距离
-7522（https://www.luogu.com.cn/problem/P7522）分类greedy讨论
+7522（https://www.luogu.com.cn/problem/P7522）classification_discussion|greedy讨论
 7633（https://www.luogu.com.cn/problem/P7633）埃氏筛法思想，implementiongreedy
 7714（https://www.luogu.com.cn/problem/P7714）子序列sorting使得整体有序，前缀最大值与pointercounter确认子数组分割点
 7787（https://www.luogu.com.cn/problem/P7787）brain_teaser，借助完全二叉树的思想
@@ -128,19 +128,19 @@ Function：各种可证明不可证明的头脑风暴
 
 ===================================CodeForces===================================
 1186D（https://codeforces.com/problemset/problem/1186/D）greedy取floor，再根据|和为0的特质补充|1成为ceil
-792C（https://codeforces.com/contest/792/problem/C）分类greedy取数比较，取最长的返回结果
+792C（https://codeforces.com/contest/792/problem/C）classification_discussion|greedy取数比较，取最长的返回结果
 166E（https://codeforces.com/problemset/problem/166/E）思维implementionDP
 1025C（https://codeforces.com/problemset/problem/1025/C）brain_teaser
-1042C（https://codeforces.com/problemset/problem/1042/C）greedy分类implemention
+1042C（https://codeforces.com/problemset/problem/1042/C）greedyclassification_discussion|implemention
 439C（https://codeforces.com/problemset/problem/439/C）greedyclassification_discussion
 1283E（https://codeforces.com/problemset/problem/1283/E）greedyclassification_discussion
-1092C（https://codeforces.com/contest/1092/problem/C）brain_teaser思维分类题
-1280B（https://codeforces.com/problemset/problem/1280/B）brain_teaser思维分类题
-723C（https://codeforces.com/problemset/problem/723/C）greedyimplemention构造
+1092C（https://codeforces.com/contest/1092/problem/C）brain_teaser思维classification_discussion|题
+1280B（https://codeforces.com/problemset/problem/1280/B）brain_teaser思维classification_discussion|题
+723C（https://codeforces.com/problemset/problem/723/C）greedyimplementionconstruction
 712C（https://codeforces.com/problemset/problem/712/C）reverse_thinking反向implemention
 747D（https://codeforces.com/problemset/problem/747/D）greedyimplemention求解
-1148D（https://codeforces.com/problemset/problem/1148/D）greedy，自定义sorting选择构造
-792C（https://codeforces.com/contest/792/problem/C）分类greedy讨论
+1148D（https://codeforces.com/problemset/problem/1148/D）greedy，自定义sorting选择construction
+792C（https://codeforces.com/contest/792/problem/C）classification_discussion|greedy讨论
 830A（https://codeforces.com/problemset/problem/830/A）按照影响区间sorting，然后greedy分配时间
 478C（https://codeforces.com/problemset/problem/478/C）greedy结论题a<=b<=c则有min((a+b+c)//3, a+b)
 1329A（https://codeforces.com/problemset/problem/1329/A）greedy+pointer+implemention
@@ -151,13 +151,13 @@ Function：各种可证明不可证明的头脑风暴
 1370C（https://codeforces.com/problemset/problem/1370/C）greedyimplemention必胜态
 1822E（https://codeforces.com/contest/1822/problem/E）greedyimplementioncounter
 1005E2（https://codeforces.com/contest/1005/problem/E2）特定median的连续子数组个数，inclusion_exclusion|prefix_sumsorted_listbinary_search，同LC2488
-1512E（https://codeforces.com/contest/1512/problem/E）思维题从大到小greedy
+1512E（https://codeforces.com/contest/1512/problem/E）brain_teaser|从大到小greedy
 
 ====================================AtCoder=====================================
-C - AtCoDeer and Election Report（https://atcoder.jp/contests/abc046/tasks/arc062_a）思维题，不等式greedy
-D - Wide Flip（https://atcoder.jp/contests/abc083/tasks/arc088_b）思维题greedy
-D - Various Sushi（https://atcoder.jp/contests/abc116/tasks/abc116_d）思维题greedy
-D - Summer Vacation（https://atcoder.jp/contests/abc137/tasks/abc137_d）逆序思维题greedy
+C - AtCoDeer and Election Report（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|，不等式greedy
+D - Wide Flip（https://atcoder.jp/contests/abc083/tasks/arc088_b）brain_teaser|greedy
+D - Various Sushi（https://atcoder.jp/contests/abc116/tasks/abc116_d）brain_teaser|greedy
+D - Summer Vacation（https://atcoder.jp/contests/abc137/tasks/abc137_d）逆序brain_teaser|greedy
 
 =====================================AcWing=====================================
 104（https://www.acwing.com/problem/content/106/）mediangreedy
@@ -169,11 +169,11 @@ D - Summer Vacation（https://atcoder.jp/contests/abc137/tasks/abc137_d）逆序
 127（https://www.acwing.com/problem/content/description/129/）二维sortinggreedy
 145（https://www.acwing.com/problem/content/147/）二叉堆greedy
 122（https://www.acwing.com/problem/content/124/）线性环形均分纸牌问题
-4204（https://www.acwing.com/problem/content/description/4207/）构造
+4204（https://www.acwing.com/problem/content/description/4207/）construction
 4307（https://www.acwing.com/problem/content/description/4310/）lexicographical_orderbrute_forcegreedy
 4313（https://www.acwing.com/problem/content/4316/）满二叉树树形DPgreedy（同LC2673）
-4426（https://www.acwing.com/problem/content/4429/）思维题brain_teaser，等价于末尾两位数字可以被4整除
-4427（https://www.acwing.com/problem/content/4430/）树形greedy构造
+4426（https://www.acwing.com/problem/content/4429/）brain_teaser|brain_teaser，等价于末尾两位数字可以被4整除
+4427（https://www.acwing.com/problem/content/4430/）树形greedyconstruction
 4429（https://www.acwing.com/problem/content/description/4432/）邻项公式greedysorting，prefix_suffixbrute_force
 4430（https://www.acwing.com/problem/content/description/4433/）括号匹配brute_force，prefix_suffix遍历
 4492（https://www.acwing.com/problem/content/description/4495/）brain_teaser分为奇数与偶数讨论
@@ -305,7 +305,7 @@ class Solution:
 
     @staticmethod
     def abc_46b(ac=FastIO()):
-        # 思维题，不等式greedy
+        # brain_teaser|，不等式greedy
         n = ac.read_int()
         a = b = 1
         for _ in range(n):
@@ -445,7 +445,7 @@ class Solution:
 
     @staticmethod
     def lc_2745(x: int, y: int, z: int) -> int:
-        # brain_teasergreedy思维题
+        # brain_teasergreedybrain_teaser|
         return z * 2 + min(x, y) * 4 + int((max(x, y) - min(x, y)) > 0) * 2
 
     @staticmethod
@@ -854,7 +854,7 @@ class Solution:
     @staticmethod
     def ac_4426(ac=FastIO()):
 
-        # 思维题brain_teaser，等价于末尾两位数字可以被4整除
+        # brain_teaser|brain_teaser，等价于末尾两位数字可以被4整除
         s = ac.read_str()
         ans = 0
         n = len(s)
@@ -868,7 +868,7 @@ class Solution:
 
     @staticmethod
     def ac_4427(ac=FastIO()):
-        # 树形greedy构造
+        # 树形greedyconstruction
         n = ac.read_int()
         dct = [[] for _ in range(n)]
         parent = ac.read_list_ints_minus_one()
@@ -1015,7 +1015,7 @@ class Solution:
     @staticmethod
     def lc_858(p: int, q: int) -> int:
 
-        # brain_teaser思维题
+        # brain_teaserbrain_teaser|
 
         g = math.gcd(p, q)
         # 求解等式 k*p = m*q
@@ -1057,7 +1057,7 @@ class Solution:
 
     @staticmethod
     def lc_1675(nums: List[int]) -> int:
-        # brain_teaser思维题greedy
+        # brain_teaserbrain_teaser|greedy
         lst = SortedList([num if num % 2 == 0 else num * 2 for num in nums])
         ans = lst[-1] - lst[0]
         while True:
@@ -1083,7 +1083,7 @@ class Solution:
 
     @staticmethod
     def lc_1927(num: str) -> bool:
-        # 博弈思维题classification_discussion
+        # 博弈brain_teaser|classification_discussion
         def check(s):
             res = 0
             cnt = 0

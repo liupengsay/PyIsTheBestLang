@@ -45,7 +45,7 @@ Function：常与back_trackbrute_force结合，比较的还有DFS序
 
 
 ===================================CodeForces===================================
-570D（https://codeforces.com/contest/570/problem/D）dfs序与binary_search，也可以离线查询
+570D（https://codeforces.com/contest/570/problem/D）dfs序与binary_search，也可以offline_query
 208E（https://codeforces.com/contest/208/problem/E）dfs_order|LCA|binary_searchcounter
 1006E（https://codeforces.com/contest/1006/problem/E）dfs序模板题
 1702G2（https://codeforces.com/contest/1702/problem/G2）dfs序与lca组合判断是否为简单路径集合
@@ -536,7 +536,7 @@ class Solution:
 
     @staticmethod
     def lc_2581(edges: List[List[int]], guesses: List[List[int]], k: int) -> int:
-        # dfs_order确定猜测的查询范围，并差分数组counter
+        # dfs_order确定猜测的查询范围，并diff_array|counter
         n = len(edges) + 1
         dct = [[] for _ in range(n)]
         for i, j in edges:

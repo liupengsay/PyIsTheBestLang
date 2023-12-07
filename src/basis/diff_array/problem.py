@@ -1,106 +1,106 @@
 """
 
-Algorithm：差分数组与prefix_sum、后缀和、前缀最大子序列和、后缀最大子序列和、二维差分、离散化差分、三维差分、二维prefix_sum
-Function：用来解决一维数组或者二维数组的|和问题，以及prefix_sum，还有prefix_sum的prefix_sum
+Algorithm：diff_array|prefix_sum|suffix_sum|prefix_max_consequence_sum|suffix_max_consequence_sum|diff_matrix|discretization_diff_array|md_diff_array|matrix_prefix_sum
+Function：prefix_sum|prefix_sum_of_prefix_sum|suffix_sum
 
 ====================================LeetCode====================================
-152（https://leetcode.com/problems/maximum-product-subarray/）前缀最大最小乘积，最大连续子数组乘积
-598（https://leetcode.com/problems/range-addition-ii/）二维差分
-2281（https://leetcode.com/problems/sum-of-total-strength-of-wizards/）brute_force当前元素作为最小值的子数组和并prefix_sum的prefix_sum
-2251（https://leetcode.com/problems/number-of-flowers-in-full-bloom/）离散化差分数组
-2132（https://leetcode.com/problems/stamping-the-grid/）用prefix_sumbrute_force可行的邮票左上端点，然后查看空白格点左上方是否有可行的邮票点，也可以的二维差分滚动implemention覆盖解决
-1229（https://leetcode.com/problems/meeting-scheduler/）离散化差分数组
-6292（https://leetcode.com/problems/increment-submatrices-by-one/)二维差分prefix_sum
-2565（https://leetcode.com/problems/subsequence-with-the-minimum-score/）prefix_suffixpointerbrute_force匹配最长prefix_suffix
-644（https://leetcode.com/problems/maximum-average-subarray-ii/）prefix_sum|binary_search不短于k的子数组最大平均值
-1292（https://leetcode.com/problems/maximum-side-length-of-a-square-with-sum-less-than-or-equal-to-threshold/）O(mn)复杂度brute_force
-1674（https://leetcode.com/problems/minimum-moves-to-make-array-complementary/）差分数组作用域counter
-1714（https://leetcode.com/problems/sum-of-special-evenly-spaced-elements-in-array/）分组|prefix_sum
-1738（https://leetcode.com/problems/find-kth-largest-xor-coordinate-value/）二维前缀异或和
-1895（https://leetcode.com/problems/largest-magic-square/）二维prefix_sumbrute_force优化
-1943（https://leetcode.com/problems/describe-the-painting/）离散化差分
-2021（https://leetcode.com/problems/brightest-position-on-street/）离散化差分
-837（https://leetcode.com/problems/new-21-game/description/）差分数组implemention概率
-891（https://leetcode.com/problems/sum-of-subsequence-widths/description/）prefix_suffixbrute_force最大值与最小值counter
-1191（https://leetcode.com/problems/k-concatenation-maximum-sum/description/）prefix_suffix最大连续子序列和
-1074（https://leetcode.com/problems/number-of-submatrices-that-sum-to-target/description/）二维prefix_sumbrute_force上下边目标子矩阵的数量
-1139（https://leetcode.com/problems/largest-1-bordered-square/）利用二位prefix_sumcounterbrute_force边长
-2281（https://leetcode.com/problems/sum-of-total-strength-of-wizards/description/）单调栈counter与prefix_sum的prefix_sum
-995（https://leetcode.com/problems/minimum-number-of-k-consecutive-bit-flips/description/）greedy|差分数组implemention
-986（https://leetcode.com/problems/interval-list-intersections/description/）离散化差分，two_pointer归并
-1744（https://leetcode.com/problems/can-you-eat-your-favorite-candy-on-your-favorite-day/description/）prefix_sumgreedyimplemention
-1703（https://leetcode.com/problems/minimum-adjacent-swaps-for-k-consecutive-ones/）prefix_sum|mediangreedy，同1520E
-2167（https://leetcode.com/problems/minimum-time-to-remove-all-cars-containing-illegal-goods/）公式变换prefix_sumbrute_force
+152（https://leetcode.com/problems/maximum-product-subarray/）prefix_mul|maximum_sub_consequence_product
+598（https://leetcode.com/problems/range-addition-ii/）diff_matrix
+2281（https://leetcode.com/problems/sum-of-total-strength-of-wizards/）brute_force|prefix_sum_of_prefix_sum
+2251（https://leetcode.com/problems/number-of-flowers-in-full-bloom/）discretization_diff_array
+2132（https://leetcode.com/problems/stamping-the-grid/）prefix_sum|brute_force|diff_matrix|implemention
+1229（https://leetcode.com/problems/meeting-scheduler/）discretization_diff_array
+6292（https://leetcode.com/problems/increment-submatrices-by-one/)diff_matrix|prefix_sum
+2565（https://leetcode.com/problems/subsequence-with-the-minimum-score/）prefix_suffix|pointer|brute_force
+644（https://leetcode.com/problems/maximum-average-subarray-ii/）prefix_sum|binary_search|average
+1292（https://leetcode.com/problems/maximum-side-length-of-a-square-with-sum-less-than-or-equal-to-threshold/）O(mn)|brute_force
+1674（https://leetcode.com/problems/minimum-moves-to-make-array-complementary/）diff_array|action_scope|counter
+1714（https://leetcode.com/problems/sum-of-special-evenly-spaced-elements-in-array/）prefix_sum
+1738（https://leetcode.com/problems/find-kth-largest-xor-coordinate-value/）matrix_prefix_xor_sum
+1895（https://leetcode.com/problems/largest-magic-square/）matrix_prefix_sum|brute_force
+1943（https://leetcode.com/problems/describe-the-painting/）discretization_diff_array
+2021（https://leetcode.com/problems/brightest-position-on-street/）discretization_diff_array
+837（https://leetcode.com/problems/new-21-game/description/）diff_array|implemention|probability
+891（https://leetcode.com/problems/sum-of-subsequence-widths/description/）prefix_suffix|brute_force|counter
+1191（https://leetcode.com/problems/k-concatenation-maximum-sum/description/）prefix_suffix|max_sub_consequence_sum
+1074（https://leetcode.com/problems/number-of-submatrices-that-sum-to-target/description/）matrix_prefix_sum|brute_force
+1139（https://leetcode.com/problems/largest-1-bordered-square/）matrix_prefix_sum|counter|brute_force
+2281（https://leetcode.com/problems/sum-of-total-strength-of-wizards/description/）monotonic_stack|counter|prefix_sum_of_prefix_sum
+995（https://leetcode.com/problems/minimum-number-of-k-consecutive-bit-flips/description/）greedy|diff_array|implemention
+986（https://leetcode.com/problems/interval-list-intersections/description/）discretization_diff_array|two_pointer
+1744（https://leetcode.com/problems/can-you-eat-your-favorite-candy-on-your-favorite-day/description/）prefix_sum|greedy|implemention
+1703（https://leetcode.com/problems/minimum-adjacent-swaps-for-k-consecutive-ones/）prefix_sum|median|greedy|1520E
+2167（https://leetcode.com/problems/minimum-time-to-remove-all-cars-containing-illegal-goods/）math|prefix_sum|brute_force
 
 =====================================LuoGu======================================
-8772（https://www.luogu.com.cn/record/list?user=739032&status=12&page=15）后缀和
-2367（https://www.luogu.com.cn/problem/P2367）差分数组记录区间增减变化，最后还原最小值
-2280（https://www.luogu.com.cn/problem/P2280）二维prefix_sum
-3138（https://www.luogu.com.cn/problem/P3138）二维prefix_sum
-3406（https://www.luogu.com.cn/problem/P3406）差分数组每段路经过次数，再greedy新选择买卡还是单刷
-3655（https://www.luogu.com.cn/problem/P3655）差分数组变形implemention
-5542（https://www.luogu.com.cn/problem/P5542）二维差分，需要适配覆盖区间
-5686（https://www.luogu.com.cn/problem/P5686）prefix_sum的prefix_sum
-6180（https://www.luogu.com.cn/problem/P6180）prefix_sumcounter
-6481（https://www.luogu.com.cn/problem/P6481）区间更新后所有前缀查询
-2956（https://www.luogu.com.cn/problem/P2956）二维差分prefix_sum
-3397（https://www.luogu.com.cn/problem/P3397）二维差分prefix_sum
-1869（https://www.luogu.com.cn/problem/P1869）prefix_sum记录1-N的因子2的个数继而C(N,K)的奇偶性
-7667（https://www.luogu.com.cn/problem/P7667）公式变换，sorting后prefix_sum
-2671（https://www.luogu.com.cn/problem/P2671）前缀|和与前缀counterbrute_force，分奇偶性讨论
-1719（https://www.luogu.com.cn/problem/P1719）求最大子矩阵和，brute_force矩阵上下边界并prefix_sum
-2882（https://www.luogu.com.cn/problem/P2882）greedybrute_force|差分验证
-4552（https://www.luogu.com.cn/problem/P4552）差分数组题，明晰差分本质
-1627（https://www.luogu.com.cn/problem/P1627）prefix_suffixmedian大小值差值counter
-1895（https://www.luogu.com.cn/problem/P1895）prefix_sumcounter|binary_search，最多不超多10**5
-1982（https://www.luogu.com.cn/problem/P1982）前缀最大连续子段和与前缀最大值
-2070（https://www.luogu.com.cn/problem/P2070）hash离散化差分数组counter
-2190（https://www.luogu.com.cn/problem/P2190）环形数组差分
-2352（https://www.luogu.com.cn/problem/P2352）离散化差分
-2363（https://www.luogu.com.cn/problem/P2363）二维prefix_sum与brute_force
-2706（https://www.luogu.com.cn/problem/P2706）不包含障碍点的最大子矩阵和
-2879（https://www.luogu.com.cn/problem/P2879）差分数组题与greedy
-3028（https://www.luogu.com.cn/problem/P3028）离散化差分覆盖区间最多的点
-4030（https://www.luogu.com.cn/problem/P4030）brain_teaser|二维prefix_sum
-4440（https://www.luogu.com.cn/problem/P4440）典型prefix_sumcounter
-4623（https://www.luogu.com.cn/problem/P4623）离散化差分counter
-6032（https://www.luogu.com.cn/problem/P6032）prefix_suffixcounter
-6070（https://www.luogu.com.cn/problem/P6070）二维差分greedy修改实时维护差分与prefix_sum即矩阵最新值
-6278（https://www.luogu.com.cn/problem/P6278）逆序对作用域与差分prefix_sum
-6537（https://www.luogu.com.cn/problem/P6537）预处理prefix_sum|brute_force
-6877（https://www.luogu.com.cn/problem/P6877）sortinggreedyprefix_suffix DP brute_force
-6878（https://www.luogu.com.cn/problem/P6878）prefix_suffixbrute_force
-8081（https://www.luogu.com.cn/problem/P8081）差分counter作用域
-8033（https://www.luogu.com.cn/problem/P8033）二维prefix_sumcounter
-7992（https://www.luogu.com.cn/problem/P7992）桶counter与作用域差分counter
-7948（https://www.luogu.com.cn/problem/P7948）sorting后预处理prefix_suffix信息pointer查询
-8343（https://www.luogu.com.cn/problem/P8343）子矩阵prefix_sumbrute_force与two_pointer
-8551（https://www.luogu.com.cn/problem/P8551）差分数组灵活应用
-8666（https://www.luogu.com.cn/problem/P8666）binary_search|三维差分题，滚动implemention覆盖
-8715（https://www.luogu.com.cn/problem/P8715）prefix_suffix贡献counter
-8783（https://www.luogu.com.cn/problem/P8783）O(n^3)与two_pointerbrute_force子矩阵个数
+8772（https://www.luogu.com.cn/record/list?user=739032&status=12&page=15）suffix_sum
+2367（https://www.luogu.com.cn/problem/P2367）diff_array
+2280（https://www.luogu.com.cn/problem/P2280）matrix_prefix_sum
+3138（https://www.luogu.com.cn/problem/P3138）matrix_prefix_sum
+3406（https://www.luogu.com.cn/problem/P3406）diff_array|greedy
+3655（https://www.luogu.com.cn/problem/P3655）diff_array|implemention
+5542（https://www.luogu.com.cn/problem/P5542）diff_matrix
+5686（https://www.luogu.com.cn/problem/P5686）prefix_sum_of_prefix_sum
+6180（https://www.luogu.com.cn/problem/P6180）prefix_sum|counter
+6481（https://www.luogu.com.cn/problem/P6481）prefix|range_update
+2956（https://www.luogu.com.cn/problem/P2956）diff_matrix|prefix_sum
+3397（https://www.luogu.com.cn/problem/P3397）diff_matrix|prefix_sum
+1869（https://www.luogu.com.cn/problem/P1869）prefix_sum|comb|odd_even
+7667（https://www.luogu.com.cn/problem/P7667）math|sorting|prefix_sum
+2671（https://www.luogu.com.cn/problem/P2671）prefix_or_sum|counter|brute_force|odd_even
+1719（https://www.luogu.com.cn/problem/P1719）max_sub_matrix_sum|brute_force|prefix_sum
+2882（https://www.luogu.com.cn/problem/P2882）greedy|brute_force|diff_array
+4552（https://www.luogu.com.cn/problem/P4552）diff_array|brain_teaser|classical
+1627（https://www.luogu.com.cn/problem/P1627）prefix_suffix|median|counter
+1895（https://www.luogu.com.cn/problem/P1895）prefix_sum|counter|binary_search
+1982（https://www.luogu.com.cn/problem/P1982）maximum_prefix_sub_consequence_sum|prefix_max
+2070（https://www.luogu.com.cn/problem/P2070）hash|discretization_diff_array|counter
+2190（https://www.luogu.com.cn/problem/P2190）diff_array|circular_array
+2352（https://www.luogu.com.cn/problem/P2352）discretization_diff_array
+2363（https://www.luogu.com.cn/problem/P2363）matrix_prefix_sum|brute_force
+2706（https://www.luogu.com.cn/problem/P2706）max_sub_matrix_sum
+2879（https://www.luogu.com.cn/problem/P2879）diff_array|greedy
+3028（https://www.luogu.com.cn/problem/P3028）discretization_diff_array|range_cover
+4030（https://www.luogu.com.cn/problem/P4030）brain_teaser|matrix_prefix_sum
+4440（https://www.luogu.com.cn/problem/P4440）prefix_sum|counter
+4623（https://www.luogu.com.cn/problem/P4623）discretization_diff_array|counter
+6032（https://www.luogu.com.cn/problem/P6032）prefix_suffix|counter
+6070（https://www.luogu.com.cn/problem/P6070）diff_matrix|greedy|prefix_sum
+6278（https://www.luogu.com.cn/problem/P6278）reverse_pair|action_scope|diff_array|prefix_sum
+6537（https://www.luogu.com.cn/problem/P6537）prefix_sum|brute_force
+6877（https://www.luogu.com.cn/problem/P6877）sorting|greedy|prefix_suffix|dp|brute_force
+6878（https://www.luogu.com.cn/problem/P6878）prefix_suffix|brute_force
+8081（https://www.luogu.com.cn/problem/P8081）diff_array|counter|action_scope
+8033（https://www.luogu.com.cn/problem/P8033）matrix_prefix_sum|counter
+7992（https://www.luogu.com.cn/problem/P7992）bucket_counter|action_scope|diff_array|counter
+7948（https://www.luogu.com.cn/problem/P7948）sorting|prefix_suffix|pointer
+8343（https://www.luogu.com.cn/problem/P8343）sub_matrix_prefix_sum|brute_force|two_pointer
+8551（https://www.luogu.com.cn/problem/P8551）diff_array
+8666（https://www.luogu.com.cn/problem/P8666）binary_search|md_diff_array|implemention
+8715（https://www.luogu.com.cn/problem/P8715）prefix_suffix|counter
+8783（https://www.luogu.com.cn/problem/P8783）O(n^3)|two_pointer|brute_force|counter|sub_matrix
 
 ===================================CodeForces===================================
-33C（https://codeforces.com/problemset/problem/33/C）prefix_suffix最大变换和与分割点brute_force，类型题目
-797C（https://codeforces.com/problemset/problem/797/C）后缀最小值lexicographical_orderimplemention
-75D（https://codeforces.com/problemset/problem/75/D）压缩数组最大子段和
-1355C（https://codeforces.com/problemset/problem/1355/C）作用域差分，合法三角形边长个数
-1795C（https://codeforces.com/problemset/problem/1795/C）prefix_sumbinary_search后，差分counterimplemention|和
-1343D（https://codeforces.com/problemset/problem/1343/D）brute_forcex差分数组范围counter
-1722E（https://codeforces.com/problemset/problem/1722/E）根据数字取值范围二位prefix_sum
-1772D（https://codeforces.com/contest/1772/problem/D）离散差分作用域counter
+33C（https://codeforces.com/problemset/problem/33/C）prefix_suffix|brute_force
+797C（https://codeforces.com/problemset/problem/797/C）suffix_min|lexicographical_order|implemention
+75D（https://codeforces.com/problemset/problem/75/D）max_sub_consequence_sum|compress_arrays
+1355C（https://codeforces.com/problemset/problem/1355/C）action_scope|diff_array|triangle
+1795C（https://codeforces.com/problemset/problem/1795/C）prefix_sum|binary_search|diff_array|counter|implemention
+1343D（https://codeforces.com/problemset/problem/1343/D）brute_force|diff_array|counter
+1722E（https://codeforces.com/problemset/problem/1722/E）data_range|matrix_prefix_sum
+1772D（https://codeforces.com/contest/1772/problem/D）discretization_diff_array|action_scope|counter
 
 ====================================AtCoder=====================================
-D - AtCoder Express 2（https://atcoder.jp/contests/abc106/tasks/abc106_d）prefix_sum优化DPcounter
+D - AtCoder Express 2（https://atcoder.jp/contests/abc106/tasks/abc106_d）prefix_sum|dp|counter
 
 =====================================AcWing=====================================
-99（https://www.acwing.com/problem/content/description/101/）二维prefix_sum
-100（https://www.acwing.com/problem/content/102/）差分数组题目，明晰本质
-101（https://www.acwing.com/problem/content/103/）查分数组，greedy得出结论
-102（https://www.acwing.com/problem/content/104/）prefix_sum|binary_search不短于k的子数组最大平均值
-121（https://www.acwing.com/problem/content/description/123/）离散化prefix_sum，two_pointer|binary_search
-126（https://www.acwing.com/problem/content/128/）最大子矩形和
-3993（https://www.acwing.com/problem/content/description/3996/）后缀和data_range思维题
+99（https://www.acwing.com/problem/content/description/101/）matrix_prefix_sum
+100（https://www.acwing.com/problem/content/102/）diff_array|classical
+101（https://www.acwing.com/problem/content/103/）diff_array|greedy
+102（https://www.acwing.com/problem/content/104/）prefix_sum|binary_search|brute_force|average
+121（https://www.acwing.com/problem/content/description/123/）discretization_diff_array|prefix_sum|two_pointer|binary_search
+126（https://www.acwing.com/problem/content/128/）max_sub_matrix_sum
+3993（https://www.acwing.com/problem/content/description/3996/）suffix_sum|data_range|brain_teaser
 
 """
 import bisect
@@ -121,7 +121,7 @@ class Solution:
 
     @staticmethod
     def lg_p3397(ac=FastIO()):
-        # 二维差分prefix_sum
+        # diff_matrix|prefix_sum
         n, m = ac.read_list_ints()
         shifts = []
         for _ in range(m):
@@ -134,7 +134,7 @@ class Solution:
 
     @staticmethod
     def lg_p4552(ac=FastIO()):
-        # 差分数组题，明晰差分本质
+        # diff_array|题，明晰差分本质
         n = ac.read_int()
         pre = -1
         pos = 0
@@ -206,12 +206,12 @@ class Solution:
 
     @staticmethod
     def lg_p2671(ac=FastIO()):
-        # prefix_suffixcounter|和，分奇偶性讨论
+        # prefix_suffixcounter|和，分odd_even讨论
         n, m = ac.read_list_ints()
         number = ac.read_list_ints()
         colors = ac.read_list_ints()
         mod = 10007
-        # 转换为求相同奇偶性的 x 与 y 且颜色相同的和 x*ax+x*az+z*ax+z*az 即 (x+z)*(ax+az)
+        # 转换为求相同odd_even的 x 与 y 且颜色相同的和 x*ax+x*az+z*ax+z*az 即 (x+z)*(ax+az)
         ans = 0
         pre_sum = [[0, 0] for _ in range(m + 1)]
         pre_cnt = [[0, 0] for _ in range(m + 1)]
@@ -242,7 +242,7 @@ class Solution:
 
     @staticmethod
     def cf_1795c(ac=FastIO()):
-        # 根据作用域差分数组counter
+        # 根据action_scopediff_array|counter
         for _ in range(ac.read_int()):
             n = ac.read_int()
             a = ac.read_list_ints()
@@ -273,7 +273,7 @@ class Solution:
 
     @staticmethod
     def lc_995(nums: List[int], k: int) -> int:
-        # greedy|差分数组implemention
+        # greedy|diff_array|implemention
         n = len(nums)
         ans = 0
         diff = [0] * (n + 1)
@@ -294,7 +294,7 @@ class Solution:
 
     @staticmethod
     def lc_1074(matrix: List[List[int]], target: int) -> int:
-        # 二维prefix_sumbrute_force上下边目标子矩阵的数量
+        # matrix_prefix_sum|brute_force上下边目标子矩阵的数量
         m, n = len(matrix), len(matrix[0])
         pre = PreFixSumMatrix(matrix)
         ans = 0
@@ -337,7 +337,7 @@ class Solution:
 
     @staticmethod
     def cf_1355c(a, b, c, d):
-        # 模板: 作用域差分，合法三角形边长个数
+        # 模板: action_scope差分，合法三角形边长个数
         diff = [0] * (b + c + 1)
         for x in range(a, b + 1):
             diff[x + b] += 1
@@ -356,12 +356,12 @@ class Solution:
 
     @staticmethod
     def lc_2281(nums: List[int]) -> int:
-        # 单调栈counter与prefix_sum的prefix_sum
+        # monotonic_stack|counter与prefix_sum的prefix_sum
         n = len(nums)
         post = [n - 1] * n  # 这里可以是n/n-1/null，取决于用途
         pre = [0] * n  # 这里可以是0/-1/null，取决于用途
         stack = []
-        for i in range(n):  # 这里也可以是从n-1到0倒序，取决于用途
+        for i in range(n):  # 这里也可以是从n-1到0reverse_order|，取决于用途
             while stack and nums[stack[-1]
             ] > nums[i]:  # 这里可以是"<" ">" "<=" ">="，取决于需要判断的大小关系
                 post[stack.pop()] = i - 1  # 这里可以是i或者i-1，取决于是否包含i作为右端点
@@ -383,11 +383,11 @@ class Solution:
 
     @staticmethod
     def lc_2281(strength: List[int]) -> int:
-        # 单调栈确定|和范围，再prefix_sum的prefix_sumcounter
+        # monotonic_stack|确定|和范围，再prefix_sum的prefix_sumcounter
         n = len(strength)
         mod = 10 ** 9 + 7
 
-        # 单调栈
+        # monotonic_stack|
         pre = [0] * n
         post = [n - 1] * n
         stack = []
@@ -473,7 +473,7 @@ class Solution:
 
     @staticmethod
     def cf_1772d(ac=FastIO()):
-        # 离散化差分数组作用域counter
+        # discretization_diff_arrayaction_scopecounter
         ceil = 10 ** 9
         for _ in range(ac.read_int()):
             n = ac.read_int()
@@ -507,7 +507,7 @@ class Solution:
 
     @staticmethod
     def ac_99(ac=FastIO()):
-        # 二维prefix_sum
+        # matrix_prefix_sum|
         n, m = ac.read_list_ints()
 
         lst = [ac.read_list_ints() for _ in range(n)]
@@ -705,7 +705,7 @@ class Solution:
 
     @staticmethod
     def lg_p2070(ac=FastIO()):
-        # hash离散化差分数组counter
+        # hashdiscretization_diff_arraycounter
         n = ac.read_int()
         pos = 0
         diff = defaultdict(int)
@@ -755,7 +755,7 @@ class Solution:
 
     @staticmethod
     def lg_p2352(ac=FastIO()):
-        # 离散化差分
+        # discretization_diff_array|
         diff = defaultdict(int)
         for _ in range(ac.read_int()):
             a, b = ac.read_list_ints()
@@ -773,7 +773,7 @@ class Solution:
 
     @staticmethod
     def lg_p2363(ac=FastIO()):
-        # 二维prefix_sum与brute_force
+        # matrix_prefix_sum|与brute_force
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         pre = PreFixSumMatrix(nums)
@@ -823,7 +823,7 @@ class Solution:
 
     @staticmethod
     def lg_p2879(ac=FastIO()):
-        # 差分数组题与greedy
+        # diff_array|题与greedy
         n, i, h, r = ac.read_list_ints()
         diff = [0] * n
         pre = set()
@@ -847,7 +847,7 @@ class Solution:
 
     @staticmethod
     def lg_p3028(ac=FastIO()):
-        # 离散化差分覆盖区间最多的点
+        # discretization_diff_array|覆盖区间最多的点
         n = ac.read_int()
         diff = defaultdict(int)
         for _ in range(n):
@@ -870,7 +870,7 @@ class Solution:
 
     @staticmethod
     def lg_p4030(ac=FastIO()):
-        # brain_teaser|二维prefix_sum
+        # brain_teaser|matrix_prefix_sum|
         m, n, t = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
         mat = [[0] * n for _ in range(m)]
@@ -919,7 +919,7 @@ class Solution:
 
     @staticmethod
     def lg_p4623(ac=FastIO()):
-        # 离散化差分counter
+        # discretization_diff_array|counter
         n = ac.read_int()
         m = 10 ** 6 + 1
         diff_x = [0] * m
@@ -983,7 +983,7 @@ class Solution:
 
     @staticmethod
     def lg_p6070(ac=FastIO()):
-        # 二维差分greedy修改实时维护差分与prefix_sum即矩阵最新值
+        # diff_matrix|greedy修改实时维护差分与prefix_sum即矩阵最新值
         n, m, k = ac.read_list_ints()
         grid = [[0] * n for _ in range(n)]
         for _ in range(m):
@@ -997,7 +997,7 @@ class Solution:
                 diff[i + 1][j + 1] += diff[i + 1][j] + \
                                       diff[i][j + 1] - diff[i][j]
                 d = diff[i + 1][j + 1] + grid[i][j]
-                # 二维差分，索引从 0 开始， 注意这里的行列索引范围，是从左上角到右下角
+                # diff_matrix|，索引从 0 开始， 注意这里的行列索引范围，是从左上角到右下角
                 if d:
                     if i + k + 1 > n + 1 or j + k + 1 > n + 1:
                         ac.st(-1)
@@ -1012,18 +1012,18 @@ class Solution:
 
     @staticmethod
     def lg_p6278(ac=FastIO()):
-        # 逆序对作用域与差分prefix_sum
+        # reverse_pair|action_scope与差分prefix_sum
         n = ac.read_int()
         nums = ac.read_list_ints()
         diff = [0] * (n + 1)
         pre = []
         for num in nums:
-            # num 作为最小值时的逆序对个数
+            # num 作为最小值时的reverse_pair|个数
             diff[num] += len(pre) - bisect.bisect_right(pre, num)
             bisect.insort_left(pre, num)
         diff = ac.accumulate(diff)
         for i in range(n):
-            # 减少到 i 时前面小于 i 的对应逆序对不受改变
+            # 减少到 i 时前面小于 i 的对应reverse_pair|不受改变
             ac.st(diff[i])
         return
 
@@ -1127,7 +1127,7 @@ class Solution:
 
     @staticmethod
     def lg_p8081(ac=FastIO()):
-        # 差分counter作用域
+        # 差分counteraction_scope
         n = ac.read_int()
         nums = ac.read_list_ints()
         diff = [0] * (n + 1)
@@ -1177,7 +1177,7 @@ class Solution:
 
     @staticmethod
     def lg_p8033(ac=FastIO()):
-        # 二维prefix_sumcounter
+        # matrix_prefix_sum|counter
         m, n, k = ac.read_list_ints()
         grid = [list(ac.read_str()) for _ in range(m)]
         mat = [[int(w == "*") for w in lst] for lst in grid]
@@ -1208,7 +1208,7 @@ class Solution:
 
     @staticmethod
     def lg_p7992(ac=FastIO()):
-        # 桶counter与作用域差分counter
+        # bucket_counter与action_scope差分counter
         n, m = ac.read_list_ints()
         a = [0] * (m + 1)
         b = [0] * (m + 1)
@@ -1291,7 +1291,7 @@ class Solution:
 
     @staticmethod
     def lg_p8551(ac=FastIO()):
-        # 差分数组灵活应用
+        # diff_array|灵活应用
         n = ac.read_int()
         m = 3 * 10 ** 5 + 1
         diff = [0] * (m + 2)
@@ -1314,7 +1314,7 @@ class Solution:
 
     @staticmethod
     def lg_p8666(ac=FastIO()):
-        # binary_search|三维差分题
+        # binary_search|md_diff_array题
         a, b, c, m = ac.read_list_ints()
         grid = [[[0] * (c + 1) for _ in range(b + 1)] for _ in range(a + 1)]
         nums = ac.read_list_ints()
@@ -1394,7 +1394,7 @@ class Solution:
 
     @staticmethod
     def lc_1674(nums: List[int], limit: int) -> int:
-        # 差分数组作用域counter
+        # diff_array|action_scopecounter
         n = len(nums)
         diff = [0] * (2 * limit + 2)
         for i in range(n // 2):
@@ -1422,7 +1422,7 @@ class Solution:
     @staticmethod
     def lc_1738(matrix: List[List[int]], k: int) -> int:
 
-        # 二维前缀异或和
+        # matrix_prefix_xor_sum
         m, n = len(matrix), len(matrix[0])
         # 原地异或运算
         for i in range(1, m):
@@ -1443,7 +1443,7 @@ class Solution:
 
     @staticmethod
     def lc_2132(grid: List[List[int]], h: int, w: int) -> bool:
-        # 用prefix_sumbrute_force可行的邮票左上端点，然后查看空白格点左上方是否有可行的邮票点，也可以的二维差分滚动implemention覆盖解决
+        # 用prefix_sumbrute_force可行的邮票左上端点，然后查看空白格点左上方是否有可行的邮票点，也可以的diff_matrix|滚动implemention覆盖解决
         m, n = len(grid), len(grid[0])
 
         # brute_force可以贴邮票的左上角位置
@@ -1469,7 +1469,7 @@ class Solution:
 
     @staticmethod
     def ac_3993(ac=FastIO()):
-        # 后缀和data_range思维题
+        # 后缀和data_rangebrain_teaser|
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
         low = min(nums)
@@ -1496,7 +1496,7 @@ class Solution:
 
     @staticmethod
     def lc_837(n: int, k: int, max_pts: int) -> float:
-        # 差分数组implemention概率
+        # diff_array|implemention概率
         s = k + max_pts
         dp = [0] * (s + 1)
         dp[0] = 1

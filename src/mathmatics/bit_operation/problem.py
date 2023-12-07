@@ -40,7 +40,7 @@ Function：二进制上的位操作，包括与、异或、或、取反，通常
 4144（https://www.luogu.com.cn/problem/P4144）按位思考greedybrain_teaser
 4310（https://www.luogu.com.cn/problem/P4310）线性 DP 按位转移
 5390（https://www.luogu.com.cn/problem/P5390）按位操作
-6824（https://www.luogu.com.cn/problem/P6824）按位操作异或不等式在差分作用域counter
+6824（https://www.luogu.com.cn/problem/P6824）按位操作异或不等式在差分action_scopecounter
 8842（https://www.luogu.com.cn/problem/P8842）质数个数prefix_sum与异或不等式区间counter
 8965（https://www.luogu.com.cn/problem/P8965）树形 DP 与异或
 
@@ -58,7 +58,7 @@ C. XOR and OR（http://codeforces.com/problemset/problem/282/C）利用bit_opera
 1802C（https://codeforces.com/contest/1802/problem/C）construction with the property of xor
 
 ====================================AtCoder=====================================
-D - XXOR（https://atcoder.jp/contests/abc117/tasks/abc117_d）从高位到低位按位greedy，思维题
+D - XXOR（https://atcoder.jp/contests/abc117/tasks/abc117_d）从高位到低位按位greedy，brain_teaser|
 D - Xor Sum 4（https://atcoder.jp/contests/abc147/tasks/abc147_d）典型按位异或和贡献
 
 =====================================AcWing=====================================
@@ -324,7 +324,7 @@ class Solution:
 
     @staticmethod
     def abc_117d(ac=FastIO()):
-        # 从高位到低位按位greedy，思维题
+        # 从高位到低位按位greedy，brain_teaser|
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
         ans = pre = 0
@@ -414,7 +414,7 @@ class Solution:
                 else:
                     one[i] ^= (t & (1 << i))
                     zero[i] ^= (t & (1 << i))
-        # 倒序选取最大值
+        # reverse_order|选取最大值
         ans = 0
         for i in range(31, -1, -1):
             if one[i] > zero[i] and m >= (1 << i):
@@ -499,7 +499,7 @@ class Solution:
 
     @staticmethod
     def lg_p6824(ac=FastIO()):
-        # 按位操作异或不等式在差分作用域counter
+        # 按位操作异或不等式在差分action_scopecounter
         n, k = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
         m = len(bin(max(k, max(nums))))

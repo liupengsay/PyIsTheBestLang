@@ -26,7 +26,7 @@ Dijkstra：路径权值优先的深度优先搜索（只适用正权值）
 1931（https://www.luogu.com.cn/problem/P1931）判断乘积是否有大于1的环
 1986（https://www.luogu.com.cn/problem/P1986）差分约束求解区间和
 2850（https://www.luogu.com.cn/problem/P2850）从任意起点出发是否存在负环
-4878（https://www.luogu.com.cn/problem/P4878）差分数组与Dijkstra最短路
+4878（https://www.luogu.com.cn/problem/P4878）diff_array|与Dijkstra最短路
 5751（https://www.luogu.com.cn/problem/P5751）prefix_sum转换为差分约束求解，并最大值
 5905（https://www.luogu.com.cn/problem/P5905）有向带权图可能有负权 Johnson 全源最短路所有点对的最短路
 
@@ -453,7 +453,7 @@ class Solution:
 
     @staticmethod
     def lg_p4878(ac=FastIO()):
-        # 差分数组与Dijkstra最短路
+        # diff_array|与Dijkstra最短路
         n, ml, md = ac.read_list_ints()
         edge = []
         for _ in range(ml):
@@ -468,7 +468,7 @@ class Solution:
             edge.append([a, b, -d])
         for i in range(1, n):
             edge.append([i, i + 1, 0])
-        # 首先差分数组判环
+        # 首先diff_array|判环
         ans, dis = SPFA().differential_constraint(edge, n)
         if ans == "YES":
             ac.st(-1)

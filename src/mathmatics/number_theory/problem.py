@@ -1,6 +1,6 @@
 """
-Algorithm：数论、欧拉筛、线性筛、素数、欧拉函数、因子分解、素因子分解、进制转换、因数分解
-Function：有时候数位DP类型题目可以N进制来求取，质因数分解、因数分解、素数筛、线性筛、欧拉函数、pollard_rho、Meissel–Lehmer 算法（范围内素数个数）
+Algorithm：数论、欧拉筛、线性筛、素数、欧拉函数、因子分解、素因子分解、进制转换、factorization|
+Function：有时候数位DP类型题目可以N进制来求取，质factorization|、factorization|、素数筛、线性筛、欧拉函数、pollard_rho、Meissel–Lehmer 算法（范围内素数个数）
 
 ====================================LeetCode====================================
 264（https://leetcode.com/problems/ugly-number-ii/）只含2、3、5质因数的第 n 个丑数
@@ -19,7 +19,7 @@ LCP 14（https://leetcode.com/problems/qie-fen-shu-zu/） 1 到 n 的每个数�
 1819（https://leetcode.com/problems/number-of-different-subsequences-gcds/）预处理所有整数的所有因子，再brute_forcegcd
 1017（https://leetcode.com/contest/weekly-contest-130/problems/convert-to-base-2/）负进制转换模板题
 1073（https://leetcode.com/problems/adding-two-negabinary-numbers/）负进制题
-8041（https://leetcode.com/problems/maximum-element-sum-of-a-complete-subset-of-indices/description/）质因数分解，奇数幂次的质因子组合hash
+8041（https://leetcode.com/problems/maximum-element-sum-of-a-complete-subset-of-indices/description/）质factorization|，奇数幂次的质因子组合hash
 
 =====================================LuoGu======================================
 1865（https://www.luogu.com.cn/problem/P1865）通过线性筛素数后binary_search查询区间素数个数
@@ -29,65 +29,65 @@ LCP 14（https://leetcode.com/problems/qie-fen-shu-zu/） 1 到 n 的每个数�
 1555（https://www.luogu.com.cn/problem/P1555）二进制与三进制
 1465（https://www.luogu.com.cn/problem/P1465）整数转罗马数字
 1112（https://www.luogu.com.cn/problem/P1112）brute_force波浪数其不同进制下是否满足条件
-2926（https://www.luogu.com.cn/problem/P2926）素数筛或者因数分解counter统计可被数列其他数整除的个数
+2926（https://www.luogu.com.cn/problem/P2926）素数筛或者factorization|counter统计可被数列其他数整除的个数
 5535（https://www.luogu.com.cn/problem/P5535）素数is_prime5判断|greedybrain_teaser
 1876（https://www.luogu.com.cn/problem/P1876）好题，理解完全平方数的因子个数为奇数，其余为偶数
 1887（https://www.luogu.com.cn/problem/P1887）在和一定的情况下，数组分散越平均，其乘积越大
 2043（https://www.luogu.com.cn/problem/P2043）素数筛法的思想，阶乘n!的质因子与对应的个数
 2192（https://www.luogu.com.cn/problem/P2192）一个数能整除9当且仅当其数位和能整除9
-7191（https://www.luogu.com.cn/problem/P7191）取模公式变换，转换为最大公约数，与所有因数分解
+7191（https://www.luogu.com.cn/problem/P7191）mod|math|，转换为最大公约数，与所有factorization|
 7517（https://www.luogu.com.cn/problem/P7517）利用埃氏筛的思想，从小到大，因数brute_forcecounter
 7588（https://www.luogu.com.cn/problem/P7588）素数brute_force，优先is_prime4
-7696（https://www.luogu.com.cn/problem/P7696）数组，每个数质因数分解，然后均匀分配质因子
-4718（https://www.luogu.com.cn/problem/P4718）pollard_rho质因数分解与素数判断
+7696（https://www.luogu.com.cn/problem/P7696）数组，每个数质factorization|，然后均匀分配质因子
+4718（https://www.luogu.com.cn/problem/P4718）pollard_rho质factorization|与素数判断
 2429（https://www.luogu.com.cn/problem/P2429）brute_force质因数组合|inclusion_exclusioncounter
-1069（https://www.luogu.com.cn/problem/P1069）质因数分解，转换为因子counter翻倍整除
+1069（https://www.luogu.com.cn/problem/P1069）质factorization|，转换为因子counter翻倍整除
 1072（https://www.luogu.com.cn/problem/P1072）brute_force所有因数，需要所有因数
-1593（https://www.luogu.com.cn/problem/P1593）质因数分解与快速幂a^b的所有因子之和
+1593（https://www.luogu.com.cn/problem/P1593）质factorization|与fast_power|a^b的所有因子之和
 2527（https://www.luogu.com.cn/problem/P2527）丑数即只含特定质因子的数
-2557（https://www.luogu.com.cn/problem/P2557）质因数分解a^b的所有因子之和
+2557（https://www.luogu.com.cn/problem/P2557）质factorization|a^b的所有因子之和
 4446（https://www.luogu.com.cn/problem/P4446）预先处理出素数然后最大的完全立方数因子
 4752（https://www.luogu.com.cn/problem/P4752）判断除数是否为质数
 5248（https://www.luogu.com.cn/problem/P5248）进制题目
 5253（https://www.luogu.com.cn/problem/P5253）方程变换 (x-n)*(y-n)=n^2 的对数
 7960（https://www.luogu.com.cn/problem/P7960）类似埃氏筛的思路预处理
-8319（https://www.luogu.com.cn/problem/P8319）质因数分解与因子counter
+8319（https://www.luogu.com.cn/problem/P8319）质factorization|与因子counter
 8646（https://www.luogu.com.cn/problem/P8646）裴蜀定理与背包 DP
 8762（https://www.luogu.com.cn/problem/P8762）inclusion_exclusion|prefix_sumcounter
 8778（https://www.luogu.com.cn/problem/P8778）brute_force素因子后O(n^0.25)是否为完全平方数与立方数
 8782（https://www.luogu.com.cn/problem/P8782）多种进制结合greedy，好题
 
 ===================================CodeForces===================================
-1771C（https://codeforces.com/problemset/problem/1771/C）pollard_rho质因数分解
+1771C（https://codeforces.com/problemset/problem/1771/C）pollard_rho质factorization|
 1034A（https://codeforces.com/problemset/problem/1034/A）求 1 到 n 所有数字的质因子个数总和
-1366D（https://codeforces.com/problemset/problem/1366/D）最小的质因子，构造判断是否符合条件
-1349A（https://codeforces.com/contest/1349/problem/A）质因数分解，brute_force最终结果当中质因子的幂次
+1366D（https://codeforces.com/problemset/problem/1366/D）最小的质因子，construction判断是否符合条件
+1349A（https://codeforces.com/contest/1349/problem/A）质factorization|，brute_force最终结果当中质因子的幂次
 1295D（https://codeforces.com/problemset/problem/1295/D）利用最大公因数的特性转换为欧拉函数求解，即比 n 小且与 n coprime的数个数
-1538D（https://codeforces.com/problemset/problem/1538/D）pollard_rho质因数分解
-1458A（https://codeforces.com/problemset/problem/1458/A）gcd公式变换求解
+1538D（https://codeforces.com/problemset/problem/1538/D）pollard_rho质factorization|
+1458A（https://codeforces.com/problemset/problem/1458/A）gcdmath|求解
 1444A（https://codeforces.com/problemset/problem/1444/A）greedybrute_force质数因子
-1823C（https://codeforces.com/contest/1823/problem/C）质因数分解greedy
-1744E2（https://codeforces.com/contest/1744/problem/E2）brute_force因数分解组合作为最大公约数
+1823C（https://codeforces.com/contest/1823/problem/C）质factorization|greedy
+1744E2（https://codeforces.com/contest/1744/problem/E2）brute_forcefactorization|组合作为最大公约数
 1612D（https://codeforces.com/contest/1612/problem/D）gcd的思想辗转相减法
 
 ====================================AtCoder=====================================
-D - 756（https://atcoder.jp/contests/abc114/tasks/abc114_d）质因数分解counter
-D - Preparing Boxes（https://atcoder.jp/contests/abc134/tasks/abc134_d）reverse_thinking，类似筛法构造
+D - 756（https://atcoder.jp/contests/abc114/tasks/abc114_d）质factorization|counter
+D - Preparing Boxes（https://atcoder.jp/contests/abc134/tasks/abc134_d）reverse_thinking，类似筛法construction
 
 =====================================AcWing=====================================
 97（https://www.acwing.com/problem/content/99/）a^b的所有约数之和
 124（https://www.acwing.com/problem/content/126/）不同进制的转换，注意0的处理
-197（https://www.acwing.com/problem/content/199/）n!阶乘的质因数分解即因子与因子的个数
+197（https://www.acwing.com/problem/content/199/）n!阶乘的质factorization|即因子与因子的个数
 196（https://www.acwing.com/problem/content/198/）质数距离对
 198（https://www.acwing.com/problem/content/200/）最大的反质数（反素数，即约数或者说因数个数大于任何小于它的数的因数个数）
 199（https://www.acwing.com/problem/content/description/201/）brute_force因数之和
 3727（https://www.acwing.com/solution/content/54479/）brain_teaser转换成进制表达问题
 3999（https://www.acwing.com/problem/content/description/4002/）同CF1295D
-4319（https://www.acwing.com/problem/content/4322/）质因数分解后前缀hashcounter
+4319（https://www.acwing.com/problem/content/4322/）质factorization|后prefix_hashcounter
 4484（https://www.acwing.com/problem/content/4487/）分数在某个进制下是否为有限小数问题
 4486（https://www.acwing.com/problem/content/description/4489/）质数分解greedy题
-4622（https://www.acwing.com/problem/content/description/4625/）思维题greedy构造
-5049（https://www.acwing.com/problem/content/description/5052/）质因数分解组合数
+4622（https://www.acwing.com/problem/content/description/4625/）brain_teaser|greedyconstruction
+5049（https://www.acwing.com/problem/content/description/5052/）质factorization|组合数
 
 
 """
@@ -184,7 +184,7 @@ class Solution:
                 if min_div[i * j] == i * j:
                     min_div[i * j] = i
 
-        # 构造结果
+        # construction结果
         ans1 = []
         ans2 = []
         for num in nums:
@@ -213,7 +213,7 @@ class Solution:
             for p in prime[num]:
                 dct[p].append(i)
 
-        # 确定作用域
+        # 确定action_scope
         diff = [0] * (n + 1)
         for p in dct:
             i, j = dct[p][0], dct[p][-1]
@@ -241,7 +241,7 @@ class Solution:
 
     @staticmethod
     def cf_1458a(ac=FastIO()):
-        # gcd公式变换求解gcd(x,y)=gcd(x-y,y)
+        # gcdmath|求解gcd(x,y)=gcd(x-y,y)
         m, n = ac.read_list_ints()
         a = ac.read_list_ints()
         b = ac.read_list_ints()
@@ -255,7 +255,7 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
-        # 预先brute_force质因子，再质因数分解
+        # 预先brute_force质因子，再质factorization|
         primes = NumberTheory().euler_flag_prime((4 * 10 ** 3))
         for _ in range(ac.read_int()):
             ac.read_int()
@@ -356,7 +356,7 @@ class Solution:
 
     @staticmethod
     def ac_197(ac=FastIO()):
-        # n!阶乘的质因数分解即因子与因子的个数
+        # n!阶乘的质factorization|即因子与因子的个数
         ceil = ac.read_int()
         min_prime = [0] * (ceil + 1)
         #  1 到 ceil 所有数字的最小质数因子
@@ -454,7 +454,7 @@ class Solution:
 
     @staticmethod
     def lg_p1069(ac=FastIO()):
-        # 质因数分解，greedy匹配implemention
+        # 质factorization|，greedy匹配implemention
         ac.read_int()
         m1, m2 = ac.read_list_ints()
         lst = NumberTheory().get_prime_factor(m1)
@@ -489,7 +489,7 @@ class Solution:
 
     @staticmethod
     def lg_p1593(ac=FastIO()):
-        # 质因数分解与快速幂a^b的所有因子之和
+        # 质factorization|与fast_power|a^b的所有因子之和
         mod = 9901
         a, b = ac.read_list_ints()
         if a == 1 or b == 0:
@@ -564,7 +564,7 @@ class Solution:
 
     @staticmethod
     def lg_p2557(ac=FastIO()):
-        # 利用质因数分解与等比数列因子之和
+        # 利用质factorization|与等比数列因子之和
         a, b = ac.read_list_ints()
         if a == 1 or b == 0:
             ac.st(1)
@@ -693,7 +693,7 @@ class Solution:
 
     @staticmethod
     def lg_p8319(ac=FastIO()):
-        # 质因数分解greedy
+        # 质factorization|greedy
         n = 2 * 10 ** 6
         f = [1] * (n + 1)
         prime = [0] * (n + 1)
@@ -860,7 +860,7 @@ class Solution:
 
     @staticmethod
     def ac_4622(ac=FastIO()):
-        # 思维题greedy构造
+        # brain_teaser|greedyconstruction
         n = ac.read_int()
         if n < 4:
             ac.st(1)

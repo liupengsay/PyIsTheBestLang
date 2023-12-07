@@ -45,7 +45,7 @@ F - Well-defined Path Queries on a Namori（https://atcoder.jp/contests/abc266/�
 最喜欢的数列（https://www.hackerrank.com/challenges/favourite-sequence/problem?isFullScreen=true）topological and heap for minimum lexi order
 
 =====================================AcWing=====================================
-3696（https://www.acwing.com/problem/content/description/3699/）bfs序即拓扑序与DAG构造
+3696（https://www.acwing.com/problem/content/description/3699/）bfs序即拓扑序与DAGconstruction
 3828（https://www.acwing.com/problem/content/description/3831/）有向图DAG拓扑sortingDP模板题并判断有无环
 4626（https://www.acwing.com/problem/content/description/4629/）有向图内向基环树判断每个环的大小
 
@@ -106,7 +106,7 @@ class Solution:
 
     @staticmethod
     def ac_3696(ac=FastIO()):
-        # bfs序即拓扑序与DAG构造
+        # bfs序即拓扑序与DAGconstruction
         for _ in range(ac.read_int()):
             def check():
                 n, m = ac.read_list_ints()
@@ -194,7 +194,7 @@ class Solution:
     @staticmethod
     def lc_2392(k: int, row_conditions: List[List[int]], col_conditions: List[List[int]]) -> List[List[int]]:
 
-        # 行列拓扑sorting构造矩阵
+        # 行列拓扑sortingconstruction矩阵
         def check(cond):
             dct = defaultdict(list)
             degree = defaultdict(int)

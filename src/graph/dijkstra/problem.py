@@ -1204,7 +1204,7 @@ class Solution:
         for _ in range(q):
             x, y = ac.read_list_ints()
             x -= 1
-            # 只要同奇偶性的最短距离小于等于 y 就有解
+            # 只要同odd_even的最短距离小于等于 y 就有解
             if dis[x][y % 2] > y:
                 ac.st("No")
             else:
@@ -1526,7 +1526,7 @@ class Solution:
             dct[i - 1][j - 1] = w
             dct[j - 1][i - 1] = w
         mod = 10 ** 9 + 7
-        # 倒序最短路搜寻
+        # reverse_order|最短路搜寻
         dis = [float('inf')] * n
         cnt = [0] * n
         cnt[n - 1] = 1

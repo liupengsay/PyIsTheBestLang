@@ -23,7 +23,7 @@ Function：维护单调性，sliding_window最大值最小值
 1016（https://www.luogu.com.cn/problem/P1016）单调队列，greedyimplemention油箱，还可以增|每个站的油量限制
 1714（https://www.luogu.com.cn/problem/P1714）prefix_sum|sliding_window最小值，单调队列小于一定长度的最大连续子段和
 2629（https://www.luogu.com.cn/problem/P2629）环形数组prefix_sum与sliding_window最小值
-3522（https://www.luogu.com.cn/problem/P3522）看不懂的队列与单调栈思想
+3522（https://www.luogu.com.cn/problem/P3522）看不懂的队列与monotonic_stack|思想
 3957（https://www.luogu.com.cn/problem/P3957）binary_search|priority_queue|DP
 4085（https://www.luogu.com.cn/problem/P4085）two_pointer|priority_queuesliding_window最小值
 4392（https://www.luogu.com.cn/problem/P4392）单调队列sliding_window最大值

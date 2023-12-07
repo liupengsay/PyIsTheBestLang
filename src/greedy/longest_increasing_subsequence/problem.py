@@ -39,7 +39,7 @@ dilworth定理：
 6403（https://www.luogu.com.cn/problem/P6403）问题转化为最长不降子序列
 5939（https://www.luogu.com.cn/problem/P5939）旋转后转换为 LIS 问题
 5978（https://www.luogu.com.cn/problem/P5978） LIS 变形问题，greedybrute_force前半部分
-7957（https://www.luogu.com.cn/problem/P7957） LMS 逆问题构造
+7957（https://www.luogu.com.cn/problem/P7957） LMS 逆问题construction
 1410（https://www.luogu.com.cn/problem/P1410）dilworth定理求最长不上升子序列长度小于等于2
 
 =====================================AcWing=====================================
@@ -200,7 +200,7 @@ class Solution:
 
     @staticmethod
     def lg_p7957(ac=FastIO()):
-        #  LMS 逆问题构造
+        #  LMS 逆问题construction
         n, k = ac.read_list_ints()
         if k * k < n:
             ac.st(-1)

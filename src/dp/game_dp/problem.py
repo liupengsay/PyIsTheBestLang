@@ -17,7 +17,7 @@ Function：通常brute_force、区间DP|implementiongreedy的方式，和记忆�
 2953（https://www.luogu.com.cn/problem/P2953）必胜态线性DP
 
 =====================================AcWing=====================================
-4005（https://www.acwing.com/problem/content/description/4008/）典型博弈思维题分情况讨论
+4005（https://www.acwing.com/problem/content/description/4008/）典型博弈brain_teaser|分情况讨论
 
 """
 from functools import lru_cache
@@ -46,7 +46,7 @@ class Solution:
                     a, b = b, a
                 if a % b == 0:
                     return True
-                if a // b >= 2:  # 注意分类greedy必胜态考量
+                if a // b >= 2:  # 注意classification_discussion|greedy必胜态考量
                     return True
                 for i in range(1, a // b + 1):
                     if not dfs(a - i * b, b):

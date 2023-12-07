@@ -38,7 +38,7 @@ Function：Tarjan 算法是基于深度优先搜索的算法，用于求解图�
 1213F（https://codeforces.com/contest/1213/problem/F）SCC缩点后拓扑sortinggreedy
 1547G（https://codeforces.com/contest/1547/problem/G）SCC缩点后利用可达性建立新图，路径条数
 1702E（https://codeforces.com/contest/1702/problem/E）点双无向图找环，判断有无奇数环
-1768D（https://codeforces.com/contest/1768/problem/D）置换环与tarjan求环
+1768D（https://codeforces.com/contest/1768/problem/D）permutation_ring|与tarjan求环
 
 =====================================AcWing=====================================
 3579（https://www.acwing.com/problem/content/3582/）强连通分量模板题

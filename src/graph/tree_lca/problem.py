@@ -32,10 +32,10 @@ class Solution:
     @staticmethod
     def lg_p7167(ac=FastIO()):
 
-        # 单调栈|倍增LCA
+        # monotonic_stack||倍增LCA
         n, q = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
-        # 单调栈建树
+        # monotonic_stack|建树
         parent = [n] * n
         edge = [[] for _ in range(n + 1)]
         stack = []
@@ -306,7 +306,7 @@ class Solution:
 
     @staticmethod
     def lg_p3019(ac=FastIO()):
-        # 离线查询 LCA 最近公共祖先
+        # offline_query LCA 最近公共祖先
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for i in range(n - 1):

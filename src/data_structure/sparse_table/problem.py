@@ -18,18 +18,18 @@ ST表算法全称Sparse-Table算法，是由Tarjan提出的一种解决RMQ问题
 1816（https://www.luogu.com.cn/problem/P1816）ST表预处理区间的最小值
 2412（https://www.luogu.com.cn/problem/P2412）预处理lexicographical_order之后ST表查询静态区间最大lexicographical_order
 5097（https://www.luogu.com.cn/problem/P5097）静态区间最小值
-5648（https://www.luogu.com.cn/problem/P5648）倍增 ST 表查询区间最大值的索引，单调栈建树距离
+5648（https://www.luogu.com.cn/problem/P5648）倍增 ST 表查询区间最大值的索引，monotonic_stack|建树距离
 
 ===================================CodeForces===================================
-1691D（https://codeforces.com/problemset/problem/1691/D）单调栈brute_force|ST表最大值最小值查询
+1691D（https://codeforces.com/problemset/problem/1691/D）monotonic_stack|brute_force|ST表最大值最小值查询
 689D（https://codeforces.com/problemset/problem/689/D）binary_search|ST表个数
-1359D（https://codeforces.com/problemset/problem/1359/D）单调栈brute_force|ST表最大值最小值查询
+1359D（https://codeforces.com/problemset/problem/1359/D）monotonic_stack|brute_force|ST表最大值最小值查询
 1548B（https://codeforces.com/problemset/problem/1548/B）ST表查询区间gcd并brute_force数组开头，binary_search确定长度
 474F（https://codeforces.com/problemset/problem/474/F）稀疏表最小值和gcd，并binary_searchcounter
 1834E（https://codeforces.com/contest/1834/problem/E）连续子数组的lcm信息
 1878E（https://codeforces.com/contest/1878/problem/E）连续子数组的and信息
 1547F（https://codeforces.com/contest/1547/problem/F）连续子数组的gcd信息
-1579F（https://codeforces.com/contest/1579/problem/F）循环节连续子数组的and信息
+1579F（https://codeforces.com/contest/1579/problem/F）circular_section连续子数组的and信息
 1709D（https://codeforces.com/contest/1709/problem/D）use sparse table to compute static range max and implemention
 1516D（https://codeforces.com/contest/1516/problem/D）数组区间向右倍增
 
@@ -151,7 +151,7 @@ class Solution:
 
     @staticmethod
     def lg_p5648(ac=FastIO()):
-        # 倍增 ST 表查询区间最大值的索引，单调栈建树距离
+        # 倍增 ST 表查询区间最大值的索引，monotonic_stack|建树距离
         n, t = ac.read_list_ints()
         nums = ac.read_list_ints()
         post = [n] * n

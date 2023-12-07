@@ -13,7 +13,7 @@ Function：一重背包DP，数量有限从后往前遍历，数量无限则从�
 2742（https://leetcode.com/problems/painting-the-walls/description/）剪枝DP，可以转换为01背包求解
 2518（https://leetcode.com/problems/number-of-great-partitions/）01背包counter
 1155（https://leetcode.com/problems/number-of-dice-rolls-with-target-sum/description/）类似分组背包，可线性刷表法与填表法
-2902（https://leetcode.com/problems/count-of-sub-multisets-with-bounded-sum/description/）按照单调队列的思想取模分组DP，prefix_sum优化，也有容斥的思想，可撤销背包
+2902（https://leetcode.com/problems/count-of-sub-multisets-with-bounded-sum/description/）按照单调队列的思想mod|分组DP，prefix_sum优化，也有容斥的思想，可撤销背包
 
 =====================================LuoGu======================================
 1048（https://www.luogu.com.cn/problem/P1048）一维背包DP，数量有限，从后往前遍历
@@ -85,7 +85,7 @@ Function：一重背包DP，数量有限从后往前遍历，数量无限则从�
 1417（https://www.luogu.com.cn/problem/P1417）greedysorting后 01 背包最大值
 
 ===================================CodeForces===================================
-577B（https://codeforces.com/problemset/problem/577/B）取模counter二进制优化与背包DP，寻找非空子序列的和整除给定的数
+577B（https://codeforces.com/problemset/problem/577/B）mod|counter二进制优化与背包DP，寻找非空子序列的和整除给定的数
 543A（https://codeforces.com/problemset/problem/543/A）二维有限背包DP，当作无限处理
 148E（https://codeforces.com/problemset/problem/148/E）01背包brute_force，两层动态规划
 1433F（https://codeforces.com/problemset/problem/1433/F）01背包brute_force，两层动态规划
@@ -94,7 +94,7 @@ Function：一重背包DP，数量有限从后往前遍历，数量无限则从�
 ====================================AtCoder=====================================
 D - Mixing Experiment（https://atcoder.jp/contests/abc054/tasks/abc054_d）二维01背包
 D - Match Matching（https://atcoder.jp/contests/abc118/tasks/abc118_d）greedy背包DP，并还原方案
-E - All-you-can-eat（https://atcoder.jp/contests/abc145/tasks/abc145_e）思维题01背包，需要先sorting，刷表法解决
+E - All-you-can-eat（https://atcoder.jp/contests/abc145/tasks/abc145_e）brain_teaser|01背包，需要先sorting，刷表法解决
 
 =====================================AcWing=====================================
 4（https://www.acwing.com/problem/content/4/）二进制优化多重背包
@@ -171,7 +171,7 @@ class Solution:
 
     @staticmethod
     def cf_577b(m, nums):
-        # 取模counter二进制优化与背包DP，寻找非空子序列的和整除给定的数
+        # mod|counter二进制优化与背包DP，寻找非空子序列的和整除给定的数
         cnt = [0] * m
         for num in nums:
             cnt[num % m] += 1
@@ -369,7 +369,7 @@ class Solution:
 
     @staticmethod
     def abc_145e(ac=FastIO()):
-        # 思维题01背包，需要先sorting，刷表法解决
+        # brain_teaser|01背包，需要先sorting，刷表法解决
         n, t = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort()
@@ -1259,7 +1259,7 @@ class Solution:
 
     @staticmethod
     def lc_100029(nums: List[int], ll: int, r: int) -> int:
-        # 按照单调队列的思想取模分组DP，prefix_sum优化，也有容斥的思想
+        # 按照单调队列的思想mod|分组DP，prefix_sum优化，也有容斥的思想
         cnt = Counter(nums)
         mod = 10 ** 9 + 7
         dp = [0] * (r + 1)

@@ -1,9 +1,9 @@
 """
-Algorithm：离线查询、预处理sorting
-Function：通过pointer移动来查询值更新
+Algorithm：offline_query|sorting
+Function：with the help of pointer and sorting for offline query
 
 ====================================LeetCode====================================
-100110（https://leetcode.com/contest/weekly-contest-372/problems/find-building-where-alice-and-bob-can-meet/）offline query after sorting
+100110（https://leetcode.com/contest/weekly-contest-372/problems/find-building-where-alice-and-bob-can-meet/）offline_query|sorting
 
 =====================================LuoGu======================================
 xx（xxx）xxxxxxxxxxxxxxxxxxxx

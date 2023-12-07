@@ -40,12 +40,12 @@ Function：在有向图与无向图扩散，多源BFS、双向BFS，0-1BFS（类
 4017（https://www.luogu.com.cn/problem/P4017）广搜counter路径条数，也可以深搜DPcounter
 3395（https://www.luogu.com.cn/problem/P3395）广度优先搜索implemention
 3416（https://www.luogu.com.cn/problem/P3416）广搜|记忆化访问
-3916（https://www.luogu.com.cn/problem/P3916）reverse_thinking反向建图再|倒序访问传播
+3916（https://www.luogu.com.cn/problem/P3916）reverse_thinking反向建图再|reverse_order|访问传播
 3958（https://www.luogu.com.cn/problem/P3958）建图之后广度优先搜索
 4328（https://www.luogu.com.cn/problem/P4328）广搜题，implemention能否逃离火灾或者洪水
 4961（https://www.luogu.com.cn/problem/P4961）brute_forceimplementioncounter，八连通
 6207（https://www.luogu.com.cn/problem/P6207）广度优先搜索记录最短路径
-6582（https://www.luogu.com.cn/problem/P6582）bfs合法性判断与组合counter快速幂
+6582（https://www.luogu.com.cn/problem/P6582）bfs合法性判断与组合counterfast_power|
 7243（https://www.luogu.com.cn/problem/P7243）广度优先搜索|gcd最大公约数
 3496（https://www.luogu.com.cn/problem/P3496）brain_teaser，BFS隔层染色
 1432（https://www.luogu.com.cn/problem/P1432）BFS倒水题，记忆化广搜

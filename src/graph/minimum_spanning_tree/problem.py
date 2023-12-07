@@ -43,7 +43,7 @@ Prim在稠密图中比Kruskal优，在稀疏图中比Kruskal劣。Prim是以更�
 1550（https://www.luogu.com.cn/problem/P1550）最小生成树，增|虚拟源点
 
 ===================================CodeForces===================================
-472D（https://codeforces.com/problemset/problem/472/D）最小生成树判断构造给定的点对最短路距离是否存在，prim算法复杂度更优
+472D（https://codeforces.com/problemset/problem/472/D）最小生成树判断construction给定的点对最短路距离是否存在，prim算法复杂度更优
 609E（https://codeforces.com/problemset/problem/609/E）LCA的思想维护树中任意两点的路径边权最大值，并greedy替换获得边作为最小生成树时的最小权值和，有点类似于关键边与非关键边，但二者并不相同，即为严格次小生成树
 1108F（https://codeforces.com/contest/1108/problem/F）使得最小生成树的边组合唯一时，需要增|权重的最少边数量
 
@@ -439,7 +439,7 @@ class Solution:
         # 逆序union_find，维护最小生成树的边
         n, w = ac.read_list_ints()
 
-        # 离线查询处理，按照边权sorting
+        # offline_query处理，按照边权sorting
         edges = [ac.read_list_ints() for _ in range(w)]
         ind = list(range(w))
         ind.sort(key=lambda it: edges[it][-1])

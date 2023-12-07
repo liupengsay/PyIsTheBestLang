@@ -1,27 +1,27 @@
 """
 
-Algorithm：union_find、可持久化union_find、置换环
-Function：用来处理图论相关的联通问题，通常结合逆向思考、置换环或者离线查询求解，连通块不一定是秩大小，也可以是最大最小值、和等
+Algorithm：union_find、可持久化union_find、permutation_ring|
+Function：用来处理图论相关的联通问题，通常结合逆向思考、permutation_ring|或者offline_query求解，连通块不一定是秩大小，也可以是最大最小值、和等
 
 ====================================LeetCode====================================
 765（https://leetcode.com/problems/couples-holding-hands/）union_find
-1697（https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/）sorting后离线查询两点间所有路径的最大边权值
-2503（https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/）sorting后离线查询与起点相连的连通块的大小
+1697（https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/）sorting后offline_query两点间所有路径的最大边权值
+2503（https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/）sorting后offline_query与起点相连的连通块的大小
 2421（https://leetcode.com/problems/number-of-good-paths/）根据权值sorting更新union_find连通分块满足条件的节点对数
 2382（https://leetcode.com/problems/maximum-segment-sum-after-removals/）逆向访问查询并更新连通块的结果
 2334（https://leetcode.com/problems/subarray-with-elements-greater-than-varying-threshold/）sorting后brute_force动态维护union_find连通块
 2158（https://leetcode.com/problems/amount-of-new-area-painted-each-day/）union_find维护区间左端点，不断合并
 2157（https://leetcode.com/problems/groups-of-strings/）利用字母的有限数量变换brute_force分组
 2076（https://leetcode.com/problems/process-restricted-friend-requests/）union_find变种，维护群体的不喜欢关系
-2459（https://leetcode.com/problems/sort-array-by-moving-items-to-empty-space/）置换环题目
+2459（https://leetcode.com/problems/sort-array-by-moving-items-to-empty-space/）permutation_ring|题目
 2709（https://leetcode.com/problems/greatest-common-divisor-traversal/）union_find具有相同质因数的连通块
 2612（https://leetcode.com/problems/minimum-reverse-operations/）union_find应用 find_merge 灵活
 1559（https://leetcode.com/problems/detect-cycles-in-2d-grid/）union_find判环
-1569（https://leetcode.com/problems/number-of-ways-to-reorder-array-to-get-same-bst/）逆序思维，倒序利用union_find建立二叉搜索树，排列组合|union_find
-1970（https://leetcode.com/problems/last-day-where-you-can-still-cross/）逆序思维union_find
-1998（https://leetcode.com/problems/gcd-sort-of-an-array/）union_find|质因数分解
+1569（https://leetcode.com/problems/number-of-ways-to-reorder-array-to-get-same-bst/）reverse_thinking，reverse_order|利用union_find建立二叉搜索树，排列组合|union_find
+1970（https://leetcode.com/problems/last-day-where-you-can-still-cross/）reverse_thinkingunion_find
+1998（https://leetcode.com/problems/gcd-sort-of-an-array/）union_find|质factorization|
 2158（https://leetcode.com/problems/amount-of-new-area-painted-each-day/）区间union_find
-2471（https://leetcode.com/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/description/）离散化置换环
+2471（https://leetcode.com/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/description/）离散化permutation_ring|
 945（https://leetcode.com/problems/minimum-increment-to-make-array-unique/description/）可向右合并的区间union_find，正解为greedy
 947（https://leetcode.com/contest/weekly-contest-112/problems/most-stones-removed-with-same-row-or-column/）brain_teaserunion_find
 
@@ -31,12 +31,12 @@ Function：用来处理图论相关的联通问题，通常结合逆向思考、
 3144（https://www.luogu.com.cn/problem/P3144）逆序union_find，考察连通块的数量
 5836（https://www.luogu.com.cn/problem/P5836）两个union_find连通情况查询
 5877（https://www.luogu.com.cn/problem/P5877）正向implemention实时更新连通块的数量
-6111（https://www.luogu.com.cn/problem/P6111）union_find|离线查询
+6111（https://www.luogu.com.cn/problem/P6111）union_find|offline_query
 6121（https://www.luogu.com.cn/problem/P6121）逆序union_find根据连通块大小连通性判定
 6153（https://www.luogu.com.cn/problem/P6153）union_find思想greedy题，体现了union_find的思想
 1955（https://www.luogu.com.cn/problem/P1955）union_find裸题
 1196（https://www.luogu.com.cn/problem/P1196）带权union_find
-1197（https://www.luogu.com.cn/problem/P1197）逆序union_find，倒序brute_force联通块个数
+1197（https://www.luogu.com.cn/problem/P1197）逆序union_find，reverse_order|brute_force联通块个数
 1522（https://www.luogu.com.cn/problem/P1522）连通块，brute_force新增路径并high_precision联通块直径
 1621（https://www.luogu.com.cn/problem/P1621）利用素数筛的思想对数复杂度合并公共质因数大于p的数并连通块数量
 1892（https://www.luogu.com.cn/problem/P1892）union_find，敌人与朋友关系
@@ -44,11 +44,11 @@ Function：用来处理图论相关的联通问题，通常结合逆向思考、
 2307（https://www.luogu.com.cn/problem/P2307）union_find判定树的生成是否合法
 3420（https://www.luogu.com.cn/problem/P3420）union_find变形问题
 5429（https://www.luogu.com.cn/problem/P5429）简单union_find应用题
-6193（https://www.luogu.com.cn/problem/P6193）置换环交换代价
+6193（https://www.luogu.com.cn/problem/P6193）permutation_ring|交换代价
 6706（https://www.luogu.com.cn/problem/P6706）有向图union_find逆序更新边 find_merge 灵活
 7991（https://www.luogu.com.cn/problem/P7991）union_find连通块缩点使得 1 和 n 连通最多|两条路的代价
 8230（https://www.luogu.com.cn/problem/P8230）分层union_find|implemention
-8637（https://www.luogu.com.cn/problem/P8637）union_find置换环
+8637（https://www.luogu.com.cn/problem/P8637）union_findpermutation_ring|
 8686（https://www.luogu.com.cn/problem/P8686）union_find灵活应用
 8785（https://www.luogu.com.cn/problem/P8785）根据边界union_find构建counter
 8787（https://www.luogu.com.cn/problem/P8787）greedy二叉堆implemention与union_find灵活应用
@@ -66,7 +66,7 @@ Function：用来处理图论相关的联通问题，通常结合逆向思考、
 ====================================AtCoder=====================================
 D - Connectivity（https://atcoder.jp/contests/abc049/tasks/arc065_b）双union_find应用
 E - 1 or 2（https://atcoder.jp/contests/abc126/tasks/abc126_e）双union_find的union_find应用
-F - Must Be Rectangular!（https://atcoder.jp/contests/abc131/tasks/abc131_f）思维题union_findcounter
+F - Must Be Rectangular!（https://atcoder.jp/contests/abc131/tasks/abc131_f）brain_teaser|union_findcounter
 
 =====================================AcWing=====================================
 4306（https://www.acwing.com/problem/content/description/4309/）向右合并的区间union_find
@@ -286,7 +286,7 @@ class Solution:
             index[vals[i]].append(i)
         edges.sort(key=lambda x: max(vals[x[0]], vals[x[1]]))
         uf = UnionFind(n)
-        # 离线查询counter
+        # offline_querycounter
         i = 0
         m = len(edges)
         ans = 0
@@ -352,7 +352,7 @@ class Solution:
 
     @staticmethod
     def lg_p1197(ac=FastIO()):
-        # 逆序union_find，倒序brute_force联通块个数
+        # 逆序union_find，reverse_order|brute_force联通块个数
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for _ in range(m):
@@ -579,7 +579,7 @@ class Solution:
 
     @staticmethod
     def lg_p6193(ac=FastIO()):
-        # 置换环交换代价
+        # permutation_ring|交换代价
         n = ac.read_int()
         nums = [ac.read_int() for _ in range(n)]
         lst = sorted(nums)
@@ -587,7 +587,7 @@ class Solution:
         ind = {num: i for i, num in enumerate(lst)}
         uf = UnionFind(n)
         x = lst[0]
-        # 寻找置换环
+        # 寻找permutation_ring|
         for i in range(n):
             uf.union(i, ind[nums[i]])
         part = uf.get_root_part()
@@ -598,7 +598,7 @@ class Solution:
             m = len(part[p])
             if m == 1:
                 continue
-            #  当前置换环最小值交换
+            #  当前permutation_ring|最小值交换
             cost1 = s + (m - 2) * y
             # 或者全局最小值交换
             cost2 = s - y + x + (m - 2) * x + (x + y) * 2
@@ -729,7 +729,7 @@ class Solution:
         ans[p] = 0
         while stack:
             i = stack.popleft()
-            # 满足 low <= j <= high 且要有相同的奇偶性
+            # 满足 low <= j <= high 且要有相同的odd_even
             low = max(0, k - 1 - i, i - k + 1)
             high = min(2 * n - k - 1 - i, n - 1, i + k - 1)
             j = find_merge(low)
@@ -872,13 +872,13 @@ class Solution:
     @staticmethod
     def lc_1569(nums: List[int]) -> int:
 
-        # 逆序思维，排列组合|union_find
+        # reverse_thinking，排列组合|union_find
         len(nums)
         mod = 10 ** 9 + 7
         n = 10 ** 3
         cb = Combinatorics(n, mod)
 
-        # reverse_thinking，倒序利用union_find建立二叉搜索树
+        # reverse_thinking，reverse_order|利用union_find建立二叉搜索树
         dct = [[] for _ in range(n)]
         uf = UnionFindRightRoot(n)
         post = {}
@@ -955,7 +955,7 @@ class Solution:
 
     @staticmethod
     def abc_131f(ac=FastIO()):
-        # 思维题union_findcounter
+        # brain_teaser|union_findcounter
         n = ac.read_int()
         m = 10 ** 5
         uf = UnionFind(2 * m)
@@ -1015,7 +1015,7 @@ class Solution:
 
     @staticmethod
     def lc_2471(root: Optional[TreeNode]) -> int:
-        # 离散化置换环
+        # 离散化permutation_ring|
 
         def check():
             nonlocal ans

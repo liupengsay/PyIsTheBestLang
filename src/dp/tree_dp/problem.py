@@ -38,7 +38,7 @@ Function：在树形或者图结构上DP，有换根DP，自顶向下和自底�
 5002（https://www.luogu.com.cn/problem/P5002）树形DP与inclusion_exclusioncounter
 5651（https://www.luogu.com.cn/problem/P5651）brain_teaserunion_find去环，转换为树形DP里面任意两点路径的异或和
 6591（https://www.luogu.com.cn/problem/P6591）换根DP，即无根树递归判断每个节点作为根节点的情况
-7159（https://www.luogu.com.cn/problem/P7159）树形DPbrute_forcecounter与快速幂
+7159（https://www.luogu.com.cn/problem/P7159）树形DPbrute_forcecounter与fast_power|
 2015（https://www.luogu.com.cn/problem/P2015）树形DP，有点像树上背包
 2014（https://www.luogu.com.cn/problem/P2014）树形DP
 4316（https://www.luogu.com.cn/problem/P4316）逆向建图，拓扑sortingDP

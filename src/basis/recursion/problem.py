@@ -6,9 +6,9 @@ Function：递归处理，与迭代是处理相同问题的两种不同方式，
 1545（https://leetcode.com/problems/find-kth-bit-in-nth-binary-string/）递归implemention
 894（https://leetcode.com/problems/all-possible-full-binary-trees/）类似卡特兰数的递归implemention生成
 880（https://leetcode.com/problems/decoded-string-at-index/）递归implemention
-932（https://leetcode.com/problems/beautiful-array/description/）递归divide_and_conquer构造
-889（https://leetcode.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/）递归divide_and_conquer构造
-1028（https://leetcode.com/problems/recover-a-tree-from-preorder-traversal/description/）根据先序遍历递归构造二叉树
+932（https://leetcode.com/problems/beautiful-array/description/）递归divide_and_conquerconstruction
+889（https://leetcode.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/）递归divide_and_conquerconstruction
+1028（https://leetcode.com/problems/recover-a-tree-from-preorder-traversal/description/）根据先序遍历递归construction二叉树
 
 =====================================LuoGu======================================
 1911（https://www.luogu.com.cn/problem/P1911）四叉树递归
@@ -60,7 +60,7 @@ class Solution:
         return dfs(t, m)
 
     def lc_889(self, preorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
-        # 递归divide_and_conquer构造
+        # 递归divide_and_conquerconstruction
         if not preorder:
             return
 
@@ -97,7 +97,7 @@ class Solution:
 
     @lru_cache(None)
     def lc_932(self, n: int) -> List[int]:
-        # 递归divide_and_conquer构造
+        # 递归divide_and_conquerconstruction
         if n == 1:
             return [1]
         return [2 * x - 1 for x in self.lc_932((n + 1) // 2)] + [2 * x for x in self.lc_932(n // 2)]
@@ -105,7 +105,7 @@ class Solution:
     @staticmethod
     def lc_1028(traversal: str) -> Optional[TreeNode]:
 
-        # 根据先序遍历递归构造二叉树
+        # 根据先序遍历递归construction二叉树
         ans = ""
         pre = 0
         for w in traversal:

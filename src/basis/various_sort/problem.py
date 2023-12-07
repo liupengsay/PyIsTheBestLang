@@ -1,6 +1,6 @@
 """
 Algorithm：sorting、冒泡sorting、归并sorting（期望比较次数最少）、快速sorting（期望性能最好）、自定义sorting（灵活）
-Function：各种sorting的实现以及特点变形题目，如逆序对
+Function：各种sorting的实现以及特点变形题目，如reverse_pair|
 
 ====================================LeetCode====================================
 164（https://leetcode.com/problems/maximum-gap/）桶sorting

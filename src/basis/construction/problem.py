@@ -1,51 +1,51 @@
 """
 
-Algorithm：构造
-Function：通常需要根据题目要求，greedysorting之后的构造出合理可行的答案
+Algorithm：construction
+Function：greedy|sorting|construction|specific_plan
 
 ====================================LeetCode====================================
-280（https://leetcode.com/problems/wiggle-sort/）按照降序先赋给奇数索引再给偶数索引
-2663（https://leetcode.com/problems/lexicographically-smallest-beautiful-string/）greedy构造不含任何palindrome_substring的lexicographical_order最小的字符串
-1982（https://leetcode.com/problems/find-array-given-subset-sums/）构造
-1253（https://leetcode.com/problems/reconstruct-a-2-row-binary-matrix/）构造greedy思维
-2573（https://leetcode.com/problems/find-the-string-with-lcp/）LCP构造与验证，类似union_find思想
+280（https://leetcode.com/problems/wiggle-sort/）construction|sorting|odd_even
+2663（https://leetcode.com/problems/lexicographically-smallest-beautiful-string/）greedy|construction|palindrome_substring|lexicographical_order
+1982（https://leetcode.com/problems/find-array-given-subset-sums/）construction
+1253（https://leetcode.com/problems/reconstruct-a-2-row-binary-matrix/）construction|greedy|brain_teaser
+2573（https://leetcode.com/problems/find-the-string-with-lcp/）lcp|construction|union_find
 
 =====================================LuoGu======================================
-8846（https://www.luogu.com.cn/problem/P8846）厘清题意greedy构造
-2902（https://www.luogu.com.cn/problem/P2902）构造不同颜色对
-5823（https://www.luogu.com.cn/problem/P5823）构造相同元素间隔为等差1的数组
-7383（https://www.luogu.com.cn/problem/P7383）greedy构造
-7947（https://www.luogu.com.cn/problem/P7947）greedy构造积为 n 和为 k 的数列，乘积分解成质因数其和最小
-9101（https://www.luogu.com.cn/problem/P9101）构造恰好 k 条路径的有向无环图
-8976（https://www.luogu.com.cn/problem/P8976）brute_force连续段构造数组的前半段与后半段和满足要求
-8910（https://www.luogu.com.cn/problem/P8910）置换环构造
-8880（https://www.luogu.com.cn/problem/P8880）brain_teaser构造分奇数与偶数讨论
+8846（https://www.luogu.com.cn/problem/P8846）greedy|construction
+2902（https://www.luogu.com.cn/problem/P2902）construction
+5823（https://www.luogu.com.cn/problem/P5823）construction
+7383（https://www.luogu.com.cn/problem/P7383）greedy|construction
+7947（https://www.luogu.com.cn/problem/P7947）greedy|construction|product_n_sum_k|prime_factorization
+9101（https://www.luogu.com.cn/problem/P9101）construction|directed_graph|no_circe
+8976（https://www.luogu.com.cn/problem/P8976）brute_force|construction
+8910（https://www.luogu.com.cn/problem/P8910）permutation_ring|construction
+8880（https://www.luogu.com.cn/problem/P8880）brain_teaser|construction|odd_even
 
 ===================================CodeForces===================================
-1396A（https://codeforces.com/problemset/problem/1396/A）greedy构造
-1118E（https://codeforces.com/problemset/problem/1118/E）implementiongreedy构造
-960C（https://codeforces.com/problemset/problem/960/C）greedy构造
-1793B（https://codeforces.com/contest/1793/problem/B）思维题greedy构造
-1375D（https://codeforces.com/problemset/problem/1375/D）MEX的构造题，使得数组非降，即最小的未出现在数组中的数
-1348D（https://codeforces.com/problemset/problem/1348/D）利用二进制优化将数分割，并利用分裂特点
-1554D（https://codeforces.com/problemset/problem/1554/D）构造，将n取一半向下取整
-1788C（https://codeforces.com/problemset/problem/1788/C）构造，选取 1 到 2n 的数两两配对且和为连续数
-1367D（https://codeforces.com/problemset/problem/1367/D）reverse_thinkingimplemention构造
-1485D（https://codeforces.com/problemset/problem/1485/D）按照数据范围构造
-1722G（https://codeforces.com/problemset/problem/1722/G）根据奇偶性和异或和特点构造
-1822D（https://codeforces.com/contest/1822/problem/D）构造prefix_sum取模互不相同的排列
-D - Make Them Even（https://atcoder.jp/contests/abc109/tasks/abc109_d）根据奇偶性与遍历顺序构造
-1509D（https://codeforces.com/contest/1509/problem/D）LCS最短公共超序列构造，特殊data_range下的O(n)pigeonhole
-1473C（https://codeforces.com/contest/1473/problem/C）special property of inverse pair of s1s2..sn..s2s1
-1469D（https://codeforces.com/contest/1469/problem/D）square ceil greedy implemention
+1396A（https://codeforces.com/problemset/problem/1396/A）greedy|construction
+1118E（https://codeforces.com/problemset/problem/1118/E）implemention|greedy|construction
+960C（https://codeforces.com/problemset/problem/960/C）greedy|construction
+1793B（https://codeforces.com/contest/1793/problem/B）brain_teaser|greedy|construction
+1375D（https://codeforces.com/problemset/problem/1375/D）mex|construction|sorting
+1348D（https://codeforces.com/problemset/problem/1348/D）bin|construction
+1554D（https://codeforces.com/problemset/problem/1554/D）construction|floor
+1788C（https://codeforces.com/problemset/problem/1788/C）construction
+1367D（https://codeforces.com/problemset/problem/1367/D）reverse_thinking|implemention|construction
+1485D（https://codeforces.com/problemset/problem/1485/D）data_range|construction
+1722G（https://codeforces.com/problemset/problem/1722/G）odd_even|xor|construction
+1822D（https://codeforces.com/contest/1822/problem/D）construction|prefix_sum|mod|permutation
+1509D（https://codeforces.com/contest/1509/problem/D）lcs|shortest_common_hypersequence|construction|data_range|O(n)|pigeonhole
+1473C（https://codeforces.com/contest/1473/problem/C）brain_teaser|s1s2..sn..s2s1
+1469D（https://codeforces.com/contest/1469/problem/D）square|ceil|greedy|implemention
 1478B（https://codeforces.com/contest/1478/problem/B）brute_force|bag_dp|construction
 1682B（https://codeforces.com/contest/1682/problem/B）bitwise_and|construction|permutation_ring
 
 ====================================AtCoder=====================================
-B - Construct Sequences（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser思维构造公式
-D - Non-decreasing（https://atcoder.jp/contests/abc081/tasks/arc086_b）greedy构造classification_discussion
-D - Grid Components（https://atcoder.jp/contests/abc092/tasks/arc093_b）思维题构造
-F - XOR Matching（https://atcoder.jp/contests/abc126/tasks/abc126_f）思维题构造，利用0^1^2^..^(2**m-1)=0的特点
+B - Construct Sequences（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser|math|construction
+D - Non-decreasing（https://atcoder.jp/contests/abc081/tasks/arc086_b）greedy|construction|classification_discussion
+D - Grid Components（https://atcoder.jp/contests/abc092/tasks/arc093_b）brain_teaser|construction
+F - XOR Matching（https://atcoder.jp/contests/abc126/tasks/abc126_f）brain_teaser|construction|xor_property
+D - Make Them Even（https://atcoder.jp/contests/abc109/tasks/abc109_d）odd_even|construction
 
 """
 import math
@@ -82,7 +82,7 @@ class Solution:
 
     @staticmethod
     def cf_1367d(ac=FastIO()):
-        # reverse_thinking生成implemention构造
+        # reverse_thinking生成implementionconstruction
         for _ in range(ac.read_int()):
             s = ac.read_str()
             m = ac.read_int()
@@ -124,7 +124,7 @@ class Solution:
 
     @staticmethod
     def lc_280(nums: List[int]) -> None:
-        # 摆动sorting数组构造
+        # 摆动sorting数组construction
         nums.sort()
         n = len(nums)
         ans = [0] * n
@@ -142,12 +142,12 @@ class Solution:
 
     @staticmethod
     def lc_1982(n: int, sums: List[int]) -> List[int]:
-        # 根据数组所有子集的和构造原数组
+        # 根据数组所有子集的和construction原数组
         low = min(sums)
         if low < 0:
             sums = [num - low for num in sums]
 
-        # 从小到大依次构造元素
+        # 从小到大依次construction元素
         cnt = Counter(sums)
         lst = sorted(cnt.keys())
         cnt[0] -= 1
@@ -176,10 +176,10 @@ class Solution:
 
     @staticmethod
     def lc_2663(s: str, k: int) -> str:
-        # greedy构造不含任何palindrome_substring的lexicographical_order最小的字符串
+        # greedyconstruction不含任何palindrome_substring的lexicographical_order最小的字符串
         n = len(s)
         for i in range(n - 1, -1, -1):
-            # 倒序brute_force
+            # reverse_order|brute_force
             for x in range(ord(s[i]) - ord("a") + 1, k):
                 w = chr(ord("a") + x)
                 # 只要没有长度为 2 和长度为 3 的palindrome_substring则都不存在任何大于 1 长度的palindrome_substring
@@ -197,7 +197,7 @@ class Solution:
 
     @staticmethod
     def lg_p7947(ac=FastIO()):
-        # greedy构造积为 n 和为 k 的数列，乘积分解成质因数其和最小
+        # greedyconstruction积为 n 和为 k 的数列，乘积分解成质因数其和最小
         n, k = ac.read_list_ints()
         ans = []
         for p, c in NumberTheory().get_prime_factor(n):
@@ -212,7 +212,7 @@ class Solution:
 
     @staticmethod
     def lg_p9101(ac=FastIO()):
-        # 构造恰好 k 条路径的有向无环图
+        # construction恰好 k 条路径的有向无环图
         k = ac.read_int()
         dct = defaultdict(list)
         kk = k
@@ -270,7 +270,7 @@ class Solution:
 
     @staticmethod
     def lg_p8976(ac=FastIO()):
-        # brute_force连续段构造数组的前半段与后半段和满足要求
+        # brute_force连续段construction数组的前半段与后半段和满足要求
         for _ in range(ac.read_int()):
             n, a, b = ac.read_list_ints()
             mid = n // 2 + 1
@@ -310,7 +310,7 @@ class Solution:
 
     @staticmethod
     def lg_p8910(ac=FastIO()):
-        # 置换环构造
+        # permutation_ring|construction
         for _ in range(ac.read_int()):
             n, k = ac.read_list_ints()
             nex = [0] * (n + 1)
@@ -340,7 +340,7 @@ class Solution:
 
     @staticmethod
     def lg_p8880(ac=FastIO()):
-        # brain_teaser构造分奇数与偶数讨论
+        # brain_teaserconstruction分奇数与偶数讨论
         n = ac.read_int()
         if n % 2 == 0:
             ac.st(-1)

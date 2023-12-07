@@ -26,14 +26,14 @@ Function：数组区间|减，和区间值求和（单点可转换为区间）
 5677（https://www.luogu.com.cn/problem/P5677）区间值更新与求和
 5094（https://www.luogu.com.cn/problem/P5094）单点更新增|值与前缀区间和查询
 1816（https://www.luogu.com.cn/problem/P1816）树状数组查询静态区间最小值
-1908（https://www.luogu.com.cn/problem/P1908）树状数组求逆序对
-1725（https://www.luogu.com.cn/problem/P1725）倒序线性DP，单点更新值，查询区间最大值
-3586（https://www.luogu.com.cn/problem/P3586）离线查询、离散化树状数组，单点增减，prefix_sum查询
+1908（https://www.luogu.com.cn/problem/P1908）树状数组求reverse_pair|
+1725（https://www.luogu.com.cn/problem/P1725）reverse_order|线性DP，单点更新值，查询区间最大值
+3586（https://www.luogu.com.cn/problem/P3586）offline_query、离散化树状数组，单点增减，prefix_sum查询
 1198（https://www.luogu.com.cn/problem/P1198）树状数组，查询区间最大值
 4868（https://www.luogu.com.cn/problem/P4868）转换公式单点修改，两个树状数组维护prefix_sum的prefix_sum
 5463（https://www.luogu.com.cn/problem/P5463）树状数组维护前缀counter，brute_force最大值所有区间数贡献
 6225（https://www.luogu.com.cn/problem/P6225）树状数组维护前缀异或和
-1972（https://www.luogu.com.cn/problem/P1972）树状数组离线查询区间不同数的个数 PointChangeRangeSum OfflineQuery
+1972（https://www.luogu.com.cn/problem/P1972）树状数组offline_query区间不同数的个数 PointChangeRangeSum OfflineQuery
 
 ====================================AtCoder=====================================
 D - Islands War（https://atcoder.jp/contests/abc103/tasks/abc103_d）greedy|树状数组
@@ -517,7 +517,7 @@ class Solution:
 
     @staticmethod
     def lg_p1908(ac=FastIO()):
-        # 树状数组求逆序对
+        # 树状数组求reverse_pair|
         n = ac.read_int()
         nums = ac.read_list_ints()
         ind = list(range(n))
@@ -556,7 +556,7 @@ class Solution:
 
     @staticmethod
     def lg_p1725(ac=FastIO()):
-        # 树状数组倒序线性DP，单点更新与区间查询最大值
+        # 树状数组reverse_order|线性DP，单点更新与区间查询最大值
         n, a, b = ac.read_list_ints()
         n += 1
         nums = ac.read_list_ints()
@@ -574,7 +574,7 @@ class Solution:
 
     @staticmethod
     def lg_p3586(ac=FastIO()):
-        # 离线查询、离散化树状数组，单点增减，prefix_sum查询
+        # offline_query、离散化树状数组，单点增减，prefix_sum查询
         n, m = ac.read_list_ints()
         value = {0}
         lst = []

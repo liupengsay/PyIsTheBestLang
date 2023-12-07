@@ -1,6 +1,6 @@
 """
-Algorithm：数论、欧拉筛、线性筛、素数、欧拉函数、因子分解、素因子分解、进制转换、因数分解
-Function：有时候数位DP类型题目可以N进制来求取，质因数分解、因数分解、素数筛、线性筛、欧拉函数、pollard_rho、Meissel–Lehmer 算法（范围内素数个数）
+Algorithm：数论、欧拉筛、线性筛、素数、欧拉函数、因子分解、素因子分解、进制转换、factorization|
+Function：有时候数位DP类型题目可以N进制来求取，质factorization|、factorization|、素数筛、线性筛、欧拉函数、pollard_rho、Meissel–Lehmer 算法（范围内素数个数）
 
 ====================================LeetCode====================================
 2183（https://leetcode.com/problems/count-array-pairs-divisible-by-k/description/）可以所有因子遍历brute_forcecounter解决，正解为按照 k 的最大公因数分组
@@ -8,7 +8,7 @@ Function：有时候数位DP类型题目可以N进制来求取，质因数分解
 =====================================LuoGu======================================
 
 ===================================CodeForces===================================
-1176D（https://codeforces.com/contest/1176/problem/D）构造题，greedyimplemention，记录合数最大不等于自身的因子，以及质数列表的顺序
+1176D（https://codeforces.com/contest/1176/problem/D）construction题，greedyimplemention，记录合数最大不等于自身的因子，以及质数列表的顺序
 1884D（https://codeforces.com/contest/1884/problem/D）factor dp and cnt, count the number of pair with gcd=x
 1900D（https://codeforces.com/contest/1900/problem/D）根据inclusion_exclusiongcd的pair对数
 
@@ -112,7 +112,7 @@ class Solution:
                 if min_div[i * j] == i * j:
                     min_div[i * j] = i
 
-        # 构造结果
+        # construction结果
         ans1 = []
         ans2 = []
         for num in nums:
@@ -200,7 +200,7 @@ class Solution:
 
     @staticmethod
     def cf_1176d(ac=FastIO()):
-        # 构造题，greedyimplemention，记录合数最大不等于自身的因子，以及质数列表的顺序
+        # construction题，greedyimplemention，记录合数最大不等于自身的因子，以及质数列表的顺序
         ac.read_int()
         nt = PrimeFactor(2 * 10 ** 5)
         prime_numbers = NumberTheory().euler_flag_prime(3 * 10 ** 6)
@@ -227,7 +227,7 @@ class Solution:
 
     @staticmethod
     def cf_1349a(ac=FastIO()):
-        # 质因数分解，brute_force最终结果当中质因子的幂次
+        # 质factorization|，brute_force最终结果当中质因子的幂次
         n = ac.read_int()
         nums = ac.read_list_ints()
         nmp = PrimeFactor(max(nums))
@@ -247,7 +247,7 @@ class Solution:
 
     @staticmethod
     def cf_1458a(ac=FastIO()):
-        # gcd公式变换求解gcd(x,y)=gcd(x-y,y)
+        # gcdmath|求解gcd(x,y)=gcd(x-y,y)
         m, n = ac.read_list_ints()
         a = ac.read_list_ints()
         b = ac.read_list_ints()
@@ -261,7 +261,7 @@ class Solution:
 
     @staticmethod
     def abc_114d(ac=FastIO()):
-        # 质因数分解counter
+        # 质factorization|counter
         n = ac.read_int()
         nt = PrimeFactor(n + 10)
         cnt = Counter()
@@ -318,7 +318,7 @@ class Solution:
 
     @staticmethod
     def ac_197(ac=FastIO()):
-        # n!阶乘的质因数分解即因子与因子的个数
+        # n!阶乘的质factorization|即因子与因子的个数
         ceil = ac.read_int()
         min_prime = [0] * (ceil + 1)
         #  1 到 ceil 所有数字的最小质数因子
@@ -440,7 +440,7 @@ class Solution:
 
     @staticmethod
     def lg_p8319(ac=FastIO()):
-        # 质因数分解greedy
+        # 质factorization|greedy
         n = 2 * 10 ** 6
         f = [1] * (n + 1)
         prime = [0] * (n + 1)
@@ -591,7 +591,7 @@ class Solution:
 
     @staticmethod
     def ac_4319(ac=FastIO()):
-        # 质因数分解后前缀hashcounter
+        # 质factorization|后prefix_hashcounter
         n, k = ac.read_list_ints()
         a = ac.read_list_ints()
         nt = PrimeFactor(max(a))
@@ -635,7 +635,7 @@ class Solution:
 
     @staticmethod
     def ac_5049(ac=FastIO()):
-        # 质因数分解组合数
+        # 质factorization|组合数
         n, m, h = ac.read_list_ints()
         a = ac.read_list_ints()
         h -= 1

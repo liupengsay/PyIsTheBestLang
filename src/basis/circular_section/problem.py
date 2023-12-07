@@ -1,26 +1,26 @@
 """
-Algorithm：循环节
-Function：通过implemention找出循环节状态
+Algorithm：circular_section
+Function：implemention|hash|list|index|circular_section
 
 ====================================LeetCode====================================
-957（https://leetcode.com/problems/prison-cells-after-n-days/）循环节
-418（https://leetcode.com/problems/sentence-screen-fitting/）循环节
-466（https://leetcode.com/problems/count-the-repetitions/）循环节
-1806（https://leetcode.com/problems/minimum-number-of-operations-to-reinitialize-a-permutation/description/）根据有限状态判断循环节的大小
+957（https://leetcode.com/problems/prison-cells-after-n-days/）circular_section
+418（https://leetcode.com/problems/sentence-screen-fitting/）circular_section
+466（https://leetcode.com/problems/count-the-repetitions/）circular_section
+1806（https://leetcode.com/problems/minimum-number-of-operations-to-reinitialize-a-permutation/description/）circular_section
 
 =====================================LuoGu======================================
-1965（https://www.luogu.com.cn/problem/P1965）循环节
-1532（https://www.luogu.com.cn/problem/P1532）循环节
-2203（https://www.luogu.com.cn/problem/P2203）循环节
-5550（https://www.luogu.com.cn/problem/P5550）循环节也可以矩阵快速幂递推
-7318（https://www.luogu.com.cn/problem/P7318）二维元素，再增|虚拟开始状态，循环节
-7681（https://www.luogu.com.cn/problem/P7681）带prefix_sum的循环节，注意定义循环状态
-1468（https://www.luogu.com.cn/problem/P1468）state_compression求循环节
-6148（https://www.luogu.com.cn/problem/P6148）循环节后implemention
+1965（https://www.luogu.com.cn/problem/P1965）circular_section
+1532（https://www.luogu.com.cn/problem/P1532）circular_section
+2203（https://www.luogu.com.cn/problem/P2203）circular_section
+5550（https://www.luogu.com.cn/problem/P5550）circular_section|matrix_fast_power|dp
+7318（https://www.luogu.com.cn/problem/P7318）circular_section
+7681（https://www.luogu.com.cn/problem/P7681）prefix_sum|circular_section
+1468（https://www.luogu.com.cn/problem/P1468）state_compression|circular_section
+6148（https://www.luogu.com.cn/problem/P6148）circular_section|implemention
 
 ===================================CodeForces===================================
-1342C（https://codeforces.com/problemset/problem/1342/C）循环节counter
-1875B（https://codeforces.com/contest/1875/problem/B）circle section find with hash and list
+1342C（https://codeforces.com/problemset/problem/1342/C）circular_section|counter
+1875B（https://codeforces.com/contest/1875/problem/B）circle_section
 
 """
 from typing import List
@@ -34,7 +34,7 @@ class Solution:
 
     @staticmethod
     def lc_957(cells: List[int], n: int) -> List[int]:
-        # N 天后的牢房循环节
+        # N 天后的牢房circular_section
         def compute_loop(i, j, n):
             # 此时只需k即可，即最后一次的状态
             if j == n:
@@ -57,7 +57,7 @@ class Solution:
                 break
             dct[tuple(cells)] = day
 
-        # 循环节信息
+        # circular_section信息
         i = dct[tuple(cells)]
         j = day
         k = compute_loop(i, j, n)
@@ -65,7 +65,7 @@ class Solution:
 
     @staticmethod
     def lc_1806(n: int) -> int:
-        # 根据有限状态判断循环节的大小
+        # 根据有限状态判断circular_section的大小
         ans = 0
         visit = [0] * n
         for i in range(n):
@@ -86,14 +86,14 @@ class Solution:
 
     @staticmethod
     def lg_p1468(ac=FastIO()):
-        # state_compression求循环节
+        # state_compression求circular_section
         n = ac.read_int()
         op1 = (1 << n) - 1
         op2 = sum(1 << i for i in range(0, n, 2))
         op3 = sum(1 << i for i in range(1, n, 2))
         op4 = sum(1 << i for i in range(0, n, 3))
         stack = [[(1 << n) - 1]]
-        # 所有的操作implemention与循环节
+        # 所有的操作implemention与circular_section
         ans = []
         while stack:
             path = stack.pop()
@@ -125,7 +125,7 @@ class Solution:
 
     @staticmethod
     def lg_p6148(ac=FastIO()):
-        # 循环节后implemention
+        # circular_section后implemention
         n, m, k = ac.read_list_ints()
         nums = [ac.read_list_ints_minus_one() for _ in range(m)]
         nex = [-1] * n
@@ -135,7 +135,7 @@ class Solution:
                 if a <= x <= b:
                     x = a + b - x
             nex[i] = x
-        # 找出循环节
+        # 找出circular_section
         ans = [0] * n
         for i in range(n):
             if ans[i]:

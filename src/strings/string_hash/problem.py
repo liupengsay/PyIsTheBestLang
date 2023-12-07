@@ -1,37 +1,37 @@
 """
-Algorithm：字符串hash、树hash、矩阵hash、树的最小表示法、最长前缀palindrome_substring、最长后缀palindrome_substring
+Algorithm：string_hash、树hash、matrix_hash、树的最小表示法、最长前缀palindrome_substring、最长后缀palindrome_substring
 Function：将一定长度的字符串映射为多项式函数值，并比较或者counter，通常结合sliding_window，注意防止hash碰撞
 
 ====================================LeetCode====================================
-214（https://leetcode.com/problems/shortest-palindrome/）正向与反向字符串hash字符串前缀最长palindrome_substring，也可以用KMP与马拉车
+214（https://leetcode.com/problems/shortest-palindrome/）正向与反向string_hash字符串前缀最长palindrome_substring，也可以用KMP与马拉车
 572（https://leetcode.com/problems/subtree-of-another-tree/）树结构hash
-1044（https://leetcode.com/problems/shortest-palindrome/）利用binary_search|字符串hash确定具有最长长度的重复子串
-1316（https://leetcode.com/problems/shortest-palindrome/）利用字符串hash确定不同循环子串的个数
-2156（https://leetcode.com/problems/find-substring-with-given-hash-value/）逆向字符串hash的
+1044（https://leetcode.com/problems/shortest-palindrome/）利用binary_search|string_hash确定具有最长长度的重复子串
+1316（https://leetcode.com/problems/shortest-palindrome/）利用string_hash确定不同循环子串的个数
+2156（https://leetcode.com/problems/find-substring-with-given-hash-value/）逆向string_hash的
 652（https://leetcode.com/problems/find-duplicate-subtrees/）树hash，确定重复子树
 1554（https://leetcode.com/problems/strings-differ-by-one-character/）字符串prefix_suffixhash求解
 1923（https://leetcode.com/problems/longest-common-subpath/）binary_search|滚动hash
 1948（https://leetcode.com/problems/delete-duplicate-folders-in-system/）字典树与树hash去重
-2261（https://leetcode.com/problems/k-divisible-elements-subarrays/submissions/）字符串hash对数组编码
+2261（https://leetcode.com/problems/k-divisible-elements-subarrays/submissions/）string_hash对数组编码
 
 =====================================LuoGu======================================
-8835（https://www.luogu.com.cn/record/list?user=739032&status=12&page=14）字符串hash或者KMP查找匹配的连续子串
-6140（https://www.luogu.com.cn/problem/P6140）greedyimplemention与lexicographical_order比较，字符串hash与binary_search比较正序与倒序最长公共子串
-2870（https://www.luogu.com.cn/problem/P2870）greedyimplemention与lexicographical_order比较，字符串hash与binary_search比较正序与倒序最长公共子串
-5832（https://www.luogu.com.cn/problem/P5832）可以字符串hash最长的长度使得所有对应长度的子串均是唯一的
-2852（https://www.luogu.com.cn/problem/P2852）binary_search|字符串hash出现超过 k 次的最长连续子数组
-4656（https://www.luogu.com.cn/problem/P4656）字符串hashgreedy选取
-6739（https://www.luogu.com.cn/problem/P6739）prefix_suffix字符串hash
+8835（https://www.luogu.com.cn/record/list?user=739032&status=12&page=14）string_hash或者KMP查找匹配的连续子串
+6140（https://www.luogu.com.cn/problem/P6140）greedyimplemention与lexicographical_order比较，string_hash与binary_search比较正序与reverse_order|最长公共子串
+2870（https://www.luogu.com.cn/problem/P2870）greedyimplemention与lexicographical_order比较，string_hash与binary_search比较正序与reverse_order|最长公共子串
+5832（https://www.luogu.com.cn/problem/P5832）可以string_hash最长的长度使得所有对应长度的子串均是唯一的
+2852（https://www.luogu.com.cn/problem/P2852）binary_search|string_hash出现超过 k 次的最长连续子数组
+4656（https://www.luogu.com.cn/problem/P4656）string_hashgreedy选取
+6739（https://www.luogu.com.cn/problem/P6739）prefix_suffixstring_hash
 
 ===================================CodeForces===================================
 1800D（https://codeforces.com/problemset/problem/1800/D）字符串prefix_suffixhash|和变换
 
 ====================================AtCoder=====================================
-E - Who Says a Pun?（https://atcoder.jp/contests/abc141/tasks/abc141_e）binary_search|字符串hashcheck
+E - Who Says a Pun?（https://atcoder.jp/contests/abc141/tasks/abc141_e）binary_search|string_hashcheck
 
 =====================================AcWing=====================================
-138（https://www.acwing.com/problem/content/140/）字符串hash，子串是否完全相等
-156（https://www.acwing.com/problem/content/description/158/）矩阵hash
+138（https://www.acwing.com/problem/content/140/）string_hash，子串是否完全相等
+156（https://www.acwing.com/problem/content/description/158/）matrix_hash
 157（https://www.acwing.com/problem/content/description/159/）树hash，树的最小表示法
 
 """
@@ -107,7 +107,7 @@ class Solution:
 
     @staticmethod
     def lc_214(s: str) -> str:
-        # 正向与反向字符串hash字符串前缀最长palindrome_substring，也可以用KMP与马拉车
+        # 正向与反向string_hash字符串前缀最长palindrome_substring，也可以用KMP与马拉车
 
         def query(x, y):
             # 字符串区间的hash值，索引从 0 开始
@@ -213,7 +213,7 @@ class Solution:
 
     @staticmethod
     def abc_141e(ac=FastIO()):
-        # binary_search|字符串hashcheck
+        # binary_search|string_hashcheck
         def check(x):
             if x == 0:
                 return True
@@ -236,7 +236,7 @@ class Solution:
     @staticmethod
     def ac_138(ac=FastIO()):
 
-        # 字符串hash，子串是否完全相等
+        # string_hash，子串是否完全相等
         p1 = random.randint(26, 100)
         p2 = random.randint(26, 100)
         mod1 = random.randint(10 ** 9 + 7, 2 ** 31 - 1)
@@ -273,7 +273,7 @@ class Solution:
 
     @staticmethod
     def ac_156(ac=FastIO()):
-        # 二维矩阵hash查找子矩阵是否存在
+        # 二维matrix_hash查找子矩阵是否存在
         m, n, a, b = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
 
@@ -297,7 +297,7 @@ class Solution:
                 for i in range(m - 1, a - 2, -1):
                     col[i + 1][j] = (col[i + 1][j] - col[i - a + 1][j] * pa) % mod
 
-            # 每一个形状为 a*b 的子矩阵hash值
+            # 每一个形状为 a*b 的子matrix_hash值
             pre = set()
             pab = pow(pa, b, mod)  # 注意此时的模数
             for i in range(a - 1, m):
@@ -388,7 +388,7 @@ class Solution:
 
     @staticmethod
     def lc_2851(s: str, t: str, k: int) -> int:
-        # KMP与快速幂转移，也可字符串hash（超时）
+        # KMP与fast_power|转移，也可string_hash（超时）
         mod = 10 ** 9 + 7
         n = len(s)
         sh = StringHash(3 * n + 1, t + "#" + s + s)
@@ -404,7 +404,7 @@ class Solution:
     @staticmethod
     def lg_p2852(ac=FastIO()):
 
-        # 模板；binary_search|字符串hash出现超过 k 次的最长连续子数组
+        # 模板；binary_search|string_hash出现超过 k 次的最长连续子数组
         p1 = random.randint(26, 100)
         p2 = random.randint(26, 100)
         mod1 = random.randint(10 ** 9 + 7, 2 ** 31 - 1)
@@ -432,7 +432,7 @@ class Solution:
 
     @staticmethod
     def lg_p4656(ac=FastIO()):
-        # 字符串hashgreedy选取
+        # string_hashgreedy选取
 
         p1 = random.randint(26, 100)
         p2 = random.randint(26, 100)
@@ -485,7 +485,7 @@ class Solution:
 
     @staticmethod
     def lg_p6739(ac=FastIO()):
-        # prefix_suffix字符串hash
+        # prefix_suffixstring_hash
         n = ac.read_int()
         s = ac.read_str()
         sth = StringHash(n, s)
@@ -616,7 +616,7 @@ class Solution:
 
     @staticmethod
     def lc_2261(nums: List[int], k: int, p: int) -> int:
-        # 字符串hash对数组编码
+        # string_hash对数组编码
         n = len(nums)
         pre = list(accumulate([int(num % p == 0) for num in nums], initial=0))
         p = [random.randint(26, 100), random.randint(26, 100)]
@@ -635,7 +635,7 @@ class Solution:
 
     @staticmethod
     def lc_1104(s: str) -> str:
-        # 利用binary_search|字符串hash确定具有最长长度的重复子串
+        # 利用binary_search|string_hash确定具有最长长度的重复子串
 
         def compute(x):
             pre = set()
@@ -661,7 +661,7 @@ class Solution:
 
     @staticmethod
     def lc_1316(text: str) -> int:
-        # 字符串hash判断循环子串
+        # string_hash判断循环子串
         n = len(text)
         sh = StringHash(n, text)
 

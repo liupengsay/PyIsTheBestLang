@@ -40,7 +40,7 @@ class TreeExpression:
 
         n = len(s)
         cnt = 0
-        # 按照运算符号的优先级倒序遍历字符串
+        # 按照运算符号的优先级reverse_order|遍历字符串
         for i in range(n - 1, -1, -1):
             cnt += int(s[i] == ')') - int(s[i] == '(')
             if s[i] in ['+', '-'] and not cnt:

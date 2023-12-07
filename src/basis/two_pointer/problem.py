@@ -1,5 +1,5 @@
 """
-Algorithm：two_pointer、快慢pointer、先后pointer、桶counter
+Algorithm：two_pointer、快慢pointer、先后pointer、bucket_counter
 Function：通过相对移动，来减少复杂度，分为同向two_pointer，相反two_pointer，以及中心扩展法
 
 
@@ -15,14 +15,14 @@ Function：通过相对移动，来减少复杂度，分为同向two_pointer，�
 16（https://leetcode.com/problems/3sum-closest/）三pointer确定最接近目标值的和
 15（https://leetcode.com/problems/3sum/）寻找三个元素和为 0 的不重复组合
 2422（https://leetcode.com/problems/merge-operations-to-turn-array-into-a-palindrome/）相反方向two_pointergreedy|和
-2524（https://leetcode.com/problems/maximum-frequency-score-of-a-subarray/）sliding_window维护数字数量与幂次取模
+2524（https://leetcode.com/problems/maximum-frequency-score-of-a-subarray/）sliding_window维护数字数量与幂次mod|
 239（https://leetcode.com/problems/sliding-window-maximum/）sliding_window最大值，sliding_window类维护
 2447（https://leetcode.com/problems/number-of-subarrays-with-gcd-equal-to-k/）sliding_window区间 gcd，sliding_window类维护
 6392（https://leetcode.com/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/）sliding_window区间 gcd，sliding_window类维护
 1163（https://leetcode.com/problems/last-substring-in-lexicographical-order/）类似最小表示法的two_pointer
 2555（https://leetcode.com/problems/maximize-win-from-two-segments/description/）同向two_pointer|线性DP
 992（https://leetcode.com/problems/subarrays-with-k-different-integers/）三pointer，即快慢two_pointer维护连续子区间个数
-2747（https://leetcode.com/problems/count-zero-request-servers/）离线查询与三pointer，即快慢two_pointer维护连续区间的不同值个数
+2747（https://leetcode.com/problems/count-zero-request-servers/）offline_query与三pointer，即快慢two_pointer维护连续区间的不同值个数
 2516（https://leetcode.com/problems/take-k-of-each-character-from-left-and-right/）reverse_thinkinginclusion_exclusiontwo_pointer
 1537（https://leetcode.com/problems/get-the-maximum-score/description/）two_pointer|线性DP或者拓扑sorting做
 1712（https://leetcode.com/problems/ways-to-split-array-into-three-subarrays/description/）三pointer，即快慢two_pointer维护满足条件的分割点个数
@@ -35,7 +35,7 @@ Function：通过相对移动，来减少复杂度，分为同向two_pointer，�
 3662（https://www.luogu.com.cn/problem/P3662）滑动子数组和
 4995（https://www.luogu.com.cn/problem/P4995）sorting后利用greedy与two_pointerimplemention
 2207（https://www.luogu.com.cn/problem/P2207）greedy|同向two_pointer
-7542（https://www.luogu.com.cn/problem/P7542）桶counter|two_pointer
+7542（https://www.luogu.com.cn/problem/P7542）bucket_counter|two_pointer
 4653（https://www.luogu.com.cn/problem/P4653）greedysorting后two_pointer
 3029（https://www.luogu.com.cn/problem/P3029）two_pointer记录包含k个不同颜色的最短连续子序列
 5583（https://www.luogu.com.cn/problem/P5583）two_pointer
@@ -208,7 +208,7 @@ class Solution:
 
     @staticmethod
     def lc_2747(n: int, logs: List[List[int]], x: int, queries: List[int]) -> List[int]:
-        # 离线查询与三pointer，即快慢two_pointer维护连续区间的不同值个数
+        # offline_query与三pointer，即快慢two_pointer维护连续区间的不同值个数
         m = len(queries)
         ans = [0] * m
         ind = list(range(m))

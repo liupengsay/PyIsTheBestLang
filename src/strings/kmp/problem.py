@@ -9,7 +9,7 @@ Function：用来处理字符串的前缀后缀相关问题
 1392（https://leetcode.com/problems/longest-happy-prefix/）最长的公共prefix_suffix，KMP与Z函数模板题
 2223（https://leetcode.com/problems/longest-happy-prefix/）利用扩展KMPZ函数
 6918（https://leetcode.com/problems/shortest-string-that-contains-three-strings/）kmp求字符串之间的最长公共prefix_suffix，greedy拼接
-2851（https://leetcode.com/problems/string-transformation/description/）KMP与快速幂转移，也可字符串hash
+2851（https://leetcode.com/problems/string-transformation/description/）KMP与fast_power|转移，也可string_hash
 
 =====================================LuoGu======================================
 3375（https://www.luogu.com.cn/problem/P3375）子字符串出现的位置，与最长公共prefix_suffix的子字符串长度
@@ -22,7 +22,7 @@ Function：用来处理字符串的前缀后缀相关问题
 
 =====================================AcWing=====================================
 
-141（https://www.acwing.com/problem/content/143/）利用KMP求每个字符串前缀的最小循环节
+141（https://www.acwing.com/problem/content/143/）利用KMP求每个字符串前缀的最小circular_section
 160（https://www.acwing.com/problem/content/162/）z函数模板题
 3823（https://www.acwing.com/problem/content/3826/）KMP与扩展KMP即z函数应用模板题
 
@@ -122,7 +122,7 @@ class Solution:
 
     @staticmethod
     def cf_432d(ac=FastIO()):
-        # z函数与kmp算法共同，并倒序counter
+        # z函数与kmp算法共同，并reverse_order|counter
         s = ac.read_str()
 
         n = len(s)
@@ -149,7 +149,7 @@ class Solution:
 
     @staticmethod
     def ac_141(ac=FastIO()):
-        # 利用KMP求每个字符串前缀的最小循环节
+        # 利用KMP求每个字符串前缀的最小circular_section
         ind = 0
         while True:
             n = ac.read_int()
@@ -229,7 +229,7 @@ class Solution:
 
     @staticmethod
     def lc_2851(s: str, t: str, k: int) -> int:
-        # KMP与快速幂转移，也可字符串hash
+        # KMP与fast_power|转移，也可string_hash
         n = len(s)
         mod = 10 ** 9 + 7
         kmp = KMP()

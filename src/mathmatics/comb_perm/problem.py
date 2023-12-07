@@ -9,7 +9,7 @@ Lucas定理（comb(n, m)%p = comb(n%p, m%p)*comb(n//p, m//p)）%p
 95（https://leetcode.com/problems/unique-binary-search-trees/）卡特兰数思想递归，生成specific_plan
 634（https://leetcode.com/problems/find-the-derangement-of-an-array/）错位排列counter动态规划转移
 1259（https://leetcode.com/problems/handshakes-that-dont-cross/）卡特兰数
-2338（https://leetcode.com/problems/count-the-number-of-ideal-arrays/）隔板法与因数分解组合方案数求解
+2338（https://leetcode.com/problems/count-the-number-of-ideal-arrays/）隔板法与factorization|组合方案数求解
 1735（https://leetcode.com/problems/count-ways-to-make-array-with-product/）质数分解与隔板法应用
 1621（https://leetcode.com/problems/number-of-sets-of-k-non-overlapping-line-segments/）类似隔板法的思想
 1866（https://leetcode.com/problems/number-of-ways-to-rearrange-sticks-with-k-sticks-visible/）第一类斯特林数
@@ -21,13 +21,13 @@ D - Blue and Red Balls（https://atcoder.jp/contests/abc132/tasks/abc132_d）组
 1287（https://www.luogu.com.cn/problem/P1287）第二类斯特林数形式的DP，以及全排列数
 1375（https://www.luogu.com.cn/problem/P1375）卡特兰数
 1754（https://www.luogu.com.cn/problem/P1754）卡特兰数
-2193（https://www.luogu.com.cn/problem/P2193）隔板法与因数分解组合方案数求解
-1338（https://www.luogu.com.cn/problem/P1338）brute_force满足个数的逆序对排列，即找特定逆序对个数的最小排列
+2193（https://www.luogu.com.cn/problem/P2193）隔板法与factorization|组合方案数求解
+1338（https://www.luogu.com.cn/problem/P1338）brute_force满足个数的reverse_pair|排列，即找特定reverse_pair|个数的最小排列
 1313（https://www.luogu.com.cn/problem/P1313）二项式展开的系数
 1061（https://www.luogu.com.cn/problem/P1061）implemention下一个lexicographical_order排列
-3197（https://www.luogu.com.cn/problem/P3197）counter快速幂|inclusion_exclusion
-3414（https://www.luogu.com.cn/problem/P3414）组合数奇偶对半开，快速幂
-4369（https://www.luogu.com.cn/problem/P4369）brain_teaser组合数|和构造
+3197（https://www.luogu.com.cn/problem/P3197）counterfast_power||inclusion_exclusion
+3414（https://www.luogu.com.cn/problem/P3414）组合数奇偶对半开，fast_power|
+4369（https://www.luogu.com.cn/problem/P4369）brain_teaser组合数|和construction
 5520（https://www.luogu.com.cn/problem/P5520）隔板法组合数
 3807（https://www.luogu.com.cn/problem/P3807）卢卡斯模板题
 1044（https://www.luogu.com.cn/problem/P1044）卡特兰数
@@ -43,7 +43,7 @@ D - Blue and Red Balls（https://atcoder.jp/contests/abc132/tasks/abc132_d）组
 6057（https://www.luogu.com.cn/problem/P6057）inclusion_exclusioncounter
 
 ===================================CodeForces===================================
-1795D（https://codeforces.com/problemset/problem/1795/D）组合counter取模与乘法逆元快速
+1795D（https://codeforces.com/problemset/problem/1795/D）组合countermod|与乘法逆元快速
 300C（https://codeforces.com/problemset/problem/300/C）brute_force个数并组合数方案数
 559C（https://codeforces.com/problemset/problem/559/C）inclusion_exclusion组合counter
 1436C（https://codeforces.com/problemset/problem/1436/C）binary_search|组合数
@@ -54,14 +54,14 @@ D - Blue and Red Balls（https://atcoder.jp/contests/abc132/tasks/abc132_d）组
 ====================================AtCoder=====================================
 D - Iroha and a Grid（https://atcoder.jp/contests/abc042/tasks/arc058_b）inclusion_exclusion组合counter
 D - 11（https://atcoder.jp/contests/abc066/tasks/arc077_b）inclusion_exclusion组合counter
-D - Factorization（https://atcoder.jp/contests/abc110/tasks/abc110_d）质因数分解与隔板法counter
+D - Factorization（https://atcoder.jp/contests/abc110/tasks/abc110_d）质factorization|与隔板法counter
 E - Cell Distance（https://atcoder.jp/contests/abc127/tasks/abc127_e）contribution_method组合counter
 
 =====================================AcWing=====================================
 130（https://www.acwing.com/problem/content/132/）超大数字的卡特兰数
 4002（https://www.acwing.com/problem/content/4005/）matrix_dp转换为隔板法求解
 4496（https://www.acwing.com/problem/content/4499/）隔板法counter
-5055（https://www.acwing.com/problem/content/5058/）组合math取模求解
+5055（https://www.acwing.com/problem/content/5058/）组合mathmod|求解
 
 
 卡特兰数（https://oi-wiki.org/math/combinatorics/catalan/）
@@ -83,7 +83,7 @@ class Solution:
 
     @staticmethod
     def abc_110d(ac=FastIO()):
-        # 质因数分解与隔板法counter
+        # 质factorization|与隔板法counter
         n, m = ac.read_list_ints()
         mod = 10 ** 9 + 7
         cb = Combinatorics(n + 100, mod)  # 注意这里会超出n
@@ -191,7 +191,7 @@ class Solution:
         # 类似题目也有长为 2n 合法的括号匹配数 h(n) = h(n-1)*(4*n-2)//(n+1)
         # 也可以 h(n) = math.comb(2*n, n)//(n+1) 求解
         ans = math.comb(2 * n, n) - math.comb(2 * n, n - 1)
-        assert ans == math.comb(2 * n, n) // (n + 1)  # 不需要取模时可以直接用这个
+        assert ans == math.comb(2 * n, n) // (n + 1)  # 不需要mod|时可以直接用这个
         ac.st(ans)
         return
 
@@ -636,7 +636,7 @@ class Solution:
 
     @staticmethod
     def ac_5055(ac=FastIO()):
-        # 组合math取模求解
+        # 组合mathmod|求解
         mod = 10 ** 9 + 7
         n, m, k = ac.read_list_ints()
         cb = Combinatorics(m + n, mod)

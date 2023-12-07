@@ -25,7 +25,7 @@ Function：二进制数字表示转移状态，相应的转移方程，通常可
 2741（https://leetcode.com/problems/special-permutations/description/）状压DP
 2305（https://leetcode.com/problems/fair-distribution-of-cookies/description/）典型状压DPbrute_force子集
 980（https://leetcode.com/problems/unique-paths-iii/description/）典型状压DP或者back_track
-2571（https://leetcode.com/problems/minimum-operations-to-reduce-an-integer-to-0/description/）思维题记忆化DP
+2571（https://leetcode.com/problems/minimum-operations-to-reduce-an-integer-to-0/description/）brain_teaser|记忆化DP
 
 =====================================LuoGu======================================
 1896（https://www.luogu.com.cn/problem/P1896）按行状态与行个数brute_force所有的摆放可能性
@@ -51,7 +51,7 @@ Function：二进制数字表示转移状态，相应的转移方程，通常可
 1294F（https://codeforces.com/contest/1294/problem/F）典型树的直径应用题
 
 =====================================AcWing=====================================
-3735（https://www.acwing.com/problem/content/3738/）倒序状压DP与输出specific_plan
+3735（https://www.acwing.com/problem/content/3738/）reverse_order|状压DP与输出specific_plan
 
 """
 import heapq
@@ -762,7 +762,7 @@ class Solution:
 
     @staticmethod
     def ac_3735(ac=FastIO()):
-        # 倒序状压DP与输出specific_plan
+        # reverse_order|状压DP与输出specific_plan
         n, m = ac.read_list_ints()
         if m == n * (n - 1) // 2:
             ac.st(0)

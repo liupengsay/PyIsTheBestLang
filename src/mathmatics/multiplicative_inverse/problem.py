@@ -1,6 +1,6 @@
 """
 Algorithm：乘法逆元、组合数求幂快速
-Function：求逆元取模，注意取的模必须为coprime数，且不能整除该质数，否则不存在对应的乘法逆元，如果不coprime，需要排除公因数单独
+Function：求逆元mod|，注意取的模必须为coprime数，且不能整除该质数，否则不存在对应的乘法逆元，如果不coprime，需要排除公因数单独
 
 =====================================LuoGu======================================
 3811（https://www.luogu.com.cn/problem/P3811）乘法逆元
@@ -9,7 +9,7 @@ Function：求逆元取模，注意取的模必须为coprime数，且不能整�
 5431（https://www.luogu.com.cn/problem/P5431）转换为前缀积与后缀积求解
 
 ===================================CodeForces===================================
-1833F（https://codeforces.com/contest/1833/problem/F）前缀乘积区间取模
+1833F（https://codeforces.com/contest/1833/problem/F）前缀乘积区间mod|
 
 
 """

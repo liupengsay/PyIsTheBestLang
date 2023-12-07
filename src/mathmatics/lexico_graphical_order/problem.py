@@ -5,7 +5,7 @@ Function：lexicographical_order第K小和某个对象的lexicographical_orderra
 ====================================LeetCode====================================
 60（https://leetcode.com/problems/permutation-sequence/）全排列的第 k 个排列
 440（https://leetcode.com/problems/k-th-smallest-in-lexicographical-order/）面试题十叉树求解
-1415（https://leetcode.com/problems/the-k-th-lexicographical-string-of-all-happy-strings-of-length-n/）类似思路lexicographical_order构造
+1415（https://leetcode.com/problems/the-k-th-lexicographical-string-of-all-happy-strings-of-length-n/）类似思路lexicographical_orderconstruction
 1643（https://leetcode.com/problems/kth-smallest-instructions/）根据lexicographical_order处理
 1830（https://leetcode.com/problems/minimum-number-of-operations-to-make-string-sorted/）字符串的lexicographical_order rank，也可以反向rank的lexicographical_order
 1842（https://leetcode.com/problems/next-palindrome-using-same-digits/）lexicographical_ordergreedy
@@ -13,7 +13,7 @@ Function：lexicographical_order第K小和某个对象的lexicographical_orderra
 
 =====================================LuoGu======================================
 1243（https://www.luogu.com.cn/problem/P1243）求出第K小的子集
-1338（https://www.luogu.com.cn/problem/P1338）结合逆序对counter的lexicographical_order
+1338（https://www.luogu.com.cn/problem/P1338）结合reverse_pair|counter的lexicographical_order
 
 2524（https://www.luogu.com.cn/problem/P2524）全排列的lexicographical_order排名
 2525（https://www.luogu.com.cn/problem/P2525）全排列的上一个排列

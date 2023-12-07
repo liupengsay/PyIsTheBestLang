@@ -1412,10 +1412,10 @@ class SegmentTreeRangeUpdateMulQuerySum:
 
 class SegmentTreePointUpdateRangeMulQuery:
     def __init__(self, n, mod) -> None:
-        # 单点值修改、区间乘取模
+        # 单点值修改、区间乘mod|
         self.n = n
         self.mod = mod
-        self.cover = [1] * (4 * self.n)  # 区间乘积取模
+        self.cover = [1] * (4 * self.n)  # 区间乘积mod|
         return
 
     def update(self, left: int, right: int, s: int, t: int, val: int, i: int) -> None:

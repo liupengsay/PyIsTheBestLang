@@ -1,7 +1,7 @@
 """
 
 Algorithm：栈、RBS（合法括号子序列）
-Function：implemention题中常见，如括号之类的，后进先出，升级版应用有单调栈、最大栈和最小栈
+Function：implemention题中常见，如括号之类的，后进先出，升级版应用有monotonic_stack|、最大栈和最小栈
 
 ====================================LeetCode====================================
 2197（https://leetcode.com/problems/replace-non-coprime-numbers-in-array/）结合math栈implemention
@@ -10,7 +10,7 @@ Function：implemention题中常见，如括号之类的，后进先出，升级
 2116（https://leetcode.com/problems/check-if-a-parentheses-string-can-be-valid/）栈greedy匹配括号
 857（https://leetcode.com/problems/minimum-cost-to-hire-k-workers/）greedysortingbrute_force，堆维护K个最小值的和
 2542（https://leetcode.com/problems/maximum-subsequence-score/）sorting后brute_force堆维护K最大的和，类似LC857
-2813（https://leetcode.com/problems/maximum-elegance-of-a-k-length-subsequence/）思维题sorting后brute_force，维护长度为K的子序列最大函数值
+2813（https://leetcode.com/problems/maximum-elegance-of-a-k-length-subsequence/）brain_teaser|sorting后brute_force，维护长度为K的子序列最大函数值
 2462（https://leetcode.com/problems/total-cost-to-hire-k-workers/）堆greedyimplemention
 1705（https://leetcode.com/problems/maximum-number-of-eaten-apples/）堆greedyimplemention
 1750（https://leetcode.com/problems/minimum-length-of-string-after-deleting-similar-ends/description/）栈implemention
@@ -39,7 +39,7 @@ D - 3N Numbers（https://atcoder.jp/contests/abc062/tasks/arc074_b）堆与prefi
 129（https://www.acwing.com/problem/content/131/）卡特兰数，栈implemention判定出栈入栈合法性
 132（https://www.acwing.com/problem/content/134/）双端队列依次出队入队
 4865（https://www.acwing.com/problem/content/4868/）栈implemention
-5136（https://www.acwing.com/problem/content/description/5139/）栈倒序implemention
+5136（https://www.acwing.com/problem/content/description/5139/）栈reverse_order|implemention
 
 """
 import heapq
@@ -118,7 +118,7 @@ class Solution:
 
     @staticmethod
     def lc_2813(items: List[List[int]], k: int) -> int:
-        # 思维题sorting后brute_force，维护长度为k的子序列最大函数值
+        # brain_teaser|sorting后brute_force，维护长度为k的子序列最大函数值
         items.sort(reverse=True)
         ans = cnt = pre = tp = 0
         dct = defaultdict(list)
@@ -461,7 +461,7 @@ class Solution:
 
     @staticmethod
     def ac_5136(ac=FastIO()):
-        # 栈倒序implemention
+        # 栈reverse_order|implemention
         s = ac.read_str()
         n = len(s)
         ans = [0] * n

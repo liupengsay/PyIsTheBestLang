@@ -77,7 +77,7 @@ class Solution:
     @staticmethod
     def lc_2454_2(nums: List[int]) -> List[int]:
 
-        # 单调栈|小顶堆
+        # monotonic_stack||小顶堆
         n = len(nums)
         ans = [-1] * n
         mono_stack = []
@@ -481,7 +481,7 @@ class Solution:
             else:
                 nums[i] = -nums[i]
         nums.sort()
-        # 思维题，类似Dijkstra的思想从大到小brute_force子序列的和
+        # brain_teaser|，类似Dijkstra的思想从大到小brute_force子序列的和
         stack = [[nums[0], 0]]
         for _ in range(k - 1):
             pre, i = heappop(stack)

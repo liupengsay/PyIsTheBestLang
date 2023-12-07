@@ -13,7 +13,7 @@ Function：确定最优选择，通常可以SortedList用于维护和查询sorte
 2519（https://leetcode.com/problems/count-the-number-of-k-big-indices/）sorted_list维护数量
 1912（https://leetcode.com/problems/design-movie-rental-system/）典型SortedList应用
 1825（https://leetcode.com/problems/finding-mk-average/）SortedList与deque应用
-2250（https://leetcode.com/problems/count-number-of-rectangles-containing-each-point/）离线查询，pointersortingbinary_search
+2250（https://leetcode.com/problems/count-number-of-rectangles-containing-each-point/）offline_query，pointersortingbinary_search
 2426（https://leetcode.com/problems/number-of-pairs-satisfying-inequality/）根据不等式变换和sorted_listbinary_search
 
 =====================================LuoGu======================================
@@ -21,15 +21,15 @@ Function：确定最优选择，通常可以SortedList用于维护和查询sorte
 7391（https://www.luogu.com.cn/problem/P7391）sorted_listgreedyimplemention，延迟替换，类似课程表3
 7910（https://www.luogu.com.cn/problem/P7910）sorted_list维护
 4375（https://www.luogu.com.cn/problem/P4375）冒泡sorting，sorted_list维护
-1908（https://www.luogu.com.cn/problem/P1908）问题求逆序对，可以归并sorting
-1966（https://www.luogu.com.cn/problem/P1966）逆序对greedy题目
-2161（https://www.luogu.com.cn/problem/P2161）区间合并与删除处理
+1908（https://www.luogu.com.cn/problem/P1908）问题求reverse_pair|，可以归并sorting
+1966（https://www.luogu.com.cn/problem/P1966）reverse_pair|greedy题目
+2161（https://www.luogu.com.cn/problem/P2161）range_merge与删除处理
 1637（https://www.luogu.com.cn/problem/P1637）典型STL应用题，prefix_suffix大小值counter
 2234（https://www.luogu.com.cn/problem/P2234）典型STL应用题
 2804（https://www.luogu.com.cn/problem/P2804）prefix_sum| STL 平均值大于 m 的连续子数组个数
 3608（https://www.luogu.com.cn/problem/P3608）典型STL应用题
 5076（https://www.luogu.com.cn/problem/P5076）sorted_list与sorted_list名次implemention
-5149（https://www.luogu.com.cn/problem/P5149）逆序对 bisect 实现
+5149（https://www.luogu.com.cn/problem/P5149）reverse_pair| bisect 实现
 5459（https://www.luogu.com.cn/problem/P5459）prefix_sum与sorted_listbinary_search
 6538（https://www.luogu.com.cn/problem/P6538）典型STL维护greedy
 7912（https://www.luogu.com.cn/problem/P7912） STL 应用implemention题
@@ -117,7 +117,7 @@ class Solution:
 
     @staticmethod
     def lc_2426(nums1: List[int], nums2: List[int], diff: int) -> int:
-        # 公式变换与sorted_listbinary_searchcounter
+        # math|与sorted_listbinary_searchcounter
         n = len(nums1)
         ans = 0
         lst = SortedList([nums1[n - 1] - nums2[n - 1] + diff])
@@ -129,7 +129,7 @@ class Solution:
 
     @staticmethod
     def lg_1966(ac=FastIO()):
-        # 逆序对greedy题目
+        # reverse_pair|greedy题目
         n = ac.read_int()
         ans = 0
         mod = 10 ** 8 - 3
@@ -270,7 +270,7 @@ class Solution:
 
     @staticmethod
     def lg_p5149(ac=FastIO()):
-        # 逆序对 bisect 实现
+        # reverse_pair| bisect 实现
         ac.read_int()
         lst = ac.read_list_strs()
         ind = {st: i for i, st in enumerate(lst)}

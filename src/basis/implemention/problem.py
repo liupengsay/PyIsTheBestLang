@@ -1,72 +1,72 @@
 """
-Algorithm：implemention、implemention、大implemention
-Function：根据题意implemention，有implemention结论约瑟夫环问题
+Algorithm：implemention|big_implemention
+Function：implemention|joseph_ring
 
 ====================================LeetCode====================================
-2296（https://leetcode.com/problems/design-a-text-editor/）pointer维护结果implemention
-54（https://leetcode.com/problems/spiral-matrix/）https://leetcode.com/problems/spiral-matrix/ 两种方式，数字到索引，以及索引到数字
-59（https://leetcode.com/problems/spiral-matrix-ii/）
-2326（https://leetcode.com/problems/spiral-matrix-iv/）
-剑指 Offer 62（https://leetcode.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/）约瑟夫环
-2534（https://leetcode.com/problems/time-taken-to-cross-the-door/）根据题意implemention
-460（https://leetcode.com/problems/lfu-cache/）OrderDict应用与数据结构自定义题目
-146（https://leetcode.com/problems/lru-cache/）OrderDict应用与数据结构自定义题目
-2534（https://leetcode.com/problems/time-taken-to-cross-the-door/）按照时间与题意implemention
-1823（https://leetcode.com/contest/weekly-contest-236/problems/find-the-winner-of-the-circular-game/）约瑟夫环
-927（https://leetcode.com/problems/three-equal-parts/description/）根据二进制特点确定三部分是否相等
-1599（https://leetcode.com/problems/maximum-profit-of-operating-a-centennial-wheel/description/）典型implemention题brute_force
-2295（https://leetcode.com/problems/replace-elements-in-an-array/description/）逆序思维，或者类似链表思想
-1914（https://leetcode.com/problems/cyclically-rotating-a-grid/description/）pointer循环implemention
-1834（https://leetcode.com/contest/weekly-contest-237/problems/single-threaded-cpu/）堆和pointerimplemention
+2296（https://leetcode.com/problems/design-a-text-editor/）pointer|implemention
+54（https://leetcode.com/problems/spiral-matrix/）num_to_pos|pos_to_num|matrix_spiral
+59（https://leetcode.com/problems/spiral-matrix-ii/）num_to_pos|pos_to_num|matrix_spiral
+2326（https://leetcode.com/problems/spiral-matrix-iv/）num_to_pos|pos_to_num|matrix_spiral
+62（https://leetcode.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/）joseph_ring|
+2534（https://leetcode.com/problems/time-taken-to-cross-the-door/）implemention
+460（https://leetcode.com/problems/lfu-cache/）order_dict|lfu
+146（https://leetcode.com/problems/lru-cache/）order_dict|lru
+2534（https://leetcode.com/problems/time-taken-to-cross-the-door/）implemention
+1823（https://leetcode.cn/problems/find-the-winner-of-the-circular-game/）joseph_ring
+927（https://leetcode.com/problems/three-equal-parts/description/）base|bin|implemention
+1599（https://leetcode.com/problems/maximum-profit-of-operating-a-centennial-wheel/）implemention|brute_force
+2295（https://leetcode.com/problems/replace-elements-in-an-array/description/）reverse_thinking|linked_list
+1914（https://leetcode.com/problems/cyclically-rotating-a-grid/description/）pointer|circular|implemention
+1834（https://leetcode.com/contest/weekly-contest-237/problems/single-threaded-cpu/）heapq|pointer|implemention
 
 =====================================LuoGu======================================
-1815（https://www.luogu.com.cn/problem/P1815）implemention类似贪吃蛇的移动
-1538（https://www.luogu.com.cn/problem/P1538）implemention数字文本的打印
-1535（https://www.luogu.com.cn/problem/P1535）动态规划implementioncounter
-2239（https://www.luogu.com.cn/problem/P2239）implementionmatrix_spiral的赋值
-2338（https://www.luogu.com.cn/problem/P2338）按照题意时间与距离的implemention
-2366（https://www.luogu.com.cn/problem/P2366）字符串implemention与变量赋值
-2552（https://www.luogu.com.cn/problem/P2552）矩阵赋值implemention
-2696（https://www.luogu.com.cn/problem/P2696）约瑟夫环implemention与差分
-1234（https://www.luogu.com.cn/problem/P1234）矩阵每个点四个方向特定长为4的单词个数
-1166（https://www.luogu.com.cn/problem/P1166）按照题意复杂的implemention题
-1076（https://www.luogu.com.cn/problem/P1076）implemention操作即可
-8924（https://www.luogu.com.cn/problem/P8924）implemention的同时进制的思想求解
-8889（https://www.luogu.com.cn/problem/P8889）01序列分段counter
-8870（https://www.luogu.com.cn/problem/P8870）按照进制|法implemention
-3880（https://www.luogu.com.cn/problem/P3880）按照题意implemention|密字符串
-3111（https://www.luogu.com.cn/problem/P3111）reverse_thinking行进距离implemention分组，类似力扣车队题目
-4346（https://www.luogu.com.cn/problem/P4346）implemention数字与字符串的转换与|减
-5079（https://www.luogu.com.cn/problem/P5079）字符串implemention
-5483（https://www.luogu.com.cn/problem/P5483）implemention表格拼接
-5587（https://www.luogu.com.cn/problem/P5587）按照题意implemention统计
-5759（https://www.luogu.com.cn/problem/P5759）按照题意implemention统计，将除法转换为乘法避免引起精度问题的处理技巧
-5989（https://www.luogu.com.cn/problem/P5989）implementioncounter确定每个点左右角上方移除点的个数
-5995（https://www.luogu.com.cn/problem/P5995）动态implemention更新结果
-6264（https://www.luogu.com.cn/problem/P6264）implemention和循环判断
-6282（https://www.luogu.com.cn/problem/P6282）reverse_thinking，倒序分配implemention
-6410（https://www.luogu.com.cn/problem/P6410）按照题意和数独问题implemention
-6480（https://www.luogu.com.cn/problem/P6480）implemention摆放位置counter
-7186（https://www.luogu.com.cn/problem/P7186）brain_teaser，有限数据与作用域implemention
-7338（https://www.luogu.com.cn/problem/P7338）greedyimplemention赋值
-2129（https://www.luogu.com.cn/problem/P2129）栈和pointerimplemention
-3407（https://www.luogu.com.cn/problem/P3407）implemention移动与相遇
-5329（https://www.luogu.com.cn/problem/P5329）lexicographical_order应用题，依据相邻项的lexicographical_order大小来确认sorting
-6397（https://www.luogu.com.cn/problem/P6397）greedyimplemention
-8247（https://www.luogu.com.cn/problem/P8247）implemention按照相对位置比例区分
-8611（https://www.luogu.com.cn/problem/P8611）蚂蚁碰撞implementionclassification_discussion
-8755（https://www.luogu.com.cn/problem/P8755）二叉堆implemention
-9023（https://www.luogu.com.cn/problem/P9023）矩阵翻转implementioncounter
-8898（https://www.luogu.com.cn/problem/P8898）greedyimplemention
-8895（https://www.luogu.com.cn/problem/P8895）implemention与组合counter
-8884（https://www.luogu.com.cn/problem/P8884）分矩阵位置的奇偶性讨论
-8873（https://www.luogu.com.cn/problem/P8873）等差数列
+1815（https://www.luogu.com.cn/problem/P1815）implemention
+1538（https://www.luogu.com.cn/problem/P1538）implemention
+1535（https://www.luogu.com.cn/problem/P1535）dp|implemention|counter
+2239（https://www.luogu.com.cn/problem/P2239）implemention|matrix_spiral
+2338（https://www.luogu.com.cn/problem/P2338）implemention
+2366（https://www.luogu.com.cn/problem/P2366）implemention
+2552（https://www.luogu.com.cn/problem/P2552）implemention
+2696（https://www.luogu.com.cn/problem/P2696）joseph_ring|implemention|diff_array
+1234（https://www.luogu.com.cn/problem/P1234）implemention
+1166（https://www.luogu.com.cn/problem/P1166）implemention
+1076（https://www.luogu.com.cn/problem/P1076）implemention
+8924（https://www.luogu.com.cn/problem/P8924）implemention|base
+8889（https://www.luogu.com.cn/problem/P8889）counter
+8870（https://www.luogu.com.cn/problem/P8870）base|implemention
+3880（https://www.luogu.com.cn/problem/P3880）implemention
+3111（https://www.luogu.com.cn/problem/P3111）reverse_thinking|implemention
+4346（https://www.luogu.com.cn/problem/P4346）implemention
+5079（https://www.luogu.com.cn/problem/P5079）string|implemention
+5483（https://www.luogu.com.cn/problem/P5483）implemention
+5587（https://www.luogu.com.cn/problem/P5587）implemention
+5759（https://www.luogu.com.cn/problem/P5759）implemention|high_precision|division_to_multiplication
+5989（https://www.luogu.com.cn/problem/P5989）implemention|counter
+5995（https://www.luogu.com.cn/problem/P5995）implemention
+6264（https://www.luogu.com.cn/problem/P6264）implemention
+6282（https://www.luogu.com.cn/problem/P6282）reverse_thinking|reverse_order|implemention
+6410（https://www.luogu.com.cn/problem/P6410）implemention
+6480（https://www.luogu.com.cn/problem/P6480）implemention|counter
+7186（https://www.luogu.com.cn/problem/P7186）brain_teaser|action_scope|implemention
+7338（https://www.luogu.com.cn/problem/P7338）greedy|implemention
+2129（https://www.luogu.com.cn/problem/P2129）stack|pointer|implemention
+3407（https://www.luogu.com.cn/problem/P3407）implemention
+5329（https://www.luogu.com.cn/problem/P5329）lexicographical_order|lexicographical_order|sorting
+6397（https://www.luogu.com.cn/problem/P6397）greedy|implemention
+8247（https://www.luogu.com.cn/problem/P8247）implemention
+8611（https://www.luogu.com.cn/problem/P8611）implemention|classification_discussion
+8755（https://www.luogu.com.cn/problem/P8755）heapq|implemention
+9023（https://www.luogu.com.cn/problem/P9023）matrix_rotate|implemention|counter
+8898（https://www.luogu.com.cn/problem/P8898）greedy|implemention
+8895（https://www.luogu.com.cn/problem/P8895）implemention|counter
+8884（https://www.luogu.com.cn/problem/P8884）classification_discussion|odd_even
+8873（https://www.luogu.com.cn/problem/P8873）math|arithmetic_sequence
 
 ===================================CodeForces===================================
-463C（https://codeforces.com/problemset/problem/463/C）选取两组互不相交的主副对角线使得和最大
+463C（https://codeforces.com/problemset/problem/463/C）diagonal|matrix
 
 =====================================AcWing=====================================
-4318（https://www.acwing.com/problem/content/description/4321/）hashgreedyimplemention构造
+4318（https://www.acwing.com/problem/content/description/4321/）hash|greedy|implemention|construction
 
 
 """
@@ -84,7 +84,7 @@ class Solution:
 
     @staticmethod
     def lc_1823(n: int, m: int) -> int:
-        # 模板: 约瑟夫环最后的幸存者
+        # 模板: joseph_ring|最后的幸存者
         return SpiralMatrix.joseph_ring(n, m) + 1
 
     @staticmethod
@@ -378,7 +378,7 @@ class Solution:
 
     @staticmethod
     def lg_p8884(ac=FastIO()):
-        # 分矩阵位置的奇偶性讨论
+        # 分矩阵位置的odd_even讨论
         n, m, c = ac.read_list_ints()
         cnt = [0, 0]
         for _ in range(c):
@@ -427,7 +427,7 @@ class Solution:
 
     @staticmethod
     def ac_4318(ac=FastIO()):
-        # hashgreedyimplemention构造
+        # hashgreedyimplementionconstruction
         x = y = 0
         ind = dict()
         ind["U"] = [-1, 0]

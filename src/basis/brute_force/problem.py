@@ -58,81 +58,81 @@ Function：brute force according to the data range
 3142（https://www.luogu.com.cn/problem/P3142）brute_force
 3143（https://www.luogu.com.cn/problem/P3143）brute_force|prefix_suffix
 3670（https://www.luogu.com.cn/problem/P3670）hash|brute_force|counter
-3799（https://www.luogu.com.cn/problem/P3799）brute_force正三角形的木棒边长
-3910（https://www.luogu.com.cn/problem/P3910）结合因数分解brute_force可行的连续数组和为目标数字
-4086（https://www.luogu.com.cn/problem/P4086）利用后缀倒序brute_force
-4596（https://www.luogu.com.cn/problem/P4596）brute_force可行的正方形单词与方案数
-4759（https://www.luogu.com.cn/problem/P4759）结合因数分解brute_force可行的连续数组和为目标数字
-6267（https://www.luogu.com.cn/problem/P6267）结合因数分解brute_force可行的连续数组和为目标数字
-5077（https://www.luogu.com.cn/problem/P5077）结合因数分解brute_force可行的连续数组和为目标数字
-4960（https://www.luogu.com.cn/problem/P4960）按照题意implementionbrute_force
-4994（https://www.luogu.com.cn/problem/P4994）implemention，皮萨诺周期可以证明pi(n)<=6n
-5190（https://www.luogu.com.cn/problem/P5190）埃氏筛的思想counter与prefix_sum查询，复杂度为harmonic_progressionO(nlogn)
-5614（https://www.luogu.com.cn/problem/P5614）根据题意brute_force其中两个数，满足条件的另一个数的个数
-6014（https://www.luogu.com.cn/problem/P6014）hash整体取模与每个单个数字确定互补取模counter
-6067（https://www.luogu.com.cn/problem/P6067）sorting后prefix_suffix和brute_force
-6248（https://www.luogu.com.cn/problem/P6248）可能性brute_force
-6355（https://www.luogu.com.cn/problem/P6355）brute_force直角三角形的直角点counter
-6365（https://www.luogu.com.cn/problem/P6365）inclusion_exclusionbrute_forcecounter
-6439（https://www.luogu.com.cn/problem/P6439）brute_force删除的位置组合，几集合去重
-6686（https://www.luogu.com.cn/problem/P6686）brute_force等腰三角形的边长counter
-2666（https://www.luogu.com.cn/problem/P2666）brute_forcecounter，将n拆解为4个数的平方和的方案数
-2705（https://www.luogu.com.cn/problem/P2705）brute_force红色小球放在蓝色盒子的数量
-5690（https://www.luogu.com.cn/problem/P5690）对于日期，典型地brute_force确认
-7076（https://www.luogu.com.cn/problem/P7076）bit_operationbrute_forcecounter
-7094（https://www.luogu.com.cn/problem/P7094）变换公式根据，数据范围brute_force
-7273（https://www.luogu.com.cn/problem/P7273）公差brute_force，使得首项相同的个数，greedy选择最佳
-7286（https://www.luogu.com.cn/problem/P7286）sorting后brute_force最小值，选择最优结果counter
-7626（https://www.luogu.com.cn/problem/P7626）brute_force正方形子矩阵的主对角线与副对角线之差
-7799（https://www.luogu.com.cn/problem/P7799）hashbrute_forcecounter
-1018（https://www.luogu.com.cn/problem/P1018）brute_force乘号位置
-1311（https://www.luogu.com.cn/problem/P1311）线性brute_forcecounter，每次重置避免重复counter
-2119（https://www.luogu.com.cn/problem/P2119）brute_force差值，并prefix_suffix个数
-2652（https://www.luogu.com.cn/problem/P2652）brute_force花色与two_pointer长度
-2994（https://www.luogu.com.cn/problem/P2994）按照座位brute_force分配人员
-3985（https://www.luogu.com.cn/problem/P3985）看似背包实则brute_force
-4181（https://www.luogu.com.cn/problem/P4181）greedybrute_force与后缀和
-6149（https://www.luogu.com.cn/problem/P6149）brute_force三角形的直角点prefix_sum与binary_search距离和
-6393（https://www.luogu.com.cn/problem/P6393）利用data_range范围brute_force
-6767（https://www.luogu.com.cn/problem/P6767）
-8270（https://www.luogu.com.cn/problem/P8270）brain_teaserbrute_force，转换为两两字母比较
-8587（https://www.luogu.com.cn/problem/P8587）桶counterbrute_force
-8663（https://www.luogu.com.cn/problem/P8663）桶counterbrute_force
-8672（https://www.luogu.com.cn/problem/P8672）字符串brute_force与置换环counter
-8712（https://www.luogu.com.cn/problem/P8712）整数长度brute_force
-8749（https://www.luogu.com.cn/problem/P8749）利用杨辉三角形特点brute_force
-8808（https://www.luogu.com.cn/problem/P8808）利用斐波那契数组的特点brute_force
-8809（https://www.luogu.com.cn/problem/P8809）brute_force|贡献counter
-9076（https://www.luogu.com.cn/problem/P9076）根据数字的因数brute_force
-9008（https://www.luogu.com.cn/problem/P9008）朋友敌人陌生人容斥brute_forcecounter
-9006（https://www.luogu.com.cn/problem/P9006）brute_force取模counter
-8948（https://www.luogu.com.cn/problem/P8948）预处理和brute_force所有情况
-8894（https://www.luogu.com.cn/problem/P8894）按照区间范围值brute_forceprefix_suffixcounter
-8872（https://www.luogu.com.cn/problem/P8872）sorting后prefix_suffix移动次数brute_force
+3799（https://www.luogu.com.cn/problem/P3799）brute_force|regular_triangle
+3910（https://www.luogu.com.cn/problem/P3910）factorization|brute_force
+4086（https://www.luogu.com.cn/problem/P4086）suffix|reverse_order|brute_force
+4596（https://www.luogu.com.cn/problem/P4596）brute_force
+4759（https://www.luogu.com.cn/problem/P4759）factorization|brute_force
+6267（https://www.luogu.com.cn/problem/P6267）factorization|brute_force
+5077（https://www.luogu.com.cn/problem/P5077）factorization|brute_force可
+4960（https://www.luogu.com.cn/problem/P4960）implemention|brute_force
+4994（https://www.luogu.com.cn/problem/P4994）implemention|pi(n)<=6n
+5190（https://www.luogu.com.cn/problem/P5190）counter|prefix_sum|harmonic_progression|O(nlogn)
+5614（https://www.luogu.com.cn/problem/P5614）brute_force
+6014（https://www.luogu.com.cn/problem/P6014）hash|mod|counter
+6067（https://www.luogu.com.cn/problem/P6067）sorting|prefix_suffix|brute_force
+6248（https://www.luogu.com.cn/problem/P6248）brute_force
+6355（https://www.luogu.com.cn/problem/P6355）brute_force|triangle|counter
+6365（https://www.luogu.com.cn/problem/P6365）inclusion_exclusion|brute_force|counter
+6439（https://www.luogu.com.cn/problem/P6439）brute_force
+6686（https://www.luogu.com.cn/problem/P6686）brute_force|triangle|counter
+2666（https://www.luogu.com.cn/problem/P2666）brute_force|counter
+2705（https://www.luogu.com.cn/problem/P2705）brute_force
+5690（https://www.luogu.com.cn/problem/P5690）brute_force
+7076（https://www.luogu.com.cn/problem/P7076）bit_operation|brute_force|counter
+7094（https://www.luogu.com.cn/problem/P7094）math|data_range|brute_force
+7273（https://www.luogu.com.cn/problem/P7273）brute_force|math|greedy
+7286（https://www.luogu.com.cn/problem/P7286）sorting|brute_force|counter
+7626（https://www.luogu.com.cn/problem/P7626）brute_force|matrix|diagonal
+7799（https://www.luogu.com.cn/problem/P7799）hash|brute_force|counter
+1018（https://www.luogu.com.cn/problem/P1018）brute_force
+1311（https://www.luogu.com.cn/problem/P1311）brute_force|counter
+2119（https://www.luogu.com.cn/problem/P2119）brute_force|prefix_suffix|counter
+2652（https://www.luogu.com.cn/problem/P2652）brute_force|two_pointer
+2994（https://www.luogu.com.cn/problem/P2994）brute_force
+3985（https://www.luogu.com.cn/problem/P3985）brute_force
+4181（https://www.luogu.com.cn/problem/P4181）greedy|brute_force|suffix_sum
+6149（https://www.luogu.com.cn/problem/P6149）brute_force|triangle|prefix_sum|binary_search
+6393（https://www.luogu.com.cn/problem/P6393）data_range|brute_force
+6767（https://www.luogu.com.cn/problem/P6767）brute_force
+8270（https://www.luogu.com.cn/problem/P8270）brain_teaser|brute_force
+8587（https://www.luogu.com.cn/problem/P8587）bucket_counter|brute_force
+8663（https://www.luogu.com.cn/problem/P8663）bucket_counter|brute_force
+8672（https://www.luogu.com.cn/problem/P8672）string|brute_force|permutation_ring|counter
+8712（https://www.luogu.com.cn/problem/P8712）brute_force
+8749（https://www.luogu.com.cn/problem/P8749）yanghui_triangle|brute_force
+8808（https://www.luogu.com.cn/problem/P8808）fibonacci|brute_force
+8809（https://www.luogu.com.cn/problem/P8809）brute_force|contribution_method|counter
+9076（https://www.luogu.com.cn/problem/P9076）factorization|brute_force
+9008（https://www.luogu.com.cn/problem/P9008）inclusion_exclusion|brute_force|counter
+9006（https://www.luogu.com.cn/problem/P9006）brute_force|mod|counter
+8948（https://www.luogu.com.cn/problem/P8948）brute_force
+8894（https://www.luogu.com.cn/problem/P8894）data_range|brute_force|prefix_suffix|counter
+8872（https://www.luogu.com.cn/problem/P8872）sorting|prefix_suffix|brute_force
 
 ===================================CodeForces===================================
-1426F（https://codeforces.com/problemset/problem/1426/F）分类brute_force中间的bcounter两边的?ac，并快速幂求解
-1400D（https://codeforces.com/problemset/problem/1400/D）brute_force+binary_search
-1793D（https://codeforces.com/contest/1793/problem/D）brute_forcecounter
-584D（https://codeforces.com/problemset/problem/584/D）确定一个质数3，brute_force第二三个质数，小于 10**9 的任何数都可以分解为最多三个质数的和
-1311D（https://codeforces.com/problemset/problem/1311/D）根据题意，确定一个上限值，greedy|brute_force
-1181C（https://codeforces.com/problemset/problem/1181/C）按列brute_force
-484B（https://codeforces.com/problemset/problem/484/B）sorting后brute_force，并binary_search确认
+1426F（https://codeforces.com/problemset/problem/1426/F）classification_discussion|brute_force|counter|fast_power
+1400D（https://codeforces.com/problemset/problem/1400/D）brute_force|binary_search
+1793D（https://codeforces.com/contest/1793/problem/D）brute_force|counter
+584D（https://codeforces.com/problemset/problem/584/D）brute_force|prime|decompose_into_sum_of_prime_at_most_3
+1311D（https://codeforces.com/problemset/problem/1311/D）greedy|brute_force
+1181C（https://codeforces.com/problemset/problem/1181/C）column_wised|brute_force
+484B（https://codeforces.com/problemset/problem/484/B）sorting|brute_force|binary_search
 382C（https://codeforces.com/problemset/problem/382/C）classification_discussion
-D - Remainder Reminder（https://atcoder.jp/contests/abc090/tasks/arc091_b）典型brute_force
-D - Katana Thrower（https://atcoder.jp/contests/abc085/tasks/abc085_d）典型brute_force
-988E（https://codeforces.com/contest/988/problem/E）思维题greedybrute_force
+D - Remainder Reminder（https://atcoder.jp/contests/abc090/tasks/arc091_b）brute_force
+D - Katana Thrower（https://atcoder.jp/contests/abc085/tasks/abc085_d）brute_force
+988E（https://codeforces.com/contest/988/problem/E）brain_teaser|greedy|brute_force
 1661B（https://codeforces.com/contest/1661/problem/B）brute_force
 
 ====================================AtCoder=====================================
-D - Digit Sum（https://atcoder.jp/contests/abc044/tasks/arc060_b）进制与分情况brute_force因子
-D - Menagerie （https://atcoder.jp/contests/abc055/tasks/arc069_b）思维题brain_teaserbrute_force
-C - Sequence（https://atcoder.jp/contests/abc059/tasks/arc072_a）brute_forceprefix_sum的符号greedy增减
-C - Chocolate Bar（https://atcoder.jp/contests/abc062/tasks/arc074_a）brute_force切割方式
-C - Sugar Water（https://atcoder.jp/contests/abc074/tasks/arc083_a）brute_force系数利用公式边界
+D - Digit Sum（https://atcoder.jp/contests/abc044/tasks/arc060_b）base|classification_discussion|brute_force|factorization
+D - Menagerie （https://atcoder.jp/contests/abc055/tasks/arc069_b）brain_teaser|brute_force
+C - Sequence（https://atcoder.jp/contests/abc059/tasks/arc072_a）brute_force|prefix_sum|greedy
+C - Chocolate Bar（https://atcoder.jp/contests/abc062/tasks/arc074_a）brute_force
+C - Sugar Water（https://atcoder.jp/contests/abc074/tasks/arc083_a）brute_force|math
 
 ================================Acwing===================================
-95（https://www.acwing.com/problem/content/description/97/）brute_force第一行的开关按钮状态
+95（https://www.acwing.com/problem/content/description/97/）brute_force
 
 """
 import bisect
@@ -241,7 +241,7 @@ class Solution:
 
     @staticmethod
     def cf_484b(ac=FastIO()):
-        # 查询数组中两两取模运算的最大值（要求较小值作为取模数）
+        # 查询数组中两两mod|运算的最大值（要求较小值作为mod|数）
         ac.read_int()
         nums = sorted(list(set(ac.read_list_ints())))
         n = len(nums)
@@ -820,7 +820,7 @@ class Solution:
 
     @staticmethod
     def lg_p8672(ac=FastIO()):
-        # 字符串brute_force与置换环counter
+        # 字符串brute_force与permutation_ring|counter
         s = ac.read_str()
         n = len(s)
         dct = dict()
@@ -897,7 +897,7 @@ class Solution:
 
     @staticmethod
     def lg_p9006(ac=FastIO()):
-        # brute_force取模counter
+        # brute_forcemod|counter
         mod = 100000007
         n, k = ac.read_list_ints()
         num = 9 * 10 ** (n - 1)

@@ -1,66 +1,66 @@
 """
-Algorithm：单调栈、contribution_method
+Algorithm：monotonic_stack|、contribution_method
 Function：用来数组前后的更大值更小值信息
 
 ====================================LeetCode====================================
-85（https://leetcode.com/problems/maximal-rectangle/）brute_force矩形下边界，单调栈最大矩形面积 
-316（https://leetcode.com/problems/remove-duplicate-letters/）单调栈结合hash与counter
-321（https://leetcode.com/problems/create-maximum-number/）brute_force|单调栈
-1081（https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/）单调栈结合hash与counter
+85（https://leetcode.com/problems/maximal-rectangle/）brute_force矩形下边界，monotonic_stack|最大矩形面积 
+316（https://leetcode.com/problems/remove-duplicate-letters/）monotonic_stack|结合hash与counter
+321（https://leetcode.com/problems/create-maximum-number/）brute_force|monotonic_stack|
+1081（https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/）monotonic_stack|结合hash与counter
 2334（https://leetcode.com/problems/subarray-with-elements-greater-than-varying-threshold/）sorting后brute_force最小值左右两边的影响范围
 2262（https://leetcode.com/problems/total-appeal-of-a-string/）下一个或者上一个不同字符的位置
-2355（https://leetcode.com/problems/maximum-number-of-books-you-can-take/）单调栈|线性DP，巧妙地转换
-255（https://leetcode.com/problems/verify-preorder-sequence-in-binary-search-tree/）单调栈，判断数组是否为二叉搜索树的前序遍历，同样地可验证后序遍历
-654（https://leetcode.com/problems/maximum-binary-tree/）单调栈应用题
-1130（https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/）单调栈也可以区间DP
-1504（https://leetcode.com/problems/count-submatrices-with-all-ones/）brute_force上下边界单调栈全为 1 的子矩形个数
-1673（https://leetcode.com/problems/find-the-most-competitive-subsequence/）单调栈greedy删除选取
-1776（https://leetcode.com/problems/car-fleet-ii/）单调栈与union_find链表思想implemention
-1840（https://leetcode.com/problems/maximum-building-height/）单调栈greedy，也可以prefix_suffix数组implemention
-1944（https://leetcode.com/problems/number-of-visible-people-in-a-queue/）逆序单调栈
-1950（https://leetcode.com/problems/maximum-of-minimum-values-in-all-subarrays/）单调栈利用
-2030（https://leetcode.com/problems/smallest-k-length-subsequence-with-occurrences-of-a-letter/）单调栈删除获得满足条件的最小lexicographical_order
-2104（https://leetcode.com/problems/sum-of-subarray-ranges/）单调栈贡献
-2282（https://leetcode.com/problems/number-of-people-that-can-be-seen-in-a-grid/）单调栈
-2289（https://leetcode.com/problems/steps-to-make-array-non-decreasing/）单调栈implemention
-907（https://leetcode.com/problems/sum-of-subarray-minimums/）单调栈implemention
-2454（https://leetcode.com/problems/next-greater-element-iv/description/）单调栈下下个更大元素
+2355（https://leetcode.com/problems/maximum-number-of-books-you-can-take/）monotonic_stack||线性DP，巧妙地转换
+255（https://leetcode.com/problems/verify-preorder-sequence-in-binary-search-tree/）monotonic_stack|，判断数组是否为二叉搜索树的前序遍历，同样地可验证后序遍历
+654（https://leetcode.com/problems/maximum-binary-tree/）monotonic_stack|应用题
+1130（https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/）monotonic_stack|也可以区间DP
+1504（https://leetcode.com/problems/count-submatrices-with-all-ones/）brute_force上下边界monotonic_stack|全为 1 的子矩形个数
+1673（https://leetcode.com/problems/find-the-most-competitive-subsequence/）monotonic_stack|greedy删除选取
+1776（https://leetcode.com/problems/car-fleet-ii/）monotonic_stack|与union_find链表思想implemention
+1840（https://leetcode.com/problems/maximum-building-height/）monotonic_stack|greedy，也可以prefix_suffix数组implemention
+1944（https://leetcode.com/problems/number-of-visible-people-in-a-queue/）逆序monotonic_stack|
+1950（https://leetcode.com/problems/maximum-of-minimum-values-in-all-subarrays/）monotonic_stack|利用
+2030（https://leetcode.com/problems/smallest-k-length-subsequence-with-occurrences-of-a-letter/）monotonic_stack|删除获得满足条件的最小lexicographical_order
+2104（https://leetcode.com/problems/sum-of-subarray-ranges/）monotonic_stack|贡献
+2282（https://leetcode.com/problems/number-of-people-that-can-be-seen-in-a-grid/）monotonic_stack|
+2289（https://leetcode.com/problems/steps-to-make-array-non-decreasing/）monotonic_stack|implemention
+907（https://leetcode.com/problems/sum-of-subarray-minimums/）monotonic_stack|implemention
+2454（https://leetcode.com/problems/next-greater-element-iv/description/）monotonic_stack|下下个更大元素
 
 =====================================LuoGu======================================
-1950（https://www.luogu.com.cn/problem/P1950）通过brute_force下边界，结合单调栈矩形个数
+1950（https://www.luogu.com.cn/problem/P1950）通过brute_force下边界，结合monotonic_stack|矩形个数
 1901（https://www.luogu.com.cn/problem/P1901）由不相同的数组成的数组求其前后的更大值
-2866（https://www.luogu.com.cn/problem/P2866）单调栈
-2947（https://www.luogu.com.cn/problem/P2947）单调栈裸题
-4147（https://www.luogu.com.cn/problem/P4147）brute_force矩形的下边界，单调栈最大矩形面积
-5788（https://www.luogu.com.cn/problem/P5788）单调栈模板题
-7314（https://www.luogu.com.cn/problem/P7314）brute_force当前最小值，单调栈确定前后第一个比它大的值
-7399（https://www.luogu.com.cn/problem/P7399）单调栈变形题目，greedy赋值，区间操作达成目标数组
-7410（https://www.luogu.com.cn/problem/P7410）通过inclusion_exclusion与单调栈01矩阵个数
-7762（https://www.luogu.com.cn/problem/P7762）类似单调栈的思想，按照宽度greedysorting，每个高度的面积贡献
-1578（https://www.luogu.com.cn/problem/P1578）单调栈离散化brute_force障碍点的最大面积矩形
-3467（https://www.luogu.com.cn/problem/P3467）greedy单调栈
-1191（https://www.luogu.com.cn/problem/P1191）单调栈求矩形个数
-1323（https://www.luogu.com.cn/problem/P1323）二叉堆与单调栈，最大lexicographical_order数字
-2422（https://www.luogu.com.cn/problem/P2422）单调栈与prefix_sum
-3467（https://www.luogu.com.cn/problem/P3467）看不懂的单调栈
-6404（https://www.luogu.com.cn/problem/P6404）单调栈具有相同数字的子矩形个数
-6503（https://www.luogu.com.cn/problem/P6503）单调栈连续子序列的最大值最小值贡献counter
-6510（https://www.luogu.com.cn/problem/P6510）单调栈稀疏表|hashbinary_search
-6801（https://www.luogu.com.cn/problem/P6801）单调栈矩形个数
-8094（https://www.luogu.com.cn/problem/P8094）单调栈典型应用前一个更大与后一个更大
+2866（https://www.luogu.com.cn/problem/P2866）monotonic_stack|
+2947（https://www.luogu.com.cn/problem/P2947）monotonic_stack|裸题
+4147（https://www.luogu.com.cn/problem/P4147）brute_force矩形的下边界，monotonic_stack|最大矩形面积
+5788（https://www.luogu.com.cn/problem/P5788）monotonic_stack|模板题
+7314（https://www.luogu.com.cn/problem/P7314）brute_force当前最小值，monotonic_stack|确定前后第一个比它大的值
+7399（https://www.luogu.com.cn/problem/P7399）monotonic_stack|变形题目，greedy赋值，区间操作达成目标数组
+7410（https://www.luogu.com.cn/problem/P7410）通过inclusion_exclusion与monotonic_stack|01矩阵个数
+7762（https://www.luogu.com.cn/problem/P7762）类似monotonic_stack|的思想，按照宽度greedysorting，每个高度的面积贡献
+1578（https://www.luogu.com.cn/problem/P1578）monotonic_stack|离散化brute_force障碍点的最大面积矩形
+3467（https://www.luogu.com.cn/problem/P3467）greedymonotonic_stack|
+1191（https://www.luogu.com.cn/problem/P1191）monotonic_stack|求矩形个数
+1323（https://www.luogu.com.cn/problem/P1323）二叉堆与monotonic_stack|，最大lexicographical_order数字
+2422（https://www.luogu.com.cn/problem/P2422）monotonic_stack|与prefix_sum
+3467（https://www.luogu.com.cn/problem/P3467）看不懂的monotonic_stack|
+6404（https://www.luogu.com.cn/problem/P6404）monotonic_stack|具有相同数字的子矩形个数
+6503（https://www.luogu.com.cn/problem/P6503）monotonic_stack|连续子序列的最大值最小值贡献counter
+6510（https://www.luogu.com.cn/problem/P6510）monotonic_stack|稀疏表|hashbinary_search
+6801（https://www.luogu.com.cn/problem/P6801）monotonic_stack|矩形个数
+8094（https://www.luogu.com.cn/problem/P8094）monotonic_stack|典型应用前一个更大与后一个更大
 
 ===================================CodeForces===================================
-1795E（https://codeforces.com/problemset/problem/1795/E）单调栈优化线性DP，greedycounterbrute_force，prefix_suffixDP转移
-1313C2（https://codeforces.com/problemset/problem/1313/C2）单调栈优化线性DP
-1454F（https://codeforces.com/contest/1454/problem/F）单调栈brute_force题
+1795E（https://codeforces.com/problemset/problem/1795/E）monotonic_stack|优化线性DP，greedycounterbrute_force，prefix_suffixDP转移
+1313C2（https://codeforces.com/problemset/problem/1313/C2）monotonic_stack|优化线性DP
+1454F（https://codeforces.com/contest/1454/problem/F）monotonic_stack|brute_force题
 
 ====================================AtCoder=====================================
-E - Second Sum（https://atcoder.jp/contests/abc140/tasks/abc140_e）单调栈求下个与下下个严格更大元素与上个与上个个严格更大元素
+E - Second Sum（https://atcoder.jp/contests/abc140/tasks/abc140_e）monotonic_stack|求下个与下下个严格更大元素与上个与上个个严格更大元素
 
 =====================================AcWing=====================================
-131（https://www.acwing.com/problem/content/133/）单调栈求最大矩形
-152（https://www.acwing.com/problem/content/description/154/）单调栈求最大矩形
-3780（https://www.acwing.com/problem/content/description/3783/）单调栈线性greedyDP构造
+131（https://www.acwing.com/problem/content/133/）monotonic_stack|求最大矩形
+152（https://www.acwing.com/problem/content/description/154/）monotonic_stack|求最大矩形
+3780（https://www.acwing.com/problem/content/description/3783/）monotonic_stack|线性greedyDPconstruction
 
 """
 import bisect
@@ -79,7 +79,7 @@ class Solution:
 
     @staticmethod
     def abc_140e(ac=FastIO()):
-        # 单调栈求下个与下下个严格更大元素与上个与上个个严格更大元素
+        # monotonic_stack|求下个与下下个严格更大元素与上个与上个个严格更大元素
         n = ac.read_int()
         nums = ac.read_list_ints()
 
@@ -109,7 +109,7 @@ class Solution:
                 heapq.heappush(stack2, [nums[j], j])
             stack1.append(i)
 
-        # 作用域
+        # action_scope
         ans = 0
         for i in range(n):
             if pre[i] == -1:
@@ -138,7 +138,7 @@ class Solution:
 
     @staticmethod
     def ac_131(ac=FastIO()):
-        # 单调栈最大矩形
+        # monotonic_stack|最大矩形
         while True:
             lst = ac.read_list_ints()
             if lst[0] == 0:
@@ -159,7 +159,7 @@ class Solution:
 
     @staticmethod
     def lc_2454(nums: List[int]) -> List[int]:
-        # 单调栈下下个更大元素
+        # monotonic_stack|下下个更大元素
         n = len(nums)
         ans = [-1] * n
         stack1 = []
@@ -176,7 +176,7 @@ class Solution:
 
     @staticmethod
     def lg_p1191(ac=FastIO()):
-        # brute_force下边界单调栈矩形个数
+        # brute_force下边界monotonic_stack|矩形个数
         n = ac.read_int()
         pre = [0] * n
         ans = 0
@@ -201,7 +201,7 @@ class Solution:
 
     @staticmethod
     def lg_p1323(ac=FastIO()):
-        # 二叉堆与单调栈，最大lexicographical_order数字
+        # 二叉堆与monotonic_stack|，最大lexicographical_order数字
         k, m = ac.read_list_ints()
         dct = set()
         ans = []
@@ -230,7 +230,7 @@ class Solution:
 
     @staticmethod
     def lg_p2422(ac=FastIO()):
-        # 单调栈与prefix_sum
+        # monotonic_stack|与prefix_sum
         n = ac.read_int()
         nums = ac.read_list_ints()
         lst = ac.accumulate(nums)
@@ -249,7 +249,7 @@ class Solution:
 
     @staticmethod
     def lg_p3467(ac=FastIO()):
-        # 单调栈
+        # monotonic_stack|
         n = ac.read_int()
         nums = [ac.read_list_ints()[1] for _ in range(n)]
         stack = []
@@ -266,10 +266,10 @@ class Solution:
     @staticmethod
     def lg_p1598(ac=FastIO()):
 
-        # 单调栈离散化brute_force障碍点的最大面积矩形
+        # monotonic_stack|离散化brute_force障碍点的最大面积矩形
         def compute_area_obstacle(lst):
             nonlocal ans
-            # 单调栈根据高度最大矩形面积
+            # monotonic_stack|根据高度最大矩形面积
             m = len(height)
             left = [0] * m
             right = [m - 1] * m
@@ -320,7 +320,7 @@ class Solution:
 
     @staticmethod
     def lc_255(preorder: List[int]) -> bool:
-        # 单调栈判断是否为前序序列
+        # monotonic_stack|判断是否为前序序列
 
         pre_max = float("-inf")
         n = len(preorder)
@@ -336,7 +336,7 @@ class Solution:
 
     @staticmethod
     def lc_85(matrix: List[List[str]]) -> int:
-        # 单调栈最大矩形面积
+        # monotonic_stack|最大矩形面积
         m, n = len(matrix), len(matrix[0])
         pre = [0] * n
         ans = 0
@@ -351,7 +351,7 @@ class Solution:
 
     @staticmethod
     def lg_p4147(ac=FastIO()):
-        # 单调栈最大矩形面积
+        # monotonic_stack|最大矩形面积
         n, m = ac.read_list_ints()
         pre = [0] * m
         ans = 0
@@ -368,7 +368,7 @@ class Solution:
 
     @staticmethod
     def lg_p1950(ac=FastIO()):
-        # 单调栈矩形个数
+        # monotonic_stack|矩形个数
         m, n = ac.read_list_ints()
         ans = 0
         pre = [0] * n
@@ -385,7 +385,7 @@ class Solution:
 
     @staticmethod
     def lg_p6404(ac=FastIO()):
-        # 单调栈具有相同数字的子矩形个数
+        # monotonic_stack|具有相同数字的子矩形个数
         m, n = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
         ans = 0
@@ -414,7 +414,7 @@ class Solution:
 
     @staticmethod
     def lg_p6503(ac=FastIO()):
-        # 单调栈连续子序列的最大值最小值贡献counter
+        # monotonic_stack|连续子序列的最大值最小值贡献counter
         m = ac.read_int()
         nums = [ac.read_int() for _ in range(m)]
         left = [0] * m
@@ -443,7 +443,7 @@ class Solution:
 
     @staticmethod
     def lg_p6510(ac=FastIO()):
-        # 单调栈稀疏表|hashbinary_search
+        # monotonic_stack|稀疏表|hashbinary_search
         n = ac.read_int()
         nums = [ac.read_int() for _ in range(n)]
         post = [n - 1] * n
@@ -467,7 +467,7 @@ class Solution:
 
     @staticmethod
     def lg_p6801(ac=FastIO()):
-        # 单调栈矩形个数
+        # monotonic_stack|矩形个数
 
         def compute(x, y):
             return x * (x + 1) * y * (y + 1) // 4
@@ -508,7 +508,7 @@ class Solution:
 
     @staticmethod
     def lg_p8094(ac=FastIO()):
-        # 单调栈应用
+        # monotonic_stack|应用
         n = ac.read_int()
         nums = ac.read_list_ints()
         ans = 0
@@ -524,7 +524,7 @@ class Solution:
 
     @staticmethod
     def lc_316(s: str) -> str:
-        # 单调栈结合hash与counter
+        # monotonic_stack|结合hash与counter
         cnt = Counter(s)
         in_stack = defaultdict(int)
         stack = []
@@ -539,13 +539,13 @@ class Solution:
 
     @staticmethod
     def lc_907(nums: List[int]) -> int:
-        # 单调栈implemention
+        # monotonic_stack|implemention
         mod = 10 ** 9 + 7
         n = len(nums)
         post = [n - 1] * n  # 这里可以是n/n-1/null，取决于用途
         pre = [0] * n  # 这里可以是0/-1/null，取决于用途
         stack = []
-        for i in range(n):  # 这里也可以是从n-1到0倒序，取决于用途
+        for i in range(n):  # 这里也可以是从n-1到0reverse_order|，取决于用途
             while stack and nums[stack[-1]] <= nums[i]:  # 这里可以是"<" ">" "<=" ">="，取决于需要判断的大小关系
                 post[stack.pop()] = i - 1  # 这里可以是i或者i-1，取决于是否包含i作为右端点
             if stack:  # 这里不一定可以同时，比如前后都是大于等于时，只有前后所求范围互斥时，可以
@@ -555,7 +555,7 @@ class Solution:
 
     @staticmethod
     def lc_1081(s: str) -> str:
-        # 单调栈结合hash与counter
+        # monotonic_stack|结合hash与counter
         cnt = Counter(s)
         in_stack = defaultdict(int)
         stack = []
@@ -570,7 +570,7 @@ class Solution:
 
     @staticmethod
     def lc_1673(nums: List[int], k: int) -> List[int]:
-        # 单调栈greedy删除选取
+        # monotonic_stack|greedy删除选取
         n = len(nums)
         rem = n - k
         stack = []
@@ -583,7 +583,7 @@ class Solution:
 
     @staticmethod
     def lc_1840(n: int, restrictions: List[List[int]]) -> int:
-        # 单调栈greedy，也可以prefix_suffix数组implemention
+        # monotonic_stack|greedy，也可以prefix_suffix数组implemention
         restrictions.sort()
         stack = [[1, 0]]
         for idx, height in restrictions:
@@ -612,7 +612,7 @@ class Solution:
 
     @staticmethod
     def lc_2355(books: List[int]) -> int:
-        # 单调栈优化线性DP
+        # monotonic_stack|优化线性DP
         n = len(books)
         dp = [0] * n
         stack = []
@@ -632,7 +632,7 @@ class Solution:
 
     @staticmethod
     def cf_1313c2(ac=FastIO()):
-        # 单调栈优化线性DP
+        # monotonic_stack|优化线性DP
         n = ac.read_int()
         nums = ac.read_list_ints()
         pre = [0] * n
@@ -670,7 +670,7 @@ class Solution:
 
     @staticmethod
     def cf_1795e(ac=FastIO()):
-        # 单调栈优化线性DP，greedycounterbrute_force，prefix_suffixDP转移
+        # monotonic_stack|优化线性DP，greedycounterbrute_force，prefix_suffixDP转移
         for _ in range(ac.read_int()):
 
             def check():
@@ -699,7 +699,7 @@ class Solution:
 
     @staticmethod
     def lc_1130(arr: List[int]) -> int:
-        # 单调栈也可以区间DP
+        # monotonic_stack|也可以区间DP
         stack = [float('inf')]
         res = 0
         for num in arr:
@@ -714,7 +714,7 @@ class Solution:
 
     @staticmethod
     def lc_1504(mat: List[List[int]]) -> int:
-        # brute_force上下边界单调栈全为 1 的子矩形个数
+        # brute_force上下边界monotonic_stack|全为 1 的子矩形个数
         m, n = len(mat), len(mat[0])
         ans = 0
         rec = Rectangle()
@@ -730,7 +730,7 @@ class Solution:
 
     @staticmethod
     def ac_3780(ac=FastIO()):
-        # 单调栈线性greedyDP构造
+        # monotonic_stack|线性greedyDPconstruction
         n = ac.read_int()
         nums = ac.read_list_ints()
         if n == 1:

@@ -11,10 +11,10 @@ Function：来求一棵树的最近公共祖先（LCA）也可以
 3379（https://www.luogu.com.cn/problem/P3379）最近公共祖先模板题
 7128（https://www.luogu.com.cn/problem/P7128）完全二叉树LCA路径implemention交换，使得数组有序
 3128（https://www.luogu.com.cn/problem/P3128）离线LCA与树上差分
-7167（https://www.luogu.com.cn/problem/P7167）单调栈建树倍增在线LCA查询
+7167（https://www.luogu.com.cn/problem/P7167）monotonic_stack|建树倍增在线LCA查询
 3384（https://www.luogu.com.cn/problem/P3384）树链剖分与树状数组implemention
 2912（https://www.luogu.com.cn/problem/P2912）离线LCA查询与任意点对之间距离
-3019（https://www.luogu.com.cn/problem/P3019）离线查询 LCA 最近公共祖先
+3019（https://www.luogu.com.cn/problem/P3019）offline_query LCA 最近公共祖先
 3258（https://www.luogu.com.cn/problem/P3258）离线LCA|树上差分|树形DP
 6869（https://www.luogu.com.cn/problem/P6869）offline_lca 查询与树上边差分
 
@@ -25,7 +25,7 @@ Function：来求一棵树的最近公共祖先（LCA）也可以
 1328E（https://codeforces.com/problemset/problem/1328/E）利用 LCA 判定节点组是否符合条件，也可以 dfs 序
 321C（https://codeforces.com/problemset/problem/321/C）树的质心递归，依次切割形成平衡树赋值
 519E（https://codeforces.com/problemset/problem/519/E）LCA运用题目，查询距离与第k个祖先节点，与子树节点counter
-1296F（https://codeforces.com/contest/1296/problem/F）离线或者在线查询lcagreedy构造，正解可能为倍增
+1296F（https://codeforces.com/contest/1296/problem/F）离线或者在线查询lcagreedyconstruction，正解可能为倍增
 
 ====================================AtCoder=====================================
 D - Transit Tree Path（https://atcoder.jp/contests/abc070/tasks/abc070_d）典型LCA查询运用题，也可离线实现

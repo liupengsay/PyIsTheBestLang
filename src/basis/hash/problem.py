@@ -1,33 +1,36 @@
 """
-Algorithm：hash、contribution_method、矩阵hash、字符串hash、前缀hash、后缀hash、hash碰撞
-Function：prefix_suffixcounter、索引、|和
+Algorithm：hash|contribution_method|matrix_hash|tree_hash|string_hash|prefix_hash|suffix_hash|hash_crush
+Function：prefix_suffix|counter|index|prefix_sum
 
 ====================================LeetCode====================================
-2143（https://leetcode.com/problems/choose-numbers-from-two-arrays-in-range/）prefix_sumhashcounter转换为求连续子数组和为 0 的个数
-面试题 17（https://leetcode.com/problems/find-longest-subarray-lcci/）和为0的最长连续子数组，prefix_sumhash求解
-1590（https://leetcode.com/problems/make-sum-divisible-by-p/）求和模p与整个子数组模p相等的最短子数组，prefix_sumhash求解
-6317（https://leetcode.com/contest/weekly-contest-336/problems/count-the-number-of-beautiful-subarrays/）prefix_sumhashcounter
-题目-02（https://leetcode.com/contest/hhrc2022/problems/0Wx4Pc/）prefix_sumhash，|brain_teasergreedy
-题目-03（https://leetcode.com/contest/hhrc2022/problems/VAc7h3/）二叉树序列化
-2031（https://leetcode.com/problems/count-subarrays-with-more-ones-than-zeros/）prefix_sumhashcounter
-2025（https://leetcode.com/problems/maximum-number-of-ways-to-partition-an-array/description/）厘清边界hashcontribution_methodcounter
-895（https://leetcode.com/problems/maximum-frequency-stack/description/）hash与栈的结合应用题
-1658（https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/description/）prefix_sumhash，|brain_teasergreedy
-2227（https://leetcode.com/problems/encrypt-and-decrypt-strings/）brain_teaserreverse_thinking
+2143（https://leetcode.com/problems/choose-numbers-from-two-arrays-in-range/）prefix_sum|hash|counter
+17（https://leetcode.com/problems/find-longest-subarray-lcci/）prefix_sum|hash
+1590（https://leetcode.com/problems/make-sum-divisible-by-p/）prefix_sum|hash|mod|counter
+2588（https://leetcode.cn/problems/count-the-number-of-beautiful-subarrays/）prefix_sum|hash|counter
+02（https://leetcode.com/contest/hhrc2022/problems/0Wx4Pc/）prefix_sum|hash|brain_teaser|greedy
+03（https://leetcode.com/contest/hhrc2022/problems/VAc7h3/）tree_hash
+2031（https://leetcode.com/problems/count-subarrays-with-more-ones-than-zeros/）prefix_sum|hash|counter
+2025（https://leetcode.com/problems/maximum-number-of-ways-to-partition-an-array/description/）hash|contribution_method|counter
+895（https://leetcode.com/problems/maximum-frequency-stack/description/）hash|stack
+1658（https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/description/）prefix_sum|hash|brain_teaser|greedy
+2227（https://leetcode.com/problems/encrypt-and-decrypt-strings/）brain_teaser|reverse_thinking
+
+===================================CodeForces===================================
+1702C（https://codeforces.com/contest/1702/problem/C）hash|xor_random_seed
 
 =====================================LuoGu======================================
-2697（https://www.luogu.com.cn/problem/P2697）hash记录prefix_sum与对应索引
-1114（https://www.luogu.com.cn/record/list?user=739032&status=12&page=13）hash记录prefix_sum与对应索引
-4889（https://www.luogu.com.cn/problem/P4889）公式变换hashcounter
-6273（https://www.luogu.com.cn/problem/P6273）hash前缀counter
-8630（https://www.luogu.com.cn/problem/P8630）hashcounter与排列brute_force
+2697（https://www.luogu.com.cn/problem/P2697）hash|prefix_sum
+1114（https://www.luogu.com.cn/problem/P1114）hash|prefix_sum
+4889（https://www.luogu.com.cn/problem/P4889）math|hash|counter
+6273（https://www.luogu.com.cn/problem/P6273）hash|prefix|counter
+8630（https://www.luogu.com.cn/problem/P8630）hash|counter|permutation|brute_force
 
 ====================================AtCoder=====================================
-D - Snuke's Coloring（https://atcoder.jp/contests/abc045/tasks/arc061_b）hash容斥counter
-1702C（https://codeforces.com/contest/1702/problem/C）卡hash，需要用异或变换
+D - Snuke's Coloring（https://atcoder.jp/contests/abc045/tasks/arc061_b）hash|inclusion_exclusion|counter
+
 
 =====================================AcWing=====================================
-137（https://www.acwing.com/problem/content/139/）hash找相同雪花
+137（https://www.acwing.com/problem/content/139/）matrix_hash
 
 """
 import random

@@ -9,7 +9,7 @@ Function：用以修改和查询区间的值信息，支持增减、修改，区
 2158（https://leetcode.com/problems/amount-of-new-area-painted-each-day/）线段树维护区间范围的覆盖
 6318（https://leetcode.com/contest/weekly-contest-336/problems/minimum-time-to-complete-all-tasks/）线段树，greedy|binary_search
 732（https://leetcode.com/problems/my-calendar-iii/）defaultdict动态开点线段树
-1851（https://leetcode.com/problems/minimum-interval-to-include-each-query/）区间更新最小值、单点查询，也可以用离线查询与priority_queue维护
+1851（https://leetcode.com/problems/minimum-interval-to-include-each-query/）区间更新最小值、单点查询，也可以用offline_query与priority_queue维护
 2213（https://leetcode.com/problems/longest-substring-of-one-repeating-character/）单点字母更新，最长具有相同字母的连续子数组查询
 2276（https://leetcode.com/problems/count-integers-in-intervals/）动态开点线段树模板题，维护区间并集的长度，也可SortedList
 1340（https://leetcode.com/problems/jump-game-v/）可以线段树DP解决
@@ -24,7 +24,7 @@ Function：用以修改和查询区间的值信息，支持增减、修改，区
 3372（https://www.luogu.com.cn/problem/P3372）区间值增减与求和
 2880（https://www.luogu.com.cn/problem/P2880）查询区间最大值与最小值
 1904（https://www.luogu.com.cn/problem/P1904）线段树，区间更新最大值并单点查询天际线
-1438（https://www.luogu.com.cn/problem/P1438）差分数组区间增减|线段树查询区间和
+1438（https://www.luogu.com.cn/problem/P1438）diff_array|区间增减|线段树查询区间和
 1253（https://www.luogu.com.cn/problem/P1253）区间增减与区间修改并线段树查询区间和
 3373（https://www.luogu.com.cn/problem/P3373）区间乘法与区间|法并线段树查询区间和
 4513（https://www.luogu.com.cn/problem/P4513）单点修改与区间最大连续子数组和查询，可升级为区间修改
@@ -33,9 +33,9 @@ Function：用以修改和查询区间的值信息，支持增减、修改，区
 4145（https://www.luogu.com.cn/problem/P4145）区间值开方向下取整，区间和查询
 1558（https://www.luogu.com.cn/problem/P1558）线段树区间值修改，区间或值查询
 3740（https://www.luogu.com.cn/problem/P3740）离散化线段树区间修改与单点查询
-4588（https://www.luogu.com.cn/problem/P4588）转化为线段树单点值修改与区间乘积取模
+4588（https://www.luogu.com.cn/problem/P4588）转化为线段树单点值修改与区间乘积mod|
 6627（https://www.luogu.com.cn/problem/P6627）线段树维护和查询区间异或值
-8081（https://www.luogu.com.cn/problem/P8081）差分counter作用域，也可以线段树区间修改、区间|和查询
+8081（https://www.luogu.com.cn/problem/P8081）差分counteraction_scope，也可以线段树区间修改、区间|和查询
 8812（https://www.luogu.com.cn/problem/P8812）线段树查询和更新区间最小值
 8856（https://www.luogu.com.cn/problem/solution/P8856）区间增减与区间最大值查询
 
@@ -44,7 +44,7 @@ Function：用以修改和查询区间的值信息，支持增减、修改，区
 482B（https://codeforces.com/problemset/problem/482/B）区间按位或赋值、按位与查询
 380C（https://codeforces.com/problemset/problem/380/C）线段树查询区间内所有合法连续子序列括号串的总长度
 52C（https://codeforces.com/problemset/problem/52/C）线段树更新和查询循环数组区间最小值
-438D（https://codeforces.com/problemset/problem/438/D）线段树维护区间取模，区间和，修改单点值，和区间最大值
+438D（https://codeforces.com/problemset/problem/438/D）线段树维护区间mod|，区间和，修改单点值，和区间最大值
 558E（https://codeforces.com/contest/558/problem/E）26个线段树维护区间sorting信息
 343D（https://codeforces.com/problemset/problem/343/D）dfs序|线段树
 242E（https://codeforces.com/problemset/problem/242/E）线段树区间异或，与区间|和
@@ -335,7 +335,7 @@ class Solution:
 
     @staticmethod
     def lg_p1438(ac=FastIO()):
-        # 差分数组区间增减|线段树查询区间和
+        # diff_array|区间增减|线段树查询区间和
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         segment = RangeAddRangeSumMinMax(n)
@@ -349,7 +349,7 @@ class Solution:
                     if y <= n - 1:
                         segment.range_add(y, y, -k)
                 else:
-                    # 差分数组区间的等差数列|减
+                    # diff_array|区间的等差数列|减
                     segment.range_add(x - 1, x - 1, k)
                     segment.range_add(x, y - 1, d)
                     cnt = y - x
@@ -652,7 +652,7 @@ class Solution:
 
     @staticmethod
     def lg_p4588(ac=FastIO()):
-        # 转化为线段树单点值修改与区间乘积取模
+        # 转化为线段树单点值修改与区间乘积mod|
         for _ in range(ac.read_int()):
             q, mod = ac.read_list_ints()
             tree = SegmentTreePointUpdateRangeMulQuery(q, mod)
