@@ -4,7 +4,7 @@ Ability：speed up and avoid hash crush
 Reference：https://judge.yosupo.jp/problem/associative_array
 
 ================================Library Checker================================
-Associative Array（https://judge.yosupo.jp/problem/associative_array）use xor of random seed as key of mapping
+Associative Array（https://judge.yosupo.jp/problem/associative_array）hash|xor_random_seed
 
 
 """

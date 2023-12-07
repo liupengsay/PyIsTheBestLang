@@ -1,20 +1,20 @@
 """
-Algorithm：分块查询、two_pointers
-Function：将查询区间分块sorting，交替移动two_pointers动态维护查询值
+Algorithm：block_query|offline_query|sorting|two_pointers
+Function：sort the query interval into blocks and alternate between moving two pointers dynamically maintain query values
 
 ====================================LeetCode====================================
-1157（https://leetcode.com/problems/online-majority-element-in-subarray/description/）查询区间的超级众数，即区间出现超过一半的数，同cf1514_d正解为随机化猜众数，或者bit_operation众数，或者线段树合并众数
+1157（https://leetcode.com/problems/online-majority-element-in-subarray/description/）range_super_mode|CF1514D|random_guess|binary_search|bit_operation|segment_tree
 
 =====================================LuoGu======================================
 
 ===================================CodeForces===================================
-220B（https://codeforces.com/contest/220/problem/B）分块矩阵counter模板题
-86D（https://codeforces.com/contest/86/problem/D）分块矩阵求函数值模板题
-617E（https://codeforces.com/contest/617/problem/E）分块矩阵求异或对counter模板题
-1514D（https://codeforces.com/contest/1514/problem/D）离散查询分块超时，正解为随机化猜众数，或者bit_operation众数，或者线段树合并众数
+220B（https://codeforces.com/contest/220/problem/B）block_query|counter
+86D（https://codeforces.com/contest/86/problem/D）block_query|math
+617E（https://codeforces.com/contest/617/problem/E）block_query|xor_pair|counter
+1514D（https://codeforces.com/contest/1514/problem/D）range_super_mode|CF1514D|random_guess|binary_search|bit_operation|segment_tree
 
 ====================================AtCoder=====================================
-F - Small Products（https://atcoder.jp/contests/abc132/tasks/abc132_f）分组线性counterDP，prefix_sum优化
+F - Small Products（https://atcoder.jp/contests/abc132/tasks/abc132_f）block_query|counter|dp|prefix_sum
 
 
 """

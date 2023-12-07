@@ -29,7 +29,7 @@ Prim在稠密图中比Kruskal优，在稀疏图中比Kruskal劣。Prim是以更�
 2916（https://www.luogu.com.cn/problem/P2916）需要define_sort之后最小生成树的好题
 4955（https://www.luogu.com.cn/problem/P4955）最小生成树，自定义中止条件
 6705（https://www.luogu.com.cn/problem/P6705）brute_force最小值，最小生成树，与自定义权值
-7775（https://www.luogu.com.cn/problem/P7775）BFS|最小生成树思想，求解
+7775（https://www.luogu.com.cn/problem/P7775）bfs|最小生成树思想，求解
 2658（https://www.luogu.com.cn/problem/P2658）典型最小生成树
 4180（https://www.luogu.com.cn/problem/P4180）最小生成树与LCA倍增查询严格次小生成树
 1265（https://www.luogu.com.cn/problem/P1265）prim求解最小生成树

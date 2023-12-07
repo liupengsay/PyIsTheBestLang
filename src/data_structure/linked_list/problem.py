@@ -1,15 +1,15 @@
 """
 
-Algorithm：数组作为链表维护前驱后驱
+Algorithm：linked_list|double_linked_list|union_find_right_root|union_find_left_root
 Function：
 
 
 ====================================LeetCode====================================
-2617（https://leetcode.com/problems/minimum-number-of-visited-cells-in-a-grid/）BFS|链表，数组维护链表的前后节点信息
-2612（https://leetcode.com/problems/minimum-reverse-operations/）BFS|链表，数组维护链表的前后节点信息
+2617（https://leetcode.com/problems/minimum-number-of-visited-cells-in-a-grid/）bfs|double_linked_list
+2612（https://leetcode.com/problems/minimum-reverse-operations/）bfs|链表，数组维护链表的前后节点信息
 1562（https://leetcode.com/problems/find-latest-group-of-size-m/）类似union_find的prefix_suffix链表求解
 2382（https://leetcode.com/problems/maximum-segment-sum-after-removals/）逆向访问查询并更新连通块的结果，也可以双向链表维护
-2289（https://leetcode.com/problems/steps-to-make-array-non-decreasing/description/）monotonic_stack|优化的liner_dp，也可用BFS|链表求解
+2289（https://leetcode.com/problems/steps-to-make-array-non-decreasing/description/）monotonic_stack|优化的liner_dp，也可用bfs|链表求解
 
 ===================================牛客===================================
 牛牛排队伍（https://ac.nowcoder.com/acm/contest/49888/C）数组维护链表的前后节点信息
@@ -23,7 +23,7 @@ Function：
 
 =====================================AcWing=====================================
 136（https://www.acwing.com/problem/content/138/）链表逆序删除，查找前后最接近的值
-4943（https://www.acwing.com/problem/content/description/4946/）BFS|链表，维护四个方向上的未访问点
+4943（https://www.acwing.com/problem/content/description/4946/）bfs|链表，维护四个方向上的未访问点
 5034（https://www.acwing.com/problem/content/5037/）heapqgreedy|链表处理
 
 """
@@ -103,7 +103,7 @@ class Solution:
     @staticmethod
     def lc_2289(nums: List[int]) -> int:
 
-        # monotonic_stack|优化的liner_dp，也可用BFS|链表求解
+        # monotonic_stack|优化的liner_dp，也可用bfs|链表求解
         n = len(nums)
         post = list(range(1, n + 1))
         nums.append(10 ** 9 + 7)
@@ -121,7 +121,7 @@ class Solution:
 
     @staticmethod
     def lc_2617(grid: List[List[int]]) -> int:
-        # BFS|两个方向上的链表，也可以union_find代替
+        # bfs|两个方向上的链表，也可以union_find代替
         m, n = len(grid), len(grid[0])
         dis = [[inf] * n for _ in range(m)]
         row_nex = [list(range(1, n + 1)) for _ in range(m)]
@@ -310,7 +310,7 @@ class Solution:
 
     @staticmethod
     def ac_4943(ac=FastIO()):
-        # BFS|链表，维护四个方向上的未访问点
+        # bfs|链表，维护四个方向上的未访问点
         m, n, k = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
         x1, y1, x2, y2 = ac.read_list_ints_minus_one()

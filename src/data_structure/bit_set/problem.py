@@ -1,9 +1,9 @@
 """
-Algorithm：BitSet、位集合、implemention区间状态变换、区间翻转
+Algorithm：bit_set|implemention|range_state|range_reverse
 Function：
 
 ====================================LeetCode====================================
-2569（https://leetcode.com/problems/handling-sum-queries-after-update/）01线段树区间翻转与求和，也可以BitSet
+2569（https://leetcode.com/problems/handling-sum-queries-after-update/）segment_tree|range_reverse|bit_set
 
 =====================================LuoGu======================================
 xx（xxx）xxxxxxxxxxxxxxxxxxxx
@@ -12,11 +12,11 @@ xx（xxx）xxxxxxxxxxxxxxxxxxxx
 xx（xxx）xxxxxxxxxxxxxxxxxxxx
 
 ====================================AtCoder=====================================
-D - FT Robot（https://atcoder.jp/contests/abc082/tasks/arc087_b）brain_teaser|，分开BFS平面坐标的x与y轴移动，bitset优化
-E - Balanced Path（https://atcoder.jp/contests/abc147/tasks/abc147_e）matrix_dpbitset表示01状态优化
+D - FT Robot（https://atcoder.jp/contests/abc082/tasks/arc087_b）brain_teaser|bfs|bit_set
+E - Balanced Path（https://atcoder.jp/contests/abc147/tasks/abc147_e）matrix_dp|bit_set
 
 =====================================AcWing=====================================
-5037（https://www.acwing.com/problem/content/5040/）同CF242E，二十多个01线段树维护区间异或与区间|和
+5037（https://www.acwing.com/problem/content/5040/）CF242E|range_or_sum|range_xor_sum
 
 """
 from typing import List

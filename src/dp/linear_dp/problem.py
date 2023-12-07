@@ -168,7 +168,7 @@ class Solution:
 
     @staticmethod
     def lc_2289(nums: List[int]) -> int:
-        # monotonic_stack|优化的liner_dp，也可用BFS|链表求解
+        # monotonic_stack|优化的liner_dp，也可用bfs|链表求解
         n = len(nums)
         stack = []
         for i in range(n - 1, -1, -1):
