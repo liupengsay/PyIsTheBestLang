@@ -52,7 +52,7 @@ Function：用以修改和查询区间的值信息，支持增减、修改，区
 1216F（https://codeforces.com/contest/1216/problem/F）线段树|DP，正解为单调队列优化DP
 1665E（https://codeforces.com/contest/1665/problem/E）
 1478E（https://codeforces.com/contest/1478/problem/E）RangeChangeRangeSumMinMax|backward_thinking|implemention
-
+1679E（https://codeforces.com/contest/1679/problem/B）RangeChangeRangeSumMinMax|range_change|range_sum
 
 =====================================AcWing=====================================
 3805（https://www.acwing.com/problem/content/3808/）区间增减与最小值查询

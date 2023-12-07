@@ -23,7 +23,7 @@ Function：确定最优选择，通常可以SortedList用于维护和查询sorte
 4375（https://www.luogu.com.cn/problem/P4375）冒泡sorting，sorted_list维护
 1908（https://www.luogu.com.cn/problem/P1908）问题求reverse_pair|，可以归并sorting
 1966（https://www.luogu.com.cn/problem/P1966）reverse_pair|greedy题目
-2161（https://www.luogu.com.cn/problem/P2161）range_merge与删除处理
+2161（https://www.luogu.com.cn/problem/P2161）range_merge_to_disjoint与删除处理
 1637（https://www.luogu.com.cn/problem/P1637）典型STL应用题，prefix_suffix大小值counter
 2234（https://www.luogu.com.cn/problem/P2234）典型STL应用题
 2804（https://www.luogu.com.cn/problem/P2804）prefix_sum| STL 平均值大于 m 的连续子数组个数

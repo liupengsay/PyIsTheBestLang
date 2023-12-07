@@ -6,7 +6,7 @@ from operator import or_, and_
 
 class SparseTable1:
     def __init__(self, lst, fun="max"):
-        """static range queries can be performed as long as the merge fun satisfies monotonicity"""
+        """static range queries can be performed as long as the range_merge_to_disjoint fun satisfies monotonicity"""
         self.fun = fun
         self.n = len(lst)
         self.lst = lst

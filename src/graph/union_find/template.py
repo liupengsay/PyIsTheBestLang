@@ -15,7 +15,7 @@ class UnionFind:
         lst = []
         while x != self.root[x]:
             lst.append(x)
-            # merge to the direct root node after query
+            # range_merge_to_disjoint to the direct root node after query
             x = self.root[x]
         for w in lst:
             self.root[w] = x

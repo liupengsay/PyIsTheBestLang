@@ -11,7 +11,7 @@ dilworth定理：
 反过来，分成上升子序列最小组数等于最大不上升的长度，分成下降子序列最小组数等于最大不下降子序列的长度。
 
 ====================================LeetCode====================================
-354（https://leetcode.com/problems/russian-doll-envelopes/）二维偏序最长递增子序列问题
+354（https://leetcode.com/problems/russian-doll-envelopes/）partial_order最长递增子序列问题
 673（https://leetcode.com/problems/number-of-longest-increasing-subsequence/）O(n^2)与O(nlogn)的LIScounter问题做法模板题
 1092（https://leetcode.com/problems/shortest-common-supersequence/）利用LIS求LCS的最短公共超序列
 1671（https://leetcode.com/problems/minimum-number-of-removals-to-make-mountain-array/）山脉数组LIS变形问题

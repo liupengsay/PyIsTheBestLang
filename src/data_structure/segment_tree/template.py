@@ -82,10 +82,10 @@ class RangeAscendRangeMax:
                 if s == t:
                     self._make_tag(ind, nums[s])
                 else:
-                    stack.append([s, t, ~ind])
+                    stack.append((s, t, ~ind))
                     m = s + (t - s) // 2
-                    stack.append([s, m, 2 * ind])
-                    stack.append([m + 1, t, 2 * ind + 1])
+                    stack.append((s, m, 2 * ind))
+                    stack.append((m + 1, t, 2 * ind + 1))
             else:
                 ind = ~ind
                 self._push_up(ind)
@@ -183,10 +183,10 @@ class RangeAscendRangeMaxBinarySearchFindLeft:
                 if s == t:
                     self._make_tag(ind, nums[s])
                 else:
-                    stack.append([s, t, ~ind])
+                    stack.append((s, t, ~ind))
                     m = s + (t - s) // 2
-                    stack.append([s, m, 2 * ind])
-                    stack.append([m + 1, t, 2 * ind + 1])
+                    stack.append((s, m, 2 * ind))
+                    stack.append((m + 1, t, 2 * ind + 1))
             else:
                 ind = ~ind
                 self._push_up(ind)
@@ -303,10 +303,10 @@ class RangeDescendRangeMin:
                 if s == t:
                     self._make_tag(ind, nums[s])
                 else:
-                    stack.append([s, t, ~ind])
+                    stack.append((s, t, ~ind))
                     m = s + (t - s) // 2
-                    stack.append([s, m, 2 * ind])
-                    stack.append([m + 1, t, 2 * ind + 1])
+                    stack.append((s, m, 2 * ind))
+                    stack.append((m + 1, t, 2 * ind + 1))
             else:
                 ind = ~ind
                 self._push_up(ind)
@@ -393,10 +393,10 @@ class RangeAddRangeSumMinMax:
                 if s == t:
                     self._make_tag(ind, s, t, nums[s])
                 else:
-                    stack.append([s, t, ~ind])
+                    stack.append((s, t, ~ind))
                     m = s + (t - s) // 2
-                    stack.append([s, m, 2 * ind])
-                    stack.append([m + 1, t, 2 * ind + 1])
+                    stack.append((s, m, 2 * ind))
+                    stack.append((m + 1, t, 2 * ind + 1))
             else:
                 ind = ~ind
                 self._push_up(ind)
@@ -575,10 +575,10 @@ class RangeChangeRangeSumMinMax:
                 if s == t:
                     self._make_tag(ind, s, t, nums[s])
                 else:
-                    stack.append([s, t, ~ind])
+                    stack.append((s, t, ~ind))
                     m = s + (t - s) // 2
-                    stack.append([s, m, 2 * ind])
-                    stack.append([m + 1, t, 2 * ind + 1])
+                    stack.append((s, m, 2 * ind))
+                    stack.append((m + 1, t, 2 * ind + 1))
             else:
                 ind = ~ind
                 self._push_up(ind)
@@ -827,10 +827,10 @@ class SegmentTreeRangeUpdateChangeQueryMax:
                 if s == t:
                     self.ceil[ind] = self.nums[s]
                 else:
-                    stack.append([s, t, ~ind])
+                    stack.append((s, t, ~ind))
                     m = s + (t - s) // 2
-                    stack.append([s, m, 2 * ind])
-                    stack.append([m + 1, t, 2 * ind + 1])
+                    stack.append((s, m, 2 * ind))
+                    stack.append((m + 1, t, 2 * ind + 1))
             else:
                 ind = ~ind
                 self.ceil[ind] = self._max(self.ceil[2 * ind], self.ceil[2 * ind + 1])
@@ -920,16 +920,16 @@ class RangeKSmallest:
                     self.cover[ind].append(nums[s])
                     continue
                 else:
-                    stack.append([s, t, ~ind])
+                    stack.append((s, t, ~ind))
                     m = s + (t - s) // 2
-                    stack.append([s, m, 2 * ind])
-                    stack.append([m + 1, t, 2 * ind + 1])
+                    stack.append((s, m, 2 * ind))
+                    stack.append((m + 1, t, 2 * ind + 1))
             else:
                 ind = ~ind
                 self._push_up(ind)
         return
 
-    def _merge(self, lst1, lst2):
+    def _range_merge_to_disjoint(self, lst1, lst2):
         res = []
         m, n = len(lst1), len(lst2)
         i = j = 0
@@ -945,7 +945,7 @@ class RangeKSmallest:
         return res[:self.k]
 
     def _push_up(self, i) -> None:
-        self.cover[i] = self._merge(self.cover[2 * i][:], self.cover[2 * i + 1][:])
+        self.cover[i] = self._range_merge_to_disjoint(self.cover[2 * i][:], self.cover[2 * i + 1][:])
         return
 
     def range_k_smallest(self, left: int, right: int) -> int:
@@ -955,7 +955,7 @@ class RangeKSmallest:
         while stack:
             s, t, i = stack.pop()
             if left <= s and t <= right:
-                ans = self._merge(ans, self.cover[i][:])
+                ans = self._range_merge_to_disjoint(ans, self.cover[i][:])
                 continue
             m = s + (t - s) // 2
             if left <= m:
@@ -1001,10 +1001,10 @@ class RangeOrRangeAnd:
                 if s == t:
                     self._make_tag(ind, nums[s])
                 else:
-                    stack.append([s, t, ~ind])
+                    stack.append((s, t, ~ind))
                     m = s + (t - s) // 2
-                    stack.append([s, m, 2 * ind])
-                    stack.append([m + 1, t, 2 * ind + 1])
+                    stack.append((s, m, 2 * ind))
+                    stack.append((m + 1, t, 2 * ind + 1))
             else:
                 ind = ~ind
                 self._push_up(ind)
@@ -1238,10 +1238,10 @@ class RangeChangeRangeOr:
                 if s == t:
                     self._make_tag(nums[s], ind)
                 else:
-                    stack.append([s, t, ~ind])
+                    stack.append((s, t, ~ind))
                     m = s + (t - s) // 2
-                    stack.append([s, m, 2 * ind])
-                    stack.append([m + 1, t, 2 * ind + 1])
+                    stack.append((s, m, 2 * ind))
+                    stack.append((m + 1, t, 2 * ind + 1))
             else:
                 ind = ~ind
                 self._push_up(ind)
@@ -1488,7 +1488,7 @@ class PointChangeRangeMaxNonEmpConSubSum:
             self.lazy[i] = self.initial
         return
 
-    def _merge(self, res1, res2):
+    def _range_merge_to_disjoint(self, res1, res2):
         res = [0] * 4
         res[0] = self._max(res1[0], res2[0])
         res[0] = self._max(res[0], res1[2] + res2[1])
@@ -1500,7 +1500,7 @@ class PointChangeRangeMaxNonEmpConSubSum:
     def _push_up(self, i):
         res1 = self.cover[2 * i], self.left[2 * i], self.right[2 * i], self.sum[2 * i]
         res2 = self.cover[2 * i + 1], self.left[2 * i + 1], self.right[2 * i + 1], self.sum[2 * i + 1]
-        self.cover[i], self.left[i], self.right[i], self.sum[i] = self._merge(res1, res2)
+        self.cover[i], self.left[i], self.right[i], self.sum[i] = self._range_merge_to_disjoint(res1, res2)
         return
 
     def build(self, nums: List[int]) -> None:
@@ -1580,7 +1580,7 @@ class PointChangeRangeMaxNonEmpConSubSum:
                     stack.append((m + 1, t, 2 * i + 1))
             else:
                 i = ~i
-                dct[i] = self._merge(dct[2 * i], dct[2 * i + 1])
+                dct[i] = self._range_merge_to_disjoint(dct[2 * i], dct[2 * i + 1])
         return dct[1]
 
 
@@ -1970,10 +1970,10 @@ class SegmentTreeLongestSubSame:
                 if s == t:
                     self._make_tag(ind)
                 else:
-                    stack.append([s, t, ~ind])
+                    stack.append((s, t, ~ind))
                     m = s + (t - s) // 2
-                    stack.append([s, m, 2 * ind])
-                    stack.append([m + 1, t, 2 * ind + 1])
+                    stack.append((s, m, 2 * ind))
+                    stack.append((m + 1, t, 2 * ind + 1))
             else:
                 ind = ~ind
                 self._push_up(ind, s, t)
@@ -2141,10 +2141,10 @@ class SegmentTreeRangeSqrtSum:
                 if s == t:
                     self.cover[ind] = nums[s]
                 else:
-                    stack.append([s, t, ~ind])
+                    stack.append((s, t, ~ind))
                     m = s + (t - s) // 2
-                    stack.append([s, m, 2 * ind])
-                    stack.append([m + 1, t, 2 * ind + 1])
+                    stack.append((s, m, 2 * ind))
+                    stack.append((m + 1, t, 2 * ind + 1))
             else:
                 ind = ~ind
                 self.cover[ind] = self.cover[2 * ind] + self.cover[2 * ind + 1]

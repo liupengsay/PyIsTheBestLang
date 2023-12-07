@@ -220,8 +220,8 @@ class ClosetPair:
             min_left_dis = check(left)
             min_right_dis = check(right)
             min_dis = min_left_dis if min_left_dis < min_right_dis else min_right_dis
-            merge_dis = conquer(point_set, min_dis, mid)
-            return min_dis if min_dis < merge_dis else merge_dis
+            range_merge_to_disjoint_dis = conquer(point_set, min_dis, mid)
+            return min_dis if min_dis < range_merge_to_disjoint_dis else range_merge_to_disjoint_dis
 
         return check(lst)
 

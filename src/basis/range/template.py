@@ -7,14 +7,14 @@ class Range:
         return
 
     @staticmethod
-    def merge(lst):
-        """merge intervals into disjoint intervals"""
+    def range_merge_to_disjoint(lst):
+        """range_merge_to_disjoint intervals into disjoint intervals"""
         lst.sort(key=lambda it: it[0])
         ans = []
         x, y = lst[0]
         for a, b in lst[1:]:
             if a <= y:  # [1, 3] + [3, 4] = [1, 4]
-                # if wanted merge like [1, 2] + [3, 4] = [1, 4] can change to a <= y-1 or a < y
+                # if wanted range_merge_to_disjoint like [1, 2] + [3, 4] = [1, 4] can change to a <= y-1 or a < y
                 y = y if y > b else b
             else:
                 ans.append([x, y])
@@ -23,7 +23,7 @@ class Range:
         return ans
 
     @staticmethod
-    def cover_less(s, t, lst, inter=True):
+    def minimum_range_cover(s, t, lst, inter=True):
         """calculate the minimum number of intervals in lst for coverage [s, t]"""
         if not lst:
             return -1
@@ -95,7 +95,7 @@ class Range:
         return ans
 
     @staticmethod
-    def disjoint_most(lst):
+    def maximum_disjoint_range(lst):
         """select the maximum disjoint intervals"""
         lst.sort(key=lambda x: x[1])
         ans = 0

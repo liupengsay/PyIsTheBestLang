@@ -14,7 +14,7 @@ Function：通过相对移动，来减少复杂度，分为同向two_pointer，�
 6293（https://leetcode.com/problems/count-the-number-of-good-subarrays/）two_pointercounter
 16（https://leetcode.com/problems/3sum-closest/）三pointer确定最接近目标值的和
 15（https://leetcode.com/problems/3sum/）寻找三个元素和为 0 的不重复组合
-2422（https://leetcode.com/problems/merge-operations-to-turn-array-into-a-palindrome/）相反方向two_pointergreedy|和
+2422（https://leetcode.com/problems/range_merge_to_disjoint-operations-to-turn-array-into-a-palindrome/）相反方向two_pointergreedy|和
 2524（https://leetcode.com/problems/maximum-frequency-score-of-a-subarray/）sliding_window维护数字数量与幂次mod|
 239（https://leetcode.com/problems/sliding-window-maximum/）sliding_window最大值，sliding_window类维护
 2447（https://leetcode.com/problems/number-of-subarrays-with-gcd-equal-to-k/）sliding_window区间 gcd，sliding_window类维护

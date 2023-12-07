@@ -85,7 +85,7 @@ class SlidingWindowAggregation:
         """
         Args:
             e: unit element
-            op: merge function
+            op: range_merge_to_disjoint function
         """
         self.stack0 = []
         self.agg0 = []

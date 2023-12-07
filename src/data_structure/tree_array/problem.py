@@ -47,6 +47,7 @@ Vertex Add Subtree Sum（https://judge.yosupo.jp/problem/vertex_add_subtree_sum�
 1311F（https://codeforces.com/contest/1311/problem/F）两个离散化树状数组，counter与|和
 1860C（https://codeforces.com/contest/1860/problem/C）PointDescendRangeMin
 1550C（https://codeforces.com/contest/1550/problem/C）PointAscendPreMax
+1679C（https://codeforces.com/contest/1679/problem/C）PointAddRangeSum
 
 135. 二维树状数组3（https://loj.ac/p/135）区间修改，区间查询
 134. 二维树状数组2（https://loj.ac/p/134）区间修改，单点查询
@@ -785,6 +786,39 @@ class Solution:
         if n >= 3:
             ans = min(pre[i] + post[i] + c[i] for i in range(1, n - 1))
         ac.st(ans if ans < inf else -1)
+        return
+
+    @staticmethod
+    def cf_1679c(ac=FastIO()):
+        n, q = ac.read_list_ints()
+        row = [0] * n
+        col = [0] * n
+        row_tree = PointAddRangeSum(n)
+        col_tree = PointAddRangeSum(n)
+        for _ in range(q):
+            lst = ac.read_list_ints()
+            if lst[0] == 1:
+                x, y = [w - 1 for w in lst[1:]]
+                row[x] += 1
+                col[y] += 1
+                if row[x] == 1:
+                    row_tree.point_add(x + 1, 1)
+                if col[y] == 1:
+                    col_tree.point_add(y + 1, 1)
+            elif lst[0] == 2:
+                x, y = [w - 1 for w in lst[1:]]
+                row[x] -= 1
+                col[y] -= 1
+                if row[x] == 0:
+                    row_tree.point_add(x + 1, -1)
+                if col[y] == 0:
+                    col_tree.point_add(y + 1, -1)
+            else:
+                x1, y1, x2, y2 = [w - 1 for w in lst[1:]]
+                if row_tree.range_sum(x1 + 1, x2 + 1) == x2 - x1 + 1 or col_tree.range_sum(y1 + 1, y2 + 1) == y2 - y1 + 1:
+                    ac.st("Yes")
+                    continue
+                ac.st("No")
         return
 
     @staticmethod

@@ -15,7 +15,7 @@ Function：用来处理图论相关的联通问题，通常结合逆向思考、
 2076（https://leetcode.com/problems/process-restricted-friend-requests/）union_find变种，维护群体的不喜欢关系
 2459（https://leetcode.com/problems/sort-array-by-moving-items-to-empty-space/）permutation_ring|题目
 2709（https://leetcode.com/problems/greatest-common-divisor-traversal/）union_find具有相同质因数的连通块
-2612（https://leetcode.com/problems/minimum-reverse-operations/）union_find应用 find_merge 灵活
+2612（https://leetcode.com/problems/minimum-reverse-operations/）union_find应用 find_range_merge_to_disjoint 灵活
 1559（https://leetcode.com/problems/detect-cycles-in-2d-grid/）union_find判环
 1569（https://leetcode.com/problems/number-of-ways-to-reorder-array-to-get-same-bst/）reverse_thinking，reverse_order|利用union_find建立二叉搜索树，排列组合|union_find
 1970（https://leetcode.com/problems/last-day-where-you-can-still-cross/）reverse_thinkingunion_find
@@ -45,7 +45,7 @@ Function：用来处理图论相关的联通问题，通常结合逆向思考、
 3420（https://www.luogu.com.cn/problem/P3420）union_find变形问题
 5429（https://www.luogu.com.cn/problem/P5429）简单union_find应用题
 6193（https://www.luogu.com.cn/problem/P6193）permutation_ring|交换代价
-6706（https://www.luogu.com.cn/problem/P6706）有向图union_find逆序更新边 find_merge 灵活
+6706（https://www.luogu.com.cn/problem/P6706）有向图union_find逆序更新边 find_range_merge_to_disjoint 灵活
 7991（https://www.luogu.com.cn/problem/P7991）union_find连通块缩点使得 1 和 n 连通最多|两条路的代价
 8230（https://www.luogu.com.cn/problem/P8230）分层union_find|implemention
 8637（https://www.luogu.com.cn/problem/P8637）union_findpermutation_ring|
@@ -623,7 +623,7 @@ class Solution:
 
     @staticmethod
     def lg_p6706(ac=FastIO()):
-        # 有向图union_find逆序更新边 find_merge 灵活
+        # 有向图union_find逆序更新边 find_range_merge_to_disjoint 灵活
         n = ac.read_int()
         edge = ac.read_list_ints_minus_one()
         q = ac.read_int()
@@ -634,7 +634,7 @@ class Solution:
                 rem[x - 1] = edge[x - 1]
                 edge[x - 1] = -1
 
-        def find_merge(y):
+        def find_range_merge_to_disjoint(y):
             tmp = [y]
             while edge[tmp[-1]] not in [-1, n, y]:
                 tmp.append(edge[tmp[-1]])
@@ -651,7 +651,7 @@ class Solution:
             op, x = query[i]
             x -= 1
             if op == 1:
-                find_merge(x)
+                find_range_merge_to_disjoint(x)
                 if edge[x] == n:
                     res = "CIKLUS"
                 elif edge[x] == -1:
@@ -661,7 +661,7 @@ class Solution:
                 ans.append(res)
             else:
                 edge[x] = rem[x]
-                find_merge(x)
+                find_range_merge_to_disjoint(x)
         for i in range(len(ans) - 1, -1, -1):
             ac.st(ans[i])
         return
@@ -710,7 +710,7 @@ class Solution:
     @staticmethod
     def lc_2612(n: int, p: int, banned: List[int], k: int) -> List[int]:
 
-        def find_merge(x):
+        def find_range_merge_to_disjoint(x):
             # union_find父节点表示下一个为访问的点类似链表
             tmp = []
             while x != fa[x]:
@@ -732,15 +732,15 @@ class Solution:
             # 满足 low <= j <= high 且要有相同的odd_even
             low = max(0, k - 1 - i, i - k + 1)
             high = min(2 * n - k - 1 - i, n - 1, i + k - 1)
-            j = find_merge(low)
+            j = find_range_merge_to_disjoint(low)
             while j <= high:
                 if ans[j] == -1:
                     # 未访问过
                     ans[j] = ans[i] + 1
-                    fa[j] = j + 2  # merge到下一个
+                    fa[j] = j + 2  # range_merge_to_disjoint到下一个
                     stack.append(j)
                 # 继续访问下一个
-                j = find_merge(j + 2)
+                j = find_range_merge_to_disjoint(j + 2)
         return ans
 
     @staticmethod

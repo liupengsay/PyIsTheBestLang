@@ -60,15 +60,15 @@ class VariousSort:
         quick_sort(0, n - 1)
         return lst
 
-    def merge_sort(self, nums):
+    def range_merge_to_disjoint_sort(self, nums):
 
         if len(nums) > 1:
             mid = len(nums) // 2
             left = nums[:mid]
             right = nums[mid:]
 
-            self.merge_sort(left)
-            self.merge_sort(right)
+            self.range_merge_to_disjoint_sort(left)
+            self.range_merge_to_disjoint_sort(right)
 
             # Merge ordered lists using pointers
             i = j = k = 0
@@ -93,19 +93,19 @@ class VariousSort:
         return nums
 
     @staticmethod
-    def merge_sort_inverse_pair(nums, n):
-        """Use merge sort to calculate the minimum number of times needed
+    def range_merge_to_disjoint_sort_inverse_pair(nums, n):
+        """Use range_merge_to_disjoint sort to calculate the minimum number of times needed
         to make an array sorted by exchanging only adjacent elements
         """
 
-        def merge(left, right):
+        def range_merge_to_disjoint(left, right):
             nonlocal ans
             if left >= right:
                 return
 
             mid = (left + right) // 2
-            merge(left, mid)
-            merge(mid + 1, right)
+            range_merge_to_disjoint(left, mid)
+            range_merge_to_disjoint(mid + 1, right)
 
             i, j = left, mid + 1
             k = left
@@ -133,7 +133,7 @@ class VariousSort:
 
         ans = 0
         arr = [0] * n
-        merge(0, n - 1)
+        range_merge_to_disjoint(0, n - 1)
         # You can also use a tree array with a length of 2 * n and a line segment tree for implemention calculations
         # The result is equivalent to the number of inverse pairs in the array
         # Reference question P1774

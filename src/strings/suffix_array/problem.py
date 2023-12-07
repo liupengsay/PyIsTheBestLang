@@ -3,7 +3,7 @@ Algorithm：后缀数组
 Function：生成字符串的后缀sorting
 
 ====================================LeetCode====================================
-1754（https://leetcode.com/problems/largest-merge-of-two-strings/）
+1754（https://leetcode.com/problems/largest-range_merge_to_disjoint-of-two-strings/）
 1698（https://leetcode.com/problems/number-of-distinct-substrings-in-a-string/）后缀数组应用题，利用height特性
 
 =====================================LuoGu======================================
@@ -34,34 +34,34 @@ class Solution:
         m, n = len(word1), len(word2)
         i = 0
         j = 0
-        merge = ""
+        range_merge_to_disjoint = ""
         while i < m and j < n:
             if rk[i] > rk[j + m + 1]:
-                merge += word1[i]
+                range_merge_to_disjoint += word1[i]
                 i += 1
             else:
-                merge += word2[j]
+                range_merge_to_disjoint += word2[j]
                 j += 1
-        merge += word1[i:]
-        merge += word2[j:]
-        return merge
+        range_merge_to_disjoint += word1[i:]
+        range_merge_to_disjoint += word2[j:]
+        return range_merge_to_disjoint
 
     @staticmethod
     def lc_1754_2(word1: str, word2: str) -> str:
         # greedy比较后缀的lexicographical_order大小
-        merge = ""
+        range_merge_to_disjoint = ""
         i = j = 0
         m, n = len(word1), len(word2)
         while i < m and j < n:
             if word1[i:] > word2[j:]:
-                merge += word1[i]
+                range_merge_to_disjoint += word1[i]
                 i += 1
             else:
-                merge += word2[j]
+                range_merge_to_disjoint += word2[j]
                 j += 1
-        merge += word1[i:]
-        merge += word2[j:]
-        return merge
+        range_merge_to_disjoint += word1[i:]
+        range_merge_to_disjoint += word2[j:]
+        return range_merge_to_disjoint
 
     @staticmethod
     def hr_1(ac=FastIO()):
@@ -76,17 +76,17 @@ class Solution:
             m, n = len(word1), len(word2)
             i = 0
             j = 0
-            merge = []
+            range_merge_to_disjoint = []
             while i < m and j < n:
                 if rk[i] < rk[j + m + 1]:
-                    merge.append(word1[i])
+                    range_merge_to_disjoint.append(word1[i])
                     i += 1
                 else:
-                    merge.append(word2[j])
+                    range_merge_to_disjoint.append(word2[j])
                     j += 1
-            merge.extend(list(word1[i:]))
-            merge.extend(list(word2[j:]))
-            ans = "".join(merge)
+            range_merge_to_disjoint.extend(list(word1[i:]))
+            range_merge_to_disjoint.extend(list(word2[j:]))
+            ans = "".join(range_merge_to_disjoint)
             ac.st(ans.upper())
 
         return

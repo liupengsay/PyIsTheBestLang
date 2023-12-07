@@ -99,7 +99,7 @@ class Solution:
     @staticmethod
     def ac_109(ac=FastIO()):
 
-        def merge(lst1, lst2):
+        def range_merge_to_disjoint(lst1, lst2):
             a, b = len(lst1), len(lst2)
             x = y = 0
             res = []
@@ -137,7 +137,7 @@ class Solution:
                 while p and right < n:
                     cur = nums[right + 1:right + p + 1]
                     cur.sort()
-                    tmp = merge(lst, cur)
+                    tmp = range_merge_to_disjoint(lst, cur)
                     if check(tmp):
                         lst = tmp[:]
                         right += p

@@ -11,7 +11,7 @@ class TestGeneral(unittest.TestCase):
         n = 1000
         for _ in range(n):
             nums = [random.randint(0, n) for _ in range(n)]
-            assert vs.defined_sort(nums) == vs.quick_sort_two(nums) == vs.merge_sort(nums) == sorted(nums)
+            assert vs.defined_sort(nums) == vs.quick_sort_two(nums) == vs.range_merge_to_disjoint_sort(nums) == sorted(nums)
         return
 
 

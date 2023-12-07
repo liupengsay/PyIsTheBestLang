@@ -14,7 +14,7 @@ Function：有向图sorting，无向图在选定根节点的情况下也可以�
 2603（https://leetcode.com/contest/weekly-contest-338/problems/collect-coins-in-a-tree/）无向图拓扑sorting内向基环树
 2204（https://leetcode.com/problems/distance-to-a-cycle-in-undirected-graph/https://leetcode.com/problems/distance-to-a-cycle-in-undirected-graph/）无向图拓扑sorting
 1857（https://leetcode.com/problems/largest-color-value-in-a-directed-graph/）拓扑sortingDP
-1932（https://leetcode.com/problems/merge-bsts-to-create-single-bst/）连通性、拓扑sorting与二叉搜索树判断
+1932（https://leetcode.com/problems/range_merge_to_disjoint-bsts-to-create-single-bst/）连通性、拓扑sorting与二叉搜索树判断
 1591（https://leetcode.com/contest/biweekly-contest-35/problems/strange-printer-ii/）建图判断拓扑sorting是否无环
 2192（https://leetcode.com/problems/all-ancestors-of-a-node-in-a-directed-acyclic-graph/）有向图DAG拓扑sorting
 
