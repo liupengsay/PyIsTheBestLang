@@ -14,7 +14,7 @@ Function：二进制数字表示转移状态，相应的转移方程，通常可
 1681（https://leetcode.com/problems/minimum-incompatibility/）state_compression分组DP，state_compression和组合数选取结合
 1125（https://leetcode.com/problems/smallest-sufficient-team/）状压DP
 1467（https://leetcode.com/problems/probability-of-a-two-boxes-having-the-same-number-of-distinct-balls/）记忆化搜索与组合mathcounter
-1531（https://leetcode.com/problems/string-compression-ii/submissions/）线性DPimplemention
+1531（https://leetcode.com/problems/string-compression-ii/submissions/）liner_dpimplemention
 1595（https://leetcode.com/problems/minimum-cost-to-connect-two-groups-of-points/）状压DP，需要一点变形
 1655（https://leetcode.com/problems/distribute-repeating-integers/）状压 DP
 1879（https://leetcode.com/problems/minimum-xor-sum-of-two-arrays/）状压 DP
@@ -46,7 +46,7 @@ Function：二进制数字表示转移状态，相应的转移方程，通常可
 
 ===================================CodeForces===================================
 580D（https://codeforces.com/problemset/problem/580/D）state_compressionDP结合前后相邻的增益最优解
-165E（https://codeforces.com/problemset/problem/165/E）线性DP，state_compressionbrute_force，类似子集思想求解可能存在的与为0的数对
+165E（https://codeforces.com/problemset/problem/165/E）liner_dp，state_compressionbrute_force，类似子集思想求解可能存在的与为0的数对
 11D（https://codeforces.com/contest/11/problem/D）状压DP，无向图简单环counter
 1294F（https://codeforces.com/contest/1294/problem/F）典型树的直径应用题
 

@@ -11,8 +11,8 @@ Function：数组区间|减，和区间值求和（单点可转换为区间）
 2659（https://leetcode.com/problems/make-array-empty/submissions/）implemention删除，可以树状数组也可以SortedList也可以greedy
 1505（https://leetcode.com/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/）树状数组implementioncounter移动，也可以SortedList
 2193（https://leetcode.com/problems/minimum-number-of-moves-to-make-palindrome/description/）树状数组greedyimplemention交换构建回文串，相同题目（P5041求回文串）
-2407（https://leetcode.com/problems/longest-increasing-subsequence-ii/description/）树状数组|线性DP
-100112（https://leetcode.com/problems/maximum-balanced-subsequence-sum/）离散化树状数组|线性DP
+2407（https://leetcode.com/problems/longest-increasing-subsequence-ii/description/）树状数组|liner_dp
+100112（https://leetcode.com/problems/maximum-balanced-subsequence-sum/）离散化树状数组|liner_dp
 2736（https://leetcode.com/problems/maximum-sum-queries/）PointAddPreMax
 
 =====================================LuoGu======================================
@@ -26,8 +26,8 @@ Function：数组区间|减，和区间值求和（单点可转换为区间）
 5677（https://www.luogu.com.cn/problem/P5677）区间值更新与求和
 5094（https://www.luogu.com.cn/problem/P5094）单点更新增|值与前缀区间和查询
 1816（https://www.luogu.com.cn/problem/P1816）树状数组查询静态区间最小值
-1908（https://www.luogu.com.cn/problem/P1908）树状数组求reverse_pair|
-1725（https://www.luogu.com.cn/problem/P1725）reverse_order|线性DP，单点更新值，查询区间最大值
+1908（https://www.luogu.com.cn/problem/P1908）树状数组求reverse_order_pair|
+1725（https://www.luogu.com.cn/problem/P1725）reverse_order|liner_dp，单点更新值，查询区间最大值
 3586（https://www.luogu.com.cn/problem/P3586）offline_query、离散化树状数组，单点增减，prefix_sum查询
 1198（https://www.luogu.com.cn/problem/P1198）树状数组，查询区间最大值
 4868（https://www.luogu.com.cn/problem/P4868）转换公式单点修改，两个树状数组维护prefix_sum的prefix_sum
@@ -145,7 +145,7 @@ class Solution:
 
     @staticmethod
     def lc_2407(nums: List[int], k: int) -> int:
-        # 树状数组|线性DP
+        # 树状数组|liner_dp
         n = max(nums)
         ans = 0
         tree = PointAscendRangeMax(n)
@@ -518,7 +518,7 @@ class Solution:
 
     @staticmethod
     def lg_p1908(ac=FastIO()):
-        # 树状数组求reverse_pair|
+        # 树状数组求reverse_order_pair|
         n = ac.read_int()
         nums = ac.read_list_ints()
         ind = list(range(n))
@@ -557,7 +557,7 @@ class Solution:
 
     @staticmethod
     def lg_p1725(ac=FastIO()):
-        # 树状数组reverse_order|线性DP，单点更新与区间查询最大值
+        # 树状数组reverse_order|liner_dp，单点更新与区间查询最大值
         n, a, b = ac.read_list_ints()
         n += 1
         nums = ac.read_list_ints()

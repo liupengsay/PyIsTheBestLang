@@ -17,19 +17,19 @@ Function：确定最优选择，通常可以SortedList用于维护和查询sorte
 2426（https://leetcode.com/problems/number-of-pairs-satisfying-inequality/）根据不等式变换和sorted_listbinary_search
 
 =====================================LuoGu======================================
-7333（https://www.luogu.com.cn/problem/P7333）sorting预处理后，动态更新sorted_list查询，注意是环形数组
+7333（https://www.luogu.com.cn/problem/P7333）sorting预处理后，动态更新sorted_list查询，注意是circular_array|
 7391（https://www.luogu.com.cn/problem/P7391）sorted_listgreedyimplemention，延迟替换，类似课程表3
 7910（https://www.luogu.com.cn/problem/P7910）sorted_list维护
-4375（https://www.luogu.com.cn/problem/P4375）冒泡sorting，sorted_list维护
-1908（https://www.luogu.com.cn/problem/P1908）问题求reverse_pair|，可以归并sorting
-1966（https://www.luogu.com.cn/problem/P1966）reverse_pair|greedy题目
+4375（https://www.luogu.com.cn/problem/P4375）bubble_sort，sorted_list维护
+1908（https://www.luogu.com.cn/problem/P1908）问题求reverse_order_pair|，可以merge_sort
+1966（https://www.luogu.com.cn/problem/P1966）reverse_order_pair|greedy题目
 2161（https://www.luogu.com.cn/problem/P2161）range_merge_to_disjoint与删除处理
 1637（https://www.luogu.com.cn/problem/P1637）典型STL应用题，prefix_suffix大小值counter
 2234（https://www.luogu.com.cn/problem/P2234）典型STL应用题
 2804（https://www.luogu.com.cn/problem/P2804）prefix_sum| STL 平均值大于 m 的连续子数组个数
 3608（https://www.luogu.com.cn/problem/P3608）典型STL应用题
 5076（https://www.luogu.com.cn/problem/P5076）sorted_list与sorted_list名次implemention
-5149（https://www.luogu.com.cn/problem/P5149）reverse_pair| bisect 实现
+5149（https://www.luogu.com.cn/problem/P5149）reverse_order_pair| bisect 实现
 5459（https://www.luogu.com.cn/problem/P5459）prefix_sum与sorted_listbinary_search
 6538（https://www.luogu.com.cn/problem/P6538）典型STL维护greedy
 7912（https://www.luogu.com.cn/problem/P7912） STL 应用implemention题
@@ -60,7 +60,7 @@ class Solution:
 
     @staticmethod
     def lg_4375d(ac=FastIO()):
-        # 双向冒泡sorting所需要的比较轮数
+        # 双向bubble_sort所需要的比较轮数
         n = ac.read_int()
         ans = 1
         nums = [ac.read_int() for _ in range(n)]
@@ -129,7 +129,7 @@ class Solution:
 
     @staticmethod
     def lg_1966(ac=FastIO()):
-        # reverse_pair|greedy题目
+        # reverse_order_pair|greedy题目
         n = ac.read_int()
         ans = 0
         mod = 10 ** 8 - 3
@@ -270,7 +270,7 @@ class Solution:
 
     @staticmethod
     def lg_p5149(ac=FastIO()):
-        # reverse_pair| bisect 实现
+        # reverse_order_pair| bisect 实现
         ac.read_int()
         lst = ac.read_list_strs()
         ind = {st: i for i, st in enumerate(lst)}

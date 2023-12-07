@@ -14,7 +14,7 @@ Function：点到有向或者无向图里面其他点的最短路，也可以最
 3906（https://www.luogu.com.cn/problem/P3906）Floyd算法最短路径上经过的点集合
 
 2009（https://www.luogu.com.cn/problem/P2009）Floyd求最短路
-2419（https://www.luogu.com.cn/problem/P2419）看似拓扑sorting其实是Floyd拓扑sorting
+2419（https://www.luogu.com.cn/problem/P2419）看似topological_sorting其实是Floydtopological_sorting
 2910（https://www.luogu.com.cn/problem/P2910）最短路之后查询，Floyd模板题
 6464（https://www.luogu.com.cn/problem/P6464）brute_force边之后Floyd算法更新，理解Floyd的原理题，借助中间两点更新最短距离
 6175（https://www.luogu.com.cn/problem/P6175）Floydbrute_force三个点之间的距离和，O(n^3)，也可以BFS或者Dijkstra

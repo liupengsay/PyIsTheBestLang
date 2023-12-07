@@ -14,7 +14,7 @@ Function：通常brute_force、区间DP|implementiongreedy的方式，和记忆�
 1247（https://www.luogu.com.cn/problem/P1247）nim博弈，异或求解
 1512（https://www.luogu.com.cn/problem/P1512）博弈DP与日期操作
 2092（https://www.luogu.com.cn/problem/P2092）根据质数的个数来判断必胜态
-2953（https://www.luogu.com.cn/problem/P2953）必胜态线性DP
+2953（https://www.luogu.com.cn/problem/P2953）必胜态liner_dp
 
 =====================================AcWing=====================================
 4005（https://www.acwing.com/problem/content/description/4008/）典型博弈brain_teaser|分情况讨论
@@ -141,7 +141,7 @@ class Solution:
 
     @staticmethod
     def lg_p2953(ac=FastIO()):
-        # 必胜态线性DP
+        # 必胜态liner_dp
         n = 1000000
         dp = [0] * (n + 1)
         for i in range(1, n + 1):

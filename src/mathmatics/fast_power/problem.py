@@ -19,7 +19,7 @@ Function：高效整数的幂次方mod|
 6075（https://www.luogu.com.cn/problem/P6075）组合counter后fast_power|
 6392（https://www.luogu.com.cn/problem/P6392）公式拆解变换后fast_power|
 1045（https://www.luogu.com.cn/problem/P1045）位数公式转换与fast_power|
-3509（https://www.luogu.com.cn/problem/P3509）two_pointerimplemention寻找第k远的距离，fast_power|原理跳转
+3509（https://www.luogu.com.cn/problem/P3509）two_pointersimplemention寻找第k远的距离，fast_power|原理跳转
 1349（https://www.luogu.com.cn/problem/P1349）矩阵fast_power|
 2233（https://www.luogu.com.cn/problem/P2233）矩阵fast_power|
 2613（https://www.luogu.com.cn/problem/P2613）乘法逆元
@@ -105,13 +105,13 @@ class Solution:
     @staticmethod
     def lg_p3509(ac=FastIO()):
 
-        # two_pointerimplemention寻找第k远的距离，fast_power|原理跳转
+        # two_pointersimplemention寻找第k远的距离，fast_power|原理跳转
         n, k, m = ac.read_list_ints()
         nums = ac.read_list_ints()
 
         ans = list(range(n))
 
-        # two_pointer找出下一跳
+        # two_pointers找出下一跳
         nex = [0] * n
         head = 0
         tail = k

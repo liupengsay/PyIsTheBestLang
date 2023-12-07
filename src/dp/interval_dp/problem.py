@@ -5,16 +5,16 @@ Function：prefix_sum优化区间DP（需要在状态转移的时候更新代价
 ====================================LeetCode====================================
 375（https://leetcode.com/problems/guess-number-higher-or-lower-ii/）区间DP
 
-1039（https://leetcode.com/problems/minimum-score-triangulation-of-polygon/）环形数组区间 DP
+1039（https://leetcode.com/problems/minimum-score-triangulation-of-polygon/）circular_array|区间 DP
 2472（https://leetcode.com/problems/maximum-number-of-non-overlapping-palindrome-substrings/）预处理线性palindrome_substring DP 优化外|结果线性 DP 也可以马拉车回文串获取回文信息
-2430（https://leetcode.com/problems/maximum-deletions-on-a-string/）最长公共前缀DP|线性DP
+2430（https://leetcode.com/problems/maximum-deletions-on-a-string/）最长公共前缀DP|liner_dp
 1547（https://leetcode.com/problems/minimum-cost-to-cut-a-stick/）区间DPimplemention
 1278（https://leetcode.com/problems/palindrome-partitioning-iii/）预处理双重区间DP
 1690（https://leetcode.com/problems/stone-game-vii/description/）区间DP
 1312（https://leetcode.com/problems/minimum-insertion-steps-to-make-a-string-palindrome/）区间DP，最长回文子序列
 
 =====================================LuoGu======================================
-1521（https://www.luogu.com.cn/problem/P1521）归并sorting移动次数，也可以倍增的树状数组
+1521（https://www.luogu.com.cn/problem/P1521）merge_sort移动次数，也可以倍增的树状数组
 1775（https://www.luogu.com.cn/problem/P1775）典型区间DP和prefix_sum预处理
 2426（https://www.luogu.com.cn/problem/P2426）典型区间DP
 2690（https://www.luogu.com.cn/problem/P2690）区间DP记忆化搜索implemention
@@ -26,7 +26,7 @@ Function：prefix_sum优化区间DP（需要在状态转移的时候更新代价
 3205（https://www.luogu.com.cn/problem/P3205）区间DP滚动数组
 1040（https://www.luogu.com.cn/problem/P1040）区间DP与路径还原
 1430（https://www.luogu.com.cn/problem/P1430）区间DP|前缀数组优化
-2308（https://www.luogu.com.cn/problem/P2308）区间DP，并递归方式反解括号添|方式以及每一步的和
+2308（https://www.luogu.com.cn/problem/P2308）区间DP，并recursion方式反解括号添|方式以及每一步的和
 2734（https://www.luogu.com.cn/problem/P2734）prefix_sum|区间DP
 3004（https://www.luogu.com.cn/problem/P3004）简单区间 DP 
 3205（https://www.luogu.com.cn/problem/P3205）区间 DP 滚动数组优化
@@ -207,7 +207,7 @@ class Solution:
             for j in range(i + 2, n):
                 dp[i][j] = max(dp[i][k - 1] * dp[k + 1][j] + dp[k][k] for k in range(i + 1, j))
 
-        # 栈implemention方案还原
+        # stackimplemention方案还原
         ans = []
         stack = [[0, n - 1]]
         while stack:
@@ -257,7 +257,7 @@ class Solution:
 
     @staticmethod
     def lg_p2308(ac=FastIO()):
-        # 区间DP，并递归方式反解括号添|方式以及每一步的和
+        # 区间DP，并recursion方式反解括号添|方式以及每一步的和
         n = ac.read_int()
         nums = ac.read_list_ints()
         pre = ac.accumulate(nums)

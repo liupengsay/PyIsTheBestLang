@@ -1,31 +1,31 @@
 """
-Algorithm：divide_and_conquer、递归、二叉树、四叉树、十叉树、N叉树、先序、中序、后序遍历、divide and conquer
-Function：递归处理，与迭代是处理相同问题的两种不同方式，迭代效率高于递归
+Algorithm：divide_and_conquer|recursion|n-tree|pre_order|mid_order|post_order|iteration
+Function：recursion|iteration
 
 ====================================LeetCode====================================
-1545（https://leetcode.com/problems/find-kth-bit-in-nth-binary-string/）递归implemention
-894（https://leetcode.com/problems/all-possible-full-binary-trees/）类似卡特兰数的递归implemention生成
-880（https://leetcode.com/problems/decoded-string-at-index/）递归implemention
-932（https://leetcode.com/problems/beautiful-array/description/）递归divide_and_conquerconstruction
-889（https://leetcode.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/）递归divide_and_conquerconstruction
-1028（https://leetcode.com/problems/recover-a-tree-from-preorder-traversal/description/）根据先序遍历递归construction二叉树
+1545（https://leetcode.com/problems/find-kth-bit-in-nth-binary-string/）recursion|implemention
+894（https://leetcode.com/problems/all-possible-full-binary-trees/）catalan_num|recursion|implemention
+880（https://leetcode.com/problems/decoded-string-at-index/）recursion|implemention
+932（https://leetcode.com/problems/beautiful-array/description/）recursion|divide_and_conquer|construction
+889（https://leetcode.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/）recursion|divide_and_conquer|construction
+1028（https://leetcode.com/problems/recover-a-tree-from-preorder-traversal/description/）pre_order|recursion|construction|2-tree
 
 =====================================LuoGu======================================
-1911（https://www.luogu.com.cn/problem/P1911）四叉树递归
-5461（https://www.luogu.com.cn/problem/P5461）递归四叉树左上角
-5551（https://www.luogu.com.cn/problem/P5551）先序遍历的完全二叉树递归
-5626（https://www.luogu.com.cn/problem/P5626）divide_and_conquerDP，归并sorting需要的比较次数最少，但是可能内存占用超过快排
-2907（https://www.luogu.com.cn/problem/P2907）分析复杂度之后采用递归implemention
-7673（https://www.luogu.com.cn/problem/P7673）根据中序遍历，递归还原完全二叉树
-1228（https://www.luogu.com.cn/problem/P1228）四叉树divide_and_conquer递归
-1185（https://www.luogu.com.cn/problem/P1185）二叉树递归绘制
+1911（https://www.luogu.com.cn/problem/P1911）4-tree|recursion|matrix
+5461（https://www.luogu.com.cn/problem/P5461）recursion|4-tree|matrix
+5551（https://www.luogu.com.cn/problem/P5551）pre_order|2-tree|recursion
+5626（https://www.luogu.com.cn/problem/P5626）divide_and_conquer|dp|merge_sort
+2907（https://www.luogu.com.cn/problem/P2907）recursion|implemention
+7673（https://www.luogu.com.cn/problem/P7673）mid_order|recursion|2-tree
+1228（https://www.luogu.com.cn/problem/P1228）4-tree|divide_and_conquer|recursion|matrix
+1185（https://www.luogu.com.cn/problem/P1185）2-tree|recursion
 
 ===================================CodeForces===================================
-448C（https://codeforces.com/contest/448/problem/C）greedy递归DP
+448C（https://codeforces.com/contest/448/problem/C）greedy|recursion|dp
 
-98（https://www.acwing.com/problem/content/100/）四叉树递归与坐标旋转变换
-93（https://www.acwing.com/problem/content/95/）递归与迭代两种方式实现组合数选取
-118（https://www.acwing.com/problem/content/120/）递归生成分形
+98（https://www.acwing.com/problem/content/100/）4-tree|recursion|matrix_rotate
+93（https://www.acwing.com/problem/content/95/）recursion|comb|iteration
+118（https://www.acwing.com/problem/content/120/）recursion
 
 """
 from functools import lru_cache
@@ -41,7 +41,7 @@ class Solution:
 
     @staticmethod
     def lc_880(t: str, m: int) -> str:
-        # 递归implemention
+        # recursionimplemention
 
         def dfs(s, k):
             n = len(s)
@@ -60,7 +60,7 @@ class Solution:
         return dfs(t, m)
 
     def lc_889(self, preorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
-        # 递归divide_and_conquerconstruction
+        # recursiondivide_and_conquerconstruction
         if not preorder:
             return
 
@@ -79,7 +79,7 @@ class Solution:
     @lru_cache(None)
     def lc_894(self, n: int) -> List[Optional[TreeNode]]:
 
-        # 类似卡特兰数的递归implemention生成
+        # 类似catalan_number的recursionimplemention生成
         if n % 2 == 0:
             return []
         if n == 1:
@@ -97,7 +97,7 @@ class Solution:
 
     @lru_cache(None)
     def lc_932(self, n: int) -> List[int]:
-        # 递归divide_and_conquerconstruction
+        # recursiondivide_and_conquerconstruction
         if n == 1:
             return [1]
         return [2 * x - 1 for x in self.lc_932((n + 1) // 2)] + [2 * x for x in self.lc_932(n // 2)]
@@ -105,7 +105,7 @@ class Solution:
     @staticmethod
     def lc_1028(traversal: str) -> Optional[TreeNode]:
 
-        # 根据先序遍历递归construction二叉树
+        # 根据先序遍历recursionconstruction二叉树
         ans = ""
         pre = 0
         for w in traversal:
@@ -134,7 +134,7 @@ class Solution:
     @staticmethod
     def lc_1345(a: int, b: int) -> str:
 
-        # 递归implemention
+        # recursionimplemention
         def dfs(n, k):
 
             if n == 1 and k == 1:
@@ -152,7 +152,7 @@ class Solution:
     @staticmethod
     def lg_p1911(n, x, y):
 
-        # 递归处理四叉树
+        # recursion处理四叉树
 
         def dfs(x1, y1, x2, y2, a, b):
             nonlocal ind
@@ -174,7 +174,7 @@ class Solution:
                 else:
                     nex.append([a, b])
             ind += 1
-            # 四叉树递归坐标
+            # 四叉树recursion坐标
             dfs(x1, y1, x0, y0, nex[0][0], nex[0][1])
             dfs(x1, y0 + 1, x0, y2, nex[1][0], nex[1][1])
             dfs(x0 + 1, y1, x2, y0, nex[2][0], nex[2][1])
@@ -197,7 +197,7 @@ class Solution:
         m = 1 << n
         ans = [[0] * m for _ in range(m)]
         ind = 1
-        # 递归生成
+        # recursion生成
         dfs(0, 0, m - 1, m - 1, x, y)
 
         # hash化处理
@@ -212,7 +212,7 @@ class Solution:
 
     @staticmethod
     def cf_448c(ac=FastIO()):
-        # greedy递归DP
+        # greedyrecursionDP
         ac.read_int()
         nums = ac.read_list_ints()
 
@@ -240,14 +240,14 @@ class Solution:
     @staticmethod
     def ac_98(ac=FastIO()):
 
-        # 四叉树递归与坐标旋转变换
+        # 四叉树recursion与坐标旋转变换
         for _ in range(ac.read_int()):
             n, a, b = ac.read_list_ints()
             a -= 1
             b -= 1
 
             def check(nn, mm):
-                # 递归改成迭代写法极大提升速度
+                # recursion改成迭代写法极大提升速度
                 stack = [[nn, mm]]
                 x = y = -1
                 while stack:
@@ -285,7 +285,7 @@ class Solution:
     def ac_93_1(ac=FastIO()):
         n, m = ac.read_list_ints()
 
-        # 递归实现选取
+        # recursion实现选取
 
         def dfs(i):
             if len(pre) == m:
@@ -330,7 +330,7 @@ class Solution:
 
     @staticmethod
     def ac_118(ac=FastIO()):
-        # 迭代方式递归
+        # 迭代方式recursion
         dp = []
         for i in range(1, 8):
             n = 3 ** (i - 1)

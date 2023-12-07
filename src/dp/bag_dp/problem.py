@@ -76,7 +76,7 @@ Function：一重背包DP，数量有限从后往前遍历，数量无限则从�
 2854（https://www.luogu.com.cn/problem/P2854）分组01背包
 2938（https://www.luogu.com.cn/problem/P2938）分组完全背包
 2979（https://www.luogu.com.cn/problem/P2979）分组01背包
-3010（https://www.luogu.com.cn/problem/P3010）变形01背包，两堆差值最小的分配方案数
+3010（https://www.luogu.com.cn/problem/P3010）变形01背包，两heapq差值最小的分配方案数
 3423（https://www.luogu.com.cn/problem/P3423）二进制优化多重背包与方案输出
 3983（https://www.luogu.com.cn/problem/P3983）两个分组完全背包
 5322（https://www.luogu.com.cn/problem/P5322）典型二维 DP 转换为分组背包
@@ -1071,7 +1071,7 @@ class Solution:
 
     @staticmethod
     def lg_p3010(ac=FastIO()):
-        # 变形01背包，两堆差值最小的分配方案数
+        # 变形01背包，两heapq差值最小的分配方案数
         n = ac.read_int()
         nums = [ac.read_int() for _ in range(n)]
         s = sum(nums)

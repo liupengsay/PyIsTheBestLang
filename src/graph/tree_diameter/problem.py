@@ -53,9 +53,9 @@ Function：在有向图与无向图扩散，多源BFS、双向BFS，0-1BFS（类
 1379（https://www.luogu.com.cn/problem/P1379）双向BFS
 5507（https://www.luogu.com.cn/problem/P5507）双向BFS或者A-star启发式搜索
 5908（https://www.luogu.com.cn/problem/P5908）无根树直接bfs遍历
-1099（https://www.luogu.com.cn/problem/P1099）题，用到了树的直径、BFS、two_pointer和单调队列求最小偏心距
+1099（https://www.luogu.com.cn/problem/P1099）题，用到了树的直径、BFS、two_pointers和单调队列求最小偏心距
 2491（https://www.luogu.com.cn/problem/P2491）同树网的核P1099
-1038（https://www.luogu.com.cn/problem/P1038）拓扑sorting题
+1038（https://www.luogu.com.cn/problem/P1038）topological_sorting题
 1126（https://www.luogu.com.cn/problem/P1126）广度优先搜索
 1213（https://www.luogu.com.cn/problem/P1213）state_compression优化01BFS
 1902（https://www.luogu.com.cn/problem/P1902）binary_search|BFS与原地hash路径最大值的最小值

@@ -125,7 +125,7 @@ class Solution:
                 cnt += 1
             return True
 
-        # 利用倍增与归并sorting的思想数组划分
+        # 利用倍增与merge_sort的思想数组划分
         for _ in range(ac.read_int()):
             n, m, t = ac.read_list_ints()
             nums = ac.read_list_ints()

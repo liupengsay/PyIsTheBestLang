@@ -1,11 +1,11 @@
 """
-Algorithm：序列化与反序列化
-Function：将二叉树、N叉树等数据结构序列化为字符串，并通过字符串反序列化恢复数据
+Algorithm：serialization|deserialization
+Function：2-tree|n-tree|tree_hash|tree_to_str|tree_serialization|tree_deserialization
 
 ====================================LeetCode====================================
-428（https://leetcode.com/problems/serialize-and-deserialize-n-ary-tree/）序列化模板题
-297（https://leetcode.com/problems/serialize-and-deserialize-binary-tree/）序列化模板题
-449（https://leetcode.com/problems/serialize-and-deserialize-bst/）序列化模板题
+428（https://leetcode.com/problems/serialize-and-deserialize-n-ary-tree/）n-tree|tree_serialization
+297（https://leetcode.com/problems/serialize-and-deserialize-binary-tree/）tree_deserialization
+449（https://leetcode.com/problems/serialize-and-deserialize-bst/）tree_deserialization
 
 =====================================LuoGu======================================
 xx（xxx）xxx
@@ -18,4 +18,5 @@ xx（xxx）xxx
 
 class Solution:
     def __int__(self):
+
         return

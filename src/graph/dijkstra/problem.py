@@ -1558,7 +1558,7 @@ class Solution:
             dct[i].append([j, w])
             dct[j].append([i, w])
 
-        # 堆的第一维是代价，第二维是时间，第三维是节点
+        # heapq的第一维是代价，第二维是时间，第三维是节点
         stack = [[passing_fees[0], 0, 0]]
         dis = [max_time + 1] * n  # hash存的是第二维时间结果，需要持续递减
         while stack:

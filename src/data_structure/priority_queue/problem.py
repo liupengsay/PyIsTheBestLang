@@ -11,21 +11,21 @@ Function：维护单调性，sliding_window最大值最小值
 =====================================LuoGu======================================
 2251（https://www.luogu.com.cn/problem/P2251）滑动区间最小值
 2032（https://www.luogu.com.cn/problem/P2032）滑动区间最大值
-1750（https://www.luogu.com.cn/problem/P1750）题目，滑动pointer窗口栈|队列
+1750（https://www.luogu.com.cn/problem/P1750）题目，滑动pointer窗口stack|队列
 2311（https://www.luogu.com.cn/problem/P2311）不定长sliding_window最大值索引
 7175（https://www.luogu.com.cn/problem/P7175）有序priority_queueimplemention
 7793（https://www.luogu.com.cn/problem/P7793）双端单调队列，最小值
 2216（https://www.luogu.com.cn/problem/P2216）二维区间的sliding_window最大最小值
 1886（https://www.luogu.com.cn/problem/P1886）sliding_window的最大值与最小值
-1725（https://www.luogu.com.cn/problem/P1725）单调队列和pointer维护sliding_window最大值|线性DP
+1725（https://www.luogu.com.cn/problem/P1725）单调队列和pointer维护sliding_window最大值|liner_dp
 2827（https://www.luogu.com.cn/problem/P2827）单调队列
 3800（https://www.luogu.com.cn/problem/P3800）单调队列优化matrix_dp
 1016（https://www.luogu.com.cn/problem/P1016）单调队列，greedyimplemention油箱，还可以增|每个站的油量限制
 1714（https://www.luogu.com.cn/problem/P1714）prefix_sum|sliding_window最小值，单调队列小于一定长度的最大连续子段和
-2629（https://www.luogu.com.cn/problem/P2629）环形数组prefix_sum与sliding_window最小值
+2629（https://www.luogu.com.cn/problem/P2629）circular_array|prefix_sum与sliding_window最小值
 3522（https://www.luogu.com.cn/problem/P3522）看不懂的队列与monotonic_stack|思想
 3957（https://www.luogu.com.cn/problem/P3957）binary_search|priority_queue|DP
-4085（https://www.luogu.com.cn/problem/P4085）two_pointer|priority_queuesliding_window最小值
+4085（https://www.luogu.com.cn/problem/P4085）two_pointers|priority_queuesliding_window最小值
 4392（https://www.luogu.com.cn/problem/P4392）单调队列sliding_window最大值
 
 =====================================AcWing=====================================
@@ -48,7 +48,7 @@ class Solution:
 
     @staticmethod
     def lg_p1725(ac=FastIO()):
-        # 单调队列和pointer维护sliding_window最大值|线性DP
+        # 单调队列和pointer维护sliding_window最大值|liner_dp
         n, low, high = ac.read_list_ints()
         n += 1
         nums = ac.read_list_ints()
@@ -322,7 +322,7 @@ class Solution:
 
     @staticmethod
     def lg_p2629(ac=FastIO()):
-        # 环形数组prefix_sum与sliding_window最小值
+        # circular_array|prefix_sum与sliding_window最小值
         n = ac.read_int()
         nums = ac.read_list_ints()
         nums = [0] + nums + nums
@@ -361,7 +361,7 @@ class Solution:
             ceil = d + g
             j = 0
             for i in range(1, n):
-                # 注意此时two_pointer移动窗口
+                # 注意此时two_pointers移动窗口
                 while stack and stack[0][1] < dis[i] - ceil:
                     stack.popleft()
                 while j < n and dis[i] - dis[j] >= floor:
@@ -385,7 +385,7 @@ class Solution:
     @staticmethod
     def lg_p4085(ac=FastIO()):
 
-        # two_pointer|priority_queuesliding_window最小值
+        # two_pointers|priority_queuesliding_window最小值
         n, m = ac.read_list_ints()
         f = []
         s = []

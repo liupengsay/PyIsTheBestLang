@@ -1,40 +1,40 @@
 """
-Algorithm：堆（priority_queue）、Huffman树（霍夫曼树）
+Algorithm：heapq（priority_queue）、Huffman树（霍夫曼树）
 Function：通常用于需要greedy的场景
 
 ====================================LeetCode====================================
-630（https://leetcode.com/problems/course-schedule-iii/）用一个堆延迟选择greedy维护最优
-2454（https://leetcode.com/problems/next-greater-element-iv/）两个堆维护下下个更大元素即出队两次时遇见的元素，也可以的hash|SortedList
-2402（https://leetcode.com/problems/meeting-rooms-iii/）两个堆implemention会议室安排并counter
-2386（https://leetcode.com/problems/find-the-k-sum-of-an-array/）转换思路堆维护最大和第 K 次出队的则为目标结果
+630（https://leetcode.com/problems/course-schedule-iii/）用一个heapq延迟选择greedy维护最优
+2454（https://leetcode.com/problems/next-greater-element-iv/）两个heapq维护下下个更大元素即出队两次时遇见的元素，也可以的hash|SortedList
+2402（https://leetcode.com/problems/meeting-rooms-iii/）两个heapqimplemention会议室安排并counter
+2386（https://leetcode.com/problems/find-the-k-sum-of-an-array/）转换思路heapq维护最大和第 K 次出队的则为目标结果
 2163（https://leetcode.com/problems/minimum-difference-in-sums-after-removal-of-elements/）预处理前缀后缀最大最小的 K 个数和再brute_force分割点
 1792（https://leetcode.com/problems/maximum-average-pass-ratio/）greedy依次给增幅最大的班级人数| 1
-295（https://leetcode.com/problems/find-median-from-data-stream/）用两个堆维护median
-2542（https://leetcode.com/problems/maximum-subsequence-score/）greedysortingbrute_force|堆维护最大的k个数
-2263（https://leetcode.com/problems/make-array-non-decreasing-or-non-increasing/）大根堆greedy使得序列非降的最小操作次数
+295（https://leetcode.com/problems/find-median-from-data-stream/）用两个heapq维护median
+2542（https://leetcode.com/problems/maximum-subsequence-score/）greedysortingbrute_force|heapq维护最大的k个数
+2263（https://leetcode.com/problems/make-array-non-decreasing-or-non-increasing/）大根heapqgreedy使得序列非降的最小操作次数
 
 =====================================LuoGu======================================
-1168（https://www.luogu.com.cn/problem/P1168） 用两个堆维护median
-1801（https://www.luogu.com.cn/problem/P1801）用两个堆维护第K小
-2085（https://www.luogu.com.cn/problem/P2085）用math|一个堆维护前K小
-1631（https://www.luogu.com.cn/problem/P1631）用一个堆和pointer组合维护前K小
-4053（https://www.luogu.com.cn/problem/P4053）用一个堆延迟选择greedy维护最优，课程表 III
-1878（https://www.luogu.com.cn/problem/P1878）用hash|一个堆implemention
-3620（https://www.luogu.com.cn/problem/P3620）greedy思想|二叉堆与双向链表优
-2168（https://www.luogu.com.cn/problem/P2168）霍夫曼树与二叉堆greedy
-2278（https://www.luogu.com.cn/problem/P2278）二叉堆implementionCPU占用
-1717（https://www.luogu.com.cn/problem/P1717）brute_force最远到达地点二叉堆greedy选取
-1905（https://www.luogu.com.cn/problem/P1905）二叉堆从大到小greedy摆放
-2409（https://www.luogu.com.cn/problem/P2409）二叉堆，最小的k个和
-2949（https://www.luogu.com.cn/problem/P2949）二叉堆greedyimplemention懒惰延迟删除
+1168（https://www.luogu.com.cn/problem/P1168） 用两个heapq维护median
+1801（https://www.luogu.com.cn/problem/P1801）用两个heapq维护第K小
+2085（https://www.luogu.com.cn/problem/P2085）用math|一个heapq维护前K小
+1631（https://www.luogu.com.cn/problem/P1631）用一个heapq和pointer组合维护前K小
+4053（https://www.luogu.com.cn/problem/P4053）用一个heapq延迟选择greedy维护最优，课程表 III
+1878（https://www.luogu.com.cn/problem/P1878）用hash|一个heapqimplemention
+3620（https://www.luogu.com.cn/problem/P3620）greedy思想|二叉heapq与双向链表优
+2168（https://www.luogu.com.cn/problem/P2168）霍夫曼树与二叉heapqgreedy
+2278（https://www.luogu.com.cn/problem/P2278）二叉heapqimplementionCPU占用
+1717（https://www.luogu.com.cn/problem/P1717）brute_force最远到达地点二叉heapqgreedy选取
+1905（https://www.luogu.com.cn/problem/P1905）二叉heapq从大到小greedy摆放
+2409（https://www.luogu.com.cn/problem/P2409）二叉heapq，最小的k个和
+2949（https://www.luogu.com.cn/problem/P2949）二叉heapqgreedyimplemention懒惰延迟删除
 6033（https://www.luogu.com.cn/problem/P6033）greedy升级版可用双端队列优化
-4597（https://www.luogu.com.cn/problem/P4597）大根堆greedy使得序列非降的最小操作次数
+4597（https://www.luogu.com.cn/problem/P4597）大根heapqgreedy使得序列非降的最小操作次数
 
 =====================================AcWing=====================================
-146（https://www.acwing.com/problem/content/description/148/）小顶堆问题m个数组最小的n个子序列和，同样可以最大的
-147（https://www.acwing.com/problem/content/description/149/）greedy思想|二叉堆与双向链表优化
-148（https://www.acwing.com/problem/content/150/）greedy二叉堆，霍夫曼树Huffman Tree的思想，每次优先合并较小的
-149（https://www.acwing.com/problem/content/description/151/）霍夫曼树与二叉堆greedy
+146（https://www.acwing.com/problem/content/description/148/）小顶heapq问题m个数组最小的n个子序列和，同样可以最大的
+147（https://www.acwing.com/problem/content/description/149/）greedy思想|二叉heapq与双向链表优化
+148（https://www.acwing.com/problem/content/150/）greedy二叉heapq，霍夫曼树Huffman Tree的思想，每次优先合并较小的
+149（https://www.acwing.com/problem/content/description/151/）霍夫曼树与二叉heapqgreedy
 
 
 
@@ -77,7 +77,7 @@ class Solution:
     @staticmethod
     def lc_2454_2(nums: List[int]) -> List[int]:
 
-        # monotonic_stack||小顶堆
+        # monotonic_stack||小顶heapq
         n = len(nums)
         ans = [-1] * n
         mono_stack = []
@@ -95,7 +95,7 @@ class Solution:
 
     @staticmethod
     def lg_1198(ac=FastIO()):
-        # 两个堆维护median
+        # 两个heapq维护median
         n = ac.read_int()
         nums = ac.read_list_ints()
         arr = MedianFinder()
@@ -107,7 +107,7 @@ class Solution:
 
     @staticmethod
     def lc_1792(classes, extra_students):
-        # 堆greedyimplemention每次选择最优
+        # heapqgreedyimplemention每次选择最优
         stack = []
         for p, t in classes:
             heapq.heappush(stack, [p / t - (p + 1) / (t + 1), p, t])
@@ -121,7 +121,7 @@ class Solution:
 
     @staticmethod
     def lc_630(courses: List[List[int]]) -> int:
-        # 反悔堆，遍历过程选择更优的
+        # 反悔heapq，遍历过程选择更优的
         courses.sort(key=lambda x: x[1])
         # 按照结束时间sorting
         stack = []
@@ -139,7 +139,7 @@ class Solution:
 
     @staticmethod
     def ac_146(ac=FastIO()):
-        # 小顶堆问题m个数组最小的n个子序列和，同样可以最大的
+        # 小顶heapq问题m个数组最小的n个子序列和，同样可以最大的
         for _ in range(ac.read_int()):
             m, n = ac.read_list_ints()
             grid = [sorted(ac.read_list_ints()) for _ in range(m)]
@@ -168,7 +168,7 @@ class Solution:
 
     @staticmethod
     def ac_147(ac=FastIO()):
-        # greedy思想|二叉堆与双向链表优化
+        # greedy思想|二叉heapq与双向链表优化
 
         n, k = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
@@ -211,7 +211,7 @@ class Solution:
 
     @staticmethod
     def lg_p2168(ac=FastIO()):
-        # 二叉堆greedy与霍夫曼树Huffman Tree
+        # 二叉heapqgreedy与霍夫曼树Huffman Tree
         n, k = ac.read_list_ints()
         stack = [[ac.read_int(), 0] for _ in range(n)]
         heapq.heapify(stack)
@@ -289,7 +289,7 @@ class Solution:
 
     @staticmethod
     def lg_p2278(ac=FastIO()):
-        # 堆implemention应用
+        # heapqimplemention应用
         now = []  # idx, reach, need, level, end
         ans = []
         stack = []  # -level, reach, need, idx
@@ -342,7 +342,7 @@ class Solution:
 
     @staticmethod
     def lg_p1717(ac=FastIO()):
-        # brute_force最远到达地点二叉堆greedy选取
+        # brute_force最远到达地点二叉heapqgreedy选取
         ans = 0
         n = ac.read_int()
         h = ac.read_int() * 60
@@ -367,7 +367,7 @@ class Solution:
 
     @staticmethod
     def lg_p1905(ac=FastIO()):
-        # 二叉堆从大到小greedy摆放
+        # 二叉heapq从大到小greedy摆放
         ac.read_int()
         p = ac.read_int()
         lst = ac.read_list_ints()
@@ -385,7 +385,7 @@ class Solution:
 
     @staticmethod
     def lg_p2409(ac=FastIO()):
-        # 二叉堆，最小的k个和
+        # 二叉heapq，最小的k个和
         n, k = ac.read_list_ints()
         pre = ac.read_list_ints()[1:]
         pre.sort()
@@ -406,7 +406,7 @@ class Solution:
 
     @staticmethod
     def lg_p2949(ac=FastIO()):
-        # 二叉堆greedyimplemention懒惰延迟删除
+        # 二叉heapqgreedyimplemention懒惰延迟删除
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort(key=lambda it: it[0])
@@ -455,8 +455,8 @@ class Solution:
     def lc_2263(nums: List[int]) -> int:
 
         def helper(lst: List[int]) -> int:
-            # 大根堆greedy使得序列非降的最小操作次数
-            res, pq = 0, []  # 大根堆
+            # 大根heapqgreedy使得序列非降的最小操作次数
+            res, pq = 0, []  # 大根heapq
             for num in lst:
                 if not pq:
                     heappush(pq, -num)
@@ -472,7 +472,7 @@ class Solution:
 
     @staticmethod
     def lc_2386(nums: List[int], k: int) -> int:
-        # 转换思路堆维护最大和第 K 次出队的则为目标结果
+        # 转换思路heapq维护最大和第 K 次出队的则为目标结果
         n = len(nums)
         tot = 0
         for i in range(n):

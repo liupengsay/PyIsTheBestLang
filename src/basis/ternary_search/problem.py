@@ -1,21 +1,21 @@
 """
-Algorithm：三分查找求一维极值、三分套三分求二维极值、梯度下降法、爬山法、ternary search三元搜索
-Function：用来寻找区间至多具有一个峰顶点或者一个谷底点的函数极值解
+Algorithm：ternary_search|TriPartPackTriPart|gradient_descent|hill_climbing
+Function：used to find function extremum solutions with at most one peak or valley point in an interval
 
 =====================================LuoGu======================================
-1515（https://leetcode.com/problems/best-position-for-a-service-centre/）三分套三分求凸函数极小值，也可以梯度下降法与爬山法求解
+1515（https://leetcode.com/problems/best-position-for-a-service-centre/）tripartite_pack_tripartite|convex_function_minimum|gradient_descent|hill_climbing
 
 =====================================LuoGu======================================
-3382（https://www.luogu.com.cn/problem/P3382）利用三分求区间函数极值点
-1883（https://www.luogu.com.cn/problem/P1883）三分求下凸函数最小值
+3382（https://www.luogu.com.cn/problem/P3382）ternary_search|ceil
+1883（https://www.luogu.com.cn/problem/P1883）ternary_search|floor
 
 ===================================CodeForces===================================
-939E（https://codeforces.com/problemset/problem/939/E）greedytwo_pointer或者三分求解，整数函数最大值
-D. Devu and his Brother（http://codeforces.com/problemset/problem/439/D）变换三分查找求解
-1730B（https://codeforces.com/contest/1730/problem/B）template of ternary search
+939E（https://codeforces.com/problemset/problem/939/E）greedy|two_pointers|ternary_search|ceil
+D. Devu and his Brother（http://codeforces.com/problemset/problem/439/D）ternary_search
+1730B（https://codeforces.com/contest/1730/problem/B）ternary_search
 
 ====================================AtCoder=====================================
-F - Minimum Bounding Box（https://atcoder.jp/contests/abc130/tasks/abc130_f）三分模板题求函数最小值需要high_precision
+F - Minimum Bounding Box（https://atcoder.jp/contests/abc130/tasks/abc130_f）ternary_search|floor|high_precision
 
 """
 import bisect
@@ -100,7 +100,7 @@ class Solution:
 
     @staticmethod
     def lg_p3382(ac=FastIO()):
-        # 三分查找取得最大值的函数点
+        # ternary_search取得最大值的函数点
         n, l, r = ac.read_list_floats()
         n = int(n)
         lst = ac.read_list_floats()
@@ -160,7 +160,7 @@ class Solution:
 
     @staticmethod
     def cf_939e(ac=FastIO()):
-        # 整数三分查找，上凸函数最大值
+        # 整数ternary_search，上凸函数最大值
         nums = []
         pre = [0]
 
@@ -199,7 +199,7 @@ class Solution:
     @staticmethod
     def lc_1515_1(stack: List[List[int]]) -> float:
 
-        # 三分套三分求凸函数极值
+        # tripart_pack_tripart求凸函数极值
         def target(x, y):
             return sum([math.sqrt((x - p[0]) ** 2 + (y - p[1]) ** 2) for p in stack])
 

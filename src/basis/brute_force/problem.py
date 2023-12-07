@@ -88,7 +88,7 @@ Function：brute force according to the data range
 1018（https://www.luogu.com.cn/problem/P1018）brute_force
 1311（https://www.luogu.com.cn/problem/P1311）brute_force|counter
 2119（https://www.luogu.com.cn/problem/P2119）brute_force|prefix_suffix|counter
-2652（https://www.luogu.com.cn/problem/P2652）brute_force|two_pointer
+2652（https://www.luogu.com.cn/problem/P2652）brute_force|two_pointers
 2994（https://www.luogu.com.cn/problem/P2994）brute_force
 3985（https://www.luogu.com.cn/problem/P3985）brute_force
 4181（https://www.luogu.com.cn/problem/P4181）greedy|brute_force|suffix_sum
@@ -581,7 +581,7 @@ class Solution:
     @staticmethod
     def lg_p2652(ac=FastIO()):
 
-        # brute_force花色与two_pointer长度
+        # brute_force花色与two_pointers长度
         n = ac.read_int()
         dct = defaultdict(set)
         for _ in range(n):

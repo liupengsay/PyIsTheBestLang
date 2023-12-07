@@ -143,7 +143,7 @@ class Solution:
 
     @staticmethod
     def lg_p1807_1(ac=FastIO()):
-        # 有向无环图 DAG 拓扑sorting求最长路
+        # 有向无环图 DAG topological_sorting求最长路
         n, m = ac.read_list_ints()
         edge = [dict() for _ in range(n)]
         pre = [set() for _ in range(n)]
@@ -438,7 +438,7 @@ class Solution:
                 for i in stack:
                     for j in dct[i]:
                         degree[j] -= 1
-                        # 拓扑sorting的同时更新最长路
+                        # topological_sorting的同时更新最长路
                         if visit[i] + dct[i][j] > visit[j]:
                             visit[j] = visit[i] + dct[i][j]
                         if not degree[j]:
@@ -489,7 +489,7 @@ class Solution:
 
     @staticmethod
     def lg_p1099(ac=FastIO()):
-        # 求最小偏心距在树的直径上two_pointer与单调队列
+        # 求最小偏心距在树的直径上two_pointers与单调队列
         n, s = ac.read_list_ints()
         dct = [dict() for _ in range(n)]
         for _ in range(n - 1):
@@ -559,7 +559,7 @@ class Solution:
         for node in diameter:
             bfs_node(node)
 
-        # two_pointer|sliding_window单调队列记录直径范围点往非直径方向延申的最远距离
+        # two_pointers|sliding_window单调队列记录直径范围点往非直径方向延申的最远距离
         m = len(path)
         ans = inf
         gap = 0
@@ -572,7 +572,7 @@ class Solution:
             if i:
                 gap -= dct[path[i - 1]][path[i]]
 
-            # two_pointer与单调队列
+            # two_pointers与单调队列
             while j + 1 < m and gap + dct[path[j]][path[j + 1]] <= s:
                 gap += dct[path[j]][path[j + 1]]
                 while q and q[-1][0] < diameter[path[j + 1]]:

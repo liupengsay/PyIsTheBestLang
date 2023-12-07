@@ -842,7 +842,7 @@ class Solution:
                 pre[stack.pop()] = i + 1
             stack.append(i)
 
-        # 分桶sorting转移
+        # 分bucket_sort转移
         dct = defaultdict(list)
         for i, num in enumerate(nums):
             dct[num].append(i)

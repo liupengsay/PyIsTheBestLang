@@ -245,7 +245,7 @@ class Solution:
 
 
 class LC895:
-    # hash与栈的结合应用题
+    # hash与stack的结合应用题
     def __init__(self):
         self.freq = defaultdict(list)
         self.dct = defaultdict(int)

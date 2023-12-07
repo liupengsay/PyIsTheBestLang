@@ -79,7 +79,7 @@ Function：在二维矩阵上转移的DP，的有矩阵prefix_sum，矩阵区间
 5752（https://www.luogu.com.cn/problem/P5752）矩阵四维DP，可以记忆化与迭代
 2380（https://www.luogu.com.cn/problem/P2380）matrix_dp
 2401（https://www.luogu.com.cn/problem/P2401）二维DP
-2528（https://www.luogu.com.cn/problem/P2528）reverse_pair|矩阵 DP 与implementionconstruction
+2528（https://www.luogu.com.cn/problem/P2528）reverse_order_pair|矩阵 DP 与implementionconstruction
 2733（https://www.luogu.com.cn/problem/P2733）DP通过边长与diff_array|正方形子矩阵的个数
 2736（https://www.luogu.com.cn/problem/P2736）matrix_dp
 2769（https://www.luogu.com.cn/problem/P2769）矩阵 DP 注意初始化条件
@@ -90,7 +90,7 @@ Function：在二维矩阵上转移的DP，的有矩阵prefix_sum，矩阵区间
 5858（https://www.luogu.com.cn/problem/P5858）矩阵 DP |单调队列优化
 5879（https://www.luogu.com.cn/problem/P5879）矩阵 DP |prefix_sum优化
 6119（https://www.luogu.com.cn/problem/P6119）矩阵 DP 为 LCS 的变形题
-6323（https://www.luogu.com.cn/problem/P6323） DP reverse_pair|为指定数量时的排列个数prefix_sum优化
+6323（https://www.luogu.com.cn/problem/P6323） DP reverse_order_pair|为指定数量时的排列个数prefix_sum优化
 6394（https://www.luogu.com.cn/problem/P6394）矩阵 DP |prefix_sum优化
 6433（https://www.luogu.com.cn/problem/P6433）greedyclassification_discussion矩阵 DP 
 6451（https://www.luogu.com.cn/problem/P6451）迭代方式实现四维 DP 并brute_force四叉树获取对应最小代价和状态
@@ -901,7 +901,7 @@ class Solution:
     @staticmethod
     def lg_p2528(ac=FastIO()):
 
-        # reverse_pair|矩阵 DP 与implementionconstruction
+        # reverse_order_pair|矩阵 DP 与implementionconstruction
         n, t = ac.read_list_ints()
         dp = [[0] * (t + 1) for _ in range(n + 1)]
         dp[0][0] = 1
@@ -1196,7 +1196,7 @@ class Solution:
 
     @staticmethod
     def lg_p6323(ac=FastIO()):
-        #  DP reverse_pair|为指定数量时的排列个数prefix_sum优化
+        #  DP reverse_order_pair|为指定数量时的排列个数prefix_sum优化
         mod = 10 ** 9 + 7
         n, k = ac.read_list_ints()
         dp = [[0] * (k + 1) for _ in range(2)]

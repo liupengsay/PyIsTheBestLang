@@ -27,7 +27,7 @@ Function：prefix_sum|prefix_sum_of_prefix_sum|suffix_sum
 1139（https://leetcode.com/problems/largest-1-bordered-square/）matrix_prefix_sum|counter|brute_force
 2281（https://leetcode.com/problems/sum-of-total-strength-of-wizards/description/）monotonic_stack|counter|prefix_sum_of_prefix_sum
 995（https://leetcode.com/problems/minimum-number-of-k-consecutive-bit-flips/description/）greedy|diff_array|implemention
-986（https://leetcode.com/problems/interval-list-intersections/description/）discretization_diff_array|two_pointer
+986（https://leetcode.com/problems/interval-list-intersections/description/）discretization_diff_array|two_pointers
 1744（https://leetcode.com/problems/can-you-eat-your-favorite-candy-on-your-favorite-day/description/）prefix_sum|greedy|implemention
 1703（https://leetcode.com/problems/minimum-adjacent-swaps-for-k-consecutive-ones/）prefix_sum|median|greedy|1520E
 2167（https://leetcode.com/problems/minimum-time-to-remove-all-cars-containing-illegal-goods/）math|prefix_sum|brute_force
@@ -66,7 +66,7 @@ Function：prefix_sum|prefix_sum_of_prefix_sum|suffix_sum
 4623（https://www.luogu.com.cn/problem/P4623）discretization_diff_array|counter
 6032（https://www.luogu.com.cn/problem/P6032）prefix_suffix|counter
 6070（https://www.luogu.com.cn/problem/P6070）diff_matrix|greedy|prefix_sum
-6278（https://www.luogu.com.cn/problem/P6278）reverse_pair|action_scope|diff_array|prefix_sum
+6278（https://www.luogu.com.cn/problem/P6278）reverse_order_pair|action_scope|diff_array|prefix_sum
 6537（https://www.luogu.com.cn/problem/P6537）prefix_sum|brute_force
 6877（https://www.luogu.com.cn/problem/P6877）sorting|greedy|prefix_suffix|dp|brute_force
 6878（https://www.luogu.com.cn/problem/P6878）prefix_suffix|brute_force
@@ -74,11 +74,11 @@ Function：prefix_sum|prefix_sum_of_prefix_sum|suffix_sum
 8033（https://www.luogu.com.cn/problem/P8033）matrix_prefix_sum|counter
 7992（https://www.luogu.com.cn/problem/P7992）bucket_counter|action_scope|diff_array|counter
 7948（https://www.luogu.com.cn/problem/P7948）sorting|prefix_suffix|pointer
-8343（https://www.luogu.com.cn/problem/P8343）sub_matrix_prefix_sum|brute_force|two_pointer
+8343（https://www.luogu.com.cn/problem/P8343）sub_matrix_prefix_sum|brute_force|two_pointers
 8551（https://www.luogu.com.cn/problem/P8551）diff_array
 8666（https://www.luogu.com.cn/problem/P8666）binary_search|md_diff_array|implemention
 8715（https://www.luogu.com.cn/problem/P8715）prefix_suffix|counter
-8783（https://www.luogu.com.cn/problem/P8783）O(n^3)|two_pointer|brute_force|counter|sub_matrix
+8783（https://www.luogu.com.cn/problem/P8783）O(n^3)|two_pointers|brute_force|counter|sub_matrix
 
 ===================================CodeForces===================================
 33C（https://codeforces.com/problemset/problem/33/C）prefix_suffix|brute_force
@@ -98,7 +98,7 @@ D - AtCoder Express 2（https://atcoder.jp/contests/abc106/tasks/abc106_d）pref
 100（https://www.acwing.com/problem/content/102/）diff_array|classical
 101（https://www.acwing.com/problem/content/103/）diff_array|greedy
 102（https://www.acwing.com/problem/content/104/）prefix_sum|binary_search|brute_force|average
-121（https://www.acwing.com/problem/content/description/123/）discretization_diff_array|prefix_sum|two_pointer|binary_search
+121（https://www.acwing.com/problem/content/description/123/）discretization_diff_array|prefix_sum|two_pointers|binary_search
 126（https://www.acwing.com/problem/content/128/）max_sub_matrix_sum
 3993（https://www.acwing.com/problem/content/description/3996/）suffix_sum|data_range|brain_teaser
 
@@ -558,7 +558,7 @@ class Solution:
 
     @staticmethod
     def ac_121(ac=FastIO()):
-        # 离散化prefix_sum，two_pointer|binary_search
+        # 离散化prefix_sum，two_pointers|binary_search
         c, b = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(b)]
         lst_x = sorted(list(set([x for x, _ in nums])))
@@ -733,7 +733,7 @@ class Solution:
 
     @staticmethod
     def lg_p2190(ac=FastIO()):
-        # 环形数组差分
+        # circular_array|差分
         n, m = ac.read_list_ints()
         diff = [0] * n
         for _ in range(m):
@@ -1012,18 +1012,18 @@ class Solution:
 
     @staticmethod
     def lg_p6278(ac=FastIO()):
-        # reverse_pair|action_scope与差分prefix_sum
+        # reverse_order_pair|action_scope与差分prefix_sum
         n = ac.read_int()
         nums = ac.read_list_ints()
         diff = [0] * (n + 1)
         pre = []
         for num in nums:
-            # num 作为最小值时的reverse_pair|个数
+            # num 作为最小值时的reverse_order_pair|个数
             diff[num] += len(pre) - bisect.bisect_right(pre, num)
             bisect.insort_left(pre, num)
         diff = ac.accumulate(diff)
         for i in range(n):
-            # 减少到 i 时前面小于 i 的对应reverse_pair|不受改变
+            # 减少到 i 时前面小于 i 的对应reverse_order_pair|不受改变
             ac.st(diff[i])
         return
 
@@ -1255,7 +1255,7 @@ class Solution:
 
     @staticmethod
     def lg_p8343(ac=FastIO()):
-        # 子矩阵prefix_sumbrute_force与two_pointer
+        # 子矩阵prefix_sumbrute_force与two_pointers
         m, n, a, b = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
         if a > b:

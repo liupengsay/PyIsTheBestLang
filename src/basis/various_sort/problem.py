@@ -1,31 +1,31 @@
 """
-Algorithm：sorting、冒泡sorting、归并sorting（期望比较次数最少）、快速sorting（期望性能最好）、自定义sorting（灵活）
-Function：各种sorting的实现以及特点变形题目，如reverse_pair|
+Algorithm：sorting|bubble_sort|merge_sort(minimum_num_comparisons)|fast_sort(expected_fast)|define_sort
+Function：reverse_order_pair
 
 ====================================LeetCode====================================
-164（https://leetcode.com/problems/maximum-gap/）桶sorting
-179（https://leetcode.com/problems/largest-number/）自定义拼接最大数
-912（https://leetcode.com/problems/sort-an-array/）快速sorting
-1585（https://leetcode.com/problems/check-if-string-is-transformable-with-substring-sort-operations/）冒泡sorting思想implemention
-面试题45（https://leetcode.com/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/）自定义拼接成最小的数
-2412（https://leetcode.com/problems/minimum-money-required-before-transactions/）自定义sortinggreedy选择顺序
-1665（https://leetcode.com/problems/minimum-initial-energy-to-finish-tasks/）自定义sorting确定greedysorting公式
+164（https://leetcode.com/problems/maximum-gap/）bucket_sort
+179（https://leetcode.com/problems/largest-number/）define_sort|maximum
+912（https://leetcode.com/problems/sort-an-array/）fast_sort
+1585（https://leetcode.com/problems/check-if-string-is-transformable-with-substring-sort-operations/）bubble_sort|implemention
+面试题45（https://leetcode.com/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/）define_sort|minimum
+2412（https://leetcode.com/problems/minimum-money-required-before-transactions/）define_sort|greedy
+1665（https://leetcode.com/problems/minimum-initial-energy-to-finish-tasks/）define_sort|greedy|sorting
 
 =====================================LuoGu======================================
-2310（https://www.luogu.com.cn/problem/P2310）预处理sorting之后遍历
-4378（https://www.luogu.com.cn/problem/P4378）brute_force元素向左冒泡的移动轮数，最大轮数
-6243（https://www.luogu.com.cn/problem/P6243）greedy举例之后自定义sorting
-1774（https://www.luogu.com.cn/problem/P1774）归并sorting确定在只交换相邻元素的情况下最少的交换次数使得数组有序
-1177（https://www.luogu.com.cn/problem/P1177）快速sorting
+2310（https://www.luogu.com.cn/problem/P2310）sorting
+4378（https://www.luogu.com.cn/problem/P4378）brute_force|bubble_sort
+6243（https://www.luogu.com.cn/problem/P6243）greedy|define_sort
+1774（https://www.luogu.com.cn/problem/P1774）merge_sort|reverse_order_pair
+1177（https://www.luogu.com.cn/problem/P1177）fast_sort
 
 ===================================CodeForces===================================
-922D（https://codeforces.com/problemset/problem/922/D）greedy|自定义sorting
+922D（https://codeforces.com/problemset/problem/922/D）greedy|define_sort
 
 ====================================AtCoder=====================================
-B - Iroha Loves Strings（https://atcoder.jp/contests/abc042/tasks/abc042_b）自定义sorting
+B - Iroha Loves Strings（https://atcoder.jp/contests/abc042/tasks/abc042_b）define_sort
 
 =====================================AcWing=====================================
-113（https://www.acwing.com/problem/content/description/115/）自定义sorting调用函数比较
+113（https://www.acwing.com/problem/content/description/115/）define_sort
 
 """
 import random
@@ -41,7 +41,7 @@ class Solution:
 
     @staticmethod
     def lc_912(lst: List[int]) -> List[int]:
-        # 快速sorting两路手动实现
+        # fast_sort两路手动实现
         n = len(lst)
 
         def quick_sort(i, j):
@@ -79,7 +79,7 @@ class Solution:
 
     @staticmethod
     def abc_42b(ac=FastIO()):
-        # 自定义sorting
+        # define_sort
         n, m = ac.read_list_ints()
         nums = [ac.read_str() for _ in range(n)]
 
@@ -98,7 +98,7 @@ class Solution:
     @staticmethod
     def lc_179(nums: List[int]) -> str:
 
-        # 模板: 自定义sorting拼接最大数
+        # 模板: define_sort拼接最大数
         def compare(a, b):
             # 比较函数
             x = int(a + b)
@@ -115,7 +115,7 @@ class Solution:
 
     @staticmethod
     def lg_1177(ac=FastIO()):
-        # 快速sorting迭代实现
+        # fast_sort迭代实现
         n = ac.read_int()
         nums = ac.read_list_ints()
         stack = [[0, n - 1]]
@@ -141,7 +141,7 @@ class Solution:
 
     @staticmethod
     def lc_1665(tasks: List[List[int]]) -> int:
-        # 模板: 自定义sorting
+        # 模板: define_sort
 
         def compare(aa, bb):
             # 比较函数

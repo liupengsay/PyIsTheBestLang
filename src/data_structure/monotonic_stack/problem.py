@@ -9,7 +9,7 @@ Function：用来数组前后的更大值更小值信息
 1081（https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/）monotonic_stack|结合hash与counter
 2334（https://leetcode.com/problems/subarray-with-elements-greater-than-varying-threshold/）sorting后brute_force最小值左右两边的影响范围
 2262（https://leetcode.com/problems/total-appeal-of-a-string/）下一个或者上一个不同字符的位置
-2355（https://leetcode.com/problems/maximum-number-of-books-you-can-take/）monotonic_stack||线性DP，巧妙地转换
+2355（https://leetcode.com/problems/maximum-number-of-books-you-can-take/）monotonic_stack||liner_dp，巧妙地转换
 255（https://leetcode.com/problems/verify-preorder-sequence-in-binary-search-tree/）monotonic_stack|，判断数组是否为二叉搜索树的前序遍历，同样地可验证后序遍历
 654（https://leetcode.com/problems/maximum-binary-tree/）monotonic_stack|应用题
 1130（https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/）monotonic_stack|也可以区间DP
@@ -40,7 +40,7 @@ Function：用来数组前后的更大值更小值信息
 1578（https://www.luogu.com.cn/problem/P1578）monotonic_stack|离散化brute_force障碍点的最大面积矩形
 3467（https://www.luogu.com.cn/problem/P3467）greedymonotonic_stack|
 1191（https://www.luogu.com.cn/problem/P1191）monotonic_stack|求矩形个数
-1323（https://www.luogu.com.cn/problem/P1323）二叉堆与monotonic_stack|，最大lexicographical_order数字
+1323（https://www.luogu.com.cn/problem/P1323）二叉heapq与monotonic_stack|，最大lexicographical_order数字
 2422（https://www.luogu.com.cn/problem/P2422）monotonic_stack|与prefix_sum
 3467（https://www.luogu.com.cn/problem/P3467）看不懂的monotonic_stack|
 6404（https://www.luogu.com.cn/problem/P6404）monotonic_stack|具有相同数字的子矩形个数
@@ -50,8 +50,8 @@ Function：用来数组前后的更大值更小值信息
 8094（https://www.luogu.com.cn/problem/P8094）monotonic_stack|典型应用前一个更大与后一个更大
 
 ===================================CodeForces===================================
-1795E（https://codeforces.com/problemset/problem/1795/E）monotonic_stack|优化线性DP，greedycounterbrute_force，prefix_suffixDP转移
-1313C2（https://codeforces.com/problemset/problem/1313/C2）monotonic_stack|优化线性DP
+1795E（https://codeforces.com/problemset/problem/1795/E）monotonic_stack|优化liner_dp，greedycounterbrute_force，prefix_suffixDP转移
+1313C2（https://codeforces.com/problemset/problem/1313/C2）monotonic_stack|优化liner_dp
 1454F（https://codeforces.com/contest/1454/problem/F）monotonic_stack|brute_force题
 
 ====================================AtCoder=====================================
@@ -201,7 +201,7 @@ class Solution:
 
     @staticmethod
     def lg_p1323(ac=FastIO()):
-        # 二叉堆与monotonic_stack|，最大lexicographical_order数字
+        # 二叉heapq与monotonic_stack|，最大lexicographical_order数字
         k, m = ac.read_list_ints()
         dct = set()
         ans = []
@@ -612,7 +612,7 @@ class Solution:
 
     @staticmethod
     def lc_2355(books: List[int]) -> int:
-        # monotonic_stack|优化线性DP
+        # monotonic_stack|优化liner_dp
         n = len(books)
         dp = [0] * n
         stack = []
@@ -632,7 +632,7 @@ class Solution:
 
     @staticmethod
     def cf_1313c2(ac=FastIO()):
-        # monotonic_stack|优化线性DP
+        # monotonic_stack|优化liner_dp
         n = ac.read_int()
         nums = ac.read_list_ints()
         pre = [0] * n
@@ -670,7 +670,7 @@ class Solution:
 
     @staticmethod
     def cf_1795e(ac=FastIO()):
-        # monotonic_stack|优化线性DP，greedycounterbrute_force，prefix_suffixDP转移
+        # monotonic_stack|优化liner_dp，greedycounterbrute_force，prefix_suffixDP转移
         for _ in range(ac.read_int()):
 
             def check():

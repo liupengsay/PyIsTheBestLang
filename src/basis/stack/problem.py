@@ -1,45 +1,45 @@
 """
 
-Algorithm：栈、RBS（合法括号子序列）
-Function：implemention题中常见，如括号之类的，后进先出，升级版应用有monotonic_stack|、最大栈和最小栈
+Algorithm：stack|rbs|regular_bracket_subsequence|deque
+Function：implemention|monotonic_stack|maximum_stack|minimum_stack
 
 ====================================LeetCode====================================
-2197（https://leetcode.com/problems/replace-non-coprime-numbers-in-array/）结合math栈implemention
-394（https://leetcode.com/problems/decode-string/）解码带括号成倍的字符和数字
-1096（https://leetcode.com/problems/brace-expansion-ii/）栈字符解码
-2116（https://leetcode.com/problems/check-if-a-parentheses-string-can-be-valid/）栈greedy匹配括号
-857（https://leetcode.com/problems/minimum-cost-to-hire-k-workers/）greedysortingbrute_force，堆维护K个最小值的和
-2542（https://leetcode.com/problems/maximum-subsequence-score/）sorting后brute_force堆维护K最大的和，类似LC857
-2813（https://leetcode.com/problems/maximum-elegance-of-a-k-length-subsequence/）brain_teaser|sorting后brute_force，维护长度为K的子序列最大函数值
-2462（https://leetcode.com/problems/total-cost-to-hire-k-workers/）堆greedyimplemention
-1705（https://leetcode.com/problems/maximum-number-of-eaten-apples/）堆greedyimplemention
-1750（https://leetcode.com/problems/minimum-length-of-string-after-deleting-similar-ends/description/）栈implemention
-2296（https://leetcode.com/problems/design-a-text-editor/description/）左右两个栈implemention
+2197（https://leetcode.com/problems/replace-non-coprime-numbers-in-array/）math|stack|implemention
+394（https://leetcode.com/problems/decode-string/）decode|stack
+1096（https://leetcode.com/problems/brace-expansion-ii/）stack|decode
+2116（https://leetcode.com/problems/check-if-a-parentheses-string-can-be-valid/）stack|greedy|bracket
+857（https://leetcode.com/problems/minimum-cost-to-hire-k-workers/）greedy|sorting|brute_force|heapq
+2542（https://leetcode.com/problems/maximum-subsequence-score/）sorting|brute_force|heapq
+2813（https://leetcode.com/problems/maximum-elegance-of-a-k-length-subsequence/）brain_teaser|sorting|brute_force|function
+2462（https://leetcode.com/problems/total-cost-to-hire-k-workers/）heapq|greedy|implemention
+1705（https://leetcode.com/problems/maximum-number-of-eaten-apples/）heapq|greedy|implemention
+1750（https://leetcode.com/problems/minimum-length-of-string-after-deleting-similar-ends/description/）stack|implemention
+2296（https://leetcode.com/problems/design-a-text-editor/description/）stack|implemention
 
 =====================================LuoGu======================================
-1944（https://www.luogu.com.cn/problem/P1944）最长连续合法括号字串长度
-2201（https://www.luogu.com.cn/problem/P2201）双栈implementionpointer移动同时记录prefix_sum与前序最大prefix_sum
-4387（https://www.luogu.com.cn/problem/P4387）implemention入栈出栈队列判断是否可行
-7674（https://www.luogu.com.cn/problem/P7674）栈模仿消除
-3719（https://www.luogu.com.cn/problem/P3719）字符串运算展开
-1974（https://www.luogu.com.cn/problem/P1974）greedy队列implemention
-3551（https://www.luogu.com.cn/problem/P3551）栈与counterpointer
-3719（https://www.luogu.com.cn/problem/P3719）栈implemention
+1944（https://www.luogu.com.cn/problem/P1944）regular_bracket_subsequence|longest
+2201（https://www.luogu.com.cn/problem/P2201）stack|implemention|pointer|prefix_sum|max_prefix_sum
+4387（https://www.luogu.com.cn/problem/P4387）implemention|stack|stack|deque
+7674（https://www.luogu.com.cn/problem/P7674）stack|implemention
+3719（https://www.luogu.com.cn/problem/P3719）string|stack
+1974（https://www.luogu.com.cn/problem/P1974）greedy|dqueue|implemention
+3551（https://www.luogu.com.cn/problem/P3551）stack|counter|pointer
+3719（https://www.luogu.com.cn/problem/P3719）stack|implemention
 
 ===================================CodeForces===================================
-5C（https://codeforces.com/problemset/problem/5/C）最长连续合法括号子序列以及个数
-1095E（https://codeforces.com/problemset/problem/1095/E）改变一个括号后是的字符串合法的位置数
+5C（https://codeforces.com/problemset/problem/5/C）regular_bracket_subsequence|counter|longest
+1095E（https://codeforces.com/problemset/problem/1095/E）regular_bracket|counter
 
 ====================================AtCoder=====================================
-D - 3N Numbers（https://atcoder.jp/contests/abc062/tasks/arc074_b）堆与prefix_suffix结合
+D - 3N Numbers（https://atcoder.jp/contests/abc062/tasks/arc074_b）heapq|prefix_suffix
 
 
 =====================================AcWing=====================================
-128（https://www.acwing.com/problem/content/130/）堆栈implemention
-129（https://www.acwing.com/problem/content/131/）卡特兰数，栈implemention判定出栈入栈合法性
-132（https://www.acwing.com/problem/content/134/）双端队列依次出队入队
-4865（https://www.acwing.com/problem/content/4868/）栈implemention
-5136（https://www.acwing.com/problem/content/description/5139/）栈reverse_order|implemention
+128（https://www.acwing.com/problem/content/130/）heapq|stack|implemention
+129（https://www.acwing.com/problem/content/131/）catalan_number|stack|implemention
+132（https://www.acwing.com/problem/content/134/）dqueue
+4865（https://www.acwing.com/problem/content/4868/）stack|implemention
+5136（https://www.acwing.com/problem/content/description/5139/）stack|reverse_order|implemention
 
 """
 import heapq
@@ -59,7 +59,7 @@ class Solution:
 
     @staticmethod
     def lc_2542(nums1: List[int], nums2: List[int], k: int) -> int:
-        # sorting后brute_force堆维护K最大的和，类似LC857
+        # sorting后brute_forceheapq维护K最大的和，类似LC857
         n = len(nums1)
         ind = list(range(n))
         ind.sort(key=lambda it: -nums2[it])
@@ -78,7 +78,7 @@ class Solution:
 
     @staticmethod
     def lc_2462(costs: List[int], k: int, candidates: int) -> int:
-        # 堆greedyimplemention
+        # heapqgreedyimplemention
         n = len(costs)
         visit = [0] * n
         pre = [[costs[i], i] for i in range(candidates)]
@@ -143,7 +143,7 @@ class Solution:
 
     @staticmethod
     def lc_1705(apples: List[int], days: List[int]) -> int:
-        # 堆greedyimplemention
+        # heapqgreedyimplemention
         n = len(apples)
         ans = i = 0
         stack = []
@@ -160,7 +160,7 @@ class Solution:
 
     @staticmethod
     def lc_2197(nums: List[int]) -> List[int]:
-        # 栈结合 gcd 与 lcm implemention
+        # stack结合 gcd 与 lcm implemention
         stack = []
         for num in nums:
             stack.append(num)
@@ -175,7 +175,7 @@ class Solution:
 
     @staticmethod
     def lc_857(quality: List[int], wage: List[int], k: int) -> float:
-        # greedysortingbrute_force，堆维护K个最小值的和
+        # greedysortingbrute_force，heapq维护K个最小值的和
         n = len(quality)
         ind = list(range(n))
         ind.sort(key=lambda it: wage[it] / quality[it])
@@ -227,7 +227,7 @@ class Solution:
 
     @staticmethod
     def abc_62d(ac=FastIO()):
-        # 堆与prefix_suffix结合
+        # heapq与prefix_suffix结合
         n = ac.read_int()
         nums = ac.read_list_ints()
         pre = [-inf] * (3 * n + 1)
@@ -257,7 +257,7 @@ class Solution:
 
     @staticmethod
     def cf_5c(s):
-        # 栈最长连续合法括号子序列以及个数
+        # stack最长连续合法括号子序列以及个数
         stack = [["", -1]]
         ans = cnt = 0
         n = len(s)
@@ -281,7 +281,7 @@ class Solution:
 
     @staticmethod
     def ac_128(ac=FastIO()):
-        # 栈与pointerimplemention
+        # stack与pointerimplemention
         pre = []
         post = []
         pre_sum = [0]
@@ -314,7 +314,7 @@ class Solution:
 
     @staticmethod
     def ac_129_1(ac=FastIO()):
-        # 卡特兰数，栈implemention判定出栈入栈合法性
+        # catalan_number，stackimplemention判定出stack入stack合法性
         n = ac.read_int()
         m = ac.min(5, n)
 
@@ -342,7 +342,7 @@ class Solution:
 
     @staticmethod
     def ac_129_2(ac=FastIO()):
-        # back_trackimplemention出栈入栈所有可能的排列
+        # back_trackimplemention出stack入stack所有可能的排列
 
         def dfs(i):
             nonlocal cnt, post, pre
@@ -403,7 +403,7 @@ class Solution:
 
     @staticmethod
     def lg_p3719(ac=FastIO()):
-        # 栈implemention
+        # stackimplemention
         s = ac.read_str()
         stack = []
         for w in s:
@@ -425,7 +425,7 @@ class Solution:
 
     @staticmethod
     def ac_4865(ac=FastIO()):
-        # 栈implemention
+        # stackimplemention
         m = ac.read_int()
         lst = ac.read_list_strs()
         n = len(lst)
@@ -461,7 +461,7 @@ class Solution:
 
     @staticmethod
     def ac_5136(ac=FastIO()):
-        # 栈reverse_order|implemention
+        # stackreverse_order|implemention
         s = ac.read_str()
         n = len(s)
         ans = [0] * n

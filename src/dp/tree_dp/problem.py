@@ -4,7 +4,7 @@ Function：在树形或者图结构上DP，有换根DP，自顶向下和自底�
 
 ====================================LeetCode====================================
 2458 移除子树后的二叉树高度（https://leetcode.com/problems/height-of-binary-tree-after-subtree-removal-queries/）跑两边DFS自顶向下和自底向上DP结合
-2440 创建价值相同的连通块（https://leetcode.com/problems/create-components-with-same-value/）利用总和的因子和树形递归判断连通块是否可行
+2440 创建价值相同的连通块（https://leetcode.com/problems/create-components-with-same-value/）利用总和的因子和树形recursion判断连通块是否可行
 1569 将子数组重新sorting得到同一个二叉查找树的方案数（https://leetcode.com/problems/number-of-ways-to-reorder-array-to-get-same-bst/solution/by-liupengsay-yi3h/）
 968（https://leetcode.com/problems/binary-tree-cameras/）树形DP监控每个节点
 2538（https://leetcode.com/problems/difference-between-maximum-and-minimum-price-sum/）树形换根DP，求去掉其中一个叶子节点的最大直径
@@ -33,15 +33,15 @@ Function：在树形或者图结构上DP，有换根DP，自顶向下和自底�
 2996（https://www.luogu.com.cn/problem/P2996）树形DP
 3074（https://www.luogu.com.cn/problem/P3074）树的最长路径（广搜DP记录最长时间也可以）
 3884（https://www.luogu.com.cn/problem/P3884）基础树形DP两点间路径变种长度
-3915（https://www.luogu.com.cn/problem/P3915）递归拆解生成等大小的连通块
+3915（https://www.luogu.com.cn/problem/P3915）recursion拆解生成等大小的连通块
 4615（https://www.luogu.com.cn/problem/P4615）树形DP
 5002（https://www.luogu.com.cn/problem/P5002）树形DP与inclusion_exclusioncounter
 5651（https://www.luogu.com.cn/problem/P5651）brain_teaserunion_find去环，转换为树形DP里面任意两点路径的异或和
-6591（https://www.luogu.com.cn/problem/P6591）换根DP，即无根树递归判断每个节点作为根节点的情况
+6591（https://www.luogu.com.cn/problem/P6591）换根DP，即无根树recursion判断每个节点作为根节点的情况
 7159（https://www.luogu.com.cn/problem/P7159）树形DPbrute_forcecounter与fast_power|
 2015（https://www.luogu.com.cn/problem/P2015）树形DP，有点像树上背包
 2014（https://www.luogu.com.cn/problem/P2014）树形DP
-4316（https://www.luogu.com.cn/problem/P4316）逆向建图，拓扑sortingDP
+4316（https://www.luogu.com.cn/problem/P4316）逆向建图，topological_sortingDP
 1351（https://www.luogu.com.cn/problem/P1351#submit）树形DP
 3304（https://www.luogu.com.cn/problem/P3304）带权无向图的直径以及直径的必经边
 3408（https://www.luogu.com.cn/problem/P3408）树形DP
@@ -59,7 +59,7 @@ F - Expensive Expense （https://atcoder.jp/contests/abc222/tasks/abc222_f）换
 161D（https://codeforces.com/problemset/problem/161/D）树形DPcounter，记录距离为k的点对数
 
 ===================================CodeForces===================================
-1388C（https://codeforces.com/problemset/problem/1388/C）树形DPimplemention，递归获取子树信息，逆向从上往下还原
+1388C（https://codeforces.com/problemset/problem/1388/C）树形DPimplemention，recursion获取子树信息，逆向从上往下还原
 1324F（https://codeforces.com/problemset/problem/1324/F）换根DP题，两遍dfs搜索更新
 337D（https://codeforces.com/problemset/problem/337/D）换根DP题，两遍dfs搜索更新
 1187E（https://codeforces.com/problemset/problem/1187/E）换根DP题，两遍dfs搜索更新
@@ -468,7 +468,7 @@ class Solution:
 
     @staticmethod
     def cf_600e_bfs(ac=FastIO()):
-        # 自下而上递归的迭代写法，从小到大按秩合并
+        # 自下而上recursion的迭代写法，从小到大按秩合并
         n = ac.read_int()
         colors = ac.read_list_ints()
         edge = [[] for _ in range(n)]
@@ -520,7 +520,7 @@ class Solution:
 
     @staticmethod
     def cf_600e_dfs(ac=FastIO()):
-        # 自下而上递归的递归写法，从小到大按秩合并
+        # 自下而上recursion的recursion写法，从小到大按秩合并
         n = ac.read_int()
         nums = ac.read_list_ints()
         edge = [[] for _ in range(n)]
@@ -645,7 +645,7 @@ class Solution:
         dp = [[0, 0] for _ in range(n)]
         stack = [[root, -1]]
         while stack:
-            # 为取反码后的负数则直接出栈
+            # 为取反码后的负数则直接出stack
             i, fa = stack.pop()
             if i >= 0:
                 stack.append([~i, fa])
@@ -729,7 +729,7 @@ class Solution:
 
     @staticmethod
     def lg_p4316(ac=FastIO()):
-        # 反向建图|拓扑sorting树形概率DP
+        # 反向建图|topological_sorting树形概率DP
         n, m = ac.read_list_ints()
         dp = [0 for _ in range(n)]
         degree = [0] * n

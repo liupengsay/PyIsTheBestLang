@@ -1,14 +1,14 @@
 """
 
 Algorithm：math排列组合counter、乘法逆元（也叫combinatorics）、Lucas定理
-Function：全排列counter，选取combcounter，隔板法，错位排列，斯特林数、卡特兰数，inclusion_exclusion，可以通过乘法逆元快速求解组合数与全排列数
+Function：全排列counter，选取combcounter，隔板法，错位排列，斯特林数、catalan_number，inclusion_exclusion，可以通过乘法逆元快速求解组合数与全排列数
 Lucas定理（comb(n, m)%p = comb(n%p, m%p)*comb(n//p, m//p)）%p
 
 ====================================LeetCode====================================
-96（https://leetcode.com/problems/unique-binary-search-trees/）卡特兰数
-95（https://leetcode.com/problems/unique-binary-search-trees/）卡特兰数思想递归，生成specific_plan
+96（https://leetcode.com/problems/unique-binary-search-trees/）catalan_number
+95（https://leetcode.com/problems/unique-binary-search-trees/）catalan_number思想recursion，生成specific_plan
 634（https://leetcode.com/problems/find-the-derangement-of-an-array/）错位排列counter动态规划转移
-1259（https://leetcode.com/problems/handshakes-that-dont-cross/）卡特兰数
+1259（https://leetcode.com/problems/handshakes-that-dont-cross/）catalan_number
 2338（https://leetcode.com/problems/count-the-number-of-ideal-arrays/）隔板法与factorization|组合方案数求解
 1735（https://leetcode.com/problems/count-ways-to-make-array-with-product/）质数分解与隔板法应用
 1621（https://leetcode.com/problems/number-of-sets-of-k-non-overlapping-line-segments/）类似隔板法的思想
@@ -17,12 +17,12 @@ Lucas定理（comb(n, m)%p = comb(n%p, m%p)*comb(n//p, m//p)）%p
 D - Blue and Red Balls（https://atcoder.jp/contests/abc132/tasks/abc132_d）组合mathcounter，和为 X 的长为 Y 的正整数与非负整数方程解个数
 
 =====================================LuoGu======================================
-4071（https://www.luogu.com.cn/problem/P4071）通过乘法逆元快速求解组合数与全排列数，同时递归错位排列数
+4071（https://www.luogu.com.cn/problem/P4071）通过乘法逆元快速求解组合数与全排列数，同时recursion错位排列数
 1287（https://www.luogu.com.cn/problem/P1287）第二类斯特林数形式的DP，以及全排列数
-1375（https://www.luogu.com.cn/problem/P1375）卡特兰数
-1754（https://www.luogu.com.cn/problem/P1754）卡特兰数
+1375（https://www.luogu.com.cn/problem/P1375）catalan_number
+1754（https://www.luogu.com.cn/problem/P1754）catalan_number
 2193（https://www.luogu.com.cn/problem/P2193）隔板法与factorization|组合方案数求解
-1338（https://www.luogu.com.cn/problem/P1338）brute_force满足个数的reverse_pair|排列，即找特定reverse_pair|个数的最小排列
+1338（https://www.luogu.com.cn/problem/P1338）brute_force满足个数的reverse_order_pair|排列，即找特定reverse_order_pair|个数的最小排列
 1313（https://www.luogu.com.cn/problem/P1313）二项式展开的系数
 1061（https://www.luogu.com.cn/problem/P1061）implemention下一个lexicographical_order排列
 3197（https://www.luogu.com.cn/problem/P3197）counterfast_power||inclusion_exclusion
@@ -30,7 +30,7 @@ D - Blue and Red Balls（https://atcoder.jp/contests/abc132/tasks/abc132_d）组
 4369（https://www.luogu.com.cn/problem/P4369）brain_teaser组合数|和construction
 5520（https://www.luogu.com.cn/problem/P5520）隔板法组合数
 3807（https://www.luogu.com.cn/problem/P3807）卢卡斯模板题
-1044（https://www.luogu.com.cn/problem/P1044）卡特兰数
+1044（https://www.luogu.com.cn/problem/P1044）catalan_number
 1655（https://www.luogu.com.cn/problem/P1655）matrix_dp，斯特林数
 1680（https://www.luogu.com.cn/problem/P1680）隔板法不同分组的个数，乘法逆元与Lucas定理快速Comb(a,b)%m
 2265（https://www.luogu.com.cn/problem/P2265）排列组合，comb(n+m, m)
@@ -58,13 +58,13 @@ D - Factorization（https://atcoder.jp/contests/abc110/tasks/abc110_d）质facto
 E - Cell Distance（https://atcoder.jp/contests/abc127/tasks/abc127_e）contribution_method组合counter
 
 =====================================AcWing=====================================
-130（https://www.acwing.com/problem/content/132/）超大数字的卡特兰数
+130（https://www.acwing.com/problem/content/132/）超大数字的catalan_number
 4002（https://www.acwing.com/problem/content/4005/）matrix_dp转换为隔板法求解
 4496（https://www.acwing.com/problem/content/4499/）隔板法counter
 5055（https://www.acwing.com/problem/content/5058/）组合mathmod|求解
 
 
-卡特兰数（https://oi-wiki.org/math/combinatorics/catalan/）
+catalan_number（https://oi-wiki.org/math/combinatorics/catalan/）
 """
 import math
 from collections import Counter, defaultdict
@@ -154,7 +154,7 @@ class Solution:
 
     @staticmethod
     def lc_1259_1(num_people: int) -> int:
-        # 卡特兰数
+        # catalan_number
         n = num_people // 2
         if num_people <= 1:
             return 1
@@ -165,7 +165,7 @@ class Solution:
 
     @staticmethod
     def lc_1259_2(num_people: int) -> int:
-        # 卡特兰数的数组形式
+        # catalan_number的数组形式
         n = num_people // 2
         mod = 10 ** 9 + 7
         dp = [1] * (n + 1)
@@ -175,7 +175,7 @@ class Solution:
 
     @staticmethod
     def lg_p1375(ac=FastIO()):
-        # 卡特兰数
+        # catalan_number
         n = ac.read_int()
         mod = 10 ** 9 + 7
         cm = Combinatorics(2 * n + 2, mod)
@@ -185,9 +185,9 @@ class Solution:
 
     @staticmethod
     def lg_p1754(ac=FastIO()):
-        # 卡特兰数
+        # catalan_number
         n = ac.read_int()
-        # 卡特兰数的另一种区间递推形式 dp[i][j] = dp[i-1][j]+dp[i][j-1]
+        # catalan_number的另一种区间递推形式 dp[i][j] = dp[i-1][j]+dp[i][j-1]
         # 类似题目也有长为 2n 合法的括号匹配数 h(n) = h(n-1)*(4*n-2)//(n+1)
         # 也可以 h(n) = math.comb(2*n, n)//(n+1) 求解
         ans = math.comb(2 * n, n) - math.comb(2 * n, n - 1)
@@ -364,7 +364,7 @@ class Solution:
 
     @staticmethod
     def ac_130(ac=FastIO()):
-        # 超大范围的卡特兰数 h(n) = C(2n, n)//(n+1) = ((n+1)*..*(2*n))//(1*2*..*(n+1))
+        # 超大范围的catalan_number h(n) = C(2n, n)//(n+1) = ((n+1)*..*(2*n))//(1*2*..*(n+1))
         n = ac.read_int()
         nt = PrimeFactor(2 * n + 1)
         cnt = defaultdict(int)

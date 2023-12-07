@@ -3,7 +3,7 @@ Algorithm：凸包、最小圆覆盖
 Function：求点集的子集组成最小凸包上
 
 ====================================LeetCode====================================
-1924 安装栅栏 II（https://leetcode.com/problems/erect-the-fence-ii/）求出最小凸包后三分套三分求解最小圆覆盖，随机增量法求最小圆覆盖
+1924 安装栅栏 II（https://leetcode.com/problems/erect-the-fence-ii/）求出最小凸包后tripart_pack_tripart求解最小圆覆盖，随机增量法求最小圆覆盖
 
 =====================================LuoGu======================================
 1742（https://www.luogu.com.cn/problem/P1742）随机增量法求最小圆覆盖

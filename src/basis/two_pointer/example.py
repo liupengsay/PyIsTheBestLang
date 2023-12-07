@@ -4,12 +4,12 @@ from functools import reduce
 from math import gcd
 from operator import mul, add, xor, and_, or_
 
-from src.basis.two_pointer.template import TwoPointer, SlidingWindowAggregation, INF
+from src.basis.two_pointers.template import TwoPointer, SlidingWindowAggregation, INF
 
 
 class TestGeneral(unittest.TestCase):
 
-    def test_two_pointer(self):
+    def test_two_pointers(self):
         nt = TwoPointer()
         nums = [1, 2, 3, 4, 4, 3, 3, 2, 1, 6, 3]
         assert nt.same_direction(nums) == 4

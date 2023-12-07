@@ -7,8 +7,8 @@ Function：根据组合数与转移方案求解概率或者期望
 
 =====================================LuoGu======================================
 2719（https://www.luogu.com.cn/record/list?user=739032&status=12&page=1）二维DP求概率
-1291（https://www.luogu.com.cn/problem/P1291）线性DP求期望
-4316（https://www.luogu.com.cn/problem/P4316）期望 DP 反向建图与拓扑sorting
+1291（https://www.luogu.com.cn/problem/P1291）liner_dp求期望
+4316（https://www.luogu.com.cn/problem/P4316）期望 DP 反向建图与topological_sorting
 6154（https://www.luogu.com.cn/problem/P6154）反向建图期望树形 DP 与有理数mod|
 
 =====================================AcWing=====================================
@@ -54,7 +54,7 @@ class Solution:
     @staticmethod
     def lg_p1291(ac=FastIO()):
 
-        # 线性DP求期望，分数|减运算
+        # liner_dp求期望，分数|减运算
         n = ac.read_int()
         ans = [1, 1]
         for x in range(2, n + 1):
@@ -85,7 +85,7 @@ class Solution:
 
     @staticmethod
     def lg_p4316(ac=FastIO()):
-        # 期望 DP 反向建图与拓扑sorting
+        # 期望 DP 反向建图与topological_sorting
         n, m = ac.read_list_ints()
         dp = [0 for _ in range(n)]
         degree = [0] * n
@@ -98,7 +98,7 @@ class Solution:
             degree[a] += 1
         cnt = degree[:]
 
-        # 反向拓扑sorting与状态转移
+        # 反向topological_sorting与状态转移
         stack = deque([n - 1])
         while stack:
             i = stack.popleft()

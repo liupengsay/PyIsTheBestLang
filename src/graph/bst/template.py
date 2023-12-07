@@ -87,7 +87,7 @@ class BST(object):
         if val < self.data:  # 如果小于就放到左子树
             if self.left:  # 如果有左子树
                 ans += 1  # 层数+1
-                self.left.insert(val)  # 左子树调用递归
+                self.left.insert(val)  # 左子树调用recursion
             else:  # 没有左子树
                 ans += 1  # 层数+1
                 self.left = BST(val)  # 把值放在这个点的左子树上
@@ -97,7 +97,7 @@ class BST(object):
         else:  # 比节点的值大
             if self.right:  # 有右子树
                 ans += 1  # 层数+1
-                self.right.insert(val)  # 右子树调用递归
+                self.right.insert(val)  # 右子树调用recursion
             else:  # 没有右子树
                 ans += 1  # 层数+1
                 self.right = BST(val)  # 将值放在右子树上

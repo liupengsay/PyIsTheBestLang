@@ -144,7 +144,7 @@ class Solution:
 
     @staticmethod
     def lg_p2129(ac=FastIO()):
-        # 栈和pointerimplemention
+        # stack和pointerimplemention
         n, m = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         lst_x = []

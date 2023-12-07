@@ -13,7 +13,7 @@ Function：lexicographical_order第K小和某个对象的lexicographical_orderra
 
 =====================================LuoGu======================================
 1243（https://www.luogu.com.cn/problem/P1243）求出第K小的子集
-1338（https://www.luogu.com.cn/problem/P1338）结合reverse_pair|counter的lexicographical_order
+1338（https://www.luogu.com.cn/problem/P1338）结合reverse_order_pair|counter的lexicographical_order
 
 2524（https://www.luogu.com.cn/problem/P2524）全排列的lexicographical_order排名
 2525（https://www.luogu.com.cn/problem/P2525）全排列的上一个排列

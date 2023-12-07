@@ -4,13 +4,13 @@ Function：常见于 1<<n 较大的情况，对半分开brute_force
 
 ====================================LeetCode====================================
 1755（https://leetcode.com/problems/closest-subsequence-sum/）折半搜索
-2035（https://leetcode.com/problems/partition-array-into-two-arrays-to-minimize-sum-difference/）折半搜索sorting|binary_search或者two_pointer
+2035（https://leetcode.com/problems/partition-array-into-two-arrays-to-minimize-sum-difference/）折半搜索sorting|binary_search或者two_pointers
 956（https://leetcode.com/problems/tallest-billboard/description/）可折半搜索
 
 =====================================LuoGu======================================
 5194（https://www.luogu.com.cn/problem/P5194）利用Fibonacci数列的长度特点折半搜索brute_force，与binary_search确定可行的最大值
 nya（https://www.luogu.com.cn/problem/CF525E）折半搜索长度
-5691（https://www.luogu.com.cn/problem/P5691）折半搜索与sorted_listtwo_pointerbrute_force
+5691（https://www.luogu.com.cn/problem/P5691）折半搜索与sorted_listtwo_pointersbrute_force
 
 =====================================AcWing=====================================
 171（https://www.acwing.com/problem/content/173/）折半搜索查找最接近目标值的子数组和
@@ -70,7 +70,7 @@ class Solution:
 
     @staticmethod
     def lc_2035(nums: List[int]) -> int:
-        # 折半搜索sorting|binary_search或者two_pointer
+        # 折半搜索sorting|binary_search或者two_pointers
 
         def check(lst):
             # brute_force列表元素所有个数的子集和
@@ -88,7 +88,7 @@ class Solution:
             return res
 
         def find(left, right):
-            # two_pointer查找最接近target的绝对差值
+            # two_pointers查找最接近target的绝对差值
             a, b = len(left), len(right)
             res = float("inf")
             i = 0

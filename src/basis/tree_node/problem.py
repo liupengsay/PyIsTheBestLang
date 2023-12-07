@@ -1,14 +1,14 @@
 """
-Algorithm：二叉树、N叉树、先序遍历、中序遍历、后序遍历、迭代实现、前序遍历
+Algorithm：n-tree|pre_order|post_order|mid_order
 Function：
 
 ====================================LeetCode====================================
-94（https://leetcode.com/problems/binary-tree-inorder-traversal/description/）中序遍历迭代写法
-144（https://leetcode.com/problems/binary-tree-preorder-traversal/description/）前序遍历迭代写法
-145（https://leetcode.com/problems/binary-tree-postorder-traversal/）后序遍历迭代写法
+94（https://leetcode.com/problems/binary-tree-inorder-traversal/description/）mid_order
+144（https://leetcode.com/problems/binary-tree-preorder-traversal/description/）pre_order
+145（https://leetcode.com/problems/binary-tree-postorder-traversal/）post_order
 
 =====================================AcWing=====================================
-19（https://www.acwing.com/problem/content/description/31/）中序遍历找到其节点后序下一个
+19（https://www.acwing.com/problem/content/description/31/）mid_order
 
 
 """

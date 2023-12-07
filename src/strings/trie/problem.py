@@ -20,7 +20,7 @@ Function：处理字符串以及结合bit_operation相关，01Trie通用用于�
 3864（https://www.luogu.com.cn/problem/P3864）hashbrute_force或者字典树存储
 5755（https://www.luogu.com.cn/problem/P5755）字典树节点counter
 1481（https://www.luogu.com.cn/problem/P1481）最长词链
-5283（https://www.luogu.com.cn/problem/P5283）字典树查询第k大异或值，并堆greedy选取
+5283（https://www.luogu.com.cn/problem/P5283）字典树查询第k大异或值，并heapqgreedy选取
 2922（https://www.luogu.com.cn/problem/P2922）字典树好题，前缀counter
 1738（https://www.luogu.com.cn/problem/P1738）字典树键counter
 8420（https://www.luogu.com.cn/problem/P8420）字典树greedy匹配
@@ -28,7 +28,7 @@ Function：处理字符串以及结合bit_operation相关，01Trie通用用于�
 ===================================CodeForces===================================
 1792D（https://codeforces.com/problemset/problem/1792/D）变形后字典树counter查询
 706D（https://codeforces.com/problemset/problem/706/D）01Trie，增|与删除数字，最大异或值查询
-241B（https://codeforces.com/contest/241/problem/B）01Trie第 K 大的异或对，并堆greedy选取
+241B（https://codeforces.com/contest/241/problem/B）01Trie第 K 大的异或对，并heapqgreedy选取
 665E（https://codeforces.com/contest/665/problem/E）统计连续区间异或对数目
 282E（https://codeforces.com/contest/282/problem/E）转换为 01Trie 求数组最大异或值
 Set Xor-Min（https://judge.yosupo.jp/problem/set_xor_min）template dynamic xor min

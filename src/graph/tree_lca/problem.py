@@ -200,7 +200,7 @@ class Solution:
 
     @staticmethod
     def cf_321c(ac=FastIO()):
-        # 质心算法树的递归切割
+        # 质心算法树的recursion切割
         n = ac.read_int()
         to = [[] for _ in range(n)]
         for _ in range(n - 1):

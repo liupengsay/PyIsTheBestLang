@@ -4,10 +4,10 @@ Algorithm：nim游戏也叫公平组合游戏，属于博弈论范畴
 Function：用来判断游戏是否存在必胜态与必输态，博弈DP类型
 
 =====================================LuoGu======================================
-2197（https://www.luogu.com.cn/problem/P2197）有一个神奇的结论：当n堆石子的数量异或和等于0时，先手必胜，否则先手必败
+2197（https://www.luogu.com.cn/problem/P2197）有一个神奇的结论：当nheapq石子的数量异或和等于0时，先手必胜，否则先手必败
 
 ===================================CodeForces===================================
-1396B（https://codeforces.com/problemset/problem/1396/B）博弈greedy，大顶堆优先选取最大数量的石头做选择
+1396B（https://codeforces.com/problemset/problem/1396/B）博弈greedy，大顶heapq优先选取最大数量的石头做选择
 
 
 """
@@ -21,7 +21,7 @@ class Solution:
 
     @staticmethod
     def cf_1396b(nums):
-        # 博弈greedy，大顶堆优先选取最大数量的石头做选择
+        # 博弈greedy，大顶heapq优先选取最大数量的石头做选择
         heapq.heapify(nums)
         order = 0
         pre = 0

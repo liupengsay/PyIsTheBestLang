@@ -1,57 +1,56 @@
 """
-Algorithm：two_pointer、快慢pointer、先后pointer、bucket_counter
-Function：通过相对移动，来减少复杂度，分为同向two_pointer，相反two_pointer，以及中心扩展法
-
+Algorithm：two_pointers|fast_slow_pointers|bucket_counter|tree_pointers
+Function：sliding_window|two_pointers|center_extension_method
 
 ====================================LeetCode====================================
-167（https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/）two_pointer应用
-259（https://leetcode.com/problems/3sum-smaller/）two_pointer或者counterbrute_force的方式
-2444（https://leetcode.com/problems/count-subarrays-with-fixed-bounds/）通向two_pointer的移动来根据两个pointer的位置来counter
-2398（https://leetcode.com/problems/maximum-number-of-robots-within-budget/）同向two_pointer移动的条件限制有两个需要用sorted_list来维护sliding_window过程
-2302（https://leetcode.com/problems/count-subarrays-with-score-less-than-k/）同向two_pointer维护pointer位置与counter
-2301（https://leetcode.com/problems/match-substring-after-replacement/）brute_force匹配字符起点并two_pointer维护可行长度
-2106（https://leetcode.com/problems/maximum-fruits-harvested-after-at-most-k-steps/）巧妙利用行走距离的更新two_pointer
-6293（https://leetcode.com/problems/count-the-number-of-good-subarrays/）two_pointercounter
-16（https://leetcode.com/problems/3sum-closest/）三pointer确定最接近目标值的和
-15（https://leetcode.com/problems/3sum/）寻找三个元素和为 0 的不重复组合
-2422（https://leetcode.com/problems/range_merge_to_disjoint-operations-to-turn-array-into-a-palindrome/）相反方向two_pointergreedy|和
-2524（https://leetcode.com/problems/maximum-frequency-score-of-a-subarray/）sliding_window维护数字数量与幂次mod|
-239（https://leetcode.com/problems/sliding-window-maximum/）sliding_window最大值，sliding_window类维护
-2447（https://leetcode.com/problems/number-of-subarrays-with-gcd-equal-to-k/）sliding_window区间 gcd，sliding_window类维护
-6392（https://leetcode.com/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/）sliding_window区间 gcd，sliding_window类维护
-1163（https://leetcode.com/problems/last-substring-in-lexicographical-order/）类似最小表示法的two_pointer
-2555（https://leetcode.com/problems/maximize-win-from-two-segments/description/）同向two_pointer|线性DP
-992（https://leetcode.com/problems/subarrays-with-k-different-integers/）三pointer，即快慢two_pointer维护连续子区间个数
-2747（https://leetcode.com/problems/count-zero-request-servers/）offline_query与三pointer，即快慢two_pointer维护连续区间的不同值个数
-2516（https://leetcode.com/problems/take-k-of-each-character-from-left-and-right/）reverse_thinkinginclusion_exclusiontwo_pointer
-1537（https://leetcode.com/problems/get-the-maximum-score/description/）two_pointer|线性DP或者拓扑sorting做
-1712（https://leetcode.com/problems/ways-to-split-array-into-three-subarrays/description/）三pointer，即快慢two_pointer维护满足条件的分割点个数
-948（https://leetcode.com/problems/bag-of-tokens/description/）two_pointergreedy
-2953（https://leetcode.com/contest/weekly-contest-374/problems/count-complete-substrings/）two pointers|brute force
+167（https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/）two_pointers
+259（https://leetcode.com/problems/3sum-smaller/）two_pointers|counter|brute_force
+2444（https://leetcode.com/problems/count-subarrays-with-fixed-bounds/）same_direction|two_pointers|counter
+2398（https://leetcode.com/problems/maximum-number-of-robots-within-budget/）same_direction|two_pointers|sorted_list|sliding_window
+2302（https://leetcode.com/problems/count-subarrays-with-score-less-than-k/）same_direction|two_pointers|pointer|counter
+2301（https://leetcode.com/problems/match-substring-after-replacement/）brute_force|two_pointers
+2106（https://leetcode.com/problems/maximum-fruits-harvested-after-at-most-k-steps/）two_pointers
+6293（https://leetcode.com/problems/count-the-number-of-good-subarrays/）two_pointers|counter
+16（https://leetcode.com/problems/3sum-closest/）tree_pointers
+15（https://leetcode.com/problems/3sum/）two_pointers
+2422（https://leetcode.com/problems/range_merge_to_disjoint-operations-to-turn-array-into-a-palindrome/）opposite_direction|two_pointers|greedy
+2524（https://leetcode.com/problems/maximum-frequency-score-of-a-subarray/）sliding_window|mod|power
+239（https://leetcode.com/problems/sliding-window-maximum/）sliding_window
+2447（https://leetcode.com/problems/number-of-subarrays-with-gcd-equal-to-k/）sliding_window|gcd
+6392（https://leetcode.com/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/）sliding_window|gcd
+1163（https://leetcode.com/problems/last-substring-in-lexicographical-order/）minimum_expression|two_pointers
+2555（https://leetcode.com/problems/maximize-win-from-two-segments/description/）same_direction|two_pointers|liner_dp
+992（https://leetcode.com/problems/subarrays-with-k-different-integers/）tree_pointers|fast_slow_pointers
+2747（https://leetcode.com/problems/count-zero-request-servers/）offline_query|tree_pointers|fast_slow_pointers
+2516（https://leetcode.com/problems/take-k-of-each-character-from-left-and-right/）reverse_thinking|inclusion_exclusion|two_pointers
+1537（https://leetcode.com/problems/get-the-maximum-score/description/）two_pointers|liner_dp|topological_sorting
+1712（https://leetcode.com/problems/ways-to-split-array-into-three-subarrays/description/）three_pointers|fast_slow_pointers
+948（https://leetcode.com/problems/bag-of-tokens/）two_pointers|greedy
+2953（https://leetcode.com/problems/count-complete-substrings/）two pointers|brute force
 
 =====================================LuoGu======================================
-2381（https://www.luogu.com.cn/problem/P2381）环形数组，sliding_windowtwo_pointer
-3353（https://www.luogu.com.cn/problem/P3353）sliding_window|two_pointer
-3662（https://www.luogu.com.cn/problem/P3662）滑动子数组和
-4995（https://www.luogu.com.cn/problem/P4995）sorting后利用greedy与two_pointerimplemention
-2207（https://www.luogu.com.cn/problem/P2207）greedy|同向two_pointer
-7542（https://www.luogu.com.cn/problem/P7542）bucket_counter|two_pointer
-4653（https://www.luogu.com.cn/problem/P4653）greedysorting后two_pointer
-3029（https://www.luogu.com.cn/problem/P3029）two_pointer记录包含k个不同颜色的最短连续子序列
-5583（https://www.luogu.com.cn/problem/P5583）two_pointer
-6465（https://www.luogu.com.cn/problem/P6465）sliding_window与two_pointercounter
+2381（https://www.luogu.com.cn/problem/P2381）circular_array|sliding_window|two_pointers
+3353（https://www.luogu.com.cn/problem/P3353）sliding_window|two_pointers
+3662（https://www.luogu.com.cn/problem/P3662）sliding_window|sub_consequence_sum
+4995（https://www.luogu.com.cn/problem/P4995）sorting|greedy|two_pointers|implemention
+2207（https://www.luogu.com.cn/problem/P2207）greedy|same_direction|two_pointers
+7542（https://www.luogu.com.cn/problem/P7542）bucket_counter|two_pointers
+4653（https://www.luogu.com.cn/problem/P4653）greedy|sorting|two_pointers
+3029（https://www.luogu.com.cn/problem/P3029）two_pointers
+5583（https://www.luogu.com.cn/problem/P5583）two_pointers
+6465（https://www.luogu.com.cn/problem/P6465）sliding_window|two_pointers|counter
 
 
 ===================================CodeForces===================================
-1328D（https://codeforces.com/problemset/problem/1328/D）环形数组sliding_window，记录变化次数并根据奇偶变换次数与环形首尾元素确定染色数量
-1333C（https://codeforces.com/problemset/problem/1333/C）two_pointer，prefix_sum不重复即没有区间段和为0的个数
-1381A2（https://codeforces.com/problemset/problem/1381/A2）two_pointerimplemention翻转匹配与greedy
+1328D（https://codeforces.com/problemset/problem/1328/D）circular_array|sliding_window|odd_even
+1333C（https://codeforces.com/problemset/problem/1333/C）two_pointers|prefix_sum
+1381A2（https://codeforces.com/problemset/problem/1381/A2）two_pointers|implemention|reverse_array|greedy
 
 ====================================AtCoder=====================================
-D - Equal Cut（https://atcoder.jp/contests/abc102/tasks/arc100_b）two_pointerbrute_force
+D - Equal Cut（https://atcoder.jp/contests/abc102/tasks/arc100_b）two_pointers|brute_force
 
 =====================================AcWing=====================================
-4217（https://www.acwing.com/problem/content/4220/）two_pointersliding_window题目
+4217（https://www.acwing.com/problem/content/4220/）two_pointers|sliding_window
 
 """
 import math
@@ -73,7 +72,7 @@ class Solution:
     @staticmethod
     def lg_p4653(ac=FastIO()):
 
-        # greedysorting后two_pointer
+        # greedysorting后two_pointers
         n = ac.read_int()
 
         nums1 = []
@@ -141,7 +140,7 @@ class Solution:
 
     @staticmethod
     def lc_259(nums: List[int], target: int) -> int:
-        # 相反方向的two_pointer统计和小于 target 的三元组数量
+        # 相反方向的two_pointers统计和小于 target 的三元组数量
         nums.sort()
         n = len(nums)
         ans = 0
@@ -172,7 +171,7 @@ class Solution:
 
     @staticmethod
     def lc_2516(s: str, k: int) -> int:
-        # reverse_thinkinginclusion_exclusiontwo_pointer
+        # reverse_thinkinginclusion_exclusiontwo_pointers
         cnt = Counter(s)
         n = len(s)
         if any(cnt[w] < k for w in "abc"):
@@ -191,7 +190,7 @@ class Solution:
 
     @staticmethod
     def lc_2555(prize_positions: List[int], k: int) -> int:
-        # 同向two_pointer|线性DP
+        # same_direction|two_pointers|liner_dp
         n = len(prize_positions)
 
         pre = [0] * n
@@ -208,7 +207,7 @@ class Solution:
 
     @staticmethod
     def lc_2747(n: int, logs: List[List[int]], x: int, queries: List[int]) -> List[int]:
-        # offline_query与三pointer，即快慢two_pointer维护连续区间的不同值个数
+        # offline_query与three_pointers，即fast_slow_pointers维护连续区间的不同值个数
         m = len(queries)
         ans = [0] * m
         ind = list(range(m))
@@ -251,7 +250,7 @@ class Solution:
 
     @staticmethod
     def lc_992(nums: List[int], k: int) -> int:
-        # 三pointer，即快慢two_pointer维护连续子区间个数
+        # three_pointers，即fast_slow_pointers维护连续子区间个数
         n = len(nums)
         ans = j1 = j2 = 0
         pre1 = dict()
@@ -277,7 +276,7 @@ class Solution:
 
     @staticmethod
     def lc_1163(s: str) -> str:
-        # two_pointer
+        # two_pointers
         i, j, n = 0, 1, len(s)
         while j < n:
             k = 0
@@ -291,7 +290,7 @@ class Solution:
 
     @staticmethod
     def lc_1537(nums1: List[int], nums2: List[int]) -> int:
-        # two_pointer|线性DP或者拓扑sorting做
+        # two_pointers|liner_dp或者topological_sorting做
         mod = 10 ** 9 + 7
         m, n = len(nums1), len(nums2)
         i = j = pre1 = pre2 = 0
@@ -314,7 +313,7 @@ class Solution:
 
     @staticmethod
     def lc_1712(nums: List[int]) -> int:
-        # 三pointer，即快慢two_pointer维护满足条件的分割点个数
+        # three_pointers，即fast_slow_pointers维护满足条件的分割点个数
         mod = 10 ** 9 + 7
         ans = 0
         pre = list(accumulate(nums, initial=0))
@@ -332,7 +331,7 @@ class Solution:
 
     @staticmethod
     def lc_2447(nums: List[int], k: int) -> int:
-        # sliding_windowtwo_pointer三pointer维护区间 gcd 为 k 的子数组数量信息
+        # sliding_windowtwo_pointersthree_pointers维护区间 gcd 为 k 的子数组数量信息
         n = len(nums)
         e = reduce(math.lcm, nums + [k])
         e *= 2
@@ -368,7 +367,7 @@ class Solution:
 
     @staticmethod
     def lg_p5583(ac=FastIO()):
-        # two_pointer与变量维护区间信息
+        # two_pointers与变量维护区间信息
         n, m, d = ac.read_list_ints()
         nums = ac.read_list_ints()
         cnt = dict()
@@ -411,7 +410,7 @@ class Solution:
 
     @staticmethod
     def lg_p6465(ac=FastIO()):
-        # sliding_window与two_pointercounter
+        # sliding_window与two_pointerscounter
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
             nums = ac.read_list_ints()
@@ -434,7 +433,7 @@ class Solution:
 
     @staticmethod
     def ac_4217(ac=FastIO()):
-        # two_pointer移动
+        # two_pointers移动
         n = ac.read_int()
         s = ac.read_str()
         a, b = ac.read_list_ints()

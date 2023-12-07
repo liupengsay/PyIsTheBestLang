@@ -1,17 +1,17 @@
 """
 
 Algorithm：强连通分量、2-SAT、最大环、最小环
-Function：用来求解有向图的强连通分量，可以将一张图的每个强连通分量都缩成一个点，然后这张图会变成一个 DAG，可以拓扑sorting以及更多其他操作
+Function：用来求解有向图的强连通分量，可以将一张图的每个强连通分量都缩成一个点，然后这张图会变成一个 DAG，可以topological_sorting以及更多其他操作
 定义：有向图 G 强连通是指 G 中任意两个结点连通，强连通分量（Strongly Connected Components，SCC）是极大的强连通子图
 距离：求一条路径，可以经过重复结点，要求经过的不同结点数量最多
 2-SAT：简单的说就是给出 n 个集合，每个集合有两个元素，已知若干个 <a,b>，表示 a 与 b 矛盾（其中 a 与 b 属于不同的集合）。然后从每个集合选择一个元素，判断能否一共选 n 个两两不矛盾的元素。显然可能有多种选择方案，一般题中只需要求出一种即可。
 
 ====================================LeetCode====================================
-2360（https://leetcode.com/problems/longest-cycle-in-a-graph/）求最长的环长度（有向图scc、内向基环树没有环套环，N个节点N条边，也可以拓扑sorting）
+2360（https://leetcode.com/problems/longest-cycle-in-a-graph/）求最长的环长度（有向图scc、内向基环树没有环套环，N个节点N条边，也可以topological_sorting）
 
 =====================================LuoGu======================================
 3387（https://www.luogu.com.cn/problem/solution/P3387）允许多次经过点和边求一条路径最大权值和、强连通分量
-2661（https://www.luogu.com.cn/problem/P2661）求最小的环长度（有向图、内向基环树没有环套环，N个节点N条边，也可以拓扑sorting）
+2661（https://www.luogu.com.cn/problem/P2661）求最小的环长度（有向图、内向基环树没有环套环，N个节点N条边，也可以topological_sorting）
 4089（https://www.luogu.com.cn/problem/P4089）求所有环的长度和，注意自环
 5145（https://www.luogu.com.cn/problem/P5145）内向基环树求最大权值和的环
 
@@ -65,7 +65,7 @@ class Solution:
             for j in dct[i]:
                 degree[j] += 1
 
-        # 拓扑sorting求最长路，这里也可以深搜
+        # topological_sorting求最长路，这里也可以深搜
         visit = [0] * m
         stack = deque([i for i in range(m) if not degree[i]])
         for i in stack:
@@ -109,7 +109,7 @@ class Solution:
                 b[st] = 1
             return ans
 
-        # 题目也可用 scc 或者拓扑sorting求解
+        # 题目也可用 scc 或者topological_sorting求解
         return largest_circle(len(edges), edges, [1] * len(edges))
 
 

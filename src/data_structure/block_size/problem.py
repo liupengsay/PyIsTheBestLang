@@ -1,6 +1,6 @@
 """
-Algorithm：分块查询、two_pointer
-Function：将查询区间分块sorting，交替移动two_pointer动态维护查询值
+Algorithm：分块查询、two_pointers
+Function：将查询区间分块sorting，交替移动two_pointers动态维护查询值
 
 ====================================LeetCode====================================
 1157（https://leetcode.com/problems/online-majority-element-in-subarray/description/）查询区间的超级众数，即区间出现超过一半的数，同cf1514_d正解为随机化猜众数，或者bit_operation众数，或者线段树合并众数
@@ -88,7 +88,7 @@ class Solution:
                 queries[i].sort(key=lambda it: -it[0])
             else:
                 queries[i].sort(key=lambda it: it[0])
-            # 移动two_pointer
+            # 移动two_pointers
             for a, b, j in queries[i]:
                 while y > b:
                     update(nums[y], -1)
@@ -175,7 +175,7 @@ class Solution:
                 queries[i].sort(key=lambda it: -it[0])
             else:
                 queries[i].sort(key=lambda it: it[0])
-            # 移动two_pointer
+            # 移动two_pointers
             for a, b, j in queries[i]:
                 while y > b:
                     update(nums[y], -1)
@@ -282,7 +282,7 @@ class Solution:
                 queries[i].sort(key=lambda it: -it[0])
             else:
                 queries[i].sort(key=lambda it: it[0])
-            # 移动two_pointer
+            # 移动two_pointers
             for a, b, j in queries[i]:
                 a -= 1
                 while y > b:

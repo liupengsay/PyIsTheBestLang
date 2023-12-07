@@ -1920,7 +1920,7 @@ class SegmentTreeRangeAndOrXOR:
         return ans
 
     def query_max_length(self, left: int, right: int, s: int, t: int, i: int):
-        # 查询区间的最大连续和，注意这里是递归
+        # 查询区间的最大连续和，注意这里是recursion
         if left <= s and t <= right:
             return self.cover_1[i], self.left_1[i], self.right_1[i]
 
@@ -1935,7 +1935,7 @@ class SegmentTreeRangeAndOrXOR:
         res1 = self.query_max_length(left, right, s, m, 2 * i)
         res2 = self.query_max_length(left, right, m + 1, t, 2 * i + 1)
 
-        # 参照区间递归方式
+        # 参照区间recursion方式
         res = [0] * 3
         res[0] = self._max(res1[0], res2[0])
         res[0] = self._max(res[0], res1[2] + res2[1])

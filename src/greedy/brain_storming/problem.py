@@ -1,6 +1,6 @@
 """
 
-Algorithm：greedy、reverse_thinking、抽屉原理、pigeonhole、inclusion_exclusion、自定义sorting、思维、brain_teaser、construction
+Algorithm：greedy、reverse_thinking、抽屉原理、pigeonhole、inclusion_exclusion、define_sort、思维、brain_teaser、construction
 Function：各种可证明不可证明的头脑风暴
 
 ====================================LeetCode====================================
@@ -10,7 +10,7 @@ Function：各种可证明不可证明的头脑风暴
 2499（https://leetcode.com/problems/minimum-total-cost-to-make-arrays-unequal/）利用pigeonholegreedy最小代价
 2449（https://leetcode.com/problems/minimum-total-cost-to-make-arrays-unequal/）转换题意sorting后用奇偶数greedy变换得到
 2448（https://leetcode.com/problems/minimum-cost-to-make-array-equal/）利用median的特点变换到带权重广义下median的位置是最优的greedy增减
-2412（https://leetcode.com/problems/minimum-money-required-before-transactions/）根据交易增长特点自定义sorting
+2412（https://leetcode.com/problems/minimum-money-required-before-transactions/）根据交易增长特点define_sort
 2366（https://leetcode.com/problems/minimum-replacements-to-sort-the-array/）reverse_order|greedy不断分解得到满足要求且尽可能大的值
 2350（https://leetcode.com/problems/shortest-impossible-sequence-of-rolls/）brain_teaser本质上是求全排列出现的轮数
 2344（https://leetcode.com/problems/minimum-deletions-to-make-array-divisible/）利用最大公约数greedy删除最少的元素
@@ -34,7 +34,7 @@ Function：各种可证明不可证明的头脑风暴
 2856（https://leetcode.com/problems/minimum-array-length-after-pair-removals/）greedy只看最大值的影响
 858（https://leetcode.com/problems/mirror-reflection/description/）brain_teaserbrain_teaser|
 1927（https://leetcode.com/problems/sum-game/description/）博弈brain_teaser|classification_discussion
-2592（https://leetcode.com/problems/maximize-greatness-of-an-array/）典型greedysorting后two_pointer
+2592（https://leetcode.com/problems/maximize-greatness-of-an-array/）典型greedysorting后two_pointers
 1503（https://leetcode.com/problems/last-moment-before-all-ants-fall-out-of-a-plank/）brain_teaser题目，相撞不影响结果
 991（https://leetcode.com/problems/broken-calculator/）逆向greedy，偶数除2奇数|1
 2745（https://leetcode.com/problems/construct-the-longest-new-string/）brain_teasergreedybrain_teaser|
@@ -80,7 +80,7 @@ Function：各种可证明不可证明的头脑风暴
 5804（https://www.luogu.com.cn/problem/P5804）sortinggreedybrute_force和binary_search优化
 5963（https://www.luogu.com.cn/problem/P5963）greedy题目，可举例两个、再归纳确定sorting规则
 6023（https://www.luogu.com.cn/problem/P6023）可证明集中在某天是最佳结果，然后pointerimplemention
-6243（https://www.luogu.com.cn/problem/P6243）greedy举例之后优先级比较，再自定义sorting
+6243（https://www.luogu.com.cn/problem/P6243）greedy举例之后优先级比较，再define_sort
 6179（https://www.luogu.com.cn/problem/list?difficulty=3&page=13）greedy
 6380（https://www.luogu.com.cn/problem/P6380）greedyimplemention赋值
 6446（https://www.luogu.com.cn/problem/P6446）greedy操作，使得数组所有值相等的最少操作次数变形题目，每次操作可以使得连续区间|1或者减1
@@ -107,7 +107,7 @@ Function：各种可证明不可证明的头脑风暴
 2816（https://www.luogu.com.cn/problem/P2816）sorting后从小到大greedy放置，STL维护当前积木列高度
 3819（https://www.luogu.com.cn/problem/P3819）mediangreedy题
 3918（https://www.luogu.com.cn/problem/P3918）brain_teasergreedy
-4025（https://www.luogu.com.cn/problem/P4025）greedy血量与增幅自定义sorting
+4025（https://www.luogu.com.cn/problem/P4025）greedy血量与增幅define_sort
 4266（https://www.luogu.com.cn/problem/P4266）后缀最大值greedyimplemention
 4447（https://www.luogu.com.cn/problem/P4447）greedy队列使得连续值序列最少的分组长度最大
 4575（https://www.luogu.com.cn/problem/P4575）brain_teaser|状压运算
@@ -139,7 +139,7 @@ Function：各种可证明不可证明的头脑风暴
 723C（https://codeforces.com/problemset/problem/723/C）greedyimplementionconstruction
 712C（https://codeforces.com/problemset/problem/712/C）reverse_thinking反向implemention
 747D（https://codeforces.com/problemset/problem/747/D）greedyimplemention求解
-1148D（https://codeforces.com/problemset/problem/1148/D）greedy，自定义sorting选择construction
+1148D（https://codeforces.com/problemset/problem/1148/D）greedy，define_sort选择construction
 792C（https://codeforces.com/contest/792/problem/C）classification_discussion|greedy讨论
 830A（https://codeforces.com/problemset/problem/830/A）按照影响区间sorting，然后greedy分配时间
 478C（https://codeforces.com/problemset/problem/478/C）greedy结论题a<=b<=c则有min((a+b+c)//3, a+b)
@@ -167,7 +167,7 @@ D - Summer Vacation（https://atcoder.jp/contests/abc137/tasks/abc137_d）逆序
 123（https://www.acwing.com/problem/content/description/125/）mediangreedy扩展问题
 125（https://www.acwing.com/problem/content/127/）greedy思路，邻项交换
 127（https://www.acwing.com/problem/content/description/129/）二维sortinggreedy
-145（https://www.acwing.com/problem/content/147/）二叉堆greedy
+145（https://www.acwing.com/problem/content/147/）二叉heapqgreedy
 122（https://www.acwing.com/problem/content/124/）线性环形均分纸牌问题
 4204（https://www.acwing.com/problem/content/description/4207/）construction
 4307（https://www.acwing.com/problem/content/description/4310/）lexicographical_orderbrute_forcegreedy
@@ -418,7 +418,7 @@ class Solution:
 
     @staticmethod
     def ac_145(ac=FastIO()):
-        # 二叉堆greedy
+        # 二叉heapqgreedy
         lst = []
         cnt = 0
         while cnt < 10000:
@@ -563,7 +563,7 @@ class Solution:
 
     @staticmethod
     def lg_p4025(ac=FastIO()):
-        # greedy血量与增幅自定义sorting
+        # greedy血量与增幅define_sort
         n, z = ac.read_list_ints()
         pos = []
         neg = []
@@ -669,7 +669,7 @@ class Solution:
             nums2.append(y)
         nums1.sort(reverse=True)
         nums2.sort(reverse=True)
-        # two_pointer选择
+        # two_pointers选择
         ans = i = j = a = b = 0
         light_a = light_b = 0
         while i < n or j < n:
@@ -1122,7 +1122,7 @@ class Solution:
 
     @staticmethod
     def lc_2592(nums: List[int]) -> int:
-        # 典型greedysorting后two_pointer
+        # 典型greedysorting后two_pointers
         n = len(nums)
         nums.sort()
         j = 0

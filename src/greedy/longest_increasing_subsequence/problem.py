@@ -21,7 +21,7 @@ dilworth定理：
 1691（https://leetcode.com/problems/maximum-height-by-stacking-cuboids/submissions/）三维偏序LIS问题
 1713（https://leetcode.com/problems/minimum-operations-to-make-a-subsequence/）LCS问题转换为LIS
 1940（https://leetcode.com/problems/longest-common-subsequence-between-sorted-arrays/）LCS问题转为LIS问题
-3662（https://www.acwing.com/problem/content/description/3665/）所有长度的严格上升子序列的最大子序列和，离散化树状数组与线性DP，也可线段树
+3662（https://www.acwing.com/problem/content/description/3665/）所有长度的严格上升子序列的最大子序列和，离散化树状数组与liner_dp，也可线段树
 2826（https://leetcode.com/problems/sorting-three-groups/）转换为求最长不降子序列
 1964（https://leetcode.com/problems/find-the-longest-valid-obstacle-course-at-each-position/）LIS求以每个位置结尾的最长不降子序列长度
 2945（https://leetcode.com/problems/find-maximum-non-decreasing-array-length/description/）linear dp|deque|greedy|prefix sum
@@ -43,7 +43,7 @@ dilworth定理：
 1410（https://www.luogu.com.cn/problem/P1410）dilworth定理求最长不上升子序列长度小于等于2
 
 =====================================AcWing=====================================
-3549（https://www.acwing.com/problem/content/3552/）线性DP动态规划greedy
+3549（https://www.acwing.com/problem/content/3552/）liner_dp动态规划greedy
 2694（https://www.acwing.com/problem/content/description/2696/）LIS求解LCS的长度与个数
 
 ====================================AtCoder=====================================
@@ -292,7 +292,7 @@ class Solution:
 
     @staticmethod
     def ac_3662_1(ac=FastIO()):
-        # 所有长度的严格上升子序列的最大子序列和，离散化树状数组与线性DP，也可线段树
+        # 所有长度的严格上升子序列的最大子序列和，离散化树状数组与liner_dp，也可线段树
         ac.read_int()
         nums = ac.read_list_ints()
         ind = {num: i for i, num in enumerate(sorted(list(set(nums))))}
@@ -309,7 +309,7 @@ class Solution:
 
     @staticmethod
     def ac_3662_2(ac=FastIO()):
-        # 所有长度的严格上升子序列的最大子序列和，离散化树状数组与线性DP，也可线段树
+        # 所有长度的严格上升子序列的最大子序列和，离散化树状数组与liner_dp，也可线段树
         ac.read_int()
         nums = ac.read_list_ints()
         ind = {num: i for i, num in enumerate(sorted(list(set(nums))))}

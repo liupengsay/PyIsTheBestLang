@@ -23,7 +23,7 @@ LCP 14（https://leetcode.com/problems/qie-fen-shu-zu/） 1 到 n 的每个数�
 
 =====================================LuoGu======================================
 1865（https://www.luogu.com.cn/problem/P1865）通过线性筛素数后binary_search查询区间素数个数
-1748（https://www.luogu.com.cn/problem/P1748）丑数可以堆implemention可以pointer递增也可以inclusion_exclusion与binary_search
+1748（https://www.luogu.com.cn/problem/P1748）丑数可以heapqimplemention可以pointer递增也可以inclusion_exclusion与binary_search
 2723（https://www.luogu.com.cn/problem/P2723）第n小的只含给定素因子的丑数
 1952（https://www.luogu.com.cn/problem/P1952）N进制|法
 1555（https://www.luogu.com.cn/problem/P1555）二进制与三进制
@@ -306,7 +306,7 @@ class Solution:
 
         def check(pp, cc):
 
-            # 等比数列求和递归divide_and_conquer
+            # 等比数列求和recursiondivide_and_conquer
             if cc == 0:
                 return 1
             if cc % 2 == 1:

@@ -10,7 +10,7 @@ Function：用来处理字符串的回文相关问题，可以有、DP、中心�
 =====================================LuoGu======================================
 4555（https://www.luogu.com.cn/problem/P4555）以当前索引为开头以及结尾的最长palindrome_substring
 1210（https://www.luogu.com.cn/problem/P1210）寻找最长的连续palindrome_substring
-4888（https://www.luogu.com.cn/problem/P4888）中心扩展法two_pointer
+4888（https://www.luogu.com.cn/problem/P4888）中心扩展法two_pointers
 1872（https://www.luogu.com.cn/problem/P1872）回文串对数统计，利用马拉车以当前字母开头与结尾的回文串数
 6297（https://www.luogu.com.cn/problem/P6297）中心扩展法并变量维护
 

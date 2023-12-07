@@ -28,7 +28,7 @@ Function：monotonicity is necessary for solution like these, which always work 
 1570（https://www.luogu.com.cn/problem/P1570）math|greedy|binary_search
 1843（https://www.luogu.com.cn/problem/P1843）greedy|binary_search
 2309（https://www.luogu.com.cn/problem/P2309）prefix_sum|sorted_list|binary_search|counter|sub_consequence_sum
-2390（https://www.luogu.com.cn/problem/P2390）brute_force|binary_search|two_pointer
+2390（https://www.luogu.com.cn/problem/P2390）brute_force|binary_search|two_pointers
 2759（https://www.luogu.com.cn/problem/P2759）math|binary_search
 1404（https://www.luogu.com.cn/problem/P1404）math|prefix_sum|binary_search
 1592（https://www.luogu.com.cn/problem/P1592）binary_search|inclusion_exclusion|kth_coprime_of_n
@@ -82,9 +82,9 @@ Function：monotonicity is necessary for solution like these, which always work 
 1370D（https://codeforces.com/problemset/problem/1370/D）binary_search|greedy|check
 1486D（https://codeforces.com/problemset/problem/1486/D）binary_search|hash|prefix_sum|maximum_length_of_sub_consequence_with_pos_sum
 1118D2（https://codeforces.com/problemset/problem/1118/D2）greedy|binary_search
-883I（https://codeforces.com/problemset/problem/883/I）binary_search|two_pointer|dp
+883I（https://codeforces.com/problemset/problem/883/I）binary_search|two_pointers|dp
 1538G（https://codeforces.com/contest/1538/problem/G）binary_search|brute_force|math
-1680C（https://codeforces.com/contest/1680/problem/C）binary_search|greedy|two_pointer|check
+1680C（https://codeforces.com/contest/1680/problem/C）binary_search|greedy|two_pointers|check
 1251D（https://codeforces.com/contest/1251/problem/D）greedy|binary_search
 
 ====================================AtCoder=====================================
@@ -94,7 +94,7 @@ D - Widespread（https://atcoder.jp/contests/abc063/tasks/arc075_b）binary_sear
 =====================================AcWing=====================================
 120（https://www.acwing.com/problem/content/122/）binary_search
 14（https://www.acwing.com/problem/content/description/15/）pigeonhole|binary_search
-3973（https://www.acwing.com/problem/content/3976/）high_precision|binary_search|sliding_window|two_pointer
+3973（https://www.acwing.com/problem/content/3976/）high_precision|binary_search|sliding_window|two_pointers
 4863（https://www.acwing.com/problem/content/description/4866/）binary_search|pigeonhole
 5048（https://www.acwing.com/problem/content/description/5051/）high_precision|binary_search|specific_plan
 
@@ -421,7 +421,7 @@ class Solution:
 
     @staticmethod
     def lc_4(nums1: List[int], nums2: List[int]) -> float:
-        # two_pointerbinary_search移动查找两个正序数组的median
+        # two_pointersbinary_search移动查找两个正序数组的median
         def get_kth_num(k):
             ind1 = ind2 = 0
             while k:
@@ -852,7 +852,7 @@ class Solution:
 
     @staticmethod
     def cf_883i(ac=FastIO()):
-        # binary_search|two_pointerdp
+        # binary_search|two_pointersdp
         n, k = ac.read_list_ints()
         nums = sorted(ac.read_list_ints())
 
@@ -1310,7 +1310,7 @@ class Solution:
 
     @staticmethod
     def ac_3973(ac=FastIO()):
-        # 浮点数binary_search与sliding_windowtwo_pointer
+        # 浮点数binary_search与sliding_windowtwo_pointers
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         pos = ac.read_list_ints()

@@ -26,7 +26,7 @@ Prim在稠密图中比Kruskal优，在稀疏图中比Kruskal劣。Prim是以更�
 2700（https://www.luogu.com.cn/problem/P2700）reverse_thinking与最小生成树，选取最大权组合，修改union_findsize
 1195（https://www.luogu.com.cn/record/list?user=739032&status=12&page=13）最小生成树生成K个连通块
 1194（https://www.luogu.com.cn/problem/P1194）最小生成树变种问题
-2916（https://www.luogu.com.cn/problem/P2916）需要自定义sorting之后最小生成树的好题
+2916（https://www.luogu.com.cn/problem/P2916）需要define_sort之后最小生成树的好题
 4955（https://www.luogu.com.cn/problem/P4955）最小生成树，自定义中止条件
 6705（https://www.luogu.com.cn/problem/P6705）brute_force最小值，最小生成树，与自定义权值
 7775（https://www.luogu.com.cn/problem/P7775）BFS|最小生成树思想，求解

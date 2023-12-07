@@ -51,7 +51,7 @@ Function：用来处理图论相关的联通问题，通常结合逆向思考、
 8637（https://www.luogu.com.cn/problem/P8637）union_findpermutation_ring|
 8686（https://www.luogu.com.cn/problem/P8686）union_find灵活应用
 8785（https://www.luogu.com.cn/problem/P8785）根据边界union_find构建counter
-8787（https://www.luogu.com.cn/problem/P8787）greedy二叉堆implemention与union_find灵活应用
+8787（https://www.luogu.com.cn/problem/P8787）greedy二叉heapqimplemention与union_find灵活应用
 8881（https://www.luogu.com.cn/problem/P8881）brain_teaser，union_find判断所属连通分量是否有环
 
 ===================================CodeForces===================================
@@ -796,7 +796,7 @@ class Solution:
 
     @staticmethod
     def lg_p8787(ac=FastIO()):
-        # greedy二叉堆implemention与union_find灵活应用
+        # greedy二叉heapqimplemention与union_find灵活应用
         n = ac.read_int()
         nums = ac.read_list_ints()
         stack = [[-nums[i], -i] for i in range(n)]

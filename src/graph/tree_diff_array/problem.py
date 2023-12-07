@@ -23,7 +23,7 @@ Function：来求一棵树的最近公共祖先（LCA）也可以
 
 ===================================CodeForces===================================
 1328E（https://codeforces.com/problemset/problem/1328/E）利用 LCA 判定节点组是否符合条件，也可以 dfs 序
-321C（https://codeforces.com/problemset/problem/321/C）树的质心递归，依次切割形成平衡树赋值
+321C（https://codeforces.com/problemset/problem/321/C）树的质心recursion，依次切割形成平衡树赋值
 519E（https://codeforces.com/problemset/problem/519/E）LCA运用题目，查询距离与第k个祖先节点，与子树节点counter
 1296F（https://codeforces.com/contest/1296/problem/F）离线或者在线查询lcagreedyconstruction，正解可能为倍增
 
@@ -59,13 +59,13 @@ class Solution:
 
         # 离线LCA
         res = OfflineLCA().bfs_iteration(dct, trips)
-        # res = OfflineLCA().dfs_recursion(dct, trips)   # 也可以递归
+        # res = OfflineLCA().dfs_recursion(dct, trips)   # 也可以recursion
 
         # 树上差分
         m = len(trips)
         queries = [trips[i] + [res[i]] for i in range(m)]
         cnt = TreeDiffArray().bfs_iteration(dct, queries)
-        # cnt = TreeDiffArray().dfs_recursion(dct, queries)  # 也可以递归
+        # cnt = TreeDiffArray().dfs_recursion(dct, queries)  # 也可以recursion
 
         # 迭代版的树形DP
         stack = [0]
@@ -102,10 +102,10 @@ class Solution:
             dct[j].append(i)
         queries = [ac.read_list_ints_minus_one() for _ in range(k)]
         res = OfflineLCA().bfs_iteration(dct, queries)
-        # res = OfflineLCA().dfs_recursion(dct, trips)  # 也可以递归
+        # res = OfflineLCA().dfs_recursion(dct, trips)  # 也可以recursion
         queries = [queries[i] + [res[i]] for i in range(k)]
         cnt = TreeDiffArray().bfs_iteration(dct, queries)
-        # cnt = TreeDiffArray().dfs_recursion(dct, queries)  # 也可以递归
+        # cnt = TreeDiffArray().dfs_recursion(dct, queries)  # 也可以recursion
         ac.st(max(cnt))
         return
 

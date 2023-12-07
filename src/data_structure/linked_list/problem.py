@@ -9,7 +9,7 @@ Function：
 2612（https://leetcode.com/problems/minimum-reverse-operations/）BFS|链表，数组维护链表的前后节点信息
 1562（https://leetcode.com/problems/find-latest-group-of-size-m/）类似union_find的prefix_suffix链表求解
 2382（https://leetcode.com/problems/maximum-segment-sum-after-removals/）逆向访问查询并更新连通块的结果，也可以双向链表维护
-2289（https://leetcode.com/problems/steps-to-make-array-non-decreasing/description/）monotonic_stack|优化的线性DP，也可用BFS|链表求解
+2289（https://leetcode.com/problems/steps-to-make-array-non-decreasing/description/）monotonic_stack|优化的liner_dp，也可用BFS|链表求解
 
 ===================================牛客===================================
 牛牛排队伍（https://ac.nowcoder.com/acm/contest/49888/C）数组维护链表的前后节点信息
@@ -24,7 +24,7 @@ Function：
 =====================================AcWing=====================================
 136（https://www.acwing.com/problem/content/138/）链表逆序删除，查找前后最接近的值
 4943（https://www.acwing.com/problem/content/description/4946/）BFS|链表，维护四个方向上的未访问点
-5034（https://www.acwing.com/problem/content/5037/）堆greedy|链表处理
+5034（https://www.acwing.com/problem/content/5037/）heapqgreedy|链表处理
 
 """
 import heapq
@@ -103,7 +103,7 @@ class Solution:
     @staticmethod
     def lc_2289(nums: List[int]) -> int:
 
-        # monotonic_stack|优化的线性DP，也可用BFS|链表求解
+        # monotonic_stack|优化的liner_dp，也可用BFS|链表求解
         n = len(nums)
         post = list(range(1, n + 1))
         nums.append(10 ** 9 + 7)
@@ -392,7 +392,7 @@ class Solution:
 
     @staticmethod
     def ac_5034(ac=FastIO()):
-        # 堆greedy|链表处理
+        # heapqgreedy|链表处理
         n = ac.read_int()
         s = ac.read_str()
         nums = ac.read_list_ints()

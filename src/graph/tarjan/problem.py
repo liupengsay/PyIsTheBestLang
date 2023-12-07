@@ -35,14 +35,14 @@ Function：Tarjan 算法是基于深度优先搜索的算法，用于求解图�
 427C（https://codeforces.com/problemset/problem/427/C）有向图的强联通分量缩点
 193A（https://codeforces.com/contest/193/problem/A）brain_teaser有无割点
 999E（https://codeforces.com/contest/999/problem/E）SCC缩点后查看入度为0的点个数
-1213F（https://codeforces.com/contest/1213/problem/F）SCC缩点后拓扑sortinggreedy
+1213F（https://codeforces.com/contest/1213/problem/F）SCC缩点后topological_sortinggreedy
 1547G（https://codeforces.com/contest/1547/problem/G）SCC缩点后利用可达性建立新图，路径条数
 1702E（https://codeforces.com/contest/1702/problem/E）点双无向图找环，判断有无奇数环
 1768D（https://codeforces.com/contest/1768/problem/D）permutation_ring|与tarjan求环
 
 =====================================AcWing=====================================
 3579（https://www.acwing.com/problem/content/3582/）强连通分量模板题
-3813（https://www.acwing.com/problem/content/submission/3816/）强连通分量模板与拓扑sortingDP
+3813（https://www.acwing.com/problem/content/submission/3816/）强连通分量模板与topological_sortingDP
 
 ===================================LibraryChecker===================================
 1 Cycle Detection (Directed)（https://judge.yosupo.jp/problem/cycle_detection）detect any circle in a directed graph
@@ -785,7 +785,7 @@ class Solution:
 
     @staticmethod
     def ac_3813(ac=FastIO()):
-        # 强连通分量模板与拓扑sortingDP
+        # 强连通分量模板与topological_sortingDP
         n, m = ac.read_list_ints()
         s = ac.read_str()
         dct = [set() for _ in range(n)]
