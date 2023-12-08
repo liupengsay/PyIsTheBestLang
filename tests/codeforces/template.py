@@ -20,6 +20,8 @@ from operator import mul
 from typing import List, Callable, Dict, Set, Tuple, DefaultDict
 from heapq import heappush, heappop, heapify
 
+read = lambda: sys.stdin.readline().rstrip()
+
 
 class FastIO:
     def __init__(self):
@@ -28,35 +30,35 @@ class FastIO:
 
     @staticmethod
     def read_int():
-        return int(sys.stdin.readline().strip())
+        return int(read())
 
     @staticmethod
     def read_float():
-        return float(sys.stdin.readline().strip())
+        return float(read())
 
     @staticmethod
     def read_list_ints():
-        return list(map(int, sys.stdin.readline().strip().split()))
+        return list(map(int, read().split()))
 
     @staticmethod
     def read_list_floats():
-        return list(map(float, sys.stdin.readline().strip().split()))
+        return list(map(float, read().split()))
 
     @staticmethod
     def read_list_ints_minus_one():
-        return list(map(lambda x: int(x) - 1, sys.stdin.readline().strip().split()))
+        return list(map(lambda x: int(x) - 1, read().split()))
 
     @staticmethod
     def read_str():
-        return sys.stdin.readline().strip()
+        return read()
 
     @staticmethod
     def read_list_strs():
-        return sys.stdin.readline().strip().split()
+        return read().split()
 
     @staticmethod
     def read_list_str():
-        return list(sys.stdin.readline().strip())
+        return list(read())
 
     def read_graph(self, n, directed=False):
         dct = [[] for _ in range(n)]

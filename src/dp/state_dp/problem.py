@@ -460,7 +460,7 @@ class Solution:
         n = ac.read_int()
         lst = [[0, 0]]
         for _ in range(n):
-            x, y = [float(w) for w in sys.stdin.readline().strip().split() if w]
+            x, y = [float(w) for w in read().split() if w]
             if not x == y == 0:
                 lst.append([x, y])
 
