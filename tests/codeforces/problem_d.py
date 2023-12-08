@@ -1,4 +1,4 @@
-import sys
+from sys import stdin, stdout
 import bisect
 import decimal
 import heapq
@@ -20,8 +20,6 @@ from operator import mul
 from typing import List, Callable, Dict, Set, Tuple, DefaultDict
 from heapq import heappush, heappop, heapify
 
-read = lambda: sys.stdin.readline().rstrip()
-
 
 class FastIO:
     def __init__(self):
@@ -30,27 +28,27 @@ class FastIO:
 
     @staticmethod
     def read_int():
-        return int(read())
+        return int(stdin.readline().rstrip())
 
     @staticmethod
     def read_float():
-        return float(read())
+        return float(stdin.readline().rstrip())
 
     @staticmethod
     def read_list_ints():
-        return list(map(int, read().split()))
+        return list(map(int, stdin.readline().rstrip().split()))
 
     @staticmethod
     def read_list_ints_minus_one():
-        return list(map(lambda x: int(x) - 1, read().split()))
+        return list(map(lambda x: int(x) - 1, stdin.readline().rstrip().split()))
 
     @staticmethod
     def read_str():
-        return read()
+        return stdin.readline().rstrip()
 
     @staticmethod
     def read_list_strs():
-        return read().split()
+        return stdin.readline().rstrip().split()
 
     @staticmethod
     def st(x):
