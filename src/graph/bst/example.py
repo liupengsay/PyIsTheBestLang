@@ -19,7 +19,7 @@ class TestGeneral(unittest.TestCase):
 
     @staticmethod
     def lg_2171_2_input(n, nums, ac=FastIO):
-        # 模板: bst 链表与二叉树implemention插入 O(nlogn)（离线）
+        # 模板: bst linked_list|与二叉树implemention插入 O(nlogn)（离线）
 
         @ac.bootstrap
         def dfs(rt):
@@ -30,7 +30,7 @@ class TestGeneral(unittest.TestCase):
             yield
 
         m = n + 10
-        # sorting后离散化
+        # sorting后discretization
         a = [0] + nums
         b = a[:]
         a.sort()

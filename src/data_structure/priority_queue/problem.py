@@ -1,36 +1,36 @@
 """
-Algorithm：单调队列、双端队列
-Function：维护单调性，sliding_window最大值最小值
+Algorithm：deque|monotonic_queue|priority_queue
+Function：sliding_window|monotonic
 
 ====================================LeetCode====================================
-239（https://leetcode.com/problems/sliding-window-maximum/）滑动区间最大值
-1696（https://leetcode.com/problems/jump-game-vi/）priority_queue DP
-862（https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/description/）prefix_sum|单调双端队列DP
-1425（https://leetcode.com/problems/constrained-subsequence-sum/）单调队列DP模板题
+239（https://leetcode.com/problems/sliding-window-maximum/）sliding_window_maximum
+1696（https://leetcode.com/problems/jump-game-vi/）priority_queue|dp
+862（https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/description/）prefix_sum|monotonic_queue|dp
+1425（https://leetcode.com/problems/constrained-subsequence-sum/）monotonic_queue|dp
 
 =====================================LuoGu======================================
-2251（https://www.luogu.com.cn/problem/P2251）滑动区间最小值
-2032（https://www.luogu.com.cn/problem/P2032）滑动区间最大值
-1750（https://www.luogu.com.cn/problem/P1750）题目，滑动pointer窗口stack|队列
-2311（https://www.luogu.com.cn/problem/P2311）不定长sliding_window最大值索引
-7175（https://www.luogu.com.cn/problem/P7175）有序priority_queueimplemention
-7793（https://www.luogu.com.cn/problem/P7793）双端单调队列，最小值
-2216（https://www.luogu.com.cn/problem/P2216）二维区间的sliding_window最大最小值
-1886（https://www.luogu.com.cn/problem/P1886）sliding_window的最大值与最小值
-1725（https://www.luogu.com.cn/problem/P1725）单调队列和pointer维护sliding_window最大值|liner_dp
-2827（https://www.luogu.com.cn/problem/P2827）单调队列
-3800（https://www.luogu.com.cn/problem/P3800）单调队列优化matrix_dp
-1016（https://www.luogu.com.cn/problem/P1016）单调队列，greedyimplemention油箱，还可以增|每个站的油量限制
-1714（https://www.luogu.com.cn/problem/P1714）prefix_sum|sliding_window最小值，单调队列小于一定长度的最大连续子段和
-2629（https://www.luogu.com.cn/problem/P2629）circular_array|prefix_sum与sliding_window最小值
-3522（https://www.luogu.com.cn/problem/P3522）看不懂的队列与monotonic_stack|思想
-3957（https://www.luogu.com.cn/problem/P3957）binary_search|priority_queue|DP
-4085（https://www.luogu.com.cn/problem/P4085）two_pointers|priority_queuesliding_window最小值
-4392（https://www.luogu.com.cn/problem/P4392）单调队列sliding_window最大值
+2251（https://www.luogu.com.cn/problem/P2251）sliding_window_minimum
+2032（https://www.luogu.com.cn/problem/P2032）sliding_window_maximum
+1750（https://www.luogu.com.cn/problem/P1750）pointer|sliding_window|stack|queue
+2311（https://www.luogu.com.cn/problem/P2311）sliding_window
+7175（https://www.luogu.com.cn/problem/P7175）priority_queue|implemention
+7793（https://www.luogu.com.cn/problem/P7793）monotonic_queue
+2216（https://www.luogu.com.cn/problem/P2216）sliding_window|sub_matrix
+1886（https://www.luogu.com.cn/problem/P1886）sliding_window
+1725（https://www.luogu.com.cn/problem/P1725）monotonic_queue|pointer|sliding_window|liner_dp
+2827（https://www.luogu.com.cn/problem/P2827）monotonic_queue
+3800（https://www.luogu.com.cn/problem/P3800）monotonic_queue|matrix_dp
+1016（https://www.luogu.com.cn/problem/P1016）monotonic_queue|greedy|implemention
+1714（https://www.luogu.com.cn/problem/P1714）prefix_sum|sliding_window
+2629（https://www.luogu.com.cn/problem/P2629）circular_array|prefix_sum|sliding_window
+3522（https://www.luogu.com.cn/problem/P3522）monotonic_stack
+3957（https://www.luogu.com.cn/problem/P3957）binary_search|priority_queue|dp
+4085（https://www.luogu.com.cn/problem/P4085）two_pointers|priority_queue|sliding_window
+4392（https://www.luogu.com.cn/problem/P4392）sliding_window|monotonic_queue
 
 =====================================AcWing=====================================
-133（https://www.acwing.com/problem/content/135/）三个priority_queue|一个偏移量
-135（https://www.acwing.com/problem/content/137/）双端队列不超过一定长度的最大子段和
+133（https://www.acwing.com/problem/content/135/）priority_queue
+135（https://www.acwing.com/problem/content/137/）monotonic_queue
 
 """
 from collections import deque

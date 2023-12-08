@@ -22,7 +22,7 @@ Function：implemention|monotonic_stack|maximum_stack|minimum_stack
 4387（https://www.luogu.com.cn/problem/P4387）implemention|stack|stack|deque
 7674（https://www.luogu.com.cn/problem/P7674）stack|implemention
 3719（https://www.luogu.com.cn/problem/P3719）string|stack
-1974（https://www.luogu.com.cn/problem/P1974）greedy|dqueue|implemention
+1974（https://www.luogu.com.cn/problem/P1974）greedy|deque|implemention
 3551（https://www.luogu.com.cn/problem/P3551）stack|counter|pointer
 3719（https://www.luogu.com.cn/problem/P3719）stack|implemention
 
@@ -37,7 +37,7 @@ D - 3N Numbers（https://atcoder.jp/contests/abc062/tasks/arc074_b）heapq|prefi
 =====================================AcWing=====================================
 128（https://www.acwing.com/problem/content/130/）heapq|stack|implemention
 129（https://www.acwing.com/problem/content/131/）catalan_number|stack|implemention
-132（https://www.acwing.com/problem/content/134/）dqueue
+132（https://www.acwing.com/problem/content/134/）deque
 4865（https://www.acwing.com/problem/content/4868/）stack|implemention
 5136（https://www.acwing.com/problem/content/description/5139/）stack|reverse_order|implemention
 

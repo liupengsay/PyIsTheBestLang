@@ -61,7 +61,7 @@ Function：各种可证明不可证明的头脑风暴
 1090（https://www.luogu.com.cn/record/list?user=739032&status=12&page=11）从小到大greedy合并
 1334（https://www.luogu.com.cn/problem/P1334）reverse_thinking的合并果子，从小到大合并
 1325（https://www.luogu.com.cn/problem/P1325）sorting后greedy修建更新
-1250（https://www.luogu.com.cn/problem/P1250）区间的greedy题，线段树修改区间与查询和，以及binary_search
+1250（https://www.luogu.com.cn/problem/P1250）区间的greedy题，segment_tree|修改区间与查询和，以及binary_search
 1230（https://www.luogu.com.cn/problem/P1230）sorting后选取greedy
 1159（https://www.luogu.com.cn/problem/P1159）队列greedyimplemention
 1095（https://www.luogu.com.cn/problem/P1095）greedyimplemention也可以理解为动态规划转移
@@ -167,7 +167,7 @@ D - Summer Vacation（https://atcoder.jp/contests/abc137/tasks/abc137_d）逆序
 123（https://www.acwing.com/problem/content/description/125/）mediangreedy扩展问题
 125（https://www.acwing.com/problem/content/127/）greedy思路，邻项交换
 127（https://www.acwing.com/problem/content/description/129/）二维sortinggreedy
-145（https://www.acwing.com/problem/content/147/）二叉heapqgreedy
+145（https://www.acwing.com/problem/content/147/）heapq|greedy
 122（https://www.acwing.com/problem/content/124/）线性环形均分纸牌问题
 4204（https://www.acwing.com/problem/content/description/4207/）construction
 4307（https://www.acwing.com/problem/content/description/4310/）lexicographical_orderbrute_forcegreedy
@@ -418,7 +418,7 @@ class Solution:
 
     @staticmethod
     def ac_145(ac=FastIO()):
-        # 二叉heapqgreedy
+        # heapq|greedy
         lst = []
         cnt = 0
         while cnt < 10000:

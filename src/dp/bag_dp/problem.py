@@ -1,41 +1,41 @@
 """
-Algorithm：背包DP、分组背包、一维（无限有限）背包、二维背包、多重背包、分组背包、限制背包、填表法（过去状态预测未来状态）、刷表法（当前状态预测未来状态）、可撤销背包
-Function：一重背包DP，数量有限从后往前遍历，数量无限则从前往后遍历；多重背包DP，可二进制优化拆分
+Algorithm：bag_dp|group_bag_dp|linear_bag_dp|matrix_bag_dp|limited_bag_dp|fill_table(from past)|refresh_table(update future)|lazy_bag_like|inclusion_exclusion
+Function：bag_dp|bin_split|finite|infinite
 
 ====================================LeetCode====================================
-140（https://leetcode.com/problems/word-break-ii/） 01 背包生成specific_plan
-2218（https://leetcode.com/problems/maximum-value-of-k-coins-from-piles/）分组背包DP
-2585（https://leetcode.com/contest/weekly-contest-335/problems/number-of-ways-to-earn-points/）看似二进制优化背包，实则数量转移
-2189（https://leetcode.com/problems/number-of-ways-to-build-house-of-cards/）转换为01背包求解
-254（https://leetcode.com/problems/factor-combinations/）乘法结合背包DP
-1449（https://leetcode.com/problems/form-largest-integer-with-digits-that-add-up-to-target/）代价一定情况下的最大数值
-1049（https://leetcode.com/problems/last-stone-weight-ii/）问题，转化为01背包求解
-2742（https://leetcode.com/problems/painting-the-walls/description/）剪枝DP，可以转换为01背包求解
-2518（https://leetcode.com/problems/number-of-great-partitions/）01背包counter
-1155（https://leetcode.com/problems/number-of-dice-rolls-with-target-sum/description/）类似分组背包，可线性刷表法与填表法
-2902（https://leetcode.com/problems/count-of-sub-multisets-with-bounded-sum/description/）按照单调队列的思想mod|分组DP，prefix_sum优化，也有容斥的思想，可撤销背包
+140（https://leetcode.com/problems/word-break-ii/）bag_dp|specific_plan
+2218（https://leetcode.com/problems/maximum-value-of-k-coins-from-piles/）group_bag_dp
+2585（https://leetcode.com/problems/number-of-ways-to-earn-points/）bag_dp
+2189（https://leetcode.com/problems/number-of-ways-to-build-house-of-cards/）bag_dp
+254（https://leetcode.com/problems/factor-combinations/）bag_dp|mul
+1449（https://leetcode.com/problems/form-largest-integer-with-digits-that-add-up-to-target/）bag_dp
+1049（https://leetcode.com/problems/last-stone-weight-ii/）bag_dp
+2742（https://leetcode.com/problems/painting-the-walls/description/）bag_dp
+2518（https://leetcode.com/problems/number-of-great-partitions/）bag_dp|counter
+1155（https://leetcode.com/problems/number-of-dice-rolls-with-target-sum/description/）group_bag_dp|fill_table|refresh_table
+2902（https://leetcode.com/problems/count-of-sub-multisets-with-bounded-sum/description/）monotonic_queue|mod|group_bag_dp|prefix_sum|inclusion_exclusion|lazy_bag_like
 
 =====================================LuoGu======================================
-1048（https://www.luogu.com.cn/problem/P1048）一维背包DP，数量有限，从后往前遍历
-1049（https://www.luogu.com.cn/problem/P1049）一维背包DP
-1776（https://www.luogu.com.cn/problem/P1776）多重背包，二进制拆分优化，进一步单调队列优化
-1509（https://www.luogu.com.cn/problem/P1509）四重背包
-1060（https://www.luogu.com.cn/problem/P1509）一维背包DP
-1566（https://www.luogu.com.cn/problem/P1566#submit）限制counter背包
-1759（https://www.luogu.com.cn/problem/P1759）二重背包并specific_plans
-1794（https://www.luogu.com.cn/problem/P1794）二重背包
-1806（https://www.luogu.com.cn/problem/P1806）连续值一维有限背包counter
-1853（https://www.luogu.com.cn/problem/P1853）一维无限背包有技巧成倍缩小背包范围
-1874（https://www.luogu.com.cn/problem/P1874）类似区间与背包的结合brute_force前一个字符串|号分割点求和
-1977（https://www.luogu.com.cn/problem/P1977）分组有限背包
-1586（https://www.luogu.com.cn/problem/P1586）分组无限背包
-1566（https://www.luogu.com.cn/problem/P1566）一维有限背包counter
-1509（https://www.luogu.com.cn/problem/P1509）二重背包，转移的时候比较优先级有两个
-1504（https://www.luogu.com.cn/problem/P1504）一维有限背包DP
-2066（https://www.luogu.com.cn/problem/P2066）分组有限背包，转移的时候比较优先级有两个
-2340（https://www.luogu.com.cn/problem/P2340）01背包变种问题还带负数|和
-2370（https://www.luogu.com.cn/problem/P2370）最小生成树的思想sorting后greedy背包放入，达成条件后即中止
-2386（https://www.luogu.com.cn/problem/P2386）背包DP去重组合|和counter
+1048（https://www.luogu.com.cn/problem/P1048）bag_dp|finite
+1049（https://www.luogu.com.cn/problem/P1049）bag_dp
+1776（https://www.luogu.com.cn/problem/P1776）matrix_bag_dp|bin_split|monotonic_queue
+1509（https://www.luogu.com.cn/problem/P1509）matrix_bag_dp
+1060（https://www.luogu.com.cn/problem/P1509）bag_dp
+1566（https://www.luogu.com.cn/problem/P1566#submit）counter|limited|bag_dp
+1759（https://www.luogu.com.cn/problem/P1759）matrix_bag_dp|specific_plan
+1794（https://www.luogu.com.cn/problem/P1794）matrix_bag_dp
+1806（https://www.luogu.com.cn/problem/P1806）bag_dp|counter
+1853（https://www.luogu.com.cn/problem/P1853）bag_dp|infinite
+1874（https://www.luogu.com.cn/problem/P1874）brute_force|bag_dp
+1977（https://www.luogu.com.cn/problem/P1977）group_bag_dp|finite
+1586（https://www.luogu.com.cn/problem/P1586）group_bag_dp|infinite
+1566（https://www.luogu.com.cn/problem/P1566）bag_dp|counter
+1509（https://www.luogu.com.cn/problem/P1509）matrix_bag_dp
+1504（https://www.luogu.com.cn/problem/P1504）bag_dp|finite
+2066（https://www.luogu.com.cn/problem/P2066）group_bag_dp|finite
+2340（https://www.luogu.com.cn/problem/P2340）bag_dp
+2370（https://www.luogu.com.cn/problem/P2370）mst|sorting|greedy|bag_dp
+2386（https://www.luogu.com.cn/problem/P2386）bag_dp|counter
 2623（https://www.luogu.com.cn/problem/P2623）综合背包，函数取最大值一维有限背包，连续个数二进制优化背包，无限个数背包
 1474（https://www.luogu.com.cn/problem/P1474）一维无限背包counter
 1466（https://www.luogu.com.cn/problem/P1466）一维有限背包|和counter
@@ -47,59 +47,59 @@ Function：一重背包DP，数量有限从后往前遍历，数量无限则从�
 3027（https://www.luogu.com.cn/problem/P3027）一维无限背包，需要根据题意利润
 3030（https://www.luogu.com.cn/problem/P3030）分组brute_force有限背包
 3040（https://www.luogu.com.cn/problem/P3040）二维变种背包
-4817（https://www.luogu.com.cn/problem/P4817）一维有限背包DP变种
+4817（https://www.luogu.com.cn/problem/P4817）一维有限bag_dp|变种
 5087（https://www.luogu.com.cn/problem/P5087）二维有限背包变种问题
 6205（https://www.luogu.com.cn/problem/P6205）一维无限背包
 6389（https://www.luogu.com.cn/problem/P6389）一维有限背包变种问题，寻找和尽可能接近的两个分组
 6567（https://www.luogu.com.cn/problem/P6567）一维二进制优化有限背包，即物品数为连续值时需要二进制优化
 6771（https://www.luogu.com.cn/problem/P6771）sorting后，一维有限变种背包，二进制优化
-2842（https://www.luogu.com.cn/problem/P2842）一维无限背包DP不区分顺序
-2840（https://www.luogu.com.cn/problem/P2840）一维无限背包DP区分顺序
-2834（https://www.luogu.com.cn/problem/P2834）一维无限背包DP不区分顺序
-1064（https://www.luogu.com.cn/problem/P1064）有依赖的01背包，brute_force状态分组讨论，分组背包
+2842（https://www.luogu.com.cn/problem/P2842）一维无限bag_dp|不区分顺序
+2840（https://www.luogu.com.cn/problem/P2840）一维无限bag_dp|区分顺序
+2834（https://www.luogu.com.cn/problem/P2834）一维无限bag_dp|不区分顺序
+1064（https://www.luogu.com.cn/problem/P1064）有依赖的01背包，brute_force状态分组讨论，group_bag_dp
 1156（https://www.luogu.com.cn/problem/P1156）转换为背包01DP求解
-1273（https://www.luogu.com.cn/problem/P1273）树上分组背包
+1273（https://www.luogu.com.cn/problem/P1273）树上group_bag_dp
 1284（https://www.luogu.com.cn/problem/P1284）brute_force三角形两边作为二维bool背包，并三角形面积公式
-1441（https://www.luogu.com.cn/problem/P1441）brute_force|背包DP
+1441（https://www.luogu.com.cn/problem/P1441）brute_force|bag_dp|
 1537（https://www.luogu.com.cn/problem/P1537）问题二进制背包优化bool背包，划分成和相等的两部分
 1541（https://www.luogu.com.cn/problem/P1541）四维背包brute_force，填表法
 1759（https://www.luogu.com.cn/problem/P1759）二维背包并输出lexicographical_order最小的方案
-1833（https://www.luogu.com.cn/problem/P1833）完全背包与单点队列优化多重背包组合
+1833（https://www.luogu.com.cn/problem/P1833）完全背包与单点队列优化多matrix_bag_dp组合
 2014（https://www.luogu.com.cn/problem/P2014）增|一个虚拟源点将DAG转换为树上背包
-2079（https://www.luogu.com.cn/problem/P2079）滚动hash背包DP，两层hash节省空间
+2079（https://www.luogu.com.cn/problem/P2079）滚动hashbag_dp|，两层hash节省空间
 2170（https://www.luogu.com.cn/problem/P2170）连通块|二进制01背包优化
-2214（https://www.luogu.com.cn/problem/P2214）变种背包DPgreedy
+2214（https://www.luogu.com.cn/problem/P2214）变种bag_dp|greedy
 2306（https://www.luogu.com.cn/problem/P2306）data_range|counter后二进制优化的01背包
 2320（https://www.luogu.com.cn/problem/P2320）二进制分解greedy反向
 2737（https://www.luogu.com.cn/problem/P2737）完全背包变种问题
-2760（https://www.luogu.com.cn/problem/P2760）单调队列优化的多重背包
+2760（https://www.luogu.com.cn/problem/P2760）单调队列优化的多matrix_bag_dp
 2854（https://www.luogu.com.cn/problem/P2854）分组01背包
 2938（https://www.luogu.com.cn/problem/P2938）分组完全背包
 2979（https://www.luogu.com.cn/problem/P2979）分组01背包
 3010（https://www.luogu.com.cn/problem/P3010）变形01背包，两heapq差值最小的分配方案数
-3423（https://www.luogu.com.cn/problem/P3423）二进制优化多重背包与方案输出
+3423（https://www.luogu.com.cn/problem/P3423）二进制优化多matrix_bag_dp与方案输出
 3983（https://www.luogu.com.cn/problem/P3983）两个分组完全背包
-5322（https://www.luogu.com.cn/problem/P5322）典型二维 DP 转换为分组背包
+5322（https://www.luogu.com.cn/problem/P5322）典型二维 DP 转换为group_bag_dp
 5365（https://www.luogu.com.cn/problem/P5365）01背包 DP brute_force数量
 5662（https://www.luogu.com.cn/problem/P5662）完全背包变形greedy题目
 1417（https://www.luogu.com.cn/problem/P1417）greedysorting后 01 背包最大值
 
 ===================================CodeForces===================================
-577B（https://codeforces.com/problemset/problem/577/B）mod|counter二进制优化与背包DP，寻找非空子序列的和整除给定的数
-543A（https://codeforces.com/problemset/problem/543/A）二维有限背包DP，当作无限处理
+577B（https://codeforces.com/problemset/problem/577/B）mod|counter二进制优化与bag_dp|，寻找非空子序列的和整除给定的数
+543A（https://codeforces.com/problemset/problem/543/A）二维有限bag_dp|，当作无限处理
 148E（https://codeforces.com/problemset/problem/148/E）01背包brute_force，两层动态规划
 1433F（https://codeforces.com/problemset/problem/1433/F）01背包brute_force，两层动态规划
 1657D（https://codeforces.com/contest/1657/problem/D）一维无限乘积背包预处理，欧拉级数复杂度，结合binary_searchgreedy
 
 ====================================AtCoder=====================================
 D - Mixing Experiment（https://atcoder.jp/contests/abc054/tasks/abc054_d）二维01背包
-D - Match Matching（https://atcoder.jp/contests/abc118/tasks/abc118_d）greedy背包DP，并还原方案
+D - Match Matching（https://atcoder.jp/contests/abc118/tasks/abc118_d）greedybag_dp|，并还原方案
 E - All-you-can-eat（https://atcoder.jp/contests/abc145/tasks/abc145_e）brain_teaser|01背包，需要先sorting，刷表法解决
 
 =====================================AcWing=====================================
-4（https://www.acwing.com/problem/content/4/）二进制优化多重背包
-6（https://www.acwing.com/problem/content/description/6/）单调队列优化多重背包
-7（https://www.acwing.com/problem/content/7/）01背包、完全背包与多重背包混合
+4（https://www.acwing.com/problem/content/4/）二进制优化多matrix_bag_dp
+6（https://www.acwing.com/problem/content/description/6/）单调队列优化多matrix_bag_dp
+7（https://www.acwing.com/problem/content/7/）01背包、完全背包与多matrix_bag_dp混合
 8（https://www.acwing.com/problem/content/8/）二维01背包
 9（https://www.acwing.com/problem/content/9/）分组01背包问题
 10（https://www.acwing.com/problem/content/10/）树上背包
@@ -127,7 +127,7 @@ class Solution:
 
     @staticmethod
     def cf_1433f(ac=FastIO()):
-        # 两层背包DP，矩阵动态规划转移
+        # 两层bag_dp|，矩阵动态规划转移
         m, n, k = ac.read_list_ints()
         pre = [-inf] * k
         pre[0] = 0
@@ -156,7 +156,7 @@ class Solution:
 
     @staticmethod
     def cf_543a(ac=FastIO()):
-        # 分组背包 DP 有限作为无限
+        # group_bag_dp DP 有限作为无限
         n, m, b, mod = ac.read_list_ints()
         nums = ac.read_list_ints()
         pre = [[0] * (b + 1) for _ in range(m + 1)]
@@ -171,7 +171,7 @@ class Solution:
 
     @staticmethod
     def cf_577b(m, nums):
-        # mod|counter二进制优化与背包DP，寻找非空子序列的和整除给定的数
+        # mod|counter二进制优化与bag_dp|，寻找非空子序列的和整除给定的数
         cnt = [0] * m
         for num in nums:
             cnt[num % m] += 1
@@ -195,7 +195,7 @@ class Solution:
     @staticmethod
     def lc_2218(piles: List[List[int]], k: int) -> int:
 
-        # 线性有限分组背包 DP 注意转移
+        # 线性有限group_bag_dp DP 注意转移
         cur = [0] * (k + 1)
         for lst in piles:
 
@@ -342,7 +342,7 @@ class Solution:
 
     @staticmethod
     def abc_118d(ac=FastIO()):
-        # greedy背包DP，并还原方案
+        # greedybag_dp|，并还原方案
         score = [2, 5, 5, 4, 5, 6, 3, 7, 6]
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -383,7 +383,7 @@ class Solution:
 
     @staticmethod
     def ac_6(ac=FastIO()):
-        # 单调队列优化的多重背包问题，即限定个数和体积价值求最大值
+        # 单调队列优化的多matrix_bag_dp问题，即限定个数和体积价值求最大值
         n, m = ac.read_list_ints()
         dp = [0] * (m + 1)
         for _ in range(n):
@@ -504,7 +504,7 @@ class Solution:
 
     @staticmethod
     def lg_p1064(ac=FastIO()):
-        # 有依赖的分组背包
+        # 有依赖的group_bag_dp
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(m)]
         sub = [[] for _ in range(m)]
@@ -561,7 +561,7 @@ class Solution:
 
     @staticmethod
     def lg_p1273(ac=FastIO()):
-        # 树上分组背包
+        # 树上group_bag_dp
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for j in range(n - m):
@@ -651,7 +651,7 @@ class Solution:
 
     @staticmethod
     def lg_p1441(ac=FastIO()):
-        # brute_force|背包DP
+        # brute_force|bag_dp|
         n, m = ac.read_list_ints()
         a = ac.read_list_ints()
         ans = 0
@@ -754,7 +754,7 @@ class Solution:
 
     @staticmethod
     def lg_p1776(ac=FastIO()):
-        # 单调队列优化的多重背包问题，即限定个数和体积价值求最大值
+        # 单调队列优化的多matrix_bag_dp问题，即限定个数和体积价值求最大值
         n, m = ac.read_list_ints()
         dp = [0] * (m + 1)
         for _ in range(n):
@@ -799,7 +799,7 @@ class Solution:
             hh, mm = st.split(":")
             return int(hh) * 60 + int(mm)
 
-        # 完全背包与单点队列优化多重背包组合
+        # 完全背包与单点队列优化多matrix_bag_dp组合
         s, e, n = ac.read_list_strs()
         t = check(e) - check(s)
         dp = [0] * (t + 1)
@@ -856,7 +856,7 @@ class Solution:
 
     @staticmethod
     def lg_p2079(ac=FastIO()):
-        # 滚动hash背包DP，两层hash节省空间
+        # 滚动hashbag_dp|，两层hash节省空间
         n, v = ac.read_list_ints()
         dp = [defaultdict(lambda: defaultdict(lambda: -inf)), defaultdict(lambda: defaultdict(lambda: -inf))]
         pre = 0
@@ -911,7 +911,7 @@ class Solution:
 
     @staticmethod
     def lg_p2214(ac=FastIO()):
-        # 变种背包DPgreedy
+        # 变种bag_dp|greedy
         n, b = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(b)]
         voice = [ac.read_int() for _ in range(n)]
@@ -990,7 +990,7 @@ class Solution:
 
     @staticmethod
     def lg_p2760(ac=FastIO()):
-        # 单调队列优化的多重背包
+        # 单调队列优化的多matrix_bag_dp
         m, n, p, t = ac.read_list_ints()
         rest = ac.min(p, t - 1)
         dp = [0] * (rest + 1)
@@ -1099,7 +1099,7 @@ class Solution:
 
     @staticmethod
     def lg_p3423(ac=FastIO()):
-        # 二进制优化多重背包并方案数
+        # 二进制优化多matrix_bag_dp并方案数
         n = ac.read_int()
         b = ac.read_list_ints()
         c = ac.read_list_ints()
@@ -1142,7 +1142,7 @@ class Solution:
 
     @staticmethod
     def lg_p5322(ac=FastIO()):
-        # 典型二维 DP 转换为分组背包
+        # 典型二维 DP 转换为group_bag_dp
         s, n, m = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(s)]
         dp = [0] * (m + 1)
@@ -1259,7 +1259,7 @@ class Solution:
 
     @staticmethod
     def lc_100029(nums: List[int], ll: int, r: int) -> int:
-        # 按照单调队列的思想mod|分组DP，prefix_sum优化，也有容斥的思想
+        # 按照单调队列的思想mod|group_bag_dp，prefix_sum优化，也有容斥的思想
         cnt = Counter(nums)
         mod = 10 ** 9 + 7
         dp = [0] * (r + 1)

@@ -14,7 +14,7 @@ Function：prefix_sum优化区间DP（需要在状态转移的时候更新代价
 1312（https://leetcode.com/problems/minimum-insertion-steps-to-make-a-string-palindrome/）区间DP，最长回文子序列
 
 =====================================LuoGu======================================
-1521（https://www.luogu.com.cn/problem/P1521）merge_sort移动次数，也可以倍增的树状数组
+1521（https://www.luogu.com.cn/problem/P1521）merge_sort移动次数，也可以倍增的tree_array|
 1775（https://www.luogu.com.cn/problem/P1775）典型区间DP和prefix_sum预处理
 2426（https://www.luogu.com.cn/problem/P2426）典型区间DP
 2690（https://www.luogu.com.cn/problem/P2690）区间DP记忆化搜索implemention

@@ -47,7 +47,7 @@ class Solution:
 
     @staticmethod
     def lc_2569_2(nums1: List[int], nums2: List[int], queries: List[List[int]]) -> List[int]:
-        # 01线段树区间翻转与求和，也可以BitSet
+        # 01segment_tree|区间翻转与求和，也可以BitSet
         res = []
         seg = SegmentTreeBitSet()
         n = len(nums1)
@@ -100,7 +100,7 @@ class Solution:
 
     @staticmethod
     def ac_5037_2(ac=FastIO()):
-        # 同CF242E，二十多个01线段树维护区间异或与区间|和
+        # 同CF242E，二十多个01segment_tree|维护区间异或与区间|和
         n = ac.read_int()
         nums = ac.read_list_ints()
         tree = [SegmentTreeBitSet() for _ in range(22)]

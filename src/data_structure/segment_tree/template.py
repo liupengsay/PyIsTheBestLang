@@ -807,7 +807,7 @@ class SegmentTreeRangeUpdateChangeQueryMax:
         self.nums = nums
         self.lazy = [[inf, 0]] * (4 * self.n)  # 懒标记
         self.ceil = [-inf] * (4 * self.n)  # 最大值
-        self.build()  # 初始化线段树
+        self.build()  # 初始化segment_tree|
         return
 
     @staticmethod
@@ -819,7 +819,7 @@ class SegmentTreeRangeUpdateChangeQueryMax:
         return a if a < b else b
 
     def build(self) -> None:
-        # 数组初始化线段树
+        # 数组初始化segment_tree|
         stack = [(0, self.n - 1, 1)]
         while stack:
             s, t, ind = stack.pop()
@@ -992,7 +992,7 @@ class RangeOrRangeAnd:
         return
 
     def build(self, nums: List[int]) -> None:
-        # 数组初始化线段树
+        # 数组初始化segment_tree|
         assert self.n == len(nums)
         stack = [(0, self.n - 1, 1)]
         while stack:
@@ -1075,7 +1075,7 @@ class SegmentTreeRangeUpdateXORSum:
         return
 
     def build(self, nums) -> None:
-        # 数组初始化线段树
+        # 数组初始化segment_tree|
         stack = [(0, self.n - 1, 1)]
         while stack:
             s, t, i = stack.pop()
@@ -1311,7 +1311,7 @@ class SegmentTreeRangeUpdateMulQuerySum:
         self.lazy_add = [0] * (4 * self.n)  # 懒标记
         self.lazy_mul = [1] * (4 * self.n)  # 懒标记
         self.cover = [0] * (4 * self.n)  # 区间和
-        self.build()  # 初始化线段树
+        self.build()  # 初始化segment_tree|
         return
 
     @staticmethod
@@ -1323,7 +1323,7 @@ class SegmentTreeRangeUpdateMulQuerySum:
         return a if a < b else b
 
     def build(self) -> None:
-        # 数组初始化线段树
+        # 数组初始化segment_tree|
         stack = [(0, self.n - 1, 1)]
         while stack:
             s, t, i = stack.pop()
@@ -1620,7 +1620,7 @@ class SegmentTreeRangeUpdateAvgDev:
             self.lazy[i] = 0
 
     def build(self, nums) -> None:
-        # 数组初始化线段树
+        # 数组初始化segment_tree|
         stack = [(0, self.n - 1, 1)]
         while stack:
             s, t, i = stack.pop()
@@ -1722,7 +1722,7 @@ class SegmentTreePointChangeLongCon:
         return
 
     def build(self) -> None:
-        # 数组初始化线段树
+        # 数组初始化segment_tree|
         stack = [(0, self.n - 1, 1)]
         while stack:
             s, t, i = stack.pop()
@@ -1849,7 +1849,7 @@ class SegmentTreeRangeAndOrXOR:
             self.lazy[i] = inf
 
     def build(self, nums) -> None:
-        # 数组初始化线段树
+        # 数组初始化segment_tree|
         stack = [(0, self.n - 1, 1)]
         while stack:
             s, t, i = stack.pop()
@@ -1962,7 +1962,7 @@ class SegmentTreeLongestSubSame:
         return
 
     def build(self):
-        # 数组初始化线段树
+        # 数组初始化segment_tree|
         stack = [(0, self.n - 1, 1)]
         while stack:
             s, t, ind = stack.pop()

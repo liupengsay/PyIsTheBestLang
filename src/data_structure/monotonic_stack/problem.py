@@ -1,66 +1,66 @@
 """
-Algorithm：monotonic_stack|、contribution_method
-Function：用来数组前后的更大值更小值信息
+Algorithm：monotonic_stack|contribution_method
+Function：prefix_suffix|maximum|minimum|second_maximum
 
 ====================================LeetCode====================================
-85（https://leetcode.com/problems/maximal-rectangle/）brute_force矩形下边界，monotonic_stack|最大矩形面积 
-316（https://leetcode.com/problems/remove-duplicate-letters/）monotonic_stack|结合hash与counter
-321（https://leetcode.com/problems/create-maximum-number/）brute_force|monotonic_stack|
-1081（https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/）monotonic_stack|结合hash与counter
-2334（https://leetcode.com/problems/subarray-with-elements-greater-than-varying-threshold/）sorting后brute_force最小值左右两边的影响范围
-2262（https://leetcode.com/problems/total-appeal-of-a-string/）下一个或者上一个不同字符的位置
-2355（https://leetcode.com/problems/maximum-number-of-books-you-can-take/）monotonic_stack||liner_dp，巧妙地转换
-255（https://leetcode.com/problems/verify-preorder-sequence-in-binary-search-tree/）monotonic_stack|，判断数组是否为二叉搜索树的前序遍历，同样地可验证后序遍历
-654（https://leetcode.com/problems/maximum-binary-tree/）monotonic_stack|应用题
-1130（https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/）monotonic_stack|也可以区间DP
-1504（https://leetcode.com/problems/count-submatrices-with-all-ones/）brute_force上下边界monotonic_stack|全为 1 的子矩形个数
-1673（https://leetcode.com/problems/find-the-most-competitive-subsequence/）monotonic_stack|greedy删除选取
-1776（https://leetcode.com/problems/car-fleet-ii/）monotonic_stack|与union_find链表思想implemention
-1840（https://leetcode.com/problems/maximum-building-height/）monotonic_stack|greedy，也可以prefix_suffix数组implemention
-1944（https://leetcode.com/problems/number-of-visible-people-in-a-queue/）逆序monotonic_stack|
-1950（https://leetcode.com/problems/maximum-of-minimum-values-in-all-subarrays/）monotonic_stack|利用
-2030（https://leetcode.com/problems/smallest-k-length-subsequence-with-occurrences-of-a-letter/）monotonic_stack|删除获得满足条件的最小lexicographical_order
-2104（https://leetcode.com/problems/sum-of-subarray-ranges/）monotonic_stack|贡献
-2282（https://leetcode.com/problems/number-of-people-that-can-be-seen-in-a-grid/）monotonic_stack|
+85（https://leetcode.com/problems/maximal-rectangle/）brute_force|monotonic_stack|matrix
+316（https://leetcode.com/problems/remove-duplicate-letters/）monotonic_stack|hash|counter
+321（https://leetcode.com/problems/create-maximum-number/）brute_force|monotonic_stack
+1081（https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/）monotonic_stack|hash|counter
+2334（https://leetcode.com/problems/subarray-with-elements-greater-than-varying-threshold/）sorting|brute_force|contribution_method
+2262（https://leetcode.com/problems/total-appeal-of-a-string/）prefix_suffix|monotonic_stack
+2355（https://leetcode.com/problems/maximum-number-of-books-you-can-take/）monotonic_stack|liner_dp
+255（https://leetcode.com/problems/verify-preorder-sequence-in-binary-search-tree/）monotonic_stack|pre_order
+654（https://leetcode.com/problems/maximum-binary-tree/）monotonic_stack
+1130（https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/）monotonic_stack|interval_dp
+1504（https://leetcode.com/problems/count-submatrices-with-all-ones/）brute_force|monotonic_stack|counter|sub_matrix
+1673（https://leetcode.com/problems/find-the-most-competitive-subsequence/）monotonic_stack|greedy
+1776（https://leetcode.com/problems/car-fleet-ii/）monotonic_stack|union_find|linked_list|implemention
+1840（https://leetcode.com/problems/maximum-building-height/）monotonic_stack|greedy|prefix_suffix|implemention
+1944（https://leetcode.com/problems/number-of-visible-people-in-a-queue/）reverse_thinking|monotonic_stack
+1950（https://leetcode.com/problems/maximum-of-minimum-values-in-all-subarrays/）monotonic_stack
+2030（https://leetcode.com/problems/smallest-k-length-subsequence-with-occurrences-of-a-letter/）monotonic_stack|greedy|lexicographical_order
+2104（https://leetcode.com/problems/sum-of-subarray-ranges/）monotonic_stack|contribution_method
+2282（https://leetcode.com/problems/number-of-people-that-can-be-seen-in-a-grid/）monotonic_stack
 2289（https://leetcode.com/problems/steps-to-make-array-non-decreasing/）monotonic_stack|implemention
 907（https://leetcode.com/problems/sum-of-subarray-minimums/）monotonic_stack|implemention
-2454（https://leetcode.com/problems/next-greater-element-iv/description/）monotonic_stack|下下个更大元素
+2454（https://leetcode.com/problems/next-greater-element-iv/description/）monotonic_stack|post_second_larger
 
 =====================================LuoGu======================================
-1950（https://www.luogu.com.cn/problem/P1950）通过brute_force下边界，结合monotonic_stack|矩形个数
-1901（https://www.luogu.com.cn/problem/P1901）由不相同的数组成的数组求其前后的更大值
-2866（https://www.luogu.com.cn/problem/P2866）monotonic_stack|
-2947（https://www.luogu.com.cn/problem/P2947）monotonic_stack|裸题
-4147（https://www.luogu.com.cn/problem/P4147）brute_force矩形的下边界，monotonic_stack|最大矩形面积
-5788（https://www.luogu.com.cn/problem/P5788）monotonic_stack|模板题
-7314（https://www.luogu.com.cn/problem/P7314）brute_force当前最小值，monotonic_stack|确定前后第一个比它大的值
-7399（https://www.luogu.com.cn/problem/P7399）monotonic_stack|变形题目，greedy赋值，区间操作达成目标数组
-7410（https://www.luogu.com.cn/problem/P7410）通过inclusion_exclusion与monotonic_stack|01矩阵个数
-7762（https://www.luogu.com.cn/problem/P7762）类似monotonic_stack|的思想，按照宽度greedysorting，每个高度的面积贡献
-1578（https://www.luogu.com.cn/problem/P1578）monotonic_stack|离散化brute_force障碍点的最大面积矩形
-3467（https://www.luogu.com.cn/problem/P3467）greedymonotonic_stack|
-1191（https://www.luogu.com.cn/problem/P1191）monotonic_stack|求矩形个数
-1323（https://www.luogu.com.cn/problem/P1323）二叉heapq与monotonic_stack|，最大lexicographical_order数字
-2422（https://www.luogu.com.cn/problem/P2422）monotonic_stack|与prefix_sum
-3467（https://www.luogu.com.cn/problem/P3467）看不懂的monotonic_stack|
-6404（https://www.luogu.com.cn/problem/P6404）monotonic_stack|具有相同数字的子矩形个数
-6503（https://www.luogu.com.cn/problem/P6503）monotonic_stack|连续子序列的最大值最小值贡献counter
-6510（https://www.luogu.com.cn/problem/P6510）monotonic_stack|稀疏表|hashbinary_search
-6801（https://www.luogu.com.cn/problem/P6801）monotonic_stack|矩形个数
-8094（https://www.luogu.com.cn/problem/P8094）monotonic_stack|典型应用前一个更大与后一个更大
+1950（https://www.luogu.com.cn/problem/P1950）brute_force|monotonic_stack|sub_matrix|counter
+1901（https://www.luogu.com.cn/problem/P1901）monotonic_stack
+2866（https://www.luogu.com.cn/problem/P2866）monotonic_stack
+2947（https://www.luogu.com.cn/problem/P2947）monotonic_stack
+4147（https://www.luogu.com.cn/problem/P4147）brute_force|monotonic_stack|sub_matrix|area
+5788（https://www.luogu.com.cn/problem/P5788）monotonic_stack
+7314（https://www.luogu.com.cn/problem/P7314）brute_force|monotonic_stack|pre_larger|post_larger
+7399（https://www.luogu.com.cn/problem/P7399）monotonic_stack|greedy
+7410（https://www.luogu.com.cn/problem/P7410）inclusion_exclusion|monotonic_stack|counter
+7762（https://www.luogu.com.cn/problem/P7762）monotonic_stack|greedy|sorting|contribution_method|area
+1578（https://www.luogu.com.cn/problem/P1578）monotonic_stack|discretization|brute_force|sub_matrix|area
+3467（https://www.luogu.com.cn/problem/P3467）greedy|monotonic_stack
+1191（https://www.luogu.com.cn/problem/P1191）monotonic_stack|sub_matrix|counter
+1323（https://www.luogu.com.cn/problem/P1323）heapq|monotonic_stack|lexicographical_order|greedy
+2422（https://www.luogu.com.cn/problem/P2422）monotonic_stack|prefix_sum
+3467（https://www.luogu.com.cn/problem/P3467）monotonic_stack
+6404（https://www.luogu.com.cn/problem/P6404）monotonic_stack|sub_matrix|counter
+6503（https://www.luogu.com.cn/problem/P6503）monotonic_stack|counter|contribution_method
+6510（https://www.luogu.com.cn/problem/P6510）monotonic_stack|sparse_table|hash|binary_search
+6801（https://www.luogu.com.cn/problem/P6801）monotonic_stack|sub_matrix|counter
+8094（https://www.luogu.com.cn/problem/P8094）monotonic_stack|pre_larger|post_larger
 
 ===================================CodeForces===================================
-1795E（https://codeforces.com/problemset/problem/1795/E）monotonic_stack|优化liner_dp，greedycounterbrute_force，prefix_suffixDP转移
-1313C2（https://codeforces.com/problemset/problem/1313/C2）monotonic_stack|优化liner_dp
-1454F（https://codeforces.com/contest/1454/problem/F）monotonic_stack|brute_force题
+1795E（https://codeforces.com/problemset/problem/1795/E）monotonic_stack|liner_dp|greedy|counter|brute_force|prefix_suffix|dp
+1313C2（https://codeforces.com/problemset/problem/1313/C2）monotonic_stack|liner_dp
+1454F（https://codeforces.com/contest/1454/problem/F）monotonic_stack|brute_force
 
 ====================================AtCoder=====================================
-E - Second Sum（https://atcoder.jp/contests/abc140/tasks/abc140_e）monotonic_stack|求下个与下下个严格更大元素与上个与上个个严格更大元素
+E - Second Sum（https://atcoder.jp/contests/abc140/tasks/abc140_e）monotonic_stack|pre_pre_larger|post_post_larger
 
 =====================================AcWing=====================================
-131（https://www.acwing.com/problem/content/133/）monotonic_stack|求最大矩形
-152（https://www.acwing.com/problem/content/description/154/）monotonic_stack|求最大矩形
-3780（https://www.acwing.com/problem/content/description/3783/）monotonic_stack|线性greedyDPconstruction
+131（https://www.acwing.com/problem/content/133/）monotonic_stack|sub_matrix
+152（https://www.acwing.com/problem/content/description/154/）monotonic_stack|sub_matrix
+3780（https://www.acwing.com/problem/content/description/3783/）monotonic_stack|greedy|linear_dp|construction
 
 """
 import bisect
@@ -201,7 +201,7 @@ class Solution:
 
     @staticmethod
     def lg_p1323(ac=FastIO()):
-        # 二叉heapq与monotonic_stack|，最大lexicographical_order数字
+        # heapq|与monotonic_stack|，最大lexicographical_order数字
         k, m = ac.read_list_ints()
         dct = set()
         ans = []
@@ -266,7 +266,7 @@ class Solution:
     @staticmethod
     def lg_p1598(ac=FastIO()):
 
-        # monotonic_stack|离散化brute_force障碍点的最大面积矩形
+        # monotonic_stack|discretizationbrute_force障碍点的最大面积矩形
         def compute_area_obstacle(lst):
             nonlocal ans
             # monotonic_stack|根据高度最大矩形面积
@@ -443,7 +443,7 @@ class Solution:
 
     @staticmethod
     def lg_p6510(ac=FastIO()):
-        # monotonic_stack|稀疏表|hashbinary_search
+        # monotonic_stack|sparse_table|hashbinary_search
         n = ac.read_int()
         nums = [ac.read_int() for _ in range(n)]
         post = [n - 1] * n

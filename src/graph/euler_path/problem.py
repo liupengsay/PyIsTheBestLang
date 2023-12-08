@@ -16,7 +16,7 @@ Function：求解有向图与无向图中的欧拉路径，定义比较复杂且
 332（https://leetcode.com/problems/reconstruct-itinerary/）欧拉回路模板题
 753（https://leetcode.com/problems/cracking-the-safe/solution/er-xu-cheng-ming-jiu-xu-zui-by-liupengsa-lm77/）
 2097（https://leetcode.com/problems/valid-arrangement-of-pairs/submissions/）欧拉路径模板题，注意确定首尾点
-1743（https://leetcode.com/problems/restore-the-array-from-adjacent-pairs/）无向图欧拉路径模板题, 离散化解决，也是弱化版本的欧拉路径可直接implemention遍历记录父节点
+1743（https://leetcode.com/problems/restore-the-array-from-adjacent-pairs/）无向图欧拉路径模板题, discretization解决，也是弱化版本的欧拉路径可直接implemention遍历记录父节点
 
 =====================================LuoGu======================================
 7771（https://www.luogu.com.cn/problem/P7771）欧拉路径模板题
@@ -87,7 +87,7 @@ class Solution:
             nodes.add(s[1])
             pairs.append([s[0], s[1]])
 
-        # 首先离散化编码判断是否连通
+        # 首先discretization编码判断是否连通
         nodes = sorted(list(nodes))
         ind = {num: i for i, num in enumerate(nodes)}
         n = len(nodes)
@@ -171,7 +171,7 @@ class Solution:
 
     @staticmethod
     def lc_1743(adjacent: List[List[int]]) -> List[int]:
-        # 无向图欧拉路径模板题, 离散化解决
+        # 无向图欧拉路径模板题, discretization解决
         nodes = set()
         for a, b in adjacent:
             nodes.add(a)
@@ -185,7 +185,7 @@ class Solution:
 
     @staticmethod
     def lc_2097(pairs: List[List[int]]) -> List[List[int]]:
-        # 欧拉路径模板题，离散化后转化为图的欧拉路径求解
+        # 欧拉路径模板题，discretization后转化为图的欧拉路径求解
         nodes = set()
         for a, b in pairs:
             nodes.add(a)

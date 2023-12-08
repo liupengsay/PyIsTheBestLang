@@ -1,5 +1,5 @@
 """
-Algorithm：广度优先搜索、双端队列BFS、离散化BFS、有边界的BFS、染色法、奇数环
+Algorithm：广度优先搜索、双端队列BFS、discretizationBFS、有边界的BFS、染色法、奇数环
 Function：在有向图与无向图扩散，多源BFS、双向BFS，0-1BFS（类似SPFA）双向BFS或者A-star启发式搜索
 
 ====================================LeetCode====================================
@@ -1669,7 +1669,7 @@ class Solution:
 
     @staticmethod
     def lc_1036_1(blocked: List[List[int]], source: List[int], target: List[int]) -> bool:
-        # 带边界的BFS和离散化BFS两种解法
+        # 带边界的BFS和discretizationBFS两种解法
         def check(node):
             stack = [node]
             visit = {tuple(node)}
@@ -1695,7 +1695,7 @@ class Solution:
 
     @staticmethod
     def lc_1036_2(blocked: List[List[int]], source: List[int], target: List[int]) -> bool:
-        # 带边界的BFS和离散化BFS两种解法
+        # 带边界的BFS和discretizationBFS两种解法
         nodes_r = {0, 10 ** 6 - 1}
         nodes_c = {0, 10 ** 6 - 1}
         for a, b in blocked + [source] + [target]:

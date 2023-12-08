@@ -1,40 +1,40 @@
 """
-Algorithm：heapq（priority_queue）、Huffman树（霍夫曼树）
-Function：通常用于需要greedy的场景
+Algorithm：heapq|priority_queue|huffman_tree
+Function：greedy
 
 ====================================LeetCode====================================
-630（https://leetcode.com/problems/course-schedule-iii/）用一个heapq延迟选择greedy维护最优
-2454（https://leetcode.com/problems/next-greater-element-iv/）两个heapq维护下下个更大元素即出队两次时遇见的元素，也可以的hash|SortedList
-2402（https://leetcode.com/problems/meeting-rooms-iii/）两个heapqimplemention会议室安排并counter
-2386（https://leetcode.com/problems/find-the-k-sum-of-an-array/）转换思路heapq维护最大和第 K 次出队的则为目标结果
-2163（https://leetcode.com/problems/minimum-difference-in-sums-after-removal-of-elements/）预处理前缀后缀最大最小的 K 个数和再brute_force分割点
-1792（https://leetcode.com/problems/maximum-average-pass-ratio/）greedy依次给增幅最大的班级人数| 1
-295（https://leetcode.com/problems/find-median-from-data-stream/）用两个heapq维护median
-2542（https://leetcode.com/problems/maximum-subsequence-score/）greedysortingbrute_force|heapq维护最大的k个数
-2263（https://leetcode.com/problems/make-array-non-decreasing-or-non-increasing/）大根heapqgreedy使得序列非降的最小操作次数
+630（https://leetcode.com/problems/course-schedule-iii/）delay_heapq|greedy
+2454（https://leetcode.com/problems/next-greater-element-iv/）heapq|post_second_larger|hash|SortedList
+2402（https://leetcode.com/problems/meeting-rooms-iii/）heapq|implemention|counter
+2386（https://leetcode.com/problems/find-the-k-sum-of-an-array/）heapq|brain_teaser
+2163（https://leetcode.com/problems/minimum-difference-in-sums-after-removal-of-elements/）prefix_suffix|brute_force
+1792（https://leetcode.com/problems/maximum-average-pass-ratio/）greedy
+295（https://leetcode.com/problems/find-median-from-data-stream/）heapq|median
+2542（https://leetcode.com/problems/maximum-subsequence-score/）greedy|sorting|brute_force|heapq
+2263（https://leetcode.com/problems/make-array-non-decreasing-or-non-increasing/）heapq|greedy
 
 =====================================LuoGu======================================
-1168（https://www.luogu.com.cn/problem/P1168） 用两个heapq维护median
-1801（https://www.luogu.com.cn/problem/P1801）用两个heapq维护第K小
-2085（https://www.luogu.com.cn/problem/P2085）用math|一个heapq维护前K小
-1631（https://www.luogu.com.cn/problem/P1631）用一个heapq和pointer组合维护前K小
-4053（https://www.luogu.com.cn/problem/P4053）用一个heapq延迟选择greedy维护最优，课程表 III
-1878（https://www.luogu.com.cn/problem/P1878）用hash|一个heapqimplemention
-3620（https://www.luogu.com.cn/problem/P3620）greedy思想|二叉heapq与双向链表优
-2168（https://www.luogu.com.cn/problem/P2168）霍夫曼树与二叉heapqgreedy
-2278（https://www.luogu.com.cn/problem/P2278）二叉heapqimplementionCPU占用
-1717（https://www.luogu.com.cn/problem/P1717）brute_force最远到达地点二叉heapqgreedy选取
-1905（https://www.luogu.com.cn/problem/P1905）二叉heapq从大到小greedy摆放
-2409（https://www.luogu.com.cn/problem/P2409）二叉heapq，最小的k个和
-2949（https://www.luogu.com.cn/problem/P2949）二叉heapqgreedyimplemention懒惰延迟删除
-6033（https://www.luogu.com.cn/problem/P6033）greedy升级版可用双端队列优化
-4597（https://www.luogu.com.cn/problem/P4597）大根heapqgreedy使得序列非降的最小操作次数
+1168（https://www.luogu.com.cn/problem/P1168）heapq|median
+1801（https://www.luogu.com.cn/problem/P1801）heapq
+2085（https://www.luogu.com.cn/problem/P2085）math|heapq
+1631（https://www.luogu.com.cn/problem/P1631）heapq|pointer
+4053（https://www.luogu.com.cn/problem/P4053）delay_heapq|greedy
+1878（https://www.luogu.com.cn/problem/P1878）hash|heapq|implemention
+3620（https://www.luogu.com.cn/problem/P3620）greedy|heapq|double_linked_list
+2168（https://www.luogu.com.cn/problem/P2168）huffman_tree|heapq|greedy
+2278（https://www.luogu.com.cn/problem/P2278）heapq|implemention
+1717（https://www.luogu.com.cn/problem/P1717）brute_force|heapq|greedy
+1905（https://www.luogu.com.cn/problem/P1905）heapq|greedy
+2409（https://www.luogu.com.cn/problem/P2409）heapq
+2949（https://www.luogu.com.cn/problem/P2949）heapq|greedy|implemention|delay_heapq|lazy_heapq
+6033（https://www.luogu.com.cn/problem/P6033）greedy|deque
+4597（https://www.luogu.com.cn/problem/P4597）heapq|greedy
 
 =====================================AcWing=====================================
-146（https://www.acwing.com/problem/content/description/148/）小顶heapq问题m个数组最小的n个子序列和，同样可以最大的
-147（https://www.acwing.com/problem/content/description/149/）greedy思想|二叉heapq与双向链表优化
-148（https://www.acwing.com/problem/content/150/）greedy二叉heapq，霍夫曼树Huffman Tree的思想，每次优先合并较小的
-149（https://www.acwing.com/problem/content/description/151/）霍夫曼树与二叉heapqgreedy
+146（https://www.acwing.com/problem/content/description/148/）heapq
+147（https://www.acwing.com/problem/content/description/149/）greedy|heapq|double_linked_list
+148（https://www.acwing.com/problem/content/150/）greedy|heapq|huffman_tree
+149（https://www.acwing.com/problem/content/description/151/）huffman_tree|heapq|greedy
 
 
 
@@ -168,7 +168,7 @@ class Solution:
 
     @staticmethod
     def ac_147(ac=FastIO()):
-        # greedy思想|二叉heapq与双向链表优化
+        # greedy思想|heapq|与double_linked_list|优化
 
         n, k = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
@@ -211,7 +211,7 @@ class Solution:
 
     @staticmethod
     def lg_p2168(ac=FastIO()):
-        # 二叉heapqgreedy与霍夫曼树Huffman Tree
+        # heapq|greedy与霍夫曼树Huffman Tree
         n, k = ac.read_list_ints()
         stack = [[ac.read_int(), 0] for _ in range(n)]
         heapq.heapify(stack)
@@ -342,7 +342,7 @@ class Solution:
 
     @staticmethod
     def lg_p1717(ac=FastIO()):
-        # brute_force最远到达地点二叉heapqgreedy选取
+        # brute_force最远到达地点heapq|greedy选取
         ans = 0
         n = ac.read_int()
         h = ac.read_int() * 60
@@ -367,7 +367,7 @@ class Solution:
 
     @staticmethod
     def lg_p1905(ac=FastIO()):
-        # 二叉heapq从大到小greedy摆放
+        # heapq|从大到小greedy摆放
         ac.read_int()
         p = ac.read_int()
         lst = ac.read_list_ints()
@@ -385,7 +385,7 @@ class Solution:
 
     @staticmethod
     def lg_p2409(ac=FastIO()):
-        # 二叉heapq，最小的k个和
+        # heapq|，最小的k个和
         n, k = ac.read_list_ints()
         pre = ac.read_list_ints()[1:]
         pre.sort()
@@ -406,7 +406,7 @@ class Solution:
 
     @staticmethod
     def lg_p2949(ac=FastIO()):
-        # 二叉heapqgreedyimplemention懒惰延迟删除
+        # heapq|greedyimplemention懒惰延迟删除
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort(key=lambda it: it[0])

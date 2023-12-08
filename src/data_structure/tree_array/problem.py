@@ -1,56 +1,56 @@
 """
-Algorithm：树状数组、二维树状数组
-Function：数组区间|减，和区间值求和（单点可转换为区间）
+Algorithm：tree_array|tree_matrix
+Function：range_add|range_sum
 
 ====================================LeetCode====================================
 307（https://leetcode.com/problems/range-sum-query-mutable）PointChangeRangeSum
-1409（https://leetcode.com/problems/queries-on-a-permutation-with-key/）树状数组implemention
-1626（https://leetcode.com/problems/best-team-with-no-conflicts/）树状数组维护前缀最大值，也可动态规划求解
-6353（https://leetcode.com/problems/minimum-number-of-visited-cells-in-a-grid/）树状数组维护前缀区间最小值单点更新
-308（https://leetcode.com/problems/range-sum-query-2d-mutable/）二维树状数组，单点增减与区间和查询
-2659（https://leetcode.com/problems/make-array-empty/submissions/）implemention删除，可以树状数组也可以SortedList也可以greedy
-1505（https://leetcode.com/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/）树状数组implementioncounter移动，也可以SortedList
-2193（https://leetcode.com/problems/minimum-number-of-moves-to-make-palindrome/description/）树状数组greedyimplemention交换构建回文串，相同题目（P5041求回文串）
-2407（https://leetcode.com/problems/longest-increasing-subsequence-ii/description/）树状数组|liner_dp
-100112（https://leetcode.com/problems/maximum-balanced-subsequence-sum/）离散化树状数组|liner_dp
+1409（https://leetcode.com/problems/queries-on-a-permutation-with-key/）tree_array|implemention
+1626（https://leetcode.com/problems/best-team-with-no-conflicts/）tree_array|prefix_maximum|dp
+6353（https://leetcode.com/problems/minimum-number-of-visited-cells-in-a-grid/）tree_array|prefix_minimum
+308（https://leetcode.com/problems/range-sum-query-2d-mutable/）tree_matrix|RangeAddRangeSum
+2659（https://leetcode.com/problems/make-array-empty/submissions/）implemention|tree_array|sortedList|greedy
+1505（https://leetcode.com/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/）tree_array|implemention|counter|sorted_list
+2193（https://leetcode.com/problems/minimum-number-of-moves-to-make-palindrome/description/）tree_array|greedy|implemention|P5041
+2407（https://leetcode.com/problems/longest-increasing-subsequence-ii/description/）tree_array|liner_dp
+100112（https://leetcode.com/problems/maximum-balanced-subsequence-sum/）discretization|tree_array|liner_dp
 2736（https://leetcode.com/problems/maximum-sum-queries/）PointAddPreMax
 
 =====================================LuoGu======================================
-2068（https://www.luogu.com.cn/problem/P2068）单点更新与区间求和
-2345（https://www.luogu.com.cn/problem/P2345）两个树状数组counter与|和更新查询
-2357（https://www.luogu.com.cn/problem/P2357）区间更新与区间求和
-2781（https://www.luogu.com.cn/problem/P2781）区间更新与区间求和
-5200（https://www.luogu.com.cn/problem/P5200）树状数组|greedyimplemention
-3374（https://www.luogu.com.cn/problem/P3374）区间值更新与求和
-3368（https://www.luogu.com.cn/problem/P3368）区间值更新与求和
-5677（https://www.luogu.com.cn/problem/P5677）区间值更新与求和
-5094（https://www.luogu.com.cn/problem/P5094）单点更新增|值与前缀区间和查询
-1816（https://www.luogu.com.cn/problem/P1816）树状数组查询静态区间最小值
-1908（https://www.luogu.com.cn/problem/P1908）树状数组求reverse_order_pair|
-1725（https://www.luogu.com.cn/problem/P1725）reverse_order|liner_dp，单点更新值，查询区间最大值
-3586（https://www.luogu.com.cn/problem/P3586）offline_query、离散化树状数组，单点增减，prefix_sum查询
-1198（https://www.luogu.com.cn/problem/P1198）树状数组，查询区间最大值
-4868（https://www.luogu.com.cn/problem/P4868）转换公式单点修改，两个树状数组维护prefix_sum的prefix_sum
-5463（https://www.luogu.com.cn/problem/P5463）树状数组维护前缀counter，brute_force最大值所有区间数贡献
-6225（https://www.luogu.com.cn/problem/P6225）树状数组维护前缀异或和
-1972（https://www.luogu.com.cn/problem/P1972）树状数组offline_query区间不同数的个数 PointChangeRangeSum OfflineQuery
+2068（https://www.luogu.com.cn/problem/P2068）PointAddRangeSum
+2345（https://www.luogu.com.cn/problem/P2345）tree_array|counter|range_sum
+2357（https://www.luogu.com.cn/problem/P2357）tree_array|range_sum
+2781（https://www.luogu.com.cn/problem/P2781）tree_array|range_sum
+5200（https://www.luogu.com.cn/problem/P5200）tree_array|greedy|implemention
+3374（https://www.luogu.com.cn/problem/P3374）tree_array|RangeAddRangeSum
+3368（https://www.luogu.com.cn/problem/P3368）tree_array|RangeAddRangeSum
+5677（https://www.luogu.com.cn/problem/P5677）tree_array|RangeAddRangeSum
+5094（https://www.luogu.com.cn/problem/P5094）tree_array|RangeAddRangeSum
+1816（https://www.luogu.com.cn/problem/P1816）tree_array|range_min
+1908（https://www.luogu.com.cn/problem/P1908）tree_array|reverse_order_pair
+1725（https://www.luogu.com.cn/problem/P1725）reverse_order|liner_dp|PointAscendRangeMax
+3586（https://www.luogu.com.cn/problem/P3586）offline_query|discretization|tree_array|PointAddPreSum
+1198（https://www.luogu.com.cn/problem/P1198）tree_array|range_max
+4868（https://www.luogu.com.cn/problem/P4868）math|tree_array|prefix_sum_of_prefix_sum
+5463（https://www.luogu.com.cn/problem/P5463）tree_array|counter|brute_force|contribution_method
+6225（https://www.luogu.com.cn/problem/P6225）tree_array|prefix_xor
+1972（https://www.luogu.com.cn/problem/P1972）tree_array|offline_query|range_unique|PointChangeRangeSum
 
 ====================================AtCoder=====================================
-D - Islands War（https://atcoder.jp/contests/abc103/tasks/abc103_d）greedy|树状数组
-F - Absolute Minima （https://atcoder.jp/contests/abc127/tasks/abc127_f）离散化与两个树状数组|和与counter
-Vertex Add Subtree Sum（https://judge.yosupo.jp/problem/vertex_add_subtree_sum）use tree array and dfs order
+D - Islands War（https://atcoder.jp/contests/abc103/tasks/abc103_d）greedy|tree_array
+F - Absolute Minima （https://atcoder.jp/contests/abc127/tasks/abc127_f）discretization|tree_array|counter
+Vertex Add Subtree Sum（https://judge.yosupo.jp/problem/vertex_add_subtree_sum）tree_array|dfs_order
 
 ===================================CodeForces===================================
-1791F（https://codeforces.com/problemset/problem/1791/F）树状数组维护区间操作数与查询单点值
-1676H2（https://codeforces.com/contest/1676/problem/H2）树状数组维护前缀区间和
-987C（https://codeforces.com/problemset/problem/987/C）brute_force中间数组，树状数组维护prefix_suffix最小值
-1311F（https://codeforces.com/contest/1311/problem/F）两个离散化树状数组，counter与|和
+1791F（https://codeforces.com/problemset/problem/1791/F）tree_array
+1676H2（https://codeforces.com/contest/1676/problem/H2）tree_array|pre_sum
+987C（https://codeforces.com/problemset/problem/987/C）brute_force|tree_array|prefix_suffix|pre_min
+1311F（https://codeforces.com/contest/1311/problem/F）discretization|tree_array|counter
 1860C（https://codeforces.com/contest/1860/problem/C）PointDescendRangeMin
 1550C（https://codeforces.com/contest/1550/problem/C）PointAscendPreMax
 1679C（https://codeforces.com/contest/1679/problem/C）PointAddRangeSum
 
-135. 二维树状数组3（https://loj.ac/p/135）区间修改，区间查询
-134. 二维树状数组2（https://loj.ac/p/134）区间修改，单点查询
+135. tree_matrix|3（https://loj.ac/p/135）range_change|range_sum
+134. tree_matrix|2（https://loj.ac/p/134）range_change|range_sum
 
 """
 from collections import defaultdict, deque
@@ -74,7 +74,7 @@ class Solution:
 
     @staticmethod
     def lc_1626(scores: List[int], ages: List[int]) -> int:
-        # 动态规划与树状数组维护前缀最大值
+        # 动态规划与tree_array|维护前缀最大值
         n = max(ages)
         tree_array = PointAscendPreMax(n)
         for score, age in sorted(zip(scores, ages)):
@@ -84,7 +84,7 @@ class Solution:
 
     @staticmethod
     def lc_2193_1(s: str) -> int:
-        # 树状数组greedyimplemention交换构建回文串
+        # tree_array|greedyimplemention交换构建回文串
 
         n = len(s)
         lst = list(s)
@@ -145,7 +145,7 @@ class Solution:
 
     @staticmethod
     def lc_2407(nums: List[int], k: int) -> int:
-        # 树状数组|liner_dp
+        # tree_array||liner_dp
         n = max(nums)
         ans = 0
         tree = PointAscendRangeMax(n)
@@ -168,7 +168,7 @@ class Solution:
 
     @staticmethod
     def lc_2659(nums: List[int]) -> int:
-        # implemention删除，可以树状数组也可以SortedList也可以greedy
+        # implemention删除，可以tree_array|也可以SortedList也可以greedy
         n = len(nums)
         ans = 0
         pre = 1
@@ -230,7 +230,7 @@ class Solution:
 
     @staticmethod
     def lc_100112_1(nums: List[int]) -> int:
-        # 树状数组（单点持续更新为更大值）（区间查询最大值）2380ms
+        # tree_array|（单点持续更新为更大值）（区间查询最大值）2380ms
         n = len(nums)
         tmp = [nums[i] - i for i in range(n)]
         ind = sorted(list(set(tmp)))
@@ -246,7 +246,7 @@ class Solution:
 
     @staticmethod
     def lc_100112_2(nums: List[int]) -> int:
-        # 树状数组（单点持续更新为更大值）（前缀区间查询最大值）1748ms
+        # tree_array|（单点持续更新为更大值）（前缀区间查询最大值）1748ms
         n = len(nums)
         tmp = [nums[i] - i for i in range(n)]
         ind = sorted(list(set(tmp)))
@@ -262,7 +262,7 @@ class Solution:
 
     @staticmethod
     def lc_100112_3(nums: List[int]) -> int:
-        # 线段树（单点持续更新为更大值）（区间查询最大值）7980ms
+        # segment_tree|（单点持续更新为更大值）（区间查询最大值）7980ms
         n = len(nums)
         tmp = [nums[i] - i for i in range(n)]
         ind = sorted(list(set(tmp)))
@@ -303,7 +303,7 @@ class Solution:
 
     @staticmethod
     def lc_100112_1(nums: List[int]) -> int:
-        # 树状数组（单点持续更新为更大值）（区间查询最大值）2380ms
+        # tree_array|（单点持续更新为更大值）（区间查询最大值）2380ms
         n = len(nums)
         tmp = [nums[i] - i for i in range(n)]
         ind = sorted(list(set(tmp)))
@@ -319,7 +319,7 @@ class Solution:
 
     @staticmethod
     def lc_100112_2(nums: List[int]) -> int:
-        # 树状数组（单点持续更新为更大值）（前缀区间查询最大值）1748ms
+        # tree_array|（单点持续更新为更大值）（前缀区间查询最大值）1748ms
         n = len(nums)
         tmp = [nums[i] - i for i in range(n)]
         ind = sorted(list(set(tmp)))
@@ -335,7 +335,7 @@ class Solution:
 
     @staticmethod
     def lc_100112_3(nums: List[int]) -> int:
-        # 线段树（单点持续更新为更大值）（区间查询最大值）7980ms
+        # segment_tree|（单点持续更新为更大值）（区间查询最大值）7980ms
         n = len(nums)
         tmp = [nums[i] - i for i in range(n)]
         ind = sorted(list(set(tmp)))
@@ -353,7 +353,7 @@ class Solution:
     @staticmethod
     def lg_5094(ac=FastIO()):
 
-        # 树状数组单点增|值与前缀区间和查询
+        # tree_array|单点增|值与前缀区间和查询
         n = ac.read_int()
         m = 5 * 10 ** 4
 
@@ -377,7 +377,7 @@ class Solution:
 
     @staticmethod
     def lg_p2280(ac=FastIO()):
-        # 树状数组单点更新区间查询最大值与最小值
+        # tree_array|单点更新区间查询最大值与最小值
         n, q = ac.read_list_ints()
         tree = PointAscendRangeMax(n)
         tree2 = PointDescendRangeMin(n)
@@ -393,7 +393,7 @@ class Solution:
 
     @staticmethod
     def cf_1311f(ac=FastIO()):
-        # 两个离散化树状数组，counter与|和
+        # 两个discretizationtree_array|，counter与|和
         n = ac.read_int()
         ind = list(range(n))
         x = ac.read_list_ints()
@@ -416,7 +416,7 @@ class Solution:
 
     @staticmethod
     def cf_1676h2(ac=FastIO()):
-        # 树状数组维护前缀区间和
+        # tree_array|维护前缀区间和
         for _ in range(ac.read_int()):
             ac.read_int()
             a = ac.read_list_ints()
@@ -458,7 +458,7 @@ class Solution:
 
     @staticmethod
     def lg_p2068(ac=FastIO()):
-        # 树状数组单点更新与区间和查询
+        # tree_array|单点更新与区间和查询
         n = ac.read_int()
         w = ac.read_int()
         tree = RangeAddRangeSum(n)
@@ -474,7 +474,7 @@ class Solution:
     @staticmethod
     def lg_p1816(ac=FastIO()):
 
-        # 树状数组查询静态区间最小值
+        # tree_array|查询静态区间最小值
         m, n = ac.read_list_ints()
         nums = ac.read_list_ints()
         tree = PointDescendRangeMin(m)
@@ -489,7 +489,7 @@ class Solution:
 
     @staticmethod
     def lg_p3374(ac=FastIO()):
-        # 树状数组 单点增减 查询prefix_sum与区间和
+        # tree_array| 单点增减 查询prefix_sum与区间和
         n, m = ac.read_list_ints()
         tree = PointAddRangeSum(n)
         tree.build(ac.read_list_ints())
@@ -503,7 +503,7 @@ class Solution:
 
     @staticmethod
     def lg_p3368(ac=FastIO()):
-        # 树状数组 区间增减 查询prefix_sum与区间和
+        # tree_array| 区间增减 查询prefix_sum与区间和
         n, m = ac.read_list_ints()
         tree = RangeAddRangeSum(n)
         tree.build(ac.read_list_ints())
@@ -518,7 +518,7 @@ class Solution:
 
     @staticmethod
     def lg_p1908(ac=FastIO()):
-        # 树状数组求reverse_order_pair|
+        # tree_array|求reverse_order_pair|
         n = ac.read_int()
         nums = ac.read_list_ints()
         ind = list(range(n))
@@ -540,7 +540,7 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
-        # 二维树状数组 区间增减 区间查询
+        # tree_matrix| 区间增减 区间查询
         n, m = ac.read_list_ints()
         tree = RangeAddRangeSum2D(n, m)
         while True:
@@ -557,7 +557,7 @@ class Solution:
 
     @staticmethod
     def lg_p1725(ac=FastIO()):
-        # 树状数组reverse_order|liner_dp，单点更新与区间查询最大值
+        # tree_array|reverse_order|liner_dp，单点更新与区间查询最大值
         n, a, b = ac.read_list_ints()
         n += 1
         nums = ac.read_list_ints()
@@ -575,7 +575,7 @@ class Solution:
 
     @staticmethod
     def lg_p3586(ac=FastIO()):
-        # offline_query、离散化树状数组，单点增减，prefix_sum查询
+        # offline_query、discretizationtree_array|，单点增减，prefix_sum查询
         n, m = ac.read_list_ints()
         value = {0}
         lst = []
@@ -624,7 +624,7 @@ class Solution:
 
     @staticmethod
     def lg_p1198(ac=FastIO()):
-        # 树状数组查询区间最大值
+        # tree_array|查询区间最大值
         m, d = ac.read_list_ints()
         t = 0
         tree = PointAscendRangeMax(m + 1)
@@ -643,7 +643,7 @@ class Solution:
 
     @staticmethod
     def lg_p4868(ac=FastIO()):
-        # 转换公式，两个树状数组维护prefix_sum的prefix_sum
+        # 转换公式，两个tree_array|维护prefix_sum的prefix_sum
 
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -666,7 +666,7 @@ class Solution:
 
     @staticmethod
     def lg_p5463(ac=FastIO()):
-        # 树状数组维护前缀counter，brute_force最大值所有区间数贡献
+        # tree_array|维护前缀counter，brute_force最大值所有区间数贡献
         n = ac.read_int()
         nums = ac.read_list_ints()
         lst = sorted(list(set(nums)))
@@ -685,7 +685,7 @@ class Solution:
 
     @staticmethod
     def lg_p6225(ac=FastIO()):
-        # 树状数组维护前缀异或和
+        # tree_array|维护前缀异或和
         n, q = ac.read_list_ints()
         nums = ac.read_list_ints()
 
@@ -722,7 +722,7 @@ class Solution:
 
     @staticmethod
     def abc_127f(ac=FastIO()):
-        # 离散化与两个树状数组|和与counter
+        # discretization与两个tree_array||和与counter
         queries = [ac.read_list_ints() for _ in range(ac.read_int())]
         nodes = set()
         for lst in queries:
@@ -761,7 +761,7 @@ class Solution:
 
     @staticmethod
     def cf_987c(ac=FastIO()):
-        # brute_force中间数组，树状数组维护prefix_suffix最小值
+        # brute_force中间数组，tree_array|维护prefix_suffix最小值
         n = ac.read_int()
         s = ac.read_list_ints()
         c = ac.read_list_ints()
@@ -848,12 +848,12 @@ class Solution:
     @staticmethod
     def lc_1505_1(num: str, k: int) -> str:
 
-        # 树状数组implemention
+        # tree_array|implemention
         n = len(num)
         dct = defaultdict(deque)
         for i, d in enumerate(num):
             dct[d].append(i)
-        # 树状数组implemention交换过程
+        # tree_array|implemention交换过程
         tree = PointAddRangeSum(n)
         ans = ""
         for i in range(n):

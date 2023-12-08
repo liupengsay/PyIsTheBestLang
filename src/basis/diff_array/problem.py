@@ -558,7 +558,7 @@ class Solution:
 
     @staticmethod
     def ac_121(ac=FastIO()):
-        # 离散化prefix_sum，two_pointers|binary_search
+        # discretizationprefix_sum，two_pointers|binary_search
         c, b = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(b)]
         lst_x = sorted(list(set([x for x, _ in nums])))
@@ -856,7 +856,7 @@ class Solution:
                 a, b = b, a
             diff[a] += 1
             diff[b + 1] -= 1
-            # 增|右端点避免离散化带来重合
+            # 增|右端点避免discretization带来重合
             diff[b] += 0
         axis = sorted(list(diff.keys()))
         ans = diff[axis[0]]

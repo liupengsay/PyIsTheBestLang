@@ -47,7 +47,7 @@ class Solution:
 
     @staticmethod
     def cf1514_d(ac=FastIO()):
-        # 分块超时，正解为随机化猜众数，或者bit_operation众数，或者线段树合并众数
+        # 分块超时，正解为随机化猜众数，或者bit_operation众数，或者segment_tree|合并众数
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         cnt = [0] * (n + 1)

@@ -4,7 +4,7 @@ Function：平面几何面积或者立体体积
 
 ====================================LeetCode====================================
 218（https://leetcode.com/problems/the-skyline-problem/）扫描线建筑物的轮廓
-850（https://leetcode.com/problems/rectangle-area-ii/）扫描线覆盖面积，线段树|离散化应该有 nlogn 的解法
+850（https://leetcode.com/problems/rectangle-area-ii/）扫描线覆盖面积，segment_tree||discretization应该有 nlogn 的解法
 
 =====================================LuoGu======================================
 6265（https://www.luogu.com.cn/problem/P6265）建筑物的扫描线轮廓

@@ -20,7 +20,7 @@ Function：在二维矩阵上转移的DP，的有矩阵prefix_sum，矩阵区间
 1092（https://leetcode.com/problems/shortest-common-supersequence/）从后往前动态规划|从前往后construction，最长公共子序列，并construction包含两个字符串的最短公共超序列
 1143（https://leetcode.com/problems/longest-common-subsequence/）LIS的方法求LCS
 1035（https://leetcode.com/problems/uncrossed-lines/）LIS的方法求LCS
-2617（https://leetcode.com/problems/minimum-number-of-visited-cells-in-a-grid/）reverse_order|矩阵 DP 并树状数组记录更新前缀最小值
+2617（https://leetcode.com/problems/minimum-number-of-visited-cells-in-a-grid/）reverse_order|矩阵 DP 并tree_array|记录更新前缀最小值
 1092（https://leetcode.com/problems/shortest-common-supersequence/）LCS问题并specific_plans，可LIS求解
 1692（https://leetcode.com/problems/count-ways-to-distribute-candies/）matrix_dp方案数
 1771（https://leetcode.com/problems/maximize-palindrome-length-from-subsequences/）最长回文子序列matrix_dp
@@ -1395,7 +1395,7 @@ class Solution:
 
     @staticmethod
     def lc_2617_1(grid: List[List[int]]) -> int:
-        # reverse_order|矩阵 DP 并树状数组记录更新前缀最小值
+        # reverse_order|矩阵 DP 并tree_array|记录更新前缀最小值
         m, n = len(grid), len(grid[0])
         dp = [[inf] * n for _ in range(m)]
         dp[-1][-1] = 1
@@ -1458,7 +1458,7 @@ class Solution:
                 return d
             val = grid[i][j]
 
-            # union_find或者类似链表合并
+            # union_find或者类似linked_list|合并
             lst = [j]
             # 查到下一个就可以移动到的未访问格子
             while lst[-1] <= j + val and lst[-1] < n:
@@ -1471,7 +1471,7 @@ class Solution:
                 row[i][x] = last
             row[i][j] = last
 
-            # union_find或者类似链表合并
+            # union_find或者类似linked_list|合并
             lst = [i]
             while lst[-1] <= i + val and lst[-1] < m:
                 lst.append(col[j][lst[-1]])

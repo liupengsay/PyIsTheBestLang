@@ -1,40 +1,38 @@
 """
-Algorithm：ST（Sparse-Table）稀疏表、倍增、数组积性函数聚合性质、连续子数组的聚合运算
-Function：静态区间内的最大值、最小值、最大公约数、最大与、最大或
-ST表算法全称Sparse-Table算法，是由Tarjan提出的一种解决RMQ问题（区间最值）的强力算法。 离线预处理时间复杂度θ（nlogn），在线查询时间θ（1），可以说是一种非常高效的算法。 不过ST表的应用场合也是有限的，它只能处理静态区间最值，不能维护动态的，也就是说不支持在预处理后对值修改。
-
+Algorithm：sparse_table|multiplication_method|aggregation_property|sub_consequence
+Function：static_range|range_query|range_max|range_min|range_gcd|range_and|range_or|range_lcm
 
 ====================================LeetCode====================================
-1521（https://leetcode.com/problems/find-a-value-of-a-mysterious-function-closest-to-target/）与目标值最接近的连续子数组bit_operation与值
-2411（https://leetcode.com/problems/smallest-subarrays-with-maximum-bitwise-or/）最大或值的最短连续子数组
-2447（https://leetcode.com/problems/number-of-subarrays-with-gcd-equal-to-k/）最大公因数为 k 的连续子数组个数，可推广到bit_operation或与异或
-2470（https://leetcode.com/problems/number-of-subarrays-with-lcm-equal-to-k/）最小公倍为 k 的连续子数组个数，可推广到bit_operation或与异或
-2654（https://leetcode.com/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/）最大公因数为 1 的最短连续子数组
+1521（https://leetcode.com/problems/find-a-value-of-a-mysterious-function-closest-to-target/）bit_operation|sub_consequence
+2411（https://leetcode.com/problems/smallest-subarrays-with-maximum-bitwise-or/）sub_consequence|range_or
+2447（https://leetcode.com/problems/number-of-subarrays-with-gcd-equal-to-k/）range_gcd|counter|sub_consequence
+2470（https://leetcode.com/problems/number-of-subarrays-with-lcm-equal-to-k/）range_lcm|counter|sub_consequence
+2654（https://leetcode.com/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/）range_gcd|sub_consequence
 
 =====================================LuoGu======================================
-3865（https://www.luogu.com.cn/problem/P3865）ST表静态查询区间最大值
-2880（https://www.luogu.com.cn/problem/P2880）ST表预处理区间最大值与最小值
-1890（https://www.luogu.com.cn/problem/P3865）ST表预处理区间的gcd
-1816（https://www.luogu.com.cn/problem/P1816）ST表预处理区间的最小值
-2412（https://www.luogu.com.cn/problem/P2412）预处理lexicographical_order之后ST表查询静态区间最大lexicographical_order
-5097（https://www.luogu.com.cn/problem/P5097）静态区间最小值
-5648（https://www.luogu.com.cn/problem/P5648）倍增 ST 表查询区间最大值的索引，monotonic_stack|建树距离
+3865（https://www.luogu.com.cn/problem/P3865）sparse_table|range_max
+2880（https://www.luogu.com.cn/problem/P2880）sparse_table|range_max|range_min
+1890（https://www.luogu.com.cn/problem/P3865）sparse_table|range_gcd
+1816（https://www.luogu.com.cn/problem/P1816）sparse_table|range_min
+2412（https://www.luogu.com.cn/problem/P2412）lexicographical_order|sparse_table
+5097（https://www.luogu.com.cn/problem/P5097）sparse_table|range_min
+5648（https://www.luogu.com.cn/problem/P5648）sparse_table|range_max_index|monotonic_stack
 
 ===================================CodeForces===================================
-1691D（https://codeforces.com/problemset/problem/1691/D）monotonic_stack|brute_force|ST表最大值最小值查询
-689D（https://codeforces.com/problemset/problem/689/D）binary_search|ST表个数
-1359D（https://codeforces.com/problemset/problem/1359/D）monotonic_stack|brute_force|ST表最大值最小值查询
-1548B（https://codeforces.com/problemset/problem/1548/B）ST表查询区间gcd并brute_force数组开头，binary_search确定长度
-474F（https://codeforces.com/problemset/problem/474/F）稀疏表最小值和gcd，并binary_searchcounter
-1834E（https://codeforces.com/contest/1834/problem/E）连续子数组的lcm信息
-1878E（https://codeforces.com/contest/1878/problem/E）连续子数组的and信息
-1547F（https://codeforces.com/contest/1547/problem/F）连续子数组的gcd信息
-1579F（https://codeforces.com/contest/1579/problem/F）circular_section连续子数组的and信息
-1709D（https://codeforces.com/contest/1709/problem/D）use sparse table to compute static range max and implemention
-1516D（https://codeforces.com/contest/1516/problem/D）数组区间向右倍增
+1691D（https://codeforces.com/problemset/problem/1691/D）monotonic_stack|brute_force|sparse_table|range_max|range_min
+689D（https://codeforces.com/problemset/problem/689/D）binary_search|sparse_table|counter
+1359D（https://codeforces.com/problemset/problem/1359/D）monotonic_stack|brute_force|sparse_table|range_max|range_min
+1548B（https://codeforces.com/problemset/problem/1548/B）sparse_table|range_gcd|brute_force|binary_search
+474F（https://codeforces.com/problemset/problem/474/F）sparse_table|range_min|range_gcd|binary_search|counter
+1834E（https://codeforces.com/contest/1834/problem/E）sparse_table|range_lcm
+1878E（https://codeforces.com/contest/1878/problem/E）sparse_table|range_and
+1547F（https://codeforces.com/contest/1547/problem/F）sparse_table|range_gcd
+1579F（https://codeforces.com/contest/1579/problem/F）circular_section|range_and
+1709D（https://codeforces.com/contest/1709/problem/D）sparse_table|range_max|implemention
+1516D（https://codeforces.com/contest/1516/problem/D）multiplication_method
 
 =====================================AcWing=====================================
-109（https://www.acwing.com/problem/content/111/）greedy|倍增最少分段数
+109（https://www.acwing.com/problem/content/111/）greedy|multiplication_method
 
 """
 
@@ -77,7 +75,7 @@ class Solution:
 
     @staticmethod
     def cf_474f(ac=FastIO()):
-        # 稀疏表查询静态区间 gcd 与最小值
+        # sparse_table查询静态区间 gcd 与最小值
         n = ac.read_int()
         nums = ac.read_list_ints()
         dct = defaultdict(list)

@@ -16,11 +16,11 @@ Function：在树形或者图结构上DP，有换根DP，自顶向下和自底�
 1617（https://leetcode.com/problems/count-subtrees-with-max-distance-between-cities/）brute_force直径端点与乘法原理树形DP
 2003（https://leetcode.com/problems/smallest-missing-genetic-value-in-each-subtree/）树形DP启发式合并
 2673（https://leetcode.com/problems/make-costs-of-paths-equal-in-a-binary-tree/）树形DPgreedy
-1367（https://leetcode.com/problems/linked-list-in-binary-tree/description/）典型二叉树与链表比较的记忆化DP
+1367（https://leetcode.com/problems/linked-list-in-binary-tree/description/）典型二叉树与linked_list|比较的记忆化DP
 979（https://leetcode.com/problems/distribute-coins-in-binary-tree/description/）树形DPgreedy
 1373（https://leetcode.com/problems/maximum-sum-bst-in-binary-tree/）树形DP二叉树校验
 971（https://leetcode.com/problems/flip-binary-tree-to-match-preorder-traversal/description/）树形DPgreedyimplemention
-100041（https://www.acwing.com/problem/content/description/4384/）迭代法实现树形换根DP，或者一遍DFS或者dfs序|差分
+100041（https://www.acwing.com/problem/content/description/4384/）迭代法实现树形换根DP，或者一遍DFS或者dfs_order||差分
 100047（https://leetcode.com/problems/count-valid-paths-in-a-tree/description/）树形DP，union_find或者BFS实现
 
 =====================================LuoGu======================================
@@ -67,13 +67,13 @@ F - Expensive Expense （https://atcoder.jp/contests/abc222/tasks/abc222_f）换
 1805D（https://codeforces.com/problemset/problem/1805/D）树的直径，任意点到直径的某个端点的距离最长
 1676G（https://codeforces.com/contest/1676/problem/G）迭代的方式树形DP
 1822F（https://codeforces.com/contest/1822/problem/F）树中节点到其余节点的最大距离
-219D（https://codeforces.com/contest/219/problem/D）迭代法实现树形换根DP，或者一遍DFS或者dfs序|差分
+219D（https://codeforces.com/contest/219/problem/D）迭代法实现树形换根DP，或者一遍DFS或者dfs_order||差分
 1092F（https://codeforces.com/contest/1092/problem/F）带权重树中的总距离，迭代法实现树形换根DP
 1472G（https://codeforces.com/contest/1472/problem/G）根据最短路从下到上与从上到下的DP
 
 =====================================AcWing=====================================
 3760（https://www.acwing.com/problem/content/description/3763/）brain_teaser转化为树形DP迭代方式求解
-4381（https://www.acwing.com/problem/content/description/4384/）迭代法实现树形换根DP，或者一遍DFS或者dfs序|差分
+4381（https://www.acwing.com/problem/content/description/4384/）迭代法实现树形换根DP，或者一遍DFS或者dfs_order||差分
 
 """
 import math
@@ -412,7 +412,7 @@ class Solution:
     @staticmethod
     def lc_1367(head: Optional[ListNode], root: Optional[TreeNode]) -> bool:
 
-        # 典型二叉树与链表比较的记忆化DP
+        # 典型二叉树与linked_list|比较的记忆化DP
 
         @lru_cache(None)
         def dfs(lst, node):
@@ -697,7 +697,7 @@ class Solution:
 
     @staticmethod
     def lg_p2014(ac=FastIO()):
-        # 树形DP|背包DP
+        # 树形DP|bag_dp|
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n + 1)]
         nums = [0]

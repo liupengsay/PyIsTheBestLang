@@ -27,7 +27,7 @@ Function：有向图sorting，无向图在选定根节点的情况下也可以to
 1137（https://www.luogu.com.cn/problem/P1137）topological_sorting，可达的最长距离
 1347（https://www.luogu.com.cn/problem/P1347）topological_sorting确定lexicographical_order与矛盾或者无唯一解
 1685（https://www.luogu.com.cn/problem/P1685）DAGtopological_sortingDP路径条数与耗时
-3243（https://www.luogu.com.cn/problem/P3243）反向建图topological_sorting结合二叉heapq顺序implemention
+3243（https://www.luogu.com.cn/problem/P3243）反向建图topological_sorting结合heapq|顺序implemention
 5536（https://www.luogu.com.cn/problem/P5536）无向图topological_sorting从外到内消除最外圈的节点
 6037（https://www.luogu.com.cn/problem/P6037）无向图基环树union_findtopological_sorting与环implemention
 6255（https://www.luogu.com.cn/problem/P6255）简单无向图union_find连通块后topological_sorting寻找环的信息
@@ -342,7 +342,7 @@ class Solution:
 
     @staticmethod
     def lg_p3243(ac=FastIO()):
-        # 反向建图topological_sorting结合二叉heapq顺序implemention
+        # 反向建图topological_sorting结合heapq|顺序implemention
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
             dct = [[] for _ in range(n)]

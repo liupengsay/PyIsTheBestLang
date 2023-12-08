@@ -1,9 +1,9 @@
 """
-Algorithm：广度优先搜索、双端队列BFS、离散化BFS、有边界的BFS、染色法、奇数环
+Algorithm：广度优先搜索、双端队列BFS、discretizationBFS、有边界的BFS、染色法、奇数环
 Function：在有向图与无向图扩散，多源BFS、双向BFS，0-1BFS（类似SPFA）双向BFS或者A-star启发式搜索
 
 ====================================LeetCode====================================
-1036（https://leetcode.com/problems/escape-a-large-maze/）带边界的BFS和离散化BFS两种解法
+1036（https://leetcode.com/problems/escape-a-large-maze/）带边界的BFS和discretizationBFS两种解法
 2493（https://leetcode.com/problems/divide-nodes-into-the-maximum-number-of-groups/）利用union_find和广度优先搜索连通块分组并brute_force最佳方案，也就是染色法判断是否可以形成bipartite_graph
 2290（https://leetcode.com/problems/minimum-obstacle-removal-to-reach-corner/）0-1 BFS优化最小代价
 1368（https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/）0-1 BFS优化最小代价

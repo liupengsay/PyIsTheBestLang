@@ -6,25 +6,25 @@ Function：
 
 ====================================LeetCode====================================
 2617（https://leetcode.com/problems/minimum-number-of-visited-cells-in-a-grid/）bfs|double_linked_list
-2612（https://leetcode.com/problems/minimum-reverse-operations/）bfs|链表，数组维护链表的前后节点信息
-1562（https://leetcode.com/problems/find-latest-group-of-size-m/）类似union_find的prefix_suffix链表求解
-2382（https://leetcode.com/problems/maximum-segment-sum-after-removals/）逆向访问查询并更新连通块的结果，也可以双向链表维护
-2289（https://leetcode.com/problems/steps-to-make-array-non-decreasing/description/）monotonic_stack|优化的liner_dp，也可用bfs|链表求解
+2612（https://leetcode.com/problems/minimum-reverse-operations/）bfs|double_linked_list
+1562（https://leetcode.com/problems/find-latest-group-of-size-m/）union_find|double_linked_list
+2382（https://leetcode.com/problems/maximum-segment-sum-after-removals/）reverse_thinking|double_linked_list|union_find
+2289（https://leetcode.com/problems/steps-to-make-array-non-decreasing/description/）monotonic_stack|liner_dp|bfs|linked_list
 
-===================================牛客===================================
-牛牛排队伍（https://ac.nowcoder.com/acm/contest/49888/C）数组维护链表的前后节点信息
+====================================NewCoder===================================
+（https://ac.nowcoder.com/acm/contest/49888/C）double_linked_list
 
 =====================================LuoGu======================================
-5462（https://www.luogu.com.cn/problem/P5462）双向链表greedy选取最大lexicographical_order队列
-6155（https://www.luogu.com.cn/problem/P6155）sortinggreedyunion_find思想寻找右边最近的空位
+5462（https://www.luogu.com.cn/problem/P5462）double_linked_list|greedy|lexicographical_order|deque
+6155（https://www.luogu.com.cn/problem/P6155）sorting|greedy|union_find_right_root
 
 ===================================CodeForces===================================
-1154E（https://codeforces.com/contest/1154/problem/E）数组维护链表的前后节点信息
+1154E（https://codeforces.com/contest/1154/problem/E）double_linked_list
 
 =====================================AcWing=====================================
-136（https://www.acwing.com/problem/content/138/）链表逆序删除，查找前后最接近的值
-4943（https://www.acwing.com/problem/content/description/4946/）bfs|链表，维护四个方向上的未访问点
-5034（https://www.acwing.com/problem/content/5037/）heapqgreedy|链表处理
+136（https://www.acwing.com/problem/content/138/）linked_list|reverse_thinking
+4943（https://www.acwing.com/problem/content/description/4946/）bfs|linked_list
+5034（https://www.acwing.com/problem/content/5037/）heapq|greedy|linked_list
 
 """
 import heapq
@@ -42,7 +42,7 @@ class Solution:
     @staticmethod
     def cf_1154e(ac=FastIO()):
 
-        # 链表维护前后的节点信息
+        # linked_list|维护前后的节点信息
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
         ans = [0] * n
@@ -81,7 +81,7 @@ class Solution:
 
     @staticmethod
     def nc_247577(ac=FastIO()):
-        # 链表维护前后的节点信息
+        # linked_list|维护前后的节点信息
         n, k = ac.read_list_ints()
         pre = list(range(-1, n + 1))
         post = list(range(1, n + 3))
@@ -103,7 +103,7 @@ class Solution:
     @staticmethod
     def lc_2289(nums: List[int]) -> int:
 
-        # monotonic_stack|优化的liner_dp，也可用bfs|链表求解
+        # monotonic_stack|优化的liner_dp，也可用bfs|linked_list|求解
         n = len(nums)
         post = list(range(1, n + 1))
         nums.append(10 ** 9 + 7)
@@ -121,7 +121,7 @@ class Solution:
 
     @staticmethod
     def lc_2617(grid: List[List[int]]) -> int:
-        # bfs|两个方向上的链表，也可以union_find代替
+        # bfs|两个方向上的linked_list|，也可以union_find代替
         m, n = len(grid), len(grid[0])
         dis = [[inf] * n for _ in range(m)]
         row_nex = [list(range(1, n + 1)) for _ in range(m)]
@@ -173,7 +173,7 @@ class Solution:
 
     @staticmethod
     def ac_136(ac=FastIO()):
-        # 链表逆序删除，查找前后最接近的值，也可直接SortedList
+        # linked_list|逆序删除，查找前后最接近的值，也可直接SortedList
         n = ac.read_int()
         nums = ac.read_list_ints()
         ind = list(range(n))
@@ -211,7 +211,7 @@ class Solution:
 
     @staticmethod
     def lg_p5462(ac=FastIO()):
-        # 双向链表greedy选取最大lexicographical_order队列
+        # double_linked_list|greedy选取最大lexicographical_order队列
         n = ac.read_int()
         nums = ac.read_list_ints()
         pre = [-1] * (n + 1)
@@ -257,7 +257,7 @@ class Solution:
                 lst.append(y)
                 y = pre[y]
             lst.append(y)
-            # 类似链表记录每个数右侧最近的空位
+            # 类似linked_list|记录每个数右侧最近的空位
             for x in lst:
                 # 更新这个区间所有数右边最近的空位
                 pre[x] = y + 1
@@ -269,7 +269,7 @@ class Solution:
 
     @staticmethod
     def lc_1562(arr: List[int], m: int) -> int:
-        # 类似union_find的prefix_suffix链表求解
+        # 类似union_find的prefix_suffixlinked_list|求解
         n = len(arr)
         left = [-1] * n
         right = [-1] * n
@@ -310,7 +310,7 @@ class Solution:
 
     @staticmethod
     def ac_4943(ac=FastIO()):
-        # bfs|链表，维护四个方向上的未访问点
+        # bfs|linked_list|，维护四个方向上的未访问点
         m, n, k = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
         x1, y1, x2, y2 = ac.read_list_ints_minus_one()
@@ -392,7 +392,7 @@ class Solution:
 
     @staticmethod
     def ac_5034(ac=FastIO()):
-        # heapqgreedy|链表处理
+        # heapqgreedy|linked_list|处理
         n = ac.read_int()
         s = ac.read_str()
         nums = ac.read_list_ints()
@@ -402,7 +402,7 @@ class Solution:
         for i in range(n - 1):
             if s[i] != s[i + 1]:
                 heapq.heappush(stack, [abs(nums[i + 1] - nums[i]), i, i + 1])
-        # implemention出队并链表维护前后关系
+        # implemention出队并linked_list|维护前后关系
         ans = []
         visit = [0] * n
         while stack:

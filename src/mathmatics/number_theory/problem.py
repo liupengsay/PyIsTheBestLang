@@ -8,8 +8,8 @@ Function：有时候数位DP类型题目可以N进制来求取，质factorizatio
 313（https://leetcode.com/problems/super-ugly-number/）只含某些特定质因数的第 n 个丑数
 12（https://leetcode.com/problems/integer-to-roman/）整数转罗马数字
 13（https://leetcode.com/problems/roman-to-integer/）罗马数字转整数
-6364（https://leetcode.com/problems/count-the-number-of-square-free-subsets/）非空子集乘积不含除 1 之外任何平方整除数，即乘积质数因子的幂次均为 1（背包DPcounter）
-1994（https://leetcode.com/problems/the-number-of-good-subsets/）非空子集乘积不含除 1 之外任何平方整除数，即乘积质数因子的幂次均为 1（背包DPcounter）
+6364（https://leetcode.com/problems/count-the-number-of-square-free-subsets/）非空子集乘积不含除 1 之外任何平方整除数，即乘积质数因子的幂次均为 1（bag_dp|counter）
+1994（https://leetcode.com/problems/the-number-of-good-subsets/）非空子集乘积不含除 1 之外任何平方整除数，即乘积质数因子的幂次均为 1（bag_dp|counter）
 6309（https://leetcode.com/contest/weekly-contest-335/problems/split-the-array-to-make-coprime-products/） 1 到 n 的每个数所有的质因子，并差分影响因子counter
 2464（https://leetcode.com/problems/minimum-subarrays-in-a-valid-split/） 1 到 n 的每个数所有的质因子，并动态规划counter
 LCP 14（https://leetcode.com/problems/qie-fen-shu-zu/） 1 到 n 的每个数所有的质因子，并动态规划counter
@@ -144,7 +144,7 @@ class Solution:
 
     @staticmethod
     def lc_6334(nums: List[int]) -> int:
-        # 非空子集乘积不含除 1 之外任何平方整除数，即乘积质数因子的幂次均为 1（背包DPcounter）
+        # 非空子集乘积不含除 1 之外任何平方整除数，即乘积质数因子的幂次均为 1（bag_dp|counter）
         dct = {2, 3, 5, 6, 7, 10, 11, 13, 14, 15, 17, 19, 21, 22, 23, 26, 29, 30}
         # 集合为质数因子幂次均为 1
         mod = 10 ** 9 + 7

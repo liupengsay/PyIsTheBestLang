@@ -1,46 +1,46 @@
 """
 
 Algorithm：sorted_list
-Function：确定最优选择，通常可以SortedList用于维护和查询sorted_list信息
+Function：range_query|binary_search
 
 
 ====================================LeetCode====================================
-295（https://leetcode.com/problems/find-median-from-data-stream/）一个SortedList即可
-2426（https://leetcode.com/problems/number-of-pairs-satisfying-inequality/）根据不等式变换和sorted_listbinary_search
-2179（https://leetcode.com/problems/count-good-triplets-in-an-array/）维护区间范围内的个数
-2141（https://leetcode.com/problems/maximum-running-time-of-n-computers/）greedy选择最大的 N 个电池作为基底，然后binary_search确定在其余电池的|持下可以运行的最长时间
-2102（https://leetcode.com/problems/sequentially-ordinal-rank-tracker/）sorted_list维护优先级姓名实时查询
-2519（https://leetcode.com/problems/count-the-number-of-k-big-indices/）sorted_list维护数量
-1912（https://leetcode.com/problems/design-movie-rental-system/）典型SortedList应用
-1825（https://leetcode.com/problems/finding-mk-average/）SortedList与deque应用
-2250（https://leetcode.com/problems/count-number-of-rectangles-containing-each-point/）offline_query，pointersortingbinary_search
-2426（https://leetcode.com/problems/number-of-pairs-satisfying-inequality/）根据不等式变换和sorted_listbinary_search
+295（https://leetcode.com/problems/find-median-from-data-stream/）sorted_list
+2426（https://leetcode.com/problems/number-of-pairs-satisfying-inequality/）math|sorted_list|binary_search
+2179（https://leetcode.com/problems/count-good-triplets-in-an-array/）sorted_list|binary_search
+2141（https://leetcode.com/problems/maximum-running-time-of-n-computers/）greedy|binary_search|implemention
+2102（https://leetcode.com/problems/sequentially-ordinal-rank-tracker/）sorted_list
+2519（https://leetcode.com/problems/count-the-number-of-k-big-indices/）sorted_list
+1912（https://leetcode.com/problems/design-movie-rental-system/）sorted_list|classical
+1825（https://leetcode.com/problems/finding-mk-average/）sorted_list|deque
+2250（https://leetcode.com/problems/count-number-of-rectangles-containing-each-point/）offline_query|pointer|sorting|binary_search
+2426（https://leetcode.com/problems/number-of-pairs-satisfying-inequality/）math|sorted_list|binary_search
 
 =====================================LuoGu======================================
-7333（https://www.luogu.com.cn/problem/P7333）sorting预处理后，动态更新sorted_list查询，注意是circular_array|
-7391（https://www.luogu.com.cn/problem/P7391）sorted_listgreedyimplemention，延迟替换，类似课程表3
-7910（https://www.luogu.com.cn/problem/P7910）sorted_list维护
-4375（https://www.luogu.com.cn/problem/P4375）bubble_sort，sorted_list维护
-1908（https://www.luogu.com.cn/problem/P1908）问题求reverse_order_pair|，可以merge_sort
-1966（https://www.luogu.com.cn/problem/P1966）reverse_order_pair|greedy题目
-2161（https://www.luogu.com.cn/problem/P2161）range_merge_to_disjoint与删除处理
-1637（https://www.luogu.com.cn/problem/P1637）典型STL应用题，prefix_suffix大小值counter
-2234（https://www.luogu.com.cn/problem/P2234）典型STL应用题
-2804（https://www.luogu.com.cn/problem/P2804）prefix_sum| STL 平均值大于 m 的连续子数组个数
-3608（https://www.luogu.com.cn/problem/P3608）典型STL应用题
-5076（https://www.luogu.com.cn/problem/P5076）sorted_list与sorted_list名次implemention
-5149（https://www.luogu.com.cn/problem/P5149）reverse_order_pair| bisect 实现
-5459（https://www.luogu.com.cn/problem/P5459）prefix_sum与sorted_listbinary_search
-6538（https://www.luogu.com.cn/problem/P6538）典型STL维护greedy
-7912（https://www.luogu.com.cn/problem/P7912） STL 应用implemention题
-8667（https://www.luogu.com.cn/problem/P8667）典型STL应用题
+7333（https://www.luogu.com.cn/problem/P7333）sorting|sorted_list|circular_array|range_query
+7391（https://www.luogu.com.cn/problem/P7391）sorted_list|greedy|implemention|lazy_heapq
+7910（https://www.luogu.com.cn/problem/P7910）sorted_list
+4375（https://www.luogu.com.cn/problem/P4375）bubble_sort|sorted_list
+1908（https://www.luogu.com.cn/problem/P1908）reverse_order_pair|merge_sort
+1966（https://www.luogu.com.cn/problem/P1966）reverse_order_pair|greedy
+2161（https://www.luogu.com.cn/problem/P2161）range_merge_to_disjoint
+1637（https://www.luogu.com.cn/problem/P1637）sorted_list|prefix_suffix|counter
+2234（https://www.luogu.com.cn/problem/P2234）sorted_list
+2804（https://www.luogu.com.cn/problem/P2804）prefix_sum|sorted_list
+3608（https://www.luogu.com.cn/problem/P3608）sorted_list
+5076（https://www.luogu.com.cn/problem/P5076）sorted_list|implemention
+5149（https://www.luogu.com.cn/problem/P5149）reverse_order_pair|bisect
+5459（https://www.luogu.com.cn/problem/P5459）prefix_sum|sorted_list|binary_search
+6538（https://www.luogu.com.cn/problem/P6538）sorted_list|greedy
+7912（https://www.luogu.com.cn/problem/P7912）sorted_list|implemention
+8667（https://www.luogu.com.cn/problem/P8667）sorted_list
 
 ===================================CodeForces===================================
-459D（https://codeforces.com/problemset/problem/459/D）sorted_list大小counter查找
-61E（https://codeforces.com/problemset/problem/61/E）典型应用场景，prefix_suffix大于小于值counter
-1354D（https://codeforces.com/problemset/problem/1354/D）sorted_list的维护与查询
-1005E2（https://codeforces.com/contest/1005/problem/E2）特定median的连续子数组个数，inclusion_exclusion|prefix_sumsorted_listbinary_search
-1619E（https://codeforces.com/contest/1619/problem/E）MEXgreedy
+459D（https://codeforces.com/problemset/problem/459/D）sorted_list|counter
+61E（https://codeforces.com/problemset/problem/61/E）sorted_list|prefix_suffix|counter
+1354D（https://codeforces.com/problemset/problem/1354/D）sorted_list
+1005E2（https://codeforces.com/contest/1005/problem/E2）median|inclusion_exclusion|prefix_sum|sorted_list|binary_search
+1619E（https://codeforces.com/contest/1619/problem/E）mex|greedy
 
 """
 import bisect
@@ -176,7 +176,7 @@ class Solution:
 
     @staticmethod
     def lg_p1637(ac=FastIO()):
-        # 典型STL应用题，prefix_suffix大小值counter
+        # sorted_list，prefix_suffix大小值counter
         n = ac.read_int()
         nums = ac.read_list_ints()
 
@@ -197,7 +197,7 @@ class Solution:
 
     @staticmethod
     def lg_p2234(ac=FastIO()):
-        # 典型STL应用题
+        # sorted_list
         n = ac.read_int()
         ans = 0
         lst = LocalSortedList()

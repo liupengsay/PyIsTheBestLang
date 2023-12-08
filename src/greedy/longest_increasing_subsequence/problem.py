@@ -21,7 +21,7 @@ dilworth定理：
 1691（https://leetcode.com/problems/maximum-height-by-stacking-cuboids/submissions/）三维偏序LIS问题
 1713（https://leetcode.com/problems/minimum-operations-to-make-a-subsequence/）LCS问题转换为LIS
 1940（https://leetcode.com/problems/longest-common-subsequence-between-sorted-arrays/）LCS问题转为LIS问题
-3662（https://www.acwing.com/problem/content/description/3665/）所有长度的严格上升子序列的最大子序列和，离散化树状数组与liner_dp，也可线段树
+3662（https://www.acwing.com/problem/content/description/3665/）所有长度的严格上升子序列的最大子序列和，discretizationtree_array|与liner_dp，也可segment_tree|
 2826（https://leetcode.com/problems/sorting-three-groups/）转换为求最长不降子序列
 1964（https://leetcode.com/problems/find-the-longest-valid-obstacle-course-at-each-position/）LIS求以每个位置结尾的最长不降子序列长度
 2945（https://leetcode.com/problems/find-maximum-non-decreasing-array-length/description/）linear dp|deque|greedy|prefix sum
@@ -34,7 +34,7 @@ dilworth定理：
 1439（https://www.luogu.com.cn/problem/P1439）greedy|binary_search最长单调递增子序列的长度
 1091（https://www.luogu.com.cn/problem/P1091）可以往前以及往后最长单调子序列
 1233（https://www.luogu.com.cn/problem/P1233）按照一个维度sorting后另一个维度的，最长严格递增子序列的长度
-2782（https://www.luogu.com.cn/problem/P2782）按照一个维度sorting后另一个维度的，最长严格递增子序列的长度（也可以考虑线段树求区间最大值）
+2782（https://www.luogu.com.cn/problem/P2782）按照一个维度sorting后另一个维度的，最长严格递增子序列的长度（也可以考虑segment_tree|求区间最大值）
 3902（https://www.luogu.com.cn/problem/P3902）最长严格上升子序列
 6403（https://www.luogu.com.cn/problem/P6403）问题转化为最长不降子序列
 5939（https://www.luogu.com.cn/problem/P5939）旋转后转换为 LIS 问题
@@ -292,7 +292,7 @@ class Solution:
 
     @staticmethod
     def ac_3662_1(ac=FastIO()):
-        # 所有长度的严格上升子序列的最大子序列和，离散化树状数组与liner_dp，也可线段树
+        # 所有长度的严格上升子序列的最大子序列和，discretizationtree_array|与liner_dp，也可segment_tree|
         ac.read_int()
         nums = ac.read_list_ints()
         ind = {num: i for i, num in enumerate(sorted(list(set(nums))))}
@@ -309,7 +309,7 @@ class Solution:
 
     @staticmethod
     def ac_3662_2(ac=FastIO()):
-        # 所有长度的严格上升子序列的最大子序列和，离散化树状数组与liner_dp，也可线段树
+        # 所有长度的严格上升子序列的最大子序列和，discretizationtree_array|与liner_dp，也可segment_tree|
         ac.read_int()
         nums = ac.read_list_ints()
         ind = {num: i for i, num in enumerate(sorted(list(set(nums))))}

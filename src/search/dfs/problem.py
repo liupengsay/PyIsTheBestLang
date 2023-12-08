@@ -1,6 +1,6 @@
 """
 
-Algorithm：深度优先搜索、染色法、brute_forceback_track、欧拉序、dfs序
+Algorithm：深度优先搜索、染色法、brute_forceback_track、欧拉序、dfs_order|
 Function：常与back_trackbrute_force结合，比较的还有DFS序
 
 
@@ -10,12 +10,12 @@ Function：常与back_trackbrute_force结合，比较的还有DFS序
 2581（https://leetcode.com/contest/biweekly-contest-99/problems/count-number-of-possible-root-nodes/）dfs_order|差分counter
 1059（https://leetcode.com/problems/all-paths-from-source-lead-to-destination/）记忆化搜索DFS深搜且back_track
 1718（https://leetcode.com/problems/construct-the-lexicographically-largest-valid-sequence/）back_track
-2322（https://leetcode.com/problems/minimum-score-after-removals-on-a-tree/）dfs_orderdfs序brute_force
+2322（https://leetcode.com/problems/minimum-score-after-removals-on-a-tree/）dfs_orderdfs_order|brute_force
 1240（https://leetcode.com/problems/tiling-a-rectangle-with-the-fewest-squares/）DFSback_track与剪枝
 1239（https://leetcode.com/problems/maximum-length-of-a-concatenated-string-with-unique-characters/）DFSback_track二进制brute_force
 1080（https://leetcode.com/problems/insufficient-nodes-in-root-to-leaf-paths/description/）dfs自上而下后又自下而上
 2056（https://leetcode.com/problems/number-of-valid-move-combinations-on-chessboard/description/）back_trackbrute_force
-2458（https://leetcode.com/contest/weekly-contest-317/problems/height-of-binary-tree-after-subtree-removal-queries/）dfs序模板题目
+2458（https://leetcode.com/contest/weekly-contest-317/problems/height-of-binary-tree-after-subtree-removal-queries/）dfs_order|模板题目
 
 =====================================LuoGu======================================
 2383（https://www.luogu.com.cn/problem/P2383）搜索木棍拼接组成正方形
@@ -45,10 +45,10 @@ Function：常与back_trackbrute_force结合，比较的还有DFS序
 
 
 ===================================CodeForces===================================
-570D（https://codeforces.com/contest/570/problem/D）dfs序与binary_search，也可以offline_query
+570D（https://codeforces.com/contest/570/problem/D）dfs_order|与binary_search，也可以offline_query
 208E（https://codeforces.com/contest/208/problem/E）dfs_order|LCA|binary_searchcounter
-1006E（https://codeforces.com/contest/1006/problem/E）dfs序模板题
-1702G2（https://codeforces.com/contest/1702/problem/G2）dfs序与lca组合判断是否为简单路径集合
+1006E（https://codeforces.com/contest/1006/problem/E）dfs_order|模板题
+1702G2（https://codeforces.com/contest/1702/problem/G2）dfs_order|与lca组合判断是否为简单路径集合
 1899G（https://codeforces.com/contest/1899/problem/G）dfs with tolerance and exclusion by PointAddRangeSum
 
 ====================================AtCoder=====================================
@@ -129,7 +129,7 @@ class Solution:
 
     @staticmethod
     def lc_100041(n: int, edges: List[List[int]]) -> List[int]:
-        # 迭代法实现树形换根DP，或者一遍DFS或者dfs序|差分
+        # 迭代法实现树形换根DP，或者一遍DFS或者dfs_order||差分
         dct = [[] for _ in range(n)]
         for i, j in edges:
             dct[i].append(j)
@@ -154,7 +154,7 @@ class Solution:
 
     @staticmethod
     def cf_1006e(ac=FastIO()):
-        # dfs序模板题
+        # dfs_order|模板题
         n, q = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         p = ac.read_list_ints_minus_one()
@@ -451,7 +451,7 @@ class Solution:
 
     @staticmethod
     def lc_2322(nums: List[int], edges: List[List[int]]) -> int:
-        # dfs_orderdfs序brute_force
+        # dfs_orderdfs_order|brute_force
         n = len(nums)
         dct = [[] for _ in range(n)]
         for i, j in edges:
@@ -499,7 +499,7 @@ class Solution:
 
     @staticmethod
     def lc_2458(root: Optional[TreeNode], queries: List[int]) -> List[int]:
-        # dfs序模板题目
+        # dfs_order|模板题目
 
         def dfs(node):
             nonlocal n
@@ -566,7 +566,7 @@ class Solution:
 
     @staticmethod
     def cf_219d(ac=FastIO()):
-        # 迭代法实现树形换根DP，或者一遍DFS或者dfs序|差分
+        # 迭代法实现树形换根DP，或者一遍DFS或者dfs_order||差分
         n = ac.read_int()
         edges = [ac.read_list_ints_minus_one() for _ in range(n - 1)]
 
@@ -598,7 +598,7 @@ class Solution:
 
     @staticmethod
     def cf_570d_1(ac=FastIO()):
-        # dfs序与binary_searchcounter统计（超时）
+        # dfs_order|与binary_searchcounter统计（超时）
         n, m = ac.read_list_ints()
         parent = ac.read_list_ints()
         edge = [[] for _ in range(n)]
@@ -625,7 +625,7 @@ class Solution:
         # 高度与深搜区间
         order = 0
         ceil = 0
-        # 存储字符对应的高度以及dfs序
+        # 存储字符对应的高度以及dfs_order|
         dct = []
         interval = [[] for _ in range(n)]
         dfs(0, 1)

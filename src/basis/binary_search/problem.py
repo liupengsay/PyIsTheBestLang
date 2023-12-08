@@ -555,7 +555,7 @@ class Solution:
 
     @staticmethod
     def abc_56d(ac=FastIO()):
-        # binary_search，用背包DPcheck
+        # binary_search，用bag_dp|check
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
         nums.sort()

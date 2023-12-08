@@ -1,9 +1,9 @@
 """
-Algorithm：链表、两个链表表示的整数相|、链表表示的整数与整数相乘
+Algorithm：list_node|linked_list
 Function：
 
 ====================================LeetCode====================================
-6914（https://leetcode.com/contest/weekly-contest-358/problems/double-a-number-represented-as-a-linked-list/）链表形式的数字与整数相乘
+6914（https://leetcode.com/contest/weekly-contest-358/problems/double-a-number-represented-as-a-linked-list/）linked_list
 
 """
 from typing import Optional
@@ -17,7 +17,7 @@ class Solution:
 
     @staticmethod
     def lc_6914_1(head: Optional[ListNode]) -> Optional[ListNode]:
-        # 链表与整数相乘
+        # linked_list|与整数相乘
         lno = ListNodeOperation()
         lst = lno.node_to_lst(head)[::-1]
 

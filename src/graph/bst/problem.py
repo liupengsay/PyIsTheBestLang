@@ -37,7 +37,7 @@ class Solution:
     @staticmethod
     def lg_p2171_2(ac=FastIO()):
 
-        # 模板: bst 链表与二叉树implemention插入 O(nlogn)
+        # 模板: bst linked_list|与二叉树implemention插入 O(nlogn)
         @ac.bootstrap
         def dfs(rt):
             if ls[rt]:
@@ -50,7 +50,7 @@ class Solution:
         n = ac.read_int()
         m = n + 10
 
-        # sorting后离散化
+        # sorting后discretization
         a = [0] + ac.read_list_ints()
         b = a[:]
         a.sort()

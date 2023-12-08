@@ -21,7 +21,7 @@ Function：用来处理图论相关的联通问题，通常结合逆向思考、
 1970（https://leetcode.com/problems/last-day-where-you-can-still-cross/）reverse_thinkingunion_find
 1998（https://leetcode.com/problems/gcd-sort-of-an-array/）union_find|质factorization|
 2158（https://leetcode.com/problems/amount-of-new-area-painted-each-day/）区间union_find
-2471（https://leetcode.com/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/description/）离散化permutation_ring|
+2471（https://leetcode.com/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/description/）discretizationpermutation_ring|
 945（https://leetcode.com/problems/minimum-increment-to-make-array-unique/description/）可向右合并的区间union_find，正解为greedy
 947（https://leetcode.com/contest/weekly-contest-112/problems/most-stones-removed-with-same-row-or-column/）brain_teaserunion_find
 
@@ -51,7 +51,7 @@ Function：用来处理图论相关的联通问题，通常结合逆向思考、
 8637（https://www.luogu.com.cn/problem/P8637）union_findpermutation_ring|
 8686（https://www.luogu.com.cn/problem/P8686）union_find灵活应用
 8785（https://www.luogu.com.cn/problem/P8785）根据边界union_find构建counter
-8787（https://www.luogu.com.cn/problem/P8787）greedy二叉heapqimplemention与union_find灵活应用
+8787（https://www.luogu.com.cn/problem/P8787）greedyheapq|implemention与union_find灵活应用
 8881（https://www.luogu.com.cn/problem/P8881）brain_teaser，union_find判断所属连通分量是否有环
 
 ===================================CodeForces===================================
@@ -583,7 +583,7 @@ class Solution:
         n = ac.read_int()
         nums = [ac.read_int() for _ in range(n)]
         lst = sorted(nums)
-        # 离散化
+        # discretization
         ind = {num: i for i, num in enumerate(lst)}
         uf = UnionFind(n)
         x = lst[0]
@@ -711,7 +711,7 @@ class Solution:
     def lc_2612(n: int, p: int, banned: List[int], k: int) -> List[int]:
 
         def find_range_merge_to_disjoint(x):
-            # union_find父节点表示下一个为访问的点类似链表
+            # union_find父节点表示下一个为访问的点类似linked_list|
             tmp = []
             while x != fa[x]:
                 tmp.append(x)
@@ -796,7 +796,7 @@ class Solution:
 
     @staticmethod
     def lg_p8787(ac=FastIO()):
-        # greedy二叉heapqimplemention与union_find灵活应用
+        # greedyheapq|implemention与union_find灵活应用
         n = ac.read_int()
         nums = ac.read_list_ints()
         stack = [[-nums[i], -i] for i in range(n)]
@@ -1015,7 +1015,7 @@ class Solution:
 
     @staticmethod
     def lc_2471(root: Optional[TreeNode]) -> int:
-        # 离散化permutation_ring|
+        # discretizationpermutation_ring|
 
         def check():
             nonlocal ans

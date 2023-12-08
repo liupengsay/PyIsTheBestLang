@@ -11,7 +11,7 @@ Function：二进制数字表示转移状态，相应的转移方程，通常可
 2172（https://leetcode.com/problems/maximum-and-sum-of-array/）bit_operation和state_compression转移，三进制状压DP（天平就是三进制）
 1255（https://leetcode.com/problems/maximum-score-words-formed-by-letters/）状压DP
 2403（https://leetcode.com/problems/minimum-time-to-kill-all-monsters/）状压DP
-1681（https://leetcode.com/problems/minimum-incompatibility/）state_compression分组DP，state_compression和组合数选取结合
+1681（https://leetcode.com/problems/minimum-incompatibility/）state_compressiongroup_bag_dp，state_compression和组合数选取结合
 1125（https://leetcode.com/problems/smallest-sufficient-team/）状压DP
 1467（https://leetcode.com/problems/probability-of-a-two-boxes-having-the-same-number-of-distinct-balls/）记忆化搜索与组合mathcounter
 1531（https://leetcode.com/problems/string-compression-ii/submissions/）liner_dpimplemention
