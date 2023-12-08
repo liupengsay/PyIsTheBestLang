@@ -1,6 +1,6 @@
 """
 Algorithm：date
-Function：date|year|week|month|day|hour|second
+Description：date|year|week|month|day|hour|second
 
 
 =====================================LuoGu======================================

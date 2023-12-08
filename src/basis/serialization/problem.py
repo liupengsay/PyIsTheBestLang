@@ -1,6 +1,6 @@
 """
 Algorithm：serialization|deserialization
-Function：2-tree|n-tree|tree_hash|tree_to_str|tree_serialization|tree_deserialization
+Description：2-tree|n-tree|tree_hash|tree_to_str|tree_serialization|tree_deserialization
 
 ====================================LeetCode====================================
 428（https://leetcode.com/problems/serialize-and-deserialize-n-ary-tree/）n-tree|tree_serialization

@@ -1,6 +1,6 @@
 """
 Algorithm：数论、欧拉筛、线性筛、素数、欧拉函数、因子分解、素因子分解、进制转换、factorization|
-Function：有时候数位DP类型题目可以N进制来求取，质factorization|、factorization|、素数筛、线性筛、欧拉函数、pollard_rho、Meissel–Lehmer 算法（范围内素数个数）
+Description：有时候digital_dp类型题目可以N进制来求取，质factorization|、factorization|、素数筛、线性筛、欧拉函数、pollard_rho、Meissel–Lehmer 算法（范围内素数个数）
 
 ====================================LeetCode====================================
 2183（https://leetcode.com/problems/count-array-pairs-divisible-by-k/description/）可以所有因子遍历brute_forcecounter解决，正解为按照 k 的最大公因数分组

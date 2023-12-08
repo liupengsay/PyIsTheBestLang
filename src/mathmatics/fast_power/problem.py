@@ -1,6 +1,6 @@
 """
 Algorithm：fast_power|、矩阵fast_power|DP、乘法逆元
-Function：高效整数的幂次方mod|
+Description：高效整数的幂次方mod|
 
 ====================================LeetCode====================================
 450（https://leetcode.com/problems/number-of-distinct-binary-strings-after-applying-operations/）brain_teaserfast_power|
@@ -25,7 +25,7 @@ Function：高效整数的幂次方mod|
 2613（https://www.luogu.com.cn/problem/P2613）乘法逆元
 3758（https://www.luogu.com.cn/problem/P3758）矩阵 DP fast_power|优化
 5789（https://www.luogu.com.cn/problem/P5789）矩阵 DP fast_power|优化
-5343（https://www.luogu.com.cn/problem/P5343）线性 DP 矩阵幂|速
+5343（https://www.luogu.com.cn/problem/P5343）linear_dp 矩阵幂|速
 8557（https://www.luogu.com.cn/problem/P8557）brain_teaserfast_power|counter
 8624（https://www.luogu.com.cn/problem/P8624）矩阵 DP 与fast_power|
 
@@ -209,7 +209,7 @@ class Solution:
 
     @staticmethod
     def lg_p5343(ac=FastIO()):
-        # 线性 DP 矩阵幂|速
+        # linear_dp 矩阵幂|速
         mod = 10 ** 9 + 7
         n = ac.read_int()
         ac.read_int()

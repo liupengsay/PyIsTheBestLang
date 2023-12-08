@@ -1,6 +1,6 @@
 """
 Algorithm：speed_up|performance
-Function：some skills or tricks for better performance
+Description：some skills or tricks for better performance
 
 
 =====================================LuoGu======================================

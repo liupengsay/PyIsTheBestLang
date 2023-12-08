@@ -1,43 +1,43 @@
 """
-Algorithm：区间DP
-Function：prefix_sum优化区间DP（需要在状态转移的时候更新代价距离）、预处理区间DP（需要预处理一个DP再最终DP）
+Algorithm：interval_dp
+Description：prefix_sum|interval_dp|preprocess_dp|memory_search
 
 ====================================LeetCode====================================
-375（https://leetcode.com/problems/guess-number-higher-or-lower-ii/）区间DP
+375（https://leetcode.com/problems/guess-number-higher-or-lower-ii/）interval_dp
 
-1039（https://leetcode.com/problems/minimum-score-triangulation-of-polygon/）circular_array|区间 DP
-2472（https://leetcode.com/problems/maximum-number-of-non-overlapping-palindrome-substrings/）预处理线性palindrome_substring DP 优化外|结果线性 DP 也可以马拉车回文串获取回文信息
-2430（https://leetcode.com/problems/maximum-deletions-on-a-string/）最长公共前缀DP|liner_dp
-1547（https://leetcode.com/problems/minimum-cost-to-cut-a-stick/）区间DPimplemention
-1278（https://leetcode.com/problems/palindrome-partitioning-iii/）预处理双重区间DP
-1690（https://leetcode.com/problems/stone-game-vii/description/）区间DP
-1312（https://leetcode.com/problems/minimum-insertion-steps-to-make-a-string-palindrome/）区间DP，最长回文子序列
+1039（https://leetcode.com/problems/minimum-score-triangulation-of-polygon/）circular_array|interval_dp
+2472（https://leetcode.com/problems/maximum-number-of-non-overlapping-palindrome-substrings/）palindrome_substring|linear_dp|manacher
+2430（https://leetcode.com/problems/maximum-deletions-on-a-string/）lcp|liner_dp
+1547（https://leetcode.com/problems/minimum-cost-to-cut-a-stick/）interval_dp|implemention
+1278（https://leetcode.com/problems/palindrome-partitioning-iii/）preprocess_dp|interval_dp
+1690（https://leetcode.com/problems/stone-game-vii/description/）interval_dp
+1312（https://leetcode.com/problems/minimum-insertion-steps-to-make-a-string-palindrome/）interval_dp|longest_palindrome_subsequence
 
 =====================================LuoGu======================================
-1521（https://www.luogu.com.cn/problem/P1521）merge_sort移动次数，也可以倍增的tree_array|
-1775（https://www.luogu.com.cn/problem/P1775）典型区间DP和prefix_sum预处理
-2426（https://www.luogu.com.cn/problem/P2426）典型区间DP
-2690（https://www.luogu.com.cn/problem/P2690）区间DP记忆化搜索implemention
-1435（https://www.luogu.com.cn/problem/P1435）典型区间DP求最长不连续回文子序列
-1388（https://www.luogu.com.cn/problem/P1388）back_trackbrute_force符号组合，再区间DP最大值求解
-1103（https://www.luogu.com.cn/problem/P1103）三维DP
-2858（https://www.luogu.com.cn/problem/P2858）典型区间DP
-1880（https://www.luogu.com.cn/problem/P1880）将数组复制成两遍区间DP
-3205（https://www.luogu.com.cn/problem/P3205）区间DP滚动数组
-1040（https://www.luogu.com.cn/problem/P1040）区间DP与路径还原
-1430（https://www.luogu.com.cn/problem/P1430）区间DP|前缀数组优化
-2308（https://www.luogu.com.cn/problem/P2308）区间DP，并recursion方式反解括号添|方式以及每一步的和
-2734（https://www.luogu.com.cn/problem/P2734）prefix_sum|区间DP
-3004（https://www.luogu.com.cn/problem/P3004）简单区间 DP 
-3205（https://www.luogu.com.cn/problem/P3205）区间 DP 滚动数组优化
-4170（https://www.luogu.com.cn/problem/P4170）区间 DP 注意转移方程
+1521（https://www.luogu.com.cn/problem/P1521）merge_sort|multiplication_method|tree_array
+1775（https://www.luogu.com.cn/problem/P1775）classical|interval_dp|prefix_sum
+2426（https://www.luogu.com.cn/problem/P2426）classical|interval_dp
+2690（https://www.luogu.com.cn/problem/P2690）interval_dp|implemention|memory_search
+1435（https://www.luogu.com.cn/problem/P1435）classical|interval_dp|longest_non_sub_consequence_palindrome
+1388（https://www.luogu.com.cn/problem/P1388）back_track|brute_force|interval_dp
+1103（https://www.luogu.com.cn/problem/P1103）matrix_dp
+2858（https://www.luogu.com.cn/problem/P2858）classical|interval_dp
+1880（https://www.luogu.com.cn/problem/P1880）circular|interval_dp
+3205（https://www.luogu.com.cn/problem/P3205）interval_dp|rolling_update
+1040（https://www.luogu.com.cn/problem/P1040）interval_dp|specific_plan
+1430（https://www.luogu.com.cn/problem/P1430）interval_dp|prefix_sum
+2308（https://www.luogu.com.cn/problem/P2308）interval_dp|recursion
+2734（https://www.luogu.com.cn/problem/P2734）prefix_sum|interval_dp
+3004（https://www.luogu.com.cn/problem/P3004）interval_dp
+3205（https://www.luogu.com.cn/problem/P3205）interval_dp|rolling_update
+4170（https://www.luogu.com.cn/problem/P4170）interval_dp|math
 
 ===================================CodeForces===================================
-1509C（https://codeforces.com/problemset/problem/1509/C）转换为区间DP求解
-607B（https://codeforces.com/problemset/problem/607/B）区间DP，通过消除回文子序列删除整个数组的最少次数
+1509C（https://codeforces.com/problemset/problem/1509/C）interval_dp
+607B（https://codeforces.com/problemset/problem/607/B）interval_dp
 
 =====================================AcWing=====================================
-3996（https://www.acwing.com/problem/content/3999/）区间 DP 最长回文子序列变形
+3996（https://www.acwing.com/problem/content/3999/）interval_dp|longest_palindrome_subsequence
 
 """
 from functools import lru_cache
@@ -88,7 +88,7 @@ class Solution:
 
     @staticmethod
     def cf_1509c(n, nums):
-        # 数组区间DP转移求解
+        # 数组interval_dp|转移求解
         dp = [[inf] * n for _ in range(n)]
         for i in range(n - 1, -1, -1):
             dp[i][i] = 0
@@ -98,7 +98,7 @@ class Solution:
 
     @staticmethod
     def lc_1312(s: str) -> int:
-        # 区间DP，最长回文子序列
+        # interval_dp|，最长回文子序列
         n = len(s)
         dp = [[0] * n for _ in range(n)]
         for i in range(n - 1, -1, -1):
@@ -115,7 +115,7 @@ class Solution:
 
     @staticmethod
     def lc_1547(n: int, cuts: List[int]) -> int:
-        # 区间DPimplemention
+        # interval_dp|implemention
         cuts.sort()
         cuts.insert(0, 0)
         cuts.append(n)
@@ -128,7 +128,7 @@ class Solution:
 
     @staticmethod
     def lc_1690(stones: List[int]) -> int:
-        # 区间DP
+        # interval_dp|
         n = len(stones)
         pre = list(accumulate(stones, initial=0))
 
@@ -144,7 +144,7 @@ class Solution:
 
     @staticmethod
     def lc_2472(s: str, k: int) -> int:
-        # 预处理线性palindrome_substring DP 优化外|结果线性 DP 也可以马拉车回文串获取回文信息
+        # 预处理线性palindrome_substring DP 优化外|结果linear_dp 也可以马拉车回文串获取回文信息
         n = len(s)
         res = [[0] * (n + 1) for _ in range(n + 1)]
         for i in range(n - 1, -1, -1):
@@ -165,7 +165,7 @@ class Solution:
 
     @staticmethod
     def lg_p3205(ac=FastIO()):
-        # 区间DP滚动数组更新
+        # interval_dp|滚动数组更新
         n = ac.read_int()
         nums = ac.read_list_ints()
         mod = 19650827
@@ -195,7 +195,7 @@ class Solution:
 
     @staticmethod
     def lg_p1040(ac=FastIO()):
-        # 区间DP最小代价，并迭代还原前序遍历路径
+        # interval_dp|最小代价，并迭代还原前序遍历路径
         n = ac.read_int()
         nums = ac.read_list_ints()
 
@@ -207,7 +207,7 @@ class Solution:
             for j in range(i + 2, n):
                 dp[i][j] = max(dp[i][k - 1] * dp[k + 1][j] + dp[k][k] for k in range(i + 1, j))
 
-        # stackimplemention方案还原
+        # stackimplementionspecific_plan还原
         ans = []
         stack = [[0, n - 1]]
         while stack:
@@ -231,7 +231,7 @@ class Solution:
 
     @staticmethod
     def lg_p1430(ac=FastIO()):
-        # 区间DP|前缀数组优化
+        # interval_dp||前缀数组优化
         for _ in range(ac.read_int()):
             nums = ac.read_list_ints()
             n = nums.pop(0)
@@ -257,7 +257,7 @@ class Solution:
 
     @staticmethod
     def lg_p2308(ac=FastIO()):
-        # 区间DP，并recursion方式反解括号添|方式以及每一步的和
+        # interval_dp|，并recursion方式反解括号添|方式以及每一步的和
         n = ac.read_int()
         nums = ac.read_list_ints()
         pre = ac.accumulate(nums)
@@ -303,7 +303,7 @@ class Solution:
     @staticmethod
     def lg_p2734(ac=FastIO()):
 
-        # prefix_sum|区间 DP
+        # prefix_sum|interval_dp
 
         n = ac.read_int()
         nums = []
@@ -333,7 +333,7 @@ class Solution:
 
     @staticmethod
     def lg_p3004(ac=FastIO()):
-        # 简单区间 DP
+        # 简单interval_dp
         n = ac.read_int()
         nums = [ac.read_int() for _ in range(n)]
         dp = [[0] * n for _ in range(2)]
@@ -351,7 +351,7 @@ class Solution:
 
     @staticmethod
     def lg_p4170(ac=FastIO()):
-        # 区间 DP 注意转移方程
+        # interval_dp 注意转移方程
         s = ac.read_str()
         n = len(s)
         dp = [[inf] * n for _ in range(n)]
@@ -368,7 +368,7 @@ class Solution:
 
     @staticmethod
     def ac_3996(ac=FastIO()):
-        # 区间 DP 最长回文子序列变形
+        # interval_dp 最长回文子序列变形
         ac.read_int()
         nums = ac.read_list_ints()
         pre = []
@@ -390,7 +390,7 @@ class Solution:
 
     @staticmethod
     def lc_1278(s: str, k: int) -> int:
-        # 预处理双重区间DP
+        # 预处理双重interval_dp|
         n = len(s)
 
         cost = [[0] * n for _ in range(n)]

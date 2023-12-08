@@ -1,8 +1,8 @@
 """
 
 Algorithm：Floyd（多源最短路经算法）、可以处理有向图无向图以及正负权边、也可以检测负环
-Function：点到有向或者无向图里面其他点的最短路，也可以最长路，以及所有最长路最短路上经过的点（关键节点）
-方案： Floyd 就要记录 dp[i][j]对 应的 pre[i][j] = k; 而 Bellman-Ford 和 Dijkstra 一般记录 pre[v] = u
+Description：点到有向或者无向图里面其他点的最短路，也可以最长路，以及所有最长路最短路上经过的点（关键节点）
+specific_plan： Floyd 就要记录 dp[i][j]对 应的 pre[i][j] = k; 而 Bellman-Ford 和 Dijkstra 一般记录 pre[v] = u
 
 ====================================LeetCode====================================
 2642（https://leetcode.com/problems/design-graph-with-shortest-path-calculator/）Floyd动态更新最短路

@@ -1,7 +1,7 @@
 """
 
 Algorithm：LCA、倍增算法、树链剖分、树的质心、树的重心、离线LCA与树上差分
-Function：来求一棵树的最近公共祖先（LCA）也可以
+Description：来求一棵树的最近公共祖先（LCA）也可以
 
 ====================================LeetCode====================================
 1483（https://leetcode.com/problems/kth-ancestor-of-a-tree-node/）动态规划与二进制跳转维护祖先信息，类似sparse_table|的思想与tree_array|的思想，LCA应用题
@@ -28,7 +28,7 @@ Function：来求一棵树的最近公共祖先（LCA）也可以
 1296F（https://codeforces.com/contest/1296/problem/F）离线或者在线查询lcagreedyconstruction，正解可能为倍增
 
 ====================================AtCoder=====================================
-D - Transit Tree Path（https://atcoder.jp/contests/abc070/tasks/abc070_d）典型LCA查询运用题，也可离线实现
+D - Transit Tree Path（https://atcoder.jp/contests/abc070/tasks/abc070_d）classicalLCA查询运用题，也可离线实现
 
 =====================================AcWing=====================================
 4202（https://www.acwing.com/problem/content/4205/）bit_operation，也可包含关系建树，查询LCA距离

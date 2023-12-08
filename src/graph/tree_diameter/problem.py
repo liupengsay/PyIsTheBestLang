@@ -1,10 +1,10 @@
 """
 Algorithm：广度优先搜索、双端队列BFS、discretizationBFS、有边界的BFS、染色法、奇数环
-Function：在有向图与无向图扩散，多源BFS、双向BFS，0-1BFS（类似SPFA）双向BFS或者A-star启发式搜索
+Description：在有向图与无向图扩散，多源BFS、双向BFS，0-1BFS（类似SPFA）双向BFS或者A-star启发式搜索
 
 ====================================LeetCode====================================
 1036（https://leetcode.com/problems/escape-a-large-maze/）带边界的BFS和discretizationBFS两种解法
-2493（https://leetcode.com/problems/divide-nodes-into-the-maximum-number-of-groups/）利用union_find和广度优先搜索连通块分组并brute_force最佳方案，也就是染色法判断是否可以形成bipartite_graph
+2493（https://leetcode.com/problems/divide-nodes-into-the-maximum-number-of-groups/）利用union_find和广度优先搜索连通块分组并brute_force最佳specific_plan，也就是染色法判断是否可以形成bipartite_graph
 2290（https://leetcode.com/problems/minimum-obstacle-removal-to-reach-corner/）0-1 BFS优化最小代价
 1368（https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/）0-1 BFS优化最小代价
 2258（https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/）binary_search|双源BFSimplemention
@@ -69,7 +69,7 @@ Function：在有向图与无向图扩散，多源BFS、双向BFS，0-1BFS（类
 3818（https://www.luogu.com.cn/problem/P3818）队列 01BFS 状态广搜
 3855（https://www.luogu.com.cn/problem/P3855）定义四维状态的广度优先搜索
 3869（https://www.luogu.com.cn/problem/P3869）广搜|状压记录最少次数
-4554（https://www.luogu.com.cn/problem/P4554）典型 01BFS implemention
+4554（https://www.luogu.com.cn/problem/P4554）classical 01BFS implemention
 4667（https://www.luogu.com.cn/problem/P4667） 01BFS implemention
 5096（https://www.luogu.com.cn/problem/P5096）状压|广搜 BFS implemention
 5099（https://www.luogu.com.cn/problem/P5099）队列 01BFS 广搜implemention
@@ -94,7 +94,7 @@ E - Virus Tree 2（https://atcoder.jp/contests/abc133/tasks/abc133_e）BFS染色
 173（https://www.acwing.com/problem/content/175/）多源BFS模板题
 175（https://www.acwing.com/problem/content/177/）双端priority_queue BFS
 177（https://www.acwing.com/problem/content/179/）多源双向BFS
-4415（https://www.acwing.com/problem/content/description/4418）BFS染色法，判断有无奇数环，方案counter
+4415（https://www.acwing.com/problem/content/description/4418）BFS染色法，判断有无奇数环，specific_plancounter
 4481（https://www.acwing.com/problem/content/description/4484/）01BFS
 
 """

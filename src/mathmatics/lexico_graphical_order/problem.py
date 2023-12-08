@@ -1,6 +1,6 @@
 """
 Algorithm：lexicographical_order与lexicographical_order排名解析
-Function：lexicographical_order第K小和某个对象的lexicographical_orderrank、subset的lexicographical_order与解析、comb的lexicographical_order与解析、perm的lexicographical_order与解析
+Description：lexicographical_order第K小和某个对象的lexicographical_orderrank、subset的lexicographical_order与解析、comb的lexicographical_order与解析、perm的lexicographical_order与解析
 
 ====================================LeetCode====================================
 60（https://leetcode.com/problems/permutation-sequence/）全排列的第 k 个排列

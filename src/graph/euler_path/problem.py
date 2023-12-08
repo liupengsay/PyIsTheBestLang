@@ -1,7 +1,7 @@
 """
 
 Algorithm：欧拉路径（深度优先搜索里面的Hierholzer算法）
-Function：求解有向图与无向图中的欧拉路径，定义比较复杂且不统一，须根据实际情况作适配与调整
+Description：求解有向图与无向图中的欧拉路径，定义比较复杂且不统一，须根据实际情况作适配与调整
 有向图欧拉路径：图中恰好存在 1 个点出度比入度多 1（这个点即为起点） 1 个点出度比入度少 1（这个点即为终点）其余相等
 有向图欧拉回路：所有节点出度等于入度，起终点可以为任意点
 无向图欧拉路径：图中恰好存在 2 个点的度数是奇数，其余节点的度数为偶数，这两个度数为奇数的点即为欧拉路径的起点和终点 
@@ -26,7 +26,7 @@ Function：求解有向图与无向图中的欧拉路径，定义比较复杂且
 1341（https://www.luogu.com.cn/problem/P1341）经过每条确定无向边一次且lexicographical_order最小（需要邻接矩阵转换为无向图欧拉路径或者回路）
 
 =====================================AcWing=====================================
-4211（https://www.acwing.com/problem/content/4214/）有向图欧拉路径合法方案
+4211（https://www.acwing.com/problem/content/4214/）有向图欧拉路径合法specific_plan
 
 OI WiKi（https://oi-wiki.org/graph/euler/）
 https://www.jianshu.com/p/8394b8e5b878

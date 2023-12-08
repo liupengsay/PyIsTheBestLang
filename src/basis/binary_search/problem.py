@@ -1,7 +1,7 @@
 """
 
 Algorithm：binary_search
-Function：monotonicity is necessary for solution like these, which always work together with SortedList, or can also use Bisect, sometimes with high precision
+Description：monotonicity is necessary for solution like these, which always work together with SortedList, or can also use Bisect, sometimes with high precision
 ====================================LeetCode====================================
 4（https://leetcode.com/problems/median-of-two-sorted-arrays/）binary_search|median|two_arrays|same_direction_pointer
 81（https://leetcode.com/problems/search-in-rotated-sorted-array-ii/）binary_search|rotated_array|sorting
@@ -623,7 +623,7 @@ class Solution:
 
     @staticmethod
     def lg_p1281(ac=FastIO()):
-        # 典型binary_search并specific_plans
+        # classicalbinary_search并specific_plans
         m, k = ac.read_list_ints()
         nums = ac.read_list_ints()
 
@@ -657,7 +657,7 @@ class Solution:
 
     @staticmethod
     def lg_p1381(ac=FastIO()):
-        # 典型binary_search
+        # classicalbinary_search
         n = ac.read_int()
         dct = set([ac.read_str() for _ in range(n)])
         m = ac.read_int()
@@ -1002,7 +1002,7 @@ class Solution:
         def check2(n):
             return compute(n) <= k
 
-        # 的binary_search函数写法与出方案
+        # 的binary_search函数写法与出specific_plan
         ceil = BinarySearch().find_int_right(low, high, check1)
         if compute(ceil) != k:
             ac.st(-1)

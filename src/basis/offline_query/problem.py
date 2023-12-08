@@ -1,6 +1,6 @@
 """
 Algorithm：offline_query|sorting
-Function：with the help of pointer and sorting for offline query
+Description：with the help of pointer and sorting for offline query
 
 ====================================LeetCode====================================
 100110（https://leetcode.com/contest/weekly-contest-372/problems/find-building-where-alice-and-bob-can-meet/）offline_query|sorting

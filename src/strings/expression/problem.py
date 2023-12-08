@@ -1,7 +1,7 @@
 """
 
 Algorithm：中缀、后缀表达式、字符串、类似stack的表达式
-Function：xxx
+Description：xxx
 
 ====================================LeetCode====================================
 1597（https://leetcode.com/problems/build-binary-expression-tree-from-infix-expression/）

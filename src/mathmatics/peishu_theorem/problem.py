@@ -1,6 +1,6 @@
 """
 Algorithm：裴蜀定理
-Function：是一个关于最大公约数的定理可以推广到n个数，比如设a、b是不全为零的整数，则存在整数x、y, 使得ax+by=gcd(a,b)
+Description：是一个关于最大公约数的定理可以推广到n个数，比如设a、b是不全为零的整数，则存在整数x、y, 使得ax+by=gcd(a,b)
 
 ====================================LeetCode====================================
 1250（https://leetcode.com/problems/check-if-it-is-a-good-array/）所有元素的最大公约数是否为1

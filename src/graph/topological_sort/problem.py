@@ -1,7 +1,7 @@
 """
 
 Algorithm：topological_sorting、内向基环树（有向或者无向，连通块有k个节点以及k条边）、bfs序、拓扑序
-Function：有向图sorting，无向图在选定根节点的情况下也可以topological_sorting
+Description：有向图sorting，无向图在选定根节点的情况下也可以topological_sorting
 内向基环树介绍：https://leetcode.com/problems/maximum-employees-to-be-invited-to-a-meeting/solution/nei-xiang-ji-huan-shu-tuo-bu-pai-xu-fen-c1i1b/
 
 ====================================LeetCode====================================

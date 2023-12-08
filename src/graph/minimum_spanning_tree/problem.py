@@ -1,7 +1,7 @@
 """
 
 Algorithm：最小生成树（Kruskal算法和Prim算法两种）、严格次小生成树（LCAbrute_force替换边可得）、最短路生成树
-Function：无向图边权值和最小的生成树
+Description：无向图边权值和最小的生成树
 Prim在稠密图中比Kruskal优，在稀疏图中比Kruskal劣。Prim是以更新过的节点的连边找最小值，Kruskal是直接将边sorting。
 两者其实都是运用greedy的思路，Kruskal相对比较常用
 
@@ -30,7 +30,7 @@ Prim在稠密图中比Kruskal优，在稀疏图中比Kruskal劣。Prim是以更�
 4955（https://www.luogu.com.cn/problem/P4955）最小生成树，自定义中止条件
 6705（https://www.luogu.com.cn/problem/P6705）brute_force最小值，最小生成树，与自定义权值
 7775（https://www.luogu.com.cn/problem/P7775）bfs|最小生成树思想，求解
-2658（https://www.luogu.com.cn/problem/P2658）典型最小生成树
+2658（https://www.luogu.com.cn/problem/P2658）classical最小生成树
 4180（https://www.luogu.com.cn/problem/P4180）最小生成树与LCA倍增查询严格次小生成树
 1265（https://www.luogu.com.cn/problem/P1265）prim求解最小生成树
 1340（https://www.luogu.com.cn/problem/P1340）逆序union_find，维护最小生成树的边
@@ -51,7 +51,7 @@ Prim在稠密图中比Kruskal优，在稀疏图中比Kruskal劣。Prim是以更�
 D - Built?（https://atcoder.jp/contests/abc065/tasks/arc076_b）最小生成树变形问题
 
 =====================================AcWing=====================================
-3728（https://www.acwing.com/problem/content/3731/）prim最小生成树，适合稠密图场景，并获取具体连边方案，也可直接Kruskal（超时）
+3728（https://www.acwing.com/problem/content/3731/）prim最小生成树，适合稠密图场景，并获取具体连边specific_plan，也可直接Kruskal（超时）
 
 ================================LibraryChecker================================
 Manhattan MST（https://judge.yosupo.jp/problem/manhattanmst）
@@ -536,7 +536,7 @@ class Solution:
 
     @staticmethod
     def lg_p2658(ac=FastIO()):
-        # 典型最小生成树
+        # classical最小生成树
         m, n = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
         uf = UnionFind(m * n)
@@ -786,7 +786,7 @@ class Solution:
     @staticmethod
     def ac_3728(ac=FastIO()):
 
-        # prim最小生成树，适合稠密图场景，并获取具体连边方案，也可直接Kruskal（超时）
+        # prim最小生成树，适合稠密图场景，并获取具体连边specific_plan，也可直接Kruskal（超时）
 
         def dis(aa, bb):
             if aa == 0:

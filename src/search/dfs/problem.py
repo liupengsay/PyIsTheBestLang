@@ -1,14 +1,14 @@
 """
 
 Algorithm：深度优先搜索、染色法、brute_forceback_track、欧拉序、dfs_order|
-Function：常与back_trackbrute_force结合，比较的还有DFS序
+Description：常与back_trackbrute_force结合，比较的还有DFS序
 
 
 ====================================LeetCode====================================
 473（https://leetcode.com/problems/matchsticks-to-square/）搜索木棍拼接组成正方形
 301（https://leetcode.com/problems/remove-invalid-parentheses/）深搜back_track与剪枝
 2581（https://leetcode.com/contest/biweekly-contest-99/problems/count-number-of-possible-root-nodes/）dfs_order|差分counter
-1059（https://leetcode.com/problems/all-paths-from-source-lead-to-destination/）记忆化搜索DFS深搜且back_track
+1059（https://leetcode.com/problems/all-paths-from-source-lead-to-destination/）memory_searchDFS深搜且back_track
 1718（https://leetcode.com/problems/construct-the-lexicographically-largest-valid-sequence/）back_track
 2322（https://leetcode.com/problems/minimum-score-after-removals-on-a-tree/）dfs_orderdfs_order|brute_force
 1240（https://leetcode.com/problems/tiling-a-rectangle-with-the-fewest-squares/）DFSback_track与剪枝
@@ -37,7 +37,7 @@ Function：常与back_trackbrute_force结合，比较的还有DFS序
 5197（https://www.luogu.com.cn/problem/P5197）树形DPimplemention与染色法，利用父亲与自己的染色确定儿子们的染色
 5198（https://www.luogu.com.cn/problem/P5198）连通块的周长与面积
 5318（https://www.luogu.com.cn/problem/P5318）广搜topological_sorting与dfs_order生成与获取
-6691（https://www.luogu.com.cn/problem/P6691）染色法，bipartite_graph可行性方案counter与最大最小染色
+6691（https://www.luogu.com.cn/problem/P6691）染色法，bipartite_graph可行性specific_plancounter与最大最小染色
 7370（https://www.luogu.com.cn/problem/P7370）所有可能的祖先节点，注意特别情况没有任何祖先节点则自身可达
 1036（https://www.luogu.com.cn/problem/P1036）back_track剪枝
 8578（https://www.luogu.com.cn/problem/P8578）greedydfs_order

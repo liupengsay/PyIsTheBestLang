@@ -1,7 +1,7 @@
 """
 
 Algorithm：LCA、倍增算法、树链剖分、树的质心、树的重心、离线LCA与树上差分
-Function：来求一棵树的最近公共祖先（LCA）也可以
+Description：来求一棵树的最近公共祖先（LCA）也可以
 
 ====================================LeetCode====================================
 
@@ -167,7 +167,7 @@ class Solution:
 
     @staticmethod
     def abc_70d(ac=FastIO()):
-        # 典型LCA查询运用题，也可离线实现
+        # classicalLCA查询运用题，也可离线实现
         n = ac.read_int()
         edges = [[] for _ in range(n)]
         dct = [[] for _ in range(n)]

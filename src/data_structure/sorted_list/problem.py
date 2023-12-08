@@ -1,7 +1,7 @@
 """
 
 Algorithm：sorted_list
-Function：range_query|binary_search
+Description：range_query|binary_search
 
 
 ====================================LeetCode====================================
@@ -75,7 +75,7 @@ class Solution:
 
     @staticmethod
     def cf_61e(ac=FastIO()):
-        # 典型 i < j < k 但是 nums[i] > nums[j] > nums[k] 的组合数
+        # classical i < j < k 但是 nums[i] > nums[j] > nums[k] 的组合数
         n = ac.read_int()
         nums = ac.read_list_ints()
         pre = [0] * (n + 1)

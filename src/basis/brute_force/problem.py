@@ -1,6 +1,6 @@
 """
 Algorithm：brute_force|matrix_rotate|matrix_spiral|contribution_method
-Function：brute force according to the data range
+Description：brute force according to the data range
 
 ====================================LeetCode====================================
 670（https://leetcode.com/problems/maximum-swap/）greedy|brute_force
@@ -1077,7 +1077,7 @@ class Solution:
 
     @staticmethod
     def lc_1178(words: List[str], puzzles: List[str]) -> List[int]:
-        # 典型hashcounterbrute_force，bit_operation
+        # classicalhashcounterbrute_force，bit_operation
         dct = defaultdict(int)
         for word in words:
             cur = set(word)

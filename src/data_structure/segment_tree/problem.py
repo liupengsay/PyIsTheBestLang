@@ -1,6 +1,6 @@
 """
 Algorithm：segment_tree|segment_tree_binary_search
-Function：range_sum|range_min|range_add|range_change|range_max|dynamic_segment_tree|defaultdict
+Description：range_sum|range_min|range_add|range_change|range_max|dynamic_segment_tree|defaultdict
 
 ====================================LeetCode====================================
 218（https://leetcode.com/problems/the-skyline-problem/solution/by-liupengsay-isfo/）segment_tree|RangeChangeRangeMax

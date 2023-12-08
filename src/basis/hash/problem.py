@@ -1,6 +1,6 @@
 """
 Algorithm：hash|contribution_method|matrix_hash|tree_hash|string_hash|prefix_hash|suffix_hash|hash_crush
-Function：prefix_suffix|counter|index|prefix_sum
+Description：prefix_suffix|counter|index|prefix_sum
 
 ====================================LeetCode====================================
 2143（https://leetcode.com/problems/choose-numbers-from-two-arrays-in-range/）prefix_sum|hash|counter
@@ -47,7 +47,7 @@ class Solution:
 
     @staticmethod
     def lc_2143(nums1: List[int], nums2: List[int]) -> int:
-        # hashcounterimplemention线性 DP 转移
+        # hashcounterimplementionlinear_dp 转移
         n = len(nums1)
         mod = 10 ** 9 + 7
         pre = defaultdict(int)

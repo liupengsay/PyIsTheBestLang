@@ -1,6 +1,6 @@
 """
 Algorithm：sparse_table|multiplication_method|aggregation_property|sub_consequence
-Function：static_range|range_query|range_max|range_min|range_gcd|range_and|range_or|range_lcm
+Description：static_range|range_query|range_max|range_min|range_gcd|range_and|range_or|range_lcm
 
 ====================================LeetCode====================================
 1521（https://leetcode.com/problems/find-a-value-of-a-mysterious-function-closest-to-target/）bit_operation|sub_consequence

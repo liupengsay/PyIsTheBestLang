@@ -1,6 +1,6 @@
 """
 Algorithm：后缀数组
-Function：生成字符串的后缀sorting
+Description：生成字符串的后缀sorting
 
 ====================================LeetCode====================================
 1754（https://leetcode.com/problems/largest-range_merge_to_disjoint-of-two-strings/）

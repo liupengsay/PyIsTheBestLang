@@ -1,6 +1,6 @@
 """
 Algorithm：AC自动机
-Function：KMP|Trie的结合应用，用关键词建立字典树，再查询文本中关键词的出现次数
+Description：KMP|Trie的结合应用，用关键词建立字典树，再查询文本中关键词的出现次数
 
 ====================================LeetCode====================================
 面试题 17（https://leetcode.com/problems/multi-search-lcci/）AC自动机counter，也可直接字典树

@@ -1,6 +1,6 @@
 """
 Algorithm：divide_and_conquer|recursion|n-tree|pre_order|mid_order|post_order|iteration
-Function：recursion|iteration
+Description：recursion|iteration
 
 ====================================LeetCode====================================
 1545（https://leetcode.com/problems/find-kth-bit-in-nth-binary-string/）recursion|implemention

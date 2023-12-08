@@ -1,7 +1,7 @@
 """
 
 Algorithm：greedy、reverse_thinking、抽屉原理、pigeonhole、inclusion_exclusion、define_sort、思维、brain_teaser、construction
-Function：各种可证明不可证明的头脑风暴
+Description：各种可证明不可证明的头脑风暴
 
 ====================================LeetCode====================================
 134（https://leetcode.com/problems/gas-station/）greedy
@@ -34,7 +34,7 @@ Function：各种可证明不可证明的头脑风暴
 2856（https://leetcode.com/problems/minimum-array-length-after-pair-removals/）greedy只看最大值的影响
 858（https://leetcode.com/problems/mirror-reflection/description/）brain_teaserbrain_teaser|
 1927（https://leetcode.com/problems/sum-game/description/）博弈brain_teaser|classification_discussion
-2592（https://leetcode.com/problems/maximize-greatness-of-an-array/）典型greedysorting后two_pointers
+2592（https://leetcode.com/problems/maximize-greatness-of-an-array/）classicalgreedysorting后two_pointers
 1503（https://leetcode.com/problems/last-moment-before-all-ants-fall-out-of-a-plank/）brain_teaser题目，相撞不影响结果
 991（https://leetcode.com/problems/broken-calculator/）逆向greedy，偶数除2奇数|1
 2745（https://leetcode.com/problems/construct-the-longest-new-string/）brain_teasergreedybrain_teaser|
@@ -1122,7 +1122,7 @@ class Solution:
 
     @staticmethod
     def lc_2592(nums: List[int]) -> int:
-        # 典型greedysorting后two_pointers
+        # classicalgreedysorting后two_pointers
         n = len(nums)
         nums.sort()
         j = 0

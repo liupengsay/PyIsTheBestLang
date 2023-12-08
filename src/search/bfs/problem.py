@@ -1,6 +1,6 @@
 """
 Algorithm：广度优先搜索、双端队列BFS、discretizationBFS、有边界的BFS、染色法、奇数环
-Function：在有向图与无向图扩散，多源BFS、双向BFS，0-1BFS（类似SPFA）双向BFS或者A-star启发式搜索
+Description：在有向图与无向图扩散，多源BFS、双向BFS，0-1BFS（类似SPFA）双向BFS或者A-star启发式搜索
 
 ====================================LeetCode====================================
 
@@ -338,7 +338,7 @@ class Solution:
 
     @staticmethod
     def lc_2493(n: int, edges: List[List[int]]) -> int:
-        # 利用union_find和广度优先搜索连通块分组并brute_force最佳方案，也就是染色法判断是否可以形成bipartite_graph
+        # 利用union_find和广度优先搜索连通块分组并brute_force最佳specific_plan，也就是染色法判断是否可以形成bipartite_graph
         dct = [[] for _ in range(n)]
         uf = UnionFind(n)
         for i, j in edges:
@@ -1234,7 +1234,7 @@ class Solution:
 
     @staticmethod
     def lg_p4554(ac=FastIO()):
-        # 典型 01BFS implemention
+        # classical 01BFS implemention
         while True:
             lst = ac.read_list_ints()
             if lst == [0, 0]:
@@ -1745,7 +1745,7 @@ class Solution:
 
     @staticmethod
     def ac_4415(ac=FastIO()):
-        # BFS染色法，判断有无奇数环，方案counter
+        # BFS染色法，判断有无奇数环，specific_plancounter
         mod = 998244353
 
         def check():
@@ -1778,7 +1778,7 @@ class Solution:
                                     ac.st(0)
                                     return
                         stack = nex
-                    res = pow(2, cnt[0], mod) + pow(2, cnt[1], mod)  # 方案counter
+                    res = pow(2, cnt[0], mod) + pow(2, cnt[1], mod)  # specific_plancounter
                     ans *= res
                     ans %= mod
             ac.st(ans)

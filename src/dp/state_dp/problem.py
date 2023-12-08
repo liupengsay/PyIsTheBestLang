@@ -1,6 +1,6 @@
 """
-Algorithm：state_compressionDP、轮廓线DP、记忆化搜索DP、刷表法、填表法
-Function：二进制数字表示转移状态，相应的转移方程，通常可以先满足条件的子集，有时通过深搜back_trackbrute_force全部子集的办法比bit_operationbrute_force效率更高
+Algorithm：state_compressionDP、轮廓线DP、memory_searchDP、刷表法、fill_table
+Description：二进制数字表示转移状态，相应的转移方程，通常可以先满足条件的子集，有时通过深搜back_trackbrute_force全部子集的办法比bit_operationbrute_force效率更高
 
 ====================================LeetCode====================================
 465（https://leetcode.com/problems/optimal-account-balancing/）brute_force子集状压DP
@@ -13,18 +13,18 @@ Function：二进制数字表示转移状态，相应的转移方程，通常可
 2403（https://leetcode.com/problems/minimum-time-to-kill-all-monsters/）状压DP
 1681（https://leetcode.com/problems/minimum-incompatibility/）state_compressiongroup_bag_dp，state_compression和组合数选取结合
 1125（https://leetcode.com/problems/smallest-sufficient-team/）状压DP
-1467（https://leetcode.com/problems/probability-of-a-two-boxes-having-the-same-number-of-distinct-balls/）记忆化搜索与组合mathcounter
+1467（https://leetcode.com/problems/probability-of-a-two-boxes-having-the-same-number-of-distinct-balls/）memory_search与组合mathcounter
 1531（https://leetcode.com/problems/string-compression-ii/submissions/）liner_dpimplemention
 1595（https://leetcode.com/problems/minimum-cost-to-connect-two-groups-of-points/）状压DP，需要一点变形
 1655（https://leetcode.com/problems/distribute-repeating-integers/）状压 DP
 1879（https://leetcode.com/problems/minimum-xor-sum-of-two-arrays/）状压 DP
-2019（https://leetcode.com/problems/the-score-of-students-solving-math-expression/）记忆化DP，可以刷表法与填表法迭代实现
+2019（https://leetcode.com/problems/the-score-of-students-solving-math-expression/）记忆化DP，可以刷表法与fill_table迭代实现
 943（https://leetcode.com/problems/find-the-shortest-superstring/）字符串greedy最短长度拼接状压DP
 1434（https://leetcode.com/problems/number-of-ways-to-wear-different-hats-to-each-other/description/）状压DPreverse_thinking
 847（https://leetcode.com/problems/shortest-path-visiting-all-nodes/）最短路Floyd或者Dijkstra预处理最短路|状压DP
 2741（https://leetcode.com/problems/special-permutations/description/）状压DP
-2305（https://leetcode.com/problems/fair-distribution-of-cookies/description/）典型状压DPbrute_force子集
-980（https://leetcode.com/problems/unique-paths-iii/description/）典型状压DP或者back_track
+2305（https://leetcode.com/problems/fair-distribution-of-cookies/description/）classical状压DPbrute_force子集
+980（https://leetcode.com/problems/unique-paths-iii/description/）classical状压DP或者back_track
 2571（https://leetcode.com/problems/minimum-operations-to-reduce-an-integer-to-0/description/）brain_teaser|记忆化DP
 
 =====================================LuoGu======================================
@@ -37,10 +37,10 @@ Function：二进制数字表示转移状态，相应的转移方程，通常可
 1123（https://www.luogu.com.cn/problem/P1123）类似占座位的状压DP
 1433（https://www.luogu.com.cn/problem/P1433）状压DP
 1896（https://www.luogu.com.cn/problem/P1896）状压DP
-1556（https://www.luogu.com.cn/problem/P1556）state_compressionDP最短路方案数
+1556（https://www.luogu.com.cn/problem/P1556）state_compressionDP最短路specific_plan数
 3052（https://www.luogu.com.cn/problem/P3052）state_compression DP 二维优化
 5997（https://www.luogu.com.cn/problem/P5997）greedy背包与状压 DP 结合
-6883（https://www.luogu.com.cn/problem/P6883）典型状压 DP 
+6883（https://www.luogu.com.cn/problem/P6883）classical状压 DP 
 8687（https://www.luogu.com.cn/problem/P8687）状压 DP 结合背包 DP 思想
 8733（https://www.luogu.com.cn/problem/P8733）Floyd最短路并状压 DP
 
@@ -48,7 +48,7 @@ Function：二进制数字表示转移状态，相应的转移方程，通常可
 580D（https://codeforces.com/problemset/problem/580/D）state_compressionDP结合前后相邻的增益最优解
 165E（https://codeforces.com/problemset/problem/165/E）liner_dp，state_compressionbrute_force，类似子集思想求解可能存在的与为0的数对
 11D（https://codeforces.com/contest/11/problem/D）状压DP，无向图简单环counter
-1294F（https://codeforces.com/contest/1294/problem/F）典型树的直径应用题
+1294F（https://codeforces.com/contest/1294/problem/F）classical树的直径应用题
 
 =====================================AcWing=====================================
 3735（https://www.acwing.com/problem/content/3738/）reverse_order|状压DP与输出specific_plan
@@ -177,7 +177,7 @@ class Solution:
 
     @staticmethod
     def lc_1879_3(nums1: List[int], nums2: List[int]) -> int:
-        # 状压DP迭代写法，填表法
+        # 状压DP迭代写法，fill_table
         n = len(nums1)
         s = sum(nums1) + sum(nums2)
         dp = [s] * (1 << n)
@@ -337,7 +337,7 @@ class Solution:
 
     @staticmethod
     def lc_1434_2(hats: List[List[int]]) -> int:
-        # 状压DPreverse_thinking，填表法迭代实现
+        # 状压DPreverse_thinking，fill_table迭代实现
         mod = 10 ** 9 + 7
         n = len(hats)
         people = [[] for _ in range(40)]
@@ -586,7 +586,7 @@ class Solution:
 
     @staticmethod
     def lg_p6883(ac=FastIO()):
-        # 典型状压 DP
+        # classical状压 DP
         n, k = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(n)]
         dp = [inf] * (1 << n)
@@ -621,7 +621,7 @@ class Solution:
     @staticmethod
     def lc_1467(balls: List[int]) -> float:
 
-        # 记忆化搜索与组合mathcounter
+        # memory_search与组合mathcounter
 
         @lru_cache(None)
         def dfs(i, s, c1, c2):
@@ -690,7 +690,7 @@ class Solution:
 
     @staticmethod
     def lc_2019(s: str, answers: List[int]) -> int:
-        # 类似divide_and_conquer的思想记忆化搜索
+        # 类似divide_and_conquer的思想memory_search
         @lru_cache(None)
         def dfs(state):
             if len(state) == 1:

@@ -1,10 +1,10 @@
 """
 
 Algorithm：强连通分量、2-SAT、最大环、最小环
-Function：用来求解有向图的强连通分量，可以将一张图的每个强连通分量都缩成一个点，然后这张图会变成一个 DAG，可以topological_sorting以及更多其他操作
+Description：用来求解有向图的强连通分量，可以将一张图的每个强连通分量都缩成一个点，然后这张图会变成一个 DAG，可以topological_sorting以及更多其他操作
 定义：有向图 G 强连通是指 G 中任意两个结点连通，强连通分量（Strongly Connected Components，SCC）是极大的强连通子图
 距离：求一条路径，可以经过重复结点，要求经过的不同结点数量最多
-2-SAT：简单的说就是给出 n 个集合，每个集合有两个元素，已知若干个 <a,b>，表示 a 与 b 矛盾（其中 a 与 b 属于不同的集合）。然后从每个集合选择一个元素，判断能否一共选 n 个两两不矛盾的元素。显然可能有多种选择方案，一般题中只需要求出一种即可。
+2-SAT：简单的说就是给出 n 个集合，每个集合有两个元素，已知若干个 <a,b>，表示 a 与 b 矛盾（其中 a 与 b 属于不同的集合）。然后从每个集合选择一个元素，判断能否一共选 n 个两两不矛盾的元素。显然可能有多种选择specific_plan，一般题中只需要求出一种即可。
 
 ====================================LeetCode====================================
 2360（https://leetcode.com/problems/longest-cycle-in-a-graph/）求最长的环长度（有向图scc、内向基环树没有环套环，N个节点N条边，也可以topological_sorting）
@@ -142,7 +142,7 @@ class TwoSAT:
             #####################################################
             # 按照强连通缩点
             tarjan = Tarjan(edge)
-            # 方案赋予，先出现的确定值
+            # specific_plan赋予，先出现的确定值
             ans = [0] * m * n
             pre = set()
             for sc in tarjan.scc:
@@ -191,7 +191,7 @@ class TwoSAT:
                     return
                 pre.add(node // 2)
 
-        # 方案赋予，先出现的确定值
+        # specific_plan赋予，先出现的确定值
         ac.st("POSSIBLE")
         ans = [0] * n
         pre = set()
@@ -247,7 +247,7 @@ class TwoSAT:
                     return
                 pre.add(node // 2)
 
-        # 方案赋予，先出现的确定值
+        # specific_plan赋予，先出现的确定值
         ans = [0] * 2 * n
         pre = set()
         for sc in tarjan.scc:

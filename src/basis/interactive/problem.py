@@ -1,6 +1,6 @@
 """
 Algorithm：binary_search|interactive|game
-Function：
+Description：
 
 ====================================LeetCode====================================
 xx（xxx）xxxxxxxxxxxxxxxxxxxx

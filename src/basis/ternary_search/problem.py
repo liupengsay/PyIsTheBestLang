@@ -1,6 +1,6 @@
 """
 Algorithm：ternary_search|TriPartPackTriPart|gradient_descent|hill_climbing
-Function：used to find function extremum solutions with at most one peak or valley point in an interval
+Description：used to find function extremum solutions with at most one peak or valley point in an interval
 
 =====================================LuoGu======================================
 1515（https://leetcode.com/problems/best-position-for-a-service-centre/）tripartite_pack_tripartite|convex_function_minimum|gradient_descent|hill_climbing

@@ -1,36 +1,34 @@
 """
-Algorithm：数位DP
-Function：统计满足一定条件的自然数个数，也可以根据lexicographical_order大小特点统计一些特定字符串的个数，是一种counter常用的DP思想
+Algorithm：digital_dp
+Description：lexicographical_order|counter|high_to_low|low_to_high
 
 
 ====================================LeetCode====================================
-233（https://leetcode.com/problems/number-of-digit-one/）数字 1 的个数
-357（https://leetcode.com/problems/count-numbers-with-unique-digits/）排列组合也可用数位 DP 求解
-600（https://leetcode.com/problems/non-negative-integers-without-consecutive-ones/）不含连续 1 的非负整数
-902（https://leetcode.com/problems/numbers-at-most-n-given-digit-set/）限定字符情况下小于等于 n 的个数
-1012（https://leetcode.com/problems/numbers-with-repeated-digits/）inclusion_exclusion没有重复数字的个数
-1067（https://leetcode.com/problems/digit-count-in-range/）区间counter，右端点减去左端点，数位DP容斥模板题
-1397（https://leetcode.com/problems/find-all-good-strings/）数位DP思想implemention
-2376（https://leetcode.com/problems/count-special-integers/）小于 n 的特殊正整数个数
-2719（https://leetcode.com/problems/count-of-integers/）数位DP容斥模板题
-2801（https://leetcode.com/problems/count-stepping-numbers-in-range/）数位DP容斥模板题
-2827（https://leetcode.com/problems/number-of-beautiful-integers-in-the-range/）数位DP容斥模板题
-
-
-面试题 17（https://leetcode.com/problems/number-of-2s-in-range-lcci/）所有数位出现 2 的次数
+233（https://leetcode.com/problems/number-of-digit-one/）counter|digital_dp
+357（https://leetcode.com/problems/count-numbers-with-unique-digits/）comb|digital_dp
+600（https://leetcode.com/problems/non-negative-integers-without-consecutive-ones/）counter|digital_dp
+902（https://leetcode.com/problems/numbers-at-most-n-given-digit-set/）counter|digital_dp
+1012（https://leetcode.com/problems/numbers-with-repeated-digits/）inclusion_exclusion|counter|digital_dp
+1067（https://leetcode.com/problems/digit-count-in-range/）counter|digital_dp|inclusion_exclusion
+1397（https://leetcode.com/problems/find-all-good-strings/）digital_dp|implemention
+2376（https://leetcode.com/problems/count-special-integers/）counter|digital_dp
+2719（https://leetcode.com/problems/count-of-integers/）digital_dp|inclusion_exclusion
+2801（https://leetcode.com/problems/count-stepping-numbers-in-range/）digital_dp|inclusion_exclusion
+2827（https://leetcode.com/problems/number-of-beautiful-integers-in-the-range/）digital_dp|inclusion_exclusion
+17（https://leetcode.com/problems/number-of-2s-in-range-lcci/）counter|digital_dp
 
 ====================================AtCoder=====================================
-D - XOR World（https://atcoder.jp/contests/abc121/tasks/abc121_d）正解为(2*n)^(2*n+1)=1的性质，可数位DP 1^2^...^num的值
-E - Digit Products（https://atcoder.jp/contests/abc208/tasks/abc208_e）brain_teaser，有技巧地处理数位DP结果
+D - XOR World（https://atcoder.jp/contests/abc121/tasks/abc121_d）xor_property|digital_dp
+E - Digit Products（https://atcoder.jp/contests/abc208/tasks/abc208_e）brain_teaser|digital_dp
 
 =====================================LuoGu======================================
-1590（https://www.luogu.com.cn/problem/P1590） n 以内不含7的个数
-1239（https://www.luogu.com.cn/problem/P1239） n 以内每个数字0-9的个数
-3908（https://www.luogu.com.cn/problem/P3908） 1^2..^n的异或和，可以数位DPcounter也可以用相邻的奇偶数
-1836（https://www.luogu.com.cn/problem/P1836）数位DP1~n内所有数字的数位和
+1590（https://www.luogu.com.cn/problem/P1590）counter|digital_dp
+1239（https://www.luogu.com.cn/problem/P1239）counter|digital_dp
+3908（https://www.luogu.com.cn/problem/P3908）xor_property|digital_dp|counter|odd_even
+1836（https://www.luogu.com.cn/problem/P1836）digital_dp
 
-
-神奇数（https://www.lanqiao.cn/problems/5891/learning/?contest_id=145）inclusion_exclusion与数位DP
+======================================Other======================================
+（https://www.lanqiao.cn/problems/5891/learning/?contest_id=145）inclusion_exclusion|digital_dp
 
 """
 from functools import lru_cache
@@ -47,7 +45,7 @@ class Solution:
     def abc_121d(ac=FastIO()):
         # 正解为 n^(n+1) == 1 (n%2==0) 的性质
         def count(num):
-            # 数位DP 1^2^...^num的值
+            # digital_dp 1^2^...^num的值
             @lru_cache(None)
             def dfs(i, cnt, is_limit, is_num):
                 if i == n:
@@ -83,7 +81,7 @@ class Solution:
 
     @staticmethod
     def abc_208e(ac=FastIO()):
-        # 有技巧地处理数位DP结果
+        # 有技巧地处理digital_dp结果
 
         @lru_cache(None)
         def dfs(i, is_limit, is_num, pre):
@@ -117,7 +115,7 @@ class Solution:
 
     @staticmethod
     def lc_2719(num1: str, num2: str, min_sum: int, max_sum: int) -> int:
-        # 数位DP容斥模板题
+        # digital_dp|inclusion_exclusion
 
         def check(num):
             @lru_cache(None)
@@ -151,7 +149,7 @@ class Solution:
 
     @staticmethod
     def lc_2801(low: str, high: str) -> int:
-        # 数位DP容斥模板题
+        # digital_dp|inclusion_exclusion
 
         def check(num):
             @lru_cache(None)
@@ -178,7 +176,7 @@ class Solution:
 
     @staticmethod
     def lc_2827(low: int, high: int, k: int) -> int:
-        # 数位DP容斥模板题
+        # digital_dp|inclusion_exclusion
 
         def check(num):
             @lru_cache(None)
@@ -204,7 +202,7 @@ class Solution:
 
     @staticmethod
     def lg_p1836(ac=FastIO()):
-        # 数位DP1~n内所有数字的数位和
+        # digital_dp1~n内所有数字的数位和
         n = ac.read_int()
         ans = 0
         for d in range(1, 10):
@@ -214,6 +212,6 @@ class Solution:
 
     @staticmethod
     def lc_1067(d: int, low: int, high: int) -> int:
-        # 区间counter，右端点减去左端点，数位DP容斥模板题
+        # 区间counter，右端点减去左端点，digital_dp|inclusion_exclusion
         dd = DigitalDP()
         return dd.count_digit(high, d) - dd.count_digit(low - 1, d)

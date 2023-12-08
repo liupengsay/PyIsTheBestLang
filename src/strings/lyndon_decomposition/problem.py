@@ -1,6 +1,6 @@
 """
 Algorithm：Lyndon 分解（Duval 算法求解）、最小表示法、最大表示法
-Function：用来将字符串s分解成Lyndon串s1s2s3...
+Description：用来将字符串s分解成Lyndon串s1s2s3...
 Lyndon子串定义为：当且仅当s的lexicographical_order严格小于它的所有非平凡的（非平凡：非空且不同于自身）循环同构串时， s才是 Lyndon 串。
 
 ====================================LeetCode====================================

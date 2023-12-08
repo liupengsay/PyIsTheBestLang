@@ -1,6 +1,6 @@
 """
 Algorithm：two_pointers|fast_slow_pointers|bucket_counter|tree_pointers
-Function：sliding_window|two_pointers|center_extension_method
+Description：sliding_window|two_pointers|center_extension_method
 
 ====================================LeetCode====================================
 167（https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/）two_pointers

@@ -1,6 +1,6 @@
 """
 Algorithm：扩展欧几里得定理、extended_gcd、binary_gcd、二进制gcd、裴蜀定理
-Function：用于求解单个同余方程
+Description：用于求解单个同余方程
 
 ====================================LeetCode====================================
 365（https://leetcode.com/problems/water-and-jug-problem/）裴蜀定理greedy

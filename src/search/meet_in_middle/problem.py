@@ -1,6 +1,6 @@
 """
 Algorithm：折半搜索、meet in middle
-Function：常见于 1<<n 较大的情况，对半分开brute_force 
+Description：常见于 1<<n 较大的情况，对半分开brute_force 
 
 ====================================LeetCode====================================
 1755（https://leetcode.com/problems/closest-subsequence-sum/）折半搜索

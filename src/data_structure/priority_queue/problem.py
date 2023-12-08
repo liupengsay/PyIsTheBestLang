@@ -1,6 +1,6 @@
 """
 Algorithm：deque|monotonic_queue|priority_queue
-Function：sliding_window|monotonic
+Description：sliding_window|monotonic
 
 ====================================LeetCode====================================
 239（https://leetcode.com/problems/sliding-window-maximum/）sliding_window_maximum
@@ -175,7 +175,7 @@ class Solution:
 
     @staticmethod
     def lg_p3800(ac=FastIO()):
-        # 单调队列优化matrix_dp
+        # monotonic_queuematrix_dp
         m, n, k, t = ac.read_list_ints()
         dct = [dict() for _ in range(m)]
         for _ in range(k):

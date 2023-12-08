@@ -1,6 +1,6 @@
 """
 Algorithm：扫描线
-Function：平面几何面积或者立体体积
+Description：平面几何面积或者立体体积
 
 ====================================LeetCode====================================
 218（https://leetcode.com/problems/the-skyline-problem/）扫描线建筑物的轮廓

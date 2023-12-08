@@ -1,6 +1,6 @@
 """
 Algorithm：KMP算法
-Function：用来处理字符串的前缀后缀相关问题
+Description：用来处理字符串的前缀后缀相关问题
 
 ====================================LeetCode====================================
 214（https://leetcode.com/problems/shortest-palindrome/）字符串前缀最长palindrome_substring

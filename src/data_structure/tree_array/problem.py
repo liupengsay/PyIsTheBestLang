@@ -1,6 +1,6 @@
 """
 Algorithm：tree_array|tree_matrix
-Function：range_add|range_sum
+Description：range_add|range_sum
 
 ====================================LeetCode====================================
 307（https://leetcode.com/problems/range-sum-query-mutable）PointChangeRangeSum

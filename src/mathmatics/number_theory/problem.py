@@ -1,6 +1,6 @@
 """
 Algorithm：数论、欧拉筛、线性筛、素数、欧拉函数、因子分解、素因子分解、进制转换、factorization|
-Function：有时候数位DP类型题目可以N进制来求取，质factorization|、factorization|、素数筛、线性筛、欧拉函数、pollard_rho、Meissel–Lehmer 算法（范围内素数个数）
+Description：有时候digital_dp类型题目可以N进制来求取，质factorization|、factorization|、素数筛、线性筛、欧拉函数、pollard_rho、Meissel–Lehmer 算法（范围内素数个数）
 
 ====================================LeetCode====================================
 264（https://leetcode.com/problems/ugly-number-ii/）只含2、3、5质因数的第 n 个丑数

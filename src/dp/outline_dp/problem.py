@@ -1,6 +1,6 @@
 """
 Algorithm：轮廓线DP
-Function：
+Description：
 
 ====================================LeetCode====================================
 1659（https://leetcode.com/problems/maximize-grid-happiness/）轮廓线 DP 题目
@@ -200,7 +200,7 @@ class Solution:
             left_up = not (state & (1 << 2) and i // n and i % n < n - 1)
             right_up = not (state & (1 << n) and i % n)
             if lst[i] == "." and left and left_up and right_up:
-                cur = 1 + dfs(i + 1, nex_state | (1 << n))  # 填表法
+                cur = 1 + dfs(i + 1, nex_state | (1 << n))  # fill_table
                 if cur > res:
                     res = cur
             return res

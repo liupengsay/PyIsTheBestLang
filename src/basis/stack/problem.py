@@ -1,7 +1,7 @@
 """
 
 Algorithm：stack|rbs|regular_bracket_subsequence|deque
-Function：implemention|monotonic_stack|maximum_stack|minimum_stack
+Description：implemention|monotonic_stack|maximum_stack|minimum_stack
 
 ====================================LeetCode====================================
 2197（https://leetcode.com/problems/replace-non-coprime-numbers-in-array/）math|stack|implemention

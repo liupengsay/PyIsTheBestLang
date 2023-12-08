@@ -1,6 +1,6 @@
 """
 Algorithm：大数分解、素数判断、high_precision、分数代替浮点数运算
-Function：xxx
+Description：xxx
 
 ====================================LeetCode====================================
 166（https://leetcode.com/problems/fraction-to-recurring-decimal/）分数转换为有理数无限循环小数

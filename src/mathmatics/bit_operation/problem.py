@@ -1,7 +1,7 @@
 """
 
 Algorithm：bit_operation相关技巧（也叫bitmasks）
-Function：二进制上的位操作，包括与、异或、或、取反，通常按位思考与举例的方式寻找规律
+Description：二进制上的位操作，包括与、异或、或、取反，通常按位思考与举例的方式寻找规律
 异或性质：(4*i)^(4*i+1)^(4*i+2)^(4*i+3)=0  (2*n)^(2*n+1)=1
 异或性质：(a&b)^(a&c) = a&(b^c)
 ====================================LeetCode====================================
@@ -38,7 +38,7 @@ Function：二进制上的位操作，包括与、异或、或、取反，通常
 2114（https://www.luogu.com.cn/problem/P2114）按位操作implemention，greedy选取最大结果
 2326（https://www.luogu.com.cn/problem/P2326）按位implementiongreedy选取与值最大的数值对，最大与值对
 4144（https://www.luogu.com.cn/problem/P4144）按位思考greedybrain_teaser
-4310（https://www.luogu.com.cn/problem/P4310）线性 DP 按位转移
+4310（https://www.luogu.com.cn/problem/P4310）linear_dp 按位转移
 5390（https://www.luogu.com.cn/problem/P5390）按位操作
 6824（https://www.luogu.com.cn/problem/P6824）按位操作异或不等式在差分action_scopecounter
 8842（https://www.luogu.com.cn/problem/P8842）质数个数prefix_sum与异或不等式区间counter
@@ -59,7 +59,7 @@ C. XOR and OR（http://codeforces.com/problemset/problem/282/C）利用bit_opera
 
 ====================================AtCoder=====================================
 D - XXOR（https://atcoder.jp/contests/abc117/tasks/abc117_d）从高位到低位按位greedy，brain_teaser|
-D - Xor Sum 4（https://atcoder.jp/contests/abc147/tasks/abc147_d）典型按位异或和贡献
+D - Xor Sum 4（https://atcoder.jp/contests/abc147/tasks/abc147_d）classical按位异或和贡献
 
 =====================================AcWing=====================================
 998（https://www.acwing.com/problem/content/1000/）按位或、异或、与操作后greedy选取最大值
@@ -463,7 +463,7 @@ class Solution:
 
     @staticmethod
     def lg_p4310(ac=FastIO()):
-        # 线性 DP 按位转移
+        # linear_dp 按位转移
         ac.read_int()
         nums = ac.read_list_ints()
         cnt = [0] * 32

@@ -1,6 +1,6 @@
 """
 Algorithm：string_hash、树hash、matrix_hash、树的最小表示法、最长前缀palindrome_substring、最长后缀palindrome_substring
-Function：将一定长度的字符串映射为多项式函数值，并比较或者counter，通常结合sliding_window，注意防止hash碰撞
+Description：将一定长度的字符串映射为多项式函数值，并比较或者counter，通常结合sliding_window，注意防止hash碰撞
 
 ====================================LeetCode====================================
 214（https://leetcode.com/problems/shortest-palindrome/）正向与反向string_hash字符串前缀最长palindrome_substring，也可以用KMP与马拉车
@@ -10,7 +10,7 @@ Function：将一定长度的字符串映射为多项式函数值，并比较或
 2156（https://leetcode.com/problems/find-substring-with-given-hash-value/）逆向string_hash的
 652（https://leetcode.com/problems/find-duplicate-subtrees/）树hash，确定重复子树
 1554（https://leetcode.com/problems/strings-differ-by-one-character/）字符串prefix_suffixhash求解
-1923（https://leetcode.com/problems/longest-common-subpath/）binary_search|滚动hash
+1923（https://leetcode.com/problems/longest-common-subpath/）binary_search|rolling_hash
 1948（https://leetcode.com/problems/delete-duplicate-folders-in-system/）字典树与树hash去重
 2261（https://leetcode.com/problems/k-divisible-elements-subarrays/submissions/）string_hash对数组编码
 

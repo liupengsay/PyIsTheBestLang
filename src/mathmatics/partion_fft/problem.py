@@ -1,6 +1,6 @@
 """
 Algorithm：divide_and_conquerFFT（divide_and_conquer快速傅里叶变换）是一种用于快速多项式乘法的算法。它通过将多项式拆分成两个较小的多项式，然后对每个小多项式分别FFT，最后合并结果来实现快速。
-Function：快速傅里叶变换的多项式子函数
+Description：快速傅里叶变换的多项式子函数
 
 =====================================LuoGu======================================
 4721（https://www.luogu.com.cn/problem/P4721）

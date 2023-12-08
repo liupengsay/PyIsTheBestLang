@@ -1,6 +1,6 @@
 """
 Algorithm：monotonic_stack|contribution_method
-Function：prefix_suffix|maximum|minimum|second_maximum
+Description：prefix_suffix|maximum|minimum|second_maximum
 
 ====================================LeetCode====================================
 85（https://leetcode.com/problems/maximal-rectangle/）brute_force|monotonic_stack|matrix
@@ -699,7 +699,7 @@ class Solution:
 
     @staticmethod
     def lc_1130(arr: List[int]) -> int:
-        # monotonic_stack|也可以区间DP
+        # monotonic_stack|也可以interval_dp|
         stack = [float('inf')]
         res = 0
         for num in arr:

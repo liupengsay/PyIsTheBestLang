@@ -1,7 +1,7 @@
 """
 
 Algorithm：union_find、可持久化union_find、permutation_ring|
-Function：用来处理图论相关的联通问题，通常结合逆向思考、permutation_ring|或者offline_query求解，连通块不一定是秩大小，也可以是最大最小值、和等
+Description：用来处理图论相关的联通问题，通常结合逆向思考、permutation_ring|或者offline_query求解，连通块不一定是秩大小，也可以是最大最小值、和等
 
 ====================================LeetCode====================================
 765（https://leetcode.com/problems/couples-holding-hands/）union_find

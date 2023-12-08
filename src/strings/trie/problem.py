@@ -1,10 +1,10 @@
 """
 Algorithm：Trie字典树，也叫前缀树
-Function：处理字符串以及结合bit_operation相关，01Trie通用用于查询bit_operation极值
+Description：处理字符串以及结合bit_operation相关，01Trie通用用于查询bit_operation极值
 
 ====================================LeetCode====================================
 421（https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/） 01 Trie
-638（https://leetcode.com/problems/shopping-offers/）字典树与记忆化搜索
+638（https://leetcode.com/problems/shopping-offers/）字典树与memory_search
 2416（https://leetcode.com/problems/sum-of-prefix-scores-of-strings/）单词组前缀counter
 1803（https://leetcode.com/problems/count-pairs-with-xor-in-a-range/）01Trie，查询异或值在一定范围的数组对，可以数组实现
 677（https://leetcode.com/problems/map-sum-pairs/）更新与查询给定字符串作为单词键前缀的对应值的和
@@ -12,7 +12,7 @@ Function：处理字符串以及结合bit_operation相关，01Trie通用用于�
 面试题 17（https://leetcode.com/problems/multi-search-lcci/）AC自动机counter，也可直接字典树reverse_thinking，字典树存关键字，再搜索文本，和单词矩阵一样的套路
 1707（https://leetcode.com/problems/maximum-xor-with-an-element-from-array/）sorting后offline_query并 01 Trie求解
 1938（https://leetcode.com/problems/maximum-genetic-difference-query/）深搜back_track与01Trie查询最大异或值
-1032（https://leetcode.com/problems/stream-of-characters/description/）字典树典型应用，reverse_order|存储
+1032（https://leetcode.com/problems/stream-of-characters/description/）字典树classical应用，reverse_order|存储
 
 =====================================LuoGu======================================
 8306（https://www.luogu.com.cn/problem/P8306）

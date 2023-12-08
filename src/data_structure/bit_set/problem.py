@@ -1,6 +1,6 @@
 """
 Algorithm：bit_set|implemention|range_state|range_reverse
-Function：
+Description：
 
 ====================================LeetCode====================================
 2569（https://leetcode.com/problems/handling-sum-queries-after-update/）segment_tree|range_reverse|bit_set

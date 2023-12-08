@@ -1,6 +1,6 @@
 """
 Algorithm：几何、设计到平面坐标系上的一些问题求解、平面最近点对
-Function：xxx
+Description：xxx
 
 ====================================LeetCode====================================
 149（https://leetcode.com/problems/max-points-on-a-line/）用直线斜率判断一条线上最多的点数

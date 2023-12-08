@@ -1,114 +1,114 @@
 """
 Algorithm：liner_dp
-Function：遍历数组，根据前序或者后序结果更新，最大非空连续子序列和
+Description：prefix_suffix|maximum_sub_consequence_sum
 
 ====================================LeetCode====================================
-87（https://leetcode.com/problems/scramble-string/）liner_dp记忆化深搜
-2361（https://leetcode.com/problems/minimum-costs-using-the-train-line/）当前状态只跟前一个状态有关
-2318（https://leetcode.com/problems/number-of-distinct-roll-sequences/）当前状态只跟前一个状态有关brute_forcecounter
-2263（https://leetcode.com/problems/make-array-non-decreasing-or-non-increasing/）当前状态只跟前一个状态有关
-2209（https://leetcode.com/problems/minimum-white-tiles-after-covering-with-carpets/）前缀优化与处理转移
-2188（https://leetcode.com/problems/minimum-time-to-finish-the-race/）预处理DP
-2167（https://leetcode.com/problems/minimum-time-to-remove-all-cars-containing-illegal-goods/）前缀后缀DP预处理后brute_force
-2431（https://leetcode.com/problems/maximize-total-tastiness-of-purchased-fruits/）liner_dpimplemention
+87（https://leetcode.com/problems/scramble-string/）liner_dp|memory_search
+2361（https://leetcode.com/problems/minimum-costs-using-the-train-line/）linear_dp
+2318（https://leetcode.com/problems/number-of-distinct-roll-sequences/）linear_dp|brute_force|counter
+2263（https://leetcode.com/problems/make-array-non-decreasing-or-non-increasing/）linear_dp
+2209（https://leetcode.com/problems/minimum-white-tiles-after-covering-with-carpets/）linear_dp|prefix_sum
+2188（https://leetcode.com/problems/minimum-time-to-finish-the-race/）preprocess|linear_dp
+2167（https://leetcode.com/problems/minimum-time-to-remove-all-cars-containing-illegal-goods/）prefix_suffix|linear_dp|preprocess|brute_force
+2431（https://leetcode.com/problems/maximize-total-tastiness-of-purchased-fruits/）liner_dp|implemention
 6355（https://leetcode.com/contest/weekly-contest-338/problems/collect-coins-in-a-tree/）liner_dp
-2547（https://leetcode.com/problems/minimum-cost-to-split-an-array/）liner_dp并一个变量维护counter
-2638（https://leetcode.com/problems/count-the-number-of-k-free-subsets/）liner_dpcounter
-2597（https://leetcode.com/problems/the-number-of-beautiful-subsets/）·
-2713（https://leetcode.com/problems/maximum-strictly-increasing-cells-in-a-matrix/）按照data_range分层线性 DP
-1526（https://leetcode.com/problems/minimum-number-of-increments-on-subarrays-to-form-a-target-array/）线性 DP 与greedy
-1553（https://leetcode.com/problems/minimum-number-of-days-to-eat-n-oranges/）brain_teasergreedy记忆化搜索liner_dp
-1872（https://leetcode.com/problems/stone-game-viii/）prefix_sumreverse_order|DP
-1770（https://leetcode.com/problems/maximum-score-from-performing-multiplication-operations/）数组匹配liner_dp
-823（https://leetcode.com/problems/binary-trees-with-factors/description/）liner_dpcounter
-2746（https://leetcode.com/problems/decremental-string-concatenation/）hashliner_dpimplemention实现
+2547（https://leetcode.com/problems/minimum-cost-to-split-an-array/）liner_dp|counter
+2638（https://leetcode.com/problems/count-the-number-of-k-free-subsets/）liner_dp|counter
+2597（https://leetcode.com/problems/the-number-of-beautiful-subsets/）liner_dp|hash
+2713（https://leetcode.com/problems/maximum-strictly-increasing-cells-in-a-matrix/）data_range|liner_dp
+1526（https://leetcode.com/problems/minimum-number-of-increments-on-subarrays-to-form-a-target-array/）linear_dp|greedy
+1553（https://leetcode.com/problems/minimum-number-of-days-to-eat-n-oranges/）brain_teaser|greedy|memory_search|liner_dp
+1872（https://leetcode.com/problems/stone-game-viii/）prefix_sum|reverse_order|linear_dp
+1770（https://leetcode.com/problems/maximum-score-from-performing-multiplication-operations/）liner_dp
+823（https://leetcode.com/problems/binary-trees-with-factors/description/）liner_dp|counter
+2746（https://leetcode.com/problems/decremental-string-concatenation/）hash|liner_dp|implemention
 1911（https://leetcode.com/problems/maximum-alternating-subsequence-sum/）liner_dp
-2321（https://leetcode.com/problems/maximum-score-of-spliced-array/description/）最大连续子数组和变种
+2321（https://leetcode.com/problems/maximum-score-of-spliced-array/description/）liner_dp|maximum_sub_consequence_sum
 2320（https://leetcode.com/problems/count-number-of-ways-to-place-houses/）liner_dp
-1824（https://leetcode.com/problems/minimum-sideway-jumps/description/）liner_dp滚动数组
-978（https://leetcode.com/problems/longest-turbulent-subarray/description/）liner_dp滚动变量
-1027（https://leetcode.com/problems/longest-arithmetic-subsequence/）liner_dp最长等差子序列
-1987（https://leetcode.com/problems/number-of-unique-good-subsequences/description/）线性counterDP
-2355（https://leetcode.com/problems/maximum-number-of-books-you-can-take/）monotonic_stack||liner_dp，下标巧妙地转换，严格递增子序列的和
-100048（https://leetcode.com/problems/beautiful-towers-ii/）monotonic_stack||liner_dp，山脉子序列的和，prefix_suffixmonotonic_stack|优化liner_dp
-2327（https://leetcode.com/problems/number-of-people-aware-of-a-secret/description/）prefix_sum或者diff_array|优化liner_dp
-2572（https://leetcode.com/problems/count-the-number-of-square-free-subsets/description/）liner_dpcounter
+1824（https://leetcode.com/problems/minimum-sideway-jumps/description/）liner_dp|rolling_update
+978（https://leetcode.com/problems/longest-turbulent-subarray/description/）liner_dp|rolling_update
+1027（https://leetcode.com/problems/longest-arithmetic-subsequence/）liner_dp
+1987（https://leetcode.com/problems/number-of-unique-good-subsequences/description/）counter|linear_dp
+2355（https://leetcode.com/problems/maximum-number-of-books-you-can-take/）monotonic_stack|liner_do
+100048（https://leetcode.com/problems/beautiful-towers-ii/）monotonic_stack|liner_dp|prefix_suffix
+2327（https://leetcode.com/problems/number-of-people-aware-of-a-secret/description/）prefix_sum|diff_array|liner_dp
+2572（https://leetcode.com/problems/count-the-number-of-square-free-subsets/description/）liner_dp|counter
 
 =====================================LuoGu======================================
-1970（https://www.luogu.com.cn/problem/P1970）greedy与动态规划最长的山脉子数组
+1970（https://www.luogu.com.cn/problem/P1970）greedy|liner_dp
 1564（https://www.luogu.com.cn/problem/P1564）liner_dp
 1481（https://www.luogu.com.cn/problem/P1481）liner_dp
 2029（https://www.luogu.com.cn/problem/P2029）liner_dp
 2031（https://www.luogu.com.cn/problem/P2031）liner_dp
-2062（https://www.luogu.com.cn/problem/P2062）liner_dp+前缀最大值DP剪枝优化
-2072（https://www.luogu.com.cn/problem/P2072）两个liner_dp
-2096（https://www.luogu.com.cn/problem/P2096）最大连续子序列和变种
-5761（https://www.luogu.com.cn/problem/P5761）最大连续子序列和变种
-2285（https://www.luogu.com.cn/problem/P2285）liner_dp+前缀最大值DP剪枝优化
-2642（https://www.luogu.com.cn/problem/P2642）brute_force前后两个非空的最大子序列和
+2062（https://www.luogu.com.cn/problem/P2062）liner_dp|prefix_max
+2072（https://www.luogu.com.cn/problem/P2072）liner_dp
+2096（https://www.luogu.com.cn/problem/P2096）liner_dp
+5761（https://www.luogu.com.cn/problem/P5761）liner_dp
+2285（https://www.luogu.com.cn/problem/P2285）liner_dp|prefix_max
+2642（https://www.luogu.com.cn/problem/P2642）brute_force|liner_dp
 1470（https://www.luogu.com.cn/problem/P1470）liner_dp
 1096（https://www.luogu.com.cn/problem/P1096）liner_dp
-2896（https://www.luogu.com.cn/problem/P2896）prefix_suffix动态规划
-2904（https://www.luogu.com.cn/problem/P2904）prefix_sum预处理|liner_dp
-3062（https://www.luogu.com.cn/problem/P3062）liner_dpbrute_force
-3842（https://www.luogu.com.cn/problem/P3842）liner_dpimplemention
-3903（https://www.luogu.com.cn/problem/P3903）liner_dpbrute_force当前元素作为谷底与山峰的子序列长度
-5414（https://www.luogu.com.cn/problem/P5414）greedy，liner_dp最大不降子序列和
-6191（https://www.luogu.com.cn/problem/P6191）liner_dpbrute_forcecounter
-6208（https://www.luogu.com.cn/problem/P6208）liner_dpimplemention
-7404（https://www.luogu.com.cn/problem/P7404）动态规划brute_force，变成山脉数组的最少操作次数
-7541（https://www.luogu.com.cn/problem/P7541）liner_dp记忆化搜索，类似数位DP
-7767（https://www.luogu.com.cn/problem/P7767）liner_dp，前缀变成全部相同字符的最少操作次数
-2246（https://www.luogu.com.cn/problem/P2246）字符串counterliner_dp
-4933（https://www.luogu.com.cn/problem/P4933）liner_dp等差数列counter
+2896（https://www.luogu.com.cn/problem/P2896）prefix_suffix|linear_dp
+2904（https://www.luogu.com.cn/problem/P2904）prefix_sum|preprocess|liner_dp
+3062（https://www.luogu.com.cn/problem/P3062）liner_dp|brute_force
+3842（https://www.luogu.com.cn/problem/P3842）liner_dp|implemention
+3903（https://www.luogu.com.cn/problem/P3903）liner_dp|brute_force
+5414（https://www.luogu.com.cn/problem/P5414）greedy|liner_dp
+6191（https://www.luogu.com.cn/problem/P6191）liner_dp|brute_force|counter
+6208（https://www.luogu.com.cn/problem/P6208）liner_dp|implemention
+7404（https://www.luogu.com.cn/problem/P7404）linear_dp|brute_force
+7541（https://www.luogu.com.cn/problem/P7541）liner_dp|memory_search|digital_dp
+7767（https://www.luogu.com.cn/problem/P7767）liner_dp
+2246（https://www.luogu.com.cn/problem/P2246）string|counter|liner_dp
+4933（https://www.luogu.com.cn/problem/P4933）liner_dp|counter
 1874（https://www.luogu.com.cn/problem/P1874）liner_dp
-2513（https://www.luogu.com.cn/problem/P2513）prefix_sum优化DP
-1280（https://www.luogu.com.cn/problem/P1280）逆序线性 DP
-1282（https://www.luogu.com.cn/problem/P1282）典型liner_dp，hash实现
-1356（https://www.luogu.com.cn/problem/P1356）典型线性mod|DP
-1385（https://www.luogu.com.cn/problem/P1385）liner_dp与prefix_sum优化，brain_teaser字符串lexicographical_order总和不变
-1809（https://www.luogu.com.cn/problem/P1809）brain_teaser|liner_dp，greedy
-1868（https://www.luogu.com.cn/problem/P1868）liner_dp|binary_search优化
-1978（https://www.luogu.com.cn/problem/P1978）liner_dp，乘积互斥
+2513（https://www.luogu.com.cn/problem/P2513）prefix_sum|linear_dp
+1280（https://www.luogu.com.cn/problem/P1280）reverse_order|linear_dp
+1282（https://www.luogu.com.cn/problem/P1282）classical|liner_dp|hash
+1356（https://www.luogu.com.cn/problem/P1356）classical|mod|linear_dp
+1385（https://www.luogu.com.cn/problem/P1385）liner_dp|prefix_sum|brain_teaser|lexicographical_order
+1809（https://www.luogu.com.cn/problem/P1809）brain_teaser|liner_dp|greedy
+1868（https://www.luogu.com.cn/problem/P1868）liner_dp|binary_search
+1978（https://www.luogu.com.cn/problem/P1978）liner_dp|mul|inclusion_exclusion
 2432（https://www.luogu.com.cn/problem/P2432）liner_dp|pointer
 2439（https://www.luogu.com.cn/problem/P2439）liner_dp|binary_search
-2476（https://www.luogu.com.cn/problem/P2476）counter分组线性 DP 记忆化搜索
-2849（https://www.luogu.com.cn/problem/P2849）矩阵二维 DP 线性遍历
-3448（https://www.luogu.com.cn/problem/P3448）liner_dpcounter
-3558（https://www.luogu.com.cn/problem/P3558）线性 DP implemention
-3734（https://www.luogu.com.cn/problem/B3734）
-3901（https://www.luogu.com.cn/problem/P3901）pointer|线性 DP 记录前一个相同数的pointer
-4401（https://www.luogu.com.cn/problem/P4401）
-4933（https://www.luogu.com.cn/problem/P4933）等差数列线性 DP counter
-5095（https://www.luogu.com.cn/problem/P5095）典型线性 DP
-5810（https://www.luogu.com.cn/problem/P5810）线性 DP
-6040（https://www.luogu.com.cn/problem/P6040）单调队列优化的线性 DP
-6120（https://www.luogu.com.cn/problem/P6120）线性 DP implemention
-6146（https://www.luogu.com.cn/problem/P6146）线性 DP brute_forcecounter
-7994（https://www.luogu.com.cn/problem/P7994）线性 DP 修改连续区间值|一减一的最少操作次数
-8656（https://www.luogu.com.cn/problem/P8656）分组线性 DP
-8725（https://www.luogu.com.cn/problem/P8725）典型矩阵 DP pointer关系减少维度
-8784（https://www.luogu.com.cn/problem/P8784）线性 DP 可以矩阵幂优化
-8786（https://www.luogu.com.cn/problem/P8786）线性 DP 记忆化搜索implemention
-8816（https://www.luogu.com.cn/problem/P8816）典型线性矩阵 DP implemention
+2476（https://www.luogu.com.cn/problem/P2476）counter|linear_dp|memory_search
+2849（https://www.luogu.com.cn/problem/P2849）matrix_dp
+3448（https://www.luogu.com.cn/problem/P3448）liner_dp|counter
+3558（https://www.luogu.com.cn/problem/P3558）linear_dp|implemention
+3734（https://www.luogu.com.cn/problem/B3734）linear_dp
+3901（https://www.luogu.com.cn/problem/P3901）pointer|linear_dp|pointer
+4401（https://www.luogu.com.cn/problem/P4401）linear_dp
+4933（https://www.luogu.com.cn/problem/P4933）linear_dp|counter
+5095（https://www.luogu.com.cn/problem/P5095）classical|linear_dp
+5810（https://www.luogu.com.cn/problem/P5810）linear_dp
+6040（https://www.luogu.com.cn/problem/P6040）monotonic_queue|linear_dp
+6120（https://www.luogu.com.cn/problem/P6120）linear_dp|implemention
+6146（https://www.luogu.com.cn/problem/P6146）linear_dp|brute_force|counter
+7994（https://www.luogu.com.cn/problem/P7994）linear_dp
+8656（https://www.luogu.com.cn/problem/P8656）linear_dp
+8725（https://www.luogu.com.cn/problem/P8725）classical|matrix_dp|pointer
+8784（https://www.luogu.com.cn/problem/P8784）linear_dp|fast_power
+8786（https://www.luogu.com.cn/problem/P8786）linear_dp memory_search|implemention
+8816（https://www.luogu.com.cn/problem/P8816）classical|matrix_dp|implemention
 
 ===================================CodeForces===================================
-75D（https://codeforces.com/problemset/problem/75/D）压缩数组，最大子段和升级
-1084C（https://codeforces.com/problemset/problem/1084/C）liner_dp|prefix_sum优化
-166E（https://codeforces.com/problemset/problem/166/E）liner_dpcounter
-1221D（https://codeforces.com/problemset/problem/1221/D）liner_dpimplemention
-1437C（https://codeforces.com/problemset/problem/1437/C）二维liner_dp，两个数组线性移动匹配最大或者最小值
-1525D（https://codeforces.com/problemset/problem/1525/D）二维liner_dp，两个数组线性移动匹配最大或者最小值
-1286A（https://codeforces.com/problemset/problem/1286/A）线性dp
-1221D（https://codeforces.com/problemset/problem/1221/D）liner_dp，最多变化为增|0、1、2
-731E（https://codeforces.com/contest/731/problem/E）prefix_sumreverse_order|DP
+75D（https://codeforces.com/problemset/problem/75/D）compress_array|linear_dp
+1084C（https://codeforces.com/problemset/problem/1084/C）liner_dp|prefix_sum
+166E（https://codeforces.com/problemset/problem/166/E）liner_dp|counter
+1221D（https://codeforces.com/problemset/problem/1221/D）liner_dp|implemention
+1437C（https://codeforces.com/problemset/problem/1437/C）liner_dp
+1525D（https://codeforces.com/problemset/problem/1525/D）liner_dp
+1286A（https://codeforces.com/problemset/problem/1286/A）liner_dp
+1221D（https://codeforces.com/problemset/problem/1221/D）liner_dp
+731E（https://codeforces.com/contest/731/problem/E）prefix_sum|reverse_order|liner_dp
 
 ====================================AtCoder=====================================
-E - Sum Equals Xor（https://atcoder.jp/contests/abc129/tasks/abc129_e）brain_teaser|，类似数位DP
+E - Sum Equals Xor（https://atcoder.jp/contests/abc129/tasks/abc129_e）brain_teaser|digital_dp
 
 =====================================AcWing=====================================
-96（https://www.acwing.com/problem/content/98/）的汉诺塔问题，可推广到n个盘子与m个柱子
-4414（https://www.acwing.com/problem/content/description/4417/）线性子序列DP
+96（https://www.acwing.com/problem/content/98/）liner_dp|classical|hanoi_tower
+4414（https://www.acwing.com/problem/content/description/4417/）liner_dp
 
 """
 import bisect
@@ -184,7 +184,7 @@ class Solution:
             regular: List[int],
             express: List[int],
             express_cost: int) -> List[int]:
-        # 线性 DP 转移
+        # linear_dp 转移
         n = len(regular)
         cost = [[0, 0] for _ in range(n + 1)]
         cost[0][1] = express_cost
@@ -203,7 +203,7 @@ class Solution:
         ex = set(nums)
         cnt = Counter([i % 2 for i in range(1, n + 1) if i not in ex])
 
-        # 记忆化搜索的implementionliner_dp写法
+        # memory_search的implementionliner_dp写法
         @ac.bootstrap
         def dfs(i, single, double, pre):
             if (i, single, double, pre) in dct:
@@ -373,7 +373,7 @@ class Solution:
 
     @staticmethod
     def lg_p1282(ac=FastIO()):
-        # 典型liner_dphash滚动
+        # classicalliner_dphash滚动
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         pre = defaultdict(lambda: inf)
@@ -424,7 +424,7 @@ class Solution:
             t = sum(ord(w) - ord("a") + 1 for w in s)
             pre = [0] * (t + 1)
             pre[0] = 1
-            # dp[i][j] 表长为 i+1 lexicographical_order和为 j 的方案数
+            # dp[i][j] 表长为 i+1 lexicographical_order和为 j 的specific_plan数
             for _ in range(n):
                 cur = [0] * (t + 1)
                 x = 0  # prefix_sum优化
@@ -453,7 +453,7 @@ class Solution:
         dp[1] = nums[0]
         dp[2] = ac.max(nums[0], nums[1])
         for i in range(2, n):
-            # 两种可选方案，最小的来回，以及最小与次小的来回
+            # 两种可选specific_plan，最小的来回，以及最小与次小的来回
             dp[i + 1] = ac.min(dp[i] + nums[0] + nums[i],
                                dp[i - 1] + nums[0] + 2 * nums[1] + nums[i])
         ac.st(dp[-1])
@@ -596,7 +596,7 @@ class Solution:
     @staticmethod
     def lg_p2476(ac=FastIO()):
 
-        # counter分组线性 DP 记忆化搜索
+        # counter分组linear_dp memory_search
 
         @lru_cache(None)
         def dfs(a, b, c, d, e, pre):
@@ -650,7 +650,7 @@ class Solution:
 
     @staticmethod
     def lg_p3558(ac=FastIO()):
-        # 线性 DP implemention
+        # linear_dp implemention
         ac.read_int()
         nums = ac.read_list_ints()
         pre = [inf, inf, inf]
@@ -724,7 +724,7 @@ class Solution:
 
     @staticmethod
     def lg_p3901(ac=FastIO()):
-        # pointer|线性 DP 记录前一个相同数的pointer
+        # pointer|linear_dp 记录前一个相同数的pointer
         n, q = ac.read_list_ints()
         nums = ac.read_list_ints()
         ind = dict()
@@ -744,7 +744,7 @@ class Solution:
 
     @staticmethod
     def lg_p4401(ac=FastIO()):
-        # 线性 DP
+        # linear_dp
         ac.read_int()
         s = ac.read_str()
         pre = defaultdict(int)
@@ -766,7 +766,7 @@ class Solution:
 
     @staticmethod
     def lg_p5095(ac=FastIO()):
-        # 典型线性 DP
+        # classicallinear_dp
         n, length = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         dp = [inf] * (n + 1)
@@ -785,7 +785,7 @@ class Solution:
 
     @staticmethod
     def lg_p5810(ac=FastIO()):
-        # 线性 DP brute_force
+        # linear_dp brute_force
         n = ac.read_int()
         dp = [0]
         while dp[-1] < n:
@@ -801,7 +801,7 @@ class Solution:
 
     @staticmethod
     def lg_p6040(ac=FastIO()):
-        # 单调队列优化的线性 DP
+        # monotonic_queue的linear_dp
         n, k, d, x, tp = ac.read_list_ints()
         mod = 10 ** 9
         nums = []
@@ -834,7 +834,7 @@ class Solution:
 
     @staticmethod
     def lg_p6120(ac=FastIO()):
-        # 典型线性规划
+        # classical线性规划
         n = ac.read_int()
         ind = {w: i for i, w in enumerate("HSP")}
         # 滚动数组更新
@@ -883,7 +883,7 @@ class Solution:
 
     @staticmethod
     def lc_2713(mat: List[List[int]]) -> int:
-        # 按照data_range分层线性 DP
+        # 按照data_range分层linear_dp
         m, n = len(mat), len(mat[0])
         dct = defaultdict(list)
         for i in range(m):
@@ -905,7 +905,7 @@ class Solution:
 
     @staticmethod
     def lg_p7994(ac=FastIO()):
-        # 线性 DP 修改连续区间值|一减一的最少操作次数
+        # linear_dp 修改连续区间值|一减一的最少操作次数
         n = ac.read_int()
         a = ac.read_list_ints()
         b = ac.read_list_ints()
@@ -931,7 +931,7 @@ class Solution:
 
     @staticmethod
     def lg_p8816(ac=FastIO()):
-        # 典型线性矩阵 DP implemention
+        # classical线性矩阵 DP implemention
         n, k = ac.read_list_ints()
         nums = sorted([ac.read_list_ints() for _ in range(n)])
         dp = [list(range(1, k + 2)) for _ in range(n)]
@@ -1018,7 +1018,7 @@ class Solution:
     @staticmethod
     def lc_1553(n: int) -> int:
 
-        # brain_teasergreedy记忆化搜索liner_dp
+        # brain_teasergreedymemory_searchliner_dp
 
         @lru_cache(None)
         def dfs(num):

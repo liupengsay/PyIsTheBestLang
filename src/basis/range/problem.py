@@ -1,6 +1,6 @@
 """
 Algorithm：range_merge_to_disjoint|minimum_range_cover|counter|maximum_disjoint_range
-Function：sometimes cooperation with diff_array or tree_array or segment_tree
+Description：sometimes cooperation with diff_array or tree_array or segment_tree
 minimum_point_cover_range|minimum_group_range_disjoint|maximum_point_cover_range|bipartite_graph
 
 ====================================LeetCode====================================

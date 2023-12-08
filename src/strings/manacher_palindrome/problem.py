@@ -1,10 +1,10 @@
 """
 Algorithm：马拉车算法、回文连续子串、回文不连续子串
-Function：用来处理字符串的回文相关问题，可以有、DP、中心扩展法、马拉车
+Description：用来处理字符串的回文相关问题，可以有、DP、中心扩展法、马拉车
 
 ====================================LeetCode====================================
 5（https://leetcode.com/problems/longest-palindromic-substring/）字符串的最长回文连续子串
-132（https://leetcode.com/problems/palindrome-partitioning-ii/）线性 DP 与马拉车判断以每个位置为结尾的回文串
+132（https://leetcode.com/problems/palindrome-partitioning-ii/）linear_dp 与马拉车判断以每个位置为结尾的回文串
 1960（https://leetcode.com/problems/maximum-product-of-the-length-of-two-palindromic-substrings/）利用马拉车求解每个位置前后最长palindrome_substring
 
 =====================================LuoGu======================================
@@ -179,7 +179,7 @@ class Solution:
 
     @staticmethod
     def lc_2472(s: str, k: int) -> int:
-        # 预处理线性palindrome_substring DP 优化外|结果线性 DP 也可以马拉车回文串获取回文信息
+        # 预处理线性palindrome_substring DP 优化外|结果linear_dp 也可以马拉车回文串获取回文信息
         n = len(s)
         _, end = ManacherPlindrome().palindrome(s)
         dp = [0] * (n + 1)

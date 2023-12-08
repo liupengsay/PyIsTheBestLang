@@ -1,6 +1,6 @@
 """
 Algorithm：implemention|big_implemention
-Function：implemention|joseph_ring
+Description：implemention|joseph_ring
 
 ====================================LeetCode====================================
 2296（https://leetcode.com/problems/design-a-text-editor/）pointer|implemention

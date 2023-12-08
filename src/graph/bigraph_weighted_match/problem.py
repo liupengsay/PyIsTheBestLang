@@ -1,6 +1,6 @@
 """
 Algorithm：bipartite_graph最大最小权值匹配、KM算法
-Function：
+Description：
 
 ====================================LeetCode====================================
 1820（https://leetcode.com/problems/maximum-number-of-accepted-invitations/）匈牙利算法或者bipartite_graph最大权KM算法解决

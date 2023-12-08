@@ -1,7 +1,7 @@
 """
 
 Algorithm：construction
-Function：greedy|sorting|construction|specific_plan
+Description：greedy|sorting|construction|specific_plan
 
 ====================================LeetCode====================================
 280（https://leetcode.com/problems/wiggle-sort/）construction|sorting|odd_even

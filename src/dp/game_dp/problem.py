@@ -1,23 +1,23 @@
 """
-Algorithm：博弈类DP、玩游戏、必胜态、必输态
-Function：通常brute_force、区间DP|implementiongreedy的方式，和记忆化搜索状态转移
+Algorithm：game_dp|wining_state|lose
+Description：brute_force|interval_dp|implemention|greedy
 
 ====================================LeetCode====================================
-375（https://leetcode.com/problems/guess-number-higher-or-lower-ii/）区间DP求解的典型博弈DP
-1140（https://leetcode.com/problems/stone-game-ii/）prefix_sum优化记忆化DP
+375（https://leetcode.com/problems/guess-number-higher-or-lower-ii/）interval_dp|classical|game_dp
+1140（https://leetcode.com/problems/stone-game-ii/）prefix_sum|linear_dp
 
 =====================================LuoGu======================================
-1290（https://www.luogu.com.cn/problem/P1290）典型的博弈DP题
-5635（https://www.luogu.com.cn/problem/P5635）博弈DPimplemention与手写记忆化搜索，避免陷入死循环
-3150（https://www.luogu.com.cn/problem/P3150）博弈分析必胜策略与最优选择，只跟奇数偶数有关
-4702（https://www.luogu.com.cn/problem/P4702）博弈分析必胜策略与最优选择，只跟奇数偶数有关
-1247（https://www.luogu.com.cn/problem/P1247）nim博弈，异或求解
-1512（https://www.luogu.com.cn/problem/P1512）博弈DP与日期操作
-2092（https://www.luogu.com.cn/problem/P2092）根据质数的个数来判断必胜态
-2953（https://www.luogu.com.cn/problem/P2953）必胜态liner_dp
+1290（https://www.luogu.com.cn/problem/P1290）classical|game_dp
+5635（https://www.luogu.com.cn/problem/P5635）game_dp|implemention
+3150（https://www.luogu.com.cn/problem/P3150）game_dp|implemention|odd_even
+4702（https://www.luogu.com.cn/problem/P4702）game_dp|implemention|odd_even
+1247（https://www.luogu.com.cn/problem/P1247）nim|game_dp|xor
+1512（https://www.luogu.com.cn/problem/P1512）game_dp|date
+2092（https://www.luogu.com.cn/problem/P2092）prime|game_dp
+2953（https://www.luogu.com.cn/problem/P2953）game_dp|winning_state|liner_dp
 
 =====================================AcWing=====================================
-4005（https://www.acwing.com/problem/content/description/4008/）典型博弈brain_teaser|分情况讨论
+4005（https://www.acwing.com/problem/content/description/4008/）classical|game_dp|brain_teaser|classification_discussion
 
 """
 from functools import lru_cache
@@ -80,7 +80,7 @@ class Solution:
 
     @staticmethod
     def lg_p1512(ac=FastIO()):
-        # 博弈DP与日期操作
+        # game_dp|与日期操作
         dt = DateTime()
         stack = [[1900, 1, 1]]
         yy, mm, dd = stack[0]

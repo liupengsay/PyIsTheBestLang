@@ -1,7 +1,7 @@
 """
 
 Algorithm：math排列组合counter、乘法逆元（也叫combinatorics）、Lucas定理
-Function：全排列counter，选取combcounter，隔板法，错位排列，斯特林数、catalan_number，inclusion_exclusion，可以通过乘法逆元快速求解组合数与全排列数
+Description：全排列counter，选取combcounter，隔板法，错位排列，斯特林数、catalan_number，inclusion_exclusion，可以通过乘法逆元快速求解组合数与全排列数
 Lucas定理（comb(n, m)%p = comb(n%p, m%p)*comb(n//p, m//p)）%p
 
 ====================================LeetCode====================================
@@ -9,7 +9,7 @@ Lucas定理（comb(n, m)%p = comb(n%p, m%p)*comb(n//p, m//p)）%p
 95（https://leetcode.com/problems/unique-binary-search-trees/）catalan_number思想recursion，生成specific_plan
 634（https://leetcode.com/problems/find-the-derangement-of-an-array/）错位排列counter动态规划转移
 1259（https://leetcode.com/problems/handshakes-that-dont-cross/）catalan_number
-2338（https://leetcode.com/problems/count-the-number-of-ideal-arrays/）隔板法与factorization|组合方案数求解
+2338（https://leetcode.com/problems/count-the-number-of-ideal-arrays/）隔板法与factorization|组合specific_plan数求解
 1735（https://leetcode.com/problems/count-ways-to-make-array-with-product/）质数分解与隔板法应用
 1621（https://leetcode.com/problems/number-of-sets-of-k-non-overlapping-line-segments/）类似隔板法的思想
 1866（https://leetcode.com/problems/number-of-ways-to-rearrange-sticks-with-k-sticks-visible/）第一类斯特林数
@@ -21,7 +21,7 @@ D - Blue and Red Balls（https://atcoder.jp/contests/abc132/tasks/abc132_d）组
 1287（https://www.luogu.com.cn/problem/P1287）第二类斯特林数形式的DP，以及全排列数
 1375（https://www.luogu.com.cn/problem/P1375）catalan_number
 1754（https://www.luogu.com.cn/problem/P1754）catalan_number
-2193（https://www.luogu.com.cn/problem/P2193）隔板法与factorization|组合方案数求解
+2193（https://www.luogu.com.cn/problem/P2193）隔板法与factorization|组合specific_plan数求解
 1338（https://www.luogu.com.cn/problem/P1338）brute_force满足个数的reverse_order_pair|排列，即找特定reverse_order_pair|个数的最小排列
 1313（https://www.luogu.com.cn/problem/P1313）二项式展开的系数
 1061（https://www.luogu.com.cn/problem/P1061）implemention下一个lexicographical_order排列
@@ -34,17 +34,17 @@ D - Blue and Red Balls（https://atcoder.jp/contests/abc132/tasks/abc132_d）组
 1655（https://www.luogu.com.cn/problem/P1655）matrix_dp，斯特林数
 1680（https://www.luogu.com.cn/problem/P1680）隔板法不同分组的个数，乘法逆元与Lucas定理快速Comb(a,b)%m
 2265（https://www.luogu.com.cn/problem/P2265）排列组合，comb(n+m, m)
-2638（https://www.luogu.com.cn/problem/P2638）隔板法 a 个球放入 n 个盒子不要求每个都放也不要求放完的方案数
+2638（https://www.luogu.com.cn/problem/P2638）隔板法 a 个球放入 n 个盒子不要求每个都放也不要求放完的specific_plan数
 2822（https://www.luogu.com.cn/problem/P2822）组合数 comb(i, j) % k == 0 的个数
 3223（https://www.luogu.com.cn/problem/P3223）inclusion_exclusion和隔板法
 3904（https://www.luogu.com.cn/problem/P3904）递推第二类斯特林数
-4071（https://www.luogu.com.cn/problem/P4071）错排选择 n 个元素刚好有 m 个错位排列的方案数
+4071（https://www.luogu.com.cn/problem/P4071）错排选择 n 个元素刚好有 m 个错位排列的specific_plan数
 5684（https://www.luogu.com.cn/problem/P5684）inclusion_exclusion与组合counter
 6057（https://www.luogu.com.cn/problem/P6057）inclusion_exclusioncounter
 
 ===================================CodeForces===================================
 1795D（https://codeforces.com/problemset/problem/1795/D）组合countermod|与乘法逆元快速
-300C（https://codeforces.com/problemset/problem/300/C）brute_force个数并组合数方案数
+300C（https://codeforces.com/problemset/problem/300/C）brute_force个数并组合数specific_plan数
 559C（https://codeforces.com/problemset/problem/559/C）inclusion_exclusion组合counter
 1436C（https://codeforces.com/problemset/problem/1436/C）binary_search|组合数
 414B（https://codeforces.com/problemset/problem/414/B）最小质因数与隔板法counter DP
@@ -256,7 +256,7 @@ class Solution:
 
         @lru_cache(None)
         def dfs(a, b):
-            # 斯特林数，把a个球放入b个盒子且不允许空盒的方案数
+            # 斯特林数，把a个球放入b个盒子且不允许空盒的specific_plan数
             if a < b or b < 0:
                 return 0
             if a == b:
@@ -400,7 +400,7 @@ class Solution:
     @staticmethod
     def lg_p1680(ac=FastIO()):
         # 隔板法不同分组的个数，乘法逆元与Lucas定理快速Comb(a,b) % m
-        # 转换为（n个相同的球放入m个不同的盒子，不允许为空的方案数）
+        # 转换为（n个相同的球放入m个不同的盒子，不允许为空的specific_plan数）
         n, m = ac.read_list_ints()
         n -= sum([ac.read_int() for _ in range(m)])
         m -= 1
@@ -421,7 +421,7 @@ class Solution:
 
     @staticmethod
     def lg_p2638(ac=FastIO()):
-        # 隔板法 a 个球放入 n 个盒子不要求每个都放也不要求放完的方案数
+        # 隔板法 a 个球放入 n 个盒子不要求每个都放也不要求放完的specific_plan数
         n, a, b = ac.read_list_ints()
         ans = math.comb(n + a, n) * math.comb(n + b, n)
         ac.st(ans)
@@ -481,7 +481,7 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
-        # 选择 n 个元素刚好有 m 个错位排列的方案数
+        # 选择 n 个元素刚好有 m 个错位排列的specific_plan数
         mod = 10 ** 9 + 7
         cb = Combinatorics(10 ** 6, mod)
         for _ in range(ac.read_int()):

@@ -1,7 +1,7 @@
 """
 
 Algorithm：diff_array|prefix_sum|suffix_sum|prefix_max_consequence_sum|suffix_max_consequence_sum|diff_matrix|discretization_diff_array|md_diff_array|matrix_prefix_sum
-Function：prefix_sum|prefix_sum_of_prefix_sum|suffix_sum
+Description：prefix_sum|prefix_sum_of_prefix_sum|suffix_sum
 
 ====================================LeetCode====================================
 152（https://leetcode.com/problems/maximum-product-subarray/）prefix_mul|maximum_sub_consequence_product
@@ -897,7 +897,7 @@ class Solution:
 
     @staticmethod
     def lg_p4440(ac=FastIO()):
-        # 典型prefix_sumcounter
+        # classicalprefix_sumcounter
         s = ac.read_str()
         pre = []
         cnt = [0] * 26

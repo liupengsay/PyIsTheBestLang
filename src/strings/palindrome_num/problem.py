@@ -1,6 +1,6 @@
 """
 Algorithm：回文数字brute_force
-Function：xxx
+Description：xxx
 
 ====================================LeetCode====================================
 2081（https://leetcode.com/problems/sum-of-k-mirror-numbers/）brute_force 10 进制回文数字并判断其 k 进制是否依然回文

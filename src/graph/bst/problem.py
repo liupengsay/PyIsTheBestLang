@@ -1,10 +1,10 @@
 """
 Algorithm：BST二叉搜索树
-Function：根据数字顺序建立二叉搜索树、实时维护
+Description：根据数字顺序建立二叉搜索树、实时维护
 
 
 ====================================LeetCode====================================
-1569（https://leetcode.com/problems/number-of-ways-to-reorder-array-to-get-same-bst/）按照顺序建立二叉树，DP与组合counter求方案数
+1569（https://leetcode.com/problems/number-of-ways-to-reorder-array-to-get-same-bst/）按照顺序建立二叉树，DP与组合counter求specific_plan数
 1902（https://leetcode.com/problems/depth-of-bst-given-insertion-order/）按照顺序建立二叉树求深度
 
 =====================================LuoGu======================================
@@ -122,7 +122,7 @@ class Solution:
 
     @staticmethod
     def lc_1569(nums: List[int]) -> int:
-        # 按照顺序建立二叉树，DP与组合counter求方案数
+        # 按照顺序建立二叉树，DP与组合counter求specific_plan数
         dct = BinarySearchTreeByArray().build_with_unionfind(nums)
         mod = 10 ** 9 + 7
         cb = Combinatorics(100000, mod)  # 预处理

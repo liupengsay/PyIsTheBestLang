@@ -1,6 +1,6 @@
 """
 Algorithm：list_node|linked_list
-Function：
+Description：
 
 ====================================LeetCode====================================
 6914（https://leetcode.com/contest/weekly-contest-358/problems/double-a-number-represented-as-a-linked-list/）linked_list

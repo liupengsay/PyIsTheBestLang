@@ -1,6 +1,6 @@
 """
 Algorithm：n-tree|pre_order|post_order|mid_order
-Function：
+Description：
 
 ====================================LeetCode====================================
 94（https://leetcode.com/problems/binary-tree-inorder-traversal/description/）mid_order

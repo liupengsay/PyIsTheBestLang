@@ -1,6 +1,6 @@
 """
 Algorithm：heapq|priority_queue|huffman_tree
-Function：greedy
+Description：greedy
 
 ====================================LeetCode====================================
 630（https://leetcode.com/problems/course-schedule-iii/）delay_heapq|greedy

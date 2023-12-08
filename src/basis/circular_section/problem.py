@@ -1,6 +1,6 @@
 """
 Algorithm：circular_section
-Function：implemention|hash|list|index|circular_section
+Description：implemention|hash|list|index|circular_section
 
 ====================================LeetCode====================================
 957（https://leetcode.com/problems/prison-cells-after-n-days/）circular_section

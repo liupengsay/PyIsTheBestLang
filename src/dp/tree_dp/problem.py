@@ -1,11 +1,11 @@
 """
 Algorithm：树形DP、树的直径、树上差分、树的重心（以及树的每个节点到其余节点的总距离和）、树的最小偏心距
-Function：在树形或者图结构上DP，有换根DP，自顶向下和自底向上DP
+Description：在树形或者图结构上DP，有换根DP，自顶向下和自底向上DP
 
 ====================================LeetCode====================================
 2458 移除子树后的二叉树高度（https://leetcode.com/problems/height-of-binary-tree-after-subtree-removal-queries/）跑两边DFS自顶向下和自底向上DP结合
 2440 创建价值相同的连通块（https://leetcode.com/problems/create-components-with-same-value/）利用总和的因子和树形recursion判断连通块是否可行
-1569 将子数组重新sorting得到同一个二叉查找树的方案数（https://leetcode.com/problems/number-of-ways-to-reorder-array-to-get-same-bst/solution/by-liupengsay-yi3h/）
+1569 将子数组重新sorting得到同一个二叉查找树的specific_plan数（https://leetcode.com/problems/number-of-ways-to-reorder-array-to-get-same-bst/solution/by-liupengsay-yi3h/）
 968（https://leetcode.com/problems/binary-tree-cameras/）树形DP监控每个节点
 2538（https://leetcode.com/problems/difference-between-maximum-and-minimum-price-sum/）树形换根DP，求去掉其中一个叶子节点的最大直径
 124（https://leetcode.com/problems/binary-tree-maximum-path-sum/）树形DP
@@ -16,7 +16,7 @@ Function：在树形或者图结构上DP，有换根DP，自顶向下和自底�
 1617（https://leetcode.com/problems/count-subtrees-with-max-distance-between-cities/）brute_force直径端点与乘法原理树形DP
 2003（https://leetcode.com/problems/smallest-missing-genetic-value-in-each-subtree/）树形DP启发式合并
 2673（https://leetcode.com/problems/make-costs-of-paths-equal-in-a-binary-tree/）树形DPgreedy
-1367（https://leetcode.com/problems/linked-list-in-binary-tree/description/）典型二叉树与linked_list|比较的记忆化DP
+1367（https://leetcode.com/problems/linked-list-in-binary-tree/description/）classical二叉树与linked_list|比较的记忆化DP
 979（https://leetcode.com/problems/distribute-coins-in-binary-tree/description/）树形DPgreedy
 1373（https://leetcode.com/problems/maximum-sum-bst-in-binary-tree/）树形DP二叉树校验
 971（https://leetcode.com/problems/flip-binary-tree-to-match-preorder-traversal/description/）树形DPgreedyimplemention
@@ -46,12 +46,12 @@ Function：在树形或者图结构上DP，有换根DP，自顶向下和自底�
 3304（https://www.luogu.com.cn/problem/P3304）带权无向图的直径以及直径的必经边
 3408（https://www.luogu.com.cn/problem/P3408）树形DP
 3478（https://www.luogu.com.cn/problem/P3478）树的质心
-3931（https://www.luogu.com.cn/problem/P3931）典型树形DP
-4084（https://www.luogu.com.cn/problem/P4084）典型树形DP
+3931（https://www.luogu.com.cn/problem/P3931）classical树形DP
+4084（https://www.luogu.com.cn/problem/P4084）classical树形DP
 4395（https://www.luogu.com.cn/problem/P4395）树形 DP greedy标权值使得整棵树总价值最小
 5765（https://www.luogu.com.cn/problem/P5765）同P4395
 8602（https://www.luogu.com.cn/problem/P8602）树的直径可用两遍BFS也可用树形DP求解
-8625（https://www.luogu.com.cn/problem/P8625）树形 DP 典型
+8625（https://www.luogu.com.cn/problem/P8625）树形 DP classical
 8744（https://www.luogu.com.cn/problem/P8744）简单树形 DP
 
 ====================================AtCoder=====================================
@@ -412,7 +412,7 @@ class Solution:
     @staticmethod
     def lc_1367(head: Optional[ListNode], root: Optional[TreeNode]) -> bool:
 
-        # 典型二叉树与linked_list|比较的记忆化DP
+        # classical二叉树与linked_list|比较的记忆化DP
 
         @lru_cache(None)
         def dfs(lst, node):
@@ -927,7 +927,7 @@ class Solution:
 
     @staticmethod
     def lg_p8625(ac=FastIO()):
-        # 树形 DP 典型
+        # 树形 DP classical
         n = ac.read_int()
         nums = ac.read_list_ints()
         sub = [0] * n

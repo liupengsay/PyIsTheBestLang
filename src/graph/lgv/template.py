@@ -9,7 +9,7 @@ class LGV:
 
     @staticmethod
     def get_result(a, b, c, d):
-        """从[a,b]走到[c,d]的方案数"""
+        """从[a,b]走到[c,d]的specific_plan数"""
         return math.comb(d + c - a - b, c - a)
 
     def compute(self, start, end, n):

@@ -1,6 +1,6 @@
 """
 Algorithm：sorting|bubble_sort|merge_sort(minimum_num_comparisons)|quick_sort(expected_fast)|define_sort
-Function：reverse_order_pair
+Description：reverse_order_pair
 
 ====================================LeetCode====================================
 164（https://leetcode.com/problems/maximum-gap/）bucket_sort
