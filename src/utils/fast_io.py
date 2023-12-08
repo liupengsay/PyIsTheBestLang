@@ -15,6 +15,9 @@ class Wrapper(int):
         return super(Wrapper, self).__hash__() ^ RANDOM
 
 
+read = lambda: sys.stdin.readline().rstrip()
+
+
 class FastIO:
     def __init__(self):
         self.random_seed = random.randint(0, 10 ** 9 + 7)
