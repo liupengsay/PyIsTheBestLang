@@ -173,7 +173,7 @@ class Solution:
         #  LIS 变形问题，greedybrute_force前半部分
         n, x = ac.read_list_ints()
         nums = ac.read_list_ints()
-        # 预处理后缀部分的最长 LIS 序列
+        # preprocess后缀部分的最长 LIS 序列
         post = [0] * (n + 1)
         dp = []
         for i in range(n - 1, -1, -1):

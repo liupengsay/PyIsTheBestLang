@@ -96,7 +96,7 @@ Description：各种可证明不可证明的头脑风暴
 7412（https://www.luogu.com.cn/problem/P7412）greedy，将问题转换为去掉最长的k-1个非零距离
 7522（https://www.luogu.com.cn/problem/P7522）classification_discussion|greedy讨论
 7633（https://www.luogu.com.cn/problem/P7633）埃氏筛法思想，implementiongreedy
-7714（https://www.luogu.com.cn/problem/P7714）子序列sorting使得整体有序，前缀最大值与pointercounter确认子数组分割点
+7714（https://www.luogu.com.cn/problem/P7714）子序列sorting使得整体有序，前缀最大值与pointercounter确认子数组分cut_point
 7787（https://www.luogu.com.cn/problem/P7787）brain_teaser，借助完全二叉树的思想
 7813（https://www.luogu.com.cn/problem/P7813）greedy最大选取值
 1031（https://www.luogu.com.cn/problem/P1031）线性均分纸牌问题
@@ -113,7 +113,7 @@ Description：各种可证明不可证明的头脑风暴
 4575（https://www.luogu.com.cn/problem/P4575）brain_teaser|状压运算
 4653（https://www.luogu.com.cn/problem/P4653）看似binary_searchpointergreedy选取
 5093（https://www.luogu.com.cn/problem/P5093）brain_teaser集合确定轮数
-5425（https://www.luogu.com.cn/problem/P5425）看似最小生成树，实则brain_teasergreedy距离
+5425（https://www.luogu.com.cn/problem/P5425）看似mst|，实则brain_teasergreedy距离
 5884（https://www.luogu.com.cn/problem/P5884）brain_teaser
 5948（https://www.luogu.com.cn/problem/P5948）greedyimplemention
 6196（https://www.luogu.com.cn/problem/P6196）greedy 1 分段代价
@@ -171,7 +171,7 @@ D - Summer Vacation（https://atcoder.jp/contests/abc137/tasks/abc137_d）逆序
 122（https://www.acwing.com/problem/content/124/）线性环形均分纸牌问题
 4204（https://www.acwing.com/problem/content/description/4207/）construction
 4307（https://www.acwing.com/problem/content/description/4310/）lexicographical_orderbrute_forcegreedy
-4313（https://www.acwing.com/problem/content/4316/）满二叉树树形DPgreedy（同LC2673）
+4313（https://www.acwing.com/problem/content/4316/）满二叉树tree_dpgreedy（同LC2673）
 4426（https://www.acwing.com/problem/content/4429/）brain_teaser|brain_teaser，等价于末尾两位数字可以被4整除
 4427（https://www.acwing.com/problem/content/4430/）树形greedyconstruction
 4429（https://www.acwing.com/problem/content/description/4432/）邻项公式greedysorting，prefix_suffixbrute_force
@@ -702,7 +702,7 @@ class Solution:
 
     @staticmethod
     def lg_p5425(ac=FastIO()):
-        # 看似最小生成树，实则brain_teasergreedy距离
+        # 看似mst|，实则brain_teasergreedy距离
         n, k = ac.read_list_ints()
         ans = (2019201913 * (k - 1) + 2019201949 * n) % 2019201997
         ac.st(ans)
@@ -836,7 +836,7 @@ class Solution:
 
     @staticmethod
     def ac_4313(ac=FastIO()):
-        # 满二叉树树形DPgreedy
+        # 满二叉树tree_dpgreedy
         n = ac.read_int()
         m = 2 ** (n + 1)
         dp = [0] * m

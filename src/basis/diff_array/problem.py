@@ -1029,7 +1029,7 @@ class Solution:
 
     @staticmethod
     def lg_p6537(ac=FastIO()):
-        # 预处理prefix_sum|brute_force
+        # preprocessprefix_sum|brute_force
         n = ac.read_int()
         grid = [ac.read_list_ints() for _ in range(n)]
         pre = PreFixSumMatrix(grid)
@@ -1229,7 +1229,7 @@ class Solution:
 
     @staticmethod
     def lg_p7948(ac=FastIO()):
-        # sorting后预处理prefix_suffix信息pointer查询
+        # sorting后preprocessprefix_suffix信息pointer查询
         for _ in range(ac.read_int()):
             n, q = ac.read_list_ints()
             a = ac.read_list_ints()

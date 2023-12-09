@@ -1,26 +1,26 @@
 """
-Algorithm：bipartite_graph最大最小权值匹配、KM算法
+Algorithm：bipartite_graph|maximum_weight_match|minimum_weight_match|km|ek
 Description：
 
 ====================================LeetCode====================================
-1820（https://leetcode.com/problems/maximum-number-of-accepted-invitations/）匈牙利算法或者bipartite_graph最大权KM算法解决
-1066（https://leetcode.com/problems/campus-bikes-ii/）bipartite_graph最小权KM算法解决
-1947（https://leetcode.com/problems/maximum-compatibility-score-sum/）bipartite_graph最大权匹配，也可用状压DP
+1820（https://leetcode.com/problems/maximum-number-of-accepted-invitations/）hungarian|bipartite_graph|maximum_weight_match|km
+1066（https://leetcode.com/problems/campus-bikes-ii/）bipartite_graph|minimum_weight_match|km
+1947（https://leetcode.com/problems/maximum-compatibility-score-sum/）bipartite_graph|maximum_weight_match|state_compress
 
 =====================================LuoGu======================================
-3386（https://www.luogu.com.cn/problem/P3386）bipartite_graph最大匹配
-6577（https://www.luogu.com.cn/problem/P6577）bipartite_graph最大权完美匹配
-1894（https://www.luogu.com.cn/problem/P1894）bipartite_graph最大匹配，转换为网络流求解
-3605（https://www.luogu.com.cn/problem/B3605）匈牙利算法bipartite_graph不带权最大匹配
+3386（https://www.luogu.com.cn/problem/P3386）bipartite_graph|maximum_weight_match|km
+6577（https://www.luogu.com.cn/problem/P6577）bipartite_graph|maximum_weight_match|km
+1894（https://www.luogu.com.cn/problem/P1894）bipartite_graph|maximum_weight_match|km
+3605（https://www.luogu.com.cn/problem/B3605）hungarian|bipartite_graph|maximum_weight_match|km
 
 ===================================CodeForces===================================
-1437C（https://codeforces.com/problemset/problem/1437/C）bipartite_graph最小权匹配
+1437C（https://codeforces.com/problemset/problem/1437/C）bipartite_graph|minimum_weight_match|km
 
 =====================================AcWing=====================================
-4298（https://www.acwing.com/problem/content/4301/）匈牙利算法bipartite_graph模板题
+4298（https://www.acwing.com/problem/content/4301/）hungarian|bipartite_graph
 
 ================================LibraryChecker================================
-1 Matching on Bipartite Graph（https://judge.yosupo.jp/problem/bipartitematching）unweighted match
+1 Matching on Bipartite Graph（https://judge.yosupo.jp/problem/bipartitematching）maximum_weight_match|km
 
 """
 
@@ -54,7 +54,7 @@ class Solution:
 
     @staticmethod
     def lc_1820(grid):
-        # 匈牙利算法模板建图最大匹配
+        # hungarian模板build_graph||maximum_weight_match|km
         m, n = len(grid), len(grid[0])
         dct = defaultdict(list)
         for i in range(m):
@@ -81,7 +81,7 @@ class Solution:
 
     @staticmethod
     def lc_1820_2(grid: List[List[int]]) -> int:
-        # EK网络最大流算法模板建图最大匹配
+        # EK网络最大流算法模板build_graph||maximum_weight_match|km
         n = len(grid)
         m = len(grid[0])
         s = n + m + 1
@@ -99,7 +99,7 @@ class Solution:
 
     @staticmethod
     def lc_1820_3(grid):
-        # KM算法模板建图最大匹配
+        # KM算法模板build_graph||maximum_weight_match|km
         n = max(len(grid), len(grid[0]))
         lst = [[0] * n for _ in range(n)]
         ind = 0
@@ -121,7 +121,7 @@ class Solution:
 
     @staticmethod
     def lg_p1894(ac=FastIO()):
-        # bipartite_graph最大权匹配（不带权也可以匈牙利算法）
+        # bipartite_graphmaximum_weight_match（不带权也可以hungarian）
         n, m = ac.read_list_ints()
         s = n + m + 1
         t = n + m + 2
@@ -142,7 +142,7 @@ class Solution:
 
     @staticmethod
     def lc_1947(students: List[List[int]], mentors: List[List[int]]) -> int:
-        # bipartite_graph最大权匹配，也可用状压DP
+        # bipartite_graphmaximum_weight_match，也可用state_compress
         m, n = len(students), len(students[0])
 
         # 建立权值矩阵
@@ -151,14 +151,14 @@ class Solution:
             for j in range(m):
                 grid[i][j] = sum([students[i][k] == mentors[j][k] for k in range(n)])
 
-        # KM算法bipartite_graph最大权匹配
+        # KM算法bipartite_graphmaximum_weight_match
         km = KM()
         max_ = km.compute(np.array(grid))
         return sum([grid[i][j] for i, j in max_])
 
     @staticmethod
     def lg_3386(ac=FastIO()):
-        # 匈牙利算法bipartite_graph不带权最大匹配
+        # hungarianbipartite_graph不带权|maximum_weight_match|km
         n, m, e = ac.read_list_ints()
         dct = [[] for _ in range(m)]
         for _ in range(e):
@@ -190,7 +190,7 @@ class Solution:
 
     @staticmethod
     def ac_4298(ac=FastIO()):
-        # 匈牙利算法bipartite_graph模板题
+        # hungarianbipartite_graph模板题
         m = ac.read_int()
         a = ac.read_list_ints()
         n = ac.read_int()

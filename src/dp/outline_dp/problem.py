@@ -1,11 +1,11 @@
 """
-Algorithm：轮廓线DP
-Description：
+Algorithm：outline_dp
+Description：make the matrix_state_dp change to outline_dp with flatten matrix to linear
 
 ====================================LeetCode====================================
-1659（https://leetcode.com/problems/maximize-grid-happiness/）轮廓线 DP 题目
-1349（https://leetcode.com/problems/maximum-students-taking-exam/）轮廓线 DP 题目
-LCP 04（https://leetcode.com/problems/broken-board-dominoes/）轮廓线 DP 题目
+1659（https://leetcode.com/problems/maximize-grid-happiness/）outline_dp|classical
+1349（https://leetcode.com/problems/maximum-students-taking-exam/）outline_dp|classical
+04（https://leetcode.com/problems/broken-board-dominoes/）outline_dp|classical
 
 =====================================LuoGu======================================
 xx（xxx）xxxxxxxxxxxxxxxxxxxx
@@ -14,8 +14,8 @@ xx（xxx）xxxxxxxxxxxxxxxxxxxx
 xx（xxx）xxxxxxxxxxxxxxxxxxxx
 
 
-===================================Others=================================
-Mondriaan's Dream（https://vjudge.net/problem/HDU-1400）轮廓线 DP 题目
+=======================================Other====================================
+1400（https://vjudge.net/problem/HDU-1400）outline_dp|classical
 
 """
 from functools import lru_cache
@@ -189,7 +189,7 @@ class Solution:
     @staticmethod
     def lc_1349_3(seats: List[List[str]]) -> int:
 
-        # 轮廓线 DP 题目转成一维数组后更好写
+        # outline_dp|classical转成一维数组后更好写
         @lru_cache(None)
         def dfs(i, state):  # 一共四种初始转移方式即 i 为 0 或者 m*n 而 state 为 0 或者 (1<<(m*n))-1
             if i == m * n:

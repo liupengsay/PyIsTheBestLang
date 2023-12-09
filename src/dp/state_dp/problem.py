@@ -1,57 +1,57 @@
 """
-Algorithm：state_compressionDP、轮廓线DP、memory_searchDP、刷表法、fill_table
-Description：二进制数字表示转移状态，相应的转移方程，通常可以先满足条件的子集，有时通过深搜back_trackbrute_force全部子集的办法比bit_operationbrute_force效率更高
+Algorithm：state_compression|outline_dp、memory_search|refresh_table|fill_table
+Description：state_compression|dfs|back_track|brute_force|sub_set|bit_operation|brute_force
 
 ====================================LeetCode====================================
-465（https://leetcode.com/problems/optimal-account-balancing/）brute_force子集状压DP
-1349（https://leetcode.com/problems/maximum-students-taking-exam/）按行状态brute_force所有的摆放可能性
-1723（https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs/）通过bit_operationbrute_force分配工作DP最小化的最大值，brute_force子集预处理，brute_force子集模板
-1986（https://leetcode.com/problems/minimum-number-of-work-sessions-to-finish-the-tasks/）预处理子集后记忆化状态转移，子集brute_force，也可两个状态
-698（https://leetcode.com/problems/partition-to-k-equal-sum-subsets/）预处理子集后记忆化状态转移
-2172（https://leetcode.com/problems/maximum-and-sum-of-array/）bit_operation和state_compression转移，三进制状压DP（天平就是三进制）
-1255（https://leetcode.com/problems/maximum-score-words-formed-by-letters/）状压DP
-2403（https://leetcode.com/problems/minimum-time-to-kill-all-monsters/）状压DP
-1681（https://leetcode.com/problems/minimum-incompatibility/）state_compressiongroup_bag_dp，state_compression和组合数选取结合
-1125（https://leetcode.com/problems/smallest-sufficient-team/）状压DP
-1467（https://leetcode.com/problems/probability-of-a-two-boxes-having-the-same-number-of-distinct-balls/）memory_search与组合mathcounter
-1531（https://leetcode.com/problems/string-compression-ii/submissions/）liner_dpimplemention
-1595（https://leetcode.com/problems/minimum-cost-to-connect-two-groups-of-points/）状压DP，需要一点变形
-1655（https://leetcode.com/problems/distribute-repeating-integers/）状压 DP
-1879（https://leetcode.com/problems/minimum-xor-sum-of-two-arrays/）状压 DP
-2019（https://leetcode.com/problems/the-score-of-students-solving-math-expression/）记忆化DP，可以刷表法与fill_table迭代实现
-943（https://leetcode.com/problems/find-the-shortest-superstring/）字符串greedy最短长度拼接状压DP
-1434（https://leetcode.com/problems/number-of-ways-to-wear-different-hats-to-each-other/description/）状压DPreverse_thinking
-847（https://leetcode.com/problems/shortest-path-visiting-all-nodes/）最短路Floyd或者Dijkstra预处理最短路|状压DP
-2741（https://leetcode.com/problems/special-permutations/description/）状压DP
-2305（https://leetcode.com/problems/fair-distribution-of-cookies/description/）classical状压DPbrute_force子集
-980（https://leetcode.com/problems/unique-paths-iii/description/）classical状压DP或者back_track
-2571（https://leetcode.com/problems/minimum-operations-to-reduce-an-integer-to-0/description/）brain_teaser|记忆化DP
+465（https://leetcode.com/problems/optimal-account-balancing/）brute_force|sub_set|state_compress
+1349（https://leetcode.com/problems/maximum-students-taking-exam/）brute_force|state_compress
+1723（https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs/）bit_operation|minimum_maximum|brute_force|classical|sub_set
+1986（https://leetcode.com/problems/minimum-number-of-work-sessions-to-finish-the-tasks/）sub_set|preprocess|brute_force|state_compress
+698（https://leetcode.com/problems/partition-to-k-equal-sum-subsets/））sub_set|preprocess|brute_force|state_compress
+2172（https://leetcode.com/problems/maximum-and-sum-of-array/）bit_operation|state_compression|3-base|state_compress
+1255（https://leetcode.com/problems/maximum-score-words-formed-by-letters/）state_compress
+2403（https://leetcode.com/problems/minimum-time-to-kill-all-monsters/）state_compress
+1681（https://leetcode.com/problems/minimum-incompatibility/）state_compression|group_bag_dp|state_compression|comb
+1125（https://leetcode.com/problems/smallest-sufficient-team/）state_compress
+1467（https://leetcode.com/problems/probability-of-a-two-boxes-having-the-same-number-of-distinct-balls/）memory_search|counter
+1531（https://leetcode.com/problems/string-compression-ii/submissions/）liner_dp|implemention
+1595（https://leetcode.com/problems/minimum-cost-to-connect-two-groups-of-points/）state_compress
+1655（https://leetcode.com/problems/distribute-repeating-integers/）state_compress
+1879（https://leetcode.com/problems/minimum-xor-sum-of-two-arrays/）state_compress
+2019（https://leetcode.com/problems/the-score-of-students-solving-math-expression/）memory_search|fill_table
+943（https://leetcode.com/problems/find-the-shortest-superstring/）string|greedy|state_compress
+1434（https://leetcode.com/problems/number-of-ways-to-wear-different-hats-to-each-other/description/）state_compress|reverse_thinking
+847（https://leetcode.com/problems/shortest-path-visiting-all-nodes/）shortest_path|floyd|dijkstra|preprocess|state_compress
+2741（https://leetcode.com/problems/special-permutations/description/）state_compress
+2305（https://leetcode.com/problems/fair-distribution-of-cookies/description/）classical|state_compress|brute_force|sub_set
+980（https://leetcode.com/problems/unique-paths-iii/description/）classical|state_compress|back_track
+2571（https://leetcode.com/problems/minimum-operations-to-reduce-an-integer-to-0/description/）brain_teaser|memory_search
 
 =====================================LuoGu======================================
-1896（https://www.luogu.com.cn/problem/P1896）按行状态与行个数brute_force所有的摆放可能性
-2704（https://www.luogu.com.cn/problem/P2704）记录两个前序状态转移
+1896（https://www.luogu.com.cn/problem/P1896）brute_force|state_compress
+2704（https://www.luogu.com.cn/problem/P2704）state_compress
 
-2196（https://www.luogu.com.cn/problem/P2196）有向图最长路径|状压DP
-1690（https://www.luogu.com.cn/problem/P1690）最短路|状压DP
-1294（https://www.luogu.com.cn/problem/P1294）图问题状压DP求解最长直径
-1123（https://www.luogu.com.cn/problem/P1123）类似占座位的状压DP
-1433（https://www.luogu.com.cn/problem/P1433）状压DP
-1896（https://www.luogu.com.cn/problem/P1896）状压DP
-1556（https://www.luogu.com.cn/problem/P1556）state_compressionDP最短路specific_plan数
-3052（https://www.luogu.com.cn/problem/P3052）state_compression DP 二维优化
-5997（https://www.luogu.com.cn/problem/P5997）greedy背包与状压 DP 结合
-6883（https://www.luogu.com.cn/problem/P6883）classical状压 DP 
-8687（https://www.luogu.com.cn/problem/P8687）状压 DP 结合背包 DP 思想
-8733（https://www.luogu.com.cn/problem/P8733）Floyd最短路并状压 DP
+2196（https://www.luogu.com.cn/problem/P2196）longest_path|state_compress
+1690（https://www.luogu.com.cn/problem/P1690）shortest_path|state_compress
+1294（https://www.luogu.com.cn/problem/P1294）state_compress|longest_diameter
+1123（https://www.luogu.com.cn/problem/P1123）state_compress
+1433（https://www.luogu.com.cn/problem/P1433）state_compress
+1896（https://www.luogu.com.cn/problem/P1896）state_compress
+1556（https://www.luogu.com.cn/problem/P1556）state_compression|shortest_path|specific_plan
+3052（https://www.luogu.com.cn/problem/P3052）state_compression|matrix_dp
+5997（https://www.luogu.com.cn/problem/P5997）greedy|bag_dp|state_compress
+6883（https://www.luogu.com.cn/problem/P6883）classical|state_compress
+8687（https://www.luogu.com.cn/problem/P8687）state_compress|bag_dp
+8733（https://www.luogu.com.cn/problem/P8733）floyd|shortest_path|state_compress
 
 ===================================CodeForces===================================
-580D（https://codeforces.com/problemset/problem/580/D）state_compressionDP结合前后相邻的增益最优解
-165E（https://codeforces.com/problemset/problem/165/E）liner_dp，state_compressionbrute_force，类似子集思想求解可能存在的与为0的数对
-11D（https://codeforces.com/contest/11/problem/D）状压DP，无向图简单环counter
-1294F（https://codeforces.com/contest/1294/problem/F）classical树的直径应用题
+580D（https://codeforces.com/problemset/problem/580/D）state_compression
+165E（https://codeforces.com/problemset/problem/165/E）liner_dp|state_compression|brute_force
+11D（https://codeforces.com/contest/11/problem/D）state_compress|undirected|counter
+1294F（https://codeforces.com/contest/1294/problem/F）classical|tree_diameter
 
 =====================================AcWing=====================================
-3735（https://www.acwing.com/problem/content/3738/）reverse_order|状压DP与输出specific_plan
+3735（https://www.acwing.com/problem/content/3738/）reverse_order|state_compress|specific_plan
 
 """
 import heapq
@@ -111,7 +111,7 @@ class Solution:
 
     @staticmethod
     def lc_1723(jobs: List[int], k: int) -> int:
-        # 通过bit_operationbrute_force分配工作DP最小化的最大值，brute_force子集预处理
+        # 通过bit_operationbrute_force分配工作DP最小化的最大值，brute_force子集preprocess
 
         @lru_cache(None)
         def dfs(i, state):
@@ -143,7 +143,7 @@ class Solution:
     @staticmethod
     def lc_1879_1(nums1: List[int], nums2: List[int]) -> int:
 
-        # 记忆化深搜状压DP写法
+        # 记忆化深搜state_compress写法
 
         @lru_cache(None)
         def dfs(i, state):
@@ -162,7 +162,7 @@ class Solution:
 
     @staticmethod
     def lc_1879_2(nums1: List[int], nums2: List[int]) -> int:
-        # 状压DP迭代写法，刷表法
+        # state_compress迭代写法，刷表法
         n = len(nums1)
         s = sum(nums1) + sum(nums2)
         dp = [s] * (1 << n)
@@ -177,7 +177,7 @@ class Solution:
 
     @staticmethod
     def lc_1879_3(nums1: List[int], nums2: List[int]) -> int:
-        # 状压DP迭代写法，fill_table
+        # state_compress迭代写法，fill_table
         n = len(nums1)
         s = sum(nums1) + sum(nums2)
         dp = [s] * (1 << n)
@@ -249,7 +249,7 @@ class Solution:
 
     @staticmethod
     def lc_847(graph: List[List[int]]) -> int:
-        # 最短路Floyd或者Dijkstra预处理最短路|状压DP
+        # shortest_pathFloyd或者Dijkstrapreprocessshortest_path|state_compress
         n = len(graph)
         dis = [[inf] * n for _ in range(n)]
         for i in range(n):
@@ -312,7 +312,7 @@ class Solution:
 
     @staticmethod
     def lc_1434_1(hats: List[List[int]]) -> int:
-        # 状压DPreverse_thinking，记忆化实现
+        # state_compressreverse_thinking，记忆化实现
         mod = 10 ** 9 + 7
         n = len(hats)
         people = [[] for _ in range(40)]
@@ -337,7 +337,7 @@ class Solution:
 
     @staticmethod
     def lc_1434_2(hats: List[List[int]]) -> int:
-        # 状压DPreverse_thinking，fill_table迭代实现
+        # state_compressreverse_thinking，fill_table迭代实现
         mod = 10 ** 9 + 7
         n = len(hats)
         people = [[] for _ in range(40)]
@@ -393,7 +393,7 @@ class Solution:
 
     @staticmethod
     def lg_p1896(ac=FastIO()):
-        # 状压DP迭代写法
+        # state_compress迭代写法
         n, k = ac.read_list_ints()
         dp = [[[0] * (k + 1) for _ in range(1 << n)] for _ in range(n + 1)]
         dp[0][0][0] = 1
@@ -417,10 +417,10 @@ class Solution:
     @staticmethod
     def cf_11d(ac=FastIO()):
 
-        # 状压DP无向图简单环counter
+        # state_compress无向图简单环counter
         n, m = ac.read_list_ints()
 
-        # 建图
+        # build_graph|
         dct = [[] for _ in range(n)]
         for _ in range(m):
             i, j = ac.read_list_ints_minus_one()
@@ -456,7 +456,7 @@ class Solution:
 
     @staticmethod
     def lg_p1433(ac=FastIO()):
-        # 状压DP
+        # state_compress
         n = ac.read_int()
         lst = [[0, 0]]
         for _ in range(n):
@@ -492,18 +492,18 @@ class Solution:
 
     @staticmethod
     def lg_p1556(ac=FastIO()):
-        # state_compression最短路
+        # state_compressionshortest_path
         n = ac.read_int()
         # 增|虚拟的起终点
         nums = [[0, 0]] + [ac.read_list_ints() for _ in range(n)] + [[0, 0]]
         n += 2
-        # 根据题意建图，表示起终点与方向
+        # 根据题意build_graph|，表示起终点与方向
         dct = [[] for _ in range(n)]
         for i in range(n):
             a, b = nums[i]
             for j in range(n):
                 if i != j:
-                    # 只有在同一行或者同一列时可以建图连边
+                    # 只有在同一行或者同一列时可以build_graph|连边
                     c, d = nums[j]
                     if a == c:
                         dct[i].append([j, 4] if b < d else [j, 2])
@@ -555,7 +555,7 @@ class Solution:
 
     @staticmethod
     def lg_p5997(ac=FastIO()):
-        # greedy背包与状压 DP 结合
+        # greedy背包与state_compress 结合
         n, m = ac.read_list_ints()
         a = ac.read_list_ints()
         c = ac.read_list_ints()
@@ -586,7 +586,7 @@ class Solution:
 
     @staticmethod
     def lg_p6883(ac=FastIO()):
-        # classical状压 DP
+        # classicalstate_compress
         n, k = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(n)]
         dp = [inf] * (1 << n)
@@ -605,7 +605,7 @@ class Solution:
 
     @staticmethod
     def lg_p8687(ac=FastIO()):
-        # 状压 DP 结合背包 DP 思想
+        # state_compress 结合背包 DP 思想
         n, m, k = ac.read_list_ints()
         dp = [inf] * (1 << m)
         dp[0] = 0
@@ -648,7 +648,7 @@ class Solution:
     @staticmethod
     def lc_1595(cost: List[List[int]]) -> int:
 
-        # 状压DP，需要一点变形
+        # state_compress，需要一点变形
         m, n = len(cost), len(cost[0])
         low = [min(cost[i][j] for i in range(m)) for j in range(n)]
 
@@ -666,7 +666,7 @@ class Solution:
 
     @staticmethod
     def lc_1655(nums: List[int], quantity: List[int]) -> bool:
-        # 线性索引|brute_force子集状压DP
+        # 线性索引|brute_force子集state_compress
         @lru_cache(None)
         def dfs(i, state):
             if not state:
@@ -716,7 +716,7 @@ class Solution:
 
     @staticmethod
     def lc_1986_1(tasks: List[int], session: int):
-        # 预处理子集后记忆化状态转移，子集brute_force，也可两个状态
+        # preprocess子集后记忆化状态转移，子集brute_force，也可两个状态
         n = len(tasks)
         valid = [False] * (1 << n)
         for mask in range(1, 1 << n):
@@ -740,7 +740,7 @@ class Solution:
 
     @staticmethod
     def lc_1986_2(tasks: List[int], session: int):
-        # 预处理子集后记忆化状态转移，子集brute_force，也可两个状态
+        # preprocess子集后记忆化状态转移，子集brute_force，也可两个状态
 
         @lru_cache(None)
         def dfs(state, rest):
@@ -762,7 +762,7 @@ class Solution:
 
     @staticmethod
     def ac_3735(ac=FastIO()):
-        # reverse_order|状压DP与输出specific_plan
+        # reverse_order|state_compress与输出specific_plan
         n, m = ac.read_list_ints()
         if m == n * (n - 1) // 2:
             ac.st(0)
@@ -805,9 +805,9 @@ class Solution:
 
     @staticmethod
     def lc_2172(nums: List[int], num_slots: int) -> int:
-        # bit_operation和state_compression转移，三进制状压DP（天平就是三进制）
+        # bit_operation和state_compression转移，三进制state_compress（天平就是三进制）
 
-        def get_k_bin_of_n(n: int, k: int, m: int):  # 进制与数字转换状压DP
+        def get_k_bin_of_n(n: int, k: int, m: int):  # 进制与数字转换state_compress
             lst = []
             while n:
                 lst.append(n % k)

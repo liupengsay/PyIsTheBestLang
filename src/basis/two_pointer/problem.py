@@ -313,7 +313,7 @@ class Solution:
 
     @staticmethod
     def lc_1712(nums: List[int]) -> int:
-        # three_pointers，即fast_slow_pointers维护满足条件的分割点个数
+        # three_pointers，即fast_slow_pointers维护满足条件的分cut_point个数
         mod = 10 ** 9 + 7
         ans = 0
         pre = list(accumulate(nums, initial=0))

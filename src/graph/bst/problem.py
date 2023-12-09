@@ -1,14 +1,14 @@
 """
-Algorithm：BST二叉搜索树
-Description：根据数字顺序建立二叉搜索树、实时维护
+Algorithm：bst|binary_search_tree|array_to_bst|implemention
+Description：build a binary_search_tree by the order of array
 
 
 ====================================LeetCode====================================
-1569（https://leetcode.com/problems/number-of-ways-to-reorder-array-to-get-same-bst/）按照顺序建立二叉树，DP与组合counter求specific_plan数
-1902（https://leetcode.com/problems/depth-of-bst-given-insertion-order/）按照顺序建立二叉树求深度
+1569（https://leetcode.com/problems/number-of-ways-to-reorder-array-to-get-same-bst/）array_to_bst|dp|comb|counter|specific_plan
+1902（https://leetcode.com/problems/depth-of-bst-given-insertion-order/）array_to_bst|tree_depth|implemention
 
 =====================================LuoGu======================================
-2171（https://www.luogu.com.cn/problem/P2171）依次输入数据生成二叉搜索树，可逆序union_find
+2171（https://www.luogu.com.cn/problem/P2171）array_to_bst|reverse_order|union_find|implemention
 
 """
 from typing import List
@@ -122,10 +122,10 @@ class Solution:
 
     @staticmethod
     def lc_1569(nums: List[int]) -> int:
-        # 按照顺序建立二叉树，DP与组合counter求specific_plan数
+        # array_to_bst，DP与组合counter求specific_plan数
         dct = BinarySearchTreeByArray().build_with_unionfind(nums)
         mod = 10 ** 9 + 7
-        cb = Combinatorics(100000, mod)  # 预处理
+        cb = Combinatorics(100000, mod)  # preprocess
         stack = [0]
         n = len(nums)
         ans = [0] * n
@@ -150,7 +150,7 @@ class Solution:
 
     @staticmethod
     def lc_1902(order: List[int]) -> int:
-        # 按照顺序建立二叉树求深度
+        # array_to_bst求深度
         dct = BinarySearchTreeByArray().build_with_unionfind(order)  # 也可以 build_with_stack
         stack = [[0, 1]]
         ans = 1

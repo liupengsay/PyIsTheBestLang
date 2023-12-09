@@ -1,7 +1,7 @@
 """
 
-Algorithm：union_find、可持久化union_find、permutation_ring|
-Description：用来处理图论相关的联通问题，通常结合逆向思考、permutation_ring|或者offline_query求解，连通块不一定是秩大小，也可以是最大最小值、和等
+Algorithm：union_find、可持久化union_find、permutation_circle|
+Description：用来处理图论相关的联通问题，通常结合逆向思考、permutation_circle|或者offline_query求解，连通块不一定是秩大小，也可以是最大最小值、和等
 
 ====================================LeetCode====================================
 765（https://leetcode.com/problems/couples-holding-hands/）union_find
@@ -13,7 +13,7 @@ Description：用来处理图论相关的联通问题，通常结合逆向思考
 2158（https://leetcode.com/problems/amount-of-new-area-painted-each-day/）union_find维护区间左端点，不断合并
 2157（https://leetcode.com/problems/groups-of-strings/）利用字母的有限数量变换brute_force分组
 2076（https://leetcode.com/problems/process-restricted-friend-requests/）union_find变种，维护群体的不喜欢关系
-2459（https://leetcode.com/problems/sort-array-by-moving-items-to-empty-space/）permutation_ring|题目
+2459（https://leetcode.com/problems/sort-array-by-moving-items-to-empty-space/）permutation_circle|题目
 2709（https://leetcode.com/problems/greatest-common-divisor-traversal/）union_find具有相同质因数的连通块
 2612（https://leetcode.com/problems/minimum-reverse-operations/）union_find应用 find_range_merge_to_disjoint 灵活
 1559（https://leetcode.com/problems/detect-cycles-in-2d-grid/）union_find判环
@@ -21,7 +21,7 @@ Description：用来处理图论相关的联通问题，通常结合逆向思考
 1970（https://leetcode.com/problems/last-day-where-you-can-still-cross/）reverse_thinkingunion_find
 1998（https://leetcode.com/problems/gcd-sort-of-an-array/）union_find|质factorization|
 2158（https://leetcode.com/problems/amount-of-new-area-painted-each-day/）区间union_find
-2471（https://leetcode.com/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/description/）discretizationpermutation_ring|
+2471（https://leetcode.com/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/description/）discretizationpermutation_circle|
 945（https://leetcode.com/problems/minimum-increment-to-make-array-unique/description/）可向右合并的区间union_find，正解为greedy
 947（https://leetcode.com/contest/weekly-contest-112/problems/most-stones-removed-with-same-row-or-column/）brain_teaserunion_find
 
@@ -37,18 +37,18 @@ Description：用来处理图论相关的联通问题，通常结合逆向思考
 1955（https://www.luogu.com.cn/problem/P1955）union_find裸题
 1196（https://www.luogu.com.cn/problem/P1196）带权union_find
 1197（https://www.luogu.com.cn/problem/P1197）逆序union_find，reverse_order|brute_force联通块个数
-1522（https://www.luogu.com.cn/problem/P1522）连通块，brute_force新增路径并high_precision联通块直径
+1522（https://www.luogu.com.cn/problem/P1522）连通块，brute_force新增路径并high_precision联通块tree_diameter
 1621（https://www.luogu.com.cn/problem/P1621）利用素数筛的思想对数复杂度合并公共质因数大于p的数并连通块数量
 1892（https://www.luogu.com.cn/problem/P1892）union_find，敌人与朋友关系
 2189（https://www.luogu.com.cn/problem/P2189）union_find题，确定访问顺序的合法性
 2307（https://www.luogu.com.cn/problem/P2307）union_find判定树的生成是否合法
 3420（https://www.luogu.com.cn/problem/P3420）union_find变形问题
 5429（https://www.luogu.com.cn/problem/P5429）简单union_find应用题
-6193（https://www.luogu.com.cn/problem/P6193）permutation_ring|交换代价
+6193（https://www.luogu.com.cn/problem/P6193）permutation_circle|交换代价
 6706（https://www.luogu.com.cn/problem/P6706）有向图union_find逆序更新边 find_range_merge_to_disjoint 灵活
 7991（https://www.luogu.com.cn/problem/P7991）union_find连通块缩点使得 1 和 n 连通最多|两条路的代价
 8230（https://www.luogu.com.cn/problem/P8230）分层union_find|implemention
-8637（https://www.luogu.com.cn/problem/P8637）union_findpermutation_ring|
+8637（https://www.luogu.com.cn/problem/P8637）union_findpermutation_circle|
 8686（https://www.luogu.com.cn/problem/P8686）union_find灵活应用
 8785（https://www.luogu.com.cn/problem/P8785）根据边界union_find构建counter
 8787（https://www.luogu.com.cn/problem/P8787）greedyheapq|implemention与union_find灵活应用
@@ -246,7 +246,7 @@ class Solution:
     def lc_2503(grid: List[List[int]], queries: List[int]) -> List[int]:
         # union_find与离线sorting查询结合
         dct = []
-        # 根据邻居关系建图处理
+        # 根据邻居关系build_graph|处理
         m, n = len(grid), len(grid[0])
         for i in range(m):
             for j in range(n):
@@ -384,7 +384,7 @@ class Solution:
     @staticmethod
     def lg_p1522(ac=FastIO()):
 
-        # 连通块，brute_force新增路径并high_precision联通块直径
+        # 连通块，brute_force新增路径并high_precision联通块tree_diameter
 
         def dis(x1, y1, x2, y2):
             return math.sqrt(decimal.Decimal(((x1 - x2) ** 2 + (y1 - y2) ** 2)))
@@ -579,7 +579,7 @@ class Solution:
 
     @staticmethod
     def lg_p6193(ac=FastIO()):
-        # permutation_ring|交换代价
+        # permutation_circle|交换代价
         n = ac.read_int()
         nums = [ac.read_int() for _ in range(n)]
         lst = sorted(nums)
@@ -587,7 +587,7 @@ class Solution:
         ind = {num: i for i, num in enumerate(lst)}
         uf = UnionFind(n)
         x = lst[0]
-        # 寻找permutation_ring|
+        # 寻找permutation_circle|
         for i in range(n):
             uf.union(i, ind[nums[i]])
         part = uf.get_root_part()
@@ -598,7 +598,7 @@ class Solution:
             m = len(part[p])
             if m == 1:
                 continue
-            #  当前permutation_ring|最小值交换
+            #  当前permutation_circle|最小值交换
             cost1 = s + (m - 2) * y
             # 或者全局最小值交换
             cost2 = s - y + x + (m - 2) * x + (x + y) * 2
@@ -893,7 +893,7 @@ class Solution:
                 dct[i].append(r)
                 uf.union(i, r)
             post[x] = i
-        # 树形 DP
+        # tree_dp|
         stack = [0]
         sub = [0] * n
         ans = 1
@@ -1015,7 +1015,7 @@ class Solution:
 
     @staticmethod
     def lc_2471(root: Optional[TreeNode]) -> int:
-        # discretizationpermutation_ring|
+        # discretizationpermutation_circle|
 
         def check():
             nonlocal ans

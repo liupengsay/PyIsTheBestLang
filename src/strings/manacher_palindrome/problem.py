@@ -179,7 +179,7 @@ class Solution:
 
     @staticmethod
     def lc_2472(s: str, k: int) -> int:
-        # 预处理线性palindrome_substring DP 优化外|结果linear_dp 也可以马拉车回文串获取回文信息
+        # preprocess线性palindrome_substring DP 优化外|结果linear_dp 也可以马拉车回文串获取回文信息
         n = len(s)
         _, end = ManacherPlindrome().palindrome(s)
         dp = [0] * (n + 1)

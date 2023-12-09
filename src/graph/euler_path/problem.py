@@ -1,32 +1,31 @@
 """
 
-Algorithm：欧拉路径（深度优先搜索里面的Hierholzer算法）
-Description：求解有向图与无向图中的欧拉路径，定义比较复杂且不统一，须根据实际情况作适配与调整
-有向图欧拉路径：图中恰好存在 1 个点出度比入度多 1（这个点即为起点） 1 个点出度比入度少 1（这个点即为终点）其余相等
-有向图欧拉回路：所有节点出度等于入度，起终点可以为任意点
-无向图欧拉路径：图中恰好存在 2 个点的度数是奇数，其余节点的度数为偶数，这两个度数为奇数的点即为欧拉路径的起点和终点 
-无向图欧拉回路：所有点的度数都是偶数（起点和终点可以为任意点）
-哈密顿路径：类似欧拉路径，只是要求经过每个顶点恰好一次，back_track？
-哈密顿回路：类似拉回路，只是要求经过每个顶点恰好一次，back_track？
-
-注1：存在欧拉回路（即满足存在欧拉回路的条件），也一定存在欧拉路径，
-注2：图有欧拉路径必须满足将它的有向边视为无向边后它是连通的（不考虑度为 0 的孤立点）连通性的判断我们可以union_find或 dfs 
+Algorithm：euler_path|hierholzer
+Description：directed_graph|undirected_graph|euler_path
+directed_euler_path：start point has out_degree - in_degree = 1, end point has in_degree - out_degree = 1, others in_degree = out_degree
+directed_euler_circular_path：all points have in_degree = out_degree, all points can be start or end point
+undirected_euler_path：start and end point have odd degree, others have even degree
+undirected_euler_circular_path：all points have even degree, all points can be start or end point
+hamilton_path：like euler_path, path pass every node exactly once, back_track?
+hamilton_circular_path：like euler_circular_path, path pass every node exactly once, back_track?
+Note1：where there exist euler_circular_path, there exist euler_path
+Note2：where there exist euler_path if and only if the graph is connected
 
 ====================================LeetCode====================================
-332（https://leetcode.com/problems/reconstruct-itinerary/）欧拉回路模板题
-753（https://leetcode.com/problems/cracking-the-safe/solution/er-xu-cheng-ming-jiu-xu-zui-by-liupengsa-lm77/）
-2097（https://leetcode.com/problems/valid-arrangement-of-pairs/submissions/）欧拉路径模板题，注意确定首尾点
-1743（https://leetcode.com/problems/restore-the-array-from-adjacent-pairs/）无向图欧拉路径模板题, discretization解决，也是弱化版本的欧拉路径可直接implemention遍历记录父节点
+332（https://leetcode.com/problems/reconstruct-itinerary/）euler_circular_path
+753（https://leetcode.com/problems/cracking-the-safe/）euler_path
+2097（https://leetcode.com/problems/valid-arrangement-of-pairs/submissions/）euler_path
+1743（https://leetcode.com/problems/restore-the-array-from-adjacent-pairs/）undirected_euler_path|discretization
 
 =====================================LuoGu======================================
-7771（https://www.luogu.com.cn/problem/P7771）欧拉路径模板题
-6066（https://www.luogu.com.cn/problem/P6066）欧拉路径模板题
-1127（https://www.luogu.com.cn/problem/P1127）经过每个顶点一次有向边不确定且lexicographical_order最小（转换为有向图欧拉路径或者回路）
-2731（https://www.luogu.com.cn/problem/P2731）经过每条确定无向边一次且lexicographical_order最小（需要邻接矩阵转换为无向图欧拉路径或者回路）
-1341（https://www.luogu.com.cn/problem/P1341）经过每条确定无向边一次且lexicographical_order最小（需要邻接矩阵转换为无向图欧拉路径或者回路）
+7771（https://www.luogu.com.cn/problem/P7771）euler_path
+6066（https://www.luogu.com.cn/problem/P6066）euler_path
+1127（https://www.luogu.com.cn/problem/P1127）lexicographical_order_minimum|directed_euler_path|specific_plan
+2731（https://www.luogu.com.cn/problem/P2731）lexicographical_order_minimum|undirected_euler_path|specific_plan
+1341（https://www.luogu.com.cn/problem/P1341）lexicographical_order_minimum|undirected_euler_path|specific_plan
 
 =====================================AcWing=====================================
-4211（https://www.acwing.com/problem/content/4214/）有向图欧拉路径合法specific_plan
+4211（https://www.acwing.com/problem/content/4214/）directed_euler_path|specific_plan
 
 OI WiKi（https://oi-wiki.org/graph/euler/）
 https://www.jianshu.com/p/8394b8e5b878
@@ -45,7 +44,7 @@ class Solution:
 
     @staticmethod
     def lg_p7771(ac=FastIO()):
-        # 有向图欧拉路径或者欧拉回路
+        # 有向图euler_path或者euler_circular_path
         n, m = ac.read_list_ints()
         # 存储图关系
         pairs = [ac.read_list_ints_minus_one() for _ in range(m)]
@@ -59,7 +58,7 @@ class Solution:
 
     @staticmethod
     def lg_p2731(ac=FastIO()):
-        # 无向图欧拉路径或者欧拉回路
+        # 无向图euler_path或者euler_circular_path
         m = ac.read_int()
         pairs = [ac.read_list_ints() for _ in range(m)]
         node = set()
@@ -77,7 +76,7 @@ class Solution:
 
     @staticmethod
     def lg_p1341(ac=FastIO()):
-        # 无向图欧拉路径或者欧拉回路
+        # 无向图euler_path或者euler_circular_path
         m = ac.read_int()
         nodes = set()
         pairs = []
@@ -110,10 +109,10 @@ class Solution:
 
     @staticmethod
     def lg_p1127(ac=FastIO()):
-        # 有向图欧拉路径或者欧拉回路
+        # 有向图euler_path或者euler_circular_path
         m = ac.read_int()
 
-        # 最关键的建图
+        # 最关键的build_graph|
         nodes = set()
         pairs = []
         for _ in range(m):
@@ -135,7 +134,7 @@ class Solution:
             ac.st("***")
             return
 
-        # 有向图欧拉路径或者欧拉回路的获取
+        # 有向图euler_path或者euler_circular_path的获取
         pairs = [[ind[x], ind[y]] for x, y in pairs]
         euler = DirectedEulerPath(n, pairs)
         if not euler.exist:
@@ -152,9 +151,9 @@ class Solution:
 
     @staticmethod
     def lg_p6606(ac=FastIO()):
-        # 有向图欧拉路径或者欧拉回路
+        # 有向图euler_path或者euler_circular_path
         n, m = ac.read_list_ints()
-        # 最关键的建图
+        # 最关键的build_graph|
         pairs = []
         for _ in range(m):
             u, v = ac.read_list_ints_minus_one()
@@ -162,7 +161,7 @@ class Solution:
             pairs.append([u, v])
             pairs.append([v, u])
 
-        # 有向图欧拉路径或者欧拉回路的获取
+        # 有向图euler_path或者euler_circular_path的获取
         euler = DirectedEulerPath(n, pairs)
         i = euler.nodes.index(0)
         for x in euler.nodes[i:] + euler.nodes[:i]:
@@ -171,7 +170,7 @@ class Solution:
 
     @staticmethod
     def lc_1743(adjacent: List[List[int]]) -> List[int]:
-        # 无向图欧拉路径模板题, discretization解决
+        # 无向图euler_path模板题, discretization解决
         nodes = set()
         for a, b in adjacent:
             nodes.add(a)
@@ -185,7 +184,7 @@ class Solution:
 
     @staticmethod
     def lc_2097(pairs: List[List[int]]) -> List[List[int]]:
-        # 欧拉路径模板题，discretization后转化为图的欧拉路径求解
+        # euler_path模板题，discretization后转化为图的euler_path求解
         nodes = set()
         for a, b in pairs:
             nodes.add(a)
@@ -200,7 +199,7 @@ class Solution:
 
     @staticmethod
     def ac_4211(ac=FastIO()):
-        # 有向图欧拉路径模板题
+        # 有向图euler_path模板题
         n = ac.read_int()
         pairs = []
         nums = ac.read_list_ints()

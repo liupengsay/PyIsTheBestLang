@@ -98,7 +98,7 @@ Description：brute force according to the data range
 8270（https://www.luogu.com.cn/problem/P8270）brain_teaser|brute_force
 8587（https://www.luogu.com.cn/problem/P8587）bucket_counter|brute_force
 8663（https://www.luogu.com.cn/problem/P8663）bucket_counter|brute_force
-8672（https://www.luogu.com.cn/problem/P8672）string|brute_force|permutation_ring|counter
+8672（https://www.luogu.com.cn/problem/P8672）string|brute_force|permutation_circle|counter
 8712（https://www.luogu.com.cn/problem/P8712）brute_force
 8749（https://www.luogu.com.cn/problem/P8749）yanghui_triangle|brute_force
 8808（https://www.luogu.com.cn/problem/P8808）fibonacci|brute_force
@@ -641,7 +641,7 @@ class Solution:
         nums1.sort(key=lambda it: -it[0])
         nums2 = [ac.read_int() for _ in range(r)]
         nums2.sort(reverse=True)
-        # 预处理后缀和
+        # preprocess后缀和
         ind = 0
         post = [0] * (n + 1)
         for i in range(n - 1, -1, -1):
@@ -820,7 +820,7 @@ class Solution:
 
     @staticmethod
     def lg_p8672(ac=FastIO()):
-        # 字符串brute_force与permutation_ring|counter
+        # 字符串brute_force与permutation_circle|counter
         s = ac.read_str()
         n = len(s)
         dct = dict()
@@ -911,7 +911,7 @@ class Solution:
 
     @staticmethod
     def lg_p8948(ac=FastIO()):
-        # 预处理和brute_force所有情况
+        # preprocess和brute_force所有情况
         dct = dict()
         dct[2000] = [400, 600]
         for i in range(401):

@@ -177,7 +177,7 @@ class Solution:
             dct[i].append(j)
             dct[j].append(i)
 
-        # 预处理子树取值之和
+        # preprocess子树取值之和
         def dfs1(x, fa):
             res = values[x]
             for y in dct[x]:

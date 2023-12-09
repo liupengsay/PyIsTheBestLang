@@ -527,7 +527,7 @@ class Solution:
 
     @staticmethod
     def lg_p2359(ac=FastIO()):
-        # 预处理素数|liner_dp
+        # preprocess素数|liner_dp
         primes = NumberTheory().sieve_of_eratosthenes(10000)
         primes = [str(num) for num in primes if 1000 >
                   num >= 100 and "0" not in str(num)]
@@ -695,7 +695,7 @@ class Solution:
 
     @staticmethod
     def lg_b3734(ac=FastIO()):
-        # 线性矩阵 DP implemention
+        # 线性matrix_dp| implemention
         n, r1 = ac.read_list_ints()
         nums = [r1]
         while len(nums) < n:
@@ -931,7 +931,7 @@ class Solution:
 
     @staticmethod
     def lg_p8816(ac=FastIO()):
-        # classical线性矩阵 DP implemention
+        # classical线性matrix_dp| implemention
         n, k = ac.read_list_ints()
         nums = sorted([ac.read_list_ints() for _ in range(n)])
         dp = [list(range(1, k + 2)) for _ in range(n)]

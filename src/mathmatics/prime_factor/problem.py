@@ -167,7 +167,7 @@ class Solution:
 
     @staticmethod
     def lc_8041(nums: List[int]) -> int:
-        # 预处理幂次为奇数的质因子hash分组counter
+        # preprocess幂次为奇数的质因子hash分组counter
         n = len(nums)
         nt = PrimeFactor(n)
         dct = defaultdict(int)
@@ -417,7 +417,7 @@ class Solution:
 
     @staticmethod
     def lg_p7960(ac=FastIO()):
-        # 类似埃氏筛的思路预处理
+        # 类似埃氏筛的思路preprocess
         n = 10 ** 7
         dp = [0] * (n + 1)
         for x in range(1, n + 1):
@@ -518,7 +518,7 @@ class Solution:
 
     @staticmethod
     def lc_1390(nums: List[int]) -> int:
-        # 预处理所有数的所有因子
+        # preprocess所有数的所有因子
         nt = PrimeFactor(10 ** 5)
         ans = 0
         for num in nums:
@@ -528,7 +528,7 @@ class Solution:
 
     @staticmethod
     def lc_1819(nums: List[int]) -> int:
-        # 预处理所有整数的所有因子，再brute_forcegcd
+        # preprocess所有整数的所有因子，再brute_forcegcd
         nt = PrimeFactor(2 * 10 ** 5 + 10)
         dct = defaultdict(list)
         for num in set(nums):

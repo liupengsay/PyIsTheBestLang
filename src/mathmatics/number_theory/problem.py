@@ -15,8 +15,8 @@ Description：有时候digital_dp类型题目可以N进制来求取，质factori
 LCP 14（https://leetcode.com/problems/qie-fen-shu-zu/） 1 到 n 的每个数所有的质因子，并动态规划counter
 279（https://leetcode.com/problems/perfect-squares/）四平方数定理
 650（https://leetcode.com/problems/2-keys-keyboard/）分解质因数
-1390（https://leetcode.com/contest/weekly-contest-181/problems/four-divisors/）预处理所有数的所有因子
-1819（https://leetcode.com/problems/number-of-different-subsequences-gcds/）预处理所有整数的所有因子，再brute_forcegcd
+1390（https://leetcode.com/contest/weekly-contest-181/problems/four-divisors/）preprocess所有数的所有因子
+1819（https://leetcode.com/problems/number-of-different-subsequences-gcds/）preprocess所有整数的所有因子，再brute_forcegcd
 1017（https://leetcode.com/contest/weekly-contest-130/problems/convert-to-base-2/）负进制转换模板题
 1073（https://leetcode.com/problems/adding-two-negabinary-numbers/）负进制题
 8041（https://leetcode.com/problems/maximum-element-sum-of-a-complete-subset-of-indices/description/）质factorization|，奇数幂次的质因子组合hash
@@ -50,7 +50,7 @@ LCP 14（https://leetcode.com/problems/qie-fen-shu-zu/） 1 到 n 的每个数�
 4752（https://www.luogu.com.cn/problem/P4752）判断除数是否为质数
 5248（https://www.luogu.com.cn/problem/P5248）进制题目
 5253（https://www.luogu.com.cn/problem/P5253）方程变换 (x-n)*(y-n)=n^2 的对数
-7960（https://www.luogu.com.cn/problem/P7960）类似埃氏筛的思路预处理
+7960（https://www.luogu.com.cn/problem/P7960）类似埃氏筛的思路preprocess
 8319（https://www.luogu.com.cn/problem/P8319）质factorization|与因子counter
 8646（https://www.luogu.com.cn/problem/P8646）裴蜀定理与背包 DP
 8762（https://www.luogu.com.cn/problem/P8762）inclusion_exclusion|prefix_sumcounter
@@ -670,7 +670,7 @@ class Solution:
 
     @staticmethod
     def lg_p7960(ac=FastIO()):
-        # 类似埃氏筛的思路预处理
+        # 类似埃氏筛的思路preprocess
         n = 10 ** 7
         dp = [0] * (n + 1)
         for x in range(1, n + 1):

@@ -7,7 +7,7 @@ Description：在有向图与无向图扩散，多源BFS、双向BFS，0-1BFS（
 =====================================LuoGu======================================
 
 ===================================CodeForces===================================
-1594D（https://codeforces.com/contest/1594/problem/D）建图后染色法BFS判断bipartite_graph
+1594D（https://codeforces.com/contest/1594/problem/D）build_graph|后染色法BFS判断bipartite_graph
 
 ====================================AtCoder=====================================
 
@@ -91,11 +91,11 @@ class Solution:
         g = [[] for _ in range(n)]
         for x, y in edges:
             g[x].append(y)
-            g[y].append(x)  # 建图
+            g[y].append(x)  # build_graph|
 
         def bfs(start: int) -> int:
             nonlocal inf
-            dis = [-1] * n  # dis[i] 表示从 start 到 i 的最短路长度
+            dis = [-1] * n  # dis[i] 表示从 start 到 i 的shortest_path长度
             dis[start] = 0
             q = deque([(start, -1)])
             res = inf
@@ -211,7 +211,7 @@ class Solution:
 
     @staticmethod
     def cf_1272e(ac=FastIO()):
-        # 反向建图与多源 BFS 
+        # reverse_graph与多源 BFS 
         n = ac.read_int()
         nums = ac.read_list_ints()
         ans = [-1] * n
@@ -489,7 +489,7 @@ class Solution:
 
     @staticmethod
     def lg_p1099(ac=FastIO()):
-        # 求最小偏心距在树的直径上two_pointers与单调队列
+        # 求最小偏心距在tree_diameter上two_pointers与单调队列
         n, s = ac.read_list_ints()
         dct = [dict() for _ in range(n)]
         for _ in range(n - 1):
@@ -516,7 +516,7 @@ class Solution:
             pa.reverse()
             return node, pa
 
-        # 直径与路径
+        # tree_diameter与路径
         start, _ = bfs_diameter(0)
         end, path = bfs_diameter(start)
 
@@ -538,7 +538,7 @@ class Solution:
                     dis[u] = x
             return dis
 
-        # 直径上的端点往 start 与往 end 方向的最长距离
+        # tree_diameter上的端点往 start 与往 end 方向的最长距离
         dis1 = bfs_distance(start)  # start -> end
         dis2 = bfs_distance(end)  # end -> start
 
@@ -554,12 +554,12 @@ class Solution:
             diameter[src] = res
             return
 
-        # 直径上的端点往非直径端点上的最远距离
+        # tree_diameter上的端点往非tree_diameter端点上的最远距离
         diameter = {node: 0 for node in path}
         for node in diameter:
             bfs_node(node)
 
-        # two_pointers|sliding_window单调队列记录直径范围点往非直径方向延申的最远距离
+        # two_pointers|sliding_window单调队列记录tree_diameter范围点往非tree_diameter方向延申的最远距离
         m = len(path)
         ans = inf
         gap = 0
@@ -649,7 +649,7 @@ class Solution:
     def ac_175(ac=FastIO()):
         for _ in range(ac.read_int()):
 
-            # 双端priority_queue 01 BFS模板题注意建图
+            # 双端priority_queue 01 BFS模板题注意build_graph|
             m, n = ac.read_list_ints()
             grid = [ac.read_str() for _ in range(m)]
             dct = [dict() for _ in range((m + 1) * (n + 1))]
@@ -962,7 +962,7 @@ class Solution:
 
     @staticmethod
     def lg_p2296(ac=FastIO()):
-        # 正向与反向建图跑两次BFS
+        # 正向与reverse_graph跑两次BFS
         n, m = ac.read_list_ints()
         dct = [set() for _ in range(n)]
         rev = [set() for _ in range(n)]
@@ -987,7 +987,7 @@ class Solution:
             ac.st(-1)
             return
 
-        # 起点出发最短路
+        # 起点出发shortest_path
         visit = [inf] * n
         visit[s] = 0
         stack = deque([s])
@@ -1464,7 +1464,7 @@ class Solution:
 
     @staticmethod
     def lg_p6909(ac=FastIO()):
-        # 预处理| BFS
+        # preprocess| BFS
         m, n = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
 

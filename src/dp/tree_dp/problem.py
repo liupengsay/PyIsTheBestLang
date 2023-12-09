@@ -1,79 +1,79 @@
 """
-Algorithm：树形DP、树的直径、树上差分、树的重心（以及树的每个节点到其余节点的总距离和）、树的最小偏心距
-Description：在树形或者图结构上DP，有换根DP，自顶向下和自底向上DP
+Algorithm：tree_dp|tree_diameter|tree_diff_array|tree_centroid
+Description：reroot_dp|up_to_down|down_to_up
 
 ====================================LeetCode====================================
-2458 移除子树后的二叉树高度（https://leetcode.com/problems/height-of-binary-tree-after-subtree-removal-queries/）跑两边DFS自顶向下和自底向上DP结合
-2440 创建价值相同的连通块（https://leetcode.com/problems/create-components-with-same-value/）利用总和的因子和树形recursion判断连通块是否可行
-1569 将子数组重新sorting得到同一个二叉查找树的specific_plan数（https://leetcode.com/problems/number-of-ways-to-reorder-array-to-get-same-bst/solution/by-liupengsay-yi3h/）
-968（https://leetcode.com/problems/binary-tree-cameras/）树形DP监控每个节点
-2538（https://leetcode.com/problems/difference-between-maximum-and-minimum-price-sum/）树形换根DP，求去掉其中一个叶子节点的最大直径
-124（https://leetcode.com/problems/binary-tree-maximum-path-sum/）树形DP
-1617（https://leetcode.com/problems/count-subtrees-with-max-distance-between-cities/）二进制brute_force|树的直径
-2378（https://leetcode.com/problems/choose-edges-to-maximize-score-in-a-tree/）树形DP
-2445（https://leetcode.com/problems/number-of-nodes-with-value-one/）自上而下DPimplemention
-834（https://leetcode.com/problems/sum-of-distances-in-tree/）树的总距离，求树的重心
-1617（https://leetcode.com/problems/count-subtrees-with-max-distance-between-cities/）brute_force直径端点与乘法原理树形DP
-2003（https://leetcode.com/problems/smallest-missing-genetic-value-in-each-subtree/）树形DP启发式合并
-2673（https://leetcode.com/problems/make-costs-of-paths-equal-in-a-binary-tree/）树形DPgreedy
-1367（https://leetcode.com/problems/linked-list-in-binary-tree/description/）classical二叉树与linked_list|比较的记忆化DP
-979（https://leetcode.com/problems/distribute-coins-in-binary-tree/description/）树形DPgreedy
-1373（https://leetcode.com/problems/maximum-sum-bst-in-binary-tree/）树形DP二叉树校验
-971（https://leetcode.com/problems/flip-binary-tree-to-match-preorder-traversal/description/）树形DPgreedyimplemention
-100041（https://www.acwing.com/problem/content/description/4384/）迭代法实现树形换根DP，或者一遍DFS或者dfs_order||差分
-100047（https://leetcode.com/problems/count-valid-paths-in-a-tree/description/）树形DP，union_find或者BFS实现
+2458（https://leetcode.com/problems/height-of-binary-tree-after-subtree-removal-queries/）dfs|tree_dp|up_to_down|down_to_up
+2440（https://leetcode.com/problems/create-components-with-same-value/）tree_dp|number_theory|recursion|union_find|brute_force
+1569 https://leetcode.com/problems/number-of-ways-to-reorder-array-to-get-same-bst/solution/）counter|comb|bst|tree_dp
+968（https://leetcode.com/problems/binary-tree-cameras/）tree_dp
+2538（https://leetcode.com/problems/difference-between-maximum-and-minimum-price-sum/）reroot_dp|tree_diameter
+124（https://leetcode.com/problems/binary-tree-maximum-path-sum/）tree_dp
+1617（https://leetcode.com/problems/count-subtrees-with-max-distance-between-cities/）brute_force|tree_diameter
+2378（https://leetcode.com/problems/choose-edges-to-maximize-score-in-a-tree/）tree_dp
+2445（https://leetcode.com/problems/number-of-nodes-with-value-one/）up_to_down|tree_dp|implemention
+834（https://leetcode.com/problems/sum-of-distances-in-tree/）tree_dis|tree_centroid
+1617（https://leetcode.com/problems/count-subtrees-with-max-distance-between-cities/）brute_force|tree_diameter|tree_dp
+2003（https://leetcode.com/problems/smallest-missing-genetic-value-in-each-subtree/）tree_dp|heuristic_merge|classical
+2673（https://leetcode.com/problems/make-costs-of-paths-equal-in-a-binary-tree/）tree_dp|greedy
+1367（https://leetcode.com/problems/linked-list-in-binary-tree/description/）classical|2-tree|linked_list|memory_dp
+979（https://leetcode.com/problems/distribute-coins-in-binary-tree/description/）tree_dp|greedy
+1373（https://leetcode.com/problems/maximum-sum-bst-in-binary-tree/）tree_dp|2-tree
+971（https://leetcode.com/problems/flip-binary-tree-to-match-preorder-traversal/description/）tree_dp|greedy|implemention
+100041（https://www.acwing.com/problem/content/description/4384/）reroot_dp|dfs_order|diff_array
+100047（https://leetcode.com/problems/count-valid-paths-in-a-tree/description/）tree_dp|union_find|bfs
 
 =====================================LuoGu======================================
-1395（https://www.luogu.com.cn/problem/P1395）树的总距离，求树的重心，单个节点距离其他所有节点的最大距离，换根DP可以做
-1352（https://www.luogu.com.cn/problem/P1352）树形DP，隔层动态规划转移
-1922（https://www.luogu.com.cn/problem/P1922）树形DP，greedy子树与叶子节点的分配
-2016（https://www.luogu.com.cn/problem/P2016）树形DP瞭望每条边
-1122（https://www.luogu.com.cn/problem/P1122）最大的连通块和
-2932（https://www.luogu.com.cn/problem/P2932）树形DP统计子树个数与greedy安排最小损坏个数
-2996（https://www.luogu.com.cn/problem/P2996）树形DP
-3074（https://www.luogu.com.cn/problem/P3074）树的最长路径（广搜DP记录最长时间也可以）
-3884（https://www.luogu.com.cn/problem/P3884）基础树形DP两点间路径变种长度
-3915（https://www.luogu.com.cn/problem/P3915）recursion拆解生成等大小的连通块
-4615（https://www.luogu.com.cn/problem/P4615）树形DP
-5002（https://www.luogu.com.cn/problem/P5002）树形DP与inclusion_exclusioncounter
-5651（https://www.luogu.com.cn/problem/P5651）brain_teaserunion_find去环，转换为树形DP里面任意两点路径的异或和
-6591（https://www.luogu.com.cn/problem/P6591）换根DP，即无根树recursion判断每个节点作为根节点的情况
-7159（https://www.luogu.com.cn/problem/P7159）树形DPbrute_forcecounter与fast_power|
-2015（https://www.luogu.com.cn/problem/P2015）树形DP，有点像树上背包
-2014（https://www.luogu.com.cn/problem/P2014）树形DP
-4316（https://www.luogu.com.cn/problem/P4316）逆向建图，topological_sortingDP
-1351（https://www.luogu.com.cn/problem/P1351#submit）树形DP
-3304（https://www.luogu.com.cn/problem/P3304）带权无向图的直径以及直径的必经边
-3408（https://www.luogu.com.cn/problem/P3408）树形DP
-3478（https://www.luogu.com.cn/problem/P3478）树的质心
-3931（https://www.luogu.com.cn/problem/P3931）classical树形DP
-4084（https://www.luogu.com.cn/problem/P4084）classical树形DP
-4395（https://www.luogu.com.cn/problem/P4395）树形 DP greedy标权值使得整棵树总价值最小
-5765（https://www.luogu.com.cn/problem/P5765）同P4395
-8602（https://www.luogu.com.cn/problem/P8602）树的直径可用两遍BFS也可用树形DP求解
-8625（https://www.luogu.com.cn/problem/P8625）树形 DP classical
-8744（https://www.luogu.com.cn/problem/P8744）简单树形 DP
+1395（https://www.luogu.com.cn/problem/P1395）tree_dis|tree_centroid|reroot_dp|classical|up_to_down|down_to_up
+1352（https://www.luogu.com.cn/problem/P1352）tree_dp
+1922（https://www.luogu.com.cn/problem/P1922）tree_dp|greedy
+2016（https://www.luogu.com.cn/problem/P2016）tree_dp|classical
+1122（https://www.luogu.com.cn/problem/P1122）tree_dp|union_find
+2932（https://www.luogu.com.cn/problem/P2932）tree_dp|greedy
+2996（https://www.luogu.com.cn/problem/P2996）tree_dp
+3074（https://www.luogu.com.cn/problem/P3074）longest_path|tree_dp
+3884（https://www.luogu.com.cn/problem/P3884）tree_dp
+3915（https://www.luogu.com.cn/problem/P3915）recursion|union_find|brute_force
+4615（https://www.luogu.com.cn/problem/P4615）tree_dp
+5002（https://www.luogu.com.cn/problem/P5002）tree_dp|inclusion_exclusion|counter
+5651（https://www.luogu.com.cn/problem/P5651）brain_teaser|union_find|tree_dp|simple_path_xor
+6591（https://www.luogu.com.cn/problem/P6591）reroot_dp|recursion
+7159（https://www.luogu.com.cn/problem/P7159）tree_dp|brute_force|counter|fast_power
+2015（https://www.luogu.com.cn/problem/P2015）tree_dp|tree_bag_dp
+2014（https://www.luogu.com.cn/problem/P2014）tree_dp
+4316（https://www.luogu.com.cn/problem/P4316）reverse_graph|topological_sortingDP
+1351（https://www.luogu.com.cn/problem/P1351#submit）tree_dp
+3304（https://www.luogu.com.cn/problem/P3304）tree_diameter
+3408（https://www.luogu.com.cn/problem/P3408）tree_dp
+3478（https://www.luogu.com.cn/problem/P3478）tree_centroid
+3931（https://www.luogu.com.cn/problem/P3931）classical|tree_dp
+4084（https://www.luogu.com.cn/problem/P4084）classical|tree_dp
+4395（https://www.luogu.com.cn/problem/P4395）tree_dp|greedy
+5765（https://www.luogu.com.cn/problem/P5765）tree_dp|P4395
+8602（https://www.luogu.com.cn/problem/P8602）tree_diameter|bfs|tree_dp
+8625（https://www.luogu.com.cn/problem/P8625）tree_dp|classical
+8744（https://www.luogu.com.cn/problem/P8744）tree_dp
 
 ====================================AtCoder=====================================
-F - Expensive Expense （https://atcoder.jp/contests/abc222/tasks/abc222_f）换根DP
-161D（https://codeforces.com/problemset/problem/161/D）树形DPcounter，记录距离为k的点对数
+F - Expensive Expense （https://atcoder.jp/contests/abc222/tasks/abc222_f）reroot_dp
+161D（https://codeforces.com/problemset/problem/161/D）tree_dp|counter
 
 ===================================CodeForces===================================
-1388C（https://codeforces.com/problemset/problem/1388/C）树形DPimplemention，recursion获取子树信息，逆向从上往下还原
-1324F（https://codeforces.com/problemset/problem/1324/F）换根DP题，两遍dfs搜索更新
-337D（https://codeforces.com/problemset/problem/337/D）换根DP题，两遍dfs搜索更新
-1187E（https://codeforces.com/problemset/problem/1187/E）换根DP题，两遍dfs搜索更新
-600E（https://codeforces.com/problemset/problem/600/E）迭代方式写dfs_order，按秩合并，由小到大
-1805D（https://codeforces.com/problemset/problem/1805/D）树的直径，任意点到直径的某个端点的距离最长
-1676G（https://codeforces.com/contest/1676/problem/G）迭代的方式树形DP
-1822F（https://codeforces.com/contest/1822/problem/F）树中节点到其余节点的最大距离
-219D（https://codeforces.com/contest/219/problem/D）迭代法实现树形换根DP，或者一遍DFS或者dfs_order||差分
-1092F（https://codeforces.com/contest/1092/problem/F）带权重树中的总距离，迭代法实现树形换根DP
-1472G（https://codeforces.com/contest/1472/problem/G）根据最短路从下到上与从上到下的DP
+1388C（https://codeforces.com/problemset/problem/1388/C）tree_dp|implemention|recursion|down_to_up|up_to_down
+1324F（https://codeforces.com/problemset/problem/1324/F）reroot_dp|dfs|down_to_up|up_to_down
+337D（https://codeforces.com/problemset/problem/337/D）reroot_dp|dfs|down_to_up|up_to_down
+1187E（https://codeforces.com/problemset/problem/1187/E）reroot_dp|dfs|down_to_up|up_to_down
+600E（https://codeforces.com/problemset/problem/600/E）dfs_order|heuristic_merge
+1805D（https://codeforces.com/problemset/problem/1805/D）tree_diameter
+1676G（https://codeforces.com/contest/1676/problem/G）tree_dp
+1822F（https://codeforces.com/contest/1822/problem/F）tree_dis|reroot_dp|down_to_up|up_to_down
+219D（https://codeforces.com/contest/219/problem/D）reroot_dp|dfs_order|diff_array
+1092F（https://codeforces.com/contest/1092/problem/F）tree_dis|reroot_dp
+1472G（https://codeforces.com/contest/1472/problem/G）shortest_path|dfs|down_to_up|up_to_down
 
 =====================================AcWing=====================================
-3760（https://www.acwing.com/problem/content/description/3763/）brain_teaser转化为树形DP迭代方式求解
-4381（https://www.acwing.com/problem/content/description/4384/）迭代法实现树形换根DP，或者一遍DFS或者dfs_order||差分
+3760（https://www.acwing.com/problem/content/description/3763/）brain_teaser|tree_dp
+4381（https://www.acwing.com/problem/content/description/4384/）reroot_dp|dfs|dfs_order|diff_array
 
 """
 import math
@@ -94,7 +94,7 @@ class Solution:
 
     @staticmethod
     def cf_1676g(ac=FastIO()):
-        # 迭代的方式树形DP
+        # 迭代的方式tree_dp
         for _ in range(ac.read_int()):
             n = ac.read_int()
             parent = ac.read_list_ints_minus_one()
@@ -274,7 +274,7 @@ class Solution:
     @staticmethod
     def cf_1324f(ac=FastIO()):
 
-        # 换根DP，根据题意转换greedy结果
+        # reroot_dp，根据题意转换greedy结果
         n = ac.read_int()
         nums = ac.read_list_ints()
         edge = [[] for _ in range(n)]
@@ -378,7 +378,7 @@ class Solution:
 
     @staticmethod
     def cf_1092f(ac=FastIO()):
-        # 带权重树中的总距离，迭代法实现树形换根DP
+        # 带权重树中的总距离，迭代法实现树形reroot_dp
         n = ac.read_int()
         nums = ac.read_list_ints()
         dct = [[] for _ in range(n)]
@@ -393,7 +393,7 @@ class Solution:
     @staticmethod
     def lc_968(root: Optional[TreeNode]) -> int:
 
-        # 树形DP
+        # tree_dp
         def dfs(node):
             # 不装被监控，装被监控，不装不被监控
             if not node:
@@ -429,7 +429,7 @@ class Solution:
 
     @staticmethod
     def cf_1187e(ac=FastIO()):
-        # 换根DP题最佳结果
+        # reroot_dp题最佳结果
         n = ac.read_int()
         edge = [[] for _ in range(n)]
         for _ in range(n - 1):
@@ -468,7 +468,7 @@ class Solution:
 
     @staticmethod
     def cf_600e_bfs(ac=FastIO()):
-        # 自下而上recursion的迭代写法，从小到大按秩合并
+        # 自下而上recursion的迭代写法，从小到大heuristic_merge
         n = ac.read_int()
         colors = ac.read_list_ints()
         edge = [[] for _ in range(n)]
@@ -506,7 +506,7 @@ class Solution:
                         mx[i] = mx[j]
                         ans[i] = ans[j]
                     for w in dp[j]:
-                        # 按秩合并
+                        # heuristic_merge
                         dp[i][w] += dp[j][w]
                         if dp[i][w] == mx[i]:
                             ans[i] += w
@@ -520,7 +520,7 @@ class Solution:
 
     @staticmethod
     def cf_600e_dfs(ac=FastIO()):
-        # 自下而上recursion的recursion写法，从小到大按秩合并
+        # 自下而上recursion的recursion写法，从小到大heuristic_merge
         n = ac.read_int()
         nums = ac.read_list_ints()
         edge = [[] for _ in range(n)]
@@ -562,7 +562,7 @@ class Solution:
 
     @staticmethod
     def lg_p1395_1(ac=FastIO()):
-        # 树的重心为最大子树节点数最小
+        # tree_centroid为最大子树节点数最小
         n = ac.read_int()
         dct = [[] for _ in range(n)]
         for _ in range(n - 1):
@@ -590,7 +590,7 @@ class Solution:
 
     @staticmethod
     def lg_p1395_2(ac=FastIO()):
-        # 树的重心为距离其余所有节点
+        # tree_centroid为距离其余所有节点
         n = ac.read_int()
         dct = [[] for _ in range(n)]
         for _ in range(n - 1):
@@ -630,7 +630,7 @@ class Solution:
 
     @staticmethod
     def lg_p1352(ac=FastIO()):
-        # 树形DP的迭代写法
+        # tree_dp的迭代写法
         n = ac.read_int()
         nums = [ac.read_int() for _ in range(n)]
 
@@ -667,7 +667,7 @@ class Solution:
 
     @staticmethod
     def lg_p2015(ac=FastIO()):
-        # 树形DP
+        # tree_dp
         n, q = ac.read_list_ints()
         dct = [dict() for _ in range(n)]
         for _ in range(n - 1):
@@ -697,7 +697,7 @@ class Solution:
 
     @staticmethod
     def lg_p2014(ac=FastIO()):
-        # 树形DP|bag_dp|
+        # tree_dp|bag_dp|
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n + 1)]
         nums = [0]
@@ -729,7 +729,7 @@ class Solution:
 
     @staticmethod
     def lg_p4316(ac=FastIO()):
-        # 反向建图|topological_sorting树形概率DP
+        # reverse_graph|topological_sorting树形prob_dp
         n, m = ac.read_list_ints()
         dp = [0 for _ in range(n)]
         degree = [0] * n
@@ -759,7 +759,7 @@ class Solution:
 
     @staticmethod
     def lg_p1351(ac=FastIO()):
-        # 树形DP
+        # tree_dp
         n = ac.read_int()
         dct = [[] for _ in range(n)]
         for _ in range(n - 1):
@@ -798,7 +798,7 @@ class Solution:
     @staticmethod
     def lg_3408(ac=FastIO()):
 
-        # 树形 DP implemention
+        # tree_dp| implemention
         n, t, c = ac.read_list_ints()
         dct = [[] for _ in range(n + 1)]
         nums = [c]
@@ -852,7 +852,7 @@ class Solution:
 
     @staticmethod
     def lg_p3931(ac=FastIO()):
-        # 树形 DP implemention
+        # tree_dp| implemention
         n, root = ac.read_list_ints()
         root -= 1
         dct = [dict() for _ in range(n)]
@@ -883,7 +883,7 @@ class Solution:
 
     @staticmethod
     def lg_p4395(ac=FastIO()):
-        # 树形 DP greedy标权值使得整棵树总价值最小
+        # tree_dp| greedy标权值使得整棵树总价值最小
         n = ac.read_int()
         ceil = int(math.log2(n)) + 1
         sub = [[inf] * (ceil + 1) for _ in range(n)]
@@ -927,7 +927,7 @@ class Solution:
 
     @staticmethod
     def lg_p8625(ac=FastIO()):
-        # 树形 DP classical
+        # tree_dp| classical
         n = ac.read_int()
         nums = ac.read_list_ints()
         sub = [0] * n
@@ -957,7 +957,7 @@ class Solution:
 
     @staticmethod
     def lc_1617_2(n: int, edges: List[List[int]]) -> List[int]:
-        # brute_force直径端点与乘法原理树形DP
+        # brute_forcetree_diameter端点与乘法原理tree_dp
         dct = [[] for _ in range(n)]
         for i, j in edges:
             i -= 1
@@ -1010,7 +1010,7 @@ class Solution:
 
     @staticmethod
     def ac_3760(ac=FastIO()):
-        # brain_teaser转化为树形DP迭代方式求解
+        # brain_teaser转化为tree_dp迭代方式求解
         n = ac.read_int()
         w = ac.read_list_ints()
         dct = [[] for _ in range(n)]
@@ -1050,7 +1050,7 @@ class Solution:
 
     @staticmethod
     def ac_4381(ac=FastIO()):
-        # 迭代法实现树形换根DP
+        # 迭代法实现树形reroot_dp
         n = ac.read_int()
         dct = [[] for _ in range(n)]
         for _ in range(n - 1):
@@ -1094,7 +1094,7 @@ class Solution:
 
     @staticmethod
     def lc_100041(n: int, edges: List[List[int]]) -> List[int]:
-        # 一遍DFS迭代实现树形换根DP
+        # 一遍DFS迭代实现树形reroot_dp
         dct = [[] for _ in range(n)]
         for x, y in edges:
             dct[x].append([y, 1])
@@ -1127,7 +1127,7 @@ class Solution:
 
     @staticmethod
     def lc_2673(n: int, cost: List[int]) -> int:
-        # 树形DPgreedy
+        # tree_dpgreedy
         ans = 0
         for i in range(n // 2, 0, -1):
             left = cost[i * 2 - 1]

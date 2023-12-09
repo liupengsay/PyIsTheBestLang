@@ -1,122 +1,122 @@
 """
-Algorithm：matrix_dp、二维DP、memory_search（记忆化形式的DP，可以自顶向下也可以自底向上，就是另一种写法的DP）、LCS
-Description：在二维矩阵上转移的DP，的有矩阵prefix_sum，矩阵区间和，正方形最大边长或面积，编辑距离，公共子序列，最长palindrome_substring
-头脑风暴：求包含两个字符串最长公共子序列的各自最短子串
+Algorithm：matrix_dp|memory_search|lcs|md_matrix_dp
+Description：matrix_prefix_sum|sub_matrix_sum|maximum_square|edit_distance|lcs|palindrome_substring
 
 ====================================LeetCode====================================
-174（https://leetcode.com/problems/dungeon-game/）矩阵 DP 逆向递推
-2478（https://leetcode.com/problems/number-of-beautiful-partitions/）
-2463（https://leetcode.com/problems/minimum-total-distance-traveled/）
-2435（https://leetcode.com/problems/paths-in-matrix-whose-sum-is-divisible-by-k/）利用模 K 的特点路径
-2088（https://leetcode.com/problems/count-fertile-pyramids-in-a-land/）类似求正方形的边长和面积matrix_dp
-221（https://leetcode.com/problems/maximal-square/）求全为 1 的最大正方形面积
+174（https://leetcode.com/problems/dungeon-game/）matrix_dp|reverse_thinking
+2478（https://leetcode.com/problems/number-of-beautiful-partitions/）matrix_dp
+2463（https://leetcode.com/problems/minimum-total-distance-traveled/）matrix_dp
+2435（https://leetcode.com/problems/paths-in-matrix-whose-sum-is-divisible-by-k/）matrix_dp|mod
+2088（https://leetcode.com/problems/count-fertile-pyramids-in-a-land/）matrix_dp
+221（https://leetcode.com/problems/maximal-square/）maximum_square|classical
 72（https://leetcode.com/problems/edit-distance/）matrix_dp
-329（https://leetcode.com/problems/longest-increasing-path-in-a-matrix/）二维matrix_dp
-1478（https://leetcode.com/problems/allocate-mailboxes/）二维DP与一个不带权median距离的interval_dp|
-6363（https://leetcode.com/problems/find-the-string-with-lcp/）greedyconstruction符合条件的字符串，并通过LCP确认
-2328（https://leetcode.com/problems/number-of-increasing-paths-in-a-grid/）严格递增的路径数量
-2312（https://leetcode.com/problems/selling-pieces-of-wood/）自顶向下搜索最佳specific_plan
-2267（https://leetcode.com/problems/check-if-there-is-a-valid-parentheses-string-path/）memory_search合法路径
-1092（https://leetcode.com/problems/shortest-common-supersequence/）从后往前动态规划|从前往后construction，最长公共子序列，并construction包含两个字符串的最短公共超序列
-1143（https://leetcode.com/problems/longest-common-subsequence/）LIS的方法求LCS
-1035（https://leetcode.com/problems/uncrossed-lines/）LIS的方法求LCS
-2617（https://leetcode.com/problems/minimum-number-of-visited-cells-in-a-grid/）reverse_order|矩阵 DP 并tree_array|记录更新前缀最小值
-1092（https://leetcode.com/problems/shortest-common-supersequence/）LCS问题并specific_plans，可LIS求解
-1692（https://leetcode.com/problems/count-ways-to-distribute-candies/）matrix_dpspecific_plan数
-1771（https://leetcode.com/problems/maximize-palindrome-length-from-subsequences/）最长回文子序列matrix_dp
-1883（https://leetcode.com/problems/minimum-skips-to-arrive-at-meeting-on-time/）矩阵 DP
-1977（https://leetcode.com/problems/number-of-ways-to-separate-numbers/）两个matrix_dp含LCP优化，或者前缀优化DP
-2430（https://leetcode.com/problems/maximum-deletions-on-a-string/）双重DPLCP与matrix_dp
-1216（https://leetcode.com/problems/valid-palindrome-iii/）DP求最长回文子序列
-2060（https://leetcode.com/problems/check-if-an-original-string-exists-given-two-encoded-strings/description/）二维matrix_dpbrute_forcememory_search
-2556（https://leetcode.com/problems/disconnect-path-in-a-binary-matrix-by-at-most-one-flip/description/）matrix_dpbrain_teaser|，判断割点可行性
+329（https://leetcode.com/problems/longest-increasing-path-in-a-matrix/）matrix_dp
+1478（https://leetcode.com/problems/allocate-mailboxes/）matrix_dp|median_greedy|interval_dp|greedy
+6363（https://leetcode.com/problems/find-the-string-with-lcp/）greedy|construction|lcp
+2328（https://leetcode.com/problems/number-of-increasing-paths-in-a-grid/）matrix_dp|counter
+2312（https://leetcode.com/problems/selling-pieces-of-wood/）memory_search|specific_plan
+2267（https://leetcode.com/problems/check-if-there-is-a-valid-parentheses-string-path/）memory_search
+1092（https://leetcode.com/problems/shortest-common-supersequence/）construction|lcs|construction|specific_plan
+1143（https://leetcode.com/problems/longest-common-subsequence/）lis|lcs
+1035（https://leetcode.com/problems/uncrossed-lines/）lis|lcs
+2617（https://leetcode.com/problems/minimum-number-of-visited-cells-in-a-grid/）reverse_order|matrix_dp|tree_array|prefix_min
+1092（https://leetcode.com/problems/shortest-common-supersequence/）lis|lcs|specific_plan
+1692（https://leetcode.com/problems/count-ways-to-distribute-candies/）matrix_dp|specific_plan|counter
+1771（https://leetcode.com/problems/maximize-palindrome-length-from-subsequences/）longest_palindrome_subsequence|matrix_dp
+1883（https://leetcode.com/problems/minimum-skips-to-arrive-at-meeting-on-time/）matrix_dp
+1977（https://leetcode.com/problems/number-of-ways-to-separate-numbers/）matrix_dp|lcp|prefix_sum
+2430（https://leetcode.com/problems/maximum-deletions-on-a-string/）lcp|matrix_dp
+1216（https://leetcode.com/problems/valid-palindrome-iii/）matrix_dp|longest_palindrome_subsequence
+2060（https://leetcode.com/problems/check-if-an-original-string-exists-given-two-encoded-strings/description/）matrix_dp|brute_force|memory_search
+2556（https://leetcode.com/problems/disconnect-path-in-a-binary-matrix-by-at-most-one-flip/description/）matrix_dp|brain_teaser
 920（https://leetcode.com/problems/number-of-music-playlists/）matrix_dp
-1594（https://leetcode.com/problems/maximum-non-negative-product-in-a-matrix/）matrix_dp最大与最小乘积转移
-1639（https://leetcode.com/problems/number-of-ways-to-form-a-target-string-given-a-dictionary/description/）prefix_sum优化二维DP
+1594（https://leetcode.com/problems/maximum-non-negative-product-in-a-matrix/）matrix_dp|maximum_mul|minimum_mul
+1639（https://leetcode.com/problems/number-of-ways-to-form-a-target-string-given-a-dictionary/description/）prefix_sum|matrix_dp
 956（https://leetcode.com/problems/tallest-billboard/description/）matrix_dp
-1301（https://leetcode.com/contest/biweekly-contest-16/problems/number-of-paths-with-max-score/）matrix_dp路径最大值与specific_plan数
-1937（https://leetcode.com/problems/maximum-number-of-points-with-cost/）矩阵prefix_sum后缀和优化的DP
-1751（https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended-ii/）矩阵二维DPbinary_search优化
-1959（https://leetcode.com/problems/minimum-total-space-wasted-with-k-resizing-operations/description/）矩阵二维DPprefix_sum优化
+1301（https://leetcode.com/contest/biweekly-contest-16/problems/number-of-paths-with-max-score/）matrix_dp|specific_plan|counter
+1937（https://leetcode.com/problems/maximum-number-of-points-with-cost/）prefix_sum|matrix_dp
+1751（https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended-ii/）matrix_dp|binary_search
+1959（https://leetcode.com/problems/minimum-total-space-wasted-with-k-resizing-operations/description/）matrix_dp|prefix_sum
 1458（https://leetcode.com/problems/max-dot-product-of-two-subsequences/description/）matrix_dp
-1745（https://leetcode.com/problems/palindrome-partitioning-iv/description/）matrix_dp判断是否为palindrome_substring，或者马拉车然后brute_force
+1745（https://leetcode.com/problems/palindrome-partitioning-iv/description/）matrix_dp|palindrome_substring|manacher|brute_force
 
 =====================================LuoGu======================================
-2701（https://www.luogu.com.cn/problem/P2701）求全为 "." 的最大正方形面积，如果不要求实心只能做到O(n^3)复杂度
-2049（https://www.luogu.com.cn/problem/P2049）求左上角到右下角所有路径的乘积mod|数
-2138（https://www.luogu.com.cn/problem/P2138）最长公共子序列
-1681（https://www.luogu.com.cn/problem/P1681）求黑白格子相间的最大正方形面积
-2268（https://www.luogu.com.cn/problem/P2268）类似编辑距离
-2301（https://www.luogu.com.cn/problem/P2301）matrix_dp，注意最小值的更新处理
-2364（https://www.luogu.com.cn/problem/P2364）三维DP求最长公共子序列LCS并且输出LCS
-2543（https://www.luogu.com.cn/problem/P2543）二维DP求最长公共子序列LCS长度
-2513（https://www.luogu.com.cn/record/list?user=739032&status=12&page=2）二维matrix_dp|prefix_sum优化
-1434（https://www.luogu.com.cn/problem/P1434）二维matrix_dp最长上升的路径
-1140（https://www.luogu.com.cn/problem/P1140）二维matrix_dp
-1057（https://www.luogu.com.cn/problem/P1057）二维DP可做成转移的
-8825（https://www.luogu.com.cn/problem/P8825）结合mod|滚动更新
-2758（https://www.luogu.com.cn/problem/P2758）二维DP编辑距离
-2803（https://www.luogu.com.cn/problem/P2803）二维DP与一个带权median距离的interval_dp|
-2946（https://www.luogu.com.cn/problem/P2946）何为某个数字倍数的连续子序列个数
-2427（https://www.luogu.com.cn/problem/P2427）以矩阵中点为正方形中心的最大正方形边长，左上、左下、右上和右下的四个DP
-7074（https://www.luogu.com.cn/problem/P7074）DP，三个方向转移更新
-7160（https://www.luogu.com.cn/problem/P7160）三个维度DP的brute_forcecounter
-7266（https://www.luogu.com.cn/problem/P7266）蜂窝形状的matrix_dp
-3399（https://www.luogu.com.cn/problem/P3399）二维matrix_dp
-2516（https://www.luogu.com.cn/problem/P2516）DP最长公共子序列以及最长公共子序列的长度
-1544（https://www.luogu.com.cn/problem/P1544）三维matrix_dp
-1004（https://www.luogu.com.cn/problem/P1004）DP，三个方向转移
-1006（https://www.luogu.com.cn/problem/P1006）DP，三个方向转移
-1107（https://www.luogu.com.cn/problem/P1107）二维DP|前缀最值优化
-1279（https://www.luogu.com.cn/problem/P1279）编辑距离DP的变形
+2701（https://www.luogu.com.cn/problem/P2701）maximum_square|matrix_dp|brute_force|classical|O(n^3)|hollow
+2049（https://www.luogu.com.cn/problem/P2049）matrix_dp|counter|mod
+2138（https://www.luogu.com.cn/problem/P2138）matrix_dp|lcs
+1681（https://www.luogu.com.cn/problem/P1681）maximum_square|matrix_dp
+2268（https://www.luogu.com.cn/problem/P2268）matrix_dp|edit_distance
+2301（https://www.luogu.com.cn/problem/P2301）matrix_dp
+2364（https://www.luogu.com.cn/problem/P2364）lcs|specific_plan|matrix_dp
+2543（https://www.luogu.com.cn/problem/P2543）matrix_dp|lcs
+2513（https://www.luogu.com.cn/record/list?user=739032&status=12&page=2）matrix_dp|prefix_sum
+1434（https://www.luogu.com.cn/problem/P1434）matrix_dp|lis
+1140（https://www.luogu.com.cn/problem/P1140）matrix_dp
+1057（https://www.luogu.com.cn/problem/P1057）matrix_dp
+8825（https://www.luogu.com.cn/problem/P8825）mod|matrix_dp|rolling_update
+2758（https://www.luogu.com.cn/problem/P2758）matrix_dp|edit_distance
+2803（https://www.luogu.com.cn/problem/P2803）matrix_dp|median_greedy|interval_dp
+2946（https://www.luogu.com.cn/problem/P2946）matrix_dp
+2427（https://www.luogu.com.cn/problem/P2427）matrix_dp|square
+7074（https://www.luogu.com.cn/problem/P7074）matrix_dp
+7160（https://www.luogu.com.cn/problem/P7160）matrix_dp|brute_force|counter
+7266（https://www.luogu.com.cn/problem/P7266）matrix_dp
+3399（https://www.luogu.com.cn/problem/P3399）matrix_dp
+2516（https://www.luogu.com.cn/problem/P2516）lcs|matrix_dp
+1544（https://www.luogu.com.cn/problem/P1544）matrix_dp
+1004（https://www.luogu.com.cn/problem/P1004）matrix_dp
+1006（https://www.luogu.com.cn/problem/P1006）matrix_dp
+1107（https://www.luogu.com.cn/problem/P1107）matrix_dp|prefix_max
+1279（https://www.luogu.com.cn/problem/P1279）edit_distance
 1353（https://www.luogu.com.cn/problem/P1353）matrix_dp
-1410（https://www.luogu.com.cn/problem/P1410）二维DP
-1799（https://www.luogu.com.cn/problem/P1799）矩阵二维DP
-1854（https://www.luogu.com.cn/problem/P1854）前缀最大值优化matrix_dp，并输出匹配specific_plan
-2140（https://www.luogu.com.cn/problem/P2140）矩阵四维DP，可以记忆化与迭代
-2217（https://www.luogu.com.cn/problem/P2217）矩阵四维DP，可以记忆化与迭代
-1436（https://www.luogu.com.cn/problem/P1436）矩阵四维DP，可以记忆化与迭代
-5752（https://www.luogu.com.cn/problem/P5752）矩阵四维DP，可以记忆化与迭代
-2380（https://www.luogu.com.cn/problem/P2380）matrix_dp
-2401（https://www.luogu.com.cn/problem/P2401）二维DP
-2528（https://www.luogu.com.cn/problem/P2528）reverse_order_pair|矩阵 DP 与implementionconstruction
-2733（https://www.luogu.com.cn/problem/P2733）DP通过边长与diff_array|正方形子矩阵的个数
+1410（https://www.luogu.com.cn/problem/P1410）matrix_dp
+1799（https://www.luogu.com.cn/problem/P1799）matrix_dp
+1854（https://www.luogu.com.cn/problem/P1854）prefix_max|matrix_dp|specific_plan
+2140（https://www.luogu.com.cn/problem/P2140）matrix_dp
+2217（https://www.luogu.com.cn/problem/P2217）matrix_dp
+1436（https://www.luogu.com.cn/problem/P1436）md_matrix_dp
+5752（https://www.luogu.com.cn/problem/P5752）md_matrix_dp
+2380（https://www.luogu.com.cn/problem/P2380）md_matrix_dp
+2401（https://www.luogu.com.cn/problem/P2401）md_matrix_dp
+2528（https://www.luogu.com.cn/problem/P2528）reverse_order_pair|matrix_dp|implemention|construction
+2733（https://www.luogu.com.cn/problem/P2733）diff_array|matrix_dp|counter|maximum_square
 2736（https://www.luogu.com.cn/problem/P2736）matrix_dp
-2769（https://www.luogu.com.cn/problem/P2769）矩阵 DP 注意初始化条件
-3012（https://www.luogu.com.cn/problem/P3012https://www.luogu.com.cn/problem/P3012）三维matrix_dp
-3860（https://www.luogu.com.cn/problem/P3860）矩阵 DP 并具体转移specific_plan
-4958（https://www.luogu.com.cn/problem/P4958）三维linear_dpprefix_sum优化
-5144（https://www.luogu.com.cn/problem/P5144）linear_dp 二维|前缀异或和
-5858（https://www.luogu.com.cn/problem/P5858）矩阵 DP |monotonic_queue
-5879（https://www.luogu.com.cn/problem/P5879）矩阵 DP |prefix_sum优化
-6119（https://www.luogu.com.cn/problem/P6119）矩阵 DP 为 LCS 的变形题
-6323（https://www.luogu.com.cn/problem/P6323） DP reverse_order_pair|为指定数量时的排列个数prefix_sum优化
-6394（https://www.luogu.com.cn/problem/P6394）矩阵 DP |prefix_sum优化
-6433（https://www.luogu.com.cn/problem/P6433）greedyclassification_discussion矩阵 DP 
-6451（https://www.luogu.com.cn/problem/P6451）迭代方式实现四维 DP 并brute_force四叉树获取对应最小代价和状态
-6509（https://www.luogu.com.cn/problem/P6509）classical矩阵 DP 并记录对应的状态转移
-6870（https://www.luogu.com.cn/problem/P6870）矩阵 DP 与组合数优化counter
-7995（https://www.luogu.com.cn/problem/P7995）矩阵 DP
-8325（https://www.luogu.com.cn/problem/P8325）动态规划brute_force，类似最大正方形矩阵 DP 变形
-8614（https://www.luogu.com.cn/problem/P8614）矩阵 DP 关键在于mod|作为一维状态
-8638（https://www.luogu.com.cn/problem/P8638）矩阵 DP 最长回文子序列
-8786（https://www.luogu.com.cn/problem/P8786）classical三维矩阵 DP implementionmemory_search
+2769（https://www.luogu.com.cn/problem/P2769）matrix_dp
+3012（https://www.luogu.com.cn/problem/P3012）matrix_dp
+3860（https://www.luogu.com.cn/problem/P3860）matrix_dp|specific_plan
+4958（https://www.luogu.com.cn/problem/P4958）linear_dp|prefix_sum
+5144（https://www.luogu.com.cn/problem/P5144）linear_dp|prefix_xor
+5858（https://www.luogu.com.cn/problem/P5858）matrix_dp|monotonic_queue
+5879（https://www.luogu.com.cn/problem/P5879）matrix_dp|prefix_sum
+6119（https://www.luogu.com.cn/problem/P6119）matrix_dp|lcs
+6323（https://www.luogu.com.cn/problem/P6323）reverse_order_pair|prefix_sum
+6394（https://www.luogu.com.cn/problem/P6394）matrix_dp|prefix_sum
+6433（https://www.luogu.com.cn/problem/P6433）greedy|classification_discussion|matrix_dp
+6451（https://www.luogu.com.cn/problem/P6451）md_matrix_dp|brute_force|4-tree
+6509（https://www.luogu.com.cn/problem/P6509）classical|matrix_dp|specific_plan
+6870（https://www.luogu.com.cn/problem/P6870）matrix_dp|comb|counter
+7995（https://www.luogu.com.cn/problem/P7995）matrix_dp
+8325（https://www.luogu.com.cn/problem/P8325）brute_force|matrix_dp|maximum_square
+8614（https://www.luogu.com.cn/problem/P8614）matrix_dp|mod
+8638（https://www.luogu.com.cn/problem/P8638）matrix_dp|longest_palindrome_sequence
+8786（https://www.luogu.com.cn/problem/P8786）classical|md_matrix_dp| implemention|memory_search
 
 ===================================CodeForces===================================
-1446B（https://codeforces.com/problemset/problem/1446/B）最长公共子序列LCS变形问题，理解贡献
-429B（https://codeforces.com/problemset/problem/429/B）四个方向的matrix_dp
-1398D（https://codeforces.com/problemset/problem/1398/D）三维DP，选取两个不同数组的数乘积，最大总和
-2B（https://codeforces.com/problemset/problem/2/B）matrix_dp，路径上乘积最少的后缀0个数，题目
-1381B（https://codeforces.com/problemset/problem/1381/B）二维matrix_dp|monotonic_stack|优化
-1393D（https://codeforces.com/problemset/problem/1393/D）二维DP金字塔个数
-1731D（https://codeforces.com/contest/1731/problem/D）binary_search|最大正方形边长
+1446B（https://codeforces.com/problemset/problem/1446/B）lcs|matrix_dp
+429B（https://codeforces.com/problemset/problem/429/B）matrix_dp
+1398D（https://codeforces.com/problemset/problem/1398/D）md_matrix_dp|maximum_mul|maximum_sum
+2B（https://codeforces.com/problemset/problem/2/B）matrix_dp
+1381B（https://codeforces.com/problemset/problem/1381/B）matrix_dp|monotonic_stack
+1393D（https://codeforces.com/problemset/problem/1393/D）matrix_dp
+1731D（https://codeforces.com/contest/1731/problem/D）binary_search|maximum_square
 
 ====================================AtCoder=====================================
-E - Common Subsequence（https://atcoder.jp/contests/abc130/tasks/abc130_e）matrix_prefix_sum|优化matrix_dp
+E - Common Subsequence（https://atcoder.jp/contests/abc130/tasks/abc130_e）matrix_prefix_sum|matrix_dp
+
 =====================================AcWing=====================================
-4378（https://www.acwing.com/problem/content/4381/）classicalmatrix_dp
-4418（https://www.acwing.com/problem/content/description/4421/）monotonic_queuematrix_dp
-2694（https://www.acwing.com/problem/content/description/2696/）问题求解最长公共子序列LCS的长度与个数
+4378（https://www.acwing.com/problem/content/4381/）classical|matrix_dp
+4418（https://www.acwing.com/problem/content/description/4421/）monotonic_queue|matrix_dp
+2694（https://www.acwing.com/problem/content/description/2696/）lcs|matrix_dp|counter
 
 
 """
@@ -213,7 +213,7 @@ class Solution:
 
     @staticmethod
     def lc_2435(grid: List[List[int]], k: int) -> int:
-        # 标准矩阵 DP 左上到右下的状态转移
+        # 标准matrix_dp| 左上到右下的状态转移
         mod = 10 ** 9 + 7
         m, n = len(grid), len(grid[0])
         dp = [[[0] * k for _ in range(n)] for _ in range(m)]
@@ -579,7 +579,7 @@ class Solution:
 
     @staticmethod
     def lg_p1279(ac=FastIO()):
-        # 编辑距离 DP 变形
+        # edit_distance DP 变形
         s = ac.read_str()
         t = ac.read_str()
         k = ac.read_int()
@@ -883,7 +883,7 @@ class Solution:
 
     @staticmethod
     def lg_p2401(ac=FastIO()):
-        # 二维DP
+        # matrix_dp|
         n, k = ac.read_list_ints()
         dp = [[0] * (k + 1) for _ in range(2)]
         pre = 0
@@ -901,7 +901,7 @@ class Solution:
     @staticmethod
     def lg_p2528(ac=FastIO()):
 
-        # reverse_order_pair|矩阵 DP 与implementionconstruction
+        # reverse_order_pair|matrix_dp| 与implementionconstruction
         n, t = ac.read_list_ints()
         dp = [[0] * (t + 1) for _ in range(n + 1)]
         dp[0][0] = 1
@@ -950,7 +950,7 @@ class Solution:
     @staticmethod
     def lg_p2736(ac=FastIO()):
 
-        # 矩阵 DP
+        # matrix_dp|
         n, t, m = ac.read_list_ints()
         nums = ac.read_list_ints()
 
@@ -986,7 +986,7 @@ class Solution:
     @staticmethod
     def lg_p2769(ac=FastIO()):
 
-        # 矩阵 DP 注意初始化条件
+        # matrix_dp| 注意初始化条件
         n = ac.read_int()
         a = ac.read_list_ints()
         a.sort()
@@ -1021,7 +1021,7 @@ class Solution:
 
     @staticmethod
     def lg_p3012(ac=FastIO()):
-        # 矩阵 DP 可以按照顺序转移
+        # matrix_dp| 可以按照顺序转移
         u, l, p = ac.read_list_ints()
         dct = defaultdict(list)
         nodes = set()
@@ -1060,7 +1060,7 @@ class Solution:
 
     @staticmethod
     def lg_p3860(ac=FastIO()):
-        # 矩阵 DP 并具体转移specific_plan
+        # matrix_dp| 并具体转移specific_plan
         n, m = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
         dp = [[inf] * (n + 1) for _ in range(m + 1)]
@@ -1137,7 +1137,7 @@ class Solution:
 
     @staticmethod
     def lg_p5858(ac=FastIO()):
-        # 矩阵 DP |monotonic_queue
+        # matrix_dp| |monotonic_queue
         n, w, s = ac.read_list_ints()
         nums = ac.read_list_ints()
         dp = [[-inf] * w for _ in range(2)]
@@ -1167,7 +1167,7 @@ class Solution:
 
     @staticmethod
     def lg_p5879(ac=FastIO()):
-        # 矩阵 DP 后缀和优化
+        # matrix_dp| 后缀和优化
         n = ac.read_int()
         pre = [1] * (n + 1)
         pre[0] = 0
@@ -1183,7 +1183,7 @@ class Solution:
 
     @staticmethod
     def lg_p6119(ac=FastIO()):
-        # 矩阵 DP 为 LCS 的变形题
+        # matrix_dp| 为 LCS 的变形题
         n = ac.read_int()
         a = [ac.read_int() for _ in range(n)]
         b = [ac.read_int() for _ in range(n)]
@@ -1214,7 +1214,7 @@ class Solution:
 
     @staticmethod
     def lg_p6394(ac=FastIO()):
-        # 矩阵 DP |prefix_sum优化
+        # matrix_dp| |prefix_sum优化
         n, k = ac.read_list_ints()
         s = ac.read_list_ints()
         if sum(s) < n:
@@ -1239,7 +1239,7 @@ class Solution:
 
     @staticmethod
     def lg_p6433(ac=FastIO()):
-        # greedyclassification_discussion矩阵 DP 
+        # greedyclassification_discussionmatrix_dp| 
         n, m, k = ac.read_list_ints()
 
         nums = [ac.read_list_ints() for _ in range(n)]
@@ -1267,7 +1267,7 @@ class Solution:
 
     @staticmethod
     def lg_p6451(ac=FastIO()):
-        # 迭代方式实现四维 DP 并brute_force四叉树获取对应最小代价和状态
+        # 迭代方式实现md_matrix_dp 并brute_force四叉树获取对应最小代价和状态
         n = ac.read_int()
         grid = [[int(w) for w in ac.read_str()] for _ in range(n)]
         pre = PreFixSumMatrix(grid)
@@ -1355,7 +1355,7 @@ class Solution:
     @staticmethod
     def lc_2556(grid: List[List[int]]) -> bool:
 
-        # matrix_dpbrain_teaser|，判断割点可行性
+        # matrix_dpbrain_teaser|，判断cut_point可行性
         m, n = len(grid), len(grid[0])
 
         left = [[0] * n for _ in range(m)]
@@ -1395,7 +1395,7 @@ class Solution:
 
     @staticmethod
     def lc_2617_1(grid: List[List[int]]) -> int:
-        # reverse_order|矩阵 DP 并tree_array|记录更新前缀最小值
+        # reverse_order|matrix_dp| 并tree_array|记录更新前缀最小值
         m, n = len(grid), len(grid[0])
         dp = [[inf] * n for _ in range(m)]
         dp[-1][-1] = 1
@@ -1419,7 +1419,7 @@ class Solution:
 
     @staticmethod
     def lc_2617_2(grid: List[List[int]]) -> int:
-        # 矩阵 DP priority_queue或者monotonic_queue
+        # matrix_dp| priority_queue或者monotonic_queue
         m, n = len(grid), len(grid[0])
         dp = [[inf] * n for _ in range(m)]
         dp[0][0] = 1
@@ -1444,7 +1444,7 @@ class Solution:
 
     @staticmethod
     def lc_2617_3(grid: List[List[int]]) -> int:
-        # 矩阵 DP  BFS |union_find的方式
+        # matrix_dp|  BFS |union_find的方式
         m, n = len(grid), len(grid[0])
         row = [list(range(1, n + 1)) for _ in range(m)]
         col = [list(range(1, m + 1)) for _ in range(n)]
@@ -1487,7 +1487,7 @@ class Solution:
 
     @staticmethod
     def lg_p6509(ac=FastIO()):
-        # classical矩阵 DP 并记录对应的状态转移
+        # classicalmatrix_dp| 并记录对应的状态转移
         s = ac.read_str().split("=")
         b = int(s[1])
         s = s[0]
@@ -1527,7 +1527,7 @@ class Solution:
 
     @staticmethod
     def lg_p6870(ac=FastIO()):
-        # 矩阵 DP 与组合数优化counter
+        # matrix_dp| 与组合数优化counter
         n = ac.read_int()
         mod = 10 ** 9 + 7
         cb = Combinatorics(n, mod)
@@ -1593,7 +1593,7 @@ class Solution:
 
     @staticmethod
     def lg_p7995(ac=FastIO()):
-        # 矩阵 DP 
+        # matrix_dp| 
         for _ in range(ac.read_int()):
             n, k = ac.read_list_ints()
             k += 1
@@ -1627,7 +1627,7 @@ class Solution:
 
     @staticmethod
     def lg_p8325(ac=FastIO()):
-        # 动态规划brute_force，类似最大正方形矩阵 DP 变形
+        # 动态规划brute_force，类似最大正方形matrix_dp| 变形
         m, n = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
 
@@ -1687,7 +1687,7 @@ class Solution:
 
     @staticmethod
     def lg_p8614(ac=FastIO()):
-        # 矩阵 DP 关键在于mod|作为一维状态
+        # matrix_dp| 关键在于mod|作为一维状态
         n, s, a, b = ac.read_list_ints()
         mod = 100000007
         dp = [[0] * n for _ in range(n)]
@@ -1704,7 +1704,7 @@ class Solution:
 
     @staticmethod
     def lg_p8638(ac=FastIO()):
-        # 矩阵 DP 最长回文子序列
+        # matrix_dp| 最长回文子序列
         s = ac.read_str()
         n = len(s)
         dp = [[0] * n for _ in range(n)]
@@ -1719,7 +1719,7 @@ class Solution:
 
     @staticmethod
     def lg_p8786(ac=FastIO()):
-        # classical三维矩阵 DP implementionmemory_search
+        # classical三维matrix_dp| implementionmemory_search
 
         @lru_cache(None)
         def dfs(x, y, wine):
@@ -1892,7 +1892,7 @@ class Solution:
 
     @staticmethod
     def lc_1639(words: List[str], target: str) -> int:
-        # prefix_sum优化二维DP
+        # prefix_sum优化matrix_dp|
         dct = defaultdict(lambda: defaultdict(int))
         n = len(words[0])
         for word in words:

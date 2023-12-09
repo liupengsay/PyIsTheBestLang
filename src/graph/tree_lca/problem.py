@@ -1,6 +1,6 @@
 """
 
-Algorithm：LCA、倍增算法、树链剖分、树的质心、树的重心、离线LCA与树上差分
+Algorithm：LCA、倍增算法、树链剖分、树的质心、tree_centroid、离线LCA与tree_diff_array
 Description：来求一棵树的最近公共祖先（LCA）也可以
 
 ====================================LeetCode====================================
@@ -46,7 +46,7 @@ class Solution:
         for i in range(n):
             edge[n - parent[i]].append(n - i)
 
-        # LCA预处理
+        # LCApreprocess
         weight = [x for _, x in nums] + [math.inf]
         tree = TreeAncestorPool(edge, weight[::-1])
 
@@ -319,7 +319,7 @@ class Solution:
 
     @staticmethod
     def lg_p3258(ac=FastIO()):
-        # 离线LCA|树上差分|树形DP
+        # 离线LCA|tree_diff_array|tree_dp
         n = ac.read_int()
         nums = ac.read_list_ints_minus_one()
         root = nums[0]
@@ -345,7 +345,7 @@ class Solution:
 
         # 离线LCA
         res = OfflineLCA().bfs_iteration(dct, trips, root)
-        # 树上差分
+        # tree_diff_array
         diff = [0] * n
         for i in range(n - 1):
             u, v, ancestor = trips[i] + [res[i]]

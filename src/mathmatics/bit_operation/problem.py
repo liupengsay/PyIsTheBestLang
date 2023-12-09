@@ -42,7 +42,7 @@ Description：二进制上的位操作，包括与、异或、或、取反，通
 5390（https://www.luogu.com.cn/problem/P5390）按位操作
 6824（https://www.luogu.com.cn/problem/P6824）按位操作异或不等式在差分action_scopecounter
 8842（https://www.luogu.com.cn/problem/P8842）质数个数prefix_sum与异或不等式区间counter
-8965（https://www.luogu.com.cn/problem/P8965）树形 DP 与异或
+8965（https://www.luogu.com.cn/problem/P8965）tree_dp| 与异或
 
 ===================================CodeForces===================================
 305C（https://codeforces.com/problemset/problem/305/C）利用二进制|减的思想解题
@@ -63,7 +63,7 @@ D - Xor Sum 4（https://atcoder.jp/contests/abc147/tasks/abc147_d）classical按
 
 =====================================AcWing=====================================
 998（https://www.acwing.com/problem/content/1000/）按位或、异或、与操作后greedy选取最大值
-4614（https://www.acwing.com/problem/content/4617/）bit_operationbrute_force与prefix_sum预处理
+4614（https://www.acwing.com/problem/content/4617/）bit_operationbrute_force与prefix_sumpreprocess
 
 
 https://blog.csdn.net/qq_35473473/article/details/106320878
@@ -289,7 +289,7 @@ class Solution:
 
     @staticmethod
     def lc_2564(s, queries):
-        # 预处理相同异或值的索引
+        # preprocess相同异或值的索引
         dct = defaultdict(set)
         m = len(queries)
         for i in range(m):
@@ -575,7 +575,7 @@ class Solution:
 
     @staticmethod
     def ac_4614(ac=FastIO()):
-        # bit_operationbrute_force与prefix_sum预处理
+        # bit_operationbrute_force与prefix_sumpreprocess
         n, m, q = ac.read_list_ints()
         nums = ac.read_list_ints()
         lst = [ac.read_str() for _ in range(m)]

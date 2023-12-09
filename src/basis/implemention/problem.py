@@ -1,18 +1,18 @@
 """
 Algorithm：implemention|big_implemention
-Description：implemention|joseph_ring
+Description：implemention|joseph_circle
 
 ====================================LeetCode====================================
 2296（https://leetcode.com/problems/design-a-text-editor/）pointer|implemention
 54（https://leetcode.com/problems/spiral-matrix/）num_to_pos|pos_to_num|matrix_spiral
 59（https://leetcode.com/problems/spiral-matrix-ii/）num_to_pos|pos_to_num|matrix_spiral
 2326（https://leetcode.com/problems/spiral-matrix-iv/）num_to_pos|pos_to_num|matrix_spiral
-62（https://leetcode.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/）joseph_ring|
+62（https://leetcode.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/）joseph_circle|
 2534（https://leetcode.com/problems/time-taken-to-cross-the-door/）implemention
 460（https://leetcode.com/problems/lfu-cache/）order_dict|lfu
 146（https://leetcode.com/problems/lru-cache/）order_dict|lru
 2534（https://leetcode.com/problems/time-taken-to-cross-the-door/）implemention
-1823（https://leetcode.cn/problems/find-the-winner-of-the-circular-game/）joseph_ring
+1823（https://leetcode.cn/problems/find-the-winner-of-the-circular-game/）joseph_circle
 927（https://leetcode.com/problems/three-equal-parts/description/）base|bin|implemention
 1599（https://leetcode.com/problems/maximum-profit-of-operating-a-centennial-wheel/）implemention|brute_force
 2295（https://leetcode.com/problems/replace-elements-in-an-array/description/）reverse_thinking|linked_list
@@ -27,7 +27,7 @@ Description：implemention|joseph_ring
 2338（https://www.luogu.com.cn/problem/P2338）implemention
 2366（https://www.luogu.com.cn/problem/P2366）implemention
 2552（https://www.luogu.com.cn/problem/P2552）implemention
-2696（https://www.luogu.com.cn/problem/P2696）joseph_ring|implemention|diff_array
+2696（https://www.luogu.com.cn/problem/P2696）joseph_circle|implemention|diff_array
 1234（https://www.luogu.com.cn/problem/P1234）implemention
 1166（https://www.luogu.com.cn/problem/P1166）implemention
 1076（https://www.luogu.com.cn/problem/P1076）implemention
@@ -84,8 +84,8 @@ class Solution:
 
     @staticmethod
     def lc_1823(n: int, m: int) -> int:
-        # 模板: joseph_ring|最后的幸存者
-        return SpiralMatrix.joseph_ring(n, m) + 1
+        # 模板: joseph_circle|最后的幸存者
+        return SpiralMatrix.joseph_circle(n, m) + 1
 
     @staticmethod
     def cf_463c(ac=FastIO()):

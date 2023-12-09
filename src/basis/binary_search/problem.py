@@ -339,7 +339,7 @@ class Solution:
 
     @staticmethod
     def lc_1889(packages: List[int], boxes: List[List[int]]) -> int:
-        # sorting|prefix_sum预处理与greedybinary_search
+        # sorting|prefix_sumpreprocess与greedybinary_search
         packages.sort()
         pre = list(accumulate(packages, initial=0))
         n = len(packages)

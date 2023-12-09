@@ -30,7 +30,7 @@ class SpiralMatrix:
         return
 
     @staticmethod
-    def joseph_ring(n, m):
+    def joseph_circle(n, m):
         """the last rest for remove the m-th every time in [0,1,...,n-1]"""
         f = 0
         for x in range(2, n + 1):

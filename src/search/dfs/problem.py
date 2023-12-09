@@ -25,7 +25,7 @@ Description：常与back_trackbrute_force结合，比较的还有DFS序
 1475（https://www.luogu.com.cn/problem/P1475）深搜确定可以控制的公司对
 2080（https://www.luogu.com.cn/problem/P2080）深搜back_track与剪枝
 2090（https://www.luogu.com.cn/problem/P2090）深搜greedyback_track剪枝与辗转相减法
-2420（https://www.luogu.com.cn/problem/P2420）brain_teaser深搜确定到根路径的异或结果以及异或特性获得任意两点之间最短路的异或结果
+2420（https://www.luogu.com.cn/problem/P2420）brain_teaser深搜确定到根路径的异或结果以及异或特性获得任意两点之间shortest_path的异或结果
 1473（https://www.luogu.com.cn/problem/P1473）深搜brute_force符号数
 1461（https://www.luogu.com.cn/problem/P1461）汉明距离与深搜back_trackbrute_force
 1394（https://www.luogu.com.cn/problem/P1394）深搜可达性确认
@@ -34,7 +34,7 @@ Description：常与back_trackbrute_force结合，比较的还有DFS序
 3252（https://www.luogu.com.cn/problem/P3252）深搜back_track|prefix_sumhash
 4913（https://www.luogu.com.cn/problem/P4913）深搜确定深度
 5118（https://www.luogu.com.cn/problem/P5118）深搜back_track与hash记录implemention
-5197（https://www.luogu.com.cn/problem/P5197）树形DPimplemention与染色法，利用父亲与自己的染色确定儿子们的染色
+5197（https://www.luogu.com.cn/problem/P5197）tree_dpimplemention与染色法，利用父亲与自己的染色确定儿子们的染色
 5198（https://www.luogu.com.cn/problem/P5198）连通块的周长与面积
 5318（https://www.luogu.com.cn/problem/P5318）广搜topological_sorting与dfs_order生成与获取
 6691（https://www.luogu.com.cn/problem/P6691）染色法，bipartite_graph可行性specific_plancounter与最大最小染色
@@ -129,7 +129,7 @@ class Solution:
 
     @staticmethod
     def lc_100041(n: int, edges: List[List[int]]) -> List[int]:
-        # 迭代法实现树形换根DP，或者一遍DFS或者dfs_order||差分
+        # 迭代法实现树形reroot_dp|dfs|dfs_order|diff_array
         dct = [[] for _ in range(n)]
         for i, j in edges:
             dct[i].append(j)
@@ -461,7 +461,7 @@ class Solution:
         parent = [-1] * n
         start, end = DFS().gen_bfs_order_iteration(dct)
 
-        # 预处理子树分数
+        # preprocess子树分数
         def dfs(xx, fa):
             res = nums[xx]
             for yyy in dct[xx]:
@@ -566,7 +566,7 @@ class Solution:
 
     @staticmethod
     def cf_219d(ac=FastIO()):
-        # 迭代法实现树形换根DP，或者一遍DFS或者dfs_order||差分
+        # 迭代法实现树形reroot_dp|dfs|dfs_order|diff_array
         n = ac.read_int()
         edges = [ac.read_list_ints_minus_one() for _ in range(n - 1)]
 
@@ -806,7 +806,7 @@ class Solution:
         euler_order = DfsEulerOrder(edges).euler_order[:]
         m = len(euler_order)
         euler_ind = [-1] * n
-        # 预处理欧拉序所经过的路径prefix_sum
+        # preprocess欧拉序所经过的路径prefix_sum
         color_pos_ind = defaultdict(list)  # 从上往下
         color_neg_ind = defaultdict(list)  # 从下往上
         color_pos_pre = defaultdict(lambda: [0])

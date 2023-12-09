@@ -13,7 +13,7 @@ Lucas定理（comb(n, m)%p = comb(n%p, m%p)*comb(n//p, m//p)）%p
 1735（https://leetcode.com/problems/count-ways-to-make-array-with-product/）质数分解与隔板法应用
 1621（https://leetcode.com/problems/number-of-sets-of-k-non-overlapping-line-segments/）类似隔板法的思想
 1866（https://leetcode.com/problems/number-of-ways-to-rearrange-sticks-with-k-sticks-visible/）第一类斯特林数
-1916（https://leetcode.com/problems/count-ways-to-build-rooms-in-an-ant-colony/）树形DP|组合mathcounter
+1916（https://leetcode.com/problems/count-ways-to-build-rooms-in-an-ant-colony/）tree_dp|组合mathcounter
 D - Blue and Red Balls（https://atcoder.jp/contests/abc132/tasks/abc132_d）组合mathcounter，和为 X 的长为 Y 的正整数与非负整数方程解个数
 
 =====================================LuoGu======================================
@@ -432,7 +432,7 @@ class Solution:
         # 组合数 comb(i, j) % k == 0 的个数
         t, k = ac.read_list_ints()
 
-        # 预处理组合数  comb(i, j) % k
+        # preprocess组合数  comb(i, j) % k
         x = 2001
         dp = [[0] * x for _ in range(x)]
         dp[0][0] = 1

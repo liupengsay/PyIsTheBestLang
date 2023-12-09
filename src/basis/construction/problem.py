@@ -18,7 +18,7 @@ Description：greedy|sorting|construction|specific_plan
 7947（https://www.luogu.com.cn/problem/P7947）greedy|construction|product_n_sum_k|prime_factorization
 9101（https://www.luogu.com.cn/problem/P9101）construction|directed_graph|no_circe
 8976（https://www.luogu.com.cn/problem/P8976）brute_force|construction
-8910（https://www.luogu.com.cn/problem/P8910）permutation_ring|construction
+8910（https://www.luogu.com.cn/problem/P8910）permutation_circle|construction
 8880（https://www.luogu.com.cn/problem/P8880）brain_teaser|construction|odd_even
 
 ===================================CodeForces===================================
@@ -38,7 +38,7 @@ Description：greedy|sorting|construction|specific_plan
 1473C（https://codeforces.com/contest/1473/problem/C）brain_teaser|s1s2..sn..s2s1
 1469D（https://codeforces.com/contest/1469/problem/D）square|ceil|greedy|implemention
 1478B（https://codeforces.com/contest/1478/problem/B）brute_force|bag_dp|construction
-1682B（https://codeforces.com/contest/1682/problem/B）bitwise_and|construction|permutation_ring
+1682B（https://codeforces.com/contest/1682/problem/B）bitwise_and|construction|permutation_circle
 
 ====================================AtCoder=====================================
 B - Construct Sequences（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser|math|construction
@@ -310,7 +310,7 @@ class Solution:
 
     @staticmethod
     def lg_p8910(ac=FastIO()):
-        # permutation_ring|construction
+        # permutation_circle|construction
         for _ in range(ac.read_int()):
             n, k = ac.read_list_ints()
             nex = [0] * (n + 1)

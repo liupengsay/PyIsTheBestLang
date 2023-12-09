@@ -23,11 +23,11 @@ Description：高效整数的幂次方mod|
 1349（https://www.luogu.com.cn/problem/P1349）矩阵fast_power|
 2233（https://www.luogu.com.cn/problem/P2233）矩阵fast_power|
 2613（https://www.luogu.com.cn/problem/P2613）乘法逆元
-3758（https://www.luogu.com.cn/problem/P3758）矩阵 DP fast_power|优化
-5789（https://www.luogu.com.cn/problem/P5789）矩阵 DP fast_power|优化
+3758（https://www.luogu.com.cn/problem/P3758）matrix_dp| fast_power|优化
+5789（https://www.luogu.com.cn/problem/P5789）matrix_dp| fast_power|优化
 5343（https://www.luogu.com.cn/problem/P5343）linear_dp 矩阵幂|速
 8557（https://www.luogu.com.cn/problem/P8557）brain_teaserfast_power|counter
-8624（https://www.luogu.com.cn/problem/P8624）矩阵 DP 与fast_power|
+8624（https://www.luogu.com.cn/problem/P8624）matrix_dp| 与fast_power|
 
 =====================================AcWing=====================================
 27（https://www.acwing.com/problem/content/26/）浮点数fast_power|
@@ -184,7 +184,7 @@ class Solution:
 
     @staticmethod
     def lg_p3758(ac=FastIO()):
-        # 矩阵 DP fast_power|优化
+        # matrix_dp| fast_power|优化
         n, m = ac.read_list_ints()
         # 转移矩阵
         grid = [[0] * (n + 1) for _ in range(n + 1)]
@@ -253,7 +253,7 @@ class Solution:
 
     @staticmethod
     def lg_p8624(ac=FastIO()):
-        # 矩阵 DP 与fast_power|
+        # matrix_dp| 与fast_power|
         mod = 10 ** 9 + 7
         n, m = ac.read_list_ints()
         rem = [[0] * 6 for _ in range(6)]

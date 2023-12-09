@@ -1,25 +1,24 @@
 """
 
-Algorithm：强连通分量、2-SAT、最大环、最小环
-Description：用来求解有向图的强连通分量，可以将一张图的每个强连通分量都缩成一个点，然后这张图会变成一个 DAG，可以topological_sorting以及更多其他操作
-定义：有向图 G 强连通是指 G 中任意两个结点连通，强连通分量（Strongly Connected Components，SCC）是极大的强连通子图
-距离：求一条路径，可以经过重复结点，要求经过的不同结点数量最多
-2-SAT：简单的说就是给出 n 个集合，每个集合有两个元素，已知若干个 <a,b>，表示 a 与 b 矛盾（其中 a 与 b 属于不同的集合）。然后从每个集合选择一个元素，判断能否一共选 n 个两两不矛盾的元素。显然可能有多种选择specific_plan，一般题中只需要求出一种即可。
+Algorithm：scc|2-sat|largest_circle|smallest_circle
+Description：scc|dag|shrink_point|topological_sort|strongly_connected_component
+Example：path pass the most points which can be duplicated
+2-SAT：giving n sets, each with two elements, in which (a, b) indicating that a and b are contradictory (where a and b belong to different sets), then select an element from each set and determine if a total of n pairwise non-contradictory elements can be selected
 
 ====================================LeetCode====================================
-2360（https://leetcode.com/problems/longest-cycle-in-a-graph/）求最长的环长度（有向图scc、内向基环树没有环套环，N个节点N条边，也可以topological_sorting）
+2360（https://leetcode.com/problems/longest-cycle-in-a-graph/）largest_circle|scc|topological_sort|scc
 
 =====================================LuoGu======================================
-3387（https://www.luogu.com.cn/problem/solution/P3387）允许多次经过点和边求一条路径最大权值和、强连通分量
-2661（https://www.luogu.com.cn/problem/P2661）求最小的环长度（有向图、内向基环树没有环套环，N个节点N条边，也可以topological_sorting）
-4089（https://www.luogu.com.cn/problem/P4089）求所有环的长度和，注意自环
-5145（https://www.luogu.com.cn/problem/P5145）内向基环树求最大权值和的环
+3387（https://www.luogu.com.cn/problem/P3387）scc
+2661（https://www.luogu.com.cn/problem/P2661）smallest_circle|directed_circle_based_tree|topological_sort
+4089（https://www.luogu.com.cn/problem/P4089）circle|scc|self_loop
+5145（https://www.luogu.com.cn/problem/P5145）circle_based_tree|scc
 
-4782（https://www.luogu.com.cn/problem/P4782）2-SAT 问题模板题
-5782（https://www.luogu.com.cn/problem/P5782）2-SAT 问题模板题
-4171（https://www.luogu.com.cn/problem/P4171）2-SAT 问题模板题
+4782（https://www.luogu.com.cn/problem/P4782）2-sat|scc|classical
+5782（https://www.luogu.com.cn/problem/P5782）2-sat|scc|classical
+4171（https://www.luogu.com.cn/problem/P4171）2-sat|scc|classical
 ===================================CodeForces===================================
-1438C（https://codeforces.com/problemset/problem/1438/C）2-SAT 问题模板题
+1438C（https://codeforces.com/problemset/problem/1438/C）2-sat|scc|classical
 
 
 """
@@ -36,7 +35,7 @@ class Solution:
 
     @staticmethod
     def lg_p3387(ac=FastIO()):
-        # 有向图强连通分量将环缩点后求最长路
+        # 有向图scc将环缩点后求最长路
         n, m = ac.read_list_ints()
         weight = ac.read_list_ints()
         edge = [set() for _ in range(n)]
@@ -45,7 +44,7 @@ class Solution:
             edge[x].add(y)
         edge = [list(e) for e in edge]
 
-        # 求得强连通分量后重新建图，这里也可以 Kosaraju 算法
+        # 求得scc后重新build_graph|，这里也可以 Kosaraju 算法
         tarjan = Tarjan(edge)
         ind = [-1] * n
         m = len(tarjan.scc)
@@ -85,7 +84,7 @@ class Solution:
     @staticmethod
     def lc_2360(edges):
 
-        # 模板: 求内向基环树的最大权值和环 edge表示有向边 i 到 edge[i] 而 dct表示对应的边权值
+        # 模板: 求内向circle_based_tree的最大权值和环 edge表示有向边 i 到 edge[i] 而 dct表示对应的边权值
         def largest_circle(n, edge, dct):
 
             def dfs(x, sum_):
@@ -122,7 +121,7 @@ class TwoSAT:
         for _ in range(ac.read_int()):
             m, n = ac.read_list_ints()
             grid = [ac.read_list_ints() for _ in range(m)]
-            # 建图并把索引编码
+            # build_graph|并把索引编码
             edge = [[] for _ in range(2 * m * n)]
             for i in range(m):
                 for j in range(n):
@@ -170,7 +169,7 @@ class TwoSAT:
     @staticmethod
     def luogu_4782(ac=FastIO()):
         n, m = ac.read_list_ints()
-        # 建图并把索引编码
+        # build_graph|并把索引编码
         edge = [[] for _ in range(2 * n)]
         for _ in range(m):
             i, a, j, b = ac.read_list_ints()
@@ -185,7 +184,7 @@ class TwoSAT:
         for sc in tarjan.scc:
             pre = set()
             for node in sc:
-                # 条件相反的两个点不能在一个强连通分量
+                # 条件相反的两个点不能在一个scc
                 if node // 2 in pre:
                     ac.st("IMPOSSIBLE")
                     return
@@ -220,7 +219,7 @@ class TwoSAT:
     @staticmethod
     def luogu_p5782(ac=FastIO()):
         n, m = ac.read_list_ints()
-        # 建图并把索引编码
+        # build_graph|并把索引编码
         edge = [[] for _ in range(4 * n)]
         for _ in range(m):
             a, b = ac.read_list_ints_minus_one()
@@ -241,7 +240,7 @@ class TwoSAT:
         for sc in tarjan.scc:
             pre = set()
             for node in sc:
-                # 条件相反的两个点不能在一个强连通分量
+                # 条件相反的两个点不能在一个scc
                 if node // 2 in pre:
                     ac.st("NIE")
                     return
@@ -277,7 +276,7 @@ class TwoSAT:
     def luogu_4171(ac=FastIO()):
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
-            # 建图并把索引编码
+            # build_graph|并把索引编码
             edge = [[] for _ in range(2 * n)]
             for _ in range(m):
                 lst = ac.read_list_strs()
@@ -295,7 +294,7 @@ class TwoSAT:
             for sc in tarjan.scc:
                 pre = set()
                 for node in sc:
-                    # 条件相反的两个点不能在一个强连通分量
+                    # 条件相反的两个点不能在一个scc
                     if node // 2 in pre:
                         ans = False
                     pre.add(node // 2)
@@ -311,3 +310,4 @@ class TwoSAT:
                     break
             ac.st("GOOD" if ans else "BAD")
         return
+    

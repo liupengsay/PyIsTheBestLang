@@ -286,7 +286,7 @@ class Solution:
 
     @staticmethod
     def lc_2585(target: int, types: List[List[int]]) -> int:
-        # 看似bin_split DP 实则矩阵 DP 转移
+        # 看似bin_split DP 实则matrix_dp| 转移
         mod = 10 ** 9 + 7
         n = len(types)
         pre = [0] * (target + 1)
