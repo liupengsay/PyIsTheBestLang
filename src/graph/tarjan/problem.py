@@ -32,20 +32,20 @@ Description：scc|edcc|pdcc|cur_point|cut_edge|directed_acyclic_graph
 1811F（https://codeforces.com/contest/1811/problem/F）scc|pdcc
 427C（https://codeforces.com/problemset/problem/427/C）scc|shrink_point
 193A（https://codeforces.com/contest/193/problem/A）brain_teaser|cut_point
-999E（https://codeforces.com/contest/999/problem/E）scc|shrink_point|后查看入度为0的点个数
-1213F（https://codeforces.com/contest/1213/problem/F）scc|shrink_point|后topological_sortinggreedy
-1547G（https://codeforces.com/contest/1547/problem/G）scc|shrink_point|后利用可达性建立新图，路径条数
-1702E（https://codeforces.com/contest/1702/problem/E）point_doubly_connected_component无向图找环，判断有无奇数环
-1768D（https://codeforces.com/contest/1768/problem/D）permutation_circle|与tarjan求环
+999E（https://codeforces.com/contest/999/problem/E）scc|shrink_point
+1213F（https://codeforces.com/contest/1213/problem/F）scc|shrink_point|topological_sort|greedy
+1547G（https://codeforces.com/contest/1547/problem/G）scc|shrink_point|build_graph|counter|number_of_path
+1702E（https://codeforces.com/contest/1702/problem/E）point_doubly_connected_component|pdcc|undirected|odd_circle
+1768D（https://codeforces.com/contest/1768/problem/D）permutation_circle|tarjan
 
 =====================================AcWing=====================================
-3579（https://www.acwing.com/problem/content/3582/）scc模板题
-3813（https://www.acwing.com/problem/content/submission/3816/）scc模板与topological_sortingDP
+3579（https://www.acwing.com/problem/content/3582/）scc
+3813（https://www.acwing.com/problem/content/submission/3816/）scc|topological_sort|dag_dp
 
 ===================================LibraryChecker===================================
-1 Cycle Detection (Directed)（https://judge.yosupo.jp/problem/cycle_detection）detect any circle in a directed graph
-2 Strongly Connected Components（https://judge.yosupo.jp/problem/scc）template of scc
-3 Two-Edge-Connected Components（https://judge.yosupo.jp/problem/two_edge_connected_components）template of edge doubly connected
+1 Cycle Detection (Directed)（https://judge.yosupo.jp/problem/cycle_detection）directed_graph|circle
+2 Strongly Connected Components（https://judge.yosupo.jp/problem/scc）scc
+3 Two-Edge-Connected Components（https://judge.yosupo.jp/problem/two_edge_connected_components）edcc
 
 """
 import copy
