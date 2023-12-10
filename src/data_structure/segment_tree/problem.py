@@ -26,7 +26,7 @@ Description：range_sum|range_min|range_add|range_change|range_max|dynamic_segme
 1904（https://www.luogu.com.cn/problem/P1904）segment_tree|RangeAscendRangeMax
 1438（https://www.luogu.com.cn/problem/P1438）diff_array|RangeAddRangeSumMaxMin|segment_tree
 1253（https://www.luogu.com.cn/problem/P1253）range_add|range_change|segment_tree|range_sum
-3373（https://www.luogu.com.cn/problem/P3373）range_add|range_mul|segment_tree|range_sum
+3373（https://www.luogu.com.cn/problem/P3373）range_add|range_mul|segment_tree|range_sum|RangeAddMulRangeSum
 4513（https://www.luogu.com.cn/problem/P4513）segment_tree|range_change|range_merge|sub_consequence
 1471（https://www.luogu.com.cn/problem/P1471）math|segment_tree|RangeAddRangeSum
 6492（https://www.luogu.com.cn/problem/P6492）segment_tree|range_change|range_merge|sub_consequence
@@ -40,7 +40,6 @@ Description：range_sum|range_min|range_add|range_change|range_max|dynamic_segme
 8856（https://www.luogu.com.cn/problem/solution/P8856）segment_tree|RangeAddRangeSumMaxMin
 
 ===================================CodeForces===================================
-
 482B（https://codeforces.com/problemset/problem/482/B）segment_tree|RangeOrRangeAnd
 380C（https://codeforces.com/problemset/problem/380/C）segment_tree|range_merge|sub_consequence|bracket
 52C（https://codeforces.com/problemset/problem/52/C）segment_tree|circular_array|RangeChangeRangeMin
@@ -54,13 +53,20 @@ Description：range_sum|range_min|range_add|range_change|range_max|dynamic_segme
 1478E（https://codeforces.com/contest/1478/problem/E）RangeChangeRangeSumMinMax|backward_thinking|implemention
 1679E（https://codeforces.com/contest/1679/problem/B）RangeChangeRangeSumMinMax|range_change|range_sum
 
+====================================AtCoder=====================================
+ABC332F（https://atcoder.jp/contests/abc332/tasks/abc332_f）RangeAddMulRangeSum
+
 =====================================AcWing=====================================
 3805（https://www.acwing.com/problem/content/3808/）RangeAddRangeMin
+
+=====================================LibraryChecker=====================================
+Range Affine Point Get（https://judge.yosupo.jp/problem/range_affine_point_get）RangeAddMulRangeSum
+Range Affine Range Sum（https://judge.yosupo.jp/problem/range_affine_range_sum）RangeAddMulRangeSum
 
 
 """
 import random
-from collections import defaultdict, deque
+from collections import defaultdict
 from math import inf
 from typing import List
 
@@ -69,12 +75,12 @@ from sortedcontainers import SortedList
 from src.basis.binary_search.template import BinarySearch
 from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeDescendRangeMin, \
     RangeAddRangeSumMinMax, SegmentTreeRangeUpdateXORSum, SegmentTreeRangeUpdateChangeQueryMax, \
-    SegmentTreeRangeUpdateMulQuerySum, SegmentTreeRangeXORQuery, \
-    SegmentTreePointChangeLongCon, SegmentTreeRangeSqrtSum, SegmentTreeRangeAndOrXOR, RangeChangeRangeOr, \
+    SegmentTreeRangeXORQuery, SegmentTreePointChangeLongCon, SegmentTreeRangeSqrtSum, SegmentTreeRangeAndOrXOR, \
+    RangeChangeRangeOr, \
     SegmentTreeRangeUpdateAvgDev, SegmentTreePointUpdateRangeMulQuery, \
     RangeChangeRangeSumMinMaxDynamic, SegmentTreeLongestSubSame, \
     RangeOrRangeAnd, RangeChangeRangeSumMinMax, RangeKSmallest, PointChangeRangeMaxNonEmpConSubSum, \
-    RangeAscendRangeMaxBinarySearchFindLeft
+    RangeAscendRangeMaxBinarySearchFindLeft, RangeAddMulRangeSum
 from src.utils.fast_io import FastIO
 
 
@@ -91,6 +97,42 @@ class Solution:
         for i, w in zip(indices, word):
             ans.append(tree.update_point(i, i, 0, n - 1, ord(w) - ord("a"), 1))
         return ans
+
+    @staticmethod
+    def lib_check_1(ac=FastIO()):
+        n, q = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        mod = 998244353
+        tree = RangeAddMulRangeSum(n, mod)
+        tree.build(nums)
+        for _ in range(q):
+            lst = ac.read_list_ints()
+            if lst[0] == 0:
+                ll, rr, b, c = lst[1:]
+                tree.range_add_mul(ll, rr - 1, b, "mul")
+                tree.range_add_mul(ll, rr - 1, c, "add")
+            else:
+                i = lst[1]
+                ac.st(tree.range_sum(i, i))
+        return
+
+    @staticmethod
+    def lib_check_2(ac=FastIO()):
+        n, q = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        mod = 998244353
+        tree = RangeAddMulRangeSum(n, mod)
+        tree.build(nums)
+        for _ in range(q):
+            lst = ac.read_list_ints()
+            if lst[0] == 0:
+                ll, rr, b, c = lst[1:]
+                tree.range_add_mul(ll, rr - 1, b, "mul")
+                tree.range_add_mul(ll, rr - 1, c, "add")
+            else:
+                ll, rr = lst[1:]
+                ac.st(tree.range_sum(ll, rr - 1))
+        return
 
     @staticmethod
     def lc_2569_1(nums1: List[int], nums2: List[int], queries: List[List[int]]) -> List[int]:
@@ -382,22 +424,22 @@ class Solution:
 
     @staticmethod
     def lg_p3373(ac=FastIO()):
-
-        # 区间乘法与区间|法并segment_tree|查询区间和
-        n, m, p = ac.read_list_ints()
+        n, q, mod = ac.read_list_ints()
+        tree = RangeAddMulRangeSum(n, mod)
         nums = ac.read_list_ints()
-        segment = SegmentTreeRangeUpdateMulQuerySum(nums, p)
-        stack = deque()
-        for _ in range(m):
+        tree.build(nums)
+        for _ in range(q):
             lst = ac.read_list_ints()
-            if lst[0] == 3:
-                while stack:
-                    op, x, y, k = stack.popleft()
-                    segment.update(x - 1, y - 1, 0, n - 1, k, op, 1)
-                x, y = lst[1:]
-                ac.st(segment.query_sum(x - 1, y - 1, 0, n - 1, 1))
+            if lst[0] == 1:
+                x, y, k = lst[1:]
+                tree.range_add_mul(x - 1, y - 1, k, "mul")
+            elif lst[0] == 2:
+                x, y, k = lst[1:]
+                tree.range_add_mul(x - 1, y - 1, k, "add")
             else:
-                stack.append(lst)
+                x, y = lst[1:]
+                ans = tree.range_sum(x - 1, y - 1)
+                ac.st(ans)
         return
 
     @staticmethod
@@ -862,6 +904,23 @@ class Solution:
             for x, i in cur:
                 tree.range_ascend(i, i, x)
         return tree.range_max(0, n - 1)
+
+    @staticmethod
+    def abc_332f(ac=FastIO()):
+        n, m = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        mod = 998244353
+        tree = RangeAddMulRangeSum(n, mod)
+        tree.build(nums)
+        for _ in range(m):
+            ll, rr, xx = ac.read_list_ints()
+            length = rr - ll + 1
+            pre = ((length - 1) * pow(length, -1, mod)) % mod
+            tree.range_add_mul(ll - 1, rr - 1, pre, "mul")
+            val = (xx * pow(length, -1, mod)) % mod
+            tree.range_add_mul(ll - 1, rr - 1, val, "add")
+        ac.lst(tree.get())
+        return
 
     @staticmethod
     def ac_3805(ac=FastIO()):

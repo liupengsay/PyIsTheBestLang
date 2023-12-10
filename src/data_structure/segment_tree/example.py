@@ -7,7 +7,7 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, \
     RangeDescendRangeMin, \
     RangeAddRangeSumMinMax, RangeChangeRangeSumMinMax, PointChangeRangeMaxNonEmpConSubSum, \
     RangeOrRangeAnd, \
-    RangeChangeRangeSumMinMaxDynamic, RangeChangeRangeOr
+    RangeChangeRangeSumMinMaxDynamic, RangeChangeRangeOr, RangeAddMulRangeSum
 
 
 class TestGeneral(unittest.TestCase):
@@ -147,6 +147,44 @@ class TestGeneral(unittest.TestCase):
                 nums[left:right + 1])
 
         assert segment_tree.get() == nums
+        return
+
+    def test_range_add_mul_range_sum(self):
+        low = -10000
+        high = 10000
+        nums = [random.randint(low, high) for _ in range(high)]
+        mod = 10**9 + 7
+        segment_tree = RangeAddMulRangeSum(high, mod)
+        segment_tree.build(nums)
+
+        assert segment_tree.range_sum(0, high - 1) == sum(nums) % mod
+
+        for _ in range(high):
+
+            left = random.randint(0, high - 1)
+            right = random.randint(left, high - 1)
+            num = random.randint(-high, high)
+            segment_tree.range_add_mul(left, right, num, "add")
+            for i in range(left, right + 1):
+                nums[i] += num
+                nums[i] %= mod
+            left = random.randint(0, high - 1)
+            right = random.randint(left, high - 1)
+            assert segment_tree.range_sum(left, right) == sum(
+                nums[left:right + 1]) % mod
+
+            left = random.randint(0, high - 1)
+            right = left
+            num = random.randint(-high, high)
+            segment_tree.range_add_mul(left, right, num, "mul")
+            for i in range(left, right + 1):
+                nums[i] *= num
+                nums[i] %= mod
+            assert segment_tree.range_sum(left, right) == sum(
+                nums[left:right + 1]) % mod
+
+        ans = [segment_tree.range_sum(i, i) for i in range(high)]
+        assert segment_tree.get() == nums == ans
         return
 
     def test_range_change_range_sum_min_max(self):

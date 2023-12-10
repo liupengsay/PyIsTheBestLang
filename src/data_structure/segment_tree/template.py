@@ -521,6 +521,132 @@ class RangeAddRangeSumMinMax:
         return nums
 
 
+class RangeAddMulRangeSum:
+
+    def __init__(self, n, mod):
+        self.n = n
+        self.mod = mod
+        self.cover = [0] * (4 * n)
+        self.add = [0] * (4 * n)  # lazy_tag for mul
+        self.mul = [1] * (4 * n)  # lazy_tag for add
+        return
+
+    def _make_tag(self, i, s, t, val, op="add") -> None:
+        if op == "add":
+            self.cover[i] = (self.cover[i] + (t - s + 1) * val) % self.mod
+            self.add[i] = (self.add[i] + val) % self.mod
+        else:
+            self.cover[i] = (self.cover[i] * val) % self.mod
+            self.add[i] = (self.add[i] * val) % self.mod
+            self.mul[i] = (self.mul[i] * val) % self.mod
+        return
+
+    def _push_up(self, i):
+        self.cover[i] = (self.cover[2 * i] + self.cover[2 * i + 1]) % self.mod
+        return
+
+    def _push_down(self, i, s, m, t):
+        self.cover[2 * i] = (self.cover[2 * i] * self.mul[i] + self.add[i] * (m - s + 1)) % self.mod
+        self.cover[2 * i + 1] = (self.cover[2 * i + 1] * self.mul[i] + self.add[i] * (t - m)) % self.mod
+
+        self.mul[2 * i] = (self.mul[2 * i] * self.mul[i]) % self.mod
+        self.mul[2 * i + 1] = (self.mul[2 * i + 1] * self.mul[i]) % self.mod
+
+        self.add[2 * i] = (self.add[2 * i] * self.mul[i] + self.add[i]) % self.mod
+        self.add[2 * i + 1] = (self.add[2 * i + 1] * self.mul[i] + self.add[i]) % self.mod
+
+        self.mul[i] = 1
+        self.add[i] = 0
+        return
+
+    def build(self, nums: List[int]) -> None:
+        assert self.n == len(nums)
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if s == t:
+                    self._make_tag(i, s, t, nums[s], "add")
+                else:
+                    stack.append((s, t, ~i))
+                    m = s + (t - s) // 2
+                    stack.append((s, m, 2 * i))
+                    stack.append((m + 1, t, 2 * i + 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def get(self):
+        stack = [(0, self.n - 1, 1)]
+        nums = [0] * self.n
+        while stack:
+            s, t, i = stack.pop()
+            if s == t:
+                nums[s] = self.cover[i] % self.mod
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i, s, m, t)
+            stack.append((s, m, 2 * i))
+            stack.append((m + 1, t, 2 * i + 1))
+        return nums
+
+    def range_add_mul(self, left, right, val, op="add"):
+        assert 0 <= left <= right <= self.n - 1
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if left <= s and t <= right:
+                    self._make_tag(i, s, t, val, op)
+                    continue
+                stack.append([s, t, ~i])
+                m = s + (t - s) // 2
+                self._push_down(i, s, m, t)
+                if left <= m:
+                    stack.append((s, m, 2 * i))
+                if right > m:
+                    stack.append((m + 1, t, 2 * i + 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def range_sum(self, left: int, right: int) -> int:
+        # query the range sum
+        if left == right:
+            s, t, i = 0, self.n - 1, 1
+            ans = 0
+            while True:
+                if left <= s <= t <= right:
+                    ans += self.cover[i] % self.mod
+                    break
+                m = s + (t - s) // 2
+                self._push_down(i, s, m, t)
+                if left <= m:
+                    s, t, i = s, m, 2 * i
+                if right > m:
+                    s, t, i = m + 1, t, 2 * i + 1
+            return ans
+
+        stack = [(0, self.n - 1, 1)]
+        ans = 0
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                ans += self.cover[i]
+                ans %= self.mod
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i, s, m, t)
+            if left <= m:
+                stack.append((s, m, 2 * i))
+            if right > m:
+                stack.append((m + 1, t, 2 * i + 1))
+        return ans
+
+
+
 class RangeChangeRangeSumMinMax:
     def __init__(self, n):
         self.n = n
@@ -854,7 +980,7 @@ class SegmentTreeRangeUpdateChangeQueryMax:
 
     def update(self, left: int, right: int, s: int, t: int, val: int, flag: int, i: int) -> None:
         # 增减区间值 left 与 right 取值为 0 到 n-1 而 i 从 1 开始
-        stack = [[s, t, i]]
+        stack = [(s, t, i)]
         while stack:
             s, t, i = stack.pop()
             if i >= 0:
@@ -886,7 +1012,7 @@ class SegmentTreeRangeUpdateChangeQueryMax:
     def query_max(self, left: int, right: int, s: int, t: int, i: int) -> int:
 
         # 查询区间的最大值
-        stack = [[s, t, i]]
+        stack = [(s, t, i)]
         highest = -inf
         while stack:
             s, t, i = stack.pop()
@@ -1105,7 +1231,7 @@ class SegmentTreeRangeUpdateXORSum:
 
     def update_range(self, left: int, right: int, s: int, t: int, val: int, i: int) -> None:
         # 增减区间值 left 与 right 取值为 0 到 n-1 而 i 从 1 开始
-        stack = [[s, t, i]]
+        stack = [(s, t, i)]
         while stack:
             s, t, i = stack.pop()
             if i >= 0:
@@ -1129,7 +1255,7 @@ class SegmentTreeRangeUpdateXORSum:
 
     def query_sum(self, left: int, right: int, s: int, t: int, i: int) -> int:
         # 查询区间的和
-        stack = [[s, t, i]]
+        stack = [(s, t, i)]
         ans = 0
         while stack:
             s, t, i = stack.pop()
@@ -1142,68 +1268,6 @@ class SegmentTreeRangeUpdateXORSum:
                 stack.append((s, m, 2 * i))
             if right > m:
                 stack.append((m + 1, t, 2 * i + 1))
-        return ans
-
-
-class SegmentTreeRangeAddMulSum:
-
-    def __init__(self, p, n):
-        self.p = p
-        # 区间值增减乘积与区间和查询
-        self.cover = [0] * 4 * n
-        self.lazy = [[] for _ in range(4 * n)]
-
-    def _push_down(self, i, s, m, t):
-
-        if self.lazy[i]:
-            for op, val in self.lazy[i]:
-                if op == "add":
-                    self.cover[2 * i] += val * (m - s + 1)
-                    self.cover[2 * i + 1] += val * (t - m)
-
-                    self.lazy[2 * i] += [[op, val]]
-                    self.lazy[2 * i + 1] += [[op, val]]
-                else:
-                    self.cover[2 * i] *= val
-                    self.cover[2 * i + 1] *= val
-
-                    self.lazy[2 * i] += [[op, val]]
-                    self.lazy[2 * i + 1] += [[op, val]]
-                self.cover[2 * i] %= self.p
-                self.cover[2 * i + 1] %= self.p
-
-            self.lazy[i] = []
-
-    def update(self, left, r, s, t, op, val, i):
-        if left <= s and t <= r:
-            if op == "add":
-                self.cover[i] += val * (t - s + 1)
-                self.lazy[i] += [["add", val]]
-            else:
-                self.cover[i] *= val
-                self.lazy[i] += [["mul", val]]
-            self.cover[i] %= self.p
-            return
-        m = s + (t - s) // 2
-        self._push_down(i, s, m, t)
-        if left <= m:
-            self.update(left, r, s, m, op, val, 2 * i)
-        if r > m:
-            self.update(left, r, m + 1, t, op, val, 2 * i + 1)
-        self.cover[i] = self.cover[2 * i] + self.cover[2 * i + 1]
-        self.cover[i] %= self.p
-        return
-
-    def query(self, left, r, s, t, i):
-        if left <= s and t <= r:
-            return self.cover[i]
-        m = s + (t - s) // 2
-        self._push_down(i, s, m, t)
-        ans = 0
-        if left <= m:
-            ans += self.query(left, r, s, m, 2 * i)
-        if r > m:
-            ans += self.query(left, r, m + 1, t, 2 * i + 1)
         return ans
 
 
@@ -1302,114 +1366,6 @@ class RangeChangeRangeOr:
         return ans
 
 
-class SegmentTreeRangeUpdateMulQuerySum:
-    def __init__(self, nums: List[int], p) -> None:
-        # 区间值增减、区间值乘法、区间值修改、区间最大值查询
-        self.p = p
-        self.n = len(nums)
-        self.nums = nums
-        self.lazy_add = [0] * (4 * self.n)  # 懒标记
-        self.lazy_mul = [1] * (4 * self.n)  # 懒标记
-        self.cover = [0] * (4 * self.n)  # 区间和
-        self.build()  # 初始化segment_tree|
-        return
-
-    @staticmethod
-    def _max(a: int, b: int) -> int:
-        return a if a > b else b
-
-    @staticmethod
-    def _min(a: int, b: int) -> int:
-        return a if a < b else b
-
-    def build(self) -> None:
-        # 数组初始化segment_tree|
-        stack = [(0, self.n - 1, 1)]
-        while stack:
-            s, t, i = stack.pop()
-            if i >= 0:
-                if s == t:
-                    self.cover[i] = self.nums[s]
-                else:
-                    stack.append((s, t, ~i))
-                    m = s + (t - s) // 2
-                    stack.append((s, m, 2 * i))
-                    stack.append((m + 1, t, 2 * i + 1))
-            else:
-                i = ~i
-                self.cover[i] = self.cover[2 * i] + self.cover[2 * i + 1]
-        return
-
-    def _make_tag(self, s: int, t: int, x: int, flag: int, i: int) -> None:
-        if flag == 1:  # 乘法
-            self.lazy_mul[i] = (self.lazy_mul[i] * x) % self.p
-            self.lazy_add[i] = (self.lazy_add[i] * x) % self.p
-            self.cover[i] = (self.cover[i] * x) % self.p
-        else:
-            self.lazy_add[i] = (self.lazy_add[i] + x) % self.p
-            self.cover[i] = (self.cover[i] + x * (t - s + 1)) % self.p
-        return
-
-    def _push_down(self, i: int, s: int, m: int, t: int) -> None:
-        # 下放懒标记
-        if self.lazy_mul[i] != 1:
-            self._make_tag(s, m, self.lazy_mul[i], 1, 2 * i)
-            self._make_tag(m + 1, t, self.lazy_mul[i], 1, 2 * i + 1)
-            self.lazy_mul[i] = 1
-
-        if self.lazy_add[i] != 0:
-            self._make_tag(s, m, self.lazy_add[i], 2, 2 * i)
-            self._make_tag(m + 1, t, self.lazy_add[i], 2, 2 * i + 1)
-            self.lazy_add[i] = 0
-
-    def update(self, left: int, right: int, s: int, t: int, val: int, flag: int, i: int) -> None:
-        # 增减区间值 left 与 right 取值为 0 到 n-1 而 i 从 1 开始
-        stack = [[s, t, i]]
-        while stack:
-            s, t, i = stack.pop()
-            if i >= 0:
-                if left <= s and t <= right:
-                    if flag == 1:
-                        self.cover[i] = (self.cover[i] * val) % self.p
-                        self.lazy_add[i] = (self.lazy_add[i] * val) % self.p
-                        self.lazy_mul[i] = (self.lazy_mul[i] * val) % self.p
-                    else:
-                        self.cover[i] = (self.cover[i] + val * (t - s + 1)) % self.p
-                        self.lazy_add[i] = (self.lazy_add[i] + val) % self.p
-                    continue
-
-                m = s + (t - s) // 2
-                self._push_down(i, s, m, t)
-                stack.append((s, t, ~i))
-
-                if left <= m:  # 注意左右子树的边界与范围
-                    stack.append((s, m, 2 * i))
-                if right > m:
-                    stack.append((m + 1, t, 2 * i + 1))
-            else:
-                i = ~i
-                self.cover[i] = self.cover[2 * i] + self.cover[2 * i + 1]
-                self.cover[i] %= self.p
-        return
-
-    def query_sum(self, left: int, right: int, s: int, t: int, i: int) -> int:
-        # 查询区间的和
-        stack = [[s, t, i]]
-        ans = 0
-        while stack:
-            s, t, i = stack.pop()
-            if left <= s and t <= right:
-                ans += self.cover[i]
-                continue
-            m = s + (t - s) // 2
-            self._push_down(i, s, m, t)
-            if left <= m:
-                stack.append((s, m, 2 * i))
-            if right > m:
-                stack.append((m + 1, t, 2 * i + 1))
-        return ans % self.p
-
-
 class SegmentTreePointUpdateRangeMulQuery:
     def __init__(self, n, mod) -> None:
         # 单点值修改、区间乘mod|
@@ -1420,7 +1376,7 @@ class SegmentTreePointUpdateRangeMulQuery:
 
     def update(self, left: int, right: int, s: int, t: int, val: int, i: int) -> None:
         # 修改单点值 left == right 取值为 0 到 n-1 而 i 从 1 开始
-        stack = [[s, t, i]]
+        stack = [(s, t, i)]
         while stack:
             s, t, i = stack.pop()
             if i >= 0:
@@ -1441,7 +1397,7 @@ class SegmentTreePointUpdateRangeMulQuery:
 
     def query_mul(self, left: int, right: int, s: int, t: int, i: int) -> int:
         # 查询区间的乘积
-        stack = [[s, t, i]]
+        stack = [(s, t, i)]
         ans = 1
         while stack:
             s, t, i = stack.pop()
@@ -1640,7 +1596,7 @@ class SegmentTreeRangeUpdateAvgDev:
 
     def update(self, left: int, right: int, s: int, t: int, val: int, i: int) -> None:
         # 修改点值 [left  right] 取值为 0 到 n-1 增| val 而 i 从 1 开始，直接修改到底
-        stack = [[s, t, i]]
+        stack = [(s, t, i)]
         while stack:
             s, t, i = stack.pop()
             if i >= 0:
@@ -1661,7 +1617,7 @@ class SegmentTreeRangeUpdateAvgDev:
 
     def query(self, left: int, right: int, s: int, t: int, i: int):
         # 查询区间和，与数组平方的区间和
-        stack = [[s, t, i]]
+        stack = [(s, t, i)]
         ans1 = ans2 = 0
         while stack:
             s, t, i = stack.pop()
@@ -1744,7 +1700,7 @@ class SegmentTreePointChangeLongCon:
 
     def update(self, left: int, right: int, s: int, t: int, i: int) -> None:
         # 修改点值 [left  right] 取值为 0 到 n-1 增| val 而 i 从 1 开始，直接修改到底
-        stack = [[s, t, i]]
+        stack = [(s, t, i)]
         while stack:
             s, t, i = stack.pop()
             if i >= 0:
@@ -1880,7 +1836,7 @@ class SegmentTreeRangeAndOrXOR:
 
     def update(self, left: int, right: int, s: int, t: int, val: int, i: int) -> None:
         # 修改点值 [left  right] 取值为 0 到 n-1 增| val 而 i 从 1 开始，直接修改到底
-        stack = [[s, t, i]]
+        stack = [(s, t, i)]
         while stack:
             s, t, i = stack.pop()
             if i >= 0:
@@ -1904,7 +1860,7 @@ class SegmentTreeRangeAndOrXOR:
 
     def query_sum(self, left: int, right: int, s: int, t: int, i: int):
         # 查询区间和，与数组平方的区间和
-        stack = [[s, t, i]]
+        stack = [(s, t, i)]
         ans = 0
         while stack:
             s, t, i = stack.pop()
@@ -2055,7 +2011,7 @@ class SegmentTreeRangeXORQuery:
 
     def update_range(self, left: int, right: int, s: int, t: int, val: int, i: int) -> None:
         # 修改点值 [left  right] 取值为 0 到 n-1 异或 val 而 i 从 1 开始
-        stack = [[s, t, i]]
+        stack = [(s, t, i)]
         while stack:
             s, t, i = stack.pop()
             if i >= 0:
@@ -2094,7 +2050,7 @@ class SegmentTreeRangeXORQuery:
 
     def query(self, left: int, right: int, s: int, t: int, i: int):
         # 查询区间和，与数组平方的区间和
-        stack = [[s, t, i]]
+        stack = [(s, t, i)]
         ans = 0
         while stack:
             s, t, i = stack.pop()
@@ -2152,7 +2108,7 @@ class SegmentTreeRangeSqrtSum:
 
     def change(self, left, right, s, t, i):
         # 更新区间值
-        stack = [[s, t, i]]
+        stack = [(s, t, i)]
         while stack:
             s, t, i = stack.pop()
             if i >= 0:
@@ -2174,7 +2130,7 @@ class SegmentTreeRangeSqrtSum:
 
     def query_sum(self, left, right, s, t, i):
         # 查询区间的和
-        stack = [[s, t, i]]
+        stack = [(s, t, i)]
         ans = 0
         while stack:
             s, t, i = stack.pop()
