@@ -1,57 +1,61 @@
 """
-Algorithm：state_compression|outline_dp、memory_search|refresh_table|fill_table
-Description：state_compression|dfs|back_track|brute_force|sub_set|bit_operation|brute_force
+Algorithm：state_dp|outline_dp、memory_search|refresh_table|fill_table
+Description：state_dp|dfs|back_track|brute_force|sub_set|bit_operation|brute_force
 
 ====================================LeetCode====================================
-465（https://leetcode.com/problems/optimal-account-balancing/）brute_force|sub_set|state_compress
-1349（https://leetcode.com/problems/maximum-students-taking-exam/）brute_force|state_compress
+465（https://leetcode.com/problems/optimal-account-balancing/）brute_force|sub_set|state_dp
+1349（https://leetcode.com/problems/maximum-students-taking-exam/）brute_force|state_dp
 1723（https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs/）bit_operation|minimum_maximum|brute_force|classical|sub_set
-1986（https://leetcode.com/problems/minimum-number-of-work-sessions-to-finish-the-tasks/）sub_set|preprocess|brute_force|state_compress
-698（https://leetcode.com/problems/partition-to-k-equal-sum-subsets/））sub_set|preprocess|brute_force|state_compress
-2172（https://leetcode.com/problems/maximum-and-sum-of-array/）bit_operation|state_compression|3-base|state_compress
-1255（https://leetcode.com/problems/maximum-score-words-formed-by-letters/）state_compress
-2403（https://leetcode.com/problems/minimum-time-to-kill-all-monsters/）state_compress
-1681（https://leetcode.com/problems/minimum-incompatibility/）state_compression|group_bag_dp|state_compression|comb
-1125（https://leetcode.com/problems/smallest-sufficient-team/）state_compress
+1986（https://leetcode.com/problems/minimum-number-of-work-sessions-to-finish-the-tasks/）sub_set|preprocess|brute_force|state_dp
+698（https://leetcode.com/problems/partition-to-k-equal-sum-subsets/））sub_set|preprocess|brute_force|state_dp
+2172（https://leetcode.com/problems/maximum-and-sum-of-array/）bit_operation|state_dp|3-base|state_dp
+1255（https://leetcode.com/problems/maximum-score-words-formed-by-letters/）state_dp
+2403（https://leetcode.com/problems/minimum-time-to-kill-all-monsters/）state_dp
+1681（https://leetcode.com/problems/minimum-incompatibility/）state_dp|group_bag_dp|state_dp|comb
+1125（https://leetcode.com/problems/smallest-sufficient-team/）state_dp
 1467（https://leetcode.com/problems/probability-of-a-two-boxes-having-the-same-number-of-distinct-balls/）memory_search|counter
 1531（https://leetcode.com/problems/string-compression-ii/submissions/）liner_dp|implemention
-1595（https://leetcode.com/problems/minimum-cost-to-connect-two-groups-of-points/）state_compress
-1655（https://leetcode.com/problems/distribute-repeating-integers/）state_compress
-1879（https://leetcode.com/problems/minimum-xor-sum-of-two-arrays/）state_compress
+1595（https://leetcode.com/problems/minimum-cost-to-connect-two-groups-of-points/）state_dp
+1655（https://leetcode.com/problems/distribute-repeating-integers/）state_dp
+1879（https://leetcode.com/problems/minimum-xor-sum-of-two-arrays/）state_dp
 2019（https://leetcode.com/problems/the-score-of-students-solving-math-expression/）memory_search|fill_table
-943（https://leetcode.com/problems/find-the-shortest-superstring/）string|greedy|state_compress
-1434（https://leetcode.com/problems/number-of-ways-to-wear-different-hats-to-each-other/description/）state_compress|reverse_thinking
-847（https://leetcode.com/problems/shortest-path-visiting-all-nodes/）shortest_path|floyd|dijkstra|preprocess|state_compress
-2741（https://leetcode.com/problems/special-permutations/description/）state_compress
-2305（https://leetcode.com/problems/fair-distribution-of-cookies/description/）classical|state_compress|brute_force|sub_set
-980（https://leetcode.com/problems/unique-paths-iii/description/）classical|state_compress|back_track
+943（https://leetcode.com/problems/find-the-shortest-superstring/）string|greedy|state_dp
+1434（https://leetcode.com/problems/number-of-ways-to-wear-different-hats-to-each-other/description/）state_dp|reverse_thinking
+847（https://leetcode.com/problems/shortest-path-visiting-all-nodes/）shortest_path|floyd|dijkstra|preprocess|state_dp
+2741（https://leetcode.com/problems/special-permutations/description/）state_dp
+2305（https://leetcode.com/problems/fair-distribution-of-cookies/description/）classical|state_dp|brute_force|sub_set
+980（https://leetcode.com/problems/unique-paths-iii/description/）classical|state_dp|back_track
 2571（https://leetcode.com/problems/minimum-operations-to-reduce-an-integer-to-0/description/）brain_teaser|memory_search
 
 =====================================LuoGu======================================
-1896（https://www.luogu.com.cn/problem/P1896）brute_force|state_compress
-2704（https://www.luogu.com.cn/problem/P2704）state_compress
+1896（https://www.luogu.com.cn/problem/P1896）brute_force|state_dp
+2704（https://www.luogu.com.cn/problem/P2704）state_dp
 
-2196（https://www.luogu.com.cn/problem/P2196）longest_path|state_compress
-1690（https://www.luogu.com.cn/problem/P1690）shortest_path|state_compress
-1294（https://www.luogu.com.cn/problem/P1294）state_compress|longest_diameter
-1123（https://www.luogu.com.cn/problem/P1123）state_compress
-1433（https://www.luogu.com.cn/problem/P1433）state_compress
-1896（https://www.luogu.com.cn/problem/P1896）state_compress
-1556（https://www.luogu.com.cn/problem/P1556）state_compression|shortest_path|specific_plan
-3052（https://www.luogu.com.cn/problem/P3052）state_compression|matrix_dp
-5997（https://www.luogu.com.cn/problem/P5997）greedy|bag_dp|state_compress
-6883（https://www.luogu.com.cn/problem/P6883）classical|state_compress
-8687（https://www.luogu.com.cn/problem/P8687）state_compress|bag_dp
-8733（https://www.luogu.com.cn/problem/P8733）floyd|shortest_path|state_compress
+2196（https://www.luogu.com.cn/problem/P2196）longest_path|state_dp
+1690（https://www.luogu.com.cn/problem/P1690）shortest_path|state_dp
+1294（https://www.luogu.com.cn/problem/P1294）state_dp|longest_diameter
+1123（https://www.luogu.com.cn/problem/P1123）state_dp
+1433（https://www.luogu.com.cn/problem/P1433）state_dp
+1896（https://www.luogu.com.cn/problem/P1896）state_dp
+1556（https://www.luogu.com.cn/problem/P1556）state_dp|shortest_path|specific_plan
+3052（https://www.luogu.com.cn/problem/P3052）state_dp|matrix_dp
+5997（https://www.luogu.com.cn/problem/P5997）greedy|bag_dp|state_dp
+6883（https://www.luogu.com.cn/problem/P6883）classical|state_dp
+8687（https://www.luogu.com.cn/problem/P8687）state_dp|bag_dp
+8733（https://www.luogu.com.cn/problem/P8733）floyd|shortest_path|state_dp
 
 ===================================CodeForces===================================
-580D（https://codeforces.com/problemset/problem/580/D）state_compression
-165E（https://codeforces.com/problemset/problem/165/E）liner_dp|state_compression|brute_force
-11D（https://codeforces.com/contest/11/problem/D）state_compress|undirected|counter
+580D（https://codeforces.com/problemset/problem/580/D）state_dp
+165E（https://codeforces.com/problemset/problem/165/E）liner_dp|state_dp|brute_force
+11D（https://codeforces.com/contest/11/problem/D）state_dp|undirected|counter
 1294F（https://codeforces.com/contest/1294/problem/F）classical|tree_diameter
 
+=====================================AtCoder====================================
+ABC332E（https://atcoder.jp/contests/abc332/tasks/abc332_e）math|state_dp|classical
+
 =====================================AcWing=====================================
-3735（https://www.acwing.com/problem/content/3738/）reverse_order|state_compress|specific_plan
+3735（https://www.acwing.com/problem/content/3738/）reverse_order|state_dp|specific_plan
+
 
 """
 import heapq
@@ -74,7 +78,7 @@ class Solution:
 
     @staticmethod
     def lc_1681(nums: List[int], k: int) -> int:
-        # state_compression和组合数选取结合
+        # state_dp和组合数选取结合
 
         @lru_cache(None)
         def dfs(state):
@@ -112,7 +116,6 @@ class Solution:
     @staticmethod
     def lc_1723(jobs: List[int], k: int) -> int:
         # 通过bit_operationbrute_force分配工作DP最小化的最大值，brute_force子集preprocess
-
         @lru_cache(None)
         def dfs(i, state):
             if i == k:
@@ -192,7 +195,7 @@ class Solution:
 
     @staticmethod
     def cf_165e(ac=FastIO()):
-        # 线性state_compressionDP，类似子集思想求解可能存在的与为0的数对
+        # 线性state_dpDP，类似子集思想求解可能存在的与为0的数对
         n = ac.read_int()
         nums = ac.read_list_ints()
         ceil = max(nums).bit_length()
@@ -218,7 +221,7 @@ class Solution:
     @staticmethod
     def cf_580d(ac):
 
-        # bitmaskbit_operationstate_compression转移，从 1 少的状态向多的转移，并brute_force前一个 1 的位置增益
+        # bitmaskbit_operationstate_dp转移，从 1 少的状态向多的转移，并brute_force前一个 1 的位置增益
         n, m, k = ac.read_list_ints()
         ind = {1 << i: i for i in range(n + 1)}
         nums = ac.read_list_ints()
@@ -249,7 +252,7 @@ class Solution:
 
     @staticmethod
     def lc_847(graph: List[List[int]]) -> int:
-        # shortest_pathFloyd或者Dijkstrapreprocessshortest_path|state_compress
+        # shortest_pathFloyd或者Dijkstrapreprocessshortest_path|state_dp
         n = len(graph)
         dis = [[inf] * n for _ in range(n)]
         for i in range(n):
@@ -275,7 +278,7 @@ class Solution:
     @staticmethod
     def lc_1349(seats: List[List[str]]) -> int:
 
-        # 考试就座state_compression DP
+        # 考试就座state_dp DP
 
         lst = []
         for se in seats:
@@ -359,7 +362,7 @@ class Solution:
 
     @staticmethod
     def lc_2403_1(power: List[int]) -> int:
-        # state_compressionDP数组形式
+        # state_dpDP数组形式
         m = len(power)
         dp = [0] * (1 << m)
         for state in range(1, 1 << m):
@@ -374,7 +377,7 @@ class Solution:
 
     @staticmethod
     def lc_2403_2(power: List[int]) -> int:
-        # state_compressionDP记忆化形式
+        # state_dpDP记忆化形式
 
         @lru_cache(None)
         def dfs(state):
@@ -456,7 +459,7 @@ class Solution:
 
     @staticmethod
     def lg_p1433(ac=FastIO()):
-        # state_compress
+        # state_dp
         n = ac.read_int()
         lst = [[0, 0]]
         for _ in range(n):
@@ -492,7 +495,7 @@ class Solution:
 
     @staticmethod
     def lg_p1556(ac=FastIO()):
-        # state_compressionshortest_path
+        # state_dpshortest_path
         n = ac.read_int()
         # 增|虚拟的起终点
         nums = [[0, 0]] + [ac.read_list_ints() for _ in range(n)] + [[0, 0]]
@@ -530,7 +533,7 @@ class Solution:
 
     @staticmethod
     def lg_p3052(ac=FastIO()):
-        # state_compression DP 二维优化
+        # state_dp DP 二维优化
         n, w = ac.read_list_ints()
         nums = []
         while len(nums) < n:
@@ -605,7 +608,7 @@ class Solution:
 
     @staticmethod
     def lg_p8687(ac=FastIO()):
-        # state_compress 结合背包 DP 思想
+        # state_dp 结合背包 DP 思想
         n, m, k = ac.read_list_ints()
         dp = [inf] * (1 << m)
         dp[0] = 0
@@ -648,7 +651,7 @@ class Solution:
     @staticmethod
     def lc_1595(cost: List[List[int]]) -> int:
 
-        # state_compress，需要一点变形
+        # state_dp，需要一点变形
         m, n = len(cost), len(cost[0])
         low = [min(cost[i][j] for i in range(m)) for j in range(n)]
 
@@ -761,6 +764,31 @@ class Solution:
         return dfs((1 << n) - 1, 0)
 
     @staticmethod
+    def abc_332e(ac=FastIO()):
+
+        n, d = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        cost = [0] * (1 << n)
+        ind = {1 << i: i for i in range(n)}
+        for i in range(1, 1 << n):
+            cost[i] = cost[i & (i - 1)] + nums[ind[i & (-i)]]
+
+        dp = [x * x for x in cost]
+        for _ in range(d - 1):
+            for state in range((1 << n) - 1, -1, -1):
+                mask = state
+                while mask:
+                    c = dp[state ^ mask] + cost[mask] * cost[mask]
+                    if c < dp[state]:
+                        dp[state] = c
+                    mask = (mask - 1) & state
+
+        ans = dp[-1]
+        s = sum(nums)
+        ac.st(((d * ans) - s * s) / d / d)
+        return
+
+    @staticmethod
     def ac_3735(ac=FastIO()):
         # reverse_order|state_compress与输出specific_plan
         n, m = ac.read_list_ints()
@@ -805,7 +833,7 @@ class Solution:
 
     @staticmethod
     def lc_2172(nums: List[int], num_slots: int) -> int:
-        # bit_operation和state_compression转移，三进制state_compress（天平就是三进制）
+        # bit_operation和state_dp转移，三进制state_compress（天平就是三进制）
 
         def get_k_bin_of_n(n: int, k: int, m: int):  # 进制与数字转换state_compress
             lst = []
