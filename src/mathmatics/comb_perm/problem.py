@@ -1,67 +1,67 @@
 """
 
-Algorithm：math排列组合counter、乘法逆元（也叫combinatorics）、Lucas定理
-Description：全排列counter，选取combcounter，隔板法，错位排列，斯特林数、catalan_number，inclusion_exclusion，可以通过乘法逆元快速求解组合数与全排列数
-Lucas定理（comb(n, m)%p = comb(n%p, m%p)*comb(n//p, m//p)）%p
+Algorithm：math|comb|counter|multiplicative_reverse|lucas|perm|factorial|rev
+Description：combination|permutation|counter|partition_method|fault_perm|stirling_number|catalan_number|inclusion_exclusion
+Lucas:（comb(n, m)%p = comb(n%p, m%p)*comb(n//p, m//p)）%p  
 
 ====================================LeetCode====================================
 96（https://leetcode.com/problems/unique-binary-search-trees/）catalan_number
-95（https://leetcode.com/problems/unique-binary-search-trees/）catalan_number思想recursion，生成specific_plan
-634（https://leetcode.com/problems/find-the-derangement-of-an-array/）错位排列counter动态规划转移
+95（https://leetcode.com/problems/unique-binary-search-trees/）catalan_number|recursion|specific_plan
+634（https://leetcode.com/problems/find-the-derangement-of-an-array/）fault_perm|counter|dp
 1259（https://leetcode.com/problems/handshakes-that-dont-cross/）catalan_number
-2338（https://leetcode.com/problems/count-the-number-of-ideal-arrays/）隔板法与factorization|组合specific_plan数求解
-1735（https://leetcode.com/problems/count-ways-to-make-array-with-product/）质数分解与隔板法应用
-1621（https://leetcode.com/problems/number-of-sets-of-k-non-overlapping-line-segments/）类似隔板法的思想
-1866（https://leetcode.com/problems/number-of-ways-to-rearrange-sticks-with-k-sticks-visible/）第一类斯特林数
-1916（https://leetcode.com/problems/count-ways-to-build-rooms-in-an-ant-colony/）tree_dp|组合mathcounter
-D - Blue and Red Balls（https://atcoder.jp/contests/abc132/tasks/abc132_d）组合mathcounter，和为 X 的长为 Y 的正整数与非负整数方程解个数
+2338（https://leetcode.com/problems/count-the-number-of-ideal-arrays/）partition_method|factorization|specific_plan|counter|classical
+1735（https://leetcode.com/problems/count-ways-to-make-array-with-product/）prime_factorization|partition_method|classical
+1621（https://leetcode.com/problems/number-of-sets-of-k-non-overlapping-line-segments/）partition_method|comb_perm
+1866（https://leetcode.com/problems/number-of-ways-to-rearrange-sticks-with-k-sticks-visible/）stirling_number|first_kind_stirling_number
+1916（https://leetcode.com/problems/count-ways-to-build-rooms-in-an-ant-colony/）tree_dp|math|comb|counter
+D - Blue and Red Balls（https://atcoder.jp/contests/abc132/tasks/abc132_d）comb|math|counter|classical|equation
 
 =====================================LuoGu======================================
-4071（https://www.luogu.com.cn/problem/P4071）通过乘法逆元快速求解组合数与全排列数，同时recursion错位排列数
-1287（https://www.luogu.com.cn/problem/P1287）第二类斯特林数形式的DP，以及全排列数
+4071（https://www.luogu.com.cn/problem/P4071）multiplicative_reverse|comb|perm|recursion|fault_perm
+1287（https://www.luogu.com.cn/problem/P1287）second_kind_stirling_number|factorial|dp
 1375（https://www.luogu.com.cn/problem/P1375）catalan_number
 1754（https://www.luogu.com.cn/problem/P1754）catalan_number
-2193（https://www.luogu.com.cn/problem/P2193）隔板法与factorization|组合specific_plan数求解
-1338（https://www.luogu.com.cn/problem/P1338）brute_force满足个数的reverse_order_pair|排列，即找特定reverse_order_pair|个数的最小排列
-1313（https://www.luogu.com.cn/problem/P1313）二项式展开的系数
-1061（https://www.luogu.com.cn/problem/P1061）implemention下一个lexicographical_order排列
-3197（https://www.luogu.com.cn/problem/P3197）counterfast_power||inclusion_exclusion
-3414（https://www.luogu.com.cn/problem/P3414）组合数奇偶对半开，fast_power|
-4369（https://www.luogu.com.cn/problem/P4369）brain_teaser组合数|和construction
-5520（https://www.luogu.com.cn/problem/P5520）隔板法组合数
-3807（https://www.luogu.com.cn/problem/P3807）卢卡斯模板题
+2193（https://www.luogu.com.cn/problem/P2193）partition_method|factorization|comb|specific_plan|classical
+1338（https://www.luogu.com.cn/problem/P1338）brute_force|reverse_order_pair
+1313（https://www.luogu.com.cn/problem/P1313）math|comb|polynomial
+1061（https://www.luogu.com.cn/problem/P1061）implemention|lexicographical_order|nex_perm
+3197（https://www.luogu.com.cn/problem/P3197）counter|fast_power|inclusion_exclusion
+3414（https://www.luogu.com.cn/problem/P3414）comb|odd_even|fast_power
+4369（https://www.luogu.com.cn/problem/P4369）brain_teaser|comb|construction
+5520（https://www.luogu.com.cn/problem/P5520）partition_method|comb
+3807（https://www.luogu.com.cn/problem/P3807）lucas
 1044（https://www.luogu.com.cn/problem/P1044）catalan_number
-1655（https://www.luogu.com.cn/problem/P1655）matrix_dp，斯特林数
-1680（https://www.luogu.com.cn/problem/P1680）隔板法不同分组的个数，乘法逆元与Lucas定理快速Comb(a,b)%m
-2265（https://www.luogu.com.cn/problem/P2265）排列组合，comb(n+m, m)
-2638（https://www.luogu.com.cn/problem/P2638）隔板法 a 个球放入 n 个盒子不要求每个都放也不要求放完的specific_plan数
-2822（https://www.luogu.com.cn/problem/P2822）组合数 comb(i, j) % k == 0 的个数
-3223（https://www.luogu.com.cn/problem/P3223）inclusion_exclusion和隔板法
-3904（https://www.luogu.com.cn/problem/P3904）递推第二类斯特林数
-4071（https://www.luogu.com.cn/problem/P4071）错排选择 n 个元素刚好有 m 个错位排列的specific_plan数
-5684（https://www.luogu.com.cn/problem/P5684）inclusion_exclusion与组合counter
-6057（https://www.luogu.com.cn/problem/P6057）inclusion_exclusioncounter
+1655（https://www.luogu.com.cn/problem/P1655）matrix_dp|stirling_number
+1680（https://www.luogu.com.cn/problem/P1680）partition_method|multiplicative_reverse|lucas|comb(a,b)%m
+2265（https://www.luogu.com.cn/problem/P2265）comb|comb(n+m, m)
+2638（https://www.luogu.com.cn/problem/P2638）partition_method|specific_plan|classical
+2822（https://www.luogu.com.cn/problem/P2822）counter|comb(i, j) % k == 0
+3223（https://www.luogu.com.cn/problem/P3223）inclusion_exclusion|partition_method
+3904（https://www.luogu.com.cn/problem/P3904）second_stirling_number|dp|classical
+4071（https://www.luogu.com.cn/problem/P4071）fault_perm|specific_plan|counter|classical
+5684（https://www.luogu.com.cn/problem/P5684）inclusion_exclusion|counter
+6057（https://www.luogu.com.cn/problem/P6057）inclusion_exclusion|counter
 
 ===================================CodeForces===================================
-1795D（https://codeforces.com/problemset/problem/1795/D）组合countermod|与乘法逆元快速
-300C（https://codeforces.com/problemset/problem/300/C）brute_force个数并组合数specific_plan数
-559C（https://codeforces.com/problemset/problem/559/C）inclusion_exclusion组合counter
-1436C（https://codeforces.com/problemset/problem/1436/C）binary_search|组合数
-414B（https://codeforces.com/problemset/problem/414/B）最小质因数与隔板法counter DP
-1879C（https://codeforces.com/contest/1879/problem/C）greedybrute_force与组合counter
+1795D（https://codeforces.com/problemset/problem/1795/D）comb|counter|mod|multiplicative_reverse
+300C（https://codeforces.com/problemset/problem/300/C）brute_force|comb|specific_plan|counter
+559C（https://codeforces.com/problemset/problem/559/C）inclusion_exclusion|counter
+1436C（https://codeforces.com/problemset/problem/1436/C）binary_search|comb
+414B（https://codeforces.com/problemset/problem/414/B）min_prime|partition_method|counter|dp
+1879C（https://codeforces.com/contest/1879/problem/C）greedy|brute_force|comb|counter
 
 
 ====================================AtCoder=====================================
-D - Iroha and a Grid（https://atcoder.jp/contests/abc042/tasks/arc058_b）inclusion_exclusion组合counter
-D - 11（https://atcoder.jp/contests/abc066/tasks/arc077_b）inclusion_exclusion组合counter
-D - Factorization（https://atcoder.jp/contests/abc110/tasks/abc110_d）质factorization|与隔板法counter
-E - Cell Distance（https://atcoder.jp/contests/abc127/tasks/abc127_e）contribution_method组合counter
+ARC058B（https://atcoder.jp/contests/abc042/tasks/arc058_b）inclusion_exclusion|comb|counter
+ARC077B（https://atcoder.jp/contests/abc066/tasks/arc077_b）inclusion_exclusion|comb|counter
+ABC110D（https://atcoder.jp/contests/abc110/tasks/abc110_d）prime_factorization|partition_method|counter
+ABC127E（https://atcoder.jp/contests/abc127/tasks/abc127_e）contribution_method|comb|counter
 
 =====================================AcWing=====================================
-130（https://www.acwing.com/problem/content/132/）超大数字的catalan_number
-4002（https://www.acwing.com/problem/content/4005/）matrix_dp转换为隔板法求解
-4496（https://www.acwing.com/problem/content/4499/）隔板法counter
-5055（https://www.acwing.com/problem/content/5058/）组合mathmod|求解
+130（https://www.acwing.com/problem/content/132/）catalan_number
+4002（https://www.acwing.com/problem/content/4005/）matrix_dp|partition_method|classical
+4496（https://www.acwing.com/problem/content/4499/）partition_method|counter
+5055（https://www.acwing.com/problem/content/5058/）math|comb|mod
 
 
 catalan_number（https://oi-wiki.org/math/combinatorics/catalan/）
@@ -83,7 +83,7 @@ class Solution:
 
     @staticmethod
     def abc_110d(ac=FastIO()):
-        # 质factorization|与隔板法counter
+        # 质factorization|与partition_methodcounter
         n, m = ac.read_list_ints()
         mod = 10 ** 9 + 7
         cb = Combinatorics(n + 100, mod)  # 注意这里会超出n
@@ -197,7 +197,7 @@ class Solution:
 
     @staticmethod
     def lc_634(n):
-        # 求错位排列组合数
+        # 求错位comb数
         mod = 10 ** 9 + 7
         fault = [0, 0, 1, 2]
         for i in range(4, n + 1):
@@ -238,7 +238,7 @@ class Solution:
 
     @staticmethod
     def lg_p4017(ac=FastIO()):
-        # 组合数与错位排列求解
+        # 组合数与fault_perm求解
         mod = 10 ** 9 + 7
         cb = Combinatorics(10 ** 6, mod)
         for _ in range(ac.read_int()):
@@ -256,7 +256,7 @@ class Solution:
 
         @lru_cache(None)
         def dfs(a, b):
-            # 斯特林数，把a个球放入b个盒子且不允许空盒的specific_plan数
+            # stirling_number，把a个球放入b个盒子且不允许空盒的specific_plan数
             if a < b or b < 0:
                 return 0
             if a == b:
@@ -281,7 +281,7 @@ class Solution:
 
     @staticmethod
     def lg_p4071(ac=FastIO()):
-        # 隔板法组合数
+        # partition_method组合数
         tp, n, m, p = ac.read_list_ints()
 
         if n < 2 * m - 1:
@@ -382,8 +382,8 @@ class Solution:
 
     @staticmethod
     def lg_p1655(ac=FastIO()):
-        # 第二类斯特林数只能递推（n个不同的球放入m个相同的盒子，不允许为空，斯特林数）
-        n = m = 101  # （n个相同的球放入m个不同的盒子，不允许为空，隔板法）
+        # second_stirling_number只能递推（n个不同的球放入m个相同的盒子，不允许为空，stirling_number）
+        n = m = 101  # （n个相同的球放入m个不同的盒子，不允许为空，partition_method）
         dp = [[0] * m for _ in range(n)]
         for i in range(1, n):
             dp[i][i] = dp[i][1] = 1
@@ -399,7 +399,7 @@ class Solution:
 
     @staticmethod
     def lg_p1680(ac=FastIO()):
-        # 隔板法不同分组的个数，乘法逆元与Lucas定理快速Comb(a,b) % m
+        # partition_method不同分组的个数，multiplicative_reverse与Lucas定理快速Comb(a,b) % m
         # 转换为（n个相同的球放入m个不同的盒子，不允许为空的specific_plan数）
         n, m = ac.read_list_ints()
         n -= sum([ac.read_int() for _ in range(m)])
@@ -412,7 +412,7 @@ class Solution:
 
     @staticmethod
     def lg_p2265(ac=FastIO()):
-        # 排列组合，comb(n+m, m)
+        # comb，comb(n+m, m)
         mod = 1000000007
         n, m = ac.read_list_ints()
         ans = Lucas().comb(n + m, m, mod)
@@ -421,7 +421,7 @@ class Solution:
 
     @staticmethod
     def lg_p2638(ac=FastIO()):
-        # 隔板法 a 个球放入 n 个盒子不要求每个都放也不要求放完的specific_plan数
+        # partition_method a 个球放入 n 个盒子不要求每个都放也不要求放完的specific_plan数
         n, a, b = ac.read_list_ints()
         ans = math.comb(n + a, n) * math.comb(n + b, n)
         ac.st(ans)
@@ -459,7 +459,7 @@ class Solution:
 
     @staticmethod
     def lg_p3223(ac=FastIO()):
-        # inclusion_exclusion与隔板法
+        # inclusion_exclusion与partition_method
         n, m = ac.read_list_ints()
         ans1 = math.factorial(n + 2) * math.factorial(m) * math.comb(n + 3, m)
         ans2 = math.factorial(2) * math.factorial(n + 1) * math.factorial(m) * math.comb(n + 2, m)
@@ -468,7 +468,7 @@ class Solution:
 
     @staticmethod
     def lg_p3904(ac=FastIO()):
-        # 递推第二类斯特林数
+        # 递推second_stirling_number
         n, m = ac.read_list_ints()
         dp = [[0] * m for _ in range(n)]
         dp[0][0] = 1
@@ -481,7 +481,7 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
-        # 选择 n 个元素刚好有 m 个错位排列的specific_plan数
+        # 选择 n 个元素刚好有 m 个fault_perm的specific_plan数
         mod = 10 ** 9 + 7
         cb = Combinatorics(10 ** 6, mod)
         for _ in range(ac.read_int()):
@@ -572,7 +572,7 @@ class Solution:
         nt = PrimeFactor(10 ** 4)
         cb = Combinatorics(10 ** 4 + 15, mod)
 
-        # 质数分解与隔板法应用
+        # prime_factorization|与partition_method应用
         ans = []
         for n, k in queries:
             cur = 1
@@ -584,7 +584,7 @@ class Solution:
 
     @staticmethod
     def lc_1866(n: int, k: int) -> int:
-        # 第一类斯特林数
+        # 第一类stirling_number
         mod = 10 ** 9 + 7
         dp = [[0] * (k + 1) for _ in range(n + 1)]
         dp[0][0] = 1
@@ -618,7 +618,7 @@ class Solution:
 
     @staticmethod
     def ac_4002(ac=FastIO()):
-        # matrix_dp转化为隔板法组合数求解
+        # matrix_dp转化为partition_method组合数求解
         m, n = ac.read_list_ints()
         cb = Combinatorics(2 * n + m, 10 ** 9 + 7)
         ac.st(cb.comb(2 * n + m - 1, m - 1))
@@ -626,7 +626,7 @@ class Solution:
 
     @staticmethod
     def ac_4496(ac=FastIO()):
-        # 隔板法counter
+        # partition_methodcounter
         mod = 998244353
         n, m, k = ac.read_list_ints()
         cb = Combinatorics(n, mod)

@@ -872,7 +872,7 @@ class Solution:
     @staticmethod
     def lc_1569(nums: List[int]) -> int:
 
-        # reverse_thinking，排列组合|union_find
+        # reverse_thinking，comb|union_find
         len(nums)
         mod = 10 ** 9 + 7
         n = 10 ** 3

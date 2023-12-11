@@ -1,15 +1,15 @@
 """
-Algorithm：康托展开
-Description：康托展开可以用来求一个 1~n 的任意排列的排名，以及任意排名的 1~n 排列
+Algorithm：cantor_expands
+Description：the_kth_rank_perm|the_rank_of_perm|cantor_expands
 
 =====================================LuoGu======================================
-3014（https://www.luogu.com.cn/problem/P3014）全排列的排名与排名对应的全排列
-5367（https://www.luogu.com.cn/problem/P5367）排列的排名
+3014（https://www.luogu.com.cn/problem/P3014）the_kth_rank_perm|the_rank_of_perm|cantor_expands
+5367（https://www.luogu.com.cn/problem/P5367）the_kth_rank_perm|the_rank_of_perm|cantor_expands
 
 
 
 =====================================AcWing=====================================
-5052（https://www.acwing.com/problem/content/5055/）康托展开与bfs搜索，根据排列数确定最多末尾重排的长度
+5052（https://www.acwing.com/problem/content/5055/）the_kth_rank_perm|the_rank_of_perm|cantor_expands|bfs
 
 
 """

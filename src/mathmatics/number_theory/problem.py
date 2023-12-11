@@ -52,7 +52,7 @@ LCP 14（https://leetcode.com/problems/qie-fen-shu-zu/） 1 到 n 的每个数�
 5253（https://www.luogu.com.cn/problem/P5253）方程变换 (x-n)*(y-n)=n^2 的对数
 7960（https://www.luogu.com.cn/problem/P7960）类似埃氏筛的思路preprocess
 8319（https://www.luogu.com.cn/problem/P8319）质factorization|与因子counter
-8646（https://www.luogu.com.cn/problem/P8646）裴蜀定理与背包 DP
+8646（https://www.luogu.com.cn/problem/P8646）peishu_theorem|与背包 DP
 8762（https://www.luogu.com.cn/problem/P8762）inclusion_exclusion|prefix_sumcounter
 8778（https://www.luogu.com.cn/problem/P8778）brute_force素因子后O(n^0.25)是否为完全平方数与立方数
 8782（https://www.luogu.com.cn/problem/P8782）多种进制结合greedy，好题
@@ -85,7 +85,7 @@ D - Preparing Boxes（https://atcoder.jp/contests/abc134/tasks/abc134_d）revers
 3999（https://www.acwing.com/problem/content/description/4002/）同CF1295D
 4319（https://www.acwing.com/problem/content/4322/）质factorization|后prefix_hashcounter
 4484（https://www.acwing.com/problem/content/4487/）分数在某个进制下是否为有限小数问题
-4486（https://www.acwing.com/problem/content/description/4489/）质数分解greedy题
+4486（https://www.acwing.com/problem/content/description/4489/）prime_factorization|greedy题
 4622（https://www.acwing.com/problem/content/description/4625/）brain_teaser|greedyconstruction
 5049（https://www.acwing.com/problem/content/description/5052/）质factorization|组合数
 
@@ -366,7 +366,7 @@ class Solution:
                 for j in range(i * i, ceil + 1, i):
                     min_prime[j] = i
 
-        #  1 到 ceil 所有数字的质数分解结果
+        #  1 到 ceil 所有数字的prime_factorization|结果
         dct = defaultdict(int)
         for num in range(2, ceil + 1):
             while num > 1:
@@ -504,11 +504,11 @@ class Solution:
             for k in cnt:
                 c = cnt[k] * b
                 if (k - 1) % mod:  # 即 k % mod ！= 1 此时才有逆元
-                    # 等比数列乘法逆元，逆元要求与modcoprime否则需要额外
+                    # 等比数列multiplicative_reverse，逆元要求与modcoprime否则需要额外
                     ans *= (pow(k, c + 1, mod) - 1) * pow(k - 1, -1, mod)
                     ans %= mod
                 else:
-                    # 此时无乘法逆元
+                    # 此时无multiplicative_reverse
                     ans *= (c + 1)
                     ans %= mod
             ac.st(ans)
@@ -720,7 +720,7 @@ class Solution:
 
     @staticmethod
     def lg_p8646(ac=FastIO()):
-        # 裴蜀定理与背包 DP
+        # peishu_theorem|与背包 DP
         n = ac.read_int()
         nums = [ac.read_int() for _ in range(n)]
         s = 10000
@@ -832,7 +832,7 @@ class Solution:
 
     @staticmethod
     def ac_4486(ac=FastIO()):
-        # 质数分解greedy题
+        # prime_factorization|greedy题
         n = ac.read_int()
         if n == 1:
             ac.lst([1, 0])

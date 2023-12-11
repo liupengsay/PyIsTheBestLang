@@ -328,7 +328,7 @@ class Solution:
                 for j in range(i * i, ceil + 1, i):
                     min_prime[j] = i
 
-        #  1 到 ceil 所有数字的质数分解结果
+        #  1 到 ceil 所有数字的prime_factorization|结果
         dct = defaultdict(int)
         for num in range(2, ceil + 1):
             while num > 1:
@@ -467,7 +467,7 @@ class Solution:
 
     @staticmethod
     def lg_p8646(ac=FastIO()):
-        # 裴蜀定理与背包 DP
+        # peishu_theorem|与背包 DP
         n = ac.read_int()
         nums = [ac.read_int() for _ in range(n)]
         s = 10000

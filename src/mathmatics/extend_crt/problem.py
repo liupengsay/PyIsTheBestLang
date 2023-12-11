@@ -1,14 +1,14 @@
 """
-Algorithm：中国剩余定理、扩展中国剩余定理
-Description：求解mod|方程组
+Algorithm：chinese_remainder_theorem|extended_chinese_remainder_theorem|ex_crt|crt
+Description：equation|same_mod
 
 
 ====================================LeetCode====================================
 
 =====================================LuoGu======================================
-1495（https://www.luogu.com.cn/problem/p1495）同余方程求解
-4777（https://www.luogu.com.cn/problem/P4777）模数不coprime的情况下的同余方程求解
-3868（https://www.luogu.com.cn/problem/P3868）excrt求最小非负整数解，注意负数要先取余
+1495（https://www.luogu.com.cn/problem/p1495）equation|same_mod|crt
+4777（https://www.luogu.com.cn/problem/P4777）mod_not_coprime|crt
+3868（https://www.luogu.com.cn/problem/P3868）ex_crt
 
 ====================================AtCoder=====================================
 

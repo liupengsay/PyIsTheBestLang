@@ -1,36 +1,36 @@
 """
-Algorithm：fast_power|、矩阵fast_power|DP、乘法逆元
-Description：高效整数的幂次方mod|
+Algorithm：fast_power|matrix_fast_power|dp|multiplicative_reverse
+Description：mod|power
 
 ====================================LeetCode====================================
-450（https://leetcode.com/problems/number-of-distinct-binary-strings-after-applying-operations/）brain_teaserfast_power|
-1931（https://leetcode.com/problems/painting-a-grid-with-three-different-colors/）转移DP可以fast_power|
-8020（https://leetcode.com/problems/string-transformation/description/）KMP与fast_power|转移
-1622（https://leetcode.com/problems/fancy-sequence/description/）reverse_thinking，乘法逆元运用，类似inclusion_exclusion
+450（https://leetcode.com/problems/number-of-distinct-binary-strings-after-applying-operations/）brain_teaser|fast_power
+1931（https://leetcode.com/problems/painting-a-grid-with-three-different-colors/）matrix_fast_power|dp
+8020（https://leetcode.com/problems/string-transformation/description/）kmp|matrix_fast_power|classical
+1622（https://leetcode.com/problems/fancy-sequence/description/）reverse_thinking|multiplicative_reverse|inclusion_exclusion
 
 =====================================LuoGu======================================
-1630（https://www.luogu.com.cn/problem/P1630）fast_power|，利用同模counter|和
-1939（https://www.luogu.com.cn/problem/P1939）矩阵fast_power|递推求解
-1962（https://www.luogu.com.cn/problem/P1962）矩阵fast_power|递推求解
-3390（https://www.luogu.com.cn/problem/P3390）矩阵fast_power|
-3811（https://www.luogu.com.cn/problem/P3811）乘法逆元模板题
-5775（https://www.luogu.com.cn/problem/P5775）从背包implemention、prefix_sum优化、到数列变换矩阵fast_power|再到纯implemention
-6045（https://www.luogu.com.cn/problem/P6045）brain_teaser组合counter与fast_power|brute_force
-6075（https://www.luogu.com.cn/problem/P6075）组合counter后fast_power|
-6392（https://www.luogu.com.cn/problem/P6392）公式拆解变换后fast_power|
-1045（https://www.luogu.com.cn/problem/P1045）位数公式转换与fast_power|
-3509（https://www.luogu.com.cn/problem/P3509）two_pointersimplemention寻找第k远的距离，fast_power|原理跳转
-1349（https://www.luogu.com.cn/problem/P1349）矩阵fast_power|
-2233（https://www.luogu.com.cn/problem/P2233）矩阵fast_power|
-2613（https://www.luogu.com.cn/problem/P2613）乘法逆元
-3758（https://www.luogu.com.cn/problem/P3758）matrix_dp| fast_power|优化
-5789（https://www.luogu.com.cn/problem/P5789）matrix_dp| fast_power|优化
-5343（https://www.luogu.com.cn/problem/P5343）linear_dp 矩阵幂|速
-8557（https://www.luogu.com.cn/problem/P8557）brain_teaserfast_power|counter
-8624（https://www.luogu.com.cn/problem/P8624）matrix_dp| 与fast_power|
+1630（https://www.luogu.com.cn/problem/P1630）fast_power|counter|mod
+1939（https://www.luogu.com.cn/problem/P1939）matrix_fast_power
+1962（https://www.luogu.com.cn/problem/P1962）matrix_fast_power
+3390（https://www.luogu.com.cn/problem/P3390）matrix_fast_power
+3811（https://www.luogu.com.cn/problem/P3811）multiplicative_reverse
+5775（https://www.luogu.com.cn/problem/P5775）implemention|prefix_sum|matrix_fast_power|implemention
+6045（https://www.luogu.com.cn/problem/P6045）brain_teaser|counter|fast_power|brute_force
+6075（https://www.luogu.com.cn/problem/P6075）comb|counter|fast_power
+6392（https://www.luogu.com.cn/problem/P6392）math|fast_power
+1045（https://www.luogu.com.cn/problem/P1045）math|fast_power
+3509（https://www.luogu.com.cn/problem/P3509）two_pointers|implemention|fast_power
+1349（https://www.luogu.com.cn/problem/P1349）matrix_fast_power
+2233（https://www.luogu.com.cn/problem/P2233）matrix_fast_power
+2613（https://www.luogu.com.cn/problem/P2613）multiplicative_reverse
+3758（https://www.luogu.com.cn/problem/P3758）matrix_dp|matrix_fast_power
+5789（https://www.luogu.com.cn/problem/P5789）matrix_dp|matrix_fast_power
+5343（https://www.luogu.com.cn/problem/P5343）linear_dp|matrix_fast_power
+8557（https://www.luogu.com.cn/problem/P8557）brain_teaser|fast_power|counter
+8624（https://www.luogu.com.cn/problem/P8624）matrix_dp|matrix_fast_power
 
 =====================================AcWing=====================================
-27（https://www.acwing.com/problem/content/26/）浮点数fast_power|
+27（https://www.acwing.com/problem/content/26/）float_fast_power|classical
 
 
 
@@ -135,7 +135,7 @@ class Solution:
 
     @staticmethod
     def lg_p1349(ac=FastIO()):
-        # 矩阵fast_power|
+        # matrix_fast_power|
         p, q, a1, a2, n, m = ac.read_list_ints()
         if n == 1:
             ac.st(a1 % m)
@@ -154,7 +154,7 @@ class Solution:
 
     @staticmethod
     def lg_p2233(ac=FastIO()):
-        # 矩阵fast_power|
+        # matrix_fast_power|
         n = ac.read_int()
         mat = [[0, 1, 0, 0, 0, 0, 0, 1],
                [1, 0, 1, 0, 0, 0, 0, 0],
@@ -173,7 +173,7 @@ class Solution:
 
     @staticmethod
     def lg_p2613(ac=FastIO()):
-        # 乘法逆元求解
+        # multiplicative_reverse求解
         mod = 19260817
         a = ac.read_int()
         b = ac.read_int()
@@ -244,7 +244,7 @@ class Solution:
 
     @staticmethod
     def lg_p8557(ac=FastIO()):
-        # brain_teaserfast_power|counter
+        # brain_teaser|fast_power|counter
         mod = 998244353
         n, k = ac.read_list_ints()
         ans = pow((pow(2, k, mod) - 1) % mod, n, mod)

@@ -1,5 +1,5 @@
 """
-Algorithm：裴蜀定理
+Algorithm：peishu_theorem|
 Description：是一个关于最大公约数的定理可以推广到n个数，比如设a、b是不全为零的整数，则存在整数x、y, 使得ax+by=gcd(a,b)
 
 ====================================LeetCode====================================
@@ -26,12 +26,12 @@ class Solution:
 
     @staticmethod
     def lc_1250(nums: List[int]) -> bool:
-        # 转化为裴蜀定理数组最大公约数是否等于 1 求解
+        # 转化为peishu_theorem|数组最大公约数是否等于 1 求解
         return PeiShuTheorem().get_lst_gcd(nums) == 1
 
     @staticmethod
     def lg_p4549(ac=FastIO()):
-        # 转化为裴蜀定理数组最大公约数求解
+        # 转化为peishu_theorem|数组最大公约数求解
         ac.read_int()
         nums = ac.read_list_ints()
         ac.st(PeiShuTheorem().get_lst_gcd(nums))

@@ -1,13 +1,13 @@
 """
-Algorithm：凸包、最小圆覆盖
-Description：求点集的子集组成最小凸包上
+Algorithm：convex_hull|minimum_circle_coverage|random_increment_method
+Description：convex_hull
 
 ====================================LeetCode====================================
-1924 安装栅栏 II（https://leetcode.com/problems/erect-the-fence-ii/）求出最小凸包后tripart_pack_tripart求解最小圆覆盖，随机增量法求最小圆覆盖
+1924（https://leetcode.com/problems/erect-the-fence-ii/）convex_hull|tripart_pack_tripart|minimum_circle_coverage
 
 =====================================LuoGu======================================
-1742（https://www.luogu.com.cn/problem/P1742）随机增量法求最小圆覆盖
-3517（https://www.luogu.com.cn/problem/P3517）binary_search套binary_search，随机增量法求最小圆覆盖
+1742（https://www.luogu.com.cn/problem/P1742）random_increment_method|minimum_circle_coverage
+3517（https://www.luogu.com.cn/problem/P3517）binary_search_of_binary_search|random_increment_method|minimum_circle_coverage
 
 """
 

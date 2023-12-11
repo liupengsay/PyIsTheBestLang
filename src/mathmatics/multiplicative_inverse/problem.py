@@ -1,11 +1,11 @@
 """
-Algorithm：乘法逆元、组合数求幂快速
-Description：求逆元mod|，注意取的模必须为coprime数，且不能整除该质数，否则不存在对应的乘法逆元，如果不coprime，需要排除公因数单独
+Algorithm：multiplicative_reverse、组合数求幂快速
+Description：求逆元mod|，注意取的模必须为coprime数，且不能整除该质数，否则不存在对应的multiplicative_reverse，如果不coprime，需要排除公因数单独
 
 =====================================LuoGu======================================
-3811（https://www.luogu.com.cn/problem/P3811）乘法逆元
-5431（https://www.luogu.com.cn/problem/P5431）乘法逆元
-2613（https://www.luogu.com.cn/problem/P2613）乘法逆元
+3811（https://www.luogu.com.cn/problem/P3811）multiplicative_reverse
+5431（https://www.luogu.com.cn/problem/P5431）multiplicative_reverse
+2613（https://www.luogu.com.cn/problem/P2613）multiplicative_reverse
 5431（https://www.luogu.com.cn/problem/P5431）转换为前缀积与后缀积求解
 
 ===================================CodeForces===================================
@@ -48,7 +48,7 @@ class Solution:
                 pre[i + 1] = (pre[i] * cnt[lst[i]]) % mod
             for i in range(k - m + 1):
                 if lst[i + m - 1] == lst[i] + m - 1:
-                    # 乘法逆元
+                    # multiplicative_reverse
                     ans += pre[i + m] * mi.mod_reverse(pre[i], mod)
                     ans %= mod
             ac.st(ans)

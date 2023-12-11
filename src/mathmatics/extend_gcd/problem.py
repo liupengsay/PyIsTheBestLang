@@ -1,19 +1,19 @@
 """
-Algorithm：扩展欧几里得定理、extended_gcd、binary_gcd、二进制gcd、裴蜀定理
-Description：用于求解单个同余方程
+Algorithm：ex_gcd|binary_gcd|bin_gcd|peishu_theorem
+Description：single_equation
 
 ====================================LeetCode====================================
-365（https://leetcode.com/problems/water-and-jug-problem/）裴蜀定理greedy
-2543（https://leetcode.com/contest/biweekly-contest-96/problems/check-if-point-is-reachable/）利用binary_gcd的与扩展欧几里得求gcd的思想快速求解，判断可达性
+365（https://leetcode.com/problems/water-and-jug-problem/）peishu_theorem|greedy
+2543（https://leetcode.com/contest/biweekly-contest-96/problems/check-if-point-is-reachable/）binary_gcd|ex_gcd
 
 =====================================LuoGu======================================
-1082（https://www.luogu.com.cn/problem/P1082）转化为同余方程求解最小的正整数解
-5435（https://www.luogu.com.cn/problem/P5435）binary_gcd快速求解
-5582（https://www.luogu.com.cn/problem/P5582）greedy|brain_teaser，扩展欧几里得算法gcd为1判断可达性
-1516（https://www.luogu.com.cn/problem/P1516）求解a*x+b*y=m的最小正整数解
+1082（https://www.luogu.com.cn/problem/P1082）same_mod|equation
+5435（https://www.luogu.com.cn/problem/P5435）binary_gcd
+5582（https://www.luogu.com.cn/problem/P5582）greedy|brain_teaser|ex_gcd
+1516（https://www.luogu.com.cn/problem/P1516）single_equation
 
 
 =====================================AcWing=====================================
-4296（https://www.acwing.com/problem/content/4299/）扩展欧几里得求解ax+by=n的非负整数解
+4296（https://www.acwing.com/problem/content/4299/）single_equation|ex_gcd
 
 """
