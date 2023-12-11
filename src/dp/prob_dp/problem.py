@@ -30,7 +30,7 @@ class Solution:
     @staticmethod
     def main(ac=FastIO()):
 
-        # 记忆化二维 DP implemention搜索转移概率
+        # memory_search二维 DP implemention搜索转移概率
 
         @lru_cache(None)
         def dfs(a, b):

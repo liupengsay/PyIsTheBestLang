@@ -420,7 +420,7 @@ class Solution:
             degree[i] += 1
             degree[j] += 1
 
-        # 按照度为 1  BFS 消除
+        # 按照度为 1  bfs 消除
         rem = n - k
         ans = 0
         stack = deque([[i, 1] for i in range(n) if degree[i] == 1])
@@ -980,7 +980,7 @@ class Solution:
         if any(d == 0 for d in degree):
             ac.st(-1)
             return
-        # BFS判断每个环的大小并累计结果
+        # bfs判断每个环的大小并累计结果
         ans = 1
         for i in range(n):
             if degree[i] == 0:

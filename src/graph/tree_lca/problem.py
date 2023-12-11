@@ -1,7 +1,7 @@
 """
 
-Algorithm：LCA、倍增算法、树链剖分、树的质心、tree_centroid、离线LCA与tree_diff_array
-Description：来求一棵树的最近公共祖先（LCA）也可以
+Algorithm：lca|multiplication_method|tree_chain_split|offline_lca|online_lca
+Description：
 
 ====================================LeetCode====================================
 
@@ -217,7 +217,7 @@ class Solution:
 
     @staticmethod
     def lg_p3384(ac=FastIO()):
-        # 树链剖分和dfs_order节点值修改与区间和查询
+        # tree_chain_split和dfs_order节点值修改与区间和查询
         n, m, r, p = ac.read_list_ints()
         r -= 1
         tree = RangeAddRangeSum(n)
@@ -257,7 +257,7 @@ class Solution:
 
     @staticmethod
     def lg_p3379_2(ac=FastIO()):
-        # 树链剖分求 LCA
+        # tree_chain_split求 LCA
         n, m, r = ac.read_list_ints()
         r -= 1
         dct = [[] for _ in range(n)]
@@ -273,7 +273,7 @@ class Solution:
 
     @staticmethod
     def lg_p2912(ac=FastIO()):
-        # 离线LCA查询与任意点对之间距离
+        # offline_lca查询与任意点对之间距离
         n, q = ac.read_list_ints()
         dct = [dict() for _ in range(n)]
         for _ in range(n - 1):
@@ -319,7 +319,7 @@ class Solution:
 
     @staticmethod
     def lg_p3258(ac=FastIO()):
-        # 离线LCA|tree_diff_array|tree_dp
+        # offline_lca|tree_diff_array|tree_dp
         n = ac.read_int()
         nums = ac.read_list_ints_minus_one()
         root = nums[0]
@@ -343,7 +343,7 @@ class Solution:
         for i in range(1, n):
             trips.append([nums[i - 1], nums[i]])
 
-        # 离线LCA
+        # offline_lca
         res = OfflineLCA().bfs_iteration(dct, trips, root)
         # tree_diff_array
         diff = [0] * n

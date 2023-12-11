@@ -1,80 +1,80 @@
 """
 
-Algorithm：union_find、可持久化union_find、permutation_circle|
-Description：用来处理图论相关的联通问题，通常结合逆向思考、permutation_circle|或者offline_query求解，连通块不一定是秩大小，也可以是最大最小值、和等
+Algorithm：union_find|persistent_union_find|permutation_circle
+Description：graph|reverse_thinking|permutation_circle|offline_query|merge_wise|root_wise
 
 ====================================LeetCode====================================
 765（https://leetcode.com/problems/couples-holding-hands/）union_find
-1697（https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/）sorting后offline_query两点间所有路径的最大边权值
-2503（https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/）sorting后offline_query与起点相连的连通块的大小
-2421（https://leetcode.com/problems/number-of-good-paths/）根据权值sorting更新union_find连通分块满足条件的节点对数
-2382（https://leetcode.com/problems/maximum-segment-sum-after-removals/）逆向访问查询并更新连通块的结果
-2334（https://leetcode.com/problems/subarray-with-elements-greater-than-varying-threshold/）sorting后brute_force动态维护union_find连通块
-2158（https://leetcode.com/problems/amount-of-new-area-painted-each-day/）union_find维护区间左端点，不断合并
-2157（https://leetcode.com/problems/groups-of-strings/）利用字母的有限数量变换brute_force分组
-2076（https://leetcode.com/problems/process-restricted-friend-requests/）union_find变种，维护群体的不喜欢关系
-2459（https://leetcode.com/problems/sort-array-by-moving-items-to-empty-space/）permutation_circle|题目
-2709（https://leetcode.com/problems/greatest-common-divisor-traversal/）union_find具有相同质因数的连通块
-2612（https://leetcode.com/problems/minimum-reverse-operations/）union_find应用 find_range_merge_to_disjoint 灵活
-1559（https://leetcode.com/problems/detect-cycles-in-2d-grid/）union_find判环
-1569（https://leetcode.com/problems/number-of-ways-to-reorder-array-to-get-same-bst/）reverse_thinking，reverse_order|利用union_find建立二叉搜索树，排列组合|union_find
-1970（https://leetcode.com/problems/last-day-where-you-can-still-cross/）reverse_thinkingunion_find
-1998（https://leetcode.com/problems/gcd-sort-of-an-array/）union_find|质factorization|
-2158（https://leetcode.com/problems/amount-of-new-area-painted-each-day/）区间union_find
-2471（https://leetcode.com/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/description/）discretizationpermutation_circle|
-945（https://leetcode.com/problems/minimum-increment-to-make-array-unique/description/）可向右合并的区间union_find，正解为greedy
-947（https://leetcode.com/contest/weekly-contest-112/problems/most-stones-removed-with-same-row-or-column/）brain_teaserunion_find
+1697（https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/）sort|offline_query|implemention
+2503（https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/）sort|offline_query|implemention
+2421（https://leetcode.com/problems/number-of-good-paths/）sort|union_find|counter
+2382（https://leetcode.com/problems/maximum-segment-sum-after-removals/）reverse_order|union_find|implemention|reverse_thinking
+2334（https://leetcode.com/problems/subarray-with-elements-greater-than-varying-threshold/）sort|brute_force|union_find
+2158（https://leetcode.com/problems/amount-of-new-area-painted-each-day/）union_find_left_root
+2157（https://leetcode.com/problems/groups-of-strings/）alphabet|brute_force
+2076（https://leetcode.com/problems/process-restricted-friend-requests/）union_find|reverse_thinking
+2459（https://leetcode.com/problems/sort-array-by-moving-items-to-empty-space/）permutation_circle
+2709（https://leetcode.com/problems/greatest-common-divisor-traversal/）union_find|prime_factorization
+2612（https://leetcode.com/problems/minimum-reverse-operations/）union_find|find_range_merge_to_disjoint
+1559（https://leetcode.com/problems/detect-cycles-in-2d-grid/）union_find|circle_judge|classical
+1569（https://leetcode.com/problems/number-of-ways-to-reorder-array-to-get-same-bst/）reverse_thinking|reverse_order|union_find_bst|union_find
+1970（https://leetcode.com/problems/last-day-where-you-can-still-cross/）reverse_thinking|union_find
+1998（https://leetcode.com/problems/gcd-sort-of-an-array/）union_find|prime_factorization
+2158（https://leetcode.com/problems/amount-of-new-area-painted-each-day/）union_find_range|union_find_left_root|union_find_right_root
+2471（https://leetcode.com/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/description/）discretization|permutation_circle
+945（https://leetcode.com/problems/minimum-increment-to-make-array-unique/description/）union_find_right_root|greedy
+947（https://leetcode.com/contest/weekly-contest-112/problems/most-stones-removed-with-same-row-or-column/）brain_teaser|union_find
 
 =====================================LuoGu======================================
-3367（https://www.luogu.com.cn/problem/P3367）连通分块的数量
-5836（https://www.luogu.com.cn/problem/P5836）两个union_find不同方面的查询
-3144（https://www.luogu.com.cn/problem/P3144）逆序union_find，考察连通块的数量
-5836（https://www.luogu.com.cn/problem/P5836）两个union_find连通情况查询
-5877（https://www.luogu.com.cn/problem/P5877）正向implemention实时更新连通块的数量
+3367（https://www.luogu.com.cn/problem/P3367）connected_part|counter|union_find
+5836（https://www.luogu.com.cn/problem/P5836）union_find|several_union_find
+3144（https://www.luogu.com.cn/problem/P3144）reverse_order|union_find|connected_part|counter
+5836（https://www.luogu.com.cn/problem/P5836）union_find|several_union_find
+5877（https://www.luogu.com.cn/problem/P5877）union_find|implemention|counter
 6111（https://www.luogu.com.cn/problem/P6111）union_find|offline_query
-6121（https://www.luogu.com.cn/problem/P6121）逆序union_find根据连通块大小连通性判定
-6153（https://www.luogu.com.cn/problem/P6153）union_find思想greedy题，体现了union_find的思想
-1955（https://www.luogu.com.cn/problem/P1955）union_find裸题
-1196（https://www.luogu.com.cn/problem/P1196）带权union_find
-1197（https://www.luogu.com.cn/problem/P1197）逆序union_find，reverse_order|brute_force联通块个数
-1522（https://www.luogu.com.cn/problem/P1522）连通块，brute_force新增路径并high_precision联通块tree_diameter
-1621（https://www.luogu.com.cn/problem/P1621）利用素数筛的思想对数复杂度合并公共质因数大于p的数并连通块数量
-1892（https://www.luogu.com.cn/problem/P1892）union_find，敌人与朋友关系
-2189（https://www.luogu.com.cn/problem/P2189）union_find题，确定访问顺序的合法性
-2307（https://www.luogu.com.cn/problem/P2307）union_find判定树的生成是否合法
-3420（https://www.luogu.com.cn/problem/P3420）union_find变形问题
-5429（https://www.luogu.com.cn/problem/P5429）简单union_find应用题
-6193（https://www.luogu.com.cn/problem/P6193）permutation_circle|交换代价
-6706（https://www.luogu.com.cn/problem/P6706）有向图union_find逆序更新边 find_range_merge_to_disjoint 灵活
-7991（https://www.luogu.com.cn/problem/P7991）union_find连通块缩点使得 1 和 n 连通最多|两条路的代价
-8230（https://www.luogu.com.cn/problem/P8230）分层union_find|implemention
-8637（https://www.luogu.com.cn/problem/P8637）union_findpermutation_circle|
-8686（https://www.luogu.com.cn/problem/P8686）union_find灵活应用
-8785（https://www.luogu.com.cn/problem/P8785）根据边界union_find构建counter
-8787（https://www.luogu.com.cn/problem/P8787）greedyheapq|implemention与union_find灵活应用
-8881（https://www.luogu.com.cn/problem/P8881）brain_teaser，union_find判断所属连通分量circle_judge
+6121（https://www.luogu.com.cn/problem/P6121）reverse_order|union_find|size
+6153（https://www.luogu.com.cn/problem/P6153）union_find|greedy|classical
+1955（https://www.luogu.com.cn/problem/P1955）union_find
+1196（https://www.luogu.com.cn/problem/P1196）union_find_weighted
+1197（https://www.luogu.com.cn/problem/P1197）reverse_order|union_find，reverse_order|brute_force|part
+1522（https://www.luogu.com.cn/problem/P1522）connected_part|brute_force|high_precision|tree_diameter
+1621（https://www.luogu.com.cn/problem/P1621）euler_series|O(nlogn)|prime_fractorization
+1892（https://www.luogu.com.cn/problem/P1892）union_find|bipartite_graph
+2189（https://www.luogu.com.cn/problem/P2189）union_find
+2307（https://www.luogu.com.cn/problem/P2307）union_find
+3420（https://www.luogu.com.cn/problem/P3420）union_find
+5429（https://www.luogu.com.cn/problem/P5429）union_find
+6193（https://www.luogu.com.cn/problem/P6193）permutation_circle
+6706（https://www.luogu.com.cn/problem/P6706）directed_graph|union_find|reverse_order|find_range_merge_to_disjoint
+7991（https://www.luogu.com.cn/problem/P7991）union_find|shrink_point
+8230（https://www.luogu.com.cn/problem/P8230）layer|union_find|implemention
+8637（https://www.luogu.com.cn/problem/P8637）union_find|permutation_circle
+8686（https://www.luogu.com.cn/problem/P8686）union_find
+8785（https://www.luogu.com.cn/problem/P8785）union_find|counter
+8787（https://www.luogu.com.cn/problem/P8787）greedy|heapq|implemention|union_find
+8881（https://www.luogu.com.cn/problem/P8881）brain_teaser|union_find|circle_judge|part
 
 ===================================CodeForces===================================
-25D（https://codeforces.com/problemset/problem/25/D）union_find将原来的边断掉重新来连接使得成为一整个连通集
-1810E（https://codeforces.com/contest/1810/problem/E）union_find|启发式搜索，BFS与heapq实现
-920E（https://codeforces.com/contest/920/problem/E）union_find，|线性动态维护剩余节点
-540C（https://codeforces.com/problemset/problem/540/C）路径可达
-1800E2（https://codeforces.com/problemset/problem/1800/E2）union_find分组可达
-1691E（https://codeforces.com/contest/1691/problem/E）线段union_find
-827A（https://codeforces.com/problemset/problem/827/A）UnionFindRightRoot|implemention|greedy
+25D（https://codeforces.com/problemset/problem/25/D）union_find
+1810E（https://codeforces.com/contest/1810/problem/E）union_find|heuristic_search|bfs|heapq
+920E（https://codeforces.com/contest/920/problem/E）union_find
+540C（https://codeforces.com/problemset/problem/540/C）union_find
+1800E2（https://codeforces.com/problemset/problem/1800/E2）union_find
+1691E（https://codeforces.com/contest/1691/problem/E）union_find_range
+827A（https://codeforces.com/problemset/problem/827/A）union_find_right_root|implemention|greedy
 
 ====================================AtCoder=====================================
-D - Connectivity（https://atcoder.jp/contests/abc049/tasks/arc065_b）双union_find应用
-E - 1 or 2（https://atcoder.jp/contests/abc126/tasks/abc126_e）双union_find的union_find应用
-F - Must Be Rectangular!（https://atcoder.jp/contests/abc131/tasks/abc131_f）brain_teaser|union_findcounter
+ARC065B（https://atcoder.jp/contests/abc049/tasks/arc065_b）union_find|several_union_find
+ABC126E（https://atcoder.jp/contests/abc126/tasks/abc126_e）union_find|several_union_find
+ABC131F（https://atcoder.jp/contests/abc131/tasks/abc131_f）brain_teaser|union_find|counter
 
 =====================================AcWing=====================================
-4306（https://www.acwing.com/problem/content/description/4309/）向右合并的区间union_find
-4866（https://www.acwing.com/problem/content/description/4869/）union_findimplemention维护连通块大小与多余的边数量
-5145（https://www.acwing.com/problem/content/5148/）union_find判矩阵四元及以上的环
+4306（https://www.acwing.com/problem/content/description/4309/）union_find_right_range
+4866（https://www.acwing.com/problem/content/description/4869/）union_find|implemention|size
+5145（https://www.acwing.com/problem/content/5148/）union_find|circle_judge
 
 ================================LibraryChecker================================
-1 Cycle Detection (Undirected)（https://judge.yosupo.jp/problem/cycle_detection_undirected）use unionfind to detect circle in undirected graph
+1 Cycle Detection (Undirected)（https://judge.yosupo.jp/problem/cycle_detection_undirected）union_find|circle_judge
 
 """
 import decimal
@@ -352,7 +352,7 @@ class Solution:
 
     @staticmethod
     def lg_p1197(ac=FastIO()):
-        # 逆序union_find，reverse_order|brute_force联通块个数
+        # reverse_order|union_find，reverse_order|brute_force联通块个数
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for _ in range(m):

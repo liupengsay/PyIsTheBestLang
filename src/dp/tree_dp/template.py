@@ -111,12 +111,12 @@ class ReRootDP:
     @staticmethod
     def get_tree_distance_max(dct: List[List[int]]) -> List[int]:
         # Calculate the maximum distance from each node of the tree to all other nodes
-        # point BFS on diameter can also be used
+        # point bfs on diameter can also be used
 
         n = len(dct)
         sub = [[0, 0] for _ in range(n)]
 
-        # first BFS compute the largest distance and second large distance from bottom to up
+        # first bfs compute the largest distance and second large distance from bottom to up
         stack = [[0, -1, 1]]
         while stack:
             i, fa, state = stack.pop()
@@ -136,7 +136,7 @@ class ReRootDP:
                             b = x
                 sub[i] = [a, b]
 
-        # second BFS compute large distance from up to bottom
+        # second bfs compute large distance from up to bottom
         stack = [(0, -1, 0)]
         ans = [s[0] for s in sub]
         while stack:

@@ -146,7 +146,7 @@ class Solution:
     @staticmethod
     def lc_1879_1(nums1: List[int], nums2: List[int]) -> int:
 
-        # 记忆化深搜state_compress写法
+        # memory_search深搜state_compress写法
 
         @lru_cache(None)
         def dfs(i, state):
@@ -315,7 +315,7 @@ class Solution:
 
     @staticmethod
     def lc_1434_1(hats: List[List[int]]) -> int:
-        # state_compressreverse_thinking，记忆化实现
+        # state_compressreverse_thinking，memory_search实现
         mod = 10 ** 9 + 7
         n = len(hats)
         people = [[] for _ in range(40)]
@@ -377,7 +377,7 @@ class Solution:
 
     @staticmethod
     def lc_2403_2(power: List[int]) -> int:
-        # state_dpDP记忆化形式
+        # state_dpDPmemory_search形式
 
         @lru_cache(None)
         def dfs(state):
@@ -719,7 +719,7 @@ class Solution:
 
     @staticmethod
     def lc_1986_1(tasks: List[int], session: int):
-        # preprocess子集后记忆化状态转移，子集brute_force，也可两个状态
+        # preprocess子集后memory_search状态转移，子集brute_force，也可两个状态
         n = len(tasks)
         valid = [False] * (1 << n)
         for mask in range(1, 1 << n):
@@ -743,7 +743,7 @@ class Solution:
 
     @staticmethod
     def lc_1986_2(tasks: List[int], session: int):
-        # preprocess子集后记忆化状态转移，子集brute_force，也可两个状态
+        # preprocess子集后memory_search状态转移，子集brute_force，也可两个状态
 
         @lru_cache(None)
         def dfs(state, rest):

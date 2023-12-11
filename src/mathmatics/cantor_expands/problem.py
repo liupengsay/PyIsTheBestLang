@@ -9,7 +9,7 @@ Description：康托展开可以用来求一个 1~n 的任意排列的排名，�
 
 
 =====================================AcWing=====================================
-5052（https://www.acwing.com/problem/content/5055/）康托展开与BFS搜索，根据排列数确定最多末尾重排的长度
+5052（https://www.acwing.com/problem/content/5055/）康托展开与bfs搜索，根据排列数确定最多末尾重排的长度
 
 
 """
@@ -65,7 +65,7 @@ class Solution:
 
     @staticmethod
     def ac_5052(ac=FastIO()):
-        # 康托展开与BFS搜索，根据排列数确定最多末尾重排的长度
+        # 康托展开与bfs搜索，根据排列数确定最多末尾重排的长度
         n, k = ac.read_list_ints()
         low = ac.max(1, n - 12)
         high = n

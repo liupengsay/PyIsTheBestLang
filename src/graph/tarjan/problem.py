@@ -533,7 +533,7 @@ class Solution:
                 if not pre[j]:
                     stack.append(j)
 
-        # 广搜最长路，进一步还可以确定相应的具体路径
+        # bfs|最长路，进一步还可以确定相应的具体路径
         visit = [-inf] * scc_id
         visit[node_scc_id[s]] = cnt[node_scc_id[s]]
         stack = deque([node_scc_id[s]])

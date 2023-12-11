@@ -307,7 +307,7 @@ class Solution:
 
     @staticmethod
     def abc_137e(ac=FastIO()):
-        #  SPFA 与 BFS 判断是否存在起点到终点的正权环
+        #  SPFA 与 bfs 判断是否存在起点到终点的正权环
         n, m, p = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         rev = [[] for _ in range(n)]

@@ -151,7 +151,7 @@ class Solution:
 
     @staticmethod
     def lc_920(n: int, goal: int, k: int) -> int:
-        # matrix_dp（记忆化深搜刷表法实现）
+        # matrix_dp（memory_search深搜刷表法实现）
         mod = 10 ** 9 + 7
 
         @lru_cache(None)  # 前 i 首播放了 r 首不同的歌
@@ -643,7 +643,7 @@ class Solution:
 
     @staticmethod
     def lg_p2140(ac=FastIO()):
-        # 矩阵四维DP，可以记忆化与迭代
+        # 矩阵四维DP，可以memory_search与迭代
         m, n, u = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
         m, n = len(grid), len(grid[0])
@@ -708,7 +708,7 @@ class Solution:
     @staticmethod
     def lg_p2217(ac=FastIO()):
 
-        # 矩阵四维DP，可以记忆化与迭代
+        # 矩阵四维DP，可以memory_search与迭代
         m, n, k = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
         avg = sum(sum(g) for g in grid) / k
@@ -759,7 +759,7 @@ class Solution:
     @staticmethod
     def lg_p1436(ac=FastIO()):
 
-        # 矩阵四维DP，可以记忆化与迭代
+        # 矩阵四维DP，可以memory_search与迭代
         k = ac.read_int()
         m = n = 8
         grid = [ac.read_list_ints() for _ in range(m)]
@@ -808,7 +808,7 @@ class Solution:
     @staticmethod
     def lg_p5752(ac=FastIO()):
 
-        # 矩阵四维DP，可以记忆化与迭代
+        # 矩阵四维DP，可以memory_search与迭代
         k = ac.read_int()
         m = n = 8
         grid = [ac.read_list_ints() for _ in range(m)]
@@ -1239,7 +1239,7 @@ class Solution:
 
     @staticmethod
     def lg_p6433(ac=FastIO()):
-        # greedyclassification_discussionmatrix_dp| 
+        # greedy|classification_discussionmatrix_dp| 
         n, m, k = ac.read_list_ints()
 
         nums = [ac.read_list_ints() for _ in range(n)]
@@ -1444,7 +1444,7 @@ class Solution:
 
     @staticmethod
     def lc_2617_3(grid: List[List[int]]) -> int:
-        # matrix_dp|  BFS |union_find的方式
+        # matrix_dp|  bfs |union_find的方式
         m, n = len(grid), len(grid[0])
         row = [list(range(1, n + 1)) for _ in range(m)]
         col = [list(range(1, m + 1)) for _ in range(n)]

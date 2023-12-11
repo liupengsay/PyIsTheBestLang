@@ -1,17 +1,100 @@
 """
-Algorithm：bfs、deque_bfs、discretization_bfs、有边界的BFS、coloring_method、奇数环
-Description：在有向图与无向图扩散，multi_source_bfs、bilateral_bfs，0-1BFS（类似SPFA）bilateral_bfs或者A-star启发式搜索
+Algorithm：bfs、deque_bfs、discretization_bfs、有边界的bfs、coloring_method、奇数环
+Description：在有向图与无向图扩散，multi_source_bfs、bilateral_bfs，0-1bfs（类似SPFA）bilateral_bfs或者a-star|heuristic_search
 
 ====================================LeetCode====================================
+1036（https://leetcode.com/problems/escape-a-large-maze/）bound_bfs|discretization_bfs
+2493（https://leetcode.com/problems/divide-nodes-into-the-maximum-number-of-groups/）union_find|bfs|brute_force|specific_plan|coloring_method|bipartite_graph
+2290（https://leetcode.com/problems/minimum-obstacle-removal-to-reach-corner/）0-1bfs|deque_bfs
+1368（https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/）0-1bfs|deque_bfs
+2258（https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/）binary_search|bfs|implemention
+2092（https://leetcode.com/problems/find-all-people-with-secret/）bfs
+2608（https://leetcode.com/contest/biweekly-contest-101/problems/shortest-cycle-in-a-graph/）bfs|undirected_smallest_circle|brute_force|shortest_path
+1197（https://leetcode.com/problems/minimum-knight-moves/?envType=study-plan-v2&id=premium-algo-100）bilateral_bfs
+1654（https://leetcode.com/problems/minimum-jumps-to-reach-home/）bfs|implemention
+1926（https://leetcode.com/problems/nearest-exit-from-entrance-in-maze/）deque_bfs|in_place_hash
+909（https://leetcode.com/problems/snakes-and-ladders/）01-bfs|implemention
+1210（https://leetcode.com/problems/minimum-moves-to-reach-target-with-rotations/description/）01-bfs|implemention
+1298（https://leetcode.com/problems/maximum-candies-you-can-get-from-boxes/）bfs
+928（https://leetcode.com/problems/minimize-malware-spread-ii/description/）brute_force|bfs
+994（https://leetcode.com/problems/rotting-oranges/description/）deque_bfs|implemention
 
 =====================================LuoGu======================================
+1747（https://www.luogu.com.cn/problem/P1747）bilateral_bfs|shortest_path
+5507（https://www.luogu.com.cn/problem/P5507）bilateral_bfs|shortest_path
+2040（https://www.luogu.com.cn/problem/P2040）bfs
+2335（https://www.luogu.com.cn/problem/P2335）bfs
+2385（https://www.luogu.com.cn/problem/P2385）bfs|shortest_path|shortest_path
+2630（https://www.luogu.com.cn/problem/P2630）bfs|implemention|lexicographical_order
+1332（https://www.luogu.com.cn/problem/P1332）bfs
+1330（https://www.luogu.com.cn/problem/P1330）bfs|level_wise|coloring_method|union_find|odd_circle
+1215（https://www.luogu.com.cn/problem/P1215）bfs|implemention|hash
+1037（https://www.luogu.com.cn/problem/P1037）bfs|implemention|brute_force
+2853（https://www.luogu.com.cn/problem/P2853）bfs|counter
+2881（https://www.luogu.com.cn/problem/P2881）bfs|complexity
+2895（https://www.luogu.com.cn/problem/P2895）bfs|implemention
+2960（https://www.luogu.com.cn/problem/P2960）bfs
+2298（https://www.luogu.com.cn/problem/P2298）bfs
+3139（https://www.luogu.com.cn/problem/P3139）bfs|memory_search
+3183（https://www.luogu.com.cn/problem/P3183）bfs|counter|number_of_path|dfs|dp
+4017（https://www.luogu.com.cn/problem/P4017）bfs|counter|number_of_path|dfs|dp
+3395（https://www.luogu.com.cn/problem/P3395）bfs|implemention
+3416（https://www.luogu.com.cn/problem/P3416）bfs|memory_search
+3916（https://www.luogu.com.cn/problem/P3916）reverse_thinking|reverse_graph|reverse_order
+3958（https://www.luogu.com.cn/problem/P3958）build_graph|bfs
+4328（https://www.luogu.com.cn/problem/P4328）bfs|implemention
+4961（https://www.luogu.com.cn/problem/P4961）brute_force|implemention|counter
+6207（https://www.luogu.com.cn/problem/P6207）bfs|shortest_path|specific_plan
+6582（https://www.luogu.com.cn/problem/P6582）bfs|comb|counter|fast_power
+7243（https://www.luogu.com.cn/problem/P7243）bfs|gcd
+3496（https://www.luogu.com.cn/problem/P3496）brain_teaser|bfs|coloring_method|level_wise
+1432（https://www.luogu.com.cn/problem/P1432）memory_search|bfs
+1807（https://www.luogu.com.cn/problem/P1807）dag|longest_path|dag_dp|topological_sort
+1379（https://www.luogu.com.cn/problem/P1379）bilateral_bfs
+5507（https://www.luogu.com.cn/problem/P5507）bilateral_bfs|a-star|heuristic_search
+5908（https://www.luogu.com.cn/problem/P5908）bfs
+1038（https://www.luogu.com.cn/problem/P1038）topological_sorting
+1126（https://www.luogu.com.cn/problem/P1126）bfs
+1213（https://www.luogu.com.cn/problem/P1213）state_compression|01-bfs
+1902（https://www.luogu.com.cn/problem/P1902）binary_search|bfs|in_place_hash
+2199（https://www.luogu.com.cn/problem/P2199）deque_bfs|01-bfs
+2226（https://www.luogu.com.cn/problem/P2226）bfs
+2296（https://www.luogu.com.cn/problem/P2296）reverse_graph|bfs
+2919（https://www.luogu.com.cn/problem/P2919）bfs
+2937（https://www.luogu.com.cn/problem/P2937）01-bfs|priority_queue
+3456（https://www.luogu.com.cn/problem/P3456）bfs
+3496（https://www.luogu.com.cn/problem/P3496）brain_teaser|bfs
+3818（https://www.luogu.com.cn/problem/P3818）01-bfs|deque_bfs
+3855（https://www.luogu.com.cn/problem/P3855）bfs|md_state
+3869（https://www.luogu.com.cn/problem/P3869）bfs|state_compression
+4554（https://www.luogu.com.cn/problem/P4554）classical|01-bfs|implemention
+4667（https://www.luogu.com.cn/problem/P4667）01-bfs|implemention
+5096（https://www.luogu.com.cn/problem/P5096）state_compression|bfs|implemention
+5099（https://www.luogu.com.cn/problem/P5099）01-bfs|implemention
+5195（https://www.luogu.com.cn/problem/P5195）bfs
+6131（https://www.luogu.com.cn/problem/P6131）bfs|union_find
+6909（https://www.luogu.com.cn/problem/P6909）preprocess|bfs
+8628（https://www.luogu.com.cn/problem/P8628）01-bfs
+8673（https://www.luogu.com.cn/problem/P8673）01-bfs|implemention
+8674（https://www.luogu.com.cn/problem/P8674）preprocess|build_graph|bfs|implemention
+9065（https://www.luogu.com.cn/problem/P9065）brain_teaser|bfs|brute_force
 
 ===================================CodeForces===================================
-1594D（https://codeforces.com/contest/1594/problem/D）build_graph|后coloring_methodBFS判断bipartite_graph
+1594D（https://codeforces.com/contest/1594/problem/D）build_graph|后coloring_methodbfs判断bipartite_graph
+1272E（https://codeforces.com/problemset/problem/1272/E）reverse_graph|multi_source_bfs
+1572A（https://codeforces.com/problemset/problem/1572/A）brain_teaser|build_graph|bfs|circle_judge|dag_dp|classical
+1037D（https://codeforces.com/problemset/problem/1037/D）01-bfs|implemention|classical
 
 ====================================AtCoder=====================================
+ARC90D（https://atcoder.jp/contests/abc087/tasks/arc090_b）bfs|differential_constraint|O(n^2)
+ABC133E（https://atcoder.jp/contests/abc133/tasks/abc133_e）bfs|coloring_method|counter
 
 =====================================AcWing=====================================
+173（https://www.acwing.com/problem/content/175/）multi_source_bfs|classical
+175（https://www.acwing.com/problem/content/177/）priority_queue|bfs
+177（https://www.acwing.com/problem/content/179/）multi_source_bfs|bilateral_bfs
+4415（https://www.acwing.com/problem/content/description/4418）bfs|coloring_method|odd_circle|specific_plan|counter
+4481（https://www.acwing.com/problem/content/description/4484/）01-bfs
 
 """
 
@@ -106,7 +189,7 @@ class Solution:
                         dis[y] = dis[x] + 1
                         q.append((y, x))
                     elif y != fa:  # 第二次遇到
-                        # 由于是 BFS，后面不会遇到更短的环，直接返回
+                        # 由于是 bfs，后面不会遇到更短的环，直接返回
                         res = res if res < dis[x] + dis[y] + 1 else dis[x] + dis[y] + 1
             return res  # 该连通分量无环
 
@@ -163,7 +246,7 @@ class Solution:
                 if not pre[j]:
                     stack.append(j)
 
-        # 广搜最长路，进一步还可以确定相应的具体路径
+        # bfs|最长路，进一步还可以确定相应的具体路径
         visit = [-ac.inf] * n
         visit[0] = 0
         stack = deque([0])
@@ -211,7 +294,7 @@ class Solution:
 
     @staticmethod
     def cf_1272e(ac=FastIO()):
-        # reverse_graph与多源 BFS 
+        # reverse_graph与多源 bfs 
         n = ac.read_int()
         nums = ac.read_list_ints()
         ans = [-1] * n
@@ -222,7 +305,7 @@ class Solution:
                 if 0 <= x < n:
                     edge[x].append(i)
 
-        # 多源 BFS
+        # 多源 bfs
         for x in [0, 1]:
             stack = [i for i in range(n) if nums[i] % 2 == x]
             visit = set(stack)
@@ -271,7 +354,7 @@ class Solution:
 
     @staticmethod
     def lg_p1747(ac=FastIO()):
-        # 双向 BFS 搜索
+        # 双向 bfs 搜索
         x0, y0 = ac.read_list_ints()
         x2, y2 = ac.read_list_ints()
 
@@ -318,7 +401,7 @@ class Solution:
 
     @staticmethod
     def lc_2290(grid: List[List[int]]) -> int:
-        # 队列实现0-1 BFS 即优先选择距离较短的路线
+        # 队列实现0-1 bfs 即优先选择距离较短的路线
         m, n = len(grid), len(grid[0])
         visit = [[0] * n for _ in range(m)]
         q = deque([(0, 0, 0)])
@@ -375,7 +458,7 @@ class Solution:
 
     @staticmethod
     def lc_1368(grid: List[List[int]]) -> int:
-        # 队列实现0-1 BFS 即优先选择距离较短的路线
+        # 队列实现0-1 bfs 即优先选择距离较短的路线
         m, n = len(grid), len(grid[0])
         ceil = int(1e9)
         dist = [0] + [ceil] * (m * n - 1)
@@ -402,7 +485,7 @@ class Solution:
 
     @staticmethod
     def lc_1926(maze: List[List[str]], entrance: List[int]) -> int:
-        # 双端队列01BFS原地hash
+        # 双端队列01-bfsin_place_hash
         m, n = len(maze), len(maze[0])
         x0, y0 = entrance[:]
         stack = deque([[x0, y0, 0]])
@@ -419,7 +502,7 @@ class Solution:
 
     @staticmethod
     def cf_1572a(ac=FastIO()):
-        # BFS 判断 DAG circle_judge和无环时的最长路（注意起点可能有多个）
+        # bfs 判断 DAG circle_judge和无环时的最长路（注意起点可能有多个）
         for _ in range(ac.read_int()):
             n = ac.read_int()
             dct = [dict() for _ in range(n)]
@@ -452,7 +535,7 @@ class Solution:
 
     @staticmethod
     def cf_1037d(ac=FastIO()):
-        # 队列与集合判断 bfs_order 即广搜序
+        # 队列与集合判断 bfs_order 即bfs|序
         n = ac.read_int()
         edge = [[] for _ in range(n)]
         for _ in range(n - 1):
@@ -586,7 +669,7 @@ class Solution:
 
     @staticmethod
     def abc_133e(ac=FastIO()):
-        # BFScoloring_methodcounter
+        # bfscoloring_methodcounter
         n, k = ac.read_list_ints()
         mod = 1000000007
         dct = [[] for _ in range(n)]
@@ -649,7 +732,7 @@ class Solution:
     def ac_175(ac=FastIO()):
         for _ in range(ac.read_int()):
 
-            # 双端priority_queue 01 BFS模板题注意build_graph|
+            # 双端priority_queue 01 bfs模板题注意build_graph|
             m, n = ac.read_list_ints()
             grid = [ac.read_str() for _ in range(m)]
             dct = [dict() for _ in range((m + 1) * (n + 1))]
@@ -759,7 +842,7 @@ class Solution:
 
     @staticmethod
     def lg_p1213(ac=FastIO()):
-        # state_compression优化01BFS
+        # state_compression优化01-bfs
         nex = {0: 1, 1: 2, 2: 3, 3: 0}
         lst = "ABDE,ABC,BCEF,ADG,BDEFH,CFI,DEGH,GHI,EFHI".split(",")
         ind = dict()
@@ -821,7 +904,7 @@ class Solution:
 
     @staticmethod
     def lg_p1902(ac=FastIO()):
-        # binary_search|BFS与原地hash路径最大值的最小值
+        # binary_search|bfs与in_place_hash路径最大值的最小值
         m, n = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
         for j in range(n):
@@ -829,7 +912,7 @@ class Solution:
         dct = dict()
 
         def check(x):
-            # 原地hash节省空间
+            # in_place_hash节省空间
             stack = [(0, j) for j in range(n)]
             cnt = 0
             while stack and cnt < n:
@@ -859,7 +942,7 @@ class Solution:
                     if x >= w >= 0:
                         stack.append((a, b))
                         grid[a][b] = -w - 1
-            # 原地hash复原
+            # in_place_hash复原
             for i in range(1, m):
                 for j in range(n):
                     w = grid[i][j]
@@ -889,7 +972,7 @@ class Solution:
     @staticmethod
     def lg_p2199(ac=FastIO()):
 
-        # 队列01BFS判定距离最近的可视范围
+        # 队列01-bfs判定距离最近的可视范围
         m, n = ac.read_list_ints()
         grid = [ac.read_list_str() for _ in range(m)]
         ind = [[0, 1], [0, -1], [1, 0], [-1, 0],
@@ -915,7 +998,7 @@ class Solution:
                 ac.st(0)
                 continue
 
-            # 01BFS队列
+            # 01-bfs队列
             visit = [[inf] * n for _ in range(m)]
             stack = deque([[0, start[0], start[1]]])
             ans = -1
@@ -962,7 +1045,7 @@ class Solution:
 
     @staticmethod
     def lg_p2296(ac=FastIO()):
-        # 正向与reverse_graph跑两次BFS
+        # 正向与reverse_graph跑两次bfs
         n, m = ac.read_list_ints()
         dct = [set() for _ in range(n)]
         rev = [set() for _ in range(n)]
@@ -1034,7 +1117,7 @@ class Solution:
 
     @staticmethod
     def lg_p2937(ac=FastIO()):
-        # 01BFSpriority_queue
+        # 01-bfspriority_queue
         n, m = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
         visit = [[[inf] * 4 for _ in range(n)] for _ in range(m)]
@@ -1064,7 +1147,7 @@ class Solution:
 
     @staticmethod
     def lg_p3456(ac=FastIO()):
-        #  BFS 与周边山峰山谷
+        #  bfs 与周边山峰山谷
         n = ac.read_int()
         grid = [ac.read_list_ints() for _ in range(n)]
         visit = [[0] * n for _ in range(n)]
@@ -1104,7 +1187,7 @@ class Solution:
 
     @staticmethod
     def lg_p3818(ac=FastIO()):
-        # 队列 01BFS 状态广搜
+        # 队列 01-bfs 状态bfs|
         m, n, d, r = ac.read_list_ints()
         grid = []
         for _ in range(m):
@@ -1178,7 +1261,7 @@ class Solution:
 
     @staticmethod
     def lg_p3869(ac=FastIO()):
-        # 广搜|状压记录最少次数
+        # bfs||状压记录最少次数
         m, n = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
         k = ac.read_int()
@@ -1234,7 +1317,7 @@ class Solution:
 
     @staticmethod
     def lg_p4554(ac=FastIO()):
-        # classical 01BFS implemention
+        # classical 01-bfs implemention
         while True:
             lst = ac.read_list_ints()
             if lst == [0, 0]:
@@ -1263,7 +1346,7 @@ class Solution:
 
     @staticmethod
     def lg_p4667(ac=FastIO()):
-        #  01BFS implemention
+        #  01-bfs implemention
         m, n = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
         dct = [dict() for _ in range((m + 1) * (n + 1))]
@@ -1296,7 +1379,7 @@ class Solution:
 
     @staticmethod
     def lg_p5096(ac=FastIO()):
-        # 状压|广搜 BFS implemention
+        # 状压|bfs| bfs implemention
         n, m, k = ac.read_list_ints()
         dct = [dict() for _ in range(n)]
         cao = dict()
@@ -1334,7 +1417,7 @@ class Solution:
 
     @staticmethod
     def lg_p5099(ac=FastIO()):
-        # 队列 01BFS 广搜implemention
+        # 队列 01-bfs bfs|implemention
         n, t = ac.read_list_ints()
         dct = dict()
         for i in range(n):
@@ -1359,7 +1442,7 @@ class Solution:
 
     @staticmethod
     def lg_p5195(ac=FastIO()):
-        # 记录遇到灌木与否的状态 BFS 
+        # 记录遇到灌木与否的状态 bfs 
         n, m = ac.read_list_ints()
         lst = []
         while len(lst) < m * n:
@@ -1375,7 +1458,7 @@ class Solution:
                     pos_2 = [i, j]
                 elif w == 4:
                     wood.append([i, j])
-        # 队列实现的广搜
+        # 队列实现的bfs|
         visit = [[[inf, inf] for _ in range(n)] for _ in range(m)]
         stack = deque([pos_2 + [0]])
         visit[pos_2[0]][pos_2[1]][0] = 0
@@ -1405,7 +1488,7 @@ class Solution:
 
     @staticmethod
     def lg_p6131(ac=FastIO()):
-        #  BFS 不同连通块之间的距离
+        #  bfs 不同连通块之间的距离
         m, n = ac.read_list_ints()
         grid = [ac.read_list_str() for _ in range(m)]
 
@@ -1464,7 +1547,7 @@ class Solution:
 
     @staticmethod
     def lg_p6909(ac=FastIO()):
-        # preprocess| BFS
+        # preprocess| bfs
         m, n = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
 
@@ -1540,7 +1623,7 @@ class Solution:
 
     @staticmethod
     def lg_p9065(ac=FastIO()):
-        # brain_teaserBFSbrute_force
+        # brain_teaserbfsbrute_force
         m, n, k = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
         pos = set(tuple(ac.read_list_ints_minus_one()) for _ in range(k))
@@ -1618,7 +1701,7 @@ class Solution:
 
     @staticmethod
     def lc_909(board: List[List[int]]) -> int:
-        # 01BFSimplemention
+        # 01-bfs|implemention
         def position(num):
             i = (num - 1) // n
             j = (num - 1) % n
@@ -1646,7 +1729,7 @@ class Solution:
 
     @staticmethod
     def lc_994(grid: List[List[int]]) -> int:
-        # BFS队列implemention
+        # bfs队列implemention
         m, n = len(grid), len(grid[0])
         stack = deque()
         for i in range(m):
@@ -1745,7 +1828,7 @@ class Solution:
 
     @staticmethod
     def ac_4415(ac=FastIO()):
-        # BFScoloring_method，判断有无奇数环，specific_plancounter
+        # bfscoloring_method，判断有无奇数环，specific_plancounter
         mod = 998244353
 
         def check():
@@ -1790,7 +1873,7 @@ class Solution:
 
     @staticmethod
     def lg_p1330(ac=FastIO()):
-        # BFS隔层coloring_method，判断有无奇数环
+        # bfs隔层coloring_method，判断有无奇数环
         n, m = ac.read_list_ints()
         edge = [[] for _ in range(n)]
         for _ in range(m):
@@ -1802,7 +1885,7 @@ class Solution:
         ans = 0
         for i in range(n):
             if visit[i] == -1:
-                # BFScoloring_method
+                # bfscoloring_method
                 stack = [i]
                 color = 0
                 visit[i] = color
@@ -1827,7 +1910,7 @@ class Solution:
 
     @staticmethod
     def ac_4481(ac=FastIO()):
-        # 01BFS
+        # 01-bfs
         m, n = ac.read_list_ints()
         r, c = ac.read_list_ints_minus_one()
         x, y = ac.read_list_ints()

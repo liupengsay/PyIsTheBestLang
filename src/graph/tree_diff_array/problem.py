@@ -1,40 +1,38 @@
 """
 
-Algorithm：LCA、倍增算法、树链剖分、树的质心、tree_centroid、离线LCA与tree_diff_array
-Description：来求一棵树的最近公共祖先（LCA）也可以
+Algorithm：lca|multiplication_method|tree_chain_split|tree_centroid|offline_lca|tree_diff_array
+Description：tree_diff_array_edge|tree_diff_array_point
 
 ====================================LeetCode====================================
-1483（https://leetcode.com/problems/kth-ancestor-of-a-tree-node/）动态规划与二进制跳转维护祖先信息，类似sparse_table|的思想与tree_array|的思想，LCA应用题
-2646（https://leetcode.com/problems/minimize-the-total-price-of-the-trips/）离线LCA与tree_diff_arraycounter，再tree_dp
+1483（https://leetcode.com/problems/kth-ancestor-of-a-tree-node/）sparse_table|tree_array|lca|tree_lca|classical
+2646（https://leetcode.com/problems/minimize-the-total-price-of-the-trips/）offline_lca|tree_diff_array|counter|tree_dp
 
 =====================================LuoGu======================================
-3379（https://www.luogu.com.cn/problem/P3379）最近公共祖先模板题
-7128（https://www.luogu.com.cn/problem/P7128）完全二叉树LCA路径implemention交换，使得数组有序
-3128（https://www.luogu.com.cn/problem/P3128）离线LCA与tree_diff_array
-7167（https://www.luogu.com.cn/problem/P7167）monotonic_stack|建树倍增在线LCA查询
-3384（https://www.luogu.com.cn/problem/P3384）树链剖分与tree_array|implemention
-2912（https://www.luogu.com.cn/problem/P2912）离线LCA查询与任意点对之间距离
-3019（https://www.luogu.com.cn/problem/P3019）offline_query LCA 最近公共祖先
-3258（https://www.luogu.com.cn/problem/P3258）离线LCA|tree_diff_array|tree_dp
-6869（https://www.luogu.com.cn/problem/P6869）offline_lca 查询与树上边差分
+3379（https://www.luogu.com.cn/problem/P3379）tree_lca|classical
+7128（https://www.luogu.com.cn/problem/P7128）lca|implemention|sort
+3128（https://www.luogu.com.cn/problem/P3128）offline_lca|tree_diff_array
+7167（https://www.luogu.com.cn/problem/P7167）monotonic_stack|tree_lca|build_tree
+3384（https://www.luogu.com.cn/problem/P3384）tree_chain_split|tree_array|implemention
+2912（https://www.luogu.com.cn/problem/P2912）offline_lca|offline_query
+3019（https://www.luogu.com.cn/problem/P3019）offline_query|lca
+3258（https://www.luogu.com.cn/problem/P3258）offline_lca|tree_diff_array|tree_dp
+6869（https://www.luogu.com.cn/problem/P6869）offline_lca|tree_diff_array_edge|tree_diff_array_point
 
-==================================LibreOJ==================================
-#10135. 「一本通 4.4 练习 2」祖孙询问（https://loj.ac/p/10135）lca查询与判断
+======================================LibreOJ==================================
+（https://loj.ac/p/10135）lca
 
 ===================================CodeForces===================================
-1328E（https://codeforces.com/problemset/problem/1328/E）利用 LCA 判定节点组是否符合条件，也可以 dfs 序
-321C（https://codeforces.com/problemset/problem/321/C）树的质心recursion，依次切割形成平衡树赋值
-519E（https://codeforces.com/problemset/problem/519/E）LCA运用题目，查询距离与第k个祖先节点，与子树节点counter
-1296F（https://codeforces.com/contest/1296/problem/F）离线或者在线查询lcagreedyconstruction，正解可能为倍增
+1328E（https://codeforces.com/problemset/problem/1328/E）tree_lca|dfs_order
+321C（https://codeforces.com/problemset/problem/321/C）tree_centroid_recursion|classical
+519E（https://codeforces.com/problemset/problem/519/E）lca|kth_ancestor|counter
+1296F（https://codeforces.com/contest/1296/problem/F）offline_lca|greedy|construction|multiplication_method
 
 ====================================AtCoder=====================================
-D - Transit Tree Path（https://atcoder.jp/contests/abc070/tasks/abc070_d）classicalLCA查询运用题，也可离线实现
+ABC70D（https://atcoder.jp/contests/abc070/tasks/abc070_d）classical|lca|offline_lca
 
 =====================================AcWing=====================================
-4202（https://www.acwing.com/problem/content/4205/）bit_operation，也可包含关系建树，查询LCA距离
+4202（https://www.acwing.com/problem/content/4205/）bit_operation|build_graph|tree_lca|tree_dis
 
-
-CSDN（https://blog.csdn.net/weixin_42001089/article/details/83590686）
 
 """
 from typing import List
@@ -51,13 +49,13 @@ class Solution:
     @staticmethod
     def lc_6738(n: int, edges: List[List[int]], price: List[int], trips: List[List[int]]) -> int:
 
-        # 离线LCA|tree_diff_array|tree_dp
+        # offline_lca|tree_diff_array|tree_dp
         dct = [[] for _ in range(n)]
         for i, j in edges:
             dct[i].append(j)
             dct[j].append(i)
 
-        # 离线LCA
+        # offline_lca
         res = OfflineLCA().bfs_iteration(dct, trips)
         # res = OfflineLCA().dfs_recursion(dct, trips)   # 也可以recursion
 
@@ -93,7 +91,7 @@ class Solution:
 
     @staticmethod
     def lg_p3128(ac=FastIO()):
-        # 离线LCA|tree_diff_array
+        # offline_lca|tree_diff_array
         n, k = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for _ in range(n - 1):
@@ -111,7 +109,7 @@ class Solution:
 
     @staticmethod
     def lc_2646(n: int, edges: List[List[int]], price: List[int], trips: List[List[int]]) -> int:
-        # 离线LCA与tree_diff_arraycounter，再tree_dp| 
+        # offline_lca与tree_diff_arraycounter，再tree_dp| 
         dct = [[] for _ in range(n)]
         for i, j in edges:
             dct[i].append(j)

@@ -147,7 +147,7 @@ class TarjanCC:
             edge[i].discard(j)
             edge[j].discard(i)
         # Remove all cut edges and leaving only edge doubly connected components
-        # process the cut edges and then perform BFS on the entire undirected graph
+        # process the cut edges and then perform bfs on the entire undirected graph
         visit = [0] * n
         ans = []
         for i in range(n):

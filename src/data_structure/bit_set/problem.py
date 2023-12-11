@@ -31,7 +31,7 @@ class Solution:
 
     @staticmethod
     def abc_82d(ac=FastIO()):
-        # brain_teaser|，分开BFS平面坐标的x与y轴移动，bitset优化
+        # brain_teaser|，分开bfs平面坐标的x与y轴移动，bitset优化
         s = ac.read_str()
         x, y = ac.read_list_ints()
         ls = [len(t) for t in s.split("T")]

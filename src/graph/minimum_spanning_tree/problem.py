@@ -23,7 +23,7 @@ Description：prim is node wise and kruskal is edge wise, prim is suitable for d
 2700（https://www.luogu.com.cn/problem/P2700）reverse_thinking|mst|union_find|size
 1195（https://www.luogu.com.cn/record/list?user=739032&status=12&page=13）mst
 1194（https://www.luogu.com.cn/problem/P1194）mst
-2916（https://www.luogu.com.cn/problem/P2916）define_sort|mst|classical
+2916（https://www.luogu.com.cn/problem/P2916）custom_sort|mst|classical
 4955（https://www.luogu.com.cn/problem/P4955）mst
 6705（https://www.luogu.com.cn/problem/P6705）brute_force|mst
 7775（https://www.luogu.com.cn/problem/P7775）bfs|mst_like
@@ -316,7 +316,7 @@ class Solution:
                     heappush(stack, [w, j, i])
         del stack
 
-        # BFS 根节点到所有节点的距离
+        # bfs 根节点到所有节点的距离
         for i in range(n):
             cur = [inf] * n
             stack = [i]
@@ -433,7 +433,7 @@ class Solution:
 
     @staticmethod
     def lg_p1340(ac=FastIO()):
-        # 逆序union_find，维护mst|的边
+        # reverse_order|union_find，维护mst|的边
         n, w = ac.read_list_ints()
 
         # offline_query处理，按照边权sorting

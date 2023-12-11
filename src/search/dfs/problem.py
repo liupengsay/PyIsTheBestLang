@@ -36,7 +36,7 @@ Description：常与back_trackbrute_force结合，比较的还有DFS序
 5118（https://www.luogu.com.cn/problem/P5118）深搜back_track与hash记录implemention
 5197（https://www.luogu.com.cn/problem/P5197）tree_dpimplemention与coloring_method，利用父亲与自己的染色确定儿子们的染色
 5198（https://www.luogu.com.cn/problem/P5198）连通块的周长与面积
-5318（https://www.luogu.com.cn/problem/P5318）广搜topological_sorting与dfs_order生成与获取
+5318（https://www.luogu.com.cn/problem/P5318）bfs|topological_sorting与dfs_order生成与获取
 6691（https://www.luogu.com.cn/problem/P6691）coloring_method，bipartite_graph可行性specific_plancounter与最大最小染色
 7370（https://www.luogu.com.cn/problem/P7370）所有可能的祖先节点，注意特别情况没有任何祖先节点则自身可达
 1036（https://www.luogu.com.cn/problem/P1036）back_track剪枝
@@ -249,7 +249,7 @@ class Solution:
 
     @staticmethod
     def lg_p5318(ac=FastIO()):
-        # 深搜与广搜序获取
+        # 深搜与bfs|序获取
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n + 1)]
         degree = [0] * (n + 1)
@@ -275,7 +275,7 @@ class Solution:
         dfs(1)
         ac.lst(ans)
 
-        # topological_sorting广搜
+        # topological_sortingbfs|
         ans = []
         stack = [1]
         visit = [0] * (n + 1)

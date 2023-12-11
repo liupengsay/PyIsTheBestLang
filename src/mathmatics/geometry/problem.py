@@ -28,7 +28,7 @@ Description：xxx
 
 
 ===================================CodeForces===================================
-961D)（https://codeforces.com/contest/961/problem/D)）抽屉原理brute_force初始共线点并其他点的共线性情况
+961D)（https://codeforces.com/contest/961/problem/D)）pigeonhole_principlebrute_force初始共线点并其他点的共线性情况
 429D（https://codeforces.com/problemset/problem/429/D）平面点集最近点对
 
 =====================================AcWing=====================================

@@ -8,7 +8,7 @@ from src.data_structure.sorted_list.template import LocalSortedList
 
 class TestGeneral(unittest.TestCase):
 
-    def test_define_sorted_list(self):
+    def test_custom_sorted_list(self):
 
         # 验证手写的SortedList与系统包的一致性
         for _ in range(10):

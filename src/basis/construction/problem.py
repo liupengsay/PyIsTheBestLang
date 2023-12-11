@@ -34,7 +34,7 @@ Description：greedy|sorting|construction|specific_plan
 1485D（https://codeforces.com/problemset/problem/1485/D）data_range|construction
 1722G（https://codeforces.com/problemset/problem/1722/G）odd_even|xor|construction
 1822D（https://codeforces.com/contest/1822/problem/D）construction|prefix_sum|mod|permutation
-1509D（https://codeforces.com/contest/1509/problem/D）lcs|shortest_common_hypersequence|construction|data_range|O(n)|pigeonhole
+1509D（https://codeforces.com/contest/1509/problem/D）lcs|shortest_common_hypersequence|construction|data_range|O(n)|pigeonhole_principle
 1473C（https://codeforces.com/contest/1473/problem/C）brain_teaser|s1s2..sn..s2s1
 1469D（https://codeforces.com/contest/1469/problem/D）square|ceil|greedy|implemention
 1478B（https://codeforces.com/contest/1478/problem/B）brute_force|bag_dp|construction

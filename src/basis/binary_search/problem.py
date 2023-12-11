@@ -93,9 +93,9 @@ D - Widespread（https://atcoder.jp/contests/abc063/tasks/arc075_b）binary_sear
 
 =====================================AcWing=====================================
 120（https://www.acwing.com/problem/content/122/）binary_search
-14（https://www.acwing.com/problem/content/description/15/）pigeonhole|binary_search
+14（https://www.acwing.com/problem/content/description/15/）pigeonhole_principle|binary_search
 3973（https://www.acwing.com/problem/content/3976/）high_precision|binary_search|sliding_window|two_pointers
-4863（https://www.acwing.com/problem/content/description/4866/）binary_search|pigeonhole
+4863（https://www.acwing.com/problem/content/description/4866/）binary_search|pigeonhole_principle
 5048（https://www.acwing.com/problem/content/description/5051/）high_precision|binary_search|specific_plan
 
 """
@@ -604,7 +604,7 @@ class Solution:
 
     @staticmethod
     def ac_14(nums):
-        # 利用pigeonholebinary_search
+        # 利用pigeonhole_principlebinary_search
         n = len(nums) - 1
         low = 1
         high = n
@@ -757,7 +757,7 @@ class Solution:
 
     @staticmethod
     def lg_p1525(ac=FastIO()):
-        # binary_search|BFSbipartite_graph划分
+        # binary_search|bfsbipartite_graph划分
         n, m = ac.read_list_ints()
         lst = [ac.read_list_ints() for _ in range(m)]
 
@@ -1335,7 +1335,7 @@ class Solution:
 
     @staticmethod
     def ac_4683(ac=FastIO()):
-        # binary_search|pigeonhole
+        # binary_search|pigeonhole_principle
         for _ in range(ac.read_int()):
             ac.read_str()
             m, n = ac.read_list_ints()

@@ -158,7 +158,7 @@ class Solution:
 
     @staticmethod
     def cf_1343e(ac=FastIO()):
-        # 01BFS求三个shortest_path
+        # 01-bfs求三个shortest_path
         for _ in range(ac.read_int()):
             n, m, a, b, c = ac.read_list_ints()
             a -= 1
@@ -188,7 +188,7 @@ class Solution:
 
     @staticmethod
     def cf_1650g(ac=FastIO()):
-        # shortest_path与strictly_second_shortest_pathcounter，因为不带权，所以正解为01BFS
+        # shortest_path与strictly_second_shortest_pathcounter，因为不带权，所以正解为01-bfs
         mod = 10 ** 9 + 7
         for _ in range(ac.read_int()):
             ac.read_str()
@@ -1192,7 +1192,7 @@ class Solution:
 
     @staticmethod
     def lg_p5663(ac=FastIO()):
-        #  01 BFS 最短的奇数与偶数距离
+        #  01 bfs 最短的奇数与偶数距离
         n, m, q = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for i in range(m):
@@ -1602,7 +1602,7 @@ class Solution:
 
     @staticmethod
     def abc_142f(ac=FastIO()):
-        # 子图寻找，转换为有向图的最小环问题（可BFS优化）
+        # 子图寻找，转换为有向图的最小环问题（可bfs优化）
         n, m = ac.read_list_ints()
         dct = [set() for _ in range(n)]
         edges = []
@@ -1672,7 +1672,7 @@ class Solution:
                     edge[j].append([i, ind])
                     visit[j] = 1
 
-        # 最后一遍BFS确定选择的边
+        # 最后一遍bfs确定选择的边
         ans = []
         stack = [[0, -1]]
         while stack:

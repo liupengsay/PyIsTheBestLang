@@ -89,7 +89,7 @@ Description：bag_dp|bin_split|finite|infinite|tree_bag_dp
 543A（https://codeforces.com/problemset/problem/543/A）matrix_bag_dp
 148E（https://codeforces.com/problemset/problem/148/E）bag_dp|finite|brute_force
 1433F（https://codeforces.com/problemset/problem/1433/F）bag_dp|finite|brute_force
-1657D（https://codeforces.com/contest/1657/problem/D）infinite|bag_dp|mul|euler_series|binary_search|greedy
+1657D（https://codeforces.com/contest/1657/problem/D）infinite|bag_dp|mul|euler_series|O(nlogn)||binary_search|greedy
 
 ====================================AtCoder=====================================
 D - Mixing Experiment（https://atcoder.jp/contests/abc054/tasks/abc054_d）matrix_bag_dp|finite

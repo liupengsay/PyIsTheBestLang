@@ -412,7 +412,7 @@ class Solution:
     @staticmethod
     def lc_1367(head: Optional[ListNode], root: Optional[TreeNode]) -> bool:
 
-        # classical二叉树与linked_list|比较的记忆化DP
+        # classical二叉树与linked_list|比较的memory_searchDP
 
         @lru_cache(None)
         def dfs(lst, node):

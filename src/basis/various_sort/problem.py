@@ -1,31 +1,31 @@
 """
-Algorithm：sorting|bubble_sort|merge_sort(minimum_num_comparisons)|quick_sort(expected_fast)|define_sort
+Algorithm：sorting|bubble_sort|merge_sort(minimum_num_comparisons)|quick_sort(expected_fast)|custom_sort
 Description：reverse_order_pair
 
 ====================================LeetCode====================================
 164（https://leetcode.com/problems/maximum-gap/）bucket_sort
-179（https://leetcode.com/problems/largest-number/）define_sort|maximum
+179（https://leetcode.com/problems/largest-number/）custom_sort|maximum
 912（https://leetcode.com/problems/sort-an-array/）quick_sort
 1585（https://leetcode.com/problems/check-if-string-is-transformable-with-substring-sort-operations/）bubble_sort|implemention
-45（https://leetcode.com/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/）define_sort|minimum
-2412（https://leetcode.com/problems/minimum-money-required-before-transactions/）define_sort|greedy
-1665（https://leetcode.com/problems/minimum-initial-energy-to-finish-tasks/）define_sort|greedy|sorting
+45（https://leetcode.com/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/）custom_sort|minimum
+2412（https://leetcode.com/problems/minimum-money-required-before-transactions/）custom_sort|greedy
+1665（https://leetcode.com/problems/minimum-initial-energy-to-finish-tasks/）custom_sort|greedy|sorting
 
 =====================================LuoGu======================================
 2310（https://www.luogu.com.cn/problem/P2310）sorting
 4378（https://www.luogu.com.cn/problem/P4378）brute_force|bubble_sort
-6243（https://www.luogu.com.cn/problem/P6243）greedy|define_sort
+6243（https://www.luogu.com.cn/problem/P6243）greedy|custom_sort
 1774（https://www.luogu.com.cn/problem/P1774）merge_sort|reverse_order_pair
 1177（https://www.luogu.com.cn/problem/P1177）quick_sort
 
 ===================================CodeForces===================================
-922D（https://codeforces.com/problemset/problem/922/D）greedy|define_sort
+922D（https://codeforces.com/problemset/problem/922/D）greedy|custom_sort
 
 ====================================AtCoder=====================================
-B - Iroha Loves Strings（https://atcoder.jp/contests/abc042/tasks/abc042_b）define_sort
+B - Iroha Loves Strings（https://atcoder.jp/contests/abc042/tasks/abc042_b）custom_sort
 
 =====================================AcWing=====================================
-113（https://www.acwing.com/problem/content/description/115/）define_sort
+113（https://www.acwing.com/problem/content/description/115/）custom_sort
 
 """
 import random
@@ -79,7 +79,7 @@ class Solution:
 
     @staticmethod
     def abc_42b(ac=FastIO()):
-        # define_sort
+        # custom_sort
         n, m = ac.read_list_ints()
         nums = [ac.read_str() for _ in range(n)]
 
@@ -98,7 +98,7 @@ class Solution:
     @staticmethod
     def lc_179(nums: List[int]) -> str:
 
-        # 模板: define_sort拼接最大数
+        # 模板: custom_sort拼接最大数
         def compare(a, b):
             # 比较函数
             x = int(a + b)
@@ -141,7 +141,7 @@ class Solution:
 
     @staticmethod
     def lc_1665(tasks: List[List[int]]) -> int:
-        # 模板: define_sort
+        # 模板: custom_sort
 
         def compare(aa, bb):
             # 比较函数
