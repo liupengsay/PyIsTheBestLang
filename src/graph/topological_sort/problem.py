@@ -1,53 +1,52 @@
 """
 
-Algorithm：topological_sort|circle_based_tree|bfs序|拓扑序
-Description：有向图sorting，无向图在选定根节点的情况下也可以topological_sorting
-内向circle_based_tree介绍：https://leetcode.com/problems/maximum-employees-to-be-invited-to-a-meeting/solution/nei-xiang-ji-huan-shu-tuo-bu-pai-xu-fen-c1i1b/
+Algorithm：topological_sort|circle_based_tree|bfs_order|topological_order|topological_lexicographic_order
+Description：undirected_topological_sort|directed_topological_sort|directed_circle_based_tree|undirected_circle_based_tree
 
 ====================================LeetCode====================================
-360（https://leetcode.com/problems/longest-cycle-in-a-graph/）topological_sorting有向图内向circle_based_tree最长环
-2392（https://leetcode.com/problems/build-a-matrix-with-conditions/）分别通过行列的topological_sorting来确定数字所在索引，数字可能相同，需要union_find
-2371（https://leetcode.com/problems/minimize-maximum-value-in-a-grid/）分别通过行列的topological_sorting来确定数字所在索引，数字都不同可以greedy
-2127（https://leetcode.com/problems/maximum-employees-to-be-invited-to-a-meeting/）topological_sorting确定DAG内向基环，按照环的大小classification_discussion
-127（https://leetcode.com/problems/maximum-employees-to-be-invited-to-a-meeting/）
-269（https://leetcode.com/problems/alien-dictionary/）按照lexicographical_orderbuild_graph|，与topological_sorting的应用
-2603（https://leetcode.com/contest/weekly-contest-338/problems/collect-coins-in-a-tree/）无向图topological_sorting内向circle_based_tree
-2204（https://leetcode.com/problems/distance-to-a-cycle-in-undirected-graph/https://leetcode.com/problems/distance-to-a-cycle-in-undirected-graph/）无向图topological_sorting
-1857（https://leetcode.com/problems/largest-color-value-in-a-directed-graph/）topological_sortingDP
-1932（https://leetcode.com/problems/range_merge_to_disjoint-bsts-to-create-single-bst/）连通性、topological_sorting与二叉搜索树判断
-1591（https://leetcode.com/contest/biweekly-contest-35/problems/strange-printer-ii/）build_graph|判断topological_sorting是否无环
-2192（https://leetcode.com/problems/all-ancestors-of-a-node-in-a-directed-acyclic-graph/）有向图DAGtopological_sorting
+360（https://leetcode.com/problems/longest-cycle-in-a-graph/）topological_sort|directed_circle_based_tree|longest_circle
+2392（https://leetcode.com/problems/build-a-matrix-with-conditions/）build_graph|union_find|topological_sort
+2371（https://leetcode.com/problems/minimize-maximum-value-in-a-grid/）build_graph|topological_sort|greedy
+2127（https://leetcode.com/problems/maximum-employees-to-be-invited-to-a-meeting/）topological_sort|dag|directed_circle_based_tree|classification_discussion
+127（https://leetcode.com/problems/maximum-employees-to-be-invited-to-a-meeting/）topological_sort|directed_circle_based_tree|
+269（https://leetcode.com/problems/alien-dictionary/）lexicographical_order|build_graph|topological_sort
+2603（https://leetcode.com/problems/collect-coins-in-a-tree/）undirected_topological_sort|undirected_circle_based_tree
+2204（https://leetcode.com/problems/distance-to-a-cycle-in-undirected-graph/）undirected_topological_sort
+1857（https://leetcode.com/problems/largest-color-value-in-a-directed-graph/）topological_sort|dag_dp
+1932（https://leetcode.com/problems/range_merge_to_disjoint-bsts-to-create-single-bst/）union_find|topological_sort|union_find|bst
+1591（https://leetcode.com/problems/strange-printer-ii/）build_graph|topological_sort|circle_judge
+2192（https://leetcode.com/problems/all-ancestors-of-a-node-in-a-directed-acyclic-graph/）directed_topological_sort|dag_dp
 
 
 =====================================LuoGu======================================
-1960（https://www.luogu.com.cn/problem/P1960）topological_sorting是否唯一
-1992（https://www.luogu.com.cn/problem/P1992）topological_sorting有向图是否有环
-2712（https://www.luogu.com.cn/problem/P2712）topological_sorting非环节点数
-6145（https://www.luogu.com.cn/problem/P6145）topological_sorting每个节点最晚的访问时间点
-1137（https://www.luogu.com.cn/problem/P1137）topological_sorting，可达的最长距离
-1347（https://www.luogu.com.cn/problem/P1347）topological_sorting确定lexicographical_order与矛盾或者无唯一解
-1685（https://www.luogu.com.cn/problem/P1685）DAGtopological_sortingDP路径条数与耗时
-3243（https://www.luogu.com.cn/problem/P3243）reverse_graphtopological_sorting结合heapq|顺序implemention
-5536（https://www.luogu.com.cn/problem/P5536）无向图topological_sorting从外到内消除最外圈的节点
-6037（https://www.luogu.com.cn/problem/P6037）无向图circle_based_treeunion_findtopological_sorting与环implemention
-6255（https://www.luogu.com.cn/problem/P6255）简单无向图union_find连通块后topological_sorting寻找环的信息
-6417（https://www.luogu.com.cn/problem/P6417）有向图circle_based_treegreedy应用topological_sorting由外向内
-6560（https://www.luogu.com.cn/problem/P6560）reverse_graphtopological_sorting与博弈必胜态
-8655（https://www.luogu.com.cn/problem/P8655）topological_sorting有向circle_based_tree的环
-8943（https://www.luogu.com.cn/problem/P8943）无向图circle_based_tree博弈
+1960（https://www.luogu.com.cn/problem/P1960）topological_sort|topological_order
+1992（https://www.luogu.com.cn/problem/P1992）directed_topological_sort|directed_circle_judge
+2712（https://www.luogu.com.cn/problem/P2712）topological_sort|circle_judge|find_circle
+6145（https://www.luogu.com.cn/problem/P6145）directed_topological_sort|dag_dp
+1137（https://www.luogu.com.cn/problem/P1137）topological_sort|dag_dp
+1347（https://www.luogu.com.cn/problem/P1347）topological_sort|lexicographical_order|construction
+1685（https://www.luogu.com.cn/problem/P1685）dag_dp|directed_topological_sort|counter
+3243（https://www.luogu.com.cn/problem/P3243）reverse_graph|topological_sort|heapq|implemention|topological_lexicographic_order
+5536（https://www.luogu.com.cn/problem/P5536）undirected_topological_sort
+6037（https://www.luogu.com.cn/problem/P6037）undirected_circle_based_tree|union_find|topological_sort|implemention
+6255（https://www.luogu.com.cn/problem/P6255）union_find|topological_sort|circle_judge
+6417（https://www.luogu.com.cn/problem/P6417）directed_circle_based_tree|greedy|topological_sort
+6560（https://www.luogu.com.cn/problem/P6560）reverse_graph|topological_sort|game_dp
+8655（https://www.luogu.com.cn/problem/P8655）topological_sort|directed_circle_based_tree
+8943（https://www.luogu.com.cn/problem/P8943）undirected_circle_based_tree|game_dp
 
 ===================================CodeForces===================================
-1454E（https://codeforces.com/contest/1454/problem/E）circle_based_treecounterbrute_force
+1454E（https://codeforces.com/contest/1454/problem/E）circle_based_tree|counter|brute_force
 1907G（https://codeforces.com/contest/1907/problem/G）directed_circle_based_tree|greedy|implemention|topological_sort
 
 ====================================AtCoder=====================================
-F - Well-defined Path Queries on a Namori（https://atcoder.jp/contests/abc266/）（无向图的内向circle_based_tree，求简单路径的树枝连通）
-最喜欢的数列（https://www.hackerrank.com/challenges/favourite-sequence/problem?isFullScreen=true）topological and heap for minimum lexi order
+ABC266F（https://atcoder.jp/contests/abc266/tasks/abc266_f）undirected_circle_based_tree
+（https://www.hackerrank.com/challenges/favourite-sequence/problem?isFullScreen=true）topological_lexicographic_order
 
 =====================================AcWing=====================================
-3696（https://www.acwing.com/problem/content/description/3699/）bfs序即拓扑序与DAGconstruction
-3828（https://www.acwing.com/problem/content/description/3831/）有向图DAGtopological_sortingDP模板题并判断有无环
-4626（https://www.acwing.com/problem/content/description/4629/）有向图内向circle_based_tree判断每个环的大小
+3696（https://www.acwing.com/problem/content/description/3699/）topological_order|dag|construction
+3828（https://www.acwing.com/problem/content/description/3831/）topological_sort|dag_dp|circle_judge
+4626（https://www.acwing.com/problem/content/description/4629/）directed_circle_based_tree|circle_judge
 
 """
 
@@ -159,7 +158,7 @@ class Solution:
 
     @staticmethod
     def lc_2360(edges: List[int]) -> int:
-        # topological_sorting有向图内向circle_based_tree最长环
+        # topological_sortingdirected_circle_based_tree最长环
         n = len(edges)
         # 记录入度
         degree = defaultdict(int)
@@ -439,7 +438,7 @@ class Solution:
 
     @staticmethod
     def lg_p6037(ac=FastIO()):
-        # 无向图circle_based_treeunion_findtopological_sorting与环implemention
+        # undirected_circle_based_treeunion_findtopological_sorting与环implemention
         n = ac.read_int()
         dct = [[] for _ in range(n)]
         # 首先分割连通分量
@@ -645,7 +644,7 @@ class Solution:
 
     @staticmethod
     def lg_p8943(ac=FastIO()):
-        # 无向图circle_based_tree博弈
+        # undirected_circle_based_tree博弈
         n, q = ac.read_list_ints()
         degree = [0] * n
         dct = [[] for _ in range(n)]
@@ -969,7 +968,7 @@ class Solution:
 
     @staticmethod
     def ac_4626(ac=FastIO()):
-        # 有向图内向circle_based_tree判断每个环的大小
+        # directed_circle_based_tree判断每个环的大小
         n = ac.read_int()
         a = ac.read_list_ints_minus_one()
         dct = [[] for _ in range(n)]

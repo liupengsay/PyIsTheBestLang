@@ -1,13 +1,13 @@
 """
-Algorithm：广度优先搜索、双端队列BFS、discretizationBFS、有边界的BFS、染色法、奇数环
-Description：在有向图与无向图扩散，多源BFS、双向BFS，0-1BFS（类似SPFA）双向BFS或者A-star启发式搜索
+Algorithm：bfs、deque_bfs、discretization_bfs、有边界的BFS、coloring_method、奇数环
+Description：在有向图与无向图扩散，multi_source_bfs、bilateral_bfs，0-1BFS（类似SPFA）bilateral_bfs或者A-star启发式搜索
 
 ====================================LeetCode====================================
 
 =====================================LuoGu======================================
 
 ===================================CodeForces===================================
-1594D（https://codeforces.com/contest/1594/problem/D）build_graph|后染色法BFS判断bipartite_graph
+1594D（https://codeforces.com/contest/1594/problem/D）build_graph|后coloring_methodBFS判断bipartite_graph
 
 ====================================AtCoder=====================================
 
@@ -338,7 +338,7 @@ class Solution:
 
     @staticmethod
     def lc_2493(n: int, edges: List[List[int]]) -> int:
-        # 利用union_find和广度优先搜索连通块分组并brute_force最佳specific_plan，也就是染色法判断是否可以形成bipartite_graph
+        # 利用union_find和bfs连通块分组并brute_force最佳specific_plan，也就是coloring_method判断是否可以形成bipartite_graph
         dct = [[] for _ in range(n)]
         uf = UnionFind(n)
         for i, j in edges:
@@ -419,7 +419,7 @@ class Solution:
 
     @staticmethod
     def cf_1572a(ac=FastIO()):
-        # BFS 判断 DAG 是否有环和无环时的最长路（注意起点可能有多个）
+        # BFS 判断 DAG circle_judge和无环时的最长路（注意起点可能有多个）
         for _ in range(ac.read_int()):
             n = ac.read_int()
             dct = [dict() for _ in range(n)]
@@ -452,7 +452,7 @@ class Solution:
 
     @staticmethod
     def cf_1037d(ac=FastIO()):
-        # 队列与集合判断 bfs序 即广搜序
+        # 队列与集合判断 bfs_order 即广搜序
         n = ac.read_int()
         edge = [[] for _ in range(n)]
         for _ in range(n - 1):
@@ -586,7 +586,7 @@ class Solution:
 
     @staticmethod
     def abc_133e(ac=FastIO()):
-        # BFS染色法counter
+        # BFScoloring_methodcounter
         n, k = ac.read_list_ints()
         mod = 1000000007
         dct = [[] for _ in range(n)]
@@ -622,7 +622,7 @@ class Solution:
 
     @staticmethod
     def ac_173(ac=FastIO()):
-        # 多源BFS模板题
+        # multi_source_bfs模板题
         m, n = ac.read_list_ints()
         grid = [ac.read_list_str() for _ in range(m)]
         stack = []
@@ -683,7 +683,7 @@ class Solution:
     @staticmethod
     def ac_177(ac=FastIO()):
         for _ in range(ac.read_int()):
-            # 多源双向BFS
+            # 多源bilateral_bfs
             m, n = ac.read_list_ints()
             grid = [ac.read_str() for _ in range(m)]
             ghost = []
@@ -1131,7 +1131,7 @@ class Solution:
     @staticmethod
     def lg_p3855(ac=FastIO()):
 
-        # 定义四维状态的广度优先搜索
+        # 定义四维状态的bfs
         m, n = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
         gg = [-1, -1]
@@ -1669,7 +1669,7 @@ class Solution:
 
     @staticmethod
     def lc_1036_1(blocked: List[List[int]], source: List[int], target: List[int]) -> bool:
-        # 带边界的BFS和discretizationBFS两种解法
+        # bound_bfs和discretization_bfs两种解法
         def check(node):
             stack = [node]
             visit = {tuple(node)}
@@ -1695,7 +1695,7 @@ class Solution:
 
     @staticmethod
     def lc_1036_2(blocked: List[List[int]], source: List[int], target: List[int]) -> bool:
-        # 带边界的BFS和discretizationBFS两种解法
+        # bound_bfs和discretization_bfs两种解法
         nodes_r = {0, 10 ** 6 - 1}
         nodes_c = {0, 10 ** 6 - 1}
         for a, b in blocked + [source] + [target]:
@@ -1745,7 +1745,7 @@ class Solution:
 
     @staticmethod
     def ac_4415(ac=FastIO()):
-        # BFS染色法，判断有无奇数环，specific_plancounter
+        # BFScoloring_method，判断有无奇数环，specific_plancounter
         mod = 998244353
 
         def check():
@@ -1760,7 +1760,7 @@ class Solution:
             ans = 1
             for i in range(n):
                 if visit[i] == -1:
-                    # 染色法模板
+                    # coloring_method模板
                     stack = [i]
                     color = 0
                     visit[i] = color
@@ -1790,7 +1790,7 @@ class Solution:
 
     @staticmethod
     def lg_p1330(ac=FastIO()):
-        # BFS隔层染色法，判断有无奇数环
+        # BFS隔层coloring_method，判断有无奇数环
         n, m = ac.read_list_ints()
         edge = [[] for _ in range(n)]
         for _ in range(m):
@@ -1802,7 +1802,7 @@ class Solution:
         ans = 0
         for i in range(n):
             if visit[i] == -1:
-                # BFS染色法
+                # BFScoloring_method
                 stack = [i]
                 color = 0
                 visit[i] = color

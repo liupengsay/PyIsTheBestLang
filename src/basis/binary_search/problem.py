@@ -767,7 +767,7 @@ class Solution:
             for i, j in edges:
                 dct[i].append(j)
                 dct[j].append(i)
-            # 染色法判断是否可以binary_search
+            # coloring_method判断是否可以binary_search
             visit = [0] * (n + 1)
             for i in range(1, n + 1):
                 if visit[i] == 0:

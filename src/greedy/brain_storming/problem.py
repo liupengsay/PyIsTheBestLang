@@ -57,7 +57,7 @@ Description：各种可证明不可证明的头脑风暴
 2777（https://www.luogu.com.cn/problem/P2777）greedybrute_force最佳得分组合，|prefix_suffix记录最大值
 2649（https://www.luogu.com.cn/problem/P2649）greedy，输的时候输最惨，赢的时候微弱优势
 1367（https://www.luogu.com.cn/problem/P1367）brain_teaser，蚂蚁的相对移动位置sorting还是不变
-1362（https://www.luogu.com.cn/problem/P1362）找规律之后，广度优先搜索brute_force
+1362（https://www.luogu.com.cn/problem/P1362）找规律之后，bfsbrute_force
 1090（https://www.luogu.com.cn/record/list?user=739032&status=12&page=11）从小到大greedy合并
 1334（https://www.luogu.com.cn/problem/P1334）reverse_thinking的合并果子，从小到大合并
 1325（https://www.luogu.com.cn/problem/P1325）sorting后greedy修建更新
@@ -118,7 +118,7 @@ Description：各种可证明不可证明的头脑风暴
 5948（https://www.luogu.com.cn/problem/P5948）greedyimplemention
 6196（https://www.luogu.com.cn/problem/P6196）greedy 1 分段代价
 6874（https://www.luogu.com.cn/problem/P6874）变换公式转为mediangreedy
-8050（https://www.luogu.com.cn/problem/P8050）brain_teaser黑白染色法任意操作不改变黑白元素和的差值
+8050（https://www.luogu.com.cn/problem/P8050）brain_teaser黑白coloring_method任意操作不改变黑白元素和的差值
 7935（https://www.luogu.com.cn/problem/P7935）brain_teaser
 8109（https://www.luogu.com.cn/problem/P8109）STLgreedy分配求解
 8669（https://www.luogu.com.cn/problem/P8669）greedy选取 k 个数乘积最大
@@ -152,6 +152,7 @@ Description：各种可证明不可证明的头脑风暴
 1822E（https://codeforces.com/contest/1822/problem/E）greedyimplementioncounter
 1005E2（https://codeforces.com/contest/1005/problem/E2）特定median的连续子数组个数，inclusion_exclusion|prefix_sumsorted_listbinary_search，同LC2488
 1512E（https://codeforces.com/contest/1512/problem/E）brain_teaser|从大到小greedy
+1665C（https://codeforces.com/contest/1665/problem/C）graph|greedy
 
 ====================================AtCoder=====================================
 C - AtCoDeer and Election Report（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|，不等式greedy
@@ -777,7 +778,7 @@ class Solution:
 
     @staticmethod
     def lg_p8050(ac=FastIO()):
-        # brain_teaser黑白染色法任意操作不改变黑白元素和的差值
+        # brain_teaser黑白coloring_method任意操作不改变黑白元素和的差值
         m1, n1, m2, n2, k = ac.read_list_ints()
         black = white = cnt = state = 0
         for i in range(m1 + m2):
@@ -1010,6 +1011,38 @@ class Solution:
                     b.append(num)
             a = b[:]
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1665c(ac=FastIO()):
+
+        def solve():
+            n = ac.read_int()
+            dct = [[] for _ in range(n)]
+            parent = ac.read_list_ints_minus_one()
+            for i in range(n - 1):
+                dct[parent[i]].append(i + 1)
+            lst = [len(dct[i]) for i in range(n) if dct[i]] + [1]
+            lst.sort(reverse=True)
+            m = len(lst)
+            ans = m
+            for i in range(m):
+                lst[i] -= m - i
+            stack = [-x for x in lst if x > 0]
+            heapq.heapify(stack)
+            cnt = 0
+            while stack and -stack[0] > cnt:
+                cnt += 1
+                x = heapq.heappop(stack)
+                x += 1
+                if x:
+                    heapq.heappush(stack, x)
+            ans += cnt
+            ac.st(ans)
+            return
+
+        for _ in range(ac.read_int()):
+            solve()
         return
 
     @staticmethod

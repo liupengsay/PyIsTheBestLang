@@ -52,7 +52,7 @@ Description：用来处理图论相关的联通问题，通常结合逆向思考
 8686（https://www.luogu.com.cn/problem/P8686）union_find灵活应用
 8785（https://www.luogu.com.cn/problem/P8785）根据边界union_find构建counter
 8787（https://www.luogu.com.cn/problem/P8787）greedyheapq|implemention与union_find灵活应用
-8881（https://www.luogu.com.cn/problem/P8881）brain_teaser，union_find判断所属连通分量是否有环
+8881（https://www.luogu.com.cn/problem/P8881）brain_teaser，union_find判断所属连通分量circle_judge
 
 ===================================CodeForces===================================
 25D（https://codeforces.com/problemset/problem/25/D）union_find将原来的边断掉重新来连接使得成为一整个连通集
@@ -825,7 +825,7 @@ class Solution:
 
     @staticmethod
     def lg_p8881(ac=FastIO()):
-        # brain_teaser，union_find判断所属连通分量是否有环
+        # brain_teaser，union_find判断所属连通分量circle_judge
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
             uf = UnionFind(n)

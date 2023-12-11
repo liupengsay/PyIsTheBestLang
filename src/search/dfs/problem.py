@@ -1,6 +1,6 @@
 """
 
-Algorithm：深度优先搜索、染色法、brute_forceback_track、欧拉序、dfs_order|
+Algorithm：深度优先搜索、coloring_method、brute_forceback_track、欧拉序、dfs_order|
 Description：常与back_trackbrute_force结合，比较的还有DFS序
 
 
@@ -34,10 +34,10 @@ Description：常与back_trackbrute_force结合，比较的还有DFS序
 3252（https://www.luogu.com.cn/problem/P3252）深搜back_track|prefix_sumhash
 4913（https://www.luogu.com.cn/problem/P4913）深搜确定深度
 5118（https://www.luogu.com.cn/problem/P5118）深搜back_track与hash记录implemention
-5197（https://www.luogu.com.cn/problem/P5197）tree_dpimplemention与染色法，利用父亲与自己的染色确定儿子们的染色
+5197（https://www.luogu.com.cn/problem/P5197）tree_dpimplemention与coloring_method，利用父亲与自己的染色确定儿子们的染色
 5198（https://www.luogu.com.cn/problem/P5198）连通块的周长与面积
 5318（https://www.luogu.com.cn/problem/P5318）广搜topological_sorting与dfs_order生成与获取
-6691（https://www.luogu.com.cn/problem/P6691）染色法，bipartite_graph可行性specific_plancounter与最大最小染色
+6691（https://www.luogu.com.cn/problem/P6691）coloring_method，bipartite_graph可行性specific_plancounter与最大最小染色
 7370（https://www.luogu.com.cn/problem/P7370）所有可能的祖先节点，注意特别情况没有任何祖先节点则自身可达
 1036（https://www.luogu.com.cn/problem/P1036）back_track剪枝
 8578（https://www.luogu.com.cn/problem/P8578）greedydfs_order
