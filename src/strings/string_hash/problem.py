@@ -179,6 +179,10 @@ class Solution:
 
     @staticmethod
     def cf_1800d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1800/D
+        tag: prefix_suffix|hash
+        """
 
         # 字符串prefix_suffixhash|和，两个hash避免碰撞
         n = 2 * 10 ** 5

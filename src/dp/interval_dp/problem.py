@@ -87,6 +87,10 @@ class Solution:
 
     @staticmethod
     def cf_1509c(n, nums):
+        """
+        url: https://codeforces.com/problemset/problem/1509/C
+        tag: interval_dp
+        """
         # 数组interval_dp|转移求解
         dp = [[inf] * n for _ in range(n)]
         for i in range(n - 1, -1, -1):

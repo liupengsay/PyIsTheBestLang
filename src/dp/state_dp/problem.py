@@ -215,6 +215,10 @@ class Solution:
 
     @staticmethod
     def cf_165e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/165/E
+        tag: liner_dp|state_dp|brute_force
+        """
         # 线性state_dpDP，类似子集思想求解可能存在的与为0的数对
         n = ac.read_int()
         nums = ac.read_list_ints()
@@ -240,6 +244,10 @@ class Solution:
 
     @staticmethod
     def cf_580d(ac):
+        """
+        url: https://codeforces.com/problemset/problem/580/D
+        tag: state_dp
+        """
 
         # bitmaskbit_operationstate_dp转移，从 1 少的状态向多的转移，并brute_force前一个 1 的位置增益
         n, m, k = ac.read_list_ints()
@@ -463,6 +471,10 @@ class Solution:
 
     @staticmethod
     def cf_11d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/11/problem/D
+        tag: state_dp|undirected|counter
+        """
 
         # state_compress无向图简单环counter
         n, m = ac.read_list_ints()

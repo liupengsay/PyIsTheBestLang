@@ -34,6 +34,10 @@ class Solution:
 
     @staticmethod
     def cf_1328b(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1328/B
+        tag: comb|lexicographical_order
+        """
         # comb选取的lexicographical_order
         for _ in range(ac.read_int()):
             n, k = ac.read_list_ints()

@@ -310,6 +310,10 @@ class Solution:
 
     @staticmethod
     def cf_1272e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1272/E
+        tag: reverse_graph|multi_source_bfs
+        """
         # reverse_graph与多源 bfs 
         n = ac.read_int()
         nums = ac.read_list_ints()
@@ -534,6 +538,10 @@ class Solution:
 
     @staticmethod
     def cf_1572a(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1572/A
+        tag: brain_teaser|build_graph|bfs|circle_judge|dag_dp|classical
+        """
         # bfs 判断 DAG circle_judge和无环时的最长路（注意起点可能有多个）
         for _ in range(ac.read_int()):
             n = ac.read_int()
@@ -567,6 +575,10 @@ class Solution:
 
     @staticmethod
     def cf_1037d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1037/D
+        tag: 01-bfs|implemention|classical
+        """
         # 队列与集合判断 bfs_order 即bfs|序
         n = ac.read_int()
         edge = [[] for _ in range(n)]
@@ -1689,6 +1701,10 @@ class Solution:
 
     @staticmethod
     def cf_1594d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1594/problem/D
+        tag: build_graph|coloring_method|bfs|bipartite_graph
+        """
         for _ in range(ac.read_int()):
 
             def check():

@@ -185,6 +185,10 @@ class Solution:
 
     @staticmethod
     def cf_1216f(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1216/problem/F
+        tag: segment_tree|dp|monotonic_queue
+        """
         # segment_tree||DP
         n, k = ac.read_list_ints()
         s = ac.read_str()
@@ -205,6 +209,10 @@ class Solution:
 
     @staticmethod
     def cf_1478e(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1478/problem/E
+        tag: RangeChangeRangeSumMinMax|backward_thinking|implemention
+        """
         for _ in range(ac.read_int()):
             def check():
                 n, q = ac.read_list_ints()
@@ -234,6 +242,10 @@ class Solution:
 
     @staticmethod
     def cf_1665e(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1665/problem/E
+        tag: segment_tree
+        """
         for _ in range(ac.read_int()):
             n = ac.read_int()
             nums = ac.read_list_ints()
@@ -287,6 +299,10 @@ class Solution:
 
     @staticmethod
     def cf_380c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/380/C
+        tag: segment_tree|range_merge|sub_consequence|bracket
+        """
         word = []
         queries = []
         # segment_tree|divide_and_conquer并dp合并
@@ -823,6 +839,10 @@ class Solution:
 
     @staticmethod
     def cf_482b(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/482/B
+        tag: segment_tree|RangeOrRangeAnd
+        """
         n, m = ac.read_list_ints()
         tree = RangeOrRangeAnd(n)
         nums = [ac.read_list_ints() for _ in range(m)]
@@ -838,6 +858,10 @@ class Solution:
 
     @staticmethod
     def cf_987c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/987/C
+        tag: brute_force|segment_tree|prefix_suffix
+        """
         # brute_force中间数组，segment_tree|维护prefix_suffix最小值
         n = ac.read_int()
         s = ac.read_list_ints()

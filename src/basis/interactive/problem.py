@@ -24,6 +24,10 @@ class Solution:
 
     @staticmethod
     def cf_1697d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1697/problem/D
+        tag: strictly_binary_search|interactive
+        """
         n = ac.read_int()
         ans = [""] * n
         dct = dict()

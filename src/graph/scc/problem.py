@@ -122,6 +122,10 @@ class TwoSAT:
 
     @staticmethod
     def cf_1438c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1438/C
+        tag: 2-sat|scc|classical
+        """
         for _ in range(ac.read_int()):
             m, n = ac.read_list_ints()
             grid = [ac.read_list_ints() for _ in range(m)]

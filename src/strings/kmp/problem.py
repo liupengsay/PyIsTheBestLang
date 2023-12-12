@@ -56,6 +56,10 @@ class Solution:
 
     @staticmethod
     def cf_1326d2(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1326/D2
+        tag: manacher|greedy|prefix_suffix|longest_prefix_suffix|palindrome_substring
+        """
         #  KMP 最长回文前缀与后缀
         for _ in range(ac.read_int()):
             s = ac.read_str()
@@ -138,6 +142,10 @@ class Solution:
 
     @staticmethod
     def cf_432d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/432/problem/D
+        tag: kmp|z_function
+        """
         # z函数与kmp算法共同，并reverse_order|counter
         s = ac.read_str()
 
@@ -197,6 +205,10 @@ class Solution:
 
     @staticmethod
     def cf_25e(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/25/problem/E
+        tag: kmp|prefix_suffix|greedy|longest_common_prefix_suffix
+        """
 
         # kmp求字符串之间的最长公共prefix_suffix，greedy拼接
         s = [ac.read_str() for _ in range(3)]

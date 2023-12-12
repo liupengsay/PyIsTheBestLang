@@ -75,6 +75,10 @@ class Solution:
 
     @staticmethod
     def cf_61e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/61/E
+        tag: sorted_list|prefix_suffix|counter
+        """
         # classical i < j < k 但是 nums[i] > nums[j] > nums[k] 的组合数
         n = ac.read_int()
         nums = ac.read_list_ints()
@@ -98,6 +102,10 @@ class Solution:
 
     @staticmethod
     def cf_1005e2(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1005/problem/E2
+        tag: median|inclusion_exclusion|prefix_sum|sorted_list|binary_search
+        """
         # 特定median的连续子数组个数，inclusion_exclusion|prefix_sumsorted_listbinary_search
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()

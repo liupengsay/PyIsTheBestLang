@@ -21,6 +21,10 @@ class Solution:
 
     @staticmethod
     def cf_1396b(nums):
+        """
+        url: https://codeforces.com/problemset/problem/1396/B
+        tag: greedy|game_dp
+        """
         # 博弈greedy，大顶heapq优先选取最大数量的石头做选择
         heapq.heapify(nums)
         order = 0

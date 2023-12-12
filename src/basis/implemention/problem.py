@@ -89,6 +89,10 @@ class Solution:
 
     @staticmethod
     def cf_463c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/463/C
+        tag: diagonal|matrix
+        """
         n = ac.read_int()
         grid = [ac.read_list_ints() for _ in range(n)]
         left = [0] * 2 * n

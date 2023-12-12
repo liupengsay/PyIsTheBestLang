@@ -144,6 +144,10 @@ class Solution:
 
     @staticmethod
     def cf_1108f(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1108/problem/F
+        tag: mst
+        """
         # 使得mst|的边组合唯一时，需要增|权重的最少边数量
         n, m = ac.read_list_ints()
         edges = []
@@ -283,6 +287,10 @@ class Solution:
 
     @staticmethod
     def cf_472d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/472/D
+        tag: mst|construction|shortest_path|prim
+        """
         #  prim 校验mst|是否存在
         n = ac.read_int()
         grid = [ac.read_list_ints() for _ in range(n)]
@@ -373,6 +381,10 @@ class Solution:
 
     @staticmethod
     def cf_609e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/609/E
+        tag: lca|greedy|mst|strictly_second_mst|necessary_edge
+        """
         # mst|有指定边参与时的最小权值和，由此也可strictly_second_mst
         n, m = ac.read_list_ints()
         edges = []

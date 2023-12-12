@@ -445,6 +445,10 @@ class Solution:
 
     @staticmethod
     def cf_1311f(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1311/problem/F
+        tag: discretization|tree_array|counter
+        """
         # 两个discretizationtree_array|，counter与|和
         n = ac.read_int()
         ind = list(range(n))
@@ -468,6 +472,10 @@ class Solution:
 
     @staticmethod
     def cf_1676h2(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1676/problem/H2
+        tag: tree_array|pre_sum
+        """
         # tree_array|维护前缀区间和
         for _ in range(ac.read_int()):
             ac.read_int()
@@ -813,6 +821,10 @@ class Solution:
 
     @staticmethod
     def cf_987c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/987/C
+        tag: brute_force|tree_array|prefix_suffix|pre_min
+        """
         # brute_force中间数组，tree_array|维护prefix_suffix最小值
         n = ac.read_int()
         s = ac.read_list_ints()
@@ -842,6 +854,10 @@ class Solution:
 
     @staticmethod
     def cf_1679c(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1679/problem/C
+        tag: PointAddRangeSum
+        """
         n, q = ac.read_list_ints()
         row = [0] * n
         col = [0] * n
@@ -875,6 +891,10 @@ class Solution:
 
     @staticmethod
     def cf_1860c(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1860/problem/C
+        tag: PointDescendRangeMin
+        """
         for _ in range(ac.read_int()):
             n = ac.read_int()
             nums = ac.read_list_ints_minus_one()

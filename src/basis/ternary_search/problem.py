@@ -160,6 +160,10 @@ class Solution:
 
     @staticmethod
     def cf_939e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/939/E
+        tag: greedy|two_pointers|ternary_search|ceil
+        """
         # 整数ternary_search，上凸函数最大值
         nums = []
         pre = [0]
@@ -184,6 +188,10 @@ class Solution:
 
     @staticmethod
     def cf_1730b(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1730/problem/B
+        tag: ternary_search
+        """
         for _ in range(ac.read_int()):
             n = ac.read_int()
             x = ac.read_list_ints()

@@ -219,6 +219,10 @@ class Solution:
 
     @staticmethod
     def cf_1095e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1095/E
+        tag: regular_bracket|counter
+        """
         # 只替换一个字符的情况下括号串是否合法
         n = ac.read_int()
         s = ac.read_str()
@@ -281,6 +285,10 @@ class Solution:
 
     @staticmethod
     def cf_5c(s):
+        """
+        url: https://codeforces.com/problemset/problem/5/C
+        tag: regular_bracket_subsequence|counter|longest
+        """
         # stack最长连续合法括号子序列以及个数
         stack = [["", -1]]
         ans = cnt = 0

@@ -94,6 +94,10 @@ class Solution:
 
     @staticmethod
     def cf_1676g(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1676/problem/G
+        tag: tree_dp
+        """
         # 迭代的方式tree_dp
         for _ in range(ac.read_int()):
             n = ac.read_int()
@@ -212,6 +216,10 @@ class Solution:
 
     @staticmethod
     def cf_1388c(ac):
+        """
+        url: https://codeforces.com/problemset/problem/1388/C
+        tag: tree_dp|implemention|recursion|down_to_up|up_to_down
+        """
         n, m = ac.read_list_ints()
         person = ac.read_list_ints()
         h = ac.read_list_ints()
@@ -250,6 +258,10 @@ class Solution:
 
     @staticmethod
     def cf_161d(n, k, pairs):
+        """
+        url: https://codeforces.com/problemset/problem/161/D
+        tag: tree_dp|counter
+        """
         # 记录树中距离为 k 的节点对数量
         edge = [[] for _ in range(n)]
         for x, y in pairs:
@@ -281,6 +293,10 @@ class Solution:
 
     @staticmethod
     def cf_1324f(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1324/F
+        tag: reroot_dp|dfs|down_to_up|up_to_down
+        """
 
         # reroot_dp，根据题意转换greedy结果
         n = ac.read_int()
@@ -327,6 +343,10 @@ class Solution:
 
     @staticmethod
     def cf_337d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/337/D
+        tag: reroot_dp|dfs|down_to_up|up_to_down
+        """
         n, m, d = ac.read_list_ints()
         evil = set(ac.read_list_ints_minus_one())
         edge = [[] for _ in range(n)]
@@ -386,6 +406,10 @@ class Solution:
 
     @staticmethod
     def cf_1092f(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1092/problem/F
+        tag: tree_dis|reroot_dp
+        """
         # 带权重树中的总距离，迭代法实现树形reroot_dp
         n = ac.read_int()
         nums = ac.read_list_ints()
@@ -445,6 +469,10 @@ class Solution:
 
     @staticmethod
     def cf_1187e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1187/E
+        tag: reroot_dp|dfs|down_to_up|up_to_down
+        """
         # reroot_dp题最佳结果
         n = ac.read_int()
         edge = [[] for _ in range(n)]
@@ -484,6 +512,10 @@ class Solution:
 
     @staticmethod
     def cf_600e_bfs(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/600/E
+        tag: dfs_order|heuristic_merge
+        """
         # 自下而上recursion的迭代写法，从小到大heuristic_merge
         n = ac.read_int()
         colors = ac.read_list_ints()
@@ -536,6 +568,10 @@ class Solution:
 
     @staticmethod
     def cf_600e_dfs(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/600/E
+        tag: dfs_order|heuristic_merge
+        """
         # 自下而上recursion的recursion写法，从小到大heuristic_merge
         n = ac.read_int()
         nums = ac.read_list_ints()
@@ -621,6 +657,10 @@ class Solution:
 
     @staticmethod
     def cf_1822f(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1822/problem/F
+        tag: tree_dis|reroot_dp|down_to_up|up_to_down
+        """
         # 换根 DP 树中节点其余节点最大的距离
         for _ in range(ac.read_int()):
             n, k, c = ac.read_list_ints()

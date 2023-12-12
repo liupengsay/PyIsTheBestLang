@@ -84,6 +84,10 @@ class Solution:
 
     @staticmethod
     def cf_1742g(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1742/problem/G
+        tag: prefix_or|lexicographical_order|construction|specific_plan
+        """
 
         # 重排数组使得前缀或值的lexicographical_order最大
         for _ in range(ac.read_int()):
@@ -113,6 +117,10 @@ class Solution:
 
     @staticmethod
     def cf_276d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/276/D
+        tag: maximum_xor|classical
+        """
 
         # 区间[l,r]的最大异或和
         a, b = ac.read_list_ints()
@@ -129,6 +137,10 @@ class Solution:
 
     @staticmethod
     def cf_1800f(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1800/problem/F
+        tag: bit_operation|brute_force|counter
+        """
 
         # bit_operationbrute_forcecounter
         n = ac.read_int()
@@ -197,6 +209,10 @@ class Solution:
 
     @staticmethod
     def cf_1554c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1554/C
+        tag: bit_operation|greedy
+        """
         # 涉及到 MEX 转换为求 n^ans>=m+1 的最小值ans
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()

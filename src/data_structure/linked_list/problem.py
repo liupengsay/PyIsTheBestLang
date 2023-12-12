@@ -41,6 +41,10 @@ class Solution:
 
     @staticmethod
     def cf_1154e(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1154/problem/E
+        tag: double_linked_list
+        """
 
         # linked_list|维护前后的节点信息
         n, k = ac.read_list_ints()

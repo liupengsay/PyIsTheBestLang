@@ -136,6 +136,10 @@ class Solution:
 
     @staticmethod
     def cf_706d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/706/D
+        tag: 01-trie|maximum_xor
+        """
         # 01trie增|与删除数字后查询最大异或值
         trie = BinaryTrie(32)
         q = ac.read_int()
@@ -152,6 +156,10 @@ class Solution:
 
     @staticmethod
     def cf_1902e(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1902/problem/E
+        tag: trie|prefix_count
+        """
         n = ac.read_int()
         words = [ac.read_str() for _ in range(n)]
 
@@ -305,6 +313,10 @@ class Solution:
 
     @staticmethod
     def cf_241b(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/241/problem/B
+        tag: 01-trie|kth_xor|heapq|greedy
+        """
         # 数组中最大的 k 组异或对
         mod = 10 ** 9 + 7
         n, k = ac.read_list_ints()
@@ -513,6 +525,10 @@ class Solution:
 
     @staticmethod
     def cf_665e(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/665/problem/E
+        tag: counter|xor_pair
+        """
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
         for i in range(1, n):
@@ -602,6 +618,10 @@ class Solution:
 
     @staticmethod
     def cf_282e(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/282/problem/E
+        tag: 01-trie|maximum_xor
+        """
         # 维护和查询最大异或数值对
         n = ac.read_int()
         nums = ac.read_list_ints()

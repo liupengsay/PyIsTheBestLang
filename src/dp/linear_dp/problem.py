@@ -209,6 +209,10 @@ class Solution:
 
     @staticmethod
     def cf_1286a(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1286/A
+        tag: liner_dp
+        """
 
         n = ac.read_int()
         nums = ac.read_list_ints()
@@ -305,6 +309,10 @@ class Solution:
 
     @staticmethod
     def cf_1525d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1525/D
+        tag: liner_dp
+        """
         n = ac.read_int()
         nums = ac.read_list_ints()
         busy = [i for i in range(n) if nums[i]]
@@ -323,6 +331,10 @@ class Solution:
 
     @staticmethod
     def cf_1437c(n, nums):
+        """
+        url: https://codeforces.com/problemset/problem/1437/C
+        tag: liner_dp
+        """
         # 两个数组线性移动匹配最大或者最小值
         nums.sort()
         m = 2 * n

@@ -62,6 +62,10 @@ class Solution:
 
     @staticmethod
     def cf_1478b(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1478/problem/B
+        tag: brute_force|bag_dp|construction
+        """
         for _ in range(ac.read_int()):
             q, d = ac.read_list_ints()
             queries = ac.read_list_ints()
@@ -82,6 +86,10 @@ class Solution:
 
     @staticmethod
     def cf_1367d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1367/D
+        tag: reverse_thinking|implemention|construction
+        """
         # reverse_thinking生成implementionconstruction
         for _ in range(ac.read_int()):
             s = ac.read_str()
@@ -107,6 +115,10 @@ class Solution:
 
     @staticmethod
     def cf_1788c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1788/C
+        tag: construction
+        """
         # 选取 1 到 2n 的数两两配对且和为连续数
         for _ in range(ac.read_int()):
             n = ac.read_int()

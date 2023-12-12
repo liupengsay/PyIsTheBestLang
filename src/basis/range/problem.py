@@ -180,6 +180,10 @@ class Solution:
 
     @staticmethod
     def cf_1102e(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1102/problem/E
+        tag: range_merge_to_disjoint
+        """
         # range_merge_to_disjoint为不相交的区间
         mod = 998244353
         n = ac.read_int()
@@ -194,6 +198,10 @@ class Solution:
 
     @staticmethod
     def cf_1426d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1426/D
+        tag: greedy|minimum_point_cover_range
+        """
         # 选取最少的点集合，使得每个区间包含其中至少一个点
         n = ac.read_int()
         nums = ac.read_list_ints()

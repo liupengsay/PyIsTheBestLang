@@ -179,6 +179,10 @@ class Solution:
 
     @staticmethod
     def cf_1722e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1722/E
+        tag: data_range|matrix_prefix_sum
+        """
         # 根据数字范围，二位prefix_sum，求解子矩阵元素和
         for _ in range(ac.read_int()):
             k, q = ac.read_list_ints()
@@ -242,6 +246,10 @@ class Solution:
 
     @staticmethod
     def cf_1795c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1795/C
+        tag: prefix_sum|binary_search|diff_array|counter|implemention
+        """
         # 根据action_scopediff_array|counter
         for _ in range(ac.read_int()):
             n = ac.read_int()
@@ -349,6 +357,10 @@ class Solution:
 
     @staticmethod
     def cf_1355c(a, b, c, d):
+        """
+        url: https://codeforces.com/problemset/problem/1355/C
+        tag: action_scope|diff_array|triangle
+        """
         # 模板: action_scope差分，合法三角形边长个数
         diff = [0] * (b + c + 1)
         for x in range(a, b + 1):
@@ -497,6 +509,10 @@ class Solution:
 
     @staticmethod
     def cf_1772d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1772/problem/D
+        tag: discretization_diff_array|action_scope|counter
+        """
         # discretization_diff_arrayaction_scopecounter
         ceil = 10 ** 9
         for _ in range(ac.read_int()):

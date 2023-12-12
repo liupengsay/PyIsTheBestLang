@@ -141,6 +141,10 @@ class Solution:
 
     @staticmethod
     def cf_220b(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/220/problem/B
+        tag: block_query|counter
+        """
         # 查询区间内符合条件的元素个数
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -196,6 +200,10 @@ class Solution:
 
     @staticmethod
     def cf_86d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/86/problem/D
+        tag: block_query|math
+        """
         # 查询区间内的函数值
         n, t = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -249,6 +257,10 @@ class Solution:
 
     @staticmethod
     def cf_617e(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/617/problem/E
+        tag: block_query|xor_pair|counter
+        """
         # 查询区间内的异或对数
         n, m, k = ac.read_list_ints()
         nums = ac.read_list_ints()

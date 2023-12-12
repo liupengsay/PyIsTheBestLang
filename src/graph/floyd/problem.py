@@ -341,6 +341,10 @@ class Solution:
 
     @staticmethod
     def cf_472d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/472/D
+        tag: floyd|construction|shortest_path
+        """
         #  Floyd 的思想判断shortest_path矩阵是否合理存在
         n = ac.read_int()
         grid = [ac.read_list_ints() for _ in range(n)]

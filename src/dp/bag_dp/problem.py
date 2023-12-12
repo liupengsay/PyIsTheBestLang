@@ -127,6 +127,10 @@ class Solution:
 
     @staticmethod
     def cf_1433f(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1433/F
+        tag: bag_dp|finite|brute_force
+        """
         # 两层bag_dp|，矩阵动态规划转移
         m, n, k = ac.read_list_ints()
         pre = [-inf] * k
@@ -156,6 +160,10 @@ class Solution:
 
     @staticmethod
     def cf_543a(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/543/A
+        tag: matrix_bag_dp
+        """
         # group_bag_dp DP 有限作为无限
         n, m, b, mod = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -171,6 +179,10 @@ class Solution:
 
     @staticmethod
     def cf_577b(m, nums):
+        """
+        url: https://codeforces.com/problemset/problem/577/B
+        tag: mod|counter|bin_split|bag_dp
+        """
         # mod|counterbin_split与bag_dp|，寻找非空子序列的和整除给定的数
         cnt = [0] * m
         for num in nums:
@@ -323,6 +335,10 @@ class Solution:
 
     @staticmethod
     def cf_1657d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1657/problem/D
+        tag: infinite|bag_dp|mul|euler_series|O(nlogn)||binary_search|greedy
+        """
         n, c = ac.read_list_ints()
         dp = [0] * (c + 1)
         for _ in range(n):

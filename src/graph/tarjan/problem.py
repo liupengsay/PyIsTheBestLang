@@ -290,6 +290,10 @@ class Solution:
 
     @staticmethod
     def cf_999e(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/999/problem/E
+        tag: scc|shrink_point
+        """
         # scc|shrink_point|后查看入度为0的点个数
         n, m, s = ac.read_list_ints()
         s -= 1
@@ -316,6 +320,10 @@ class Solution:
 
     @staticmethod
     def cf_1702e(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1702/problem/E
+        tag: point_doubly_connected_component|pdcc|undirected|odd_circle
+        """
         # point_doubly_connected_component无向图找环，判断有无奇数环
         for _ in range(ac.read_int()):
             def check():
@@ -488,6 +496,10 @@ class Solution:
 
     @staticmethod
     def cf_427c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/427/C
+        tag: scc|shrink_point
+        """
         # tarjan有向图缩点后counter
         n = ac.read_int()
         nums = ac.read_list_ints()

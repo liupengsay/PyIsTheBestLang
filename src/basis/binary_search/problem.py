@@ -154,6 +154,10 @@ class Solution:
 
     @staticmethod
     def cf_448d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/448/D
+        tag: binary_search|kth_max_of_n_mul_m_table
+        """
         #  n*m 乘法矩阵内的第 k 大元素
         n, m, k = ac.read_list_ints()
 
@@ -173,6 +177,10 @@ class Solution:
 
     @staticmethod
     def cf_1370d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1370/D
+        tag: binary_search|greedy|check
+        """
         n, k = map(int, input().split())
         nums = list(map(int, input().split()))
 
@@ -200,6 +208,10 @@ class Solution:
 
     @staticmethod
     def cf_1475d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1475/D
+        tag: greedy|sorting|prefix_sum|brute_force|binary_search
+        """
         # greedysorting后，brute_force并prefix_sumbinary_search查询
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
@@ -283,6 +295,10 @@ class Solution:
 
     @staticmethod
     def cf_1680c(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1680/problem/C
+        tag: binary_search|greedy|two_pointers|check
+        """
         for _ in range(ac.read_int()):
             s = ac.read_str()
             n = len(s)
@@ -309,6 +325,10 @@ class Solution:
 
     @staticmethod
     def cf_1791g2(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1791/G2
+        tag: greedy|sorting|prefix_sum|brute_force|binary_search
+        """
         # find_int_right
         for _ in range(ac.read_int()):
 
@@ -472,6 +492,10 @@ class Solution:
 
     @staticmethod
     def cf_1486d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1486/D
+        tag: binary_search|hash|prefix_sum|maximum_length_of_sub_consequence_with_pos_sum
+        """
         # 转换为binary_search和hash前缀求最长和为正数的最长连续子序列
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -850,6 +874,10 @@ class Solution:
 
     @staticmethod
     def cf_1118d2(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1118/D2
+        tag: greedy|binary_search
+        """
 
         # greedybinary_search
         n, m = ac.read_list_ints()
@@ -872,6 +900,10 @@ class Solution:
 
     @staticmethod
     def cf_883i(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/883/I
+        tag: binary_search|two_pointers|dp
+        """
         # binary_search|two_pointersdp
         n, k = ac.read_list_ints()
         nums = sorted(ac.read_list_ints())

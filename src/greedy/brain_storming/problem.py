@@ -201,6 +201,10 @@ class Solution:
 
     @staticmethod
     def cf_1005e2(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1005/problem/E2
+        tag: median|inclusion_exclusion|prefix_sum|sorted_list|binary_search|LC2488
+        """
         # 特定median的连续子数组个数，inclusion_exclusion|prefix_sumsorted_listbinary_search
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -225,6 +229,10 @@ class Solution:
 
     @staticmethod
     def cf_1038d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1038/D
+        tag: greedy|implemention|classification_discussion
+        """
         # classification_discussiongreedyimplemention
         n = ac.read_int()
         nums = ac.read_list_ints()
@@ -1019,6 +1027,10 @@ class Solution:
 
     @staticmethod
     def cf_1665c(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1665/problem/C
+        tag: graph|greedy
+        """
 
         def solve():
             n = ac.read_int()

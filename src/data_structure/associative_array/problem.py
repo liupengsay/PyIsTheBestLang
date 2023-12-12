@@ -59,6 +59,10 @@ class Solution:
 
     @staticmethod
     def cf_1702c(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1702/problem/C
+        tag: hash|xor_random_seed
+        """
         def solve():
             ac.read_str()
             n, k = ac.read_list_ints()

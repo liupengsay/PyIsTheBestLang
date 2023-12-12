@@ -294,6 +294,10 @@ class Solution:
 
     @staticmethod
     def cf_2b(ac, n, grid):
+        """
+        url: https://codeforces.com/problemset/problem/2/B
+        tag: matrix_dp
+        """
         # 乘积后缀0最少的个数以及对应的路径
         def f_2(num):
             if not num:
@@ -370,6 +374,10 @@ class Solution:
 
     @staticmethod
     def cf_1398d(ac, r, g, b, lst):
+        """
+        url: https://codeforces.com/problemset/problem/1398/D
+        tag: md_matrix_dp|maximum_mul|maximum_sum
+        """
         # 三维DP，选取两个不同数组的数乘积，最大总和
         @ac.bootstrap
         def dfs(i, j, k):

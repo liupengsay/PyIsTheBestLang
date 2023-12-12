@@ -18,18 +18,18 @@ class TestGeneral(unittest.TestCase):
             for line in lines:
                 st = "（https://"
                 try:
-                    if st in line and "leetcode.com" in line:
+                    if st in line and "https://codeforces.com" in line:
                         idx = line.split(st)[0]
                         url = "https://" + line.split(st)[1].split("）")[0]
                         tag = line.split(st)[1].split("）")[1]
-                        dct[idx] = ["        \"\"\"", f"        url: {url}", f"        tag: {tag}", "        \"\"\""]
+                        dct[idx.lower()] = ["        \"\"\"", f"        url: {url}", f"        tag: {tag}", "        \"\"\""]
                 except:
                     print(file_path, line)
 
-                st = "def lc_"
+                st = "def cf_"
                 if lst and st in lst[-1]:
                     try:
-                        lst.extend(dct[lst[-1].split("(")[0].split("lc_")[1].split("_")[0]])
+                        lst.extend(dct[lst[-1].split("(")[0].split("cf_")[1].split("_")[0]])
                     except:
                         print(file_path, lst[-1])
 

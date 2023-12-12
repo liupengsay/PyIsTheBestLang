@@ -133,6 +133,10 @@ class Solution:
 
     @staticmethod
     def cf_429d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/429/D
+        tag: closet_pair|divide_and_conquer|hash|block_plane|sorted_list|classical
+        """
         # 转换为求解closest_pair
         n = ac.read_int()
         nums = ac.read_list_ints()

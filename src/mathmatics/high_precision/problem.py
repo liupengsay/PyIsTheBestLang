@@ -55,6 +55,10 @@ class Solution:
 
     @staticmethod
     def cf_1144e(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1144/problem/E
+        tag: big_number|minus|mul|divide
+        """
         # 超大整数|减与乘除
         n = ac.read_int()
         s = ac.read_str()

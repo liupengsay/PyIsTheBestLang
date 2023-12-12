@@ -75,6 +75,10 @@ class Solution:
 
     @staticmethod
     def cf_474f(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/474/F
+        tag: sparse_table|range_min|range_gcd|binary_search|counter
+        """
         # sparse_table查询静态区间 gcd 与最小值
         n = ac.read_int()
         nums = ac.read_list_ints()
@@ -247,6 +251,10 @@ class Solution:
 
     @staticmethod
     def cf_1516d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1516/problem/D
+        tag: multiplication_method
+        """
         pf = PrimeFactor(10 ** 5)
         n, q = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -281,6 +289,10 @@ class Solution:
 
     @staticmethod
     def cf_1709d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1709/problem/D
+        tag: sparse_table|range_max|implemention
+        """
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         st = SparseTable1(nums, "max")
@@ -305,6 +317,10 @@ class Solution:
 
     @staticmethod
     def cf_1878e(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1878/problem/E
+        tag: sparse_table|range_and
+        """
         # 连续子数组的and信息
         for _ in range(ac.read_int()):
             n = ac.read_int()

@@ -672,6 +672,10 @@ class Solution:
 
     @staticmethod
     def cf_1313c2(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1313/C2
+        tag: monotonic_stack|liner_dp
+        """
         # monotonic_stack|优化liner_dp
         n = ac.read_int()
         nums = ac.read_list_ints()
@@ -710,6 +714,10 @@ class Solution:
 
     @staticmethod
     def cf_1795e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1795/E
+        tag: monotonic_stack|liner_dp|greedy|counter|brute_force|prefix_suffix|dp
+        """
         # monotonic_stack|优化liner_dp，greedycounterbrute_force，prefix_suffixDP转移
         for _ in range(ac.read_int()):
 

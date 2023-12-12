@@ -100,6 +100,10 @@ class Solution:
 
     @staticmethod
     def cf_1810e(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1810/problem/E
+        tag: union_find|heuristic_search|bfs|heapq
+        """
         # union_find|启发式搜索，线性遍历维护
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
@@ -184,6 +188,10 @@ class Solution:
 
     @staticmethod
     def cf_920e(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/920/problem/E
+        tag: union_find
+        """
         # union_find线性更新，集合维护
         n, m = ac.read_list_ints()
         edge = set()

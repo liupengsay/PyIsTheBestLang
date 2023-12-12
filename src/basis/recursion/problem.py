@@ -232,6 +232,10 @@ class Solution:
 
     @staticmethod
     def cf_448c(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/448/problem/C
+        tag: greedy|recursion|dp
+        """
         # greedyrecursionDP
         ac.read_int()
         nums = ac.read_list_ints()

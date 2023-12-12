@@ -153,6 +153,10 @@ class Solution:
 
     @staticmethod
     def cf_1311d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1311/D
+        tag: greedy|brute_force
+        """
         # 根据greedy策略 a=b=1 时显然满足条件，因此brute_force不会超过这个代价的范围就行
         for _ in range(ac.read_int()):
             a, b, c = ac.read_list_ints()
@@ -172,6 +176,10 @@ class Solution:
 
     @staticmethod
     def cf_584d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/584/D
+        tag: brute_force|prime|decompose_into_sum_of_prime_at_most_3
+        """
         # 将 n 分解为最多三个质数的和
         def is_prime4(x):
             if x == 1:
@@ -245,6 +253,10 @@ class Solution:
 
     @staticmethod
     def cf_484b(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/484/B
+        tag: sorting|brute_force|binary_search
+        """
         # 查询数组中两两mod|运算的最大值（要求较小值作为mod|数）
         ac.read_int()
         nums = sorted(list(set(ac.read_list_ints())))
@@ -271,6 +283,10 @@ class Solution:
 
     @staticmethod
     def cf_382c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/382/C
+        tag: classification_discussion
+        """
 
         # 2023年3月29日·灵茶试炼·classification_discussion
         n = ac.read_int()

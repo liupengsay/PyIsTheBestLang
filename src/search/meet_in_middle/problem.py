@@ -162,6 +162,10 @@ class Solution:
 
     @staticmethod
     def cf_1006f(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1006/problem/F
+        tag: prefix_sum|hash|counter|meet_in_middle
+        """
         # prefix_sumhashcounter，矩阵meet_in_middle
         m, n, k = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]

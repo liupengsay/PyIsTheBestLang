@@ -109,6 +109,10 @@ class Solution:
 
     @staticmethod
     def cf_1034a(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1034/A
+        tag: prime_factorization
+        """
 
         n = ac.read_int()
         nums = ac.read_list_ints()
@@ -167,6 +171,10 @@ class Solution:
 
     @staticmethod
     def cf_1366d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1366/D
+        tag: min_prime|construction
+        """
         ac.read_int()
         nums = ac.read_list_ints()
         ceil = max(nums)
@@ -234,6 +242,10 @@ class Solution:
 
     @staticmethod
     def cf_1295d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1295/D
+        tag: euler_phi|n_coprime
+        """
         # euler_phi求解
         for _ in range(ac.read_int()):
             a, m = ac.read_list_ints()
@@ -245,6 +257,10 @@ class Solution:
 
     @staticmethod
     def cf_1458a(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1458/A
+        tag: gcd|math
+        """
         # gcdmath|求解gcd(x,y)=gcd(x-y,y)
         m, n = ac.read_list_ints()
         a = ac.read_list_ints()
@@ -884,6 +900,10 @@ class Solution:
 
     @staticmethod
     def cf_1612d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1612/problem/D
+        tag: gcd_like
+        """
         for _ in range(ac.read_int()):
             a, b, x = ac.read_list_ints()
             while True:

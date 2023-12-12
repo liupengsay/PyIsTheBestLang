@@ -236,6 +236,10 @@ class Solution:
 
     @staticmethod
     def cf_1682c(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1682/problem/C
+        tag: lis|lds|greedy|counter
+        """
         for _ in range(ac.read_int()):
             ac.read_int()
             nums = ac.read_list_ints()

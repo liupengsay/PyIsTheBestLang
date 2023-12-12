@@ -158,6 +158,10 @@ class Solution:
 
     @staticmethod
     def cf_1006e(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1006/problem/E
+        tag: dfs_order|template
+        """
         # dfs_order|模板题
         n, q = ac.read_list_ints()
         dct = [[] for _ in range(n)]
@@ -179,6 +183,10 @@ class Solution:
 
     @staticmethod
     def cf_1899g(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1899/problem/G
+        tag: dfs|inclusion_exclusion|classical|point_add_range_sum
+        """
         for _ in range(ac.read_int()):
             n, q = ac.read_list_ints()
             dct = [[] for _ in range(n)]
@@ -634,6 +642,10 @@ class Solution:
 
     @staticmethod
     def cf_570d_1(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/570/problem/D
+        tag: dfs_order|binary_search|offline_query
+        """
         # dfs_order|与binary_searchcounter统计（超时）
         n, m = ac.read_list_ints()
         parent = ac.read_list_ints()
@@ -686,6 +698,10 @@ class Solution:
 
     @staticmethod
     def cf_570d_2(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/570/problem/D
+        tag: dfs_order|binary_search|offline_query
+        """
         # 迭代顺序实现dfs_order，利用异或和来判断是否能形成回文
 
         n, m = ac.read_list_ints()
@@ -723,6 +739,10 @@ class Solution:
 
     @staticmethod
     def cf_208e(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/208/problem/E
+        tag: dfs_order|lca|binary_search|counter
+        """
         # dfs_order|LCA|binary_searchcounter
         n = ac.read_int()
         parent = ac.read_list_ints()

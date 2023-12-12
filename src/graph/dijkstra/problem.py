@@ -158,6 +158,10 @@ class Solution:
 
     @staticmethod
     def cf_1343e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1343/E
+        tag: several_bfs|shortest_path|greedy|brute_force
+        """
         # 01-bfs求三个shortest_path
         for _ in range(ac.read_int()):
             n, m, a, b, c = ac.read_list_ints()
@@ -188,6 +192,10 @@ class Solution:
 
     @staticmethod
     def cf_1650g(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1650/problem/G
+        tag: dijkstra|shortest_path|strictly_second_shortest_path|counter|zero_one_bfs
+        """
         # shortest_path与strictly_second_shortest_pathcounter，因为不带权，所以正解为01-bfs
         mod = 10 ** 9 + 7
         for _ in range(ac.read_int()):
@@ -969,6 +977,10 @@ class Solution:
 
     @staticmethod
     def cf_715b(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/715/problem/B
+        tag: several_dijkstra|shortest_path|greedy|dynamic_graph
+        """
         # 两遍shortest_path，greedy动态更新路径权值
         n, m, target, source, destination = ac.read_list_ints()
         edges = []

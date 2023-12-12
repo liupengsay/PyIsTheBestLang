@@ -204,6 +204,10 @@ class Solution:
 
     @staticmethod
     def cf_1176d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1176/problem/D
+        tag: construction|greedy|implemention
+        """
         # construction题，greedyimplemention，记录合数最大不等于自身的因子，以及质数列表的顺序
         ac.read_int()
         nt = PrimeFactor(2 * 10 ** 5)
@@ -490,6 +494,10 @@ class Solution:
 
     @staticmethod
     def cf_1900d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1900/problem/D
+        tag: inclusion_exclusion|gcd_pair|counter|classical
+        """
         ceil = 10 ** 5 + 1
         for _ in range(ac.read_int()):
             n = ac.read_int()
@@ -546,6 +554,10 @@ class Solution:
 
     @staticmethod
     def cf_1884d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1884/problem/D
+        tag: factor_dp|gcd_pair|counter|classical
+        """
         for _ in range(ac.read_int()):
             n = ac.read_int()
             nums = ac.read_list_ints()

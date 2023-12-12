@@ -97,6 +97,10 @@ class Solution:
 
     @staticmethod
     def cf_1436c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1436/C
+        tag: binary_search|comb
+        """
 
         # binary_search|组合数
         n, x, pos = ac.read_list_ints()
@@ -125,6 +129,10 @@ class Solution:
 
     @staticmethod
     def cf_559c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/559/C
+        tag: inclusion_exclusion|counter
+        """
 
         # inclusion_exclusion组合数
         m, n, k = ac.read_list_ints()
@@ -218,6 +226,10 @@ class Solution:
 
     @staticmethod
     def cf_300c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/300/C
+        tag: brute_force|comb|specific_plan|counter
+        """
         mod = 10 ** 9 + 7
         a, b, n = ac.read_list_ints()
         c = Combinatorics(n + 1, mod)
@@ -234,6 +246,10 @@ class Solution:
 
     @staticmethod
     def cf_1795d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1795/D
+        tag: comb|counter|mod|multiplicative_reverse
+        """
         n = ac.read_int()
         nums = ac.read_list_ints()
         mod = 998244353
@@ -558,6 +574,10 @@ class Solution:
 
     @staticmethod
     def cf_414b(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/414/B
+        tag: min_prime|partition_method|counter|dp
+        """
         mod = 10 ** 9 + 7
         n, k = ac.read_list_ints()
         mp = PrimeFactor(n)
