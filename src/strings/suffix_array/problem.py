@@ -27,6 +27,10 @@ class Solution:
 
     @staticmethod
     def lc_1754_1(word1: str, word2: str) -> str:
+        """
+        url: https://leetcode.com/problems/largest-range_merge_to_disjoint-of-two-strings/
+        tag: largest|suffix_array
+        """
         # 后缀数组后缀的lexicographical_order大小，greedy拼接两个字符串使得lexicographical_order最大
         ind = {chr(ord("a") - 1 + i): i for i in range(27)}
         word = word1 + chr(ord("a") - 1) + word2
@@ -48,6 +52,10 @@ class Solution:
 
     @staticmethod
     def lc_1754_2(word1: str, word2: str) -> str:
+        """
+        url: https://leetcode.com/problems/largest-range_merge_to_disjoint-of-two-strings/
+        tag: largest|suffix_array
+        """
         # greedy比较后缀的lexicographical_order大小
         range_merge_to_disjoint = ""
         i = j = 0
@@ -124,6 +132,10 @@ class Solution:
 
     @staticmethod
     def lc_1698(s: str) -> int:
+        """
+        url: https://leetcode.com/problems/number-of-distinct-substrings-in-a-string/
+        tag: suffix_array|height
+        """
         # 后缀数组应用题，利用 height 特性
         ind = {chr(ord("a") + i): i for i in range(26)}
         # 高度数组的定义，所有高度之和就是相同子串的个数

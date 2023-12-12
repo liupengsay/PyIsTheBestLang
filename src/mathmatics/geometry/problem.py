@@ -61,6 +61,10 @@ class Solution:
 
     @staticmethod
     def lc_2280(stock: List[List[int]]) -> int:
+        """
+        url: https://leetcode.com/problems/minimum-lines-to-represent-a-line-chart/
+        tag: line_slope
+        """
         # 分数代表斜率
         stock.sort()
         pre = (-1, -1)
@@ -82,6 +86,10 @@ class Solution:
 
     @staticmethod
     def lc_149(points: List[List[int]]) -> int:
+        """
+        url: https://leetcode.com/problems/max-points-on-a-line/
+        tag: line_slope|brute_force|classical
+        """
         # 两个不相同的点组成的line_slope
         ans = 0
         n = len(points)
@@ -150,6 +158,10 @@ class Solution:
 
     @staticmethod
     def lc_1453(darts: List[List[int]], r: int) -> int:
+        """
+        url: https://leetcode.com/problems/maximum-number-of-darts-inside-of-a-circular-dartboard/
+        tag: circle|classical|circle_center
+        """
         # 经过两个不同的点与确定半径的两处圆心
         n = len(darts)
         ans = 1

@@ -146,11 +146,19 @@ class Solution:
 
     @staticmethod
     def lc_1143(s1: str, s2: str) -> int:
+        """
+        url: https://leetcode.com/problems/longest-common-subsequence/
+        tag: lis|lcs
+        """
         # LIS的办法求LCS
         return LcsComputeByLis().longest_common_subsequence(s1, s2)
 
     @staticmethod
     def lc_920(n: int, goal: int, k: int) -> int:
+        """
+        url: https://leetcode.com/problems/number-of-music-playlists/
+        tag: matrix_dp
+        """
         # matrix_dp（memory_searchdfs|刷表法实现）
         mod = 10 ** 9 + 7
 
@@ -169,6 +177,10 @@ class Solution:
 
     @staticmethod
     def lc_956(rods: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/tallest-billboard/description/
+        tag: matrix_dp
+        """
         # matrix_dp
         pre = defaultdict(int)
         pre[0] = 0
@@ -182,6 +194,10 @@ class Solution:
 
     @staticmethod
     def lc_1092(str1: str, str2: str) -> str:
+        """
+        url: https://leetcode.com/problems/shortest-common-supersequence/
+        tag: lis|lcs|specific_plan
+        """
         # 最长公共子序列，并construction包含两个字符串的最短公共超序列
         m, n = len(str1), len(str2)
         dp = [[0] * (n + 1) for _ in range(m + 1)]
@@ -213,6 +229,10 @@ class Solution:
 
     @staticmethod
     def lc_2435(grid: List[List[int]], k: int) -> int:
+        """
+        url: https://leetcode.com/problems/paths-in-matrix-whose-sum-is-divisible-by-k/
+        tag: matrix_dp|mod
+        """
         # 标准matrix_dp| 左上到右下的状态转移
         mod = 10 ** 9 + 7
         m, n = len(grid), len(grid[0])
@@ -238,6 +258,10 @@ class Solution:
 
     @staticmethod
     def lc_6363(lcp: List[List[int]]) -> str:
+        """
+        url: https://leetcode.com/problems/find-the-string-with-lcp/
+        tag: greedy|construction|lcp
+        """
         # 根据 LCP 矩阵生成lexicographical_order最小的符合条件的字符串
         n = len(lcp)
         ans = [""] * n
@@ -370,6 +394,10 @@ class Solution:
 
     @staticmethod
     def lc_2478(s: str, k: int, min_length: int) -> int:
+        """
+        url: https://leetcode.com/problems/number-of-beautiful-partitions/
+        tag: matrix_dp
+        """
         mod = 10 ** 9 + 7
         # prefix_sum优化二维matrix_dp
         start = set("2357")
@@ -396,6 +424,10 @@ class Solution:
 
     @staticmethod
     def lc_2463(robot, factory):
+        """
+        url: https://leetcode.com/problems/minimum-total-distance-traveled/
+        tag: matrix_dp
+        """
         # 两个数组pointer移动方向与prefix_sum优化求解
         robot.sort()
         factory.sort()
@@ -1354,6 +1386,10 @@ class Solution:
 
     @staticmethod
     def lc_2556(grid: List[List[int]]) -> bool:
+        """
+        url: https://leetcode.com/problems/disconnect-path-in-a-binary-matrix-by-at-most-one-flip/description/
+        tag: matrix_dp|brain_teaser
+        """
 
         # matrix_dpbrain_teaser|，判断cut_point可行性
         m, n = len(grid), len(grid[0])
@@ -1395,6 +1431,10 @@ class Solution:
 
     @staticmethod
     def lc_2617_1(grid: List[List[int]]) -> int:
+        """
+        url: https://leetcode.com/problems/minimum-number-of-visited-cells-in-a-grid/
+        tag: reverse_order|matrix_dp|tree_array|prefix_min
+        """
         # reverse_order|matrix_dp| 并tree_array|记录更新前缀最小值
         m, n = len(grid), len(grid[0])
         dp = [[inf] * n for _ in range(m)]
@@ -1419,6 +1459,10 @@ class Solution:
 
     @staticmethod
     def lc_2617_2(grid: List[List[int]]) -> int:
+        """
+        url: https://leetcode.com/problems/minimum-number-of-visited-cells-in-a-grid/
+        tag: reverse_order|matrix_dp|tree_array|prefix_min
+        """
         # matrix_dp| priority_queue或者monotonic_queue
         m, n = len(grid), len(grid[0])
         dp = [[inf] * n for _ in range(m)]
@@ -1444,6 +1488,10 @@ class Solution:
 
     @staticmethod
     def lc_2617_3(grid: List[List[int]]) -> int:
+        """
+        url: https://leetcode.com/problems/minimum-number-of-visited-cells-in-a-grid/
+        tag: reverse_order|matrix_dp|tree_array|prefix_min
+        """
         # matrix_dp|  bfs |union_find的方式
         m, n = len(grid), len(grid[0])
         row = [list(range(1, n + 1)) for _ in range(m)]
@@ -1574,6 +1622,10 @@ class Solution:
 
     @staticmethod
     def lc_1216(s: str, k: int) -> bool:
+        """
+        url: https://leetcode.com/problems/valid-palindrome-iii/
+        tag: matrix_dp|longest_palindrome_subsequence
+        """
 
         # DP求最长回文子序列
         n = len(s)
@@ -1743,6 +1795,10 @@ class Solution:
 
     @staticmethod
     def lc_2088(grid: List[List[int]]) -> int:
+        """
+        url: https://leetcode.com/problems/count-fertile-pyramids-in-a-land/
+        tag: matrix_dp
+        """
 
         # 类似求正方形的边长和面积matrix_dp
         def check():
@@ -1770,6 +1826,10 @@ class Solution:
 
     @staticmethod
     def lc_2430(s: str) -> int:
+        """
+        url: https://leetcode.com/problems/maximum-deletions-on-a-string/
+        tag: lcp|matrix_dp
+        """
         # 双重DPLCP与matrix_dp
         n = len(s)
         lcp = [[0] * (n + 1) for _ in range(n + 1)]
@@ -1866,6 +1926,10 @@ class Solution:
 
     @staticmethod
     def lc_1594(grid: List[List[int]]) -> int:
+        """
+        url: https://leetcode.com/problems/maximum-non-negative-product-in-a-matrix/
+        tag: matrix_dp|maximum_mul|minimum_mul
+        """
 
         # matrix_dp最大与最小乘积转移
         m, n = len(grid), len(grid[0])
@@ -1892,6 +1956,10 @@ class Solution:
 
     @staticmethod
     def lc_1639(words: List[str], target: str) -> int:
+        """
+        url: https://leetcode.com/problems/number-of-ways-to-form-a-target-string-given-a-dictionary/description/
+        tag: prefix_sum|matrix_dp
+        """
         # prefix_sum优化matrix_dp|
         dct = defaultdict(lambda: defaultdict(int))
         n = len(words[0])
@@ -1914,6 +1982,10 @@ class Solution:
 
     @staticmethod
     def lc_1745(s: str) -> bool:
+        """
+        url: https://leetcode.com/problems/palindrome-partitioning-iv/description/
+        tag: matrix_dp|palindrome_substring|manacher|brute_force
+        """
         # matrix_dp判断是否为palindrome_substring，或者manacher然后brute_force
         n = len(s)
         dp = [[0] * n for _ in range(n)]
@@ -1933,6 +2005,10 @@ class Solution:
 
     @staticmethod
     def lc_1771(word1: str, word2: str) -> int:
+        """
+        url: https://leetcode.com/problems/maximize-palindrome-length-from-subsequences/
+        tag: longest_palindrome_subsequence|matrix_dp
+        """
         # 最长回文子序列matrix_dp
         m, n = len(word1), len(word2)
         s = word1 + word2
@@ -1958,6 +2034,10 @@ class Solution:
 
     @staticmethod
     def lc_1937(points: List[List[int]]) -> int:
+        """
+        url: https://leetcode.com/problems/maximum-number-of-points-with-cost/
+        tag: prefix_sum|matrix_dp
+        """
         # 矩阵prefix_sum后缀和优化的DP
         m, n = len(points), len(points[0])
         pre = points[0][:]
@@ -1984,6 +2064,10 @@ class Solution:
 
     @staticmethod
     def lc_1977(num: str) -> int:
+        """
+        url: https://leetcode.com/problems/number-of-ways-to-separate-numbers/
+        tag: matrix_dp|lcp|prefix_sum
+        """
         # 两个matrix_dp含LCP优化，或者前缀优化DP
         mod = 10 ** 9 + 7
         n = len(num)
@@ -2017,6 +2101,10 @@ class Solution:
 
     @staticmethod
     def lc_2060(s1: str, s2: str) -> bool:
+        """
+        url: https://leetcode.com/problems/check-if-an-original-string-exists-given-two-encoded-strings/description/
+        tag: matrix_dp|brute_force|memory_search
+        """
 
         # 二维matrix_dpbrute_forcememory_search
 

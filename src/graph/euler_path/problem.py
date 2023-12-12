@@ -170,6 +170,10 @@ class Solution:
 
     @staticmethod
     def lc_1743(adjacent: List[List[int]]) -> List[int]:
+        """
+        url: https://leetcode.com/problems/restore-the-array-from-adjacent-pairs/
+        tag: undirected_euler_path|discretization
+        """
         # 无向图euler_path模板题, discretization解决
         nodes = set()
         for a, b in adjacent:
@@ -184,6 +188,10 @@ class Solution:
 
     @staticmethod
     def lc_2097(pairs: List[List[int]]) -> List[List[int]]:
+        """
+        url: https://leetcode.com/problems/valid-arrangement-of-pairs/submissions/
+        tag: euler_path
+        """
         # euler_path模板题，discretization后转化为图的euler_path求解
         nodes = set()
         for a, b in pairs:

@@ -109,6 +109,10 @@ class Solution:
 
     @staticmethod
     def lc_2646(n: int, edges: List[List[int]], price: List[int], trips: List[List[int]]) -> int:
+        """
+        url: https://leetcode.com/problems/minimize-the-total-price-of-the-trips/
+        tag: offline_lca|tree_diff_array|counter|tree_dp
+        """
         # offline_lca与tree_diff_arraycounter，再tree_dp| 
         dct = [[] for _ in range(n)]
         for i, j in edges:

@@ -367,6 +367,10 @@ class Solution:
 
     @staticmethod
     def lc_2589(tasks: List[List[int]]) -> int:
+        """
+        url: https://leetcode.com/problems/minimum-time-to-complete-all-tasks/
+        tag: differential_constraint|greedy|classical
+        """
         # 根据prefix_sumdifferential_constraint求解
         lst = []
         for a, b, c in tasks:

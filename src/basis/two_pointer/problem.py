@@ -99,6 +99,10 @@ class Solution:
 
     @staticmethod
     def lc_16(nums, target):
+        """
+        url: https://leetcode.com/problems/3sum-closest/
+        tag: tree_pointers
+        """
         # 寻找最接近目标值的三个元素和
         n = len(nums)
         nums.sort()
@@ -119,6 +123,10 @@ class Solution:
 
     @staticmethod
     def lc_15(nums):
+        """
+        url: https://leetcode.com/problems/3sum/
+        tag: two_pointers
+        """
         # 寻找三个元素和为 0 的不重复组合
         nums.sort()
         n = len(nums)
@@ -140,6 +148,10 @@ class Solution:
 
     @staticmethod
     def lc_259(nums: List[int], target: int) -> int:
+        """
+        url: https://leetcode.com/problems/3sum-smaller/
+        tag: two_pointers|counter|brute_force
+        """
         # 相反方向的two_pointers统计和小于 target 的三元组数量
         nums.sort()
         n = len(nums)
@@ -158,6 +170,10 @@ class Solution:
 
     @staticmethod
     def lc_239(nums: List[int], k: int) -> List[int]:
+        """
+        url: https://leetcode.com/problems/sliding-window-maximum/
+        tag: sliding_window
+        """
         # sliding_window最大值
         n = len(nums)
         swa = SlidingWindowAggregation(-INF, max)
@@ -171,6 +187,10 @@ class Solution:
 
     @staticmethod
     def lc_2516(s: str, k: int) -> int:
+        """
+        url: https://leetcode.com/problems/take-k-of-each-character-from-left-and-right/
+        tag: reverse_thinking|inclusion_exclusion|two_pointers
+        """
         # reverse_thinkinginclusion_exclusiontwo_pointers
         cnt = Counter(s)
         n = len(s)
@@ -190,6 +210,10 @@ class Solution:
 
     @staticmethod
     def lc_2555(prize_positions: List[int], k: int) -> int:
+        """
+        url: https://leetcode.com/problems/maximize-win-from-two-segments/description/
+        tag: same_direction|two_pointers|liner_dp
+        """
         # same_direction|two_pointers|liner_dp
         n = len(prize_positions)
 
@@ -207,6 +231,10 @@ class Solution:
 
     @staticmethod
     def lc_2747(n: int, logs: List[List[int]], x: int, queries: List[int]) -> List[int]:
+        """
+        url: https://leetcode.com/problems/count-zero-request-servers/
+        tag: offline_query|tree_pointers|fast_slow_pointers
+        """
         # offline_query与three_pointers，即fast_slow_pointers维护连续区间的不同值个数
         m = len(queries)
         ans = [0] * m
@@ -232,6 +260,10 @@ class Solution:
 
     @staticmethod
     def lc_6392(nums: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/
+        tag: sliding_window|gcd
+        """
         # sliding_window维护区间 gcd 为 1 的长度信息
         if gcd(*nums) != 1:
             return -1
@@ -250,6 +282,10 @@ class Solution:
 
     @staticmethod
     def lc_992(nums: List[int], k: int) -> int:
+        """
+        url: https://leetcode.com/problems/subarrays-with-k-different-integers/
+        tag: tree_pointers|fast_slow_pointers
+        """
         # three_pointers，即fast_slow_pointers维护连续子区间个数
         n = len(nums)
         ans = j1 = j2 = 0
@@ -276,6 +312,10 @@ class Solution:
 
     @staticmethod
     def lc_1163(s: str) -> str:
+        """
+        url: https://leetcode.com/problems/last-substring-in-lexicographical-order/
+        tag: minimum_expression|two_pointers
+        """
         # two_pointers
         i, j, n = 0, 1, len(s)
         while j < n:
@@ -290,6 +330,10 @@ class Solution:
 
     @staticmethod
     def lc_1537(nums1: List[int], nums2: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/get-the-maximum-score/description/
+        tag: two_pointers|liner_dp|topological_sorting
+        """
         # two_pointers|liner_dp或者topological_sorting做
         mod = 10 ** 9 + 7
         m, n = len(nums1), len(nums2)
@@ -313,6 +357,10 @@ class Solution:
 
     @staticmethod
     def lc_1712(nums: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/ways-to-split-array-into-three-subarrays/description/
+        tag: three_pointers|fast_slow_pointers
+        """
         # three_pointers，即fast_slow_pointers维护满足条件的分cut_point个数
         mod = 10 ** 9 + 7
         ans = 0
@@ -331,6 +379,10 @@ class Solution:
 
     @staticmethod
     def lc_2447(nums: List[int], k: int) -> int:
+        """
+        url: https://leetcode.com/problems/number-of-subarrays-with-gcd-equal-to-k/
+        tag: sliding_window|gcd
+        """
         # sliding_windowtwo_pointersthree_pointers维护区间 gcd 为 k 的子数组数量信息
         n = len(nums)
         e = reduce(math.lcm, nums + [k])

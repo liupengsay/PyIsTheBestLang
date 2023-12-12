@@ -85,12 +85,20 @@ class Solution:
 
     @staticmethod
     def lc_214(s: str) -> str:
+        """
+        url: https://leetcode.com/problems/shortest-palindrome/
+        tag: longest_palindrome_prefix
+        """
         #  KMP 最长回文前缀
         k = KMP().find_longest_palindrome(s)
         return s[k:][::-1] + s
 
     @staticmethod
     def lc_796(s: str, goal: str) -> bool:
+        """
+        url: https://leetcode.com/problems/rotate-string/
+        tag: rotate_string
+        """
         ans = KMP().find(s + s, goal)
         return len(ans) > 0 and len(s) == len(goal)
 
@@ -101,12 +109,20 @@ class Solution:
 
     @staticmethod
     def lc_1392(s: str) -> str:
+        """
+        url: https://leetcode.com/problems/longest-happy-prefix/
+        tag: longest_prefix_suffix|kmp|z_function|template
+        """
         # 字符串的最长非空真前缀（同时也是非空真后缀）
         lst = KMP().prefix_function(s)
         return s[:lst[-1]]
 
     @staticmethod
     def lc_2223(s: str) -> int:
+        """
+        url: https://leetcode.com/problems/longest-happy-prefix/
+        tag: z_function
+        """
         # z 函数最长公共前缀
         ans = sum(KMP().z_function(s)) + len(s)
         return ans
@@ -206,6 +222,10 @@ class Solution:
 
     @staticmethod
     def lc_6918(aa: str, bb: str, cc: str) -> str:
+        """
+        url: https://leetcode.com/problems/shortest-string-that-contains-three-strings/
+        tag: kmp|prefix_suffix|greedy|brain_teaser
+        """
 
         def check(a, b):
             c = b + "#" + a
@@ -229,6 +249,10 @@ class Solution:
 
     @staticmethod
     def lc_2851(s: str, t: str, k: int) -> int:
+        """
+        url: https://leetcode.com/problems/string-transformation/description/
+        tag: kmp|matrix_fast_power|string_hash
+        """
         # KMP与fast_power|转移，也可string_hash
         n = len(s)
         mod = 10 ** 9 + 7

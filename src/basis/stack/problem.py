@@ -59,6 +59,10 @@ class Solution:
 
     @staticmethod
     def lc_2542(nums1: List[int], nums2: List[int], k: int) -> int:
+        """
+        url: https://leetcode.com/problems/maximum-subsequence-score/
+        tag: sorting|brute_force|heapq
+        """
         # sorting后brute_forceheapq维护K最大的和，类似LC857
         n = len(nums1)
         ind = list(range(n))
@@ -78,6 +82,10 @@ class Solution:
 
     @staticmethod
     def lc_2462(costs: List[int], k: int, candidates: int) -> int:
+        """
+        url: https://leetcode.com/problems/total-cost-to-hire-k-workers/
+        tag: heapq|greedy|implemention
+        """
         # heapqgreedyimplemention
         n = len(costs)
         visit = [0] * n
@@ -118,6 +126,10 @@ class Solution:
 
     @staticmethod
     def lc_2813(items: List[List[int]], k: int) -> int:
+        """
+        url: https://leetcode.com/problems/maximum-elegance-of-a-k-length-subsequence/
+        tag: brain_teaser|sorting|brute_force|function
+        """
         # brain_teaser|sorting后brute_force，维护长度为k的子序列最大函数值
         items.sort(reverse=True)
         ans = cnt = pre = tp = 0
@@ -143,6 +155,10 @@ class Solution:
 
     @staticmethod
     def lc_1705(apples: List[int], days: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/maximum-number-of-eaten-apples/
+        tag: heapq|greedy|implemention
+        """
         # heapqgreedyimplemention
         n = len(apples)
         ans = i = 0
@@ -160,6 +176,10 @@ class Solution:
 
     @staticmethod
     def lc_2197(nums: List[int]) -> List[int]:
+        """
+        url: https://leetcode.com/problems/replace-non-coprime-numbers-in-array/
+        tag: math|stack|implemention
+        """
         # stack结合 gcd 与 lcm implemention
         stack = []
         for num in nums:
@@ -175,6 +195,10 @@ class Solution:
 
     @staticmethod
     def lc_857(quality: List[int], wage: List[int], k: int) -> float:
+        """
+        url: https://leetcode.com/problems/minimum-cost-to-hire-k-workers/
+        tag: greedy|sorting|brute_force|heapq
+        """
         # greedysortingbrute_force，heapq维护K个最小值的和
         n = len(quality)
         ind = list(range(n))

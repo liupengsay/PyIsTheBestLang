@@ -179,6 +179,10 @@ class Solution:
 
     @staticmethod
     def lc_2360_1(edges: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/longest-cycle-in-a-graph/solution/
+        tag: largest_circle|scc|topological_sort
+        """
         # TarjanCC 求 scc 有向图scc
         n = len(edges)
         edge = [set() for _ in range(n)]
@@ -191,6 +195,10 @@ class Solution:
 
     @staticmethod
     def lc_2360_2(edges: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/longest-cycle-in-a-graph/solution/
+        tag: largest_circle|scc|topological_sort
+        """
         # 有向图 Tarjan 求 scc 有向图scc
         n = len(edges)
         edge = [[] for _ in range(n)]
@@ -345,6 +353,10 @@ class Solution:
 
     @staticmethod
     def lc_1192_1(n: int, connections: List[List[int]]) -> List[List[int]]:
+        """
+        url: https://leetcode.com/problems/critical-connections-in-a-network/
+        tag: tarjan|cut_edge
+        """
         #  TarjanCC 求cut_edge
         edge = [set() for _ in range(n)]
         for i, j in connections:
@@ -355,6 +367,10 @@ class Solution:
 
     @staticmethod
     def lc_1192_2(n: int, connections: List[List[int]]) -> List[List[int]]:
+        """
+        url: https://leetcode.com/problems/critical-connections-in-a-network/
+        tag: tarjan|cut_edge
+        """
         #  Tarjan 求cut_edge
         edge = [[] for _ in range(n)]
         for i, j in connections:
@@ -725,6 +741,10 @@ class Solution:
 
     @staticmethod
     def lc_1568(grid: List[List[int]]) -> int:
+        """
+        url: https://leetcode.com/problems/minimum-number-of-days-to-disconnect-island/solution/
+        tag: cut_point|tarjan
+        """
         # 求连通分量与cut_point数量题
         m, n = len(grid), len(grid[0])
 

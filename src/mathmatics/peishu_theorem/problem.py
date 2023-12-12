@@ -26,6 +26,10 @@ class Solution:
 
     @staticmethod
     def lc_1250(nums: List[int]) -> bool:
+        """
+        url: https://leetcode.com/problems/check-if-it-is-a-good-array/
+        tag: gcd|peishu_theorem|classical
+        """
         # 转化为peishu_theorem|数组最大公约数是否等于 1 求解
         return PeiShuTheorem().get_lst_gcd(nums) == 1
 

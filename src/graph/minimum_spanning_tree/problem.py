@@ -179,6 +179,10 @@ class Solution:
 
     @staticmethod
     def lc_1489(n: int, edges: List[List[int]]) -> List[List[int]]:
+        """
+        url: https://leetcode.com/problems/find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree/
+        tag: mst|necessary_edge|fake_necessary_edge
+        """
         # 求mst|的关键边与伪关键边
         m = len(edges)
         # 代价sorting
@@ -680,6 +684,10 @@ class Solution:
 
     @staticmethod
     def lc_1584_1(nums: List[List[int]]) -> int:
+        """
+        url: https://leetcode.com/problems/min-cost-to-connect-all-points/
+        tag: dense_graph|prim|mst
+        """
 
         # primmst|，适合稠密图场景
         def dis(x1, y1, x2, y2):
@@ -712,6 +720,10 @@ class Solution:
 
     @staticmethod
     def lc_1584_2(nums: List[List[int]]) -> int:
+        """
+        url: https://leetcode.com/problems/min-cost-to-connect-all-points/
+        tag: dense_graph|prim|mst
+        """
 
         # primmst|，适合稠密图场景
         def dis(xx1, yy1, xx2, yy2):

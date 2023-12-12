@@ -23,14 +23,26 @@ class Solution:
 
     @staticmethod
     def lc_145(root: Optional[TreeNode]) -> List[int]:
+        """
+        url: https://leetcode.com/problems/binary-tree-postorder-traversal/
+        tag: post_order
+        """
         return TreeOrder().post_order(root)
 
     @staticmethod
     def lc_94(root: Optional[TreeNode]) -> List[int]:
+        """
+        url: https://leetcode.com/problems/binary-tree-inorder-traversal/description/
+        tag: mid_order
+        """
         return TreeOrder().in_order(root)
 
     @staticmethod
     def lc_144(root: Optional[TreeNode]) -> List[int]:
+        """
+        url: https://leetcode.com/problems/binary-tree-preorder-traversal/description/
+        tag: pre_order
+        """
         return TreeOrder().pre_order(root)
 
     @staticmethod

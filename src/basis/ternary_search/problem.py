@@ -198,6 +198,10 @@ class Solution:
 
     @staticmethod
     def lc_1515_1(stack: List[List[int]]) -> float:
+        """
+        url: https://leetcode.com/problems/best-position-for-a-service-centre/
+        tag: tripartite_pack_tripartite|convex_function_minimum|gradient_descent|hill_climbing
+        """
 
         # tripart_pack_tripart求凸函数极值
         def target(x, y):
@@ -212,6 +216,10 @@ class Solution:
 
     @staticmethod
     def lc_1515_2(positions: List[List[int]]) -> float:
+        """
+        url: https://leetcode.com/problems/best-position-for-a-service-centre/
+        tag: tripartite_pack_tripartite|convex_function_minimum|gradient_descent|hill_climbing
+        """
         # 梯度下降法求解凸函数极值
         eps = 1e-10
         alpha = 1.0
@@ -242,6 +250,10 @@ class Solution:
 
     @staticmethod
     def lc_1515_3(positions: List[List[int]]) -> float:
+        """
+        url: https://leetcode.com/problems/best-position-for-a-service-centre/
+        tag: tripartite_pack_tripartite|convex_function_minimum|gradient_descent|hill_climbing
+        """
         # 爬山法凸函数极小值
         dirs = [(-1, 0), (1, 0), (0, -1), (0, 1)]
         eps = 1e-6

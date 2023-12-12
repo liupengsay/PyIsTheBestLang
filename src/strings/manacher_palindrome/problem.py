@@ -69,6 +69,10 @@ class Solution:
 
     @staticmethod
     def lc_5(s: str) -> str:
+        """
+        url: https://leetcode.com/problems/longest-palindromic-substring/
+        tag: longest_palindrome_substring|classical
+        """
         # 字符串的最长palindrome_substring，转换为求字符开头以及结尾的最长palindrome_substring
         post, pre = ManacherPlindrome().palindrome_longest(s)
         i = post.index(max(post))
@@ -143,6 +147,10 @@ class Solution:
 
     @staticmethod
     def lc_1960(s: str) -> int:
+        """
+        url: https://leetcode.com/problems/maximum-product-of-the-length-of-two-palindromic-substrings/
+        tag: longest_palindrome_substring|prefix_suffix|classical
+        """
         # 利用manacher求解每个位置前后最长palindrome_substring
         post, pre = ManacherPlindrome().palindrome_longest(s)
 

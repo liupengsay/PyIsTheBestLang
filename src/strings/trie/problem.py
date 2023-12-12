@@ -72,6 +72,10 @@ class Solution:
 
     @staticmethod
     def lc_677():
+        """
+        url: https://leetcode.com/problems/map-sum-pairs/
+        tag: prefix|counter
+        """
         # 更新与查询给定字符串作为单词键前缀的对应值的和
         class MapSum:
             def __init__(self):
@@ -88,6 +92,10 @@ class Solution:
 
     @staticmethod
     def lc_1803(nums: List[int], low: int, high: int) -> int:
+        """
+        url: https://leetcode.com/problems/count-pairs-with-xor-in-a-range/
+        tag: 01-trie|classical
+        """
         # 01trie查询异或值在有一定范围内的数对个数
         count = Counter(nums)
         # 确定二进制序列的长度
@@ -106,6 +114,10 @@ class Solution:
 
     @staticmethod
     def lc_1803_2(nums: List[int], low: int, high: int) -> int:
+        """
+        url: https://leetcode.com/problems/count-pairs-with-xor-in-a-range/
+        tag: 01-trie|classical
+        """
         # 统计范围内的异或对数目
         ans, cnt = 0, Counter(nums)
         high += 1
@@ -171,6 +183,10 @@ class Solution:
 
     @staticmethod
     def lc_2479(n: int, edges: List[List[int]], values: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/maximum-xor-of-two-non-overlapping-subtrees/
+        tag: 01-trie|maximum_xor
+        """
         # 借助dfs|的顺序01trie查询最大异或数对值
         dct = [[] for _ in range(n)]
         for i, j in edges:
@@ -208,6 +224,10 @@ class Solution:
 
     @staticmethod
     def lc_2416(words: List[str]) -> List[int]:
+        """
+        url: https://leetcode.com/problems/sum-of-prefix-scores-of-strings/
+        tag: prefix|counter
+        """
         trie = TriePrefixCount()
         for word in words:
             trie.update(word)
@@ -463,6 +483,10 @@ class Solution:
 
     @staticmethod
     def lc_1707(nums: List[int], queries: List[List[int]]) -> List[int]:
+        """
+        url: https://leetcode.com/problems/maximum-xor-with-an-element-from-array/
+        tag: sort|offline_query|01-trie
+        """
         # sorting后offline_query并 01 Trie求解最大异或值
         n = len(nums)
         nums.sort()
@@ -537,6 +561,10 @@ class Solution:
 
     @staticmethod
     def lc_421(nums: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/
+        tag: 01-trie
+        """
         # 求解数组最大的异或对，题，有更快解法
         trie = TrieZeroOneXorMax(32)
         ans = 0
@@ -548,6 +576,10 @@ class Solution:
 
     @staticmethod
     def lc_421_2(nums: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/
+        tag: 01-trie
+        """
         # 更快解法
         res = 0
         mask = 0
@@ -590,6 +622,10 @@ class Solution:
 
     @staticmethod
     def lc_1938(parents: List[int], queries: List[List[int]]) -> List[int]:
+        """
+        url: https://leetcode.com/problems/maximum-genetic-difference-query/
+        tag: dfs|back_track|01-trie|maximum_xor
+        """
         # dfs|back_track|结合01-trieoffline_query最大异或值对
         n = len(parents)
         x = -1
@@ -619,6 +655,10 @@ class Solution:
 
     @staticmethod
     def lc_1938_2(parents: List[int], queries: List[List[int]]) -> List[int]:
+        """
+        url: https://leetcode.com/problems/maximum-genetic-difference-query/
+        tag: dfs|back_track|01-trie|maximum_xor
+        """
         # dfs|back_track|结合01-trieoffline_query最大异或值对
         n = len(parents)
         dct = [[] for _ in range(n)]

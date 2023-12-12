@@ -23,6 +23,10 @@ class Solution:
 
     @staticmethod
     def lc_1163(s: str) -> str:
+        """
+        url: https://leetcode.com/problems/last-substring-in-lexicographical-order/
+        tag: brain_teaser|maximum_expression|minimum_expression|maximum_expression
+        """
         # 求maximum_expression
         s += chr(ord("a") - 1)
         i, _ = LyndonDecomposition().max_express(s)

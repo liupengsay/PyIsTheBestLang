@@ -154,6 +154,10 @@ class Solution:
 
     @staticmethod
     def lc_1259_1(num_people: int) -> int:
+        """
+        url: https://leetcode.com/problems/handshakes-that-dont-cross/
+        tag: catalan_number
+        """
         # catalan_number
         n = num_people // 2
         if num_people <= 1:
@@ -165,6 +169,10 @@ class Solution:
 
     @staticmethod
     def lc_1259_2(num_people: int) -> int:
+        """
+        url: https://leetcode.com/problems/handshakes-that-dont-cross/
+        tag: catalan_number
+        """
         # catalan_number的数组形式
         n = num_people // 2
         mod = 10 ** 9 + 7
@@ -197,6 +205,10 @@ class Solution:
 
     @staticmethod
     def lc_634(n):
+        """
+        url: https://leetcode.com/problems/find-the-derangement-of-an-array/
+        tag: fault_perm|counter|dp
+        """
         # 求错位comb数
         mod = 10 ** 9 + 7
         fault = [0, 0, 1, 2]
@@ -568,6 +580,10 @@ class Solution:
 
     @staticmethod
     def lc_1735(queries: List[List[int]]) -> List[int]:
+        """
+        url: https://leetcode.com/problems/count-ways-to-make-array-with-product/
+        tag: prime_factorization|partition_method|classical
+        """
         mod = 10 ** 9 + 7
         nt = PrimeFactor(10 ** 4)
         cb = Combinatorics(10 ** 4 + 15, mod)
@@ -584,6 +600,10 @@ class Solution:
 
     @staticmethod
     def lc_1866(n: int, k: int) -> int:
+        """
+        url: https://leetcode.com/problems/number-of-ways-to-rearrange-sticks-with-k-sticks-visible/
+        tag: stirling_number|first_kind_stirling_number
+        """
         # 第一类stirling_number
         mod = 10 ** 9 + 7
         dp = [[0] * (k + 1) for _ in range(n + 1)]

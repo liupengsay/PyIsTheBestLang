@@ -41,6 +41,10 @@ class Solution:
 
     @staticmethod
     def lc_880(t: str, m: int) -> str:
+        """
+        url: https://leetcode.com/problems/decoded-string-at-index/
+        tag: recursion|implemention
+        """
         # recursionimplemention
 
         def dfs(s, k):
@@ -60,6 +64,10 @@ class Solution:
         return dfs(t, m)
 
     def lc_889(self, preorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
+        """
+        url: https://leetcode.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/
+        tag: recursion|divide_and_conquer|construction
+        """
         # recursiondivide_and_conquerconstruction
         if not preorder:
             return
@@ -78,6 +86,10 @@ class Solution:
 
     @lru_cache(None)
     def lc_894(self, n: int) -> List[Optional[TreeNode]]:
+        """
+        url: https://leetcode.com/problems/all-possible-full-binary-trees/
+        tag: catalan_num|recursion|implemention
+        """
 
         # 类似catalan_number的recursionimplemention生成
         if n % 2 == 0:
@@ -97,6 +109,10 @@ class Solution:
 
     @lru_cache(None)
     def lc_932(self, n: int) -> List[int]:
+        """
+        url: https://leetcode.com/problems/beautiful-array/description/
+        tag: recursion|divide_and_conquer|construction
+        """
         # recursiondivide_and_conquerconstruction
         if n == 1:
             return [1]
@@ -104,6 +120,10 @@ class Solution:
 
     @staticmethod
     def lc_1028(traversal: str) -> Optional[TreeNode]:
+        """
+        url: https://leetcode.com/problems/recover-a-tree-from-preorder-traversal/description/
+        tag: pre_order|recursion|construction|2-tree
+        """
 
         # 根据先序遍历recursionconstruction二叉树
         ans = ""

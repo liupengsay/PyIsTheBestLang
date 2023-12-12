@@ -123,6 +123,10 @@ class Solution:
 
     @staticmethod
     def lc_2003(parents: List[int], nums: List[int]) -> List[int]:
+        """
+        url: https://leetcode.com/problems/smallest-missing-genetic-value-in-each-subtree/
+        tag: tree_dp|heuristic_merge|classical
+        """
         # heuristic merging from bottom to up
         n = len(nums)
         dct = [[] for _ in range(n)]
@@ -158,6 +162,10 @@ class Solution:
 
     @staticmethod
     def lc_2458(root, queries: List[int]) -> List[int]:
+        """
+        url: https://leetcode.com/problems/height-of-binary-tree-after-subtree-removal-queries/
+        tag: dfs|tree_dp|up_to_down|down_to_up
+        """
         # 类似换根 DP 的思想跑两遍 DFS
         def dfs(node, d):
             if not node:
@@ -392,6 +400,10 @@ class Solution:
 
     @staticmethod
     def lc_968(root: Optional[TreeNode]) -> int:
+        """
+        url: https://leetcode.com/problems/binary-tree-cameras/
+        tag: tree_dp
+        """
 
         # tree_dp
         def dfs(node):
@@ -411,6 +423,10 @@ class Solution:
 
     @staticmethod
     def lc_1367(head: Optional[ListNode], root: Optional[TreeNode]) -> bool:
+        """
+        url: https://leetcode.com/problems/linked-list-in-binary-tree/description/
+        tag: classical|2-tree|linked_list|memory_dp
+        """
 
         # classical二叉树与linked_list|比较的memory_searchDP
 
@@ -957,6 +973,10 @@ class Solution:
 
     @staticmethod
     def lc_1617_2(n: int, edges: List[List[int]]) -> List[int]:
+        """
+        url: https://leetcode.com/problems/count-subtrees-with-max-distance-between-cities/
+        tag: brute_force|tree_diameter|tree_dp
+        """
         # brute_forcetree_diameter端点与乘法原理tree_dp
         dct = [[] for _ in range(n)]
         for i, j in edges:
@@ -1127,6 +1147,10 @@ class Solution:
 
     @staticmethod
     def lc_2673(n: int, cost: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/make-costs-of-paths-equal-in-a-binary-tree/
+        tag: tree_dp|greedy
+        """
         # tree_dpgreedy
         ans = 0
         for i in range(n // 2, 0, -1):

@@ -83,6 +83,10 @@ class Solution:
 
     @staticmethod
     def lc_2360(edges):
+        """
+        url: https://leetcode.com/problems/longest-cycle-in-a-graph/
+        tag: largest_circle|scc|topological_sort|scc
+        """
 
         # 模板: 求内向circle_based_tree的最大权值和环 edge表示有向边 i 到 edge[i] 而 dct表示对应的边权值
         def largest_circle(n, edge, dct):

@@ -74,6 +74,10 @@ class Solution:
 
     @staticmethod
     def lc_1626(scores: List[int], ages: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/best-team-with-no-conflicts/
+        tag: tree_array|prefix_maximum|dp
+        """
         # 动态规划与tree_array|维护前缀最大值
         n = max(ages)
         tree_array = PointAscendPreMax(n)
@@ -84,6 +88,10 @@ class Solution:
 
     @staticmethod
     def lc_2193_1(s: str) -> int:
+        """
+        url: https://leetcode.com/problems/minimum-number-of-moves-to-make-palindrome/description/
+        tag: tree_array|greedy|implemention|P5041
+        """
         # tree_array|greedyimplemention交换构建回文串
 
         n = len(s)
@@ -128,6 +136,10 @@ class Solution:
 
     @staticmethod
     def lc_2193_2(s: str) -> int:
+        """
+        url: https://leetcode.com/problems/minimum-number-of-moves-to-make-palindrome/description/
+        tag: tree_array|greedy|implemention|P5041
+        """
         # 字符串特性greedyimplemention交换构建回文串
         n = len(s)
         ans = 0
@@ -145,6 +157,10 @@ class Solution:
 
     @staticmethod
     def lc_2407(nums: List[int], k: int) -> int:
+        """
+        url: https://leetcode.com/problems/longest-increasing-subsequence-ii/description/
+        tag: tree_array|liner_dp
+        """
         # tree_array||liner_dp
         n = max(nums)
         ans = 0
@@ -168,6 +184,10 @@ class Solution:
 
     @staticmethod
     def lc_2659(nums: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/make-array-empty/submissions/
+        tag: implemention|tree_array|sortedList|greedy
+        """
         # implemention删除，可以tree_array|也可以SortedList也可以greedy
         n = len(nums)
         ans = 0
@@ -186,6 +206,10 @@ class Solution:
 
     @staticmethod
     def lc_2736(nums1: List[int], nums2: List[int], queries: List[List[int]]) -> List[int]:
+        """
+        url: https://leetcode.com/problems/maximum-sum-queries/
+        tag: PointAddPreMax
+        """
 
         nodes = set(nums1 + nums2)
         for x, y in queries:
@@ -214,6 +238,10 @@ class Solution:
 
     @staticmethod
     def lc_6353(grid: List[List[int]]) -> int:
+        """
+        url: https://leetcode.com/problems/minimum-number-of-visited-cells-in-a-grid/
+        tag: tree_array|prefix_minimum
+        """
         n, m = len(grid), len(grid[0])
         dp = [[inf] * m for _ in range(n)]
         r, c = [PointDescendPreMin(m) for _ in range(n)], [PointDescendPreMin(n) for _ in range(m)]
@@ -230,6 +258,10 @@ class Solution:
 
     @staticmethod
     def lc_100112_1(nums: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/maximum-balanced-subsequence-sum/
+        tag: discretization|tree_array|liner_dp
+        """
         # tree_array|（单点持续更新为更大值）（区间查询最大值）2380ms
         n = len(nums)
         tmp = [nums[i] - i for i in range(n)]
@@ -246,6 +278,10 @@ class Solution:
 
     @staticmethod
     def lc_100112_2(nums: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/maximum-balanced-subsequence-sum/
+        tag: discretization|tree_array|liner_dp
+        """
         # tree_array|（单点持续更新为更大值）（前缀区间查询最大值）1748ms
         n = len(nums)
         tmp = [nums[i] - i for i in range(n)]
@@ -262,6 +298,10 @@ class Solution:
 
     @staticmethod
     def lc_100112_3(nums: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/maximum-balanced-subsequence-sum/
+        tag: discretization|tree_array|liner_dp
+        """
         # segment_tree|（单点持续更新为更大值）（区间查询最大值）7980ms
         n = len(nums)
         tmp = [nums[i] - i for i in range(n)]
@@ -303,6 +343,10 @@ class Solution:
 
     @staticmethod
     def lc_100112_1(nums: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/maximum-balanced-subsequence-sum/
+        tag: discretization|tree_array|liner_dp
+        """
         # tree_array|（单点持续更新为更大值）（区间查询最大值）2380ms
         n = len(nums)
         tmp = [nums[i] - i for i in range(n)]
@@ -319,6 +363,10 @@ class Solution:
 
     @staticmethod
     def lc_100112_2(nums: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/maximum-balanced-subsequence-sum/
+        tag: discretization|tree_array|liner_dp
+        """
         # tree_array|（单点持续更新为更大值）（前缀区间查询最大值）1748ms
         n = len(nums)
         tmp = [nums[i] - i for i in range(n)]
@@ -335,6 +383,10 @@ class Solution:
 
     @staticmethod
     def lc_100112_3(nums: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/maximum-balanced-subsequence-sum/
+        tag: discretization|tree_array|liner_dp
+        """
         # segment_tree|（单点持续更新为更大值）（区间查询最大值）7980ms
         n = len(nums)
         tmp = [nums[i] - i for i in range(n)]
@@ -847,6 +899,10 @@ class Solution:
 
     @staticmethod
     def lc_1505_1(num: str, k: int) -> str:
+        """
+        url: https://leetcode.com/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/
+        tag: tree_array|implemention|counter|sorted_list
+        """
 
         # tree_array|implemention
         n = len(num)
@@ -875,6 +931,10 @@ class Solution:
 
     @staticmethod
     def lc_1505_2(num: str, k: int) -> str:
+        """
+        url: https://leetcode.com/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/
+        tag: tree_array|implemention|counter|sorted_list
+        """
         ind = [deque() for _ in range(10)]
 
         # 按照数字存好索引

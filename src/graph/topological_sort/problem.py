@@ -192,6 +192,10 @@ class Solution:
 
     @staticmethod
     def lc_2392(k: int, row_conditions: List[List[int]], col_conditions: List[List[int]]) -> List[List[int]]:
+        """
+        url: https://leetcode.com/problems/build-a-matrix-with-conditions/
+        tag: build_graph|union_find|topological_sort
+        """
 
         # 行列topological_sortingconstruction矩阵
         def check(cond):
@@ -713,6 +717,10 @@ class Solution:
 
     @staticmethod
     def lc_2127(favorite: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/maximum-employees-to-be-invited-to-a-meeting/
+        tag: topological_sort|dag|directed_circle_based_tree|classification_discussion
+        """
         # topological_sorting确定DAG内向基环，按照环的大小classification_discussion
         n = len(favorite)
         degree = [0] * n
@@ -754,6 +762,10 @@ class Solution:
 
     @staticmethod
     def lc_2192(n: int, edges: List[List[int]]) -> List[List[int]]:
+        """
+        url: https://leetcode.com/problems/all-ancestors-of-a-node-in-a-directed-acyclic-graph/
+        tag: directed_topological_sort|dag_dp
+        """
         # 有向图DAGtopological_sorting
         ans = [set() for _ in range(n)]
         degree = [0] * n
@@ -777,6 +789,10 @@ class Solution:
 
     @staticmethod
     def lc_2204(n: int, edges: List[List[int]]) -> List[int]:
+        """
+        url: https://leetcode.com/problems/distance-to-a-cycle-in-undirected-graph/
+        tag: undirected_topological_sort
+        """
         # 无向图topological_sorting
         dct = [[] for _ in range(n)]
         degree = [0] * n
@@ -807,6 +823,10 @@ class Solution:
 
     @staticmethod
     def lc_1857(colors: str, edges: List[List[int]]) -> int:
+        """
+        url: https://leetcode.com/problems/largest-color-value-in-a-directed-graph/
+        tag: topological_sort|dag_dp
+        """
 
         # topological_sortingDP
         n = len(colors)
@@ -838,6 +858,10 @@ class Solution:
 
     @staticmethod
     def lc_1932(trees: List[TreeNode]) -> Optional[TreeNode]:
+        """
+        url: https://leetcode.com/problems/range_merge_to_disjoint-bsts-to-create-single-bst/
+        tag: union_find|topological_sort|union_find|bst
+        """
         # 连通性、topological_sorting与二叉搜索树判断
 
         nodes = set()
@@ -1004,6 +1028,10 @@ class Solution:
 
     @staticmethod
     def lc_1591(grid: List[List[int]]) -> bool:
+        """
+        url: https://leetcode.com/problems/strange-printer-ii/
+        tag: build_graph|topological_sort|circle_judge
+        """
         # build_graph|判断topological_sorting是否无环
         color = defaultdict(list)
         m, n = len(grid), len(grid[0])

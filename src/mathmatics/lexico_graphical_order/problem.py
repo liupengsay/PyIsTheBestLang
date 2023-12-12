@@ -46,6 +46,10 @@ class Solution:
 
     @staticmethod
     def lc_440(n, k):
+        """
+        url: https://leetcode.com/problems/k-th-smallest-in-lexicographical-order/
+        tag: 10-tree|kth
+        """
         #  1 到 n lexicographical_order第 k 小的数字
         return LexicoGraphicalOrder().get_kth_num(n, k)
 
@@ -86,6 +90,10 @@ class Solution:
 
     @staticmethod
     def lc_60(n: int, k: int) -> str:
+        """
+        url: https://leetcode.com/problems/permutation-sequence/
+        tag: kth_perm|lexicographical_order
+        """
         #  全排列的第 k 个排列
         ans = LexicoGraphicalOrder().get_kth_subset_perm(n, k)
         return "".join(str(x) for x in ans)

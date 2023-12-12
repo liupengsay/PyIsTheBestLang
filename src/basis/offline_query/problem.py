@@ -24,6 +24,10 @@ class Solution:
 
     @staticmethod
     def lc_100110(heights: List[int], queries: List[List[int]]) -> List[int]:
+        """
+        url: https://leetcode.com/contest/weekly-contest-372/problems/find-building-where-alice-and-bob-can-meet/
+        tag: offline_query|sorting
+        """
 
         m = len(queries)
         for i in range(m):

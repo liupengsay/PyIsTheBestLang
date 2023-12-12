@@ -83,6 +83,10 @@ class Solution:
 
     @staticmethod
     def lc_473(matchsticks: List[int]) -> bool:
+        """
+        url: https://leetcode.com/problems/matchsticks-to-square/
+        tag: dfs|back_track
+        """
         # 模板: dfs||back_track判断能否将数组分成正方形
         n, s = len(matchsticks), sum(matchsticks)
         if s % 4 or max(matchsticks) > s // 4:
@@ -216,6 +220,10 @@ class Solution:
 
     @staticmethod
     def lc_301(s):
+        """
+        url: https://leetcode.com/problems/remove-invalid-parentheses/
+        tag: back_track|dfs|prune
+        """
         # dfs|back_track|删除最少数量的无效括号使得子串合法有效
 
         def dfs(i):
@@ -319,6 +327,10 @@ class Solution:
 
     @staticmethod
     def lc_1080(root: Optional[TreeNode], limit: int) -> Optional[TreeNode]:
+        """
+        url: https://leetcode.com/problems/insufficient-nodes-in-root-to-leaf-paths/description/
+        tag: dfs|up_to_down|down_to_up
+        """
 
         # dfs自上而下后又自下而上
         def dfs(node, lmt):
@@ -340,6 +352,10 @@ class Solution:
 
     @staticmethod
     def lc_1239(arr: List[str]) -> int:
+        """
+        url: https://leetcode.com/problems/maximum-length-of-a-concatenated-string-with-unique-characters/
+        tag: dfs|back_track|2-base|brute_force
+        """
         # DFSback_track二进制brute_force
         ans = 0
         arr = [word for word in arr if len(set(word)) == len(word)]
@@ -364,6 +380,10 @@ class Solution:
 
     @staticmethod
     def lc_1240(n: int, m: int) -> int:
+        """
+        url: https://leetcode.com/problems/tiling-a-rectangle-with-the-fewest-squares/
+        tag: dfs|back_track|prune
+        """
         # DFSback_track与prune
 
         def dfs():
@@ -407,6 +427,10 @@ class Solution:
 
     @staticmethod
     def lc_2056(pieces: List[str], positions: List[List[int]]) -> int:
+        """
+        url: https://leetcode.com/problems/number-of-valid-move-combinations-on-chessboard/description/
+        tag: back_track|brute_force
+        """
         # back_trackbrute_force
         dct = dict()
         dct["rook"] = [[-1, 0], [1, 0], [0, -1], [0, 1]]
@@ -451,6 +475,10 @@ class Solution:
 
     @staticmethod
     def lc_2322(nums: List[int], edges: List[List[int]]) -> int:
+        """
+        url: https://leetcode.com/problems/minimum-score-after-removals-on-a-tree/
+        tag: dfs_order|brute_force
+        """
         # dfs_orderdfs_order|brute_force
         n = len(nums)
         dct = [[] for _ in range(n)]
@@ -499,6 +527,10 @@ class Solution:
 
     @staticmethod
     def lc_2458(root: Optional[TreeNode], queries: List[int]) -> List[int]:
+        """
+        url: https://leetcode.com/height-of-binary-tree-after-subtree-removal-queries/
+        tag: dfs_order
+        """
         # dfs_order|模板题目
 
         def dfs(node):
@@ -536,6 +568,10 @@ class Solution:
 
     @staticmethod
     def lc_2581(edges: List[List[int]], guesses: List[List[int]], k: int) -> int:
+        """
+        url: https://leetcode.com/contest/biweekly-contest-99/problems/count-number-of-possible-root-nodes/
+        tag: dfs_order|diff_array|counter
+        """
         # dfs_order确定猜测的查询范围，并diff_array|counter
         n = len(edges) + 1
         dct = [[] for _ in range(n)]

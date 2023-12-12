@@ -194,6 +194,10 @@ class Solution:
 
     @staticmethod
     def lc_2218(piles: List[List[int]], k: int) -> int:
+        """
+        url: https://leetcode.com/problems/maximum-value-of-k-coins-from-piles/
+        tag: group_bag_dp
+        """
 
         # 线性有限group_bag_dp DP 注意转移
         cur = [0] * (k + 1)
@@ -235,6 +239,10 @@ class Solution:
 
     @staticmethod
     def lc_2742_1(cost: List[int], time: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/painting-the-walls/description/
+        tag: bag_dp
+        """
 
         # pruneDP，可以转换为bag_dp|finite|求解
         @lru_cache(None)
@@ -254,6 +262,10 @@ class Solution:
 
     @staticmethod
     def lc_2742_2(cost: List[int], time: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/painting-the-walls/description/
+        tag: bag_dp
+        """
 
         # pruneDP，可以转换为bag_dp|finite|求解
         n = len(cost)
@@ -269,6 +281,10 @@ class Solution:
 
     @staticmethod
     def lc_2518(nums: List[int], k: int) -> int:
+        """
+        url: https://leetcode.com/problems/number-of-great-partitions/
+        tag: bag_dp|counter
+        """
         # bag_dp|finite|counter
         mod = 10 ** 9 + 7
         dp = [0] * k
@@ -286,6 +302,10 @@ class Solution:
 
     @staticmethod
     def lc_2585(target: int, types: List[List[int]]) -> int:
+        """
+        url: https://leetcode.com/problems/number-of-ways-to-earn-points/
+        tag: bag_dp
+        """
         # 看似bin_split DP 实则matrix_dp| 转移
         mod = 10 ** 9 + 7
         n = len(types)
@@ -327,6 +347,10 @@ class Solution:
 
     @staticmethod
     def lc_254(n: int) -> List[List[int]]:
+        """
+        url: https://leetcode.com/problems/factor-combinations/
+        tag: bag_dp|mul
+        """
         # factorization与背包dp分解
         lst = NumberTheory().get_all_factor(n)
         m = len(lst)
@@ -1282,6 +1306,10 @@ class Solution:
 
     @staticmethod
     def lc_1049(stones: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/last-stone-weight-ii/
+        tag: bag_dp
+        """
         # 问题，转化为bag_dp|finite|求解
         s = sum(stones)
         dp = [0] * (s // 2 + 1)

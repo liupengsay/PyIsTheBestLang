@@ -23,6 +23,10 @@ class Solution:
 
     @staticmethod
     def lc_1924(trees: List[List[int]]) -> List[float]:
+        """
+        url: https://leetcode.com/problems/erect-the-fence-ii/
+        tag: convex_hull|tripart_pack_tripart|minimum_circle_coverage
+        """
         # 随机增量法求最小圆覆盖
         ans = MinCircleOverlap().get_min_circle_overlap(trees)
         return list(ans)

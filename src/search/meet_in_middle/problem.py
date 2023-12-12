@@ -33,6 +33,10 @@ class Solution:
 
     @staticmethod
     def lc_956(rods: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/tallest-billboard/description/
+        tag: meet_in_middle
+        """
 
         # 可meet_in_middle
 
@@ -70,6 +74,10 @@ class Solution:
 
     @staticmethod
     def lc_2035(nums: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/partition-array-into-two-arrays-to-minimize-sum-difference/
+        tag: meet_in_middle|sort|binary_search|two_pointers
+        """
         # meet_in_middlesorting|binary_search或者two_pointers
 
         def check(lst):

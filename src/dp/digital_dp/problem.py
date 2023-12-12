@@ -108,6 +108,10 @@ class Solution:
 
     @staticmethod
     def lc_233(n: int) -> int:
+        """
+        url: https://leetcode.com/problems/number-of-digit-one/
+        tag: counter|digital_dp
+        """
         #  0 到 n 有数位 1 的出现次数
         if not n:
             return 0
@@ -115,6 +119,10 @@ class Solution:
 
     @staticmethod
     def lc_2719(num1: str, num2: str, min_sum: int, max_sum: int) -> int:
+        """
+        url: https://leetcode.com/problems/count-of-integers/
+        tag: digital_dp|inclusion_exclusion
+        """
         # digital_dp|inclusion_exclusion
 
         def check(num):
@@ -149,6 +157,10 @@ class Solution:
 
     @staticmethod
     def lc_2801(low: str, high: str) -> int:
+        """
+        url: https://leetcode.com/problems/count-stepping-numbers-in-range/
+        tag: digital_dp|inclusion_exclusion
+        """
         # digital_dp|inclusion_exclusion
 
         def check(num):
@@ -176,6 +188,10 @@ class Solution:
 
     @staticmethod
     def lc_2827(low: int, high: int, k: int) -> int:
+        """
+        url: https://leetcode.com/problems/number-of-beautiful-integers-in-the-range/
+        tag: digital_dp|inclusion_exclusion
+        """
         # digital_dp|inclusion_exclusion
 
         def check(num):
@@ -212,6 +228,10 @@ class Solution:
 
     @staticmethod
     def lc_1067(d: int, low: int, high: int) -> int:
+        """
+        url: https://leetcode.com/problems/digit-count-in-range/
+        tag: counter|digital_dp|inclusion_exclusion
+        """
         # 区间counter，右端点减去左端点，digital_dp|inclusion_exclusion
         dd = DigitalDP()
         return dd.count_digit(high, d) - dd.count_digit(low - 1, d)

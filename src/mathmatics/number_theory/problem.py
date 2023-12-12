@@ -205,6 +205,10 @@ class Solution:
 
     @staticmethod
     def lc_6309(nums: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/split-the-array-to-make-coprime-products/
+        tag: prime_factorization|counter
+        """
         #  1 到 n 的数所有的质因子并差分确定作用范围
         prime = NumberTheory().get_num_prime_factor(10 ** 6)
         n = len(nums)
@@ -772,6 +776,10 @@ class Solution:
 
     @staticmethod
     def lc_1073(arr1: List[int], arr2: List[int]) -> List[int]:
+        """
+        url: https://leetcode.com/problems/adding-two-negabinary-numbers/
+        tag: negative_base|classical
+        """
         # 负进制题
         def check(tmp):
             res = 0
@@ -927,6 +935,10 @@ class Solution:
 
     @staticmethod
     def lc_1017(n: int) -> str:
+        """
+        url: https://leetcode.com/problems/convert-to-base-2/
+        tag: negative_base|classical
+        """
         # 负进制转换模板题
         lst = NumberTheory().get_k_bin_of_n(n, -2)
         return "".join(str(x) for x in lst)

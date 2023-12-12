@@ -10,7 +10,7 @@ Description：prefix_sum|prefix_sum_of_prefix_sum|suffix_sum
 2251（https://leetcode.com/problems/number-of-flowers-in-full-bloom/）discretization_diff_array
 2132（https://leetcode.com/problems/stamping-the-grid/）prefix_sum|brute_force|diff_matrix|implemention
 1229（https://leetcode.com/problems/meeting-scheduler/）discretization_diff_array
-6292（https://leetcode.com/problems/increment-submatrices-by-one/)diff_matrix|prefix_sum
+6292（https://leetcode.com/problems/increment-submatrices-by-one/）diff_matrix|prefix_sum
 2565（https://leetcode.com/problems/subsequence-with-the-minimum-score/）prefix_suffix|pointer|brute_force
 644（https://leetcode.com/problems/maximum-average-subarray-ii/）prefix_sum|binary_search|average
 1292（https://leetcode.com/problems/maximum-side-length-of-a-square-with-sum-less-than-or-equal-to-threshold/）O(mn)|brute_force
@@ -273,6 +273,10 @@ class Solution:
 
     @staticmethod
     def lc_995(nums: List[int], k: int) -> int:
+        """
+        url: https://leetcode.com/problems/minimum-number-of-k-consecutive-bit-flips/description/
+        tag: greedy|diff_array|implemention
+        """
         # greedy|diff_array|implemention
         n = len(nums)
         ans = 0
@@ -294,6 +298,10 @@ class Solution:
 
     @staticmethod
     def lc_1074(matrix: List[List[int]], target: int) -> int:
+        """
+        url: https://leetcode.com/problems/number-of-submatrices-that-sum-to-target/description/
+        tag: matrix_prefix_sum|brute_force
+        """
         # matrix_prefix_sum|brute_force上下边目标子矩阵的数量
         m, n = len(matrix), len(matrix[0])
         pre = PreFixSumMatrix(matrix)
@@ -310,6 +318,10 @@ class Solution:
 
     @staticmethod
     def lc_1191(arr: List[int], k: int) -> int:
+        """
+        url: https://leetcode.com/problems/k-concatenation-maximum-sum/description/
+        tag: prefix_suffix|max_sub_consequence_sum
+        """
         # prefix_suffix最大连续子序列和
         mod = 10 ** 9 + 7
         n = len(arr)
@@ -356,6 +368,10 @@ class Solution:
 
     @staticmethod
     def lc_2281(nums: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/sum-of-total-strength-of-wizards/description/
+        tag: monotonic_stack|counter|prefix_sum_of_prefix_sum
+        """
         # monotonic_stack|counter与prefix_sum的prefix_sum
         n = len(nums)
         post = [n - 1] * n  # 这里可以是n/n-1/null，取决于用途
@@ -383,6 +399,10 @@ class Solution:
 
     @staticmethod
     def lc_2281(strength: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/sum-of-total-strength-of-wizards/description/
+        tag: monotonic_stack|counter|prefix_sum_of_prefix_sum
+        """
         # monotonic_stack|确定|和范围，再prefix_sum的prefix_sumcounter
         n = len(strength)
         mod = 10 ** 9 + 7
@@ -419,6 +439,10 @@ class Solution:
 
     @staticmethod
     def lc_2565(s: str, t: str) -> int:
+        """
+        url: https://leetcode.com/problems/subsequence-with-the-minimum-score/
+        tag: prefix_suffix|pointer|brute_force
+        """
         # prefix_suffixgreedybrute_forceprefix_suffix最长匹配
         m, n = len(s), len(t)
         pre = [0] * (m + 1)
@@ -1362,6 +1386,10 @@ class Solution:
 
     @staticmethod
     def lc_891(nums: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/sum-of-subsequence-widths/description/
+        tag: prefix_suffix|brute_force|counter
+        """
         # prefix_suffixbrute_force最大值与最小值counter
         mod = 10 ** 9 + 7
         dp = [1]
@@ -1378,6 +1406,10 @@ class Solution:
 
     @staticmethod
     def lc_1292(mat: List[List[int]], threshold: int) -> int:
+        """
+        url: https://leetcode.com/problems/maximum-side-length-of-a-square-with-sum-less-than-or-equal-to-threshold/
+        tag: O(mn)|brute_force
+        """
         # O(mn)复杂度brute_force
         m, n = len(mat), len(mat[0])
         ans = 0
@@ -1394,6 +1426,10 @@ class Solution:
 
     @staticmethod
     def lc_1674(nums: List[int], limit: int) -> int:
+        """
+        url: https://leetcode.com/problems/minimum-moves-to-make-array-complementary/
+        tag: diff_array|action_scope|counter
+        """
         # diff_array|action_scopecounter
         n = len(nums)
         diff = [0] * (2 * limit + 2)
@@ -1421,6 +1457,10 @@ class Solution:
 
     @staticmethod
     def lc_1738(matrix: List[List[int]], k: int) -> int:
+        """
+        url: https://leetcode.com/problems/find-kth-largest-xor-coordinate-value/
+        tag: matrix_prefix_xor_sum
+        """
 
         # matrix_prefix_xor_sum
         m, n = len(matrix), len(matrix[0])
@@ -1443,6 +1483,10 @@ class Solution:
 
     @staticmethod
     def lc_2132(grid: List[List[int]], h: int, w: int) -> bool:
+        """
+        url: https://leetcode.com/problems/stamping-the-grid/
+        tag: prefix_sum|brute_force|diff_matrix|implemention
+        """
         # 用prefix_sumbrute_force可行的邮票左上端点，然后查看空白格点左上方是否有可行的邮票点，也可以的diff_matrix|滚动implemention覆盖解决
         m, n = len(grid), len(grid[0])
 
@@ -1496,6 +1540,10 @@ class Solution:
 
     @staticmethod
     def lc_837(n: int, k: int, max_pts: int) -> float:
+        """
+        url: https://leetcode.com/problems/new-21-game/description/
+        tag: diff_array|implemention|probability
+        """
         # diff_array|implemention概率
         s = k + max_pts
         dp = [0] * (s + 1)

@@ -29,6 +29,10 @@ class Solution:
 
     @staticmethod
     def lc_1659_1(m: int, n: int, introverts: int, extroverts: int) -> int:
+        """
+        url: https://leetcode.com/problems/maximize-grid-happiness/
+        tag: outline_dp|classical
+        """
         # memory_searchdfs|轮廓线 DP
         def dfs(pos, state, intro, ext):
             # 当前网格位置，前 n 个格子压缩状态，剩余内向人数，剩余外向人数
@@ -73,6 +77,10 @@ class Solution:
 
     @staticmethod
     def lc_1659_2(m: int, n: int, introverts: int, extroverts: int) -> int:
+        """
+        url: https://leetcode.com/problems/maximize-grid-happiness/
+        tag: outline_dp|classical
+        """
         # 迭代轮廓线 DP
         s = 3 ** (n - 1)
         cross = [[0, 0, 0], [0, -60, -10], [40, -10, 40]]
@@ -109,6 +117,10 @@ class Solution:
 
     @staticmethod
     def lc_1659_3(m: int, n: int, introverts: int, extroverts: int) -> int:
+        """
+        url: https://leetcode.com/problems/maximize-grid-happiness/
+        tag: outline_dp|classical
+        """
 
         # memory_searchdfs|轮廓线 DP
         @lru_cache(None)
@@ -136,6 +148,10 @@ class Solution:
 
     @staticmethod
     def lc_1349_1(seats: List[List[str]]) -> int:
+        """
+        url: https://leetcode.com/problems/maximum-students-taking-exam/
+        tag: outline_dp|classical
+        """
         # memory_searchdfs|轮廓线 DP
 
         def dfs(pos, state):
@@ -164,6 +180,10 @@ class Solution:
 
     @staticmethod
     def lc_1349_2(seats: List[List[str]]) -> int:
+        """
+        url: https://leetcode.com/problems/maximum-students-taking-exam/
+        tag: outline_dp|classical
+        """
         # 滚动数组迭代轮廓线 DP
         m, n = len(seats), len(seats[0])
         s = 2 ** n
@@ -188,6 +208,10 @@ class Solution:
 
     @staticmethod
     def lc_1349_3(seats: List[List[str]]) -> int:
+        """
+        url: https://leetcode.com/problems/maximum-students-taking-exam/
+        tag: outline_dp|classical
+        """
 
         # outline_dp|classical转成一维数组后更好写
         @lru_cache(None)

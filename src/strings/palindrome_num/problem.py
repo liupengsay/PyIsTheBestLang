@@ -27,6 +27,10 @@ class Solution:
 
     @staticmethod
     def lc_906(left: str, right: str) -> int:
+        """
+        url: https://leetcode.com/problems/super-palindromes/
+        tag: preprocess|brute_force
+        """
         # preprocess所有的回文数其开方也是回文数
         nums = PalindromeNum().get_palindrome_num_2(10)
         res = [num * num for num in nums if str(num * num)[::-1] == str(num * num)]
@@ -36,6 +40,10 @@ class Solution:
 
     @staticmethod
     def lc_1088(n: int) -> int:
+        """
+        url: https://leetcode.com/problems/confusing-number-ii/description/
+        tag: implemention|brute_force
+        """
         # preprocess后binary_search
         ind = {0: 0, 1: 1, 6: 9, 8: 8, 9: 6}
         pre = [0, 1, 6, 8, 9]
@@ -64,6 +72,10 @@ class Solution:
 
     @staticmethod
     def lc_2081(k: int, n: int) -> int:
+        """
+        url: https://leetcode.com/problems/sum-of-k-mirror-numbers/
+        tag: brute_force|10-base|palindrome_number
+        """
         # brute_force 10 进制palindrome_number并判断其 k 进制是否依然回文
         dct = defaultdict(list)
         # 放到preprocess

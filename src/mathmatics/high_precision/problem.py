@@ -80,11 +80,19 @@ class Solution:
 
     @staticmethod
     def lc_172(n):
+        """
+        url: https://leetcode.com/problems/factorial-trailing-zeroes/
+        tag: suffix_zero|factorial
+        """
         # 模板: n!的后缀零个数
         return HighPrecision().factorial_to_zero(n)
 
     @staticmethod
     def lc_972(s: str, t: str) -> bool:
+        """
+        url: https://leetcode.com/problems/equal-rational-numbers/
+        tag: float_to_frac
+        """
         # 有理数转为分数判断
         hp = HighPrecision()
         return hp.decimal_to_fraction(s) == hp.decimal_to_fraction(t)
@@ -145,6 +153,10 @@ class Solution:
 
     @staticmethod
     def lc_1883_1(dist: List[int], speed: int, hours: int) -> int:
+        """
+        url: https://leetcode.com/problems/minimum-skips-to-arrive-at-meeting-on-time/
+        tag: matrix_dp|high_precision|float_to_frac
+        """
 
         # 二维matrix_dp分数high_precision浮点数
         n = len(dist)
@@ -168,6 +180,10 @@ class Solution:
 
     @staticmethod
     def lc_1883_2(dist: List[int], speed: int, hours: int) -> int:
+        """
+        url: https://leetcode.com/problems/minimum-skips-to-arrive-at-meeting-on-time/
+        tag: matrix_dp|high_precision|float_to_frac
+        """
 
         # 二维matrix_dp分数high_precision浮点数
         cost = [Decimal(d) / Decimal(speed) for d in dist]

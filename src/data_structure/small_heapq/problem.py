@@ -58,6 +58,10 @@ class Solution:
 
     @staticmethod
     def lc_2454_1(nums: List[int]) -> List[int]:
+        """
+        url: https://leetcode.com/problems/next-greater-element-iv/
+        tag: heapq|post_second_larger|hash|SortedList
+        """
         # hashsorting|SortedList
         n = len(nums)
         dct = defaultdict(list)
@@ -76,6 +80,10 @@ class Solution:
 
     @staticmethod
     def lc_2454_2(nums: List[int]) -> List[int]:
+        """
+        url: https://leetcode.com/problems/next-greater-element-iv/
+        tag: heapq|post_second_larger|hash|SortedList
+        """
 
         # monotonic_stack||小顶heapq
         n = len(nums)
@@ -107,6 +115,10 @@ class Solution:
 
     @staticmethod
     def lc_1792(classes, extra_students):
+        """
+        url: https://leetcode.com/problems/maximum-average-pass-ratio/
+        tag: greedy
+        """
         # heapqgreedyimplemention每次选择最优
         stack = []
         for p, t in classes:
@@ -121,6 +133,10 @@ class Solution:
 
     @staticmethod
     def lc_630(courses: List[List[int]]) -> int:
+        """
+        url: https://leetcode.com/problems/course-schedule-iii/
+        tag: delay_heapq|greedy
+        """
         # 反悔heapq，遍历过程选择更优的
         courses.sort(key=lambda x: x[1])
         # 按照结束时间sorting
@@ -453,6 +469,10 @@ class Solution:
 
     @staticmethod
     def lc_2263(nums: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/make-array-non-decreasing-or-non-increasing/
+        tag: heapq|greedy
+        """
 
         def helper(lst: List[int]) -> int:
             # 大根heapqgreedy使得序列非降的最小操作次数
@@ -472,6 +492,10 @@ class Solution:
 
     @staticmethod
     def lc_2386(nums: List[int], k: int) -> int:
+        """
+        url: https://leetcode.com/problems/find-the-k-sum-of-an-array/
+        tag: heapq|brain_teaser
+        """
         # 转换思路heapq维护最大和第 K 次出队的则为目标结果
         n = len(nums)
         tot = 0

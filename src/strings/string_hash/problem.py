@@ -107,6 +107,10 @@ class Solution:
 
     @staticmethod
     def lc_214(s: str) -> str:
+        """
+        url: https://leetcode.com/problems/shortest-palindrome/
+        tag: reverse_hash|string_hash|longest_prefix_palindrome_substring|kmp|manacher
+        """
         # 正向与反向string_hash字符串前缀最长palindrome_substring，也可以用KMP与manacher
 
         def query(x, y):
@@ -151,6 +155,10 @@ class Solution:
 
     @staticmethod
     def lc_652(root):
+        """
+        url: https://leetcode.com/problems/find-duplicate-subtrees/
+        tag: tree_hash
+        """
         # tree_hash编码序列化子树，查找重复子树
         def dfs(node):
             if not node:
@@ -527,6 +535,10 @@ class Solution:
 
     @staticmethod
     def lc_1554(lst: List[str]) -> bool:
+        """
+        url: https://leetcode.com/problems/strings-differ-by-one-character/
+        tag: prefix_suffix|hash
+        """
         # 字符串prefix_suffixhash求解
         m = len(lst[0])
         p = [random.randint(26, 100), random.randint(26, 100)]
@@ -565,6 +577,10 @@ class Solution:
 
     @staticmethod
     def lc_1948(paths: List[List[str]]) -> List[List[str]]:
+        """
+        url: https://leetcode.com/problems/delete-duplicate-folders-in-system/
+        tag: trie|tree_hash
+        """
         # tree_hashtrie的子树编码
 
         dct = dict()  # 建树
@@ -616,6 +632,10 @@ class Solution:
 
     @staticmethod
     def lc_2261(nums: List[int], k: int, p: int) -> int:
+        """
+        url: https://leetcode.com/problems/k-divisible-elements-subarrays/submissions/
+        tag: string_hash
+        """
         # string_hash对数组编码
         n = len(nums)
         pre = list(accumulate([int(num % p == 0) for num in nums], initial=0))
@@ -661,6 +681,10 @@ class Solution:
 
     @staticmethod
     def lc_1316(text: str) -> int:
+        """
+        url: https://leetcode.com/problems/shortest-palindrome/
+        tag: string_hash
+        """
         # string_hash判断循环子串
         n = len(text)
         sh = StringHash(n, text)

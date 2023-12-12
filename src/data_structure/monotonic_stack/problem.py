@@ -159,6 +159,10 @@ class Solution:
 
     @staticmethod
     def lc_2454(nums: List[int]) -> List[int]:
+        """
+        url: https://leetcode.com/problems/next-greater-element-iv/description/
+        tag: monotonic_stack|post_second_larger
+        """
         # monotonic_stack|下下个更大元素
         n = len(nums)
         ans = [-1] * n
@@ -320,6 +324,10 @@ class Solution:
 
     @staticmethod
     def lc_255(preorder: List[int]) -> bool:
+        """
+        url: https://leetcode.com/problems/verify-preorder-sequence-in-binary-search-tree/
+        tag: monotonic_stack|pre_order
+        """
         # monotonic_stack|判断是否为前序序列
 
         pre_max = float("-inf")
@@ -336,6 +344,10 @@ class Solution:
 
     @staticmethod
     def lc_85(matrix: List[List[str]]) -> int:
+        """
+        url: https://leetcode.com/problems/maximal-rectangle/
+        tag: brute_force|monotonic_stack|matrix
+        """
         # monotonic_stack|最大矩形面积
         m, n = len(matrix), len(matrix[0])
         pre = [0] * n
@@ -524,6 +536,10 @@ class Solution:
 
     @staticmethod
     def lc_316(s: str) -> str:
+        """
+        url: https://leetcode.com/problems/remove-duplicate-letters/
+        tag: monotonic_stack|hash|counter
+        """
         # monotonic_stack|结合hash与counter
         cnt = Counter(s)
         in_stack = defaultdict(int)
@@ -539,6 +555,10 @@ class Solution:
 
     @staticmethod
     def lc_907(nums: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/sum-of-subarray-minimums/
+        tag: monotonic_stack|implemention
+        """
         # monotonic_stack|implemention
         mod = 10 ** 9 + 7
         n = len(nums)
@@ -555,6 +575,10 @@ class Solution:
 
     @staticmethod
     def lc_1081(s: str) -> str:
+        """
+        url: https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/
+        tag: monotonic_stack|hash|counter
+        """
         # monotonic_stack|结合hash与counter
         cnt = Counter(s)
         in_stack = defaultdict(int)
@@ -570,6 +594,10 @@ class Solution:
 
     @staticmethod
     def lc_1673(nums: List[int], k: int) -> List[int]:
+        """
+        url: https://leetcode.com/problems/find-the-most-competitive-subsequence/
+        tag: monotonic_stack|greedy
+        """
         # monotonic_stack|greedy删除选取
         n = len(nums)
         rem = n - k
@@ -583,6 +611,10 @@ class Solution:
 
     @staticmethod
     def lc_1840(n: int, restrictions: List[List[int]]) -> int:
+        """
+        url: https://leetcode.com/problems/maximum-building-height/
+        tag: monotonic_stack|greedy|prefix_suffix|implemention
+        """
         # monotonic_stack|greedy，也可以prefix_suffix数组implemention
         restrictions.sort()
         stack = [[1, 0]]
@@ -601,6 +633,10 @@ class Solution:
 
     @staticmethod
     def lc_2262(s: str) -> int:
+        """
+        url: https://leetcode.com/problems/total-appeal-of-a-string/
+        tag: prefix_suffix|monotonic_stack
+        """
         # 下一个或者上一个不同字符的位置
         n = len(s)
         pre = defaultdict(lambda: -1)
@@ -612,6 +648,10 @@ class Solution:
 
     @staticmethod
     def lc_2355(books: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/maximum-number-of-books-you-can-take/
+        tag: monotonic_stack|liner_dp
+        """
         # monotonic_stack|优化liner_dp
         n = len(books)
         dp = [0] * n
@@ -699,6 +739,10 @@ class Solution:
 
     @staticmethod
     def lc_1130(arr: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/
+        tag: monotonic_stack|interval_dp
+        """
         # monotonic_stack|也可以interval_dp|
         stack = [float('inf')]
         res = 0
@@ -714,6 +758,10 @@ class Solution:
 
     @staticmethod
     def lc_1504(mat: List[List[int]]) -> int:
+        """
+        url: https://leetcode.com/problems/count-submatrices-with-all-ones/
+        tag: brute_force|monotonic_stack|counter|sub_matrix
+        """
         # brute_force上下边界monotonic_stack|全为 1 的子矩形个数
         m, n = len(mat), len(mat[0])
         ans = 0

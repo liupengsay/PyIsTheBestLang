@@ -127,6 +127,10 @@ class Solution:
 
     @staticmethod
     def lc_1770(nums: List[int], multipliers: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/maximum-score-from-performing-multiplication-operations/
+        tag: liner_dp
+        """
         # 数组匹配liner_dp
 
         @lru_cache(None)
@@ -143,6 +147,10 @@ class Solution:
 
     @staticmethod
     def lc_823(arr: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/binary-trees-with-factors/description/
+        tag: liner_dp|counter
+        """
         # liner_dpcounter
         mod = 10 ** 9 + 7
         n = len(arr)
@@ -181,6 +189,10 @@ class Solution:
 
     @staticmethod
     def lc_2361(
+        """
+        url: https://leetcode.com/problems/minimum-costs-using-the-train-line/
+        tag: linear_dp
+        """
             regular: List[int],
             express: List[int],
             express_cost: int) -> List[int]:
@@ -242,6 +254,10 @@ class Solution:
 
     @staticmethod
     def lc_2638(nums: List[int], k: int) -> int:
+        """
+        url: https://leetcode.com/problems/count-the-number-of-k-free-subsets/
+        tag: liner_dp|counter
+        """
         # liner_dpcounter
         n = len(nums)
         dp = [1] * (n + 1)
@@ -261,6 +277,10 @@ class Solution:
 
     @staticmethod
     def lc_2597(nums: List[int], k: int) -> int:
+        """
+        url: https://leetcode.com/problems/the-number-of-beautiful-subsets/
+        tag: liner_dp|hash
+        """
         # liner_dpcounter
         power = [1 << i for i in range(21)]
 
@@ -669,6 +689,10 @@ class Solution:
 
     @staticmethod
     def lc_2746(words: List[str]) -> int:
+        """
+        url: https://leetcode.com/problems/decremental-string-concatenation/
+        tag: hash|liner_dp|implemention
+        """
         # hashliner_dpimplemention实现
         pre = defaultdict(int)
         pre[words[0][0] + words[0][-1]] = len(words[0])
@@ -883,6 +907,10 @@ class Solution:
 
     @staticmethod
     def lc_2713(mat: List[List[int]]) -> int:
+        """
+        url: https://leetcode.com/problems/maximum-strictly-increasing-cells-in-a-matrix/
+        tag: data_range|liner_dp
+        """
         # 按照data_range分层linear_dp
         m, n = len(mat), len(mat[0])
         dct = defaultdict(list)
@@ -972,6 +1000,10 @@ class Solution:
 
     @staticmethod
     def lc_1824(obstacles: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/minimum-sideway-jumps/description/
+        tag: liner_dp|rolling_update
+        """
         # liner_dp滚动数组
         n = len(obstacles)
         dp = [1, 0, 1]
@@ -987,6 +1019,10 @@ class Solution:
 
     @staticmethod
     def lc_978(arr: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/longest-turbulent-subarray/description/
+        tag: liner_dp|rolling_update
+        """
         # liner_dp滚动变量
         n = len(arr)
         ans = dp0 = dp1 = 1
@@ -1005,6 +1041,10 @@ class Solution:
 
     @staticmethod
     def lc_1027(nums: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/longest-arithmetic-subsequence/
+        tag: liner_dp
+        """
         # liner_dp最长等差子序列
         seen = set()
         count = dict()
@@ -1017,6 +1057,10 @@ class Solution:
 
     @staticmethod
     def lc_1553(n: int) -> int:
+        """
+        url: https://leetcode.com/problems/minimum-number-of-days-to-eat-n-oranges/
+        tag: brain_teaser|greedy|memory_search|liner_dp
+        """
 
         # brain_teasergreedymemory_searchliner_dp
 

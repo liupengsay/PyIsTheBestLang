@@ -446,6 +446,10 @@ class Solution:
 
     @staticmethod
     def lc_2745(x: int, y: int, z: int) -> int:
+        """
+        url: https://leetcode.com/problems/construct-the-longest-new-string/
+        tag: brain_teaser|greedy
+        """
         # brain_teasergreedybrain_teaser|
         return z * 2 + min(x, y) * 4 + int((max(x, y) - min(x, y)) > 0) * 2
 
@@ -1047,6 +1051,10 @@ class Solution:
 
     @staticmethod
     def lc_858(p: int, q: int) -> int:
+        """
+        url: https://leetcode.com/problems/mirror-reflection/description/
+        tag: brain_teaser
+        """
 
         # brain_teaserbrain_teaser|
 
@@ -1066,6 +1074,10 @@ class Solution:
 
     @staticmethod
     def lc_991(start: int, target: int) -> int:
+        """
+        url: https://leetcode.com/problems/broken-calculator/
+        tag: reverse_order|reverse_thinking|greedy|odd_even|implemention
+        """
         # 逆向greedy，偶数除2奇数|1
         ans = 0
         while target > start:
@@ -1078,6 +1090,10 @@ class Solution:
 
     @staticmethod
     def lc_1503(n: int, left: List[int], right: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/last-moment-before-all-ants-fall-out-of-a-plank/
+        tag: brain_teaser|classical
+        """
         # 
         ans = 0
         for x in left:
@@ -1090,6 +1106,10 @@ class Solution:
 
     @staticmethod
     def lc_1675(nums: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/minimize-deviation-in-array/
+        tag: brain_teaser|greedy
+        """
         # brain_teaserbrain_teaser|greedy
         lst = SortedList([num if num % 2 == 0 else num * 2 for num in nums])
         ans = lst[-1] - lst[0]
@@ -1103,6 +1123,10 @@ class Solution:
 
     @staticmethod
     def lc_1808(prime_factors: int) -> int:
+        """
+        url: https://leetcode.com/problems/maximize-number-of-nice-divisors/
+        tag: mod|greedy|classical|maximum_mul
+        """
         # 按照模3的因子个数greedy处理，将和拆分成最大乘积
         mod = 10 ** 9 + 7
         if prime_factors <= 2:
@@ -1116,6 +1140,10 @@ class Solution:
 
     @staticmethod
     def lc_1927(num: str) -> bool:
+        """
+        url: https://leetcode.com/problems/sum-game/description/
+        tag: game_dp|brain_teaser|classification_discussion
+        """
         # 博弈brain_teaser|classification_discussion
         def check(s):
             res = 0
@@ -1155,6 +1183,10 @@ class Solution:
 
     @staticmethod
     def lc_2592(nums: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/maximize-greatness-of-an-array/
+        tag: classical|greedy|sort|two_pointers
+        """
         # classicalgreedysorting后two_pointers
         n = len(nums)
         nums.sort()
@@ -1170,6 +1202,10 @@ class Solution:
 
     @staticmethod
     def lc_2568(nums: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/minimum-impossible-or/
+        tag: brain_teaser|greedy|guess|watch_pattern
+        """
         # brain_teasergreedy，可以根据打表观察规律
         dct = set(nums)
         for i in range(34):

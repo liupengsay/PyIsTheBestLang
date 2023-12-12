@@ -117,6 +117,10 @@ class Solution:
 
     @staticmethod
     def lc_2426(nums1: List[int], nums2: List[int], diff: int) -> int:
+        """
+        url: https://leetcode.com/problems/number-of-pairs-satisfying-inequality/
+        tag: math|sorted_list|binary_search
+        """
         # math|与sorted_listbinary_searchcounter
         n = len(nums1)
         ans = 0

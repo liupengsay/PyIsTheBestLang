@@ -2,47 +2,57 @@ import os
 import random
 
 import unittest
+from collections import defaultdict
 
 
 class TestGeneral(unittest.TestCase):
 
     def test_add_solution_http(self):
 
-        @unittest.skip
         def process_file(file_path):
             nonlocal drop_dup
             with open(file_path, "r", encoding="utf-8", errors="ignore") as file:
                 lines = [ls.strip("\n") for ls in file.readlines()]
             lst = []
-            dct = dict()
+            dct = defaultdict(list)
             for line in lines:
                 st = "（https://"
-                if st in line and "leetcode.com" in line:
-                    idx = line.split(st)[0]
-                    url = "https://" + line.split(st)[1].split("）")[0]
-                    tag = line.split(st)[1].split("）")[1]
-                    dct[idx] = ["\"\"\"", f"url: {url}", f"tag: {tag}", "\"\"\""]
+                try:
+                    if st in line and "leetcode.com" in line:
+                        idx = line.split(st)[0]
+                        url = "https://" + line.split(st)[1].split("）")[0]
+                        tag = line.split(st)[1].split("）")[1]
+                        dct[idx] = ["        \"\"\"", f"        url: {url}", f"        tag: {tag}", "        \"\"\""]
+                except:
+                    print(file_path, line)
+
                 st = "def lc_"
                 if lst and st in lst[-1]:
-                    lst.extend(dct[lst[-1].split("(")[0].split("lc_")[1]])
+                    try:
+                        lst.extend(dct[lst[-1].split("(")[0].split("lc_")[1].split("_")[0]])
+                    except:
+                        print(file_path, lst[-1])
+
                 lst.append(line)
             with open(file_path, "w", encoding="utf-8", errors="ignore") as file:
                 file.write("\n".join(lst))
             return
 
         def process_directory(directory):
+            nonlocal pre
             for root, dirs, files in os.walk(directory):
                 for file in files:
                     if file == "problem.py":
                         file_path = os.path.join(root, file)
                         process_file(file_path)
+                        pre += 1
             return
 
         current_path = os.getcwd()
         parent_path = os.path.abspath(os.path.join(current_path, os.pardir))
         grandparent_path = os.path.abspath(os.path.join(parent_path, os.pardir))
-        pre = set()
         drop_dup = 0
+        pre = 0
         process_directory(os.path.join(grandparent_path, "src"))
         print(f"total time cost：{drop_dup}")
         return

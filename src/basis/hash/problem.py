@@ -46,6 +46,10 @@ class Solution:
 
     @staticmethod
     def lc_2143(nums1: List[int], nums2: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/choose-numbers-from-two-arrays-in-range/
+        tag: prefix_sum|hash|counter
+        """
         # hashcounterimplementionlinear_dp 转移
         n = len(nums1)
         mod = 10 ** 9 + 7
@@ -67,6 +71,10 @@ class Solution:
 
     @staticmethod
     def lc_1658(nums: List[int], x: int) -> int:
+        """
+        url: https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/description/
+        tag: prefix_sum|hash|brain_teaser|greedy
+        """
         # prefix_sumhash，|brain_teasergreedy
         pre = {0: -1}
         cur = 0
@@ -83,6 +91,10 @@ class Solution:
 
     @staticmethod
     def lc_2025(nums: List[int], k: int) -> int:
+        """
+        url: https://leetcode.com/problems/maximum-number-of-ways-to-partition-an-array/description/
+        tag: hash|contribution_method|counter
+        """
 
         # 厘清边界hashcontribution_methodcounter
         n = len(nums)

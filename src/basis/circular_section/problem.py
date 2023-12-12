@@ -34,6 +34,10 @@ class Solution:
 
     @staticmethod
     def lc_957(cells: List[int], n: int) -> List[int]:
+        """
+        url: https://leetcode.com/problems/prison-cells-after-n-days/
+        tag: circular_section
+        """
         # N 天后的牢房circular_section
         def compute_loop(i, j, n):
             # 此时只需k即可，即最后一次的状态
@@ -65,6 +69,10 @@ class Solution:
 
     @staticmethod
     def lc_1806(n: int) -> int:
+        """
+        url: https://leetcode.com/problems/minimum-number-of-operations-to-reinitialize-a-permutation/description/
+        tag: circular_section
+        """
         # 根据有限状态判断circular_section的大小
         ans = 0
         visit = [0] * n

@@ -216,6 +216,10 @@ class Solution:
 
     @staticmethod
     def lc_1697(n: int, edge_list: List[List[int]], queries: List[List[int]]) -> List[bool]:
+        """
+        url: https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/
+        tag: sort|offline_query|implemention
+        """
         # union_find与离线sorting查询结合
         m = len(queries)
 
@@ -244,6 +248,10 @@ class Solution:
 
     @staticmethod
     def lc_2503(grid: List[List[int]], queries: List[int]) -> List[int]:
+        """
+        url: https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/
+        tag: sort|offline_query|implemention
+        """
         # union_find与离线sorting查询结合
         dct = []
         # 根据邻居关系build_graph|处理
@@ -279,6 +287,10 @@ class Solution:
 
     @staticmethod
     def lc_2421(vals: List[int], edges: List[List[int]]) -> int:
+        """
+        url: https://leetcode.com/problems/number-of-good-paths/
+        tag: sort|union_find|counter
+        """
         # union_find与离线sorting查询结合
         n = len(vals)
         index = defaultdict(list)
@@ -608,6 +620,10 @@ class Solution:
 
     @staticmethod
     def lc_2709(nums: List[int]) -> bool:
+        """
+        url: https://leetcode.com/problems/greatest-common-divisor-traversal/
+        tag: union_find|prime_factorization
+        """
         # union_find具有相同质因数的连通块
         prime_factor = NumberTheory().get_num_prime_factor(10 ** 5)  # 放在全局
         n = len(nums)
@@ -709,6 +725,10 @@ class Solution:
 
     @staticmethod
     def lc_2612(n: int, p: int, banned: List[int], k: int) -> List[int]:
+        """
+        url: https://leetcode.com/problems/minimum-reverse-operations/
+        tag: union_find|find_range_merge_to_disjoint
+        """
 
         def find_range_merge_to_disjoint(x):
             # union_find父节点表示下一个为访问的点类似linked_list|
@@ -843,6 +863,10 @@ class Solution:
 
     @staticmethod
     def lc_945(nums: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/minimum-increment-to-make-array-unique/description/
+        tag: union_find_right_root|greedy
+        """
         # 可向右合并的区间union_find，正解为greedy
         nums.sort()
         ans = 0
@@ -856,6 +880,10 @@ class Solution:
 
     @staticmethod
     def lc_1559(grid: List[List[str]]) -> bool:
+        """
+        url: https://leetcode.com/problems/detect-cycles-in-2d-grid/
+        tag: union_find|circle_judge|classical
+        """
         # union_find判环
         m, n = len(grid), len(grid[0])
         uf = UnionFind(m * n)
@@ -871,6 +899,10 @@ class Solution:
 
     @staticmethod
     def lc_1569(nums: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/number-of-ways-to-reorder-array-to-get-same-bst/
+        tag: reverse_thinking|reverse_order|union_find_bst|union_find
+        """
 
         # reverse_thinking，comb|union_find
         len(nums)
@@ -918,6 +950,10 @@ class Solution:
 
     @staticmethod
     def lc_2158(paint: List[List[int]]) -> List[int]:
+        """
+        url: https://leetcode.com/problems/amount-of-new-area-painted-each-day/
+        tag: union_find_range|union_find_left_root|union_find_right_root
+        """
         # 区间union_find
         m = 5 * 10 ** 4 + 10
         uf = UnionFindRightRoot(m)
@@ -1015,6 +1051,10 @@ class Solution:
 
     @staticmethod
     def lc_2471(root: Optional[TreeNode]) -> int:
+        """
+        url: https://leetcode.com/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/description/
+        tag: discretization|permutation_circle
+        """
         # discretizationpermutation_circle|
 
         def check():

@@ -102,6 +102,10 @@ class Solution:
 
     @staticmethod
     def lc_2289(nums: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/steps-to-make-array-non-decreasing/description/
+        tag: monotonic_stack|liner_dp|bfs|linked_list
+        """
 
         # monotonic_stack|优化的liner_dp，也可用bfs|linked_list|求解
         n = len(nums)
@@ -121,6 +125,10 @@ class Solution:
 
     @staticmethod
     def lc_2617(grid: List[List[int]]) -> int:
+        """
+        url: https://leetcode.com/problems/minimum-number-of-visited-cells-in-a-grid/
+        tag: bfs|double_linked_list
+        """
         # bfs|两个方向上的linked_list|，也可以union_find代替
         m, n = len(grid), len(grid[0])
         dis = [[inf] * n for _ in range(m)]
@@ -269,6 +277,10 @@ class Solution:
 
     @staticmethod
     def lc_1562(arr: List[int], m: int) -> int:
+        """
+        url: https://leetcode.com/problems/find-latest-group-of-size-m/
+        tag: union_find|double_linked_list
+        """
         # 类似union_find的prefix_suffixlinked_list|求解
         n = len(arr)
         left = [-1] * n

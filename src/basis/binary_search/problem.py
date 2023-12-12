@@ -339,6 +339,10 @@ class Solution:
 
     @staticmethod
     def lc_1889(packages: List[int], boxes: List[List[int]]) -> int:
+        """
+        url: https://leetcode.com/problems/minimum-space-wasted-from-packaging/
+        tag: sorting|prefix_sum|greedy|binary_search
+        """
         # sorting|prefix_sumpreprocess与greedybinary_search
         packages.sort()
         pre = list(accumulate(packages, initial=0))
@@ -365,6 +369,10 @@ class Solution:
 
     @staticmethod
     def lc_2141(n: int, batteries: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/maximum-running-time-of-n-computers/
+        tag: greedy|binary_search|implemention
+        """
         # greedybinary_search
 
         batteries.sort(reverse=True)
@@ -381,6 +389,10 @@ class Solution:
 
     @staticmethod
     def lc_2528(stations: List[int], r: int, k: int) -> int:
+        """
+        url: https://leetcode.com/problems/maximize-the-minimum-powered-city/description/
+        tag: binary_search|prefix_sum|diff_array|greedy
+        """
         # binary_searchprefix_sumdiff_array|greedy验证
         n = len(stations)
         nums = [0] * n
@@ -409,6 +421,10 @@ class Solution:
 
     @staticmethod
     def lc_2563(nums, lower, upper):
+        """
+        url: https://leetcode.com/problems/count-the-number-of-fair-pairs/
+        tag: binary_search|sorted_list
+        """
         # 查找数值和在一定范围的数对个数
         nums.sort()
         n = len(nums)
@@ -421,6 +437,10 @@ class Solution:
 
     @staticmethod
     def lc_4(nums1: List[int], nums2: List[int]) -> float:
+        """
+        url: https://leetcode.com/problems/median-of-two-sorted-arrays/
+        tag: binary_search|median|two_arrays|same_direction_pointer
+        """
         # two_pointersbinary_search移动查找两个正序数组的median
         def get_kth_num(k):
             ind1 = ind2 = 0
@@ -1188,6 +1208,10 @@ class Solution:
 
     @staticmethod
     def lc_2594(ranks: List[int], cars: int) -> int:
+        """
+        url: https://leetcode.com/problems/minimum-time-to-repair-cars/
+        tag: binary_search
+        """
         #  binary_search
 
         def check(x):
@@ -1200,6 +1224,10 @@ class Solution:
 
     @staticmethod
     def lc_2604(hens: List[int], grains: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/minimum-time-to-eat-all-grains/
+        tag: binary_search|greedy|pointer
+        """
         # binary_search|pointergreedy check
         hens.sort()
         grains.sort()

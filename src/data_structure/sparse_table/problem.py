@@ -184,6 +184,10 @@ class Solution:
 
     @staticmethod
     def lc_2447(nums: List[int], k: int) -> int:
+        """
+        url: https://leetcode.com/problems/number-of-subarrays-with-gcd-equal-to-k/
+        tag: range_gcd|counter|sub_consequence
+        """
         # 最大公因数等于 K 的子数组数目
         ans = 0
         pre = dict()
@@ -201,6 +205,10 @@ class Solution:
 
     @staticmethod
     def lc_2470(nums: List[int], k: int) -> int:
+        """
+        url: https://leetcode.com/problems/number-of-subarrays-with-lcm-equal-to-k/
+        tag: range_lcm|counter|sub_consequence
+        """
         # 最小公倍数为 K 的子数组数目
         ans = 0
         pre = dict()
@@ -218,6 +226,10 @@ class Solution:
 
     @staticmethod
     def lc_2411(nums: List[int]) -> List[int]:
+        """
+        url: https://leetcode.com/problems/smallest-subarrays-with-maximum-bitwise-or/
+        tag: sub_consequence|range_or
+        """
         # 最大或值的最短连续子数组
         n = len(nums)
         ans = [0] * n
@@ -334,6 +346,10 @@ class Solution:
 
     @staticmethod
     def lc_1521(arr: List[int], target: int) -> int:
+        """
+        url: https://leetcode.com/problems/find-a-value-of-a-mysterious-function-closest-to-target/
+        tag: bit_operation|sub_consequence
+        """
         # 与目标值最接近的连续子数组bit_operation与值
         ans = abs(arr[0] - target)
         pre = {arr[0]}

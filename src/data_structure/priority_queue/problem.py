@@ -72,11 +72,19 @@ class Solution:
 
     @staticmethod
     def lc_239(nums: List[int], k: int) -> List[int]:
+        """
+        url: https://leetcode.com/problems/sliding-window-maximum/
+        tag: sliding_window_maximum
+        """
         # sliding_window最大值
         return PriorityQueue().sliding_window(nums, k)
 
     @staticmethod
     def lc_862(nums: List[int], k: int) -> int:
+        """
+        url: https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/description/
+        tag: prefix_sum|monotonic_queue|dp
+        """
         # prefix_sum|单调双端队列DP
         n = len(nums)
         stack = deque([0])

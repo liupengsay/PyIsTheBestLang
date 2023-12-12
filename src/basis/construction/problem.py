@@ -124,6 +124,10 @@ class Solution:
 
     @staticmethod
     def lc_280(nums: List[int]) -> None:
+        """
+        url: https://leetcode.com/problems/wiggle-sort/
+        tag: construction|sorting|odd_even
+        """
         # 摆动sorting数组construction
         nums.sort()
         n = len(nums)
@@ -142,6 +146,10 @@ class Solution:
 
     @staticmethod
     def lc_1982(n: int, sums: List[int]) -> List[int]:
+        """
+        url: https://leetcode.com/problems/find-array-given-subset-sums/
+        tag: construction
+        """
         # 根据数组所有子集的和construction原数组
         low = min(sums)
         if low < 0:
@@ -176,6 +184,10 @@ class Solution:
 
     @staticmethod
     def lc_2663(s: str, k: int) -> str:
+        """
+        url: https://leetcode.com/problems/lexicographically-smallest-beautiful-string/
+        tag: greedy|construction|palindrome_substring|lexicographical_order
+        """
         # greedyconstruction不含任何palindrome_substring的lexicographical_order最小的字符串
         n = len(s)
         for i in range(n - 1, -1, -1):

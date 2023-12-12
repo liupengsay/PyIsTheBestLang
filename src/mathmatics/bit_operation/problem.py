@@ -158,6 +158,10 @@ class Solution:
 
     @staticmethod
     def lc_260(nums: List[int]) -> List[int]:
+        """
+        url: https://leetcode.com/problems/single-number-iii/
+        tag: bit_operation|counter
+        """
 
         # 将整数换算成二进制counter
         s = reduce(xor, nums)
@@ -172,6 +176,10 @@ class Solution:
 
     @staticmethod
     def lc_137(nums: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/single-number-ii/
+        tag: bit_operation|counter
+        """
 
         # 将整数换算成二进制counter
         floor = (1 << 31) + 1
@@ -208,6 +216,10 @@ class Solution:
 
     @staticmethod
     def lc_1787(nums: List[int], k: int) -> int:
+        """
+        url: https://leetcode.com/problems/make-the-xor-of-all-segments-equal-to-zero/
+        tag: xor_property|data_range|brute_force
+        """
         # 按照异或特性分组并利用data_rangebrute_forceDP
         m = max(len(bin(num)) - 2 for num in nums)
         pre = [inf] * (1 << m)
@@ -227,6 +239,10 @@ class Solution:
 
     @staticmethod
     def lc_6360(nums):
+        """
+        url: https://leetcode.com/problems/minimum-impossible-or/
+        tag: greedy
+        """
         # 最小的无法由子数组的或运算得到的数（异或则可以线性基求解判断）
         dct = set(nums)
         ans = 1
@@ -236,6 +252,10 @@ class Solution:
 
     @staticmethod
     def lc_6365(num):
+        """
+        url: https://leetcode.com/problems/minimum-operations-to-reduce-an-integer-to-0/
+        tag: operation|bit_property
+        """
         # n |上或减去 2 的某个幂使得 n 变为 0 的最少操作数
         @lru_cache(None)
         def dfs(n):
@@ -251,6 +271,10 @@ class Solution:
 
     @staticmethod
     def lc_6365_2(num):
+        """
+        url: https://leetcode.com/problems/minimum-operations-to-reduce-an-integer-to-0/
+        tag: operation|bit_property
+        """
         # 对应有 O(logn) greedy解法
         s = bin(num)[2:][::-1]
         ans = cnt = 0
@@ -276,6 +300,10 @@ class Solution:
 
     @staticmethod
     def lc_2275(candidates: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/largest-combination-with-bitwise-and-greater-than-zero/
+        tag: range_add|classical|st
+        """
         # 求按位与不为0的最长子序列，不要求连续
         count = [0] * 32
         for num in candidates:
@@ -288,6 +316,10 @@ class Solution:
 
     @staticmethod
     def lc_2564(s, queries):
+        """
+        url: https://leetcode.com/problems/substring-xor-queries/
+        tag: bit_operation|bit_property
+        """
         # preprocess相同异或值的索引
         dct = defaultdict(set)
         m = len(queries)
@@ -310,6 +342,10 @@ class Solution:
 
     @staticmethod
     def lc_1238(n: int, start: int) -> List[int]:
+        """
+        url: https://leetcode.com/problems/circular-permutation-in-binary-representation/
+        tag: gray_code|classical
+        """
         # 生成 n 位数的格雷码
         ans = BitOperation().get_graycode(n)
         i = ans.index(start)
@@ -317,6 +353,10 @@ class Solution:
 
     @staticmethod
     def lc_89(n: int) -> List[int]:
+        """
+        url: https://leetcode.com/problems/gray-code/
+        tag: gray_code|classical
+        """
         # 生成 n 位数的格雷码
         ans = BitOperation().get_graycode(n)
         return ans
@@ -554,6 +594,10 @@ class Solution:
 
     @staticmethod
     def lc_1486(n: int, start: int) -> int:
+        """
+        url: https://leetcode.com/problems/xor-operation-in-an-array/
+        tag: xor_property
+        """
         # 异或公式
         s = start // 2
         bo = BitOperation()
@@ -563,6 +607,10 @@ class Solution:
 
     @staticmethod
     def lc_1734(encoded: List[int]) -> List[int]:
+        """
+        url: https://leetcode.com/problems/decode-xored-permutation/
+        tag: math|xor_property|odd_xor
+        """
         # 变换公式，解码相邻异或值编码，并利用奇数排列的异或性质
         n = len(encoded) + 1
         total = 1 if n % 4 == 1 else 0  # n=4*k+1 与 n=4*k+3

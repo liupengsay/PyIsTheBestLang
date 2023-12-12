@@ -30,6 +30,10 @@ class Solution:
 
     @staticmethod
     def lc_330(nums: List[int], n: int) -> int:
+        """
+        url: https://leetcode.com/problems/patching-array/
+        tag: greedy|sort|implemention|mex
+        """
         nums.sort()
         m = len(nums)
         i = 0
@@ -46,6 +50,10 @@ class Solution:
 
     @staticmethod
     def lc_2952(nums: List[int], n: int) -> int:
+        """
+        url: https://leetcode.com/problems/minimum-number-of-coins-to-be-added/
+        tag: greedy|sort|implemention|mex
+        """
         nums.sort()
         m = len(nums)
         i = 0
@@ -62,6 +70,10 @@ class Solution:
 
     @staticmethod
     def lc_1798(coins: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/maximum-number-of-consecutive-values-you-can-make/
+        tag: greedy|sort|implemention|mex
+        """
         coins.sort()
         mex = 1
         for coin in coins:

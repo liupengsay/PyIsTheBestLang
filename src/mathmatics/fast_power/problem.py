@@ -48,6 +48,10 @@ class Solution:
 
     @staticmethod
     def lc_8020(s: str, t: str, k: int) -> int:
+        """
+        url: https://leetcode.com/problems/string-transformation/description/
+        tag: kmp|matrix_fast_power|classical
+        """
         # KMP与fast_power|转移
         mod = 10 ** 9 + 7
         n = len(s)

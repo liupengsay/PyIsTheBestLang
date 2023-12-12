@@ -112,6 +112,10 @@ class Solution:
 
     @staticmethod
     def lc_2608_1(n: int, edges: List[List[int]]) -> int:
+        """
+        url: https://leetcode.com/contest/biweekly-contest-101/problems/shortest-cycle-in-a-graph/
+        tag: bfs|undirected_smallest_circle|brute_force|shortest_path
+        """
 
         # 求无向图的最小环
         graph = [[] for _ in range(n)]
@@ -141,6 +145,10 @@ class Solution:
 
     @staticmethod
     def lc_2608_2(n: int, edges: List[List[int]]) -> int:
+        """
+        url: https://leetcode.com/contest/biweekly-contest-101/problems/shortest-cycle-in-a-graph/
+        tag: bfs|undirected_smallest_circle|brute_force|shortest_path
+        """
 
         # 求无向图的最小环
         graph = [[] for _ in range(n)]
@@ -169,6 +177,10 @@ class Solution:
 
     @staticmethod
     def lc_2608_3(n: int, edges: List[List[int]]) -> int:
+        """
+        url: https://leetcode.com/contest/biweekly-contest-101/problems/shortest-cycle-in-a-graph/
+        tag: bfs|undirected_smallest_circle|brute_force|shortest_path
+        """
         # 求无向图的最小环
         inf = float('inf')
         g = [[] for _ in range(n)]
@@ -198,6 +210,10 @@ class Solution:
 
     @staticmethod
     def lc_2608_4(n: int, edges: List[List[int]]) -> int:
+        """
+        url: https://leetcode.com/contest/biweekly-contest-101/problems/shortest-cycle-in-a-graph/
+        tag: bfs|undirected_smallest_circle|brute_force|shortest_path
+        """
         # 求无向图的最小环，brute_force边
         graph = [set() for _ in range(n)]
         for x, y in edges:
@@ -401,6 +417,10 @@ class Solution:
 
     @staticmethod
     def lc_2290(grid: List[List[int]]) -> int:
+        """
+        url: https://leetcode.com/problems/minimum-obstacle-removal-to-reach-corner/
+        tag: 0-1bfs|deque_bfs
+        """
         # 队列实现0-1 bfs 即优先选择距离较短的路线
         m, n = len(grid), len(grid[0])
         visit = [[0] * n for _ in range(m)]
@@ -421,6 +441,10 @@ class Solution:
 
     @staticmethod
     def lc_2493(n: int, edges: List[List[int]]) -> int:
+        """
+        url: https://leetcode.com/problems/divide-nodes-into-the-maximum-number-of-groups/
+        tag: union_find|bfs|brute_force|specific_plan|coloring_method|bipartite_graph
+        """
         # 利用union_find和bfs连通块分组并brute_force最佳specific_plan，也就是coloring_method判断是否可以形成bipartite_graph
         dct = [[] for _ in range(n)]
         uf = UnionFind(n)
@@ -458,6 +482,10 @@ class Solution:
 
     @staticmethod
     def lc_1368(grid: List[List[int]]) -> int:
+        """
+        url: https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/
+        tag: 0-1bfs|deque_bfs
+        """
         # 队列实现0-1 bfs 即优先选择距离较短的路线
         m, n = len(grid), len(grid[0])
         ceil = int(1e9)
@@ -485,6 +513,10 @@ class Solution:
 
     @staticmethod
     def lc_1926(maze: List[List[str]], entrance: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/nearest-exit-from-entrance-in-maze/
+        tag: deque_bfs|in_place_hash
+        """
         # 双端队列01-bfsin_place_hash
         m, n = len(maze), len(maze[0])
         x0, y0 = entrance[:]
@@ -1701,6 +1733,10 @@ class Solution:
 
     @staticmethod
     def lc_909(board: List[List[int]]) -> int:
+        """
+        url: https://leetcode.com/problems/snakes-and-ladders/
+        tag: 01-bfs|implemention
+        """
         # 01-bfs|implemention
         def position(num):
             i = (num - 1) // n
@@ -1729,6 +1765,10 @@ class Solution:
 
     @staticmethod
     def lc_994(grid: List[List[int]]) -> int:
+        """
+        url: https://leetcode.com/problems/rotting-oranges/description/
+        tag: deque_bfs|implemention
+        """
         # bfs队列implemention
         m, n = len(grid), len(grid[0])
         stack = deque()
@@ -1752,6 +1792,10 @@ class Solution:
 
     @staticmethod
     def lc_1036_1(blocked: List[List[int]], source: List[int], target: List[int]) -> bool:
+        """
+        url: https://leetcode.com/problems/escape-a-large-maze/
+        tag: bound_bfs|discretization_bfs
+        """
         # bound_bfs和discretization_bfs两种解法
         def check(node):
             stack = [node]
@@ -1778,6 +1822,10 @@ class Solution:
 
     @staticmethod
     def lc_1036_2(blocked: List[List[int]], source: List[int], target: List[int]) -> bool:
+        """
+        url: https://leetcode.com/problems/escape-a-large-maze/
+        tag: bound_bfs|discretization_bfs
+        """
         # bound_bfs和discretization_bfs两种解法
         nodes_r = {0, 10 ** 6 - 1}
         nodes_c = {0, 10 ** 6 - 1}

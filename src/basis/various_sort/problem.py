@@ -41,6 +41,10 @@ class Solution:
 
     @staticmethod
     def lc_912(lst: List[int]) -> List[int]:
+        """
+        url: https://leetcode.com/problems/sort-an-array/
+        tag: quick_sort
+        """
         # quick_sort两路手动实现
         n = len(lst)
 
@@ -97,6 +101,10 @@ class Solution:
 
     @staticmethod
     def lc_179(nums: List[int]) -> str:
+        """
+        url: https://leetcode.com/problems/largest-number/
+        tag: custom_sort|maximum
+        """
 
         # 模板: custom_sort拼接最大数
         def compare(a, b):
@@ -141,6 +149,10 @@ class Solution:
 
     @staticmethod
     def lc_1665(tasks: List[List[int]]) -> int:
+        """
+        url: https://leetcode.com/problems/minimum-initial-energy-to-finish-tasks/
+        tag: custom_sort|greedy|sorting
+        """
         # 模板: custom_sort
 
         def compare(aa, bb):
@@ -166,6 +178,10 @@ class Solution:
 
     @staticmethod
     def lc_2412(transactions: List[List[int]]) -> int:
+        """
+        url: https://leetcode.com/problems/minimum-money-required-before-transactions/
+        tag: custom_sort|greedy
+        """
 
         def check(it):
             cos, cash = it[:]

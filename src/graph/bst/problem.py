@@ -122,6 +122,10 @@ class Solution:
 
     @staticmethod
     def lc_1569(nums: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/number-of-ways-to-reorder-array-to-get-same-bst/
+        tag: array_to_bst|dp|comb|counter|specific_plan
+        """
         # array_to_bst，DP与组合counter求specific_plan数
         dct = BinarySearchTreeByArray().build_with_unionfind(nums)
         mod = 10 ** 9 + 7
@@ -150,6 +154,10 @@ class Solution:
 
     @staticmethod
     def lc_1902(order: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/depth-of-bst-given-insertion-order/
+        tag: array_to_bst|tree_depth|implemention
+        """
         # array_to_bst求深度
         dct = BinarySearchTreeByArray().build_with_unionfind(order)  # 也可以 build_with_stack
         stack = [[0, 1]]

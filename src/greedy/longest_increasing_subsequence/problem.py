@@ -77,6 +77,10 @@ class Solution:
 
     @staticmethod
     def lc_1713(target: List[int], arr: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/minimum-operations-to-make-a-subsequence/
+        tag: lcs_by_lis
+        """
         # 最长递增子序列模板题
         ind = {num: i for i, num in enumerate(target)}
         lst = [ind[num] for num in arr if num in ind]
@@ -84,6 +88,10 @@ class Solution:
 
     @staticmethod
     def lc_1964(obstacles: List[int]) -> List[int]:
+        """
+        url: https://leetcode.com/problems/find-the-longest-valid-obstacle-course-at-each-position/
+        tag: lis
+        """
         # LIS求以每个位置结尾的最长不降子序列长度
         pre = []
         dp = []
@@ -99,6 +107,10 @@ class Solution:
 
     @staticmethod
     def lc_2111(arr: List[int], k: int) -> int:
+        """
+        url: https://leetcode.com/problems/minimum-operations-to-make-the-array-k-increasing/
+        tag: lis|dp|greedy
+        """
         # 最长不降子序列
         ans = 0
         for i in range(k):
@@ -108,12 +120,20 @@ class Solution:
 
     @staticmethod
     def lc_2826(nums: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/sorting-three-groups/
+        tag: longest_non_decreasing_subsequence|classical
+        """
         # 转换为求最长不降子序列
         n = len(nums)
         return n - LongestIncreasingSubsequence().definitely_not_reduce(nums)
 
     @staticmethod
     def lc_2945(nums: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/find-maximum-non-decreasing-array-length/description/
+        tag: linear dp|deque|greedy|prefix_sum
+        """
         n = len(nums)
         stack = deque([0])
         dp = [0] * (n + 1)
@@ -231,10 +251,18 @@ class Solution:
 
     @staticmethod
     def lc_673(nums: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/number-of-longest-increasing-subsequence/
+        tag: lis|counter|O(nlogn)|classical
+        """
         return LcsComputeByLis().length_and_cnt_of_lis(nums)
 
     @staticmethod
     def lc_1092(str1: str, str2: str) -> str:
+        """
+        url: https://leetcode.com/problems/shortest-common-supersequence/
+        tag: lcs_by_lis|super_sequence
+        """
         # 利用LIS求LCS的最短公共超序列
         if len(str1) > len(str2):
             str1, str2 = str2, str1

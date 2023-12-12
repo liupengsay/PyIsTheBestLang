@@ -90,6 +90,10 @@ class Solution:
 
     @staticmethod
     def lc_2213(s: str, word: str, indices: List[int]) -> List[int]:
+        """
+        url: https://leetcode.com/problems/longest-substring-of-one-repeating-character/
+        tag: segment_tree|sub_consequence|range_query|range_merge
+        """
         # 单点字母更新，最长具有相同字母的连续子数组查询
         n = len(s)
         tree = SegmentTreeLongestSubSame(n, [ord(w) - ord("a") for w in s])
@@ -254,6 +258,10 @@ class Solution:
 
     @staticmethod
     def lc_218(buildings: List[List[int]]) -> List[List[int]]:
+        """
+        url: https://leetcode.com/problems/the-skyline-problem/solution/by-liupengsay-isfo/
+        tag: segment_tree|RangeChangeRangeMax
+        """
         # segment_tree|discretization区间且持续增|最大值
         pos = set()
         for left, right, _ in buildings:
@@ -559,6 +567,10 @@ class Solution:
 
     @staticmethod
     def lc_2940(heights: List[int], queries: List[List[int]]) -> List[int]:
+        """
+        url: https://leetcode.com/problems/find-building-where-alice-and-bob-can-meet/
+        tag: segment_tree_binary_search
+        """
         n = len(heights)
         tree = RangeAscendRangeMaxBinarySearchFindLeft(n)
         tree.build(heights)
@@ -850,6 +862,10 @@ class Solution:
 
     @staticmethod
     def lc_1851(intervals: List[List[int]], queries: List[int]) -> List[int]:
+        """
+        url: https://leetcode.com/problems/minimum-interval-to-include-each-query/
+        tag: segment_tree|RangeChangeRangeMin|offline_query|priority_queue
+        """
         # 区间更新最小值、单点查询
         port = []
         for inter in intervals:
@@ -867,6 +883,10 @@ class Solution:
 
     @staticmethod
     def lc_1340(nums: List[int], d: int) -> int:
+        """
+        url: https://leetcode.com/problems/jump-game-v/
+        tag: segment_tree|linear_dp
+        """
 
         # 可以segment_tree|DP解决
         n = len(nums)

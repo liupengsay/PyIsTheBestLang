@@ -204,6 +204,10 @@ class Solution:
 
     @staticmethod
     def lc_670(num: int) -> int:
+        """
+        url: https://leetcode.com/problems/maximum-swap/
+        tag: greedy|brute_force
+        """
         # 在复杂度有限的情况下有限采用brute_force的方式而不是greedy
 
         def check():  # greedy
@@ -735,6 +739,10 @@ class Solution:
 
     @staticmethod
     def lc_2591(money: int, children: int) -> int:
+        """
+        url: https://leetcode.com/problems/distribute-money-to-maximum-children/
+        tag: brute_force
+        """
         # brute_force考虑边界条件
         ans = -1
         for x in range(children + 1):
@@ -753,6 +761,10 @@ class Solution:
 
     @staticmethod
     def lc_2681(nums: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/power-of-heroes/
+        tag: contribution_method|brute_force|counter
+        """
         # 按照contribution_methodbrute_forcecounter
         mod = 10 ** 9 + 7
         nums.sort()
@@ -993,6 +1005,10 @@ class Solution:
 
     @staticmethod
     def lc_2018(board: List[List[str]], word: str) -> bool:
+        """
+        url: https://leetcode.com/problems/check-if-word-can-be-placed-in-crossword/description/
+        tag: brute_force
+        """
         # brute_force空挡位置与矩阵行列取数
         k = len(word)
 
@@ -1024,6 +1040,10 @@ class Solution:
 
     @staticmethod
     def lc_2170(nums: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/minimum-operations-to-make-the-array-alternating/
+        tag: brute_force|secondary_maximum
+        """
         # brute_force，运用最大值与次大值技巧
         odd = defaultdict(int)
         even = defaultdict(int)
@@ -1062,6 +1082,10 @@ class Solution:
 
     @staticmethod
     def lc_910(nums: List[int], k: int) -> int:
+        """
+        url: https://leetcode.com/problems/smallest-range-ii/description/
+        tag: brute_force|data_range
+        """
         # brute_force操作的范围，最大值与最小值
         nums.sort()
         ans = nums[-1] - nums[0]
@@ -1077,6 +1101,10 @@ class Solution:
 
     @staticmethod
     def lc_1178(words: List[str], puzzles: List[str]) -> List[int]:
+        """
+        url: https://leetcode.com/problems/number-of-valid-words-for-each-puzzle/
+        tag: hash|counter|brute_force|bit_operation
+        """
         # classicalhashcounterbrute_force，bit_operation
         dct = defaultdict(int)
         for word in words:
@@ -1100,6 +1128,10 @@ class Solution:
 
     @staticmethod
     def lc_1215(low: int, high: int) -> List[int]:
+        """
+        url: https://leetcode.com/problems/stepping-numbers/
+        tag: data_range|back_track|brute_force
+        """
 
         # data_range|back_trackbrute_force所有满足条件的数
 
@@ -1127,6 +1159,10 @@ class Solution:
 
     @staticmethod
     def lc_1131(arr1: List[int], arr2: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/maximum-of-absolute-value-expression/description/
+        tag: manhattan_distance|brute_force
+        """
         # manhattan_distance，brute_force可能的符号组合
         n = len(arr1)
         ans = 0
@@ -1141,6 +1177,10 @@ class Solution:
 
     @staticmethod
     def lc_1638_1(s: str, t: str) -> int:
+        """
+        url: https://leetcode.com/problems/count-substrings-that-differ-by-one-character/description/
+        tag: brute_force|dp|brute_force
+        """
         # brute_force子字符串对开头位置也可DPbrute_force
         m, n = len(s), len(t)
         ans = 0
@@ -1159,6 +1199,10 @@ class Solution:
 
     @staticmethod
     def lc_1638_2(s: str, t: str) -> int:
+        """
+        url: https://leetcode.com/problems/count-substrings-that-differ-by-one-character/description/
+        tag: brute_force|dp|brute_force
+        """
         # brute_force子字符串对开头位置也可DPbrute_force
         m = len(s)
         n = len(t)
@@ -1176,6 +1220,10 @@ class Solution:
 
     @staticmethod
     def lc_1761(n: int, edges: List[List[int]]) -> int:
+        """
+        url: https://leetcode.com/problems/minimum-degree-of-a-connected-trio-in-a-graph/
+        tag: directed_graph|undirected_graph|brute_force
+        """
         # 无向图转为有向图brute_force
         edges = [[i - 1, j - 1] for i, j in edges]
         degree = [0] * n
@@ -1203,6 +1251,10 @@ class Solution:
 
     @staticmethod
     def lc_1878(grid: List[List[int]]) -> List[int]:
+        """
+        url: https://leetcode.com/problems/get-biggest-three-rhombus-sums-in-a-grid/
+        tag: prefix_sum与|brute_force
+        """
         # 两个方向上的prefix_sum与边长brute_force
 
         m, n = len(grid), len(grid[0])
@@ -1255,6 +1307,10 @@ class Solution:
 
     @staticmethod
     def lc_2212(x: int, y: List[int]) -> List[int]:
+        """
+        url: https://leetcode.com/problems/maximum-points-in-an-archery-competition/
+        tag: bit_operation|brute_force|back_track
+        """
         # bit_operationbrute_force或者back_track
         n = len(y)
         ans = [0] * n
@@ -1277,6 +1333,10 @@ class Solution:
 
     @staticmethod
     def lc_2245(grid: List[List[int]]) -> int:
+        """
+        url: https://leetcode.com/problems/maximum-trailing-zeros-in-a-cornered-path/
+        tag: prefix_sum|brute_force
+        """
         # 四个方向的prefix_sum与两两组合brute_force
 
         def check(num, f):
