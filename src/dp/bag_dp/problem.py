@@ -3,17 +3,17 @@ Algorithm：bag_dp|group_bag_dp|linear_bag_dp|matrix_bag_dp|limited_bag_dp|fill_
 Description：bag_dp|bin_split|finite|infinite|tree_bag_dp
 
 ====================================LeetCode====================================
-140（https://leetcode.com/problems/word-break-ii/）bag_dp|specific_plan
-2218（https://leetcode.com/problems/maximum-value-of-k-coins-from-piles/）group_bag_dp
-2585（https://leetcode.com/problems/number-of-ways-to-earn-points/）bag_dp
-2189（https://leetcode.com/problems/number-of-ways-to-build-house-of-cards/）bag_dp
-254（https://leetcode.com/problems/factor-combinations/）bag_dp|mul
-1449（https://leetcode.com/problems/form-largest-integer-with-digits-that-add-up-to-target/）bag_dp
-1049（https://leetcode.com/problems/last-stone-weight-ii/）bag_dp
-2742（https://leetcode.com/problems/painting-the-walls/description/）bag_dp
-2518（https://leetcode.com/problems/number-of-great-partitions/）bag_dp|counter
-1155（https://leetcode.com/problems/number-of-dice-rolls-with-target-sum/description/）group_bag_dp|fill_table|refresh_table
-2902（https://leetcode.com/problems/count-of-sub-multisets-with-bounded-sum/description/）monotonic_queue|mod|group_bag_dp|prefix_sum|inclusion_exclusion|lazy_bag_like
+140（https://leetcode.cn/problems/word-break-ii/）bag_dp|specific_plan
+2218（https://leetcode.cn/problems/maximum-value-of-k-coins-from-piles/）group_bag_dp
+2585（https://leetcode.cn/problems/number-of-ways-to-earn-points/）bag_dp
+2189（https://leetcode.cn/problems/number-of-ways-to-build-house-of-cards/）bag_dp
+254（https://leetcode.cn/problems/factor-combinations/）bag_dp|mul
+1449（https://leetcode.cn/problems/form-largest-integer-with-digits-that-add-up-to-target/）bag_dp
+1049（https://leetcode.cn/problems/last-stone-weight-ii/）bag_dp
+2742（https://leetcode.cn/problems/painting-the-walls/description/）bag_dp
+2518（https://leetcode.cn/problems/number-of-great-partitions/）bag_dp|counter
+1155（https://leetcode.cn/problems/number-of-dice-rolls-with-target-sum/description/）group_bag_dp|fill_table|refresh_table
+2902（https://leetcode.cn/problems/count-of-sub-multisets-with-bounded-sum/description/）monotonic_queue|mod|group_bag_dp|prefix_sum|inclusion_exclusion|lazy_bag_like
 
 =====================================LuoGu======================================
 P1048（https://www.luogu.com.cn/problem/P1048）bag_dp|finite
@@ -207,7 +207,7 @@ class Solution:
     @staticmethod
     def lc_2218(piles: List[List[int]], k: int) -> int:
         """
-        url: https://leetcode.com/problems/maximum-value-of-k-coins-from-piles/
+        url: https://leetcode.cn/problems/maximum-value-of-k-coins-from-piles/
         tag: group_bag_dp
         """
 
@@ -256,7 +256,7 @@ class Solution:
     @staticmethod
     def lc_2742_1(cost: List[int], time: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/painting-the-walls/description/
+        url: https://leetcode.cn/problems/painting-the-walls/description/
         tag: bag_dp
         """
 
@@ -279,7 +279,7 @@ class Solution:
     @staticmethod
     def lc_2742_2(cost: List[int], time: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/painting-the-walls/description/
+        url: https://leetcode.cn/problems/painting-the-walls/description/
         tag: bag_dp
         """
 
@@ -298,7 +298,7 @@ class Solution:
     @staticmethod
     def lc_2518(nums: List[int], k: int) -> int:
         """
-        url: https://leetcode.com/problems/number-of-great-partitions/
+        url: https://leetcode.cn/problems/number-of-great-partitions/
         tag: bag_dp|counter
         """
         # bag_dp|finite|counter
@@ -319,7 +319,7 @@ class Solution:
     @staticmethod
     def lc_2585(target: int, types: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/number-of-ways-to-earn-points/
+        url: https://leetcode.cn/problems/number-of-ways-to-earn-points/
         tag: bag_dp
         """
         # 看似bin_split DP 实则matrix_dp| 转移
@@ -368,7 +368,7 @@ class Solution:
     @staticmethod
     def lc_254(n: int) -> List[List[int]]:
         """
-        url: https://leetcode.com/problems/factor-combinations/
+        url: https://leetcode.cn/problems/factor-combinations/
         tag: bag_dp|mul
         """
         # factorization与背包dp分解
@@ -1439,7 +1439,7 @@ class Solution:
     @staticmethod
     def lc_1049(stones: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/last-stone-weight-ii/
+        url: https://leetcode.cn/problems/last-stone-weight-ii/
         tag: bag_dp
         """
         # 问题，转化为bag_dp|finite|求解

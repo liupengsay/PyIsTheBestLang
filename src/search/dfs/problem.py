@@ -5,17 +5,17 @@ Description：back_track|brute_force|dfs_order|up_to_down|down_to_up
 
 
 ====================================LeetCode====================================
-473（https://leetcode.com/problems/matchsticks-to-square/）dfs|back_track
-301（https://leetcode.com/problems/remove-invalid-parentheses/）back_track|dfs|prune
-2581（https://leetcode.com/contest/biweekly-contest-99/problems/count-number-of-possible-root-nodes/）dfs_order|diff_array|counter
-1059（https://leetcode.com/problems/all-paths-from-source-lead-to-destination/）memory_search|dfs|back_track
-1718（https://leetcode.com/problems/construct-the-lexicographically-largest-valid-sequence/）back_track
-2322（https://leetcode.com/problems/minimum-score-after-removals-on-a-tree/）dfs_order|brute_force
-1240（https://leetcode.com/problems/tiling-a-rectangle-with-the-fewest-squares/）dfs|back_track|prune
-1239（https://leetcode.com/problems/maximum-length-of-a-concatenated-string-with-unique-characters/）dfs|back_track|2-base|brute_force
-1080（https://leetcode.com/problems/insufficient-nodes-in-root-to-leaf-paths/description/）dfs|up_to_down|down_to_up
-2056（https://leetcode.com/problems/number-of-valid-move-combinations-on-chessboard/description/）back_track|brute_force
-2458（https://leetcode.com/height-of-binary-tree-after-subtree-removal-queries/）dfs_order
+473（https://leetcode.cn/problems/matchsticks-to-square/）dfs|back_track
+301（https://leetcode.cn/problems/remove-invalid-parentheses/）back_track|dfs|prune
+2581（https://leetcode.cn/contest/biweekly-contest-99/problems/count-number-of-possible-root-nodes/）dfs_order|diff_array|counter
+1059（https://leetcode.cn/problems/all-paths-from-source-lead-to-destination/）memory_search|dfs|back_track
+1718（https://leetcode.cn/problems/construct-the-lexicographically-largest-valid-sequence/）back_track
+2322（https://leetcode.cn/problems/minimum-score-after-removals-on-a-tree/）dfs_order|brute_force
+1240（https://leetcode.cn/problems/tiling-a-rectangle-with-the-fewest-squares/）dfs|back_track|prune
+1239（https://leetcode.cn/problems/maximum-length-of-a-concatenated-string-with-unique-characters/）dfs|back_track|2-base|brute_force
+1080（https://leetcode.cn/problems/insufficient-nodes-in-root-to-leaf-paths/description/）dfs|up_to_down|down_to_up
+2056（https://leetcode.cn/problems/number-of-valid-move-combinations-on-chessboard/description/）back_track|brute_force
+2458（https://leetcode.cn/height-of-binary-tree-after-subtree-removal-queries/）dfs_order
 
 =====================================LuoGu======================================
 P2383（https://www.luogu.com.cn/problem/P2383）dfs|back_track
@@ -84,7 +84,7 @@ class Solution:
     @staticmethod
     def lc_473(matchsticks: List[int]) -> bool:
         """
-        url: https://leetcode.com/problems/matchsticks-to-square/
+        url: https://leetcode.cn/problems/matchsticks-to-square/
         tag: dfs|back_track
         """
         # 模板: dfs||back_track判断能否将数组分成正方形
@@ -229,7 +229,7 @@ class Solution:
     @staticmethod
     def lc_301(s):
         """
-        url: https://leetcode.com/problems/remove-invalid-parentheses/
+        url: https://leetcode.cn/problems/remove-invalid-parentheses/
         tag: back_track|dfs|prune
         """
         # dfs|back_track|删除最少数量的无效括号使得子串合法有效
@@ -340,7 +340,7 @@ class Solution:
     @staticmethod
     def lc_1080(root: Optional[TreeNode], limit: int) -> Optional[TreeNode]:
         """
-        url: https://leetcode.com/problems/insufficient-nodes-in-root-to-leaf-paths/description/
+        url: https://leetcode.cn/problems/insufficient-nodes-in-root-to-leaf-paths/description/
         tag: dfs|up_to_down|down_to_up
         """
 
@@ -365,7 +365,7 @@ class Solution:
     @staticmethod
     def lc_1239(arr: List[str]) -> int:
         """
-        url: https://leetcode.com/problems/maximum-length-of-a-concatenated-string-with-unique-characters/
+        url: https://leetcode.cn/problems/maximum-length-of-a-concatenated-string-with-unique-characters/
         tag: dfs|back_track|2-base|brute_force
         """
         # DFSback_track二进制brute_force
@@ -393,7 +393,7 @@ class Solution:
     @staticmethod
     def lc_1240(n: int, m: int) -> int:
         """
-        url: https://leetcode.com/problems/tiling-a-rectangle-with-the-fewest-squares/
+        url: https://leetcode.cn/problems/tiling-a-rectangle-with-the-fewest-squares/
         tag: dfs|back_track|prune
         """
         # DFSback_track与prune
@@ -440,7 +440,7 @@ class Solution:
     @staticmethod
     def lc_2056(pieces: List[str], positions: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/number-of-valid-move-combinations-on-chessboard/description/
+        url: https://leetcode.cn/problems/number-of-valid-move-combinations-on-chessboard/description/
         tag: back_track|brute_force
         """
         # back_trackbrute_force
@@ -488,7 +488,7 @@ class Solution:
     @staticmethod
     def lc_2322(nums: List[int], edges: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/minimum-score-after-removals-on-a-tree/
+        url: https://leetcode.cn/problems/minimum-score-after-removals-on-a-tree/
         tag: dfs_order|brute_force
         """
         # dfs_orderdfs_order|brute_force
@@ -540,7 +540,7 @@ class Solution:
     @staticmethod
     def lc_2458(root: Optional[TreeNode], queries: List[int]) -> List[int]:
         """
-        url: https://leetcode.com/height-of-binary-tree-after-subtree-removal-queries/
+        url: https://leetcode.cn/height-of-binary-tree-after-subtree-removal-queries/
         tag: dfs_order
         """
         # dfs_order|模板题目
@@ -581,7 +581,7 @@ class Solution:
     @staticmethod
     def lc_2581(edges: List[List[int]], guesses: List[List[int]], k: int) -> int:
         """
-        url: https://leetcode.com/contest/biweekly-contest-99/problems/count-number-of-possible-root-nodes/
+        url: https://leetcode.cn/contest/biweekly-contest-99/problems/count-number-of-possible-root-nodes/
         tag: dfs_order|diff_array|counter
         """
         # dfs_order确定猜测的查询范围，并diff_array|counter

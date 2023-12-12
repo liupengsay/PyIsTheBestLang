@@ -3,8 +3,8 @@ Algorithm：scan_line
 Description：plane|cube
 
 ====================================LeetCode====================================
-218（https://leetcode.com/problems/the-skyline-problem/）scan_line
-850（https://leetcode.com/problems/rectangle-area-ii/）scan_line|segment_tree|discretization|O(nlogn)
+218（https://leetcode.cn/problems/the-skyline-problem/）scan_line
+850（https://leetcode.cn/problems/rectangle-area-ii/）scan_line|segment_tree|discretization|O(nlogn)
 
 =====================================LuoGu======================================
 P6265（https://www.luogu.com.cn/problem/P6265）scan_line

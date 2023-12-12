@@ -3,12 +3,12 @@ Algorithm：divide_and_conquer|recursion|n-tree|pre_order|mid_order|post_order|i
 Description：recursion|iteration
 
 ====================================LeetCode====================================
-1545（https://leetcode.com/problems/find-kth-bit-in-nth-binary-string/）recursion|implemention
-894（https://leetcode.com/problems/all-possible-full-binary-trees/）catalan_num|recursion|implemention
-880（https://leetcode.com/problems/decoded-string-at-index/）recursion|implemention
-932（https://leetcode.com/problems/beautiful-array/description/）recursion|divide_and_conquer|construction
-889（https://leetcode.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/）recursion|divide_and_conquer|construction
-1028（https://leetcode.com/problems/recover-a-tree-from-preorder-traversal/description/）pre_order|recursion|construction|2-tree
+1545（https://leetcode.cn/problems/find-kth-bit-in-nth-binary-string/）recursion|implemention
+894（https://leetcode.cn/problems/all-possible-full-binary-trees/）catalan_num|recursion|implemention
+880（https://leetcode.cn/problems/decoded-string-at-index/）recursion|implemention
+932（https://leetcode.cn/problems/beautiful-array/description/）recursion|divide_and_conquer|construction
+889（https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-postorder-traversal/）recursion|divide_and_conquer|construction
+1028（https://leetcode.cn/problems/recover-a-tree-from-preorder-traversal/description/）pre_order|recursion|construction|2-tree
 
 =====================================LuoGu======================================
 P1911（https://www.luogu.com.cn/problem/P1911）4-tree|recursion|matrix
@@ -42,7 +42,7 @@ class Solution:
     @staticmethod
     def lc_880(t: str, m: int) -> str:
         """
-        url: https://leetcode.com/problems/decoded-string-at-index/
+        url: https://leetcode.cn/problems/decoded-string-at-index/
         tag: recursion|implemention
         """
         # recursionimplemention
@@ -65,7 +65,7 @@ class Solution:
 
     def lc_889(self, preorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
         """
-        url: https://leetcode.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/
+        url: https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-postorder-traversal/
         tag: recursion|divide_and_conquer|construction
         """
         # recursiondivide_and_conquerconstruction
@@ -87,7 +87,7 @@ class Solution:
     @lru_cache(None)
     def lc_894(self, n: int) -> List[Optional[TreeNode]]:
         """
-        url: https://leetcode.com/problems/all-possible-full-binary-trees/
+        url: https://leetcode.cn/problems/all-possible-full-binary-trees/
         tag: catalan_num|recursion|implemention
         """
 
@@ -110,7 +110,7 @@ class Solution:
     @lru_cache(None)
     def lc_932(self, n: int) -> List[int]:
         """
-        url: https://leetcode.com/problems/beautiful-array/description/
+        url: https://leetcode.cn/problems/beautiful-array/description/
         tag: recursion|divide_and_conquer|construction
         """
         # recursiondivide_and_conquerconstruction
@@ -121,7 +121,7 @@ class Solution:
     @staticmethod
     def lc_1028(traversal: str) -> Optional[TreeNode]:
         """
-        url: https://leetcode.com/problems/recover-a-tree-from-preorder-traversal/description/
+        url: https://leetcode.cn/problems/recover-a-tree-from-preorder-traversal/description/
         tag: pre_order|recursion|construction|2-tree
         """
 

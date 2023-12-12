@@ -5,8 +5,8 @@ Description：shortest_path|longest_path|necessary_point_on_shortest_path|necess
 specific_plan： floyd need dp[i][j] where pre[i][j] = k, and bellman-ford dijkstra need pre[v] = u
 
 ====================================LeetCode====================================
-2642（https://leetcode.com/problems/design-graph-with-shortest-path-calculator/）floyd|dynamic_graph|shortest_path
-1462（https://leetcode.com/problems/course-schedule-iv/）transitive_closure|floyd
+2642（https://leetcode.cn/problems/design-graph-with-shortest-path-calculator/）floyd|dynamic_graph|shortest_path
+1462（https://leetcode.cn/problems/course-schedule-iv/）transitive_closure|floyd
 
 =====================================LuoGu======================================
 P1119（https://www.luogu.com.cn/problem/P1119）offline_query|floyd|dynamic_graph

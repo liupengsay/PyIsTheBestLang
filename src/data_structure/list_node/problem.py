@@ -3,7 +3,7 @@ Algorithm：list_node|linked_list
 Description：
 
 ====================================LeetCode====================================
-6914（https://leetcode.com/contest/weekly-contest-358/problems/double-a-number-represented-as-a-linked-list/）linked_list
+6914（https://leetcode.cn/contest/weekly-contest-358/problems/double-a-number-represented-as-a-linked-list/）linked_list
 
 """
 from typing import Optional
@@ -18,7 +18,7 @@ class Solution:
     @staticmethod
     def lc_6914_1(head: Optional[ListNode]) -> Optional[ListNode]:
         """
-        url: https://leetcode.com/contest/weekly-contest-358/problems/double-a-number-represented-as-a-linked-list/
+        url: https://leetcode.cn/contest/weekly-contest-358/problems/double-a-number-represented-as-a-linked-list/
         tag: linked_list
         """
         # linked_list|与整数相乘
@@ -40,7 +40,7 @@ class Solution:
     @staticmethod
     def lc_6914_2(head: Optional[ListNode]) -> Optional[ListNode]:
         """
-        url: https://leetcode.com/contest/weekly-contest-358/problems/double-a-number-represented-as-a-linked-list/
+        url: https://leetcode.cn/contest/weekly-contest-358/problems/double-a-number-represented-as-a-linked-list/
         tag: linked_list
         """
         lno = ListNodeOperation()

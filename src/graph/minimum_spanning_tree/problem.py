@@ -5,9 +5,9 @@ Description：prim is node wise and kruskal is edge wise, prim is suitable for d
 
 
 ====================================LeetCode====================================
-1489（https://leetcode.com/problems/find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree/）mst|necessary_edge|fake_necessary_edge
-1584（https://leetcode.com/problems/min-cost-to-connect-all-points/）dense_graph|prim|mst
-1724（https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths-ii/）mst|classical|multiplication_method|lca
+1489（https://leetcode.cn/problems/find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree/）mst|necessary_edge|fake_necessary_edge
+1584（https://leetcode.cn/problems/min-cost-to-connect-all-points/）dense_graph|prim|mst
+1724（https://leetcode.cn/problems/checking-existence-of-edge-length-limited-paths-ii/）mst|classical|multiplication_method|lca
 
 =====================================LuoGu======================================
 P3366（https://www.luogu.com.cn/problem/P3366）mst
@@ -196,7 +196,7 @@ class Solution:
     @staticmethod
     def lc_1489(n: int, edges: List[List[int]]) -> List[List[int]]:
         """
-        url: https://leetcode.com/problems/find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree/
+        url: https://leetcode.cn/problems/find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree/
         tag: mst|necessary_edge|fake_necessary_edge
         """
         # 求mst|的关键边与伪关键边
@@ -757,7 +757,7 @@ class Solution:
     @staticmethod
     def lc_1584_1(nums: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/min-cost-to-connect-all-points/
+        url: https://leetcode.cn/problems/min-cost-to-connect-all-points/
         tag: dense_graph|prim|mst
         """
 
@@ -793,7 +793,7 @@ class Solution:
     @staticmethod
     def lc_1584_2(nums: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/min-cost-to-connect-all-points/
+        url: https://leetcode.cn/problems/min-cost-to-connect-all-points/
         tag: dense_graph|prim|mst
         """
 

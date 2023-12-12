@@ -3,7 +3,7 @@ Algorithm：peishu_theorem
 Description：ax+by=gcd(a,b)  a!=0 or b!=0
 
 ====================================LeetCode====================================
-1250（https://leetcode.com/problems/check-if-it-is-a-good-array/）gcd|peishu_theorem|classical
+1250（https://leetcode.cn/problems/check-if-it-is-a-good-array/）gcd|peishu_theorem|classical
 
 ===================================CodeForces===================================
 1478D（https://codeforces.com/contest/1478/problem/D）peishu_theorem|number_theory|math
@@ -27,7 +27,7 @@ class Solution:
     @staticmethod
     def lc_1250(nums: List[int]) -> bool:
         """
-        url: https://leetcode.com/problems/check-if-it-is-a-good-array/
+        url: https://leetcode.cn/problems/check-if-it-is-a-good-array/
         tag: gcd|peishu_theorem|classical
         """
         # 转化为peishu_theorem|数组最大公约数是否等于 1 求解

@@ -3,29 +3,29 @@ Algorithm：state_dp|outline_dp、memory_search|refresh_table|fill_table
 Description：state_dp|dfs|back_track|brute_force|sub_set|bit_operation|brute_force
 
 ====================================LeetCode====================================
-465（https://leetcode.com/problems/optimal-account-balancing/）brute_force|sub_set|state_dp
-1349（https://leetcode.com/problems/maximum-students-taking-exam/）brute_force|state_dp
-1723（https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs/）bit_operation|minimum_maximum|brute_force|classical|sub_set
-1986（https://leetcode.com/problems/minimum-number-of-work-sessions-to-finish-the-tasks/）sub_set|preprocess|brute_force|state_dp
-698（https://leetcode.com/problems/partition-to-k-equal-sum-subsets/））sub_set|preprocess|brute_force|state_dp
-2172（https://leetcode.com/problems/maximum-and-sum-of-array/）bit_operation|state_dp|3-base|state_dp
-1255（https://leetcode.com/problems/maximum-score-words-formed-by-letters/）state_dp
-2403（https://leetcode.com/problems/minimum-time-to-kill-all-monsters/）state_dp
-1681（https://leetcode.com/problems/minimum-incompatibility/）state_dp|group_bag_dp|state_dp|comb
-1125（https://leetcode.com/problems/smallest-sufficient-team/）state_dp
-1467（https://leetcode.com/problems/probability-of-a-two-boxes-having-the-same-number-of-distinct-balls/）memory_search|counter
-1531（https://leetcode.com/problems/string-compression-ii/submissions/）liner_dp|implemention
-1595（https://leetcode.com/problems/minimum-cost-to-connect-two-groups-of-points/）state_dp
-1655（https://leetcode.com/problems/distribute-repeating-integers/）state_dp
-1879（https://leetcode.com/problems/minimum-xor-sum-of-two-arrays/）state_dp
-2019（https://leetcode.com/problems/the-score-of-students-solving-math-expression/）memory_search|fill_table
-943（https://leetcode.com/problems/find-the-shortest-superstring/）string|greedy|state_dp
-1434（https://leetcode.com/problems/number-of-ways-to-wear-different-hats-to-each-other/description/）state_dp|reverse_thinking
-847（https://leetcode.com/problems/shortest-path-visiting-all-nodes/）shortest_path|floyd|dijkstra|preprocess|state_dp
-2741（https://leetcode.com/problems/special-permutations/description/）state_dp
-2305（https://leetcode.com/problems/fair-distribution-of-cookies/description/）classical|state_dp|brute_force|sub_set
-980（https://leetcode.com/problems/unique-paths-iii/description/）classical|state_dp|back_track
-2571（https://leetcode.com/problems/minimum-operations-to-reduce-an-integer-to-0/description/）brain_teaser|memory_search
+465（https://leetcode.cn/problems/optimal-account-balancing/）brute_force|sub_set|state_dp
+1349（https://leetcode.cn/problems/maximum-students-taking-exam/）brute_force|state_dp
+1723（https://leetcode.cn/problems/find-minimum-time-to-finish-all-jobs/）bit_operation|minimum_maximum|brute_force|classical|sub_set
+1986（https://leetcode.cn/problems/minimum-number-of-work-sessions-to-finish-the-tasks/）sub_set|preprocess|brute_force|state_dp
+698（https://leetcode.cn/problems/partition-to-k-equal-sum-subsets/））sub_set|preprocess|brute_force|state_dp
+2172（https://leetcode.cn/problems/maximum-and-sum-of-array/）bit_operation|state_dp|3-base|state_dp
+1255（https://leetcode.cn/problems/maximum-score-words-formed-by-letters/）state_dp
+2403（https://leetcode.cn/problems/minimum-time-to-kill-all-monsters/）state_dp
+1681（https://leetcode.cn/problems/minimum-incompatibility/）state_dp|group_bag_dp|state_dp|comb
+1125（https://leetcode.cn/problems/smallest-sufficient-team/）state_dp
+1467（https://leetcode.cn/problems/probability-of-a-two-boxes-having-the-same-number-of-distinct-balls/）memory_search|counter
+1531（https://leetcode.cn/problems/string-compression-ii/submissions/）liner_dp|implemention
+1595（https://leetcode.cn/problems/minimum-cost-to-connect-two-groups-of-points/）state_dp
+1655（https://leetcode.cn/problems/distribute-repeating-integers/）state_dp
+1879（https://leetcode.cn/problems/minimum-xor-sum-of-two-arrays/）state_dp
+2019（https://leetcode.cn/problems/the-score-of-students-solving-math-expression/）memory_search|fill_table
+943（https://leetcode.cn/problems/find-the-shortest-superstring/）string|greedy|state_dp
+1434（https://leetcode.cn/problems/number-of-ways-to-wear-different-hats-to-each-other/description/）state_dp|reverse_thinking
+847（https://leetcode.cn/problems/shortest-path-visiting-all-nodes/）shortest_path|floyd|dijkstra|preprocess|state_dp
+2741（https://leetcode.cn/problems/special-permutations/description/）state_dp
+2305（https://leetcode.cn/problems/fair-distribution-of-cookies/description/）classical|state_dp|brute_force|sub_set
+980（https://leetcode.cn/problems/unique-paths-iii/description/）classical|state_dp|back_track
+2571（https://leetcode.cn/problems/minimum-operations-to-reduce-an-integer-to-0/description/）brain_teaser|memory_search
 
 =====================================LuoGu======================================
 P1896（https://www.luogu.com.cn/problem/P1896）brute_force|state_dp
@@ -79,7 +79,7 @@ class Solution:
     @staticmethod
     def lc_1681(nums: List[int], k: int) -> int:
         """
-        url: https://leetcode.com/problems/minimum-incompatibility/
+        url: https://leetcode.cn/problems/minimum-incompatibility/
         tag: state_dp|group_bag_dp|state_dp|comb
         """
         # state_dp和组合数选取结合
@@ -120,7 +120,7 @@ class Solution:
     @staticmethod
     def lc_1723(jobs: List[int], k: int) -> int:
         """
-        url: https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs/
+        url: https://leetcode.cn/problems/find-minimum-time-to-finish-all-jobs/
         tag: bit_operation|minimum_maximum|brute_force|classical|sub_set
         """
         # 通过bit_operationbrute_force分配工作DP最小化的最大值，brute_force子集preprocess
@@ -154,7 +154,7 @@ class Solution:
     @staticmethod
     def lc_1879_1(nums1: List[int], nums2: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/minimum-xor-sum-of-two-arrays/
+        url: https://leetcode.cn/problems/minimum-xor-sum-of-two-arrays/
         tag: state_dp
         """
 
@@ -178,7 +178,7 @@ class Solution:
     @staticmethod
     def lc_1879_2(nums1: List[int], nums2: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/minimum-xor-sum-of-two-arrays/
+        url: https://leetcode.cn/problems/minimum-xor-sum-of-two-arrays/
         tag: state_dp
         """
         # state_compress迭代写法，刷表法
@@ -197,7 +197,7 @@ class Solution:
     @staticmethod
     def lc_1879_3(nums1: List[int], nums2: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/minimum-xor-sum-of-two-arrays/
+        url: https://leetcode.cn/problems/minimum-xor-sum-of-two-arrays/
         tag: state_dp
         """
         # state_compress迭代写法，fill_table
@@ -281,7 +281,7 @@ class Solution:
     @staticmethod
     def lc_847(graph: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/shortest-path-visiting-all-nodes/
+        url: https://leetcode.cn/problems/shortest-path-visiting-all-nodes/
         tag: shortest_path|floyd|dijkstra|preprocess|state_dp
         """
         # shortest_pathFloyd或者Dijkstrapreprocessshortest_path|state_dp
@@ -310,7 +310,7 @@ class Solution:
     @staticmethod
     def lc_1349(seats: List[List[str]]) -> int:
         """
-        url: https://leetcode.com/problems/maximum-students-taking-exam/
+        url: https://leetcode.cn/problems/maximum-students-taking-exam/
         tag: brute_force|state_dp
         """
 
@@ -352,7 +352,7 @@ class Solution:
     @staticmethod
     def lc_1434_1(hats: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/number-of-ways-to-wear-different-hats-to-each-other/description/
+        url: https://leetcode.cn/problems/number-of-ways-to-wear-different-hats-to-each-other/description/
         tag: state_dp|reverse_thinking
         """
         # state_compressreverse_thinking，memory_search实现
@@ -381,7 +381,7 @@ class Solution:
     @staticmethod
     def lc_1434_2(hats: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/number-of-ways-to-wear-different-hats-to-each-other/description/
+        url: https://leetcode.cn/problems/number-of-ways-to-wear-different-hats-to-each-other/description/
         tag: state_dp|reverse_thinking
         """
         # state_compressreverse_thinking，fill_table迭代实现
@@ -407,7 +407,7 @@ class Solution:
     @staticmethod
     def lc_2403_1(power: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/minimum-time-to-kill-all-monsters/
+        url: https://leetcode.cn/problems/minimum-time-to-kill-all-monsters/
         tag: state_dp
         """
         # state_dpDP数组形式
@@ -426,7 +426,7 @@ class Solution:
     @staticmethod
     def lc_2403_2(power: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/minimum-time-to-kill-all-monsters/
+        url: https://leetcode.cn/problems/minimum-time-to-kill-all-monsters/
         tag: state_dp
         """
         # state_dpDPmemory_search形式
@@ -708,7 +708,7 @@ class Solution:
     @staticmethod
     def lc_1467(balls: List[int]) -> float:
         """
-        url: https://leetcode.com/problems/probability-of-a-two-boxes-having-the-same-number-of-distinct-balls/
+        url: https://leetcode.cn/problems/probability-of-a-two-boxes-having-the-same-number-of-distinct-balls/
         tag: memory_search|counter
         """
 
@@ -739,7 +739,7 @@ class Solution:
     @staticmethod
     def lc_1595(cost: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/minimum-cost-to-connect-two-groups-of-points/
+        url: https://leetcode.cn/problems/minimum-cost-to-connect-two-groups-of-points/
         tag: state_dp
         """
 
@@ -762,7 +762,7 @@ class Solution:
     @staticmethod
     def lc_1655(nums: List[int], quantity: List[int]) -> bool:
         """
-        url: https://leetcode.com/problems/distribute-repeating-integers/
+        url: https://leetcode.cn/problems/distribute-repeating-integers/
         tag: state_dp
         """
         # 线性索引|brute_force子集state_compress
@@ -790,7 +790,7 @@ class Solution:
     @staticmethod
     def lc_2019(s: str, answers: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/the-score-of-students-solving-math-expression/
+        url: https://leetcode.cn/problems/the-score-of-students-solving-math-expression/
         tag: memory_search|fill_table
         """
         # 类似divide_and_conquer的思想memory_search
@@ -820,7 +820,7 @@ class Solution:
     @staticmethod
     def lc_1986_1(tasks: List[int], session: int):
         """
-        url: https://leetcode.com/problems/minimum-number-of-work-sessions-to-finish-the-tasks/
+        url: https://leetcode.cn/problems/minimum-number-of-work-sessions-to-finish-the-tasks/
         tag: sub_set|preprocess|brute_force|state_dp
         """
         # preprocess子集后memory_search状态转移，子集brute_force，也可两个状态
@@ -848,7 +848,7 @@ class Solution:
     @staticmethod
     def lc_1986_2(tasks: List[int], session: int):
         """
-        url: https://leetcode.com/problems/minimum-number-of-work-sessions-to-finish-the-tasks/
+        url: https://leetcode.cn/problems/minimum-number-of-work-sessions-to-finish-the-tasks/
         tag: sub_set|preprocess|brute_force|state_dp
         """
         # preprocess子集后memory_search状态转移，子集brute_force，也可两个状态
@@ -942,7 +942,7 @@ class Solution:
     @staticmethod
     def lc_2172(nums: List[int], num_slots: int) -> int:
         """
-        url: https://leetcode.com/problems/maximum-and-sum-of-array/
+        url: https://leetcode.cn/problems/maximum-and-sum-of-array/
         tag: bit_operation|state_dp|3-base|state_dp
         """
         # bit_operation和state_dp转移，三进制state_compress（天平就是三进制）

@@ -3,10 +3,10 @@ Algorithm：circular_section
 Description：implemention|hash|list|index|circular_section
 
 ====================================LeetCode====================================
-957（https://leetcode.com/problems/prison-cells-after-n-days/）circular_section
-418（https://leetcode.com/problems/sentence-screen-fitting/）circular_section
-466（https://leetcode.com/problems/count-the-repetitions/）circular_section
-1806（https://leetcode.com/problems/minimum-number-of-operations-to-reinitialize-a-permutation/description/）circular_section
+957（https://leetcode.cn/problems/prison-cells-after-n-days/）circular_section
+418（https://leetcode.cn/problems/sentence-screen-fitting/）circular_section
+466（https://leetcode.cn/problems/count-the-repetitions/）circular_section
+1806（https://leetcode.cn/problems/minimum-number-of-operations-to-reinitialize-a-permutation/description/）circular_section
 
 =====================================LuoGu======================================
 P1965（https://www.luogu.com.cn/problem/P1965）circular_section
@@ -35,7 +35,7 @@ class Solution:
     @staticmethod
     def lc_957(cells: List[int], n: int) -> List[int]:
         """
-        url: https://leetcode.com/problems/prison-cells-after-n-days/
+        url: https://leetcode.cn/problems/prison-cells-after-n-days/
         tag: circular_section
         """
         # N 天后的牢房circular_section
@@ -70,7 +70,7 @@ class Solution:
     @staticmethod
     def lc_1806(n: int) -> int:
         """
-        url: https://leetcode.com/problems/minimum-number-of-operations-to-reinitialize-a-permutation/description/
+        url: https://leetcode.cn/problems/minimum-number-of-operations-to-reinitialize-a-permutation/description/
         tag: circular_section
         """
         # 根据有限状态判断circular_section的大小

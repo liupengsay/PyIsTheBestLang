@@ -5,11 +5,11 @@ Description：
 
 
 ====================================LeetCode====================================
-2617（https://leetcode.com/problems/minimum-number-of-visited-cells-in-a-grid/）bfs|double_linked_list
-2612（https://leetcode.com/problems/minimum-reverse-operations/）bfs|double_linked_list
-1562（https://leetcode.com/problems/find-latest-group-of-size-m/）union_find|double_linked_list
-2382（https://leetcode.com/problems/maximum-segment-sum-after-removals/）reverse_thinking|double_linked_list|union_find
-2289（https://leetcode.com/problems/steps-to-make-array-non-decreasing/description/）monotonic_stack|liner_dp|bfs|linked_list
+2617（https://leetcode.cn/problems/minimum-number-of-visited-cells-in-a-grid/）bfs|double_linked_list
+2612（https://leetcode.cn/problems/minimum-reverse-operations/）bfs|double_linked_list
+1562（https://leetcode.cn/problems/find-latest-group-of-size-m/）union_find|double_linked_list
+2382（https://leetcode.cn/problems/maximum-segment-sum-after-removals/）reverse_thinking|double_linked_list|union_find
+2289（https://leetcode.cn/problems/steps-to-make-array-non-decreasing/description/）monotonic_stack|liner_dp|bfs|linked_list
 
 ====================================NewCoder===================================
 （https://ac.nowcoder.com/acm/contest/49888/C）double_linked_list
@@ -107,7 +107,7 @@ class Solution:
     @staticmethod
     def lc_2289(nums: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/steps-to-make-array-non-decreasing/description/
+        url: https://leetcode.cn/problems/steps-to-make-array-non-decreasing/description/
         tag: monotonic_stack|liner_dp|bfs|linked_list
         """
 
@@ -130,7 +130,7 @@ class Solution:
     @staticmethod
     def lc_2617(grid: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/minimum-number-of-visited-cells-in-a-grid/
+        url: https://leetcode.cn/problems/minimum-number-of-visited-cells-in-a-grid/
         tag: bfs|double_linked_list
         """
         # bfs|两个方向上的linked_list|，也可以union_find代替
@@ -290,7 +290,7 @@ class Solution:
     @staticmethod
     def lc_1562(arr: List[int], m: int) -> int:
         """
-        url: https://leetcode.com/problems/find-latest-group-of-size-m/
+        url: https://leetcode.cn/problems/find-latest-group-of-size-m/
         tag: union_find|double_linked_list
         """
         # 类似union_find的prefix_suffixlinked_list|求解

@@ -4,18 +4,18 @@ Algorithm：topological_sort|circle_based_tree|bfs_order|topological_order|topol
 Description：undirected_topological_sort|directed_topological_sort|directed_circle_based_tree|undirected_circle_based_tree
 
 ====================================LeetCode====================================
-360（https://leetcode.com/problems/longest-cycle-in-a-graph/）topological_sort|directed_circle_based_tree|longest_circle
-2392（https://leetcode.com/problems/build-a-matrix-with-conditions/）build_graph|union_find|topological_sort
-2371（https://leetcode.com/problems/minimize-maximum-value-in-a-grid/）build_graph|topological_sort|greedy
-2127（https://leetcode.com/problems/maximum-employees-to-be-invited-to-a-meeting/）topological_sort|dag|directed_circle_based_tree|classification_discussion
-127（https://leetcode.com/problems/maximum-employees-to-be-invited-to-a-meeting/）topological_sort|directed_circle_based_tree|
-269（https://leetcode.com/problems/alien-dictionary/）lexicographical_order|build_graph|topological_sort
-2603（https://leetcode.com/problems/collect-coins-in-a-tree/）undirected_topological_sort|undirected_circle_based_tree
-2204（https://leetcode.com/problems/distance-to-a-cycle-in-undirected-graph/）undirected_topological_sort
-1857（https://leetcode.com/problems/largest-color-value-in-a-directed-graph/）topological_sort|dag_dp
-1932（https://leetcode.com/problems/range_merge_to_disjoint-bsts-to-create-single-bst/）union_find|topological_sort|union_find|bst
-1591（https://leetcode.com/problems/strange-printer-ii/）build_graph|topological_sort|circle_judge
-2192（https://leetcode.com/problems/all-ancestors-of-a-node-in-a-directed-acyclic-graph/）directed_topological_sort|dag_dp
+360（https://leetcode.cn/problems/longest-cycle-in-a-graph/）topological_sort|directed_circle_based_tree|longest_circle
+2392（https://leetcode.cn/problems/build-a-matrix-with-conditions/）build_graph|union_find|topological_sort
+2371（https://leetcode.cn/problems/minimize-maximum-value-in-a-grid/）build_graph|topological_sort|greedy
+2127（https://leetcode.cn/problems/maximum-employees-to-be-invited-to-a-meeting/）topological_sort|dag|directed_circle_based_tree|classification_discussion
+127（https://leetcode.cn/problems/maximum-employees-to-be-invited-to-a-meeting/）topological_sort|directed_circle_based_tree|
+269（https://leetcode.cn/problems/alien-dictionary/）lexicographical_order|build_graph|topological_sort
+2603（https://leetcode.cn/problems/collect-coins-in-a-tree/）undirected_topological_sort|undirected_circle_based_tree
+2204（https://leetcode.cn/problems/distance-to-a-cycle-in-undirected-graph/）undirected_topological_sort
+1857（https://leetcode.cn/problems/largest-color-value-in-a-directed-graph/）topological_sort|dag_dp
+1932（https://leetcode.cn/problems/range_merge_to_disjoint-bsts-to-create-single-bst/）union_find|topological_sort|union_find|bst
+1591（https://leetcode.cn/problems/strange-printer-ii/）build_graph|topological_sort|circle_judge
+2192（https://leetcode.cn/problems/all-ancestors-of-a-node-in-a-directed-acyclic-graph/）directed_topological_sort|dag_dp
 
 
 =====================================LuoGu======================================
@@ -193,7 +193,7 @@ class Solution:
     @staticmethod
     def lc_2392(k: int, row_conditions: List[List[int]], col_conditions: List[List[int]]) -> List[List[int]]:
         """
-        url: https://leetcode.com/problems/build-a-matrix-with-conditions/
+        url: https://leetcode.cn/problems/build-a-matrix-with-conditions/
         tag: build_graph|union_find|topological_sort
         """
 
@@ -766,7 +766,7 @@ class Solution:
     @staticmethod
     def lc_2127(favorite: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/maximum-employees-to-be-invited-to-a-meeting/
+        url: https://leetcode.cn/problems/maximum-employees-to-be-invited-to-a-meeting/
         tag: topological_sort|dag|directed_circle_based_tree|classification_discussion
         """
         # topological_sorting确定DAG内向基环，按照环的大小classification_discussion
@@ -811,7 +811,7 @@ class Solution:
     @staticmethod
     def lc_2192(n: int, edges: List[List[int]]) -> List[List[int]]:
         """
-        url: https://leetcode.com/problems/all-ancestors-of-a-node-in-a-directed-acyclic-graph/
+        url: https://leetcode.cn/problems/all-ancestors-of-a-node-in-a-directed-acyclic-graph/
         tag: directed_topological_sort|dag_dp
         """
         # 有向图DAGtopological_sorting
@@ -838,7 +838,7 @@ class Solution:
     @staticmethod
     def lc_2204(n: int, edges: List[List[int]]) -> List[int]:
         """
-        url: https://leetcode.com/problems/distance-to-a-cycle-in-undirected-graph/
+        url: https://leetcode.cn/problems/distance-to-a-cycle-in-undirected-graph/
         tag: undirected_topological_sort
         """
         # 无向图topological_sorting
@@ -872,7 +872,7 @@ class Solution:
     @staticmethod
     def lc_1857(colors: str, edges: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/largest-color-value-in-a-directed-graph/
+        url: https://leetcode.cn/problems/largest-color-value-in-a-directed-graph/
         tag: topological_sort|dag_dp
         """
 
@@ -907,7 +907,7 @@ class Solution:
     @staticmethod
     def lc_1932(trees: List[TreeNode]) -> Optional[TreeNode]:
         """
-        url: https://leetcode.com/problems/range_merge_to_disjoint-bsts-to-create-single-bst/
+        url: https://leetcode.cn/problems/range_merge_to_disjoint-bsts-to-create-single-bst/
         tag: union_find|topological_sort|union_find|bst
         """
         # 连通性、topological_sorting与二叉搜索树判断
@@ -1077,7 +1077,7 @@ class Solution:
     @staticmethod
     def lc_1591(grid: List[List[int]]) -> bool:
         """
-        url: https://leetcode.com/problems/strange-printer-ii/
+        url: https://leetcode.cn/problems/strange-printer-ii/
         tag: build_graph|topological_sort|circle_judge
         """
         # build_graph|判断topological_sorting是否无环

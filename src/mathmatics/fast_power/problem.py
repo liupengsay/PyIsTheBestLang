@@ -3,10 +3,10 @@ Algorithm：fast_power|matrix_fast_power|dp|multiplicative_reverse
 Description：mod|power
 
 ====================================LeetCode====================================
-450（https://leetcode.com/problems/number-of-distinct-binary-strings-after-applying-operations/）brain_teaser|fast_power
-1931（https://leetcode.com/problems/painting-a-grid-with-three-different-colors/）matrix_fast_power|dp
-8020（https://leetcode.com/problems/string-transformation/description/）kmp|matrix_fast_power|classical
-1622（https://leetcode.com/problems/fancy-sequence/description/）reverse_thinking|multiplicative_reverse|inclusion_exclusion
+450（https://leetcode.cn/problems/number-of-distinct-binary-strings-after-applying-operations/）brain_teaser|fast_power
+1931（https://leetcode.cn/problems/painting-a-grid-with-three-different-colors/）matrix_fast_power|dp
+8020（https://leetcode.cn/problems/string-transformation/description/）kmp|matrix_fast_power|classical
+1622（https://leetcode.cn/problems/fancy-sequence/description/）reverse_thinking|multiplicative_reverse|inclusion_exclusion
 
 =====================================LuoGu======================================
 P1630（https://www.luogu.com.cn/problem/P1630）fast_power|counter|mod
@@ -49,7 +49,7 @@ class Solution:
     @staticmethod
     def lc_8020(s: str, t: str, k: int) -> int:
         """
-        url: https://leetcode.com/problems/string-transformation/description/
+        url: https://leetcode.cn/problems/string-transformation/description/
         tag: kmp|matrix_fast_power|classical
         """
         # KMP与fast_power|转移

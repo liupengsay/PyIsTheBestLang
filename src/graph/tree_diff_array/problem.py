@@ -4,8 +4,8 @@ Algorithm：lca|multiplication_method|tree_chain_split|tree_centroid|offline_lca
 Description：tree_diff_array_edge|tree_diff_array_point
 
 ====================================LeetCode====================================
-1483（https://leetcode.com/problems/kth-ancestor-of-a-tree-node/）sparse_table|tree_array|lca|tree_lca|classical
-2646（https://leetcode.com/problems/minimize-the-total-price-of-the-trips/）offline_lca|tree_diff_array|counter|tree_dp
+1483（https://leetcode.cn/problems/kth-ancestor-of-a-tree-node/）sparse_table|tree_array|lca|tree_lca|classical
+2646（https://leetcode.cn/problems/minimize-the-total-price-of-the-trips/）offline_lca|tree_diff_array|counter|tree_dp
 
 =====================================LuoGu======================================
 P3379（https://www.luogu.com.cn/problem/P3379）tree_lca|classical
@@ -114,7 +114,7 @@ class Solution:
     @staticmethod
     def lc_2646(n: int, edges: List[List[int]], price: List[int], trips: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/minimize-the-total-price-of-the-trips/
+        url: https://leetcode.cn/problems/minimize-the-total-price-of-the-trips/
         tag: offline_lca|tree_diff_array|counter|tree_dp
         """
         # offline_lca与tree_diff_arraycounter，再tree_dp| 

@@ -3,7 +3,7 @@ Algorithm：block_query|offline_query|sorting|two_pointers
 Description：sort the query interval into blocks and alternate between moving two pointers dynamically maintain query values
 
 ====================================LeetCode====================================
-1157（https://leetcode.com/problems/online-majority-element-in-subarray/description/）range_super_mode|CF1514D|random_guess|binary_search|bit_operation|segment_tree
+1157（https://leetcode.cn/problems/online-majority-element-in-subarray/description/）range_super_mode|CF1514D|random_guess|binary_search|bit_operation|segment_tree
 
 =====================================LuoGu======================================
 

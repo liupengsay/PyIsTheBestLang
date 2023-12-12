@@ -3,14 +3,14 @@ Algorithm：geometry|plane|closest_pair
 Description：triangle|rectangle|square|line|circle|cube
 
 ====================================LeetCode====================================
-149（https://leetcode.com/problems/max-points-on-a-line/）line_slope|brute_force|classical
-1453（https://leetcode.com/problems/maximum-number-of-darts-inside-of-a-circular-dartboard/）circle|classical|circle_center
-939（https://leetcode.com/problems/minimum-area-rectangle/）brute_force|rectangle
-16（https://leetcode.com/problems/intersection-lcci/）line_segment|intersection
-16（https://leetcode.com/problems/best-line-lcci/）line_slope|brute_force|classical
-2013（https://leetcode.com/problems/detect-squares/）brute_force|hash|counter|square
-2280（https://leetcode.com/problems/minimum-lines-to-represent-a-line-chart/）line_slope
-1401（https://leetcode.com/problems/circle-and-rectangle-overlapping/）geometry|rectangle
+149（https://leetcode.cn/problems/max-points-on-a-line/）line_slope|brute_force|classical
+1453（https://leetcode.cn/problems/maximum-number-of-darts-inside-of-a-circular-dartboard/）circle|classical|circle_center
+939（https://leetcode.cn/problems/minimum-area-rectangle/）brute_force|rectangle
+16（https://leetcode.cn/problems/intersection-lcci/）line_segment|intersection
+16（https://leetcode.cn/problems/best-line-lcci/）line_slope|brute_force|classical
+2013（https://leetcode.cn/problems/detect-squares/）brute_force|hash|counter|square
+2280（https://leetcode.cn/problems/minimum-lines-to-represent-a-line-chart/）line_slope
+1401（https://leetcode.cn/problems/circle-and-rectangle-overlapping/）geometry|rectangle
 
 =====================================LuoGu======================================
 P1665（https://www.luogu.com.cn/problem/P1665）brute_force|diagonal|square
@@ -62,7 +62,7 @@ class Solution:
     @staticmethod
     def lc_2280(stock: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/minimum-lines-to-represent-a-line-chart/
+        url: https://leetcode.cn/problems/minimum-lines-to-represent-a-line-chart/
         tag: line_slope
         """
         # 分数代表斜率
@@ -87,7 +87,7 @@ class Solution:
     @staticmethod
     def lc_149(points: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/max-points-on-a-line/
+        url: https://leetcode.cn/problems/max-points-on-a-line/
         tag: line_slope|brute_force|classical
         """
         # 两个不相同的点组成的line_slope
@@ -167,7 +167,7 @@ class Solution:
     @staticmethod
     def lc_1453(darts: List[List[int]], r: int) -> int:
         """
-        url: https://leetcode.com/problems/maximum-number-of-darts-inside-of-a-circular-dartboard/
+        url: https://leetcode.cn/problems/maximum-number-of-darts-inside-of-a-circular-dartboard/
         tag: circle|classical|circle_center
         """
         # 经过两个不同的点与确定半径的两处圆心

@@ -3,28 +3,28 @@ Algorithm：monotonic_stack|contribution_method
 Description：prefix_suffix|maximum|minimum|second_maximum
 
 ====================================LeetCode====================================
-85（https://leetcode.com/problems/maximal-rectangle/）brute_force|monotonic_stack|matrix
-316（https://leetcode.com/problems/remove-duplicate-letters/）monotonic_stack|hash|counter
-321（https://leetcode.com/problems/create-maximum-number/）brute_force|monotonic_stack
-1081（https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/）monotonic_stack|hash|counter
-2334（https://leetcode.com/problems/subarray-with-elements-greater-than-varying-threshold/）sorting|brute_force|contribution_method
-2262（https://leetcode.com/problems/total-appeal-of-a-string/）prefix_suffix|monotonic_stack
-2355（https://leetcode.com/problems/maximum-number-of-books-you-can-take/）monotonic_stack|liner_dp
-255（https://leetcode.com/problems/verify-preorder-sequence-in-binary-search-tree/）monotonic_stack|pre_order
-654（https://leetcode.com/problems/maximum-binary-tree/）monotonic_stack
-1130（https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/）monotonic_stack|interval_dp
-1504（https://leetcode.com/problems/count-submatrices-with-all-ones/）brute_force|monotonic_stack|counter|sub_matrix
-1673（https://leetcode.com/problems/find-the-most-competitive-subsequence/）monotonic_stack|greedy
-1776（https://leetcode.com/problems/car-fleet-ii/）monotonic_stack|union_find|linked_list|implemention
-1840（https://leetcode.com/problems/maximum-building-height/）monotonic_stack|greedy|prefix_suffix|implemention
-1944（https://leetcode.com/problems/number-of-visible-people-in-a-queue/）reverse_thinking|monotonic_stack
-1950（https://leetcode.com/problems/maximum-of-minimum-values-in-all-subarrays/）monotonic_stack
-2030（https://leetcode.com/problems/smallest-k-length-subsequence-with-occurrences-of-a-letter/）monotonic_stack|greedy|lexicographical_order
-2104（https://leetcode.com/problems/sum-of-subarray-ranges/）monotonic_stack|contribution_method
-2282（https://leetcode.com/problems/number-of-people-that-can-be-seen-in-a-grid/）monotonic_stack
-2289（https://leetcode.com/problems/steps-to-make-array-non-decreasing/）monotonic_stack|implemention
-907（https://leetcode.com/problems/sum-of-subarray-minimums/）monotonic_stack|implemention
-2454（https://leetcode.com/problems/next-greater-element-iv/description/）monotonic_stack|post_second_larger
+85（https://leetcode.cn/problems/maximal-rectangle/）brute_force|monotonic_stack|matrix
+316（https://leetcode.cn/problems/remove-duplicate-letters/）monotonic_stack|hash|counter
+321（https://leetcode.cn/problems/create-maximum-number/）brute_force|monotonic_stack
+1081（https://leetcode.cn/problems/smallest-subsequence-of-distinct-characters/）monotonic_stack|hash|counter
+2334（https://leetcode.cn/problems/subarray-with-elements-greater-than-varying-threshold/）sorting|brute_force|contribution_method
+2262（https://leetcode.cn/problems/total-appeal-of-a-string/）prefix_suffix|monotonic_stack
+2355（https://leetcode.cn/problems/maximum-number-of-books-you-can-take/）monotonic_stack|liner_dp
+255（https://leetcode.cn/problems/verify-preorder-sequence-in-binary-search-tree/）monotonic_stack|pre_order
+654（https://leetcode.cn/problems/maximum-binary-tree/）monotonic_stack
+1130（https://leetcode.cn/problems/minimum-cost-tree-from-leaf-values/）monotonic_stack|interval_dp
+1504（https://leetcode.cn/problems/count-submatrices-with-all-ones/）brute_force|monotonic_stack|counter|sub_matrix
+1673（https://leetcode.cn/problems/find-the-most-competitive-subsequence/）monotonic_stack|greedy
+1776（https://leetcode.cn/problems/car-fleet-ii/）monotonic_stack|union_find|linked_list|implemention
+1840（https://leetcode.cn/problems/maximum-building-height/）monotonic_stack|greedy|prefix_suffix|implemention
+1944（https://leetcode.cn/problems/number-of-visible-people-in-a-queue/）reverse_thinking|monotonic_stack
+1950（https://leetcode.cn/problems/maximum-of-minimum-values-in-all-subarrays/）monotonic_stack
+2030（https://leetcode.cn/problems/smallest-k-length-subsequence-with-occurrences-of-a-letter/）monotonic_stack|greedy|lexicographical_order
+2104（https://leetcode.cn/problems/sum-of-subarray-ranges/）monotonic_stack|contribution_method
+2282（https://leetcode.cn/problems/number-of-people-that-can-be-seen-in-a-grid/）monotonic_stack
+2289（https://leetcode.cn/problems/steps-to-make-array-non-decreasing/）monotonic_stack|implemention
+907（https://leetcode.cn/problems/sum-of-subarray-minimums/）monotonic_stack|implemention
+2454（https://leetcode.cn/problems/next-greater-element-iv/description/）monotonic_stack|post_second_larger
 
 =====================================LuoGu======================================
 P1950（https://www.luogu.com.cn/problem/P1950）brute_force|monotonic_stack|sub_matrix|counter
@@ -160,7 +160,7 @@ class Solution:
     @staticmethod
     def lc_2454(nums: List[int]) -> List[int]:
         """
-        url: https://leetcode.com/problems/next-greater-element-iv/description/
+        url: https://leetcode.cn/problems/next-greater-element-iv/description/
         tag: monotonic_stack|post_second_larger
         """
         # monotonic_stack|下下个更大元素
@@ -341,7 +341,7 @@ class Solution:
     @staticmethod
     def lc_255(preorder: List[int]) -> bool:
         """
-        url: https://leetcode.com/problems/verify-preorder-sequence-in-binary-search-tree/
+        url: https://leetcode.cn/problems/verify-preorder-sequence-in-binary-search-tree/
         tag: monotonic_stack|pre_order
         """
         # monotonic_stack|判断是否为前序序列
@@ -361,7 +361,7 @@ class Solution:
     @staticmethod
     def lc_85(matrix: List[List[str]]) -> int:
         """
-        url: https://leetcode.com/problems/maximal-rectangle/
+        url: https://leetcode.cn/problems/maximal-rectangle/
         tag: brute_force|monotonic_stack|matrix
         """
         # monotonic_stack|最大矩形面积
@@ -581,7 +581,7 @@ class Solution:
     @staticmethod
     def lc_316(s: str) -> str:
         """
-        url: https://leetcode.com/problems/remove-duplicate-letters/
+        url: https://leetcode.cn/problems/remove-duplicate-letters/
         tag: monotonic_stack|hash|counter
         """
         # monotonic_stack|结合hash与counter
@@ -600,7 +600,7 @@ class Solution:
     @staticmethod
     def lc_907(nums: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/sum-of-subarray-minimums/
+        url: https://leetcode.cn/problems/sum-of-subarray-minimums/
         tag: monotonic_stack|implemention
         """
         # monotonic_stack|implemention
@@ -620,7 +620,7 @@ class Solution:
     @staticmethod
     def lc_1081(s: str) -> str:
         """
-        url: https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/
+        url: https://leetcode.cn/problems/smallest-subsequence-of-distinct-characters/
         tag: monotonic_stack|hash|counter
         """
         # monotonic_stack|结合hash与counter
@@ -639,7 +639,7 @@ class Solution:
     @staticmethod
     def lc_1673(nums: List[int], k: int) -> List[int]:
         """
-        url: https://leetcode.com/problems/find-the-most-competitive-subsequence/
+        url: https://leetcode.cn/problems/find-the-most-competitive-subsequence/
         tag: monotonic_stack|greedy
         """
         # monotonic_stack|greedy删除选取
@@ -656,7 +656,7 @@ class Solution:
     @staticmethod
     def lc_1840(n: int, restrictions: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/maximum-building-height/
+        url: https://leetcode.cn/problems/maximum-building-height/
         tag: monotonic_stack|greedy|prefix_suffix|implemention
         """
         # monotonic_stack|greedy，也可以prefix_suffix数组implemention
@@ -678,7 +678,7 @@ class Solution:
     @staticmethod
     def lc_2262(s: str) -> int:
         """
-        url: https://leetcode.com/problems/total-appeal-of-a-string/
+        url: https://leetcode.cn/problems/total-appeal-of-a-string/
         tag: prefix_suffix|monotonic_stack
         """
         # 下一个或者上一个不同字符的位置
@@ -693,7 +693,7 @@ class Solution:
     @staticmethod
     def lc_2355(books: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/maximum-number-of-books-you-can-take/
+        url: https://leetcode.cn/problems/maximum-number-of-books-you-can-take/
         tag: monotonic_stack|liner_dp
         """
         # monotonic_stack|优化liner_dp
@@ -792,7 +792,7 @@ class Solution:
     @staticmethod
     def lc_1130(arr: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/
+        url: https://leetcode.cn/problems/minimum-cost-tree-from-leaf-values/
         tag: monotonic_stack|interval_dp
         """
         # monotonic_stack|也可以interval_dp|
@@ -811,7 +811,7 @@ class Solution:
     @staticmethod
     def lc_1504(mat: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/count-submatrices-with-all-ones/
+        url: https://leetcode.cn/problems/count-submatrices-with-all-ones/
         tag: brute_force|monotonic_stack|counter|sub_matrix
         """
         # brute_force上下边界monotonic_stack|全为 1 的子矩形个数

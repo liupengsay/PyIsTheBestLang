@@ -4,17 +4,17 @@ Algorithm：stack|rbs|regular_bracket_subsequence|deque
 Description：implemention|monotonic_stack|maximum_stack|minimum_stack
 
 ====================================LeetCode====================================
-2197（https://leetcode.com/problems/replace-non-coprime-numbers-in-array/）math|stack|implemention
-394（https://leetcode.com/problems/decode-string/）decode|stack
-1096（https://leetcode.com/problems/brace-expansion-ii/）stack|decode
-2116（https://leetcode.com/problems/check-if-a-parentheses-string-can-be-valid/）stack|greedy|bracket
-857（https://leetcode.com/problems/minimum-cost-to-hire-k-workers/）greedy|sorting|brute_force|heapq
-2542（https://leetcode.com/problems/maximum-subsequence-score/）sorting|brute_force|heapq
-2813（https://leetcode.com/problems/maximum-elegance-of-a-k-length-subsequence/）brain_teaser|sorting|brute_force|function
-2462（https://leetcode.com/problems/total-cost-to-hire-k-workers/）heapq|greedy|implemention
-1705（https://leetcode.com/problems/maximum-number-of-eaten-apples/）heapq|greedy|implemention
-1750（https://leetcode.com/problems/minimum-length-of-string-after-deleting-similar-ends/description/）stack|implemention
-2296（https://leetcode.com/problems/design-a-text-editor/description/）stack|implemention
+2197（https://leetcode.cn/problems/replace-non-coprime-numbers-in-array/）math|stack|implemention
+394（https://leetcode.cn/problems/decode-string/）decode|stack
+1096（https://leetcode.cn/problems/brace-expansion-ii/）stack|decode
+2116（https://leetcode.cn/problems/check-if-a-parentheses-string-can-be-valid/）stack|greedy|bracket
+857（https://leetcode.cn/problems/minimum-cost-to-hire-k-workers/）greedy|sorting|brute_force|heapq
+2542（https://leetcode.cn/problems/maximum-subsequence-score/）sorting|brute_force|heapq
+2813（https://leetcode.cn/problems/maximum-elegance-of-a-k-length-subsequence/）brain_teaser|sorting|brute_force|function
+2462（https://leetcode.cn/problems/total-cost-to-hire-k-workers/）heapq|greedy|implemention
+1705（https://leetcode.cn/problems/maximum-number-of-eaten-apples/）heapq|greedy|implemention
+1750（https://leetcode.cn/problems/minimum-length-of-string-after-deleting-similar-ends/description/）stack|implemention
+2296（https://leetcode.cn/problems/design-a-text-editor/description/）stack|implemention
 
 =====================================LuoGu======================================
 P1944（https://www.luogu.com.cn/problem/P1944）regular_bracket_subsequence|longest
@@ -60,7 +60,7 @@ class Solution:
     @staticmethod
     def lc_2542(nums1: List[int], nums2: List[int], k: int) -> int:
         """
-        url: https://leetcode.com/problems/maximum-subsequence-score/
+        url: https://leetcode.cn/problems/maximum-subsequence-score/
         tag: sorting|brute_force|heapq
         """
         # sorting后brute_forceheapq维护K最大的和，类似LC857
@@ -83,7 +83,7 @@ class Solution:
     @staticmethod
     def lc_2462(costs: List[int], k: int, candidates: int) -> int:
         """
-        url: https://leetcode.com/problems/total-cost-to-hire-k-workers/
+        url: https://leetcode.cn/problems/total-cost-to-hire-k-workers/
         tag: heapq|greedy|implemention
         """
         # heapqgreedyimplemention
@@ -127,7 +127,7 @@ class Solution:
     @staticmethod
     def lc_2813(items: List[List[int]], k: int) -> int:
         """
-        url: https://leetcode.com/problems/maximum-elegance-of-a-k-length-subsequence/
+        url: https://leetcode.cn/problems/maximum-elegance-of-a-k-length-subsequence/
         tag: brain_teaser|sorting|brute_force|function
         """
         # brain_teaser|sorting后brute_force，维护长度为k的子序列最大函数值
@@ -156,7 +156,7 @@ class Solution:
     @staticmethod
     def lc_1705(apples: List[int], days: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/maximum-number-of-eaten-apples/
+        url: https://leetcode.cn/problems/maximum-number-of-eaten-apples/
         tag: heapq|greedy|implemention
         """
         # heapqgreedyimplemention
@@ -177,7 +177,7 @@ class Solution:
     @staticmethod
     def lc_2197(nums: List[int]) -> List[int]:
         """
-        url: https://leetcode.com/problems/replace-non-coprime-numbers-in-array/
+        url: https://leetcode.cn/problems/replace-non-coprime-numbers-in-array/
         tag: math|stack|implemention
         """
         # stack结合 gcd 与 lcm implemention
@@ -196,7 +196,7 @@ class Solution:
     @staticmethod
     def lc_857(quality: List[int], wage: List[int], k: int) -> float:
         """
-        url: https://leetcode.com/problems/minimum-cost-to-hire-k-workers/
+        url: https://leetcode.cn/problems/minimum-cost-to-hire-k-workers/
         tag: greedy|sorting|brute_force|heapq
         """
         # greedysortingbrute_force，heapq维护K个最小值的和

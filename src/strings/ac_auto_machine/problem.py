@@ -3,7 +3,7 @@ Algorithm：ac_auto_machine
 Description：kmp|trie|word_count|text
 
 ====================================LeetCode====================================
-17（https://leetcode.com/problems/multi-search-lcci/）ac_auto_machine|counter|trie
+17（https://leetcode.cn/problems/multi-search-lcci/）ac_auto_machine|counter|trie
 
 =====================================LuoGu======================================
 P3808（https://www.luogu.com.cn/problem/P3808）ac_auto_machine|counter|trie

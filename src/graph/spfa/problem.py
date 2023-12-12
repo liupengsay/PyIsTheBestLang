@@ -4,7 +4,7 @@ Algorithm：spfa|negative_weight|shortest_path|differential_constraint|number_of
 Description：shortest_path_faster_algorithm|single_source|deque
 
 ====================================LeetCode====================================
-2589（https://leetcode.com/problems/minimum-time-to-complete-all-tasks/）differential_constraint|greedy|classical
+2589（https://leetcode.cn/problems/minimum-time-to-complete-all-tasks/）differential_constraint|greedy|classical
 
 =====================================LuoGu======================================
 P3385（https://www.luogu.com.cn/problem/P3385）shortest_path|negative_circle
@@ -400,7 +400,7 @@ class Solution:
     @staticmethod
     def lc_2589(tasks: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/minimum-time-to-complete-all-tasks/
+        url: https://leetcode.cn/problems/minimum-time-to-complete-all-tasks/
         tag: differential_constraint|greedy|classical
         """
         # 根据prefix_sumdifferential_constraint求解

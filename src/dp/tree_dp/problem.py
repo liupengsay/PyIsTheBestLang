@@ -3,25 +3,25 @@ Algorithm：tree_dp|tree_diameter|tree_diff_array|tree_centroid
 Description：reroot_dp|up_to_down|down_to_up
 
 ====================================LeetCode====================================
-2458（https://leetcode.com/problems/height-of-binary-tree-after-subtree-removal-queries/）dfs|tree_dp|up_to_down|down_to_up
-2440（https://leetcode.com/problems/create-components-with-same-value/）tree_dp|number_theory|recursion|union_find|brute_force
-1569 https://leetcode.com/problems/number-of-ways-to-reorder-array-to-get-same-bst/solution/）counter|comb|bst|tree_dp
-968（https://leetcode.com/problems/binary-tree-cameras/）tree_dp
-2538（https://leetcode.com/problems/difference-between-maximum-and-minimum-price-sum/）reroot_dp|tree_diameter
-124（https://leetcode.com/problems/binary-tree-maximum-path-sum/）tree_dp
-1617（https://leetcode.com/problems/count-subtrees-with-max-distance-between-cities/）brute_force|tree_diameter
-2378（https://leetcode.com/problems/choose-edges-to-maximize-score-in-a-tree/）tree_dp
-2445（https://leetcode.com/problems/number-of-nodes-with-value-one/）up_to_down|tree_dp|implemention
-834（https://leetcode.com/problems/sum-of-distances-in-tree/）tree_dis|tree_centroid
-1617（https://leetcode.com/problems/count-subtrees-with-max-distance-between-cities/）brute_force|tree_diameter|tree_dp
-2003（https://leetcode.com/problems/smallest-missing-genetic-value-in-each-subtree/）tree_dp|heuristic_merge|classical
-2673（https://leetcode.com/problems/make-costs-of-paths-equal-in-a-binary-tree/）tree_dp|greedy
-1367（https://leetcode.com/problems/linked-list-in-binary-tree/description/）classical|2-tree|linked_list|memory_dp
-979（https://leetcode.com/problems/distribute-coins-in-binary-tree/description/）tree_dp|greedy
-1373（https://leetcode.com/problems/maximum-sum-bst-in-binary-tree/）tree_dp|2-tree
-971（https://leetcode.com/problems/flip-binary-tree-to-match-preorder-traversal/description/）tree_dp|greedy|implemention
+2458（https://leetcode.cn/problems/height-of-binary-tree-after-subtree-removal-queries/）dfs|tree_dp|up_to_down|down_to_up
+2440（https://leetcode.cn/problems/create-components-with-same-value/）tree_dp|number_theory|recursion|union_find|brute_force
+1569 https://leetcode.cn/problems/number-of-ways-to-reorder-array-to-get-same-bst/solution/）counter|comb|bst|tree_dp
+968（https://leetcode.cn/problems/binary-tree-cameras/）tree_dp
+2538（https://leetcode.cn/problems/difference-between-maximum-and-minimum-price-sum/）reroot_dp|tree_diameter
+124（https://leetcode.cn/problems/binary-tree-maximum-path-sum/）tree_dp
+1617（https://leetcode.cn/problems/count-subtrees-with-max-distance-between-cities/）brute_force|tree_diameter
+2378（https://leetcode.cn/problems/choose-edges-to-maximize-score-in-a-tree/）tree_dp
+2445（https://leetcode.cn/problems/number-of-nodes-with-value-one/）up_to_down|tree_dp|implemention
+834（https://leetcode.cn/problems/sum-of-distances-in-tree/）tree_dis|tree_centroid
+1617（https://leetcode.cn/problems/count-subtrees-with-max-distance-between-cities/）brute_force|tree_diameter|tree_dp
+2003（https://leetcode.cn/problems/smallest-missing-genetic-value-in-each-subtree/）tree_dp|heuristic_merge|classical
+2673（https://leetcode.cn/problems/make-costs-of-paths-equal-in-a-binary-tree/）tree_dp|greedy
+1367（https://leetcode.cn/problems/linked-list-in-binary-tree/description/）classical|2-tree|linked_list|memory_dp
+979（https://leetcode.cn/problems/distribute-coins-in-binary-tree/description/）tree_dp|greedy
+1373（https://leetcode.cn/problems/maximum-sum-bst-in-binary-tree/）tree_dp|2-tree
+971（https://leetcode.cn/problems/flip-binary-tree-to-match-preorder-traversal/description/）tree_dp|greedy|implemention
 100041（https://www.acwing.com/problem/content/description/4384/）reroot_dp|dfs_order|diff_array
-100047（https://leetcode.com/problems/count-valid-paths-in-a-tree/description/）tree_dp|union_find|bfs
+100047（https://leetcode.cn/problems/count-valid-paths-in-a-tree/description/）tree_dp|union_find|bfs
 
 =====================================LuoGu======================================
 P1395（https://www.luogu.com.cn/problem/P1395）tree_dis|tree_centroid|reroot_dp|classical|up_to_down|down_to_up
@@ -128,7 +128,7 @@ class Solution:
     @staticmethod
     def lc_2003(parents: List[int], nums: List[int]) -> List[int]:
         """
-        url: https://leetcode.com/problems/smallest-missing-genetic-value-in-each-subtree/
+        url: https://leetcode.cn/problems/smallest-missing-genetic-value-in-each-subtree/
         tag: tree_dp|heuristic_merge|classical
         """
         # heuristic merging from bottom to up
@@ -167,7 +167,7 @@ class Solution:
     @staticmethod
     def lc_2458(root, queries: List[int]) -> List[int]:
         """
-        url: https://leetcode.com/problems/height-of-binary-tree-after-subtree-removal-queries/
+        url: https://leetcode.cn/problems/height-of-binary-tree-after-subtree-removal-queries/
         tag: dfs|tree_dp|up_to_down|down_to_up
         """
         # 类似换根 DP 的思想跑两遍 DFS
@@ -425,7 +425,7 @@ class Solution:
     @staticmethod
     def lc_968(root: Optional[TreeNode]) -> int:
         """
-        url: https://leetcode.com/problems/binary-tree-cameras/
+        url: https://leetcode.cn/problems/binary-tree-cameras/
         tag: tree_dp
         """
 
@@ -448,7 +448,7 @@ class Solution:
     @staticmethod
     def lc_1367(head: Optional[ListNode], root: Optional[TreeNode]) -> bool:
         """
-        url: https://leetcode.com/problems/linked-list-in-binary-tree/description/
+        url: https://leetcode.cn/problems/linked-list-in-binary-tree/description/
         tag: classical|2-tree|linked_list|memory_dp
         """
 
@@ -1054,7 +1054,7 @@ class Solution:
     @staticmethod
     def lc_1617_2(n: int, edges: List[List[int]]) -> List[int]:
         """
-        url: https://leetcode.com/problems/count-subtrees-with-max-distance-between-cities/
+        url: https://leetcode.cn/problems/count-subtrees-with-max-distance-between-cities/
         tag: brute_force|tree_diameter|tree_dp
         """
         # brute_forcetree_diameter端点与乘法原理tree_dp
@@ -1228,7 +1228,7 @@ class Solution:
     @staticmethod
     def lc_2673(n: int, cost: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/make-costs-of-paths-equal-in-a-binary-tree/
+        url: https://leetcode.cn/problems/make-costs-of-paths-equal-in-a-binary-tree/
         tag: tree_dp|greedy
         """
         # tree_dpgreedy

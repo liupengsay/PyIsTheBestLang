@@ -4,8 +4,8 @@ Description：build a binary_search_tree by the order of array
 
 
 ====================================LeetCode====================================
-1569（https://leetcode.com/problems/number-of-ways-to-reorder-array-to-get-same-bst/）array_to_bst|dp|comb|counter|specific_plan
-1902（https://leetcode.com/problems/depth-of-bst-given-insertion-order/）array_to_bst|tree_depth|implemention
+1569（https://leetcode.cn/problems/number-of-ways-to-reorder-array-to-get-same-bst/）array_to_bst|dp|comb|counter|specific_plan
+1902（https://leetcode.cn/problems/depth-of-bst-given-insertion-order/）array_to_bst|tree_depth|implemention
 
 =====================================LuoGu======================================
 P2171（https://www.luogu.com.cn/problem/P2171）array_to_bst|reverse_order|union_find|implemention
@@ -135,7 +135,7 @@ class Solution:
     @staticmethod
     def lc_1569(nums: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/number-of-ways-to-reorder-array-to-get-same-bst/
+        url: https://leetcode.cn/problems/number-of-ways-to-reorder-array-to-get-same-bst/
         tag: array_to_bst|dp|comb|counter|specific_plan
         """
         # array_to_bst，DP与组合counter求specific_plan数
@@ -167,7 +167,7 @@ class Solution:
     @staticmethod
     def lc_1902(order: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/depth-of-bst-given-insertion-order/
+        url: https://leetcode.cn/problems/depth-of-bst-given-insertion-order/
         tag: array_to_bst|tree_depth|implemention
         """
         # array_to_bst求深度

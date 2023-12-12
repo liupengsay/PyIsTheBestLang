@@ -4,46 +4,46 @@ Algorithm：greedy|reverse_thinking|pigeonhole_principle|inclusion_exclusion|cus
 Description：brain_teaser
 
 ====================================LeetCode====================================
-134（https://leetcode.com/problems/gas-station/）greedy
-330（https://leetcode.com/problems/patching-array/）greedy
-1199（https://leetcode.com/problems/minimum-time-to-build-blocks/）huffman_tree|greedy|classical|heapq
-2499（https://leetcode.com/problems/minimum-total-cost-to-make-arrays-unequal/）pigeonhole_principle|greedy
-2449（https://leetcode.com/problems/minimum-total-cost-to-make-arrays-unequal/）sort|odd_even|greedy
-2448（https://leetcode.com/problems/minimum-cost-to-make-array-equal/）median|greedy
-2412（https://leetcode.com/problems/minimum-money-required-before-transactions/）custom_sort
-2366（https://leetcode.com/problems/minimum-replacements-to-sort-the-array/）reverse_order|greedy
-2350（https://leetcode.com/problems/shortest-impossible-sequence-of-rolls/）brain_teaser|classical
-2344（https://leetcode.com/problems/minimum-deletions-to-make-array-divisible/）greedy|range_gcd
-2136（https://leetcode.com/problems/earliest-possible-day-of-full-bloom/）greedy
-2071（https://leetcode.com/problems/maximum-number-of-tasks-you-can-assign/）greedy|binary_search
-517（https://leetcode.com/problems/super-washing-machines/）greedy|binary_search|brute_force
-1798（https://leetcode.com/problems/maximum-number-of-consecutive-values-you-can-make/）greedy
-625（https://leetcode.com/problems/minimum-factorization/）greedy|factorization
-2568（https://leetcode.com/problems/minimum-impossible-or/）brain_teaser|greedy|guess|watch_pattern
-6361（https://leetcode.com/problems/minimum-score-by-changing-two-elements/）brain_teaser|greedy
-6316（https://leetcode.com/problems/rearrange-array-to-maximize-prefix-score/）greedy|prefix_sum
-2436（https://leetcode.com/problems/minimum-split-into-subarrays-with-gcd-greater-than-one/）greedy
-1029（https://leetcode.com/problems/two-city-scheduling/）greedy|sort
-1353（https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended/）brute_force|greedy
-1402（https://leetcode.com/problems/reducing-dishes/）prefix_sum|greedy
-1665（https://leetcode.com/problems/minimum-initial-energy-to-finish-tasks/）greedy|sort|implemention|CF1203F
-1675（https://leetcode.com/problems/minimize-deviation-in-array/）brain_teaser|greedy
-1686（https://leetcode.com/problems/stone-game-vi/）greedy|custom_sort
-1808（https://leetcode.com/problems/maximize-number-of-nice-divisors/）mod|greedy|classical|maximum_mul
-1953（https://leetcode.com/problems/maximum-number-of-weeks-for-which-you-can-work/）greedy|classical|maximum|sum
-2856（https://leetcode.com/problems/minimum-array-length-after-pair-removals/）greedy|classical|maximum|sum
-858（https://leetcode.com/problems/mirror-reflection/description/）brain_teaser
-1927（https://leetcode.com/problems/sum-game/description/）game_dp|brain_teaser|classification_discussion
-2592（https://leetcode.com/problems/maximize-greatness-of-an-array/）classical|greedy|sort|two_pointers
-1503（https://leetcode.com/problems/last-moment-before-all-ants-fall-out-of-a-plank/）brain_teaser|classical
-991（https://leetcode.com/problems/broken-calculator/）reverse_order|reverse_thinking|greedy|odd_even|implemention
-2745（https://leetcode.com/problems/construct-the-longest-new-string/）brain_teaser|greedy
-1657（https://leetcode.com/problems/determine-if-two-strings-are-close/description/）brain_teaser|greedy
-2561（https://leetcode.com/problems/rearranging-fruits/）brain_teaser|greedy
-843（https://leetcode.com/problems/guess-the-word/）brain_teaser|greedy|implemention|interactive
-1946（https://leetcode.com/problems/largest-number-after-mutating-substring/description/）greedy|classical
-1540（https://leetcode.com/problems/can-convert-string-in-k-moves/）greedy|brain_teaser|pointer
-1121（https://leetcode.com/problems/divide-array-into-increasing-sequences/description/）brain_teaser|greedy|classical|maximum
+134（https://leetcode.cn/problems/gas-station/）greedy
+330（https://leetcode.cn/problems/patching-array/）greedy
+1199（https://leetcode.cn/problems/minimum-time-to-build-blocks/）huffman_tree|greedy|classical|heapq
+2499（https://leetcode.cn/problems/minimum-total-cost-to-make-arrays-unequal/）pigeonhole_principle|greedy
+2449（https://leetcode.cn/problems/minimum-total-cost-to-make-arrays-unequal/）sort|odd_even|greedy
+2448（https://leetcode.cn/problems/minimum-cost-to-make-array-equal/）median|greedy
+2412（https://leetcode.cn/problems/minimum-money-required-before-transactions/）custom_sort
+2366（https://leetcode.cn/problems/minimum-replacements-to-sort-the-array/）reverse_order|greedy
+2350（https://leetcode.cn/problems/shortest-impossible-sequence-of-rolls/）brain_teaser|classical
+2344（https://leetcode.cn/problems/minimum-deletions-to-make-array-divisible/）greedy|range_gcd
+2136（https://leetcode.cn/problems/earliest-possible-day-of-full-bloom/）greedy
+2071（https://leetcode.cn/problems/maximum-number-of-tasks-you-can-assign/）greedy|binary_search
+517（https://leetcode.cn/problems/super-washing-machines/）greedy|binary_search|brute_force
+1798（https://leetcode.cn/problems/maximum-number-of-consecutive-values-you-can-make/）greedy
+625（https://leetcode.cn/problems/minimum-factorization/）greedy|factorization
+2568（https://leetcode.cn/problems/minimum-impossible-or/）brain_teaser|greedy|guess|watch_pattern
+6361（https://leetcode.cn/problems/minimum-score-by-changing-two-elements/）brain_teaser|greedy
+6316（https://leetcode.cn/problems/rearrange-array-to-maximize-prefix-score/）greedy|prefix_sum
+2436（https://leetcode.cn/problems/minimum-split-into-subarrays-with-gcd-greater-than-one/）greedy
+1029（https://leetcode.cn/problems/two-city-scheduling/）greedy|sort
+1353（https://leetcode.cn/problems/maximum-number-of-events-that-can-be-attended/）brute_force|greedy
+1402（https://leetcode.cn/problems/reducing-dishes/）prefix_sum|greedy
+1665（https://leetcode.cn/problems/minimum-initial-energy-to-finish-tasks/）greedy|sort|implemention|CF1203F
+1675（https://leetcode.cn/problems/minimize-deviation-in-array/）brain_teaser|greedy
+1686（https://leetcode.cn/problems/stone-game-vi/）greedy|custom_sort
+1808（https://leetcode.cn/problems/maximize-number-of-nice-divisors/）mod|greedy|classical|maximum_mul
+1953（https://leetcode.cn/problems/maximum-number-of-weeks-for-which-you-can-work/）greedy|classical|maximum|sum
+2856（https://leetcode.cn/problems/minimum-array-length-after-pair-removals/）greedy|classical|maximum|sum
+858（https://leetcode.cn/problems/mirror-reflection/description/）brain_teaser
+1927（https://leetcode.cn/problems/sum-game/description/）game_dp|brain_teaser|classification_discussion
+2592（https://leetcode.cn/problems/maximize-greatness-of-an-array/）classical|greedy|sort|two_pointers
+1503（https://leetcode.cn/problems/last-moment-before-all-ants-fall-out-of-a-plank/）brain_teaser|classical
+991（https://leetcode.cn/problems/broken-calculator/）reverse_order|reverse_thinking|greedy|odd_even|implemention
+2745（https://leetcode.cn/problems/construct-the-longest-new-string/）brain_teaser|greedy
+1657（https://leetcode.cn/problems/determine-if-two-strings-are-close/description/）brain_teaser|greedy
+2561（https://leetcode.cn/problems/rearranging-fruits/）brain_teaser|greedy
+843（https://leetcode.cn/problems/guess-the-word/）brain_teaser|greedy|implemention|interactive
+1946（https://leetcode.cn/problems/largest-number-after-mutating-substring/description/）greedy|classical
+1540（https://leetcode.cn/problems/can-convert-string-in-k-moves/）greedy|brain_teaser|pointer
+1121（https://leetcode.cn/problems/divide-array-into-increasing-sequences/description/）brain_teaser|greedy|classical|maximum
 
 =====================================LuoGu======================================
 P1031（https://www.luogu.com.cn/problem/P1031）greedy|prefix_sum|counter
@@ -459,7 +459,7 @@ class Solution:
     @staticmethod
     def lc_2745(x: int, y: int, z: int) -> int:
         """
-        url: https://leetcode.com/problems/construct-the-longest-new-string/
+        url: https://leetcode.cn/problems/construct-the-longest-new-string/
         tag: brain_teaser|greedy
         """
         # brain_teasergreedybrain_teaser|
@@ -1136,7 +1136,7 @@ class Solution:
     @staticmethod
     def lc_858(p: int, q: int) -> int:
         """
-        url: https://leetcode.com/problems/mirror-reflection/description/
+        url: https://leetcode.cn/problems/mirror-reflection/description/
         tag: brain_teaser
         """
 
@@ -1159,7 +1159,7 @@ class Solution:
     @staticmethod
     def lc_991(start: int, target: int) -> int:
         """
-        url: https://leetcode.com/problems/broken-calculator/
+        url: https://leetcode.cn/problems/broken-calculator/
         tag: reverse_order|reverse_thinking|greedy|odd_even|implemention
         """
         # 逆向greedy，偶数除2奇数|1
@@ -1175,7 +1175,7 @@ class Solution:
     @staticmethod
     def lc_1503(n: int, left: List[int], right: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/last-moment-before-all-ants-fall-out-of-a-plank/
+        url: https://leetcode.cn/problems/last-moment-before-all-ants-fall-out-of-a-plank/
         tag: brain_teaser|classical
         """
         # 
@@ -1191,7 +1191,7 @@ class Solution:
     @staticmethod
     def lc_1675(nums: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/minimize-deviation-in-array/
+        url: https://leetcode.cn/problems/minimize-deviation-in-array/
         tag: brain_teaser|greedy
         """
         # brain_teaserbrain_teaser|greedy
@@ -1208,7 +1208,7 @@ class Solution:
     @staticmethod
     def lc_1808(prime_factors: int) -> int:
         """
-        url: https://leetcode.com/problems/maximize-number-of-nice-divisors/
+        url: https://leetcode.cn/problems/maximize-number-of-nice-divisors/
         tag: mod|greedy|classical|maximum_mul
         """
         # 按照模3的因子个数greedy处理，将和拆分成最大乘积
@@ -1225,7 +1225,7 @@ class Solution:
     @staticmethod
     def lc_1927(num: str) -> bool:
         """
-        url: https://leetcode.com/problems/sum-game/description/
+        url: https://leetcode.cn/problems/sum-game/description/
         tag: game_dp|brain_teaser|classification_discussion
         """
         # 博弈brain_teaser|classification_discussion
@@ -1268,7 +1268,7 @@ class Solution:
     @staticmethod
     def lc_2592(nums: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/maximize-greatness-of-an-array/
+        url: https://leetcode.cn/problems/maximize-greatness-of-an-array/
         tag: classical|greedy|sort|two_pointers
         """
         # classicalgreedysorting后two_pointers
@@ -1287,7 +1287,7 @@ class Solution:
     @staticmethod
     def lc_2568(nums: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/minimum-impossible-or/
+        url: https://leetcode.cn/problems/minimum-impossible-or/
         tag: brain_teaser|greedy|guess|watch_pattern
         """
         # brain_teasergreedy，可以根据打表观察规律

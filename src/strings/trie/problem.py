@@ -3,16 +3,16 @@ Algorithm：trie|01-trie
 Description：string|bit_operation
 
 ====================================LeetCode====================================
-421（https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/）01-trie
-638（https://leetcode.com/problems/shopping-offers/）trie|memory_search
-2416（https://leetcode.com/problems/sum-of-prefix-scores-of-strings/）prefix|counter
-1803（https://leetcode.com/problems/count-pairs-with-xor-in-a-range/）01-trie|classical
-677（https://leetcode.com/problems/map-sum-pairs/）prefix|counter
-2479（https://leetcode.com/problems/maximum-xor-of-two-non-overlapping-subtrees/）01-trie|maximum_xor
-17（https://leetcode.com/problems/multi-search-lcci/）ac_auto_machine|counter|trie|reverse_thinking
-1707（https://leetcode.com/problems/maximum-xor-with-an-element-from-array/）sort|offline_query|01-trie
-1938（https://leetcode.com/problems/maximum-genetic-difference-query/）dfs|back_track|01-trie|maximum_xor
-1032（https://leetcode.com/problems/stream-of-characters/description/）trie|classical|reverse_order
+421（https://leetcode.cn/problems/maximum-xor-of-two-numbers-in-an-array/）01-trie
+638（https://leetcode.cn/problems/shopping-offers/）trie|memory_search
+2416（https://leetcode.cn/problems/sum-of-prefix-scores-of-strings/）prefix|counter
+1803（https://leetcode.cn/problems/count-pairs-with-xor-in-a-range/）01-trie|classical
+677（https://leetcode.cn/problems/map-sum-pairs/）prefix|counter
+2479（https://leetcode.cn/problems/maximum-xor-of-two-non-overlapping-subtrees/）01-trie|maximum_xor
+17（https://leetcode.cn/problems/multi-search-lcci/）ac_auto_machine|counter|trie|reverse_thinking
+1707（https://leetcode.cn/problems/maximum-xor-with-an-element-from-array/）sort|offline_query|01-trie
+1938（https://leetcode.cn/problems/maximum-genetic-difference-query/）dfs|back_track|01-trie|maximum_xor
+1032（https://leetcode.cn/problems/stream-of-characters/description/）trie|classical|reverse_order
 
 =====================================LuoGu======================================
 P8306（https://www.luogu.com.cn/problem/P8306）trie
@@ -73,7 +73,7 @@ class Solution:
     @staticmethod
     def lc_677():
         """
-        url: https://leetcode.com/problems/map-sum-pairs/
+        url: https://leetcode.cn/problems/map-sum-pairs/
         tag: prefix|counter
         """
         # 更新与查询给定字符串作为单词键前缀的对应值的和
@@ -93,7 +93,7 @@ class Solution:
     @staticmethod
     def lc_1803(nums: List[int], low: int, high: int) -> int:
         """
-        url: https://leetcode.com/problems/count-pairs-with-xor-in-a-range/
+        url: https://leetcode.cn/problems/count-pairs-with-xor-in-a-range/
         tag: 01-trie|classical
         """
         # 01trie查询异或值在有一定范围内的数对个数
@@ -115,7 +115,7 @@ class Solution:
     @staticmethod
     def lc_1803_2(nums: List[int], low: int, high: int) -> int:
         """
-        url: https://leetcode.com/problems/count-pairs-with-xor-in-a-range/
+        url: https://leetcode.cn/problems/count-pairs-with-xor-in-a-range/
         tag: 01-trie|classical
         """
         # 统计范围内的异或对数目
@@ -192,7 +192,7 @@ class Solution:
     @staticmethod
     def lc_2479(n: int, edges: List[List[int]], values: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/maximum-xor-of-two-non-overlapping-subtrees/
+        url: https://leetcode.cn/problems/maximum-xor-of-two-non-overlapping-subtrees/
         tag: 01-trie|maximum_xor
         """
         # 借助dfs|的顺序01trie查询最大异或数对值
@@ -233,7 +233,7 @@ class Solution:
     @staticmethod
     def lc_2416(words: List[str]) -> List[int]:
         """
-        url: https://leetcode.com/problems/sum-of-prefix-scores-of-strings/
+        url: https://leetcode.cn/problems/sum-of-prefix-scores-of-strings/
         tag: prefix|counter
         """
         trie = TriePrefixCount()
@@ -520,7 +520,7 @@ class Solution:
     @staticmethod
     def lc_1707(nums: List[int], queries: List[List[int]]) -> List[int]:
         """
-        url: https://leetcode.com/problems/maximum-xor-with-an-element-from-array/
+        url: https://leetcode.cn/problems/maximum-xor-with-an-element-from-array/
         tag: sort|offline_query|01-trie
         """
         # sorting后offline_query并 01 Trie求解最大异或值
@@ -602,7 +602,7 @@ class Solution:
     @staticmethod
     def lc_421(nums: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/
+        url: https://leetcode.cn/problems/maximum-xor-of-two-numbers-in-an-array/
         tag: 01-trie
         """
         # 求解数组最大的异或对，题，有更快解法
@@ -617,7 +617,7 @@ class Solution:
     @staticmethod
     def lc_421_2(nums: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/
+        url: https://leetcode.cn/problems/maximum-xor-of-two-numbers-in-an-array/
         tag: 01-trie
         """
         # 更快解法
@@ -667,7 +667,7 @@ class Solution:
     @staticmethod
     def lc_1938(parents: List[int], queries: List[List[int]]) -> List[int]:
         """
-        url: https://leetcode.com/problems/maximum-genetic-difference-query/
+        url: https://leetcode.cn/problems/maximum-genetic-difference-query/
         tag: dfs|back_track|01-trie|maximum_xor
         """
         # dfs|back_track|结合01-trieoffline_query最大异或值对
@@ -700,7 +700,7 @@ class Solution:
     @staticmethod
     def lc_1938_2(parents: List[int], queries: List[List[int]]) -> List[int]:
         """
-        url: https://leetcode.com/problems/maximum-genetic-difference-query/
+        url: https://leetcode.cn/problems/maximum-genetic-difference-query/
         tag: dfs|back_track|01-trie|maximum_xor
         """
         # dfs|back_track|结合01-trieoffline_query最大异或值对

@@ -3,8 +3,8 @@ Algorithm：ex_gcd|binary_gcd|bin_gcd|peishu_theorem
 Description：single_equation
 
 ====================================LeetCode====================================
-365（https://leetcode.com/problems/water-and-jug-problem/）peishu_theorem|greedy
-2543（https://leetcode.com/contest/biweekly-contest-96/problems/check-if-point-is-reachable/）binary_gcd|ex_gcd
+365（https://leetcode.cn/problems/water-and-jug-problem/）peishu_theorem|greedy
+2543（https://leetcode.cn/contest/biweekly-contest-96/problems/check-if-point-is-reachable/）binary_gcd|ex_gcd
 
 =====================================LuoGu======================================
 P1082（https://www.luogu.com.cn/problem/P1082）same_mod|equation

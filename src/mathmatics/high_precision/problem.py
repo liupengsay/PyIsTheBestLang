@@ -3,11 +3,11 @@ Algorithm：big_number_factorization|is_prime|high_precision|float_to_frac|frac_
 Description：xxx
 
 ====================================LeetCode====================================
-166（https://leetcode.com/problems/fraction-to-recurring-decimal/）frac_to_float
-172（https://leetcode.com/problems/factorial-trailing-zeroes/）suffix_zero|factorial
-1883（https://leetcode.com/problems/minimum-skips-to-arrive-at-meeting-on-time/）matrix_dp|high_precision|float_to_frac
-2117（https://leetcode.com/problems/abbreviating-the-product-of-a-range/）prefix_suffix|implemention
-972（https://leetcode.com/problems/equal-rational-numbers/）float_to_frac
+166（https://leetcode.cn/problems/fraction-to-recurring-decimal/）frac_to_float
+172（https://leetcode.cn/problems/factorial-trailing-zeroes/）suffix_zero|factorial
+1883（https://leetcode.cn/problems/minimum-skips-to-arrive-at-meeting-on-time/）matrix_dp|high_precision|float_to_frac
+2117（https://leetcode.cn/problems/abbreviating-the-product-of-a-range/）prefix_suffix|implemention
+972（https://leetcode.cn/problems/equal-rational-numbers/）float_to_frac
 
 =====================================LuoGu======================================
 P2388（https://www.luogu.com.cn/problem/P2388）suffix_zero|factorial_of_factorial
@@ -85,7 +85,7 @@ class Solution:
     @staticmethod
     def lc_172(n):
         """
-        url: https://leetcode.com/problems/factorial-trailing-zeroes/
+        url: https://leetcode.cn/problems/factorial-trailing-zeroes/
         tag: suffix_zero|factorial
         """
         # 模板: n!的后缀零个数
@@ -94,7 +94,7 @@ class Solution:
     @staticmethod
     def lc_972(s: str, t: str) -> bool:
         """
-        url: https://leetcode.com/problems/equal-rational-numbers/
+        url: https://leetcode.cn/problems/equal-rational-numbers/
         tag: float_to_frac
         """
         # 有理数转为分数判断
@@ -166,7 +166,7 @@ class Solution:
     @staticmethod
     def lc_1883_1(dist: List[int], speed: int, hours: int) -> int:
         """
-        url: https://leetcode.com/problems/minimum-skips-to-arrive-at-meeting-on-time/
+        url: https://leetcode.cn/problems/minimum-skips-to-arrive-at-meeting-on-time/
         tag: matrix_dp|high_precision|float_to_frac
         """
 
@@ -193,7 +193,7 @@ class Solution:
     @staticmethod
     def lc_1883_2(dist: List[int], speed: int, hours: int) -> int:
         """
-        url: https://leetcode.com/problems/minimum-skips-to-arrive-at-meeting-on-time/
+        url: https://leetcode.cn/problems/minimum-skips-to-arrive-at-meeting-on-time/
         tag: matrix_dp|high_precision|float_to_frac
         """
 

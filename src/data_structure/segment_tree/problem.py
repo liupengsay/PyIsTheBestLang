@@ -3,17 +3,17 @@ Algorithm：segment_tree|segment_tree_binary_search
 Description：range_sum|range_min|range_add|range_change|range_max|dynamic_segment_tree|defaultdict
 
 ====================================LeetCode====================================
-218（https://leetcode.com/problems/the-skyline-problem/solution/by-liupengsay-isfo/）segment_tree|RangeChangeRangeMax
-2286（https://leetcode.com/problems/booking-concert-tickets-in-groups/）segment_tree|RangeAddRangeSumMaxMin
-2407（https://leetcode.com/problems/longest-increasing-subsequence-ii/）segment_tree|RangeAddRangeMax|linear_dp
-2158（https://leetcode.com/problems/amount-of-new-area-painted-each-day/）segment_tree|RangeAddRangeSum
-6318（https://leetcode.com/contest/weekly-contest-336/problems/minimum-time-to-complete-all-tasks/）segment_tree|greedy|binary_search
-732（https://leetcode.com/problems/my-calendar-iii/）dynamic_segment_tree
-1851（https://leetcode.com/problems/minimum-interval-to-include-each-query/）segment_tree|RangeChangeRangeMin|offline_query|priority_queue
-2213（https://leetcode.com/problems/longest-substring-of-one-repeating-character/）segment_tree|sub_consequence|range_query|range_merge
-2276（https://leetcode.com/problems/count-integers-in-intervals/）dynamic_segment_tree|union_find_range|SortedList
-1340（https://leetcode.com/problems/jump-game-v/）segment_tree|linear_dp
-2940（https://leetcode.com/problems/find-building-where-alice-and-bob-can-meet/）segment_tree_binary_search
+218（https://leetcode.cn/problems/the-skyline-problem/solution/by-liupengsay-isfo/）segment_tree|RangeChangeRangeMax
+2286（https://leetcode.cn/problems/booking-concert-tickets-in-groups/）segment_tree|RangeAddRangeSumMaxMin
+2407（https://leetcode.cn/problems/longest-increasing-subsequence-ii/）segment_tree|RangeAddRangeMax|linear_dp
+2158（https://leetcode.cn/problems/amount-of-new-area-painted-each-day/）segment_tree|RangeAddRangeSum
+6318（https://leetcode.cn/contest/weekly-contest-336/problems/minimum-time-to-complete-all-tasks/）segment_tree|greedy|binary_search
+732（https://leetcode.cn/problems/my-calendar-iii/）dynamic_segment_tree
+1851（https://leetcode.cn/problems/minimum-interval-to-include-each-query/）segment_tree|RangeChangeRangeMin|offline_query|priority_queue
+2213（https://leetcode.cn/problems/longest-substring-of-one-repeating-character/）segment_tree|sub_consequence|range_query|range_merge
+2276（https://leetcode.cn/problems/count-integers-in-intervals/）dynamic_segment_tree|union_find_range|SortedList
+1340（https://leetcode.cn/problems/jump-game-v/）segment_tree|linear_dp
+2940（https://leetcode.cn/problems/find-building-where-alice-and-bob-can-meet/）segment_tree_binary_search
 
 =====================================LuoGu======================================
 P2846（https://www.luogu.com.cn/problem/P2846）segment_tree|range_reverse|range_sum
@@ -91,7 +91,7 @@ class Solution:
     @staticmethod
     def lc_2213(s: str, word: str, indices: List[int]) -> List[int]:
         """
-        url: https://leetcode.com/problems/longest-substring-of-one-repeating-character/
+        url: https://leetcode.cn/problems/longest-substring-of-one-repeating-character/
         tag: segment_tree|sub_consequence|range_query|range_merge
         """
         # 单点字母更新，最长具有相同字母的连续子数组查询
@@ -275,7 +275,7 @@ class Solution:
     @staticmethod
     def lc_218(buildings: List[List[int]]) -> List[List[int]]:
         """
-        url: https://leetcode.com/problems/the-skyline-problem/solution/by-liupengsay-isfo/
+        url: https://leetcode.cn/problems/the-skyline-problem/solution/by-liupengsay-isfo/
         tag: segment_tree|RangeChangeRangeMax
         """
         # segment_tree|discretization区间且持续增|最大值
@@ -628,7 +628,7 @@ class Solution:
     @staticmethod
     def lc_2940(heights: List[int], queries: List[List[int]]) -> List[int]:
         """
-        url: https://leetcode.com/problems/find-building-where-alice-and-bob-can-meet/
+        url: https://leetcode.cn/problems/find-building-where-alice-and-bob-can-meet/
         tag: segment_tree_binary_search
         """
         n = len(heights)
@@ -951,7 +951,7 @@ class Solution:
     @staticmethod
     def lc_1851(intervals: List[List[int]], queries: List[int]) -> List[int]:
         """
-        url: https://leetcode.com/problems/minimum-interval-to-include-each-query/
+        url: https://leetcode.cn/problems/minimum-interval-to-include-each-query/
         tag: segment_tree|RangeChangeRangeMin|offline_query|priority_queue
         """
         # 区间更新最小值、单点查询
@@ -972,7 +972,7 @@ class Solution:
     @staticmethod
     def lc_1340(nums: List[int], d: int) -> int:
         """
-        url: https://leetcode.com/problems/jump-game-v/
+        url: https://leetcode.cn/problems/jump-game-v/
         tag: segment_tree|linear_dp
         """
 

@@ -3,11 +3,11 @@ Algorithm：sparse_table|multiplication_method|aggregation_property|sub_conseque
 Description：static_range|range_query|range_max|range_min|range_gcd|range_and|range_or|range_lcm
 
 ====================================LeetCode====================================
-1521（https://leetcode.com/problems/find-a-value-of-a-mysterious-function-closest-to-target/）bit_operation|sub_consequence
-2411（https://leetcode.com/problems/smallest-subarrays-with-maximum-bitwise-or/）sub_consequence|range_or
-2447（https://leetcode.com/problems/number-of-subarrays-with-gcd-equal-to-k/）range_gcd|counter|sub_consequence
-2470（https://leetcode.com/problems/number-of-subarrays-with-lcm-equal-to-k/）range_lcm|counter|sub_consequence
-2654（https://leetcode.com/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/）range_gcd|sub_consequence
+1521（https://leetcode.cn/problems/find-a-value-of-a-mysterious-function-closest-to-target/）bit_operation|sub_consequence
+2411（https://leetcode.cn/problems/smallest-subarrays-with-maximum-bitwise-or/）sub_consequence|range_or
+2447（https://leetcode.cn/problems/number-of-subarrays-with-gcd-equal-to-k/）range_gcd|counter|sub_consequence
+2470（https://leetcode.cn/problems/number-of-subarrays-with-lcm-equal-to-k/）range_lcm|counter|sub_consequence
+2654（https://leetcode.cn/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/）range_gcd|sub_consequence
 
 =====================================LuoGu======================================
 P3865（https://www.luogu.com.cn/problem/P3865）sparse_table|range_max
@@ -201,7 +201,7 @@ class Solution:
     @staticmethod
     def lc_2447(nums: List[int], k: int) -> int:
         """
-        url: https://leetcode.com/problems/number-of-subarrays-with-gcd-equal-to-k/
+        url: https://leetcode.cn/problems/number-of-subarrays-with-gcd-equal-to-k/
         tag: range_gcd|counter|sub_consequence
         """
         # 最大公因数等于 K 的子数组数目
@@ -222,7 +222,7 @@ class Solution:
     @staticmethod
     def lc_2470(nums: List[int], k: int) -> int:
         """
-        url: https://leetcode.com/problems/number-of-subarrays-with-lcm-equal-to-k/
+        url: https://leetcode.cn/problems/number-of-subarrays-with-lcm-equal-to-k/
         tag: range_lcm|counter|sub_consequence
         """
         # 最小公倍数为 K 的子数组数目
@@ -243,7 +243,7 @@ class Solution:
     @staticmethod
     def lc_2411(nums: List[int]) -> List[int]:
         """
-        url: https://leetcode.com/problems/smallest-subarrays-with-maximum-bitwise-or/
+        url: https://leetcode.cn/problems/smallest-subarrays-with-maximum-bitwise-or/
         tag: sub_consequence|range_or
         """
         # 最大或值的最短连续子数组
@@ -375,7 +375,7 @@ class Solution:
     @staticmethod
     def lc_1521(arr: List[int], target: int) -> int:
         """
-        url: https://leetcode.com/problems/find-a-value-of-a-mysterious-function-closest-to-target/
+        url: https://leetcode.cn/problems/find-a-value-of-a-mysterious-function-closest-to-target/
         tag: bit_operation|sub_consequence
         """
         # 与目标值最接近的连续子数组bit_operation与值

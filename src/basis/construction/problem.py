@@ -4,11 +4,11 @@ Algorithm：construction
 Description：greedy|sorting|construction|specific_plan
 
 ====================================LeetCode====================================
-280（https://leetcode.com/problems/wiggle-sort/）construction|sorting|odd_even
-2663（https://leetcode.com/problems/lexicographically-smallest-beautiful-string/）greedy|construction|palindrome_substring|lexicographical_order
-1982（https://leetcode.com/problems/find-array-given-subset-sums/）construction
-1253（https://leetcode.com/problems/reconstruct-a-2-row-binary-matrix/）construction|greedy|brain_teaser
-2573（https://leetcode.com/problems/find-the-string-with-lcp/）lcp|construction|union_find
+280（https://leetcode.cn/problems/wiggle-sort/）construction|sorting|odd_even
+2663（https://leetcode.cn/problems/lexicographically-smallest-beautiful-string/）greedy|construction|palindrome_substring|lexicographical_order
+1982（https://leetcode.cn/problems/find-array-given-subset-sums/）construction
+1253（https://leetcode.cn/problems/reconstruct-a-2-row-binary-matrix/）construction|greedy|brain_teaser
+2573（https://leetcode.cn/problems/find-the-string-with-lcp/）lcp|construction|union_find
 
 =====================================LuoGu======================================
 P8846（https://www.luogu.com.cn/problem/P8846）greedy|construction
@@ -137,7 +137,7 @@ class Solution:
     @staticmethod
     def lc_280(nums: List[int]) -> None:
         """
-        url: https://leetcode.com/problems/wiggle-sort/
+        url: https://leetcode.cn/problems/wiggle-sort/
         tag: construction|sorting|odd_even
         """
         # 摆动sorting数组construction
@@ -159,7 +159,7 @@ class Solution:
     @staticmethod
     def lc_1982(n: int, sums: List[int]) -> List[int]:
         """
-        url: https://leetcode.com/problems/find-array-given-subset-sums/
+        url: https://leetcode.cn/problems/find-array-given-subset-sums/
         tag: construction
         """
         # 根据数组所有子集的和construction原数组
@@ -197,7 +197,7 @@ class Solution:
     @staticmethod
     def lc_2663(s: str, k: int) -> str:
         """
-        url: https://leetcode.com/problems/lexicographically-smallest-beautiful-string/
+        url: https://leetcode.cn/problems/lexicographically-smallest-beautiful-string/
         tag: greedy|construction|palindrome_substring|lexicographical_order
         """
         # greedyconstruction不含任何palindrome_substring的lexicographical_order最小的字符串

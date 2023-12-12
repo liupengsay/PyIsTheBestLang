@@ -4,20 +4,20 @@ Description：sometimes cooperation with diff_array or tree_array or segment_tre
 minimum_point_cover_range|minimum_group_range_disjoint|maximum_point_cover_range|bipartite_graph
 
 ====================================LeetCode====================================
-45（https://leetcode.com/problems/jump-game-ii/）minimum_range_cover
-452（https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/）greedy|maximum_disjoint_range
-1326（https://leetcode.com/problems/minimum-number-of-taps-to-open-to-water-a-garden/）range_merge_to_disjoint
-1024（https://leetcode.com/problems/video-stitching/）minimum_range_cover
-1520（https://leetcode.com/problems/maximum-number-of-non-overlapping-substrings/）maximum_disjoint_range
-1353（https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended/）greedy|minimum_point_cover_range
-2406（https://leetcode.com/problems/divide-intervals-into-minimum-number-of-groups/）minimum_group_range_disjoint|greedy|diff_array|counter
-435（https://leetcode.com/problems/non-overlapping-intervals/）maximum_disjoint_range|greedy|binary_search|dp
-763（https://leetcode.com/problems/partition-labels/）range_merge_to_disjoint
-6313（https://leetcode.com/contest/biweekly-contest-99/problems/count-ways-to-group-overlapping-ranges/）range_merge_to_disjoint|fast_power|counter
-2345（https://leetcode.com/problems/finding-the-number-of-visible-mountains/）partial_order|range_include
-757（https://leetcode.com/problems/set-intersection-size-at-least-two/）greedy|minimum_point_cover_range
-2589（https://leetcode.com/problems/minimum-time-to-complete-all-tasks/）greedy|minimum_point_cover_range
-32（https://leetcode.com/problems/t3fKg1/）greedy|minimum_point_cover_range
+45（https://leetcode.cn/problems/jump-game-ii/）minimum_range_cover
+452（https://leetcode.cn/problems/minimum-number-of-arrows-to-burst-balloons/）greedy|maximum_disjoint_range
+1326（https://leetcode.cn/problems/minimum-number-of-taps-to-open-to-water-a-garden/）range_merge_to_disjoint
+1024（https://leetcode.cn/problems/video-stitching/）minimum_range_cover
+1520（https://leetcode.cn/problems/maximum-number-of-non-overlapping-substrings/）maximum_disjoint_range
+1353（https://leetcode.cn/problems/maximum-number-of-events-that-can-be-attended/）greedy|minimum_point_cover_range
+2406（https://leetcode.cn/problems/divide-intervals-into-minimum-number-of-groups/）minimum_group_range_disjoint|greedy|diff_array|counter
+435（https://leetcode.cn/problems/non-overlapping-intervals/）maximum_disjoint_range|greedy|binary_search|dp
+763（https://leetcode.cn/problems/partition-labels/）range_merge_to_disjoint
+6313（https://leetcode.cn/contest/biweekly-contest-99/problems/count-ways-to-group-overlapping-ranges/）range_merge_to_disjoint|fast_power|counter
+2345（https://leetcode.cn/problems/finding-the-number-of-visible-mountains/）partial_order|range_include
+757（https://leetcode.cn/problems/set-intersection-size-at-least-two/）greedy|minimum_point_cover_range
+2589（https://leetcode.cn/problems/minimum-time-to-complete-all-tasks/）greedy|minimum_point_cover_range
+32（https://leetcode.cn/problems/t3fKg1/）greedy|minimum_point_cover_range
 
 =====================================LuoGu======================================
 P2082（https://www.luogu.com.cn/problem/P2082）range_merge_to_disjoint
@@ -81,7 +81,7 @@ class Solution:
     @staticmethod
     def lc_45(nums):
         """
-        url: https://leetcode.com/problems/jump-game-ii/
+        url: https://leetcode.cn/problems/jump-game-ii/
         tag: minimum_range_cover
         """
         n = len(nums)
@@ -93,7 +93,7 @@ class Solution:
     @staticmethod
     def lc_1326_1(n, ranges):
         """
-        url: https://leetcode.com/problems/minimum-number-of-taps-to-open-to-water-a-garden/
+        url: https://leetcode.cn/problems/minimum-number-of-taps-to-open-to-water-a-garden/
         tag: range_merge_to_disjoint
         """
         # 最少range_cover模板题
@@ -106,7 +106,7 @@ class Solution:
     @staticmethod
     def lc_1326_2(n: int, ranges: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/minimum-number-of-taps-to-open-to-water-a-garden/
+        url: https://leetcode.cn/problems/minimum-number-of-taps-to-open-to-water-a-garden/
         tag: range_merge_to_disjoint
         """
         # 最少range_cover模板题
@@ -121,7 +121,7 @@ class Solution:
     @staticmethod
     def lc_1024_1(clips, time) -> int:
         """
-        url: https://leetcode.com/problems/video-stitching/
+        url: https://leetcode.cn/problems/video-stitching/
         tag: minimum_range_cover
         """
         # 最少range_cover模板题
@@ -130,7 +130,7 @@ class Solution:
     @staticmethod
     def lc_1024_2(clips: List[List[int]], time: int) -> int:
         """
-        url: https://leetcode.com/problems/video-stitching/
+        url: https://leetcode.cn/problems/video-stitching/
         tag: minimum_range_cover
         """
         # 最少range_cover模板题
@@ -150,7 +150,7 @@ class Solution:
     @staticmethod
     def lc_435(intervals):
         """
-        url: https://leetcode.com/problems/non-overlapping-intervals/
+        url: https://leetcode.cn/problems/non-overlapping-intervals/
         tag: maximum_disjoint_range|greedy|binary_search|dp
         """
         # 合并区间
@@ -160,7 +160,7 @@ class Solution:
     @staticmethod
     def lc_763(s: str) -> List[int]:
         """
-        url: https://leetcode.com/problems/partition-labels/
+        url: https://leetcode.cn/problems/partition-labels/
         tag: range_merge_to_disjoint
         """
         # 合并区间
@@ -178,7 +178,7 @@ class Solution:
     @staticmethod
     def lc_6313(ranges: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/contest/biweekly-contest-99/problems/count-ways-to-group-overlapping-ranges/
+        url: https://leetcode.cn/contest/biweekly-contest-99/problems/count-ways-to-group-overlapping-ranges/
         tag: range_merge_to_disjoint|fast_power|counter
         """
         # range_merge_to_disjoint
@@ -390,7 +390,7 @@ class Solution:
     @staticmethod
     def lc_1520(s: str) -> List[str]:
         """
-        url: https://leetcode.com/problems/maximum-number-of-non-overlapping-substrings/
+        url: https://leetcode.cn/problems/maximum-number-of-non-overlapping-substrings/
         tag: maximum_disjoint_range
         """
 

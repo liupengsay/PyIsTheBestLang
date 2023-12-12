@@ -5,15 +5,15 @@ Description：combination|permutation|counter|partition_method|fault_perm|stirli
 Lucas:（comb(n, m)%p = comb(n%p, m%p)*comb(n//p, m//p)）%p  
 
 ====================================LeetCode====================================
-96（https://leetcode.com/problems/unique-binary-search-trees/）catalan_number
-95（https://leetcode.com/problems/unique-binary-search-trees/）catalan_number|recursion|specific_plan
-634（https://leetcode.com/problems/find-the-derangement-of-an-array/）fault_perm|counter|dp
-1259（https://leetcode.com/problems/handshakes-that-dont-cross/）catalan_number
-2338（https://leetcode.com/problems/count-the-number-of-ideal-arrays/）partition_method|factorization|specific_plan|counter|classical
-1735（https://leetcode.com/problems/count-ways-to-make-array-with-product/）prime_factorization|partition_method|classical
-1621（https://leetcode.com/problems/number-of-sets-of-k-non-overlapping-line-segments/）partition_method|comb_perm
-1866（https://leetcode.com/problems/number-of-ways-to-rearrange-sticks-with-k-sticks-visible/）stirling_number|first_kind_stirling_number
-1916（https://leetcode.com/problems/count-ways-to-build-rooms-in-an-ant-colony/）tree_dp|math|comb|counter
+96（https://leetcode.cn/problems/unique-binary-search-trees/）catalan_number
+95（https://leetcode.cn/problems/unique-binary-search-trees/）catalan_number|recursion|specific_plan
+634（https://leetcode.cn/problems/find-the-derangement-of-an-array/）fault_perm|counter|dp
+1259（https://leetcode.cn/problems/handshakes-that-dont-cross/）catalan_number
+2338（https://leetcode.cn/problems/count-the-number-of-ideal-arrays/）partition_method|factorization|specific_plan|counter|classical
+1735（https://leetcode.cn/problems/count-ways-to-make-array-with-product/）prime_factorization|partition_method|classical
+1621（https://leetcode.cn/problems/number-of-sets-of-k-non-overlapping-line-segments/）partition_method|comb_perm
+1866（https://leetcode.cn/problems/number-of-ways-to-rearrange-sticks-with-k-sticks-visible/）stirling_number|first_kind_stirling_number
+1916（https://leetcode.cn/problems/count-ways-to-build-rooms-in-an-ant-colony/）tree_dp|math|comb|counter
 D - Blue and Red Balls（https://atcoder.jp/contests/abc132/tasks/abc132_d）comb|math|counter|classical|equation
 
 =====================================LuoGu======================================
@@ -163,7 +163,7 @@ class Solution:
     @staticmethod
     def lc_1259_1(num_people: int) -> int:
         """
-        url: https://leetcode.com/problems/handshakes-that-dont-cross/
+        url: https://leetcode.cn/problems/handshakes-that-dont-cross/
         tag: catalan_number
         """
         # catalan_number
@@ -178,7 +178,7 @@ class Solution:
     @staticmethod
     def lc_1259_2(num_people: int) -> int:
         """
-        url: https://leetcode.com/problems/handshakes-that-dont-cross/
+        url: https://leetcode.cn/problems/handshakes-that-dont-cross/
         tag: catalan_number
         """
         # catalan_number的数组形式
@@ -222,7 +222,7 @@ class Solution:
     @staticmethod
     def lc_634(n):
         """
-        url: https://leetcode.com/problems/find-the-derangement-of-an-array/
+        url: https://leetcode.cn/problems/find-the-derangement-of-an-array/
         tag: fault_perm|counter|dp
         """
         # 求错位comb数
@@ -657,7 +657,7 @@ class Solution:
     @staticmethod
     def lc_1735(queries: List[List[int]]) -> List[int]:
         """
-        url: https://leetcode.com/problems/count-ways-to-make-array-with-product/
+        url: https://leetcode.cn/problems/count-ways-to-make-array-with-product/
         tag: prime_factorization|partition_method|classical
         """
         mod = 10 ** 9 + 7
@@ -677,7 +677,7 @@ class Solution:
     @staticmethod
     def lc_1866(n: int, k: int) -> int:
         """
-        url: https://leetcode.com/problems/number-of-ways-to-rearrange-sticks-with-k-sticks-visible/
+        url: https://leetcode.cn/problems/number-of-ways-to-rearrange-sticks-with-k-sticks-visible/
         tag: stirling_number|first_kind_stirling_number
         """
         # 第一类stirling_number

@@ -12,10 +12,10 @@ Note1：where there exist euler_circular_path, there exist euler_path
 Note2：where there exist euler_path if and only if the graph is connected
 
 ====================================LeetCode====================================
-332（https://leetcode.com/problems/reconstruct-itinerary/）euler_circular_path
-753（https://leetcode.com/problems/cracking-the-safe/）euler_path
-2097（https://leetcode.com/problems/valid-arrangement-of-pairs/submissions/）euler_path
-1743（https://leetcode.com/problems/restore-the-array-from-adjacent-pairs/）undirected_euler_path|discretization
+332（https://leetcode.cn/problems/reconstruct-itinerary/）euler_circular_path
+753（https://leetcode.cn/problems/cracking-the-safe/）euler_path
+2097（https://leetcode.cn/problems/valid-arrangement-of-pairs/submissions/）euler_path
+1743（https://leetcode.cn/problems/restore-the-array-from-adjacent-pairs/）undirected_euler_path|discretization
 
 =====================================LuoGu======================================
 P7771（https://www.luogu.com.cn/problem/P7771）euler_path
@@ -187,7 +187,7 @@ class Solution:
     @staticmethod
     def lc_1743(adjacent: List[List[int]]) -> List[int]:
         """
-        url: https://leetcode.com/problems/restore-the-array-from-adjacent-pairs/
+        url: https://leetcode.cn/problems/restore-the-array-from-adjacent-pairs/
         tag: undirected_euler_path|discretization
         """
         # 无向图euler_path模板题, discretization解决
@@ -205,7 +205,7 @@ class Solution:
     @staticmethod
     def lc_2097(pairs: List[List[int]]) -> List[List[int]]:
         """
-        url: https://leetcode.com/problems/valid-arrangement-of-pairs/submissions/
+        url: https://leetcode.cn/problems/valid-arrangement-of-pairs/submissions/
         tag: euler_path
         """
         # euler_path模板题，discretization后转化为图的euler_path求解

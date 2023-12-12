@@ -3,7 +3,7 @@ Algorithm：prime_factorization|min_prime|factorization
 Description：
 
 ====================================LeetCode====================================
-2183（https://leetcode.com/problems/count-array-pairs-divisible-by-k/description/）brute_force|counter|group_by_mul|classical
+2183（https://leetcode.cn/problems/count-array-pairs-divisible-by-k/description/）brute_force|counter|group_by_mul|classical
 
 =====================================LuoGu======================================
 
@@ -134,7 +134,7 @@ class Solution:
     @staticmethod
     def lc_2183(nums: List[int], k: int) -> int:
         """
-        url: https://leetcode.com/problems/count-array-pairs-divisible-by-k/description/
+        url: https://leetcode.cn/problems/count-array-pairs-divisible-by-k/description/
         tag: brute_force|counter|group_by_mul|classical
         """
         # 可以所有因子遍历brute_forcecounter解决，正解为按照 k 的最大公因数分组

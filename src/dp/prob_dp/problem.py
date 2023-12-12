@@ -3,7 +3,7 @@ Algorithm：prob_dp
 Description：comb|specific_plan|prob|expectation
 
 ====================================LeetCode====================================
-1227（https://leetcode.com/problems/airplane-seat-assignment-probability/）prob_dp
+1227（https://leetcode.cn/problems/airplane-seat-assignment-probability/）prob_dp
 
 =====================================LuoGu======================================
 list?user=739032&status=12&page=1（https://www.luogu.com.cn/record/list?user=739032&status=12&page=1）matrix_dp|prob

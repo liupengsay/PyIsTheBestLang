@@ -3,26 +3,26 @@ Algorithm：dijkstra|strictly_second_shortest_path|longest_path|shortest_path_sp
 Description：limited_shortest_path|layered_dijkstra|directed_smallest_circle|undirected_smallest_circle
 
 ====================================LeetCode====================================
-42（https://leetcode.com/problems/trapping-rain-water/）prefix_suffix
-407（https://leetcode.com/problems/trapping-rain-water-ii/）maximum_weight_on_shortest_path
-787（https://leetcode.com/problems/cheapest-flights-within-k-stops/）limited_shortest_path
-1293（https://leetcode.com/problems/shortest-path-in-a-grid-with-obstacles-elimination/）limited_shortest_path
-2203（https://leetcode.com/problems/minimum-weighted-subgraph-with-the-required-paths/）several_dijkstra|shortest_path
-2258（https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/）bfs|preprocess|shortest_path|maximum_weight_on_shortest_path
-2290（https://leetcode.com/problems/minimum-obstacle-removal-to-reach-corner/）shortest_path
-499（https://leetcode.com/problems/the-maze-iii/）two_params_dijkstra
-6442（https://leetcode.com/problems/modify-graph-edge-weights/）several_dijkstra|shortest_path|greedy
-2714（https://leetcode.com/problems/find-shortest-path-with-k-hops/）limited_shortest_path|layered_dijkstra
-2699（https://leetcode.com/problems/modify-graph-edge-weights/）dijkstra|shortest_path|greedy
-1786（https://leetcode.com/problems/number-of-restricted-paths-from-first-to-last-node/）dijkstra|limited_shortest_path|counter|dag|undirected_to_dag
-1928（https://leetcode.com/problems/minimum-cost-to-reach-destination-in-time/）dijkstra|limited_shortest_path|floyd
-75（https://leetcode.com/problems/rdmXM7/）bfs|minimum_max_weight|shortest_path|maximum_weight_on_shortest_path
-1976（https://leetcode.com/problems/number-of-ways-to-arrive-at-destination/）dijkstra|number_of_shortest_path|classical
-2045（https://leetcode.com/problems/second-minimum-time-to-reach-destination/）strictly_second_shortest_path|classical
-2093（https://leetcode.com/problems/minimum-cost-to-reach-city-with-discounts/）dijkstra|limited_shortest_path
-882（https://leetcode.com/problems/reachable-nodes-in-subdivided-graph/description/）dijkstra
-2577（https://leetcode.com/problems/minimum-time-to-visit-a-cell-in-a-grid/）dijkstra|matrix
-2065（https://leetcode.com/problems/maximum-path-quality-of-a-graph/）back_track|dijkstra|shortest_path|prune
+42（https://leetcode.cn/problems/trapping-rain-water/）prefix_suffix
+407（https://leetcode.cn/problems/trapping-rain-water-ii/）maximum_weight_on_shortest_path
+787（https://leetcode.cn/problems/cheapest-flights-within-k-stops/）limited_shortest_path
+1293（https://leetcode.cn/problems/shortest-path-in-a-grid-with-obstacles-elimination/）limited_shortest_path
+2203（https://leetcode.cn/problems/minimum-weighted-subgraph-with-the-required-paths/）several_dijkstra|shortest_path
+2258（https://leetcode.cn/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/）bfs|preprocess|shortest_path|maximum_weight_on_shortest_path
+2290（https://leetcode.cn/problems/minimum-obstacle-removal-to-reach-corner/）shortest_path
+499（https://leetcode.cn/problems/the-maze-iii/）two_params_dijkstra
+6442（https://leetcode.cn/problems/modify-graph-edge-weights/）several_dijkstra|shortest_path|greedy
+2714（https://leetcode.cn/problems/find-shortest-path-with-k-hops/）limited_shortest_path|layered_dijkstra
+2699（https://leetcode.cn/problems/modify-graph-edge-weights/）dijkstra|shortest_path|greedy
+1786（https://leetcode.cn/problems/number-of-restricted-paths-from-first-to-last-node/）dijkstra|limited_shortest_path|counter|dag|undirected_to_dag
+1928（https://leetcode.cn/problems/minimum-cost-to-reach-destination-in-time/）dijkstra|limited_shortest_path|floyd
+75（https://leetcode.cn/problems/rdmXM7/）bfs|minimum_max_weight|shortest_path|maximum_weight_on_shortest_path
+1976（https://leetcode.cn/problems/number-of-ways-to-arrive-at-destination/）dijkstra|number_of_shortest_path|classical
+2045（https://leetcode.cn/problems/second-minimum-time-to-reach-destination/）strictly_second_shortest_path|classical
+2093（https://leetcode.cn/problems/minimum-cost-to-reach-city-with-discounts/）dijkstra|limited_shortest_path
+882（https://leetcode.cn/problems/reachable-nodes-in-subdivided-graph/description/）dijkstra
+2577（https://leetcode.cn/problems/minimum-time-to-visit-a-cell-in-a-grid/）dijkstra|matrix
+2065（https://leetcode.cn/problems/maximum-path-quality-of-a-graph/）back_track|dijkstra|shortest_path|prune
 
 =====================================LuoGu======================================
 P3371（https://www.luogu.com.cn/problem/P3371）shortest_path
@@ -226,7 +226,7 @@ class Solution:
     @staticmethod
     def lc_787(n: int, flights: List[List[int]], src: int, dst: int, k: int) -> int:
         """
-        url: https://leetcode.com/problems/cheapest-flights-within-k-stops/
+        url: https://leetcode.cn/problems/cheapest-flights-within-k-stops/
         tag: limited_shortest_path
         """
         # Dijkstra limited_shortest_path
@@ -253,7 +253,7 @@ class Solution:
     @staticmethod
     def lc_2045(n: int, edges: List[List[int]], time: int, change: int) -> any:
         """
-        url: https://leetcode.com/problems/second-minimum-time-to-reach-destination/
+        url: https://leetcode.cn/problems/second-minimum-time-to-reach-destination/
         tag: strictly_second_shortest_path|classical
         """
         # strictly_second_shortest_path，距离更新时需要注意变化
@@ -288,7 +288,7 @@ class Solution:
     @staticmethod
     def lc_2065(values: List[int], edges: List[List[int]], max_time: int) -> int:
         """
-        url: https://leetcode.com/problems/maximum-path-quality-of-a-graph/
+        url: https://leetcode.cn/problems/maximum-path-quality-of-a-graph/
         tag: back_track|dijkstra|shortest_path|prune
         """
         # back_track，正解Dijkstra跑shortest_pathprune
@@ -319,7 +319,7 @@ class Solution:
     @staticmethod
     def lc_2093(n: int, highways: List[List[int]], discounts: int) -> int:
         """
-        url: https://leetcode.com/problems/minimum-cost-to-reach-city-with-discounts/
+        url: https://leetcode.cn/problems/minimum-cost-to-reach-city-with-discounts/
         tag: dijkstra|limited_shortest_path
         """
         # Dijkstra limited_shortest_path
@@ -350,7 +350,7 @@ class Solution:
     @staticmethod
     def lc_882(edges: List[List[int]], max_moves: int, n: int) -> int:
         """
-        url: https://leetcode.com/problems/reachable-nodes-in-subdivided-graph/description/
+        url: https://leetcode.cn/problems/reachable-nodes-in-subdivided-graph/description/
         tag: dijkstra
         """
         # Dijkstra模板题
@@ -385,7 +385,7 @@ class Solution:
     @staticmethod
     def lc_1293(grid: List[List[int]], k: int) -> int:
         """
-        url: https://leetcode.com/problems/shortest-path-in-a-grid-with-obstacles-elimination/
+        url: https://leetcode.cn/problems/shortest-path-in-a-grid-with-obstacles-elimination/
         tag: limited_shortest_path
         """
         # Dijkstra limited_shortest_path
@@ -988,7 +988,7 @@ class Solution:
     @staticmethod
     def lc_6442(n: int, edges: List[List[int]], source: int, destination: int, target: int) -> List[List[int]]:
         """
-        url: https://leetcode.com/problems/modify-graph-edge-weights/
+        url: https://leetcode.cn/problems/modify-graph-edge-weights/
         tag: several_dijkstra|shortest_path|greedy
         """
         dct = [[] for _ in range(n)]
@@ -1480,7 +1480,7 @@ class Solution:
     @staticmethod
     def lc_2714_1(n: int, edges: List[List[int]], s: int, d: int, k: int) -> int:
         """
-        url: https://leetcode.com/problems/find-shortest-path-with-k-hops/
+        url: https://leetcode.cn/problems/find-shortest-path-with-k-hops/
         tag: limited_shortest_path|layered_dijkstra
         """
         # limited_shortest_path，也可以分层 Dijkstra 求解
@@ -1510,7 +1510,7 @@ class Solution:
     @staticmethod
     def lc_2714_2(n: int, edges: List[List[int]], s: int, d: int, k: int) -> int:
         """
-        url: https://leetcode.com/problems/find-shortest-path-with-k-hops/
+        url: https://leetcode.cn/problems/find-shortest-path-with-k-hops/
         tag: limited_shortest_path|layered_dijkstra
         """
         # limited_shortest_path，也可以分层 Dijkstra 求解
@@ -1539,7 +1539,7 @@ class Solution:
     @staticmethod
     def lc_2577(grid: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/minimum-time-to-visit-a-cell-in-a-grid/
+        url: https://leetcode.cn/problems/minimum-time-to-visit-a-cell-in-a-grid/
         tag: dijkstra|matrix
         """
         # Dijkstra变形二维矩阵题目
@@ -1570,7 +1570,7 @@ class Solution:
     @staticmethod
     def lc_2699(n: int, edges: List[List[int]], source: int, destination: int, target: int) -> List[List[int]]:
         """
-        url: https://leetcode.com/problems/modify-graph-edge-weights/
+        url: https://leetcode.cn/problems/modify-graph-edge-weights/
         tag: dijkstra|shortest_path|greedy
         """
 
@@ -1692,7 +1692,7 @@ class Solution:
     @staticmethod
     def lc_1786(n: int, edges: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/number-of-restricted-paths-from-first-to-last-node/
+        url: https://leetcode.cn/problems/number-of-restricted-paths-from-first-to-last-node/
         tag: dijkstra|limited_shortest_path|counter|dag|undirected_to_dag
         """
 
@@ -1728,7 +1728,7 @@ class Solution:
     @staticmethod
     def lc_1928_1(max_time: int, edges: List[List[int]], passing_fees: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/minimum-cost-to-reach-destination-in-time/
+        url: https://leetcode.cn/problems/minimum-cost-to-reach-destination-in-time/
         tag: dijkstra|limited_shortest_path|floyd
         """
         # Dijkstralimited_shortest_path，也可根据无后效性类似Floyd的动态规划求解
@@ -1757,7 +1757,7 @@ class Solution:
     @staticmethod
     def lc_1928_2(max_time: int, edges: List[List[int]], passing_fees: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/minimum-cost-to-reach-destination-in-time/
+        url: https://leetcode.cn/problems/minimum-cost-to-reach-destination-in-time/
         tag: dijkstra|limited_shortest_path|floyd
         """
         # Dijkstralimited_shortest_path，也可根据无后效性类似Floyd的动态规划求解
@@ -1778,7 +1778,7 @@ class Solution:
     @staticmethod
     def lc_1976(n: int, roads: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/number-of-ways-to-arrive-at-destination/
+        url: https://leetcode.cn/problems/number-of-ways-to-arrive-at-destination/
         tag: dijkstra|number_of_shortest_path|classical
         """
         # Dijkstrashortest_pathcounter模板题

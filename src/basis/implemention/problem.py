@@ -3,21 +3,21 @@ Algorithm：implemention|big_implemention
 Description：implemention|joseph_circle
 
 ====================================LeetCode====================================
-2296（https://leetcode.com/problems/design-a-text-editor/）pointer|implemention
-54（https://leetcode.com/problems/spiral-matrix/）num_to_pos|pos_to_num|matrix_spiral
-59（https://leetcode.com/problems/spiral-matrix-ii/）num_to_pos|pos_to_num|matrix_spiral
-2326（https://leetcode.com/problems/spiral-matrix-iv/）num_to_pos|pos_to_num|matrix_spiral
-62（https://leetcode.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/）joseph_circle|
-2534（https://leetcode.com/problems/time-taken-to-cross-the-door/）implemention
-460（https://leetcode.com/problems/lfu-cache/）order_dict|lfu
-146（https://leetcode.com/problems/lru-cache/）order_dict|lru
-2534（https://leetcode.com/problems/time-taken-to-cross-the-door/）implemention
+2296（https://leetcode.cn/problems/design-a-text-editor/）pointer|implemention
+54（https://leetcode.cn/problems/spiral-matrix/）num_to_pos|pos_to_num|matrix_spiral
+59（https://leetcode.cn/problems/spiral-matrix-ii/）num_to_pos|pos_to_num|matrix_spiral
+2326（https://leetcode.cn/problems/spiral-matrix-iv/）num_to_pos|pos_to_num|matrix_spiral
+62（https://leetcode.cn/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/）joseph_circle|
+2534（https://leetcode.cn/problems/time-taken-to-cross-the-door/）implemention
+460（https://leetcode.cn/problems/lfu-cache/）order_dict|lfu
+146（https://leetcode.cn/problems/lru-cache/）order_dict|lru
+2534（https://leetcode.cn/problems/time-taken-to-cross-the-door/）implemention
 1823（https://leetcode.cn/problems/find-the-winner-of-the-circular-game/）joseph_circle
-927（https://leetcode.com/problems/three-equal-parts/description/）base|bin|implemention
-1599（https://leetcode.com/problems/maximum-profit-of-operating-a-centennial-wheel/）implemention|brute_force
-2295（https://leetcode.com/problems/replace-elements-in-an-array/description/）reverse_thinking|linked_list
-1914（https://leetcode.com/problems/cyclically-rotating-a-grid/description/）pointer|circular|implemention
-1834（https://leetcode.com/contest/weekly-contest-237/problems/single-threaded-cpu/）heapq|pointer|implemention
+927（https://leetcode.cn/problems/three-equal-parts/description/）base|bin|implemention
+1599（https://leetcode.cn/problems/maximum-profit-of-operating-a-centennial-wheel/）implemention|brute_force
+2295（https://leetcode.cn/problems/replace-elements-in-an-array/description/）reverse_thinking|linked_list
+1914（https://leetcode.cn/problems/cyclically-rotating-a-grid/description/）pointer|circular|implemention
+1834（https://leetcode.cn/contest/weekly-contest-237/problems/single-threaded-cpu/）heapq|pointer|implemention
 
 =====================================LuoGu======================================
 P1815（https://www.luogu.com.cn/problem/P1815）implemention

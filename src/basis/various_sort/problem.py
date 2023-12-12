@@ -3,13 +3,13 @@ Algorithm：sorting|bubble_sort|merge_sort(minimum_num_comparisons)|quick_sort(e
 Description：reverse_order_pair
 
 ====================================LeetCode====================================
-164（https://leetcode.com/problems/maximum-gap/）bucket_sort
-179（https://leetcode.com/problems/largest-number/）custom_sort|maximum
-912（https://leetcode.com/problems/sort-an-array/）quick_sort
-1585（https://leetcode.com/problems/check-if-string-is-transformable-with-substring-sort-operations/）bubble_sort|implemention
-45（https://leetcode.com/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/）custom_sort|minimum
-2412（https://leetcode.com/problems/minimum-money-required-before-transactions/）custom_sort|greedy
-1665（https://leetcode.com/problems/minimum-initial-energy-to-finish-tasks/）custom_sort|greedy|sorting
+164（https://leetcode.cn/problems/maximum-gap/）bucket_sort
+179（https://leetcode.cn/problems/largest-number/）custom_sort|maximum
+912（https://leetcode.cn/problems/sort-an-array/）quick_sort
+1585（https://leetcode.cn/problems/check-if-string-is-transformable-with-substring-sort-operations/）bubble_sort|implemention
+45（https://leetcode.cn/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/）custom_sort|minimum
+2412（https://leetcode.cn/problems/minimum-money-required-before-transactions/）custom_sort|greedy
+1665（https://leetcode.cn/problems/minimum-initial-energy-to-finish-tasks/）custom_sort|greedy|sorting
 
 =====================================LuoGu======================================
 P2310（https://www.luogu.com.cn/problem/P2310）sorting
@@ -42,7 +42,7 @@ class Solution:
     @staticmethod
     def lc_912(lst: List[int]) -> List[int]:
         """
-        url: https://leetcode.com/problems/sort-an-array/
+        url: https://leetcode.cn/problems/sort-an-array/
         tag: quick_sort
         """
         # quick_sort两路手动实现
@@ -102,7 +102,7 @@ class Solution:
     @staticmethod
     def lc_179(nums: List[int]) -> str:
         """
-        url: https://leetcode.com/problems/largest-number/
+        url: https://leetcode.cn/problems/largest-number/
         tag: custom_sort|maximum
         """
 
@@ -150,7 +150,7 @@ class Solution:
     @staticmethod
     def lc_1665(tasks: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/minimum-initial-energy-to-finish-tasks/
+        url: https://leetcode.cn/problems/minimum-initial-energy-to-finish-tasks/
         tag: custom_sort|greedy|sorting
         """
         # 模板: custom_sort
@@ -179,7 +179,7 @@ class Solution:
     @staticmethod
     def lc_2412(transactions: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/minimum-money-required-before-transactions/
+        url: https://leetcode.cn/problems/minimum-money-required-before-transactions/
         tag: custom_sort|greedy
         """
 

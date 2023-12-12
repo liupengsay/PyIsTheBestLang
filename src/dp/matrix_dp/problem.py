@@ -3,42 +3,42 @@ Algorithm：matrix_dp|memory_search|lcs|md_matrix_dp
 Description：matrix_prefix_sum|sub_matrix_sum|maximum_square|edit_distance|lcs|palindrome_substring
 
 ====================================LeetCode====================================
-174（https://leetcode.com/problems/dungeon-game/）matrix_dp|reverse_thinking
-2478（https://leetcode.com/problems/number-of-beautiful-partitions/）matrix_dp
-2463（https://leetcode.com/problems/minimum-total-distance-traveled/）matrix_dp
-2435（https://leetcode.com/problems/paths-in-matrix-whose-sum-is-divisible-by-k/）matrix_dp|mod
-2088（https://leetcode.com/problems/count-fertile-pyramids-in-a-land/）matrix_dp
-221（https://leetcode.com/problems/maximal-square/）maximum_square|classical
-72（https://leetcode.com/problems/edit-distance/）matrix_dp
-329（https://leetcode.com/problems/longest-increasing-path-in-a-matrix/）matrix_dp
-1478（https://leetcode.com/problems/allocate-mailboxes/）matrix_dp|median_greedy|interval_dp|greedy
-6363（https://leetcode.com/problems/find-the-string-with-lcp/）greedy|construction|lcp
-2328（https://leetcode.com/problems/number-of-increasing-paths-in-a-grid/）matrix_dp|counter
-2312（https://leetcode.com/problems/selling-pieces-of-wood/）memory_search|specific_plan
-2267（https://leetcode.com/problems/check-if-there-is-a-valid-parentheses-string-path/）memory_search
-1092（https://leetcode.com/problems/shortest-common-supersequence/）construction|lcs|construction|specific_plan
-1143（https://leetcode.com/problems/longest-common-subsequence/）lis|lcs
-1035（https://leetcode.com/problems/uncrossed-lines/）lis|lcs
-2617（https://leetcode.com/problems/minimum-number-of-visited-cells-in-a-grid/）reverse_order|matrix_dp|tree_array|prefix_min
-1092（https://leetcode.com/problems/shortest-common-supersequence/）lis|lcs|specific_plan
-1692（https://leetcode.com/problems/count-ways-to-distribute-candies/）matrix_dp|specific_plan|counter
-1771（https://leetcode.com/problems/maximize-palindrome-length-from-subsequences/）longest_palindrome_subsequence|matrix_dp
-1883（https://leetcode.com/problems/minimum-skips-to-arrive-at-meeting-on-time/）matrix_dp
-1977（https://leetcode.com/problems/number-of-ways-to-separate-numbers/）matrix_dp|lcp|prefix_sum
-2430（https://leetcode.com/problems/maximum-deletions-on-a-string/）lcp|matrix_dp
-1216（https://leetcode.com/problems/valid-palindrome-iii/）matrix_dp|longest_palindrome_subsequence
-2060（https://leetcode.com/problems/check-if-an-original-string-exists-given-two-encoded-strings/description/）matrix_dp|brute_force|memory_search
-2556（https://leetcode.com/problems/disconnect-path-in-a-binary-matrix-by-at-most-one-flip/description/）matrix_dp|brain_teaser
-920（https://leetcode.com/problems/number-of-music-playlists/）matrix_dp
-1594（https://leetcode.com/problems/maximum-non-negative-product-in-a-matrix/）matrix_dp|maximum_mul|minimum_mul
-1639（https://leetcode.com/problems/number-of-ways-to-form-a-target-string-given-a-dictionary/description/）prefix_sum|matrix_dp
-956（https://leetcode.com/problems/tallest-billboard/description/）matrix_dp
-1301（https://leetcode.com/contest/biweekly-contest-16/problems/number-of-paths-with-max-score/）matrix_dp|specific_plan|counter
-1937（https://leetcode.com/problems/maximum-number-of-points-with-cost/）prefix_sum|matrix_dp
-1751（https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended-ii/）matrix_dp|binary_search
-1959（https://leetcode.com/problems/minimum-total-space-wasted-with-k-resizing-operations/description/）matrix_dp|prefix_sum
-1458（https://leetcode.com/problems/max-dot-product-of-two-subsequences/description/）matrix_dp
-1745（https://leetcode.com/problems/palindrome-partitioning-iv/description/）matrix_dp|palindrome_substring|manacher|brute_force
+174（https://leetcode.cn/problems/dungeon-game/）matrix_dp|reverse_thinking
+2478（https://leetcode.cn/problems/number-of-beautiful-partitions/）matrix_dp
+2463（https://leetcode.cn/problems/minimum-total-distance-traveled/）matrix_dp
+2435（https://leetcode.cn/problems/paths-in-matrix-whose-sum-is-divisible-by-k/）matrix_dp|mod
+2088（https://leetcode.cn/problems/count-fertile-pyramids-in-a-land/）matrix_dp
+221（https://leetcode.cn/problems/maximal-square/）maximum_square|classical
+72（https://leetcode.cn/problems/edit-distance/）matrix_dp
+329（https://leetcode.cn/problems/longest-increasing-path-in-a-matrix/）matrix_dp
+1478（https://leetcode.cn/problems/allocate-mailboxes/）matrix_dp|median_greedy|interval_dp|greedy
+6363（https://leetcode.cn/problems/find-the-string-with-lcp/）greedy|construction|lcp
+2328（https://leetcode.cn/problems/number-of-increasing-paths-in-a-grid/）matrix_dp|counter
+2312（https://leetcode.cn/problems/selling-pieces-of-wood/）memory_search|specific_plan
+2267（https://leetcode.cn/problems/check-if-there-is-a-valid-parentheses-string-path/）memory_search
+1092（https://leetcode.cn/problems/shortest-common-supersequence/）construction|lcs|construction|specific_plan
+1143（https://leetcode.cn/problems/longest-common-subsequence/）lis|lcs
+1035（https://leetcode.cn/problems/uncrossed-lines/）lis|lcs
+2617（https://leetcode.cn/problems/minimum-number-of-visited-cells-in-a-grid/）reverse_order|matrix_dp|tree_array|prefix_min
+1092（https://leetcode.cn/problems/shortest-common-supersequence/）lis|lcs|specific_plan
+1692（https://leetcode.cn/problems/count-ways-to-distribute-candies/）matrix_dp|specific_plan|counter
+1771（https://leetcode.cn/problems/maximize-palindrome-length-from-subsequences/）longest_palindrome_subsequence|matrix_dp
+1883（https://leetcode.cn/problems/minimum-skips-to-arrive-at-meeting-on-time/）matrix_dp
+1977（https://leetcode.cn/problems/number-of-ways-to-separate-numbers/）matrix_dp|lcp|prefix_sum
+2430（https://leetcode.cn/problems/maximum-deletions-on-a-string/）lcp|matrix_dp
+1216（https://leetcode.cn/problems/valid-palindrome-iii/）matrix_dp|longest_palindrome_subsequence
+2060（https://leetcode.cn/problems/check-if-an-original-string-exists-given-two-encoded-strings/description/）matrix_dp|brute_force|memory_search
+2556（https://leetcode.cn/problems/disconnect-path-in-a-binary-matrix-by-at-most-one-flip/description/）matrix_dp|brain_teaser
+920（https://leetcode.cn/problems/number-of-music-playlists/）matrix_dp
+1594（https://leetcode.cn/problems/maximum-non-negative-product-in-a-matrix/）matrix_dp|maximum_mul|minimum_mul
+1639（https://leetcode.cn/problems/number-of-ways-to-form-a-target-string-given-a-dictionary/description/）prefix_sum|matrix_dp
+956（https://leetcode.cn/problems/tallest-billboard/description/）matrix_dp
+1301（https://leetcode.cn/contest/biweekly-contest-16/problems/number-of-paths-with-max-score/）matrix_dp|specific_plan|counter
+1937（https://leetcode.cn/problems/maximum-number-of-points-with-cost/）prefix_sum|matrix_dp
+1751（https://leetcode.cn/problems/maximum-number-of-events-that-can-be-attended-ii/）matrix_dp|binary_search
+1959（https://leetcode.cn/problems/minimum-total-space-wasted-with-k-resizing-operations/description/）matrix_dp|prefix_sum
+1458（https://leetcode.cn/problems/max-dot-product-of-two-subsequences/description/）matrix_dp
+1745（https://leetcode.cn/problems/palindrome-partitioning-iv/description/）matrix_dp|palindrome_substring|manacher|brute_force
 
 =====================================LuoGu======================================
 P2701（https://www.luogu.com.cn/problem/P2701）maximum_square|matrix_dp|brute_force|classical|O(n^3)|hollow
@@ -147,7 +147,7 @@ class Solution:
     @staticmethod
     def lc_1143(s1: str, s2: str) -> int:
         """
-        url: https://leetcode.com/problems/longest-common-subsequence/
+        url: https://leetcode.cn/problems/longest-common-subsequence/
         tag: lis|lcs
         """
         # LIS的办法求LCS
@@ -156,7 +156,7 @@ class Solution:
     @staticmethod
     def lc_920(n: int, goal: int, k: int) -> int:
         """
-        url: https://leetcode.com/problems/number-of-music-playlists/
+        url: https://leetcode.cn/problems/number-of-music-playlists/
         tag: matrix_dp
         """
         # matrix_dp（memory_searchdfs|刷表法实现）
@@ -178,7 +178,7 @@ class Solution:
     @staticmethod
     def lc_956(rods: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/tallest-billboard/description/
+        url: https://leetcode.cn/problems/tallest-billboard/description/
         tag: matrix_dp
         """
         # matrix_dp
@@ -195,7 +195,7 @@ class Solution:
     @staticmethod
     def lc_1092(str1: str, str2: str) -> str:
         """
-        url: https://leetcode.com/problems/shortest-common-supersequence/
+        url: https://leetcode.cn/problems/shortest-common-supersequence/
         tag: lis|lcs|specific_plan
         """
         # 最长公共子序列，并construction包含两个字符串的最短公共超序列
@@ -230,7 +230,7 @@ class Solution:
     @staticmethod
     def lc_2435(grid: List[List[int]], k: int) -> int:
         """
-        url: https://leetcode.com/problems/paths-in-matrix-whose-sum-is-divisible-by-k/
+        url: https://leetcode.cn/problems/paths-in-matrix-whose-sum-is-divisible-by-k/
         tag: matrix_dp|mod
         """
         # 标准matrix_dp| 左上到右下的状态转移
@@ -259,7 +259,7 @@ class Solution:
     @staticmethod
     def lc_6363(lcp: List[List[int]]) -> str:
         """
-        url: https://leetcode.com/problems/find-the-string-with-lcp/
+        url: https://leetcode.cn/problems/find-the-string-with-lcp/
         tag: greedy|construction|lcp
         """
         # 根据 LCP 矩阵生成lexicographical_order最小的符合条件的字符串
@@ -403,7 +403,7 @@ class Solution:
     @staticmethod
     def lc_2478(s: str, k: int, min_length: int) -> int:
         """
-        url: https://leetcode.com/problems/number-of-beautiful-partitions/
+        url: https://leetcode.cn/problems/number-of-beautiful-partitions/
         tag: matrix_dp
         """
         mod = 10 ** 9 + 7
@@ -433,7 +433,7 @@ class Solution:
     @staticmethod
     def lc_2463(robot, factory):
         """
-        url: https://leetcode.com/problems/minimum-total-distance-traveled/
+        url: https://leetcode.cn/problems/minimum-total-distance-traveled/
         tag: matrix_dp
         """
         # 两个数组pointer移动方向与prefix_sum优化求解
@@ -1511,7 +1511,7 @@ class Solution:
     @staticmethod
     def lc_2556(grid: List[List[int]]) -> bool:
         """
-        url: https://leetcode.com/problems/disconnect-path-in-a-binary-matrix-by-at-most-one-flip/description/
+        url: https://leetcode.cn/problems/disconnect-path-in-a-binary-matrix-by-at-most-one-flip/description/
         tag: matrix_dp|brain_teaser
         """
 
@@ -1556,7 +1556,7 @@ class Solution:
     @staticmethod
     def lc_2617_1(grid: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/minimum-number-of-visited-cells-in-a-grid/
+        url: https://leetcode.cn/problems/minimum-number-of-visited-cells-in-a-grid/
         tag: reverse_order|matrix_dp|tree_array|prefix_min
         """
         # reverse_order|matrix_dp| 并tree_array|记录更新前缀最小值
@@ -1584,7 +1584,7 @@ class Solution:
     @staticmethod
     def lc_2617_2(grid: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/minimum-number-of-visited-cells-in-a-grid/
+        url: https://leetcode.cn/problems/minimum-number-of-visited-cells-in-a-grid/
         tag: reverse_order|matrix_dp|tree_array|prefix_min
         """
         # matrix_dp| priority_queue或者monotonic_queue
@@ -1613,7 +1613,7 @@ class Solution:
     @staticmethod
     def lc_2617_3(grid: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/minimum-number-of-visited-cells-in-a-grid/
+        url: https://leetcode.cn/problems/minimum-number-of-visited-cells-in-a-grid/
         tag: reverse_order|matrix_dp|tree_array|prefix_min
         """
         # matrix_dp|  bfs |union_find的方式
@@ -1755,7 +1755,7 @@ class Solution:
     @staticmethod
     def lc_1216(s: str, k: int) -> bool:
         """
-        url: https://leetcode.com/problems/valid-palindrome-iii/
+        url: https://leetcode.cn/problems/valid-palindrome-iii/
         tag: matrix_dp|longest_palindrome_subsequence
         """
 
@@ -1948,7 +1948,7 @@ class Solution:
     @staticmethod
     def lc_2088(grid: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/count-fertile-pyramids-in-a-land/
+        url: https://leetcode.cn/problems/count-fertile-pyramids-in-a-land/
         tag: matrix_dp
         """
 
@@ -1979,7 +1979,7 @@ class Solution:
     @staticmethod
     def lc_2430(s: str) -> int:
         """
-        url: https://leetcode.com/problems/maximum-deletions-on-a-string/
+        url: https://leetcode.cn/problems/maximum-deletions-on-a-string/
         tag: lcp|matrix_dp
         """
         # 双重DPLCP与matrix_dp
@@ -2079,7 +2079,7 @@ class Solution:
     @staticmethod
     def lc_1594(grid: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/maximum-non-negative-product-in-a-matrix/
+        url: https://leetcode.cn/problems/maximum-non-negative-product-in-a-matrix/
         tag: matrix_dp|maximum_mul|minimum_mul
         """
 
@@ -2109,7 +2109,7 @@ class Solution:
     @staticmethod
     def lc_1639(words: List[str], target: str) -> int:
         """
-        url: https://leetcode.com/problems/number-of-ways-to-form-a-target-string-given-a-dictionary/description/
+        url: https://leetcode.cn/problems/number-of-ways-to-form-a-target-string-given-a-dictionary/description/
         tag: prefix_sum|matrix_dp
         """
         # prefix_sum优化matrix_dp|
@@ -2135,7 +2135,7 @@ class Solution:
     @staticmethod
     def lc_1745(s: str) -> bool:
         """
-        url: https://leetcode.com/problems/palindrome-partitioning-iv/description/
+        url: https://leetcode.cn/problems/palindrome-partitioning-iv/description/
         tag: matrix_dp|palindrome_substring|manacher|brute_force
         """
         # matrix_dp判断是否为palindrome_substring，或者manacher然后brute_force
@@ -2158,7 +2158,7 @@ class Solution:
     @staticmethod
     def lc_1771(word1: str, word2: str) -> int:
         """
-        url: https://leetcode.com/problems/maximize-palindrome-length-from-subsequences/
+        url: https://leetcode.cn/problems/maximize-palindrome-length-from-subsequences/
         tag: longest_palindrome_subsequence|matrix_dp
         """
         # 最长回文子序列matrix_dp
@@ -2187,7 +2187,7 @@ class Solution:
     @staticmethod
     def lc_1937(points: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/maximum-number-of-points-with-cost/
+        url: https://leetcode.cn/problems/maximum-number-of-points-with-cost/
         tag: prefix_sum|matrix_dp
         """
         # 矩阵prefix_sum后缀和优化的DP
@@ -2217,7 +2217,7 @@ class Solution:
     @staticmethod
     def lc_1977(num: str) -> int:
         """
-        url: https://leetcode.com/problems/number-of-ways-to-separate-numbers/
+        url: https://leetcode.cn/problems/number-of-ways-to-separate-numbers/
         tag: matrix_dp|lcp|prefix_sum
         """
         # 两个matrix_dp含LCP优化，或者前缀优化DP
@@ -2254,7 +2254,7 @@ class Solution:
     @staticmethod
     def lc_2060(s1: str, s2: str) -> bool:
         """
-        url: https://leetcode.com/problems/check-if-an-original-string-exists-given-two-encoded-strings/description/
+        url: https://leetcode.cn/problems/check-if-an-original-string-exists-given-two-encoded-strings/description/
         tag: matrix_dp|brute_force|memory_search
         """
 

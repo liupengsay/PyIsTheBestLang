@@ -3,21 +3,21 @@ Algorithm：bfs|deque_bfs|discretization_bfs|bound_bfs|coloring_method|odd_circl
 Description：multi_source_bfs|bilateral_bfs|0-1bfs|bilateral_bfs|a-star|heuristic_search
 
 ====================================LeetCode====================================
-1036（https://leetcode.com/problems/escape-a-large-maze/）bound_bfs|discretization_bfs
-2493（https://leetcode.com/problems/divide-nodes-into-the-maximum-number-of-groups/）union_find|bfs|brute_force|specific_plan|coloring_method|bipartite_graph
-2290（https://leetcode.com/problems/minimum-obstacle-removal-to-reach-corner/）0-1bfs|deque_bfs
-1368（https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/）0-1bfs|deque_bfs
-2258（https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/）binary_search|bfs|implemention
-2092（https://leetcode.com/problems/find-all-people-with-secret/）bfs
-2608（https://leetcode.com/contest/biweekly-contest-101/problems/shortest-cycle-in-a-graph/）bfs|undirected_smallest_circle|brute_force|shortest_path
-1197（https://leetcode.com/problems/minimum-knight-moves/?envType=study-plan-v2&id=premium-algo-100）bilateral_bfs
-1654（https://leetcode.com/problems/minimum-jumps-to-reach-home/）bfs|implemention
-1926（https://leetcode.com/problems/nearest-exit-from-entrance-in-maze/）deque_bfs|in_place_hash
-909（https://leetcode.com/problems/snakes-and-ladders/）01-bfs|implemention
-1210（https://leetcode.com/problems/minimum-moves-to-reach-target-with-rotations/description/）01-bfs|implemention
-1298（https://leetcode.com/problems/maximum-candies-you-can-get-from-boxes/）bfs
-928（https://leetcode.com/problems/minimize-malware-spread-ii/description/）brute_force|bfs
-994（https://leetcode.com/problems/rotting-oranges/description/）deque_bfs|implemention
+1036（https://leetcode.cn/problems/escape-a-large-maze/）bound_bfs|discretization_bfs
+2493（https://leetcode.cn/problems/divide-nodes-into-the-maximum-number-of-groups/）union_find|bfs|brute_force|specific_plan|coloring_method|bipartite_graph
+2290（https://leetcode.cn/problems/minimum-obstacle-removal-to-reach-corner/）0-1bfs|deque_bfs
+1368（https://leetcode.cn/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/）0-1bfs|deque_bfs
+2258（https://leetcode.cn/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/）binary_search|bfs|implemention
+2092（https://leetcode.cn/problems/find-all-people-with-secret/）bfs
+2608（https://leetcode.cn/contest/biweekly-contest-101/problems/shortest-cycle-in-a-graph/）bfs|undirected_smallest_circle|brute_force|shortest_path
+1197（https://leetcode.cn/problems/minimum-knight-moves/?envType=study-plan-v2&id=premium-algo-100）bilateral_bfs
+1654（https://leetcode.cn/problems/minimum-jumps-to-reach-home/）bfs|implemention
+1926（https://leetcode.cn/problems/nearest-exit-from-entrance-in-maze/）deque_bfs|in_place_hash
+909（https://leetcode.cn/problems/snakes-and-ladders/）01-bfs|implemention
+1210（https://leetcode.cn/problems/minimum-moves-to-reach-target-with-rotations/description/）01-bfs|implemention
+1298（https://leetcode.cn/problems/maximum-candies-you-can-get-from-boxes/）bfs
+928（https://leetcode.cn/problems/minimize-malware-spread-ii/description/）brute_force|bfs
+994（https://leetcode.cn/problems/rotting-oranges/description/）deque_bfs|implemention
 
 =====================================LuoGu======================================
 P1747（https://www.luogu.com.cn/problem/P1747）bilateral_bfs|shortest_path
@@ -113,7 +113,7 @@ class Solution:
     @staticmethod
     def lc_2608_1(n: int, edges: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/contest/biweekly-contest-101/problems/shortest-cycle-in-a-graph/
+        url: https://leetcode.cn/contest/biweekly-contest-101/problems/shortest-cycle-in-a-graph/
         tag: bfs|undirected_smallest_circle|brute_force|shortest_path
         """
 
@@ -146,7 +146,7 @@ class Solution:
     @staticmethod
     def lc_2608_2(n: int, edges: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/contest/biweekly-contest-101/problems/shortest-cycle-in-a-graph/
+        url: https://leetcode.cn/contest/biweekly-contest-101/problems/shortest-cycle-in-a-graph/
         tag: bfs|undirected_smallest_circle|brute_force|shortest_path
         """
 
@@ -178,7 +178,7 @@ class Solution:
     @staticmethod
     def lc_2608_3(n: int, edges: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/contest/biweekly-contest-101/problems/shortest-cycle-in-a-graph/
+        url: https://leetcode.cn/contest/biweekly-contest-101/problems/shortest-cycle-in-a-graph/
         tag: bfs|undirected_smallest_circle|brute_force|shortest_path
         """
         # 求无向图的最小环
@@ -211,7 +211,7 @@ class Solution:
     @staticmethod
     def lc_2608_4(n: int, edges: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/contest/biweekly-contest-101/problems/shortest-cycle-in-a-graph/
+        url: https://leetcode.cn/contest/biweekly-contest-101/problems/shortest-cycle-in-a-graph/
         tag: bfs|undirected_smallest_circle|brute_force|shortest_path
         """
         # 求无向图的最小环，brute_force边
@@ -438,7 +438,7 @@ class Solution:
     @staticmethod
     def lc_2290(grid: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/minimum-obstacle-removal-to-reach-corner/
+        url: https://leetcode.cn/problems/minimum-obstacle-removal-to-reach-corner/
         tag: 0-1bfs|deque_bfs
         """
         # 队列实现0-1 bfs 即优先选择距离较短的路线
@@ -462,7 +462,7 @@ class Solution:
     @staticmethod
     def lc_2493(n: int, edges: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/divide-nodes-into-the-maximum-number-of-groups/
+        url: https://leetcode.cn/problems/divide-nodes-into-the-maximum-number-of-groups/
         tag: union_find|bfs|brute_force|specific_plan|coloring_method|bipartite_graph
         """
         # 利用union_find和bfs连通块分组并brute_force最佳specific_plan，也就是coloring_method判断是否可以形成bipartite_graph
@@ -503,7 +503,7 @@ class Solution:
     @staticmethod
     def lc_1368(grid: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/
+        url: https://leetcode.cn/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/
         tag: 0-1bfs|deque_bfs
         """
         # 队列实现0-1 bfs 即优先选择距离较短的路线
@@ -534,7 +534,7 @@ class Solution:
     @staticmethod
     def lc_1926(maze: List[List[str]], entrance: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/nearest-exit-from-entrance-in-maze/
+        url: https://leetcode.cn/problems/nearest-exit-from-entrance-in-maze/
         tag: deque_bfs|in_place_hash
         """
         # 双端队列01-bfsin_place_hash
@@ -1842,7 +1842,7 @@ class Solution:
     @staticmethod
     def lc_909(board: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/snakes-and-ladders/
+        url: https://leetcode.cn/problems/snakes-and-ladders/
         tag: 01-bfs|implemention
         """
         # 01-bfs|implemention
@@ -1874,7 +1874,7 @@ class Solution:
     @staticmethod
     def lc_994(grid: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/rotting-oranges/description/
+        url: https://leetcode.cn/problems/rotting-oranges/description/
         tag: deque_bfs|implemention
         """
         # bfs队列implemention
@@ -1901,7 +1901,7 @@ class Solution:
     @staticmethod
     def lc_1036_1(blocked: List[List[int]], source: List[int], target: List[int]) -> bool:
         """
-        url: https://leetcode.com/problems/escape-a-large-maze/
+        url: https://leetcode.cn/problems/escape-a-large-maze/
         tag: bound_bfs|discretization_bfs
         """
         # bound_bfs和discretization_bfs两种解法
@@ -1931,7 +1931,7 @@ class Solution:
     @staticmethod
     def lc_1036_2(blocked: List[List[int]], source: List[int], target: List[int]) -> bool:
         """
-        url: https://leetcode.com/problems/escape-a-large-maze/
+        url: https://leetcode.cn/problems/escape-a-large-maze/
         tag: bound_bfs|discretization_bfs
         """
         # bound_bfs和discretization_bfs两种解法

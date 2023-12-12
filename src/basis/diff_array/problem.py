@@ -4,33 +4,33 @@ Algorithm：diff_array|prefix_sum|suffix_sum|prefix_max_consequence_sum|suffix_m
 Description：prefix_sum|prefix_sum_of_prefix_sum|suffix_sum
 
 ====================================LeetCode====================================
-152（https://leetcode.com/problems/maximum-product-subarray/）prefix_mul|maximum_sub_consequence_product
-598（https://leetcode.com/problems/range-addition-ii/）diff_matrix
-2281（https://leetcode.com/problems/sum-of-total-strength-of-wizards/）brute_force|prefix_sum_of_prefix_sum
-2251（https://leetcode.com/problems/number-of-flowers-in-full-bloom/）discretization_diff_array
-2132（https://leetcode.com/problems/stamping-the-grid/）prefix_sum|brute_force|diff_matrix|implemention
-1229（https://leetcode.com/problems/meeting-scheduler/）discretization_diff_array
-6292（https://leetcode.com/problems/increment-submatrices-by-one/）diff_matrix|prefix_sum
-2565（https://leetcode.com/problems/subsequence-with-the-minimum-score/）prefix_suffix|pointer|brute_force
-644（https://leetcode.com/problems/maximum-average-subarray-ii/）prefix_sum|binary_search|average
-1292（https://leetcode.com/problems/maximum-side-length-of-a-square-with-sum-less-than-or-equal-to-threshold/）O(mn)|brute_force
-1674（https://leetcode.com/problems/minimum-moves-to-make-array-complementary/）diff_array|action_scope|counter
-1714（https://leetcode.com/problems/sum-of-special-evenly-spaced-elements-in-array/）prefix_sum
-1738（https://leetcode.com/problems/find-kth-largest-xor-coordinate-value/）matrix_prefix_xor_sum
-1895（https://leetcode.com/problems/largest-magic-square/）matrix_prefix_sum|brute_force
-1943（https://leetcode.com/problems/describe-the-painting/）discretization_diff_array
-2021（https://leetcode.com/problems/brightest-position-on-street/）discretization_diff_array
-837（https://leetcode.com/problems/new-21-game/description/）diff_array|implemention|probability
-891（https://leetcode.com/problems/sum-of-subsequence-widths/description/）prefix_suffix|brute_force|counter
-1191（https://leetcode.com/problems/k-concatenation-maximum-sum/description/）prefix_suffix|max_sub_consequence_sum
-1074（https://leetcode.com/problems/number-of-submatrices-that-sum-to-target/description/）matrix_prefix_sum|brute_force
-1139（https://leetcode.com/problems/largest-1-bordered-square/）matrix_prefix_sum|counter|brute_force
-2281（https://leetcode.com/problems/sum-of-total-strength-of-wizards/description/）monotonic_stack|counter|prefix_sum_of_prefix_sum
-995（https://leetcode.com/problems/minimum-number-of-k-consecutive-bit-flips/description/）greedy|diff_array|implemention
-986（https://leetcode.com/problems/interval-list-intersections/description/）discretization_diff_array|two_pointers
-1744（https://leetcode.com/problems/can-you-eat-your-favorite-candy-on-your-favorite-day/description/）prefix_sum|greedy|implemention
-1703（https://leetcode.com/problems/minimum-adjacent-swaps-for-k-consecutive-ones/）prefix_sum|median|greedy|1520E
-2167（https://leetcode.com/problems/minimum-time-to-remove-all-cars-containing-illegal-goods/）math|prefix_sum|brute_force
+152（https://leetcode.cn/problems/maximum-product-subarray/）prefix_mul|maximum_sub_consequence_product
+598（https://leetcode.cn/problems/range-addition-ii/）diff_matrix
+2281（https://leetcode.cn/problems/sum-of-total-strength-of-wizards/）brute_force|prefix_sum_of_prefix_sum
+2251（https://leetcode.cn/problems/number-of-flowers-in-full-bloom/）discretization_diff_array
+2132（https://leetcode.cn/problems/stamping-the-grid/）prefix_sum|brute_force|diff_matrix|implemention
+1229（https://leetcode.cn/problems/meeting-scheduler/）discretization_diff_array
+6292（https://leetcode.cn/problems/increment-submatrices-by-one/）diff_matrix|prefix_sum
+2565（https://leetcode.cn/problems/subsequence-with-the-minimum-score/）prefix_suffix|pointer|brute_force
+644（https://leetcode.cn/problems/maximum-average-subarray-ii/）prefix_sum|binary_search|average
+1292（https://leetcode.cn/problems/maximum-side-length-of-a-square-with-sum-less-than-or-equal-to-threshold/）O(mn)|brute_force
+1674（https://leetcode.cn/problems/minimum-moves-to-make-array-complementary/）diff_array|action_scope|counter
+1714（https://leetcode.cn/problems/sum-of-special-evenly-spaced-elements-in-array/）prefix_sum
+1738（https://leetcode.cn/problems/find-kth-largest-xor-coordinate-value/）matrix_prefix_xor_sum
+1895（https://leetcode.cn/problems/largest-magic-square/）matrix_prefix_sum|brute_force
+1943（https://leetcode.cn/problems/describe-the-painting/）discretization_diff_array
+2021（https://leetcode.cn/problems/brightest-position-on-street/）discretization_diff_array
+837（https://leetcode.cn/problems/new-21-game/description/）diff_array|implemention|probability
+891（https://leetcode.cn/problems/sum-of-subsequence-widths/description/）prefix_suffix|brute_force|counter
+1191（https://leetcode.cn/problems/k-concatenation-maximum-sum/description/）prefix_suffix|max_sub_consequence_sum
+1074（https://leetcode.cn/problems/number-of-submatrices-that-sum-to-target/description/）matrix_prefix_sum|brute_force
+1139（https://leetcode.cn/problems/largest-1-bordered-square/）matrix_prefix_sum|counter|brute_force
+2281（https://leetcode.cn/problems/sum-of-total-strength-of-wizards/description/）monotonic_stack|counter|prefix_sum_of_prefix_sum
+995（https://leetcode.cn/problems/minimum-number-of-k-consecutive-bit-flips/description/）greedy|diff_array|implemention
+986（https://leetcode.cn/problems/interval-list-intersections/description/）discretization_diff_array|two_pointers
+1744（https://leetcode.cn/problems/can-you-eat-your-favorite-candy-on-your-favorite-day/description/）prefix_sum|greedy|implemention
+1703（https://leetcode.cn/problems/minimum-adjacent-swaps-for-k-consecutive-ones/）prefix_sum|median|greedy|1520E
+2167（https://leetcode.cn/problems/minimum-time-to-remove-all-cars-containing-illegal-goods/）math|prefix_sum|brute_force
 
 =====================================LuoGu======================================
 list?user=739032&status=12&page=15（https://www.luogu.com.cn/record/list?user=739032&status=12&page=15）suffix_sum
@@ -298,7 +298,7 @@ class Solution:
     @staticmethod
     def lc_995(nums: List[int], k: int) -> int:
         """
-        url: https://leetcode.com/problems/minimum-number-of-k-consecutive-bit-flips/description/
+        url: https://leetcode.cn/problems/minimum-number-of-k-consecutive-bit-flips/description/
         tag: greedy|diff_array|implemention
         """
         # greedy|diff_array|implemention
@@ -323,7 +323,7 @@ class Solution:
     @staticmethod
     def lc_1074(matrix: List[List[int]], target: int) -> int:
         """
-        url: https://leetcode.com/problems/number-of-submatrices-that-sum-to-target/description/
+        url: https://leetcode.cn/problems/number-of-submatrices-that-sum-to-target/description/
         tag: matrix_prefix_sum|brute_force
         """
         # matrix_prefix_sum|brute_force上下边目标子矩阵的数量
@@ -343,7 +343,7 @@ class Solution:
     @staticmethod
     def lc_1191(arr: List[int], k: int) -> int:
         """
-        url: https://leetcode.com/problems/k-concatenation-maximum-sum/description/
+        url: https://leetcode.cn/problems/k-concatenation-maximum-sum/description/
         tag: prefix_suffix|max_sub_consequence_sum
         """
         # prefix_suffix最大连续子序列和
@@ -397,7 +397,7 @@ class Solution:
     @staticmethod
     def lc_2281(nums: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/sum-of-total-strength-of-wizards/description/
+        url: https://leetcode.cn/problems/sum-of-total-strength-of-wizards/description/
         tag: monotonic_stack|counter|prefix_sum_of_prefix_sum
         """
         # monotonic_stack|counter与prefix_sum的prefix_sum
@@ -428,7 +428,7 @@ class Solution:
     @staticmethod
     def lc_2281(strength: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/sum-of-total-strength-of-wizards/description/
+        url: https://leetcode.cn/problems/sum-of-total-strength-of-wizards/description/
         tag: monotonic_stack|counter|prefix_sum_of_prefix_sum
         """
         # monotonic_stack|确定|和范围，再prefix_sum的prefix_sumcounter
@@ -468,7 +468,7 @@ class Solution:
     @staticmethod
     def lc_2565(s: str, t: str) -> int:
         """
-        url: https://leetcode.com/problems/subsequence-with-the-minimum-score/
+        url: https://leetcode.cn/problems/subsequence-with-the-minimum-score/
         tag: prefix_suffix|pointer|brute_force
         """
         # prefix_suffixgreedybrute_forceprefix_suffix最长匹配
@@ -1527,7 +1527,7 @@ class Solution:
     @staticmethod
     def lc_891(nums: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/sum-of-subsequence-widths/description/
+        url: https://leetcode.cn/problems/sum-of-subsequence-widths/description/
         tag: prefix_suffix|brute_force|counter
         """
         # prefix_suffixbrute_force最大值与最小值counter
@@ -1547,7 +1547,7 @@ class Solution:
     @staticmethod
     def lc_1292(mat: List[List[int]], threshold: int) -> int:
         """
-        url: https://leetcode.com/problems/maximum-side-length-of-a-square-with-sum-less-than-or-equal-to-threshold/
+        url: https://leetcode.cn/problems/maximum-side-length-of-a-square-with-sum-less-than-or-equal-to-threshold/
         tag: O(mn)|brute_force
         """
         # O(mn)复杂度brute_force
@@ -1567,7 +1567,7 @@ class Solution:
     @staticmethod
     def lc_1674(nums: List[int], limit: int) -> int:
         """
-        url: https://leetcode.com/problems/minimum-moves-to-make-array-complementary/
+        url: https://leetcode.cn/problems/minimum-moves-to-make-array-complementary/
         tag: diff_array|action_scope|counter
         """
         # diff_array|action_scopecounter
@@ -1598,7 +1598,7 @@ class Solution:
     @staticmethod
     def lc_1738(matrix: List[List[int]], k: int) -> int:
         """
-        url: https://leetcode.com/problems/find-kth-largest-xor-coordinate-value/
+        url: https://leetcode.cn/problems/find-kth-largest-xor-coordinate-value/
         tag: matrix_prefix_xor_sum
         """
 
@@ -1624,7 +1624,7 @@ class Solution:
     @staticmethod
     def lc_2132(grid: List[List[int]], h: int, w: int) -> bool:
         """
-        url: https://leetcode.com/problems/stamping-the-grid/
+        url: https://leetcode.cn/problems/stamping-the-grid/
         tag: prefix_sum|brute_force|diff_matrix|implemention
         """
         # 用prefix_sumbrute_force可行的邮票左上端点，然后查看空白格点左上方是否有可行的邮票点，也可以的diff_matrix|滚动implemention覆盖解决
@@ -1681,7 +1681,7 @@ class Solution:
     @staticmethod
     def lc_837(n: int, k: int, max_pts: int) -> float:
         """
-        url: https://leetcode.com/problems/new-21-game/description/
+        url: https://leetcode.cn/problems/new-21-game/description/
         tag: diff_array|implemention|probability
         """
         # diff_array|implemention概率

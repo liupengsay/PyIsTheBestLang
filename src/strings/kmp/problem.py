@@ -3,13 +3,13 @@ Algorithm：kmp
 Description：string|prefix_suffix
 
 ====================================LeetCode====================================
-214（https://leetcode.com/problems/shortest-palindrome/）longest_palindrome_prefix
-796（https://leetcode.com/problems/rotate-string/）rotate_string
-25（https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/）find|kmp|substring
-1392（https://leetcode.com/problems/longest-happy-prefix/）longest_prefix_suffix|kmp|z_function|template
-2223（https://leetcode.com/problems/longest-happy-prefix/）z_function
-6918（https://leetcode.com/problems/shortest-string-that-contains-three-strings/）kmp|prefix_suffix|greedy|brain_teaser
-2851（https://leetcode.com/problems/string-transformation/description/）kmp|matrix_fast_power|string_hash
+214（https://leetcode.cn/problems/shortest-palindrome/）longest_palindrome_prefix
+796（https://leetcode.cn/problems/rotate-string/）rotate_string
+25（https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/）find|kmp|substring
+1392（https://leetcode.cn/problems/longest-happy-prefix/）longest_prefix_suffix|kmp|z_function|template
+2223（https://leetcode.cn/problems/longest-happy-prefix/）z_function
+6918（https://leetcode.cn/problems/shortest-string-that-contains-three-strings/）kmp|prefix_suffix|greedy|brain_teaser
+2851（https://leetcode.cn/problems/string-transformation/description/）kmp|matrix_fast_power|string_hash
 
 =====================================LuoGu======================================
 P3375（https://www.luogu.com.cn/problem/P3375）longest_prefix_suffix|find
@@ -94,7 +94,7 @@ class Solution:
     @staticmethod
     def lc_214(s: str) -> str:
         """
-        url: https://leetcode.com/problems/shortest-palindrome/
+        url: https://leetcode.cn/problems/shortest-palindrome/
         tag: longest_palindrome_prefix
         """
         #  KMP 最长回文前缀
@@ -104,7 +104,7 @@ class Solution:
     @staticmethod
     def lc_796(s: str, goal: str) -> bool:
         """
-        url: https://leetcode.com/problems/rotate-string/
+        url: https://leetcode.cn/problems/rotate-string/
         tag: rotate_string
         """
         ans = KMP().find(s + s, goal)
@@ -118,7 +118,7 @@ class Solution:
     @staticmethod
     def lc_1392(s: str) -> str:
         """
-        url: https://leetcode.com/problems/longest-happy-prefix/
+        url: https://leetcode.cn/problems/longest-happy-prefix/
         tag: longest_prefix_suffix|kmp|z_function|template
         """
         # 字符串的最长非空真前缀（同时也是非空真后缀）
@@ -128,7 +128,7 @@ class Solution:
     @staticmethod
     def lc_2223(s: str) -> int:
         """
-        url: https://leetcode.com/problems/longest-happy-prefix/
+        url: https://leetcode.cn/problems/longest-happy-prefix/
         tag: z_function
         """
         # z 函数最长公共前缀
@@ -243,7 +243,7 @@ class Solution:
     @staticmethod
     def lc_6918(aa: str, bb: str, cc: str) -> str:
         """
-        url: https://leetcode.com/problems/shortest-string-that-contains-three-strings/
+        url: https://leetcode.cn/problems/shortest-string-that-contains-three-strings/
         tag: kmp|prefix_suffix|greedy|brain_teaser
         """
 
@@ -270,7 +270,7 @@ class Solution:
     @staticmethod
     def lc_2851(s: str, t: str, k: int) -> int:
         """
-        url: https://leetcode.com/problems/string-transformation/description/
+        url: https://leetcode.cn/problems/string-transformation/description/
         tag: kmp|matrix_fast_power|string_hash
         """
         # KMP与fast_power|转移，也可string_hash

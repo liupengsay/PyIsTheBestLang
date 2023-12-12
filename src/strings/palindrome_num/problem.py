@@ -3,11 +3,11 @@ Algorithm：palindrome_number|brute_force
 Description：
 
 ====================================LeetCode====================================
-2081（https://leetcode.com/problems/sum-of-k-mirror-numbers/）brute_force|10-base|palindrome_number
-866（https://leetcode.com/problems/prime-palindrome/）brute_force|palindrome_prime
-564（https://leetcode.com/problems/find-the-closest-palindrome/）brute_force
-906（https://leetcode.com/problems/super-palindromes/）preprocess|brute_force
-1088（https://leetcode.com/problems/confusing-number-ii/description/）implemention|brute_force
+2081（https://leetcode.cn/problems/sum-of-k-mirror-numbers/）brute_force|10-base|palindrome_number
+866（https://leetcode.cn/problems/prime-palindrome/）brute_force|palindrome_prime
+564（https://leetcode.cn/problems/find-the-closest-palindrome/）brute_force
+906（https://leetcode.cn/problems/super-palindromes/）preprocess|brute_force
+1088（https://leetcode.cn/problems/confusing-number-ii/description/）implemention|brute_force
 
 =====================================LuoGu======================================
 P1609（https://www.luogu.com.cn/problem/P1609）brute_force
@@ -28,7 +28,7 @@ class Solution:
     @staticmethod
     def lc_906(left: str, right: str) -> int:
         """
-        url: https://leetcode.com/problems/super-palindromes/
+        url: https://leetcode.cn/problems/super-palindromes/
         tag: preprocess|brute_force
         """
         # preprocess所有的回文数其开方也是回文数
@@ -41,7 +41,7 @@ class Solution:
     @staticmethod
     def lc_1088(n: int) -> int:
         """
-        url: https://leetcode.com/problems/confusing-number-ii/description/
+        url: https://leetcode.cn/problems/confusing-number-ii/description/
         tag: implemention|brute_force
         """
         # preprocess后binary_search
@@ -73,7 +73,7 @@ class Solution:
     @staticmethod
     def lc_2081(k: int, n: int) -> int:
         """
-        url: https://leetcode.com/problems/sum-of-k-mirror-numbers/
+        url: https://leetcode.cn/problems/sum-of-k-mirror-numbers/
         tag: brute_force|10-base|palindrome_number
         """
         # brute_force 10 进制palindrome_number并判断其 k 进制是否依然回文

@@ -3,36 +3,36 @@ Algorithm：liner_dp
 Description：prefix_suffix|maximum_sub_consequence_sum
 
 ====================================LeetCode====================================
-87（https://leetcode.com/problems/scramble-string/）liner_dp|memory_search
-2361（https://leetcode.com/problems/minimum-costs-using-the-train-line/）linear_dp
-2318（https://leetcode.com/problems/number-of-distinct-roll-sequences/）linear_dp|brute_force|counter
-2263（https://leetcode.com/problems/make-array-non-decreasing-or-non-increasing/）linear_dp
-2209（https://leetcode.com/problems/minimum-white-tiles-after-covering-with-carpets/）linear_dp|prefix_sum
-2188（https://leetcode.com/problems/minimum-time-to-finish-the-race/）preprocess|linear_dp
-2167（https://leetcode.com/problems/minimum-time-to-remove-all-cars-containing-illegal-goods/）prefix_suffix|linear_dp|preprocess|brute_force
-2431（https://leetcode.com/problems/maximize-total-tastiness-of-purchased-fruits/）liner_dp|implemention
-6355（https://leetcode.com/contest/weekly-contest-338/problems/collect-coins-in-a-tree/）liner_dp
-2547（https://leetcode.com/problems/minimum-cost-to-split-an-array/）liner_dp|counter
-2638（https://leetcode.com/problems/count-the-number-of-k-free-subsets/）liner_dp|counter
-2597（https://leetcode.com/problems/the-number-of-beautiful-subsets/）liner_dp|hash
-2713（https://leetcode.com/problems/maximum-strictly-increasing-cells-in-a-matrix/）data_range|liner_dp
-1526（https://leetcode.com/problems/minimum-number-of-increments-on-subarrays-to-form-a-target-array/）linear_dp|greedy
-1553（https://leetcode.com/problems/minimum-number-of-days-to-eat-n-oranges/）brain_teaser|greedy|memory_search|liner_dp
-1872（https://leetcode.com/problems/stone-game-viii/）prefix_sum|reverse_order|linear_dp
-1770（https://leetcode.com/problems/maximum-score-from-performing-multiplication-operations/）liner_dp
-823（https://leetcode.com/problems/binary-trees-with-factors/description/）liner_dp|counter
-2746（https://leetcode.com/problems/decremental-string-concatenation/）hash|liner_dp|implemention
-1911（https://leetcode.com/problems/maximum-alternating-subsequence-sum/）liner_dp
-2321（https://leetcode.com/problems/maximum-score-of-spliced-array/description/）liner_dp|maximum_sub_consequence_sum
-2320（https://leetcode.com/problems/count-number-of-ways-to-place-houses/）liner_dp
-1824（https://leetcode.com/problems/minimum-sideway-jumps/description/）liner_dp|rolling_update
-978（https://leetcode.com/problems/longest-turbulent-subarray/description/）liner_dp|rolling_update
-1027（https://leetcode.com/problems/longest-arithmetic-subsequence/）liner_dp
-1987（https://leetcode.com/problems/number-of-unique-good-subsequences/description/）counter|linear_dp
-2355（https://leetcode.com/problems/maximum-number-of-books-you-can-take/）monotonic_stack|liner_do
-100048（https://leetcode.com/problems/beautiful-towers-ii/）monotonic_stack|liner_dp|prefix_suffix
-2327（https://leetcode.com/problems/number-of-people-aware-of-a-secret/description/）prefix_sum|diff_array|liner_dp
-2572（https://leetcode.com/problems/count-the-number-of-square-free-subsets/description/）liner_dp|counter
+87（https://leetcode.cn/problems/scramble-string/）liner_dp|memory_search
+2361（https://leetcode.cn/problems/minimum-costs-using-the-train-line/）linear_dp
+2318（https://leetcode.cn/problems/number-of-distinct-roll-sequences/）linear_dp|brute_force|counter
+2263（https://leetcode.cn/problems/make-array-non-decreasing-or-non-increasing/）linear_dp
+2209（https://leetcode.cn/problems/minimum-white-tiles-after-covering-with-carpets/）linear_dp|prefix_sum
+2188（https://leetcode.cn/problems/minimum-time-to-finish-the-race/）preprocess|linear_dp
+2167（https://leetcode.cn/problems/minimum-time-to-remove-all-cars-containing-illegal-goods/）prefix_suffix|linear_dp|preprocess|brute_force
+2431（https://leetcode.cn/problems/maximize-total-tastiness-of-purchased-fruits/）liner_dp|implemention
+6355（https://leetcode.cn/contest/weekly-contest-338/problems/collect-coins-in-a-tree/）liner_dp
+2547（https://leetcode.cn/problems/minimum-cost-to-split-an-array/）liner_dp|counter
+2638（https://leetcode.cn/problems/count-the-number-of-k-free-subsets/）liner_dp|counter
+2597（https://leetcode.cn/problems/the-number-of-beautiful-subsets/）liner_dp|hash
+2713（https://leetcode.cn/problems/maximum-strictly-increasing-cells-in-a-matrix/）data_range|liner_dp
+1526（https://leetcode.cn/problems/minimum-number-of-increments-on-subarrays-to-form-a-target-array/）linear_dp|greedy
+1553（https://leetcode.cn/problems/minimum-number-of-days-to-eat-n-oranges/）brain_teaser|greedy|memory_search|liner_dp
+1872（https://leetcode.cn/problems/stone-game-viii/）prefix_sum|reverse_order|linear_dp
+1770（https://leetcode.cn/problems/maximum-score-from-performing-multiplication-operations/）liner_dp
+823（https://leetcode.cn/problems/binary-trees-with-factors/description/）liner_dp|counter
+2746（https://leetcode.cn/problems/decremental-string-concatenation/）hash|liner_dp|implemention
+1911（https://leetcode.cn/problems/maximum-alternating-subsequence-sum/）liner_dp
+2321（https://leetcode.cn/problems/maximum-score-of-spliced-array/description/）liner_dp|maximum_sub_consequence_sum
+2320（https://leetcode.cn/problems/count-number-of-ways-to-place-houses/）liner_dp
+1824（https://leetcode.cn/problems/minimum-sideway-jumps/description/）liner_dp|rolling_update
+978（https://leetcode.cn/problems/longest-turbulent-subarray/description/）liner_dp|rolling_update
+1027（https://leetcode.cn/problems/longest-arithmetic-subsequence/）liner_dp
+1987（https://leetcode.cn/problems/number-of-unique-good-subsequences/description/）counter|linear_dp
+2355（https://leetcode.cn/problems/maximum-number-of-books-you-can-take/）monotonic_stack|liner_do
+100048（https://leetcode.cn/problems/beautiful-towers-ii/）monotonic_stack|liner_dp|prefix_suffix
+2327（https://leetcode.cn/problems/number-of-people-aware-of-a-secret/description/）prefix_sum|diff_array|liner_dp
+2572（https://leetcode.cn/problems/count-the-number-of-square-free-subsets/description/）liner_dp|counter
 
 =====================================LuoGu======================================
 P1970（https://www.luogu.com.cn/problem/P1970）greedy|liner_dp
@@ -128,7 +128,7 @@ class Solution:
     @staticmethod
     def lc_1770(nums: List[int], multipliers: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/maximum-score-from-performing-multiplication-operations/
+        url: https://leetcode.cn/problems/maximum-score-from-performing-multiplication-operations/
         tag: liner_dp
         """
         # 数组匹配liner_dp
@@ -148,7 +148,7 @@ class Solution:
     @staticmethod
     def lc_823(arr: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/binary-trees-with-factors/description/
+        url: https://leetcode.cn/problems/binary-trees-with-factors/description/
         tag: liner_dp|counter
         """
         # liner_dpcounter
@@ -190,7 +190,7 @@ class Solution:
     @staticmethod
     def lc_2361(
         """
-        url: https://leetcode.com/problems/minimum-costs-using-the-train-line/
+        url: https://leetcode.cn/problems/minimum-costs-using-the-train-line/
         tag: linear_dp
         """
             regular: List[int],
@@ -259,7 +259,7 @@ class Solution:
     @staticmethod
     def lc_2638(nums: List[int], k: int) -> int:
         """
-        url: https://leetcode.com/problems/count-the-number-of-k-free-subsets/
+        url: https://leetcode.cn/problems/count-the-number-of-k-free-subsets/
         tag: liner_dp|counter
         """
         # liner_dpcounter
@@ -282,7 +282,7 @@ class Solution:
     @staticmethod
     def lc_2597(nums: List[int], k: int) -> int:
         """
-        url: https://leetcode.com/problems/the-number-of-beautiful-subsets/
+        url: https://leetcode.cn/problems/the-number-of-beautiful-subsets/
         tag: liner_dp|hash
         """
         # liner_dpcounter
@@ -758,7 +758,7 @@ class Solution:
     @staticmethod
     def lc_2746(words: List[str]) -> int:
         """
-        url: https://leetcode.com/problems/decremental-string-concatenation/
+        url: https://leetcode.cn/problems/decremental-string-concatenation/
         tag: hash|liner_dp|implemention
         """
         # hashliner_dpimplemention实现
@@ -1008,7 +1008,7 @@ class Solution:
     @staticmethod
     def lc_2713(mat: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/maximum-strictly-increasing-cells-in-a-matrix/
+        url: https://leetcode.cn/problems/maximum-strictly-increasing-cells-in-a-matrix/
         tag: data_range|liner_dp
         """
         # 按照data_range分层linear_dp
@@ -1109,7 +1109,7 @@ class Solution:
     @staticmethod
     def lc_1824(obstacles: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/minimum-sideway-jumps/description/
+        url: https://leetcode.cn/problems/minimum-sideway-jumps/description/
         tag: liner_dp|rolling_update
         """
         # liner_dp滚动数组
@@ -1128,7 +1128,7 @@ class Solution:
     @staticmethod
     def lc_978(arr: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/longest-turbulent-subarray/description/
+        url: https://leetcode.cn/problems/longest-turbulent-subarray/description/
         tag: liner_dp|rolling_update
         """
         # liner_dp滚动变量
@@ -1150,7 +1150,7 @@ class Solution:
     @staticmethod
     def lc_1027(nums: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/longest-arithmetic-subsequence/
+        url: https://leetcode.cn/problems/longest-arithmetic-subsequence/
         tag: liner_dp
         """
         # liner_dp最长等差子序列
@@ -1166,7 +1166,7 @@ class Solution:
     @staticmethod
     def lc_1553(n: int) -> int:
         """
-        url: https://leetcode.com/problems/minimum-number-of-days-to-eat-n-oranges/
+        url: https://leetcode.cn/problems/minimum-number-of-days-to-eat-n-oranges/
         tag: brain_teaser|greedy|memory_search|liner_dp
         """
 

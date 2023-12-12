@@ -3,17 +3,17 @@ Algorithm：tree_array|tree_matrix
 Description：range_add|range_sum
 
 ====================================LeetCode====================================
-307（https://leetcode.com/problems/range-sum-query-mutable）PointChangeRangeSum
-1409（https://leetcode.com/problems/queries-on-a-permutation-with-key/）tree_array|implemention
-1626（https://leetcode.com/problems/best-team-with-no-conflicts/）tree_array|prefix_maximum|dp
-6353（https://leetcode.com/problems/minimum-number-of-visited-cells-in-a-grid/）tree_array|prefix_minimum
-308（https://leetcode.com/problems/range-sum-query-2d-mutable/）tree_matrix|RangeAddRangeSum
-2659（https://leetcode.com/problems/make-array-empty/submissions/）implemention|tree_array|sortedList|greedy
-1505（https://leetcode.com/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/）tree_array|implemention|counter|sorted_list
-2193（https://leetcode.com/problems/minimum-number-of-moves-to-make-palindrome/description/）tree_array|greedy|implemention|P5041
-2407（https://leetcode.com/problems/longest-increasing-subsequence-ii/description/）tree_array|liner_dp
-100112（https://leetcode.com/problems/maximum-balanced-subsequence-sum/）discretization|tree_array|liner_dp
-2736（https://leetcode.com/problems/maximum-sum-queries/）PointAddPreMax
+307（https://leetcode.cn/problems/range-sum-query-mutable）PointChangeRangeSum
+1409（https://leetcode.cn/problems/queries-on-a-permutation-with-key/）tree_array|implemention
+1626（https://leetcode.cn/problems/best-team-with-no-conflicts/）tree_array|prefix_maximum|dp
+6353（https://leetcode.cn/problems/minimum-number-of-visited-cells-in-a-grid/）tree_array|prefix_minimum
+308（https://leetcode.cn/problems/range-sum-query-2d-mutable/）tree_matrix|RangeAddRangeSum
+2659（https://leetcode.cn/problems/make-array-empty/submissions/）implemention|tree_array|sortedList|greedy
+1505（https://leetcode.cn/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/）tree_array|implemention|counter|sorted_list
+2193（https://leetcode.cn/problems/minimum-number-of-moves-to-make-palindrome/description/）tree_array|greedy|implemention|P5041
+2407（https://leetcode.cn/problems/longest-increasing-subsequence-ii/description/）tree_array|liner_dp
+100112（https://leetcode.cn/problems/maximum-balanced-subsequence-sum/）discretization|tree_array|liner_dp
+2736（https://leetcode.cn/problems/maximum-sum-queries/）PointAddPreMax
 
 =====================================LuoGu======================================
 P2068（https://www.luogu.com.cn/problem/P2068）PointAddRangeSum
@@ -75,7 +75,7 @@ class Solution:
     @staticmethod
     def lc_1626(scores: List[int], ages: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/best-team-with-no-conflicts/
+        url: https://leetcode.cn/problems/best-team-with-no-conflicts/
         tag: tree_array|prefix_maximum|dp
         """
         # 动态规划与tree_array|维护前缀最大值
@@ -89,7 +89,7 @@ class Solution:
     @staticmethod
     def lc_2193_1(s: str) -> int:
         """
-        url: https://leetcode.com/problems/minimum-number-of-moves-to-make-palindrome/description/
+        url: https://leetcode.cn/problems/minimum-number-of-moves-to-make-palindrome/description/
         tag: tree_array|greedy|implemention|P5041
         """
         # tree_array|greedyimplemention交换构建回文串
@@ -137,7 +137,7 @@ class Solution:
     @staticmethod
     def lc_2193_2(s: str) -> int:
         """
-        url: https://leetcode.com/problems/minimum-number-of-moves-to-make-palindrome/description/
+        url: https://leetcode.cn/problems/minimum-number-of-moves-to-make-palindrome/description/
         tag: tree_array|greedy|implemention|P5041
         """
         # 字符串特性greedyimplemention交换构建回文串
@@ -158,7 +158,7 @@ class Solution:
     @staticmethod
     def lc_2407(nums: List[int], k: int) -> int:
         """
-        url: https://leetcode.com/problems/longest-increasing-subsequence-ii/description/
+        url: https://leetcode.cn/problems/longest-increasing-subsequence-ii/description/
         tag: tree_array|liner_dp
         """
         # tree_array||liner_dp
@@ -185,7 +185,7 @@ class Solution:
     @staticmethod
     def lc_2659(nums: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/make-array-empty/submissions/
+        url: https://leetcode.cn/problems/make-array-empty/submissions/
         tag: implemention|tree_array|sortedList|greedy
         """
         # implemention删除，可以tree_array|也可以SortedList也可以greedy
@@ -207,7 +207,7 @@ class Solution:
     @staticmethod
     def lc_2736(nums1: List[int], nums2: List[int], queries: List[List[int]]) -> List[int]:
         """
-        url: https://leetcode.com/problems/maximum-sum-queries/
+        url: https://leetcode.cn/problems/maximum-sum-queries/
         tag: PointAddPreMax
         """
 
@@ -239,7 +239,7 @@ class Solution:
     @staticmethod
     def lc_6353(grid: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/minimum-number-of-visited-cells-in-a-grid/
+        url: https://leetcode.cn/problems/minimum-number-of-visited-cells-in-a-grid/
         tag: tree_array|prefix_minimum
         """
         n, m = len(grid), len(grid[0])
@@ -259,7 +259,7 @@ class Solution:
     @staticmethod
     def lc_100112_1(nums: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/maximum-balanced-subsequence-sum/
+        url: https://leetcode.cn/problems/maximum-balanced-subsequence-sum/
         tag: discretization|tree_array|liner_dp
         """
         # tree_array|（单点持续更新为更大值）（区间查询最大值）2380ms
@@ -279,7 +279,7 @@ class Solution:
     @staticmethod
     def lc_100112_2(nums: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/maximum-balanced-subsequence-sum/
+        url: https://leetcode.cn/problems/maximum-balanced-subsequence-sum/
         tag: discretization|tree_array|liner_dp
         """
         # tree_array|（单点持续更新为更大值）（前缀区间查询最大值）1748ms
@@ -299,7 +299,7 @@ class Solution:
     @staticmethod
     def lc_100112_3(nums: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/maximum-balanced-subsequence-sum/
+        url: https://leetcode.cn/problems/maximum-balanced-subsequence-sum/
         tag: discretization|tree_array|liner_dp
         """
         # segment_tree|（单点持续更新为更大值）（区间查询最大值）7980ms
@@ -344,7 +344,7 @@ class Solution:
     @staticmethod
     def lc_100112_1(nums: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/maximum-balanced-subsequence-sum/
+        url: https://leetcode.cn/problems/maximum-balanced-subsequence-sum/
         tag: discretization|tree_array|liner_dp
         """
         # tree_array|（单点持续更新为更大值）（区间查询最大值）2380ms
@@ -364,7 +364,7 @@ class Solution:
     @staticmethod
     def lc_100112_2(nums: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/maximum-balanced-subsequence-sum/
+        url: https://leetcode.cn/problems/maximum-balanced-subsequence-sum/
         tag: discretization|tree_array|liner_dp
         """
         # tree_array|（单点持续更新为更大值）（前缀区间查询最大值）1748ms
@@ -384,7 +384,7 @@ class Solution:
     @staticmethod
     def lc_100112_3(nums: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/maximum-balanced-subsequence-sum/
+        url: https://leetcode.cn/problems/maximum-balanced-subsequence-sum/
         tag: discretization|tree_array|liner_dp
         """
         # segment_tree|（单点持续更新为更大值）（区间查询最大值）7980ms
@@ -968,7 +968,7 @@ class Solution:
     @staticmethod
     def lc_1505_1(num: str, k: int) -> str:
         """
-        url: https://leetcode.com/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/
+        url: https://leetcode.cn/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/
         tag: tree_array|implemention|counter|sorted_list
         """
 
@@ -1000,7 +1000,7 @@ class Solution:
     @staticmethod
     def lc_1505_2(num: str, k: int) -> str:
         """
-        url: https://leetcode.com/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/
+        url: https://leetcode.cn/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/
         tag: tree_array|implemention|counter|sorted_list
         """
         ind = [deque() for _ in range(10)]

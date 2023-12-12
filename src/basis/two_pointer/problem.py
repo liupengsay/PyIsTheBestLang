@@ -3,30 +3,30 @@ Algorithm：two_pointers|fast_slow_pointers|bucket_counter|tree_pointers
 Description：sliding_window|two_pointers|center_extension_method
 
 ====================================LeetCode====================================
-167（https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/）two_pointers
-259（https://leetcode.com/problems/3sum-smaller/）two_pointers|counter|brute_force
-2444（https://leetcode.com/problems/count-subarrays-with-fixed-bounds/）same_direction|two_pointers|counter
-2398（https://leetcode.com/problems/maximum-number-of-robots-within-budget/）same_direction|two_pointers|sorted_list|sliding_window
-2302（https://leetcode.com/problems/count-subarrays-with-score-less-than-k/）same_direction|two_pointers|pointer|counter
-2301（https://leetcode.com/problems/match-substring-after-replacement/）brute_force|two_pointers
-2106（https://leetcode.com/problems/maximum-fruits-harvested-after-at-most-k-steps/）two_pointers
-6293（https://leetcode.com/problems/count-the-number-of-good-subarrays/）two_pointers|counter
-16（https://leetcode.com/problems/3sum-closest/）tree_pointers
-15（https://leetcode.com/problems/3sum/）two_pointers
-2422（https://leetcode.com/problems/range_merge_to_disjoint-operations-to-turn-array-into-a-palindrome/）opposite_direction|two_pointers|greedy
-2524（https://leetcode.com/problems/maximum-frequency-score-of-a-subarray/）sliding_window|mod|power
-239（https://leetcode.com/problems/sliding-window-maximum/）sliding_window
-2447（https://leetcode.com/problems/number-of-subarrays-with-gcd-equal-to-k/）sliding_window|gcd
-6392（https://leetcode.com/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/）sliding_window|gcd
-1163（https://leetcode.com/problems/last-substring-in-lexicographical-order/）minimum_expression|two_pointers
-2555（https://leetcode.com/problems/maximize-win-from-two-segments/description/）same_direction|two_pointers|liner_dp
-992（https://leetcode.com/problems/subarrays-with-k-different-integers/）tree_pointers|fast_slow_pointers
-2747（https://leetcode.com/problems/count-zero-request-servers/）offline_query|tree_pointers|fast_slow_pointers
-2516（https://leetcode.com/problems/take-k-of-each-character-from-left-and-right/）reverse_thinking|inclusion_exclusion|two_pointers
-1537（https://leetcode.com/problems/get-the-maximum-score/description/）two_pointers|liner_dp|topological_sorting
-1712（https://leetcode.com/problems/ways-to-split-array-into-three-subarrays/description/）three_pointers|fast_slow_pointers
-948（https://leetcode.com/problems/bag-of-tokens/）two_pointers|greedy
-2953（https://leetcode.com/problems/count-complete-substrings/）two pointers|brute force
+167（https://leetcode.cn/problems/two-sum-ii-input-array-is-sorted/）two_pointers
+259（https://leetcode.cn/problems/3sum-smaller/）two_pointers|counter|brute_force
+2444（https://leetcode.cn/problems/count-subarrays-with-fixed-bounds/）same_direction|two_pointers|counter
+2398（https://leetcode.cn/problems/maximum-number-of-robots-within-budget/）same_direction|two_pointers|sorted_list|sliding_window
+2302（https://leetcode.cn/problems/count-subarrays-with-score-less-than-k/）same_direction|two_pointers|pointer|counter
+2301（https://leetcode.cn/problems/match-substring-after-replacement/）brute_force|two_pointers
+2106（https://leetcode.cn/problems/maximum-fruits-harvested-after-at-most-k-steps/）two_pointers
+6293（https://leetcode.cn/problems/count-the-number-of-good-subarrays/）two_pointers|counter
+16（https://leetcode.cn/problems/3sum-closest/）tree_pointers
+15（https://leetcode.cn/problems/3sum/）two_pointers
+2422（https://leetcode.cn/problems/range_merge_to_disjoint-operations-to-turn-array-into-a-palindrome/）opposite_direction|two_pointers|greedy
+2524（https://leetcode.cn/problems/maximum-frequency-score-of-a-subarray/）sliding_window|mod|power
+239（https://leetcode.cn/problems/sliding-window-maximum/）sliding_window
+2447（https://leetcode.cn/problems/number-of-subarrays-with-gcd-equal-to-k/）sliding_window|gcd
+6392（https://leetcode.cn/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/）sliding_window|gcd
+1163（https://leetcode.cn/problems/last-substring-in-lexicographical-order/）minimum_expression|two_pointers
+2555（https://leetcode.cn/problems/maximize-win-from-two-segments/description/）same_direction|two_pointers|liner_dp
+992（https://leetcode.cn/problems/subarrays-with-k-different-integers/）tree_pointers|fast_slow_pointers
+2747（https://leetcode.cn/problems/count-zero-request-servers/）offline_query|tree_pointers|fast_slow_pointers
+2516（https://leetcode.cn/problems/take-k-of-each-character-from-left-and-right/）reverse_thinking|inclusion_exclusion|two_pointers
+1537（https://leetcode.cn/problems/get-the-maximum-score/description/）two_pointers|liner_dp|topological_sorting
+1712（https://leetcode.cn/problems/ways-to-split-array-into-three-subarrays/description/）three_pointers|fast_slow_pointers
+948（https://leetcode.cn/problems/bag-of-tokens/）two_pointers|greedy
+2953（https://leetcode.cn/problems/count-complete-substrings/）two pointers|brute force
 
 =====================================LuoGu======================================
 P2381（https://www.luogu.com.cn/problem/P2381）circular_array|sliding_window|two_pointers
@@ -104,7 +104,7 @@ class Solution:
     @staticmethod
     def lc_16(nums, target):
         """
-        url: https://leetcode.com/problems/3sum-closest/
+        url: https://leetcode.cn/problems/3sum-closest/
         tag: tree_pointers
         """
         # 寻找最接近目标值的三个元素和
@@ -128,7 +128,7 @@ class Solution:
     @staticmethod
     def lc_15(nums):
         """
-        url: https://leetcode.com/problems/3sum/
+        url: https://leetcode.cn/problems/3sum/
         tag: two_pointers
         """
         # 寻找三个元素和为 0 的不重复组合
@@ -153,7 +153,7 @@ class Solution:
     @staticmethod
     def lc_259(nums: List[int], target: int) -> int:
         """
-        url: https://leetcode.com/problems/3sum-smaller/
+        url: https://leetcode.cn/problems/3sum-smaller/
         tag: two_pointers|counter|brute_force
         """
         # 相反方向的two_pointers统计和小于 target 的三元组数量
@@ -175,7 +175,7 @@ class Solution:
     @staticmethod
     def lc_239(nums: List[int], k: int) -> List[int]:
         """
-        url: https://leetcode.com/problems/sliding-window-maximum/
+        url: https://leetcode.cn/problems/sliding-window-maximum/
         tag: sliding_window
         """
         # sliding_window最大值
@@ -192,7 +192,7 @@ class Solution:
     @staticmethod
     def lc_2516(s: str, k: int) -> int:
         """
-        url: https://leetcode.com/problems/take-k-of-each-character-from-left-and-right/
+        url: https://leetcode.cn/problems/take-k-of-each-character-from-left-and-right/
         tag: reverse_thinking|inclusion_exclusion|two_pointers
         """
         # reverse_thinkinginclusion_exclusiontwo_pointers
@@ -215,7 +215,7 @@ class Solution:
     @staticmethod
     def lc_2555(prize_positions: List[int], k: int) -> int:
         """
-        url: https://leetcode.com/problems/maximize-win-from-two-segments/description/
+        url: https://leetcode.cn/problems/maximize-win-from-two-segments/description/
         tag: same_direction|two_pointers|liner_dp
         """
         # same_direction|two_pointers|liner_dp
@@ -236,7 +236,7 @@ class Solution:
     @staticmethod
     def lc_2747(n: int, logs: List[List[int]], x: int, queries: List[int]) -> List[int]:
         """
-        url: https://leetcode.com/problems/count-zero-request-servers/
+        url: https://leetcode.cn/problems/count-zero-request-servers/
         tag: offline_query|tree_pointers|fast_slow_pointers
         """
         # offline_query与three_pointers，即fast_slow_pointers维护连续区间的不同值个数
@@ -265,7 +265,7 @@ class Solution:
     @staticmethod
     def lc_6392(nums: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/
+        url: https://leetcode.cn/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/
         tag: sliding_window|gcd
         """
         # sliding_window维护区间 gcd 为 1 的长度信息
@@ -287,7 +287,7 @@ class Solution:
     @staticmethod
     def lc_992(nums: List[int], k: int) -> int:
         """
-        url: https://leetcode.com/problems/subarrays-with-k-different-integers/
+        url: https://leetcode.cn/problems/subarrays-with-k-different-integers/
         tag: tree_pointers|fast_slow_pointers
         """
         # three_pointers，即fast_slow_pointers维护连续子区间个数
@@ -317,7 +317,7 @@ class Solution:
     @staticmethod
     def lc_1163(s: str) -> str:
         """
-        url: https://leetcode.com/problems/last-substring-in-lexicographical-order/
+        url: https://leetcode.cn/problems/last-substring-in-lexicographical-order/
         tag: minimum_expression|two_pointers
         """
         # two_pointers
@@ -335,7 +335,7 @@ class Solution:
     @staticmethod
     def lc_1537(nums1: List[int], nums2: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/get-the-maximum-score/description/
+        url: https://leetcode.cn/problems/get-the-maximum-score/description/
         tag: two_pointers|liner_dp|topological_sorting
         """
         # two_pointers|liner_dp或者topological_sorting做
@@ -362,7 +362,7 @@ class Solution:
     @staticmethod
     def lc_1712(nums: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/ways-to-split-array-into-three-subarrays/description/
+        url: https://leetcode.cn/problems/ways-to-split-array-into-three-subarrays/description/
         tag: three_pointers|fast_slow_pointers
         """
         # three_pointers，即fast_slow_pointers维护满足条件的分cut_point个数
@@ -384,7 +384,7 @@ class Solution:
     @staticmethod
     def lc_2447(nums: List[int], k: int) -> int:
         """
-        url: https://leetcode.com/problems/number-of-subarrays-with-gcd-equal-to-k/
+        url: https://leetcode.cn/problems/number-of-subarrays-with-gcd-equal-to-k/
         tag: sliding_window|gcd
         """
         # sliding_windowtwo_pointersthree_pointers维护区间 gcd 为 k 的子数组数量信息

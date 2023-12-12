@@ -3,8 +3,8 @@ Algorithm：suffix_array
 Description：suffix_array
 
 ====================================LeetCode====================================
-1754（https://leetcode.com/problems/largest-range_merge_to_disjoint-of-two-strings/）largest|suffix_array
-1698（https://leetcode.com/problems/number-of-distinct-substrings-in-a-string/）suffix_array|height
+1754（https://leetcode.cn/problems/largest-range_merge_to_disjoint-of-two-strings/）largest|suffix_array
+1698（https://leetcode.cn/problems/number-of-distinct-substrings-in-a-string/）suffix_array|height
 
 =====================================LuoGu======================================
 P3809（https://www.luogu.com.cn/problem/P3809）suffix_array
@@ -28,7 +28,7 @@ class Solution:
     @staticmethod
     def lc_1754_1(word1: str, word2: str) -> str:
         """
-        url: https://leetcode.com/problems/largest-range_merge_to_disjoint-of-two-strings/
+        url: https://leetcode.cn/problems/largest-range_merge_to_disjoint-of-two-strings/
         tag: largest|suffix_array
         """
         # 后缀数组后缀的lexicographical_order大小，greedy拼接两个字符串使得lexicographical_order最大
@@ -53,7 +53,7 @@ class Solution:
     @staticmethod
     def lc_1754_2(word1: str, word2: str) -> str:
         """
-        url: https://leetcode.com/problems/largest-range_merge_to_disjoint-of-two-strings/
+        url: https://leetcode.cn/problems/largest-range_merge_to_disjoint-of-two-strings/
         tag: largest|suffix_array
         """
         # greedy比较后缀的lexicographical_order大小
@@ -133,7 +133,7 @@ class Solution:
     @staticmethod
     def lc_1698(s: str) -> int:
         """
-        url: https://leetcode.com/problems/number-of-distinct-substrings-in-a-string/
+        url: https://leetcode.cn/problems/number-of-distinct-substrings-in-a-string/
         tag: suffix_array|height
         """
         # 后缀数组应用题，利用 height 特性

@@ -3,16 +3,16 @@ Algorithm：string_hash|tree_hash|matrix_hash|tree_minimum_expression|longest_pr
 Description：counter|sliding_window|double_random_mod|hash_crush
 
 ====================================LeetCode====================================
-214（https://leetcode.com/problems/shortest-palindrome/）reverse_hash|string_hash|longest_prefix_palindrome_substring|kmp|manacher
-572（https://leetcode.com/problems/subtree-of-another-tree/）tree_hash
-1044（https://leetcode.com/problems/shortest-palindrome/）binary_search|string_hash
-1316（https://leetcode.com/problems/shortest-palindrome/）string_hash
-2156（https://leetcode.com/problems/find-substring-with-given-hash-value/）reverse_hash|string_hash
-652（https://leetcode.com/problems/find-duplicate-subtrees/）tree_hash
-1554（https://leetcode.com/problems/strings-differ-by-one-character/）prefix_suffix|hash
-1923（https://leetcode.com/problems/longest-common-subpath/）binary_search|rolling_hash
-1948（https://leetcode.com/problems/delete-duplicate-folders-in-system/）trie|tree_hash
-2261（https://leetcode.com/problems/k-divisible-elements-subarrays/submissions/）string_hash
+214（https://leetcode.cn/problems/shortest-palindrome/）reverse_hash|string_hash|longest_prefix_palindrome_substring|kmp|manacher
+572（https://leetcode.cn/problems/subtree-of-another-tree/）tree_hash
+1044（https://leetcode.cn/problems/shortest-palindrome/）binary_search|string_hash
+1316（https://leetcode.cn/problems/shortest-palindrome/）string_hash
+2156（https://leetcode.cn/problems/find-substring-with-given-hash-value/）reverse_hash|string_hash
+652（https://leetcode.cn/problems/find-duplicate-subtrees/）tree_hash
+1554（https://leetcode.cn/problems/strings-differ-by-one-character/）prefix_suffix|hash
+1923（https://leetcode.cn/problems/longest-common-subpath/）binary_search|rolling_hash
+1948（https://leetcode.cn/problems/delete-duplicate-folders-in-system/）trie|tree_hash
+2261（https://leetcode.cn/problems/k-divisible-elements-subarrays/submissions/）string_hash
 
 =====================================LuoGu======================================
 list?user=739032&status=12&page=14（https://www.luogu.com.cn/record/list?user=739032&status=12&page=14）string_hash|kmp
@@ -108,7 +108,7 @@ class Solution:
     @staticmethod
     def lc_214(s: str) -> str:
         """
-        url: https://leetcode.com/problems/shortest-palindrome/
+        url: https://leetcode.cn/problems/shortest-palindrome/
         tag: reverse_hash|string_hash|longest_prefix_palindrome_substring|kmp|manacher
         """
         # 正向与反向string_hash字符串前缀最长palindrome_substring，也可以用KMP与manacher
@@ -156,7 +156,7 @@ class Solution:
     @staticmethod
     def lc_652(root):
         """
-        url: https://leetcode.com/problems/find-duplicate-subtrees/
+        url: https://leetcode.cn/problems/find-duplicate-subtrees/
         tag: tree_hash
         """
         # tree_hash编码序列化子树，查找重复子树
@@ -552,7 +552,7 @@ class Solution:
     @staticmethod
     def lc_1554(lst: List[str]) -> bool:
         """
-        url: https://leetcode.com/problems/strings-differ-by-one-character/
+        url: https://leetcode.cn/problems/strings-differ-by-one-character/
         tag: prefix_suffix|hash
         """
         # 字符串prefix_suffixhash求解
@@ -594,7 +594,7 @@ class Solution:
     @staticmethod
     def lc_1948(paths: List[List[str]]) -> List[List[str]]:
         """
-        url: https://leetcode.com/problems/delete-duplicate-folders-in-system/
+        url: https://leetcode.cn/problems/delete-duplicate-folders-in-system/
         tag: trie|tree_hash
         """
         # tree_hashtrie的子树编码
@@ -649,7 +649,7 @@ class Solution:
     @staticmethod
     def lc_2261(nums: List[int], k: int, p: int) -> int:
         """
-        url: https://leetcode.com/problems/k-divisible-elements-subarrays/submissions/
+        url: https://leetcode.cn/problems/k-divisible-elements-subarrays/submissions/
         tag: string_hash
         """
         # string_hash对数组编码
@@ -698,7 +698,7 @@ class Solution:
     @staticmethod
     def lc_1316(text: str) -> int:
         """
-        url: https://leetcode.com/problems/shortest-palindrome/
+        url: https://leetcode.cn/problems/shortest-palindrome/
         tag: string_hash
         """
         # string_hash判断循环子串

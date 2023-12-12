@@ -3,7 +3,7 @@ Algorithm：bit_set|implemention|range_state|range_reverse
 Description：
 
 ====================================LeetCode====================================
-2569（https://leetcode.com/problems/handling-sum-queries-after-update/）segment_tree|range_reverse|bit_set
+2569（https://leetcode.cn/problems/handling-sum-queries-after-update/）segment_tree|range_reverse|bit_set
 
 =====================================LuoGu======================================
 xx（xxx）xxxxxxxxxxxxxxxxxxxx
@@ -48,7 +48,7 @@ class Solution:
     @staticmethod
     def lc_2569_2(nums1: List[int], nums2: List[int], queries: List[List[int]]) -> List[int]:
         """
-        url: https://leetcode.com/problems/handling-sum-queries-after-update/
+        url: https://leetcode.cn/problems/handling-sum-queries-after-update/
         tag: segment_tree|range_reverse|bit_set
         """
         # 01segment_tree|区间翻转与求和，也可以BitSet

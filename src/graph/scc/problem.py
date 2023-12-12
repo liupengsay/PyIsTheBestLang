@@ -6,7 +6,7 @@ Example：path pass the most points which can be duplicated
 2-SAT：giving n sets, each with two elements, in which (a, b) indicating that a and b are contradictory (where a and b belong to different sets), then select an element from each set and determine if a total of n pairwise non-contradictory elements can be selected
 
 ====================================LeetCode====================================
-2360（https://leetcode.com/problems/longest-cycle-in-a-graph/）largest_circle|scc|topological_sort|scc
+2360（https://leetcode.cn/problems/longest-cycle-in-a-graph/）largest_circle|scc|topological_sort|scc
 
 =====================================LuoGu======================================
 P3387（https://www.luogu.com.cn/problem/P3387）scc
@@ -88,7 +88,7 @@ class Solution:
     @staticmethod
     def lc_2360(edges):
         """
-        url: https://leetcode.com/problems/longest-cycle-in-a-graph/
+        url: https://leetcode.cn/problems/longest-cycle-in-a-graph/
         tag: largest_circle|scc|topological_sort|scc
         """
 

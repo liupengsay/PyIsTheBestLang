@@ -3,7 +3,7 @@ Algorithm：ternary_search|TriPartPackTriPart|gradient_descent|hill_climbing
 Description：used to find function extremum solutions with at most one peak or valley point in an interval
 
 =====================================LuoGu======================================
-1515（https://leetcode.com/problems/best-position-for-a-service-centre/）tripartite_pack_tripartite|convex_function_minimum|gradient_descent|hill_climbing
+1515（https://leetcode.cn/problems/best-position-for-a-service-centre/）tripartite_pack_tripartite|convex_function_minimum|gradient_descent|hill_climbing
 
 =====================================LuoGu======================================
 P3382（https://www.luogu.com.cn/problem/P3382）ternary_search|ceil
@@ -211,7 +211,7 @@ class Solution:
     @staticmethod
     def lc_1515_1(stack: List[List[int]]) -> float:
         """
-        url: https://leetcode.com/problems/best-position-for-a-service-centre/
+        url: https://leetcode.cn/problems/best-position-for-a-service-centre/
         tag: tripartite_pack_tripartite|convex_function_minimum|gradient_descent|hill_climbing
         """
 
@@ -229,7 +229,7 @@ class Solution:
     @staticmethod
     def lc_1515_2(positions: List[List[int]]) -> float:
         """
-        url: https://leetcode.com/problems/best-position-for-a-service-centre/
+        url: https://leetcode.cn/problems/best-position-for-a-service-centre/
         tag: tripartite_pack_tripartite|convex_function_minimum|gradient_descent|hill_climbing
         """
         # 梯度下降法求解凸函数极值
@@ -263,7 +263,7 @@ class Solution:
     @staticmethod
     def lc_1515_3(positions: List[List[int]]) -> float:
         """
-        url: https://leetcode.com/problems/best-position-for-a-service-centre/
+        url: https://leetcode.cn/problems/best-position-for-a-service-centre/
         tag: tripartite_pack_tripartite|convex_function_minimum|gradient_descent|hill_climbing
         """
         # 爬山法凸函数极小值

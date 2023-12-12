@@ -3,13 +3,13 @@ Algorithm：lexicographical_order|lexicographical_order_rank|comb|subset|perm
 Description：kth_lexicographical_order|lexicographical_order_rank|subset_lexicographical_order|kth_subset_lexicographical|comb|perm
 
 ====================================LeetCode====================================
-60（https://leetcode.com/problems/permutation-sequence/）kth_perm|lexicographical_order
-440（https://leetcode.com/problems/k-th-smallest-in-lexicographical-order/）10-tree|kth
-1415（https://leetcode.com/problems/the-k-th-lexicographical-string-of-all-happy-strings-of-length-n/）lexicographical_order|construction
-1643（https://leetcode.com/problems/kth-smallest-instructions/）lexicographical_order
-1830（https://leetcode.com/problems/minimum-number-of-operations-to-make-string-sorted/）lexicographical_order_rank|rank_order
-1842（https://leetcode.com/problems/next-palindrome-using-same-digits/）lexicographical_order|greedy
-1850（https://leetcode.com/problems/minimum-adjacent-swaps-to-reach-the-kth-smallest-number/）next_lexicographical_order|bubble|greedy
+60（https://leetcode.cn/problems/permutation-sequence/）kth_perm|lexicographical_order
+440（https://leetcode.cn/problems/k-th-smallest-in-lexicographical-order/）10-tree|kth
+1415（https://leetcode.cn/problems/the-k-th-lexicographical-string-of-all-happy-strings-of-length-n/）lexicographical_order|construction
+1643（https://leetcode.cn/problems/kth-smallest-instructions/）lexicographical_order
+1830（https://leetcode.cn/problems/minimum-number-of-operations-to-make-string-sorted/）lexicographical_order_rank|rank_order
+1842（https://leetcode.cn/problems/next-palindrome-using-same-digits/）lexicographical_order|greedy
+1850（https://leetcode.cn/problems/minimum-adjacent-swaps-to-reach-the-kth-smallest-number/）next_lexicographical_order|bubble|greedy
 
 =====================================LuoGu======================================
 P1243（https://www.luogu.com.cn/problem/P1243）kth_subset
@@ -51,7 +51,7 @@ class Solution:
     @staticmethod
     def lc_440(n, k):
         """
-        url: https://leetcode.com/problems/k-th-smallest-in-lexicographical-order/
+        url: https://leetcode.cn/problems/k-th-smallest-in-lexicographical-order/
         tag: 10-tree|kth
         """
         #  1 到 n lexicographical_order第 k 小的数字
@@ -103,7 +103,7 @@ class Solution:
     @staticmethod
     def lc_60(n: int, k: int) -> str:
         """
-        url: https://leetcode.com/problems/permutation-sequence/
+        url: https://leetcode.cn/problems/permutation-sequence/
         tag: kth_perm|lexicographical_order
         """
         #  全排列的第 k 个排列

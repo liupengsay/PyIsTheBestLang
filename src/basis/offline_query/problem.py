@@ -3,7 +3,7 @@ Algorithm：offline_query|sorting
 Description：with the help of pointer and sorting for offline query
 
 ====================================LeetCode====================================
-100110（https://leetcode.com/contest/weekly-contest-372/problems/find-building-where-alice-and-bob-can-meet/）offline_query|sorting
+100110（https://leetcode.cn/contest/weekly-contest-372/problems/find-building-where-alice-and-bob-can-meet/）offline_query|sorting
 
 =====================================LuoGu======================================
 xx（xxx）xxxxxxxxxxxxxxxxxxxx
@@ -25,7 +25,7 @@ class Solution:
     @staticmethod
     def lc_100110(heights: List[int], queries: List[List[int]]) -> List[int]:
         """
-        url: https://leetcode.com/contest/weekly-contest-372/problems/find-building-where-alice-and-bob-can-meet/
+        url: https://leetcode.cn/contest/weekly-contest-372/problems/find-building-where-alice-and-bob-can-meet/
         tag: offline_query|sorting
         """
 

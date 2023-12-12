@@ -3,7 +3,7 @@ Algorithm：lyndon_composition|minimum_expression|maximum_expression
 Description：rotate_string|lexicographical_order
 
 ====================================LeetCode====================================
-1163（https://leetcode.com/problems/last-substring-in-lexicographical-order/）brain_teaser|maximum_expression|minimum_expression|maximum_expression
+1163（https://leetcode.cn/problems/last-substring-in-lexicographical-order/）brain_teaser|maximum_expression|minimum_expression|maximum_expression
 
 =====================================LuoGu======================================
 
@@ -24,7 +24,7 @@ class Solution:
     @staticmethod
     def lc_1163(s: str) -> str:
         """
-        url: https://leetcode.com/problems/last-substring-in-lexicographical-order/
+        url: https://leetcode.cn/problems/last-substring-in-lexicographical-order/
         tag: brain_teaser|maximum_expression|minimum_expression|maximum_expression
         """
         # 求maximum_expression

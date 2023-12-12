@@ -3,9 +3,9 @@ Algorithm：manacher|palindrome_substring|plindrome_subsequence
 Description：dp|center|center_expansion_method|manacher
 
 ====================================LeetCode====================================
-5（https://leetcode.com/problems/longest-palindromic-substring/）longest_palindrome_substring|classical
-132（https://leetcode.com/problems/palindrome-partitioning-ii/）linear_dp|manacher|longest_palindrome_substring
-1960（https://leetcode.com/problems/maximum-product-of-the-length-of-two-palindromic-substrings/）longest_palindrome_substring|prefix_suffix|classical
+5（https://leetcode.cn/problems/longest-palindromic-substring/）longest_palindrome_substring|classical
+132（https://leetcode.cn/problems/palindrome-partitioning-ii/）linear_dp|manacher|longest_palindrome_substring
+1960（https://leetcode.cn/problems/maximum-product-of-the-length-of-two-palindromic-substrings/）longest_palindrome_substring|prefix_suffix|classical
 
 =====================================LuoGu======================================
 P4555（https://www.luogu.com.cn/problem/P4555）longest_palindrome_substring|prefix_suffix
@@ -70,7 +70,7 @@ class Solution:
     @staticmethod
     def lc_5(s: str) -> str:
         """
-        url: https://leetcode.com/problems/longest-palindromic-substring/
+        url: https://leetcode.cn/problems/longest-palindromic-substring/
         tag: longest_palindrome_substring|classical
         """
         # 字符串的最长palindrome_substring，转换为求字符开头以及结尾的最长palindrome_substring
@@ -152,7 +152,7 @@ class Solution:
     @staticmethod
     def lc_1960(s: str) -> int:
         """
-        url: https://leetcode.com/problems/maximum-product-of-the-length-of-two-palindromic-substrings/
+        url: https://leetcode.cn/problems/maximum-product-of-the-length-of-two-palindromic-substrings/
         tag: longest_palindrome_substring|prefix_suffix|classical
         """
         # 利用manacher求解每个位置前后最长palindrome_substring

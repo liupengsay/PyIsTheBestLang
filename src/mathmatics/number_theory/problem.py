@@ -3,23 +3,23 @@ Algorithm：number_theory|euler_sieve|linear_sieve|prime|euler_phi|factorization
 Description：digital_dp|n-base|prime_factorization|factorization|linear_sieve|euler_phi|pollard_rho|meissel_lehmer|range_prime_count
 
 ====================================LeetCode====================================
-264（https://leetcode.com/problems/ugly-number-ii/）pointer|dp|ugly_number|classical
-1201（https://leetcode.com/problems/ugly-number-iii/）ugly_number
-313（https://leetcode.com/problems/super-ugly-number/）ugly_number
-12（https://leetcode.com/problems/integer-to-roman/）integer_to_roman
-13（https://leetcode.com/problems/roman-to-integer/）roman_to_integer
-6364（https://leetcode.com/problems/count-the-number-of-square-free-subsets/）ag_dp|counter
-1994（https://leetcode.com/problems/the-number-of-good-subsets/）bag_dp|counter
-6309（https://leetcode.com/problems/split-the-array-to-make-coprime-products/）prime_factorization|counter
-2464（https://leetcode.com/problems/minimum-subarrays-in-a-valid-split/）prime_factorization|counter|dp
-LCP 14（https://leetcode.com/problems/qie-fen-shu-zu/）prime_factorization|counter|dp
-279（https://leetcode.com/problems/perfect-squares/）four_square
-650（https://leetcode.com/problems/2-keys-keyboard/）prime_factorization
-1390（https://leetcode.com/problems/four-divisors/）preprocess|factorization
-1819（https://leetcode.com/problems/number-of-different-subsequences-gcds/）preprocess|factorization|brute_force|gcd
-1017（https://leetcode.com/problems/convert-to-base-2/）negative_base|classical
-1073（https://leetcode.com/problems/adding-two-negabinary-numbers/）negative_base|classical
-8041（https://leetcode.com/problems/maximum-element-sum-of-a-complete-subset-of-indices/description/）prime_factorization|hash|classical|odd
+264（https://leetcode.cn/problems/ugly-number-ii/）pointer|dp|ugly_number|classical
+1201（https://leetcode.cn/problems/ugly-number-iii/）ugly_number
+313（https://leetcode.cn/problems/super-ugly-number/）ugly_number
+12（https://leetcode.cn/problems/integer-to-roman/）integer_to_roman
+13（https://leetcode.cn/problems/roman-to-integer/）roman_to_integer
+6364（https://leetcode.cn/problems/count-the-number-of-square-free-subsets/）ag_dp|counter
+1994（https://leetcode.cn/problems/the-number-of-good-subsets/）bag_dp|counter
+6309（https://leetcode.cn/problems/split-the-array-to-make-coprime-products/）prime_factorization|counter
+2464（https://leetcode.cn/problems/minimum-subarrays-in-a-valid-split/）prime_factorization|counter|dp
+LCP 14（https://leetcode.cn/problems/qie-fen-shu-zu/）prime_factorization|counter|dp
+279（https://leetcode.cn/problems/perfect-squares/）four_square
+650（https://leetcode.cn/problems/2-keys-keyboard/）prime_factorization
+1390（https://leetcode.cn/problems/four-divisors/）preprocess|factorization
+1819（https://leetcode.cn/problems/number-of-different-subsequences-gcds/）preprocess|factorization|brute_force|gcd
+1017（https://leetcode.cn/problems/convert-to-base-2/）negative_base|classical
+1073（https://leetcode.cn/problems/adding-two-negabinary-numbers/）negative_base|classical
+8041（https://leetcode.cn/problems/maximum-element-sum-of-a-complete-subset-of-indices/description/）prime_factorization|hash|classical|odd
 
 =====================================LuoGu======================================
 P1865（https://www.luogu.com.cn/problem/P1865）linear_sieve|prime|binary_search|range_prime_count
@@ -214,7 +214,7 @@ class Solution:
     @staticmethod
     def lc_6309(nums: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/split-the-array-to-make-coprime-products/
+        url: https://leetcode.cn/problems/split-the-array-to-make-coprime-products/
         tag: prime_factorization|counter
         """
         #  1 到 n 的数所有的质因子并差分确定作用范围
@@ -841,7 +841,7 @@ class Solution:
     @staticmethod
     def lc_1073(arr1: List[int], arr2: List[int]) -> List[int]:
         """
-        url: https://leetcode.com/problems/adding-two-negabinary-numbers/
+        url: https://leetcode.cn/problems/adding-two-negabinary-numbers/
         tag: negative_base|classical
         """
         # 负进制题
@@ -1004,7 +1004,7 @@ class Solution:
     @staticmethod
     def lc_1017(n: int) -> str:
         """
-        url: https://leetcode.com/problems/convert-to-base-2/
+        url: https://leetcode.cn/problems/convert-to-base-2/
         tag: negative_base|classical
         """
         # 负进制转换模板题

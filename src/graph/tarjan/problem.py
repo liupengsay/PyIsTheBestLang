@@ -3,10 +3,10 @@ Algorithm：tarjan|cut_point|cut_edge|point_doubly_connected_component|edge_doub
 Description：scc|edcc|pdcc|cur_point|cut_edge|directed_acyclic_graph
 
 ====================================LeetCode====================================
-1192（https://leetcode.com/problems/critical-connections-in-a-network/）tarjan|cut_edge
-2360（https://leetcode.com/problems/longest-cycle-in-a-graph/solution/）largest_circle|scc|topological_sort
-2204（https://leetcode.com/problems/distance-to-a-cycle-in-undirected-graph/description/）scc|dag|build_graph|reverse_graph
-1568（https://leetcode.com/problems/minimum-number-of-days-to-disconnect-island/solution/）cut_point|tarjan
+1192（https://leetcode.cn/problems/critical-connections-in-a-network/）tarjan|cut_edge
+2360（https://leetcode.cn/problems/longest-cycle-in-a-graph/solution/）largest_circle|scc|topological_sort
+2204（https://leetcode.cn/problems/distance-to-a-cycle-in-undirected-graph/description/）scc|dag|build_graph|reverse_graph
+1568（https://leetcode.cn/problems/minimum-number-of-days-to-disconnect-island/solution/）cut_point|tarjan
 
 =====================================LuoGu======================================
 P3388（https://www.luogu.com.cn/problem/P3388）multi_edge|self_loop|cut_point
@@ -180,7 +180,7 @@ class Solution:
     @staticmethod
     def lc_2360_1(edges: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/longest-cycle-in-a-graph/solution/
+        url: https://leetcode.cn/problems/longest-cycle-in-a-graph/solution/
         tag: largest_circle|scc|topological_sort
         """
         # TarjanCC 求 scc 有向图scc
@@ -196,7 +196,7 @@ class Solution:
     @staticmethod
     def lc_2360_2(edges: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/longest-cycle-in-a-graph/solution/
+        url: https://leetcode.cn/problems/longest-cycle-in-a-graph/solution/
         tag: largest_circle|scc|topological_sort
         """
         # 有向图 Tarjan 求 scc 有向图scc
@@ -374,7 +374,7 @@ class Solution:
     @staticmethod
     def lc_1192_1(n: int, connections: List[List[int]]) -> List[List[int]]:
         """
-        url: https://leetcode.com/problems/critical-connections-in-a-network/
+        url: https://leetcode.cn/problems/critical-connections-in-a-network/
         tag: tarjan|cut_edge
         """
         #  TarjanCC 求cut_edge
@@ -388,7 +388,7 @@ class Solution:
     @staticmethod
     def lc_1192_2(n: int, connections: List[List[int]]) -> List[List[int]]:
         """
-        url: https://leetcode.com/problems/critical-connections-in-a-network/
+        url: https://leetcode.cn/problems/critical-connections-in-a-network/
         tag: tarjan|cut_edge
         """
         #  Tarjan 求cut_edge
@@ -806,7 +806,7 @@ class Solution:
     @staticmethod
     def lc_1568(grid: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/minimum-number-of-days-to-disconnect-island/solution/
+        url: https://leetcode.cn/problems/minimum-number-of-days-to-disconnect-island/solution/
         tag: cut_point|tarjan
         """
         # 求连通分量与cut_point数量题

@@ -9,18 +9,18 @@ minimum_group_increasing_subsequence_partition=length_of_longest_non_increasing_
 minimum_group_decreasing_subsequence_partition=length_of_longest_non_decreasing_subsequence
 
 ====================================LeetCode====================================
-354（https://leetcode.com/problems/russian-doll-envelopes/）partial_order|lis
-673（https://leetcode.com/problems/number-of-longest-increasing-subsequence/）lis|counter|O(nlogn)|classical
-1092（https://leetcode.com/problems/shortest-common-supersequence/）lcs_by_lis|super_sequence
-1671（https://leetcode.com/problems/minimum-number-of-removals-to-make-mountain-array/）lis|prefix_suffix
-2111（https://leetcode.com/problems/minimum-operations-to-make-the-array-k-increasing/）lis|dp|greedy
-17（https://leetcode.com/problems/circus-tower-lcci/）partial_order|greedy|sort|lis
-1691（https://leetcode.com/problems/maximum-height-by-stacking-cuboids/submissions/）md_partial_order
-1713（https://leetcode.com/problems/minimum-operations-to-make-a-subsequence/）lcs_by_lis
-1940（https://leetcode.com/problems/longest-common-subsequence-between-sorted-arrays/）lcs_by_lis
-2826（https://leetcode.com/problems/sorting-three-groups/）longest_non_decreasing_subsequence|classical
-1964（https://leetcode.com/problems/find-the-longest-valid-obstacle-course-at-each-position/）lis
-2945（https://leetcode.com/problems/find-maximum-non-decreasing-array-length/description/）linear dp|deque|greedy|prefix_sum
+354（https://leetcode.cn/problems/russian-doll-envelopes/）partial_order|lis
+673（https://leetcode.cn/problems/number-of-longest-increasing-subsequence/）lis|counter|O(nlogn)|classical
+1092（https://leetcode.cn/problems/shortest-common-supersequence/）lcs_by_lis|super_sequence
+1671（https://leetcode.cn/problems/minimum-number-of-removals-to-make-mountain-array/）lis|prefix_suffix
+2111（https://leetcode.cn/problems/minimum-operations-to-make-the-array-k-increasing/）lis|dp|greedy
+17（https://leetcode.cn/problems/circus-tower-lcci/）partial_order|greedy|sort|lis
+1691（https://leetcode.cn/problems/maximum-height-by-stacking-cuboids/submissions/）md_partial_order
+1713（https://leetcode.cn/problems/minimum-operations-to-make-a-subsequence/）lcs_by_lis
+1940（https://leetcode.cn/problems/longest-common-subsequence-between-sorted-arrays/）lcs_by_lis
+2826（https://leetcode.cn/problems/sorting-three-groups/）longest_non_decreasing_subsequence|classical
+1964（https://leetcode.cn/problems/find-the-longest-valid-obstacle-course-at-each-position/）lis
+2945（https://leetcode.cn/problems/find-maximum-non-decreasing-array-length/description/）linear dp|deque|greedy|prefix_sum
 
 ===================================CodeForces===================================
 1682C（https://codeforces.com/contest/1682/problem/C）lis|lds|greedy|counter
@@ -78,7 +78,7 @@ class Solution:
     @staticmethod
     def lc_1713(target: List[int], arr: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/minimum-operations-to-make-a-subsequence/
+        url: https://leetcode.cn/problems/minimum-operations-to-make-a-subsequence/
         tag: lcs_by_lis
         """
         # 最长递增子序列模板题
@@ -89,7 +89,7 @@ class Solution:
     @staticmethod
     def lc_1964(obstacles: List[int]) -> List[int]:
         """
-        url: https://leetcode.com/problems/find-the-longest-valid-obstacle-course-at-each-position/
+        url: https://leetcode.cn/problems/find-the-longest-valid-obstacle-course-at-each-position/
         tag: lis
         """
         # LIS求以每个位置结尾的最长不降子序列长度
@@ -108,7 +108,7 @@ class Solution:
     @staticmethod
     def lc_2111(arr: List[int], k: int) -> int:
         """
-        url: https://leetcode.com/problems/minimum-operations-to-make-the-array-k-increasing/
+        url: https://leetcode.cn/problems/minimum-operations-to-make-the-array-k-increasing/
         tag: lis|dp|greedy
         """
         # 最长不降子序列
@@ -121,7 +121,7 @@ class Solution:
     @staticmethod
     def lc_2826(nums: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/sorting-three-groups/
+        url: https://leetcode.cn/problems/sorting-three-groups/
         tag: longest_non_decreasing_subsequence|classical
         """
         # 转换为求最长不降子序列
@@ -131,7 +131,7 @@ class Solution:
     @staticmethod
     def lc_2945(nums: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/find-maximum-non-decreasing-array-length/description/
+        url: https://leetcode.cn/problems/find-maximum-non-decreasing-array-length/description/
         tag: linear dp|deque|greedy|prefix_sum
         """
         n = len(nums)
@@ -268,7 +268,7 @@ class Solution:
     @staticmethod
     def lc_673(nums: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/number-of-longest-increasing-subsequence/
+        url: https://leetcode.cn/problems/number-of-longest-increasing-subsequence/
         tag: lis|counter|O(nlogn)|classical
         """
         return LcsComputeByLis().length_and_cnt_of_lis(nums)
@@ -276,7 +276,7 @@ class Solution:
     @staticmethod
     def lc_1092(str1: str, str2: str) -> str:
         """
-        url: https://leetcode.com/problems/shortest-common-supersequence/
+        url: https://leetcode.cn/problems/shortest-common-supersequence/
         tag: lcs_by_lis|super_sequence
         """
         # 利用LIS求LCS的最短公共超序列

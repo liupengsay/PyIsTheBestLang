@@ -4,18 +4,18 @@ Description：lexicographical_order|counter|high_to_low|low_to_high
 
 
 ====================================LeetCode====================================
-233（https://leetcode.com/problems/number-of-digit-one/）counter|digital_dp
-357（https://leetcode.com/problems/count-numbers-with-unique-digits/）comb|digital_dp
-600（https://leetcode.com/problems/non-negative-integers-without-consecutive-ones/）counter|digital_dp
-902（https://leetcode.com/problems/numbers-at-most-n-given-digit-set/）counter|digital_dp
-1012（https://leetcode.com/problems/numbers-with-repeated-digits/）inclusion_exclusion|counter|digital_dp
-1067（https://leetcode.com/problems/digit-count-in-range/）counter|digital_dp|inclusion_exclusion
-1397（https://leetcode.com/problems/find-all-good-strings/）digital_dp|implemention
-2376（https://leetcode.com/problems/count-special-integers/）counter|digital_dp
-2719（https://leetcode.com/problems/count-of-integers/）digital_dp|inclusion_exclusion
-2801（https://leetcode.com/problems/count-stepping-numbers-in-range/）digital_dp|inclusion_exclusion
-2827（https://leetcode.com/problems/number-of-beautiful-integers-in-the-range/）digital_dp|inclusion_exclusion
-17（https://leetcode.com/problems/number-of-2s-in-range-lcci/）counter|digital_dp
+233（https://leetcode.cn/problems/number-of-digit-one/）counter|digital_dp
+357（https://leetcode.cn/problems/count-numbers-with-unique-digits/）comb|digital_dp
+600（https://leetcode.cn/problems/non-negative-integers-without-consecutive-ones/）counter|digital_dp
+902（https://leetcode.cn/problems/numbers-at-most-n-given-digit-set/）counter|digital_dp
+1012（https://leetcode.cn/problems/numbers-with-repeated-digits/）inclusion_exclusion|counter|digital_dp
+1067（https://leetcode.cn/problems/digit-count-in-range/）counter|digital_dp|inclusion_exclusion
+1397（https://leetcode.cn/problems/find-all-good-strings/）digital_dp|implemention
+2376（https://leetcode.cn/problems/count-special-integers/）counter|digital_dp
+2719（https://leetcode.cn/problems/count-of-integers/）digital_dp|inclusion_exclusion
+2801（https://leetcode.cn/problems/count-stepping-numbers-in-range/）digital_dp|inclusion_exclusion
+2827（https://leetcode.cn/problems/number-of-beautiful-integers-in-the-range/）digital_dp|inclusion_exclusion
+17（https://leetcode.cn/problems/number-of-2s-in-range-lcci/）counter|digital_dp
 
 ====================================AtCoder=====================================
 D - XOR World（https://atcoder.jp/contests/abc121/tasks/abc121_d）xor_property|digital_dp
@@ -109,7 +109,7 @@ class Solution:
     @staticmethod
     def lc_233(n: int) -> int:
         """
-        url: https://leetcode.com/problems/number-of-digit-one/
+        url: https://leetcode.cn/problems/number-of-digit-one/
         tag: counter|digital_dp
         """
         #  0 到 n 有数位 1 的出现次数
@@ -120,7 +120,7 @@ class Solution:
     @staticmethod
     def lc_2719(num1: str, num2: str, min_sum: int, max_sum: int) -> int:
         """
-        url: https://leetcode.com/problems/count-of-integers/
+        url: https://leetcode.cn/problems/count-of-integers/
         tag: digital_dp|inclusion_exclusion
         """
         # digital_dp|inclusion_exclusion
@@ -158,7 +158,7 @@ class Solution:
     @staticmethod
     def lc_2801(low: str, high: str) -> int:
         """
-        url: https://leetcode.com/problems/count-stepping-numbers-in-range/
+        url: https://leetcode.cn/problems/count-stepping-numbers-in-range/
         tag: digital_dp|inclusion_exclusion
         """
         # digital_dp|inclusion_exclusion
@@ -189,7 +189,7 @@ class Solution:
     @staticmethod
     def lc_2827(low: int, high: int, k: int) -> int:
         """
-        url: https://leetcode.com/problems/number-of-beautiful-integers-in-the-range/
+        url: https://leetcode.cn/problems/number-of-beautiful-integers-in-the-range/
         tag: digital_dp|inclusion_exclusion
         """
         # digital_dp|inclusion_exclusion
@@ -233,7 +233,7 @@ class Solution:
     @staticmethod
     def lc_1067(d: int, low: int, high: int) -> int:
         """
-        url: https://leetcode.com/problems/digit-count-in-range/
+        url: https://leetcode.cn/problems/digit-count-in-range/
         tag: counter|digital_dp|inclusion_exclusion
         """
         # 区间counter，右端点减去左端点，digital_dp|inclusion_exclusion

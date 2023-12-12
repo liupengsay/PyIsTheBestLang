@@ -5,16 +5,16 @@ Description：range_query|binary_search
 
 
 ====================================LeetCode====================================
-295（https://leetcode.com/problems/find-median-from-data-stream/）sorted_list
-2426（https://leetcode.com/problems/number-of-pairs-satisfying-inequality/）math|sorted_list|binary_search
-2179（https://leetcode.com/problems/count-good-triplets-in-an-array/）sorted_list|binary_search
-2141（https://leetcode.com/problems/maximum-running-time-of-n-computers/）greedy|binary_search|implemention
-2102（https://leetcode.com/problems/sequentially-ordinal-rank-tracker/）sorted_list
-2519（https://leetcode.com/problems/count-the-number-of-k-big-indices/）sorted_list
-1912（https://leetcode.com/problems/design-movie-rental-system/）sorted_list|classical
-1825（https://leetcode.com/problems/finding-mk-average/）sorted_list|deque
-2250（https://leetcode.com/problems/count-number-of-rectangles-containing-each-point/）offline_query|pointer|sorting|binary_search
-2426（https://leetcode.com/problems/number-of-pairs-satisfying-inequality/）math|sorted_list|binary_search
+295（https://leetcode.cn/problems/find-median-from-data-stream/）sorted_list
+2426（https://leetcode.cn/problems/number-of-pairs-satisfying-inequality/）math|sorted_list|binary_search
+2179（https://leetcode.cn/problems/count-good-triplets-in-an-array/）sorted_list|binary_search
+2141（https://leetcode.cn/problems/maximum-running-time-of-n-computers/）greedy|binary_search|implemention
+2102（https://leetcode.cn/problems/sequentially-ordinal-rank-tracker/）sorted_list
+2519（https://leetcode.cn/problems/count-the-number-of-k-big-indices/）sorted_list
+1912（https://leetcode.cn/problems/design-movie-rental-system/）sorted_list|classical
+1825（https://leetcode.cn/problems/finding-mk-average/）sorted_list|deque
+2250（https://leetcode.cn/problems/count-number-of-rectangles-containing-each-point/）offline_query|pointer|sorting|binary_search
+2426（https://leetcode.cn/problems/number-of-pairs-satisfying-inequality/）math|sorted_list|binary_search
 
 =====================================LuoGu======================================
 P7333（https://www.luogu.com.cn/problem/P7333）sorting|sorted_list|circular_array|range_query
@@ -126,7 +126,7 @@ class Solution:
     @staticmethod
     def lc_2426(nums1: List[int], nums2: List[int], diff: int) -> int:
         """
-        url: https://leetcode.com/problems/number-of-pairs-satisfying-inequality/
+        url: https://leetcode.cn/problems/number-of-pairs-satisfying-inequality/
         tag: math|sorted_list|binary_search
         """
         # math|与sorted_listbinary_searchcounter

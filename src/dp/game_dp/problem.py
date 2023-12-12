@@ -3,8 +3,8 @@ Algorithm：game_dp|wining_state|lose
 Description：brute_force|interval_dp|implemention|greedy
 
 ====================================LeetCode====================================
-375（https://leetcode.com/problems/guess-number-higher-or-lower-ii/）interval_dp|classical|game_dp
-1140（https://leetcode.com/problems/stone-game-ii/）prefix_sum|linear_dp
+375（https://leetcode.cn/problems/guess-number-higher-or-lower-ii/）interval_dp|classical|game_dp
+1140（https://leetcode.cn/problems/stone-game-ii/）prefix_sum|linear_dp
 
 =====================================LuoGu======================================
 P1290（https://www.luogu.com.cn/problem/P1290）classical|game_dp

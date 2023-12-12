@@ -3,7 +3,7 @@ Algorithm：convex_hull|minimum_circle_coverage|random_increment_method
 Description：convex_hull
 
 ====================================LeetCode====================================
-1924（https://leetcode.com/problems/erect-the-fence-ii/）convex_hull|tripart_pack_tripart|minimum_circle_coverage
+1924（https://leetcode.cn/problems/erect-the-fence-ii/）convex_hull|tripart_pack_tripart|minimum_circle_coverage
 
 =====================================LuoGu======================================
 P1742（https://www.luogu.com.cn/problem/P1742）random_increment_method|minimum_circle_coverage
@@ -24,7 +24,7 @@ class Solution:
     @staticmethod
     def lc_1924(trees: List[List[int]]) -> List[float]:
         """
-        url: https://leetcode.com/problems/erect-the-fence-ii/
+        url: https://leetcode.cn/problems/erect-the-fence-ii/
         tag: convex_hull|tripart_pack_tripart|minimum_circle_coverage
         """
         # 随机增量法求最小圆覆盖

@@ -3,45 +3,45 @@ Algorithm：brute_force|matrix_rotate|matrix_spiral|contribution_method
 Description：brute force according to the data range
 
 ====================================LeetCode====================================
-670（https://leetcode.com/problems/maximum-swap/）greedy|brute_force
-395（https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters/）brute_force|divide_and_conquer
-1330（https://leetcode.com/problems/reverse-subarray-to-maximize-array-value/）brute_force
-2488（https://leetcode.com/problems/count-subarrays-with-median-k/）median|brute_force|pre_consequence|post_consequence
-2484（https://leetcode.com/problems/count-palindromic-subsequences/）prefix_suffix|hash|brute_force|palindrome_substring
-2322（https://leetcode.com/problems/minimum-score-after-removals-on-a-tree/）brute_force|tree_dp|unionfind|xor_min
-2321（https://leetcode.com/problems/maximum-score-of-spliced-array/）brute_force
-2306（https://leetcode.com/problems/naming-a-company/）alphabet|brute_force
-2272（https://leetcode.com/problems/substring-with-largest-variance/）alphabet|brute_force
-2183（https://leetcode.com/problems/count-array-pairs-divisible-by-k/）gcd|brute_force
-2151（https://leetcode.com/problems/maximum-good-people-based-on-statements/）state_compression|brute_force
-2147（https://leetcode.com/problems/number-of-ways-to-divide-a-long-corridor/）brute_force|counter
-2122（https://leetcode.com/problems/recover-the-original-array/）brute_force
-2468（https://leetcode.com/problems/split-message-based-on-limit/）binary_search
-2417（https://leetcode.com/problems/closest-fair-integer/）digit|greedy|brute_force
-2681（https://leetcode.com/problems/power-of-heroes/）contribution_method|brute_force|counter
-1625（https://leetcode.com/problems/lexicographically-smallest-string-after-applying-operations/）brute_force|lexicographical_order
-1819（https://leetcode.com/problems/number-of-different-subsequences-gcds/）harmonic_progression|brute_force
-1862（https://leetcode.com/submissions/detail/371754298/）brute_force|harmonic_progression
-2014（https://leetcode.com/problems/longest-subsequence-repeated-k-times/）data_range|brute_force|greedy|permutations
-2077（https://leetcode.com/problems/paths-in-maze-that-lead-to-same-room/）bit_operation|brute_force
-2081（https://leetcode.com/problems/sum-of-k-mirror-numbers/）palindrome_num|base_n|brute_force
-2170（https://leetcode.com/problems/minimum-operations-to-make-the-array-alternating/）brute_force|secondary_maximum
-1215（https://leetcode.com/problems/stepping-numbers/）data_range|back_track|brute_force
-2245（https://leetcode.com/problems/maximum-trailing-zeros-in-a-cornered-path/）prefix_sum|brute_force
-1878（https://leetcode.com/problems/get-biggest-three-rhombus-sums-in-a-grid/）prefix_sum与|brute_force
-2018（https://leetcode.com/problems/check-if-word-can-be-placed-in-crossword/description/）brute_force
-2591（https://leetcode.com/problems/distribute-money-to-maximum-children/）brute_force
-910（https://leetcode.com/problems/smallest-range-ii/description/）brute_force|data_range
-1131（https://leetcode.com/problems/maximum-of-absolute-value-expression/description/）manhattan_distance|brute_force
-1761（https://leetcode.com/problems/minimum-degree-of-a-connected-trio-in-a-graph/）directed_graph|undirected_graph|brute_force
-1178（https://leetcode.com/problems/number-of-valid-words-for-each-puzzle/）hash|counter|brute_force|bit_operation
-1638（https://leetcode.com/problems/count-substrings-that-differ-by-one-character/description/）brute_force|dp|brute_force
-2212（https://leetcode.com/problems/maximum-points-in-an-archery-competition/）bit_operation|brute_force|back_track
-2749（https://leetcode.com/problems/minimum-operations-to-make-the-integer-zero/）brute_force|bit_operation
-2094（https://leetcode.com/problems/finding-3-digit-even-numbers/description/）brain_teaser|brute_force|data_range
-842（https://leetcode.com/problems/split-array-into-fibonacci-sequence/description/）brain_teaser|brute_force|back_track
-2122（https://leetcode.com/problems/recover-the-original-array/）brute_force|hash|implemention
-1782（https://leetcode.com/problems/count-pairs-of-nodes/description/）brute_force
+670（https://leetcode.cn/problems/maximum-swap/）greedy|brute_force
+395（https://leetcode.cn/problems/longest-substring-with-at-least-k-repeating-characters/）brute_force|divide_and_conquer
+1330（https://leetcode.cn/problems/reverse-subarray-to-maximize-array-value/）brute_force
+2488（https://leetcode.cn/problems/count-subarrays-with-median-k/）median|brute_force|pre_consequence|post_consequence
+2484（https://leetcode.cn/problems/count-palindromic-subsequences/）prefix_suffix|hash|brute_force|palindrome_substring
+2322（https://leetcode.cn/problems/minimum-score-after-removals-on-a-tree/）brute_force|tree_dp|unionfind|xor_min
+2321（https://leetcode.cn/problems/maximum-score-of-spliced-array/）brute_force
+2306（https://leetcode.cn/problems/naming-a-company/）alphabet|brute_force
+2272（https://leetcode.cn/problems/substring-with-largest-variance/）alphabet|brute_force
+2183（https://leetcode.cn/problems/count-array-pairs-divisible-by-k/）gcd|brute_force
+2151（https://leetcode.cn/problems/maximum-good-people-based-on-statements/）state_compression|brute_force
+2147（https://leetcode.cn/problems/number-of-ways-to-divide-a-long-corridor/）brute_force|counter
+2122（https://leetcode.cn/problems/recover-the-original-array/）brute_force
+2468（https://leetcode.cn/problems/split-message-based-on-limit/）binary_search
+2417（https://leetcode.cn/problems/closest-fair-integer/）digit|greedy|brute_force
+2681（https://leetcode.cn/problems/power-of-heroes/）contribution_method|brute_force|counter
+1625（https://leetcode.cn/problems/lexicographically-smallest-string-after-applying-operations/）brute_force|lexicographical_order
+1819（https://leetcode.cn/problems/number-of-different-subsequences-gcds/）harmonic_progression|brute_force
+1862（https://leetcode.cn/submissions/detail/371754298/）brute_force|harmonic_progression
+2014（https://leetcode.cn/problems/longest-subsequence-repeated-k-times/）data_range|brute_force|greedy|permutations
+2077（https://leetcode.cn/problems/paths-in-maze-that-lead-to-same-room/）bit_operation|brute_force
+2081（https://leetcode.cn/problems/sum-of-k-mirror-numbers/）palindrome_num|base_n|brute_force
+2170（https://leetcode.cn/problems/minimum-operations-to-make-the-array-alternating/）brute_force|secondary_maximum
+1215（https://leetcode.cn/problems/stepping-numbers/）data_range|back_track|brute_force
+2245（https://leetcode.cn/problems/maximum-trailing-zeros-in-a-cornered-path/）prefix_sum|brute_force
+1878（https://leetcode.cn/problems/get-biggest-three-rhombus-sums-in-a-grid/）prefix_sum与|brute_force
+2018（https://leetcode.cn/problems/check-if-word-can-be-placed-in-crossword/description/）brute_force
+2591（https://leetcode.cn/problems/distribute-money-to-maximum-children/）brute_force
+910（https://leetcode.cn/problems/smallest-range-ii/description/）brute_force|data_range
+1131（https://leetcode.cn/problems/maximum-of-absolute-value-expression/description/）manhattan_distance|brute_force
+1761（https://leetcode.cn/problems/minimum-degree-of-a-connected-trio-in-a-graph/）directed_graph|undirected_graph|brute_force
+1178（https://leetcode.cn/problems/number-of-valid-words-for-each-puzzle/）hash|counter|brute_force|bit_operation
+1638（https://leetcode.cn/problems/count-substrings-that-differ-by-one-character/description/）brute_force|dp|brute_force
+2212（https://leetcode.cn/problems/maximum-points-in-an-archery-competition/）bit_operation|brute_force|back_track
+2749（https://leetcode.cn/problems/minimum-operations-to-make-the-integer-zero/）brute_force|bit_operation
+2094（https://leetcode.cn/problems/finding-3-digit-even-numbers/description/）brain_teaser|brute_force|data_range
+842（https://leetcode.cn/problems/split-array-into-fibonacci-sequence/description/）brain_teaser|brute_force|back_track
+2122（https://leetcode.cn/problems/recover-the-original-array/）brute_force|hash|implemention
+1782（https://leetcode.cn/problems/count-pairs-of-nodes/description/）brute_force
 
 =====================================LuoGu======================================
 P1548（https://www.luogu.com.cn/problem/P1548）brute_force
@@ -213,7 +213,7 @@ class Solution:
     @staticmethod
     def lc_670(num: int) -> int:
         """
-        url: https://leetcode.com/problems/maximum-swap/
+        url: https://leetcode.cn/problems/maximum-swap/
         tag: greedy|brute_force
         """
         # 在复杂度有限的情况下有限采用brute_force的方式而不是greedy
@@ -788,7 +788,7 @@ class Solution:
     @staticmethod
     def lc_2591(money: int, children: int) -> int:
         """
-        url: https://leetcode.com/problems/distribute-money-to-maximum-children/
+        url: https://leetcode.cn/problems/distribute-money-to-maximum-children/
         tag: brute_force
         """
         # brute_force考虑边界条件
@@ -810,7 +810,7 @@ class Solution:
     @staticmethod
     def lc_2681(nums: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/power-of-heroes/
+        url: https://leetcode.cn/problems/power-of-heroes/
         tag: contribution_method|brute_force|counter
         """
         # 按照contribution_methodbrute_forcecounter
@@ -1090,7 +1090,7 @@ class Solution:
     @staticmethod
     def lc_2018(board: List[List[str]], word: str) -> bool:
         """
-        url: https://leetcode.com/problems/check-if-word-can-be-placed-in-crossword/description/
+        url: https://leetcode.cn/problems/check-if-word-can-be-placed-in-crossword/description/
         tag: brute_force
         """
         # brute_force空挡位置与矩阵行列取数
@@ -1125,7 +1125,7 @@ class Solution:
     @staticmethod
     def lc_2170(nums: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/minimum-operations-to-make-the-array-alternating/
+        url: https://leetcode.cn/problems/minimum-operations-to-make-the-array-alternating/
         tag: brute_force|secondary_maximum
         """
         # brute_force，运用最大值与次大值技巧
@@ -1167,7 +1167,7 @@ class Solution:
     @staticmethod
     def lc_910(nums: List[int], k: int) -> int:
         """
-        url: https://leetcode.com/problems/smallest-range-ii/description/
+        url: https://leetcode.cn/problems/smallest-range-ii/description/
         tag: brute_force|data_range
         """
         # brute_force操作的范围，最大值与最小值
@@ -1186,7 +1186,7 @@ class Solution:
     @staticmethod
     def lc_1178(words: List[str], puzzles: List[str]) -> List[int]:
         """
-        url: https://leetcode.com/problems/number-of-valid-words-for-each-puzzle/
+        url: https://leetcode.cn/problems/number-of-valid-words-for-each-puzzle/
         tag: hash|counter|brute_force|bit_operation
         """
         # classicalhashcounterbrute_force，bit_operation
@@ -1213,7 +1213,7 @@ class Solution:
     @staticmethod
     def lc_1215(low: int, high: int) -> List[int]:
         """
-        url: https://leetcode.com/problems/stepping-numbers/
+        url: https://leetcode.cn/problems/stepping-numbers/
         tag: data_range|back_track|brute_force
         """
 
@@ -1244,7 +1244,7 @@ class Solution:
     @staticmethod
     def lc_1131(arr1: List[int], arr2: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/maximum-of-absolute-value-expression/description/
+        url: https://leetcode.cn/problems/maximum-of-absolute-value-expression/description/
         tag: manhattan_distance|brute_force
         """
         # manhattan_distance，brute_force可能的符号组合
@@ -1262,7 +1262,7 @@ class Solution:
     @staticmethod
     def lc_1638_1(s: str, t: str) -> int:
         """
-        url: https://leetcode.com/problems/count-substrings-that-differ-by-one-character/description/
+        url: https://leetcode.cn/problems/count-substrings-that-differ-by-one-character/description/
         tag: brute_force|dp|brute_force
         """
         # brute_force子字符串对开头位置也可DPbrute_force
@@ -1284,7 +1284,7 @@ class Solution:
     @staticmethod
     def lc_1638_2(s: str, t: str) -> int:
         """
-        url: https://leetcode.com/problems/count-substrings-that-differ-by-one-character/description/
+        url: https://leetcode.cn/problems/count-substrings-that-differ-by-one-character/description/
         tag: brute_force|dp|brute_force
         """
         # brute_force子字符串对开头位置也可DPbrute_force
@@ -1305,7 +1305,7 @@ class Solution:
     @staticmethod
     def lc_1761(n: int, edges: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/minimum-degree-of-a-connected-trio-in-a-graph/
+        url: https://leetcode.cn/problems/minimum-degree-of-a-connected-trio-in-a-graph/
         tag: directed_graph|undirected_graph|brute_force
         """
         # 无向图转为有向图brute_force
@@ -1336,7 +1336,7 @@ class Solution:
     @staticmethod
     def lc_1878(grid: List[List[int]]) -> List[int]:
         """
-        url: https://leetcode.com/problems/get-biggest-three-rhombus-sums-in-a-grid/
+        url: https://leetcode.cn/problems/get-biggest-three-rhombus-sums-in-a-grid/
         tag: prefix_sum与|brute_force
         """
         # 两个方向上的prefix_sum与边长brute_force
@@ -1392,7 +1392,7 @@ class Solution:
     @staticmethod
     def lc_2212(x: int, y: List[int]) -> List[int]:
         """
-        url: https://leetcode.com/problems/maximum-points-in-an-archery-competition/
+        url: https://leetcode.cn/problems/maximum-points-in-an-archery-competition/
         tag: bit_operation|brute_force|back_track
         """
         # bit_operationbrute_force或者back_track
@@ -1418,7 +1418,7 @@ class Solution:
     @staticmethod
     def lc_2245(grid: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/maximum-trailing-zeros-in-a-cornered-path/
+        url: https://leetcode.cn/problems/maximum-trailing-zeros-in-a-cornered-path/
         tag: prefix_sum|brute_force
         """
         # 四个方向的prefix_sum与两两组合brute_force

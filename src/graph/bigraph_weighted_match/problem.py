@@ -3,9 +3,9 @@ Algorithm：bipartite_graph|maximum_weight_match|minimum_weight_match|km|ek
 Description：
 
 ====================================LeetCode====================================
-1820（https://leetcode.com/problems/maximum-number-of-accepted-invitations/）hungarian|bipartite_graph|maximum_weight_match|km
-1066（https://leetcode.com/problems/campus-bikes-ii/）bipartite_graph|minimum_weight_match|km
-1947（https://leetcode.com/problems/maximum-compatibility-score-sum/）bipartite_graph|maximum_weight_match|state_compress
+1820（https://leetcode.cn/problems/maximum-number-of-accepted-invitations/）hungarian|bipartite_graph|maximum_weight_match|km
+1066（https://leetcode.cn/problems/campus-bikes-ii/）bipartite_graph|minimum_weight_match|km
+1947（https://leetcode.cn/problems/maximum-compatibility-score-sum/）bipartite_graph|maximum_weight_match|state_compress
 
 =====================================LuoGu======================================
 P3386（https://www.luogu.com.cn/problem/P3386）bipartite_graph|maximum_weight_match|km
@@ -55,7 +55,7 @@ class Solution:
     @staticmethod
     def lc_1820(grid):
         """
-        url: https://leetcode.com/problems/maximum-number-of-accepted-invitations/
+        url: https://leetcode.cn/problems/maximum-number-of-accepted-invitations/
         tag: hungarian|bipartite_graph|maximum_weight_match|km
         """
         # hungarian模板build_graph||maximum_weight_match|km
@@ -86,7 +86,7 @@ class Solution:
     @staticmethod
     def lc_1820_2(grid: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/maximum-number-of-accepted-invitations/
+        url: https://leetcode.cn/problems/maximum-number-of-accepted-invitations/
         tag: hungarian|bipartite_graph|maximum_weight_match|km
         """
         # EK网络最大流算法模板build_graph||maximum_weight_match|km
@@ -108,7 +108,7 @@ class Solution:
     @staticmethod
     def lc_1820_3(grid):
         """
-        url: https://leetcode.com/problems/maximum-number-of-accepted-invitations/
+        url: https://leetcode.cn/problems/maximum-number-of-accepted-invitations/
         tag: hungarian|bipartite_graph|maximum_weight_match|km
         """
         # KM算法模板build_graph||maximum_weight_match|km
@@ -159,7 +159,7 @@ class Solution:
     @staticmethod
     def lc_1947(students: List[List[int]], mentors: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/maximum-compatibility-score-sum/
+        url: https://leetcode.cn/problems/maximum-compatibility-score-sum/
         tag: bipartite_graph|maximum_weight_match|state_compress
         """
         # bipartite_graphmaximum_weight_match，也可用state_compress
@@ -193,7 +193,7 @@ class Solution:
     @staticmethod
     def lc_1066(workers: List[List[int]], bikes: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/campus-bikes-ii/
+        url: https://leetcode.cn/problems/campus-bikes-ii/
         tag: bipartite_graph|minimum_weight_match|km
         """
         # bipartite_graph最小权匹配

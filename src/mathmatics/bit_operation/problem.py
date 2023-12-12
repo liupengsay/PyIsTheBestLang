@@ -5,26 +5,26 @@ Description：bit_wise|xor|or|and|brute_force
 Property：(4*i)^(4*i+1)^(4*i+2)^(4*i+3)=0  (2*n)^(2*n+1)=1 (a&b)^(a&c) = a&(b^c)
 
 ====================================LeetCode====================================
-2354（https://leetcode.com/problems/number-of-excellent-pairs/）brain_teaser|hash|counter|brute_force
-260（https://leetcode.com/problems/single-number-iii/）bit_operation|cor_property|lowest_bit
-6365（https://leetcode.com/problems/minimum-operations-to-reduce-an-integer-to-0/）operation|bit_property
-6360（https://leetcode.com/problems/minimum-impossible-or/）greedy
-2564（https://leetcode.com/problems/substring-xor-queries/）bit_operation|bit_property
-1238（https://leetcode.com/problems/circular-permutation-in-binary-representation/）gray_code|classical
-89（https://leetcode.com/problems/gray-code/）gray_code|classical
-137（https://leetcode.com/problems/single-number-ii/）bit_operation|counter
-56（https://leetcode.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-lcof/）bit_operation|counter
-260（https://leetcode.com/problems/single-number-iii/）bit_operation|counter
-2546（https://leetcode.com/problems/apply-bitwise-operations-to-make-strings-equal/）xor_property|brain_teaser
-1486（https://leetcode.com/problems/xor-operation-in-an-array/）xor_property
-1734（https://leetcode.com/problems/decode-xored-permutation/）math|xor_property|odd_xor
-1787（https://leetcode.com/problems/make-the-xor-of-all-segments-equal-to-zero/）xor_property|data_range|brute_force
-1835（https://leetcode.com/problems/find-xor-sum-of-all-pairs-bitwise-and/）bit_operation|implemention
-1611（https://leetcode.com/problems/minimum-one-bit-operations-to-make-integers-zero/）gray_code|classical
-2275（https://leetcode.com/problems/largest-combination-with-bitwise-and-greater-than-zero/）range_add|classical|st
-2527（https://leetcode.com/problems/find-xor-beauty-of-array/description/）brute_force|brain_teaser|bit_operation
-2680（https://leetcode.com/problems/maximum-or/description/）greedy|brute_force|prefix_suffix
-100087（https://leetcode.com/problems/apply-operations-on-array-to-maximize-sum-of-squares/description/）bit_wise|bit_operation|greedy
+2354（https://leetcode.cn/problems/number-of-excellent-pairs/）brain_teaser|hash|counter|brute_force
+260（https://leetcode.cn/problems/single-number-iii/）bit_operation|cor_property|lowest_bit
+6365（https://leetcode.cn/problems/minimum-operations-to-reduce-an-integer-to-0/）operation|bit_property
+6360（https://leetcode.cn/problems/minimum-impossible-or/）greedy
+2564（https://leetcode.cn/problems/substring-xor-queries/）bit_operation|bit_property
+1238（https://leetcode.cn/problems/circular-permutation-in-binary-representation/）gray_code|classical
+89（https://leetcode.cn/problems/gray-code/）gray_code|classical
+137（https://leetcode.cn/problems/single-number-ii/）bit_operation|counter
+56（https://leetcode.cn/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-lcof/）bit_operation|counter
+260（https://leetcode.cn/problems/single-number-iii/）bit_operation|counter
+2546（https://leetcode.cn/problems/apply-bitwise-operations-to-make-strings-equal/）xor_property|brain_teaser
+1486（https://leetcode.cn/problems/xor-operation-in-an-array/）xor_property
+1734（https://leetcode.cn/problems/decode-xored-permutation/）math|xor_property|odd_xor
+1787（https://leetcode.cn/problems/make-the-xor-of-all-segments-equal-to-zero/）xor_property|data_range|brute_force
+1835（https://leetcode.cn/problems/find-xor-sum-of-all-pairs-bitwise-and/）bit_operation|implemention
+1611（https://leetcode.cn/problems/minimum-one-bit-operations-to-make-integers-zero/）gray_code|classical
+2275（https://leetcode.cn/problems/largest-combination-with-bitwise-and-greater-than-zero/）range_add|classical|st
+2527（https://leetcode.cn/problems/find-xor-beauty-of-array/description/）brute_force|brain_teaser|bit_operation
+2680（https://leetcode.cn/problems/maximum-or/description/）greedy|brute_force|prefix_suffix
+100087（https://leetcode.cn/problems/apply-operations-on-array-to-maximize-sum-of-squares/description/）bit_wise|bit_operation|greedy
 
 =====================================LuoGu======================================
 P5657（https://www.luogu.com.cn/problem/P5657）bit_operation
@@ -171,7 +171,7 @@ class Solution:
     @staticmethod
     def lc_260(nums: List[int]) -> List[int]:
         """
-        url: https://leetcode.com/problems/single-number-iii/
+        url: https://leetcode.cn/problems/single-number-iii/
         tag: bit_operation|counter
         """
 
@@ -189,7 +189,7 @@ class Solution:
     @staticmethod
     def lc_137(nums: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/single-number-ii/
+        url: https://leetcode.cn/problems/single-number-ii/
         tag: bit_operation|counter
         """
 
@@ -233,7 +233,7 @@ class Solution:
     @staticmethod
     def lc_1787(nums: List[int], k: int) -> int:
         """
-        url: https://leetcode.com/problems/make-the-xor-of-all-segments-equal-to-zero/
+        url: https://leetcode.cn/problems/make-the-xor-of-all-segments-equal-to-zero/
         tag: xor_property|data_range|brute_force
         """
         # 按照异或特性分组并利用data_rangebrute_forceDP
@@ -256,7 +256,7 @@ class Solution:
     @staticmethod
     def lc_6360(nums):
         """
-        url: https://leetcode.com/problems/minimum-impossible-or/
+        url: https://leetcode.cn/problems/minimum-impossible-or/
         tag: greedy
         """
         # 最小的无法由子数组的或运算得到的数（异或则可以线性基求解判断）
@@ -269,7 +269,7 @@ class Solution:
     @staticmethod
     def lc_6365(num):
         """
-        url: https://leetcode.com/problems/minimum-operations-to-reduce-an-integer-to-0/
+        url: https://leetcode.cn/problems/minimum-operations-to-reduce-an-integer-to-0/
         tag: operation|bit_property
         """
         # n |上或减去 2 的某个幂使得 n 变为 0 的最少操作数
@@ -288,7 +288,7 @@ class Solution:
     @staticmethod
     def lc_6365_2(num):
         """
-        url: https://leetcode.com/problems/minimum-operations-to-reduce-an-integer-to-0/
+        url: https://leetcode.cn/problems/minimum-operations-to-reduce-an-integer-to-0/
         tag: operation|bit_property
         """
         # 对应有 O(logn) greedy解法
@@ -317,7 +317,7 @@ class Solution:
     @staticmethod
     def lc_2275(candidates: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/largest-combination-with-bitwise-and-greater-than-zero/
+        url: https://leetcode.cn/problems/largest-combination-with-bitwise-and-greater-than-zero/
         tag: range_add|classical|st
         """
         # 求按位与不为0的最长子序列，不要求连续
@@ -333,7 +333,7 @@ class Solution:
     @staticmethod
     def lc_2564(s, queries):
         """
-        url: https://leetcode.com/problems/substring-xor-queries/
+        url: https://leetcode.cn/problems/substring-xor-queries/
         tag: bit_operation|bit_property
         """
         # preprocess相同异或值的索引
@@ -359,7 +359,7 @@ class Solution:
     @staticmethod
     def lc_1238(n: int, start: int) -> List[int]:
         """
-        url: https://leetcode.com/problems/circular-permutation-in-binary-representation/
+        url: https://leetcode.cn/problems/circular-permutation-in-binary-representation/
         tag: gray_code|classical
         """
         # 生成 n 位数的格雷码
@@ -370,7 +370,7 @@ class Solution:
     @staticmethod
     def lc_89(n: int) -> List[int]:
         """
-        url: https://leetcode.com/problems/gray-code/
+        url: https://leetcode.cn/problems/gray-code/
         tag: gray_code|classical
         """
         # 生成 n 位数的格雷码
@@ -643,7 +643,7 @@ class Solution:
     @staticmethod
     def lc_1486(n: int, start: int) -> int:
         """
-        url: https://leetcode.com/problems/xor-operation-in-an-array/
+        url: https://leetcode.cn/problems/xor-operation-in-an-array/
         tag: xor_property
         """
         # 异或公式
@@ -656,7 +656,7 @@ class Solution:
     @staticmethod
     def lc_1734(encoded: List[int]) -> List[int]:
         """
-        url: https://leetcode.com/problems/decode-xored-permutation/
+        url: https://leetcode.cn/problems/decode-xored-permutation/
         tag: math|xor_property|odd_xor
         """
         # 变换公式，解码相邻异或值编码，并利用奇数排列的异或性质

@@ -3,25 +3,25 @@
 Algorithm：binary_search
 Description：monotonicity is necessary for solution like these, which always work together with SortedList, or can also use Bisect, sometimes with high precision
 ====================================LeetCode====================================
-4（https://leetcode.com/problems/median-of-two-sorted-arrays/）binary_search|median|two_arrays|same_direction_pointer
-81（https://leetcode.com/problems/search-in-rotated-sorted-array-ii/）binary_search|rotated_array|sorting
-154（https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/）binary_search|rotated_array|sorting|duplicate_nums
-162（https://leetcode.com/problems/find-peak-element/）binary_search|peak_index
-2179（https://leetcode.com/problems/count-good-triplets-in-an-array/）binary_search|sorted_list
-2141（https://leetcode.com/problems/maximum-running-time-of-n-computers/）greedy|binary_search|implemention
-2102（https://leetcode.com/problems/sequentially-ordinal-rank-tracker/）binary_search|sorted_list
-2563（https://leetcode.com/problems/count-the-number-of-fair-pairs/）binary_search|sorted_list
-2604（https://leetcode.com/problems/minimum-time-to-eat-all-grains/）binary_search|greedy|pointer
-1201（https://leetcode.com/problems/ugly-number-iii/）binary_search|counter|inclusion_exclusion
-1739（https://leetcode.com/problems/building-boxes/）math|binary_search
-1889（https://leetcode.com/problems/minimum-space-wasted-from-packaging/）sorting|prefix_sum|greedy|binary_search
-2071（https://leetcode.com/problems/maximum-number-of-tasks-you-can-assign/）binary_search|greedy
-2594（https://leetcode.com/problems/minimum-time-to-repair-cars/）binary_search
-2517（https://leetcode.com/problems/maximum-tastiness-of-candy-basket/）binary_search
-1482（https://leetcode.com/problems/minimum-number-of-days-to-make-m-bouquets/）binary_search
-2528（https://leetcode.com/problems/maximize-the-minimum-powered-city/description/）binary_search|prefix_sum|diff_array|greedy
-2560（https://leetcode.com/problems/house-robber-iv/）binary_search|dp
-2234（https://leetcode.com/problems/maximum-total-beauty-of-the-gardens/description/）prefix_sum|binary_search|brute_force
+4（https://leetcode.cn/problems/median-of-two-sorted-arrays/）binary_search|median|two_arrays|same_direction_pointer
+81（https://leetcode.cn/problems/search-in-rotated-sorted-array-ii/）binary_search|rotated_array|sorting
+154（https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array-ii/）binary_search|rotated_array|sorting|duplicate_nums
+162（https://leetcode.cn/problems/find-peak-element/）binary_search|peak_index
+2179（https://leetcode.cn/problems/count-good-triplets-in-an-array/）binary_search|sorted_list
+2141（https://leetcode.cn/problems/maximum-running-time-of-n-computers/）greedy|binary_search|implemention
+2102（https://leetcode.cn/problems/sequentially-ordinal-rank-tracker/）binary_search|sorted_list
+2563（https://leetcode.cn/problems/count-the-number-of-fair-pairs/）binary_search|sorted_list
+2604（https://leetcode.cn/problems/minimum-time-to-eat-all-grains/）binary_search|greedy|pointer
+1201（https://leetcode.cn/problems/ugly-number-iii/）binary_search|counter|inclusion_exclusion
+1739（https://leetcode.cn/problems/building-boxes/）math|binary_search
+1889（https://leetcode.cn/problems/minimum-space-wasted-from-packaging/）sorting|prefix_sum|greedy|binary_search
+2071（https://leetcode.cn/problems/maximum-number-of-tasks-you-can-assign/）binary_search|greedy
+2594（https://leetcode.cn/problems/minimum-time-to-repair-cars/）binary_search
+2517（https://leetcode.cn/problems/maximum-tastiness-of-candy-basket/）binary_search
+1482（https://leetcode.cn/problems/minimum-number-of-days-to-make-m-bouquets/）binary_search
+2528（https://leetcode.cn/problems/maximize-the-minimum-powered-city/description/）binary_search|prefix_sum|diff_array|greedy
+2560（https://leetcode.cn/problems/house-robber-iv/）binary_search|dp
+2234（https://leetcode.cn/problems/maximum-total-beauty-of-the-gardens/description/）prefix_sum|binary_search|brute_force
 
 =====================================LuoGu======================================
 P1577（https://www.luogu.com.cn/problem/P1577）math|floor|binary_search
@@ -368,7 +368,7 @@ class Solution:
     @staticmethod
     def lc_1889(packages: List[int], boxes: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/minimum-space-wasted-from-packaging/
+        url: https://leetcode.cn/problems/minimum-space-wasted-from-packaging/
         tag: sorting|prefix_sum|greedy|binary_search
         """
         # sorting|prefix_sumpreprocess与greedybinary_search
@@ -398,7 +398,7 @@ class Solution:
     @staticmethod
     def lc_2141(n: int, batteries: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/maximum-running-time-of-n-computers/
+        url: https://leetcode.cn/problems/maximum-running-time-of-n-computers/
         tag: greedy|binary_search|implemention
         """
         # greedybinary_search
@@ -418,7 +418,7 @@ class Solution:
     @staticmethod
     def lc_2528(stations: List[int], r: int, k: int) -> int:
         """
-        url: https://leetcode.com/problems/maximize-the-minimum-powered-city/description/
+        url: https://leetcode.cn/problems/maximize-the-minimum-powered-city/description/
         tag: binary_search|prefix_sum|diff_array|greedy
         """
         # binary_searchprefix_sumdiff_array|greedy验证
@@ -450,7 +450,7 @@ class Solution:
     @staticmethod
     def lc_2563(nums, lower, upper):
         """
-        url: https://leetcode.com/problems/count-the-number-of-fair-pairs/
+        url: https://leetcode.cn/problems/count-the-number-of-fair-pairs/
         tag: binary_search|sorted_list
         """
         # 查找数值和在一定范围的数对个数
@@ -466,9 +466,10 @@ class Solution:
     @staticmethod
     def lc_4(nums1: List[int], nums2: List[int]) -> float:
         """
-        url: https://leetcode.com/problems/median-of-two-sorted-arrays/
+        url: https://leetcode.cn/problems/median-of-two-sorted-arrays/
         tag: binary_search|median|two_arrays|same_direction_pointer
         """
+
         # two_pointersbinary_search移动查找两个正序数组的median
         def get_kth_num(k):
             ind1 = ind2 = 0
@@ -1317,9 +1318,10 @@ class Solution:
     @staticmethod
     def lc_2594(ranks: List[int], cars: int) -> int:
         """
-        url: https://leetcode.com/problems/minimum-time-to-repair-cars/
+        url: https://leetcode.cn/problems/minimum-time-to-repair-cars/
         tag: binary_search
         """
+
         #  binary_search
 
         def check(x):
@@ -1333,7 +1335,7 @@ class Solution:
     @staticmethod
     def lc_2604(hens: List[int], grains: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/minimum-time-to-eat-all-grains/
+        url: https://leetcode.cn/problems/minimum-time-to-eat-all-grains/
         tag: binary_search|greedy|pointer
         """
         # binary_search|pointergreedy check

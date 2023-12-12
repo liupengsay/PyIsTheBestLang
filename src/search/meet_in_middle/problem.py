@@ -3,9 +3,9 @@ Algorithm：meet_in_middle
 Description：data_range|brute_force 
 
 ====================================LeetCode====================================
-1755（https://leetcode.com/problems/closest-subsequence-sum/）meet_in_middle
-2035（https://leetcode.com/problems/partition-array-into-two-arrays-to-minimize-sum-difference/）meet_in_middle|sort|binary_search|two_pointers
-956（https://leetcode.com/problems/tallest-billboard/description/）meet_in_middle
+1755（https://leetcode.cn/problems/closest-subsequence-sum/）meet_in_middle
+2035（https://leetcode.cn/problems/partition-array-into-two-arrays-to-minimize-sum-difference/）meet_in_middle|sort|binary_search|two_pointers
+956（https://leetcode.cn/problems/tallest-billboard/description/）meet_in_middle
 
 =====================================LuoGu======================================
 P5194（https://www.luogu.com.cn/problem/P5194）fibonacci|meet_in_middle|brute_force|binary_search
@@ -34,7 +34,7 @@ class Solution:
     @staticmethod
     def lc_956(rods: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/tallest-billboard/description/
+        url: https://leetcode.cn/problems/tallest-billboard/description/
         tag: meet_in_middle
         """
 
@@ -75,7 +75,7 @@ class Solution:
     @staticmethod
     def lc_2035(nums: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/partition-array-into-two-arrays-to-minimize-sum-difference/
+        url: https://leetcode.cn/problems/partition-array-into-two-arrays-to-minimize-sum-difference/
         tag: meet_in_middle|sort|binary_search|two_pointers
         """
         # meet_in_middlesorting|binary_search或者two_pointers

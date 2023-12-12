@@ -3,14 +3,14 @@ Algorithm：interval_dp
 Description：prefix_sum|interval_dp|preprocess_dp|memory_search
 
 ====================================LeetCode====================================
-375（https://leetcode.com/problems/guess-number-higher-or-lower-ii/）interval_dp
-1039（https://leetcode.com/problems/minimum-score-triangulation-of-polygon/）circular_array|interval_dp
-2472（https://leetcode.com/problems/maximum-number-of-non-overlapping-palindrome-substrings/）palindrome_substring|linear_dp|manacher
-2430（https://leetcode.com/problems/maximum-deletions-on-a-string/）lcp|liner_dp
-1547（https://leetcode.com/problems/minimum-cost-to-cut-a-stick/）interval_dp|implemention
-1278（https://leetcode.com/problems/palindrome-partitioning-iii/）preprocess_dp|interval_dp
-1690（https://leetcode.com/problems/stone-game-vii/description/）interval_dp
-1312（https://leetcode.com/problems/minimum-insertion-steps-to-make-a-string-palindrome/）interval_dp|longest_palindrome_subsequence
+375（https://leetcode.cn/problems/guess-number-higher-or-lower-ii/）interval_dp
+1039（https://leetcode.cn/problems/minimum-score-triangulation-of-polygon/）circular_array|interval_dp
+2472（https://leetcode.cn/problems/maximum-number-of-non-overlapping-palindrome-substrings/）palindrome_substring|linear_dp|manacher
+2430（https://leetcode.cn/problems/maximum-deletions-on-a-string/）lcp|liner_dp
+1547（https://leetcode.cn/problems/minimum-cost-to-cut-a-stick/）interval_dp|implemention
+1278（https://leetcode.cn/problems/palindrome-partitioning-iii/）preprocess_dp|interval_dp
+1690（https://leetcode.cn/problems/stone-game-vii/description/）interval_dp
+1312（https://leetcode.cn/problems/minimum-insertion-steps-to-make-a-string-palindrome/）interval_dp|longest_palindrome_subsequence
 
 =====================================LuoGu======================================
 P1521（https://www.luogu.com.cn/problem/P1521）merge_sort|multiplication_method|tree_array
@@ -102,7 +102,7 @@ class Solution:
     @staticmethod
     def lc_1312(s: str) -> int:
         """
-        url: https://leetcode.com/problems/minimum-insertion-steps-to-make-a-string-palindrome/
+        url: https://leetcode.cn/problems/minimum-insertion-steps-to-make-a-string-palindrome/
         tag: interval_dp|longest_palindrome_subsequence
         """
         # interval_dp|，最长回文子序列
@@ -123,7 +123,7 @@ class Solution:
     @staticmethod
     def lc_1547(n: int, cuts: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/minimum-cost-to-cut-a-stick/
+        url: https://leetcode.cn/problems/minimum-cost-to-cut-a-stick/
         tag: interval_dp|implemention
         """
         # interval_dp|implemention
@@ -140,7 +140,7 @@ class Solution:
     @staticmethod
     def lc_1690(stones: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/stone-game-vii/description/
+        url: https://leetcode.cn/problems/stone-game-vii/description/
         tag: interval_dp
         """
         # interval_dp|
@@ -160,7 +160,7 @@ class Solution:
     @staticmethod
     def lc_2472(s: str, k: int) -> int:
         """
-        url: https://leetcode.com/problems/maximum-number-of-non-overlapping-palindrome-substrings/
+        url: https://leetcode.cn/problems/maximum-number-of-non-overlapping-palindrome-substrings/
         tag: palindrome_substring|linear_dp|manacher
         """
         # preprocess线性palindrome_substring DP 优化外|结果linear_dp 也可以manacher回文串获取回文信息
@@ -438,7 +438,7 @@ class Solution:
     @staticmethod
     def lc_1278(s: str, k: int) -> int:
         """
-        url: https://leetcode.com/problems/palindrome-partitioning-iii/
+        url: https://leetcode.cn/problems/palindrome-partitioning-iii/
         tag: preprocess_dp|interval_dp
         """
         # preprocess双重interval_dp|

@@ -3,9 +3,9 @@ Algorithm：outline_dp
 Description：make the matrix_state_dp change to outline_dp with flatten matrix to linear
 
 ====================================LeetCode====================================
-1659（https://leetcode.com/problems/maximize-grid-happiness/）outline_dp|classical
-1349（https://leetcode.com/problems/maximum-students-taking-exam/）outline_dp|classical
-04（https://leetcode.com/problems/broken-board-dominoes/）outline_dp|classical
+1659（https://leetcode.cn/problems/maximize-grid-happiness/）outline_dp|classical
+1349（https://leetcode.cn/problems/maximum-students-taking-exam/）outline_dp|classical
+04（https://leetcode.cn/problems/broken-board-dominoes/）outline_dp|classical
 
 =====================================LuoGu======================================
 xx（xxx）xxxxxxxxxxxxxxxxxxxx
@@ -30,7 +30,7 @@ class Solution:
     @staticmethod
     def lc_1659_1(m: int, n: int, introverts: int, extroverts: int) -> int:
         """
-        url: https://leetcode.com/problems/maximize-grid-happiness/
+        url: https://leetcode.cn/problems/maximize-grid-happiness/
         tag: outline_dp|classical
         """
         # memory_searchdfs|轮廓线 DP
@@ -78,7 +78,7 @@ class Solution:
     @staticmethod
     def lc_1659_2(m: int, n: int, introverts: int, extroverts: int) -> int:
         """
-        url: https://leetcode.com/problems/maximize-grid-happiness/
+        url: https://leetcode.cn/problems/maximize-grid-happiness/
         tag: outline_dp|classical
         """
         # 迭代轮廓线 DP
@@ -118,7 +118,7 @@ class Solution:
     @staticmethod
     def lc_1659_3(m: int, n: int, introverts: int, extroverts: int) -> int:
         """
-        url: https://leetcode.com/problems/maximize-grid-happiness/
+        url: https://leetcode.cn/problems/maximize-grid-happiness/
         tag: outline_dp|classical
         """
 
@@ -149,7 +149,7 @@ class Solution:
     @staticmethod
     def lc_1349_1(seats: List[List[str]]) -> int:
         """
-        url: https://leetcode.com/problems/maximum-students-taking-exam/
+        url: https://leetcode.cn/problems/maximum-students-taking-exam/
         tag: outline_dp|classical
         """
         # memory_searchdfs|轮廓线 DP
@@ -181,7 +181,7 @@ class Solution:
     @staticmethod
     def lc_1349_2(seats: List[List[str]]) -> int:
         """
-        url: https://leetcode.com/problems/maximum-students-taking-exam/
+        url: https://leetcode.cn/problems/maximum-students-taking-exam/
         tag: outline_dp|classical
         """
         # 滚动数组迭代轮廓线 DP
@@ -209,7 +209,7 @@ class Solution:
     @staticmethod
     def lc_1349_3(seats: List[List[str]]) -> int:
         """
-        url: https://leetcode.com/problems/maximum-students-taking-exam/
+        url: https://leetcode.cn/problems/maximum-students-taking-exam/
         tag: outline_dp|classical
         """
 

@@ -3,9 +3,9 @@ Algorithm：n-tree|pre_order|post_order|mid_order
 Description：
 
 ====================================LeetCode====================================
-94（https://leetcode.com/problems/binary-tree-inorder-traversal/description/）mid_order
-144（https://leetcode.com/problems/binary-tree-preorder-traversal/description/）pre_order
-145（https://leetcode.com/problems/binary-tree-postorder-traversal/）post_order
+94（https://leetcode.cn/problems/binary-tree-inorder-traversal/description/）mid_order
+144（https://leetcode.cn/problems/binary-tree-preorder-traversal/description/）pre_order
+145（https://leetcode.cn/problems/binary-tree-postorder-traversal/）post_order
 
 =====================================AcWing=====================================
 19（https://www.acwing.com/problem/content/description/31/）mid_order
@@ -24,7 +24,7 @@ class Solution:
     @staticmethod
     def lc_145(root: Optional[TreeNode]) -> List[int]:
         """
-        url: https://leetcode.com/problems/binary-tree-postorder-traversal/
+        url: https://leetcode.cn/problems/binary-tree-postorder-traversal/
         tag: post_order
         """
         return TreeOrder().post_order(root)
@@ -32,7 +32,7 @@ class Solution:
     @staticmethod
     def lc_94(root: Optional[TreeNode]) -> List[int]:
         """
-        url: https://leetcode.com/problems/binary-tree-inorder-traversal/description/
+        url: https://leetcode.cn/problems/binary-tree-inorder-traversal/description/
         tag: mid_order
         """
         return TreeOrder().in_order(root)
@@ -40,7 +40,7 @@ class Solution:
     @staticmethod
     def lc_144(root: Optional[TreeNode]) -> List[int]:
         """
-        url: https://leetcode.com/problems/binary-tree-preorder-traversal/description/
+        url: https://leetcode.cn/problems/binary-tree-preorder-traversal/description/
         tag: pre_order
         """
         return TreeOrder().pre_order(root)

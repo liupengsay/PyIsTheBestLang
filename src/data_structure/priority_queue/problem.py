@@ -3,10 +3,10 @@ Algorithm：deque|monotonic_queue|priority_queue
 Description：sliding_window|monotonic
 
 ====================================LeetCode====================================
-239（https://leetcode.com/problems/sliding-window-maximum/）sliding_window_maximum
-1696（https://leetcode.com/problems/jump-game-vi/）priority_queue|dp
-862（https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/description/）prefix_sum|monotonic_queue|dp
-1425（https://leetcode.com/problems/constrained-subsequence-sum/）monotonic_queue|dp
+239（https://leetcode.cn/problems/sliding-window-maximum/）sliding_window_maximum
+1696（https://leetcode.cn/problems/jump-game-vi/）priority_queue|dp
+862（https://leetcode.cn/problems/shortest-subarray-with-sum-at-least-k/description/）prefix_sum|monotonic_queue|dp
+1425（https://leetcode.cn/problems/constrained-subsequence-sum/）monotonic_queue|dp
 
 =====================================LuoGu======================================
 P2251（https://www.luogu.com.cn/problem/P2251）sliding_window_minimum
@@ -77,7 +77,7 @@ class Solution:
     @staticmethod
     def lc_239(nums: List[int], k: int) -> List[int]:
         """
-        url: https://leetcode.com/problems/sliding-window-maximum/
+        url: https://leetcode.cn/problems/sliding-window-maximum/
         tag: sliding_window_maximum
         """
         # sliding_window最大值
@@ -86,7 +86,7 @@ class Solution:
     @staticmethod
     def lc_862(nums: List[int], k: int) -> int:
         """
-        url: https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/description/
+        url: https://leetcode.cn/problems/shortest-subarray-with-sum-at-least-k/description/
         tag: prefix_sum|monotonic_queue|dp
         """
         # prefix_sum|单调双端队列DP

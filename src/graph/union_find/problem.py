@@ -4,26 +4,26 @@ Algorithm：union_find|persistent_union_find|permutation_circle
 Description：graph|reverse_thinking|permutation_circle|offline_query|merge_wise|root_wise
 
 ====================================LeetCode====================================
-765（https://leetcode.com/problems/couples-holding-hands/）union_find
-1697（https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/）sort|offline_query|implemention
-2503（https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/）sort|offline_query|implemention
-2421（https://leetcode.com/problems/number-of-good-paths/）sort|union_find|counter
-2382（https://leetcode.com/problems/maximum-segment-sum-after-removals/）reverse_order|union_find|implemention|reverse_thinking
-2334（https://leetcode.com/problems/subarray-with-elements-greater-than-varying-threshold/）sort|brute_force|union_find
-2158（https://leetcode.com/problems/amount-of-new-area-painted-each-day/）union_find_left_root
-2157（https://leetcode.com/problems/groups-of-strings/）alphabet|brute_force
-2076（https://leetcode.com/problems/process-restricted-friend-requests/）union_find|reverse_thinking
-2459（https://leetcode.com/problems/sort-array-by-moving-items-to-empty-space/）permutation_circle
-2709（https://leetcode.com/problems/greatest-common-divisor-traversal/）union_find|prime_factorization
-2612（https://leetcode.com/problems/minimum-reverse-operations/）union_find|find_range_merge_to_disjoint
-1559（https://leetcode.com/problems/detect-cycles-in-2d-grid/）union_find|circle_judge|classical
-1569（https://leetcode.com/problems/number-of-ways-to-reorder-array-to-get-same-bst/）reverse_thinking|reverse_order|union_find_bst|union_find
-1970（https://leetcode.com/problems/last-day-where-you-can-still-cross/）reverse_thinking|union_find
-1998（https://leetcode.com/problems/gcd-sort-of-an-array/）union_find|prime_factorization
-2158（https://leetcode.com/problems/amount-of-new-area-painted-each-day/）union_find_range|union_find_left_root|union_find_right_root
-2471（https://leetcode.com/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/description/）discretization|permutation_circle
-945（https://leetcode.com/problems/minimum-increment-to-make-array-unique/description/）union_find_right_root|greedy
-947（https://leetcode.com/contest/weekly-contest-112/problems/most-stones-removed-with-same-row-or-column/）brain_teaser|union_find
+765（https://leetcode.cn/problems/couples-holding-hands/）union_find
+1697（https://leetcode.cn/problems/checking-existence-of-edge-length-limited-paths/）sort|offline_query|implemention
+2503（https://leetcode.cn/problems/checking-existence-of-edge-length-limited-paths/）sort|offline_query|implemention
+2421（https://leetcode.cn/problems/number-of-good-paths/）sort|union_find|counter
+2382（https://leetcode.cn/problems/maximum-segment-sum-after-removals/）reverse_order|union_find|implemention|reverse_thinking
+2334（https://leetcode.cn/problems/subarray-with-elements-greater-than-varying-threshold/）sort|brute_force|union_find
+2158（https://leetcode.cn/problems/amount-of-new-area-painted-each-day/）union_find_left_root
+2157（https://leetcode.cn/problems/groups-of-strings/）alphabet|brute_force
+2076（https://leetcode.cn/problems/process-restricted-friend-requests/）union_find|reverse_thinking
+2459（https://leetcode.cn/problems/sort-array-by-moving-items-to-empty-space/）permutation_circle
+2709（https://leetcode.cn/problems/greatest-common-divisor-traversal/）union_find|prime_factorization
+2612（https://leetcode.cn/problems/minimum-reverse-operations/）union_find|find_range_merge_to_disjoint
+1559（https://leetcode.cn/problems/detect-cycles-in-2d-grid/）union_find|circle_judge|classical
+1569（https://leetcode.cn/problems/number-of-ways-to-reorder-array-to-get-same-bst/）reverse_thinking|reverse_order|union_find_bst|union_find
+1970（https://leetcode.cn/problems/last-day-where-you-can-still-cross/）reverse_thinking|union_find
+1998（https://leetcode.cn/problems/gcd-sort-of-an-array/）union_find|prime_factorization
+2158（https://leetcode.cn/problems/amount-of-new-area-painted-each-day/）union_find_range|union_find_left_root|union_find_right_root
+2471（https://leetcode.cn/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/description/）discretization|permutation_circle
+945（https://leetcode.cn/problems/minimum-increment-to-make-array-unique/description/）union_find_right_root|greedy
+947（https://leetcode.cn/contest/weekly-contest-112/problems/most-stones-removed-with-same-row-or-column/）brain_teaser|union_find
 
 =====================================LuoGu======================================
 P3367（https://www.luogu.com.cn/problem/P3367）connected_part|counter|union_find
@@ -225,7 +225,7 @@ class Solution:
     @staticmethod
     def lc_1697(n: int, edge_list: List[List[int]], queries: List[List[int]]) -> List[bool]:
         """
-        url: https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/
+        url: https://leetcode.cn/problems/checking-existence-of-edge-length-limited-paths/
         tag: sort|offline_query|implemention
         """
         # union_find与离线sorting查询结合
@@ -257,7 +257,7 @@ class Solution:
     @staticmethod
     def lc_2503(grid: List[List[int]], queries: List[int]) -> List[int]:
         """
-        url: https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/
+        url: https://leetcode.cn/problems/checking-existence-of-edge-length-limited-paths/
         tag: sort|offline_query|implemention
         """
         # union_find与离线sorting查询结合
@@ -296,7 +296,7 @@ class Solution:
     @staticmethod
     def lc_2421(vals: List[int], edges: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/number-of-good-paths/
+        url: https://leetcode.cn/problems/number-of-good-paths/
         tag: sort|union_find|counter
         """
         # union_find与离线sorting查询结合
@@ -669,7 +669,7 @@ class Solution:
     @staticmethod
     def lc_2709(nums: List[int]) -> bool:
         """
-        url: https://leetcode.com/problems/greatest-common-divisor-traversal/
+        url: https://leetcode.cn/problems/greatest-common-divisor-traversal/
         tag: union_find|prime_factorization
         """
         # union_find具有相同质因数的连通块
@@ -782,7 +782,7 @@ class Solution:
     @staticmethod
     def lc_2612(n: int, p: int, banned: List[int], k: int) -> List[int]:
         """
-        url: https://leetcode.com/problems/minimum-reverse-operations/
+        url: https://leetcode.cn/problems/minimum-reverse-operations/
         tag: union_find|find_range_merge_to_disjoint
         """
 
@@ -936,7 +936,7 @@ class Solution:
     @staticmethod
     def lc_945(nums: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/minimum-increment-to-make-array-unique/description/
+        url: https://leetcode.cn/problems/minimum-increment-to-make-array-unique/description/
         tag: union_find_right_root|greedy
         """
         # 可向右合并的区间union_find，正解为greedy
@@ -953,7 +953,7 @@ class Solution:
     @staticmethod
     def lc_1559(grid: List[List[str]]) -> bool:
         """
-        url: https://leetcode.com/problems/detect-cycles-in-2d-grid/
+        url: https://leetcode.cn/problems/detect-cycles-in-2d-grid/
         tag: union_find|circle_judge|classical
         """
         # union_find判环
@@ -972,7 +972,7 @@ class Solution:
     @staticmethod
     def lc_1569(nums: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/number-of-ways-to-reorder-array-to-get-same-bst/
+        url: https://leetcode.cn/problems/number-of-ways-to-reorder-array-to-get-same-bst/
         tag: reverse_thinking|reverse_order|union_find_bst|union_find
         """
 
@@ -1023,7 +1023,7 @@ class Solution:
     @staticmethod
     def lc_2158(paint: List[List[int]]) -> List[int]:
         """
-        url: https://leetcode.com/problems/amount-of-new-area-painted-each-day/
+        url: https://leetcode.cn/problems/amount-of-new-area-painted-each-day/
         tag: union_find_range|union_find_left_root|union_find_right_root
         """
         # 区间union_find
@@ -1124,7 +1124,7 @@ class Solution:
     @staticmethod
     def lc_2471(root: Optional[TreeNode]) -> int:
         """
-        url: https://leetcode.com/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/description/
+        url: https://leetcode.cn/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/description/
         tag: discretization|permutation_circle
         """
         # discretizationpermutation_circle|

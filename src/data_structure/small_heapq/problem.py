@@ -3,15 +3,15 @@ Algorithm：heapq|priority_queue|huffman_tree
 Description：greedy
 
 ====================================LeetCode====================================
-630（https://leetcode.com/problems/course-schedule-iii/）delay_heapq|greedy
-2454（https://leetcode.com/problems/next-greater-element-iv/）heapq|post_second_larger|hash|SortedList
-2402（https://leetcode.com/problems/meeting-rooms-iii/）heapq|implemention|counter
-2386（https://leetcode.com/problems/find-the-k-sum-of-an-array/）heapq|brain_teaser
-2163（https://leetcode.com/problems/minimum-difference-in-sums-after-removal-of-elements/）prefix_suffix|brute_force
-1792（https://leetcode.com/problems/maximum-average-pass-ratio/）greedy
-295（https://leetcode.com/problems/find-median-from-data-stream/）heapq|median
-2542（https://leetcode.com/problems/maximum-subsequence-score/）greedy|sorting|brute_force|heapq
-2263（https://leetcode.com/problems/make-array-non-decreasing-or-non-increasing/）heapq|greedy
+630（https://leetcode.cn/problems/course-schedule-iii/）delay_heapq|greedy
+2454（https://leetcode.cn/problems/next-greater-element-iv/）heapq|post_second_larger|hash|SortedList
+2402（https://leetcode.cn/problems/meeting-rooms-iii/）heapq|implemention|counter
+2386（https://leetcode.cn/problems/find-the-k-sum-of-an-array/）heapq|brain_teaser
+2163（https://leetcode.cn/problems/minimum-difference-in-sums-after-removal-of-elements/）prefix_suffix|brute_force
+1792（https://leetcode.cn/problems/maximum-average-pass-ratio/）greedy
+295（https://leetcode.cn/problems/find-median-from-data-stream/）heapq|median
+2542（https://leetcode.cn/problems/maximum-subsequence-score/）greedy|sorting|brute_force|heapq
+2263（https://leetcode.cn/problems/make-array-non-decreasing-or-non-increasing/）heapq|greedy
 
 =====================================LuoGu======================================
 P1168（https://www.luogu.com.cn/problem/P1168）heapq|median
@@ -59,7 +59,7 @@ class Solution:
     @staticmethod
     def lc_2454_1(nums: List[int]) -> List[int]:
         """
-        url: https://leetcode.com/problems/next-greater-element-iv/
+        url: https://leetcode.cn/problems/next-greater-element-iv/
         tag: heapq|post_second_larger|hash|SortedList
         """
         # hashsorting|SortedList
@@ -81,7 +81,7 @@ class Solution:
     @staticmethod
     def lc_2454_2(nums: List[int]) -> List[int]:
         """
-        url: https://leetcode.com/problems/next-greater-element-iv/
+        url: https://leetcode.cn/problems/next-greater-element-iv/
         tag: heapq|post_second_larger|hash|SortedList
         """
 
@@ -116,7 +116,7 @@ class Solution:
     @staticmethod
     def lc_1792(classes, extra_students):
         """
-        url: https://leetcode.com/problems/maximum-average-pass-ratio/
+        url: https://leetcode.cn/problems/maximum-average-pass-ratio/
         tag: greedy
         """
         # heapqgreedyimplemention每次选择最优
@@ -134,7 +134,7 @@ class Solution:
     @staticmethod
     def lc_630(courses: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/course-schedule-iii/
+        url: https://leetcode.cn/problems/course-schedule-iii/
         tag: delay_heapq|greedy
         """
         # 反悔heapq，遍历过程选择更优的
@@ -510,7 +510,7 @@ class Solution:
     @staticmethod
     def lc_2263(nums: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/make-array-non-decreasing-or-non-increasing/
+        url: https://leetcode.cn/problems/make-array-non-decreasing-or-non-increasing/
         tag: heapq|greedy
         """
 
@@ -533,7 +533,7 @@ class Solution:
     @staticmethod
     def lc_2386(nums: List[int], k: int) -> int:
         """
-        url: https://leetcode.com/problems/find-the-k-sum-of-an-array/
+        url: https://leetcode.cn/problems/find-the-k-sum-of-an-array/
         tag: heapq|brain_teaser
         """
         # 转换思路heapq维护最大和第 K 次出队的则为目标结果
