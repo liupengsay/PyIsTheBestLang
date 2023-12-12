@@ -214,6 +214,10 @@ class Solution:
 
     @staticmethod
     def ac_4298(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/4301/
+        tag: hungarian|bipartite_graph
+        """
         # hungarianbipartite_graph模板题
         m = ac.read_int()
         a = ac.read_list_ints()

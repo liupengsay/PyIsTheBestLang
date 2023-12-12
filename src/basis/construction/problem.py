@@ -1,10 +1,10 @@
 """
 
 Algorithm：construction
-Description：greedy|sorting|construction|specific_plan
+Description：greedy|sort|construction|specific_plan
 
 ====================================LeetCode====================================
-280（https://leetcode.cn/problems/wiggle-sort/）construction|sorting|odd_even
+280（https://leetcode.cn/problems/wiggle-sort/）construction|sort|odd_even
 2663（https://leetcode.cn/problems/lexicographically-smallest-beautiful-string/）greedy|construction|palindrome_substring|lexicographical_order
 1982（https://leetcode.cn/problems/find-array-given-subset-sums/）construction
 1253（https://leetcode.cn/problems/reconstruct-a-2-row-binary-matrix/）construction|greedy|brain_teaser
@@ -138,7 +138,7 @@ class Solution:
     def lc_280(nums: List[int]) -> None:
         """
         url: https://leetcode.cn/problems/wiggle-sort/
-        tag: construction|sorting|odd_even
+        tag: construction|sort|odd_even
         """
         # 摆动sorting数组construction
         nums.sort()

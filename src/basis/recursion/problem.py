@@ -267,6 +267,10 @@ class Solution:
 
     @staticmethod
     def ac_98(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/100/
+        tag: 4-tree|recursion|matrix_rotate
+        """
 
         # 四叉树recursion与坐标旋转变换
         for _ in range(ac.read_int()):
@@ -311,6 +315,10 @@ class Solution:
 
     @staticmethod
     def ac_93_1(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/95/
+        tag: recursion|comb|iteration
+        """
         n, m = ac.read_list_ints()
 
         # recursion实现选取
@@ -334,6 +342,10 @@ class Solution:
 
     @staticmethod
     def ac_93_2(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/95/
+        tag: recursion|comb|iteration
+        """
         n, m = ac.read_list_ints()
 
         # 迭代实现选取
@@ -358,6 +370,10 @@ class Solution:
 
     @staticmethod
     def ac_118(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/120/
+        tag: recursion
+        """
         # 迭代方式recursion
         dp = []
         for i in range(1, 8):

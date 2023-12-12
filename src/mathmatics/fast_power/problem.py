@@ -325,6 +325,10 @@ class Solution:
 
     @staticmethod
     def ac_27(base, exponent):
+        """
+        url: https://www.acwing.com/problem/content/26/
+        tag: float_fast_power|classical
+        """
         # 浮点数fast_power|
         if base == 0:
             return 0

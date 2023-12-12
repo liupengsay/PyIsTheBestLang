@@ -123,6 +123,10 @@ class Solution:
 
     @staticmethod
     def ac_140(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/142/
+        tag: suffix_array|template
+        """
         # 后缀数组模板题
         ind = {chr(ord("a") + i): i for i in range(26)}
         sa, rk, height = SuffixArray(ind).get_array(ac.read_str())

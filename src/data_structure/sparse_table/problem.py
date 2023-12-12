@@ -108,6 +108,10 @@ class Solution:
 
     @staticmethod
     def ac_109(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/111/
+        tag: greedy|multiplication_method
+        """
 
         def range_merge_to_disjoint(lst1, lst2):
             a, b = len(lst1), len(lst2)

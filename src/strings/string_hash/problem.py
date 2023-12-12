@@ -247,6 +247,10 @@ class Solution:
 
     @staticmethod
     def ac_138(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/140/
+        tag: string_hash
+        """
 
         # string_hash，子串是否完全相等
         p1 = random.randint(26, 100)
@@ -285,6 +289,10 @@ class Solution:
 
     @staticmethod
     def ac_156(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/158/
+        tag: matrix_hash
+        """
         # 二维matrix_hash查找子矩阵是否存在
         m, n, a, b = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
@@ -352,6 +360,10 @@ class Solution:
 
     @staticmethod
     def ac_157(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/159/
+        tag: tree_hash|tree_minimum_expression
+        """
 
         def check(st):
             # 解码原始树的字符串表示，再tree_minimum_expression

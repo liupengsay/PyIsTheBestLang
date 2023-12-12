@@ -147,6 +147,10 @@ class Solution:
 
     @staticmethod
     def ac_137(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/139/
+        tag: matrix_hash
+        """
 
         p1 = random.randint(26, 100)
         p2 = random.randint(26, 100)

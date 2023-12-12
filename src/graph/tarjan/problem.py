@@ -867,6 +867,10 @@ class Solution:
 
     @staticmethod
     def ac_3813(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/submission/3816/
+        tag: scc|topological_sort|dag_dp
+        """
         # scc模板与topological_sortingDP
         n, m = ac.read_list_ints()
         s = ac.read_str()

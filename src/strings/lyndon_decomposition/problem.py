@@ -34,6 +34,10 @@ class Solution:
 
     @staticmethod
     def ac_158(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/160/
+        tag: minimum_expression
+        """
         # 求字符串的minimum_expression
         s = ac.read_str()
         t = ac.read_str()

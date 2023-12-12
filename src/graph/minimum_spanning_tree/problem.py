@@ -866,6 +866,10 @@ class Solution:
 
     @staticmethod
     def ac_3728(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/3731/
+        tag: prim|mst|dense_graph|specific_plan
+        """
 
         # primmst|，适合稠密图场景，并获取具体连边specific_plan，也可直接Kruskal（超时）
 

@@ -898,6 +898,10 @@ class Solution:
 
     @staticmethod
     def ac_3735(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/3738/
+        tag: reverse_order|state_dp|specific_plan
+        """
         # reverse_order|state_compress与输出specific_plan
         n, m = ac.read_list_ints()
         if m == n * (n - 1) // 2:

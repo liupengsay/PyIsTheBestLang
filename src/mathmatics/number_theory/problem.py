@@ -309,6 +309,10 @@ class Solution:
 
     @staticmethod
     def ac_97_1(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/99/
+        tag: a^b|math|factorization
+        """
         # a^b的所有约数之和
         a, b = ac.read_list_ints()
         lst = NumberTheory().get_prime_factor(a)
@@ -322,6 +326,10 @@ class Solution:
 
     @staticmethod
     def ac_97_2(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/99/
+        tag: a^b|math|factorization
+        """
         # a^b的所有约数之和
 
         def check(pp, cc):
@@ -348,6 +356,10 @@ class Solution:
 
     @staticmethod
     def ac_124(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/126/
+        tag: base
+        """
         # 不同进制之间的转换
         st = "0123456789"
         for i in range(26):
@@ -376,6 +388,10 @@ class Solution:
 
     @staticmethod
     def ac_197(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/199/
+        tag: factorial|prime_factorization
+        """
         # n!阶乘的prime_factorization|即因子与因子的个数
         ceil = ac.read_int()
         min_prime = [0] * (ceil + 1)
@@ -402,6 +418,10 @@ class Solution:
 
     @staticmethod
     def ac_196(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/198/
+        tag: counter
+        """
 
         # 质数距离对
         primes = NumberTheory().sieve_of_eratosthenes(2 ** 16)
@@ -436,6 +456,10 @@ class Solution:
 
     @staticmethod
     def ac_198(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/200/
+        tag: anti_prime_number
+        """
 
         # 最大的反质数（反prime，即约数或者说因数个数大于任何小于它的数的因数个数）
         n = ac.read_int()
@@ -461,6 +485,10 @@ class Solution:
 
     @staticmethod
     def ac_199(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/201/
+        tag: brute_force
+        """
         #  sum(k%i for i in range(n))
         n, k = ac.read_list_ints()
         ans = n * k
@@ -856,6 +884,10 @@ class Solution:
 
     @staticmethod
     def ac_3727(ac=FastIO()):
+        """
+        url: https://www.acwing.com/solution/content/54479/
+        tag: brain_teaser|base
+        """
         # brain_teaser转换成进制表达问题
 
         for _ in range(ac.read_int()):
@@ -881,6 +913,10 @@ class Solution:
 
     @staticmethod
     def ac_4484(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/4487/
+        tag: base
+        """
         # 分数在某个进制下是否为有限小数问题
         for _ in range(ac.read_int()):
 
@@ -904,6 +940,10 @@ class Solution:
 
     @staticmethod
     def ac_4486(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/4489/
+        tag: prime_factorization|greedy
+        """
         # prime_factorization|greedy题
         n = ac.read_int()
         if n == 1:
@@ -932,6 +972,10 @@ class Solution:
 
     @staticmethod
     def ac_4622(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/4625/
+        tag: brain_teaser|greedy|construction
+        """
         # brain_teaser|greedyconstruction
         n = ac.read_int()
         if n < 4:

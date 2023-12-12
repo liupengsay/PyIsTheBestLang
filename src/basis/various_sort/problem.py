@@ -1,5 +1,5 @@
 """
-Algorithm：sorting|bubble_sort|merge_sort(minimum_num_comparisons)|quick_sort(expected_fast)|custom_sort
+Algorithm：sort|bubble_sort|merge_sort(minimum_num_comparisons)|quick_sort(expected_fast)|custom_sort
 Description：reverse_order_pair
 
 ====================================LeetCode====================================
@@ -71,6 +71,10 @@ class Solution:
 
     @staticmethod
     def ac_113(compare, n):
+        """
+        url: https://www.acwing.com/problem/content/description/115/
+        tag: custom_sort
+        """
 
         def compare_(x, y):
             if compare(x, y):

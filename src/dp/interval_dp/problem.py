@@ -415,6 +415,10 @@ class Solution:
 
     @staticmethod
     def ac_3996(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/3999/
+        tag: interval_dp|longest_palindrome_subsequence
+        """
         # interval_dp 最长回文子序列变形
         ac.read_int()
         nums = ac.read_list_ints()

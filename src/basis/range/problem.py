@@ -239,6 +239,10 @@ class Solution:
 
     @staticmethod
     def ac_112(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/114/
+        tag: greedy
+        """
         # 区间类型的greedy
         n, d = ac.read_list_ints()
         lst = [ac.read_list_ints() for _ in range(n)]
@@ -430,6 +434,10 @@ class Solution:
 
     @staticmethod
     def ac_4421_1(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/4424/
+        tag: minimum_range_cover
+        """
         # 最少range_cover范围问题，相邻可以不相交
         n, r = ac.read_list_ints()
         nums = ac.read_list_ints()

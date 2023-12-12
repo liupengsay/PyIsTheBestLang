@@ -104,6 +104,10 @@ class Solution:
 
     @staticmethod
     def ac_5037_2(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/5040/
+        tag: CF242E|range_or_sum|range_xor_sum
+        """
         # 同CF242E，二十多个01segment_tree|维护区间异或与区间|和
         n = ac.read_int()
         nums = ac.read_list_ints()

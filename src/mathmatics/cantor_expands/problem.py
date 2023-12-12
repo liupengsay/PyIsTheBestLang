@@ -77,6 +77,10 @@ class Solution:
 
     @staticmethod
     def ac_5052(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/5055/
+        tag: the_kth_rank_perm|the_rank_of_perm|cantor_expands|bfs
+        """
         # 康托展开与bfs搜索，根据排列数确定最多末尾重排的长度
         n, k = ac.read_list_ints()
         low = ac.max(1, n - 12)

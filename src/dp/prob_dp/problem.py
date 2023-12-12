@@ -163,6 +163,10 @@ class Solution:
 
     @staticmethod
     def ac_5058(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/5061/
+        tag: prob_dp
+        """
         # prob_dp
         w, b = ac.read_list_ints()
         dp = [[0] * (b + 1) for _ in range(w + 1)]

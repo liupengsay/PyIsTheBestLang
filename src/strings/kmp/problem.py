@@ -181,6 +181,10 @@ class Solution:
 
     @staticmethod
     def ac_141(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/143/
+        tag: kmp|circular_section
+        """
         # 利用KMP求每个字符串前缀的最小circular_section
         ind = 0
         while True:
@@ -199,6 +203,10 @@ class Solution:
 
     @staticmethod
     def ac_160(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/162/
+        tag: z_function|template
+        """
         # z函数模板题
         n, m, q = ac.read_list_ints()
         s = ac.read_str()
@@ -288,6 +296,10 @@ class Solution:
 
     @staticmethod
     def ac_3823(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/3826/
+        tag: kmp|z_function
+        """
         # KMP与扩展KMP即z函数应用模板题
         kmp = KMP()
         for _ in range(ac.read_int()):

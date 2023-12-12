@@ -5,7 +5,7 @@ Description：monotonicity is necessary for solution like these, which always wo
 ====================================LeetCode====================================
 4（https://leetcode.cn/problems/median-of-two-sorted-arrays/）binary_search|median|two_arrays|same_direction_pointer
 81（https://leetcode.cn/problems/search-in-rotated-sorted-array-ii/）binary_search|rotated_array|sorting
-154（https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array-ii/）binary_search|rotated_array|sorting|duplicate_nums
+154（https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array-ii/）binary_search|rotated_array|sort|duplicate_nums
 162（https://leetcode.cn/problems/find-peak-element/）binary_search|peak_index
 2179（https://leetcode.cn/problems/count-good-triplets-in-an-array/）binary_search|sorted_list
 2141（https://leetcode.cn/problems/maximum-running-time-of-n-computers/）greedy|binary_search|implemention
@@ -14,7 +14,7 @@ Description：monotonicity is necessary for solution like these, which always wo
 2604（https://leetcode.cn/problems/minimum-time-to-eat-all-grains/）binary_search|greedy|pointer
 1201（https://leetcode.cn/problems/ugly-number-iii/）binary_search|counter|inclusion_exclusion
 1739（https://leetcode.cn/problems/building-boxes/）math|binary_search
-1889（https://leetcode.cn/problems/minimum-space-wasted-from-packaging/）sorting|prefix_sum|greedy|binary_search
+1889（https://leetcode.cn/problems/minimum-space-wasted-from-packaging/）sort|prefix_sum|greedy|binary_search
 2071（https://leetcode.cn/problems/maximum-number-of-tasks-you-can-assign/）binary_search|greedy
 2594（https://leetcode.cn/problems/minimum-time-to-repair-cars/）binary_search
 2517（https://leetcode.cn/problems/maximum-tastiness-of-candy-basket/）binary_search
@@ -39,7 +39,7 @@ P3184（https://www.luogu.com.cn/problem/P3184）binary_search|counter
 P3611（https://www.luogu.com.cn/problem/P3611）binary_search|greedy|heapq|implemention
 P3743（https://www.luogu.com.cn/problem/P3743）binary_search
 P4058（https://www.luogu.com.cn/problem/P4058）binary_search
-P4670（https://www.luogu.com.cn/problem/P4670）sorting|binary_search|counter
+P4670（https://www.luogu.com.cn/problem/P4670）sort|binary_search|counter
 P5119（https://www.luogu.com.cn/problem/P5119）greedy|binary_search
 P5250（https://www.luogu.com.cn/problem/P5250）sorted_list
 P6174（https://www.luogu.com.cn/problem/P6174）greedy|binary_search
@@ -54,7 +54,7 @@ P1381（https://www.luogu.com.cn/problem/P1381）binary_search|sliding_window|br
 P1419（https://www.luogu.com.cn/problem/P1419）binary_search|priority_queue
 P1525（https://www.luogu.com.cn/problem/P1525）binary_search|bfs|bipartite_graph|unionfind|coloring
 P1542（https://www.luogu.com.cn/problem/P1542）binary_search|fraction|high_precision
-P2237（https://www.luogu.com.cn/problem/P2237）brain_teaser|sorting|binary_search
+P2237（https://www.luogu.com.cn/problem/P2237）brain_teaser|sort|binary_search
 P2810（https://www.luogu.com.cn/problem/P2810）binary_search|brute_force
 P3718（https://www.luogu.com.cn/problem/P3718）binary_search|greedy
 P3853（https://www.luogu.com.cn/problem/P3853）binary_search|greedy
@@ -76,9 +76,9 @@ P9050（https://www.luogu.com.cn/problem/P9050）binary_search|data_range|greedy
 732D（https://codeforces.com/problemset/problem/732/D）greedy|binary_search|pointer
 778A（https://codeforces.com/problemset/problem/778/A）binary_search|pointer
 913C（https://codeforces.com/problemset/problem/913/C）dp|binary_search|greedy|implemention
-1791G2（https://codeforces.com/problemset/problem/1791/G2）greedy|sorting|prefix_sum|brute_force|binary_search
+1791G2（https://codeforces.com/problemset/problem/1791/G2）greedy|sort|prefix_sum|brute_force|binary_search
 448D（https://codeforces.com/problemset/problem/448/D）binary_search|kth_max_of_n_mul_m_table
-1475D（https://codeforces.com/problemset/problem/1475/D）greedy|sorting|prefix_sum|brute_force|binary_search
+1475D（https://codeforces.com/problemset/problem/1475/D）greedy|sort|prefix_sum|brute_force|binary_search
 1370D（https://codeforces.com/problemset/problem/1370/D）binary_search|greedy|check
 1486D（https://codeforces.com/problemset/problem/1486/D）binary_search|hash|prefix_sum|maximum_length_of_sub_consequence_with_pos_sum
 1118D2（https://codeforces.com/problemset/problem/1118/D2）greedy|binary_search
@@ -122,15 +122,13 @@ class Solution:
     def lg_p1314(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1314
-        tag: binary_search|sum_nearest_subsequence
+        tag: binary_search|sum_nearest_subsequence|classical|can_not_be_ternary_search
         """
-
-        # binary_search寻找最接近目标值的和
         n, m, s = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         queries = [ac.read_list_ints() for _ in range(m)]
 
-        def check(w):
+        def compute(w):
             cnt = [0] * (n + 1)
             pre = [0] * (n + 1)
             for i in range(n):
@@ -141,18 +139,14 @@ class Solution:
                 res += (pre[b] - pre[a - 1]) * (cnt[b] - cnt[a - 1])
             return res
 
-        ans = inf
+        def check(w):
+            return compute(w) >= s
+
+        # ternary_search will be wrong answer
         low = 0
         high = max(ls[0] for ls in nums)
-        while low < high - 1:
-            mid = low + (high - low) // 2
-            x = check(mid)
-            ans = ac.min(ans, abs(s - x))
-            if x <= s:
-                high = mid - 1
-            else:
-                low = mid + 1
-        ans = ac.min(ans, ac.min(abs(s - check(low)), abs(s - check(high))))
+        mid = BinarySearch().find_int_right(low, high, check)
+        ans = ac.min(abs(s - compute(mid)), abs(s - compute(mid + 1)))
         ac.st(ans)
         return
 
@@ -162,16 +156,15 @@ class Solution:
         url: https://codeforces.com/problemset/problem/448/D
         tag: binary_search|kth_max_of_n_mul_m_table
         """
-        #  n*m 乘法矩阵内的第 k 大元素
+
         n, m, k = ac.read_list_ints()
 
         def check(num):
             res = 0
             for x in range(1, m + 1):
-                res += min(n, num // x)
+                res += ac.min(n, num // x)
             return res >= k
 
-        # 初始化大小
         if m > n:
             m, n = n, m
 
@@ -183,13 +176,12 @@ class Solution:
     def cf_1370d(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1370/D
-        tag: binary_search|greedy|check
+        tag: binary_search|greedy|check|odd_even
         """
         n, k = map(int, input().split())
         nums = list(map(int, input().split()))
 
         def check(x):
-            # 奇偶交替，依次brute_force奇数索引与偶数索引不超过x
             for ind in [0, 1]:
                 cnt = 0
                 for num in nums:
@@ -214,9 +206,9 @@ class Solution:
     def cf_1475d(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1475/D
-        tag: greedy|sorting|prefix_sum|brute_force|binary_search
+        tag: greedy|sort|prefix_sum|brute_force|binary_search
         """
-        # greedysorting后，brute_force并prefix_sumbinary_search查询
+
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
             a = ac.read_list_ints()
@@ -225,19 +217,16 @@ class Solution:
                 ac.st(-1)
                 continue
 
-            # sorting
             a1 = [a[i] for i in range(n) if b[i] == 1]
             a2 = [a[i] for i in range(n) if b[i] == 2]
             a1.sort(reverse=True)
             a2.sort(reverse=True)
 
-            # prefix_sum
             x, y = len(a1), len(a2)
             pre1 = [0] * (x + 1)
             for i in range(x):
                 pre1[i + 1] = pre1[i] + a1[i]
 
-            # 初始化后binary_searchbrute_force
             ans = inf
             pre = 0
             j = bisect.bisect_left(pre1, m - pre)
@@ -257,10 +246,9 @@ class Solution:
     def lg_p3017(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P3017
-        tag: binary_search|sub_matrix_sum|max_min
+        tag: binary_search|sub_matrix_sum|maximum_minimum|classical
         """
 
-        # binary_search将矩阵分成a*b个子矩阵且子矩阵和的最小值最大
         def check(x):
 
             def cut():
@@ -291,13 +279,7 @@ class Solution:
         grid = [ac.read_list_ints() for _ in range(m)]
         low = 0
         high = sum(sum(g) for g in grid) // (a * b)
-        while low < high - 1:
-            mid = low + (high - low) // 2
-            if check(mid):
-                low = mid
-            else:
-                high = mid
-        ans = high if check(high) else low
+        ans = BinarySearch().find_int_right(low, high, check)
         ac.st(ans)
         return
 
@@ -305,7 +287,7 @@ class Solution:
     def cf_1680c(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1680/problem/C
-        tag: binary_search|greedy|two_pointers|check
+        tag: binary_search|greedy|two_pointers|check|classical
         """
         for _ in range(ac.read_int()):
             s = ac.read_str()
@@ -328,40 +310,36 @@ class Solution:
                         cnt_1 -= 1
                 return tot_1 - ceil_1 <= x
 
-            ac.st(BinarySearch().find_int_left(0, n, check))
+            ans = BinarySearch().find_int_left(0, n, check)
+            ac.st(ans)
         return
 
     @staticmethod
     def cf_1791g2(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1791/G2
-        tag: greedy|sorting|prefix_sum|brute_force|binary_search
+        tag: greedy|sort|prefix_sum|brute_force|binary_search|can_not_to_be_two_pointers
         """
-        # find_int_right
+
         for _ in range(ac.read_int()):
 
             n, c = ac.read_list_ints()
             cost = ac.read_list_ints()
             lst = [[ac.min(x, n + 1 - x) + cost[x - 1], x + cost[x - 1]]
                    for x in range(1, n + 1)]
+
             lst.sort(key=lambda it: it[0])
             pre = [0] * (n + 1)
             for i in range(n):
                 pre[i + 1] = pre[i] + lst[i][0]
 
-            def check(y):
-                res = pre[y]
-                if y > i:
-                    res -= lst[i][0]
-                res += lst[i][1]
-                return res <= c
-
             ans = 0
             for i in range(n):
-                if lst[i][1] <= c:
-                    cur = BinarySearch().find_int_right(0, n, check)
-                    cur = cur - int(cur > i) + 1
-                    ans = ac.max(ans, cur)
+                if lst[i][1] + pre[i] <= c:
+                    cur = bisect.bisect_right(pre, c - lst[i][1] + lst[i][0]) - 1
+                else:
+                    cur = bisect.bisect_right(pre, c - lst[i][1])
+                ans = ac.max(ans, cur)
             ac.st(ans)
         return
 
@@ -369,9 +347,8 @@ class Solution:
     def lc_1889(packages: List[int], boxes: List[List[int]]) -> int:
         """
         url: https://leetcode.cn/problems/minimum-space-wasted-from-packaging/
-        tag: sorting|prefix_sum|greedy|binary_search
+        tag: sort|prefix_sum|greedy|binary_search
         """
-        # sorting|prefix_sumpreprocess与greedybinary_search
         packages.sort()
         pre = list(accumulate(packages, initial=0))
         n = len(packages)
@@ -387,7 +364,6 @@ class Solution:
                     break
                 if num < packages[i]:
                     continue
-
                 j = bisect.bisect_right(packages, num) - 1
                 cur += (j - i + 1) * num - (pre[j + 1] - pre[i])
                 i = j + 1
@@ -399,9 +375,8 @@ class Solution:
     def lc_2141(n: int, batteries: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/maximum-running-time-of-n-computers/
-        tag: greedy|binary_search|implemention
+        tag: greedy|binary_search|implemention|classical
         """
-        # greedybinary_search
 
         batteries.sort(reverse=True)
         rest = sum(batteries[n:])
@@ -419,9 +394,8 @@ class Solution:
     def lc_2528(stations: List[int], r: int, k: int) -> int:
         """
         url: https://leetcode.cn/problems/maximize-the-minimum-powered-city/description/
-        tag: binary_search|prefix_sum|diff_array|greedy
+        tag: binary_search|prefix_sum|diff_array|greedy|classical
         """
-        # binary_searchprefix_sumdiff_array|greedy验证
         n = len(stations)
         nums = [0] * n
         for i in range(n):
@@ -453,7 +427,6 @@ class Solution:
         url: https://leetcode.cn/problems/count-the-number-of-fair-pairs/
         tag: binary_search|sorted_list
         """
-        # 查找数值和在一定范围的数对个数
         nums.sort()
         n = len(nums)
         ans = 0
@@ -470,7 +443,6 @@ class Solution:
         tag: binary_search|median|two_arrays|same_direction_pointer
         """
 
-        # two_pointersbinary_search移动查找两个正序数组的median
         def get_kth_num(k):
             ind1 = ind2 = 0
             while k:
@@ -503,17 +475,14 @@ class Solution:
     def cf_1486d(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1486/D
-        tag: binary_search|hash|prefix_sum|maximum_length_of_sub_consequence_with_pos_sum
+        tag: binary_search|index|hash|prefix_sum|maximum_length_of_sub_consequence_with_pos_sum|classical|median|greedy
         """
-        # 转换为binary_search和hash前缀求最长和为正数的最长连续子序列
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
-        low = 0
-        high = n - 1
         lst = sorted(nums)
 
-        def check(x):
-            x = lst[x]
+        def check(ind):
+            x = lst[ind]
             dct = dict()
             pre = 0
             dct[0] = -1
@@ -521,20 +490,13 @@ class Solution:
                 pre += 1 if num >= x else -1
                 if pre > 0 and i + 1 >= k:
                     return True
-                # 为负数时，只需greedy考虑第一次为 pre-1 时的长度即可
                 if pre - 1 in dct and i - dct[pre - 1] >= k:
                     return True
                 if pre not in dct:
                     dct[pre] = i
             return False
 
-        while low < high - 1:
-            mid = low + (high - low) // 2
-            if check(mid):
-                low = mid
-            else:
-                high = mid
-        ans = high if check(high) else low
+        ans = BinarySearch().find_int_right(0, n - 1, check)
         ac.st(lst[ans])
         return
 
@@ -544,8 +506,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1083
         tag: binary_search|diff_array
         """
-
-        # binary_search结合差分寻找第一个失效点
 
         def check(s):
             diff = [0] * n
@@ -575,6 +535,10 @@ class Solution:
 
     @staticmethod
     def ac_120(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/122/
+        tag: binary_search
+        """
 
         def check(pos):
             res = 0
@@ -661,6 +625,10 @@ class Solution:
 
     @staticmethod
     def ac_14(nums):
+        """
+        url: https://www.acwing.com/problem/content/description/15/
+        tag: pigeonhole_principle|binary_search
+        """
         # 利用pigeonhole_principlebinary_search
         n = len(nums) - 1
         low = 1
@@ -966,7 +934,7 @@ class Solution:
     def lg_p2237(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P2237
-        tag: brain_teaser|sorting|binary_search
+        tag: brain_teaser|sort|binary_search
         """
         # brain_teasersorting后binary_search
         w, n = ac.read_list_ints()
@@ -1460,6 +1428,10 @@ class Solution:
 
     @staticmethod
     def ac_3973(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/3976/
+        tag: high_precision|binary_search|sliding_window|two_pointers
+        """
         # 浮点数binary_search与sliding_windowtwo_pointers
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -1510,6 +1482,10 @@ class Solution:
 
     @staticmethod
     def ac_5048(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/5051/
+        tag: high_precision|binary_search|specific_plan
+        """
         # 浮点数binary_search并求出specific_plan
         ac.read_int()
         nums = ac.read_list_ints()

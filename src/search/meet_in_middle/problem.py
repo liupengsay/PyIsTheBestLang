@@ -78,7 +78,7 @@ class Solution:
         url: https://leetcode.cn/problems/partition-array-into-two-arrays-to-minimize-sum-difference/
         tag: meet_in_middle|sort|binary_search|two_pointers
         """
-        # meet_in_middlesorting|binary_search或者two_pointers
+        # meet_in_middlesort|binary_search或者two_pointers
 
         def check(lst):
             # brute_force列表元素所有个数的子集和
@@ -233,6 +233,10 @@ class Solution:
 
     @staticmethod
     def ac_171(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/173/
+        tag: meet_in_middle
+        """
         # meet_in_middle查找最接近目标值的子数组和
 
         w, n = ac.read_list_ints()

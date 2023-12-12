@@ -1032,6 +1032,10 @@ class Solution:
 
     @staticmethod
     def ac_3805(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/3808/
+        tag: RangeAddRangeMin
+        """
         # 区间增减与最小值查询
         n = ac.read_int()
         tree = RangeAddRangeSumMinMax(n)

@@ -7,7 +7,7 @@ Description：prefix_suffix|maximum|minimum|second_maximum
 316（https://leetcode.cn/problems/remove-duplicate-letters/）monotonic_stack|hash|counter
 321（https://leetcode.cn/problems/create-maximum-number/）brute_force|monotonic_stack
 1081（https://leetcode.cn/problems/smallest-subsequence-of-distinct-characters/）monotonic_stack|hash|counter
-2334（https://leetcode.cn/problems/subarray-with-elements-greater-than-varying-threshold/）sorting|brute_force|contribution_method
+2334（https://leetcode.cn/problems/subarray-with-elements-greater-than-varying-threshold/）sort|brute_force|contribution_method
 2262（https://leetcode.cn/problems/total-appeal-of-a-string/）prefix_suffix|monotonic_stack
 2355（https://leetcode.cn/problems/maximum-number-of-books-you-can-take/）monotonic_stack|liner_dp
 255（https://leetcode.cn/problems/verify-preorder-sequence-in-binary-search-tree/）monotonic_stack|pre_order
@@ -36,7 +36,7 @@ P5788（https://www.luogu.com.cn/problem/P5788）monotonic_stack
 P7314（https://www.luogu.com.cn/problem/P7314）brute_force|monotonic_stack|pre_larger|post_larger
 P7399（https://www.luogu.com.cn/problem/P7399）monotonic_stack|greedy
 P7410（https://www.luogu.com.cn/problem/P7410）inclusion_exclusion|monotonic_stack|counter
-P7762（https://www.luogu.com.cn/problem/P7762）monotonic_stack|greedy|sorting|contribution_method|area
+P7762（https://www.luogu.com.cn/problem/P7762）monotonic_stack|greedy|sort|contribution_method|area
 P1578（https://www.luogu.com.cn/problem/P1578）monotonic_stack|discretization|brute_force|sub_matrix|area
 P3467（https://www.luogu.com.cn/problem/P3467）greedy|monotonic_stack
 P1191（https://www.luogu.com.cn/problem/P1191）monotonic_stack|sub_matrix|counter
@@ -138,6 +138,10 @@ class Solution:
 
     @staticmethod
     def ac_131(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/133/
+        tag: monotonic_stack|sub_matrix
+        """
         # monotonic_stack|最大矩形
         while True:
             lst = ac.read_list_ints()
@@ -830,6 +834,10 @@ class Solution:
 
     @staticmethod
     def ac_3780(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/3783/
+        tag: monotonic_stack|greedy|linear_dp|construction
+        """
         # monotonic_stack|线性greedyDPconstruction
         n = ac.read_int()
         nums = ac.read_list_ints()

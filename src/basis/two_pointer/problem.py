@@ -32,10 +32,10 @@ Description：sliding_window|two_pointers|center_extension_method
 P2381（https://www.luogu.com.cn/problem/P2381）circular_array|sliding_window|two_pointers
 P3353（https://www.luogu.com.cn/problem/P3353）sliding_window|two_pointers
 P3662（https://www.luogu.com.cn/problem/P3662）sliding_window|sub_consequence_sum
-P4995（https://www.luogu.com.cn/problem/P4995）sorting|greedy|two_pointers|implemention
+P4995（https://www.luogu.com.cn/problem/P4995）sort|greedy|two_pointers|implemention
 P2207（https://www.luogu.com.cn/problem/P2207）greedy|same_direction|two_pointers
 P7542（https://www.luogu.com.cn/problem/P7542）bucket_counter|two_pointers
-P4653（https://www.luogu.com.cn/problem/P4653）greedy|sorting|two_pointers
+P4653（https://www.luogu.com.cn/problem/P4653）greedy|sort|two_pointers
 P3029（https://www.luogu.com.cn/problem/P3029）two_pointers
 P5583（https://www.luogu.com.cn/problem/P5583）two_pointers
 P6465（https://www.luogu.com.cn/problem/P6465）sliding_window|two_pointers|counter
@@ -73,7 +73,7 @@ class Solution:
     def lg_p4653(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P4653
-        tag: greedy|sorting|two_pointers
+        tag: greedy|sort|two_pointers
         """
 
         # greedysorting后two_pointers
@@ -497,6 +497,10 @@ class Solution:
 
     @staticmethod
     def ac_4217(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/4220/
+        tag: two_pointers|sliding_window
+        """
         # two_pointers移动
         n = ac.read_int()
         s = ac.read_str()

@@ -223,6 +223,10 @@ class Solution:
 
     @staticmethod
     def ac_4211(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/4214/
+        tag: directed_euler_path|specific_plan
+        """
         # 有向图euler_path模板题
         n = ac.read_int()
         pairs = []

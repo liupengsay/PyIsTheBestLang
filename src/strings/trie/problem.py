@@ -349,6 +349,10 @@ class Solution:
 
     @staticmethod
     def ac_143(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/145/
+        tag: maximum_xor|classical
+        """
         # 最大异或对
         ac.read_int()
         ans = 0
@@ -361,6 +365,10 @@ class Solution:
 
     @staticmethod
     def ac_144(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/146/
+        tag: 01-trie|maximum_xor
+        """
 
         # 01-trie树中最长异或路径
         n = ac.read_int()
@@ -389,6 +397,10 @@ class Solution:
 
     @staticmethod
     def ac_161(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/163/
+        tag: trie
+        """
         # O(n)trie判断是否存在单词前缀包含
         for _ in range(ac.read_int()):
             n = ac.read_int()

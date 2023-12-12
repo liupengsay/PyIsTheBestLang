@@ -16,7 +16,7 @@ Description：
 
 =====================================LuoGu======================================
 P5462（https://www.luogu.com.cn/problem/P5462）double_linked_list|greedy|lexicographical_order|deque
-P6155（https://www.luogu.com.cn/problem/P6155）sorting|greedy|union_find_right_root
+P6155（https://www.luogu.com.cn/problem/P6155）sort|greedy|union_find_right_root
 
 ===================================CodeForces===================================
 1154E（https://codeforces.com/contest/1154/problem/E）double_linked_list
@@ -185,6 +185,10 @@ class Solution:
 
     @staticmethod
     def ac_136(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/138/
+        tag: linked_list|reverse_thinking
+        """
         # linked_list|逆序删除，查找前后最接近的值，也可直接SortedList
         n = ac.read_int()
         nums = ac.read_list_ints()
@@ -258,7 +262,7 @@ class Solution:
     def lg_p6155(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P6155
-        tag: sorting|greedy|union_find_right_root
+        tag: sort|greedy|union_find_right_root
         """
         # sortinggreedyunion_find思想寻找右边最近的空位
         n = ac.read_int()
@@ -334,6 +338,10 @@ class Solution:
 
     @staticmethod
     def ac_4943(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/4946/
+        tag: bfs|linked_list
+        """
         # bfs|linked_list|，维护四个方向上的未访问点
         m, n, k = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
@@ -416,6 +424,10 @@ class Solution:
 
     @staticmethod
     def ac_5034(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/5037/
+        tag: heapq|greedy|linked_list
+        """
         # heapqgreedy|linked_list|处理
         n = ac.read_int()
         s = ac.read_str()

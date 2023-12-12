@@ -371,6 +371,10 @@ class Solution:
 
     @staticmethod
     def ac_96(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/98/
+        tag: liner_dp|classical|hanoi_tower
+        """
         # 两层liner_dp，汉诺塔问题
         n = 12
         dp3 = [inf] * (n + 1)  # 三个柱子
@@ -1088,6 +1092,10 @@ class Solution:
 
     @staticmethod
     def ac_4414(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/4417/
+        tag: liner_dp
+        """
         # 线性子序列DP
         ac.read_int()
         nums = ac.read_list_ints()

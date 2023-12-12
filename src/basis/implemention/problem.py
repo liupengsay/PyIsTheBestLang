@@ -471,6 +471,10 @@ class Solution:
 
     @staticmethod
     def ac_4318(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/4321/
+        tag: hash|greedy|implemention|construction
+        """
         # hashgreedyimplementionconstruction
         x = y = 0
         ind = dict()

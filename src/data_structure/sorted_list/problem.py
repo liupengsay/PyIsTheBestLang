@@ -13,11 +13,11 @@ Description：range_query|binary_search
 2519（https://leetcode.cn/problems/count-the-number-of-k-big-indices/）sorted_list
 1912（https://leetcode.cn/problems/design-movie-rental-system/）sorted_list|classical
 1825（https://leetcode.cn/problems/finding-mk-average/）sorted_list|deque
-2250（https://leetcode.cn/problems/count-number-of-rectangles-containing-each-point/）offline_query|pointer|sorting|binary_search
+2250（https://leetcode.cn/problems/count-number-of-rectangles-containing-each-point/）offline_query|pointer|sort|binary_search
 2426（https://leetcode.cn/problems/number-of-pairs-satisfying-inequality/）math|sorted_list|binary_search
 
 =====================================LuoGu======================================
-P7333（https://www.luogu.com.cn/problem/P7333）sorting|sorted_list|circular_array|range_query
+P7333（https://www.luogu.com.cn/problem/P7333）sort|sorted_list|circular_array|range_query
 P7391（https://www.luogu.com.cn/problem/P7391）sorted_list|greedy|implemention|lazy_heapq
 P7910（https://www.luogu.com.cn/problem/P7910）sorted_list
 P4375（https://www.luogu.com.cn/problem/P4375）bubble_sort|sorted_list

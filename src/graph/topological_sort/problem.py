@@ -105,6 +105,10 @@ class Solution:
 
     @staticmethod
     def ac_3696(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/3699/
+        tag: topological_order|dag|construction
+        """
         # bfs序即拓扑序与DAGconstruction
         for _ in range(ac.read_int()):
             def check():
@@ -992,6 +996,10 @@ class Solution:
 
     @staticmethod
     def ac_3828(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/3831/
+        tag: topological_sort|dag_dp|circle_judge
+        """
         # 有向图DAGtopological_sortingDP模板题并判断有无环
         m, n = ac.read_list_ints()
         ind = {w: i for i, w in enumerate("QWER")}
@@ -1040,6 +1048,10 @@ class Solution:
 
     @staticmethod
     def ac_4626(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/4629/
+        tag: directed_circle_based_tree|circle_judge
+        """
         # directed_circle_based_tree判断每个环的大小
         n = ac.read_int()
         a = ac.read_list_ints_minus_one()

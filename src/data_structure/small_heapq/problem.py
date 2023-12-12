@@ -10,7 +10,7 @@ Description：greedy
 2163（https://leetcode.cn/problems/minimum-difference-in-sums-after-removal-of-elements/）prefix_suffix|brute_force
 1792（https://leetcode.cn/problems/maximum-average-pass-ratio/）greedy
 295（https://leetcode.cn/problems/find-median-from-data-stream/）heapq|median
-2542（https://leetcode.cn/problems/maximum-subsequence-score/）greedy|sorting|brute_force|heapq
+2542（https://leetcode.cn/problems/maximum-subsequence-score/）greedy|sort|brute_force|heapq
 2263（https://leetcode.cn/problems/make-array-non-decreasing-or-non-increasing/）heapq|greedy
 
 =====================================LuoGu======================================
@@ -62,7 +62,7 @@ class Solution:
         url: https://leetcode.cn/problems/next-greater-element-iv/
         tag: heapq|post_second_larger|hash|SortedList
         """
-        # hashsorting|SortedList
+        # hashsort|SortedList
         n = len(nums)
         dct = defaultdict(list)
         for i in range(n):
@@ -155,6 +155,10 @@ class Solution:
 
     @staticmethod
     def ac_146(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/148/
+        tag: heapq
+        """
         # 小顶heapq问题m个数组最小的n个子序列和，同样可以最大的
         for _ in range(ac.read_int()):
             m, n = ac.read_list_ints()
@@ -184,6 +188,10 @@ class Solution:
 
     @staticmethod
     def ac_147(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/149/
+        tag: greedy|heapq|double_linked_list
+        """
         # greedy思想|heapq|与double_linked_list|优化
 
         n, k = ac.read_list_ints()

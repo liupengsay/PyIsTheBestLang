@@ -70,7 +70,7 @@ P8847（https://www.luogu.com.cn/problem/P8847）classification_discussion|greed
 P8845（https://www.luogu.com.cn/problem/P8845）brain_teaser|prime_property|only_even_prime
 P2772（https://www.luogu.com.cn/problem/P2772）sort|partial_order
 P2878（https://www.luogu.com.cn/problem/P2878）greedy|custom_sort|classical
-P2920（https://www.luogu.com.cn/problem/P2920）sorting|greedy
+P2920（https://www.luogu.com.cn/problem/P2920）sort|greedy
 P2983（https://www.luogu.com.cn/problem/P2983）greedy|sort
 P3173（https://www.luogu.com.cn/problem/P3173）sort|greedy
 P5098（https://www.luogu.com.cn/problem/P5098）greedy|partial_order|classification_discussion|prefix_min|sort
@@ -333,6 +333,10 @@ class Solution:
 
     @staticmethod
     def ac_105(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/1538/
+        tag: greedy|card_split_average|classical|circular_array
+        """
 
         def check(nums):
             # 环形均分纸牌
@@ -372,6 +376,10 @@ class Solution:
 
     @staticmethod
     def ac_123(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/125/
+        tag: median_greedy
+        """
         # mediangreedy扩展问题，连续相邻sorting减去下标后再sorting
         n = ac.read_int()
         lst_x = []
@@ -394,6 +402,10 @@ class Solution:
 
     @staticmethod
     def ac_125(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/127/
+        tag: greedy|custom_sort
+        """
         # greedy思路，邻项交换
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
@@ -408,6 +420,10 @@ class Solution:
 
     @staticmethod
     def ac_127(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/129/
+        tag: partial_order|sort|greedy
+        """
         # 二维sortinggreedy
         n, m = ac.read_list_ints()
         machine = [ac.read_list_ints() for _ in range(n)]
@@ -431,6 +447,10 @@ class Solution:
 
     @staticmethod
     def ac_145(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/147/
+        tag: heapq|greedy
+        """
         # heapq|greedy
         lst = []
         cnt = 0
@@ -899,6 +919,10 @@ class Solution:
 
     @staticmethod
     def ac_4307(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/4310/
+        tag: lexicographical_order|brute_force|greedy
+        """
         # lexicographical_orderbrute_forcegreedy
         a = [int(w) for w in str(ac.read_int())]
         b = [int(w) for w in str(ac.read_int())]
@@ -921,6 +945,10 @@ class Solution:
 
     @staticmethod
     def ac_4313(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/4316/
+        tag: full_binary_tree|tree_dp|greedy|LC2673
+        """
         # 满二叉树tree_dpgreedy
         n = ac.read_int()
         m = 2 ** (n + 1)
@@ -938,6 +966,10 @@ class Solution:
 
     @staticmethod
     def ac_4426(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/4429/
+        tag: brain_teaser|brain_teaser|property
+        """
 
         # brain_teaser|brain_teaser，等价于末尾两位数字可以被4整除
         s = ac.read_str()
@@ -953,6 +985,10 @@ class Solution:
 
     @staticmethod
     def ac_4427(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/4430/
+        tag: greedy|construction
+        """
         # 树形greedyconstruction
         n = ac.read_int()
         dct = [[] for _ in range(n)]
@@ -983,6 +1019,10 @@ class Solution:
 
     @staticmethod
     def ac_4429(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/4432/
+        tag: greedy|custom_sort|prefix_suffix|brute_force
+        """
         # 邻项公式greedysorting，prefix_suffixbrute_force
         n, x1, y1, x2, y2 = ac.read_list_ints()
         pos = [ac.read_list_ints() for _ in range(n)]
@@ -1010,6 +1050,10 @@ class Solution:
 
     @staticmethod
     def ac_4430(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/4433/
+        tag: brute_force|prefix_suffix|bracket
+        """
         # 括号匹配brute_force，prefix_suffix遍历
         n = ac.read_int()
         s = ac.read_str()
@@ -1067,6 +1111,10 @@ class Solution:
 
     @staticmethod
     def ac_4492(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/4495/
+        tag: brain_teaser|odd_even
+        """
         # brain_teaser分为奇数与偶数讨论
         n = ac.read_int()
         if n % 2 == 0:
@@ -1079,6 +1127,10 @@ class Solution:
 
     @staticmethod
     def ac_4623(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/4626/
+        tag: greedy|implemention
+        """
         # greedyimplemention
         n, t = ac.read_list_ints()
         a = ac.read_list_ints()

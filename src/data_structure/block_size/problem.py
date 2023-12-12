@@ -1,5 +1,5 @@
 """
-Algorithm：block_query|offline_query|sorting|two_pointers
+Algorithm：block_query|offline_query|sort|two_pointers
 Description：sort the query interval into blocks and alternate between moving two pointers dynamically maintain query values
 
 ====================================LeetCode====================================

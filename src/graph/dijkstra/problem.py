@@ -1821,6 +1821,10 @@ class Solution:
 
     @staticmethod
     def ac_3628(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/3631/
+        tag: shortest_path_spanning_tree
+        """
         # shortest_path_spanning_tree模板题
         n, m, k = ac.read_list_ints()
         dct = [[] for _ in range(n)]
@@ -1876,6 +1880,10 @@ class Solution:
 
     @staticmethod
     def ac_3772(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/3775/
+        tag: build_graph|reverse_grpah|dijkstra|shortest_path|counter|greedy|implemention
+        """
         # 建立反图并Dijkstrashortest_pathcountergreedyimplemention
         n, m = ac.read_list_ints()
         rev = [[] for _ in range(n)]
@@ -1908,6 +1916,10 @@ class Solution:
 
     @staticmethod
     def ac_3797(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/3800/
+        tag: shortest_path|brute_force|sort|greedy
+        """
         # shortest_pathbrute_force增边sortinggreedy
         n, m, k = ac.read_list_ints()
         nums = ac.read_list_ints_minus_one()
@@ -1937,6 +1949,10 @@ class Solution:
 
     @staticmethod
     def ac_4196(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/4199/
+        tag: shortest_path
+        """
         # shortest_path长度与返回任意一条shortest_path
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]

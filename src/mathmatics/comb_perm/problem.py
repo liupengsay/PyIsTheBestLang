@@ -412,6 +412,10 @@ class Solution:
 
     @staticmethod
     def ac_130(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/132/
+        tag: catalan_number
+        """
         # 超大范围的catalan_number h(n) = C(2n, n)//(n+1) = ((n+1)*..*(2*n))//(1*2*..*(n+1))
         n = ac.read_int()
         nt = PrimeFactor(2 * n + 1)
@@ -714,6 +718,10 @@ class Solution:
 
     @staticmethod
     def ac_4002(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/4005/
+        tag: matrix_dp|partition_method|classical
+        """
         # matrix_dp转化为partition_method组合数求解
         m, n = ac.read_list_ints()
         cb = Combinatorics(2 * n + m, 10 ** 9 + 7)
@@ -722,6 +730,10 @@ class Solution:
 
     @staticmethod
     def ac_4496(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/4499/
+        tag: partition_method|counter
+        """
         # partition_methodcounter
         mod = 998244353
         n, m, k = ac.read_list_ints()
@@ -732,6 +744,10 @@ class Solution:
 
     @staticmethod
     def ac_5055(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/5058/
+        tag: math|comb|mod
+        """
         # 组合mathmod|求解
         mod = 10 ** 9 + 7
         n, m, k = ac.read_list_ints()

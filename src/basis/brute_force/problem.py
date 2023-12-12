@@ -51,7 +51,7 @@ P2191（https://www.luogu.com.cn/problem/P2191）reverse_thinking|matrix_rotate
 P2699（https://www.luogu.com.cn/problem/P2699）classification_discussion|brute_force|implemention
 P1371（https://www.luogu.com.cn/problem/P1371）prefix_suffix|brute_force|counter
 P1369（https://www.luogu.com.cn/problem/P1369）matrix_dp|greedy|brute_force
-P1158（https://www.luogu.com.cn/problem/P1158）sorting|brute_force|suffix_maximum
+P1158（https://www.luogu.com.cn/problem/P1158）sort|brute_force|suffix_maximum
 P8928（https://www.luogu.com.cn/problem/P8928）brute_force|counter
 P8892（https://www.luogu.com.cn/problem/P8892）brute_force
 P8799（https://www.luogu.com.cn/problem/P8799）brute_force
@@ -70,7 +70,7 @@ P4994（https://www.luogu.com.cn/problem/P4994）implemention|pi(n)<=6n
 P5190（https://www.luogu.com.cn/problem/P5190）counter|prefix_sum|harmonic_progression|O(nlogn)
 P5614（https://www.luogu.com.cn/problem/P5614）brute_force
 P6014（https://www.luogu.com.cn/problem/P6014）hash|mod|counter
-P6067（https://www.luogu.com.cn/problem/P6067）sorting|prefix_suffix|brute_force
+P6067（https://www.luogu.com.cn/problem/P6067）sort|prefix_suffix|brute_force
 P6248（https://www.luogu.com.cn/problem/P6248）brute_force
 P6355（https://www.luogu.com.cn/problem/P6355）brute_force|triangle|counter
 P6365（https://www.luogu.com.cn/problem/P6365）inclusion_exclusion|brute_force|counter
@@ -82,7 +82,7 @@ P5690（https://www.luogu.com.cn/problem/P5690）brute_force
 P7076（https://www.luogu.com.cn/problem/P7076）bit_operation|brute_force|counter
 P7094（https://www.luogu.com.cn/problem/P7094）math|data_range|brute_force
 P7273（https://www.luogu.com.cn/problem/P7273）brute_force|math|greedy
-P7286（https://www.luogu.com.cn/problem/P7286）sorting|brute_force|counter
+P7286（https://www.luogu.com.cn/problem/P7286）sort|brute_force|counter
 P7626（https://www.luogu.com.cn/problem/P7626）brute_force|matrix|diagonal
 P7799（https://www.luogu.com.cn/problem/P7799）hash|brute_force|counter
 P1018（https://www.luogu.com.cn/problem/P1018）brute_force
@@ -108,7 +108,7 @@ P9008（https://www.luogu.com.cn/problem/P9008）inclusion_exclusion|brute_force
 P9006（https://www.luogu.com.cn/problem/P9006）brute_force|mod|counter
 P8948（https://www.luogu.com.cn/problem/P8948）brute_force
 P8894（https://www.luogu.com.cn/problem/P8894）data_range|brute_force|prefix_suffix|counter
-P8872（https://www.luogu.com.cn/problem/P8872）sorting|prefix_suffix|brute_force
+P8872（https://www.luogu.com.cn/problem/P8872）sort|prefix_suffix|brute_force
 
 ===================================CodeForces===================================
 1426F（https://codeforces.com/problemset/problem/1426/F）classification_discussion|brute_force|counter|fast_power
@@ -117,7 +117,7 @@ P8872（https://www.luogu.com.cn/problem/P8872）sorting|prefix_suffix|brute_for
 584D（https://codeforces.com/problemset/problem/584/D）brute_force|prime|decompose_into_sum_of_prime_at_most_3
 1311D（https://codeforces.com/problemset/problem/1311/D）greedy|brute_force
 1181C（https://codeforces.com/problemset/problem/1181/C）column_wised|brute_force
-484B（https://codeforces.com/problemset/problem/484/B）sorting|brute_force|binary_search
+484B（https://codeforces.com/problemset/problem/484/B）sort|brute_force|binary_search
 382C（https://codeforces.com/problemset/problem/382/C）classification_discussion
 D - Remainder Reminder（https://atcoder.jp/contests/abc090/tasks/arc091_b）brute_force
 D - Katana Thrower（https://atcoder.jp/contests/abc085/tasks/abc085_d）brute_force
@@ -255,7 +255,7 @@ class Solution:
     def cf_484b(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/484/B
-        tag: sorting|brute_force|binary_search
+        tag: sort|brute_force|binary_search
         """
         # 查询数组中两两mod|运算的最大值（要求较小值作为mod|数）
         ac.read_int()
@@ -469,6 +469,10 @@ class Solution:
 
     @staticmethod
     def ac_95(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/97/
+        tag: brute_force
+        """
         # brute_force第一行状态
         n = ac.read_int()
 
@@ -1059,7 +1063,7 @@ class Solution:
     def lg_p8872(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P8872
-        tag: sorting|prefix_suffix|brute_force
+        tag: sort|prefix_suffix|brute_force
         """
         # sorting后prefix_suffix移动次数brute_force
         n, m = ac.read_list_ints()

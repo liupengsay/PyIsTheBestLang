@@ -3,6 +3,9 @@ from decimal import Decimal
 
 
 class TernarySearch:
+    """
+    the platform of the function must be on the ceil or floor, others can not use ternary search
+    """
     def __init__(self):
         return
 

@@ -1110,6 +1110,10 @@ class Solution:
 
     @staticmethod
     def ac_3760(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/3763/
+        tag: brain_teaser|tree_dp
+        """
         # brain_teaser转化为tree_dp迭代方式求解
         n = ac.read_int()
         w = ac.read_list_ints()
@@ -1150,6 +1154,10 @@ class Solution:
 
     @staticmethod
     def ac_4381(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/4384/
+        tag: reroot_dp|dfs|dfs_order|diff_array
+        """
         # 迭代法实现树形reroot_dp
         n = ac.read_int()
         dct = [[] for _ in range(n)]

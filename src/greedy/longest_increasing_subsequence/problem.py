@@ -323,6 +323,10 @@ class Solution:
 
     @staticmethod
     def ac_3549(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/3552/
+        tag: liner_dp|greedy
+        """
         # 翻转连续子数组获得最长不降子序列
         ac.read_int()
         nums = ac.read_list_ints()
@@ -339,6 +343,10 @@ class Solution:
 
     @staticmethod
     def ac_3662_1(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/3665/
+        tag: lis|counter|discretization|tree_array|liner_dp|segment_tree
+        """
         # 所有长度的严格上升子序列的最大子序列和，discretizationtree_array|与liner_dp，也可segment_tree|
         ac.read_int()
         nums = ac.read_list_ints()
@@ -356,6 +364,10 @@ class Solution:
 
     @staticmethod
     def ac_3662_2(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/3665/
+        tag: lis|counter|discretization|tree_array|liner_dp|segment_tree
+        """
         # 所有长度的严格上升子序列的最大子序列和，discretizationtree_array|与liner_dp，也可segment_tree|
         ac.read_int()
         nums = ac.read_list_ints()
@@ -373,6 +385,10 @@ class Solution:
 
     @staticmethod
     def ac_2694(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/2696/
+        tag: lcs_by_lis|counter|dp
+        """
         # LIS的方法求解LCS的长度与个数
         mod = 10 ** 8
         s1 = ac.read_str()[:-1]

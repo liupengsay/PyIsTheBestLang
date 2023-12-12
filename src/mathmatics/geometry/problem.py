@@ -155,6 +155,10 @@ class Solution:
 
     @staticmethod
     def ac_119(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/121/
+        tag: closet_pair|divide_and_conquer|hash|block_plane|sorted_list|classical
+        """
         # 随机增量法平面两个点集之间的最近距离
         for _ in range(ac.read_int()):
             n = ac.read_int()
@@ -187,6 +191,10 @@ class Solution:
 
     @staticmethod
     def ac_4309(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/4312/
+        tag: line_slope
+        """
         # line_slope
         n, x0, y0 = ac.read_list_ints()
         dct = set()
@@ -207,6 +215,10 @@ class Solution:
 
     @staticmethod
     def ac_4499(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/4502/
+        tag: geometry|equation
+        """
         # geometry|，一元二次方程求解
         r, x1, y1, x2, y2 = ac.read_list_ints()
         if (x1 - x2) ** 2 + (y1 - y2) ** 2 > r * r:

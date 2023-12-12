@@ -139,6 +139,10 @@ class Solution:
 
     @staticmethod
     def ac_5145(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/5148/
+        tag: union_find|circle_judge
+        """
         # union_find判矩阵四元及以上的环
         m, n = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
@@ -1084,6 +1088,10 @@ class Solution:
 
     @staticmethod
     def ac_4306(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/4309/
+        tag: union_find_right_range
+        """
         # 向右合并的区间union_find
         n = ac.read_int()
         a = ac.read_list_ints()
@@ -1100,6 +1108,10 @@ class Solution:
 
     @staticmethod
     def ac_4866(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/4869/
+        tag: union_find|implemention|size
+        """
         # union_findimplemention维护连通块大小与多余的边数量
         n, d = ac.read_list_ints()
         uf = UnionFind(n)

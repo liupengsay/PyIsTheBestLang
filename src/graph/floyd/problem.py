@@ -90,6 +90,10 @@ class Solution:
 
     @staticmethod
     def ac_4872(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/submission/4875/
+        tag: floyd|reverse_thinking|shortest_path|reverse_graph
+        """
         # Floyd逆序reverse_thinking更新shortest_path对
         n = ac.read_int()
         dp = [ac.read_list_ints() for _ in range(n)]

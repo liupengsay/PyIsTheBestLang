@@ -765,6 +765,10 @@ class Solution:
 
     @staticmethod
     def ac_173(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/175/
+        tag: multi_source_bfs|classical
+        """
         # multi_source_bfs模板题
         m, n = ac.read_list_ints()
         grid = [ac.read_list_str() for _ in range(m)]
@@ -790,6 +794,10 @@ class Solution:
 
     @staticmethod
     def ac_175(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/177/
+        tag: priority_queue|bfs
+        """
         for _ in range(ac.read_int()):
 
             # 双端priority_queue 01 bfs模板题注意build_graph|
@@ -825,6 +833,10 @@ class Solution:
 
     @staticmethod
     def ac_177(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/179/
+        tag: multi_source_bfs|bilateral_bfs
+        """
         for _ in range(ac.read_int()):
             # 多源bilateral_bfs
             m, n = ac.read_list_ints()
@@ -1984,6 +1996,10 @@ class Solution:
 
     @staticmethod
     def ac_4415(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/4418
+        tag: bfs|coloring_method|odd_circle|specific_plan|counter
+        """
         # bfscoloring_method，判断有无奇数环，specific_plancounter
         mod = 998244353
 
@@ -2070,6 +2086,10 @@ class Solution:
 
     @staticmethod
     def ac_4481(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/4484/
+        tag: 01-bfs
+        """
         # 01-bfs
         m, n = ac.read_list_ints()
         r, c = ac.read_list_ints_minus_one()

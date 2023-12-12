@@ -410,6 +410,10 @@ class Solution:
 
     @staticmethod
     def ac_998(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/1000/
+        tag: or|xor|and|bit_operation|greedy
+        """
         # 按照二进制每个位操作，greedy结果
         n, m = ac.read_list_ints()
         ans = [[0, 1 << i] for i in range(32)]
@@ -670,6 +674,10 @@ class Solution:
 
     @staticmethod
     def ac_4614(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/4617/
+        tag: bit_operation|brute_force|prefix_sum|preprocess
+        """
         # bit_operationbrute_force与prefix_sumpreprocess
         n, m, q = ac.read_list_ints()
         nums = ac.read_list_ints()

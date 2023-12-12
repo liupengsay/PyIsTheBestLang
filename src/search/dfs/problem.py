@@ -36,7 +36,7 @@ P4913（https://www.luogu.com.cn/problem/P4913）dfs
 P5118（https://www.luogu.com.cn/problem/P5118）dfs|back_track|hash|implemention
 P5197（https://www.luogu.com.cn/problem/P5197）tree_dp|implemention|coloring_method
 P5198（https://www.luogu.com.cn/problem/P5198）union_find
-P5318（https://www.luogu.com.cn/problem/P5318）bfs|topological_sorting|dfs_order
+P5318（https://www.luogu.com.cn/problem/P5318）bfs|topological_sort|dfs_order
 P6691（https://www.luogu.com.cn/problem/P6691）coloring_method|bipartite_graph|specific_plan|counter
 P7370（https://www.luogu.com.cn/problem/P7370）ancestor
 P1036（https://www.luogu.com.cn/problem/P1036）back_track|prune
@@ -267,7 +267,7 @@ class Solution:
     def lg_p5318(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P5318
-        tag: bfs|topological_sorting|dfs_order
+        tag: bfs|topological_sort|dfs_order
         """
         # dfs|与bfs|序获取
         n, m = ac.read_list_ints()
@@ -818,6 +818,10 @@ class Solution:
 
     @staticmethod
     def ac_4310(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/4313/
+        tag: dfs_order|template
+        """
         # dfs_order模板题
         n, q = ac.read_list_ints()
         dct = [[] for _ in range(n)]
@@ -914,6 +918,10 @@ class Solution:
 
     @staticmethod
     def ac_23(matrix, string):
+        """
+        url: https://www.acwing.com/problem/content/description/21/
+        tag: back_track|template
+        """
         # back_track模板题
         if not matrix:
             return False

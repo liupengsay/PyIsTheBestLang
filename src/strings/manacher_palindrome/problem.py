@@ -80,6 +80,10 @@ class Solution:
 
     @staticmethod
     def ac_139(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/141/
+        tag: manacher|longest_palindrome_substring|binary_search|hash
+        """
         # manacher最长palindrome_substring的长度
         ind = 0
         while True:

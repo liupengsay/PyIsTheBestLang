@@ -8,9 +8,9 @@ Description：implemention|monotonic_stack|maximum_stack|minimum_stack
 394（https://leetcode.cn/problems/decode-string/）decode|stack
 1096（https://leetcode.cn/problems/brace-expansion-ii/）stack|decode
 2116（https://leetcode.cn/problems/check-if-a-parentheses-string-can-be-valid/）stack|greedy|bracket
-857（https://leetcode.cn/problems/minimum-cost-to-hire-k-workers/）greedy|sorting|brute_force|heapq
-2542（https://leetcode.cn/problems/maximum-subsequence-score/）sorting|brute_force|heapq
-2813（https://leetcode.cn/problems/maximum-elegance-of-a-k-length-subsequence/）brain_teaser|sorting|brute_force|function
+857（https://leetcode.cn/problems/minimum-cost-to-hire-k-workers/）greedy|sort|brute_force|heapq
+2542（https://leetcode.cn/problems/maximum-subsequence-score/）sort|brute_force|heapq
+2813（https://leetcode.cn/problems/maximum-elegance-of-a-k-length-subsequence/）brain_teaser|sort|brute_force|function
 2462（https://leetcode.cn/problems/total-cost-to-hire-k-workers/）heapq|greedy|implemention
 1705（https://leetcode.cn/problems/maximum-number-of-eaten-apples/）heapq|greedy|implemention
 1750（https://leetcode.cn/problems/minimum-length-of-string-after-deleting-similar-ends/description/）stack|implemention
@@ -61,7 +61,7 @@ class Solution:
     def lc_2542(nums1: List[int], nums2: List[int], k: int) -> int:
         """
         url: https://leetcode.cn/problems/maximum-subsequence-score/
-        tag: sorting|brute_force|heapq
+        tag: sort|brute_force|heapq
         """
         # sorting后brute_forceheapq维护K最大的和，类似LC857
         n = len(nums1)
@@ -128,7 +128,7 @@ class Solution:
     def lc_2813(items: List[List[int]], k: int) -> int:
         """
         url: https://leetcode.cn/problems/maximum-elegance-of-a-k-length-subsequence/
-        tag: brain_teaser|sorting|brute_force|function
+        tag: brain_teaser|sort|brute_force|function
         """
         # brain_teaser|sorting后brute_force，维护长度为k的子序列最大函数值
         items.sort(reverse=True)
@@ -197,7 +197,7 @@ class Solution:
     def lc_857(quality: List[int], wage: List[int], k: int) -> float:
         """
         url: https://leetcode.cn/problems/minimum-cost-to-hire-k-workers/
-        tag: greedy|sorting|brute_force|heapq
+        tag: greedy|sort|brute_force|heapq
         """
         # greedysortingbrute_force，heapq维护K个最小值的和
         n = len(quality)
@@ -313,6 +313,10 @@ class Solution:
 
     @staticmethod
     def ac_128(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/130/
+        tag: heapq|stack|implemention
+        """
         # stack与pointerimplemention
         pre = []
         post = []
@@ -346,6 +350,10 @@ class Solution:
 
     @staticmethod
     def ac_129_1(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/131/
+        tag: catalan_number|stack|implemention
+        """
         # catalan_number，stackimplemention判定出stack入stack合法性
         n = ac.read_int()
         m = ac.min(5, n)
@@ -374,6 +382,10 @@ class Solution:
 
     @staticmethod
     def ac_129_2(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/131/
+        tag: catalan_number|stack|implemention
+        """
         # back_trackimplemention出stack入stack所有可能的排列
 
         def dfs(i):
@@ -406,6 +418,10 @@ class Solution:
 
     @staticmethod
     def ac_129_3(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/131/
+        tag: catalan_number|stack|implemention
+        """
         # 迭代写法替换dfs|与back_track
         n = ac.read_int()
         cnt = 0
@@ -465,6 +481,10 @@ class Solution:
 
     @staticmethod
     def ac_4865(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/4868/
+        tag: stack|implemention
+        """
         # stackimplemention
         m = ac.read_int()
         lst = ac.read_list_strs()
@@ -501,6 +521,10 @@ class Solution:
 
     @staticmethod
     def ac_5136(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/5139/
+        tag: stack|reverse_order|implemention
+        """
         # stackreverse_order|implemention
         s = ac.read_str()
         n = len(s)

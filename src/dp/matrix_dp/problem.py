@@ -1730,6 +1730,10 @@ class Solution:
 
     @staticmethod
     def ac_4418(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/4421/
+        tag: monotonic_queue|matrix_dp
+        """
         # monotonic_queuematrix_dp
         n, k, x = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -1999,6 +2003,10 @@ class Solution:
 
     @staticmethod
     def ac_4378(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/4381/
+        tag: classical|matrix_dp
+        """
         # classicalmatrix_dp
         n, m, k = ac.read_list_ints()
         dp = [[-inf] * (k + 1) for _ in range(n + 1)]
@@ -2040,6 +2048,10 @@ class Solution:
 
     @staticmethod
     def ac_2694(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/2696/
+        tag: lcs|matrix_dp|counter
+        """
         # 问题求解最长公共子序列LCS的长度与个数
         a = ac.read_str()[:-1]
         b = ac.read_str()[:-1]

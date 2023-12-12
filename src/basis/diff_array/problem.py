@@ -46,7 +46,7 @@ P6481（https://www.luogu.com.cn/problem/P6481）prefix|range_update
 P2956（https://www.luogu.com.cn/problem/P2956）diff_matrix|prefix_sum
 P3397（https://www.luogu.com.cn/problem/P3397）diff_matrix|prefix_sum
 P1869（https://www.luogu.com.cn/problem/P1869）prefix_sum|comb|odd_even
-P7667（https://www.luogu.com.cn/problem/P7667）math|sorting|prefix_sum
+P7667（https://www.luogu.com.cn/problem/P7667）math|sort|prefix_sum
 P2671（https://www.luogu.com.cn/problem/P2671）prefix_or_sum|counter|brute_force|odd_even
 P1719（https://www.luogu.com.cn/problem/P1719）max_sub_matrix_sum|brute_force|prefix_sum
 P2882（https://www.luogu.com.cn/problem/P2882）greedy|brute_force|diff_array
@@ -68,12 +68,12 @@ P6032（https://www.luogu.com.cn/problem/P6032）prefix_suffix|counter
 P6070（https://www.luogu.com.cn/problem/P6070）diff_matrix|greedy|prefix_sum
 P6278（https://www.luogu.com.cn/problem/P6278）reverse_order_pair|action_scope|diff_array|prefix_sum
 P6537（https://www.luogu.com.cn/problem/P6537）prefix_sum|brute_force
-P6877（https://www.luogu.com.cn/problem/P6877）sorting|greedy|prefix_suffix|dp|brute_force
+P6877（https://www.luogu.com.cn/problem/P6877）sort|greedy|prefix_suffix|dp|brute_force
 P6878（https://www.luogu.com.cn/problem/P6878）prefix_suffix|brute_force
 P8081（https://www.luogu.com.cn/problem/P8081）diff_array|counter|action_scope
 P8033（https://www.luogu.com.cn/problem/P8033）matrix_prefix_sum|counter
 P7992（https://www.luogu.com.cn/problem/P7992）bucket_counter|action_scope|diff_array|counter
-P7948（https://www.luogu.com.cn/problem/P7948）sorting|prefix_suffix|pointer
+P7948（https://www.luogu.com.cn/problem/P7948）sort|prefix_suffix|pointer
 P8343（https://www.luogu.com.cn/problem/P8343）sub_matrix_prefix_sum|brute_force|two_pointers
 P8551（https://www.luogu.com.cn/problem/P8551）diff_array
 P8666（https://www.luogu.com.cn/problem/P8666）binary_search|md_diff_array|implemention
@@ -567,6 +567,10 @@ class Solution:
 
     @staticmethod
     def ac_99(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/101/
+        tag: matrix_prefix_sum
+        """
         # matrix_prefix_sum|
         n, m = ac.read_list_ints()
 
@@ -589,6 +593,10 @@ class Solution:
 
     @staticmethod
     def ac_102(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/104/
+        tag: prefix_sum|binary_search|brute_force|average
+        """
 
         # prefix_sum|binary_search不短于k的子数组最大平均值
         n, f = ac.read_list_ints()
@@ -618,6 +626,10 @@ class Solution:
 
     @staticmethod
     def ac_121(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/123/
+        tag: discretization_diff_array|prefix_sum|two_pointers|binary_search
+        """
         # discretizationprefix_sum，two_pointers|binary_search
         c, b = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(b)]
@@ -665,6 +677,10 @@ class Solution:
 
     @staticmethod
     def ac_126(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/128/
+        tag: max_sub_matrix_sum
+        """
         # 最大子矩形和
         n = ac.read_int()
         nums = []
@@ -1191,7 +1207,7 @@ class Solution:
     def lg_p6877(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P6877
-        tag: sorting|greedy|prefix_suffix|dp|brute_force
+        tag: sort|greedy|prefix_suffix|dp|brute_force
         """
         # sortinggreedyprefix_suffix DP brute_force
         n = ac.read_int()
@@ -1379,7 +1395,7 @@ class Solution:
     def lg_p7948(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P7948
-        tag: sorting|prefix_suffix|pointer
+        tag: sort|prefix_suffix|pointer
         """
         # sorting后preprocessprefix_suffix信息pointer查询
         for _ in range(ac.read_int()):
@@ -1653,6 +1669,10 @@ class Solution:
 
     @staticmethod
     def ac_3993(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/3996/
+        tag: suffix_sum|data_range|brain_teaser
+        """
         # 后缀和data_rangebrain_teaser|
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
