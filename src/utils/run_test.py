@@ -21,7 +21,7 @@ class TestGeneral(unittest.TestCase):
                     idx = line.split(st)[0]
                     url = "https://" + line.split(st)[1].split("）")[0]
                     tag = line.split(st)[1].split("）")[1]
-                    dct[idx] = [f"# {url}", f"# {tag}"]
+                    dct[idx] = ["\"\"\"", f"url: {url}", f"tag: {tag}", "\"\"\""]
                 st = "def lc_"
                 if lst and st in lst[-1]:
                     lst.extend(dct[lst[-1].split("(")[0].split("lc_")[1]])
