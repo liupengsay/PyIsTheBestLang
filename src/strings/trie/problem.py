@@ -9,7 +9,7 @@ Description：string|bit_operation
 1803（https://leetcode.com/problems/count-pairs-with-xor-in-a-range/）01-trie|classical
 677（https://leetcode.com/problems/map-sum-pairs/）prefix|counter
 2479（https://leetcode.com/problems/maximum-xor-of-two-non-overlapping-subtrees/）01-trie|maximum_xor
-面试题 17（https://leetcode.com/problems/multi-search-lcci/）ac_auto_machine|counter|trie|reverse_thinking
+17（https://leetcode.com/problems/multi-search-lcci/）ac_auto_machine|counter|trie|reverse_thinking
 1707（https://leetcode.com/problems/maximum-xor-with-an-element-from-array/）sort|offline_query|01-trie
 1938（https://leetcode.com/problems/maximum-genetic-difference-query/）dfs|back_track|01-trie|maximum_xor
 1032（https://leetcode.com/problems/stream-of-characters/description/）trie|classical|reverse_order
