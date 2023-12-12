@@ -1,30 +1,30 @@
 """
-Algorithm：KMP算法
-Description：用来处理字符串的前缀后缀相关问题
+Algorithm：kmp
+Description：string|prefix_suffix
 
 ====================================LeetCode====================================
-214（https://leetcode.com/problems/shortest-palindrome/）字符串前缀最长palindrome_substring
-796（https://leetcode.com/problems/rotate-string/）字符串是否可以旋转得到
-25（https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/）子字符串第一次出现的位置
-1392（https://leetcode.com/problems/longest-happy-prefix/）最长的公共prefix_suffix，KMP与Z函数模板题
-2223（https://leetcode.com/problems/longest-happy-prefix/）利用扩展KMPZ函数
-6918（https://leetcode.com/problems/shortest-string-that-contains-three-strings/）kmp求字符串之间的最长公共prefix_suffix，greedy拼接
-2851（https://leetcode.com/problems/string-transformation/description/）KMP与fast_power|转移，也可string_hash
+214（https://leetcode.com/problems/shortest-palindrome/）longest_palindrome_prefix
+796（https://leetcode.com/problems/rotate-string/）rotate_string
+25（https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/）find|kmp|substring
+1392（https://leetcode.com/problems/longest-happy-prefix/）longest_prefix_suffix|kmp|z_function|template
+2223（https://leetcode.com/problems/longest-happy-prefix/）z_function
+6918（https://leetcode.com/problems/shortest-string-that-contains-three-strings/）kmp|prefix_suffix|greedy|brain_teaser
+2851（https://leetcode.com/problems/string-transformation/description/）kmp|matrix_fast_power|string_hash
 
 =====================================LuoGu======================================
-3375（https://www.luogu.com.cn/problem/P3375）子字符串出现的位置，与最长公共prefix_suffix的子字符串长度
-4391（https://www.luogu.com.cn/problem/P4391）脑经急转弯|KMP算法，最优结果为 n-pi[n-1]
+3375（https://www.luogu.com.cn/problem/P3375）longest_prefix_suffix|find
+4391（https://www.luogu.com.cn/problem/P4391）brain_teaser|kmp|n-pi[n-1]
 
 ===================================CodeForces===================================
-1326D2（https://codeforces.com/problemset/problem/1326/D2）利用马拉车的greedy思想greedy取prefix_suffix，再判断剩余字符的最长prefix_suffixpalindrome_substring
-432D（https://codeforces.com/contest/432/problem/D）扩展kmp与kmp结合counter，z函数与前缀函数结合应用题
-25E（https://codeforces.com/contest/25/problem/E）kmp求字符串之间的最长公共prefix_suffix，greedy拼接
+1326D2（https://codeforces.com/problemset/problem/1326/D2）manacher|greedy|prefix_suffix|longest_prefix_suffix|palindrome_substring
+432D（https://codeforces.com/contest/432/problem/D）kmp|z_function
+25E（https://codeforces.com/contest/25/problem/E）kmp|prefix_suffix|greedy|longest_common_prefix_suffix
 
 =====================================AcWing=====================================
 
-141（https://www.acwing.com/problem/content/143/）利用KMP求每个字符串前缀的最小circular_section
-160（https://www.acwing.com/problem/content/162/）z函数模板题
-3823（https://www.acwing.com/problem/content/3826/）KMP与扩展KMP即z函数应用模板题
+141（https://www.acwing.com/problem/content/143/）kmp|circular_section
+160（https://www.acwing.com/problem/content/162/）z_function|template
+3823（https://www.acwing.com/problem/content/3826/）kmp|z_function
 
 
 """

@@ -146,7 +146,7 @@ class Solution:
     @staticmethod
     def lc_1879_1(nums1: List[int], nums2: List[int]) -> int:
 
-        # memory_search深搜state_compress写法
+        # memory_searchdfs|state_compress写法
 
         @lru_cache(None)
         def dfs(i, state):

@@ -1,15 +1,15 @@
 """
-Algorithm：multiplicative_reverse、组合数求幂快速
-Description：求逆元mod|，注意取的模必须为coprime数，且不能整除该质数，否则不存在对应的multiplicative_reverse，如果不coprime，需要排除公因数单独
+Algorithm：multiplicative_reverse|comb
+Description：the reverse mod must be coprime, otherwise the gcd will deal with specially
 
 =====================================LuoGu======================================
 3811（https://www.luogu.com.cn/problem/P3811）multiplicative_reverse
 5431（https://www.luogu.com.cn/problem/P5431）multiplicative_reverse
 2613（https://www.luogu.com.cn/problem/P2613）multiplicative_reverse
-5431（https://www.luogu.com.cn/problem/P5431）转换为前缀积与后缀积求解
+5431（https://www.luogu.com.cn/problem/P5431）prefix_suffix
 
 ===================================CodeForces===================================
-1833F（https://codeforces.com/contest/1833/problem/F）前缀乘积区间mod|
+1833F（https://codeforces.com/contest/1833/problem/F）prefix_mul|mod
 
 
 """

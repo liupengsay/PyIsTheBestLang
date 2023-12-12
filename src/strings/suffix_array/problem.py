@@ -1,20 +1,20 @@
 """
-Algorithm：后缀数组
-Description：生成字符串的后缀sorting
+Algorithm：suffix_array
+Description：suffix_array
 
 ====================================LeetCode====================================
-1754（https://leetcode.com/problems/largest-range_merge_to_disjoint-of-two-strings/）
-1698（https://leetcode.com/problems/number-of-distinct-substrings-in-a-string/）后缀数组应用题，利用height特性
+1754（https://leetcode.com/problems/largest-range_merge_to_disjoint-of-two-strings/）largest|suffix_array
+1698（https://leetcode.com/problems/number-of-distinct-substrings-in-a-string/）suffix_array|height
 
 =====================================LuoGu======================================
-3809（https://www.luogu.com.cn/problem/P3809）
+3809（https://www.luogu.com.cn/problem/P3809）suffix_array
 
 =====================================AcWing=====================================
-140（https://www.acwing.com/problem/content/142/）后缀数组模板题
+140（https://www.acwing.com/problem/content/142/）suffix_array|template
 
-Morgan and a String（https://www.hackerrank.com/challenges/morgan-and-a-string/problem?isFullScreen=true）拼接两个字符串使得lexicographical_order最小
-Suffix Array（https://judge.yosupo.jp/problem/suffixarray）
-1 Number of Substrings（https://judge.yosupo.jp/problem/number_of_substrings）use sa to compute number of different substring
+Morgan and a String（https://www.hackerrank.com/challenges/morgan-and-a-string/problem?isFullScreen=true）smallest|lexicographical_order|classical
+Suffix Array（https://judge.yosupo.jp/problem/suffixarray）suffix_array
+1 Number of Substrings（https://judge.yosupo.jp/problem/number_of_substrings）suffix_array|sa
 
 """
 from src.strings.suffix_array.template import SuffixArray

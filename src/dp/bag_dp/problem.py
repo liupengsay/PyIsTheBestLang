@@ -236,10 +236,10 @@ class Solution:
     @staticmethod
     def lc_2742_1(cost: List[int], time: List[int]) -> int:
 
-        # 剪枝DP，可以转换为bag_dp|finite|求解
+        # pruneDP，可以转换为bag_dp|finite|求解
         @lru_cache(None)
         def dfs(i, pre):
-            if pre >= n - i:  # 剪枝
+            if pre >= n - i:  # prune
                 return 0
             if i == n:
                 return inf
@@ -255,7 +255,7 @@ class Solution:
     @staticmethod
     def lc_2742_2(cost: List[int], time: List[int]) -> int:
 
-        # 剪枝DP，可以转换为bag_dp|finite|求解
+        # pruneDP，可以转换为bag_dp|finite|求解
         n = len(cost)
         dp = [sum(time)] * (n + 1)
         dp[0] = 0
@@ -327,7 +327,7 @@ class Solution:
 
     @staticmethod
     def lc_254(n: int) -> List[List[int]]:
-        # 因子分解与背包dp分解
+        # factorization与背包dp分解
         lst = NumberTheory().get_all_factor(n)
         m = len(lst)
         dp = defaultdict(list)

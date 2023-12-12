@@ -83,7 +83,7 @@ class Solution:
 
     @staticmethod
     def abc_110d(ac=FastIO()):
-        # 质factorization|与partition_methodcounter
+        # prime_factorization|与partition_methodcounter
         n, m = ac.read_list_ints()
         mod = 10 ** 9 + 7
         cb = Combinatorics(n + 100, mod)  # 注意这里会超出n

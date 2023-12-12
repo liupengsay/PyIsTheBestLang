@@ -1,44 +1,44 @@
 """
-Algorithm：Trie字典树，也叫前缀树
-Description：处理字符串以及结合bit_operation相关，01Trie通用用于查询bit_operation极值
+Algorithm：trie|01-trie
+Description：string|bit_operation
 
 ====================================LeetCode====================================
-421（https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/） 01 Trie
-638（https://leetcode.com/problems/shopping-offers/）字典树与memory_search
-2416（https://leetcode.com/problems/sum-of-prefix-scores-of-strings/）单词组前缀counter
-1803（https://leetcode.com/problems/count-pairs-with-xor-in-a-range/）01Trie，查询异或值在一定范围的数组对，可以数组实现
-677（https://leetcode.com/problems/map-sum-pairs/）更新与查询给定字符串作为单词键前缀的对应值的和
-2479（https://leetcode.com/problems/maximum-xor-of-two-non-overlapping-subtrees/）01Trie最大异或值
-面试题 17（https://leetcode.com/problems/multi-search-lcci/）AC自动机counter，也可直接字典树reverse_thinking，字典树存关键字，再搜索文本，和单词矩阵一样的套路
-1707（https://leetcode.com/problems/maximum-xor-with-an-element-from-array/）sorting后offline_query并 01 Trie求解
-1938（https://leetcode.com/problems/maximum-genetic-difference-query/）深搜back_track与01Trie查询最大异或值
-1032（https://leetcode.com/problems/stream-of-characters/description/）字典树classical应用，reverse_order|存储
+421（https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/）01-trie
+638（https://leetcode.com/problems/shopping-offers/）trie|memory_search
+2416（https://leetcode.com/problems/sum-of-prefix-scores-of-strings/）prefix|counter
+1803（https://leetcode.com/problems/count-pairs-with-xor-in-a-range/）01-trie|classical
+677（https://leetcode.com/problems/map-sum-pairs/）prefix|counter
+2479（https://leetcode.com/problems/maximum-xor-of-two-non-overlapping-subtrees/）01-trie|maximum_xor
+面试题 17（https://leetcode.com/problems/multi-search-lcci/）ac_auto_machine|counter|trie|reverse_thinking
+1707（https://leetcode.com/problems/maximum-xor-with-an-element-from-array/）sort|offline_query|01-trie
+1938（https://leetcode.com/problems/maximum-genetic-difference-query/）dfs|back_track|01-trie|maximum_xor
+1032（https://leetcode.com/problems/stream-of-characters/description/）trie|classical|reverse_order
 
 =====================================LuoGu======================================
-8306（https://www.luogu.com.cn/problem/P8306）
-4551（https://www.luogu.com.cn/problem/P4551）关键是利用异或的性质，将任意根节点作为中转站
-3864（https://www.luogu.com.cn/problem/P3864）hashbrute_force或者字典树存储
-5755（https://www.luogu.com.cn/problem/P5755）字典树节点counter
-1481（https://www.luogu.com.cn/problem/P1481）最长词链
-5283（https://www.luogu.com.cn/problem/P5283）字典树查询第k大异或值，并heapqgreedy选取
-2922（https://www.luogu.com.cn/problem/P2922）字典树好题，前缀counter
-1738（https://www.luogu.com.cn/problem/P1738）字典树键counter
-8420（https://www.luogu.com.cn/problem/P8420）字典树greedy匹配
+8306（https://www.luogu.com.cn/problem/P8306）trie
+4551（https://www.luogu.com.cn/problem/P4551）xor
+3864（https://www.luogu.com.cn/problem/P3864）hash|brute_force|trie
+5755（https://www.luogu.com.cn/problem/P5755）trie|counter
+1481（https://www.luogu.com.cn/problem/P1481）trie
+5283（https://www.luogu.com.cn/problem/P5283）trie|kth_xor|heapq|greedy
+2922（https://www.luogu.com.cn/problem/P2922）trie|prefix|counter
+1738（https://www.luogu.com.cn/problem/P1738）trie|counter
+8420（https://www.luogu.com.cn/problem/P8420）trie|greedy
 
 ===================================CodeForces===================================
-1792D（https://codeforces.com/problemset/problem/1792/D）变形后字典树counter查询
-706D（https://codeforces.com/problemset/problem/706/D）01Trie，增|与删除数字，最大异或值查询
-241B（https://codeforces.com/contest/241/problem/B）01Trie第 K 大的异或对，并heapqgreedy选取
-665E（https://codeforces.com/contest/665/problem/E）统计连续区间异或对数目
-282E（https://codeforces.com/contest/282/problem/E）转换为 01Trie 求数组最大异或值
-Set Xor-Min（https://judge.yosupo.jp/problem/set_xor_min）template dynamic xor min
-1902E（https://codeforces.com/contest/1902/problem/E）trie|prefix count
+1792D（https://codeforces.com/problemset/problem/1792/D）trie|counter
+706D（https://codeforces.com/problemset/problem/706/D）01-trie|maximum_xor
+241B（https://codeforces.com/contest/241/problem/B）01-trie|kth_xor|heapq|greedy
+665E（https://codeforces.com/contest/665/problem/E）counter|xor_pair
+282E（https://codeforces.com/contest/282/problem/E）01-trie|maximum_xor
+Set Xor-Min（https://judge.yosupo.jp/problem/set_xor_min）template|minimum_xor|classical|update|query
+1902E（https://codeforces.com/contest/1902/problem/E）trie|prefix_count
 
 =====================================AcWing=====================================
-142（https://www.acwing.com/problem/content/144/）字典树前缀统计
-143（https://www.acwing.com/problem/content/145/）模板题最大异或对
-144（https://www.acwing.com/problem/content/description/146/）01Trie树中最长异或路径
-161（https://www.acwing.com/problem/content/163/）字典树判断是否存在单词前缀包含
+142（https://www.acwing.com/problem/content/144/）trie|prefix_count
+143（https://www.acwing.com/problem/content/145/）maximum_xor|classical
+144（https://www.acwing.com/problem/content/description/146/）01-trie|maximum_xor
+161（https://www.acwing.com/problem/content/163/）trie
 
 """
 import heapq
@@ -88,7 +88,7 @@ class Solution:
 
     @staticmethod
     def lc_1803(nums: List[int], low: int, high: int) -> int:
-        # 01字典树查询异或值在有一定范围内的数对个数
+        # 01trie查询异或值在有一定范围内的数对个数
         count = Counter(nums)
         # 确定二进制序列的长度
         big = max(nums)
@@ -97,7 +97,7 @@ class Solution:
             n += 1
         trie = TrieZeroOneXorRange(n)
         trie.update(0, 0)
-        # 滚动更新字典树同时查询符合条件的数对个数
+        # 滚动更新trie同时查询符合条件的数对个数
         ans = 0
         for num in count:
             ans += count[num] * (trie.query(num, high) - trie.query(num, low - 1))
@@ -124,7 +124,7 @@ class Solution:
 
     @staticmethod
     def cf_706d(ac=FastIO()):
-        # 01字典树增|与删除数字后查询最大异或值
+        # 01trie增|与删除数字后查询最大异或值
         trie = BinaryTrie(32)
         q = ac.read_int()
         trie.add(0)
@@ -171,7 +171,7 @@ class Solution:
 
     @staticmethod
     def lc_2479(n: int, edges: List[List[int]], values: List[int]) -> int:
-        # 借助深搜的顺序01字典树查询最大异或数对值
+        # 借助dfs|的顺序01trie查询最大异或数对值
         dct = [[] for _ in range(n)]
         for i, j in edges:
             dct[i].append(j)
@@ -200,7 +200,7 @@ class Solution:
             trie.add(son[x])
             return
 
-        # 根据题意dfs_order和01字典树动态维护查询
+        # 根据题意dfs_order和01trie动态维护查询
         trie = TrieZeroOneXorMax(int(math.log2(sum(values)) + 2))
         ans = 0
         dfs2(0, -1)
@@ -215,7 +215,7 @@ class Solution:
 
     @staticmethod
     def lg_p1481(ac=FastIO()):
-        # 字典树最长词链
+        # trie最长词链
         n = ac.read_int()
 
         dct = dict()
@@ -318,7 +318,7 @@ class Solution:
     @staticmethod
     def ac_144(ac=FastIO()):
 
-        # 01Trie树中最长异或路径
+        # 01-trie树中最长异或路径
         n = ac.read_int()
         dct = [dict() for _ in range(n)]
         for _ in range(n - 1):
@@ -345,7 +345,7 @@ class Solution:
 
     @staticmethod
     def ac_161(ac=FastIO()):
-        # O(n)字典树判断是否存在单词前缀包含
+        # O(n)trie判断是否存在单词前缀包含
         for _ in range(ac.read_int()):
             n = ac.read_int()
             dct = dict()
@@ -373,7 +373,7 @@ class Solution:
 
     @staticmethod
     def lg_p2922(ac=FastIO()):
-        # 字典树前缀匹配
+        # trie前缀匹配
         m, n = ac.read_list_ints()
         dct = dict()
         for _ in range(m):
@@ -401,7 +401,7 @@ class Solution:
 
     @staticmethod
     def lg_p1738(ac=FastIO()):
-        # 动态维护字典树键个数
+        # 动态维护trie键个数
         n = ac.read_int()
         dct = dict()
         ans = 0
@@ -418,7 +418,7 @@ class Solution:
 
     @staticmethod
     def lg_p8420(ac=FastIO()):
-        # 字典树greedy匹配
+        # triegreedy匹配
         n, m, length = ac.read_list_ints()
 
         # 后缀 0 1 匹配的代价和
@@ -590,7 +590,7 @@ class Solution:
 
     @staticmethod
     def lc_1938(parents: List[int], queries: List[List[int]]) -> List[int]:
-        # 深搜back_track结合01Trieoffline_query最大异或值对
+        # dfs|back_track|结合01-trieoffline_query最大异或值对
         n = len(parents)
         x = -1
         dct = [[] for _ in range(n)]
@@ -619,7 +619,7 @@ class Solution:
 
     @staticmethod
     def lc_1938_2(parents: List[int], queries: List[List[int]]) -> List[int]:
-        # 深搜back_track结合01Trieoffline_query最大异或值对
+        # dfs|back_track|结合01-trieoffline_query最大异或值对
         n = len(parents)
         dct = [[] for _ in range(n)]
         root = -1

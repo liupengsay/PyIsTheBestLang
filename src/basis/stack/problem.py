@@ -374,7 +374,7 @@ class Solution:
 
     @staticmethod
     def ac_129_3(ac=FastIO()):
-        # 迭代写法替换深搜与back_track
+        # 迭代写法替换dfs|与back_track
         n = ac.read_int()
         cnt = 0
         stack = [[[], [], 0]]

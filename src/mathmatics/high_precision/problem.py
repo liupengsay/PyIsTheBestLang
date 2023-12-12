@@ -1,32 +1,32 @@
 """
-Algorithm：大数分解、素数判断、high_precision、分数代替浮点数运算
+Algorithm：big_number_factorization|is_prime|high_precision|float_to_frac|frac_to_float
 Description：xxx
 
 ====================================LeetCode====================================
-166（https://leetcode.com/problems/fraction-to-recurring-decimal/）分数转换为有理数无限循环小数
-172（https://leetcode.com/problems/factorial-trailing-zeroes/）阶乘后缀0的个数
-1883（https://leetcode.com/problems/minimum-skips-to-arrive-at-meeting-on-time/description/）二维matrix_dp分数high_precision浮点数
-2117（https://leetcode.com/problems/abbreviating-the-product-of-a-range/）大数或者prefix_suffiximplemention
-972（https://leetcode.com/problems/equal-rational-numbers/）有理数转为分数判断
+166（https://leetcode.com/problems/fraction-to-recurring-decimal/）frac_to_float
+172（https://leetcode.com/problems/factorial-trailing-zeroes/）suffix_zero|factorial
+1883（https://leetcode.com/problems/minimum-skips-to-arrive-at-meeting-on-time/）matrix_dp|high_precision|float_to_frac
+2117（https://leetcode.com/problems/abbreviating-the-product-of-a-range/）prefix_suffix|implemention
+972（https://leetcode.com/problems/equal-rational-numbers/）float_to_frac
 
 =====================================LuoGu======================================
-2388（https://www.luogu.com.cn/problem/P2388）阶乘之乘后缀0的个数
+2388（https://www.luogu.com.cn/problem/P2388）suffix_zero|factorial_of_factorial
 
-1920（https://www.luogu.com.cn/problem/P1920）预估high_precision与公式 -ln(1-x) = sum(x**i/i for in range(1, n+1)) 其中 n 趋近于无穷
-1729（https://www.luogu.com.cn/problem/P1729）high_precisione小数位
-1727（https://www.luogu.com.cn/problem/P1727）high_precisionπ小数位
-1517（https://www.luogu.com.cn/record/list?user=739032&status=12&page=5）high_precision小数的幂值
+1920（https://www.luogu.com.cn/problem/P1920）high_precision|math
+1729（https://www.luogu.com.cn/problem/P1729）high_precision|e|math
+1727（https://www.luogu.com.cn/problem/P1727）high_precision|π|math
+1517（https://www.luogu.com.cn/problem/P1517）high_precision|float_power
 2394（https://www.luogu.com.cn/problem/P2394）high_precision
 2393（https://www.luogu.com.cn/problem/P2393）high_precision
 
-2399（https://www.luogu.com.cn/problem/P2399）小数有理数转换为最简分数
-1530（https://www.luogu.com.cn/problem/P1530）分数化为小数
+2399（https://www.luogu.com.cn/problem/P2399）float_to_frac
+1530（https://www.luogu.com.cn/problem/P1530）frac_to_float
 
 ===================================CodeForces===================================
-1144E（https://codeforces.com/contest/1144/problem/E）超大整数|减与乘除
+1144E（https://codeforces.com/contest/1144/problem/E）big_number|minus|mul|divide
 
 ====================================AtCoder=====================================
-E - Double Factorial（https://atcoder.jp/contests/abc148/tasks/abc148_e）奇数阶乘与偶数阶乘的尾随零个数
+E - Double Factorial（https://atcoder.jp/contests/abc148/tasks/abc148_e）suffix_zero|odd_even|factorial
 
 """
 

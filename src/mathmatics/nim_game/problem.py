@@ -1,13 +1,13 @@
 """
 
-Algorithm：nim游戏也叫公平组合游戏，属于博弈论范畴
-Description：用来判断游戏是否存在必胜态与必输态，game_dp|类型
+Algorithm：nim_game
+Description：game_dp|winning_state|lose_state
 
 =====================================LuoGu======================================
-2197（https://www.luogu.com.cn/problem/P2197）有一个神奇的结论：当nheapq石子的数量异或和等于0时，先手必胜，否则先手必败
+2197（https://www.luogu.com.cn/problem/P2197）xor_sum|classical
 
 ===================================CodeForces===================================
-1396B（https://codeforces.com/problemset/problem/1396/B）博弈greedy，大顶heapq优先选取最大数量的石头做选择
+1396B（https://codeforces.com/problemset/problem/1396/B）greedy|game_dp
 
 
 """

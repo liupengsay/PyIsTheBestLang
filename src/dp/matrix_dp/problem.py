@@ -151,7 +151,7 @@ class Solution:
 
     @staticmethod
     def lc_920(n: int, goal: int, k: int) -> int:
-        # matrix_dp（memory_search深搜刷表法实现）
+        # matrix_dp（memory_searchdfs|刷表法实现）
         mod = 10 ** 9 + 7
 
         @lru_cache(None)  # 前 i 首播放了 r 首不同的歌
@@ -1914,7 +1914,7 @@ class Solution:
 
     @staticmethod
     def lc_1745(s: str) -> bool:
-        # matrix_dp判断是否为palindrome_substring，或者马拉车然后brute_force
+        # matrix_dp判断是否为palindrome_substring，或者manacher然后brute_force
         n = len(s)
         dp = [[0] * n for _ in range(n)]
         for i in range(n - 1, -1, -1):

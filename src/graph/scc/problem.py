@@ -64,7 +64,7 @@ class Solution:
             for j in dct[i]:
                 degree[j] += 1
 
-        # topological_sorting求最长路，这里也可以深搜
+        # topological_sorting求最长路，这里也可以dfs|
         visit = [0] * m
         stack = deque([i for i in range(m) if not degree[i]])
         for i in stack:

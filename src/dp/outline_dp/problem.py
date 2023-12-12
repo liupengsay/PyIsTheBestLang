@@ -29,7 +29,7 @@ class Solution:
 
     @staticmethod
     def lc_1659_1(m: int, n: int, introverts: int, extroverts: int) -> int:
-        # memory_search深搜轮廓线 DP
+        # memory_searchdfs|轮廓线 DP
         def dfs(pos, state, intro, ext):
             # 当前网格位置，前 n 个格子压缩状态，剩余内向人数，剩余外向人数
             res = dp[pos][state][intro][ext]
@@ -110,7 +110,7 @@ class Solution:
     @staticmethod
     def lc_1659_3(m: int, n: int, introverts: int, extroverts: int) -> int:
 
-        # memory_search深搜轮廓线 DP
+        # memory_searchdfs|轮廓线 DP
         @lru_cache(None)
         def dfs(i, state, intro, ext):
             if i == m * n:
@@ -136,7 +136,7 @@ class Solution:
 
     @staticmethod
     def lc_1349_1(seats: List[List[str]]) -> int:
-        # memory_search深搜轮廓线 DP
+        # memory_searchdfs|轮廓线 DP
 
         def dfs(pos, state):
             res = dp[pos][state]
@@ -211,7 +211,7 @@ class Solution:
 
     @staticmethod
     def lcp_4_1(n: int, m: int, broken: List[List[int]]) -> int:
-        # memory_search深搜轮廓线 DP
+        # memory_searchdfs|轮廓线 DP
 
         def dfs(pos, state):
             # 当前位置，前 m 个格子状态

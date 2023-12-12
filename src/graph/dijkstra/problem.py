@@ -263,7 +263,7 @@ class Solution:
 
     @staticmethod
     def lc_2065(values: List[int], edges: List[List[int]], max_time: int) -> int:
-        # back_track，正解Dijkstra跑shortest_path剪枝
+        # back_track，正解Dijkstra跑shortest_pathprune
         n = len(values)
         dct = [[] for _ in range(n)]
         for i, j, t in edges:

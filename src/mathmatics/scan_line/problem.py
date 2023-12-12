@@ -1,16 +1,16 @@
 """
-Algorithm：扫描线
-Description：平面几何面积或者立体体积
+Algorithm：scan_line
+Description：plane|cube
 
 ====================================LeetCode====================================
-218（https://leetcode.com/problems/the-skyline-problem/）扫描线建筑物的轮廓
-850（https://leetcode.com/problems/rectangle-area-ii/）扫描线覆盖面积，segment_tree||discretization应该有 nlogn 的解法
+218（https://leetcode.com/problems/the-skyline-problem/）scan_line
+850（https://leetcode.com/problems/rectangle-area-ii/）scan_line|segment_tree|discretization|O(nlogn)
 
 =====================================LuoGu======================================
-6265（https://www.luogu.com.cn/problem/P6265）建筑物的扫描线轮廓
-5490（https://www.luogu.com.cn/problem/P5490）扫描线覆盖面积
-1884（https://www.luogu.com.cn/problem/P1884）扫描线覆盖面积
-1904（https://www.luogu.com.cn/problem/P1904）扫描线建筑物的轮廓
+6265（https://www.luogu.com.cn/problem/P6265）scan_line
+5490（https://www.luogu.com.cn/problem/P5490）scan_line
+1884（https://www.luogu.com.cn/problem/P1884）scan_line
+1904（https://www.luogu.com.cn/problem/P1904）scan_line
 
 """
 from src.mathmatics.scan_line.template import ScanLine

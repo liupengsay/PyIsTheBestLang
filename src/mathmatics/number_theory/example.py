@@ -45,7 +45,7 @@ class TestGeneral(unittest.TestCase):
         assert nt.euler_phi(10 ** 11 + 131) == 66666666752
         return
 
-    def test_euler_shai(self):
+    def test_euler_sieve(self):
         nt = NumberTheory()
         label = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
         pred = nt.euler_flag_prime(30)

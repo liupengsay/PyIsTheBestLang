@@ -1,6 +1,6 @@
 """
-Algorithm：bfs、deque_bfs、discretization_bfs、有边界的bfs、coloring_method、奇数环
-Description：在有向图与无向图扩散，multi_source_bfs、bilateral_bfs，0-1bfs（类似SPFA）bilateral_bfs或者a-star|heuristic_search
+Algorithm：bfs|deque_bfs|discretization_bfs|bound_bfs|coloring_method|odd_circle
+Description：multi_source_bfs|bilateral_bfs|0-1bfs|bilateral_bfs|a-star|heuristic_search
 
 ====================================LeetCode====================================
 1036（https://leetcode.com/problems/escape-a-large-maze/）bound_bfs|discretization_bfs
@@ -80,7 +80,7 @@ Description：在有向图与无向图扩散，multi_source_bfs、bilateral_bfs�
 9065（https://www.luogu.com.cn/problem/P9065）brain_teaser|bfs|brute_force
 
 ===================================CodeForces===================================
-1594D（https://codeforces.com/contest/1594/problem/D）build_graph|后coloring_methodbfs判断bipartite_graph
+1594D（https://codeforces.com/contest/1594/problem/D）build_graph|coloring_method|bfs|bipartite_graph
 1272E（https://codeforces.com/problemset/problem/1272/E）reverse_graph|multi_source_bfs
 1572A（https://codeforces.com/problemset/problem/1572/A）brain_teaser|build_graph|bfs|circle_judge|dag_dp|classical
 1037D（https://codeforces.com/problemset/problem/1037/D）01-bfs|implemention|classical
@@ -265,7 +265,7 @@ class Solution:
 
     @staticmethod
     def lg_p1807_2(ac=FastIO()):
-        # 有向无环图 DAG 深搜求最长路
+        # 有向无环图 DAG dfs|求最长路
         n, m = ac.read_list_ints()
         edge = [dict() for _ in range(n)]
         for _ in range(m):
@@ -340,7 +340,7 @@ class Solution:
         stack = [i for i in range(n) if not degree[i]]
         for x in stack:
             cnt[x] = 1
-        while stack:  # 也可以深搜
+        while stack:  # 也可以dfs|
             nex = []
             for i in stack:
                 for j in edge[i]:

@@ -1,27 +1,27 @@
 """
-Algorithm：lexicographical_order与lexicographical_order排名解析
-Description：lexicographical_order第K小和某个对象的lexicographical_orderrank、subset的lexicographical_order与解析、comb的lexicographical_order与解析、perm的lexicographical_order与解析
+Algorithm：lexicographical_order|lexicographical_order_rank|comb|subset|perm
+Description：kth_lexicographical_order|lexicographical_order_rank|subset_lexicographical_order|kth_subset_lexicographical|comb|perm
 
 ====================================LeetCode====================================
-60（https://leetcode.com/problems/permutation-sequence/）全排列的第 k 个排列
-440（https://leetcode.com/problems/k-th-smallest-in-lexicographical-order/）面试题十叉树求解
-1415（https://leetcode.com/problems/the-k-th-lexicographical-string-of-all-happy-strings-of-length-n/）类似思路lexicographical_orderconstruction
-1643（https://leetcode.com/problems/kth-smallest-instructions/）根据lexicographical_order处理
-1830（https://leetcode.com/problems/minimum-number-of-operations-to-make-string-sorted/）字符串的lexicographical_order rank，也可以反向rank的lexicographical_order
-1842（https://leetcode.com/problems/next-palindrome-using-same-digits/）lexicographical_ordergreedy
-1850（https://leetcode.com/problems/minimum-adjacent-swaps-to-reach-the-kth-smallest-number/）下一个lexicographical_order与冒泡greedy交换次数
+60（https://leetcode.com/problems/permutation-sequence/）kth_perm|lexicographical_order
+440（https://leetcode.com/problems/k-th-smallest-in-lexicographical-order/）10-tree|kth
+1415（https://leetcode.com/problems/the-k-th-lexicographical-string-of-all-happy-strings-of-length-n/）lexicographical_order|construction
+1643（https://leetcode.com/problems/kth-smallest-instructions/）lexicographical_order
+1830（https://leetcode.com/problems/minimum-number-of-operations-to-make-string-sorted/）lexicographical_order_rank|rank_order
+1842（https://leetcode.com/problems/next-palindrome-using-same-digits/）lexicographical_order|greedy
+1850（https://leetcode.com/problems/minimum-adjacent-swaps-to-reach-the-kth-smallest-number/）next_lexicographical_order|bubble|greedy
 
 =====================================LuoGu======================================
-1243（https://www.luogu.com.cn/problem/P1243）求出第K小的子集
-1338（https://www.luogu.com.cn/problem/P1338）结合reverse_order_pair|counter的lexicographical_order
+1243（https://www.luogu.com.cn/problem/P1243）kth_subset
+1338（https://www.luogu.com.cn/problem/P1338）reverse_order_pair|counter|lexicographical_order
 
-2524（https://www.luogu.com.cn/problem/P2524）全排列的lexicographical_order排名
-2525（https://www.luogu.com.cn/problem/P2525）全排列的上一个排列
+2524（https://www.luogu.com.cn/problem/P2524）lexicographical_order|rank_of_perm
+2525（https://www.luogu.com.cn/problem/P2525）lexicographical_order|rank_of_perm|pre_lexicographical_order
 
 ===================================CodeForces===================================
-1328B（https://codeforces.com/problemset/problem/1328/B）comb的lexicographical_order
-1620C（https://codeforces.com/contest/1620/problem/C）reverse_thinkinglexicographical_order
-1509E（https://codeforces.com/contest/1509/problem/E）lexicographical_order典题，rank k的数组
+1328B（https://codeforces.com/problemset/problem/1328/B）comb|lexicographical_order
+1620C（https://codeforces.com/contest/1620/problem/C）reverse_thinking|lexicographical_order
+1509E（https://codeforces.com/contest/1509/problem/E）lexicographical_order|kth_rank|classical
 
 """
 from src.mathmatics.lexico_graphical_order.template import LexicoGraphicalOrder

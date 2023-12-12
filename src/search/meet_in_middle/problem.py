@@ -1,20 +1,20 @@
 """
-Algorithm：折半搜索、meet in middle
-Description：常见于 1<<n 较大的情况，对半分开brute_force 
+Algorithm：meet_in_middle
+Description：data_range|brute_force 
 
 ====================================LeetCode====================================
-1755（https://leetcode.com/problems/closest-subsequence-sum/）折半搜索
-2035（https://leetcode.com/problems/partition-array-into-two-arrays-to-minimize-sum-difference/）折半搜索sorting|binary_search或者two_pointers
-956（https://leetcode.com/problems/tallest-billboard/description/）可折半搜索
+1755（https://leetcode.com/problems/closest-subsequence-sum/）meet_in_middle
+2035（https://leetcode.com/problems/partition-array-into-two-arrays-to-minimize-sum-difference/）meet_in_middle|sort|binary_search|two_pointers
+956（https://leetcode.com/problems/tallest-billboard/description/）meet_in_middle
 
 =====================================LuoGu======================================
-5194（https://www.luogu.com.cn/problem/P5194）利用Fibonacci数列的长度特点折半搜索brute_force，与binary_search确定可行的最大值
-nya（https://www.luogu.com.cn/problem/CF525E）折半搜索长度
-5691（https://www.luogu.com.cn/problem/P5691）折半搜索与sorted_listtwo_pointersbrute_force
+5194（https://www.luogu.com.cn/problem/P5194）fibonacci|meet_in_middle|brute_force|binary_search
+nya（https://www.luogu.com.cn/problem/CF525E）meet_in_middle
+5691（https://www.luogu.com.cn/problem/P5691）meet_in_middle|sorted_list|two_pointers|brute_force
 
 =====================================AcWing=====================================
-171（https://www.acwing.com/problem/content/173/）折半搜索查找最接近目标值的子数组和
-1006F（https://codeforces.com/contest/1006/problem/F）prefix_sumhashcounter，矩阵折半搜索
+171（https://www.acwing.com/problem/content/173/）meet_in_middle
+1006F（https://codeforces.com/contest/1006/problem/F）prefix_sum|hash|counter|meet_in_middle
 
 """
 
@@ -34,7 +34,7 @@ class Solution:
     @staticmethod
     def lc_956(rods: List[int]) -> int:
 
-        # 可折半搜索
+        # 可meet_in_middle
 
         def check(tmp):
             dct = dict()
@@ -70,7 +70,7 @@ class Solution:
 
     @staticmethod
     def lc_2035(nums: List[int]) -> int:
-        # 折半搜索sorting|binary_search或者two_pointers
+        # meet_in_middlesorting|binary_search或者two_pointers
 
         def check(lst):
             # brute_force列表元素所有个数的子集和
@@ -117,7 +117,7 @@ class Solution:
 
     @staticmethod
     def lg_p5194(ac=FastIO()):
-        # 折半搜索brute_force后binary_search寻找最接近目标值的数
+        # meet_in_middlebrute_force后binary_search寻找最接近目标值的数
         n, c = ac.read_list_ints()
         val = [ac.read_int() for _ in range(n)]
 
@@ -154,7 +154,7 @@ class Solution:
 
     @staticmethod
     def cf_1006f(ac=FastIO()):
-        # prefix_sumhashcounter，矩阵折半搜索
+        # prefix_sumhashcounter，矩阵meet_in_middle
         m, n, k = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
         if m == 1 or n == 1:
@@ -217,7 +217,7 @@ class Solution:
 
     @staticmethod
     def ac_171(ac=FastIO()):
-        # 折半搜索查找最接近目标值的子数组和
+        # meet_in_middle查找最接近目标值的子数组和
 
         w, n = ac.read_list_ints()
         lst = [ac.read_int() for _ in range(n)]
@@ -254,7 +254,7 @@ class Solution:
 
     @staticmethod
     def lg_p5691(ac=FastIO()):
-        # 折半搜索与brute_force
+        # meet_in_middle与brute_force
         n = ac.read_int()
         m = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]

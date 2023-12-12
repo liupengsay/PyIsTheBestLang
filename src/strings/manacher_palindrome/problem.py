@@ -1,25 +1,25 @@
 """
-Algorithm：马拉车算法、回文连续子串、回文不连续子串
-Description：用来处理字符串的回文相关问题，可以有、DP、中心扩展法、马拉车
+Algorithm：manacher|palindrome_substring|plindrome_subsequence
+Description：dp|center|center_expansion_method|manacher
 
 ====================================LeetCode====================================
-5（https://leetcode.com/problems/longest-palindromic-substring/）字符串的最长回文连续子串
-132（https://leetcode.com/problems/palindrome-partitioning-ii/）linear_dp 与马拉车判断以每个位置为结尾的回文串
-1960（https://leetcode.com/problems/maximum-product-of-the-length-of-two-palindromic-substrings/）利用马拉车求解每个位置前后最长palindrome_substring
+5（https://leetcode.com/problems/longest-palindromic-substring/）longest_palindrome_substring|classical
+132（https://leetcode.com/problems/palindrome-partitioning-ii/）linear_dp|manacher|longest_palindrome_substring
+1960（https://leetcode.com/problems/maximum-product-of-the-length-of-two-palindromic-substrings/）longest_palindrome_substring|prefix_suffix|classical
 
 =====================================LuoGu======================================
-4555（https://www.luogu.com.cn/problem/P4555）以当前索引为开头以及结尾的最长palindrome_substring
-1210（https://www.luogu.com.cn/problem/P1210）寻找最长的连续palindrome_substring
-4888（https://www.luogu.com.cn/problem/P4888）中心扩展法two_pointers
-1872（https://www.luogu.com.cn/problem/P1872）回文串对数统计，利用马拉车以当前字母开头与结尾的回文串数
-6297（https://www.luogu.com.cn/problem/P6297）中心扩展法并变量维护
+4555（https://www.luogu.com.cn/problem/P4555）longest_palindrome_substring|prefix_suffix
+1210（https://www.luogu.com.cn/problem/P1210）longest_palindrome_substring
+4888（https://www.luogu.com.cn/problem/P4888）center_expansion_method|two_pointers
+1872（https://www.luogu.com.cn/problem/P1872）counter|palindrome_substring|manacher|classical
+6297（https://www.luogu.com.cn/problem/P6297）center_expansion_method
 
 ===================================CodeForces===================================
 1682A（https://codeforces.com/contest/1682/problem/A）palindromic|center_extension
-139（https://www.acwing.com/problem/content/141/）马拉车最长palindrome_substring长度，也可binary_search|hash
+139（https://www.acwing.com/problem/content/141/）manacher|longest_palindrome_substring|binary_search|hash
 
 ===================================LibraryChecker===================================
-1 Enumerate Palindromes（https://judge.yosupo.jp/problem/enumerate_palindromes）
+1 Enumerate Palindromes（https://judge.yosupo.jp/problem/enumerate_palindromes）counter|palindrome_substring
 
 """
 
@@ -50,7 +50,7 @@ class Solution:
 
     @staticmethod
     def lc_1745(s: str) -> bool:
-        # matrix_dp判断是否为palindrome_substring，或者马拉车然后brute_force
+        # matrix_dp判断是否为palindrome_substring，或者manacher然后brute_force
         start, end = ManacherPlindrome().palindrome(s)
         dct = [set(ls) for ls in end]
         for i in start[0]:
@@ -76,7 +76,7 @@ class Solution:
 
     @staticmethod
     def ac_139(ac=FastIO()):
-        # 马拉车最长palindrome_substring的长度
+        # manacher最长palindrome_substring的长度
         ind = 0
         while True:
             s = ac.read_str()
@@ -89,7 +89,7 @@ class Solution:
 
     @staticmethod
     def lg_p1876(ac=FastIO()):
-        # 回文串对数统计，利用马拉车以当前字母开头与结尾的回文串数
+        # 回文串对数统计，利用manacher以当前字母开头与结尾的回文串数
         s = ac.read_str()
         n = len(s)
         start, end = ManacherPlindrome().palindrome(s)
@@ -104,7 +104,7 @@ class Solution:
 
     @staticmethod
     def lg_p6297(ac=FastIO()):
-        # 中心扩展法并变量维护
+        # center_expansion_method并变量维护
         n, k = ac.read_list_ints()
         mod = 10 ** 9 + 7
         nums = ac.read_list_ints()
@@ -143,7 +143,7 @@ class Solution:
 
     @staticmethod
     def lc_1960(s: str) -> int:
-        # 利用马拉车求解每个位置前后最长palindrome_substring
+        # 利用manacher求解每个位置前后最长palindrome_substring
         post, pre = ManacherPlindrome().palindrome_longest(s)
 
         n = len(s)
@@ -164,7 +164,7 @@ class Solution:
 
     @staticmethod
     def lg_p1782(ac=FastIO()):
-        # 回文串对数统计，利用马拉车以当前字母开头与结尾的回文串数
+        # 回文串对数统计，利用manacher以当前字母开头与结尾的回文串数
         s = ac.read_str()
         n = len(s)
         start, end = ManacherPlindrome().palindrome(s)
@@ -179,7 +179,7 @@ class Solution:
 
     @staticmethod
     def lc_2472(s: str, k: int) -> int:
-        # preprocess线性palindrome_substring DP 优化外|结果linear_dp 也可以马拉车回文串获取回文信息
+        # preprocess线性palindrome_substring DP 优化外|结果linear_dp 也可以manacher回文串获取回文信息
         n = len(s)
         _, end = ManacherPlindrome().palindrome(s)
         dp = [0] * (n + 1)

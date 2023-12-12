@@ -4,18 +4,17 @@ Ability：brain storming like or g greedy
 Reference：
 
 ====================================LeetCode====================================
-330（https://leetcode.com/problems/patching-array/）greedy|sorting|implemention1798. Maximum Number of Consecutive Values You Can Make（https://leetcode.com/problems/maximum-number-of-consecutive-values-you-can-make/）看似背包实则greedy
-1798（https://leetcode.com/problems/maximum-number-of-consecutive-values-you-can-make/）greedy|sorting|implemention
-2952（https://leetcode.com/problems/minimum-number-of-coins-to-be-added/）greedy|sorting|implemention
+330（https://leetcode.com/problems/patching-array/）greedy|sort|implemention|mex
+1798（https://leetcode.com/problems/maximum-number-of-consecutive-values-you-can-make/）greedy|sort|implemention|mex
+2952（https://leetcode.com/problems/minimum-number-of-coins-to-be-added/）greedy|sort|implemention|mex
 
-===================================Luogu=====================================
-9202（https://www.luogu.com.cn/problem/P9202）最少修改次数使得任意非空连续子数组的mex不等于k
-9199（https://www.luogu.com.cn/problem/P9199）最少修改次数使得任意非空连续子数组的mex不等于k
+======================================Luogu=====================================
+9202（https://www.luogu.com.cn/problem/P9202）mex|operation
+9199（https://www.luogu.com.cn/problem/P9199）mex|operation
 
 ===================================CodeForces===================================
-xx（xxx）xxxxxxxxxxxxxxxxxxxx
 
-=============================================================================
+
 """
 from typing import List
 
@@ -28,7 +27,6 @@ class XXX:
 class Solution:
     def __int__(self):
         return
-
 
     @staticmethod
     def lc_330(nums: List[int], n: int) -> int:

@@ -426,13 +426,13 @@ class Solution:
 
     @staticmethod
     def lg_p1621(ac=FastIO()):
-        # 利用素数筛的思想对数复杂度合并公共质因数大于p的数并连通块数量
+        # 利用prime筛的思想对数复杂度合并公共质因数大于p的数并连通块数量
         a, b, p = ac.read_list_ints()
         nums = list(range(a, b + 1))
         ind = {num: num - a for num in nums}
         primes = [x for x in NumberTheory().sieve_of_eratosthenes(b) if x >= p]
 
-        # 利用素数合并
+        # 利用prime合并
         uf = UnionFind(b - a + 1)
         for x in primes:
             lst = []

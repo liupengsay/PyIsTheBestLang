@@ -1,41 +1,40 @@
 """
-Algorithm：几何、设计到平面坐标系上的一些问题求解、平面最近点对
-Description：xxx
+Algorithm：geometry|plane|closest_pair
+Description：triangle|rectangle|square|line|circle|cube
 
 ====================================LeetCode====================================
-149（https://leetcode.com/problems/max-points-on-a-line/）用直线斜率判断一条线上最多的点数
-1453（https://leetcode.com/problems/maximum-number-of-darts-inside-of-a-circular-dartboard/）经过两个不同的点与确定半径的两处圆心
-939（https://leetcode.com/problems/minimum-area-rectangle/）brute_force矩形对角顶点另外两个顶点
-面试题 16（https://leetcode.com/problems/intersection-lcci/）两条线段最靠左靠下的交点
-面试题 16（https://leetcode.com/problems/best-line-lcci/）用直线斜率判断一条线上最多的点数
-2013（https://leetcode.com/problems/detect-squares/）已知正方形对角顶点另外两个顶点，brute_forcehashcounter
-2280（https://leetcode.com/problems/minimum-lines-to-represent-a-line-chart/）分数代表斜率
-1401（https://leetcode.com/problems/circle-and-rectangle-overlapping/）几何题，寻找圆离矩形最近的点
+149（https://leetcode.com/problems/max-points-on-a-line/）line_slope|brute_force|classical
+1453（https://leetcode.com/problems/maximum-number-of-darts-inside-of-a-circular-dartboard/）circle|classical|circle_center
+939（https://leetcode.com/problems/minimum-area-rectangle/）brute_force|rectangle
+16（https://leetcode.com/problems/intersection-lcci/）line_segment|intersection
+16（https://leetcode.com/problems/best-line-lcci/）line_slope|brute_force|classical
+2013（https://leetcode.com/problems/detect-squares/）brute_force|hash|counter|square
+2280（https://leetcode.com/problems/minimum-lines-to-represent-a-line-chart/）line_slope
+1401（https://leetcode.com/problems/circle-and-rectangle-overlapping/）geometry|rectangle
 
 =====================================LuoGu======================================
-1665（https://www.luogu.com.cn/problem/P1665）brute_force正方形对角线顶点可行个数
-2313（https://www.luogu.com.cn/problem/P2313）判断点在矩形中或者圆形中
-2358（https://www.luogu.com.cn/problem/P2358）几何判断正方体上表面的点到下表面的点最短距离
-2665（https://www.luogu.com.cn/problem/P2665）不同的斜率
-1355（https://www.luogu.com.cn/problem/P1355）三角形面积判断点与三角形的位置关系
-1142（https://www.luogu.com.cn/problem/P1142）利用斜率一条直线上最多的点
-2778（https://www.luogu.com.cn/problem/P2778）brute_force圆与点的位置关系
-3021（https://www.luogu.com.cn/problem/P3021）inclusion_exclusioncounter|brute_force中心对称点
-1257（https://www.luogu.com.cn/problem/P1257）平面点集最近点对问题divide_and_conquer求解、还有hash分块、sorted_list
-7883（https://www.luogu.com.cn/problem/P7883）平面点集最近点对问题divide_and_conquer求解、还有hash分块、sorted_list
-1429（https://www.luogu.com.cn/problem/P1429）平面点集最近点对问题divide_and_conquer求解、还有hash分块、sorted_list
-
+1665（https://www.luogu.com.cn/problem/P1665）brute_force|diagonal|square
+2313（https://www.luogu.com.cn/problem/P2313）square|circle
+2358（https://www.luogu.com.cn/problem/P2358）geometry|cube
+2665（https://www.luogu.com.cn/problem/P2665）slope
+1355（https://www.luogu.com.cn/problem/P1355）triangle|area|location
+1142（https://www.luogu.com.cn/problem/P1142）line_slope|brute_force|classical
+2778（https://www.luogu.com.cn/problem/P2778）brute_force|circle|location
+3021（https://www.luogu.com.cn/problem/P3021）inclusion_exclusion|counter|brute_force
+1257（https://www.luogu.com.cn/problem/P1257）closet_pair|divide_and_conquer|hash|block_plane|sorted_list|classical
+7883（https://www.luogu.com.cn/problem/P7883）closet_pair|divide_and_conquer|hash|block_plane|sorted_list|classical
+1429（https://www.luogu.com.cn/problem/P1429）closet_pair|divide_and_conquer|hash|block_plane|sorted_list|classical
 
 
 ===================================CodeForces===================================
-961D)（https://codeforces.com/contest/961/problem/D)）pigeonhole_principlebrute_force初始共线点并其他点的共线性情况
-429D（https://codeforces.com/problemset/problem/429/D）平面点集最近点对
+961D（https://codeforces.com/contest/961/problem/D)）pigeonhole_principle|brute_force|line_slope|collinearity
+429D（https://codeforces.com/problemset/problem/429/D）closet_pair|divide_and_conquer|hash|block_plane|sorted_list|classical
 
 =====================================AcWing=====================================
-119（https://www.acwing.com/problem/content/121/）平面点集最近点对问题divide_and_conquer求解、还有hash分块、sorted_list
-4309（https://www.acwing.com/problem/content/4312/）直线斜率
-4499（https://www.acwing.com/problem/content/4502/）几何，一元二次方程求解
-游戏专项（https://www.hackerrank.com/contests/2023-1024-1/challenges/challenge-4219）随机化共线性判断
+119（https://www.acwing.com/problem/content/121/）closet_pair|divide_and_conquer|hash|block_plane|sorted_list|classical
+4309（https://www.acwing.com/problem/content/4312/）line_slope
+4499（https://www.acwing.com/problem/content/4502/）geometry|equation
+（https://www.hackerrank.com/contests/2023-1024-1/challenges/challenge-4219）collinearity|random
 
 """
 import math
@@ -83,7 +82,7 @@ class Solution:
 
     @staticmethod
     def lc_149(points: List[List[int]]) -> int:
-        # 两个不相同的点组成的直线斜率
+        # 两个不相同的点组成的line_slope
         ans = 0
         n = len(points)
         gm = Geometry()
@@ -126,7 +125,7 @@ class Solution:
 
     @staticmethod
     def cf_429d(ac=FastIO()):
-        # 转换为求解平面最近点对
+        # 转换为求解closest_pair
         n = ac.read_int()
         nums = ac.read_list_ints()
         n = int(n)
@@ -168,7 +167,7 @@ class Solution:
 
     @staticmethod
     def ac_4309(ac=FastIO()):
-        # 直线斜率
+        # line_slope
         n, x0, y0 = ac.read_list_ints()
         dct = set()
         for _ in range(n):
@@ -188,7 +187,7 @@ class Solution:
 
     @staticmethod
     def ac_4499(ac=FastIO()):
-        # 几何，一元二次方程求解
+        # geometry|，一元二次方程求解
         r, x1, y1, x2, y2 = ac.read_list_ints()
         if (x1 - x2) ** 2 + (y1 - y2) ** 2 > r * r:
             ans = [x1, y1, r]

@@ -9,7 +9,7 @@ class ScanLine:
     @staticmethod
     def get_sky_line(buildings: List[List[int]]) -> List[List[int]]:
 
-        # 扫描线提取建筑物轮廓
+        # scan_line提取建筑物轮廓
         events = []
         # 生成左右端点事件并sorting
         for left, right, height in buildings:
@@ -36,7 +36,7 @@ class ScanLine:
     @staticmethod
     def get_rec_area(rectangles: List[List[int]]) -> int:
 
-        # 扫描线提取矩形x轴的端点并sorting（也可以取y轴的端点是一个意思）
+        # scan_line提取矩形x轴的端点并sorting（也可以取y轴的端点是一个意思）
         axis = set()
         # [x1,y1,x2,y2] 为左下角到右上角坐标
         for rec in rectangles:

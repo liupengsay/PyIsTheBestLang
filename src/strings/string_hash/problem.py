@@ -1,38 +1,38 @@
 """
-Algorithm：string_hash、树hash、matrix_hash、树的最小表示法、最长前缀palindrome_substring、最长后缀palindrome_substring
-Description：将一定长度的字符串映射为多项式函数值，并比较或者counter，通常结合sliding_window，注意防止hash碰撞
+Algorithm：string_hash|tree_hash|matrix_hash|tree_minimum_expression|longest_prefix_palindrome_substring|longest_suffix_palindrome_substring
+Description：counter|sliding_window|double_random_mod|hash_crush
 
 ====================================LeetCode====================================
-214（https://leetcode.com/problems/shortest-palindrome/）正向与反向string_hash字符串前缀最长palindrome_substring，也可以用KMP与马拉车
-572（https://leetcode.com/problems/subtree-of-another-tree/）树结构hash
-1044（https://leetcode.com/problems/shortest-palindrome/）利用binary_search|string_hash确定具有最长长度的重复子串
-1316（https://leetcode.com/problems/shortest-palindrome/）利用string_hash确定不同循环子串的个数
-2156（https://leetcode.com/problems/find-substring-with-given-hash-value/）逆向string_hash的
-652（https://leetcode.com/problems/find-duplicate-subtrees/）树hash，确定重复子树
-1554（https://leetcode.com/problems/strings-differ-by-one-character/）字符串prefix_suffixhash求解
+214（https://leetcode.com/problems/shortest-palindrome/）reverse_hash|string_hash|longest_prefix_palindrome_substring|kmp|manacher
+572（https://leetcode.com/problems/subtree-of-another-tree/）tree_hash
+1044（https://leetcode.com/problems/shortest-palindrome/）binary_search|string_hash
+1316（https://leetcode.com/problems/shortest-palindrome/）string_hash
+2156（https://leetcode.com/problems/find-substring-with-given-hash-value/）reverse_hash|string_hash
+652（https://leetcode.com/problems/find-duplicate-subtrees/）tree_hash
+1554（https://leetcode.com/problems/strings-differ-by-one-character/）prefix_suffix|hash
 1923（https://leetcode.com/problems/longest-common-subpath/）binary_search|rolling_hash
-1948（https://leetcode.com/problems/delete-duplicate-folders-in-system/）字典树与树hash去重
-2261（https://leetcode.com/problems/k-divisible-elements-subarrays/submissions/）string_hash对数组编码
+1948（https://leetcode.com/problems/delete-duplicate-folders-in-system/）trie|tree_hash
+2261（https://leetcode.com/problems/k-divisible-elements-subarrays/submissions/）string_hash
 
 =====================================LuoGu======================================
-8835（https://www.luogu.com.cn/record/list?user=739032&status=12&page=14）string_hash或者KMP查找匹配的连续子串
-6140（https://www.luogu.com.cn/problem/P6140）greedyimplemention与lexicographical_order比较，string_hash与binary_search比较正序与reverse_order|最长公共子串
-2870（https://www.luogu.com.cn/problem/P2870）greedyimplemention与lexicographical_order比较，string_hash与binary_search比较正序与reverse_order|最长公共子串
-5832（https://www.luogu.com.cn/problem/P5832）可以string_hash最长的长度使得所有对应长度的子串均是唯一的
-2852（https://www.luogu.com.cn/problem/P2852）binary_search|string_hash出现超过 k 次的最长连续子数组
-4656（https://www.luogu.com.cn/problem/P4656）string_hashgreedy选取
-6739（https://www.luogu.com.cn/problem/P6739）prefix_suffixstring_hash
+8835（https://www.luogu.com.cn/record/list?user=739032&status=12&page=14）string_hash|kmp
+6140（https://www.luogu.com.cn/problem/P6140）greedy|implemention|lexicographical_order|string_hash|binary_search|reverse_order|lcs
+2870（https://www.luogu.com.cn/problem/P2870）greedy|implemention|lexicographical_order|string_hash|binary_search|reverse_order|lcs
+5832（https://www.luogu.com.cn/problem/P5832）string_hash
+2852（https://www.luogu.com.cn/problem/P2852）binary_search|string_hash
+4656（https://www.luogu.com.cn/problem/P4656）string_hash|greedy
+6739（https://www.luogu.com.cn/problem/P6739）prefix_suffix|string_hash
 
 ===================================CodeForces===================================
-1800D（https://codeforces.com/problemset/problem/1800/D）字符串prefix_suffixhash|和变换
+1800D（https://codeforces.com/problemset/problem/1800/D）prefix_suffix|hash
 
 ====================================AtCoder=====================================
-E - Who Says a Pun?（https://atcoder.jp/contests/abc141/tasks/abc141_e）binary_search|string_hashcheck
+ABC141E（https://atcoder.jp/contests/abc141/tasks/abc141_e）binary_search|string_hash|check
 
 =====================================AcWing=====================================
-138（https://www.acwing.com/problem/content/140/）string_hash，子串是否完全相等
+138（https://www.acwing.com/problem/content/140/）string_hash
 156（https://www.acwing.com/problem/content/description/158/）matrix_hash
-157（https://www.acwing.com/problem/content/description/159/）树hash，树的最小表示法
+157（https://www.acwing.com/problem/content/description/159/）tree_hash|tree_minimum_expression
 
 """
 
@@ -53,7 +53,7 @@ class Solution:
 
     @staticmethod
     def cf_1800g(ac=FastIO()):
-        # 树hash编码判断树是否对称
+        # tree_hash编码判断树是否对称
         for _ in range(ac.read_int()):
             n = ac.read_int()
             edge = [[] for _ in range(n)]
@@ -78,7 +78,7 @@ class Solution:
                 sub[i] = cnt
                 yield
 
-            # 深搜或者迭代预先将子树hash编码
+            # dfs|或者迭代预先将子tree_hash编码
             tree_hash = [-1] * n
             sub = [0] * n
             seen = dict()
@@ -107,7 +107,7 @@ class Solution:
 
     @staticmethod
     def lc_214(s: str) -> str:
-        # 正向与反向string_hash字符串前缀最长palindrome_substring，也可以用KMP与马拉车
+        # 正向与反向string_hash字符串前缀最长palindrome_substring，也可以用KMP与manacher
 
         def query(x, y):
             # 字符串区间的hash值，索引从 0 开始
@@ -151,7 +151,7 @@ class Solution:
 
     @staticmethod
     def lc_652(root):
-        # 树hash编码序列化子树，查找重复子树
+        # tree_hash编码序列化子树，查找重复子树
         def dfs(node):
             if not node:
                 return 0
@@ -342,7 +342,7 @@ class Solution:
     def ac_157(ac=FastIO()):
 
         def check(st):
-            # 解码原始树的字符串表示，再树的最小表示法
+            # 解码原始树的字符串表示，再tree_minimum_expression
 
             parent = [-1]
             pa = 0
@@ -357,7 +357,7 @@ class Solution:
                 else:
                     pa = parent[pa]
 
-            # 生成树的最小表示法
+            # 生成tree_minimum_expression
             n = ind + 1
             stack = [0]
             sub = [""] * n
@@ -565,7 +565,7 @@ class Solution:
 
     @staticmethod
     def lc_1948(paths: List[List[str]]) -> List[List[str]]:
-        # 树hash字典树的子树编码
+        # tree_hashtrie的子树编码
 
         dct = dict()  # 建树
         for path in paths:

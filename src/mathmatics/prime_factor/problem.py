@@ -1,16 +1,16 @@
 """
-Algorithm：数论、欧拉筛、线性筛、素数、欧拉函数、因子分解、素因子分解、进制转换、factorization|
-Description：有时候digital_dp类型题目可以N进制来求取，质factorization|、factorization|、素数筛、线性筛、欧拉函数、pollard_rho、Meissel–Lehmer 算法（范围内素数个数）
+Algorithm：prime_factorization|min_prime|factorization
+Description：
 
 ====================================LeetCode====================================
-2183（https://leetcode.com/problems/count-array-pairs-divisible-by-k/description/）可以所有因子遍历brute_forcecounter解决，正解为按照 k 的最大公因数分组
+2183（https://leetcode.com/problems/count-array-pairs-divisible-by-k/description/）brute_force|counter|group_by_mul|classical
 
 =====================================LuoGu======================================
 
 ===================================CodeForces===================================
-1176D（https://codeforces.com/contest/1176/problem/D）construction题，greedyimplemention，记录合数最大不等于自身的因子，以及质数列表的顺序
-1884D（https://codeforces.com/contest/1884/problem/D）factor dp and cnt, count the number of pair with gcd=x
-1900D（https://codeforces.com/contest/1900/problem/D）根据inclusion_exclusiongcd的pair对数
+1176D（https://codeforces.com/contest/1176/problem/D）construction|greedy|implemention
+1884D（https://codeforces.com/contest/1884/problem/D）factor_dp|gcd_pair|counter|classical
+1900D（https://codeforces.com/contest/1900/problem/D）inclusion_exclusion|gcd_pair|counter|classical
 
 ====================================AtCoder=====================================
 
@@ -99,7 +99,7 @@ class Solution:
         nums = ac.read_list_ints()
         ceil = max(nums)
 
-        # 利用线性筛的思想最小的质因数
+        # 利用linear_sieve的思想最小的质因数
         min_div = [i for i in range(ceil + 1)]
         for i in range(2, len(min_div)):
             if min_div[i] != i:
@@ -227,7 +227,7 @@ class Solution:
 
     @staticmethod
     def cf_1349a(ac=FastIO()):
-        # 质factorization|，brute_force最终结果当中质因子的幂次
+        # prime_factorization|，brute_force最终结果当中质因子的幂次
         n = ac.read_int()
         nums = ac.read_list_ints()
         nmp = PrimeFactor(max(nums))
@@ -261,7 +261,7 @@ class Solution:
 
     @staticmethod
     def abc_114d(ac=FastIO()):
-        # 质factorization|counter
+        # prime_factorization|counter
         n = ac.read_int()
         nt = PrimeFactor(n + 10)
         cnt = Counter()
@@ -318,7 +318,7 @@ class Solution:
 
     @staticmethod
     def ac_197(ac=FastIO()):
-        # n!阶乘的质factorization|即因子与因子的个数
+        # n!阶乘的prime_factorization|即因子与因子的个数
         ceil = ac.read_int()
         min_prime = [0] * (ceil + 1)
         #  1 到 ceil 所有数字的最小质数因子
@@ -417,7 +417,7 @@ class Solution:
 
     @staticmethod
     def lg_p7960(ac=FastIO()):
-        # 类似埃氏筛的思路preprocess
+        # 类似prime_sieve的思路preprocess
         n = 10 ** 7
         dp = [0] * (n + 1)
         for x in range(1, n + 1):
@@ -440,7 +440,7 @@ class Solution:
 
     @staticmethod
     def lg_p8319(ac=FastIO()):
-        # 质factorization|greedy
+        # prime_factorization|greedy
         n = 2 * 10 ** 6
         f = [1] * (n + 1)
         prime = [0] * (n + 1)
@@ -591,7 +591,7 @@ class Solution:
 
     @staticmethod
     def ac_4319(ac=FastIO()):
-        # 质factorization|后prefix_hashcounter
+        # prime_factorization|后prefix_hashcounter
         n, k = ac.read_list_ints()
         a = ac.read_list_ints()
         nt = PrimeFactor(max(a))
@@ -635,7 +635,7 @@ class Solution:
 
     @staticmethod
     def ac_5049(ac=FastIO()):
-        # 质factorization|组合数
+        # prime_factorization|组合数
         n, m, h = ac.read_list_ints()
         a = ac.read_list_ints()
         h -= 1

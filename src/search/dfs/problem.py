@@ -1,62 +1,62 @@
 """
 
-Algorithm：深度优先搜索、coloring_method、brute_forceback_track、欧拉序、dfs_order|
-Description：常与back_trackbrute_force结合，比较的还有DFS序
+Algorithm：dfs|coloring_method|brute_force|back_track|euler_order|dfs_order|prune|itertation
+Description：back_track|brute_force|dfs_order|up_to_down|down_to_up
 
 
 ====================================LeetCode====================================
-473（https://leetcode.com/problems/matchsticks-to-square/）搜索木棍拼接组成正方形
-301（https://leetcode.com/problems/remove-invalid-parentheses/）深搜back_track与剪枝
-2581（https://leetcode.com/contest/biweekly-contest-99/problems/count-number-of-possible-root-nodes/）dfs_order|差分counter
-1059（https://leetcode.com/problems/all-paths-from-source-lead-to-destination/）memory_searchDFS深搜且back_track
+473（https://leetcode.com/problems/matchsticks-to-square/）dfs|back_track
+301（https://leetcode.com/problems/remove-invalid-parentheses/）back_track|dfs|prune
+2581（https://leetcode.com/contest/biweekly-contest-99/problems/count-number-of-possible-root-nodes/）dfs_order|diff_array|counter
+1059（https://leetcode.com/problems/all-paths-from-source-lead-to-destination/）memory_search|dfs|back_track
 1718（https://leetcode.com/problems/construct-the-lexicographically-largest-valid-sequence/）back_track
-2322（https://leetcode.com/problems/minimum-score-after-removals-on-a-tree/）dfs_orderdfs_order|brute_force
-1240（https://leetcode.com/problems/tiling-a-rectangle-with-the-fewest-squares/）DFSback_track与剪枝
-1239（https://leetcode.com/problems/maximum-length-of-a-concatenated-string-with-unique-characters/）DFSback_track二进制brute_force
-1080（https://leetcode.com/problems/insufficient-nodes-in-root-to-leaf-paths/description/）dfs自上而下后又自下而上
-2056（https://leetcode.com/problems/number-of-valid-move-combinations-on-chessboard/description/）back_trackbrute_force
-2458（https://leetcode.com/contest/weekly-contest-317/problems/height-of-binary-tree-after-subtree-removal-queries/）dfs_order|模板题目
+2322（https://leetcode.com/problems/minimum-score-after-removals-on-a-tree/）dfs_order|brute_force
+1240（https://leetcode.com/problems/tiling-a-rectangle-with-the-fewest-squares/）dfs|back_track|prune
+1239（https://leetcode.com/problems/maximum-length-of-a-concatenated-string-with-unique-characters/）dfs|back_track|2-base|brute_force
+1080（https://leetcode.com/problems/insufficient-nodes-in-root-to-leaf-paths/description/）dfs|up_to_down|down_to_up
+2056（https://leetcode.com/problems/number-of-valid-move-combinations-on-chessboard/description/）back_track|brute_force
+2458（https://leetcode.com/height-of-binary-tree-after-subtree-removal-queries/）dfs_order
 
 =====================================LuoGu======================================
-2383（https://www.luogu.com.cn/problem/P2383）搜索木棍拼接组成正方形
-1120（https://www.luogu.com.cn/problem/P1120）把数组分成和相等的子数组
-1692（https://www.luogu.com.cn/problem/P1692）搜索brute_forcelexicographical_order最大可行的连通块
-1612（https://www.luogu.com.cn/problem/P1612）dfs记录路径的prefix_sum并binary_search确定最长链条
-1475（https://www.luogu.com.cn/problem/P1475）深搜确定可以控制的公司对
-2080（https://www.luogu.com.cn/problem/P2080）深搜back_track与剪枝
-2090（https://www.luogu.com.cn/problem/P2090）深搜greedyback_track剪枝与辗转相减法
-2420（https://www.luogu.com.cn/problem/P2420）brain_teaser深搜确定到根路径的异或结果以及异或特性获得任意两点之间shortest_path的异或结果
-1473（https://www.luogu.com.cn/problem/P1473）深搜brute_force符号数
-1461（https://www.luogu.com.cn/problem/P1461）汉明距离与深搜back_trackbrute_force
-1394（https://www.luogu.com.cn/problem/P1394）深搜可达性确认
-1180（https://www.luogu.com.cn/problem/P1180）深搜implemention
-1118（https://www.luogu.com.cn/problem/P1118）单位矩阵implemention杨辉三角的系数，再暴搜寻找最小lexicographical_order结果
-3252（https://www.luogu.com.cn/problem/P3252）深搜back_track|prefix_sumhash
-4913（https://www.luogu.com.cn/problem/P4913）深搜确定深度
-5118（https://www.luogu.com.cn/problem/P5118）深搜back_track与hash记录implemention
-5197（https://www.luogu.com.cn/problem/P5197）tree_dpimplemention与coloring_method，利用父亲与自己的染色确定儿子们的染色
-5198（https://www.luogu.com.cn/problem/P5198）连通块的周长与面积
-5318（https://www.luogu.com.cn/problem/P5318）bfs|topological_sorting与dfs_order生成与获取
-6691（https://www.luogu.com.cn/problem/P6691）coloring_method，bipartite_graph可行性specific_plancounter与最大最小染色
-7370（https://www.luogu.com.cn/problem/P7370）所有可能的祖先节点，注意特别情况没有任何祖先节点则自身可达
-1036（https://www.luogu.com.cn/problem/P1036）back_track剪枝
-8578（https://www.luogu.com.cn/problem/P8578）greedydfs_order
-8838（https://www.luogu.com.cn/problem/P8838）深度优先搜索与back_track
+2383（https://www.luogu.com.cn/problem/P2383）dfs|back_track
+1120（https://www.luogu.com.cn/problem/P1120）dfs|back_track
+1692（https://www.luogu.com.cn/problem/P1692）dfs|brute_force|lexicographical_order
+1612（https://www.luogu.com.cn/problem/P1612）dfs|prefix_sum|binary_search
+1475（https://www.luogu.com.cn/problem/P1475）dfs
+2080（https://www.luogu.com.cn/problem/P2080）dfs|back_track|prune
+2090（https://www.luogu.com.cn/problem/P2090）dfs|greedy|back_track|prune|euclidean_division|euclidean_minus
+2420（https://www.luogu.com.cn/problem/P2420）brain_teaser|dfs|shortest_path|xor_path|classical
+1473（https://www.luogu.com.cn/problem/P1473）dfs|brute_force
+1461（https://www.luogu.com.cn/problem/P1461）dfs|back_track|brute_force
+1394（https://www.luogu.com.cn/problem/P1394）dfs
+1180（https://www.luogu.com.cn/problem/P1180）dfs|implemention
+1118（https://www.luogu.com.cn/problem/P1118）implemention|lexicographical_order|dfs
+3252（https://www.luogu.com.cn/problem/P3252）dfs|back_track|prefix_sum|hash
+4913（https://www.luogu.com.cn/problem/P4913）dfs
+5118（https://www.luogu.com.cn/problem/P5118）dfs|back_track|hash|implemention
+5197（https://www.luogu.com.cn/problem/P5197）tree_dp|implemention|coloring_method
+5198（https://www.luogu.com.cn/problem/P5198）union_find
+5318（https://www.luogu.com.cn/problem/P5318）bfs|topological_sorting|dfs_order
+6691（https://www.luogu.com.cn/problem/P6691）coloring_method|bipartite_graph|specific_plan|counter
+7370（https://www.luogu.com.cn/problem/P7370）ancestor
+1036（https://www.luogu.com.cn/problem/P1036）back_track|prune
+8578（https://www.luogu.com.cn/problem/P8578）greedy|dfs_order
+8838（https://www.luogu.com.cn/problem/P8838）dfs|back_track
 
 
 ===================================CodeForces===================================
-570D（https://codeforces.com/contest/570/problem/D）dfs_order|与binary_search，也可以offline_query
-208E（https://codeforces.com/contest/208/problem/E）dfs_order|LCA|binary_searchcounter
-1006E（https://codeforces.com/contest/1006/problem/E）dfs_order|模板题
-1702G2（https://codeforces.com/contest/1702/problem/G2）dfs_order|与lca组合判断是否为简单路径集合
-1899G（https://codeforces.com/contest/1899/problem/G）dfs with tolerance and exclusion by PointAddRangeSum
+570D（https://codeforces.com/contest/570/problem/D）dfs_order|binary_search|offline_query
+208E（https://codeforces.com/contest/208/problem/E）dfs_order|lca|binary_search|counter
+1006E（https://codeforces.com/contest/1006/problem/E）dfs_order|template
+1702G2（https://codeforces.com/contest/1702/problem/G2）dfs_order|lca
+1899G（https://codeforces.com/contest/1899/problem/G）dfs|inclusion_exclusion|classical|point_add_range_sum
 
 ====================================AtCoder=====================================
-F - Colorful Tree（https://atcoder.jp/contests/abc133/tasks/abc133_f）欧拉序在线查找树上距离，结合binary_search与prefix_sum变化情况
+133F（https://atcoder.jp/contests/abc133/tasks/abc133_f）euler_order|online_tree_dis|binary_search|prefix_sum
 
 =====================================AcWing=====================================
-4310（https://www.acwing.com/problem/content/4313/）dfs_order模板题
-23（https://www.acwing.com/problem/content/description/21/）back_track模板题
+4310（https://www.acwing.com/problem/content/4313/）dfs_order|template
+23（https://www.acwing.com/problem/content/description/21/）back_track|template
 
 """
 
@@ -83,7 +83,7 @@ class Solution:
 
     @staticmethod
     def lc_473(matchsticks: List[int]) -> bool:
-        # 模板: 深搜|back_track判断能否将数组分成正方形
+        # 模板: dfs||back_track判断能否将数组分成正方形
         n, s = len(matchsticks), sum(matchsticks)
         if s % 4 or max(matchsticks) > s // 4:
             return False
@@ -216,7 +216,7 @@ class Solution:
 
     @staticmethod
     def lc_301(s):
-        # 深搜back_track删除最少数量的无效括号使得子串合法有效
+        # dfs|back_track|删除最少数量的无效括号使得子串合法有效
 
         def dfs(i):
             nonlocal ans, pre, left, right
@@ -249,7 +249,7 @@ class Solution:
 
     @staticmethod
     def lg_p5318(ac=FastIO()):
-        # 深搜与bfs|序获取
+        # dfs|与bfs|序获取
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n + 1)]
         degree = [0] * (n + 1)
@@ -364,16 +364,16 @@ class Solution:
 
     @staticmethod
     def lc_1240(n: int, m: int) -> int:
-        # DFSback_track与剪枝
+        # DFSback_track与prune
 
         def dfs():
             nonlocal cnt, ans
-            if cnt >= ans:  # 超过最小值剪枝
+            if cnt >= ans:  # 超过最小值prune
                 return
 
             pre = PreFixSumMatrix([g[:] for g in grid])
             if pre.query(0, 0, m - 1, n - 1) == m * n:
-                # 全部填满剪枝
+                # 全部填满prune
                 ans = ans if ans < cnt else cnt
                 return
 
@@ -395,7 +395,7 @@ class Solution:
                                 for a in range(i, i + x):
                                     for b in range(j, j + x):
                                         grid[a][b] = 0
-                        return  # 在第一个左上角端点剪枝
+                        return  # 在第一个左上角端点prune
 
             return
 
@@ -622,7 +622,7 @@ class Solution:
             interval[x] = [start, order - 1]
             yield
 
-        # 高度与深搜区间
+        # 高度与dfs|区间
         order = 0
         ceil = 0
         # 存储字符对应的高度以及dfs_order|

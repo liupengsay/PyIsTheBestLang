@@ -144,7 +144,7 @@ class Solution:
 
     @staticmethod
     def lc_2472(s: str, k: int) -> int:
-        # preprocess线性palindrome_substring DP 优化外|结果linear_dp 也可以马拉车回文串获取回文信息
+        # preprocess线性palindrome_substring DP 优化外|结果linear_dp 也可以manacher回文串获取回文信息
         n = len(s)
         res = [[0] * (n + 1) for _ in range(n + 1)]
         for i in range(n - 1, -1, -1):

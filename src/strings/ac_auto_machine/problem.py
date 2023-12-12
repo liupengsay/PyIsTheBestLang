@@ -1,14 +1,14 @@
 """
-Algorithm：AC自动机
-Description：KMP|Trie的结合应用，用关键词建立字典树，再查询文本中关键词的出现次数
+Algorithm：ac_auto_machine
+Description：kmp|trie|word_count|text
 
 ====================================LeetCode====================================
-面试题 17（https://leetcode.com/problems/multi-search-lcci/）AC自动机counter，也可直接字典树
+17（https://leetcode.com/problems/multi-search-lcci/）ac_auto_machine|counter|trie
 
 =====================================LuoGu======================================
-3808（https://www.luogu.com.cn/problem/P3808）AC自动机counter
-3796（https://www.luogu.com.cn/problem/P3796）AC自动机counter
-5357（https://www.luogu.com.cn/problem/P5357）AC自动机counter
+3808（https://www.luogu.com.cn/problem/P3808）ac_auto_machine|counter|trie
+3796（https://www.luogu.com.cn/problem/P3796）ac_auto_machine|counter|trie
+5357（https://www.luogu.com.cn/problem/P5357）ac_auto_machine|counter|trie
 
 """
 

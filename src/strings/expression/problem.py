@@ -1,6 +1,6 @@
 """
 
-Algorithm：中缀、后缀表达式、字符串、类似stack的表达式
+Algorithm：stack
 Description：xxx
 
 ====================================LeetCode====================================
@@ -8,6 +8,6 @@ Description：xxx
 
 =====================================LuoGu======================================
 1175（https://www.luogu.com.cn/problem/P1175）
-1617（https://www.luogu.com.cn/problem/P1617）把数字转换为美式英语
-1322（https://www.luogu.com.cn/problem/P1322）字符串替换与函数式编程
+1617（https://www.luogu.com.cn/problem/P1617）
+1322（https://www.luogu.com.cn/problem/P1322）
 """

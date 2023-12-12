@@ -527,7 +527,7 @@ class Solution:
 
     @staticmethod
     def lg_p2359(ac=FastIO()):
-        # preprocess素数|liner_dp
+        # preprocessprime|liner_dp
         primes = NumberTheory().sieve_of_eratosthenes(10000)
         primes = [str(num) for num in primes if 1000 >
                   num >= 100 and "0" not in str(num)]

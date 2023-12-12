@@ -1,16 +1,16 @@
 """
-Algorithm：回文数字brute_force
-Description：xxx
+Algorithm：palindrome_number|brute_force
+Description：
 
 ====================================LeetCode====================================
-2081（https://leetcode.com/problems/sum-of-k-mirror-numbers/）brute_force 10 进制回文数字并判断其 k 进制是否依然回文
-866（https://leetcode.com/problems/prime-palindrome/）brute_force回文素数
-564（https://leetcode.com/problems/find-the-closest-palindrome/）brute_force字符的前半部分与后半部分
-906（https://leetcode.com/problems/super-palindromes/）preprocess所有的回文数其开方也是回文数
-1088（https://leetcode.com/problems/confusing-number-ii/description/）implementionbrute_force所有的易混淆数
+2081（https://leetcode.com/problems/sum-of-k-mirror-numbers/）brute_force|10-base|palindrome_number
+866（https://leetcode.com/problems/prime-palindrome/）brute_force|palindrome_prime
+564（https://leetcode.com/problems/find-the-closest-palindrome/）brute_force
+906（https://leetcode.com/problems/super-palindromes/）preprocess|brute_force
+1088（https://leetcode.com/problems/confusing-number-ii/description/）implemention|brute_force
 
 =====================================LuoGu======================================
-1609（https://www.luogu.com.cn/problem/P1609）brute_force字符的前半部分与后半部分
+1609（https://www.luogu.com.cn/problem/P1609）brute_force
 
 
 """
@@ -64,7 +64,7 @@ class Solution:
 
     @staticmethod
     def lc_2081(k: int, n: int) -> int:
-        # brute_force 10 进制回文数字并判断其 k 进制是否依然回文
+        # brute_force 10 进制palindrome_number并判断其 k 进制是否依然回文
         dct = defaultdict(list)
         # 放到preprocess
         nums = PalindromeNum().get_palindrome_num_2(12)
