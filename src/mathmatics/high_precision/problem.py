@@ -10,17 +10,17 @@ Description：xxx
 972（https://leetcode.com/problems/equal-rational-numbers/）float_to_frac
 
 =====================================LuoGu======================================
-2388（https://www.luogu.com.cn/problem/P2388）suffix_zero|factorial_of_factorial
+P2388（https://www.luogu.com.cn/problem/P2388）suffix_zero|factorial_of_factorial
 
-1920（https://www.luogu.com.cn/problem/P1920）high_precision|math
-1729（https://www.luogu.com.cn/problem/P1729）high_precision|e|math
-1727（https://www.luogu.com.cn/problem/P1727）high_precision|π|math
-1517（https://www.luogu.com.cn/problem/P1517）high_precision|float_power
-2394（https://www.luogu.com.cn/problem/P2394）high_precision
-2393（https://www.luogu.com.cn/problem/P2393）high_precision
+P1920（https://www.luogu.com.cn/problem/P1920）high_precision|math
+P1729（https://www.luogu.com.cn/problem/P1729）high_precision|e|math
+P1727（https://www.luogu.com.cn/problem/P1727）high_precision|π|math
+P1517（https://www.luogu.com.cn/problem/P1517）high_precision|float_power
+P2394（https://www.luogu.com.cn/problem/P2394）high_precision
+P2393（https://www.luogu.com.cn/problem/P2393）high_precision
 
-2399（https://www.luogu.com.cn/problem/P2399）float_to_frac
-1530（https://www.luogu.com.cn/problem/P1530）frac_to_float
+P2399（https://www.luogu.com.cn/problem/P2399）float_to_frac
+P1530（https://www.luogu.com.cn/problem/P1530）frac_to_float
 
 ===================================CodeForces===================================
 1144E（https://codeforces.com/contest/1144/problem/E）big_number|minus|mul|divide
@@ -110,6 +110,10 @@ class Solution:
 
     @staticmethod
     def lg_p2399(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2399
+        tag: float_to_frac
+        """
         # 有理数转最简分数
         s = ac.read_str()
         a, b = HighPrecision().decimal_to_fraction(s)
@@ -147,6 +151,10 @@ class Solution:
 
     @staticmethod
     def lg_p1530(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1530
+        tag: frac_to_float
+        """
         # 最简分数转化为有理数
         n, d = ac.read_list_ints()
         ans = HighPrecision().fraction_to_decimal(n, d)

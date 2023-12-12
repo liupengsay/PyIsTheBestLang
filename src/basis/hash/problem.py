@@ -18,11 +18,11 @@ Description：prefix_suffix|counter|index|prefix_sum
 ===================================CodeForces===================================
 
 =====================================LuoGu======================================
-2697（https://www.luogu.com.cn/problem/P2697）hash|prefix_sum
-1114（https://www.luogu.com.cn/problem/P1114）hash|prefix_sum
-4889（https://www.luogu.com.cn/problem/P4889）math|hash|counter
-6273（https://www.luogu.com.cn/problem/P6273）hash|prefix|counter
-8630（https://www.luogu.com.cn/problem/P8630）hash|counter|permutation|brute_force
+P2697（https://www.luogu.com.cn/problem/P2697）hash|prefix_sum
+P1114（https://www.luogu.com.cn/problem/P1114）hash|prefix_sum
+P4889（https://www.luogu.com.cn/problem/P4889）math|hash|counter
+P6273（https://www.luogu.com.cn/problem/P6273）hash|prefix|counter
+P8630（https://www.luogu.com.cn/problem/P8630）hash|counter|permutation|brute_force
 
 ====================================AtCoder=====================================
 D - Snuke's Coloring（https://atcoder.jp/contests/abc045/tasks/arc061_b）hash|inclusion_exclusion|counter
@@ -197,6 +197,10 @@ class Solution:
 
     @staticmethod
     def lg_p4889(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4889
+        tag: math|hash|counter
+        """
         # brute_forcecounter
         n, m = ac.read_list_ints()
         height = ac.read_list_ints()
@@ -219,6 +223,10 @@ class Solution:
 
     @staticmethod
     def lg_p6273(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6273
+        tag: hash|prefix|counter
+        """
         # hash前缀counter
         ac.read_int()
         s = ac.read_str()

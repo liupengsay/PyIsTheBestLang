@@ -7,10 +7,10 @@ Description：plane|cube
 850（https://leetcode.com/problems/rectangle-area-ii/）scan_line|segment_tree|discretization|O(nlogn)
 
 =====================================LuoGu======================================
-6265（https://www.luogu.com.cn/problem/P6265）scan_line
-5490（https://www.luogu.com.cn/problem/P5490）scan_line
-1884（https://www.luogu.com.cn/problem/P1884）scan_line
-1904（https://www.luogu.com.cn/problem/P1904）scan_line
+P6265（https://www.luogu.com.cn/problem/P6265）scan_line
+P5490（https://www.luogu.com.cn/problem/P5490）scan_line
+P1884（https://www.luogu.com.cn/problem/P1884）scan_line
+P1904（https://www.luogu.com.cn/problem/P1904）scan_line
 
 """
 from src.mathmatics.scan_line.template import ScanLine
@@ -23,6 +23,10 @@ class Solution:
 
     @staticmethod
     def lg_p1884(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1884
+        tag: scan_line
+        """
         # 矩形覆盖面积
         n = ac.read_int()
         lst = []

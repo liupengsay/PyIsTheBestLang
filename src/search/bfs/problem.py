@@ -20,64 +20,64 @@ Description：multi_source_bfs|bilateral_bfs|0-1bfs|bilateral_bfs|a-star|heurist
 994（https://leetcode.com/problems/rotting-oranges/description/）deque_bfs|implemention
 
 =====================================LuoGu======================================
-1747（https://www.luogu.com.cn/problem/P1747）bilateral_bfs|shortest_path
-5507（https://www.luogu.com.cn/problem/P5507）bilateral_bfs|shortest_path
-2040（https://www.luogu.com.cn/problem/P2040）bfs
-2335（https://www.luogu.com.cn/problem/P2335）bfs
-2385（https://www.luogu.com.cn/problem/P2385）bfs|shortest_path|shortest_path
-2630（https://www.luogu.com.cn/problem/P2630）bfs|implemention|lexicographical_order
-1332（https://www.luogu.com.cn/problem/P1332）bfs
-1330（https://www.luogu.com.cn/problem/P1330）bfs|level_wise|coloring_method|union_find|odd_circle
-1215（https://www.luogu.com.cn/problem/P1215）bfs|implemention|hash
-1037（https://www.luogu.com.cn/problem/P1037）bfs|implemention|brute_force
-2853（https://www.luogu.com.cn/problem/P2853）bfs|counter
-2881（https://www.luogu.com.cn/problem/P2881）bfs|complexity
-2895（https://www.luogu.com.cn/problem/P2895）bfs|implemention
-2960（https://www.luogu.com.cn/problem/P2960）bfs
-2298（https://www.luogu.com.cn/problem/P2298）bfs
-3139（https://www.luogu.com.cn/problem/P3139）bfs|memory_search
-3183（https://www.luogu.com.cn/problem/P3183）bfs|counter|number_of_path|dfs|dp
-4017（https://www.luogu.com.cn/problem/P4017）bfs|counter|number_of_path|dfs|dp
-3395（https://www.luogu.com.cn/problem/P3395）bfs|implemention
-3416（https://www.luogu.com.cn/problem/P3416）bfs|memory_search
-3916（https://www.luogu.com.cn/problem/P3916）reverse_thinking|reverse_graph|reverse_order
-3958（https://www.luogu.com.cn/problem/P3958）build_graph|bfs
-4328（https://www.luogu.com.cn/problem/P4328）bfs|implemention
-4961（https://www.luogu.com.cn/problem/P4961）brute_force|implemention|counter
-6207（https://www.luogu.com.cn/problem/P6207）bfs|shortest_path|specific_plan
-6582（https://www.luogu.com.cn/problem/P6582）bfs|comb|counter|fast_power
-7243（https://www.luogu.com.cn/problem/P7243）bfs|gcd
-3496（https://www.luogu.com.cn/problem/P3496）brain_teaser|bfs|coloring_method|level_wise
-1432（https://www.luogu.com.cn/problem/P1432）memory_search|bfs
-1807（https://www.luogu.com.cn/problem/P1807）dag|longest_path|dag_dp|topological_sort
-1379（https://www.luogu.com.cn/problem/P1379）bilateral_bfs
-5507（https://www.luogu.com.cn/problem/P5507）bilateral_bfs|a-star|heuristic_search
-5908（https://www.luogu.com.cn/problem/P5908）bfs
-1038（https://www.luogu.com.cn/problem/P1038）topological_sorting
-1126（https://www.luogu.com.cn/problem/P1126）bfs
-1213（https://www.luogu.com.cn/problem/P1213）state_compression|01-bfs
-1902（https://www.luogu.com.cn/problem/P1902）binary_search|bfs|in_place_hash
-2199（https://www.luogu.com.cn/problem/P2199）deque_bfs|01-bfs
-2226（https://www.luogu.com.cn/problem/P2226）bfs
-2296（https://www.luogu.com.cn/problem/P2296）reverse_graph|bfs
-2919（https://www.luogu.com.cn/problem/P2919）bfs
-2937（https://www.luogu.com.cn/problem/P2937）01-bfs|priority_queue
-3456（https://www.luogu.com.cn/problem/P3456）bfs
-3496（https://www.luogu.com.cn/problem/P3496）brain_teaser|bfs
-3818（https://www.luogu.com.cn/problem/P3818）01-bfs|deque_bfs
-3855（https://www.luogu.com.cn/problem/P3855）bfs|md_state
-3869（https://www.luogu.com.cn/problem/P3869）bfs|state_compression
-4554（https://www.luogu.com.cn/problem/P4554）classical|01-bfs|implemention
-4667（https://www.luogu.com.cn/problem/P4667）01-bfs|implemention
-5096（https://www.luogu.com.cn/problem/P5096）state_compression|bfs|implemention
-5099（https://www.luogu.com.cn/problem/P5099）01-bfs|implemention
-5195（https://www.luogu.com.cn/problem/P5195）bfs
-6131（https://www.luogu.com.cn/problem/P6131）bfs|union_find
-6909（https://www.luogu.com.cn/problem/P6909）preprocess|bfs
-8628（https://www.luogu.com.cn/problem/P8628）01-bfs
-8673（https://www.luogu.com.cn/problem/P8673）01-bfs|implemention
-8674（https://www.luogu.com.cn/problem/P8674）preprocess|build_graph|bfs|implemention
-9065（https://www.luogu.com.cn/problem/P9065）brain_teaser|bfs|brute_force
+P1747（https://www.luogu.com.cn/problem/P1747）bilateral_bfs|shortest_path
+P5507（https://www.luogu.com.cn/problem/P5507）bilateral_bfs|shortest_path
+P2040（https://www.luogu.com.cn/problem/P2040）bfs
+P2335（https://www.luogu.com.cn/problem/P2335）bfs
+P2385（https://www.luogu.com.cn/problem/P2385）bfs|shortest_path|shortest_path
+P2630（https://www.luogu.com.cn/problem/P2630）bfs|implemention|lexicographical_order
+P1332（https://www.luogu.com.cn/problem/P1332）bfs
+P1330（https://www.luogu.com.cn/problem/P1330）bfs|level_wise|coloring_method|union_find|odd_circle
+P1215（https://www.luogu.com.cn/problem/P1215）bfs|implemention|hash
+P1037（https://www.luogu.com.cn/problem/P1037）bfs|implemention|brute_force
+P2853（https://www.luogu.com.cn/problem/P2853）bfs|counter
+P2881（https://www.luogu.com.cn/problem/P2881）bfs|complexity
+P2895（https://www.luogu.com.cn/problem/P2895）bfs|implemention
+P2960（https://www.luogu.com.cn/problem/P2960）bfs
+P2298（https://www.luogu.com.cn/problem/P2298）bfs
+P3139（https://www.luogu.com.cn/problem/P3139）bfs|memory_search
+P3183（https://www.luogu.com.cn/problem/P3183）bfs|counter|number_of_path|dfs|dp
+P4017（https://www.luogu.com.cn/problem/P4017）bfs|counter|number_of_path|dfs|dp
+P3395（https://www.luogu.com.cn/problem/P3395）bfs|implemention
+P3416（https://www.luogu.com.cn/problem/P3416）bfs|memory_search
+P3916（https://www.luogu.com.cn/problem/P3916）reverse_thinking|reverse_graph|reverse_order
+P3958（https://www.luogu.com.cn/problem/P3958）build_graph|bfs
+P4328（https://www.luogu.com.cn/problem/P4328）bfs|implemention
+P4961（https://www.luogu.com.cn/problem/P4961）brute_force|implemention|counter
+P6207（https://www.luogu.com.cn/problem/P6207）bfs|shortest_path|specific_plan
+P6582（https://www.luogu.com.cn/problem/P6582）bfs|comb|counter|fast_power
+P7243（https://www.luogu.com.cn/problem/P7243）bfs|gcd
+P3496（https://www.luogu.com.cn/problem/P3496）brain_teaser|bfs|coloring_method|level_wise
+P1432（https://www.luogu.com.cn/problem/P1432）memory_search|bfs
+P1807（https://www.luogu.com.cn/problem/P1807）dag|longest_path|dag_dp|topological_sort
+P1379（https://www.luogu.com.cn/problem/P1379）bilateral_bfs
+P5507（https://www.luogu.com.cn/problem/P5507）bilateral_bfs|a-star|heuristic_search
+P5908（https://www.luogu.com.cn/problem/P5908）bfs
+P1038（https://www.luogu.com.cn/problem/P1038）topological_sorting
+P1126（https://www.luogu.com.cn/problem/P1126）bfs
+P1213（https://www.luogu.com.cn/problem/P1213）state_compression|01-bfs
+P1902（https://www.luogu.com.cn/problem/P1902）binary_search|bfs|in_place_hash
+P2199（https://www.luogu.com.cn/problem/P2199）deque_bfs|01-bfs
+P2226（https://www.luogu.com.cn/problem/P2226）bfs
+P2296（https://www.luogu.com.cn/problem/P2296）reverse_graph|bfs
+P2919（https://www.luogu.com.cn/problem/P2919）bfs
+P2937（https://www.luogu.com.cn/problem/P2937）01-bfs|priority_queue
+P3456（https://www.luogu.com.cn/problem/P3456）bfs
+P3496（https://www.luogu.com.cn/problem/P3496）brain_teaser|bfs
+P3818（https://www.luogu.com.cn/problem/P3818）01-bfs|deque_bfs
+P3855（https://www.luogu.com.cn/problem/P3855）bfs|md_state
+P3869（https://www.luogu.com.cn/problem/P3869）bfs|state_compression
+P4554（https://www.luogu.com.cn/problem/P4554）classical|01-bfs|implemention
+P4667（https://www.luogu.com.cn/problem/P4667）01-bfs|implemention
+P5096（https://www.luogu.com.cn/problem/P5096）state_compression|bfs|implemention
+P5099（https://www.luogu.com.cn/problem/P5099）01-bfs|implemention
+P5195（https://www.luogu.com.cn/problem/P5195）bfs
+P6131（https://www.luogu.com.cn/problem/P6131）bfs|union_find
+P6909（https://www.luogu.com.cn/problem/P6909）preprocess|bfs
+P8628（https://www.luogu.com.cn/problem/P8628）01-bfs
+P8673（https://www.luogu.com.cn/problem/P8673）01-bfs|implemention
+P8674（https://www.luogu.com.cn/problem/P8674）preprocess|build_graph|bfs|implemention
+P9065（https://www.luogu.com.cn/problem/P9065）brain_teaser|bfs|brute_force
 
 ===================================CodeForces===================================
 1594D（https://codeforces.com/contest/1594/problem/D）build_graph|coloring_method|bfs|bipartite_graph
@@ -242,6 +242,10 @@ class Solution:
 
     @staticmethod
     def lg_p1807_1(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1807
+        tag: dag|longest_path|dag_dp|topological_sort
+        """
         # 有向无环图 DAG topological_sorting求最长路
         n, m = ac.read_list_ints()
         edge = [dict() for _ in range(n)]
@@ -281,6 +285,10 @@ class Solution:
 
     @staticmethod
     def lg_p1807_2(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1807
+        tag: dag|longest_path|dag_dp|topological_sort
+        """
         # 有向无环图 DAG dfs|求最长路
         n, m = ac.read_list_ints()
         edge = [dict() for _ in range(n)]
@@ -345,6 +353,10 @@ class Solution:
 
     @staticmethod
     def lg_p3183(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3183
+        tag: bfs|counter|number_of_path|dfs|dp
+        """
         # 模板: 有向无环图路径条数
         n, m = ac.read_list_ints()
         edge = [[] for _ in range(n)]
@@ -374,6 +386,10 @@ class Solution:
 
     @staticmethod
     def lg_p1747(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1747
+        tag: bilateral_bfs|shortest_path
+        """
         # 双向 bfs 搜索
         x0, y0 = ac.read_list_ints()
         x2, y2 = ac.read_list_ints()
@@ -886,6 +902,10 @@ class Solution:
 
     @staticmethod
     def lg_p1213(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1213
+        tag: state_compression|01-bfs
+        """
         # state_compression优化01-bfs
         nex = {0: 1, 1: 2, 2: 3, 3: 0}
         lst = "ABDE,ABC,BCEF,ADG,BDEFH,CFI,DEGH,GHI,EFHI".split(",")
@@ -948,6 +968,10 @@ class Solution:
 
     @staticmethod
     def lg_p1902(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1902
+        tag: binary_search|bfs|in_place_hash
+        """
         # binary_search|bfs与in_place_hash路径最大值的最小值
         m, n = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
@@ -1015,6 +1039,10 @@ class Solution:
 
     @staticmethod
     def lg_p2199(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2199
+        tag: deque_bfs|01-bfs
+        """
 
         # 队列01-bfs判定距离最近的可视范围
         m, n = ac.read_list_ints()
@@ -1061,6 +1089,10 @@ class Solution:
 
     @staticmethod
     def lg_p2226(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2226
+        tag: bfs
+        """
         # 有限制地BDS转向
         m, n = ac.read_list_ints()
         s1, s2, e1, e2 = ac.read_list_ints_minus_one()
@@ -1089,6 +1121,10 @@ class Solution:
 
     @staticmethod
     def lg_p2296(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2296
+        tag: reverse_graph|bfs
+        """
         # 正向与reverse_graph跑两次bfs
         n, m = ac.read_list_ints()
         dct = [set() for _ in range(n)]
@@ -1129,6 +1165,10 @@ class Solution:
 
     @staticmethod
     def lg_p2919(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2919
+        tag: bfs
+        """
 
         # bfs按元素值sorting后从大到小遍历
         m, n = ac.read_list_ints()
@@ -1161,6 +1201,10 @@ class Solution:
 
     @staticmethod
     def lg_p2937(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2937
+        tag: 01-bfs|priority_queue
+        """
         # 01-bfspriority_queue
         n, m = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
@@ -1191,6 +1235,10 @@ class Solution:
 
     @staticmethod
     def lg_p3456(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3456
+        tag: bfs
+        """
         #  bfs 与周边山峰山谷
         n = ac.read_int()
         grid = [ac.read_list_ints() for _ in range(n)]
@@ -1231,6 +1279,10 @@ class Solution:
 
     @staticmethod
     def lg_p3818(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3818
+        tag: 01-bfs|deque_bfs
+        """
         # 队列 01-bfs 状态bfs|
         m, n, d, r = ac.read_list_ints()
         grid = []
@@ -1257,6 +1309,10 @@ class Solution:
 
     @staticmethod
     def lg_p3855(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3855
+        tag: bfs|md_state
+        """
 
         # 定义四维状态的bfs
         m, n = ac.read_list_ints()
@@ -1305,6 +1361,10 @@ class Solution:
 
     @staticmethod
     def lg_p3869(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3869
+        tag: bfs|state_compression
+        """
         # bfs||状压记录最少次数
         m, n = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
@@ -1361,6 +1421,10 @@ class Solution:
 
     @staticmethod
     def lg_p4554(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4554
+        tag: classical|01-bfs|implemention
+        """
         # classical 01-bfs implemention
         while True:
             lst = ac.read_list_ints()
@@ -1390,6 +1454,10 @@ class Solution:
 
     @staticmethod
     def lg_p4667(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4667
+        tag: 01-bfs|implemention
+        """
         #  01-bfs implemention
         m, n = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
@@ -1423,6 +1491,10 @@ class Solution:
 
     @staticmethod
     def lg_p5096(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5096
+        tag: state_compression|bfs|implemention
+        """
         # 状压|bfs| bfs implemention
         n, m, k = ac.read_list_ints()
         dct = [dict() for _ in range(n)]
@@ -1461,6 +1533,10 @@ class Solution:
 
     @staticmethod
     def lg_p5099(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5099
+        tag: 01-bfs|implemention
+        """
         # 队列 01-bfs bfs|implemention
         n, t = ac.read_list_ints()
         dct = dict()
@@ -1486,6 +1562,10 @@ class Solution:
 
     @staticmethod
     def lg_p5195(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5195
+        tag: bfs
+        """
         # 记录遇到灌木与否的状态 bfs 
         n, m = ac.read_list_ints()
         lst = []
@@ -1532,6 +1612,10 @@ class Solution:
 
     @staticmethod
     def lg_p6131(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6131
+        tag: bfs|union_find
+        """
         #  bfs 不同连通块之间的距离
         m, n = ac.read_list_ints()
         grid = [ac.read_list_str() for _ in range(m)]
@@ -1591,6 +1675,10 @@ class Solution:
 
     @staticmethod
     def lg_p6909(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6909
+        tag: preprocess|bfs
+        """
         # preprocess| bfs
         m, n = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
@@ -1667,6 +1755,10 @@ class Solution:
 
     @staticmethod
     def lg_p9065(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P9065
+        tag: brain_teaser|bfs|brute_force
+        """
         # brain_teaserbfsbrute_force
         m, n, k = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
@@ -1937,6 +2029,10 @@ class Solution:
 
     @staticmethod
     def lg_p1330(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1330
+        tag: bfs|level_wise|coloring_method|union_find|odd_circle
+        """
         # bfs隔层coloring_method，判断有无奇数环
         n, m = ac.read_list_ints()
         edge = [[] for _ in range(n)]

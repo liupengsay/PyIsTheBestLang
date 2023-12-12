@@ -25,69 +25,69 @@ Description：limited_shortest_path|layered_dijkstra|directed_smallest_circle|un
 2065（https://leetcode.com/problems/maximum-path-quality-of-a-graph/）back_track|dijkstra|shortest_path|prune
 
 =====================================LuoGu======================================
-3371（https://www.luogu.com.cn/problem/P3371）shortest_path
-4779（https://www.luogu.com.cn/problem/P4779）shortest_path
-1629（https://www.luogu.com.cn/problem/P1629）shortest_path|several_dijkstra
-1462（https://www.luogu.com.cn/problem/P1462）limited_shortest_path
-1339（https://www.luogu.com.cn/problem/P1339）shortest_path
-1342（https://www.luogu.com.cn/problem/P1342）shortest_path|several_dijkstra|reverse_graph|reverse_dijkstra
-1576（https://www.luogu.com.cn/problem/P1576）heapq|pos_to_neg|shortest_path
-1821（https://www.luogu.com.cn/problem/P1821）shortest_path|several_dijkstra|reverse_graph|reverse_dijkstra
-1882（https://www.luogu.com.cn/problem/P1882）shortest_path
-1907（https://www.luogu.com.cn/problem/P1907）build_graph|shortest_path
-1744（https://www.luogu.com.cn/problem/P1744）shortest_path
-1529（https://www.luogu.com.cn/problem/P1529）shortest_path
-1649（https://www.luogu.com.cn/problem/P1649）define_distance|shortest_path
-2083（https://www.luogu.com.cn/problem/P2083）reverse_graph|shortest_path
-2299（https://www.luogu.com.cn/problem/P2299）shortest_path
-2683（https://www.luogu.com.cn/problem/P2683）shortest_path|union_find
-1396（https://www.luogu.com.cn/problem/P1396）shortest_path|maximum_weight_on_shortest_path
-1346（https://www.luogu.com.cn/problem/P1346）build_graph|shortest_path
-1339（https://www.luogu.com.cn/record/list?user=739032&status=12&page=11）shortest_path
-2784（https://www.luogu.com.cn/problem/P2784）maximum_mul_path
-1318（https://www.luogu.com.cn/problem/P1318）prefix_suffix
-2888（https://www.luogu.com.cn/problem/P2888）shortest_path|minimum_max_weight_on_shortest_path
-2935（https://www.luogu.com.cn/problem/P2935）shortest_path
-2951（https://www.luogu.com.cn/problem/P2951）shortest_path
-2984（https://www.luogu.com.cn/problem/P2984）shortest_path
-3003（https://www.luogu.com.cn/problem/P3003）several_dijkstra|shortest_path
-3094（https://www.luogu.com.cn/problem/P3094）shortest_path|preprocess
-3905（https://www.luogu.com.cn/problem/P3905）reverse_thinking|build_graph|shortest_path
-5764（https://www.luogu.com.cn/problem/P5764）several_dijkstra|shortest_path
-5767（https://www.luogu.com.cn/problem/P5767）build_graph|shortest_path
-6770（https://www.luogu.com.cn/problem/P6770）shortest_path
-6833（https://www.luogu.com.cn/problem/P6833）several_dijkstra|shortest_path|brute_force
-7551（https://www.luogu.com.cn/problem/P7551）shortest_path|multi_edge|self_loop
-6175（https://www.luogu.com.cn/problem/P6175）dijkstra|brute_force|dfs
-4568（https://www.luogu.com.cn/problem/P4568）build_graph|layer_dijkstra|shortest_path
-2865（https://www.luogu.com.cn/problem/P2865）strictly_second_shortest_path
-2622（https://www.luogu.com.cn/problem/P2622）state_compress|dijkstra|shortest_path
-1073（https://www.luogu.com.cn/problem/P1073）reverse_graph|build_graph|dijkstra
-1300（https://www.luogu.com.cn/problem/P1300）dijkstra|shortest_path
-1354（https://www.luogu.com.cn/problem/P1354）build_graph|dijkstra|shortest_path
-1608（https://www.luogu.com.cn/problem/P1608）dijkstra|undirected|directed|number_of_shortest_path
-1828（https://www.luogu.com.cn/problem/P1828）several_dijkstra|shortest_path
-2047（https://www.luogu.com.cn/problem/P2047）node_shortest_path_count|dijkstra|shortest_path|floyd|classical
-2269（https://www.luogu.com.cn/problem/P2269）shortest_path
-2349（https://www.luogu.com.cn/problem/P2349）shortest_path
-2914（https://www.luogu.com.cn/problem/P2914）dijkstra|build_graph|dynamic_graph
-3020（https://www.luogu.com.cn/problem/P3020）dijkstra|shortest_path
-3057（https://www.luogu.com.cn/problem/P3057）dijkstra|shortest_path
-3753（https://www.luogu.com.cn/problem/P3753）shortest_path|two_params
-3956（https://www.luogu.com.cn/problem/P3956）several_params|dijkstra
-4880（https://www.luogu.com.cn/problem/P4880）brute_force|dijkstra|shortest_path
-4943（https://www.luogu.com.cn/problem/P4943）brute_force|several_dijkstra|shortest_path
-5201（https://www.luogu.com.cn/problem/P5201）shortest_path_spanning_tree|build_graph|tree_dp
-5663（https://www.luogu.com.cn/problem/P5663）shortest_odd_path|shortest_even_path
-5683（https://www.luogu.com.cn/problem/P5683）several_dijkstra|shortest_path|brute_force
-5837（https://www.luogu.com.cn/problem/P5837）dijkstra|several_params
-5930（https://www.luogu.com.cn/problem/P5930）dijkstra|minimum_max_weight_on_shortest_path
-6063（https://www.luogu.com.cn/problem/P6063）dijkstra|minimum_max_weight_on_shortest_path
-6512（https://www.luogu.com.cn/problem/P6512）shortest_path
-8385（https://www.luogu.com.cn/problem/P8385）brain_teaser|build_graph|shortest_path
-8724（https://www.luogu.com.cn/problem/P8724）shortest_path|layer_dijkstra
-8802（https://www.luogu.com.cn/problem/P8802）dijkstra|define_weight
-2176（https://www.luogu.com.cn/problem/P2176）brute_force|shortest_path
+P3371（https://www.luogu.com.cn/problem/P3371）shortest_path
+P4779（https://www.luogu.com.cn/problem/P4779）shortest_path
+P1629（https://www.luogu.com.cn/problem/P1629）shortest_path|several_dijkstra
+P1462（https://www.luogu.com.cn/problem/P1462）limited_shortest_path
+P1339（https://www.luogu.com.cn/problem/P1339）shortest_path
+P1342（https://www.luogu.com.cn/problem/P1342）shortest_path|several_dijkstra|reverse_graph|reverse_dijkstra
+P1576（https://www.luogu.com.cn/problem/P1576）heapq|pos_to_neg|shortest_path
+P1821（https://www.luogu.com.cn/problem/P1821）shortest_path|several_dijkstra|reverse_graph|reverse_dijkstra
+P1882（https://www.luogu.com.cn/problem/P1882）shortest_path
+P1907（https://www.luogu.com.cn/problem/P1907）build_graph|shortest_path
+P1744（https://www.luogu.com.cn/problem/P1744）shortest_path
+P1529（https://www.luogu.com.cn/problem/P1529）shortest_path
+P1649（https://www.luogu.com.cn/problem/P1649）define_distance|shortest_path
+P2083（https://www.luogu.com.cn/problem/P2083）reverse_graph|shortest_path
+P2299（https://www.luogu.com.cn/problem/P2299）shortest_path
+P2683（https://www.luogu.com.cn/problem/P2683）shortest_path|union_find
+P1396（https://www.luogu.com.cn/problem/P1396）shortest_path|maximum_weight_on_shortest_path
+P1346（https://www.luogu.com.cn/problem/P1346）build_graph|shortest_path
+list?user=739032&status=12&page=11（https://www.luogu.com.cn/record/list?user=739032&status=12&page=11）shortest_path
+P2784（https://www.luogu.com.cn/problem/P2784）maximum_mul_path
+P1318（https://www.luogu.com.cn/problem/P1318）prefix_suffix
+P2888（https://www.luogu.com.cn/problem/P2888）shortest_path|minimum_max_weight_on_shortest_path
+P2935（https://www.luogu.com.cn/problem/P2935）shortest_path
+P2951（https://www.luogu.com.cn/problem/P2951）shortest_path
+P2984（https://www.luogu.com.cn/problem/P2984）shortest_path
+P3003（https://www.luogu.com.cn/problem/P3003）several_dijkstra|shortest_path
+P3094（https://www.luogu.com.cn/problem/P3094）shortest_path|preprocess
+P3905（https://www.luogu.com.cn/problem/P3905）reverse_thinking|build_graph|shortest_path
+P5764（https://www.luogu.com.cn/problem/P5764）several_dijkstra|shortest_path
+P5767（https://www.luogu.com.cn/problem/P5767）build_graph|shortest_path
+P6770（https://www.luogu.com.cn/problem/P6770）shortest_path
+P6833（https://www.luogu.com.cn/problem/P6833）several_dijkstra|shortest_path|brute_force
+P7551（https://www.luogu.com.cn/problem/P7551）shortest_path|multi_edge|self_loop
+P6175（https://www.luogu.com.cn/problem/P6175）dijkstra|brute_force|dfs
+P4568（https://www.luogu.com.cn/problem/P4568）build_graph|layer_dijkstra|shortest_path
+P2865（https://www.luogu.com.cn/problem/P2865）strictly_second_shortest_path
+P2622（https://www.luogu.com.cn/problem/P2622）state_compress|dijkstra|shortest_path
+P1073（https://www.luogu.com.cn/problem/P1073）reverse_graph|build_graph|dijkstra
+P1300（https://www.luogu.com.cn/problem/P1300）dijkstra|shortest_path
+P1354（https://www.luogu.com.cn/problem/P1354）build_graph|dijkstra|shortest_path
+P1608（https://www.luogu.com.cn/problem/P1608）dijkstra|undirected|directed|number_of_shortest_path
+P1828（https://www.luogu.com.cn/problem/P1828）several_dijkstra|shortest_path
+P2047（https://www.luogu.com.cn/problem/P2047）node_shortest_path_count|dijkstra|shortest_path|floyd|classical
+P2269（https://www.luogu.com.cn/problem/P2269）shortest_path
+P2349（https://www.luogu.com.cn/problem/P2349）shortest_path
+P2914（https://www.luogu.com.cn/problem/P2914）dijkstra|build_graph|dynamic_graph
+P3020（https://www.luogu.com.cn/problem/P3020）dijkstra|shortest_path
+P3057（https://www.luogu.com.cn/problem/P3057）dijkstra|shortest_path
+P3753（https://www.luogu.com.cn/problem/P3753）shortest_path|two_params
+P3956（https://www.luogu.com.cn/problem/P3956）several_params|dijkstra
+P4880（https://www.luogu.com.cn/problem/P4880）brute_force|dijkstra|shortest_path
+P4943（https://www.luogu.com.cn/problem/P4943）brute_force|several_dijkstra|shortest_path
+P5201（https://www.luogu.com.cn/problem/P5201）shortest_path_spanning_tree|build_graph|tree_dp
+P5663（https://www.luogu.com.cn/problem/P5663）shortest_odd_path|shortest_even_path
+P5683（https://www.luogu.com.cn/problem/P5683）several_dijkstra|shortest_path|brute_force
+P5837（https://www.luogu.com.cn/problem/P5837）dijkstra|several_params
+P5930（https://www.luogu.com.cn/problem/P5930）dijkstra|minimum_max_weight_on_shortest_path
+P6063（https://www.luogu.com.cn/problem/P6063）dijkstra|minimum_max_weight_on_shortest_path
+P6512（https://www.luogu.com.cn/problem/P6512）shortest_path
+P8385（https://www.luogu.com.cn/problem/P8385）brain_teaser|build_graph|shortest_path
+P8724（https://www.luogu.com.cn/problem/P8724）shortest_path|layer_dijkstra
+P8802（https://www.luogu.com.cn/problem/P8802）dijkstra|define_weight
+P2176（https://www.luogu.com.cn/problem/P2176）brute_force|shortest_path
 
 ===================================CodeForces===================================
 20C（https://codeforces.com/problemset/problem/20/C）shortest_path|specific_plan
@@ -127,6 +127,10 @@ class Solution:
 
     @staticmethod
     def lg_p6175_1(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6175
+        tag: dijkstra|brute_force|dfs
+        """
         # Dijkstrabrute_force边的方式最小环
         n, m = ac.read_list_ints()
         dct = [defaultdict(lambda: inf) for _ in range(n)]
@@ -145,6 +149,10 @@ class Solution:
 
     @staticmethod
     def lg_p6175_2(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6175
+        tag: dijkstra|brute_force|dfs
+        """
         # Dijkstrabrute_force点的方式最小环
         n, m = ac.read_list_ints()
         dct = [defaultdict(lambda: inf) for _ in range(n)]
@@ -400,6 +408,10 @@ class Solution:
 
     @staticmethod
     def lg_p1462(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1462
+        tag: limited_shortest_path
+        """
         # Dijkstra limited_shortest_path
         n, m, s = ac.read_list_ints()
         cost = [ac.read_int() for _ in range(n)]
@@ -437,6 +449,10 @@ class Solution:
 
     @staticmethod
     def lg_p4568(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4568
+        tag: build_graph|layer_dijkstra|shortest_path
+        """
         # 建立 k+1 层图shortest_path
         n, m, k = ac.read_list_ints()
         s, t = ac.read_list_ints_minus_one()
@@ -470,6 +486,10 @@ class Solution:
 
     @staticmethod
     def lg_p1629(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1629
+        tag: shortest_path|several_dijkstra
+        """
         # 正反方向build_graph||两边shortest_path|和即可
         n, m = ac.read_list_ints()
         dct = [dict() for _ in range(n)]
@@ -490,6 +510,10 @@ class Solution:
 
     @staticmethod
     def lg_p2865(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2865
+        tag: strictly_second_shortest_path
+        """
         # strictly_second_shortest_path
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
@@ -561,6 +585,10 @@ class Solution:
 
     @staticmethod
     def lg_p2622(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2622
+        tag: state_compress|dijkstra|shortest_path
+        """
         # Dijkstra|状压shortest_path
         n = ac.read_int()
         m = ac.read_int()
@@ -588,6 +616,10 @@ class Solution:
 
     @staticmethod
     def lg_p1073(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1073
+        tag: reverse_graph|build_graph|dijkstra
+        """
         # 正反两遍build_graph|，两个shortest_path
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -634,6 +666,10 @@ class Solution:
 
     @staticmethod
     def lg_p1300(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1300
+        tag: dijkstra|shortest_path
+        """
         # Dijkstra求shortest_path
         m, n = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
@@ -680,6 +716,10 @@ class Solution:
 
     @staticmethod
     def lg_p1354(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1354
+        tag: build_graph|dijkstra|shortest_path
+        """
 
         # build_graph|求shortest_path
 
@@ -726,6 +766,10 @@ class Solution:
 
     @staticmethod
     def lg_p1608(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1608
+        tag: dijkstra|undirected|directed|number_of_shortest_path
+        """
         # Dijkstra有向与无向、带权与不带权的shortest_path数量（shortest_pathcounter）
         n, m = ac.read_list_ints()
         dct = [dict() for _ in range(n)]
@@ -741,6 +785,10 @@ class Solution:
 
     @staticmethod
     def lg_p1828(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1828
+        tag: several_dijkstra|shortest_path
+        """
 
         # 多个单源Dijkstrashortest_path
         n, p, c = ac.read_list_ints()
@@ -764,6 +812,10 @@ class Solution:
 
     @staticmethod
     def lg_p2047(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2047
+        tag: node_shortest_path_count|dijkstra|shortest_path|floyd|classical
+        """
         # Dijkstra经过每个点的所有shortest_path条数占比
         n, m = ac.read_list_ints()
         dct = [dict() for _ in range(n)]
@@ -794,6 +846,10 @@ class Solution:
 
     @staticmethod
     def lg_p2176(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2176
+        tag: brute_force|shortest_path
+        """
 
         # brute_forceshortest_path上的边修改后，重新shortest_path
         n, m = ac.read_list_ints()
@@ -817,6 +873,10 @@ class Solution:
 
     @staticmethod
     def lg_p2269(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2269
+        tag: shortest_path
+        """
         # 比较两个维度的Dijkstra
         n, src, dst = ac.read_list_ints()
         src -= 1
@@ -849,6 +909,10 @@ class Solution:
 
     @staticmethod
     def lg_p2349(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2349
+        tag: shortest_path
+        """
 
         # 比较两个项相|的shortest_path
         n, m = ac.read_list_ints()
@@ -880,6 +944,10 @@ class Solution:
 
     @staticmethod
     def lg_p2914(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2914
+        tag: dijkstra|build_graph|dynamic_graph
+        """
         # Dijkstra动态build_graph|距离
 
         def dis(x, y):
@@ -1043,6 +1111,10 @@ class Solution:
 
     @staticmethod
     def lg_p3753(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3753
+        tag: shortest_path|two_params
+        """
         # shortest_path变形两个维度的比较
         n, m = ac.read_list_ints()
         dct = [dict() for _ in range(n)]
@@ -1075,6 +1147,10 @@ class Solution:
 
     @staticmethod
     def lg_p3956(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3956
+        tag: several_params|dijkstra
+        """
         # Dijkstra最小代价
 
         m, n = ac.read_list_ints()
@@ -1111,6 +1187,10 @@ class Solution:
 
     @staticmethod
     def lg_p4880(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4880
+        tag: brute_force|dijkstra|shortest_path
+        """
         # brute_force终点 Dijkstrashortest_path
         lst = []
         while True:
@@ -1150,6 +1230,10 @@ class Solution:
 
     @staticmethod
     def lg_p4943(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4943
+        tag: brute_force|several_dijkstra|shortest_path
+        """
         # brute_force路径跑四遍shortest_path
         n, m, k = ac.read_list_ints()
         if k:
@@ -1175,6 +1259,10 @@ class Solution:
 
     @staticmethod
     def lg_p5201(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5201
+        tag: shortest_path_spanning_tree|build_graph|tree_dp
+        """
         #  shortest_path_spanning_tree build_graph|，再tree_dp| 最优解
         n, m, t = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -1232,6 +1320,10 @@ class Solution:
 
     @staticmethod
     def lg_p5663(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5663
+        tag: shortest_odd_path|shortest_even_path
+        """
         #  01 bfs 最短的奇数与偶数距离
         n, m, q = ac.read_list_ints()
         dct = [[] for _ in range(n)]
@@ -1254,6 +1346,10 @@ class Solution:
 
     @staticmethod
     def lg_p5683(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5683
+        tag: several_dijkstra|shortest_path|brute_force
+        """
         # several_dijkstra|shortest_pathbrute_force中间节点到三者之间的距离
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
@@ -1282,6 +1378,10 @@ class Solution:
 
     @staticmethod
     def lg_p5837(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5837
+        tag: dijkstra|several_params
+        """
         # Dijkstra变形问题，带多个状态
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
@@ -1307,6 +1407,10 @@ class Solution:
 
     @staticmethod
     def lg_p5930(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5930
+        tag: dijkstra|minimum_max_weight_on_shortest_path
+        """
         # 接雨水 Dijkstra 
         m, n = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
@@ -1341,6 +1445,10 @@ class Solution:
 
     @staticmethod
     def lg_p6063(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6063
+        tag: dijkstra|minimum_max_weight_on_shortest_path
+        """
         # Dijkstra应用接雨水
         n, m = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
@@ -1522,6 +1630,10 @@ class Solution:
 
     @staticmethod
     def lg_p6512(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6512
+        tag: shortest_path
+        """
         # shortest_path|DP
         n, m, k = ac.read_list_ints()
         dct = [[] for _ in range(n)]
@@ -1546,6 +1658,10 @@ class Solution:
 
     @staticmethod
     def lg_p8385(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8385
+        tag: brain_teaser|build_graph|shortest_path
+        """
         # brain_teaserbuild_graph|shortest_path
         n = ac.read_int()
         price = [ac.read_int() for _ in range(n)]

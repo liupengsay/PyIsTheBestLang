@@ -41,65 +41,65 @@ Description：matrix_prefix_sum|sub_matrix_sum|maximum_square|edit_distance|lcs|
 1745（https://leetcode.com/problems/palindrome-partitioning-iv/description/）matrix_dp|palindrome_substring|manacher|brute_force
 
 =====================================LuoGu======================================
-2701（https://www.luogu.com.cn/problem/P2701）maximum_square|matrix_dp|brute_force|classical|O(n^3)|hollow
-2049（https://www.luogu.com.cn/problem/P2049）matrix_dp|counter|mod
-2138（https://www.luogu.com.cn/problem/P2138）matrix_dp|lcs
-1681（https://www.luogu.com.cn/problem/P1681）maximum_square|matrix_dp
-2268（https://www.luogu.com.cn/problem/P2268）matrix_dp|edit_distance
-2301（https://www.luogu.com.cn/problem/P2301）matrix_dp
-2364（https://www.luogu.com.cn/problem/P2364）lcs|specific_plan|matrix_dp
-2543（https://www.luogu.com.cn/problem/P2543）matrix_dp|lcs
-2513（https://www.luogu.com.cn/record/list?user=739032&status=12&page=2）matrix_dp|prefix_sum
-1434（https://www.luogu.com.cn/problem/P1434）matrix_dp|lis
-1140（https://www.luogu.com.cn/problem/P1140）matrix_dp
-1057（https://www.luogu.com.cn/problem/P1057）matrix_dp
-8825（https://www.luogu.com.cn/problem/P8825）mod|matrix_dp|rolling_update
-2758（https://www.luogu.com.cn/problem/P2758）matrix_dp|edit_distance
-2803（https://www.luogu.com.cn/problem/P2803）matrix_dp|median_greedy|interval_dp
-2946（https://www.luogu.com.cn/problem/P2946）matrix_dp
-2427（https://www.luogu.com.cn/problem/P2427）matrix_dp|square
-7074（https://www.luogu.com.cn/problem/P7074）matrix_dp
-7160（https://www.luogu.com.cn/problem/P7160）matrix_dp|brute_force|counter
-7266（https://www.luogu.com.cn/problem/P7266）matrix_dp
-3399（https://www.luogu.com.cn/problem/P3399）matrix_dp
-2516（https://www.luogu.com.cn/problem/P2516）lcs|matrix_dp
-1544（https://www.luogu.com.cn/problem/P1544）matrix_dp
-1004（https://www.luogu.com.cn/problem/P1004）matrix_dp
-1006（https://www.luogu.com.cn/problem/P1006）matrix_dp
-1107（https://www.luogu.com.cn/problem/P1107）matrix_dp|prefix_max
-1279（https://www.luogu.com.cn/problem/P1279）edit_distance
-1353（https://www.luogu.com.cn/problem/P1353）matrix_dp
-1410（https://www.luogu.com.cn/problem/P1410）matrix_dp
-1799（https://www.luogu.com.cn/problem/P1799）matrix_dp
-1854（https://www.luogu.com.cn/problem/P1854）prefix_max|matrix_dp|specific_plan
-2140（https://www.luogu.com.cn/problem/P2140）matrix_dp
-2217（https://www.luogu.com.cn/problem/P2217）matrix_dp
-1436（https://www.luogu.com.cn/problem/P1436）md_matrix_dp
-5752（https://www.luogu.com.cn/problem/P5752）md_matrix_dp
-2380（https://www.luogu.com.cn/problem/P2380）md_matrix_dp
-2401（https://www.luogu.com.cn/problem/P2401）md_matrix_dp
-2528（https://www.luogu.com.cn/problem/P2528）reverse_order_pair|matrix_dp|implemention|construction
-2733（https://www.luogu.com.cn/problem/P2733）diff_array|matrix_dp|counter|maximum_square
-2736（https://www.luogu.com.cn/problem/P2736）matrix_dp
-2769（https://www.luogu.com.cn/problem/P2769）matrix_dp
-3012（https://www.luogu.com.cn/problem/P3012）matrix_dp
-3860（https://www.luogu.com.cn/problem/P3860）matrix_dp|specific_plan
-4958（https://www.luogu.com.cn/problem/P4958）linear_dp|prefix_sum
-5144（https://www.luogu.com.cn/problem/P5144）linear_dp|prefix_xor
-5858（https://www.luogu.com.cn/problem/P5858）matrix_dp|monotonic_queue
-5879（https://www.luogu.com.cn/problem/P5879）matrix_dp|prefix_sum
-6119（https://www.luogu.com.cn/problem/P6119）matrix_dp|lcs
-6323（https://www.luogu.com.cn/problem/P6323）reverse_order_pair|prefix_sum
-6394（https://www.luogu.com.cn/problem/P6394）matrix_dp|prefix_sum
-6433（https://www.luogu.com.cn/problem/P6433）greedy|classification_discussion|matrix_dp
-6451（https://www.luogu.com.cn/problem/P6451）md_matrix_dp|brute_force|4-tree
-6509（https://www.luogu.com.cn/problem/P6509）classical|matrix_dp|specific_plan
-6870（https://www.luogu.com.cn/problem/P6870）matrix_dp|comb|counter
-7995（https://www.luogu.com.cn/problem/P7995）matrix_dp
-8325（https://www.luogu.com.cn/problem/P8325）brute_force|matrix_dp|maximum_square
-8614（https://www.luogu.com.cn/problem/P8614）matrix_dp|mod
-8638（https://www.luogu.com.cn/problem/P8638）matrix_dp|longest_palindrome_sequence
-8786（https://www.luogu.com.cn/problem/P8786）classical|md_matrix_dp| implemention|memory_search
+P2701（https://www.luogu.com.cn/problem/P2701）maximum_square|matrix_dp|brute_force|classical|O(n^3)|hollow
+P2049（https://www.luogu.com.cn/problem/P2049）matrix_dp|counter|mod
+P2138（https://www.luogu.com.cn/problem/P2138）matrix_dp|lcs
+P1681（https://www.luogu.com.cn/problem/P1681）maximum_square|matrix_dp
+P2268（https://www.luogu.com.cn/problem/P2268）matrix_dp|edit_distance
+P2301（https://www.luogu.com.cn/problem/P2301）matrix_dp
+P2364（https://www.luogu.com.cn/problem/P2364）lcs|specific_plan|matrix_dp
+P2543（https://www.luogu.com.cn/problem/P2543）matrix_dp|lcs
+list?user=739032&status=12&page=2（https://www.luogu.com.cn/record/list?user=739032&status=12&page=2）matrix_dp|prefix_sum
+P1434（https://www.luogu.com.cn/problem/P1434）matrix_dp|lis
+P1140（https://www.luogu.com.cn/problem/P1140）matrix_dp
+P1057（https://www.luogu.com.cn/problem/P1057）matrix_dp
+P8825（https://www.luogu.com.cn/problem/P8825）mod|matrix_dp|rolling_update
+P2758（https://www.luogu.com.cn/problem/P2758）matrix_dp|edit_distance
+P2803（https://www.luogu.com.cn/problem/P2803）matrix_dp|median_greedy|interval_dp
+P2946（https://www.luogu.com.cn/problem/P2946）matrix_dp
+P2427（https://www.luogu.com.cn/problem/P2427）matrix_dp|square
+P7074（https://www.luogu.com.cn/problem/P7074）matrix_dp
+P7160（https://www.luogu.com.cn/problem/P7160）matrix_dp|brute_force|counter
+P7266（https://www.luogu.com.cn/problem/P7266）matrix_dp
+P3399（https://www.luogu.com.cn/problem/P3399）matrix_dp
+P2516（https://www.luogu.com.cn/problem/P2516）lcs|matrix_dp
+P1544（https://www.luogu.com.cn/problem/P1544）matrix_dp
+P1004（https://www.luogu.com.cn/problem/P1004）matrix_dp
+P1006（https://www.luogu.com.cn/problem/P1006）matrix_dp
+P1107（https://www.luogu.com.cn/problem/P1107）matrix_dp|prefix_max
+P1279（https://www.luogu.com.cn/problem/P1279）edit_distance
+P1353（https://www.luogu.com.cn/problem/P1353）matrix_dp
+P1410（https://www.luogu.com.cn/problem/P1410）matrix_dp
+P1799（https://www.luogu.com.cn/problem/P1799）matrix_dp
+P1854（https://www.luogu.com.cn/problem/P1854）prefix_max|matrix_dp|specific_plan
+P2140（https://www.luogu.com.cn/problem/P2140）matrix_dp
+P2217（https://www.luogu.com.cn/problem/P2217）matrix_dp
+P1436（https://www.luogu.com.cn/problem/P1436）md_matrix_dp
+P5752（https://www.luogu.com.cn/problem/P5752）md_matrix_dp
+P2380（https://www.luogu.com.cn/problem/P2380）md_matrix_dp
+P2401（https://www.luogu.com.cn/problem/P2401）md_matrix_dp
+P2528（https://www.luogu.com.cn/problem/P2528）reverse_order_pair|matrix_dp|implemention|construction
+P2733（https://www.luogu.com.cn/problem/P2733）diff_array|matrix_dp|counter|maximum_square
+P2736（https://www.luogu.com.cn/problem/P2736）matrix_dp
+P2769（https://www.luogu.com.cn/problem/P2769）matrix_dp
+P3012（https://www.luogu.com.cn/problem/P3012）matrix_dp
+P3860（https://www.luogu.com.cn/problem/P3860）matrix_dp|specific_plan
+P4958（https://www.luogu.com.cn/problem/P4958）linear_dp|prefix_sum
+P5144（https://www.luogu.com.cn/problem/P5144）linear_dp|prefix_xor
+P5858（https://www.luogu.com.cn/problem/P5858）matrix_dp|monotonic_queue
+P5879（https://www.luogu.com.cn/problem/P5879）matrix_dp|prefix_sum
+P6119（https://www.luogu.com.cn/problem/P6119）matrix_dp|lcs
+P6323（https://www.luogu.com.cn/problem/P6323）reverse_order_pair|prefix_sum
+P6394（https://www.luogu.com.cn/problem/P6394）matrix_dp|prefix_sum
+P6433（https://www.luogu.com.cn/problem/P6433）greedy|classification_discussion|matrix_dp
+P6451（https://www.luogu.com.cn/problem/P6451）md_matrix_dp|brute_force|4-tree
+P6509（https://www.luogu.com.cn/problem/P6509）classical|matrix_dp|specific_plan
+P6870（https://www.luogu.com.cn/problem/P6870）matrix_dp|comb|counter
+P7995（https://www.luogu.com.cn/problem/P7995）matrix_dp
+P8325（https://www.luogu.com.cn/problem/P8325）brute_force|matrix_dp|maximum_square
+P8614（https://www.luogu.com.cn/problem/P8614）matrix_dp|mod
+P8638（https://www.luogu.com.cn/problem/P8638）matrix_dp|longest_palindrome_sequence
+P8786（https://www.luogu.com.cn/problem/P8786）classical|md_matrix_dp| implemention|memory_search
 
 ===================================CodeForces===================================
 1446B（https://codeforces.com/problemset/problem/1446/B）lcs|matrix_dp
@@ -457,6 +457,10 @@ class Solution:
 
     @staticmethod
     def lg_p2516(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2516
+        tag: lcs|matrix_dp
+        """
         # 最长公共子序列的长度以及个数DP
         s = ac.read_str()[:-1]
         t = ac.read_str()[:-1]
@@ -506,6 +510,10 @@ class Solution:
 
     @staticmethod
     def lg_p1544(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1544
+        tag: matrix_dp
+        """
         # 三维matrix_dp
         n, k = ac.read_list_ints()
         dp = [[[-inf] * (k + 1) for _ in range(n)] for _ in range(2)]
@@ -541,6 +549,10 @@ class Solution:
 
     @staticmethod
     def lg_p1004(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1004
+        tag: matrix_dp
+        """
         # 取数四维转三维DP，路径可以有交叠
         n = ac.read_int()
         grid = [[0] * n for _ in range(n)]
@@ -571,6 +583,10 @@ class Solution:
 
     @staticmethod
     def lg_p1006(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1006
+        tag: matrix_dp
+        """
         # 取数四维转三维DP，路径不能有交叠
         m, n = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
@@ -595,6 +611,10 @@ class Solution:
 
     @staticmethod
     def lg_p1107(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1107
+        tag: matrix_dp|prefix_max
+        """
         # matrix_dp|前缀数组最值优化
         n, h, d = ac.read_list_ints()
         cnt = [[0] * (h + 1) for _ in range(n)]
@@ -619,6 +639,10 @@ class Solution:
 
     @staticmethod
     def lg_p1279(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1279
+        tag: edit_distance
+        """
         # edit_distance DP 变形
         s = ac.read_str()
         t = ac.read_str()
@@ -637,6 +661,10 @@ class Solution:
 
     @staticmethod
     def lg_p1353(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1353
+        tag: matrix_dp
+        """
         # matrix_dp
         n, m = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
@@ -653,6 +681,10 @@ class Solution:
 
     @staticmethod
     def lg_p1854(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1854
+        tag: prefix_max|matrix_dp|specific_plan
+        """
         # matrix_dp，并输出匹配specific_plan
         m, n = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
@@ -683,6 +715,10 @@ class Solution:
 
     @staticmethod
     def lg_p2140(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2140
+        tag: matrix_dp
+        """
         # 矩阵四维DP，可以memory_search与迭代
         m, n, u = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
@@ -747,6 +783,10 @@ class Solution:
 
     @staticmethod
     def lg_p2217(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2217
+        tag: matrix_dp
+        """
 
         # 矩阵四维DP，可以memory_search与迭代
         m, n, k = ac.read_list_ints()
@@ -798,6 +838,10 @@ class Solution:
 
     @staticmethod
     def lg_p1436(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1436
+        tag: md_matrix_dp
+        """
 
         # 矩阵四维DP，可以memory_search与迭代
         k = ac.read_int()
@@ -847,6 +891,10 @@ class Solution:
 
     @staticmethod
     def lg_p5752(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5752
+        tag: md_matrix_dp
+        """
 
         # 矩阵四维DP，可以memory_search与迭代
         k = ac.read_int()
@@ -897,6 +945,10 @@ class Solution:
 
     @staticmethod
     def lg_p2380(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2380
+        tag: md_matrix_dp
+        """
         # prefix_sum与matrix_dp
         while True:
             m, n = ac.read_list_ints()
@@ -923,6 +975,10 @@ class Solution:
 
     @staticmethod
     def lg_p2401(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2401
+        tag: md_matrix_dp
+        """
         # matrix_dp|
         n, k = ac.read_list_ints()
         dp = [[0] * (k + 1) for _ in range(2)]
@@ -940,6 +996,10 @@ class Solution:
 
     @staticmethod
     def lg_p2528(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2528
+        tag: reverse_order_pair|matrix_dp|implemention|construction
+        """
 
         # reverse_order_pair|matrix_dp| 与implementionconstruction
         n, t = ac.read_list_ints()
@@ -966,6 +1026,10 @@ class Solution:
 
     @staticmethod
     def lg_p2733(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2733
+        tag: diff_array|matrix_dp|counter|maximum_square
+        """
         # DP通过边长与diff_array|正方形子矩阵的个数
         n = ac.read_int()
         grid = [ac.read_str() for _ in range(n)]
@@ -989,6 +1053,10 @@ class Solution:
 
     @staticmethod
     def lg_p2736(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2736
+        tag: matrix_dp
+        """
 
         # matrix_dp|
         n, t, m = ac.read_list_ints()
@@ -1025,6 +1093,10 @@ class Solution:
 
     @staticmethod
     def lg_p2769(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2769
+        tag: matrix_dp
+        """
 
         # matrix_dp| 注意初始化条件
         n = ac.read_int()
@@ -1061,6 +1133,10 @@ class Solution:
 
     @staticmethod
     def lg_p3012(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3012
+        tag: matrix_dp
+        """
         # matrix_dp| 可以按照顺序转移
         u, l, p = ac.read_list_ints()
         dct = defaultdict(list)
@@ -1100,6 +1176,10 @@ class Solution:
 
     @staticmethod
     def lg_p3860(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3860
+        tag: matrix_dp|specific_plan
+        """
         # matrix_dp| 并具体转移specific_plan
         n, m = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
@@ -1131,6 +1211,10 @@ class Solution:
 
     @staticmethod
     def lg_p4958(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4958
+        tag: linear_dp|prefix_sum
+        """
         # 三维linear_dpprefix_sum优化
         mod = 10 ** 9 + 7
         ind = {chr(i + ord("a")): i for i in range(26)}
@@ -1158,6 +1242,10 @@ class Solution:
 
     @staticmethod
     def lg_p5144(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5144
+        tag: linear_dp|prefix_xor
+        """
         # linear_dp 二维|前缀异或和
         n, m = ac.read_list_ints()
         dp = [[0] * m for _ in range(n)]
@@ -1177,6 +1265,10 @@ class Solution:
 
     @staticmethod
     def lg_p5858(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5858
+        tag: matrix_dp|monotonic_queue
+        """
         # matrix_dp| |monotonic_queue
         n, w, s = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -1207,6 +1299,10 @@ class Solution:
 
     @staticmethod
     def lg_p5879(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5879
+        tag: matrix_dp|prefix_sum
+        """
         # matrix_dp| 后缀和优化
         n = ac.read_int()
         pre = [1] * (n + 1)
@@ -1223,6 +1319,10 @@ class Solution:
 
     @staticmethod
     def lg_p6119(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6119
+        tag: matrix_dp|lcs
+        """
         # matrix_dp| 为 LCS 的变形题
         n = ac.read_int()
         a = [ac.read_int() for _ in range(n)]
@@ -1236,6 +1336,10 @@ class Solution:
 
     @staticmethod
     def lg_p6323(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6323
+        tag: reverse_order_pair|prefix_sum
+        """
         #  DP reverse_order_pair|为指定数量时的排列个数prefix_sum优化
         mod = 10 ** 9 + 7
         n, k = ac.read_list_ints()
@@ -1254,6 +1358,10 @@ class Solution:
 
     @staticmethod
     def lg_p6394(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6394
+        tag: matrix_dp|prefix_sum
+        """
         # matrix_dp| |prefix_sum优化
         n, k = ac.read_list_ints()
         s = ac.read_list_ints()
@@ -1279,6 +1387,10 @@ class Solution:
 
     @staticmethod
     def lg_p6433(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6433
+        tag: greedy|classification_discussion|matrix_dp
+        """
         # greedy|classification_discussionmatrix_dp| 
         n, m, k = ac.read_list_ints()
 
@@ -1307,6 +1419,10 @@ class Solution:
 
     @staticmethod
     def lg_p6451(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6451
+        tag: md_matrix_dp|brute_force|4-tree
+        """
         # 迭代方式实现md_matrix_dp 并brute_force四叉树获取对应最小代价和状态
         n = ac.read_int()
         grid = [[int(w) for w in ac.read_str()] for _ in range(n)]
@@ -1543,6 +1659,10 @@ class Solution:
 
     @staticmethod
     def lg_p6509(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6509
+        tag: classical|matrix_dp|specific_plan
+        """
         # classicalmatrix_dp| 并记录对应的状态转移
         s = ac.read_str().split("=")
         b = int(s[1])
@@ -1583,6 +1703,10 @@ class Solution:
 
     @staticmethod
     def lg_p6870(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6870
+        tag: matrix_dp|comb|counter
+        """
         # matrix_dp| 与组合数优化counter
         n = ac.read_int()
         mod = 10 ** 9 + 7
@@ -1653,6 +1777,10 @@ class Solution:
 
     @staticmethod
     def lg_p7995(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P7995
+        tag: matrix_dp
+        """
         # matrix_dp| 
         for _ in range(ac.read_int()):
             n, k = ac.read_list_ints()
@@ -1687,6 +1815,10 @@ class Solution:
 
     @staticmethod
     def lg_p8325(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8325
+        tag: brute_force|matrix_dp|maximum_square
+        """
         # 动态规划brute_force，类似最大正方形matrix_dp| 变形
         m, n = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
@@ -1747,6 +1879,10 @@ class Solution:
 
     @staticmethod
     def lg_p8614(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8614
+        tag: matrix_dp|mod
+        """
         # matrix_dp| 关键在于mod|作为一维状态
         n, s, a, b = ac.read_list_ints()
         mod = 100000007
@@ -1764,6 +1900,10 @@ class Solution:
 
     @staticmethod
     def lg_p8638(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8638
+        tag: matrix_dp|longest_palindrome_sequence
+        """
         # matrix_dp| 最长回文子序列
         s = ac.read_str()
         n = len(s)
@@ -1779,6 +1919,10 @@ class Solution:
 
     @staticmethod
     def lg_p8786(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8786
+        tag: classical|md_matrix_dp| implemention|memory_search
+        """
         # classical三维matrix_dp| implementionmemory_search
 
         @lru_cache(None)

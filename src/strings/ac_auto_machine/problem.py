@@ -6,9 +6,9 @@ Description：kmp|trie|word_count|text
 17（https://leetcode.com/problems/multi-search-lcci/）ac_auto_machine|counter|trie
 
 =====================================LuoGu======================================
-3808（https://www.luogu.com.cn/problem/P3808）ac_auto_machine|counter|trie
-3796（https://www.luogu.com.cn/problem/P3796）ac_auto_machine|counter|trie
-5357（https://www.luogu.com.cn/problem/P5357）ac_auto_machine|counter|trie
+P3808（https://www.luogu.com.cn/problem/P3808）ac_auto_machine|counter|trie
+P3796（https://www.luogu.com.cn/problem/P3796）ac_auto_machine|counter|trie
+P5357（https://www.luogu.com.cn/problem/P5357）ac_auto_machine|counter|trie
 
 """
 

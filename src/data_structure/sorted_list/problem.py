@@ -17,23 +17,23 @@ Description：range_query|binary_search
 2426（https://leetcode.com/problems/number-of-pairs-satisfying-inequality/）math|sorted_list|binary_search
 
 =====================================LuoGu======================================
-7333（https://www.luogu.com.cn/problem/P7333）sorting|sorted_list|circular_array|range_query
-7391（https://www.luogu.com.cn/problem/P7391）sorted_list|greedy|implemention|lazy_heapq
-7910（https://www.luogu.com.cn/problem/P7910）sorted_list
-4375（https://www.luogu.com.cn/problem/P4375）bubble_sort|sorted_list
-1908（https://www.luogu.com.cn/problem/P1908）reverse_order_pair|merge_sort
-1966（https://www.luogu.com.cn/problem/P1966）reverse_order_pair|greedy
-2161（https://www.luogu.com.cn/problem/P2161）range_merge_to_disjoint
-1637（https://www.luogu.com.cn/problem/P1637）sorted_list|prefix_suffix|counter
-2234（https://www.luogu.com.cn/problem/P2234）sorted_list
-2804（https://www.luogu.com.cn/problem/P2804）prefix_sum|sorted_list
-3608（https://www.luogu.com.cn/problem/P3608）sorted_list
-5076（https://www.luogu.com.cn/problem/P5076）sorted_list|implemention
-5149（https://www.luogu.com.cn/problem/P5149）reverse_order_pair|bisect
-5459（https://www.luogu.com.cn/problem/P5459）prefix_sum|sorted_list|binary_search
-6538（https://www.luogu.com.cn/problem/P6538）sorted_list|greedy
-7912（https://www.luogu.com.cn/problem/P7912）sorted_list|implemention
-8667（https://www.luogu.com.cn/problem/P8667）sorted_list
+P7333（https://www.luogu.com.cn/problem/P7333）sorting|sorted_list|circular_array|range_query
+P7391（https://www.luogu.com.cn/problem/P7391）sorted_list|greedy|implemention|lazy_heapq
+P7910（https://www.luogu.com.cn/problem/P7910）sorted_list
+P4375（https://www.luogu.com.cn/problem/P4375）bubble_sort|sorted_list
+P1908（https://www.luogu.com.cn/problem/P1908）reverse_order_pair|merge_sort
+P1966（https://www.luogu.com.cn/problem/P1966）reverse_order_pair|greedy
+P2161（https://www.luogu.com.cn/problem/P2161）range_merge_to_disjoint
+P1637（https://www.luogu.com.cn/problem/P1637）sorted_list|prefix_suffix|counter
+P2234（https://www.luogu.com.cn/problem/P2234）sorted_list
+P2804（https://www.luogu.com.cn/problem/P2804）prefix_sum|sorted_list
+P3608（https://www.luogu.com.cn/problem/P3608）sorted_list
+P5076（https://www.luogu.com.cn/problem/P5076）sorted_list|implemention
+P5149（https://www.luogu.com.cn/problem/P5149）reverse_order_pair|bisect
+P5459（https://www.luogu.com.cn/problem/P5459）prefix_sum|sorted_list|binary_search
+P6538（https://www.luogu.com.cn/problem/P6538）sorted_list|greedy
+P7912（https://www.luogu.com.cn/problem/P7912）sorted_list|implemention
+P8667（https://www.luogu.com.cn/problem/P8667）sorted_list
 
 ===================================CodeForces===================================
 459D（https://codeforces.com/problemset/problem/459/D）sorted_list|counter
@@ -188,6 +188,10 @@ class Solution:
 
     @staticmethod
     def lg_p1637(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1637
+        tag: sorted_list|prefix_suffix|counter
+        """
         # sorted_list，prefix_suffix大小值counter
         n = ac.read_int()
         nums = ac.read_list_ints()
@@ -209,6 +213,10 @@ class Solution:
 
     @staticmethod
     def lg_p2234(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2234
+        tag: sorted_list
+        """
         # sorted_list
         n = ac.read_int()
         ans = 0
@@ -230,6 +238,10 @@ class Solution:
 
     @staticmethod
     def lg_p2804(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2804
+        tag: prefix_sum|sorted_list
+        """
         # prefix_sum| STL 平均值大于 m 的连续子数组个数
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -247,6 +259,10 @@ class Solution:
 
     @staticmethod
     def lg_p5076(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5076
+        tag: sorted_list|implemention
+        """
         # sorted_list与sorted_list名次implemention
         q = ac.read_int()
         dct = set()
@@ -282,6 +298,10 @@ class Solution:
 
     @staticmethod
     def lg_p5149(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5149
+        tag: reverse_order_pair|bisect
+        """
         # reverse_order_pair| bisect 实现
         ac.read_int()
         lst = ac.read_list_strs()
@@ -297,6 +317,10 @@ class Solution:
 
     @staticmethod
     def lg_p5459(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5459
+        tag: prefix_sum|sorted_list|binary_search
+        """
         # prefix_sum与sorted_listbinary_search
         n, low, high = ac.read_list_ints()
         a = ac.read_list_ints()
@@ -314,6 +338,10 @@ class Solution:
 
     @staticmethod
     def lg_p7912(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P7912
+        tag: sorted_list|implemention
+        """
         #  STL 应用implemention题 STL implemention删除
         n = ac.read_int()
         nums = ac.read_list_ints()

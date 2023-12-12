@@ -44,71 +44,71 @@ Description：brute force according to the data range
 1782（https://leetcode.com/problems/count-pairs-of-nodes/description/）brute_force
 
 =====================================LuoGu======================================
-1548（https://www.luogu.com.cn/problem/P1548）brute_force
-1632（https://www.luogu.com.cn/problem/P1632）brute_force
-2128（https://www.luogu.com.cn/problem/P2128）brute_force
-2191（https://www.luogu.com.cn/problem/P2191）reverse_thinking|matrix_rotate
-2699（https://www.luogu.com.cn/problem/P2699）classification_discussion|brute_force|implemention
-1371（https://www.luogu.com.cn/problem/P1371）prefix_suffix|brute_force|counter
-1369（https://www.luogu.com.cn/problem/P1369）matrix_dp|greedy|brute_force
-1158（https://www.luogu.com.cn/problem/P1158）sorting|brute_force|suffix_maximum
-8928（https://www.luogu.com.cn/problem/P8928）brute_force|counter
-8892（https://www.luogu.com.cn/problem/P8892）brute_force
-8799（https://www.luogu.com.cn/problem/P8799）brute_force
-3142（https://www.luogu.com.cn/problem/P3142）brute_force
-3143（https://www.luogu.com.cn/problem/P3143）brute_force|prefix_suffix
-3670（https://www.luogu.com.cn/problem/P3670）hash|brute_force|counter
-3799（https://www.luogu.com.cn/problem/P3799）brute_force|regular_triangle
-3910（https://www.luogu.com.cn/problem/P3910）factorization|brute_force
-4086（https://www.luogu.com.cn/problem/P4086）suffix|reverse_order|brute_force
-4596（https://www.luogu.com.cn/problem/P4596）brute_force
-4759（https://www.luogu.com.cn/problem/P4759）factorization|brute_force
-6267（https://www.luogu.com.cn/problem/P6267）factorization|brute_force
-5077（https://www.luogu.com.cn/problem/P5077）factorization|brute_force可
-4960（https://www.luogu.com.cn/problem/P4960）implemention|brute_force
-4994（https://www.luogu.com.cn/problem/P4994）implemention|pi(n)<=6n
-5190（https://www.luogu.com.cn/problem/P5190）counter|prefix_sum|harmonic_progression|O(nlogn)
-5614（https://www.luogu.com.cn/problem/P5614）brute_force
-6014（https://www.luogu.com.cn/problem/P6014）hash|mod|counter
-6067（https://www.luogu.com.cn/problem/P6067）sorting|prefix_suffix|brute_force
-6248（https://www.luogu.com.cn/problem/P6248）brute_force
-6355（https://www.luogu.com.cn/problem/P6355）brute_force|triangle|counter
-6365（https://www.luogu.com.cn/problem/P6365）inclusion_exclusion|brute_force|counter
-6439（https://www.luogu.com.cn/problem/P6439）brute_force
-6686（https://www.luogu.com.cn/problem/P6686）brute_force|triangle|counter
-2666（https://www.luogu.com.cn/problem/P2666）brute_force|counter
-2705（https://www.luogu.com.cn/problem/P2705）brute_force
-5690（https://www.luogu.com.cn/problem/P5690）brute_force
-7076（https://www.luogu.com.cn/problem/P7076）bit_operation|brute_force|counter
-7094（https://www.luogu.com.cn/problem/P7094）math|data_range|brute_force
-7273（https://www.luogu.com.cn/problem/P7273）brute_force|math|greedy
-7286（https://www.luogu.com.cn/problem/P7286）sorting|brute_force|counter
-7626（https://www.luogu.com.cn/problem/P7626）brute_force|matrix|diagonal
-7799（https://www.luogu.com.cn/problem/P7799）hash|brute_force|counter
-1018（https://www.luogu.com.cn/problem/P1018）brute_force
-1311（https://www.luogu.com.cn/problem/P1311）brute_force|counter
-2119（https://www.luogu.com.cn/problem/P2119）brute_force|prefix_suffix|counter
-2652（https://www.luogu.com.cn/problem/P2652）brute_force|two_pointers
-2994（https://www.luogu.com.cn/problem/P2994）brute_force
-3985（https://www.luogu.com.cn/problem/P3985）brute_force
-4181（https://www.luogu.com.cn/problem/P4181）greedy|brute_force|suffix_sum
-6149（https://www.luogu.com.cn/problem/P6149）brute_force|triangle|prefix_sum|binary_search
-6393（https://www.luogu.com.cn/problem/P6393）data_range|brute_force
-6767（https://www.luogu.com.cn/problem/P6767）brute_force
-8270（https://www.luogu.com.cn/problem/P8270）brain_teaser|brute_force
-8587（https://www.luogu.com.cn/problem/P8587）bucket_counter|brute_force
-8663（https://www.luogu.com.cn/problem/P8663）bucket_counter|brute_force
-8672（https://www.luogu.com.cn/problem/P8672）string|brute_force|permutation_circle|counter
-8712（https://www.luogu.com.cn/problem/P8712）brute_force
-8749（https://www.luogu.com.cn/problem/P8749）yanghui_triangle|brute_force
-8808（https://www.luogu.com.cn/problem/P8808）fibonacci|brute_force
-8809（https://www.luogu.com.cn/problem/P8809）brute_force|contribution_method|counter
-9076（https://www.luogu.com.cn/problem/P9076）factorization|brute_force
-9008（https://www.luogu.com.cn/problem/P9008）inclusion_exclusion|brute_force|counter
-9006（https://www.luogu.com.cn/problem/P9006）brute_force|mod|counter
-8948（https://www.luogu.com.cn/problem/P8948）brute_force
-8894（https://www.luogu.com.cn/problem/P8894）data_range|brute_force|prefix_suffix|counter
-8872（https://www.luogu.com.cn/problem/P8872）sorting|prefix_suffix|brute_force
+P1548（https://www.luogu.com.cn/problem/P1548）brute_force
+P1632（https://www.luogu.com.cn/problem/P1632）brute_force
+P2128（https://www.luogu.com.cn/problem/P2128）brute_force
+P2191（https://www.luogu.com.cn/problem/P2191）reverse_thinking|matrix_rotate
+P2699（https://www.luogu.com.cn/problem/P2699）classification_discussion|brute_force|implemention
+P1371（https://www.luogu.com.cn/problem/P1371）prefix_suffix|brute_force|counter
+P1369（https://www.luogu.com.cn/problem/P1369）matrix_dp|greedy|brute_force
+P1158（https://www.luogu.com.cn/problem/P1158）sorting|brute_force|suffix_maximum
+P8928（https://www.luogu.com.cn/problem/P8928）brute_force|counter
+P8892（https://www.luogu.com.cn/problem/P8892）brute_force
+P8799（https://www.luogu.com.cn/problem/P8799）brute_force
+P3142（https://www.luogu.com.cn/problem/P3142）brute_force
+P3143（https://www.luogu.com.cn/problem/P3143）brute_force|prefix_suffix
+P3670（https://www.luogu.com.cn/problem/P3670）hash|brute_force|counter
+P3799（https://www.luogu.com.cn/problem/P3799）brute_force|regular_triangle
+P3910（https://www.luogu.com.cn/problem/P3910）factorization|brute_force
+P4086（https://www.luogu.com.cn/problem/P4086）suffix|reverse_order|brute_force
+P4596（https://www.luogu.com.cn/problem/P4596）brute_force
+P4759（https://www.luogu.com.cn/problem/P4759）factorization|brute_force
+P6267（https://www.luogu.com.cn/problem/P6267）factorization|brute_force
+P5077（https://www.luogu.com.cn/problem/P5077）factorization|brute_force可
+P4960（https://www.luogu.com.cn/problem/P4960）implemention|brute_force
+P4994（https://www.luogu.com.cn/problem/P4994）implemention|pi(n)<=6n
+P5190（https://www.luogu.com.cn/problem/P5190）counter|prefix_sum|harmonic_progression|O(nlogn)
+P5614（https://www.luogu.com.cn/problem/P5614）brute_force
+P6014（https://www.luogu.com.cn/problem/P6014）hash|mod|counter
+P6067（https://www.luogu.com.cn/problem/P6067）sorting|prefix_suffix|brute_force
+P6248（https://www.luogu.com.cn/problem/P6248）brute_force
+P6355（https://www.luogu.com.cn/problem/P6355）brute_force|triangle|counter
+P6365（https://www.luogu.com.cn/problem/P6365）inclusion_exclusion|brute_force|counter
+P6439（https://www.luogu.com.cn/problem/P6439）brute_force
+P6686（https://www.luogu.com.cn/problem/P6686）brute_force|triangle|counter
+P2666（https://www.luogu.com.cn/problem/P2666）brute_force|counter
+P2705（https://www.luogu.com.cn/problem/P2705）brute_force
+P5690（https://www.luogu.com.cn/problem/P5690）brute_force
+P7076（https://www.luogu.com.cn/problem/P7076）bit_operation|brute_force|counter
+P7094（https://www.luogu.com.cn/problem/P7094）math|data_range|brute_force
+P7273（https://www.luogu.com.cn/problem/P7273）brute_force|math|greedy
+P7286（https://www.luogu.com.cn/problem/P7286）sorting|brute_force|counter
+P7626（https://www.luogu.com.cn/problem/P7626）brute_force|matrix|diagonal
+P7799（https://www.luogu.com.cn/problem/P7799）hash|brute_force|counter
+P1018（https://www.luogu.com.cn/problem/P1018）brute_force
+P1311（https://www.luogu.com.cn/problem/P1311）brute_force|counter
+P2119（https://www.luogu.com.cn/problem/P2119）brute_force|prefix_suffix|counter
+P2652（https://www.luogu.com.cn/problem/P2652）brute_force|two_pointers
+P2994（https://www.luogu.com.cn/problem/P2994）brute_force
+P3985（https://www.luogu.com.cn/problem/P3985）brute_force
+P4181（https://www.luogu.com.cn/problem/P4181）greedy|brute_force|suffix_sum
+P6149（https://www.luogu.com.cn/problem/P6149）brute_force|triangle|prefix_sum|binary_search
+P6393（https://www.luogu.com.cn/problem/P6393）data_range|brute_force
+P6767（https://www.luogu.com.cn/problem/P6767）brute_force
+P8270（https://www.luogu.com.cn/problem/P8270）brain_teaser|brute_force
+P8587（https://www.luogu.com.cn/problem/P8587）bucket_counter|brute_force
+P8663（https://www.luogu.com.cn/problem/P8663）bucket_counter|brute_force
+P8672（https://www.luogu.com.cn/problem/P8672）string|brute_force|permutation_circle|counter
+P8712（https://www.luogu.com.cn/problem/P8712）brute_force
+P8749（https://www.luogu.com.cn/problem/P8749）yanghui_triangle|brute_force
+P8808（https://www.luogu.com.cn/problem/P8808）fibonacci|brute_force
+P8809（https://www.luogu.com.cn/problem/P8809）brute_force|contribution_method|counter
+P9076（https://www.luogu.com.cn/problem/P9076）factorization|brute_force
+P9008（https://www.luogu.com.cn/problem/P9008）inclusion_exclusion|brute_force|counter
+P9006（https://www.luogu.com.cn/problem/P9006）brute_force|mod|counter
+P8948（https://www.luogu.com.cn/problem/P8948）brute_force
+P8894（https://www.luogu.com.cn/problem/P8894）data_range|brute_force|prefix_suffix|counter
+P8872（https://www.luogu.com.cn/problem/P8872）sorting|prefix_suffix|brute_force
 
 ===================================CodeForces===================================
 1426F（https://codeforces.com/problemset/problem/1426/F）classification_discussion|brute_force|counter|fast_power
@@ -504,6 +504,10 @@ class Solution:
 
     @staticmethod
     def lg_p1018(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1018
+        tag: brute_force
+        """
         # brute_force乘号的位置
         n, k = ac.read_list_ints()
         nums = ac.read_list_str()
@@ -521,6 +525,10 @@ class Solution:
 
     @staticmethod
     def lg_p1311(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1311
+        tag: brute_force|counter
+        """
         # 线性brute_forcecounter，每次重置避免重复counter
         n, k, p = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
@@ -547,6 +555,10 @@ class Solution:
 
     @staticmethod
     def lg_p2119(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2119
+        tag: brute_force|prefix_suffix|counter
+        """
 
         # brute_force差值，并prefix_suffix个数
         n, m = ac.read_list_ints()
@@ -600,6 +612,10 @@ class Solution:
 
     @staticmethod
     def lg_p2652(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2652
+        tag: brute_force|two_pointers
+        """
 
         # brute_force花色与two_pointers长度
         n = ac.read_int()
@@ -621,6 +637,10 @@ class Solution:
 
     @staticmethod
     def lg_p2994(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2994
+        tag: brute_force
+        """
 
         # 按照座位brute_force分配人员
         def dis():
@@ -653,6 +673,10 @@ class Solution:
 
     @staticmethod
     def lg_p4181(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4181
+        tag: greedy|brute_force|suffix_sum
+        """
         # greedybrute_force与后缀和
         n, m, r = ac.read_list_ints()
         cow = [ac.read_int() for _ in range(n)]
@@ -686,6 +710,10 @@ class Solution:
 
     @staticmethod
     def lg_p6149(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6149
+        tag: brute_force|triangle|prefix_sum|binary_search
+        """
         # brute_force三角形的直角点prefix_sum与binary_search距离和
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
@@ -721,6 +749,10 @@ class Solution:
 
     @staticmethod
     def lg_p6393(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6393
+        tag: data_range|brute_force
+        """
         # 利用data_range范围brute_force
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
@@ -796,6 +828,10 @@ class Solution:
 
     @staticmethod
     def lg_p6767(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6767
+        tag: brute_force
+        """
         # greedybrute_force性价比较低的数量
         n, a, b, c, d = ac.read_list_ints()
         if b * c > a * d:
@@ -810,6 +846,10 @@ class Solution:
 
     @staticmethod
     def lg_p8270(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8270
+        tag: brain_teaser|brute_force
+        """
         # brain_teaserbrute_force，转换为两两字母比较
         s = ac.read_str()
         t = ac.read_str()
@@ -848,6 +888,10 @@ class Solution:
 
     @staticmethod
     def lg_p8672(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8672
+        tag: string|brute_force|permutation_circle|counter
+        """
         # 字符串brute_force与permutation_circle|counter
         s = ac.read_str()
         n = len(s)
@@ -880,6 +924,10 @@ class Solution:
 
     @staticmethod
     def lg_p9076(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P9076
+        tag: factorization|brute_force
+        """
         # 根据数字的因数brute_force
         n = ac.read_int()
         ans = 0
@@ -902,6 +950,10 @@ class Solution:
 
     @staticmethod
     def lg_p9008(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P9008
+        tag: inclusion_exclusion|brute_force|counter
+        """
         # 朋友敌人陌生人容斥brute_forcecounter
         n, p, q = ac.read_list_ints()
         friend = defaultdict(set)
@@ -925,6 +977,10 @@ class Solution:
 
     @staticmethod
     def lg_p9006(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P9006
+        tag: brute_force|mod|counter
+        """
         # brute_forcemod|counter
         mod = 100000007
         n, k = ac.read_list_ints()
@@ -939,6 +995,10 @@ class Solution:
 
     @staticmethod
     def lg_p8948(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8948
+        tag: brute_force
+        """
         # preprocess和brute_force所有情况
         dct = dict()
         dct[2000] = [400, 600]
@@ -954,6 +1014,10 @@ class Solution:
 
     @staticmethod
     def lg_p8894(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8894
+        tag: data_range|brute_force|prefix_suffix|counter
+        """
         # 按照区间范围值brute_forceprefix_suffixcounter
         n = ac.read_int()
         mod = 998244353
@@ -993,6 +1057,10 @@ class Solution:
 
     @staticmethod
     def lg_p8872(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8872
+        tag: sorting|prefix_suffix|brute_force
+        """
         # sorting后prefix_suffix移动次数brute_force
         n, m = ac.read_list_ints()
         nums = sorted(ac.read_list_ints())

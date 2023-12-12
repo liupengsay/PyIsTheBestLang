@@ -18,11 +18,11 @@ Note2：where there exist euler_path if and only if the graph is connected
 1743（https://leetcode.com/problems/restore-the-array-from-adjacent-pairs/）undirected_euler_path|discretization
 
 =====================================LuoGu======================================
-7771（https://www.luogu.com.cn/problem/P7771）euler_path
-6066（https://www.luogu.com.cn/problem/P6066）euler_path
-1127（https://www.luogu.com.cn/problem/P1127）lexicographical_order_minimum|directed_euler_path|specific_plan
-2731（https://www.luogu.com.cn/problem/P2731）lexicographical_order_minimum|undirected_euler_path|specific_plan
-1341（https://www.luogu.com.cn/problem/P1341）lexicographical_order_minimum|undirected_euler_path|specific_plan
+P7771（https://www.luogu.com.cn/problem/P7771）euler_path
+P6066（https://www.luogu.com.cn/problem/P6066）euler_path
+P1127（https://www.luogu.com.cn/problem/P1127）lexicographical_order_minimum|directed_euler_path|specific_plan
+P2731（https://www.luogu.com.cn/problem/P2731）lexicographical_order_minimum|undirected_euler_path|specific_plan
+P1341（https://www.luogu.com.cn/problem/P1341）lexicographical_order_minimum|undirected_euler_path|specific_plan
 
 =====================================AcWing=====================================
 4211（https://www.acwing.com/problem/content/4214/）directed_euler_path|specific_plan
@@ -44,6 +44,10 @@ class Solution:
 
     @staticmethod
     def lg_p7771(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P7771
+        tag: euler_path
+        """
         # 有向图euler_path或者euler_circular_path
         n, m = ac.read_list_ints()
         # 存储图关系
@@ -58,6 +62,10 @@ class Solution:
 
     @staticmethod
     def lg_p2731(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2731
+        tag: lexicographical_order_minimum|undirected_euler_path|specific_plan
+        """
         # 无向图euler_path或者euler_circular_path
         m = ac.read_int()
         pairs = [ac.read_list_ints() for _ in range(m)]
@@ -76,6 +84,10 @@ class Solution:
 
     @staticmethod
     def lg_p1341(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1341
+        tag: lexicographical_order_minimum|undirected_euler_path|specific_plan
+        """
         # 无向图euler_path或者euler_circular_path
         m = ac.read_int()
         nodes = set()
@@ -109,6 +121,10 @@ class Solution:
 
     @staticmethod
     def lg_p1127(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1127
+        tag: lexicographical_order_minimum|directed_euler_path|specific_plan
+        """
         # 有向图euler_path或者euler_circular_path
         m = ac.read_int()
 

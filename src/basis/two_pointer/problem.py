@@ -29,16 +29,16 @@ Description：sliding_window|two_pointers|center_extension_method
 2953（https://leetcode.com/problems/count-complete-substrings/）two pointers|brute force
 
 =====================================LuoGu======================================
-2381（https://www.luogu.com.cn/problem/P2381）circular_array|sliding_window|two_pointers
-3353（https://www.luogu.com.cn/problem/P3353）sliding_window|two_pointers
-3662（https://www.luogu.com.cn/problem/P3662）sliding_window|sub_consequence_sum
-4995（https://www.luogu.com.cn/problem/P4995）sorting|greedy|two_pointers|implemention
-2207（https://www.luogu.com.cn/problem/P2207）greedy|same_direction|two_pointers
-7542（https://www.luogu.com.cn/problem/P7542）bucket_counter|two_pointers
-4653（https://www.luogu.com.cn/problem/P4653）greedy|sorting|two_pointers
-3029（https://www.luogu.com.cn/problem/P3029）two_pointers
-5583（https://www.luogu.com.cn/problem/P5583）two_pointers
-6465（https://www.luogu.com.cn/problem/P6465）sliding_window|two_pointers|counter
+P2381（https://www.luogu.com.cn/problem/P2381）circular_array|sliding_window|two_pointers
+P3353（https://www.luogu.com.cn/problem/P3353）sliding_window|two_pointers
+P3662（https://www.luogu.com.cn/problem/P3662）sliding_window|sub_consequence_sum
+P4995（https://www.luogu.com.cn/problem/P4995）sorting|greedy|two_pointers|implemention
+P2207（https://www.luogu.com.cn/problem/P2207）greedy|same_direction|two_pointers
+P7542（https://www.luogu.com.cn/problem/P7542）bucket_counter|two_pointers
+P4653（https://www.luogu.com.cn/problem/P4653）greedy|sorting|two_pointers
+P3029（https://www.luogu.com.cn/problem/P3029）two_pointers
+P5583（https://www.luogu.com.cn/problem/P5583）two_pointers
+P6465（https://www.luogu.com.cn/problem/P6465）sliding_window|two_pointers|counter
 
 
 ===================================CodeForces===================================
@@ -71,6 +71,10 @@ class Solution:
 
     @staticmethod
     def lg_p4653(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4653
+        tag: greedy|sorting|two_pointers
+        """
 
         # greedysorting后two_pointers
         n = ac.read_int()
@@ -419,6 +423,10 @@ class Solution:
 
     @staticmethod
     def lg_p5583(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5583
+        tag: two_pointers
+        """
         # two_pointers与变量维护区间信息
         n, m, d = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -462,6 +470,10 @@ class Solution:
 
     @staticmethod
     def lg_p6465(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6465
+        tag: sliding_window|two_pointers|counter
+        """
         # sliding_window与two_pointerscounter
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()

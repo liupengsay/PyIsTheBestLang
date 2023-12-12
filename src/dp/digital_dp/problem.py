@@ -22,10 +22,10 @@ D - XOR World（https://atcoder.jp/contests/abc121/tasks/abc121_d）xor_property
 E - Digit Products（https://atcoder.jp/contests/abc208/tasks/abc208_e）brain_teaser|digital_dp
 
 =====================================LuoGu======================================
-1590（https://www.luogu.com.cn/problem/P1590）counter|digital_dp
-1239（https://www.luogu.com.cn/problem/P1239）counter|digital_dp
-3908（https://www.luogu.com.cn/problem/P3908）xor_property|digital_dp|counter|odd_even
-1836（https://www.luogu.com.cn/problem/P1836）digital_dp
+P1590（https://www.luogu.com.cn/problem/P1590）counter|digital_dp
+P1239（https://www.luogu.com.cn/problem/P1239）counter|digital_dp
+P3908（https://www.luogu.com.cn/problem/P3908）xor_property|digital_dp|counter|odd_even
+P1836（https://www.luogu.com.cn/problem/P1836）digital_dp
 
 ======================================Other======================================
 （https://www.lanqiao.cn/problems/5891/learning/?contest_id=145）inclusion_exclusion|digital_dp
@@ -218,6 +218,10 @@ class Solution:
 
     @staticmethod
     def lg_p1836(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1836
+        tag: digital_dp
+        """
         # digital_dp1~n内所有数字的数位和
         n = ac.read_int()
         ans = 0

@@ -8,9 +8,9 @@ Description：data_range|brute_force
 956（https://leetcode.com/problems/tallest-billboard/description/）meet_in_middle
 
 =====================================LuoGu======================================
-5194（https://www.luogu.com.cn/problem/P5194）fibonacci|meet_in_middle|brute_force|binary_search
-nya（https://www.luogu.com.cn/problem/CF525E）meet_in_middle
-5691（https://www.luogu.com.cn/problem/P5691）meet_in_middle|sorted_list|two_pointers|brute_force
+P5194（https://www.luogu.com.cn/problem/P5194）fibonacci|meet_in_middle|brute_force|binary_search
+CF525E（https://www.luogu.com.cn/problem/CF525E）meet_in_middle
+P5691（https://www.luogu.com.cn/problem/P5691）meet_in_middle|sorted_list|two_pointers|brute_force
 
 =====================================AcWing=====================================
 171（https://www.acwing.com/problem/content/173/）meet_in_middle
@@ -125,6 +125,10 @@ class Solution:
 
     @staticmethod
     def lg_p5194(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5194
+        tag: fibonacci|meet_in_middle|brute_force|binary_search
+        """
         # meet_in_middlebrute_force后binary_search寻找最接近目标值的数
         n, c = ac.read_list_ints()
         val = [ac.read_int() for _ in range(n)]
@@ -266,6 +270,10 @@ class Solution:
 
     @staticmethod
     def lg_p5691(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5691
+        tag: meet_in_middle|sorted_list|two_pointers|brute_force
+        """
         # meet_in_middle与brute_force
         n = ac.read_int()
         m = ac.read_int()

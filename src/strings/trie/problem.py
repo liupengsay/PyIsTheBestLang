@@ -15,15 +15,15 @@ Description：string|bit_operation
 1032（https://leetcode.com/problems/stream-of-characters/description/）trie|classical|reverse_order
 
 =====================================LuoGu======================================
-8306（https://www.luogu.com.cn/problem/P8306）trie
-4551（https://www.luogu.com.cn/problem/P4551）xor
-3864（https://www.luogu.com.cn/problem/P3864）hash|brute_force|trie
-5755（https://www.luogu.com.cn/problem/P5755）trie|counter
-1481（https://www.luogu.com.cn/problem/P1481）trie
-5283（https://www.luogu.com.cn/problem/P5283）trie|kth_xor|heapq|greedy
-2922（https://www.luogu.com.cn/problem/P2922）trie|prefix|counter
-1738（https://www.luogu.com.cn/problem/P1738）trie|counter
-8420（https://www.luogu.com.cn/problem/P8420）trie|greedy
+P8306（https://www.luogu.com.cn/problem/P8306）trie
+P4551（https://www.luogu.com.cn/problem/P4551）xor
+P3864（https://www.luogu.com.cn/problem/P3864）hash|brute_force|trie
+P5755（https://www.luogu.com.cn/problem/P5755）trie|counter
+P1481（https://www.luogu.com.cn/problem/P1481）trie
+P5283（https://www.luogu.com.cn/problem/P5283）trie|kth_xor|heapq|greedy
+P2922（https://www.luogu.com.cn/problem/P2922）trie|prefix|counter
+P1738（https://www.luogu.com.cn/problem/P1738）trie|counter
+P8420（https://www.luogu.com.cn/problem/P8420）trie|greedy
 
 ===================================CodeForces===================================
 1792D（https://codeforces.com/problemset/problem/1792/D）trie|counter
@@ -243,6 +243,10 @@ class Solution:
 
     @staticmethod
     def lg_p1481(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1481
+        tag: trie
+        """
         # trie最长词链
         n = ac.read_int()
 
@@ -265,6 +269,10 @@ class Solution:
 
     @staticmethod
     def lg_p4551(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4551
+        tag: xor
+        """
         # 树中异或值最长的路径
         n = ac.read_int()
         trie = TrieZeroOneXorMax(32)
@@ -290,6 +298,10 @@ class Solution:
 
     @staticmethod
     def lg_p5283(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5283
+        tag: trie|kth_xor|heapq|greedy
+        """
         # 数组中最大的 k 组异或对
         n, k = ac.read_list_ints()
         nums = [0] + ac.read_list_ints()
@@ -405,6 +417,10 @@ class Solution:
 
     @staticmethod
     def lg_p2922(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2922
+        tag: trie|prefix|counter
+        """
         # trie前缀匹配
         m, n = ac.read_list_ints()
         dct = dict()
@@ -433,6 +449,10 @@ class Solution:
 
     @staticmethod
     def lg_p1738(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1738
+        tag: trie|counter
+        """
         # 动态维护trie键个数
         n = ac.read_int()
         dct = dict()
@@ -450,6 +470,10 @@ class Solution:
 
     @staticmethod
     def lg_p8420(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8420
+        tag: trie|greedy
+        """
         # triegreedy匹配
         n, m, length = ac.read_list_ints()
 

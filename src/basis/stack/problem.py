@@ -17,14 +17,14 @@ Description：implemention|monotonic_stack|maximum_stack|minimum_stack
 2296（https://leetcode.com/problems/design-a-text-editor/description/）stack|implemention
 
 =====================================LuoGu======================================
-1944（https://www.luogu.com.cn/problem/P1944）regular_bracket_subsequence|longest
-2201（https://www.luogu.com.cn/problem/P2201）stack|implemention|pointer|prefix_sum|max_prefix_sum
-4387（https://www.luogu.com.cn/problem/P4387）implemention|stack|stack|deque
-7674（https://www.luogu.com.cn/problem/P7674）stack|implemention
-3719（https://www.luogu.com.cn/problem/P3719）string|stack
-1974（https://www.luogu.com.cn/problem/P1974）greedy|deque|implemention
-3551（https://www.luogu.com.cn/problem/P3551）stack|counter|pointer
-3719（https://www.luogu.com.cn/problem/P3719）stack|implemention
+P1944（https://www.luogu.com.cn/problem/P1944）regular_bracket_subsequence|longest
+P2201（https://www.luogu.com.cn/problem/P2201）stack|implemention|pointer|prefix_sum|max_prefix_sum
+P4387（https://www.luogu.com.cn/problem/P4387）implemention|stack|stack|deque
+P7674（https://www.luogu.com.cn/problem/P7674）stack|implemention
+P3719（https://www.luogu.com.cn/problem/P3719）string|stack
+P1974（https://www.luogu.com.cn/problem/P1974）greedy|deque|implemention
+P3551（https://www.luogu.com.cn/problem/P3551）stack|counter|pointer
+P3719（https://www.luogu.com.cn/problem/P3719）stack|implemention
 
 ===================================CodeForces===================================
 5C（https://codeforces.com/problemset/problem/5/C）regular_bracket_subsequence|counter|longest
@@ -424,6 +424,10 @@ class Solution:
 
     @staticmethod
     def lg_p1974(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1974
+        tag: greedy|deque|implemention
+        """
         # greedy队列implemention
         n = ac.read_int()
         stack = deque([1] * n)
@@ -435,6 +439,10 @@ class Solution:
 
     @staticmethod
     def lg_p3719(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3719
+        tag: stack|implemention
+        """
         # stackimplemention
         s = ac.read_str()
         stack = []

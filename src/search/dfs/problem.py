@@ -18,30 +18,30 @@ Description：back_track|brute_force|dfs_order|up_to_down|down_to_up
 2458（https://leetcode.com/height-of-binary-tree-after-subtree-removal-queries/）dfs_order
 
 =====================================LuoGu======================================
-2383（https://www.luogu.com.cn/problem/P2383）dfs|back_track
-1120（https://www.luogu.com.cn/problem/P1120）dfs|back_track
-1692（https://www.luogu.com.cn/problem/P1692）dfs|brute_force|lexicographical_order
-1612（https://www.luogu.com.cn/problem/P1612）dfs|prefix_sum|binary_search
-1475（https://www.luogu.com.cn/problem/P1475）dfs
-2080（https://www.luogu.com.cn/problem/P2080）dfs|back_track|prune
-2090（https://www.luogu.com.cn/problem/P2090）dfs|greedy|back_track|prune|euclidean_division|euclidean_minus
-2420（https://www.luogu.com.cn/problem/P2420）brain_teaser|dfs|shortest_path|xor_path|classical
-1473（https://www.luogu.com.cn/problem/P1473）dfs|brute_force
-1461（https://www.luogu.com.cn/problem/P1461）dfs|back_track|brute_force
-1394（https://www.luogu.com.cn/problem/P1394）dfs
-1180（https://www.luogu.com.cn/problem/P1180）dfs|implemention
-1118（https://www.luogu.com.cn/problem/P1118）implemention|lexicographical_order|dfs
-3252（https://www.luogu.com.cn/problem/P3252）dfs|back_track|prefix_sum|hash
-4913（https://www.luogu.com.cn/problem/P4913）dfs
-5118（https://www.luogu.com.cn/problem/P5118）dfs|back_track|hash|implemention
-5197（https://www.luogu.com.cn/problem/P5197）tree_dp|implemention|coloring_method
-5198（https://www.luogu.com.cn/problem/P5198）union_find
-5318（https://www.luogu.com.cn/problem/P5318）bfs|topological_sorting|dfs_order
-6691（https://www.luogu.com.cn/problem/P6691）coloring_method|bipartite_graph|specific_plan|counter
-7370（https://www.luogu.com.cn/problem/P7370）ancestor
-1036（https://www.luogu.com.cn/problem/P1036）back_track|prune
-8578（https://www.luogu.com.cn/problem/P8578）greedy|dfs_order
-8838（https://www.luogu.com.cn/problem/P8838）dfs|back_track
+P2383（https://www.luogu.com.cn/problem/P2383）dfs|back_track
+P1120（https://www.luogu.com.cn/problem/P1120）dfs|back_track
+P1692（https://www.luogu.com.cn/problem/P1692）dfs|brute_force|lexicographical_order
+P1612（https://www.luogu.com.cn/problem/P1612）dfs|prefix_sum|binary_search
+P1475（https://www.luogu.com.cn/problem/P1475）dfs
+P2080（https://www.luogu.com.cn/problem/P2080）dfs|back_track|prune
+P2090（https://www.luogu.com.cn/problem/P2090）dfs|greedy|back_track|prune|euclidean_division|euclidean_minus
+P2420（https://www.luogu.com.cn/problem/P2420）brain_teaser|dfs|shortest_path|xor_path|classical
+P1473（https://www.luogu.com.cn/problem/P1473）dfs|brute_force
+P1461（https://www.luogu.com.cn/problem/P1461）dfs|back_track|brute_force
+P1394（https://www.luogu.com.cn/problem/P1394）dfs
+P1180（https://www.luogu.com.cn/problem/P1180）dfs|implemention
+P1118（https://www.luogu.com.cn/problem/P1118）implemention|lexicographical_order|dfs
+P3252（https://www.luogu.com.cn/problem/P3252）dfs|back_track|prefix_sum|hash
+P4913（https://www.luogu.com.cn/problem/P4913）dfs
+P5118（https://www.luogu.com.cn/problem/P5118）dfs|back_track|hash|implemention
+P5197（https://www.luogu.com.cn/problem/P5197）tree_dp|implemention|coloring_method
+P5198（https://www.luogu.com.cn/problem/P5198）union_find
+P5318（https://www.luogu.com.cn/problem/P5318）bfs|topological_sorting|dfs_order
+P6691（https://www.luogu.com.cn/problem/P6691）coloring_method|bipartite_graph|specific_plan|counter
+P7370（https://www.luogu.com.cn/problem/P7370）ancestor
+P1036（https://www.luogu.com.cn/problem/P1036）back_track|prune
+P8578（https://www.luogu.com.cn/problem/P8578）greedy|dfs_order
+P8838（https://www.luogu.com.cn/problem/P8838）dfs|back_track
 
 
 ===================================CodeForces===================================
@@ -265,6 +265,10 @@ class Solution:
 
     @staticmethod
     def lg_p5318(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5318
+        tag: bfs|topological_sorting|dfs_order
+        """
         # dfs|与bfs|序获取
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n + 1)]
@@ -778,6 +782,10 @@ class Solution:
 
     @staticmethod
     def lg_p8838(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8838
+        tag: dfs|back_track
+        """
         # 深度优先搜索与back_track
         n, k = ac.read_list_ints()
         a = ac.read_list_ints()

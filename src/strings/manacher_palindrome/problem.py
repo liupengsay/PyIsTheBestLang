@@ -8,11 +8,11 @@ Description：dp|center|center_expansion_method|manacher
 1960（https://leetcode.com/problems/maximum-product-of-the-length-of-two-palindromic-substrings/）longest_palindrome_substring|prefix_suffix|classical
 
 =====================================LuoGu======================================
-4555（https://www.luogu.com.cn/problem/P4555）longest_palindrome_substring|prefix_suffix
-1210（https://www.luogu.com.cn/problem/P1210）longest_palindrome_substring
-4888（https://www.luogu.com.cn/problem/P4888）center_expansion_method|two_pointers
-1872（https://www.luogu.com.cn/problem/P1872）counter|palindrome_substring|manacher|classical
-6297（https://www.luogu.com.cn/problem/P6297）center_expansion_method
+P4555（https://www.luogu.com.cn/problem/P4555）longest_palindrome_substring|prefix_suffix
+P1210（https://www.luogu.com.cn/problem/P1210）longest_palindrome_substring
+P4888（https://www.luogu.com.cn/problem/P4888）center_expansion_method|two_pointers
+P1872（https://www.luogu.com.cn/problem/P1872）counter|palindrome_substring|manacher|classical
+P6297（https://www.luogu.com.cn/problem/P6297）center_expansion_method
 
 ===================================CodeForces===================================
 1682A（https://codeforces.com/contest/1682/problem/A）palindromic|center_extension
@@ -108,6 +108,10 @@ class Solution:
 
     @staticmethod
     def lg_p6297(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6297
+        tag: center_expansion_method
+        """
         # center_expansion_method并变量维护
         n, k = ac.read_list_ints()
         mod = 10 ** 9 + 7

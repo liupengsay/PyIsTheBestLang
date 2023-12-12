@@ -10,13 +10,13 @@ Description：static_range|range_query|range_max|range_min|range_gcd|range_and|r
 2654（https://leetcode.com/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/）range_gcd|sub_consequence
 
 =====================================LuoGu======================================
-3865（https://www.luogu.com.cn/problem/P3865）sparse_table|range_max
-2880（https://www.luogu.com.cn/problem/P2880）sparse_table|range_max|range_min
-1890（https://www.luogu.com.cn/problem/P3865）sparse_table|range_gcd
-1816（https://www.luogu.com.cn/problem/P1816）sparse_table|range_min
-2412（https://www.luogu.com.cn/problem/P2412）lexicographical_order|sparse_table
-5097（https://www.luogu.com.cn/problem/P5097）sparse_table|range_min
-5648（https://www.luogu.com.cn/problem/P5648）sparse_table|range_max_index|monotonic_stack
+P3865（https://www.luogu.com.cn/problem/P3865）sparse_table|range_max
+P2880（https://www.luogu.com.cn/problem/P2880）sparse_table|range_max|range_min
+P3865（https://www.luogu.com.cn/problem/P3865）sparse_table|range_gcd
+P1816（https://www.luogu.com.cn/problem/P1816）sparse_table|range_min
+P2412（https://www.luogu.com.cn/problem/P2412）lexicographical_order|sparse_table
+P5097（https://www.luogu.com.cn/problem/P5097）sparse_table|range_min
+P5648（https://www.luogu.com.cn/problem/P5648）sparse_table|range_max_index|monotonic_stack
 
 ===================================CodeForces===================================
 1691D（https://codeforces.com/problemset/problem/1691/D）monotonic_stack|brute_force|sparse_table|range_max|range_min
@@ -53,6 +53,10 @@ class Solution:
 
     @staticmethod
     def lg_p2880(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2880
+        tag: sparse_table|range_max|range_min
+        """
         # 查询静态区间最大值与最小值
         n, q = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
@@ -65,6 +69,10 @@ class Solution:
 
     @staticmethod
     def lg_p3865(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3865
+        tag: sparse_table|range_gcd
+        """
         # 查询静态区间最大值
         n, m = ac.read_list_ints()
         st = SparseTable1(ac.read_list_ints())
@@ -153,6 +161,10 @@ class Solution:
 
     @staticmethod
     def lg_p5648(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5648
+        tag: sparse_table|range_max_index|monotonic_stack
+        """
         # 倍增 ST 表查询区间最大值的索引，monotonic_stack|建树距离
         n, t = ac.read_list_ints()
         nums = ac.read_list_ints()

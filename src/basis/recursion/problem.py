@@ -11,14 +11,14 @@ Description：recursion|iteration
 1028（https://leetcode.com/problems/recover-a-tree-from-preorder-traversal/description/）pre_order|recursion|construction|2-tree
 
 =====================================LuoGu======================================
-1911（https://www.luogu.com.cn/problem/P1911）4-tree|recursion|matrix
-5461（https://www.luogu.com.cn/problem/P5461）recursion|4-tree|matrix
-5551（https://www.luogu.com.cn/problem/P5551）pre_order|2-tree|recursion
-5626（https://www.luogu.com.cn/problem/P5626）divide_and_conquer|dp|merge_sort
-2907（https://www.luogu.com.cn/problem/P2907）recursion|implemention
-7673（https://www.luogu.com.cn/problem/P7673）mid_order|recursion|2-tree
-1228（https://www.luogu.com.cn/problem/P1228）4-tree|divide_and_conquer|recursion|matrix
-1185（https://www.luogu.com.cn/problem/P1185）2-tree|recursion
+P1911（https://www.luogu.com.cn/problem/P1911）4-tree|recursion|matrix
+P5461（https://www.luogu.com.cn/problem/P5461）recursion|4-tree|matrix
+P5551（https://www.luogu.com.cn/problem/P5551）pre_order|2-tree|recursion
+P5626（https://www.luogu.com.cn/problem/P5626）divide_and_conquer|dp|merge_sort
+P2907（https://www.luogu.com.cn/problem/P2907）recursion|implemention
+P7673（https://www.luogu.com.cn/problem/P7673）mid_order|recursion|2-tree
+P1228（https://www.luogu.com.cn/problem/P1228）4-tree|divide_and_conquer|recursion|matrix
+P1185（https://www.luogu.com.cn/problem/P1185）2-tree|recursion
 
 ===================================CodeForces===================================
 448C（https://codeforces.com/contest/448/problem/C）greedy|recursion|dp
@@ -171,6 +171,10 @@ class Solution:
 
     @staticmethod
     def lg_p1911(n, x, y):
+        """
+        url: https://www.luogu.com.cn/problem/P1911
+        tag: 4-tree|recursion|matrix
+        """
 
         # recursion处理四叉树
 

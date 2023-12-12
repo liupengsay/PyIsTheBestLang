@@ -9,24 +9,24 @@ Description：scc|edcc|pdcc|cur_point|cut_edge|directed_acyclic_graph
 1568（https://leetcode.com/problems/minimum-number-of-days-to-disconnect-island/solution/）cut_point|tarjan
 
 =====================================LuoGu======================================
-3388（https://www.luogu.com.cn/problem/P3388）multi_edge|self_loop|cut_point
-8435（https://www.luogu.com.cn/problem/P8435）multi_edge|self_loop|several_circle
-8436（https://www.luogu.com.cn/problem/P8436）multi_edge|self_loop|build_graph|fake_source
-2860（https://www.luogu.com.cn/problem/P2860）edge_doubly_connected_component|scc|tree_centroid
-2863（https://www.luogu.com.cn/problem/P2863）tarjan|scc
+P3388（https://www.luogu.com.cn/problem/P3388）multi_edge|self_loop|cut_point
+P8435（https://www.luogu.com.cn/problem/P8435）multi_edge|self_loop|several_circle
+P8436（https://www.luogu.com.cn/problem/P8436）multi_edge|self_loop|build_graph|fake_source
+P2860（https://www.luogu.com.cn/problem/P2860）edge_doubly_connected_component|scc|tree_centroid
+P2863（https://www.luogu.com.cn/problem/P2863）tarjan|scc
 
-1656（https://www.luogu.com.cn/problem/P1656）cut_edge
-1793（https://www.luogu.com.cn/problem/P1793）cut_point|brute_force|union_find
-2656（https://www.luogu.com.cn/problem/P2656）scc|dag|longest_path
-1726（https://www.luogu.com.cn/problem/P1726）scc
-2002（https://www.luogu.com.cn/problem/P2002）scc|shrink_point
-2341（https://www.luogu.com.cn/problem/P2341）scc|shrink_point
-2835（https://www.luogu.com.cn/problem/P2835）scc|shrink_point
-2863（https://www.luogu.com.cn/problem/P2863）scc
-3609（https://www.luogu.com.cn/problem/B3609）scc
-3610（https://www.luogu.com.cn/problem/B3610）point_doubly_connected_component
-7033（https://www.luogu.com.cn/problem/P7033）scc|dag|tree_dp
-7965（https://www.luogu.com.cn/problem/P7965）scc|dag|tree_dp
+P1656（https://www.luogu.com.cn/problem/P1656）cut_edge
+P1793（https://www.luogu.com.cn/problem/P1793）cut_point|brute_force|union_find
+P2656（https://www.luogu.com.cn/problem/P2656）scc|dag|longest_path
+P1726（https://www.luogu.com.cn/problem/P1726）scc
+P2002（https://www.luogu.com.cn/problem/P2002）scc|shrink_point
+P2341（https://www.luogu.com.cn/problem/P2341）scc|shrink_point
+P2835（https://www.luogu.com.cn/problem/P2835）scc|shrink_point
+P2863（https://www.luogu.com.cn/problem/P2863）scc
+B3609（https://www.luogu.com.cn/problem/B3609）scc
+B3610（https://www.luogu.com.cn/problem/B3610）point_doubly_connected_component
+P7033（https://www.luogu.com.cn/problem/P7033）scc|dag|tree_dp
+P7965（https://www.luogu.com.cn/problem/P7965）scc|dag|tree_dp
 
 ===================================CodeForces===================================
 1811F（https://codeforces.com/contest/1811/problem/F）scc|pdcc
@@ -214,6 +214,10 @@ class Solution:
 
     @staticmethod
     def lg_p3388(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3388
+        tag: multi_edge|self_loop|cut_point
+        """
         # 模板: TarjanCC 求无向图cut_point
         n, m = ac.read_list_ints()
         dct = [set() for _ in range(n)]
@@ -229,6 +233,10 @@ class Solution:
 
     @staticmethod
     def lg_p8435(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8435
+        tag: multi_edge|self_loop|several_circle
+        """
         # 模板: TarjanCC 求无向图point_doubly_connected_component连通分量
         n, m = ac.read_list_ints()
         edge = [set() for _ in range(n)]
@@ -254,6 +262,10 @@ class Solution:
 
     @staticmethod
     def lg_p8436(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8436
+        tag: multi_edge|self_loop|build_graph|fake_source
+        """
         # 模板: TarjanCC 求无向图edge_doubly_connected_component连通分量
         n, m = ac.read_list_ints()
         edge = [set() for _ in range(n)]
@@ -389,6 +401,10 @@ class Solution:
 
     @staticmethod
     def lg_p1656(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1656
+        tag: cut_edge
+        """
         # tarjan求无向图cut_edge
         n, m = ac.read_list_ints()
         dct = [set() for _ in range(n)]
@@ -404,6 +420,10 @@ class Solution:
 
     @staticmethod
     def lg_p2860(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2860
+        tag: edge_doubly_connected_component|scc|tree_centroid
+        """
         # 模板: TarjanCC 求无向图edge_doubly_connected_component连通分量缩点后，质心为根时的叶子数
         n, m = ac.read_list_ints()
         edge = [set() for _ in range(n)]
@@ -480,6 +500,10 @@ class Solution:
 
     @staticmethod
     def lg_p2863(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2863
+        tag: scc
+        """
         # 模板: TarjanCC 求scc
         n, m = ac.read_list_ints()
         edge = [set() for _ in range(n)]
@@ -522,6 +546,10 @@ class Solution:
 
     @staticmethod
     def lg_p2656(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2656
+        tag: scc|dag|longest_path
+        """
         # scc缩点后，DAG最长路
         n, m = ac.read_list_ints()
         edge = [set() for _ in range(n)]
@@ -579,6 +607,10 @@ class Solution:
 
     @staticmethod
     def lg_p1726(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1726
+        tag: scc
+        """
         # scc裸题
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
@@ -601,6 +633,10 @@ class Solution:
 
     @staticmethod
     def lg_p2002(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2002
+        tag: scc|shrink_point
+        """
         # scc缩点后，入度为0的节点个数
         n, m = ac.read_list_ints()
         dct = [set() for _ in range(n)]
@@ -624,6 +660,10 @@ class Solution:
 
     @staticmethod
     def lg_p2341(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2341
+        tag: scc|shrink_point
+        """
         # scc缩点后出度为 0 的点集个数与大小
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
@@ -648,6 +688,10 @@ class Solution:
 
     @staticmethod
     def lg_p2835(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2835
+        tag: scc|shrink_point
+        """
         # sccscc缩点后入度为 0 的点数
         n = ac.read_int()
         edge = [ac.read_list_ints_minus_one()[:-1] for _ in range(n)]
@@ -663,6 +707,10 @@ class Solution:
 
     @staticmethod
     def lg_p7033(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P7033
+        tag: scc|dag|tree_dp
+        """
         # scc缩点后 DAG tree_dp|
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
@@ -711,6 +759,10 @@ class Solution:
 
     @staticmethod
     def lg_p7965(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P7965
+        tag: scc|dag|tree_dp
+        """
         # scc缩点后 DAG tree_dp|
         n, m, q = ac.read_list_ints()
         dct = [set() for _ in range(n)]

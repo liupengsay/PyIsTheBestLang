@@ -6,8 +6,8 @@ Description：used to find function extremum solutions with at most one peak or 
 1515（https://leetcode.com/problems/best-position-for-a-service-centre/）tripartite_pack_tripartite|convex_function_minimum|gradient_descent|hill_climbing
 
 =====================================LuoGu======================================
-3382（https://www.luogu.com.cn/problem/P3382）ternary_search|ceil
-1883（https://www.luogu.com.cn/problem/P1883）ternary_search|floor
+P3382（https://www.luogu.com.cn/problem/P3382）ternary_search|ceil
+P1883（https://www.luogu.com.cn/problem/P1883）ternary_search|floor
 
 ===================================CodeForces===================================
 939E（https://codeforces.com/problemset/problem/939/E）greedy|two_pointers|ternary_search|ceil
@@ -100,6 +100,10 @@ class Solution:
 
     @staticmethod
     def lg_p3382(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3382
+        tag: ternary_search|ceil
+        """
         # ternary_search取得最大值的函数点
         n, l, r = ac.read_list_floats()
         n = int(n)

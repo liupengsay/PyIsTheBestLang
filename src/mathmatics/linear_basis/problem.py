@@ -4,7 +4,7 @@ Algorithm：linear_basis|kth_subset_xor|rank_of_xor
 Description：subset_xor|kth_xor|rank_of_xor
 
 =====================================LuoGu======================================
-3812（https://www.luogu.com.cn/problem/P3812）linear_basis
+P3812（https://www.luogu.com.cn/problem/P3812）linear_basis
 
 """
 
@@ -18,6 +18,10 @@ class Solution:
 
     @staticmethod
     def lg_p3812(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3812
+        tag: linear_basis
+        """
         # 线性基查询数组取任何子集得到的 xor 最大值
         ac.read_int()
         nums = ac.read_list_ints()

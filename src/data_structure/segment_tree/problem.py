@@ -16,28 +16,28 @@ Description：range_sum|range_min|range_add|range_change|range_max|dynamic_segme
 2940（https://leetcode.com/problems/find-building-where-alice-and-bob-can-meet/）segment_tree_binary_search
 
 =====================================LuoGu======================================
-2846（https://www.luogu.com.cn/problem/P2846）segment_tree|range_reverse|range_sum
-2574（https://www.luogu.com.cn/problem/P2574）segment_tree|range_reverse|range_sum
-3130（https://www.luogu.com.cn/problem/P3130）RangeAddRangeSumMaxMin
-3870（https://www.luogu.com.cn/problem/P3870）segment_tree|range_reverse|range_sum
-5057（https://www.luogu.com.cn/problem/P5057）segment_tree|range_reverse|range_sum
-3372（https://www.luogu.com.cn/problem/P3372）RangeAddRangeSumMaxMin
-2880（https://www.luogu.com.cn/problem/P2880）RangeAddRangeSumMaxMin
-1904（https://www.luogu.com.cn/problem/P1904）segment_tree|RangeAscendRangeMax
-1438（https://www.luogu.com.cn/problem/P1438）diff_array|RangeAddRangeSumMaxMin|segment_tree
-1253（https://www.luogu.com.cn/problem/P1253）range_add|range_change|segment_tree|range_sum
-3373（https://www.luogu.com.cn/problem/P3373）range_add|range_mul|segment_tree|range_sum|RangeAddMulRangeSum
-4513（https://www.luogu.com.cn/problem/P4513）segment_tree|range_change|range_merge|sub_consequence
-1471（https://www.luogu.com.cn/problem/P1471）math|segment_tree|RangeAddRangeSum
-6492（https://www.luogu.com.cn/problem/P6492）segment_tree|range_change|range_merge|sub_consequence
-4145（https://www.luogu.com.cn/problem/P4145）math|segment_tree|RangeAddRangeSum
-1558（https://www.luogu.com.cn/problem/P1558）segment_tree|RangeChangeRangeOr
-3740（https://www.luogu.com.cn/problem/P3740）discretization|segment_tree|RangeChangeRangeSum
-4588（https://www.luogu.com.cn/problem/P4588）segment_tree|RangeChangeRangeMul
-6627（https://www.luogu.com.cn/problem/P6627）segment_tree|range_xor
-8081（https://www.luogu.com.cn/problem/P8081）diff_array|counter|action_scop|segment_tree|RangeChangeRangeOr
-8812（https://www.luogu.com.cn/problem/P8812）segment_tree|RangeDescendRangeMin
-8856（https://www.luogu.com.cn/problem/solution/P8856）segment_tree|RangeAddRangeSumMaxMin
+P2846（https://www.luogu.com.cn/problem/P2846）segment_tree|range_reverse|range_sum
+P2574（https://www.luogu.com.cn/problem/P2574）segment_tree|range_reverse|range_sum
+P3130（https://www.luogu.com.cn/problem/P3130）RangeAddRangeSumMaxMin
+P3870（https://www.luogu.com.cn/problem/P3870）segment_tree|range_reverse|range_sum
+P5057（https://www.luogu.com.cn/problem/P5057）segment_tree|range_reverse|range_sum
+P3372（https://www.luogu.com.cn/problem/P3372）RangeAddRangeSumMaxMin
+P2880（https://www.luogu.com.cn/problem/P2880）RangeAddRangeSumMaxMin
+P1904（https://www.luogu.com.cn/problem/P1904）segment_tree|RangeAscendRangeMax
+P1438（https://www.luogu.com.cn/problem/P1438）diff_array|RangeAddRangeSumMaxMin|segment_tree
+P1253（https://www.luogu.com.cn/problem/P1253）range_add|range_change|segment_tree|range_sum
+P3373（https://www.luogu.com.cn/problem/P3373）range_add|range_mul|segment_tree|range_sum|RangeAddMulRangeSum
+P4513（https://www.luogu.com.cn/problem/P4513）segment_tree|range_change|range_merge|sub_consequence
+P1471（https://www.luogu.com.cn/problem/P1471）math|segment_tree|RangeAddRangeSum
+P6492（https://www.luogu.com.cn/problem/P6492）segment_tree|range_change|range_merge|sub_consequence
+P4145（https://www.luogu.com.cn/problem/P4145）math|segment_tree|RangeAddRangeSum
+P1558（https://www.luogu.com.cn/problem/P1558）segment_tree|RangeChangeRangeOr
+P3740（https://www.luogu.com.cn/problem/P3740）discretization|segment_tree|RangeChangeRangeSum
+P4588（https://www.luogu.com.cn/problem/P4588）segment_tree|RangeChangeRangeMul
+P6627（https://www.luogu.com.cn/problem/P6627）segment_tree|range_xor
+P8081（https://www.luogu.com.cn/problem/P8081）diff_array|counter|action_scop|segment_tree|RangeChangeRangeOr
+P8812（https://www.luogu.com.cn/problem/P8812）segment_tree|RangeDescendRangeMin
+P8856（https://www.luogu.com.cn/problem/solution/P8856）segment_tree|RangeAddRangeSumMaxMin
 
 ===================================CodeForces===================================
 482B（https://codeforces.com/problemset/problem/482/B）segment_tree|RangeOrRangeAnd
@@ -157,6 +157,10 @@ class Solution:
 
     @staticmethod
     def lg_p1904(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1904
+        tag: segment_tree|RangeAscendRangeMax
+        """
 
         # segment_tree|，区间更新最大值并单点查询天际线
         high = 10 ** 4
@@ -368,6 +372,10 @@ class Solution:
 
     @staticmethod
     def lg_p3372(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3372
+        tag: RangeAddRangeSumMaxMin
+        """
         # segment_tree| 区间增减 与区间和查询
         n, m = ac.read_list_ints()
         segment = RangeAddRangeSumMinMax(n)
@@ -385,6 +393,10 @@ class Solution:
 
     @staticmethod
     def lg_p3870(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3870
+        tag: segment_tree|range_reverse|range_sum
+        """
         # 区间异或 0 与 1 翻转
         n, m = ac.read_list_ints()
         segment = SegmentTreeRangeUpdateXORSum(n)
@@ -401,6 +413,10 @@ class Solution:
 
     @staticmethod
     def lg_p1438(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1438
+        tag: diff_array|RangeAddRangeSumMaxMin|segment_tree
+        """
         # diff_array|区间增减|segment_tree|查询区间和
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -428,6 +444,10 @@ class Solution:
 
     @staticmethod
     def lg_p1253(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1253
+        tag: range_add|range_change|segment_tree|range_sum
+        """
 
         # 区间增减与区间修改并segment_tree|查询区间和
         n, m = ac.read_list_ints()
@@ -448,6 +468,10 @@ class Solution:
 
     @staticmethod
     def lg_p3373(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3373
+        tag: range_add|range_mul|segment_tree|range_sum|RangeAddMulRangeSum
+        """
         n, q, mod = ac.read_list_ints()
         tree = RangeAddMulRangeSum(n, mod)
         nums = ac.read_list_ints()
@@ -468,6 +492,10 @@ class Solution:
 
     @staticmethod
     def lg_p4513(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4513
+        tag: segment_tree|range_change|range_merge|sub_consequence
+        """
         n, m = ac.read_list_ints()
         segment = PointChangeRangeMaxNonEmpConSubSum(n, 1000)
         segment.build([ac.read_int() for _ in range(n)])
@@ -485,6 +513,10 @@ class Solution:
 
     @staticmethod
     def lg_p1471(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1471
+        tag: math|segment_tree|RangeAddRangeSum
+        """
         # 区间增减，维护区间和与区间数字平方的和，以均差与方差
         n, m = ac.read_list_ints()
         tree = SegmentTreeRangeUpdateAvgDev(n)
@@ -513,6 +545,10 @@ class Solution:
 
     @staticmethod
     def lg_p6627(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6627
+        tag: segment_tree|range_xor
+        """
         # segment_tree|维护和查询区间异或值
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
@@ -555,6 +591,10 @@ class Solution:
 
     @staticmethod
     def lg_p6492(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6492
+        tag: segment_tree|range_change|range_merge|sub_consequence
+        """
         # 单点修改，查找最长的01交替字符子串连续区间
         n, q = ac.read_list_ints()
         tree = SegmentTreePointChangeLongCon(n)
@@ -566,6 +606,10 @@ class Solution:
 
     @staticmethod
     def lg_p4145(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4145
+        tag: math|segment_tree|RangeAddRangeSum
+        """
         # 区间值开方向下取整，区间和查询
         n = ac.read_int()
         tree = SegmentTreeRangeSqrtSum(n)
@@ -668,6 +712,10 @@ class Solution:
 
     @staticmethod
     def lg_p1558(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1558
+        tag: segment_tree|RangeChangeRangeOr
+        """
         # segment_tree|区间修改，区间或查询
         n, t, q = ac.read_list_ints()
         tree = RangeChangeRangeOr(n)
@@ -690,6 +738,10 @@ class Solution:
 
     @staticmethod
     def lg_p3740(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3740
+        tag: discretization|segment_tree|RangeChangeRangeSum
+        """
         # discretizationsegment_tree|区间修改与单点查询
         n, m = ac.read_list_ints()
         nums = []
@@ -722,6 +774,10 @@ class Solution:
 
     @staticmethod
     def lg_p4588(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4588
+        tag: segment_tree|RangeChangeRangeMul
+        """
         # 转化为segment_tree|单点值修改与区间乘积mod|
         for _ in range(ac.read_int()):
             q, mod = ac.read_list_ints()
@@ -737,6 +793,10 @@ class Solution:
 
     @staticmethod
     def lg_p8081(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8081
+        tag: diff_array|counter|action_scop|segment_tree|RangeChangeRangeOr
+        """
         # segment_tree|区间修改、区间|和查询
         n = ac.read_int()
         nums = ac.read_list_ints()
@@ -782,6 +842,10 @@ class Solution:
 
     @staticmethod
     def lg_p8812(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8812
+        tag: segment_tree|RangeDescendRangeMin
+        """
         # segment_tree|查询和更新区间最小值
         n, m = ac.read_list_ints()
         goods = [[] for _ in range(n)]

@@ -3,8 +3,8 @@ Algorithm：cantor_expands
 Description：the_kth_rank_perm|the_rank_of_perm|cantor_expands
 
 =====================================LuoGu======================================
-3014（https://www.luogu.com.cn/problem/P3014）the_kth_rank_perm|the_rank_of_perm|cantor_expands
-5367（https://www.luogu.com.cn/problem/P5367）the_kth_rank_perm|the_rank_of_perm|cantor_expands
+P3014（https://www.luogu.com.cn/problem/P3014）the_kth_rank_perm|the_rank_of_perm|cantor_expands
+P5367（https://www.luogu.com.cn/problem/P5367）the_kth_rank_perm|the_rank_of_perm|cantor_expands
 
 
 
@@ -27,6 +27,10 @@ class Solution:
 
     @staticmethod
     def lg_p5367(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5367
+        tag: the_kth_rank_perm|the_rank_of_perm|cantor_expands
+        """
         # 数组在 1 到 n 的全排列当中的排名
         n = ac.read_int()
         nums = ac.read_list_ints()
@@ -37,6 +41,10 @@ class Solution:
 
     @staticmethod
     def lg_p3014_1(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3014
+        tag: the_kth_rank_perm|the_rank_of_perm|cantor_expands
+        """
         # 康托展开也可以lexicographical_ordergreedy
         n, q = ac.read_list_ints()
         ct = CantorExpands(n, mod=math.factorial(n + 2))
@@ -51,6 +59,10 @@ class Solution:
 
     @staticmethod
     def lg_p3014_2(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3014
+        tag: the_kth_rank_perm|the_rank_of_perm|cantor_expands
+        """
         # 康托展开也可以lexicographical_ordergreedy
         n, q = ac.read_list_ints()
         og = LexicoGraphicalOrder()

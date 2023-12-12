@@ -4,10 +4,10 @@ Description：date|year|week|month|day|hour|second
 
 
 =====================================LuoGu======================================
-2655（https://www.luogu.com.cn/problem/P2655）after_date
-1167（https://www.luogu.com.cn/problem/P1167#submit）between_date
-5407（https://www.luogu.com.cn/problem/P5407）between_date
-5440（https://www.luogu.com.cn/problem/P5440）brute_force|prime
+P2655（https://www.luogu.com.cn/problem/P2655）after_date
+P1167#submit（https://www.luogu.com.cn/problem/P1167#submit）between_date
+P5407（https://www.luogu.com.cn/problem/P5407）between_date
+P5440（https://www.luogu.com.cn/problem/P5440）brute_force|prime
 
 
 """
@@ -23,6 +23,10 @@ class Solution:
 
     @staticmethod
     def lg_p2655(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2655
+        tag: after_date
+        """
         # 给定时间起点一定秒数后的具体时间点
         n = ac.read_int()
         for _ in range(n):

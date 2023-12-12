@@ -16,24 +16,24 @@ Description：range_add|range_sum
 2736（https://leetcode.com/problems/maximum-sum-queries/）PointAddPreMax
 
 =====================================LuoGu======================================
-2068（https://www.luogu.com.cn/problem/P2068）PointAddRangeSum
-2345（https://www.luogu.com.cn/problem/P2345）tree_array|counter|range_sum
-2357（https://www.luogu.com.cn/problem/P2357）tree_array|range_sum
-2781（https://www.luogu.com.cn/problem/P2781）tree_array|range_sum
-5200（https://www.luogu.com.cn/problem/P5200）tree_array|greedy|implemention
-3374（https://www.luogu.com.cn/problem/P3374）tree_array|RangeAddRangeSum
-3368（https://www.luogu.com.cn/problem/P3368）tree_array|RangeAddRangeSum
-5677（https://www.luogu.com.cn/problem/P5677）tree_array|RangeAddRangeSum
-5094（https://www.luogu.com.cn/problem/P5094）tree_array|RangeAddRangeSum
-1816（https://www.luogu.com.cn/problem/P1816）tree_array|range_min
-1908（https://www.luogu.com.cn/problem/P1908）tree_array|reverse_order_pair
-1725（https://www.luogu.com.cn/problem/P1725）reverse_order|liner_dp|PointAscendRangeMax
-3586（https://www.luogu.com.cn/problem/P3586）offline_query|discretization|tree_array|PointAddPreSum
-1198（https://www.luogu.com.cn/problem/P1198）tree_array|range_max
-4868（https://www.luogu.com.cn/problem/P4868）math|tree_array|prefix_sum_of_prefix_sum
-5463（https://www.luogu.com.cn/problem/P5463）tree_array|counter|brute_force|contribution_method
-6225（https://www.luogu.com.cn/problem/P6225）tree_array|prefix_xor
-1972（https://www.luogu.com.cn/problem/P1972）tree_array|offline_query|range_unique|PointChangeRangeSum
+P2068（https://www.luogu.com.cn/problem/P2068）PointAddRangeSum
+P2345（https://www.luogu.com.cn/problem/P2345）tree_array|counter|range_sum
+P2357（https://www.luogu.com.cn/problem/P2357）tree_array|range_sum
+P2781（https://www.luogu.com.cn/problem/P2781）tree_array|range_sum
+P5200（https://www.luogu.com.cn/problem/P5200）tree_array|greedy|implemention
+P3374（https://www.luogu.com.cn/problem/P3374）tree_array|RangeAddRangeSum
+P3368（https://www.luogu.com.cn/problem/P3368）tree_array|RangeAddRangeSum
+P5677（https://www.luogu.com.cn/problem/P5677）tree_array|RangeAddRangeSum
+P5094（https://www.luogu.com.cn/problem/P5094）tree_array|RangeAddRangeSum
+P1816（https://www.luogu.com.cn/problem/P1816）tree_array|range_min
+P1908（https://www.luogu.com.cn/problem/P1908）tree_array|reverse_order_pair
+P1725（https://www.luogu.com.cn/problem/P1725）reverse_order|liner_dp|PointAscendRangeMax
+P3586（https://www.luogu.com.cn/problem/P3586）offline_query|discretization|tree_array|PointAddPreSum
+P1198（https://www.luogu.com.cn/problem/P1198）tree_array|range_max
+P4868（https://www.luogu.com.cn/problem/P4868）math|tree_array|prefix_sum_of_prefix_sum
+P5463（https://www.luogu.com.cn/problem/P5463）tree_array|counter|brute_force|contribution_method
+P6225（https://www.luogu.com.cn/problem/P6225）tree_array|prefix_xor
+P1972（https://www.luogu.com.cn/problem/P1972）tree_array|offline_query|range_unique|PointChangeRangeSum
 
 ====================================AtCoder=====================================
 D - Islands War（https://atcoder.jp/contests/abc103/tasks/abc103_d）greedy|tree_array
@@ -493,6 +493,10 @@ class Solution:
 
     @staticmethod
     def lg_p1972(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1972
+        tag: tree_array|offline_query|range_unique|PointChangeRangeSum
+        """
         n = ac.read_int()
         nums = ac.read_list_ints()
         m = ac.read_int()
@@ -518,6 +522,10 @@ class Solution:
 
     @staticmethod
     def lg_p2068(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2068
+        tag: PointAddRangeSum
+        """
         # tree_array|单点更新与区间和查询
         n = ac.read_int()
         w = ac.read_int()
@@ -533,6 +541,10 @@ class Solution:
 
     @staticmethod
     def lg_p1816(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1816
+        tag: tree_array|range_min
+        """
 
         # tree_array|查询静态区间最小值
         m, n = ac.read_list_ints()
@@ -549,6 +561,10 @@ class Solution:
 
     @staticmethod
     def lg_p3374(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3374
+        tag: tree_array|RangeAddRangeSum
+        """
         # tree_array| 单点增减 查询prefix_sum与区间和
         n, m = ac.read_list_ints()
         tree = PointAddRangeSum(n)
@@ -563,6 +579,10 @@ class Solution:
 
     @staticmethod
     def lg_p3368(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3368
+        tag: tree_array|RangeAddRangeSum
+        """
         # tree_array| 区间增减 查询prefix_sum与区间和
         n, m = ac.read_list_ints()
         tree = RangeAddRangeSum(n)
@@ -578,6 +598,10 @@ class Solution:
 
     @staticmethod
     def lg_p1908(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1908
+        tag: tree_array|reverse_order_pair
+        """
         # tree_array|求reverse_order_pair|
         n = ac.read_int()
         nums = ac.read_list_ints()
@@ -617,6 +641,10 @@ class Solution:
 
     @staticmethod
     def lg_p1725(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1725
+        tag: reverse_order|liner_dp|PointAscendRangeMax
+        """
         # tree_array|reverse_order|liner_dp，单点更新与区间查询最大值
         n, a, b = ac.read_list_ints()
         n += 1
@@ -635,6 +663,10 @@ class Solution:
 
     @staticmethod
     def lg_p3586(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3586
+        tag: offline_query|discretization|tree_array|PointAddPreSum
+        """
         # offline_query、discretizationtree_array|，单点增减，prefix_sum查询
         n, m = ac.read_list_ints()
         value = {0}
@@ -684,6 +716,10 @@ class Solution:
 
     @staticmethod
     def lg_p1198(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1198
+        tag: tree_array|range_max
+        """
         # tree_array|查询区间最大值
         m, d = ac.read_list_ints()
         t = 0
@@ -703,6 +739,10 @@ class Solution:
 
     @staticmethod
     def lg_p4868(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4868
+        tag: math|tree_array|prefix_sum_of_prefix_sum
+        """
         # 转换公式，两个tree_array|维护prefix_sum的prefix_sum
 
         n, m = ac.read_list_ints()
@@ -726,6 +766,10 @@ class Solution:
 
     @staticmethod
     def lg_p5463(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5463
+        tag: tree_array|counter|brute_force|contribution_method
+        """
         # tree_array|维护前缀counter，brute_force最大值所有区间数贡献
         n = ac.read_int()
         nums = ac.read_list_ints()
@@ -745,6 +789,10 @@ class Solution:
 
     @staticmethod
     def lg_p6225(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6225
+        tag: tree_array|prefix_xor
+        """
         # tree_array|维护前缀异或和
         n, q = ac.read_list_ints()
         nums = ac.read_list_ints()

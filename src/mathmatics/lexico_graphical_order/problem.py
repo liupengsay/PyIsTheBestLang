@@ -12,11 +12,11 @@ Description：kth_lexicographical_order|lexicographical_order_rank|subset_lexico
 1850（https://leetcode.com/problems/minimum-adjacent-swaps-to-reach-the-kth-smallest-number/）next_lexicographical_order|bubble|greedy
 
 =====================================LuoGu======================================
-1243（https://www.luogu.com.cn/problem/P1243）kth_subset
-1338（https://www.luogu.com.cn/problem/P1338）reverse_order_pair|counter|lexicographical_order
+P1243（https://www.luogu.com.cn/problem/P1243）kth_subset
+P1338（https://www.luogu.com.cn/problem/P1338）reverse_order_pair|counter|lexicographical_order
 
-2524（https://www.luogu.com.cn/problem/P2524）lexicographical_order|rank_of_perm
-2525（https://www.luogu.com.cn/problem/P2525）lexicographical_order|rank_of_perm|pre_lexicographical_order
+P2524（https://www.luogu.com.cn/problem/P2524）lexicographical_order|rank_of_perm
+P2525（https://www.luogu.com.cn/problem/P2525）lexicographical_order|rank_of_perm|pre_lexicographical_order
 
 ===================================CodeForces===================================
 1328B（https://codeforces.com/problemset/problem/1328/B）comb|lexicographical_order
@@ -59,6 +59,10 @@ class Solution:
 
     @staticmethod
     def lg_p1243(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1243
+        tag: kth_subset
+        """
         # 获取第 k 小的子集
         n, k = ac.read_list_ints()
         lst = LexicoGraphicalOrder().get_kth_subset(n, k)
@@ -67,6 +71,10 @@ class Solution:
 
     @staticmethod
     def lg_p2524(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2524
+        tag: lexicographical_order|rank_of_perm
+        """
         #  1 到 n 的全排列中 lst 的lexicographical_order排名
         n = ac.read_int()
         lst = [int(w) for w in ac.read_str()]

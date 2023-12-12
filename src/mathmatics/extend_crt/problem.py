@@ -6,9 +6,9 @@ Description：equation|same_mod
 ====================================LeetCode====================================
 
 =====================================LuoGu======================================
-1495（https://www.luogu.com.cn/problem/p1495）equation|same_mod|crt
-4777（https://www.luogu.com.cn/problem/P4777）mod_not_coprime|crt
-3868（https://www.luogu.com.cn/problem/P3868）ex_crt
+p1495（https://www.luogu.com.cn/problem/p1495）equation|same_mod|crt
+P4777（https://www.luogu.com.cn/problem/P4777）mod_not_coprime|crt
+P3868（https://www.luogu.com.cn/problem/P3868）ex_crt
 
 ====================================AtCoder=====================================
 

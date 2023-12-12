@@ -35,62 +35,62 @@ Description：prefix_suffix|maximum_sub_consequence_sum
 2572（https://leetcode.com/problems/count-the-number-of-square-free-subsets/description/）liner_dp|counter
 
 =====================================LuoGu======================================
-1970（https://www.luogu.com.cn/problem/P1970）greedy|liner_dp
-1564（https://www.luogu.com.cn/problem/P1564）liner_dp
-1481（https://www.luogu.com.cn/problem/P1481）liner_dp
-2029（https://www.luogu.com.cn/problem/P2029）liner_dp
-2031（https://www.luogu.com.cn/problem/P2031）liner_dp
-2062（https://www.luogu.com.cn/problem/P2062）liner_dp|prefix_max
-2072（https://www.luogu.com.cn/problem/P2072）liner_dp
-2096（https://www.luogu.com.cn/problem/P2096）liner_dp
-5761（https://www.luogu.com.cn/problem/P5761）liner_dp
-2285（https://www.luogu.com.cn/problem/P2285）liner_dp|prefix_max
-2642（https://www.luogu.com.cn/problem/P2642）brute_force|liner_dp
-1470（https://www.luogu.com.cn/problem/P1470）liner_dp
-1096（https://www.luogu.com.cn/problem/P1096）liner_dp
-2896（https://www.luogu.com.cn/problem/P2896）prefix_suffix|linear_dp
-2904（https://www.luogu.com.cn/problem/P2904）prefix_sum|preprocess|liner_dp
-3062（https://www.luogu.com.cn/problem/P3062）liner_dp|brute_force
-3842（https://www.luogu.com.cn/problem/P3842）liner_dp|implemention
-3903（https://www.luogu.com.cn/problem/P3903）liner_dp|brute_force
-5414（https://www.luogu.com.cn/problem/P5414）greedy|liner_dp
-6191（https://www.luogu.com.cn/problem/P6191）liner_dp|brute_force|counter
-6208（https://www.luogu.com.cn/problem/P6208）liner_dp|implemention
-7404（https://www.luogu.com.cn/problem/P7404）linear_dp|brute_force
-7541（https://www.luogu.com.cn/problem/P7541）liner_dp|memory_search|digital_dp
-7767（https://www.luogu.com.cn/problem/P7767）liner_dp
-2246（https://www.luogu.com.cn/problem/P2246）string|counter|liner_dp
-4933（https://www.luogu.com.cn/problem/P4933）liner_dp|counter
-1874（https://www.luogu.com.cn/problem/P1874）liner_dp
-2513（https://www.luogu.com.cn/problem/P2513）prefix_sum|linear_dp
-1280（https://www.luogu.com.cn/problem/P1280）reverse_order|linear_dp
-1282（https://www.luogu.com.cn/problem/P1282）classical|liner_dp|hash
-1356（https://www.luogu.com.cn/problem/P1356）classical|mod|linear_dp
-1385（https://www.luogu.com.cn/problem/P1385）liner_dp|prefix_sum|brain_teaser|lexicographical_order
-1809（https://www.luogu.com.cn/problem/P1809）brain_teaser|liner_dp|greedy
-1868（https://www.luogu.com.cn/problem/P1868）liner_dp|binary_search
-1978（https://www.luogu.com.cn/problem/P1978）liner_dp|mul|inclusion_exclusion
-2432（https://www.luogu.com.cn/problem/P2432）liner_dp|pointer
-2439（https://www.luogu.com.cn/problem/P2439）liner_dp|binary_search
-2476（https://www.luogu.com.cn/problem/P2476）counter|linear_dp|memory_search
-2849（https://www.luogu.com.cn/problem/P2849）matrix_dp
-3448（https://www.luogu.com.cn/problem/P3448）liner_dp|counter
-3558（https://www.luogu.com.cn/problem/P3558）linear_dp|implemention
-3734（https://www.luogu.com.cn/problem/B3734）linear_dp
-3901（https://www.luogu.com.cn/problem/P3901）pointer|linear_dp|pointer
-4401（https://www.luogu.com.cn/problem/P4401）linear_dp
-4933（https://www.luogu.com.cn/problem/P4933）linear_dp|counter
-5095（https://www.luogu.com.cn/problem/P5095）classical|linear_dp
-5810（https://www.luogu.com.cn/problem/P5810）linear_dp
-6040（https://www.luogu.com.cn/problem/P6040）monotonic_queue|linear_dp
-6120（https://www.luogu.com.cn/problem/P6120）linear_dp|implemention
-6146（https://www.luogu.com.cn/problem/P6146）linear_dp|brute_force|counter
-7994（https://www.luogu.com.cn/problem/P7994）linear_dp
-8656（https://www.luogu.com.cn/problem/P8656）linear_dp
-8725（https://www.luogu.com.cn/problem/P8725）classical|matrix_dp|pointer
-8784（https://www.luogu.com.cn/problem/P8784）linear_dp|fast_power
-8786（https://www.luogu.com.cn/problem/P8786）linear_dp memory_search|implemention
-8816（https://www.luogu.com.cn/problem/P8816）classical|matrix_dp|implemention
+P1970（https://www.luogu.com.cn/problem/P1970）greedy|liner_dp
+P1564（https://www.luogu.com.cn/problem/P1564）liner_dp
+P1481（https://www.luogu.com.cn/problem/P1481）liner_dp
+P2029（https://www.luogu.com.cn/problem/P2029）liner_dp
+P2031（https://www.luogu.com.cn/problem/P2031）liner_dp
+P2062（https://www.luogu.com.cn/problem/P2062）liner_dp|prefix_max
+P2072（https://www.luogu.com.cn/problem/P2072）liner_dp
+P2096（https://www.luogu.com.cn/problem/P2096）liner_dp
+P5761（https://www.luogu.com.cn/problem/P5761）liner_dp
+P2285（https://www.luogu.com.cn/problem/P2285）liner_dp|prefix_max
+P2642（https://www.luogu.com.cn/problem/P2642）brute_force|liner_dp
+P1470（https://www.luogu.com.cn/problem/P1470）liner_dp
+P1096（https://www.luogu.com.cn/problem/P1096）liner_dp
+P2896（https://www.luogu.com.cn/problem/P2896）prefix_suffix|linear_dp
+P2904（https://www.luogu.com.cn/problem/P2904）prefix_sum|preprocess|liner_dp
+P3062（https://www.luogu.com.cn/problem/P3062）liner_dp|brute_force
+P3842（https://www.luogu.com.cn/problem/P3842）liner_dp|implemention
+P3903（https://www.luogu.com.cn/problem/P3903）liner_dp|brute_force
+P5414（https://www.luogu.com.cn/problem/P5414）greedy|liner_dp
+P6191（https://www.luogu.com.cn/problem/P6191）liner_dp|brute_force|counter
+P6208（https://www.luogu.com.cn/problem/P6208）liner_dp|implemention
+P7404（https://www.luogu.com.cn/problem/P7404）linear_dp|brute_force
+P7541（https://www.luogu.com.cn/problem/P7541）liner_dp|memory_search|digital_dp
+P7767（https://www.luogu.com.cn/problem/P7767）liner_dp
+P2246（https://www.luogu.com.cn/problem/P2246）string|counter|liner_dp
+P4933（https://www.luogu.com.cn/problem/P4933）liner_dp|counter
+P1874（https://www.luogu.com.cn/problem/P1874）liner_dp
+P2513（https://www.luogu.com.cn/problem/P2513）prefix_sum|linear_dp
+P1280（https://www.luogu.com.cn/problem/P1280）reverse_order|linear_dp
+P1282（https://www.luogu.com.cn/problem/P1282）classical|liner_dp|hash
+P1356（https://www.luogu.com.cn/problem/P1356）classical|mod|linear_dp
+P1385（https://www.luogu.com.cn/problem/P1385）liner_dp|prefix_sum|brain_teaser|lexicographical_order
+P1809（https://www.luogu.com.cn/problem/P1809）brain_teaser|liner_dp|greedy
+P1868（https://www.luogu.com.cn/problem/P1868）liner_dp|binary_search
+P1978（https://www.luogu.com.cn/problem/P1978）liner_dp|mul|inclusion_exclusion
+P2432（https://www.luogu.com.cn/problem/P2432）liner_dp|pointer
+P2439（https://www.luogu.com.cn/problem/P2439）liner_dp|binary_search
+P2476（https://www.luogu.com.cn/problem/P2476）counter|linear_dp|memory_search
+P2849（https://www.luogu.com.cn/problem/P2849）matrix_dp
+P3448（https://www.luogu.com.cn/problem/P3448）liner_dp|counter
+P3558（https://www.luogu.com.cn/problem/P3558）linear_dp|implemention
+B3734（https://www.luogu.com.cn/problem/B3734）linear_dp
+P3901（https://www.luogu.com.cn/problem/P3901）pointer|linear_dp|pointer
+P4401（https://www.luogu.com.cn/problem/P4401）linear_dp
+P4933（https://www.luogu.com.cn/problem/P4933）linear_dp|counter
+P5095（https://www.luogu.com.cn/problem/P5095）classical|linear_dp
+P5810（https://www.luogu.com.cn/problem/P5810）linear_dp
+P6040（https://www.luogu.com.cn/problem/P6040）monotonic_queue|linear_dp
+P6120（https://www.luogu.com.cn/problem/P6120）linear_dp|implemention
+P6146（https://www.luogu.com.cn/problem/P6146）linear_dp|brute_force|counter
+P7994（https://www.luogu.com.cn/problem/P7994）linear_dp
+P8656（https://www.luogu.com.cn/problem/P8656）linear_dp
+P8725（https://www.luogu.com.cn/problem/P8725）classical|matrix_dp|pointer
+P8784（https://www.luogu.com.cn/problem/P8784）linear_dp|fast_power
+P8786（https://www.luogu.com.cn/problem/P8786）linear_dp memory_search|implemention
+P8816（https://www.luogu.com.cn/problem/P8816）classical|matrix_dp|implemention
 
 ===================================CodeForces===================================
 75D（https://codeforces.com/problemset/problem/75/D）compress_array|linear_dp
@@ -349,6 +349,10 @@ class Solution:
 
     @staticmethod
     def lg_p4933(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4933
+        tag: linear_dp|counter
+        """
         # 不同等差子序列的个数
         n = ac.read_int()
         nums = ac.read_list_ints()
@@ -387,6 +391,10 @@ class Solution:
 
     @staticmethod
     def lg_p1280(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1280
+        tag: reverse_order|linear_dp
+        """
         # liner_dpreverse_order|implemention优化
         n, k = ac.read_list_ints()
         dct = [[] for _ in range(n + 1)]
@@ -405,6 +413,10 @@ class Solution:
 
     @staticmethod
     def lg_p1282(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1282
+        tag: classical|liner_dp|hash
+        """
         # classicalliner_dphash滚动
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
@@ -429,6 +441,10 @@ class Solution:
 
     @staticmethod
     def lg_p1356(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1356
+        tag: classical|mod|linear_dp
+        """
         # liner_dp
         m = ac.read_int()
         for _ in range(m):
@@ -448,6 +464,10 @@ class Solution:
 
     @staticmethod
     def lg_p1385(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1385
+        tag: liner_dp|prefix_sum|brain_teaser|lexicographical_order
+        """
         # liner_dp与prefix_sum优化
         mod = 10 ** 9 + 7
         for _ in range(ac.read_int()):
@@ -473,6 +493,10 @@ class Solution:
 
     @staticmethod
     def lg_p1809(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1809
+        tag: brain_teaser|liner_dp|greedy
+        """
         # brain_teaser|liner_dp
         n = ac.read_int()
         nums = [ac.read_int() for _ in range(n)]
@@ -493,6 +517,10 @@ class Solution:
 
     @staticmethod
     def lg_p1868(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1868
+        tag: liner_dp|binary_search
+        """
         # liner_dp|binary_search优化
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
@@ -510,6 +538,10 @@ class Solution:
 
     @staticmethod
     def lg_p1978(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1978
+        tag: liner_dp|mul|inclusion_exclusion
+        """
         # liner_dp，乘积互斥
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -529,6 +561,10 @@ class Solution:
 
     @staticmethod
     def lg_p2246(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2246
+        tag: string|counter|liner_dp
+        """
         # 字符串counterliner_dp
         s = ""
         while True:
@@ -586,6 +622,10 @@ class Solution:
 
     @staticmethod
     def lg_p2432(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2432
+        tag: liner_dp|pointer
+        """
 
         # liner_dp|pointer
         w, n = ac.read_list_ints()
@@ -611,6 +651,10 @@ class Solution:
 
     @staticmethod
     def lg_p2439(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2439
+        tag: liner_dp|binary_search
+        """
         # liner_dp|binary_search
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
@@ -627,6 +671,10 @@ class Solution:
 
     @staticmethod
     def lg_p2476(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2476
+        tag: counter|linear_dp|memory_search
+        """
 
         # counter分组linear_dp memory_search
 
@@ -657,6 +705,10 @@ class Solution:
 
     @staticmethod
     def lg_p2849(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2849
+        tag: matrix_dp
+        """
         # 矩阵二维 DP 线性遍历
         n, k = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
@@ -682,6 +734,10 @@ class Solution:
 
     @staticmethod
     def lg_p3558(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3558
+        tag: linear_dp|implemention
+        """
         # linear_dp implemention
         ac.read_int()
         nums = ac.read_list_ints()
@@ -731,6 +787,10 @@ class Solution:
 
     @staticmethod
     def lg_b3734(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/B3734
+        tag: linear_dp
+        """
         # 线性matrix_dp| implemention
         n, r1 = ac.read_list_ints()
         nums = [r1]
@@ -760,6 +820,10 @@ class Solution:
 
     @staticmethod
     def lg_p3901(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3901
+        tag: pointer|linear_dp|pointer
+        """
         # pointer|linear_dp 记录前一个相同数的pointer
         n, q = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -780,6 +844,10 @@ class Solution:
 
     @staticmethod
     def lg_p4401(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4401
+        tag: linear_dp
+        """
         # linear_dp
         ac.read_int()
         s = ac.read_str()
@@ -802,6 +870,10 @@ class Solution:
 
     @staticmethod
     def lg_p5095(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5095
+        tag: classical|linear_dp
+        """
         # classicallinear_dp
         n, length = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
@@ -821,6 +893,10 @@ class Solution:
 
     @staticmethod
     def lg_p5810(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5810
+        tag: linear_dp
+        """
         # linear_dp brute_force
         n = ac.read_int()
         dp = [0]
@@ -837,6 +913,10 @@ class Solution:
 
     @staticmethod
     def lg_p6040(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6040
+        tag: monotonic_queue|linear_dp
+        """
         # monotonic_queue的linear_dp
         n, k, d, x, tp = ac.read_list_ints()
         mod = 10 ** 9
@@ -870,6 +950,10 @@ class Solution:
 
     @staticmethod
     def lg_p6120(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6120
+        tag: linear_dp|implemention
+        """
         # classical线性规划
         n = ac.read_int()
         ind = {w: i for i, w in enumerate("HSP")}
@@ -895,6 +979,10 @@ class Solution:
 
     @staticmethod
     def lg_p6146(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6146
+        tag: linear_dp|brute_force|counter
+        """
         # 区间sorting与所有子集连通块个数
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
@@ -945,6 +1033,10 @@ class Solution:
 
     @staticmethod
     def lg_p7994(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P7994
+        tag: linear_dp
+        """
         # linear_dp 修改连续区间值|一减一的最少操作次数
         n = ac.read_int()
         a = ac.read_list_ints()
@@ -971,6 +1063,10 @@ class Solution:
 
     @staticmethod
     def lg_p8816(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8816
+        tag: classical|matrix_dp|implemention
+        """
         # classical线性matrix_dp| implemention
         n, k = ac.read_list_ints()
         nums = sorted([ac.read_list_ints() for _ in range(n)])

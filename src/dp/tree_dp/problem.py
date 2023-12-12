@@ -24,35 +24,35 @@ Description：reroot_dp|up_to_down|down_to_up
 100047（https://leetcode.com/problems/count-valid-paths-in-a-tree/description/）tree_dp|union_find|bfs
 
 =====================================LuoGu======================================
-1395（https://www.luogu.com.cn/problem/P1395）tree_dis|tree_centroid|reroot_dp|classical|up_to_down|down_to_up
-1352（https://www.luogu.com.cn/problem/P1352）tree_dp
-1922（https://www.luogu.com.cn/problem/P1922）tree_dp|greedy
-2016（https://www.luogu.com.cn/problem/P2016）tree_dp|classical
-1122（https://www.luogu.com.cn/problem/P1122）tree_dp|union_find
-2932（https://www.luogu.com.cn/problem/P2932）tree_dp|greedy
-2996（https://www.luogu.com.cn/problem/P2996）tree_dp
-3074（https://www.luogu.com.cn/problem/P3074）longest_path|tree_dp
-3884（https://www.luogu.com.cn/problem/P3884）tree_dp
-3915（https://www.luogu.com.cn/problem/P3915）recursion|union_find|brute_force
-4615（https://www.luogu.com.cn/problem/P4615）tree_dp
-5002（https://www.luogu.com.cn/problem/P5002）tree_dp|inclusion_exclusion|counter
-5651（https://www.luogu.com.cn/problem/P5651）brain_teaser|union_find|tree_dp|simple_path_xor
-6591（https://www.luogu.com.cn/problem/P6591）reroot_dp|recursion
-7159（https://www.luogu.com.cn/problem/P7159）tree_dp|brute_force|counter|fast_power
-2015（https://www.luogu.com.cn/problem/P2015）tree_dp|tree_bag_dp
-2014（https://www.luogu.com.cn/problem/P2014）tree_dp
-4316（https://www.luogu.com.cn/problem/P4316）reverse_graph|topological_sortingDP
-1351（https://www.luogu.com.cn/problem/P1351#submit）tree_dp
-3304（https://www.luogu.com.cn/problem/P3304）tree_diameter
-3408（https://www.luogu.com.cn/problem/P3408）tree_dp
-3478（https://www.luogu.com.cn/problem/P3478）tree_centroid
-3931（https://www.luogu.com.cn/problem/P3931）classical|tree_dp
-4084（https://www.luogu.com.cn/problem/P4084）classical|tree_dp
-4395（https://www.luogu.com.cn/problem/P4395）tree_dp|greedy
-5765（https://www.luogu.com.cn/problem/P5765）tree_dp|P4395
-8602（https://www.luogu.com.cn/problem/P8602）tree_diameter|bfs|tree_dp
-8625（https://www.luogu.com.cn/problem/P8625）tree_dp|classical
-8744（https://www.luogu.com.cn/problem/P8744）tree_dp
+P1395（https://www.luogu.com.cn/problem/P1395）tree_dis|tree_centroid|reroot_dp|classical|up_to_down|down_to_up
+P1352（https://www.luogu.com.cn/problem/P1352）tree_dp
+P1922（https://www.luogu.com.cn/problem/P1922）tree_dp|greedy
+P2016（https://www.luogu.com.cn/problem/P2016）tree_dp|classical
+P1122（https://www.luogu.com.cn/problem/P1122）tree_dp|union_find
+P2932（https://www.luogu.com.cn/problem/P2932）tree_dp|greedy
+P2996（https://www.luogu.com.cn/problem/P2996）tree_dp
+P3074（https://www.luogu.com.cn/problem/P3074）longest_path|tree_dp
+P3884（https://www.luogu.com.cn/problem/P3884）tree_dp
+P3915（https://www.luogu.com.cn/problem/P3915）recursion|union_find|brute_force
+P4615（https://www.luogu.com.cn/problem/P4615）tree_dp
+P5002（https://www.luogu.com.cn/problem/P5002）tree_dp|inclusion_exclusion|counter
+P5651（https://www.luogu.com.cn/problem/P5651）brain_teaser|union_find|tree_dp|simple_path_xor
+P6591（https://www.luogu.com.cn/problem/P6591）reroot_dp|recursion
+P7159（https://www.luogu.com.cn/problem/P7159）tree_dp|brute_force|counter|fast_power
+P2015（https://www.luogu.com.cn/problem/P2015）tree_dp|tree_bag_dp
+P2014（https://www.luogu.com.cn/problem/P2014）tree_dp
+P4316（https://www.luogu.com.cn/problem/P4316）reverse_graph|topological_sortingDP
+P1351#submit（https://www.luogu.com.cn/problem/P1351#submit）tree_dp
+P3304（https://www.luogu.com.cn/problem/P3304）tree_diameter
+P3408（https://www.luogu.com.cn/problem/P3408）tree_dp
+P3478（https://www.luogu.com.cn/problem/P3478）tree_centroid
+P3931（https://www.luogu.com.cn/problem/P3931）classical|tree_dp
+P4084（https://www.luogu.com.cn/problem/P4084）classical|tree_dp
+P4395（https://www.luogu.com.cn/problem/P4395）tree_dp|greedy
+P5765（https://www.luogu.com.cn/problem/P5765）tree_dp|P4395
+P8602（https://www.luogu.com.cn/problem/P8602）tree_diameter|bfs|tree_dp
+P8625（https://www.luogu.com.cn/problem/P8625）tree_dp|classical
+P8744（https://www.luogu.com.cn/problem/P8744）tree_dp
 
 ====================================AtCoder=====================================
 F - Expensive Expense （https://atcoder.jp/contests/abc222/tasks/abc222_f）reroot_dp
@@ -614,6 +614,10 @@ class Solution:
 
     @staticmethod
     def lg_p1395_1(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1395
+        tag: tree_dis|tree_centroid|reroot_dp|classical|up_to_down|down_to_up
+        """
         # tree_centroid为最大子树节点数最小
         n = ac.read_int()
         dct = [[] for _ in range(n)]
@@ -642,6 +646,10 @@ class Solution:
 
     @staticmethod
     def lg_p1395_2(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1395
+        tag: tree_dis|tree_centroid|reroot_dp|classical|up_to_down|down_to_up
+        """
         # tree_centroid为距离其余所有节点
         n = ac.read_int()
         dct = [[] for _ in range(n)]
@@ -686,6 +694,10 @@ class Solution:
 
     @staticmethod
     def lg_p1352(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1352
+        tag: tree_dp
+        """
         # tree_dp的迭代写法
         n = ac.read_int()
         nums = [ac.read_int() for _ in range(n)]
@@ -723,6 +735,10 @@ class Solution:
 
     @staticmethod
     def lg_p2015(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2015
+        tag: tree_dp|tree_bag_dp
+        """
         # tree_dp
         n, q = ac.read_list_ints()
         dct = [dict() for _ in range(n)]
@@ -753,6 +769,10 @@ class Solution:
 
     @staticmethod
     def lg_p2014(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2014
+        tag: tree_dp
+        """
         # tree_dp|bag_dp|
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n + 1)]
@@ -785,6 +805,10 @@ class Solution:
 
     @staticmethod
     def lg_p4316(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4316
+        tag: reverse_graph|topological_sortingDP
+        """
         # reverse_graph|topological_sorting树形prob_dp
         n, m = ac.read_list_ints()
         dp = [0 for _ in range(n)]
@@ -891,6 +915,10 @@ class Solution:
 
     @staticmethod
     def lg_p3478(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3478
+        tag: tree_centroid
+        """
         # 树的质心
         n = ac.read_int()
         dct = [[] for _ in range(n)]
@@ -908,6 +936,10 @@ class Solution:
 
     @staticmethod
     def lg_p3931(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3931
+        tag: classical|tree_dp
+        """
         # tree_dp| implemention
         n, root = ac.read_list_ints()
         root -= 1
@@ -939,6 +971,10 @@ class Solution:
 
     @staticmethod
     def lg_p4395(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4395
+        tag: tree_dp|greedy
+        """
         # tree_dp| greedy标权值使得整棵树总价值最小
         n = ac.read_int()
         ceil = int(math.log2(n)) + 1
@@ -983,6 +1019,10 @@ class Solution:
 
     @staticmethod
     def lg_p8625(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8625
+        tag: tree_dp|classical
+        """
         # tree_dp| classical
         n = ac.read_int()
         nums = ac.read_list_ints()

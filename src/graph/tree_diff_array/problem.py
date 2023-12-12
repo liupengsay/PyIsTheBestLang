@@ -8,15 +8,15 @@ Description：tree_diff_array_edge|tree_diff_array_point
 2646（https://leetcode.com/problems/minimize-the-total-price-of-the-trips/）offline_lca|tree_diff_array|counter|tree_dp
 
 =====================================LuoGu======================================
-3379（https://www.luogu.com.cn/problem/P3379）tree_lca|classical
-7128（https://www.luogu.com.cn/problem/P7128）lca|implemention|sort
-3128（https://www.luogu.com.cn/problem/P3128）offline_lca|tree_diff_array
-7167（https://www.luogu.com.cn/problem/P7167）monotonic_stack|tree_lca|build_tree
-3384（https://www.luogu.com.cn/problem/P3384）tree_chain_split|tree_array|implemention
-2912（https://www.luogu.com.cn/problem/P2912）offline_lca|offline_query
-3019（https://www.luogu.com.cn/problem/P3019）offline_query|lca
-3258（https://www.luogu.com.cn/problem/P3258）offline_lca|tree_diff_array|tree_dp
-6869（https://www.luogu.com.cn/problem/P6869）offline_lca|tree_diff_array_edge|tree_diff_array_point
+P3379（https://www.luogu.com.cn/problem/P3379）tree_lca|classical
+P7128（https://www.luogu.com.cn/problem/P7128）lca|implemention|sort
+P3128（https://www.luogu.com.cn/problem/P3128）offline_lca|tree_diff_array
+P7167（https://www.luogu.com.cn/problem/P7167）monotonic_stack|tree_lca|build_tree
+P3384（https://www.luogu.com.cn/problem/P3384）tree_chain_split|tree_array|implemention
+P2912（https://www.luogu.com.cn/problem/P2912）offline_lca|offline_query
+P3019（https://www.luogu.com.cn/problem/P3019）offline_query|lca
+P3258（https://www.luogu.com.cn/problem/P3258）offline_lca|tree_diff_array|tree_dp
+P6869（https://www.luogu.com.cn/problem/P6869）offline_lca|tree_diff_array_edge|tree_diff_array_point
 
 ======================================LibreOJ==================================
 （https://loj.ac/p/10135）lca
@@ -91,6 +91,10 @@ class Solution:
 
     @staticmethod
     def lg_p3128(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3128
+        tag: offline_lca|tree_diff_array
+        """
         # offline_lca|tree_diff_array
         n, k = ac.read_list_ints()
         dct = [[] for _ in range(n)]

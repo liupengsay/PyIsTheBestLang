@@ -9,14 +9,14 @@ Description：implemention|hash|list|index|circular_section
 1806（https://leetcode.com/problems/minimum-number-of-operations-to-reinitialize-a-permutation/description/）circular_section
 
 =====================================LuoGu======================================
-1965（https://www.luogu.com.cn/problem/P1965）circular_section
-1532（https://www.luogu.com.cn/problem/P1532）circular_section
-2203（https://www.luogu.com.cn/problem/P2203）circular_section
-5550（https://www.luogu.com.cn/problem/P5550）circular_section|matrix_fast_power|dp
-7318（https://www.luogu.com.cn/problem/P7318）circular_section
-7681（https://www.luogu.com.cn/problem/P7681）prefix_sum|circular_section
-1468（https://www.luogu.com.cn/problem/P1468）state_compression|circular_section
-6148（https://www.luogu.com.cn/problem/P6148）circular_section|implemention
+P1965（https://www.luogu.com.cn/problem/P1965）circular_section
+P1532（https://www.luogu.com.cn/problem/P1532）circular_section
+P2203（https://www.luogu.com.cn/problem/P2203）circular_section
+P5550（https://www.luogu.com.cn/problem/P5550）circular_section|matrix_fast_power|dp
+P7318（https://www.luogu.com.cn/problem/P7318）circular_section
+P7681（https://www.luogu.com.cn/problem/P7681）prefix_sum|circular_section
+P1468（https://www.luogu.com.cn/problem/P1468）state_compression|circular_section
+P6148（https://www.luogu.com.cn/problem/P6148）circular_section|implemention
 
 ===================================CodeForces===================================
 1342C（https://codeforces.com/problemset/problem/1342/C）circular_section|counter
@@ -94,6 +94,10 @@ class Solution:
 
     @staticmethod
     def lg_p1468(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1468
+        tag: state_compression|circular_section
+        """
         # state_compression求circular_section
         n = ac.read_int()
         op1 = (1 << n) - 1
@@ -133,6 +137,10 @@ class Solution:
 
     @staticmethod
     def lg_p6148(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6148
+        tag: circular_section|implemention
+        """
         # circular_section后implemention
         n, m, k = ac.read_list_ints()
         nums = [ac.read_list_ints_minus_one() for _ in range(m)]

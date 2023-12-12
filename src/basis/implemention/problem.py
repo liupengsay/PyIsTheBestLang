@@ -20,47 +20,47 @@ Description：implemention|joseph_circle
 1834（https://leetcode.com/contest/weekly-contest-237/problems/single-threaded-cpu/）heapq|pointer|implemention
 
 =====================================LuoGu======================================
-1815（https://www.luogu.com.cn/problem/P1815）implemention
-1538（https://www.luogu.com.cn/problem/P1538）implemention
-1535（https://www.luogu.com.cn/problem/P1535）dp|implemention|counter
-2239（https://www.luogu.com.cn/problem/P2239）implemention|matrix_spiral
-2338（https://www.luogu.com.cn/problem/P2338）implemention
-2366（https://www.luogu.com.cn/problem/P2366）implemention
-2552（https://www.luogu.com.cn/problem/P2552）implemention
-2696（https://www.luogu.com.cn/problem/P2696）joseph_circle|implemention|diff_array
-1234（https://www.luogu.com.cn/problem/P1234）implemention
-1166（https://www.luogu.com.cn/problem/P1166）implemention
-1076（https://www.luogu.com.cn/problem/P1076）implemention
-8924（https://www.luogu.com.cn/problem/P8924）implemention|base
-8889（https://www.luogu.com.cn/problem/P8889）counter
-8870（https://www.luogu.com.cn/problem/P8870）base|implemention
-3880（https://www.luogu.com.cn/problem/P3880）implemention
-3111（https://www.luogu.com.cn/problem/P3111）reverse_thinking|implemention
-4346（https://www.luogu.com.cn/problem/P4346）implemention
-5079（https://www.luogu.com.cn/problem/P5079）string|implemention
-5483（https://www.luogu.com.cn/problem/P5483）implemention
-5587（https://www.luogu.com.cn/problem/P5587）implemention
-5759（https://www.luogu.com.cn/problem/P5759）implemention|high_precision|division_to_multiplication
-5989（https://www.luogu.com.cn/problem/P5989）implemention|counter
-5995（https://www.luogu.com.cn/problem/P5995）implemention
-6264（https://www.luogu.com.cn/problem/P6264）implemention
-6282（https://www.luogu.com.cn/problem/P6282）reverse_thinking|reverse_order|implemention
-6410（https://www.luogu.com.cn/problem/P6410）implemention
-6480（https://www.luogu.com.cn/problem/P6480）implemention|counter
-7186（https://www.luogu.com.cn/problem/P7186）brain_teaser|action_scope|implemention
-7338（https://www.luogu.com.cn/problem/P7338）greedy|implemention
-2129（https://www.luogu.com.cn/problem/P2129）stack|pointer|implemention
-3407（https://www.luogu.com.cn/problem/P3407）implemention
-5329（https://www.luogu.com.cn/problem/P5329）lexicographical_order|lexicographical_order|sorting
-6397（https://www.luogu.com.cn/problem/P6397）greedy|implemention
-8247（https://www.luogu.com.cn/problem/P8247）implemention
-8611（https://www.luogu.com.cn/problem/P8611）implemention|classification_discussion
-8755（https://www.luogu.com.cn/problem/P8755）heapq|implemention
-9023（https://www.luogu.com.cn/problem/P9023）matrix_rotate|implemention|counter
-8898（https://www.luogu.com.cn/problem/P8898）greedy|implemention
-8895（https://www.luogu.com.cn/problem/P8895）implemention|counter
-8884（https://www.luogu.com.cn/problem/P8884）classification_discussion|odd_even
-8873（https://www.luogu.com.cn/problem/P8873）math|arithmetic_sequence
+P1815（https://www.luogu.com.cn/problem/P1815）implemention
+P1538（https://www.luogu.com.cn/problem/P1538）implemention
+P1535（https://www.luogu.com.cn/problem/P1535）dp|implemention|counter
+P2239（https://www.luogu.com.cn/problem/P2239）implemention|matrix_spiral
+P2338（https://www.luogu.com.cn/problem/P2338）implemention
+P2366（https://www.luogu.com.cn/problem/P2366）implemention
+P2552（https://www.luogu.com.cn/problem/P2552）implemention
+P2696（https://www.luogu.com.cn/problem/P2696）joseph_circle|implemention|diff_array
+P1234（https://www.luogu.com.cn/problem/P1234）implemention
+P1166（https://www.luogu.com.cn/problem/P1166）implemention
+P1076（https://www.luogu.com.cn/problem/P1076）implemention
+P8924（https://www.luogu.com.cn/problem/P8924）implemention|base
+P8889（https://www.luogu.com.cn/problem/P8889）counter
+P8870（https://www.luogu.com.cn/problem/P8870）base|implemention
+P3880（https://www.luogu.com.cn/problem/P3880）implemention
+P3111（https://www.luogu.com.cn/problem/P3111）reverse_thinking|implemention
+P4346（https://www.luogu.com.cn/problem/P4346）implemention
+P5079（https://www.luogu.com.cn/problem/P5079）string|implemention
+P5483（https://www.luogu.com.cn/problem/P5483）implemention
+P5587（https://www.luogu.com.cn/problem/P5587）implemention
+P5759（https://www.luogu.com.cn/problem/P5759）implemention|high_precision|division_to_multiplication
+P5989（https://www.luogu.com.cn/problem/P5989）implemention|counter
+P5995（https://www.luogu.com.cn/problem/P5995）implemention
+P6264（https://www.luogu.com.cn/problem/P6264）implemention
+P6282（https://www.luogu.com.cn/problem/P6282）reverse_thinking|reverse_order|implemention
+P6410（https://www.luogu.com.cn/problem/P6410）implemention
+P6480（https://www.luogu.com.cn/problem/P6480）implemention|counter
+P7186（https://www.luogu.com.cn/problem/P7186）brain_teaser|action_scope|implemention
+P7338（https://www.luogu.com.cn/problem/P7338）greedy|implemention
+P2129（https://www.luogu.com.cn/problem/P2129）stack|pointer|implemention
+P3407（https://www.luogu.com.cn/problem/P3407）implemention
+P5329（https://www.luogu.com.cn/problem/P5329）lexicographical_order|lexicographical_order|sorting
+P6397（https://www.luogu.com.cn/problem/P6397）greedy|implemention
+P8247（https://www.luogu.com.cn/problem/P8247）implemention
+P8611（https://www.luogu.com.cn/problem/P8611）implemention|classification_discussion
+P8755（https://www.luogu.com.cn/problem/P8755）heapq|implemention
+P9023（https://www.luogu.com.cn/problem/P9023）matrix_rotate|implemention|counter
+P8898（https://www.luogu.com.cn/problem/P8898）greedy|implemention
+P8895（https://www.luogu.com.cn/problem/P8895）implemention|counter
+P8884（https://www.luogu.com.cn/problem/P8884）classification_discussion|odd_even
+P8873（https://www.luogu.com.cn/problem/P8873）math|arithmetic_sequence
 
 ===================================CodeForces===================================
 463C（https://codeforces.com/problemset/problem/463/C）diagonal|matrix
@@ -119,6 +119,10 @@ class Solution:
 
     @staticmethod
     def lg_p1815(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1815
+        tag: implemention
+        """
         # 根据指令方格组合移动
         def check():
             lst = deque([[25, j] for j in range(11, 31)])
@@ -148,6 +152,10 @@ class Solution:
 
     @staticmethod
     def lg_p2129(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2129
+        tag: stack|pointer|implemention
+        """
         # stack和pointerimplemention
         n, m = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
@@ -182,6 +190,10 @@ class Solution:
 
     @staticmethod
     def lg_p3407(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3407
+        tag: implemention
+        """
         # implemention相向而行
         n, t, q = ac.read_list_ints()
         nums = deque([ac.read_list_ints() for _ in range(n)])
@@ -217,6 +229,10 @@ class Solution:
 
     @staticmethod
     def lg_p5329(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5329
+        tag: lexicographical_order|lexicographical_order|sorting
+        """
         # lexicographical_order应用题，依据相邻项的lexicographical_order大小来确认sorting
         n = ac.read_int()
         s = ac.read_str()
@@ -244,6 +260,10 @@ class Solution:
 
     @staticmethod
     def lg_p6397(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6397
+        tag: greedy|implemention
+        """
         # greedyimplemention
         k = ac.read_float()
         nums = [ac.read_float() for _ in range(ac.read_int())]
@@ -264,6 +284,10 @@ class Solution:
 
     @staticmethod
     def lg_p8247(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8247
+        tag: implemention
+        """
         # implemention按照相对位置比例区分
         m, n = ac.read_list_ints()
         start = [-1, -1]
@@ -291,6 +315,10 @@ class Solution:
 
     @staticmethod
     def lg_p8611(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8611
+        tag: implemention|classification_discussion
+        """
         # 蚂蚁碰撞implementionclassification_discussion
         ac.read_int()
         nums = ac.read_list_ints()
@@ -310,6 +338,10 @@ class Solution:
 
     @staticmethod
     def lg_p9023(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P9023
+        tag: matrix_rotate|implemention|counter
+        """
         # 矩阵翻转implementioncounter
         m = ac.read_int()
         n = ac.read_int()
@@ -333,6 +365,10 @@ class Solution:
 
     @staticmethod
     def lg_p8895(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8895
+        tag: implemention|counter
+        """
         # implemention与组合counter
         n, m, p = ac.read_list_ints()
         dp = [1] * (n + 1)
@@ -382,6 +418,10 @@ class Solution:
 
     @staticmethod
     def lg_p8884(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8884
+        tag: classification_discussion|odd_even
+        """
         # 分矩阵位置的odd_even讨论
         n, m, c = ac.read_list_ints()
         cnt = [0, 0]

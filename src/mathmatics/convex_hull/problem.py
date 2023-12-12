@@ -6,8 +6,8 @@ Description：convex_hull
 1924（https://leetcode.com/problems/erect-the-fence-ii/）convex_hull|tripart_pack_tripart|minimum_circle_coverage
 
 =====================================LuoGu======================================
-1742（https://www.luogu.com.cn/problem/P1742）random_increment_method|minimum_circle_coverage
-3517（https://www.luogu.com.cn/problem/P3517）binary_search_of_binary_search|random_increment_method|minimum_circle_coverage
+P1742（https://www.luogu.com.cn/problem/P1742）random_increment_method|minimum_circle_coverage
+P3517（https://www.luogu.com.cn/problem/P3517）binary_search_of_binary_search|random_increment_method|minimum_circle_coverage
 
 """
 
@@ -33,6 +33,10 @@ class Solution:
 
     @staticmethod
     def lg_p1742(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1742
+        tag: random_increment_method|minimum_circle_coverage
+        """
         # 随机增量法求最小圆覆盖
         n = ac.read_int()
         nums = [ac.read_list_floats() for _ in range(n)]

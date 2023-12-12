@@ -19,21 +19,21 @@ Description：undirected_topological_sort|directed_topological_sort|directed_cir
 
 
 =====================================LuoGu======================================
-1960（https://www.luogu.com.cn/problem/P1960）topological_sort|topological_order
-1992（https://www.luogu.com.cn/problem/P1992）directed_topological_sort|directed_circle_judge
-2712（https://www.luogu.com.cn/problem/P2712）topological_sort|circle_judge|find_circle
-6145（https://www.luogu.com.cn/problem/P6145）directed_topological_sort|dag_dp
-1137（https://www.luogu.com.cn/problem/P1137）topological_sort|dag_dp
-1347（https://www.luogu.com.cn/problem/P1347）topological_sort|lexicographical_order|construction
-1685（https://www.luogu.com.cn/problem/P1685）dag_dp|directed_topological_sort|counter
-3243（https://www.luogu.com.cn/problem/P3243）reverse_graph|topological_sort|heapq|implemention|topological_lexicographic_order
-5536（https://www.luogu.com.cn/problem/P5536）undirected_topological_sort
-6037（https://www.luogu.com.cn/problem/P6037）undirected_circle_based_tree|union_find|topological_sort|implemention
-6255（https://www.luogu.com.cn/problem/P6255）union_find|topological_sort|circle_judge
-6417（https://www.luogu.com.cn/problem/P6417）directed_circle_based_tree|greedy|topological_sort
-6560（https://www.luogu.com.cn/problem/P6560）reverse_graph|topological_sort|game_dp
-8655（https://www.luogu.com.cn/problem/P8655）topological_sort|directed_circle_based_tree
-8943（https://www.luogu.com.cn/problem/P8943）undirected_circle_based_tree|game_dp
+P1960（https://www.luogu.com.cn/problem/P1960）topological_sort|topological_order
+P1992（https://www.luogu.com.cn/problem/P1992）directed_topological_sort|directed_circle_judge
+P2712（https://www.luogu.com.cn/problem/P2712）topological_sort|circle_judge|find_circle
+P6145（https://www.luogu.com.cn/problem/P6145）directed_topological_sort|dag_dp
+P1137（https://www.luogu.com.cn/problem/P1137）topological_sort|dag_dp
+P1347（https://www.luogu.com.cn/problem/P1347）topological_sort|lexicographical_order|construction
+P1685（https://www.luogu.com.cn/problem/P1685）dag_dp|directed_topological_sort|counter
+P3243（https://www.luogu.com.cn/problem/P3243）reverse_graph|topological_sort|heapq|implemention|topological_lexicographic_order
+P5536（https://www.luogu.com.cn/problem/P5536）undirected_topological_sort
+P6037（https://www.luogu.com.cn/problem/P6037）undirected_circle_based_tree|union_find|topological_sort|implemention
+P6255（https://www.luogu.com.cn/problem/P6255）union_find|topological_sort|circle_judge
+P6417（https://www.luogu.com.cn/problem/P6417）directed_circle_based_tree|greedy|topological_sort
+P6560（https://www.luogu.com.cn/problem/P6560）reverse_graph|topological_sort|game_dp
+P8655（https://www.luogu.com.cn/problem/P8655）topological_sort|directed_circle_based_tree
+P8943（https://www.luogu.com.cn/problem/P8943）undirected_circle_based_tree|game_dp
 
 ===================================CodeForces===================================
 1454E（https://codeforces.com/contest/1454/problem/E）circle_based_tree|counter|brute_force
@@ -231,6 +231,10 @@ class Solution:
 
     @staticmethod
     def lg_p1137(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1137
+        tag: topological_sort|dag_dp
+        """
         # topological_sorting最长链条
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
@@ -254,6 +258,10 @@ class Solution:
 
     @staticmethod
     def lg_p1347(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1347
+        tag: topological_sort|lexicographical_order|construction
+        """
         # topological_sorting确定lexicographical_order与矛盾或者无唯一解
         n, m = ac.read_list_ints()
         dct_ = defaultdict(list)
@@ -308,6 +316,10 @@ class Solution:
 
     @staticmethod
     def lg_p1685(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1685
+        tag: dag_dp|directed_topological_sort|counter
+        """
         # topological_sorting经过每条边的路径条数
         n, m, s, e, t = ac.read_list_ints()
         s -= 1
@@ -345,6 +357,10 @@ class Solution:
 
     @staticmethod
     def lg_p3243(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3243
+        tag: reverse_graph|topological_sort|heapq|implemention|topological_lexicographic_order
+        """
         # reverse_graphtopological_sorting结合heapq|顺序implemention
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
@@ -375,6 +391,10 @@ class Solution:
 
     @staticmethod
     def lg_p5536_1(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5536
+        tag: undirected_topological_sort
+        """
         # tree_diameter的greedy方式选取以tree_diameter中点向外辐射的节点
         n, k = ac.read_list_ints()
         dct = [[] for _ in range(n)]
@@ -412,6 +432,10 @@ class Solution:
 
     @staticmethod
     def lg_p5536_2(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5536
+        tag: undirected_topological_sort
+        """
 
         # 无向图topological_sorting从外到内消除最外圈的节点
         n, k = ac.read_list_ints()
@@ -442,6 +466,10 @@ class Solution:
 
     @staticmethod
     def lg_p6037(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6037
+        tag: undirected_circle_based_tree|union_find|topological_sort|implemention
+        """
         # undirected_circle_based_treeunion_findtopological_sorting与环implemention
         n = ac.read_int()
         dct = [[] for _ in range(n)]
@@ -493,6 +521,10 @@ class Solution:
 
     @staticmethod
     def lg_p6255(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6255
+        tag: union_find|topological_sort|circle_judge
+        """
         # 简单无向图union_find连通块后topological_sorting寻找环的信息
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
@@ -546,6 +578,10 @@ class Solution:
 
     @staticmethod
     def lg_p6417(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6417
+        tag: directed_circle_based_tree|greedy|topological_sort
+        """
         # 有向图circle_based_treegreedy应用topological_sorting由外向内
         n = ac.read_int()
         dct = [ac.read_int() - 1 for _ in range(n)]
@@ -588,6 +624,10 @@ class Solution:
 
     @staticmethod
     def lg_p6560(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6560
+        tag: reverse_graph|topological_sort|game_dp
+        """
         # reverse_graphtopological_sorting与博弈必胜态
         n, m, q = ac.read_list_ints()
         dct = [[] for _ in range(n)]
@@ -626,6 +666,10 @@ class Solution:
 
     @staticmethod
     def lg_p8655(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8655
+        tag: topological_sort|directed_circle_based_tree
+        """
         n = ac.read_int()
         dct = [[] for _ in range(n)]
         degree = [0] * n
@@ -648,6 +692,10 @@ class Solution:
 
     @staticmethod
     def lg_p8943(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8943
+        tag: undirected_circle_based_tree|game_dp
+        """
         # undirected_circle_based_tree博弈
         n, q = ac.read_list_ints()
         degree = [0] * n

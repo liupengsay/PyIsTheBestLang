@@ -12,8 +12,8 @@ Description：string|prefix_suffix
 2851（https://leetcode.com/problems/string-transformation/description/）kmp|matrix_fast_power|string_hash
 
 =====================================LuoGu======================================
-3375（https://www.luogu.com.cn/problem/P3375）longest_prefix_suffix|find
-4391（https://www.luogu.com.cn/problem/P4391）brain_teaser|kmp|n-pi[n-1]
+P3375（https://www.luogu.com.cn/problem/P3375）longest_prefix_suffix|find
+P4391（https://www.luogu.com.cn/problem/P4391）brain_teaser|kmp|n-pi[n-1]
 
 ===================================CodeForces===================================
 1326D2（https://codeforces.com/problemset/problem/1326/D2）manacher|greedy|prefix_suffix|longest_prefix_suffix|palindrome_substring
@@ -43,6 +43,10 @@ class Solution:
 
     @staticmethod
     def lg_p3375(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3375
+        tag: longest_prefix_suffix|find
+        """
         # KMP字符串匹配
         s1 = ac.read_str()
         s2 = ac.read_str()
@@ -133,6 +137,10 @@ class Solution:
 
     @staticmethod
     def lg_p4391(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4391
+        tag: brain_teaser|kmp|n-pi[n-1]
+        """
         # 最小的循环子串使得其不断重复包含给定字符串
         n = ac.read_int()
         s = ac.read_str()

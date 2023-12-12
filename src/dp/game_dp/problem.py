@@ -7,14 +7,14 @@ Description：brute_force|interval_dp|implemention|greedy
 1140（https://leetcode.com/problems/stone-game-ii/）prefix_sum|linear_dp
 
 =====================================LuoGu======================================
-1290（https://www.luogu.com.cn/problem/P1290）classical|game_dp
-5635（https://www.luogu.com.cn/problem/P5635）game_dp|implemention
-3150（https://www.luogu.com.cn/problem/P3150）game_dp|implemention|odd_even
-4702（https://www.luogu.com.cn/problem/P4702）game_dp|implemention|odd_even
-1247（https://www.luogu.com.cn/problem/P1247）nim|game_dp|xor
-1512（https://www.luogu.com.cn/problem/P1512）game_dp|date
-2092（https://www.luogu.com.cn/problem/P2092）prime|game_dp
-2953（https://www.luogu.com.cn/problem/P2953）game_dp|winning_state|liner_dp
+P1290（https://www.luogu.com.cn/problem/P1290）classical|game_dp
+P5635（https://www.luogu.com.cn/problem/P5635）game_dp|implemention
+P3150（https://www.luogu.com.cn/problem/P3150）game_dp|implemention|odd_even
+P4702（https://www.luogu.com.cn/problem/P4702）game_dp|implemention|odd_even
+P1247（https://www.luogu.com.cn/problem/P1247）nim|game_dp|xor
+P1512（https://www.luogu.com.cn/problem/P1512）game_dp|date
+P2092（https://www.luogu.com.cn/problem/P2092）prime|game_dp
+P2953（https://www.luogu.com.cn/problem/P2953）game_dp|winning_state|liner_dp
 
 =====================================AcWing=====================================
 4005（https://www.acwing.com/problem/content/description/4008/）classical|game_dp|brain_teaser|classification_discussion
@@ -80,6 +80,10 @@ class Solution:
 
     @staticmethod
     def lg_p1512(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1512
+        tag: game_dp|date
+        """
         # game_dp|与日期操作
         dt = DateTime()
         stack = [[1900, 1, 1]]
@@ -122,6 +126,10 @@ class Solution:
 
     @staticmethod
     def lg_p2092(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2092
+        tag: prime|game_dp
+        """
         # 根据质数的个数来判断必胜态
         n = ac.read_int()
         lst = NumberTheory().get_prime_factor(n)
@@ -141,6 +149,10 @@ class Solution:
 
     @staticmethod
     def lg_p2953(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2953
+        tag: game_dp|winning_state|liner_dp
+        """
         # 必胜态liner_dp
         n = 1000000
         dp = [0] * (n + 1)

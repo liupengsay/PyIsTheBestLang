@@ -33,52 +33,52 @@ Description：prefix_sum|prefix_sum_of_prefix_sum|suffix_sum
 2167（https://leetcode.com/problems/minimum-time-to-remove-all-cars-containing-illegal-goods/）math|prefix_sum|brute_force
 
 =====================================LuoGu======================================
-8772（https://www.luogu.com.cn/record/list?user=739032&status=12&page=15）suffix_sum
-2367（https://www.luogu.com.cn/problem/P2367）diff_array
-2280（https://www.luogu.com.cn/problem/P2280）matrix_prefix_sum
-3138（https://www.luogu.com.cn/problem/P3138）matrix_prefix_sum
-3406（https://www.luogu.com.cn/problem/P3406）diff_array|greedy
-3655（https://www.luogu.com.cn/problem/P3655）diff_array|implemention
-5542（https://www.luogu.com.cn/problem/P5542）diff_matrix
-5686（https://www.luogu.com.cn/problem/P5686）prefix_sum_of_prefix_sum
-6180（https://www.luogu.com.cn/problem/P6180）prefix_sum|counter
-6481（https://www.luogu.com.cn/problem/P6481）prefix|range_update
-2956（https://www.luogu.com.cn/problem/P2956）diff_matrix|prefix_sum
-3397（https://www.luogu.com.cn/problem/P3397）diff_matrix|prefix_sum
-1869（https://www.luogu.com.cn/problem/P1869）prefix_sum|comb|odd_even
-7667（https://www.luogu.com.cn/problem/P7667）math|sorting|prefix_sum
-2671（https://www.luogu.com.cn/problem/P2671）prefix_or_sum|counter|brute_force|odd_even
-1719（https://www.luogu.com.cn/problem/P1719）max_sub_matrix_sum|brute_force|prefix_sum
-2882（https://www.luogu.com.cn/problem/P2882）greedy|brute_force|diff_array
-4552（https://www.luogu.com.cn/problem/P4552）diff_array|brain_teaser|classical
-1627（https://www.luogu.com.cn/problem/P1627）prefix_suffix|median|counter
-1895（https://www.luogu.com.cn/problem/P1895）prefix_sum|counter|binary_search
-1982（https://www.luogu.com.cn/problem/P1982）maximum_prefix_sub_consequence_sum|prefix_max
-2070（https://www.luogu.com.cn/problem/P2070）hash|discretization_diff_array|counter
-2190（https://www.luogu.com.cn/problem/P2190）diff_array|circular_array
-2352（https://www.luogu.com.cn/problem/P2352）discretization_diff_array
-2363（https://www.luogu.com.cn/problem/P2363）matrix_prefix_sum|brute_force
-2706（https://www.luogu.com.cn/problem/P2706）max_sub_matrix_sum
-2879（https://www.luogu.com.cn/problem/P2879）diff_array|greedy
-3028（https://www.luogu.com.cn/problem/P3028）discretization_diff_array|range_cover
-4030（https://www.luogu.com.cn/problem/P4030）brain_teaser|matrix_prefix_sum
-4440（https://www.luogu.com.cn/problem/P4440）prefix_sum|counter
-4623（https://www.luogu.com.cn/problem/P4623）discretization_diff_array|counter
-6032（https://www.luogu.com.cn/problem/P6032）prefix_suffix|counter
-6070（https://www.luogu.com.cn/problem/P6070）diff_matrix|greedy|prefix_sum
-6278（https://www.luogu.com.cn/problem/P6278）reverse_order_pair|action_scope|diff_array|prefix_sum
-6537（https://www.luogu.com.cn/problem/P6537）prefix_sum|brute_force
-6877（https://www.luogu.com.cn/problem/P6877）sorting|greedy|prefix_suffix|dp|brute_force
-6878（https://www.luogu.com.cn/problem/P6878）prefix_suffix|brute_force
-8081（https://www.luogu.com.cn/problem/P8081）diff_array|counter|action_scope
-8033（https://www.luogu.com.cn/problem/P8033）matrix_prefix_sum|counter
-7992（https://www.luogu.com.cn/problem/P7992）bucket_counter|action_scope|diff_array|counter
-7948（https://www.luogu.com.cn/problem/P7948）sorting|prefix_suffix|pointer
-8343（https://www.luogu.com.cn/problem/P8343）sub_matrix_prefix_sum|brute_force|two_pointers
-8551（https://www.luogu.com.cn/problem/P8551）diff_array
-8666（https://www.luogu.com.cn/problem/P8666）binary_search|md_diff_array|implemention
-8715（https://www.luogu.com.cn/problem/P8715）prefix_suffix|counter
-8783（https://www.luogu.com.cn/problem/P8783）O(n^3)|two_pointers|brute_force|counter|sub_matrix
+list?user=739032&status=12&page=15（https://www.luogu.com.cn/record/list?user=739032&status=12&page=15）suffix_sum
+P2367（https://www.luogu.com.cn/problem/P2367）diff_array
+P2280（https://www.luogu.com.cn/problem/P2280）matrix_prefix_sum
+P3138（https://www.luogu.com.cn/problem/P3138）matrix_prefix_sum
+P3406（https://www.luogu.com.cn/problem/P3406）diff_array|greedy
+P3655（https://www.luogu.com.cn/problem/P3655）diff_array|implemention
+P5542（https://www.luogu.com.cn/problem/P5542）diff_matrix
+P5686（https://www.luogu.com.cn/problem/P5686）prefix_sum_of_prefix_sum
+P6180（https://www.luogu.com.cn/problem/P6180）prefix_sum|counter
+P6481（https://www.luogu.com.cn/problem/P6481）prefix|range_update
+P2956（https://www.luogu.com.cn/problem/P2956）diff_matrix|prefix_sum
+P3397（https://www.luogu.com.cn/problem/P3397）diff_matrix|prefix_sum
+P1869（https://www.luogu.com.cn/problem/P1869）prefix_sum|comb|odd_even
+P7667（https://www.luogu.com.cn/problem/P7667）math|sorting|prefix_sum
+P2671（https://www.luogu.com.cn/problem/P2671）prefix_or_sum|counter|brute_force|odd_even
+P1719（https://www.luogu.com.cn/problem/P1719）max_sub_matrix_sum|brute_force|prefix_sum
+P2882（https://www.luogu.com.cn/problem/P2882）greedy|brute_force|diff_array
+P4552（https://www.luogu.com.cn/problem/P4552）diff_array|brain_teaser|classical
+P1627（https://www.luogu.com.cn/problem/P1627）prefix_suffix|median|counter
+P1895（https://www.luogu.com.cn/problem/P1895）prefix_sum|counter|binary_search
+P1982（https://www.luogu.com.cn/problem/P1982）maximum_prefix_sub_consequence_sum|prefix_max
+P2070（https://www.luogu.com.cn/problem/P2070）hash|discretization_diff_array|counter
+P2190（https://www.luogu.com.cn/problem/P2190）diff_array|circular_array
+P2352（https://www.luogu.com.cn/problem/P2352）discretization_diff_array
+P2363（https://www.luogu.com.cn/problem/P2363）matrix_prefix_sum|brute_force
+P2706（https://www.luogu.com.cn/problem/P2706）max_sub_matrix_sum
+P2879（https://www.luogu.com.cn/problem/P2879）diff_array|greedy
+P3028（https://www.luogu.com.cn/problem/P3028）discretization_diff_array|range_cover
+P4030（https://www.luogu.com.cn/problem/P4030）brain_teaser|matrix_prefix_sum
+P4440（https://www.luogu.com.cn/problem/P4440）prefix_sum|counter
+P4623（https://www.luogu.com.cn/problem/P4623）discretization_diff_array|counter
+P6032（https://www.luogu.com.cn/problem/P6032）prefix_suffix|counter
+P6070（https://www.luogu.com.cn/problem/P6070）diff_matrix|greedy|prefix_sum
+P6278（https://www.luogu.com.cn/problem/P6278）reverse_order_pair|action_scope|diff_array|prefix_sum
+P6537（https://www.luogu.com.cn/problem/P6537）prefix_sum|brute_force
+P6877（https://www.luogu.com.cn/problem/P6877）sorting|greedy|prefix_suffix|dp|brute_force
+P6878（https://www.luogu.com.cn/problem/P6878）prefix_suffix|brute_force
+P8081（https://www.luogu.com.cn/problem/P8081）diff_array|counter|action_scope
+P8033（https://www.luogu.com.cn/problem/P8033）matrix_prefix_sum|counter
+P7992（https://www.luogu.com.cn/problem/P7992）bucket_counter|action_scope|diff_array|counter
+P7948（https://www.luogu.com.cn/problem/P7948）sorting|prefix_suffix|pointer
+P8343（https://www.luogu.com.cn/problem/P8343）sub_matrix_prefix_sum|brute_force|two_pointers
+P8551（https://www.luogu.com.cn/problem/P8551）diff_array
+P8666（https://www.luogu.com.cn/problem/P8666）binary_search|md_diff_array|implemention
+P8715（https://www.luogu.com.cn/problem/P8715）prefix_suffix|counter
+P8783（https://www.luogu.com.cn/problem/P8783）O(n^3)|two_pointers|brute_force|counter|sub_matrix
 
 ===================================CodeForces===================================
 33C（https://codeforces.com/problemset/problem/33/C）prefix_suffix|brute_force
@@ -121,6 +121,10 @@ class Solution:
 
     @staticmethod
     def lg_p3397(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3397
+        tag: diff_matrix|prefix_sum
+        """
         # diff_matrix|prefix_sum
         n, m = ac.read_list_ints()
         shifts = []
@@ -134,6 +138,10 @@ class Solution:
 
     @staticmethod
     def lg_p4552(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4552
+        tag: diff_array|brain_teaser|classical
+        """
         # diff_array|题，明晰差分本质
         n = ac.read_int()
         pre = -1
@@ -153,6 +161,10 @@ class Solution:
 
     @staticmethod
     def lg_p1719(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1719
+        tag: max_sub_matrix_sum|brute_force|prefix_sum
+        """
 
         # 求最大子矩阵和，brute_force矩阵上下边界并prefix_sum
         n = ac.read_int()
@@ -210,6 +222,10 @@ class Solution:
 
     @staticmethod
     def lg_p2671(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2671
+        tag: prefix_or_sum|counter|brute_force|odd_even
+        """
         # prefix_suffixcounter|和，分odd_even讨论
         n, m = ac.read_list_ints()
         number = ac.read_list_ints()
@@ -478,6 +494,10 @@ class Solution:
 
     @staticmethod
     def lg_p2882(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2882
+        tag: greedy|brute_force|diff_array
+        """
 
         # greedybrute_force|差分验证
         n = ac.read_int()
@@ -668,6 +688,10 @@ class Solution:
 
     @staticmethod
     def lg_p1627(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1627
+        tag: prefix_suffix|median|counter
+        """
         # prefix_suffixmedian大小值差值counter
         n, b = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -696,6 +720,10 @@ class Solution:
 
     @staticmethod
     def lg_p1895(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1895
+        tag: prefix_sum|counter|binary_search
+        """
 
         # prefix_sumcounter|binary_search，最多不超多10**5
         n = 10 ** 5
@@ -722,6 +750,10 @@ class Solution:
 
     @staticmethod
     def lg_p1982(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1982
+        tag: maximum_prefix_sub_consequence_sum|prefix_max
+        """
 
         # 前缀最大连续子段和与前缀最大值
         n, p = ac.read_list_ints()
@@ -745,6 +777,10 @@ class Solution:
 
     @staticmethod
     def lg_p2070(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2070
+        tag: hash|discretization_diff_array|counter
+        """
         # hashdiscretization_diff_arraycounter
         n = ac.read_int()
         pos = 0
@@ -773,6 +809,10 @@ class Solution:
 
     @staticmethod
     def lg_p2190(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2190
+        tag: diff_array|circular_array
+        """
         # circular_array|差分
         n, m = ac.read_list_ints()
         diff = [0] * n
@@ -795,6 +835,10 @@ class Solution:
 
     @staticmethod
     def lg_p2352(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2352
+        tag: discretization_diff_array
+        """
         # discretization_diff_array|
         diff = defaultdict(int)
         for _ in range(ac.read_int()):
@@ -813,6 +857,10 @@ class Solution:
 
     @staticmethod
     def lg_p2363(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2363
+        tag: matrix_prefix_sum|brute_force
+        """
         # matrix_prefix_sum|与brute_force
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
@@ -840,6 +888,10 @@ class Solution:
 
     @staticmethod
     def lg_p2706(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2706
+        tag: max_sub_matrix_sum
+        """
         # 不包含障碍点的最大子矩阵和
         m, n = ac.read_list_ints()
         grid = []
@@ -863,6 +915,10 @@ class Solution:
 
     @staticmethod
     def lg_p2879(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2879
+        tag: diff_array|greedy
+        """
         # diff_array|题与greedy
         n, i, h, r = ac.read_list_ints()
         diff = [0] * n
@@ -887,6 +943,10 @@ class Solution:
 
     @staticmethod
     def lg_p3028(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3028
+        tag: discretization_diff_array|range_cover
+        """
         # discretization_diff_array|覆盖区间最多的点
         n = ac.read_int()
         diff = defaultdict(int)
@@ -910,6 +970,10 @@ class Solution:
 
     @staticmethod
     def lg_p4030(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4030
+        tag: brain_teaser|matrix_prefix_sum
+        """
         # brain_teaser|matrix_prefix_sum|
         m, n, t = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
@@ -937,6 +1001,10 @@ class Solution:
 
     @staticmethod
     def lg_p4440(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4440
+        tag: prefix_sum|counter
+        """
         # classicalprefix_sumcounter
         s = ac.read_str()
         pre = []
@@ -959,6 +1027,10 @@ class Solution:
 
     @staticmethod
     def lg_p4623(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4623
+        tag: discretization_diff_array|counter
+        """
         # discretization_diff_array|counter
         n = ac.read_int()
         m = 10 ** 6 + 1
@@ -993,6 +1065,10 @@ class Solution:
 
     @staticmethod
     def lg_p6032(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6032
+        tag: prefix_suffix|counter
+        """
         # prefix_suffixcounter
         n, k, p = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
@@ -1023,6 +1099,10 @@ class Solution:
 
     @staticmethod
     def lg_p6070(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6070
+        tag: diff_matrix|greedy|prefix_sum
+        """
         # diff_matrix|greedy修改实时维护差分与prefix_sum即矩阵最新值
         n, m, k = ac.read_list_ints()
         grid = [[0] * n for _ in range(n)]
@@ -1052,6 +1132,10 @@ class Solution:
 
     @staticmethod
     def lg_p6278(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6278
+        tag: reverse_order_pair|action_scope|diff_array|prefix_sum
+        """
         # reverse_order_pair|action_scope与差分prefix_sum
         n = ac.read_int()
         nums = ac.read_list_ints()
@@ -1069,6 +1153,10 @@ class Solution:
 
     @staticmethod
     def lg_p6537(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6537
+        tag: prefix_sum|brute_force
+        """
         # preprocessprefix_sum|brute_force
         n = ac.read_int()
         grid = [ac.read_list_ints() for _ in range(n)]
@@ -1101,6 +1189,10 @@ class Solution:
 
     @staticmethod
     def lg_p6877(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6877
+        tag: sorting|greedy|prefix_suffix|dp|brute_force
+        """
         # sortinggreedyprefix_suffix DP brute_force
         n = ac.read_int()
         a = ac.read_list_ints()
@@ -1125,6 +1217,10 @@ class Solution:
 
     @staticmethod
     def lg_p6878(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6878
+        tag: prefix_suffix|brute_force
+        """
         # prefix_suffixbrute_force
         n, k = ac.read_list_ints()
         s = ac.read_str()
@@ -1167,6 +1263,10 @@ class Solution:
 
     @staticmethod
     def lg_p8081(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8081
+        tag: diff_array|counter|action_scope
+        """
         # 差分counteraction_scope
         n = ac.read_int()
         nums = ac.read_list_ints()
@@ -1217,6 +1317,10 @@ class Solution:
 
     @staticmethod
     def lg_p8033(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8033
+        tag: matrix_prefix_sum|counter
+        """
         # matrix_prefix_sum|counter
         m, n, k = ac.read_list_ints()
         grid = [list(ac.read_str()) for _ in range(m)]
@@ -1248,6 +1352,10 @@ class Solution:
 
     @staticmethod
     def lg_p7992(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P7992
+        tag: bucket_counter|action_scope|diff_array|counter
+        """
         # bucket_counter与action_scope差分counter
         n, m = ac.read_list_ints()
         a = [0] * (m + 1)
@@ -1269,6 +1377,10 @@ class Solution:
 
     @staticmethod
     def lg_p7948(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P7948
+        tag: sorting|prefix_suffix|pointer
+        """
         # sorting后preprocessprefix_suffix信息pointer查询
         for _ in range(ac.read_int()):
             n, q = ac.read_list_ints()
@@ -1295,6 +1407,10 @@ class Solution:
 
     @staticmethod
     def lg_p8343(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8343
+        tag: sub_matrix_prefix_sum|brute_force|two_pointers
+        """
         # 子矩阵prefix_sumbrute_force与two_pointers
         m, n, a, b = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
@@ -1331,6 +1447,10 @@ class Solution:
 
     @staticmethod
     def lg_p8551(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8551
+        tag: diff_array
+        """
         # diff_array|灵活应用
         n = ac.read_int()
         m = 3 * 10 ** 5 + 1
@@ -1354,6 +1474,10 @@ class Solution:
 
     @staticmethod
     def lg_p8666(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8666
+        tag: binary_search|md_diff_array|implemention
+        """
         # binary_search|md_diff_array题
         a, b, c, m = ac.read_list_ints()
         grid = [[[0] * (c + 1) for _ in range(b + 1)] for _ in range(a + 1)]

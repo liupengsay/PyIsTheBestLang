@@ -7,20 +7,20 @@ Description：shortest_path_faster_algorithm|single_source|deque
 2589（https://leetcode.com/problems/minimum-time-to-complete-all-tasks/）differential_constraint|greedy|classical
 
 =====================================LuoGu======================================
-3385（https://www.luogu.com.cn/problem/P3385）shortest_path|negative_circle
-1938（https://www.luogu.com.cn/problem/P1938）negative_circle|positive_circle|shortest_path|longest_path
-2136（https://www.luogu.com.cn/problem/P2136）negative_circle|shortest_path
-2648（https://www.luogu.com.cn/problem/P2648）positive_circle|longest_path|classical
-1144（https://www.luogu.com.cn/problem/P1144）number_of_shortest_path
-1993（https://www.luogu.com.cn/problem/P1993）differential_constraint|negative_circle
-5960（https://www.luogu.com.cn/problem/P5960）differential_constraint
-1260（https://www.luogu.com.cn/problem/P1260）differential_constraint
-1931（https://www.luogu.com.cn/problem/P1931）positive_circle|mul
-1986（https://www.luogu.com.cn/problem/P1986）differential_constraint
-2850（https://www.luogu.com.cn/problem/P2850）negative_circle|several_source|classical
-4878（https://www.luogu.com.cn/problem/P4878）diff_array|dijkstra|shortest_path
-5751（https://www.luogu.com.cn/problem/P5751）prefix_sum|differential_constraint
-5905（https://www.luogu.com.cn/problem/P5905）johnson_shortest_path|several_source|shortest_path
+P3385（https://www.luogu.com.cn/problem/P3385）shortest_path|negative_circle
+P1938（https://www.luogu.com.cn/problem/P1938）negative_circle|positive_circle|shortest_path|longest_path
+P2136（https://www.luogu.com.cn/problem/P2136）negative_circle|shortest_path
+P2648（https://www.luogu.com.cn/problem/P2648）positive_circle|longest_path|classical
+P1144（https://www.luogu.com.cn/problem/P1144）number_of_shortest_path
+P1993（https://www.luogu.com.cn/problem/P1993）differential_constraint|negative_circle
+P5960（https://www.luogu.com.cn/problem/P5960）differential_constraint
+P1260（https://www.luogu.com.cn/problem/P1260）differential_constraint
+P1931（https://www.luogu.com.cn/problem/P1931）positive_circle|mul
+P1986（https://www.luogu.com.cn/problem/P1986）differential_constraint
+P2850（https://www.luogu.com.cn/problem/P2850）negative_circle|several_source|classical
+P4878（https://www.luogu.com.cn/problem/P4878）diff_array|dijkstra|shortest_path
+P5751（https://www.luogu.com.cn/problem/P5751）prefix_sum|differential_constraint
+P5905（https://www.luogu.com.cn/problem/P5905）johnson_shortest_path|several_source|shortest_path
 
 ====================================AtCoder=====================================
 D - Score Attack （https://atcoder.jp/contests/abc061/tasks/abc061_d）reverse_graph|positive_circle|longest_path
@@ -44,6 +44,10 @@ class Solution:
 
     @staticmethod
     def lg_p1144(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1144
+        tag: number_of_shortest_path
+        """
         # 无向无权图起点出发的shortest_pathcounter问题
         n, m = ac.read_list_ints()
         dct = [dict() for _ in range(n)]
@@ -83,6 +87,10 @@ class Solution:
 
     @staticmethod
     def lg_p2136(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2136
+        tag: negative_circle|shortest_path
+        """
         # 判断不同起点出发是否存在negative_circle并shortest_path
         n, m = ac.read_list_ints()
         dct = [dict() for _ in range(n)]
@@ -98,6 +106,10 @@ class Solution:
 
     @staticmethod
     def lg_p3385(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3385
+        tag: shortest_path|negative_circle
+        """
         # SPFA 判断是否存在negative_circle与shortest_path
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
@@ -134,6 +146,10 @@ class Solution:
 
     @staticmethod
     def lg_p1993(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1993
+        tag: differential_constraint|negative_circle
+        """
         # differential_constraint转换为negative_circle判断求解
         n, m = ac.read_list_ints()
         dct = [dict() for _ in range(n + 1)]
@@ -190,6 +206,10 @@ class Solution:
 
     @staticmethod
     def lg_p5960(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5960
+        tag: differential_constraint
+        """
         # differential_constraint模板题
         n, m = ac.read_list_ints()
         edges = [ac.read_list_ints() for _ in range(m)]
@@ -202,6 +222,10 @@ class Solution:
 
     @staticmethod
     def lg_p1260(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1260
+        tag: differential_constraint
+        """
         # differential_constraint模板题
         n, m = ac.read_list_ints()
         # edges里面索引从 1 开始
@@ -219,6 +243,10 @@ class Solution:
 
     @staticmethod
     def lg_p1931(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1931
+        tag: positive_circle|mul
+        """
         # 路径乘积是否有大于1的环
         case = 0
         while True:
@@ -245,6 +273,10 @@ class Solution:
 
     @staticmethod
     def lg_p1986(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1986
+        tag: differential_constraint
+        """
         # 根据prefix_sumdifferential_constraint求解
         n, m = ac.read_list_ints()
 
@@ -389,6 +421,10 @@ class Solution:
 
     @staticmethod
     def lg_p2850(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2850
+        tag: negative_circle|several_source|classical
+        """
         for _ in range(ac.read_int()):
             # 从任意起点出发是否存在negative_circle
             n, m, w = ac.read_list_ints()
@@ -449,6 +485,10 @@ class Solution:
 
     @staticmethod
     def lg_p4878(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4878
+        tag: diff_array|dijkstra|shortest_path
+        """
         # diff_array|与Dijkstrashortest_path
         n, ml, md = ac.read_list_ints()
         edge = []
@@ -484,6 +524,10 @@ class Solution:
 
     @staticmethod
     def lg_p5905(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5905
+        tag: johnson_shortest_path|several_source|shortest_path
+        """
         # 有向带权图可能有负权 Johnson 全源shortest_path所有点对的shortest_path
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n + 1)]
@@ -515,6 +559,10 @@ class Solution:
 
     @staticmethod
     def lg_p5751(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5751
+        tag: prefix_sum|differential_constraint
+        """
         # 转换为prefix_sumdifferential_constraint求解，并shortest_path求解最大值
         n, a0, b0, l0, a1, b1, l1 = ac.read_list_ints()
 

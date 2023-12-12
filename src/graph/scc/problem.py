@@ -9,14 +9,14 @@ Example：path pass the most points which can be duplicated
 2360（https://leetcode.com/problems/longest-cycle-in-a-graph/）largest_circle|scc|topological_sort|scc
 
 =====================================LuoGu======================================
-3387（https://www.luogu.com.cn/problem/P3387）scc
-2661（https://www.luogu.com.cn/problem/P2661）smallest_circle|directed_circle_based_tree|topological_sort
-4089（https://www.luogu.com.cn/problem/P4089）circle|scc|self_loop
-5145（https://www.luogu.com.cn/problem/P5145）circle_based_tree|scc
+P3387（https://www.luogu.com.cn/problem/P3387）scc
+P2661（https://www.luogu.com.cn/problem/P2661）smallest_circle|directed_circle_based_tree|topological_sort
+P4089（https://www.luogu.com.cn/problem/P4089）circle|scc|self_loop
+P5145（https://www.luogu.com.cn/problem/P5145）circle_based_tree|scc
 
-4782（https://www.luogu.com.cn/problem/P4782）2-sat|scc|classical
-5782（https://www.luogu.com.cn/problem/P5782）2-sat|scc|classical
-4171（https://www.luogu.com.cn/problem/P4171）2-sat|scc|classical
+P4782（https://www.luogu.com.cn/problem/P4782）2-sat|scc|classical
+P5782（https://www.luogu.com.cn/problem/P5782）2-sat|scc|classical
+P4171（https://www.luogu.com.cn/problem/P4171）2-sat|scc|classical
 ===================================CodeForces===================================
 1438C（https://codeforces.com/problemset/problem/1438/C）2-sat|scc|classical
 
@@ -35,6 +35,10 @@ class Solution:
 
     @staticmethod
     def lg_p3387(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3387
+        tag: scc
+        """
         # 有向图scc将环缩点后求最长路
         n, m = ac.read_list_ints()
         weight = ac.read_list_ints()

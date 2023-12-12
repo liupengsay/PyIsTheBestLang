@@ -20,20 +20,20 @@ minimum_point_cover_range|minimum_group_range_disjoint|maximum_point_cover_range
 32（https://leetcode.com/problems/t3fKg1/）greedy|minimum_point_cover_range
 
 =====================================LuoGu======================================
-2082（https://www.luogu.com.cn/problem/P2082）range_merge_to_disjoint
-2434（https://www.luogu.com.cn/problem/P2434）range_merge_to_disjoint
-2970（https://www.luogu.com.cn/problem/P2970）maximum_disjoint_range|greedy|binary_search|dp
-6123（https://www.luogu.com.cn/problem/P6123）range_merge_to_disjoint
-2684（https://www.luogu.com.cn/problem/P2684）minimum_range_cover
-1233（https://www.luogu.com.cn/problem/P1233）partial_order|lis|range_include
-1496（https://www.luogu.com.cn/problem/P1496）range_merge_to_disjoint
-1668（https://www.luogu.com.cn/problem/P1668）minimum_range_cover
-2887（https://www.luogu.com.cn/problem/P2887）maximum_point_cover_range
-3661（https://www.luogu.com.cn/problem/P3661）greedy
-3737（https://www.luogu.com.cn/problem/P3737）greedy|range_cover
-5199（https://www.luogu.com.cn/problem/P5199）greedy|range_include
-1868（https://www.luogu.com.cn/problem/P1868）liner_dp|binary_search|maximum_disjoint_range
-2439（https://www.luogu.com.cn/problem/P2439）liner_dp|binary_search|maximum_disjoint_range
+P2082（https://www.luogu.com.cn/problem/P2082）range_merge_to_disjoint
+P2434（https://www.luogu.com.cn/problem/P2434）range_merge_to_disjoint
+P2970（https://www.luogu.com.cn/problem/P2970）maximum_disjoint_range|greedy|binary_search|dp
+P6123（https://www.luogu.com.cn/problem/P6123）range_merge_to_disjoint
+P2684（https://www.luogu.com.cn/problem/P2684）minimum_range_cover
+P1233（https://www.luogu.com.cn/problem/P1233）partial_order|lis|range_include
+P1496（https://www.luogu.com.cn/problem/P1496）range_merge_to_disjoint
+P1668（https://www.luogu.com.cn/problem/P1668）minimum_range_cover
+P2887（https://www.luogu.com.cn/problem/P2887）maximum_point_cover_range
+P3661（https://www.luogu.com.cn/problem/P3661）greedy
+P3737（https://www.luogu.com.cn/problem/P3737）greedy|range_cover
+P5199（https://www.luogu.com.cn/problem/P5199）greedy|range_include
+P1868（https://www.luogu.com.cn/problem/P1868）liner_dp|binary_search|maximum_disjoint_range
+P2439（https://www.luogu.com.cn/problem/P2439）liner_dp|binary_search|maximum_disjoint_range
 
 ===================================CodeForces===================================
 827A（https://codeforces.com/problemset/problem/827/A）range_merge_to_disjoint|greedy
@@ -64,6 +64,10 @@ class Solution:
 
     @staticmethod
     def lg_p1496(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1496
+        tag: range_merge_to_disjoint
+        """
         # range_merge_to_disjoint确定覆盖范围
         n = ac.read_int()
         lst = []
@@ -134,6 +138,10 @@ class Solution:
 
     @staticmethod
     def lg_p2684(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2684
+        tag: minimum_range_cover
+        """
         n, t = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         ac.st(Range().minimum_range_cover(1, t, nums))
@@ -255,6 +263,10 @@ class Solution:
 
     @staticmethod
     def lg_p1668(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1668
+        tag: minimum_range_cover
+        """
         # 最少range_cover问题
         n, t = ac.read_list_ints()
         lst = [ac.read_list_ints() for _ in range(n)]
@@ -264,6 +276,10 @@ class Solution:
 
     @staticmethod
     def lg_p1668_2(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1668
+        tag: minimum_range_cover
+        """
         # 最少range_cover问题
         n, t = ac.read_list_ints()
         t -= 1
@@ -274,6 +290,10 @@ class Solution:
 
     @staticmethod
     def lg_p2887(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2887
+        tag: maximum_point_cover_range
+        """
         # 最多点匹配覆盖，每条线段选一个点匹配，最多匹配数有点类似bipartite_graph
         n, m = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
@@ -292,6 +312,10 @@ class Solution:
 
     @staticmethod
     def lg_p3661(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3661
+        tag: greedy
+        """
         # 区间与点集greedy匹配
         n, m = ac.read_list_ints()
         lst = LocalSortedList([ac.read_int() for _ in range(n)])
@@ -310,6 +334,10 @@ class Solution:
 
     @staticmethod
     def lg_p3737(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3737
+        tag: greedy|range_cover
+        """
         # 区间点覆盖greedy
         n, r = ac.read_list_ints()
         lst = []
@@ -337,6 +365,10 @@ class Solution:
 
     @staticmethod
     def lg_p5199(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5199
+        tag: greedy|range_include
+        """
         # 区间包含greedy最多互不包含的区间个数
         n = ac.read_int()
         nums = []

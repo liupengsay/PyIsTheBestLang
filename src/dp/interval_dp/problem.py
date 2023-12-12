@@ -13,23 +13,23 @@ Description：prefix_sum|interval_dp|preprocess_dp|memory_search
 1312（https://leetcode.com/problems/minimum-insertion-steps-to-make-a-string-palindrome/）interval_dp|longest_palindrome_subsequence
 
 =====================================LuoGu======================================
-1521（https://www.luogu.com.cn/problem/P1521）merge_sort|multiplication_method|tree_array
-1775（https://www.luogu.com.cn/problem/P1775）classical|interval_dp|prefix_sum
-2426（https://www.luogu.com.cn/problem/P2426）classical|interval_dp
-2690（https://www.luogu.com.cn/problem/P2690）interval_dp|implemention|memory_search
-1435（https://www.luogu.com.cn/problem/P1435）classical|interval_dp|longest_non_sub_consequence_palindrome
-1388（https://www.luogu.com.cn/problem/P1388）back_track|brute_force|interval_dp
-1103（https://www.luogu.com.cn/problem/P1103）matrix_dp
-2858（https://www.luogu.com.cn/problem/P2858）classical|interval_dp
-1880（https://www.luogu.com.cn/problem/P1880）circular|interval_dp
-3205（https://www.luogu.com.cn/problem/P3205）interval_dp|rolling_update
-1040（https://www.luogu.com.cn/problem/P1040）interval_dp|specific_plan
-1430（https://www.luogu.com.cn/problem/P1430）interval_dp|prefix_sum
-2308（https://www.luogu.com.cn/problem/P2308）interval_dp|recursion
-2734（https://www.luogu.com.cn/problem/P2734）prefix_sum|interval_dp
-3004（https://www.luogu.com.cn/problem/P3004）interval_dp
-3205（https://www.luogu.com.cn/problem/P3205）interval_dp|rolling_update
-4170（https://www.luogu.com.cn/problem/P4170）interval_dp|math
+P1521（https://www.luogu.com.cn/problem/P1521）merge_sort|multiplication_method|tree_array
+P1775（https://www.luogu.com.cn/problem/P1775）classical|interval_dp|prefix_sum
+P2426（https://www.luogu.com.cn/problem/P2426）classical|interval_dp
+P2690（https://www.luogu.com.cn/problem/P2690）interval_dp|implemention|memory_search
+P1435（https://www.luogu.com.cn/problem/P1435）classical|interval_dp|longest_non_sub_consequence_palindrome
+P1388（https://www.luogu.com.cn/problem/P1388）back_track|brute_force|interval_dp
+P1103（https://www.luogu.com.cn/problem/P1103）matrix_dp
+P2858（https://www.luogu.com.cn/problem/P2858）classical|interval_dp
+P1880（https://www.luogu.com.cn/problem/P1880）circular|interval_dp
+P3205（https://www.luogu.com.cn/problem/P3205）interval_dp|rolling_update
+P1040（https://www.luogu.com.cn/problem/P1040）interval_dp|specific_plan
+P1430（https://www.luogu.com.cn/problem/P1430）interval_dp|prefix_sum
+P2308（https://www.luogu.com.cn/problem/P2308）interval_dp|recursion
+P2734（https://www.luogu.com.cn/problem/P2734）prefix_sum|interval_dp
+P3004（https://www.luogu.com.cn/problem/P3004）interval_dp
+P3205（https://www.luogu.com.cn/problem/P3205）interval_dp|rolling_update
+P4170（https://www.luogu.com.cn/problem/P4170）interval_dp|math
 
 ===================================CodeForces===================================
 1509C（https://codeforces.com/problemset/problem/1509/C）interval_dp
@@ -184,6 +184,10 @@ class Solution:
 
     @staticmethod
     def lg_p3205(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3205
+        tag: interval_dp|rolling_update
+        """
         # interval_dp|滚动数组更新
         n = ac.read_int()
         nums = ac.read_list_ints()
@@ -214,6 +218,10 @@ class Solution:
 
     @staticmethod
     def lg_p1040(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1040
+        tag: interval_dp|specific_plan
+        """
         # interval_dp|最小代价，并迭代还原前序遍历路径
         n = ac.read_int()
         nums = ac.read_list_ints()
@@ -250,6 +258,10 @@ class Solution:
 
     @staticmethod
     def lg_p1430(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1430
+        tag: interval_dp|prefix_sum
+        """
         # interval_dp||前缀数组优化
         for _ in range(ac.read_int()):
             nums = ac.read_list_ints()
@@ -276,6 +288,10 @@ class Solution:
 
     @staticmethod
     def lg_p2308(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2308
+        tag: interval_dp|recursion
+        """
         # interval_dp|，并recursion方式反解括号添|方式以及每一步的和
         n = ac.read_int()
         nums = ac.read_list_ints()
@@ -321,6 +337,10 @@ class Solution:
 
     @staticmethod
     def lg_p2734(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2734
+        tag: prefix_sum|interval_dp
+        """
 
         # prefix_sum|interval_dp
 
@@ -352,6 +372,10 @@ class Solution:
 
     @staticmethod
     def lg_p3004(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3004
+        tag: interval_dp
+        """
         # 简单interval_dp
         n = ac.read_int()
         nums = [ac.read_int() for _ in range(n)]
@@ -370,6 +394,10 @@ class Solution:
 
     @staticmethod
     def lg_p4170(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4170
+        tag: interval_dp|math
+        """
         # interval_dp 注意转移方程
         s = ac.read_str()
         n = len(s)

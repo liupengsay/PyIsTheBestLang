@@ -13,17 +13,17 @@ Description：triangle|rectangle|square|line|circle|cube
 1401（https://leetcode.com/problems/circle-and-rectangle-overlapping/）geometry|rectangle
 
 =====================================LuoGu======================================
-1665（https://www.luogu.com.cn/problem/P1665）brute_force|diagonal|square
-2313（https://www.luogu.com.cn/problem/P2313）square|circle
-2358（https://www.luogu.com.cn/problem/P2358）geometry|cube
-2665（https://www.luogu.com.cn/problem/P2665）slope
-1355（https://www.luogu.com.cn/problem/P1355）triangle|area|location
-1142（https://www.luogu.com.cn/problem/P1142）line_slope|brute_force|classical
-2778（https://www.luogu.com.cn/problem/P2778）brute_force|circle|location
-3021（https://www.luogu.com.cn/problem/P3021）inclusion_exclusion|counter|brute_force
-1257（https://www.luogu.com.cn/problem/P1257）closet_pair|divide_and_conquer|hash|block_plane|sorted_list|classical
-7883（https://www.luogu.com.cn/problem/P7883）closet_pair|divide_and_conquer|hash|block_plane|sorted_list|classical
-1429（https://www.luogu.com.cn/problem/P1429）closet_pair|divide_and_conquer|hash|block_plane|sorted_list|classical
+P1665（https://www.luogu.com.cn/problem/P1665）brute_force|diagonal|square
+P2313（https://www.luogu.com.cn/problem/P2313）square|circle
+P2358（https://www.luogu.com.cn/problem/P2358）geometry|cube
+P2665（https://www.luogu.com.cn/problem/P2665）slope
+P1355（https://www.luogu.com.cn/problem/P1355）triangle|area|location
+P1142（https://www.luogu.com.cn/problem/P1142）line_slope|brute_force|classical
+P2778（https://www.luogu.com.cn/problem/P2778）brute_force|circle|location
+P3021（https://www.luogu.com.cn/problem/P3021）inclusion_exclusion|counter|brute_force
+P1257（https://www.luogu.com.cn/problem/P1257）closet_pair|divide_and_conquer|hash|block_plane|sorted_list|classical
+P7883（https://www.luogu.com.cn/problem/P7883）closet_pair|divide_and_conquer|hash|block_plane|sorted_list|classical
+P1429（https://www.luogu.com.cn/problem/P1429）closet_pair|divide_and_conquer|hash|block_plane|sorted_list|classical
 
 
 ===================================CodeForces===================================
@@ -104,6 +104,10 @@ class Solution:
 
     @staticmethod
     def lg_p1665(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1665
+        tag: brute_force|diagonal|square
+        """
         # 可以组成正方形的点的个数
         n = ac.read_int()
         lst = [ac.read_list_ints() for _ in range(n)]

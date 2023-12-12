@@ -10,34 +10,34 @@ Description：prim is node wise and kruskal is edge wise, prim is suitable for d
 1724（https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths-ii/）mst|classical|multiplication_method|lca
 
 =====================================LuoGu======================================
-3366（https://www.luogu.com.cn/problem/P3366）mst
-2820（https://www.luogu.com.cn/problem/P2820）reverse_thinking|mst
-1991（https://www.luogu.com.cn/problem/P1991）mst|connected_graph
-1661（https://www.luogu.com.cn/problem/P1661）mst
-1547（https://www.luogu.com.cn/problem/P1547）mst
-2121（https://www.luogu.com.cn/problem/P2121）limited_mst
-2126（https://www.luogu.com.cn/problem/P2126）mst
-2872（https://www.luogu.com.cn/problem/P2872）prim|mst
-2330（https://www.luogu.com.cn/problem/P2330）mst
-2504（https://www.luogu.com.cn/problem/P2504）mst
-2700（https://www.luogu.com.cn/problem/P2700）reverse_thinking|mst|union_find|size
-1195（https://www.luogu.com.cn/record/list?user=739032&status=12&page=13）mst
-1194（https://www.luogu.com.cn/problem/P1194）mst
-2916（https://www.luogu.com.cn/problem/P2916）custom_sort|mst|classical
-4955（https://www.luogu.com.cn/problem/P4955）mst
-6705（https://www.luogu.com.cn/problem/P6705）brute_force|mst
-7775（https://www.luogu.com.cn/problem/P7775）bfs|mst_like
-2658（https://www.luogu.com.cn/problem/P2658）classical|mst
-4180（https://www.luogu.com.cn/problem/P4180）mst|lca|multiplication_method|strictly_second_mst|classical
-1265（https://www.luogu.com.cn/problem/P1265）prim|mst
-1340（https://www.luogu.com.cn/problem/P1340）reverse_order|union_find|mst
-1550（https://www.luogu.com.cn/problem/P1550）build_graph|mst|fake_source
-2212（https://www.luogu.com.cn/problem/P2212）prim|mst|dense_graph
-2847（https://www.luogu.com.cn/problem/P2847）prim|mst|dense_graph
-3535（https://www.luogu.com.cn/problem/P3535）mst|judge_circle_by_union_find|connected
-4047（https://www.luogu.com.cn/problem/P4047）mst
-6171（https://www.luogu.com.cn/problem/P6171）sparse|kruskal|mst
-1550（https://www.luogu.com.cn/problem/P1550）mst|build_graph|fake_source|classical
+P3366（https://www.luogu.com.cn/problem/P3366）mst
+P2820（https://www.luogu.com.cn/problem/P2820）reverse_thinking|mst
+P1991（https://www.luogu.com.cn/problem/P1991）mst|connected_graph
+P1661（https://www.luogu.com.cn/problem/P1661）mst
+P1547（https://www.luogu.com.cn/problem/P1547）mst
+P2121（https://www.luogu.com.cn/problem/P2121）limited_mst
+P2126（https://www.luogu.com.cn/problem/P2126）mst
+P2872（https://www.luogu.com.cn/problem/P2872）prim|mst
+P2330（https://www.luogu.com.cn/problem/P2330）mst
+P2504（https://www.luogu.com.cn/problem/P2504）mst
+P2700（https://www.luogu.com.cn/problem/P2700）reverse_thinking|mst|union_find|size
+list?user=739032&status=12&page=13（https://www.luogu.com.cn/record/list?user=739032&status=12&page=13）mst
+P1194（https://www.luogu.com.cn/problem/P1194）mst
+P2916（https://www.luogu.com.cn/problem/P2916）custom_sort|mst|classical
+P4955（https://www.luogu.com.cn/problem/P4955）mst
+P6705（https://www.luogu.com.cn/problem/P6705）brute_force|mst
+P7775（https://www.luogu.com.cn/problem/P7775）bfs|mst_like
+P2658（https://www.luogu.com.cn/problem/P2658）classical|mst
+P4180（https://www.luogu.com.cn/problem/P4180）mst|lca|multiplication_method|strictly_second_mst|classical
+P1265（https://www.luogu.com.cn/problem/P1265）prim|mst
+P1340（https://www.luogu.com.cn/problem/P1340）reverse_order|union_find|mst
+P1550（https://www.luogu.com.cn/problem/P1550）build_graph|mst|fake_source
+P2212（https://www.luogu.com.cn/problem/P2212）prim|mst|dense_graph
+P2847（https://www.luogu.com.cn/problem/P2847）prim|mst|dense_graph
+P3535（https://www.luogu.com.cn/problem/P3535）mst|judge_circle_by_union_find|connected
+P4047（https://www.luogu.com.cn/problem/P4047）mst
+P6171（https://www.luogu.com.cn/problem/P6171）sparse|kruskal|mst
+P1550（https://www.luogu.com.cn/problem/P1550）mst|build_graph|fake_source|classical
 
 ===================================CodeForces===================================
 472D（https://codeforces.com/problemset/problem/472/D）mst|construction|shortest_path|prim
@@ -72,6 +72,10 @@ class Solution:
 
     @staticmethod
     def lg_p1991(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1991
+        tag: mst|connected_graph
+        """
         # 利用mst| k 个连通块所需的最大边权值
         k, n = ac.read_list_ints()
         pos = [ac.read_list_ints() for _ in range(n)]
@@ -110,6 +114,10 @@ class Solution:
 
     @staticmethod
     def lg_p3366_1(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3366
+        tag: mst
+        """
         # kruskal求mst|
         n, m = ac.read_list_ints()
         edges = []
@@ -127,6 +135,10 @@ class Solution:
 
     @staticmethod
     def lg_p3366_2(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3366
+        tag: mst
+        """
         # prim求mst|
         n, m = ac.read_list_ints()
         edges = []
@@ -234,6 +246,10 @@ class Solution:
 
     @staticmethod
     def lg_p2872(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2872
+        tag: prim|mst
+        """
 
         # primmst|，适合稠密图场景
         def dis(x1, y1, x2, y2):
@@ -273,6 +289,10 @@ class Solution:
 
     @staticmethod
     def lg_p1194(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1194
+        tag: mst
+        """
         # 超级源点build_graph|mst|
         a, b = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(b)]
@@ -347,6 +367,10 @@ class Solution:
 
     @staticmethod
     def lg_p4180(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4180
+        tag: mst|lca|multiplication_method|strictly_second_mst|classical
+        """
         # mst|与LCA倍增查询strictly_second_mst
         n, m = ac.read_list_ints()
         edges = []
@@ -416,6 +440,10 @@ class Solution:
 
     @staticmethod
     def lg_p1265(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1265
+        tag: prim|mst
+        """
         # primmst|，适合稠密图场景
 
         def dis(x1, y1, x2, y2):
@@ -449,6 +477,10 @@ class Solution:
 
     @staticmethod
     def lg_p1340(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1340
+        tag: reverse_order|union_find|mst
+        """
         # reverse_order|union_find，维护mst|的边
         n, w = ac.read_list_ints()
 
@@ -491,6 +523,10 @@ class Solution:
 
     @staticmethod
     def lg_p1550(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1550
+        tag: mst|build_graph|fake_source|classical
+        """
         # 建立虚拟源点，转换为mst|问题
         n = ac.read_int()
         edges = []
@@ -515,6 +551,10 @@ class Solution:
 
     @staticmethod
     def lg_p2212(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2212
+        tag: prim|mst|dense_graph
+        """
 
         # primmst|，适合稠密图场景
         def dis(x1, y1, x2, y2):
@@ -549,6 +589,10 @@ class Solution:
 
     @staticmethod
     def lg_p2658(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2658
+        tag: classical|mst
+        """
         # classicalmst|
         m, n = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
@@ -582,6 +626,10 @@ class Solution:
 
     @staticmethod
     def lg_p2847(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2847
+        tag: prim|mst|dense_graph
+        """
 
         # primmst|，适合稠密图场景
         def dis(x1, y1, x2, y2):
@@ -616,6 +664,10 @@ class Solution:
 
     @staticmethod
     def lg_p3535(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3535
+        tag: mst|judge_circle_by_union_find|connected
+        """
         # mst|思想与union_find判环
         n, m, k = ac.read_list_ints()
         edge = []
@@ -637,6 +689,10 @@ class Solution:
 
     @staticmethod
     def lg_p4047(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4047
+        tag: mst
+        """
 
         def dis():
             return (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)
@@ -668,6 +724,10 @@ class Solution:
 
     @staticmethod
     def lg_p6171(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6171
+        tag: sparse|kruskal|mst
+        """
         # 稀疏图 Kruskal mst|
         a, b, n, m = ac.read_list_ints()
         nums1 = [0, a] + [ac.read_int() for _ in range(n)]

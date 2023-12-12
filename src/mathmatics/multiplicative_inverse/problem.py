@@ -3,10 +3,10 @@ Algorithm：multiplicative_reverse|comb
 Description：the reverse mod must be coprime, otherwise the gcd will deal with specially
 
 =====================================LuoGu======================================
-3811（https://www.luogu.com.cn/problem/P3811）multiplicative_reverse
-5431（https://www.luogu.com.cn/problem/P5431）multiplicative_reverse
-2613（https://www.luogu.com.cn/problem/P2613）multiplicative_reverse
-5431（https://www.luogu.com.cn/problem/P5431）prefix_suffix
+P3811（https://www.luogu.com.cn/problem/P3811）multiplicative_reverse
+P5431（https://www.luogu.com.cn/problem/P5431）multiplicative_reverse
+P2613（https://www.luogu.com.cn/problem/P2613）multiplicative_reverse
+P5431（https://www.luogu.com.cn/problem/P5431）prefix_suffix
 
 ===================================CodeForces===================================
 1833F（https://codeforces.com/contest/1833/problem/F）prefix_mul|mod
@@ -25,6 +25,10 @@ class Solution:
 
     @staticmethod
     def lg_p3811(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3811
+        tag: multiplicative_reverse
+        """
         n, p = ac.read_list_ints()
         for i in range(1, n + 1):
             ac.st(MultiplicativeInverse().mod_reverse(i, p))
@@ -56,6 +60,10 @@ class Solution:
 
     @staticmethod
     def lg_p5431(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5431
+        tag: prefix_suffix
+        """
         # 转换为前缀积与后缀积求解
         n, p, k = ac.read_list_ints()
         a = ac.read_list_ints()

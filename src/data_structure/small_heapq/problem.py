@@ -14,21 +14,21 @@ Description：greedy
 2263（https://leetcode.com/problems/make-array-non-decreasing-or-non-increasing/）heapq|greedy
 
 =====================================LuoGu======================================
-1168（https://www.luogu.com.cn/problem/P1168）heapq|median
-1801（https://www.luogu.com.cn/problem/P1801）heapq
-2085（https://www.luogu.com.cn/problem/P2085）math|heapq
-1631（https://www.luogu.com.cn/problem/P1631）heapq|pointer
-4053（https://www.luogu.com.cn/problem/P4053）delay_heapq|greedy
-1878（https://www.luogu.com.cn/problem/P1878）hash|heapq|implemention
-3620（https://www.luogu.com.cn/problem/P3620）greedy|heapq|double_linked_list
-2168（https://www.luogu.com.cn/problem/P2168）huffman_tree|heapq|greedy
-2278（https://www.luogu.com.cn/problem/P2278）heapq|implemention
-1717（https://www.luogu.com.cn/problem/P1717）brute_force|heapq|greedy
-1905（https://www.luogu.com.cn/problem/P1905）heapq|greedy
-2409（https://www.luogu.com.cn/problem/P2409）heapq
-2949（https://www.luogu.com.cn/problem/P2949）heapq|greedy|implemention|delay_heapq|lazy_heapq
-6033（https://www.luogu.com.cn/problem/P6033）greedy|deque
-4597（https://www.luogu.com.cn/problem/P4597）heapq|greedy
+P1168（https://www.luogu.com.cn/problem/P1168）heapq|median
+P1801（https://www.luogu.com.cn/problem/P1801）heapq
+P2085（https://www.luogu.com.cn/problem/P2085）math|heapq
+P1631（https://www.luogu.com.cn/problem/P1631）heapq|pointer
+P4053（https://www.luogu.com.cn/problem/P4053）delay_heapq|greedy
+P1878（https://www.luogu.com.cn/problem/P1878）hash|heapq|implemention
+P3620（https://www.luogu.com.cn/problem/P3620）greedy|heapq|double_linked_list
+P2168（https://www.luogu.com.cn/problem/P2168）huffman_tree|heapq|greedy
+P2278（https://www.luogu.com.cn/problem/P2278）heapq|implemention
+P1717（https://www.luogu.com.cn/problem/P1717）brute_force|heapq|greedy
+P1905（https://www.luogu.com.cn/problem/P1905）heapq|greedy
+P2409（https://www.luogu.com.cn/problem/P2409）heapq
+P2949（https://www.luogu.com.cn/problem/P2949）heapq|greedy|implemention|delay_heapq|lazy_heapq
+P6033（https://www.luogu.com.cn/problem/P6033）greedy|deque
+P4597（https://www.luogu.com.cn/problem/P4597）heapq|greedy
 
 =====================================AcWing=====================================
 146（https://www.acwing.com/problem/content/description/148/）heapq
@@ -227,6 +227,10 @@ class Solution:
 
     @staticmethod
     def lg_p2168(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2168
+        tag: huffman_tree|heapq|greedy
+        """
         # heapq|greedy与霍夫曼树Huffman Tree
         n, k = ac.read_list_ints()
         stack = [[ac.read_int(), 0] for _ in range(n)]
@@ -249,6 +253,10 @@ class Solution:
 
     @staticmethod
     def lg_p1631(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1631
+        tag: heapq|pointer
+        """
         # 求两个数组的前 n 个最小的元素和
         n = ac.read_int()
         nums1 = ac.read_list_ints()
@@ -268,6 +276,10 @@ class Solution:
 
     @staticmethod
     def lg_p4053(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4053
+        tag: delay_heapq|greedy
+        """
         # 懒惰删除，implementiongreedy
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
@@ -288,6 +300,10 @@ class Solution:
 
     @staticmethod
     def lg_p2085(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2085
+        tag: math|heapq
+        """
         # 利用一元二次方程的单调性与pointerheapqgreedy选取
         n, m = ac.read_list_ints()
         stack = []
@@ -305,6 +321,10 @@ class Solution:
 
     @staticmethod
     def lg_p2278(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2278
+        tag: heapq|implemention
+        """
         # heapqimplemention应用
         now = []  # idx, reach, need, level, end
         ans = []
@@ -358,6 +378,10 @@ class Solution:
 
     @staticmethod
     def lg_p1717(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1717
+        tag: brute_force|heapq|greedy
+        """
         # brute_force最远到达地点heapq|greedy选取
         ans = 0
         n = ac.read_int()
@@ -383,6 +407,10 @@ class Solution:
 
     @staticmethod
     def lg_p1905(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1905
+        tag: heapq|greedy
+        """
         # heapq|从大到小greedy摆放
         ac.read_int()
         p = ac.read_int()
@@ -401,6 +429,10 @@ class Solution:
 
     @staticmethod
     def lg_p2409(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2409
+        tag: heapq
+        """
         # heapq|，最小的k个和
         n, k = ac.read_list_ints()
         pre = ac.read_list_ints()[1:]
@@ -422,6 +454,10 @@ class Solution:
 
     @staticmethod
     def lg_p2949(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2949
+        tag: heapq|greedy|implemention|delay_heapq|lazy_heapq
+        """
         # heapq|greedyimplemention懒惰延迟删除
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
@@ -438,6 +474,10 @@ class Solution:
 
     @staticmethod
     def lg_p6033(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6033
+        tag: greedy|deque
+        """
         # 队列 O(n) implemention合并果子
         ac.read_int()
         pre = deque(sorted(ac.read_list_ints()))

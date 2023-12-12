@@ -26,33 +26,33 @@ Description：graph|reverse_thinking|permutation_circle|offline_query|merge_wise
 947（https://leetcode.com/contest/weekly-contest-112/problems/most-stones-removed-with-same-row-or-column/）brain_teaser|union_find
 
 =====================================LuoGu======================================
-3367（https://www.luogu.com.cn/problem/P3367）connected_part|counter|union_find
-5836（https://www.luogu.com.cn/problem/P5836）union_find|several_union_find
-3144（https://www.luogu.com.cn/problem/P3144）reverse_order|union_find|connected_part|counter
-5836（https://www.luogu.com.cn/problem/P5836）union_find|several_union_find
-5877（https://www.luogu.com.cn/problem/P5877）union_find|implemention|counter
-6111（https://www.luogu.com.cn/problem/P6111）union_find|offline_query
-6121（https://www.luogu.com.cn/problem/P6121）reverse_order|union_find|size
-6153（https://www.luogu.com.cn/problem/P6153）union_find|greedy|classical
-1955（https://www.luogu.com.cn/problem/P1955）union_find
-1196（https://www.luogu.com.cn/problem/P1196）union_find_weighted
-1197（https://www.luogu.com.cn/problem/P1197）reverse_order|union_find，reverse_order|brute_force|part
-1522（https://www.luogu.com.cn/problem/P1522）connected_part|brute_force|high_precision|tree_diameter
-1621（https://www.luogu.com.cn/problem/P1621）euler_series|O(nlogn)|prime_fractorization
-1892（https://www.luogu.com.cn/problem/P1892）union_find|bipartite_graph
-2189（https://www.luogu.com.cn/problem/P2189）union_find
-2307（https://www.luogu.com.cn/problem/P2307）union_find
-3420（https://www.luogu.com.cn/problem/P3420）union_find
-5429（https://www.luogu.com.cn/problem/P5429）union_find
-6193（https://www.luogu.com.cn/problem/P6193）permutation_circle
-6706（https://www.luogu.com.cn/problem/P6706）directed_graph|union_find|reverse_order|find_range_merge_to_disjoint
-7991（https://www.luogu.com.cn/problem/P7991）union_find|shrink_point
-8230（https://www.luogu.com.cn/problem/P8230）layer|union_find|implemention
-8637（https://www.luogu.com.cn/problem/P8637）union_find|permutation_circle
-8686（https://www.luogu.com.cn/problem/P8686）union_find
-8785（https://www.luogu.com.cn/problem/P8785）union_find|counter
-8787（https://www.luogu.com.cn/problem/P8787）greedy|heapq|implemention|union_find
-8881（https://www.luogu.com.cn/problem/P8881）brain_teaser|union_find|circle_judge|part
+P3367（https://www.luogu.com.cn/problem/P3367）connected_part|counter|union_find
+P5836（https://www.luogu.com.cn/problem/P5836）union_find|several_union_find
+P3144（https://www.luogu.com.cn/problem/P3144）reverse_order|union_find|connected_part|counter
+P5836（https://www.luogu.com.cn/problem/P5836）union_find|several_union_find
+P5877（https://www.luogu.com.cn/problem/P5877）union_find|implemention|counter
+P6111（https://www.luogu.com.cn/problem/P6111）union_find|offline_query
+P6121（https://www.luogu.com.cn/problem/P6121）reverse_order|union_find|size
+P6153（https://www.luogu.com.cn/problem/P6153）union_find|greedy|classical
+P1955（https://www.luogu.com.cn/problem/P1955）union_find
+P1196（https://www.luogu.com.cn/problem/P1196）union_find_weighted
+P1197（https://www.luogu.com.cn/problem/P1197）reverse_order|union_find，reverse_order|brute_force|part
+P1522（https://www.luogu.com.cn/problem/P1522）connected_part|brute_force|high_precision|tree_diameter
+P1621（https://www.luogu.com.cn/problem/P1621）euler_series|O(nlogn)|prime_fractorization
+P1892（https://www.luogu.com.cn/problem/P1892）union_find|bipartite_graph
+P2189（https://www.luogu.com.cn/problem/P2189）union_find
+P2307（https://www.luogu.com.cn/problem/P2307）union_find
+P3420（https://www.luogu.com.cn/problem/P3420）union_find
+P5429（https://www.luogu.com.cn/problem/P5429）union_find
+P6193（https://www.luogu.com.cn/problem/P6193）permutation_circle
+P6706（https://www.luogu.com.cn/problem/P6706）directed_graph|union_find|reverse_order|find_range_merge_to_disjoint
+P7991（https://www.luogu.com.cn/problem/P7991）union_find|shrink_point
+P8230（https://www.luogu.com.cn/problem/P8230）layer|union_find|implemention
+P8637（https://www.luogu.com.cn/problem/P8637）union_find|permutation_circle
+P8686（https://www.luogu.com.cn/problem/P8686）union_find
+P8785（https://www.luogu.com.cn/problem/P8785）union_find|counter
+P8787（https://www.luogu.com.cn/problem/P8787）greedy|heapq|implemention|union_find
+P8881（https://www.luogu.com.cn/problem/P8881）brain_teaser|union_find|circle_judge|part
 
 ===================================CodeForces===================================
 25D（https://codeforces.com/problemset/problem/25/D）union_find
@@ -354,6 +354,10 @@ class Solution:
 
     @staticmethod
     def lg_p1196(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1196
+        tag: union_find_weighted
+        """
         # 带权union_find
         uf = UnionFindWeighted(30000)
         for _ in range(ac.read_int()):
@@ -372,6 +376,10 @@ class Solution:
 
     @staticmethod
     def lg_p1197(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1197
+        tag: reverse_order|union_find，reverse_order|brute_force|part
+        """
         # reverse_order|union_find，reverse_order|brute_force联通块个数
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
@@ -403,6 +411,10 @@ class Solution:
 
     @staticmethod
     def lg_p1522(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1522
+        tag: connected_part|brute_force|high_precision|tree_diameter
+        """
 
         # 连通块，brute_force新增路径并high_precision联通块tree_diameter
 
@@ -446,6 +458,10 @@ class Solution:
 
     @staticmethod
     def lg_p1621(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1621
+        tag: euler_series|O(nlogn)|prime_fractorization
+        """
         # 利用prime筛的思想对数复杂度合并公共质因数大于p的数并连通块数量
         a, b, p = ac.read_list_ints()
         nums = list(range(a, b + 1))
@@ -469,6 +485,10 @@ class Solution:
 
     @staticmethod
     def lg_p1892(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1892
+        tag: union_find|bipartite_graph
+        """
         # union_find，敌人与朋友关系
         n = ac.read_int()
         m = ac.read_int()
@@ -494,6 +514,10 @@ class Solution:
 
     @staticmethod
     def lg_p1955(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1955
+        tag: union_find
+        """
         # union_find裸题
         t = ac.read_int()
         for _ in range(t):
@@ -522,6 +546,10 @@ class Solution:
 
     @staticmethod
     def lg_p2189(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2189
+        tag: union_find
+        """
 
         # union_find题，确定访问顺序的合法性
         n, m, k, q = ac.read_list_ints()
@@ -562,6 +590,10 @@ class Solution:
 
     @staticmethod
     def lg_p2307(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2307
+        tag: union_find
+        """
         # union_find判定树的生成是否合法
         while True:
             ans = []
@@ -588,6 +620,10 @@ class Solution:
 
     @staticmethod
     def lg_p3420(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3420
+        tag: union_find
+        """
         # 特殊图 n 个节点 n 条边的联通块数量
         n = ac.read_int()
         uf = UnionFind(n)
@@ -599,6 +635,10 @@ class Solution:
 
     @staticmethod
     def lg_p6193(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6193
+        tag: permutation_circle
+        """
         # permutation_circle|交换代价
         n = ac.read_int()
         nums = [ac.read_int() for _ in range(n)]
@@ -647,6 +687,10 @@ class Solution:
 
     @staticmethod
     def lg_p6706(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6706
+        tag: directed_graph|union_find|reverse_order|find_range_merge_to_disjoint
+        """
         # 有向图union_find逆序更新边 find_range_merge_to_disjoint 灵活
         n = ac.read_int()
         edge = ac.read_list_ints_minus_one()
@@ -692,6 +736,10 @@ class Solution:
 
     @staticmethod
     def lg_p7991(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P7991
+        tag: union_find|shrink_point
+        """
         # union_find连通块缩点使得 1 和 n 连通最多|两条路的代价
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
@@ -773,6 +821,10 @@ class Solution:
 
     @staticmethod
     def lg_p8230(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8230
+        tag: layer|union_find|implemention
+        """
         # 分层union_find|implemention
         k, m, n = ac.read_list_ints()
         ans = 1
@@ -807,6 +859,10 @@ class Solution:
 
     @staticmethod
     def lg_p8686(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8686
+        tag: union_find
+        """
         # union_find灵活应用
         ac.read_int()
         nums = ac.read_list_ints()
@@ -824,6 +880,10 @@ class Solution:
 
     @staticmethod
     def lg_p8787(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8787
+        tag: greedy|heapq|implemention|union_find
+        """
         # greedyheapq|implemention与union_find灵活应用
         n = ac.read_int()
         nums = ac.read_list_ints()
@@ -853,6 +913,10 @@ class Solution:
 
     @staticmethod
     def lg_p8881(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8881
+        tag: brain_teaser|union_find|circle_judge|part
+        """
         # brain_teaser，union_find判断所属连通分量circle_judge
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()

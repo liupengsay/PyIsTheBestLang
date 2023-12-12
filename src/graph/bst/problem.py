@@ -8,7 +8,7 @@ Description：build a binary_search_tree by the order of array
 1902（https://leetcode.com/problems/depth-of-bst-given-insertion-order/）array_to_bst|tree_depth|implemention
 
 =====================================LuoGu======================================
-2171（https://www.luogu.com.cn/problem/P2171）array_to_bst|reverse_order|union_find|implemention
+P2171（https://www.luogu.com.cn/problem/P2171）array_to_bst|reverse_order|union_find|implemention
 
 """
 from typing import List
@@ -24,6 +24,10 @@ class Solution:
 
     @staticmethod
     def lg_p2171_1(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2171
+        tag: array_to_bst|reverse_order|union_find|implemention
+        """
         # 模板: bst 标准插入 O(n^2)
         ac.read_int()
         nums = ac.read_list_ints()
@@ -36,6 +40,10 @@ class Solution:
 
     @staticmethod
     def lg_p2171_2(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2171
+        tag: array_to_bst|reverse_order|union_find|implemention
+        """
 
         # 模板: bst linked_list|与二叉树implemention插入 O(nlogn)
         @ac.bootstrap
@@ -97,6 +105,10 @@ class Solution:
 
     @staticmethod
     def lg_p2171_3(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2171
+        tag: array_to_bst|reverse_order|union_find|implemention
+        """
         ac.read_int()
         nums = ac.read_list_ints()
         dct = BinarySearchTreeByArray().build_with_unionfind(nums)  # 或者是 build_with_stack

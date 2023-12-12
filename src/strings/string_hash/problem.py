@@ -15,13 +15,13 @@ Description：counter|sliding_window|double_random_mod|hash_crush
 2261（https://leetcode.com/problems/k-divisible-elements-subarrays/submissions/）string_hash
 
 =====================================LuoGu======================================
-8835（https://www.luogu.com.cn/record/list?user=739032&status=12&page=14）string_hash|kmp
-6140（https://www.luogu.com.cn/problem/P6140）greedy|implemention|lexicographical_order|string_hash|binary_search|reverse_order|lcs
-2870（https://www.luogu.com.cn/problem/P2870）greedy|implemention|lexicographical_order|string_hash|binary_search|reverse_order|lcs
-5832（https://www.luogu.com.cn/problem/P5832）string_hash
-2852（https://www.luogu.com.cn/problem/P2852）binary_search|string_hash
-4656（https://www.luogu.com.cn/problem/P4656）string_hash|greedy
-6739（https://www.luogu.com.cn/problem/P6739）prefix_suffix|string_hash
+list?user=739032&status=12&page=14（https://www.luogu.com.cn/record/list?user=739032&status=12&page=14）string_hash|kmp
+P6140（https://www.luogu.com.cn/problem/P6140）greedy|implemention|lexicographical_order|string_hash|binary_search|reverse_order|lcs
+P2870（https://www.luogu.com.cn/problem/P2870）greedy|implemention|lexicographical_order|string_hash|binary_search|reverse_order|lcs
+P5832（https://www.luogu.com.cn/problem/P5832）string_hash
+P2852（https://www.luogu.com.cn/problem/P2852）binary_search|string_hash
+P4656（https://www.luogu.com.cn/problem/P4656）string_hash|greedy
+P6739（https://www.luogu.com.cn/problem/P6739）prefix_suffix|string_hash
 
 ===================================CodeForces===================================
 1800D（https://codeforces.com/problemset/problem/1800/D）prefix_suffix|hash
@@ -415,6 +415,10 @@ class Solution:
 
     @staticmethod
     def lg_p2852(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2852
+        tag: binary_search|string_hash
+        """
 
         # 模板；binary_search|string_hash出现超过 k 次的最长连续子数组
         p1 = random.randint(26, 100)
@@ -444,6 +448,10 @@ class Solution:
 
     @staticmethod
     def lg_p4656(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4656
+        tag: string_hash|greedy
+        """
         # string_hashgreedy选取
 
         p1 = random.randint(26, 100)
@@ -497,6 +505,10 @@ class Solution:
 
     @staticmethod
     def lg_p6739(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6739
+        tag: prefix_suffix|string_hash
+        """
         # prefix_suffixstring_hash
         n = ac.read_int()
         s = ac.read_str()

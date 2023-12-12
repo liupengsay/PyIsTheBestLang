@@ -17,30 +17,30 @@ Lucas:（comb(n, m)%p = comb(n%p, m%p)*comb(n//p, m//p)）%p
 D - Blue and Red Balls（https://atcoder.jp/contests/abc132/tasks/abc132_d）comb|math|counter|classical|equation
 
 =====================================LuoGu======================================
-4071（https://www.luogu.com.cn/problem/P4071）multiplicative_reverse|comb|perm|recursion|fault_perm
-1287（https://www.luogu.com.cn/problem/P1287）second_kind_stirling_number|factorial|dp
-1375（https://www.luogu.com.cn/problem/P1375）catalan_number
-1754（https://www.luogu.com.cn/problem/P1754）catalan_number
-2193（https://www.luogu.com.cn/problem/P2193）partition_method|factorization|comb|specific_plan|classical
-1338（https://www.luogu.com.cn/problem/P1338）brute_force|reverse_order_pair
-1313（https://www.luogu.com.cn/problem/P1313）math|comb|polynomial
-1061（https://www.luogu.com.cn/problem/P1061）implemention|lexicographical_order|nex_perm
-3197（https://www.luogu.com.cn/problem/P3197）counter|fast_power|inclusion_exclusion
-3414（https://www.luogu.com.cn/problem/P3414）comb|odd_even|fast_power
-4369（https://www.luogu.com.cn/problem/P4369）brain_teaser|comb|construction
-5520（https://www.luogu.com.cn/problem/P5520）partition_method|comb
-3807（https://www.luogu.com.cn/problem/P3807）lucas
-1044（https://www.luogu.com.cn/problem/P1044）catalan_number
-1655（https://www.luogu.com.cn/problem/P1655）matrix_dp|stirling_number
-1680（https://www.luogu.com.cn/problem/P1680）partition_method|multiplicative_reverse|lucas|comb(a,b)%m
-2265（https://www.luogu.com.cn/problem/P2265）comb|comb(n+m, m)
-2638（https://www.luogu.com.cn/problem/P2638）partition_method|specific_plan|classical
-2822（https://www.luogu.com.cn/problem/P2822）counter|comb(i, j) % k == 0
-3223（https://www.luogu.com.cn/problem/P3223）inclusion_exclusion|partition_method
-3904（https://www.luogu.com.cn/problem/P3904）second_stirling_number|dp|classical
-4071（https://www.luogu.com.cn/problem/P4071）fault_perm|specific_plan|counter|classical
-5684（https://www.luogu.com.cn/problem/P5684）inclusion_exclusion|counter
-6057（https://www.luogu.com.cn/problem/P6057）inclusion_exclusion|counter
+P4071（https://www.luogu.com.cn/problem/P4071）multiplicative_reverse|comb|perm|recursion|fault_perm
+P1287（https://www.luogu.com.cn/problem/P1287）second_kind_stirling_number|factorial|dp
+P1375（https://www.luogu.com.cn/problem/P1375）catalan_number
+P1754（https://www.luogu.com.cn/problem/P1754）catalan_number
+P2193（https://www.luogu.com.cn/problem/P2193）partition_method|factorization|comb|specific_plan|classical
+P1338（https://www.luogu.com.cn/problem/P1338）brute_force|reverse_order_pair
+P1313（https://www.luogu.com.cn/problem/P1313）math|comb|polynomial
+P1061（https://www.luogu.com.cn/problem/P1061）implemention|lexicographical_order|nex_perm
+P3197（https://www.luogu.com.cn/problem/P3197）counter|fast_power|inclusion_exclusion
+P3414（https://www.luogu.com.cn/problem/P3414）comb|odd_even|fast_power
+P4369（https://www.luogu.com.cn/problem/P4369）brain_teaser|comb|construction
+P5520（https://www.luogu.com.cn/problem/P5520）partition_method|comb
+P3807（https://www.luogu.com.cn/problem/P3807）lucas
+P1044（https://www.luogu.com.cn/problem/P1044）catalan_number
+P1655（https://www.luogu.com.cn/problem/P1655）matrix_dp|stirling_number
+P1680（https://www.luogu.com.cn/problem/P1680）partition_method|multiplicative_reverse|lucas|comb(a,b)%m
+P2265（https://www.luogu.com.cn/problem/P2265）comb|comb(n+m, m)
+P2638（https://www.luogu.com.cn/problem/P2638）partition_method|specific_plan|classical
+P2822（https://www.luogu.com.cn/problem/P2822）counter|comb(i, j) % k == 0
+P3223（https://www.luogu.com.cn/problem/P3223）inclusion_exclusion|partition_method
+P3904（https://www.luogu.com.cn/problem/P3904）second_stirling_number|dp|classical
+P4071（https://www.luogu.com.cn/problem/P4071）fault_perm|specific_plan|counter|classical
+P5684（https://www.luogu.com.cn/problem/P5684）inclusion_exclusion|counter
+P6057（https://www.luogu.com.cn/problem/P6057）inclusion_exclusion|counter
 
 ===================================CodeForces===================================
 1795D（https://codeforces.com/problemset/problem/1795/D）comb|counter|mod|multiplicative_reverse
@@ -191,6 +191,10 @@ class Solution:
 
     @staticmethod
     def lg_p1375(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1375
+        tag: catalan_number
+        """
         # catalan_number
         n = ac.read_int()
         mod = 10 ** 9 + 7
@@ -201,6 +205,10 @@ class Solution:
 
     @staticmethod
     def lg_p1754(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1754
+        tag: catalan_number
+        """
         # catalan_number
         n = ac.read_int()
         # catalan_number的另一种区间递推形式 dp[i][j] = dp[i-1][j]+dp[i][j-1]
@@ -298,6 +306,10 @@ class Solution:
 
     @staticmethod
     def lg_p1287(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1287
+        tag: second_kind_stirling_number|factorial|dp
+        """
         # inclusion_exclusioncounter
         n, r = ac.read_list_ints()
         ans = 0
@@ -309,6 +321,10 @@ class Solution:
 
     @staticmethod
     def lg_p4071(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4071
+        tag: fault_perm|specific_plan|counter|classical
+        """
         # partition_method组合数
         tp, n, m, p = ac.read_list_ints()
 
@@ -325,6 +341,10 @@ class Solution:
 
     @staticmethod
     def lg_p3807(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3807
+        tag: lucas
+        """
         # Lucas模板题
         for _ in range(ac.read_int()):
             n, m, p = ac.read_list_ints()
@@ -410,6 +430,10 @@ class Solution:
 
     @staticmethod
     def lg_p1655(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1655
+        tag: matrix_dp|stirling_number
+        """
         # second_stirling_number只能递推（n个不同的球放入m个相同的盒子，不允许为空，stirling_number）
         n = m = 101  # （n个相同的球放入m个不同的盒子，不允许为空，partition_method）
         dp = [[0] * m for _ in range(n)]
@@ -427,6 +451,10 @@ class Solution:
 
     @staticmethod
     def lg_p1680(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1680
+        tag: partition_method|multiplicative_reverse|lucas|comb(a,b)%m
+        """
         # partition_method不同分组的个数，multiplicative_reverse与Lucas定理快速Comb(a,b) % m
         # 转换为（n个相同的球放入m个不同的盒子，不允许为空的specific_plan数）
         n, m = ac.read_list_ints()
@@ -440,6 +468,10 @@ class Solution:
 
     @staticmethod
     def lg_p2265(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2265
+        tag: comb|comb(n+m, m)
+        """
         # comb，comb(n+m, m)
         mod = 1000000007
         n, m = ac.read_list_ints()
@@ -449,6 +481,10 @@ class Solution:
 
     @staticmethod
     def lg_p2638(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2638
+        tag: partition_method|specific_plan|classical
+        """
         # partition_method a 个球放入 n 个盒子不要求每个都放也不要求放完的specific_plan数
         n, a, b = ac.read_list_ints()
         ans = math.comb(n + a, n) * math.comb(n + b, n)
@@ -457,6 +493,10 @@ class Solution:
 
     @staticmethod
     def lg_p2822(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2822
+        tag: counter|comb(i, j) % k == 0
+        """
         # 组合数 comb(i, j) % k == 0 的个数
         t, k = ac.read_list_ints()
 
@@ -487,6 +527,10 @@ class Solution:
 
     @staticmethod
     def lg_p3223(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3223
+        tag: inclusion_exclusion|partition_method
+        """
         # inclusion_exclusion与partition_method
         n, m = ac.read_list_ints()
         ans1 = math.factorial(n + 2) * math.factorial(m) * math.comb(n + 3, m)
@@ -496,6 +540,10 @@ class Solution:
 
     @staticmethod
     def lg_p3904(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3904
+        tag: second_stirling_number|dp|classical
+        """
         # 递推second_stirling_number
         n, m = ac.read_list_ints()
         dp = [[0] * m for _ in range(n)]
@@ -524,6 +572,10 @@ class Solution:
 
     @staticmethod
     def lg_p5684(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5684
+        tag: inclusion_exclusion|counter
+        """
         # inclusion_exclusion与组合counter
         n = ac.read_int()
         mod = 10 ** 9 + 7
@@ -558,6 +610,10 @@ class Solution:
 
     @staticmethod
     def lg_p6057(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6057
+        tag: inclusion_exclusion|counter
+        """
         # inclusion_exclusioncounter
         n, m = ac.read_list_ints()
         degree = [0] * n

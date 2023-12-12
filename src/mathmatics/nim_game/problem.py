@@ -4,7 +4,7 @@ Algorithm：nim_game
 Description：game_dp|winning_state|lose_state
 
 =====================================LuoGu======================================
-2197（https://www.luogu.com.cn/problem/P2197）xor_sum|classical
+P2197（https://www.luogu.com.cn/problem/P2197）xor_sum|classical
 
 ===================================CodeForces===================================
 1396B（https://codeforces.com/problemset/problem/1396/B）greedy|game_dp

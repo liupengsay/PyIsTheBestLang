@@ -10,9 +10,9 @@ Description：operations on circular_array, always copy the array to double or u
 1888（https://leetcode.com/problems/minimum-number-of-flips-to-make-the-binary-string-alternating/）circular_dp|brute_force
 
 =====================================LuoGu======================================
-1880（https://www.luogu.com.cn/problem/P1880）circular_array|interval_dp
-1121（https://www.luogu.com.cn/problem/P1121）circular_array
-1043（https://www.luogu.com.cn/problem/P1043）circular_array|interval_dp
-1133（https://www.luogu.com.cn/problem/P1133）circular_array|interval_dp
+P1880（https://www.luogu.com.cn/problem/P1880）circular_array|interval_dp
+P1121（https://www.luogu.com.cn/problem/P1121）circular_array
+P1043（https://www.luogu.com.cn/problem/P1043）circular_array|interval_dp
+P1133（https://www.luogu.com.cn/problem/P1133）circular_array|interval_dp
 
 """

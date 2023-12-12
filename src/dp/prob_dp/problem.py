@@ -6,10 +6,10 @@ Description：comb|specific_plan|prob|expectation
 1227（https://leetcode.com/problems/airplane-seat-assignment-probability/）prob_dp
 
 =====================================LuoGu======================================
-2719（https://www.luogu.com.cn/record/list?user=739032&status=12&page=1）matrix_dp|prob
-1291（https://www.luogu.com.cn/problem/P1291）liner_dp|expectation
-4316（https://www.luogu.com.cn/problem/P4316）expectation|reverse_graph|topological_sort
-6154（https://www.luogu.com.cn/problem/P6154）reverse_graph|expectation|tree_dp|float|mod
+list?user=739032&status=12&page=1（https://www.luogu.com.cn/record/list?user=739032&status=12&page=1）matrix_dp|prob
+P1291（https://www.luogu.com.cn/problem/P1291）liner_dp|expectation
+P4316（https://www.luogu.com.cn/problem/P4316）expectation|reverse_graph|topological_sort
+P6154（https://www.luogu.com.cn/problem/P6154）reverse_graph|expectation|tree_dp|float|mod
 
 =====================================AcWing=====================================
 5058（https://www.acwing.com/problem/content/description/5061/）prob_dp
@@ -53,6 +53,10 @@ class Solution:
 
     @staticmethod
     def lg_p1291(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1291
+        tag: liner_dp|expectation
+        """
 
         # liner_dp求expectation，分数|减运算
         n = ac.read_int()
@@ -85,6 +89,10 @@ class Solution:
 
     @staticmethod
     def lg_p4316(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4316
+        tag: expectation|reverse_graph|topological_sort
+        """
         # expectation DP reverse_graph与topological_sorting
         n, m = ac.read_list_ints()
         dp = [0 for _ in range(n)]
@@ -114,6 +122,10 @@ class Solution:
 
     @staticmethod
     def lg_p6154(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6154
+        tag: reverse_graph|expectation|tree_dp|float|mod
+        """
         # reverse_graphexpectationtree_dp| 与有理数mod|
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]

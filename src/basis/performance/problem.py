@@ -4,7 +4,7 @@ Description：some skills or tricks for better performance
 
 
 =====================================LuoGu======================================
-1188（https://www.luogu.com.cn/problem/P1188）slice
+P1188（https://www.luogu.com.cn/problem/P1188）slice
 
 """
 

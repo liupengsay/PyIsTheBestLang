@@ -22,40 +22,40 @@ LCP 14（https://leetcode.com/problems/qie-fen-shu-zu/）prime_factorization|cou
 8041（https://leetcode.com/problems/maximum-element-sum-of-a-complete-subset-of-indices/description/）prime_factorization|hash|classical|odd
 
 =====================================LuoGu======================================
-1865（https://www.luogu.com.cn/problem/P1865）linear_sieve|prime|binary_search|range_prime_count
-1748（https://www.luogu.com.cn/problem/P1748）heapq|implemention|pointer|inclusion_exclusion|binary_search
-2723（https://www.luogu.com.cn/problem/P2723）ugly_number
-1952（https://www.luogu.com.cn/problem/P1952）n-base
-1555（https://www.luogu.com.cn/problem/P1555）2-base|3-base
-1465（https://www.luogu.com.cn/problem/P1465）int_to_roman
-1112（https://www.luogu.com.cn/problem/P1112）brute_force
-2926（https://www.luogu.com.cn/problem/P2926）prime_factorization|counter
-5535（https://www.luogu.com.cn/problem/P5535）prime|is_prime5|greedy|brain_teaser
-1876（https://www.luogu.com.cn/problem/P1876）odd_even|factorization|classical
-1887（https://www.luogu.com.cn/problem/P1887）classical|maximum_mul
-2043（https://www.luogu.com.cn/problem/P2043）prime_factorization|prime_sieve|factorial
-2192（https://www.luogu.com.cn/problem/P2192）divide|property|classical
-7191（https://www.luogu.com.cn/problem/P7191）mod|math|factorization
-7517（https://www.luogu.com.cn/problem/P7517）prime_sieve|brute_force|factorization|counter
-7588（https://www.luogu.com.cn/problem/P7588）prime|brute_force|is_prime4
-7696（https://www.luogu.com.cn/problem/P7696）prime_factorization
-4718（https://www.luogu.com.cn/problem/P4718）pollard_rho|prime_factorization|prime
-2429（https://www.luogu.com.cn/problem/P2429）brute_force|prime_factorization|inclusion_exclusion|counter
-1069（https://www.luogu.com.cn/problem/P1069）prime_factorization|counter
-1072（https://www.luogu.com.cn/problem/P1072）brute_force|factorization
-1593（https://www.luogu.com.cn/problem/P1593）prime_factorization|fast_power|classical
-2527（https://www.luogu.com.cn/problem/P2527）ugly_number
-2557（https://www.luogu.com.cn/problem/P2557）prime_factorization|math
-4446（https://www.luogu.com.cn/problem/P4446）is_prime
-4752（https://www.luogu.com.cn/problem/P4752）is_prime
-5248（https://www.luogu.com.cn/problem/P5248）base
-5253（https://www.luogu.com.cn/problem/P5253）math
-7960（https://www.luogu.com.cn/problem/P7960）prime_sieve|preprocess
-8319（https://www.luogu.com.cn/problem/P8319）prime_factorization|counter
-8646（https://www.luogu.com.cn/problem/P8646）peishu_theorem|bag_dp
-8762（https://www.luogu.com.cn/problem/P8762）inclusion_exclusion|prefix_sum|counter
-8778（https://www.luogu.com.cn/problem/P8778）brute_force|prime_factorization|O(n^0.25)|classical
-8782（https://www.luogu.com.cn/problem/P8782）base|greedy|classical
+P1865（https://www.luogu.com.cn/problem/P1865）linear_sieve|prime|binary_search|range_prime_count
+P1748（https://www.luogu.com.cn/problem/P1748）heapq|implemention|pointer|inclusion_exclusion|binary_search
+P2723（https://www.luogu.com.cn/problem/P2723）ugly_number
+P1952（https://www.luogu.com.cn/problem/P1952）n-base
+P1555（https://www.luogu.com.cn/problem/P1555）2-base|3-base
+P1465（https://www.luogu.com.cn/problem/P1465）int_to_roman
+P1112（https://www.luogu.com.cn/problem/P1112）brute_force
+P2926（https://www.luogu.com.cn/problem/P2926）prime_factorization|counter
+P5535（https://www.luogu.com.cn/problem/P5535）prime|is_prime5|greedy|brain_teaser
+P1876（https://www.luogu.com.cn/problem/P1876）odd_even|factorization|classical
+P1887（https://www.luogu.com.cn/problem/P1887）classical|maximum_mul
+P2043（https://www.luogu.com.cn/problem/P2043）prime_factorization|prime_sieve|factorial
+P2192（https://www.luogu.com.cn/problem/P2192）divide|property|classical
+P7191（https://www.luogu.com.cn/problem/P7191）mod|math|factorization
+P7517（https://www.luogu.com.cn/problem/P7517）prime_sieve|brute_force|factorization|counter
+P7588（https://www.luogu.com.cn/problem/P7588）prime|brute_force|is_prime4
+P7696（https://www.luogu.com.cn/problem/P7696）prime_factorization
+P4718（https://www.luogu.com.cn/problem/P4718）pollard_rho|prime_factorization|prime
+P2429（https://www.luogu.com.cn/problem/P2429）brute_force|prime_factorization|inclusion_exclusion|counter
+P1069（https://www.luogu.com.cn/problem/P1069）prime_factorization|counter
+P1072（https://www.luogu.com.cn/problem/P1072）brute_force|factorization
+P1593（https://www.luogu.com.cn/problem/P1593）prime_factorization|fast_power|classical
+P2527（https://www.luogu.com.cn/problem/P2527）ugly_number
+P2557（https://www.luogu.com.cn/problem/P2557）prime_factorization|math
+P4446（https://www.luogu.com.cn/problem/P4446）is_prime
+P4752（https://www.luogu.com.cn/problem/P4752）is_prime
+P5248（https://www.luogu.com.cn/problem/P5248）base
+P5253（https://www.luogu.com.cn/problem/P5253）math
+P7960（https://www.luogu.com.cn/problem/P7960）prime_sieve|preprocess
+P8319（https://www.luogu.com.cn/problem/P8319）prime_factorization|counter
+P8646（https://www.luogu.com.cn/problem/P8646）peishu_theorem|bag_dp
+P8762（https://www.luogu.com.cn/problem/P8762）inclusion_exclusion|prefix_sum|counter
+P8778（https://www.luogu.com.cn/problem/P8778）brute_force|prime_factorization|O(n^0.25)|classical
+P8782（https://www.luogu.com.cn/problem/P8782）base|greedy|classical
 
 ===================================CodeForces===================================
 1771C（https://codeforces.com/problemset/problem/1771/C）pollard_rho|prime_factorization
@@ -474,6 +474,10 @@ class Solution:
 
     @staticmethod
     def lg_p1069(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1069
+        tag: prime_factorization|counter
+        """
         # prime_factorization|，greedy匹配implemention
         ac.read_int()
         m1, m2 = ac.read_list_ints()
@@ -497,6 +501,10 @@ class Solution:
 
     @staticmethod
     def lg_p1072(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1072
+        tag: brute_force|factorization
+        """
         # brute_force所有因数
         nt = NumberTheory()
         for _ in range(ac.read_int()):
@@ -509,6 +517,10 @@ class Solution:
 
     @staticmethod
     def lg_p1593(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1593
+        tag: prime_factorization|fast_power|classical
+        """
         # prime_factorization|与fast_power|a^b的所有因子之和
         mod = 9901
         a, b = ac.read_list_ints()
@@ -568,6 +580,10 @@ class Solution:
 
     @staticmethod
     def lg_p2527(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2527
+        tag: ugly_number
+        """
         # 丑数即只含特定质因子的数
         n, k = ac.read_list_ints()
         primes = ac.read_list_ints()
@@ -584,6 +600,10 @@ class Solution:
 
     @staticmethod
     def lg_p2557(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2557
+        tag: prime_factorization|math
+        """
         # 利用prime_factorization|与等比数列因子之和
         a, b = ac.read_list_ints()
         if a == 1 or b == 0:
@@ -603,6 +623,10 @@ class Solution:
 
     @staticmethod
     def lg_p4446(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4446
+        tag: is_prime
+        """
         # 预先处理出prime然后最大的完全立方数因子
         prime = NumberTheory().sieve_of_eratosthenes(int(10 ** (18 / 4)) + 1)
         ac.read_int()
@@ -635,6 +659,10 @@ class Solution:
 
     @staticmethod
     def lg_p4752(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4752
+        tag: is_prime
+        """
         # 判断除数是否为质数
         nt = NumberTheory()
         for _ in range(ac.read_int()):
@@ -666,6 +694,10 @@ class Solution:
 
     @staticmethod
     def lg_p5248(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5248
+        tag: base
+        """
         # 进制题目
         m, fm = ac.read_list_ints()
         lst = []
@@ -678,6 +710,10 @@ class Solution:
 
     @staticmethod
     def lg_p5253(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5253
+        tag: math
+        """
         # 方程变换 (x-n)*(y-n)=n^2 的对数
         n = ac.read_int()
         lst = NumberTheory().get_prime_factor(n)
@@ -690,6 +726,10 @@ class Solution:
 
     @staticmethod
     def lg_p7960(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P7960
+        tag: prime_sieve|preprocess
+        """
         # 类似prime_sieve的思路preprocess
         n = 10 ** 7
         dp = [0] * (n + 1)
@@ -713,6 +753,10 @@ class Solution:
 
     @staticmethod
     def lg_p8319(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8319
+        tag: prime_factorization|counter
+        """
         # prime_factorization|greedy
         n = 2 * 10 ** 6
         f = [1] * (n + 1)
@@ -740,6 +784,10 @@ class Solution:
 
     @staticmethod
     def lg_p8646(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8646
+        tag: peishu_theorem|bag_dp
+        """
         # peishu_theorem|与背包 DP
         n = ac.read_int()
         nums = [ac.read_int() for _ in range(n)]

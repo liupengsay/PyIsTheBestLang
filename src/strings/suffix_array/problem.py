@@ -7,7 +7,7 @@ Description：suffix_array
 1698（https://leetcode.com/problems/number-of-distinct-substrings-in-a-string/）suffix_array|height
 
 =====================================LuoGu======================================
-3809（https://www.luogu.com.cn/problem/P3809）suffix_array
+P3809（https://www.luogu.com.cn/problem/P3809）suffix_array
 
 =====================================AcWing=====================================
 140（https://www.acwing.com/problem/content/142/）suffix_array|template

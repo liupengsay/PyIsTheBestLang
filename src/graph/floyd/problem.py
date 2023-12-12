@@ -9,19 +9,19 @@ specific_plan： floyd need dp[i][j] where pre[i][j] = k, and bellman-ford dijks
 1462（https://leetcode.com/problems/course-schedule-iv/）transitive_closure|floyd
 
 =====================================LuoGu======================================
-1119（https://www.luogu.com.cn/problem/P1119）offline_query|floyd|dynamic_graph
-1476（https://www.luogu.com.cn/problem/P1476）floyd|longest_path|specific_plan
-3906（https://www.luogu.com.cn/problem/P3906）floyd|shortest_path|specific_plan
+P1119（https://www.luogu.com.cn/problem/P1119）offline_query|floyd|dynamic_graph
+P1476（https://www.luogu.com.cn/problem/P1476）floyd|longest_path|specific_plan
+P3906（https://www.luogu.com.cn/problem/P3906）floyd|shortest_path|specific_plan
 
-2009（https://www.luogu.com.cn/problem/P2009）floyd|shortest_path
-2419（https://www.luogu.com.cn/problem/P2419）floyd|topological_sort
-2910（https://www.luogu.com.cn/problem/P2910）shortest_path|floyd
-6464（https://www.luogu.com.cn/problem/P6464）brute_force|floyd|dynamic_graph
-6175（https://www.luogu.com.cn/problem/P6175）floyd|brute_force|O(n^3)|bfs|dijkstra
-3611（https://www.luogu.com.cn/problem/B3611）transitive_closure|floyd
-1613（https://www.luogu.com.cn/problem/P1613）floyd|several_floyd|shortest_path
-8312（https://www.luogu.com.cn/problem/P8312）limited_floyd|shortest_path|several_floyd
-8794（https://www.luogu.com.cn/problem/P8794）binary_search|floyd
+P2009（https://www.luogu.com.cn/problem/P2009）floyd|shortest_path
+P2419（https://www.luogu.com.cn/problem/P2419）floyd|topological_sort
+P2910（https://www.luogu.com.cn/problem/P2910）shortest_path|floyd
+P6464（https://www.luogu.com.cn/problem/P6464）brute_force|floyd|dynamic_graph
+P6175（https://www.luogu.com.cn/problem/P6175）floyd|brute_force|O(n^3)|bfs|dijkstra
+B3611（https://www.luogu.com.cn/problem/B3611）transitive_closure|floyd
+P1613（https://www.luogu.com.cn/problem/P1613）floyd|several_floyd|shortest_path
+P8312（https://www.luogu.com.cn/problem/P8312）limited_floyd|shortest_path|several_floyd
+P8794（https://www.luogu.com.cn/problem/P8794）binary_search|floyd
 
 
 ===================================CodeForces===================================
@@ -51,6 +51,10 @@ class Solution:
 
     @staticmethod
     def lg_p1613(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1613
+        tag: floyd|several_floyd|shortest_path
+        """
         # Floyd动态规划，两遍shortest_path综合
         n, m = ac.read_list_ints()
 
@@ -112,6 +116,10 @@ class Solution:
 
     @staticmethod
     def lg_p1119(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1119
+        tag: offline_query|floyd|dynamic_graph
+        """
         # 利用 Floyd 算法特点和修复的中转站更新最短距离（无向图）
         n, m = ac.read_list_ints()
         repair = ac.read_list_ints()
@@ -142,6 +150,10 @@ class Solution:
 
     @staticmethod
     def lg_p1476(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1476
+        tag: floyd|longest_path|specific_plan
+        """
         # Floyd 求索引从 1 到 n 的最长路并求所有在最长路上的点（有向图）
         n = ac.read_int() + 1
         m = ac.read_int()
@@ -169,6 +181,10 @@ class Solution:
 
     @staticmethod
     def lg_p3906(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3906
+        tag: floyd|shortest_path|specific_plan
+        """
         # Floyd 求索引从 u 到 v 的shortest_path并求所有在shortest_path上的点（无向图）
         n, m = ac.read_list_ints()
         dp = [[inf] * (n + 1) for _ in range(n + 1)]
@@ -191,6 +207,10 @@ class Solution:
 
     @staticmethod
     def lg_b3611(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/B3611
+        tag: transitive_closure|floyd
+        """
         # transitive_closure模板题
         n = ac.read_int()
         dp = [ac.read_list_ints() for _ in range(n)]
@@ -373,6 +393,10 @@ class Solution:
 
     @staticmethod
     def lg_p1613(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1613
+        tag: floyd|several_floyd|shortest_path
+        """
         # 建立新图Floydshortest_path
         n, m = ac.read_list_ints()
 
@@ -408,6 +432,10 @@ class Solution:
 
     @staticmethod
     def lg_p8312(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8312
+        tag: limited_floyd|shortest_path|several_floyd
+        """
         # 最多k条边的shortest_path跑k遍Floyd
         n, m = ac.read_list_ints()
         dis = [[inf] * n for _ in range(n)]
@@ -438,6 +466,10 @@ class Solution:
 
     @staticmethod
     def lg_p8794(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8794
+        tag: binary_search|floyd
+        """
         # binary_search|Floyd
 
         def get_dijkstra_result_mat(mat: List[List[int]], src: int) -> List[float]:

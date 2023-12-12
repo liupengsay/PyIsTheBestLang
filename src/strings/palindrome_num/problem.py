@@ -10,7 +10,7 @@ Description：
 1088（https://leetcode.com/problems/confusing-number-ii/description/）implemention|brute_force
 
 =====================================LuoGu======================================
-1609（https://www.luogu.com.cn/problem/P1609）brute_force
+P1609（https://www.luogu.com.cn/problem/P1609）brute_force
 
 
 """

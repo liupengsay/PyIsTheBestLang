@@ -12,11 +12,11 @@ Description：reverse_order_pair
 1665（https://leetcode.com/problems/minimum-initial-energy-to-finish-tasks/）custom_sort|greedy|sorting
 
 =====================================LuoGu======================================
-2310（https://www.luogu.com.cn/problem/P2310）sorting
-4378（https://www.luogu.com.cn/problem/P4378）brute_force|bubble_sort
-6243（https://www.luogu.com.cn/problem/P6243）greedy|custom_sort
-1774（https://www.luogu.com.cn/problem/P1774）merge_sort|reverse_order_pair
-1177（https://www.luogu.com.cn/problem/P1177）quick_sort
+P2310（https://www.luogu.com.cn/problem/P2310）sorting
+P4378（https://www.luogu.com.cn/problem/P4378）brute_force|bubble_sort
+P6243（https://www.luogu.com.cn/problem/P6243）greedy|custom_sort
+P1774（https://www.luogu.com.cn/problem/P1774）merge_sort|reverse_order_pair
+P1177（https://www.luogu.com.cn/problem/P1177）quick_sort
 
 ===================================CodeForces===================================
 922D（https://codeforces.com/problemset/problem/922/D）greedy|custom_sort

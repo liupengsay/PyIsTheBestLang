@@ -3,7 +3,7 @@ Algorithm：divide_and_conquer|fft
 Description：
 
 =====================================LuoGu======================================
-4721（https://www.luogu.com.cn/problem/P4721）divide_and_conquer|fft
+P4721（https://www.luogu.com.cn/problem/P4721）divide_and_conquer|fft
 """
 
 import numpy as np

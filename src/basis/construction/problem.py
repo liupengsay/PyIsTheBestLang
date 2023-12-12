@@ -11,15 +11,15 @@ Description：greedy|sorting|construction|specific_plan
 2573（https://leetcode.com/problems/find-the-string-with-lcp/）lcp|construction|union_find
 
 =====================================LuoGu======================================
-8846（https://www.luogu.com.cn/problem/P8846）greedy|construction
-2902（https://www.luogu.com.cn/problem/P2902）construction
-5823（https://www.luogu.com.cn/problem/P5823）construction
-7383（https://www.luogu.com.cn/problem/P7383）greedy|construction
-7947（https://www.luogu.com.cn/problem/P7947）greedy|construction|product_n_sum_k|prime_factorization
-9101（https://www.luogu.com.cn/problem/P9101）construction|directed_graph|no_circe
-8976（https://www.luogu.com.cn/problem/P8976）brute_force|construction
-8910（https://www.luogu.com.cn/problem/P8910）permutation_circle|construction
-8880（https://www.luogu.com.cn/problem/P8880）brain_teaser|construction|odd_even
+P8846（https://www.luogu.com.cn/problem/P8846）greedy|construction
+P2902（https://www.luogu.com.cn/problem/P2902）construction
+P5823（https://www.luogu.com.cn/problem/P5823）construction
+P7383（https://www.luogu.com.cn/problem/P7383）greedy|construction
+P7947（https://www.luogu.com.cn/problem/P7947）greedy|construction|product_n_sum_k|prime_factorization
+P9101（https://www.luogu.com.cn/problem/P9101）construction|directed_graph|no_circe
+P8976（https://www.luogu.com.cn/problem/P8976）brute_force|construction
+P8910（https://www.luogu.com.cn/problem/P8910）permutation_circle|construction
+P8880（https://www.luogu.com.cn/problem/P8880）brain_teaser|construction|odd_even
 
 ===================================CodeForces===================================
 1396A（https://codeforces.com/problemset/problem/1396/A）greedy|construction
@@ -221,6 +221,10 @@ class Solution:
 
     @staticmethod
     def lg_p7947(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P7947
+        tag: greedy|construction|product_n_sum_k|prime_factorization
+        """
         # greedyconstruction积为 n 和为 k 的数列，乘积分解成质因数其和最小
         n, k = ac.read_list_ints()
         ans = []
@@ -236,6 +240,10 @@ class Solution:
 
     @staticmethod
     def lg_p9101(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P9101
+        tag: construction|directed_graph|no_circe
+        """
         # construction恰好 k 条路径的有向无环图
         k = ac.read_int()
         dct = defaultdict(list)
@@ -294,6 +302,10 @@ class Solution:
 
     @staticmethod
     def lg_p8976(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8976
+        tag: brute_force|construction
+        """
         # brute_force连续段construction数组的前半段与后半段和满足要求
         for _ in range(ac.read_int()):
             n, a, b = ac.read_list_ints()
@@ -334,6 +346,10 @@ class Solution:
 
     @staticmethod
     def lg_p8910(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8910
+        tag: permutation_circle|construction
+        """
         # permutation_circle|construction
         for _ in range(ac.read_int()):
             n, k = ac.read_list_ints()
@@ -364,6 +380,10 @@ class Solution:
 
     @staticmethod
     def lg_p8880(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8880
+        tag: brain_teaser|construction|odd_even
+        """
         # brain_teaserconstruction分奇数与偶数讨论
         n = ac.read_int()
         if n % 2 == 0:

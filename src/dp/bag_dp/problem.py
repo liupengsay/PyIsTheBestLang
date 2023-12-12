@@ -16,73 +16,73 @@ Description：bag_dp|bin_split|finite|infinite|tree_bag_dp
 2902（https://leetcode.com/problems/count-of-sub-multisets-with-bounded-sum/description/）monotonic_queue|mod|group_bag_dp|prefix_sum|inclusion_exclusion|lazy_bag_like
 
 =====================================LuoGu======================================
-1048（https://www.luogu.com.cn/problem/P1048）bag_dp|finite
-1049（https://www.luogu.com.cn/problem/P1049）bag_dp
-1776（https://www.luogu.com.cn/problem/P1776）matrix_bag_dp|bin_split|monotonic_queue
-1509（https://www.luogu.com.cn/problem/P1509）matrix_bag_dp
-1060（https://www.luogu.com.cn/problem/P1509）bag_dp
-1566（https://www.luogu.com.cn/problem/P1566#submit）counter|limited|bag_dp
-1759（https://www.luogu.com.cn/problem/P1759）matrix_bag_dp|specific_plan
-1794（https://www.luogu.com.cn/problem/P1794）matrix_bag_dp
-1806（https://www.luogu.com.cn/problem/P1806）bag_dp|counter
-1853（https://www.luogu.com.cn/problem/P1853）bag_dp|infinite
-1874（https://www.luogu.com.cn/problem/P1874）brute_force|bag_dp
-1977（https://www.luogu.com.cn/problem/P1977）group_bag_dp|finite
-1586（https://www.luogu.com.cn/problem/P1586）group_bag_dp|infinite
-1566（https://www.luogu.com.cn/problem/P1566）bag_dp|counter
-1509（https://www.luogu.com.cn/problem/P1509）matrix_bag_dp
-1504（https://www.luogu.com.cn/problem/P1504）bag_dp|finite
-2066（https://www.luogu.com.cn/problem/P2066）group_bag_dp|finite
-2340（https://www.luogu.com.cn/problem/P2340）bag_dp
-2370（https://www.luogu.com.cn/problem/P2370）mst|sorting|greedy|bag_dp
-2386（https://www.luogu.com.cn/problem/P2386）bag_dp|counter
-2623（https://www.luogu.com.cn/problem/P2623）bag_dp|finite|bin_split|infinite
-1474（https://www.luogu.com.cn/problem/P1474）bag_dp|infinite|counter
-1466（https://www.luogu.com.cn/problem/P1466）bag_dp|finite|和counter
-1455（https://www.luogu.com.cn/problem/P1455）union_find|bag_dp|finite|
-1230（https://www.luogu.com.cn/problem/P1230）sorting|bag_dp|finite|
-1077（https://www.luogu.com.cn/problem/P1077）bag_dp|finite|counter
-2725（https://www.luogu.com.cn/problem/P2725）bag_dp|infinite|counter
-2918（https://www.luogu.com.cn/problem/P2918）bag_dp|infinite|
-3027（https://www.luogu.com.cn/problem/P3027）bag_dp|infinite
-3030（https://www.luogu.com.cn/problem/P3030）brute_force|group_bag_dp|finite|bag_dp
-3040（https://www.luogu.com.cn/problem/P3040）matrix_bag_dp
-4817（https://www.luogu.com.cn/problem/P4817）bag_dp|finite
-5087（https://www.luogu.com.cn/problem/P5087）matrix_bag_dp
-6205（https://www.luogu.com.cn/problem/P6205）bag_dp|infinite
-6389（https://www.luogu.com.cn/problem/P6389）bag_dp|finite
-6567（https://www.luogu.com.cn/problem/P6567）finite|bag_dp|bin_split|classical
-6771（https://www.luogu.com.cn/problem/P6771）sorting|bag_dp|finite|bin_split
-2842（https://www.luogu.com.cn/problem/P2842）bag_dp|infinite
-2840（https://www.luogu.com.cn/problem/P2840）bag_dp|infinite
-2834（https://www.luogu.com.cn/problem/P2834）bag_dp|infinite
-1064（https://www.luogu.com.cn/problem/P1064）bag_dp|finite|brute_force|classification_discussion|group_bag_dp
-1156（https://www.luogu.com.cn/problem/P1156）bag_dp|finite
-1273（https://www.luogu.com.cn/problem/P1273）tree|graph|group_bag_dp
-1284（https://www.luogu.com.cn/problem/P1284）brute_force|triangle|math|bag_dp
-1441（https://www.luogu.com.cn/problem/P1441）brute_force|bag_dp
-1537（https://www.luogu.com.cn/problem/P1537）bin_split|bag_dp
-1541（https://www.luogu.com.cn/problem/P1541）brute_force|matrix_dp|fill_table
-1759（https://www.luogu.com.cn/problem/P1759）matrix_bag_dp|lexicographical_order|specific_plan
-1833（https://www.luogu.com.cn/problem/P1833）infinite|bag_dp|monotonic_queue|matrix_bag_dp
-2014（https://www.luogu.com.cn/problem/P2014）dag|tree_bag_dp
-2079（https://www.luogu.com.cn/problem/P2079）rolling_hash|bag_dp
-2170（https://www.luogu.com.cn/problem/P2170）union_find|bag_dp|finite|bin_split
-2214（https://www.luogu.com.cn/problem/P2214）bag_dp|greedy
-2306（https://www.luogu.com.cn/problem/P2306）data_range|counter|finite|bin_split
-2320（https://www.luogu.com.cn/problem/P2320）bin_split|greedy|reverse_thinking
-2737（https://www.luogu.com.cn/problem/P2737）infinite|bag_dp
-2760（https://www.luogu.com.cn/problem/P2760）monotonic_queue|matrix_bag_dp
-2854（https://www.luogu.com.cn/problem/P2854）bag_dp|group_bag_dp|finite
-2938（https://www.luogu.com.cn/problem/P2938）infinite|group_bag_dp
-2979（https://www.luogu.com.cn/problem/P2979）bag_dp|group_bag_dp|finite
-3010（https://www.luogu.com.cn/problem/P3010）bag_dp|heapq
-3423（https://www.luogu.com.cn/problem/P3423）bin_split|matrix_bag_dp|specific_plan
-3983（https://www.luogu.com.cn/problem/P3983）infinite|bag_dp
-5322（https://www.luogu.com.cn/problem/P5322）matrix_dp|group_bag_dp|classical
-5365（https://www.luogu.com.cn/problem/P5365）bag_dp|infinite|brute_force|counter
-5662（https://www.luogu.com.cn/problem/P5662）infinite|bag_dp|greedy
-1417（https://www.luogu.com.cn/problem/P1417）greedy|sorting|bag_dp
+P1048（https://www.luogu.com.cn/problem/P1048）bag_dp|finite
+P1049（https://www.luogu.com.cn/problem/P1049）bag_dp
+P1776（https://www.luogu.com.cn/problem/P1776）matrix_bag_dp|bin_split|monotonic_queue
+P1509（https://www.luogu.com.cn/problem/P1509）matrix_bag_dp
+P1509（https://www.luogu.com.cn/problem/P1509）bag_dp
+P1566#submit（https://www.luogu.com.cn/problem/P1566#submit）counter|limited|bag_dp
+P1759（https://www.luogu.com.cn/problem/P1759）matrix_bag_dp|specific_plan
+P1794（https://www.luogu.com.cn/problem/P1794）matrix_bag_dp
+P1806（https://www.luogu.com.cn/problem/P1806）bag_dp|counter
+P1853（https://www.luogu.com.cn/problem/P1853）bag_dp|infinite
+P1874（https://www.luogu.com.cn/problem/P1874）brute_force|bag_dp
+P1977（https://www.luogu.com.cn/problem/P1977）group_bag_dp|finite
+P1586（https://www.luogu.com.cn/problem/P1586）group_bag_dp|infinite
+P1566（https://www.luogu.com.cn/problem/P1566）bag_dp|counter
+P1509（https://www.luogu.com.cn/problem/P1509）matrix_bag_dp
+P1504（https://www.luogu.com.cn/problem/P1504）bag_dp|finite
+P2066（https://www.luogu.com.cn/problem/P2066）group_bag_dp|finite
+P2340（https://www.luogu.com.cn/problem/P2340）bag_dp
+P2370（https://www.luogu.com.cn/problem/P2370）mst|sorting|greedy|bag_dp
+P2386（https://www.luogu.com.cn/problem/P2386）bag_dp|counter
+P2623（https://www.luogu.com.cn/problem/P2623）bag_dp|finite|bin_split|infinite
+P1474（https://www.luogu.com.cn/problem/P1474）bag_dp|infinite|counter
+P1466（https://www.luogu.com.cn/problem/P1466）bag_dp|finite|和counter
+P1455（https://www.luogu.com.cn/problem/P1455）union_find|bag_dp|finite|
+P1230（https://www.luogu.com.cn/problem/P1230）sorting|bag_dp|finite|
+P1077（https://www.luogu.com.cn/problem/P1077）bag_dp|finite|counter
+P2725（https://www.luogu.com.cn/problem/P2725）bag_dp|infinite|counter
+P2918（https://www.luogu.com.cn/problem/P2918）bag_dp|infinite|
+P3027（https://www.luogu.com.cn/problem/P3027）bag_dp|infinite
+P3030（https://www.luogu.com.cn/problem/P3030）brute_force|group_bag_dp|finite|bag_dp
+P3040（https://www.luogu.com.cn/problem/P3040）matrix_bag_dp
+P4817（https://www.luogu.com.cn/problem/P4817）bag_dp|finite
+P5087（https://www.luogu.com.cn/problem/P5087）matrix_bag_dp
+P6205（https://www.luogu.com.cn/problem/P6205）bag_dp|infinite
+P6389（https://www.luogu.com.cn/problem/P6389）bag_dp|finite
+P6567（https://www.luogu.com.cn/problem/P6567）finite|bag_dp|bin_split|classical
+P6771（https://www.luogu.com.cn/problem/P6771）sorting|bag_dp|finite|bin_split
+P2842（https://www.luogu.com.cn/problem/P2842）bag_dp|infinite
+P2840（https://www.luogu.com.cn/problem/P2840）bag_dp|infinite
+P2834（https://www.luogu.com.cn/problem/P2834）bag_dp|infinite
+P1064（https://www.luogu.com.cn/problem/P1064）bag_dp|finite|brute_force|classification_discussion|group_bag_dp
+P1156（https://www.luogu.com.cn/problem/P1156）bag_dp|finite
+P1273（https://www.luogu.com.cn/problem/P1273）tree|graph|group_bag_dp
+P1284（https://www.luogu.com.cn/problem/P1284）brute_force|triangle|math|bag_dp
+P1441（https://www.luogu.com.cn/problem/P1441）brute_force|bag_dp
+P1537（https://www.luogu.com.cn/problem/P1537）bin_split|bag_dp
+P1541（https://www.luogu.com.cn/problem/P1541）brute_force|matrix_dp|fill_table
+P1759（https://www.luogu.com.cn/problem/P1759）matrix_bag_dp|lexicographical_order|specific_plan
+P1833（https://www.luogu.com.cn/problem/P1833）infinite|bag_dp|monotonic_queue|matrix_bag_dp
+P2014（https://www.luogu.com.cn/problem/P2014）dag|tree_bag_dp
+P2079（https://www.luogu.com.cn/problem/P2079）rolling_hash|bag_dp
+P2170（https://www.luogu.com.cn/problem/P2170）union_find|bag_dp|finite|bin_split
+P2214（https://www.luogu.com.cn/problem/P2214）bag_dp|greedy
+P2306（https://www.luogu.com.cn/problem/P2306）data_range|counter|finite|bin_split
+P2320（https://www.luogu.com.cn/problem/P2320）bin_split|greedy|reverse_thinking
+P2737（https://www.luogu.com.cn/problem/P2737）infinite|bag_dp
+P2760（https://www.luogu.com.cn/problem/P2760）monotonic_queue|matrix_bag_dp
+P2854（https://www.luogu.com.cn/problem/P2854）bag_dp|group_bag_dp|finite
+P2938（https://www.luogu.com.cn/problem/P2938）infinite|group_bag_dp
+P2979（https://www.luogu.com.cn/problem/P2979）bag_dp|group_bag_dp|finite
+P3010（https://www.luogu.com.cn/problem/P3010）bag_dp|heapq
+P3423（https://www.luogu.com.cn/problem/P3423）bin_split|matrix_bag_dp|specific_plan
+P3983（https://www.luogu.com.cn/problem/P3983）infinite|bag_dp
+P5322（https://www.luogu.com.cn/problem/P5322）matrix_dp|group_bag_dp|classical
+P5365（https://www.luogu.com.cn/problem/P5365）bag_dp|infinite|brute_force|counter
+P5662（https://www.luogu.com.cn/problem/P5662）infinite|bag_dp|greedy
+P1417（https://www.luogu.com.cn/problem/P1417）greedy|sorting|bag_dp
 
 ===================================CodeForces===================================
 577B（https://codeforces.com/problemset/problem/577/B）mod|counter|bin_split|bag_dp
@@ -229,6 +229,10 @@ class Solution:
 
     @staticmethod
     def lg_p6567(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6567
+        tag: finite|bag_dp|bin_split|classical
+        """
         # 一维有限bin_split背包
         n, m = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
@@ -544,6 +548,10 @@ class Solution:
 
     @staticmethod
     def lg_p1064(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1064
+        tag: bag_dp|finite|brute_force|classification_discussion|group_bag_dp
+        """
         # 有依赖的group_bag_dp
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(m)]
@@ -574,6 +582,10 @@ class Solution:
 
     @staticmethod
     def lg_p1156(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1156
+        tag: bag_dp|finite
+        """
         # 变形背包
         n, m = ac.read_list_ints()
 
@@ -601,6 +613,10 @@ class Solution:
 
     @staticmethod
     def lg_p1273(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1273
+        tag: tree|graph|group_bag_dp
+        """
         # 树上group_bag_dp
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
@@ -650,6 +666,10 @@ class Solution:
 
     @staticmethod
     def lg_p1284(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1284
+        tag: brute_force|triangle|math|bag_dp
+        """
 
         # brute_force三角形两边作为二维bool背包
         n = ac.read_int()
@@ -691,6 +711,10 @@ class Solution:
 
     @staticmethod
     def lg_p1441(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1441
+        tag: brute_force|bag_dp
+        """
         # brute_force|bag_dp|
         n, m = ac.read_list_ints()
         a = ac.read_list_ints()
@@ -710,6 +734,10 @@ class Solution:
 
     @staticmethod
     def lg_p1537(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1537
+        tag: bin_split|bag_dp
+        """
         # 问题bin_split|bag_dpbool背包，划分成和相等的两部分
         case = 0
         while True:
@@ -744,6 +772,10 @@ class Solution:
 
     @staticmethod
     def lg_p1541(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1541
+        tag: brute_force|matrix_dp|fill_table
+        """
 
         # 四维背包
         n, m = ac.read_list_ints()
@@ -775,6 +807,10 @@ class Solution:
 
     @staticmethod
     def lg_p1759(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1759
+        tag: matrix_bag_dp|lexicographical_order|specific_plan
+        """
         # matrix_bag_dp输出lexicographical_order最小的specific_plan
         m, v, n = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
@@ -794,6 +830,10 @@ class Solution:
 
     @staticmethod
     def lg_p1776(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1776
+        tag: matrix_bag_dp|bin_split|monotonic_queue
+        """
         # monotonic_queue的多matrix_bag_dp问题，即限定个数和体积价值求最大值
         n, m = ac.read_list_ints()
         dp = [0] * (m + 1)
@@ -834,6 +874,10 @@ class Solution:
 
     @staticmethod
     def lg_p1833(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1833
+        tag: infinite|bag_dp|monotonic_queue|matrix_bag_dp
+        """
 
         def check(st):
             hh, mm = st.split(":")
@@ -864,6 +908,10 @@ class Solution:
 
     @staticmethod
     def lg_p2014(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2014
+        tag: dag|tree_bag_dp
+        """
         # 增|一个虚拟源点将DAG转换为树上背包
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n + 1)]
@@ -896,6 +944,10 @@ class Solution:
 
     @staticmethod
     def lg_p2079(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2079
+        tag: rolling_hash|bag_dp
+        """
         # rolling_hashbag_dp|，两层hash节省空间
         n, v = ac.read_list_ints()
         dp = [defaultdict(lambda: defaultdict(lambda: -inf)), defaultdict(lambda: defaultdict(lambda: -inf))]
@@ -920,6 +972,10 @@ class Solution:
 
     @staticmethod
     def lg_p2170(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2170
+        tag: union_find|bag_dp|finite|bin_split
+        """
         # 连通块|bag_dp|finite|bin_split
         n, m, k = ac.read_list_ints()
         uf = UnionFind(n)
@@ -951,6 +1007,10 @@ class Solution:
 
     @staticmethod
     def lg_p2214(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2214
+        tag: bag_dp|greedy
+        """
         # 变种bag_dp|greedy
         n, b = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(b)]
@@ -977,6 +1037,10 @@ class Solution:
 
     @staticmethod
     def lg_p2306(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2306
+        tag: data_range|counter|finite|bin_split
+        """
         # data_range|counter后bin_split的bag_dp|finite|
         n, m, k = ac.read_list_ints()
         cnt = defaultdict(lambda: defaultdict(int))
@@ -999,6 +1063,10 @@ class Solution:
 
     @staticmethod
     def lg_p2320(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2320
+        tag: bin_split|greedy|reverse_thinking
+        """
         # 二进制分解greedy反向
         m = ac.read_int()
         ans = []
@@ -1011,6 +1079,10 @@ class Solution:
 
     @staticmethod
     def lg_p2737(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2737
+        tag: infinite|bag_dp
+        """
         # infinite|bag_dp变种问题
         n = ac.read_int()
         ceil = 256 ** 2 + 1
@@ -1030,6 +1102,10 @@ class Solution:
 
     @staticmethod
     def lg_p2760(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2760
+        tag: monotonic_queue|matrix_bag_dp
+        """
         # monotonic_queue的多matrix_bag_dp
         m, n, p, t = ac.read_list_ints()
         rest = ac.min(p, t - 1)
@@ -1054,6 +1130,10 @@ class Solution:
 
     @staticmethod
     def lg_p2854(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2854
+        tag: bag_dp|group_bag_dp|finite
+        """
         # bag_dp|group_bag_dp|finite
         length, n, b = ac.read_list_ints()
         dp = [[-inf] * (b + 1) for _ in range(length + 1)]
@@ -1073,6 +1153,10 @@ class Solution:
 
     @staticmethod
     def lg_p2938(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2938
+        tag: infinite|group_bag_dp
+        """
         # 分组infinite|bag_dp
         s, d, m = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(s)]
@@ -1089,6 +1173,10 @@ class Solution:
 
     @staticmethod
     def lg_p2979(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2979
+        tag: bag_dp|group_bag_dp|finite
+        """
         # bag_dp|group_bag_dp|finite
         n, t, k = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
@@ -1111,6 +1199,10 @@ class Solution:
 
     @staticmethod
     def lg_p3010(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3010
+        tag: bag_dp|heapq
+        """
         # 变形bag_dp|finite|，两heapq差值最小的分配specific_plan数
         n = ac.read_int()
         nums = [ac.read_int() for _ in range(n)]
@@ -1139,6 +1231,10 @@ class Solution:
 
     @staticmethod
     def lg_p3423(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3423
+        tag: bin_split|matrix_bag_dp|specific_plan
+        """
         # bin_split多matrix_bag_dp并specific_plan数
         n = ac.read_int()
         b = ac.read_list_ints()
@@ -1163,6 +1259,10 @@ class Solution:
 
     @staticmethod
     def lg_p3983(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3983
+        tag: infinite|bag_dp
+        """
         # 两个分组infinite|bag_dp
         n = ac.read_int()
         # 第一个背包每个重量可拆分后的最大价格
@@ -1182,6 +1282,10 @@ class Solution:
 
     @staticmethod
     def lg_p5322(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5322
+        tag: matrix_dp|group_bag_dp|classical
+        """
         # classical二维 DP 转换为group_bag_dp
         s, n, m = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(s)]
@@ -1200,6 +1304,10 @@ class Solution:
 
     @staticmethod
     def lg_p5365(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5365
+        tag: bag_dp|infinite|brute_force|counter
+        """
         # bag_dp|finite| DP brute_force数量
         n, m = ac.read_list_ints()
         kk = ac.read_list_ints()
@@ -1222,6 +1330,10 @@ class Solution:
 
     @staticmethod
     def lg_p5662(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5662
+        tag: infinite|bag_dp|greedy
+        """
         # infinite|bag_dp变形greedy题目
         t, n, m = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(t)]
@@ -1239,6 +1351,10 @@ class Solution:
 
     @staticmethod
     def lg_p1417(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1417
+        tag: greedy|sorting|bag_dp
+        """
         # greedysorting后 01 背包最大值
         t, n = ac.read_list_ints()
         a = ac.read_list_ints()

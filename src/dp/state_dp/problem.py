@@ -28,21 +28,21 @@ Description：state_dp|dfs|back_track|brute_force|sub_set|bit_operation|brute_fo
 2571（https://leetcode.com/problems/minimum-operations-to-reduce-an-integer-to-0/description/）brain_teaser|memory_search
 
 =====================================LuoGu======================================
-1896（https://www.luogu.com.cn/problem/P1896）brute_force|state_dp
-2704（https://www.luogu.com.cn/problem/P2704）state_dp
+P1896（https://www.luogu.com.cn/problem/P1896）brute_force|state_dp
+P2704（https://www.luogu.com.cn/problem/P2704）state_dp
 
-2196（https://www.luogu.com.cn/problem/P2196）longest_path|state_dp
-1690（https://www.luogu.com.cn/problem/P1690）shortest_path|state_dp
-1294（https://www.luogu.com.cn/problem/P1294）state_dp|longest_diameter
-1123（https://www.luogu.com.cn/problem/P1123）state_dp
-1433（https://www.luogu.com.cn/problem/P1433）state_dp
-1896（https://www.luogu.com.cn/problem/P1896）state_dp
-1556（https://www.luogu.com.cn/problem/P1556）state_dp|shortest_path|specific_plan
-3052（https://www.luogu.com.cn/problem/P3052）state_dp|matrix_dp
-5997（https://www.luogu.com.cn/problem/P5997）greedy|bag_dp|state_dp
-6883（https://www.luogu.com.cn/problem/P6883）classical|state_dp
-8687（https://www.luogu.com.cn/problem/P8687）state_dp|bag_dp
-8733（https://www.luogu.com.cn/problem/P8733）floyd|shortest_path|state_dp
+P2196（https://www.luogu.com.cn/problem/P2196）longest_path|state_dp
+P1690（https://www.luogu.com.cn/problem/P1690）shortest_path|state_dp
+P1294（https://www.luogu.com.cn/problem/P1294）state_dp|longest_diameter
+P1123（https://www.luogu.com.cn/problem/P1123）state_dp
+P1433（https://www.luogu.com.cn/problem/P1433）state_dp
+P1896（https://www.luogu.com.cn/problem/P1896）state_dp
+P1556（https://www.luogu.com.cn/problem/P1556）state_dp|shortest_path|specific_plan
+P3052（https://www.luogu.com.cn/problem/P3052）state_dp|matrix_dp
+P5997（https://www.luogu.com.cn/problem/P5997）greedy|bag_dp|state_dp
+P6883（https://www.luogu.com.cn/problem/P6883）classical|state_dp
+P8687（https://www.luogu.com.cn/problem/P8687）state_dp|bag_dp
+P8733（https://www.luogu.com.cn/problem/P8733）floyd|shortest_path|state_dp
 
 ===================================CodeForces===================================
 580D（https://codeforces.com/problemset/problem/580/D）state_dp
@@ -448,6 +448,10 @@ class Solution:
 
     @staticmethod
     def lg_p1896(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1896
+        tag: state_dp
+        """
         # state_compress迭代写法
         n, k = ac.read_list_ints()
         dp = [[[0] * (k + 1) for _ in range(1 << n)] for _ in range(n + 1)]
@@ -515,6 +519,10 @@ class Solution:
 
     @staticmethod
     def lg_p1433(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1433
+        tag: state_dp
+        """
         # state_dp
         n = ac.read_int()
         lst = [[0, 0]]
@@ -551,6 +559,10 @@ class Solution:
 
     @staticmethod
     def lg_p1556(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1556
+        tag: state_dp|shortest_path|specific_plan
+        """
         # state_dpshortest_path
         n = ac.read_int()
         # 增|虚拟的起终点
@@ -589,6 +601,10 @@ class Solution:
 
     @staticmethod
     def lg_p3052(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3052
+        tag: state_dp|matrix_dp
+        """
         # state_dp DP 二维优化
         n, w = ac.read_list_ints()
         nums = []
@@ -614,6 +630,10 @@ class Solution:
 
     @staticmethod
     def lg_p5997(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5997
+        tag: greedy|bag_dp|state_dp
+        """
         # greedy背包与state_compress 结合
         n, m = ac.read_list_ints()
         a = ac.read_list_ints()
@@ -645,6 +665,10 @@ class Solution:
 
     @staticmethod
     def lg_p6883(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6883
+        tag: classical|state_dp
+        """
         # classicalstate_compress
         n, k = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(n)]
@@ -664,6 +688,10 @@ class Solution:
 
     @staticmethod
     def lg_p8687(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8687
+        tag: state_dp|bag_dp
+        """
         # state_dp 结合背包 DP 思想
         n, m, k = ac.read_list_ints()
         dp = [inf] * (1 << m)

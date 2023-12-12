@@ -26,17 +26,17 @@ minimum_group_decreasing_subsequence_partition=length_of_longest_non_decreasing_
 1682C（https://codeforces.com/contest/1682/problem/C）lis|lds|greedy|counter
 
 =====================================LuoGu======================================
-1020（https://www.luogu.com.cn/problem/P1020）greedy|binary_search|longest_non_increasing_subsequence|longest_non_decreasing_subsequence
-1439（https://www.luogu.com.cn/problem/P1439）greedy|binary_search|lis
-1091（https://www.luogu.com.cn/problem/P1091）prefix_suffix|lis
-1233（https://www.luogu.com.cn/problem/P1233）partial_order|lis
-2782（https://www.luogu.com.cn/problem/P2782）partial_order|lis
-3902（https://www.luogu.com.cn/problem/P3902）lis
-6403（https://www.luogu.com.cn/problem/P6403）longest_non_decreasing_subsequence
-5939（https://www.luogu.com.cn/problem/P5939）lis
-5978（https://www.luogu.com.cn/problem/P5978）lis|greedy|brute_force
-7957（https://www.luogu.com.cn/problem/P7957）lis|lds|construction
-1410（https://www.luogu.com.cn/problem/P1410）dilworth|lis
+P1020（https://www.luogu.com.cn/problem/P1020）greedy|binary_search|longest_non_increasing_subsequence|longest_non_decreasing_subsequence
+P1439（https://www.luogu.com.cn/problem/P1439）greedy|binary_search|lis
+P1091（https://www.luogu.com.cn/problem/P1091）prefix_suffix|lis
+P1233（https://www.luogu.com.cn/problem/P1233）partial_order|lis
+P2782（https://www.luogu.com.cn/problem/P2782）partial_order|lis
+P3902（https://www.luogu.com.cn/problem/P3902）lis
+P6403（https://www.luogu.com.cn/problem/P6403）longest_non_decreasing_subsequence
+P5939（https://www.luogu.com.cn/problem/P5939）lis
+P5978（https://www.luogu.com.cn/problem/P5978）lis|greedy|brute_force
+P7957（https://www.luogu.com.cn/problem/P7957）lis|lds|construction
+P1410（https://www.luogu.com.cn/problem/P1410）dilworth|lis
 
 =====================================AcWing=====================================
 3549（https://www.acwing.com/problem/content/3552/）liner_dp|greedy
@@ -172,6 +172,10 @@ class Solution:
 
     @staticmethod
     def lg_p5939(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5939
+        tag: lis
+        """
         # 旋转后转换为 LIS 问题
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
@@ -189,6 +193,10 @@ class Solution:
 
     @staticmethod
     def lg_p5978(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5978
+        tag: lis|greedy|brute_force
+        """
         #  LIS 变形问题，greedybrute_force前半部分
         n, x = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -219,6 +227,10 @@ class Solution:
 
     @staticmethod
     def lg_p7957(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P7957
+        tag: lis|lds|construction
+        """
         #  LMS 逆问题construction
         n, k = ac.read_list_ints()
         if k * k < n:
@@ -289,6 +301,10 @@ class Solution:
 
     @staticmethod
     def lg_p1410(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1410
+        tag: dilworth|lis
+        """
         # 最长不上升子序列
         while True:
             lst = ac.read_list_ints()

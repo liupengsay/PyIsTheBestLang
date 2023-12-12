@@ -15,8 +15,8 @@ Description：
 （https://ac.nowcoder.com/acm/contest/49888/C）double_linked_list
 
 =====================================LuoGu======================================
-5462（https://www.luogu.com.cn/problem/P5462）double_linked_list|greedy|lexicographical_order|deque
-6155（https://www.luogu.com.cn/problem/P6155）sorting|greedy|union_find_right_root
+P5462（https://www.luogu.com.cn/problem/P5462）double_linked_list|greedy|lexicographical_order|deque
+P6155（https://www.luogu.com.cn/problem/P6155）sorting|greedy|union_find_right_root
 
 ===================================CodeForces===================================
 1154E（https://codeforces.com/contest/1154/problem/E）double_linked_list
@@ -223,6 +223,10 @@ class Solution:
 
     @staticmethod
     def lg_p5462(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5462
+        tag: double_linked_list|greedy|lexicographical_order|deque
+        """
         # double_linked_list|greedy选取最大lexicographical_order队列
         n = ac.read_int()
         nums = ac.read_list_ints()
@@ -252,6 +256,10 @@ class Solution:
 
     @staticmethod
     def lg_p6155(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6155
+        tag: sorting|greedy|union_find_right_root
+        """
         # sortinggreedyunion_find思想寻找右边最近的空位
         n = ac.read_int()
         a = ac.read_list_ints()

@@ -7,10 +7,10 @@ Description：single_equation
 2543（https://leetcode.com/contest/biweekly-contest-96/problems/check-if-point-is-reachable/）binary_gcd|ex_gcd
 
 =====================================LuoGu======================================
-1082（https://www.luogu.com.cn/problem/P1082）same_mod|equation
-5435（https://www.luogu.com.cn/problem/P5435）binary_gcd
-5582（https://www.luogu.com.cn/problem/P5582）greedy|brain_teaser|ex_gcd
-1516（https://www.luogu.com.cn/problem/P1516）single_equation
+P1082（https://www.luogu.com.cn/problem/P1082）same_mod|equation
+P5435（https://www.luogu.com.cn/problem/P5435）binary_gcd
+P5582（https://www.luogu.com.cn/problem/P5582）greedy|brain_teaser|ex_gcd
+P1516（https://www.luogu.com.cn/problem/P1516）single_equation
 
 
 =====================================AcWing=====================================

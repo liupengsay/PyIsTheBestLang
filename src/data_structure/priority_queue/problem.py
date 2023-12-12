@@ -9,24 +9,24 @@ Description：sliding_window|monotonic
 1425（https://leetcode.com/problems/constrained-subsequence-sum/）monotonic_queue|dp
 
 =====================================LuoGu======================================
-2251（https://www.luogu.com.cn/problem/P2251）sliding_window_minimum
-2032（https://www.luogu.com.cn/problem/P2032）sliding_window_maximum
-1750（https://www.luogu.com.cn/problem/P1750）pointer|sliding_window|stack|queue
-2311（https://www.luogu.com.cn/problem/P2311）sliding_window
-7175（https://www.luogu.com.cn/problem/P7175）priority_queue|implemention
-7793（https://www.luogu.com.cn/problem/P7793）monotonic_queue
-2216（https://www.luogu.com.cn/problem/P2216）sliding_window|sub_matrix
-1886（https://www.luogu.com.cn/problem/P1886）sliding_window
-1725（https://www.luogu.com.cn/problem/P1725）monotonic_queue|pointer|sliding_window|liner_dp
-2827（https://www.luogu.com.cn/problem/P2827）monotonic_queue
-3800（https://www.luogu.com.cn/problem/P3800）monotonic_queue|matrix_dp
-1016（https://www.luogu.com.cn/problem/P1016）monotonic_queue|greedy|implemention
-1714（https://www.luogu.com.cn/problem/P1714）prefix_sum|sliding_window
-2629（https://www.luogu.com.cn/problem/P2629）circular_array|prefix_sum|sliding_window
-3522（https://www.luogu.com.cn/problem/P3522）monotonic_stack
-3957（https://www.luogu.com.cn/problem/P3957）binary_search|priority_queue|dp
-4085（https://www.luogu.com.cn/problem/P4085）two_pointers|priority_queue|sliding_window
-4392（https://www.luogu.com.cn/problem/P4392）sliding_window|monotonic_queue
+P2251（https://www.luogu.com.cn/problem/P2251）sliding_window_minimum
+P2032（https://www.luogu.com.cn/problem/P2032）sliding_window_maximum
+P1750（https://www.luogu.com.cn/problem/P1750）pointer|sliding_window|stack|queue
+P2311（https://www.luogu.com.cn/problem/P2311）sliding_window
+P7175（https://www.luogu.com.cn/problem/P7175）priority_queue|implemention
+P7793（https://www.luogu.com.cn/problem/P7793）monotonic_queue
+P2216（https://www.luogu.com.cn/problem/P2216）sliding_window|sub_matrix
+P1886（https://www.luogu.com.cn/problem/P1886）sliding_window
+P1725（https://www.luogu.com.cn/problem/P1725）monotonic_queue|pointer|sliding_window|liner_dp
+P2827（https://www.luogu.com.cn/problem/P2827）monotonic_queue
+P3800（https://www.luogu.com.cn/problem/P3800）monotonic_queue|matrix_dp
+P1016（https://www.luogu.com.cn/problem/P1016）monotonic_queue|greedy|implemention
+P1714（https://www.luogu.com.cn/problem/P1714）prefix_sum|sliding_window
+P2629（https://www.luogu.com.cn/problem/P2629）circular_array|prefix_sum|sliding_window
+P3522（https://www.luogu.com.cn/problem/P3522）monotonic_stack
+P3957（https://www.luogu.com.cn/problem/P3957）binary_search|priority_queue|dp
+P4085（https://www.luogu.com.cn/problem/P4085）two_pointers|priority_queue|sliding_window
+P4392（https://www.luogu.com.cn/problem/P4392）sliding_window|monotonic_queue
 
 =====================================AcWing=====================================
 133（https://www.acwing.com/problem/content/135/）priority_queue
@@ -48,6 +48,10 @@ class Solution:
 
     @staticmethod
     def lg_p1725(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1725
+        tag: monotonic_queue|pointer|sliding_window|liner_dp
+        """
         # 单调队列和pointer维护sliding_window最大值|liner_dp
         n, low, high = ac.read_list_ints()
         n += 1
@@ -107,6 +111,10 @@ class Solution:
 
     @staticmethod
     def lg_p2032(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2032
+        tag: sliding_window_maximum
+        """
         # sliding_window最大值
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -117,6 +125,10 @@ class Solution:
 
     @staticmethod
     def lg_p2251(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2251
+        tag: sliding_window_minimum
+        """
         # sliding_window最小值
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -127,6 +139,10 @@ class Solution:
 
     @staticmethod
     def lg_p2216(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2216
+        tag: sliding_window|sub_matrix
+        """
 
         # 二维sliding_window最大值与sliding_window最小值
         m, n, k = ac.read_list_ints()
@@ -154,6 +170,10 @@ class Solution:
 
     @staticmethod
     def lg_p1886(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1886
+        tag: sliding_window
+        """
         # sliding_window最大最小值
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -183,6 +203,10 @@ class Solution:
 
     @staticmethod
     def lg_p3800(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3800
+        tag: monotonic_queue|matrix_dp
+        """
         # monotonic_queuematrix_dp
         m, n, k, t = ac.read_list_ints()
         dct = [dict() for _ in range(m)]
@@ -271,6 +295,10 @@ class Solution:
 
     @staticmethod
     def lg_p1016(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1016
+        tag: monotonic_queue|greedy|implemention
+        """
         # 单调队列，greedyimplemention油箱，还可以增|每个站的油量限制
         d1, c, d2, p, n = ac.read_list_floats()
         n = int(n)
@@ -309,6 +337,10 @@ class Solution:
 
     @staticmethod
     def lg_p1714(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1714
+        tag: prefix_sum|sliding_window
+        """
         # 单调队列小于一定长度的最大连续子段和
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -330,6 +362,10 @@ class Solution:
 
     @staticmethod
     def lg_p2629(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2629
+        tag: circular_array|prefix_sum|sliding_window
+        """
         # circular_array|prefix_sum与sliding_window最小值
         n = ac.read_int()
         nums = ac.read_list_ints()
@@ -351,6 +387,10 @@ class Solution:
 
     @staticmethod
     def lg_p3957(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3957
+        tag: binary_search|priority_queue|dp
+        """
         # binary_search|单调队列
         n, d, k = ac.read_list_ints()
         dis = [0]
@@ -392,6 +432,10 @@ class Solution:
 
     @staticmethod
     def lg_p4085(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4085
+        tag: two_pointers|priority_queue|sliding_window
+        """
 
         # two_pointers|priority_queuesliding_window最小值
         n, m = ac.read_list_ints()
@@ -423,6 +467,10 @@ class Solution:
 
     @staticmethod
     def lg_p4392(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4392
+        tag: sliding_window|monotonic_queue
+        """
         # 单调队列sliding_window最大值
         n, m, c = ac.read_list_ints()
         ceil = deque()

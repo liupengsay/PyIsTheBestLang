@@ -27,27 +27,27 @@ Description：prefix_suffix|maximum|minimum|second_maximum
 2454（https://leetcode.com/problems/next-greater-element-iv/description/）monotonic_stack|post_second_larger
 
 =====================================LuoGu======================================
-1950（https://www.luogu.com.cn/problem/P1950）brute_force|monotonic_stack|sub_matrix|counter
-1901（https://www.luogu.com.cn/problem/P1901）monotonic_stack
-2866（https://www.luogu.com.cn/problem/P2866）monotonic_stack
-2947（https://www.luogu.com.cn/problem/P2947）monotonic_stack
-4147（https://www.luogu.com.cn/problem/P4147）brute_force|monotonic_stack|sub_matrix|area
-5788（https://www.luogu.com.cn/problem/P5788）monotonic_stack
-7314（https://www.luogu.com.cn/problem/P7314）brute_force|monotonic_stack|pre_larger|post_larger
-7399（https://www.luogu.com.cn/problem/P7399）monotonic_stack|greedy
-7410（https://www.luogu.com.cn/problem/P7410）inclusion_exclusion|monotonic_stack|counter
-7762（https://www.luogu.com.cn/problem/P7762）monotonic_stack|greedy|sorting|contribution_method|area
-1578（https://www.luogu.com.cn/problem/P1578）monotonic_stack|discretization|brute_force|sub_matrix|area
-3467（https://www.luogu.com.cn/problem/P3467）greedy|monotonic_stack
-1191（https://www.luogu.com.cn/problem/P1191）monotonic_stack|sub_matrix|counter
-1323（https://www.luogu.com.cn/problem/P1323）heapq|monotonic_stack|lexicographical_order|greedy
-2422（https://www.luogu.com.cn/problem/P2422）monotonic_stack|prefix_sum
-3467（https://www.luogu.com.cn/problem/P3467）monotonic_stack
-6404（https://www.luogu.com.cn/problem/P6404）monotonic_stack|sub_matrix|counter
-6503（https://www.luogu.com.cn/problem/P6503）monotonic_stack|counter|contribution_method
-6510（https://www.luogu.com.cn/problem/P6510）monotonic_stack|sparse_table|hash|binary_search
-6801（https://www.luogu.com.cn/problem/P6801）monotonic_stack|sub_matrix|counter
-8094（https://www.luogu.com.cn/problem/P8094）monotonic_stack|pre_larger|post_larger
+P1950（https://www.luogu.com.cn/problem/P1950）brute_force|monotonic_stack|sub_matrix|counter
+P1901（https://www.luogu.com.cn/problem/P1901）monotonic_stack
+P2866（https://www.luogu.com.cn/problem/P2866）monotonic_stack
+P2947（https://www.luogu.com.cn/problem/P2947）monotonic_stack
+P4147（https://www.luogu.com.cn/problem/P4147）brute_force|monotonic_stack|sub_matrix|area
+P5788（https://www.luogu.com.cn/problem/P5788）monotonic_stack
+P7314（https://www.luogu.com.cn/problem/P7314）brute_force|monotonic_stack|pre_larger|post_larger
+P7399（https://www.luogu.com.cn/problem/P7399）monotonic_stack|greedy
+P7410（https://www.luogu.com.cn/problem/P7410）inclusion_exclusion|monotonic_stack|counter
+P7762（https://www.luogu.com.cn/problem/P7762）monotonic_stack|greedy|sorting|contribution_method|area
+P1578（https://www.luogu.com.cn/problem/P1578）monotonic_stack|discretization|brute_force|sub_matrix|area
+P3467（https://www.luogu.com.cn/problem/P3467）greedy|monotonic_stack
+P1191（https://www.luogu.com.cn/problem/P1191）monotonic_stack|sub_matrix|counter
+P1323（https://www.luogu.com.cn/problem/P1323）heapq|monotonic_stack|lexicographical_order|greedy
+P2422（https://www.luogu.com.cn/problem/P2422）monotonic_stack|prefix_sum
+P3467（https://www.luogu.com.cn/problem/P3467）monotonic_stack
+P6404（https://www.luogu.com.cn/problem/P6404）monotonic_stack|sub_matrix|counter
+P6503（https://www.luogu.com.cn/problem/P6503）monotonic_stack|counter|contribution_method
+P6510（https://www.luogu.com.cn/problem/P6510）monotonic_stack|sparse_table|hash|binary_search
+P6801（https://www.luogu.com.cn/problem/P6801）monotonic_stack|sub_matrix|counter
+P8094（https://www.luogu.com.cn/problem/P8094）monotonic_stack|pre_larger|post_larger
 
 ===================================CodeForces===================================
 1795E（https://codeforces.com/problemset/problem/1795/E）monotonic_stack|liner_dp|greedy|counter|brute_force|prefix_suffix|dp
@@ -180,6 +180,10 @@ class Solution:
 
     @staticmethod
     def lg_p1191(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1191
+        tag: monotonic_stack|sub_matrix|counter
+        """
         # brute_force下边界monotonic_stack|矩形个数
         n = ac.read_int()
         pre = [0] * n
@@ -205,6 +209,10 @@ class Solution:
 
     @staticmethod
     def lg_p1323(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1323
+        tag: heapq|monotonic_stack|lexicographical_order|greedy
+        """
         # heapq|与monotonic_stack|，最大lexicographical_order数字
         k, m = ac.read_list_ints()
         dct = set()
@@ -234,6 +242,10 @@ class Solution:
 
     @staticmethod
     def lg_p2422(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2422
+        tag: monotonic_stack|prefix_sum
+        """
         # monotonic_stack|与prefix_sum
         n = ac.read_int()
         nums = ac.read_list_ints()
@@ -253,6 +265,10 @@ class Solution:
 
     @staticmethod
     def lg_p3467(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3467
+        tag: monotonic_stack
+        """
         # monotonic_stack|
         n = ac.read_int()
         nums = [ac.read_list_ints()[1] for _ in range(n)]
@@ -363,6 +379,10 @@ class Solution:
 
     @staticmethod
     def lg_p4147(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4147
+        tag: brute_force|monotonic_stack|sub_matrix|area
+        """
         # monotonic_stack|最大矩形面积
         n, m = ac.read_list_ints()
         pre = [0] * m
@@ -380,6 +400,10 @@ class Solution:
 
     @staticmethod
     def lg_p1950(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1950
+        tag: brute_force|monotonic_stack|sub_matrix|counter
+        """
         # monotonic_stack|矩形个数
         m, n = ac.read_list_ints()
         ans = 0
@@ -397,6 +421,10 @@ class Solution:
 
     @staticmethod
     def lg_p6404(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6404
+        tag: monotonic_stack|sub_matrix|counter
+        """
         # monotonic_stack|具有相同数字的子矩形个数
         m, n = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
@@ -426,6 +454,10 @@ class Solution:
 
     @staticmethod
     def lg_p6503(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6503
+        tag: monotonic_stack|counter|contribution_method
+        """
         # monotonic_stack|连续子序列的最大值最小值贡献counter
         m = ac.read_int()
         nums = [ac.read_int() for _ in range(m)]
@@ -455,6 +487,10 @@ class Solution:
 
     @staticmethod
     def lg_p6510(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6510
+        tag: monotonic_stack|sparse_table|hash|binary_search
+        """
         # monotonic_stack|sparse_table|hashbinary_search
         n = ac.read_int()
         nums = [ac.read_int() for _ in range(n)]
@@ -479,6 +515,10 @@ class Solution:
 
     @staticmethod
     def lg_p6801(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6801
+        tag: monotonic_stack|sub_matrix|counter
+        """
         # monotonic_stack|矩形个数
 
         def compute(x, y):
@@ -520,6 +560,10 @@ class Solution:
 
     @staticmethod
     def lg_p8094(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8094
+        tag: monotonic_stack|pre_larger|post_larger
+        """
         # monotonic_stack|应用
         n = ac.read_int()
         nums = ac.read_list_ints()

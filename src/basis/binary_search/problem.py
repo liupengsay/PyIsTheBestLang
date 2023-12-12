@@ -24,50 +24,50 @@ Description：monotonicity is necessary for solution like these, which always wo
 2234（https://leetcode.com/problems/maximum-total-beauty-of-the-gardens/description/）prefix_sum|binary_search|brute_force
 
 =====================================LuoGu======================================
-1577（https://www.luogu.com.cn/problem/P1577）math|floor|binary_search
-1570（https://www.luogu.com.cn/problem/P1570）math|greedy|binary_search
-1843（https://www.luogu.com.cn/problem/P1843）greedy|binary_search
-2309（https://www.luogu.com.cn/problem/P2309）prefix_sum|sorted_list|binary_search|counter|sub_consequence_sum
-2390（https://www.luogu.com.cn/problem/P2390）brute_force|binary_search|two_pointers
-2759（https://www.luogu.com.cn/problem/P2759）math|binary_search
-1404（https://www.luogu.com.cn/problem/P1404）math|prefix_sum|binary_search
-1592（https://www.luogu.com.cn/problem/P1592）binary_search|inclusion_exclusion|kth_coprime_of_n
-2855（https://www.luogu.com.cn/problem/P2855）greedy|binary_search
-2884（https://www.luogu.com.cn/problem/P2884）binary_search
-2985（https://www.luogu.com.cn/problem/P2985）greedy|binary_search|implemention
-3184（https://www.luogu.com.cn/problem/P3184）binary_search|counter
-3611（https://www.luogu.com.cn/problem/P3611）binary_search|greedy|heapq|implemention
-3743（https://www.luogu.com.cn/problem/P3743）binary_search
-4058（https://www.luogu.com.cn/problem/P4058）binary_search
-4670（https://www.luogu.com.cn/problem/P4670）sorting|binary_search|counter
-5119（https://www.luogu.com.cn/problem/P5119）greedy|binary_search
-5250（https://www.luogu.com.cn/problem/P5250）sorted_list
-6174（https://www.luogu.com.cn/problem/P6174）greedy|binary_search
-6281（https://www.luogu.com.cn/problem/P6281）greedy|binary_search
-6423（https://www.luogu.com.cn/problem/P6423）binary_search
-7177（https://www.luogu.com.cn/problem/P7177）binary_search|tree|dfs|implemention
-1314（https://www.luogu.com.cn/problem/P1314）binary_search|sum_nearest_subsequence
-3017（https://www.luogu.com.cn/problem/P3017）binary_search|sub_matrix_sum|max_min
-1083（https://www.luogu.com.cn/problem/P1083）binary_search|diff_array
-1281（https://www.luogu.com.cn/problem/P1281）binary_search|specific_plans
-1381（https://www.luogu.com.cn/problem/P1381）binary_search|sliding_window|brain_teaser
-1419（https://www.luogu.com.cn/problem/P1419）binary_search|priority_queue
-1525（https://www.luogu.com.cn/problem/P1525）binary_search|bfs|bipartite_graph|unionfind|coloring
-1542（https://www.luogu.com.cn/problem/P1542）binary_search|fraction|high_precision
-2237（https://www.luogu.com.cn/problem/P2237）brain_teaser|sorting|binary_search
-2810（https://www.luogu.com.cn/problem/P2810）binary_search|brute_force
-3718（https://www.luogu.com.cn/problem/P3718）binary_search|greedy
-3853（https://www.luogu.com.cn/problem/P3853）binary_search|greedy
-4343（https://www.luogu.com.cn/problem/P4343）bound|binary_search|implemention
-5844（https://www.luogu.com.cn/problem/P5844）median|greedy|prefix_sum|binary_search
-5878（https://www.luogu.com.cn/problem/P5878）binary_search|brute_force
-6004（https://www.luogu.com.cn/problem/P6004）binary_search|union_find
-6058（https://www.luogu.com.cn/problem/P6058）dfs_order|offline_lca|binary_search
-6069（https://www.luogu.com.cn/problem/P6069）math|binary_search
-6733（https://www.luogu.com.cn/problem/P6733）binary_search|sorted_list
-8161（https://www.luogu.com.cn/problem/P8161）greedy|binary_search
-8198（https://www.luogu.com.cn/problem/P8198）binary_search|pointer
-9050（https://www.luogu.com.cn/problem/P9050）binary_search|data_range|greedy|implemention
+P1577（https://www.luogu.com.cn/problem/P1577）math|floor|binary_search
+P1570（https://www.luogu.com.cn/problem/P1570）math|greedy|binary_search
+P1843（https://www.luogu.com.cn/problem/P1843）greedy|binary_search
+P2309（https://www.luogu.com.cn/problem/P2309）prefix_sum|sorted_list|binary_search|counter|sub_consequence_sum
+P2390（https://www.luogu.com.cn/problem/P2390）brute_force|binary_search|two_pointers
+P2759（https://www.luogu.com.cn/problem/P2759）math|binary_search
+P1404（https://www.luogu.com.cn/problem/P1404）math|prefix_sum|binary_search
+P1592（https://www.luogu.com.cn/problem/P1592）binary_search|inclusion_exclusion|kth_coprime_of_n
+P2855（https://www.luogu.com.cn/problem/P2855）greedy|binary_search
+P2884（https://www.luogu.com.cn/problem/P2884）binary_search
+P2985（https://www.luogu.com.cn/problem/P2985）greedy|binary_search|implemention
+P3184（https://www.luogu.com.cn/problem/P3184）binary_search|counter
+P3611（https://www.luogu.com.cn/problem/P3611）binary_search|greedy|heapq|implemention
+P3743（https://www.luogu.com.cn/problem/P3743）binary_search
+P4058（https://www.luogu.com.cn/problem/P4058）binary_search
+P4670（https://www.luogu.com.cn/problem/P4670）sorting|binary_search|counter
+P5119（https://www.luogu.com.cn/problem/P5119）greedy|binary_search
+P5250（https://www.luogu.com.cn/problem/P5250）sorted_list
+P6174（https://www.luogu.com.cn/problem/P6174）greedy|binary_search
+P6281（https://www.luogu.com.cn/problem/P6281）greedy|binary_search
+P6423（https://www.luogu.com.cn/problem/P6423）binary_search
+P7177（https://www.luogu.com.cn/problem/P7177）binary_search|tree|dfs|implemention
+P1314（https://www.luogu.com.cn/problem/P1314）binary_search|sum_nearest_subsequence
+P3017（https://www.luogu.com.cn/problem/P3017）binary_search|sub_matrix_sum|max_min
+P1083（https://www.luogu.com.cn/problem/P1083）binary_search|diff_array
+P1281（https://www.luogu.com.cn/problem/P1281）binary_search|specific_plans
+P1381（https://www.luogu.com.cn/problem/P1381）binary_search|sliding_window|brain_teaser
+P1419（https://www.luogu.com.cn/problem/P1419）binary_search|priority_queue
+P1525（https://www.luogu.com.cn/problem/P1525）binary_search|bfs|bipartite_graph|unionfind|coloring
+P1542（https://www.luogu.com.cn/problem/P1542）binary_search|fraction|high_precision
+P2237（https://www.luogu.com.cn/problem/P2237）brain_teaser|sorting|binary_search
+P2810（https://www.luogu.com.cn/problem/P2810）binary_search|brute_force
+P3718（https://www.luogu.com.cn/problem/P3718）binary_search|greedy
+P3853（https://www.luogu.com.cn/problem/P3853）binary_search|greedy
+P4343（https://www.luogu.com.cn/problem/P4343）bound|binary_search|implemention
+P5844（https://www.luogu.com.cn/problem/P5844）median|greedy|prefix_sum|binary_search
+P5878（https://www.luogu.com.cn/problem/P5878）binary_search|brute_force
+P6004（https://www.luogu.com.cn/problem/P6004）binary_search|union_find
+P6058（https://www.luogu.com.cn/problem/P6058）dfs_order|offline_lca|binary_search
+P6069（https://www.luogu.com.cn/problem/P6069）math|binary_search
+P6733（https://www.luogu.com.cn/problem/P6733）binary_search|sorted_list
+P8161（https://www.luogu.com.cn/problem/P8161）greedy|binary_search
+P8198（https://www.luogu.com.cn/problem/P8198）binary_search|pointer
+P9050（https://www.luogu.com.cn/problem/P9050）binary_search|data_range|greedy|implemention
 
 ===================================CodeForces===================================
 1251D（https://codeforces.com/problemset/problem/1251/D）greedy|median|binary_search
@@ -120,6 +120,10 @@ class Solution:
 
     @staticmethod
     def lg_p1314(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1314
+        tag: binary_search|sum_nearest_subsequence
+        """
 
         # binary_search寻找最接近目标值的和
         n, m, s = ac.read_list_ints()
@@ -251,6 +255,10 @@ class Solution:
 
     @staticmethod
     def lg_p3017(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3017
+        tag: binary_search|sub_matrix_sum|max_min
+        """
 
         # binary_search将矩阵分成a*b个子矩阵且子矩阵和的最小值最大
         def check(x):
@@ -531,6 +539,10 @@ class Solution:
 
     @staticmethod
     def lg_p1083(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1083
+        tag: binary_search|diff_array
+        """
 
         # binary_search结合差分寻找第一个失效点
 
@@ -667,6 +679,10 @@ class Solution:
 
     @staticmethod
     def lg_p1281(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1281
+        tag: binary_search|specific_plans
+        """
         # classicalbinary_search并specific_plans
         m, k = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -701,6 +717,10 @@ class Solution:
 
     @staticmethod
     def lg_p1381(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1381
+        tag: binary_search|sliding_window|brain_teaser
+        """
         # classicalbinary_search
         n = ac.read_int()
         dct = set([ac.read_str() for _ in range(n)])
@@ -741,6 +761,10 @@ class Solution:
 
     @staticmethod
     def lg_p1592(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1592
+        tag: binary_search|inclusion_exclusion|kth_coprime_of_n
+        """
         n, k = ac.read_list_ints()
         if n == 1:  # 特判
             ac.st(k)
@@ -766,6 +790,10 @@ class Solution:
 
     @staticmethod
     def lg_p1419(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1419
+        tag: binary_search|priority_queue
+        """
 
         # binary_search|priority_queue
         def check(x):
@@ -801,6 +829,10 @@ class Solution:
 
     @staticmethod
     def lg_p1525(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1525
+        tag: binary_search|bfs|bipartite_graph|unionfind|coloring
+        """
         # binary_search|bfsbipartite_graph划分
         n, m = ac.read_list_ints()
         lst = [ac.read_list_ints() for _ in range(m)]
@@ -839,6 +871,10 @@ class Solution:
 
     @staticmethod
     def lg_p1542(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1542
+        tag: binary_search|fraction|high_precision
+        """
         # binary_search|分数high_precision
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
@@ -927,6 +963,10 @@ class Solution:
 
     @staticmethod
     def lg_p2237(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2237
+        tag: brain_teaser|sorting|binary_search
+        """
         # brain_teasersorting后binary_search
         w, n = ac.read_list_ints()
         nums = [ac.read_str() for _ in range(w)]
@@ -945,6 +985,10 @@ class Solution:
 
     @staticmethod
     def lg_p2810(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2810
+        tag: binary_search|brute_force
+        """
 
         # binary_search|brute_force
         n = ac.read_int()
@@ -977,6 +1021,10 @@ class Solution:
 
     @staticmethod
     def lg_p3718(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3718
+        tag: binary_search|greedy
+        """
         # binary_search|greedy
         n, k = ac.read_list_ints()
         s = ac.read_str()
@@ -1014,6 +1062,10 @@ class Solution:
 
     @staticmethod
     def lg_p3853(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3853
+        tag: binary_search|greedy
+        """
         # binary_searchgreedy题
         length, n, k = ac.read_list_ints()
         lst = ac.read_list_ints()
@@ -1030,6 +1082,10 @@ class Solution:
 
     @staticmethod
     def lg_p4343(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4343
+        tag: bound|binary_search|implemention
+        """
         # 上下界binary_search|implemention
         l, k = ac.read_list_ints()
         lst = []
@@ -1065,6 +1121,10 @@ class Solution:
 
     @staticmethod
     def lg_p5844(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5844
+        tag: median|greedy|prefix_sum|binary_search
+        """
         # mediangreedy与prefix_sumbinary_search
         n, m, b = ac.read_list_ints()
         pos = [ac.read_int() for _ in range(n)]
@@ -1087,6 +1147,10 @@ class Solution:
 
     @staticmethod
     def lg_p5878(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5878
+        tag: binary_search|brute_force
+        """
         # binary_search|brute_force
         n, m = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
@@ -1118,6 +1182,10 @@ class Solution:
 
     @staticmethod
     def lg_p6004(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6004
+        tag: binary_search|union_find
+        """
         # binary_search|union_find
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints_minus_one()
@@ -1141,6 +1209,10 @@ class Solution:
 
     @staticmethod
     def lg_p6058(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6058
+        tag: dfs_order|offline_lca|binary_search
+        """
         # dfs_order与offline_lca 相邻叶子之间距离并binary_search确定时间
         n, k = ac.read_list_ints()
         dct = [[] for _ in range(n)]
@@ -1195,6 +1267,10 @@ class Solution:
 
     @staticmethod
     def lg_p6069(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6069
+        tag: math|binary_search
+        """
         # 方差公式变形，binary_search|变量维护区间的方差值大小
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -1288,6 +1364,10 @@ class Solution:
 
     @staticmethod
     def lg_p8161(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8161
+        tag: greedy|binary_search
+        """
         # greedy|binary_search
         n, m = ac.read_list_ints()
         a = ac.read_list_ints()
@@ -1316,6 +1396,10 @@ class Solution:
 
     @staticmethod
     def lg_p8198(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8198
+        tag: binary_search|pointer
+        """
         # binary_search|pointer
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -1339,6 +1423,10 @@ class Solution:
 
     @staticmethod
     def lg_p9050(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P9050
+        tag: binary_search|data_range|greedy|implemention
+        """
         # binary_search注意data_range区间与greedyimplemention
         n = ac.read_int()
         if n == 1:

@@ -8,10 +8,10 @@ Description：
 1947（https://leetcode.com/problems/maximum-compatibility-score-sum/）bipartite_graph|maximum_weight_match|state_compress
 
 =====================================LuoGu======================================
-3386（https://www.luogu.com.cn/problem/P3386）bipartite_graph|maximum_weight_match|km
-6577（https://www.luogu.com.cn/problem/P6577）bipartite_graph|maximum_weight_match|km
-1894（https://www.luogu.com.cn/problem/P1894）bipartite_graph|maximum_weight_match|km
-3605（https://www.luogu.com.cn/problem/B3605）hungarian|bipartite_graph|maximum_weight_match|km
+P3386（https://www.luogu.com.cn/problem/P3386）bipartite_graph|maximum_weight_match|km
+P6577（https://www.luogu.com.cn/problem/P6577）bipartite_graph|maximum_weight_match|km
+P1894（https://www.luogu.com.cn/problem/P1894）bipartite_graph|maximum_weight_match|km
+B3605（https://www.luogu.com.cn/problem/B3605）hungarian|bipartite_graph|maximum_weight_match|km
 
 ===================================CodeForces===================================
 1437C（https://codeforces.com/problemset/problem/1437/C）bipartite_graph|minimum_weight_match|km
@@ -133,6 +133,10 @@ class Solution:
 
     @staticmethod
     def lg_p1894(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1894
+        tag: bipartite_graph|maximum_weight_match|km
+        """
         # bipartite_graphmaximum_weight_match（不带权也可以hungarian）
         n, m = ac.read_list_ints()
         s = n + m + 1

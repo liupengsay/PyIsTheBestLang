@@ -18,7 +18,7 @@ class TestGeneral(unittest.TestCase):
             for line in lines:
                 st = "（https://"
                 try:
-                    if st in line and "https://codeforces.com" in line:
+                    if st in line and "https://www.luogu.com.cn" in line:
                         idx = line.split(st)[0]
                         url = "https://" + line.split(st)[1].split("）")[0]
                         tag = line.split(st)[1].split("）")[1]
@@ -26,10 +26,10 @@ class TestGeneral(unittest.TestCase):
                 except:
                     print(file_path, line)
 
-                st = "def cf_"
+                st = "def lg_"
                 if lst and st in lst[-1]:
                     try:
-                        lst.extend(dct[lst[-1].split("(")[0].split("cf_")[1].split("_")[0]])
+                        lst.extend(dct[lst[-1].split("(")[0].split("lg_")[1].split("_")[0]])
                     except:
                         print(file_path, lst[-1])
 
@@ -149,15 +149,10 @@ class TestGeneral(unittest.TestCase):
                 lines = [ls.strip("\n") for ls in file.readlines()]
             lst = []
             for line in lines:
-                st = "（https://codeforces.com"
+                st = "（https://www.luogu.com"
                 if st in line:
                     line = line.split(st)
-                    tmp = line[1].split("）")[0].split("/")
-                    number = ""
-                    for s in tmp[1:-1]:
-                        if s.isnumeric():
-                            number = s
-                    number += tmp[-1]
+                    number = line[1].split("）")[0].split("/")[-1]
                     line[0] = number
                     lst.append(st.join(line))
                 else:

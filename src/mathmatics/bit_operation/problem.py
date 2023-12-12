@@ -27,21 +27,21 @@ Property：(4*i)^(4*i+1)^(4*i+2)^(4*i+3)=0  (2*n)^(2*n+1)=1 (a&b)^(a&c) = a&(b^c
 100087（https://leetcode.com/problems/apply-operations-on-array-to-maximize-sum-of-squares/description/）bit_wise|bit_operation|greedy
 
 =====================================LuoGu======================================
-5657（https://www.luogu.com.cn/problem/P5657）bit_operation
-6102（https://www.luogu.com.cn/problem/P6102）bit_operation|and
-7442（https://www.luogu.com.cn/problem/P7442）bit_operation|implemention|observe_pattern
-7617（https://www.luogu.com.cn/problem/P7617）bit_operation|brute_force
-7627（https://www.luogu.com.cn/problem/P7627）bit_operation|brute_force
-7649（https://www.luogu.com.cn/problem/P7649）3-base|greedy|implemention
-1582（https://www.luogu.com.cn/problem/P1582）base|brain_teaser
-2114（https://www.luogu.com.cn/problem/P2114）bit_operation|implemention|greedy
-2326（https://www.luogu.com.cn/problem/P2326）bit_operation|implemention|greedy|maximum_and
-4144（https://www.luogu.com.cn/problem/P4144）bit_operation|greedy|brain_teaser
-4310（https://www.luogu.com.cn/problem/P4310）linear_dp|bit_operation
-5390（https://www.luogu.com.cn/problem/P5390）bit_operation
-6824（https://www.luogu.com.cn/problem/P6824）bit_operation|xor|diff_array|action_scope|counter
-8842（https://www.luogu.com.cn/problem/P8842）prime_factorization|prefix_sum|counter
-8965（https://www.luogu.com.cn/problem/P8965）tree_dp|xor
+P5657（https://www.luogu.com.cn/problem/P5657）bit_operation
+P6102（https://www.luogu.com.cn/problem/P6102）bit_operation|and
+P7442（https://www.luogu.com.cn/problem/P7442）bit_operation|implemention|observe_pattern
+P7617（https://www.luogu.com.cn/problem/P7617）bit_operation|brute_force
+P7627（https://www.luogu.com.cn/problem/P7627）bit_operation|brute_force
+P7649（https://www.luogu.com.cn/problem/P7649）3-base|greedy|implemention
+P1582（https://www.luogu.com.cn/problem/P1582）base|brain_teaser
+P2114（https://www.luogu.com.cn/problem/P2114）bit_operation|implemention|greedy
+P2326（https://www.luogu.com.cn/problem/P2326）bit_operation|implemention|greedy|maximum_and
+P4144（https://www.luogu.com.cn/problem/P4144）bit_operation|greedy|brain_teaser
+P4310（https://www.luogu.com.cn/problem/P4310）linear_dp|bit_operation
+P5390（https://www.luogu.com.cn/problem/P5390）bit_operation
+P6824（https://www.luogu.com.cn/problem/P6824）bit_operation|xor|diff_array|action_scope|counter
+P8842（https://www.luogu.com.cn/problem/P8842）prime_factorization|prefix_sum|counter
+P8965（https://www.luogu.com.cn/problem/P8965）tree_dp|xor
 
 ===================================CodeForces===================================
 305C（https://codeforces.com/problemset/problem/305/C）2-base
@@ -440,6 +440,10 @@ class Solution:
 
     @staticmethod
     def lg_p1582(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1582
+        tag: base|brain_teaser
+        """
         # 进制题brain_teaser
         n, k = ac.read_list_ints()
         ans = 0
@@ -452,6 +456,10 @@ class Solution:
 
     @staticmethod
     def lg_p2114(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2114
+        tag: bit_operation|implemention|greedy
+        """
         # bit_operationimplemention，greedy选取最大结果
         n, m = ac.read_list_ints()
         one = [1 << i for i in range(32)]
@@ -482,6 +490,10 @@ class Solution:
 
     @staticmethod
     def lg_p2326(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2326
+        tag: bit_operation|implemention|greedy|maximum_and
+        """
         # 按位implementiongreedy选取与值最大的数值对
         for case in range(ac.read_int()):
             ac.read_int()
@@ -509,6 +521,10 @@ class Solution:
 
     @staticmethod
     def lg_p4144(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4144
+        tag: bit_operation|greedy|brain_teaser
+        """
         # bit_operation|brain_teasergreedy
         n, b, p = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -518,6 +534,10 @@ class Solution:
 
     @staticmethod
     def lg_p4310(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4310
+        tag: linear_dp|bit_operation
+        """
         # linear_dp 按位转移
         ac.read_int()
         nums = ac.read_list_ints()
@@ -538,6 +558,10 @@ class Solution:
 
     @staticmethod
     def lg_p5390(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5390
+        tag: bit_operation
+        """
         # bit_operation统计brute_force
         mod = 998244353
         for _ in range(ac.read_int()):
@@ -554,6 +578,10 @@ class Solution:
 
     @staticmethod
     def lg_p6824(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6824
+        tag: bit_operation|xor|diff_array|action_scope|counter
+        """
         # bit_operation异或不等式在差分action_scopecounter
         n, k = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
@@ -588,6 +616,10 @@ class Solution:
 
     @staticmethod
     def lg_p8842(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8842
+        tag: prime_factorization|prefix_sum|counter
+        """
         # 质数个数prefix_sum与异或不等式区间counter（也可考虑 01 Trie）
         n = 1 << 21
         prime = [0] * (n + 1)

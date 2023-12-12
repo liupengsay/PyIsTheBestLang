@@ -9,8 +9,8 @@ Reference：
 2952（https://leetcode.com/problems/minimum-number-of-coins-to-be-added/）greedy|sort|implemention|mex
 
 ======================================Luogu=====================================
-9202（https://www.luogu.com.cn/problem/P9202）mex|operation
-9199（https://www.luogu.com.cn/problem/P9199）mex|operation
+P9202（https://www.luogu.com.cn/problem/P9202）mex|operation
+P9199（https://www.luogu.com.cn/problem/P9199）mex|operation
 
 ===================================CodeForces===================================
 
