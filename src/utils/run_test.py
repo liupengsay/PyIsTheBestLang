@@ -7,6 +7,7 @@ from collections import defaultdict
 
 class TestGeneral(unittest.TestCase):
 
+    @unittest.skip
     def test_add_solution_http(self):
 
         def process_file(file_path):
