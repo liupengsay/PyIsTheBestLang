@@ -44,6 +44,7 @@ P2189（https://www.luogu.com.cn/problem/P2189）union_find
 P2307（https://www.luogu.com.cn/problem/P2307）union_find
 P3420（https://www.luogu.com.cn/problem/P3420）union_find
 P5429（https://www.luogu.com.cn/problem/P5429）union_find
+P6004（https://www.luogu.com.cn/problem/P6004）union_find|permutation_circle|kruskal|mst|greedy|pointer
 P6193（https://www.luogu.com.cn/problem/P6193）permutation_circle
 P6706（https://www.luogu.com.cn/problem/P6706）directed_graph|union_find|reverse_order|find_range_merge_to_disjoint
 P7991（https://www.luogu.com.cn/problem/P7991）union_find|shrink_point
@@ -635,6 +636,30 @@ class Solution:
             j = ac.read_int()
             uf.union(i, j - 1)
         ac.st(uf.part)
+        return
+
+    @staticmethod
+    def lg_p6004(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6004
+        tag: union_find|permutation_circle|kruskal|mst|greedy|pointer
+        """
+        n, m = ac.read_list_ints()
+        nums = ac.read_list_ints_minus_one()
+        edges = [ac.read_list_ints() for _ in range(m)]
+        edges.sort(key=lambda it: -it[2])
+        uf = UnionFind(n)
+        ind = 0
+        ans = -1
+        for i, j, w in edges:
+            while ind < n and uf.is_connected(ind, nums[ind]):
+                ind += 1
+            if ind == n:
+                ac.st(ans)
+                return
+            uf.union(i - 1, j - 1)
+            ans = w
+        ac.st(ans)
         return
 
     @staticmethod

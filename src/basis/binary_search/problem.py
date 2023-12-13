@@ -61,7 +61,6 @@ P3853（https://www.luogu.com.cn/problem/P3853）binary_search|greedy
 P4343（https://www.luogu.com.cn/problem/P4343）bound|binary_search|implemention
 P5844（https://www.luogu.com.cn/problem/P5844）median|greedy|prefix_sum|binary_search
 P5878（https://www.luogu.com.cn/problem/P5878）binary_search|brute_force
-P6004（https://www.luogu.com.cn/problem/P6004）binary_search|union_find
 P6058（https://www.luogu.com.cn/problem/P6058）dfs_order|offline_lca|binary_search
 P6069（https://www.luogu.com.cn/problem/P6069）math|binary_search
 P6733（https://www.luogu.com.cn/problem/P6733）binary_search|sorted_list
@@ -95,8 +94,8 @@ ARC075B（https://atcoder.jp/contests/abc063/tasks/arc075_b）binary_search|gree
 120（https://www.acwing.com/problem/content/122/）binary_search
 14（https://www.acwing.com/problem/content/description/15/）pigeonhole_principle|binary_search
 3973（https://www.acwing.com/problem/content/3976/）high_precision|binary_search|sliding_window|two_pointers
-4863（https://www.acwing.com/problem/content/description/4866/）binary_search|pigeonhole_principle
-5048（https://www.acwing.com/problem/content/description/5051/）high_precision|binary_search|specific_plan
+4866（https://www.acwing.com/problem/content/description/4866/）binary_search|pigeonhole_principle
+5051（https://www.acwing.com/problem/content/description/5051/）high_precision|binary_search|specific_plan
 
 """
 import bisect
@@ -108,8 +107,6 @@ from typing import List
 
 from src.basis.binary_search.template import BinarySearch
 from src.data_structure.sorted_list.template import LocalSortedList
-from src.graph.tree_lca.template import OfflineLCA
-from src.graph.union_find.template import UnionFind
 from src.mathmatics.high_precision.template import FloatToFrac
 from src.mathmatics.number_theory.template import NumberTheory
 from src.utils.fast_io import FastIO
@@ -861,8 +858,7 @@ class Solution:
         url: https://codeforces.com/problemset/problem/1118/D2
         tag: greedy|binary_search
         """
-        # reviewing
-        # greedybinary_search
+
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         s = sum(nums)
@@ -887,7 +883,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/883/I
         tag: binary_search|two_pointers|dp
         """
-        # binary_search|two_pointersdp
         n, k = ac.read_list_ints()
         nums = sorted(ac.read_list_ints())
 
@@ -914,7 +909,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2237
         tag: brain_teaser|sort|binary_search
         """
-        # brain_teasersorting后binary_search
         w, n = ac.read_list_ints()
         nums = [ac.read_str() for _ in range(w)]
         ind = list(range(w))
@@ -934,16 +928,15 @@ class Solution:
     def lg_p2810(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P2810
-        tag: binary_search|brute_force
+        tag: binary_search|brute_force|classical
         """
 
-        # binary_search|brute_force
         n = ac.read_int()
 
         low = 0
         high = 10 ** 18
 
-        def check2(x):
+        def compute(x):
             k = 2
             res = 0
             while k * k * k <= x:
@@ -952,15 +945,10 @@ class Solution:
             return res
 
         def check(x):
-            k = 2
-            res = 0
-            while k * k * k <= x:
-                res += x // (k * k * k)
-                k += 1
-            return res >= n
+            return compute(x) >= n
 
         ans = BinarySearch().find_int_left(low, high, check)
-        if check2(ans) == n:
+        if compute(ans) == n:
             ac.st(ans)
             return
         ac.st(-1)
@@ -970,15 +958,15 @@ class Solution:
     def lg_p3718(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P3718
-        tag: binary_search|greedy
+        tag: binary_search|greedy|classical
         """
-        # binary_search|greedy
+
         n, k = ac.read_list_ints()
         s = ac.read_str()
 
         def check(x):
             if x == 1:
-                # 特殊情况
+                # special judge
                 op1 = op2 = 0
                 for i in range(n):
                     if i % 2:
@@ -996,7 +984,6 @@ class Solution:
                 if w == pre:
                     cnt += 1
                 else:
-                    # 对于相同状态连续区间断开的最少操作次数
                     op += cnt // (x + 1)
                     pre = w
                     cnt = 1
@@ -1013,7 +1000,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3853
         tag: binary_search|greedy
         """
-        # binary_searchgreedy题
         length, n, k = ac.read_list_ints()
         lst = ac.read_list_ints()
         lst.sort()
@@ -1031,9 +1017,9 @@ class Solution:
     def lg_p4343(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P4343
-        tag: bound|binary_search|implemention
+        tag: bound|binary_search|implemention|classical
         """
-        # 上下界binary_search|implemention
+
         l, k = ac.read_list_ints()
         lst = []
         for _ in range(l):
@@ -1057,7 +1043,6 @@ class Solution:
         def check2(n):
             return compute(n) <= k
 
-        # 的binary_search函数写法与出specific_plan
         ceil = BinarySearch().find_int_right(low, high, check1)
         if compute(ceil) != k:
             ac.st(-1)
@@ -1070,9 +1055,9 @@ class Solution:
     def lg_p5844(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P5844
-        tag: median|greedy|prefix_sum|binary_search
+        tag: median_greedy|prefix_sum|binary_search|classical
         """
-        # mediangreedy与prefix_sumbinary_search
+
         n, m, b = ac.read_list_ints()
         pos = [ac.read_int() for _ in range(n)]
         ans = j = 0
@@ -1085,7 +1070,6 @@ class Solution:
             return left + right
 
         for i in range(n):
-            # brute_force左端点binary_search右端点
             while j < n and check(i, j) <= b:
                 j += 1
             ans = ac.max(ans, j - i)
@@ -1098,7 +1082,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5878
         tag: binary_search|brute_force
         """
-        # binary_search|brute_force
+
         n, m = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
 
@@ -1109,7 +1093,6 @@ class Solution:
                 if need <= 0:
                     continue
                 cur = inf
-                # brute_force小包装个数
                 for i in range(need + 1):
                     rest = need - i * sm
                     if rest > 0:
@@ -1128,87 +1111,70 @@ class Solution:
         return
 
     @staticmethod
-    def lg_p6004(ac=FastIO()):
-        """
-        url: https://www.luogu.com.cn/problem/P6004
-        tag: binary_search|union_find
-        """
-        # binary_search|union_find
-        n, m = ac.read_list_ints()
-        nums = ac.read_list_ints_minus_one()
-        edges = [ac.read_list_ints() for _ in range(m)]
-        edges.sort(key=lambda it: -it[2])
-
-        def check(x):
-            uf = UnionFind(n)
-            for i, j, _ in edges[:x]:
-                uf.union(i - 1, j - 1)
-            group = uf.get_root_part()
-            for g in group:
-                cur = set([nums[i] for i in group[g]])
-                if not all(i in cur for i in group[g]):
-                    return False
-            return True
-
-        ans = BinarySearch().find_int_left(0, m, check)
-        ac.st(-1 if not ans else edges[ans - 1][2])
-        return
-
-    @staticmethod
     def lg_p6058(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P6058
-        tag: dfs_order|offline_lca|binary_search
+        tag: dfs_order|binary_search
         """
-        # dfs_order与offline_lca 相邻叶子之间距离并binary_search确定时间
         n, k = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for _ in range(n - 1):
             x, y, z = ac.read_list_ints_minus_one()
-            dct[x].append([y, z + 1])
-            dct[y].append([x, z + 1])
+            dct[x].append((y, z + 1))
+        for i in range(n):
+            dct[i].reverse()
+
         if n == 1:
             ac.st(0)
-            return
-        for i in range(n):
-            dct[i].sort(reverse=True)
-        # 找出叶子
-        stack = [[0, -1]]
+            exit()
+
         dis = [0] * n
-        leaf = []
+        stack = [0]
         while stack:
-            i, fa = stack.pop()
-            for j, w in dct[i]:
-                if j != fa:
-                    dis[j] = dis[i] + w
-                    stack.append([j, i])
-            if len(dct[i]) == 1 and i:
-                leaf.append(i)
-        c = len(leaf)
-        pairs = [[leaf[i - 1], leaf[i]] for i in range(1, c)]
-        edge = [[ls[0] for ls in lst] for lst in dct]
-        # 叶子之间的距离
-        ces = OfflineLCA().bfs_iteration(edge, pairs, 0)
-        pairs_dis = [dis[leaf[i - 1]] + dis[leaf[i]] - 2 * dis[ces[i - 1]] for i in range(1, c)]
-        pre = ac.accumulate(pairs_dis)
+            x = stack.pop()
+            for y, w in dct[x]:
+                dis[y] = dis[x] + w
+                stack.append(y)
+
+        def find_high():
+            q = [(0, 0)]
+            d = 0
+            while q:
+                a, s = q.pop()
+                if a >= 0:
+                    d += s
+                    q.append((~a, s))
+                    for b, dd in dct[a]:
+                        q.append((b, dd))
+                else:
+                    d += s
+            return d
 
         def check(t):
-            ii = 0
-            part = 0
-            while ii < c:
-                post = -1
-                for jj in range(ii, c):
-                    # 当前节点最远能够到达的叶子距离
-                    if pre[jj] - pre[ii] + dis[leaf[ii]] + dis[leaf[jj]] <= t:
-                        post = jj
-                    else:
-                        break
-                part += 1
-                ii = post + 1
-            return part <= k
+            q = [(0, 0)]
+            d = 0
+            res = 0
+            while q:
+                a, s = q.pop()
+                if a >= 0:
+                    d += s
+                    q.append((~a, s))
+                    for b, dd in dct[a]:
+                        q.append((b, dd))
+                else:
+                    a = ~a
+                    if not dct[a]:
+                        if d + dis[a] > t:
+                            res += 1
+                            if res + 1 > k:
+                                return False
+                            d = dis[a]
+                    d += s
+            return res + 1 <= k
 
-        # binary_search
-        ans = BinarySearch().find_int_left(max(dis[i] * 2 for i in leaf), sum(dis[i] * 2 for i in leaf), check)
+        low = max(dis) * 2
+        high = find_high()
+        ans = BinarySearch().find_int_left(low, high, check)
         ac.st(ans)
         return
 
@@ -1216,9 +1182,9 @@ class Solution:
     def lg_p6069(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P6069
-        tag: math|binary_search
+        tag: math|binary_search|variance|classical
         """
-        # 方差公式变形，binary_search|变量维护区间的方差值大小
+
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         nums.sort()
@@ -1229,7 +1195,7 @@ class Solution:
                 ss += nums[i] ** 2
                 s += nums[i]
                 if i >= x - 1:
-                    # 方差变形公式转换为整数乘法
+                    # variance equation
                     if x * ss - s * s <= x * m:
                         return True
                     ss -= nums[i - x + 1] ** 2
@@ -1241,8 +1207,12 @@ class Solution:
         return
 
     @staticmethod
-    def lg_p6633(ac=FastIO()):
-        # binary_search|STL Check
+    def lg_p6733(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6733
+        tag: binary_search|sorted_list
+        """
+
         n, k = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort(key=lambda it: -it[1])
@@ -1268,8 +1238,6 @@ class Solution:
         tag: binary_search
         """
 
-        #  binary_search
-
         def check(x):
             res = 0
             for r in ranks:
@@ -1284,7 +1252,7 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-time-to-eat-all-grains/
         tag: binary_search|greedy|pointer
         """
-        # binary_search|pointergreedy check
+
         hens.sort()
         grains.sort()
         m, n = len(hens), len(grains)
@@ -1314,9 +1282,9 @@ class Solution:
     def lg_p8161(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P8161
-        tag: greedy|binary_search
+        tag: greedy|binary_search|classical
         """
-        # greedy|binary_search
+
         n, m = ac.read_list_ints()
         a = ac.read_list_ints()
         b = ac.read_list_ints()
@@ -1348,7 +1316,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8198
         tag: binary_search|pointer
         """
-        # binary_search|pointer
+
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
 
@@ -1373,9 +1341,9 @@ class Solution:
     def lg_p9050(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P9050
-        tag: binary_search|data_range|greedy|implemention
+        tag: binary_search|data_range|greedy|implemention|classical
         """
-        # binary_search注意data_range区间与greedyimplemention
+
         n = ac.read_int()
         if n == 1:
             ac.st("T")
@@ -1410,7 +1378,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/3976/
         tag: high_precision|binary_search|sliding_window|two_pointers
         """
-        # 浮点数binary_search与sliding_windowtwo_pointers
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         pos = ac.read_list_ints()
@@ -1434,8 +1401,12 @@ class Solution:
         return
 
     @staticmethod
-    def ac_4683(ac=FastIO()):
-        # binary_search|pigeonhole_principle
+    def ac_4866(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/4866/
+        tag: binary_search|pigeonhole_principle|classical
+        """
+
         for _ in range(ac.read_int()):
             ac.read_str()
             m, n = ac.read_list_ints()
@@ -1459,12 +1430,12 @@ class Solution:
         return
 
     @staticmethod
-    def ac_5048(ac=FastIO()):
+    def ac_5051(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/5051/
         tag: high_precision|binary_search|specific_plan
         """
-        # 浮点数binary_search并求出specific_plan
+
         ac.read_int()
         nums = ac.read_list_ints()
         nums.sort()
