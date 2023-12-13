@@ -143,12 +143,9 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
-        def solve():
-
-            return
 
         for _ in range(ac.read_int()):
-            solve()
+            pass
         return
 
 
