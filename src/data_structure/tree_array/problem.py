@@ -504,7 +504,7 @@ class Solution:
         ans = [0] * m
         tree = PointAddRangeSum(n)
         queries.sort(key=lambda it: it[1])
-        pre = [-1]*(max(nums)+1)
+        pre = [-1] * (max(nums) + 1)
         i = 0
         for ll, rr, ii in queries:
             while i <= rr:
@@ -931,7 +931,8 @@ class Solution:
                     col_tree.point_add(y + 1, -1)
             else:
                 x1, y1, x2, y2 = [w - 1 for w in lst[1:]]
-                if row_tree.range_sum(x1 + 1, x2 + 1) == x2 - x1 + 1 or col_tree.range_sum(y1 + 1, y2 + 1) == y2 - y1 + 1:
+                if row_tree.range_sum(x1 + 1, x2 + 1) == x2 - x1 + 1 or col_tree.range_sum(y1 + 1,
+                                                                                           y2 + 1) == y2 - y1 + 1:
                     ac.st("Yes")
                     continue
                 ac.st("No")

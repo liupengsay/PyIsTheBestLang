@@ -111,6 +111,7 @@ class Solution:
         url: https://leetcode.cn/problems/shortest-palindrome/
         tag: reverse_hash|string_hash|longest_prefix_palindrome_substring|kmp|manacher
         """
+
         # 正向与反向string_hash字符串前缀最长palindrome_substring，也可以用KMP与manacher
 
         def query(x, y):
@@ -159,6 +160,7 @@ class Solution:
         url: https://leetcode.cn/problems/find-duplicate-subtrees/
         tag: tree_hash
         """
+
         # tree_hash编码序列化子树，查找重复子树
         def dfs(node):
             if not node:

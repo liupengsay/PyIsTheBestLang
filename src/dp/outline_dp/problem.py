@@ -33,6 +33,7 @@ class Solution:
         url: https://leetcode.cn/problems/maximize-grid-happiness/
         tag: outline_dp|classical
         """
+
         # memory_searchdfs|轮廓线 DP
         def dfs(pos, state, intro, ext):
             # 当前网格位置，前 n 个格子压缩状态，剩余内向人数，剩余外向人数
@@ -152,6 +153,7 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-students-taking-exam/
         tag: outline_dp|classical
         """
+
         # memory_searchdfs|轮廓线 DP
 
         def dfs(pos, state):

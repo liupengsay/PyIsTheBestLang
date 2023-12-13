@@ -170,6 +170,7 @@ class Solution:
         url: https://leetcode.cn/problems/height-of-binary-tree-after-subtree-removal-queries/
         tag: dfs|tree_dp|up_to_down|down_to_up
         """
+
         # 类似换根 DP 的思想跑两遍 DFS
         def dfs(node, d):
             if not node:

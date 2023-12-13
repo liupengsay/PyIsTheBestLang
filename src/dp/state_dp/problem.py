@@ -60,7 +60,6 @@ ABC332E（https://atcoder.jp/contests/abc332/tasks/abc332_e）math|state_dp|clas
 """
 import heapq
 import math
-import sys
 from collections import Counter
 from functools import lru_cache
 from functools import reduce
@@ -82,6 +81,7 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-incompatibility/
         tag: state_dp|group_bag_dp|state_dp|comb
         """
+
         # state_dp和组合数选取结合
 
         @lru_cache(None)
@@ -123,6 +123,7 @@ class Solution:
         url: https://leetcode.cn/problems/find-minimum-time-to-finish-all-jobs/
         tag: bit_operation|minimum_maximum|brute_force|classical|sub_set
         """
+
         # 通过bit_operationbrute_force分配工作DP最小化的最大值，brute_force子集preprocess
         @lru_cache(None)
         def dfs(i, state):
@@ -429,6 +430,7 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-time-to-kill-all-monsters/
         tag: state_dp
         """
+
         # state_dpDPmemory_search形式
 
         @lru_cache(None)
@@ -765,6 +767,7 @@ class Solution:
         url: https://leetcode.cn/problems/distribute-repeating-integers/
         tag: state_dp
         """
+
         # 线性索引|brute_force子集state_compress
         @lru_cache(None)
         def dfs(i, state):
@@ -793,6 +796,7 @@ class Solution:
         url: https://leetcode.cn/problems/the-score-of-students-solving-math-expression/
         tag: memory_search|fill_table
         """
+
         # 类似divide_and_conquer的思想memory_search
         @lru_cache(None)
         def dfs(state):
@@ -851,6 +855,7 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-number-of-work-sessions-to-finish-the-tasks/
         tag: sub_set|preprocess|brute_force|state_dp
         """
+
         # preprocess子集后memory_search状态转移，子集brute_force，也可两个状态
 
         @lru_cache(None)
@@ -949,6 +954,7 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-and-sum-of-array/
         tag: bit_operation|state_dp|3-base|state_dp
         """
+
         # bit_operation和state_dp转移，三进制state_compress（天平就是三进制）
 
         def get_k_bin_of_n(n: int, k: int, m: int):  # 进制与数字转换state_compress

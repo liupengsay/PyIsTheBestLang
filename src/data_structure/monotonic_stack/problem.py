@@ -523,6 +523,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6801
         tag: monotonic_stack|sub_matrix|counter
         """
+
         # monotonic_stack|矩形个数
 
         def compute(x, y):

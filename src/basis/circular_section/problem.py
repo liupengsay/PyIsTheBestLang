@@ -38,6 +38,7 @@ class Solution:
         url: https://leetcode.cn/problems/prison-cells-after-n-days/
         tag: circular_section
         """
+
         # N 天后的牢房circular_section
         def compute_loop(i, j, n):
             # 此时只需k即可，即最后一次的状态

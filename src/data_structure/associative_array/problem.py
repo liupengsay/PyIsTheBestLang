@@ -63,6 +63,7 @@ class Solution:
         url: https://codeforces.com/contest/1702/problem/C
         tag: hash|xor_random_seed
         """
+
         def solve():
             ac.read_str()
             n, k = ac.read_list_ints()
@@ -75,7 +76,8 @@ class Solution:
                 end[x ^ ac.random_seed] = i
             for _ in range(k):
                 a, b = ac.read_list_ints()
-                if a ^ ac.random_seed in start and b ^ ac.random_seed in end and start[a ^ ac.random_seed] < end[b ^ ac.random_seed]:
+                if a ^ ac.random_seed in start and b ^ ac.random_seed in end and start[a ^ ac.random_seed] < end[
+                    b ^ ac.random_seed]:
                     ac.st("YES")
                 else:
                     ac.st("NO")

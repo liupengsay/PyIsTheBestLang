@@ -16,5 +16,4 @@ class XXX:
 
 class Solution:
     def __int__(self):
-
         return

@@ -948,6 +948,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2914
         tag: dijkstra|build_graph|dynamic_graph
         """
+
         # Dijkstra动态build_graph|距离
 
         def dis(x, y):

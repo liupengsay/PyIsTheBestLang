@@ -55,10 +55,9 @@ from collections import deque, Counter
 from itertools import accumulate
 from typing import List
 
-from src.greedy.longest_increasing_subsequence.template import LongestIncreasingSubsequence, LcsComputeByLis
-
 from src.data_structure.segment_tree.template import RangeAscendRangeMax
 from src.data_structure.tree_array.template import PointAscendPreMax
+from src.greedy.longest_increasing_subsequence.template import LongestIncreasingSubsequence, LcsComputeByLis
 from src.utils.fast_io import FastIO
 
 

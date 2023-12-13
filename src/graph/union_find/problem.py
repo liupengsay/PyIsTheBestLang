@@ -1139,6 +1139,7 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/description/
         tag: discretization|permutation_circle
         """
+
         # discretizationpermutation_circle|
 
         def check():

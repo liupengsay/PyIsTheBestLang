@@ -330,6 +330,7 @@ class Solution:
         url: https://www.acwing.com/problem/content/99/
         tag: a^b|math|factorization
         """
+
         # a^b的所有约数之和
 
         def check(pp, cc):
@@ -872,6 +873,7 @@ class Solution:
         url: https://leetcode.cn/problems/adding-two-negabinary-numbers/
         tag: negative_base|classical
         """
+
         # 负进制题
         def check(tmp):
             res = 0

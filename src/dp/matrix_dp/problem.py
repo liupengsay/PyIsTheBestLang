@@ -298,6 +298,7 @@ class Solution:
         url: https://codeforces.com/problemset/problem/2/B
         tag: matrix_dp
         """
+
         # 乘积后缀0最少的个数以及对应的路径
         def f_2(num):
             if not num:
@@ -378,6 +379,7 @@ class Solution:
         url: https://codeforces.com/problemset/problem/1398/D
         tag: md_matrix_dp|maximum_mul|maximum_sum
         """
+
         # 三维DP，选取两个不同数组的数乘积，最大总和
         @ac.bootstrap
         def dfs(i, j, k):
@@ -1927,6 +1929,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8786
         tag: classical|md_matrix_dp| implemention|memory_search
         """
+
         # classical三维matrix_dp| implementionmemory_search
 
         @lru_cache(None)

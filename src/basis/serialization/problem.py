@@ -18,5 +18,4 @@ xx（xxx）xxx
 
 class Solution:
     def __int__(self):
-
         return

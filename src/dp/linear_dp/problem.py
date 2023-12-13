@@ -131,6 +131,7 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-score-from-performing-multiplication-operations/
         tag: liner_dp
         """
+
         # 数组匹配liner_dp
 
         @lru_cache(None)
@@ -189,10 +190,10 @@ class Solution:
 
     @staticmethod
     def lc_2361(
-        """
-        url: https://leetcode.cn/problems/minimum-costs-using-the-train-line/
-        tag: linear_dp
-        """
+            """
+            url: https://leetcode.cn/problems/minimum-costs-using-the-train-line/
+            tag: linear_dp
+            """
             regular: List[int],
             express: List[int],
             express_cost: int) -> List[int]:

@@ -386,6 +386,7 @@ class Solution:
         url: https://www.acwing.com/problem/content/131/
         tag: catalan_number|stack|implemention
         """
+
         # back_trackimplemention出stack入stack所有可能的排列
 
         def dfs(i):

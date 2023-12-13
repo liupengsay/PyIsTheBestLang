@@ -153,7 +153,7 @@ class TestGeneral(unittest.TestCase):
         low = -10000
         high = 10000
         nums = [random.randint(low, high) for _ in range(high)]
-        mod = 10**9 + 7
+        mod = 10 ** 9 + 7
         segment_tree = RangeAddMulRangeSum(high, mod)
         segment_tree.build(nums)
 

@@ -646,7 +646,6 @@ class RangeAddMulRangeSum:
         return ans
 
 
-
 class RangeChangeRangeSumMinMax:
     def __init__(self, n):
         self.n = n

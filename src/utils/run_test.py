@@ -23,7 +23,8 @@ class TestGeneral(unittest.TestCase):
                         idx = line.split(st)[0]
                         url = "https://" + line.split(st)[1].split("）")[0]
                         tag = line.split(st)[1].split("）")[1]
-                        dct[idx.lower()] = ["        \"\"\"", f"        url: {url}", f"        tag: {tag}", "        \"\"\""]
+                        dct[idx.lower()] = ["        \"\"\"", f"        url: {url}", f"        tag: {tag}",
+                                            "        \"\"\""]
                 except:
                     print(file_path, line)
 

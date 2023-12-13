@@ -444,6 +444,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1265
         tag: prim|mst
         """
+
         # primmst|，适合稠密图场景
 
         def dis(x1, y1, x2, y2):

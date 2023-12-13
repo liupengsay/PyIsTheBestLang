@@ -272,6 +272,7 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-operations-to-reduce-an-integer-to-0/
         tag: operation|bit_property
         """
+
         # n |上或减去 2 的某个幂使得 n 变为 0 的最少操作数
         @lru_cache(None)
         def dfs(n):

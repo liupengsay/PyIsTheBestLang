@@ -1,4 +1,3 @@
-
 """
 Algorithm：linear_basis|kth_subset_xor|rank_of_xor
 Description：subset_xor|kth_xor|rank_of_xor

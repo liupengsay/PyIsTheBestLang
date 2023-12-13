@@ -180,6 +180,7 @@ class Solution:
         url: https://codeforces.com/problemset/problem/584/D
         tag: brute_force|prime|decompose_into_sum_of_prime_at_most_3
         """
+
         # 将 n 分解为最多三个质数的和
         def is_prime4(x):
             if x == 1:
@@ -216,6 +217,7 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-swap/
         tag: greedy|brute_force
         """
+
         # 在复杂度有限的情况下有限采用brute_force的方式而不是greedy
 
         def check():  # greedy
@@ -1425,6 +1427,7 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-trailing-zeros-in-a-cornered-path/
         tag: prefix_sum|brute_force
         """
+
         # 四个方向的prefix_sum与两两组合brute_force
 
         def check(num, f):

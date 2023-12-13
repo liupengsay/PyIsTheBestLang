@@ -78,6 +78,7 @@ class Solution:
         url: https://leetcode.cn/problems/partition-array-into-two-arrays-to-minimize-sum-difference/
         tag: meet_in_middle|sort|binary_search|two_pointers
         """
+
         # meet_in_middlesort|binary_search或者two_pointers
 
         def check(lst):

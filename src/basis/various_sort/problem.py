@@ -157,6 +157,7 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-initial-energy-to-finish-tasks/
         tag: custom_sort|greedy|sorting
         """
+
         # 模板: custom_sort
 
         def compare(aa, bb):

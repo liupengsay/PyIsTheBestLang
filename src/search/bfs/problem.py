@@ -1857,6 +1857,7 @@ class Solution:
         url: https://leetcode.cn/problems/snakes-and-ladders/
         tag: 01-bfs|implemention
         """
+
         # 01-bfs|implemention
         def position(num):
             i = (num - 1) // n
@@ -1916,6 +1917,7 @@ class Solution:
         url: https://leetcode.cn/problems/escape-a-large-maze/
         tag: bound_bfs|discretization_bfs
         """
+
         # bound_bfs和discretization_bfs两种解法
         def check(node):
             stack = [node]

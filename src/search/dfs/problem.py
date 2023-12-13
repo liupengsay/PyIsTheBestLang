@@ -232,6 +232,7 @@ class Solution:
         url: https://leetcode.cn/problems/remove-invalid-parentheses/
         tag: back_track|dfs|prune
         """
+
         # dfs|back_track|删除最少数量的无效括号使得子串合法有效
 
         def dfs(i):
@@ -396,6 +397,7 @@ class Solution:
         url: https://leetcode.cn/problems/tiling-a-rectangle-with-the-fewest-squares/
         tag: dfs|back_track|prune
         """
+
         # DFSback_track与prune
 
         def dfs():
@@ -543,6 +545,7 @@ class Solution:
         url: https://leetcode.cn/height-of-binary-tree-after-subtree-removal-queries/
         tag: dfs_order
         """
+
         # dfs_order|模板题目
 
         def dfs(node):

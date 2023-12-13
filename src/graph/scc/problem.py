@@ -322,4 +322,3 @@ class TwoSAT:
                     break
             ac.st("GOOD" if ans else "BAD")
         return
-    

@@ -1280,6 +1280,7 @@ class Solution:
         url: https://leetcode.cn/problems/sum-game/description/
         tag: game_dp|brain_teaser|classification_discussion
         """
+
         # 博弈brain_teaser|classification_discussion
         def check(s):
             res = 0

@@ -76,6 +76,7 @@ class Solution:
         url: https://leetcode.cn/problems/map-sum-pairs/
         tag: prefix|counter
         """
+
         # 更新与查询给定字符串作为单词键前缀的对应值的和
         class MapSum:
             def __init__(self):

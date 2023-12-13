@@ -123,6 +123,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1815
         tag: implemention
         """
+
         # 根据指令方格组合移动
         def check():
             lst = deque([[25, j] for j in range(11, 31)])
