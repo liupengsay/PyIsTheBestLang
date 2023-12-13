@@ -55,7 +55,7 @@ P8625（https://www.luogu.com.cn/problem/P8625）tree_dp|classical
 P8744（https://www.luogu.com.cn/problem/P8744）tree_dp
 
 ====================================AtCoder=====================================
-F - Expensive Expense （https://atcoder.jp/contests/abc222/tasks/abc222_f）reroot_dp
+ABC222F（https://atcoder.jp/contests/abc222/tasks/abc222_f）reroot_dp
 161D（https://codeforces.com/problemset/problem/161/D）tree_dp|counter
 
 ===================================CodeForces===================================

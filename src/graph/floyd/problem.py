@@ -28,9 +28,9 @@ P8794（https://www.luogu.com.cn/problem/P8794）binary_search|floyd
 472D（https://codeforces.com/problemset/problem/472/D）floyd|construction|shortest_path
 
 ====================================AtCoder=====================================
-D - Candidates of No Shortest Paths（https://atcoder.jp/contests/abc051/tasks/abc051_d）floyd|shortest_path|necessary_edge|classical
-D - Restoring Road Network（https://atcoder.jp/contests/abc074/tasks/arc083_b）shortest_path_spanning_tree|floyd|dynamic_graph
-E - Travel by Car（https://atcoder.jp/contests/abc143/tasks/abc143_e）floyd|build_graph|shortest_path|several_floyd
+ABC051D（https://atcoder.jp/contests/abc051/tasks/abc051_d）floyd|shortest_path|necessary_edge|classical
+ARC083B（https://atcoder.jp/contests/abc074/tasks/arc083_b）shortest_path_spanning_tree|floyd|dynamic_graph
+ABC143E（https://atcoder.jp/contests/abc143/tasks/abc143_e）floyd|build_graph|shortest_path|several_floyd
 
 =====================================AcWing=====================================
 4872（https://www.acwing.com/problem/content/submission/4875/）floyd|reverse_thinking|shortest_path|reverse_graph

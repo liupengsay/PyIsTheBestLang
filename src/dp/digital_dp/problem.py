@@ -18,8 +18,8 @@ Description：lexicographical_order|counter|high_to_low|low_to_high
 17（https://leetcode.cn/problems/number-of-2s-in-range-lcci/）counter|digital_dp
 
 ====================================AtCoder=====================================
-D - XOR World（https://atcoder.jp/contests/abc121/tasks/abc121_d）xor_property|digital_dp
-E - Digit Products（https://atcoder.jp/contests/abc208/tasks/abc208_e）brain_teaser|digital_dp
+ABC121D（https://atcoder.jp/contests/abc121/tasks/abc121_d）xor_property|digital_dp
+ABC208E（https://atcoder.jp/contests/abc208/tasks/abc208_e）brain_teaser|digital_dp
 
 =====================================LuoGu======================================
 P1590（https://www.luogu.com.cn/problem/P1590）counter|digital_dp

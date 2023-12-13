@@ -23,8 +23,8 @@ P5751（https://www.luogu.com.cn/problem/P5751）prefix_sum|differential_constra
 P5905（https://www.luogu.com.cn/problem/P5905）johnson_shortest_path|several_source|shortest_path
 
 ====================================AtCoder=====================================
-D - Score Attack （https://atcoder.jp/contests/abc061/tasks/abc061_d）reverse_graph|positive_circle|longest_path
-E - Coins Respawn（https://atcoder.jp/contests/abc137/tasks/abc137_e）spfa|positive_circle
+ABC061D（https://atcoder.jp/contests/abc061/tasks/abc061_d）reverse_graph|positive_circle|longest_path
+ABC137E（https://atcoder.jp/contests/abc137/tasks/abc137_e）spfa|positive_circle
 
 ====================================LeetCode====================================
 differential_constraint（https://oi-wiki.org/graph/diff-constraints/）

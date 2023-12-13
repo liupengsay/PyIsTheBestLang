@@ -91,7 +91,7 @@ P8783（https://www.luogu.com.cn/problem/P8783）O(n^3)|two_pointers|brute_force
 1772D（https://codeforces.com/contest/1772/problem/D）discretization_diff_array|action_scope|counter
 
 ====================================AtCoder=====================================
-D - AtCoder Express 2（https://atcoder.jp/contests/abc106/tasks/abc106_d）prefix_sum|dp|counter
+ABC106D（https://atcoder.jp/contests/abc106/tasks/abc106_d）prefix_sum|dp|counter
 
 =====================================AcWing=====================================
 99（https://www.acwing.com/problem/content/description/101/）matrix_prefix_sum

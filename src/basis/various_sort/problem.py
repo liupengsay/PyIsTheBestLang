@@ -22,7 +22,7 @@ P1177（https://www.luogu.com.cn/problem/P1177）quick_sort
 922D（https://codeforces.com/problemset/problem/922/D）greedy|custom_sort
 
 ====================================AtCoder=====================================
-B - Iroha Loves Strings（https://atcoder.jp/contests/abc042/tasks/abc042_b）custom_sort
+ABC042B（https://atcoder.jp/contests/abc042/tasks/abc042_b）custom_sort
 
 =====================================AcWing=====================================
 113（https://www.acwing.com/problem/content/description/115/）custom_sort

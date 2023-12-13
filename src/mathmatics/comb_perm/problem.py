@@ -14,7 +14,7 @@ Lucas:（comb(n, m)%p = comb(n%p, m%p)*comb(n//p, m//p)）%p
 1621（https://leetcode.cn/problems/number-of-sets-of-k-non-overlapping-line-segments/）partition_method|comb_perm
 1866（https://leetcode.cn/problems/number-of-ways-to-rearrange-sticks-with-k-sticks-visible/）stirling_number|first_kind_stirling_number
 1916（https://leetcode.cn/problems/count-ways-to-build-rooms-in-an-ant-colony/）tree_dp|math|comb|counter
-D - Blue and Red Balls（https://atcoder.jp/contests/abc132/tasks/abc132_d）comb|math|counter|classical|equation
+ABC132D（https://atcoder.jp/contests/abc132/tasks/abc132_d）comb|math|counter|classical|equation
 
 =====================================LuoGu======================================
 P4071（https://www.luogu.com.cn/problem/P4071）multiplicative_reverse|comb|perm|recursion|fault_perm

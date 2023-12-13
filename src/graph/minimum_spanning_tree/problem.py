@@ -45,7 +45,7 @@ P1550（https://www.luogu.com.cn/problem/P1550）mst|build_graph|fake_source|cla
 1108F（https://codeforces.com/contest/1108/problem/F）mst
 
 ====================================AtCoder=====================================
-D - Built?（https://atcoder.jp/contests/abc065/tasks/arc076_b）mst
+ARC076B（https://atcoder.jp/contests/abc065/tasks/arc076_b）mst
 
 =====================================AcWing=====================================
 3728（https://www.acwing.com/problem/content/3731/）prim|mst|dense_graph|specific_plan

@@ -25,7 +25,7 @@ P6273（https://www.luogu.com.cn/problem/P6273）hash|prefix|counter
 P8630（https://www.luogu.com.cn/problem/P8630）hash|counter|permutation|brute_force
 
 ====================================AtCoder=====================================
-D - Snuke's Coloring（https://atcoder.jp/contests/abc045/tasks/arc061_b）hash|inclusion_exclusion|counter
+ARC061B（https://atcoder.jp/contests/abc045/tasks/arc061_b）hash|inclusion_exclusion|counter
 
 
 =====================================AcWing=====================================

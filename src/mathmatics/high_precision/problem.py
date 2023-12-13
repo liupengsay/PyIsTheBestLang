@@ -26,7 +26,7 @@ P1530（https://www.luogu.com.cn/problem/P1530）frac_to_float
 1144E（https://codeforces.com/contest/1144/problem/E）big_number|minus|mul|divide
 
 ====================================AtCoder=====================================
-E - Double Factorial（https://atcoder.jp/contests/abc148/tasks/abc148_e）suffix_zero|odd_even|factorial
+ABC148E（https://atcoder.jp/contests/abc148/tasks/abc148_e）suffix_zero|odd_even|factorial
 
 """
 

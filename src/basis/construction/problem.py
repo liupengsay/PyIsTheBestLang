@@ -41,11 +41,11 @@ P8880（https://www.luogu.com.cn/problem/P8880）brain_teaser|construction|odd_e
 1682B（https://codeforces.com/contest/1682/problem/B）bitwise_and|construction|permutation_circle
 
 ====================================AtCoder=====================================
-B - Construct Sequences（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser|math|construction
-D - Non-decreasing（https://atcoder.jp/contests/abc081/tasks/arc086_b）greedy|construction|classification_discussion
-D - Grid Components（https://atcoder.jp/contests/abc092/tasks/arc093_b）brain_teaser|construction
-F - XOR Matching（https://atcoder.jp/contests/abc126/tasks/abc126_f）brain_teaser|construction|xor_property
-D - Make Them Even（https://atcoder.jp/contests/abc109/tasks/abc109_d）odd_even|construction
+AGC007B（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser|math|construction
+ARC086B（https://atcoder.jp/contests/abc081/tasks/arc086_b）greedy|construction|classification_discussion
+ARC093B（https://atcoder.jp/contests/abc092/tasks/arc093_b）brain_teaser|construction
+ABC126F（https://atcoder.jp/contests/abc126/tasks/abc126_f）brain_teaser|construction|xor_property
+ABC109D（https://atcoder.jp/contests/abc109/tasks/abc109_d）odd_even|construction
 
 """
 import math

@@ -36,8 +36,8 @@ P6225（https://www.luogu.com.cn/problem/P6225）tree_array|prefix_xor
 P1972（https://www.luogu.com.cn/problem/P1972）tree_array|offline_query|range_unique|PointChangeRangeSum
 
 ====================================AtCoder=====================================
-D - Islands War（https://atcoder.jp/contests/abc103/tasks/abc103_d）greedy|tree_array
-F - Absolute Minima （https://atcoder.jp/contests/abc127/tasks/abc127_f）discretization|tree_array|counter
+ABC103D（https://atcoder.jp/contests/abc103/tasks/abc103_d）greedy|tree_array
+ABC127F（https://atcoder.jp/contests/abc127/tasks/abc127_f）discretization|tree_array|counter
 Vertex Add Subtree Sum（https://judge.yosupo.jp/problem/vertex_add_subtree_sum）tree_array|dfs_order
 
 ===================================CodeForces===================================

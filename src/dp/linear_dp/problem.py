@@ -104,7 +104,7 @@ P8816（https://www.luogu.com.cn/problem/P8816）classical|matrix_dp|implementio
 731E（https://codeforces.com/contest/731/problem/E）prefix_sum|reverse_order|liner_dp
 
 ====================================AtCoder=====================================
-E - Sum Equals Xor（https://atcoder.jp/contests/abc129/tasks/abc129_e）brain_teaser|digital_dp
+ABC129E（https://atcoder.jp/contests/abc129/tasks/abc129_e）brain_teaser|digital_dp
 
 =====================================AcWing=====================================
 96（https://www.acwing.com/problem/content/98/）liner_dp|classical|hanoi_tower

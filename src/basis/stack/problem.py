@@ -31,7 +31,7 @@ P3719（https://www.luogu.com.cn/problem/P3719）stack|implemention
 1095E（https://codeforces.com/problemset/problem/1095/E）regular_bracket|counter
 
 ====================================AtCoder=====================================
-D - 3N Numbers（https://atcoder.jp/contests/abc062/tasks/arc074_b）heapq|prefix_suffix
+ARC074B（https://atcoder.jp/contests/abc062/tasks/arc074_b）heapq|prefix_suffix
 
 
 =====================================AcWing=====================================

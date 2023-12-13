@@ -15,7 +15,7 @@ D. Devu and his Brother（http://codeforces.com/problemset/problem/439/D）terna
 1730B（https://codeforces.com/contest/1730/problem/B）ternary_search
 
 ====================================AtCoder=====================================
-F - Minimum Bounding Box（https://atcoder.jp/contests/abc130/tasks/abc130_f）ternary_search|floor|high_precision
+ABC130F（https://atcoder.jp/contests/abc130/tasks/abc130_f）ternary_search|floor|high_precision
 
 """
 import bisect

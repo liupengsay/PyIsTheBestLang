@@ -97,7 +97,7 @@ P2176（https://www.luogu.com.cn/problem/P2176）brute_force|shortest_path
 1650G（https://codeforces.com/contest/1650/problem/G）dijkstra|shortest_path|strictly_second_shortest_path|counter|zero_one_bfs
 
 ====================================AtCoder=====================================
-F - Pure（https://atcoder.jp/contests/abc142/tasks/abc142_f）directed|directed_smallest_circle
+ABC142F（https://atcoder.jp/contests/abc142/tasks/abc142_f）directed|directed_smallest_circle
 
 =====================================AcWing=====================================
 176（https://www.acwing.com/problem/content/178/）dijkstra|implemention

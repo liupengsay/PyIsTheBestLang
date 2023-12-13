@@ -155,10 +155,10 @@ P8887（https://www.luogu.com.cn/problem/P8887）brain_teaser|greedy
 1665C（https://codeforces.com/contest/1665/problem/C）graph|greedy
 
 ====================================AtCoder=====================================
-C - AtCoDeer and Election Report（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|greedy|custom_sort
-D - Wide Flip（https://atcoder.jp/contests/abc083/tasks/arc088_b）brain_teaser|greedy
-D - Various Sushi（https://atcoder.jp/contests/abc116/tasks/abc116_d）brain_teaser|greedy
-D - Summer Vacation（https://atcoder.jp/contests/abc137/tasks/abc137_d）reverse_order|brain_teaser|greedy
+ARC062A（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|greedy|custom_sort
+ARC088B（https://atcoder.jp/contests/abc083/tasks/arc088_b）brain_teaser|greedy
+ABC116D（https://atcoder.jp/contests/abc116/tasks/abc116_d）brain_teaser|greedy
+ABC137D（https://atcoder.jp/contests/abc137/tasks/abc137_d）reverse_order|brain_teaser|greedy
 
 =====================================AcWing=====================================
 104（https://www.acwing.com/problem/content/106/）median|greedy

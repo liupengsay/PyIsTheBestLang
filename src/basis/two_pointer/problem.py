@@ -47,7 +47,7 @@ P6465（https://www.luogu.com.cn/problem/P6465）sliding_window|two_pointers|cou
 1381A2（https://codeforces.com/problemset/problem/1381/A2）two_pointers|implemention|reverse_array|greedy
 
 ====================================AtCoder=====================================
-D - Equal Cut（https://atcoder.jp/contests/abc102/tasks/arc100_b）two_pointers|brute_force
+ARC100B（https://atcoder.jp/contests/abc102/tasks/arc100_b）two_pointers|brute_force
 
 =====================================AcWing=====================================
 4217（https://www.acwing.com/problem/content/4220/）two_pointers|sliding_window

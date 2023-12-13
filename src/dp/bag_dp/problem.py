@@ -92,9 +92,9 @@ P1417（https://www.luogu.com.cn/problem/P1417）greedy|sort|bag_dp
 1657D（https://codeforces.com/contest/1657/problem/D）infinite|bag_dp|mul|euler_series|O(nlogn)||binary_search|greedy
 
 ====================================AtCoder=====================================
-D - Mixing Experiment（https://atcoder.jp/contests/abc054/tasks/abc054_d）matrix_bag_dp|finite
-D - Match Matching（https://atcoder.jp/contests/abc118/tasks/abc118_d）greedy|bag_dp|specific_plan
-E - All-you-can-eat（https://atcoder.jp/contests/abc145/tasks/abc145_e）brain_teaser|bag_dp|finite|sort|refresh_table
+ABC054D（https://atcoder.jp/contests/abc054/tasks/abc054_d）matrix_bag_dp|finite
+ABC118D（https://atcoder.jp/contests/abc118/tasks/abc118_d）greedy|bag_dp|specific_plan
+ABC145E（https://atcoder.jp/contests/abc145/tasks/abc145_e）brain_teaser|bag_dp|finite|sort|refresh_table
 
 =====================================AcWing=====================================
 4（https://www.acwing.com/problem/content/4/）bin_split|matrix_bag_dp

@@ -151,11 +151,11 @@ class TestGeneral(unittest.TestCase):
                 lines = [ls.strip("\n") for ls in file.readlines()]
             lst = []
             for line in lines:
-                st = "（https://www.luogu.com"
+                st = "（https://atcoder.jp/"
                 if st in line:
                     line = line.split(st)
-                    number = line[1].split("）")[0].split("/")[-1]
-                    line[0] = number
+                    number = line[1].split("）")[0].split("/")[-1].replace("_", "")
+                    line[0] = number.upper()
                     lst.append(st.join(line))
                 else:
                     lst.append(line)

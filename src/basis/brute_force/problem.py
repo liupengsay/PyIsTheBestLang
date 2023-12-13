@@ -119,19 +119,19 @@ P8872（https://www.luogu.com.cn/problem/P8872）sort|prefix_suffix|brute_force
 1181C（https://codeforces.com/problemset/problem/1181/C）column_wised|brute_force
 484B（https://codeforces.com/problemset/problem/484/B）sort|brute_force|binary_search
 382C（https://codeforces.com/problemset/problem/382/C）classification_discussion
-D - Remainder Reminder（https://atcoder.jp/contests/abc090/tasks/arc091_b）brute_force
-D - Katana Thrower（https://atcoder.jp/contests/abc085/tasks/abc085_d）brute_force
 988E（https://codeforces.com/contest/988/problem/E）brain_teaser|greedy|brute_force
 1661B（https://codeforces.com/contest/1661/problem/B）brute_force
 
 ====================================AtCoder=====================================
-D - Digit Sum（https://atcoder.jp/contests/abc044/tasks/arc060_b）base|classification_discussion|brute_force|factorization
-D - Menagerie （https://atcoder.jp/contests/abc055/tasks/arc069_b）brain_teaser|brute_force
-C - Sequence（https://atcoder.jp/contests/abc059/tasks/arc072_a）brute_force|prefix_sum|greedy
-C - Chocolate Bar（https://atcoder.jp/contests/abc062/tasks/arc074_a）brute_force
-C - Sugar Water（https://atcoder.jp/contests/abc074/tasks/arc083_a）brute_force|math
+ARC060B（https://atcoder.jp/contests/abc044/tasks/arc060_b）base|classification_discussion|brute_force|factorization
+ARC069B（https://atcoder.jp/contests/abc055/tasks/arc069_b）brain_teaser|brute_force
+ARC072A（https://atcoder.jp/contests/abc059/tasks/arc072_a）brute_force|prefix_sum|greedy
+ARC074A（https://atcoder.jp/contests/abc062/tasks/arc074_a）brute_force
+ARC083A（https://atcoder.jp/contests/abc074/tasks/arc083_a）brute_force|math
+ARC091B（https://atcoder.jp/contests/abc090/tasks/arc091_b）brute_force
+ABC085D（https://atcoder.jp/contests/abc085/tasks/abc085_d）brute_force
 
-================================Acwing===================================
+=====================================AcWing=====================================
 95（https://www.acwing.com/problem/content/description/97/）brute_force
 
 """

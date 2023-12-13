@@ -12,8 +12,8 @@ xx（xxx）xxxxxxxxxxxxxxxxxxxx
 xx（xxx）xxxxxxxxxxxxxxxxxxxx
 
 ====================================AtCoder=====================================
-D - FT Robot（https://atcoder.jp/contests/abc082/tasks/arc087_b）brain_teaser|bfs|bit_set
-E - Balanced Path（https://atcoder.jp/contests/abc147/tasks/abc147_e）matrix_dp|bit_set
+ARC087B（https://atcoder.jp/contests/abc082/tasks/arc087_b）brain_teaser|bfs|bit_set
+ABC147E（https://atcoder.jp/contests/abc147/tasks/abc147_e）matrix_dp|bit_set
 
 =====================================AcWing=====================================
 5037（https://www.acwing.com/problem/content/5040/）CF242E|range_or_sum|range_xor_sum

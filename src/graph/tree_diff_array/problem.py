@@ -28,7 +28,7 @@ P6869（https://www.luogu.com.cn/problem/P6869）offline_lca|tree_diff_array_edg
 1296F（https://codeforces.com/contest/1296/problem/F）offline_lca|greedy|construction|multiplication_method
 
 ====================================AtCoder=====================================
-ABC70D（https://atcoder.jp/contests/abc070/tasks/abc070_d）classical|lca|offline_lca
+ABC070D（https://atcoder.jp/contests/abc070/tasks/abc070_d）classical|lca|offline_lca
 
 =====================================AcWing=====================================
 4202（https://www.acwing.com/problem/content/4205/）bit_operation|build_graph|tree_lca|tree_dis

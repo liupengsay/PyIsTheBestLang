@@ -14,7 +14,7 @@ Description：sort the query interval into blocks and alternate between moving t
 1514D（https://codeforces.com/contest/1514/problem/D）range_super_mode|CF1514D|random_guess|binary_search|bit_operation|segment_tree
 
 ====================================AtCoder=====================================
-F - Small Products（https://atcoder.jp/contests/abc132/tasks/abc132_f）block_query|counter|dp|prefix_sum
+ABC132F（https://atcoder.jp/contests/abc132/tasks/abc132_f）block_query|counter|dp|prefix_sum
 
 
 """

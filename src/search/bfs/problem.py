@@ -86,7 +86,7 @@ P9065（https://www.luogu.com.cn/problem/P9065）brain_teaser|bfs|brute_force
 1037D（https://codeforces.com/problemset/problem/1037/D）01-bfs|implemention|classical
 
 ====================================AtCoder=====================================
-ARC90D（https://atcoder.jp/contests/abc087/tasks/arc090_b）bfs|differential_constraint|O(n^2)
+ARC090B（https://atcoder.jp/contests/abc087/tasks/arc090_b）bfs|differential_constraint|O(n^2)
 ABC133E（https://atcoder.jp/contests/abc133/tasks/abc133_e）bfs|coloring_method|counter
 
 =====================================AcWing=====================================
