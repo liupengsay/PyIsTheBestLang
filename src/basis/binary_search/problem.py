@@ -540,6 +540,7 @@ class Solution:
         url: https://www.acwing.com/problem/content/122/
         tag: binary_search|classical
         """
+
         def solve():
 
             def check(pos):
