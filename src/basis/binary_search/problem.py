@@ -52,7 +52,7 @@ P1083（https://www.luogu.com.cn/problem/P1083）binary_search|diff_array
 P1281（https://www.luogu.com.cn/problem/P1281）binary_search|specific_plans
 P1381（https://www.luogu.com.cn/problem/P1381）binary_search|sliding_window|brain_teaser
 P1419（https://www.luogu.com.cn/problem/P1419）binary_search|priority_queue
-P1525（https://www.luogu.com.cn/problem/P1525）binary_search|bfs|bipartite_graph|unionfind|coloring
+P1525（https://www.luogu.com.cn/problem/P1525）binary_search|bfs|bipartite_graph|union_find|coloring
 P1542（https://www.luogu.com.cn/problem/P1542）binary_search|fraction|high_precision
 P2237（https://www.luogu.com.cn/problem/P2237）brain_teaser|sort|binary_search
 P2810（https://www.luogu.com.cn/problem/P2810）binary_search|brute_force
@@ -88,8 +88,8 @@ P9050（https://www.luogu.com.cn/problem/P9050）binary_search|data_range|greedy
 1251D（https://codeforces.com/contest/1251/problem/D）greedy|binary_search
 
 ====================================AtCoder=====================================
-D - No Need （https://atcoder.jp/contests/abc056/tasks/arc070_b）binary_search|bag_dp
-D - Widespread（https://atcoder.jp/contests/abc063/tasks/arc075_b）binary_search|greedy
+ARC070B（https://atcoder.jp/contests/abc056/tasks/arc070_b）binary_search|bag_dp
+ARC075B（https://atcoder.jp/contests/abc063/tasks/arc075_b）binary_search|greedy
 
 =====================================AcWing=====================================
 120（https://www.acwing.com/problem/content/122/）binary_search
@@ -110,6 +110,7 @@ from src.basis.binary_search.template import BinarySearch
 from src.data_structure.sorted_list.template import LocalSortedList
 from src.graph.tree_lca.template import OfflineLCA
 from src.graph.union_find.template import UnionFind
+from src.mathmatics.high_precision.template import FloatToFrac
 from src.mathmatics.number_theory.template import NumberTheory
 from src.utils.fast_io import FastIO
 
@@ -537,46 +538,49 @@ class Solution:
     def ac_120(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/122/
-        tag: binary_search
+        tag: binary_search|classical
         """
+        def solve():
 
-        def check(pos):
-            res = 0
-            for s, e, d in nums:
-                if s <= pos:
-                    res += (ac.min(pos, e) - s) // d + 1
-            return res % 2 == 1
+            def check(pos):
+                res = 0
+                for s, e, d in nums:
+                    if s <= pos:
+                        res += (ac.min(pos, e) - s) // d + 1
+                return res % 2 == 1
 
-        def compute(pos):
-            res = 0
-            for s, e, d in nums:
-                if s <= pos <= e:
-                    res += (pos - s) % d == 0
-            return [pos, res]
+            def compute(pos):
+                res = 0
+                for s, e, d in nums:
+                    if s <= pos <= e:
+                        res += (pos - s) % d == 0
+                return [pos, res]
 
-        # binary_search
-        for _ in range(ac.read_int()):
             n = ac.read_int()
             nums = [ac.read_list_ints() for _ in range(n)]
             low = min(x for x, _, _ in nums)
             high = max(x for _, x, _ in nums)
-            while low < high - 1:
-                mid = low + (high - low) // 2
-                if check(mid):
-                    high = mid
-                else:
-                    low = mid
-            if check(low):
-                ac.lst(compute(low))
-            elif check(high):
-                ac.lst(compute(high))
+            mid = BinarySearch().find_int_left(low, high, check)
+            if check(mid):
+                ac.lst(compute(mid))
+            elif check(mid + 1):
+                ac.lst(compute(mid + 1))
             else:
                 ac.st("There's no weakness.")
+
+            return
+
+        for _ in range(ac.read_int()):
+            solve()
         return
 
     @staticmethod
-    def abc_56d(ac=FastIO()):
-        # binary_search，用bag_dp|check
+    def arc_070b(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc056/tasks/arc070_b
+        tag: binary_search|bag_dp
+        """
+
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
         nums.sort()
@@ -595,11 +599,11 @@ class Solution:
                         if dp[p - x]:
                             dp[p] = 1
                             if p + xx >= k:
-                                return False  # 此时为必要
+                                return False
 
-            return True  # 为非必要的目标元素
+            return True
 
-        ans = BinarySearch().find_int_right(0, n - 1, check)  # 非必要具有单调性，更小的也为非必要
+        ans = BinarySearch().find_int_right(0, n - 1, check)
         if check(ans):
             ac.st(ans + 1)
         else:
@@ -607,8 +611,11 @@ class Solution:
         return
 
     @staticmethod
-    def abc_63d(ac=FastIO()):
-        # binary_search，greedycheck
+    def arc_075b(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc063/tasks/arc075_b
+        tag: binary_search|greedy
+        """
         n, a, b = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
 
@@ -627,9 +634,9 @@ class Solution:
     def ac_14(nums):
         """
         url: https://www.acwing.com/problem/content/description/15/
-        tag: pigeonhole_principle|binary_search
+        tag: pigeonhole_principle|binary_search|O(nlogn)|in_place_hash
         """
-        # 利用pigeonhole_principlebinary_search
+
         n = len(nums) - 1
         low = 1
         high = n
@@ -642,7 +649,6 @@ class Solution:
             if cnt > mid - low + 1:
                 high = mid
             else:
-
                 low = mid + 1
         return low
 
@@ -652,34 +658,29 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1281
         tag: binary_search|specific_plans
         """
-        # classicalbinary_search并specific_plans
+
         m, k = ac.read_list_ints()
         nums = ac.read_list_ints()
 
-        def check(xx):
-            res = pp = 0
-            for ii in range(m - 1, -1, -1):
-                if pp + nums[ii] > xx:
-                    res += 1
-                    pp = nums[ii]
+        def compute(xx):
+            res = []
+            pre = nums[m - 1]
+            post = m - 1
+            for i in range(m - 2, -1, -1):
+                if pre + nums[i] > xx:
+                    res.append([i + 2, post + 1])
+                    pre = nums[i]
+                    post = i
                 else:
-                    pp += nums[ii]
-                if res + 1 > k:
-                    return False
-            return True
+                    pre += nums[i]
+            res.append([1, post + 1])
+            return res
+
+        def check(xx):
+            return len(compute(xx)) <= k
 
         x = BinarySearch().find_int_left(max(nums), sum(nums), check)
-        ans = []
-        pre = nums[m - 1]
-        post = m - 1
-        for i in range(m - 2, -1, -1):
-            if pre + nums[i] > x:
-                ans.append([i + 2, post + 1])
-                pre = nums[i]
-                post = i
-            else:
-                pre += nums[i]
-        ans.append([1, post + 1])
+        ans = compute(x)
         for a in ans[::-1]:
             ac.lst(a)
         return
@@ -688,43 +689,33 @@ class Solution:
     def lg_p1381(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1381
-        tag: binary_search|sliding_window|brain_teaser
+        tag: sliding_window|two_pointer
         """
-        # classicalbinary_search
+
         n = ac.read_int()
         dct = set([ac.read_str() for _ in range(n)])
         m = ac.read_int()
         words = [ac.read_str() for _ in range(m)]
-        cur = set()
-        for w in words:
-            if w in dct:
-                cur.add(w)
-
-        def check(x):
-            cnt = defaultdict(int)
-            cc = 0
-            for i in range(m):
-                # sliding_window判断是否可行
-                if words[i] in dct:
-                    cnt[words[i]] += 1
-                    if cnt[words[i]] == 1:
-                        cc += 1
-                        if cc == s:
-                            return True
-                if i >= x - 1:
-                    if words[i - x + 1] in dct:
-                        cnt[words[i - x + 1]] -= 1
-                        if not cnt[words[i - x + 1]]:
-                            cc -= 1
-            return False
-
-        # greedy选取所有能背的单词
-        s = len(cur)
-        ac.st(s)
-        if not s:
+        target = set(words)
+        k = sum(word in dct for word in target)
+        ac.st(k)
+        if not k:
             ac.st(0)
             return
-        ans = BinarySearch().find_int_left(1, m, check)
+        ans = m
+        j = 0
+        cnt = dict()
+        for i in range(m):
+            while j < m and len(cnt) < k:
+                if words[j] in dct:
+                    cnt[words[j]] = cnt.get(words[j], 0) + 1
+                j += 1
+            if len(cnt) == k and j - i < ans:
+                ans = j - i
+            if words[i] in dct:
+                cnt[words[i]] -= 1
+                if not cnt[words[i]]:
+                    del cnt[words[i]]
         ac.st(ans)
         return
 
@@ -732,10 +723,10 @@ class Solution:
     def lg_p1592(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1592
-        tag: binary_search|inclusion_exclusion|kth_coprime_of_n
+        tag: binary_search|inclusion_exclusion|kth_coprime_of_n|number_theory|classical
         """
         n, k = ac.read_list_ints()
-        if n == 1:  # 特判
+        if n == 1:
             ac.st(k)
             return
         lst = NumberTheory().get_prime_factor(n)
@@ -743,10 +734,9 @@ class Solution:
         m = len(prime)
 
         def check(x):
-            # inclusion_exclusion与 n 不coprime且小于等于 x 的数个数
             res = 0
             for i in range(1, m + 1):
-                for item in combinations(prime, i):
+                for item in combinations(prime, i):  # the same as euler_phi2
                     cur = 1
                     for num in item:
                         cur *= num
@@ -761,21 +751,19 @@ class Solution:
     def lg_p1419(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1419
-        tag: binary_search|priority_queue
+        tag: binary_search|monotonic_deque|prefix_sum|average|classical
         """
 
-        # binary_search|priority_queue
         def check(x):
             stack = deque()
             res = []
-            # 单调队列记录前序最小值
             for i in range(n):
                 while stack and stack[0][0] <= i - k:
                     stack.popleft()
                 while stack and stack[-1][1] >= pre[i] - x * i:
                     stack.pop()
                 stack.append([i, pre[i] - x * i])
-                res.append(stack[0][1])  # 记录长度在 k 左右的最小前缀变化和
+                res.append(stack[0][1])
                 if i >= s - 1:
                     if pre[i + 1] - x * (i + 1) >= res[i - s + 1]:
                         return True
@@ -790,7 +778,6 @@ class Solution:
         for j in range(n):
             pre[j + 1] = pre[j] + nums[j]
 
-        # binary_search最大平均值
         k = t - s
         ans = BinarySearch().find_float_right(min(nums), max(nums), check)
         ac.st("%.3f" % ans)
@@ -800,9 +787,9 @@ class Solution:
     def lg_p1525(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1525
-        tag: binary_search|bfs|bipartite_graph|unionfind|coloring
+        tag: binary_search|bfs|bipartite_graph|union_find|coloring_method|classical
         """
-        # binary_search|bfsbipartite_graph划分
+
         n, m = ac.read_list_ints()
         lst = [ac.read_list_ints() for _ in range(m)]
 
@@ -812,7 +799,6 @@ class Solution:
             for i, j in edges:
                 dct[i].append(j)
                 dct[j].append(i)
-            # coloring_method判断是否可以binary_search
             visit = [0] * (n + 1)
             for i in range(1, n + 1):
                 if visit[i] == 0:
@@ -828,10 +814,8 @@ class Solution:
                                     nex.append(y)
                         order = 1 if order == 2 else 2
                         stack = nex
-
             return all(visit[i] != visit[j] for i, j in edges)
 
-        # binary_search最小的最大值
         low = 0
         high = max(ls[-1] for ls in lst)
         ans = BinarySearch().find_int_left(low, high, check)
@@ -842,35 +826,28 @@ class Solution:
     def lg_p1542(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1542
-        tag: binary_search|fraction|high_precision
+        tag: binary_search|frac_to_float|high_precision|float_to_frac
         """
-        # binary_search|分数high_precision
+
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
-
-        def add(lst1, lst2):
-            # 分数|减
-            a, b = lst1
-            c, d = lst2
-            d1 = a * d + c * b
-            d2 = b * d
-            return [d1, d2]
+        ff = FloatToFrac()
 
         def check(xx):
-            # 最早与最晚出发
-            res = [xx, 1]
-            while int(res[0]) != res[0]:
-                res[0] *= 10
-                res[1] *= 10
-            res = [int(w) for w in res]
-            t1 = [0, 1]
+            speed = [xx, 1]
+            while int(speed[0]) != speed[0]:
+                speed[0] *= 10
+                speed[1] *= 10
+            speed = [int(w) for w in speed]
+            early = [0, 1]
             for x, y, s in nums:
-                cur = add(t1, [s * res[1], res[0]])
+                cur = ff.frac_add_without_gcd(early, [s * speed[1], speed[0]])
                 if cur[0] > y * cur[1]:
                     return False
-                t1 = cur[:]
                 if cur[0] < x * cur[1]:
-                    t1 = [x, 1]
+                    early = [x, 1]
+                else:
+                    early = cur[:]
             return True
 
         ans = BinarySearch().find_float_left(1e-4, 10 ** 7, check)
@@ -883,7 +860,7 @@ class Solution:
         url: https://codeforces.com/problemset/problem/1118/D2
         tag: greedy|binary_search
         """
-
+        # reviewing
         # greedybinary_search
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()

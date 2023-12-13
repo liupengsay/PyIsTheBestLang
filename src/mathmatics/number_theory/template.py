@@ -1,6 +1,7 @@
 import math
 import random
 from collections import Counter
+from itertools import combinations
 
 
 class NumberTheory:
@@ -217,6 +218,22 @@ class NumberTheory:
         if n > 1:
             ans = ans // n * (n - 1)
         return int(ans)
+
+    @staticmethod
+    def euler_phi2(n):
+        """the euler function returns the number of coprime with n that are less than or equal to n"""
+        # Note that 1 and 1 are coprime, while prime numbers greater than 1 are not coprime with 1
+        lst = NumberTheory().get_prime_factor(n)
+        prime = [x for x, _ in lst]
+        m = len(prime)
+        res = 0
+        for i in range(1, m + 1):
+            for item in combinations(prime, i):
+                cur = 1
+                for num in item:
+                    cur *= num
+                res += (n // cur) * (-1) ** (i + 1)  # inclusion_exclusion
+        return n - res
 
     @staticmethod
     def euler_flag_prime(n):

@@ -43,6 +43,12 @@ class TestGeneral(unittest.TestCase):
     def test_euler_phi(self):
         nt = NumberTheory()
         assert nt.euler_phi(10 ** 11 + 131) == 66666666752
+        assert nt.euler_phi2(10 ** 11 + 131) == 66666666752
+        for i in range(1, 100000 + 1):
+            assert nt.euler_phi(i) == nt.euler_phi2(i)
+        for _ in range(10):
+            i = random.randint(10 ** 11, 10 ** 12)
+            assert nt.euler_phi(i) == nt.euler_phi2(i)
         return
 
     def test_euler_sieve(self):

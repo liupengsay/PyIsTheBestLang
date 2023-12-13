@@ -103,6 +103,19 @@ class FloatToFrac:
         return
 
     @staticmethod
+    def frac_add_without_gcd(frac1: List[int], frac2: List[int]) -> List[int]:
+        # Both denominators a1 and a2 are required to be non-zero
+        b1, a1 = frac1
+        b2, a2 = frac2
+        assert a1 != 0 and a2 != 0
+        b = b1 * a2 + b2 * a1
+        a = a1 * a2
+        if a < 0:
+            a *= -1
+            b *= -1
+        return [b, a]
+
+    @staticmethod
     def frac_add(frac1: List[int], frac2: List[int]) -> List[int]:
         # Both denominators a1 and a2 are required to be non-zero
         b1, a1 = frac1

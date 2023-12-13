@@ -8,7 +8,7 @@ Description：brute force according to the data range
 1330（https://leetcode.cn/problems/reverse-subarray-to-maximize-array-value/）brute_force
 2488（https://leetcode.cn/problems/count-subarrays-with-median-k/）median|brute_force|pre_consequence|post_consequence
 2484（https://leetcode.cn/problems/count-palindromic-subsequences/）prefix_suffix|hash|brute_force|palindrome_substring
-2322（https://leetcode.cn/problems/minimum-score-after-removals-on-a-tree/）brute_force|tree_dp|unionfind|xor_min
+2322（https://leetcode.cn/problems/minimum-score-after-removals-on-a-tree/）brute_force|tree_dp|union_find|xor_min
 2321（https://leetcode.cn/problems/maximum-score-of-spliced-array/）brute_force
 2306（https://leetcode.cn/problems/naming-a-company/）alphabet|brute_force
 2272（https://leetcode.cn/problems/substring-with-largest-variance/）alphabet|brute_force
