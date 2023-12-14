@@ -28,7 +28,7 @@ Description：brute force according to the data range
 2170（https://leetcode.cn/problems/minimum-operations-to-make-the-array-alternating/）brute_force|secondary_maximum
 1215（https://leetcode.cn/problems/stepping-numbers/）data_range|back_track|brute_force
 2245（https://leetcode.cn/problems/maximum-trailing-zeros-in-a-cornered-path/）prefix_sum|brute_force
-1878（https://leetcode.cn/problems/get-biggest-three-rhombus-sums-in-a-grid/）prefix_sum与|brute_force
+1878（https://leetcode.cn/problems/get-biggest-three-rhombus-sums-in-a-grid/）prefix_sum|brute_force
 2018（https://leetcode.cn/problems/check-if-word-can-be-placed-in-crossword/description/）brute_force
 2591（https://leetcode.cn/problems/distribute-money-to-maximum-children/）brute_force
 910（https://leetcode.cn/problems/smallest-range-ii/description/）brute_force|data_range
@@ -521,7 +521,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1018
         tag: brute_force
         """
-        # brute_force乘号的位置
         n, k = ac.read_list_ints()
         nums = ac.read_list_str()
 
@@ -542,7 +541,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1311
         tag: brute_force|counter
         """
-        # 线性brute_forcecounter，每次重置避免重复counter
+
         n, k, p = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         cnt = [0] * k
@@ -573,7 +572,6 @@ class Solution:
         tag: brute_force|prefix_suffix|counter
         """
 
-        # brute_force差值，并prefix_suffix个数
         n, m = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(m)]
 
@@ -586,18 +584,18 @@ class Solution:
         cc = [0] * (n + 1)
         dd = [0] * (n + 1)
 
-        # brute_forceb-a=x
+        # brute_force b-a=x
         for x in range(1, n // 9 + 1):
             if 1 + 9 * x + 1 > n:
                 break
 
-            # 前缀abcounter
+            # ab counter
             pre_ab = [0] * (n + 1)
             for b in range(2 * x + 1, n + 1):
                 pre_ab[b] = pre_ab[b - 1]
                 pre_ab[b] += cnt[b] * cnt[b - 2 * x]
 
-            # 作为cd
+            # cd
             for c in range(n - x, -1, -1):
                 if c - 6 * x - 1 >= 1:
                     cc[c] += pre_ab[c - 6 * x - 1] * cnt[c + x]
@@ -605,13 +603,13 @@ class Solution:
                 else:
                     break
 
-            # 后缀cd
+            # cd
             post_cd = [0] * (n + 2)
             for c in range(n - x, -1, -1):
                 post_cd[c] = post_cd[c + 1]
                 post_cd[c] += cnt[c] * cnt[c + x]
 
-            # 作为abcounter
+            # ab counter
             for b in range(2 * x + 1, n + 1):
                 if b + 6 * x + 1 <= n:
                     aa[b - 2 * x] += post_cd[b + 6 * x + 1] * cnt[b]
@@ -630,7 +628,6 @@ class Solution:
         tag: brute_force|two_pointers
         """
 
-        # brute_force花色与two_pointers长度
         n = ac.read_int()
         dct = defaultdict(set)
         for _ in range(n):
@@ -652,10 +649,9 @@ class Solution:
     def lg_p2994(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P2994
-        tag: brute_force
+        tag: brute_force|reverse_thinking
         """
 
-        # 按照座位brute_force分配人员
         def dis():
             return (x1 - x2) ** 2 + (y1 - y2) ** 2
 
@@ -690,7 +686,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P4181
         tag: greedy|brute_force|suffix_sum
         """
-        # greedybrute_force与后缀和
+
         n, m, r = ac.read_list_ints()
         cow = [ac.read_int() for _ in range(n)]
         cow.sort()
@@ -698,7 +694,7 @@ class Solution:
         nums1.sort(key=lambda it: -it[0])
         nums2 = [ac.read_int() for _ in range(r)]
         nums2.sort(reverse=True)
-        # preprocess后缀和
+
         ind = 0
         post = [0] * (n + 1)
         for i in range(n - 1, -1, -1):
@@ -712,7 +708,7 @@ class Solution:
                 nums1[ind][1] -= x
                 cur += nums1[ind][0] * x
             post[i] = post[i + 1] + cur
-        # brute_force
+
         ans = post[0]
         pre = 0
         for i in range(ac.min(r, n)):
@@ -727,7 +723,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6149
         tag: brute_force|triangle|prefix_sum|binary_search
         """
-        # brute_force三角形的直角点prefix_sum与binary_search距离和
+
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         dct_x = defaultdict(list)
@@ -747,7 +743,6 @@ class Solution:
         ans = 0
         mod = 10 ** 9 + 7
         for x, y in nums:
-            # binary_search找到中间点 xi 两侧距离
             xi = bisect.bisect_left(dct_y[y], x)
             left_x = (xi + 1) * x - pre_y[y][xi + 1]
             right_x = pre_y[y][-1] - pre_y[y][xi + 1] - (len(dct_y[y]) - xi - 1) * x
@@ -766,7 +761,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6393
         tag: data_range|brute_force
         """
-        # 利用data_range范围brute_force
+
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         dct = dict()
@@ -782,7 +777,6 @@ class Solution:
             ind = -2
             for bb in dct:
                 if (b * b) % bb == 0:
-                    # 寻找符合条件的最小值
                     aa = a + b * b // bb + b
                     if aa in dct[bb]:
                         while dct[bb][aa] and dct[bb][aa][0] <= i:
@@ -804,7 +798,7 @@ class Solution:
         url: https://leetcode.cn/problems/distribute-money-to-maximum-children/
         tag: brute_force
         """
-        # brute_force考虑边界条件
+
         ans = -1
         for x in range(children + 1):
             if x * 8 > money:
@@ -826,7 +820,7 @@ class Solution:
         url: https://leetcode.cn/problems/power-of-heroes/
         tag: contribution_method|brute_force|counter
         """
-        # 按照contribution_methodbrute_forcecounter
+
         mod = 10 ** 9 + 7
         nums.sort()
         ans = pre = 0
@@ -845,7 +839,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6767
         tag: brute_force
         """
-        # greedybrute_force性价比较低的数量
+
         n, a, b, c, d = ac.read_list_ints()
         if b * c > a * d:
             a, b, c, d = c, d, a, b
@@ -863,7 +857,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8270
         tag: brain_teaser|brute_force
         """
-        # brain_teaserbrute_force，转换为两两字母比较
+
         s = ac.read_str()
         t = ac.read_str()
         lst = sorted(list("abcdefghijklmnopqr"))
@@ -903,9 +897,9 @@ class Solution:
     def lg_p8672(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P8672
-        tag: string|brute_force|permutation_circle|counter
+        tag: string|brute_force|permutation_circle|counter|classical|brain_teaser
         """
-        # 字符串brute_force与permutation_circle|counter
+
         s = ac.read_str()
         n = len(s)
         dct = dict()
@@ -939,9 +933,9 @@ class Solution:
     def lg_p9076(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P9076
-        tag: factorization|brute_force
+        tag: factorization|brute_force|classical|square_complexity|sqrt_n
         """
-        # 根据数字的因数brute_force
+
         n = ac.read_int()
         ans = 0
         pre = set()
@@ -952,12 +946,18 @@ class Solution:
                         continue
                     pre.add(bc)
                     for x in range(2, bc + 1):
-                        if bc % x == 0:
-                            y = bc // x - 1
-                            if y > 1:
-                                ans += 1
-                        if bc // x <= 2:
+                        if x * x > bc:
                             break
+                        if bc % x == 0:
+                            y = bc // x
+                            if x == y:
+                                if x >= 3:
+                                    ans += 1
+                                continue
+                            if y >= 3:
+                                ans += 1
+                            if x >= 3:
+                                ans += 1
         ac.st(ans)
         return
 
@@ -965,9 +965,9 @@ class Solution:
     def lg_p9008(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P9008
-        tag: inclusion_exclusion|brute_force|counter
+        tag: inclusion_exclusion|brute_force|counter|classical
         """
-        # 朋友敌人陌生人容斥brute_forcecounter
+
         n, p, q = ac.read_list_ints()
         friend = defaultdict(set)
         for _ in range(p):
@@ -994,7 +994,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P9006
         tag: brute_force|mod|counter
         """
-        # brute_forcemod|counter
+
         mod = 100000007
         n, k = ac.read_list_ints()
         num = 9 * 10 ** (n - 1)
@@ -1010,9 +1010,9 @@ class Solution:
     def lg_p8948(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P8948
-        tag: brute_force
+        tag: brute_force|preprocess
         """
-        # preprocess和brute_force所有情况
+
         dct = dict()
         dct[2000] = [400, 600]
         for i in range(401):
@@ -1029,42 +1029,32 @@ class Solution:
     def lg_p8894(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P8894
-        tag: data_range|brute_force|prefix_suffix|counter
+        tag: data_range|brute_force|prefix_sum|counter|inclusion_exclusion
         """
-        # 按照区间范围值brute_forceprefix_suffixcounter
+
         n = ac.read_int()
         mod = 998244353
         nums = [ac.read_list_ints() for _ in range(n)]
         ceil = max(q for _, q in nums)
         low = min(p for p, _ in nums)
-        ans = 0
+        ans = pre = 0
         for s in range(low, ceil + 1):
-            pre = [0] * (n + 1)
-            pre[0] = 1
-            for i in range(n):
-                p, q = nums[i]
-                if p > s:
-                    pre[i + 1] = 0
-                    break
-                else:
-                    pre[i + 1] = pre[i] * (ac.min(s, q) - p + 1) % mod
-
-            post = [0] * (n + 1)
-            post[n] = 1
-            for i in range(n - 1, -1, -1):
-                p, q = nums[i]
-                if p >= s:
-                    post[i] = 0
-                    break
-                else:
-                    post[i] = post[i + 1] * (ac.min(q, s - 1) - p + 1) % mod
-            for i in range(n):
-                p, q = nums[i]
+            cnt = 1
+            flag = 0
+            for p, q in nums:
                 if p <= s <= q:
-                    ans += pre[i] * post[i + 1] * s
-                    ans %= mod
-                if pre[i + 1] == 0:
+                    cnt *= (s - p + 1)
+                    flag = 1
+                    cnt %= mod
+                elif s > q:
+                    cnt *= (q - p + 1)
+                    cnt %= mod
+                elif s < p:
+                    cnt = 0
                     break
+            if flag:
+                ans = (ans + (cnt - pre) * s) % mod
+                pre = cnt
         ac.st(ans)
         return
 
@@ -1072,9 +1062,9 @@ class Solution:
     def lg_p8872(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P8872
-        tag: sort|prefix_suffix|brute_force
+        tag: sort|prefix_suffix|brute_force|reverse_order
         """
-        # sorting后prefix_suffix移动次数brute_force
+
         n, m = ac.read_list_ints()
         nums = sorted(ac.read_list_ints())
         ans = inf
@@ -1106,7 +1096,7 @@ class Solution:
         url: https://leetcode.cn/problems/check-if-word-can-be-placed-in-crossword/description/
         tag: brute_force
         """
-        # brute_force空挡位置与矩阵行列取数
+
         k = len(word)
 
         def check(cur):
@@ -1141,7 +1131,7 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-operations-to-make-the-array-alternating/
         tag: brute_force|secondary_maximum
         """
-        # brute_force，运用最大值与次大值技巧
+
         odd = defaultdict(int)
         even = defaultdict(int)
         n = len(nums)
@@ -1155,7 +1145,6 @@ class Solution:
                 odd[nums[i]] += 1
                 odd_cnt += 1
 
-        # 最大值与次大值
         a = b = 0
         for num in even:
             if even[num] >= a:
@@ -1163,7 +1152,6 @@ class Solution:
             elif even[num] >= b:
                 b = even[num]
 
-        # brute_force奇数位置的数
         ans = odd_cnt + even_cnt - a
         for num in odd:
             cur = odd_cnt - odd[num]
@@ -1174,7 +1162,6 @@ class Solution:
             cur += even_cnt - x
             if cur < ans:
                 ans = cur
-
         return ans
 
     @staticmethod
@@ -1183,7 +1170,7 @@ class Solution:
         url: https://leetcode.cn/problems/smallest-range-ii/description/
         tag: brute_force|data_range
         """
-        # brute_force操作的范围，最大值与最小值
+
         nums.sort()
         ans = nums[-1] - nums[0]
         n = len(nums)
@@ -1200,26 +1187,29 @@ class Solution:
     def lc_1178(words: List[str], puzzles: List[str]) -> List[int]:
         """
         url: https://leetcode.cn/problems/number-of-valid-words-for-each-puzzle/
-        tag: hash|counter|brute_force|bit_operation
+        tag: hash|counter|brute_force|bit_operation|subset_enumeration|classical
         """
-        # classicalhashcounterbrute_force，bit_operation
+
+        n = 7
         dct = defaultdict(int)
         for word in words:
             cur = set(word)
             lst = [ord(w) - ord("a") for w in cur]
             state = reduce(or_, [1 << x for x in lst])
-            if len(cur) <= 7:
+            if len(cur) <= n:
                 dct[state] += 1
+
         ans = []
         for word in puzzles:
             lst = [ord(w) - ord("a") for w in word]
-            n = len(lst)
+            start = 1 << lst[0]
             cur = 0
-            for i in range(1 << (n - 1)):
-                i *= 2
-                i += 1
-                s = sum(1 << lst[j] for j in range(n) if i & (1 << j))
-                cur += dct[s]
+            mask = reduce(or_, [1 << x for x in lst])
+            sub = mask
+            while sub:  # classical
+                if sub & start:
+                    cur += dct[sub]
+                sub = (sub-1) & mask
             ans.append(cur)
         return ans
 
@@ -1227,40 +1217,35 @@ class Solution:
     def lc_1215(low: int, high: int) -> List[int]:
         """
         url: https://leetcode.cn/problems/stepping-numbers/
-        tag: data_range|back_track|brute_force
+        tag: data_range|brute_force|preprocess
         """
 
-        # data_range|back_trackbrute_force所有满足条件的数
-
-        def dfs():
-            nonlocal num, ceil
-            if num > ceil:
-                return
-            ans.append(num)
-            last = num % 10
-            for x in [last - 1, last + 1]:
-                if 0 <= x <= 9:
-                    num = num * 10 + x
-                    dfs()
-                    num //= 10
-            return
-
+        res = []
+        pre = list(range(10))
+        res.extend(pre)
         ceil = 2 * 10 ** 9
-        ans = [0]
-        for i in range(1, 10):
-            num = i
-            dfs()
-        ans.sort()
-        i, j = bisect.bisect_left(ans, low), bisect.bisect_right(ans, high)
-        return ans[i:j]
+        for _ in range(10):
+            cur = []
+            for num in pre:
+                if str(num)[0] == "0":
+                    continue
+                d = int(str(num)[-1])
+                for w in [d - 1, d + 1]:
+                    if 0 <= w <= 9 and num * 10 + w <= ceil:
+                        cur.append(num * 10 + w)
+            pre = cur[:]
+            res.extend(pre)
+
+        i, j = bisect.bisect_left(res, low), bisect.bisect_right(res, high)
+        return res[i:j]
 
     @staticmethod
     def lc_1131(arr1: List[int], arr2: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/maximum-of-absolute-value-expression/description/
-        tag: manhattan_distance|brute_force
+        tag: manhattan_distance|brute_force|classical
         """
-        # manhattan_distance，brute_force可能的符号组合
+
         n = len(arr1)
         ans = 0
         for x in [1, -1]:
@@ -1278,7 +1263,6 @@ class Solution:
         url: https://leetcode.cn/problems/count-substrings-that-differ-by-one-character/description/
         tag: brute_force|dp|brute_force
         """
-        # brute_force子字符串对开头位置也可DPbrute_force
         m, n = len(s), len(t)
         ans = 0
         for i in range(m):
@@ -1298,9 +1282,9 @@ class Solution:
     def lc_1638_2(s: str, t: str) -> int:
         """
         url: https://leetcode.cn/problems/count-substrings-that-differ-by-one-character/description/
-        tag: brute_force|dp|brute_force
+        tag: brute_force|dp|brute_force|classical|brain_teaser
         """
-        # brute_force子字符串对开头位置也可DPbrute_force
+
         m = len(s)
         n = len(t)
         cnt = [[0] * (n + 1) for _ in range(m + 1)]
@@ -1308,10 +1292,10 @@ class Solution:
         for i in range(m):
             for j in range(n):
                 if s[i] == t[j]:
-                    same[i + 1][j + 1] = same[i][j] + 1  # 以i,j为结尾的最长连续子串长度
-                    cnt[i + 1][j + 1] = cnt[i][j]  # 以i,j为结尾的子串对数
+                    same[i + 1][j + 1] = same[i][j] + 1
+                    cnt[i + 1][j + 1] = cnt[i][j]
                 else:
-                    same[i + 1][j + 1] = 0  # 转移可以对角线方向转移则只需要O(1)空间
+                    same[i + 1][j + 1] = 0
                     cnt[i + 1][j + 1] = same[i][j] + 1
         return sum(sum(d) for d in cnt)
 
@@ -1321,7 +1305,7 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-degree-of-a-connected-trio-in-a-graph/
         tag: directed_graph|undirected_graph|brute_force
         """
-        # 无向图转为有向图brute_force
+
         edges = [[i - 1, j - 1] for i, j in edges]
         degree = [0] * n
         dct = [set() for _ in range(n)]
@@ -1350,9 +1334,8 @@ class Solution:
     def lc_1878(grid: List[List[int]]) -> List[int]:
         """
         url: https://leetcode.cn/problems/get-biggest-three-rhombus-sums-in-a-grid/
-        tag: prefix_sum与|brute_force
+        tag: prefix_sum|brute_force
         """
-        # 两个方向上的prefix_sum与边长brute_force
 
         m, n = len(grid), len(grid[0])
 
@@ -1408,7 +1391,7 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-points-in-an-archery-competition/
         tag: bit_operation|brute_force|back_track
         """
-        # bit_operationbrute_force或者back_track
+
         n = len(y)
         ans = [0] * n
         ans[0] = x
@@ -1434,8 +1417,6 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-trailing-zeros-in-a-cornered-path/
         tag: prefix_sum|brute_force
         """
-
-        # 四个方向的prefix_sum与两两组合brute_force
 
         def check(num, f):
             res = 0
