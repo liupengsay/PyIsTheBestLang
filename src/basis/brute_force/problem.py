@@ -155,9 +155,9 @@ class Solution:
     def cf_1311d(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1311/D
-        tag: greedy|brute_force
+        tag: greedy|brute_force|specific_plan|data_range|classical
         """
-        # 根据greedy策略 a=b=1 时显然满足条件，因此brute_force不会超过这个代价的范围就行
+
         for _ in range(ac.read_int()):
             a, b, c = ac.read_list_ints()
             ans = inf
@@ -178,10 +178,9 @@ class Solution:
     def cf_584d(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/584/D
-        tag: brute_force|prime|decompose_into_sum_of_prime_at_most_3
+        tag: brute_force|prime|decompose_into_sum_of_prime_at_most_3|classical
         """
 
-        # 将 n 分解为最多三个质数的和
         def is_prime4(x):
             if x == 1:
                 return False
@@ -194,7 +193,6 @@ class Solution:
                     return False
             return True
 
-        # 将正整数分解为最多三个质数的和
         n = ac.read_int()
         assert 3 <= n < 10 ** 9
 
@@ -203,6 +201,8 @@ class Solution:
             ac.st(n)
             return
 
+        # there is a fact that the distance between adjacent prime numbers is not big
+        # for n=10**9 the maximal distance is 282
         for i in range(2, 10 ** 5):
             j = n - 3 - i
             if is_prime4(i) and is_prime4(j):
@@ -218,13 +218,10 @@ class Solution:
         tag: greedy|brute_force
         """
 
-        # 在复杂度有限的情况下有限采用brute_force的方式而不是greedy
-
         def check():  # greedy
             lst = list(str(num))
             n = len(lst)
             post = list(range(n))
-            # 从后往前遍历，对每个数位，记录其往后最大且最靠后的比它大的数位位置，再从前往后交换第一个有更大的靠后值得数位
             j = n - 1
             for i in range(n - 2, -1, -1):
                 if lst[i] > lst[j]:
@@ -257,9 +254,9 @@ class Solution:
     def cf_484b(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/484/B
-        tag: sort|brute_force|binary_search
+        tag: sort|brute_force|binary_search|classical|maximum_mod_pair
         """
-        # 查询数组中两两mod|运算的最大值（要求较小值作为mod|数）
+
         ac.read_int()
         nums = sorted(list(set(ac.read_list_ints())))
         n = len(nums)
@@ -287,30 +284,25 @@ class Solution:
     def cf_382c(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/382/C
-        tag: classification_discussion
+        tag: classification_discussion|brute_force
         """
 
-        # 2023年3月29日·灵茶试炼·classification_discussion
         n = ac.read_int()
         nums = sorted(ac.read_list_ints())
 
-        # 只有一种情况有无穷多个
         if n == 1:
             ac.st(-1)
             return
 
-        # sorting后相邻项差值最大值与最小值以及不同差值
         diff = [nums[i] - nums[i - 1] for i in range(1, n)]
         high = max(diff)
         low = min(diff)
         cnt = len(set(diff))
 
-        # 1. 大于等于3个不同差值显然没有
         if cnt >= 3:
             ac.st(0)
             return
         elif cnt == 2:
-            # 2. 有2个不同差值存在合理情况当且仅当 high=2*low 且 count(high)==1
             if high != 2 * low or diff.count(high) != 1:
                 ac.st(0)
                 return
@@ -321,7 +313,6 @@ class Solution:
                     ac.st(nums[i - 1] + low)
                     return
         else:
-            # 3.有1个差值时分为0与不为0，不为0分 n大于2 与等于2
             if low == high == 0:
                 ac.st(1)
                 ac.st(nums[0])
@@ -339,7 +330,12 @@ class Solution:
         return
 
     @staticmethod
-    def abc_44d(ac=FastIO()):
+    def arc_060b(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc044/tasks/arc060_b
+        tag: base|classification_discussion|brute_force|factorization
+
+        """
         # 进制与分情况brute_force因子
         def check():
             lst = []
