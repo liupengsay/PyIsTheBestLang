@@ -7,7 +7,7 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, \
     RangeDescendRangeMin, \
     RangeAddRangeSumMinMax, RangeChangeRangeSumMinMax, PointChangeRangeMaxNonEmpConSubSum, \
     RangeOrRangeAnd, \
-    RangeChangeRangeSumMinMaxDynamic, RangeChangeRangeOr, RangeAddMulRangeSum
+    RangeChangeRangeSumMinMaxDynamic, RangeChangeRangeOr, RangeAffineRangeSum
 
 
 class TestGeneral(unittest.TestCase):
@@ -154,7 +154,7 @@ class TestGeneral(unittest.TestCase):
         high = 10000
         nums = [random.randint(low, high) for _ in range(high)]
         mod = 10 ** 9 + 7
-        segment_tree = RangeAddMulRangeSum(high, mod)
+        segment_tree = RangeAffineRangeSum(high, mod)
         segment_tree.build(nums)
 
         assert segment_tree.range_sum(0, high - 1) == sum(nums) % mod

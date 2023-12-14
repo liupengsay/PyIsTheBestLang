@@ -171,7 +171,7 @@ class TwoSAT:
             # Kosaraju算法
             kosaraju = Kosaraju(2 * m * n, edge)
             # 注意是小于符号
-            ans = [int(kosaraju.color[2 * i] < kosaraju.color[2 * i + 1]) for i in range(m * n)]
+            ans = [int(kosaraju.color[i << 1] < kosaraju.color[(i << 1) | 1]) for i in range(m * n)]
             for x in range(m * n):
                 grid[x // n][x % n] += ans[x]
             for g in grid:
@@ -223,7 +223,7 @@ class TwoSAT:
                 return
 
         ac.st("POSSIBLE")
-        ans = [int(kosaraju.color[2 * i] < kosaraju.color[2 * i + 1])
+        ans = [int(kosaraju.color[i << 1] < kosaraju.color[(i << 1) | 1])
                for i in range(n)]
         ac.lst(ans)
         return
@@ -278,7 +278,7 @@ class TwoSAT:
                 ac.st("NIE")
                 return
         # 注意是小于符号
-        ans = [int(kosaraju.color[2 * i] < kosaraju.color[2 * i + 1]) for i in range(2 * n)]
+        ans = [int(kosaraju.color[i << 1] < kosaraju.color[(i << 1) | 1]) for i in range(2 * n)]
         res = [i + 1 for i in range(2 * n) if ans[i]]
         for a in res:
             ac.st(a)

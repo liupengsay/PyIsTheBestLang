@@ -349,7 +349,7 @@ class Solution:
             lst.extend(ac.read_list_ints())
         nums = []
         for i in range(n):
-            x, y = lst[2 * i], lst[2 * i + 1]
+            x, y = lst[i << 1], lst[(i << 1) | 1]
             if r * r < y * y:
                 ac.st(-1)
                 return

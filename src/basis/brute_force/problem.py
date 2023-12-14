@@ -132,7 +132,7 @@ ARC091B（https://atcoder.jp/contests/abc090/tasks/arc091_b）brute_force
 ABC085D（https://atcoder.jp/contests/abc085/tasks/abc085_d）brute_force
 
 =====================================AcWing=====================================
-95（https://www.acwing.com/problem/content/description/97/）brute_force
+97（https://www.acwing.com/problem/content/description/97/）brute_force
 
 """
 import bisect
@@ -254,7 +254,7 @@ class Solution:
     def cf_484b(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/484/B
-        tag: sort|brute_force|binary_search|classical|maximum_mod_pair
+        tag: sort|brute_force|binary_search|classical|maximum_mod_pair|euler_series|O(nlogn)
         """
 
         ac.read_int()
@@ -333,10 +333,10 @@ class Solution:
     def arc_060b(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc044/tasks/arc060_b
-        tag: base|classification_discussion|brute_force|factorization
+        tag: n-base|classification_discussion|brute_force|factorization|math
 
         """
-        # 进制与分情况brute_force因子
+
         def check():
             lst = []
             num = n
@@ -352,13 +352,12 @@ class Solution:
         elif s == n:
             ac.st(n + 1)
         else:
-            # (n-s) % (b-1) == 0
             ans = inf
             for x in range(1, n - s + 1):
                 if x * x > n - s:
                     break
                 if (n - s) % x == 0:
-                    # brute_force b-1 的值为 n-s 的因子
+                    # brute_force (n-s) % (b-1) == 0
                     y = (n - s) // x
                     b = x + 1
                     if check():
@@ -370,8 +369,12 @@ class Solution:
         return
 
     @staticmethod
-    def abc_59c(ac=FastIO()):
-        # brute_forceprefix_sum的符号greedy增减
+    def abc_072a(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc059/tasks/arc072_a
+        tag: brute_force|prefix_sum|greedy
+        """
+
         n = ac.read_int()
         nums = ac.read_list_ints()
         ans1 = 0
@@ -402,8 +405,12 @@ class Solution:
         return
 
     @staticmethod
-    def abc_62c(ac=FastIO()):
-        # brute_force切割方式
+    def abc_074a(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc062/tasks/arc074_a
+        tag: brute_force
+        """
+
         m, n = ac.read_list_ints()
 
         def check1():
@@ -434,8 +441,12 @@ class Solution:
         return
 
     @staticmethod
-    def abc_74c(ac=FastIO()):
-        # brute_force系数利用公式边界
+    def abc_083a(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc074/tasks/arc083_a
+        tag: brute_force|math
+        """
+
         res = 0
         a, b, c, d, e, f = ac.read_list_ints()
         ans = [100 * a, 0]
@@ -466,12 +477,12 @@ class Solution:
         return
 
     @staticmethod
-    def ac_95(ac=FastIO()):
+    def ac_97(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/97/
         tag: brute_force
         """
-        # brute_force第一行状态
+
         n = ac.read_int()
 
         for _ in range(n):

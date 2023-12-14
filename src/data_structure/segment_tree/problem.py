@@ -26,7 +26,7 @@ P2880（https://www.luogu.com.cn/problem/P2880）RangeAddRangeSumMaxMin
 P1904（https://www.luogu.com.cn/problem/P1904）segment_tree|RangeAscendRangeMax
 P1438（https://www.luogu.com.cn/problem/P1438）diff_array|RangeAddRangeSumMaxMin|segment_tree
 P1253（https://www.luogu.com.cn/problem/P1253）range_add|range_change|segment_tree|range_sum
-P3373（https://www.luogu.com.cn/problem/P3373）range_add|range_mul|segment_tree|range_sum|RangeAddMulRangeSum
+P3373（https://www.luogu.com.cn/problem/P3373）range_add|range_mul|segment_tree|range_sum|RangeAffineRangeSum
 P4513（https://www.luogu.com.cn/problem/P4513）segment_tree|range_change|range_merge|sub_consequence
 P1471（https://www.luogu.com.cn/problem/P1471）math|segment_tree|RangeAddRangeSum
 P6492（https://www.luogu.com.cn/problem/P6492）segment_tree|range_change|range_merge|sub_consequence
@@ -54,14 +54,14 @@ P8856（https://www.luogu.com.cn/problem/solution/P8856）segment_tree|RangeAddR
 1679E（https://codeforces.com/contest/1679/problem/B）RangeChangeRangeSumMinMax|range_change|range_sum
 
 ====================================AtCoder=====================================
-ABC332F（https://atcoder.jp/contests/abc332/tasks/abc332_f）RangeAddMulRangeSum
+ABC332F（https://atcoder.jp/contests/abc332/tasks/abc332_f）RangeAffineRangeSum
 
 =====================================AcWing=====================================
 3805（https://www.acwing.com/problem/content/3808/）RangeAddRangeMin
 
 =====================================LibraryChecker=====================================
-Range Affine Point Get（https://judge.yosupo.jp/problem/range_affine_point_get）RangeAddMulRangeSum
-Range Affine Range Sum（https://judge.yosupo.jp/problem/range_affine_range_sum）RangeAddMulRangeSum
+1（https://judge.yosupo.jp/problem/range_affine_point_get）RangeAffineRangeSum
+2（https://judge.yosupo.jp/problem/range_affine_range_sum）RangeAffineRangeSum
 
 
 """
@@ -80,7 +80,7 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeD
     SegmentTreeRangeUpdateAvgDev, SegmentTreePointUpdateRangeMulQuery, \
     RangeChangeRangeSumMinMaxDynamic, SegmentTreeLongestSubSame, \
     RangeOrRangeAnd, RangeChangeRangeSumMinMax, RangeKSmallest, PointChangeRangeMaxNonEmpConSubSum, \
-    RangeAscendRangeMaxBinarySearchFindLeft, RangeAddMulRangeSum
+    RangeAscendRangeMaxBinarySearchFindLeft, RangeAffineRangeSum
 from src.utils.fast_io import FastIO
 
 
@@ -103,39 +103,47 @@ class Solution:
         return ans
 
     @staticmethod
-    def lib_check_1(ac=FastIO()):
+    def library_1(ac=FastIO()):
+        """
+        url: https://judge.yosupo.jp/problem/range_affine_point_get
+        tag: RangeAffineRangeSum
+        """
         n, q = ac.read_list_ints()
         nums = ac.read_list_ints()
         mod = 998244353
-        tree = RangeAddMulRangeSum(n, mod)
+        tree = RangeAffineRangeSum(n, mod)
         tree.build(nums)
         for _ in range(q):
             lst = ac.read_list_ints()
             if lst[0] == 0:
                 ll, rr, b, c = lst[1:]
-                tree.range_add_mul(ll, rr - 1, b, "mul")
-                tree.range_add_mul(ll, rr - 1, c, "add")
+                tree.range_affine(ll, rr - 1, (b << 32) | c)
             else:
                 i = lst[1]
                 ac.st(tree.range_sum(i, i))
         return
 
     @staticmethod
-    def lib_check_2(ac=FastIO()):
+    def library_2(ac=FastIO()):
+        """
+        url: https://judge.yosupo.jp/problem/range_affine_range_sum
+        tag: RangeAffineRangeSum
+        """
         n, q = ac.read_list_ints()
         nums = ac.read_list_ints()
         mod = 998244353
-        tree = RangeAddMulRangeSum(n, mod)
+        tree = RangeAffineRangeSum(n, mod)
         tree.build(nums)
+        ans = []
         for _ in range(q):
             lst = ac.read_list_ints()
             if lst[0] == 0:
                 ll, rr, b, c = lst[1:]
-                tree.range_add_mul(ll, rr - 1, b, "mul")
-                tree.range_add_mul(ll, rr - 1, c, "add")
+                tree.range_affine(ll, rr - 1, (b << 32) | c)
             else:
                 ll, rr = lst[1:]
-                ac.st(tree.range_sum(ll, rr - 1))
+                ans.append(str(tree.range_sum(ll, rr - 1)))
+        print("\n".join(ans))
         return
 
     @staticmethod
@@ -470,20 +478,20 @@ class Solution:
     def lg_p3373(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P3373
-        tag: range_add|range_mul|segment_tree|range_sum|RangeAddMulRangeSum
+        tag: range_add|range_mul|segment_tree|range_sum|RangeAffineRangeSum
         """
         n, q, mod = ac.read_list_ints()
-        tree = RangeAddMulRangeSum(n, mod)
+        tree = RangeAffineRangeSum(n, mod)
         nums = ac.read_list_ints()
         tree.build(nums)
         for _ in range(q):
             lst = ac.read_list_ints()
             if lst[0] == 1:
                 x, y, k = lst[1:]
-                tree.range_add_mul(x - 1, y - 1, k, "mul")
+                tree.range_affine(x - 1, y - 1, k << 32)
             elif lst[0] == 2:
                 x, y, k = lst[1:]
-                tree.range_add_mul(x - 1, y - 1, k, "add")
+                tree.range_affine(x - 1, y - 1, (1 << 32) | k)
             else:
                 x, y = lst[1:]
                 ans = tree.range_sum(x - 1, y - 1)
@@ -1015,18 +1023,21 @@ class Solution:
 
     @staticmethod
     def abc_332f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc332/tasks/abc332_f
+        tag: RangeAffineRangeSum
+        """
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         mod = 998244353
-        tree = RangeAddMulRangeSum(n, mod)
+        tree = RangeAffineRangeSum(n, mod)
         tree.build(nums)
         for _ in range(m):
             ll, rr, xx = ac.read_list_ints()
             length = rr - ll + 1
-            pre = ((length - 1) * pow(length, -1, mod)) % mod
-            tree.range_add_mul(ll - 1, rr - 1, pre, "mul")
-            val = (xx * pow(length, -1, mod)) % mod
-            tree.range_add_mul(ll - 1, rr - 1, val, "add")
+            mul = ((length - 1) * pow(length, -1, mod)) % mod
+            add = (xx * pow(length, -1, mod)) % mod
+            tree.range_affine(ll - 1, rr - 1, (mul << 32) | add)
         ac.lst(tree.get())
         return
 
