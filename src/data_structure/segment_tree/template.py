@@ -523,27 +523,28 @@ class RangeAddRangeSumMinMax:
 
 class RangeAffineRangeSum:
 
-    def __init__(self, n, mod):
+    def __init__(self, n, mod, m=32):
         self.n = n
         self.mod = mod
-        self.mul = 1 << 32
-        self.add = (1 << 32) - 1
+        self.m = m
+        self.mul = 1 << self.m
+        self.mask = (1 << self.m) - 1
         self.cover = [0] * (4 * n)
         self.tag = [self.mul] * (4 * n)
         return
 
     def _make_tag(self, i, s, t, val) -> None:
-        mul, add = val >> 32, val & self.add
+        mul, add = val >> self.m, val & self.mask
         self.cover[i] = (self.cover[i] * mul + (t - s + 1) * add) % self.mod
         self.tag[i] = self._merge_tag(self.tag[i], val)
         return
 
     def _merge_tag(self, x1, x2):
-        mul1, add1 = x1 >> 32, x1 & self.add
-        mul2, add2 = x2 >> 32, x2 & self.add
+        mul1, add1 = x1 >> self.m, x1 & self.mask
+        mul2, add2 = x2 >> self.m, x2 & self.mask
         mul = (mul2 * mul1) % self.mod
         add = (mul2 * add1 + add2) % self.mod
-        return (mul << 32) | add
+        return (mul << self.m) | add
 
     def _push_up(self, i):
         self.cover[i] = (self.cover[i << 1] + self.cover[(i << 1) | 1]) % self.mod
@@ -552,7 +553,7 @@ class RangeAffineRangeSum:
     def _push_down(self, i, s, m, t):
         x = self.tag[i]
         if x != self.mul:
-            mul, add = x >> 32, x & self.add
+            mul, add = x >> self.m, x & self.mask
 
             self.cover[i << 1] = (self.cover[i << 1] * mul + add * (m - s + 1)) % self.mod
             self.cover[(i << 1) | 1] = (self.cover[(i << 1) | 1] * mul + add * (t - m)) % self.mod
@@ -1412,6 +1413,97 @@ class SegmentTreePointUpdateRangeMulQuery:
                 stack.append((s, m, 2 * i))
             if right > m:
                 stack.append((m + 1, t, 2 * i + 1))
+        return ans
+
+
+class PointSetRangeComposite:
+
+    def __init__(self, n, mod, m=32):
+        self.n = n
+        self.mod = mod
+        self.m = m
+        self.mask = (1 << m) - 1
+        self.cover = [0] * (4 * n)
+        return
+
+    def _make_tag(self, i, val) -> None:
+        self.cover[i] = val
+        return
+
+    def _push_up(self, i):
+        self.cover[i] = self._merge_cover(self.cover[i << 1], self.cover[(i << 1) | 1])
+        return
+
+    def _merge_cover(self, val1, val2):
+        mul1, add1 = val1 >> self.m, val1 & self.mask
+        mul2, add2 = val2 >> self.m, val2 & self.mask
+        return ((mul2 * mul1 % self.mod) << self.m) | ((mul2 * add1 + add2) % self.mod)
+
+    def build(self, nums: List[int]) -> None:
+        assert self.n == len(nums)
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if s == t:
+                    self._make_tag(i, nums[s])
+                else:
+                    stack.append((s, t, ~i))
+                    m = s + (t - s) // 2
+                    stack.append((s, m, i << 1))
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def get(self):
+        stack = [(0, self.n - 1, 1)]
+        nums = [0] * self.n
+        while stack:
+            s, t, i = stack.pop()
+            if s == t:
+                val = self.cover[i]
+                nums[s] = (val >> self.m) + (val & self.mask)
+                continue
+            m = s + (t - s) // 2
+            stack.append((s, m, i << 1))
+            stack.append((m + 1, t, (i << 1) | 1))
+        return nums
+
+    def point_set(self, left, right, val):
+        assert 0 <= left <= right <= self.n - 1
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if left <= s and t <= right:
+                    self._make_tag(i, val)
+                    continue
+                stack.append((s, t, ~i))
+                m = s + (t - s) // 2
+                if left <= m:
+                    stack.append((s, m, i << 1))
+                if right > m:
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def range_composite(self, left: int, right: int) -> int:
+        stack = [(0, self.n - 1, 1)]
+        ans = 1 << self.m
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                ans = self._merge_cover(self.cover[i], ans)
+                continue
+            m = s + (t - s) // 2
+            if left <= m:
+                stack.append((s, m, i << 1))
+            if right > m:
+                stack.append((m + 1, t, (i << 1) | 1))
         return ans
 
 

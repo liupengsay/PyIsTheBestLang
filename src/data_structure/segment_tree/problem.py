@@ -62,7 +62,7 @@ ABC332F（https://atcoder.jp/contests/abc332/tasks/abc332_f）RangeAffineRangeSu
 =====================================LibraryChecker=====================================
 1（https://judge.yosupo.jp/problem/range_affine_point_get）RangeAffineRangeSum
 2（https://judge.yosupo.jp/problem/range_affine_range_sum）RangeAffineRangeSum
-
+3（https://judge.yosupo.jp/problem/point_set_range_composite）PointSetRangeComposite
 
 """
 import random
@@ -80,7 +80,7 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeD
     SegmentTreeRangeUpdateAvgDev, SegmentTreePointUpdateRangeMulQuery, \
     RangeChangeRangeSumMinMaxDynamic, SegmentTreeLongestSubSame, \
     RangeOrRangeAnd, RangeChangeRangeSumMinMax, RangeKSmallest, PointChangeRangeMaxNonEmpConSubSum, \
-    RangeAscendRangeMaxBinarySearchFindLeft, RangeAffineRangeSum
+    RangeAscendRangeMaxBinarySearchFindLeft, RangeAffineRangeSum, PointSetRangeComposite
 from src.utils.fast_io import FastIO
 
 
@@ -144,6 +144,26 @@ class Solution:
                 ll, rr = lst[1:]
                 ans.append(str(tree.range_sum(ll, rr - 1)))
         print("\n".join(ans))
+        return
+
+    @staticmethod
+    def library_3(ac=FastIO()):
+        n, q = ac.read_list_ints()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        m = 32
+        mod = 998244353
+        tree = PointSetRangeComposite(n, mod, m)
+        tree.build([(c << m) | d for c, d in nums])
+        for _ in range(q):
+            lst = ac.read_list_ints()
+            if lst[0] == 0:
+                p, c, d = lst[1:]
+                tree.point_set(p, p, (c << m) | d)
+            else:
+                ll, rr, x = lst[1:]
+                val = tree.range_composite(ll, rr - 1)
+                mul, add = val >> m, val & tree.mask
+                ac.st((mul * x + add) % mod)
         return
 
     @staticmethod
