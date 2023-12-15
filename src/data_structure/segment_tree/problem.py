@@ -1117,58 +1117,94 @@ class Solution:
 
         return
 
+    @staticmethod
+    def lc_2276_1():
 
-class CountIntervalsLC2276:
+        class CountIntervals:
+            def __init__(self):
+                self.n = 10 ** 9 + 7
+                self.segment_tree = RangeChangeRangeSumMinMaxDynamic(self.n)
 
-    def __init__(self):
-        # dynamic_segment_tree
-        self.n = 10 ** 9 + 7
-        self.segment_tree = RangeChangeRangeSumMinMaxDynamic(self.n)
+            def add(self, left: int, right: int) -> None:
+                self.segment_tree.range_change(left, right, 1)
 
-    def add(self, left: int, right: int) -> None:
-        self.segment_tree.range_change(left, right, 1)
+            def count(self) -> int:
+                return self.segment_tree.cover[1]
 
-    def count(self) -> int:
-        return self.segment_tree.cover[1]
+        return CountIntervals
+
+    @staticmethod
+    def lc_2276_2():
+
+        class CountIntervals:
+
+            def __init__(self):
+                self.lst = SortedList()
+                self.cover = 0
+
+            def add(self, left: int, right: int) -> None:
+                x = self.lst.bisect_left((left, left))
+                if x - 1 >= 0 and self.lst[x - 1][1] >= left:
+                    x -= 1
+
+                while 0 <= x < len(self.lst) and not (self.lst[x][0] > right or self.lst[x][1] < left):
+                    a, b = self.lst.pop(x)
+                    left = left if left < a else a
+                    right = right if right > b else b
+                    self.cover -= b - a + 1
+                self.cover += right - left + 1
+                self.lst.add((left, right))
+
+            def count(self) -> int:
+                return self.cover
+
+        return CountIntervals
+
+    @staticmethod
+    def lc_2286():
+
+        class BookMyShow:
+
+            def __init__(self, n: int, m: int):
+                self.n = n
+                self.m = m
+                self.tree = RangeAddRangeSumMinMax(n)
+                self.cnt = [0] * n
+                self.null = SortedList(list(range(n)))
+
+            def gather(self, k: int, max_row: int) -> List[int]:
+                max_row += 1
+                low = self.tree.range_min(0, max_row - 1)
+                if self.m - low < k:
+                    return []
+
+                def check(x):
+                    return self.m - self.tree.range_min(0, x) >= k
+
+                # binary_search|segment_tree|维护最小值与和
+                y = BinarySearch().find_int_left(0, max_row - 1, check)
+                self.cnt[y] += k
+                self.tree.range_add(y, y, k)
+                if self.cnt[y] == self.m:
+                    self.null.discard(y)
+                return [y, self.cnt[y] - k]
+
+            def scatter(self, k: int, max_row: int) -> bool:
+                max_row += 1
+                s = self.tree.range_sum(0, max_row - 1)
+                if self.m * max_row - s < k:
+                    return False
+                while k:
+                    x = self.null[0]
+                    rest = k if k < self.m - self.cnt[x] else self.m - self.cnt[x]
+                    k -= rest
+                    self.cnt[x] += rest
+                    self.tree.range_add(x, x, rest)
+                    if self.cnt[x] == self.m:
+                        self.null.pop(0)
+                return True
+
+        return BookMyShow
 
 
-class BookMyShowLC2286:
 
-    def __init__(self, n: int, m: int):
-        self.n = n
-        self.m = m
-        self.tree = RangeAddRangeSumMinMax(n)
-        self.cnt = [0] * n
-        self.null = SortedList(list(range(n)))
-
-    def gather(self, k: int, max_row: int) -> List[int]:
-        max_row += 1
-        low = self.tree.range_min(0, max_row - 1)
-        if self.m - low < k:
-            return []
-
-        def check(x):
-            return self.m - self.tree.range_min(0, x) >= k
-
-        # binary_search|segment_tree|维护最小值与和
-        y = BinarySearch().find_int_left(0, max_row - 1, check)
-        self.cnt[y] += k
-        self.tree.range_add(y, y, k)
-        if self.cnt[y] == self.m:
-            self.null.discard(y)
-        return [y, self.cnt[y] - k]
-
-    def scatter(self, k: int, max_row: int) -> bool:
-        max_row += 1
-        s = self.tree.range_sum(0, max_row - 1)
-        if self.m * max_row - s < k:
-            return False
-        while k:
-            x = self.null[0]
-            rest = k if k < self.m - self.cnt[x] else self.m - self.cnt[x]
-            k -= rest
-            self.cnt[x] += rest
-            self.tree.range_add(x, x, rest)
-            if self.cnt[x] == self.m:
-                self.null.pop(0)
-        return True
