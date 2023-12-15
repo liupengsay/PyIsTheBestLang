@@ -64,7 +64,7 @@ class Solution:
     def cf_1478b(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1478/problem/B
-        tag: brute_force|bag_dp|construction
+        tag: brute_force|bag_dp|construction|brain_teaser|classical
         """
         for _ in range(ac.read_int()):
             q, d = ac.read_list_ints()
@@ -90,7 +90,7 @@ class Solution:
         url: https://codeforces.com/problemset/problem/1367/D
         tag: reverse_thinking|implemention|construction
         """
-        # reverse_thinking生成implementionconstruction
+
         for _ in range(ac.read_int()):
             s = ac.read_str()
             m = ac.read_int()
@@ -119,7 +119,7 @@ class Solution:
         url: https://codeforces.com/problemset/problem/1788/C
         tag: construction
         """
-        # 选取 1 到 2n 的数两两配对且和为连续数
+
         for _ in range(ac.read_int()):
             n = ac.read_int()
             if n % 2:
@@ -138,9 +138,9 @@ class Solution:
     def lc_280(nums: List[int]) -> None:
         """
         url: https://leetcode.cn/problems/wiggle-sort/
-        tag: construction|sort|odd_even
+        tag: construction|sort|odd_even|classical
         """
-        # 摆动sorting数组construction
+
         nums.sort()
         n = len(nums)
         ans = [0] * n
@@ -160,14 +160,13 @@ class Solution:
     def lc_1982(n: int, sums: List[int]) -> List[int]:
         """
         url: https://leetcode.cn/problems/find-array-given-subset-sums/
-        tag: construction
+        tag: construction|brain_teaser|classical
         """
-        # 根据数组所有子集的和construction原数组
+
         low = min(sums)
         if low < 0:
             sums = [num - low for num in sums]
 
-        # 从小到大依次construction元素
         cnt = Counter(sums)
         lst = sorted(cnt.keys())
         cnt[0] -= 1
@@ -185,7 +184,6 @@ class Solution:
                     pre_sum.append(num)
                     break
 
-        # 返回任意一个结果
         for i in range(1 << n):
             cur = [j for j in range(n) if i & (1 << j)]
             if sum(ans[j] for j in cur) == -low:
@@ -198,18 +196,15 @@ class Solution:
     def lc_2663(s: str, k: int) -> str:
         """
         url: https://leetcode.cn/problems/lexicographically-smallest-beautiful-string/
-        tag: greedy|construction|palindrome_substring|lexicographical_order
+        tag: greedy|construction|palindrome_substring|lexicographical_order|reverse_order|brute_force
         """
-        # greedyconstruction不含任何palindrome_substring的lexicographical_order最小的字符串
+
         n = len(s)
         for i in range(n - 1, -1, -1):
-            # reverse_order|brute_force
             for x in range(ord(s[i]) - ord("a") + 1, k):
                 w = chr(ord("a") + x)
-                # 只要没有长度为 2 和长度为 3 的palindrome_substring则都不存在任何大于 1 长度的palindrome_substring
                 if (i == 0 or s[i - 1] != w) and not (i >= 2 and w == s[i - 2]):
                     ans = s[:i] + w
-                    # greedy赋值且lexicographical_order最小
                     while len(ans) < n:
                         for y in range(0, k):
                             x = chr(y + ord("a"))
@@ -223,9 +218,9 @@ class Solution:
     def lg_p7947(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P7947
-        tag: greedy|construction|product_n_sum_k|prime_factorization
+        tag: greedy|construction|product_n_sum_k|prime_factorization|brain_teaser
         """
-        # greedyconstruction积为 n 和为 k 的数列，乘积分解成质因数其和最小
+
         n, k = ac.read_list_ints()
         ans = []
         for p, c in NumberTheory().get_prime_factor(n):
@@ -242,71 +237,38 @@ class Solution:
     def lg_p9101(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P9101
-        tag: construction|directed_graph|no_circe
+        tag: construction|directed_graph|no_circle|classical|number_of_path
         """
-        # construction恰好 k 条路径的有向无环图
+
         k = ac.read_int()
-        dct = defaultdict(list)
-        kk = k
-        if k == 1:  # 特判要求至少有两个节点
-            ac.st(2)
-            ac.lst([2, -1])
-            ac.lst([-1, -1])
-            return
-
-        # 多个 A -> BC -> D的结构形式
-        x = 1
-        cnt = len(bin(k)[2:]) - 1
-        level = []
-        for i in range(2 * cnt + 1):
-            if i % 2 == 0:
-                level.append([x])
-                x += 1
+        ac.st(98)
+        ac.lst([33, -1])
+        for i in range(2, 34):
+            if k & (1 << (i - 2)):
+                cur = [i + 32]
             else:
-                level.append([x, x + 1])
-                x += 2
-        for i in range(2 * cnt):
-            if len(level[i]) == 1:
-                dct[level[i][0]] = level[i + 1][:]
+                cur = [-1]
+            if i > 2:
+                cur.append(i - 1)
             else:
-                dct[level[i][0]] = level[i + 1][:]
-                dct[level[i][1]] = level[i + 1][:]
-
-        # 二进制逐层往上增|节点
-        k -= (1 << cnt)
-        end = x - 1
-        pre = 1 << cnt
-        for i in range(2 * cnt - 1, 0, -2):
-            xx = level[i][1]
-            pre //= 2
-            if pre <= k:
-                k -= pre
-                if end not in dct[xx]:
-                    dct[xx].append(end)
-                else:
-                    # 另外增|节点
-                    dct[xx].append(x)
-                    dct[x].append(end)
-                    x += 1
-
-        ac.st(x - 1)
-        # 将终点替换为最大的编号
-        ind = {end: x - 1, x - 1: end}
-        for i in range(1, x):
-            i = ind.get(i, i)
-            ans = [ind.get(j, j) for j in dct[i]]
-            while len(ans) < 2:
-                ans.append(-1)
-            ac.lst(ans)
+                cur.append(-1)
+            ac.lst(cur)
+        for i in range(34, 99):
+            if i in [34, 66]:
+                ac.lst([98, -1])
+            elif i == 98:
+                ac.lst([-1, -1])
+            else:
+                ac.lst([i - 1, i - 33 if i >= 67 else i + 31])
         return
 
     @staticmethod
     def lg_p8976(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P8976
-        tag: brute_force|construction
+        tag: brute_force|construction|classical
         """
-        # brute_force连续段construction数组的前半段与后半段和满足要求
+
         for _ in range(ac.read_int()):
             n, a, b = ac.read_list_ints()
             mid = n // 2 + 1
@@ -316,14 +278,13 @@ class Solution:
             s = n * (n + 1) // 2
             lst = [a, b]
             ans = []
-            for i in range(n // 2 + 1):  # brute_force起始的连续段
+            for i in range(n // 2 + 1):
                 if ans:
                     break
                 x = n // 2 - i
                 for aa, bb in [[0, 1], [1, 0]]:
                     if x:
                         rest = lst[aa] - i * (i + 1) // 2
-                        # 剩余的连续段
                         y = math.ceil((rest * 2 / x - x + 1) / 2)
                         y = ac.max(y, i + 1)
 
@@ -348,9 +309,9 @@ class Solution:
     def lg_p8910(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P8910
-        tag: permutation_circle|construction
+        tag: permutation_circle|construction|classical|brain_teaser
         """
-        # permutation_circle|construction
+
         for _ in range(ac.read_int()):
             n, k = ac.read_list_ints()
             nex = [0] * (n + 1)
@@ -361,12 +322,10 @@ class Solution:
             ans = []
             for i in range(n):
                 if nex[i] != i:
-                    # 找到一个环上所有点
                     lst = [i]
                     while nex[lst[-1]] != i:
                         lst.append(nex[lst[-1]])
                     m = len(lst)
-                    # 依次相邻赋值
                     ans.append([n + 1, lst[0] + 1])
                     for x in range(1, m):
                         ans.append([lst[x - 1] + 1, lst[x] + 1])
@@ -382,9 +341,9 @@ class Solution:
     def lg_p8880(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P8880
-        tag: brain_teaser|construction|odd_even
+        tag: brain_teaser|construction|odd_even|classical
         """
-        # brain_teaserconstruction分奇数与偶数讨论
+
         n = ac.read_int()
         if n % 2 == 0:
             ac.st(-1)
