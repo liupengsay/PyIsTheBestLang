@@ -8,6 +8,7 @@ Description：static_range|range_query|range_max|range_min|range_gcd|range_and|r
 2447（https://leetcode.cn/problems/number-of-subarrays-with-gcd-equal-to-k/）range_gcd|counter|sub_consequence
 2470（https://leetcode.cn/problems/number-of-subarrays-with-lcm-equal-to-k/）range_lcm|counter|sub_consequence
 2654（https://leetcode.cn/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/）range_gcd|sub_consequence
+2836（https://leetcode.cn/problems/maximize-value-of-function-in-a-ball-passing-game/description/）multiplication_method|classical
 
 =====================================LuoGu======================================
 P3865（https://www.luogu.com.cn/problem/P3865）sparse_table|range_max
@@ -243,6 +244,25 @@ class Solution:
             ans += cur.get(k, 0)
             pre = cur
         return ans
+
+    @staticmethod
+    def lc_2836(nex: List[int], k: int) -> int:
+        """
+        url:https://leetcode.cn/problems/maximize-value-of-function-in-a-ball-passing-game/
+        tag: multiplication_method|classical|can_not_be_circular_section|can_not_to_be_permutation_circle
+        """
+        n = len(nex)
+        ans = list(range(n))
+        pos = list(range(n))
+        s = nex[:]
+        while k:
+            if k & 1:
+                ans = [ans[i] + s[pos[i]] for i in range(n)]
+                pos = [nex[i] for i in pos]
+            k >>= 1
+            s = [s[i] + s[nex[i]] for i in range(n)]
+            nex = [nex[i] for i in nex]
+        return max(ans)
 
     @staticmethod
     def lc_2411(nums: List[int]) -> List[int]:

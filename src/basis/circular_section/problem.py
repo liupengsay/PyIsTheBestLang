@@ -1,5 +1,5 @@
 """
-Algorithm：circular_section
+Algorithm：circular_section|permutation_circle
 Description：implemention|hash|list|index|circular_section
 
 ====================================LeetCode====================================
@@ -23,6 +23,7 @@ P6148（https://www.luogu.com.cn/problem/P6148）circular_section|implemention
 1875B（https://codeforces.com/contest/1875/problem/B）circle_section
 
 """
+import math
 from typing import List
 
 from src.utils.fast_io import FastIO
@@ -39,19 +40,10 @@ class Solution:
         tag: circular_section
         """
 
-        # N 天后的牢房circular_section
-        def compute_loop(i, j, n):
-            # 此时只需k即可，即最后一次的状态
-            if j == n:
-                return n
-            k = i + (n - i) % (j - i)
-            return k
-
         m = len(cells)
         dct = dict()
         state = []
         day = 0
-        # implemention状态
         while day < n:
             busy = set([i for i in range(1, m - 1)
                         if cells[i - 1] == cells[i + 1]])
@@ -62,19 +54,21 @@ class Solution:
                 break
             dct[tuple(cells)] = day
 
-        # circular_section信息
         i = dct[tuple(cells)]
         j = day
-        k = compute_loop(i, j, n)
+        if j == n:
+            k = n
+        else:
+            k = i + (n - i) % (j - i)
         return state[k - 1]
 
     @staticmethod
     def lc_1806(n: int) -> int:
         """
         url: https://leetcode.cn/problems/minimum-number-of-operations-to-reinitialize-a-permutation/description/
-        tag: circular_section
+        tag: circular_section|permutation_circle|classical|multiplication_method
         """
-        # 根据有限状态判断circular_section的大小
+
         ans = 0
         visit = [0] * n
         for i in range(n):
@@ -89,35 +83,31 @@ class Solution:
                     x //= 2
                 else:
                     x = n // 2 + (x - 1) // 2
-            if cur > ans:
-                ans = cur
+            ans = math.lcm(ans, cur) if ans else cur
         return ans
 
     @staticmethod
     def lg_p1468(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1468
-        tag: state_compression|circular_section
+        tag: state_compression|circular_section|classical
         """
-        # state_compression求circular_section
+
         n = ac.read_int()
         op1 = (1 << n) - 1
         op2 = sum(1 << i for i in range(0, n, 2))
         op3 = sum(1 << i for i in range(1, n, 2))
         op4 = sum(1 << i for i in range(0, n, 3))
         stack = [[(1 << n) - 1]]
-        # 所有的操作implemention与circular_section
         ans = []
         while stack:
             path = stack.pop()
             for op in [op1, op2, op3, op4]:
                 if path[-1] ^ op in path:
-                    # 遇到循环
                     ans.append(path[:])
                 else:
                     stack.append(path + [path[-1] ^ op])
 
-        # 匹配开关状态一致的路径
         c = ac.read_int()
         light = sum(1 << (i - 1) for i in ac.read_list_ints()[:-1])
         down = sum(1 << (i - 1) for i in ac.read_list_ints()[:-1])
@@ -137,12 +127,12 @@ class Solution:
         return
 
     @staticmethod
-    def lg_p6148(ac=FastIO()):
+    def lg_p6148_1(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P6148
-        tag: circular_section|implemention
+        tag: circular_section|implemention|permutation_circle|classical|multiplication_method|classical
         """
-        # circular_section后implemention
+
         n, m, k = ac.read_list_ints()
         nums = [ac.read_list_ints_minus_one() for _ in range(m)]
         nex = [-1] * n
@@ -152,7 +142,7 @@ class Solution:
                 if a <= x <= b:
                     x = a + b - x
             nex[i] = x
-        # 找出circular_section
+
         ans = [0] * n
         for i in range(n):
             if ans[i]:
@@ -162,8 +152,34 @@ class Solution:
                 lst.append(nex[lst[-1]])
             m = len(lst)
             for j in range(m):
-                # 相应的移动
                 ans[lst[(j + k) % m]] = lst[j] + 1
         for a in ans:
             ac.st(a)
+        return
+
+    @staticmethod
+    def lg_p6148_2(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6148
+        tag: circular_section|implemention|permutation_circle|classical|multiplication_method|classical
+        """
+        n, m, k = ac.read_list_ints()
+        nums = [ac.read_list_ints_minus_one() for _ in range(m)]
+        nex = [-1] * n
+        for i in range(n):
+            x = i
+            for a, b in nums:
+                if a <= x <= b:
+                    x = a + b - x
+            nex[x] = i
+
+        ans = list(range(n))
+        while k:
+            if k & 1:
+                ans = [nex[i] for i in ans]
+            k >>= 1
+            nex = [nex[i] for i in nex]
+
+        for i in ans:
+            ac.st(i + 1)
         return
