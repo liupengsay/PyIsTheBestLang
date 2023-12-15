@@ -27,7 +27,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2655
         tag: after_date
         """
-        # 给定时间起点一定秒数后的具体时间点
         n = ac.read_int()
         for _ in range(n):
             lst = ac.read_list_ints()
