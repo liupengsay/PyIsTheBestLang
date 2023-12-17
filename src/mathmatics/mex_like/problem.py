@@ -13,10 +13,12 @@ P9202（https://www.luogu.com.cn/problem/P9202）mex|operation
 P9199（https://www.luogu.com.cn/problem/P9199）mex|operation
 
 ===================================CodeForces===================================
-
+1905D（https://codeforces.com/contest/1905/problem/D）mex|contribution_method|diff_array|implemention|classical
 
 """
 from typing import List
+
+from src.utils.fast_io import FastIO
 
 
 class XXX:
@@ -80,3 +82,70 @@ class Solution:
             if coin <= mex:
                 mex += coin
         return mex
+
+    @staticmethod
+    def cf_1905d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1905/problem/D
+        tag：mex|contribution_method|diff_array|implemention|classical
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = ac.read_list_ints()
+            ind = [-1] * n
+            for i in range(n):
+                ind[nums[i]] = i
+
+            pre = [-1] * n
+            stack = []
+            for i in range(n - 1, -1, -1):
+                while stack and nums[stack[-1]] > nums[i]:
+                    pre[stack.pop()] = i
+                stack.append(i)
+
+            post = [-1] * n
+            stack = []
+            for i in range(n):
+                while stack and nums[stack[-1]] > nums[i]:
+                    post[stack.pop()] = i
+                stack.append(i)
+
+            diff = [0] * n
+            pre_min = pre_max = ind[0]
+            for i in range(1, n):
+                x = ind[i]
+                if post[x] != -1:
+                    a = post[x]
+                else:
+                    a = pre_min
+                if pre[x] != -1:
+                    b = pre[x]
+                else:
+                    b = pre_max
+
+                pre_min = ac.min(pre_min, x)
+                pre_max = ac.max(pre_max, x)
+
+                move1 = n - a
+                move1 %= n
+                cur_x = (x + move1) % n
+                cur_b = (b + move1) % n
+
+                length = cur_x - cur_b
+
+                move2 = n - cur_x - 1
+                if move1 + move2 <= n - 1:
+                    diff[move1] += i * length
+                    if move1 + move2 + 1 < n:
+                        diff[move1 + move2 + 1] -= i * length
+                else:
+                    diff[move1] += i * length
+                    xx = (move1 + move2) % n
+                    diff[0] += i * length
+                    if xx + 1 < n:
+                        diff[xx + 1] -= i * length
+
+            for i in range(1, n):
+                diff[i] += diff[i - 1]
+            ac.st(max(diff) + n)
+        return
