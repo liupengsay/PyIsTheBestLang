@@ -105,7 +105,7 @@ ABC106D（https://atcoder.jp/contests/abc106/tasks/abc106_d）prefix_sum|dp|coun
 """
 import bisect
 import math
-from collections import defaultdict, deque
+from collections import defaultdict
 from itertools import accumulate
 from math import inf
 from typing import List
@@ -1046,9 +1046,9 @@ class Solution:
     def lg_p6070(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P6070
-        tag: diff_matrix|greedy|prefix_sum
+        tag: diff_matrix|greedy|prefix_sum|classical|implemention
         """
-        # diff_matrix|greedy修改实时维护差分与prefix_sum即矩阵最新值
+
         n, m, k = ac.read_list_ints()
         grid = [[0] * n for _ in range(n)]
         for _ in range(m):
@@ -1059,10 +1059,8 @@ class Solution:
         ans = 0
         for i in range(n):
             for j in range(n):
-                diff[i + 1][j + 1] += diff[i + 1][j] + \
-                                      diff[i][j + 1] - diff[i][j]
+                diff[i + 1][j + 1] += diff[i + 1][j] + diff[i][j + 1] - diff[i][j]
                 d = diff[i + 1][j + 1] + grid[i][j]
-                # diff_matrix|，索引从 0 开始， 注意这里的行列索引范围，是从左上角到右下角
                 if d:
                     if i + k + 1 > n + 1 or j + k + 1 > n + 1:
                         ac.st(-1)
@@ -1081,18 +1079,16 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6278
         tag: reverse_order_pair|action_scope|diff_array|prefix_sum
         """
-        # reverse_order_pair|action_scope与差分prefix_sum
+
         n = ac.read_int()
         nums = ac.read_list_ints()
         diff = [0] * (n + 1)
         pre = []
         for num in nums:
-            # num 作为最小值时的reverse_order_pair|个数
             diff[num] += len(pre) - bisect.bisect_right(pre, num)
             bisect.insort_left(pre, num)
         diff = ac.accumulate(diff)
         for i in range(n):
-            # 减少到 i 时前面小于 i 的对应reverse_order_pair|不受改变
             ac.st(diff[i])
         return
 
@@ -1102,14 +1098,13 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6537
         tag: prefix_sum|brute_force
         """
-        # preprocessprefix_sum|brute_force
+
         n = ac.read_int()
         grid = [ac.read_list_ints() for _ in range(n)]
         pre = PreFixSumMatrix(grid)
         ans = 0
         for i in range(n):
             for j in range(n):
-                # 左上右下
                 dct = dict()
                 for x in range(i + 1):
                     for y in range(j + 1):
@@ -1119,7 +1114,6 @@ class Solution:
                     for y in range(j + 1, n):
                         val = pre.query(i + 1, j + 1, x, y)
                         ans += dct.get(val, 0)
-                # 左下右上
                 dct = defaultdict(int)
                 for x in range(i + 1):
                     for y in range(j, n):
@@ -1138,7 +1132,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6877
         tag: sort|greedy|prefix_suffix|dp|brute_force
         """
-        # sortinggreedyprefix_suffix DP brute_force
+
         n = ac.read_int()
         a = ac.read_list_ints()
         b = ac.read_list_ints()
@@ -1164,45 +1158,30 @@ class Solution:
     def lg_p6878(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P6878
-        tag: prefix_suffix|brute_force
+        tag: two_pointers|brute_force
         """
-        # prefix_suffixbrute_force
+
         n, k = ac.read_list_ints()
         s = ac.read_str()
-        pre = [-1] * n
-        stack = deque()
-        for i in range(n):
-            while len(stack) > k:
-                stack.popleft()
-            if s[i] == "J":
-                stack.append(i)
-            elif s[i] == "O":
-                if len(stack) == k:
-                    pre[i] = stack[0]
-
-        post_o = [-1] * n
-        post = [-1] * n
-        stack = deque()
-        stack_o = deque()
-        for i in range(n - 1, -1, -1):
-            while len(stack) > k:
-                stack.popleft()
-            if s[i] == "I":
-                stack.append(i)
-            if s[i] == "O":
-                stack_o.append(i)
-            while len(stack_o) > k:
-                stack_o.popleft()
-            if s[i] == "O":
-                if len(stack) == k:
-                    post[i] = stack[0]
-                if len(stack_o) == k:
-                    post_o[i] = stack_o[0]
-
         ans = inf
-        for i in range(n):
-            if pre[i] != -1 and post_o[i] != -1 and post[post_o[i]] != -1:
-                ans = ac.min(ans, post[post_o[i]] - pre[i] + 1 - 3 * k)
+        ind1 = [i for i in range(n) if s[i] == "J"]
+        ind2 = [i for i in range(n) if s[i] == "O"]
+        ind3 = [i for i in range(n) if s[i] == "I"]
+        m = len(ind2)
+        left = 0
+        right = 0
+
+        for mid in range(m - k + 1):
+            while left + 1 < len(ind1) and ind1[left + 1] < ind2[mid]:
+                left += 1
+            while right < len(ind3) and ind3[right] <= ind2[mid + k - 1]:
+                right += 1
+
+            if k - 1 <= left < len(ind1) and right < len(ind3) and ind1[left] < ind2[mid] < ind3[
+                right] and right + k - 1 < len(ind3):
+                cur = ind3[right + k - 1] - ind1[left - k + 1] + 1 - 3 * k
+                if cur < ans:
+                    ans = cur
         ac.st(ans if ans < inf else -1)
         return
 
@@ -1212,61 +1191,50 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8081
         tag: diff_array|counter|action_scope
         """
-        # 差分counteraction_scope
         n = ac.read_int()
         nums = ac.read_list_ints()
-        diff = [0] * (n + 1)
-        pre = 0
-        ceil = 0
+        ice = []
+        cnt = 0
         for i in range(n):
             if nums[i] < 0:
-                pre += 1
+                cnt += 1
             else:
-                if pre:
-                    ceil = ac.max(ceil, pre)
-                    low, high = ac.max(0, i - 3 * pre), i - pre - 1
-                    if low <= high:
-                        diff[low] += 1
-                        diff[high + 1] -= 1
-                pre = 0
-        if pre:
-            ceil = ac.max(ceil, pre)
-            low, high = ac.max(0, n - 3 * pre), n - pre - 1
-            if low <= high:
-                diff[low] += 1
-                diff[high + 1] -= 1
+                if cnt:
+                    ice.append((i - cnt, i - 1))
+                cnt = 0
+        if cnt:
+            ice.append((n - cnt, n - 1))
+        if not ice:
+            ac.st(0)
+            return
 
-        diff = [int(num > 0) for num in ac.accumulate(diff)][1:n + 1]
+        diff = [0] * n
+        ceil = 0
+        for x, y in ice:
+            t = y - x + 1
+            ceil = ac.max(ceil, t)
+            low = ac.max(0, x - 2 * t)
+            if low <= x - 1:
+                diff[low] += 1
+                diff[x] -= 1
+
         diff = ac.accumulate(diff)
-        ans = diff[-1]
-        pre = 0
-        res = 0
-        for i in range(n):
-            if nums[i] < 0:
-                pre += 1
-            else:
-                if pre == ceil:
-                    low, high = i - 4 * pre, i - 3 * pre - 1
-                    low = ac.max(low, 0)
-                    if low <= high:
-                        res = ac.max(res, high - low + 1 -
-                                     diff[high + 1] + diff[low])
-                pre = 0
-        if pre == ceil:
-            low, high = n - 4 * pre, n - 3 * pre - 1
-            low = ac.max(low, 0)
-            if low <= high:
-                res = ac.max(res, high - low + 1 - diff[high + 1] + diff[low])
-        ac.st(ans + res)
+        diff = ac.accumulate([int(x == 0) for x in diff[1:]])
+        ans = n - diff[-1]
+        another = 0
+        for x, y in ice:
+            t = y - x + 1
+            if x - 2 * t - 1 >= 0 and t == ceil:
+                another = ac.max(another, diff[x - 2 * t] - diff[ac.max(x - 3 * t, 0)])
+        ac.st(ans + another)
         return
 
     @staticmethod
     def lg_p8033(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P8033
-        tag: matrix_prefix_sum|counter
+        tag: matrix_prefix_sum|counter|specific_plan
         """
-        # matrix_prefix_sum|counter
         m, n, k = ac.read_list_ints()
         grid = [list(ac.read_str()) for _ in range(m)]
         mat = [[int(w == "*") for w in lst] for lst in grid]
@@ -1299,9 +1267,9 @@ class Solution:
     def lg_p7992(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P7992
-        tag: bucket_counter|action_scope|diff_array|counter
+        tag: bucket_counter|action_scope|diff_array|counter|data_range|inclusion_exclusion
         """
-        # bucket_counter与action_scope差分counter
+
         n, m = ac.read_list_ints()
         a = [0] * (m + 1)
         b = [0] * (m + 1)
@@ -1324,9 +1292,9 @@ class Solution:
     def lg_p7948(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P7948
-        tag: sort|prefix_suffix|pointer
+        tag: sort|prefix_suffix|pointer|classical|offline_query
         """
-        # sorting后preprocessprefix_suffix信息pointer查询
+
         for _ in range(ac.read_int()):
             n, q = ac.read_list_ints()
             a = ac.read_list_ints()
@@ -1354,9 +1322,9 @@ class Solution:
     def lg_p8343(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P8343
-        tag: sub_matrix_prefix_sum|brute_force|two_pointers
+        tag: sub_matrix_prefix_sum|brute_force|two_pointers|math
         """
-        # 子矩阵prefix_sumbrute_force与two_pointers
+
         m, n, a, b = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
         if a > b:
@@ -1371,19 +1339,15 @@ class Solution:
                     cur = pre.query(i, 0, k, j)
                     lst.append(cur)
                     while ind_a + 1 < j + 1 and cur - lst[ind_a] >= a:
-                        ans = ac.min(
-                            ans, abs(cur - lst[ind_a] - a) + abs(cur - lst[ind_a] - b))
+                        ans = ac.min(ans, abs(cur - lst[ind_a] - a) + abs(cur - lst[ind_a] - b))
                         ind_a += 1
 
                     while ind_b + 1 < j + 1 and cur - lst[ind_b] <= b:
-                        ans = ac.min(
-                            ans, abs(cur - lst[ind_b] - a) + abs(cur - lst[ind_b] - b))
+                        ans = ac.min(ans, abs(cur - lst[ind_b] - a) + abs(cur - lst[ind_b] - b))
                         ind_b += 1
 
-                    ans = ac.min(
-                        ans, abs(cur - lst[ind_a] - a) + abs(cur - lst[ind_a] - b))
-                    ans = ac.min(
-                        ans, abs(cur - lst[ind_b] - a) + abs(cur - lst[ind_b] - b))
+                    ans = ac.min(ans, abs(cur - lst[ind_a] - a) + abs(cur - lst[ind_a] - b))
+                    ans = ac.min(ans, abs(cur - lst[ind_b] - a) + abs(cur - lst[ind_b] - b))
                     if ans == b - a:
                         ac.st(ans)
                         return
@@ -1394,9 +1358,9 @@ class Solution:
     def lg_p8551(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P8551
-        tag: diff_array
+        tag: diff_array|brain_teaser|pointer|classical|brute_force
         """
-        # diff_array|灵活应用
+
         n = ac.read_int()
         m = 3 * 10 ** 5 + 1
         diff = [0] * (m + 2)
@@ -1421,46 +1385,52 @@ class Solution:
     def lg_p8666(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P8666
-        tag: binary_search|md_diff_array|implemention
+        tag: binary_search|md_diff_array|implemention|classical|matrix_flatten|inclusion_exclusion|performance
         """
-        # binary_search|md_diff_array题
-        a, b, c, m = ac.read_list_ints()
-        grid = [[[0] * (c + 1) for _ in range(b + 1)] for _ in range(a + 1)]
+
+        aa, bb, cc, m = ac.read_list_ints()
         nums = ac.read_list_ints()
-        for i in range(1, a + 1):
-            for j in range(1, b + 1):
-                for k in range(1, c + 1):
-                    grid[i][j][k] = nums[((i - 1) * b + (j - 1)) * c + k - 1]
-        del nums
+
+        def tuple_to_pos(i, j, k, b, c):
+            pos = (i * b + j) * c + k
+            return pos
+
         lst = [ac.read_list_ints() for _ in range(m)]
+        diff = [0] * (cc + 2) * (bb + 2) * (aa + 2)
 
         def check(x):
-            # 三位差分
-            diff = [[[0] * (c + 2) for _ in range(b + 2)]
-                    for _ in range(a + 2)]
+            for i in range(len(diff)):
+                diff[i] = 0
             for i1, i2, j1, j2, k1, k2, h in lst[:x]:
-                # 差分值更新索引从 1 开始
-                diff[i1][j1][k1] += h
+                diff[tuple_to_pos(i1, j1, k1, bb + 2, cc + 2)] += h
 
-                diff[i2 + 1][j1][k1] -= h
-                diff[i1][j2 + 1][k1] -= h
-                diff[i1][j1][k2 + 1] -= h
+                diff[tuple_to_pos(i2 + 1, j1, k1, bb + 2, cc + 2)] -= h
+                diff[tuple_to_pos(i1, j2 + 1, k1, bb + 2, cc + 2)] -= h
+                diff[tuple_to_pos(i1, j1, k2 + 1, bb + 2, cc + 2)] -= h
 
-                diff[i2 + 1][j2 + 1][k1] += h
-                diff[i1][j2 + 1][k2 + 1] += h
-                diff[i2 + 1][j1][k2 + 1] += h
+                diff[tuple_to_pos(i2 + 1, j2 + 1, k1, bb + 2, cc + 2)] += h
+                diff[tuple_to_pos(i1, j2 + 1, k2 + 1, bb + 2, cc + 2)] += h
+                diff[tuple_to_pos(i2 + 1, j1, k2 + 1, bb + 2, cc + 2)] += h
 
-                diff[i2 + 1][j2 + 1][k2 + 1] -= h
+                diff[tuple_to_pos(i2 + 1, j2 + 1, k2 + 1, bb + 2, cc + 2)] -= h
 
-            for i1 in range(1, a + 1):
-                for j1 in range(1, b + 1):
-                    for k1 in range(1, c + 1):
-                        # prefix_sum索引从 1 开始
-                        diff[i1][j1][k1] += diff[i1 - 1][j1][k1] + diff[i1][j1 - 1][k1] + diff[i1][j1][k1 - 1] - \
-                                            diff[i1][j1 - 1][k1 - 1] - diff[i1 - 1][j1][k1 - 1] - diff[i1 - 1][j1 - 1][
-                                                k1] + \
-                                            diff[i1 - 1][j1 - 1][k1 - 1]
-                        if diff[i1][j1][k1] > grid[i1][j1][k1]:
+            for i1 in range(aa):
+                for j1 in range(bb):
+                    for k1 in range(cc):
+                        cur = diff[tuple_to_pos(i1 + 1, j1 + 1, k1 + 1, bb + 2, cc + 2)]
+
+                        cur += diff[tuple_to_pos(i1, j1 + 1, k1 + 1, bb + 2, cc + 2)]
+                        cur += diff[tuple_to_pos(i1 + 1, j1, k1 + 1, bb + 2, cc + 2)]
+                        cur += diff[tuple_to_pos(i1 + 1, j1 + 1, k1, bb + 2, cc + 2)]
+
+                        cur -= diff[tuple_to_pos(i1, j1, k1 + 1, bb + 2, cc + 2)]
+                        cur -= diff[tuple_to_pos(i1, j1 + 1, k1, bb + 2, cc + 2)]
+                        cur -= diff[tuple_to_pos(i1 + 1, j1, k1, bb + 2, cc + 2)]
+
+                        cur += diff[tuple_to_pos(i1, j1, k1, bb + 2, cc + 2)]
+
+                        diff[tuple_to_pos(i1 + 1, j1 + 1, k1 + 1, bb + 2, cc + 2)] = cur
+                        if cur > nums[tuple_to_pos(i1, j1, k1, bb, cc)]:
                             return True
 
             return False
@@ -1473,9 +1443,9 @@ class Solution:
     def lc_891(nums: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/sum-of-subsequence-widths/description/
-        tag: prefix_suffix|brute_force|counter
+        tag: prefix_suffix|brute_force|counter|contribution_method
         """
-        # prefix_suffixbrute_force最大值与最小值counter
+
         mod = 10 ** 9 + 7
         dp = [1]
         for i in range(10 ** 5):
@@ -1493,9 +1463,9 @@ class Solution:
     def lc_1292(mat: List[List[int]], threshold: int) -> int:
         """
         url: https://leetcode.cn/problems/maximum-side-length-of-a-square-with-sum-less-than-or-equal-to-threshold/
-        tag: O(mn)|brute_force
+        tag: O(mn)|brute_force|binary_search|classical
         """
-        # O(mn)复杂度brute_force
+
         m, n = len(mat), len(mat[0])
         ans = 0
         pre = PreFixSumMatrix(mat)
@@ -1513,23 +1483,21 @@ class Solution:
     def lc_1674(nums: List[int], limit: int) -> int:
         """
         url: https://leetcode.cn/problems/minimum-moves-to-make-array-complementary/
-        tag: diff_array|action_scope|counter
+        tag: diff_array|action_scope|counter|contribution_method|classical
         """
-        # diff_array|action_scopecounter
+
         n = len(nums)
         diff = [0] * (2 * limit + 2)
         for i in range(n // 2):
             x, y = nums[i], nums[n - 1 - i]
-            # 需要操作 1 次能达到的区间
             low_1 = 1 + x if x < y else 1 + y
             high_1 = limit + x if x > y else limit + y
             if low_1 <= high_1:
                 diff[low_1] += 1
                 diff[high_1 + 1] -= 1
-            diff[x + y] -= 1  # 刨除操作 0 次的点
+            diff[x + y] -= 1
             diff[x + y + 1] += 1
 
-            # 需要操作 2 次能达到的区间
             if 2 <= low_1 - 1:
                 diff[2] += 2
                 diff[low_1] -= 2
@@ -1544,22 +1512,18 @@ class Solution:
     def lc_1738(matrix: List[List[int]], k: int) -> int:
         """
         url: https://leetcode.cn/problems/find-kth-largest-xor-coordinate-value/
-        tag: matrix_prefix_xor_sum
+        tag: matrix_prefix_xor_sum|classical
         """
 
-        # matrix_prefix_xor_sum
         m, n = len(matrix), len(matrix[0])
-        # 原地异或运算
         for i in range(1, m):
             matrix[i][0] = matrix[i][0] ^ matrix[i - 1][0]
         for j in range(1, n):
             matrix[0][j] = matrix[0][j] ^ matrix[0][j - 1]
         for i in range(1, m):
             for j in range(1, n):
-                matrix[i][j] = matrix[i - 1][j - 1] ^ matrix[i -
-                                                             1][j] ^ matrix[i][j - 1] ^ matrix[i][j]
+                matrix[i][j] = matrix[i - 1][j - 1] ^ matrix[i - 1][j] ^ matrix[i][j - 1] ^ matrix[i][j]
 
-        # sorting后返回结果
         lst = []
         for i in range(m):
             lst.extend(matrix[i])
@@ -1570,12 +1534,10 @@ class Solution:
     def lc_2132(grid: List[List[int]], h: int, w: int) -> bool:
         """
         url: https://leetcode.cn/problems/stamping-the-grid/
-        tag: prefix_sum|brute_force|diff_matrix|implemention
+        tag: prefix_sum|brute_force|diff_matrix|implemention|classical|prefix_sum_prefix_sum
         """
-        # 用prefix_sumbrute_force可行的邮票左上端点，然后查看空白格点左上方是否有可行的邮票点，也可以的diff_matrix|滚动implemention覆盖解决
-        m, n = len(grid), len(grid[0])
 
-        # brute_force可以贴邮票的左上角位置
+        m, n = len(grid), len(grid[0])
         pre = PreFixSumMatrix(grid)
         dp = [[0] * n for _ in range(m)]
         for i in range(m - h + 1):
@@ -1583,12 +1545,11 @@ class Solution:
                 cur = pre.query(i, j, i + h - 1, j + w - 1)
                 if cur == 0:
                     dp[i][j] = 1
-        # 位置的prefix_sum
+
         pre = PreFixSumMatrix(dp)
         for i in range(m):
             for j in range(n):
                 if not grid[i][j]:
-                    # 检查是否有邮票覆盖
                     x = i - h + 1 if i - h + 1 > 0 else 0
                     y = j - w + 1 if j - w + 1 > 0 else 0
                     cur = pre.query(x, y, i, j)
@@ -1600,9 +1561,9 @@ class Solution:
     def ac_3993(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/3996/
-        tag: suffix_sum|data_range|brain_teaser
+        tag: suffix_sum|data_range|brain_teaser|classical|hard
         """
-        # 后缀和data_rangebrain_teaser|
+
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
         low = min(nums)
@@ -1610,19 +1571,17 @@ class Solution:
         if low == high:
             ac.st(0)
             return
-        # 按照data_rangecounter
+
         cnt = [0] * (high - low + 1)
         for num in nums:
             cnt[num - low] += 1
         ans = post_cnt = post_sum = 0
         for i in range(high - low, 0, -1):
-            post_cnt += cnt[i]  # counter
-            post_sum += post_cnt  # 变为i-1需要的代价
-            # 假如往下变为 i-1的代价不可行，则先变为 i
+            post_cnt += cnt[i]
+            post_sum += post_cnt
             if post_sum > k:
                 ans += 1
                 post_sum = post_cnt
-        # 此时还需要变为0
         ans += post_sum > 0
         ac.st(ans)
         return
@@ -1631,9 +1590,9 @@ class Solution:
     def lc_837(n: int, k: int, max_pts: int) -> float:
         """
         url: https://leetcode.cn/problems/new-21-game/description/
-        tag: diff_array|implemention|probability
+        tag: diff_array|implemention|probability|refresh_table
         """
-        # diff_array|implemention概率
+
         s = k + max_pts
         dp = [0] * (s + 1)
         dp[0] = 1
@@ -1642,6 +1601,6 @@ class Solution:
             diff[i] += diff[i - 1]
             dp[i] += diff[i]
             if i < k:
-                diff[i + 1] += dp[i] / max_pts
-                diff[i + max_pts + 1] -= dp[i] / max_pts
-        return sum(dp[k:n + 1])
+                diff[i + 1] += dp[i]
+                diff[i + max_pts + 1] -= dp[i]
+        return sum(dp[k:n + 1]) / max_pts
