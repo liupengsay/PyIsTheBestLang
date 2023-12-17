@@ -72,6 +72,7 @@ P8873（https://www.luogu.com.cn/problem/P8873）math|arithmetic_sequence
 """
 import heapq
 import math
+from math import inf
 from collections import deque, Counter
 
 from src.basis.implemention.template import SpiralMatrix
@@ -83,16 +84,20 @@ class Solution:
         return
 
     @staticmethod
-    def lc_1823(n: int, m: int) -> int:
-        # 模板: joseph_circle|最后的幸存者
-        return SpiralMatrix.joseph_circle(n, m) + 1
+    def lc_1823(n: int, k: int) -> int:
+        """
+        url: https://leetcode.cn/problems/find-the-winner-of-the-circular-game/
+        tag: joseph_circle
+        """
+        return SpiralMatrix.joseph_circle(n, k) + 1
 
     @staticmethod
     def cf_463c(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/463/C
-        tag: diagonal|matrix
+        tag: diagonal|matrix|odd_even|brain_teaser
         """
+
         n = ac.read_int()
         grid = [ac.read_list_ints() for _ in range(n)]
         left = [0] * 2 * n
@@ -106,7 +111,6 @@ class Solution:
         ans2 = [[-1, -1], [-1, -1]]
         for i in range(n):
             for j in range(n):
-                # 两个主教的位置，坐标和分别为一个奇数一个偶数才不会相交
                 cur = left[i - j] + right[i + j] - grid[i][j]
                 t = (i + j) & 1
                 if cur > ans1[t]:
@@ -124,7 +128,6 @@ class Solution:
         tag: implemention
         """
 
-        # 根据指令方格组合移动
         def check():
             lst = deque([[25, j] for j in range(11, 31)])
             dire = {"E": [0, 1], "S": [1, 0], "W": [0, -1], "N": [-1, 0]}
@@ -157,36 +160,24 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2129
         tag: stack|pointer|implemention
         """
-        # stack和pointerimplemention
+
         n, m = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
-        lst_x = []
-        lst_y = []
-        cnt_x = cnt_y = 0
+        mul = [1, 1]
+        add = [0, 0]
         for lst in [ac.read_list_strs() for _ in range(m)][::-1]:
             if lst[0] == "x":
-                cnt_x += 1
+                mul[0] *= -1
+                add[0] *= -1
             elif lst[0] == "y":
-                cnt_y += 1
+                mul[1] *= -1
+                add[1] *= -1
             else:
                 p, q = lst[1:]
-                lst_x.append([int(p), cnt_x])
-                lst_y.append([int(q), cnt_y])
-        add_x = add_y = 0
-        for a, b in lst_x:
-            diff = cnt_x - b
-            add_x += a if diff % 2 == 0 else -a
-
-        for a, b in lst_y:
-            diff = cnt_y - b
-            add_y += a if diff % 2 == 0 else -a
-
-        cnt_x %= 2
-        cnt_y %= 2
-        for a, b in nums:
-            a = a if not cnt_x else -a
-            b = b if not cnt_y else -b
-            ac.lst([a + add_x, b + add_y])
+                add[0] += int(p)
+                add[1] += int(q)
+        for x, y in nums:
+            ac.lst([mul[0] * x + add[0], mul[1] * y + add[1]])
         return
 
     @staticmethod
@@ -195,46 +186,57 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3407
         tag: implemention
         """
-        # implemention相向而行
+
         n, t, q = ac.read_list_ints()
-        nums = deque([ac.read_list_ints() for _ in range(n)])
-        pos = [-1] * n
+        nums = [ac.read_list_ints() for _ in range(n)]
+        pre = [-inf] * n
+        right = -inf
+        sta = -inf
+        for i in range(n):
+            a, r = nums[i]
+            if r == 1:
+                right = a
+                sta = -inf
+            else:
+                if right != -inf:
+                    sta = (right + a) // 2
+                    pre[i] = sta
+                    right = -inf
+                elif sta != -inf:
+                    pre[i] = sta
 
-        # 先去除头尾永不相见的
-        ind = deque(list(range(n)))
-        while ind and nums[ind[0]][1] == 2:
-            i = ind.popleft()
-            x = nums[i][0]
-            pos[i] = x - t
-        while ind and nums[ind[-1]][1] == 1:
-            i = ind.pop()
-            x = nums[i][0]
-            pos[i] = x + t
+        post = [inf] * n
+        left = inf
+        sta = inf
+        for i in range(n - 1, -1, -1):
+            a, r = nums[i]
+            if r == 2:
+                left = a
+                sta = inf
+            else:
+                if left != inf:
+                    sta = (left + a) // 2
+                    post[i] = sta
+                    left = inf
+                elif sta != inf:
+                    post[i] = sta
 
-        # 对相向而行的区间段是否到达相遇点
-        while ind:
-            left = []
-            while ind and nums[ind[0]][1] == 1:
-                left.append(ind.popleft())
-            right = []
-            while ind and nums[ind[0]][1] == 2:
-                right.append(ind.popleft())
-            mid = (nums[right[0]][0] + nums[left[-1]][0]) // 2
-            for i in left:
-                pos[i] = ac.min(mid, nums[i][0] + t)
-            for i in right:
-                pos[i] = ac.max(mid, nums[i][0] - t)
         for _ in range(q):
-            ac.st(pos[ac.read_int() - 1])
+            i = ac.read_int() - 1
+            a, r = nums[i]
+            if r == 1:
+                ac.st(ac.min(a + t, post[i]))
+            else:
+                ac.st(ac.max(a - t, pre[i]))
         return
 
     @staticmethod
     def lg_p5329(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P5329
-        tag: lexicographical_order|lexicographical_order|sorting
+        tag: lexicographical_order|sort|brain_teaser|classical
         """
-        # lexicographical_order应用题，依据相邻项的lexicographical_order大小来确认sorting
+
         n = ac.read_int()
         s = ac.read_str()
         ans = [0] * n
@@ -242,13 +244,11 @@ class Solution:
         idx = 0
         for x in range(1, n):
             if s[x] > s[x - 1]:
-                # 前面的直接扔到后面必然是最大的（去掉小的s[x-1]）
                 for y in range(x - 1, idx - 1, -1):
                     ans[j] = y + 1
                     j -= 1
                 idx = x
             if s[x] < s[x - 1]:
-                # 前面的直接扔到前面必然是最小的（去掉大的s[x-1]）
                 for y in range(idx, x):
                     ans[i] = y + 1
                     i += 1
