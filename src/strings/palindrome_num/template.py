@@ -4,7 +4,7 @@ class PalindromeNum:
 
     @staticmethod
     def get_palindrome_num_1(n):
-        """template of get all positive palindrome number not greater than n"""
+        """template of get all positive palindrome number with length not greater than n"""
         dp = [[""], [str(i) for i in range(10)]]
         for k in range(2, n + 1):
             # like dp to add palindrome character

@@ -8,6 +8,7 @@ Description：
 564（https://leetcode.cn/problems/find-the-closest-palindrome/）brute_force
 906（https://leetcode.cn/problems/super-palindromes/）preprocess|brute_force
 1088（https://leetcode.cn/problems/confusing-number-ii/description/）implemention|brute_force
+100151（https://leetcode.cn/problems/minimum-cost-to-make-array-equalindromic/）palindrome_number|brute_force|median_greedy|binary_search|classical
 
 =====================================LuoGu======================================
 P1609（https://www.luogu.com.cn/problem/P1609）brute_force
@@ -15,7 +16,10 @@ P1609（https://www.luogu.com.cn/problem/P1609）brute_force
 
 """
 import bisect
+from cmath import inf
 from collections import defaultdict
+from itertools import accumulate
+from typing import List
 
 from src.mathmatics.number_theory.template import NumberTheory
 from src.strings.palindrome_num.template import PalindromeNum
@@ -37,6 +41,28 @@ class Solution:
         left = int(left)
         right = int(right)
         return bisect.bisect_right(res, right) - bisect.bisect_left(res, left)
+
+    @staticmethod
+    def lc_100151(lst: List[int]) -> int:
+        """
+        url：https://leetcode.cn/problems/minimum-cost-to-make-array-equalindromic/
+        tag：palindrome_number|brute_force|median_greedy|binary_search|classical
+        """
+        nums = PalindromeNum().get_palindrome_num_1(9)
+        nums.append(10 ** 9 + 1)
+        lst.sort()
+        pre = list(accumulate(lst, initial=0))
+        n = len(lst)
+        jj = bisect.bisect_left(nums, lst[n // 2])
+        ans = inf
+        for j in [jj - 1, jj]:
+            if j >= 0:
+                i = bisect.bisect_left(lst, nums[j])
+                yy = nums[j]
+                cur = i * yy - pre[i] + pre[-1] - pre[i] - (n - i) * yy
+                if cur < ans:
+                    ans = cur
+        return ans
 
     @staticmethod
     def lc_1088(n: int) -> int:
