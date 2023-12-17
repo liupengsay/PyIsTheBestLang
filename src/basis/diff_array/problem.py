@@ -1590,7 +1590,7 @@ class Solution:
     def lc_837(n: int, k: int, max_pts: int) -> float:
         """
         url: https://leetcode.cn/problems/new-21-game/description/
-        tag: diff_array|implemention|probability|refresh_table
+        tag: diff_array|implemention|probability|refresh_table|classical
         """
 
         s = k + max_pts
