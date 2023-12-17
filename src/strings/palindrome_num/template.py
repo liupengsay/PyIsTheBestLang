@@ -47,6 +47,17 @@ class PalindromeNum:
         return nums
 
     @staticmethod
+    def get_palindrome_num_3():
+        """template of get all positive palindrome number whose length not greater than n"""
+        nums = list(range(10))
+        for i in range(1, 10 ** 5):
+            nums.append(int(str(i) + str(i)[::-1]))
+            for j in range(10):
+                nums.append(int(str(i) + str(j) + str(i)[::-1]))
+        nums.sort()
+        return nums
+
+    @staticmethod
     def get_recent_palindrome_num(n: str) -> list:
         """template of recentest palindrome num of n"""
         m = len(n)
