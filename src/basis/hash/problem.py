@@ -33,7 +33,7 @@ ARC061B（https://atcoder.jp/contests/abc045/tasks/arc061_b）hash|inclusion_exc
 
 """
 import random
-from collections import defaultdict, Counter
+from collections import defaultdict
 from itertools import accumulate
 from typing import List
 
@@ -48,9 +48,9 @@ class Solution:
     def lc_2143(nums1: List[int], nums2: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/choose-numbers-from-two-arrays-in-range/
-        tag: prefix_sum|hash|counter
+        tag: prefix_sum|hash|counter|classical|linear_dp
         """
-        # hashcounterimplementionlinear_dp 转移
+
         n = len(nums1)
         mod = 10 ** 9 + 7
         pre = defaultdict(int)
@@ -73,17 +73,17 @@ class Solution:
     def lc_1658(nums: List[int], x: int) -> int:
         """
         url: https://leetcode.cn/problems/minimum-operations-to-reduce-x-to-zero/description/
-        tag: prefix_sum|hash|brain_teaser|greedy
+        tag: prefix_sum|hash|brain_teaser|greedy|reverse_thinking
         """
-        # prefix_sumhash，|brain_teasergreedy
+
         pre = {0: -1}
         cur = 0
         n = len(nums)
-        s = sum(nums)  # 先求和为 s-x 的最长子数组
+        s = sum(nums)
         ans = -1 if s != x else 0
         for i, w in enumerate(nums):
             cur += w
-            if cur - (s - x) in pre and i - pre[cur - (s - x)] > ans:  # 要求非空
+            if cur - (s - x) in pre and i - pre[cur - (s - x)] > ans:
                 ans = i - pre[cur - (s - x)]
             if cur not in pre:
                 pre[cur] = i
@@ -96,7 +96,6 @@ class Solution:
         tag: hash|contribution_method|counter
         """
 
-        # 厘清边界hashcontribution_methodcounter
         n = len(nums)
         ans = 0
         pre = list(accumulate(nums, initial=0))
@@ -104,30 +103,30 @@ class Solution:
             if pre[i] == pre[-1] - pre[i]:
                 ans += 1
 
-        # 左-右
         cnt = [0] * n
-        post = defaultdict(int)
+        dct = defaultdict(int)
         for i in range(n - 2, -1, -1):
             b = pre[-1] - pre[i + 1]
             a = pre[i + 1]
-            post[a - b] += 1
-            # 作为左边
-            cnt[i] += post[nums[i] - k]
+            dct[a - b] += 1
+            cnt[i] += dct[nums[i] - k]
 
-        # 右-左
         dct = defaultdict(int)
         for i in range(1, n):
             b = pre[-1] - pre[i]
             a = pre[i]
             dct[a - b] += 1
-            # 作为右边
             cnt[i] += dct[k - nums[i]]
 
         return max(ans, max(cnt))
 
     @staticmethod
-    def abc_45d(ac=FastIO()):
-        # hash容斥counter
+    def arc_061b(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc045/tasks/arc061_b
+        tag: hash|inclusion_exclusion|counter
+        """
+
         h, w, n = ac.read_list_ints()
         cnt = [0] * 10
         dct = defaultdict(int)
@@ -181,20 +180,14 @@ class Solution:
 
         n = ac.read_int()
         pre = set()
-        ans = False
         for _ in range(n):
-            if ans:
-                break
             lst = ac.read_list_ints()
             now = check()
             if any(cur in pre for cur in now):
-                ans = True
+                ac.st("Twin snowflakes found.")
                 break
             for cur in now:
                 pre.add(cur)
-
-        if ans:
-            ac.st("Twin snowflakes found.")
         else:
             ac.st("No two snowflakes are alike.")
         return
@@ -203,23 +196,20 @@ class Solution:
     def lg_p4889(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P4889
-        tag: math|hash|counter
+        tag: math|hash|counter|classical
         """
-        # brute_forcecounter
+
         n, m = ac.read_list_ints()
         height = ac.read_list_ints()
         cnt = defaultdict(int)
         ans = 0
         for i in range(n):
-            # hj - hi = j - i
             ans += cnt[height[i] - i]
             cnt[height[i] - i] += 1
 
         cnt = defaultdict(int)
         for i in range(n):
-            # hi - hj = j - i
             ans += cnt[height[i] + i]
-            # hj + hi = j - i
             ans += cnt[i - height[i]]
             cnt[height[i] + i] += 1
         ac.st(ans)
@@ -229,61 +219,58 @@ class Solution:
     def lg_p6273(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P6273
-        tag: hash|prefix|counter
+        tag: hash|prefix|counter|brain_teaser
         """
-        # hash前缀counter
         ac.read_int()
         s = ac.read_str()
-        # 选择最少出现的字符作为减数
-        ct = Counter(s)
-        st = list(ct.keys())
+        st = list(set(s))
         ind = {w: i for i, w in enumerate(st)}
         m = len(ind)
-        x = 0
-        for i in range(1, m):
-            if ct[st[i]] < ct[st[x]]:
-                x = i
-        # 记录状态
         cnt = [0] * m
         pre = defaultdict(int)
         pre[tuple(cnt)] = 1
         ans = 0
         mod = 10 ** 9 + 7
         for w in s:
-            if w == st[x]:
-                # 其余所有字符减 1
+            if w == st[0]:
                 for i in range(m):
                     if i != ind[w]:
                         cnt[i] -= 1
             else:
-                # 减数字符| 1
                 cnt[ind[w]] += 1
             tp = tuple(cnt)
-            # sa-ta = sb-tb 则有 sa-sb = ta-tb 因此这样counter
             ans += pre[tp]
             pre[tp] += 1
             ans %= mod
         ac.st(ans)
         return
 
+    @staticmethod
+    def lc_895():
+        """
+        url: https://leetcode.cn/problems/maximum-frequency-stack/description/
+        tag: hash|stack
+        """
 
-class LC895:
-    # hash与stack的结合应用题
-    def __init__(self):
-        self.freq = defaultdict(list)
-        self.dct = defaultdict(int)
-        self.ceil = 0
+        class FreqStack:
+            def __init__(self):
+                self.freq = defaultdict(list)
+                self.dct = defaultdict(int)
+                self.ceil = 0
 
-    def push(self, val: int) -> None:
-        self.dct[val] += 1
-        self.freq[self.dct[val]].append(val)
-        if self.dct[val] > self.ceil:
-            self.ceil = self.dct[val]
+            def push(self, val: int) -> None:
+                self.dct[val] += 1
+                self.freq[self.dct[val]].append(val)
+                if self.dct[val] > self.ceil:
+                    self.ceil = self.dct[val]
+                return
+
+            def pop(self) -> int:
+                val = self.freq[self.ceil].pop()
+                self.dct[val] -= 1
+                if not self.freq[self.ceil]:
+                    self.ceil -= 1
+                return val
+
+        FreqStack()
         return
-
-    def pop(self) -> int:
-        val = self.freq[self.ceil].pop()
-        self.dct[val] -= 1
-        if not self.freq[self.ceil]:
-            self.ceil -= 1
-        return val

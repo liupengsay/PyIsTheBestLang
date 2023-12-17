@@ -17,7 +17,6 @@ class MatrixHash:
     def gen_matrix_hash_for_sub_matrix(grid, m, n, a, b):
         """matrix hash of any sub matrix with shape (a, b) in matrix with shape (m, n)"""
 
-        # 双hash防止碰撞
         p1 = random.randint(26, 100)
         p2 = random.randint(26, 100)
         mod1 = random.randint(10 ** 9 + 7, 2 ** 31 - 1)
