@@ -22,6 +22,7 @@ Description：monotonicity is necessary for solution like these, which always wo
 2528（https://leetcode.cn/problems/maximize-the-minimum-powered-city/description/）binary_search|prefix_sum|diff_array|greedy
 2560（https://leetcode.cn/problems/house-robber-iv/）binary_search|dp
 2234（https://leetcode.cn/problems/maximum-total-beauty-of-the-gardens/description/）prefix_sum|binary_search|brute_force
+100123（https://leetcode.cn/problems/apply-operations-to-maximize-frequency-score/）binary_search|greedy|median_greedy|brute_force
 
 =====================================LuoGu======================================
 P1577（https://www.luogu.com.cn/problem/P1577）math|floor|binary_search
@@ -1277,6 +1278,29 @@ class Solution:
         low = 0
         high = sum(abs(g - hens[0]) * 2 for g in grains)
         return BinarySearch().find_int_left(low, high, check)
+
+    @staticmethod
+    def lc_100123(nums: List[int], k: int) -> int:
+        """
+        url: https://leetcode.cn/problems/apply-operations-to-maximize-frequency-score/
+        tag: binary_search|greedy|median_greedy|brute_force
+        """
+        n = len(nums)
+        nums.sort()
+        pre = list(accumulate(nums, initial=0))
+
+        def check(x):
+            for mid in range(n - x + 1):
+                right = mid + x - 1
+                left = mid
+                i = mid + x // 2
+                cur = pre[right + 1] - pre[i + 1] - (right - i) * nums[i] + (i - left) * nums[i] - (pre[i] - pre[left])
+                if cur <= k:
+                    return True
+            return False
+
+        ans = BinarySearch().find_int_right(0, n, check)
+        return ans
 
     @staticmethod
     def lg_p8161(ac=FastIO()):
