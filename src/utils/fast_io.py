@@ -1,5 +1,4 @@
 import random
-import sys
 from sys import stdin, stdout
 from types import GeneratorType
 
@@ -14,9 +13,6 @@ class Wrapper(int):
     def __hash__(self):
         # xor the num as hashmap key
         return super(Wrapper, self).__hash__() ^ RANDOM
-
-
-read = lambda: sys.stdin.readline().rstrip()
 
 
 class FastIO:
@@ -55,6 +51,15 @@ class FastIO:
     @staticmethod
     def read_list_str():
         return list(stdin.readline().rstrip())
+
+    def read_graph(self, n, directed=False):
+        dct = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            i, j = self.read_list_ints_minus_one()
+            dct[i].append(j)
+            if not directed:
+                dct[j].append(i)
+        return dct
 
     @staticmethod
     def st(x):
