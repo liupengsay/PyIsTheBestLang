@@ -1,4 +1,5 @@
 import random
+import sys
 from sys import stdin, stdout
 from types import GeneratorType
 
@@ -102,6 +103,7 @@ class FastIO:
     def inter_out(self, lst):
         self.lst(lst)
         stdout.flush()  # which is necessary
+        return
 
     @staticmethod
     def bootstrap(f, queue=[]):

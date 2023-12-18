@@ -9,18 +9,70 @@ xx（xxx）xxxxxxxxxxxxxxxxxxxx
 xx（xxx）xxxxxxxxxxxxxxxxxxxx
 
 ===================================CodeForces===================================
+1479A（https://codeforces.com/problemset/problem/1479/A）interactive
+1486C2（https://codeforces.com/problemset/problem/1486/C2）interactive
+1503B（https://codeforces.com/problemset/problem/1503/B）interactive
 1624F（https://codeforces.com/contest/1624/problem/F）binary_search|interactive
 1713D（https://codeforces.com/contest/1713/problem/D）binary_search|interactive
+1846F（https://codeforces.com/problemset/problem/1846/F）interactive
 1697D（https://codeforces.com/contest/1697/problem/D）strictly_binary_search|interactive
-
+1729E（https://codeforces.com/problemset/problem/1729/E）interactive
+1762D（https://codeforces.com/problemset/problem/1762/D）interactive
+1903E（https://codeforces.com/problemset/problem/1903/E）interactive
 
 """
+import sys
+
 from src.utils.fast_io import FastIO
 
 
 class Solution:
     def __int__(self):
         return
+
+    @staticmethod
+    def cf_1713d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1713/problem/D
+        tag: binary_search|interactive
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = list(range(1, 2**n + 1))
+            while len(nums) >= 4:
+                n = len(nums)
+                ans = []
+                for i in range(0, n, 4):
+                    a, b, c, d = nums[i], nums[i+1], nums[i+2], nums[i+3]
+                    x = ac.inter_ask(["?", a, c])
+                    if x == 1:
+                        y = ac.inter_ask(["?", a, d])
+                        if y == 1:
+                            ans.append(a)
+                        else:
+                            ans.append(d)
+                    elif x == 2:
+                        y = ac.inter_ask(["?", b, c])
+                        if y == 1:
+                            ans.append(b)
+                        else:
+                            ans.append(c)
+                    else:
+                        y = ac.inter_ask(["?", b, d])
+                        if y == 1:
+                            ans.append(b)
+                        else:
+                            ans.append(d)
+
+                nums = ans[:]
+            if len(nums) == 1:
+                ac.inter_out(["!", nums[0]])
+            else:
+                a, b = nums[:]
+                x = ac.inter_ask(["?", a, b])
+                ac.inter_out(["!", a if x == 1 else b])
+        return
+
 
     @staticmethod
     def cf_1697d(ac=FastIO()):
@@ -44,13 +96,11 @@ class Solution:
             sys.stdout.flush()
             cur = ac.read_int()
             if cur > pre:
-
                 ac.lst(["?", 1, i + 1])
                 sys.stdout.flush()
                 w = ac.read_str()
                 ans[i] = w
                 dct[w] = i
-
                 pre = cur
             else:
                 lst = sorted(dct.values())
@@ -59,7 +109,6 @@ class Solution:
                 while low < high:
                     mid = low + (high - low + 1) // 2
                     target = len(set(ans[lst[mid]:i]))
-
                     ac.lst(["?", 2, lst[mid] + 1, i + 1])
                     sys.stdout.flush()
                     cur = ac.read_int()
