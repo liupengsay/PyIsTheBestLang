@@ -70,10 +70,10 @@ P8873（https://www.luogu.com.cn/problem/P8873）math|arithmetic_sequence
 
 
 """
-import heapq
 import math
+from collections import deque
+from heapq import heappop, heappush
 from math import inf
-from collections import deque, Counter
 
 from src.basis.implemention.template import SpiralMatrix
 from src.utils.fast_io import FastIO
@@ -263,20 +263,19 @@ class Solution:
     def lg_p6397(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P6397
-        tag: greedy|implemention
+        tag: greedy|implemention|brain_teaser
         """
-        # greedyimplemention
+
         k = ac.read_float()
         nums = [ac.read_float() for _ in range(ac.read_int())]
         pre = nums[0]
         ans = 0
         for num in nums[1:]:
-            # 记录当前位置与当前耗时
-            if num - ans <= pre + k <= num + ans:  # 直接通知到位修改位置不增|时间
+            if num - ans <= pre + k <= num + ans:
                 pre += k
-            elif pre + k > num + ans:  # 直接通知到位不增|时间位置受限
+            elif pre + k > num + ans:
                 pre = ac.max(pre, num + ans)
-            else:  # 需要相向而行花费时间
+            else:
                 gap = (num - ans - pre - k) / 2.0
                 pre = num - ans - gap
                 ans += gap
@@ -287,9 +286,9 @@ class Solution:
     def lg_p8247(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P8247
-        tag: implemention
+        tag: implemention|math|line_slope
         """
-        # implemention按照相对位置比例区分
+
         m, n = ac.read_list_ints()
         start = [-1, -1]
         dct = []
@@ -318,9 +317,9 @@ class Solution:
     def lg_p8611(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P8611
-        tag: implemention|classification_discussion
+        tag: implemention|classification_discussion|classical|brain_teaser
         """
-        # 蚂蚁碰撞implementionclassification_discussion
+
         ac.read_int()
         nums = ac.read_list_ints()
         a = nums[0]
@@ -341,9 +340,9 @@ class Solution:
     def lg_p9023(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P9023
-        tag: matrix_rotate|implemention|counter
+        tag: matrix_rotate|implemention|counter|odd_even|inclusion_exclusion
         """
-        # 矩阵翻转implementioncounter
+
         m = ac.read_int()
         n = ac.read_int()
         k = ac.read_int()
@@ -368,53 +367,61 @@ class Solution:
     def lg_p8895(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P8895
-        tag: implemention|counter
+        tag: implemention|counter|classical|freq
         """
-        # implemention与组合counter
+
         n, m, p = ac.read_list_ints()
         dp = [1] * (n + 1)
         for i in range(1, n + 1):
             dp[i] = dp[i - 1] * 2 % p
-        nums = ac.read_list_ints()
-        cnt = Counter(nums)
-        stack = nums[:]
-        heapq.heapify(stack)
-        low = stack[0]
-        one = 0
-        even = 0
-        for num in cnt:
-            if cnt[num] == 2:
-                even += 1
+
+        def check():
+            while stack and not cnt[stack[0]]:
+                heappop(stack)
+            if ceil >= 3 or cnt[stack[0]] != 1:
+                ac.st(0)
             else:
-                one += 1
-        if cnt[low] > 1 or even * 2 + one < n:
-            ac.st(0)
-        else:
-            ac.st(dp[n - even * 2 - 1])
+                even = freq[2]
+                ac.st(dp[n - even * 2 - 1])
+            return
+
+        def add(a):
+            nonlocal ceil
+            heappush(stack, a)
+            cnt[a] += 1
+            if ceil < cnt[a]:
+                ceil = cnt[a]
+            freq[cnt[a]] += 1
+            if cnt[a] > 1:
+                freq[cnt[a] - 1] -= 1
+            return
+
+        def remove(a):
+            nonlocal ceil
+            freq[cnt[a]] -= 1
+            if not freq[ceil]:
+                ceil -= 1
+            cnt[a] -= 1
+            if cnt[a]:
+                freq[cnt[a]] += 1
+            return
+
+        freq = [0] * (n + 1)
+        cnt = [0] * (n + 1)
+        ceil = 0
+        nums = ac.read_list_ints()
+        stack = []
+        for num in nums:
+            add(num)
+
+        check()
         for _ in range(m):
             x, k = ac.read_list_ints()
             x -= 1
-            cnt[nums[x]] -= 1
-            if cnt[nums[x]] == 1:
-                even -= 1
-                one += 1
-            elif cnt[nums[x]] == 0:
-                one -= 1
-
+            remove(nums[x])
             nums[x] = k
-            cnt[nums[x]] += 1
-            if cnt[nums[x]] == 2:
-                even += 1
-                one -= 1
-            elif cnt[nums[x]] == 1:
-                one += 1
-            heapq.heappush(stack, k)
-            while not cnt[stack[0]]:
-                heapq.heappop(stack)
-            if cnt[stack[0]] > 1 or even * 2 + one < n:
-                ac.st(0)
-            else:
-                ac.st(dp[n - even * 2 - 1])
+            add(k)
+            check()
         return
 
     @staticmethod
@@ -423,7 +430,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8884
         tag: classification_discussion|odd_even
         """
-        # 分矩阵位置的odd_even讨论
+
         n, m, c = ac.read_list_ints()
         cnt = [0, 0]
         for _ in range(c):
@@ -474,9 +481,9 @@ class Solution:
     def ac_4318(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/4321/
-        tag: hash|greedy|implemention|construction
+        tag: hash|greedy|implemention|construction|brain_teaser
         """
-        # hashgreedyimplementionconstruction
+
         x = y = 0
         ind = dict()
         ind["U"] = [-1, 0]
@@ -487,12 +494,9 @@ class Solution:
         for w in ac.read_str():
             cur = (x, y)
             x += ind[w][0]
-            y += ind[w][1]
-            # 先前走过
             if (x, y) in pre:
                 ac.st("NO")
                 return
-            # 先前走过附近的
             for a, b in [[-1, 0], [0, 1], [1, 0], [0, -1]]:
                 if (x + a, y + b) in pre and (x + a, y + b) != cur:
                     ac.st("NO")

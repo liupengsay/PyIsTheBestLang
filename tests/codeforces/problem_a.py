@@ -1,24 +1,6 @@
-from sys import stdin, stdout
-import bisect
-import decimal
-import heapq
-from types import GeneratorType
-from math import inf
 import random
-from bisect import bisect_left, bisect_right
-from heapq import heappush, heappop, heappushpop
-from functools import cmp_to_key
-from collections import defaultdict, Counter, deque
-import math
-from functools import lru_cache
-from heapq import nlargest
-from functools import reduce
-from decimal import Decimal
-from itertools import combinations, permutations
-from operator import xor, add
-from operator import mul
-from typing import List, Callable, Dict, Set, Tuple, DefaultDict
-from heapq import heappush, heappop, heapify
+from heapq import heappush, heappop
+from sys import stdin
 
 
 class FastIO:
@@ -86,8 +68,58 @@ class Solution:
     @staticmethod
     def main(ac=FastIO()):
 
-        for _ in range(ac.read_int()):
-            pass
+        n, m, p = ac.read_list_ints()
+        dp = [1] * (n + 1)
+        for i in range(1, n + 1):
+            dp[i] = dp[i - 1] * 2 % p
+
+        def check():
+            while stack and not cnt[stack[0]]:
+                heappop(stack)
+            if ceil >= 3 or cnt[stack[0]] != 1:
+                ac.st(0)
+            else:
+                even = freq[2]
+                ac.st(dp[n - even * 2 - 1])
+            return
+
+        def add(a):
+            nonlocal ceil
+            heappush(stack, a)
+            cnt[a] += 1
+            if ceil < cnt[a]:
+                ceil = cnt[a]
+            freq[cnt[a]] += 1
+            if cnt[a] > 1:
+                freq[cnt[a] - 1] -= 1
+            return
+
+        def remove(a):
+            nonlocal ceil
+            freq[cnt[a]] -= 1
+            if not freq[ceil]:
+                ceil -= 1
+            cnt[a] -= 1
+            if cnt[a]:
+                freq[cnt[a]] += 1
+            return
+
+        freq = [0] * (n + 1)
+        cnt = [0] * (n + 1)
+        ceil = 0
+        nums = ac.read_list_ints()
+        stack = []
+        for num in nums:
+            add(num)
+
+        check()
+        for _ in range(m):
+            x, k = ac.read_list_ints()
+            x -= 1
+            remove(nums[x])
+            nums[x] = k
+            add(k)
+            check()
         return
 
 
