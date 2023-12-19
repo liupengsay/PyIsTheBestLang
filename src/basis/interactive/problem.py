@@ -38,12 +38,12 @@ class Solution:
         """
         for _ in range(ac.read_int()):
             n = ac.read_int()
-            nums = list(range(1, 2**n + 1))
+            nums = list(range(1, 2 ** n + 1))
             while len(nums) >= 4:
                 n = len(nums)
                 ans = []
                 for i in range(0, n, 4):
-                    a, b, c, d = nums[i], nums[i+1], nums[i+2], nums[i+3]
+                    a, b, c, d = nums[i], nums[i + 1], nums[i + 2], nums[i + 3]
                     x = ac.inter_ask(["?", a, c])
                     if x == 1:
                         y = ac.inter_ask(["?", a, d])
@@ -72,7 +72,6 @@ class Solution:
                 x = ac.inter_ask(["?", a, b])
                 ac.inter_out(["!", a if x == 1 else b])
         return
-
 
     @staticmethod
     def cf_1697d(ac=FastIO()):

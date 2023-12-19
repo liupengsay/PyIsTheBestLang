@@ -68,7 +68,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1496
         tag: range_merge_to_disjoint
         """
-        # range_merge_to_disjoint确定覆盖范围
+
         n = ac.read_int()
         lst = []
         for _ in range(n):
@@ -86,7 +86,7 @@ class Solution:
         """
         n = len(nums)
         lst = [[i, min(n - 1, i + nums[i])] for i in range(n)]
-        if n == 1:  # 注意特判
+        if n == 1:
             return 0
         return Range().minimum_range_cover(0, n - 1, lst)
 
@@ -96,7 +96,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-number-of-taps-to-open-to-water-a-garden/
         tag: range_merge_to_disjoint
         """
-        # 最少range_cover模板题
         m = n + 1
         lst = []
         for i in range(m):
@@ -109,7 +108,7 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-number-of-taps-to-open-to-water-a-garden/
         tag: range_merge_to_disjoint
         """
-        # 最少range_cover模板题
+
         lst = []
         for i, r in enumerate(ranges):
             a, b = i - r, i + r
@@ -124,7 +123,7 @@ class Solution:
         url: https://leetcode.cn/problems/video-stitching/
         tag: minimum_range_cover
         """
-        # 最少range_cover模板题
+
         return Range().minimum_range_cover(0, time, clips)
 
     @staticmethod
@@ -133,7 +132,7 @@ class Solution:
         url: https://leetcode.cn/problems/video-stitching/
         tag: minimum_range_cover
         """
-        # 最少range_cover模板题
+
         return Range().minimum_interval_coverage(clips, time, True)
 
     @staticmethod
@@ -151,9 +150,9 @@ class Solution:
     def lc_435(intervals):
         """
         url: https://leetcode.cn/problems/non-overlapping-intervals/
-        tag: maximum_disjoint_range|greedy|binary_search|dp
+        tag: maximum_disjoint_range|greedy|binary_search|dp|classical
         """
-        # 合并区间
+
         n = len(intervals)
         return n - Range().maximum_disjoint_range(intervals)
 
@@ -163,7 +162,7 @@ class Solution:
         url: https://leetcode.cn/problems/partition-labels/
         tag: range_merge_to_disjoint
         """
-        # 合并区间
+
         dct = defaultdict(list)
         for i, w in enumerate(s):
             if len(dct[w]) >= 2:
@@ -178,10 +177,10 @@ class Solution:
     @staticmethod
     def lc_6313(ranges: List[List[int]]) -> int:
         """
-        url: https://leetcode.cn/contest/biweekly-contest-99/problems/count-ways-to-group-overlapping-ranges/
+        url: https://leetcode.cn/problems/count-ways-to-group-overlapping-ranges/
         tag: range_merge_to_disjoint|fast_power|counter
         """
-        # range_merge_to_disjoint
+
         cnt = len(Range().range_merge_to_disjoint(ranges))
         mod = 10 ** 9 + 7
         return pow(2, cnt, mod)

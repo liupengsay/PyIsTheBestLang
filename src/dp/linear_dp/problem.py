@@ -102,6 +102,7 @@ P8816（https://www.luogu.com.cn/problem/P8816）classical|matrix_dp|implementio
 1286A（https://codeforces.com/problemset/problem/1286/A）liner_dp
 1221D（https://codeforces.com/problemset/problem/1221/D）liner_dp
 731E（https://codeforces.com/contest/731/problem/E）prefix_sum|reverse_order|liner_dp
+1913D（https://codeforces.com/contest/1913/problem/D）monotonic_stack|linear_dp|prefix_sum
 
 ====================================AtCoder=====================================
 ABC129E（https://atcoder.jp/contests/abc129/tasks/abc129_e）brain_teaser|digital_dp
@@ -189,14 +190,11 @@ class Solution:
         return max(ls[1] for ls in stack)
 
     @staticmethod
-    def lc_2361(
-            """
-            url: https://leetcode.cn/problems/minimum-costs-using-the-train-line/
-            tag: linear_dp
-            """
-            regular: List[int],
-            express: List[int],
-            express_cost: int) -> List[int]:
+    def lc_2361(regular: List[int], express: List[int], express_cost: int) -> List[int]:
+        """
+        url: https://leetcode.cn/problems/minimum-costs-using-the-train-line/
+        tag: linear_dp
+        """
         # linear_dp 转移
         n = len(regular)
         cost = [[0, 0] for _ in range(n + 1)]
@@ -207,6 +205,29 @@ class Solution:
             cost[i][1] = min(cost[i][0] + express_cost,
                              cost[i - 1][1] + express[i - 1])
         return [min(c) for c in cost[1:]]
+
+    @staticmethod
+    def cf_1913d(ac=FastIO()):
+        mod = 998244353
+
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = ac.read_list_ints()
+            pre = [0] * (n + 1)
+            dp = [0] * n
+            stack = []
+            ans = 0
+            for i in range(n):
+                while stack and nums[stack[-1]] > nums[i]:
+                    ans -= dp[stack.pop()]
+                j = -1 if not stack else stack[-1]
+                dp[i] = (ans + pre[i] - pre[j + 1] + int(len(stack) == 0)) % mod
+                ans += dp[i]
+                ans %= mod
+                stack.append(i)
+                pre[i + 1] = (pre[i] + dp[i]) % mod
+            ac.st(ans)
+        return
 
     @staticmethod
     def cf_1286a(ac=FastIO()):
