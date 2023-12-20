@@ -25,6 +25,7 @@ Description：prefix_suffix|maximum|minimum|second_maximum
 2289（https://leetcode.cn/problems/steps-to-make-array-non-decreasing/）monotonic_stack|implemention
 907（https://leetcode.cn/problems/sum-of-subarray-minimums/）monotonic_stack|implemention
 2454（https://leetcode.cn/problems/next-greater-element-iv/description/）monotonic_stack|post_second_larger
+2866（https://leetcode.cn/problems/beautiful-towers-ii/）monotonic_stack|greedy
 
 =====================================LuoGu======================================
 P1950（https://www.luogu.com.cn/problem/P1950）brute_force|monotonic_stack|sub_matrix|counter
@@ -181,6 +182,39 @@ class Solution:
             stack1.append(i)
 
         return ans
+
+    @staticmethod
+    def lc_2866(max_heights: List[int]) -> int:
+        n = len(max_heights)
+        pre = [0] * (n + 1)
+        stack = []
+        s = 0
+        for i in range(n):
+            h = max_heights[i]
+            c = 1
+            while stack and stack[-1][0] >= h:
+                v, cc = stack.pop()
+                c += cc
+                s -= v * cc
+            s += h * c
+            pre[i + 1] = s
+            stack.append([h, c])
+
+        post = [0] * (n + 1)
+        stack = []
+        s = 0
+        for i in range(n - 1, -1, -1):
+            h = max_heights[i]
+            c = 1
+            while stack and stack[-1][0] >= h:
+                v, cc = stack.pop()
+                c += cc
+                s -= v * cc
+            s += h * c
+            post[i] = s
+            stack.append([h, c])
+
+        return max(pre[i + 1] + post[i] - max_heights[i] for i in range(n))
 
     @staticmethod
     def lg_p1191(ac=FastIO()):

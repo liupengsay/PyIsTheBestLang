@@ -292,7 +292,7 @@ class Solution:
         url: https://codeforces.com/problemset/problem/5/C
         tag: regular_bracket_subsequence|counter|longest
         """
-        # stack最长连续合法括号子序列以及个数
+
         stack = [["", -1]]
         ans = cnt = 0
         n = len(s)
@@ -318,9 +318,9 @@ class Solution:
     def ac_128(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/130/
-        tag: heapq|stack|implemention
+        tag: heapq|stack|implemention|classical
         """
-        # stack与pointerimplemention
+
         pre = []
         post = []
         pre_sum = [0]
@@ -357,7 +357,7 @@ class Solution:
         url: https://www.acwing.com/problem/content/131/
         tag: catalan_number|stack|implemention
         """
-        # catalan_number，stackimplemention判定出stack入stack合法性
+
         n = ac.read_int()
         m = ac.min(5, n)
 
@@ -389,8 +389,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/131/
         tag: catalan_number|stack|implemention
         """
-
-        # back_trackimplemention出stack入stack所有可能的排列
 
         def dfs(i):
             nonlocal cnt, post, pre
@@ -426,7 +424,7 @@ class Solution:
         url: https://www.acwing.com/problem/content/131/
         tag: catalan_number|stack|implemention
         """
-        # 迭代写法替换dfs|与back_track
+
         n = ac.read_int()
         cnt = 0
         stack = [[[], [], 0]]
@@ -448,7 +446,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1974
         tag: greedy|deque|implemention
         """
-        # greedy队列implemention
+
         n = ac.read_int()
         stack = deque([1] * n)
         while len(stack) >= 2:
@@ -463,7 +461,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3719
         tag: stack|implemention
         """
-        # stackimplemention
+
         s = ac.read_str()
         stack = []
         for w in s:
@@ -489,7 +487,7 @@ class Solution:
         url: https://www.acwing.com/problem/content/4868/
         tag: stack|implemention
         """
-        # stackimplemention
+
         m = ac.read_int()
         lst = ac.read_list_strs()
         n = len(lst)
@@ -504,13 +502,11 @@ class Solution:
         for i in range(n):
             if lst[i] == "int":
                 stack.append([[i, i], "int"])
-                # 维护每个函数段的左右边界
                 while len(stack) >= 3 and [ls[1] for ls in stack[-3:]] == ["pair", "int", "int"]:
                     lst[stack[-1][0][1]] += ">"
                     lst[stack[-2][0][1]] += ","
                     lst[stack[-2][0][0]] = "<" + lst[stack[-2][0][0]]
                     stack[-3][0][1] = stack[-1][0][1]
-                    stack[-3][0][0] = stack[-3][0][0]
                     stack[-3][1] = "int"
                     stack.pop()
                     stack.pop()
@@ -527,9 +523,9 @@ class Solution:
     def ac_5136(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/5139/
-        tag: stack|reverse_order|implemention
+        tag: stack|reverse_order|implemention|greedy
         """
-        # stackreverse_order|implemention
+
         s = ac.read_str()
         n = len(s)
         ans = [0] * n

@@ -11,7 +11,7 @@ P1883（https://www.luogu.com.cn/problem/P1883）ternary_search|floor
 
 ===================================CodeForces===================================
 939E（https://codeforces.com/problemset/problem/939/E）greedy|two_pointers|ternary_search|ceil
-D. Devu and his Brother（http://codeforces.com/problemset/problem/439/D）ternary_search
+439D（https://codeforces.com/problemset/problem/439/D）ternary_search
 1730B（https://codeforces.com/contest/1730/problem/B）ternary_search
 
 ====================================AtCoder=====================================
@@ -35,7 +35,11 @@ class Solution:
 
     @staticmethod
     def abc_130f(ac=FastIO()):
-        # 三分模板题求函数最小值需要high_precision
+        """
+        url: https://atcoder.jp/contests/abc130/tasks/abc130_f
+        tag: ternary_search|floor|high_precision
+        """
+
         n = ac.read_int()
         ind = {"L": [-1, 0], "R": [1, 0], "U": [0, 1], "D": [0, -1]}
         dct_x = defaultdict(lambda: [inf, -inf])
@@ -82,7 +86,10 @@ class Solution:
 
     @staticmethod
     def lg_1883(ac=FastIO()):
-        # 三分模板题求函数最小值，不需要high_precision
+        """
+        url: https://www.luogu.com.cn/problem/P1883
+        tag: ternary_search|floor
+        """
         t = ac.read_int()
 
         for _ in range(t):
@@ -104,7 +111,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3382
         tag: ternary_search|ceil
         """
-        # ternary_search取得最大值的函数点
+
         n, l, r = ac.read_list_floats()
         n = int(n)
         lst = ac.read_list_floats()
@@ -124,7 +131,10 @@ class Solution:
 
     @staticmethod
     def cf_439d(ac=FastIO()):
-        # 求函数取得最小值时的点
+        """
+        url: https://codeforces.com/problemset/problem/439/D
+        tag: ternary_search
+        """
         n, m = ac.read_list_ints()
         a = ac.read_list_ints()
         b = ac.read_list_ints()
@@ -168,7 +178,7 @@ class Solution:
         url: https://codeforces.com/problemset/problem/939/E
         tag: greedy|two_pointers|ternary_search|ceil
         """
-        # 整数ternary_search，上凸函数最大值
+
         nums = []
         pre = [0]
 
@@ -215,7 +225,6 @@ class Solution:
         tag: tripartite_pack_tripartite|convex_function_minimum|gradient_descent|hill_climbing
         """
 
-        # tripart_pack_tripart求凸函数极值
         def target(x, y):
             return sum([math.sqrt((x - p[0]) ** 2 + (y - p[1]) ** 2) for p in stack])
 
@@ -232,7 +241,7 @@ class Solution:
         url: https://leetcode.cn/problems/best-position-for-a-service-centre/
         tag: tripartite_pack_tripartite|convex_function_minimum|gradient_descent|hill_climbing
         """
-        # 梯度下降法求解凸函数极值
+
         eps = 1e-10
         alpha = 1.0
         decay = 0.001
@@ -266,7 +275,7 @@ class Solution:
         url: https://leetcode.cn/problems/best-position-for-a-service-centre/
         tag: tripartite_pack_tripartite|convex_function_minimum|gradient_descent|hill_climbing
         """
-        # 爬山法凸函数极小值
+
         dirs = [(-1, 0), (1, 0), (0, -1), (0, 1)]
         eps = 1e-6
         step = 1.0

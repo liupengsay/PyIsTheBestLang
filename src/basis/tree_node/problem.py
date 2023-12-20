@@ -63,7 +63,6 @@ class Solution:
             if state:
                 if node.right:
                     stack.append([node.right, 1])
-                # 中序
                 stack.append([node, 0])
                 if node.left:
                     stack.append([node.left, 1])
