@@ -60,7 +60,6 @@ P1367（https://www.luogu.com.cn/problem/P1367）brain_teaser|sort|classical
 P1362（https://www.luogu.com.cn/problem/P1362）bfs|brute_force|observe_pattern
 P1090（https://www.luogu.com.cn/problem/P1090）greedy|small_to_big
 P1334（https://www.luogu.com.cn/problem/P1334）reverse_thinking|greedy|small_to_big
-P1325（https://www.luogu.com.cn/problem/P1325）sort|greedy
 P1250（https://www.luogu.com.cn/problem/P1250）greed|segment_tree|range_update|range_sum|binary_search
 P1230（https://www.luogu.com.cn/problem/P1230）sort|greedy
 P1159（https://www.luogu.com.cn/problem/P1159）greedy|implemention|deque

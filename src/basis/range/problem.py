@@ -34,6 +34,7 @@ P3737（https://www.luogu.com.cn/problem/P3737）greedy|range_cover
 P5199（https://www.luogu.com.cn/problem/P5199）greedy|range_include
 P1868（https://www.luogu.com.cn/problem/P1868）liner_dp|binary_search|maximum_disjoint_range
 P2439（https://www.luogu.com.cn/problem/P2439）liner_dp|binary_search|maximum_disjoint_range
+P1325（https://www.luogu.com.cn/problem/P1325）sort|greedy|minimum_range_cover
 
 ===================================CodeForces===================================
 827A（https://codeforces.com/problemset/problem/827/A）range_merge_to_disjoint|greedy
