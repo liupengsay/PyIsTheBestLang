@@ -191,7 +191,7 @@ class Solution:
         url: https://codeforces.com/contest/1102/problem/E
         tag: range_merge_to_disjoint
         """
-        # range_merge_to_disjoint为不相交的区间
+
         mod = 998244353
         n = ac.read_int()
         nums = ac.read_list_ints()
@@ -207,32 +207,20 @@ class Solution:
     def cf_1426d(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1426/D
-        tag: greedy|minimum_point_cover_range
+        tag: greedy|minimum_point_cover_range|prefix_sum_hash
         """
-        # 选取最少的点集合，使得每个区间包含其中至少一个点
-        n = ac.read_int()
+        ac.read_int()
         nums = ac.read_list_ints()
-        pre = 0
-        dct = dict()
-        dct[pre] = -1
-        lst = []
-        for i in range(n):
-            pre += nums[i]
-            if pre in dct:
-                lst.append([dct[pre], i])
-            dct[pre] = i
-        if not lst:
-            ac.st(0)
-            return
-        lst.sort(key=lambda it: [it[1], it[0]])
-        ans = 1
-        a, b = lst[0]
-        for c, d in lst[1:]:
-            if b > c + 1:
-                continue
-            else:
+        ans = pre = 0
+        dct = {pre}
+        for num in nums:
+            if pre + num in dct:
                 ans += 1
-                b = d
+                pre = num
+                dct = {0, pre}
+            else:
+                pre += num
+                dct.add(pre)
         ac.st(ans)
         return
 
@@ -240,9 +228,9 @@ class Solution:
     def ac_112(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/114/
-        tag: greedy
+        tag: greedy|range|rever_thinking|minimum_point_cover_range
         """
-        # 区间类型的greedy
+
         n, d = ac.read_list_ints()
         lst = [ac.read_list_ints() for _ in range(n)]
         if any(abs(y) > d for _, y in lst):
@@ -252,25 +240,16 @@ class Solution:
             x, y = lst[i]
             r = (d * d - y * y) ** 0.5
             lst[i] = [x - r, x + r]
-        lst.sort(key=lambda it: it[0])
-        ans = 0
-        pre = -inf
-        for a, b in lst:
-            if a > pre:
-                ans += 1
-                pre = b
-            else:
-                pre = ac.min(pre, b)
-        ac.st(ans)
+        ac.st(Range().minimum_point_cover_range(lst))  # minimum_point_cover_range_2 also accepted
         return
 
     @staticmethod
     def lg_p1668(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1668
-        tag: minimum_range_cover
+        tag: minimum_range_cover|classical
         """
-        # 最少range_cover问题
+
         n, t = ac.read_list_ints()
         lst = [ac.read_list_ints() for _ in range(n)]
         ans = Range().minimum_range_cover(1, t, lst, False)
@@ -283,7 +262,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1668
         tag: minimum_range_cover
         """
-        # 最少range_cover问题
+
         n, t = ac.read_list_ints()
         t -= 1
         lst = [ac.read_list_ints_minus_one() for _ in range(n)]
@@ -295,21 +274,22 @@ class Solution:
     def lg_p2887(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P2887
-        tag: maximum_point_cover_range
+        tag: maximum_point_cover_range|greedy|sorted_list|classical
         """
-        # 最多点匹配覆盖，每条线段选一个点匹配，最多匹配数有点类似bipartite_graph
+
         n, m = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort(key=lambda it: it[1])
         pos = [ac.read_list_ints() for _ in range(m)]
-        pos.sort(key=lambda it: it[0])
+        lst = LocalSortedList([(x, c) for x, c in pos])
         ans = 0
         for floor, ceil in nums:
-            for i in range(m):
-                if pos[i][1] and floor <= pos[i][0] <= ceil:
-                    ans += 1
-                    pos[i][1] -= 1
-                    break
+            i = lst.bisect_left((floor, 0))
+            if 0 <= i < len(lst) and floor <= lst[i][0] <= ceil:
+                x, c = lst.pop(i)
+                ans += 1
+                if c - 1:
+                    lst.add((x, c - 1))
         ac.st(ans)
         return
 
@@ -317,18 +297,16 @@ class Solution:
     def lg_p3661(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P3661
-        tag: greedy
+        tag: greedy|maximum_point_cover_range|classical
         """
-        # 区间与点集greedy匹配
+
         n, m = ac.read_list_ints()
         lst = LocalSortedList([ac.read_int() for _ in range(n)])
         nums = [ac.read_list_ints() for _ in range(m)]
-        # 按照右边端点sorting
         nums.sort(key=lambda it: it[1])
         ans = 0
         for a, b in nums:
             i = lst.bisect_left(a)
-            # 选择当前符合条件且最小的
             if 0 <= i < len(lst) and a <= lst[i] <= b:
                 ans += 1
                 lst.pop(i)
@@ -339,51 +317,37 @@ class Solution:
     def lg_p3737(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P3737
-        tag: greedy|range_cover
+        tag: greedy|range|rever_thinking|minimum_point_cover_range
         """
-        # 区间点覆盖greedy
+
         n, r = ac.read_list_ints()
         lst = []
-        while len(lst) < 2 * n:
-            lst.extend(ac.read_list_ints())
-        nums = []
         for i in range(n):
-            x, y = lst[i << 1], lst[(i << 1) | 1]
+            x, y = ac.read_list_ints()
             if r * r < y * y:
                 ac.st(-1)
                 return
             d = (r * r - y * y) ** 0.5
-            nums.append([x - d, x + d])
-        nums.sort(key=lambda it: it[1])
-        ans = 1
-        a, b = nums[0]
-        for c, d in nums[1:]:
-            if b >= c:
-                continue
-            else:
-                ans += 1
-                b = d
-        ac.st(ans)
+            lst.append([x - d, x + d])
+        ac.st(Range().minimum_point_cover_range(lst))
         return
 
     @staticmethod
     def lg_p5199(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P5199
-        tag: greedy|range_include
+        tag: greedy|range_include|classical|partial_order
         """
-        # 区间包含greedy最多互不包含的区间个数
+
         n = ac.read_int()
         nums = []
         for _ in range(n):
             x, y = ac.read_list_ints()
             nums.append([x - y, x + y])
-        # 左端点升序右端点降序
         nums.sort(key=lambda it: [it[0], -it[1]])
         ans = 0
         pre = -inf
         for a, b in nums:
-            # 右端点超出范围则形成新的一个
             if b > pre:
                 ans += 1
                 pre = b
@@ -397,13 +361,10 @@ class Solution:
         tag: maximum_disjoint_range
         """
 
-        # 转化为maximum_disjoint_range求解
-
         ind = defaultdict(deque)
-        for i, w in enumerate(s):  # brute_force每种字符的起终点索引
+        for i, w in enumerate(s):
             ind[w].append(i)
 
-        # 将每种字符两端中间部分的字符也扩展到包含所有对应的字符范围
         lst = []
         for w in ind:
             x, y = ind[w][0], ind[w][-1]
@@ -423,7 +384,6 @@ class Solution:
             ind[w].append(y)
             lst.append([x, y])
 
-        # greedy取最多且最短距离的range_cover
         lst.sort(key=lambda ls: ls[1])
         ans = []
         for x, y in lst:
@@ -432,12 +392,12 @@ class Solution:
         return [s[i: j + 1] for i, j in ans]
 
     @staticmethod
-    def ac_4421_1(ac=FastIO()):
+    def ac_4421(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/4424/
         tag: minimum_range_cover
         """
-        # 最少range_cover范围问题，相邻可以不相交
+
         n, r = ac.read_list_ints()
         nums = ac.read_list_ints()
         lst = []

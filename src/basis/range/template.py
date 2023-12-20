@@ -105,3 +105,35 @@ class Range:
                 ans += 1
                 end = b
         return ans
+
+    @staticmethod
+    def minimum_point_cover_range(lst):
+        """find the minimum number of point such that every range in lst has at least one point"""
+        if not lst:
+            return 0
+        lst.sort(key=lambda it: it[0])
+        ans = 0
+        pre = -inf
+        for a, b in lst:
+            if a > pre:
+                ans += 1
+                pre = b
+            else:
+                pre = pre if pre < b else b
+        return ans
+
+    @staticmethod
+    def minimum_point_cover_range_2(lst):
+        """find the minimum number of point such that every range in lst has at least one point"""
+        if not lst:
+            return 0
+        lst.sort(key=lambda it: it[1])
+        ans = 1
+        a, b = lst[0]
+        for c, d in lst[1:]:
+            if b >= c:
+                continue
+            else:
+                ans += 1
+                b = d
+        return ans
