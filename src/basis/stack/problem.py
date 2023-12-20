@@ -63,7 +63,7 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-subsequence-score/
         tag: sort|brute_force|heapq
         """
-        # sorting后brute_forceheapq维护K最大的和，类似LC857
+
         n = len(nums1)
         ind = list(range(n))
         ind.sort(key=lambda it: -nums2[it])
@@ -86,7 +86,7 @@ class Solution:
         url: https://leetcode.cn/problems/total-cost-to-hire-k-workers/
         tag: heapq|greedy|implemention
         """
-        # heapqgreedyimplemention
+
         n = len(costs)
         visit = [0] * n
         pre = [[costs[i], i] for i in range(candidates)]
@@ -128,9 +128,9 @@ class Solution:
     def lc_2813(items: List[List[int]], k: int) -> int:
         """
         url: https://leetcode.cn/problems/maximum-elegance-of-a-k-length-subsequence/
-        tag: brain_teaser|sort|brute_force|function
+        tag: brain_teaser|sort|brute_force|function|greedy|classical
         """
-        # brain_teaser|sorting后brute_force，维护长度为k的子序列最大函数值
+
         items.sort(reverse=True)
         ans = cnt = pre = tp = 0
         dct = defaultdict(list)
@@ -159,7 +159,6 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-number-of-eaten-apples/
         tag: heapq|greedy|implemention
         """
-        # heapqgreedyimplemention
         n = len(apples)
         ans = i = 0
         stack = []
@@ -180,7 +179,7 @@ class Solution:
         url: https://leetcode.cn/problems/replace-non-coprime-numbers-in-array/
         tag: math|stack|implemention
         """
-        # stack结合 gcd 与 lcm implemention
+
         stack = []
         for num in nums:
             stack.append(num)
@@ -199,7 +198,7 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-cost-to-hire-k-workers/
         tag: greedy|sort|brute_force|heapq
         """
-        # greedysortingbrute_force，heapq维护K个最小值的和
+
         n = len(quality)
         ind = list(range(n))
         ind.sort(key=lambda it: wage[it] / quality[it])
@@ -221,9 +220,9 @@ class Solution:
     def cf_1095e(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1095/E
-        tag: regular_bracket|counter
+        tag: regular_bracket|counter|prefix_suffix
         """
-        # 只替换一个字符的情况下括号串是否合法
+
         n = ac.read_int()
         s = ac.read_str()
         post = [inf] * (n + 1)
@@ -254,8 +253,12 @@ class Solution:
         return
 
     @staticmethod
-    def abc_62d(ac=FastIO()):
-        # heapq与prefix_suffix结合
+    def arc_074b(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc062/tasks/arc074_b
+        tag: heapq|prefix_suffix|brute_force
+        """
+
         n = ac.read_int()
         nums = ac.read_list_ints()
         pre = [-inf] * (3 * n + 1)
