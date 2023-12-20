@@ -153,6 +153,7 @@ P8887（https://www.luogu.com.cn/problem/P8887）brain_teaser|greedy
 1512E（https://codeforces.com/contest/1512/problem/E）brain_teaser|greedy|big_to_small
 1665C（https://codeforces.com/contest/1665/problem/C）graph|greedy
 1649B（https://codeforces.com/contest/1649/problem/B）maximum_greedy|classical
+1914E2（https://codeforces.com/contest/1914/problem/E2）greedy|custom_sort
 
 ====================================AtCoder=====================================
 ARC062A（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|greedy|custom_sort
