@@ -4,7 +4,7 @@ from typing import Optional
 from src.basis.tree_node.template import TreeNode
 
 
-class Codecbfs:
+class CodecBFS:
 
     @staticmethod
     def serialize(root: Optional[TreeNode]) -> str:

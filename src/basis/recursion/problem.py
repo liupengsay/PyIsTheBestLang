@@ -29,6 +29,7 @@ P1185（https://www.luogu.com.cn/problem/P1185）2-tree|recursion
 
 """
 from functools import lru_cache
+from itertools import combinations
 from typing import Optional, List
 
 from src.basis.tree_node.template import TreeNode
@@ -40,84 +41,97 @@ class Solution:
         return
 
     @staticmethod
-    def lc_880(t: str, m: int) -> str:
+    def lc_880(s: str, k: int) -> str:
         """
         url: https://leetcode.cn/problems/decoded-string-at-index/
-        tag: recursion|implemention
+        tag: recursion|implemention|iteration|classical
         """
 
-        # recursionimplemention
-
-        def dfs(s, k):
+        ans = ""
+        while not ans:
             n = len(s)
             cur = 0
             for i in range(n):
                 if s[i].isnumeric():
                     d = int(s[i])
                     if cur * d >= k:
-                        return dfs(s[:i], k % cur + cur * int(k % cur == 0))
+                        s, k = s[:i], k % cur + cur * int(k % cur == 0)
+                        break
                     cur *= d
                 else:
                     if cur + 1 == k:
-                        return s[i]
+                        ans = s[i]
+                        break
                     cur += 1
+        return ans
 
-        return dfs(t, m)
-
-    def lc_889(self, preorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
+    @staticmethod
+    def lc_889(preorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
         """
         url: https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-postorder-traversal/
         tag: recursion|divide_and_conquer|construction
         """
-        # recursiondivide_and_conquerconstruction
-        if not preorder:
-            return
 
-        n = len(preorder)
-        root = preorder[0]
-        ans = TreeNode(root)
-        if n == 1:
-            return ans
-        val = preorder[1]
-        i = postorder.index(val)  # 注意前序遍历与后序遍历的数组特点
-        left_cnt = i + 1
-        ans.left = self.lc_889(preorder[1:left_cnt + 1], postorder[:left_cnt])
-        ans.right = self.lc_889(preorder[left_cnt + 1:], postorder[left_cnt:-1])
-        return ans
+        tree = dict()
+        m, n = len(preorder), len(postorder)
+        stack = [(0, m - 1, 0, n - 1, 1)]
+        ind = {val: i for i, val in enumerate(postorder)}
+        while stack:
+            i1, j1, i2, j2, i = stack.pop()
+            if i >= 0:
+                if i1 > j1:
+                    continue
+                root = preorder[i1]
+                tree[i] = TreeNode(root)
+                if i1 == j1:
+                    continue
+                stack.append((i1, j1, i2, j2, ~i))
+                val = preorder[i1 + 1]
+                x = ind[val]
+                left_cnt = x - i2 + 1
+                stack.append((i1 + 1, left_cnt + i1, i2, left_cnt + i2 - 1, i << 1))
+                stack.append((left_cnt + i1 + 1, j1, left_cnt + i2, j2, (i << 1) | 1))
+            else:
+                i = ~i
+                tree[i].left = tree.get(i << 1, None)
+                tree[i].right = tree.get((i << 1) | 1, None)
+        return tree[1]
 
     @lru_cache(None)
     def lc_894(self, n: int) -> List[Optional[TreeNode]]:
         """
         url: https://leetcode.cn/problems/all-possible-full-binary-trees/
-        tag: catalan_num|recursion|implemention
+        tag: catalan_number|recursion|implemention|classical|iteration
         """
 
-        # 类似catalan_number的recursionimplemention生成
-        if n % 2 == 0:
-            return []
-        if n == 1:
-            return [TreeNode(0)]
+        dp = [[] for _ in range(21)]
+        dp[0] = []
+        dp[1] = [TreeNode(0)]
+        for i in range(2, 21):
+            if i % 2 == 0:
+                continue
+            for j in range(1, i - 1):
+                for left in dp[j]:
+                    for right in dp[i - 1 - j]:
+                        node = TreeNode(0)
+                        node.left = left
+                        node.right = right
+                        dp[i].append(node)
+        return dp[n]
 
-        ans = []
-        for i in range(1, n - 1):
-            for left in self.lc_894(i):
-                for right in self.lc_894(n - i - 1):
-                    node = TreeNode(0)
-                    node.left = left
-                    node.right = right
-                    ans.append(node)
-        return ans
-
-    @lru_cache(None)
-    def lc_932(self, n: int) -> List[int]:
+    @staticmethod
+    def lc_932(n: int) -> List[int]:
         """
         url: https://leetcode.cn/problems/beautiful-array/description/
         tag: recursion|divide_and_conquer|construction
         """
-        # recursiondivide_and_conquerconstruction
-        if n == 1:
-            return [1]
-        return [2 * x - 1 for x in self.lc_932((n + 1) // 2)] + [2 * x for x in self.lc_932(n // 2)]
+        m = 1000
+        dp = [[], [1]]
+        for i in range(2, m + 1):
+            left = (i + 1) // 2
+            right = i - left
+            dp.append([2 * x - 1 for x in dp[left]] + [2 * x for x in dp[right]])
+        return dp[n]
 
     @staticmethod
     def lc_1028(traversal: str) -> Optional[TreeNode]:
@@ -126,122 +140,115 @@ class Solution:
         tag: pre_order|recursion|construction|2-tree
         """
 
-        # 根据先序遍历recursionconstruction二叉树
-        ans = ""
-        pre = 0
-        for w in traversal:
-            if w == "-":
-                pre += 1
+        tree = dict()
+        stack = [(traversal, 1, 1)]
+        while stack:
+            s, i, d = stack.pop()
+            if i >= 0:
+                if s.isnumeric():
+                    tree[i] = TreeNode(int(s))
+                    continue
+                stack.append(("", ~i, d))
+                sp = "-" * d
+                m = len(s)
+                lst = []
+                for j in range(m - d - 1):
+                    if s[j].isnumeric() and s[j + d + 1].isnumeric() and s[j + 1:j + d + 1] == sp:
+                        lst.append(j + 1)
+                tree[i] = TreeNode(int(s[:lst[0]]))
+                if len(lst) == 1:
+                    stack.append((s[lst[0] + d:], i << 1, d + 1))
+                else:
+                    stack.append((s[lst[0] + d:lst[1]], i << 1, d + 1))
+                    stack.append((s[lst[1] + d:], (i << 1) | 1, d + 1))
             else:
-                if pre:
-                    ans += "(" + str(pre) + ")"
-                pre = 0
-                ans += w
-
-        def dfs(s, d):
-            if not s:
-                return
-            c = "(" + str(d) + ")"
-            lst = s.split(c)
-            root = TreeNode(int(lst[0]))
-            if len(lst) > 1:
-                root.left = dfs(lst[1], d + 1)
-            if len(lst) > 2:
-                root.right = dfs(lst[2], d + 1)
-            return root
-
-        return dfs(ans, 1)
+                i = ~i
+                tree[i].left = tree.get(i << 1, None)
+                tree[i].right = tree.get((i << 1) | 1, None)
+        return tree[1]
 
     @staticmethod
-    def lc_1345(a: int, b: int) -> str:
+    def lc_1545(n: int, k: int) -> str:
+        """
+        url: https://leetcode.cn/problems/find-kth-bit-in-nth-binary-string/
+        tag: recursion|implemention
+        """
 
-        # recursionimplemention
-        def dfs(n, k):
-
-            if n == 1 and k == 1:
-                return '0'
-            if k == 2 ** (n - 1):
-                return '1'
-            if k < 2 ** (n - 1):
-                return dfs(n - 1, k)
-            k -= 2 ** (n - 1)
-            ans = dfs(n - 1, 2 ** (n - 1) - k)
-            return '1' if ans == '0' else '0'
-
-        return dfs(a, b)
+        ans = ""
+        flag = 0
+        while not ans:
+            if n == 1:
+                ans = "0"[k - 1]
+            elif n == 2:
+                ans = "011"[k - 1]
+            else:
+                length = (1 << n) - 1
+                if k == (length + 1) // 2:
+                    ans = "1"
+                elif k < (length + 1) // 2:
+                    n -= 1
+                else:
+                    flag = 1 - flag
+                    n -= 1
+                    k = length // 2 - (k - length // 2) + 1
+        return ans if not flag else str(1 - int(ans))
 
     @staticmethod
-    def lg_p1911(n, x, y):
+    def lg_p1911(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1911
         tag: 4-tree|recursion|matrix
         """
 
-        # recursion处理四叉树
-
-        def dfs(x1, y1, x2, y2, a, b):
-            nonlocal ind
-            if x1 == x2 and y1 == y2:
-                return
-
-            # 确定是哪一个角被占用了
-            flag = find(x1, y1, x2, y2, a, b)
-            x0 = x1 + (x2 - x1) // 2
-            y0 = y1 + (y2 - y1) // 2
-
-            # 四叉树中心邻居节点
-            lst = [[x0, y0], [x0, y0 + 1], [x0 + 1, y0], [x0 + 1, y0 + 1]]
-            nex = []
-            for ii in range(4):
-                if ii != flag:
-                    ans[lst[ii][0]][lst[ii][1]] = ind
-                    nex.append(lst[ii])
-                else:
-                    nex.append([a, b])
-            ind += 1
-            # 四叉树recursion坐标
-            dfs(x1, y1, x0, y0, nex[0][0], nex[0][1])
-            dfs(x1, y0 + 1, x0, y2, nex[1][0], nex[1][1])
-            dfs(x0 + 1, y1, x2, y0, nex[2][0], nex[2][1])
-            dfs(x0 + 1, y0 + 1, x2, y2, nex[3][0], nex[3][1])
-            return
-
-        def find(x1, y1, x2, y2, a, b):
-            x0 = x1 + (x2 - x1) // 2
-            y0 = y1 + (y2 - y1) // 2
-            if x1 <= a <= x0 and y1 <= b <= y0:
-                return 0
-            if x1 <= a <= x0 and y0 + 1 <= b <= y2:
-                return 1
-            if x0 + 1 <= a <= x2 and y1 <= b <= y0:
-                return 2
-            return 3
-
+        n, x, y = ac.read_list_ints()
+        ans = [[-1] * (1 << n) for _ in range(1 << n)]
         x -= 1
         y -= 1
-        m = 1 << n
-        ans = [[0] * m for _ in range(m)]
+        ans[x][y] = 0
         ind = 1
-        # recursion生成
-        dfs(0, 0, m - 1, m - 1, x, y)
-
-        # hash化处理
+        stack = [[0, 0, (1 << n) - 1, (1 << n) - 1, x, y]]
+        while stack:
+            x1, y1, x2, y2, x, y = stack.pop()
+            if x1 == x2 - 1:
+                for i in range(x1, x2 + 1):
+                    for j in range(y1, y2 + 1):
+                        if ans[i][j] == -1:
+                            ans[i][j] = ind
+                ind += 1
+                continue
+            x0 = x1 + (x2 - x1) // 2
+            y0 = y1 + (y2 - y1) // 2
+            rec = [[x1, y1, x0, y0], [x1, y0 + 1, x0, y2], [x0 + 1, y1, x2, y0], [x0 + 1, y0 + 1, x2, y2]]
+            center = [[x0, y0], [x0, y0 + 1], [x0 + 1, y0], [x0 + 1, y0 + 1]]
+            for i in range(4):
+                if rec[i][0] <= x <= rec[i][2] and rec[i][1] <= y <= rec[i][3]:
+                    stack.append(rec[i] + [x, y])
+                else:
+                    ans[center[i][0]][center[i][1]] = ind
+                    stack.append(rec[i] + center[i])
+            ind += 1
         dct = dict()
-        dct[0] = 0
-        for i in range(m):
-            for j in range(m):
+        ind = 1
+        for i in range(1 << n):
+            for j in range(1 << n):
                 x = ans[i][j]
+                if not x:
+                    continue
                 if x not in dct:
-                    dct[x] = len(dct)
-        return [[dct[i] for i in a] for a in ans]
+                    dct[x] = ind
+                    ind += 1
+                ans[i][j] = dct[x]
+        for ls in ans:
+            ac.lst(ls)
+        return
 
     @staticmethod
     def cf_448c(ac=FastIO()):
         """
         url: https://codeforces.com/contest/448/problem/C
-        tag: greedy|recursion|dp
+        tag: greedy|recursion|dp|implemention
         """
-        # greedyrecursionDP
+
         ac.read_int()
         nums = ac.read_list_ints()
 
@@ -273,14 +280,12 @@ class Solution:
         tag: 4-tree|recursion|matrix_rotate
         """
 
-        # 四叉树recursion与坐标旋转变换
         for _ in range(ac.read_int()):
             n, a, b = ac.read_list_ints()
             a -= 1
             b -= 1
 
             def check(nn, mm):
-                # recursion改成迭代写法极大提升速度
                 stack = [[nn, mm]]
                 x = y = -1
                 while stack:
@@ -318,11 +323,9 @@ class Solution:
     def ac_93_1(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/95/
-        tag: recursion|comb|iteration
+        tag: recursion|comb|iteration|back_trace
         """
         n, m = ac.read_list_ints()
-
-        # recursion实现选取
 
         def dfs(i):
             if len(pre) == m:
@@ -349,7 +352,6 @@ class Solution:
         """
         n, m = ac.read_list_ints()
 
-        # 迭代实现选取
         pre = []
         stack = [[0, 0]]
         while stack:
@@ -370,37 +372,39 @@ class Solution:
         return
 
     @staticmethod
+    def ac_93_3(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/95/
+        tag: recursion|comb|iteration
+        """
+        n, m = ac.read_list_ints()
+        for item in combinations(list(range(1, n + 1)), m):
+            ac.lst(list(item))
+        return
+
+    @staticmethod
     def ac_118(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/120/
         tag: recursion
         """
-        # 迭代方式recursion
-        dp = []
-        for i in range(1, 8):
-            n = 3 ** (i - 1)
-            ans = [[" "] * n for _ in range(n)]
-            stack = [[0, 0, n - 1, n - 1]]
-            while stack:
-                x1, y1, x2, y2 = stack.pop()
-                if x1 == x2 and y1 == y2:
-                    ans[x1][y1] = "X"
-                    continue
-                m = x2 - x1 + 1
-                b = m // 3
-                col = {0: 0, 2: 2, 4: 1, 6: 0, 8: 2}
-                for x in [0, 2, 4, 6, 8]:
-                    start = [x1 + b * (x // 3), y1 + b * col[x]]
-                    end = [x1 + b * (x // 3) + b - 1, y1 + b * col[x] + b - 1]
-                    stack.append([start[0], start[1], end[0], end[1]])
-            dp.append(["".join(a) for a in ans])
 
+        dp = [[["X"]]]
+        for m in range(2, 8):
+            n = 3 ** (m - 1)
+            cur = [[" "] * n for _ in range(n)]
+            k = 3 ** (m - 2)
+            start = [[0, 0], [0, 2 * k], [k, k], [2 * k, 0], [2 * k, 2 * k]]
+            for x, y in start:
+                for i in range(x, x + k):
+                    for j in range(y, y + k):
+                        cur[i][j] = dp[-1][i - x][j - y]
+            dp.append([ls[:] for ls in cur])
         while True:
-            n = ac.read_int()
-            if n == -1:
+            x = ac.read_int()
+            if x == -1:
                 break
-            for a in dp[n - 1]:
-                ac.st(a)
+            for ls in dp[x - 1]:
+                ac.st("".join(ls))
             ac.st("-")
-
         return
