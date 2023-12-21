@@ -40,34 +40,31 @@ class Solution:
         return
 
     @staticmethod
-    def lc_912(lst: List[int]) -> List[int]:
+    def lc_912(nums: List[int]) -> List[int]:
         """
         url: https://leetcode.cn/problems/sort-an-array/
         tag: quick_sort
         """
-        # quick_sort两路手动实现
-        n = len(lst)
-
-        def quick_sort(i, j):
-            if i >= j:
-                return
-            val = lst[random.randint(i, j)]
-            left = i
-            for k in range(i, j + 1):
-                if lst[k] < val:
-                    lst[k], lst[left] = lst[left], lst[k]
-                    left += 1
-
-            quick_sort(i, left - 1)
-            for k in range(i, j + 1):
-                if lst[k] == val:
-                    lst[k], lst[left] = lst[left], lst[k]
-                    left += 1
-            quick_sort(left, j)
-            return
-
-        quick_sort(0, n - 1)
-        return lst
+        n = len(nums)
+        stack = [[0, n - 1]]
+        while stack:
+            left, right = stack.pop()
+            mid = nums[random.randint(left, right)]
+            i, j = left, right
+            while i <= j:
+                while nums[i] < mid:
+                    i += 1
+                while nums[j] > mid:
+                    j -= 1
+                if i <= j:
+                    nums[i], nums[j] = nums[j], nums[i]
+                    i += 1
+                    j -= 1
+            if left < j:
+                stack.append([left, j])
+            if i < right:
+                stack.append([i, right])
+        return nums
 
     @staticmethod
     def ac_113(compare, n):
@@ -86,13 +83,15 @@ class Solution:
         return nums
 
     @staticmethod
-    def abc_42b(ac=FastIO()):
-        # custom_sort
+    def abc_042b(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc042/tasks/abc042_b
+        tag: custom_sort|classical
+        """
         n, m = ac.read_list_ints()
         nums = [ac.read_str() for _ in range(n)]
 
         def compare(a, b):
-            # 比较函数
             if a + b < b + a:
                 return -1
             elif a + b > b + a:
@@ -107,17 +106,13 @@ class Solution:
     def lc_179(nums: List[int]) -> str:
         """
         url: https://leetcode.cn/problems/largest-number/
-        tag: custom_sort|maximum
+        tag: custom_sort|maximum|classical
         """
 
-        # 模板: custom_sort拼接最大数
         def compare(a, b):
-            # 比较函数
-            x = int(a + b)
-            y = int(b + a)
-            if x > y:
+            if int(a + b) > int(b + a):
                 return -1
-            elif x < y:
+            elif int(a + b) < int(b + a):
                 return 1
             return 0
 
@@ -127,7 +122,10 @@ class Solution:
 
     @staticmethod
     def lg_1177(ac=FastIO()):
-        # quick_sort迭代实现
+        """
+        url: https://www.luogu.com.cn/problem/P1177
+        tag: quick_sort
+        """
         n = ac.read_int()
         nums = ac.read_list_ints()
         stack = [[0, n - 1]]
@@ -155,13 +153,10 @@ class Solution:
     def lc_1665(tasks: List[List[int]]) -> int:
         """
         url: https://leetcode.cn/problems/minimum-initial-energy-to-finish-tasks/
-        tag: custom_sort|greedy|sorting
+        tag: custom_sort|greedy|classical
         """
 
-        # 模板: custom_sort
-
         def compare(aa, bb):
-            # 比较函数
             a1, m1 = aa
             a2, m2 = bb
             s12 = m1 if m1 > a1 + m2 else a1 + m2
@@ -185,7 +180,7 @@ class Solution:
     def lc_2412(transactions: List[List[int]]) -> int:
         """
         url: https://leetcode.cn/problems/minimum-money-required-before-transactions/
-        tag: custom_sort|greedy
+        tag: custom_sort|greedy|classical
         """
 
         def check(it):
