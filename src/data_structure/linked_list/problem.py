@@ -12,7 +12,7 @@ Description：
 2289（https://leetcode.cn/problems/steps-to-make-array-non-decreasing/description/）monotonic_stack|liner_dp|bfs|linked_list
 
 ====================================NewCoder===================================
-（https://ac.nowcoder.com/acm/contest/49888/C）double_linked_list
+49888C（https://ac.nowcoder.com/acm/contest/49888/C）double_linked_list
 
 =====================================LuoGu======================================
 P5462（https://www.luogu.com.cn/problem/P5462）double_linked_list|greedy|lexicographical_order|deque
@@ -32,6 +32,7 @@ from collections import deque
 from math import inf
 from typing import List
 
+from src.graph.union_find.template import UnionFindLeftRoot
 from src.utils.fast_io import FastIO
 
 
@@ -46,7 +47,6 @@ class Solution:
         tag: double_linked_list
         """
 
-        # linked_list|维护前后的节点信息
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
         ans = [0] * n
@@ -84,8 +84,11 @@ class Solution:
         return
 
     @staticmethod
-    def nc_247577(ac=FastIO()):
-        # linked_list|维护前后的节点信息
+    def nc_49888c_1(ac=FastIO()):
+        """
+        url: https://ac.nowcoder.com/acm/contest/49888/C
+        tag: double_linked_list
+        """
         n, k = ac.read_list_ints()
         pre = list(range(-1, n + 1))
         post = list(range(1, n + 3))
@@ -102,6 +105,23 @@ class Solution:
                 pre[x] = post[x] = -1
             else:
                 ac.st(pre[x])
+        return
+
+    @staticmethod
+    def nc_49888c_2(ac=FastIO()):
+        """
+        url: https://ac.nowcoder.com/acm/contest/49888/C
+        tag: double_linked_list
+        """
+        n, k = ac.read_list_ints()
+        n, k = ac.read_list_ints()
+        uf = UnionFindLeftRoot(n + 1)
+        for _ in range(k):
+            op, x = ac.read_list_ints()
+            if op == 1:
+                uf.union(x - 1, x)
+            else:
+                ac.st(uf.find(x - 1))
         return
 
     @staticmethod

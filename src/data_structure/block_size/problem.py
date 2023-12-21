@@ -11,7 +11,7 @@ Description：sort the query interval into blocks and alternate between moving t
 220B（https://codeforces.com/contest/220/problem/B）block_query|counter
 86D（https://codeforces.com/contest/86/problem/D）block_query|math
 617E（https://codeforces.com/contest/617/problem/E）block_query|xor_pair|counter
-1514D（https://codeforces.com/contest/1514/problem/D）range_super_mode|CF1514D|random_guess|binary_search|bit_operation|segment_tree
+1514D（https://codeforces.com/contest/1514/problem/D）range_super_mode|random_guess|binary_search|bit_operation|segment_tree
 
 ====================================AtCoder=====================================
 ABC132F（https://atcoder.jp/contests/abc132/tasks/abc132_f）block_query|counter|dp|prefix_sum
@@ -33,7 +33,10 @@ class Solution:
 
     @staticmethod
     def abc_132f(ac=FastIO()):
-        # 分组线性counterDP，prefix_sum优化
+        """
+        url: https://atcoder.jp/contests/abc132/tasks/abc132_f
+        tag: block_query|counter|dp|prefix_sum
+        """
         mod = 10 ** 9 + 7
         n, k = ac.read_list_ints()
         cnt, _ = BlockSize().get_divisor_split(n)
@@ -47,20 +50,22 @@ class Solution:
 
     @staticmethod
     def cf1514_d(ac=FastIO()):
-        # 分块超时，正解为随机化猜众数，或者bit_operation众数，或者segment_tree|合并众数
+        """
+        url: https://codeforces.com/contest/1514/problem/D
+        tag: range_super_mode|random_guess|binary_search|bit_operation|segment_tree
+        """
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         cnt = [0] * (n + 1)
         freq = [0] * (n + 1)
-        size = int(n ** 0.5) + 500  # 分块的大小
+        size = int(n ** 0.5) + 500
 
         queries = [[] for _ in range(size)]
-        # 将查询分段
+
         for i in range(m):
             a, b = ac.read_list_ints_minus_one()
             queries[b // size].append([a, b, i])
 
-        # 更新区间信息
         def update(num, p):
             nonlocal cnt, ceil
             if p == 1:
@@ -83,12 +88,10 @@ class Solution:
         freq[1] = 1
         ceil = 1
         for i in range(size):
-            # 按照分块后单独sorting
             if i % 2:
                 queries[i].sort(key=lambda it: -it[0])
             else:
                 queries[i].sort(key=lambda it: it[0])
-            # 移动two_pointers
             for a, b, j in queries[i]:
                 while y > b:
                     update(nums[y], -1)
@@ -112,7 +115,10 @@ class Solution:
 
     @staticmethod
     def cf1514_d_2(ac=FastIO()):
-
+        """
+        url: https://codeforces.com/contest/1514/problem/D
+        tag: range_super_mode|random_guess|binary_search|bit_operation|segment_tree|random_seed
+        """
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         ind = [[] for _ in range(1 << 20)]
@@ -143,20 +149,18 @@ class Solution:
     def cf_220b(ac=FastIO()):
         """
         url: https://codeforces.com/contest/220/problem/B
-        tag: block_query|counter
+        tag: block_query|counter|block_size|offline_query|classical
         """
-        # 查询区间内符合条件的元素个数
+
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
-        size = int(n ** 0.5) + 1  # 分块的大小
+        size = int(n ** 0.5) + 1
 
         queries = [[] for _ in range(size)]
-        # 将查询分段
         for i in range(m):
             a, b = ac.read_list_ints_minus_one()
             queries[b // size].append([a, b, i])
 
-        # 更新区间信息
         def update(num, p):
             nonlocal cur, cnt
             if num == cnt[num]:
@@ -174,12 +178,10 @@ class Solution:
         if nums[0] == 1:
             cur += 1
         for i in range(size):
-            # 按照分块后单独sorting
             if i % 2:
                 queries[i].sort(key=lambda it: -it[0])
             else:
                 queries[i].sort(key=lambda it: it[0])
-            # 移动two_pointers
             for a, b, j in queries[i]:
                 while y > b:
                     update(nums[y], -1)
@@ -202,15 +204,14 @@ class Solution:
     def cf_86d(ac=FastIO()):
         """
         url: https://codeforces.com/contest/86/problem/D
-        tag: block_query|math
+        tag: block_size|offline_query|math
         """
-        # 查询区间内的函数值
+
         n, t = ac.read_list_ints()
         nums = ac.read_list_ints()
         size = int(n ** 0.5) + 1
 
         queries = [[] for _ in range(t)]
-        # 将查询分段
         for i in range(t):
             a, b = ac.read_list_ints_minus_one()
             queries[b // size].append([a, b, i])
@@ -230,7 +231,6 @@ class Solution:
         cur = nums[0]
         cnt[nums[0]] = 1
         for i in range(size):
-            # 按照分块后单独sorting
             if i % 2:
                 queries[i].sort(key=lambda it: -it[0])
             else:
@@ -259,16 +259,15 @@ class Solution:
     def cf_617e(ac=FastIO()):
         """
         url: https://codeforces.com/contest/617/problem/E
-        tag: block_query|xor_pair|counter
+        tag: block_size|offline_query|xor_pair|counter
         """
-        # 查询区间内的异或对数
+
         n, m, k = ac.read_list_ints()
         nums = ac.read_list_ints()
         pre = list(accumulate(nums, xor, initial=0))
 
-        size = int(n ** 0.5) + 1  # 分块的大小
+        size = int(n ** 0.5) + 1
         queries = [[] for _ in range(size)]
-        # 将查询分段
         for i in range(m):
             a, b = ac.read_list_ints()
             queries[b // size].append([a, b, i])
@@ -289,12 +288,10 @@ class Solution:
         dct[pre[0]] += 1
         cur = 0
         for i in range(size):
-            # 按照分块后单独sorting
             if i % 2:
                 queries[i].sort(key=lambda it: -it[0])
             else:
                 queries[i].sort(key=lambda it: it[0])
-            # 移动two_pointers
             for a, b, j in queries[i]:
                 a -= 1
                 while y > b:
