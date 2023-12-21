@@ -1197,10 +1197,9 @@ class RangeOrRangeAnd:
 
 class SegmentTreeRangeUpdateXORSum:
     def __init__(self, n):
-        # 区间值01翻转与区间和查询
         self.n = n
-        self.cover = [0] * (4 * self.n)  # 区间和
-        self.lazy = [0] * (4 * self.n)  # 懒标记
+        self.cover = [0] * (4 * self.n)
+        self.lazy = [0] * (4 * self.n)
         return
 
     def build(self, nums) -> None:
@@ -1226,28 +1225,27 @@ class SegmentTreeRangeUpdateXORSum:
             self.cover[i << 1] = m - s + 1 - self.cover[i << 1]
             self.cover[(i << 1) | 1] = t - m - self.cover[(i << 1) | 1]
 
-            self.lazy[i << 1] ^= self.lazy[i]  # 注意异或抵消查询
-            self.lazy[(i << 1) | 1] ^= self.lazy[i]  # 注意异或抵消查询
+            self.lazy[i << 1] ^= self.lazy[i]
+            self.lazy[(i << 1) | 1] ^= self.lazy[i]
 
             self.lazy[i] = 0
         return
 
-    def update_range(self, left: int, right: int, s: int, t: int, val: int, i: int) -> None:
-        # 增减区间值 left 与 right 取值为 0 到 n-1 而 i 从 1 开始
-        stack = [(s, t, i)]
+    def update_range(self, left: int, right: int, val: int) -> None:
+        stack = [(0, self.n - 1, 1)]
         while stack:
             s, t, i = stack.pop()
             if i >= 0:
                 if left <= s and t <= right:
                     self.cover[i] = t - s + 1 - self.cover[i]
-                    self.lazy[i] ^= val  # 注意异或抵消查询
+                    self.lazy[i] ^= val
                     continue
 
                 m = s + (t - s) // 2
                 self._push_down(i, s, m, t)
                 stack.append((s, t, ~i))
 
-                if left <= m:  # 注意左右子树的边界与范围
+                if left <= m:
                     stack.append((s, m, 2 * i))
                 if right > m:
                     stack.append((m + 1, t, 2 * i + 1))
@@ -1256,9 +1254,8 @@ class SegmentTreeRangeUpdateXORSum:
                 self.cover[i] = self.cover[i << 1] + self.cover[(i << 1) | 1]
         return
 
-    def query_sum(self, left: int, right: int, s: int, t: int, i: int) -> int:
-        # 查询区间的和
-        stack = [(s, t, i)]
+    def query_sum(self, left: int, right: int) -> int:
+        stack = [(0, self.n - 1, 1)]
         ans = 0
         while stack:
             s, t, i = stack.pop()
@@ -1268,9 +1265,9 @@ class SegmentTreeRangeUpdateXORSum:
             m = s + (t - s) // 2
             self._push_down(i, s, m, t)
             if left <= m:
-                stack.append((s, m, 2 * i))
+                stack.append((s, m, i << 1))
             if right > m:
-                stack.append((m + 1, t, 2 * i + 1))
+                stack.append((m + 1, t, (i << 1) | 1))
         return ans
 
 

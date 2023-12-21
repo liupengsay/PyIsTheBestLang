@@ -10,7 +10,7 @@ Reference：https://judge.yosupo.jp/problem/associative_array
 
 
 ================================Library Checker================================
-Associative Array（https://judge.yosupo.jp/problem/associative_array）hash|xor_random_seed
+1（https://judge.yosupo.jp/problem/associative_array）hash|xor_random_seed
 
 
 """
@@ -24,7 +24,7 @@ class Solution:
         return
 
     @staticmethod
-    def libc_aa(ac=FastIO()):
+    def library_check_1(ac=FastIO()):
         """template question of associative array"""
         pre = dict()
         for _ in range(ac.read_int()):
@@ -38,7 +38,11 @@ class Solution:
 
     @staticmethod
     def cf_1655b(ac=FastIO()):
-        def solve():
+        """
+        url: https://codeforces.com/contest/1665/problem/B
+        tag: hash|xor_random_seed
+        """
+        for _ in range(ac.read_int()):
             n = ac.read_int()
             nums = ac.read_list_ints()
             cur = max(Counter([x ^ ac.random_seed for x in nums]).values())
@@ -51,10 +55,6 @@ class Solution:
                 cur += x
                 other -= x
             ac.st(ans)
-            return
-
-        for _ in range(ac.read_int()):
-            solve()
         return
 
     @staticmethod
@@ -76,8 +76,9 @@ class Solution:
                 end[x ^ ac.random_seed] = i
             for _ in range(k):
                 a, b = ac.read_list_ints()
-                if a ^ ac.random_seed in start and b ^ ac.random_seed in end and start[a ^ ac.random_seed] < end[
-                    b ^ ac.random_seed]:
+                if (a ^ ac.random_seed in start
+                        and b ^ ac.random_seed in end
+                        and start[a ^ ac.random_seed] < end[b ^ ac.random_seed]):
                     ac.st("YES")
                 else:
                     ac.st("NO")

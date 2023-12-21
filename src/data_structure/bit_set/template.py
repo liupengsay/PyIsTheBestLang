@@ -1,17 +1,18 @@
-class SegmentTreeBitSet:
-    # Use bit operations to simulate line segment trees to perform interval 01 flip operations
-    def __init__(self):
+class SegBitSet:
+    def __init__(self, n):
+        self.n = n
         self.val = 0
         return
 
-    def update(self, b, c):
-        # The index starts from 0 and flips the interval [b, c]
-        assert 0 <= b <= c
-        p = (1 << (c + 1)) - (1 << b)
-        self.val ^= p
+    def update(self, ll, rr):
+        assert 0 <= ll <= rr <= self.n - 1
+        mask = ((1 << (rr - ll + 1)) - 1) << ll
+        self.val ^= mask
         return
 
-    def query(self, b, c):
-        # The index starts from 0 to query the number 1 in intervals [b, c]
-        p = (1 << (c + 1)) - (1 << b)
-        return (self.val & p).bit_count()
+    def query(self, ll, rr):
+        assert 0 <= ll <= rr <= self.n - 1
+        if ll == 0 and rr == self.n - 1:
+            return self.val.bit_count()
+        mask = ((1 << (rr - ll + 1)) - 1) << ll
+        return (self.val & mask).bit_count()

@@ -1092,7 +1092,7 @@ class Solution:
 
     @staticmethod
     def ac_5037_1(ac=FastIO()):
-        # 同CF242E，二十多个01segment_tree|维护区间异或与区间|和
+
         n = ac.read_int()
         nums = ac.read_list_ints()
         tree = [SegmentTreeRangeUpdateXORSum(n) for _ in range(22)]
@@ -1105,7 +1105,7 @@ class Solution:
                 ll, rr = lst[1:]
                 ll -= 1
                 rr -= 1
-                ans = sum((1 << j) * tree[j].query_sum(ll, rr, 0, n - 1, 1) for j in range(22))
+                ans = sum((1 << j) * tree[j].query_sum(ll, rr) for j in range(22))
                 ac.st(ans)
             else:
                 ll, rr, xx = lst[1:]
@@ -1113,7 +1113,7 @@ class Solution:
                 rr -= 1
                 for j in range(22):
                     if (1 << j) & xx:
-                        tree[j].update(ll, rr, 0, n - 1, 1, 1)
+                        tree[j].update_range(ll, rr,  1)
 
         return
 
