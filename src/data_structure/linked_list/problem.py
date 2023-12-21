@@ -247,7 +247,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/138/
         tag: linked_list|reverse_thinking
         """
-        # linked_list|逆序删除，查找前后最接近的值，也可直接SortedList
         n = ac.read_int()
         nums = ac.read_list_ints()
         ind = list(range(n))
@@ -287,9 +286,9 @@ class Solution:
     def lg_p5462(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P5462
-        tag: double_linked_list|greedy|lexicographical_order|deque
+        tag: double_linked_list|greedy|lexicographical_order|deque|classical
         """
-        # double_linked_list|greedy选取最大lexicographical_order队列
+
         n = ac.read_int()
         nums = ac.read_list_ints()
         pre = [-1] * (n + 1)
@@ -300,7 +299,6 @@ class Solution:
             if i + 1 < n:
                 post[nums[i]] = nums[i + 1]
 
-        # 从大到小取出
         visit = [0] * (n + 1)
         ans = []
         for num in range(n, 0, -1):
@@ -320,28 +318,25 @@ class Solution:
     def lg_p6155(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P6155
-        tag: sort|greedy|union_find_right_root
+        tag: sort|greedy|union_find_right_root|classical
         """
-        # sortinggreedyunion_find思想寻找右边最近的空位
+
         n = ac.read_int()
         a = ac.read_list_ints()
         b = ac.read_list_ints()
-        a.sort(reverse=True)  # 反向遍历从大到小尽早占据已有位置
+        a.sort(reverse=True)
         mod = 2 ** 64
         b.sort()
         cnt = []
         pre = {}
         for num in a:
             y = num
-            # 类似union_find寻找右边最近的空位
             lst = [num]
             while y in pre:
                 lst.append(y)
                 y = pre[y]
             lst.append(y)
-            # 类似linked_list|记录每个数右侧最近的空位
             for x in lst:
-                # 更新这个区间所有数右边最近的空位
                 pre[x] = y + 1
             cnt.append(y - num)
         cnt.sort(reverse=True)
@@ -355,7 +350,6 @@ class Solution:
         url: https://leetcode.cn/problems/find-latest-group-of-size-m/
         tag: union_find|double_linked_list
         """
-        # 类似union_find的prefix_suffixlinked_list|求解
         n = len(arr)
         left = [-1] * n
         right = [-1] * n
@@ -398,9 +392,9 @@ class Solution:
     def ac_4943(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/4946/
-        tag: bfs|linked_list
+        tag: bfs|linked_list|classical
         """
-        # bfs|linked_list|，维护四个方向上的未访问点
+
         m, n, k = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
         x1, y1, x2, y2 = ac.read_list_ints_minus_one()
@@ -416,7 +410,6 @@ class Solution:
         while stack:
             i, j = stack.popleft()
             d = dis[i][j]
-            # 按照右边取出可以访问到的节点
             pre = row_pre[i]
             nex = row_nex[i]
             y = nex[j]
@@ -431,7 +424,6 @@ class Solution:
                 nex[w] = y
                 pre[w] = pre[j]
 
-            # 按照左边取出可以访问到的节点
             pre = row_pre[i]
             nex = row_nex[i]
             y = pre[j]
@@ -446,7 +438,6 @@ class Solution:
                 pre[w] = y
                 nex[w] = nex[j]
 
-            # 按照下面取出可以访问到的节点
             pre = col_pre[j]
             nex = col_nex[j]
             y = nex[i]
@@ -461,7 +452,6 @@ class Solution:
                 nex[w] = y
                 pre[w] = pre[i]
 
-            # 按照上面取出可以访问到的节点
             pre = col_pre[j]
             nex = col_nex[j]
             y = pre[i]
@@ -486,7 +476,7 @@ class Solution:
         url: https://www.acwing.com/problem/content/5037/
         tag: heapq|greedy|linked_list
         """
-        # heapqgreedy|linked_list|处理
+
         n = ac.read_int()
         s = ac.read_str()
         nums = ac.read_list_ints()
@@ -496,7 +486,7 @@ class Solution:
         for i in range(n - 1):
             if s[i] != s[i + 1]:
                 heapq.heappush(stack, [abs(nums[i + 1] - nums[i]), i, i + 1])
-        # implemention出队并linked_list|维护前后关系
+
         ans = []
         visit = [0] * n
         while stack:

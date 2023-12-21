@@ -469,20 +469,22 @@ class Solution:
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
             nums = ac.read_list_ints()
-            m = ac.max(m, 2)
+            m = m if m > 2 else 2
             ans = j = s = 0
             cnt = dict()
             for i in range(n):
-                if i and nums[i] == nums[i - 1]:
+                x = nums[i]
+                if i and x == nums[i - 1]:
                     cnt = dict()
                     s = 0
                     j = i
                     continue
                 while j <= i - m + 1:
-                    cnt[nums[j]] = cnt.get(nums[j], 0) + 1
+                    y = nums[j]
+                    cnt[y] = cnt.get(y, 0) + 1
                     s += 1
                     j += 1
-                ans += s - cnt.get(nums[i], 0)
+                ans += s - cnt.get(x, 0)
             ac.st(ans)
         return
 
