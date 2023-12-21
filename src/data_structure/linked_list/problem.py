@@ -32,7 +32,7 @@ from collections import deque
 from math import inf
 from typing import List
 
-from src.graph.union_find.template import UnionFindLeftRoot
+from src.graph.union_find.template import UnionFindLeftRoot, UnionFindRightRoot
 from src.utils.fast_io import FastIO
 
 
@@ -130,7 +130,6 @@ class Solution:
         tag: monotonic_stack|liner_dp|bfs|linked_list
         """
 
-        # monotonic_stack|优化的liner_dp，也可用bfs|linked_list|求解
         n = len(nums)
         post = list(range(1, n + 1))
         nums.append(10 ** 9 + 7)
@@ -147,12 +146,12 @@ class Solution:
         return ans
 
     @staticmethod
-    def lc_2617(grid: List[List[int]]) -> int:
+    def lc_2617_1(grid: List[List[int]]) -> int:
         """
         url: https://leetcode.cn/problems/minimum-number-of-visited-cells-in-a-grid/
-        tag: bfs|double_linked_list
+        tag: bfs|double_linked_list|classical|reverse_order|reverse_thinking|tree_array|segment_tree|flatten
         """
-        # bfs|两个方向上的linked_list|，也可以union_find代替
+
         m, n = len(grid), len(grid[0])
         dis = [[inf] * n for _ in range(m)]
         row_nex = [list(range(1, n + 1)) for _ in range(m)]
@@ -167,7 +166,6 @@ class Solution:
             if x == 0:
                 continue
 
-            # 按照行取出可以访问到的节点
             nex = row_nex[i]
             y = nex[j]
             lst = []
@@ -179,11 +177,9 @@ class Solution:
                     stack.append([i, y])
                 lst.append(y)
                 y = nex[y]
-            # 更新前驱后驱
             for w in lst:
                 nex[w] = y
 
-            # 按照列取出可以访问到的节点
             nex = col_nex[j]
             y = nex[i]
             lst = []
@@ -195,10 +191,53 @@ class Solution:
                     stack.append([y, j])
                 lst.append(y)
                 y = nex[y]
-            # 更新前驱后驱
             for w in lst:
                 nex[w] = y
 
+        ans = dis[-1][-1]
+        return ans if ans < inf else -1
+
+    @staticmethod
+    def lc_2617_2(grid: List[List[int]]) -> int:
+        """
+        url: https://leetcode.cn/problems/minimum-number-of-visited-cells-in-a-grid/
+        tag: bfs|double_linked_list|classical|reverse_order|reverse_thinking|tree_array|segment_tree|flatten
+        """
+        m, n = len(grid), len(grid[0])
+        dis = [[inf] * n for _ in range(m)]
+        row = [UnionFindRightRoot(n + 1) for _ in range(m)]
+        col = [UnionFindRightRoot(m + 1) for _ in range(n)]
+        stack = deque([[0, 0]])
+        dis[0][0] = 1
+
+        while stack:
+            i, j = stack.popleft()
+            d = dis[i][j]
+            x = grid[i][j]
+            if x == 0:
+                continue
+
+            uf = row[i]
+            p = uf.find(j)
+            while p <= x + j and p <= n - 1:
+                if dis[i][p] == inf:
+                    dis[i][p] = d + 1
+                    stack.append([i, p])
+                    if i == m - 1 and p == n - 1:
+                        return d + 1
+                uf.union(p, p + 1)
+                p = uf.find(p)
+
+            uf = col[j]
+            p = uf.find(i)
+            while p <= x + i and p <= m - 1:
+                if dis[p][j] == inf:
+                    dis[p][j] = d + 1
+                    stack.append([p, j])
+                    if p == m - 1 and j == n - 1:
+                        return d + 1
+                uf.union(p, p + 1)
+                p = uf.find(p)
         ans = dis[-1][-1]
         return ans if ans < inf else -1
 
