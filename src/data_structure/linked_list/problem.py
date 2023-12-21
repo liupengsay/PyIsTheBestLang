@@ -111,9 +111,8 @@ class Solution:
     def nc_49888c_2(ac=FastIO()):
         """
         url: https://ac.nowcoder.com/acm/contest/49888/C
-        tag: double_linked_list
+        tag: double_linked_list|union_find_root_left
         """
-        n, k = ac.read_list_ints()
         n, k = ac.read_list_ints()
         uf = UnionFindLeftRoot(n + 1)
         for _ in range(k):
