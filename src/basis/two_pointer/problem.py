@@ -17,7 +17,7 @@ Description：sliding_window|two_pointers|center_extension_method
 2524（https://leetcode.cn/problems/maximum-frequency-score-of-a-subarray/）sliding_window|mod|power
 239（https://leetcode.cn/problems/sliding-window-maximum/）sliding_window
 2447（https://leetcode.cn/problems/number-of-subarrays-with-gcd-equal-to-k/）sliding_window|gcd
-6392（https://leetcode.cn/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/）sliding_window|gcd
+2654（https://leetcode.cn/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/）sliding_window|gcd
 1163（https://leetcode.cn/problems/last-substring-in-lexicographical-order/）minimum_expression|two_pointers
 2555（https://leetcode.cn/problems/maximize-win-from-two-segments/description/）same_direction|two_pointers|liner_dp
 992（https://leetcode.cn/problems/subarrays-with-k-different-integers/）tree_pointers|fast_slow_pointers
@@ -73,10 +73,9 @@ class Solution:
     def lg_p4653(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P4653
-        tag: greedy|sort|two_pointers
+        tag: greedy|sort|two_pointers|brain_teaser
         """
 
-        # greedysorting后two_pointers
         n = ac.read_int()
 
         nums1 = []
@@ -105,16 +104,16 @@ class Solution:
     def lc_16(nums, target):
         """
         url: https://leetcode.cn/problems/3sum-closest/
-        tag: tree_pointers
+        tag: tree_pointers|classical
         """
-        # 寻找最接近目标值的三个元素和
+
         n = len(nums)
         nums.sort()
         ans = nums[0] + nums[1] + nums[2]
         for i in range(n - 2):
             j, k = i + 1, n - 1
             x = nums[i]
-            while j < k:  # 遍历数组作为第一个pointer，另外两个pointer相向而行
+            while j < k:
                 cur = x + nums[j] + nums[k]
                 ans = ans if abs(target - ans) < abs(target - cur) else cur
                 if cur > target:
@@ -129,9 +128,9 @@ class Solution:
     def lc_15(nums):
         """
         url: https://leetcode.cn/problems/3sum/
-        tag: two_pointers
+        tag: two_pointers|classical
         """
-        # 寻找三个元素和为 0 的不重复组合
+
         nums.sort()
         n = len(nums)
         ans = set()
@@ -156,7 +155,7 @@ class Solution:
         url: https://leetcode.cn/problems/3sum-smaller/
         tag: two_pointers|counter|brute_force
         """
-        # 相反方向的two_pointers统计和小于 target 的三元组数量
+
         nums.sort()
         n = len(nums)
         ans = 0
@@ -178,7 +177,7 @@ class Solution:
         url: https://leetcode.cn/problems/sliding-window-maximum/
         tag: sliding_window
         """
-        # sliding_window最大值
+
         n = len(nums)
         swa = SlidingWindowAggregation(-INF, max)
         ans = []
@@ -195,7 +194,7 @@ class Solution:
         url: https://leetcode.cn/problems/take-k-of-each-character-from-left-and-right/
         tag: reverse_thinking|inclusion_exclusion|two_pointers
         """
-        # reverse_thinkinginclusion_exclusiontwo_pointers
+
         cnt = Counter(s)
         n = len(s)
         if any(cnt[w] < k for w in "abc"):
@@ -218,7 +217,6 @@ class Solution:
         url: https://leetcode.cn/problems/maximize-win-from-two-segments/description/
         tag: same_direction|two_pointers|liner_dp
         """
-        # same_direction|two_pointers|liner_dp
         n = len(prize_positions)
 
         pre = [0] * n
@@ -239,7 +237,7 @@ class Solution:
         url: https://leetcode.cn/problems/count-zero-request-servers/
         tag: offline_query|tree_pointers|fast_slow_pointers
         """
-        # offline_query与three_pointers，即fast_slow_pointers维护连续区间的不同值个数
+
         m = len(queries)
         ans = [0] * m
         ind = list(range(m))
@@ -263,12 +261,12 @@ class Solution:
         return ans
 
     @staticmethod
-    def lc_6392(nums: List[int]) -> int:
+    def lc_2654(nums: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/
         tag: sliding_window|gcd
         """
-        # sliding_window维护区间 gcd 为 1 的长度信息
+
         if gcd(*nums) != 1:
             return -1
         if 1 in nums:
@@ -276,7 +274,6 @@ class Solution:
 
         swa = SlidingWindowAggregation(0, gcd)
         res, n = INF, len(nums)
-        # brute_force右端点
         for i in range(n):
             swa.append(nums[i])
             while swa and swa.query() == 1:
@@ -288,9 +285,9 @@ class Solution:
     def lc_992(nums: List[int], k: int) -> int:
         """
         url: https://leetcode.cn/problems/subarrays-with-k-different-integers/
-        tag: tree_pointers|fast_slow_pointers
+        tag: tree_pointers|fast_slow_pointers|classical
         """
-        # three_pointers，即fast_slow_pointers维护连续子区间个数
+
         n = len(nums)
         ans = j1 = j2 = 0
         pre1 = dict()
@@ -318,9 +315,9 @@ class Solution:
     def lc_1163(s: str) -> str:
         """
         url: https://leetcode.cn/problems/last-substring-in-lexicographical-order/
-        tag: minimum_expression|two_pointers
+        tag: minimum_expression|two_pointers|classical
         """
-        # two_pointers
+
         i, j, n = 0, 1, len(s)
         while j < n:
             k = 0
@@ -336,9 +333,9 @@ class Solution:
     def lc_1537(nums1: List[int], nums2: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/get-the-maximum-score/description/
-        tag: two_pointers|liner_dp|topological_sorting
+        tag: two_pointers|liner_dp|topological_sort
         """
-        # two_pointers|liner_dp或者topological_sorting做
+
         mod = 10 ** 9 + 7
         m, n = len(nums1), len(nums2)
         i = j = pre1 = pre2 = 0
@@ -365,19 +362,18 @@ class Solution:
         url: https://leetcode.cn/problems/ways-to-split-array-into-three-subarrays/description/
         tag: three_pointers|fast_slow_pointers
         """
-        # three_pointers，即fast_slow_pointers维护满足条件的分cut_point个数
+
         mod = 10 ** 9 + 7
         ans = 0
         pre = list(accumulate(nums, initial=0))
         j1 = j2 = 0
         n = len(nums)
         for i in range(n):
-            # mid的区间范围为 [i+1, j1~(j2-1)]
             while j1 <= i or (j1 < n and pre[j1 + 1] - pre[i + 1] < pre[i + 1]):
-                j1 += 1  # j1 必须大于 i 且 mid >= left 区间的和
+                j1 += 1
             while j2 < j1 or (j2 < n - 1 and pre[-1] - pre[j2 + 1] >= pre[j2 + 1] - pre[i + 1]):
-                j2 += 1  # j2 必须大于等于j1 且 mid < right 非空因此 j2 < n-1
-            if j2 >= j1:  # 此时[i+1, j1] 到 区间[i+1, j2-1] 是合法的
+                j2 += 1
+            if j2 >= j1:
                 ans += j2 - j1
         return ans % mod
 
@@ -387,7 +383,6 @@ class Solution:
         url: https://leetcode.cn/problems/number-of-subarrays-with-gcd-equal-to-k/
         tag: sliding_window|gcd
         """
-        # sliding_windowtwo_pointersthree_pointers维护区间 gcd 为 k 的子数组数量信息
         n = len(nums)
         e = reduce(math.lcm, nums + [k])
         e *= 2
@@ -427,14 +422,12 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5583
         tag: two_pointers
         """
-        # two_pointers与变量维护区间信息
         n, m, d = ac.read_list_ints()
         nums = ac.read_list_ints()
         cnt = dict()
         for num in nums:
             cnt[num] = cnt.get(num, 0) + 1
         nums = [ac.read_list_ints() for _ in range(n)]
-        # 动态维护的变量
         flag = 0
         ans = [-1]
         not_like = inf
@@ -442,7 +435,6 @@ class Solution:
         cur_cnt = defaultdict(int)
         cur_power = cur_not_like = j = 0
         for i in range(n):
-            # 移动右pointer
             while j < n and (flag < len(cnt) or all(num in cnt for num in nums[j][2:])):
                 cur_power += nums[j][0]
                 for num in nums[j][2:]:
@@ -457,7 +449,6 @@ class Solution:
                     not_like = cur_not_like
                     power = cur_power
                     ans = [i + 1, j]
-            # 删除左pointer
             cur_power -= nums[i][0]
             for num in nums[i][2:]:
                 cur_cnt[num] -= 1
@@ -474,7 +465,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6465
         tag: sliding_window|two_pointers|counter
         """
-        # sliding_window与two_pointerscounter
+
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
             nums = ac.read_list_ints()
@@ -501,7 +492,7 @@ class Solution:
         url: https://www.acwing.com/problem/content/4220/
         tag: two_pointers|sliding_window
         """
-        # two_pointers移动
+
         n = ac.read_int()
         s = ac.read_str()
         a, b = ac.read_list_ints()
