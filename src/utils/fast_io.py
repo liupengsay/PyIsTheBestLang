@@ -3,6 +3,7 @@ from sys import stdin, stdout
 from types import GeneratorType
 
 RANDOM = random.randint(0, 10 ** 9 + 7)
+inf = 1 << 64
 
 
 class Wrapper(int):

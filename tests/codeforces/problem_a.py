@@ -3,7 +3,6 @@ import bisect
 import decimal
 import heapq
 from types import GeneratorType
-from math import inf
 import random
 from bisect import bisect_left, bisect_right
 from heapq import heappush, heappop, heappushpop
@@ -19,6 +18,8 @@ from operator import xor, add
 from operator import mul
 from typing import List, Callable, Dict, Set, Tuple, DefaultDict
 from heapq import heappush, heappop, heapify
+
+inf = 1 << 64
 
 
 class FastIO:
