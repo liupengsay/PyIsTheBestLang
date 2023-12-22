@@ -1,504 +1,564 @@
 """
-Algorithm：deque|monotonic_queue|priority_queue
-Description：sliding_window|monotonic
+Algorithm：heapq|monotonic_queue|huffman_tree
+Description：greedy
 
 ====================================LeetCode====================================
-239（https://leetcode.cn/problems/sliding-window-maximum/）sliding_window_maximum
-1696（https://leetcode.cn/problems/jump-game-vi/）priority_queue|dp
-862（https://leetcode.cn/problems/shortest-subarray-with-sum-at-least-k/description/）prefix_sum|monotonic_queue|dp
-1425（https://leetcode.cn/problems/constrained-subsequence-sum/）monotonic_queue|dp
+630（https://leetcode.cn/problems/course-schedule-iii/）delay_heapq|greedy
+2454（https://leetcode.cn/problems/next-greater-element-iv/）heapq|post_second_larger|hash|SortedList
+2402（https://leetcode.cn/problems/meeting-rooms-iii/）heapq|implemention|counter
+2386（https://leetcode.cn/problems/find-the-k-sum-of-an-array/）heapq|brain_teaser
+2163（https://leetcode.cn/problems/minimum-difference-in-sums-after-removal-of-elements/）prefix_suffix|brute_force
+1792（https://leetcode.cn/problems/maximum-average-pass-ratio/）greedy
+295（https://leetcode.cn/problems/find-median-from-data-stream/）heapq|median
+2542（https://leetcode.cn/problems/maximum-subsequence-score/）greedy|sort|brute_force|heapq
+2263（https://leetcode.cn/problems/make-array-non-decreasing-or-non-increasing/）heapq|greedy
 
 =====================================LuoGu======================================
-P2251（https://www.luogu.com.cn/problem/P2251）sliding_window_minimum
-P2032（https://www.luogu.com.cn/problem/P2032）sliding_window_maximum
-P1750（https://www.luogu.com.cn/problem/P1750）pointer|sliding_window|stack|queue
-P2311（https://www.luogu.com.cn/problem/P2311）sliding_window
-P7175（https://www.luogu.com.cn/problem/P7175）priority_queue|implemention
-P7793（https://www.luogu.com.cn/problem/P7793）monotonic_queue
-P2216（https://www.luogu.com.cn/problem/P2216）sliding_window|sub_matrix
-P1886（https://www.luogu.com.cn/problem/P1886）sliding_window
-P1725（https://www.luogu.com.cn/problem/P1725）monotonic_queue|pointer|sliding_window|liner_dp
-P2827（https://www.luogu.com.cn/problem/P2827）monotonic_queue
-P3800（https://www.luogu.com.cn/problem/P3800）monotonic_queue|matrix_dp
-P1016（https://www.luogu.com.cn/problem/P1016）monotonic_queue|greedy|implemention
-P1714（https://www.luogu.com.cn/problem/P1714）prefix_sum|sliding_window
-P2629（https://www.luogu.com.cn/problem/P2629）circular_array|prefix_sum|sliding_window
-P3522（https://www.luogu.com.cn/problem/P3522）monotonic_stack
-P3957（https://www.luogu.com.cn/problem/P3957）binary_search|priority_queue|dp
-P4085（https://www.luogu.com.cn/problem/P4085）two_pointers|priority_queue|sliding_window
-P4392（https://www.luogu.com.cn/problem/P4392）sliding_window|monotonic_queue
+P1168（https://www.luogu.com.cn/problem/P1168）heapq|median
+P1801（https://www.luogu.com.cn/problem/P1801）heapq
+P2085（https://www.luogu.com.cn/problem/P2085）math|heapq
+P1631（https://www.luogu.com.cn/problem/P1631）heapq|pointer
+P4053（https://www.luogu.com.cn/problem/P4053）delay_heapq|greedy
+P1878（https://www.luogu.com.cn/problem/P1878）hash|heapq|implemention
+P3620（https://www.luogu.com.cn/problem/P3620）greedy|heapq|double_linked_list
+P2168（https://www.luogu.com.cn/problem/P2168）huffman_tree|heapq|greedy
+P2278（https://www.luogu.com.cn/problem/P2278）heapq|implemention
+P1717（https://www.luogu.com.cn/problem/P1717）brute_force|heapq|greedy
+P1905（https://www.luogu.com.cn/problem/P1905）heapq|greedy
+P2409（https://www.luogu.com.cn/problem/P2409）heapq
+P2949（https://www.luogu.com.cn/problem/P2949）heapq|greedy|implemention|delay_heapq|lazy_heapq
+P6033（https://www.luogu.com.cn/problem/P6033）greedy|deque
+P4597（https://www.luogu.com.cn/problem/P4597）heapq|greedy
 
 =====================================AcWing=====================================
-133（https://www.acwing.com/problem/content/135/）priority_queue
-135（https://www.acwing.com/problem/content/137/）monotonic_queue
+146（https://www.acwing.com/problem/content/description/148/）heapq
+147（https://www.acwing.com/problem/content/description/149/）greedy|heapq|double_linked_list
+148（https://www.acwing.com/problem/content/150/）greedy|heapq|huffman_tree
+149（https://www.acwing.com/problem/content/description/151/）huffman_tree|heapq|greedy
+
+
 
 """
-from collections import deque
+
+import heapq
+from collections import deque, defaultdict
+from heapq import heappushpop, heappush, heappop
 from math import inf
 from typing import List
 
-from src.basis.binary_search.template import BinarySearch
-from src.data_structure.priority_queue.template import PriorityQueue
+from sortedcontainers import SortedList
+
+from src.data_structure.priority_queue.template import MedianFinder
 from src.utils.fast_io import FastIO
 
 
 class Solution:
-    def __init__(self):
+    def __int__(self):
         return
 
     @staticmethod
-    def lg_p1725(ac=FastIO()):
+    def lc_2454_1(nums: List[int]) -> List[int]:
         """
-        url: https://www.luogu.com.cn/problem/P1725
-        tag: monotonic_queue|pointer|sliding_window|liner_dp
+        url: https://leetcode.cn/problems/next-greater-element-iv/
+        tag: heapq|post_second_larger|hash|SortedList
         """
-        # 单调队列和pointer维护sliding_window最大值|liner_dp
-        n, low, high = ac.read_list_ints()
-        n += 1
-        nums = ac.read_list_ints()
-        dp = [-inf] * n
-        dp[0] = nums[0]
-        j = 0
-        stack = deque()
-        for i in range(1, n):
-            while stack and stack[0][0] < i - high:
-                stack.popleft()
-            while j < n and j <= i - low:
-                while stack and stack[-1][1] <= dp[j]:
-                    stack.pop()
-                stack.append([j, dp[j]])
-                j += 1
-            if stack:
-                dp[i] = stack[0][1] + nums[i]
-        ans = max(dp[x] for x in range(n) if x + high >= n)
-        ac.st(ans)
-        return
-
-    @staticmethod
-    def lc_239(nums: List[int], k: int) -> List[int]:
-        """
-        url: https://leetcode.cn/problems/sliding-window-maximum/
-        tag: sliding_window_maximum
-        """
-        # sliding_window最大值
-        return PriorityQueue().sliding_window(nums, k)
-
-    @staticmethod
-    def lc_862(nums: List[int], k: int) -> int:
-        """
-        url: https://leetcode.cn/problems/shortest-subarray-with-sum-at-least-k/description/
-        tag: prefix_sum|monotonic_queue|dp
-        """
-        # prefix_sum|单调双端队列DP
+        # hashsort|SortedList
         n = len(nums)
-        stack = deque([0])
-        ind = deque([-1])
-        pre = 0
-        ans = n + 1
+        dct = defaultdict(list)
         for i in range(n):
-            pre += nums[i]
-            while stack and stack[0] <= pre - k:
-                stack.popleft()
-                j = ind.popleft()
-                if i - j < ans:
-                    ans = i - j
-            while stack and stack[-1] >= pre:
-                stack.pop()
-                ind.pop()
-            stack.append(pre)
-            ind.append(i)
-        return ans if ans < n + 1 else -1
+            dct[nums[i]].append(i)
+        lst = SortedList()
+        ans = [-1] * n
+        for num in sorted(dct, reverse=True):
+            for i in dct[num]:
+                j = lst.bisect_left(i)
+                if 0 <= j + 1 < len(lst):
+                    ans[i] = nums[lst[j + 1]]
+            for i in dct[num]:
+                lst.add(i)
+        return ans
 
     @staticmethod
-    def lg_p2032(ac=FastIO()):
+    def lc_2454_2(nums: List[int]) -> List[int]:
         """
-        url: https://www.luogu.com.cn/problem/P2032
-        tag: sliding_window_maximum
-        """
-        # sliding_window最大值
-        n, k = ac.read_list_ints()
-        nums = ac.read_list_ints()
-        ans = PriorityQueue().sliding_window(nums, k)
-        for a in ans:
-            ac.st(a)
-        return
-
-    @staticmethod
-    def lg_p2251(ac=FastIO()):
-        """
-        url: https://www.luogu.com.cn/problem/P2251
-        tag: sliding_window_minimum
-        """
-        # sliding_window最小值
-        n, m = ac.read_list_ints()
-        nums = ac.read_list_ints()
-        ans = PriorityQueue().sliding_window(nums, m, "min")
-        for a in ans:
-            ac.st(a)
-        return
-
-    @staticmethod
-    def lg_p2216(ac=FastIO()):
-        """
-        url: https://www.luogu.com.cn/problem/P2216
-        tag: sliding_window|sub_matrix
+        url: https://leetcode.cn/problems/next-greater-element-iv/
+        tag: heapq|post_second_larger|hash|SortedList
         """
 
-        # 二维sliding_window最大值与sliding_window最小值
-        m, n, k = ac.read_list_ints()
-        grid = [ac.read_list_ints() for _ in range(m)]
-
-        ceil = [[0] * n for _ in range(m)]
-        floor = [[0] * n for _ in range(m)]
-        pq = PriorityQueue()
-        for i in range(m):
-            ceil[i] = pq.sliding_window_all(grid[i], k, "max")
-            floor[i] = pq.sliding_window_all(grid[i], k, "min")
-        for j in range(n):
-            lst = pq.sliding_window_all([ceil[i][j] for i in range(m)], k, "max")
-            for i in range(m):
-                ceil[i][j] = lst[i]
-            lst = pq.sliding_window_all([floor[i][j] for i in range(m)], k, "min")
-            for i in range(m):
-                floor[i][j] = lst[i]
-        ans = ceil[k - 1][k - 1] - floor[k - 1][k - 1]
-        for i in range(k - 1, m):
-            for j in range(k - 1, n):
-                ans = ac.min(ans, ceil[i][j] - floor[i][j])
-        ac.st(ans)
-        return
-
-    @staticmethod
-    def lg_p1886(ac=FastIO()):
-        """
-        url: https://www.luogu.com.cn/problem/P1886
-        tag: sliding_window
-        """
-        # sliding_window最大最小值
-        n, k = ac.read_list_ints()
-        nums = ac.read_list_ints()
-        ans1 = []
-        ans2 = []
-        ceil = deque()
-        floor = deque()
-        for i in range(n):
-            while ceil and ceil[0] < i - k + 1:
-                ceil.popleft()
-            while ceil and nums[ceil[-1]] <= nums[i]:
-                ceil.pop()
-            ceil.append(i)
-
-            while floor and floor[0] < i - k + 1:
-                floor.popleft()
-            while floor and nums[floor[-1]] >= nums[i]:
-                floor.pop()
-            floor.append(i)
-
-            if i >= k - 1:
-                ans1.append(nums[floor[0]])
-                ans2.append(nums[ceil[0]])
-        ac.lst(ans1)
-        ac.lst(ans2)
-        return
-
-    @staticmethod
-    def lg_p3800(ac=FastIO()):
-        """
-        url: https://www.luogu.com.cn/problem/P3800
-        tag: monotonic_queue|matrix_dp
-        """
-        # monotonic_queuematrix_dp
-        m, n, k, t = ac.read_list_ints()
-        dct = [dict() for _ in range(m)]
-        for _ in range(k):
-            x, y, val = ac.read_list_ints()
-            x -= 1
-            y -= 1
-            dct[x][y] = val
-
-        dp = [[0] * n for _ in range(2)]
-        pre = 0
-        for i in range(m):
-            cur = 1 - pre
-            stack = deque()
-            ind = 0
-            for j in range(n):
-                while stack and stack[0][0] < j - t:
-                    stack.popleft()
-                while ind < n and ind <= j + t:
-                    while stack and stack[-1][1] <= dp[pre][ind]:
-                        stack.pop()
-                    stack.append([ind, dp[pre][ind]])
-                    ind += 1
-                dp[cur][j] = dct[i].get(j, 0) + stack[0][1]
-            pre = cur
-        ac.st(max(dp[pre]))
-        return
-
-    @staticmethod
-    def ac_133(ac=FastIO()):
-        """
-        url: https://www.acwing.com/problem/content/135/
-        tag: priority_queue
-        """
-        # 三个priority_queue|一个偏移量
-        n, m, q, u, v, t = ac.read_list_ints()
-        nums1 = ac.read_list_ints()
-        nums1 = deque(sorted(nums1, reverse=True))
-        nums2 = deque()
-        nums3 = deque()
-        delta = 0
-        ans1 = []
-        ans2 = []
-        for i in range(1, m + 1):
-            a = nums1[0] + delta if nums1 else -inf
-            b = nums2[0] + delta if nums2 else -inf
-            c = nums3[0] + delta if nums3 else -inf
-            if a >= b and a >= c:
-                x = a
-                nums1.popleft()
-                x1 = x * u // v
-                nums2.append(x1 - delta - q)
-                nums3.append(x - x1 - delta - q)
-            elif b >= c and b >= a:
-                x = b
-                nums2.popleft()
-                x1 = x * u // v
-                nums2.append(x1 - delta - q)
-                nums3.append(x - x1 - delta - q)
-            else:
-                x = c
-                nums3.popleft()
-                x1 = x * u // v
-                nums2.append(x1 - delta - q)
-                nums3.append(x - x1 - delta - q)
-            delta += q
-            if i % t == 0:
-                ans1.append(x)
-
-        ind = 0
-        while nums1 or nums2 or nums3:
-            a = nums1[0] + delta if nums1 else -inf
-            b = nums2[0] + delta if nums2 else -inf
-            c = nums3[0] + delta if nums3 else -inf
-            if a >= b and a >= c:
-                x = a
-                nums1.popleft()
-            elif b >= c and b >= a:
-                x = b
-                nums2.popleft()
-            else:
-                x = c
-                nums3.popleft()
-            ind += 1
-            if ind % t == 0:
-                ans2.append(x)
-        ac.lst(ans1)
-        ac.lst(ans2)
-        return
-
-    @staticmethod
-    def lg_p1016(ac=FastIO()):
-        """
-        url: https://www.luogu.com.cn/problem/P1016
-        tag: monotonic_queue|greedy|implemention
-        """
-        # 单调队列，greedyimplemention油箱，还可以增|每个站的油量限制
-        d1, c, d2, p, n = ac.read_list_floats()
-        n = int(n)
-        nums = [[0, p]] + [ac.read_list_floats() for _ in range(n)] + [[d1, 0]]
-        nums.sort()
-        stack = deque([[p, c]])  # 价格与油量
-        ans = 0
-        in_stack = c
+        # monotonic_stack||小顶heapq
         n = len(nums)
-        for i in range(1, n):
-
-            # 当前油箱的最大可行驶距离
-            dis = nums[i][0] - nums[i - 1][0]
-            if in_stack * d2 < dis:
-                ac.st("No Solution")
-                return
-
-            while dis:
-                # 依次取出价格最低的油消耗
-                x = ac.min(dis / d2, stack[0][1])
-                ans += x * stack[0][0]
-                dis -= x * d2
-                stack[0][1] -= x
-                in_stack -= x
-                if not stack[0][1]:
-                    stack.popleft()
-
-            # 在当前站点补充更|便宜的油
-            cur_p = nums[i][1]
-            while stack and stack[-1][0] >= cur_p:
-                in_stack -= stack.pop()[1]
-            stack.append([cur_p, c - in_stack])
-            in_stack = c
-        ac.st("%.2f" % ans)
-        return
-
-    @staticmethod
-    def lg_p1714(ac=FastIO()):
-        """
-        url: https://www.luogu.com.cn/problem/P1714
-        tag: prefix_sum|sliding_window
-        """
-        # 单调队列小于一定长度的最大连续子段和
-        n, m = ac.read_list_ints()
-        nums = ac.read_list_ints()
-        ans = max(nums)
-        pre = 0
-        stack = deque([[-1, 0]])
+        ans = [-1] * n
+        mono_stack = []
+        small_stack = []
         for i in range(n):
-            pre += nums[i]
-            # sliding_window记录最小值
-            while stack and stack[0][0] <= i - m - 1:
-                stack.popleft()
-            while stack and stack[-1][1] >= pre:
-                stack.pop()
-            stack.append([i, pre])
-            if stack:
-                ans = ac.max(ans, pre - stack[0][1])
-        ac.st(ans)
-        return
+            while small_stack and small_stack[0][0] < nums[i]:
+                ans[heapq.heappop(small_stack)[1]] = nums[i]
+
+            while mono_stack and nums[mono_stack[-1]] < nums[i]:
+                j = mono_stack.pop()
+                heapq.heappush(small_stack, [nums[j], j])
+            mono_stack.append(i)
+
+        return ans
 
     @staticmethod
-    def lg_p2629(ac=FastIO()):
-        """
-        url: https://www.luogu.com.cn/problem/P2629
-        tag: circular_array|prefix_sum|sliding_window
-        """
-        # circular_array|prefix_sum与sliding_window最小值
+    def lg_1198(ac=FastIO()):
+        # 两个heapq维护median
         n = ac.read_int()
         nums = ac.read_list_ints()
-        nums = [0] + nums + nums
-        ans = 0
-        stack = deque([0])
-        for i in range(1, n * 2):
-            nums[i] += nums[i - 1]
-            while stack and stack[0] <= i - n:
-                stack.popleft()
-            while stack and nums[stack[-1]] >= nums[i]:
-                stack.pop()
-            stack.append(i)
-            if i >= n:
-                if nums[stack[0]] >= nums[i - n]:
-                    ans += 1
-        ac.st(ans)
+        arr = MedianFinder()
+        for i in range(n):
+            arr.add_num(nums[i])
+            if i % 2 == 0:
+                ac.st(arr.find_median())
         return
 
     @staticmethod
-    def lg_p3957(ac=FastIO()):
+    def lc_1792(classes, extra_students):
         """
-        url: https://www.luogu.com.cn/problem/P3957
-        tag: binary_search|priority_queue|dp
+        url: https://leetcode.cn/problems/maximum-average-pass-ratio/
+        tag: greedy
         """
-        # binary_search|单调队列
-        n, d, k = ac.read_list_ints()
-        dis = [0]
-        score = [0]
-        for _ in range(n):
-            x, s = ac.read_list_ints()
-            dis.append(x)
-            score.append(s)
-        n += 1
+        # heapqgreedyimplemention每次选择最优
+        stack = []
+        for p, t in classes:
+            heapq.heappush(stack, [p / t - (p + 1) / (t + 1), p, t])
+        for _ in range(extra_students):
+            r, p, t = heapq.heappop(stack)
+            p += 1
+            t += 1
+            # 关键点在于优先级的设置为 p / t - (p + 1) / (t + 1)
+            heapq.heappush(stack, [p / t - (p + 1) / (t + 1), p, t])
+        return sum(p / t for _, p, t in stack) / len(classes)
 
-        def check(g):
-            dp = [-inf] * n
-            stack = deque()
-            dp[0] = score[0]
-            floor = ac.max(1, d - g)
-            ceil = d + g
-            j = 0
-            for i in range(1, n):
-                # 注意此时two_pointers移动窗口
-                while stack and stack[0][1] < dis[i] - ceil:
-                    stack.popleft()
-                while j < n and dis[i] - dis[j] >= floor:
-                    if dis[i] - dis[j] > ceil:
-                        j += 1
+    @staticmethod
+    def lc_630(courses: List[List[int]]) -> int:
+        """
+        url: https://leetcode.cn/problems/course-schedule-iii/
+        tag: delay_heapq|greedy
+        """
+        # 反悔heapq，遍历过程选择更优的
+        courses.sort(key=lambda x: x[1])
+        # 按照结束时间sorting
+        stack = []
+        day = 0
+        for duration, last in courses:
+            if day + duration <= last:
+                day += duration
+                heapq.heappush(stack, -duration)
+            else:
+                # 如果有学习时间更短的课程则替换
+                if stack and -stack[0] > duration:
+                    day += heapq.heappop(stack) + duration
+                    heapq.heappush(stack, -duration)
+        return len(stack)
+
+    @staticmethod
+    def ac_146(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/148/
+        tag: heapq
+        """
+        # 小顶heapq问题m个数组最小的n个子序列和，同样可以最大的
+        for _ in range(ac.read_int()):
+            m, n = ac.read_list_ints()
+            grid = [sorted(ac.read_list_ints()) for _ in range(m)]
+            grid = [g for g in grid if g]
+            m = len(grid)
+
+            pre = grid[0]
+            for i in range(1, m):
+                cur = grid[i][:]
+                nex = []
+                stack = [[pre[0] + cur[0], 0, 0]]
+                dct = set()
+                while stack and len(nex) < n:
+                    val, i, j = heapq.heappop(stack)
+                    if (i, j) in dct:
                         continue
-                    while stack and stack[-1][0] <= dp[j]:
-                        stack.pop()
-                    stack.append([dp[j], dis[j]])
-                    j += 1
-                if stack:
-                    dp[i] = stack[0][0] + score[i]
-                    if dp[i] >= k:
-                        return True
-            return False
-
-        ans = BinarySearch().find_int_left(0, dis[-1], check)
-        ac.st(ans if check(ans) else -1)
+                    dct.add((i, j))
+                    nex.append(val)
+                    if i + 1 < n:
+                        heapq.heappush(stack, [pre[i + 1] + cur[j], i + 1, j])
+                    if j + 1 < n:
+                        heapq.heappush(stack, [pre[i] + cur[j + 1], i, j + 1])
+                pre = nex[:]
+            ac.lst(pre)
         return
 
     @staticmethod
-    def lg_p4085(ac=FastIO()):
+    def ac_147(ac=FastIO()):
         """
-        url: https://www.luogu.com.cn/problem/P4085
-        tag: two_pointers|priority_queue|sliding_window
+        url: https://www.acwing.com/problem/content/description/149/
+        tag: greedy|heapq|double_linked_list
         """
+        # greedy思想|heapq|与double_linked_list|优化
 
-        # two_pointers|priority_queuesliding_window最小值
-        n, m = ac.read_list_ints()
-        f = []
-        s = []
-        for i in range(n):
-            a, b = ac.read_list_ints()
-            f.append(a)
-            s.append(b)
+        n, k = ac.read_list_ints()
+        nums = [ac.read_int() for _ in range(n)]
 
-        # 注意pointer与窗口的变动
-        ans = inf
-        stack = deque([])
-        j = pre = 0
-        for i in range(n):
-            while stack and stack[0][0] < i:
-                stack.popleft()
-            while j < n and pre < m:
-                pre += f[j]
-                while stack and stack[-1][1] <= s[j]:
-                    stack.pop()
-                stack.append([j, s[j]])
-                j += 1
-            if pre >= m:
-                ans = ac.min(ans, stack[0][1])
-            pre -= f[i]
+        # 假如虚拟的头节点并初始化
+        diff = [inf] + [nums[i + 1] - nums[i] for i in range(n - 1)] + [inf]
+        stack = [[diff[i], i] for i in range(1, n)]
+        heapq.heapify(stack)
+        pre = [i - 1 for i in range(n + 1)]
+        post = [i + 1 for i in range(n + 1)]
+        pre[0] = 0
+        post[n] = n
+
+        # 记录删除过的点
+        ans = 0
+        delete = [0] * (n + 1)
+        while k:
+            val, i = heapq.heappop(stack)
+            if delete[i]:
+                continue
+            ans += diff[i]
+
+            # |入新点删除旧点
+            left = diff[pre[i]]
+            right = diff[post[i]]
+            new = left + right - diff[i]
+            diff[i] = new
+            delete[pre[i]] = 1
+            delete[post[i]] = 1
+
+            pre[i] = pre[pre[i]]
+            post[pre[i]] = i
+
+            post[i] = post[post[i]]
+            pre[post[i]] = i
+            heapq.heappush(stack, [new, i])
+            k -= 1
         ac.st(ans)
         return
 
     @staticmethod
-    def lg_p4392(ac=FastIO()):
+    def lg_p2168(ac=FastIO()):
         """
-        url: https://www.luogu.com.cn/problem/P4392
-        tag: sliding_window|monotonic_queue
+        url: https://www.luogu.com.cn/problem/P2168
+        tag: huffman_tree|heapq|greedy
         """
-        # 单调队列sliding_window最大值
-        n, m, c = ac.read_list_ints()
-        ceil = deque()
-        floor = deque()
-        nums = ac.read_list_ints()
-        ans = False
-        for i in range(n):
-
-            while ceil and ceil[0] <= i - m:
-                ceil.popleft()
-            while floor and floor[0] <= i - m:
-                floor.popleft()
-
-            while ceil and nums[ceil[-1]] <= nums[i]:
-                ceil.pop()
-            ceil.append(i)
-
-            while floor and nums[floor[-1]] >= nums[i]:
-                floor.pop()
-            floor.append(i)
-
-            if i >= m - 1 and nums[ceil[0]] - nums[floor[0]] <= c:
-                ac.st(i - m + 2)
-                ans = True
-        if not ans:
-            ac.st("NONE")
+        # heapq|greedy与霍夫曼树Huffman Tree
+        n, k = ac.read_list_ints()
+        stack = [[ac.read_int(), 0] for _ in range(n)]
+        heapq.heapify(stack)
+        while (len(stack) - 1) % (k - 1) != 0:
+            heapq.heappush(stack, [0, 0])
+        ans = 0
+        while len(stack) > 1:
+            cur = 0
+            dep = 0
+            for _ in range(k):
+                val, d = heapq.heappop(stack)
+                cur += val
+                dep = ac.max(dep, d)
+            ans += cur
+            heapq.heappush(stack, [cur, dep + 1])
+        ac.st(ans)
+        ac.st(stack[0][1])
         return
+
+    @staticmethod
+    def lg_p1631(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1631
+        tag: heapq|pointer
+        """
+        # 求两个数组的前 n 个最小的元素和
+        n = ac.read_int()
+        nums1 = ac.read_list_ints()
+        nums2 = ac.read_list_ints()
+        # 初始时|入所有第二个数组的索引位置
+        stack = [[nums1[0] + nums2[j], 0, j] for j in range(n)]
+        # 不重不漏brute_force所有索引组合
+        heapq.heapify(stack)
+        ans = []
+        for _ in range(n):
+            val, i, j = heapq.heappop(stack)
+            ans.append(val)
+            if i + 1 < n:
+                heapq.heappush(stack, [nums1[i + 1] + nums2[j], i + 1, j])
+        ac.lst(ans)
+        return
+
+    @staticmethod
+    def lg_p4053(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4053
+        tag: delay_heapq|greedy
+        """
+        # 懒惰删除，implementiongreedy
+        n = ac.read_int()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        nums.sort(key=lambda it: it[1])
+        pre = 0
+        stack = []
+        for a, b in nums:
+            if pre + a <= b:
+                heapq.heappush(stack, -a)
+                pre += a
+            else:
+                if stack and -a > stack[0]:
+                    pre += heapq.heappop(stack)
+                    pre += a
+                    heapq.heappush(stack, -a)
+        ac.st(len(stack))
+        return
+
+    @staticmethod
+    def lg_p2085(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2085
+        tag: math|heapq
+        """
+        # 利用一元二次方程的单调性与pointerheapqgreedy选取
+        n, m = ac.read_list_ints()
+        stack = []
+        for _ in range(n):
+            a, b, c = ac.read_list_ints()
+            heapq.heappush(stack, [a + b + c, 1, a, b, c])
+        ans = []
+        while len(ans) < m:
+            val, x, a, b, c = heapq.heappop(stack)
+            ans.append(val)
+            x += 1
+            heapq.heappush(stack, [a * x * x + b * x + c, x, a, b, c])
+        ac.lst(ans)
+        return
+
+    @staticmethod
+    def lg_p2278(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2278
+        tag: heapq|implemention
+        """
+        # heapqimplemention应用
+        now = []  # idx, reach, need, level, end
+        ans = []
+        stack = []  # -level, reach, need, idx
+        pre = 0
+        while True:
+            lst = ac.read_list_ints()  # idx, reach, need, level
+            if not lst:
+                break
+
+            # 当前达到时刻之前可以完成的任务消除掉
+            while now and now[-1] <= lst[1]:
+                ans.append([now[0], now[-1]])
+                pre = now[-1]
+                if stack:
+                    level, reach, need, idx = heapq.heappop(stack)
+                    now = [idx, reach, need, -level, ac.max(pre, reach) + need]
+                else:
+                    now = []
+
+            # 取出还有的任务运行
+            if not now and stack:
+                level, reach, need, idx = heapq.heappop(stack)
+                now = [idx, reach, need, -level, ac.max(pre, reach) + need]
+
+            # 执行任务等级不低于当前任务，当前任务直接入队
+            if now and now[3] >= lst[-1]:
+                idx, reach, need, level = lst
+                heapq.heappush(stack, [-level, reach, need, idx])
+            elif now:
+                # 当前任务等级更高，替换，注意剩余时间
+                idx, reach, need, level, end = now
+                heapq.heappush(stack, [-level, reach, end - lst[1], idx])
+                idx, reach, need, level = lst
+                now = [idx, reach, need, level, ac.max(pre, reach) + need]
+            else:
+                # 无执行任务，直接执行当前任务
+                idx, reach, need, level = lst
+                now = [idx, reach, need, level, ac.max(pre, reach) + need]
+
+        while stack:
+            # 执行剩余任务
+            ans.append([now[0], now[-1]])
+            pre = now[-1]
+            level, reach, need, idx = heapq.heappop(stack)
+            now = [idx, reach, need, -level, ac.max(pre, reach) + need]
+        ans.append([now[0], now[-1]])
+        for a in ans:
+            ac.lst(a)
+        return
+
+    @staticmethod
+    def lg_p1717(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1717
+        tag: brute_force|heapq|greedy
+        """
+        # brute_force最远到达地点heapq|greedy选取
+        ans = 0
+        n = ac.read_int()
+        h = ac.read_int() * 60
+        f = ac.read_list_ints()
+        d = ac.read_list_ints()
+        t = [0] + ac.read_list_ints()
+        for i in range(n):
+            tm = sum(t[:i + 1]) * 5
+            stack = [[-f[j], j] for j in range(i + 1)]
+            heapq.heapify(stack)
+            cur = 0
+            while tm + 5 <= h and stack:
+                val, j = heapq.heappop(stack)
+                val = -val
+                cur += val
+                tm += 5
+                if val - d[j] > 0:
+                    heapq.heappush(stack, [-val + d[j], j])
+            ans = ac.max(ans, cur)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p1905(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1905
+        tag: heapq|greedy
+        """
+        # heapq|从大到小greedy摆放
+        ac.read_int()
+        p = ac.read_int()
+        lst = ac.read_list_ints()
+        ans = [[0] for _ in range(p)]
+        stack = [[ans[i][0], i] for i in range(p)]
+        lst.sort(reverse=True)
+        for num in lst:
+            d, i = heapq.heappop(stack)
+            ans[i][0] += num
+            ans[i].append(num)
+            heapq.heappush(stack, [ans[i][0], i])
+        for a in ans:
+            ac.lst(a[1:])
+        return
+
+    @staticmethod
+    def lg_p2409(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2409
+        tag: heapq
+        """
+        # heapq|，最小的k个和
+        n, k = ac.read_list_ints()
+        pre = ac.read_list_ints()[1:]
+        pre.sort()
+        for _ in range(n - 1):
+            cur = ac.read_list_ints()[1:]
+            cur.sort()
+            nex = []
+            for x in cur:
+                for num in pre:
+                    if len(nex) == k and -num - x < nex[0]:
+                        break
+                    heapq.heappush(nex, -num - x)
+                    if len(nex) > k:
+                        heapq.heappop(nex)
+            pre = sorted([-x for x in nex])
+        ac.lst(pre[:k])
+        return
+
+    @staticmethod
+    def lg_p2949(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2949
+        tag: heapq|greedy|implemention|delay_heapq|lazy_heapq
+        """
+        # heapq|greedyimplemention懒惰延迟删除
+        n = ac.read_int()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        nums.sort(key=lambda it: it[0])
+        ans = 0
+        stack = []
+        for d, p in nums:
+            heapq.heappush(stack, p)
+            ans += p
+            if len(stack) > d:
+                ans -= heapq.heappop(stack)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p6033(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6033
+        tag: greedy|deque
+        """
+        # 队列 O(n) implemention合并果子
+        ac.read_int()
+        pre = deque(sorted(ac.read_list_ints()))
+        post = deque()
+        ans = 0
+        while len(pre) + len(post) > 1:
+            if not pre:
+                cur = post.popleft() + post.popleft()
+                ans += cur
+                post.append(cur)
+                continue
+            if not post:
+                cur = pre.popleft() + pre.popleft()
+                ans += cur
+                post.append(cur)
+                continue
+            if pre[0] < post[0]:
+                a = pre.popleft()
+            else:
+                a = post.popleft()
+            if pre and (not post or pre[0] < post[0]):
+                b = pre.popleft()
+            else:
+                b = post.popleft()
+            ans += a + b
+            post.append(a + b)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lc_2263(nums: List[int]) -> int:
+        """
+        url: https://leetcode.cn/problems/make-array-non-decreasing-or-non-increasing/
+        tag: heapq|greedy
+        """
+
+        def helper(lst: List[int]) -> int:
+            # 大根heapqgreedy使得序列非降的最小操作次数
+            res, pq = 0, []  # 大根heapq
+            for num in lst:
+                if not pq:
+                    heappush(pq, -num)
+                else:
+                    pre = -pq[0]
+                    if pre > num:
+                        res += pre - num
+                        heappushpop(pq, -num)
+                    heappush(pq, -num)
+            return res
+
+        return min(helper(nums), helper(nums[::-1]))
+
+    @staticmethod
+    def lc_2386(nums: List[int], k: int) -> int:
+        """
+        url: https://leetcode.cn/problems/find-the-k-sum-of-an-array/
+        tag: heapq|brain_teaser
+        """
+        # 转换思路heapq维护最大和第 K 次出队的则为目标结果
+        n = len(nums)
+        tot = 0
+        for i in range(n):
+            if nums[i] >= 0:
+                tot += nums[i]
+            else:
+                nums[i] = -nums[i]
+        nums.sort()
+        # brain_teaser|，类似Dijkstra的思想从大到小brute_force子序列的和
+        stack = [[nums[0], 0]]
+        for _ in range(k - 1):
+            pre, i = heappop(stack)
+            if i < n:
+                heapq.heappush(stack, [pre + nums[i], i + 1])
+                if i:
+                    heapq.heappush(stack, [pre + nums[i] - nums[i - 1], i + 1])
+        return -stack[0][0]

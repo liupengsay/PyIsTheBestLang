@@ -1,46 +1,60 @@
-from collections import deque
+import heapq
 from typing import List
 
 
-class PriorityQueue:
-    def __init__(self):
+class HeapqMedian:
+    def __init__(self, mid):
+        """median maintenance by heapq with odd length array"""
+        self.mid = mid
+        self.left = []
+        self.right = []
         return
 
-    @staticmethod
-    def sliding_window(nums: List[int], k: int, method="max") -> List[int]:
-        assert k >= 1
-        if method == "min":
-            nums = [-num for num in nums]
-        n = len(nums)
-        stack = deque()
-        ans = []
-        for i in range(n):
-            while stack and stack[0][1] <= i - k:
-                stack.popleft()
-            while stack and stack[-1][0] <= nums[i]:
-                stack.pop()
-            stack.append([nums[i], i])
-            if i >= k - 1:
-                ans.append(stack[0][0])
-        if method == "min":
-            ans = [-num for num in ans]
-        return ans
+    def add(self, num):
 
-    @staticmethod
-    def sliding_window_all(nums: List[int], k: int, method="max") -> List[int]:
-        assert k >= 1
-        if method == "min":
-            nums = [-num for num in nums]
-        n = len(nums)
-        stack = deque()
-        ans = []
-        for i in range(n):
-            while stack and stack[0][1] <= i - k:
-                stack.popleft()
-            while stack and stack[-1][0] <= nums[i]:
-                stack.pop()
-            stack.append([nums[i], i])
-            ans.append(stack[0][0])
-        if method == "min":
-            ans = [-num for num in ans]
-        return ans
+        if num > self.mid:
+            heapq.heappush(self.right, num)
+        else:
+            heapq.heappush(self.left, -num)
+        n = len(self.left) + len(self.right)
+
+        if n % 2 == 0:
+            # maintain equal length
+            if len(self.left) > len(self.right):
+                heapq.heappush(self.right, self.mid)
+                self.mid = -heapq.heappop(self.left)
+            elif len(self.right) > len(self.left):
+                heapq.heappush(self.left, -self.mid)
+                self.mid = heapq.heappop(self.right)
+        return
+
+    def query(self):
+        return self.mid
+
+
+class KthLargest:
+    def __init__(self, k: int, nums: List[int]):
+        self.heap = [num for num in nums]
+        self.k = k
+        heapq.heapify(self.heap)
+
+    def add(self, val: int) -> int:
+        heapq.heappush(self.heap, val)
+        while len(self.heap) > self.k:
+            heapq.heappop(self.heap)
+        return self.heap[0]
+
+
+class MedianFinder:
+    def __init__(self):
+        self.pre = []
+        self.post = []
+
+    def add_num(self, num: int) -> None:
+        if len(self.pre) != len(self.post):
+            heapq.heappush(self.pre, -heapq.heappushpop(self.post, num))
+        else:
+            heapq.heappush(self.post, -heapq.heappushpop(self.pre, -num))
+
+    def find_median(self) -> float:
+        return self.post[0] if len(self.pre) != len(self.post) else (self.post[0] - self.pre[0]) / 2

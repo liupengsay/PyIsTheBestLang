@@ -18,10 +18,10 @@ class Solution:
     @staticmethod
     def lc_6914_1(head: Optional[ListNode]) -> Optional[ListNode]:
         """
-        url: https://leetcode.cn/contest/weekly-contest-358/problems/double-a-number-represented-as-a-linked-list/
+        url: https://leetcode.cn/problems/double-a-number-represented-as-a-linked-list/
         tag: linked_list
         """
-        # linked_list|与整数相乘
+
         lno = ListNodeOperation()
         lst = lno.node_to_lst(head)[::-1]
 

@@ -67,6 +67,7 @@ ABC140E（https://atcoder.jp/contests/abc140/tasks/abc140_e）monotonic_stack|pr
 import bisect
 import heapq
 from collections import defaultdict, Counter
+from math import inf
 from typing import List
 
 from src.data_structure.monotonic_stack.template import Rectangle
@@ -80,11 +81,14 @@ class Solution:
 
     @staticmethod
     def abc_140e(ac=FastIO()):
-        # monotonic_stack|求下个与下下个严格更大元素与上个与上个个严格更大元素
+        """
+        url: https://atcoder.jp/contests/abc140/tasks/abc140_e
+        tag: monotonic_stack|pre_pre_larger|post_post_larger|classical|contribution_method
+        """
         n = ac.read_int()
         nums = ac.read_list_ints()
 
-        post = [-1] * n  # 这里可以是n/n-1/null，取决于用途
+        post = [-1] * n
         post2 = [-1] * n
         stack1 = []
         stack2 = []
@@ -143,7 +147,7 @@ class Solution:
         url: https://www.acwing.com/problem/content/133/
         tag: monotonic_stack|sub_matrix
         """
-        # monotonic_stack|最大矩形
+
         while True:
             lst = ac.read_list_ints()
             if lst[0] == 0:
@@ -168,7 +172,7 @@ class Solution:
         url: https://leetcode.cn/problems/next-greater-element-iv/description/
         tag: monotonic_stack|post_second_larger
         """
-        # monotonic_stack|下下个更大元素
+
         n = len(nums)
         ans = [-1] * n
         stack1 = []
@@ -180,11 +184,15 @@ class Solution:
                 j = stack1.pop()
                 heapq.heappush(stack2, [nums[j], j])
             stack1.append(i)
-
         return ans
 
     @staticmethod
     def lc_2866(max_heights: List[int]) -> int:
+        """
+        url: https://leetcode.cn/problems/beautiful-towers-ii/
+        tag: monotonic_stack|greedy
+        """
+
         n = len(max_heights)
         pre = [0] * (n + 1)
         stack = []
@@ -220,9 +228,9 @@ class Solution:
     def lg_p1191(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1191
-        tag: monotonic_stack|sub_matrix|counter
+        tag: monotonic_stack|sub_matrix|counter|classical
         """
-        # brute_force下边界monotonic_stack|矩形个数
+
         n = ac.read_int()
         pre = [0] * n
         ans = 0
@@ -251,7 +259,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1323
         tag: heapq|monotonic_stack|lexicographical_order|greedy
         """
-        # heapq|与monotonic_stack|，最大lexicographical_order数字
+
         k, m = ac.read_list_ints()
         dct = set()
         ans = []
@@ -284,7 +292,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2422
         tag: monotonic_stack|prefix_sum
         """
-        # monotonic_stack|与prefix_sum
         n = ac.read_int()
         nums = ac.read_list_ints()
         lst = ac.accumulate(nums)
@@ -305,9 +312,9 @@ class Solution:
     def lg_p3467(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P3467
-        tag: monotonic_stack
+        tag: monotonic_stack|classical
         """
-        # monotonic_stack|
+
         n = ac.read_int()
         nums = [ac.read_list_ints()[1] for _ in range(n)]
         stack = []
@@ -315,64 +322,53 @@ class Solution:
         for i in range(n):
             while stack and nums[stack[-1]] >= nums[i]:
                 j = stack.pop()
-                if nums[j] == nums[i]:  # 同样高度的连续区域可以一次覆盖
+                if nums[j] == nums[i]:
                     ans += 1
             stack.append(i)
         ac.st(n - ans)
         return
 
     @staticmethod
-    def lg_p1598(ac=FastIO()):
+    def lg_p1578(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1578
+        tag: monotonic_stack|discretization|brute_force|sub_matrix|area
+        """
 
-        # monotonic_stack|discretizationbrute_force障碍点的最大面积矩形
-        def compute_area_obstacle(lst):
-            nonlocal ans
-            # monotonic_stack|根据高度最大矩形面积
-            m = len(height)
-            left = [0] * m
-            right = [m - 1] * m
-            stack = []
-            for i in range(m):
-                while stack and height[stack[-1]] > height[i]:
-                    right[stack.pop()] = i  # 注意这里不减 1 了是边界
-                if stack:  # 这里可以同时求得数组前后的下一个大于等于值
-                    left[i] = stack[-1]  # 这里将相同的值视为右边的更大且并不会影响，注意这里不| 1 了是边界
-                stack.append(i)
-
-            for i in range(m):
-                cur = height[i] * (lst[right[i]] - lst[left[i]])
-                ans = ans if ans > cur else cur
-            return ans
-
-        length, n = ac.read_list_ints()
+        m, n = ac.read_list_ints()
         q = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(q)]
-        node_row = defaultdict(list)
-        node_col = defaultdict(list)
+        node_col = [[] for _ in range(n + 1)]
         for x, y in nums:
-            node_row[y].append(x)
-            node_col[x].append(y)
+            node_col[y].append(x)
 
-        # brute_force矩形上下两行边界
-        y_axis = sorted([y for _, y in nums] + [0, n], reverse=True)
+        y_axis = sorted(set([y for _, y in nums] + [0, n]), reverse=True)
         ans = 0
-        col = defaultdict(lambda: n)
-        x_axis = sorted([x for x, _ in nums] + [0, length])
+        col = [n] * (m + 1)
+        x_axis = sorted(set([x for x, _ in nums] + [0, m]))
+        k = len(x_axis)
         for y in y_axis:
             height = [col[x] - y for x in x_axis]
-            compute_area_obstacle(x_axis)
-            for x in node_row[y]:
-                col[x] = y
+            left = [0] * k
+            right = [k - 1] * k
+            stack = []
+            for i in range(k):
+                while stack and height[stack[-1]] > height[i]:
+                    right[stack.pop()] = i
+                if stack:
+                    left[i] = stack[-1]
+                stack.append(i)
 
-        # brute_force矩形左右两列边界
-        x_axis.reverse()
-        y_axis.reverse()
-        row = defaultdict(lambda: length)
-        for x in x_axis:
-            height = [row[y] - x for y in y_axis]
-            compute_area_obstacle(y_axis)
-            for y in node_col[x]:
-                row[y] = x
+            for i in range(k):
+                cur = height[i] * (x_axis[right[i]] - x_axis[left[i]])
+                ans = ans if ans > cur else cur
+
+            for x in node_col[y]:
+                col[x] = y
+        # special case judge
+        ceil = max(x_axis[i + 1] - x_axis[i] for i in range(k - 1))
+        if ceil * n > ans:
+            ans = ceil * n
         ac.st(ans)
         return
 
@@ -380,11 +376,10 @@ class Solution:
     def lc_255(preorder: List[int]) -> bool:
         """
         url: https://leetcode.cn/problems/verify-preorder-sequence-in-binary-search-tree/
-        tag: monotonic_stack|pre_order
+        tag: monotonic_stack|pre_order|classical
         """
-        # monotonic_stack|判断是否为前序序列
 
-        pre_max = float("-inf")
+        pre_max = -inf
         n = len(preorder)
         stack = []
         for i in range(n):
@@ -402,7 +397,6 @@ class Solution:
         url: https://leetcode.cn/problems/maximal-rectangle/
         tag: brute_force|monotonic_stack|matrix
         """
-        # monotonic_stack|最大矩形面积
         m, n = len(matrix), len(matrix[0])
         pre = [0] * n
         ans = 0
@@ -421,7 +415,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P4147
         tag: brute_force|monotonic_stack|sub_matrix|area
         """
-        # monotonic_stack|最大矩形面积
+
         n, m = ac.read_list_ints()
         pre = [0] * m
         ans = 0
@@ -442,7 +436,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1950
         tag: brute_force|monotonic_stack|sub_matrix|counter
         """
-        # monotonic_stack|矩形个数
+
         m, n = ac.read_list_ints()
         ans = 0
         pre = [0] * n
@@ -463,20 +457,19 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6404
         tag: monotonic_stack|sub_matrix|counter
         """
-        # monotonic_stack|具有相同数字的子矩形个数
+
         m, n = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
         ans = 0
         rt = Rectangle()
         pre = [[0, 0] for _ in range(n)]
-        # brute_force子矩形的下边界
         for i in range(m):
             for j in range(n):
                 if pre[j][0] == grid[i][j]:
                     pre[j][1] += 1
                 else:
                     pre[j] = [grid[i][j], 1]
-            # 按照相同数字分段counter
+
             lst = [pre[0][1]]
             num = pre[0][0]
             for x, c in pre[1:]:
@@ -496,7 +489,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6503
         tag: monotonic_stack|counter|contribution_method
         """
-        # monotonic_stack|连续子序列的最大值最小值贡献counter
+
         m = ac.read_int()
         nums = [ac.read_int() for _ in range(m)]
         left = [0] * m
@@ -505,8 +498,8 @@ class Solution:
         for i in range(m):
             while stack and nums[stack[-1]] < nums[i]:
                 right[stack.pop()] = i - 1
-            if stack:  # 这里可以同时求得数组前后的下一个大于等于值
-                left[i] = stack[-1] + 1  # 这里将相同的值视为右边的更大且并不会影响
+            if stack:
+                left[i] = stack[-1] + 1
             stack.append(i)
         ans = sum((right[i] - i + 1) * nums[i] * (i - left[i] + 1) for i in range(m))
 
@@ -516,8 +509,8 @@ class Solution:
         for i in range(m):
             while stack and nums[stack[-1]] > nums[i]:
                 right[stack.pop()] = i - 1
-            if stack:  # 这里可以同时求得数组前后的下一个大于等于值
-                left[i] = stack[-1] + 1  # 这里将相同的值视为右边的更大且并不会影响
+            if stack:
+                left[i] = stack[-1] + 1
             stack.append(i)
         ans -= sum((right[i] - i + 1) * nums[i] * (i - left[i] + 1) for i in range(m))
         ac.st(ans)
@@ -527,9 +520,9 @@ class Solution:
     def lg_p6510(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P6510
-        tag: monotonic_stack|sparse_table|hash|binary_search
+        tag: monotonic_stack|sparse_table|hash|binary_search|classical
         """
-        # monotonic_stack|sparse_table|hashbinary_search
+
         n = ac.read_int()
         nums = [ac.read_int() for _ in range(n)]
         post = [n - 1] * n
@@ -558,8 +551,6 @@ class Solution:
         tag: monotonic_stack|sub_matrix|counter
         """
 
-        # monotonic_stack|矩形个数
-
         def compute(x, y):
             return x * (x + 1) * y * (y + 1) // 4
 
@@ -568,7 +559,7 @@ class Solution:
         n = ac.read_int()
         h = ac.read_list_ints()
         w = ac.read_list_ints()
-        # 削峰维持单调递增
+
         stack = []
         for i in range(n):
             ww, hh = w[i], h[i]
@@ -584,7 +575,7 @@ class Solution:
                     ans += compute(www, hhh) - compute(www, hh)
                     ans %= mod
             stack.append([ww, hh])
-        # 反向剩余
+
         ww, hh = stack.pop()
         while stack:
             www, hhh = stack.pop()
@@ -603,16 +594,16 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8094
         tag: monotonic_stack|pre_larger|post_larger
         """
-        # monotonic_stack|应用
+
         n = ac.read_int()
         nums = ac.read_list_ints()
         ans = 0
         stack = []
         for i in range(n):
             while stack and nums[stack[-1]] < nums[i]:
-                ans += i - stack.pop() + 1  # 当前作为较大值
+                ans += i - stack.pop() + 1
             if stack:
-                ans += i - stack[-1] + 1  # 当前作为较小值
+                ans += i - stack[-1] + 1
             stack.append(i)
         ac.st(ans)
         return
@@ -623,7 +614,7 @@ class Solution:
         url: https://leetcode.cn/problems/remove-duplicate-letters/
         tag: monotonic_stack|hash|counter
         """
-        # monotonic_stack|结合hash与counter
+
         cnt = Counter(s)
         in_stack = defaultdict(int)
         stack = []
@@ -640,19 +631,18 @@ class Solution:
     def lc_907(nums: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/sum-of-subarray-minimums/
-        tag: monotonic_stack|implemention
+        tag: monotonic_stack|implemention|contribution_method|classical
         """
-        # monotonic_stack|implemention
         mod = 10 ** 9 + 7
         n = len(nums)
-        post = [n - 1] * n  # 这里可以是n/n-1/null，取决于用途
-        pre = [0] * n  # 这里可以是0/-1/null，取决于用途
+        post = [n - 1] * n
+        pre = [0] * n
         stack = []
-        for i in range(n):  # 这里也可以是从n-1到0reverse_order|，取决于用途
-            while stack and nums[stack[-1]] <= nums[i]:  # 这里可以是"<" ">" "<=" ">="，取决于需要判断的大小关系
-                post[stack.pop()] = i - 1  # 这里可以是i或者i-1，取决于是否包含i作为右端点
-            if stack:  # 这里不一定可以同时，比如前后都是大于等于时，只有前后所求范围互斥时，可以
-                pre[i] = stack[-1] + 1  # 这里可以是stack[-1]或者stack[-1]+1，取决于是否包含stack[-1]作为左端点
+        for i in range(n):
+            while stack and nums[stack[-1]] <= nums[i]:
+                post[stack.pop()] = i - 1
+            if stack:
+                pre[i] = stack[-1] + 1
             stack.append(i)
         return sum(nums[i] * (i - pre[i] + 1) * (post[i] - i + 1) for i in range(n)) % mod
 
@@ -662,7 +652,7 @@ class Solution:
         url: https://leetcode.cn/problems/smallest-subsequence-of-distinct-characters/
         tag: monotonic_stack|hash|counter
         """
-        # monotonic_stack|结合hash与counter
+
         cnt = Counter(s)
         in_stack = defaultdict(int)
         stack = []
@@ -681,7 +671,6 @@ class Solution:
         url: https://leetcode.cn/problems/find-the-most-competitive-subsequence/
         tag: monotonic_stack|greedy
         """
-        # monotonic_stack|greedy删除选取
         n = len(nums)
         rem = n - k
         stack = []
@@ -698,7 +687,6 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-building-height/
         tag: monotonic_stack|greedy|prefix_suffix|implemention
         """
-        # monotonic_stack|greedy，也可以prefix_suffix数组implemention
         restrictions.sort()
         stack = [[1, 0]]
         for idx, height in restrictions:
@@ -720,7 +708,7 @@ class Solution:
         url: https://leetcode.cn/problems/total-appeal-of-a-string/
         tag: prefix_suffix|monotonic_stack
         """
-        # 下一个或者上一个不同字符的位置
+
         n = len(s)
         pre = defaultdict(lambda: -1)
         ans = 0
@@ -735,7 +723,7 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-number-of-books-you-can-take/
         tag: monotonic_stack|liner_dp
         """
-        # monotonic_stack|优化liner_dp
+
         n = len(books)
         dp = [0] * n
         stack = []
@@ -757,9 +745,9 @@ class Solution:
     def cf_1313c2(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1313/C2
-        tag: monotonic_stack|liner_dp
+        tag: monotonic_stack|liner_dp|specific_plan
         """
-        # monotonic_stack|优化liner_dp
+
         n = ac.read_int()
         nums = ac.read_list_ints()
         pre = [0] * n
@@ -801,7 +789,7 @@ class Solution:
         url: https://codeforces.com/problemset/problem/1795/E
         tag: monotonic_stack|liner_dp|greedy|counter|brute_force|prefix_suffix|dp
         """
-        # monotonic_stack|优化liner_dp，greedycounterbrute_force，prefix_suffixDP转移
+
         for _ in range(ac.read_int()):
 
             def check():
@@ -832,10 +820,9 @@ class Solution:
     def lc_1130(arr: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/minimum-cost-tree-from-leaf-values/
-        tag: monotonic_stack|interval_dp
+        tag: monotonic_stack|interval_dp|classical
         """
-        # monotonic_stack|也可以interval_dp|
-        stack = [float('inf')]
+        stack = [inf]
         res = 0
         for num in arr:
             while stack and stack[-1] <= num:
@@ -853,7 +840,7 @@ class Solution:
         url: https://leetcode.cn/problems/count-submatrices-with-all-ones/
         tag: brute_force|monotonic_stack|counter|sub_matrix
         """
-        # brute_force上下边界monotonic_stack|全为 1 的子矩形个数
+
         m, n = len(mat), len(mat[0])
         ans = 0
         rec = Rectangle()
@@ -871,57 +858,40 @@ class Solution:
     def ac_3780(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/3783/
-        tag: monotonic_stack|greedy|linear_dp|construction
+        tag: monotonic_stack|greedy|linear_dp|construction|CF1313C2
         """
-        # monotonic_stack|线性greedyDPconstruction
+
         n = ac.read_int()
         nums = ac.read_list_ints()
-        if n == 1:
-            ac.lst(nums)
-            return
-
-        n = len(nums)
-
-        # 后面更小的
-        post = [-1] * n
+        pre = [0] * n
         stack = []
         for i in range(n):
             while stack and nums[stack[-1]] > nums[i]:
-                post[stack.pop()] = i
+                stack.pop()
+            if not stack:
+                pre[i] = nums[i] * (i + 1)
+            else:
+                pre[i] = pre[stack[-1]] + nums[i] * (i - stack[-1])
             stack.append(i)
 
-        # 前面更小的
-        pre = [-1] * n
+        post = [0] * n
         stack = []
         for i in range(n - 1, -1, -1):
             while stack and nums[stack[-1]] > nums[i]:
-                pre[stack.pop()] = i
+                stack.pop()
+            if not stack:
+                post[i] = nums[i] * (n - i)
+            else:
+                post[i] = post[stack[-1]] + nums[i] * (stack[-1] - i)
             stack.append(i)
 
-        left = [0] * n
-        left[0] = nums[0]
-        for i in range(1, n):
-            j = pre[i]
-            if j != -1:
-                left[i] += nums[i] * (i - j) + left[j]
-            else:
-                left[i] = nums[i] * (i + 1)
-
-        right = [0] * n
-        right[-1] = nums[-1]
-        for i in range(n - 2, -1, -1):
-            j = post[i]
-            if j != -1:
-                right[i] += nums[i] * (j - i) + right[j]
-            else:
-                right[i] = (n - i) * nums[i]
-
-        # brute_force先上升后下降的最高点
-        dp = [left[i] + right[i] - nums[i] for i in range(n)]
-        x = dp.index(max(dp))
-        for i in range(x + 1, n):
-            nums[i] = ac.min(nums[i - 1], nums[i])
-        for i in range(x - 1, -1, -1):
-            nums[i] = ac.min(nums[i + 1], nums[i])
-        ac.lst(nums)
+        ceil = max(pre[i] + post[i] - nums[i] for i in range(n))
+        for i in range(n):
+            if pre[i] + post[i] - nums[i] == ceil:
+                for j in range(i + 1, n):
+                    nums[j] = ac.min(nums[j], nums[j - 1])
+                for j in range(i - 1, -1, -1):
+                    nums[j] = ac.min(nums[j], nums[j + 1])
+                ac.lst(nums)
+                break
         return

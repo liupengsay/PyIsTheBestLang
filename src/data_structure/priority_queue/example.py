@@ -1,25 +1,24 @@
 import random
 import unittest
 
-from src.data_structure.priority_queue.template import PriorityQueue
+from sortedcontainers import SortedList
+
+from src.data_structure.priority_queue.template import HeapqMedian
 
 
 class TestGeneral(unittest.TestCase):
 
-    def test_priority_queue(self):
-        pq = PriorityQueue()
-
-        for _ in range(10):
-            n = random.randint(100, 1000)
-            nums = [random.randint(1, n) for _ in range(n)]
-            k = random.randint(1, n)
-            ans = pq.sliding_window(nums, k, "max")
-            for i in range(n - k + 1):
-                assert ans[i] == max(nums[i:i + k])
-
-            ans = pq.sliding_window(nums, k, "min")
-            for i in range(n - k + 1):
-                assert ans[i] == min(nums[i:i + k])
+    def test_heapq_median(self):
+        ceil = 1000
+        num = random.randint(0, ceil)
+        lst = SortedList([num])
+        hm = HeapqMedian(num)
+        for i in range(ceil):
+            num = random.randint(0, ceil)
+            lst.add(num)
+            hm.add(num)
+            if i % 2:
+                assert lst[(i + 2) // 2] == hm.query()
         return
 
 

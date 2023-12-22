@@ -52,7 +52,7 @@ P3017（https://www.luogu.com.cn/problem/P3017）binary_search|sub_matrix_sum|ma
 P1083（https://www.luogu.com.cn/problem/P1083）binary_search|diff_array
 P1281（https://www.luogu.com.cn/problem/P1281）binary_search|specific_plans
 P1381（https://www.luogu.com.cn/problem/P1381）binary_search|sliding_window|brain_teaser
-P1419（https://www.luogu.com.cn/problem/P1419）binary_search|priority_queue
+P1419（https://www.luogu.com.cn/problem/P1419）binary_search|monotonic_queue
 P1525（https://www.luogu.com.cn/problem/P1525）binary_search|bfs|bipartite_graph|union_find|coloring
 P1542（https://www.luogu.com.cn/problem/P1542）binary_search|fraction|high_precision
 P2237（https://www.luogu.com.cn/problem/P2237）brain_teaser|sort|binary_search
@@ -750,7 +750,7 @@ class Solution:
     def lg_p1419(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1419
-        tag: binary_search|monotonic_deque|prefix_sum|average|classical
+        tag: binary_search|monotonic_queue|prefix_sum|average|classical
         """
 
         def check(x):

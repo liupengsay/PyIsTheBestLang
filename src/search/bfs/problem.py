@@ -61,7 +61,7 @@ P2199（https://www.luogu.com.cn/problem/P2199）deque_bfs|01-bfs
 P2226（https://www.luogu.com.cn/problem/P2226）bfs
 P2296（https://www.luogu.com.cn/problem/P2296）reverse_graph|bfs
 P2919（https://www.luogu.com.cn/problem/P2919）bfs
-P2937（https://www.luogu.com.cn/problem/P2937）01-bfs|priority_queue
+P2937（https://www.luogu.com.cn/problem/P2937）01-bfs|monotonic_queue
 P3456（https://www.luogu.com.cn/problem/P3456）bfs
 P3496（https://www.luogu.com.cn/problem/P3496）brain_teaser|bfs
 P3818（https://www.luogu.com.cn/problem/P3818）01-bfs|deque_bfs
@@ -91,7 +91,7 @@ ABC133E（https://atcoder.jp/contests/abc133/tasks/abc133_e）bfs|coloring_metho
 
 =====================================AcWing=====================================
 173（https://www.acwing.com/problem/content/175/）multi_source_bfs|classical
-175（https://www.acwing.com/problem/content/177/）priority_queue|bfs
+175（https://www.acwing.com/problem/content/177/）monotonic_queue|bfs
 177（https://www.acwing.com/problem/content/179/）multi_source_bfs|bilateral_bfs
 4415（https://www.acwing.com/problem/content/description/4418）bfs|coloring_method|odd_circle|specific_plan|counter
 4481（https://www.acwing.com/problem/content/description/4484/）01-bfs
@@ -796,7 +796,7 @@ class Solution:
     def ac_175(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/177/
-        tag: priority_queue|bfs
+        tag: monotonic_queue|bfs
         """
         for _ in range(ac.read_int()):
 
@@ -1215,7 +1215,7 @@ class Solution:
     def lg_p2937(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P2937
-        tag: 01-bfs|priority_queue
+        tag: 01-bfs|monotonic_queue
         """
         # 01-bfspriority_queue
         n, m = ac.read_list_ints()

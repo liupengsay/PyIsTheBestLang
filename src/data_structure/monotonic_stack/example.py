@@ -12,7 +12,6 @@ class TestGeneral(unittest.TestCase):
         ms = MonotonicStack(nums)
         for i in range(n):
 
-            # 上一个最值
             pre_bigger = pre_bigger_equal = pre_smaller = pre_smaller_equal = -1
             for j in range(i - 1, -1, -1):
                 if nums[j] > nums[i]:
@@ -35,7 +34,6 @@ class TestGeneral(unittest.TestCase):
             assert pre_smaller == ms.pre_smaller[i]
             assert pre_smaller_equal == ms.pre_smaller_equal[i]
 
-            # 下一个最值
             post_bigger = post_bigger_equal = post_smaller = post_smaller_equal = - 1
             for j in range(i + 1, n):
                 if nums[j] > nums[i]:

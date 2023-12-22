@@ -9,7 +9,7 @@ Description：range_sum|range_min|range_add|range_change|range_max|dynamic_segme
 2158（https://leetcode.cn/problems/amount-of-new-area-painted-each-day/）segment_tree|RangeAddRangeSum
 6318（https://leetcode.cn/contest/weekly-contest-336/problems/minimum-time-to-complete-all-tasks/）segment_tree|greedy|binary_search
 732（https://leetcode.cn/problems/my-calendar-iii/）dynamic_segment_tree
-1851（https://leetcode.cn/problems/minimum-interval-to-include-each-query/）segment_tree|RangeChangeRangeMin|offline_query|priority_queue
+1851（https://leetcode.cn/problems/minimum-interval-to-include-each-query/）segment_tree|RangeChangeRangeMin|offline_query|monotonic_queue
 2213（https://leetcode.cn/problems/longest-substring-of-one-repeating-character/）segment_tree|sub_consequence|range_query|range_merge
 2276（https://leetcode.cn/problems/count-integers-in-intervals/）dynamic_segment_tree|union_find_range|SortedList
 1340（https://leetcode.cn/problems/jump-game-v/）segment_tree|linear_dp
@@ -980,7 +980,7 @@ class Solution:
     def lc_1851(intervals: List[List[int]], queries: List[int]) -> List[int]:
         """
         url: https://leetcode.cn/problems/minimum-interval-to-include-each-query/
-        tag: segment_tree|RangeChangeRangeMin|offline_query|priority_queue
+        tag: segment_tree|RangeChangeRangeMin|offline_query|monotonic_queue
         """
         # 区间更新最小值、单点查询
         port = []

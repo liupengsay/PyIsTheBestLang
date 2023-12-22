@@ -6,8 +6,8 @@ Description：multi_source_bfs|bilateral_bfs|spfa|a-star|heuristic_search
 
 
 =====================================LuoGu======================================
-P1099（https://www.luogu.com.cn/problem/P1099）tree_diameter|bfs|two_pointers|monotonic_deque|classical
-P2491（https://www.luogu.com.cn/problem/P2491）tree_diameter|bfs|two_pointers|monotonic_deque|classical
+P1099（https://www.luogu.com.cn/problem/P1099）tree_diameter|bfs|two_pointers|monotonic_queue|classical
+P2491（https://www.luogu.com.cn/problem/P2491）tree_diameter|bfs|two_pointers|monotonic_queue|classical
 
 
 ===================================CodeForces===================================
