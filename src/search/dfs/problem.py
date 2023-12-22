@@ -65,7 +65,7 @@ from bisect import bisect_right, bisect_left
 from collections import defaultdict
 from functools import reduce
 from itertools import accumulate
-from math import inf
+from src.utils.fast_io import inf
 from operator import xor
 from typing import List, Optional
 

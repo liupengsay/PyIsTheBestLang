@@ -1,5 +1,5 @@
 from collections import deque
-from math import inf
+from src.utils.fast_io import inf
 from typing import List, Dict
 
 

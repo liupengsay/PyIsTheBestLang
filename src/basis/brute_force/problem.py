@@ -140,7 +140,7 @@ import math
 from collections import defaultdict, deque
 from functools import reduce, lru_cache
 from itertools import combinations, permutations
-from math import inf
+from src.utils.fast_io import inf
 from operator import mul, or_
 from typing import List
 

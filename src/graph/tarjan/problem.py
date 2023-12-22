@@ -51,7 +51,7 @@ P7965（https://www.luogu.com.cn/problem/P7965）scc|dag|tree_dp
 import copy
 from collections import Counter
 from collections import defaultdict, deque
-from math import inf
+from src.utils.fast_io import inf
 from typing import List
 
 from src.dp.tree_dp.template import ReRootDP

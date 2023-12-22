@@ -112,7 +112,7 @@ import bisect
 from collections import defaultdict, deque, Counter
 from functools import lru_cache
 from itertools import combinations
-from math import inf
+from src.utils.fast_io import inf
 from typing import List
 
 from src.dp.bag_dp.template import BagDP

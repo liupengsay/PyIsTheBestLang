@@ -37,7 +37,7 @@ ABC143E（https://atcoder.jp/contests/abc143/tasks/abc143_e）floyd|build_graph|
 
 """
 from heapq import heappop, heappush
-from math import inf
+from src.utils.fast_io import inf
 from typing import List
 
 from src.basis.binary_search.template import BinarySearch

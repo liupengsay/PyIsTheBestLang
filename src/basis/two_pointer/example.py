@@ -4,7 +4,7 @@ from functools import reduce
 from math import gcd
 from operator import mul, add, xor, and_, or_
 
-from src.basis.two_pointers.template import TwoPointer, SlidingWindowAggregation, INF
+from src.basis.two_pointer.template import TwoPointer, SlidingWindowAggregation
 
 
 class TestGeneral(unittest.TestCase):
@@ -22,7 +22,7 @@ class TestGeneral(unittest.TestCase):
 
     def test_ops_es(self):
 
-        dct = {max: 0, min: INF, gcd: 0, or_: 0, xor: 0, add: 0, mul: 1, and_: (1 << 32) - 1}
+        dct = {max: 0, min: 1 << 64, gcd: 0, or_: 0, xor: 0, add: 0, mul: 1, and_: (1 << 32) - 1}
         for op in dct:
             for _ in range(1000):
                 e = dct[op]

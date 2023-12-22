@@ -1,4 +1,3 @@
-INF = int(1e64)
 
 
 class TwoPointer:

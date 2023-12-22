@@ -64,7 +64,7 @@ from collections import Counter
 from functools import lru_cache
 from functools import reduce
 from itertools import combinations, accumulate
-from math import inf
+from src.utils.fast_io import inf
 from operator import or_
 from typing import List
 

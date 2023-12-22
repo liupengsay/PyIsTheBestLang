@@ -107,7 +107,7 @@ import bisect
 import math
 from collections import defaultdict
 from itertools import accumulate
-from math import inf
+from src.utils.fast_io import inf
 from typing import List
 
 from src.basis.binary_search.template import BinarySearch

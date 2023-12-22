@@ -40,7 +40,7 @@ P5648（https://www.luogu.com.cn/problem/P5648）sparse_table|range_max_index|mo
 import bisect
 import math
 from collections import defaultdict
-from math import inf
+from src.utils.fast_io import inf
 from typing import List
 
 from src.data_structure.sparse_table.template import SparseTable1, SparseTableIndex

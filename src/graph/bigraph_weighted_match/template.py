@@ -1,5 +1,5 @@
 from collections import defaultdict, deque
-from math import inf
+from src.utils.fast_io import inf
 
 import numpy as np
 

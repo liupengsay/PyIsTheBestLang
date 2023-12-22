@@ -41,7 +41,7 @@ P4170（https://www.luogu.com.cn/problem/P4170）interval_dp|math
 """
 from functools import lru_cache
 from itertools import accumulate
-from math import inf
+from src.utils.fast_io import inf
 from typing import List
 
 from src.utils.fast_io import FastIO

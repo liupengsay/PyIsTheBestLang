@@ -1,6 +1,6 @@
 import math
 import random
-from math import inf
+from src.utils.fast_io import inf
 from typing import List
 
 from src.data_structure.sorted_list.template import LocalSortedList

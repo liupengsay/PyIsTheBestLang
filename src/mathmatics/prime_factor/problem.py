@@ -23,7 +23,7 @@ from collections import Counter
 from collections import defaultdict
 from functools import reduce
 from itertools import permutations
-from math import inf
+from src.utils.fast_io import inf
 from typing import List
 
 from src.mathmatics.number_theory.template import NumberTheory

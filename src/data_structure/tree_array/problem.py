@@ -54,7 +54,7 @@ Vertex Add Subtree Sumï¼ˆhttps://judge.yosupo.jp/problem/vertex_add_subtree_sumï
 
 """
 from collections import defaultdict, deque
-from math import inf
+from src.utils.fast_io import inf
 from typing import List
 
 from sortedcontainers import SortedList

@@ -7,7 +7,7 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, \
     RangeDescendRangeMin, \
     RangeAddRangeSumMinMax, RangeChangeRangeSumMinMax, PointChangeRangeMaxNonEmpConSubSum, \
     RangeOrRangeAnd, \
-    RangeChangeRangeSumMinMaxDynamic, RangeChangeRangeOr, RangeAffineRangeSum
+    RangeChangeRangeSumMinMaxDynamic, RangeChangeRangeOr, RangeAffineRangeSum, RangeAddMulRangeSum
 
 
 class TestGeneral(unittest.TestCase):
@@ -153,8 +153,8 @@ class TestGeneral(unittest.TestCase):
         low = -10000
         high = 10000
         nums = [random.randint(low, high) for _ in range(high)]
-        mod = 10 ** 9 + 7
-        segment_tree = RangeAffineRangeSum(high, mod)
+        mod = 10**9 + 7
+        segment_tree = RangeAddMulRangeSum(high, mod)
         segment_tree.build(nums)
 
         assert segment_tree.range_sum(0, high - 1) == sum(nums) % mod
@@ -177,6 +177,44 @@ class TestGeneral(unittest.TestCase):
             right = left
             num = random.randint(-high, high)
             segment_tree.range_add_mul(left, right, num, "mul")
+            for i in range(left, right + 1):
+                nums[i] *= num
+                nums[i] %= mod
+            assert segment_tree.range_sum(left, right) == sum(
+                nums[left:right + 1]) % mod
+
+        ans = [segment_tree.range_sum(i, i) for i in range(high)]
+        assert segment_tree.get() == nums == ans
+        return
+
+    def test_range_affine_range_sum(self):
+        low = -10000
+        high = 10000
+        mod = 10 ** 9 + 7
+        nums = [random.randint(low, high) % mod for _ in range(high)]
+        segment_tree = RangeAffineRangeSum(high, mod)
+        segment_tree.build(nums)
+
+        assert segment_tree.range_sum(0, high - 1) == sum(nums) % mod
+
+        for _ in range(high):
+
+            left = random.randint(0, high - 1)
+            right = random.randint(left, high - 1)
+            num = random.randint(1, high)
+            segment_tree.range_affine(left, right, (1 << 32) | num)
+            for i in range(left, right + 1):
+                nums[i] += num
+                nums[i] %= mod
+            left = random.randint(0, high - 1)
+            right = random.randint(left, high - 1)
+            assert segment_tree.range_sum(left, right) == sum(
+                nums[left:right + 1]) % mod
+
+            left = random.randint(0, high - 1)
+            right = left
+            num = random.randint(1, high)
+            segment_tree.range_affine(left, right, num << 32)
             for i in range(left, right + 1):
                 nums[i] *= num
                 nums[i] %= mod

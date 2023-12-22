@@ -45,7 +45,7 @@ P8667（https://www.luogu.com.cn/problem/P8667）sorted_list
 """
 import bisect
 from bisect import insort_left, bisect_left
-from math import inf
+from src.utils.fast_io import inf
 from typing import List
 
 from sortedcontainers import SortedList

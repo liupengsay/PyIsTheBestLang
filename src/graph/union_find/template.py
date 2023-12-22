@@ -1,6 +1,6 @@
 from collections import defaultdict
 
-from math import inf
+from src.utils.fast_io import inf
 from typing import DefaultDict
 
 

@@ -103,7 +103,7 @@ import bisect
 import math
 from collections import deque, defaultdict
 from itertools import accumulate, combinations
-from math import inf
+from src.utils.fast_io import inf
 from typing import List
 
 from src.basis.binary_search.template import BinarySearch

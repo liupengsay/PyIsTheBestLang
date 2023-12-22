@@ -82,7 +82,7 @@ import decimal
 import math
 from collections import defaultdict, Counter, deque
 from heapq import heappop, heapify, heappush
-from math import inf
+from src.utils.fast_io import inf
 from typing import List, Optional
 
 from src.basis.tree_node.template import TreeNode

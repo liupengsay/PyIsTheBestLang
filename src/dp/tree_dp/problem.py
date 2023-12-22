@@ -79,7 +79,7 @@ ABC222F（https://atcoder.jp/contests/abc222/tasks/abc222_f）reroot_dp
 import math
 from collections import deque, Counter
 from functools import lru_cache
-from math import inf
+from src.utils.fast_io import inf
 from typing import List, Optional
 
 from src.basis.tree_node.template import TreeNode

@@ -95,7 +95,7 @@ import math
 from collections import Counter
 from collections import defaultdict
 from functools import reduce
-from math import inf
+from src.utils.fast_io import inf
 from operator import mul
 from typing import List
 

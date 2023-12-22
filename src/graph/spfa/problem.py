@@ -30,7 +30,7 @@ ABC137E（https://atcoder.jp/contests/abc137/tasks/abc137_e）spfa|positive_circ
 differential_constraint（https://oi-wiki.org/graph/diff-constraints/）
 """
 from collections import deque
-from math import inf
+from src.utils.fast_io import inf
 from typing import List
 
 from src.graph.dijkstra.template import Dijkstra

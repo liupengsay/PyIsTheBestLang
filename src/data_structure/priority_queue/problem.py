@@ -40,7 +40,7 @@ P4597（https://www.luogu.com.cn/problem/P4597）heapq|greedy
 import heapq
 from collections import deque, defaultdict
 from heapq import heappushpop, heappush, heappop, heapify
-from math import inf
+from src.utils.fast_io import inf
 from typing import List
 
 from sortedcontainers import SortedList

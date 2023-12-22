@@ -1,7 +1,7 @@
 import math
 from collections import deque
 from heapq import heappop, heappush
-from math import inf
+from src.utils.fast_io import inf
 from typing import List
 
 from src.graph.union_find.template import UnionFind

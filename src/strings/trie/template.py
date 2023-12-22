@@ -1,5 +1,5 @@
 import random
-from math import inf
+from src.utils.fast_io import inf
 
 
 class TrieZeroOneXorRange:

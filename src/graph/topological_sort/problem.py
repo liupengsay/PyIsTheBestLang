@@ -55,7 +55,7 @@ import copy
 import math
 from collections import defaultdict, deque
 from heapq import heapify, heappop, heappush
-from math import inf
+from src.utils.fast_io import inf
 from typing import List, Optional
 
 from src.basis.tree_node.template import TreeNode

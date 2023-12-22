@@ -70,7 +70,7 @@ https://blog.csdn.net/qq_35473473/article/details/106320878
 from collections import defaultdict, Counter
 from functools import lru_cache
 from functools import reduce
-from math import inf
+from src.utils.fast_io import inf
 from operator import xor, or_
 from typing import List
 

@@ -1,6 +1,6 @@
 from collections import defaultdict, deque
 from heapq import heappush, heappop
-from math import inf
+from src.utils.fast_io import inf
 from typing import List, Set
 
 

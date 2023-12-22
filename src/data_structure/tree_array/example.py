@@ -1,7 +1,7 @@
 import random
 import unittest
 from itertools import accumulate
-from math import inf
+from src.utils.fast_io import inf
 
 from src.data_structure.tree_array.template import PointAddRangeSum, PointDescendPreMin, RangeAddRangeSum, \
     PointAscendPreMax, PointAscendRangeMax, PointAddRangeSum2D, RangeAddRangeSum2D, \

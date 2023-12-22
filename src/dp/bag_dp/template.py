@@ -1,6 +1,6 @@
 import math
 from collections import defaultdict
-from math import inf
+from src.utils.fast_io import inf
 
 
 class BagDP:

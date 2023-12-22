@@ -125,7 +125,7 @@ import heapq
 from collections import defaultdict, deque
 from functools import lru_cache
 from itertools import permutations, accumulate
-from math import inf
+from src.utils.fast_io import inf
 from typing import List
 
 from src.basis.diff_array.template import PreFixSumMatrix

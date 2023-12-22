@@ -1,25 +1,8 @@
-from sys import stdin, stdout
-import bisect
-import decimal
-import heapq
-from types import GeneratorType
 import random
-from bisect import bisect_left, bisect_right
-from heapq import heappush, heappop, heappushpop
-from functools import cmp_to_key
-from collections import defaultdict, Counter, deque
-import math
-from functools import lru_cache
-from heapq import nlargest
-from functools import reduce
-from decimal import Decimal
-from itertools import combinations, permutations
-from operator import xor, add
-from operator import mul
-from typing import List, Callable, Dict, Set, Tuple, DefaultDict
-from heapq import heappush, heappop, heapify
+from sys import stdin
+from typing import List
 
-inf = 1 << 64
+inf = 1 << 68
 
 
 class FastIO:
@@ -80,15 +63,33 @@ class FastIO:
         return pre
 
 
+
+
 class Solution:
     def __init__(self):
         return
 
     @staticmethod
     def main(ac=FastIO()):
-
-        for _ in range(ac.read_int()):
-            pass
+        n, m = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        tree = RangeChangeAddRangeMax(n)
+        tree.build(nums)
+        for _ in range(m):
+            lst = ac.read_list_ints()
+            if lst[0] == 1:
+                x, y, k = lst[1:]
+                tree.range_change_add(x - 1, y - 1, tree.change_to_mask(k))
+                for i in range(x - 1, y):
+                    nums[i] = k
+            elif lst[0] == 2:
+                x, y, k = lst[1:]
+                tree.range_change_add(x - 1, y - 1, tree.add_to_mask(k))
+                for i in range(x - 1, y):
+                    nums[i] += k
+            else:
+                x, y = lst[1:]
+                ac.st(tree.range_max(x - 1, y - 1))
         return
 
 

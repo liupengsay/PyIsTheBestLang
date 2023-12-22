@@ -99,7 +99,7 @@ ABC133E（https://atcoder.jp/contests/abc133/tasks/abc133_e）bfs|coloring_metho
 """
 
 from collections import deque, defaultdict
-from math import inf
+from src.utils.fast_io import inf
 from typing import List
 
 from src.graph.union_find.template import UnionFind

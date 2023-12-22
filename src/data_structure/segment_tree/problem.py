@@ -68,21 +68,22 @@ ABC332F（https://atcoder.jp/contests/abc332/tasks/abc332_f）RangeAffineRangeSu
 """
 import random
 from collections import defaultdict
-from math import inf
 from typing import List
 
 from sortedcontainers import SortedList
 
 from src.basis.binary_search.template import BinarySearch
 from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeDescendRangeMin, \
-    RangeAddRangeSumMinMax, RangeRevereRangeBitCount, SegmentTreeRangeUpdateChangeQueryMax, \
-    SegmentTreeRangeXORQuery, SegmentTreePointChangeLongCon, SegmentTreeRangeSqrtSum, SegmentTreeRangeAndOrXOR, \
+    RangeAddRangeSumMinMax, RangeRevereRangeBitCount, SegmentTreeRangeXORQuery, SegmentTreePointChangeLongCon, \
+    SegmentTreeRangeSqrtSum, SegmentTreeRangeAndOrXOR, \
     RangeChangeRangeOr, \
     SegmentTreeRangeUpdateAvgDev, SegmentTreePointUpdateRangeMulQuery, \
     RangeChangeRangeSumMinMaxDynamic, PointSetRangeLongestSubSame, \
-    RangeOrRangeAnd, RangeChangeRangeSumMinMax, RangeKSmallest, PointChangeRangeMaxNonEmpConSubSum, \
-    RangeAscendRangeMaxBinarySearchFindLeft, RangeAffineRangeSum, PointSetRangeComposite
+    RangeOrRangeAnd, RangeChangeRangeSumMinMax, RangeKthSmallest, PointChangeRangeMaxNonEmpConSubSum, \
+    RangeAscendRangeMaxBinarySearchFindLeft, RangeAffineRangeSum, PointSetRangeComposite, RangeLongestRegularBrackets, \
+    RangeChangeAddRangeMax
 from src.utils.fast_io import FastIO
+from src.utils.fast_io import inf
 
 
 class Solution:
@@ -224,7 +225,7 @@ class Solution:
         url: https://codeforces.com/contest/1216/problem/F
         tag: segment_tree|dp|monotonic_queue
         """
-        # segment_tree||DP
+
         n, k = ac.read_list_ints()
         s = ac.read_str()
         tree = RangeDescendRangeMin(n)
@@ -279,16 +280,17 @@ class Solution:
     def cf_1665e(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1665/problem/E
-        tag: segment_tree
+        tag: segment_tree|classical
         """
+
         for _ in range(ac.read_int()):
             n = ac.read_int()
             nums = ac.read_list_ints()
-            tree = RangeKSmallest(n, 31)
+            tree = RangeKthSmallest(n, 31)
             tree.build(nums)
             for _ in range(ac.read_int()):
                 ll, rr = ac.read_list_ints_minus_one()
-                lst = tree.range_k_smallest(ll, rr)
+                lst = tree.range_kth_smallest(ll, rr)
                 ans = inf
                 m = len(lst)
                 for i in range(m):
@@ -306,10 +308,10 @@ class Solution:
     @staticmethod
     def lc_218(buildings: List[List[int]]) -> List[List[int]]:
         """
-        url: https://leetcode.cn/problems/the-skyline-problem/solution/by-liupengsay-isfo/
+        url: https://leetcode.cn/problems/the-skyline-problem/
         tag: segment_tree|RangeChangeRangeMax
         """
-        # segment_tree|discretization区间且持续增|最大值
+
         pos = set()
         for left, right, _ in buildings:
             pos.add(left)
@@ -317,12 +319,12 @@ class Solution:
         lst = sorted(list(pos))
         n = len(lst)
         dct = {x: i for i, x in enumerate(lst)}
-        # discretization更新segment_tree|
+
         segment = RangeAscendRangeMax(n)
         segment.build([0] * n)
         for left, right, height in buildings:
             segment.range_ascend(dct[left], dct[right] - 1, height)
-        # 按照端点关键点查询
+
         pre = -1
         ans = []
         for pos in lst:
@@ -338,68 +340,14 @@ class Solution:
         url: https://codeforces.com/problemset/problem/380/C
         tag: segment_tree|range_merge|sub_consequence|bracket
         """
-        word = []
-        queries = []
-        # segment_tree|divide_and_conquer并dp合并
-        n = len(word)
-        a = [0] * (4 * n)
-        b = [0] * (4 * n)
-        c = [0] * (4 * n)
-
-        @ac.bootstrap
-        def update(left, r, s, t, i):
-            if s == t:
-                if word[s - 1] == ")":
-                    c[i] = 1
-                else:
-                    b[i] = 1
-                a[i] = 0
-                yield
-
-            m = s + (t - s) // 2
-            if left <= m:
-                yield update(left, r, s, m, i << 1)
-            if r > m:
-                yield update(left, r, m + 1, t, i << 1 | 1)
-
-            match = min(b[i << 1], c[i << 1 | 1])
-            a[i] = a[i << 1] + a[i << 1 | 1] + 2 * match
-            b[i] = b[i << 1] + b[i << 1 | 1] - match
-            c[i] = c[i << 1] + c[i << 1 | 1] - match
-            yield
-
-        @ac.bootstrap
-        def query(left, r, s, t, i):
-            if left <= s and t <= r:
-                d[i] = [a[i], b[i], c[i]]
-                yield
-
-            a1 = b1 = c1 = 0
-            m = s + (t - s) // 2
-            if left <= m:
-                yield query(left, r, s, m, i << 1)
-                a2, b2, c2 = d[i << 1]
-                match = min(b1, c2)
-                a1 += a2 + 2 * match
-                b1 += b2 - match
-                c1 += c2 - match
-            if r > m:
-                yield query(left, r, m + 1, t, i << 1 | 1)
-                a2, b2, c2 = d[i << 1 | 1]
-                match = min(b1, c2)
-                a1 += a2 + 2 * match
-                b1 += b2 - match
-                c1 += c2 - match
-            d[i] = [a1, b1, c1]
-            yield
-
-        update(1, n, 1, n, 1)
-        ans = []
-        for x, y in queries:
-            d = defaultdict(list)
-            query(x, y, 1, n, 1)
-            ans.append(d[1][0])
-        return ans
+        s = ac.read_str()
+        n = len(s)
+        tree = RangeLongestRegularBrackets(n)
+        tree.build(s)
+        for _ in range(ac.read_int()):
+            x, y = ac.read_list_ints_minus_one()
+            ac.st(tree.range_longest_regular_brackets(x, y))
+        return
 
     @staticmethod
     def lg_p3372(ac=FastIO()):
@@ -407,7 +355,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3372
         tag: RangeAddRangeSumMaxMin
         """
-        # segment_tree| 区间增减 与区间和查询
+
         n, m = ac.read_list_ints()
         segment = RangeAddRangeSumMinMax(n)
         segment.build(ac.read_list_ints())
@@ -428,7 +376,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3870
         tag: segment_tree|range_reverse|range_sum
         """
-        # 区间异或 0 与 1 翻转
+
         n, m = ac.read_list_ints()
         segment = RangeRevereRangeBitCount(n)
 
@@ -436,10 +384,10 @@ class Solution:
             lst = ac.read_list_ints()
             if lst[0] == 0:
                 x, y = lst[1:]
-                segment.update_range(x - 1, y - 1, 0, n - 1, 1, 1)
+                segment.range_reverse(x - 1, y - 1)
             else:
                 x, y = lst[1:]
-                ac.st(segment.query_sum(x - 1, y - 1, 0, n - 1, 1))
+                ac.st(segment.range_bit_count(x - 1, y - 1))
         return
 
     @staticmethod
@@ -448,7 +396,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1438
         tag: diff_array|RangeAddRangeSumMaxMin|segment_tree
         """
-        # diff_array|区间增减|segment_tree|查询区间和
+
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         segment = RangeAddRangeSumMinMax(n)
@@ -462,7 +410,6 @@ class Solution:
                     if y <= n - 1:
                         segment.range_add(y, y, -k)
                 else:
-                    # diff_array|区间的等差数列|减
                     segment.range_add(x - 1, x - 1, k)
                     segment.range_add(x, y - 1, d)
                     cnt = y - x
@@ -480,21 +427,25 @@ class Solution:
         tag: range_add|range_change|segment_tree|range_sum
         """
 
-        # 区间增减与区间修改并segment_tree|查询区间和
         n, m = ac.read_list_ints()
-        segment = SegmentTreeRangeUpdateChangeQueryMax(ac.read_list_ints())
-
+        nums = ac.read_list_ints()
+        tree = RangeChangeAddRangeMax(n)
+        tree.build(nums)
         for _ in range(m):
             lst = ac.read_list_ints()
             if lst[0] == 1:
                 x, y, k = lst[1:]
-                segment.update(x - 1, y - 1, 0, n - 1, k, 1, 1)
+                tree.range_change_add(x - 1, y - 1, tree.change_to_mask(k))
+                for i in range(x - 1, y):
+                    nums[i] = k
             elif lst[0] == 2:
                 x, y, k = lst[1:]
-                segment.update(x - 1, y - 1, 0, n - 1, k, 2, 1)
+                tree.range_change_add(x - 1, y - 1, tree.add_to_mask(k))
+                for i in range(x - 1, y):
+                    nums[i] += k
             else:
                 x, y = lst[1:]
-                ac.st(segment.query_max(x - 1, y - 1, 0, n - 1, 1))
+                ac.st(tree.range_max(x - 1, y - 1))
         return
 
     @staticmethod
@@ -1116,7 +1067,7 @@ class Solution:
                 rr -= 1
                 for j in range(22):
                     if (1 << j) & xx:
-                        tree[j].update_range(ll, rr,  1)
+                        tree[j].update_range(ll, rr, 1)
 
         return
 
@@ -1208,6 +1159,3 @@ class Solution:
                 return True
 
         return BookMyShow
-
-
-

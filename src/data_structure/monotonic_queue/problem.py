@@ -34,7 +34,7 @@ P4392（https://www.luogu.com.cn/problem/P4392）sliding_window|monotonic_queue
 
 """
 from collections import deque
-from math import inf
+from src.utils.fast_io import inf
 from typing import List
 
 from src.basis.binary_search.template import BinarySearch

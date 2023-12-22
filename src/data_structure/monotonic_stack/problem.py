@@ -67,7 +67,7 @@ ABC140E（https://atcoder.jp/contests/abc140/tasks/abc140_e）monotonic_stack|pr
 import bisect
 import heapq
 from collections import defaultdict, Counter
-from math import inf
+from src.utils.fast_io import inf
 from typing import List
 
 from src.data_structure.monotonic_stack.template import Rectangle

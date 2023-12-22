@@ -51,7 +51,7 @@ P1325（https://www.luogu.com.cn/problem/P1325）sort|greedy|minimum_range_cover
 """
 import bisect
 from collections import defaultdict, deque
-from math import inf
+from src.utils.fast_io import inf
 from typing import List
 
 from src.basis.range.template import Range
