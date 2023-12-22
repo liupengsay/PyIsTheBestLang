@@ -7,7 +7,8 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, \
     RangeDescendRangeMin, \
     RangeAddRangeSumMinMax, RangeChangeRangeSumMinMax, PointChangeRangeMaxNonEmpConSubSum, \
     RangeOrRangeAnd, \
-    RangeChangeRangeSumMinMaxDynamic, RangeChangeRangeOr, RangeAffineRangeSum, RangeAddMulRangeSum
+    RangeChangeRangeSumMinMaxDynamic, RangeChangeRangeOr, RangeAffineRangeSum, RangeAddMulRangeSum, \
+    RangeChangeAddRangeMax
 
 
 class TestGeneral(unittest.TestCase):
@@ -149,11 +150,48 @@ class TestGeneral(unittest.TestCase):
         assert segment_tree.get() == nums
         return
 
+    def test_range_change_add_range_max(self):
+        low = -10 ** 9
+        high = 10 ** 9
+
+        for _ in range(100):
+            n = random.randint(1000, 10 ** 4)
+            nums = [random.randint(low, high) for _ in range(n)]
+            segment_tree = RangeChangeAddRangeMax(n)
+            segment_tree.build(nums)
+            assert segment_tree.range_max(0, high - 1) == max(nums)
+
+            for _ in range(100):
+
+                left = random.randint(0, n - 1)
+                right = random.randint(left, n - 1)
+                num = random.randint(low, high)
+                segment_tree.range_change_add(left, right, segment_tree.add_to_mask(num))
+                for i in range(left, right + 1):
+                    nums[i] += num
+                left = random.randint(0, n - 1)
+                right = random.randint(left, n - 1)
+                assert segment_tree.range_max(left, right) == max(
+                    nums[left:right + 1])
+
+                left = random.randint(0, n - 1)
+                right = random.randint(left, n - 1)
+                num = random.randint(low, high)
+                segment_tree.range_change_add(left, right, segment_tree.change_to_mask(num))
+                for i in range(left, right + 1):
+                    nums[i] = num
+                left = random.randint(0, n - 1)
+                right = random.randint(left, n - 1)
+                assert segment_tree.range_max(left, right) == max(nums[left:right + 1])
+
+            assert segment_tree.get() == nums
+        return
+
     def test_range_add_mul_range_sum(self):
         low = -10000
         high = 10000
         nums = [random.randint(low, high) for _ in range(high)]
-        mod = 10**9 + 7
+        mod = 10 ** 9 + 7
         segment_tree = RangeAddMulRangeSum(high, mod)
         segment_tree.build(nums)
 
