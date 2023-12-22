@@ -14,6 +14,7 @@ Description：range_sum|range_min|range_add|range_change|range_max|dynamic_segme
 2276（https://leetcode.cn/problems/count-integers-in-intervals/）dynamic_segment_tree|union_find_range|SortedList
 1340（https://leetcode.cn/problems/jump-game-v/）segment_tree|linear_dp
 2940（https://leetcode.cn/problems/find-building-where-alice-and-bob-can-meet/）segment_tree_binary_search
+2569（https://leetcode.cn/problems/handling-sum-queries-after-update/）segment_tree|range_reverse|bit_set
 
 =====================================LuoGu======================================
 P2846（https://www.luogu.com.cn/problem/P2846）segment_tree|range_reverse|range_sum
@@ -74,11 +75,11 @@ from sortedcontainers import SortedList
 
 from src.basis.binary_search.template import BinarySearch
 from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeDescendRangeMin, \
-    RangeAddRangeSumMinMax, SegmentTreeRangeUpdateXORSum, SegmentTreeRangeUpdateChangeQueryMax, \
+    RangeAddRangeSumMinMax, RangeRevereRangeBitCount, SegmentTreeRangeUpdateChangeQueryMax, \
     SegmentTreeRangeXORQuery, SegmentTreePointChangeLongCon, SegmentTreeRangeSqrtSum, SegmentTreeRangeAndOrXOR, \
     RangeChangeRangeOr, \
     SegmentTreeRangeUpdateAvgDev, SegmentTreePointUpdateRangeMulQuery, \
-    RangeChangeRangeSumMinMaxDynamic, SegmentTreeLongestSubSame, \
+    RangeChangeRangeSumMinMaxDynamic, PointSetRangeLongestSubSame, \
     RangeOrRangeAnd, RangeChangeRangeSumMinMax, RangeKSmallest, PointChangeRangeMaxNonEmpConSubSum, \
     RangeAscendRangeMaxBinarySearchFindLeft, RangeAffineRangeSum, PointSetRangeComposite
 from src.utils.fast_io import FastIO
@@ -94,12 +95,12 @@ class Solution:
         url: https://leetcode.cn/problems/longest-substring-of-one-repeating-character/
         tag: segment_tree|sub_consequence|range_query|range_merge
         """
-        # 单点字母更新，最长具有相同字母的连续子数组查询
+
         n = len(s)
-        tree = SegmentTreeLongestSubSame(n, [ord(w) - ord("a") for w in s])
+        tree = PointSetRangeLongestSubSame(n, [ord(w) - ord("a") for w in s])
         ans = []
         for i, w in zip(indices, word):
-            ans.append(tree.update_point(i, i, 0, n - 1, ord(w) - ord("a"), 1))
+            ans.append(tree.point_set_rang_longest_sub_same(i, ord(w) - ord("a")))
         return ans
 
     @staticmethod
@@ -167,18 +168,21 @@ class Solution:
         return
 
     @staticmethod
-    def lc_2569_1(nums1: List[int], nums2: List[int], queries: List[List[int]]) -> List[int]:
-        # 01segment_tree|区间翻转与求和，也可以BitSet
+    def lc_2569(nums1: List[int], nums2: List[int], queries: List[List[int]]) -> List[int]:
+        """
+        url: https://leetcode.cn/problems/handling-sum-queries-after-update/
+        tag: segment_tree|range_reverse|bit_set
+        """
         n = len(nums1)
-        tree = SegmentTreeRangeUpdateXORSum(n)
+        tree = RangeRevereRangeBitCount(n)
         tree.build(nums1)
         ans = []
         s = sum(nums2)
         for op, x, y in queries:
             if op == 1:
-                tree.update_range(x, y, 0, n - 1, 1, 1)
+                tree.range_reverse(x, y)
             elif op == 2:
-                s += tree.query_sum(0, n - 1, 0, n - 1, 1) * x
+                s += tree.range_bit_count(0, n - 1) * x
             else:
                 ans.append(s)
         return ans
@@ -190,7 +194,6 @@ class Solution:
         tag: segment_tree|RangeAscendRangeMax
         """
 
-        # segment_tree|，区间更新最大值并单点查询天际线
         high = 10 ** 4
         segment = RangeAscendRangeMax(high)
         segment.build([0] * high)
@@ -427,7 +430,7 @@ class Solution:
         """
         # 区间异或 0 与 1 翻转
         n, m = ac.read_list_ints()
-        segment = SegmentTreeRangeUpdateXORSum(n)
+        segment = RangeRevereRangeBitCount(n)
 
         for _ in range(m):
             lst = ac.read_list_ints()
@@ -1095,7 +1098,7 @@ class Solution:
 
         n = ac.read_int()
         nums = ac.read_list_ints()
-        tree = [SegmentTreeRangeUpdateXORSum(n) for _ in range(22)]
+        tree = [RangeRevereRangeBitCount(n) for _ in range(22)]
         for j in range(22):
             lst = [1 if nums[i] & (1 << j) else 0 for i in range(n)]
             tree[j].build(lst)

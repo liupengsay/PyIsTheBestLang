@@ -35,14 +35,11 @@ P4597（https://www.luogu.com.cn/problem/P4597）heapq|greedy
 147（https://www.acwing.com/problem/content/description/149/）greedy|heapq|double_linked_list
 148（https://www.acwing.com/problem/content/150/）greedy|heapq|huffman_tree
 149（https://www.acwing.com/problem/content/description/151/）huffman_tree|heapq|greedy
-
-
-
 """
 
 import heapq
 from collections import deque, defaultdict
-from heapq import heappushpop, heappush, heappop
+from heapq import heappushpop, heappush, heappop, heapify
 from math import inf
 from typing import List
 
@@ -60,9 +57,9 @@ class Solution:
     def lc_2454_1(nums: List[int]) -> List[int]:
         """
         url: https://leetcode.cn/problems/next-greater-element-iv/
-        tag: heapq|post_second_larger|hash|SortedList
+        tag: heapq|post_second_larger|hash|SortedList|classical|bucket
         """
-        # hashsort|SortedList
+
         n = len(nums)
         dct = defaultdict(list)
         for i in range(n):
@@ -85,7 +82,6 @@ class Solution:
         tag: heapq|post_second_larger|hash|SortedList
         """
 
-        # monotonic_stack||小顶heapq
         n = len(nums)
         ans = [-1] * n
         mono_stack = []
@@ -102,8 +98,11 @@ class Solution:
         return ans
 
     @staticmethod
-    def lg_1198(ac=FastIO()):
-        # 两个heapq维护median
+    def lg_1168(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1168
+        tag: heapq|median
+        """
         n = ac.read_int()
         nums = ac.read_list_ints()
         arr = MedianFinder()
@@ -117,9 +116,9 @@ class Solution:
     def lc_1792(classes, extra_students):
         """
         url: https://leetcode.cn/problems/maximum-average-pass-ratio/
-        tag: greedy
+        tag: greedy|math|classical
         """
-        # heapqgreedyimplemention每次选择最优
+
         stack = []
         for p, t in classes:
             heapq.heappush(stack, [p / t - (p + 1) / (t + 1), p, t])
@@ -127,7 +126,6 @@ class Solution:
             r, p, t = heapq.heappop(stack)
             p += 1
             t += 1
-            # 关键点在于优先级的设置为 p / t - (p + 1) / (t + 1)
             heapq.heappush(stack, [p / t - (p + 1) / (t + 1), p, t])
         return sum(p / t for _, p, t in stack) / len(classes)
 
@@ -135,11 +133,10 @@ class Solution:
     def lc_630(courses: List[List[int]]) -> int:
         """
         url: https://leetcode.cn/problems/course-schedule-iii/
-        tag: delay_heapq|greedy
+        tag: delay_heapq|greedy|regret_heapq|classical
         """
-        # 反悔heapq，遍历过程选择更优的
+
         courses.sort(key=lambda x: x[1])
-        # 按照结束时间sorting
         stack = []
         day = 0
         for duration, last in courses:
@@ -147,7 +144,6 @@ class Solution:
                 day += duration
                 heapq.heappush(stack, -duration)
             else:
-                # 如果有学习时间更短的课程则替换
                 if stack and -stack[0] > duration:
                     day += heapq.heappop(stack) + duration
                     heapq.heappush(stack, -duration)
@@ -157,31 +153,23 @@ class Solution:
     def ac_146(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/148/
-        tag: heapq
+        tag: heapq|classical|dp|greedy|pointer
         """
-        # 小顶heapq问题m个数组最小的n个子序列和，同样可以最大的
+
         for _ in range(ac.read_int()):
             m, n = ac.read_list_ints()
-            grid = [sorted(ac.read_list_ints()) for _ in range(m)]
-            grid = [g for g in grid if g]
-            m = len(grid)
-
-            pre = grid[0]
-            for i in range(1, m):
-                cur = grid[i][:]
+            pre = sorted(ac.read_list_ints())
+            for _ in range(m - 1):
+                cur = ac.read_list_ints()
+                cur.sort()
+                stack = [(pre[0] + cur[j], 0, j) for j in range(n)]
+                heapify(stack)
                 nex = []
-                stack = [[pre[0] + cur[0], 0, 0]]
-                dct = set()
-                while stack and len(nex) < n:
-                    val, i, j = heapq.heappop(stack)
-                    if (i, j) in dct:
-                        continue
-                    dct.add((i, j))
+                for _ in range(n):
+                    val, i, j = heappop(stack)
                     nex.append(val)
                     if i + 1 < n:
-                        heapq.heappush(stack, [pre[i + 1] + cur[j], i + 1, j])
-                    if j + 1 < n:
-                        heapq.heappush(stack, [pre[i] + cur[j + 1], i, j + 1])
+                        heappush(stack, (pre[i + 1] + cur[j], i + 1, j))
                 pre = nex[:]
             ac.lst(pre)
         return
@@ -190,14 +178,12 @@ class Solution:
     def ac_147(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/149/
-        tag: greedy|heapq|double_linked_list
+        tag: greedy|heapq|double_linked_list|classical|hard
         """
-        # greedy思想|heapq|与double_linked_list|优化
 
         n, k = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
 
-        # 假如虚拟的头节点并初始化
         diff = [inf] + [nums[i + 1] - nums[i] for i in range(n - 1)] + [inf]
         stack = [[diff[i], i] for i in range(1, n)]
         heapq.heapify(stack)
@@ -206,7 +192,6 @@ class Solution:
         pre[0] = 0
         post[n] = n
 
-        # 记录删除过的点
         ans = 0
         delete = [0] * (n + 1)
         while k:
@@ -215,7 +200,6 @@ class Solution:
                 continue
             ans += diff[i]
 
-            # |入新点删除旧点
             left = diff[pre[i]]
             right = diff[post[i]]
             new = left + right - diff[i]
@@ -239,7 +223,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2168
         tag: huffman_tree|heapq|greedy
         """
-        # heapq|greedy与霍夫曼树Huffman Tree
+
         n, k = ac.read_list_ints()
         stack = [[ac.read_int(), 0] for _ in range(n)]
         heapq.heapify(stack)
@@ -263,22 +247,20 @@ class Solution:
     def lg_p1631(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1631
-        tag: heapq|pointer
+        tag: heapq|pointer|classical
         """
-        # 求两个数组的前 n 个最小的元素和
+
         n = ac.read_int()
         nums1 = ac.read_list_ints()
         nums2 = ac.read_list_ints()
-        # 初始时|入所有第二个数组的索引位置
-        stack = [[nums1[0] + nums2[j], 0, j] for j in range(n)]
-        # 不重不漏brute_force所有索引组合
+        stack = [(nums1[0] + nums2[j], 0, j) for j in range(n)]
         heapq.heapify(stack)
         ans = []
         for _ in range(n):
             val, i, j = heapq.heappop(stack)
             ans.append(val)
             if i + 1 < n:
-                heapq.heappush(stack, [nums1[i + 1] + nums2[j], i + 1, j])
+                heapq.heappush(stack, (nums1[i + 1] + nums2[j], i + 1, j))
         ac.lst(ans)
         return
 
@@ -286,9 +268,9 @@ class Solution:
     def lg_p4053(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P4053
-        tag: delay_heapq|greedy
+        tag: delay_heapq|greedy|regret_heapq|LC630
         """
-        # 懒惰删除，implementiongreedy
+
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort(key=lambda it: it[1])
@@ -312,18 +294,19 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2085
         tag: math|heapq
         """
-        # 利用一元二次方程的单调性与pointerheapqgreedy选取
+
         n, m = ac.read_list_ints()
         stack = []
         for _ in range(n):
             a, b, c = ac.read_list_ints()
-            heapq.heappush(stack, [a + b + c, 1, a, b, c])
+            stack.append((a + b + c, 1, a, b, c))
+        heapify(stack)
         ans = []
         while len(ans) < m:
             val, x, a, b, c = heapq.heappop(stack)
             ans.append(val)
             x += 1
-            heapq.heappush(stack, [a * x * x + b * x + c, x, a, b, c])
+            heapq.heappush(stack, (a * x * x + b * x + c, x, a, b, c))
         ac.lst(ans)
         return
 
@@ -333,17 +316,16 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2278
         tag: heapq|implemention
         """
-        # heapqimplemention应用
-        now = []  # idx, reach, need, level, end
+
+        now = []
         ans = []
-        stack = []  # -level, reach, need, idx
+        stack = []
         pre = 0
         while True:
-            lst = ac.read_list_ints()  # idx, reach, need, level
+            lst = ac.read_list_ints()
             if not lst:
                 break
 
-            # 当前达到时刻之前可以完成的任务消除掉
             while now and now[-1] <= lst[1]:
                 ans.append([now[0], now[-1]])
                 pre = now[-1]
@@ -353,28 +335,23 @@ class Solution:
                 else:
                     now = []
 
-            # 取出还有的任务运行
             if not now and stack:
                 level, reach, need, idx = heapq.heappop(stack)
                 now = [idx, reach, need, -level, ac.max(pre, reach) + need]
 
-            # 执行任务等级不低于当前任务，当前任务直接入队
             if now and now[3] >= lst[-1]:
                 idx, reach, need, level = lst
-                heapq.heappush(stack, [-level, reach, need, idx])
+                heapq.heappush(stack, (-level, reach, need, idx))
             elif now:
-                # 当前任务等级更高，替换，注意剩余时间
                 idx, reach, need, level, end = now
-                heapq.heappush(stack, [-level, reach, end - lst[1], idx])
+                heapq.heappush(stack, (-level, reach, end - lst[1], idx))
                 idx, reach, need, level = lst
                 now = [idx, reach, need, level, ac.max(pre, reach) + need]
             else:
-                # 无执行任务，直接执行当前任务
                 idx, reach, need, level = lst
                 now = [idx, reach, need, level, ac.max(pre, reach) + need]
 
         while stack:
-            # 执行剩余任务
             ans.append([now[0], now[-1]])
             pre = now[-1]
             level, reach, need, idx = heapq.heappop(stack)
@@ -390,7 +367,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1717
         tag: brute_force|heapq|greedy
         """
-        # brute_force最远到达地点heapq|greedy选取
+
         ans = 0
         n = ac.read_int()
         h = ac.read_int() * 60
@@ -419,18 +396,18 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1905
         tag: heapq|greedy
         """
-        # heapq|从大到小greedy摆放
+
         ac.read_int()
         p = ac.read_int()
         lst = ac.read_list_ints()
         ans = [[0] for _ in range(p)]
-        stack = [[ans[i][0], i] for i in range(p)]
+        stack = [(ans[i][0], i) for i in range(p)]
         lst.sort(reverse=True)
         for num in lst:
             d, i = heapq.heappop(stack)
             ans[i][0] += num
             ans[i].append(num)
-            heapq.heappush(stack, [ans[i][0], i])
+            heapq.heappush(stack, (ans[i][0], i))
         for a in ans:
             ac.lst(a[1:])
         return
@@ -441,32 +418,31 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2409
         tag: heapq
         """
-        # heapq|，最小的k个和
+
         n, k = ac.read_list_ints()
-        pre = ac.read_list_ints()[1:]
-        pre.sort()
+        pre = sorted(ac.read_list_ints()[1:])[:k]
         for _ in range(n - 1):
-            cur = ac.read_list_ints()[1:]
-            cur.sort()
+            cur = sorted(ac.read_list_ints()[1:])[:k]
+            m = len(cur)
+            stack = [(pre[0] + cur[j], 0, j) for j in range(m)]
+            heapify(stack)
             nex = []
-            for x in cur:
-                for num in pre:
-                    if len(nex) == k and -num - x < nex[0]:
-                        break
-                    heapq.heappush(nex, -num - x)
-                    if len(nex) > k:
-                        heapq.heappop(nex)
-            pre = sorted([-x for x in nex])
-        ac.lst(pre[:k])
+            while len(nex) < k and stack:
+                val, i, j = heappop(stack)
+                nex.append(val)
+                if i + 1 < len(pre):
+                    heappush(stack, (pre[i + 1] + cur[j], i + 1, j))
+            pre = nex[:]
+        ac.lst(pre)
         return
 
     @staticmethod
     def lg_p2949(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P2949
-        tag: heapq|greedy|implemention|delay_heapq|lazy_heapq
+        tag: heapq|greedy|implemention|delay_heapq|lazy_heapq|regret_heapq
         """
-        # heapq|greedyimplemention懒惰延迟删除
+
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort(key=lambda it: it[0])
@@ -484,9 +460,9 @@ class Solution:
     def lg_p6033(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P6033
-        tag: greedy|deque
+        tag: greedy|priority_queue|classical
         """
-        # 队列 O(n) implemention合并果子
+
         ac.read_int()
         pre = deque(sorted(ac.read_list_ints()))
         post = deque()
@@ -523,8 +499,7 @@ class Solution:
         """
 
         def helper(lst: List[int]) -> int:
-            # 大根heapqgreedy使得序列非降的最小操作次数
-            res, pq = 0, []  # 大根heapq
+            res, pq = 0, []
             for num in lst:
                 if not pq:
                     heappush(pq, -num)
@@ -542,9 +517,9 @@ class Solution:
     def lc_2386(nums: List[int], k: int) -> int:
         """
         url: https://leetcode.cn/problems/find-the-k-sum-of-an-array/
-        tag: heapq|brain_teaser
+        tag: heapq|brain_teaser|dijkstra|classical|hard
         """
-        # 转换思路heapq维护最大和第 K 次出队的则为目标结果
+
         n = len(nums)
         tot = 0
         for i in range(n):
@@ -553,12 +528,12 @@ class Solution:
             else:
                 nums[i] = -nums[i]
         nums.sort()
-        # brain_teaser|，类似Dijkstra的思想从大到小brute_force子序列的和
-        stack = [[nums[0], 0]]
+
+        stack = [(-tot, 0)]
         for _ in range(k - 1):
             pre, i = heappop(stack)
             if i < n:
-                heapq.heappush(stack, [pre + nums[i], i + 1])
+                heapq.heappush(stack, (pre + nums[i], i + 1))
                 if i:
-                    heapq.heappush(stack, [pre + nums[i] - nums[i - 1], i + 1])
+                    heapq.heappush(stack, (pre + nums[i] - nums[i - 1], i + 1))
         return -stack[0][0]
