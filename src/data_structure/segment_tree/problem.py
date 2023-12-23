@@ -74,14 +74,14 @@ from sortedcontainers import SortedList
 
 from src.basis.binary_search.template import BinarySearch
 from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeDescendRangeMin, \
-    RangeAddRangeSumMinMax, RangeRevereRangeBitCount, SegmentTreeRangeXORQuery, SegmentTreePointChangeLongCon, \
+    RangeAddRangeSumMinMax, RangeRevereRangeBitCount, RangeXorRangeXor, SegmentTreePointChangeLongCon, \
     SegmentTreeRangeSqrtSum, SegmentTreeRangeAndOrXOR, \
     RangeChangeRangeOr, \
-    SegmentTreeRangeUpdateAvgDev, SegmentTreePointUpdateRangeMulQuery, \
+    RangeAddRangeAvgDev, SegmentTreePointUpdateRangeMulQuery, \
     RangeChangeRangeSumMinMaxDynamic, PointSetRangeLongestSubSame, \
-    RangeOrRangeAnd, RangeChangeRangeSumMinMax, RangeKthSmallest, PointChangeRangeMaxNonEmpConSubSum, \
+    RangeOrRangeAnd, RangeChangeRangeSumMinMax, RangeKthSmallest, RangeChangeRangeMaxNonEmpConSubSum, \
     RangeAscendRangeMaxBinarySearchFindLeft, RangeAffineRangeSum, PointSetRangeComposite, RangeLongestRegularBrackets, \
-    RangeChangeAddRangeMax
+    RangeChangeAddRangeMax, PointSetRangeMaxNonEmpConSubSum, RangeXorUpdateRangeXorQuery
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
 
@@ -473,13 +473,13 @@ class Solution:
         return
 
     @staticmethod
-    def lg_p4513(ac=FastIO()):
+    def lg_p4513_1(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P4513
         tag: segment_tree|range_change|range_merge|sub_consequence
         """
         n, m = ac.read_list_ints()
-        segment = PointChangeRangeMaxNonEmpConSubSum(n, 1000)
+        segment = RangeChangeRangeMaxNonEmpConSubSum(n, 1000)
         segment.build([ac.read_int() for _ in range(n)])
         for _ in range(m):
             lst = ac.read_list_ints()
@@ -494,14 +494,35 @@ class Solution:
         return
 
     @staticmethod
+    def lg_p4513_2(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4513
+        tag: segment_tree|range_change|range_merge|sub_consequence
+        """
+        n, m = ac.read_list_ints()
+        tree = PointSetRangeMaxNonEmpConSubSum(n)
+        tree.build([ac.read_int() for _ in range(n)])
+        for _ in range(m):
+            lst = ac.read_list_ints()
+            if lst[0] == 1:
+                a, b = lst[1:]
+                a, b = ac.min(a, b), ac.max(a, b)
+                ans = tree.range_max_non_emp_con_sub_sum(a - 1, b - 1)
+                ac.st(ans)
+            else:
+                a, s = lst[1:]
+                tree.point_set(a - 1, a - 1, s)
+        return
+
+    @staticmethod
     def lg_p1471(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1471
         tag: math|segment_tree|RangeAddRangeSum
         """
-        # 区间增减，维护区间和与区间数字平方的和，以均差与方差
+
         n, m = ac.read_list_ints()
-        tree = SegmentTreeRangeUpdateAvgDev(n)
+        tree = RangeAddRangeAvgDev(n)
         tree.build(ac.read_list_floats())
         for _ in range(m):
             lst = ac.read_list_floats()
@@ -509,19 +530,18 @@ class Solution:
                 x, y, k = lst[1:]
                 x = int(x)
                 y = int(y)
-                tree.update(x - 1, y - 1, 0, n - 1, k, 1)
+                tree.range_add(x - 1, y - 1, k)
             elif lst[0] == 2:
                 x, y = lst[1:]
                 x = int(x)
                 y = int(y)
-                ans = (tree.query(x - 1, y - 1, 0, n - 1, 1)[0]) / (y - x + 1)
+                ans = tree.range_avg_dev(x - 1, y - 1)[0]
                 ac.st("%.4f" % ans)
             else:
                 x, y = lst[1:]
                 x = int(x)
                 y = int(y)
-                avg, avg_2 = tree.query(x - 1, y - 1, 0, n - 1, 1)
-                ans = -(avg * avg / (y - x + 1)) ** 2 + avg_2 / (y - x + 1)
+                ans = tree.range_avg_dev(x - 1, y - 1)[1]
                 ac.st("%.4f" % ans)
         return
 
@@ -529,9 +549,8 @@ class Solution:
     def lg_p6627(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P6627
-        tag: segment_tree|range_xor
+        tag: segment_tree|range_xor|discretization
         """
-        # segment_tree|维护和查询区间异或值
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         nodes = {0, -10 ** 9 - 1, 10 ** 9 + 1}
@@ -543,27 +562,26 @@ class Solution:
         nodes = sorted(list(nodes))
         n = len(nodes)
         ind = {num: i for i, num in enumerate(nodes)}
-        tree = SegmentTreeRangeXORQuery(n)
+        tree = RangeXorUpdateRangeXorQuery(n)
         arr = [0] * n
         for lst in nums:
             if lst[0] == 1:
                 a, b, w = lst[1:]
                 if a > b:
                     a, b = b, a
-                tree.update_range(ind[a], ind[b], 0, n - 1, w, 1)
+                tree.range_xor_update(ind[a], ind[b], w)
             elif lst[0] == 2:
                 a, w = lst[1:]
-                arr[ind[a]] ^= w  # 数组代替
-                # tree.update_point(ind[a], ind[a], 0, n-1, w, 1)
+                arr[ind[a]] ^= w
             else:
                 a, w = lst[1:]
-                tree.update_range(0, n - 1, 0, n - 1, w, 1)
-                arr[ind[a]] ^= w  # 数组代替
-                # tree.update_point(ind[a], ind[a], 0, n - 1, w, 1)
+                tree.range_xor_update(0, n - 1, w)
+                arr[ind[a]] ^= w
         ans = inf
         res = -inf
+        nums = tree.get()
         for i in range(n):
-            val = tree.query_point(i, i, 0, n - 1, 1) ^ arr[i]
+            val = arr[i] ^ nums[i]
             if val > res or (
                     val == res and (abs(ans) > abs(nodes[i]) or (abs(ans) == abs(nodes[i]) and nodes[i] > ans))):
                 res = val

@@ -1,14 +1,14 @@
 import random
 import unittest
 from functools import reduce
-from operator import or_
+from operator import or_, xor
 
 from src.data_structure.segment_tree.template import RangeAscendRangeMax, \
     RangeDescendRangeMin, \
-    RangeAddRangeSumMinMax, RangeChangeRangeSumMinMax, PointChangeRangeMaxNonEmpConSubSum, \
+    RangeAddRangeSumMinMax, RangeChangeRangeSumMinMax, RangeChangeRangeMaxNonEmpConSubSum, \
     RangeOrRangeAnd, \
     RangeChangeRangeSumMinMaxDynamic, RangeChangeRangeOr, RangeAffineRangeSum, RangeAddMulRangeSum, \
-    RangeChangeAddRangeMax
+    RangeChangeAddRangeMax, RangeXorUpdateRangeXorQuery
 
 
 class TestGeneral(unittest.TestCase):
@@ -150,6 +150,31 @@ class TestGeneral(unittest.TestCase):
         assert segment_tree.get() == nums
         return
 
+    def test_range_xor_update_range_xor_query(self):
+        low = 0
+        high = 10000
+        nums = [random.randint(low, high) for _ in range(high)]
+        segment_tree = RangeXorUpdateRangeXorQuery(high)
+        segment_tree.build(nums)
+
+        assert segment_tree.range_xor_query(0, high - 1) == reduce(xor, nums)
+
+        for _ in range(high):
+
+            left = random.randint(0, high - 1)
+            right = random.randint(left, high - 1)
+            num = random.randint(0, high)
+            segment_tree.range_xor_update(left, right, num)
+            for i in range(left, right + 1):
+                nums[i] ^= num
+            left = random.randint(0, high - 1)
+            right = random.randint(left, high - 1)
+
+            assert segment_tree.range_xor_query(left, right) == reduce(xor, nums[left:right + 1])
+
+        assert segment_tree.get() == nums
+        return
+
     def test_range_change_add_range_max(self):
         low = -10 ** 9
         high = 10 ** 9
@@ -276,7 +301,6 @@ class TestGeneral(unittest.TestCase):
         assert segment_tree.get() == nums
 
         for _ in range(high):
-            # 区间修改
             left = random.randint(0, high - 1)
             right = random.randint(left, high - 1)
             num = random.randint(-high, high)
@@ -292,7 +316,6 @@ class TestGeneral(unittest.TestCase):
             assert segment_tree.range_sum(left, right) == sum(
                 nums[left:right + 1])
 
-            # 单点修改
             left = random.randint(0, high - 1)
             right = left
             num = random.randint(-high, high)
@@ -348,7 +371,6 @@ class TestGeneral(unittest.TestCase):
         segment_tree = RangeChangeRangeSumMinMaxDynamic(n)
 
         for _ in range(high):
-            # 区间修改
             left = random.randint(0, high - 1)
             right = random.randint(left, high - 1)
             num = random.randint(-high, high)
@@ -364,7 +386,6 @@ class TestGeneral(unittest.TestCase):
             assert segment_tree.range_sum(left, right) == sum(
                 nums[left:right + 1])
 
-            # 单点修改
             left = random.randint(0, high - 1)
             right = left
             num = random.randint(-high, high)
@@ -391,7 +412,7 @@ class TestGeneral(unittest.TestCase):
         assert segment_tree.range_sum(0, n - 1) == sum(nums)
         return
 
-    def test_segment_tree_range_sub_con_max(self):
+    def test_range_change_range_max_non_emp_son_sub_sum(self):
 
         def check(lst):
             pre = ans = lst[0]
@@ -403,12 +424,11 @@ class TestGeneral(unittest.TestCase):
         low = 0
         high = 10000
         nums = [random.randint(low, high) for _ in range(high)]
-        segment_tree = PointChangeRangeMaxNonEmpConSubSum(high, high)
+        segment_tree = RangeChangeRangeMaxNonEmpConSubSum(high, high)
         segment_tree.build(nums)
         assert segment_tree.range_max_non_emp_con_sub_sum(0, high - 1)[0] == check(nums)
         assert segment_tree.get() == nums
         for _ in range(100):
-            # 区间更新值
             left = random.randint(0, high - 1)
             right = random.randint(left, high - 1)
             num = random.randint(-high, high)
