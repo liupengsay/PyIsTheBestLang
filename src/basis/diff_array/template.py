@@ -87,3 +87,21 @@ class DiffMatrix:
             for j in range(n):
                 res[i + 1][j + 1] = res[i + 1][j] + res[i][j + 1] - res[i][j] + diff[i][j]
         return [item[1:] for item in res[1:]]
+
+    @staticmethod
+    def get_diff_matrix3(m, n, shifts):
+        """left up corner is (xa, ya) and right down corner is (xb, yb)"""
+        diff = [0] * ((m + 1) * (n + 1))
+        for xa, xb, ya, yb, d in shifts:
+            assert 0 <= xa <= xb <= m - 1
+            assert 0 <= ya <= yb <= n - 1
+            diff[xa * (n + 1) + ya] += d
+            diff[xa * (n + 1) + yb + 1] -= d
+            diff[(xb + 1) * (n + 1) + ya] -= d
+            diff[(xb + 1) * (n + 1) + yb + 1] += d
+
+        res = [0] * ((m + 1) * (n + 1))
+        for i in range(m):
+            for j in range(n):
+                res[(i + 1) * (n + 1) + j + 1] = res[(i + 1) * (n + 1) + j] + res[i * (n + 1) + j + 1] - res[i * (n + 1) + j] + diff[i * (n + 1) + j]
+        return [res[i * (n + 1) + 1:(i + 1) * (n + 1)] for i in range(1, m+1)]

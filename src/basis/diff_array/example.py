@@ -1,3 +1,4 @@
+import random
 import unittest
 
 from src.basis.diff_array.template import DiffArray, DiffMatrix, PreFixSumMatrix
@@ -26,7 +27,6 @@ class TestGeneral(unittest.TestCase):
         dam = DiffMatrix()
         m = 3
         n = 3
-        # 索引从1开始
         shifts = [[1, 2, 1, 2, 1], [2, 3, 2, 3, 1],
                   [2, 2, 2, 2, 2], [1, 1, 3, 3, 3]]
         diff = [[1, 1, 3], [1, 4, 1], [0, 1, 1]]
@@ -36,6 +36,24 @@ class TestGeneral(unittest.TestCase):
                   [2, 2, 2, 2, 2], [1, 1, 3, 3, 3]]
         shifts = [[x - 1 for x in ls[:-1]] + [ls[-1]] for ls in shifts]
         assert dam.get_diff_matrix2(m, n, shifts) == diff
+
+        random.seed(2023)
+        for _ in range(10):
+            m = n = 1000
+            nums = [[0] * n for _ in range(m)]
+            shifts = []
+            for _ in range(10000):
+                x1 = random.randint(0, m - 1)
+                y1 = random.randint(0, n - 1)
+                x2 = random.randint(x1, m - 1)
+                y2 = random.randint(y1, n - 1)
+                num = random.randint(0, n)
+                for i in range(x1, x2 + 1):
+                    for j in range(y1, y2 + 1):
+                        nums[i][j] += num
+                shifts.append([x1, x2, y1, y2, num])
+            assert nums == dam.get_diff_matrix3(m, n, shifts)
+        return
 
     def test_pre_fix_sum_matrix(self):
         diff = [[1, 1, 3], [1, 4, 1], [0, 1, 1]]
