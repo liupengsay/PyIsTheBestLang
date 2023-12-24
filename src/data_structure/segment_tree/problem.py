@@ -7,7 +7,7 @@ Description：range_sum|range_min|range_add|range_change|range_max|dynamic_segme
 2286（https://leetcode.cn/problems/booking-concert-tickets-in-groups/）segment_tree|RangeAddRangeSumMaxMin
 2407（https://leetcode.cn/problems/longest-increasing-subsequence-ii/）segment_tree|RangeAddRangeMax|linear_dp
 2158（https://leetcode.cn/problems/amount-of-new-area-painted-each-day/）segment_tree|RangeAddRangeSum
-6318（https://leetcode.cn/contest/weekly-contest-336/problems/minimum-time-to-complete-all-tasks/）segment_tree|greedy|binary_search
+6318（https://leetcode.cn/problems/minimum-time-to-complete-all-tasks/）segment_tree|greedy|binary_search
 732（https://leetcode.cn/problems/my-calendar-iii/）dynamic_segment_tree
 1851（https://leetcode.cn/problems/minimum-interval-to-include-each-query/）segment_tree|RangeChangeRangeMin|offline_query|monotonic_queue
 2213（https://leetcode.cn/problems/longest-substring-of-one-repeating-character/）segment_tree|sub_consequence|range_query|range_merge
@@ -18,7 +18,8 @@ Description：range_sum|range_min|range_add|range_change|range_max|dynamic_segme
 
 =====================================LuoGu======================================
 P2846（https://www.luogu.com.cn/problem/P2846）segment_tree|range_reverse|range_sum
-P2574（https://www.luogu.com.cn/problem/P2574）segment_tree|range_reverse|range_sum
+P2572（https://www.luogu.com.cn/problem/P2572）segment_tree|range_reverse|range_sum
+P2574（https://www.luogu.com.cn/problem/P2574）segment_tree|range_change|range_sum|range_cover
 P3130（https://www.luogu.com.cn/problem/P3130）RangeAddRangeSumMaxMin
 P3870（https://www.luogu.com.cn/problem/P3870）segment_tree|range_reverse|range_sum
 P5057（https://www.luogu.com.cn/problem/P5057）segment_tree|range_reverse|range_sum
@@ -47,7 +48,7 @@ P8856（https://www.luogu.com.cn/problem/solution/P8856）segment_tree|RangeAddR
 438D（https://codeforces.com/problemset/problem/438/D）segment_tree|range_sum|mod|RangeChangeRangeSumMaxMin
 558E（https://codeforces.com/contest/558/problem/E）alphabet|segment_tree|sorting
 343D（https://codeforces.com/problemset/problem/343/D）dfs_order|segment_tree
-242E（https://codeforces.com/problemset/problem/242/E）segment_tree|RangeXorRangeOr
+242E（https://codeforces.com/problemset/problem/242/E）segment_tree|RangeReverseRangeBitCount
 987C（https://codeforces.com/problemset/problem/987/C）brute_force|segment_tree|prefix_suffix
 1216F（https://codeforces.com/contest/1216/problem/F）segment_tree|dp|monotonic_queue
 1665E（https://codeforces.com/contest/1665/problem/E）segment_tree
@@ -66,22 +67,19 @@ ABC332F（https://atcoder.jp/contests/abc332/tasks/abc332_f）RangeAffineRangeSu
 3（https://judge.yosupo.jp/problem/point_set_range_composite）PointSetRangeComposite
 
 """
-import random
 from collections import defaultdict
 from typing import List
 
 from sortedcontainers import SortedList
 
-from src.basis.binary_search.template import BinarySearch
 from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeDescendRangeMin, \
-    RangeAddRangeSumMinMax, RangeRevereRangeBitCount, RangeXorRangeXor, SegmentTreePointChangeLongCon, \
-    SegmentTreeRangeSqrtSum, SegmentTreeRangeAndOrXOR, \
-    RangeChangeRangeOr, \
-    RangeAddRangeAvgDev, SegmentTreePointUpdateRangeMulQuery, \
+    RangeAddRangeSumMinMax, RangeRevereRangeBitCount, RangeChangeRangeOr, \
+    RangeAddRangeAvgDev, \
     RangeChangeRangeSumMinMaxDynamic, PointSetRangeLongestSubSame, \
     RangeOrRangeAnd, RangeChangeRangeSumMinMax, RangeKthSmallest, RangeChangeRangeMaxNonEmpConSubSum, \
     RangeAscendRangeMaxBinarySearchFindLeft, RangeAffineRangeSum, PointSetRangeComposite, RangeLongestRegularBrackets, \
-    RangeChangeAddRangeMax, PointSetRangeMaxNonEmpConSubSum, RangeXorUpdateRangeXorQuery
+    RangeChangeAddRangeMax, RangeXorUpdateRangeXorQuery, PointSetRangeLongestAlter, \
+    RangeSqrtRangeSum, RangeChangeReverseRangeSumLongestConSub
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
 
@@ -217,6 +215,35 @@ class Solution:
                 ans.extend([nums[i], height[i]])
                 pre = height[i]
         ac.lst(ans)
+        return
+
+    @staticmethod
+    def cf_242e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/242/E
+        tag: segment_tree|RangeReverseRangeBitCount
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        tree = [RangeRevereRangeBitCount(n) for _ in range(22)]
+        for j in range(22):
+            lst = [1 if nums[i] & (1 << j) else 0 for i in range(n)]
+            tree[j].build(lst)
+        for _ in range(ac.read_int()):
+            lst = ac.read_list_ints()
+            if lst[0] == 1:
+                ll, rr = lst[1:]
+                ll -= 1
+                rr -= 1
+                ans = sum((1 << j) * tree[j].range_bit_count(ll, rr) for j in range(22))
+                ac.st(ans)
+            else:
+                ll, rr, xx = lst[1:]
+                ll -= 1
+                rr -= 1
+                for j in range(22):
+                    if (1 << j) & xx:
+                        tree[j].range_reverse(ll, rr)
         return
 
     @staticmethod
@@ -473,7 +500,7 @@ class Solution:
         return
 
     @staticmethod
-    def lg_p4513_1(ac=FastIO()):
+    def lg_p4513(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P4513
         tag: segment_tree|range_change|range_merge|sub_consequence
@@ -486,32 +513,11 @@ class Solution:
             if lst[0] == 1:
                 a, b = lst[1:]
                 a, b = ac.min(a, b), ac.max(a, b)
-                ans = segment.range_max_non_emp_con_sub_sum(a - 1, b - 1)[0]
+                ans = segment.range_max_non_emp_con_sub_sum(a - 1, b - 1)
                 ac.st(ans)
             else:
                 a, s = lst[1:]
                 segment.range_change(a - 1, a - 1, s)
-        return
-
-    @staticmethod
-    def lg_p4513_2(ac=FastIO()):
-        """
-        url: https://www.luogu.com.cn/problem/P4513
-        tag: segment_tree|range_change|range_merge|sub_consequence
-        """
-        n, m = ac.read_list_ints()
-        tree = PointSetRangeMaxNonEmpConSubSum(n)
-        tree.build([ac.read_int() for _ in range(n)])
-        for _ in range(m):
-            lst = ac.read_list_ints()
-            if lst[0] == 1:
-                a, b = lst[1:]
-                a, b = ac.min(a, b), ac.max(a, b)
-                ans = tree.range_max_non_emp_con_sub_sum(a - 1, b - 1)
-                ac.st(ans)
-            else:
-                a, s = lst[1:]
-                tree.point_set(a - 1, a - 1, s)
         return
 
     @staticmethod
@@ -595,13 +601,11 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6492
         tag: segment_tree|range_change|range_merge|sub_consequence
         """
-        # 单点修改，查找最长的01交替字符子串连续区间
         n, q = ac.read_list_ints()
-        tree = SegmentTreePointChangeLongCon(n)
+        tree = PointSetRangeLongestAlter(n)
         for _ in range(q):
             i = ac.read_int() - 1
-            tree.update(i, i, 0, n - 1, 1)
-            ac.st(tree.query())
+            ac.st(tree.point_set_range_longest_alter(i, i))
         return
 
     @staticmethod
@@ -610,9 +614,8 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P4145
         tag: math|segment_tree|RangeAddRangeSum
         """
-        # 区间值开方向下取整，区间和查询
         n = ac.read_int()
-        tree = SegmentTreeRangeSqrtSum(n)
+        tree = RangeSqrtRangeSum(n)
         tree.build(ac.read_list_ints())
         for _ in range(ac.read_int()):
             lst = ac.read_list_ints()
@@ -620,16 +623,16 @@ class Solution:
             if a > b:
                 a, b = b, a
             if lst[0] == 0:
-                tree.change(a, b, 0, n - 1, 1)
+                tree.range_sqrt(a, b)
             else:
-                ac.st(tree.query_sum(a, b, 0, n - 1, 1))
+                ac.st(tree.range_sum(a, b))
         return
 
     @staticmethod
     def lc_2940(heights: List[int], queries: List[List[int]]) -> List[int]:
         """
         url: https://leetcode.cn/problems/find-building-where-alice-and-bob-can-meet/
-        tag: segment_tree_binary_search
+        tag: segment_tree_binary_search|static_range
         """
         n = len(heights)
         tree = RangeAscendRangeMaxBinarySearchFindLeft(n)
@@ -649,65 +652,49 @@ class Solution:
                 continue
             h = heights[ll] if heights[ll] > heights[rr] else heights[rr]
             left = tree.binary_search_find_left(rr + 1, n - 1, h + 1)
-
             ans.append(left)
         return ans
 
     @staticmethod
-    def lg_2572(ac=FastIO()):
-        # 区间修改成01或者翻转，区间查询最多有多少连续的1，以及总共有多少1
-        def check(tmp):
-            ans = pre = 0
-            for num in tmp:
-                if num:
-                    pre += 1
-                else:
-                    ans = ans if ans > pre else pre
-                    pre = 0
-            ans = ans if ans > pre else pre
-            return ans
+    def lg_p2574(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2574
+        tag: segment_tree|range_reverse|range_sum
+        """
+        n, m = ac.read_list_ints()
+        tree = RangeRevereRangeBitCount(n)
+        tree.build([int(w) for w in ac.read_str()])
 
-        # n, m = ac.read_list_ints()
-        for s in range(100):
-            # random.seed(s)
-            print(f"seed_{s}")
-            n = random.randint(1, 1000)
-            m = random.randint(1, 1000)
-            tree = SegmentTreeRangeAndOrXOR(n)
-            # tree.build(ac.read_list_ints())
-            nums = [random.randint(1, 1) for _ in range(n)]
-            tree.build(nums)
-            for _ in range(m):
-                lst = [random.randint(0, 4), random.randint(0, n - 1), random.randint(0, n - 1)]
-                # lst = ac.read_list_ints()
-                left, right = lst[1:]
-                if left > right:
-                    left, right = right, left
-                if lst[0] <= 2:
-                    tree.update(left, right, 0, n - 1, lst[0], 1)
-                    if lst[0] == 0:
-                        for i in range(left, right + 1):
-                            nums[i] = 0
-                    elif lst[0] == 1:
-                        for i in range(left, right + 1):
-                            nums[i] = 1
-                    else:
-                        for i in range(left, right + 1):
-                            nums[i] = 1 - nums[i]
-                    assert nums == [tree.query_sum(i, i, 0, n - 1, 1) for i in range(n)]
-                elif lst[0] == 3:
-                    # print("\n")
-                    # print(nums)
-                    # print([tree.query_sum(i, i, 0, n-1, 1) for i in range(n)])
-                    assert sum(nums[left:right + 1]) == tree.query_sum(left, right, 0, n - 1, 1)
-                    # ac.st(tree.query_sum(left, right, 0, n-1, 1))
-                else:
-                    # print("\n")
-                    # print(nums)
-                    # print([tree.query_sum(i, i, 0, n-1, 1) for i in range(n)])
-                    # print(tree.query_max_length(left, right, 0, n - 1, 1)[0], check(nums[left:right+1]))
-                    assert tree.query_max_length(left, right, 0, n - 1, 1)[0] == check(nums[left:right + 1])
-                    # ac.st(tree.query_max_length(left, right, 0, n - 1, 1)[0])
+        for _ in range(m):
+            op, left, right = ac.read_list_ints()
+            if not op:
+                tree.range_reverse(left - 1, right - 1)
+            else:
+                ac.st(tree.range_bit_count(left - 1, right - 1))
+        return
+
+    @staticmethod
+    def lg_2572(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2572
+        tag: segment_tree|range_reverse|range_sum
+        """
+        n, m = ac.read_list_ints()
+        tree = RangeChangeReverseRangeSumLongestConSub(n)
+        tree.build(ac.read_list_ints())
+        ans = []
+        for _ in range(m):
+            lst = ac.read_list_ints()
+            left, right = lst[1:]
+            if left > right:
+                left, right = right, left
+            if lst[0] <= 2:
+                tree.range_change_reverse(left, right, lst[0])
+            elif lst[0] == 3:
+                ans.append(str(tree.range_sum(left, right)))
+            else:
+                ans.append(str(tree.range_longest_con_sub(left, right)))
+        ac.st("\n".join(ans))
         return
 
     @staticmethod
@@ -716,7 +703,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1558
         tag: segment_tree|RangeChangeRangeOr
         """
-        # segment_tree|区间修改，区间或查询
+
         n, t, q = ac.read_list_ints()
         tree = RangeChangeRangeOr(n)
         tree.range_change(0, n - 1, 1)
@@ -726,13 +713,11 @@ class Solution:
                 a, b, c = [int(w) for w in lst[1:]]
                 if a > b:
                     a, b = b, a
-                # 修改区间值
                 tree.range_change(a - 1, b - 1, 1 << (c - 1))
             else:
                 a, b = [int(w) for w in lst[1:]]
                 if a > b:
                     a, b = b, a
-                # 区间值或查询
                 ac.st(bin(tree.range_or(a - 1, b - 1)).count("1"))
         return
 
@@ -742,7 +727,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3740
         tag: discretization|segment_tree|RangeChangeRangeSum
         """
-        # discretizationsegment_tree|区间修改与单点查询
+
         n, m = ac.read_list_ints()
         nums = []
         while len(nums) < m * 2:
@@ -754,12 +739,10 @@ class Solution:
         for a, b in nums:
             nodes.add(a)
             nodes.add(b)
-            # discretization特别注意需要增|右端点连续区间的区分
             nodes.add(b + 1)
         nodes = list(sorted(nodes))
         ind = {num: i for i, num in enumerate(nodes)}
 
-        # 区间修改
         n = len(nodes)
         tree = RangeChangeRangeSumMinMax(n)
         tree.build([0] * n)
@@ -767,7 +750,6 @@ class Solution:
             a, b = nums[i]
             tree.range_change(ind[a], ind[b], i + 1)
 
-        # 单点查询
         ans = tree.get()
         ac.st(len(set(c for c in ans if c)))
         return
@@ -776,19 +758,22 @@ class Solution:
     def lg_p4588(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P4588
-        tag: segment_tree|RangeChangeRangeMul
+        tag: segment_tree|PointSetRangeComposite
         """
-        # 转化为segment_tree|单点值修改与区间乘积mod|
+
         for _ in range(ac.read_int()):
-            q, mod = ac.read_list_ints()
-            tree = SegmentTreePointUpdateRangeMulQuery(q, mod)
-            for i in range(q):
-                op, num = ac.read_list_ints()
+            n, mod = ac.read_list_ints()
+            m = 32
+            tree = PointSetRangeComposite(n, mod, m)
+            tree.build([1 << m for _ in range(n)])
+            for i in range(n):
+                op, x = ac.read_list_ints()
                 if op == 1:
-                    tree.update(i, i, 0, q - 1, num % mod, 1)
+                    tree.point_set(i, i, x << m)
                 else:
-                    tree.update(num - 1, num - 1, 0, q - 1, 1, 1)
-                ac.st(tree.cover[1])
+                    tree.point_set(x - 1, x - 1, 1 << m)
+                val = tree.range_composite(0, n - 1)
+                ac.st((val >> m) % mod)
         return
 
     @staticmethod
@@ -797,7 +782,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8081
         tag: diff_array|counter|action_scop|segment_tree|RangeChangeRangeOr
         """
-        # segment_tree|区间修改、区间|和查询
+
         n = ac.read_int()
         nums = ac.read_list_ints()
         tree = RangeChangeRangeSumMinMax(n)
@@ -844,9 +829,9 @@ class Solution:
     def lg_p8812(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P8812
-        tag: segment_tree|RangeDescendRangeMin
+        tag: segment_tree|RangeDescendRangeMin|discretization
         """
-        # segment_tree|查询和更新区间最小值
+
         n, m = ac.read_list_ints()
         goods = [[] for _ in range(n)]
         for _ in range(m):
@@ -909,11 +894,11 @@ class Solution:
         """
         n, m = ac.read_list_ints()
         tree = RangeOrRangeAnd(n)
-        nums = [ac.read_list_ints() for _ in range(m)]
+        nums = [ac.read_list_ints_minus_one() for _ in range(m)]
         for a, b, c in nums:
-            if c:
-                tree.range_or(a, b, c)
-        if all(tree.range_and(a, b) == c for a, b, c in nums):
+            if c != -1:
+                tree.range_or(a, b, c + 1)
+        if all(tree.range_and(a, b) == c + 1 for a, b, c in nums):
             ac.st("YES")
             ac.lst(tree.get())
         else:
@@ -926,7 +911,7 @@ class Solution:
         url: https://codeforces.com/problemset/problem/987/C
         tag: brute_force|segment_tree|prefix_suffix
         """
-        # brute_force中间数组，segment_tree|维护prefix_suffix最小值
+
         n = ac.read_int()
         s = ac.read_list_ints()
         c = ac.read_list_ints()
@@ -954,7 +939,7 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-interval-to-include-each-query/
         tag: segment_tree|RangeChangeRangeMin|offline_query|monotonic_queue
         """
-        # 区间更新最小值、单点查询
+
         port = []
         for inter in intervals:
             port.extend(inter)
@@ -976,7 +961,6 @@ class Solution:
         tag: segment_tree|linear_dp
         """
 
-        # 可以segment_tree|DP解决
         n = len(nums)
         post = [n - 1] * n
         stack = []
@@ -992,7 +976,6 @@ class Solution:
                 pre[stack.pop()] = i + 1
             stack.append(i)
 
-        # 分bucket_sort转移
         dct = defaultdict(list)
         for i, num in enumerate(nums):
             dct[num].append(i)
@@ -1039,7 +1022,7 @@ class Solution:
         url: https://www.acwing.com/problem/content/3808/
         tag: RangeAddRangeMin
         """
-        # 区间增减与最小值查询
+
         n = ac.read_int()
         tree = RangeAddRangeSumMinMax(n)
         tree.build(ac.read_list_ints())
@@ -1077,7 +1060,7 @@ class Solution:
                 ll, rr = lst[1:]
                 ll -= 1
                 rr -= 1
-                ans = sum((1 << j) * tree[j].query_sum(ll, rr) for j in range(22))
+                ans = sum((1 << j) * tree[j].range_bit_count(ll, rr) for j in range(22))
                 ac.st(ans)
             else:
                 ll, rr, xx = lst[1:]
@@ -1085,12 +1068,16 @@ class Solution:
                 rr -= 1
                 for j in range(22):
                     if (1 << j) & xx:
-                        tree[j].update_range(ll, rr, 1)
+                        tree[j].range_reverse(ll, rr)
 
         return
 
     @staticmethod
     def lc_2276_1():
+        """
+        url: https://leetcode.cn/problems/count-integers-in-intervals/
+        tag: dynamic_segment_tree|union_find_range|SortedList
+        """
 
         class CountIntervals:
             def __init__(self):
@@ -1107,6 +1094,10 @@ class Solution:
 
     @staticmethod
     def lc_2276_2():
+        """
+        url: https://leetcode.cn/problems/count-integers-in-intervals/
+        tag: dynamic_segment_tree|union_find_range|SortedList
+        """
 
         class CountIntervals:
 
@@ -1134,6 +1125,10 @@ class Solution:
 
     @staticmethod
     def lc_2286():
+        """
+        url: https://leetcode.cn/problems/booking-concert-tickets-in-groups/
+        tag: segment_tree|RangeAddRangeSumMaxMin
+        """
 
         class BookMyShow:
 
@@ -1150,11 +1145,7 @@ class Solution:
                 if self.m - low < k:
                     return []
 
-                def check(x):
-                    return self.m - self.tree.range_min(0, x) >= k
-
-                # binary_search|segment_tree|维护最小值与和
-                y = BinarySearch().find_int_left(0, max_row - 1, check)
+                y = self.tree.range_min_bisect_left(self.m - k)
                 self.cnt[y] += k
                 self.tree.range_add(y, y, k)
                 if self.cnt[y] == self.m:

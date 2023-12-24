@@ -8,7 +8,7 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, \
     RangeAddRangeSumMinMax, RangeChangeRangeSumMinMax, RangeChangeRangeMaxNonEmpConSubSum, \
     RangeOrRangeAnd, \
     RangeChangeRangeSumMinMaxDynamic, RangeChangeRangeOr, RangeAffineRangeSum, RangeAddMulRangeSum, \
-    RangeChangeAddRangeMax, RangeXorUpdateRangeXorQuery
+    RangeChangeAddRangeMax, RangeXorUpdateRangeXorQuery, RangeChangeReverseRangeSumLongestConSub
 
 
 class TestGeneral(unittest.TestCase):
@@ -147,6 +147,50 @@ class TestGeneral(unittest.TestCase):
             assert segment_tree.range_sum(left, right) == sum(
                 nums[left:right + 1])
 
+        assert segment_tree.get() == nums
+        return
+
+    def test_range_change_reverse_range_sum_longest_con_sub_sum(self):
+        random.seed(2023)
+        high = 10000
+        nums = [random.randint(0, 1) for _ in range(high)]
+        segment_tree = RangeChangeReverseRangeSumLongestConSub(high)
+        segment_tree.build(nums)
+
+        def check(tmp):
+            ans = pre = 0
+            for x in tmp:
+                if x:
+                    pre += 1
+                else:
+                    ans = ans if ans > pre else pre
+                    pre = 0
+            ans = ans if ans > pre else pre
+            return ans
+
+        assert segment_tree.range_sum(0, high - 1) == sum(nums)
+        assert segment_tree.get() == nums
+        for _ in range(100):
+            op = random.randint(0, 4)
+            left = random.randint(0, high - 1)
+            right = random.randint(left, high - 1)
+            assert segment_tree.get() == nums
+            if op == 0:
+                segment_tree.range_change_reverse(left, right, op)
+                for i in range(left, right + 1):
+                    nums[i] = 0
+            elif op == 1:
+                segment_tree.range_change_reverse(left, right, op)
+                for i in range(left, right + 1):
+                    nums[i] = 1
+            elif op == 2:
+                segment_tree.range_change_reverse(left, right, op)
+                for i in range(left, right + 1):
+                    nums[i] = 1 - nums[i]
+            elif op == 3:
+                assert segment_tree.range_sum(left, right) == sum(nums[left:right + 1])
+            else:
+                assert segment_tree.range_longest_con_sub(left, right) == check(nums[left:right + 1])
         assert segment_tree.get() == nums
         return
 
@@ -426,7 +470,7 @@ class TestGeneral(unittest.TestCase):
         nums = [random.randint(low, high) for _ in range(high)]
         segment_tree = RangeChangeRangeMaxNonEmpConSubSum(high, high)
         segment_tree.build(nums)
-        assert segment_tree.range_max_non_emp_con_sub_sum(0, high - 1)[0] == check(nums)
+        assert segment_tree.range_max_non_emp_con_sub_sum(0, high - 1) == check(nums)
         assert segment_tree.get() == nums
         for _ in range(100):
             left = random.randint(0, high - 1)
@@ -438,7 +482,7 @@ class TestGeneral(unittest.TestCase):
             left = random.randint(0, high - 1)
             right = random.randint(left, high - 1)
             assert segment_tree.get() == nums
-            assert segment_tree.range_max_non_emp_con_sub_sum(left, right)[0] == check(nums[left:right + 1])
+            assert segment_tree.range_max_non_emp_con_sub_sum(left, right) == check(nums[left:right + 1])
         return
 
 

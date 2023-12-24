@@ -616,6 +616,18 @@ class RangeAddRangeSumMinMax:
                 stack.append((m + 1, t, (i << 1) | 1))
         return lowest
 
+    def range_min_bisect_left(self, val) -> int:
+        # query the range min with bisect_left
+        s, t, i = 0, self.n - 1, 1
+        while s < t:
+            m = s + (t - s) // 2
+            self._push_down(i, s, m, t)
+            if self.floor[i << 1] <= val:
+                s, t, i = s, m, i << 1
+            else:
+                s, t, i = m + 1, t, (i << 1) | 1
+        return t
+
     def range_max(self, left: int, right: int) -> int:
         # query the rang max
         stack = [(0, self.n - 1, 1)]
@@ -1050,6 +1062,166 @@ class RangeChangeRangeSumMinMax:
             if right > m:
                 stack.append((m + 1, t, (i << 1) | 1))
         return highest
+
+
+class RangeChangeReverseRangeSumLongestConSub:
+    def __init__(self, n):
+        """range_change|range_reverse|range_con_sub|range_sum"""
+        self.n = n
+        # cover_0, cover_1, sum_1, start_0, start_1, end_0, end_1, s1, t2
+        self.cover = [(0,) * 9] * (4 * self.n)  # cover with 0
+        self.lazy = [3] * (4 * self.n)  # lazy tag 0-change 1-change 2-reverse
+        return
+
+    @staticmethod
+    def _merge_value(res1, res2):
+        cover_01, cover_11, sum_11, start_01, start_11, end_01, end_11, s1, t1 = res1[:]
+        cover_02, cover_12, sum_12, start_02, start_12, end_02, end_12, s2, t2 = res2[:]
+        cover_0 = cover_01 if cover_01 > cover_02 else cover_02
+        cover_0 = cover_0 if cover_0 > end_01 + start_02 else end_01 + start_02
+        cover_1 = cover_11 if cover_11 > cover_12 else cover_12
+        cover_1 = cover_1 if cover_1 > end_11 + start_12 else end_11 + start_12
+
+        sum_1 = sum_11 + sum_12
+
+        if start_01 == t1 - s1 + 1:
+            start_0 = start_01 + start_02
+        else:
+            start_0 = start_01
+
+        if start_11 == t1 - s1 + 1:
+            start_1 = start_11 + start_12
+        else:
+            start_1 = start_11
+
+        if end_02 == t2 - s2 + 1:
+            end_0 = end_02 + end_01
+        else:
+            end_0 = end_02
+
+        if end_12 == t2 - s2 + 1:
+            end_1 = end_12 + end_11
+        else:
+            end_1 = end_12
+        return cover_0, cover_1, sum_1, start_0, start_1, end_0, end_1, s1, t2
+
+    def _push_up(self, i):
+        self.cover[i] = self._merge_value(self.cover[i << 1], self.cover[(i << 1) | 1])
+        return
+
+    def _make_tag(self, s, t, i, val):
+        if val == 0:
+            self.cover[i] = (t - s + 1, 0, 0, t - s + 1, 0, t - s + 1, 0, s, t)
+        elif val == 1:
+            self.cover[i] = (0, t - s + 1, t - s + 1, 0, t - s + 1, 0, t - s + 1, s, t)
+        elif val == 2:  # 2
+            cover_0, cover_1, sum_1, start_0, start_1, end_0, end_1, s, t = self.cover[i]
+            self.cover[i] = (cover_1, cover_0, t - s + 1 - sum_1, start_1, start_0, end_1, end_0, s, t)
+        tag = self.lazy[i]
+        if val <= 1:
+            self.lazy[i] = val
+        else:
+            if tag <= 1:
+                tag = 1 - tag
+            elif tag == 2:
+                tag = 3
+            else:
+                tag = 2
+            self.lazy[i] = tag
+        return
+
+    def _push_down(self, i, s, m, t):
+        if self.lazy[i] != 3:
+            self._make_tag(s, m, i << 1, self.lazy[i])
+            self._make_tag(m + 1, t, (i << 1) | 1, self.lazy[i])
+            self.lazy[i] = 3
+
+    def build(self, nums):
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if s == t:
+                    self._make_tag(s, t, i, nums[s])
+                    continue
+                stack.append((s, t, ~i))
+                m = s + (t - s) // 2
+                stack.append((s, m, i << 1))
+                stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def get(self):
+        stack = [(0, self.n - 1, 1)]
+        nums = [0] * self.n
+        while stack:
+            s, t, i = stack.pop()
+            if s == t:
+                nums[s] = self.cover[i][2]
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i, s, m, t)
+            stack.append((s, m, i << 1))
+            stack.append((m + 1, t, (i << 1) | 1))
+        return nums
+
+    def range_change_reverse(self, left, right, val):
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if left <= s and t <= right:
+                    self._make_tag(s, t, i, val)
+                    continue
+                m = s + (t - s) // 2
+                self._push_down(i, s, m, t)
+                stack.append((s, t, ~i))
+                if left <= m:
+                    stack.append((s, m, i << 1))
+                if right > m:
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def range_sum(self, left, right):
+        stack = [(0, self.n - 1, 1)]
+        ans = 0
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                ans += self.cover[i][2]
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i, s, m, t)
+            if left <= m:
+                stack.append((s, m, i << 1))
+            if right > m:
+                stack.append((m + 1, t, (i << 1) | 1))
+        return ans
+
+    def range_longest_con_sub(self, left, right):
+        ans = tuple()
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                cur = self.cover[i]
+                if not ans:
+                    ans = cur
+                else:
+                    ans = self._merge_value(cur, ans)
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i, s, m, t)
+            if left <= m:
+                stack.append((s, m, i << 1))
+            if right > m:
+                stack.append((m + 1, t, (i << 1) | 1))
+        return ans[1]
 
 
 class RangeChangeRangeSumMinMaxDynamic:
@@ -1501,51 +1673,6 @@ class RangeChangeRangeOr:
         return ans
 
 
-class SegmentTreePointUpdateRangeMulQuery:
-    def __init__(self, n, mod) -> None:
-        """range_change|range_mul"""
-        self.n = n
-        self.mod = mod
-        self.cover = [1] * (4 * self.n)
-        return
-
-    def update(self, left: int, right: int, s: int, t: int, val: int, i: int) -> None:
-        stack = [(s, t, i)]
-        while stack:
-            s, t, i = stack.pop()
-            if i >= 0:
-                if left <= s and t <= right:
-                    self.cover[i] = val
-                    continue
-                m = s + (t - s) // 2
-                stack.append((s, t, ~i))
-                if left <= m:
-                    stack.append((s, m, i << 1))
-                if right > m:
-                    stack.append((m + 1, t, (i << 1) | 1))
-            else:
-                i = ~i
-                self.cover[i] = self.cover[i << 1] * self.cover[(i << 1) | 1]
-                self.cover[i] %= self.mod
-        return
-
-    def query_mul(self, left: int, right: int, s: int, t: int, i: int) -> int:
-        stack = [(s, t, i)]
-        ans = 1
-        while stack:
-            s, t, i = stack.pop()
-            if left <= s and t <= right:
-                ans *= self.cover[i]
-                ans %= self.mod
-                continue
-            m = s + (t - s) // 2
-            if left <= m:
-                stack.append((s, m, i << 1))
-            if right > m:
-                stack.append((m + 1, t, (i << 1) | 1))
-        return ans
-
-
 class RangeChangeAddRangeMax:
 
     def __init__(self, n):
@@ -1690,102 +1817,6 @@ class RangeChangeAddRangeMax:
             if right > m:
                 stack.append((m + 1, t, (i << 1) | 1))
         return ans
-
-
-class PointSetRangeMaxNonEmpConSubSum:
-    def __init__(self, n) -> None:
-        self.n = n
-        self.cover = [-inf] * (4 * self.n)
-        self.left = [-inf] * (4 * self.n)
-        self.right = [-inf] * (4 * self.n)
-        self.sum = [0] * (4 * self.n)
-        return
-
-    @staticmethod
-    def max(a, b):
-        return a if a > b else b
-
-    def _merge_value(self, res1, res2):
-        res = [0] * 4
-        res[0] = self.max(res1[0], res2[0])
-        res[0] = self.max(res[0], res1[2] + res2[1])
-        res[1] = self.max(res1[1], res1[3] + res2[1])
-        res[2] = self.max(res2[2], res2[3] + res1[2])
-        res[3] = res1[3] + res2[3]
-        return res
-
-    def _push_up(self, i):
-        res1 = [self.cover[i << 1], self.left[i << 1], self.right[i << 1], self.sum[i << 1]]
-        res2 = [self.cover[(i << 1) | 1], self.left[(i << 1) | 1], self.right[(i << 1) | 1], self.sum[(i << 1) | 1]]
-        self.cover[i], self.left[i], self.right[i], self.sum[i] = self._merge_value(res1, res2)
-        return
-
-    def build(self, nums) -> None:
-        stack = [(0, self.n - 1, 1)]
-        while stack:
-            s, t, i = stack.pop()
-            if i >= 0:
-                if s == t:
-                    self.cover[i] = nums[s]
-                    self.left[i] = nums[s]
-                    self.right[i] = nums[s]
-                    self.sum[i] = nums[s]
-                    continue
-                stack.append((s, t, ~i))
-                m = s + (t - s) // 2
-                stack.append((s, m, i << 1))
-                stack.append((m + 1, t, (i << 1) | 1))
-            else:
-                i = ~i
-                self._push_up(i)
-        return
-
-    def point_set(self, left: int, right: int, val: int) -> None:
-        stack = [(0, self.n - 1, 1)]
-        while stack:
-            s, t, i = stack.pop()
-            if i >= 0:
-                if left <= s and t <= right:
-                    self.cover[i] = val
-                    self.left[i] = val
-                    self.right[i] = val
-                    self.sum[i] = val
-                    continue
-                m = s + (t - s) // 2
-                stack.append((s, t, ~i))
-                if left <= m:
-                    stack.append((s, m, i << 1))
-                if right > m:
-                    stack.append((m + 1, t, (i << 1) | 1))
-            else:
-                i = ~i
-                self._push_up(i)
-        return
-
-    def range_max_non_emp_con_sub_sum(self, left: int, right: int):
-        stack = [(0, self.n - 1, 1)]
-        dct = defaultdict(lambda: [-inf] * 4)
-        while stack:
-            s, t, i = stack.pop()
-            if i >= 0:
-                if left <= s and t <= right:
-                    dct[i] = [self.cover[i], self.left[i], self.right[i], self.sum[i]]
-                    continue
-                stack.append((s, t, ~i))
-                m = s + (t - s) // 2
-
-                if right <= m:
-                    stack.append((s, m, 2 * i))
-                    continue
-                if left > m:
-                    stack.append((m + 1, t, 2 * i + 1))
-                    continue
-                stack.append((s, m, 2 * i))
-                stack.append((m + 1, t, 2 * i + 1))
-            else:
-                i = ~i
-                dct[i] = self._merge_value(dct[i << 1], dct[(i << 1) | 1])
-        return dct[1][0]
 
 
 class PointSetRangeComposite:
@@ -1986,27 +2017,22 @@ class RangeChangeRangeMaxNonEmpConSubSum:
     def range_max_non_emp_con_sub_sum(self, left: int, right: int) -> List[int]:
         assert 0 <= left <= right <= self.n - 1
         stack = [(0, self.n - 1, 1)]
-        dct = defaultdict(lambda: [-self.initial] * 4)
+        ans = [-self.initial] * 4
         while stack:
             s, t, i = stack.pop()
-            if i >= 0:
-                if left <= s and t <= right:
-                    dct[i] = [self.cover[i], self.left[i], self.right[i], self.sum[i]]
-                    continue
-                stack.append((s, t, ~i))
-                self._push_down(i)
-                m = s + (t - s) // 2
-                if left <= m:
-                    stack.append((s, m, i << 1))
-                if right > m:
-                    stack.append((m + 1, t, (i << 1) | 1))
-            else:
-                i = ~i
-                dct[i] = self._range_merge_to_disjoint(dct[i << 1], dct[(i << 1) | 1])
-        return dct[1]
+            if left <= s and t <= right:
+                cur = [self.cover[i], self.left[i], self.right[i], self.sum[i]]
+                ans = self._range_merge_to_disjoint(cur, ans)
+                continue
+            m = s + (t - s) // 2
+            if left <= m:
+                stack.append((s, m, i << 1))
+            if right > m:
+                stack.append((m + 1, t, (i << 1) | 1))
+        return ans[0]
 
 
-class SegmentTreePointChangeLongCon:
+class PointSetRangeLongestAlter:
     def __init__(self, n) -> None:
         """point_change and 01_con_sub"""
         self.n = n
@@ -2068,8 +2094,8 @@ class SegmentTreePointChangeLongCon:
                 self._push_up(i, s, m, t)
         return
 
-    def update(self, left: int, right: int, s: int, t: int, i: int) -> None:
-        stack = [(s, t, i)]
+    def point_set_range_longest_alter(self, left: int, right: int) -> None:
+        stack = [(0, self.n - 1, 1)]
         while stack:
             s, t, i = stack.pop()
             if i >= 0:
@@ -2090,9 +2116,6 @@ class SegmentTreePointChangeLongCon:
                 i = ~i
                 m = s + (t - s) // 2
                 self._push_up(i, s, m, t)
-        return
-
-    def query(self):
         return self.cover[1]
 
 
@@ -2205,179 +2228,6 @@ class RangeXorUpdateRangeXorQuery:
         return ans
 
 
-class SegmentTreeRangeAndOrXOR:
-    def __init__(self, n) -> None:
-        """range_change|range_reverse|range_con_sub|range_sum"""
-        self.n = n
-        self.cover_1 = [0] * (4 * self.n)
-        self.cover_0 = [0] * (4 * self.n)
-        self.sum = [0] * (4 * self.n)
-        self.left_1 = [0] * (4 * self.n)
-        self.right_1 = [0] * (4 * self.n)
-        self.left_0 = [0] * (4 * self.n)
-        self.right_0 = [0] * (4 * self.n)
-        self.lazy = [inf] * (4 * self.n)
-        return
-
-    @staticmethod
-    def _max(a, b):
-        return a if a > b else b
-
-    @staticmethod
-    def _min(a: int, b: int) -> int:
-        return a if a < b else b
-
-    def _push_up(self, i, s, m, t):
-        self.cover_1[i] = self._max(self.cover_1[i << 1], self.cover_1[(i << 1) | 1])
-        self.cover_1[i] = self._max(self.cover_1[i], self.right_1[i << 1] + self.left_1[(i << 1) | 1])
-
-        self.cover_0[i] = self._max(self.cover_0[i << 1], self.cover_0[(i << 1) | 1])
-        self.cover_0[i] = self._max(self.cover_0[i], self.right_0[i << 1] + self.left_0[(i << 1) | 1])
-
-        self.sum[i] = self.sum[i << 1] + self.sum[(i << 1) | 1]
-
-        self.left_1[i] = self.left_1[i << 1]
-        if self.left_1[i] == m - s + 1:
-            self.left_1[i] += self.left_1[(i << 1) | 1]
-
-        self.left_0[i] = self.left_0[i << 1]
-        if self.left_0[i] == m - s + 1:
-            self.left_0[i] += self.left_0[(i << 1) | 1]
-
-        self.right_1[i] = self.right_1[(i << 1) | 1]
-        if self.right_1[i] == t - m:
-            self.right_1[i] += self.right_1[i << 1]
-
-        self.right_0[i] = self.right_0[(i << 1) | 1]
-        if self.right_0[i] == t - m:
-            self.right_0[i] += self.right_0[i << 1]
-
-        return
-
-    def _make_tag(self, s, t, i, val):
-        if val == 0:
-            self.cover_1[i] = 0
-            self.sum[i] = 0
-            self.cover_0[i] = t - s + 1
-            self.left_1[i] = self.right_1[i] = 0
-            self.right_0[i] = self.left_0[i] = t - s + 1
-        elif val == 1:
-            self.cover_1[i] = t - s + 1
-            self.cover_0[i] = 0
-            self.sum[i] = t - s + 1
-            self.left_1[i] = self.right_1[i] = t - s + 1
-            self.right_0[i] = self.left_0[i] = 0
-        else:
-            self.cover_1[i], self.cover_0[i] = self.cover_0[i], self.cover_1[i]
-            self.sum[i] = t - s + 1 - self.sum[i]
-            self.left_0[i], self.left_1[i] = self.left_1[i], self.left_0[i]
-            self.right_0[i], self.right_1[i] = self.right_1[i], self.right_0[i]
-        self.lazy[i] = val
-        return
-
-    def _push_down(self, i, s, m, t):
-        if self.lazy[i] != inf:
-            self._make_tag(s, m, i << 1, self.lazy[i])
-            self._make_tag(m + 1, t, (i << 1) | 1, self.lazy[i])
-            self.lazy[i] = inf
-
-    def build(self, nums) -> None:
-        stack = [(0, self.n - 1, 1)]
-        while stack:
-            s, t, i = stack.pop()
-            if i >= 0:
-                if s == t:
-                    if nums[s] == 0:
-                        self.cover_1[i] = 0
-                        self.sum[i] = 0
-                        self.cover_0[i] = 1
-                        self.left_1[i] = self.right_1[i] = 0
-                        self.left_0[i] = self.right_0[i] = 1
-                    else:
-                        self.cover_1[i] = 1
-                        self.sum[i] = 1
-                        self.cover_0[i] = 0
-                        self.left_1[i] = self.right_1[i] = 1
-                        self.left_0[i] = self.right_0[i] = 0
-                    continue
-                stack.append((s, t, ~i))
-                m = s + (t - s) // 2
-                stack.append((s, m, i << 1))
-                stack.append((m + 1, t, (i << 1) | 1))
-            else:
-                i = ~i
-                m = s + (t - s) // 2
-                self._push_up(i, s, m, t)
-        return
-
-    def update(self, left: int, right: int, s: int, t: int, val: int, i: int) -> None:
-        stack = [(s, t, i)]
-        while stack:
-            s, t, i = stack.pop()
-            if i >= 0:
-                m = s + (t - s) // 2
-                if s < t:
-                    self._push_down(i, s, m, t)
-                if left <= s and t <= right:
-                    self._make_tag(s, t, i, val)
-                    continue
-
-                stack.append((s, t, ~i))
-                if left <= m:
-                    stack.append((s, m, i << 1))
-                if right > m:
-                    stack.append((m + 1, t, (i << 1) | 1))
-            else:
-                i = ~i
-                m = s + (t - s) // 2
-                self._push_up(i, s, m, t)
-        return
-
-    def query_sum(self, left: int, right: int, s: int, t: int, i: int):
-        stack = [(s, t, i)]
-        ans = 0
-        while stack:
-            s, t, i = stack.pop()
-            if left <= s and t <= right:
-                ans += self.sum[i]
-                continue
-            m = s + (t - s) // 2
-            self._push_down(i, s, m, t)
-            if left <= m:
-                stack.append((s, m, i << 1))
-            if right > m:
-                stack.append((m + 1, t, (i << 1) | 1))
-        return ans
-
-    def query_max_length(self, left: int, right: int, s: int, t: int, i: int):
-        if left <= s and t <= right:
-            return self.cover_1[i], self.left_1[i], self.right_1[i]
-
-        m = s + (t - s) // 2
-        self._push_down(i, s, m, t)
-
-        if right <= m:
-            return self.query_max_length(left, right, s, m, i << 1)
-        if left > m:
-            return self.query_max_length(left, right, m + 1, t, (i << 1) | 1)
-
-        res1 = self.query_max_length(left, right, s, m, i << 1)
-        res2 = self.query_max_length(left, right, m + 1, t, (i << 1) | 1)
-
-        res = [0] * 3
-        res[0] = self._max(res1[0], res2[0])
-        res[0] = self._max(res[0], res1[2] + res2[1])
-
-        res[1] = res1[1]
-        if res[1] == m - s + 1:
-            res[1] += res2[1]
-
-        res[2] = res2[2]
-        if res[2] == t - m:
-            res[2] += res1[2]
-        return res
-
-
 class PointSetRangeLongestSubSame:
     def __init__(self, n, lst):
         self.n = n
@@ -2452,14 +2302,10 @@ class PointSetRangeLongestSubSame:
         return self.cover[1]
 
 
-
-
-
-class SegmentTreeRangeSqrtSum:
+class RangeSqrtRangeSum:
     def __init__(self, n):
         self.n = n
         self.cover = [0] * (4 * self.n)
-        self.lazy = [inf] * (4 * self.n)
 
     def build(self, nums):
         stack = [(0, self.n - 1, 1)]
@@ -2478,8 +2324,8 @@ class SegmentTreeRangeSqrtSum:
                 self.cover[i] = self.cover[i << 1] + self.cover[(i << 1) | 1]
         return
 
-    def change(self, left, right, s, t, i):
-        stack = [(s, t, i)]
+    def range_sqrt(self, left, right):
+        stack = [(0, self.n - 1, 1)]
         while stack:
             s, t, i = stack.pop()
             if i >= 0:
@@ -2499,8 +2345,8 @@ class SegmentTreeRangeSqrtSum:
                 self.cover[i] = self.cover[i << 1] + self.cover[(i << 1) | 1]
         return
 
-    def query_sum(self, left, right, s, t, i):
-        stack = [(s, t, i)]
+    def range_sum(self, left, right):
+        stack = [(0, self.n - 1, 1)]
         ans = 0
         while stack:
             s, t, i = stack.pop()
