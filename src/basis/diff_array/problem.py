@@ -65,7 +65,6 @@ P4030（https://www.luogu.com.cn/problem/P4030）brain_teaser|matrix_prefix_sum
 P4440（https://www.luogu.com.cn/problem/P4440）prefix_sum|counter
 P4623（https://www.luogu.com.cn/problem/P4623）discretization_diff_array|counter
 P6032（https://www.luogu.com.cn/problem/P6032）prefix_suffix|counter
-P6070（https://www.luogu.com.cn/problem/P6070）diff_matrix|greedy|prefix_sum
 P6278（https://www.luogu.com.cn/problem/P6278）reverse_order_pair|action_scope|diff_array|prefix_sum
 P6537（https://www.luogu.com.cn/problem/P6537）prefix_sum|brute_force
 P6877（https://www.luogu.com.cn/problem/P6877）sort|greedy|prefix_suffix|dp|brute_force
@@ -79,6 +78,7 @@ P8551（https://www.luogu.com.cn/problem/P8551）diff_array
 P8666（https://www.luogu.com.cn/problem/P8666）binary_search|md_diff_array|implemention
 P8715（https://www.luogu.com.cn/problem/P8715）prefix_suffix|counter
 P8783（https://www.luogu.com.cn/problem/P8783）O(n^3)|two_pointers|brute_force|counter|sub_matrix
+P6070（https://www.luogu.com.cn/problem/P6070）diff_array|matrix_diff_array|flatten
 
 ===================================CodeForces===================================
 33C（https://codeforces.com/problemset/problem/33/C）prefix_suffix|brute_force
@@ -107,12 +107,12 @@ import bisect
 import math
 from collections import defaultdict
 from itertools import accumulate
-from src.utils.fast_io import inf
 from typing import List
 
 from src.basis.binary_search.template import BinarySearch
 from src.basis.diff_array.template import DiffMatrix, PreFixSumMatrix
 from src.utils.fast_io import FastIO
+from src.utils.fast_io import inf
 
 
 class Solution:
@@ -1043,37 +1043,6 @@ class Solution:
         return
 
     @staticmethod
-    def lg_p6070(ac=FastIO()):
-        """
-        url: https://www.luogu.com.cn/problem/P6070
-        tag: diff_matrix|greedy|prefix_sum|classical|implemention
-        """
-
-        n, m, k = ac.read_list_ints()
-        grid = [[0] * n for _ in range(n)]
-        for _ in range(m):
-            x, y, z = ac.read_list_ints_minus_one()
-            grid[x][y] = z + 1
-        diff = [[0] * (n + 2) for _ in range(n + 2)]
-
-        ans = 0
-        for i in range(n):
-            for j in range(n):
-                diff[i + 1][j + 1] += diff[i + 1][j] + diff[i][j + 1] - diff[i][j]
-                d = diff[i + 1][j + 1] + grid[i][j]
-                if d:
-                    if i + k + 1 > n + 1 or j + k + 1 > n + 1:
-                        ac.st(-1)
-                        return
-                    diff[i + 1][j + 1] -= d
-                    diff[i + 1][j + k + 1] += d
-                    diff[i + k + 1][j + 1] += d
-                    diff[i + k + 1][j + k + 1] -= d
-                    ans += abs(d)
-        ac.st(ans)
-        return
-
-    @staticmethod
     def lg_p6278(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P6278
@@ -1604,3 +1573,34 @@ class Solution:
                 diff[i + 1] += dp[i]
                 diff[i + max_pts + 1] -= dp[i]
         return sum(dp[k:n + 1]) / max_pts
+
+    @staticmethod
+    def lg_p6070(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6070
+        tag: diff_array|matrix_diff_array|flatten
+        """
+        n, m, k = ac.read_list_ints()
+        grid = [0] * (n * n)
+        for _ in range(m):
+            x, y, z = ac.read_list_ints_minus_one()
+            grid[x * n + y] = z + 1
+        diff = [0] * ((n + 2) * (n + 2))
+
+        ans = 0
+        for i in range(n):
+            for j in range(n):
+                val = diff[(i + 1) * (n + 2) + j] + diff[i * (n + 2) + j + 1] - diff[i * (n + 2) + j]
+                diff[(i + 1) * (n + 2) + j + 1] += val
+                d = diff[(i + 1) * (n + 2) + j + 1] + grid[i * n + j]
+                if d:
+                    if i + k + 1 > n + 1 or j + k + 1 > n + 1:
+                        ac.st(-1)
+                        return
+                    diff[(i + 1) * (n + 2) + j + 1] -= d
+                    diff[(i + 1) * (n + 2) + j + k + 1] += d
+                    diff[(i + k + 1) * (n + 2) + j + 1] += d
+                    diff[(i + k + 1) * (n + 2) + j + k + 1] -= d
+                    ans += abs(d)
+        ac.st(ans)
+        return
