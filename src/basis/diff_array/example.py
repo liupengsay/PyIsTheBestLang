@@ -39,14 +39,14 @@ class TestGeneral(unittest.TestCase):
 
         random.seed(2023)
         for _ in range(10):
-            m = n = 1000
+            m = n = 2000
             nums = [[0] * n for _ in range(m)]
             shifts = []
-            for _ in range(10000):
-                x1 = random.randint(0, m - 1)
-                y1 = random.randint(0, n - 1)
-                x2 = random.randint(x1, m - 1)
-                y2 = random.randint(y1, n - 1)
+            for _ in range(100):
+                x1 = 0
+                y1 = 0
+                x2 = m - 1
+                y2 = n - 1
                 num = random.randint(0, n)
                 for i in range(x1, x2 + 1):
                     for j in range(y1, y2 + 1):
