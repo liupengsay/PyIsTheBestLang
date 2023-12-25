@@ -1,5 +1,25 @@
+from sys import stdin, stdout
+import bisect
+import decimal
+import heapq
+from types import GeneratorType
 import random
-import sys
+from bisect import bisect_left, bisect_right
+from heapq import heappush, heappop, heappushpop
+from functools import cmp_to_key
+from collections import defaultdict, Counter, deque
+import math
+from functools import lru_cache
+from heapq import nlargest
+from functools import reduce
+from decimal import Decimal
+from itertools import combinations, permutations
+from operator import xor, add
+from operator import mul
+from typing import List, Callable, Dict, Set, Tuple, DefaultDict
+from heapq import heappush, heappop, heapify
+
+inf = 1 << 64
 
 
 class FastIO:
@@ -9,44 +29,27 @@ class FastIO:
 
     @staticmethod
     def read_int():
-        return int(sys.stdin.readline().strip())
+        return int(stdin.readline().rstrip())
 
     @staticmethod
     def read_float():
-        return float(sys.stdin.readline().strip())
+        return float(stdin.readline().rstrip())
 
     @staticmethod
     def read_list_ints():
-        return list(map(int, sys.stdin.readline().strip().split()))
-
-    @staticmethod
-    def read_list_floats():
-        return list(map(float, sys.stdin.readline().strip().split()))
+        return list(map(int, stdin.readline().rstrip().split()))
 
     @staticmethod
     def read_list_ints_minus_one():
-        return list(map(lambda x: int(x) - 1, sys.stdin.readline().strip().split()))
+        return list(map(lambda x: int(x) - 1, stdin.readline().rstrip().split()))
 
     @staticmethod
     def read_str():
-        return sys.stdin.readline().strip()
+        return stdin.readline().rstrip()
 
     @staticmethod
     def read_list_strs():
-        return sys.stdin.readline().strip().split()
-
-    @staticmethod
-    def read_list_str():
-        return list(sys.stdin.readline().strip())
-
-    def read_graph(self, n, directed=False):
-        dct = [[] for _ in range(n)]
-        for _ in range(n - 1):
-            i, j = self.read_list_ints_minus_one()
-            dct[i].append(j)
-            if not directed:
-                dct[j].append(i)
-        return dct
+        return stdin.readline().rstrip().split()
 
     @staticmethod
     def st(x):
@@ -56,6 +59,26 @@ class FastIO:
     def lst(x):
         return print(*x)
 
+    @staticmethod
+    def max(a, b):
+        return a if a > b else b
+
+    @staticmethod
+    def min(a, b):
+        return a if a < b else b
+
+    @staticmethod
+    def ceil(a, b):
+        return a // b + int(a % b != 0)
+
+    @staticmethod
+    def accumulate(nums):
+        n = len(nums)
+        pre = [0] * (n + 1)
+        for i in range(n):
+            pre[i + 1] = pre[i] + nums[i]
+        return pre
+
 
 class Solution:
     def __init__(self):
@@ -63,47 +86,9 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
-        ans = 0
-        n = ac.read_int()
-        nums = ac.read_list_ints()
 
-        def range_merge_to_disjoint(left, right):
-            nonlocal ans
-            if left >= right:
-                return
-
-            mid = (left + right) // 2
-            range_merge_to_disjoint(left, mid)
-            range_merge_to_disjoint(mid + 1, right)
-
-            i, j = left, mid + 1
-            k = left
-            while i <= mid and j <= right:
-                if nums[i] <= nums[j]:
-                    arr[k] = nums[i]
-                    i += 1
-                else:
-                    arr[k] = nums[j]
-                    j += 1
-                    ans += mid - i + 1
-                k += 1
-            while i <= mid:
-                arr[k] = nums[i]
-                i += 1
-                k += 1
-            while j <= right:
-                arr[k] = nums[j]
-                j += 1
-                k += 1
-
-            for i in range(left, right + 1):
-                nums[i] = arr[i]
-            return
-
-        ans = 0
-        arr = [0] * n
-        range_merge_to_disjoint(0, n - 1)
-        ac.st(ans)
+        for _ in range(ac.read_int()):
+            pass
         return
 
 
