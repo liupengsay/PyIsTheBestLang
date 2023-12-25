@@ -70,8 +70,6 @@ ABC332F（https://atcoder.jp/contests/abc332/tasks/abc332_f）RangeAffineRangeSu
 from collections import defaultdict
 from typing import List
 
-from sortedcontainers import SortedList
-
 from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeDescendRangeMin, \
     RangeAddRangeSumMinMax, RangeRevereRangeBitCount, RangeChangeRangeOr, \
     RangeAddRangeAvgDev, \
@@ -80,6 +78,7 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeD
     RangeAscendRangeMaxBinarySearchFindLeft, RangeAffineRangeSum, PointSetRangeComposite, RangeLongestRegularBrackets, \
     RangeChangeAddRangeMax, RangeXorUpdateRangeXorQuery, PointSetRangeLongestAlter, \
     RangeSqrtRangeSum, RangeChangeReverseRangeSumLongestConSub
+from src.data_structure.sorted_list.template import SortedList
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
 

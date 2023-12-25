@@ -115,11 +115,11 @@ ABC129E（https://atcoder.jp/contests/abc129/tasks/abc129_e）brain_teaser|digit
 import bisect
 from collections import defaultdict, Counter, deque
 from functools import lru_cache
-from src.utils.fast_io import inf
 from typing import List
 
 from src.mathmatics.number_theory.template import NumberTheory
 from src.utils.fast_io import FastIO
+from src.utils.fast_io import inf
 
 
 class Solution:

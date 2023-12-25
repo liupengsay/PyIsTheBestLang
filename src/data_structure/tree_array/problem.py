@@ -54,18 +54,16 @@ Vertex Add Subtree Sumï¼ˆhttps://judge.yosupo.jp/problem/vertex_add_subtree_sumï
 
 """
 from collections import defaultdict, deque
-from src.utils.fast_io import inf
 from typing import List
 
-from sortedcontainers import SortedList
-
 from src.data_structure.segment_tree.template import RangeAscendRangeMax
-from src.data_structure.sorted_list.template import LocalSortedList
+from src.data_structure.sorted_list.template import SortedList
 from src.data_structure.tree_array.template import PointAddRangeSum, PointDescendPreMin, RangeAddRangeSum, \
     PointAscendPreMax, PointAscendRangeMax, PointAddRangeSum2D, RangeAddRangeSum2D, PointXorRangeXor, \
     PointDescendRangeMin, PointChangeRangeSum
 from src.search.dfs.template import DfsEulerOrder
 from src.utils.fast_io import FastIO
+from src.utils.fast_io import inf
 
 
 class Solution:
@@ -843,7 +841,7 @@ class Solution:
         ans = 0
         tree_sum = PointAddRangeSum(n)
         tree_cnt = PointAddRangeSum(n)
-        pre = LocalSortedList()
+        pre = SortedList()
         for lst in queries:
             if lst[0] == 1:
                 a, b = lst[1:]

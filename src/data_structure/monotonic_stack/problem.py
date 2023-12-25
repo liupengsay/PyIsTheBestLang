@@ -67,12 +67,12 @@ ABC140E（https://atcoder.jp/contests/abc140/tasks/abc140_e）monotonic_stack|pr
 import bisect
 import heapq
 from collections import defaultdict, Counter
-from src.utils.fast_io import inf
 from typing import List
 
 from src.data_structure.monotonic_stack.template import Rectangle
 from src.data_structure.sparse_table.template import SparseTable1
 from src.utils.fast_io import FastIO
+from src.utils.fast_io import inf
 
 
 class Solution:

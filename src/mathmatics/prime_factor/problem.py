@@ -23,12 +23,12 @@ from collections import Counter
 from collections import defaultdict
 from functools import reduce
 from itertools import permutations
-from src.utils.fast_io import inf
 from typing import List
 
 from src.mathmatics.number_theory.template import NumberTheory
 from src.mathmatics.prime_factor.template import PrimeFactor
 from src.utils.fast_io import FastIO
+from src.utils.fast_io import inf
 
 
 class Solution:

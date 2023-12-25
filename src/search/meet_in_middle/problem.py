@@ -21,10 +21,10 @@ P5691（https://www.luogu.com.cn/problem/P5691）meet_in_middle|sorted_list|two_
 import bisect
 from collections import defaultdict
 from itertools import combinations
-from src.utils.fast_io import inf
 from typing import List
 
 from src.utils.fast_io import FastIO
+from src.utils.fast_io import inf
 
 
 class Solution:

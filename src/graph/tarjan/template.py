@@ -1,6 +1,7 @@
 from collections import defaultdict
-from src.utils.fast_io import inf
 from typing import DefaultDict, Set, List, Tuple
+
+from src.utils.fast_io import inf
 
 
 class TarjanCC:

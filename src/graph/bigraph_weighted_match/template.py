@@ -1,7 +1,8 @@
 from collections import defaultdict, deque
-from src.utils.fast_io import inf
 
 import numpy as np
+
+from src.utils.fast_io import inf
 
 
 class BipartiteMatching:

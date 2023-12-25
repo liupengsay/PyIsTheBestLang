@@ -1,9 +1,8 @@
 import random
 import unittest
 
-from sortedcontainers import SortedList
-
 from src.data_structure.priority_queue.template import HeapqMedian
+from src.data_structure.sorted_list.template import SortedList
 
 
 class TestGeneral(unittest.TestCase):

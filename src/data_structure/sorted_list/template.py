@@ -1,4 +1,4 @@
-class LocalSortedList:
+class SortedList:
     def __init__(self, iterable=None, _load=200):
         """Initialize sorted list instance."""
         if iterable is None:

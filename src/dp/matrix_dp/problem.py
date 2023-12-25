@@ -125,7 +125,6 @@ import heapq
 from collections import defaultdict, deque
 from functools import lru_cache
 from itertools import permutations, accumulate
-from src.utils.fast_io import inf
 from typing import List
 
 from src.basis.diff_array.template import PreFixSumMatrix
@@ -133,6 +132,7 @@ from src.data_structure.tree_array.template import PointDescendPreMin
 from src.greedy.longest_increasing_subsequence.template import LcsComputeByLis
 from src.mathmatics.comb_perm.template import Combinatorics
 from src.utils.fast_io import FastIO
+from src.utils.fast_io import inf
 
 
 class Solution:

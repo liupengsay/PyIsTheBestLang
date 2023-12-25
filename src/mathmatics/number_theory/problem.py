@@ -95,12 +95,12 @@ import math
 from collections import Counter
 from collections import defaultdict
 from functools import reduce
-from src.utils.fast_io import inf
 from operator import mul
 from typing import List
 
 from src.mathmatics.number_theory.template import NumberTheory
 from src.utils.fast_io import FastIO
+from src.utils.fast_io import inf
 
 
 class Solution:

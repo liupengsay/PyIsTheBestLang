@@ -1,9 +1,9 @@
 import math
 import random
-from src.utils.fast_io import inf
 from typing import List
 
-from src.data_structure.sorted_list.template import LocalSortedList
+from src.data_structure.sorted_list.template import SortedList
+from src.utils.fast_io import inf
 
 
 class Geometry:
@@ -232,8 +232,8 @@ class ClosetPair:
             return (p1[0] - p2[0]) * (p1[0] - p2[0]) + (p1[1] - p2[1]) * (p1[1] - p2[1])
 
         points.sort(key=lambda p: [p[0], [1]])
-        lst1 = LocalSortedList()
-        lst2 = LocalSortedList()
+        lst1 = SortedList()
+        lst2 = SortedList()
         ans = inf
         ss = ans ** 0.5
         n = len(points)

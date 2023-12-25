@@ -1,11 +1,11 @@
 import random
 import unittest
 from itertools import accumulate
-from src.utils.fast_io import inf
 
 from src.data_structure.tree_array.template import PointAddRangeSum, PointDescendPreMin, RangeAddRangeSum, \
     PointAscendPreMax, PointAscendRangeMax, PointAddRangeSum2D, RangeAddRangeSum2D, \
     PointChangeMaxMin2D, PointXorRangeXor, PointDescendRangeMin, PointChangeRangeSum
+from src.utils.fast_io import inf
 
 
 class TestGeneral(unittest.TestCase):

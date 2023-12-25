@@ -1,9 +1,7 @@
 import random
 import unittest
 
-from sortedcontainers import SortedList
-
-from src.data_structure.sorted_list.template import LocalSortedList
+from src.data_structure.sorted_list.template import SortedList
 
 
 class TestGeneral(unittest.TestCase):
@@ -18,7 +16,7 @@ class TestGeneral(unittest.TestCase):
             n = 10 ** 4
             # add
             lst = SortedList()
-            local_lst = LocalSortedList()
+            local_lst = SortedList()
             for _ in range(n):
                 num = random.randint(low, high)
                 lst.add(num)

@@ -34,12 +34,12 @@ P4392（https://www.luogu.com.cn/problem/P4392）sliding_window|monotonic_queue
 
 """
 from collections import deque
-from src.utils.fast_io import inf
 from typing import List
 
 from src.basis.binary_search.template import BinarySearch
 from src.data_structure.monotonic_queue.template import PriorityQueue
 from src.utils.fast_io import FastIO
+from src.utils.fast_io import inf
 
 
 class Solution:

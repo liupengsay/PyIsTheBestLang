@@ -79,13 +79,13 @@ ABC222F（https://atcoder.jp/contests/abc222/tasks/abc222_f）reroot_dp
 import math
 from collections import deque, Counter
 from functools import lru_cache
-from src.utils.fast_io import inf
 from typing import List, Optional
 
 from src.basis.tree_node.template import TreeNode
 from src.data_structure.list_node.template import ListNode
 from src.dp.tree_dp.template import ReRootDP
 from src.utils.fast_io import FastIO
+from src.utils.fast_io import inf
 
 
 class Solution:

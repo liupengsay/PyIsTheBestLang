@@ -51,12 +51,12 @@ P1325（https://www.luogu.com.cn/problem/P1325）sort|greedy|minimum_range_cover
 """
 import bisect
 from collections import defaultdict, deque
-from src.utils.fast_io import inf
 from typing import List
 
 from src.basis.range.template import Range
-from src.data_structure.sorted_list.template import LocalSortedList
+from src.data_structure.sorted_list.template import SortedList
 from src.utils.fast_io import FastIO
+from src.utils.fast_io import inf
 
 
 class Solution:
@@ -282,7 +282,7 @@ class Solution:
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort(key=lambda it: it[1])
         pos = [ac.read_list_ints() for _ in range(m)]
-        lst = LocalSortedList([(x, c) for x, c in pos])
+        lst = SortedList([(x, c) for x, c in pos])
         ans = 0
         for floor, ceil in nums:
             i = lst.bisect_left((floor, 0))
@@ -302,7 +302,7 @@ class Solution:
         """
 
         n, m = ac.read_list_ints()
-        lst = LocalSortedList([ac.read_int() for _ in range(n)])
+        lst = SortedList([ac.read_int() for _ in range(n)])
         nums = [ac.read_list_ints() for _ in range(m)]
         nums.sort(key=lambda it: it[1])
         ans = 0

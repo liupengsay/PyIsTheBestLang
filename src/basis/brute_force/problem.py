@@ -140,11 +140,11 @@ import math
 from collections import defaultdict, deque
 from functools import reduce, lru_cache
 from itertools import combinations, permutations
-from src.utils.fast_io import inf
 from operator import mul, or_
 from typing import List
 
 from src.utils.fast_io import FastIO
+from src.utils.fast_io import inf
 
 
 class Solution:

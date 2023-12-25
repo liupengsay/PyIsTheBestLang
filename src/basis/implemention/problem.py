@@ -73,10 +73,10 @@ P8873（https://www.luogu.com.cn/problem/P8873）math|arithmetic_sequence
 import math
 from collections import deque
 from heapq import heappop, heappush
-from src.utils.fast_io import inf
 
 from src.basis.implemention.template import SpiralMatrix
 from src.utils.fast_io import FastIO
+from src.utils.fast_io import inf
 
 
 class Solution:

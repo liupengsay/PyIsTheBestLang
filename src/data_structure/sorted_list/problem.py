@@ -52,9 +52,7 @@ import bisect
 from bisect import insort_left, bisect_left
 from typing import List
 
-from sortedcontainers import SortedList
-
-from src.data_structure.sorted_list.template import LocalSortedList
+from src.data_structure.sorted_list.template import SortedList
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
 
@@ -74,7 +72,7 @@ class Solution:
         nums = [ac.read_int() for _ in range(n)]
         tmp = sorted(nums)
         ind = {num: i + 1 for i, num in enumerate(tmp)}
-        lst = LocalSortedList()
+        lst = SortedList()
         for i in range(n):
             lst.add(ind[nums[i]])
             ans = ac.max(ans, i + 1 - lst.bisect_right(i + 1))
@@ -91,13 +89,13 @@ class Solution:
         n = ac.read_int()
         nums = ac.read_list_ints()
         pre = [0] * (n + 1)
-        lst = LocalSortedList()
+        lst = SortedList()
         for i in range(n):
             pre[i + 1] = i - lst.bisect_right(nums[i])
             lst.add(nums[i])
 
         post = [0] * (n + 1)
-        lst = LocalSortedList()
+        lst = SortedList()
         for i in range(n - 1, -1, -1):
             post[i] = lst.bisect_left(nums[i])
             lst.add(nums[i])
@@ -119,7 +117,7 @@ class Solution:
 
         def check(x):
             lst = [1 if num >= x else -1 for num in nums]
-            pre = LocalSortedList([0])
+            pre = SortedList([0])
             cur = res = 0
             for num in lst:
                 cur += num
@@ -167,7 +165,7 @@ class Solution:
         q = [0] * n
         for i in range(n):
             q[ind1[i]] = ind2[i]
-        lst = LocalSortedList()
+        lst = SortedList()
         for num in q:
             ans += len(lst) - lst.bisect_right(num)
             lst.add(num)
@@ -212,12 +210,12 @@ class Solution:
         nums = ac.read_list_ints()
 
         pre = [0] * n
-        lst = LocalSortedList()
+        lst = SortedList()
         for i in range(n):
             pre[i] = lst.bisect_left(nums[i])
             lst.add(nums[i])
 
-        lst = LocalSortedList()
+        lst = SortedList()
         post = [0] * n
         for i in range(n - 1, -1, -1):
             post[i] = n - i - 1 - lst.bisect_right(nums[i])
@@ -235,7 +233,7 @@ class Solution:
 
         n = ac.read_int()
         ans = 0
-        lst = LocalSortedList()
+        lst = SortedList()
         for _ in range(n):
             x = ac.read_int()
             if not lst:
@@ -262,7 +260,7 @@ class Solution:
         nums = ac.read_list_ints()
         mod = 92084931
         pre = 0
-        lst = LocalSortedList()
+        lst = SortedList()
         lst.add(0)
         ans = 0
         for num in nums:
@@ -360,8 +358,8 @@ class Solution:
 
         n = ac.read_int()
         nums = ac.read_list_ints()
-        lst = [LocalSortedList([i + 1 for i in range(n) if not nums[i]]),
-               LocalSortedList([i + 1 for i in range(n) if nums[i]])]
+        lst = [SortedList([i + 1 for i in range(n) if not nums[i]]),
+               SortedList([i + 1 for i in range(n) if nums[i]])]
 
         while lst[0] and lst[1]:
             ans = []

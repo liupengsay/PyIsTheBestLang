@@ -1,7 +1,8 @@
 from collections import defaultdict, deque
 from heapq import heappush, heappop
-from src.utils.fast_io import inf
 from typing import List, Set
+
+from src.utils.fast_io import inf
 
 
 class Dijkstra:

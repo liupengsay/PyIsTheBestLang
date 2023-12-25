@@ -53,7 +53,6 @@ class TestGeneral(unittest.TestCase):
 
     def test_sparse_table_2d_max_min(self):
 
-        # 二维sparse_table
         m = n = 50
         high = 100000
         grid = [[random.randint(0, high) for _ in range(n)] for _ in range(m)]

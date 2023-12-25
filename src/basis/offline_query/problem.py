@@ -13,8 +13,7 @@ xx（xxx）xxxxxxxxxxxxxxxxxxxx
 """
 from typing import List
 
-from sortedcontainers import SortedList
-
+from src.data_structure.sorted_list.template import SortedList
 from tests.leetcode.template import ac_max
 
 

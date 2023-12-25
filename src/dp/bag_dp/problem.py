@@ -112,13 +112,13 @@ import bisect
 from collections import defaultdict, deque, Counter
 from functools import lru_cache
 from itertools import combinations
-from src.utils.fast_io import inf
 from typing import List
 
 from src.dp.bag_dp.template import BagDP
 from src.graph.union_find.template import UnionFind
 from src.mathmatics.number_theory.template import NumberTheory
 from src.utils.fast_io import FastIO
+from src.utils.fast_io import inf
 
 
 class Solution:

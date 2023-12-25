@@ -189,9 +189,7 @@ from bisect import insort_left, bisect_left
 from collections import Counter, deque, defaultdict
 from typing import List
 
-from sortedcontainers import SortedList
-
-from src.data_structure.sorted_list.template import LocalSortedList
+from src.data_structure.sorted_list.template import SortedList
 from src.mathmatics.number_theory.template import NumberTheory
 from src.utils.fast_io import FastIO
 
@@ -584,7 +582,7 @@ class Solution:
         tag: sort|greedy|sorted_list
         """
         # sorting后从小到大greedy放置，STL维护当前积木列高度
-        lst = LocalSortedList()
+        lst = SortedList()
         ac.read_int()
         nums = ac.read_list_ints()
         nums.sort()

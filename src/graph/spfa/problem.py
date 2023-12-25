@@ -30,12 +30,12 @@ ABC137E（https://atcoder.jp/contests/abc137/tasks/abc137_e）spfa|positive_circ
 differential_constraint（https://oi-wiki.org/graph/diff-constraints/）
 """
 from collections import deque
-from src.utils.fast_io import inf
 from typing import List
 
 from src.graph.dijkstra.template import Dijkstra
 from src.graph.spfa.template import SPFA
 from src.utils.fast_io import FastIO
+from src.utils.fast_io import inf
 
 
 class Solution:

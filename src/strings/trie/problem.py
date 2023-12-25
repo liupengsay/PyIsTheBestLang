@@ -44,12 +44,12 @@ Set Xor-Min（https://judge.yosupo.jp/problem/set_xor_min）template|minimum_xor
 import heapq
 import math
 from collections import Counter, defaultdict
-from src.utils.fast_io import inf
 from typing import List
 
 from src.strings.trie.template import TrieZeroOneXorMax, TrieZeroOneXorMaxKth, TriePrefixCount, BinaryTrie, TrieBit, \
     TriePrefixKeyValue, TrieKeyWordSearchInText, TrieZeroOneXorRange
 from src.utils.fast_io import FastIO
+from src.utils.fast_io import inf
 
 
 class Solution:

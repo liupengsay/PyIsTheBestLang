@@ -65,7 +65,6 @@ from bisect import bisect_right, bisect_left
 from collections import defaultdict
 from functools import reduce
 from itertools import accumulate
-from src.utils.fast_io import inf
 from operator import xor
 from typing import List, Optional
 
@@ -75,6 +74,7 @@ from src.data_structure.tree_array.template import PointAddRangeSum
 from src.graph.tree_lca.template import TreeAncestor
 from src.search.dfs.template import DFS, DfsEulerOrder
 from src.utils.fast_io import FastIO
+from src.utils.fast_io import inf
 
 
 class Solution:

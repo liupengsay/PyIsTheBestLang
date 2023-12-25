@@ -37,12 +37,12 @@ ABC143E（https://atcoder.jp/contests/abc143/tasks/abc143_e）floyd|build_graph|
 
 """
 from heapq import heappop, heappush
-from src.utils.fast_io import inf
 from typing import List
 
 from src.basis.binary_search.template import BinarySearch
 from src.graph.dijkstra.template import Dijkstra
 from src.utils.fast_io import FastIO
+from src.utils.fast_io import inf
 
 
 class Solution:

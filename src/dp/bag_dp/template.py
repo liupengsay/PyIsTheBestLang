@@ -1,5 +1,6 @@
 import math
 from collections import defaultdict
+
 from src.utils.fast_io import inf
 
 

@@ -1,7 +1,7 @@
 from collections import defaultdict
+from typing import DefaultDict
 
 from src.utils.fast_io import inf
-from typing import DefaultDict
 
 
 class UnionFind:

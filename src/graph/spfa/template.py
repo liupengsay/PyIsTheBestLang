@@ -1,6 +1,7 @@
 from collections import deque
-from src.utils.fast_io import inf
 from typing import List, Dict
+
+from src.utils.fast_io import inf
 
 
 class SPFA:

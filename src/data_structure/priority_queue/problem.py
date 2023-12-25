@@ -40,13 +40,12 @@ P4597（https://www.luogu.com.cn/problem/P4597）heapq|greedy
 import heapq
 from collections import deque, defaultdict
 from heapq import heappushpop, heappush, heappop, heapify
-from src.utils.fast_io import inf
 from typing import List
 
-from sortedcontainers import SortedList
-
 from src.data_structure.priority_queue.template import MedianFinder
+from src.data_structure.sorted_list.template import SortedList
 from src.utils.fast_io import FastIO
+from src.utils.fast_io import inf
 
 
 class Solution:

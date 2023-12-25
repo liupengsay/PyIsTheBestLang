@@ -82,17 +82,17 @@ import decimal
 import math
 from collections import defaultdict, Counter, deque
 from heapq import heappop, heapify, heappush
-from src.utils.fast_io import inf
 from typing import List, Optional
 
 from src.basis.tree_node.template import TreeNode
-from src.data_structure.sorted_list.template import LocalSortedList
+from src.data_structure.sorted_list.template import SortedList
 from src.graph.dijkstra.template import Dijkstra
 from src.graph.union_find.template import UnionFind, UnionFindWeighted, UnionFindLeftRoot, \
     UnionFindRightRoot
 from src.mathmatics.comb_perm.template import Combinatorics
 from src.mathmatics.number_theory.template import NumberTheory
 from src.utils.fast_io import FastIO
+from src.utils.fast_io import inf
 
 
 class Solution:
@@ -1140,7 +1140,7 @@ class Solution:
         # union_findimplemention维护连通块大小与多余的边数量
         n, d = ac.read_list_ints()
         uf = UnionFind(n)
-        lst = LocalSortedList([1] * n)
+        lst = SortedList([1] * n)
         pre = 0
         for i in range(d):
             x, y = ac.read_list_ints_minus_one()

@@ -113,12 +113,12 @@ Shortest Path（https://judge.yosupo.jp/problem/shortest_path）shortest_path|sp
 from collections import defaultdict, deque, Counter
 from heapq import heappush, heappop, heapify
 from itertools import accumulate
-from src.utils.fast_io import inf
 from operator import add
 from typing import List
 
 from src.graph.dijkstra.template import UnDirectedShortestCycle, Dijkstra
 from src.utils.fast_io import FastIO
+from src.utils.fast_io import inf
 
 
 class Solution:

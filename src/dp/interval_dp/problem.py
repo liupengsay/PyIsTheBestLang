@@ -41,10 +41,10 @@ P4170（https://www.luogu.com.cn/problem/P4170）interval_dp|math
 """
 from functools import lru_cache
 from itertools import accumulate
-from src.utils.fast_io import inf
 from typing import List
 
 from src.utils.fast_io import FastIO
+from src.utils.fast_io import inf
 
 MOD = 10 ** 9 + 7
 

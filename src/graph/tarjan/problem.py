@@ -51,13 +51,13 @@ P7965（https://www.luogu.com.cn/problem/P7965）scc|dag|tree_dp
 import copy
 from collections import Counter
 from collections import defaultdict, deque
-from src.utils.fast_io import inf
 from typing import List
 
 from src.dp.tree_dp.template import ReRootDP
 from src.graph.tarjan.template import TarjanCC, TarjanUndirected, TarjanDirected
 from src.graph.union_find.template import UnionFind
 from src.utils.fast_io import FastIO
+from src.utils.fast_io import inf
 
 
 class Solution:

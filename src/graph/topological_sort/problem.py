@@ -55,12 +55,12 @@ import copy
 import math
 from collections import defaultdict, deque
 from heapq import heapify, heappop, heappush
-from src.utils.fast_io import inf
 from typing import List, Optional
 
 from src.basis.tree_node.template import TreeNode
 from src.graph.union_find.template import UnionFind
 from src.utils.fast_io import FastIO
+from src.utils.fast_io import inf
 
 
 class Solution:

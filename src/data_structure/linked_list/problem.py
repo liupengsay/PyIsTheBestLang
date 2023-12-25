@@ -29,11 +29,11 @@ P6155（https://www.luogu.com.cn/problem/P6155）sort|greedy|union_find_right_ro
 """
 import heapq
 from collections import deque
-from src.utils.fast_io import inf
 from typing import List
 
 from src.graph.union_find.template import UnionFindLeftRoot, UnionFindRightRoot
 from src.utils.fast_io import FastIO
+from src.utils.fast_io import inf
 
 
 class Solution:

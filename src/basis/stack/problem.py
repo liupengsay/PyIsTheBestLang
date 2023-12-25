@@ -47,10 +47,10 @@ import math
 from collections import defaultdict, deque
 from heapq import heappush, heappop
 from itertools import permutations
-from src.utils.fast_io import inf
 from typing import List
 
 from src.utils.fast_io import FastIO
+from src.utils.fast_io import inf
 
 
 class Solution:

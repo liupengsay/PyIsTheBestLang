@@ -58,12 +58,12 @@ Directed MST（https://judge.yosupo.jp/problem/directedmst）
 import math
 from collections import defaultdict
 from heapq import heappop, heappush
-from src.utils.fast_io import inf
 from typing import List
 
 from src.graph.minimum_spanning_tree.template import TreeAncestorWeightSecond, MinimumSpanningTree
 from src.graph.union_find.template import UnionFind
 from src.utils.fast_io import FastIO
+from src.utils.fast_io import inf
 
 
 class Solution:

@@ -1,5 +1,6 @@
-from src.utils.fast_io import inf
 from typing import List
+
+from src.utils.fast_io import inf
 
 
 class PointAddRangeSum:

@@ -22,11 +22,11 @@ import bisect
 import math
 import random
 from collections import defaultdict
-from src.utils.fast_io import inf
 from typing import List
 
 from src.basis.ternary_search.template import TernarySearch, TriPartPackTriPart
 from src.utils.fast_io import FastIO
+from src.utils.fast_io import inf
 
 
 class Solution:
