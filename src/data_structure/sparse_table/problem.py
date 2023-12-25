@@ -42,7 +42,7 @@ import math
 from collections import defaultdict
 from typing import List
 
-from src.data_structure.sparse_table.template import SparseTable1, SparseTableIndex
+from src.data_structure.sparse_table.template import SparseTable1, SparseTableIndex, SparseTable4
 from src.mathmatics.prime_factor.template import PrimeFactor
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
@@ -58,7 +58,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2880
         tag: sparse_table|range_max|range_min
         """
-        # 查询静态区间最大值与最小值
+
         n, q = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
         st1 = SparseTable1(nums, "max")
@@ -74,12 +74,12 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3865
         tag: sparse_table|range_gcd
         """
-        # 查询静态区间最大值
+
         n, m = ac.read_list_ints()
         st = SparseTable1(ac.read_list_ints())
         for _ in range(m):
             x, y = ac.read_list_ints()
-            ac.st(st.query(x, y))
+            print(st.query(x, y))
         return
 
     @staticmethod
@@ -88,14 +88,16 @@ class Solution:
         url: https://codeforces.com/problemset/problem/474/F
         tag: sparse_table|range_min|range_gcd|binary_search|counter
         """
-        # sparse_table查询静态区间 gcd 与最小值
+
         n = ac.read_int()
         nums = ac.read_list_ints()
         dct = defaultdict(list)
         for i, num in enumerate(nums):
             dct[num].append(i)
-        st_gcd = SparseTable1(nums, "gcd")
-        st_min = SparseTable1(nums, "min")
+        st_gcd = SparseTable4(n, math.gcd)
+        st_gcd.build(nums)
+        st_min = SparseTable4(n, ac.min)
+        st_min.build(nums)
         for _ in range(ac.read_int()):
             x, y = ac.read_list_ints_minus_one()
             num1 = st_gcd.query(x + 1, y + 1)
@@ -111,7 +113,7 @@ class Solution:
     def ac_109(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/111/
-        tag: greedy|multiplication_method
+        tag: greedy|multiplication_method|two_pointer|merge_sort|hard|classical
         """
 
         def range_merge_to_disjoint(lst1, lst2):
@@ -140,7 +142,6 @@ class Solution:
                 cnt += 1
             return True
 
-        # 利用倍增与merge_sort的思想数组划分
         for _ in range(ac.read_int()):
             n, m, t = ac.read_list_ints()
             nums = ac.read_list_ints()
@@ -170,7 +171,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5648
         tag: sparse_table|range_max_index|monotonic_stack
         """
-        # 倍增 ST 表查询区间最大值的索引，monotonic_stack|建树距离
+
         n, t = ac.read_list_ints()
         nums = ac.read_list_ints()
         post = [n] * n
@@ -182,7 +183,7 @@ class Solution:
         edge = [[] for _ in range(n + 1)]
         for i in range(n):
             edge[post[i]].append(i)
-        # 建树距离
+
         sub = [0] * (n + 1)
         stack = [n]
         while stack:
@@ -190,7 +191,7 @@ class Solution:
             for j in edge[i]:
                 sub[j] = sub[i] + nums[j] * (i - j)
                 stack.append(j)
-        # 区间最大值索引
+
         st = SparseTableIndex(nums)
         last_ans = 0
         for _ in range(t):
@@ -209,7 +210,7 @@ class Solution:
         url: https://leetcode.cn/problems/number-of-subarrays-with-gcd-equal-to-k/
         tag: range_gcd|counter|sub_consequence
         """
-        # 最大公因数等于 K 的子数组数目
+
         ans = 0
         pre = dict()
         for num in nums:
@@ -230,7 +231,7 @@ class Solution:
         url: https://leetcode.cn/problems/number-of-subarrays-with-lcm-equal-to-k/
         tag: range_lcm|counter|sub_consequence
         """
-        # 最小公倍数为 K 的子数组数目
+
         ans = 0
         pre = dict()
         for num in nums:
@@ -270,7 +271,7 @@ class Solution:
         url: https://leetcode.cn/problems/smallest-subarrays-with-maximum-bitwise-or/
         tag: sub_consequence|range_or
         """
-        # 最大或值的最短连续子数组
+
         n = len(nums)
         ans = [0] * n
         post = dict()
@@ -289,7 +290,7 @@ class Solution:
     def cf_1516d(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1516/problem/D
-        tag: multiplication_method
+        tag: multiplication_method|classical|sparse_table
         """
         pf = PrimeFactor(10 ** 5)
         n, q = ac.read_list_ints()
@@ -357,7 +358,7 @@ class Solution:
         url: https://codeforces.com/contest/1878/problem/E
         tag: sparse_table|range_and
         """
-        # 连续子数组的and信息
+
         for _ in range(ac.read_int()):
             n = ac.read_int()
             nums = ac.read_list_ints()
@@ -402,7 +403,7 @@ class Solution:
         url: https://leetcode.cn/problems/find-a-value-of-a-mysterious-function-closest-to-target/
         tag: bit_operation|sub_consequence
         """
-        # 与目标值最接近的连续子数组bit_operation与值
+
         ans = abs(arr[0] - target)
         pre = {arr[0]}
         for num in arr[1:]:

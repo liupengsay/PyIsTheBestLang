@@ -4,18 +4,18 @@ from math import lcm, gcd
 from operator import or_, and_
 
 
-class SparseTable1:
+class SparseTable3:
     def __init__(self, lst, fun="max"):
         """static range queries can be performed as long as the range_merge_to_disjoint fun satisfies monotonicity"""
         self.fun = fun
         self.n = len(lst)
         self.lst = lst
         self.f = [[0] * (int(math.log2(self.n)) + 1) for _ in range(self.n + 1)]
-        self.gen_sparse_table()
+        self.build()
 
         return
 
-    def gen_sparse_table(self):
+    def build(self):
         """the same as multiplication method for tree_lca"""
         for i in range(1, self.n + 1):
             self.f[i][0] = self.lst[i - 1]
@@ -99,6 +99,88 @@ class SparseTable2:
             return a if a < b else b
         else:
             return math.gcd(a, b)
+
+
+class SparseTable1:
+    def __init__(self, lst, fun="max"):
+        """static range queries can be performed as long as the range_merge_to_disjoint fun satisfies monotonicity"""
+        self.fun = fun
+        self.n = len(lst)
+        self.lst = lst
+        self.m = int(math.log2(self.n))
+        self.f = [0] * ((self.m + 1) * (self.n + 1))
+        self.build()
+
+        return
+
+    def build(self):
+        """the same as multiplication method for tree_lca"""
+        for i in range(1, self.n + 1):
+            self.f[i * (self.m + 1) + 0] = self.lst[i - 1]
+        for j in range(1, self.m + 1):
+            for i in range(1, self.n - (1 << j) + 2):
+                a = self.f[i * (self.m + 1) + j - 1]
+                b = self.f[(i + (1 << (j - 1))) * (self.m + 1) + j - 1]
+                if self.fun == "max":
+                    self.f[i * (self.m + 1) + j] = a if a > b else b
+                elif self.fun == "min":
+                    self.f[i * (self.m + 1) + j] = a if a < b else b
+                elif self.fun == "gcd":
+                    self.f[i * (self.m + 1) + j] = math.gcd(a, b)
+                elif self.fun == "lcm":
+                    self.f[i * (self.m + 1) + j] = a * b // math.gcd(a, b)
+                elif self.fun == "and":
+                    self.f[i * (self.m + 1) + j] = a & b
+                elif self.fun == "or":
+                    self.f[i * (self.m + 1) + j] = a | b
+        return
+
+    def query(self, left, right):
+        """index start from 1"""
+        assert 1 <= left <= right <= self.n
+        k = int(math.log2(right - left + 1))
+        a = self.f[left * (self.m + 1) + k]
+        b = self.f[(right - (1 << k) + 1) * (self.m + 1) + k]
+        if self.fun == "max":
+            return a if a > b else b
+        elif self.fun == "min":
+            return a if a < b else b
+        elif self.fun == "gcd":
+            return math.gcd(a, b)
+        elif self.fun == "lcm":
+            return math.lcm(a, b)
+        elif self.fun == "and":
+            return a & b
+        elif self.fun == "or":
+            return a | b
+
+
+class SparseTable4:
+    def __init__(self, n, fun):
+        """static range queries can be performed as long as the range_merge_to_disjoint fun satisfies monotonicity"""
+        self.fun = fun
+        self.n = n
+        self.m = int(math.log2(self.n))
+        self.f = [0] * ((self.m + 1) * (self.n + 1))
+        return
+
+    def build(self, lst):
+        """the same as multiplication method for tree_lca"""
+        for i in range(1, self.n + 1):
+            self.f[i * (self.m + 1) + 0] = lst[i - 1]
+        for j in range(1, self.m + 1):
+            for i in range(1, self.n - (1 << j) + 2):
+                a = self.f[i * (self.m + 1) + j - 1]
+                b = self.f[(i + (1 << (j - 1))) * (self.m + 1) + j - 1]
+                self.f[i * (self.m + 1) + j] = self.fun(a, b)
+        return
+
+    def query(self, left, right):
+        """index start from 1"""
+        k = int(math.log2(right - left + 1))
+        a = self.f[left * (self.m + 1) + k]
+        b = self.f[(right - (1 << k) + 1) * (self.m + 1) + k]
+        return self.fun(a, b)
 
 
 class SparseTable2D:
@@ -185,10 +267,10 @@ class SparseTableIndex:
         self.lst = lst
         self.f = [[0] * (int(math.log2(self.n)) + 1)
                   for _ in range(self.n + 1)]
-        self.gen_sparse_table()
+        self.build()
         return
 
-    def gen_sparse_table(self):
+    def build(self):
         for i in range(1, self.n + 1):
             self.f[i][0] = i - 1
         for j in range(1, int(math.log2(self.n)) + 1):

@@ -6,13 +6,13 @@ Description：range_add|range_sum
 307（https://leetcode.cn/problems/range-sum-query-mutable）PointChangeRangeSum
 1409（https://leetcode.cn/problems/queries-on-a-permutation-with-key/）tree_array|implemention
 1626（https://leetcode.cn/problems/best-team-with-no-conflicts/）tree_array|prefix_maximum|dp
-6353（https://leetcode.cn/problems/minimum-number-of-visited-cells-in-a-grid/）tree_array|prefix_minimum
+2617（https://leetcode.cn/problems/minimum-number-of-visited-cells-in-a-grid/）tree_array|prefix_minimum
 308（https://leetcode.cn/problems/range-sum-query-2d-mutable/）tree_matrix|RangeAddRangeSum
 2659（https://leetcode.cn/problems/make-array-empty/submissions/）implemention|tree_array|sortedList|greedy
 1505（https://leetcode.cn/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/）tree_array|implemention|counter|sorted_list
 2193（https://leetcode.cn/problems/minimum-number-of-moves-to-make-palindrome/description/）tree_array|greedy|implemention|P5041
 2407（https://leetcode.cn/problems/longest-increasing-subsequence-ii/description/）tree_array|liner_dp
-100112（https://leetcode.cn/problems/maximum-balanced-subsequence-sum/）discretization|tree_array|liner_dp
+2926（https://leetcode.cn/problems/maximum-balanced-subsequence-sum/）discretization|tree_array|liner_dp
 2736（https://leetcode.cn/problems/maximum-sum-queries/）PointAddPreMax
 
 =====================================LuoGu======================================
@@ -26,7 +26,6 @@ P3368（https://www.luogu.com.cn/problem/P3368）tree_array|RangeAddRangeSum
 P5677（https://www.luogu.com.cn/problem/P5677）tree_array|RangeAddRangeSum
 P5094（https://www.luogu.com.cn/problem/P5094）tree_array|RangeAddRangeSum
 P1816（https://www.luogu.com.cn/problem/P1816）tree_array|range_min
-P1908（https://www.luogu.com.cn/problem/P1908）tree_array|reverse_order_pair
 P1725（https://www.luogu.com.cn/problem/P1725）reverse_order|liner_dp|PointAscendRangeMax
 P3586（https://www.luogu.com.cn/problem/P3586）offline_query|discretization|tree_array|PointAddPreSum
 P1198（https://www.luogu.com.cn/problem/P1198）tree_array|range_max
@@ -38,7 +37,7 @@ P1972（https://www.luogu.com.cn/problem/P1972）tree_array|offline_query|range_
 ====================================AtCoder=====================================
 ABC103D（https://atcoder.jp/contests/abc103/tasks/abc103_d）greedy|tree_array
 ABC127F（https://atcoder.jp/contests/abc127/tasks/abc127_f）discretization|tree_array|counter
-Vertex Add Subtree Sum（https://judge.yosupo.jp/problem/vertex_add_subtree_sum）tree_array|dfs_order
+
 
 ===================================CodeForces===================================
 1791F（https://codeforces.com/problemset/problem/1791/F）tree_array
@@ -49,6 +48,7 @@ Vertex Add Subtree Sum（https://judge.yosupo.jp/problem/vertex_add_subtree_sum�
 1550C（https://codeforces.com/contest/1550/problem/C）PointAscendPreMax
 1679C（https://codeforces.com/contest/1679/problem/C）PointAddRangeSum
 
+1（https://judge.yosupo.jp/problem/vertex_add_subtree_sum）tree_array|dfs_order
 135. tree_matrix|3（https://loj.ac/p/135）range_change|range_sum
 134. tree_matrix|2（https://loj.ac/p/134）range_change|range_sum
 
@@ -76,7 +76,7 @@ class Solution:
         url: https://leetcode.cn/problems/best-team-with-no-conflicts/
         tag: tree_array|prefix_maximum|dp
         """
-        # 动态规划与tree_array|维护前缀最大值
+
         n = max(ages)
         tree_array = PointAscendPreMax(n)
         for score, age in sorted(zip(scores, ages)):
@@ -90,7 +90,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-number-of-moves-to-make-palindrome/description/
         tag: tree_array|greedy|implemention|P5041
         """
-        # tree_array|greedyimplemention交换构建回文串
 
         n = len(s)
         lst = list(s)
@@ -138,7 +137,7 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-number-of-moves-to-make-palindrome/description/
         tag: tree_array|greedy|implemention|P5041
         """
-        # 字符串特性greedyimplemention交换构建回文串
+
         n = len(s)
         ans = 0
         for _ in range(n // 2):
@@ -159,7 +158,7 @@ class Solution:
         url: https://leetcode.cn/problems/longest-increasing-subsequence-ii/description/
         tag: tree_array|liner_dp
         """
-        # tree_array||liner_dp
+
         n = max(nums)
         ans = 0
         tree = PointAscendRangeMax(n)
@@ -186,7 +185,7 @@ class Solution:
         url: https://leetcode.cn/problems/make-array-empty/submissions/
         tag: implemention|tree_array|sortedList|greedy
         """
-        # implemention删除，可以tree_array|也可以SortedList也可以greedy
+
         n = len(nums)
         ans = 0
         pre = 1
@@ -235,7 +234,7 @@ class Solution:
         return ans
 
     @staticmethod
-    def lc_6353(grid: List[List[int]]) -> int:
+    def lc_2617(grid: List[List[int]]) -> int:
         """
         url: https://leetcode.cn/problems/minimum-number-of-visited-cells-in-a-grid/
         tag: tree_array|prefix_minimum
@@ -255,12 +254,12 @@ class Solution:
         return -1 if dp[0][0] > n * m else dp[0][0]
 
     @staticmethod
-    def lc_100112_1(nums: List[int]) -> int:
+    def lc_2926_1(nums: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/maximum-balanced-subsequence-sum/
         tag: discretization|tree_array|liner_dp
         """
-        # tree_array|（单点持续更新为更大值）（区间查询最大值）2380ms
+
         n = len(nums)
         tmp = [nums[i] - i for i in range(n)]
         ind = sorted(list(set(tmp)))
@@ -275,12 +274,12 @@ class Solution:
         return tree.range_max(1, n)
 
     @staticmethod
-    def lc_100112_2(nums: List[int]) -> int:
+    def lc_2926_2(nums: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/maximum-balanced-subsequence-sum/
         tag: discretization|tree_array|liner_dp
         """
-        # tree_array|（单点持续更新为更大值）（前缀区间查询最大值）1748ms
+
         n = len(nums)
         tmp = [nums[i] - i for i in range(n)]
         ind = sorted(list(set(tmp)))
@@ -295,12 +294,12 @@ class Solution:
         return tree.pre_max(n)
 
     @staticmethod
-    def lc_100112_3(nums: List[int]) -> int:
+    def lc_2926_3(nums: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/maximum-balanced-subsequence-sum/
         tag: discretization|tree_array|liner_dp
         """
-        # segment_tree|（单点持续更新为更大值）（区间查询最大值）7980ms
+
         n = len(nums)
         tmp = [nums[i] - i for i in range(n)]
         ind = sorted(list(set(tmp)))
@@ -316,8 +315,11 @@ class Solution:
         return ans
 
     @staticmethod
-    def lib_c(ac=FastIO()):
-        """template of vertex add subtree sum"""
+    def library_checker_1(ac=FastIO()):
+        """
+        url: https://judge.yosupo.jp/problem/vertex_add_subtree_sum
+        tag: tree_array|dfs_order|classical|hard
+        """
         n, q = ac.read_list_ints()
         nums = ac.read_list_ints()
         dct = [[] for _ in range(n)]
@@ -340,73 +342,13 @@ class Solution:
         return
 
     @staticmethod
-    def lc_100112_1(nums: List[int]) -> int:
+    def lg_p5094(ac=FastIO()):
         """
-        url: https://leetcode.cn/problems/maximum-balanced-subsequence-sum/
-        tag: discretization|tree_array|liner_dp
+        url: https://www.luogu.com.cn/problem/P5094
+        tag: tree_array|RangeAddRangeSumtree_array|RangeAddRangeSum
         """
-        # tree_array|（单点持续更新为更大值）（区间查询最大值）2380ms
-        n = len(nums)
-        tmp = [nums[i] - i for i in range(n)]
-        ind = sorted(list(set(tmp)))
-        dct = {x: i for i, x in enumerate(ind)}
-        tree = PointAscendRangeMax(n, -inf)
-        for j in range(n):
-            num = nums[j]
-            i = dct[num - j]
-            pre = tree.range_max(1, i + 1) if i + 1 >= 1 else 0
-            pre = 0 if pre < 0 else pre
-            tree.point_ascend(i + 1, pre + num)
-        return tree.range_max(1, n)
-
-    @staticmethod
-    def lc_100112_2(nums: List[int]) -> int:
-        """
-        url: https://leetcode.cn/problems/maximum-balanced-subsequence-sum/
-        tag: discretization|tree_array|liner_dp
-        """
-        # tree_array|（单点持续更新为更大值）（前缀区间查询最大值）1748ms
-        n = len(nums)
-        tmp = [nums[i] - i for i in range(n)]
-        ind = sorted(list(set(tmp)))
-        dct = {x: i for i, x in enumerate(ind)}
-        tree = PointAscendPreMax(n)
-        for j in range(n):
-            num = nums[j]
-            i = dct[num - j]
-            pre = tree.pre_max(i + 1)
-            pre = 0 if pre < 0 else pre
-            tree.point_ascend(i + 1, pre + num)
-        return tree.pre_max(n)
-
-    @staticmethod
-    def lc_100112_3(nums: List[int]) -> int:
-        """
-        url: https://leetcode.cn/problems/maximum-balanced-subsequence-sum/
-        tag: discretization|tree_array|liner_dp
-        """
-        # segment_tree|（单点持续更新为更大值）（区间查询最大值）7980ms
-        n = len(nums)
-        tmp = [nums[i] - i for i in range(n)]
-        ind = sorted(list(set(tmp)))
-        dct = {x: i for i, x in enumerate(ind)}
-        tree = RangeAscendRangeMax(n)
-        for j in range(n):
-            num = nums[j]
-            i = dct[num - j]
-            pre = tree.range_max(0, i)
-            pre = 0 if pre < 0 else pre
-            tree.range_ascend(i, i, pre + num)
-        ans = tree.range_max(0, n - 1)
-        return ans
-
-    @staticmethod
-    def lg_5094(ac=FastIO()):
-
-        # tree_array|单点增|值与前缀区间和查询
         n = ac.read_int()
         m = 5 * 10 ** 4
-
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort(key=lambda y: y[0])
         tree_sum = PointAddRangeSum(m)
@@ -426,8 +368,11 @@ class Solution:
         return
 
     @staticmethod
-    def lg_p2280(ac=FastIO()):
-        # tree_array|单点更新区间查询最大值与最小值
+    def lg_xxxx(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/xxxx
+        tag:
+        """
         n, q = ac.read_list_ints()
         tree = PointAscendRangeMax(n)
         tree2 = PointDescendRangeMin(n)
@@ -447,7 +392,6 @@ class Solution:
         url: https://codeforces.com/contest/1311/problem/F
         tag: discretization|tree_array|counter
         """
-        # 两个discretizationtree_array|，counter与|和
         n = ac.read_int()
         ind = list(range(n))
         x = ac.read_list_ints()
@@ -474,7 +418,7 @@ class Solution:
         url: https://codeforces.com/contest/1676/problem/H2
         tag: tree_array|pre_sum
         """
-        # tree_array|维护前缀区间和
+
         for _ in range(ac.read_int()):
             ac.read_int()
             a = ac.read_list_ints()
@@ -524,7 +468,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2068
         tag: PointAddRangeSum
         """
-        # tree_array|单点更新与区间和查询
+
         n = ac.read_int()
         w = ac.read_int()
         tree = RangeAddRangeSum(n)
@@ -544,7 +488,6 @@ class Solution:
         tag: tree_array|range_min
         """
 
-        # tree_array|查询静态区间最小值
         m, n = ac.read_list_ints()
         nums = ac.read_list_ints()
         tree = PointDescendRangeMin(m)
@@ -563,7 +506,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3374
         tag: tree_array|RangeAddRangeSum
         """
-        # tree_array| 单点增减 查询prefix_sum与区间和
+
         n, m = ac.read_list_ints()
         tree = PointAddRangeSum(n)
         tree.build(ac.read_list_ints())
@@ -581,7 +524,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3368
         tag: tree_array|RangeAddRangeSum
         """
-        # tree_array| 区间增减 查询prefix_sum与区间和
+
         n, m = ac.read_list_ints()
         tree = RangeAddRangeSum(n)
         tree.build(ac.read_list_ints())
@@ -595,34 +538,7 @@ class Solution:
         return
 
     @staticmethod
-    def lg_p1908(ac=FastIO()):
-        """
-        url: https://www.luogu.com.cn/problem/P1908
-        tag: tree_array|reverse_order_pair
-        """
-        # tree_array|求reverse_order_pair|
-        n = ac.read_int()
-        nums = ac.read_list_ints()
-        ind = list(range(n))
-        ind.sort(key=lambda it: nums[it])
-        tree = PointAddRangeSum(n)
-        ans = i = cnt = 0
-        while i < n:
-            val = nums[ind[i]]
-            lst = []
-            while i < n and nums[ind[i]] == val:
-                lst.append(ind[i] + 1)
-                ans += cnt - tree.range_sum(1, ind[i] + 1)
-                i += 1
-            cnt += len(lst)
-            for x in lst:
-                tree.point_add(x, 1)
-        ac.st(ans)
-        return
-
-    @staticmethod
     def main(ac=FastIO()):
-        # tree_matrix| 区间增减 区间查询
         n, m = ac.read_list_ints()
         tree = RangeAddRangeSum2D(n, m)
         while True:
@@ -643,7 +559,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1725
         tag: reverse_order|liner_dp|PointAscendRangeMax
         """
-        # tree_array|reverse_order|liner_dp，单点更新与区间查询最大值
+
         n, a, b = ac.read_list_ints()
         n += 1
         nums = ac.read_list_ints()
@@ -665,7 +581,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3586
         tag: offline_query|discretization|tree_array|PointAddPreSum
         """
-        # offline_query、discretizationtree_array|，单点增减，prefix_sum查询
+
         n, m = ac.read_list_ints()
         value = {0}
         lst = []
@@ -718,7 +634,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1198
         tag: tree_array|range_max
         """
-        # tree_array|查询区间最大值
+
         m, d = ac.read_list_ints()
         t = 0
         tree = PointAscendRangeMax(m + 1)
@@ -741,7 +657,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P4868
         tag: math|tree_array|prefix_sum_of_prefix_sum
         """
-        # 转换公式，两个tree_array|维护prefix_sum的prefix_sum
 
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -768,7 +683,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5463
         tag: tree_array|counter|brute_force|contribution_method
         """
-        # tree_array|维护前缀counter，brute_force最大值所有区间数贡献
+
         n = ac.read_int()
         nums = ac.read_list_ints()
         lst = sorted(list(set(nums)))
@@ -780,7 +695,6 @@ class Solution:
             left = i + 1
             right = tree.range_sum(1, ind[nums[i]] - 1)
             ans += left * right
-            # 取 nums[i] 作为区间的数又 n-i 个右端点取法
             tree.point_add(ind[nums[i]], n - i)
         ac.st(ans)
         return
@@ -791,14 +705,13 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6225
         tag: tree_array|prefix_xor
         """
-        # tree_array|维护前缀异或和
+
         n, q = ac.read_list_ints()
         nums = ac.read_list_ints()
 
         tree_odd = PointXorRangeXor(n)
         tree_even = PointXorRangeXor(n)
         for i in range(n):
-            # 也可以对应子数组初始化
             if i % 2 == 0:
                 tree_odd.point_xor(i + 1, nums[i])
             else:
@@ -819,7 +732,6 @@ class Solution:
                 if (right - left + 1) % 2 == 0:
                     ac.st(0)
                 else:
-                    # 如果是奇数长度则为 left 开始每隔 2 的元素异或和
                     if left % 2:
                         ac.st(tree_odd.range_xor(left, right))
                     else:
@@ -828,7 +740,10 @@ class Solution:
 
     @staticmethod
     def abc_127f(ac=FastIO()):
-        # discretization与两个tree_array||和与counter
+        """
+        url: https://atcoder.jp/contests/abc127/tasks/abc127_f
+        tag: discretization|tree_array|counter
+        """
         queries = [ac.read_list_ints() for _ in range(ac.read_int())]
         nodes = set()
         for lst in queries:
@@ -871,7 +786,7 @@ class Solution:
         url: https://codeforces.com/problemset/problem/987/C
         tag: brute_force|tree_array|prefix_suffix|pre_min
         """
-        # brute_force中间数组，tree_array|维护prefix_suffix最小值
+
         n = ac.read_int()
         s = ac.read_list_ints()
         c = ac.read_list_ints()
@@ -929,8 +844,8 @@ class Solution:
                     col_tree.point_add(y + 1, -1)
             else:
                 x1, y1, x2, y2 = [w - 1 for w in lst[1:]]
-                if row_tree.range_sum(x1 + 1, x2 + 1) == x2 - x1 + 1 or col_tree.range_sum(y1 + 1,
-                                                                                           y2 + 1) == y2 - y1 + 1:
+                if (row_tree.range_sum(x1 + 1, x2 + 1) == x2 - x1 + 1
+                        or col_tree.range_sum(y1 + 1, y2 + 1) == y2 - y1 + 1):
                     ac.st("Yes")
                     continue
                 ac.st("No")
@@ -971,23 +886,18 @@ class Solution:
         tag: tree_array|implemention|counter|sorted_list
         """
 
-        # tree_array|implemention
         n = len(num)
         dct = defaultdict(deque)
         for i, d in enumerate(num):
             dct[d].append(i)
-        # tree_array|implemention交换过程
         tree = PointAddRangeSum(n)
         ans = ""
         for i in range(n):
-            # 添|第 i 个数字
             cur = i
             for d in range(10):
-                # 找还有的数字
                 if dct[str(d)]:
                     i = dct[str(d)][0]
                     ind = i + tree.range_sum(i + 1, n)
-                    # 索引|上移动之后的位置与第i个相隔距离在代价承受范围内
                     if ind - cur <= k:
                         ans += str(d)
                         k -= ind - cur
@@ -1003,8 +913,6 @@ class Solution:
         tag: tree_array|implemention|counter|sorted_list
         """
         ind = [deque() for _ in range(10)]
-
-        # 按照数字存好索引
         n = len(num)
         for i in range(n):
             ind[int(num[i])].append(i)
@@ -1012,13 +920,10 @@ class Solution:
         move = SortedList()
         ans = ""
         for i in range(n):
-            # 添|第i个数字
             for x in range(10):
                 if ind[x]:
-                    # 找还有的数字
                     j = ind[x][0]
                     dis = len(move) - move.bisect_right(j)
-                    # 索引|上移动之后的位置与第i个相隔距离在代价承受范围内
                     if dis + j - i <= k:
                         move.add(ind[x].popleft())
                         ans += str(x)
@@ -1026,34 +931,49 @@ class Solution:
                         break
         return ans
 
+    @staticmethod
+    def lc_307():
+        """
+        url: https://leetcode.com/problems/range-sum-query-mutable
+        tag: PointChangeRangeSum
+        """
 
-class LC307:
+        class NumArray:
 
-    def __init__(self, nums: List[int]):
-        n = len(nums)
-        self.tree = PointChangeRangeSum(n)
-        self.tree.build(nums)
+            def __init__(self, nums: List[int]):
+                n = len(nums)
+                self.tree = PointChangeRangeSum(n)
+                self.tree.build(nums)
 
-    def update(self, index: int, val: int) -> None:
-        self.tree.point_change(index + 1, val)
+            def update(self, index: int, val: int) -> None:
+                self.tree.point_change(index + 1, val)
 
-    def sum_range(self, left: int, right: int) -> int:
-        return self.tree.range_sum(left + 1, right + 1)
+            def sum_range(self, left: int, right: int) -> int:
+                return self.tree.range_sum(left + 1, right + 1)
 
+        return NumArray
 
-class LC308:
-    def __init__(self, matrix: List[List[int]]):
-        m, n = len(matrix), len(matrix[0])
-        self.matrix = matrix
-        self.tree = PointAddRangeSum2D(m, n)
-        for i in range(m):
-            for j in range(n):
-                self.tree.point_add(i + 1, j + 1, matrix[i][j])
+    @staticmethod
+    def lc_308():
+        """
+        url: https://leetcode.com/problems/range-sum-query-2d-mutable/
+        tag: tree_matrix|RangeAddRangeSum
+        """
 
-    def update(self, row: int, col: int, val: int) -> None:
-        # 注意这里是修改为 val
-        self.tree.point_add(row + 1, col + 1, val - self.matrix[row][col])
-        self.matrix[row][col] = val
+        class NumMatrix:
+            def __init__(self, matrix: List[List[int]]):
+                m, n = len(matrix), len(matrix[0])
+                self.matrix = matrix
+                self.tree = PointAddRangeSum2D(m, n)
+                for i in range(m):
+                    for j in range(n):
+                        self.tree.point_add(i + 1, j + 1, matrix[i][j])
 
-    def sum_region(self, row1: int, col1: int, row2: int, col2: int) -> int:
-        return self.tree.range_sum(row1 + 1, col1 + 1, row2 + 1, col2 + 1)
+            def update(self, row: int, col: int, val: int) -> None:
+                self.tree.point_add(row + 1, col + 1, val - self.matrix[row][col])
+                self.matrix[row][col] = val
+
+            def sum_region(self, row1: int, col1: int, row2: int, col2: int) -> int:
+                return self.tree.range_sum(row1 + 1, col1 + 1, row2 + 1, col2 + 1)
+
+        return NumMatrix

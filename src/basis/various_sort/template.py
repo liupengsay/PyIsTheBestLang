@@ -96,6 +96,7 @@ class VariousSort:
     def range_merge_to_disjoint_sort_inverse_pair(nums, n):
         """Use range_merge_to_disjoint sort to calculate the minimum number of times needed
         to make an array sorted by exchanging only adjacent elements
+        which is equal the number of reverse_order_pair
         """
 
         def range_merge_to_disjoint(left, right):
@@ -134,9 +135,6 @@ class VariousSort:
         ans = 0
         arr = [0] * n
         range_merge_to_disjoint(0, n - 1)
-        # You can also use a tree array with a length of 2 * n and a line segment tree for implemention calculations
-        # The result is equivalent to the number of inverse pairs in the array
-        # Reference question P1774
         return ans
 
     @staticmethod
