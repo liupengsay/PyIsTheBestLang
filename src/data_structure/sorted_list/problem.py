@@ -15,6 +15,7 @@ Description：range_query|binary_search
 1825（https://leetcode.cn/problems/finding-mk-average/）sorted_list|deque
 2250（https://leetcode.cn/problems/count-number-of-rectangles-containing-each-point/）offline_query|pointer|sort|binary_search
 2426（https://leetcode.cn/problems/number-of-pairs-satisfying-inequality/）math|sorted_list|binary_search
+2276（https://leetcode.cn/problems/count-integers-in-intervals/）sorted_list|implemention|classical
 
 =====================================LuoGu======================================
 P7333（https://www.luogu.com.cn/problem/P7333）sort|sorted_list|circular_array|range_query
@@ -42,16 +43,20 @@ P8667（https://www.luogu.com.cn/problem/P8667）sorted_list
 1005E2（https://codeforces.com/contest/1005/problem/E2）median|inclusion_exclusion|prefix_sum|sorted_list|binary_search
 1619E（https://codeforces.com/contest/1619/problem/E）mex|greedy
 
+
+===================================CodeForces===================================
+129（https://www.acwing.com/problem/content/129/）greedy|classical|sorted_list
+
 """
 import bisect
 from bisect import insort_left, bisect_left
-from src.utils.fast_io import inf
 from typing import List
 
 from sortedcontainers import SortedList
 
 from src.data_structure.sorted_list.template import LocalSortedList
 from src.utils.fast_io import FastIO
+from src.utils.fast_io import inf
 
 
 class Solution:
@@ -59,8 +64,11 @@ class Solution:
         return
 
     @staticmethod
-    def lg_4375d(ac=FastIO()):
-        # 双向bubble_sort所需要的比较轮数
+    def lg_4375(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4375
+        tag: bubble_sort|sorted_list|hard
+        """
         n = ac.read_int()
         ans = 1
         nums = [ac.read_int() for _ in range(n)]
@@ -79,7 +87,7 @@ class Solution:
         url: https://codeforces.com/problemset/problem/61/E
         tag: sorted_list|prefix_suffix|counter
         """
-        # classical i < j < k 但是 nums[i] > nums[j] > nums[k] 的组合数
+
         n = ac.read_int()
         nums = ac.read_list_ints()
         pre = [0] * (n + 1)
@@ -104,9 +112,8 @@ class Solution:
     def cf_1005e2(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1005/problem/E2
-        tag: median|inclusion_exclusion|prefix_sum|sorted_list|binary_search
+        tag: median|inclusion_exclusion|prefix_sum|sorted_list|binary_search|brain_teaser
         """
-        # 特定median的连续子数组个数，inclusion_exclusion|prefix_sumsorted_listbinary_search
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
 
@@ -129,7 +136,7 @@ class Solution:
         url: https://leetcode.cn/problems/number-of-pairs-satisfying-inequality/
         tag: math|sorted_list|binary_search
         """
-        # math|与sorted_listbinary_searchcounter
+
         n = len(nums1)
         ans = 0
         lst = SortedList([nums1[n - 1] - nums2[n - 1] + diff])
@@ -141,7 +148,11 @@ class Solution:
 
     @staticmethod
     def lg_1966(ac=FastIO()):
-        # reverse_order_pair|greedy题目
+        """
+        url: https://www.luogu.com.cn/problem/P1966
+        tag: reverse_order_pair|greedy|classical
+        """
+
         n = ac.read_int()
         ans = 0
         mod = 10 ** 8 - 3
@@ -164,8 +175,12 @@ class Solution:
         return
 
     @staticmethod
-    def ac_127(ac=FastIO()):
-        # 二维sortinggreedy
+    def ac_129(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/129/
+        tag: greedy|classical|sorted_list
+        """
+
         n, m = ac.read_list_ints()
         machine = [ac.read_list_ints() for _ in range(n)]
         task = [ac.read_list_ints() for _ in range(m)]
@@ -176,7 +191,7 @@ class Solution:
         for i in range(m):
             tm, level = task[i]
             while j < n and machine[j][0] >= tm:
-                insort_left(lst, machine[j][1])  # bisect代替Sortedlist
+                insort_left(lst, machine[j][1])
                 j += 1
             ind = bisect_left(lst, level)
             if ind < len(lst):
@@ -192,7 +207,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1637
         tag: sorted_list|prefix_suffix|counter
         """
-        # sorted_list，prefix_suffix大小值counter
+
         n = ac.read_int()
         nums = ac.read_list_ints()
 
@@ -217,7 +232,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2234
         tag: sorted_list
         """
-        # sorted_list
+
         n = ac.read_int()
         ans = 0
         lst = LocalSortedList()
@@ -240,9 +255,9 @@ class Solution:
     def lg_p2804(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P2804
-        tag: prefix_sum|sorted_list
+        tag: prefix_sum|sorted_list|classical|brain_teaser
         """
-        # prefix_sum| STL 平均值大于 m 的连续子数组个数
+
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         mod = 92084931
@@ -263,7 +278,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5076
         tag: sorted_list|implemention
         """
-        # sorted_list与sorted_list名次implemention
+
         q = ac.read_int()
         dct = set()
         lst = []
@@ -302,7 +317,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5149
         tag: reverse_order_pair|bisect
         """
-        # reverse_order_pair| bisect 实现
+
         ac.read_int()
         lst = ac.read_list_strs()
         ind = {st: i for i, st in enumerate(lst)}
@@ -321,7 +336,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5459
         tag: prefix_sum|sorted_list|binary_search
         """
-        # prefix_sum与sorted_listbinary_search
+
         n, low, high = ac.read_list_ints()
         a = ac.read_list_ints()
         ans = 0
@@ -340,9 +355,9 @@ class Solution:
     def lg_p7912(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P7912
-        tag: sorted_list|implemention
+        tag: sorted_list|implemention|classical
         """
-        #  STL 应用implemention题 STL implemention删除
+
         n = ac.read_int()
         nums = ac.read_list_ints()
         lst = [LocalSortedList([i + 1 for i in range(n) if not nums[i]]),
@@ -368,25 +383,33 @@ class Solution:
             ac.st(a)
         return
 
+    @staticmethod
+    def lc_2276():
+        """
+        url: https://leetcode.cn/problems/count-integers-in-intervals/
+        tag: sorted_list|implemention|classical
+        """
 
-class SolutionLC2276:
+        class CountIntervals:
 
-    def __init__(self):
-        self.lst = SortedList()
-        self.sum = 0
+            def __init__(self):
+                self.lst = SortedList()
+                self.sum = 0
 
-    def add(self, left: int, right: int) -> None:
-        x = self.lst.bisect_left([left, left])
-        while x - 1 >= 0 and self.lst[x - 1][1] >= left:
-            x -= 1
+            def add(self, left: int, right: int) -> None:
+                x = self.lst.bisect_left([left, left])
+                while x - 1 >= 0 and self.lst[x - 1][1] >= left:
+                    x -= 1
 
-        while 0 <= x < len(self.lst) and not (self.lst[x][0] > right or self.lst[x][1] < left):
-            a, b = self.lst.pop(x)
-            left = left if left < a else a
-            right = right if right > b else b
-            self.sum -= b - a + 1
-        self.sum += right - left + 1
-        self.lst.add([left, right])
+                while 0 <= x < len(self.lst) and not (self.lst[x][0] > right or self.lst[x][1] < left):
+                    a, b = self.lst.pop(x)
+                    left = left if left < a else a
+                    right = right if right > b else b
+                    self.sum -= b - a + 1
+                self.sum += right - left + 1
+                self.lst.add([left, right])
 
-    def count(self) -> int:
-        return self.sum
+            def count(self) -> int:
+                return self.sum
+
+        return CountIntervals

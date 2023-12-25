@@ -10,7 +10,6 @@ class TestGeneral(unittest.TestCase):
 
     def test_custom_sorted_list(self):
 
-        # 验证手写的SortedList与系统包的一致性
         for _ in range(10):
             floor = -10 ** 8
             ceil = 10 ** 8
