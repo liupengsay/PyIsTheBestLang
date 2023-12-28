@@ -121,23 +121,23 @@ class DigitalDP:
         s = str(num)
         n = len(s)
 
-        dp = [[[[0] * 2 for _ in range(2)] for _ in range(n + 2)] for _ in range(n + 1)]
+        dp = [[[0 for _ in range(4)] for _ in range(n + 2)] for _ in range(n + 1)]
         for i in range(n, -1, -1):
             for cnt in range(n, -1, -1):
                 for is_limit in range(1, -1, -1):
                     for is_num in range(1, -1, -1):
                         if i == n:
-                            dp[i][cnt][is_limit][is_num] = cnt if is_num else 0
+                            dp[i][cnt][is_limit*2+is_num] = cnt if is_num else 0
                             continue
                         res = 0
                         if not is_num:
-                            res += dp[i + 1][0][0][0]
+                            res += dp[i + 1][0][0]
                         floor = 0 if is_num else 1
                         ceil = int(s[i]) if is_limit else 9
                         for x in range(floor, ceil + 1):
-                            res += dp[i + 1][cnt + int(x == d)][int(is_limit and x == ceil)][1]
-                        dp[i][cnt][is_limit][is_num] = res
-        return dp[0][0][1][0]
+                            res += dp[i + 1][cnt + int(x == d)][int(is_limit and x == ceil)*2+1]
+                        dp[i][cnt][is_limit*2+is_num] = res
+        return dp[0][0][2]
 
     @staticmethod
     def count_digit_iteration_md(num, d):

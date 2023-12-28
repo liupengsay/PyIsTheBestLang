@@ -16,8 +16,8 @@ class TestGeneral(unittest.TestCase):
 
         for d in range(10):
             assert dd.count_digit(n, d) == cnt[d]
-            assert dd.count_digit_iteration_md(n, d) == cnt[d]
-
+            assert dd.count_digit_iteration(n, d) == cnt[d]
+            dd.count_digit_iteration(10**9, d)
         for d in range(1, 10):
             ans1 = dd.count_num_base(n, d)
             ans2 = sum(str(d) not in str(num) for num in range(1, n + 1))
@@ -35,6 +35,24 @@ class TestGeneral(unittest.TestCase):
                     nums.append(i)
             for i, num in enumerate(nums):
                 assert dd.get_kth_without_d(i + 1, d) == num
+        return
+
+    def test_digital_count(self):
+        dd = DigitalDP()
+        for d in range(100):
+            dd.count_digit(10**100, d)
+        return
+
+    def test_count_digit_iteration(self):
+        dd = DigitalDP()
+        for d in range(100):
+            dd.count_digit_iteration(10**100, d)
+        return
+
+    def test_count_digit_iteration_bfs(self):
+        dd = DigitalDP()
+        for d in range(100):
+            dd.count_digit_bfs(10**100, d)
         return
 
 
