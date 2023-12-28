@@ -11,7 +11,7 @@ Description：prefix_suffix|maximum_sub_consequence_sum
 2188（https://leetcode.cn/problems/minimum-time-to-finish-the-race/）preprocess|linear_dp
 2167（https://leetcode.cn/problems/minimum-time-to-remove-all-cars-containing-illegal-goods/）prefix_suffix|linear_dp|preprocess|brute_force
 2431（https://leetcode.cn/problems/maximize-total-tastiness-of-purchased-fruits/）liner_dp|implemention
-6355（https://leetcode.cn/contest/weekly-contest-338/problems/collect-coins-in-a-tree/）liner_dp
+2603（https://leetcode.cn/problems/collect-coins-in-a-tree/）liner_dp
 2547（https://leetcode.cn/problems/minimum-cost-to-split-an-array/）liner_dp|counter
 2638（https://leetcode.cn/problems/count-the-number-of-k-free-subsets/）liner_dp|counter
 2597（https://leetcode.cn/problems/the-number-of-beautiful-subsets/）liner_dp|hash
@@ -30,9 +30,10 @@ Description：prefix_suffix|maximum_sub_consequence_sum
 1027（https://leetcode.cn/problems/longest-arithmetic-subsequence/）liner_dp
 1987（https://leetcode.cn/problems/number-of-unique-good-subsequences/description/）counter|linear_dp
 2355（https://leetcode.cn/problems/maximum-number-of-books-you-can-take/）monotonic_stack|liner_do
-100048（https://leetcode.cn/problems/beautiful-towers-ii/）monotonic_stack|liner_dp|prefix_suffix
+2866（https://leetcode.cn/problems/beautiful-towers-ii/）monotonic_stack|liner_dp|prefix_suffix
 2327（https://leetcode.cn/problems/number-of-people-aware-of-a-secret/description/）prefix_sum|diff_array|liner_dp
 2572（https://leetcode.cn/problems/count-the-number-of-square-free-subsets/description/）liner_dp|counter
+2289（https://leetcode.cn/problems/steps-to-make-array-non-decreasing/）liner_dp|counter|monotonic_stack|linked_list|
 
 =====================================LuoGu======================================
 P1970（https://www.luogu.com.cn/problem/P1970）greedy|liner_dp
@@ -89,8 +90,9 @@ P7994（https://www.luogu.com.cn/problem/P7994）linear_dp
 P8656（https://www.luogu.com.cn/problem/P8656）linear_dp
 P8725（https://www.luogu.com.cn/problem/P8725）classical|matrix_dp|pointer
 P8784（https://www.luogu.com.cn/problem/P8784）linear_dp|fast_power
-P8786（https://www.luogu.com.cn/problem/P8786）linear_dp memory_search|implemention
+P8786（https://www.luogu.com.cn/problem/P8786）linear_dp|memory_search|implemention
 P8816（https://www.luogu.com.cn/problem/P8816）classical|matrix_dp|implemention
+P2359（https://www.luogu.com.cn/problem/P2359）linear_dp
 
 ===================================CodeForces===================================
 75D（https://codeforces.com/problemset/problem/75/D）compress_array|linear_dp
@@ -133,8 +135,6 @@ class Solution:
         tag: liner_dp
         """
 
-        # 数组匹配liner_dp
-
         @lru_cache(None)
         def dfs(i, j):
             ind = i + (n - 1 - j)
@@ -153,7 +153,6 @@ class Solution:
         url: https://leetcode.cn/problems/binary-trees-with-factors/description/
         tag: liner_dp|counter
         """
-        # liner_dpcounter
         mod = 10 ** 9 + 7
         n = len(arr)
         arr.sort()
@@ -178,7 +177,10 @@ class Solution:
 
     @staticmethod
     def lc_2289(nums: List[int]) -> int:
-        # monotonic_stack|优化的liner_dp，也可用bfs|linked_list|求解
+        """
+        url: https://leetcode.cn/problems/steps-to-make-array-non-decreasing/
+        tag: liner_dp|counter|monotonic_stack|linked_list
+        """
         n = len(nums)
         stack = []
         for i in range(n - 1, -1, -1):
@@ -195,7 +197,7 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-costs-using-the-train-line/
         tag: linear_dp
         """
-        # linear_dp 转移
+
         n = len(regular)
         cost = [[0, 0] for _ in range(n + 1)]
         cost[0][1] = express_cost
@@ -208,6 +210,10 @@ class Solution:
 
     @staticmethod
     def cf_1913d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1913/problem/D
+        tag: monotonic_stack|linear_dp|prefix_sum
+        """
         mod = 998244353
 
         for _ in range(ac.read_int()):
@@ -241,7 +247,6 @@ class Solution:
         ex = set(nums)
         cnt = Counter([i % 2 for i in range(1, n + 1) if i not in ex])
 
-        # memory_search的implementionliner_dp写法
         @ac.bootstrap
         def dfs(i, single, double, pre):
             if (i, single, double, pre) in dct:
@@ -284,7 +289,7 @@ class Solution:
         url: https://leetcode.cn/problems/count-the-number-of-k-free-subsets/
         tag: liner_dp|counter
         """
-        # liner_dpcounter
+
         n = len(nums)
         dp = [1] * (n + 1)
         dp[1] = 2
@@ -307,7 +312,7 @@ class Solution:
         url: https://leetcode.cn/problems/the-number-of-beautiful-subsets/
         tag: liner_dp|hash
         """
-        # liner_dpcounter
+
         power = [1 << i for i in range(21)]
 
         def check(tmp):
@@ -357,7 +362,7 @@ class Solution:
         url: https://codeforces.com/problemset/problem/1437/C
         tag: liner_dp
         """
-        # 两个数组线性移动匹配最大或者最小值
+
         nums.sort()
         m = 2 * n
         dp = [[inf] * (n + 1) for _ in range(m + 1)]
@@ -365,8 +370,7 @@ class Solution:
         for i in range(m):
             dp[i + 1][0] = 0
             for j in range(n):
-                dp[i + 1][j + 1] = min(dp[i][j + 1],
-                                       dp[i][j] + abs(nums[j] - i - 1))
+                dp[i + 1][j + 1] = min(dp[i][j + 1], dp[i][j] + abs(nums[j] - i - 1))
         return dp[m][n]
 
     @staticmethod
@@ -375,7 +379,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P4933
         tag: linear_dp|counter
         """
-        # 不同等差子序列的个数
+
         n = ac.read_int()
         nums = ac.read_list_ints()
         mod = 998244353
@@ -397,15 +401,15 @@ class Solution:
         url: https://www.acwing.com/problem/content/98/
         tag: liner_dp|classical|hanoi_tower
         """
-        # 两层liner_dp，汉诺塔问题
+
         n = 12
-        dp3 = [inf] * (n + 1)  # 三个柱子
+        dp3 = [inf] * (n + 1)
         dp3[0] = 0
         dp3[1] = 1
         for i in range(2, n + 1):
             dp3[i] = 2 * dp3[i - 1] + 1
 
-        dp4 = [inf] * (n + 1)  # 四个柱子
+        dp4 = [inf] * (n + 1)
         dp4[0] = 0
         dp4[1] = 1
         for i in range(2, n + 1):
@@ -421,7 +425,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1280
         tag: reverse_order|linear_dp
         """
-        # liner_dpreverse_order|implemention优化
+
         n, k = ac.read_list_ints()
         dct = [[] for _ in range(n + 1)]
         for _ in range(k):
@@ -443,19 +447,17 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1282
         tag: classical|liner_dp|hash
         """
-        # classicalliner_dphash滚动
+
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         pre = defaultdict(lambda: inf)
         pre[0] = 0
         for i in range(n):
-            # brute_force当前是否翻转
             a, b = nums[i]
             cur = defaultdict(lambda: inf)
             for p in pre:
                 cur[p + a - b] = ac.min(cur[p + a - b], pre[p])
                 cur[p + b - a] = ac.min(cur[p + b - a], pre[p] + 1)
-            # hash记录差值为 x 时的最小翻转次数
             pre = cur.copy()
         x = min(abs(v) for v in pre.keys())
         ans = inf
@@ -471,7 +473,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1356
         tag: classical|mod|linear_dp
         """
-        # liner_dp
+
         m = ac.read_int()
         for _ in range(m):
             n, k = ac.read_list_ints()
@@ -494,7 +496,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1385
         tag: liner_dp|prefix_sum|brain_teaser|lexicographical_order
         """
-        # liner_dp与prefix_sum优化
+
         mod = 10 ** 9 + 7
         for _ in range(ac.read_int()):
             s = ac.read_str()
@@ -502,10 +504,10 @@ class Solution:
             t = sum(ord(w) - ord("a") + 1 for w in s)
             pre = [0] * (t + 1)
             pre[0] = 1
-            # dp[i][j] 表长为 i+1 lexicographical_order和为 j 的specific_plan数
+
             for _ in range(n):
                 cur = [0] * (t + 1)
-                x = 0  # prefix_sum优化
+                x = 0
                 for i in range(t + 1):
                     cur[i] = x
                     x += pre[i]
@@ -521,9 +523,9 @@ class Solution:
     def lg_p1809(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1809
-        tag: brain_teaser|liner_dp|greedy
+        tag: brain_teaser|liner_dp|greedy|specific_plan
         """
-        # brain_teaser|liner_dp
+
         n = ac.read_int()
         nums = [ac.read_int() for _ in range(n)]
         if n == 1:
@@ -535,7 +537,6 @@ class Solution:
         dp[1] = nums[0]
         dp[2] = ac.max(nums[0], nums[1])
         for i in range(2, n):
-            # 两种可选specific_plan，最小的来回，以及最小与次小的来回
             dp[i + 1] = ac.min(dp[i] + nums[0] + nums[i],
                                dp[i - 1] + nums[0] + 2 * nums[1] + nums[i])
         ac.st(dp[-1])
@@ -547,7 +548,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1868
         tag: liner_dp|binary_search
         """
-        # liner_dp|binary_search优化
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         dp = [0] * (n + 1)
@@ -568,7 +568,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1978
         tag: liner_dp|mul|inclusion_exclusion
         """
-        # liner_dp，乘积互斥
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
         dct = set(nums)
@@ -576,7 +575,6 @@ class Solution:
         for num in nums:
             if num % k == 0 and num // k in dct:
                 continue
-            # 找出x..kx..k^2x..
             x = 0
             while num in dct:
                 x += 1
@@ -591,7 +589,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2246
         tag: string|counter|liner_dp
         """
-        # 字符串counterliner_dp
+
         s = ""
         while True:
             cur = ac.read_str()
@@ -621,7 +619,10 @@ class Solution:
 
     @staticmethod
     def lg_p2359(ac=FastIO()):
-        # preprocessprime|liner_dp
+        """
+        url: https://www.luogu.com.cn/problem/P2359
+        tag: linear_dp
+        """
         primes = NumberTheory().sieve_of_eratosthenes(10000)
         primes = [str(num) for num in primes if 1000 >
                   num >= 100 and "0" not in str(num)]
@@ -631,7 +632,7 @@ class Solution:
         pre = defaultdict(int)
         for num in primes:
             pre[num[1:]] += 1
-        # 转移
+
         mod = 10 ** 9 + 9
         n = ac.read_int()
         for _ in range(n - 3):
@@ -653,7 +654,6 @@ class Solution:
         tag: liner_dp|pointer
         """
 
-        # liner_dp|pointer
         w, n = ac.read_list_ints()
         sentence = ac.read_str()
         words = [ac.read_str()[::-1] for _ in range(w)]
@@ -664,7 +664,6 @@ class Solution:
             ind = [0] * w
             for j in range(x, -1, -1):
                 cur = x - j + 1
-                # 比对每个单词的匹配长度
                 for i in range(w):
                     m = len(words[i])
                     if ind[i] < m and sentence[j] == words[i][ind[i]]:
@@ -681,7 +680,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2439
         tag: liner_dp|binary_search
         """
-        # liner_dp|binary_search
+
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort(key=lambda it: it[1])
@@ -701,8 +700,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2476
         tag: counter|linear_dp|memory_search
         """
-
-        # counter分组linear_dp memory_search
 
         @lru_cache(None)
         def dfs(a, b, c, d, e, pre):
@@ -735,7 +732,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2849
         tag: matrix_dp
         """
-        # 矩阵二维 DP 线性遍历
+
         n, k = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         dis = [[0] * n for _ in range(n)]
@@ -764,7 +761,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3558
         tag: linear_dp|implemention
         """
-        # linear_dp implemention
+
         ac.read_int()
         nums = ac.read_list_ints()
         pre = [inf, inf, inf]
@@ -787,21 +784,20 @@ class Solution:
         url: https://leetcode.cn/problems/decremental-string-concatenation/
         tag: hash|liner_dp|implemention
         """
-        # hashliner_dpimplemention实现
+
         pre = defaultdict(int)
         pre[words[0][0] + words[0][-1]] = len(words[0])
 
         for a in words[1:]:
             cur = defaultdict(lambda: inf)
             for b in pre:
-                # a+b
+
                 if a[-1] == b[0]:
                     x = len(a) - 1 + pre[b]
                 else:
                     x = len(a) + pre[b]
                 cur[a[0] + b[-1]] = min(cur[a[0] + b[-1]], x)
 
-                # b+a
                 if b[-1] == a[0]:
                     x = len(a) - 1 + pre[b]
                 else:
@@ -817,16 +813,14 @@ class Solution:
         url: https://www.luogu.com.cn/problem/B3734
         tag: linear_dp
         """
-        # 线性matrix_dp| implemention
+
         n, r1 = ac.read_list_ints()
         nums = [r1]
         while len(nums) < n:
             nums.append((nums[-1] * 6807 + 2831) % 201701)
         nums = [num % 100 for num in nums]
 
-        # 滚动数组优化
         dp = [[inf] * 100 for _ in range(2)]
-        # 初始化
         pre = 0
         for x in range(100):
             y = abs(x - nums[0])
@@ -850,7 +844,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3901
         tag: pointer|linear_dp|pointer
         """
-        # pointer|linear_dp 记录前一个相同数的pointer
+
         n, q = ac.read_list_ints()
         nums = ac.read_list_ints()
         ind = dict()
@@ -874,7 +868,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P4401
         tag: linear_dp
         """
-        # linear_dp
+
         ac.read_int()
         s = ac.read_str()
         pre = defaultdict(int)
@@ -882,14 +876,11 @@ class Solution:
         for w in s:
             cur = defaultdict(int)
             for p1, p2 in pre:
-                # 装第一个车
                 st = p1 + w
-                cur[(st[-2:], p2)] = ac.max(cur[(st[-2:], p2)],
-                                            pre[(p1, p2)] + len(set(st)))
-                # 装第二个车
+                cur[(st[-2:], p2)] = ac.max(cur[(st[-2:], p2)], pre[(p1, p2)] + len(set(st)))
+
                 st = p2 + w
-                cur[(p1, st[-2:])] = ac.max(cur[(p1, st[-2:])],
-                                            pre[(p1, p2)] + len(set(st)))
+                cur[(p1, st[-2:])] = ac.max(cur[(p1, st[-2:])], pre[(p1, p2)] + len(set(st)))
             pre = cur
         ac.st(max(pre.values()))
         return
@@ -900,7 +891,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5095
         tag: classical|linear_dp
         """
-        # classicallinear_dp
+
         n, length = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         dp = [inf] * (n + 1)
@@ -923,7 +914,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5810
         tag: linear_dp
         """
-        # linear_dp brute_force
+
         n = ac.read_int()
         dp = [0]
         while dp[-1] < n:
@@ -943,7 +934,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6040
         tag: monotonic_queue|linear_dp
         """
-        # monotonic_queue的linear_dp
         n, k, d, x, tp = ac.read_list_ints()
         mod = 10 ** 9
         nums = []
@@ -954,19 +944,18 @@ class Solution:
         else:
             seed = ac.read_int()
             seed = (seed * xx % mod + 20120712) % mod
-        # math|确定要的单调队列值
+
         pre = nums[0] if not tp else seed
         stack = deque([[0, pre - d]])
         for i in range(1, n):
             seed = nums[i] if not tp else (seed * xx % mod + 20120712) % mod
-            # 出队
+
             while stack and stack[0][0] < i - x:
                 stack.popleft()
             cur = pre + seed + k
             if stack:
-                # 当前最小值
                 cur = ac.min(cur, stack[0][1] + i * d + seed + k)
-            # 进队
+
             while stack and stack[-1][1] >= cur - i * d - d:
                 stack.pop()
             stack.append([i, cur - i * d - d])
@@ -980,10 +969,9 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6120
         tag: linear_dp|implemention
         """
-        # classical线性规划
+
         n = ac.read_int()
         ind = {w: i for i, w in enumerate("HSP")}
-        # 滚动数组更新
         dp = [[[0, -inf], [0, -inf], [0, -inf]] for _ in range(2)]
         pre = 0
         for _ in range(n):
@@ -991,12 +979,9 @@ class Solution:
             i = ind[ac.read_str()]
             w = (i - 1) % 3
             for j in range(3):
-                dp[cur][j][0] = dp[pre][j][0]  # 当前出 j 且未作改变的最大值
-                # 当前出 j 且作出改变的最大值
-                dp[cur][j][1] = max(
-                    dp[pre][j][1], max(
-                        dp[pre][k][0] for k in range(3) if k != j))
-                if j == w:  # 当前局为胜手
+                dp[cur][j][0] = dp[pre][j][0]
+                dp[cur][j][1] = max(dp[pre][j][1], max(dp[pre][k][0] for k in range(3) if k != j))
+                if j == w:
                     dp[cur][j][0] += 1
                     dp[cur][j][1] += 1
             pre = cur
@@ -1009,7 +994,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6146
         tag: linear_dp|brute_force|counter
         """
-        # 区间sorting与所有子集连通块个数
+
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort(key=lambda it: it[0])
@@ -1017,14 +1002,13 @@ class Solution:
         pp = [1] * (n + 1)
         for i in range(1, n + 1):
             pp[i] = (pp[i - 1] * 2) % mod
-        # dp[i]表示前 i 个区间的结果
+
         dp = [0] * n
         dp[0] = 1
         lst = [nums[0][1]]
         for i in range(1, n):
             a, b = nums[i]
-            j = bisect.bisect_left(lst, a)  # 作为 i 单独连通块新增的counter即与前面区间无交集
-            # 选当前 i 与不选当前 i 区间的连通块数量
+            j = bisect.bisect_left(lst, a)
             dp[i] = 2 * dp[i - 1] + pp[j]
             dp[i] %= mod
             bisect.insort_left(lst, b)
@@ -1037,7 +1021,7 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-strictly-increasing-cells-in-a-matrix/
         tag: data_range|liner_dp
         """
-        # 按照data_range分层linear_dp
+
         m, n = len(mat), len(mat[0])
         dct = defaultdict(list)
         for i in range(m):
@@ -1063,7 +1047,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P7994
         tag: linear_dp
         """
-        # linear_dp 修改连续区间值|一减一的最少操作次数
+
         n = ac.read_int()
         a = ac.read_list_ints()
         b = ac.read_list_ints()
@@ -1093,7 +1077,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8816
         tag: classical|matrix_dp|implemention
         """
-        # classical线性matrix_dp| implemention
+
         n, k = ac.read_list_ints()
         nums = sorted([ac.read_list_ints() for _ in range(n)])
         dp = [list(range(1, k + 2)) for _ in range(n)]
@@ -1105,8 +1089,7 @@ class Solution:
                     dis = a - x + b - y - 1
                     for r in range(k + 1):
                         if r + dis <= k:
-                            dp[i][r + dis] = ac.max(dp[i]
-                                                    [r + dis], dp[j][r] + dis + 1)
+                            dp[i][r + dis] = ac.max(dp[i][r + dis], dp[j][r] + dis + 1)
                         else:
                             break
         ac.st(max(max(d) for d in dp))
@@ -1118,14 +1101,13 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/4417/
         tag: liner_dp
         """
-        # 线性子序列DP
+
         ac.read_int()
         nums = ac.read_list_ints()
         ans = -inf
         pre = [-inf, -inf]
         for num in nums:
             cur = pre[:]
-            # brute_force所有子序列|和
             for i in range(2):
                 j = (i + num) % 2
                 cur[j] = ac.max(cur[j], pre[i] + num)
@@ -1142,7 +1124,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-sideway-jumps/description/
         tag: liner_dp|rolling_update
         """
-        # liner_dp滚动数组
         n = len(obstacles)
         dp = [1, 0, 1]
         for i in range(n):
@@ -1161,7 +1142,6 @@ class Solution:
         url: https://leetcode.cn/problems/longest-turbulent-subarray/description/
         tag: liner_dp|rolling_update
         """
-        # liner_dp滚动变量
         n = len(arr)
         ans = dp0 = dp1 = 1
         for i in range(1, n):
@@ -1183,7 +1163,6 @@ class Solution:
         url: https://leetcode.cn/problems/longest-arithmetic-subsequence/
         tag: liner_dp
         """
-        # liner_dp最长等差子序列
         seen = set()
         count = dict()
         for num in nums:
@@ -1199,8 +1178,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-number-of-days-to-eat-n-oranges/
         tag: brain_teaser|greedy|memory_search|liner_dp
         """
-
-        # brain_teasergreedymemory_searchliner_dp
 
         @lru_cache(None)
         def dfs(num):

@@ -54,19 +54,20 @@ class Solution:
         return
 
     @staticmethod
-    def cf_307b(ac=FastIO()):
-        #
+    def cf_607b(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/607/B
+        tag: interval_dp
+        """
         n = ac.read_int()
         nums = ac.read_list_ints()
 
-        # 初始化
         dp = [[inf] * n for _ in range(n + 1)]
         for i in range(n):
             for j in range(i):
                 dp[i][j] = 0
         dp[n] = [0] * n
 
-        # 状态转移
         for i in range(n - 1, -1, -1):
             dp[i][i] = 1
             if i + 1 < n:
@@ -91,7 +92,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/1509/C
         tag: interval_dp
         """
-        # 数组interval_dp|转移求解
         dp = [[inf] * n for _ in range(n)]
         for i in range(n - 1, -1, -1):
             dp[i][i] = 0
@@ -105,7 +105,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-insertion-steps-to-make-a-string-palindrome/
         tag: interval_dp|longest_palindrome_subsequence
         """
-        # interval_dp|，最长回文子序列
         n = len(s)
         dp = [[0] * n for _ in range(n)]
         for i in range(n - 1, -1, -1):
@@ -126,7 +125,7 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-cost-to-cut-a-stick/
         tag: interval_dp|implemention
         """
-        # interval_dp|implemention
+
         cuts.sort()
         cuts.insert(0, 0)
         cuts.append(n)
@@ -143,7 +142,7 @@ class Solution:
         url: https://leetcode.cn/problems/stone-game-vii/description/
         tag: interval_dp
         """
-        # interval_dp|
+
         n = len(stones)
         pre = list(accumulate(stones, initial=0))
 
@@ -163,7 +162,7 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-number-of-non-overlapping-palindrome-substrings/
         tag: palindrome_substring|linear_dp|manacher
         """
-        # preprocess线性palindrome_substring DP 优化外|结果linear_dp 也可以manacher回文串获取回文信息
+
         n = len(s)
         res = [[0] * (n + 1) for _ in range(n + 1)]
         for i in range(n - 1, -1, -1):
@@ -188,7 +187,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3205
         tag: interval_dp|rolling_update
         """
-        # interval_dp|滚动数组更新
+
         n = ac.read_int()
         nums = ac.read_list_ints()
         mod = 19650827
@@ -199,14 +198,14 @@ class Solution:
             dp[cur][i][0] = 1
             for j in range(i + 1, n):
                 x = 0
-                # 后 j
+
                 if nums[j - 1] < nums[j]:
                     x += dp[cur][j - 1][1]
                 if nums[i] < nums[j]:
                     x += dp[cur][j - 1][0]
                 dp[cur][j][1] = x % mod
                 x = 0
-                # 后 i
+
                 if nums[i + 1] > nums[i]:
                     x += dp[pre][j][0]
                 if nums[j] > nums[i]:
@@ -222,7 +221,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1040
         tag: interval_dp|specific_plan
         """
-        # interval_dp|最小代价，并迭代还原前序遍历路径
+
         n = ac.read_int()
         nums = ac.read_list_ints()
 
@@ -234,7 +233,6 @@ class Solution:
             for j in range(i + 2, n):
                 dp[i][j] = max(dp[i][k - 1] * dp[k + 1][j] + dp[k][k] for k in range(i + 1, j))
 
-        # stackimplementionspecific_plan还原
         ans = []
         stack = [[0, n - 1]]
         while stack:
@@ -262,7 +260,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1430
         tag: interval_dp|prefix_sum
         """
-        # interval_dp||前缀数组优化
+
         for _ in range(ac.read_int()):
             nums = ac.read_list_ints()
             n = nums.pop(0)
@@ -292,11 +290,10 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2308
         tag: interval_dp|recursion
         """
-        # interval_dp|，并recursion方式反解括号添|方式以及每一步的和
+
         n = ac.read_int()
         nums = ac.read_list_ints()
         pre = ac.accumulate(nums)
-        # 记录转移的中间节点与|和最小值
         dp = [[inf] * n for _ in range(n)]
         mid = [[-1] * n for _ in range(n)]
         for i in range(n - 1, -1, -1):
@@ -310,7 +307,6 @@ class Solution:
                         ind = k
                 mid[i][j] = ind
 
-        # 反推路径
         ans = []
         nums = [str(x) for x in nums]
         stack = [[0, n - 1]]
@@ -321,7 +317,6 @@ class Solution:
                 if i >= j - 1:
                     continue
                 k = mid[i][j]
-                # 先左后右
                 stack.append([k + 1, j])
                 stack.append([i, k])
             else:
@@ -341,8 +336,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2734
         tag: prefix_sum|interval_dp
         """
-
-        # prefix_sum|interval_dp
 
         n = ac.read_int()
         nums = []
@@ -376,7 +369,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3004
         tag: interval_dp
         """
-        # 简单interval_dp
         n = ac.read_int()
         nums = [ac.read_int() for _ in range(n)]
         dp = [[0] * n for _ in range(2)]
@@ -398,7 +390,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P4170
         tag: interval_dp|math
         """
-        # interval_dp 注意转移方程
+
         s = ac.read_str()
         n = len(s)
         dp = [[inf] * n for _ in range(n)]
@@ -419,7 +411,7 @@ class Solution:
         url: https://www.acwing.com/problem/content/3999/
         tag: interval_dp|longest_palindrome_subsequence
         """
-        # interval_dp 最长回文子序列变形
+
         ac.read_int()
         nums = ac.read_list_ints()
         pre = []
@@ -445,7 +437,7 @@ class Solution:
         url: https://leetcode.cn/problems/palindrome-partitioning-iii/
         tag: preprocess_dp|interval_dp
         """
-        # preprocess双重interval_dp|
+
         n = len(s)
 
         cost = [[0] * n for _ in range(n)]

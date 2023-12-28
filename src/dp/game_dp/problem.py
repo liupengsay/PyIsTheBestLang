@@ -34,8 +34,11 @@ class Solution:
         return
 
     @staticmethod
-    def lg_p1280(ac=FastIO()):
-        # 博弈 DP 下的必胜策略分析
+    def lg_p1290(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1290
+        tag: classical|game_dp
+        """
         n = ac.read_int()
         for _ in range(n):
             x, y = ac.read_list_ints()
@@ -46,7 +49,7 @@ class Solution:
                     a, b = b, a
                 if a % b == 0:
                     return True
-                if a // b >= 2:  # 注意classification_discussion|greedy必胜态考量
+                if a // b >= 2:
                     return True
                 for i in range(1, a // b + 1):
                     if not dfs(a - i * b, b):
@@ -62,7 +65,10 @@ class Solution:
 
     @staticmethod
     def lg_1247(ac=FastIO()):
-        # nim博弈，异或求解
+        """
+        url: https://www.luogu.com.cn/problem/P1247
+        tag: nim|game_dp|xor
+        """
         k = ac.read_int()
         nums = ac.read_list_ints()
         x = reduce(xor, nums)
@@ -84,7 +90,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1512
         tag: game_dp|date
         """
-        # game_dp|与日期操作
+
         dt = DateTime()
         stack = [[1900, 1, 1]]
         yy, mm, dd = stack[0]
@@ -130,7 +136,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2092
         tag: prime|game_dp
         """
-        # 根据质数的个数来判断必胜态
+
         n = ac.read_int()
         lst = NumberTheory().get_prime_factor(n)
         nums = []
@@ -153,7 +159,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2953
         tag: game_dp|winning_state|liner_dp
         """
-        # 必胜态liner_dp
+
         n = 1000000
         dp = [0] * (n + 1)
         for i in range(1, n + 1):
