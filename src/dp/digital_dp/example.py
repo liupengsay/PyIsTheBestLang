@@ -9,14 +9,14 @@ class TestGeneral(unittest.TestCase):
 
         dd = DigitalDP()
         cnt = [0] * 10
-        n = 1000
+        n = 1000000
         for i in range(1, n + 1):
             for w in str(i):
                 cnt[int(w)] += 1
 
         for d in range(10):
             assert dd.count_digit(n, d) == cnt[d]
-            assert dd.count_digit_iteration(n, d) == cnt[d]
+            assert dd.count_digit_iteration_md(n, d) == cnt[d]
 
         for d in range(1, 10):
             ans1 = dd.count_num_base(n, d)

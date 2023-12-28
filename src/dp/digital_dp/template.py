@@ -58,13 +58,70 @@ class DigitalDP:
         return dfs(0, 0, True, False)
 
     @staticmethod
+    def count_digit_sum(num):
+        # Calculate the number of occurrences of digit d within 1 to num
+
+        @lru_cache(None)
+        def dfs(i, cnt, is_limit, is_num):
+            if i == n:
+                if is_num:
+                    return cnt
+                return 0
+            res = 0
+            if not is_num:
+                res += dfs(i + 1, 0, False, False)
+
+            floor = 0 if is_num else 1
+            ceil = int(s[i]) if is_limit else 9
+            for x in range(floor, ceil + 1):
+                res += dfs(i + 1, cnt + x, is_limit and ceil == x, True)
+            return res
+
+        s = str(num)
+        n = len(s)
+        return dfs(0, 0, True, False)
+
+    @staticmethod
+    def count_digit_bfs(num, d):
+        # Calculate the number of occurrences of digit d within 1 to num
+        s = str(num)
+        n = len(s)
+        dp = dict()
+        sub = [[]]
+        ind = 1
+        stack = [(0, 0, 1, False, 0)]
+        while stack:
+            i, cnt, is_limit, is_num, x = stack.pop()
+            if i >= 0:
+                if i == n:
+                    dp[x] = cnt if is_num else 0
+                    continue
+                stack.append((~i, cnt, is_limit, is_num, x))
+                if not is_num:
+                    stack.append((i + 1, 0, False, False, ind))
+                    sub.append([])
+                    sub[x].append(ind)
+                    ind += 1
+
+                floor = 0 if is_num else 1
+                ceil = int(s[i]) if is_limit else 9
+                for xx in range(floor, ceil + 1):
+                    stack.append((i + 1, cnt + int(xx == d), is_limit and ceil == xx, True, ind))
+                    sub.append([])
+                    sub[x].append(ind)
+                    ind += 1
+            else:
+                dp[x] = sum(dp[y] for y in sub[x])
+        return dp[0]
+
+    @staticmethod
     def count_digit_iteration(num, d):
         # Calculate the number of occurrences of digit d within 1 to num by iteration
         assert num >= 1
         s = str(num)
         n = len(s)
+
         dp = [[[[0] * 2 for _ in range(2)] for _ in range(n + 2)] for _ in range(n + 1)]
-        # 数位 counter 是否受限 是否为数字
         for i in range(n, -1, -1):
             for cnt in range(n, -1, -1):
                 for is_limit in range(1, -1, -1):
@@ -81,6 +138,34 @@ class DigitalDP:
                             res += dp[i + 1][cnt + int(x == d)][int(is_limit and x == ceil)][1]
                         dp[i][cnt][is_limit][is_num] = res
         return dp[0][0][1][0]
+
+    @staticmethod
+    def count_digit_iteration_md(num, d):
+        # Calculate the number of occurrences of digit d within 1 to num by iteration
+        assert num >= 1
+        s = str(num)
+        n = len(s)
+
+        def pos_to_ind(i1, i2, i3, i4):
+            return i1 * (n + 2) * 2 * 2 + i2 * 2 * 2 + i3 * 2 + i4
+
+        dp = [0] * (n + 1) * (n + 2) * 2 * 2
+        for i in range(n, -1, -1):
+            for cnt in range(n, -1, -1):
+                for is_limit in range(1, -1, -1):
+                    for is_num in range(1, -1, -1):
+                        if i == n:
+                            dp[pos_to_ind(i, cnt, is_limit, is_num)] = cnt if is_num else 0
+                            continue
+                        res = 0
+                        if not is_num:
+                            res += dp[pos_to_ind(i + 1, 0, 0, 0)]
+                        floor = 0 if is_num else 1
+                        ceil = int(s[i]) if is_limit else 9
+                        for x in range(floor, ceil + 1):
+                            res += dp[pos_to_ind(i + 1, cnt + int(x == d), int(is_limit and x == ceil), 1)]
+                        dp[pos_to_ind(i, cnt, is_limit, is_num)] = res
+        return dp[pos_to_ind(0, 0, 1, 0)]
 
     @staticmethod
     def count_num_base(num, d):

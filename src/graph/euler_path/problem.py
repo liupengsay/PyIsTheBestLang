@@ -23,6 +23,7 @@ P6066（https://www.luogu.com.cn/problem/P6066）euler_path
 P1127（https://www.luogu.com.cn/problem/P1127）lexicographical_order_minimum|directed_euler_path|specific_plan
 P2731（https://www.luogu.com.cn/problem/P2731）lexicographical_order_minimum|undirected_euler_path|specific_plan
 P1341（https://www.luogu.com.cn/problem/P1341）lexicographical_order_minimum|undirected_euler_path|specific_plan
+P1333 （https://www.luogu.com.cn/problem/P1333）lexicographical_order_minimum|undirected_euler_path|specific_plan
 
 =====================================AcWing=====================================
 4211（https://www.acwing.com/problem/content/4214/）directed_euler_path|specific_plan

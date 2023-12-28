@@ -43,9 +43,13 @@ class Solution:
 
     @staticmethod
     def abc_121d(ac=FastIO()):
-        # 正解为 n^(n+1) == 1 (n%2==0) 的性质
+        """
+        url: https://atcoder.jp/contests/abc121/tasks/abc121_d
+        tag: xor_property|digital_dp
+        """
+
+        #  n^(n+1) == 1 (n%2==0)
         def count(num):
-            # digital_dp 1^2^...^num的值
             @lru_cache(None)
             def dfs(i, cnt, is_limit, is_num):
                 if i == n:
@@ -81,7 +85,10 @@ class Solution:
 
     @staticmethod
     def abc_208e(ac=FastIO()):
-        # 有技巧地处理digital_dp结果
+        """
+        url: https://atcoder.jp/contests/abc208/tasks/abc208_e
+        tag: brain_teaser|digital_dp
+        """
 
         @lru_cache(None)
         def dfs(i, is_limit, is_num, pre):
@@ -112,7 +119,6 @@ class Solution:
         url: https://leetcode.cn/problems/number-of-digit-one/
         tag: counter|digital_dp
         """
-        #  0 到 n 有数位 1 的出现次数
         if not n:
             return 0
         return DigitalDP().count_digit(n, 1)
@@ -123,8 +129,6 @@ class Solution:
         url: https://leetcode.cn/problems/count-of-integers/
         tag: digital_dp|inclusion_exclusion
         """
-
-        # digital_dp|inclusion_exclusion
 
         def check(num):
             @lru_cache(None)
@@ -163,8 +167,6 @@ class Solution:
         tag: digital_dp|inclusion_exclusion
         """
 
-        # digital_dp|inclusion_exclusion
-
         def check(num):
             @lru_cache(None)
             def dfs(i, is_limit, is_num, pre):
@@ -195,8 +197,6 @@ class Solution:
         tag: digital_dp|inclusion_exclusion
         """
 
-        # digital_dp|inclusion_exclusion
-
         def check(num):
             @lru_cache(None)
             def dfs(i, is_limit, is_num, odd, rest):
@@ -225,12 +225,8 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1836
         tag: digital_dp
         """
-        # digital_dp1~n内所有数字的数位和
         n = ac.read_int()
-        ans = 0
-        for d in range(1, 10):
-            ans += d * DigitalDP().count_digit_iteration(n, d)
-        ac.st(ans)
+        ac.st(DigitalDP().count_digit_sum(n))
         return
 
     @staticmethod
@@ -239,6 +235,5 @@ class Solution:
         url: https://leetcode.cn/problems/digit-count-in-range/
         tag: counter|digital_dp|inclusion_exclusion
         """
-        # 区间counter，右端点减去左端点，digital_dp|inclusion_exclusion
         dd = DigitalDP()
         return dd.count_digit(high, d) - dd.count_digit(low - 1, d)

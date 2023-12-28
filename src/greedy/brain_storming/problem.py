@@ -44,6 +44,7 @@ Description：brain_teaser
 1946（https://leetcode.cn/problems/largest-number-after-mutating-substring/description/）greedy|classical
 1540（https://leetcode.cn/problems/can-convert-string-in-k-moves/）greedy|brain_teaser|pointer
 1121（https://leetcode.cn/problems/divide-array-into-increasing-sequences/description/）brain_teaser|greedy|classical|maximum
+P1286（https://www.luogu.com.cn/problem/P1286）brain_teaser|sorted_list
 
 =====================================LuoGu======================================
 P1031（https://www.luogu.com.cn/problem/P1031）greedy|prefix_sum|counter
@@ -1348,3 +1349,42 @@ class Solution:
             if 1 << i not in dct:
                 return 1 << i
         return -1
+
+    @staticmethod
+    def lg_p1286(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1286
+        tag: brain_teaser|sorted_list
+        """
+        while True:
+            nums = ac.read_list_strs()
+            if not nums:
+                break
+            n = int(nums[0])
+            nums = sorted([int(x) for x in nums[1:]])
+            s = sum(nums) // (n - 1)
+
+            def check():
+                ans = [a1]
+                lst = SortedList(nums)
+                for _ in range(n - 1):
+                    x = lst[0] - ans[0]
+                    if x >= ans[-1]:
+                        ans.append(x)
+                        for num in ans[:-1]:
+                            j = lst.bisect_left(num + x)
+                            if not (0 <= j < len(lst) and lst[j] == num + x):
+                                return []
+                            lst.pop(j)
+                    else:
+                        return []
+                return ans
+
+            for a1 in range(0, s // n + 1):
+                res = check()
+                if res:
+                    ac.lst(res)
+                    break
+            else:
+                ac.st("Impossible")
+        return

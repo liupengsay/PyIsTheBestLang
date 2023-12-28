@@ -28,6 +28,7 @@ P5789（https://www.luogu.com.cn/problem/P5789）matrix_dp|matrix_fast_power
 P5343（https://www.luogu.com.cn/problem/P5343）linear_dp|matrix_fast_power
 P8557（https://www.luogu.com.cn/problem/P8557）brain_teaser|fast_power|counter
 P8624（https://www.luogu.com.cn/problem/P8624）matrix_dp|matrix_fast_power
+P1306（https://www.luogu.com.cn/problem/P1306）matrix_fast_power|math|fibonacci_property|classical
 
 =====================================AcWing=====================================
 27（https://www.acwing.com/problem/content/26/）float_fast_power|classical
@@ -335,3 +336,17 @@ class Solution:
         if exponent == 0:
             return 1
         return FastPower().float_fast_pow(base, exponent)
+
+    @staticmethod
+    def lg_p1306(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1306
+        tag: matrix_fast_power|math|fibonacci_property|classical
+        """
+        n, m = ac.read_list_ints()
+        g = math.gcd(n, m)
+        base = [[0, 1], [1, 1]]
+        mod = 10 ** 8
+        ans = MatrixFastPower().matrix_pow(base, g, mod)
+        ac.st(ans[0][1])
+        return

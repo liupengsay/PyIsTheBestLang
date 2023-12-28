@@ -13,16 +13,15 @@ Description：bag_dp|bin_split|finite|infinite|tree_bag_dp
 2742（https://leetcode.cn/problems/painting-the-walls/description/）bag_dp
 2518（https://leetcode.cn/problems/number-of-great-partitions/）bag_dp|counter
 1155（https://leetcode.cn/problems/number-of-dice-rolls-with-target-sum/description/）group_bag_dp|fill_table|refresh_table
-2902（https://leetcode.cn/problems/count-of-sub-multisets-with-bounded-sum/description/）monotonic_queue|mod|group_bag_dp|prefix_sum|inclusion_exclusion|lazy_bag_like
+2902（https://leetcode.cn/problems/count-of-sub-multisets-with-bounded-sum/）monotonic_queue|mod|group_bag_dp|prefix_sum|inclusion_exclusion|lazy_bag_like
 
 =====================================LuoGu======================================
 P1048（https://www.luogu.com.cn/problem/P1048）bag_dp|finite
 P1049（https://www.luogu.com.cn/problem/P1049）bag_dp
 P1776（https://www.luogu.com.cn/problem/P1776）matrix_bag_dp|bin_split|monotonic_queue
 P1509（https://www.luogu.com.cn/problem/P1509）matrix_bag_dp
-P1509（https://www.luogu.com.cn/problem/P1509）bag_dp
-P1566#submit（https://www.luogu.com.cn/problem/P1566#submit）counter|limited|bag_dp
-P1759（https://www.luogu.com.cn/problem/P1759）matrix_bag_dp|specific_plan
+P1799（https://www.luogu.com.cn/problem/P1799）matrix_bag_dp
+P1566（https://www.luogu.com.cn/problem/P1566）counter|limited|bag_dp
 P1794（https://www.luogu.com.cn/problem/P1794）matrix_bag_dp
 P1806（https://www.luogu.com.cn/problem/P1806）bag_dp|counter
 P1853（https://www.luogu.com.cn/problem/P1853）bag_dp|infinite
@@ -131,7 +130,7 @@ class Solution:
         url: https://codeforces.com/problemset/problem/1433/F
         tag: bag_dp|finite|brute_force
         """
-        # 两层bag_dp|，矩阵动态规划转移
+
         m, n, k = ac.read_list_ints()
         pre = [-inf] * k
         pre[0] = 0
@@ -164,14 +163,13 @@ class Solution:
         url: https://codeforces.com/problemset/problem/543/A
         tag: matrix_bag_dp
         """
-        # group_bag_dp DP 有限作为无限
+
         n, m, b, mod = ac.read_list_ints()
         nums = ac.read_list_ints()
         pre = [[0] * (b + 1) for _ in range(m + 1)]
         pre[0][0] = 1
         for num in nums:
             for i in range(1, m + 1):
-                # 由于每个用户的天数都可以取到 m 所以当作类似无限背包转移
                 for j in range(num, b + 1):
                     pre[i][j] = (pre[i][j] + pre[i - 1][j - num]) % mod
         ac.st(sum(pre[m]) % mod)
@@ -183,7 +181,7 @@ class Solution:
         url: https://codeforces.com/problemset/problem/577/B
         tag: mod|counter|bin_split|bag_dp
         """
-        # mod|counterbin_split与bag_dp|，寻找非空子序列的和整除给定的数
+
         cnt = [0] * m
         for num in nums:
             cnt[num % m] += 1
@@ -211,15 +209,13 @@ class Solution:
         tag: group_bag_dp
         """
 
-        # 线性有限group_bag_dp DP 注意转移
         cur = [0] * (k + 1)
         for lst in piles:
-
             n = len(lst)
             pre = [0] * (n + 1)
             for i in range(n):
                 pre[i + 1] = pre[i] + lst[i]
-            # 注意这里需要拷贝
+
             nex = cur[:]
             for j in range(1, k + 1):
                 for x in range(min(n + 1, j + 1)):
@@ -233,7 +229,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6567
         tag: finite|bag_dp|bin_split|classical
         """
-        # 一维有限bin_split背包
+
         n, m = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         target = ac.read_list_ints()
@@ -260,10 +256,9 @@ class Solution:
         tag: bag_dp
         """
 
-        # pruneDP，可以转换为bag_dp|finite|求解
         @lru_cache(None)
         def dfs(i, pre):
-            if pre >= n - i:  # prune
+            if pre >= n - i:
                 return 0
             if i == n:
                 return inf
@@ -283,14 +278,13 @@ class Solution:
         tag: bag_dp
         """
 
-        # pruneDP，可以转换为bag_dp|finite|求解
         n = len(cost)
         dp = [sum(time)] * (n + 1)
         dp[0] = 0
         for i in range(n):
             c, t = cost[i], time[i]
             for j in range(n, -1, -1):
-                s = j - t - 1 if j - t - 1 >= 0 else 0  # 此时表示付费油漆匠刷的时候免费的油漆匠不一定要刷满t
+                s = j - t - 1 if j - t - 1 >= 0 else 0
                 if dp[s] + c < dp[j]:
                     dp[j] = dp[s] + c
         return dp[-1]
@@ -301,7 +295,7 @@ class Solution:
         url: https://leetcode.cn/problems/number-of-great-partitions/
         tag: bag_dp|counter
         """
-        # bag_dp|finite|counter
+
         mod = 10 ** 9 + 7
         dp = [0] * k
         s = sum(nums)
@@ -322,7 +316,7 @@ class Solution:
         url: https://leetcode.cn/problems/number-of-ways-to-earn-points/
         tag: bag_dp
         """
-        # 看似bin_split DP 实则matrix_dp| 转移
+
         mod = 10 ** 9 + 7
         n = len(types)
         pre = [0] * (target + 1)
@@ -371,7 +365,7 @@ class Solution:
         url: https://leetcode.cn/problems/factor-combinations/
         tag: bag_dp|mul
         """
-        # factorization与背包dp分解
+
         lst = NumberTheory().get_all_factor(n)
         m = len(lst)
         dp = defaultdict(list)
@@ -386,7 +380,10 @@ class Solution:
 
     @staticmethod
     def abc_118d(ac=FastIO()):
-        # greedybag_dp|，并还原specific_plan
+        """
+        url: https://atcoder.jp/contests/abc118/tasks/abc118_d
+        tag: greedy|bag_dp|specific_plan
+        """
         score = [2, 5, 5, 4, 5, 6, 3, 7, 6]
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -413,7 +410,10 @@ class Solution:
 
     @staticmethod
     def abc_145e(ac=FastIO()):
-        # brain_teaser|bag_dp|finite|，需要先sorting，刷表法解决
+        """
+        url: https://atcoder.jp/contests/abc145/tasks/abc145_e
+        tag: brain_teaser|bag_dp|finite|sort|refresh_table
+        """
         n, t = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort()
@@ -429,13 +429,13 @@ class Solution:
     def ac_6(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/6/
-        tag: monotonic_queue|matrix_bag_dp
+        tag: monotonic_queue|matrix_bag_dp|classical|classical
         """
-        # monotonic_queue的多matrix_bag_dp问题，即限定个数和体积价值求最大值
+
         n, m = ac.read_list_ints()
         dp = [0] * (m + 1)
         for _ in range(n):
-            # 体积 价值 数量
+            # value weight number
             v, w, s = ac.read_list_ints()
             for r in range(v):
                 stack = deque()
@@ -453,10 +453,9 @@ class Solution:
     def ac_10(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/10/
-        tag: tree_bag_dp
+        tag: tree_bag_dp|classical
         """
 
-        # 树上背包
         n, m = ac.read_list_ints()
         vol = []
         weight = []
@@ -474,7 +473,6 @@ class Solution:
             vol.append(v)
             weight.append(w)
 
-        # 树上背包
         stack = [root]
         sub = [[0] * (m + 1) for _ in range(n)]
         while stack:
@@ -488,7 +486,7 @@ class Solution:
                 sub[i][vol[i]] = weight[i]
                 for j in dct[i]:
                     cur = sub[i][:]
-                    for x in range(vol[i], m + 1):  # 必须选择父节点的物品
+                    for x in range(vol[i], m + 1):
                         for y in range(m + 1 - x):
                             cur[x + y] = max(cur[x + y], sub[i][x] + sub[j][y])
                     sub[i] = cur[:]
@@ -501,10 +499,10 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/11/
         tag: bag_dp|counter|specific_plan
         """
-        # bag_dp|finite|求specific_plan数
+
         n, m = ac.read_list_ints()
         dp = [0] * (m + 1)
-        cnt = [1] * (m + 1)  # 注意specific_plan数都初始化为1
+        cnt = [1] * (m + 1)
         mod = 10 ** 9 + 7
         for _ in range(n):
             v, w = ac.read_list_ints()
@@ -522,14 +520,13 @@ class Solution:
     def ac_12_1(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/12/
-        tag: bag_dp|specific_plan
+        tag: bag_dp|specific_plan|finite|lexicographical_order
         """
-        # bag_dp|finite|求specific_plan
+
         n, m = ac.read_list_ints()
         dp = [[0] * (m + 1) for _ in range(n + 1)]
         nums = [ac.read_list_ints() for _ in range(n)]
 
-        # 要求lexicographical_order最小所以倒着来
         for i in range(n - 1, -1, -1):
             v, w = nums[i]
             for j in range(m, -1, -1):
@@ -537,7 +534,6 @@ class Solution:
                 if j >= v and dp[i + 1][j - v] + w > dp[i][j]:
                     dp[i][j] = dp[i + 1][j - v] + w
 
-        # 再正着求最小的lexicographical_order
         j = m
         path = []
         for i in range(n):
@@ -552,9 +548,9 @@ class Solution:
     def ac_12_2(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/12/
-        tag: bag_dp|specific_plan
+        tag: bag_dp|specific_plan|finite
         """
-        # bag_dp|finite|求specific_plan
+
         n, m = ac.read_list_ints()
         dp = [[0, [-1]] for _ in range(m + 1)]
         for ind in range(n):
@@ -572,7 +568,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1064
         tag: bag_dp|finite|brute_force|classification_discussion|group_bag_dp
         """
-        # 有依赖的group_bag_dp
+
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(m)]
         sub = [[] for _ in range(m)]
@@ -606,13 +602,13 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1156
         tag: bag_dp|finite
         """
-        # 变形背包
+
         n, m = ac.read_list_ints()
 
         dct = [ac.read_list_ints() for _ in range(m)]
         dct.sort(key=lambda it: it[0])
 
-        dp = [-inf] * (n + 1)  # dp[height]=life 到达该高度后剩余的生命值
+        dp = [-inf] * (n + 1)  # dp[height]=life
         dp[0] = 10
         for t, f, h in dct:
             if dp[0] < t:
@@ -623,10 +619,8 @@ class Solution:
                     if i + h >= n:
                         ac.st(t)
                         return
-                    # 不吃
                     if i + h <= n:
                         dp[i + h] = ac.max(dp[i + h], dp[i])
-                    # 吃掉
                     dp[i] += f
         ac.st(dp[0])
         return
@@ -637,15 +631,13 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1273
         tag: tree|graph|group_bag_dp
         """
-        # 树上group_bag_dp
+
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for j in range(n - m):
             lst = ac.read_list_ints()
             for i in range(1, len(lst), 2):
-                # 边的成本
                 dct[j].append([lst[i] - 1, lst[i + 1]])
-        # 节点收益
         nums = [0] * (n - m) + ac.read_list_ints()
         sub = [[] for _ in range(n)]
         stack = [0]
@@ -657,7 +649,6 @@ class Solution:
                     stack.append(j)
             else:
                 i = ~i
-                # sub[i][j]表示人数为j时的最大收益
                 sub[i].append(0)
                 if i >= n - m:
                     sub[i].append(nums[i])
@@ -673,7 +664,6 @@ class Solution:
                                 break
                             if len(cur) < k1 + k2 + 1:
                                 cur.extend([-inf] * (k1 + k2 + 1 - len(cur)))
-                            # 左边k1右边k2个用户时聚拢的最大收益
                             cur[k1 + k2] = ac.max(cur[k1 + k2], sub[j][k2] + sub[i][k1] - cost)
                     sub[j] = []
                     sub[i] = cur[:]
@@ -688,38 +678,37 @@ class Solution:
     def lg_p1284(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1284
-        tag: brute_force|triangle|math|bag_dp
+        tag: brute_force|triangle|math|bag_dp|classical|hard
         """
 
-        # brute_force三角形两边作为二维bool背包
         n = ac.read_int()
 
         def check():
-            # 三角形面积公式
             ss = (a + b + c) / 2
             return (ss * (ss - a) * (ss - b) * (ss - c)) ** 0.5
+
+        def pos_to_ind(i1, j1):
+            return i1 * (s // 2 + 1) + j1
 
         nums = []
         while len(nums) < n:
             nums.extend(ac.read_list_ints())
 
-        # matrix_bag_dp dp[i][j] 表示能否凑成两条便分别为 i 和 j
         s = sum(nums)
-        dp = [[0] * (s // 2 + 1) for _ in range(s // 2 + 1)]
-        dp[0][0] = 1
+        dp = [0] * (s // 2 + 1) * (s // 2 + 1)
+        dp[0] = 1
         for num in nums:
             for i in range(s // 2, -1, -1):
                 for j in range(s // 2, -1, -1):
-                    if j >= num and dp[i][j - num]:
-                        dp[i][j] = 1
-                    if i >= num and dp[i - num][j]:
-                        dp[i][j] = 1
+                    if j >= num and dp[pos_to_ind(i, j - num)]:
+                        dp[pos_to_ind(i, j)] = 1
+                    if i >= num and dp[pos_to_ind(i - num, j)]:
+                        dp[pos_to_ind(i, j)] = 1
         ans = -1
         for a in range(s // 2 + 1):
             for b in range(s // 2 + 1):
-                if dp[a][b]:
+                if dp[pos_to_ind(a, b)]:
                     c = s - a - b
-                    # 三角形合法判断公式
                     if b + c > a > 0 and a + c > b > 0 and a + b > c > 0:
                         cur = check()
                         ans = ac.max(ans, cur)
@@ -735,7 +724,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1441
         tag: brute_force|bag_dp
         """
-        # brute_force|bag_dp|
         n, m = ac.read_list_ints()
         a = ac.read_list_ints()
         ans = 0
@@ -758,7 +746,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1537
         tag: bin_split|bag_dp
         """
-        # 问题bin_split|bag_dpbool背包，划分成和相等的两部分
         case = 0
         while True:
             lst = ac.read_list_ints()
@@ -797,13 +784,15 @@ class Solution:
         tag: brute_force|matrix_dp|fill_table
         """
 
-        # 四维背包
+        def pos_to_ind(i1, i2, i3, i4):
+            return i1 * (b + 1) * (c + 1) * (d + 1) + i2 * (c + 1) * (d + 1) + i3 * (d + 1) + i4
+
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         cnt = Counter(ac.read_list_ints())
         a, b, c, d = cnt[1], cnt[2], cnt[3], cnt[4]
-        dp = [[[[0] * (d + 1) for _ in range(c + 1)] for _ in range(b + 1)] for _ in range(a + 1)]
-        dp[0][0][0][0] = nums[0]
+        dp = [0] * (a + 1) * (b + 1) * (c + 1) * (d + 1)
+        dp[0] = nums[0]
         ans = 0
         for i in range(a + 1):
             for j in range(b + 1):
@@ -812,16 +801,17 @@ class Solution:
                         if i + 2 * j + 3 * k + 4 * p <= n - 1:
                             pre = 0
                             if i:
-                                pre = ac.max(pre, dp[i - 1][j][k][p])
+                                pre = ac.max(pre, dp[pos_to_ind(i - 1, j, k, p)])
                             if j:
-                                pre = ac.max(pre, dp[i][j - 1][k][p])
+                                pre = ac.max(pre, dp[pos_to_ind(i, j - 1, k, p)])
                             if k:
-                                pre = ac.max(pre, dp[i][j][k - 1][p])
+                                pre = ac.max(pre, dp[pos_to_ind(i, j, k - 1, p)])
                             if p:
-                                pre = ac.max(pre, dp[i][j][k][p - 1])
-                            dp[i][j][k][p] = ac.max(dp[i][j][k][p], pre + nums[i + 2 * j + 3 * k + 4 * p])
+                                pre = ac.max(pre, dp[pos_to_ind(i, j, k, p - 1)])
+                            dp[pos_to_ind(i, j, k, p)] = ac.max(dp[pos_to_ind(i, j, k, p)],
+                                                                pre + nums[i + 2 * j + 3 * k + 4 * p])
                         if i + 2 * j + 3 * k + 4 * p == n - 1:
-                            ans = ac.max(ans, dp[i][j][k][p])
+                            ans = ac.max(ans, dp[pos_to_ind(i, j, k, p)])
         ac.st(ans)
         return
 
@@ -831,11 +821,9 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1759
         tag: matrix_bag_dp|lexicographical_order|specific_plan
         """
-        # matrix_bag_dp输出lexicographical_order最小的specific_plan
         m, v, n = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         dp = [[[0, []] for _ in range(v + 1)] for _ in range(m + 1)]
-        # 同时记录时间与lexicographical_order最小的specific_plan
         for i in range(n):
             a, b, c = nums[i]
             for j in range(m, a - 1, -1):
@@ -852,14 +840,13 @@ class Solution:
     def lg_p1776(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1776
-        tag: matrix_bag_dp|bin_split|monotonic_queue
+        tag: matrix_bag_dp|bin_split|monotonic_queue|classical
         """
-        # monotonic_queue的多matrix_bag_dp问题，即限定个数和体积价值求最大值
+
         n, m = ac.read_list_ints()
         dp = [0] * (m + 1)
         for _ in range(n):
             a, b, c = ac.read_list_ints()
-            # 体积 价值 数量
             v, w, s = b, a, c
             for r in range(v):
                 stack = deque()
@@ -875,7 +862,11 @@ class Solution:
 
     @staticmethod
     def lg_p1799(ac=FastIO()):
-        # classical二维matrix_dp
+        """
+        url: https://www.luogu.com.cn/problem/P1799
+        tag: matrix_bag_dp
+        """
+
         n = ac.read_int()
         if not n:
             ac.st(0)
@@ -887,7 +878,6 @@ class Solution:
         for i in range(1, n):
             dp[i][0] = 0
             for j in range(1, i + 2):
-                # 前i个数取j个的最大得分
                 dp[i][j] = ac.max(dp[i - 1][j], dp[i - 1][j - 1] + int(nums[i] == j))
         ac.st(max(dp[n - 1]))
         return
@@ -896,14 +886,13 @@ class Solution:
     def lg_p1833(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1833
-        tag: infinite|bag_dp|monotonic_queue|matrix_bag_dp
+        tag: infinite|bag_dp|monotonic_queue|matrix_bag_dp|classical
         """
 
         def check(st):
             hh, mm = st.split(":")
             return int(hh) * 60 + int(mm)
 
-        # infinite|bag_dp与单点队列优化多matrix_bag_dp组合
         s, e, n = ac.read_list_strs()
         t = check(e) - check(s)
         dp = [0] * (t + 1)
@@ -932,7 +921,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2014
         tag: dag|tree_bag_dp
         """
-        # 增|一个虚拟源点将DAG转换为树上背包
+
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n + 1)]
         nums = [0]
@@ -966,9 +955,9 @@ class Solution:
     def lg_p2079(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P2079
-        tag: rolling_hash|bag_dp
+        tag: rolling_hash|bag_dp|classical
         """
-        # rolling_hashbag_dp|，两层hash节省空间
+
         n, v = ac.read_list_ints()
         dp = [defaultdict(lambda: defaultdict(lambda: -inf)), defaultdict(lambda: defaultdict(lambda: -inf))]
         pre = 0
@@ -996,7 +985,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2170
         tag: union_find|bag_dp|finite|bin_split
         """
-        # 连通块|bag_dp|finite|bin_split
+
         n, m, k = ac.read_list_ints()
         uf = UnionFind(n)
         for _ in range(k):
@@ -1008,7 +997,6 @@ class Solution:
         lst = list(dct.values())
         del uf
 
-        # bin_split的bag_dp|finite|
         target = ac.min(2 * m, n)
         dp = [0] * (target + 1)
         dp[0] = 1
@@ -1031,12 +1019,11 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2214
         tag: bag_dp|greedy
         """
-        # 变种bag_dp|greedy
+
         n, b = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(b)]
         voice = [ac.read_int() for _ in range(n)]
 
-        # 从后往前原始得分
         for i in range(n - 1, 0, -1):
             if voice[i - 1] > 0:
                 voice[i] -= voice[i - 1] - 1
@@ -1045,7 +1032,6 @@ class Solution:
             ac.st(-1)
             return
 
-        # infinite|bag_dp最少数量
         dp = [inf] * (ceil + 1)
         dp[0] = 0
         for num in nums:
@@ -1061,7 +1047,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2306
         tag: data_range|counter|finite|bin_split
         """
-        # data_range|counter后bin_split的bag_dp|finite|
+
         n, m, k = ac.read_list_ints()
         cnt = defaultdict(lambda: defaultdict(int))
         for _ in range(n):
@@ -1087,7 +1073,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2320
         tag: bin_split|greedy|reverse_thinking
         """
-        # 二进制分解greedy反向
+
         m = ac.read_int()
         ans = []
         while m:
@@ -1103,7 +1089,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2737
         tag: infinite|bag_dp
         """
-        # infinite|bag_dp变种问题
+
         n = ac.read_int()
         ceil = 256 ** 2 + 1
         nums = [ac.read_int() for _ in range(n)]
@@ -1124,9 +1110,9 @@ class Solution:
     def lg_p2760(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P2760
-        tag: monotonic_queue|matrix_bag_dp
+        tag: monotonic_queue|matrix_bag_dp|classical
         """
-        # monotonic_queue的多matrix_bag_dp
+
         m, n, p, t = ac.read_list_ints()
         rest = ac.min(p, t - 1)
         dp = [0] * (rest + 1)
@@ -1154,7 +1140,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2854
         tag: bag_dp|group_bag_dp|finite
         """
-        # bag_dp|group_bag_dp|finite
+
         length, n, b = ac.read_list_ints()
         dp = [[-inf] * (b + 1) for _ in range(length + 1)]
         nums = [ac.read_list_ints() for _ in range(n)]
@@ -1177,7 +1163,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2938
         tag: infinite|group_bag_dp
         """
-        # 分组infinite|bag_dp
+
         s, d, m = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(s)]
         for i in range(1, d):
@@ -1197,19 +1183,17 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2979
         tag: bag_dp|group_bag_dp|finite
         """
-        # bag_dp|group_bag_dp|finite
+
         n, t, k = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         m = 5 * t // 4 + 1
 
-        # 先算不缩减高度的
         dp1 = [0] * (m + 1)
         for v, h in nums:
             for i in range(h, m + 1):
                 if dp1[i - h] + v > dp1[i]:
                     dp1[i] = dp1[i - h] + v
         ans = dp1[t]
-        # brute_force最后一棒高度大于等于 k 的
         for v, h in nums:
             if h >= k:
                 for i in range(t, h - 1, -1):
@@ -1221,18 +1205,18 @@ class Solution:
     def lg_p3010(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P3010
-        tag: bag_dp|heapq
+        tag: bag_dp|heapq|specific_plan
         """
-        # 变形bag_dp|finite|，两heapq差值最小的分配specific_plan数
+
         n = ac.read_int()
         nums = [ac.read_int() for _ in range(n)]
         s = sum(nums)
         mod = 10 ** 6
-        # 临界点作为目标值
+
         t = s // 2
-        dp = [0] * (t + 1)  # 背包
+        dp = [0] * (t + 1)
         dp[0] = 1
-        cnt = [0] * (t + 1)  # specific_plan数
+        cnt = [0] * (t + 1)
         cnt[0] = 1
         for num in nums:
             for i in range(t, num - 1, -1):
@@ -1241,7 +1225,6 @@ class Solution:
                     cnt[i] += cnt[i - num]
                     cnt[i] %= mod
 
-        # brute_force最小差值
         for i in range(t, -1, -1):
             if dp[i]:
                 ac.st(s - 2 * i)
@@ -1255,7 +1238,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3423
         tag: bin_split|matrix_bag_dp|specific_plan
         """
-        # bin_split多matrix_bag_dp并specific_plan数
+
         n = ac.read_int()
         b = ac.read_list_ints()
         c = ac.read_list_ints()
@@ -1283,15 +1266,14 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3983
         tag: infinite|bag_dp
         """
-        # 两个分组infinite|bag_dp
+
         n = ac.read_int()
-        # 第一个背包每个重量可拆分后的最大价格
         m = 10
         a = [0] + ac.read_list_ints()
         for i in range(1, m + 1):
             for j in range(i + 1):
                 a[i] = ac.max(a[i], a[j] + a[i - j])
-        # 第二个背包船运载的最大盈利
+
         cost = [0] + [1, 3, 5, 7, 9, 10, 11, 14, 15, 17]
         dp = [0] * (n + 1)
         for i in range(1, m + 1):
@@ -1306,12 +1288,11 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5322
         tag: matrix_dp|group_bag_dp|classical
         """
-        # classical二维 DP 转换为group_bag_dp
+
         s, n, m = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(s)]
         dp = [0] * (m + 1)
         for i in range(n):
-            # dp[j] 表示派出 j 个士兵到前 i 个城堡的得分
             lst = [grid[x][i] for x in range(s)]
             lst.sort()
             for j in range(m, -1, -1):
@@ -1328,7 +1309,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5365
         tag: bag_dp|infinite|brute_force|counter
         """
-        # bag_dp|finite| DP brute_force数量
         n, m = ac.read_list_ints()
         kk = ac.read_list_ints()
         cc = ac.read_list_ints()
@@ -1354,7 +1334,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5662
         tag: infinite|bag_dp|greedy
         """
-        # infinite|bag_dp变形greedy题目
+
         t, n, m = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(t)]
         for i in range(1, t):
@@ -1364,7 +1344,6 @@ class Solution:
                 if b > a:
                     for x in range(a, m + 1):
                         dp[x] = ac.max(dp[x], dp[x - a] + b)
-            # 注意此时的 m 更新值
             m = max(m - i + dp[i] for i in range(m + 1))
         ac.st(m)
         return
@@ -1375,7 +1354,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1417
         tag: greedy|sort|bag_dp
         """
-        # greedysorting后 01 背包最大值
         t, n = ac.read_list_ints()
         a = ac.read_list_ints()
         b = ac.read_list_ints()
@@ -1396,7 +1374,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/4084/
         tag: matrix_bag_dp
         """
-        # matrix_dp类似背包思想
 
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -1438,8 +1415,11 @@ class Solution:
         return
 
     @staticmethod
-    def lc_100029(nums: List[int], ll: int, r: int) -> int:
-        # 按照单调队列的思想mod|group_bag_dp，prefix_sum优化，也有容斥的思想
+    def lc_2902(nums: List[int], ll: int, r: int) -> int:
+        """
+        url: https://leetcode.cn/problems/count-of-sub-multisets-with-bounded-sum/
+        tag: monotonic_queue|mod|group_bag_dp|prefix_sum|inclusion_exclusion|lazy_bag_like
+        """
         cnt = Counter(nums)
         mod = 10 ** 9 + 7
         dp = [0] * (r + 1)
@@ -1466,7 +1446,6 @@ class Solution:
         url: https://leetcode.cn/problems/last-stone-weight-ii/
         tag: bag_dp
         """
-        # 问题，转化为bag_dp|finite|求解
         s = sum(stones)
         dp = [0] * (s // 2 + 1)
         dp[0] = 1
