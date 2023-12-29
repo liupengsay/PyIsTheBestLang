@@ -3,7 +3,6 @@ Algorithm：tree_dp|tree_diameter|tree_diff_array|tree_centroid
 Description：reroot_dp|up_to_down|down_to_up
 
 ====================================LeetCode====================================
-2458（https://leetcode.cn/problems/height-of-binary-tree-after-subtree-removal-queries/）dfs|tree_dp|up_to_down|down_to_up
 2440（https://leetcode.cn/problems/create-components-with-same-value/）tree_dp|number_theory|recursion|union_find|brute_force
 1569 https://leetcode.cn/problems/number-of-ways-to-reorder-array-to-get-same-bst/solution/）counter|comb|bst|tree_dp
 968（https://leetcode.cn/problems/binary-tree-cameras/）tree_dp
@@ -77,7 +76,7 @@ ABC222F（https://atcoder.jp/contests/abc222/tasks/abc222_f）reroot_dp
 
 """
 import math
-from collections import deque, Counter
+from collections import deque, Counter, defaultdict
 from functools import lru_cache
 from typing import List, Optional
 
@@ -98,7 +97,7 @@ class Solution:
         url: https://codeforces.com/contest/1676/problem/G
         tag: tree_dp
         """
-        # 迭代的方式tree_dp
+
         for _ in range(ac.read_int()):
             n = ac.read_int()
             parent = ac.read_list_ints_minus_one()
@@ -108,17 +107,15 @@ class Solution:
                 dct[parent[i]].append(i + 1)
             ans = 0
             sub = [0] * n
-            stack = [[0, 1]]
+            stack = [0]
             while stack:
-                i, state = stack.pop()
-                if state:
-                    stack.append([i, 0])
-                    for j in dct[i]:
-                        stack.append([j, 1])
+                i = stack.pop()
+                if i >= 0:
+                    stack.append(~i)
+                    stack.extend(dct[i])
                 else:
-                    x = 0
-                    for j in dct[i]:
-                        x += sub[j]
+                    i = ~i
+                    x = sum(sub[j] for j in dct[i])
                     x += 1 if color[i] == "B" else -1
                     sub[i] = x
                     ans += x == 0
@@ -131,7 +128,7 @@ class Solution:
         url: https://leetcode.cn/problems/smallest-missing-genetic-value-in-each-subtree/
         tag: tree_dp|heuristic_merge|classical
         """
-        # heuristic merging from bottom to up
+
         n = len(nums)
         dct = [[] for _ in range(n)]
         for i in range(1, n):
@@ -144,8 +141,7 @@ class Solution:
             i = stack.pop()
             if i >= 0:
                 stack.append(~i)
-                for j in dct[i]:
-                    stack.append(j)
+                stack.extend(dct[i])
             else:
                 i = ~i
                 x = 1
@@ -165,132 +161,95 @@ class Solution:
         return ans
 
     @staticmethod
-    def lc_2458(root, queries: List[int]) -> List[int]:
-        """
-        url: https://leetcode.cn/problems/height-of-binary-tree-after-subtree-removal-queries/
-        tag: dfs|tree_dp|up_to_down|down_to_up
-        """
-
-        # 类似换根 DP 的思想跑两遍 DFS
-        def dfs(node, d):
-            if not node:
-                return 0
-            left = dfs(node.left, d + 1)
-            right = dfs(node.right, d + 1)
-            h = max(left, right)
-            node_depth[node.val] = d
-            node_height[node.val] = h
-            depth_height[node.val] = d + h
-            return h + 1
-
-        # 节点深度
-        node_depth = dict()
-        # 子树高度
-        node_height = dict()
-        # 每层节点的子树深度集合
-        depth_height = dict()
-        dfs(root, 0)
-
-        def get_ans(node, pre):
-            if not node:
-                return
-            ans[node.val] = pre
-
-            pre = max(pre, node_depth[node.val])
-            if node.right:
-                pre_right = max(pre, depth_height[node.right.val])
-            else:
-                pre_right = pre
-
-            if node.left:
-                pre_left = max(pre, depth_height[node.left.val])
-            else:
-                pre_left = pre
-
-            get_ans(node.left, pre_right)
-            get_ans(node.right, pre_left)
-            return
-
-        ans = dict()
-        get_ans(root, 0)
-        return [ans[q] for q in queries]
-
-    @staticmethod
-    def cf_1388c(ac):
+    def cf_1388c(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1388/C
         tag: tree_dp|implemention|recursion|down_to_up|up_to_down
         """
-        n, m = ac.read_list_ints()
-        person = ac.read_list_ints()
-        h = ac.read_list_ints()
+        for _ in range(ac.read_int()):
+            n, m = ac.read_list_ints()
+            person = ac.read_list_ints()
+            h = ac.read_list_ints()
+            edge = [[] for _ in range(n)]
+            for _ in range(n - 1):
+                x, y = ac.read_list_ints_minus_one()
+                edge[x].append(y)
+                edge[y].append(x)
+
+            ans = 1
+            pos = [0] * n
+            neg = [0] * n
+            stack = [(0, -1)]
+            while stack and ans:
+                i, fa = stack.pop()
+                if i >= 0:
+                    stack.append((~i, fa))
+                    for j in edge[i]:
+                        if j != fa:
+                            stack.append((j, i))
+                else:
+                    i = ~i
+                    a = b = 0
+                    for j in edge[i]:
+                        if j != fa:
+                            a += pos[j]
+                            b += neg[j]
+                    if (h[i] + person[i] + b + a) % 2:
+                        ans = 0
+                        break
+                    good = (h[i] + person[i] + b + a) // 2
+                    bad = person[i] + a + b - good
+                    if good < 0 or bad < 0 or bad > person[i] + b:
+                        ans = 0
+                        break
+                    pos[i] = good
+                    neg[i] = bad
+
+            ac.st("YES" if ans else "NO")
+        return
+
+    @staticmethod
+    def cf_161d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/161/D
+        tag: tree_dp|counter
+        """
+        n, k = ac.read_list_ints()
         edge = [[] for _ in range(n)]
         for _ in range(n - 1):
             x, y = ac.read_list_ints_minus_one()
             edge[x].append(y)
             edge[y].append(x)
 
-        @ac.bootstrap
-        def dfs(i, fa):
-            nonlocal ans
-            a = b = 0
-            for j in edge[i]:
-                if j != fa:
-                    yield dfs(j, i)
-                    a += pos[j]
-                    b += neg[j]
+        def idx(ii, jj):
+            return ii * (k + 1) + jj
 
-            if (h[i] + person[i] + b + a) % 2:
-                ans = False
-                yield
-            good = (h[i] + person[i] + b + a) // 2
-            bad = person[i] + a + b - good
-            if good < 0 or bad < 0 or bad > person[i] + b:
-                ans = False
-            pos[i] = good
-            neg[i] = bad
-            yield
-
-        ans = True
-        pos = [0] * n
-        neg = [0] * n
-        dfs(0, -1)
-        return "YES" if ans else "NO"
-
-    @staticmethod
-    def cf_161d(n, k, pairs):
-        """
-        url: https://codeforces.com/problemset/problem/161/D
-        tag: tree_dp|counter
-        """
-        # 记录树中距离为 k 的节点对数量
-        edge = [[] for _ in range(n)]
-        for x, y in pairs:
-            edge[x].append(y)
-            edge[y].append(x)
-        dp = [[0] * (k + 1) for _ in range(n)]
-
-        def dfs(i, fa):
-            nonlocal ans
-            dp[i][0] = 1
-            for j in edge[i]:
-                if j != fa:
-                    yield dfs(j, i)
-                    for s in range(1, k + 1):
-                        dp[i][s] += dp[j][s - 1]
-
-            ans += dp[i][k]
-            cur = 0
-            for j in edge[i]:
-                if j != fa:
-                    for s in range(1, k):
-                        cur += dp[j][s - 1] * (dp[i][k - s] - dp[j][k - s - 1])
-            ans += cur // 2
-            yield
-
+        dp = [0] * (k + 1) * n
+        stack = [(0, -1)]
         ans = 0
-        dfs(0, -1)
-        return ans
+        while stack:
+            i, fa = stack.pop()
+            if i >= 0:
+                stack.append((~i, fa))
+                for j in edge[i]:
+                    if j != fa:
+                        stack.append((j, i))
+            else:
+                i = ~i
+                for j in edge[i]:
+                    if j != fa:
+                        for s in range(1, k + 1):
+                            dp[idx(i, s)] += dp[idx(j, s - 1)]
+                dp[idx(i, 0)] = 1
+                ans += dp[idx(i, k)]
+                cur = 0
+                for j in edge[i]:
+                    if j != fa:
+                        for s in range(1, k):
+                            cur += dp[idx(j, s - 1)] * (dp[idx(i, k - s)] - dp[idx(j, k - s - 1)])
+                ans += cur // 2
+        ac.st(ans)
+        return
 
     @staticmethod
     def cf_1324f(ac=FastIO()):
@@ -299,46 +258,43 @@ class Solution:
         tag: reroot_dp|dfs|down_to_up|up_to_down
         """
 
-        # reroot_dp，根据题意转换greedy结果
         n = ac.read_int()
-        nums = ac.read_list_ints()
+        a = ac.read_list_ints()
         edge = [[] for _ in range(n)]
         for _ in range(n - 1):
             x, y = ac.read_list_ints_minus_one()
             edge[x].append(y)
             edge[y].append(x)
+        sub = [0] * n
+        stack = [(0, -1)]
+        while stack:
+            i, fa = stack.pop()
+            if i >= 0:
+                stack.append((~i, fa))
+                for j in edge[i]:
+                    if j != fa:
+                        stack.append((j, i))
+            else:
+                i = ~i
+                cur = 2 * a[i] - 1
+                for j in edge[i]:
+                    if j != fa:
+                        cur += ac.max(sub[j], 0)
+                sub[i] = cur
 
-        @ac.bootstrap
-        def dfs(i, fa):
-            res = 0
-            for j in edge[i]:
-                if j != fa:
-                    yield dfs(j, i)
-                    cur = son[j] + 2 * nums[j] - 1
-                    res += ac.max(cur, 0)
-            son[i] = res
-            yield
-
-        # 第一遍获取从下往上的最优结果
-        son = [0] * n
-        dfs(0, -1)
-
-        @ac.bootstrap
-        def dfs2(i, fa, pre):
-            ans[i] = son[i] + pre + 2 * nums[i] - 1
-
-            lst = [son[j] + 2 * nums[j] - 1 for j in edge[i] if j != fa]
-            s = sum([yy for yy in lst if yy >= 0])
-            for j in edge[i]:
-                if j != fa:
-                    tmp = son[j] + 2 * nums[j] - 1
-                    cur = ac.max(0, pre + s - ac.max(0, tmp) + 2 * nums[i] - 1)
-                    yield dfs2(j, i, cur)
-            yield
-
-        # 第二遍获取从下往上的最优结果并更新|和
         ans = [0] * n
-        dfs2(0, -1, 0)
+        stack = [(0, -1, 0)]
+        while stack:
+            i, fa, d = stack.pop()
+            ans[i] = d + sub[i]
+            for j in edge[i]:
+                if j != fa:
+                    if sub[j] > 0:
+                        nex = sub[i] - sub[j] + d
+                    else:
+                        nex = sub[i] + d
+                    nex = ac.max(nex, 2 * a[i] - 1)
+                    stack.append((j, i, ac.max(0, nex)))
         ac.lst(ans)
         return
 
@@ -349,60 +305,53 @@ class Solution:
         tag: reroot_dp|dfs|down_to_up|up_to_down
         """
         n, m, d = ac.read_list_ints()
-        evil = set(ac.read_list_ints_minus_one())
+        sub = [-inf] * n
+        evil = [0]*n
+        for i in ac.read_list_ints_minus_one():
+            sub[i] = 0
+            evil[i] = 1
         edge = [[] for _ in range(n)]
         for _ in range(n - 1):
             u, v = ac.read_list_ints_minus_one()
             edge[u].append(v)
             edge[v].append(u)
 
-        @ac.bootstrap
-        def dfs(i, fa):
-            res = -math.inf
-            for j in edge[i]:
-                if j != fa:
-                    yield dfs(j, i)
-                    res = ac.max(res, son[j] + 1)
-            if i in evil:
-                res = ac.max(res, 0)
-            son[i] = res
-            yield
+        stack = [(0, -1)]
+        while stack:
+            i, fa = stack.pop()
+            if i >= 0:
+                stack.append((~i, fa))
+                for j in edge[i]:
+                    if j != fa:
+                        stack.append((j, i))
+            else:
+                i = ~i
+                cur = -inf
+                for j in edge[i]:
+                    if j != fa:
+                        cur = ac.max(cur, sub[j] + 1)
+                sub[i] = ac.max(sub[i], cur)
 
-        # 子节点最远的evil
-        son = [-math.inf] * n
-        dfs(0, -1)
-
-        @ac.bootstrap
-        def dfs2(i, fa, pre):
-            father[i] = pre
-            a = b = pre + 1
+        stack = [(0, -1, -inf)]
+        while stack:
+            i, fa, up = stack.pop()
+            sub[i] = ac.max(sub[i], up)
+            if evil[i]:
+                up = ac.max(0, up)
+            a = b = -inf
             for j in edge[i]:
                 if j != fa:
-                    c = son[j] + 2
-                    if c >= a:
-                        a, b = c, a
-                    elif c >= b:
-                        a, b = a, c
-            if i in evil:
-                c = 1
-                if c >= a:
-                    a, b = c, a
-                elif c >= b:
-                    a, b = a, c
+                    if sub[j] > a:
+                        a, b = sub[j], a
+                    elif sub[j] > b:
+                        b = sub[j]
             for j in edge[i]:
                 if j != fa:
-                    c = son[j] + 2
-                    if a == c:
-                        yield dfs2(j, i, b)
+                    if sub[j] == a:
+                        stack.append((j, i, ac.max(b + 2, up + 1)))
                     else:
-                        yield dfs2(j, i, a)
-            yield
-
-        # 父节点最远的evil
-        father = [-inf] * n
-        dfs2(0, -1, -inf)
-        ans = sum(ac.max(father[i], son[i]) <= d for i in range(n))
-        ac.st(ans)
+                        stack.append((j, i, ac.max(a + 2, up + 1)))
+        ac.st(sum(x <= d for x in sub))
         return
 
     @staticmethod

@@ -543,43 +543,36 @@ class Solution:
     def lc_2458(root: Optional[TreeNode], queries: List[int]) -> List[int]:
         """
         url: https://leetcode.cn/height-of-binary-tree-after-subtree-removal-queries/
-        tag: dfs_order
+        tag: dfs|tree_dp|up_to_down|down_to_up|dfs
         """
 
-        # dfs_order|模板题目
-
-        def dfs(node):
-            nonlocal n
-            if not node:
-                return
-            x = node.val - 1
-            if x + 1 > n:
-                n = x + 1
-            if node.left:
-                dct[x].append(node.left.val - 1)
-                dfs(node.left)
+        ans = defaultdict(int)
+        stack = [(root, 0)]
+        x = 0
+        while stack:
+            node, h = stack.pop()
+            ans[node.val] = x
+            if h > x:
+                x = h
             if node.right:
-                dct[x].append(node.right.val - 1)
-                dfs(node.right)
-            return
+                stack.append((node.right, h + 1))
+            if node.left:
+                stack.append((node.left, h + 1))
 
-        dct = defaultdict(list)
-        n = 0
-        dfs(root)
-        edge = [dct[i] for i in range(n)]
-        r = root.val - 1
-        dfs_order = DfsEulerOrder(edge, r)
-        pre = [0] + list(accumulate(dfs_order.order_depth[:], func=max))
-        post = list(accumulate(dfs_order.order_depth[::-1], func=max))[::-1] + [0]
+        stack = [(root, 0)]
+        x = 0
+        while stack:
+            node, h = stack.pop()
+            if x > ans[node.val]:
+                ans[node.val] = x
+            if h > x:
+                x = h
+            if node.left:
+                stack.append((node.left, h + 1))
+            if node.right:
+                stack.append((node.right, h + 1))
 
-        ans = []
-        for i in queries:
-            i -= 1
-            s, e = dfs_order.start[i], dfs_order.end[i]
-            a = pre[s]
-            b = post[e + 1]
-            ans.append(a if a > b else b)
-        return ans
+        return [ans[i] for i in queries]
 
     @staticmethod
     def lc_2581(edges: List[List[int]], guesses: List[List[int]], k: int) -> int:

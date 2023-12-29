@@ -1,9 +1,11 @@
 """
 
-Algorithm：dinic_max_flow
-Description：dinic_max_flow
+Algorithm：dinic_max_flow_min_cut|dinic_max_flow_min_cost|dinic_max_flow_max_cost
+Description：dinic_max_flow_min_cut|dinic_max_flow_min_cost|dinic_max_flow_max_cost
 
 ====================================LeetCode====================================
+1947（https://leetcode.cn/problems/maximum-compatibility-score-sum/）bipartite_graph|maximum_weight_match|state_compress
+1066（https://leetcode.cn/problems/campus-bikes-ii/）bipartite_graph|minimum_weight_match|km
 
 =====================================LuoGu======================================
 P3376（https://www.luogu.com.cn/problem/P3376）dinic_max_flow
@@ -26,6 +28,7 @@ P2050（https://www.luogu.com.cn/problem/P2050）dinic_max_flow|min_cost
 """
 import math
 from collections import defaultdict
+from typing import List
 
 from src.graph.network_flow.template import DinicMaxflowMinCut, DinicMaxflowMinCost
 from src.utils.fast_io import FastIO, inf
@@ -317,3 +320,44 @@ class Solution:
         assert max_flow == np
         ac.st(min_cost)
         return
+
+    @staticmethod
+    def lc_1947(students: List[List[int]], mentors: List[List[int]]) -> int:
+        """
+        url: https://leetcode.cn/problems/maximum-compatibility-score-sum/
+        tag: bipartite_graph|maximum_weight_match|state_compress|max_flow_max_cost
+        """
+        m = len(students)
+        flow = DinicMaxflowMinCost(2 * m + 2 * m + 2)
+        for i in range(1, m + 1):
+            flow.add_edge(2 * i - 1, 2 * i, 1, 0)
+            flow.add_edge(2 * m + 2 * m + 1, 2 * i - 1, 1, 0)
+            flow.add_edge(2 * m + 2 * i - 1, 2 * m + 2 * i, 1, 0)
+            flow.add_edge(2 * m + 2 * i, 2 * m + 2 * m + 2, 1, 0)
+        for i in range(m):
+            for j in range(m):
+                score = sum(x == y for x, y in zip(students[i], mentors[j]))
+                flow.add_edge(2 * (i + 1), 2 * m + 2 * (j + 1) - 1, 1, -score)
+        ans = flow.max_flow_min_cost(2 * m + 2 * m + 1, 2 * m + 2 * m + 2)
+        return -ans[1]
+
+    @staticmethod
+    def lc_1066(workers: List[List[int]], bikes: List[List[int]]) -> int:
+        """
+        url: https://leetcode.cn/problems/campus-bikes-ii/
+        tag: bipartite_graph|minimum_weight_match|km
+        """
+        m, n = len(workers), len(bikes)
+        flow = DinicMaxflowMinCost(2 * m + 2 * n + 2)
+        for i in range(1, m + 1):
+            flow.add_edge(2 * i - 1, 2 * i, 1, 0)
+            flow.add_edge(2 * m + 2 * n + 1, 2 * i - 1, 1, 0)
+        for i in range(1, n + 1):
+            flow.add_edge(2 * m + 2 * i - 1, 2 * m + 2 * i, 1, 0)
+            flow.add_edge(2 * m + 2 * i, 2 * m + 2 * n + 2, 1, 0)
+        for i in range(m):
+            for j in range(n):
+                score = abs(workers[i][0] - bikes[j][0]) + abs(workers[i][1] - bikes[j][1])
+                flow.add_edge(2 * (i + 1), 2 * m + 2 * (j + 1) - 1, 1, score)
+        ans = flow.max_flow_min_cost(2 * m + 2 * n + 1, 2 * m + 2 * n + 2)
+        return ans[1]
