@@ -19,7 +19,7 @@ from operator import mul
 from typing import List, Callable, Dict, Set, Tuple, DefaultDict
 from heapq import heappush, heappop, heapify
 
-inf = 1 << 64
+inf = 1 << 32
 
 
 class FastIO:
