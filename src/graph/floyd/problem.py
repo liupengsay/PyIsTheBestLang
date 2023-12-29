@@ -55,46 +55,44 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1613
         tag: floyd|several_floyd|shortest_path
         """
-        # Floyd动态规划，两遍shortest_path综合
         n, m = ac.read_list_ints()
 
-        # dp[i][j][k] 表示 i 到 j 有无花费为 k 秒即距离为 2**k 的的路径
-        dp = [[[0] * 32 for _ in range(n)] for _ in range(n)]
+        pre = [0] * n * n
+        cur = [0] * n * n
+        dis = [inf] * n * n
         for _ in range(m):
             u, v = ac.read_list_ints_minus_one()
-            dp[u][v][0] = 1
+            pre[u * n + v] = dis[u * n + v] = 1
+
         for x in range(1, 32):
             for k in range(n):
                 for i in range(n):
+                    if not pre[i * n + k]:
+                        continue
                     for j in range(n):
-                        if dp[i][k][x - 1] and dp[k][j][x - 1]:
-                            dp[i][j][x] = 1
+                        if pre[i * n + k] and pre[k * n + j]:
+                            cur[i * n + j] = dis[i * n + j] = 1
 
-        # 建立距离二进制 1 的个数为 1 的有向图
-        dis = [[inf] * n for _ in range(n)]
-        for i in range(n):
-            for j in range(n):
-                for x in range(32):
-                    if dp[i][j][x]:
-                        dis[i][j] = 1
-                        break
+            for i in range(n * n):
+                pre[i] = cur[i]
+                cur[i] = 0
 
-        # 第二遍 Floyd 求新距离意义上的shortest_path
         for k in range(n):
             for i in range(n):
+                if dis[i * n + k] == inf:
+                    continue
                 for j in range(n):
-                    dis[i][j] = ac.min(dis[i][j], dis[i][k] + dis[k][j])
-        ac.st(dis[0][n - 1])
-
+                    dis[i * n + j] = ac.min(dis[i * n + j], dis[i * n + k] + dis[k * n + j])
+        ac.st(dis[n - 1])
         return
 
     @staticmethod
     def ac_4872(ac=FastIO()):
         """
-        url: https://www.acwing.com/problem/content/submission/4875/
+        url: https://www.acwing.com/problem/content/description/4875/
         tag: floyd|reverse_thinking|shortest_path|reverse_graph
         """
-        # Floyd逆序reverse_thinking更新shortest_path对
+
         n = ac.read_int()
         dp = [ac.read_list_ints() for _ in range(n)]
         a = ac.read_list_ints_minus_one()
@@ -122,32 +120,28 @@ class Solution:
     def lg_p1119(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1119
-        tag: offline_query|floyd|dynamic_graph
+        tag: offline_query|floyd|dynamic_graph|undirected
         """
-        # 利用 Floyd 算法特点和修复的中转站更新最短距离（无向图）
+
         n, m = ac.read_list_ints()
         repair = ac.read_list_ints()
-        # 设置初始值距离
-        dis = [[inf] * n for _ in range(n)]
+        dis = [inf] * n * n
         for i in range(m):
             a, b, c = ac.read_list_ints()
-            dis[a][b] = dis[b][a] = c
+            dis[a * n + b] = dis[b * n + a] = c
         for i in range(n):
-            dis[i][i] = 0
+            dis[i * n + i] = 0
 
-        # 修复村庄之后用Floyd算法更新以该村庄为中转的距离
         k = 0
         for _ in range(ac.read_int()):
             x, y, t = ac.read_list_ints()
-            # 离线算法
             while k < n and repair[k] <= t:
-                # k修复则更新以k为中转站的距离
                 for a in range(n):
                     for b in range(a + 1, n):
-                        dis[a][b] = dis[b][a] = ac.min(dis[a][k] + dis[k][b], dis[b][a])
+                        dis[a * n + b] = dis[b * n + a] = ac.min(dis[a * n + k] + dis[k * n + b], dis[b * n + a])
                 k += 1
-            if dis[x][y] < inf and x < k and y < k:
-                ac.st(dis[x][y])
+            if dis[x * n + y] < inf and x < k and y < k:
+                ac.st(dis[x * n + y])
             else:
                 ac.st(-1)
         return
@@ -156,9 +150,9 @@ class Solution:
     def lg_p1476(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1476
-        tag: floyd|longest_path|specific_plan
+        tag: floyd|longest_path|specific_plan|classical
         """
-        # Floyd 求索引从 1 到 n 的最长路并求所有在最长路上的点（有向图）
+
         n = ac.read_int() + 1
         m = ac.read_int()
         dp = [[-inf] * (n + 1) for _ in range(n + 1)]
@@ -167,10 +161,11 @@ class Solution:
             dp[i][j] = k
         for i in range(n + 1):
             dp[i][i] = 0
-
-        for i in range(1, n + 1):
-            for j in range(1, n + 1):
-                for k in range(1, n + 1):
+        for k in range(1, n + 1):
+            for i in range(1, n + 1):
+                if dp[i][k] == -inf:
+                    continue
+                for j in range(1, n + 1):
                     if dp[i][j] < dp[i][k] + dp[k][j]:
                         dp[i][j] = dp[i][k] + dp[k][j]
 
@@ -187,26 +182,28 @@ class Solution:
     def lg_p3906(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P3906
-        tag: floyd|shortest_path|specific_plan
+        tag: floyd|shortest_path|specific_plan|classical
         """
-        # Floyd 求索引从 u 到 v 的shortest_path并求所有在shortest_path上的点（无向图）
-        n, m = ac.read_list_ints()
-        dp = [[inf] * (n + 1) for _ in range(n + 1)]
-        for _ in range(m):
-            i, j = ac.read_list_ints()
-            dp[i][j] = dp[j][i] = 1
-        for i in range(1, n + 1):
-            dp[i][i] = 0
 
-        for k in range(1, n + 1):
-            for i in range(1, n + 1):
-                for j in range(i + 1, n + 1):  # 无向图这里就可以优化
-                    dp[j][i] = dp[i][j] = ac.min(dp[i][j], dp[i][k] + dp[k][j])
+        n, m = ac.read_list_ints()
+        dp = [inf] * n * n
+        for _ in range(m):
+            i, j = ac.read_list_ints_minus_one()
+            dp[i * n + j] = dp[j * n + i] = 1
+        for i in range(n):
+            dp[i * n + i] = 0
+
+        for k in range(n):
+            for i in range(n):
+                if dp[i * n + k] == inf:
+                    continue
+                for j in range(i + 1, n):
+                    dp[j * n + i] = dp[i * n + j] = ac.min(dp[i * n + j], dp[i * n + k] + dp[k * n + j])
 
         for _ in range(ac.read_int()):
-            u, v = ac.read_list_ints()
-            dis = min(dp[u][k] + dp[k][v] for k in range(1, n + 1))
-            ac.lst([x for x in range(1, n + 1) if dp[u][x] + dp[x][v] == dis])
+            u, v = ac.read_list_ints_minus_one()
+            dis = dp[u * n + v]
+            ac.lst([x + 1 for x in range(n) if dp[u * n + x] + dp[x * n + v] == dis])
         return
 
     @staticmethod
@@ -215,49 +212,61 @@ class Solution:
         url: https://www.luogu.com.cn/problem/B3611
         tag: transitive_closure|floyd
         """
-        # transitive_closure模板题
+
         n = ac.read_int()
-        dp = [ac.read_list_ints() for _ in range(n)]
+        dp = []
+        for _ in range(n):
+            dp.extend(ac.read_list_ints())
         for k in range(n):
             for i in range(n):
+                if not dp[i * n + k]:
+                    continue
                 for j in range(n):
-                    if dp[i][k] and dp[k][j]:
-                        dp[i][j] = 1
-        for g in dp:
-            ac.lst(g)
+                    if dp[i * n + k] and dp[k * n + j]:
+                        dp[i * n + j] = 1
+        for i in range(n):
+            ac.lst([dp[i * n + j] for j in range(n)])
         return
 
     @staticmethod
     def abc_51d_1(ac=FastIO()):
-        # brain_teaserFloydshortest_path的必经边，也可直接Dijkstra
+        """
+        url: https://atcoder.jp/contests/abc051/tasks/abc051_d
+        tag: floyd|shortest_path|necessary_edge|classical|reverse_thinking
+        """
+
         n, m = ac.read_list_ints()
-        dp = [[inf] * n for _ in range(n)]
+        dp = [inf] * n * n
         for i in range(n):
-            dp[i][i] = 0
+            dp[i * n + i] = 0
 
         edges = [ac.read_list_ints() for _ in range(m)]
         for i, j, w in edges:
             i -= 1
             j -= 1
-            dp[i][j] = dp[j][i] = w
+            dp[i * n + j] = dp[j * n + i] = w
 
-        for k in range(n):  # 中间节点
-            for i in range(n):  # 起始节点
-                for j in range(i + 1, n):  # 结束节点
-                    a, b = dp[i][j], dp[i][k] + dp[k][j]
-                    dp[i][j] = dp[j][i] = a if a < b else b
+        for k in range(n):
+            for i in range(n):
+                for j in range(i + 1, n):
+                    a, b = dp[i * n + j], dp[i * n + k] + dp[k * n + j]
+                    dp[i * n + j] = dp[j * n + i] = a if a < b else b
         ans = 0
         for i, j, w in edges:
             i -= 1
             j -= 1
-            if dp[i][j] < w:  # 如果最短距离小于该边则必然不经过该边
+            if dp[i * n + j] < w:
                 ans += 1
         ac.st(ans)
         return
 
     @staticmethod
     def abc_51d_2(ac=FastIO()):
-        # brain_teaserFloydshortest_path的必经边，也可直接Dijkstra
+        """
+        url: https://atcoder.jp/contests/abc051/tasks/abc051_d
+        tag: floyd|shortest_path|necessary_edge|classical|reverse_thinking
+        """
+
         n, m = ac.read_list_ints()
         edges = [ac.read_list_ints() for _ in range(m)]
         dct = [[] for _ in range(n)]
@@ -268,7 +277,7 @@ class Solution:
             dct[j].append([i, w])
         dis = []
         for i in range(n):
-            dis.append(Dijkstra().get_dijkstra_result(dct, i))
+            dis.append(Dijkstra().get_shortest_path(dct, i))
         ans = 0
         for i, j, w in edges:
             i -= 1
@@ -547,3 +556,36 @@ class Solution:
         ans = BinarySearch().find_int_left(low, high, check2)
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_2642():
+
+        class Graph:
+            def __init__(self, n: int, edges: List[List[int]]):
+                d = [[inf] * n for _ in range(n)]
+                for i in range(n):
+                    d[i][i] = 0
+                for x, y, w in edges:
+                    d[x][y] = w  # initial
+                for k in range(n):
+                    for i in range(n):
+                        for j in range(n):
+                            d[i][j] = min(d[i][j], d[i][k] + d[k][j])
+                self.d = d
+
+            def add_edge(self, e: List[int]) -> None:
+                d = self.d
+                n = len(d)
+                x, y, w = e
+                if w >= d[x][y]:
+                    return
+                for i in range(n):
+                    for j in range(n):
+                        # add another edge
+                        d[i][j] = min(d[i][j], d[i][x] + w + d[y][j])
+
+            def shortest_path(self, start: int, end: int) -> int:
+                ans = self.d[start][end]
+                return ans if ans < inf else -1
+
+        return Graph

@@ -47,13 +47,10 @@ class Solution:
     def lg_p7771(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P7771
-        tag: euler_path
+        tag: directed_euler_path
         """
-        # 有向图euler_path或者euler_circular_path
         n, m = ac.read_list_ints()
-        # 存储图关系
         pairs = [ac.read_list_ints_minus_one() for _ in range(m)]
-        # 注意可能包括自环与重边
         euler = DirectedEulerPath(n, pairs)
         if euler.exist:
             ac.lst([x + 1 for x in euler.nodes])

@@ -1,5 +1,3 @@
-from typing import List
-
 from src.utils.fast_io import inf
 
 
@@ -8,39 +6,42 @@ class Floyd:
         return
 
     @staticmethod
-    def shortest_path(n, dp):
+    def directed_shortest_path(n):
         # Calculate the shortest path between all point pairs using the Floyd algorithm
+        dis = [inf] * n * n  # need to be initial
         for k in range(n):  # mid point
             for i in range(n):  # start point
+                if dis[i * n + k] == inf:
+                    continue
                 for j in range(n):  # end point
-                    dp[i][j] = min(dp[i][j], dp[i][k] + dp[k][j])
-        return dp
+                    dis[i * n + j] = min(dis[i * n + j], dis[i * n + k] + dis[k * n + j])
+        return dis
 
+    @staticmethod
+    def undirected_shortest_path(n):
+        # Calculate the shortest path between all point pairs using the Floyd algorithm
+        dis = [inf] * n * n  # need to be initial
+        for k in range(n):  # mid point
+            for i in range(n):  # start point
+                if dis[i * n + k] == inf:
+                    continue
+                for j in range(i + 1, n):  # end point
+                    dis[j * n + i] = dis[i * n + j] = min(dis[i * n + j], dis[i * n + k] + dis[k * n + j])
+        return dis
 
-class GraphLC2642:
-    def __init__(self, n: int, edges: List[List[int]]):
-        d = [[inf] * n for _ in range(n)]
+    @staticmethod
+    def undirected_shortest_path_detail(n):
+        # Calculate the shortest path between all point pairs using the Floyd algorithm
+        dis = [inf] * n * n  # need to be initial
+        for k in range(n):  # mid point
+            for i in range(n):  # start point
+                if dis[i * n + k] == inf:
+                    continue
+                for j in range(i + 1, n):  # end point
+                    dis[j * n + i] = dis[i * n + j] = min(dis[i * n + j], dis[i * n + k] + dis[k * n + j])
+
+        path = []
         for i in range(n):
-            d[i][i] = 0
-        for x, y, w in edges:
-            d[x][y] = w  # initial
-        for k in range(n):
-            for i in range(n):
-                for j in range(n):
-                    d[i][j] = min(d[i][j], d[i][k] + d[k][j])
-        self.d = d
-
-    def add_edge(self, e: List[int]) -> None:
-        d = self.d
-        n = len(d)
-        x, y, w = e
-        if w >= d[x][y]:
-            return
-        for i in range(n):
-            for j in range(n):
-                # add another edge
-                d[i][j] = min(d[i][j], d[i][x] + w + d[y][j])
-
-    def shortest_path(self, start: int, end: int) -> int:
-        ans = self.d[start][end]
-        return ans if ans < inf else -1
+            if dis[0 * n + i] + dis[i * n + n - 1] == dis[0 * n + n - 1]:
+                path.append(i)
+        return dis, path
