@@ -24,7 +24,7 @@ inf = 1 << 32
 
 class FastIO:
     def __init__(self):
-        self.random_seed = random.randint(0, 10 ** 9 + 7)
+        self.random_seed = 0
         return
 
     @staticmethod
@@ -50,6 +50,11 @@ class FastIO:
     @staticmethod
     def read_list_strs():
         return stdin.readline().rstrip().split()
+
+    def get_random_seed(self):
+        import random
+        self.random_seed = random.randint(0, 10 ** 9 + 7)
+        return
 
     @staticmethod
     def st(x):
