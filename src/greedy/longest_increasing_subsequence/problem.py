@@ -37,6 +37,7 @@ P5939（https://www.luogu.com.cn/problem/P5939）lis
 P5978（https://www.luogu.com.cn/problem/P5978）lis|greedy|brute_force
 P7957（https://www.luogu.com.cn/problem/P7957）lis|lds|construction
 P1410（https://www.luogu.com.cn/problem/P1410）dilworth|lis
+P2516（https://www.luogu.com.cn/problem/P2516）length_of_lcs|cnt_of_lcs
 
 =====================================AcWing=====================================
 3549（https://www.acwing.com/problem/content/3552/）liner_dp|greedy
@@ -395,4 +396,16 @@ class Solution:
         length, cnt = LcsComputeByLis().length_and_cnt_of_lcs(s1, s2, mod)
         ac.st(length)
         ac.st(cnt % mod)
+        return
+
+    @staticmethod
+    def lg_p2516(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2516
+        tag: lcs|matrix_dp|length_of_lcs|cnt_of_lcs|rolling_array
+        """
+        mod = 10 ** 8
+        ans = LcsComputeByLis().length_and_cnt_of_lcs(ac.read_str()[:-1], ac.read_str()[:-1], mod)
+        for a in ans:
+            ac.st(a)
         return

@@ -185,37 +185,36 @@ class LcsComputeByLis:
         if len(s1) > len(s2):
             s1, s2 = s2, s1
         m = len(s2)
-        mapper = defaultdict(list)
+        mapper = dict()
         for i in range(m - 1, -1, -1):
+            if s2[i] not in mapper:
+                mapper[s2[i]] = []
             mapper[s2[i]].append(i)
-        nums = []
-        for c in s1:
-            if c in mapper:
-                nums.extend(mapper[c])
 
         dp = []
         s = []
         q = []
-        for num in nums:
-            if not dp or num > dp[-1]:
-                dp.append(num)
-                length = len(dp)
-            else:
-                i = bisect.bisect_left(dp, num)
-                dp[i] = num
-                length = i + 1
-            while len(s) <= len(dp):
-                s.append(0)
-            while len(q) <= len(dp):
-                q.append(deque())
+        for c in s1:
+            for num in mapper.get(c, []):
+                if not dp or num > dp[-1]:
+                    dp.append(num)
+                    length = len(dp)
+                else:
+                    i = bisect.bisect_left(dp, num)
+                    dp[i] = num
+                    length = i + 1
+                while len(s) <= len(dp):
+                    s.append(0)
+                while len(q) <= len(dp):
+                    q.append(deque())
 
-            if length == 1:
-                s[length] += 1
-                q[length].append([num, 1])
-            else:
-                while q[length - 1] and q[length - 1][0][0] >= num:
-                    s[length - 1] -= q[length - 1].popleft()[1]
-                s[length] += s[length - 1]
-                s[length] %= mod
-                q[length].append([num, s[length - 1]])
+                if length == 1:
+                    s[length] += 1
+                    q[length].append((num, 1))
+                else:
+                    while q[length - 1] and q[length - 1][0][0] >= num:
+                        s[length - 1] -= q[length - 1].popleft()[1]
+                    s[length] += s[length - 1]
+                    s[length] %= mod
+                    q[length].append((num, s[length - 1]))
         return len(dp), s[-1]

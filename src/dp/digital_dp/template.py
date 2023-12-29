@@ -146,7 +146,7 @@ class DigitalDP:
         s = str(num)
         n = len(s)
 
-        def pos_to_ind(i1, i2, i3, i4):
+        def idx(i1, i2, i3, i4):
             return i1 * (n + 2) * 2 * 2 + i2 * 2 * 2 + i3 * 2 + i4
 
         dp = [0] * (n + 1) * (n + 2) * 2 * 2
@@ -155,17 +155,17 @@ class DigitalDP:
                 for is_limit in range(1, -1, -1):
                     for is_num in range(1, -1, -1):
                         if i == n:
-                            dp[pos_to_ind(i, cnt, is_limit, is_num)] = cnt if is_num else 0
+                            dp[idx(i, cnt, is_limit, is_num)] = cnt if is_num else 0
                             continue
                         res = 0
                         if not is_num:
-                            res += dp[pos_to_ind(i + 1, 0, 0, 0)]
+                            res += dp[idx(i + 1, 0, 0, 0)]
                         floor = 0 if is_num else 1
                         ceil = int(s[i]) if is_limit else 9
                         for x in range(floor, ceil + 1):
-                            res += dp[pos_to_ind(i + 1, cnt + int(x == d), int(is_limit and x == ceil), 1)]
-                        dp[pos_to_ind(i, cnt, is_limit, is_num)] = res
-        return dp[pos_to_ind(0, 0, 1, 0)]
+                            res += dp[idx(i + 1, cnt + int(x == d), int(is_limit and x == ceil), 1)]
+                        dp[idx(i, cnt, is_limit, is_num)] = res
+        return dp[idx(0, 0, 1, 0)]
 
     @staticmethod
     def count_num_base(num, d):

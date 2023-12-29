@@ -12,7 +12,7 @@ Description：matrix_prefix_sum|sub_matrix_sum|maximum_square|edit_distance|lcs|
 72（https://leetcode.cn/problems/edit-distance/）matrix_dp
 329（https://leetcode.cn/problems/longest-increasing-path-in-a-matrix/）matrix_dp
 1478（https://leetcode.cn/problems/allocate-mailboxes/）matrix_dp|median_greedy|interval_dp|greedy
-6363（https://leetcode.cn/problems/find-the-string-with-lcp/）greedy|construction|lcp
+2573（https://leetcode.cn/problems/find-the-string-with-lcp/）greedy|construction|lcp
 2328（https://leetcode.cn/problems/number-of-increasing-paths-in-a-grid/）matrix_dp|counter
 2312（https://leetcode.cn/problems/selling-pieces-of-wood/）memory_search|specific_plan
 2267（https://leetcode.cn/problems/check-if-there-is-a-valid-parentheses-string-path/）memory_search
@@ -141,8 +141,12 @@ class Solution:
 
     @staticmethod
     def lc_1305(nums1: List[int], nums2: List[int]) -> int:
-        # LIS的办法求LCS
-        return LcsComputeByLis().longest_common_subsequence(nums1, nums2)
+        """
+        url: https://leetcode.cn/problems/uncrossed-lines/
+        tag: lis|lcs
+        """
+
+        return LcsComputeByLis().length_of_lcs(nums1, nums2)
 
     @staticmethod
     def lc_1143(s1: str, s2: str) -> int:
@@ -150,27 +154,27 @@ class Solution:
         url: https://leetcode.cn/problems/longest-common-subsequence/
         tag: lis|lcs
         """
-        # LIS的办法求LCS
-        return LcsComputeByLis().longest_common_subsequence(s1, s2)
+
+        return LcsComputeByLis().length_of_lcs(s1, s2)
 
     @staticmethod
     def lc_920(n: int, goal: int, k: int) -> int:
         """
         url: https://leetcode.cn/problems/number-of-music-playlists/
-        tag: matrix_dp
+        tag: matrix_dp|classical|hard|fill_table
         """
-        # matrix_dp（memory_searchdfs|刷表法实现）
+
         mod = 10 ** 9 + 7
 
-        @lru_cache(None)  # 前 i 首播放了 r 首不同的歌
+        @lru_cache(None)
         def dfs(i, r):
             if i == goal:
                 return 1 if r == n else 0
             res = 0
             if r + 1 <= n:
-                res += dfs(i + 1, r + 1) * (n - r)  # 新歌
+                res += dfs(i + 1, r + 1) * (n - r)
             if r > k:
-                res += dfs(i + 1, r) * (r - k)  # 老歌
+                res += dfs(i + 1, r) * (r - k)
             return res % mod
 
         return dfs(0, 0)
@@ -179,9 +183,9 @@ class Solution:
     def lc_956(rods: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/tallest-billboard/description/
-        tag: matrix_dp
+        tag: matrix_dp|classical|meet_in_middle
         """
-        # matrix_dp
+
         pre = defaultdict(int)
         pre[0] = 0
         for num in rods:
@@ -198,7 +202,7 @@ class Solution:
         url: https://leetcode.cn/problems/shortest-common-supersequence/
         tag: lis|lcs|specific_plan
         """
-        # 最长公共子序列，并construction包含两个字符串的最短公共超序列
+
         m, n = len(str1), len(str2)
         dp = [[0] * (n + 1) for _ in range(m + 1)]
 
@@ -233,7 +237,7 @@ class Solution:
         url: https://leetcode.cn/problems/paths-in-matrix-whose-sum-is-divisible-by-k/
         tag: matrix_dp|mod
         """
-        # 标准matrix_dp| 左上到右下的状态转移
+
         mod = 10 ** 9 + 7
         m, n = len(grid), len(grid[0])
         dp = [[[0] * k for _ in range(n)] for _ in range(m)]
@@ -257,12 +261,12 @@ class Solution:
         return dp[-1][-1][0]
 
     @staticmethod
-    def lc_6363(lcp: List[List[int]]) -> str:
+    def lc_2573(lcp: List[List[int]]) -> str:
         """
         url: https://leetcode.cn/problems/find-the-string-with-lcp/
-        tag: greedy|construction|lcp
+        tag: greedy|construction|lcp|brain_teaser|classical
         """
-        # 根据 LCP 矩阵生成lexicographical_order最小的符合条件的字符串
+
         n = len(lcp)
         ans = [""] * n
         ind = 0
@@ -299,7 +303,6 @@ class Solution:
         tag: matrix_dp
         """
 
-        # 乘积后缀0最少的个数以及对应的路径
         def f_2(num):
             if not num:
                 return 1
@@ -355,7 +358,6 @@ class Solution:
         else:
             ans = [c2, path2]
 
-        # 考虑 0 的存在影响
         zero = False
         for ii in range(n):
             for jj in range(n):
@@ -374,71 +376,80 @@ class Solution:
         return ans
 
     @staticmethod
-    def cf_1398d(ac, r, g, b, lst):
+    def cf_1398d(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1398/D
         tag: md_matrix_dp|maximum_mul|maximum_sum
         """
+        r, g, b = ac.read_list_ints()
+        rr = sorted(ac.read_list_ints(), reverse=True)
+        gg = sorted(ac.read_list_ints(), reverse=True)
+        bb = sorted(ac.read_list_ints(), reverse=True)
 
-        # 三维DP，选取两个不同数组的数乘积，最大总和
-        @ac.bootstrap
-        def dfs(i, j, k):
-            if dp[i][j][k] != -1:
-                yield
-            res = 0
-            if i < r and j < g:
-                yield dfs(i + 1, j + 1, k)
-                res = ac.max(res, dp[i + 1][j + 1][k] + lst[0][i] * lst[1][j])
-            if i < r and k < b:
-                yield dfs(i + 1, j, k + 1)
-                res = ac.max(res, dp[i + 1][j][k + 1] + lst[0][i] * lst[2][k])
-            if j < g and k < b:
-                yield dfs(i, j + 1, k + 1)
-                res = ac.max(res, dp[i][j + 1][k + 1] + lst[2][k] * lst[1][j])
-            dp[i][j][k] = res
-            yield
+        def idx(i1, i2, i3):
+            return i1 * (g + 1) * (b + 1) + i2 * (b + 1) + i3
 
-        dp = [[[-1] * (b + 1) for _ in range(g + 1)] for _ in range(r + 1)]
-        dfs(0, 0, 0)
-        return dp[0][0][0]
+        dp = [0] * (r + 1) * (g + 1) * (b + 1)
+
+        for i in range(r, -1, -1):
+            for j in range(g, -1, -1):
+                for k in range(b, -1, -1):
+                    res = 0
+                    if i < r and j < g:
+                        res = ac.max(res, dp[idx(i + 1, j + 1, k)] + rr[i] * gg[j])
+                    if i < r and k < b:
+                        res = ac.max(res, dp[idx(i + 1, j, k + 1)] + rr[i] * bb[k])
+                    if j < g and k < b:
+                        res = ac.max(res, dp[idx(i, j + 1, k + 1)] + bb[k] * gg[j])
+                    dp[idx(i, j, k)] = res
+
+        ac.st(dp[0])
+        return
 
     @staticmethod
     def lc_2478(s: str, k: int, min_length: int) -> int:
         """
         url: https://leetcode.cn/problems/number-of-beautiful-partitions/
-        tag: matrix_dp
+        tag: matrix_dp|classical|rever_thinking
         """
         mod = 10 ** 9 + 7
-        # prefix_sum优化二维matrix_dp
-        start = set("2357")
-        if s[0] not in start:
-            return 0
         n = len(s)
-        dp = [[0] * n for _ in range(k)]
-        for i in range(n):
-            if i + 1 >= min_length and s[i] not in start:
-                dp[0][i] = 1
+        prime = set("2357")
+        if not (s[0] in prime and s[-1] not in prime):
+            return 0
+        if k == 1:
+            return 1
 
-        for j in range(1, k):
-            pre = 0
-            x = 0
-            for i in range(n):
-                while x <= i - min_length and s[x]:
-                    if s[x] not in start and s[x + 1] in start:
-                        pre += dp[j - 1][x]
-                        pre %= mod
-                    x += 1
-                if s[i] not in start:
-                    dp[j][i] = pre
-        return dp[-1][-1]
+        cut = []
+        for i in range(min_length - 1, n - min_length):
+            if s[i] not in prime and s[i + 1] in prime:
+                cut.append(i)
+
+        m = len(cut)
+        if m + 1 < k:
+            return 0
+
+        pre = [1] * m
+
+        for _ in range(2, k):
+            cur = [0] * m
+            x = j = 0
+            for i in range(m):
+                while j < m and cut[i] - cut[j] >= min_length:
+                    x += pre[j]
+                    x %= mod
+                    j += 1
+                cur[i] = x
+            pre = cur[:]
+        return sum(pre) % mod
 
     @staticmethod
     def lc_2463(robot, factory):
         """
         url: https://leetcode.cn/problems/minimum-total-distance-traveled/
-        tag: matrix_dp
+        tag: matrix_dp|refresh_table
         """
-        # 两个数组pointer移动方向与prefix_sum优化求解
+
         robot.sort()
         factory.sort()
         m, n = len(factory), len(robot)
@@ -461,53 +472,51 @@ class Solution:
     def lg_p2516(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P2516
-        tag: lcs|matrix_dp
+        tag: lcs|matrix_dp|length_of_lcs|cnt_of_lcs|rolling_array|classical|hard
         """
-        # 最长公共子序列的长度以及个数DP
         s = ac.read_str()[:-1]
         t = ac.read_str()[:-1]
         m, n = len(s), len(t)
         mod = 10 ** 8
-        # 滚动数组优化
-        dp = [[0] * (n + 1) for _ in range(2)]
-        cnt = [[0] * (n + 1) for _ in range(2)]
+        pre_dp = [0] * (n + 1)
+        pre_cnt = [1] * (n + 1)
+        cur_dp = [0] * (n + 1)
+        cur_cnt = [0] * (n + 1)
         pre = 0
-        for j in range(n + 1):
-            cnt[pre][j] = 1
         for i in range(m):
             cur = 1 - pre
-            dp[cur][0] = 0
-            cnt[cur][0] = 1
+            cur_dp[0] = 0
+            cur_cnt[0] = 1
             for j in range(n):
-                dp[cur][j + 1] = 0
-                cnt[cur][j + 1] = 0
-                # 长度更长
+                cur_dp[j + 1] = 0
+                cur_cnt[j + 1] = 0
+
                 if s[i] == t[j]:
-                    dp[cur][j + 1] = dp[pre][j] + 1
-                    cnt[cur][j + 1] = cnt[pre][j]
+                    cur_dp[j + 1] = pre_dp[j] + 1
+                    cur_cnt[j + 1] = pre_cnt[j]
 
-                # 左面的转移
-                if dp[cur][j] > dp[cur][j + 1]:
-                    dp[cur][j + 1] = dp[cur][j]
-                    cnt[cur][j + 1] = cnt[cur][j]
-                elif dp[cur][j] == dp[cur][j + 1]:
-                    cnt[cur][j + 1] += cnt[cur][j]
+                if cur_dp[j] > cur_dp[j + 1]:
+                    cur_dp[j + 1] = cur_dp[j]
+                    cur_cnt[j + 1] = cur_cnt[j]
+                elif cur_dp[j] == cur_dp[j + 1]:
+                    cur_cnt[j + 1] += cur_cnt[j]
 
-                # 上面的转移
-                if dp[pre][j + 1] > dp[cur][j + 1]:
-                    dp[cur][j + 1] = dp[pre][j + 1]
-                    cnt[cur][j + 1] = cnt[pre][j + 1]
-                elif dp[pre][j + 1] == dp[cur][j + 1]:
-                    cnt[cur][j + 1] += cnt[pre][j + 1]
+                if pre_dp[j + 1] > cur_dp[j + 1]:
+                    cur_dp[j + 1] = pre_dp[j + 1]
+                    cur_cnt[j + 1] = pre_cnt[j + 1]
+                elif pre_dp[j + 1] == cur_dp[j + 1]:
+                    cur_cnt[j + 1] += pre_cnt[j + 1]
 
-                # 长度未变则设计重复
-                if dp[pre][j] == dp[cur][j + 1]:
-                    cnt[cur][j + 1] -= cnt[pre][j]
-                cnt[cur][j + 1] %= mod
+                if pre_dp[j] == cur_dp[j + 1]:
+                    cur_cnt[j + 1] -= pre_cnt[j]
+                cur_cnt[j + 1] %= mod
+            for j in range(n + 1):
+                pre_dp[j] = cur_dp[j]
+                pre_cnt[j] = cur_cnt[j]
             pre = cur
 
-        ac.st(dp[pre][-1])
-        ac.st(cnt[pre][-1])
+        ac.st(pre_dp[-1])
+        ac.st(pre_cnt[-1])
         return
 
     @staticmethod
@@ -516,46 +525,39 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1544
         tag: matrix_dp
         """
-        # 三维matrix_dp
-        n, k = ac.read_list_ints()
-        dp = [[[-inf] * (k + 1) for _ in range(n)] for _ in range(2)]
-        nums = []
-        while len(nums) < n * (n + 1) // 2:
-            nums.extend(ac.read_list_ints())
 
-        pre = 0
-        num = nums[0]
-        dp[pre][0][0] = num
-        dp[pre][0][1] = num * 3
-        s = 1
-        for i in range(1, n):
-            lst = nums[s:s + i + 1]
-            s += i + 1
-            cur = 1 - pre
-            dp[cur] = [[-inf] * (k + 1) for _ in range(n)]
-            for j in range(i + 1):
+        n, k = ac.read_list_ints()
+
+        pre = [-inf] * (k + 1) * n
+        cur = [-inf] * (k + 1) * n
+        pre[0] = 0
+        for i in range(1, n + 1):
+            lst = ac.read_list_ints()
+            for j in range(i):
                 for p in range(k + 1):
                     if j and p:
-                        a = ac.max(dp[pre][j][p], dp[pre][j - 1][p]) + lst[j]
-                        b = ac.max(dp[pre][j][p - 1], dp[pre][j - 1][p - 1]) + lst[j] * 3
-                        dp[cur][j][p] = ac.max(a, b)
+                        a = ac.max(pre[j * (k + 1) + p], pre[(j - 1) * (k + 1) + p]) + lst[j]
+                        b = ac.max(pre[j * (k + 1) + p - 1], pre[(j - 1) * (k + 1) + p - 1]) + lst[j] * 3
+                        cur[j * (k + 1) + p] = ac.max(a, b)
                     elif j:
-                        dp[cur][j][p] = ac.max(dp[pre][j][p], dp[pre][j - 1][p]) + lst[j]
+                        cur[j * (k + 1) + p] = ac.max(pre[j * (k + 1) + p], pre[(j - 1) * (k + 1) + p]) + lst[j]
                     elif p:
-                        dp[cur][j][p] = ac.max(dp[pre][j][p] + lst[j], dp[pre][j][p - 1] + lst[j] * 3)
+                        cur[j * (k + 1) + p] = ac.max(pre[j * (k + 1) + p] + lst[j],
+                                                      pre[j * (k + 1) + p - 1] + lst[j] * 3)
                     else:
-                        dp[cur][j][p] = dp[pre][j][p] + lst[j]
-            pre = cur
-        ac.st(max(max(d) for d in dp[pre]))
+                        cur[j * (k + 1) + p] = pre[j * (k + 1) + p] + lst[j]
+            for j in range(n * (k + 1)):
+                pre[j] = cur[j]
+        ac.st(max(pre))
         return
 
     @staticmethod
     def lg_p1004(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1004
-        tag: matrix_dp
+        tag: matrix_dp|classical
         """
-        # 取数四维转三维DP，路径可以有交叠
+
         n = ac.read_int()
         grid = [[0] * n for _ in range(n)]
         while True:
@@ -564,23 +566,28 @@ class Solution:
                 break
             x, y, z = lst
             grid[x - 1][y - 1] = z
+        pos = [[] for _ in range(2 * n - 1)]
+        for i in range(n):
+            for j in range(n):
+                pos[i + j].append(i)
 
-        dp = [[[0] * n for _ in range(n)] for _ in range(n)]
-        for x1 in range(n - 1, -1, -1):
-            for y1 in range(n - 1, -1, -1):
-                high = ac.min(n - 1, x1 + y1)
-                low = ac.max(0, x1 + y1 - (n - 1))
-                for x2 in range(high, low - 1, -1):
-                    y2 = x1 + y1 - x2
-                    post = 0
-                    for a, b in [[x1 + 1, y1], [x1, y1 + 1]]:
-                        for c, d in [[x2 + 1, y2], [x2, y2 + 1]]:
+        pre = {(0, 0): grid[0][0]}
+        for i in range(1, 2 * n - 1):
+            cur = dict()
+            for x1 in pos[i]:
+                for x2 in pos[i]:
+                    val = 0
+                    y1, y2 = i - x1, i - x2
+                    for a, b in [[x1 - 1, y1], [x1, y1 - 1]]:
+                        for c, d in [[x2 - 1, y2], [x2, y2 - 1]]:
                             if 0 <= a < n and 0 <= b < n and 0 <= c < n and 0 <= d < n:
-                                post = ac.max(post, dp[a][b][c])
-                    dp[x1][y1][x2] = post + grid[x1][y1] + grid[x2][y2]
+                                val = ac.max(val, pre[(b, d)])
+                    val += grid[x1][y1] + grid[x2][y2]
                     if x1 == x2:
-                        dp[x1][y1][x2] -= grid[x1][y1]
-        ac.st(dp[0][0][0])
+                        val -= grid[x1][y1]
+                    cur[(y1, y2)] = val
+            pre = cur
+        ac.st(list(pre.values())[0])
         return
 
     @staticmethod
@@ -589,26 +596,31 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1006
         tag: matrix_dp
         """
-        # 取数四维转三维DP，路径不能有交叠
         m, n = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
 
-        dp = [[[0] * m for _ in range(n)] for _ in range(m)]
-        for x1 in range(m - 1, -1, -1):
-            for y1 in range(n - 1, -1, -1):
-                high = ac.min(m - 1, x1 + y1)
-                low = ac.max(0, x1 + y1 - (n - 1))
-                for x2 in range(high, low - 1, -1):
-                    y2 = x1 + y1 - x2
-                    post = 0
-                    for a, b in [[x1 + 1, y1], [x1, y1 + 1]]:
-                        for c, d in [[x2 + 1, y2], [x2, y2 + 1]]:
+        pos = [[] for _ in range(m + n - 1)]
+        for i in range(m):
+            for j in range(n):
+                pos[i + j].append(i)
+
+        pre = {(0, 0): grid[0][0]}
+        for i in range(1, m + n - 1):
+            cur = dict()
+            for x1 in pos[i]:
+                for x2 in pos[i]:
+                    val = 0
+                    y1, y2 = i - x1, i - x2
+                    for a, b in [[x1 - 1, y1], [x1, y1 - 1]]:
+                        for c, d in [[x2 - 1, y2], [x2, y2 - 1]]:
                             if 0 <= a < m and 0 <= b < n and 0 <= c < m and 0 <= d < n:
-                                post = ac.max(post, dp[a][b][c])
-                    dp[x1][y1][x2] = post + grid[x1][y1] + grid[x2][y2]
-                    if x1 == x2 and y1 == y2 and [x1, y1] not in [[0, 0], [m - 1, n - 1]]:
-                        dp[x1][y1][x2] = -inf
-        ac.st(dp[0][0][0])
+                                val = ac.max(val, pre[(b, d)])
+                    val += grid[x1][y1] + grid[x2][y2]
+                    if y1 == y2 and i < m + n - 2:
+                        val = -inf
+                    cur[(y1, y2)] = val
+            pre = cur
+        ac.st(list(pre.values())[0])
         return
 
     @staticmethod
@@ -617,25 +629,24 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1107
         tag: matrix_dp|prefix_max
         """
-        # matrix_dp|前缀数组最值优化
         n, h, d = ac.read_list_ints()
-        cnt = [[0] * (h + 1) for _ in range(n)]
+        cnt = [0] * (h + 1) * n
         for i in range(n):
             lst = ac.read_list_ints()
             for j in lst[1:]:
-                cnt[i][j] += 1
+                cnt[i * (h + 1) + j] += 1
 
         ceil = [0] * (h + 1)
-        dp = [[0] * n for _ in range(2)]
-        pre = 0
+        pre = [0] * n
+        cur = [0] * n
         for i in range(h, -1, -1):
-            cur = 1 - pre
             for j in range(n):
-                dp[cur][j] = dp[pre][j] + cnt[j][i]
-                if i + d <= h and ceil[i + d] > dp[pre][j]:
-                    dp[cur][j] = ceil[i + d] + cnt[j][i]
-            pre = cur
-            ceil[i] = max(dp[pre])
+                cur[j] = pre[j] + cnt[j * (h + 1) + i]
+                if i + d <= h and ceil[i + d] > pre[j]:
+                    cur[j] = ceil[i + d] + cnt[j * (h + 1) + i]
+            for j in range(n):
+                pre[j] = cur[j]
+            ceil[i] = max(pre)
         ac.st(ceil[0])
         return
 
@@ -645,20 +656,20 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1279
         tag: edit_distance
         """
-        # edit_distance DP 变形
         s = ac.read_str()
         t = ac.read_str()
         k = ac.read_int()
         m, n = len(s), len(t)
-        dp = [[inf] * (n + 1) for _ in range(m + 1)]
-        dp[0][0] = 0
-        for j in range(n):
-            dp[0][j + 1] = dp[0][j] + k
+
+        pre = [j * k for j in range(n + 1)]
+        cur = [inf] * (n + 1)
         for i in range(m):
-            dp[i + 1][0] = dp[i][0] + k
+            cur[0] = pre[0] + k
             for j in range(n):
-                dp[i + 1][j + 1] = min(dp[i][j] + abs(ord(s[i]) - ord(t[j])), dp[i + 1][j] + k, dp[i][j + 1] + k)
-        ac.st(dp[-1][-1])
+                cur[j + 1] = min(pre[j] + abs(ord(s[i]) - ord(t[j])), cur[j] + k, pre[j + 1] + k)
+            for j in range(n + 1):
+                pre[j] = cur[j]
+        ac.st(pre[-1])
         return
 
     @staticmethod
@@ -667,18 +678,21 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1353
         tag: matrix_dp
         """
-        # matrix_dp
         n, m = ac.read_list_ints()
+
+        def idx(i1, j1):
+            return i1 * (m + 1) + j1
+
         nums = [ac.read_int() for _ in range(n)]
-        dp = [[-inf] * (m + 1) for _ in range(n + 1)]
-        dp[0][0] = 0
+        dp = [-inf] * (m + 1) * (n + 1)
+        dp[0] = 0
         for i in range(n):
-            dp[i + 1][0] = dp[i][0]
-            for j in range(1, min(i + 2, m + 1)):
-                dp[i + 1][0] = ac.max(dp[i + 1][0], dp[i + 1 - j][j])
+            dp[idx(i + 1, 0)] = dp[idx(i, 0)]
+            for j in range(1, ac.min(i + 2, m + 1)):
+                dp[idx(i + 1, 0)] = ac.max(dp[idx(i + 1, 0)], dp[idx(i + 1 - j, j)])
             for j in range(1, m + 1):
-                dp[i + 1][j] = dp[i][j - 1] + nums[i]
-        ac.st(dp[n][0])
+                dp[idx(i + 1, j)] = dp[idx(i, j - 1)] + nums[i]
+        ac.st(dp[idx(n, 0)])
         return
 
     @staticmethod
@@ -687,30 +701,38 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1854
         tag: prefix_max|matrix_dp|specific_plan
         """
-        # matrix_dp，并输出匹配specific_plan
         m, n = ac.read_list_ints()
-        grid = [ac.read_list_ints() for _ in range(m)]
-        dp = [[-inf] * (n + 1) for _ in range(m + 1)]
-        dp[0] = [0] * (n + 1)
-        pre = [[-1] * (n + 1) for _ in range(m + 1)]
+        grid = []
+        for _ in range(m):
+            grid.extend(ac.read_list_ints())
+
+        def idx(ii, jj):
+            return ii * (n + 1) + jj
+
+        dp = [-inf] * (n + 1) * (m + 1)
+        for j in range(n + 1):
+            dp[j] = 0
+        pre = [-1] * (n + 1) * (m + 1)
         for i in range(m):
-            x = dp[i][i]
+            x = dp[idx(i, i)]
             ind = i
             for j in range(i, n):
-                if dp[i][j] > x:
-                    x = dp[i][j]
+                if dp[idx(i, j)] > x:
+                    x = dp[idx(i, j)]
                     ind = j
-                if dp[i + 1][j + 1] < x + grid[i][j]:
-                    dp[i + 1][j + 1] = x + grid[i][j]
-                    # 记录上一行转移顺序
-                    pre[i + 1][j + 1] = ind
+                if dp[idx(i + 1, j + 1)] < x + grid[i * n + j]:
+                    dp[idx(i + 1, j + 1)] = x + grid[i * n + j]
+                    pre[idx(i + 1, j + 1)] = ind
 
-        # reverse_order|输出specific_plan
-        res = max(dp[m])
+        res = max(dp[idx(m, j)] for j in range(n + 1))
         ac.st(res)
-        ans = [dp[m].index(res)]
+        ans = []
+        for j in range(n + 1):
+            if dp[idx(m, j)] == res:
+                ans = [j]
+                break
         for i in range(m, 1, -1):
-            ans.append(pre[i][ans[-1]])
+            ans.append(pre[idx(i, ans[-1])])
         ans.reverse()
         ac.lst([x for x in ans])
         return
@@ -721,66 +743,47 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2140
         tag: matrix_dp
         """
-        # 矩阵四维DP，可以memory_search与迭代
         m, n, u = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
         m, n = len(grid), len(grid[0])
-        pre = [[0] * (n + 1) for _ in range(m + 1)]
+
+        def idx(ii, jj):
+            return ii * (n + 1) + jj
+
+        pre = [0] * (n + 1) * (m + 1)
         for i in range(m):
             for j in range(n):
-                pre[i + 1][j + 1] = pre[i][j + 1] + pre[i + 1][j] - pre[i][j] + grid[i][j]
-        s = pre[-1][-1]
+                pre[idx(i + 1, j + 1)] = pre[idx(i, j + 1)] + pre[idx(i + 1, j)] - pre[idx(i, j)] + grid[i][j]
 
-        # @lru_cache(None)
-        # def dfs(xa, ya, xb, yb):
-        #     w = pre[xb + 1][yb + 1] - pre[xb + 1][ya] - pre[xa][yb + 1] + pre[xa][ya]
-        #     res = [-inf, -inf]
-        #     if w >= s-u:
-        #         res = [1, u-(s-w)]
-        #     else:
-        #         return res
-        #
-        #     for xx in range(xa, xb):
-        #         nex1 = dfs(xa, ya, xx, yb)
-        #         nex2 = dfs(xx+1, ya, xb, yb)
-        #         nex = [nex1[0]+nex2[0], ac.min(nex1[1], nex2[1])]
-        #         if nex > res:
-        #             res = nex[:]
-        #
-        #     for yy in range(ya, yb):
-        #         nex1 = dfs(xa, ya, xb, yy)
-        #         nex2 = dfs(xa, yy+1, xb, yb)
-        #         nex = [nex1[0]+nex2[0], ac.min(nex1[1], nex2[1])]
-        #         if nex > res:
-        #             res = nex[:]
-        #     return res
-        # ans = dfs(0, 0, m-1, n-1)
-        # ac.lst(ans)
+        def idy(ii, jj, kk, pp):
+            return ii * n * m * n + jj * m * n + kk * n + pp
 
-        dp = [[[[[-inf, -inf] for _ in range(n)] for _ in range(m)] for _ in range(n)] for _ in range(m)]
+        dp = [(-inf, -inf)] * m * n * m * n
+
+        s = pre[-1]
         for xa in range(m - 1, -1, -1):
             for ya in range(n - 1, -1, -1):
                 for xb in range(xa, m):
                     for yb in range(ya, n):
-                        w = pre[xb + 1][yb + 1] - pre[xb + 1][ya] - pre[xa][yb + 1] + pre[xa][ya]
+                        w = pre[idx(xb + 1, yb + 1)] - pre[idx(xb + 1, ya)] - pre[idx(xa, yb + 1)] + pre[idx(xa, ya)]
                         if w < s - u:
                             continue
-                        res = [1, u - (s - w)]
+                        res = (1, u - (s - w))
 
                         for xx in range(xa, xb):
-                            nex1 = dp[xa][ya][xx][yb]
-                            nex2 = dp[xx + 1][ya][xb][yb]
-                            nex = [nex1[0] + nex2[0], ac.min(nex1[1], nex2[1])]
+                            nex1 = dp[idy(xa, ya, xx, yb)][:]
+                            nex2 = dp[idy(xx + 1, ya, xb, yb)][:]
+                            nex = (nex1[0] + nex2[0], ac.min(nex1[1], nex2[1]))
                             if nex > res:
                                 res = nex[:]
                         for yy in range(ya, yb):
-                            nex1 = dp[xa][ya][xb][yy]
-                            nex2 = dp[xa][yy + 1][xb][yb]
-                            nex = [nex1[0] + nex2[0], ac.min(nex1[1], nex2[1])]
+                            nex1 = dp[idy(xa, ya, xb, yy)][:]
+                            nex2 = dp[idy(xa, yy + 1, xb, yb)][:]
+                            nex = (nex1[0] + nex2[0], ac.min(nex1[1], nex2[1]))
                             if nex > res:
                                 res = nex[:]
-                        dp[xa][ya][xb][yb] = res
-        ac.lst(dp[0][0][m - 1][n - 1])
+                        dp[idy(xa, ya, xb, yb)] = res
+        ac.lst(dp[idy(0, 0, m - 1, n - 1)])
         return
 
     @staticmethod
@@ -790,7 +793,6 @@ class Solution:
         tag: matrix_dp
         """
 
-        # 矩阵四维DP，可以memory_search与迭代
         m, n, k = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
         avg = sum(sum(g) for g in grid) / k
@@ -845,7 +847,6 @@ class Solution:
         tag: md_matrix_dp
         """
 
-        # 矩阵四维DP，可以memory_search与迭代
         k = ac.read_int()
         m = n = 8
         grid = [ac.read_list_ints() for _ in range(m)]
@@ -898,7 +899,6 @@ class Solution:
         tag: md_matrix_dp
         """
 
-        # 矩阵四维DP，可以memory_search与迭代
         k = ac.read_int()
         m = n = 8
         grid = [ac.read_list_ints() for _ in range(m)]
@@ -1393,7 +1393,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6433
         tag: greedy|classification_discussion|matrix_dp
         """
-        # greedy|classification_discussionmatrix_dp| 
+        # greedy|classification_discussionmatrix_dp|
         n, m, k = ac.read_list_ints()
 
         nums = [ac.read_list_ints() for _ in range(n)]
@@ -1787,7 +1787,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P7995
         tag: matrix_dp
         """
-        # matrix_dp| 
+        # matrix_dp|
         for _ in range(ac.read_int()):
             n, k = ac.read_list_ints()
             k += 1

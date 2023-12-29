@@ -687,7 +687,7 @@ class Solution:
             ss = (a + b + c) / 2
             return (ss * (ss - a) * (ss - b) * (ss - c)) ** 0.5
 
-        def pos_to_ind(i1, j1):
+        def idx(i1, j1):
             return i1 * (s // 2 + 1) + j1
 
         nums = []
@@ -700,14 +700,14 @@ class Solution:
         for num in nums:
             for i in range(s // 2, -1, -1):
                 for j in range(s // 2, -1, -1):
-                    if j >= num and dp[pos_to_ind(i, j - num)]:
-                        dp[pos_to_ind(i, j)] = 1
-                    if i >= num and dp[pos_to_ind(i - num, j)]:
-                        dp[pos_to_ind(i, j)] = 1
+                    if j >= num and dp[idx(i, j - num)]:
+                        dp[idx(i, j)] = 1
+                    if i >= num and dp[idx(i - num, j)]:
+                        dp[idx(i, j)] = 1
         ans = -1
         for a in range(s // 2 + 1):
             for b in range(s // 2 + 1):
-                if dp[pos_to_ind(a, b)]:
+                if dp[idx(a, b)]:
                     c = s - a - b
                     if b + c > a > 0 and a + c > b > 0 and a + b > c > 0:
                         cur = check()
@@ -784,7 +784,7 @@ class Solution:
         tag: brute_force|matrix_dp|fill_table
         """
 
-        def pos_to_ind(i1, i2, i3, i4):
+        def idx(i1, i2, i3, i4):
             return i1 * (b + 1) * (c + 1) * (d + 1) + i2 * (c + 1) * (d + 1) + i3 * (d + 1) + i4
 
         n, m = ac.read_list_ints()
@@ -801,17 +801,17 @@ class Solution:
                         if i + 2 * j + 3 * k + 4 * p <= n - 1:
                             pre = 0
                             if i:
-                                pre = ac.max(pre, dp[pos_to_ind(i - 1, j, k, p)])
+                                pre = ac.max(pre, dp[idx(i - 1, j, k, p)])
                             if j:
-                                pre = ac.max(pre, dp[pos_to_ind(i, j - 1, k, p)])
+                                pre = ac.max(pre, dp[idx(i, j - 1, k, p)])
                             if k:
-                                pre = ac.max(pre, dp[pos_to_ind(i, j, k - 1, p)])
+                                pre = ac.max(pre, dp[idx(i, j, k - 1, p)])
                             if p:
-                                pre = ac.max(pre, dp[pos_to_ind(i, j, k, p - 1)])
-                            dp[pos_to_ind(i, j, k, p)] = ac.max(dp[pos_to_ind(i, j, k, p)],
+                                pre = ac.max(pre, dp[idx(i, j, k, p - 1)])
+                            dp[idx(i, j, k, p)] = ac.max(dp[idx(i, j, k, p)],
                                                                 pre + nums[i + 2 * j + 3 * k + 4 * p])
                         if i + 2 * j + 3 * k + 4 * p == n - 1:
-                            ans = ac.max(ans, dp[pos_to_ind(i, j, k, p)])
+                            ans = ac.max(ans, dp[idx(i, j, k, p)])
         ac.st(ans)
         return
 

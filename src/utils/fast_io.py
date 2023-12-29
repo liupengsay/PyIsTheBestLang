@@ -16,6 +16,10 @@ class Wrapper(int):
         return super(Wrapper, self).__hash__() ^ RANDOM
 
 
+def ac_max(a, b):
+    return a if a > b else b
+
+
 class FastIO:
     def __init__(self):
         self.random_seed = random.randint(0, 10 ** 9 + 7)
