@@ -1,6 +1,4 @@
 import heapq
-from typing import List
-
 
 class HeapqMedian:
     def __init__(self, mid):
@@ -33,7 +31,7 @@ class HeapqMedian:
 
 
 class KthLargest:
-    def __init__(self, k: int, nums: List[int]):
+    def __init__(self, k: int, nums):
         self.heap = [num for num in nums]
         self.k = k
         heapq.heapify(self.heap)

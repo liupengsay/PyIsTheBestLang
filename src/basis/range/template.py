@@ -1,4 +1,3 @@
-from typing import List
 
 from src.utils.fast_io import inf
 
@@ -63,7 +62,7 @@ class Range:
         return -1
 
     @staticmethod
-    def minimum_interval_coverage(clips: List[List[int]], time: int, inter=True) -> int:
+    def minimum_interval_coverage(clips, time: int, inter=True) -> int:
         """calculate the minimum number of intervals in clips for coverage [0, time]"""
         assert inter
         assert time >= 0

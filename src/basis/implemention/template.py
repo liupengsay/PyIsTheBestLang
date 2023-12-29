@@ -1,4 +1,3 @@
-from typing import List
 
 
 class Implemention:
@@ -102,7 +101,7 @@ class SpiralMatrix:
         return num
 
     @staticmethod
-    def get_spiral_matrix_loc(m, n, num) -> List[int]:
+    def get_spiral_matrix_loc(m, n, num):
         """clockwise spiral pos of num start from 1"""
         assert 1 <= num <= m * n
 

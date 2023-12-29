@@ -1,7 +1,6 @@
 import math
 from collections import deque
 from heapq import heappop, heappush
-from typing import List
 
 from src.graph.union_find.template import UnionFind
 from src.utils.fast_io import inf
@@ -106,7 +105,7 @@ class TreeAncestorWeightSecond:
                 b = x
         return [a, b]
 
-    def get_dist_weight_max_second(self, x: int, y: int) -> List[int]:
+    def get_dist_weight_max_second(self, x: int, y: int):
         # calculate the maximum and second maximum weights on the shortest path of any point
         if self.depth[x] < self.depth[y]:
             x, y = y, x

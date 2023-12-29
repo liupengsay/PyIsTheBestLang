@@ -1,5 +1,4 @@
 from collections import deque
-from typing import List, Dict
 
 from src.utils.fast_io import inf
 
@@ -9,7 +8,7 @@ class SPFA:
         return
 
     @staticmethod
-    def negative_circle_edge(dct: List[List[int]], src=0, initial=0) -> (str, List[float], List[int]):
+    def negative_circle_edge(dct, src=0, initial=0):
         """determine whether there is a negative loop and find the shortest path
         which can also find a positive loop by make the opposite weight of the graph
         """
@@ -42,7 +41,7 @@ class SPFA:
         return "NO", dis, cnt
 
     @staticmethod
-    def negative_circle(dct: List[Dict], src=0, initial=0) -> (str, List[float], List[int]):
+    def negative_circle(dct, src=0, initial=0):
         n = len(dct)
         dis = [inf for _ in range(n)]
         visit = [False] * n
@@ -98,7 +97,7 @@ class SPFA:
         return cnt
 
     @staticmethod
-    def negative_circle_mul(dct, src=0, initial=0) -> (str, List[float], List[int]):
+    def negative_circle_mul(dct, src=0, initial=0):
         """Determine if there is a ring with a product greater than 1"""
         n = len(dct)
         dis = [inf for _ in range(n)]
@@ -123,7 +122,7 @@ class SPFA:
                         visit[v] = True
         return "NO", dis, cnt
 
-    def differential_constraint(self, ineq: List[List[int]], n: int):
+    def differential_constraint(self, ineq, n: int):
         """find is there a solution to the inequality system of differential constraint calculation"""
         dct = [dict() for _ in range(n + 1)]
         # original node index start at 1

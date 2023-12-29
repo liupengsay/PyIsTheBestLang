@@ -1,5 +1,3 @@
-from typing import List
-
 from src.utils.fast_io import inf
 
 
@@ -58,7 +56,7 @@ class MatrixDP:
         return ans
 
     @staticmethod
-    def maximal_square(matrix: List[List[str]]) -> int:
+    def maximal_square(matrix) -> int:
 
         # The maximum square sub matrix with all value equal to 1
         m, n = len(matrix), len(matrix[0])

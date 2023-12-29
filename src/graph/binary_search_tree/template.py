@@ -1,4 +1,4 @@
-from typing import List
+
 
 from src.graph.union_find.template import UnionFindLeftRoot
 
@@ -9,7 +9,7 @@ class BinarySearchTree:
         return
 
     @staticmethod
-    def build_with_unionfind(nums: List[int]) -> List[List[int]]:
+    def build_with_unionfind(nums):
         """build binary search tree by the order of nums with unionfind"""
 
         n = len(nums)
@@ -34,7 +34,7 @@ class BinarySearchTree:
         return dct
 
     @staticmethod
-    def build_with_stack(nums: List[int]) -> List[List[int]]:
+    def build_with_stack(nums):
         """build binary search tree by the order of nums with stack"""
 
         n = len(nums)

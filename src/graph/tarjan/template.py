@@ -1,5 +1,4 @@
 from collections import defaultdict
-from typing import DefaultDict, Set, List, Tuple
 
 from src.utils.fast_io import inf
 
@@ -9,8 +8,7 @@ class TarjanCC:
         return
 
     @staticmethod
-    def get_strongly_connected_component_bfs(n: int, edge: List[List[int]]) \
-            -> (int, DefaultDict[int, Set[int]], List[int]):
+    def get_strongly_connected_component_bfs(n: int, edge):
         assert all(i not in edge[i] for i in range(n))
         assert all(len(set(edge[i])) == len(edge[i]) for i in range(n))
         dfs_id = 0
@@ -73,8 +71,7 @@ class TarjanCC:
         return scc_id, scc_node_id, node_scc_id
 
     @staticmethod
-    def get_point_doubly_connected_component_bfs(n: int, edge: List[List[int]]) \
-            -> Tuple[int, DefaultDict[int, Set[int]], List[Set[int]]]:
+    def get_point_doubly_connected_component_bfs(n: int, edge):
 
         dfs_id = 0
         order, low = [inf] * n, [inf] * n
@@ -142,7 +139,7 @@ class TarjanCC:
                 group_id += 1
         return group_id, group_node, node_group_id
 
-    def get_edge_doubly_connected_component_bfs(self, n: int, edge: List[Set[int]]) -> List[List[int]]:
+    def get_edge_doubly_connected_component_bfs(self, n: int, edge):
         _, cutting_edges = self.get_cutting_point_and_cutting_edge_bfs(n, [list(e) for e in edge])
         for i, j in cutting_edges:
             edge[i].discard(j)
@@ -169,7 +166,7 @@ class TarjanCC:
         return ans
 
     @staticmethod
-    def get_cutting_point_and_cutting_edge_bfs(n: int, edge: List[List[int]]) -> (Set[int], List[Tuple[int, int]]):
+    def get_cutting_point_and_cutting_edge_bfs(n: int, edge):
         order, low = [inf] * n, [inf] * n
         visit = [0] * n
         cutting_point = set()
@@ -282,7 +279,7 @@ class TarjanDirected:
         return
 
     @staticmethod
-    def check_graph(edge: List[list], n):
+    def check_graph(edge, n):
         visit = [0] * n
         root = [0] * n
         cut_node = []

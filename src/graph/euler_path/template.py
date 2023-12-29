@@ -1,9 +1,8 @@
 from collections import deque
-from typing import List
 
 
 class DirectedEulerPath:
-    def __init__(self, n, pairs: List[List[int]]):
+    def __init__(self, n, pairs):
         self.n = n
         # directed edge
         self.pairs = pairs
@@ -68,7 +67,7 @@ class DirectedEulerPath:
 
 
 class UnDirectedEulerPath:
-    def __init__(self, n, pairs: List[int]):
+    def __init__(self, n, pairs):
         self.n = n
         # undirected edge
         self.pairs = pairs

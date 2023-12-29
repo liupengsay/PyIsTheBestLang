@@ -1,15 +1,14 @@
-from typing import List
 
 from src.utils.fast_io import inf
 
 
 class TreeDiameter:
-    def __init__(self, dct: List[List[List[int]]]):
+    def __init__(self, dct):
         self.n = len(dct)
         self.dct = dct
         return
 
-    def get_bfs_dis(self, root) -> (List[any], List[int]):
+    def get_bfs_dis(self, root):
         dis = [inf] * self.n
         stack = [root]
         dis[root] = 0
@@ -23,7 +22,7 @@ class TreeDiameter:
                     stack.append(j)
         return dis, parent
 
-    def get_diameter_info(self) -> (int, int, List[int], any):
+    def get_diameter_info(self):
         """get tree diameter detail by weighted bfs twice"""
         dis, _ = self.get_bfs_dis(0)
         x = dis.index(max(dis))

@@ -1,5 +1,3 @@
-from typing import List
-
 from src.utils.fast_io import inf
 
 
@@ -23,7 +21,7 @@ class PointAddRangeSum:
             i -= self._lowest_bit(i)
         return val
 
-    def build(self, nums: List[int]) -> None:
+    def build(self, nums) -> None:
         """initialize the tree array"""
         assert len(nums) == self.n
         pre = [0] * (self.n + 1)
@@ -33,7 +31,7 @@ class PointAddRangeSum:
             self.t[i + 1] = pre[i + 1] - pre[i + 1 - self._lowest_bit(i + 1)]
         return
 
-    def get(self) -> List[int]:
+    def get(self):
         """get the original nums sometimes for debug"""
         nums = [self._pre_sum(i) for i in range(1, self.n + 1)]
         for i in range(self.n - 1, 0, -1):
@@ -75,7 +73,7 @@ class PointChangeRangeSum:
             i -= self._lowest_bit(i)
         return val
 
-    def build(self, nums: List[int]) -> None:
+    def build(self, nums) -> None:
         # initialize
         assert len(nums) == self.n
         pre = [0] * (self.n + 1)
@@ -96,7 +94,7 @@ class PointChangeRangeSum:
                 i += self._lowest_bit(i)
         return
 
-    def get(self) -> List[int]:
+    def get(self):
         # get the original nums sometimes for debug
         nums = [self._pre_sum(i) for i in range(1, self.n + 1)]
         for i in range(self.n - 1, 0, -1):
@@ -157,13 +155,13 @@ class RangeAddRangeSum:
     def _lowest_bit(x: int) -> int:
         return x & (-x)
 
-    def build(self, nums: List[int]) -> None:
+    def build(self, nums) -> None:
         assert len(nums) == self.n
         for i in range(self.n):
             self.range_add(i + 1, i + 1, nums[i])
         return
 
-    def get(self) -> List[int]:
+    def get(self):
         nums = [0] * self.n
         for i in range(self.n):
             nums[i] = self.range_sum(i + 1, i + 1)
@@ -178,7 +176,7 @@ class RangeAddRangeSum:
             k = k + self._lowest_bit(k)
         return
 
-    def _sum(self, t: List[int], k: int) -> int:
+    def _sum(self, t, k: int) -> int:
         # index start from 1 and query the sum of prefix k number
         ret = 0
         while k:
@@ -217,7 +215,7 @@ class PointXorRangeXor:
             i -= self._lowest_bit(i)
         return val
 
-    def build(self, nums: List[int]) -> None:
+    def build(self, nums) -> None:
         assert len(nums) == self.n
         pre = [0] * (self.n + 1)
         for i in range(self.n):
@@ -225,7 +223,7 @@ class PointXorRangeXor:
             self.t[i + 1] = pre[i + 1] ^ pre[i + 1 - self._lowest_bit(i + 1)]
         return
 
-    def get(self) -> List[int]:
+    def get(self):
         return [self.range_xor(i + 1, i + 1) for i in range(self.n)]
 
     def point_xor(self, i: int, val: int) -> None:

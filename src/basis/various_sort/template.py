@@ -1,7 +1,6 @@
 import random
 from collections import Counter
 from functools import cmp_to_key
-from typing import List
 
 
 class VariousSort:
@@ -33,7 +32,7 @@ class VariousSort:
         return nums
 
     @staticmethod
-    def quick_sort_two(lst: List[int]) -> List[int]:
+    def quick_sort_two(lst):
         n = len(lst)
 
         def quick_sort(i, j):
@@ -259,7 +258,7 @@ class VariousSort:
         return nums
 
     @staticmethod
-    def minimum_money(transactions: List[List[int]]) -> int:
+    def minimum_money(transactions) -> int:
 
         def check(ls):
             x, y = ls[0], ls[1]

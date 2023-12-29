@@ -1,5 +1,4 @@
 from collections import defaultdict
-from typing import List
 
 from src.utils.fast_io import inf
 
@@ -96,7 +95,7 @@ class RangeAscendRangeMax:
             self.lazy[i] = -inf
         return
 
-    def build(self, nums: List[int]) -> None:
+    def build(self, nums) -> None:
         assert self.n == len(nums)
         stack = [(0, self.n - 1, 1)]
         while stack:
@@ -301,7 +300,7 @@ class RangeAscendRangeMaxBinarySearchFindLeft:
             self.lazy[i] = -inf
         return
 
-    def build(self, nums: List[int]) -> None:
+    def build(self, nums) -> None:
         assert self.n == len(nums)
         stack = [(0, self.n - 1, 1)]
         while stack:
@@ -421,7 +420,7 @@ class RangeDescendRangeMin:
             self.lazy[i] = inf
         return
 
-    def build(self, nums: List[int]) -> None:
+    def build(self, nums) -> None:
         assert self.n == len(nums)
         stack = [(0, self.n - 1, 1)]
         while stack:
@@ -511,7 +510,7 @@ class RangeAddRangeSumMinMax:
     def _min(a: int, b: int) -> int:
         return a if a < b else b
 
-    def build(self, nums: List[int]) -> None:
+    def build(self, nums) -> None:
         assert self.n == len(nums)
         stack = [(0, self.n - 1, 1)]
         while stack:
@@ -645,7 +644,7 @@ class RangeAddRangeSumMinMax:
                 stack.append((m + 1, t, (i << 1) | 1))
         return highest
 
-    def get(self) -> List[int]:
+    def get(self):
         stack = [(0, self.n - 1, 1)]
         nums = [0] * self.n
         while stack:
@@ -698,7 +697,7 @@ class RangeAddMulRangeSum:
         self.add[i] = 0
         return
 
-    def build(self, nums: List[int]) -> None:
+    def build(self, nums) -> None:
         assert self.n == len(nums)
         stack = [(0, self.n - 1, 1)]
         while stack:
@@ -822,7 +821,7 @@ class RangeAffineRangeSum:
             self.tag[i] = self.mul
         return
 
-    def build(self, nums: List[int]) -> None:
+    def build(self, nums) -> None:
         assert self.n == len(nums)
         stack = [(0, self.n - 1, 1)]
         while stack:
@@ -1354,7 +1353,7 @@ class RangeKthSmallest:
         self.cover = [[] for _ in range(4 * self.n)]
         return
 
-    def build(self, nums: List[int]) -> None:
+    def build(self, nums) -> None:
         assert self.n == len(nums)
         stack = [(0, self.n - 1, 1)]
         while stack:
@@ -1434,7 +1433,7 @@ class RangeOrRangeAnd:
         self.cover[i] = self.cover[i << 1] & self.cover[(i << 1) | 1]
         return
 
-    def build(self, nums: List[int]) -> None:
+    def build(self, nums) -> None:
         assert self.n == len(nums)
         stack = [(0, self.n - 1, 1)]
         while stack:
@@ -1735,7 +1734,7 @@ class RangeChangeAddRangeMax:
             self.tag[i] = 1
         return
 
-    def build(self, nums: List[int]) -> None:
+    def build(self, nums) -> None:
         assert self.n == len(nums)
         stack = [(0, self.n - 1, 1)]
         while stack:
@@ -1842,7 +1841,7 @@ class PointSetRangeComposite:
         mul2, add2 = val2 >> self.m, val2 & self.mask
         return ((mul2 * mul1 % self.mod) << self.m) | ((mul2 * add1 + add2) % self.mod)
 
-    def build(self, nums: List[int]) -> None:
+    def build(self, nums) -> None:
         assert self.n == len(nums)
         stack = [(0, self.n - 1, 1)]
         while stack:
@@ -1956,7 +1955,7 @@ class RangeChangeRangeMaxNonEmpConSubSum:
         self.cover[i], self.left[i], self.right[i], self.sum[i] = self._range_merge_to_disjoint(res1, res2)
         return
 
-    def build(self, nums: List[int]) -> None:
+    def build(self, nums) -> None:
         assert len(nums) == self.n
         stack = [(0, self.n - 1, 1)]
         while stack:
@@ -1974,7 +1973,7 @@ class RangeChangeRangeMaxNonEmpConSubSum:
                 self._push_up(i)
         return
 
-    def get(self) -> List[int]:
+    def get(self):
         stack = [(0, self.n - 1, 1)]
         nums = [-1] * self.n
         while stack:
@@ -2014,7 +2013,7 @@ class RangeChangeRangeMaxNonEmpConSubSum:
                 self._push_up(i)
         return
 
-    def range_max_non_emp_con_sub_sum(self, left: int, right: int) -> List[int]:
+    def range_max_non_emp_con_sub_sum(self, left: int, right: int):
         assert 0 <= left <= right <= self.n - 1
         stack = [(0, self.n - 1, 1)]
         ans = [-self.initial] * 4

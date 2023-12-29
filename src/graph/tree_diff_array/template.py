@@ -1,5 +1,3 @@
-from typing import List
-
 
 class TreeDiffArray:
 
@@ -8,7 +6,7 @@ class TreeDiffArray:
         return
 
     @staticmethod
-    def bfs_iteration(dct: List[List[int]], queries: List[List[int]], root=0) -> List[int]:
+    def bfs_iteration(dct, queries, root=0):
         """node differential method"""
         n = len(dct)
         stack = [root]
@@ -46,7 +44,7 @@ class TreeDiffArray:
         return diff
 
     @staticmethod
-    def bfs_iteration_edge(dct: List[List[int]], queries: List[List[int]], root=0) -> List[int]:
+    def bfs_iteration_edge(dct, queries, root=0):
         # Differential calculation of edges on the tree
         # where the count of edge is dropped to the corresponding down node
         n = len(dct)
@@ -84,7 +82,7 @@ class TreeDiffArray:
         return diff
 
     @staticmethod
-    def dfs_recursion(dct: List[List[int]], queries: List[List[int]], root=0) -> List[int]:
+    def dfs_recursion(dct, queries, root=0):
         n = len(dct)
 
         stack = [root]

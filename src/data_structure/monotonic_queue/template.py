@@ -1,5 +1,4 @@
 from collections import deque
-from typing import List
 
 
 class PriorityQueue:
@@ -7,7 +6,7 @@ class PriorityQueue:
         return
 
     @staticmethod
-    def sliding_window(nums: List[int], k: int, method="max") -> List[int]:
+    def sliding_window(nums, k: int, method="max"):
         assert k >= 1
         if method == "min":
             nums = [-num for num in nums]
@@ -27,7 +26,7 @@ class PriorityQueue:
         return ans
 
     @staticmethod
-    def sliding_window_all(nums: List[int], k: int, method="max") -> List[int]:
+    def sliding_window_all(nums, k: int, method="max"):
         assert k >= 1
         if method == "min":
             nums = [-num for num in nums]

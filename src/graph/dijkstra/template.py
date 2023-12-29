@@ -1,6 +1,5 @@
 from collections import defaultdict, deque
 from heapq import heappush, heappop
-from typing import List, Set
 
 from src.data_structure.sorted_list.template import SortedList
 from src.utils.fast_io import inf
@@ -11,7 +10,7 @@ class Dijkstra:
         return
 
     @staticmethod
-    def get_shortest_path(dct: List[List[int]], src: int) -> List[float]:
+    def get_shortest_path(dct, src: int):
         """template of shortest path by dijkstra"""
         #  which can to changed to be the longest path problem by opposite number
         n = len(dct)
@@ -31,7 +30,7 @@ class Dijkstra:
         return dis
 
     @staticmethod
-    def get_dijkstra_result_sorted_list(dct, src: int) -> List[float]:
+    def get_dijkstra_result_sorted_list(dct, src: int):
 
         n = len(dct)
         dis = [inf] * n
@@ -51,7 +50,7 @@ class Dijkstra:
         return dis
 
     @staticmethod
-    def get_cnt_of_shortest_path(dct: List[List[int]], src: int) -> (List[int], List[any]):
+    def get_cnt_of_shortest_path(dct, src: int):
         """number of shortest path"""
         n = len(dct)
         dis = [inf] * n
@@ -76,7 +75,7 @@ class Dijkstra:
         return cnt, dis
 
     @staticmethod
-    def get_dijkstra_result_limit(dct: List[List[int]], src: int, limit: Set[int], target: Set[int]) -> List[float]:
+    def get_dijkstra_result_limit(dct, src: int, limit, target):
         n = len(dct)
         dis = [inf] * n
 
@@ -97,7 +96,7 @@ class Dijkstra:
         return dis
 
     @staticmethod
-    def get_shortest_path_from_src_to_dst(dct: List[List[int]], src: int, dst: int) -> (List[int], any):
+    def get_shortest_path_from_src_to_dst(dct, src: int, dst: int):
         n = len(dct)
         dis = [inf] * n
         stack = [(0, src)]
@@ -143,7 +142,7 @@ class Dijkstra:
         return dis[dsc]
 
     @staticmethod
-    def get_second_shortest_path(dct: List[List[int]], src):
+    def get_second_shortest_path(dct, src):
         """template of strictly second shorter path"""
         n = len(dct)
         dis = [[inf] * 2 for _ in range(n)]
@@ -164,7 +163,7 @@ class Dijkstra:
         return dis
 
     @staticmethod
-    def get_cnt_of_second_shortest_path(dct: List[List[int]], src, mod=-1):
+    def get_cnt_of_second_shortest_path(dct, src, mod=-1):
         """number of strictly second shorter path"""
         n = len(dct)
         dis = [[inf] * 2 for _ in range(n)]
@@ -198,7 +197,7 @@ class Dijkstra:
         return dis, cnt
 
     @staticmethod
-    def get_cnt_of_second_shortest_path_by_bfs(dct: List[List[int]], src, mod=-1):
+    def get_cnt_of_second_shortest_path_by_bfs(dct, src, mod=-1):
         """number of strictly second shorter path by bfs"""
         n = len(dct)
         dis = [inf] * 2 * n
@@ -228,7 +227,7 @@ class Dijkstra:
         return dis, cnt
 
     @staticmethod
-    def get_shortest_path_by_bfs(dct: List[List[int]], src, initial=-1):
+    def get_shortest_path_by_bfs(dct, src, initial=-1):
         """shortest path implemention by 01 bfs """
         n = len(dct)
         dis = [initial] * n
@@ -243,7 +242,7 @@ class Dijkstra:
         return dis
 
     @staticmethod
-    def get_shortest_by_bfs_inf_odd(dct: List[List[int]], src):
+    def get_shortest_by_bfs_inf_odd(dct, src):
         """shortest odd path and even path"""
         n = len(dct)
         dis = [[inf, inf] for _ in range(n)]

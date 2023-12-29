@@ -1,5 +1,4 @@
 from collections import defaultdict
-from typing import DefaultDict
 
 from src.utils.fast_io import inf
 
@@ -46,7 +45,7 @@ class UnionFind:
             part[self.find(i)].append(i)
         return part
 
-    def get_root_size(self) -> DefaultDict[int, int]:
+    def get_root_size(self):
         # get the size of every root
         size = defaultdict(int)
         n = len(self.root)

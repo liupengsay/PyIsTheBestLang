@@ -1,6 +1,5 @@
 import math
 from collections import deque
-from typing import List
 
 from src.utils.fast_io import inf
 
@@ -37,7 +36,7 @@ class OfflineLCA:
         return
 
     @staticmethod
-    def bfs_iteration(dct: List[List[int]], queries: List[List[int]], root=0) -> List[int]:
+    def bfs_iteration(dct, queries, root=0):
         """Offline query of LCA"""
         n = len(dct)
         ans = [dict() for _ in range(n)]
@@ -78,7 +77,7 @@ class OfflineLCA:
         return [ans[i][j] for i, j in queries]
 
     @staticmethod
-    def dfs_recursion(dct: List[List[int]], queries: List[List[int]], root=0) -> List[int]:
+    def dfs_recursion(dct, queries, root=0):
 
         n = len(dct)
         ans = [dict() for _ in range(n)]
@@ -113,7 +112,7 @@ class OfflineLCA:
 
 class TreeAncestorPool:
 
-    def __init__(self, edges: List[List[int]], weight):
+    def __init__(self, edges, weight):
         # node 0 as root
         n = len(edges)
         self.n = n
@@ -157,7 +156,7 @@ class TreeAncestorPool:
 
 class TreeAncestor:
 
-    def __init__(self, edges: List[List[int]]):
+    def __init__(self, edges):
         n = len(edges)
         self.parent = [-1] * n
         self.depth = [-1] * n
@@ -273,7 +272,7 @@ class TreeCentroid:
 
 
 class HeavyChain:
-    def __init__(self, dct: List[List[int]], root=0) -> None:
+    def __init__(self, dct, root=0) -> None:
         self.n = len(dct)
         self.dct = dct
         # father of node
