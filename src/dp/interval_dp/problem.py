@@ -342,17 +342,6 @@ class Solution:
         while len(nums) < n:
             nums.extend(ac.read_list_ints())
         pre = ac.accumulate(nums)
-
-        # @lru_cache(None)
-        # def dfs(i, j):
-        #     if i == j:
-        #         return nums[j]
-        #     res = nums[i]+pre[j+1]-pre[i+1]-dfs(i+1, j)
-        #     res = ac.max(res, nums[j]+pre[j]-pre[i]-dfs(i, j-1))
-        #     return res
-        # a = dfs(0, n-1)
-        # ac.lst([a, pre[-1]-a])
-
         dp = [[0] * n for _ in range(n)]
         for i in range(n - 1, -1, -1):
             dp[i][i] = nums[i]
