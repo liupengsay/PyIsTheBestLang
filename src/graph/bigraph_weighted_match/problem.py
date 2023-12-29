@@ -3,6 +3,7 @@ Algorithm：bipartite_graph|maximum_weight_match|minimum_weight_match|km|ek
 Description：
 
 ====================================LeetCode====================================
+4（https://leetcode.cn/problems/broken-board-dominoes/）outline_dp|classical|hungarian
 1820（https://leetcode.cn/problems/maximum-number-of-accepted-invitations/）hungarian|bipartite_graph|maximum_weight_match|km
 1066（https://leetcode.cn/problems/campus-bikes-ii/）bipartite_graph|minimum_weight_match|km
 1947（https://leetcode.cn/problems/maximum-compatibility-score-sum/）bipartite_graph|maximum_weight_match|state_compress
@@ -30,7 +31,7 @@ from typing import List
 
 import numpy as np
 
-from src.graph.bigraph_weighted_match.template import BipartiteMatching
+from src.graph.bigraph_weighted_match.template import BipartiteMatching, Hungarian
 from src.utils.fast_io import FastIO
 
 
@@ -231,3 +232,25 @@ class Solution:
         ans = Hungarian().dfs_recursion(n, m, dct)
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_4(n: int, m: int, broken: List[List[int]]) -> int:
+        """
+        url: https://leetcode.cn/problems/broken-board-dominoes/
+        tag: outline_dp|classical|hungarian
+        """
+        m, n = n, m
+        grid = [[0] * n for _ in range(m)]
+        for i, j in broken:
+            grid[i][j] = 1
+
+        dct = [[] for _ in range(m * n)]
+        for i in range(m):
+            for j in range(n):
+                if not grid[i][j]:
+                    for x, y in [[i + 1, j], [i, j + 1]]:
+                        if 0 <= x < m and 0 <= y < n and not grid[x][y]:
+                            dct[i * n + j].append(x * n + y)
+                            dct[x * n + y].append(i * n + j)
+        ans = Hungarian().bfs_iteration(m * n, m * n, dct)
+        return ans // 2
