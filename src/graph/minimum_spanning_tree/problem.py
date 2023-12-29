@@ -76,7 +76,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1991
         tag: mst|connected_graph
         """
-        # 利用mst| k 个连通块所需的最大边权值
+
         k, n = ac.read_list_ints()
         pos = [ac.read_list_ints() for _ in range(n)]
         edge = []
@@ -94,7 +94,7 @@ class Solution:
                 break
             if uf.union(x, y):
                 cost = z
-        ans = cost ** 0.5
+        ans = math.sqrt(cost)
         ac.st("%.2f" % ans)
         return
 

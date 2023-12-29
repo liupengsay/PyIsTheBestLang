@@ -32,13 +32,13 @@ class MinimumSpanningTree:
             # Point priority with Dijkstra
             dct = [dict() for _ in range(self.n)]
             for i, j, w in self.edges:
-                c = dct[i].get(j, float("inf"))
+                c = dct[i].get(j, inf)
                 c = c if c < w else w
                 dct[i][j] = dct[j][i] = c
             dis = [inf] * self.n
             dis[0] = 0
             visit = [0] * self.n
-            stack = [[0, 0]]
+            stack = [(0, 0)]
             while stack:
                 d, i = heappop(stack)
                 if visit[i]:
@@ -52,7 +52,7 @@ class MinimumSpanningTree:
                     w = dct[i][j]
                     if w < dis[j]:
                         dis[j] = w
-                        heappush(stack, [w, j])
+                        heappush(stack, (w, j))
         return
 
 
