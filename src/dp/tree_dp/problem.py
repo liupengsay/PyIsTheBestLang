@@ -4,7 +4,7 @@ Description：reroot_dp|up_to_down|down_to_up
 
 ====================================LeetCode====================================
 2440（https://leetcode.cn/problems/create-components-with-same-value/）tree_dp|number_theory|recursion|union_find|brute_force
-1569 https://leetcode.cn/problems/number-of-ways-to-reorder-array-to-get-same-bst/solution/）counter|comb|bst|tree_dp
+1569 https://leetcode.cn/problems/number-of-ways-to-reorder-array-to-get-same-bst/solution/）counter|comb|binary_search_tree|tree_dp
 968（https://leetcode.cn/problems/binary-tree-cameras/）tree_dp
 2538（https://leetcode.cn/problems/difference-between-maximum-and-minimum-price-sum/）reroot_dp|tree_diameter
 124（https://leetcode.cn/problems/binary-tree-maximum-path-sum/）tree_dp

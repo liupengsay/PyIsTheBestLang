@@ -13,7 +13,7 @@ Description：undirected_topological_sort|directed_topological_sort|directed_cir
 2603（https://leetcode.cn/problems/collect-coins-in-a-tree/）undirected_topological_sort|undirected_circle_based_tree
 2204（https://leetcode.cn/problems/distance-to-a-cycle-in-undirected-graph/）undirected_topological_sort
 1857（https://leetcode.cn/problems/largest-color-value-in-a-directed-graph/）topological_sort|dag_dp
-1932（https://leetcode.cn/problems/range_merge_to_disjoint-bsts-to-create-single-bst/）union_find|topological_sort|union_find|bst
+1932（https://leetcode.cn/problems/range_merge_to_disjoint-bsts-to-create-single-bst/）union_find|topological_sort|union_find|binary_search_tree
 1591（https://leetcode.cn/problems/strange-printer-ii/）build_graph|topological_sort|circle_judge
 2192（https://leetcode.cn/problems/all-ancestors-of-a-node-in-a-directed-acyclic-graph/）directed_topological_sort|dag_dp
 
@@ -913,7 +913,7 @@ class Solution:
     def lc_1932(trees: List[TreeNode]) -> Optional[TreeNode]:
         """
         url: https://leetcode.cn/problems/range_merge_to_disjoint-bsts-to-create-single-bst/
-        tag: union_find|topological_sort|union_find|bst
+        tag: union_find|topological_sort|union_find|binary_search_tree
         """
         # 连通性、topological_sorting与二叉搜索树判断
 
