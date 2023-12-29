@@ -67,7 +67,7 @@ from itertools import combinations, accumulate
 from operator import or_
 from typing import List
 
-from src.utils.fast_io import FastIO
+from src.utils.fast_io import FastIO, ac_min, ac_max
 from src.utils.fast_io import inf
 
 
@@ -79,110 +79,71 @@ class Solution:
     def lc_1681(nums: List[int], k: int) -> int:
         """
         url: https://leetcode.cn/problems/minimum-incompatibility/
-        tag: state_dp|group_bag_dp|state_dp|comb
+        tag: state_dp|group_bag_dp|state_dp|comb|fill_table
         """
 
-        # state_dp和组合数选取结合
-
-        @lru_cache(None)
-        def dfs(state):
-            if not state:
-                return 0
-
-            lst = []
-            dct = dict()
-            for j in range(n):
-                if state & (1 << j) and nums[j] not in dct:
-                    dct[nums[j]] = j
-                    lst.append(nums[j])
-            if len(dct) < m:
-                return inf
-            res = inf
-            for item in combinations(lst, m):
-                cur = max(item) - min(item)
-                if cur > res:
-                    break
-                nex = state
-                for num in item:
-                    nex ^= (1 << dct[num])
-                x = dfs(nex) + cur
-                res = res if res < x else x
-            return res
-
         n = len(nums)
-        nums.sort()
         if n % k:
             return -1
+        group = dict()
+        ceil = [0] * (1 << n)
+        floor = [inf] * (1 << n)
+        ind = {1 << i: i for i in range(n)}
         m = n // k
-        ans = dfs((1 << n) - 1)
-        return ans if ans < inf else -1
+        for i in range(1, 1 << n):
+            x = nums[ind[i & (-i)]]
+            ceil[i] = ac_max(ceil[i & (i - 1)], x)
+            floor[i] = ac_min(floor[i & (i - 1)], x)
+            if i.bit_count() == m:
+                lst = [nums[j] for j in range(n) if i & (1 << j)]
+                if len(set(lst)) == m:
+                    group[i] = ceil[i] - floor[i]
+
+        dp = [inf] * (1 << n)
+        dp[0] = 0
+        for i in range(1 << n):
+            if dp[i] == inf:
+                continue
+            not_seen = {nums[j]: j for j in range(n) if not i & (1 << j)}
+            mask = sum(1 << x for x in not_seen.values())
+            sub = mask
+            while sub:
+                if sub in group:
+                    dp[i | sub] = ac_min(dp[i | sub], dp[i] + group[sub])
+                sub = (sub - 1) & mask
+        return dp[-1] if dp[-1] < inf else -1
 
     @staticmethod
     def lc_1723(jobs: List[int], k: int) -> int:
         """
         url: https://leetcode.cn/problems/find-minimum-time-to-finish-all-jobs/
-        tag: bit_operation|minimum_maximum|brute_force|classical|sub_set
+        tag: bit_operation|minimum_maximum|brute_force|classical|sub_set|refresh_table
         """
 
-        # 通过bit_operationbrute_force分配工作DP最小化的最大值，brute_force子集preprocess
-        @lru_cache(None)
-        def dfs(i, state):
-            if i == k:
-                if not state:
-                    return 0
-                return inf
-            res = inf
-            sub = state
-            while sub:
-                cost = state_cost[sub]
-                if cost < res:
-                    nex = dfs(i + 1, state ^ sub)
-                    if nex > cost:
-                        cost = nex
-                    if cost < res:
-                        res = cost
-                # brute_force子集模板
-                sub = (sub - 1) & state
-            return res
-
         n = len(jobs)
-        state_cost = [0] * (1 << n)
-        for x in range(1, 1 << n):
-            state_cost[x] = sum(jobs[j] for j in range(n) if x & (1 << j))
-
-        return dfs(0, (1 << n) - 1)
+        ind = {1 << i: i for i in range(n)}
+        cost = [0] * (1 << n)
+        for i in range(1, 1 << n):
+            cost[i] = cost[i & (i - 1)] + jobs[ind[i & (-i)]]
+        pre = cost[:]
+        cur = cost[:]
+        for _ in range(k - 1):
+            for i in range(1, 1 << n):
+                sub = i
+                while sub:
+                    if cost[sub] < cur[i] and pre[i ^ sub] < cur[i]:
+                        cur[i] = ac_max(pre[i ^ sub], cost[sub])
+                    sub = (sub - 1) & i
+            for i in range(1 << n):
+                pre[i] = cur[i]
+        return pre[-1]
 
     @staticmethod
     def lc_1879_1(nums1: List[int], nums2: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/minimum-xor-sum-of-two-arrays/
-        tag: state_dp
+        tag: state_dp|refresh_table
         """
-
-        # memory_searchdfs|state_compress写法
-
-        @lru_cache(None)
-        def dfs(i, state):
-            if i == n:
-                return 0
-            res = inf
-            for j in range(n):
-                if state & (1 << j):
-                    cur = (nums1[i] ^ nums2[j]) + dfs(i + 1, state ^ (1 << j))
-                    if cur < res:
-                        res = cur
-            return res
-
-        n = len(nums1)
-        return dfs(0, (1 << n) - 1)
-
-    @staticmethod
-    def lc_1879_2(nums1: List[int], nums2: List[int]) -> int:
-        """
-        url: https://leetcode.cn/problems/minimum-xor-sum-of-two-arrays/
-        tag: state_dp
-        """
-        # state_compress迭代写法，刷表法
         n = len(nums1)
         s = sum(nums1) + sum(nums2)
         dp = [s] * (1 << n)
@@ -196,12 +157,12 @@ class Solution:
         return dp[-1]
 
     @staticmethod
-    def lc_1879_3(nums1: List[int], nums2: List[int]) -> int:
+    def lc_1879_2(nums1: List[int], nums2: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/minimum-xor-sum-of-two-arrays/
-        tag: state_dp
+        tag: state_dp|fill_table
+
         """
-        # state_compress迭代写法，fill_table
         n = len(nums1)
         s = sum(nums1) + sum(nums2)
         dp = [s] * (1 << n)
