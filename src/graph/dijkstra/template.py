@@ -2,6 +2,7 @@ from collections import defaultdict, deque
 from heapq import heappush, heappop
 from typing import List, Set
 
+from src.data_structure.sorted_list.template import SortedList
 from src.utils.fast_io import inf
 
 
@@ -27,6 +28,26 @@ class Dijkstra:
                 if dj < dis[j]:
                     dis[j] = dj
                     heappush(stack, (dj, j))
+        return dis
+
+    @staticmethod
+    def get_dijkstra_result_sorted_list(dct, src: int) -> List[float]:
+
+        n = len(dct)
+        dis = [inf] * n
+        dis[src] = 0
+        lst = SortedList([(0, src)])
+        while lst:
+            d, i = lst.pop(0)
+            if dis[i] < d:
+                continue
+            for j, w in dct[i]:
+                dj = w + d
+                if dj < dis[j]:
+                    if dis[j] < inf:
+                        lst.discard((dis[j], j))
+                    dis[j] = dj
+                    lst.add((dj, j))
         return dis
 
     @staticmethod
@@ -174,6 +195,36 @@ class Dijkstra:
                     cnt[j][1] += pre
                     if mod != -1:
                         cnt[j][1] %= mod
+        return dis, cnt
+
+    @staticmethod
+    def get_cnt_of_second_shortest_path_by_bfs(dct: List[List[int]], src, mod=-1):
+        """number of strictly second shorter path by bfs"""
+        n = len(dct)
+        dis = [inf] * 2 * n
+        dis[src * 2] = 0
+        stack = [(0, src, 0)]
+        cnt = [0] * 2 * n
+        cnt[src * 2] = 1
+        while stack:
+            d, i, state = heappop(stack)
+            pre = cnt[i * 2 + state]
+            for j in dct[i]:
+                dd = d + 1
+                if dd < dis[j * 2]:
+                    dis[j * 2] = dd
+                    cnt[j * 2] = pre
+                    stack.append((dd, j, 0))
+                elif dd == dis[j * 2]:
+                    cnt[j * 2] += pre
+                    cnt[j * 2] %= mod
+                elif dis[j * 2] + 1 == dd < dis[j * 2 + 1]:
+                    dis[j * 2 + 1] = dd
+                    cnt[j * 2 + 1] = pre
+                    stack.append((dd, j, 1))
+                elif dis[j * 2] + 1 == dd == dis[j * 2 + 1]:
+                    cnt[j * 2 + 1] += pre
+                    cnt[j * 2 + 1] %= mod
         return dis, cnt
 
     @staticmethod

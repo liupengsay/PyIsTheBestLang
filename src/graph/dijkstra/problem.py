@@ -131,7 +131,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6175
         tag: dijkstra|brute_force|dfs
         """
-        # Dijkstrabrute_force边的方式最小环
+
         n, m = ac.read_list_ints()
         dct = [defaultdict(lambda: inf) for _ in range(n)]
         edges = []
@@ -153,7 +153,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6175
         tag: dijkstra|brute_force|dfs
         """
-        # Dijkstrabrute_force点的方式最小环
+
         n, m = ac.read_list_ints()
         dct = [defaultdict(lambda: inf) for _ in range(n)]
         for _ in range(m):
@@ -170,7 +170,7 @@ class Solution:
         url: https://codeforces.com/problemset/problem/1343/E
         tag: several_bfs|shortest_path|greedy|brute_force
         """
-        # 01-bfs求三个shortest_path
+
         for _ in range(ac.read_int()):
             n, m, a, b, c = ac.read_list_ints()
             a -= 1
@@ -204,7 +204,7 @@ class Solution:
         url: https://codeforces.com/contest/1650/problem/G
         tag: dijkstra|shortest_path|strictly_second_shortest_path|counter|zero_one_bfs
         """
-        # shortest_path与strictly_second_shortest_pathcounter，因为不带权，所以正解为01-bfs
+
         mod = 10 ** 9 + 7
         for _ in range(ac.read_int()):
             ac.read_str()
@@ -213,14 +213,11 @@ class Solution:
             dct = [[] for _ in range(n)]
             for _ in range(m):
                 x, y = ac.read_list_ints_minus_one()
-                dct[x].append([y, 1])
-                dct[y].append([x, 1])
+                dct[x].append(y)
+                dct[y].append(x)
 
-            dis, cnt = Dijkstra().get_cnt_of_second_shortest_path(dct, s, mod)
-            ans = cnt[t][0]
-            if dis[t][1] == dis[t][0] + 1:
-                ans += cnt[t][1]
-            ac.st(ans % mod)
+            _, cnt = Dijkstra().get_cnt_of_second_shortest_path_by_bfs(dct, s, mod)
+            ac.st((cnt[t * 2] + cnt[t * 2 + 1]) % mod)
         return
 
     @staticmethod
@@ -229,25 +226,23 @@ class Solution:
         url: https://leetcode.cn/problems/cheapest-flights-within-k-stops/
         tag: limited_shortest_path
         """
-        # Dijkstra limited_shortest_path
-        dct = [dict() for _ in range(n)]
-        for u, v, p in flights:
-            dct[u][v] = p
 
-        # 第一维是代价，第二维是次数
-        stack = [[0, 0, src]]
+        dct = [[] for _ in range(n)]
+        for u, v, p in flights:
+            dct[u].append((v, p))
+
+        stack = [(0, 0, src)]
         dis = [inf] * n
         while stack:
             cost, cnt, i = heappop(stack)
-            # 前面的代价已经比当前小了若是换乘次数更多则显然不可取
-            if dis[i] <= cnt or cnt >= k + 2:  # 超过 k 次换乘也不行
+            if dis[i] <= cnt or cnt >= k + 2:
                 continue
             if i == dst:
                 return cost
             dis[i] = cnt
-            for j in dct[i]:
+            for j, w in dct[i]:
                 if cnt + 1 < dis[j]:
-                    heappush(stack, [cost + dct[i][j], cnt + 1, j])
+                    heappush(stack, (cost + w, cnt + 1, j))
         return -1
 
     @staticmethod
@@ -256,7 +251,7 @@ class Solution:
         url: https://leetcode.cn/problems/second-minimum-time-to-reach-destination/
         tag: strictly_second_shortest_path|classical
         """
-        # strictly_second_shortest_path，距离更新时需要注意变化
+
         dct = [[] for _ in range(n)]
         for i, j in edges:
             dct[i - 1].append(j - 1)
@@ -271,27 +266,26 @@ class Solution:
             if dis[i][1] < d:
                 continue
             for j in dct[i]:
-                # 注意此时的更新策略
                 if (d // change) % 2 == 0:
-                    nex_d = d + time  # 绿灯
+                    nex_d = d + time
                 else:
-                    nex_d = (d // change + 1) * change + time  # 红灯需要等待
+                    nex_d = (d // change + 1) * change + time
                 if dis[j][0] > nex_d:
                     dis[j][1] = dis[j][0]
                     dis[j][0] = nex_d
-                    heappush(stack, [nex_d, j])
-                elif dis[j][0] < nex_d < dis[j][1]:  # 非严格修改为 d+w < dis[j][1]
+                    heappush(stack, (nex_d, j))
+                elif dis[j][0] < nex_d < dis[j][1]:
                     dis[j][1] = nex_d
-                    heappush(stack, [nex_d, j])
+                    heappush(stack, (nex_d, j))
         return dis[-1][1]
 
     @staticmethod
     def lc_2065(values: List[int], edges: List[List[int]], max_time: int) -> int:
         """
         url: https://leetcode.cn/problems/maximum-path-quality-of-a-graph/
-        tag: back_track|dijkstra|shortest_path|prune
+        tag: back_track|dijkstra|shortest_path|prune|data_range
         """
-        # back_track，正解Dijkstra跑shortest_pathprune
+
         n = len(values)
         dct = [[] for _ in range(n)]
         for i, j, t in edges:
@@ -322,18 +316,16 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-cost-to-reach-city-with-discounts/
         tag: dijkstra|limited_shortest_path
         """
-        # Dijkstra limited_shortest_path
+
         dct = [[] for _ in range(n)]
         for u, v, p in highways:
             dct[u].append([v, p])
             dct[v].append([u, p])
 
-        # 第一维是花费，第二维是折扣次数
-        stack = [[0, 0, 0]]
+        stack = [(0, 0, 0)]
         dis = [inf] * n
         while stack:
             cost, cnt, i = heappop(stack)
-            # 前面的代价已经比当前小了若是折扣次数更多则显然不可取
             if dis[i] <= cnt:
                 continue
             if i == n - 1:
@@ -341,9 +333,9 @@ class Solution:
             dis[i] = cnt
             for j, w in dct[i]:
                 if cnt < dis[j]:
-                    heappush(stack, [cost + w, cnt, j])
+                    heappush(stack, (cost + w, cnt, j))
                 if cnt + 1 < dis[j] and cnt + 1 <= discounts:
-                    heappush(stack, [cost + w // 2, cnt + 1, j])
+                    heappush(stack, (cost + w // 2, cnt + 1, j))
 
         return -1
 
@@ -353,7 +345,7 @@ class Solution:
         url: https://leetcode.cn/problems/reachable-nodes-in-subdivided-graph/description/
         tag: dijkstra
         """
-        # Dijkstra模板题
+
         dct = [[] for _ in range(n)]
         for i, j, c in edges:
             dct[i].append([j, c + 1])
@@ -386,17 +378,16 @@ class Solution:
     def lc_1293(grid: List[List[int]], k: int) -> int:
         """
         url: https://leetcode.cn/problems/shortest-path-in-a-grid-with-obstacles-elimination/
-        tag: limited_shortest_path
+        tag: limited_shortest_path|classical|dijkstra_usage
         """
-        # Dijkstra limited_shortest_path
+
         m, n = len(grid), len(grid[0])
         visit = defaultdict(lambda: float("inf"))
-        # 第一维是距离，第二维是代价
+
         stack = [[0, 0, 0, 0]]
         while stack:
             dis, cost, i, j = heappop(stack)
-            # 距离更远所以要求消除的障碍物更少
-            if visit[(i, j)] <= cost or cost > k:  # 超过 k 次不满足条件
+            if visit[(i, j)] <= cost or cost > k:
                 continue
             if i == m - 1 and j == n - 1:
                 return dis
@@ -410,9 +401,9 @@ class Solution:
     def lg_p1462(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1462
-        tag: limited_shortest_path
+        tag: limited_shortest_path|classical
         """
-        # Dijkstra limited_shortest_path
+
         n, m, s = ac.read_list_ints()
         cost = [ac.read_int() for _ in range(n)]
         dct = [dict() for _ in range(n)]
@@ -420,18 +411,15 @@ class Solution:
             a, b, c = ac.read_list_ints()
             a -= 1
             b -= 1
-            # 取权值较小的边
             if b not in dct[a] or dct[a][b] > c:
                 dct[a][b] = c
             if a not in dct[b] or dct[b][a] > c:
                 dct[b][a] = c
 
         visit = [0] * n
-        stack = [[cost[0], 0, s]]
-        # 第一维是花费，第二维是血量
+        stack = [(cost[0], 0, s)]
         while stack:
             dis, i, bd = heappop(stack)
-            # 前期花费更少，就要求当前血量更高
             if visit[i] > bd:
                 continue
             if i == n - 1:
@@ -440,10 +428,9 @@ class Solution:
             visit[i] = bd
             for j in dct[i]:
                 bj = bd - dct[i][j]
-                # 必须是非负数才能存活
                 if bj >= visit[j]:
                     visit[j] = bj
-                    heappush(stack, [ac.max(dis, cost[j]), j, bj])
+                    heappush(stack, (ac.max(dis, cost[j]), j, bj))
         ac.st("AFK")
         return
 
@@ -451,59 +438,55 @@ class Solution:
     def lg_p4568(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P4568
-        tag: build_graph|layer_dijkstra|shortest_path
+        tag: build_graph|layer_dijkstra|shortest_path|classical
         """
-        # 建立 k+1 层图shortest_path
+
         n, m, k = ac.read_list_ints()
-        s, t = ac.read_list_ints_minus_one()
-        dct = [dict() for _ in range(n * (k + 1))]
-
-        def add_edge(x, y, w):
-            dct[x][y] = w
-            return
-
+        s, t = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
         for _ in range(m):
             a, b, c = ac.read_list_ints()
-            a -= 1
-            b -= 1
-            d = dct[a].get(b, inf)
-            c = c if c < d else d
-            add_edge(a, b, c)
-            add_edge(b, a, c)
-            for i in range(1, k + 1):
-                add_edge(a + i * n, b + i * n, c)
-                add_edge(b + i * n, a + i * n, c)
+            dct[a].append((b, c))
+            dct[b].append((a, c))
 
-                add_edge(b + (i - 1) * n, a + i * n, 0)
-                add_edge(a + (i - 1) * n, b + i * n, 0)
-
-        dis = Dijkstra().get_shortest_path(dct, s)
-        ans = inf
-        for i in range(k + 1):
-            ans = ac.min(ans, dis[t + i * n])
-        ac.st(ans)
+        n = len(dct)
+        stack = [(0, 0, s)]
+        dis = [inf] * n * (k + 1)
+        dis[s * (k + 1)] = 0
+        while stack:
+            cost, cnt, i = heappop(stack)
+            if dis[i * (k + 1) + cnt] < cost:
+                continue
+            if i == t:
+                ac.st(cost)
+                break
+            for j, w in dct[i]:
+                if dis[j * (k + 1) + cnt] > cost + w:
+                    dis[j * (k + 1) + cnt] = cost + w
+                    heappush(stack, (cost + w, cnt, j))
+                if cnt + 1 <= k and dis[j * (k + 1) + cnt + 1] > cost:
+                    dis[j * (k + 1) + cnt + 1] = cost
+                    heappush(stack, (cost, cnt + 1, j))
         return
 
     @staticmethod
     def lg_p1629(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1629
-        tag: shortest_path|several_dijkstra
+        tag: shortest_path|several_dijkstra|reverse_thinking
         """
-        # 正反方向build_graph||两边shortest_path|和即可
+
         n, m = ac.read_list_ints()
-        dct = [dict() for _ in range(n)]
-        rev = [dict() for _ in range(n)]
+        dct = [[] for _ in range(n)]
+        rev = [[] for _ in range(n)]
         for _ in range(m):
             u, v, w = ac.read_list_ints()
             u -= 1
             v -= 1
-            c = dct[u].get(v, inf)
-            c = ac.min(c, w)
-            dct[u][v] = c
-            rev[v][u] = c
-        dis1 = Dijkstra().get_shortest_path(dct, 0)
-        dis2 = Dijkstra().get_shortest_path(rev, 0)
+            dct[u].append([v, w])
+            rev[v].append([u, w])
+        dis1 = Dijkstra().get_dijkstra_result_sorted_list(dct, 0)
+        dis2 = Dijkstra().get_dijkstra_result_sorted_list(rev, 0)
         ans = sum(dis1[i] + dis2[i] for i in range(n))
         ac.st(ans)
         return
@@ -514,22 +497,26 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2865
         tag: strictly_second_shortest_path
         """
-        # strictly_second_shortest_path
+
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for _ in range(m):
             u, v, w = ac.read_list_ints()
             u -= 1
             v -= 1
-            dct[u].append([v, w])
-            dct[v].append([u, w])
+            dct[u].append((v, w))
+            dct[v].append((u, w))
 
         dis = Dijkstra().get_second_shortest_path(dct, 0)
         ac.st(dis[n - 1][1])
         return
 
     @staticmethod
-    def lc_lcp75(maze: List[str]) -> int:
+    def lc_75(maze: List[str]) -> int:
+        """
+        url: https://leetcode.cn/problems/rdmXM7/
+        tag: bfs|minimum_max_weight|shortest_path|maximum_weight_on_shortest_path
+        """
         # shortest_path逃离
         m, n = len(maze), len(maze[0])
         start = [-1, -1]
