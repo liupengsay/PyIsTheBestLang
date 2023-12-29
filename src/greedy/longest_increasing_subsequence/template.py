@@ -1,7 +1,7 @@
 import bisect
 from bisect import bisect_left
 from collections import deque, defaultdict
-from typing import List
+
 
 
 class LongestIncreasingSubsequence:
@@ -64,7 +64,7 @@ class LcsComputeByLis:
         return self.length_of_lis(nums)
 
     @staticmethod
-    def length_of_lis(nums: List[int]) -> int:
+    def length_of_lis(nums) -> int:
         # greedy and binary search to check lis
         stack = []
         for x in nums:
@@ -76,7 +76,7 @@ class LcsComputeByLis:
         # length of lis
         return len(stack)
 
-    def index_of_lcs(self, s1, s2) -> List[int]:
+    def index_of_lcs(self, s1, s2):
         # greedy and binary search to check lis output the index
         if len(s1) > len(s2):
             s1, s2 = s2, s1
@@ -93,7 +93,7 @@ class LcsComputeByLis:
         return res
 
     @staticmethod
-    def minimum_lexicographical_order_of_lis(nums: List[int]) -> List[int]:
+    def minimum_lexicographical_order_of_lis(nums):
         """template of minimum lexicographical order lis"""
         # greedy and binary search to check lis output the index
         if not nums:

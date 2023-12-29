@@ -1,5 +1,3 @@
-from typing import List
-
 
 class KMP:
     def __init__(self):
@@ -39,7 +37,7 @@ class KMP:
         # z[0] = 0
         return z
 
-    def find(self, s1: str, s2: str) -> List[int]:
+    def find(self, s1: str, s2: str):
         """find the index position of s2 in s1"""
         n, m = len(s1), len(s2)
         pi = self.prefix_function(s2 + "#" + s1)
