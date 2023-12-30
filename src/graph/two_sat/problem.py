@@ -18,7 +18,6 @@ P4171（https://www.luogu.com.cn/problem/P4171）2-sat|scc|classical
 
 """
 
-from src.graph.scc.template import Tarjan, Kosaraju
 from src.graph.tarjan.template import TarjanCC
 from src.utils.fast_io import FastIO
 
