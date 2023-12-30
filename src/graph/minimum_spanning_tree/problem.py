@@ -99,8 +99,11 @@ class Solution:
         return
 
     @staticmethod
-    def lg_2820(ac=FastIO()):
-        # 求删除最大权值和使得存在回路的连通图变成mst|
+    def lg_p2820(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2820
+        tag: reverse_thinking|mst
+        """
         n, m = ac.read_list_ints()
         edge = [ac.read_list_ints() for _ in range(m)]
         uf = UnionFind(n)
@@ -118,7 +121,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3366
         tag: mst
         """
-        # kruskal求mst|
+
         n, m = ac.read_list_ints()
         edges = []
         for _ in range(m):
@@ -139,7 +142,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3366
         tag: mst
         """
-        # prim求mst|
         n, m = ac.read_list_ints()
         edges = []
         for _ in range(m):

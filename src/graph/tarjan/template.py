@@ -18,7 +18,7 @@ class TarjanCC:
         in_stack = [0] * n
         scc_id = 0
         # nodes list of every scc_id part
-        scc_node_id = defaultdict(set)
+        scc_node_id = []
         # index if original node and value is scc_id part
         node_scc_id = [-1] * n
         parent = [-1] * n
@@ -39,6 +39,8 @@ class TarjanCC:
                             while out:
                                 top = out.pop()
                                 in_stack[top] = 0
+                                while len(scc_node_id) < scc_id + 1:
+                                    scc_node_id.append(set())
                                 scc_node_id[scc_id].add(top)
                                 node_scc_id[top] = scc_id
                                 if top == cur:
@@ -68,6 +70,7 @@ class TarjanCC:
         for i in range(scc_id):
             for j in new_dct[i]:
                 new_degree[j] += 1
+        assert len(scc_node_id) == scc_id
         return scc_id, scc_node_id, node_scc_id
 
     @staticmethod

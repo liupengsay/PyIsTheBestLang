@@ -7,8 +7,8 @@ Description：scc|edcc|pdcc|cur_point|cut_edge|directed_acyclic_graph
 2360（https://leetcode.cn/problems/longest-cycle-in-a-graph/solution/）largest_circle|scc|topological_sort
 2204（https://leetcode.cn/problems/distance-to-a-cycle-in-undirected-graph/description/）scc|dag|build_graph|reverse_graph
 1568（https://leetcode.cn/problems/minimum-number-of-days-to-disconnect-island/solution/）cut_point|tarjan
-
 =====================================LuoGu======================================
+P3387（https://www.luogu.com.cn/problem/P3387）scc
 P3388（https://www.luogu.com.cn/problem/P3388）multi_edge|self_loop|cut_point
 P8435（https://www.luogu.com.cn/problem/P8435）multi_edge|self_loop|several_circle
 P8436（https://www.luogu.com.cn/problem/P8436）multi_edge|self_loop|build_graph|fake_source
@@ -62,6 +62,50 @@ from src.utils.fast_io import inf
 
 class Solution:
     def __init__(self):
+        return
+
+
+    @staticmethod
+    def lg_p3387(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3387
+        tag: scc|dag|classical|longest_path
+        """
+
+        n, m = ac.read_list_ints()
+        weight = ac.read_list_ints()
+        edge = [set() for _ in range(n)]
+        for _ in range(m):
+            x, y = ac.read_list_ints_minus_one()
+            edge[x].add(y)
+        scc_id, scc_node_id, node_scc_id = TarjanCC().get_strongly_connected_component_bfs(n, [list(e) for e in edge])
+
+        new_dct = [set() for _ in range(scc_id)]
+        new_weight = [sum(weight[j] for j in scc_node_id[i]) for i in range(scc_id)]
+        for i in range(n):
+            for j in edge[i]:
+                a, b = node_scc_id[i], node_scc_id[j]
+                if a != b:
+                    new_dct[a].add(b)
+        new_degree = [0] * scc_id
+        for i in range(scc_id):
+            for j in new_dct[i]:
+                new_degree[j] += 1
+
+        ans = [0] * scc_id
+        stack = deque([i for i in range(scc_id) if not new_degree[i]])
+        for i in stack:
+            ans[i] = new_weight[i]
+        while stack:
+            i = stack.popleft()
+            for j in new_dct[i]:
+                w = new_weight[j]
+                new_degree[j] -= 1
+                if ans[i] + w > ans[j]:
+                    ans[j] = ans[i] + w
+                if not new_degree[j]:
+                    stack.append(j)
+        ac.st(max(ans))
         return
 
     @staticmethod
@@ -176,41 +220,6 @@ class Solution:
         for a in res:
             ac.st(" ".join(a))
         return
-
-    @staticmethod
-    def lc_2360_1(edges: List[int]) -> int:
-        """
-        url: https://leetcode.cn/problems/longest-cycle-in-a-graph/solution/
-        tag: largest_circle|scc|topological_sort
-        """
-        # TarjanCC 求 scc 有向图scc
-        n = len(edges)
-        edge = [set() for _ in range(n)]
-        for i in range(n):
-            if edges[i] != -1:
-                edge[i].add(edges[i])
-        scc_id, scc_node_id, node_scc_id = TarjanCC().get_strongly_connected_component_bfs(n, [list(e) for e in edge])
-        ans = max(len(scc_node_id[r]) for r in scc_node_id)
-        return ans if ans > 1 else -1
-
-    @staticmethod
-    def lc_2360_2(edges: List[int]) -> int:
-        """
-        url: https://leetcode.cn/problems/longest-cycle-in-a-graph/solution/
-        tag: largest_circle|scc|topological_sort
-        """
-        # 有向图 Tarjan 求 scc 有向图scc
-        n = len(edges)
-        edge = [[] for _ in range(n)]
-        for i in range(n):
-            if edges[i] != -1:
-                edge[i] = [edges[i]]
-        _, _, sub_group = TarjanDirected().check_graph(edge, n)
-        ans = -1
-        for sub in sub_group:
-            if len(sub) > 1 and len(sub) > ans:
-                ans = len(sub)
-        return ans
 
     @staticmethod
     def lg_p3388(ac=FastIO()):
@@ -911,3 +920,20 @@ class Solution:
             stack = nex[:]
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_2360(edges):
+        """
+        url: https://leetcode.cn/problems/longest-cycle-in-a-graph/
+        tag: largest_circle|scc|topological_sort|scc
+        """
+
+        n = len(edges)
+        dct = [[] for _ in range(n)]
+        for i in range(n):
+            if edges[i] != -1:
+                dct[i].append(edges[i])
+
+        _, scc_node_id, _ = TarjanCC().get_strongly_connected_component_bfs(n, dct)
+        ans = max(len(ls) for ls in scc_node_id)
+        return ans if ans > 1 else -1
