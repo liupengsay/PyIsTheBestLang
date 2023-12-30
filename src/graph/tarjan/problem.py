@@ -54,7 +54,7 @@ from collections import defaultdict, deque
 from typing import List
 
 from src.dp.tree_dp.template import ReRootDP
-from src.graph.tarjan.template import TarjanCC, TarjanUndirected, TarjanDirected
+from src.graph.tarjan.template import TarjanCC
 from src.graph.union_find.template import UnionFind
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
@@ -63,7 +63,6 @@ from src.utils.fast_io import inf
 class Solution:
     def __init__(self):
         return
-
 
     @staticmethod
     def lg_p3387(ac=FastIO()):
@@ -381,7 +380,7 @@ class Solution:
         return
 
     @staticmethod
-    def lc_1192_1(n: int, connections: List[List[int]]) -> List[List[int]]:
+    def lc_1192(n: int, connections: List[List[int]]) -> List[List[int]]:
         """
         url: https://leetcode.cn/problems/critical-connections-in-a-network/
         tag: tarjan|cut_edge
@@ -393,20 +392,6 @@ class Solution:
             edge[j].add(i)
         cutting_point, cutting_edge = TarjanCC().get_cutting_point_and_cutting_edge_bfs(n, [list(e) for e in edge])
         return [list(e) for e in cutting_edge]
-
-    @staticmethod
-    def lc_1192_2(n: int, connections: List[List[int]]) -> List[List[int]]:
-        """
-        url: https://leetcode.cn/problems/critical-connections-in-a-network/
-        tag: tarjan|cut_edge
-        """
-        #  Tarjan 求cut_edge
-        edge = [[] for _ in range(n)]
-        for i, j in connections:
-            edge[i].append(j)
-            edge[j].append(i)
-        cut_edge, cut_node, sub_group = TarjanUndirected().check_graph(edge, n)
-        return cut_edge
 
     @staticmethod
     def lg_p1656(ac=FastIO()):
