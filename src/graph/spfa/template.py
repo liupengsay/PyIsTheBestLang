@@ -41,6 +41,39 @@ class SPFA:
         return "NO", dis, cnt
 
     @staticmethod
+    def positive_circle_edge(dct, src=0, initial=0):
+        """determine whether there is a negative loop and find the shortest path
+        which can also find a positive loop by make the opposite weight of the graph
+        """
+        # Finding the shortest path distance with negative weight and the number of path edges
+        n = len(dct)
+        dis = [-inf] * n
+        # flag of node in stack or not
+        visit = [False] * n
+        # the number of edges by the shortest path
+        cnt = [0] * n
+        queue = deque([src])
+        dis[src] = initial
+        visit[src] = True
+        while queue:
+            u = queue.popleft()
+            visit[u] = False
+            for v, w in dct[u]:  # Chain forward stars support self loops and double edges
+                if dis[v] < dis[u] + w:
+                    dis[v] = dis[u] + w
+                    cnt[v] = cnt[u] + 1
+                    if cnt[v] >= n:
+                        # there is at least one negative loop starting from the starting point
+                        return "YES", dis, cnt
+                    # If the adjacent node is not already in the queue
+                    # add it to the queue
+                    if not visit[v]:
+                        queue.append(v)
+                        visit[v] = True
+        # there is no negative loop starting from the starting point
+        return "NO", dis, cnt
+
+    @staticmethod
     def negative_circle(dct, src=0, initial=0):
         n = len(dct)
         dis = [inf for _ in range(n)]

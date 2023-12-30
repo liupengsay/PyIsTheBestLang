@@ -46,9 +46,9 @@ class Solution:
     def lg_p1144(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1144
-        tag: number_of_shortest_path
+        tag: number_of_shortest_path|bfs
         """
-        # 无向无权图起点出发的shortest_pathcounter问题
+
         n, m = ac.read_list_ints()
         dct = [dict() for _ in range(n)]
         for _ in range(m):
@@ -62,13 +62,15 @@ class Solution:
         return
 
     @staticmethod
-    def lg_p3648(ac=FastIO()):
-        # 判断不同起点出发是否存在正环并最长路
+    def lg_p2648(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2648
+        tag: positive_circle|longest_path|classical
+        """
         d, p, c, f = ac.read_list_ints()
         dct = [dict() for _ in range(c)]
         for _ in range(p):
             a, b = ac.read_list_ints_minus_one()
-            # 直接权值取负数变为判断是否存在negative_circle与shortest_path
             dct[a][b] = -d
         for _ in range(f):
             j, k, t = ac.read_list_ints()
@@ -91,7 +93,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2136
         tag: negative_circle|shortest_path
         """
-        # 判断不同起点出发是否存在negative_circle并shortest_path
         n, m = ac.read_list_ints()
         dct = [dict() for _ in range(n)]
         for _ in range(m):
@@ -110,7 +111,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3385
         tag: shortest_path|negative_circle
         """
-        # SPFA 判断是否存在negative_circle与shortest_path
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
             dct = [dict() for _ in range(n)]
@@ -126,14 +126,16 @@ class Solution:
         return
 
     @staticmethod
-    def lg_1938(ac=FastIO()):
-        # SPFA 判断是否存在正环与最长路
+    def lg_p1938(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1938
+        tag: negative_circle|positive_circle|shortest_path|longest_path
+        """
         d, p, c, f, s = ac.read_list_ints()
         s -= 1
         dct = [dict() for _ in range(c)]
         for _ in range(p):
             a, b = ac.read_list_ints_minus_one()
-            # 直接权值取负数变为判断是否存在negative_circle与shortest_path
             dct[a][b] = -d
         for _ in range(f):
             j, k, t = ac.read_list_ints()
@@ -150,15 +152,15 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1993
         tag: differential_constraint|negative_circle
         """
-        # differential_constraint转换为negative_circle判断求解
+
         n, m = ac.read_list_ints()
         dct = [dict() for _ in range(n + 1)]
-        # 超级源点有向边出发
+        # source
         for i in range(1, n + 1):
             dct[0][i] = 0
         for _ in range(m):
             lst = ac.read_list_ints()
-            # xa - xb <= c 则增|有向边 [xb, xa, c] 其中 xb => xa
+            # xa - xb <= c then add edge [xb, xa, c]
             if lst[0] == 1:
                 a, b, c = lst[1:]
                 dct[a][b] = -c
@@ -177,27 +179,28 @@ class Solution:
         return
 
     @staticmethod
-    def lc_6318(tasks: List[List[int]]) -> int:
-        # differential_constraint转换为negative_circle判断求解
+    def lc_2589(tasks: List[List[int]]) -> int:
+        """
+        url: https://leetcode.cn/problems/minimum-time-to-complete-all-tasks/
+        tag: differential_constraint|greedy|classical
+        """
+
         n = max(it[1] for it in tasks)
-        # xa - xb <= c 则增|有向边 [xb, xa, c] 其中 xb => xa
         dct = [dict() for _ in range(n + 2)]
 
-        # 邻项约束
         for i in range(1, n + 1):
+            # xa - xb <= c then add edge [xb, xa, c]
             dct[i][i - 1] = 0
             dct[i - 1][i] = 1
 
-        # 条件约束
         for s, e, c in tasks:
             if s - 1 not in dct[e]:
                 dct[e][s - 1] = -c
             else:
-                # 注意重边的约束
                 k = dct[e][s - 1]
                 dct[e][s - 1] = k if k < -c else -c
 
-        # 超级源点
+        # source
         for i in range(n + 1):
             dct[n + 1][i] = 0
 
@@ -210,7 +213,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5960
         tag: differential_constraint
         """
-        # differential_constraint模板题
+
         n, m = ac.read_list_ints()
         edges = [ac.read_list_ints() for _ in range(m)]
         ans, dis = SPFA().differential_constraint(edges, n)
