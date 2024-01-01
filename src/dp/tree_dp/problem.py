@@ -8,11 +8,9 @@ Description：reroot_dp|up_to_down|down_to_up
 968（https://leetcode.cn/problems/binary-tree-cameras/）tree_dp
 2538（https://leetcode.cn/problems/difference-between-maximum-and-minimum-price-sum/）reroot_dp|tree_diameter
 124（https://leetcode.cn/problems/binary-tree-maximum-path-sum/）tree_dp
-1617（https://leetcode.cn/problems/count-subtrees-with-max-distance-between-cities/）brute_force|tree_diameter
 2378（https://leetcode.cn/problems/choose-edges-to-maximize-score-in-a-tree/）tree_dp
 2445（https://leetcode.cn/problems/number-of-nodes-with-value-one/）up_to_down|tree_dp|implemention
 834（https://leetcode.cn/problems/sum-of-distances-in-tree/）tree_dis|tree_centroid
-1617（https://leetcode.cn/problems/count-subtrees-with-max-distance-between-cities/）brute_force|tree_diameter|tree_dp
 2003（https://leetcode.cn/problems/smallest-missing-genetic-value-in-each-subtree/）tree_dp|heuristic_merge|classical
 2673（https://leetcode.cn/problems/make-costs-of-paths-equal-in-a-binary-tree/）tree_dp|greedy
 1367（https://leetcode.cn/problems/linked-list-in-binary-tree/description/）classical|2-tree|linked_list|memory_dp
@@ -41,8 +39,7 @@ P7159（https://www.luogu.com.cn/problem/P7159）tree_dp|brute_force|counter|fas
 P2015（https://www.luogu.com.cn/problem/P2015）tree_dp|tree_bag_dp
 P2014（https://www.luogu.com.cn/problem/P2014）tree_dp
 P4316（https://www.luogu.com.cn/problem/P4316）reverse_graph|topological_sortingDP
-P1351#submit（https://www.luogu.com.cn/problem/P1351#submit）tree_dp
-P3304（https://www.luogu.com.cn/problem/P3304）tree_diameter
+P1351（https://www.luogu.com.cn/problem/P1351）tree_dp
 P3408（https://www.luogu.com.cn/problem/P3408）tree_dp
 P3478（https://www.luogu.com.cn/problem/P3478）tree_centroid
 P3931（https://www.luogu.com.cn/problem/P3931）classical|tree_dp
@@ -63,7 +60,6 @@ ABC222F（https://atcoder.jp/contests/abc222/tasks/abc222_f）reroot_dp
 337D（https://codeforces.com/problemset/problem/337/D）reroot_dp|dfs|down_to_up|up_to_down
 1187E（https://codeforces.com/problemset/problem/1187/E）reroot_dp|dfs|down_to_up|up_to_down
 600E（https://codeforces.com/problemset/problem/600/E）dfs_order|heuristic_merge
-1805D（https://codeforces.com/problemset/problem/1805/D）tree_diameter
 1676G（https://codeforces.com/contest/1676/problem/G）tree_dp
 1822F（https://codeforces.com/contest/1822/problem/F）tree_dis|reroot_dp|down_to_up|up_to_down
 219D（https://codeforces.com/contest/219/problem/D）reroot_dp|dfs_order|diff_array
