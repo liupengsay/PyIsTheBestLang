@@ -266,8 +266,7 @@ class Solution:
                 degree[x] += 1
                 degree[y] += 1
 
-        pdcc_id, pdcc_node_id, node_pdcc_id = Tarjan().get_pdcc(n, [list(e) for e in
-                                                                    edge])
+        pdcc_id, pdcc_node_id, node_pdcc_id = Tarjan().get_pdcc(n, [list(e) for e in edge])
         ac.st(len(pdcc_node_id) + sum(degree[i] == 0 for i in range(n)))
         for r in range(pdcc_id):
             ac.lst([len(pdcc_node_id[r])] + [x + 1 for x in pdcc_node_id[r]])
@@ -540,8 +539,7 @@ class Solution:
 
         s = ac.read_int() - 1
 
-        scc_id, scc_node_id, node_scc_id = Tarjan().get_scc(n, [list(x) for x in
-                                                                dct])
+        scc_id, scc_node_id, node_scc_id = Tarjan().get_scc(n, [list(x) for x in dct])
 
         cnt = [0] * scc_id
         for a, b, c, d in edges:
