@@ -31,6 +31,7 @@ Description：prefix_sum|prefix_sum_of_prefix_sum|suffix_sum
 1744（https://leetcode.cn/problems/can-you-eat-your-favorite-candy-on-your-favorite-day/description/）prefix_sum|greedy|implemention
 1703（https://leetcode.cn/problems/minimum-adjacent-swaps-for-k-consecutive-ones/）prefix_sum|median|greedy|1520E
 2167（https://leetcode.cn/problems/minimum-time-to-remove-all-cars-containing-illegal-goods/）math|prefix_sum|brute_force
+2983（https://leetcode.cn/problems/palindrome-rearrangement-queries/）brain_teaser|prefix_sum|brute_force|range_intersection
 
 =====================================LuoGu======================================
 list?user=739032&status=12&page=15（https://www.luogu.com.cn/record/list?user=739032&status=12&page=15）suffix_sum
@@ -1604,3 +1605,103 @@ class Solution:
                     ans += abs(d)
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_2983(s: str, queries: List[List[int]]) -> List[bool]:
+        """
+        url: https://leetcode.cn/problems/palindrome-rearrangement-queries/
+        tag: brain_teaser|prefix_sum|brute_force|range_intersection
+        """
+        lst = [ord(w) - ord("a") for w in s]
+        n = len(lst)
+        lst1, lst2 = lst[:n // 2], lst[n // 2:][::-1]
+        pre1 = []
+        pre2 = []
+        for i in range(26):
+            pre1.append(list(accumulate([int(w == i) for w in lst1], initial=0)))
+            pre2.append(list(accumulate([int(w == i) for w in lst2], initial=0)))
+
+        right = [0] * (n // 2 + 1)
+        right[n // 2] = 1
+        for i in range(n // 2 - 1, -1, -1):
+            if lst1[i] == lst2[i]:
+                right[i] = 1
+            else:
+                break
+
+        left = [0] * (n // 2 + 1)
+        left[0] = 1
+        for i in range(n // 2):
+            if lst1[i] == lst2[i]:
+                left[i + 1] = 1
+            else:
+                break
+
+        ans = []
+        for a, b, c, d in queries:
+            c, d = n - 1 - d, n - 1 - c
+            cc = ac_min(a, c)
+            dd = ac_max(b, d)
+            if not left[cc] or not right[dd + 1]:
+                ans.append(False)
+                continue
+            if a <= c <= d <= b or c <= a <= b <= d:
+                c, d = cc, dd
+                cur1 = [pre1[j][d + 1] - pre1[j][c] for j in range(26)]
+                cur2 = [pre2[j][d + 1] - pre2[j][c] for j in range(26)]
+                if cur1 != cur2:
+                    ans.append(False)
+                else:
+                    ans.append(True)
+            elif b < c or d < a:
+                cur1 = [pre1[j][b + 1] - pre1[j][a] for j in range(26)]
+                cur2 = [pre2[j][b + 1] - pre2[j][a] for j in range(26)]
+                if cur1 != cur2:
+                    ans.append(False)
+                    continue
+                cur1 = [pre1[j][d + 1] - pre1[j][c] for j in range(26)]
+                cur2 = [pre2[j][d + 1] - pre2[j][c] for j in range(26)]
+                if cur1 != cur2:
+                    ans.append(False)
+                    continue
+                if b < c:
+                    c, d = b + 1, c - 1
+                else:
+                    c, d = d + 1, a - 1
+                cur1 = [pre1[j][d + 1] - pre1[j][c] for j in range(26)]
+                cur2 = [pre2[j][d + 1] - pre2[j][c] for j in range(26)]
+                if cur1 != cur2:
+                    ans.append(False)
+                else:
+                    ans.append(True)
+            elif b <= d:
+                cur1 = [pre1[j][b + 1] - pre1[j][a] for j in range(26)]
+                cur2 = [pre2[j][d + 1] - pre2[j][c] for j in range(26)]
+                x, y = a, c - 1
+                cur = [pre2[j][y + 1] - pre2[j][x] for j in range(26)]
+                cur1 = [cur1[j] - cur[j] for j in range(26)]
+
+                x, y = b + 1, d
+                cur = [pre1[j][y + 1] - pre1[j][x] for j in range(26)]
+                cur2 = [cur2[j] - cur[j] for j in range(26)]
+
+                if cur1 != cur2 or any(x < 0 for x in cur1 + cur2):
+                    ans.append(False)
+                else:
+                    ans.append(True)
+            else:
+                cur1 = [pre1[j][b + 1] - pre1[j][a] for j in range(26)]
+                cur2 = [pre2[j][d + 1] - pre2[j][c] for j in range(26)]
+                x, y = d + 1, b
+                cur = [pre2[j][y + 1] - pre2[j][x] for j in range(26)]
+                cur1 = [cur1[j] - cur[j] for j in range(26)]
+
+                x, y = c, a - 1
+                cur = [pre1[j][y + 1] - pre1[j][x] for j in range(26)]
+                cur2 = [cur2[j] - cur[j] for j in range(26)]
+
+                if cur1 != cur2 or any(x < 0 for x in cur1 + cur2):
+                    ans.append(False)
+                else:
+                    ans.append(True)
+        return ans

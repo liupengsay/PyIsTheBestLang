@@ -46,12 +46,11 @@ ABC266F（https://atcoder.jp/contests/abc266/tasks/abc266_f）undirected_circle_
 
 =====================================AcWing=====================================
 3696（https://www.acwing.com/problem/content/description/3699/）topological_order|dag|construction
-3828（https://www.acwing.com/problem/content/description/3831/）topological_sort|dag_dp|circle_judge
-4626（https://www.acwing.com/problem/content/description/4629/）directed_circle_based_tree|circle_judge
+3831（https://www.acwing.com/problem/content/description/3831/）topological_sort|dag_dp|circle_judge
+4629（https://www.acwing.com/problem/content/description/4629/）directed_circle_based_tree|circle_judge
 
 """
 
-import copy
 import math
 from collections import defaultdict, deque
 from heapq import heapify, heappop, heappush
@@ -803,96 +802,55 @@ class Solution:
         tag: union_find|topological_sort|union_find|binary_search_tree|classical
         """
 
-        nodes = set()
-        dct = defaultdict(list)
-        degree = defaultdict(int)
-        for root in trees:
+        n = len(trees)
+        ind = {tree.val: i for i, tree in enumerate(trees)}
 
-            def dfs(node):
-                if not node:
-                    return
-                nodes.add(node.val)
-                if node.left:
-                    xxx = node.left.val
-                    dct[node.val].append(xxx)
-                    degree[xxx] += 1
-                    dfs(node.left)
-                if node.right:
-                    xxx = node.right.val
-                    dct[node.val].append(xxx)
-                    degree[xxx] += 1
-                    dfs(node.right)
-                return
+        degree = [0] * n
+        for i in range(n):
+            if trees[i].left:
+                if trees[i].left.val in ind:
+                    degree[ind[trees[i].left.val]] += 1
+            if trees[i].right:
+                if trees[i].right.val in ind:
+                    degree[ind[trees[i].right.val]] += 1
 
-            dfs(root)
-
-        nodes = list(nodes)
-        m = len(nodes)
-        ind = {num: i for i, num in enumerate(nodes)}
-
-        # 连通性
-        uf = UnionFind(m)
-        for x in dct:
-            for y in dct[x]:
-                uf.union(ind[x], ind[y])
-        if uf.part != 1:
-            return
-
-        # 二叉性与topological_sorting唯一根
-        for num in nodes:
-            if len(dct[num]) > 2:
-                return
-        stack = [num for num in nodes if not degree[num]]
-        if len(stack) != 1:
-            return
-        r = stack[0]
+        stack = [(i, -inf, inf) for i in range(n) if not degree[i]]
+        if len(stack) != 1 or any(x > 1 for x in degree):
+            return None
+        ans = trees[stack[0][0]]
         while stack:
-            nex = []
-            for x in stack:
-                for y in dct[x]:
-                    degree[y] -= 1
-                    if not degree[y]:
-                        nex.append(y)
-            stack = nex[:]
-        if not all(degree[x] == 0 for x in nodes):
-            return
-
-        # 二叉搜索特性
-
-        def dfs(w, floor, ceil):
-            nonlocal ans
-            if not ans:
-                return
-            if not floor < w < ceil:
-                ans = False
-                return
-            node = TreeNode(w)
-            for z in dct[w]:
-                if z < w:
-                    node.left = dfs(z, floor, w)
+            i, low, high = stack.pop()
+            if not low < trees[i].val < high:
+                return None
+            if trees[i].left:
+                if trees[i].left.val in ind:
+                    degree[ind[trees[i].left.val]] -= 1
+                    trees[i].left = trees[ind[trees[i].left.val]]
+                    stack.append((ind[trees[i].left.val], low, trees[i].val))
                 else:
-                    node.right = dfs(z, w, ceil)
-            return node
-
-        ans = True
-        root = dfs(r, -inf, inf)
-
-        if ans:
-            return root
-        return
+                    if not low < trees[i].left.val < trees[i].val:
+                        return None
+            if trees[i].right:
+                if trees[i].right.val in ind:
+                    degree[ind[trees[i].right.val]] -= 1
+                    trees[i].right = trees[ind[trees[i].right.val]]
+                    stack.append((ind[trees[i].right.val], trees[i].val, high))
+                else:
+                    if not trees[i].val < trees[i].right.val < high:
+                        return
+        return ans if all(x == 0 for x in degree) else None
 
     @staticmethod
-    def ac_3828(ac=FastIO()):
+    def ac_3831(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/3831/
         tag: topological_sort|dag_dp|circle_judge
         """
-        # 有向图DAGtopological_sortingDP模板题并判断有无环
+
         m, n = ac.read_list_ints()
         ind = {w: i for i, w in enumerate("QWER")}
         grid = [ac.read_str() for _ in range(m)]
 
-        # build_graph|
         dct = [[] for _ in range(m * n)]
         degree = [0] * (m * n)
         for i in range(m):
@@ -905,7 +863,6 @@ class Solution:
                             dct[i * n + j].append(a * n + b)
                             degree[a * n + b] += 1
 
-        # topological_sortingDP
         pre = [0] * (m * n)
         stack = [i for i in range(m * n) if not degree[i]]
         for i in stack:
@@ -934,12 +891,12 @@ class Solution:
         return
 
     @staticmethod
-    def ac_4626(ac=FastIO()):
+    def ac_4629(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/4629/
-        tag: directed_circle_based_tree|circle_judge
+        tag: directed_circle_based_tree|circle_judge|classical|brain_teaser
         """
-        # directed_circle_based_tree判断每个环的大小
+
         n = ac.read_int()
         a = ac.read_list_ints_minus_one()
         dct = [[] for _ in range(n)]
@@ -947,11 +904,10 @@ class Solution:
         for i in range(n):
             dct[i].append(a[i])
             degree[a[i]] += 1
-        # 全是环上的点才行
         if any(d == 0 for d in degree):
             ac.st(-1)
             return
-        # bfs判断每个环的大小并累计结果
+
         ans = 1
         for i in range(n):
             if degree[i] == 0:
@@ -979,7 +935,7 @@ class Solution:
         url: https://leetcode.cn/problems/strange-printer-ii/
         tag: build_graph|topological_sort|circle_judge
         """
-        # build_graph|判断topological_sorting是否无环
+
         color = defaultdict(list)
         m, n = len(grid), len(grid[0])
         for i in range(m):
