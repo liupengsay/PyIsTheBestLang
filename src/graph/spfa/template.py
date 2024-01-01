@@ -9,8 +9,8 @@ class SPFA:
 
     @staticmethod
     def negative_circle_edge(dct, src=0, initial=0):
-        """determine whether there is a negative loop and find the shortest path
-        which can also find a positive loop by make the opposite weight of the graph
+        """
+        determine whether there is a negative loop and find the shortest path
         """
         # Finding the shortest path distance with negative weight and the number of path edges
         n = len(dct)
@@ -31,21 +31,21 @@ class SPFA:
                     cnt[v] = cnt[u] + 1
                     if cnt[v] >= n:
                         # there is at least one negative loop starting from the starting point
-                        return "YES", dis, cnt
+                        return True, dis, cnt
                     # If the adjacent node is not already in the queue
                     # add it to the queue
                     if not visit[v]:
                         queue.append(v)
                         visit[v] = True
         # there is no negative loop starting from the starting point
-        return "NO", dis, cnt
+        return False, dis, cnt
 
     @staticmethod
     def positive_circle_edge(dct, src=0, initial=0):
-        """determine whether there is a negative loop and find the shortest path
-        which can also find a positive loop by make the opposite weight of the graph
         """
-        # Finding the shortest path distance with negative weight and the number of path edges
+        determine whether there is a positive loop and find the longest path
+        """
+        # Finding the longest path distance with negative weight and the number of path edges
         n = len(dct)
         dis = [-inf] * n
         # flag of node in stack or not
@@ -64,70 +64,14 @@ class SPFA:
                     cnt[v] = cnt[u] + 1
                     if cnt[v] >= n:
                         # there is at least one negative loop starting from the starting point
-                        return "YES", dis, cnt
+                        return True, dis, cnt
                     # If the adjacent node is not already in the queue
                     # add it to the queue
                     if not visit[v]:
                         queue.append(v)
                         visit[v] = True
         # there is no negative loop starting from the starting point
-        return "NO", dis, cnt
-
-    @staticmethod
-    def negative_circle(dct, src=0, initial=0):
-        n = len(dct)
-        dis = [inf for _ in range(n)]
-        visit = [False] * n
-        cnt = [0] * n
-        queue = deque([src])
-        dis[src] = initial
-        visit[src] = True
-
-        while queue:
-            u = queue.popleft()
-            visit[u] = False
-            for v in dct[u]:
-                w = dct[u][v]
-                if dis[v] > dis[u] + w:
-                    dis[v] = dis[u] + w
-                    cnt[v] = cnt[u] + 1
-                    if cnt[v] >= n:
-                        return "YES", dis, cnt
-                    if not visit[v]:
-                        queue.append(v)
-                        visit[v] = True
-        return "NO", dis, cnt
-
-    @staticmethod
-    def count_shortest_path(dct, mod=10 ** 9 + 7):
-        # The Shortest Path Count of Undirected Unauthorized Graphs
-        n = len(dct)
-        dis = [inf for _ in range(n)]
-        visit = [False] * n
-        cnt = [0] * n
-        queue = deque([0])
-        dis[0] = 0
-        visit[0] = True
-        cnt[0] = 1
-        while queue:
-            u = queue.popleft()
-            visit[u] = False
-            for v in dct[u]:
-                w = dct[u][v]
-                if dis[v] > dis[u] + 1:
-                    dis[v] = dis[u] + 1
-                    cnt[v] = w * cnt[u]
-                    cnt[v] %= mod
-                    if not visit[v]:
-                        queue.append(v)
-                        visit[v] = True
-                elif dis[v] == dis[u] + 1:
-                    cnt[v] += w * cnt[u]
-                    cnt[v] %= mod
-                    if not visit[v]:
-                        queue.append(v)
-                        visit[v] = True
-        return cnt
+        return False, dis, cnt
 
     @staticmethod
     def negative_circle_mul(dct, src=0, initial=0):
@@ -143,29 +87,38 @@ class SPFA:
         while queue:
             u = queue.popleft()
             visit[u] = False
-            for v in dct[u]:
-                w = dct[u][v]
+            for v, w in dct[u]:
                 if dis[v] > dis[u] * w:
                     dis[v] = dis[u] * w
                     cnt[v] = cnt[u] + 1
                     if cnt[v] >= n:
-                        return "YES", dis, cnt
+                        return True, dis, cnt
                     if not visit[v]:
                         queue.append(v)
                         visit[v] = True
-        return "NO", dis, cnt
+        return False, dis, cnt
 
-    def differential_constraint(self, ineq, n: int):
-        """find is there a solution to the inequality system of differential constraint calculation"""
-        dct = [dict() for _ in range(n + 1)]
-        # original node index start at 1
-        # virtual node 0 as root
-        for i in range(1, n + 1):
-            dct[0][i] = 0
-        for a, b, c in ineq:  # a-b<=c
-            w = dct[b].get(a, inf)  # constraints with smaller values
-            w = w if w < c else c
-            dct[b][a] = w
-        # use the shortest path and negative circle to judge if there has a circle
-        ans, dis, _ = self.negative_circle(dct, 0, 0)
-        return ans, dis
+    @staticmethod
+    def positive_circle_mul(dct, src=0, initial=1):
+        """Determine if there is a ring with a product greater than 1"""
+        n = len(dct)
+        dis = [0 for _ in range(n)]
+        visit = [False] * n
+        cnt = [0] * n
+        queue = deque([src])
+        dis[src] = initial
+        visit[src] = True
+
+        while queue:
+            u = queue.popleft()
+            visit[u] = False
+            for v, w in dct[u]:
+                if dis[v] < dis[u] * w:
+                    dis[v] = dis[u] * w
+                    cnt[v] = cnt[u] + 1
+                    if cnt[v] >= n:
+                        return True, dis, cnt
+                    if not visit[v]:
+                        queue.append(v)
+                        visit[v] = True
+        return False, dis, cnt

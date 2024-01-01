@@ -20,6 +20,7 @@ Description：multi_source_bfs|bilateral_bfs|0-1bfs|bilateral_bfs|a-star|heurist
 994（https://leetcode.cn/problems/rotting-oranges/description/）deque_bfs|implemention
 
 =====================================LuoGu======================================
+P1144（https://www.luogu.com.cn/problem/P1144）number_of_shortest_path
 P1747（https://www.luogu.com.cn/problem/P1747）bilateral_bfs|shortest_path
 P5507（https://www.luogu.com.cn/problem/P5507）bilateral_bfs|shortest_path
 P2040（https://www.luogu.com.cn/problem/P2040）bfs
@@ -2126,4 +2127,39 @@ class Solution:
                 if visit[i][j]:
                     ans += 1
         ac.st(ans)
+        return
+
+
+    @staticmethod
+    def lg_p1144(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1144
+        tag: number_of_shortest_path|bfs
+        """
+        mod = 100003
+        n, m = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        for _ in range(m):
+            x, y = ac.read_list_ints_minus_one()
+            dct[x].append(y)
+            dct[y].append(x)
+        n = len(dct)
+        dis = [inf for _ in range(n)]
+        cnt = [0] * n
+        queue = deque([0])
+        dis[0] = 0
+        cnt[0] = 1
+        while queue:
+            u = queue.popleft()
+            for v in dct[u]:
+                if dis[v] > dis[u] + 1:
+                    dis[v] = dis[u] + 1
+                    cnt[v] = cnt[u]
+                    cnt[v] %= mod
+                    queue.append(v)
+                elif dis[v] == dis[u] + 1:
+                    cnt[v] += cnt[u]
+                    cnt[v] %= mod
+        for x in cnt:
+            ac.st(x)
         return

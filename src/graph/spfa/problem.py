@@ -11,7 +11,6 @@ P3385（https://www.luogu.com.cn/problem/P3385）shortest_path|negative_circle
 P1938（https://www.luogu.com.cn/problem/P1938）negative_circle|positive_circle|shortest_path|longest_path
 P2136（https://www.luogu.com.cn/problem/P2136）negative_circle|shortest_path
 P2648（https://www.luogu.com.cn/problem/P2648）positive_circle|longest_path|classical
-P1144（https://www.luogu.com.cn/problem/P1144）number_of_shortest_path
 P1993（https://www.luogu.com.cn/problem/P1993）differential_constraint|negative_circle
 P5960（https://www.luogu.com.cn/problem/P5960）differential_constraint
 P1260（https://www.luogu.com.cn/problem/P1260）differential_constraint
@@ -34,31 +33,12 @@ from typing import List
 
 from src.graph.dijkstra.template import Dijkstra
 from src.graph.spfa.template import SPFA
-from src.utils.fast_io import FastIO
+from src.utils.fast_io import FastIO, ac_max
 from src.utils.fast_io import inf
 
 
 class Solution:
     def __init__(self):
-        return
-
-    @staticmethod
-    def lg_p1144(ac=FastIO()):
-        """
-        url: https://www.luogu.com.cn/problem/P1144
-        tag: number_of_shortest_path|bfs
-        """
-
-        n, m = ac.read_list_ints()
-        dct = [dict() for _ in range(n)]
-        for _ in range(m):
-            x, y = ac.read_list_ints_minus_one()
-            if x != y:
-                dct[y][x] = dct[x][y] = dct[x].get(y, 0) + 1
-
-        cnt = SPFA().count_shortest_path(dct, mod=100003)
-        for a in cnt:
-            ac.st(a)
         return
 
     @staticmethod
@@ -68,22 +48,20 @@ class Solution:
         tag: positive_circle|longest_path|classical
         """
         d, p, c, f = ac.read_list_ints()
-        dct = [dict() for _ in range(c)]
+        dct = [[] for _ in range(c)]
         for _ in range(p):
-            a, b = ac.read_list_ints_minus_one()
-            dct[a][b] = -d
+            a, b = ac.read_list_ints()
+            dct[a - 1].append((b - 1, d))
         for _ in range(f):
             j, k, t = ac.read_list_ints()
-            j -= 1
-            k -= 1
-            dct[j][k] = -(d - t)
-        res = -inf
+            dct[j - 1].append((k - 1, d - t))
+        res = 0
         for s in range(c):
-            ans, dis, _ = SPFA().negative_circle(dct, s, -d)
-            if ans == "YES":
+            ans, dis, _ = SPFA().positive_circle_edge(dct, s, d)
+            if ans:
                 ac.st("orz")
                 return
-            res = ac.max(res, -min(dis))
+            res = ac.max(res, max(dis))
         ac.st(res)
         return
 
@@ -94,15 +72,19 @@ class Solution:
         tag: negative_circle|shortest_path
         """
         n, m = ac.read_list_ints()
-        dct = [dict() for _ in range(n)]
+        dct = [[] for _ in range(n)]
         for _ in range(m):
             a, b, c = ac.read_list_ints()
-            a -= 1
-            b -= 1
-            dct[a][b] = ac.min(dct[a].get(a, inf), -c)
-        ans1, dis1, _ = SPFA().negative_circle(dct, 0)
-        ans2, dis2, _ = SPFA().negative_circle(dct, n - 1)
-        ac.st("Forever love" if ans1 == "YES" or ans2 == "YES" else ac.min(dis1[n - 1], dis2[0]))
+            dct[a - 1].append((b - 1, -c))
+        ans1, dis1, _ = SPFA().negative_circle_edge(dct, 0)
+        if ans1:
+            ac.st("Forever love")
+            return
+        ans2, dis2, _ = SPFA().negative_circle_edge(dct, n - 1)
+        if ans2:
+            ac.st("Forever love")
+            return
+        ac.st(ac.min(dis1[n - 1], dis2[0]))
         return
 
     @staticmethod
@@ -113,16 +95,14 @@ class Solution:
         """
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
-            dct = [dict() for _ in range(n)]
+            dct = [[] for _ in range(n)]
             for _ in range(m):
                 u, v, w = ac.read_list_ints()
-                u -= 1
-                v -= 1
-                dct[u][v] = ac.min(dct[u].get(v, inf), w)
+                dct[u - 1].append((v - 1, w))
                 if w >= 0:
-                    dct[v][u] = ac.min(dct[v].get(u, inf), w)
-            ans, _, _ = SPFA().negative_circle(dct)
-            ac.st(ans)
+                    dct[v - 1].append((u - 1, w))
+            ans, _, _ = SPFA().negative_circle_edge(dct)
+            ac.st("YES" if ans else "NO")
         return
 
     @staticmethod
@@ -133,17 +113,15 @@ class Solution:
         """
         d, p, c, f, s = ac.read_list_ints()
         s -= 1
-        dct = [dict() for _ in range(c)]
+        dct = [[] for _ in range(c)]
         for _ in range(p):
-            a, b = ac.read_list_ints_minus_one()
-            dct[a][b] = -d
+            a, b = ac.read_list_ints()
+            dct[a - 1].append((b - 1, d))
         for _ in range(f):
             j, k, t = ac.read_list_ints()
-            j -= 1
-            k -= 1
-            dct[j][k] = -(d - t)
-        ans, dis, _ = SPFA().negative_circle(dct, s, -d)
-        ac.st(-1 if ans == "YES" else -min(dis))
+            dct[j - 1].append((k - 1, d - t))
+        ans, dis, _ = SPFA().positive_circle_edge(dct, s, d)
+        ac.st(-1 if ans else max(dis))
         return
 
     @staticmethod
@@ -152,60 +130,25 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1993
         tag: differential_constraint|negative_circle
         """
-
         n, m = ac.read_list_ints()
-        dct = [dict() for _ in range(n + 1)]
-        # source
+        dct = [[] for _ in range(n + 1)]
         for i in range(1, n + 1):
-            dct[0][i] = 0
+            dct[0].append((i, 0))
         for _ in range(m):
             lst = ac.read_list_ints()
-            # xa - xb <= c then add edge [xb, xa, c]
             if lst[0] == 1:
                 a, b, c = lst[1:]
-                dct[a][b] = -c
+                dct[a].append((b, -c))
             elif lst[0] == 2:
                 a, b, c = lst[1:]
-                dct[b][a] = c
+                dct[b].append((a, c))
             else:
                 a, b = lst[1:]
-                dct[a][b] = 0
-                dct[b][a] = 0
-        ans, _, _ = SPFA().negative_circle(dct)
-        if ans == "NO":
-            ac.st("Yes")
-        else:
-            ac.st("No")
+                dct[a].append((b, 0))
+                dct[b].append((a, 0))
+        ans, _, _ = SPFA().negative_circle_edge(dct)
+        ac.st("Yes" if not ans else "No")
         return
-
-    @staticmethod
-    def lc_2589(tasks: List[List[int]]) -> int:
-        """
-        url: https://leetcode.cn/problems/minimum-time-to-complete-all-tasks/
-        tag: differential_constraint|greedy|classical
-        """
-
-        n = max(it[1] for it in tasks)
-        dct = [dict() for _ in range(n + 2)]
-
-        for i in range(1, n + 1):
-            # xa - xb <= c then add edge [xb, xa, c]
-            dct[i][i - 1] = 0
-            dct[i - 1][i] = 1
-
-        for s, e, c in tasks:
-            if s - 1 not in dct[e]:
-                dct[e][s - 1] = -c
-            else:
-                k = dct[e][s - 1]
-                dct[e][s - 1] = k if k < -c else -c
-
-        # source
-        for i in range(n + 1):
-            dct[n + 1][i] = 0
-
-        _, dis, _ = SPFA().negative_circle(dct, n + 1)
-        return dis[n] - dis[0]
 
     @staticmethod
     def lg_p5960(ac=FastIO()):
@@ -215,9 +158,14 @@ class Solution:
         """
 
         n, m = ac.read_list_ints()
-        edges = [ac.read_list_ints() for _ in range(m)]
-        ans, dis = SPFA().differential_constraint(edges, n)
-        if ans == "YES":
+        edge = [[] for _ in range(n + 1)]
+        for _ in range(m):
+            a, b, c = ac.read_list_ints()
+            edge[b].append((a, c))
+        for i in range(1, n + 1):
+            edge[0].append((i, 0))
+        ans, dis, _ = SPFA().negative_circle_edge(edge, 0, 0)
+        if ans:
             ac.st("NO")
         else:
             ac.lst(dis[1:])
@@ -229,19 +177,20 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1260
         tag: differential_constraint
         """
-        # differential_constraint模板题
         n, m = ac.read_list_ints()
-        # edges里面索引从 1 开始
-        edges = [ac.read_list_ints() for _ in range(m)]
-        ans, dis = SPFA().differential_constraint(edges, n)
-        if ans == "YES":
+        edge = [[] for _ in range(n + 1)]
+        for _ in range(m):
+            a, b, c = ac.read_list_ints()
+            edge[b].append((a, c))
+        for i in range(1, n + 1):
+            edge[0].append((i, 0))
+        ans, dis, _ = SPFA().negative_circle_edge(edge, 0, 0)
+        if ans:
             ac.st("NO SOLUTION")
         else:
-            res = dis[1:]
-            floor = min(res)
-            res = [num - floor for num in res]
-            for a in res:
-                ac.st(a)
+            low = min(dis[1:])
+            for x in dis[1:]:
+                ac.st(x - low)
         return
 
     @staticmethod
@@ -250,7 +199,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1931
         tag: positive_circle|mul
         """
-        # 路径乘积是否有大于1的环
         case = 0
         while True:
             n = ac.read_int()
@@ -258,16 +206,15 @@ class Solution:
                 break
             case += 1
             name = [ac.read_str() for _ in range(n)]
-            dct = [dict() for _ in range(n)]
+            dct = [[] for _ in range(n)]
             ind = {na: i for i, na in enumerate(name)}
             for _ in range(ac.read_int()):
                 a, c, b = ac.read_list_strs()
-                dct[ind[a]][ind[b]] = float(c)
+                dct[ind[a]].append((ind[b], float(c)))
             ans = "No"
             for i in range(n):
-                # 初始值为负，若存在乘积大于1的环，这样就能一直减小到非负数
-                flag, _, _ = SPFA().negative_circle_mul(dct, i, -1)
-                if flag == "YES":
+                flag, _, _ = SPFA().positive_circle_mul(dct, i, 1)
+                if flag:
                     ans = "Yes"
                     break
             ac.st(f"Case {case}: {ans}")
@@ -278,34 +225,36 @@ class Solution:
     def lg_p1986(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1986
-        tag: differential_constraint
+        tag: differential_constraint|minimum|longest_path|prefix_sum|classical|can_not_be_dijkstra
         """
-        # 根据prefix_sumdifferential_constraint求解
-        n, m = ac.read_list_ints()
 
-        # 区间关系
-        lst = []
+        n, m = ac.read_list_ints()
+        edge = [[] for _ in range(n + 1)]
         for _ in range(m):
+            # x2 - x1 >= w is edge[x1].append((x2, w))
             a, b, c = ac.read_list_ints()
             if a > b:
                 a, b = b, a
-            lst.append([a - 1, b, -c])
-        # 邻居关系
+            edge[a - 1].append((b, c))
+
         for i in range(1, n + 1):
-            lst.append([i, i - 1, 1])
-            lst.append([i - 1, i, 0])
-
-        # differential_constraint，注意索引从 1 开始
-        lst = [[a + 1, b + 1, c] for a, b, c in lst]
-        ans, dis = SPFA().differential_constraint(lst, n + 1)
-
-        # 即为prefix_sum pre[n+1] - pre[1]
-        ac.st(dis[n + 1] - dis[1])
+            # xi - 0 >= 0
+            edge[0].append((i, 0))
+            if i > 1:
+                # (i) - (i-1) >= 0
+                edge[i - 1].append((i, 0))
+                # (i-1) - (i) >= -1
+                edge[i].append((i - 1, -1))
+        ans, dis, _ = SPFA().positive_circle_edge(edge, 0)
+        ac.st(dis[n])
         return
 
     @staticmethod
     def abc_61d(ac=FastIO()):
-        # reverse_graph后判断是否有正环并最长路
+        """
+        url: https://atcoder.jp/contests/abc061/tasks/abc061_d
+        tag: reverse_graph|positive_circle|longest_path|classical|reachable
+        """
         n, m = ac.read_list_ints()
         edges = [ac.read_list_ints() for _ in range(m)]
         rev = [[] for _ in range(n)]
@@ -314,8 +263,7 @@ class Solution:
             b -= 1
             rev[b].append(a)
 
-        # reverse_graph
-        reach = [0] * n
+        reach = [0] * n  # important
         stack = [n - 1]
         reach[-1] = 1
         while stack:
@@ -324,103 +272,72 @@ class Solution:
                 if not reach[j]:
                     reach[j] = 1
                     stack.append(j)
-
-        dct = [dict() for _ in range(n)]
+        dct = [[] for _ in range(n)]
         for a, b, c in edges:
             a -= 1
             b -= 1
             if reach[a] and reach[b]:
-                dct[a][b] = -c
+                dct[a].append((b, c))
 
-        # 正环与最长路
-        res, dis, _ = SPFA().negative_circle(dct, 0, 0)
-        if res == "YES":
-            ac.st("inf")
-        else:
-            ac.st(-dis[n - 1])
+        ans, dis, _ = SPFA().positive_circle_edge(dct, 0, 0)
+        ac.st("inf" if ans else dis[n - 1])
         return
 
     @staticmethod
     def abc_137e(ac=FastIO()):
-        #  SPFA 与 bfs 判断是否存在起点到终点的正权环
+        """
+        url: https://atcoder.jp/contests/abc137/tasks/abc137_e
+        tag: spfa|positive_circle
+        """
+        # inf = 1 << 64
         n, m, p = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         rev = [[] for _ in range(n)]
-        edges = []
-        for _ in range(m):
-            a, b, c = ac.read_list_ints()
-            a -= 1
-            b -= 1
-            dct[a].append([b, p - c])
-            rev[b].append([a, p - c])
-            edges.append([a, b, p - c])
-        # 首先判断可达性
+        edges = [ac.read_list_ints() for _ in range(m)]
+        for a, b, c in edges:
+            dct[a - 1].append((b - 1, c - p))
+            rev[b - 1].append((a - 1, c - p))
+
         visit = [0] * n
-        stack = [0]
-        visit[0] = 1
-        while stack:
-            i = stack.pop()
-            for j, _ in dct[i]:
-                if not visit[j]:
-                    visit[j] = 1
-                    stack.append(j)
-        if not visit[-1]:
-            ac.st(-1)
-            return
-        # 过滤起点不能到达与不能到达终点的点
-        visit2 = [0] * n
         stack = [n - 1]
-        visit2[n - 1] = 1
+        visit[n - 1] = 1
         while stack:
             i = stack.pop()
             for j, _ in rev[i]:
-                if not visit2[j]:
-                    visit2[j] = 1
+                if not visit[j]:
+                    visit[j] = 1
                     stack.append(j)
         for i in range(n):
-            if not (visit[i] and visit2[i]):
-                dct[i] = []
-            dct[i] = [[a, b] for a, b in dct[i] if visit[a] and visit2[a]]
-        # 判断此时起点到终点是否仍然存在环
-        res, dis, cnt = SPFA().negative_circle_edge(dct, 0, 0)
-        if res == "YES":
+            dct[i] = [(a, b) for a, b in dct[i] if visit[a]]
+
+        res, dis, cnt = SPFA().positive_circle_edge(dct, 0, 0)
+        if res or dis[-1] == -inf:
             ac.st(-1)
             return
-        ans = ac.max(-dis[-1], 0)
-
-        # 判断终点继续出发是否存在正权环
-        dct = [[] for _ in range(n)]
-        for a, b, c in edges:
-            dct[a].append([b, c])
-        res, dis, cnt = SPFA().negative_circle_edge(dct, n - 1, 0)
-        if res == "YES":
-            ac.st(-1)
-            return
-
-        ac.st(ans)
+        ac.st(ac.max(dis[-1], 0))
         return
 
     @staticmethod
     def lc_2589(tasks: List[List[int]]) -> int:
         """
         url: https://leetcode.cn/problems/minimum-time-to-complete-all-tasks/
-        tag: differential_constraint|greedy|classical
+        tag: differential_constraint|greedy|classical|minimum|longest_path
         """
-        # 根据prefix_sumdifferential_constraint求解
-        lst = []
+
+        n = max(ac_max(a, b) for a, b, _ in tasks)
+        edge = [[] for _ in range(n + 1)]
         for a, b, c in tasks:
             if a > b:
                 a, b = b, a
-            lst.append([a - 1, b, -c])
+            edge[a - 1].append((b, c))
 
-        n = 2000
         for i in range(1, n + 1):
-            lst.append([i, i - 1, 1])
-            lst.append([i - 1, i, 0])
-
-        lst = [[a + 1, b + 1, c] for a, b, c in lst]
-        ans, dis = SPFA().differential_constraint(lst, n + 1)
-        return dis[n + 1] - dis[1]
+            edge[0].append((i, 0))
+            if i > 1:
+                edge[i - 1].append((i, 0))
+                edge[i].append((i - 1, -1))
+        ans, dis, _ = SPFA().positive_circle_edge(edge, 0, 0)
+        return dis[n]
 
     @staticmethod
     def lg_p2850(ac=FastIO()):
@@ -429,61 +346,20 @@ class Solution:
         tag: negative_circle|several_source|classical
         """
         for _ in range(ac.read_int()):
-            # 从任意起点出发是否存在negative_circle
             n, m, w = ac.read_list_ints()
-            dct = [dict() for _ in range(n)]
+            dct = [[] for _ in range(n + 1)]
             for _ in range(m):
                 x, y, p = ac.read_list_ints()
-                x -= 1
-                y -= 1
-                dct[x][y] = ac.min(dct[x].get(y, inf), p)
-                dct[y][x] = ac.min(dct[y].get(x, inf), p)
+                dct[x].append((y, p))
+                dct[y].append((x, p))
             for _ in range(w):
                 x, y, p = ac.read_list_ints()
-                x -= 1
-                y -= 1
-                dct[x][y] = ac.min(dct[x].get(y, inf), -p)
+                dct[x].append((y, -p))
+            for i in range(1, n + 1):
+                dct[0].append((i, 0))
 
-            dis = [inf for _ in range(n)]
-            visit = [False] * n
-
-            def negative_circle():
-                # 模板: 判断是否存在negative_circle与求解shortest_path（正数取反即可判断是否存在正权环以及最长路）
-                cnt = [0] * n
-                # 求带负权的shortest_path距离与路径边数
-                queue = deque([src])
-                # 队列与起点初始化默认从 0 出发
-                dis[src] = 0
-                visit[src] = True
-
-                while queue:
-                    # 取出队列中的第一个节点
-                    u = queue.popleft()
-                    visit[u] = False
-                    # 更新当前节点的相邻节点的距离
-                    for v in dct[u]:
-                        ww = dct[u][v]
-                        if dis[v] > dis[u] + ww:
-                            dis[v] = dis[u] + ww
-                            cnt[v] = cnt[u] + 1
-                            if cnt[v] >= n:
-                                return "YES", dis, cnt
-                            # 如果相邻节点还没有在队列中，将它|入队列
-                            if not visit[v]:
-                                queue.append(v)
-                                visit[v] = True
-                # 不存在从起点出发的negative_circle
-                return "NO", dis, cnt
-
-            for src in range(n):
-                if not visit[src]:
-                    #  visit 记录已经过的节点
-                    ans, _, _ = negative_circle()
-                    if ans == "YES":
-                        ac.st("YES")
-                        break
-            else:
-                ac.st("NO")
+            ans, _, _ = SPFA().negative_circle_edge(dct, 0, 0)
+            ac.st("YES" if ans else "NO")
         return
 
     @staticmethod
@@ -492,71 +368,66 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P4878
         tag: diff_array|dijkstra|shortest_path
         """
-        # diff_array|与Dijkstrashortest_path
         n, ml, md = ac.read_list_ints()
-        edge = []
+        edge = [[] for _ in range(n + 1)]
         for _ in range(ml):
+            # x1 - x2 <= w is edge[x2].append((x1, w))
             a, b, d = ac.read_list_ints()
-            if a > b:
-                a, b = b, a
-            edge.append([b, a, d])
+            edge[a].append((b, d))
+
         for _ in range(md):
             a, b, d = ac.read_list_ints()
-            if a > b:
-                a, b = b, a
-            edge.append([a, b, -d])
-        for i in range(1, n):
-            edge.append([i, i + 1, 0])
-        # 首先diff_array|判环
-        ans, dis = SPFA().differential_constraint(edge, n)
-        if ans == "YES":
+            edge[b].append((a, -d))
+
+        for i in range(1, n + 1):
+            # xi <= 0 is edge[0].append((i, 0))
+            edge[0].append((i, 0))  # super source for solution check
+            if i > 1:
+                edge[i].append((i - 1, 0))
+
+        ans, dis, _ = SPFA().negative_circle_edge(edge, 0, 0)
+        if ans:
             ac.st(-1)
         else:
-            # 其次最大解即shortest_path（求最小解则是最长路）
-            dct = [dict() for _ in range(n)]
-            for a, b, c in edge:  # a-b<=c
-                a -= 1
-                b -= 1
-                w = dct[b].get(a, inf)
-                w = w if w < c else c
-                dct[b][a] = w
-            # 由于是按照编号顺序因此最大解为 dis[n-1] = pos[0] - pos[n-1] 最小即 pos[n-1] - pos[0] 最大
-            dis = Dijkstra().get_dijkstra_result(dct, 0)
-            ac.st(dis[n - 1] if dis[n - 1] < inf else -2)
+            ans, dis, _ = SPFA().negative_circle_edge(edge, 1, 0)
+            if ans:
+                ac.st(-1)
+            elif dis[n] == inf:
+                ac.st(-2)
+            else:
+                ac.st(dis[n])
         return
 
     @staticmethod
     def lg_p5905(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P5905
-        tag: johnson_shortest_path|several_source|shortest_path
+        tag: johnson_shortest_path|several_source|shortest_path|classical
         """
-        # 有向带权图可能有负权 Johnson 全源shortest_path所有点对的shortest_path
         n, m = ac.read_list_ints()
-        dct = [[] for _ in range(n + 1)]
+        dct = [dict() for _ in range(n + 1)]
         for _ in range(m):
             u, v, w = ac.read_list_ints()
-            dct[u].append([v, w])
+            if u != v:
+                dct[u][v] = ac.min(dct[u].get(v, inf), w)
+        dct = [[(x, d[x]) for x in d] for d in dct]
         for i in range(1, n + 1):
             dct[0].append([i, 0])
-        # 首先 Bellman-Ford 的队列实现算法 SPFA 判断有没有negative_circle
         flag, h, _ = SPFA().negative_circle_edge(dct)
-        if flag == "YES":
+        if flag:
             ac.st(-1)
             return
-        # 其次建立新图brute_force起点跑 Dijkstra
+
         for i in range(n + 1):
-            k = len(dct[i])
-            for x in range(k):
-                j, w = dct[i][x]
-                dct[i][x][1] = w + h[i] - h[j]
+            dct[i] = [(j, w + h[i] - h[j]) for j, w in dct[i]]
+
+        ceil = 10 ** 9
         dj = Dijkstra()
         for i in range(1, n + 1):
             ans = 0
-            dis = dj.get_dijkstra_result_edge(dct, i)
+            dis = dj.get_shortest_path(dct, i)
             for j in range(1, n + 1):
-                # 还原之后才为原图shortest_path
-                ans += j * (dis[j] + h[j] - h[i]) if dis[j] < inf else j * 10 ** 9
+                ans += j * (dis[j] + h[j] - h[i]) if dis[j] < inf else j * ceil
             ac.st(ans)
         return
 
@@ -564,44 +435,31 @@ class Solution:
     def lg_p5751(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P5751
-        tag: prefix_sum|differential_constraint
+        tag: prefix_sum|differential_constraint|negative_circle_edge|maximum|shortest_path
         """
-        # 转换为prefix_sumdifferential_constraint求解，并shortest_path求解最大值
         n, a0, b0, l0, a1, b1, l1 = ac.read_list_ints()
+        # maximum is shortest_path
+        edge = [[] for _ in range(n + 1)]  # node is the prefix sum
+        for i in range(n):
+            # a - b <= c is edge[b].append((a, c))
+            if i - l0 + 1 >= 0:
+                edge[i - l0 + 1].append((i + 1, l0 - a0))
+                edge[i + 1].append((i - l0 + 1, b0 - l0))
+            if i - l1 + 1 >= 0:
+                edge[i - l1 + 1].append((i + 1, b1))
+                edge[i + 1].append((i - l1 + 1, -a1))
 
-        # 区间关系
-        lst = []
         for i in range(1, n + 1):
-            if i - l0 >= 0:
-                lst.append([i, i - l0, l0 - a0])
-                lst.append([i - l0, i, b0 - l0])
-            if i - l1 >= 0:
-                lst.append([i, i - l1, b1])
-                lst.append([i - l1, i, -a1])
+            # xi - x0 >= 0 is edge edge[i].append((0, 0))
+            edge[i].append((0, 0))
+            if i > 1:
+                edge[i].append((i - 1, 0))
+                edge[i - 1].append((i, 1))
 
-        # 邻居关系
-        for i in range(1, n + 1):
-            lst.append([i, i - 1, 1])
-            lst.append([i - 1, i, 0])
-
-        # differential_constraint，注意索引从 1 开始
-        lst = [[a + 1, b + 1, c] for a, b, c in lst]
-        ans, dis = SPFA().differential_constraint(lst, n + 1)
-        if ans == "YES":
+        ans, dis, _ = SPFA().negative_circle_edge(edge, 0, 0)
+        if ans:
             ac.st(-1)
             return
 
-        # 其次最大解即shortest_path（求最小解则是最长路）
-        dct = [dict() for _ in range(n + 1)]
-        for a, b, c in lst:  # a-b<=c
-            a -= 1
-            b -= 1
-            w = dct[b].get(a, inf)
-            w = w if w < c else c
-            dct[b][a] = w
-
-        # 最大解为 （dis[n] = pos[0] - pos[n] 最小）即 （pos[n] - pos[0] 最大）为 0 到 n shortest_path
-        # 最小解为 （dis[n] = pos[0] - pos[n] 最大）即 （pos[n] - pos[0] 最小）为 0 到 n 最长度
-        dis = Dijkstra().get_dijkstra_result(dct, 0)
         ac.st(dis[n])
         return
