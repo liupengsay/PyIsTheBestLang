@@ -13,7 +13,7 @@ Description：undirected_topological_sort|directed_topological_sort|directed_cir
 2603（https://leetcode.cn/problems/collect-coins-in-a-tree/）undirected_topological_sort|undirected_circle_based_tree
 2204（https://leetcode.cn/problems/distance-to-a-cycle-in-undirected-graph/）undirected_topological_sort
 1857（https://leetcode.cn/problems/largest-color-value-in-a-directed-graph/）topological_sort|dag_dp
-1932（https://leetcode.cn/problems/range_merge_to_disjoint-bsts-to-create-single-bst/）union_find|topological_sort|union_find|binary_search_tree
+1932（https://leetcode.cn/problems/merge-bsts-to-create-single-bst/）union_find|topological_sort|union_find|binary_search_tree
 1591（https://leetcode.cn/problems/strange-printer-ii/）build_graph|topological_sort|circle_judge
 2192（https://leetcode.cn/problems/all-ancestors-of-a-node-in-a-directed-acyclic-graph/）directed_topological_sort|dag_dp
 
@@ -69,6 +69,10 @@ class Solution:
 
     @staticmethod
     def abc_266f(ac=FastIO()):
+        """
+        urL: https://atcoder.jp/contests/abc266/tasks/abc266_f
+        tag: undirected_circle_based_tree|classical|connected
+        """
         n = ac.read_int()
         edge = [[] for _ in range(n)]
         uf = UnionFind(n)
@@ -108,10 +112,11 @@ class Solution:
     def ac_3696(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/3699/
-        tag: topological_order|dag|construction
+        tag: topological_order|dag|construction|classical|hard|brain_teaser
         """
-        # bfs序即拓扑序与DAGconstruction
+
         for _ in range(ac.read_int()):
+
             def check():
                 n, m = ac.read_list_ints()
                 dct = [[] for _ in range(n)]
@@ -129,7 +134,6 @@ class Solution:
                     else:
                         edges.append([x, y])
 
-                # topological_sorting判断有向图是否存在环，同时记录节点的拓扑顺序
                 order = [0] * n
                 stack = [i for i in range(n) if degree[i] == 0]
                 ind = 0
@@ -147,7 +151,6 @@ class Solution:
                     ac.st("NO")
                     return
 
-                # 按照拓扑序依次给与方向
                 ac.st("YES")
                 for x, y in edges:
                     if order[x] < order[y]:
@@ -162,47 +165,12 @@ class Solution:
         return
 
     @staticmethod
-    def lc_2360(edges: List[int]) -> int:
-        # topological_sortingdirected_circle_based_tree最长环
-        n = len(edges)
-        # 记录入度
-        degree = defaultdict(int)
-        for i in range(n):
-            if edges[i] != -1:
-                degree[edges[i]] += 1
-
-        # 先消除无环部分
-        stack = [i for i in range(n) if not degree[i]]
-        while stack:
-            nex = []
-            for i in stack:
-                if edges[i] != -1:
-                    degree[edges[i]] -= 1
-                    if not degree[edges[i]]:
-                        nex.append(edges[i])
-            stack = nex
-
-        # 注意没有自环
-        visit = [int(degree[i] == 0) for i in range(n)]
-        ans = -1
-        for i in range(n):
-            cnt = 0
-            while not visit[i]:
-                visit[i] = 1
-                cnt += 1
-                i = edges[i]
-            if cnt and cnt > ans:
-                ans = cnt
-        return ans
-
-    @staticmethod
     def lc_2392(k: int, row_conditions: List[List[int]], col_conditions: List[List[int]]) -> List[List[int]]:
         """
         url: https://leetcode.cn/problems/build-a-matrix-with-conditions/
         tag: build_graph|union_find|topological_sort
         """
 
-        # 行列topological_sortingconstruction矩阵
         def check(cond):
             dct = defaultdict(list)
             degree = defaultdict(int)
@@ -238,9 +206,9 @@ class Solution:
     def lg_p1137(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1137
-        tag: topological_sort|dag_dp
+        tag: topological_sort|dag_dp|longest_path
         """
-        # topological_sorting最长链条
+
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         degree = [0] * n
@@ -267,15 +235,13 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1347
         tag: topological_sort|lexicographical_order|construction
         """
-        # topological_sorting确定lexicographical_order与矛盾或者无唯一解
+
         n, m = ac.read_list_ints()
-        dct_ = defaultdict(list)
-        degree_ = defaultdict(int)
+        dct = [[] for _ in range(n)]
+        degree = [0] * n
 
-        def check(dct, degree, nodes):
-            # 每次都判断结果
-            stack = [k for k in nodes if not degree[k]]
-
+        def check():
+            stack = [k for k in range(n) if not degree[k]]
             res = []
             unique = True
             while stack:
@@ -289,43 +255,40 @@ class Solution:
                         if not degree[j]:
                             nex.append(j)
                 stack = nex
-            # 稳定的topological_sorting
-            if unique and len(res) == n:
-                ss = "".join(res)
+
+            if unique and len(nodes) == n:
+                ss = "".join([chr(ord("A") + w) for w in res])
                 return True, f"Sorted sequence determined after {x} relations: {ss}."
-            # 存在环
-            if len(res) < m:
+
+            if len(res) < n:
                 return True, f"Inconsistency found after {x} relations."
-            # 不稳定的topological_sorting
+
             return False, "Sorted sequence cannot be determined."
 
-        nodes_ = set()
-        res_ans = ""
+        nodes = set()
         for x in range(1, m + 1):
-            s = input().strip()
-            if res_ans:
-                continue
-            dct_[s[0]].append(s[2])
-            degree_[s[2]] += 1
-            nodes_.add(s[0])
-            nodes_.add(s[2])
-            m = len(nodes_)
-            flag, ans = check(copy.deepcopy(dct_), copy.deepcopy(degree_), copy.deepcopy(nodes_))
+            s = ac.read_str()
+            dct[ord(s[0]) - ord("A")].append(ord(s[2]) - ord("A"))
+            degree[ord(s[2]) - ord("A")] += 1
+            nodes.add(s[0])
+            nodes.add(s[2])
+            original = degree[:]
+            flag, ans = check()
             if flag:
-                res_ans = ans
-        if res_ans:
-            print(res_ans)
+                ac.st(ans)
+                break
+            degree = original[:]
         else:
-            print("Sorted sequence cannot be determined.")
+            ac.st("Sorted sequence cannot be determined.")
         return
 
     @staticmethod
     def lg_p1685(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1685
-        tag: dag_dp|directed_topological_sort|counter
+        tag: dag_dp|directed_topological_sort|counter|classical
         """
-        # topological_sorting经过每条边的路径条数
+
         n, m, s, e, t = ac.read_list_ints()
         s -= 1
         e -= 1
@@ -339,7 +302,6 @@ class Solution:
             degree[j] += 1
         mod = 10000
 
-        # 记录总时间与路径条数
         time = [0] * n
         cnt = [0] * n
         stack = [s]
@@ -350,11 +312,9 @@ class Solution:
                 degree[j] -= 1
                 if not degree[j]:
                     stack.append(j)
-                # 更新 i 到 j 的路径条数与相应耗时
                 cnt[j] += cnt[i]
                 time[j] += cnt[i] * w + time[i]
                 time[j] %= mod
-        # 减去回头的时间
         ans = time[e] + (cnt[e] - 1) * t
         ans %= mod
         ac.st(ans)
@@ -364,9 +324,9 @@ class Solution:
     def lg_p3243(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P3243
-        tag: reverse_graph|topological_sort|heapq|implemention|topological_lexicographic_order
+        tag: reverse_graph|topological_sort|heapq|implemention|topological_lexicographic_order|brain_teaser|classical|hard
         """
-        # reverse_graphtopological_sorting结合heapq|顺序implemention
+
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
             dct = [[] for _ in range(n)]
@@ -379,7 +339,6 @@ class Solution:
             stack = [-i for i in range(n) if not degree[i]]
             heapify(stack)
             while stack:
-                # 优先选择入度为 0 且编号最大的
                 i = -heappop(stack)
                 ans.append(i)
                 for j in dct[i]:
@@ -387,7 +346,6 @@ class Solution:
                     if not degree[j]:
                         heappush(stack, -j)
             if len(ans) == n:
-                # 翻转后则lexicographical_order最小
                 ans.reverse()
                 ac.lst([x + 1 for x in ans])
             else:
@@ -395,54 +353,12 @@ class Solution:
         return
 
     @staticmethod
-    def lg_p5536_1(ac=FastIO()):
+    def lg_p5536(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P5536
-        tag: undirected_topological_sort
-        """
-        # tree_diameter的greedy方式选取以tree_diameter中点向外辐射的节点
-        n, k = ac.read_list_ints()
-        dct = [[] for _ in range(n)]
-        for _ in range(n - 1):
-            i, j = ac.read_list_ints_minus_one()
-            dct[i].append(j)
-            dct[j].append(i)
-        x, y, _, path = TreeDiameterInfo().get_diameter_info(dct)
-
-        # tree_dp| 每个节点的深度与子树最大节点深度
-        root = path[len(path) // 2]
-        deep = [0] * n
-        max_deep = [0] * n
-        stack = [[root, -1, 0]]
-        while stack:
-            i, fa, d = stack.pop()
-            if i >= 0:
-                stack.append([~i, fa, d])
-                deep[i] = d
-                for j in dct[i]:
-                    if j != fa:
-                        stack.append([j, i, d + 1])
-            else:
-                i = ~i
-                max_deep[i] = deep[i]
-                for j in dct[i]:
-                    if j != fa:
-                        max_deep[i] = ac.max(max_deep[i], max_deep[j])
-
-        # 选取 k 个节点后剩下的节点的最大值
-        lst = [max_deep[i] - deep[i] for i in range(n)]
-        lst.sort(reverse=True)
-        ac.st(lst[k] + 1)
-        return
-
-    @staticmethod
-    def lg_p5536_2(ac=FastIO()):
-        """
-        url: https://www.luogu.com.cn/problem/P5536
-        tag: undirected_topological_sort
+        tag: undirected_topological_sort|classical|brain_teaser
         """
 
-        # 无向图topological_sorting从外到内消除最外圈的节点
         n, k = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         degree = [0] * n
@@ -453,7 +369,6 @@ class Solution:
             degree[i] += 1
             degree[j] += 1
 
-        # 按照度为 1  bfs 消除
         rem = n - k
         ans = 0
         stack = deque([[i, 1] for i in range(n) if degree[i] == 1])
@@ -475,10 +390,9 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6037
         tag: undirected_circle_based_tree|union_find|topological_sort|implemention
         """
-        # undirected_circle_based_treeunion_findtopological_sorting与环implemention
+
         n = ac.read_int()
         dct = [[] for _ in range(n)]
-        # 首先分割连通分量
         uf = UnionFind(n)
         degree = [0] * n
         edge = []
@@ -492,11 +406,10 @@ class Solution:
             edge.append([u, v, w])
             degree[u] += 1
             degree[v] += 1
-        # 其次对每个分量结果
+
         part = uf.get_root_part()
         ans = [-1] * n
         for p in part:
-            # topological_sorting找出环
             stack = deque([i for i in part[p] if degree[i] == 1])
             visit = set()
             while stack:
@@ -506,7 +419,6 @@ class Solution:
                     degree[j] -= 1
                     if degree[j] == 1:
                         stack.append(j)
-            # 根据环greedy结果
             circle = [i for i in part[p] if i not in visit]
             s = sum(w for i, _, w in edge if uf.find(i) == p)
             for x in circle:
@@ -528,72 +440,61 @@ class Solution:
     def lg_p6255(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P6255
-        tag: union_find|topological_sort|circle_judge
+        tag: topological_sort|circle_judge|classical|simple_graph|brain_teaser|bfs
         """
-        # 简单无向图union_find连通块后topological_sorting寻找环的信息
+
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         degree = [0] * n
-        uf = UnionFind(n)
-        for _ in range(m):  # 简单无向图即没有环套环
+        for _ in range(m):
             i, j = ac.read_list_ints_minus_one()
             degree[j] += 1
             degree[i] += 1
             dct[i].append(j)
             dct[j].append(i)
-            uf.union(i, j)
-        # 连通块
-        part = uf.get_root_part()
+        original = degree[:]
+
+        stack = deque([i for i in range(n) if degree[i] == 1])
+        while stack:
+            i = stack.popleft()
+            for j in dct[i]:
+                degree[j] -= 1
+                if degree[j] == 1:
+                    stack.append(j)
+
+        stack = deque([i for i in range(n) if degree[i] >= 2])
         ans = []
-        for p in part:
-            lst = part[p]
-            # topological_sorting找环
-            nodes = [i for i in lst if degree[i] == 1]
-            stack = nodes[:]
-            visit = set()
-            cnt = 0
-            while stack:
-                cnt += len(stack)
-                for i in stack:
-                    visit.add(i)
-                nex = []
-                for i in stack:
-                    for j in dct[i]:
-                        degree[j] -= 1
-                        if degree[j] == 1:
-                            nex.append(j)
-                stack = nex[:]
-            if cnt == len(part[p]):
-                # 没有环则所有外围点出发的边都是死路
-                for i in nodes:
-                    for j in dct[i]:
+        while stack:
+            i = stack.popleft()
+            for j in dct[i]:
+                if 0 <= degree[j] < 2:
+                    if degree[i] >= 2:
                         ans.append([i + 1, j + 1])
-            else:
-                # 有环则所有环上的点
-                for i in lst:
-                    if i not in visit:
-                        for j in dct[i]:
-                            if j in visit:
-                                ans.append([i + 1, j + 1])
+                    degree[j] = -1
+                    stack.append(j)
+
+        for i in range(n):
+            if 0 <= degree[i] < 2 and original[i] == 1:
+                ans.append([i + 1, dct[i][0] + 1])
         ans.sort()
         ac.st(len(ans))
-        for a in ans:
-            ac.lst(a)
+        for ls in ans:
+            ac.lst(ls)
         return
 
     @staticmethod
     def lg_p6417(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P6417
-        tag: directed_circle_based_tree|greedy|topological_sort
+        tag: directed_circle_based_tree|greedy|topological_sort|brain_teaser|classical
         """
-        # 有向图circle_based_treegreedy应用topological_sorting由外向内
+
         n = ac.read_int()
         dct = [ac.read_int() - 1 for _ in range(n)]
         degree = [0] * n
         for i in range(n):
             degree[dct[i]] += 1
-        # 外层直接作为坏蛋
+
         stack = [x for x in range(n) if not degree[x]]
         visit = [-1] * n
         ans = len(stack)
@@ -603,13 +504,10 @@ class Solution:
             nex = []
             for i in stack:
                 degree[dct[i]] -= 1
-                # 确定坏蛋或者是平民的角色后根据度角色指定
                 if (not degree[dct[i]] or visit[i] == 1) and visit[dct[i]] == -1:
                     if visit[i] == 1:
-                        # 父亲是坏蛋必然是平民
                         visit[dct[i]] = 0
                     else:
-                        # 入度为 0 优先指定为坏蛋
                         ans += 1
                         visit[dct[i]] = 1
                     nex.append(dct[i])
@@ -617,12 +515,10 @@ class Solution:
 
         for i in range(n):
             x = 0
-            # 剩余环的大小
             while visit[i] == -1:
                 visit[i] = 1
                 x += 1
                 i = dct[i]
-            # 环内的坏蛋最多个数
             ans += x // 2
         ac.st(ans)
         return
@@ -631,42 +527,44 @@ class Solution:
     def lg_p6560(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P6560
-        tag: reverse_graph|topological_sort|game_dp
+        tag: reverse_graph|topological_sort|game_dp|brain_teaser|game_dp|classical
         """
-        # reverse_graphtopological_sorting与博弈必胜态
+
         n, m, q = ac.read_list_ints()
         dct = [[] for _ in range(n)]
-        degree = [[0, -1, 0] for _ in range(n)]
+        degree = [0 for _ in range(n)]
         for _ in range(m):
             i, j = ac.read_list_ints_minus_one()
             dct[j].append(i)
-            degree[i][0] += 1
-
-        visit = [[-1, 0] for _ in range(n)]
-        for ind in range(q):
-            s, e = ac.read_list_ints_minus_one()
-            visit[s] = [ind, 0]
-            stack = deque([x for x in range(n) if not degree[x][0] or x == e])
-            for i in stack:
-                visit[i] = [ind, -1]
-            while stack and not visit[s][1]:
-                i = stack.popleft()
-                for j in dct[i]:
-                    if visit[j][0] != ind:
-                        visit[j] = [ind, 0]
-                    if degree[j][1] != ind:
-                        degree[j][1] = ind
-                        degree[j][2] = degree[j][0]
-                    if visit[j][1]:
+            degree[i] += 1
+        original = degree[:]
+        out = [i for i in range(n) if not degree[i]]
+        state = [0] * n
+        for i in out:
+            state[i] = -1
+        dp = state[:]
+        for _ in range(q):
+            x, y = ac.read_list_ints_minus_one()
+            for i in range(n):
+                degree[i] = original[i]
+                dp[i] = state[i]
+            stack = deque(out + [y]) if degree[y] else deque(out)
+            if degree[y]:
+                dp[y] = -1
+            while stack:
+                u = stack.popleft()
+                for v in dct[u]:
+                    if dp[v] != 0:
                         continue
-                    degree[j][2] -= 1
-                    if visit[i][1] == -1:
-                        visit[j][1] = 1
-                        stack.append(j)
-                    elif not degree[j][2] and visit[i][1] == 1:
-                        visit[j][1] = -1
-                        stack.append(j)
-            ac.st(visit[s][1])
+                    if dp[u] == 1:
+                        degree[v] -= 1
+                        if not degree[v]:
+                            dp[v] = -1
+                            stack.append(v)
+                    else:
+                        dp[v] = 1
+                        stack.append(v)
+            ac.st(dp[x])
         return
 
     @staticmethod
@@ -701,7 +599,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8943
         tag: undirected_circle_based_tree|game_dp
         """
-        # undirected_circle_based_tree博弈
+
         n, q = ac.read_list_ints()
         degree = [0] * n
         dct = [[] for _ in range(n)]
@@ -712,7 +610,6 @@ class Solution:
             degree[x] += 1
             degree[y] += 1
 
-        # 找出环
         stack = deque([i for i in range(n) if degree[i] == 1])
         while stack:
             i = stack.popleft()
@@ -722,47 +619,40 @@ class Solution:
                     stack.append(j)
 
         dis = [inf] * n
-        stack = [i for i in range(n) if degree[i] > 1]
-        path = [[stack[0], -1]]
+        stack = [i for i in range(n) if degree[i] >= 2]
+        path = [stack[0]]
+        degree[stack[0]] = 0
         while True:
-            for j in dct[path[-1][0]]:
-                if degree[j] > 1 and j != path[-1][1]:
-                    path.append([j, path[-1][0]])
+            for j in dct[path[-1]]:
+                if degree[j] >= 2 and j != path[-1]:
+                    path.append(j)
+                    degree[j] = 0
                     break
-            if path[-1][0] == path[0][0]:
-                path.pop()
+            else:
                 break
-        path = [p for p, _ in path]
         ind = {num: i for i, num in enumerate(path)}
 
-        # 每个点到环上的祖先节点与距离
-        parent = [-1] * n
+        ancestor = [-1] * n
         for i in stack:
-            parent[i] = i
-        d = 0
+            dis[i] = 0
+            ancestor[i] = i
         while stack:
-            nex = []
-            for i in stack:
-                dis[i] = d
-            for i in stack:
-                for j in dct[i]:
-                    if dis[j] == inf:
-                        parent[j] = parent[i]
-                        nex.append(j)
-            stack = nex[:]
-            d += 1
+            i = stack.pop()
+            for j in dct[i]:
+                if dis[j] == inf:
+                    stack.append(j)
+                    dis[j] = dis[i] + 1
+                    ancestor[j] = ancestor[i]
 
         for _ in range(q):
             x, y = ac.read_list_ints_minus_one()
-            if dis[x] == 0:
-                ac.st("Survive" if x != y else "Deception")
+            if x == y:
+                ac.st("Deception")
                 continue
-
-            a = parent[x]
-            b = parent[y]
-            # 只有先到达环才可能幸免
-            dis_y = dis[y] + ac.min(len(path) - abs(ind[a] - ind[b]), abs(ind[a] - ind[b]))
-            if dis[x] < dis_y:
+            dis_x = dis[x]
+            xy = abs(ind[ancestor[x]] - ind[ancestor[y]])
+            dis_y = dis[y] + ac.min(xy, len(ind) - xy)
+            if dis_x < dis_y:
                 ac.st("Survive")
             else:
                 ac.st("Deception")
@@ -772,9 +662,9 @@ class Solution:
     def lc_2127(favorite: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/maximum-employees-to-be-invited-to-a-meeting/
-        tag: topological_sort|dag|directed_circle_based_tree|classification_discussion
+        tag: topological_sort|dag|directed_circle_based_tree|classification_discussion|classical|hard
         """
-        # topological_sorting确定DAG内向基环，按照环的大小classification_discussion
+
         n = len(favorite)
         degree = [0] * n
         for i in range(n):
@@ -804,10 +694,8 @@ class Solution:
                 degree[x] = 0
                 x = favorite[x]
             if len(lst) == 2:
-                # 一种是所有的2元环外接链拼接起来
                 bicycle += depth[lst[0]] + depth[lst[1]] + 2
             elif len(lst) > ans:
-                # 一种是只有一个大于2的环
                 ans = len(lst)
 
         ans = ans if ans > bicycle else bicycle
@@ -819,7 +707,7 @@ class Solution:
         url: https://leetcode.cn/problems/all-ancestors-of-a-node-in-a-directed-acyclic-graph/
         tag: directed_topological_sort|dag_dp
         """
-        # 有向图DAGtopological_sorting
+
         ans = [set() for _ in range(n)]
         degree = [0] * n
         dct = [[] for _ in range(n)]
@@ -846,7 +734,7 @@ class Solution:
         url: https://leetcode.cn/problems/distance-to-a-cycle-in-undirected-graph/
         tag: undirected_topological_sort
         """
-        # 无向图topological_sorting
+
         dct = [[] for _ in range(n)]
         degree = [0] * n
         for i, j in edges:
@@ -878,10 +766,9 @@ class Solution:
     def lc_1857(colors: str, edges: List[List[int]]) -> int:
         """
         url: https://leetcode.cn/problems/largest-color-value-in-a-directed-graph/
-        tag: topological_sort|dag_dp
+        tag: topological_sort|dag_dp|alphabet|data_range|classical
         """
 
-        # topological_sortingDP
         n = len(colors)
         dct = [[] for _ in range(n)]
         degree = [0] * n
@@ -912,10 +799,9 @@ class Solution:
     @staticmethod
     def lc_1932(trees: List[TreeNode]) -> Optional[TreeNode]:
         """
-        url: https://leetcode.cn/problems/range_merge_to_disjoint-bsts-to-create-single-bst/
-        tag: union_find|topological_sort|union_find|binary_search_tree
+        url: https://leetcode.cn/problems/merge-bsts-to-create-single-bst/
+        tag: union_find|topological_sort|union_find|binary_search_tree|classical
         """
-        # 连通性、topological_sorting与二叉搜索树判断
 
         nodes = set()
         dct = defaultdict(list)

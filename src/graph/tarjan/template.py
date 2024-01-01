@@ -150,7 +150,7 @@ class Tarjan:
         # Remove all cut edges and leaving only edge doubly connected components
         # process the cut edges and then perform bfs on the entire undirected graph
         visit = [0] * n
-        ans = []
+        edcc_node_id = []
         for i in range(n):
             if visit[i]:
                 continue
@@ -164,9 +164,25 @@ class Tarjan:
                         visit[j] = 1
                         stack.append(j)
                         cur.append(j)
-            ans.append(cur[:])
-        # group of nodes
-        return ans
+            edcc_node_id.append(cur[:])
+
+        # new graph after edcc
+        edcc_id = len(edcc_node_id)
+        node_edcc_id = [-1]*n
+        for i, ls in enumerate(edcc_node_id):
+            for x in ls:
+                node_edcc_id[x] = i
+        new_dct = [[] for _ in range(edcc_id)]
+        for i in range(n):
+            for j in edge[i]:
+                a, b = node_edcc_id[i], node_edcc_id[j]
+                if a != b:
+                    new_dct[a].append(b)
+        new_degree = [0] * edcc_id
+        for i in range(edcc_id):
+            for j in new_dct[i]:
+                new_degree[j] += 1
+        return edcc_node_id
 
     @staticmethod
     def get_cut(n: int, edge):
