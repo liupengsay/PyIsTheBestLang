@@ -1,14 +1,12 @@
-from collections import defaultdict
-
 from src.utils.fast_io import inf
 
 
-class TarjanCC:
+class Tarjan:
     def __init__(self):
         return
 
     @staticmethod
-    def get_strongly_connected_component_bfs(n: int, edge):
+    def get_scc(n: int, edge):
         assert all(i not in edge[i] for i in range(n))
         assert all(len(set(edge[i])) == len(edge[i]) for i in range(n))
         dfs_id = 0
@@ -74,7 +72,7 @@ class TarjanCC:
         return scc_id, scc_node_id, node_scc_id
 
     @staticmethod
-    def get_point_doubly_connected_component_bfs(n: int, edge):
+    def get_pdcc(n: int, edge):
 
         dfs_id = 0
         order, low = [inf] * n, [inf] * n
@@ -84,7 +82,7 @@ class TarjanCC:
         # number of group
         group_id = 0
         # nodes list of every group part
-        group_node = defaultdict(set)
+        group_node = []
         # index is original node and value is group_id set
         # cut node belong to two or more group
         node_group_id = [set() for _ in range(n)]
@@ -108,6 +106,8 @@ class TarjanCC:
                             if (parent == -1 and child[cur] > 1) or (parent != -1 and low[nex] >= order[cur]):
                                 while out:
                                     top = out.pop()
+                                    while len(group_node) < group_id + 1:
+                                        group_node.append(set())
                                     group_node[group_id].add(top[0])
                                     group_node[group_id].add(top[1])
                                     node_group_id[top[0]].add(group_id)
@@ -142,8 +142,8 @@ class TarjanCC:
                 group_id += 1
         return group_id, group_node, node_group_id
 
-    def get_edge_doubly_connected_component_bfs(self, n: int, edge):
-        _, cutting_edges = self.get_cutting_point_and_cutting_edge_bfs(n, [list(e) for e in edge])
+    def get_edcc(self, n: int, edge):
+        _, cutting_edges = self.get_cut(n, [list(e) for e in edge])
         for i, j in cutting_edges:
             edge[i].discard(j)
             edge[j].discard(i)
@@ -169,7 +169,7 @@ class TarjanCC:
         return ans
 
     @staticmethod
-    def get_cutting_point_and_cutting_edge_bfs(n: int, edge):
+    def get_cut(n: int, edge):
         order, low = [inf] * n, [inf] * n
         visit = [0] * n
         cutting_point = set()

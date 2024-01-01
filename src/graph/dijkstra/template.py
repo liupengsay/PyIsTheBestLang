@@ -10,24 +10,44 @@ class Dijkstra:
         return
 
     @staticmethod
-    def get_shortest_path(dct, src: int):
+    def get_shortest_path(dct, src: int, initial=0):
         """template of shortest path by dijkstra"""
         #  which can to changed to be the longest path problem by opposite number
         n = len(dct)
         dis = [inf] * n
-        stack = [(0, src)]
-        dis[src] = 0
+        stack = [(initial, src)]
+        dis[src] = initial
 
         while stack:
             d, i = heappop(stack)
             if dis[i] < d:
                 continue
             for j, w in dct[i]:
-                dj = w + d
+                dj = d + w
                 if dj < dis[j]:
                     dis[j] = dj
                     heappush(stack, (dj, j))
         return dis
+
+    @staticmethod
+    def get_longest_path(dct, src: int, initial=0):
+        """template of shortest path by dijkstra"""
+        #  which can to changed to be the longest path problem by opposite number
+        n = len(dct)
+        dis = [inf] * n
+        stack = [(-initial, src)]
+        dis[src] = -initial
+
+        while stack:
+            d, i = heappop(stack)
+            if dis[i] < d:
+                continue
+            for j, w in dct[i]:
+                dj = d - w
+                if dj < dis[j]:
+                    dis[j] = dj
+                    heappush(stack, (dj, j))
+        return [-x for x in dis]
 
     @staticmethod
     def get_dijkstra_result_sorted_list(dct, src: int):

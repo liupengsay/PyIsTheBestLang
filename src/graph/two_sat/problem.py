@@ -18,7 +18,7 @@ P4171（https://www.luogu.com.cn/problem/P4171）2-sat|scc|classical
 
 """
 
-from src.graph.tarjan.template import TarjanCC
+from src.graph.tarjan.template import Tarjan
 from src.utils.fast_io import FastIO
 
 
@@ -41,7 +41,7 @@ class TwoSAT:
             edge[i * 2 + 1 - a].append(j * 2 + b)
             edge[j * 2 + 1 - b].append(i * 2 + a)
 
-        _, scc_node_id, _ = TarjanCC().get_strongly_connected_component_bfs(2 * n, [list(s) for s in edge])
+        _, scc_node_id, _ = Tarjan().get_scc(2 * n, [list(s) for s in edge])
         for s in scc_node_id:
             pre = set()
             for node in s:
@@ -82,7 +82,7 @@ class TwoSAT:
             edge[b * 2 + 1].add(a * 2)
             edge[b * 2].add(a * 2 + 1)
 
-        _, scc_node_id, _ = TarjanCC().get_strongly_connected_component_bfs(4 * n, [list(s) for s in edge])
+        _, scc_node_id, _ = Tarjan().get_scc(4 * n, [list(s) for s in edge])
         for s in scc_node_id:
             pre = set()
             for node in s:
@@ -124,7 +124,7 @@ class TwoSAT:
                 if j * 2 + (1 - b) != i * 2 + a:
                     edge[j * 2 + (1 - b)].add(i * 2 + a)
 
-            _, scc_node_id, _ = TarjanCC().get_strongly_connected_component_bfs(2 * n, [list(s) for s in edge])
+            _, scc_node_id, _ = Tarjan().get_scc(2 * n, [list(s) for s in edge])
 
             ans = True
             for s in scc_node_id:
@@ -163,7 +163,7 @@ class TwoSAT:
             for i in range(2 * m * n):
                 if i in edge[i]:
                     edge[i].discard(i)
-            _, scc_node_id, _ = TarjanCC().get_strongly_connected_component_bfs(2 * m * n, [list(s) for s in edge])
+            _, scc_node_id, _ = Tarjan().get_scc(2 * m * n, [list(s) for s in edge])
 
             ans = [0] * m * n
             pre = set()
