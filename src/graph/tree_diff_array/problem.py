@@ -127,3 +127,63 @@ class Solution:
                     ans += ac.min(cnt * c1, c2)
         ac.st(ans)
         return
+
+    @staticmethod
+    def lg_p3258(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3258
+        tag: offline_lca|tree_diff_array|tree_dp
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints_minus_one()
+        root = nums[0]
+        dct = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            i, j = ac.read_list_ints_minus_one()
+            dct[i].append(j)
+            dct[j].append(i)
+
+        stack = [root]
+        parent = [-1] * n
+        parent[root] = root
+        while stack:
+            i = stack.pop()
+            for j in dct[i]:
+                if j != parent[i]:
+                    stack.append(j)
+                    parent[j] = i
+        tree = UnionFindGetLCA(parent, root)
+
+        diff = [0] * n
+        for i in range(1, n):
+            u, v = nums[i - 1], nums[i]
+            ancestor = tree.get_lca(u, v)
+            if u != ancestor:
+                u = parent[u]
+                diff[u] += 1
+                diff[v] += 1
+                diff[ancestor] -= 1
+                if parent[ancestor] != ancestor:
+                    diff[parent[ancestor]] -= 1
+            else:
+                diff[v] += 1
+                diff[u] -= 1
+
+        stack = [root]
+        while stack:
+            i = stack.pop()
+            if i >= 0:
+                stack.append(~i)
+                for j in dct[i]:
+                    if j != parent[i]:
+                        stack.append(j)
+            else:
+                i = ~i
+                for j in dct[i]:
+                    if j != parent[i]:
+                        diff[i] += diff[j]
+        diff[nums[0]] += 1
+        diff[nums[-1]] -= 1
+        for a in diff:
+            ac.st(a)
+        return

@@ -14,8 +14,8 @@ P2912（https://www.luogu.com.cn/problem/P2912）offline_lca|offline_query
 P3019（https://www.luogu.com.cn/problem/P3019）offline_query|lca
 P3384（https://www.luogu.com.cn/problem/P3384）tree_chain_split|tree_array|implemention
 
-======================================LibreOJ==================================
-（https://loj.ac/p/10135）lca
+======================================LibraryChecker==================================
+1（https://judge.yosupo.jp/problem/lca）tree_lca
 
 ===================================CodeForces===================================
 1328E（https://codeforces.com/problemset/problem/1328/E）tree_lca|dfs_order
@@ -24,7 +24,6 @@ P3384（https://www.luogu.com.cn/problem/P3384）tree_chain_split|tree_array|imp
 1296F（https://codeforces.com/contest/1296/problem/F）offline_lca|greedy|construction|multiplication_method
 
 ====================================AtCoder=====================================
-ABC070D（https://atcoder.jp/contests/abc070/tasks/abc070_d）classical|lca|offline_lca
 
 =====================================AcWing=====================================
 4202（https://www.acwing.com/problem/content/4205/）bit_operation|build_graph|tree_lca|tree_dis
@@ -35,8 +34,10 @@ ABC070D（https://atcoder.jp/contests/abc070/tasks/abc070_d）classical|lca|offl
 import math
 
 from src.data_structure.tree_array.template import RangeAddRangeSum
-from src.graph.tree_lca.template import OfflineLCA, TreeAncestor, TreeCentroid, HeavyChain, TreeAncestorPool
-from src.utils.fast_io import FastIO
+from src.graph.tree_diff_array.template import TreeDiffArray
+from src.graph.tree_lca.template import OfflineLCA, TreeAncestor, TreeCentroid, HeavyChain, TreeAncestorPool, \
+    UnionFindGetLCA
+from src.utils.fast_io import FastIO, inf
 
 
 class Solution:
@@ -197,7 +198,10 @@ class Solution:
 
     @staticmethod
     def lg_p3379_2(ac=FastIO()):
-        # tree_chain_split求 LCA
+        """
+        url: https://www.luogu.com.cn/problem/P3379
+        tag: tree_lca|classical
+        """
         n, m, r = ac.read_list_ints()
         r -= 1
         dct = [[] for _ in range(n)]
@@ -211,43 +215,61 @@ class Solution:
             ac.st(heavy.query_lca(x, y) + 1)
         return
 
+    @staticmethod
+    def lg_p3379_3(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3379
+        tag: tree_lca|classical
+        """
+        n, m, s = ac.read_list_ints()
+        s -= 1
+        edge = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            x, y = ac.read_list_ints_minus_one()
+            edge[x].append(y)
+            edge[y].append(x)
+        parent = [-1] * n
+        stack = [s]
+        parent[s] = s
+        while stack:
+            i = stack.pop()
+            for j in edge[i]:
+                if j != parent[i]:
+                    stack.append(j)
+                    parent[j] = i
+
+        uf = UnionFindGetLCA(parent, s)
+        for _ in range(m):
+            x, y = ac.read_list_ints_minus_one()
+            ac.st(uf.get_lca(x, y) + 1)
+        return
 
     @staticmethod
-    def abc_70d(ac=FastIO()):
-        # classicalLCA查询运用题，也可离线实现
-        n = ac.read_int()
-        edges = [[] for _ in range(n)]
-        dct = [[] for _ in range(n)]
+    def lg_p3379_4(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3379
+        tag: tree_lca|classical
+        """
+        n, m, s = ac.read_list_ints()
+        s -= 1
+        edge = [[] for _ in range(n)]
         for _ in range(n - 1):
-            a, b, c = ac.read_list_ints()
-            dct[a - 1].append([b - 1, c])
-            dct[b - 1].append([a - 1, c])
-            edges[a - 1].append(b - 1)
-            edges[b - 1].append(a - 1)
-        tree = TreeAncestor(edges)
+            x, y = ac.read_list_ints_minus_one()
+            edge[x].append(y)
+            edge[y].append(x)
 
-        q, k = ac.read_list_ints()
-        k -= 1
-        dis = [0] * n
-        stack = [[0, -1]]
-        while stack:
-            i, fa = stack.pop()
-            for j, w in dct[i]:
-                if j != fa:
-                    stack.append([j, i])
-                    dis[j] = dis[i] + w
-        for _ in range(q):
-            a, b = ac.read_list_ints_minus_one()
-            c1 = tree.get_lca(a, k)
-            c2 = tree.get_lca(b, k)
-            ans1 = dis[a] + dis[k] - 2 * dis[c1]
-            ans2 = dis[b] + dis[k] - 2 * dis[c2]
-            ac.st(ans1 + ans2)
+        queries = [ac.read_list_ints_minus_one() for _ in range(m)]
+        ans = OfflineLCA().bfs_iteration(edge, queries, s)
+        ac.st("\n".join(str(x + 1) for x in ans))
         return
 
     @staticmethod
     def cf_321c(ac=FastIO()):
-        # 质心算法树的recursion切割
+        """
+        url: https://codeforces.com/problemset/problem/321/C
+        tag: tree_centroid_recursion|classical
+        """
+
         n = ac.read_int()
         to = [[] for _ in range(n)]
         for _ in range(n - 1):
@@ -264,7 +286,11 @@ class Solution:
 
     @staticmethod
     def lg_p3384(ac=FastIO()):
-        # tree_chain_split和dfs_order节点值修改与区间和查询
+        """
+        url: https://www.luogu.com.cn/problem/P3384
+        tag: tree_chain_split|tree_array|implemention
+        """
+
         n, m, r, p = ac.read_list_ints()
         r -= 1
         tree = RangeAddRangeSum(n)
@@ -282,169 +308,86 @@ class Solution:
             if lst[0] == 1:
                 x, y, z = lst[1:]
                 for a, b in heavy.query_chain(x - 1, y - 1):
-                    tree.update_range(a + 1, b + 1, z)
+                    tree.range_add(a + 1, b + 1, z)
             elif lst[0] == 2:
                 x, y = lst[1:]
                 ans = 0
                 for a, b in heavy.query_chain(x - 1, y - 1):
-                    ans += tree.get_sum_range(a + 1, b + 1)
+                    ans += tree.range_sum(a + 1, b + 1)
                     ans %= p
                 ac.st(ans)
             elif lst[0] == 3:
                 x, z = lst[1:]
                 x -= 1
                 a, b = heavy.dfn[x], heavy.cnt_son[x]
-                tree.update_range(a + 1, a + b, z)
+                tree.range_add(a + 1, a + b, z)
             else:
                 x = lst[1] - 1
                 a, b = heavy.dfn[x], heavy.cnt_son[x]
-                ans = tree.get_sum_range(a + 1, a + b) % p
+                ans = tree.range_sum(a + 1, a + b) % p
                 ac.st(ans)
         return
 
     @staticmethod
     def lg_p2912(ac=FastIO()):
-        # offline_lca查询与任意点对之间距离
+        """
+        url: https://www.luogu.com.cn/problem/P2912
+        tag: offline_lca|offline_query|classical
+        """
         n, q = ac.read_list_ints()
-        dct = [dict() for _ in range(n)]
+        dct = [[] for _ in range(n)]
         for _ in range(n - 1):
             i, j, w = ac.read_list_ints()
             i -= 1
             j -= 1
-            dct[i][j] = dct[j][i] = w
+            dct[i].append((j, w))
+            dct[j].append((i, w))
 
-        # 根节点bfs距离
-        dis = [math.inf] * n
+        dis = [inf] * n
         dis[0] = 0
-        stack = [[0, -1]]
+        parent = [-1] * n
+        parent[0] = 0
+        stack = [0]
         while stack:
-            i, fa = stack.pop()
-            for j in dct[i]:
-                if j != fa:
-                    dis[j] = dis[i] + dct[i][j]
-                    stack.append([j, i])
-
-        # 查询公共祖先
-        queries = [ac.read_list_ints_minus_one() for _ in range(q)]
-        dct = [list(d.keys()) for d in dct]
-        ancestor = OfflineLCA().bfs_iteration(dct, queries, 0)
+            i = stack.pop()
+            for j, w in dct[i]:
+                if dis[j] == inf:
+                    dis[j] = dis[i] + w
+                    stack.append(j)
+                    parent[j] = i
+        tree = UnionFindGetLCA(parent)
         for x in range(q):
-            i, j = queries[x]
-            w = ancestor[x]
-            ans = dis[i] + dis[j] - 2 * dis[w]
+            i, j = ac.read_list_ints_minus_one()
+            ans = dis[i] + dis[j] - 2 * dis[tree.get_lca(i, j)]
             ac.st(ans)
         return
 
     @staticmethod
     def lg_p3019(ac=FastIO()):
-        # offline_query LCA 最近公共祖先
+        """
+        url: https://www.luogu.com.cn/problem/P3019
+        tag: offline_query|lca
+        """
         n, m = ac.read_list_ints()
-        dct = [[] for _ in range(n)]
-        for i in range(n - 1):
-            dct[ac.read_int() - 1].append(i + 1)
-        queries = [ac.read_list_ints_minus_one() for _ in range(m)]
-        ans = OfflineLCA().bfs_iteration(dct, queries)
-        for a in ans:
-            ac.st(a + 1)
+        parent = [0] + [ac.read_int() - 1 for _ in range(n - 1)]
+        tree = UnionFindGetLCA(parent)
+        for _ in range(m):
+            x, y = ac.read_list_ints_minus_one()
+            ac.st(tree.get_lca(x, y) + 1)
         return
 
     @staticmethod
-    def lg_p3258(ac=FastIO()):
-        # offline_lca|tree_diff_array|tree_dp
-        n = ac.read_int()
-        nums = ac.read_list_ints_minus_one()
-        root = nums[0]
-        dct = [[] for _ in range(n)]
-        for _ in range(n - 1):
-            i, j = ac.read_list_ints_minus_one()
-            dct[i].append(j)
-            dct[j].append(i)
-
-        n = len(dct)
-        stack = [root]
-        parent = [-1] * n
-        while stack:
-            i = stack.pop()
-            for j in dct[i]:
-                if j != parent[i]:
-                    stack.append(j)
-                    parent[j] = i
-
-        trips = []
-        for i in range(1, n):
-            trips.append([nums[i - 1], nums[i]])
-
-        # offline_lca
-        res = OfflineLCA().bfs_iteration(dct, trips, root)
-        # tree_diff_array
-        diff = [0] * n
-        for i in range(n - 1):
-            u, v, ancestor = trips[i] + [res[i]]
-            # 将 u 与 v 到 ancestor 的路径经过的节点差分修改（不包含u）
-            if u != ancestor:
-                u = parent[u]
-                diff[u] += 1
-                diff[v] += 1
-                diff[ancestor] -= 1
-                if parent[ancestor] != -1:
-                    diff[parent[ancestor]] -= 1
-            else:
-                diff[v] += 1
-                diff[u] -= 1
-
-        # 自底向上差分|和
-        stack = [root]
-        while stack:
-            i = stack.pop()
-            if i >= 0:
-                stack.append(~i)
-                for j in dct[i]:
-                    if j != parent[i]:
-                        stack.append(j)
-            else:
-                i = ~i
-                for j in dct[i]:
-                    if j != parent[i]:
-                        diff[i] += diff[j]
-        diff[nums[0]] += 1
-        diff[nums[-1]] -= 1
-        for a in diff:
-            ac.st(a)
-        return
-
-    @staticmethod
-    def lg_p6969(ac=FastIO()):
-        # offline_lca 查询与树上边差分
-        n = ac.read_int()
-        dct = [[] for _ in range(n)]
-        cost = [dict() for _ in range(n)]
-        for _ in range(n - 1):
-            a, b, c1, c2 = ac.read_list_ints()
-            a -= 1
-            b -= 1
-            cost[a][b] = cost[b][a] = [c1, c2]
-            dct[a].append(b)
-            dct[b].append(a)
-
-        query = [[i, i + 1] for i in range(n - 1)]
-        res = OfflineLCA().bfs_iteration(dct, query)
-        for i in range(n - 1):
-            query[i].append(res[i])
-        diff = TreeDiffArray().bfs_iteration_edge(dct, query, 0)
-
-        # 将变形的边差分还原
-        ans = 0
-        stack = [0]
-        parent = [-1] * n
-        while stack:
-            i = stack.pop()
-            for j in dct[i]:
-                if j != parent[i]:
-                    stack.append(j)
-                    parent[j] = i
-                    # 边counter下放到节点上
-                    cnt = diff[j]
-                    c1, c2 = cost[i][j]
-                    ans += ac.min(cnt * c1, c2)
-        ac.st(ans)
+    def library_checker_1(ac=FastIO()):
+        """
+        url: https://judge.yosupo.jp/problem/lca
+        tag: tree_lca
+        """
+        n, m = ac.read_list_ints()
+        parent = [0] + ac.read_list_ints()
+        uf = UnionFindGetLCA(parent, 0)
+        ans = []
+        for _ in range(m):
+            x, y = ac.read_list_ints()
+            ans.append(str(uf.get_lca(x, y)))
+        ac.st("\n".join(ans))
         return

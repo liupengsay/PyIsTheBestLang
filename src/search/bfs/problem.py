@@ -89,6 +89,7 @@ P9065（https://www.luogu.com.cn/problem/P9065）brain_teaser|bfs|brute_force
 ====================================AtCoder=====================================
 ARC090B（https://atcoder.jp/contests/abc087/tasks/arc090_b）bfs|differential_constraint|O(n^2)
 ABC133E（https://atcoder.jp/contests/abc133/tasks/abc133_e）bfs|coloring_method|counter
+ABC070D（https://atcoder.jp/contests/abc070/tasks/abc070_d）classical|lca|offline_lca
 
 =====================================AcWing=====================================
 173（https://www.acwing.com/problem/content/175/）multi_source_bfs|classical
@@ -2162,4 +2163,33 @@ class Solution:
                     cnt[v] %= mod
         for x in cnt:
             ac.st(x)
+        return
+
+
+    @staticmethod
+    def abc_070d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc070/tasks/abc070_d
+        tag: classical|bfs|tree_dis
+        """
+        n = ac.read_int()
+        dct = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            a, b, c = ac.read_list_ints()
+            dct[a - 1].append((b - 1, c))
+            dct[b - 1].append((a - 1, c))
+
+        q, k = ac.read_list_ints()
+        k -= 1
+        dis = [0] * n
+        stack = [[k, -1]]
+        while stack:
+            i, fa = stack.pop()
+            for j, w in dct[i]:
+                if j != fa:
+                    stack.append([j, i])
+                    dis[j] = dis[i] + w
+        for _ in range(q):
+            a, b = ac.read_list_ints_minus_one()
+            ac.st(dis[a] + dis[b])
         return

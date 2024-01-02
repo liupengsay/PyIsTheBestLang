@@ -4,6 +4,58 @@ from collections import deque
 from src.utils.fast_io import inf
 
 
+class UnionFindGetLCA:
+    def __init__(self, parent, root=0):
+        n = len(parent)
+        self.root_or_size = [-1] * n
+        self.edge = [0] * n
+        self.order = [0] * n
+        assert parent[root] == root
+
+        out_degree = [0] * n
+        que = deque()
+        for i in range(n):
+            out_degree[parent[i]] += 1
+        for i in range(n):
+            if out_degree[i] == 0:
+                que.append(i)
+
+        for i in range(n - 1):
+            v = que.popleft()
+            fa = parent[v]
+            x, y = self.union(v, fa)
+            self.edge[y] = fa
+            self.order[y] = i
+            out_degree[fa] -= 1
+            if out_degree[fa] == 0:
+                que.append(fa)
+
+        self.order[self.find(root)] = n
+        return
+
+    def union(self, v, fa):
+        x, y = self.find(v), self.find(fa)
+        if self.root_or_size[x] > self.root_or_size[y]:
+            x, y = y, x
+        self.root_or_size[x] += self.root_or_size[y]
+        self.root_or_size[y] = x
+        return x, y
+
+    def find(self, v):
+        while self.root_or_size[v] >= 0:
+            v = self.root_or_size[v]
+        return v
+
+    def get_lca(self, u, v):
+        lca = v
+        while u != v:
+            if self.order[u] < self.order[v]:
+                u, v = v, u
+            lca = self.edge[v]
+            v = self.root_or_size[v]
+        return lca
+
+
 class UnionFindLCA:
     def __init__(self, n: int) -> None:
         self.root = [i for i in range(n)]
