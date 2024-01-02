@@ -5,19 +5,17 @@ from src.utils.fast_io import inf
 
 class UnionFind:
     def __init__(self, n: int) -> None:
-        self.root = [i for i in range(n)]
-        self.size = [1] * n
+        self.root_or_size = [-1] * n
         self.part = n
         return
 
     def find(self, x):
-        lst = []
-        while x != self.root[x]:
-            lst.append(x)
+        y = x
+        while self.root_or_size[x] >= 0:
             # range_merge_to_disjoint to the direct root node after query
-            x = self.root[x]
-        for w in lst:
-            self.root[w] = x
+            x = self.root_or_size[x]
+        while y != x:
+            self.root_or_size[y], y = x, self.root_or_size[y]
         return x
 
     def union(self, x, y):
@@ -25,22 +23,43 @@ class UnionFind:
         root_y = self.find(y)
         if root_x == root_y:
             return False
-        if self.size[root_x] >= self.size[root_y]:
+        if self.root_or_size[root_x] < self.root_or_size[root_y]:
             root_x, root_y = root_y, root_x
-        self.root[root_x] = root_y
-        self.size[root_y] += self.size[root_x]
-        # assign the rank of non-root nodes to 0
-        self.size[root_x] = 0
+        self.root_or_size[root_y] += self.root_or_size[root_x]
+        self.root_or_size[root_x] = root_y
+        self.part -= 1
+        return True
+
+    def union_left(self, x, y):
+        root_x = self.find(x)
+        root_y = self.find(y)
+        if root_x == root_y:
+            return False
+        self.root_or_size[root_x] += self.root_or_size[root_y]
+        self.root_or_size[root_y] = root_x
+        self.part -= 1
+        return True
+
+    def union_right(self, x, y):
+        root_x = self.find(x)
+        root_y = self.find(y)
+        if root_x == root_y:
+            return False
+        self.root_or_size[root_y] += self.root_or_size[root_x]
+        self.root_or_size[root_x] = root_y
         self.part -= 1
         return True
 
     def is_connected(self, x, y):
         return self.find(x) == self.find(y)
 
+    def get_node_size(self, x):
+        return -self.root_or_size[self.find(x)]
+
     def get_root_part(self):
         # get the nodes list of every root
         part = defaultdict(list)
-        n = len(self.root)
+        n = len(self.root_or_size)
         for i in range(n):
             part[self.find(i)].append(i)
         return part
@@ -48,53 +67,26 @@ class UnionFind:
     def get_root_size(self):
         # get the size of every root
         size = defaultdict(int)
-        n = len(self.root)
+        n = len(self.root_or_size)
         for i in range(n):
-            size[self.find(i)] = self.size[self.find(i)]
+            if self.find(i) == i:
+                size[i] = -self.root_or_size[i]
         return size
-
-
-class UnionFindRightRoot:
-    def __init__(self, n: int) -> None:
-        self.root = [i for i in range(n)]
-        return
-
-    def find(self, x):
-        lst = []
-        while x != self.root[x]:
-            lst.append(x)
-            x = self.root[x]
-        for w in lst:
-            self.root[w] = x
-        return x
-
-    def union(self, x, y):
-        root_x = self.find(x)
-        root_y = self.find(y)
-        if root_x == root_y:
-            return False
-        # select the bigger node as root
-        if root_x > root_y:
-            root_x, root_y = root_y, root_x
-        self.root[root_x] = root_y
-        return True
 
 
 class UnionFindWeighted:
     def __init__(self, n: int) -> None:
-        self.root = [i for i in range(n)]
-        self.size = [1] * n
-        self.part = n
+        self.root_or_size = [-1] * n
         self.front = [0] * n
         return
 
     def find(self, x):
         lst = []
-        while x != self.root[x]:
+        while self.root_or_size[x] >= 0:
             lst.append(x)
-            x = self.root[x]
+            x = self.root_or_size[x]
         for w in lst:
-            self.root[w] = x
+            self.root_or_size[w] = x
         lst.append(x)
         m = len(lst)
         for i in range(m - 2, -1, -1):
@@ -104,16 +96,13 @@ class UnionFindWeighted:
     def union(self, x, y):
         root_x = self.find(x)
         root_y = self.find(y)
-        self.front[root_x] += self.size[root_y]
-        self.root[root_x] = root_y
-        self.size[root_y] += self.size[root_x]
-        self.size[root_x] = 0
-        self.part -= 1
+        self.front[root_x] -= self.root_or_size[root_y]
+        self.root_or_size[root_y] += self.root_or_size[root_x]
+        self.root_or_size[root_x] = root_y
         return True
 
     def is_connected(self, x, y):
         return self.find(x) == self.find(y)
-
 
 class PersistentUnionFind:
     def __init__(self, n):
@@ -144,29 +133,3 @@ class PersistentUnionFind:
     def is_connected(self, x, y, tm):
         return self.find(x, tm) == self.find(y, tm)
 
-
-class UnionFindLeftRoot:
-    def __init__(self, n: int) -> None:
-        self.root = [i for i in range(n)]
-        self.part = n
-        return
-
-    def find(self, x):
-        lst = []
-        while x != self.root[x]:
-            lst.append(x)
-            x = self.root[x]
-        for w in lst:
-            self.root[w] = x
-        return x
-
-    def union(self, x, y):
-        root_x = self.find(x)
-        root_y = self.find(y)
-        if root_x == root_y:
-            return False
-        # select the smaller node as root
-        if root_x <= root_y:
-            root_x, root_y = root_y, root_x
-        self.root[root_x] = root_y
-        return True

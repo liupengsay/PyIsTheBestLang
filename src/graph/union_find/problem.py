@@ -6,7 +6,7 @@ Description：graph|reverse_thinking|permutation_circle|offline_query|merge_wise
 ====================================LeetCode====================================
 765（https://leetcode.cn/problems/couples-holding-hands/）union_find
 1697（https://leetcode.cn/problems/checking-existence-of-edge-length-limited-paths/）sort|offline_query|implemention
-2503（https://leetcode.cn/problems/checking-existence-of-edge-length-limited-paths/）sort|offline_query|implemention
+2503（https://leetcode.cn/problems/maximum-number-of-points-from-grid-queries/）sort|offline_query|implemention
 2421（https://leetcode.cn/problems/number-of-good-paths/）sort|union_find|counter
 2382（https://leetcode.cn/problems/maximum-segment-sum-after-removals/）reverse_order|union_find|implemention|reverse_thinking
 2334（https://leetcode.cn/problems/subarray-with-elements-greater-than-varying-threshold/）sort|brute_force|union_find
@@ -75,7 +75,7 @@ ABC131F（https://atcoder.jp/contests/abc131/tasks/abc131_f）brain_teaser|union
 5145（https://www.acwing.com/problem/content/5148/）union_find|circle_judge
 
 ================================LibraryChecker================================
-1 Cycle Detection (Undirected)（https://judge.yosupo.jp/problem/cycle_detection_undirected）union_find|circle_judge
+1 （https://judge.yosupo.jp/problem/cycle_detection_undirected）union_find|circle_judge
 
 """
 import decimal
@@ -87,8 +87,7 @@ from typing import List, Optional
 from src.basis.tree_node.template import TreeNode
 from src.data_structure.sorted_list.template import SortedList
 from src.graph.dijkstra.template import Dijkstra
-from src.graph.union_find.template import UnionFind, UnionFindWeighted, UnionFindLeftRoot, \
-    UnionFindRightRoot
+from src.graph.union_find.template import UnionFind, UnionFindWeighted
 from src.mathmatics.comb_perm.template import Combinatorics
 from src.mathmatics.number_theory.template import NumberTheory
 from src.utils.fast_io import FastIO
@@ -100,12 +99,12 @@ class Solution:
         return
 
     @staticmethod
-    def cf_1810e(ac=FastIO()):
+    def cf_1810e_1(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1810/problem/E
-        tag: union_find|heuristic_search|bfs|heapq
+        tag: cannot_be_union_find|heuristic_search|bfs|heapq|classical|hard
         """
-        # union_find|启发式搜索，线性遍历维护
+
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
             nums = ac.read_list_ints()
@@ -121,7 +120,7 @@ class Solution:
                 if visit[i] == -1 and not nums[i]:
                     count = 0
                     visit[i] = i
-                    stack = [[0, i]]
+                    stack = [(0, i)]
                     while stack:
                         d, x = heappop(stack)
                         if count < nums[x]:
@@ -130,7 +129,7 @@ class Solution:
                         for j in edge[x]:
                             if visit[j] != i:
                                 visit[j] = i
-                                heappush(stack, [nums[j], j])
+                                heappush(stack, (nums[j], j))
                     if count == n:
                         ans = "YES"
                         break
@@ -139,41 +138,67 @@ class Solution:
         return
 
     @staticmethod
+    def cf_1810e_2(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1810/problem/E
+        tag: cannot_be_union_find|heuristic_search|bfs|heapq|classical|hard|mst
+        """
+
+        for _ in range(ac.read_int()):
+            n, m = ac.read_list_ints()
+            nums = ac.read_list_ints()
+            nums = [num * n + i for i, num in enumerate(nums)]  # classical skills
+
+            edge = [[] for _ in range(n)]
+            for _ in range(m):
+                u, v = ac.read_list_ints_minus_one()
+                if nums[u] < nums[v]:
+                    u, v = v, u
+                edge[u].append(v)
+
+            reach = [0] * n
+            uf = UnionFind(n)
+            nums.sort()
+            for val in nums:
+                num, i = val // n, val % n
+                if not num:
+                    reach[i] = 1
+                for j in edge[i]:
+                    if reach[uf.find(j)] and num <= uf.get_node_size(j):
+                        reach[i] = 1
+                    uf.union_left(i, j)
+            ac.st("YES" if uf.part == 1 and reach[uf.find(0)] else "NO")
+        return
+
+    @staticmethod
     def ac_5145(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/5148/
         tag: union_find|circle_judge
         """
-        # union_find判矩阵四元及以上的环
         m, n = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
-        edges = []
         uf = UnionFind(m * n)
         for i in range(m):
             for j in range(n):
                 for x, y in [[i, j + 1], [i + 1, j]]:
-                    # 只有上下左右，所以不会有三元环
                     if 0 <= x < m and 0 <= y < n and grid[x][y] == grid[i][j]:
-                        edges.append([i * n + j, x * n + y])
-                        uf.union(i * n + j, x * n + y)
-        group = uf.get_root_part()
-        degree = defaultdict(int)
-        for i, j in edges:
-            degree[uf.find(i)] += 1
-        for g in group:
-            # union_find多边必然是四元环及以上
-            if degree[g] >= len(group[g]) >= 4:
-                ac.st("Yes")
-                return
+                        if not uf.union(i * n + j, x * n + y):
+                            ac.st("Yes")
+                            return
         ac.st("No")
         return
 
     @staticmethod
     def cf_872a(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/827/A
+        tag: union_find_right_root|implemention|greedy
+        """
         n = ac.read_int()
         nums = [ac.read_list_strs() for _ in range(n)]
         length = max(int(ls[-1]) + len(ls[0]) - 1 for ls in nums)
-        uf = UnionFindRightRoot(length + 1)
+        uf = UnionFind(length + 1)
         ans = ["a"] * length
         for ls in nums:
             st = ls[0]
@@ -185,7 +210,7 @@ class Solution:
                     x = uf.find(x)
                     if x <= start + m - 1:
                         ans[x] = st[x - start]
-                        uf.union(x, x + 1)
+                        uf.union_right(x, x + 1)
                     else:
                         break
         ac.st("".join(ans))
@@ -197,31 +222,31 @@ class Solution:
         url: https://codeforces.com/contest/920/problem/E
         tag: union_find
         """
-        # union_find线性更新，集合维护
         n, m = ac.read_list_ints()
         edge = set()
         for _ in range(m):
             u, v = ac.read_list_ints_minus_one()
             edge.add((u, v))
+
         ans = []
         not_visit = set(range(n))
-        for i in range(n):
-            if i in not_visit:
-                stack = [i]
-                cnt = 1
-                not_visit.discard(i)
-                while stack:
-                    u = stack.pop()
-                    visit = []
-                    for v in not_visit:
-                        if (u, v) in edge or (v, u) in edge:
-                            continue
-                        cnt += 1
-                        stack.append(v)
-                        visit.append(v)
-                    for v in visit:
-                        not_visit.discard(v)
-                ans.append(cnt)
+        while not_visit:
+            i = next(iter(not_visit))
+            not_visit.discard(i)
+            stack = [i]
+            cnt = 1
+            while stack:
+                u = stack.pop()
+                visit = []
+                for v in not_visit:
+                    if (u, v) in edge or (v, u) in edge:
+                        continue
+                    cnt += 1
+                    stack.append(v)
+                    visit.append(v)
+                for v in visit:
+                    not_visit.discard(v)
+            ans.append(cnt)
         ans.sort()
         ac.st(len(ans))
         ac.lst(ans)
@@ -231,43 +256,35 @@ class Solution:
     def lc_1697(n: int, edge_list: List[List[int]], queries: List[List[int]]) -> List[bool]:
         """
         url: https://leetcode.cn/problems/checking-existence-of-edge-length-limited-paths/
-        tag: sort|offline_query|implemention
+        tag: sort|offline_query|implemention|classical
         """
-        # union_find与离线sorting查询结合
-        m = len(queries)
 
-        # 按照 limit sorting
+        m = len(queries)
         ind = list(range(m))
         ind.sort(key=lambda x: queries[x][2])
 
-        # 按照边权值sorting
         edge_list.sort(key=lambda x: x[2])
         uf = UnionFind(n)
         i = 0
         k = len(edge_list)
         ans = []
-        # 查询 queries 里面的 [p, q, limit] 即 p 和 q 之间存在最大边权值严格小于 limit 的路径是否成立
         for j in ind:
-            # 实时|入可用于连通的边并查询结果
             p, q, limit = queries[j]
             while i < k and edge_list[i][2] < limit:
                 uf.union(edge_list[i][0], edge_list[i][1])
                 i += 1
             ans.append([j, uf.is_connected(p, q)])
 
-        # 按照顺序返回结果
         ans.sort(key=lambda x: x[0])
         return [an[1] for an in ans]
 
     @staticmethod
     def lc_2503(grid: List[List[int]], queries: List[int]) -> List[int]:
         """
-        url: https://leetcode.cn/problems/checking-existence-of-edge-length-limited-paths/
+        url: https://leetcode.cn/problems/maximum-number-of-points-from-grid-queries/
         tag: sort|offline_query|implemention
         """
-        # union_find与离线sorting查询结合
         dct = []
-        # 根据邻居关系build_graph|处理
         m, n = len(grid), len(grid[0])
         for i in range(m):
             for j in range(n):
@@ -279,13 +296,10 @@ class Solution:
                     dct.append([i * n + j, i * n + 1 + j, x if x > y else y])
         dct.sort(key=lambda d: d[2])
         uf = UnionFind(m * n)
-
-        # 按照查询值的大小sorting，依次查询
         k = len(queries)
         ind = list(range(k))
         ind.sort(key=lambda d: queries[d])
 
-        # 根据查询值的大小利用pointer持续更新union_find
         ans = [0] * k
         j = 0
         length = len(dct)
@@ -295,23 +309,22 @@ class Solution:
                 uf.union(dct[j][0], dct[j][1])
                 j += 1
             if cur > grid[0][0]:
-                ans[i] = uf.size[uf.find(0)]
+                ans[i] = uf.get_node_size(uf.find(0))
         return ans
 
     @staticmethod
     def lc_2421(vals: List[int], edges: List[List[int]]) -> int:
         """
         url: https://leetcode.cn/problems/number-of-good-paths/
-        tag: sort|union_find|counter
+        tag: sort|union_find|counter|classical|discretization
         """
-        # union_find与离线sorting查询结合
+
         n = len(vals)
         index = defaultdict(list)
         for i in range(n):
             index[vals[i]].append(i)
         edges.sort(key=lambda x: max(vals[x[0]], vals[x[1]]))
         uf = UnionFind(n)
-        # offline_querycounter
         i = 0
         m = len(edges)
         ans = 0
@@ -326,20 +339,25 @@ class Solution:
 
     @staticmethod
     def library_check_1(ac=FastIO()):
+        """
+        url: https://judge.yosupo.jp/problem/cycle_detection_undirected
+        tag: union_find|circle_judge
+        """
         n, m = ac.read_list_ints()
-        edges = [ac.read_list_ints() + [i] for i in range(m)]
+        edges = [ac.read_list_ints() for i in range(m)]
         uf = UnionFind(n)
         dct = [[] for _ in range(n)]
-        for u, v, i in edges:
+        for i in range(m):
+            u, v = edges[i]
             if not uf.union(u, v):
-                stack = [[u, -1]]
-                parent = [[-1, -1] for _ in range(n)]
+                stack = [(u, -1)]
+                parent = [(-1, -1) for _ in range(n)]
                 while stack:
                     x, fa = stack.pop()
                     for y, ind in dct[x]:
                         if y != fa:
-                            parent[y] = [x, ind]
-                            stack.append([y, x])
+                            parent[y] = (x, ind)
+                            stack.append((y, x))
                 nodes = [v]
                 edges = []
                 while nodes[-1] != u:
@@ -350,24 +368,28 @@ class Solution:
                 ac.lst(nodes)
                 ac.lst(edges)
                 break
-            dct[u].append([v, i])
-            dct[v].append([u, i])
+            dct[u].append((v, i))
+            dct[v].append((u, i))
         else:
             ac.st(-1)
-
         return
 
     @staticmethod
     def lg_p1196(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1196
-        tag: union_find_weighted
+        tag: union_find_weighted|classical|hard
         """
-        # 带权union_find
-        uf = UnionFindWeighted(30000)
+
+        n = 10
+        uf = UnionFindWeighted(n)
         for _ in range(ac.read_int()):
             lst = ac.read_list_strs()
             i, j = [int(w) - 1 for w in lst[1:]]
+            while i >= n or j >= n:
+                uf.root_or_size.append(-1)
+                uf.front.append(0)
+                n += 1
             if lst[0] == "M":
                 uf.union(i, j)
             else:
@@ -629,7 +651,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3420
         tag: union_find
         """
-        # 特殊图 n 个节点 n 条边的联通块数量
+
         n = ac.read_int()
         uf = UnionFind(n)
         for i in range(n):
