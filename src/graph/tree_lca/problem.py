@@ -4,16 +4,30 @@ Algorithm：lca|multiplication_method|tree_chain_split|offline_lca|online_lca
 Description：
 
 ====================================LeetCode====================================
+1483（https://leetcode.cn/problems/kth-ancestor-of-a-tree-node/）sparse_table|tree_array|lca|tree_lca|classical
 
 =====================================LuoGu======================================
+P3379（https://www.luogu.com.cn/problem/P3379）tree_lca|classical
+P7128（https://www.luogu.com.cn/problem/P7128）lca|implemention|sort
+P7167（https://www.luogu.com.cn/problem/P7167）monotonic_stack|tree_lca|build_tree
+P2912（https://www.luogu.com.cn/problem/P2912）offline_lca|offline_query
+P3019（https://www.luogu.com.cn/problem/P3019）offline_query|lca
+P3384（https://www.luogu.com.cn/problem/P3384）tree_chain_split|tree_array|implemention
 
-==================================LibreOJ==================================
+======================================LibreOJ==================================
+（https://loj.ac/p/10135）lca
 
 ===================================CodeForces===================================
+1328E（https://codeforces.com/problemset/problem/1328/E）tree_lca|dfs_order
+321C（https://codeforces.com/problemset/problem/321/C）tree_centroid_recursion|classical
+519E（https://codeforces.com/problemset/problem/519/E）lca|kth_ancestor|counter
+1296F（https://codeforces.com/contest/1296/problem/F）offline_lca|greedy|construction|multiplication_method
 
 ====================================AtCoder=====================================
+ABC070D（https://atcoder.jp/contests/abc070/tasks/abc070_d）classical|lca|offline_lca
 
 =====================================AcWing=====================================
+4202（https://www.acwing.com/problem/content/4205/）bit_operation|build_graph|tree_lca|tree_dis
 
 
 
@@ -31,11 +45,13 @@ class Solution:
 
     @staticmethod
     def lg_p7167(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P7167
+        tag: monotonic_stack|tree_lca|build_tree|multiplication_method|classical|hard
+        """
 
-        # monotonic_stack||倍增LCA
         n, q = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
-        # monotonic_stack|建树
         parent = [n] * n
         edge = [[] for _ in range(n + 1)]
         stack = []
@@ -46,11 +62,9 @@ class Solution:
         for i in range(n):
             edge[n - parent[i]].append(n - i)
 
-        # LCApreprocess
         weight = [x for _, x in nums] + [math.inf]
         tree = TreeAncestorPool(edge, weight[::-1])
 
-        # 查询
         for _ in range(q):
             r, v = ac.read_list_ints()
             ans = tree.get_final_ancestor(n - r + 1, v)
@@ -59,7 +73,10 @@ class Solution:
 
     @staticmethod
     def cf_519e(ac=FastIO()):
-        # LCA第k个祖先与节点之间的距离
+        """
+        url: https://codeforces.com/problemset/problem/519/E
+        tag: lca|kth_ancestor|counter|dis|classical
+        """
         n = ac.read_int()
         edges = [[] for _ in range(n)]
         for _ in range(n - 1):
@@ -69,19 +86,21 @@ class Solution:
 
         lca = TreeAncestor(edges)
         sub = [0] * n
-
-        @ac.bootstrap
-        def dfs(i, fa):
-            nonlocal sub
-            cur = 1
-            for j in edges[i]:
-                if j != fa:
-                    yield dfs(j, i)
-                    cur += sub[j]
-            sub[i] = cur
-            yield
-
-        dfs(0, -1)
+        stack = [(0, -1)]
+        while stack:
+            i, fa = stack.pop()
+            if i >= 0:
+                stack.append((~i, fa))
+                for j in edges[i]:
+                    if j != fa:
+                        stack.append((j, i))
+            else:
+                i = ~i
+                cur = 1
+                for j in edges[i]:
+                    if j != fa:
+                        cur += sub[j]
+                sub[i] = cur
 
         for _ in range(ac.read_int()):
             x, y = ac.read_list_ints_minus_one()
@@ -110,7 +129,11 @@ class Solution:
 
     @staticmethod
     def cf_1328e(ac=FastIO()):
-        # 利用 LCA 的方式查询是否为一条链上距离不超过 1 的点
+        """
+        url: https://codeforces.com/problemset/problem/1328/E
+        tag: tree_lca|dfs_order|classical
+        """
+
         n, m = ac.read_list_ints()
         edge = [[] for _ in range(n)]
         for _ in range(n - 1):
@@ -138,7 +161,10 @@ class Solution:
 
     @staticmethod
     def lc_1483(parent, node, k):
-        # 查询任意节点的第 k 个祖先
+        """
+        url: https://leetcode.cn/problems/kth-ancestor-of-a-tree-node/
+        tag: sparse_table|tree_array|lca|tree_lca|classical
+        """
         n = len(parent)
         edges = [[] for _ in range(n)]
         for i in range(n):
@@ -150,7 +176,11 @@ class Solution:
 
     @staticmethod
     def lg_p3379_1(ac=FastIO()):
-        # 倍增查询任意两个节点的 LCA
+        """
+        url: https://www.luogu.com.cn/problem/P3379
+        tag: tree_lca|classical
+        """
+
         n, m, s = ac.read_list_ints()
         s -= 1
         edge = [[] for _ in range(n)]
@@ -158,12 +188,29 @@ class Solution:
             x, y = ac.read_list_ints_minus_one()
             edge[x].append(y)
             edge[y].append(x)
-        # 需要改 s 为默认根
-        tree = TreeAncestor(edge)
+
+        tree = TreeAncestor(edge, s)
         for _ in range(m):
             x, y = ac.read_list_ints_minus_one()
             ac.st(tree.get_lca(x, y) + 1)
         return
+
+    @staticmethod
+    def lg_p3379_2(ac=FastIO()):
+        # tree_chain_split求 LCA
+        n, m, r = ac.read_list_ints()
+        r -= 1
+        dct = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            i, j = ac.read_list_ints_minus_one()
+            dct[i].append(j)
+            dct[j].append(i)
+        heavy = HeavyChain(dct, r)
+        for _ in range(m):
+            x, y = ac.read_list_ints_minus_one()
+            ac.st(heavy.query_lca(x, y) + 1)
+        return
+
 
     @staticmethod
     def abc_70d(ac=FastIO()):
@@ -253,22 +300,6 @@ class Solution:
                 a, b = heavy.dfn[x], heavy.cnt_son[x]
                 ans = tree.get_sum_range(a + 1, a + b) % p
                 ac.st(ans)
-        return
-
-    @staticmethod
-    def lg_p3379_2(ac=FastIO()):
-        # tree_chain_split求 LCA
-        n, m, r = ac.read_list_ints()
-        r -= 1
-        dct = [[] for _ in range(n)]
-        for _ in range(n - 1):
-            i, j = ac.read_list_ints_minus_one()
-            dct[i].append(j)
-            dct[j].append(i)
-        heavy = HeavyChain(dct, r)
-        for _ in range(m):
-            x, y = ac.read_list_ints_minus_one()
-            ac.st(heavy.query_lca(x, y) + 1)
         return
 
     @staticmethod

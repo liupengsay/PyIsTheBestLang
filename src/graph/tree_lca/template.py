@@ -76,39 +76,6 @@ class OfflineLCA:
 
         return [ans[i][j] for i, j in queries]
 
-    @staticmethod
-    def dfs_recursion(dct, queries, root=0):
-
-        n = len(dct)
-        ans = [dict() for _ in range(n)]
-        for i, j in queries:
-            ans[i][j] = -1
-            ans[j][i] = -1
-
-        def dfs(x, fa):
-            nonlocal ind
-            visit[x] = 1
-            uf.order[x] = ind
-            ind += 1
-
-            for y in ans[x]:
-                if visit[y] == 1:
-                    ans[x][y] = ans[y][x] = y
-                elif visit[y] == 2:
-                    ans[x][y] = ans[y][x] = uf.find(y)
-            for y in dct[x]:
-                if y != fa:
-                    dfs(y, x)
-            visit[x] = 2
-            uf.union(x, fa)
-            return
-
-        uf = UnionFindLCA(n)
-        ind = 1
-        visit = [0] * n
-        dfs(root, -1)
-        return [ans[i][j] for i, j in queries]
-
 
 class TreeAncestorPool:
 
@@ -156,36 +123,36 @@ class TreeAncestorPool:
 
 class TreeAncestor:
 
-    def __init__(self, edges):
+    def __init__(self, edges, root=0):
         n = len(edges)
         self.parent = [-1] * n
         self.depth = [-1] * n
-        stack = deque([0])
-        self.depth[0] = 0
+        stack = [root]
+        self.depth[root] = 0
         while stack:
-            i = stack.popleft()
+            i = stack.pop()
             for j in edges[i]:
                 if self.depth[j] == -1:
-                    self.depth[j] = self.depth[i] + 1
+                    self.depth[j] = self.depth[i] + 1  # can change to be weighted
                     self.parent[j] = i
                     stack.append(j)
 
         self.cols = max(2, math.ceil(math.log2(n)))
-        self.dp = [[-1] * self.cols for _ in range(n)]
+        self.dp = [-1] * self.cols * n
         for i in range(n):
-            self.dp[i][0] = self.parent[i]
+            self.dp[i * self.cols] = self.parent[i]
 
         for j in range(1, self.cols):
             for i in range(n):
-                father = self.dp[i][j - 1]
+                father = self.dp[i * self.cols + j - 1]
                 if father != -1:
-                    self.dp[i][j] = self.dp[father][j - 1]
+                    self.dp[i * self.cols + j] = self.dp[father * self.cols + j - 1]
         return
 
     def get_kth_ancestor(self, node: int, k: int) -> int:
         for i in range(self.cols - 1, -1, -1):
             if k & (1 << i):
-                node = self.dp[node][i]
+                node = self.dp[node * self.cols + i]
                 if node == -1:
                     break
         return node
@@ -195,14 +162,14 @@ class TreeAncestor:
             x, y = y, x
         while self.depth[x] > self.depth[y]:
             d = self.depth[x] - self.depth[y]
-            x = self.dp[x][int(math.log2(d))]
+            x = self.dp[x * self.cols + int(math.log2(d))]
         if x == y:
             return x
         for k in range(int(math.log2(self.depth[x])), -1, -1):
-            if self.dp[x][k] != self.dp[y][k]:
-                x = self.dp[x][k]
-                y = self.dp[y][k]
-        return self.dp[x][0]
+            if self.dp[x * self.cols + k] != self.dp[y * self.cols + k]:
+                x = self.dp[x * self.cols + k]
+                y = self.dp[y * self.cols + k]
+        return self.dp[x * self.cols]
 
     def get_dist(self, u: int, v: int) -> int:
         lca = self.get_lca(u, v)
@@ -315,7 +282,7 @@ class HeavyChain:
 
     def build_dfs(self, root) -> None:
         # get the info of dfs order
-        stack = [[root, root]]
+        stack = [(root, root)]
         order = 0
         while stack:
             i, tp = stack.pop()
@@ -327,9 +294,9 @@ class HeavyChain:
             w = self.weight_son[i]
             for j in self.dct[i]:
                 if j != self.parent[i] and j != w:
-                    stack.append([j, j])
+                    stack.append((j, j))
             if w != -1:
-                stack.append([w, tp])
+                stack.append((w, tp))
         return
 
     def query_chain(self, x, y):

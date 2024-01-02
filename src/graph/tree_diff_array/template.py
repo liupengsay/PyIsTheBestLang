@@ -1,4 +1,3 @@
-
 class TreeDiffArray:
 
     def __init__(self):
@@ -79,34 +78,4 @@ class TreeDiffArray:
                 for j in dct[i]:
                     if j != parent[i]:
                         diff[i] += diff[j]
-        return diff
-
-    @staticmethod
-    def dfs_recursion(dct, queries, root=0):
-        n = len(dct)
-
-        stack = [root]
-        parent = [-1] * n
-        while stack:
-            i = stack.pop()
-            for j in dct[i]:
-                if j != parent[i]:
-                    stack.append(j)
-                    parent[j] = i
-
-        diff = [0] * n
-        for u, v, ancestor in queries:
-            diff[u] += 1
-            diff[v] += 1
-            diff[ancestor] -= 1
-            if parent[ancestor] != -1:
-                diff[parent[ancestor]] -= 1
-
-        def dfs(x, fa):
-            for y in dct[x]:
-                if y != fa:
-                    diff[x] += dfs(y, x)
-            return diff[x]
-
-        dfs(0, -1)
         return diff
