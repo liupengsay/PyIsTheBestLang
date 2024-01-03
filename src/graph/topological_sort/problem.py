@@ -113,7 +113,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/3699/
         tag: topological_order|dag|construction|classical|hard|brain_teaser
         """
-
         for _ in range(ac.read_int()):
 
             def check():
@@ -169,7 +168,6 @@ class Solution:
         url: https://leetcode.cn/problems/build-a-matrix-with-conditions/
         tag: build_graph|union_find|topological_sort
         """
-
         def check(cond):
             dct = defaultdict(list)
             degree = defaultdict(int)
@@ -207,7 +205,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1137
         tag: topological_sort|dag_dp|longest_path
         """
-
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         degree = [0] * n
@@ -234,7 +231,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1347
         tag: topological_sort|lexicographical_order|construction
         """
-
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         degree = [0] * n
@@ -287,7 +283,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1685
         tag: dag_dp|directed_topological_sort|counter|classical
         """
-
         n, m, s, e, t = ac.read_list_ints()
         s -= 1
         e -= 1
@@ -325,7 +320,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3243
         tag: reverse_graph|topological_sort|heapq|implemention|topological_lexicographic_order|brain_teaser|classical|hard
         """
-
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
             dct = [[] for _ in range(n)]
@@ -357,7 +351,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5536
         tag: undirected_topological_sort|classical|brain_teaser
         """
-
         n, k = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         degree = [0] * n
@@ -389,7 +382,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6037
         tag: undirected_circle_based_tree|union_find|topological_sort|implemention
         """
-
         n = ac.read_int()
         dct = [[] for _ in range(n)]
         uf = UnionFind(n)
@@ -441,7 +433,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6255
         tag: topological_sort|circle_judge|classical|simple_graph|brain_teaser|bfs
         """
-
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         degree = [0] * n
@@ -487,7 +478,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6417
         tag: directed_circle_based_tree|greedy|topological_sort|brain_teaser|classical
         """
-
         n = ac.read_int()
         dct = [ac.read_int() - 1 for _ in range(n)]
         degree = [0] * n
@@ -528,7 +518,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6560
         tag: reverse_graph|topological_sort|game_dp|brain_teaser|game_dp|classical
         """
-
         n, m, q = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         degree = [0 for _ in range(n)]
@@ -598,7 +587,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8943
         tag: undirected_circle_based_tree|game_dp
         """
-
         n, q = ac.read_list_ints()
         degree = [0] * n
         dct = [[] for _ in range(n)]
@@ -663,7 +651,6 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-employees-to-be-invited-to-a-meeting/
         tag: topological_sort|dag|directed_circle_based_tree|classification_discussion|classical|hard
         """
-
         n = len(favorite)
         degree = [0] * n
         for i in range(n):
@@ -706,7 +693,6 @@ class Solution:
         url: https://leetcode.cn/problems/all-ancestors-of-a-node-in-a-directed-acyclic-graph/
         tag: directed_topological_sort|dag_dp
         """
-
         ans = [set() for _ in range(n)]
         degree = [0] * n
         dct = [[] for _ in range(n)]
@@ -733,7 +719,6 @@ class Solution:
         url: https://leetcode.cn/problems/distance-to-a-cycle-in-undirected-graph/
         tag: undirected_topological_sort
         """
-
         dct = [[] for _ in range(n)]
         degree = [0] * n
         for i, j in edges:
@@ -767,7 +752,6 @@ class Solution:
         url: https://leetcode.cn/problems/largest-color-value-in-a-directed-graph/
         tag: topological_sort|dag_dp|alphabet|data_range|classical
         """
-
         n = len(colors)
         dct = [[] for _ in range(n)]
         degree = [0] * n
@@ -801,7 +785,6 @@ class Solution:
         url: https://leetcode.cn/problems/merge-bsts-to-create-single-bst/
         tag: union_find|topological_sort|union_find|binary_search_tree|classical
         """
-
         n = len(trees)
         ind = {tree.val: i for i, tree in enumerate(trees)}
 
@@ -846,7 +829,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/3831/
         tag: topological_sort|dag_dp|circle_judge
         """
-
         m, n = ac.read_list_ints()
         ind = {w: i for i, w in enumerate("QWER")}
         grid = [ac.read_str() for _ in range(m)]
@@ -896,7 +878,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/4629/
         tag: directed_circle_based_tree|circle_judge|classical|brain_teaser
         """
-
         n = ac.read_int()
         a = ac.read_list_ints_minus_one()
         dct = [[] for _ in range(n)]
@@ -935,7 +916,6 @@ class Solution:
         url: https://leetcode.cn/problems/strange-printer-ii/
         tag: build_graph|topological_sort|circle_judge
         """
-
         color = defaultdict(list)
         m, n = len(grid), len(grid[0])
         for i in range(m):

@@ -39,7 +39,6 @@ class Solution:
         url: https://atcoder.jp/contests/abc130/tasks/abc130_f
         tag: ternary_search|floor|high_precision
         """
-
         n = ac.read_int()
         ind = {"L": [-1, 0], "R": [1, 0], "U": [0, 1], "D": [0, -1]}
         dct_x = defaultdict(lambda: [inf, -inf])
@@ -111,7 +110,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3382
         tag: ternary_search|ceil
         """
-
         n, l, r = ac.read_list_floats()
         n = int(n)
         lst = ac.read_list_floats()
@@ -178,7 +176,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/939/E
         tag: greedy|two_pointers|ternary_search|ceil
         """
-
         nums = []
         pre = [0]
 
@@ -224,7 +221,6 @@ class Solution:
         url: https://leetcode.cn/problems/best-position-for-a-service-centre/
         tag: tripartite_pack_tripartite|convex_function_minimum|gradient_descent|hill_climbing
         """
-
         def target(x, y):
             return sum([math.sqrt((x - p[0]) ** 2 + (y - p[1]) ** 2) for p in stack])
 
@@ -241,7 +237,6 @@ class Solution:
         url: https://leetcode.cn/problems/best-position-for-a-service-centre/
         tag: tripartite_pack_tripartite|convex_function_minimum|gradient_descent|hill_climbing
         """
-
         eps = 1e-10
         alpha = 1.0
         decay = 0.001
@@ -275,7 +270,6 @@ class Solution:
         url: https://leetcode.cn/problems/best-position-for-a-service-centre/
         tag: tripartite_pack_tripartite|convex_function_minimum|gradient_descent|hill_climbing
         """
-
         dirs = [(-1, 0), (1, 0), (0, -1), (0, 1)]
         eps = 1e-6
         step = 1.0

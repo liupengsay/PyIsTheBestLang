@@ -111,7 +111,6 @@ class Solution:
         url: https://leetcode.cn/problems/shortest-palindrome/
         tag: reverse_hash|string_hash|longest_prefix_palindrome_substring|kmp|manacher
         """
-
         # 正向与反向string_hash字符串前缀最长palindrome_substring，也可以用KMP与manacher
 
         def query(x, y):
@@ -160,7 +159,6 @@ class Solution:
         url: https://leetcode.cn/problems/find-duplicate-subtrees/
         tag: tree_hash
         """
-
         # tree_hash编码序列化子树，查找重复子树
         def dfs(node):
             if not node:
@@ -185,7 +183,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/1800/D
         tag: prefix_suffix|hash
         """
-
         # 字符串prefix_suffixhash|和，两个hash避免碰撞
         n = 2 * 10 ** 5
         p1 = random.randint(26, 100)
@@ -253,7 +250,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/140/
         tag: string_hash
         """
-
         # string_hash，子串是否完全相等
         p1 = random.randint(26, 100)
         p2 = random.randint(26, 100)
@@ -366,7 +362,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/159/
         tag: tree_hash|tree_minimum_expression
         """
-
         def check(st):
             # 解码原始树的字符串表示，再tree_minimum_expression
 
@@ -433,7 +428,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2852
         tag: binary_search|string_hash
         """
-
         # 模板；binary_search|string_hash出现超过 k 次的最长连续子数组
         p1 = random.randint(26, 100)
         p2 = random.randint(26, 100)

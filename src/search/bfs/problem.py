@@ -118,7 +118,6 @@ class Solution:
         url: https://leetcode.cn/contest/biweekly-contest-101/problems/shortest-cycle-in-a-graph/
         tag: bfs|undirected_smallest_circle|brute_force|shortest_path
         """
-
         # 求无向图的最小环
         graph = [[] for _ in range(n)]
         for x, y in edges:
@@ -151,7 +150,6 @@ class Solution:
         url: https://leetcode.cn/contest/biweekly-contest-101/problems/shortest-cycle-in-a-graph/
         tag: bfs|undirected_smallest_circle|brute_force|shortest_path
         """
-
         # 求无向图的最小环
         graph = [[] for _ in range(n)]
         for u, v in edges:
@@ -1057,7 +1055,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2199
         tag: deque_bfs|01-bfs
         """
-
         # 队列01-bfs判定距离最近的可视范围
         m, n = ac.read_list_ints()
         grid = [ac.read_list_str() for _ in range(m)]
@@ -1183,7 +1180,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2919
         tag: bfs
         """
-
         # bfs按元素值sorting后从大到小遍历
         m, n = ac.read_list_ints()
         grid = []
@@ -1327,7 +1323,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3855
         tag: bfs|md_state
         """
-
         # 定义四维状态的bfs
         m, n = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
@@ -1859,7 +1854,6 @@ class Solution:
         url: https://leetcode.cn/problems/snakes-and-ladders/
         tag: 01-bfs|implemention
         """
-
         # 01-bfs|implemention
         def position(num):
             i = (num - 1) // n
@@ -1919,7 +1913,6 @@ class Solution:
         url: https://leetcode.cn/problems/escape-a-large-maze/
         tag: bound_bfs|discretization_bfs
         """
-
         # bound_bfs和discretization_bfs两种解法
         def check(node):
             stack = [node]

@@ -113,7 +113,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/1034/A
         tag: prime_factorization
         """
-
         n = ac.read_int()
         nums = ac.read_list_ints()
         ceil = max(nums)
@@ -330,7 +329,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/99/
         tag: a^b|math|factorization
         """
-
         # a^b的所有约数之和
 
         def check(pp, cc):
@@ -423,7 +421,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/198/
         tag: counter
         """
-
         # 质数距离对
         primes = NumberTheory().sieve_of_eratosthenes(2 ** 16)
         while True:
@@ -461,7 +458,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/200/
         tag: anti_prime_number
         """
-
         # 最大的反质数（反prime，即约数或者说因数个数大于任何小于它的数的因数个数）
         n = ac.read_int()
         primes = NumberTheory().sieve_of_eratosthenes(50)
@@ -873,7 +869,6 @@ class Solution:
         url: https://leetcode.cn/problems/adding-two-negabinary-numbers/
         tag: negative_base|classical
         """
-
         # 负进制题
         def check(tmp):
             res = 0

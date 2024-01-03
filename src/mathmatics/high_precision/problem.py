@@ -169,7 +169,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-skips-to-arrive-at-meeting-on-time/
         tag: matrix_dp|high_precision|float_to_frac
         """
-
         # 二维matrix_dp分数high_precision浮点数
         n = len(dist)
         if sum(dist) > hours * speed:
@@ -196,7 +195,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-skips-to-arrive-at-meeting-on-time/
         tag: matrix_dp|high_precision|float_to_frac
         """
-
         # 二维matrix_dp分数high_precision浮点数
         cost = [Decimal(d) / Decimal(speed) for d in dist]
         n = len(dist)

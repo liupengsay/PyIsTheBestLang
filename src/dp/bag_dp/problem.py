@@ -130,7 +130,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/1433/F
         tag: bag_dp|finite|brute_force
         """
-
         m, n, k = ac.read_list_ints()
         pre = [-inf] * k
         pre[0] = 0
@@ -163,7 +162,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/543/A
         tag: matrix_bag_dp
         """
-
         n, m, b, mod = ac.read_list_ints()
         nums = ac.read_list_ints()
         pre = [[0] * (b + 1) for _ in range(m + 1)]
@@ -181,7 +179,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/577/B
         tag: mod|counter|bin_split|bag_dp
         """
-
         cnt = [0] * m
         for num in nums:
             cnt[num % m] += 1
@@ -208,7 +205,6 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-value-of-k-coins-from-piles/
         tag: group_bag_dp
         """
-
         cur = [0] * (k + 1)
         for lst in piles:
             n = len(lst)
@@ -229,7 +225,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6567
         tag: finite|bag_dp|bin_split|classical
         """
-
         n, m = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         target = ac.read_list_ints()
@@ -255,7 +250,6 @@ class Solution:
         url: https://leetcode.cn/problems/painting-the-walls/description/
         tag: bag_dp
         """
-
         @lru_cache(None)
         def dfs(i, pre):
             if pre >= n - i:
@@ -277,7 +271,6 @@ class Solution:
         url: https://leetcode.cn/problems/painting-the-walls/description/
         tag: bag_dp
         """
-
         n = len(cost)
         dp = [sum(time)] * (n + 1)
         dp[0] = 0
@@ -295,7 +288,6 @@ class Solution:
         url: https://leetcode.cn/problems/number-of-great-partitions/
         tag: bag_dp|counter
         """
-
         mod = 10 ** 9 + 7
         dp = [0] * k
         s = sum(nums)
@@ -316,7 +308,6 @@ class Solution:
         url: https://leetcode.cn/problems/number-of-ways-to-earn-points/
         tag: bag_dp
         """
-
         mod = 10 ** 9 + 7
         n = len(types)
         pre = [0] * (target + 1)
@@ -365,7 +356,6 @@ class Solution:
         url: https://leetcode.cn/problems/factor-combinations/
         tag: bag_dp|mul
         """
-
         lst = NumberTheory().get_all_factor(n)
         m = len(lst)
         dp = defaultdict(list)
@@ -431,7 +421,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/6/
         tag: monotonic_queue|matrix_bag_dp|classical|classical
         """
-
         n, m = ac.read_list_ints()
         dp = [0] * (m + 1)
         for _ in range(n):
@@ -455,7 +444,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/10/
         tag: tree_bag_dp|classical
         """
-
         n, m = ac.read_list_ints()
         vol = []
         weight = []
@@ -499,7 +487,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/11/
         tag: bag_dp|counter|specific_plan
         """
-
         n, m = ac.read_list_ints()
         dp = [0] * (m + 1)
         cnt = [1] * (m + 1)
@@ -522,7 +509,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/12/
         tag: bag_dp|specific_plan|finite|lexicographical_order
         """
-
         n, m = ac.read_list_ints()
         dp = [[0] * (m + 1) for _ in range(n + 1)]
         nums = [ac.read_list_ints() for _ in range(n)]
@@ -550,7 +536,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/12/
         tag: bag_dp|specific_plan|finite
         """
-
         n, m = ac.read_list_ints()
         dp = [[0, [-1]] for _ in range(m + 1)]
         for ind in range(n):
@@ -568,7 +553,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1064
         tag: bag_dp|finite|brute_force|classification_discussion|group_bag_dp
         """
-
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(m)]
         sub = [[] for _ in range(m)]
@@ -602,7 +586,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1156
         tag: bag_dp|finite
         """
-
         n, m = ac.read_list_ints()
 
         dct = [ac.read_list_ints() for _ in range(m)]
@@ -631,7 +614,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1273
         tag: tree|graph|group_bag_dp
         """
-
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for j in range(n - m):
@@ -680,7 +662,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1284
         tag: brute_force|triangle|math|bag_dp|classical|hard
         """
-
         n = ac.read_int()
 
         def check():
@@ -783,7 +764,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1541
         tag: brute_force|matrix_dp|fill_table
         """
-
         def idx(i1, i2, i3, i4):
             return i1 * (b + 1) * (c + 1) * (d + 1) + i2 * (c + 1) * (d + 1) + i3 * (d + 1) + i4
 
@@ -842,7 +822,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1776
         tag: matrix_bag_dp|bin_split|monotonic_queue|classical
         """
-
         n, m = ac.read_list_ints()
         dp = [0] * (m + 1)
         for _ in range(n):
@@ -866,7 +845,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1799
         tag: matrix_bag_dp
         """
-
         n = ac.read_int()
         if not n:
             ac.st(0)
@@ -888,7 +866,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1833
         tag: infinite|bag_dp|monotonic_queue|matrix_bag_dp|classical
         """
-
         def check(st):
             hh, mm = st.split(":")
             return int(hh) * 60 + int(mm)
@@ -921,7 +898,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2014
         tag: dag|tree_bag_dp
         """
-
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n + 1)]
         nums = [0]
@@ -957,7 +933,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2079
         tag: rolling_hash|bag_dp|classical
         """
-
         n, v = ac.read_list_ints()
         dp = [defaultdict(lambda: defaultdict(lambda: -inf)), defaultdict(lambda: defaultdict(lambda: -inf))]
         pre = 0
@@ -985,7 +960,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2170
         tag: union_find|bag_dp|finite|bin_split
         """
-
         n, m, k = ac.read_list_ints()
         uf = UnionFind(n)
         for _ in range(k):
@@ -1019,7 +993,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2214
         tag: bag_dp|greedy
         """
-
         n, b = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(b)]
         voice = [ac.read_int() for _ in range(n)]
@@ -1047,7 +1020,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2306
         tag: data_range|counter|finite|bin_split
         """
-
         n, m, k = ac.read_list_ints()
         cnt = defaultdict(lambda: defaultdict(int))
         for _ in range(n):
@@ -1073,7 +1045,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2320
         tag: bin_split|greedy|reverse_thinking
         """
-
         m = ac.read_int()
         ans = []
         while m:
@@ -1089,7 +1060,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2737
         tag: infinite|bag_dp
         """
-
         n = ac.read_int()
         ceil = 256 ** 2 + 1
         nums = [ac.read_int() for _ in range(n)]
@@ -1112,7 +1082,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2760
         tag: monotonic_queue|matrix_bag_dp|classical
         """
-
         m, n, p, t = ac.read_list_ints()
         rest = ac.min(p, t - 1)
         dp = [0] * (rest + 1)
@@ -1140,7 +1109,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2854
         tag: bag_dp|group_bag_dp|finite
         """
-
         length, n, b = ac.read_list_ints()
         dp = [[-inf] * (b + 1) for _ in range(length + 1)]
         nums = [ac.read_list_ints() for _ in range(n)]
@@ -1163,7 +1131,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2938
         tag: infinite|group_bag_dp
         """
-
         s, d, m = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(s)]
         for i in range(1, d):
@@ -1183,7 +1150,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2979
         tag: bag_dp|group_bag_dp|finite
         """
-
         n, t, k = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         m = 5 * t // 4 + 1
@@ -1207,7 +1173,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3010
         tag: bag_dp|heapq|specific_plan
         """
-
         n = ac.read_int()
         nums = [ac.read_int() for _ in range(n)]
         s = sum(nums)
@@ -1238,7 +1203,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3423
         tag: bin_split|matrix_bag_dp|specific_plan
         """
-
         n = ac.read_int()
         b = ac.read_list_ints()
         c = ac.read_list_ints()
@@ -1266,7 +1230,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3983
         tag: infinite|bag_dp
         """
-
         n = ac.read_int()
         m = 10
         a = [0] + ac.read_list_ints()
@@ -1288,7 +1251,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5322
         tag: matrix_dp|group_bag_dp|classical
         """
-
         s, n, m = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(s)]
         dp = [0] * (m + 1)
@@ -1334,7 +1296,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5662
         tag: infinite|bag_dp|greedy
         """
-
         t, n, m = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(t)]
         for i in range(1, t):
@@ -1374,7 +1335,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/4084/
         tag: matrix_bag_dp
         """
-
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
 

@@ -125,7 +125,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3509
         tag: two_pointers|implemention|fast_power
         """
-
         # two_pointersimplemention寻找第k远的距离，fast_power|原理跳转
         n, k, m = ac.read_list_ints()
         nums = ac.read_list_ints()

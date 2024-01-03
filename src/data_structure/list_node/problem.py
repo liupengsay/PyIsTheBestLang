@@ -21,7 +21,6 @@ class Solution:
         url: https://leetcode.cn/problems/double-a-number-represented-as-a-linked-list/
         tag: linked_list
         """
-
         lno = ListNodeOperation()
         lst = lno.node_to_lst(head)[::-1]
 

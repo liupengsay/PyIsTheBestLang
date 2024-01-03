@@ -35,7 +35,6 @@ class Solution:
         url: https://atcoder.jp/contests/abc082/tasks/arc087_b
         tag: brain_teaser|bfs|bit_set
         """
-
         s = ac.read_str()
         x, y = ac.read_list_ints()
         ls = [len(t) for t in s.split("T")]
@@ -115,7 +114,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/5040/
         tag: CF242E|range_or_sum|range_xor_sum|classical
         """
-
         n = ac.read_int()
         nums = ac.read_list_ints()
         tree = [SegBitSet(n) for _ in range(22)]

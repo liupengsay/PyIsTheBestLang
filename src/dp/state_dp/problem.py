@@ -81,7 +81,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-incompatibility/
         tag: state_dp|group_bag_dp|state_dp|comb|fill_table
         """
-
         n = len(nums)
         if n % k:
             return -1
@@ -119,7 +118,6 @@ class Solution:
         url: https://leetcode.cn/problems/find-minimum-time-to-finish-all-jobs/
         tag: bit_operation|minimum_maximum|brute_force|classical|sub_set|refresh_table
         """
-
         n = len(jobs)
         ind = {1 << i: i for i in range(n)}
         cost = [0] * (1 << n)
@@ -210,7 +208,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/580/D
         tag: state_dp
         """
-
         # bitmaskbit_operationstate_dp转移，从 1 少的状态向多的转移，并brute_force前一个 1 的位置增益
         n, m, k = ac.read_list_ints()
         ind = {1 << i: i for i in range(n + 1)}
@@ -275,7 +272,6 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-students-taking-exam/
         tag: brute_force|state_dp
         """
-
         # 考试就座state_dp DP
 
         lst = []
@@ -391,7 +387,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-time-to-kill-all-monsters/
         tag: state_dp
         """
-
         # state_dpDPmemory_search形式
 
         @lru_cache(None)
@@ -442,7 +437,6 @@ class Solution:
         url: https://codeforces.com/contest/11/problem/D
         tag: state_dp|undirected|counter
         """
-
         # state_compress无向图简单环counter
         n, m = ac.read_list_ints()
 
@@ -674,7 +668,6 @@ class Solution:
         url: https://leetcode.cn/problems/probability-of-a-two-boxes-having-the-same-number-of-distinct-balls/
         tag: memory_search|counter
         """
-
         # memory_search与组合mathcounter
 
         @lru_cache(None)
@@ -705,7 +698,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-cost-to-connect-two-groups-of-points/
         tag: state_dp
         """
-
         # state_dp，需要一点变形
         m, n = len(cost), len(cost[0])
         low = [min(cost[i][j] for i in range(m)) for j in range(n)]
@@ -728,7 +720,6 @@ class Solution:
         url: https://leetcode.cn/problems/distribute-repeating-integers/
         tag: state_dp
         """
-
         # 线性索引|brute_force子集state_compress
         @lru_cache(None)
         def dfs(i, state):
@@ -757,7 +748,6 @@ class Solution:
         url: https://leetcode.cn/problems/the-score-of-students-solving-math-expression/
         tag: memory_search|fill_table
         """
-
         # 类似divide_and_conquer的思想memory_search
         @lru_cache(None)
         def dfs(state):
@@ -816,7 +806,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-number-of-work-sessions-to-finish-the-tasks/
         tag: sub_set|preprocess|brute_force|state_dp
         """
-
         # preprocess子集后memory_search状态转移，子集brute_force，也可两个状态
 
         @lru_cache(None)
@@ -915,7 +904,6 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-and-sum-of-array/
         tag: bit_operation|state_dp|3-base|state_dp
         """
-
         # bit_operation和state_dp转移，三进制state_compress（天平就是三进制）
 
         def get_k_bin_of_n(n: int, k: int, m: int):  # 进制与数字转换state_compress

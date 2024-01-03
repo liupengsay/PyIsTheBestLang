@@ -147,7 +147,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/133/
         tag: monotonic_stack|sub_matrix
         """
-
         while True:
             lst = ac.read_list_ints()
             if lst[0] == 0:
@@ -172,7 +171,6 @@ class Solution:
         url: https://leetcode.cn/problems/next-greater-element-iv/description/
         tag: monotonic_stack|post_second_larger
         """
-
         n = len(nums)
         ans = [-1] * n
         stack1 = []
@@ -192,7 +190,6 @@ class Solution:
         url: https://leetcode.cn/problems/beautiful-towers-ii/
         tag: monotonic_stack|greedy
         """
-
         n = len(max_heights)
         pre = [0] * (n + 1)
         stack = []
@@ -230,7 +227,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1191
         tag: monotonic_stack|sub_matrix|counter|classical
         """
-
         n = ac.read_int()
         pre = [0] * n
         ans = 0
@@ -259,7 +255,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1323
         tag: heapq|monotonic_stack|lexicographical_order|greedy
         """
-
         k, m = ac.read_list_ints()
         dct = set()
         ans = []
@@ -314,7 +309,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3467
         tag: monotonic_stack|classical
         """
-
         n = ac.read_int()
         nums = [ac.read_list_ints()[1] for _ in range(n)]
         stack = []
@@ -334,7 +328,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1578
         tag: monotonic_stack|discretization|brute_force|sub_matrix|area
         """
-
         m, n = ac.read_list_ints()
         q = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(q)]
@@ -378,7 +371,6 @@ class Solution:
         url: https://leetcode.cn/problems/verify-preorder-sequence-in-binary-search-tree/
         tag: monotonic_stack|pre_order|classical
         """
-
         pre_max = -inf
         n = len(preorder)
         stack = []
@@ -415,7 +407,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P4147
         tag: brute_force|monotonic_stack|sub_matrix|area
         """
-
         n, m = ac.read_list_ints()
         pre = [0] * m
         ans = 0
@@ -436,7 +427,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1950
         tag: brute_force|monotonic_stack|sub_matrix|counter
         """
-
         m, n = ac.read_list_ints()
         ans = 0
         pre = [0] * n
@@ -457,7 +447,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6404
         tag: monotonic_stack|sub_matrix|counter
         """
-
         m, n = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
         ans = 0
@@ -489,7 +478,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6503
         tag: monotonic_stack|counter|contribution_method
         """
-
         m = ac.read_int()
         nums = [ac.read_int() for _ in range(m)]
         left = [0] * m
@@ -522,7 +510,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6510
         tag: monotonic_stack|sparse_table|hash|binary_search|classical
         """
-
         n = ac.read_int()
         nums = [ac.read_int() for _ in range(n)]
         post = [n - 1] * n
@@ -550,7 +537,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6801
         tag: monotonic_stack|sub_matrix|counter
         """
-
         def compute(x, y):
             return x * (x + 1) * y * (y + 1) // 4
 
@@ -594,7 +580,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8094
         tag: monotonic_stack|pre_larger|post_larger
         """
-
         n = ac.read_int()
         nums = ac.read_list_ints()
         ans = 0
@@ -614,7 +599,6 @@ class Solution:
         url: https://leetcode.cn/problems/remove-duplicate-letters/
         tag: monotonic_stack|hash|counter
         """
-
         cnt = Counter(s)
         in_stack = defaultdict(int)
         stack = []
@@ -652,7 +636,6 @@ class Solution:
         url: https://leetcode.cn/problems/smallest-subsequence-of-distinct-characters/
         tag: monotonic_stack|hash|counter
         """
-
         cnt = Counter(s)
         in_stack = defaultdict(int)
         stack = []
@@ -708,7 +691,6 @@ class Solution:
         url: https://leetcode.cn/problems/total-appeal-of-a-string/
         tag: prefix_suffix|monotonic_stack
         """
-
         n = len(s)
         pre = defaultdict(lambda: -1)
         ans = 0
@@ -723,7 +705,6 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-number-of-books-you-can-take/
         tag: monotonic_stack|liner_dp
         """
-
         n = len(books)
         dp = [0] * n
         stack = []
@@ -747,7 +728,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/1313/C2
         tag: monotonic_stack|liner_dp|specific_plan
         """
-
         n = ac.read_int()
         nums = ac.read_list_ints()
         pre = [0] * n
@@ -789,7 +769,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/1795/E
         tag: monotonic_stack|liner_dp|greedy|counter|brute_force|prefix_suffix|dp
         """
-
         for _ in range(ac.read_int()):
 
             def check():
@@ -840,7 +819,6 @@ class Solution:
         url: https://leetcode.cn/problems/count-submatrices-with-all-ones/
         tag: brute_force|monotonic_stack|counter|sub_matrix
         """
-
         m, n = len(mat), len(mat[0])
         ans = 0
         rec = Rectangle()
@@ -860,7 +838,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/3783/
         tag: monotonic_stack|greedy|linear_dp|construction|CF1313C2
         """
-
         n = ac.read_int()
         nums = ac.read_list_ints()
         pre = [0] * n

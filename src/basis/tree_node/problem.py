@@ -51,7 +51,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/31/
         tag: mid_order
         """
-
         x = q
         while q.father:
             q = q.father

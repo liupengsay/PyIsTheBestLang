@@ -73,7 +73,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/115/
         tag: custom_sort
         """
-
         def compare_(x, y):
             if compare(x, y):
                 return -1
@@ -109,7 +108,6 @@ class Solution:
         url: https://leetcode.cn/problems/largest-number/
         tag: custom_sort|maximum|classical
         """
-
         def compare(a, b):
             if int(a + b) > int(b + a):
                 return -1
@@ -156,7 +154,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-initial-energy-to-finish-tasks/
         tag: custom_sort|greedy|classical
         """
-
         def compare(aa, bb):
             a1, m1 = aa
             a2, m2 = bb
@@ -183,7 +180,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-money-required-before-transactions/
         tag: custom_sort|greedy|classical
         """
-
         def check(it):
             cos, cash = it[:]
             if cos > cash:

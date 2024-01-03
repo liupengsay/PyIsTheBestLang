@@ -93,7 +93,6 @@ class Solution:
         url: https://leetcode.cn/problems/longest-substring-of-one-repeating-character/
         tag: segment_tree|sub_consequence|range_query|range_merge
         """
-
         n = len(s)
         tree = PointSetRangeLongestSubSame(n, [ord(w) - ord("a") for w in s])
         ans = []
@@ -191,7 +190,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1904
         tag: segment_tree|RangeAscendRangeMax
         """
-
         high = 10 ** 4
         segment = RangeAscendRangeMax(high)
         segment.build([0] * high)
@@ -251,7 +249,6 @@ class Solution:
         url: https://codeforces.com/contest/1216/problem/F
         tag: segment_tree|dp|monotonic_queue
         """
-
         n, k = ac.read_list_ints()
         s = ac.read_str()
         tree = RangeDescendRangeMin(n)
@@ -308,7 +305,6 @@ class Solution:
         url: https://codeforces.com/contest/1665/problem/E
         tag: segment_tree|classical
         """
-
         for _ in range(ac.read_int()):
             n = ac.read_int()
             nums = ac.read_list_ints()
@@ -337,7 +333,6 @@ class Solution:
         url: https://leetcode.cn/problems/the-skyline-problem/
         tag: segment_tree|RangeChangeRangeMax
         """
-
         pos = set()
         for left, right, _ in buildings:
             pos.add(left)
@@ -381,7 +376,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3372
         tag: RangeAddRangeSumMaxMin
         """
-
         n, m = ac.read_list_ints()
         segment = RangeAddRangeSumMinMax(n)
         segment.build(ac.read_list_ints())
@@ -402,7 +396,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3870
         tag: segment_tree|range_reverse|range_sum
         """
-
         n, m = ac.read_list_ints()
         segment = RangeRevereRangeBitCount(n)
 
@@ -422,7 +415,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1438
         tag: diff_array|RangeAddRangeSumMaxMin|segment_tree
         """
-
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         segment = RangeAddRangeSumMinMax(n)
@@ -452,7 +444,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1253
         tag: range_add|range_change|segment_tree|range_sum
         """
-
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         tree = RangeChangeAddRangeMax(n)
@@ -525,7 +516,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1471
         tag: math|segment_tree|RangeAddRangeSum
         """
-
         n, m = ac.read_list_ints()
         tree = RangeAddRangeAvgDev(n)
         tree.build(ac.read_list_floats())
@@ -702,7 +692,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1558
         tag: segment_tree|RangeChangeRangeOr
         """
-
         n, t, q = ac.read_list_ints()
         tree = RangeChangeRangeOr(n)
         tree.range_change(0, n - 1, 1)
@@ -726,7 +715,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3740
         tag: discretization|segment_tree|RangeChangeRangeSum
         """
-
         n, m = ac.read_list_ints()
         nums = []
         while len(nums) < m * 2:
@@ -759,7 +747,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P4588
         tag: segment_tree|PointSetRangeComposite
         """
-
         for _ in range(ac.read_int()):
             n, mod = ac.read_list_ints()
             m = 32
@@ -781,7 +768,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8081
         tag: diff_array|counter|action_scop|segment_tree|RangeChangeRangeOr
         """
-
         n = ac.read_int()
         nums = ac.read_list_ints()
         tree = RangeChangeRangeSumMinMax(n)
@@ -830,7 +816,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8812
         tag: segment_tree|RangeDescendRangeMin|discretization
         """
-
         n, m = ac.read_list_ints()
         goods = [[] for _ in range(n)]
         for _ in range(m):
@@ -910,7 +895,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/987/C
         tag: brute_force|segment_tree|prefix_suffix
         """
-
         n = ac.read_int()
         s = ac.read_list_ints()
         c = ac.read_list_ints()
@@ -938,7 +922,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-interval-to-include-each-query/
         tag: segment_tree|RangeChangeRangeMin|offline_query|monotonic_queue
         """
-
         port = []
         for inter in intervals:
             port.extend(inter)
@@ -959,7 +942,6 @@ class Solution:
         url: https://leetcode.cn/problems/jump-game-v/
         tag: segment_tree|linear_dp
         """
-
         n = len(nums)
         post = [n - 1] * n
         stack = []
@@ -1021,7 +1003,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/3808/
         tag: RangeAddRangeMin
         """
-
         n = ac.read_int()
         tree = RangeAddRangeSumMinMax(n)
         tree.build(ac.read_list_ints())
@@ -1077,7 +1058,6 @@ class Solution:
         url: https://leetcode.cn/problems/count-integers-in-intervals/
         tag: dynamic_segment_tree|union_find_range|SortedList
         """
-
         class CountIntervals:
             def __init__(self):
                 self.n = 10 ** 9 + 7
@@ -1097,7 +1077,6 @@ class Solution:
         url: https://leetcode.cn/problems/count-integers-in-intervals/
         tag: dynamic_segment_tree|union_find_range|SortedList
         """
-
         class CountIntervals:
 
             def __init__(self):
@@ -1128,7 +1107,6 @@ class Solution:
         url: https://leetcode.cn/problems/booking-concert-tickets-in-groups/
         tag: segment_tree|RangeAddRangeSumMaxMin
         """
-
         class BookMyShow:
 
             def __init__(self, n: int, m: int):

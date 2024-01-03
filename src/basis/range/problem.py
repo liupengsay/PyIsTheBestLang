@@ -69,7 +69,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1496
         tag: range_merge_to_disjoint
         """
-
         n = ac.read_int()
         lst = []
         for _ in range(n):
@@ -109,7 +108,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-number-of-taps-to-open-to-water-a-garden/
         tag: range_merge_to_disjoint
         """
-
         lst = []
         for i, r in enumerate(ranges):
             a, b = i - r, i + r
@@ -124,7 +122,6 @@ class Solution:
         url: https://leetcode.cn/problems/video-stitching/
         tag: minimum_range_cover
         """
-
         return Range().minimum_range_cover(0, time, clips)
 
     @staticmethod
@@ -133,7 +130,6 @@ class Solution:
         url: https://leetcode.cn/problems/video-stitching/
         tag: minimum_range_cover
         """
-
         return Range().minimum_interval_coverage(clips, time, True)
 
     @staticmethod
@@ -153,7 +149,6 @@ class Solution:
         url: https://leetcode.cn/problems/non-overlapping-intervals/
         tag: maximum_disjoint_range|greedy|binary_search|dp|classical
         """
-
         n = len(intervals)
         return n - Range().maximum_disjoint_range(intervals)
 
@@ -163,7 +158,6 @@ class Solution:
         url: https://leetcode.cn/problems/partition-labels/
         tag: range_merge_to_disjoint
         """
-
         dct = defaultdict(list)
         for i, w in enumerate(s):
             if len(dct[w]) >= 2:
@@ -181,7 +175,6 @@ class Solution:
         url: https://leetcode.cn/problems/count-ways-to-group-overlapping-ranges/
         tag: range_merge_to_disjoint|fast_power|counter
         """
-
         cnt = len(Range().range_merge_to_disjoint(ranges))
         mod = 10 ** 9 + 7
         return pow(2, cnt, mod)
@@ -192,7 +185,6 @@ class Solution:
         url: https://codeforces.com/contest/1102/problem/E
         tag: range_merge_to_disjoint
         """
-
         mod = 998244353
         n = ac.read_int()
         nums = ac.read_list_ints()
@@ -231,7 +223,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/114/
         tag: greedy|range|rever_thinking|minimum_point_cover_range
         """
-
         n, d = ac.read_list_ints()
         lst = [ac.read_list_ints() for _ in range(n)]
         if any(abs(y) > d for _, y in lst):
@@ -250,7 +241,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1668
         tag: minimum_range_cover|classical
         """
-
         n, t = ac.read_list_ints()
         lst = [ac.read_list_ints() for _ in range(n)]
         ans = Range().minimum_range_cover(1, t, lst, False)
@@ -263,7 +253,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1668
         tag: minimum_range_cover
         """
-
         n, t = ac.read_list_ints()
         t -= 1
         lst = [ac.read_list_ints_minus_one() for _ in range(n)]
@@ -277,7 +266,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2887
         tag: maximum_point_cover_range|greedy|sorted_list|classical
         """
-
         n, m = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort(key=lambda it: it[1])
@@ -300,7 +288,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3661
         tag: greedy|maximum_point_cover_range|classical
         """
-
         n, m = ac.read_list_ints()
         lst = SortedList([ac.read_int() for _ in range(n)])
         nums = [ac.read_list_ints() for _ in range(m)]
@@ -320,7 +307,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3737
         tag: greedy|range|rever_thinking|minimum_point_cover_range
         """
-
         n, r = ac.read_list_ints()
         lst = []
         for i in range(n):
@@ -339,7 +325,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5199
         tag: greedy|range_include|classical|partial_order
         """
-
         n = ac.read_int()
         nums = []
         for _ in range(n):
@@ -361,7 +346,6 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-number-of-non-overlapping-substrings/
         tag: maximum_disjoint_range
         """
-
         ind = defaultdict(deque)
         for i, w in enumerate(s):
             ind[w].append(i)
@@ -398,7 +382,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/4424/
         tag: minimum_range_cover
         """
-
         n, r = ac.read_list_ints()
         nums = ac.read_list_ints()
         lst = []

@@ -155,7 +155,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/448/D
         tag: binary_search|kth_max_of_n_mul_m_table
         """
-
         n, m, k = ac.read_list_ints()
 
         def check(num):
@@ -207,7 +206,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/1475/D
         tag: greedy|sort|prefix_sum|brute_force|binary_search
         """
-
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
             a = ac.read_list_ints()
@@ -247,7 +245,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3017
         tag: binary_search|sub_matrix_sum|maximum_minimum|classical
         """
-
         def check(x):
 
             def cut():
@@ -319,7 +316,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/1791/G2
         tag: greedy|sort|prefix_sum|brute_force|binary_search|can_not_to_be_two_pointers
         """
-
         for _ in range(ac.read_int()):
 
             n, c = ac.read_list_ints()
@@ -376,7 +372,6 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-running-time-of-n-computers/
         tag: greedy|binary_search|implemention|classical
         """
-
         batteries.sort(reverse=True)
         rest = sum(batteries[n:])
 
@@ -441,7 +436,6 @@ class Solution:
         url: https://leetcode.cn/problems/median-of-two-sorted-arrays/
         tag: binary_search|median|two_arrays|same_direction_pointer
         """
-
         def get_kth_num(k):
             ind1 = ind2 = 0
             while k:
@@ -505,7 +499,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1083
         tag: binary_search|diff_array
         """
-
         def check(s):
             diff = [0] * n
             for c, a, b in lst[:s]:
@@ -538,7 +531,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/122/
         tag: binary_search|classical
         """
-
         def solve():
 
             def check(pos):
@@ -579,7 +571,6 @@ class Solution:
         url: https://atcoder.jp/contests/abc056/tasks/arc070_b
         tag: binary_search|bag_dp
         """
-
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
         nums.sort()
@@ -635,7 +626,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/15/
         tag: pigeonhole_principle|binary_search|O(nlogn)|in_place_hash
         """
-
         n = len(nums) - 1
         low = 1
         high = n
@@ -657,7 +647,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1281
         tag: binary_search|specific_plans
         """
-
         m, k = ac.read_list_ints()
         nums = ac.read_list_ints()
 
@@ -690,7 +679,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1381
         tag: sliding_window|two_pointer
         """
-
         n = ac.read_int()
         dct = set([ac.read_str() for _ in range(n)])
         m = ac.read_int()
@@ -752,7 +740,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1419
         tag: binary_search|monotonic_queue|prefix_sum|average|classical
         """
-
         def check(x):
             stack = deque()
             res = []
@@ -788,7 +775,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1525
         tag: binary_search|bfs|bipartite_graph|union_find|coloring_method|classical
         """
-
         n, m = ac.read_list_ints()
         lst = [ac.read_list_ints() for _ in range(m)]
 
@@ -827,7 +813,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1542
         tag: binary_search|frac_to_float|high_precision|float_to_frac
         """
-
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         ff = FloatToFrac()
@@ -859,7 +844,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/1118/D2
         tag: greedy|binary_search
         """
-
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         s = sum(nums)
@@ -931,7 +915,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2810
         tag: binary_search|brute_force|classical
         """
-
         n = ac.read_int()
 
         low = 0
@@ -961,7 +944,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3718
         tag: binary_search|greedy|classical
         """
-
         n, k = ac.read_list_ints()
         s = ac.read_str()
 
@@ -1020,7 +1002,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P4343
         tag: bound|binary_search|implemention|classical
         """
-
         l, k = ac.read_list_ints()
         lst = []
         for _ in range(l):
@@ -1058,7 +1039,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5844
         tag: median_greedy|prefix_sum|binary_search|classical
         """
-
         n, m, b = ac.read_list_ints()
         pos = [ac.read_int() for _ in range(n)]
         ans = j = 0
@@ -1083,7 +1063,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5878
         tag: binary_search|brute_force
         """
-
         n, m = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
 
@@ -1185,7 +1164,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6069
         tag: math|binary_search|variance|classical
         """
-
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         nums.sort()
@@ -1213,7 +1191,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6733
         tag: binary_search|sorted_list
         """
-
         n, k = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort(key=lambda it: -it[1])
@@ -1238,7 +1215,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-time-to-repair-cars/
         tag: binary_search
         """
-
         def check(x):
             res = 0
             for r in ranks:
@@ -1253,7 +1229,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-time-to-eat-all-grains/
         tag: binary_search|greedy|pointer
         """
-
         hens.sort()
         grains.sort()
         m, n = len(hens), len(grains)
@@ -1308,7 +1283,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8161
         tag: greedy|binary_search|classical
         """
-
         n, m = ac.read_list_ints()
         a = ac.read_list_ints()
         b = ac.read_list_ints()
@@ -1340,7 +1314,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8198
         tag: binary_search|pointer
         """
-
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
 
@@ -1367,7 +1340,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P9050
         tag: binary_search|data_range|greedy|implemention|classical
         """
-
         n = ac.read_int()
         if n == 1:
             ac.st("T")
@@ -1430,7 +1402,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/4866/
         tag: binary_search|pigeonhole_principle|classical
         """
-
         for _ in range(ac.read_int()):
             ac.read_str()
             m, n = ac.read_list_ints()
@@ -1459,7 +1430,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/5051/
         tag: high_precision|binary_search|specific_plan
         """
-
         ac.read_int()
         nums = ac.read_list_ints()
         nums.sort()

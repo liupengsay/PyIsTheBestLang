@@ -58,7 +58,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2880
         tag: sparse_table|range_max|range_min
         """
-
         n, q = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
         st1 = SparseTable1(nums, "max")
@@ -74,7 +73,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3865
         tag: sparse_table|range_gcd
         """
-
         n, m = ac.read_list_ints()
         st = SparseTable1(ac.read_list_ints())
         for _ in range(m):
@@ -88,7 +86,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/474/F
         tag: sparse_table|range_min|range_gcd|binary_search|counter
         """
-
         n = ac.read_int()
         nums = ac.read_list_ints()
         dct = defaultdict(list)
@@ -115,7 +112,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/111/
         tag: greedy|multiplication_method|two_pointer|merge_sort|hard|classical
         """
-
         def range_merge_to_disjoint(lst1, lst2):
             a, b = len(lst1), len(lst2)
             x = y = 0
@@ -171,7 +167,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5648
         tag: sparse_table|range_max_index|monotonic_stack
         """
-
         n, t = ac.read_list_ints()
         nums = ac.read_list_ints()
         post = [n] * n
@@ -210,7 +205,6 @@ class Solution:
         url: https://leetcode.cn/problems/number-of-subarrays-with-gcd-equal-to-k/
         tag: range_gcd|counter|sub_consequence
         """
-
         ans = 0
         pre = dict()
         for num in nums:
@@ -231,7 +225,6 @@ class Solution:
         url: https://leetcode.cn/problems/number-of-subarrays-with-lcm-equal-to-k/
         tag: range_lcm|counter|sub_consequence
         """
-
         ans = 0
         pre = dict()
         for num in nums:
@@ -271,7 +264,6 @@ class Solution:
         url: https://leetcode.cn/problems/smallest-subarrays-with-maximum-bitwise-or/
         tag: sub_consequence|range_or
         """
-
         n = len(nums)
         ans = [0] * n
         post = dict()
@@ -358,7 +350,6 @@ class Solution:
         url: https://codeforces.com/contest/1878/problem/E
         tag: sparse_table|range_and
         """
-
         for _ in range(ac.read_int()):
             n = ac.read_int()
             nums = ac.read_list_ints()
@@ -403,7 +394,6 @@ class Solution:
         url: https://leetcode.cn/problems/find-a-value-of-a-mysterious-function-closest-to-target/
         tag: bit_operation|sub_consequence
         """
-
         ans = abs(arr[0] - target)
         pre = {arr[0]}
         for num in arr[1:]:

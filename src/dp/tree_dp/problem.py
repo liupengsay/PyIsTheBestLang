@@ -93,7 +93,6 @@ class Solution:
         url: https://codeforces.com/contest/1676/problem/G
         tag: tree_dp
         """
-
         for _ in range(ac.read_int()):
             n = ac.read_int()
             parent = ac.read_list_ints_minus_one()
@@ -124,7 +123,6 @@ class Solution:
         url: https://leetcode.cn/problems/smallest-missing-genetic-value-in-each-subtree/
         tag: tree_dp|heuristic_merge|classical
         """
-
         n = len(nums)
         dct = [[] for _ in range(n)]
         for i in range(1, n):
@@ -253,7 +251,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/1324/F
         tag: reroot_dp|dfs|down_to_up|up_to_down
         """
-
         n = ac.read_int()
         a = ac.read_list_ints()
         edge = [[] for _ in range(n)]
@@ -374,7 +371,6 @@ class Solution:
         url: https://leetcode.cn/problems/binary-tree-cameras/
         tag: tree_dp
         """
-
         # tree_dp
         def dfs(node):
             # 不装被监控，装被监控，不装不被监控
@@ -397,7 +393,6 @@ class Solution:
         url: https://leetcode.cn/problems/linked-list-in-binary-tree/description/
         tag: classical|2-tree|linked_list|memory_dp
         """
-
         # classical二叉树与linked_list|比较的memory_searchDP
 
         @lru_cache(None)

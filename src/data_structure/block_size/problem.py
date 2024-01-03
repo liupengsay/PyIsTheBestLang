@@ -151,7 +151,6 @@ class Solution:
         url: https://codeforces.com/contest/220/problem/B
         tag: block_query|counter|block_size|offline_query|classical
         """
-
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         size = int(n ** 0.5) + 1
@@ -206,7 +205,6 @@ class Solution:
         url: https://codeforces.com/contest/86/problem/D
         tag: block_size|offline_query|math
         """
-
         n, t = ac.read_list_ints()
         nums = ac.read_list_ints()
         size = int(n ** 0.5) + 1
@@ -261,7 +259,6 @@ class Solution:
         url: https://codeforces.com/contest/617/problem/E
         tag: block_size|offline_query|xor_pair|counter
         """
-
         n, m, k = ac.read_list_ints()
         nums = ac.read_list_ints()
         pre = list(accumulate(nums, xor, initial=0))

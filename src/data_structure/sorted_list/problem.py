@@ -85,7 +85,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/61/E
         tag: sorted_list|prefix_suffix|counter
         """
-
         n = ac.read_int()
         nums = ac.read_list_ints()
         pre = [0] * (n + 1)
@@ -134,7 +133,6 @@ class Solution:
         url: https://leetcode.cn/problems/number-of-pairs-satisfying-inequality/
         tag: math|sorted_list|binary_search
         """
-
         n = len(nums1)
         ans = 0
         lst = SortedList([nums1[n - 1] - nums2[n - 1] + diff])
@@ -150,7 +148,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1966
         tag: reverse_order_pair|greedy|classical
         """
-
         n = ac.read_int()
         ans = 0
         mod = 10 ** 8 - 3
@@ -178,7 +175,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/129/
         tag: greedy|classical|sorted_list
         """
-
         n, m = ac.read_list_ints()
         machine = [ac.read_list_ints() for _ in range(n)]
         task = [ac.read_list_ints() for _ in range(m)]
@@ -205,7 +201,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1637
         tag: sorted_list|prefix_suffix|counter
         """
-
         n = ac.read_int()
         nums = ac.read_list_ints()
 
@@ -230,7 +225,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2234
         tag: sorted_list
         """
-
         n = ac.read_int()
         ans = 0
         lst = SortedList()
@@ -255,7 +249,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2804
         tag: prefix_sum|sorted_list|classical|brain_teaser
         """
-
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         mod = 92084931
@@ -276,7 +269,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5076
         tag: sorted_list|implemention
         """
-
         q = ac.read_int()
         dct = set()
         lst = []
@@ -315,7 +307,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5149
         tag: reverse_order_pair|bisect
         """
-
         ac.read_int()
         lst = ac.read_list_strs()
         ind = {st: i for i, st in enumerate(lst)}
@@ -334,7 +325,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5459
         tag: prefix_sum|sorted_list|binary_search
         """
-
         n, low, high = ac.read_list_ints()
         a = ac.read_list_ints()
         ans = 0
@@ -355,7 +345,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P7912
         tag: sorted_list|implemention|classical
         """
-
         n = ac.read_int()
         nums = ac.read_list_ints()
         lst = [SortedList([i + 1 for i in range(n) if not nums[i]]),
@@ -387,7 +376,6 @@ class Solution:
         url: https://leetcode.cn/problems/count-integers-in-intervals/
         tag: sorted_list|implemention|classical
         """
-
         class CountIntervals:
 
             def __init__(self):

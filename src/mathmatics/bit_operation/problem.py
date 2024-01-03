@@ -88,7 +88,6 @@ class Solution:
         url: https://codeforces.com/contest/1742/problem/G
         tag: prefix_or|lexicographical_order|construction|specific_plan
         """
-
         # 重排数组使得前缀或值的lexicographical_order最大
         for _ in range(ac.read_int()):
             n = ac.read_int()
@@ -121,7 +120,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/276/D
         tag: maximum_xor|classical
         """
-
         # 区间[l,r]的最大异或和
         a, b = ac.read_list_ints()
         n = len(bin(b)) - 2
@@ -141,7 +139,6 @@ class Solution:
         url: https://codeforces.com/contest/1800/problem/F
         tag: bit_operation|brute_force|counter
         """
-
         # bit_operationbrute_forcecounter
         n = ac.read_int()
         strings = [ac.read_str() for _ in range(n)]
@@ -174,7 +171,6 @@ class Solution:
         url: https://leetcode.cn/problems/single-number-iii/
         tag: bit_operation|counter
         """
-
         # 将整数换算成二进制counter
         s = reduce(xor, nums)
         last = s & (-s)
@@ -192,7 +188,6 @@ class Solution:
         url: https://leetcode.cn/problems/single-number-ii/
         tag: bit_operation|counter
         """
-
         # 将整数换算成二进制counter
         floor = (1 << 31) + 1
         dp = [0] * 33
@@ -272,7 +267,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-operations-to-reduce-an-integer-to-0/
         tag: operation|bit_property
         """
-
         # n |上或减去 2 的某个幂使得 n 变为 0 的最少操作数
         @lru_cache(None)
         def dfs(n):

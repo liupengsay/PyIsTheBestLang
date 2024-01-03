@@ -145,7 +145,6 @@ class Solution:
         url: https://leetcode.cn/problems/uncrossed-lines/
         tag: lis|lcs
         """
-
         return LcsComputeByLis().length_of_lcs(nums1, nums2)
 
     @staticmethod
@@ -154,7 +153,6 @@ class Solution:
         url: https://leetcode.cn/problems/longest-common-subsequence/
         tag: lis|lcs
         """
-
         return LcsComputeByLis().length_of_lcs(s1, s2)
 
     @staticmethod
@@ -163,7 +161,6 @@ class Solution:
         url: https://leetcode.cn/problems/number-of-music-playlists/
         tag: matrix_dp|classical|hard|fill_table
         """
-
         mod = 10 ** 9 + 7
 
         @lru_cache(None)
@@ -185,7 +182,6 @@ class Solution:
         url: https://leetcode.cn/problems/tallest-billboard/description/
         tag: matrix_dp|classical|meet_in_middle
         """
-
         pre = defaultdict(int)
         pre[0] = 0
         for num in rods:
@@ -202,7 +198,6 @@ class Solution:
         url: https://leetcode.cn/problems/shortest-common-supersequence/
         tag: lis|lcs|specific_plan
         """
-
         m, n = len(str1), len(str2)
         dp = [[0] * (n + 1) for _ in range(m + 1)]
 
@@ -237,7 +232,6 @@ class Solution:
         url: https://leetcode.cn/problems/paths-in-matrix-whose-sum-is-divisible-by-k/
         tag: matrix_dp|mod
         """
-
         mod = 10 ** 9 + 7
         m, n = len(grid), len(grid[0])
         dp = [[[0] * k for _ in range(n)] for _ in range(m)]
@@ -266,7 +260,6 @@ class Solution:
         url: https://leetcode.cn/problems/find-the-string-with-lcp/
         tag: greedy|construction|lcp|brain_teaser|classical
         """
-
         n = len(lcp)
         ans = [""] * n
         ind = 0
@@ -302,7 +295,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/2/B
         tag: matrix_dp
         """
-
         def f_2(num):
             if not num:
                 return 1
@@ -449,7 +441,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-total-distance-traveled/
         tag: matrix_dp|refresh_table
         """
-
         robot.sort()
         factory.sort()
         m, n = len(factory), len(robot)
@@ -525,7 +516,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1544
         tag: matrix_dp
         """
-
         n, k = ac.read_list_ints()
 
         pre = [-inf] * (k + 1) * n
@@ -557,7 +547,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1004
         tag: matrix_dp|classical
         """
-
         n = ac.read_int()
         grid = [[0] * n for _ in range(n)]
         while True:
@@ -792,7 +781,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2217
         tag: matrix_dp
         """
-
         m, n, k = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
         avg = sum(sum(g) for g in grid) / k
@@ -846,7 +834,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1436
         tag: md_matrix_dp
         """
-
         k = ac.read_int()
         m = n = 8
         grid = [ac.read_list_ints() for _ in range(m)]
@@ -898,7 +885,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5752
         tag: md_matrix_dp
         """
-
         k = ac.read_int()
         m = n = 8
         grid = [ac.read_list_ints() for _ in range(m)]
@@ -1002,7 +988,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2528
         tag: reverse_order_pair|matrix_dp|implemention|construction
         """
-
         # reverse_order_pair|matrix_dp| 与implementionconstruction
         n, t = ac.read_list_ints()
         dp = [[0] * (t + 1) for _ in range(n + 1)]
@@ -1059,7 +1044,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2736
         tag: matrix_dp
         """
-
         # matrix_dp|
         n, t, m = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -1099,7 +1083,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2769
         tag: matrix_dp
         """
-
         # matrix_dp| 注意初始化条件
         n = ac.read_int()
         a = ac.read_list_ints()
@@ -1516,7 +1499,6 @@ class Solution:
         url: https://leetcode.cn/problems/disconnect-path-in-a-binary-matrix-by-at-most-one-flip/description/
         tag: matrix_dp|brain_teaser
         """
-
         # matrix_dpbrain_teaser|，判断cut_point可行性
         m, n = len(grid), len(grid[0])
 
@@ -1764,7 +1746,6 @@ class Solution:
         url: https://leetcode.cn/problems/valid-palindrome-iii/
         tag: matrix_dp|longest_palindrome_subsequence
         """
-
         # DP求最长回文子序列
         n = len(s)
         dp = [[0] * n for _ in range(n)]
@@ -1929,7 +1910,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8786
         tag: classical|md_matrix_dp| implemention|memory_search
         """
-
         # classical三维matrix_dp| implementionmemory_search
 
         @lru_cache(None)
@@ -1958,7 +1938,6 @@ class Solution:
         url: https://leetcode.cn/problems/count-fertile-pyramids-in-a-land/
         tag: matrix_dp
         """
-
         # 类似求正方形的边长和面积matrix_dp
         def check():
             nonlocal ans
@@ -2097,7 +2076,6 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-non-negative-product-in-a-matrix/
         tag: matrix_dp|maximum_mul|minimum_mul
         """
-
         # matrix_dp最大与最小乘积转移
         m, n = len(grid), len(grid[0])
 
@@ -2272,7 +2250,6 @@ class Solution:
         url: https://leetcode.cn/problems/check-if-an-original-string-exists-given-two-encoded-strings/description/
         tag: matrix_dp|brute_force|memory_search
         """
-
         # 二维matrix_dpbrute_forcememory_search
 
         def check(st):

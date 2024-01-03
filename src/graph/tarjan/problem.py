@@ -69,7 +69,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3387
         tag: scc|dag|classical|longest_path
         """
-
         n, m = ac.read_list_ints()
         weight = ac.read_list_ints()
         edge = [set() for _ in range(n)]
@@ -254,7 +253,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8435
         tag: multi_edge|self_loop|several_circle|pdcc
         """
-
         n, m = ac.read_list_ints()
         edge = [set() for _ in range(n)]
         degree = [0] * n
@@ -281,7 +279,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8436
         tag: multi_edge|self_loop|build_graph|fake_source|edcc
         """
-
         n, m = ac.read_list_ints()
         edge = [set() for _ in range(n)]
         dup = [set() for _ in range(n)]
@@ -320,7 +317,6 @@ class Solution:
         url: https://codeforces.com/contest/999/problem/E
         tag: scc|shrink_point
         """
-
         n, m, s = ac.read_list_ints()
         s -= 1
         edges = [set() for _ in range(n)]
@@ -350,7 +346,6 @@ class Solution:
         url: https://codeforces.com/contest/1702/problem/E
         tag: point_doubly_connected_component|pdcc|undirected|odd_circle
         """
-
         for _ in range(ac.read_int()):
             def check():
                 n = ac.read_int()
@@ -390,7 +385,6 @@ class Solution:
         url: https://leetcode.cn/problems/critical-connections-in-a-network/
         tag: tarjan|cut_edge
         """
-
         edge = [set() for _ in range(n)]
         for i, j in connections:
             edge[i].add(j)
@@ -474,7 +468,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2863
         tag: scc
         """
-
         n, m = ac.read_list_ints()
         edge = [set() for _ in range(n)]
         for _ in range(m):
@@ -490,7 +483,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/427/C
         tag: scc|shrink_point
         """
-
         n = ac.read_int()
         nums = ac.read_list_ints()
         dct = [[] for _ in range(n)]
@@ -516,7 +508,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2656
         tag: scc|dag|longest_path|longest_path|dijkstra|spfa
         """
-
         def check(cc, dd):
             xx = 0
             while cc:
@@ -560,7 +551,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1726
         tag: scc
         """
-
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for _ in range(m):
@@ -608,7 +598,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2341
         tag: scc|shrink_point
         """
-
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for _ in range(m):
@@ -636,7 +625,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2835
         tag: scc|shrink_point
         """
-
         n = ac.read_int()
         edge = [ac.read_list_ints_minus_one()[:-1] for _ in range(n)]
         scc_id, scc_node_id, node_scc_id = Tarjan().get_scc(n, edge)
@@ -655,7 +643,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P7033
         tag: scc|dag|tree_dp|reverse_graph
         """
-
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         ind = list(range(n))
@@ -703,7 +690,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P7965
         tag: scc|dag|tree_dp
         """
-
         n, m, q = ac.read_list_ints()
         dct = [set() for _ in range(n)]
         for _ in range(m):
@@ -787,7 +773,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/3582/
         tag: scc
         """
-
         for _ in range(ac.read_int()):
             n = ac.read_int()
             p = ac.read_list_ints()
@@ -809,7 +794,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/3816/
         tag: scc|topological_sort|dag_dp
         """
-
         n, m = ac.read_list_ints()
         s = ac.read_str()
         dct = [set() for _ in range(n)]
@@ -856,7 +840,6 @@ class Solution:
         url: https://leetcode.cn/problems/longest-cycle-in-a-graph/
         tag: largest_circle|scc|topological_sort|scc
         """
-
         n = len(edges)
         dct = [[] for _ in range(n)]
         for i in range(n):

@@ -157,7 +157,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/1311/D
         tag: greedy|brute_force|specific_plan|data_range|classical
         """
-
         for _ in range(ac.read_int()):
             a, b, c = ac.read_list_ints()
             ans = inf
@@ -180,7 +179,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/584/D
         tag: brute_force|prime|decompose_into_sum_of_prime_at_most_3|classical
         """
-
         def is_prime4(x):
             if x == 1:
                 return False
@@ -217,7 +215,6 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-swap/
         tag: greedy|brute_force
         """
-
         def check():  # greedy
             lst = list(str(num))
             n = len(lst)
@@ -256,7 +253,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/484/B
         tag: sort|brute_force|binary_search|classical|maximum_mod_pair|euler_series|O(nlogn)
         """
-
         ac.read_int()
         nums = sorted(list(set(ac.read_list_ints())))
         n = len(nums)
@@ -286,7 +282,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/382/C
         tag: classification_discussion|brute_force
         """
-
         n = ac.read_int()
         nums = sorted(ac.read_list_ints())
 
@@ -336,7 +331,6 @@ class Solution:
         tag: n-base|classification_discussion|brute_force|factorization|math
 
         """
-
         def check():
             lst = []
             num = n
@@ -374,7 +368,6 @@ class Solution:
         url: https://atcoder.jp/contests/abc059/tasks/arc072_a
         tag: brute_force|prefix_sum|greedy
         """
-
         n = ac.read_int()
         nums = ac.read_list_ints()
         ans1 = 0
@@ -410,7 +403,6 @@ class Solution:
         url: https://atcoder.jp/contests/abc062/tasks/arc074_a
         tag: brute_force
         """
-
         m, n = ac.read_list_ints()
 
         def check1():
@@ -446,7 +438,6 @@ class Solution:
         url: https://atcoder.jp/contests/abc074/tasks/arc083_a
         tag: brute_force|math
         """
-
         res = 0
         a, b, c, d, e, f = ac.read_list_ints()
         ans = [100 * a, 0]
@@ -482,7 +473,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/97/
         tag: brute_force
         """
-
         n = ac.read_int()
 
         for _ in range(n):
@@ -541,7 +531,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1311
         tag: brute_force|counter
         """
-
         n, k, p = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         cnt = [0] * k
@@ -571,7 +560,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2119
         tag: brute_force|prefix_suffix|counter
         """
-
         n, m = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(m)]
 
@@ -627,7 +615,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2652
         tag: brute_force|two_pointers
         """
-
         n = ac.read_int()
         dct = defaultdict(set)
         for _ in range(n):
@@ -651,7 +638,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2994
         tag: brute_force|reverse_thinking
         """
-
         def dis():
             return (x1 - x2) ** 2 + (y1 - y2) ** 2
 
@@ -686,7 +672,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P4181
         tag: greedy|brute_force|suffix_sum
         """
-
         n, m, r = ac.read_list_ints()
         cow = [ac.read_int() for _ in range(n)]
         cow.sort()
@@ -723,7 +708,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6149
         tag: brute_force|triangle|prefix_sum|binary_search
         """
-
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         dct_x = defaultdict(list)
@@ -761,7 +745,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6393
         tag: data_range|brute_force
         """
-
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         dct = dict()
@@ -798,7 +781,6 @@ class Solution:
         url: https://leetcode.cn/problems/distribute-money-to-maximum-children/
         tag: brute_force
         """
-
         ans = -1
         for x in range(children + 1):
             if x * 8 > money:
@@ -820,7 +802,6 @@ class Solution:
         url: https://leetcode.cn/problems/power-of-heroes/
         tag: contribution_method|brute_force|counter
         """
-
         mod = 10 ** 9 + 7
         nums.sort()
         ans = pre = 0
@@ -839,7 +820,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6767
         tag: brute_force
         """
-
         n, a, b, c, d = ac.read_list_ints()
         if b * c > a * d:
             a, b, c, d = c, d, a, b
@@ -857,7 +837,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8270
         tag: brain_teaser|brute_force
         """
-
         s = ac.read_str()
         t = ac.read_str()
         lst = sorted(list("abcdefghijklmnopqr"))
@@ -899,7 +878,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8672
         tag: string|brute_force|permutation_circle|counter|classical|brain_teaser
         """
-
         s = ac.read_str()
         n = len(s)
         dct = dict()
@@ -935,7 +913,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P9076
         tag: factorization|brute_force|classical|square_complexity|sqrt_n
         """
-
         n = ac.read_int()
         ans = 0
         pre = set()
@@ -967,7 +944,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P9008
         tag: inclusion_exclusion|brute_force|counter|classical
         """
-
         n, p, q = ac.read_list_ints()
         friend = defaultdict(set)
         for _ in range(p):
@@ -994,7 +970,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P9006
         tag: brute_force|mod|counter
         """
-
         mod = 100000007
         n, k = ac.read_list_ints()
         num = 9 * 10 ** (n - 1)
@@ -1012,7 +987,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8948
         tag: brute_force|preprocess
         """
-
         dct = dict()
         dct[2000] = [400, 600]
         for i in range(401):
@@ -1031,7 +1005,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8894
         tag: data_range|brute_force|prefix_sum|counter|inclusion_exclusion
         """
-
         n = ac.read_int()
         mod = 998244353
         nums = [ac.read_list_ints() for _ in range(n)]
@@ -1064,7 +1037,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8872
         tag: sort|prefix_suffix|brute_force|reverse_order
         """
-
         n, m = ac.read_list_ints()
         nums = sorted(ac.read_list_ints())
         ans = inf
@@ -1096,7 +1068,6 @@ class Solution:
         url: https://leetcode.cn/problems/check-if-word-can-be-placed-in-crossword/description/
         tag: brute_force
         """
-
         k = len(word)
 
         def check(cur):
@@ -1131,7 +1102,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-operations-to-make-the-array-alternating/
         tag: brute_force|secondary_maximum
         """
-
         odd = defaultdict(int)
         even = defaultdict(int)
         n = len(nums)
@@ -1170,7 +1140,6 @@ class Solution:
         url: https://leetcode.cn/problems/smallest-range-ii/description/
         tag: brute_force|data_range
         """
-
         nums.sort()
         ans = nums[-1] - nums[0]
         n = len(nums)
@@ -1189,7 +1158,6 @@ class Solution:
         url: https://leetcode.cn/problems/number-of-valid-words-for-each-puzzle/
         tag: hash|counter|brute_force|bit_operation|subset_enumeration|classical
         """
-
         n = 7
         dct = defaultdict(int)
         for word in words:
@@ -1219,7 +1187,6 @@ class Solution:
         url: https://leetcode.cn/problems/stepping-numbers/
         tag: data_range|brute_force|preprocess
         """
-
         res = []
         pre = list(range(10))
         res.extend(pre)
@@ -1245,7 +1212,6 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-of-absolute-value-expression/description/
         tag: manhattan_distance|brute_force|classical
         """
-
         n = len(arr1)
         ans = 0
         for x in [1, -1]:
@@ -1284,7 +1250,6 @@ class Solution:
         url: https://leetcode.cn/problems/count-substrings-that-differ-by-one-character/description/
         tag: brute_force|dp|brute_force|classical|brain_teaser
         """
-
         m = len(s)
         n = len(t)
         cnt = [[0] * (n + 1) for _ in range(m + 1)]
@@ -1305,7 +1270,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-degree-of-a-connected-trio-in-a-graph/
         tag: directed_graph|undirected_graph|brute_force
         """
-
         edges = [[i - 1, j - 1] for i, j in edges]
         degree = [0] * n
         dct = [set() for _ in range(n)]
@@ -1336,7 +1300,6 @@ class Solution:
         url: https://leetcode.cn/problems/get-biggest-three-rhombus-sums-in-a-grid/
         tag: prefix_sum|brute_force
         """
-
         m, n = len(grid), len(grid[0])
 
         @lru_cache(None)
@@ -1391,7 +1354,6 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-points-in-an-archery-competition/
         tag: bit_operation|brute_force|back_track
         """
-
         n = len(y)
         ans = [0] * n
         ans[0] = x
@@ -1417,7 +1379,6 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-trailing-zeros-in-a-cornered-path/
         tag: prefix_sum|brute_force
         """
-
         def check(num, f):
             res = 0
             while num % f == 0:

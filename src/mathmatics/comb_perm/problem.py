@@ -101,7 +101,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/1436/C
         tag: binary_search|comb
         """
-
         # binary_search|组合数
         n, x, pos = ac.read_list_ints()
         big = small = 0
@@ -133,7 +132,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/559/C
         tag: inclusion_exclusion|counter
         """
-
         # inclusion_exclusion组合数
         m, n, k = ac.read_list_ints()
         mod = 10 ** 9 + 7

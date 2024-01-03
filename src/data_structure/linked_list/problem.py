@@ -46,7 +46,6 @@ class Solution:
         url: https://codeforces.com/contest/1154/problem/E
         tag: double_linked_list
         """
-
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
         ans = [0] * n
@@ -129,7 +128,6 @@ class Solution:
         url: https://leetcode.cn/problems/steps-to-make-array-non-decreasing/description/
         tag: monotonic_stack|liner_dp|bfs|linked_list
         """
-
         n = len(nums)
         post = list(range(1, n + 1))
         nums.append(10 ** 9 + 7)
@@ -151,7 +149,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-number-of-visited-cells-in-a-grid/
         tag: bfs|double_linked_list|classical|reverse_order|reverse_thinking|tree_array|segment_tree|flatten
         """
-
         m, n = len(grid), len(grid[0])
         dis = [[inf] * n for _ in range(m)]
         row_nex = [list(range(1, n + 1)) for _ in range(m)]
@@ -288,7 +285,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5462
         tag: double_linked_list|greedy|lexicographical_order|deque|classical
         """
-
         n = ac.read_int()
         nums = ac.read_list_ints()
         pre = [-1] * (n + 1)
@@ -320,7 +316,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6155
         tag: sort|greedy|union_find_right_root|classical
         """
-
         n = ac.read_int()
         a = ac.read_list_ints()
         b = ac.read_list_ints()
@@ -394,7 +389,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/4946/
         tag: bfs|linked_list|classical
         """
-
         m, n, k = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
         x1, y1, x2, y2 = ac.read_list_ints_minus_one()
@@ -476,7 +470,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/5037/
         tag: heapq|greedy|linked_list
         """
-
         n = ac.read_int()
         s = ac.read_str()
         nums = ac.read_list_ints()

@@ -76,7 +76,6 @@ class Solution:
         url: https://leetcode.cn/problems/map-sum-pairs/
         tag: prefix|counter
         """
-
         # 更新与查询给定字符串作为单词键前缀的对应值的和
         class MapSum:
             def __init__(self):
@@ -370,7 +369,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/146/
         tag: 01-trie|maximum_xor
         """
-
         # 01-trie树中最长异或路径
         n = ac.read_int()
         dct = [dict() for _ in range(n)]

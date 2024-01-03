@@ -134,7 +134,6 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-score-from-performing-multiplication-operations/
         tag: liner_dp
         """
-
         @lru_cache(None)
         def dfs(i, j):
             ind = i + (n - 1 - j)
@@ -197,7 +196,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-costs-using-the-train-line/
         tag: linear_dp
         """
-
         n = len(regular)
         cost = [[0, 0] for _ in range(n + 1)]
         cost[0][1] = express_cost
@@ -241,7 +239,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/1286/A
         tag: liner_dp
         """
-
         n = ac.read_int()
         nums = ac.read_list_ints()
         ex = set(nums)
@@ -289,7 +286,6 @@ class Solution:
         url: https://leetcode.cn/problems/count-the-number-of-k-free-subsets/
         tag: liner_dp|counter
         """
-
         n = len(nums)
         dp = [1] * (n + 1)
         dp[1] = 2
@@ -312,7 +308,6 @@ class Solution:
         url: https://leetcode.cn/problems/the-number-of-beautiful-subsets/
         tag: liner_dp|hash
         """
-
         power = [1 << i for i in range(21)]
 
         def check(tmp):
@@ -362,7 +357,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/1437/C
         tag: liner_dp
         """
-
         nums.sort()
         m = 2 * n
         dp = [[inf] * (n + 1) for _ in range(m + 1)]
@@ -379,7 +373,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P4933
         tag: linear_dp|counter
         """
-
         n = ac.read_int()
         nums = ac.read_list_ints()
         mod = 998244353
@@ -401,7 +394,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/98/
         tag: liner_dp|classical|hanoi_tower
         """
-
         n = 12
         dp3 = [inf] * (n + 1)
         dp3[0] = 0
@@ -425,7 +417,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1280
         tag: reverse_order|linear_dp
         """
-
         n, k = ac.read_list_ints()
         dct = [[] for _ in range(n + 1)]
         for _ in range(k):
@@ -447,7 +438,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1282
         tag: classical|liner_dp|hash
         """
-
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         pre = defaultdict(lambda: inf)
@@ -473,7 +463,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1356
         tag: classical|mod|linear_dp
         """
-
         m = ac.read_int()
         for _ in range(m):
             n, k = ac.read_list_ints()
@@ -496,7 +485,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1385
         tag: liner_dp|prefix_sum|brain_teaser|lexicographical_order
         """
-
         mod = 10 ** 9 + 7
         for _ in range(ac.read_int()):
             s = ac.read_str()
@@ -525,7 +513,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1809
         tag: brain_teaser|liner_dp|greedy|specific_plan
         """
-
         n = ac.read_int()
         nums = [ac.read_int() for _ in range(n)]
         if n == 1:
@@ -589,7 +576,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2246
         tag: string|counter|liner_dp
         """
-
         s = ""
         while True:
             cur = ac.read_str()
@@ -653,7 +639,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2432
         tag: liner_dp|pointer
         """
-
         w, n = ac.read_list_ints()
         sentence = ac.read_str()
         words = [ac.read_str()[::-1] for _ in range(w)]
@@ -680,7 +665,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2439
         tag: liner_dp|binary_search
         """
-
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort(key=lambda it: it[1])
@@ -700,7 +684,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2476
         tag: counter|linear_dp|memory_search
         """
-
         @lru_cache(None)
         def dfs(a, b, c, d, e, pre):
             if a + b + c + d + e == 0:
@@ -732,7 +715,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2849
         tag: matrix_dp
         """
-
         n, k = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         dis = [[0] * n for _ in range(n)]
@@ -761,7 +743,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3558
         tag: linear_dp|implemention
         """
-
         ac.read_int()
         nums = ac.read_list_ints()
         pre = [inf, inf, inf]
@@ -784,7 +765,6 @@ class Solution:
         url: https://leetcode.cn/problems/decremental-string-concatenation/
         tag: hash|liner_dp|implemention
         """
-
         pre = defaultdict(int)
         pre[words[0][0] + words[0][-1]] = len(words[0])
 
@@ -813,7 +793,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/B3734
         tag: linear_dp
         """
-
         n, r1 = ac.read_list_ints()
         nums = [r1]
         while len(nums) < n:
@@ -844,7 +823,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3901
         tag: pointer|linear_dp|pointer
         """
-
         n, q = ac.read_list_ints()
         nums = ac.read_list_ints()
         ind = dict()
@@ -868,7 +846,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P4401
         tag: linear_dp
         """
-
         ac.read_int()
         s = ac.read_str()
         pre = defaultdict(int)
@@ -891,7 +868,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5095
         tag: classical|linear_dp
         """
-
         n, length = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         dp = [inf] * (n + 1)
@@ -914,7 +890,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5810
         tag: linear_dp
         """
-
         n = ac.read_int()
         dp = [0]
         while dp[-1] < n:
@@ -969,7 +944,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6120
         tag: linear_dp|implemention
         """
-
         n = ac.read_int()
         ind = {w: i for i, w in enumerate("HSP")}
         dp = [[[0, -inf], [0, -inf], [0, -inf]] for _ in range(2)]
@@ -994,7 +968,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6146
         tag: linear_dp|brute_force|counter
         """
-
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort(key=lambda it: it[0])
@@ -1021,7 +994,6 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-strictly-increasing-cells-in-a-matrix/
         tag: data_range|liner_dp
         """
-
         m, n = len(mat), len(mat[0])
         dct = defaultdict(list)
         for i in range(m):
@@ -1047,7 +1019,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P7994
         tag: linear_dp
         """
-
         n = ac.read_int()
         a = ac.read_list_ints()
         b = ac.read_list_ints()
@@ -1077,7 +1048,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8816
         tag: classical|matrix_dp|implemention
         """
-
         n, k = ac.read_list_ints()
         nums = sorted([ac.read_list_ints() for _ in range(n)])
         dp = [list(range(1, k + 2)) for _ in range(n)]
@@ -1101,7 +1071,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/4417/
         tag: liner_dp
         """
-
         ac.read_int()
         nums = ac.read_list_ints()
         ans = -inf
@@ -1178,7 +1147,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-number-of-days-to-eat-n-oranges/
         tag: brain_teaser|greedy|memory_search|liner_dp
         """
-
         @lru_cache(None)
         def dfs(num):
             if num <= 1:

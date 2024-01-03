@@ -46,7 +46,6 @@ class Solution:
         url: https://leetcode.cn/problems/decoded-string-at-index/
         tag: recursion|implemention|iteration|classical
         """
-
         ans = ""
         while not ans:
             n = len(s)
@@ -71,7 +70,6 @@ class Solution:
         url: https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-postorder-traversal/
         tag: recursion|divide_and_conquer|construction
         """
-
         tree = dict()
         m, n = len(preorder), len(postorder)
         stack = [(0, m - 1, 0, n - 1, 1)]
@@ -103,7 +101,6 @@ class Solution:
         url: https://leetcode.cn/problems/all-possible-full-binary-trees/
         tag: catalan_number|recursion|implemention|classical|iteration
         """
-
         dp = [[] for _ in range(21)]
         dp[0] = []
         dp[1] = [TreeNode(0)]
@@ -139,7 +136,6 @@ class Solution:
         url: https://leetcode.cn/problems/recover-a-tree-from-preorder-traversal/description/
         tag: pre_order|recursion|construction|2-tree
         """
-
         tree = dict()
         stack = [(traversal, 1, 1)]
         while stack:
@@ -173,7 +169,6 @@ class Solution:
         url: https://leetcode.cn/problems/find-kth-bit-in-nth-binary-string/
         tag: recursion|implemention
         """
-
         ans = ""
         flag = 0
         while not ans:
@@ -199,7 +194,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1911
         tag: 4-tree|recursion|matrix
         """
-
         n, x, y = ac.read_list_ints()
         ans = [[-1] * (1 << n) for _ in range(1 << n)]
         x -= 1
@@ -248,7 +242,6 @@ class Solution:
         url: https://codeforces.com/contest/448/problem/C
         tag: greedy|recursion|dp|implemention
         """
-
         ac.read_int()
         nums = ac.read_list_ints()
 
@@ -279,7 +272,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/100/
         tag: 4-tree|recursion|matrix_rotate
         """
-
         for _ in range(ac.read_int()):
             n, a, b = ac.read_list_ints()
             a -= 1
@@ -388,7 +380,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/120/
         tag: recursion
         """
-
         dp = [[["X"]]]
         for m in range(2, 8):
             n = 3 ** (m - 1)

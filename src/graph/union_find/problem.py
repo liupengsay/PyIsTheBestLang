@@ -103,7 +103,6 @@ class Solution:
         url: https://codeforces.com/contest/1810/problem/E
         tag: cannot_be_union_find|heuristic_search|bfs|heapq|classical|hard
         """
-
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
             nums = ac.read_list_ints()
@@ -142,7 +141,6 @@ class Solution:
         url: https://codeforces.com/contest/1810/problem/E
         tag: cannot_be_union_find|heuristic_search|bfs|heapq|classical|hard|mst
         """
-
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
             nums = ac.read_list_ints()
@@ -257,7 +255,6 @@ class Solution:
         url: https://leetcode.cn/problems/checking-existence-of-edge-length-limited-paths/
         tag: sort|offline_query|implemention|classical
         """
-
         m = len(queries)
         ind = list(range(m))
         ind.sort(key=lambda x: queries[x][2])
@@ -317,7 +314,6 @@ class Solution:
         url: https://leetcode.cn/problems/number-of-good-paths/
         tag: sort|union_find|counter|classical|discretization
         """
-
         n = len(vals)
         index = defaultdict(list)
         for i in range(n):
@@ -379,7 +375,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1196
         tag: union_find_weighted|classical|hard
         """
-
         n = 10
         uf = UnionFindWeighted(n)
         for _ in range(ac.read_int()):
@@ -406,7 +401,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1197
         tag: reverse_order|union_find，reverse_order|brute_force|part
         """
-
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for _ in range(m):
@@ -441,7 +435,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1522
         tag: connected_part|brute_force|high_precision|tree_diameter|classical|hard
         """
-
         def dis(x1, y1, x2, y2):
             return math.sqrt(decimal.Decimal(((x1 - x2) ** 2 + (y1 - y2) ** 2)))
 
@@ -511,7 +504,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1892
         tag: union_find|bipartite_graph
         """
-
         n = ac.read_int()
         m = ac.read_int()
         uf = UnionFind(n)
@@ -539,7 +531,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1955
         tag: union_find|discretization
         """
-
         t = ac.read_int()
         for _ in range(t):
             n = ac.read_int()
@@ -571,7 +562,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2189
         tag: union_find|classical|preprocess|hard
         """
-
         n, m, k, q = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for _ in range(m):
@@ -612,7 +602,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2307
         tag: union_find
         """
-
         while True:
             ans = []
             while True:
@@ -642,7 +631,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3420
         tag: union_find
         """
-
         n = ac.read_int()
         uf = UnionFind(n)
         for i in range(n):
@@ -681,7 +669,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6193
         tag: permutation_circle|discretization|brain_teaser|classical|hard
         """
-
         n = ac.read_int()
         nums = [ac.read_int() for _ in range(n)]
         lst = sorted(nums)
@@ -710,7 +697,6 @@ class Solution:
         url: https://leetcode.cn/problems/greatest-common-divisor-traversal/
         tag: union_find|prime_factorization
         """
-
         pf = PrimeFactor(10 ** 5)
         n = len(nums)
         uf = UnionFind(n)
@@ -729,7 +715,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6706
         tag: directed_graph|union_find|reverse_order|find_range_merge_to_disjoint|classical|hard
         """
-
         n = ac.read_int()
         edge = ac.read_list_ints()
         q = ac.read_int()
@@ -776,7 +761,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P7991
         tag: union_find|shrink_point
         """
-
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
             uf = UnionFind(n)
@@ -821,7 +805,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-reverse-operations/
         tag: union_find|find_range_merge_to_disjoint|classical|hard|odd_even|bfs|brain_teaser
         """
-
         ans = [-1] * n
         uf = UnionFind(n + 2)
         for i in banned:
@@ -847,7 +830,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8230
         tag: layer|union_find|implemention|mst|brain_teaser
         """
-
         k, m, n = ac.read_list_ints()
         ans = 1
         start = [0, 0]
@@ -896,7 +878,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8686
         tag: union_find|classical
         """
-
         ac.read_int()
         nums = ac.read_list_ints()
         dct = dict()
@@ -976,7 +957,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8881
         tag: brain_teaser|union_find|circle_judge|part|classical
         """
-
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
             uf = UnionFind(n)
@@ -998,7 +978,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-increment-to-make-array-unique/description/
         tag: union_find_right_root|greedy
         """
-
         nums.sort()
         ans = 0
         uf = UnionFind(max(nums) + len(nums) + 2)
@@ -1014,7 +993,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-increment-to-make-array-unique/description/
         tag: union_find_right_root|greedy
         """
-
         nums.sort()
         ans = 0
         pre = -1
@@ -1069,7 +1047,6 @@ class Solution:
         url: https://atcoder.jp/contests/abc049/tasks/arc065_b
         tag: union_find|several_union_find
         """
-
         n, k, ll = ac.read_list_ints()
         ufa = UnionFind(n)
         for _ in range(k):
@@ -1093,7 +1070,6 @@ class Solution:
         url: https://atcoder.jp/contests/abc131/tasks/abc131_f
         tag: brain_teaser|union_find|counter|hard|classical
         """
-
         n = ac.read_int()
         m = 10 ** 5
         uf = UnionFind(2 * m)
@@ -1116,7 +1092,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/4309/
         tag: union_find_right_range|greedy
         """
-
         n = ac.read_int()
         a = ac.read_list_ints()
         uf = UnionFind(n * 2 + 2)
@@ -1135,7 +1110,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/4869/
         tag: union_find|implemention|size|classical
         """
-
         n, d = ac.read_list_ints()
         uf = UnionFind(n)
         lst = SortedList([1] * n)
@@ -1172,7 +1146,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/description/
         tag: discretization|permutation_circle|classical
         """
-
         def check():
             nonlocal ans
             ind = {num: i for i, num in enumerate(cur)}

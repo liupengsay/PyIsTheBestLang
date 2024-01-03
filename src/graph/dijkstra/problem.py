@@ -131,7 +131,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6175
         tag: dijkstra|brute_force|dfs
         """
-
         n, m = ac.read_list_ints()
         dct = [defaultdict(lambda: inf) for _ in range(n)]
         edges = []
@@ -153,7 +152,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6175
         tag: dijkstra|brute_force|dfs
         """
-
         n, m = ac.read_list_ints()
         dct = [defaultdict(lambda: inf) for _ in range(n)]
         for _ in range(m):
@@ -170,7 +168,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/1343/E
         tag: several_bfs|shortest_path|greedy|brute_force
         """
-
         for _ in range(ac.read_int()):
             n, m, a, b, c = ac.read_list_ints()
             a -= 1
@@ -204,7 +201,6 @@ class Solution:
         url: https://codeforces.com/contest/1650/problem/G
         tag: dijkstra|shortest_path|strictly_second_shortest_path|counter|zero_one_bfs
         """
-
         mod = 10 ** 9 + 7
         for _ in range(ac.read_int()):
             ac.read_str()
@@ -226,7 +222,6 @@ class Solution:
         url: https://leetcode.cn/problems/cheapest-flights-within-k-stops/
         tag: limited_shortest_path
         """
-
         dct = [[] for _ in range(n)]
         for u, v, p in flights:
             dct[u].append((v, p))
@@ -251,7 +246,6 @@ class Solution:
         url: https://leetcode.cn/problems/second-minimum-time-to-reach-destination/
         tag: strictly_second_shortest_path|classical
         """
-
         dct = [[] for _ in range(n)]
         for i, j in edges:
             dct[i - 1].append(j - 1)
@@ -285,7 +279,6 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-path-quality-of-a-graph/
         tag: back_track|dijkstra|shortest_path|prune|data_range
         """
-
         n = len(values)
         dct = [[] for _ in range(n)]
         for i, j, t in edges:
@@ -316,7 +309,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-cost-to-reach-city-with-discounts/
         tag: dijkstra|limited_shortest_path
         """
-
         dct = [[] for _ in range(n)]
         for u, v, p in highways:
             dct[u].append([v, p])
@@ -345,7 +337,6 @@ class Solution:
         url: https://leetcode.cn/problems/reachable-nodes-in-subdivided-graph/description/
         tag: dijkstra
         """
-
         dct = [[] for _ in range(n)]
         for i, j, c in edges:
             dct[i].append([j, c + 1])
@@ -380,7 +371,6 @@ class Solution:
         url: https://leetcode.cn/problems/shortest-path-in-a-grid-with-obstacles-elimination/
         tag: limited_shortest_path|classical|dijkstra_usage
         """
-
         m, n = len(grid), len(grid[0])
         visit = defaultdict(lambda: float("inf"))
 
@@ -403,7 +393,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1462
         tag: limited_shortest_path|classical
         """
-
         n, m, s = ac.read_list_ints()
         cost = [ac.read_int() for _ in range(n)]
         dct = [dict() for _ in range(n)]
@@ -440,7 +429,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P4568
         tag: build_graph|layer_dijkstra|shortest_path|classical
         """
-
         n, m, k = ac.read_list_ints()
         s, t = ac.read_list_ints()
         dct = [[] for _ in range(n)]
@@ -475,7 +463,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1629
         tag: shortest_path|several_dijkstra|reverse_thinking
         """
-
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         rev = [[] for _ in range(n)]
@@ -497,7 +484,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2865
         tag: strictly_second_shortest_path
         """
-
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for _ in range(m):
@@ -707,7 +693,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1354
         tag: build_graph|dijkstra|shortest_path
         """
-
         # build_graph|求shortest_path
 
         def dis(x1, y1, x2, y2):
@@ -776,7 +761,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1828
         tag: several_dijkstra|shortest_path
         """
-
         # 多个单源Dijkstrashortest_path
         n, p, c = ac.read_list_ints()
         pos = [ac.read_int() - 1 for _ in range(n)]
@@ -837,7 +821,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2176
         tag: brute_force|shortest_path
         """
-
         # brute_forceshortest_path上的边修改后，重新shortest_path
         n, m = ac.read_list_ints()
         dct = [dict() for _ in range(n)]
@@ -900,7 +883,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2349
         tag: shortest_path
         """
-
         # 比较两个项相|的shortest_path
         n, m = ac.read_list_ints()
         dct = [dict() for _ in range(n)]
@@ -935,7 +917,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2914
         tag: dijkstra|build_graph|dynamic_graph
         """
-
         # Dijkstra动态build_graph|距离
 
         def dis(x, y):
@@ -1561,7 +1542,6 @@ class Solution:
         url: https://leetcode.cn/problems/modify-graph-edge-weights/
         tag: dijkstra|shortest_path|greedy
         """
-
         # Dijkstrashortest_pathgreedy应用
 
         dct = [[] for _ in range(n)]
@@ -1683,7 +1663,6 @@ class Solution:
         url: https://leetcode.cn/problems/number-of-restricted-paths-from-first-to-last-node/
         tag: dijkstra|limited_shortest_path|counter|dag|undirected_to_dag
         """
-
         # dijkstralimited_shortest_pathcounter（类似shortest_pathcounter）
         dct = defaultdict(dict)
         for i, j, w in edges:

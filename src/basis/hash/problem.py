@@ -50,7 +50,6 @@ class Solution:
         url: https://leetcode.cn/problems/choose-numbers-from-two-arrays-in-range/
         tag: prefix_sum|hash|counter|classical|linear_dp
         """
-
         n = len(nums1)
         mod = 10 ** 9 + 7
         pre = defaultdict(int)
@@ -75,7 +74,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-operations-to-reduce-x-to-zero/description/
         tag: prefix_sum|hash|brain_teaser|greedy|reverse_thinking
         """
-
         pre = {0: -1}
         cur = 0
         n = len(nums)
@@ -95,7 +93,6 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-number-of-ways-to-partition-an-array/description/
         tag: hash|contribution_method|counter
         """
-
         n = len(nums)
         ans = 0
         pre = list(accumulate(nums, initial=0))
@@ -126,7 +123,6 @@ class Solution:
         url: https://atcoder.jp/contests/abc045/tasks/arc061_b
         tag: hash|inclusion_exclusion|counter
         """
-
         h, w, n = ac.read_list_ints()
         cnt = [0] * 10
         dct = defaultdict(int)
@@ -150,7 +146,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/139/
         tag: matrix_hash
         """
-
         p1 = random.randint(26, 100)
         p2 = random.randint(26, 100)
         mod1 = random.randint(10 ** 9 + 7, 2 ** 31 - 1)
@@ -198,7 +193,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P4889
         tag: math|hash|counter|classical
         """
-
         n, m = ac.read_list_ints()
         height = ac.read_list_ints()
         cnt = defaultdict(int)
@@ -251,7 +245,6 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-frequency-stack/description/
         tag: hash|stack
         """
-
         class FreqStack:
             def __init__(self):
                 self.freq = defaultdict(list)

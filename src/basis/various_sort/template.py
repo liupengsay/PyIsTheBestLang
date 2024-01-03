@@ -97,7 +97,6 @@ class VariousSort:
         to make an array sorted by exchanging only adjacent elements
         which is equal the number of reverse_order_pair
         """
-
         def range_merge_to_disjoint(left, right):
             nonlocal ans
             if left >= right:

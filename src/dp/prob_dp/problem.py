@@ -31,7 +31,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1291
         tag: liner_dp|expectation
         """
-
         n = ac.read_int()
         ans = [1, 1]
         for x in range(2, n + 1):
@@ -94,7 +93,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6154
         tag: reverse_graph|expectation|tree_dp|float|mod
         """
-
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         degree = [0] * n

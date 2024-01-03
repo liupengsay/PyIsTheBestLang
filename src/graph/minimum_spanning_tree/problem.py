@@ -74,9 +74,8 @@ class Solution:
     def lg_p1991(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1991
-        tag: mst|connected_graph
+        tag: mst|connected_grap|classical|kruskal
         """
-
         k, n = ac.read_list_ints()
         pos = [ac.read_list_ints() for _ in range(n)]
         edge = []
@@ -84,7 +83,7 @@ class Solution:
             for j in range(i + 1, n):
                 a = pos[i][0] - pos[j][0]
                 b = pos[i][1] - pos[j][1]
-                edge.append([i, j, a * a + b * b])
+                edge.append((i, j, a * a + b * b))
 
         uf = UnionFind(n)
         edge.sort(key=lambda it: it[2])
@@ -121,7 +120,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3366
         tag: mst
         """
-
         n, m = ac.read_list_ints()
         edges = []
         for _ in range(m):
@@ -252,7 +250,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2872
         tag: prim|mst
         """
-
         # primmst|，适合稠密图场景
         def dis(x1, y1, x2, y2):
             res = (x1 - x2) ** 2 + (y1 - y2) ** 2
@@ -446,7 +443,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1265
         tag: prim|mst
         """
-
         # primmst|，适合稠密图场景
 
         def dis(x1, y1, x2, y2):
@@ -558,7 +554,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2212
         tag: prim|mst|dense_graph
         """
-
         # primmst|，适合稠密图场景
         def dis(x1, y1, x2, y2):
             res = (x1 - x2) ** 2 + (y1 - y2) ** 2
@@ -633,7 +628,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2847
         tag: prim|mst|dense_graph
         """
-
         # primmst|，适合稠密图场景
         def dis(x1, y1, x2, y2):
             res = (x1 - x2) ** 2 + (y1 - y2) ** 2
@@ -696,7 +690,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P4047
         tag: mst
         """
-
         def dis():
             return (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)
 
@@ -763,7 +756,6 @@ class Solution:
         url: https://leetcode.cn/problems/min-cost-to-connect-all-points/
         tag: dense_graph|prim|mst
         """
-
         # primmst|，适合稠密图场景
         def dis(x1, y1, x2, y2):
             res = abs(x1 - x2) + abs(y1 - y2)
@@ -799,7 +791,6 @@ class Solution:
         url: https://leetcode.cn/problems/min-cost-to-connect-all-points/
         tag: dense_graph|prim|mst
         """
-
         # primmst|，适合稠密图场景
         def dis(xx1, yy1, xx2, yy2):
             res = abs(xx1 - xx2) + abs(yy1 - yy2)
@@ -873,7 +864,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/3731/
         tag: prim|mst|dense_graph|specific_plan
         """
-
         # primmst|，适合稠密图场景，并获取具体连边specific_plan，也可直接Kruskal（超时）
 
         def dis(aa, bb):

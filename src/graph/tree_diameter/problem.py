@@ -155,7 +155,6 @@ class Solution:
         url: https://leetcode.cn/problems/count-subtrees-with-max-distance-between-cities/
         tag: brute_force|tree_diameter
         """
-
         ans = [0] * n
         for state in range(1, 1 << n):
             node = [i for i in range(n) if state & (1 << i)]

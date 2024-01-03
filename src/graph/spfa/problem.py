@@ -156,7 +156,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5960
         tag: differential_constraint
         """
-
         n, m = ac.read_list_ints()
         edge = [[] for _ in range(n + 1)]
         for _ in range(m):
@@ -227,7 +226,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1986
         tag: differential_constraint|minimum|longest_path|prefix_sum|classical|can_not_be_dijkstra
         """
-
         n, m = ac.read_list_ints()
         edge = [[] for _ in range(n + 1)]
         for _ in range(m):
@@ -323,7 +321,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-time-to-complete-all-tasks/
         tag: differential_constraint|greedy|classical|minimum|longest_path
         """
-
         n = max(ac_max(a, b) for a, b, _ in tasks)
         edge = [[] for _ in range(n + 1)]
         for a, b, c in tasks:

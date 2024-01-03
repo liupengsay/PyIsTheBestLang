@@ -90,7 +90,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1512
         tag: game_dp|date
         """
-
         dt = DateTime()
         stack = [[1900, 1, 1]]
         yy, mm, dd = stack[0]
@@ -136,7 +135,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2092
         tag: prime|game_dp
         """
-
         n = ac.read_int()
         lst = NumberTheory().get_prime_factor(n)
         nums = []
@@ -159,7 +157,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2953
         tag: game_dp|winning_state|liner_dp
         """
-
         n = 1000000
         dp = [0] * (n + 1)
         for i in range(1, n + 1):

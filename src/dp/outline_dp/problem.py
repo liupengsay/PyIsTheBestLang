@@ -35,7 +35,6 @@ class Solution:
         url: https://leetcode.cn/problems/maximize-grid-happiness/
         tag: outline_dp|classical
         """
-
         pre = {(0, introverts, extroverts): 0}
         mask = 3 ** (n - 1)
 
@@ -71,7 +70,6 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-students-taking-exam/
         tag: outline_dp|classical
         """
-
         m, n = len(seats), len(seats[0])
         pre = {0: 0}
         mask = (1 << (n + 1)) - 1

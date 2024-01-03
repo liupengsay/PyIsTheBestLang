@@ -50,7 +50,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P7167
         tag: monotonic_stack|tree_lca|build_tree|multiplication_method|classical|hard
         """
-
         n, q = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         parent = [n] * n
@@ -134,7 +133,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/1328/E
         tag: tree_lca|dfs_order|classical
         """
-
         n, m = ac.read_list_ints()
         edge = [[] for _ in range(n)]
         for _ in range(n - 1):
@@ -181,7 +179,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3379
         tag: tree_lca|classical
         """
-
         n, m, s = ac.read_list_ints()
         s -= 1
         edge = [[] for _ in range(n)]
@@ -269,7 +266,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/321/C
         tag: tree_centroid_recursion|classical
         """
-
         n = ac.read_int()
         to = [[] for _ in range(n)]
         for _ in range(n - 1):
@@ -290,7 +286,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3384
         tag: tree_chain_split|tree_array|implemention
         """
-
         n, m, r, p = ac.read_list_ints()
         r -= 1
         tree = RangeAddRangeSum(n)

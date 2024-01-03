@@ -47,7 +47,6 @@ class Solution:
         url: https://atcoder.jp/contests/abc121/tasks/abc121_d
         tag: xor_property|digital_dp
         """
-
         #  n^(n+1) == 1 (n%2==0)
         def count(num):
             @lru_cache(None)
@@ -89,7 +88,6 @@ class Solution:
         url: https://atcoder.jp/contests/abc208/tasks/abc208_e
         tag: brain_teaser|digital_dp
         """
-
         @lru_cache(None)
         def dfs(i, is_limit, is_num, pre):
             if i == m:
@@ -129,7 +127,6 @@ class Solution:
         url: https://leetcode.cn/problems/count-of-integers/
         tag: digital_dp|inclusion_exclusion
         """
-
         def check(num):
             @lru_cache(None)
             def dfs(i, cnt, is_limit, is_num):
@@ -166,7 +163,6 @@ class Solution:
         url: https://leetcode.cn/problems/count-stepping-numbers-in-range/
         tag: digital_dp|inclusion_exclusion
         """
-
         def check(num):
             @lru_cache(None)
             def dfs(i, is_limit, is_num, pre):
@@ -196,7 +192,6 @@ class Solution:
         url: https://leetcode.cn/problems/number-of-beautiful-integers-in-the-range/
         tag: digital_dp|inclusion_exclusion
         """
-
         def check(num):
             @lru_cache(None)
             def dfs(i, is_limit, is_num, odd, rest):

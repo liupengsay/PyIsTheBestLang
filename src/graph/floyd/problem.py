@@ -92,7 +92,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/4875/
         tag: floyd|reverse_thinking|shortest_path|reverse_graph
         """
-
         n = ac.read_int()
         dp = [ac.read_list_ints() for _ in range(n)]
         a = ac.read_list_ints_minus_one()
@@ -122,7 +121,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1119
         tag: offline_query|floyd|dynamic_graph|undirected
         """
-
         n, m = ac.read_list_ints()
         repair = ac.read_list_ints()
         dis = [inf] * n * n
@@ -152,7 +150,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1476
         tag: floyd|longest_path|specific_plan|classical
         """
-
         n = ac.read_int() + 1
         m = ac.read_int()
         dp = [[-inf] * (n + 1) for _ in range(n + 1)]
@@ -184,7 +181,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3906
         tag: floyd|shortest_path|specific_plan|classical
         """
-
         n, m = ac.read_list_ints()
         dp = [inf] * n * n
         for _ in range(m):
@@ -212,7 +208,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/B3611
         tag: transitive_closure|floyd
         """
-
         n = ac.read_int()
         dp = []
         for _ in range(n):
@@ -234,7 +229,6 @@ class Solution:
         url: https://atcoder.jp/contests/abc051/tasks/abc051_d
         tag: floyd|shortest_path|necessary_edge|classical|reverse_thinking
         """
-
         n, m = ac.read_list_ints()
         dp = [inf] * n * n
         for i in range(n):
@@ -266,7 +260,6 @@ class Solution:
         url: https://atcoder.jp/contests/abc051/tasks/abc051_d
         tag: floyd|shortest_path|necessary_edge|classical|reverse_thinking
         """
-
         n, m = ac.read_list_ints()
         edges = [ac.read_list_ints() for _ in range(m)]
         dct = [[] for _ in range(n)]
@@ -483,7 +476,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8794
         tag: binary_search|floyd
         """
-
         # binary_search|Floyd
 
         def get_dijkstra_result_mat(mat: List[List[int]], src: int) -> List[float]:

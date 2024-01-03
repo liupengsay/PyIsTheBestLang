@@ -36,7 +36,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimize-the-total-price-of-the-trips/
         tag: offline_lca|tree_diff_array|counter|tree_dp|classical
         """
-
         dct = [[] for _ in range(n)]
         for i, j in edges:
             dct[i].append(j)

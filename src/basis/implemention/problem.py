@@ -97,7 +97,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/463/C
         tag: diagonal|matrix|odd_even|brain_teaser
         """
-
         n = ac.read_int()
         grid = [ac.read_list_ints() for _ in range(n)]
         left = [0] * 2 * n
@@ -127,7 +126,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1815
         tag: implemention
         """
-
         def check():
             lst = deque([[25, j] for j in range(11, 31)])
             dire = {"E": [0, 1], "S": [1, 0], "W": [0, -1], "N": [-1, 0]}
@@ -160,7 +158,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2129
         tag: stack|pointer|implemention
         """
-
         n, m = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         mul = [1, 1]
@@ -186,7 +183,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3407
         tag: implemention
         """
-
         n, t, q = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         pre = [-inf] * n
@@ -236,7 +232,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5329
         tag: lexicographical_order|sort|brain_teaser|classical
         """
-
         n = ac.read_int()
         s = ac.read_str()
         ans = [0] * n
@@ -265,7 +260,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6397
         tag: greedy|implemention|brain_teaser
         """
-
         k = ac.read_float()
         nums = [ac.read_float() for _ in range(ac.read_int())]
         pre = nums[0]
@@ -288,7 +282,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8247
         tag: implemention|math|line_slope
         """
-
         m, n = ac.read_list_ints()
         start = [-1, -1]
         dct = []
@@ -319,7 +312,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8611
         tag: implemention|classification_discussion|classical|brain_teaser
         """
-
         ac.read_int()
         nums = ac.read_list_ints()
         a = nums[0]
@@ -342,7 +334,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P9023
         tag: matrix_rotate|implemention|counter|odd_even|inclusion_exclusion
         """
-
         m = ac.read_int()
         n = ac.read_int()
         k = ac.read_int()
@@ -369,7 +360,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8895
         tag: implemention|counter|classical|freq
         """
-
         n, m, p = ac.read_list_ints()
         dp = [1] * (n + 1)
         for i in range(1, n + 1):
@@ -430,7 +420,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8884
         tag: classification_discussion|odd_even
         """
-
         n, m, c = ac.read_list_ints()
         cnt = [0, 0]
         for _ in range(c):
@@ -483,7 +472,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/4321/
         tag: hash|greedy|implemention|construction|brain_teaser
         """
-
         x = y = 0
         ind = dict()
         ind["U"] = [-1, 0]

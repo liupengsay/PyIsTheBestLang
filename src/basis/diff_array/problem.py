@@ -126,7 +126,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3397
         tag: diff_matrix|prefix_sum
         """
-
         n, m = ac.read_list_ints()
         shifts = []
         for _ in range(m):
@@ -143,7 +142,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P4552
         tag: diff_array|brain_teaser|classical
         """
-
         n = ac.read_int()
         pre = -1
         pos = 0
@@ -166,7 +164,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1719
         tag: max_sub_matrix_sum|brute_force|prefix_sum|classical
         """
-
         n = ac.read_int()
         total = []
         while len(total) < n * n:
@@ -195,7 +192,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/1722/E
         tag: data_range|matrix_prefix_sum|classical|can_be_discretization_hard_version
         """
-
         for _ in range(ac.read_int()):
             k, q = ac.read_list_ints()
             rec = [ac.read_list_ints() for _ in range(k)]
@@ -226,7 +222,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2671
         tag: prefix_or_sum|counter|brute_force|odd_even
         """
-
         n, m = ac.read_list_ints()
         number = ac.read_list_ints()
         colors = ac.read_list_ints()
@@ -266,7 +261,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/1795/C
         tag: prefix_sum|binary_search|diff_array|counter|implemention
         """
-
         for _ in range(ac.read_int()):
             n = ac.read_int()
             a = ac.read_list_ints()
@@ -301,7 +295,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-number-of-k-consecutive-bit-flips/description/
         tag: greedy|diff_array|implemention
         """
-
         n = len(nums)
         ans = 0
         diff = [0] * (n + 1)
@@ -326,7 +319,6 @@ class Solution:
         url: https://leetcode.cn/problems/number-of-submatrices-that-sum-to-target/description/
         tag: matrix_prefix_sum|brute_force|classical
         """
-
         m, n = len(matrix), len(matrix[0])
         pre = PreFixSumMatrix(matrix)
         ans = 0
@@ -346,7 +338,6 @@ class Solution:
         url: https://leetcode.cn/problems/k-concatenation-maximum-sum/description/
         tag: prefix_suffix|max_sub_consequence_sum
         """
-
         mod = 10 ** 9 + 7
         n = len(arr)
         s = sum(arr)
@@ -377,7 +368,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/1355/C
         tag: action_scope|diff_array|triangle|classical|brain_teaser|brute_force
         """
-
         diff = [0] * (b + c + 1)
         for x in range(a, b + 1):
             diff[x + b] += 1
@@ -400,7 +390,6 @@ class Solution:
         url: https://leetcode.cn/problems/sum-of-total-strength-of-wizards/description/
         tag: monotonic_stack|counter|prefix_sum_of_prefix_sum|classical|brain_teaser
         """
-
         n = len(nums)
         post = [n - 1] * n
         pre = [0] * n
@@ -428,7 +417,6 @@ class Solution:
         url: https://leetcode.cn/problems/subsequence-with-the-minimum-score/
         tag: prefix_suffix|pointer|brute_force|reverse_thinking
         """
-
         m, n = len(s), len(t)
         pre = [0] * (m + 1)
         ind = 0
@@ -455,7 +443,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2882
         tag: greedy|brute_force|diff_array|classical
         """
-
         n = ac.read_int()
         lst = [int(ac.read_str() == "F") for _ in range(n)]
         ans = [inf, 0]
@@ -489,7 +476,6 @@ class Solution:
         url: https://codeforces.com/contest/1772/problem/D
         tag: discretization_diff_array|action_scope|counter|classical
         """
-
         ceil = 10 ** 9
         for _ in range(ac.read_int()):
             n = ac.read_int()
@@ -527,7 +513,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/101/
         tag: matrix_prefix_sum
         """
-
         n, m = ac.read_list_ints()
 
         lst = [ac.read_list_ints() for _ in range(n)]
@@ -553,7 +538,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/104/
         tag: prefix_sum|binary_search|brute_force|average
         """
-
         n, f = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
 
@@ -577,7 +561,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/123/
         tag: discretization_diff_array|prefix_sum|two_pointers|binary_search|classical
         """
-
         c, b = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(b)]
         lst_x = sorted(list(set([x for x, _ in nums])))
@@ -617,7 +600,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/128/
         tag: max_sub_matrix_sum|brute_force
         """
-
         n = ac.read_int()
         nums = []
         while len(nums) < n * n:
@@ -644,7 +626,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1627
         tag: prefix_suffix|median|counter|classical
         """
-
         n, b = ac.read_list_ints()
         nums = ac.read_list_ints()
         i = nums.index(b)
@@ -674,7 +655,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1895
         tag: prefix_sum|counter|binary_search
         """
-
         n = 10 ** 5
         dp = [0] * (n + 1)
         for i in range(1, n + 1):
@@ -701,7 +681,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1982
         tag: maximum_prefix_sub_consequence_sum|prefix_max
         """
-
         n, p = ac.read_list_ints()
         nums = ac.read_list_ints()
         pre = 0
@@ -727,7 +706,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2070
         tag: hash|discretization_diff_array|counter
         """
-
         n = ac.read_int()
         pos = 0
         diff = defaultdict(int)
@@ -759,7 +737,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2190
         tag: diff_array|circular_array
         """
-
         n, m = ac.read_list_ints()
         diff = [0] * n
         for _ in range(m):
@@ -785,7 +762,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2352
         tag: discretization_diff_array
         """
-
         diff = defaultdict(int)
         for _ in range(ac.read_int()):
             a, b = ac.read_list_ints()
@@ -807,7 +783,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2363
         tag: matrix_prefix_sum|brute_force|classical
         """
-
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         pre = PreFixSumMatrix(nums)
@@ -876,7 +851,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2879
         tag: diff_array|greedy
         """
-
         n, _, h, r = ac.read_list_ints()
         diff = [0] * n
         pre = set()
@@ -902,7 +876,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3028
         tag: discretization_diff_array|range_cover|reverse_thinking
         """
-
         n = ac.read_int()
         diff = defaultdict(int)
         for _ in range(n):
@@ -927,7 +900,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P4030
         tag: brain_teaser|matrix_prefix_sum|classical
         """
-
         m, n, t = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
         mat = [[0] * n for _ in range(m)]
@@ -957,7 +929,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P4440
         tag: prefix_sum|counter|alphabet|date_range
         """
-
         s = ac.read_str()
         pre = []
         cnt = [0] * 26
@@ -982,7 +953,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P4623
         tag: discretization_diff_array|counter|triangle
         """
-
         n = ac.read_int()
         m = 10 ** 6 + 1
         diff_x = [0] * m
@@ -1018,7 +988,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6032
         tag: prefix_suffix|counter|classical
         """
-
         n, k, p = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         post = [0] * k
@@ -1049,7 +1018,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6278
         tag: reverse_order_pair|action_scope|diff_array|prefix_sum
         """
-
         n = ac.read_int()
         nums = ac.read_list_ints()
         diff = [0] * (n + 1)
@@ -1068,7 +1036,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6537
         tag: prefix_sum|brute_force
         """
-
         n = ac.read_int()
         grid = [ac.read_list_ints() for _ in range(n)]
         pre = PreFixSumMatrix(grid)
@@ -1102,7 +1069,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6877
         tag: sort|greedy|prefix_suffix|dp|brute_force
         """
-
         n = ac.read_int()
         a = ac.read_list_ints()
         b = ac.read_list_ints()
@@ -1130,7 +1096,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6878
         tag: two_pointers|brute_force
         """
-
         n, k = ac.read_list_ints()
         s = ac.read_str()
         ans = inf
@@ -1239,7 +1204,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P7992
         tag: bucket_counter|action_scope|diff_array|counter|data_range|inclusion_exclusion
         """
-
         n, m = ac.read_list_ints()
         a = [0] * (m + 1)
         b = [0] * (m + 1)
@@ -1264,7 +1228,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P7948
         tag: sort|prefix_suffix|pointer|classical|offline_query
         """
-
         for _ in range(ac.read_int()):
             n, q = ac.read_list_ints()
             a = ac.read_list_ints()
@@ -1294,7 +1257,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8343
         tag: sub_matrix_prefix_sum|brute_force|two_pointers|math
         """
-
         m, n, a, b = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
         if a > b:
@@ -1330,7 +1292,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8551
         tag: diff_array|brain_teaser|pointer|classical|brute_force
         """
-
         n = ac.read_int()
         m = 3 * 10 ** 5 + 1
         diff = [0] * (m + 2)
@@ -1357,7 +1318,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8666
         tag: binary_search|md_diff_array|implemention|classical|matrix_flatten|inclusion_exclusion|performance
         """
-
         aa, bb, cc, m = ac.read_list_ints()
         nums = ac.read_list_ints()
 
@@ -1415,7 +1375,6 @@ class Solution:
         url: https://leetcode.cn/problems/sum-of-subsequence-widths/description/
         tag: prefix_suffix|brute_force|counter|contribution_method
         """
-
         mod = 10 ** 9 + 7
         dp = [1]
         for i in range(10 ** 5):
@@ -1435,7 +1394,6 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-side-length-of-a-square-with-sum-less-than-or-equal-to-threshold/
         tag: O(mn)|brute_force|binary_search|classical
         """
-
         m, n = len(mat), len(mat[0])
         ans = 0
         pre = PreFixSumMatrix(mat)
@@ -1455,7 +1413,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-moves-to-make-array-complementary/
         tag: diff_array|action_scope|counter|contribution_method|classical
         """
-
         n = len(nums)
         diff = [0] * (2 * limit + 2)
         for i in range(n // 2):
@@ -1484,7 +1441,6 @@ class Solution:
         url: https://leetcode.cn/problems/find-kth-largest-xor-coordinate-value/
         tag: matrix_prefix_xor_sum|classical
         """
-
         m, n = len(matrix), len(matrix[0])
         for i in range(1, m):
             matrix[i][0] = matrix[i][0] ^ matrix[i - 1][0]
@@ -1506,7 +1462,6 @@ class Solution:
         url: https://leetcode.cn/problems/stamping-the-grid/
         tag: prefix_sum|brute_force|diff_matrix|implemention|classical|prefix_sum_prefix_sum
         """
-
         m, n = len(grid), len(grid[0])
         pre = PreFixSumMatrix(grid)
         dp = [[0] * n for _ in range(m)]
@@ -1533,7 +1488,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/3996/
         tag: suffix_sum|data_range|brain_teaser|classical|hard
         """
-
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
         low = min(nums)
@@ -1562,7 +1516,6 @@ class Solution:
         url: https://leetcode.cn/problems/new-21-game/description/
         tag: diff_array|implemention|probability|refresh_table|classical
         """
-
         s = k + max_pts
         dp = [0] * (s + 1)
         dp[0] = 1

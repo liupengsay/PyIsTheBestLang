@@ -337,7 +337,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/1538/
         tag: greedy|card_split_average|classical|circular_array
         """
-
         def check(nums):
             # 环形均分纸牌
             nn = len(nums)
@@ -735,7 +734,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P4653
         tag: binary_search|pointer|greedy
         """
-
         # 看似binary_searchpointergreedy选取
         n = ac.read_int()
         nums1 = []
@@ -970,7 +968,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/4429/
         tag: brain_teaser|brain_teaser|property
         """
-
         # brain_teaser|brain_teaser，等价于末尾两位数字可以被4整除
         s = ac.read_str()
         ans = 0
@@ -1155,7 +1152,6 @@ class Solution:
         url: https://codeforces.com/contest/1665/problem/C
         tag: graph|greedy
         """
-
         def solve():
             n = ac.read_int()
             dct = [[] for _ in range(n)]
@@ -1191,7 +1187,6 @@ class Solution:
         url: https://leetcode.cn/problems/mirror-reflection/description/
         tag: brain_teaser
         """
-
         # brain_teaserbrain_teaser|
 
         g = math.gcd(p, q)
@@ -1280,7 +1275,6 @@ class Solution:
         url: https://leetcode.cn/problems/sum-game/description/
         tag: game_dp|brain_teaser|classification_discussion
         """
-
         # 博弈brain_teaser|classification_discussion
         def check(s):
             res = 0

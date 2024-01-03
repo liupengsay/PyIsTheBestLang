@@ -52,7 +52,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1725
         tag: monotonic_queue|pointer|sliding_window|liner_dp
         """
-
         n, low, high = ac.read_list_ints()
         n += 1
         nums = ac.read_list_ints()
@@ -80,7 +79,6 @@ class Solution:
         url: https://leetcode.cn/problems/sliding-window-maximum/
         tag: sliding_window_maximum
         """
-
         return PriorityQueue().sliding_window(nums, k)
 
     @staticmethod
@@ -89,7 +87,6 @@ class Solution:
         url: https://leetcode.cn/problems/shortest-subarray-with-sum-at-least-k/description/
         tag: prefix_sum|monotonic_queue|dp
         """
-
         n = len(nums)
         stack = deque([0])
         ind = deque([-1])
@@ -115,7 +112,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2032
         tag: sliding_window_maximum
         """
-
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
         ans = PriorityQueue().sliding_window(nums, k)
@@ -129,7 +125,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2251
         tag: sliding_window_minimum
         """
-
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         ans = PriorityQueue().sliding_window(nums, m, "min")
@@ -143,7 +138,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2216
         tag: sliding_window|sub_matrix|classical|matrix_deque|monotonic_queue
         """
-
         m, n, k = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
 
@@ -173,7 +167,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1886
         tag: sliding_window
         """
-
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
         ans1 = []
@@ -206,7 +199,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3800
         tag: monotonic_queue|matrix_dp
         """
-
         m, n, k, t = ac.read_list_ints()
         dct = [dict() for _ in range(m)]
         for _ in range(k):
@@ -240,7 +232,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/135/
         tag: monotonic_queue
         """
-
         n, m, q, u, v, t = ac.read_list_ints()
         nums1 = ac.read_list_ints()
         nums1 = deque(sorted(nums1, reverse=True))
@@ -302,7 +293,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1016
         tag: monotonic_queue|greedy|implemention|classical
         """
-
         d1, c, d2, p, n = ac.read_list_floats()
         n = int(n)
         nums = [[0, p]] + [ac.read_list_floats() for _ in range(n)] + [[d1, 0]]
@@ -361,7 +351,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2629
         tag: circular_array|prefix_sum|sliding_window|classical
         """
-
         n = ac.read_int()
         nums = ac.read_list_ints()
         ans = pre = 0
@@ -388,7 +377,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3957
         tag: binary_search|monotonic_queue|dp
         """
-
         n, d, k = ac.read_list_ints()
         dis = [0]
         score = [0]
@@ -432,7 +420,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P4085
         tag: two_pointers|monotonic_queue|sliding_window
         """
-
         n, m = ac.read_list_ints()
         f = []
         s = []
@@ -465,7 +452,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P4392
         tag: sliding_window|monotonic_queue
         """
-
         n, m, c = ac.read_list_ints()
         ceil = deque()
         floor = deque()

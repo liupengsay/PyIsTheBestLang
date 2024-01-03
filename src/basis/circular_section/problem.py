@@ -39,7 +39,6 @@ class Solution:
         url: https://leetcode.cn/problems/prison-cells-after-n-days/
         tag: circular_section
         """
-
         m = len(cells)
         dct = dict()
         state = []
@@ -68,7 +67,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-number-of-operations-to-reinitialize-a-permutation/description/
         tag: circular_section|permutation_circle|classical|multiplication_method
         """
-
         ans = 0
         visit = [0] * n
         for i in range(n):
@@ -92,7 +90,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1468
         tag: state_compression|circular_section|classical
         """
-
         n = ac.read_int()
         op1 = (1 << n) - 1
         op2 = sum(1 << i for i in range(0, n, 2))
@@ -132,7 +129,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6148
         tag: circular_section|implemention|permutation_circle|classical|multiplication_method|classical
         """
-
         n, m, k = ac.read_list_ints()
         nums = [ac.read_list_ints_minus_one() for _ in range(m)]
         nex = [-1] * n

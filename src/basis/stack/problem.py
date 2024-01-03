@@ -63,7 +63,6 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-subsequence-score/
         tag: sort|brute_force|heapq
         """
-
         n = len(nums1)
         ind = list(range(n))
         ind.sort(key=lambda it: -nums2[it])
@@ -86,7 +85,6 @@ class Solution:
         url: https://leetcode.cn/problems/total-cost-to-hire-k-workers/
         tag: heapq|greedy|implemention
         """
-
         n = len(costs)
         visit = [0] * n
         pre = [[costs[i], i] for i in range(candidates)]
@@ -130,7 +128,6 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-elegance-of-a-k-length-subsequence/
         tag: brain_teaser|sort|brute_force|function|greedy|classical
         """
-
         items.sort(reverse=True)
         ans = cnt = pre = tp = 0
         dct = defaultdict(list)
@@ -179,7 +176,6 @@ class Solution:
         url: https://leetcode.cn/problems/replace-non-coprime-numbers-in-array/
         tag: math|stack|implemention
         """
-
         stack = []
         for num in nums:
             stack.append(num)
@@ -198,7 +194,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-cost-to-hire-k-workers/
         tag: greedy|sort|brute_force|heapq
         """
-
         n = len(quality)
         ind = list(range(n))
         ind.sort(key=lambda it: wage[it] / quality[it])
@@ -222,7 +217,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/1095/E
         tag: regular_bracket|counter|prefix_suffix
         """
-
         n = ac.read_int()
         s = ac.read_str()
         post = [inf] * (n + 1)
@@ -258,7 +252,6 @@ class Solution:
         url: https://atcoder.jp/contests/abc062/tasks/arc074_b
         tag: heapq|prefix_suffix|brute_force
         """
-
         n = ac.read_int()
         nums = ac.read_list_ints()
         pre = [-inf] * (3 * n + 1)
@@ -292,7 +285,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/5/C
         tag: regular_bracket_subsequence|counter|longest
         """
-
         stack = [["", -1]]
         ans = cnt = 0
         n = len(s)
@@ -320,7 +312,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/130/
         tag: heapq|stack|implemention|classical
         """
-
         pre = []
         post = []
         pre_sum = [0]
@@ -357,7 +348,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/131/
         tag: catalan_number|stack|implemention
         """
-
         n = ac.read_int()
         m = ac.min(5, n)
 
@@ -389,7 +379,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/131/
         tag: catalan_number|stack|implemention
         """
-
         def dfs(i):
             nonlocal cnt, post, pre
             if cnt >= 20:
@@ -424,7 +413,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/131/
         tag: catalan_number|stack|implemention
         """
-
         n = ac.read_int()
         cnt = 0
         stack = [[[], [], 0]]
@@ -446,7 +434,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1974
         tag: greedy|deque|implemention
         """
-
         n = ac.read_int()
         stack = deque([1] * n)
         while len(stack) >= 2:
@@ -461,7 +448,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3719
         tag: stack|implemention
         """
-
         s = ac.read_str()
         stack = []
         for w in s:
@@ -487,7 +473,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/4868/
         tag: stack|implemention
         """
-
         m = ac.read_int()
         lst = ac.read_list_strs()
         n = len(lst)
@@ -525,7 +510,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/5139/
         tag: stack|reverse_order|implemention|greedy
         """
-
         s = ac.read_str()
         n = len(s)
         ans = [0] * n

@@ -225,7 +225,6 @@ class Solution:
         url: https://codeforces.com/contest/25/problem/E
         tag: kmp|prefix_suffix|greedy|longest_common_prefix_suffix
         """
-
         # kmp求字符串之间的最长公共prefix_suffix，greedy拼接
         s = [ac.read_str() for _ in range(3)]
 
@@ -254,7 +253,6 @@ class Solution:
         url: https://leetcode.cn/problems/shortest-string-that-contains-three-strings/
         tag: kmp|prefix_suffix|greedy|brain_teaser
         """
-
         def check(a, b):
             c = b + "#" + a
             f = KMP().prefix_function(c)

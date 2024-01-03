@@ -75,7 +75,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P4653
         tag: greedy|sort|two_pointers|brain_teaser
         """
-
         n = ac.read_int()
 
         nums1 = []
@@ -106,7 +105,6 @@ class Solution:
         url: https://leetcode.cn/problems/3sum-closest/
         tag: tree_pointers|classical
         """
-
         n = len(nums)
         nums.sort()
         ans = nums[0] + nums[1] + nums[2]
@@ -130,7 +128,6 @@ class Solution:
         url: https://leetcode.cn/problems/3sum/
         tag: two_pointers|classical
         """
-
         nums.sort()
         n = len(nums)
         ans = set()
@@ -155,7 +152,6 @@ class Solution:
         url: https://leetcode.cn/problems/3sum-smaller/
         tag: two_pointers|counter|brute_force
         """
-
         nums.sort()
         n = len(nums)
         ans = 0
@@ -177,7 +173,6 @@ class Solution:
         url: https://leetcode.cn/problems/sliding-window-maximum/
         tag: sliding_window
         """
-
         n = len(nums)
         swa = SlidingWindowAggregation(-INF, max)
         ans = []
@@ -194,7 +189,6 @@ class Solution:
         url: https://leetcode.cn/problems/take-k-of-each-character-from-left-and-right/
         tag: reverse_thinking|inclusion_exclusion|two_pointers
         """
-
         cnt = Counter(s)
         n = len(s)
         if any(cnt[w] < k for w in "abc"):
@@ -237,7 +231,6 @@ class Solution:
         url: https://leetcode.cn/problems/count-zero-request-servers/
         tag: offline_query|tree_pointers|fast_slow_pointers
         """
-
         m = len(queries)
         ans = [0] * m
         ind = list(range(m))
@@ -266,7 +259,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/
         tag: sliding_window|gcd
         """
-
         if gcd(*nums) != 1:
             return -1
         if 1 in nums:
@@ -287,7 +279,6 @@ class Solution:
         url: https://leetcode.cn/problems/subarrays-with-k-different-integers/
         tag: tree_pointers|fast_slow_pointers|classical
         """
-
         n = len(nums)
         ans = j1 = j2 = 0
         pre1 = dict()
@@ -317,7 +308,6 @@ class Solution:
         url: https://leetcode.cn/problems/last-substring-in-lexicographical-order/
         tag: minimum_expression|two_pointers|classical
         """
-
         i, j, n = 0, 1, len(s)
         while j < n:
             k = 0
@@ -335,7 +325,6 @@ class Solution:
         url: https://leetcode.cn/problems/get-the-maximum-score/description/
         tag: two_pointers|liner_dp|topological_sort
         """
-
         mod = 10 ** 9 + 7
         m, n = len(nums1), len(nums2)
         i = j = pre1 = pre2 = 0
@@ -362,7 +351,6 @@ class Solution:
         url: https://leetcode.cn/problems/ways-to-split-array-into-three-subarrays/description/
         tag: three_pointers|fast_slow_pointers
         """
-
         mod = 10 ** 9 + 7
         ans = 0
         pre = list(accumulate(nums, initial=0))
@@ -465,7 +453,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6465
         tag: sliding_window|two_pointers|counter
         """
-
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
             nums = ac.read_list_ints()
@@ -494,7 +481,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/4220/
         tag: two_pointers|sliding_window
         """
-
         n = ac.read_int()
         s = ac.read_str()
         a, b = ac.read_list_ints()

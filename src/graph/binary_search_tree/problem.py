@@ -56,7 +56,6 @@ class Solution:
         url: https://leetcode.cn/problems/number-of-ways-to-reorder-array-to-get-same-bst/
         tag: array_to_bst|dp|comb|counter|specific_plan
         """
-
         mod = 10 ** 9 + 7
         cb = Combinatorics(1000, mod)
         dct = BinarySearchTree().build_with_unionfind(nums)  # build_with_stack is also ok

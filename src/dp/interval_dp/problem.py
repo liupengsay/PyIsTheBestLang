@@ -125,7 +125,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-cost-to-cut-a-stick/
         tag: interval_dp|implemention
         """
-
         cuts.sort()
         cuts.insert(0, 0)
         cuts.append(n)
@@ -142,7 +141,6 @@ class Solution:
         url: https://leetcode.cn/problems/stone-game-vii/description/
         tag: interval_dp
         """
-
         n = len(stones)
         pre = list(accumulate(stones, initial=0))
 
@@ -162,7 +160,6 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-number-of-non-overlapping-palindrome-substrings/
         tag: palindrome_substring|linear_dp|manacher
         """
-
         n = len(s)
         res = [[0] * (n + 1) for _ in range(n + 1)]
         for i in range(n - 1, -1, -1):
@@ -187,7 +184,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3205
         tag: interval_dp|rolling_update
         """
-
         n = ac.read_int()
         nums = ac.read_list_ints()
         mod = 19650827
@@ -221,7 +217,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1040
         tag: interval_dp|specific_plan
         """
-
         n = ac.read_int()
         nums = ac.read_list_ints()
 
@@ -260,7 +255,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1430
         tag: interval_dp|prefix_sum
         """
-
         for _ in range(ac.read_int()):
             nums = ac.read_list_ints()
             n = nums.pop(0)
@@ -290,7 +284,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2308
         tag: interval_dp|recursion
         """
-
         n = ac.read_int()
         nums = ac.read_list_ints()
         pre = ac.accumulate(nums)
@@ -336,7 +329,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2734
         tag: prefix_sum|interval_dp
         """
-
         n = ac.read_int()
         nums = []
         while len(nums) < n:
@@ -379,7 +371,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P4170
         tag: interval_dp|math
         """
-
         s = ac.read_str()
         n = len(s)
         dp = [[inf] * n for _ in range(n)]
@@ -400,7 +391,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/3999/
         tag: interval_dp|longest_palindrome_subsequence
         """
-
         ac.read_int()
         nums = ac.read_list_ints()
         pre = []
@@ -426,7 +416,6 @@ class Solution:
         url: https://leetcode.cn/problems/palindrome-partitioning-iii/
         tag: preprocess_dp|interval_dp
         """
-
         n = len(s)
 
         cost = [[0] * n for _ in range(n)]

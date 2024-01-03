@@ -58,7 +58,6 @@ class Solution:
         url: https://leetcode.cn/problems/next-greater-element-iv/
         tag: heapq|post_second_larger|hash|SortedList|classical|bucket
         """
-
         n = len(nums)
         dct = defaultdict(list)
         for i in range(n):
@@ -80,7 +79,6 @@ class Solution:
         url: https://leetcode.cn/problems/next-greater-element-iv/
         tag: heapq|post_second_larger|hash|SortedList
         """
-
         n = len(nums)
         ans = [-1] * n
         mono_stack = []
@@ -117,7 +115,6 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-average-pass-ratio/
         tag: greedy|math|classical
         """
-
         stack = []
         for p, t in classes:
             heapq.heappush(stack, [p / t - (p + 1) / (t + 1), p, t])
@@ -134,7 +131,6 @@ class Solution:
         url: https://leetcode.cn/problems/course-schedule-iii/
         tag: delay_heapq|greedy|regret_heapq|classical
         """
-
         courses.sort(key=lambda x: x[1])
         stack = []
         day = 0
@@ -154,7 +150,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/148/
         tag: heapq|classical|dp|greedy|pointer
         """
-
         for _ in range(ac.read_int()):
             m, n = ac.read_list_ints()
             pre = sorted(ac.read_list_ints())
@@ -179,7 +174,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/149/
         tag: greedy|heapq|double_linked_list|classical|hard
         """
-
         n, k = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
 
@@ -222,7 +216,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2168
         tag: huffman_tree|heapq|greedy
         """
-
         n, k = ac.read_list_ints()
         stack = [[ac.read_int(), 0] for _ in range(n)]
         heapq.heapify(stack)
@@ -248,7 +241,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1631
         tag: heapq|pointer|classical
         """
-
         n = ac.read_int()
         nums1 = ac.read_list_ints()
         nums2 = ac.read_list_ints()
@@ -269,7 +261,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P4053
         tag: delay_heapq|greedy|regret_heapq|LC630
         """
-
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort(key=lambda it: it[1])
@@ -293,7 +284,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2085
         tag: math|heapq
         """
-
         n, m = ac.read_list_ints()
         stack = []
         for _ in range(n):
@@ -315,7 +305,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2278
         tag: heapq|implemention
         """
-
         now = []
         ans = []
         stack = []
@@ -366,7 +355,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1717
         tag: brute_force|heapq|greedy
         """
-
         ans = 0
         n = ac.read_int()
         h = ac.read_int() * 60
@@ -395,7 +383,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1905
         tag: heapq|greedy
         """
-
         ac.read_int()
         p = ac.read_int()
         lst = ac.read_list_ints()
@@ -417,7 +404,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2409
         tag: heapq
         """
-
         n, k = ac.read_list_ints()
         pre = sorted(ac.read_list_ints()[1:])[:k]
         for _ in range(n - 1):
@@ -441,7 +427,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2949
         tag: heapq|greedy|implemention|delay_heapq|lazy_heapq|regret_heapq
         """
-
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort(key=lambda it: it[0])
@@ -461,7 +446,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6033
         tag: greedy|priority_queue|classical
         """
-
         ac.read_int()
         pre = deque(sorted(ac.read_list_ints()))
         post = deque()
@@ -496,7 +480,6 @@ class Solution:
         url: https://leetcode.cn/problems/make-array-non-decreasing-or-non-increasing/
         tag: heapq|greedy
         """
-
         def helper(lst: List[int]) -> int:
             res, pq = 0, []
             for num in lst:
@@ -518,7 +501,6 @@ class Solution:
         url: https://leetcode.cn/problems/find-the-k-sum-of-an-array/
         tag: heapq|brain_teaser|dijkstra|classical|hard
         """
-
         n = len(nums)
         tot = 0
         for i in range(n):

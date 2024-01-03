@@ -76,7 +76,6 @@ class Solution:
         url: https://leetcode.cn/problems/best-team-with-no-conflicts/
         tag: tree_array|prefix_maximum|dp
         """
-
         n = max(ages)
         tree_array = PointAscendPreMax(n)
         for score, age in sorted(zip(scores, ages)):
@@ -90,7 +89,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-number-of-moves-to-make-palindrome/description/
         tag: tree_array|greedy|implemention|P5041
         """
-
         n = len(s)
         lst = list(s)
         ans = 0
@@ -137,7 +135,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-number-of-moves-to-make-palindrome/description/
         tag: tree_array|greedy|implemention|P5041
         """
-
         n = len(s)
         ans = 0
         for _ in range(n // 2):
@@ -158,7 +155,6 @@ class Solution:
         url: https://leetcode.cn/problems/longest-increasing-subsequence-ii/description/
         tag: tree_array|liner_dp
         """
-
         n = max(nums)
         ans = 0
         tree = PointAscendRangeMax(n)
@@ -185,7 +181,6 @@ class Solution:
         url: https://leetcode.cn/problems/make-array-empty/submissions/
         tag: implemention|tree_array|sortedList|greedy
         """
-
         n = len(nums)
         ans = 0
         pre = 1
@@ -207,7 +202,6 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-sum-queries/
         tag: PointAddPreMax
         """
-
         nodes = set(nums1 + nums2)
         for x, y in queries:
             nodes.add(x)
@@ -259,7 +253,6 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-balanced-subsequence-sum/
         tag: discretization|tree_array|liner_dp
         """
-
         n = len(nums)
         tmp = [nums[i] - i for i in range(n)]
         ind = sorted(list(set(tmp)))
@@ -279,7 +272,6 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-balanced-subsequence-sum/
         tag: discretization|tree_array|liner_dp
         """
-
         n = len(nums)
         tmp = [nums[i] - i for i in range(n)]
         ind = sorted(list(set(tmp)))
@@ -299,7 +291,6 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-balanced-subsequence-sum/
         tag: discretization|tree_array|liner_dp
         """
-
         n = len(nums)
         tmp = [nums[i] - i for i in range(n)]
         ind = sorted(list(set(tmp)))
@@ -418,7 +409,6 @@ class Solution:
         url: https://codeforces.com/contest/1676/problem/H2
         tag: tree_array|pre_sum
         """
-
         for _ in range(ac.read_int()):
             ac.read_int()
             a = ac.read_list_ints()
@@ -468,7 +458,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2068
         tag: PointAddRangeSum
         """
-
         n = ac.read_int()
         w = ac.read_int()
         tree = RangeAddRangeSum(n)
@@ -487,7 +476,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1816
         tag: tree_array|range_min
         """
-
         m, n = ac.read_list_ints()
         nums = ac.read_list_ints()
         tree = PointDescendRangeMin(m)
@@ -506,7 +494,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3374
         tag: tree_array|RangeAddRangeSum
         """
-
         n, m = ac.read_list_ints()
         tree = PointAddRangeSum(n)
         tree.build(ac.read_list_ints())
@@ -524,7 +511,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3368
         tag: tree_array|RangeAddRangeSum
         """
-
         n, m = ac.read_list_ints()
         tree = RangeAddRangeSum(n)
         tree.build(ac.read_list_ints())
@@ -559,7 +545,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1725
         tag: reverse_order|liner_dp|PointAscendRangeMax
         """
-
         n, a, b = ac.read_list_ints()
         n += 1
         nums = ac.read_list_ints()
@@ -581,7 +566,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3586
         tag: offline_query|discretization|tree_array|PointAddPreSum
         """
-
         n, m = ac.read_list_ints()
         value = {0}
         lst = []
@@ -634,7 +618,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1198
         tag: tree_array|range_max
         """
-
         m, d = ac.read_list_ints()
         t = 0
         tree = PointAscendRangeMax(m + 1)
@@ -657,7 +640,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P4868
         tag: math|tree_array|prefix_sum_of_prefix_sum
         """
-
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         tree1 = PointAddRangeSum(n)
@@ -683,7 +665,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5463
         tag: tree_array|counter|brute_force|contribution_method
         """
-
         n = ac.read_int()
         nums = ac.read_list_ints()
         lst = sorted(list(set(nums)))
@@ -705,7 +686,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6225
         tag: tree_array|prefix_xor
         """
-
         n, q = ac.read_list_ints()
         nums = ac.read_list_ints()
 
@@ -786,7 +766,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/987/C
         tag: brute_force|tree_array|prefix_suffix|pre_min
         """
-
         n = ac.read_int()
         s = ac.read_list_ints()
         c = ac.read_list_ints()
@@ -885,7 +864,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/
         tag: tree_array|implemention|counter|sorted_list
         """
-
         n = len(num)
         dct = defaultdict(deque)
         for i, d in enumerate(num):
@@ -937,7 +915,6 @@ class Solution:
         url: https://leetcode.com/problems/range-sum-query-mutable
         tag: PointChangeRangeSum
         """
-
         class NumArray:
 
             def __init__(self, nums: List[int]):
@@ -959,7 +936,6 @@ class Solution:
         url: https://leetcode.com/problems/range-sum-query-2d-mutable/
         tag: tree_matrix|RangeAddRangeSum
         """
-
         class NumMatrix:
             def __init__(self, matrix: List[List[int]]):
                 m, n = len(matrix), len(matrix[0])

@@ -90,7 +90,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/1367/D
         tag: reverse_thinking|implemention|construction
         """
-
         for _ in range(ac.read_int()):
             s = ac.read_str()
             m = ac.read_int()
@@ -119,7 +118,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/1788/C
         tag: construction
         """
-
         for _ in range(ac.read_int()):
             n = ac.read_int()
             if n % 2:
@@ -140,7 +138,6 @@ class Solution:
         url: https://leetcode.cn/problems/wiggle-sort/
         tag: construction|sort|odd_even|classical
         """
-
         nums.sort()
         n = len(nums)
         ans = [0] * n
@@ -162,7 +159,6 @@ class Solution:
         url: https://leetcode.cn/problems/find-array-given-subset-sums/
         tag: construction|brain_teaser|classical
         """
-
         low = min(sums)
         if low < 0:
             sums = [num - low for num in sums]
@@ -198,7 +194,6 @@ class Solution:
         url: https://leetcode.cn/problems/lexicographically-smallest-beautiful-string/
         tag: greedy|construction|palindrome_substring|lexicographical_order|reverse_order|brute_force
         """
-
         n = len(s)
         for i in range(n - 1, -1, -1):
             for x in range(ord(s[i]) - ord("a") + 1, k):
@@ -220,7 +215,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P7947
         tag: greedy|construction|product_n_sum_k|prime_factorization|brain_teaser
         """
-
         n, k = ac.read_list_ints()
         ans = []
         for p, c in NumberTheory().get_prime_factor(n):
@@ -239,7 +233,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P9101
         tag: construction|directed_graph|no_circle|classical|number_of_path
         """
-
         k = ac.read_int()
         ac.st(98)
         ac.lst([33, -1])
@@ -268,7 +261,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8976
         tag: brute_force|construction|classical
         """
-
         for _ in range(ac.read_int()):
             n, a, b = ac.read_list_ints()
             mid = n // 2 + 1
@@ -311,7 +303,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8910
         tag: permutation_circle|construction|classical|brain_teaser
         """
-
         for _ in range(ac.read_int()):
             n, k = ac.read_list_ints()
             nex = [0] * (n + 1)
@@ -343,7 +334,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8880
         tag: brain_teaser|construction|odd_even|classical
         """
-
         n = ac.read_int()
         if n % 2 == 0:
             ac.st(-1)

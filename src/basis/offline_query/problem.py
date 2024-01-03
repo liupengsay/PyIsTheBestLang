@@ -27,7 +27,6 @@ class Solution:
         url: https://leetcode.cn/contest/weekly-contest-372/problems/find-building-where-alice-and-bob-can-meet/
         tag: offline_query|sorting
         """
-
         m = len(queries)
         for i in range(m):
             x, y = queries[i]
