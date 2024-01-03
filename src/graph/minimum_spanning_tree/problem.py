@@ -60,7 +60,7 @@ from collections import defaultdict
 from heapq import heappop, heappush
 from typing import List
 
-from src.graph.minimum_spanning_tree.template import TreeAncestorWeightSecond, MinimumSpanningTree
+from src.graph.minimum_spanning_tree.template import SecondMinimumSpanningTree, MinimumSpanningTree
 from src.graph.union_find.template import UnionFind
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
@@ -155,20 +155,19 @@ class Solution:
         return
 
     @staticmethod
-    def cf_1108f(ac=FastIO()):
+    def cf_1108f_1(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1108/problem/F
-        tag: mst
+        tag: mst|second_mst|multiplication_method|union_find
         """
-        # 使得mst|的边组合唯一时，需要增|权重的最少边数量
+
         n, m = ac.read_list_ints()
         edges = []
         for _ in range(m):
             i, j, w = ac.read_list_ints()
-            if i != j:  # 去除自环
-                edges.append([i - 1, j - 1, w])
+            if i != j:
+                edges.append((i - 1, j - 1, w))
 
-        # kruskalmst|
         uf = UnionFind(n)
         dct = [dict() for _ in range(n)]
         cost = 0
@@ -179,18 +178,40 @@ class Solution:
             if uf.part == 1:
                 break
         del uf
-        # brute_force新增的边
-        tree = TreeAncestorWeightSecond(dct)
+
+        tree = SecondMinimumSpanningTree(dct)
         ans = 0
-        # 使得mst|唯一等价于有某条边参与时依旧代价最小的该边数量
         for i, j, w in edges:
             if j in dct[i] and dct[i][j] == w:
                 ans += 1
             else:
-                dis = tree.get_dist_weight_max_second(i, j)[0]
+                dis = tree.get_dist_weight_max_second(i, j)[0]  # key edge
                 if dis == w:
                     ans += 1
         ac.st(ans - n + 1)
+        return
+
+    @staticmethod
+    def cf_1108f_2(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1108/problem/F
+        tag: mst|second|multiplication_method|union_find|classical|hard
+        """
+        n, m = ac.read_list_ints()
+        dct = defaultdict(list)
+        for _ in range(m):
+            i, j, w = ac.read_list_ints()
+            dct[w].append((i - 1, j - 1))
+        uf = UnionFind(n)
+        ans = 0
+        for w in sorted(dct):
+            for i, j in dct[w]:
+                if not uf.is_connected(i, j):
+                    ans += 1
+            for i, j in dct[w]:
+                if uf.union(i, j):
+                    ans -= 1
+        ac.st(ans)
         return
 
     @staticmethod
@@ -250,6 +271,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2872
         tag: prim|mst
         """
+
         # primmst|，适合稠密图场景
         def dis(x1, y1, x2, y2):
             res = (x1 - x2) ** 2 + (y1 - y2) ** 2
@@ -391,7 +413,7 @@ class Solution:
                 break
 
         # brute_force新增的边
-        tree = TreeAncestorWeightSecond(dct)
+        tree = SecondMinimumSpanningTree(dct)
         ans = inf
         for i, j, w in edges:
             for dis in tree.get_dist_weight_max_second(i, j):
@@ -428,7 +450,7 @@ class Solution:
                 break
 
         # brute_force新增的边
-        tree = TreeAncestorWeightSecond(dct)
+        tree = SecondMinimumSpanningTree(dct)
         for i, j, w in edges:
             if j in dct[i] and dct[i][j] == w:
                 ac.st(cost)
@@ -443,6 +465,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1265
         tag: prim|mst
         """
+
         # primmst|，适合稠密图场景
 
         def dis(x1, y1, x2, y2):
@@ -554,6 +577,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2212
         tag: prim|mst|dense_graph
         """
+
         # primmst|，适合稠密图场景
         def dis(x1, y1, x2, y2):
             res = (x1 - x2) ** 2 + (y1 - y2) ** 2
@@ -628,6 +652,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2847
         tag: prim|mst|dense_graph
         """
+
         # primmst|，适合稠密图场景
         def dis(x1, y1, x2, y2):
             res = (x1 - x2) ** 2 + (y1 - y2) ** 2
@@ -690,6 +715,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P4047
         tag: mst
         """
+
         def dis():
             return (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)
 
@@ -756,6 +782,7 @@ class Solution:
         url: https://leetcode.cn/problems/min-cost-to-connect-all-points/
         tag: dense_graph|prim|mst
         """
+
         # primmst|，适合稠密图场景
         def dis(x1, y1, x2, y2):
             res = abs(x1 - x2) + abs(y1 - y2)
@@ -791,6 +818,7 @@ class Solution:
         url: https://leetcode.cn/problems/min-cost-to-connect-all-points/
         tag: dense_graph|prim|mst
         """
+
         # primmst|，适合稠密图场景
         def dis(xx1, yy1, xx2, yy2):
             res = abs(xx1 - xx2) + abs(yy1 - yy2)
@@ -864,6 +892,7 @@ class Solution:
         url: https://www.acwing.com/problem/content/3731/
         tag: prim|mst|dense_graph|specific_plan
         """
+
         # primmst|，适合稠密图场景，并获取具体连边specific_plan，也可直接Kruskal（超时）
 
         def dis(aa, bb):
@@ -945,7 +974,7 @@ class DistanceLimitedPathsExist:
             dct[r][self.ind[r][i]][self.ind[r][j]] = d
             dct[r][self.ind[r][j]][self.ind[r][i]] = d
         # 倍增维护查询任意两点路径的最大边权值
-        self.tree = [TreeAncestorWeightSecond(dc) for dc in dct]
+        self.tree = [SecondMinimumSpanningTree(dc) for dc in dct]
 
     def query(self, p: int, q: int, limit: int) -> bool:
         if self.root[p] != self.root[q]:

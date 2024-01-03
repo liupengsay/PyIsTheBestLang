@@ -55,14 +55,14 @@ class MinimumSpanningTree:
         return
 
 
-class TreeAncestorWeightSecond:
+class SecondMinimumSpanningTree:
     """"get some info of strictly second minimum spanning tree"""
 
     def __init__(self, dct):
         # default node 0 as root
-        n = len(dct)
-        self.parent = [-1] * n
-        self.depth = [-1] * n
+        self.n = len(dct)  # [dict() for _ in range(n)]
+        self.parent = [-1] * self.n
+        self.depth = [-1] * self.n
         stack = deque([0])
         self.depth[0] = 0
         while stack:
@@ -74,56 +74,72 @@ class TreeAncestorWeightSecond:
                     stack.append(j)
 
         # set the number of layers based on the node size
-        self.cols = max(2, math.ceil(math.log2(n)))
-        self.dp = [[-1] * self.cols for _ in range(n)]
+        self.cols = max(2, math.ceil(math.log2(self.n)))
+        self.dp = [-1] * self.cols * self.n
         # the maximum and second maximum values of edge weights which is not strictly second
-        self.weight = [[[-1, -1] for _ in range(self.cols)] for _ in range(n)]
-        for i in range(n):
-            self.dp[i][0] = self.parent[i]
+        self.maximum_weight = [-1] * self.cols * self.n
+        self.second_maximum_weight = [-1] * self.cols * self.n  # not strictly
+        for i in range(self.n):
+            self.dp[i * self.cols] = self.parent[i]
             if self.parent[i] != -1:
-                self.weight[i][0] = [dct[self.parent[i]][i], -1]
+                self.maximum_weight[i * self.cols] = dct[self.parent[i]][i]
 
-        # dp[i][j] as the 2**j th ancestor of node i
+        # dp[i*self.cols+j] as the 2**j th ancestor of node i
         for j in range(1, self.cols):
-            for i in range(n):
-                father = self.dp[i][j - 1]
-                self.weight[i][j] = self.update(self.weight[i][j], self.weight[i][j - 1])
+            for i in range(self.n):
+                father = self.dp[i * self.cols + j - 1]
+                a, b = self.maximum_weight[i * self.cols + j], self.second_maximum_weight[i * self.cols + j]
+                c, d = self.maximum_weight[i * self.cols + j - 1], self.second_maximum_weight[i * self.cols + j - 1]
+                self.maximum_weight[i * self.cols + j], self.second_maximum_weight[i * self.cols + j] = self.update(a,
+                                                                                                                    b,
+                                                                                                                    c,
+                                                                                                                    d)
                 if father != -1:
-                    self.dp[i][j] = self.dp[father][j - 1]
-                    self.weight[i][j] = self.update(self.weight[i][j], self.weight[father][j - 1])
+                    self.dp[i * self.cols + j] = self.dp[father * self.cols + j - 1]
+                    a, b = self.maximum_weight[i * self.cols + j], self.second_maximum_weight[i * self.cols + j]
+                    c, d = self.maximum_weight[father * self.cols + j - 1], self.second_maximum_weight[
+                        father * self.cols + j - 1]
+                    self.maximum_weight[i * self.cols + j], self.second_maximum_weight[i * self.cols + j] = self.update(
+                        a, b, c, d)
         return
 
     @staticmethod
-    def update(lst1, lst2):
-        a, b = lst1
-        c, d = lst2
-        # Update maximum and second maximum values
+    def update(a, b, c, d):
         for x in [c, d]:
             if x >= a:
                 a, b = x, a
-            elif x >= b:
+            elif x >= b:  # this is not strictly
                 b = x
-        return [a, b]
+        return a, b
 
     def get_dist_weight_max_second(self, x: int, y: int):
         # calculate the maximum and second maximum weights on the shortest path of any point
         if self.depth[x] < self.depth[y]:
             x, y = y, x
-        ans = [-1, -1]
+        ans_a = ans_b = -1
         while self.depth[x] > self.depth[y]:
             d = self.depth[x] - self.depth[y]
-            ans = self.update(ans, self.weight[x][int(math.log2(d))])
-            x = self.dp[x][int(math.log2(d))]
+            ans_c, ans_d = self.maximum_weight[x * self.cols + int(math.log2(d))], self.second_maximum_weight[
+                x * self.cols + int(math.log2(d))]
+            ans_a, ans_b = self.update(ans_a, ans_b, ans_c, ans_d)
+            x = self.dp[x * self.cols + int(math.log2(d))]
         if x == y:
-            return ans
+            return ans_a, ans_b
 
         for k in range(int(math.log2(self.depth[x])), -1, -1):
-            if self.dp[x][k] != self.dp[y][k]:
-                ans = self.update(ans, self.weight[x][k])
-                ans = self.update(ans, self.weight[y][k])
-                x = self.dp[x][k]
-                y = self.dp[y][k]
+            if self.dp[x * self.cols + k] != self.dp[y * self.cols + k]:
+                ans_c, ans_d = self.maximum_weight[x * self.cols + k], self.second_maximum_weight[x * self.cols + k]
+                ans_a, ans_b = self.update(ans_a, ans_b, ans_c, ans_d)
 
-        ans = self.update(ans, self.weight[x][0])
-        ans = self.update(ans, self.weight[y][0])
-        return ans
+                ans_c, ans_d = self.maximum_weight[y * self.cols + k], self.second_maximum_weight[y * self.cols + k]
+                ans_a, ans_b = self.update(ans_a, ans_b, ans_c, ans_d)
+
+                x = self.dp[x * self.cols + k]
+                y = self.dp[y * self.cols + k]
+
+        ans_c, ans_d = self.maximum_weight[x * self.cols], self.second_maximum_weight[x * self.cols]
+        ans_a, ans_b = self.update(ans_a, ans_b, ans_c, ans_d)
+
+        ans_c, ans_d = self.maximum_weight[y * self.cols], self.second_maximum_weight[y * self.cols]
+        ans_a, ans_b = self.update(ans_a, ans_b, ans_c, ans_d)
+        return ans_a, ans_b
