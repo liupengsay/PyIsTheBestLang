@@ -53,7 +53,7 @@ class UnionFind:
     def is_connected(self, x, y):
         return self.find(x) == self.find(y)
 
-    def get_node_size(self, x):
+    def size(self, x):
         return -self.root_or_size[self.find(x)]
 
     def get_root_part(self):

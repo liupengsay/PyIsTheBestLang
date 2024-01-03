@@ -1,6 +1,4 @@
-
-
-from src.graph.union_find.template import UnionFindLeftRoot
+from src.graph.union_find.template import UnionFind
 
 
 class BinarySearchTree:
@@ -18,18 +16,18 @@ class BinarySearchTree:
         rank = {idx: i for i, idx in enumerate(ind)}
 
         dct = [[] for _ in range(n)]
-        uf = UnionFindLeftRoot(n)
+        uf = UnionFind(n)
         post = {}
         for i in range(n - 1, -1, -1):
             x = rank[i]
             if x + 1 in post:
                 r = uf.find(post[x + 1])
                 dct[i].append(r)
-                uf.union(i, r)
+                uf.union_left(i, r)
             if x - 1 in post:
                 r = uf.find(post[x - 1])
                 dct[i].append(r)
-                uf.union(i, r)
+                uf.union_left(i, r)
             post[x] = i
         return dct
 

@@ -17,7 +17,6 @@ Description：graph|reverse_thinking|permutation_circle|offline_query|merge_wise
 2709（https://leetcode.cn/problems/greatest-common-divisor-traversal/）union_find|prime_factorization
 2612（https://leetcode.cn/problems/minimum-reverse-operations/）union_find|find_range_merge_to_disjoint
 1559（https://leetcode.cn/problems/detect-cycles-in-2d-grid/）union_find|circle_judge|classical
-1569（https://leetcode.cn/problems/number-of-ways-to-reorder-array-to-get-same-bst/）reverse_thinking|reverse_order|union_find_bst|union_find
 1970（https://leetcode.cn/problems/last-day-where-you-can-still-cross/）reverse_thinking|union_find
 1998（https://leetcode.cn/problems/gcd-sort-of-an-array/）union_find|prime_factorization
 2158（https://leetcode.cn/problems/amount-of-new-area-painted-each-day/）union_find_range|union_find_left_root|union_find_right_root
@@ -38,7 +37,7 @@ P1955（https://www.luogu.com.cn/problem/P1955）union_find
 P1196（https://www.luogu.com.cn/problem/P1196）union_find_weighted
 P1197（https://www.luogu.com.cn/problem/P1197）reverse_order|union_find，reverse_order|brute_force|part
 P1522（https://www.luogu.com.cn/problem/P1522）connected_part|brute_force|high_precision|tree_diameter
-P1621（https://www.luogu.com.cn/problem/P1621）euler_series|O(nlogn)|prime_fractorization
+P1621（https://www.luogu.com.cn/problem/P1621）euler_series|O(nlogn)|prime_factorization
 P1892（https://www.luogu.com.cn/problem/P1892）union_find|bipartite_graph
 P2189（https://www.luogu.com.cn/problem/P2189）union_find
 P2307（https://www.luogu.com.cn/problem/P2307）union_find
@@ -70,9 +69,9 @@ ABC126E（https://atcoder.jp/contests/abc126/tasks/abc126_e）union_find|several
 ABC131F（https://atcoder.jp/contests/abc131/tasks/abc131_f）brain_teaser|union_find|counter
 
 =====================================AcWing=====================================
-4306（https://www.acwing.com/problem/content/description/4309/）union_find_right_range
-4866（https://www.acwing.com/problem/content/description/4869/）union_find|implemention|size
-5145（https://www.acwing.com/problem/content/5148/）union_find|circle_judge
+4309（https://www.acwing.com/problem/content/description/4309/）union_find_right_range
+4869（https://www.acwing.com/problem/content/description/4869/）union_find|implemention|size
+5148（https://www.acwing.com/problem/content/5148/）union_find|circle_judge
 
 ================================LibraryChecker================================
 1 （https://judge.yosupo.jp/problem/cycle_detection_undirected）union_find|circle_judge
@@ -88,8 +87,8 @@ from src.basis.tree_node.template import TreeNode
 from src.data_structure.sorted_list.template import SortedList
 from src.graph.dijkstra.template import Dijkstra
 from src.graph.union_find.template import UnionFind, UnionFindWeighted
-from src.mathmatics.comb_perm.template import Combinatorics
 from src.mathmatics.number_theory.template import NumberTheory
+from src.mathmatics.prime_factor.template import PrimeFactor
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
 
@@ -164,14 +163,14 @@ class Solution:
                 if not num:
                     reach[i] = 1
                 for j in edge[i]:
-                    if reach[uf.find(j)] and num <= uf.get_node_size(j):
+                    if reach[uf.find(j)] and num <= uf.size(j):
                         reach[i] = 1
                     uf.union_left(i, j)
             ac.st("YES" if uf.part == 1 and reach[uf.find(0)] else "NO")
         return
 
     @staticmethod
-    def ac_5145(ac=FastIO()):
+    def ac_5148(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/5148/
         tag: union_find|circle_judge
@@ -309,7 +308,7 @@ class Solution:
                 uf.union(dct[j][0], dct[j][1])
                 j += 1
             if cur > grid[0][0]:
-                ans[i] = uf.get_node_size(uf.find(0))
+                ans[i] = uf.size(0)
         return ans
 
     @staticmethod
@@ -407,7 +406,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1197
         tag: reverse_order|union_find，reverse_order|brute_force|part
         """
-        # reverse_order|union_find，reverse_order|brute_force联通块个数
+
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for _ in range(m):
@@ -440,10 +439,8 @@ class Solution:
     def lg_p1522(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1522
-        tag: connected_part|brute_force|high_precision|tree_diameter
+        tag: connected_part|brute_force|high_precision|tree_diameter|classical|hard
         """
-
-        # 连通块，brute_force新增路径并high_precision联通块tree_diameter
 
         def dis(x1, y1, x2, y2):
             return math.sqrt(decimal.Decimal(((x1 - x2) ** 2 + (y1 - y2) ** 2)))
@@ -462,7 +459,7 @@ class Solution:
 
         dist = []
         for i in range(n):
-            dist.append(Dijkstra().get_dijkstra_result(dct, i))
+            dist.append(Dijkstra().get_shortest_path(dct, i))
 
         part = uf.get_root_part()
         fast = [inf] * n
@@ -487,15 +484,13 @@ class Solution:
     def lg_p1621(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1621
-        tag: euler_series|O(nlogn)|prime_fractorization
+        tag: euler_series|O(nlogn)|prime_factorization|classical
         """
-        # 利用prime筛的思想对数复杂度合并公共质因数大于p的数并连通块数量
         a, b, p = ac.read_list_ints()
         nums = list(range(a, b + 1))
         ind = {num: num - a for num in nums}
         primes = [x for x in NumberTheory().sieve_of_eratosthenes(b) if x >= p]
 
-        # 利用prime合并
         uf = UnionFind(b - a + 1)
         for x in primes:
             lst = []
@@ -516,18 +511,17 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1892
         tag: union_find|bipartite_graph
         """
-        # union_find，敌人与朋友关系
+
         n = ac.read_int()
         m = ac.read_int()
         uf = UnionFind(n)
         dct = dict()
         for _ in range(m):
-            lst = [w for w in input().strip().split() if w]
+            lst = ac.read_list_strs()
             a, b = int(lst[1]), int(lst[2])
             a -= 1
             b -= 1
             if lst[0] == "E":
-                # 敌人的敌人是朋友
                 if a in dct:
                     uf.union(dct[a], b)
                 if b in dct:
@@ -543,9 +537,9 @@ class Solution:
     def lg_p1955(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1955
-        tag: union_find
+        tag: union_find|discretization
         """
-        # union_find裸题
+
         t = ac.read_int()
         for _ in range(t):
             n = ac.read_int()
@@ -564,7 +558,7 @@ class Solution:
                 if e == 1:
                     uf.union(ind[i], ind[j])
                 else:
-                    res.append([ind[i], ind[j]])
+                    res.append((ind[i], ind[j]))
             if any(uf.is_connected(i, j) for i, j in res):
                 ac.st("NO")
             else:
@@ -575,10 +569,9 @@ class Solution:
     def lg_p2189(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P2189
-        tag: union_find
+        tag: union_find|classical|preprocess|hard
         """
 
-        # union_find题，确定访问顺序的合法性
         n, m, k, q = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for _ in range(m):
@@ -593,7 +586,6 @@ class Solution:
             for i in order:
                 visit[i] = 1
 
-            # 不在路径上的直接连通
             ans = True
             pre = order[0]
             for i in range(n):
@@ -602,7 +594,6 @@ class Solution:
                         if not visit[j]:
                             uf.union(i, j)
 
-            # 遍历连接确认当前的连通性
             for i in order:
                 visit[i] = 0
                 for j in dct[i]:
@@ -621,7 +612,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2307
         tag: union_find
         """
-        # union_find判定树的生成是否合法
+
         while True:
             ans = []
             while True:
@@ -688,17 +679,15 @@ class Solution:
     def lg_p6193(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P6193
-        tag: permutation_circle
+        tag: permutation_circle|discretization|brain_teaser|classical|hard
         """
-        # permutation_circle|交换代价
+
         n = ac.read_int()
         nums = [ac.read_int() for _ in range(n)]
         lst = sorted(nums)
-        # discretization
         ind = {num: i for i, num in enumerate(lst)}
         uf = UnionFind(n)
         x = lst[0]
-        # 寻找permutation_circle|
         for i in range(n):
             uf.union(i, ind[nums[i]])
         part = uf.get_root_part()
@@ -709,9 +698,7 @@ class Solution:
             m = len(part[p])
             if m == 1:
                 continue
-            #  当前permutation_circle|最小值交换
             cost1 = s + (m - 2) * y
-            # 或者全局最小值交换
             cost2 = s - y + x + (m - 2) * x + (x + y) * 2
             ans += ac.min(cost1, cost2)
         ac.st(ans)
@@ -723,13 +710,13 @@ class Solution:
         url: https://leetcode.cn/problems/greatest-common-divisor-traversal/
         tag: union_find|prime_factorization
         """
-        # union_find具有相同质因数的连通块
-        prime_factor = NumberTheory().get_num_prime_factor(10 ** 5)  # 放在全局
+
+        pf = PrimeFactor(10 ** 5)
         n = len(nums)
         uf = UnionFind(n)
         pre = dict()
         for i in range(n):
-            for num in prime_factor[nums[i]]:
+            for num, _ in pf.prime_factor[nums[i]]:
                 if num in pre:
                     uf.union(i, pre[num])
                 else:
@@ -740,47 +727,45 @@ class Solution:
     def lg_p6706(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P6706
-        tag: directed_graph|union_find|reverse_order|find_range_merge_to_disjoint
+        tag: directed_graph|union_find|reverse_order|find_range_merge_to_disjoint|classical|hard
         """
-        # 有向图union_find逆序更新边 find_range_merge_to_disjoint 灵活
-        n = ac.read_int()
-        edge = ac.read_list_ints_minus_one()
-        q = ac.read_int()
-        query = [ac.read_list_ints() for _ in range(q)]
-        rem = dict()
-        for op, x in query:
-            if op == 2:
-                rem[x - 1] = edge[x - 1]
-                edge[x - 1] = -1
 
-        def find_range_merge_to_disjoint(y):
-            tmp = [y]
-            while edge[tmp[-1]] not in [-1, n, y]:
-                tmp.append(edge[tmp[-1]])
-            if edge[tmp[-1]] == -1:
-                for yy in tmp[:-1]:
-                    edge[yy] = tmp[-1]
-            else:
-                for yy in tmp[:-1]:
-                    edge[yy] = n
-            return
+        n = ac.read_int()
+        edge = ac.read_list_ints()
+        q = ac.read_int()
+        query = []
+        for _ in range(q):
+            op, x = ac.read_list_ints()
+            if op == 2:
+                edge[x - 1] = -edge[x - 1]
+            query.append(op * (n + 1) + x)
+        uf = UnionFind(n + 1)
+        for i in range(1, n + 1):
+            if edge[i - 1] > 0:
+                j = uf.find(edge[i - 1])
+                if j == i:
+                    uf.union_left(0, i)
+                    uf.union_left(0, j)
+                else:
+                    uf.union_right(i, j)
 
         ans = []
         for i in range(q - 1, -1, -1):
-            op, x = query[i]
-            x -= 1
+            op, x = query[i] // (n + 1), query[i] % (n + 1)
             if op == 1:
-                find_range_merge_to_disjoint(x)
-                if edge[x] == n:
+                y = uf.find(x)
+                if y == 0:
                     res = "CIKLUS"
-                elif edge[x] == -1:
-                    res = x + 1
                 else:
-                    res = edge[x] + 1
+                    res = y
                 ans.append(res)
             else:
-                edge[x] = rem[x]
-                find_range_merge_to_disjoint(x)
+                j = uf.find(-edge[x - 1])
+                if j == x:
+                    uf.union_left(0, x)
+                    uf.union_left(0, j)
+                else:
+                    uf.union_right(x, j)
         for i in range(len(ans) - 1, -1, -1):
             ac.st(ans[i])
         return
@@ -791,7 +776,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P7991
         tag: union_find|shrink_point
         """
-        # union_find连通块缩点使得 1 和 n 连通最多|两条路的代价
+
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
             uf = UnionFind(n)
@@ -802,8 +787,8 @@ class Solution:
                 ac.st(0)
                 continue
 
-            dis_0 = [inf] * n
-            dis_1 = [inf] * n
+            dis_0 = [n] * n
+            dis_1 = [n] * n
 
             pre_0 = pre_1 = -1
             for i in range(n):
@@ -812,9 +797,9 @@ class Solution:
                 if uf.is_connected(n - 1, i):
                     pre_1 = i
                 if pre_0 != -1:
-                    dis_0[uf.find(i)] = ac.min(dis_0[uf.find(i)], (i - pre_0) ** 2)
+                    dis_0[uf.find(i)] = ac.min(dis_0[uf.find(i)], i - pre_0)
                 if pre_1 != -1:
-                    dis_1[uf.find(i)] = ac.min(dis_1[uf.find(i)], (i - pre_1) ** 2)
+                    dis_1[uf.find(i)] = ac.min(dis_1[uf.find(i)], i - pre_1)
 
             pre_0 = pre_1 = -1
             for i in range(n - 1, -1, -1):
@@ -823,10 +808,10 @@ class Solution:
                 if uf.is_connected(n - 1, i):
                     pre_1 = i
                 if pre_0 != -1:
-                    dis_0[uf.find(i)] = ac.min(dis_0[uf.find(i)], (i - pre_0) ** 2)
+                    dis_0[uf.find(i)] = ac.min(dis_0[uf.find(i)], pre_0 - i)
                 if pre_1 != -1:
-                    dis_1[uf.find(i)] = ac.min(dis_1[uf.find(i)], (i - pre_1) ** 2)
-            ans = min(dis_0[i] + dis_1[i] for i in range(n))
+                    dis_1[uf.find(i)] = ac.min(dis_1[uf.find(i)], pre_1 - i)
+            ans = min(dis_0[i] * dis_0[i] + dis_1[i] * dis_1[i] for i in range(n))
             ac.st(ans)
         return
 
@@ -834,70 +819,67 @@ class Solution:
     def lc_2612(n: int, p: int, banned: List[int], k: int) -> List[int]:
         """
         url: https://leetcode.cn/problems/minimum-reverse-operations/
-        tag: union_find|find_range_merge_to_disjoint
+        tag: union_find|find_range_merge_to_disjoint|classical|hard|odd_even|bfs|brain_teaser
         """
 
-        def find_range_merge_to_disjoint(x):
-            # union_find父节点表示下一个为访问的点类似linked_list|
-            tmp = []
-            while x != fa[x]:
-                tmp.append(x)
-                x = fa[x]
-            for y in tmp:
-                fa[y] = x
-            return x
-
         ans = [-1] * n
-        fa = list(range(n + 2))
+        uf = UnionFind(n + 2)
         for i in banned:
-            fa[i] = i + 2
-
+            uf.union_right(i, i + 2)
         stack = deque([p])
         ans[p] = 0
         while stack:
             i = stack.popleft()
-            # 满足 low <= j <= high 且要有相同的odd_even
             low = max(0, k - 1 - i, i - k + 1)
             high = min(2 * n - k - 1 - i, n - 1, i + k - 1)
-            j = find_range_merge_to_disjoint(low)
+            j = uf.find(low)
             while j <= high:
                 if ans[j] == -1:
-                    # 未访问过
                     ans[j] = ans[i] + 1
-                    fa[j] = j + 2  # range_merge_to_disjoint到下一个
                     stack.append(j)
-                # 继续访问下一个
-                j = find_range_merge_to_disjoint(j + 2)
+                    uf.union_right(j, j + 2)
+                j = uf.find(j + 2)
         return ans
 
     @staticmethod
     def lg_p8230(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P8230
-        tag: layer|union_find|implemention
+        tag: layer|union_find|implemention|mst|brain_teaser
         """
-        # 分层union_find|implemention
+
         k, m, n = ac.read_list_ints()
         ans = 1
         start = [0, 0]
+        uf = UnionFind(m * n)
         for _ in range(k):
-            grid = [ac.read_list_ints() for _ in range(m)]
+
             lst = []
             end = [-1, -1]
-            uf = UnionFind(m * n)
+            for i in range(m * n):
+                uf.root_or_size[i] = -1
+            pre = [-9] * n
             for i in range(m):
+                cur = ac.read_list_ints()
                 for j in range(n):
-                    w = grid[i][j]
+                    w = cur[j]
                     if w != -9:
-                        lst.append([w, i, j])
-                        for x, y in [[i + 1, j], [i - 1, j], [i, j - 1], [i, j + 1]]:
-                            if 0 <= x < m and 0 <= y < n and grid[x][y] != -9:
-                                uf.union(i * n + j, x * n + y)
+                        lst.append(w * m * n + i * n + j)
+                        x = i - 1
+                        if 0 <= x < m and pre[j] != -9:
+                            uf.union(i * n + j, x * n + j)
+
+                        y = j - 1
+                        if 0 <= y < n and cur[y] != -9:
+                            uf.union(i * n + j, i * n + y)
+
                     if w == -1:
                         end = [i, j]
+                pre = cur[:]
             lst.sort()
 
-            for val, i, j in lst:
+            for num in lst:
+                val, i, j = num // m // n, (num % (m * n)) // n, (num % (m * n)) % n
                 if val > ans:
                     break
                 if uf.is_connected(start[0] * n + start[1], i * n + j):
@@ -912,38 +894,42 @@ class Solution:
     def lg_p8686(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P8686
-        tag: union_find
+        tag: union_find|classical
         """
-        # union_find灵活应用
+
         ac.read_int()
         nums = ac.read_list_ints()
-        post = dict()
+        dct = dict()
         ans = []
         for num in nums:
-            lst = [num]
-            while lst[-1] in post:
-                lst.append(post[lst[-1]])
-            for x in lst:
-                post[x] = lst[-1] + 1
-            ans.append(lst[-1])
+            pre = num
+            while pre in dct:
+                pre = dct[pre]
+
+            x = num
+            while x in dct:
+                dct[x], x = pre + 1, dct[x]
+
+            dct[pre] = pre + 1
+            ans.append(pre)
         ac.lst(ans)
         return
 
     @staticmethod
-    def lg_p8787(ac=FastIO()):
+    def lg_p8787_1(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P8787
-        tag: greedy|heapq|implemention|union_find
+        tag: greedy|heapq|implemention|union_find|classical|hard
+
         """
-        # greedyheapq|implemention与union_find灵活应用
         n = ac.read_int()
         nums = ac.read_list_ints()
-        stack = [[-nums[i], -i] for i in range(n)]
+        stack = [(-nums[i], -i) for i in range(n)]
         heapify(stack)
-        uf = UnionFindLeftRoot(n)
+        uf = UnionFind(n)
         for i in range(n):
             if i and nums[i] == nums[i - 1]:
-                uf.union(i - 1, i)
+                uf.union_left(i - 1, i)
         ans = 0
         while stack:
             val, i = heappop(stack)
@@ -953,12 +939,34 @@ class Solution:
             if i != uf.find(i):
                 continue
             if i and nums[uf.find(i - 1)] == val:
-                uf.union(i - 1, i)
+                uf.union_left(i - 1, i)
                 continue
             ans += 1
             val = int(((val // 2) + 1) ** 0.5)
             nums[i] = val
-            heappush(stack, [-nums[i], -i])
+            heappush(stack, (-val, -i))
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p8787_2(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8787
+        tag: greedy|heapq|implemention|union_find|classical|hard
+
+        """
+        ac.read_int()
+        nums = ac.read_list_ints()
+        pre = set()
+        ans = 0
+        for num in nums:
+            cur = set()
+            while num > 1:
+                if num not in pre:
+                    ans += 1
+                cur.add(num)
+                num = int(((num // 2) + 1) ** 0.5)
+            pre = cur
         ac.st(ans)
         return
 
@@ -966,9 +974,9 @@ class Solution:
     def lg_p8881(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P8881
-        tag: brain_teaser|union_find|circle_judge|part
+        tag: brain_teaser|union_find|circle_judge|part|classical
         """
-        # brain_teaser，union_find判断所属连通分量circle_judge
+
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
             uf = UnionFind(n)
@@ -976,29 +984,46 @@ class Solution:
             for _ in range(m):
                 i, j = ac.read_list_ints_minus_one()
                 uf.union(i, j)
-                edge.append([i, j])
+                edge.append((i, j))
             cnt = 0
             for i, j in edge:
                 if uf.is_connected(0, i):
                     cnt += 1
-            ac.st("1.000" if uf.size[uf.find(0)] == cnt + 1 else "0.000")
+            ac.st("1.000" if uf.size(0) == cnt + 1 else "0.000")
         return
 
     @staticmethod
-    def lc_945(nums: List[int]) -> int:
+    def lc_945_1(nums: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/minimum-increment-to-make-array-unique/description/
         tag: union_find_right_root|greedy
         """
-        # 可向右合并的区间union_find，正解为greedy
+
         nums.sort()
         ans = 0
-        uf = UnionFindRightRoot(max(nums) + len(nums) + 2)
+        uf = UnionFind(max(nums) + len(nums) + 2)
         for num in nums:
-            # 其根节点就是当前还未被占据的节点
             x = uf.find(num)
             ans += x - num
-            uf.union(x, x + 1)
+            uf.union_right(x, x + 1)
+        return ans
+
+    @staticmethod
+    def lc_945_2(nums: List[int]) -> int:
+        """
+        url: https://leetcode.cn/problems/minimum-increment-to-make-array-unique/description/
+        tag: union_find_right_root|greedy
+        """
+
+        nums.sort()
+        ans = 0
+        pre = -1
+        for num in nums:
+            if num > pre:
+                pre = num
+            else:
+                ans += pre + 1 - num
+                pre += 1
         return ans
 
     @staticmethod
@@ -1007,7 +1032,6 @@ class Solution:
         url: https://leetcode.cn/problems/detect-cycles-in-2d-grid/
         tag: union_find|circle_judge|classical
         """
-        # union_find判环
         m, n = len(grid), len(grid[0])
         uf = UnionFind(m * n)
         for i in range(m):
@@ -1021,80 +1045,31 @@ class Solution:
         return False
 
     @staticmethod
-    def lc_1569(nums: List[int]) -> int:
-        """
-        url: https://leetcode.cn/problems/number-of-ways-to-reorder-array-to-get-same-bst/
-        tag: reverse_thinking|reverse_order|union_find_bst|union_find
-        """
-
-        # reverse_thinking，comb|union_find
-        len(nums)
-        mod = 10 ** 9 + 7
-        n = 10 ** 3
-        cb = Combinatorics(n, mod)
-
-        # reverse_thinking，reverse_order|利用union_find建立二叉搜索树
-        dct = [[] for _ in range(n)]
-        uf = UnionFindRightRoot(n)
-        post = {}
-        for i in range(n - 1, -1, -1):
-            x = nums[i]
-            if x + 1 in post:
-                r = uf.find(post[x + 1])
-                dct[i].append(r)
-                uf.union(i, r)
-            if x - 1 in post:
-                r = uf.find(post[x - 1])
-                dct[i].append(r)
-                uf.union(i, r)
-            post[x] = i
-        # tree_dp|
-        stack = [0]
-        sub = [0] * n
-        ans = 1
-        while stack:
-            i = stack.pop()
-            if i >= 0:
-                stack.append(~i)
-                for j in dct[i]:
-                    stack.append(j)
-            else:
-                i = ~i
-                lst = [0]
-                for j in dct[i]:
-                    lst.append(sub[j])
-                    sub[i] += sub[j]
-                s = sum(lst)
-                ans *= cb.comb(s, lst[-1])
-                ans %= mod
-                sub[i] += 1
-        ans = (ans - 1) % mod
-        return ans
-
-    @staticmethod
     def lc_2158(paint: List[List[int]]) -> List[int]:
         """
         url: https://leetcode.cn/problems/amount-of-new-area-painted-each-day/
         tag: union_find_range|union_find_left_root|union_find_right_root
         """
-        # 区间union_find
-        m = 5 * 10 ** 4 + 10
-        uf = UnionFindRightRoot(m)
+        m = max(ls[1] for ls in paint) + 10
+        uf = UnionFind(m)
         ans = []
         for a, b in paint:
             cnt = 0
+            a = uf.find(a)
             while a < b:
-                a = uf.find(a)
-                if a < b:
-                    cnt += 1
-                    uf.union(a, a + 1)
-                    a += 1
+                cnt += 1
+                uf.union_right(a, a + 1)
+                a = uf.find(a + 1)
             ans.append(cnt)
         return ans
 
     @staticmethod
-    def abc_49d(ac=FastIO()):
-        # 双union_find应用
+    def abc_065b(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc049/tasks/arc065_b
+        tag: union_find|several_union_find
+        """
+
         n, k, ll = ac.read_list_ints()
         ufa = UnionFind(n)
         for _ in range(k):
@@ -1114,14 +1089,16 @@ class Solution:
 
     @staticmethod
     def abc_131f(ac=FastIO()):
-        # brain_teaser|union_findcounter
+        """
+        url: https://atcoder.jp/contests/abc131/tasks/abc131_f
+        tag: brain_teaser|union_find|counter|hard|classical
+        """
+
         n = ac.read_int()
         m = 10 ** 5
         uf = UnionFind(2 * m)
         for _ in range(n):
-            x, y = ac.read_list_ints()
-            x -= 1
-            y -= 1
+            x, y = ac.read_list_ints_minus_one()
             y += m
             uf.union(x, y)
         group = uf.get_root_part()
@@ -1134,49 +1111,58 @@ class Solution:
         return
 
     @staticmethod
-    def ac_4306(ac=FastIO()):
+    def ac_4309(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/4309/
-        tag: union_find_right_range
+        tag: union_find_right_range|greedy
         """
-        # 向右合并的区间union_find
+
         n = ac.read_int()
         a = ac.read_list_ints()
-        uf = UnionFindRightRoot(n * 2 + 2)
+        uf = UnionFind(n * 2 + 2)
         a.sort()
         ans = 0
         for num in a:
-            # 其根节点就是当前还未被占据的节点
             x = uf.find(num)
             ans += x - num
-            uf.union(x, x + 1)
+            uf.union_right(x, x + 1)
         ac.st(ans)
         return
 
     @staticmethod
-    def ac_4866(ac=FastIO()):
+    def ac_4869(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/4869/
-        tag: union_find|implemention|size
+        tag: union_find|implemention|size|classical
         """
-        # union_findimplemention维护连通块大小与多余的边数量
+
         n, d = ac.read_list_ints()
         uf = UnionFind(n)
         lst = SortedList([1] * n)
-        pre = 0
+        pre = ans = 1
         for i in range(d):
             x, y = ac.read_list_ints_minus_one()
             if uf.is_connected(x, y):
                 pre += 1
+                if len(lst) - pre >= 0:
+                    ans += lst[len(lst) - pre]
             else:
-                lst.discard(uf.size[uf.find(x)])
-                lst.discard(uf.size[uf.find(y)])
+                for w in [x, y]:
+                    i = lst.bisect_left(uf.size(w))
+                    if i >= len(lst) - pre:
+                        ans -= lst.pop(i)
+                        if len(lst) - pre >= 0:
+                            ans += lst[len(lst) - pre]
+                    else:
+                        lst.pop(i)
+
                 uf.union(x, y)
-                lst.add(uf.size[uf.find(x)])
-            ans = 0
-            m = len(lst)
-            for j in range(m - 1, m - pre - 2, -1):
-                ans += lst[j]
+                lst.add(uf.size(x))
+                i = lst.bisect_right(uf.size(x))
+                if i >= len(lst) - pre:
+                    ans += uf.size(x)
+                    if len(lst) - pre - 1 >= 0:
+                        ans -= lst[len(lst) - pre - 1]
             ac.st(ans - 1)
         return
 
@@ -1184,10 +1170,8 @@ class Solution:
     def lc_2471(root: Optional[TreeNode]) -> int:
         """
         url: https://leetcode.cn/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/description/
-        tag: discretization|permutation_circle
+        tag: discretization|permutation_circle|classical
         """
-
-        # discretizationpermutation_circle|
 
         def check():
             nonlocal ans
@@ -1207,7 +1191,7 @@ class Solution:
         while stack:
             nex = []
             cur = [node.val for node in stack]
-            ans += check()
+            check()
             for node in stack:
                 if node.left:
                     nex.append(node.left)

@@ -18,6 +18,9 @@ P3304（https://www.luogu.com.cn/problem/P3304）tree_diameter
 
 =====================================AcWing=====================================
 
+=====================================LibraryChcker=====================================
+1（https://judge.yosupo.jp/problem/tree_diameter）tree_diameter
+
 """
 
 from typing import List
@@ -172,3 +175,21 @@ class Solution:
             tree = TreeDiameter(dct)
             ans[tree.get_diameter_info()[-1]] += 1
         return ans[1:]
+
+    @staticmethod
+    def library_checker_1(ac=FastIO()):
+        """
+        url: https://judge.yosupo.jp/problem/tree_diameter
+        tag: tree_diameter
+        """
+        n = ac.read_int()
+        dct = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            x, y, c = ac.read_list_ints()
+            dct[x].append((y, c))
+            dct[y].append((x, c))
+        tree = TreeDiameter(dct)
+        _, _, path, d = tree.get_diameter_info()
+        ac.lst([d, len(path)])
+        ac.lst(path)
+        return

@@ -57,9 +57,9 @@ class Solution:
         tag: array_to_bst|dp|comb|counter|specific_plan
         """
 
-        dct = BinarySearchTree().build_with_unionfind(nums)
         mod = 10 ** 9 + 7
-        cb = Combinatorics(100000, mod)  # preprocess
+        cb = Combinatorics(1000, mod)
+        dct = BinarySearchTree().build_with_unionfind(nums)  # build_with_stack is also ok
         stack = [0]
         n = len(nums)
         ans = [0] * n

@@ -35,7 +35,7 @@ class PrimeFactor:
                 while num % p == 0:
                     num //= p
                     cnt += 1
-                self.prime_factor[i].append([p, cnt])
+                self.prime_factor[i].append((p, cnt))
 
         # complexity is O(nlogn)
         for i in range(2, self.ceil + 1):
