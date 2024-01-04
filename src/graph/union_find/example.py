@@ -13,7 +13,6 @@ class TestGeneral(unittest.TestCase):
         return
 
     def test_persistent_union_find(self):
-        # 在线根据历史版本时间戳查询
         n = 3
         puf = PersistentUnionFind(n)
         edge_list = [[0, 1, 2], [1, 2, 4], [2, 0, 8], [1, 0, 16]]

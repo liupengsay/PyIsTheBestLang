@@ -62,7 +62,7 @@ class Solution:
         for i in range(n):
             edge[n - parent[i]].append(n - i)
 
-        weight = [x for _, x in nums] + [math.inf]
+        weight = [x for _, x in nums] + [inf]
         tree = TreeAncestorPool(edge, weight[::-1])
 
         for _ in range(q):

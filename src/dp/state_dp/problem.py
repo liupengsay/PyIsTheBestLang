@@ -567,7 +567,7 @@ class Solution:
         nums = []
         while len(nums) < n:
             nums.extend(ac.read_list_ints())
-        f = [math.inf] * (1 << n)  # 当前状态下的分组
+        f = [inf] * (1 << n)  # 当前状态下的分组
         f[0] = 1
         g = [0] * (1 << n)  # 当前状态下最后一组占用的重量
         for i in range(1, 1 << n):

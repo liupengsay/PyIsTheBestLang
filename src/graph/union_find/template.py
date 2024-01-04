@@ -7,6 +7,13 @@ class UnionFind:
     def __init__(self, n: int) -> None:
         self.root_or_size = [-1] * n
         self.part = n
+        self.n = n
+        return
+
+    def initialize(self):
+        for i in range(self.n):
+            self.root_or_size[i] = -1
+        self.part = self.n
         return
 
     def find(self, x):
@@ -104,6 +111,7 @@ class UnionFindWeighted:
     def is_connected(self, x, y):
         return self.find(x) == self.find(y)
 
+
 class PersistentUnionFind:
     def __init__(self, n):
         self.rank = [0] * n
@@ -126,10 +134,9 @@ class PersistentUnionFind:
         return False
 
     def find(self, x, tm=inf):
-        if x == self.root[x] or self.version[x] >= tm:
-            return x
-        return self.find(self.root[x], tm)
+        while not (x == self.root[x] or self.version[x] >= tm):
+            x = self.root[x]
+        return x
 
     def is_connected(self, x, y, tm):
         return self.find(x, tm) == self.find(y, tm)
-

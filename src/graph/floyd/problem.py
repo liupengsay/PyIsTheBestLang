@@ -371,7 +371,7 @@ class Solution:
         url: https://codeforces.com/problemset/problem/472/D
         tag: floyd|construction|shortest_path
         """
-        #  Floyd 的思想判断shortest_path矩阵是否合理存在
+
         n = ac.read_int()
         grid = [ac.read_list_ints() for _ in range(n)]
         for i in range(n):
@@ -386,12 +386,12 @@ class Solution:
             ac.st("YES")
             return
         for i in range(n):
-            r = 1 if not i else 0
-            for j in range(n):
-                if grid[i][j] < grid[i][r] and i != j:
-                    r = j
+            j = 1 if not i else 0
+            for r in range(n):
+                if grid[i][r] < grid[i][j] and i != r:
+                    j = r
             for k in range(n):
-                if abs(grid[i][k] - grid[r][k]) != grid[i][r]:
+                if abs(grid[i][k] - grid[j][k]) != grid[i][j]:
                     ac.st("NO")
                     return
         ac.st("YES")

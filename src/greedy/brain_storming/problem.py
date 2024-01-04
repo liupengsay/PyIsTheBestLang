@@ -409,7 +409,7 @@ class Solution:
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort(key=lambda it: it[0] + it[1])
-        ans = -math.inf
+        ans = -inf
         pre = 0
         for w, s in nums:
             ans = ac.max(ans, pre - s)
