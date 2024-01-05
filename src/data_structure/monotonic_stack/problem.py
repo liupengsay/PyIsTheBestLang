@@ -537,6 +537,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6801
         tag: monotonic_stack|sub_matrix|counter
         """
+
         def compute(x, y):
             return x * (x + 1) * y * (y + 1) // 4
 
@@ -872,3 +873,23 @@ class Solution:
                 ac.lst(nums)
                 break
         return
+
+    @staticmethod
+    def lc_1944(heights: List[int]) -> List[int]:
+        """
+        url: https://leetcode.cn/problems/number-of-visible-people-in-a-queue/
+        tag: reverse_thinking|monotonic_stack
+        """
+        n = len(heights)
+        ans = [0] * n
+        stack = [heights[-1]]
+        for i in range(n - 2, -1, -1):
+            cur = 0
+            while stack and stack[-1] < heights[i]:
+                cur += 1
+                stack.pop()
+            if stack:
+                cur += 1
+            stack.append(heights[i])
+            ans[i] = cur
+        return ans

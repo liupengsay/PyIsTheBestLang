@@ -7,8 +7,8 @@ Property：(4*i)^(4*i+1)^(4*i+2)^(4*i+3)=0  (2*n)^(2*n+1)=1 (a&b)^(a&c) = a&(b^c
 ====================================LeetCode====================================
 2354（https://leetcode.cn/problems/number-of-excellent-pairs/）brain_teaser|hash|counter|brute_force
 260（https://leetcode.cn/problems/single-number-iii/）bit_operation|cor_property|lowest_bit
-6365（https://leetcode.cn/problems/minimum-operations-to-reduce-an-integer-to-0/）operation|bit_property
-6360（https://leetcode.cn/problems/minimum-impossible-or/）greedy
+2571（https://leetcode.cn/problems/minimum-operations-to-reduce-an-integer-to-0/）operation|bit_property
+2568（https://leetcode.cn/problems/minimum-impossible-or/）greedy
 2564（https://leetcode.cn/problems/substring-xor-queries/）bit_operation|bit_property
 1238（https://leetcode.cn/problems/circular-permutation-in-binary-representation/）gray_code|classical
 89（https://leetcode.cn/problems/gray-code/）gray_code|classical
@@ -47,9 +47,9 @@ P8965（https://www.luogu.com.cn/problem/P8965）tree_dp|xor
 305C（https://codeforces.com/problemset/problem/305/C）2-base
 878A（https://codeforces.com/problemset/problem/878/A）bit_operation
 282C（https://codeforces.com/problemset/problem/282/C）bit_operation
-1554C（https://codeforces.com/problemset/problem/1554/C）bit_operation|greedy
+1554C（https://codeforces.com/contest/1554/problem/C）bit_operation|greedy
 1800F（https://codeforces.com/contest/1800/problem/F）bit_operation|brute_force|counter
-276D（https://codeforces.com/problemset/problem/276/D）maximum_xor|classical
+276D（https://codeforces.com/contest/276/problem/D）maximum_xor|classical
 1742G（https://codeforces.com/contest/1742/problem/G）prefix_or|lexicographical_order|construction|specific_plan
 1851F（https://codeforces.com/contest/1851/problem/F）minimum_xor_pair|classical|sort|adjacent_pair
 1879D（https://codeforces.com/contest/1879/problem/D）bit_operation|bit_contribution_method|prefix_sum|counter|prefix_or
@@ -59,7 +59,7 @@ P8965（https://www.luogu.com.cn/problem/P8965）tree_dp|xor
 ====================================AtCoder=====================================
 ABC117D（https://atcoder.jp/contests/abc117/tasks/abc117_d）bit_operation|greedy|brain_teaser
 ABC147D（https://atcoder.jp/contests/abc147/tasks/abc147_d）classical|xor_sum
-
+ABC121D（https://atcoder.jp/contests/abc121/tasks/abc121_d）classical|xor_sum
 =====================================AcWing=====================================
 998（https://www.acwing.com/problem/content/1000/）or|xor|and|bit_operation|greedy
 4614（https://www.acwing.com/problem/content/4617/）bit_operation|brute_force|prefix_sum|preprocess
@@ -79,6 +79,7 @@ from src.utils.fast_io import inf
 
 
 class Solution:
+
     def __int__(self):
         return
 
@@ -88,39 +89,37 @@ class Solution:
         url: https://codeforces.com/contest/1742/problem/G
         tag: prefix_or|lexicographical_order|construction|specific_plan
         """
-        # 重排数组使得前缀或值的lexicographical_order最大
+
         for _ in range(ac.read_int()):
             n = ac.read_int()
             nums = ac.read_list_ints()
-            total = reduce(or_, nums)
-            ind = set(list(range(n)))
-            rest = nums[:]
-            ans = []
+            tot = reduce(or_, nums)
             pre = 0
-            while pre != total:
-                low = -1
-                x = 0
-                for i in ind:
-                    if rest[i] > low:
-                        low = rest[i]
-                        x = i
-                pre |= nums[x]
-                ans.append(nums[x])
-                ind.discard(x)
-                for i in ind:
-                    rest[i] = (rest[i] ^ (rest[i] & pre))
-            for i in ind:
-                ans.append(nums[i])
+            ans = []
+            for i in range(n):
+                if pre == tot or len(ans) == n:
+                    break
+                nex = val = -1
+                for j in range(n):
+                    if nums[j] >= 0 and pre | nums[j] > val:
+                        val = pre | nums[j]
+                        nex = j
+                pre |= nums[nex]
+                ans.append(nums[nex])
+                nums[nex] = -1
+            for i in range(n):
+                if nums[i] >= 0:
+                    ans.append(nums[i])
             ac.lst(ans)
         return
 
     @staticmethod
     def cf_276d(ac=FastIO()):
         """
-        url: https://codeforces.com/problemset/problem/276/D
-        tag: maximum_xor|classical
+        url: https://codeforces.com/contest/276/problem/D
+        tag: maximum_xor|classical|hard|brain_teaser
         """
-        # 区间[l,r]的最大异或和
+
         a, b = ac.read_list_ints()
         n = len(bin(b)) - 2
         ans = 0
@@ -137,31 +136,28 @@ class Solution:
     def cf_1800f(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1800/problem/F
-        tag: bit_operation|brute_force|counter
+        tag: bit_operation|brute_force|counter|odd_even|brain_teaser|hard
         """
-        # bit_operationbrute_forcecounter
-        n = ac.read_int()
-        strings = [ac.read_str() for _ in range(n)]
-        states = []
-        for s in strings:
-            cnt = Counter(s)
-            a = b = 0
-            for i in range(26):
-                x = chr(i + ord("a"))
-                if cnt[x] % 2:
-                    a |= (1 << i)
-                if cnt[x]:
-                    b |= (1 << i)
-            states.append([a, b])
 
+        ac.get_random_seed()
+        n = ac.read_int()
         ans = 0
-        for i in range(26):
-            pre = defaultdict(int)
-            target = ((1 << 26) - 1) ^ (1 << i)
-            for j in range(n):
-                if not states[j][1] & (1 << i):
-                    ans += pre[target ^ states[j][0]]
-                    pre[states[j][0]] += 1
+        mask = (1 << 26) - 1
+        state = [mask ^ (1 << j) for j in range(26)]
+        dct = dict()
+        for _ in range(n):
+            a = b = 0
+            for w in ac.read_str():
+                i = ord(w) - ord("a")
+                a ^= (1 << i)
+                b |= (1 << i)
+            if a ^ ac.random_seed not in dct:
+                dct[a ^ ac.random_seed] = [0] * 26
+            for j in range(26):
+                if not b & (1 << j):
+                    if a ^ state[j] ^ ac.random_seed in dct:
+                        ans += dct[a ^ state[j] ^ ac.random_seed][j]
+                    dct[a ^ ac.random_seed][j] += 1
         ac.st(ans)
         return
 
@@ -169,9 +165,9 @@ class Solution:
     def lc_260(nums: List[int]) -> List[int]:
         """
         url: https://leetcode.cn/problems/single-number-iii/
-        tag: bit_operation|counter
+        tag: bit_operation|counter|brain_teaser
         """
-        # 将整数换算成二进制counter
+
         s = reduce(xor, nums)
         last = s & (-s)
         one = two = 0
@@ -186,9 +182,9 @@ class Solution:
     def lc_137(nums: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/single-number-ii/
-        tag: bit_operation|counter
+        tag: bit_operation|counter|classical
         """
-        # 将整数换算成二进制counter
+
         floor = (1 << 31) + 1
         dp = [0] * 33
         for num in nums:
@@ -205,16 +201,16 @@ class Solution:
     @staticmethod
     def cf_1554c(ac=FastIO()):
         """
-        url: https://codeforces.com/problemset/problem/1554/C
-        tag: bit_operation|greedy
+        url: https://codeforces.com/contest/1554/problem/C
+        tag: bit_operation|greedy|mex_like|brain_teaser|classical|hard|reverse_thinking
         """
-        # 涉及到 MEX 转换为求 n^ans>=m+1 的最小值ans
+
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
             assert 0 <= n <= 10 ** 9
             assert 0 <= m <= 10 ** 9
             p = m + 1
-            ans = 0
+            ans = 0  # n^ans >= m+1
             for i in range(30, -1, -1):
                 if ans ^ n >= p:
                     break
@@ -229,9 +225,8 @@ class Solution:
     def lc_1787(nums: List[int], k: int) -> int:
         """
         url: https://leetcode.cn/problems/make-the-xor-of-all-segments-equal-to-zero/
-        tag: xor_property|data_range|brute_force
+        tag: xor_property|data_range|brute_force|hard
         """
-        # 按照异或特性分组并利用data_rangebrute_forceDP
         m = max(len(bin(num)) - 2 for num in nums)
         pre = [inf] * (1 << m)
         pre[0] = 0
@@ -240,7 +235,7 @@ class Solution:
             n = len(lst)
             cnt = Counter(lst)
             low = min(pre)
-            cur = [low + n for x in pre]
+            cur = [low + n for _ in pre]
             for j in range(1 << m):
                 for num in cnt:
                     a, b = cur[j], pre[j ^ num] + n - cnt[num]
@@ -249,12 +244,12 @@ class Solution:
         return pre[0]
 
     @staticmethod
-    def lc_6360(nums):
+    def lc_2568(nums):
         """
         url: https://leetcode.cn/problems/minimum-impossible-or/
-        tag: greedy
+        tag: greedy|brain_teaser
         """
-        # 最小的无法由子数组的或运算得到的数（异或则可以线性基求解判断）
+
         dct = set(nums)
         ans = 1
         while ans in dct:
@@ -262,44 +257,40 @@ class Solution:
         return ans
 
     @staticmethod
-    def lc_6365(num):
+    def lc_2571_1(n):
         """
         url: https://leetcode.cn/problems/minimum-operations-to-reduce-an-integer-to-0/
         tag: operation|bit_property
         """
-        # n |上或减去 2 的某个幂使得 n 变为 0 的最少操作数
-        @lru_cache(None)
-        def dfs(n):
-            if not n:
-                return 0
-            if bin(n).count("1") == 1:
-                return 1
-            low = n & (-n)
-            return 1 + min(dfs(n - low), dfs(n + low))
 
-        # 更优解法 bin(n ^ (3 * n)).count("1")
-        return dfs(num)
+        @lru_cache(None)
+        def dfs(k):
+            if not k:
+                return 0
+            if k.bit_count() == 1:
+                return 1
+            low = k & (-k)
+            return 1 + min(dfs(k - low), dfs(k + low))
+
+        return dfs(n)  # (3 * n ^ n).bit_count()
 
     @staticmethod
-    def lc_6365_2(num):
+    def lc_2571_2(n):
         """
         url: https://leetcode.cn/problems/minimum-operations-to-reduce-an-integer-to-0/
         tag: operation|bit_property
         """
-        # 对应有 O(logn) greedy解法
-        s = bin(num)[2:][::-1]
         ans = cnt = 0
-        m = len(s)
+        m = n.bit_length()
         for i in range(m):
-            if s[i] == "1":
+            if n & (1 << i):
                 cnt += 1
             else:
-                # 中心思想是连续的 111 可以通过| 1 变成 1000 再减去其中的 1 即操作两次
                 if cnt == 1:
                     ans += 1
                     cnt = 0
                 elif cnt >= 2:
-                    if i + 1 < m and s[i + 1] == "1":
+                    if n & (1 << (i + 1)):
                         ans += 1
                         cnt = 1
                     else:
@@ -315,13 +306,11 @@ class Solution:
         url: https://leetcode.cn/problems/largest-combination-with-bitwise-and-greater-than-zero/
         tag: range_add|classical|st
         """
-        # 求按位与不为0的最长子序列，不要求连续
-        count = [0] * 32
+
+        count = [0] * 24
         for num in candidates:
-            st = bin(num)[2:]
-            n = len(st)
-            for i in range(1, n + 1, 1):  # 也可要求连续的情况
-                if st[-i] == '1':
+            for i in range(24):
+                if num & (1 << i):
                     count[i] += 1
         return max(count)
 
@@ -329,9 +318,9 @@ class Solution:
     def lc_2564(s, queries):
         """
         url: https://leetcode.cn/problems/substring-xor-queries/
-        tag: bit_operation|bit_property
+        tag: bit_operation|bit_property|data_range
         """
-        # preprocess相同异或值的索引
+
         dct = defaultdict(set)
         m = len(queries)
         for i in range(m):
@@ -340,7 +329,6 @@ class Solution:
             dct[x].add(i)
         ceil = max(len(x) for x in dct)
         ans = [[-1, -1] for _ in range(m)]
-        # 遍历往前back_track查找个数
         n = len(s)
         for i in range(n):
             for j in range(max(i - ceil + 1, 0), i + 1):
@@ -357,7 +345,7 @@ class Solution:
         url: https://leetcode.cn/problems/circular-permutation-in-binary-representation/
         tag: gray_code|classical
         """
-        # 生成 n 位数的格雷码
+
         ans = BitOperation().get_graycode(n)
         i = ans.index(start)
         return ans[i:] + ans[:i]
@@ -368,20 +356,24 @@ class Solution:
         url: https://leetcode.cn/problems/gray-code/
         tag: gray_code|classical
         """
-        # 生成 n 位数的格雷码
+
         ans = BitOperation().get_graycode(n)
         return ans
 
     @staticmethod
     def abc_117d(ac=FastIO()):
-        # 从高位到低位按位greedy，brain_teaser|
+        """
+        url: https://atcoder.jp/contests/abc117/tasks/abc117_d
+        tag: bit_operation|greedy|brain_teaser|implemention|hard|bit_property
+        """
+
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
         ans = pre = 0
         for i in range(40, -1, -1):
             cnt = Counter(int(num & (1 << i) > 0) for num in nums)
-            if cnt[1] >= cnt[0] or pre + (1 << i) > k:
-                ans += cnt[1] * (1 << i)  # 由于多于一半因此必然最优
+            if cnt[1] >= cnt[0] or pre + (1 << i) > k:  # half|bit
+                ans += cnt[1] * (1 << i)
             else:
                 pre += (1 << i)
                 ans += cnt[0] * (1 << i)
@@ -390,26 +382,24 @@ class Solution:
 
     @staticmethod
     def abc_121d(ac=FastIO()):
-        def count(x):
-            if x <= 0:
-                return 0
-            m = (x + 1) // 2
-            ans = m % 2
-            if (x + 1) % 2:
-                ans ^= x
-            return ans
-
+        """
+        url: https://atcoder.jp/contests/abc121/tasks/abc121_d
+        tag: classical|xor_sum
+        """
         a, b = ac.read_list_ints()
-        ac.st(count(b) ^ count(a - 1))
+        ans = BitOperation().sum_xor(b)
+        if a:
+            ans ^= BitOperation().sum_xor((a - 1))
+        ac.st(ans)
         return
 
     @staticmethod
     def ac_998(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/1000/
-        tag: or|xor|and|bit_operation|greedy
+        tag: or|xor|and|bit_operation|greedy|implemention
         """
-        # 按照二进制每个位操作，greedy结果
+
         n, m = ac.read_list_ints()
         ans = [[0, 1 << i] for i in range(32)]
         for _ in range(n):
@@ -443,11 +433,9 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1582
         tag: base|brain_teaser
         """
-        # 进制题brain_teaser
         n, k = ac.read_list_ints()
         ans = 0
-        # 每次选末尾的 1 增|合并
-        while bin(n).count("1") > k:
+        while n.bit_count() > k:
             ans += n & (-n)
             n += n & (-n)
         ac.st(ans)
@@ -459,7 +447,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2114
         tag: bit_operation|implemention|greedy
         """
-        # bit_operationimplemention，greedy选取最大结果
+
         n, m = ac.read_list_ints()
         one = [1 << i for i in range(32)]
         zero = [0] * 32
@@ -476,7 +464,7 @@ class Solution:
                 else:
                     one[i] ^= (t & (1 << i))
                     zero[i] ^= (t & (1 << i))
-        # reverse_order|选取最大值
+
         ans = 0
         for i in range(31, -1, -1):
             if one[i] > zero[i] and m >= (1 << i):
@@ -493,7 +481,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2326
         tag: bit_operation|implemention|greedy|maximum_and
         """
-        # 按位implementiongreedy选取与值最大的数值对
+
         for case in range(ac.read_int()):
             ac.read_int()
             nums = ac.read_list_ints()
@@ -507,11 +495,7 @@ class Solution:
                 for i in range(20, -1, -1):
                     if cnt[i] >= 2:
                         ans |= (1 << i)
-                        nums = [
-                            num ^ (
-                                    1 << i) for num in nums if num & (
-                                    1 << i) and num ^ (
-                                    1 << i)]
+                        nums = [num ^ (1 << i) for num in nums if num & (1 << i) and num ^ (1 << i)]
                         break
                 else:
                     nums = []
@@ -522,9 +506,9 @@ class Solution:
     def lg_p4144(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P4144
-        tag: bit_operation|greedy|brain_teaser
+        tag: bit_operation|greedy|brain_teaser|hard|classical
         """
-        # bit_operation|brain_teasergreedy
+
         n, b, p = ac.read_list_ints()
         nums = ac.read_list_ints()
         ans = max(nums) * 2
@@ -535,14 +519,13 @@ class Solution:
     def lg_p4310(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P4310
-        tag: linear_dp|bit_operation
+        tag: linear_dp|bit_operation|classical
         """
-        # linear_dp 按位转移
+
         ac.read_int()
         nums = ac.read_list_ints()
         cnt = [0] * 32
         for num in nums:
-            # 根据按位与与的特点
             pre = 0
             lst = []
             for j in range(32):
@@ -559,9 +542,10 @@ class Solution:
     def lg_p5390(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P5390
-        tag: bit_operation
+        url: https://www.luogu.com.cn/problem/U360642
+        tag: bit_operation|odd_even|classical
         """
-        # bit_operation统计brute_force
+
         mod = 998244353
         for _ in range(ac.read_int()):
             nums = ac.read_list_ints()
@@ -579,37 +563,32 @@ class Solution:
     def lg_p6824(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P6824
-        tag: bit_operation|xor|diff_array|action_scope|counter
+        tag: bit_operation|xor|diff_array|action_scope|counter|classical|hard
         """
-        # bit_operation异或不等式在差分action_scopecounter
+
         n, k = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
-        m = len(bin(max(k, max(nums))))
+        m = len(bin(max(k, max(nums)))) - 1
         diff = [0] * ((1 << m) + 1)
         for a in nums:
-            i, pre = m - 1, 0
-            while True:
-                if i == -1:
-                    diff[pre] += 1
-                    diff[pre + 1] -= 1
-                    break
+            pre = 0
+            for i in range(m - 1, -1, -1):
                 if k & (1 << i):
                     if a & (1 << i):
                         low = pre ^ (1 << i)
                         high = low ^ ((1 << i) - 1)
                         diff[low] += 1
                         diff[high + 1] -= 1
-                        i -= 1
                     else:
                         low, high = pre, pre ^ ((1 << i) - 1)
                         diff[low] += 1
                         diff[high + 1] -= 1
-                        i, pre = i - 1, pre ^ (1 << i)
+                        pre ^= (1 << i)
                 else:
                     if a & (1 << i):
-                        i, pre = i - 1, pre ^ (1 << i)
-                    else:
-                        i -= 1
+                        pre ^= (1 << i)
+            diff[pre] += 1
+            diff[pre + 1] -= 1
         ac.st(max(ac.accumulate(diff)))
         return
 
@@ -617,9 +596,9 @@ class Solution:
     def lg_p8842(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P8842
-        tag: prime_factorization|prefix_sum|counter
+        tag: prime_factorization|prefix_sum|counter|classical|hard
         """
-        # 质数个数prefix_sum与异或不等式区间counter（也可考虑 01 Trie）
+
         n = 1 << 21
         prime = [0] * (n + 1)
         prime[0] = 0
@@ -634,8 +613,7 @@ class Solution:
             ans = 0
             for k in range(21):
                 if x & (1 << k):
-                    ans += (1 << (k + 1)) - (1 << k) - \
-                           (prime[(1 << (k + 1)) - 1] - prime[(1 << k) - 1])
+                    ans += (1 << (k + 1)) - (1 << k) - (prime[(1 << (k + 1)) - 1] - prime[(1 << k) - 1])
             ac.st(ans)
         return
 
@@ -643,13 +621,12 @@ class Solution:
     def lc_1486(n: int, start: int) -> int:
         """
         url: https://leetcode.cn/problems/xor-operation-in-an-array/
-        tag: xor_property
+        tag: xor_property|hard
         """
-        # 异或公式
+
         s = start // 2
         bo = BitOperation()
         e = n & start & 1
-        # (start+0)^(start+2)^..^(start+2*n-2)
         return (bo.sum_xor(s - 1) ^ bo.sum_xor(s + n - 1)) * 2 + e
 
     @staticmethod
@@ -658,9 +635,9 @@ class Solution:
         url: https://leetcode.cn/problems/decode-xored-permutation/
         tag: math|xor_property|odd_xor
         """
-        # 变换公式，解码相邻异或值编码，并利用奇数排列的异或性质
+
         n = len(encoded) + 1
-        total = 1 if n % 4 == 1 else 0  # n=4*k+1 与 n=4*k+3
+        total = BitOperation().sum_xor(n)
         odd = reduce(xor, encoded[1::2])
         ans = [total ^ odd]
         for num in encoded:
@@ -671,9 +648,9 @@ class Solution:
     def ac_4614(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/4617/
-        tag: bit_operation|brute_force|prefix_sum|preprocess
+        tag: bit_operation|brute_force|prefix_sum|preprocess|brain_teaser|classical
         """
-        # bit_operationbrute_force与prefix_sumpreprocess
+
         n, m, q = ac.read_list_ints()
         nums = ac.read_list_ints()
         lst = [ac.read_str() for _ in range(m)]

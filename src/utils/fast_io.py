@@ -19,12 +19,18 @@ class Wrapper(int):
 def ac_max(a, b):
     return a if a > b else b
 
+
 def ac_min(a, b):
     return a if a < b else b
 
 
 class FastIO:
     def __init__(self):
+        self.random_seed = 0
+        return
+
+    def get_random_seed(self):
+        import random
         self.random_seed = random.randint(0, 10 ** 9 + 7)
         return
 
