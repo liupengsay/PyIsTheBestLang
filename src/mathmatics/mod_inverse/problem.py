@@ -1,11 +1,11 @@
 """
-Algorithm：multiplicative_reverse|comb
+Algorithm：mod_reverse|comb
 Description：the reverse mod must be coprime, otherwise the gcd will deal with specially
 
 =====================================LuoGu======================================
-P3811（https://www.luogu.com.cn/problem/P3811）multiplicative_reverse
-P5431（https://www.luogu.com.cn/problem/P5431）multiplicative_reverse
-P2613（https://www.luogu.com.cn/problem/P2613）multiplicative_reverse
+P3811（https://www.luogu.com.cn/problem/P3811）mod_reverse
+P5431（https://www.luogu.com.cn/problem/P5431）mod_reverse
+P2613（https://www.luogu.com.cn/problem/P2613）mod_reverse
 P5431（https://www.luogu.com.cn/problem/P5431）prefix_suffix
 
 ===================================CodeForces===================================
@@ -15,7 +15,8 @@ P5431（https://www.luogu.com.cn/problem/P5431）prefix_suffix
 """
 from collections import Counter
 
-from src.mathmatics.multiplicative_inverse.template import MultiplicativeInverse
+from src.mathmatics.comb_perm.template import Combinatorics
+from src.mathmatics.mod_inverse.template import ModInverse
 from src.utils.fast_io import FastIO
 
 
@@ -24,20 +25,36 @@ class Solution:
         return
 
     @staticmethod
-    def lg_p3811(ac=FastIO()):
+    def lg_p3811_1(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P3811
-        tag: multiplicative_reverse
+        tag: mod_reverse|classical|hard
         """
         n, p = ac.read_list_ints()
-        for i in range(1, n + 1):
-            ac.st(MultiplicativeInverse().mod_reverse(i, p))
+        inv = [0] * (n + 1)
+        inv[1] = 1
+        for i in range(2, n + 1):
+            inv[i] = (p - p // i) * inv[p % i] % p
+        for x in inv[1:]:
+            ac.st(x)
+        return
+
+    @staticmethod
+    def lg_p3811_2(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3811
+        tag: mod_reverse|classical|hard
+        """
+        n, p = ac.read_list_ints()
+        cb = Combinatorics(n, p)
+        for x in range(1, n + 1):
+            ac.st(cb.inv(x))
         return
 
     @staticmethod
     def main(ac=FastIO()):
         mod = 10 ** 9 + 7
-        mi = MultiplicativeInverse()
+        mi = ModInverse()
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
             nums = ac.read_list_ints()
@@ -52,7 +69,7 @@ class Solution:
                 pre[i + 1] = (pre[i] * cnt[lst[i]]) % mod
             for i in range(k - m + 1):
                 if lst[i + m - 1] == lst[i] + m - 1:
-                    # multiplicative_reverse
+                    # mod_reverse
                     ans += pre[i + m] * mi.mod_reverse(pre[i], mod)
                     ans %= mod
             ac.st(ans)

@@ -2,7 +2,8 @@ class ExtendGcd:
     def __init__(self):
         return
 
-    def extend_gcd(self, a, b):
+    @staticmethod
+    def extend_gcd(a, b):
         sub = dict()
         stack = [(a, b)]
         while stack:

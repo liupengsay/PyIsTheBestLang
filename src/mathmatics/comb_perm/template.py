@@ -3,44 +3,18 @@ import math
 
 class Combinatorics:
     def __init__(self, n, mod):
-        n += 10
         assert mod > n
-        self.perm = [1] * n
-        self.rev = [1] * n
+        self.perm = [1] * (n + 1)
+        self.rev = [1] * (n + 1)
         self.mod = mod
-        for i in range(1, n):
+        for i in range(1, n + 1):
             # (i!) % mod
             self.perm[i] = self.perm[i - 1] * i
             self.perm[i] %= self.mod
-        self.rev[-1] = self.mod_reverse(self.perm[-1], self.mod)  # equal to pow(self.perm[-1], -1, self.mod)
-        for i in range(n - 2, 0, -1):
+        self.rev[-1] = pow(self.perm[-1], -1, self.mod)  # mod_reverse(self.perm[-1], self.mod)
+        for i in range(n - 1, 0, -1):
             self.rev[i] = (self.rev[i + 1] * (i + 1) % mod)  # pow(i!, -1, mod)
-        self.fault = [0] * n
-        self.fault_perm()
         return
-
-    @staticmethod
-    def ex_gcd(a, b):
-        sub = dict()
-        stack = [(a, b)]
-        while stack:
-            a, b = stack.pop()
-            if a == 0:
-                sub[(a, b)] = (b, 0, 1)
-                continue
-            if b >= 0:
-                stack.append((a, ~b))
-                stack.append((b % a, a))
-            else:
-                b = ~b
-                gcd, x, y = sub[(b % a, a)]
-                sub[(a, b)] = (gcd, y - (b // a) * x, x)
-        return sub[(a, b)]
-
-    def mod_reverse(self, a, p):
-        g, x, y = self.ex_gcd(a, p)
-        assert g == 1
-        return (x + p) % p
 
     def comb(self, a, b):
         if a < b:
@@ -54,13 +28,15 @@ class Combinatorics:
         res = self.perm[a]
         return res % self.mod
 
-    def fault_perm(self):
+    @staticmethod
+    def fault_perm(n, mod):
         # number of fault combinations
-        self.fault[0] = 1
-        self.fault[2] = 1
-        for i in range(3, len(self.fault)):
-            self.fault[i] = (i - 1) * (self.fault[i - 1] + self.fault[i - 2])
-            self.fault[i] %= self.mod
+        fault = [0]*(n+1)
+        fault[0] = 1
+        fault[2] = 1
+        for i in range(3, n + 1):
+            fault[i] = (i - 1) * (fault[i - 1] + fault[i - 2])
+            fault[i] %= mod
         return
 
     def inv(self, n):

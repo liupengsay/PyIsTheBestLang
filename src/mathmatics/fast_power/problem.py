@@ -1,19 +1,19 @@
 """
-Algorithm：fast_power|matrix_fast_power|dp|multiplicative_reverse
+Algorithm：fast_power|matrix_fast_power|dp|mod_reverse
 Description：mod|power
 
 ====================================LeetCode====================================
 450（https://leetcode.cn/problems/number-of-distinct-binary-strings-after-applying-operations/）brain_teaser|fast_power
 1931（https://leetcode.cn/problems/painting-a-grid-with-three-different-colors/）matrix_fast_power|dp
 8020（https://leetcode.cn/problems/string-transformation/description/）kmp|matrix_fast_power|classical
-1622（https://leetcode.cn/problems/fancy-sequence/description/）reverse_thinking|multiplicative_reverse|inclusion_exclusion
+1622（https://leetcode.cn/problems/fancy-sequence/description/）reverse_thinking|mod_reverse|inclusion_exclusion
 
 =====================================LuoGu======================================
 P1630（https://www.luogu.com.cn/problem/P1630）fast_power|counter|mod
 P1939（https://www.luogu.com.cn/problem/P1939）matrix_fast_power
 P1962（https://www.luogu.com.cn/problem/P1962）matrix_fast_power
 P3390（https://www.luogu.com.cn/problem/P3390）matrix_fast_power
-P3811（https://www.luogu.com.cn/problem/P3811）multiplicative_reverse
+P3811（https://www.luogu.com.cn/problem/P3811）mod_reverse
 P5775（https://www.luogu.com.cn/problem/P5775）implemention|prefix_sum|matrix_fast_power|implemention
 P6045（https://www.luogu.com.cn/problem/P6045）brain_teaser|counter|fast_power|brute_force
 P6075（https://www.luogu.com.cn/problem/P6075）comb|counter|fast_power
@@ -22,7 +22,7 @@ P1045（https://www.luogu.com.cn/problem/P1045）math|fast_power
 P3509（https://www.luogu.com.cn/problem/P3509）two_pointers|implemention|fast_power
 P1349（https://www.luogu.com.cn/problem/P1349）matrix_fast_power
 P2233（https://www.luogu.com.cn/problem/P2233）matrix_fast_power
-P2613（https://www.luogu.com.cn/problem/P2613）multiplicative_reverse
+P2613（https://www.luogu.com.cn/problem/P2613）mod_reverse
 P3758（https://www.luogu.com.cn/problem/P3758）matrix_dp|matrix_fast_power
 P5789（https://www.luogu.com.cn/problem/P5789）matrix_dp|matrix_fast_power
 P5343（https://www.luogu.com.cn/problem/P5343）linear_dp|matrix_fast_power
@@ -203,9 +203,9 @@ class Solution:
     def lg_p2613(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P2613
-        tag: multiplicative_reverse
+        tag: mod_reverse
         """
-        # multiplicative_reverse求解
+        # mod_reverse求解
         mod = 19260817
         a = ac.read_int()
         b = ac.read_int()

@@ -1,6 +1,6 @@
 """
 
-Algorithm：math|comb|counter|multiplicative_reverse|lucas|perm|factorial|rev
+Algorithm：math|comb|counter|mod_reverse|lucas|perm|factorial|rev
 Description：combination|permutation|counter|partition_method|fault_perm|stirling_number|catalan_number|inclusion_exclusion
 Lucas:（comb(n, m)%p = comb(n%p, m%p)*comb(n//p, m//p)）%p  
 
@@ -16,7 +16,7 @@ Lucas:（comb(n, m)%p = comb(n%p, m%p)*comb(n//p, m//p)）%p
 1916（https://leetcode.cn/problems/count-ways-to-build-rooms-in-an-ant-colony/）tree_dp|math|comb|counter
 
 =====================================LuoGu======================================
-P4071（https://www.luogu.com.cn/problem/P4071）multiplicative_reverse|comb|perm|recursion|fault_perm
+P4071（https://www.luogu.com.cn/problem/P4071）mod_reverse|comb|perm|recursion|fault_perm
 P1287（https://www.luogu.com.cn/problem/P1287）second_kind_stirling_number|factorial|dp
 P1375（https://www.luogu.com.cn/problem/P1375）catalan_number
 P1754（https://www.luogu.com.cn/problem/P1754）catalan_number
@@ -31,7 +31,7 @@ P5520（https://www.luogu.com.cn/problem/P5520）partition_method|comb
 P3807（https://www.luogu.com.cn/problem/P3807）lucas
 P1044（https://www.luogu.com.cn/problem/P1044）catalan_number
 P1655（https://www.luogu.com.cn/problem/P1655）matrix_dp|stirling_number
-P1680（https://www.luogu.com.cn/problem/P1680）partition_method|multiplicative_reverse|lucas|comb(a,b)%m
+P1680（https://www.luogu.com.cn/problem/P1680）partition_method|mod_reverse|lucas|comb(a,b)%m
 P2265（https://www.luogu.com.cn/problem/P2265）comb|comb(n+m, m)
 P2638（https://www.luogu.com.cn/problem/P2638）partition_method|specific_plan|classical
 P2822（https://www.luogu.com.cn/problem/P2822）counter|comb(i, j) % k == 0
@@ -41,7 +41,7 @@ P5684（https://www.luogu.com.cn/problem/P5684）inclusion_exclusion|counter
 P6057（https://www.luogu.com.cn/problem/P6057）inclusion_exclusion|counter
 
 ===================================CodeForces===================================
-1795D（https://codeforces.com/problemset/problem/1795/D）comb|counter|mod|multiplicative_reverse
+1795D（https://codeforces.com/problemset/problem/1795/D）comb|counter|mod|mod_reverse
 300C（https://codeforces.com/problemset/problem/300/C）brute_force|comb|specific_plan|counter
 559C（https://codeforces.com/contest/559/problem/C）inclusion_exclusion|counter
 1436C（https://codeforces.com/contest/1436/problem/C）binary_search|comb
@@ -266,7 +266,7 @@ class Solution:
     def cf_1795d(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1795/D
-        tag: comb|counter|mod|multiplicative_reverse
+        tag: comb|counter|mod|mod_reverse
         """
         n = ac.read_int()
         nums = ac.read_list_ints()
@@ -324,12 +324,13 @@ class Solution:
         """
         mod = 10 ** 9 + 7
         cb = Combinatorics(10 ** 6, mod)
+        fault = cb.fault_perm(10 ** 6, mod)
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
             if m > n:
                 ac.st(0)
                 continue
-            ans = cb.comb(n, m) * cb.fault[n - m]
+            ans = cb.comb(n, m) * fault[n - m]
             ans %= mod
             ac.st(ans)
         return
@@ -480,7 +481,7 @@ class Solution:
     def lg_p1680_1(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1680
-        tag: partition_method|multiplicative_reverse|lucas|comb(n,m)%p
+        tag: partition_method|mod_reverse|lucas|comb(n,m)%p
         """
         n, m = ac.read_list_ints()
         n -= sum([ac.read_int() for _ in range(m)])
@@ -495,7 +496,7 @@ class Solution:
     def lg_p1680_2(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1680
-        tag: partition_method|multiplicative_reverse|lucas|comb(n,m)%p
+        tag: partition_method|mod_reverse|lucas|comb(n,m)%p
         """
         n, m = ac.read_list_ints()
         n -= sum([ac.read_int() for _ in range(m)])

@@ -561,11 +561,11 @@ class Solution:
             for k in cnt:
                 c = cnt[k] * b
                 if (k - 1) % mod:  # 即 k % mod ！= 1 此时才有逆元
-                    # 等比数列multiplicative_reverse，逆元要求与modcoprime否则需要额外
+                    # 等比数列mod_reverse，逆元要求与modcoprime否则需要额外
                     ans *= (pow(k, c + 1, mod) - 1) * pow(k - 1, -1, mod)
                     ans %= mod
                 else:
-                    # 此时无multiplicative_reverse
+                    # 此时无mod_reverse
                     ans *= (c + 1)
                     ans %= mod
             ac.st(ans)

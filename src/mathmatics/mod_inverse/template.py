@@ -1,7 +1,7 @@
 import math
 
 
-class MultiplicativeInverse:
+class ModInverse:
     def __init__(self):
         return
 
@@ -31,6 +31,6 @@ class MultiplicativeInverse:
 
     def mod_reverse(self, a, p):
         # necessary and sufficient conditions for solving inverse elements
-        assert math.gcd(a, p) == 1
-        x, y, q = self.ex_gcd(a, p)
-        return (x + p) % p  # pow(a, -1, p)
+        g, x, y = self.ex_gcd(a, p)
+        assert g == 1
+        return (x + p) % p

@@ -2,13 +2,13 @@ import math
 import random
 import unittest
 
-from src.mathmatics.multiplicative_inverse.template import MultiplicativeInverse
+from src.mathmatics.mod_inverse.template import ModInverse
 
 
 class TestGeneral(unittest.TestCase):
 
     def test_multiplicative_inverse(self):
-        mt = MultiplicativeInverse()
+        mt = ModInverse()
         assert mt.mod_reverse(10, 13) == 4
         assert mt.compute_with_api(10, 13) == 4
         assert mt.mod_reverse(10, 1) == 0
