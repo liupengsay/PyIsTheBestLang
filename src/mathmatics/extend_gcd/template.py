@@ -37,7 +37,7 @@ class ExtendGcd:
 
     @staticmethod
     def binary_gcd(a, b):
-        # bin_gcd|，二进制求两个正数的gcd
+        # bin_gcd，二进制求两个正数的gcd
         assert a > 0 and b > 0
         c = 1
         while a - b:
