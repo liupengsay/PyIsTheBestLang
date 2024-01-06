@@ -4,6 +4,7 @@ import math
 class Combinatorics:
     def __init__(self, n, mod):
         n += 10
+        assert mod > n
         self.perm = [1] * n
         self.rev = [1] * n
         self.mod = mod
@@ -18,17 +19,27 @@ class Combinatorics:
         self.fault_perm()
         return
 
-    def ex_gcd(self, a, b):
-        if b == 0:
-            return 1, 0, a
-        else:
-            x, y, q = self.ex_gcd(b, a % b)
-            x, y = y, (x - (a // b) * y)
-            return x, y, q
+    @staticmethod
+    def ex_gcd(a, b):
+        sub = dict()
+        stack = [(a, b)]
+        while stack:
+            a, b = stack.pop()
+            if a == 0:
+                sub[(a, b)] = (b, 0, 1)
+                continue
+            if b >= 0:
+                stack.append((a, ~b))
+                stack.append((b % a, a))
+            else:
+                b = ~b
+                gcd, x, y = sub[(b % a, a)]
+                sub[(a, b)] = (gcd, y - (b // a) * x, x)
+        return sub[(a, b)]
 
     def mod_reverse(self, a, p):
-        assert math.gcd(a, p) == 1
-        x, y, q = self.ex_gcd(a, p)
+        g, x, y = self.ex_gcd(a, p)
+        assert g == 1
         return (x + p) % p
 
     def comb(self, a, b):
@@ -59,21 +70,14 @@ class Combinatorics:
     def catalan(self, n):
         return (self.comb(2 * n, n) - self.comb(2 * n, n - 1)) % self.mod
 
-
 class Lucas:
     def __init__(self):
         # Comb(a,b) % p
         return
 
-    def lucas(self, n, m, p):
-        # math.comb(n, m) % p where p is prime
-        if m == 0:
-            return 1
-        return ((math.comb(n % p, m % p) % p) * self.lucas(n // p, m // p, p)) % p
-
     @staticmethod
     def comb(n, m, p):
-        # comb(n, m ) % p
+        # comb(n, m) % p
         ans = 1
         for x in range(n - m + 1, n + 1):
             ans *= x
@@ -95,8 +99,8 @@ class Lucas:
                 if m == 0:
                     dct[(n, m)] = 1
                     continue
-                stack.append([~n, m])
-                stack.append([n // p, m // p])
+                stack.append((~n, m))
+                stack.append((n // p, m // p))
             else:
                 n = ~n
                 dct[(n, m)] = (self.comb(n % p, m % p, p) % p) * dct[(n // p, m // p)] % p

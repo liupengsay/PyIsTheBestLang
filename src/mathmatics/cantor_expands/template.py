@@ -1,3 +1,6 @@
+from src.data_structure.sorted_list.template import SortedList
+
+
 class CantorExpands:
     def __init__(self, n, mod=10 ** 9 + 7):
         self.mod = mod
@@ -8,14 +11,13 @@ class CantorExpands:
 
     def array_to_rank(self, nums):
         """"permutation rank of nums"""
-        lens = len(nums)
+        n = len(nums)
         out = 1
-        for i in range(lens):
-            res = 0
-            fact = self.dp[lens - i - 1]
-            for j in range(i + 1, lens):
-                if nums[j] < nums[i]:
-                    res += 1
+        lst = SortedList(nums)
+        for i in range(n):
+            fact = self.dp[n - i - 1]
+            res = lst.bisect_left(nums[i])
+            lst.discard(nums[i])
             out += res * fact
             out %= self.mod
         return out

@@ -203,9 +203,9 @@ class Solution:
     def cf_1005e2(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1005/problem/E2
-        tag: median|inclusion_exclusion|prefix_sum|sorted_list|binary_search|LC2488
+        tag: median|inclusion_exclusion|prefix_sum|sorted_list|binary_search|LC2488|brain_teaser
         """
-        # 特定median的连续子数组个数，inclusion_exclusion|prefix_sumsorted_listbinary_search
+
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
 
@@ -233,27 +233,17 @@ class Solution:
         url: https://codeforces.com/problemset/problem/1038/D
         tag: greedy|implemention|classification_discussion
         """
-        # classification_discussiongreedyimplemention
         n = ac.read_int()
         nums = ac.read_list_ints()
         if n == 1:
             ac.st(nums[0])
             return
-        if n == 2:
-            ac.st(ac.max(nums[0] - nums[1], nums[1] - nums[0]))
-            return
-        zero = nums.count(0)
-        if zero >= 2:
-            ac.st(sum(abs(num) for num in nums))
-        elif zero == 1:
-            ac.st(sum(abs(num) for num in nums))
+        if all(num > 0 for num in nums):
+            ac.st(sum(nums) - 2 * min(nums))
+        elif all(num < 0 for num in nums):
+            ac.st(sum(-num for num in nums) + 2 * max(nums))
         else:
-            if all(num > 0 for num in nums):
-                ac.st(sum(nums) - 2 * min(nums))
-            elif all(num < 0 for num in nums):
-                ac.st(sum(abs(num) for num in nums) - 2 * min(abs(num) for num in nums))
-            else:
-                ac.st(sum(abs(num) for num in nums))
+            ac.st(sum(abs(num) for num in nums))
         return
 
     @staticmethod
