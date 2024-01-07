@@ -40,6 +40,11 @@ P3904（https://www.luogu.com.cn/problem/P3904）second_stirling_number|dp|class
 P5684（https://www.luogu.com.cn/problem/P5684）inclusion_exclusion|counter
 P6057（https://www.luogu.com.cn/problem/P6057）inclusion_exclusion|counter
 
+P3811（https://www.luogu.com.cn/problem/P3811）mod_reverse
+P5431（https://www.luogu.com.cn/problem/P5431）mod_reverse|prefix_mul|postfix_mul
+P2613（https://www.luogu.com.cn/problem/P2613）mod_reverse
+P5431（https://www.luogu.com.cn/problem/P5431）prefix_suffix
+
 ===================================CodeForces===================================
 1795D（https://codeforces.com/problemset/problem/1795/D）comb|counter|mod|mod_reverse
 300C（https://codeforces.com/problemset/problem/300/C）brute_force|comb|specific_plan|counter
@@ -47,6 +52,7 @@ P6057（https://www.luogu.com.cn/problem/P6057）inclusion_exclusion|counter
 1436C（https://codeforces.com/contest/1436/problem/C）binary_search|comb
 414B（https://codeforces.com/contest/414/problem/B）min_prime|partition_method|counter|dp
 1879C（https://codeforces.com/contest/1879/problem/C）greedy|brute_force|comb|counter
+1833F（https://codeforces.com/contest/1833/problem/F）prefix_mul|mod
 
 ====================================AtCoder=====================================
 ARC058B（https://atcoder.jp/contests/abc042/tasks/arc058_b）inclusion_exclusion|comb|counter
@@ -669,8 +675,8 @@ class Solution:
         n, k = ac.read_list_ints()
         mp = PrimeFactor(n)
         rp = Combinatorics(15 + 1, mod)
-        cnt = [0] * (n + 1)  # 当前值 last 的最小质因数幂次
-        res = [0] * (n + 1)  # 结尾为 last 的数组个数
+        cnt = [0] * (n + 1)  # last mi
+        res = [0] * (n + 1)  # last cnt
         cnt[1] = res[1] = ans = 1
         for last in range(2, n + 1):
             p = mp.min_prime[last]
@@ -792,4 +798,65 @@ class Solution:
         n, m, k = ac.read_list_ints()
         cb = Combinatorics(m + n, mod)
         ac.st(cb.comb(n - 1, 2 * k) * cb.comb(m - 1, 2 * k) % mod)
+        return
+
+    @staticmethod
+    def lg_p3811(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3811
+        tag: mod_reverse|classical|hard
+        """
+        n, p = ac.read_list_ints()
+        cb = Combinatorics(n, p)
+        for x in range(1, n + 1):
+            ac.st(cb.inv[x])
+        return
+
+    @staticmethod
+    def cf_1833f(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1833/problem/F
+        tag: prefix_mul|mod
+        """
+        ac.get_random_seed()
+        mod = 10 ** 9 + 7
+        for _ in range(ac.read_int()):
+            n, m = ac.read_list_ints()
+            nums = sorted(ac.read_list_ints())
+            cnt = Counter([num ^ ac.random_seed for num in nums])
+            lst = sorted(list(set(nums)))
+            pre = [1]
+            ans = 0
+            k = len(lst)
+            for i in range(k):
+                pre.append((pre[-1] * cnt[lst[i] ^ ac.random_seed]) % mod)
+                if i >= m - 1 and lst[i - m + 1] + m - 1 == lst[i]:
+                    ans += pre[-1] * pow(pre[i - m + 1], -1, mod)
+                    ans %= mod
+            ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p5431(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5431
+        tag: mod_reverse|prefix_mul|postfix_mul
+        """
+        n, p, k = ac.read_list_ints()
+        a = ac.read_list_ints()
+        post = [1] * (n + 1)
+        for i in range(n - 1, -1, -1):
+            post[i] = (post[i + 1] * a[i]) % p
+
+        kk = k
+        pre = 1
+        ans = 0
+        for i in range(n):
+            ans += kk * pre * post[i + 1]
+            ans %= p
+            kk = (kk * k) % p
+            pre = (pre * a[i]) % p
+        ans *= pow(pre, -1, p)
+        ans %= p
+        ac.st(ans)
         return

@@ -15,6 +15,7 @@ Description：range_sum|range_min|range_add|range_change|range_max|dynamic_segme
 1340（https://leetcode.cn/problems/jump-game-v/）segment_tree|linear_dp
 2940（https://leetcode.cn/problems/find-building-where-alice-and-bob-can-meet/）segment_tree_binary_search
 2569（https://leetcode.cn/problems/handling-sum-queries-after-update/）segment_tree|range_reverse|bit_set
+100154（https://leetcode.cn/problems/maximize-the-number-of-partitions-after-operations）segment_tree_binary_search
 
 =====================================LuoGu======================================
 P2846（https://www.luogu.com.cn/problem/P2846）segment_tree|range_reverse|range_sum
@@ -77,7 +78,7 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeD
     RangeOrRangeAnd, RangeChangeRangeSumMinMax, RangeKthSmallest, RangeChangeRangeMaxNonEmpConSubSum, \
     RangeAscendRangeMaxBinarySearchFindLeft, RangeAffineRangeSum, PointSetRangeComposite, RangeLongestRegularBrackets, \
     RangeChangeAddRangeMax, RangeXorUpdateRangeXorQuery, PointSetRangeLongestAlter, \
-    RangeSqrtRangeSum, RangeChangeReverseRangeSumLongestConSub
+    RangeSqrtRangeSum, RangeChangeReverseRangeSumLongestConSub, PointSetRangeOr
 from src.data_structure.sorted_list.template import SortedList
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
@@ -1058,6 +1059,7 @@ class Solution:
         url: https://leetcode.cn/problems/count-integers-in-intervals/
         tag: dynamic_segment_tree|union_find_range|SortedList
         """
+
         class CountIntervals:
             def __init__(self):
                 self.n = 10 ** 9 + 7
@@ -1077,6 +1079,7 @@ class Solution:
         url: https://leetcode.cn/problems/count-integers-in-intervals/
         tag: dynamic_segment_tree|union_find_range|SortedList
         """
+
         class CountIntervals:
 
             def __init__(self):
@@ -1107,6 +1110,7 @@ class Solution:
         url: https://leetcode.cn/problems/booking-concert-tickets-in-groups/
         tag: segment_tree|RangeAddRangeSumMaxMin
         """
+
         class BookMyShow:
 
             def __init__(self, n: int, m: int):
@@ -1145,3 +1149,48 @@ class Solution:
                 return True
 
         return BookMyShow
+
+    @staticmethod
+    def lc_100154(s: str, k: int) -> int:
+        n = len(s)
+        s = [ord(w) - ord("a") for w in s]
+        tree = PointSetRangeOr(n)
+        tree.build([1 << w for w in s])
+
+        pre_ind = [-1] * n
+        pre_cnt = [0] * n
+        ind = [-1]
+        pre = set()
+        for i in range(n):
+            pre_ind[i] = ind[-1]
+            pre_cnt[i] = len(ind) - 1
+            if s[i] not in pre and len(pre) == k:
+                ind.append(i - 1)
+                pre = set()
+            pre.add(s[i])
+        ind.append(n - 1)
+
+        post_cnt = [-inf] * (n + 1)
+        post_cnt[-1] = 0
+        for i in range(n - 1, -1, -1):
+            jj = tree.range_or_binary_search_right(i, k)
+            post_cnt[i] = post_cnt[jj + 1] + 1
+
+        ans = post_cnt[0]
+        for i in ind[1:]:
+            xx = s[i]
+            for j in range(26):
+                if j == xx:
+                    continue
+                tree.point_set(i, i, 1 << j)
+                cur_ind = pre_ind[i] + 1
+                cur = pre_cnt[i]
+                while cur_ind <= i:
+                    jj = tree.range_or_binary_search_right(cur_ind, k)
+                    cur += 1
+                    cur_ind = jj + 1
+                cur += post_cnt[cur_ind]
+                if cur > ans:
+                    ans = cur
+            tree.point_set(i, i, 1 << xx)
+        return ans

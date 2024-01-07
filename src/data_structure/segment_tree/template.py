@@ -1818,6 +1818,107 @@ class RangeChangeAddRangeMax:
         return ans
 
 
+class PointSetRangeOr:
+
+    def __init__(self, n):
+        self.n = n
+        self.cover = [0] * (4 * n)
+        return
+
+    def _make_tag(self, i, val) -> None:
+        self.cover[i] = val
+        return
+
+    def _push_up(self, i):
+        self.cover[i] = self.cover[i << 1] | self.cover[(i << 1) | 1]
+        return
+
+    def build(self, nums) -> None:
+        assert self.n == len(nums)
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if s == t:
+                    self._make_tag(i, nums[s])
+                else:
+                    stack.append((s, t, ~i))
+                    m = s + (t - s) // 2
+                    stack.append((s, m, i << 1))
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def get(self):
+        stack = [(0, self.n - 1, 1)]
+        nums = [0] * self.n
+        while stack:
+            s, t, i = stack.pop()
+            if s == t:
+                val = self.cover[i]
+                nums[s] = val
+                continue
+            m = s + (t - s) // 2
+            stack.append((s, m, i << 1))
+            stack.append((m + 1, t, (i << 1) | 1))
+        return nums
+
+    def point_set(self, left, right, val):
+        assert 0 <= left == right <= self.n - 1
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if s == t == left:
+                    self._make_tag(i, val)
+                    continue
+                stack.append((s, t, ~i))
+                m = s + (t - s) // 2
+                if left <= m:
+                    stack.append((s, m, i << 1))
+                if right > m:
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def range_or(self, left: int, right: int) -> int:
+        stack = [(0, self.n - 1, 1)]
+        ans = 0
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                ans |= self.cover[i]
+                continue
+            m = s + (t - s) // 2
+            if left <= m:
+                stack.append((s, m, i << 1))
+            if right > m:
+                stack.append((m + 1, t, (i << 1) | 1))
+        return ans
+
+    def range_or_binary_search_right(self, left: int, k) -> int:
+        stack = [(0, self.n - 1, 1)]
+        ans = val = 0
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and (self.cover[i] | val).bit_count() <= k:
+                val |= self.cover[i]
+                ans = t
+                continue
+            elif s == t:
+                break
+            else:
+                m = s + (t - s) // 2
+                stack.append((m + 1, t, (i << 1) | 1))
+                if left <= m:
+                    stack.append((s, m, i << 1))
+        return ans
+
+
 class PointSetRangeComposite:
 
     def __init__(self, n, mod, m=32):
@@ -1874,7 +1975,7 @@ class PointSetRangeComposite:
         return nums
 
     def point_set(self, left, right, val):
-        assert 0 <= left <= right <= self.n - 1
+        assert 0 <= left == right <= self.n - 1
         stack = [(0, self.n - 1, 1)]
         while stack:
             s, t, i = stack.pop()

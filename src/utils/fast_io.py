@@ -4,6 +4,7 @@ from types import GeneratorType
 
 RANDOM = random.randint(0, 10 ** 9 + 7)
 inf = 1 << 64
+SEED = 2024
 
 
 class Wrapper(int):

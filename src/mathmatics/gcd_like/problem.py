@@ -19,7 +19,7 @@ P1516（https://www.luogu.com.cn/problem/P1516）single_equation
 """
 import math
 
-from src.mathmatics.extend_gcd.template import ExtendGcd
+from src.mathmatics.gcd_like.template import GcdLike
 from src.utils.fast_io import FastIO
 
 
@@ -31,21 +31,18 @@ class Solution:
     def ac_4299(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/4299/
-        tag: single_equation|ex_gcd
+        tag: single_equation|extend_gcd
         """
-        # 扩展欧几里得求解ax+by=n的非负整数解
         n, a, b = [ac.read_int() for _ in range(3)]
-        g = math.gcd(a, b)
-        if n % g:
+        lst = GcdLike().solve_equation(a, b, n)
+        if not lst:
             ac.st("NO")
         else:
-            # 求解ax+by=n且x>=0和y>=0
-            gcd, x1, y1 = ExtendGcd().solve_equal(a, b, n)
-            low = math.ceil((-x1 * gcd) / b)
-            high = (y1 * gcd) // a
-            # low<=t<=high
+            gcd, x0, y0 = lst
+            low = math.ceil((-x0 * gcd) / b)
+            high = (y0 * gcd) // a
             if low <= high:
-                x = x1 + (b // gcd) * low
+                x = x0 + (b // gcd) * low
                 ac.st("YES")
                 ac.lst([x, (n - a * x) // b])
             else:

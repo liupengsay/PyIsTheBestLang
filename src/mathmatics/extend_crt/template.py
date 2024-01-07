@@ -5,14 +5,6 @@ class CRT:
     def __init__(self):
         return
 
-    def extend_gcd(self, a, b):
-        """扩展欧几里得"""
-        if 0 == b:
-            return 1, 0, a
-        x, y, q = self.extend_gcd(b, a % b)
-        x, y = y, (x - a // b * y)
-        return x, y, q
-
     def chinese_remainder(self, pairs):
         """中国剩余定理"""
         mod_list, remainder_list = [p[0] for p in pairs], [p[1] for p in pairs]
