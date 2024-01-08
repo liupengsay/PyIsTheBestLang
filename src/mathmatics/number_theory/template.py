@@ -10,7 +10,8 @@ class NumberTheory:
 
     @staticmethod
     def get_prime_factor(x):
-        # prime factor decomposition supports up to 10**12
+        """prime factor decomposition supports up to 10**12"""
+        assert x >= 1
         ans = []
         j = 2
         while j * j <= x:
@@ -27,8 +28,7 @@ class NumberTheory:
 
     @staticmethod
     def least_square_sum(n: int) -> int:
-        # Four Squares Theorem
-        # Each number can be represented by the complete sum of squares of at most four numbers
+        """Four Squares Theorem Each number can be represented by the complete sum of squares of at most four numbers"""
         while n % 4 == 0:
             n //= 4
         if n % 8 == 7:
@@ -77,9 +77,8 @@ class NumberTheory:
 
     @staticmethod
     def nth_super_ugly_number(n: int, primes) -> int:
-        # calculate the nth ugly number that only contains the prime factor in primes
-        # note that this includes 1
-        dp = [1] * n
+        """calculate the nth ugly number that only contains the prime factor in primes"""
+        dp = [1] * n  # note that this includes 1
         m = len(primes)
         points = [0] * m
         for i in range(1, n):
@@ -94,35 +93,13 @@ class NumberTheory:
         return dp[n - 1]
 
     @staticmethod
-    def gcd(x, y):
-        # iterative method for finding the maximum common divisor
-        while y:
-            x, y = y, x % y
-        return x
-
-    def lcm(self, x, y):
-        # Least common multiple
-        return x * y // self.gcd(x, y)
-
-    @staticmethod
-    def factorial_zero_count(num):
-        # count of suffix zero of n!
-        cnt = 0
-        while num > 0:
-            cnt += num // 5
-            num //= 5
-        return cnt
-
-    @staticmethod
     def get_k_bin_of_n(n, k):
-        # K-base calculation of integer n
-        # supports both positive and negative bases
-        # binary, ternary, hexadecimal, and negative bases
-        if n == 0:
+        """K-base calculation of integer n supports both positive and negative bases"""
+        assert abs(k) >= 2  # in principle, requirements
+        if n == 0:  # binary, ternary, hexadecimal, and negative bases
             return [0]
         if k == 0:
             return []
-        assert abs(k) >= 2  # In principle, requirements
         pos = 1 if k > 0 else -1
         k = abs(k)
         lst = []  # 0123456789" + "".join(chr(i+ord("A")) for i in range(26))
@@ -135,7 +112,7 @@ class NumberTheory:
 
     @staticmethod
     def k_bin_to_ten(k, st: str) -> str:
-        # convert k-base characters to decimal characters
+        """convert k-base characters to decimal characters"""
         order = "0123456789" + "".join(chr(i + ord("a")) for i in range(26))
         ind = {w: i for i, w in enumerate(order)}
         m = len(st)
@@ -146,7 +123,7 @@ class NumberTheory:
         return str(ans)
 
     def ten_to_k_bin(self, k, st: str) -> str:
-        # convert 10 base characters to k base characters
+        """convert 10 base characters to k base characters"""
         order = "0123456789" + "".join(chr(i + ord("a")) for i in range(26))
         lst = self.get_k_bin_of_n(int(st), k)
         return "".join(order[i] for i in lst)

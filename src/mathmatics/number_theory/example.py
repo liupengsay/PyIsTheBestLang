@@ -3,6 +3,7 @@ import random
 import time
 import unittest
 
+from src.mathmatics.high_precision.template import HighPrecision
 from src.mathmatics.number_theory.template import NumberTheory
 
 
@@ -65,7 +66,7 @@ class TestGeneral(unittest.TestCase):
         return
 
     def test_factorial_zero_count(self):
-        nt = NumberTheory()
+        nt = HighPrecision()
         num = random.randint(1, 100)
         s = str(math.factorial(num))
         cnt = 0
@@ -74,7 +75,7 @@ class TestGeneral(unittest.TestCase):
                 cnt += 1
             else:
                 break
-        assert nt.factorial_zero_count(num) == cnt
+        assert nt.factorial_suffix_zero_cnt(num) == cnt
         return
 
     def test_get_k_bin_of_n(self):
@@ -104,13 +105,6 @@ class TestGeneral(unittest.TestCase):
             y = x + 10 ** 6
             for num in range(x, y + 1):
                 nt.is_prime4(x)
-        return
-
-    def test_gcd_lcm(self):
-        nt = NumberTheory()
-        a, b = random.randint(1, 1000), random.randint(1, 1000)
-        assert nt.gcd(a, b) == math.gcd(a, b)
-        assert nt.lcm(a, b) == math.lcm(a, b)
         return
 
     def test_roma_int(self):
