@@ -20,13 +20,59 @@ class FastPower:
     @staticmethod
     def float_fast_pow(x: float, m: int) -> float:
 
-        def quick_mul(n):
-            if n == 0:
-                return 1.0
-            y = quick_mul(n // 2)
-            return y * y if n % 2 == 0 else y * y * x
+        if m >= 0:
+            res = 1
+            while m > 0:
+                if m & 1:
+                    res *= x
+                x *= x
+                m >>= 1
+            return res
+        m = -m
+        res = 1
+        while m > 0:
+            if m & 1:
+                res *= x
+            x *= x
+            m >>= 1
+        return 1.0 / res
 
-        return quick_mul(m) if m >= 0 else 1.0 / quick_mul(-m)
+
+class MatrixFastPowerFlatten:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def matrix_pow_flatten(base, n, p, mod=10 ** 9 + 7):
+        assert len(base) == n * n
+        res = [0] * n * n
+        ans = [0] * n * n
+        for i in range(n):
+            ans[i * n + i] = 1
+        while p:
+            if p & 1:
+                for i in range(n):
+                    for j in range(n):
+                        cur = 0
+                        for k in range(n):
+                            cur += ans[i * n + k] * base[k * n + j]
+                            cur %= mod
+                        res[i * n + j] = cur
+                for i in range(n):
+                    for j in range(n):
+                        ans[i * n + j] = res[i * n + j]
+            for i in range(n):
+                for j in range(n):
+                    cur = 0
+                    for k in range(n):
+                        cur += base[i * n + k] * base[k * n + j]
+                        cur %= mod
+                    res[i * n + j] = cur
+            for i in range(n):
+                for j in range(n):
+                    base[i * n + j] = res[i * n + j]
+            p >>= 1
+        return ans
 
 
 class MatrixFastPower:
@@ -39,9 +85,7 @@ class MatrixFastPower:
         res = [[0] * n for _ in range(n)]
         for i in range(n):
             for j in range(n):
-                for k in range(n):
-                    res[i][j] += (a[i][k] % mod) * (b[k][j] % mod)
-                    res[i][j] %= mod
+                res[i][j] = sum(a[i][k] * b[k][j] for k in range(n)) % mod
         return res
 
     def matrix_pow(self, base, p, mod=10 ** 9 + 7):

@@ -1,11 +1,6 @@
 import math
-from decimal import Decimal, getcontext, MAX_PREC
+from decimal import Decimal
 from typing import List
-
-getcontext().prec = MAX_PREC
-
-
-# sys.set_int_max_str_digits(0)  # important in leetcode big number!
 
 
 class HighPrecision:
@@ -13,7 +8,7 @@ class HighPrecision:
         return
 
     @staticmethod
-    def factorial_to_factorial(n):
+    def factorial_factorial_suffix_zero_cnt(n):
         """Compute number of suffixes 0 with 1!*2!***n!"""
         ans = 0
         num = 5
@@ -24,7 +19,7 @@ class HighPrecision:
         return ans
 
     @staticmethod
-    def factorial_to_zero(n):
+    def factorial_suffix_zero_cnt(n):
         """Compute number of suffixes 0 with n!"""
         ans = 0
         while n:

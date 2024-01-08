@@ -1,6 +1,5 @@
 import math
 import random
-from typing import List
 
 from src.data_structure.sorted_list.template import SortedList
 from src.utils.fast_io import inf
@@ -32,28 +31,11 @@ class Geometry:
         return (x2 - x1) * (y3 - y2) == (x3 - x2) * (y2 - y1)
 
     @staticmethod
-    def compute_slope2(point1, point2):
-        assert point1 != point2
-        # Determine the slope of a straight line based on two different points
-        x1, y1 = point1
-        x2, y2 = point2
-        a, b = x2 - x1, y2 - y1
-        g = math.gcd(a, b)
-        a //= g
-        b //= g
-        if a < 0:
-            a *= -1
-            b *= -1
-        elif a == 0:
-            b = abs(b)
-        return a, b
-
-    @staticmethod
     def compute_slope(x1, y1, x2, y2):
         assert [x1, y1] != [x2, y2]
         # Determine the slope of a straight line based on two different points
         if x1 == x2:
-            ans = "x"
+            ans = (x1, 0)
         else:
             a = y2 - y1
             b = x2 - x1
@@ -61,26 +43,24 @@ class Geometry:
             if b < 0:
                 a *= -1
                 b *= -1
-            ans = [a // g, b // g]
+            ans = (a // g, b // g)
         return ans
 
     @staticmethod
-    def compute_square_point(x0, y0, x2, y2):
-        assert [x0, y0] != [x2, y2]
+    def compute_square_point_non_vertical(x0, y0, x2, y2):
         # Given two points on the diagonal of a rectangle and ensuring that they are different
         # calculate the coordinates of the other two points
         x1 = (x0 + x2 + y2 - y0) / 2
         y1 = (y0 + y2 + x0 - x2) / 2
         x3 = (x0 + x2 - y2 + y0) / 2
-        y3 = (y0 + y2 - x0 + x2) / 2
+        y3 = (y0 + y2 - x0 + x2) / 2  # not need to be vertical
         return (x1, y1), (x3, y3)
 
     @staticmethod
-    def compute_square_point_2(x0, y0, x2, y2):
+    def compute_square_point(x0, y0, x2, y2):
         # Given two points on the diagonal of a rectangle and ensuring that they are different
         # calculate the coordinates of the other two points
-        assert [x0, y0] != [x2, y2]
-        # Judging a square
+        assert [x0, y0] != [x2, y2]  # need to be vertical
         assert abs(x0 - x2) == abs(y0 - y2)
         return (x0, y2), (x2, y0)
 
@@ -88,7 +68,6 @@ class Geometry:
     def compute_square_area(x0, y0, x2, y2):
         # Given the points on the diagonal of a square
         # calculate the area of the square, taking into account that it is an integer
-
         ans = (x0 - x2) * (x0 - x2) + (y0 - y2) * (y0 - y2)
         return ans // 2
 
@@ -98,7 +77,7 @@ class Geometry:
         return abs((x1 * y2 - x2 * y1) + (x2 * y3 - x3 * y2) + (x3 * y1 - x1 * y3)) / 2
 
     @staticmethod
-    def line_intersection_line(start1: List[int], end1: List[int], start2: List[int], end2: List[int]) -> List[float]:
+    def line_intersection_line(start1, end1, start2, end2):
         # Calculate the intersection point of two line segments that are bottommost and leftmost
         # If there is no intersection point, return empty
         x1, y1 = start1
@@ -127,7 +106,7 @@ class ClosetPair:
         return
 
     @staticmethod
-    def bucket_grid(n: int, nums: List[List[int]]):
+    def bucket_grid(n: int, nums):
         # Use random increment method to divide the grid and calculate the closest point pairs on the plane
         def dis(p1, p2):
             return (p1[0] - p2[0]) * (p1[0] - p2[0]) + (p1[1] - p2[1]) * (p1[1] - p2[1])
@@ -258,7 +237,7 @@ class ClosetPair:
         return ans
 
     @staticmethod
-    def bucket_grid_inter_set(n: int, nums1: List[List[int]], nums2):
+    def bucket_grid_between_two_sets(n: int, nums1, nums2):
 
         # Using the Random Incremental Method to Divide Grids and
         # Calculate the Nearest Point Pairs of Two Planar Point Sets

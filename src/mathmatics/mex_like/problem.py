@@ -21,11 +21,6 @@ from typing import List
 from src.utils.fast_io import FastIO
 
 
-class XXX:
-    def __init__(self):
-        return
-
-
 class Solution:
     def __int__(self):
         return
@@ -34,7 +29,7 @@ class Solution:
     def lc_330(nums: List[int], n: int) -> int:
         """
         url: https://leetcode.cn/problems/patching-array/
-        tag: greedy|sort|implemention|mex
+        tag: greedy|sort|implemention|mex|classical
         """
         nums.sort()
         m = len(nums)

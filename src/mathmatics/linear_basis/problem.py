@@ -21,7 +21,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3812
         tag: linear_basis
         """
-        # 线性基查询数组取任何子集得到的 xor 最大值
         ac.read_int()
         nums = ac.read_list_ints()
         lb = LinearBasis(nums)

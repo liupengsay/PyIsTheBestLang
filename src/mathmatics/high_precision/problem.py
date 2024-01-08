@@ -44,12 +44,16 @@ class Solution:
 
     @staticmethod
     def abc_148e(ac=FastIO()):
-        # 奇数阶乘与偶数阶乘的尾随零个数
+        """
+        url: https://atcoder.jp/contests/abc148/tasks/abc148_e
+        tag: suffix_zero|odd_even|factorial
+        """
+
         n = ac.read_int()
         if n % 2:
             ac.st(0)
         else:
-            ans = HighPrecision().factorial_to_zero(n // 10) + n // 10
+            ans = HighPrecision().factorial_suffix_zero_cnt(n // 10) + n // 10
             ac.st(ans)
         return
 
@@ -57,9 +61,9 @@ class Solution:
     def cf_1144e(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1144/problem/E
-        tag: big_number|minus|mul|divide
+        tag: big_number|minus|mul|divide|n-base
         """
-        # 超大整数|减与乘除
+
         n = ac.read_int()
         s = ac.read_str()
         t = ac.read_str()
@@ -88,8 +92,7 @@ class Solution:
         url: https://leetcode.cn/problems/factorial-trailing-zeroes/
         tag: suffix_zero|factorial
         """
-        # 模板: n!的后缀零个数
-        return HighPrecision().factorial_to_zero(n)
+        return HighPrecision().factorial_suffix_zero_cnt(n)
 
     @staticmethod
     def lc_972(s: str, t: str) -> bool:
@@ -97,15 +100,17 @@ class Solution:
         url: https://leetcode.cn/problems/equal-rational-numbers/
         tag: float_to_frac
         """
-        # 有理数转为分数判断
         hp = HighPrecision()
         return hp.decimal_to_fraction(s) == hp.decimal_to_fraction(t)
 
     @staticmethod
-    def lg_p2238(ac=FastIO()):
-        # 模板: 1!*2!*...*n!的后缀零个数
+    def lg_p2338(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2388
+        tag: suffix_zero|factorial_of_factorial
+        """
         n = ac.read_int()
-        ac.st(HighPrecision().factorial_to_factorial(n))
+        ac.st(HighPrecision().factorial_factorial_suffix_zero_cnt(n))
         return
 
     @staticmethod
@@ -114,15 +119,17 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2399
         tag: float_to_frac
         """
-        # 有理数转最简分数
         s = ac.read_str()
         a, b = HighPrecision().decimal_to_fraction(s)
         ac.st(f"{a}/{b}")
         return
 
     @staticmethod
-    def lc_2217(left: int, right: int) -> str:
-        # 大数或者prefix_suffiximplemention
+    def lc_2117(left: int, right: int) -> str:
+        """
+        url: https://leetcode.cn/problems/abbreviating-the-product-of-a-range/
+        tag: prefix_suffix|implemention
+        """
         mod = 10 ** 20
         base = 10 ** 10
         zero = 0
@@ -155,7 +162,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1530
         tag: frac_to_float
         """
-        # 最简分数转化为有理数
         n, d = ac.read_list_ints()
         ans = HighPrecision().fraction_to_decimal(n, d)
         while ans:
@@ -169,7 +175,7 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-skips-to-arrive-at-meeting-on-time/
         tag: matrix_dp|high_precision|float_to_frac
         """
-        # 二维matrix_dp分数high_precision浮点数
+
         n = len(dist)
         if sum(dist) > hours * speed:
             return -1
@@ -195,13 +201,12 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-skips-to-arrive-at-meeting-on-time/
         tag: matrix_dp|high_precision|float_to_frac
         """
-        # 二维matrix_dp分数high_precision浮点数
+
         cost = [Decimal(d) / Decimal(speed) for d in dist]
         n = len(dist)
         dp = [[hours * 2] * (n + 1) for _ in range(n + 1)]
         dp[0][0] = 0
         for i in range(1, n):
-            # 浮点数
             dp[i][0] = dp[i - 1][0] + math.ceil(cost[i - 1])
             for j in range(1, i):
                 a, b = dp[i - 1][j - 1] + cost[i - 1], math.ceil(dp[i - 1][j] + cost[i - 1])

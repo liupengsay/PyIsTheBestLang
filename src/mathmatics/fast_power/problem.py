@@ -1,11 +1,11 @@
 """
 Algorithm：fast_power|matrix_fast_power|dp|mod_reverse
-Description：mod|power
+Description：mod|power|doubling|multiplication_method
 
 ====================================LeetCode====================================
 450（https://leetcode.cn/problems/number-of-distinct-binary-strings-after-applying-operations/）brain_teaser|fast_power
 1931（https://leetcode.cn/problems/painting-a-grid-with-three-different-colors/）matrix_fast_power|dp
-8020（https://leetcode.cn/problems/string-transformation/description/）kmp|matrix_fast_power|classical
+2851（https://leetcode.cn/problems/string-transformation/description/）kmp|matrix_fast_power|classical
 1622（https://leetcode.cn/problems/fancy-sequence/description/）reverse_thinking|mod_reverse|inclusion_exclusion
 
 =====================================LuoGu======================================
@@ -38,7 +38,7 @@ P1306（https://www.luogu.com.cn/problem/P1306）matrix_fast_power|math|fibonacc
 """
 import math
 
-from src.mathmatics.fast_power.template import MatrixFastPower, FastPower
+from src.mathmatics.fast_power.template import MatrixFastPower, FastPower, MatrixFastPowerFlatten
 from src.strings.kmp.template import KMP
 from src.utils.fast_io import FastIO
 
@@ -48,12 +48,11 @@ class Solution:
         return
 
     @staticmethod
-    def lc_8020(s: str, t: str, k: int) -> int:
+    def lc_2851(s: str, t: str, k: int) -> int:
         """
         url: https://leetcode.cn/problems/string-transformation/description/
         tag: kmp|matrix_fast_power|classical
         """
-        # KMP与fast_power|转移
         mod = 10 ** 9 + 7
         n = len(s)
         kmp = KMP()
@@ -72,7 +71,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1045
         tag: math|fast_power
         """
-        # 位数与fast_power|保留后几百位数字
+
         p = ac.read_int()
         ans1 = int(p * math.log10(2)) + 1
         ans2 = pow(2, p, 10 ** 501) - 1
@@ -87,9 +86,9 @@ class Solution:
     def lg_p1630(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1630
-        tag: fast_power|counter|mod
+        tag: fast_power|counter|mod|brain_teaser|permutation_circle|classical|hard
         """
-        # 利用mod|分组counter与fast_power| 1**b+2**b+..+a**b % mod 的值
+
         mod = 10 ** 4
         for _ in range(ac.read_int()):
             a, b = ac.read_list_ints()
@@ -104,7 +103,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1939
         tag: matrix_fast_power
         """
-        # 利用转移矩阵乘法公式和fast_power|值
+
         mat = [[1, 0, 1], [1, 0, 0], [0, 1, 0]]
         lst = [1, 1, 1]
         mod = 10 ** 9 + 7
@@ -123,28 +122,25 @@ class Solution:
     def lg_p3509(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P3509
-        tag: two_pointers|implemention|fast_power
+        tag: two_pointer|implemention|fast_power|sparse_matrix_fast_power|classical|hard|multiplication_method
         """
-        # two_pointersimplemention寻找第k远的距离，fast_power|原理跳转
+
         n, k, m = ac.read_list_ints()
         nums = ac.read_list_ints()
 
         ans = list(range(n))
-
-        # two_pointers找出下一跳
         nex = [0] * n
         head = 0
         tail = k
         for i in range(n):
-            while tail + 1 < n and nums[tail + 1] - \
-                    nums[i] < nums[i] - nums[head]:
+            while tail + 1 < n and nums[tail + 1] - nums[i] < nums[i] - nums[head]:
                 head += 1
                 tail += 1
             if nums[tail] - nums[i] <= nums[i] - nums[head]:
                 nex[i] = head
             else:
                 nex[i] = tail
-        # fast_power|倍增
+
         while m:
             if m & 1:
                 ans = [nex[ans[i]] for i in range(n)]
@@ -159,7 +155,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1349
         tag: matrix_fast_power
         """
-        # matrix_fast_power|
         p, q, a1, a2, n, m = ac.read_list_ints()
         if n == 1:
             ac.st(a1 % m)
@@ -167,10 +162,8 @@ class Solution:
         if n == 2:
             ac.st(a2 % m)
             return
-        # 建立fast_power|矩阵
         mat = [[p, q], [1, 0]]
         res = MatrixFastPower().matrix_pow(mat, n - 2, m)
-        # 结果
         ans = res[0][0] * a2 + res[0][1] * a1
         ans %= m
         ac.st(ans)
@@ -182,7 +175,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2233
         tag: matrix_fast_power
         """
-        # matrix_fast_power|
         n = ac.read_int()
         mat = [[0, 1, 0, 0, 0, 0, 0, 1],
                [1, 0, 1, 0, 0, 0, 0, 0],
@@ -205,7 +197,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2613
         tag: mod_reverse
         """
-        # mod_reverse求解
         mod = 19260817
         a = ac.read_int()
         b = ac.read_int()
@@ -220,9 +211,8 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3758
         tag: matrix_dp|matrix_fast_power
         """
-        # matrix_dp| fast_power|优化
+
         n, m = ac.read_list_ints()
-        # 转移矩阵
         grid = [[0] * (n + 1) for _ in range(n + 1)]
         for i in range(n + 1):
             grid[i][i] = 1
@@ -230,7 +220,7 @@ class Solution:
         for _ in range(m):
             u, v = ac.read_list_ints()
             grid[u][v] = grid[v][u] = 1
-        # fast_power|与最终状态
+
         initial = [0] * (n + 1)
         initial[1] = 1
         mod = 2017
@@ -249,35 +239,37 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5343
         tag: linear_dp|matrix_fast_power
         """
-        # linear_dp 矩阵幂|速
+
         mod = 10 ** 9 + 7
         n = ac.read_int()
         ac.read_int()
-        pre = set(ac.read_list_ints())
+        a = set(ac.read_list_ints())
         ac.read_int()
-        pre = sorted(list(pre.intersection(set(ac.read_list_ints()))))
-        size = max(pre)
-        dp = [0] * (size + 1)
+        pre = sorted(list(a.intersection(set(ac.read_list_ints()))))
+        m = max(pre)
+
+        dp = [0] * (m + 1)
         dp[0] = 1
-        for i in range(1, size + 1):
+        for i in range(1, m + 1):
             for j in pre:
                 if i < j:
                     break
                 dp[i] += dp[i - j]
             dp[i] %= mod
-        if n <= size:
+        if n <= m:
             ac.st(dp[n])
             return
-        # 矩阵幂|速
-        mat = [[0] * (size + 1) for _ in range(size + 1)]
-        for i in range(size, 0, -1):
-            mat[i][-(size - i + 2)] = 1
+
+        mat = [0] * (m + 1) * (m + 1)
+        for i in range(m, 0, -1):
+            mat[i * (m + 1) + i - 1] = 1
         for j in pre:
-            mat[0][j - 1] = 1
-        res = MatrixFastPower().matrix_pow(mat, n - size, mod)
+            mat[j - 1] = 1
+
+        res = MatrixFastPowerFlatten().matrix_pow_flatten(mat, m + 1, n - m, mod)
         ans = 0
-        for j in range(size + 1):
-            ans += res[0][j] * dp[size - j]
+        for j in range(m + 1):
+            ans += res[j] * dp[m - j]
             ans %= mod
         ac.st(ans)
         return
@@ -286,9 +278,8 @@ class Solution:
     def lg_p8557(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P8557
-        tag: brain_teaser|fast_power|counter
+        tag: brain_teaser|fast_power|counter|classical|hard
         """
-        # brain_teaser|fast_power|counter
         mod = 998244353
         n, k = ac.read_list_ints()
         ans = pow((pow(2, k, mod) - 1) % mod, n, mod)
@@ -301,7 +292,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8624
         tag: matrix_dp|matrix_fast_power
         """
-        # matrix_dp| 与fast_power|
+
         mod = 10 ** 9 + 7
         n, m = ac.read_list_ints()
         rem = [[0] * 6 for _ in range(6)]
@@ -329,7 +320,7 @@ class Solution:
         url: https://www.acwing.com/problem/content/26/
         tag: float_fast_power|classical
         """
-        # 浮点数fast_power|
+
         if base == 0:
             return 0
         if exponent == 0:

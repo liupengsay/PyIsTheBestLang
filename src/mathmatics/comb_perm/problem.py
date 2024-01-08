@@ -330,13 +330,12 @@ class Solution:
         """
         mod = 10 ** 9 + 7
         cb = Combinatorics(10 ** 6, mod)
-        fault = cb.fault_perm(10 ** 6, mod)
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
             if m > n:
                 ac.st(0)
                 continue
-            ans = cb.comb(n, m) * fault[n - m]
+            ans = cb.comb(n, m) * cb.fault[n - m]
             ans %= mod
             ac.st(ans)
         return
