@@ -527,15 +527,15 @@ class Solution:
     def lg_p4446(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P4446
-        tag: is_prime
+        tag: prime_sieve|hard|classical|brute_force
         """
-        # 预先处理出prime然后最大的完全立方数因子
-        prime = NumberTheory().sieve_of_eratosthenes(int(10 ** (18 / 4)) + 1)
         ac.read_int()
-        for num in ac.read_list_ints():
+        nums = ac.read_list_ints()
+        prime = PrimeSieve().eratosthenes_sieve(int(max(nums) ** 0.25) + 1)
+        for num in nums:
             ans = 1
             for p in prime:
-                if p > num:
+                if p ** 3 > num:
                     break
                 c = 0
                 while num % p == 0:
@@ -543,7 +543,6 @@ class Solution:
                     num //= p
                 ans *= p ** (c // 3)
 
-            # binary_search判断数字是否为完全立方数
             low = 1
             high = int(num ** (1 / 3)) + 1
             while low < high - 1:
