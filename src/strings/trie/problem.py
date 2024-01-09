@@ -33,6 +33,7 @@ P8420（https://www.luogu.com.cn/problem/P8420）trie|greedy
 282E（https://codeforces.com/contest/282/problem/E）01-trie|maximum_xor
 Set Xor-Min（https://judge.yosupo.jp/problem/set_xor_min）template|minimum_xor|classical|update|query
 1902E（https://codeforces.com/contest/1902/problem/E）trie|prefix_count
+665E（https://codeforces.com/contest/665/problem/E）01-trie|get_cnt_smaller_xor
 
 =====================================AcWing=====================================
 142（https://www.acwing.com/problem/content/144/）trie|prefix_count
@@ -46,8 +47,7 @@ import math
 from collections import Counter, defaultdict
 from typing import List
 
-from src.strings.trie.template import TrieZeroOneXorMax, TrieZeroOneXorMaxKth, TriePrefixCount, BinaryTrie, TrieBit, \
-    TriePrefixKeyValue, TrieKeyWordSearchInText, TrieZeroOneXorRange
+from src.strings.trie.template import BinaryTrie, TrieKeyWordSearchInText, TrieZeroOneXorRange, StringTrie
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
 
@@ -91,34 +91,26 @@ class Solution:
         return
 
     @staticmethod
-    def lc_1803(nums: List[int], low: int, high: int) -> int:
+    def lc_1803_1(nums: List[int], low: int, high: int) -> int:
         """
         url: https://leetcode.cn/problems/count-pairs-with-xor-in-a-range/
-        tag: 01-trie|classical
+        tag: 01-trie|classical|inclusion_exclusion
         """
-        # 01trie查询异或值在有一定范围内的数对个数
-        count = Counter(nums)
-        # 确定二进制序列的长度
-        big = max(nums)
-        n = 0
-        while (1 << (n + 1)) - 1 < big:
-            n += 1
-        trie = TrieZeroOneXorRange(n)
-        trie.update(0, 0)
-        # 滚动更新trie同时查询符合条件的数对个数
+        n = len(nums)
+        trie = BinaryTrie(max(high, max(nums)), n)
         ans = 0
-        for num in count:
-            ans += count[num] * (trie.query(num, high) - trie.query(num, low - 1))
-            trie.update(num, count[num])
+        for num in nums:
+            ans += trie.get_cnt_smaller_xor(num, high)
+            ans -= trie.get_cnt_smaller_xor(num, low - 1)
+            trie.add(num)
         return ans
 
     @staticmethod
     def lc_1803_2(nums: List[int], low: int, high: int) -> int:
         """
         url: https://leetcode.cn/problems/count-pairs-with-xor-in-a-range/
-        tag: 01-trie|classical
+        tag: 01-trie|classical|hard
         """
-        # 统计范围内的异或对数目
         ans, cnt = 0, Counter(nums)
         high += 1
         while high:
@@ -140,9 +132,8 @@ class Solution:
         url: https://codeforces.com/problemset/problem/706/D
         tag: 01-trie|maximum_xor
         """
-        # 01trie增|与删除数字后查询最大异或值
-        trie = BinaryTrie(32)
         q = ac.read_int()
+        trie = BinaryTrie(10 ** 9, q)
         trie.add(0)
         for _ in range(q):
             op, x = ac.read_list_strs()
@@ -151,7 +142,7 @@ class Solution:
             elif op == "-":
                 trie.remove(int(x))
             else:
-                ac.st(trie.max_xor(int(x)))
+                ac.st(trie.get_maximum_xor(int(x)))
         return
 
     @staticmethod
@@ -162,18 +153,18 @@ class Solution:
         """
         n = ac.read_int()
         words = [ac.read_str() for _ in range(n)]
-
+        trie = StringTrie(sum(len(x) for x in words), n)
         ans = 0
         for i in range(2):
-            trie = TriePrefixCount()
             pre = 0
             for j, word in enumerate(words):
-                ans -= trie.query(word[::-1]) * 2
+                ans -= trie.count(word[::-1]) * 2
                 ans += j * len(word) + pre
                 pre += len(word)
-                trie.update(word)
+                trie.add(word)
             if i == 0:
                 words.reverse()
+                trie.initial()
 
         for word in words:
             n = len(word)
@@ -302,25 +293,21 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5283
         tag: trie|kth_xor|heapq|greedy
         """
-        # 数组中最大的 k 组异或对
+        mod = 10 ** 9 + 7
         n, k = ac.read_list_ints()
-        nums = [0] + ac.read_list_ints()
-        for i in range(1, n + 1):
-            nums[i] ^= nums[i - 1]
-        trie = TrieZeroOneXorMaxKth(len(bin(max(nums))))
+        nums = ac.read_list_ints()
+        trie = BinaryTrie(max(nums), n)
         for i, num in enumerate(nums):
             trie.add(num)
-        stack = [(-trie.query_xor_kth_max(nums[i], 1), i, 1) for i in range(n + 1)]
+        stack = [(-trie.get_kth_maximum_xor(nums[i], 1), i, 1) for i in range(n)]
         heapq.heapify(stack)
         ans = 0
-        res = []
         for _ in range(2 * k):
             num, i, c = heapq.heappop(stack)
             ans -= num
-            res.append(-num)
-            if c + 1 <= n + 1:
-                heapq.heappush(stack, (-trie.query_xor_kth_max(nums[i], c + 1), i, c + 1))
-        ac.st(ans // 2)
+            if c + 1 <= n:
+                heapq.heappush(stack, (-trie.get_kth_maximum_xor(nums[i], c + 1), i, c + 1))
+        ac.st((ans // 2) % mod)
         return
 
     @staticmethod
@@ -740,3 +727,22 @@ class Solution:
         tree = TrieBit()
         dfs(root)
         return [ind[node][v] for node, v in queries]
+
+    @staticmethod
+    def cf_665e(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/665/problem/E
+        tag: 01-trie|get_cnt_smaller_xor
+        """
+        n, k = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        pre = 0
+        binary_trie = BinaryTrie(reduce(or_, nums), n + 1)
+        binary_trie.add(0)
+        ans = n * (n + 1) // 2
+        for num in nums:
+            pre ^= num
+            ans -= binary_trie.get_cnt_smaller_xor(pre, k - 1)
+            binary_trie.add(pre)
+        ac.st(ans)
+        return
