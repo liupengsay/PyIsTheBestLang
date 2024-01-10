@@ -68,15 +68,19 @@ class TestGeneral(unittest.TestCase):
                 assert res == trie.count(word)
         return
 
-    def test_solution_lc_421_1(self):  # 238 ms
+    def test_solution_lc_421_1(self):  # 411 ms
         random.seed(2024)
         nums = [random.randint(0, (1 << 31) - 1) for _ in range(2 * 10 ** 5)]
         Solution().lc_421_1(nums)
+        nums = list(range(2 * 10 ** 5))
+        Solution().lc_421_1(nums)
         return
 
-    def test_solution_lc_421_2(self):  # 44 ms
+    def test_solution_lc_421_2(self):  # 247 ms
         random.seed(2024)
         nums = [random.randint(0, (1 << 31) - 1) for _ in range(2 * 10 ** 5)]
+        Solution().lc_421_2(nums)
+        nums = list(range(2 * 10 ** 5))
         Solution().lc_421_2(nums)
         return
 
