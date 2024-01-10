@@ -2,7 +2,7 @@ import random
 import unittest
 from collections import Counter
 
-from src.strings.trie.template import BinaryTrie, StringTrie
+from src.strings.trie.template import BinaryTrieXor, StringTriePrefix
 
 
 class TestGeneral(unittest.TestCase):
@@ -11,7 +11,7 @@ class TestGeneral(unittest.TestCase):
         for mi in range(10):
             max_num = 10 ** mi
             num_cnt = 10 ** 4
-            bt = BinaryTrie(max_num, num_cnt)
+            bt = BinaryTrieXor(max_num, num_cnt)
             nums = []
             for i in range(num_cnt):
                 x = random.randint(0, 1)
@@ -43,7 +43,7 @@ class TestGeneral(unittest.TestCase):
         for _ in range(10):
             word_cnt = 10 ** 4
             word_length = 10
-            st = StringTrie(word_cnt * word_length, word_cnt)
+            st = StringTriePrefix(word_cnt * word_length, word_cnt)
             words = []
             for i in range(word_cnt):
                 word = "".join(chr(ord("a") + random.randint(0, 25)) for _ in range(random.randint(1, word_length)))

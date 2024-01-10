@@ -9,7 +9,7 @@ Description：string|bit_operation
 1803（https://leetcode.cn/problems/count-pairs-with-xor-in-a-range/）01-trie|classical
 677（https://leetcode.cn/problems/map-sum-pairs/）prefix|counter
 2479（https://leetcode.cn/problems/maximum-xor-of-two-non-overlapping-subtrees/）01-trie|maximum_xor
-17（https://leetcode.cn/problems/multi-search-lcci/）ac_auto_machine|counter|trie|reverse_thinking
+1717（https://leetcode.cn/problems/multi-search-lcci/）ac_auto_machine|counter|trie|reverse_thinking
 1707（https://leetcode.cn/problems/maximum-xor-with-an-element-from-array/）sort|offline_query|01-trie
 1938（https://leetcode.cn/problems/maximum-genetic-difference-query/）dfs|back_track|01-trie|maximum_xor
 1032（https://leetcode.cn/problems/stream-of-characters/description/）trie|classical|reverse_order
@@ -31,9 +31,9 @@ P8420（https://www.luogu.com.cn/problem/P8420）trie|greedy
 241B（https://codeforces.com/contest/241/problem/B）01-trie|kth_xor|heapq|greedy
 665E（https://codeforces.com/contest/665/problem/E）counter|xor_pair
 282E（https://codeforces.com/contest/282/problem/E）01-trie|maximum_xor
-Set Xor-Min（https://judge.yosupo.jp/problem/set_xor_min）template|minimum_xor|classical|update|query
 1902E（https://codeforces.com/contest/1902/problem/E）trie|prefix_count
 665E（https://codeforces.com/contest/665/problem/E）01-trie|get_cnt_smaller_xor
+817E（https://codeforces.com/contest/817/problem/E）01-trie|get_cnt_smaller_xor
 
 =====================================AcWing=====================================
 142（https://www.acwing.com/problem/content/144/）trie|prefix_count
@@ -41,13 +41,14 @@ Set Xor-Min（https://judge.yosupo.jp/problem/set_xor_min）template|minimum_xor
 144（https://www.acwing.com/problem/content/description/146/）01-trie|maximum_xor
 161（https://www.acwing.com/problem/content/163/）trie
 
+Set Xor-Min（https://judge.yosupo.jp/problem/set_xor_min）template|minimum_xor|classical|update|query
 """
 import heapq
 import math
 from collections import Counter, defaultdict
 from typing import List
 
-from src.strings.trie.template import BinaryTrie, TrieKeyWordSearchInText, TrieZeroOneXorRange, StringTrie
+from src.strings.trie.template import BinaryTrieXor, TrieKeyWordSearchInText, TrieZeroOneXorRange, StringTriePrefix
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
 
@@ -58,6 +59,10 @@ class Solution:
 
     @staticmethod
     def lc_1717(big: str, smalls: List[str]) -> List[List[int]]:
+        """
+        url: https://leetcode.cn/problems/multi-search-lcci/
+        tag: ac_auto_machine|counter|trie|reverse_thinking
+        """
         # AC自动机类似题目，查询关键词在文本中的出现索引
         trie = TrieKeyWordSearchInText()
         for i, word in enumerate(smalls):
@@ -97,7 +102,7 @@ class Solution:
         tag: 01-trie|classical|inclusion_exclusion
         """
         n = len(nums)
-        trie = BinaryTrie(max(high, max(nums)), n)
+        trie = BinaryTrieXor(max(high, max(nums)), n)
         ans = 0
         for num in nums:
             ans += trie.get_cnt_smaller_xor(num, high)
@@ -133,7 +138,7 @@ class Solution:
         tag: 01-trie|maximum_xor
         """
         q = ac.read_int()
-        trie = BinaryTrie(10 ** 9, q)
+        trie = BinaryTrieXor(10 ** 9, q)
         trie.add(0)
         for _ in range(q):
             op, x = ac.read_list_strs()
@@ -153,7 +158,7 @@ class Solution:
         """
         n = ac.read_int()
         words = [ac.read_str() for _ in range(n)]
-        trie = StringTrie(sum(len(x) for x in words), n)
+        trie = StringTriePrefix(sum(len(x) for x in words), n)
         ans = 0
         for i in range(2):
             pre = 0
@@ -296,7 +301,7 @@ class Solution:
         mod = 10 ** 9 + 7
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
-        trie = BinaryTrie(max(nums), n)
+        trie = BinaryTrieXor(max(nums), n)
         for i, num in enumerate(nums):
             trie.add(num)
         stack = [(-trie.get_kth_maximum_xor(nums[i], 1), i, 1) for i in range(n)]
@@ -365,7 +370,7 @@ class Solution:
             dct[j][i] = w
 
         ans = 0
-        trie = BinaryTrie(32)
+        trie = BinaryTrieXor(32)
 
         stack = [[0, -1, 0]]
         ceil = (1 << 31) - 1
@@ -581,7 +586,7 @@ class Solution:
     @staticmethod
     def lib_check_1(ac=FastIO()):
         """template of set xor min"""
-        bt = BinaryTrie(32)
+        bt = BinaryTrieXor(32)
         dct = set()
         for _ in range(ac.read_int()):
             op, x = ac.read_list_ints()
@@ -648,7 +653,7 @@ class Solution:
         n = ac.read_int()
         nums = ac.read_list_ints()
         ans = pre = 0
-        trie = BinaryTrie(40)
+        trie = BinaryTrieXor(40)
         trie.add(0)
         for i in range(n):
             pre ^= nums[i]
@@ -681,7 +686,7 @@ class Solution:
         query = [dict() for _ in range(n)]
         for node, val in queries:
             query[node][val] = 0
-        trie = BinaryTrie(20)
+        trie = BinaryTrieXor(20)
 
         def dfs(a):
             trie.add(a)
@@ -737,12 +742,12 @@ class Solution:
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
         pre = 0
-        binary_trie = BinaryTrie(reduce(or_, nums), n + 1)
-        binary_trie.add(0)
+        trie = BinaryTrieXor(reduce(or_, nums), n + 1)
+        trie.add(0)
         ans = n * (n + 1) // 2
         for num in nums:
             pre ^= num
-            ans -= binary_trie.get_cnt_smaller_xor(pre, k - 1)
-            binary_trie.add(pre)
+            ans -= trie.get_cnt_smaller_xor(pre, k - 1)
+            trie.add(pre)
         ac.st(ans)
         return
