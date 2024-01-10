@@ -1,45 +1,45 @@
 """
-Algorithm：trie|01-trie
+Algorithm：trie_like|01-trie_like
 Description：string|bit_operation
 
 ====================================LeetCode====================================
-421（https://leetcode.cn/problems/maximum-xor-of-two-numbers-in-an-array/）01-trie
-638（https://leetcode.cn/problems/shopping-offers/）trie|memory_search
+421（https://leetcode.cn/problems/maximum-xor-of-two-numbers-in-an-array/）01-trie_like
+638（https://leetcode.cn/problems/shopping-offers/）trie_like|memory_search
 2416（https://leetcode.cn/problems/sum-of-prefix-scores-of-strings/）prefix|counter
-1803（https://leetcode.cn/problems/count-pairs-with-xor-in-a-range/）01-trie|classical
+1803（https://leetcode.cn/problems/count-pairs-with-xor-in-a-range/）01-trie_like|classical
 677（https://leetcode.cn/problems/map-sum-pairs/）prefix|counter
-2479（https://leetcode.cn/problems/maximum-xor-of-two-non-overlapping-subtrees/）01-trie|maximum_xor
-1717（https://leetcode.cn/problems/multi-search-lcci/）ac_auto_machine|counter|trie|reverse_thinking
-1707（https://leetcode.cn/problems/maximum-xor-with-an-element-from-array/）sort|offline_query|01-trie
-1938（https://leetcode.cn/problems/maximum-genetic-difference-query/）dfs|back_track|01-trie|maximum_xor
-1032（https://leetcode.cn/problems/stream-of-characters/description/）trie|classical|reverse_order
+2479（https://leetcode.cn/problems/maximum-xor-of-two-non-overlapping-subtrees/）01-trie_like|maximum_xor
+1717（https://leetcode.cn/problems/multi-search-lcci/）ac_auto_machine|counter|trie_like|reverse_thinking
+1707（https://leetcode.cn/problems/maximum-xor-with-an-element-from-array/）sort|offline_query|01-trie_like
+1938（https://leetcode.cn/problems/maximum-genetic-difference-query/）dfs|back_track|01-trie_like|maximum_xor
+1032（https://leetcode.cn/problems/stream-of-characters/description/）trie_like|classical|reverse_order
 
 =====================================LuoGu======================================
-P8306（https://www.luogu.com.cn/problem/P8306）trie
+P8306（https://www.luogu.com.cn/problem/P8306）trie_like
 P4551（https://www.luogu.com.cn/problem/P4551）xor
-P3864（https://www.luogu.com.cn/problem/P3864）hash|brute_force|trie
-P5755（https://www.luogu.com.cn/problem/P5755）trie|counter
-P1481（https://www.luogu.com.cn/problem/P1481）trie
-P5283（https://www.luogu.com.cn/problem/P5283）trie|kth_xor|heapq|greedy
-P2922（https://www.luogu.com.cn/problem/P2922）trie|prefix|counter
-P1738（https://www.luogu.com.cn/problem/P1738）trie|counter
-P8420（https://www.luogu.com.cn/problem/P8420）trie|greedy
+P3864（https://www.luogu.com.cn/problem/P3864）hash|brute_force|trie_like
+P5755（https://www.luogu.com.cn/problem/P5755）trie_like|counter
+P1481（https://www.luogu.com.cn/problem/P1481）trie_like
+P5283（https://www.luogu.com.cn/problem/P5283）trie_like|kth_xor|heapq|greedy
+P2922（https://www.luogu.com.cn/problem/P2922）trie_like|prefix|counter
+P1738（https://www.luogu.com.cn/problem/P1738）trie_like|counter
+P8420（https://www.luogu.com.cn/problem/P8420）trie_like|greedy
 
 ===================================CodeForces===================================
-1792D（https://codeforces.com/problemset/problem/1792/D）trie|counter
-706D（https://codeforces.com/problemset/problem/706/D）01-trie|maximum_xor
-241B（https://codeforces.com/contest/241/problem/B）01-trie|kth_xor|heapq|greedy
+1792D（https://codeforces.com/problemset/problem/1792/D）trie_like|counter
+706D（https://codeforces.com/problemset/problem/706/D）01-trie_like|maximum_xor
+241B（https://codeforces.com/contest/241/problem/B）01-trie_like|kth_xor|heapq|greedy
 665E（https://codeforces.com/contest/665/problem/E）counter|xor_pair
-282E（https://codeforces.com/contest/282/problem/E）01-trie|maximum_xor
-1902E（https://codeforces.com/contest/1902/problem/E）trie|prefix_count
-665E（https://codeforces.com/contest/665/problem/E）01-trie|get_cnt_smaller_xor
-817E（https://codeforces.com/contest/817/problem/E）01-trie|get_cnt_smaller_xor
+282E（https://codeforces.com/contest/282/problem/E）01-trie_like|maximum_xor
+1902E（https://codeforces.com/contest/1902/problem/E）trie_like|prefix_count
+665E（https://codeforces.com/contest/665/problem/E）01-trie_like|get_cnt_smaller_xor
+817E（https://codeforces.com/contest/817/problem/E）01-trie_like|get_cnt_smaller_xor
 
 =====================================AcWing=====================================
-144（https://www.acwing.com/problem/content/144/）trie|prefix_count
+144（https://www.acwing.com/problem/content/144/）trie_like|prefix_count
 145（https://www.acwing.com/problem/content/145/）maximum_xor|classical
-146（https://www.acwing.com/problem/content/description/146/）01-trie|maximum_xor
-163（https://www.acwing.com/problem/content/163/）trie
+146（https://www.acwing.com/problem/content/description/146/）01-trie_like|maximum_xor
+163（https://www.acwing.com/problem/content/163/）trie_like
 
 =====================================LibraryChecker=====================================
 1（https://judge.yosupo.jp/problem/set_xor_min）template|minimum_xor|classical|update|query
@@ -51,7 +51,7 @@ from functools import reduce
 from operator import or_
 from typing import List
 
-from src.strings.trie.template import BinaryTrieXor, StringTriePrefix, StringTrieSearch
+from src.data_structure.trie_like.template import BinaryTrieXor, StringTriePrefix, StringTrieSearch
 from src.utils.fast_io import FastIO, ac_max
 from src.utils.fast_io import inf
 
@@ -64,7 +64,7 @@ class Solution:
     def lc_1717(big: str, smalls: List[str]) -> List[List[int]]:
         """
         url: https://leetcode.cn/problems/multi-search-lcci/
-        tag: ac_auto_machine|counter|trie|reverse_thinking
+        tag: ac_auto_machine|counter|trie_like|reverse_thinking
         """
         n = len(smalls)
         sts = StringTrieSearch(sum(len(x) for x in smalls) + 1, n)
@@ -105,7 +105,7 @@ class Solution:
     def lc_1803_1(nums: List[int], low: int, high: int) -> int:
         """
         url: https://leetcode.cn/problems/count-pairs-with-xor-in-a-range/
-        tag: 01-trie|classical|inclusion_exclusion
+        tag: 01-trie_like|classical|inclusion_exclusion
         """
         n = len(nums)
         trie = BinaryTrieXor(max(high, max(nums)), n)
@@ -120,7 +120,7 @@ class Solution:
     def lc_1803_2(nums: List[int], low: int, high: int) -> int:
         """
         url: https://leetcode.cn/problems/count-pairs-with-xor-in-a-range/
-        tag: 01-trie|classical|hard
+        tag: 01-trie_like|classical|hard
         """
         ans, cnt = 0, Counter(nums)
         high += 1
@@ -141,7 +141,7 @@ class Solution:
     def cf_706d(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/706/D
-        tag: 01-trie|maximum_xor
+        tag: 01-trie_like|maximum_xor
         """
         q = ac.read_int()
         trie = BinaryTrieXor(10 ** 9, q)
@@ -160,7 +160,7 @@ class Solution:
     def cf_1902e(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1902/problem/E
-        tag: trie|prefix_count
+        tag: trie_like|prefix_count
         """
         n = ac.read_int()
         words = [ac.read_str() for _ in range(n)]
@@ -195,7 +195,7 @@ class Solution:
     def lc_2479(n: int, edges: List[List[int]], values: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/maximum-xor-of-two-non-overlapping-subtrees/
-        tag: 01-trie|maximum_xor|classical|dfs_order|implemention
+        tag: 01-trie_like|maximum_xor|classical|dfs_order|implemention
         """
         dct = [[] for _ in range(n)]
         for i, j in edges:
@@ -245,7 +245,7 @@ class Solution:
     def lg_p1481(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1481
-        tag: trie
+        tag: trie_like
         """
         n = ac.read_int()
         words = [ac.read_str() for _ in range(n)]
@@ -260,7 +260,7 @@ class Solution:
     def lg_p4551_1(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P4551
-        tag: get_maximum_xor|01-trie|hash|implemention
+        tag: get_maximum_xor|01-trie_like|hash|implemention
         """
         n = ac.read_int()
         dct = [[] for _ in range(n)]
@@ -283,7 +283,7 @@ class Solution:
     def lg_p4551_2(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P4551
-        tag: get_maximum_xor|01-trie|hash|implemention
+        tag: get_maximum_xor|01-trie_like|hash|implemention
         """
         n = ac.read_int()
         dct = [[] for _ in range(n)]
@@ -314,7 +314,7 @@ class Solution:
     def lg_p5283(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P5283
-        tag: trie|kth_xor|heapq|greedy
+        tag: trie_like|kth_xor|heapq|greedy
         """
         mod = 10 ** 9 + 7
         n, k = ac.read_list_ints()
@@ -337,7 +337,7 @@ class Solution:
     def cf_241b(ac=FastIO()):
         """
         url: https://codeforces.com/contest/241/problem/B
-        tag: 01-trie|kth_xor|heapq|greedy
+        tag: 01-trie_like|kth_xor|heapq|greedy
         """
         mod = 10 ** 9 + 7
         n, k = ac.read_list_ints()
@@ -395,7 +395,7 @@ class Solution:
     def ac_146_1(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/146/
-        tag: 01-trie|maximum_xor|hash
+        tag: 01-trie_like|maximum_xor|hash
         """
         n = ac.read_int()
         dct = [[] for _ in range(n)]
@@ -420,7 +420,7 @@ class Solution:
     def ac_146_2(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/146/
-        tag: 01-trie|maximum_xor|hash
+        tag: 01-trie_like|maximum_xor|hash
         """
         n = ac.read_int()
         dct = [[] for _ in range(n)]
@@ -454,7 +454,7 @@ class Solution:
     def ac_144(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/144/
-        tag: trie|prefix_count
+        tag: trie_like|prefix_count
         """
         n, m = ac.read_list_ints()
         trie = StringTriePrefix(10 ** 6, n)
@@ -468,7 +468,7 @@ class Solution:
     def ac_163(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/163/
-        tag: trie
+        tag: trie_like
         """
 
         class StringTriePrefixSP:
@@ -516,7 +516,7 @@ class Solution:
     def lg_p2922(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P2922
-        tag: trie|prefix|counter|classical|hard|inclusion_exclusion
+        tag: trie_like|prefix|counter|classical|hard|inclusion_exclusion
         """
 
         class StringTriePrefixSP:
@@ -569,7 +569,7 @@ class Solution:
     def lg_p1738(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1738
-        tag: trie|counter
+        tag: trie_like|counter
         """
         n = ac.read_int()
         dct = dict()
@@ -589,7 +589,7 @@ class Solution:
     def lg_p8420(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P8420
-        tag: trie|greedy
+        tag: trie_like|greedy
         """
         n, m, length = ac.read_list_ints()
         cnt = [0] * length
@@ -632,7 +632,7 @@ class Solution:
     def lc_1707(nums: List[int], queries: List[List[int]]) -> List[int]:
         """
         url: https://leetcode.cn/problems/maximum-xor-with-an-element-from-array/
-        tag: sort|offline_query|01-trie
+        tag: sort|offline_query|01-trie_like
         """
         n = len(nums)
         nums.sort()
@@ -659,7 +659,7 @@ class Solution:
     def cf_665e_1(ac=FastIO()):
         """
         url: https://codeforces.com/contest/665/problem/E
-        tag: 01-trie|get_cnt_smaller_xor
+        tag: 01-trie_like|get_cnt_smaller_xor
         """
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -733,7 +733,7 @@ class Solution:
     def lc_421_1(nums: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/maximum-xor-of-two-numbers-in-an-array/
-        tag: 01-trie|hash
+        tag: 01-trie_like|hash
         """
         trie = BinaryTrieXor(max(nums) + 1, len(nums))
         ans = 0
@@ -747,7 +747,7 @@ class Solution:
     def lc_421_2(nums: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/maximum-xor-of-two-numbers-in-an-array/
-        tag: 01-trie|hash
+        tag: 01-trie_like|hash
         """
         m = max(nums).bit_length() - 1  # faster!
         ans = 0
@@ -765,7 +765,7 @@ class Solution:
     def cf_282e(ac=FastIO()):
         """
         url: https://codeforces.com/contest/282/problem/E
-        tag: 01-trie|maximum_xor
+        tag: 01-trie_like|maximum_xor
         """
 
         n = ac.read_int()
@@ -789,7 +789,7 @@ class Solution:
     def lc_1938(parents: List[int], queries: List[List[int]]) -> List[int]:
         """
         url: https://leetcode.cn/problems/maximum-genetic-difference-query/
-        tag: dfs|back_track|01-trie|maximum_xor
+        tag: dfs|back_track|01-trie_like|maximum_xor
         """
         n = len(parents)
         root = -1

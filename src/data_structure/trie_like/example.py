@@ -2,8 +2,8 @@ import random
 import unittest
 from collections import Counter
 
-from src.strings.trie.problem import Solution
-from src.strings.trie.template import BinaryTrieXor, StringTriePrefix
+from src.data_structure.trie_like.problem import Solution
+from src.data_structure.trie_like.template import BinaryTrieXor, StringTriePrefix
 
 
 class TestGeneral(unittest.TestCase):

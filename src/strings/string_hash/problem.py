@@ -11,7 +11,7 @@ Description：counter|sliding_window|double_random_mod|hash_crush
 652（https://leetcode.cn/problems/find-duplicate-subtrees/）tree_hash
 1554（https://leetcode.cn/problems/strings-differ-by-one-character/）prefix_suffix|hash
 1923（https://leetcode.cn/problems/longest-common-subpath/）binary_search|rolling_hash
-1948（https://leetcode.cn/problems/delete-duplicate-folders-in-system/）trie|tree_hash
+1948（https://leetcode.cn/problems/delete-duplicate-folders-in-system/）trie_like|tree_hash
 2261（https://leetcode.cn/problems/k-divisible-elements-subarrays/submissions/）string_hash
 
 =====================================LuoGu======================================
@@ -603,7 +603,7 @@ class Solution:
     def lc_1948(paths: List[List[str]]) -> List[List[str]]:
         """
         url: https://leetcode.cn/problems/delete-duplicate-folders-in-system/
-        tag: trie|tree_hash
+        tag: trie_like|tree_hash
         """
         # tree_hashtrie的子树编码
 

@@ -1,14 +1,14 @@
 """
 Algorithm：ac_auto_machine
-Description：kmp|trie|word_count|text
+Description：kmp|trie_like|word_count|text
 
 ====================================LeetCode====================================
-17（https://leetcode.cn/problems/multi-search-lcci/）ac_auto_machine|counter|trie
+17（https://leetcode.cn/problems/multi-search-lcci/）ac_auto_machine|counter|trie_like
 
 =====================================LuoGu======================================
-P3808（https://www.luogu.com.cn/problem/P3808）ac_auto_machine|counter|trie
-P3796（https://www.luogu.com.cn/problem/P3796）ac_auto_machine|counter|trie
-P5357（https://www.luogu.com.cn/problem/P5357）ac_auto_machine|counter|trie
+P3808（https://www.luogu.com.cn/problem/P3808）ac_auto_machine|counter|trie_like
+P3796（https://www.luogu.com.cn/problem/P3796）ac_auto_machine|counter|trie_like
+P5357（https://www.luogu.com.cn/problem/P5357）ac_auto_machine|counter|trie_like
 
 """
 
