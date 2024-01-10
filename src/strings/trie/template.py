@@ -2,7 +2,7 @@ from src.utils.fast_io import inf
 
 
 class BinaryTrieXor:
-    def __init__(self, max_num, num_cnt):
+    def __init__(self, max_num, num_cnt):  # bitwise xor
         assert max_num >= 1
         assert num_cnt >= 1
         binary_state = 2
@@ -129,7 +129,7 @@ class BinaryTrieXor:
 
 
 class StringTrieSearch:
-    def __init__(self, most_word, word_cnt):
+    def __init__(self, most_word, word_cnt):  # search index
         assert most_word >= 1
         assert word_cnt >= 1
         self.string_state = 26
@@ -169,7 +169,7 @@ class StringTrieSearch:
 
 
 class StringTriePrefix:
-    def __init__(self, most_word, word_cnt):  # prefix_count
+    def __init__(self, most_word, word_cnt):  # prefix count
         assert most_word >= 1
         assert word_cnt >= 1
         self.string_state = 26
