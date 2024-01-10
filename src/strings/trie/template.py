@@ -129,10 +129,10 @@ class BinaryTrieXor:
 
 
 class StringTrieSearch:
-    def __init__(self, most_word, word_cnt):  # search index
+    def __init__(self, most_word, word_cnt, string_state=26):  # search index
         assert most_word >= 1
         assert word_cnt >= 1
-        self.string_state = 26
+        self.string_state = string_state
         self.cnt_bit = word_cnt.bit_length()
         self.node_cnt = most_word * self.string_state
         self.son_and_ind = [0] * (self.node_cnt + 1)
@@ -167,12 +167,52 @@ class StringTrieSearch:
                 res.append(self.son_and_ind[cur] & self.mask)
         return res
 
+    def add_cnt(self, word, ind):
+        cur = res = 0
+        for w in word:
+            bit = ord(w) - ord("a")
+            if not self.son_and_ind[bit + cur * self.string_state] >> self.cnt_bit:
+                self.ind += 1
+                self.son_and_ind[bit + cur * self.string_state] |= self.ind << self.cnt_bit
+            cur = self.son_and_ind[bit + cur * self.string_state] >> self.cnt_bit
+            if self.son_and_ind[cur] & self.mask:
+                res += 1
+        self.son_and_ind[cur] |= ind
+        res += 1
+        return res
+
+    def add_exist(self, word, ind):
+        cur = 0
+        res = False
+        for w in word:
+            bit = ord(w) - ord("a")
+            if not self.son_and_ind[bit + cur * self.string_state] >> self.cnt_bit:
+                res = True
+                self.ind += 1
+                self.son_and_ind[bit + cur * self.string_state] |= self.ind << self.cnt_bit
+            cur = self.son_and_ind[bit + cur * self.string_state] >> self.cnt_bit
+            if self.son_and_ind[cur] & self.mask:
+                res += 1
+        self.son_and_ind[cur] |= ind
+        return res
+
+    def add_bin(self, word, ind):
+        cur = 0
+        for w in word:
+            bit = int(w)
+            if not self.son_and_ind[bit + cur * self.string_state] >> self.cnt_bit:
+                self.ind += 1
+                self.son_and_ind[bit + cur * self.string_state] |= self.ind << self.cnt_bit
+            cur = self.son_and_ind[bit + cur * self.string_state] >> self.cnt_bit
+        self.son_and_ind[cur] |= ind
+        return
+
 
 class StringTriePrefix:
-    def __init__(self, most_word, word_cnt):  # prefix count
+    def __init__(self, most_word, word_cnt, string_state=26):  # prefix count
         assert most_word >= 1
         assert word_cnt >= 1
-        self.string_state = 26
+        self.string_state = string_state
         self.cnt_bit = word_cnt.bit_length()
         self.node_cnt = most_word * self.string_state
         self.son_and_cnt = [0] * (self.node_cnt + 1)
@@ -184,16 +224,16 @@ class StringTriePrefix:
             self.son_and_cnt[i] = 0
         self.ind = 0
 
-    def add(self, word):
+    def add(self, word, val=1):
         cur = 0
-        self.son_and_cnt[cur] += 1
+        self.son_and_cnt[cur] += val
         for w in word:
             bit = ord(w) - ord("a")
             if not self.son_and_cnt[bit + cur * self.string_state] >> self.cnt_bit:
                 self.ind += 1
                 self.son_and_cnt[bit + cur * self.string_state] |= self.ind << self.cnt_bit
             cur = self.son_and_cnt[bit + cur * self.string_state] >> self.cnt_bit
-            self.son_and_cnt[cur] += 1
+            self.son_and_cnt[cur] += val
         return
 
     def count(self, word):
@@ -202,6 +242,36 @@ class StringTriePrefix:
             bit = ord(w) - ord("a")
             cur = self.son_and_cnt[bit + self.string_state * cur] >> self.cnt_bit
             if not cur or self.son_and_cnt[cur] & self.mask == 0:
+                break
+            res += self.son_and_cnt[cur] & self.mask
+        return res
+
+    def count_end(self, word):
+        cur = 0
+        for w in word:
+            bit = ord(w) - ord("a")
+            cur = self.son_and_cnt[bit + self.string_state * cur] >> self.cnt_bit
+            if not cur or self.son_and_cnt[cur] & self.mask == 0:
+                return 0
+        return self.son_and_cnt[cur] & self.mask
+
+    def add_end(self, word, val=1):
+        cur = 0
+        for w in word:
+            bit = ord(w) - ord("a")
+            if not self.son_and_cnt[bit + cur * self.string_state] >> self.cnt_bit:
+                self.ind += 1
+                self.son_and_cnt[bit + cur * self.string_state] |= self.ind << self.cnt_bit
+            cur = self.son_and_cnt[bit + cur * self.string_state] >> self.cnt_bit
+        self.son_and_cnt[cur] += val
+        return
+
+    def count_pre_end(self, word):
+        res = cur = 0
+        for w in word:
+            bit = ord(w) - ord("a")
+            cur = self.son_and_cnt[bit + self.string_state * cur] >> self.cnt_bit
+            if not cur:
                 break
             res += self.son_and_cnt[cur] & self.mask
         return res

@@ -2,6 +2,7 @@ import random
 import unittest
 from collections import Counter
 
+from src.strings.trie.problem import Solution
 from src.strings.trie.template import BinaryTrieXor, StringTriePrefix
 
 
@@ -65,6 +66,24 @@ class TestGeneral(unittest.TestCase):
                         else:
                             break
                 assert res == trie.count(word)
+        return
+
+    def test_solution_lc_421_1(self):  # 238 ms
+        random.seed(2024)
+        nums = [random.randint(0, (1 << 31) - 1) for _ in range(2 * 10 ** 5)]
+        Solution().lc_421_1(nums)
+        return
+
+    def test_solution_lc_421_2(self):  # 44 ms
+        random.seed(2024)
+        nums = [random.randint(0, (1 << 31) - 1) for _ in range(2 * 10 ** 5)]
+        Solution().lc_421_2(nums)
+        return
+
+    def test_solution_lc_421(self):
+        random.seed(2024)
+        nums = [random.randint(0, (1 << 31) - 1) for _ in range(2 * 10 ** 5)]
+        assert Solution().lc_421_1(nums) == Solution().lc_421_2(nums)
         return
 
 
