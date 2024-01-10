@@ -48,7 +48,7 @@ import math
 from collections import Counter, defaultdict
 from typing import List
 
-from src.strings.trie.template import BinaryTrieXor, TrieKeyWordSearchInText, TrieZeroOneXorRange, StringTriePrefix
+from src.strings.trie.template import BinaryTrieXor, StringTriePrefix, StringTrieSearch
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
 
@@ -63,16 +63,16 @@ class Solution:
         url: https://leetcode.cn/problems/multi-search-lcci/
         tag: ac_auto_machine|counter|trie|reverse_thinking
         """
-        # AC自动机类似题目，查询关键词在文本中的出现索引
-        trie = TrieKeyWordSearchInText()
+        n = len(smalls)
+        sts = StringTrieSearch(sum(len(x) for x in smalls) + 1, n)
         for i, word in enumerate(smalls):
-            trie.add_key_word(word, i)
+            if word:
+                sts.add(word, i + 1)
 
-        ans = [[] for _ in smalls]
-        n = len(big)
-        for i in range(n):
-            for j in trie.search_text(big[i:]):
-                ans[j].append(i)
+        ans = [[] for _ in range(n)]
+        for i in range(len(big)):
+            for j in sts.search(big[i:]):
+                ans[j - 1].append(i)
         return ans
 
     @staticmethod
@@ -81,6 +81,7 @@ class Solution:
         url: https://leetcode.cn/problems/map-sum-pairs/
         tag: prefix|counter
         """
+
         # 更新与查询给定字符串作为单词键前缀的对应值的和
         class MapSum:
             def __init__(self):
