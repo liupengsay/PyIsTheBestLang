@@ -10,7 +10,6 @@ Description：digital_dp|n-base|prime_factorization|factorization|linear_sieve|e
 13（https://leetcode.cn/problems/roman-to-integer/）roman_to_integer
 2572（https://leetcode.cn/problems/count-the-number-of-square-free-subsets/）ag_dp|counter
 1994（https://leetcode.cn/problems/the-number-of-good-subsets/）bag_dp|counter
-2584（https://leetcode.cn/problems/split-the-array-to-make-coprime-products/）prime_factorization|counter
 2464（https://leetcode.cn/problems/minimum-subarrays-in-a-valid-split/）prime_factorization|counter|dp
 14（https://leetcode.cn/problems/qie-fen-shu-zu/）prime_factorization|counter|dp
 279（https://leetcode.cn/problems/perfect-squares/）four_square
@@ -51,16 +50,12 @@ P4752（https://www.luogu.com.cn/problem/P4752）is_prime
 P5248（https://www.luogu.com.cn/problem/P5248）base
 P5253（https://www.luogu.com.cn/problem/P5253）math
 P7960（https://www.luogu.com.cn/problem/P7960）prime_sieve|preprocess
-P8319（https://www.luogu.com.cn/problem/P8319）prime_factorization|counter
-P8646（https://www.luogu.com.cn/problem/P8646）peishu_theorem|bag_dp
 P8762（https://www.luogu.com.cn/problem/P8762）inclusion_exclusion|prefix_sum|counter
 P8778（https://www.luogu.com.cn/problem/P8778）brute_force|prime_factorization|O(n^0.25)|classical
 P8782（https://www.luogu.com.cn/problem/P8782）base|greedy|classical
 
 ===================================CodeForces===================================
 1771C（https://codeforces.com/problemset/problem/1771/C）pollard_rho|prime_factorization
-1034A（https://codeforces.com/contest/1034/problem/A）prime_factorization
-1366D（https://codeforces.com/problemset/problem/1366/D）min_prime|construction
 1349A（https://codeforces.com/contest/1349/problem/A）prime_factorization|brute_force
 1295D（https://codeforces.com/contest/1295/problem/D）euler_phi|n_coprime
 1538D（https://codeforces.com/problemset/problem/1538/D）pollard_rho|prime_factorization
@@ -77,7 +72,6 @@ ABC134D（https://atcoder.jp/contests/abc134/tasks/abc134_d）reverse_thinking|c
 =====================================AcWing=====================================
 97（https://www.acwing.com/problem/content/99/）a^b|math|factorization
 124（https://www.acwing.com/problem/content/126/）base
-197（https://www.acwing.com/problem/content/199/）factorial|prime_factorization
 196（https://www.acwing.com/problem/content/198/）counter
 198（https://www.acwing.com/problem/content/200/）anti_prime_number
 199（https://www.acwing.com/problem/content/description/201/）brute_force
@@ -99,40 +93,13 @@ from operator import mul
 from typing import List
 
 from src.mathmatics.gcd_like.template import GcdLike
-from src.mathmatics.number_theory.template import EulerPhi, NumFactor, PrimeSieve, NumTheory
-from src.mathmatics.prime_factor.template import PrimeFactor
+from src.mathmatics.number_theory.template import EulerPhi, NumFactor, PrimeSieve, NumTheory, PrimeJudge
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
 
 
 class Solution:
     def __init__(self):
-        return
-
-    @staticmethod
-    def cf_1034a(ac=FastIO()):
-        """
-        url: https://codeforces.com/contest/1034/problem/A
-        tag: prime_factorization|min_prime|classical|hard
-        """
-        n = ac.read_int()
-        nums = ac.read_list_ints()
-        ceil = max(nums)
-        pf = PrimeFactor(ceil)
-        g = reduce(math.gcd, nums)
-        cnt = [0] * (ceil + 1)
-        for num in nums:
-            b = num // g
-            while b > 1:
-                fac = pf.min_prime[b]  # classical_skills which can speed up a lot
-                cnt[fac] += 1
-                while b % fac == 0:
-                    b //= fac
-        res = max(cnt)
-        if res == 0:
-            ac.st(-1)
-        else:
-            ac.st(n - res)
         return
 
     @staticmethod
@@ -160,60 +127,6 @@ class Solution:
         ans = sum(pre.values()) * p
         ans += p - 1
         return ans % mod
-
-    @staticmethod
-    def cf_1366d(ac=FastIO()):
-        """
-        url: https://codeforces.com/problemset/problem/1366/D
-        tag: min_prime|construction
-        """
-        ac.read_int()
-        nums = ac.read_list_ints()
-        ceil = max(nums)
-        pf = PrimeFactor(ceil)
-        ans1 = []
-        ans2 = []
-        for num in nums:
-            p = pf.min_prime[num]
-            v = num
-            while v % p == 0:
-                v //= p
-            if v == 1:
-                ans1.append(-1)
-                ans2.append(-1)
-            else:
-                ans1.append(v)
-                ans2.append(num // v)
-        ac.lst(ans1)
-        ac.lst(ans2)
-        return
-
-    @staticmethod
-    def lc_2584(nums: List[int]) -> int:
-        """
-        url: https://leetcode.cn/problems/split-the-array-to-make-coprime-products/
-        tag: prime_factorization|counter
-        """
-        pf = PrimeFactor(10 ** 6)
-        n = len(nums)
-        dct = defaultdict(list)
-        for i, num in enumerate(nums):
-            for p, _ in pf.prime_factor[num]:
-                dct[p].append(i)
-
-        diff = [0] * (n + 1)
-        for p in dct:
-            i, j = dct[p][0], dct[p][-1]
-            a, b = i, j - 1
-            if a <= b:
-                diff[a] += 1
-                diff[b + 1] -= 1
-        for i in range(1, n + 1):
-            diff[i] += diff[i - 1]
-        for i in range(n - 1):
-            if not diff[i]:
-                return i
-        return -1
 
     @staticmethod
     def cf_1295d(ac=FastIO()):
@@ -302,22 +215,6 @@ class Solution:
                 ans = "0"
             ac.lst([b, ans[::-1]])
             ac.st("")
-        return
-
-    @staticmethod
-    def ac_197(ac=FastIO()):
-        """
-        url: https://www.acwing.com/problem/content/199/
-        tag: factorial|prime_factorization
-        """
-        n = ac.read_int()
-        pf = PrimeFactor(n)
-        dct = defaultdict(int)
-        for num in range(2, n + 1):
-            for p, c in pf.prime_factor[num]:
-                dct[p] += c
-        for p in sorted(dct):
-            ac.lst([p, dct[p]])
         return
 
     @staticmethod
@@ -564,47 +461,39 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P4752
         tag: is_prime
         """
-        # 判断除数是否为质数
-        nt = NumberTheory()
+        pj = PrimeJudge()
         for _ in range(ac.read_int()):
             ac.read_list_ints()
-            cnt = Counter(sorted(ac.read_list_ints()))
-            if cnt[0]:
-                ac.st("NO")
-                continue
+            cnt = Counter(ac.read_list_ints())
             for num in ac.read_list_ints():
                 cnt[num] -= 1
-
             rest = []
             for num in cnt:
                 if cnt[num] and num != 1:
-                    rest.append([num, cnt[num]])
-            if len(rest) >= 2:
+                    rest.append((num, cnt[num]))
+            if len(rest) != 1:
                 ac.st("NO")
             elif len(rest) == 1:
                 if rest[0][1] > 1:
                     ac.st("NO")
                 else:
-                    if nt.is_prime4(rest[0][0]):
+                    if pj.is_prime_speed(rest[0][0]):
                         ac.st("YES")
                     else:
                         ac.st("NO")
-            else:
-                ac.st("NO")
         return
 
     @staticmethod
     def lg_p5248(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P5248
-        tag: base
+        tag: n-base|classical
         """
-        # 进制题目
-        m, fm = ac.read_list_ints()
+        n, fn = ac.read_list_ints()
         lst = []
-        while fm:
-            lst.append(fm % m)
-            fm //= m
+        while fn:
+            lst.append(fn % n)
+            fn //= n
         ac.st(len(lst))
         ac.lst(lst)
         return
@@ -613,16 +502,14 @@ class Solution:
     def lg_p5253(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P5253
-        tag: math
+        tag: math|classical|hard
         """
-        # 方程变换 (x-n)*(y-n)=n^2 的对数
-        n = ac.read_int()
-        lst = NumberTheory().get_prime_factor(n)
+        n = ac.read_int()  # (x - n) * (y - n) = n ^ 2
+        lst = NumFactor().get_prime_factor(n)
         ans = 1
         for _, c in lst:
-            # 转换为求数字的因数个数
             ans *= (2 * c + 1)
-        ac.st((ans + 1) // 2)
+        ac.st(ans // 2 + 1)
         return
 
     @staticmethod
@@ -631,7 +518,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P7960
         tag: prime_sieve|preprocess
         """
-        # 类似prime_sieve的思路preprocess
         n = 10 ** 7
         dp = [0] * (n + 1)
         for x in range(1, n + 1):
@@ -647,67 +533,16 @@ class Solution:
             else:
                 dp[i] = post
                 post = i
-
         for _ in range(ac.read_int()):
             ac.st(dp[ac.read_int()])
         return
 
     @staticmethod
-    def lg_p8319(ac=FastIO()):
+    def lg_p8778(ac=FastIO()):
         """
-        url: https://www.luogu.com.cn/problem/P8319
-        tag: prime_factorization|counter
+        url: https://www.luogu.com.cn/problem/P8778
+        tag: brute_force|prime_factorization|O(n^0.25)|classical
         """
-        # prime_factorization|greedy
-        n = 2 * 10 ** 6
-        f = [1] * (n + 1)
-        prime = [0] * (n + 1)
-        for x in range(2, n + 1):
-            if not prime[x]:
-                # 当前值作为质因子的花费次数
-                t = 1
-                while t * x <= n:
-                    c = 1
-                    xx = t
-                    while xx % x == 0:
-                        xx //= x
-                        c += 1
-                    f[t * x] += (x - 1) * c
-                    prime[t * x] = 1
-                    t += 1
-
-        # 前缀最大值处理
-        for i in range(1, n + 1):
-            f[i] = ac.max(f[i - 1], f[i])
-        for _ in range(ac.read_int()):
-            ac.st(f[ac.read_int()])
-        return
-
-    @staticmethod
-    def lg_p8646(ac=FastIO()):
-        """
-        url: https://www.luogu.com.cn/problem/P8646
-        tag: peishu_theorem|bag_dp
-        """
-        # peishu_theorem|与背包 DP
-        n = ac.read_int()
-        nums = [ac.read_int() for _ in range(n)]
-        s = 10000
-        dp = [0] * (s + 1)
-        dp[0] = 1
-        for num in nums:
-            for i in range(num, s + 1):
-                if dp[i - num]:
-                    dp[i] = 1
-        ans = s + 1 - sum(dp)
-        if reduce(math.gcd, nums) != 1:
-            ac.st("INF")
-        else:
-            ac.st(ans)
-        return
-
-    @staticmethod
-    def lg_8778(ac=FastIO()):
         # brute_force素因子后O(n^0.25)是否为完全平方数与立方数
         primes = NumberTheory().sieve_of_eratosthenes(4000)
 
@@ -745,6 +580,7 @@ class Solution:
         url: https://leetcode.cn/problems/adding-two-negabinary-numbers/
         tag: negative_base|classical
         """
+
         # 负进制题
         def check(tmp):
             res = 0

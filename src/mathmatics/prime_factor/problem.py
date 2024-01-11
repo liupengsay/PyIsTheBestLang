@@ -4,18 +4,21 @@ Description：
 
 ====================================LeetCode====================================
 2183（https://leetcode.cn/problems/count-array-pairs-divisible-by-k/description/）brute_force|counter|group_by_mul|classical
-
+2584（https://leetcode.cn/problems/split-the-array-to-make-coprime-products/）prime_factorization|counter
 =====================================LuoGu======================================
+P8319（https://www.luogu.com.cn/problem/P8319）prime_factorization|counter
 
 ===================================CodeForces===================================
 1176D（https://codeforces.com/contest/1176/problem/D）construction|greedy|implemention
 1884D（https://codeforces.com/contest/1884/problem/D）factor_dp|gcd_pair|counter|classical
 1900D（https://codeforces.com/contest/1900/problem/D）inclusion_exclusion|gcd_pair|counter|classical
+1034A（https://codeforces.com/contest/1034/problem/A）prime_factorization
+1366D（https://codeforces.com/problemset/problem/1366/D）min_prime|construction
 
 ====================================AtCoder=====================================
 
 =====================================AcWing=====================================
-
+199（https://www.acwing.com/problem/content/199/）factorial|prime_factorization
 
 """
 import math
@@ -25,7 +28,6 @@ from functools import reduce
 from itertools import permutations
 from typing import List
 
-from src.mathmatics.number_theory.template import NumberTheory
 from src.mathmatics.prime_factor.template import PrimeFactor
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
@@ -33,6 +35,122 @@ from src.utils.fast_io import inf
 
 class Solution:
     def __init__(self):
+        return
+
+    @staticmethod
+    def ac_199(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/199/
+        tag: factorial|prime_factorization
+        """
+        n = ac.read_int()
+        pf = PrimeFactor(n)
+        dct = defaultdict(int)
+        for num in range(2, n + 1):
+            for p, c in pf.prime_factor[num]:
+                dct[p] += c
+        for p in sorted(dct):
+            ac.lst([p, dct[p]])
+        return
+
+    @staticmethod
+    def lc_2584(nums: List[int]) -> int:
+        """
+        url: https://leetcode.cn/problems/split-the-array-to-make-coprime-products/
+        tag: prime_factorization|counter
+        """
+        pf = PrimeFactor(10 ** 6)
+        n = len(nums)
+        dct = defaultdict(list)
+        for i, num in enumerate(nums):
+            for p, _ in pf.prime_factor[num]:
+                dct[p].append(i)
+
+        diff = [0] * (n + 1)
+        for p in dct:
+            i, j = dct[p][0], dct[p][-1]
+            a, b = i, j - 1
+            if a <= b:
+                diff[a] += 1
+                diff[b + 1] -= 1
+        for i in range(1, n + 1):
+            diff[i] += diff[i - 1]
+        for i in range(n - 1):
+            if not diff[i]:
+                return i
+        return -1
+
+    @staticmethod
+    def cf_1366d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1366/D
+        tag: min_prime|construction
+        """
+        ac.read_int()
+        nums = ac.read_list_ints()
+        ceil = max(nums)
+        pf = PrimeFactor(ceil)
+        ans1 = []
+        ans2 = []
+        for num in nums:
+            p = pf.min_prime[num]
+            v = num
+            while v % p == 0:
+                v //= p
+            if v == 1:
+                ans1.append(-1)
+                ans2.append(-1)
+            else:
+                ans1.append(v)
+                ans2.append(num // v)
+        ac.lst(ans1)
+        ac.lst(ans2)
+        return
+
+    @staticmethod
+    def cf_1034a(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1034/problem/A
+        tag: prime_factorization|min_prime|classical|hard
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        ceil = max(nums)
+        pf = PrimeFactor(ceil)
+        g = reduce(math.gcd, nums)
+        cnt = [0] * (ceil + 1)
+        for num in nums:
+            b = num // g
+            while b > 1:
+                fac = pf.min_prime[b]  # classical_skills which can speed up a lot
+                cnt[fac] += 1
+                while b % fac == 0:
+                    b //= fac
+        res = max(cnt)
+        if res == 0:
+            ac.st(-1)
+        else:
+            ac.st(n - res)
+        return
+
+    @staticmethod
+    def lg_p8319(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8319
+        tag: prime_factorization|counter
+        """
+        q = ac.read_int()
+        nums = [ac.read_int() for _ in range(q)]
+        n = max(nums)
+        f = [1] * (n + 1)
+        pf = PrimeFactor(n)
+        for x in range(2, n + 1):
+            f[x] = f[x // pf.min_prime[x]] - 1 + pf.min_prime[x]
+
+        for i in range(1, n + 1):
+            f[i] = ac.max(f[i - 1], f[i])
+        for num in nums:
+            ac.st(f[num])
         return
 
     @staticmethod

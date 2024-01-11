@@ -10,7 +10,7 @@ Description：ax+by=gcd(a,b)  a!=0 or b!=0
 
 =====================================LuoGu======================================
 P4549（https://www.luogu.com.cn/problem/P4549）gcd|peishu_theorem
-
+P8646（https://www.luogu.com.cn/problem/P8646）peishu_theorem|bag_dp
 
 """
 
@@ -43,4 +43,29 @@ class Solution:
         ac.read_int()
         nums = ac.read_list_ints()
         ac.st(PeiShuTheorem().get_lst_gcd(nums))
+        return
+
+    @staticmethod
+    def lg_p8646(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8646
+        tag: peishu_theorem|bag_dp
+        """
+        n = ac.read_int()
+        nums = [ac.read_int() for _ in range(n)]
+        nums.sort()
+        s = 10 ** 4
+        dp = [0] * (s + 1)
+        dp[0] = 1
+        for i in range(1, s + 1):
+            for num in nums:
+                if num > i:
+                    break
+                if dp[i - num]:
+                    dp[i] = 1
+        ans = s + 1 - sum(dp)
+        if PeiShuTheorem().get_lst_gcd(nums) != 1:
+            ac.st("INF")
+        else:
+            ac.st(ans)
         return
