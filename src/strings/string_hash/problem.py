@@ -19,7 +19,7 @@ list?user=739032&status=12&page=14（https://www.luogu.com.cn/record/list?user=7
 P6140（https://www.luogu.com.cn/problem/P6140）greedy|implemention|lexicographical_order|string_hash|binary_search|reverse_order|lcs
 P2870（https://www.luogu.com.cn/problem/P2870）greedy|implemention|lexicographical_order|string_hash|binary_search|reverse_order|lcs
 P5832（https://www.luogu.com.cn/problem/P5832）string_hash
-P2852（https://www.luogu.com.cn/problem/P2852）binary_search|string_hash
+P2852（https://www.luogu.com.cn/problem/P2852）binary_search|suffix_array|height|monotonic_queue|string_hash
 P4656（https://www.luogu.com.cn/problem/P4656）string_hash|greedy
 P6739（https://www.luogu.com.cn/problem/P6739）prefix_suffix|string_hash
 
@@ -111,6 +111,7 @@ class Solution:
         url: https://leetcode.cn/problems/shortest-palindrome/
         tag: reverse_hash|string_hash|longest_prefix_palindrome_substring|kmp|manacher
         """
+
         # 正向与反向string_hash字符串前缀最长palindrome_substring，也可以用KMP与manacher
 
         def query(x, y):
@@ -159,6 +160,7 @@ class Solution:
         url: https://leetcode.cn/problems/find-duplicate-subtrees/
         tag: tree_hash
         """
+
         # tree_hash编码序列化子树，查找重复子树
         def dfs(node):
             if not node:
@@ -224,18 +226,22 @@ class Solution:
 
     @staticmethod
     def abc_141e(ac=FastIO()):
-        # binary_search|string_hashcheck
+        """
+        url: https://atcoder.jp/contests/abc141/tasks/abc141_e
+        tag: suffix_array|height|binary_search|string_hash
+        """
+
         def check(x):
             if x == 0:
                 return True
             pre = dict()
             for i in range(x - 1, n):
                 cur = sh.query(i - x + 1, i)
-                if tuple(cur) in pre:
-                    if i - pre[tuple(cur)] >= x:
+                if cur in pre:
+                    if i - pre[cur] >= x:
                         return True
                 else:
-                    pre[tuple(cur)] = i
+                    pre[cur] = i
             return False
 
         n = ac.read_int()
@@ -362,6 +368,7 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/159/
         tag: tree_hash|tree_minimum_expression
         """
+
         def check(st):
             # 解码原始树的字符串表示，再tree_minimum_expression
 
@@ -426,30 +433,18 @@ class Solution:
     def lg_p2852(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P2852
-        tag: binary_search|string_hash
+        tag: binary_search|suffix_array|height|monotonic_queue|string_hash
         """
-        # 模板；binary_search|string_hash出现超过 k 次的最长连续子数组
-        p1 = random.randint(26, 100)
-        p2 = random.randint(26, 100)
-        mod1 = random.randint(10 ** 9 + 7, 2 ** 31 - 1)
-        mod2 = random.randint(10 ** 9 + 7, 2 ** 31 - 1)
-
         def check(x):
             pre = defaultdict(int)
-            s1 = s2 = 0
-            pow1 = pow(p1, x - 1, mod1)
-            pow2 = pow(p2, x - 1, mod2)
             for i in range(n):
-                s1 = (s1 * p1 + nums[i]) % mod1
-                s2 = (s2 * p2 + nums[i]) % mod2
                 if i >= x - 1:
-                    pre[(s1, s2)] += 1
-                    s1 = (s1 - pow1 * nums[i - x + 1]) % mod1
-                    s2 = (s2 - pow2 * nums[i - x + 1]) % mod2
+                    pre[sh.query(i - x + 1, i)] += 1
             return max(pre.values()) >= k
 
         n, k = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
+        sh = StringHash(n, nums)
         ans = BinarySearch().find_int_right(0, n, check)
         ac.st(ans)
         return
