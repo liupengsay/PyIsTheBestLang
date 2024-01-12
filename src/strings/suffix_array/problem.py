@@ -7,7 +7,7 @@ Description：suffix_array
 1698（https://leetcode.cn/problems/number-of-distinct-substrings-in-a-string/）suffix_array|height
 1044（https://leetcode.cn/problems/longest-duplicate-substring/）suffix_array|height|classical
 1062（https://leetcode.cn/problems/longest-repeating-substring/）suffix_array|height|classical
-2261（ https://leetcode.cn/problems/k-divisible-elements-subarrays/）suffix_array|height
+2261（ https://leetcode.cn/problems/k-divisible-elements-subarrays/）suffix_array|height|different_limited_substring
 
 =====================================LuoGu======================================
 P3809（https://www.luogu.com.cn/problem/P3809）suffix_array
@@ -19,6 +19,7 @@ P2852（https://www.luogu.com.cn/problem/P2408）suffix_array|height
 
 =====================================AtCoder=====================================
 ABC141E（https://atcoder.jp/contests/abc141/tasks/abc141_e）suffix_array|height|binary_search|string_hash
+CF271D（https://codeforces.com/contest/271/problem/D）suffix_array|height|different_limited_substring
 
 =====================================LibraryChecker=====================================
 1（https://judge.yosupo.jp/problem/suffixarray）suffix_array
@@ -28,7 +29,7 @@ ABC141E（https://atcoder.jp/contests/abc141/tasks/abc141_e）suffix_array|heigh
 5（https://atcoder.jp/contests/practice2/tasks/practice2_i）suffix_array|height
 6（https://codeforces.com/edu/course/2/lesson/2/5/practice/contest/269656/problem/A）suffix_array|height
 7（https://codeforces.com/edu/course/2/lesson/3/4/practice/contest/272262/problem/H）suffix_array|height
-
+8（https://codeforces.com/edu/course/2/lesson/2/5/practice/contest/269656/problem/F）suffix_array|height|lcp|brute_force
 
 """
 
@@ -36,6 +37,7 @@ from collections import deque
 from typing import List
 
 from src.basis.binary_search.template import BinarySearch
+from src.data_structure.sparse_table.template import SparseTable
 from src.strings.suffix_array.template import SuffixArray
 from src.utils.fast_io import FastIO
 
@@ -300,7 +302,7 @@ class Solution:
     def lc_2261(nums: List[int], k: int, p: int) -> int:
         """
         url: https://leetcode.cn/problems/k-divisible-elements-subarrays/
-        tag: suffix_array|height
+        tag: suffix_array|height|different_limited_substring
         """
         cnt = res = 0
         n = len(nums)
@@ -344,5 +346,60 @@ class Solution:
         sa, rk, height = SuffixArray().build(s, len(ind))
         n = len(s)
         ans = n * (n + 1) * (n + 2) // 6 - sum(height[i] * (height[i] + 1) // 2 for i in range(n))
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_271d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/271/problem/D
+        tag: suffix_array|height|different_limited_substring
+        """
+        s = [ord(w) - ord("a") for w in ac.read_str()]
+        good = [1 - int(w) for w in ac.read_str()]
+        k = ac.read_int()
+        n = len(s)
+        j = cnt = ans = 0
+        right = [0] * n
+        for i in range(n):
+            while j < n and cnt + good[s[j]] <= k:
+                cnt += good[s[j]]
+                j += 1
+            ans += j - i
+            right[i] = j
+            cnt -= good[s[i]]
+        sa, rk, height = SuffixArray().build(s, 26)
+        dup = sum(min(height[i], right[sa[i]] - sa[i]) for i in range(1, n))
+        ans -= dup
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def library_check_8(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/2/5/practice/contest/269656/problem/F
+        tag: suffix_array|height|lcp|brute_force
+        """
+        s = [ord(w) - ord("a") for w in ac.read_str()]
+        n = len(s)
+        sa, rk, height = SuffixArray().build(s, 26)
+        ans = 1
+        st = SparseTable(height, min)
+
+        def lcp(ii, jj):
+            ri, rj = rk[ii], rk[jj]
+            if ri > rj:
+                ri, rj = rj, ri
+            return st.query(ri + 2, rj + 1)
+
+        for x in range(1, n):
+            for i in range(0, n - x, x):
+                rep_len = lcp(i, i + x)
+                rep_cnt = rep_len // x + 1
+                p = i - (x - rep_len % x)
+                if p >= 0 and lcp(p, p + x) >= x:
+                    rep_cnt += 1
+                if rep_cnt > ans:
+                    ans = rep_cnt
         ac.st(ans)
         return
