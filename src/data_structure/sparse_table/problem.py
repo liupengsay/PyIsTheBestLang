@@ -18,6 +18,7 @@ P1816（https://www.luogu.com.cn/problem/P1816）sparse_table|range_min
 P2412（https://www.luogu.com.cn/problem/P2412）lexicographical_order|sparse_table
 P5097（https://www.luogu.com.cn/problem/P5097）sparse_table|range_min
 P5648（https://www.luogu.com.cn/problem/P5648）sparse_table|range_max_index|monotonic_stack
+P2048（https://www.luogu.com.cn/problem/P2048）sparse_table_index|heapq|greedy
 
 ===================================CodeForces===================================
 1691D（https://codeforces.com/problemset/problem/1691/D）monotonic_stack|brute_force|sparse_table|range_max|range_min
@@ -40,9 +41,10 @@ P5648（https://www.luogu.com.cn/problem/P5648）sparse_table|range_max_index|mo
 import bisect
 import math
 from collections import defaultdict
+from heapq import heappop, heapify, heappush
 from typing import List
 
-from src.data_structure.sparse_table.template import SparseTable1, SparseTableIndex, SparseTable4
+from src.data_structure.sparse_table.template import SparseTable, SparseTableIndex
 from src.mathmatics.prime_factor.template import PrimeFactor
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
@@ -60,10 +62,10 @@ class Solution:
         """
         n, q = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
-        st1 = SparseTable1(nums, "max")
-        st2 = SparseTable1(nums, "min")
+        st1 = SparseTable(nums, max)
+        st2 = SparseTable(nums, min)
         for _ in range(q):
-            a, b = ac.read_list_ints()
+            a, b = ac.read_list_ints_minus_one()
             ac.st(st1.query(a, b) - st2.query(a, b))
         return
 
@@ -74,10 +76,10 @@ class Solution:
         tag: sparse_table|range_gcd
         """
         n, m = ac.read_list_ints()
-        st = SparseTable1(ac.read_list_ints())
+        st = SparseTable(ac.read_list_ints(), max)
         for _ in range(m):
-            x, y = ac.read_list_ints()
-            print(st.query(x, y))
+            x, y = ac.read_list_ints_minus_one()
+            ac.st(st.query(x, y))
         return
 
     @staticmethod
@@ -91,14 +93,12 @@ class Solution:
         dct = defaultdict(list)
         for i, num in enumerate(nums):
             dct[num].append(i)
-        st_gcd = SparseTable4(n, math.gcd)
-        st_gcd.build(nums)
-        st_min = SparseTable4(n, ac.min)
-        st_min.build(nums)
+        st_gcd = SparseTable(nums, math.gcd)
+        st_min = SparseTable(nums, ac.min)
         for _ in range(ac.read_int()):
             x, y = ac.read_list_ints_minus_one()
-            num1 = st_gcd.query(x + 1, y + 1)
-            num2 = st_min.query(x + 1, y + 1)
+            num1 = st_gcd.query(x, y)
+            num2 = st_min.query(x, y)
             if num1 == num2:
                 res = bisect.bisect_right(dct[num1], y) - bisect.bisect_left(dct[num1], x)
                 ac.st(y - x + 1 - res)
@@ -187,11 +187,11 @@ class Solution:
                 sub[j] = sub[i] + nums[j] * (i - j)
                 stack.append(j)
 
-        st = SparseTableIndex(nums)
+        st = SparseTableIndex(nums, max)
         last_ans = 0
         for _ in range(t):
             u, v = ac.read_list_ints()
-            left = 1 + (u ^ last_ans) % n
+            left = (u ^ last_ans) % n
             q = 1 + (v ^ (last_ans + 1)) % (n - left + 1)
             right = left + q - 1
             ceil_ind = st.query(left, right)
@@ -324,7 +324,7 @@ class Solution:
         """
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
-        st = SparseTable1(nums, "max")
+        st = SparseTable(nums, max)
         for _ in range(ac.read_int()):
             x1, y1, x2, y2, k = ac.read_list_ints()
             if x1 % k != x2 % k or y1 % k != y2 % k:
@@ -335,7 +335,7 @@ class Solution:
                 continue
             if y1 > y2:
                 y1, y2 = y2, y1
-            ceil = st.query(y1, y2)
+            ceil = st.query(y1 - 1, y2 - 1)
             y = (n - x1) // k
             w = k * y + x1
             if w <= ceil:
@@ -403,3 +403,36 @@ class Solution:
                 if abs(x - target) < ans:
                     ans = abs(x - target)
         return ans
+
+    @staticmethod
+    def lg_p2048(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2048
+        tag: sparse_table_index|heapq|greedy
+        """
+        n, k, l, r = ac.read_list_ints()
+        pre = [0] * (n + 1)
+        for i in range(n):
+            pre[i + 1] = pre[i] + ac.read_int()
+        st_ind = SparseTableIndex(pre, max)
+        stack = []
+        for i in range(n):
+            if i + l - 1 < n:
+                j = st_ind.query(i + l, ac.min(i + r, n))
+                stack.append((pre[i] - pre[j], i, j, i + l, ac.min(i + r, n)))
+            else:
+                break
+
+        heapify(stack)
+        ans = 0
+        for _ in range(k):
+            x, i, j, ll, rr = heappop(stack)
+            ans -= x
+            if ll <= j - 1:
+                jj = st_ind.query(ll, j - 1)
+                heappush(stack, (pre[i] - pre[jj], i, jj, ll, j - 1))
+            if j + 1 <= rr:
+                jj = st_ind.query(j + 1, rr)
+                heappush(stack, (pre[i] - pre[jj], i, jj, j + 1, rr))
+        ac.st(ans)
+        return

@@ -7,14 +7,10 @@ from operator import or_, and_
 class SparseTable:
     def __init__(self, lst, fun):
         """static range queries can be performed as long as the range_merge_to_disjoint fun satisfies monotonicity"""
-        self.fun = fun  # min max and or lcm gcd
+        self.fun = fun  # min max and_ or_ math.lcm math.gcd
         self.n = len(lst)
-        self.m = int(math.log2(self.n))
+        self.m = self.n.bit_length() - 1  # int(math.log2(self.n))
         self.f = [0] * ((self.m + 1) * (self.n + 1))
-        self.build(lst)
-        return
-
-    def build(self, lst):
         """the same as multiplication method for tree_lca"""
         for i in range(1, self.n + 1):
             self.f[i * (self.m + 1) + 0] = lst[i - 1]
@@ -26,11 +22,47 @@ class SparseTable:
         return
 
     def query(self, left, right):
-        """index start from 1"""
-        k = int(math.log2(right - left + 1))
+        """index start from 0"""
+        left += 1  # assert 0 <= left <= right < self.n - 1
+        right += 1
+        k = (right - left + 1).bit_length() - 1
         a = self.f[left * (self.m + 1) + k]
         b = self.f[(right - (1 << k) + 1) * (self.m + 1) + k]
         return self.fun(a, b)
+
+
+class SparseTableIndex:
+    def __init__(self, lst, fun):
+        # as long as Fun satisfies monotonicity
+        # static interval queries can be performed on the index where the maximum is located
+        self.fun = fun  # min max and_ or_ math.lcm math.gcd
+        self.n = len(lst)
+        self.m = self.n.bit_length() - 1
+        self.f = [0] * ((self.m + 1) * (self.n + 1))
+
+        for i in range(1, self.n + 1):
+            self.f[i * (self.m + 1) + 0] = i - 1
+        for j in range(1, self.m + 1):
+            for i in range(1, self.n - (1 << j) + 2):
+                a = self.f[i * (self.m + 1) + j - 1]
+                b = self.f[(i + (1 << (j - 1))) * (self.m + 1) + j - 1]
+
+                if self.fun(lst[a], lst[b]) == lst[a]:
+                    self.f[i * (self.m + 1) + j] = a
+                else:
+                    self.f[i * (self.m + 1) + j] = b
+        self.lst = lst
+        return
+
+    def query(self, left, right):
+        left += 1  # assert 0 <= left <= right <= self.n - 1
+        right += 1
+        k = (right - left + 1).bit_length() - 1
+        a = self.f[left * (self.m + 1) + k]
+        b = self.f[(right - (1 << k) + 1) * (self.m + 1) + k]
+        if self.fun(self.lst[a], self.lst[b]) == self.lst[a]:
+            return a
+        return b
 
 
 class SparseTable2D:
@@ -106,39 +138,3 @@ class SparseTable2D:
                         self.dp[x][y1 - (1 << p) + 1][k][p],
                         self.dp[x1 - (1 << k) + 1][y1 - (1 << p) + 1][k][p]])
         return ans
-
-
-class SparseTableIndex:
-    def __init__(self, lst, fun="max"):
-        # as long as Fun satisfies monotonicity
-        # static interval queries can be performed on the index where the maximum is located
-        self.fun = fun
-        self.n = len(lst)
-        self.lst = lst
-        self.f = [[0] * (int(math.log2(self.n)) + 1)
-                  for _ in range(self.n + 1)]
-        self.build()
-        return
-
-    def build(self):
-        for i in range(1, self.n + 1):
-            self.f[i][0] = i - 1
-        for j in range(1, int(math.log2(self.n)) + 1):
-            for i in range(1, self.n - (1 << j) + 2):
-                a = self.f[i][j - 1]
-                b = self.f[i + (1 << (j - 1))][j - 1]
-                if self.fun == "max":
-                    self.f[i][j] = a if self.lst[a] > self.lst[b] else b
-                elif self.fun == "min":
-                    self.f[i][j] = a if self.lst[a] < self.lst[b] else b
-        return
-
-    def query(self, left, right):
-        assert 1 <= left <= right <= self.n
-        k = int(math.log2(right - left + 1))
-        a = self.f[left][k]
-        b = self.f[right - (1 << k) + 1][k]
-        if self.fun == "max":
-            return a if self.lst[a] > self.lst[b] else b
-        elif self.fun == "min":
-            return a if self.lst[a] < self.lst[b] else b
