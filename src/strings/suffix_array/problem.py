@@ -20,7 +20,7 @@ P4248（https://www.luogu.com.cn/problem/P4248）suffix_array|height|lcp|monoton
 P3975（https://www.luogu.com.cn/problem/P3975）greedy|bfs|suffix_array|height
 P3796（https://www.luogu.com.cn/problem/P3796）suffix_array|height|sa|monotonic_stack|prefix_sum
 P5546（https://www.luogu.com.cn/problem/P5546）suffix_array|lcs|lcp|monotonic_queue
-
+P4341（https://www.luogu.com.cn/problem/P4341）suffix_array|height
 
 =====================================AcWing=====================================
 140（https://www.acwing.com/problem/content/142/）suffix_array|template
@@ -967,7 +967,7 @@ class Solution:
             n = len(height)
             height.append(0)
 
-            right = [0] * (n + 1)
+            right = [n - 1] * (n + 1)
             stack = []
             for i in range(n):
                 while stack and height[stack[-1]] > height[i]:
@@ -1077,4 +1077,27 @@ class Solution:
             remove(i)
 
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p4341(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4341
+        tag: suffix_array|height
+        """
+        n = ac.read_int()
+        lst = [int(w) for w in ac.read_str()]
+        sa, rk, height = SuffixArray().build(lst, 2)
+
+        for i in range(n):
+            j = sa[i]
+            for x in range(height[i] + 1, n - j + 1):
+                y = 1
+                for k in range(i + 1, n):
+                    if height[k] >= x:
+                        y += 1
+                    else:
+                        break
+                if y > 1:
+                    ac.st(y)
         return
