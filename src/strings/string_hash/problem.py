@@ -719,3 +719,34 @@ class Solution:
                     cur.add(tuple(ans1))
             ans += len(cur)
         return ans
+
+    @staticmethod
+    def lc_1923(n: int, paths: List[List[int]]) -> int:
+        """
+        url: https://leetcode.cn/problems/longest-common-subpath/
+        tag: binary_search|string_hash
+        """
+        def check(x):
+            pre = set()
+            ind = 0
+            for i in range(k):
+                m = len(paths[i])
+                cur = set()
+                for j in range(ind, ind + m - x + 1):
+                    cur.add(sh.query(j, j + x - 1))
+                if not i:
+                    pre = cur
+                else:
+                    pre = pre.intersection(cur)
+                ind += m
+            return len(pre) > 0
+
+        k = len(paths)
+        lst = []
+        for path in paths:
+            lst.extend(path)
+        n += 1
+        sh = StringHash(lst)
+        ans = BinarySearch().find_int_right(0, min(len(p) for p in paths), check)
+
+        return ans
