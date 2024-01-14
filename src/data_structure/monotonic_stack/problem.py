@@ -57,6 +57,7 @@ P8094（https://www.luogu.com.cn/problem/P8094）monotonic_stack|pre_larger|post
 
 ====================================AtCoder=====================================
 ABC140E（https://atcoder.jp/contests/abc140/tasks/abc140_e）monotonic_stack|pre_pre_larger|post_post_larger
+ABC336D（https://atcoder.jp/contests/abc336/tasks/abc336_d）monotonic_stack|linear_dp
 
 =====================================AcWing=====================================
 131（https://www.acwing.com/problem/content/133/）monotonic_stack|sub_matrix
@@ -893,3 +894,33 @@ class Solution:
             stack.append(heights[i])
             ans[i] = cur
         return ans
+
+    @staticmethod
+    def abc_336d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc336/tasks/abc336_d
+        tag: monotonic_stack|linear_dp
+        """
+        def check():
+            res = [0] * n
+            stack = []
+            for i in range(n):
+                while stack and nums[stack[-1]] - stack[-1] >= nums[i] - i:
+                    stack.pop()
+                if not stack:
+                    k = ac.min(i + 1, nums[i])
+                    res[i] = k
+                else:
+                    k = res[stack[-1]] + i - stack[-1]
+                    res[i] = k
+                stack.append(i)
+            return res
+
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        pre = check()
+        nums.reverse()
+        post = check()
+        ans = max(min(pre[i], post[n - 1 - i]) for i in range(n))
+        ac.st(ans)
+        return

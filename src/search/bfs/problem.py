@@ -90,6 +90,7 @@ P9065（https://www.luogu.com.cn/problem/P9065）brain_teaser|bfs|brute_force
 ARC090B（https://atcoder.jp/contests/abc087/tasks/arc090_b）bfs|differential_constraint|O(n^2)
 ABC133E（https://atcoder.jp/contests/abc133/tasks/abc133_e）bfs|coloring_method|counter
 ABC070D（https://atcoder.jp/contests/abc070/tasks/abc070_d）classical|lca|offline_lca
+ABC336F（https://atcoder.jp/contests/abc336/tasks/abc336_f）bilateral_bfs|classical|matrix_rotate
 
 =====================================AcWing=====================================
 173（https://www.acwing.com/problem/content/175/）multi_source_bfs|classical
@@ -1854,6 +1855,7 @@ class Solution:
         url: https://leetcode.cn/problems/snakes-and-ladders/
         tag: 01-bfs|implemention
         """
+
         # 01-bfs|implemention
         def position(num):
             i = (num - 1) // n
@@ -1913,6 +1915,7 @@ class Solution:
         url: https://leetcode.cn/problems/escape-a-large-maze/
         tag: bound_bfs|discretization_bfs
         """
+
         # bound_bfs和discretization_bfs两种解法
         def check(node):
             stack = [node]
@@ -2123,7 +2126,6 @@ class Solution:
         ac.st(ans)
         return
 
-
     @staticmethod
     def lg_p1144(ac=FastIO()):
         """
@@ -2158,7 +2160,6 @@ class Solution:
             ac.st(x)
         return
 
-
     @staticmethod
     def abc_070d(ac=FastIO()):
         """
@@ -2185,4 +2186,50 @@ class Solution:
         for _ in range(q):
             a, b = ac.read_list_ints_minus_one()
             ac.st(dis[a] + dis[b])
+        return
+
+    @staticmethod
+    def abc_336f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc336/tasks/abc336_f
+        tag: bilateral_bfs|classical|matrix_rotate
+        """
+        m, n = ac.read_list_ints()
+        grid = []
+        for _ in range(m):
+            grid.extend(ac.read_list_ints())
+
+        def check():
+            visit = {tuple(grid): 0}
+            stack = [grid[:]]
+            for s in range(10):
+                nex = []
+                for pre in stack:
+
+                    for a, b, c, d in [[0, 0, m - 2, n - 2], [0, 1, m - 2, n - 1], [1, 0, m - 1, n - 2],
+                                       [1, 1, m - 1, n - 1]]:
+                        tmp = pre[:]
+                        for i in range(m):
+                            for j in range(n):
+                                if a <= i <= c and b <= j <= d:
+                                    new_i = c - (i - a)
+                                    new_j = d - (j - b)
+                                else:
+                                    new_i = i
+                                    new_j = j
+                                tmp[new_i * n + new_j] = pre[i * n + j]
+                        if tuple(tmp) not in visit:
+                            visit[tuple(tmp)] = s + 1
+                            nex.append(tmp[:])
+                stack = [ls[:] for ls in nex]
+            return visit
+
+        visit1 = check()
+        grid = list(range(1, m * n + 1))
+        visit2 = check()
+        ans = inf
+        for k in visit1:
+            if k in visit2:
+                ans = ac.min(ans, visit1[k] + visit2[k])
+        ac.st(ans if ans < inf else -1)
         return

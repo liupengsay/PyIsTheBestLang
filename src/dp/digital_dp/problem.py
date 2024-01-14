@@ -21,6 +21,7 @@ Description：lexicographical_order|counter|high_to_low|low_to_high
 ====================================AtCoder=====================================
 ABC121D（https://atcoder.jp/contests/abc121/tasks/abc121_d）xor_property|digital_dp
 ABC208E（https://atcoder.jp/contests/abc208/tasks/abc208_e）brain_teaser|digital_dp
+ABC336E（https://atcoder.jp/contests/abc336/tasks/abc336_e）brut_force|digital_dp
 
 =====================================LuoGu======================================
 P1590（https://www.luogu.com.cn/problem/P1590）counter|digital_dp
@@ -271,3 +272,38 @@ class Solution:
 
         ans = BinarySearch().find_int_right(0, 10 ** 15, check)
         return ans
+
+    @staticmethod
+    def abc_336e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc336/tasks/abc336_e
+        tag: brut_force|digital_dp
+        """
+        num = ac.read_int()
+        st = str(num)
+        n = len(st)
+        ans = 0
+        for sss in range(1, 9 * n + 1):
+
+            @lru_cache(None)
+            def dfs(i, is_limit, is_num, ds, w):
+                if i == n:
+                    return 1 if (is_num and ds == sss and w == 0) else 0
+                if ds > sss:
+                    return 0
+                if ds + (n - i) * 9 < sss:
+                    return 0
+                res = 0
+                if not is_num:
+                    res += dfs(i + 1, False, 0, 0, 0)
+                floor = 0 if is_num else 1
+                ceil = int(st[i]) if is_limit else 9
+                for x in range(floor, ceil + 1):
+                    res += dfs(i + 1, is_limit and ceil == x, 1, ds + x, (w * 10 + x) % sss)
+                return res
+
+            cur = dfs(0, True, False, 0, 0)
+            dfs.cache_clear()
+            ans += cur
+        ac.st(ans)
+        return
