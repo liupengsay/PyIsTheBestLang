@@ -3,6 +3,7 @@ Algorithm：kmp
 Description：string|prefix_suffix
 
 ====================================LeetCode====================================
+28（https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/）
 214（https://leetcode.cn/problems/shortest-palindrome/）longest_palindrome_prefix
 796（https://leetcode.cn/problems/rotate-string/）rotate_string
 25（https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/）find|kmp|substring
@@ -10,15 +11,51 @@ Description：string|prefix_suffix
 2223（https://leetcode.cn/problems/longest-happy-prefix/）z_function
 6918（https://leetcode.cn/problems/shortest-string-that-contains-three-strings/）kmp|prefix_suffix|greedy|brain_teaser
 2851（https://leetcode.cn/problems/string-transformation/description/）kmp|matrix_fast_power|string_hash
+100207（https://leetcode.com/contest/weekly-contest-380/problems/find-beautiful-indices-in-the-given-array-ii/）kmp|find
+686（https://leetcode.cn/problems/repeated-string-match/）
+1316（https://leetcode.cn/problems/distinct-echo-substrings/）
+2800（https://leetcode.cn/problems/shortest-string-that-contains-three-strings/）
+1397（https://leetcode.cn/problems/find-all-good-strings/）
+459（https://leetcode.cn/problems/repeated-substring-pattern/）
+1163（https://leetcode.cn/problems/last-substring-in-lexicographical-order/）
 
 =====================================LuoGu======================================
 P3375（https://www.luogu.com.cn/problem/P3375）longest_prefix_suffix|find
 P4391（https://www.luogu.com.cn/problem/P4391）brain_teaser|kmp|n-pi[n-1]
+P3435（https://www.luogu.com.cn/problem/P3435）
+P4824（https://www.luogu.com.cn/problem/P4824）
+P2375（https://www.luogu.com.cn/problem/P2375）
+P7114（https://www.luogu.com.cn/problem/P7114）
+P3426（https://www.luogu.com.cn/problem/P3426）
+P3193（https://www.luogu.com.cn/problem/P3193）
+P4503（https://www.luogu.com.cn/problem/P4503）
+P3538（https://www.luogu.com.cn/problem/P3538）
+P4036（https://www.luogu.com.cn/problem/P4036）
+P5410（https://www.luogu.com.cn/problem/P5410）
+P1368（https://www.luogu.com.cn/problem/P1368）
 
 ===================================CodeForces===================================
 1326D2（https://codeforces.com/problemset/problem/1326/D2）manacher|greedy|prefix_suffix|longest_prefix_suffix|palindrome_substring
 432D（https://codeforces.com/contest/432/problem/D）kmp|z_function
 25E（https://codeforces.com/contest/25/problem/E）kmp|prefix_suffix|greedy|longest_common_prefix_suffix
+126B（https://codeforces.com/problemset/problem/126/B）
+471D（https://codeforces.com/problemset/problem/471/D）
+432D（https://codeforces.com/problemset/problem/432/D）
+346B（https://codeforces.com/problemset/problem/346/B）
+494B（https://codeforces.com/problemset/problem/494/B）
+1200E（https://codeforces.com/problemset/problem/1200/E）
+615C（https://codeforces.com/problemset/problem/615/C）
+1163D（https://codeforces.com/problemset/problem/1163/D）
+526D（https://codeforces.com/problemset/problem/526/D）
+954I（https://codeforces.com/problemset/problem/954/I）
+1003F（https://codeforces.com/problemset/problem/1003/F）
+25E（https://codeforces.com/problemset/problem/25/E）
+808G（https://codeforces.com/problemset/problem/808/G）
+182D（https://codeforces.com/problemset/problem/182/D）
+526D（https://codeforces.com/problemset/problem/526/D）
+535D（https://codeforces.com/problemset/problem/535/D）
+1051E（https://codeforces.com/contest/1051/problem/E）
+496B（https://codeforces.com/problemset/problem/496/B）
 
 =====================================AcWing=====================================
 
@@ -26,11 +63,34 @@ P4391（https://www.luogu.com.cn/problem/P4391）brain_teaser|kmp|n-pi[n-1]
 160（https://www.acwing.com/problem/content/162/）z_function|template
 3823（https://www.acwing.com/problem/content/3826/）kmp|z_function
 
+=====================================LibraryChecker=====================================
+1（https://www.luogu.com.cn/training/53971）
+2（https://loj.ac/p/103）
+3（https://acm.hdu.edu.cn/showproblem.php?pid=2087）
+4（https://oj.socoding.cn/p/1446）
+5（https://www.lanqiao.cn/problems/5132/learning/?contest_id=144）
+6（https://www.luogu.com.cn/problem/UVA10298）
+7（https://www.luogu.com.cn/problem/UVA11022）
+8（https://poj.org/problem?id=2406）
+9（https://www.luogu.com.cn/problem/UVA455）
+10（https://judge.yosupo.jp/problem/zalgorithm）
+11（https://codeforces.com/edu/course/2/lesson/3/3/practice/contest/272263/problem/A）
+12（https://codeforces.com/edu/course/2/lesson/3/4/practice/contest/272262/problem/A）
+13（https://codeforces.com/edu/course/2/lesson/3/4/practice/contest/272262/problem/B）
+14（https://codeforces.com/edu/course/2/lesson/3/4/practice/contest/272262/problem/C）
+15（https://codeforces.com/edu/course/2/lesson/3/4/practice/contest/272262/problem/D）
+16（https://codeforces.com/edu/course/2/lesson/3/4/practice/contest/272262/problem/E）
+17（https://codeforces.com/edu/course/2/lesson/3/4/practice/contest/272262/problem/F）
+18（https://atcoder.jp/contests/abc284/tasks/abc284_f）
+19（https://poj.org/problem?id=1509）
+20（https://codeforces.com/gym/103585/problem/K）
+
 
 """
-
+import bisect
 from collections import Counter
 from itertools import permutations
+from typing import List
 
 from src.mathmatics.fast_power.template import MatrixFastPower
 from src.strings.kmp.template import KMP
@@ -253,6 +313,7 @@ class Solution:
         url: https://leetcode.cn/problems/shortest-string-that-contains-three-strings/
         tag: kmp|prefix_suffix|greedy|brain_teaser
         """
+
         def check(a, b):
             c = b + "#" + a
             f = KMP().prefix_function(c)
@@ -322,3 +383,20 @@ class Solution:
             else:
                 ac.st(s[:ans])
         return
+
+    @staticmethod
+    def lc_100207(s: str, a: str, b: str, k: int) -> List[int]:
+        """"
+        url: https://leetcode.com/contest/weekly-contest-380/problems/find-beautiful-indices-in-the-given-array-ii/
+        tag: kmp|find
+        """
+        lst1 = KMP().find(s, a)
+        lst2 = KMP().find(s, b)
+        ans = []
+        for i in lst1:
+            j = bisect.bisect_left(lst2, i)
+            for x in [j - 1, j, j + 1]:
+                if 0 <= x < len(lst2) and abs(lst2[x] - i) <= k:
+                    ans.append(i)
+                    break
+        return ans

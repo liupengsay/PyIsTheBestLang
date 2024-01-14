@@ -10,6 +10,8 @@ Description：suffix_array
 1062（https://leetcode.cn/problems/longest-repeating-substring/）suffix_array|height|classical
 2261（ https://leetcode.cn/problems/k-divisible-elements-subarrays/）suffix_array|height|different_limited_substring
 1923（https://leetcode.cn/problems/longest-common-subpath/）suffix_array|lcs|lcp|monotonic_queue
+1977（https://leetcode-cn.com/problems/number-of-ways-to-separate-numbers/）
+1018（https://leetcode-cn.com/problems/string-matching-in-an-array/）
 
 =====================================LuoGu======================================
 P3809（https://www.luogu.com.cn/problem/P3809）suffix_array
@@ -21,9 +23,13 @@ P3975（https://www.luogu.com.cn/problem/P3975）greedy|bfs|suffix_array|height
 P3796（https://www.luogu.com.cn/problem/P3796）suffix_array|height|sa|monotonic_stack|prefix_sum
 P5546（https://www.luogu.com.cn/problem/P5546）suffix_array|lcs|lcp|monotonic_queue
 P4341（https://www.luogu.com.cn/problem/P4341）suffix_array|height
+P4070（https://www.luogu.com.cn/problem/P4070）
+P6095（https://www.luogu.com.cn/problem/P6095）
 
 =====================================AcWing=====================================
-140（https://www.acwing.com/problem/content/142/）suffix_array|template
+142（https://www.acwing.com/problem/content/142/）suffix_array|template
+
+140（https://www.acwing.com/problem/content/140/）
 
 =====================================CodeForces=====================================
 123D（https://codeforces.com/problemset/problem/123/D）suffix_array|height|monotonic_stack
@@ -32,6 +38,10 @@ P4341（https://www.luogu.com.cn/problem/P4341）suffix_array|height
 128B（https://codeforces.com/contest/128/problem/B）greedy|bfs|suffix_array|height
 427D（https://codeforces.com/contest/427/problem/D）suffix_array|height|sa|lcp|trick|lcs
 1526E（https://codeforces.com/contest/1526/problem/E）suffix_array|reverse_thinking|comb|construction
+873F（https://codeforces.com/problemset/problem/873/F）
+611D（https://codeforces.com/problemset/problem/611/D）
+600A（https://codeforces.com/problemset/problem/600/A）
+873F（https://codeforces.com/contest/873/problem/F）
 
 =====================================AtCoder=====================================
 ABC141E（https://atcoder.jp/contests/abc141/tasks/abc141_e）suffix_array|height|binary_search|string_hash
@@ -52,6 +62,14 @@ ABC272F（https://atcoder.jp/contests/abc272/tasks/abc272_f）suffix_array|sa|tr
 11（https://www.spoj.com/problems/LCS2/）suffix_array|lcs|lcp|monotonic_queue
 12（https://loj.ac/p/171）suffix_array|lcs|lcp|monotonic_queue
 13（https://www.spoj.com/problems/PHRASES/）suffix_array|height|sa|lcp|binary_search
+14（https://poj.org/problem?id=3581)
+15（https://poj.org/problem?id=1226）
+16（https://poj.org/problem?id=3450）
+17（https://poj.org/problem?id=3729）
+18（https://onlinejudge.u-aizu.ac.jp/problems/2292）
+19（https://poj.org/problem?id=3415）
+20（https://codeforces.com/edu/course/2/lesson/2/5/practice/contest/269656/problem/E）
+21（https://codeforces.com/edu/course/2/lesson/2/5/practice/contest/269656/problem/C）
 
 """
 
@@ -154,7 +172,7 @@ class Solution:
         return
 
     @staticmethod
-    def ac_140(ac=FastIO()):
+    def ac_142(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/142/
         tag: suffix_array|template

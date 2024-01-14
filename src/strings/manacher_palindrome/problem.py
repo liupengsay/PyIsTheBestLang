@@ -6,6 +6,10 @@ Description：dp|center|center_expansion_method|manacher
 5（https://leetcode.cn/problems/longest-palindromic-substring/）longest_palindrome_substring|classical
 132（https://leetcode.cn/problems/palindrome-partitioning-ii/）linear_dp|manacher|longest_palindrome_substring
 1960（https://leetcode.cn/problems/maximum-product-of-the-length-of-two-palindromic-substrings/）longest_palindrome_substring|prefix_suffix|classical
+1745（https://leetcode-cn.com/problems/palindrome-partitioning-iv/）
+2742（https://leetcode.cn/problems/maximum-number-of-non-overlapping-palindrome-substrings/）
+214（https://leetcode-cn.com/problems/shortest-palindrome/）
+647（https://leetcode-cn.com/problems/palindromic-substrings/）
 
 =====================================LuoGu======================================
 P4555（https://www.luogu.com.cn/problem/P4555）longest_palindrome_substring|prefix_suffix
@@ -13,13 +17,28 @@ P1210（https://www.luogu.com.cn/problem/P1210）longest_palindrome_substring
 P4888（https://www.luogu.com.cn/problem/P4888）center_expansion_method|two_pointers
 P1872（https://www.luogu.com.cn/problem/P1872）counter|palindrome_substring|manacher|classical
 P6297（https://www.luogu.com.cn/problem/P6297）center_expansion_method
+P3805（https://www.luogu.com.cn/problem/P3805）
+P1659（https://www.luogu.com.cn/problem/P1659）
+P3501（https://www.luogu.com.cn/problem/P3501）
+P6216（https://www.luogu.com.cn/problem/P6216）
+P5446（https://www.luogu.com.cn/problem/P5446）
 
 ===================================CodeForces===================================
 1682A（https://codeforces.com/contest/1682/problem/A）palindromic|center_extension
 139（https://www.acwing.com/problem/content/141/）manacher|longest_palindrome_substring|binary_search|hash
+1823D（https://codeforces.com/problemset/problem/1823/D）
+1326D2（https://codeforces.com/problemset/problem/1326/D2）
+7D（https://codeforces.com/problemset/problem/7/D）
+835D（https://codeforces.com/problemset/problem/835/D）
+17E（https://codeforces.com/problemset/problem/17/E）
+1081H（https://codeforces.com/problemset/problem/1081/H）
+1827C（https://codeforces.com/contest/1827/problem/C）
+
 
 ===================================LibraryChecker===================================
-1 Enumerate Palindromes（https://judge.yosupo.jp/problem/enumerate_palindromes）counter|palindrome_substring
+1（https://judge.yosupo.jp/problem/enumerate_palindromes）counter|palindrome_substring
+2（https://www.luogu.com.cn/problem/P1659）
+
 
 """
 

@@ -13,6 +13,9 @@ Description：counter|sliding_window|double_random_mod|hash_crush
 1923（https://leetcode.cn/problems/longest-common-subpath/）binary_search|rolling_hash
 1948（https://leetcode.cn/problems/delete-duplicate-folders-in-system/）trie_like|tree_hash
 2261（https://leetcode.cn/problems/k-divisible-elements-subarrays/submissions/）string_hash
+187（https://leetcode-cn.com/problems/repeated-dna-sequences/）
+1044（https://leetcode-cn.com/problems/longest-duplicate-substring/）
+
 
 =====================================LuoGu======================================
 list?user=739032&status=12&page=14（https://www.luogu.com.cn/record/list?user=739032&status=12&page=14）string_hash|kmp
@@ -22,9 +25,14 @@ P5832（https://www.luogu.com.cn/problem/P5832）string_hash
 P2852（https://www.luogu.com.cn/problem/P2852）binary_search|suffix_array|height|monotonic_queue|string_hash
 P4656（https://www.luogu.com.cn/problem/P4656）string_hash|greedy
 P6739（https://www.luogu.com.cn/problem/P6739）prefix_suffix|string_hash
+P3370（https://www.luogu.com.cn/problem/P3370）
 
 ===================================CodeForces===================================
 1800D（https://codeforces.com/problemset/problem/1800/D）prefix_suffix|hash
+514C（https://codeforces.com/problemset/problem/514/C）
+1200E（https://codeforces.com/problemset/problem/1200/E）
+1800D（https://codeforces.com/problemset/problem/1800/D）
+580E（https://codeforces.com/problemset/problem/580/E）
 
 ====================================AtCoder=====================================
 ABC141E（https://atcoder.jp/contests/abc141/tasks/abc141_e）binary_search|string_hash|check
@@ -33,6 +41,10 @@ ABC141E（https://atcoder.jp/contests/abc141/tasks/abc141_e）binary_search|stri
 138（https://www.acwing.com/problem/content/140/）string_hash
 156（https://www.acwing.com/problem/content/description/158/）matrix_hash
 157（https://www.acwing.com/problem/content/description/159/）tree_hash|tree_minimum_expression
+
+=====================================LibraryChecker=====================================
+1（https://ac.nowcoder.com/acm/contest/64384/D）
+2（https://www.luogu.com.cn/problem/solution/UVA11019）
 
 """
 
