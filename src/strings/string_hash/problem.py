@@ -18,18 +18,17 @@ Description：counter|sliding_window|double_random_mod|hash_crush
 
 
 =====================================LuoGu======================================
-list?user=739032&status=12&page=14（https://www.luogu.com.cn/record/list?user=739032&status=12&page=14）string_hash|kmp
 P6140（https://www.luogu.com.cn/problem/P6140）greedy|implemention|lexicographical_order|string_hash|binary_search|reverse_order|lcs
 P2870（https://www.luogu.com.cn/problem/P2870）greedy|implemention|lexicographical_order|string_hash|binary_search|reverse_order|lcs
 P5832（https://www.luogu.com.cn/problem/P5832）string_hash
 P2852（https://www.luogu.com.cn/problem/P2852）binary_search|suffix_array|height|monotonic_queue|string_hash
 P4656（https://www.luogu.com.cn/problem/P4656）string_hash|greedy
 P6739（https://www.luogu.com.cn/problem/P6739）prefix_suffix|string_hash
-P3370（https://www.luogu.com.cn/problem/P3370）
+P3370（https://www.luogu.com.cn/problem/P3370）string_hash
 
 ===================================CodeForces===================================
 1800D（https://codeforces.com/problemset/problem/1800/D）prefix_suffix|hash
-514C（https://codeforces.com/problemset/problem/514/C）
+514C（https://codeforces.com/problemset/problem/514/C）string_hash
 1200E（https://codeforces.com/problemset/problem/1200/E）
 1800D（https://codeforces.com/problemset/problem/1800/D）
 580E（https://codeforces.com/problemset/problem/580/E）
@@ -447,6 +446,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2852
         tag: binary_search|suffix_array|height|monotonic_queue|string_hash
         """
+
         def check(x):
             pre = defaultdict(int)
             for i in range(n):
@@ -738,6 +738,7 @@ class Solution:
         url: https://leetcode.cn/problems/longest-common-subpath/
         tag: binary_search|string_hash
         """
+
         def check(x):
             pre = set()
             ind = 0
@@ -762,3 +763,87 @@ class Solution:
         ans = BinarySearch().find_int_right(0, min(len(p) for p in paths), check)
 
         return ans
+
+    @staticmethod
+    def lg_p3370_1(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3370
+        tag: string_hash
+        """
+        ans = set()
+        p1, p2 = [random.randint(26, 100), random.randint(26, 100)]
+        mod1, mod2 = [random.randint(10 ** 9 + 7, 2 ** 31 - 1), random.randint(10 ** 9 + 7, 2 ** 31 - 1)]
+        for _ in range(ac.read_int()):
+            s = ac.read_str()
+            x1 = x2 = 0
+            for w in s:
+                x1 = (x1 * p1 + ord(w)) % mod1
+                x2 = (x2 * p2 + ord(w)) % mod2
+            ans.add((x1, x2))
+        ac.st(len(ans))
+        return
+
+    @staticmethod
+    def lg_p3370_2(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3370
+        tag: string_hash
+        """
+        ans = set()
+        for _ in range(ac.read_int()):
+            ans.add(hash(ac.read_str()))
+        ac.st(len(ans))
+        return
+
+    @staticmethod
+    def cf_514c(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/514/problem/C
+        tag: string_hash
+        """
+
+        n = 6 * 10 ** 5
+        p = [random.randint(26, 100), random.randint(26, 100)]
+        mod = [random.randint(10 ** 9 + 7, 2 ** 31 - 1), random.randint(10 ** 9 + 7, 2 ** 31 - 1)]
+        pre = [[0] * (n + 1), [0] * (n + 1)]
+        pp = [[1] * (n + 1), [1] * (n + 1)]
+        for j in range(n):
+            for i in range(2):
+                pp[i][j + 1] = (pp[i][j] * p[i]) % mod[i]
+
+        def query(x, y):
+            if y < x:
+                return 0, 0
+            res = tuple((pre[i][y + 1] - pre[i][x] * pp[i][y - x + 1]) % mod[i] for i in range(2))
+            return res
+
+        ans = set()
+        n, m = ac.read_list_ints()
+        for _ in range(n):
+            s = ac.read_str()
+            k = len(s)
+            lst = [ord(w) - ord("a") for w in s]
+            for j, w in enumerate(lst):
+                for i in range(2):
+                    pre[i][j + 1] = (pre[i][j] * p[i] + w) % mod[i]
+
+            for i in range(k):
+                ll = query(0, i - 1)
+                rr = query(i + 1, k - 1)
+                for w in range(3):
+                    if w != lst[i]:
+                        cur = [0, 0]
+                        for j in range(2):
+                            cur[j] = ((ll[j] * p[j] + w) * pp[j][k - i - 1] + rr[j]) % mod[j]
+                        ans.add((k, cur[0], cur[1]))
+
+        for _ in range(m):
+            s = ac.read_str()
+            k = len(s)
+            lst = [ord(w) - ord("a") for w in s]
+            cur = [0, 0]
+            for j, w in enumerate(lst):
+                for i in range(2):
+                    cur[i] = (cur[i] * p[i] + w) % mod[i]
+            ac.st("YES" if (k, cur[0], cur[1]) in ans else "NO")
+        return

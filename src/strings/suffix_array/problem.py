@@ -28,7 +28,6 @@ P6095（https://www.luogu.com.cn/problem/P6095）
 
 =====================================AcWing=====================================
 142（https://www.acwing.com/problem/content/142/）suffix_array|template
-
 140（https://www.acwing.com/problem/content/140/）
 
 =====================================CodeForces=====================================
@@ -38,10 +37,9 @@ P6095（https://www.luogu.com.cn/problem/P6095）
 128B（https://codeforces.com/contest/128/problem/B）greedy|bfs|suffix_array|height
 427D（https://codeforces.com/contest/427/problem/D）suffix_array|height|sa|lcp|trick|lcs
 1526E（https://codeforces.com/contest/1526/problem/E）suffix_array|reverse_thinking|comb|construction
-873F（https://codeforces.com/problemset/problem/873/F）
 611D（https://codeforces.com/problemset/problem/611/D）
 600A（https://codeforces.com/problemset/problem/600/A）
-873F（https://codeforces.com/contest/873/problem/F）
+873F（https://codeforces.com/contest/873/problem/F）suffix_array|reverse_thinking|lcp|prefix_sum
 
 =====================================AtCoder=====================================
 ABC141E（https://atcoder.jp/contests/abc141/tasks/abc141_e）suffix_array|height|binary_search|string_hash
@@ -1118,4 +1116,38 @@ class Solution:
                         break
                 if y > 1:
                     ac.st(y)
+        return
+
+    @staticmethod
+    def cf_837f(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/873/problem/F
+        tag: suffix_array|reverse_thinking|lcp|prefix_sum
+        """
+        n = ac.read_int()
+        a = ac.read_str()[::-1]
+        s = ac.read_str()[::-1]
+        sa, rk, height = SuffixArray().build([ord(w) - ord("a") for w in a], 26)
+
+        left = [1] * n
+        right = [n - 1] * n
+        stack = []
+        for i in range(1, n):
+            while stack and height[stack[-1]] > height[i]:
+                right[stack.pop()] = i - 1
+            stack.append(i)
+
+        stack = []
+        for i in range(n - 1, -1, -1):
+            while stack and height[stack[-1]] > height[i]:
+                left[stack.pop()] = i + 1
+            stack.append(i)
+
+        pre = ac.accumulate([1 - int(s[i]) for i in sa])
+        ans = max(height[i] * (pre[right[i] + 1] - pre[left[i] - 1]) for i in range(n))
+        # special case
+        for i in sa:
+            if s[i] == "0" and n - i > ans:
+                ans = n - i
+        ac.st(ans)
         return

@@ -26,7 +26,6 @@ P5446（https://www.luogu.com.cn/problem/P5446）
 ===================================CodeForces===================================
 1682A（https://codeforces.com/contest/1682/problem/A）palindromic|center_extension
 139（https://www.acwing.com/problem/content/141/）manacher|longest_palindrome_substring|binary_search|hash
-1823D（https://codeforces.com/problemset/problem/1823/D）
 1326D2（https://codeforces.com/problemset/problem/1326/D2）
 7D（https://codeforces.com/problemset/problem/7/D）
 835D（https://codeforces.com/problemset/problem/835/D）

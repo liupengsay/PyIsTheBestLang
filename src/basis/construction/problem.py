@@ -39,6 +39,7 @@ P8880（https://www.luogu.com.cn/problem/P8880）brain_teaser|construction|odd_e
 1469D（https://codeforces.com/contest/1469/problem/D）square|ceil|greedy|implemention
 1478B（https://codeforces.com/contest/1478/problem/B）brute_force|bag_dp|construction
 1682B（https://codeforces.com/contest/1682/problem/B）bitwise_and|construction|permutation_circle
+1823D（https://codeforces.com/contest/1823/problem/D）greedy|construction|palindrome
 
 ====================================AtCoder=====================================
 AGC007B（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser|math|construction
@@ -349,4 +350,33 @@ class Solution:
             b[ind[x]] = j
         ac.lst(a)
         ac.lst(b)
+        return
+
+    @staticmethod
+    def cf_1823d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1823/problem/D
+        tag: greedy|construction|palindrome
+        """
+        for _ in range(ac.read_int()):
+            n, k = ac.read_list_ints()
+            x = [0] + [x - 3 for x in ac.read_list_ints()]
+            c = [0] + [x - 3 for x in ac.read_list_ints()]
+            st = "abc"
+            ans = ["abc"]
+            ind = 0
+            for i in range(k):
+                dx = x[i + 1] - x[i]
+                dc = c[i + 1] - c[i]
+                if dx < dc:
+                    ac.st("NO")
+                    break
+                ans.append(chr(ord("d") + i) * dc)
+                for _ in range(dx - dc):
+                    ans.append(st[ind])
+                    ind += 1
+                    ind %= 3
+            else:
+                ac.st("YES")
+                ac.st("".join(ans))
         return
