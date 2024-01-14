@@ -16,6 +16,7 @@ Description：lexicographical_order|counter|high_to_low|low_to_high
 2801（https://leetcode.cn/problems/count-stepping-numbers-in-range/）digital_dp|inclusion_exclusion
 2827（https://leetcode.cn/problems/number-of-beautiful-integers-in-the-range/）digital_dp|inclusion_exclusion
 17（https://leetcode.cn/problems/number-of-2s-in-range-lcci/）counter|digital_dp
+100160（https://leetcode.cn/problems/maximum-number-that-sum-of-the-prices-is-less-than-or-equal-to-k/）bit_operation|binary_search|bit_operation|binary_search|digital_dp
 
 ====================================AtCoder=====================================
 ABC121D（https://atcoder.jp/contests/abc121/tasks/abc121_d）xor_property|digital_dp
@@ -33,6 +34,7 @@ P1836（https://www.luogu.com.cn/problem/P1836）digital_dp
 """
 from functools import lru_cache
 
+from src.basis.binary_search.template import BinarySearch
 from src.dp.digital_dp.template import DigitalDP
 from src.utils.fast_io import FastIO
 
@@ -47,6 +49,7 @@ class Solution:
         url: https://atcoder.jp/contests/abc121/tasks/abc121_d
         tag: xor_property|digital_dp
         """
+
         #  n^(n+1) == 1 (n%2==0)
         def count(num):
             @lru_cache(None)
@@ -88,6 +91,7 @@ class Solution:
         url: https://atcoder.jp/contests/abc208/tasks/abc208_e
         tag: brain_teaser|digital_dp
         """
+
         @lru_cache(None)
         def dfs(i, is_limit, is_num, pre):
             if i == m:
@@ -127,6 +131,7 @@ class Solution:
         url: https://leetcode.cn/problems/count-of-integers/
         tag: digital_dp|inclusion_exclusion
         """
+
         def check(num):
             @lru_cache(None)
             def dfs(i, cnt, is_limit, is_num):
@@ -163,6 +168,7 @@ class Solution:
         url: https://leetcode.cn/problems/count-stepping-numbers-in-range/
         tag: digital_dp|inclusion_exclusion
         """
+
         def check(num):
             @lru_cache(None)
             def dfs(i, is_limit, is_num, pre):
@@ -192,6 +198,7 @@ class Solution:
         url: https://leetcode.cn/problems/number-of-beautiful-integers-in-the-range/
         tag: digital_dp|inclusion_exclusion
         """
+
         def check(num):
             @lru_cache(None)
             def dfs(i, is_limit, is_num, odd, rest):
@@ -232,3 +239,35 @@ class Solution:
         """
         dd = DigitalDP()
         return dd.count_digit(high, d) - dd.count_digit(low - 1, d)
+
+    @staticmethod
+    def lc_100160(k: int, x: int) -> int:
+        """
+        url: https://leetcode.cn/problems/maximum-number-that-sum-of-the-prices-is-less-than-or-equal-to-k/description/
+        tag: bit_operation|binary_search|digital_dp
+        """
+
+        def check(n):
+            @lru_cache(None)
+            def dfs(i, is_limit, is_num, cnt):
+                if i == m:
+                    if is_num:
+                        return cnt
+                    return 0
+                res = 0
+                if not is_num:
+                    res += dfs(i + 1, False, False, cnt)
+                low = 0 if is_num else 1
+                high = int(st[i]) if is_limit else 1
+                for d in range(low, high + 1):
+                    res += dfs(i + 1, is_limit and high == d, True, cnt + int((m - i) % x == 0) * d)
+                return res
+
+            st = bin(n)[2:]
+            m = len(st)
+            cur = dfs(0, True, False, 0)
+            dfs.cache_clear()
+            return cur <= k
+
+        ans = BinarySearch().find_int_right(0, 10 ** 15, check)
+        return ans

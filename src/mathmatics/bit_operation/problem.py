@@ -24,7 +24,8 @@ Property：(4*i)^(4*i+1)^(4*i+2)^(4*i+3)=0  (2*n)^(2*n+1)=1 (a&b)^(a&c) = a&(b^c
 2275（https://leetcode.cn/problems/largest-combination-with-bitwise-and-greater-than-zero/）range_add|classical|st
 2527（https://leetcode.cn/problems/find-xor-beauty-of-array/description/）brute_force|brain_teaser|bit_operation
 2680（https://leetcode.cn/problems/maximum-or/description/）greedy|brute_force|prefix_suffix
-100087（https://leetcode.cn/problems/apply-operations-on-array-to-maximize-sum-of-squares/description/）bit_wise|bit_operation|greedy
+100087（https://leetcode.cn/problems/apply-operations-on-array-to-maximize-sum-of-squares/）bit_wise|bit_operation|greedy
+100160（https://leetcode.cn/problems/maximum-number-that-sum-of-the-prices-is-less-than-or-equal-to-k/）bit_operation|binary_search|bit_operation|binary_search|digital_dp
 
 =====================================LuoGu======================================
 P5657（https://www.luogu.com.cn/problem/P5657）bit_operation
@@ -73,6 +74,7 @@ from functools import reduce
 from operator import xor, or_
 from typing import List
 
+from src.basis.binary_search.template import BinarySearch
 from src.mathmatics.bit_operation.template import BitOperation
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
@@ -680,3 +682,26 @@ class Solution:
 
             ac.st(res[int("0b" + t, 2)][k])
         return
+
+    @staticmethod
+    def lc_100160(k: int, x: int) -> int:
+
+        """
+        url: https://leetcode.cn/problems/maximum-number-that-sum-of-the-prices-is-less-than-or-equal-to-k/description/
+        tag: bit_operation|binary_search|digital_dp
+        """
+
+        def check(num):
+            num += 1
+            cnt = 0
+            for i in range(x, 64, x):
+                n = 1 << (i - 1)
+                if n > num:
+                    break
+                cnt += (num // (n << 1)) * n
+                if num % (n << 1) > n:
+                    cnt += (num % (n << 1)) - n
+            return cnt <= k
+
+        ans = BinarySearch().find_int_right(0, 10 ** 15, check)
+        return ans

@@ -34,6 +34,7 @@ P8420（https://www.luogu.com.cn/problem/P8420）trie_like|greedy
 1902E（https://codeforces.com/contest/1902/problem/E）trie_like|prefix_count
 665E（https://codeforces.com/contest/665/problem/E）01-trie_like|get_cnt_smaller_xor
 817E（https://codeforces.com/contest/817/problem/E）01-trie_like|get_cnt_smaller_xor
+1777F（ttps://codeforces.com/problemset/problem/1777/F）
 
 =====================================AcWing=====================================
 144（https://www.acwing.com/problem/content/144/）trie_like|prefix_count

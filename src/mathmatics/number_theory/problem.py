@@ -76,7 +76,7 @@ ABC134D（https://atcoder.jp/contests/abc134/tasks/abc134_d）reverse_thinking|c
 196（https://www.acwing.com/problem/content/198/）counter
 198（https://www.acwing.com/problem/content/200/）anti_prime_number
 199（https://www.acwing.com/problem/content/description/201/）brute_force
-3727（https://www.acwing.com/solution/content/54479/）brain_teaser|base
+3727（https://www.acwing.com/problem/content/description/3730/）brain_teaser|base
 3999（https://www.acwing.com/problem/content/description/4002/）CF1295D
 4319（https://www.acwing.com/problem/content/4322/）prime_factorization|prefix_hash|counter
 4484（https://www.acwing.com/problem/content/4487/）base
@@ -94,7 +94,7 @@ from operator import mul
 from typing import List
 
 from src.mathmatics.gcd_like.template import GcdLike
-from src.mathmatics.number_theory.template import EulerPhi, NumFactor, PrimeSieve, NumTheory, PrimeJudge
+from src.mathmatics.number_theory.template import EulerPhi, NumFactor, PrimeSieve, NumTheory, PrimeJudge, NumBase
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
 
@@ -582,7 +582,6 @@ class Solution:
         tag: negative_base|classical
         """
 
-        # 负进制题
         def check(tmp):
             res = 0
             for num in tmp:
@@ -590,12 +589,12 @@ class Solution:
             return res
 
         ans = check(arr1) + check(arr2)
-        return NumberTheory().get_k_bin_of_n(ans, -2)
+        return NumBase().get_k_bin_of_n(ans, -2)
 
     @staticmethod
     def ac_3727(ac=FastIO()):
         """
-        url: https://www.acwing.com/solution/content/54479/
+        url: https://www.acwing.com/problem/content/description/3730/
         tag: brain_teaser|base
         """
         # brain_teaser转换成进制表达问题
