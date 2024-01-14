@@ -11,7 +11,7 @@ class PrimeFactor:
         # calculate the prime factorization of all numbers from 1 to self.n
         self.prime_factor = [[] for _ in range(self.n + 1)]
         # calculate all factors of all numbers from 1 to self.n, including 1 and the number itself
-        self.all_factor = [[1] for _ in range(self.n + 1)]
+        self.all_factor = [[], [1]] + [[1, i] for i in range(2, self.n + 1)]
         self.build()
         return
 
@@ -39,10 +39,14 @@ class PrimeFactor:
 
         # complexity is O(nlogn)
         for i in range(2, self.n + 1):
-            x = 1
+            x = i
             while x * i <= self.n:
                 self.all_factor[x * i].append(i)
+                if i != x:
+                    self.all_factor[x * i].append(x)
                 x += 1
+        for i in range(self.n + 1):
+            self.all_factor[i].sort()
         return
 
     def comb(self, a, b):

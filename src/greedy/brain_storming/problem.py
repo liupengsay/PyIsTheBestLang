@@ -44,10 +44,10 @@ Description：brain_teaser
 1946（https://leetcode.cn/problems/largest-number-after-mutating-substring/description/）greedy|classical
 1540（https://leetcode.cn/problems/can-convert-string-in-k-moves/）greedy|brain_teaser|pointer
 1121（https://leetcode.cn/problems/divide-array-into-increasing-sequences/description/）brain_teaser|greedy|classical|maximum
-P1286（https://www.luogu.com.cn/problem/P1286）brain_teaser|sorted_list
 
 =====================================LuoGu======================================
 P1031（https://www.luogu.com.cn/problem/P1031）greedy|prefix_sum|counter
+P1286（https://www.luogu.com.cn/problem/P1286）brain_teaser|sorted_list
 P1684（https://www.luogu.com.cn/problem/P1684）greedy
 P1658（https://www.luogu.com.cn/problem/P1658）greedy
 P2001（https://www.luogu.com.cn/problem/P2001）greedy|classical
@@ -155,6 +155,7 @@ P8887（https://www.luogu.com.cn/problem/P8887）brain_teaser|greedy
 1665C（https://codeforces.com/contest/1665/problem/C）graph|greedy
 1649B（https://codeforces.com/contest/1649/problem/B）maximum_greedy|classical
 1914E2（https://codeforces.com/contest/1914/problem/E2）greedy|custom_sort
+1929D（https://codeforces.com/contest/1920/problem/D）data_range|brute_force|reverse_thinking
 
 ====================================AtCoder=====================================
 ARC062A（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|greedy|custom_sort
@@ -1371,4 +1372,58 @@ class Solution:
                     break
             else:
                 ac.st("Impossible")
+        return
+
+    @staticmethod
+    def cf_1929d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1920/problem/D
+        tag: data_range|brute_force|reverse_thinking
+        """
+        ceil = 10 ** 18
+        for _ in range(ac.read_int()):
+            ac.get_random_seed()
+            n, q = ac.read_list_ints()
+            nums = [ac.read_list_ints() for _ in range(n)]
+            queries = ac.read_list_ints()
+            c = 0
+            ops = []
+            for i in range(n):
+                b, x = nums[i]
+                if b == 2:
+                    ops.append([2, x + 1, i, i])
+                    c *= (x + 1)
+                else:
+                    if not ops or ops[-1][0] != 1:
+                        ops.append([1, 1, i, i])
+                    else:
+                        ops[-1][1] += 1
+                        ops[-1][-1] = i
+                    c += 1
+                if c > ceil:
+                    break
+
+            ans = [0]*q
+            m = len(ops)
+            for i, kk in enumerate(queries):
+
+                cc = c
+                for ii in range(m - 1, -1, -1):
+                    bb, xx, ss, tt = ops[ii]
+                    if bb == 2:
+                        if cc // xx > kk:
+                            cc //= xx
+                        else:
+                            kk = kk % (cc // xx)
+                            if kk == 0:
+                                kk = (cc // xx)
+                            cc //= xx
+                    else:
+                        if cc - xx >= kk:
+                            cc -= xx
+                        else:
+                            cc -= xx
+                            ans[i] = nums[ss + kk - cc - 1][1]
+                            break
+            ac.lst(ans)
         return

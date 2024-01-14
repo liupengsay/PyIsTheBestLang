@@ -64,6 +64,7 @@ P8782（https://www.luogu.com.cn/problem/P8782）base|greedy|classical
 1823C（https://codeforces.com/contest/1823/problem/C）prime_factorization|greedy
 1744E2（https://codeforces.com/contest/1744/problem/E2）brute_force|factorization
 1612D（https://codeforces.com/contest/1612/problem/D）gcd_like
+1920C（https://codeforces.com/contest/1920/problem/C）brute_force|num_factor|gcd_like
 
 ====================================AtCoder=====================================
 ABC114D（https://atcoder.jp/contests/abc114/tasks/abc114_d）prime_factorization|counter
@@ -543,11 +544,11 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8778
         tag: brute_force|prime_factorization|O(n^0.25)|classical
         """
-        # brute_force素因子后O(n^0.25)是否为完全平方数与立方数
-        primes = NumberTheory().sieve_of_eratosthenes(4000)
+
+        primes = PrimeSieve().eratosthenes_sieve(4000)
 
         def check(xx):
-            for r in range(2, 6):
+            for r in range(2, 4):
                 a = int(xx ** (1 / r))
                 for ww in [a - 1, a, a + 1, a + 2]:
                     if ww ** r == xx:
@@ -763,3 +764,34 @@ class Solution:
         # 负进制转换模板题
         lst = NumberTheory().get_k_bin_of_n(n, -2)
         return "".join(str(x) for x in lst)
+
+    @staticmethod
+    def cf_1920c(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1920/problem/C
+        tag: brute_force|num_factor|gcd_like
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            ans = 0
+            a = ac.read_list_ints()
+            seen = set()
+            lst = NumFactor().get_all_factor(n)
+            m = len(lst)
+            for ii in range(m):
+                k = lst[ii]
+                if k in seen:
+                    continue
+                gcd = 0
+                for j in range(n - k):
+                    gcd = math.gcd(gcd, a[k + j] - a[j])
+                    if gcd == 1:
+                        break
+                if gcd == 1:
+                    continue
+                for w in lst[ii:]:
+                    if w % k == 0 and w not in seen:
+                        seen.add(w)
+                        ans += gcd != 1
+            ac.st(ans)
+        return
