@@ -43,7 +43,7 @@ P1368（https://www.luogu.com.cn/problem/P1368）
 432D（https://codeforces.com/problemset/problem/432/D）
 346B（https://codeforces.com/problemset/problem/346/B）
 494B（https://codeforces.com/problemset/problem/494/B）
-1200E（https://codeforces.com/problemset/problem/1200/E）
+1200E（https://codeforces.com/problemset/problem/1200/E）string_hash|kmp
 615C（https://codeforces.com/problemset/problem/615/C）
 1163D（https://codeforces.com/problemset/problem/1163/D）
 526D（https://codeforces.com/problemset/problem/526/D）
@@ -400,3 +400,30 @@ class Solution:
                     ans.append(i)
                     break
         return ans
+
+    @staticmethod
+    def cf_1200e(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1200/problem/E
+        tag: string_hash|kmp
+        """
+        ac.read_int()
+        lst = ac.read_list_strs()
+        ans = []
+        kmp = KMP()
+        for word in lst:
+            if not ans:
+                ans.extend(list(word))
+            else:
+                m = len(word)
+                k = ac.min(len(ans), m)
+                s = list(word[:k]) + ans[-k:]
+                z = kmp.z_function(s)
+                inter = 0
+                for i in range(1, k + 1):
+                    if z[-i] == i:
+                        inter = i
+                for j in range(inter, m):
+                    ans.append(word[j])
+        ac.st("".join(ans))
+        return
