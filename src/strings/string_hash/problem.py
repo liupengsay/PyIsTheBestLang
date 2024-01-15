@@ -6,7 +6,7 @@ Description：counter|sliding_window|double_random_mod|hash_crush
 214（https://leetcode.cn/problems/shortest-palindrome/）reverse_hash|string_hash|longest_prefix_palindrome_substring|kmp|manacher
 572（https://leetcode.cn/problems/subtree-of-another-tree/）tree_hash
 1044（https://leetcode.cn/problems/shortest-palindrome/）suffix_array|height|classical|string_hash
-1316（https://leetcode.cn/problems/shortest-palindrome/）string_hash
+1316（https://leetcode.cn/problems/distinct-echo-substrings）string_hash
 2156（https://leetcode.cn/problems/find-substring-with-given-hash-value/）reverse_hash|string_hash
 652（https://leetcode.cn/problems/find-duplicate-subtrees/）tree_hash
 1554（https://leetcode.cn/problems/strings-differ-by-one-character/）string_hash|trie
@@ -14,6 +14,8 @@ Description：counter|sliding_window|double_random_mod|hash_crush
 1948（https://leetcode.cn/problems/delete-duplicate-folders-in-system/）trie_like|tree_hash
 2261（https://leetcode.cn/problems/k-divisible-elements-subarrays/submissions/）string_hash
 187（https://leetcode-cn.com/problems/repeated-dna-sequences/）
+2851（https://leetcode.cn/problems/string-transformation/）string_hash|kmp|matrix_dp|matrix_fast_power
+2977（https://leetcode.cn/problems/minimum-cost-to-convert-string-ii/）string_hash|dp|dijkstra|trie
 
 =====================================LuoGu======================================
 P6140（https://www.luogu.com.cn/problem/P6140）greedy|implemention|lexicographical_order|string_hash|binary_search|reverse_order|lcs
@@ -28,7 +30,9 @@ P3370（https://www.luogu.com.cn/problem/P3370）string_hash
 1800D（https://codeforces.com/contest/1800/problem/D）prefix_suffix|hash
 514C（https://codeforces.com/problemset/problem/514/C）string_hash
 1200E（https://codeforces.com/problemset/problem/1200/E）string_hash|kmp
-580E（https://codeforces.com/problemset/problem/580/E）
+580E（https://codeforces.com/problemset/problem/580/E）segment_tree_hash|range_change|range_hash_reverse|circular_section
+452F（https://codeforces.com/contest/452/problem/F）segment_tree_hash|string_hash|point_set|range_hash|range_reverse
+
 
 ====================================AtCoder=====================================
 ABC141E（https://atcoder.jp/contests/abc141/tasks/abc141_e）binary_search|string_hash|check
@@ -51,8 +55,8 @@ from typing import List
 
 from src.basis.binary_search.template import BinarySearch
 from src.mathmatics.fast_power.template import MatrixFastPower
-from src.strings.string_hash.template import StringHash
-from src.utils.fast_io import FastIO
+from src.strings.string_hash.template import StringHash, PointSetRangeHashReverse, RangeChangeRangeHashReverse
+from src.utils.fast_io import FastIO, inf
 
 
 class Solution:
@@ -261,7 +265,7 @@ class Solution:
                 return True
             pre = dict()
             for i in range(x - 1, n):
-                cur = sh.query(i - x + 1, i)
+                cur = (sh1.query(i - x + 1, i), sh2.query(i - x + 1, i))
                 if cur in pre:
                     if i - pre[cur] >= x:
                         return True
@@ -271,8 +275,10 @@ class Solution:
 
         n = ac.read_int()
         s = ac.read_str()
-        sh = StringHash(n, s)
-        ac.st(BinarySearch().find_int_right(0, n, check))
+        sh1 = StringHash([ord(w) - ord("a") for w in s])
+        sh2 = StringHash([ord(w) - ord("a") for w in s])
+        ans = BinarySearch().find_int_right(0, n, check)
+        ac.st(ans)
         return
 
     @staticmethod
@@ -441,15 +447,19 @@ class Solution:
 
     @staticmethod
     def lc_2851(s: str, t: str, k: int) -> int:
-        # KMP与fast_power|转移，也可string_hash（超时）
+        """
+        url: https://leetcode.cn/problems/string-transformation/
+        tag: string_hash|kmp|matrix_dp|matrix_fast_power
+        """
         mod = 10 ** 9 + 7
         n = len(s)
-        sh = StringHash(3 * n + 1, t + "#" + s + s)
-        target = sh.query(0, n - 1)
-        p = sum(sh.query(i - n + 1, i) == target for i in range(2 * n, 3 * n))
+        sh1 = StringHash([ord(w) - ord("a") for w in t] + [26] + [ord(w) - ord("a") for w in s + s])
+        sh2 = StringHash([ord(w) - ord("a") for w in t] + [26] + [ord(w) - ord("a") for w in s + s])
+        target = (sh1.query(0, n - 1), sh2.query(0, n - 1))
+        p = sum((sh1.query(i - n + 1, i), sh2.query(0, n - 1)) == target for i in range(2 * n, 3 * n))
         q = n - p
         mat = [[p - 1, p], [q, q - 1]]
-        vec = [1, 0] if sh.query(n + 1, 2 * n) == target else [0, 1]
+        vec = [1, 0] if (sh1.query(n + 1, 2 * n), sh2.query(n + 1, 2 * n)) == target else [0, 1]
         res = MatrixFastPower().matrix_pow(mat, k, mod)
         ans = vec[0] * res[0][0] + vec[1] * res[0][1]
         return ans % mod
@@ -465,14 +475,16 @@ class Solution:
             pre = defaultdict(int)
             for i in range(n):
                 if i >= x - 1:
-                    pre[sh.query(i - x + 1, i)] += 1
+                    pre[(sh1.query(i - x + 1, i), sh2.query(i - x + 1, i))] += 1
             return max(pre.values()) >= k
 
         n, k = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
-        sh = StringHash(n, nums)
+        sh1 = StringHash(nums)
+        sh2 = StringHash(nums)
         ans = BinarySearch().find_int_right(0, n, check)
         ac.st(ans)
+
         return
 
     @staticmethod
@@ -538,44 +550,50 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6739
         tag: prefix_suffix|string_hash
         """
-        # prefix_suffixstring_hash
         n = ac.read_int()
         s = ac.read_str()
-        sth = StringHash(n, s)
+        if n % 2 == 0:
+            ac.st("NOT POSSIBLE")
+            return
+
+        sh1 = StringHash([ord(w) - ord("a") for w in s])
+        sh2 = StringHash([ord(w) - ord("a") for w in s])
 
         ans = dict()
         for i in range(n):
             if len(ans) > 1:
                 break
             if i < n // 2:
-                ss = sth.query(0, i - 1)
-                tt = sth.query(i + 1, n // 2)
-                pp = [(ss[j] * sth.pp[j][n // 2 - i] + tt[j]) % sth.mod[j] for j in range(2)]
+                ss = (sh1.query(0, i - 1), sh2.query(0, i - 1))
+                tt = (sh1.query(i + 1, n // 2), sh2.query(i + 1, n // 2))
+                a = (ss[0] * sh1.pp[n // 2 - i] + tt[0]) % sh1.mod
+                b = (ss[1] * sh2.pp[n // 2 - i] + tt[1]) % sh2.mod
 
-                rr = sth.query(n // 2 + 1, n - 1)
-                if pp == rr:
-                    ans[tuple(pp)] = i
+                if sh1.query(n // 2 + 1, n - 1) == a and sh2.query(n // 2 + 1, n - 1) == b:
+                    ans[(a, b)] = i
 
             elif i == n // 2:
-                pp = sth.query(0, n // 2 - 1)
-                rr = sth.query(n // 2 + 1, n - 1)
-                if pp == rr:
-                    ans[tuple(pp)] = i
+                a, b = sh1.query(0, n // 2 - 1), sh2.query(0, n // 2 - 1)
+                if sh1.query(n // 2 + 1, n - 1) == a and sh2.query(n // 2 + 1, n - 1) == b:
+                    ans[(a, b)] = i
             else:
-                pp = sth.query(0, n // 2 - 1)
+                ss = (sh1.query(n // 2, i - 1), sh2.query(n // 2, i - 1))
+                tt = (sh1.query(i + 1, n - 1), sh2.query(i + 1, n - 1))
+                a = (ss[0] * sh1.pp[n - 1 - i] + tt[0]) % sh1.mod
+                b = (ss[1] * sh2.pp[n - 1 - i] + tt[1]) % sh2.mod
 
-                ss = sth.query(n // 2, i - 1)
-                tt = sth.query(i + 1, n - 1)
-                rr = [(ss[j] * sth.pp[j][n - 1 - i] + tt[j]) % sth.mod[j] for j in range(2)]
-                if pp == rr:
-                    ans[tuple(pp)] = i
+                if sh1.query(0, n // 2 - 1) == a and sh2.query(0, n // 2 - 1) == b:
+                    ans[(a, b)] = i
         if not ans:
             ac.st("NOT POSSIBLE")
         elif len(ans) > 1:
             ac.st("NOT UNIQUE")
         else:
             i = list(ans.values())[0]
-            ac.st((s[:i] + s[i + 1:])[:n // 2])
+            if i >= n // 2:
+                ac.st(s[:n // 2])
+            elif i < n // 2:
+                ac.st(s[-(n // 2):])
         return
 
     @staticmethod
@@ -657,50 +675,23 @@ class Solution:
         return len(ans)
 
     @staticmethod
-    def lc_1104(s: str) -> str:
-        # 利用binary_search|string_hash确定具有最长长度的重复子串
-
-        def compute(x):
-            pre = set()
-            if x == 0:
-                return [0, 0]
-
-            for i in range(x - 1, n):
-                cur = sh.query(i - x + 1, i)
-                if tuple(cur) in pre:
-                    return [i - x + 1, i + 1]
-                pre.add(tuple(cur))
-            return [0, 0]
-
-        def check(x):
-            res = compute(x)
-            return res[1] > 0
-
-        n = len(s)
-        sh = StringHash(n, s)
-        length = BinarySearch().find_int_right(0, n - 1, check)
-        ans = compute(length)
-        return s[ans[0]: ans[1]]
-
-    @staticmethod
     def lc_1316(text: str) -> int:
         """
-        url: https://leetcode.cn/problems/shortest-palindrome/
+        url: https://leetcode.cn/problems/distinct-echo-substrings
         tag: string_hash
         """
-        # string_hash判断循环子串
         n = len(text)
-        sh = StringHash(n, text)
+        sh1 = StringHash([ord(w) - ord("a") for w in text])
+        sh2 = StringHash([ord(w) - ord("a") for w in text])
 
         ans = 0
         for x in range(1, n // 2 + 1):
             cur = set()
             for i in range(n - 2 * x + 1):
-                ans1 = sh.query(i, i + x - 1)
-                ans2 = sh.query(i + x, i + 2 * x - 1)
+                ans1 = (sh1.query(i, i + x - 1), sh2.query(i, i + x - 1))
+                ans2 = (sh1.query(i + x, i + 2 * x - 1), sh2.query(i + x, i + 2 * x - 1))
                 if ans1 == ans2:
-                    # 注意只有长度与hash值相同字符串才相同
-                    cur.add(tuple(ans1))
+                    cur.add(ans1)
             ans += len(cur)
         return ans
 
@@ -718,7 +709,7 @@ class Solution:
                 m = len(paths[i])
                 cur = set()
                 for j in range(ind, ind + m - x + 1):
-                    cur.add(sh.query(j, j + x - 1))
+                    cur.add((sh1.query(j, j + x - 1), sh2.query(j, j + x - 1)))
                 if not i:
                     pre = cur
                 else:
@@ -731,9 +722,9 @@ class Solution:
         for path in paths:
             lst.extend(path)
         n += 1
-        sh = StringHash(lst)
+        sh1 = StringHash(lst)
+        sh2 = StringHash(lst)
         ans = BinarySearch().find_int_right(0, min(len(p) for p in paths), check)
-
         return ans
 
     @staticmethod
@@ -875,7 +866,8 @@ class Solution:
         url: https://leetcode.cn/problems/longest-duplicate-substring/
         tag: suffix_array|height|classical|string_hash
         """
-        sh = StringHash([ord(w) - ord("a") for w in s])
+        sh1 = StringHash([ord(w) - ord("a") for w in s])
+        sh2 = StringHash([ord(w) - ord("a") for w in s])
         n = len(s)
 
         def check(x):
@@ -884,10 +876,10 @@ class Solution:
         def compute(x):
             pre = set()
             for ii in range(n - x + 1):
-                cur = sh.query(ii, ii + x - 1)
-                if cur in pre:
+                cur1, cur2 = sh1.query(ii, ii + x - 1), sh2.query(ii, ii + x - 1)
+                if (cur1, cur2) in pre:
                     return ii
-                pre.add(cur)
+                pre.add((cur1, cur2))
             return -1
 
         length = BinarySearch().find_int_right(0, n, check)
@@ -904,21 +896,26 @@ class Solution:
         """
         pre = set()
         m = len(words[0])
-        sh = StringHash([0] * m)
+        sh1 = StringHash([0] * m)
+        sh2 = StringHash([0] * m)
         for word in words:
             lst = [ord(w) - ord("a") for w in word]
             for j, w in enumerate(lst):
-                for i in range(2):
-                    sh.pre[i][j + 1] = (sh.pre[i][j] * sh.p[i] + w) % sh.mod[i]
+                sh1.pre[j + 1] = (sh1.pre[j] * sh1.p + w) % sh1.mod
+                sh2.pre[j + 1] = (sh2.pre[j] * sh2.p + w) % sh2.mod
+
             for j in range(m):
-                ll = sh.query(0, j - 1)
-                rr = sh.query(j + 1, m - 1)
-                cur = [0, 0]
-                for i in range(2):
-                    cur[i] = ((ll[i] * sh.p[i] + 26) * sh.pp[i][m - j - 1] + rr[i]) % sh.mod[i]
-                if tuple(cur) in pre:
+                ll = sh1.query(0, j - 1)
+                rr = sh1.query(j + 1, m - 1)
+                cur1 = ((ll * sh1.p + 26) * sh1.pp[m - j - 1] + rr) % sh1.mod
+
+                ll = sh2.query(0, j - 1)
+                rr = sh2.query(j + 1, m - 1)
+                cur2 = ((ll * sh2.p + 26) * sh2.pp[m - j - 1] + rr) % sh2.mod
+
+                if (cur1, cur2) in pre:
                     return True
-                pre.add(tuple(cur))
+                pre.add((cur1, cur2))
         return False
 
     @staticmethod
@@ -948,10 +945,12 @@ class Solution:
         tag: string_hash|implemention
         """
         n, m, k = ac.read_list_ints()
-        sh = StringHash([int(w) for w in ac.read_str()])
+        s = ac.read_str()
+        sh1 = StringHash([int(w) for w in s])
+        sh2 = StringHash([int(w) for w in s])
         ind = defaultdict(list)
         for i in range(m - 1, n):
-            cur = sh.query(i - m + 1, i)
+            cur = (sh1.query(i - m + 1, i), sh2.query(i - m + 1, i))
             ind[cur].append(i)
         ans = 0
         for lst in ind.values():
@@ -964,3 +963,130 @@ class Solution:
             ans += cur == k
         ac.st(ans)
         return
+
+    @staticmethod
+    def cf_452f(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/452/problem/F
+        tag: segment_tree_hash|string_hash|point_set|range_hash|range_reverse
+        """
+        n = ac.read_int()
+        tree1 = PointSetRangeHashReverse(n)
+        tree2 = PointSetRangeHashReverse(n)
+        nums = ac.read_list_ints_minus_one()
+        for num in nums:
+            tree1.point_set(num, num, 1)
+            tree2.point_set(num, num, 1)
+            if num == 0 or num == n - 1:
+                continue
+            length = ac.min(num + 1, n - num)
+            cur1 = [tree1.range_hash(num - length + 1, num), tree2.range_hash(num - length + 1, num)]
+            cur2 = [tree1.range_hash_reverse(num, num + length - 1), tree2.range_hash_reverse(num, num + length - 1)]
+            if cur1 != cur2:
+                ac.st("YES")
+                break
+        else:
+            ac.st("NO")
+        return
+
+    @staticmethod
+    def cf_580e(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/580/problem/E
+        tag: segment_tree_hash|range_change|range_hash_reverse|circular_section
+        """
+        n, m, k = ac.read_list_ints()
+        tree1 = RangeChangeRangeHashReverse(n, 10)
+        tree2 = RangeChangeRangeHashReverse(n, 10)
+        s = ac.read_str()
+        tree1.build([int(w) for w in s])
+        tree2.build([int(w) for w in s])
+        for _ in range(m + k):
+            lst = ac.read_list_ints()
+            if lst[0] == 1:
+                l, r, c = lst[1:]
+                tree1.range_change(l - 1, r - 1, c)
+                tree2.range_change(l - 1, r - 1, c)
+            else:
+                l, r, d = lst[1:]
+                if d == r - l + 1:
+                    ac.st("YES")
+                    continue
+                else:
+                    if tree1.range_hash(l - 1, r - d - 1) == tree1.range_hash(l + d - 1, r - 1):
+                        if tree2.range_hash(l - 1, r - d - 1) == tree2.range_hash(l + d - 1, r - 1):
+                            ac.st("YES")
+                        else:
+                            ac.st("NO")
+                    else:
+                        ac.st("NO")
+        return
+
+    @staticmethod
+    def lc_2977(source: str, target: str, original: List[str], changed: List[str], cost: List[int]) -> int:
+
+        """
+        url: https://leetcode.cn/problems/minimum-cost-to-convert-string-ii
+        tag: string_hash|dp|dijkstra|trie
+        """
+
+        sh1 = StringHash([ord(w) - ord("a") for w in source + target])
+        sh2 = StringHash([ord(w) - ord("a") for w in source + target])
+
+        has = dict()
+
+        nodes = set(original + changed)
+        for string in nodes:
+            lst = [len(string)]
+
+            p, mod = sh1.p, sh1.mod
+            state = 0
+            for w in string:
+                state *= p
+                state += ord(w) - ord("a")
+                state %= mod
+            lst.append(state)
+
+            p, mod = sh2.p, sh2.mod
+            state = 0
+            for w in string:
+                state *= p
+                state += ord(w) - ord("a")
+                state %= mod
+            lst.append(state)
+
+            has[tuple(lst)] = string
+
+        ind = {x: i for i, x in enumerate(nodes)}
+        m = len(ind)
+        dct = [[] for _ in range(m)]
+        for x, y, z in zip(original, changed, cost):
+            x = ind[x]
+            y = ind[y]
+            dct[x].append([y, z])
+        dis = []
+        for x in range(m):
+            dis.append(Dijkstra().get_shortest_path(dct, x))
+
+        n = len(source)
+        dp = [inf] * (n + 1)
+
+        exist = defaultdict(list)
+        for s in original:
+            exist[s[-1]].append(s)
+
+        dp[0] = 0
+        for i in range(n):
+            if source[i] == target[i]:
+                dp[i + 1] = dp[i]
+            for w in exist[source[i]]:
+                j = i - len(w) + 1
+                s1 = (i - j + 1, sh1.query(j, i), sh2.query(j, i))
+                t1 = (i - j + 1, sh1.query(j + n, i + n), sh2.query(j + n, i + n))
+                if s1 in has and t1 in has:
+                    x, y = ind[has[s1]], ind[has[t1]]
+                    z = dis[x][y]
+                    if dp[j] + z < dp[i + 1]:
+                        dp[i + 1] = dp[j] + z
+
+        return dp[-1] if dp[-1] < inf else -1

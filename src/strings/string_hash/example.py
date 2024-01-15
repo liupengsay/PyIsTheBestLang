@@ -1,6 +1,8 @@
 import random
 import unittest
 
+from src.strings.string_hash.template import PointSetRangeHashReverse, RangeChangeRangeHashReverse
+
 
 class TestGeneral(unittest.TestCase):
 
@@ -46,6 +48,55 @@ class TestGeneral(unittest.TestCase):
             if st[i:i + m] == target:
                 cnt -= 1
         assert cnt == 0
+        return
+
+    def test_point_set_range_hash_reverse(self):
+
+        n = 10 ** 4
+        nums = [0] * n
+        tree = PointSetRangeHashReverse(n)
+        for _ in range(1000):
+            i = random.randint(0, n - 1)
+            num = random.randint(0, n - 1)
+            nums[i] = num
+            tree.point_set(i, i, num)
+            ll = random.randint(0, n - 1)
+            rr = random.randint(ll, n - 1)
+            res = 0
+            for j in range(ll, rr + 1):
+                res = (res * tree.p + nums[j]) % tree.mod
+            assert res == tree.range_hash(ll, rr)
+            res = 0
+            for j in range(rr, ll - 1, -1):
+                res = (res * tree.p + nums[j]) % tree.mod
+            assert res == tree.range_hash_reverse(ll, rr)
+        assert nums == tree.get()
+        return
+
+    def test_range_change_range_hash_reverse(self):
+
+        n = 10 ** 4
+        nums = [0] * n
+        tree = RangeChangeRangeHashReverse(n)
+        for _ in range(1000):
+            ll = random.randint(0, n - 1)
+            rr = random.randint(ll, n - 1)
+            num = random.randint(0, n - 1)
+            for i in range(ll, rr + 1):
+                nums[i] = num
+            tree.range_change(ll, rr, num)
+
+            ll = random.randint(0, n - 1)
+            rr = random.randint(ll, n - 1)
+            res = 0
+            for j in range(ll, rr + 1):
+                res = (res * tree.p + nums[j]) % tree.mod
+            assert res == tree.range_hash(ll, rr)
+            res = 0
+            for j in range(rr, ll - 1, -1):
+                res = (res * tree.p + nums[j]) % tree.mod
+            assert res == tree.range_hash_reverse(ll, rr)
+        assert nums == tree.get()
         return
 
 
