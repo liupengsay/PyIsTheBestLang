@@ -13,6 +13,7 @@ Description：string|bit_operation
 1707（https://leetcode.cn/problems/maximum-xor-with-an-element-from-array/）sort|offline_query|01-trie_like
 1938（https://leetcode.cn/problems/maximum-genetic-difference-query/）dfs|back_track|01-trie_like|maximum_xor
 1032（https://leetcode.cn/problems/stream-of-characters/description/）trie_like|classical|reverse_order
+1554（https://leetcode.cn/problems/strings-differ-by-one-character/）string_hash|trie
 
 =====================================LuoGu======================================
 P8306（https://www.luogu.com.cn/problem/P8306）trie_like
@@ -71,11 +72,11 @@ class Solution:
         sts = StringTrieSearch(sum(len(x) for x in smalls) + 1, n)
         for i, word in enumerate(smalls):
             if word:
-                sts.add(word, i + 1)
+                sts.add([ord(w) - ord("a") for w in word], i + 1)
 
         ans = [[] for _ in range(n)]
         for i in range(len(big)):
-            for j in sts.search(big[i:]):
+            for j in sts.search([ord(w) - ord("a") for w in big[i:]]):
                 ans[j - 1].append(i)
         return ans
 
@@ -93,12 +94,12 @@ class Solution:
                 self.dct = defaultdict(int)
 
             def insert(self, key: str, val: int) -> None:
-                self.trie.add(key, val - self.dct[key])
+                self.trie.add([ord(w) - ord("a") for w in key], val - self.dct[key])
                 self.dct[key] = val
                 return
 
             def sum(self, prefix: str) -> int:
-                return self.trie.count_end(prefix)
+                return self.trie.count_end([ord(w) - ord("a") for w in prefix])
 
         return MapSum()
 
@@ -170,10 +171,10 @@ class Solution:
         for i in range(2):
             pre = 0
             for j, word in enumerate(words):
-                ans -= trie.count(word[::-1]) * 2
+                ans -= trie.count([ord(w)-ord("a") for w in word[::-1]]) * 2
                 ans += j * len(word) + pre
                 pre += len(word)
-                trie.add(word)
+                trie.add([ord(w) - ord("a") for w in word])
             if i == 0:
                 words.reverse()
                 trie.initial()
@@ -239,8 +240,8 @@ class Solution:
         """
         trie = StringTriePrefix(sum(len(x) for x in words), len(words))
         for word in words:
-            trie.add(word)
-        return [trie.count(word) for word in words]
+            trie.add([ord(w) - ord("a") for w in word])
+        return [trie.count([ord(w) - ord("a") for w in word]) for word in words]
 
     @staticmethod
     def lg_p1481(ac=FastIO()):
@@ -253,7 +254,7 @@ class Solution:
         trie = StringTrieSearch(sum(len(x) for x in words), n)
         ans = 0
         for i in range(n):
-            ans = ac.max(ans, trie.add_cnt(words[i], i + 1))
+            ans = ac.max(ans, trie.add_cnt([ord(w) - ord("a") for w in words[i]], i + 1))
         ac.st(ans)
         return
 
@@ -460,9 +461,9 @@ class Solution:
         n, m = ac.read_list_ints()
         trie = StringTriePrefix(10 ** 6, n)
         for i in range(n):
-            trie.add_end(ac.read_str(), 1)
+            trie.add_end([ord(w) - ord("a") for w in ac.read_str()], 1)
         for _ in range(m):
-            ac.st(trie.count_pre_end(ac.read_str()))
+            ac.st(trie.count_pre_end([ord(w) - ord("a") for w in ac.read_str()]))
         return
 
     @staticmethod
@@ -606,7 +607,7 @@ class Solution:
         trie = StringTrieSearch(m * length, m, 2)
         for i in range(m):
             word = ac.read_str()
-            trie.add_bin(word, i + 1)
+            trie.add_bin([ord(w) - ord("a") for w in word], i + 1)
 
         ans = inf
         stack = [(0, 0, 0)]
@@ -820,3 +821,18 @@ class Solution:
                 trie.remove(~i)
         ans = [query[node][val] for node, val in queries]
         return ans
+
+    @staticmethod
+    def lc_1554(words: List[str]) -> bool:
+        """
+        url: https://leetcode.cn/problems/strings-differ-by-one-character/
+        tag: string_hash|trie
+        """
+        n, m = len(words), len(words[0])
+        trie = StringTrieSearch(m*n, n, 26)
+        for i, word in enumerate(words):
+            lst = [ord(w) - ord("a") for w in word]
+            if trie.search_for_one_difference(lst):
+                return True
+            trie.add_int(lst, i+1)
+        return False
