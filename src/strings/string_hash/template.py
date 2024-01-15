@@ -21,5 +21,6 @@ class StringHash:
         # assert 0 <= x <= y <= self.n - 1
         if y < x:
             return 0, 0
+        # with length  y - x + 1
         ans = tuple((self.pre[i][y + 1] - self.pre[i][x] * self.pp[i][y - x + 1]) % self.mod[i] for i in range(2))
         return ans

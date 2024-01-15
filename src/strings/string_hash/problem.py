@@ -5,17 +5,15 @@ Description：counter|sliding_window|double_random_mod|hash_crush
 ====================================LeetCode====================================
 214（https://leetcode.cn/problems/shortest-palindrome/）reverse_hash|string_hash|longest_prefix_palindrome_substring|kmp|manacher
 572（https://leetcode.cn/problems/subtree-of-another-tree/）tree_hash
-1044（https://leetcode.cn/problems/shortest-palindrome/）binary_search|string_hash
+1044（https://leetcode.cn/problems/shortest-palindrome/）suffix_array|height|classical|string_hash
 1316（https://leetcode.cn/problems/shortest-palindrome/）string_hash
 2156（https://leetcode.cn/problems/find-substring-with-given-hash-value/）reverse_hash|string_hash
 652（https://leetcode.cn/problems/find-duplicate-subtrees/）tree_hash
-1554（https://leetcode.cn/problems/strings-differ-by-one-character/）prefix_suffix|hash
+1554（https://leetcode.cn/problems/strings-differ-by-one-character/）string_hash|trie
 1923（https://leetcode.cn/problems/longest-common-subpath/）binary_search|rolling_hash
 1948（https://leetcode.cn/problems/delete-duplicate-folders-in-system/）trie_like|tree_hash
 2261（https://leetcode.cn/problems/k-divisible-elements-subarrays/submissions/）string_hash
 187（https://leetcode-cn.com/problems/repeated-dna-sequences/）
-1044（https://leetcode-cn.com/problems/longest-duplicate-substring/）
-
 
 =====================================LuoGu======================================
 P6140（https://www.luogu.com.cn/problem/P6140）greedy|implemention|lexicographical_order|string_hash|binary_search|reverse_order|lcs
@@ -27,10 +25,9 @@ P6739（https://www.luogu.com.cn/problem/P6739）prefix_suffix|string_hash
 P3370（https://www.luogu.com.cn/problem/P3370）string_hash
 
 ===================================CodeForces===================================
-1800D（https://codeforces.com/problemset/problem/1800/D）prefix_suffix|hash
+1800D（https://codeforces.com/contest/1800/problem/D）prefix_suffix|hash
 514C（https://codeforces.com/problemset/problem/514/C）string_hash
-1200E（https://codeforces.com/problemset/problem/1200/E）
-1800D（https://codeforces.com/problemset/problem/1800/D）
+1200E（https://codeforces.com/problemset/problem/1200/E）string_hash|kmp
 580E（https://codeforces.com/problemset/problem/580/E）
 
 ====================================AtCoder=====================================
@@ -42,7 +39,7 @@ ABC141E（https://atcoder.jp/contests/abc141/tasks/abc141_e）binary_search|stri
 157（https://www.acwing.com/problem/content/description/159/）tree_hash|tree_minimum_expression
 
 =====================================LibraryChecker=====================================
-1（https://ac.nowcoder.com/acm/contest/64384/D）
+1（https://ac.nowcoder.com/acm/contest/64384/D）string_hash|implemention
 2（https://www.luogu.com.cn/problem/solution/UVA11019）
 
 """
@@ -191,12 +188,12 @@ class Solution:
         return list(repeat)
 
     @staticmethod
-    def cf_1800d(ac=FastIO()):
+    def cf_1800d_1(ac=FastIO()):
         """
-        url: https://codeforces.com/problemset/problem/1800/D
+        url: https://codeforces.com/contest/1800/problem/D
         tag: prefix_suffix|hash
         """
-        # 字符串prefix_suffixhash|和，两个hash避免碰撞
+
         n = 2 * 10 ** 5
         p1 = random.randint(26, 100)
         p2 = random.randint(26, 100)
@@ -233,6 +230,23 @@ class Solution:
                 pre1 = (pre1 * p1) % mod1 + ord(s[i]) - ord("a")
                 pre2 = (pre2 * p2) % mod2 + ord(s[i]) - ord("a")
             ac.st(len(ans))
+        return
+
+    @staticmethod
+    def cf_1800d_2(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1800/problem/D
+        tag: prefix_suffix|hash
+        """
+
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            s = ac.read_str()
+            ans = n - 1
+            for i in range(2, n):
+                if s[i] == s[i - 2]:
+                    ans -= 1
+            ac.st(ans)
         return
 
     @staticmethod
@@ -565,48 +579,6 @@ class Solution:
         return
 
     @staticmethod
-    def lc_1554(lst: List[str]) -> bool:
-        """
-        url: https://leetcode.cn/problems/strings-differ-by-one-character/
-        tag: prefix_suffix|hash
-        """
-        # 字符串prefix_suffixhash求解
-        m = len(lst[0])
-        p = [random.randint(26, 100), random.randint(26, 100)]
-        mod = [random.randint(10 ** 9 + 7, 2 ** 31 - 1), random.randint(10 ** 9 + 7, 2 ** 31 - 1)]
-
-        pre_hash = []
-        post_hash = []
-        for s in lst:
-            pre = [[0], [0]]
-            pp = [[1], [1]]
-            for w in s:
-                for i in range(2):
-                    pre[i].append((pre[i][-1] * p[i] + ord(w) - ord("a")) % mod[i])
-                    pp[i].append((pp[i][-1] * p[i]) % mod[i])
-            pre_hash.append(pre[:])
-
-            pre = [[0], [0]]
-            pp = [[1], [1]]
-            for w in s[::-1]:
-                for i in range(2):
-                    pre[i].append((pre[i][-1] * p[i] + ord(w) - ord("a")) % mod[i])
-                    pp[i].append((pp[i][-1] * p[i]) % mod[i])
-            post_hash.append([p[::-1] for p in pre])
-
-        n = len(lst)
-        for i in range(m):
-            pre = set()
-            for j in range(n):
-                va = tuple()
-                for k in range(2):
-                    va += tuple([pre_hash[j][k][i]]) + tuple([post_hash[j][k][i + 1]])
-                if va in pre:
-                    return True
-                pre.add(va)
-        return False
-
-    @staticmethod
     def lc_1948(paths: List[List[str]]) -> List[List[str]]:
         """
         url: https://leetcode.cn/problems/delete-duplicate-folders-in-system/
@@ -846,4 +818,149 @@ class Solution:
                 for i in range(2):
                     cur[i] = (cur[i] * p[i] + w) % mod[i]
             ac.st("YES" if (k, cur[0], cur[1]) in ans else "NO")
+        return
+
+    @staticmethod
+    def cf_1200e(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1200/problem/E
+        tag: string_hash|kmp
+        """
+        ac.read_int()
+        lst = ac.read_list_strs()
+        n = sum(len(s) for s in lst)
+        p = [random.randint(26, 100), random.randint(26, 100)]
+        mod = [random.randint(10 ** 9 + 7, 2 ** 31 - 1), random.randint(10 ** 9 + 7, 2 ** 31 - 1)]
+        pre = [[0] * (n + 1), [0] * (n + 1)]
+        pp = [[1] * (n + 1), [1] * (n + 1)]
+        for j in range(n):
+            for i in range(2):
+                pp[i][j + 1] = (pp[i][j] * p[i]) % mod[i]
+
+        def query1(x, y):
+            if y < x:
+                return 0, 0
+            res = tuple((pre[ii][y + 1] - pre[ii][x] * pp[ii][y - x + 1]) % mod[ii] for ii in range(2))
+            return res
+
+        def query2(x, y):
+            if y < x:
+                return 0, 0
+            res = tuple((cur[ii][y + 1] - cur[ii][x] * pp[ii][y - x + 1]) % mod[ii] for ii in range(2))
+            return res
+
+        ans = []
+        k = 0
+        for word in lst:
+            m = len(word)
+            cur = [[0] * (m + 1), [0] * (m + 1)]
+            inter = 0
+            for j, w in enumerate(word):
+                for i in range(2):
+                    cur[i][j + 1] = (cur[i][j] * p[i] + ord(w)) % mod[i]
+                if query1(k - j - 1, k - 1) == query2(0, j):
+                    inter = j + 1
+            for j in range(inter, m):
+                w = word[j]
+                ans.append(w)
+                for i in range(2):
+                    pre[i][k + 1] = (pre[i][k] * p[i] + ord(w)) % mod[i]
+                k += 1
+        ac.st("".join(ans))
+        return
+
+    @staticmethod
+    def lc_1044(s: str) -> str:
+        """
+        url: https://leetcode.cn/problems/longest-duplicate-substring/
+        tag: suffix_array|height|classical|string_hash
+        """
+        sh = StringHash([ord(w) - ord("a") for w in s])
+        n = len(s)
+
+        def check(x):
+            return compute(x) > -1
+
+        def compute(x):
+            pre = set()
+            for ii in range(n - x + 1):
+                cur = sh.query(ii, ii + x - 1)
+                if cur in pre:
+                    return ii
+                pre.add(cur)
+            return -1
+
+        length = BinarySearch().find_int_right(0, n, check)
+        if length == 0:
+            return ""
+        i = compute(length)
+        return s[i:i + length]
+
+    @staticmethod
+    def lc_1554(words: List[str]) -> bool:
+        """
+        url: https://leetcode.cn/problems/strings-differ-by-one-character/
+        tag: string_hash|trie
+        """
+        pre = set()
+        m = len(words[0])
+        sh = StringHash([0] * m)
+        for word in words:
+            lst = [ord(w) - ord("a") for w in word]
+            for j, w in enumerate(lst):
+                for i in range(2):
+                    sh.pre[i][j + 1] = (sh.pre[i][j] * sh.p[i] + w) % sh.mod[i]
+            for j in range(m):
+                ll = sh.query(0, j - 1)
+                rr = sh.query(j + 1, m - 1)
+                cur = [0, 0]
+                for i in range(2):
+                    cur[i] = ((ll[i] * sh.p[i] + 26) * sh.pp[i][m - j - 1] + rr[i]) % sh.mod[i]
+                if tuple(cur) in pre:
+                    return True
+                pre.add(tuple(cur))
+        return False
+
+    @staticmethod
+    def lc_2156(s: str, p: int, modulo: int, k: int, hash_value: int) -> str:
+        """
+        url: https://leetcode.cn/problems/find-substring-with-given-hash-value
+        tag: string_hash|reverse_order
+        """
+        ans = -1
+        n = len(s)
+        pp = pow(p, k - 1, modulo)
+        post = 0
+        for i in range(n - 1, -1, -1):
+            post = post * p + ord(s[i]) - ord("a") + 1
+            post %= modulo
+            if post == hash_value and i + k - 1 <= n - 1:
+                ans = i
+            if i + k - 1 <= n - 1:
+                post -= (ord(s[i + k - 1]) - ord("a") + 1) * pp
+                post %= modulo
+        return s[ans: ans + k]
+
+    @staticmethod
+    def library_check_1(ac=FastIO()):
+        """
+        url: https://ac.nowcoder.com/acm/contest/64384/D
+        tag: string_hash|implemention
+        """
+        n, m, k = ac.read_list_ints()
+        sh = StringHash([int(w) for w in ac.read_str()])
+        ind = defaultdict(list)
+        for i in range(m - 1, n):
+            cur = sh.query(i - m + 1, i)
+            ind[cur].append(i)
+        ans = 0
+        for lst in ind.values():
+            cur = 0
+            pre = -m
+            for i in lst:
+                if i - pre >= m:
+                    cur += 1
+                    pre = i
+            ans += cur == k
+        ac.st(ans)
         return
