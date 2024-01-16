@@ -60,6 +60,7 @@ P1368（https://www.luogu.com.cn/problem/P1368）
 162（https://www.acwing.com/problem/content/162/）z_function|template
 3826（https://www.acwing.com/problem/content/3826/）kmp|z_function
 
+
 =====================================LibraryChecker=====================================
 1（https://www.luogu.com.cn/training/53971）
 2（https://loj.ac/p/103）
