@@ -3,17 +3,16 @@ Algorithm：kmp
 Description：string|prefix_suffix
 
 ====================================LeetCode====================================
-28（https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/）
+28（https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/）kmp|find
 214（https://leetcode.cn/problems/shortest-palindrome/）longest_palindrome_prefix
 796（https://leetcode.cn/problems/rotate-string/）rotate_string
 25（https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/）find|kmp|substring
 1392（https://leetcode.cn/problems/longest-happy-prefix/）longest_prefix_suffix|kmp|z_function|template
-2223（https://leetcode.cn/problems/longest-happy-prefix/）z_function
-6918（https://leetcode.cn/problems/shortest-string-that-contains-three-strings/）kmp|prefix_suffix|greedy|brain_teaser
+2223（https://leetcode.cn/problems/sum-of-scores-of-built-strings）z_function
+2800（https://leetcode.cn/problems/shortest-string-that-contains-three-strings/）kmp|prefix_suffix|greedy|brain_teaser
 2851（https://leetcode.cn/problems/string-transformation/description/）kmp|matrix_fast_power|string_hash
-100207（https://leetcode.com/contest/weekly-contest-380/problems/find-beautiful-indices-in-the-given-array-ii/）kmp|find
-686（https://leetcode.cn/problems/repeated-string-match/）
-1316（https://leetcode.cn/problems/distinct-echo-substrings/）
+3008（https://leetcode.cn/problems/find-beautiful-indices-in-the-given-array-ii/）kmp|find
+686（https://leetcode.cn/problems/repeated-string-match/）kmp|find|greedy
 2800（https://leetcode.cn/problems/shortest-string-that-contains-three-strings/）
 1397（https://leetcode.cn/problems/find-all-good-strings/）
 459（https://leetcode.cn/problems/repeated-substring-pattern/）
@@ -36,12 +35,11 @@ P1368（https://www.luogu.com.cn/problem/P1368）
 
 ===================================CodeForces===================================
 1326D2（https://codeforces.com/problemset/problem/1326/D2）manacher|greedy|prefix_suffix|longest_prefix_suffix|palindrome_substring
-432D（https://codeforces.com/contest/432/problem/D）kmp|z_function
+432D（https://codeforces.com/contest/432/problem/D）kmp|z-function|sorted_list
 25E（https://codeforces.com/contest/25/problem/E）kmp|prefix_suffix|greedy|longest_common_prefix_suffix
-126B（https://codeforces.com/problemset/problem/126/B）
-471D（https://codeforces.com/problemset/problem/471/D）
-432D（https://codeforces.com/problemset/problem/432/D）
-346B（https://codeforces.com/problemset/problem/346/B）
+126B（https://codeforces.com/contest/126/problem/B）kmp|z-function|classical|brute_force
+471D（https://codeforces.com/contest/471/problem/D）kmp|brain_teaser|classical|diff_array
+346B（https://codeforces.com/contest/346/problem/B）kmp|lcs|matrix_dp
 494B（https://codeforces.com/problemset/problem/494/B）
 1200E（https://codeforces.com/problemset/problem/1200/E）string_hash|kmp
 615C（https://codeforces.com/problemset/problem/615/C）
@@ -58,10 +56,9 @@ P1368（https://www.luogu.com.cn/problem/P1368）
 496B（https://codeforces.com/problemset/problem/496/B）
 
 =====================================AcWing=====================================
-
-141（https://www.acwing.com/problem/content/143/）kmp|circular_section
-160（https://www.acwing.com/problem/content/162/）z_function|template
-3823（https://www.acwing.com/problem/content/3826/）kmp|z_function
+143（https://www.acwing.com/problem/content/143/）kmp|circular_section
+162（https://www.acwing.com/problem/content/162/）z_function|template
+3826（https://www.acwing.com/problem/content/3826/）kmp|z_function
 
 =====================================LibraryChecker=====================================
 1（https://www.luogu.com.cn/training/53971）
@@ -92,6 +89,7 @@ from collections import Counter
 from itertools import permutations
 from typing import List
 
+from src.data_structure.sorted_list.template import SortedList
 from src.mathmatics.fast_power.template import MatrixFastPower
 from src.strings.kmp.template import KMP
 from src.utils.fast_io import FastIO
@@ -107,7 +105,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3375
         tag: longest_prefix_suffix|find
         """
-        # KMP字符串匹配
         s1 = ac.read_str()
         s2 = ac.read_str()
         m, n = len(s1), len(s2)
@@ -124,7 +121,6 @@ class Solution:
         url: https://codeforces.com/problemset/problem/1326/D2
         tag: manacher|greedy|prefix_suffix|longest_prefix_suffix|palindrome_substring
         """
-        #  KMP 最长回文前缀与后缀
         for _ in range(ac.read_int()):
             s = ac.read_str()
             n = len(s)
@@ -139,16 +135,10 @@ class Solution:
                 ac.st(s)
                 continue
 
-            mid = s[i:j + 1]
-            a = KMP().find_longest_palindrome(s)
-            s1 = mid[:a]
-
-            a = KMP().find_longest_palindrome(s, "suffix")
-            s2 = mid[-a:]
-            if len(s1) > len(s2):
-                ac.st(s[:i] + s1 + s[j + 1:])
-            else:
-                ac.st(s[:i] + s2 + s[j + 1:])
+            a = KMP().find_longest_palindrome(s[i:j + 1])
+            b = KMP().find_longest_palindrome(s[i:j + 1], "suffix")
+            ans = s[:i + a] + s[j + 1:] if a > b else s[:i] + s[j - b + 1:]
+            ac.st(ans)
         return
 
     @staticmethod
@@ -157,7 +147,6 @@ class Solution:
         url: https://leetcode.cn/problems/shortest-palindrome/
         tag: longest_palindrome_prefix
         """
-        #  KMP 最长回文前缀
         k = KMP().find_longest_palindrome(s)
         return s[k:][::-1] + s
 
@@ -172,6 +161,10 @@ class Solution:
 
     @staticmethod
     def lc_28(haystack: str, needle: str) -> int:
+        """
+        url: https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/
+        tag: kmp|find
+        """
         ans = KMP().find(haystack, needle)
         return ans[0] if ans else -1
 
@@ -181,17 +174,15 @@ class Solution:
         url: https://leetcode.cn/problems/longest-happy-prefix/
         tag: longest_prefix_suffix|kmp|z_function|template
         """
-        # 字符串的最长非空真前缀（同时也是非空真后缀）
-        lst = KMP().prefix_function(s)
-        return s[:lst[-1]]
+        pi = KMP().prefix_function(s)
+        return s[:pi[-1]]
 
     @staticmethod
     def lc_2223(s: str) -> int:
         """
-        url: https://leetcode.cn/problems/longest-happy-prefix/
+        url: https://leetcode.cn/problems/sum-of-scores-of-built-strings
         tag: z_function
         """
-        # z 函数最长公共前缀
         ans = sum(KMP().z_function(s)) + len(s)
         return ans
 
@@ -199,9 +190,9 @@ class Solution:
     def lg_p4391(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P4391
-        tag: brain_teaser|kmp|n-pi[n-1]
+        tag: brain_teaser|kmp|n-pi[n-1]|classical
         """
-        # 最小的循环子串使得其不断重复包含给定字符串
+
         n = ac.read_int()
         s = ac.read_str()
         pi = KMP().prefix_function(s)
@@ -209,43 +200,11 @@ class Solution:
         return
 
     @staticmethod
-    def cf_432d(ac=FastIO()):
-        """
-        url: https://codeforces.com/contest/432/problem/D
-        tag: kmp|z_function
-        """
-        # z函数与kmp算法共同，并reverse_order|counter
-        s = ac.read_str()
-
-        n = len(s)
-        z = KMP().z_function(s)
-        z[0] = n
-        ans = []
-        for i in range(n - 1, -1, -1):
-            if z[i] == n - i:
-                ans.append([n - i, 0])
-        z.sort()
-
-        j = n - 1
-        m = len(ans)
-        for i in range(m - 1, -1, -1):
-            x = ans[i][0]
-            while j >= 0 and z[j] >= x:
-                j -= 1
-            ans[i][1] = n - j - 1
-
-        ac.st(m)
-        for a in ans:
-            ac.lst(a)
-        return
-
-    @staticmethod
-    def ac_141(ac=FastIO()):
+    def ac_143(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/143/
         tag: kmp|circular_section
         """
-        # 利用KMP求每个字符串前缀的最小circular_section
         ind = 0
         while True:
             n = ac.read_int()
@@ -256,7 +215,7 @@ class Solution:
             ac.st(f"Test case #{ind}")
             pi = KMP().prefix_function(s)
             for i in range(1, n):
-                if i + 1 - pi[i] and (i + 1) % (i + 1 - pi[i]) == 0 and (i + 1) // (i + 1 - pi[i]) > 1:
+                if pi[i] and (i + 1) % (i + 1 - pi[i]) == 0:
                     ac.lst([i + 1, (i + 1) // (i + 1 - pi[i])])
             ac.st("")
         return
@@ -267,7 +226,7 @@ class Solution:
         url: https://www.acwing.com/problem/content/162/
         tag: z_function|template
         """
-        # z函数模板题
+
         n, m, q = ac.read_list_ints()
         s = ac.read_str()
         t = ac.read_str()
@@ -285,7 +244,7 @@ class Solution:
         url: https://codeforces.com/contest/25/problem/E
         tag: kmp|prefix_suffix|greedy|longest_common_prefix_suffix
         """
-        # kmp求字符串之间的最长公共prefix_suffix，greedy拼接
+
         s = [ac.read_str() for _ in range(3)]
 
         def check(a, b):
@@ -308,7 +267,7 @@ class Solution:
         return
 
     @staticmethod
-    def lc_6918(aa: str, bb: str, cc: str) -> str:
+    def lc_2800(aa: str, bb: str, cc: str) -> str:
         """
         url: https://leetcode.cn/problems/shortest-string-that-contains-three-strings/
         tag: kmp|prefix_suffix|greedy|brain_teaser
@@ -323,7 +282,6 @@ class Solution:
             x = f[-1]
             return a + b[x:]
 
-        # kmp求字符串之间的最长公共prefix_suffix，greedy拼接
         s = [aa, bb, cc]
         ind = list(range(3))
         ans = "".join(s)
@@ -338,9 +296,9 @@ class Solution:
     def lc_2851(s: str, t: str, k: int) -> int:
         """
         url: https://leetcode.cn/problems/string-transformation/description/
-        tag: kmp|matrix_fast_power|string_hash
+        tag: kmp|matrix_fast_power|string_hash|brain_teaser
         """
-        # KMP与fast_power|转移，也可string_hash
+
         n = len(s)
         mod = 10 ** 9 + 7
         kmp = KMP()
@@ -354,40 +312,29 @@ class Solution:
         return ans % mod
 
     @staticmethod
-    def ac_3823(ac=FastIO()):
+    def ac_3826(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/3826/
         tag: kmp|z_function
         """
-        # KMP与扩展KMP即z函数应用模板题
-        kmp = KMP()
         for _ in range(ac.read_int()):
             s = ac.read_str()
-            if len(s) <= 2:
-                ac.st("not exist")
-                continue
-            pre = kmp.prefix_function(s)
-            z = kmp.z_function(s)
-            ans = 0
-            cnt = Counter(s)
-            if s[0] == s[-1] and cnt[s[0]] >= 3:
-                ans = 1
-            m = len(s)
-            for i in range(1, m - 1):
-                w = pre[i]
-                if z[-w] == w:
-                    if w > ans:
-                        ans = w
-            if not ans:
-                ac.st("not exist")
+            n = len(s)
+            z = KMP().z_function(s)
+            pre = 0
+            for i in range(1, n):
+                if z[i] == n - i and pre >= z[i]:
+                    ac.st(s[:z[i]])
+                    break
+                pre = ac.max(pre, z[i])
             else:
-                ac.st(s[:ans])
+                ac.st("not exist")
         return
 
     @staticmethod
-    def lc_100207(s: str, a: str, b: str, k: int) -> List[int]:
+    def lc_3008(s: str, a: str, b: str, k: int) -> List[int]:
         """"
-        url: https://leetcode.com/contest/weekly-contest-380/problems/find-beautiful-indices-in-the-given-array-ii/
+        url: https://leetcode.cn/problems/find-beautiful-indices-in-the-given-array-ii/
         tag: kmp|find
         """
         lst1 = KMP().find(s, a)
@@ -426,4 +373,124 @@ class Solution:
                 for j in range(inter, m):
                     ans.append(word[j])
         ac.st("".join(ans))
+        return
+
+    @staticmethod
+    def lc_186(a: str, b: str) -> int:
+        """
+        url: https://leetcode.cn/problems/repeated-string-match/
+        tag: kmp|find|greedy
+        """
+        ceil = len(b) // len(a) + 2
+        kmp = KMP()
+        ans = kmp.find(ceil * a, b)
+        if not ans:
+            return -1
+        res = (ans[0] + len(b) + len(a) - 1) // len(a)
+        return res
+
+    @staticmethod
+    def cf_126b(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/126/problem/B
+        tag: kmp|z-function|classical|brute_force
+        """
+        s = ac.read_str()
+        n = len(s)
+        z = KMP().z_function(s)
+        pre = 0
+        for i in range(1, n):
+            if z[i] == n - i and pre >= z[i]:
+                ac.st(s[:z[i]])
+                break
+            pre = ac.max(pre, z[i])
+        else:
+            ac.st("Just a legend")
+        return
+
+    @staticmethod
+    def cf_471d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/471/problem/D
+        tag: kmp|brain_teaser|classical|diff_array
+        """
+        m, n = ac.read_list_ints()
+        a = ac.read_list_ints()
+        b = ac.read_list_ints()
+        if n == 1:
+            ac.st(m)
+            return
+        if m < n:
+            ac.st(0)
+            return
+        a = [a[i + 1] - a[i] for i in range(m - 1)]
+        b = [b[i + 1] - b[i] for i in range(n - 1)]
+        ans = len(KMP().find_lst(a, b, -10 ** 9 - 1))
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_432d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/432/problem/D
+        tag: kmp|z-function|sorted_list
+        """
+        s = ac.read_str()
+        z = KMP().z_function(s)
+        lst = SortedList()
+        n = len(s)
+        ans = []
+        for i in range(1, n):
+            if z[i] == n - i:
+                ans.append((n - i, lst.bisect_right(i - n) + 2))
+            lst.add(-z[i])
+        ans.reverse()
+        ans.append((n, 1))
+        ac.st(len(ans))
+        for ls in ans:
+            ac.lst(ls)
+        return
+
+    @staticmethod
+    def cf_346b(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/346/problem/B
+        tag: kmp|lcs|matrix_dp|specific_plan|classical
+        """
+        s = [ord(w) - ord("A") for w in ac.read_str()]
+        t = [ord(w) - ord("A") for w in ac.read_str()]
+        virus = [ord(w) - ord("A") for w in ac.read_str()]
+        m, n, k = len(s), len(t), len(virus)
+
+        nxt = [[-1] * 26 for _ in range(k)]
+        kmp = KMP()
+        pre = []
+        for i in range(k):
+            for j in range(26):
+                nxt[i][j] = kmp.prefix_function(virus + [-1] + pre + [j])[-1]
+            pre.append(virus[i])
+
+        dp = [[[0] * (k + 1) for _ in range(n + 1)] for _ in range(m + 1)]
+        for i in range(m - 1, -1, -1):
+            for j in range(n - 1, -1, -1):
+                for x in range(k):
+                    a, b = dp[i + 1][j][x], dp[i][j + 1][x]
+                    dp[i][j][x] = ac.max(a, b)
+                    if s[i] == t[j] and nxt[x][s[i]] < k and dp[i + 1][j + 1][nxt[x][s[i]]] + 1 > dp[i][j][x]:
+                        dp[i][j][x] = dp[i + 1][j + 1][nxt[x][s[i]]] + 1
+        length = dp[0][0][0]
+        if length:
+            ans = []
+            i, j, x = 0, 0, 0
+            while len(ans) < length:
+                if dp[i][j][x] == dp[i + 1][j][x]:
+                    i += 1
+                elif dp[i][j][x] == dp[i][j + 1][x]:
+                    j += 1
+                else:
+                    ans.append(s[i])
+                    i, j, x = i + 1, j + 1, nxt[x][s[i]]
+            ac.st("".join([chr(i + ord("A")) for i in ans]))
+        else:
+            ac.st("0")
         return

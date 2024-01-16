@@ -5,7 +5,7 @@ class KMP:
 
     @staticmethod
     def prefix_function(s):
-        """calculate the longest common true prefix and true suffix for s [:i] and s [:i]"""
+        """calculate the longest common true prefix and true suffix for s [:i+1] and s [:i+1]"""
         n = len(s)
         pi = [0] * n
         for i in range(1, n):
@@ -37,7 +37,7 @@ class KMP:
         # z[0] = 0
         return z
 
-    def find(self, s1: str, s2: str):
+    def find(self, s1, s2):
         """find the index position of s2 in s1"""
         n, m = len(s1), len(s2)
         pi = self.prefix_function(s2 + "#" + s1)
@@ -47,7 +47,17 @@ class KMP:
                 ans.append(i - m - m)
         return ans
 
-    def find_longest_palindrome(self, s: str, pos="prefix") -> int:
+    def find_lst(self, s1, s2, tag=-1):
+        """find the index position of s2 in s1"""
+        n, m = len(s1), len(s2)
+        pi = self.prefix_function(s2 + [tag] + s1)
+        ans = []
+        for i in range(m + 1, m + n + 1):
+            if pi[i] == m:
+                ans.append(i - m - m)
+        return ans
+
+    def find_longest_palindrome(self, s, pos="prefix") -> int:
         """calculate the longest prefix and longest suffix palindrome substring"""
         if pos == "prefix":
             return self.prefix_function(s + "#" + s[::-1])[-1]
