@@ -40,7 +40,7 @@ P1368（https://www.luogu.com.cn/problem/P1368）
 126B（https://codeforces.com/contest/126/problem/B）kmp|z-function|classical|brute_force
 471D（https://codeforces.com/contest/471/problem/D）kmp|brain_teaser|classical|diff_array
 346B（https://codeforces.com/contest/346/problem/B）kmp|lcs|matrix_dp
-494B（https://codeforces.com/problemset/problem/494/B）
+494B（https://codeforces.com/contest/494/problem/B）
 1200E（https://codeforces.com/problemset/problem/1200/E）string_hash|kmp
 615C（https://codeforces.com/problemset/problem/615/C）
 1163D（https://codeforces.com/problemset/problem/1163/D）
@@ -493,4 +493,31 @@ class Solution:
             ac.st("".join([chr(i + ord("A")) for i in ans]))
         else:
             ac.st("0")
+        return
+
+    @staticmethod
+    def cf_494b(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/494/problem/B
+        tag: kmp|linear_dp|prefix_sum
+        """
+        s = ac.read_str()
+        t = ac.read_str()
+        m, n = len(t), len(s)
+        pi = KMP().prefix_function(t + "#" + s)
+        mod = 10 ** 9 + 7
+        dp = [0] * (n + 1)
+        pre = [0] * (n + 1)
+        dp[0] = pre[0] = 1
+        last = -1
+        for i in range(1, n + 1):
+            if pi[i + m] == m:
+                last = i - m + 1
+            if last != -1:
+                dp[i] = dp[i - 1] + pre[last - 1]
+            else:
+                dp[i] = dp[i - 1]
+            dp[i] %= mod
+            pre[i] = (pre[i - 1] + dp[i]) % mod
+        ac.st((dp[-1] - 1) % mod)
         return
