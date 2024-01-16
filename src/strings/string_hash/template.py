@@ -4,6 +4,118 @@ import random
 from src.utils.fast_io import inf
 
 
+class MatrixHashReverse:
+    def __init__(self, m, n, grid):
+        """
+        primes = PrimeSieve().eratosthenes_sieve(100)
+        primes = [x for x in primes if 26 < x < 100]
+        """
+        primes = [29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
+        self.m, self.n = m, n
+
+        self.p1 = primes[random.randint(0, len(primes) - 1)]
+        while True:
+            self.p2 = primes[random.randint(0, len(primes) - 1)]
+            if self.p2 != self.p1:
+                break
+
+        ceil = self.m if self.m > self.n else self.n
+        self.pp1 = [1] * (ceil + 1)
+        self.pp2 = [1] * (ceil + 1)
+        self.mod = random.randint(10 ** 9 + 7, (1 << 31) - 1)
+
+        for i in range(1, ceil):
+            self.pp1[i] = (self.pp1[i - 1] * self.p1) % self.mod
+            self.pp2[i] = (self.pp2[i - 1] * self.p2) % self.mod
+
+        # (x+1, y+1)
+        # (i,j) > (i-1, j)p1 (i, j-1)p2 (i-1, j-1) p1p2
+        self.left_up = [0] * (self.n + 1) * (self.m + 1)
+        for i in range(self.m):
+            for j in range(self.n):
+                val = self.left_up[i * (self.n + 1) + j + 1] * self.p1 + self.left_up[
+                    (i + 1) * (self.n + 1) + j] * self.p2
+                val -= self.left_up[i * (self.n + 1) + j] * self.p1 * self.p2 - grid[i * self.n + j]
+                self.left_up[(i + 1) * (self.n + 1) + j + 1] = val % self.mod
+
+        # (x+1, y)
+        # (i,j) > (i-1, j)p1 (i, j+1)p2 (i-1, j+1) p1p2
+        self.right_up = [0] * (self.n + 1) * (self.m + 1)
+        for i in range(self.m):
+            for j in range(self.n - 1, -1, -1):
+                val = self.right_up[i * (self.n + 1) + j] * self.p1 + self.right_up[
+                    (i + 1) * (self.n + 1) + j + 1] * self.p2
+
+                val -= self.right_up[i * (self.n + 1) + j + 1] * self.p1 * self.p2 - grid[i * self.n + j]
+                self.right_up[(i + 1) * (self.n + 1) + j] = val % self.mod
+
+        # (x, y)
+        # (i,j) > (i+1, j)p1 (i, j+1)p2 (i+1, j+1) p1p2
+        self.right_down = [0] * (self.n + 1) * (self.m + 1)
+        for i in range(self.m - 1, -1, -1):
+            for j in range(self.n - 1, -1, -1):
+                val = self.right_down[(i + 1) * (self.n + 1) + j] * self.p1 + self.right_down[
+                    i * (self.n + 1) + j + 1] * self.p2
+                val -= self.right_down[(i + 1) * (self.n + 1) + j + 1] * self.p1 * self.p2 - grid[i * self.n + j]
+                self.right_down[i * (self.n + 1) + j] = val % self.mod
+
+        # (x, y+1)
+        # (i,j) > (i+1, j)p1 (i, j-1)p2 (i+1, j-1) p1p2
+        self.left_down = [0] * (self.n + 1) * (self.m + 1)
+        for i in range(self.m - 1, -1, -1):
+            for j in range(self.n):
+                val = self.left_down[(i + 1) * (self.n + 1) + j + 1] * self.p1 + self.left_down[
+                    i * (self.n + 1) + j] * self.p2
+                val -= self.left_down[(i + 1) * (self.n + 1) + j] * self.p1 * self.p2 - grid[i * self.n + j]
+                self.left_down[i * (self.n + 1) + j + 1] = val % self.mod
+        return
+
+    def query_left_up(self, i, j, a, b):
+        # (x+1, y+1)
+        # (i,j) > (i-a, j)p1 (i, j-b)p2 (i-a, j-b) p1p2
+        res = self.left_up[(i + 1) * (self.n + 1) + j + 1]
+        res -= self.left_up[(i - a + 1) * (self.n + 1) + j + 1] * self.pp1[a] + self.left_up[
+            (i + 1) * (self.n + 1) + j - b + 1] * self.pp2[b]
+        res += self.left_up[(i - a + 1) * (self.n + 1) + j - b + 1] * self.pp1[a] * self.pp2[b]
+        return res % self.mod
+
+    def query_right_up(self, i, j, a, b):
+        # (x+1, y)
+        # (i,j) > (i-a, j)p1 (i, j+b)p2 (i-a, j+b) p1p2
+        res = self.right_up[(i + 1) * (self.n + 1) + j]
+        res -= self.right_up[(i - a + 1) * (self.n + 1) + j] * self.pp1[a] + self.right_up[
+            (i + 1) * (self.n + 1) + j + b] * self.pp2[b]
+        res += self.right_up[(i - a + 1) * (self.n + 1) + j + b] * self.pp1[a] * self.pp2[b]
+        return res % self.mod
+
+    def query_right_down(self, i, j, a, b):
+        # (x, y)
+        # (i,j) > (i+a, j)p1 (i, j+b)p2 (i+a, j+b) p1p2
+        res = self.right_down[i * (self.n + 1) + j]
+        res -= self.right_down[(i + a) * (self.n + 1) + j] * self.pp1[a] + self.right_down[i * (self.n + 1) + j + b] * \
+               self.pp2[b]
+        res += self.right_down[(i + a) * (self.n + 1) + (j + b)] * self.pp1[a] * self.pp2[b]
+        return res % self.mod
+
+    def query_left_down(self, i, j, a, b):
+        # (x, y+1)
+        # (i,j) > (i+a, j)p1 (i, j-b)p2 (i+a, j-b) p1p2
+        res = self.left_down[i * (self.n + 1) + j + 1]
+        res -= self.left_down[(i + a) * (self.n + 1) + j + 1] * self.pp1[a] + self.left_down[
+            i * (self.n + 1) + j - b + 1] * self.pp2[b]
+        res += self.left_down[(i + a) * (self.n + 1) + j - b + 1] * self.pp1[a] * self.pp2[b]
+        return res % self.mod
+
+    def query_in_build(self, i, j, a, b):
+        assert 0 <= i <= i + a - 1 < self.m
+        assert 0 <= j <= j + b - 1 < self.n
+        res = self.left_up[(i + a) * (self.n + 1) + j + b] - self.left_up[i * (self.n + 1) + j + b] * self.pp1[a] - \
+              self.left_up[
+                  (i + a) * (self.n + 1) + j] * self.pp2[b]
+        res += self.left_up[i * (self.n + 1) + j] * self.pp1[a] * self.pp2[b]
+        return res % self.mod
+
+
 class MatrixHash:
     def __init__(self, m, n, grid):
         """
@@ -33,16 +145,18 @@ class MatrixHash:
         for i in range(self.m):
             for j in range(self.n):
                 val = self.pre[i * (self.n + 1) + j + 1] * self.p1 + self.pre[(i + 1) * (self.n + 1) + j] * self.p2
-                val -= self.pre[i * (self.n + 1) + j] * self.p1 * self.p2 + grid[i * self.n + j]
+                val -= self.pre[i * (self.n + 1) + j] * self.p1 * self.p2 - grid[i * self.n + j]
                 self.pre[(i + 1) * (self.n + 1) + j + 1] = val % self.mod
         return
 
     def query_sub(self, i, j, a, b):
-        assert 0 <= i <= i + a - 1 < self.m
-        assert 0 <= j <= j + b - 1 < self.n
-        res = self.pre[(i + a) * (self.n + 1) + j + b] - self.pre[i * (self.n + 1) + j + b] * self.pp1[a] - self.pre[
-            (i + a) * (self.n + 1) + j] * self.pp2[b]
-        res += self.pre[i * (self.n + 1) + j] * self.pp1[a] * self.pp2[b]
+        # right_down corner
+        assert a - 1 <= i < self.m
+        assert b - 1 <= j < self.n
+        res = self.pre[(i + 1) * (self.n + 1) + j + 1]
+        res -= self.pre[(i - a + 1) * (self.n + 1) + j + 1] * self.pp1[a] + self.pre[
+            (i + 1) * (self.n + 1) + j - b + 1] * self.pp2[b]
+        res += self.pre[(i - a + 1) * (self.n + 1) + j - b + 1] * self.pp1[a] * self.pp2[b]
         return res % self.mod
 
     def query_matrix(self, a, b, mat):
@@ -50,7 +164,7 @@ class MatrixHash:
         for i in range(a):
             for j in range(b):
                 val = cur[i * (b + 1) + j + 1] * self.p1 + cur[(i + 1) * (b + 1) + j] * self.p2
-                val -= cur[i * (b + 1) + j] * self.p1 * self.p2 + mat[i * b + j]
+                val -= cur[i * (b + 1) + j] * self.p1 * self.p2 - mat[i * b + j]
                 cur[(i + 1) * (b + 1) + j + 1] = val % self.mod
         return cur[-1]
 

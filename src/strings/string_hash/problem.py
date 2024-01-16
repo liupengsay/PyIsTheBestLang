@@ -46,7 +46,8 @@ ABC141E（https://atcoder.jp/contests/abc141/tasks/abc141_e）binary_search|stri
 
 =====================================LibraryChecker=====================================
 1（https://ac.nowcoder.com/acm/contest/64384/D）string_hash|implemention
-2（https://www.luogu.com.cn/problem/solution/UVA11019）matrix_hash|string_hash
+2（https://www.luogu.com.cn/problem/UVA11019）matrix_hash|string_hash
+3（https://ac.nowcoder.com/acm/problem/51003）matrix_hash|string_hash
 
 """
 
@@ -59,7 +60,7 @@ from src.basis.binary_search.template import BinarySearch
 from src.graph.dijkstra.template import Dijkstra
 from src.mathmatics.fast_power.template import MatrixFastPower
 from src.strings.string_hash.template import StringHash, PointSetRangeHashReverse, RangeChangeRangeHashReverse, \
-    MatrixHash
+    MatrixHash, MatrixHashReverse
 from src.utils.fast_io import FastIO, inf
 
 
@@ -338,8 +339,8 @@ class Solution:
             grid.extend([int(w) for w in ac.read_str()])
         mh = MatrixHash(m, n, grid)
         pre = set()
-        for i in range(m - a + 1):
-            for j in range(n - b + 1):
+        for i in range(a - 1, m):
+            for j in range(b - 1, n):
                 pre.add(mh.query_sub(i, j, a, b))
 
         for _ in range(ac.read_int()):
@@ -1099,7 +1100,7 @@ class Solution:
     def library_check_2(ac=FastIO()):
 
         """
-        url: https://www.luogu.com.cn/problem/solution/UVA11019
+        url: https://www.luogu.com.cn/problem/UVA11019
         tag: matrix_hash|string_hash
         """
         for _ in range(ac.read_int()):  # TLE
@@ -1115,10 +1116,76 @@ class Solution:
                 mat.extend([ord(w) - ord("a") for w in ac.read_str()])
             cur = mh.query_matrix(a, b, mat)
             ans = 0
-            for i in range(n - a + 1):
-                for j in range(m - b + 1):
+            for i in range(a - 1, n):
+                for j in range(b - 1, m):
                     if mh.query_sub(i, j, a, b) == cur:
                         ans += 1
             ac.st(ans)
         return
 
+    @staticmethod
+    def library_check_3(ac=FastIO()):
+        """
+        url: https://ac.nowcoder.com/acm/problem/51003
+        tag: matrix_hash|string_hash
+        """
+
+        m, n, a, b = ac.read_list_ints()
+        grid = []
+        for _ in range(n):
+            grid.extend([int(w) for w in ac.read_str()])
+        mh = MatrixHash(m, n, grid)
+        pre = set()
+        for i in range(a - 1, m):
+            for j in range(b - 1, n):
+                pre.add(mh.query_sub(i, j, a, b))
+
+        for _ in range(ac.read_int()):
+            mat = []
+            for _ in range(a):
+                mat.extend([int(w) for w in ac.read_str()])
+            cur = mh.query_matrix(a, b, mat)
+            ac.st(1 if cur in pre else 0)
+        return
+
+
+    @staticmethod
+    def lg_p2601(ac=FastIO()):
+
+        """
+        url: https://www.luogu.com.cn/problem/P2601
+        tag: matrix_hash|string_hash
+        """
+        m, n = ac.read_list_ints()
+        lst = []
+        for _ in range(m):
+            lst.extend(ac.read_list_ints())
+        mh = MatrixHashReverse(m, n, lst)
+
+        def check1(x):
+
+            res1 = mh.query_left_up(i + x - 1, j + x - 1, 2 * x - 1, 2 * x - 1)
+            res2 = mh.query_right_up(i + x - 1, j - x + 1, 2 * x - 1, 2 * x - 1)
+            res3 = mh.query_left_down(i - x + 1, j + x - 1, 2 * x - 1, 2 * x - 1)
+            res4 = mh.query_right_down(i - x + 1, j - x + 1, 2 * x - 1, 2 * x - 1)
+            return res1 == res2 == res3 == res4
+
+        def check2(x):
+
+            res1 = mh.query_left_up(i + x, j + x, 2 * x, 2 * x)
+            res2 = mh.query_right_up(i + x, j - x + 1, 2 * x, 2 * x)
+            res3 = mh.query_left_down(i - x + 1, j + x, 2 * x, 2 * x)
+            res4 = mh.query_right_down(i - x + 1, j - x + 1, 2 * x, 2 * x)
+            return res1 == res2 == res3 == res4
+
+        bs = BinarySearch()
+        ans = i = j = 0
+
+        for i in range(m):
+            for j in range(n):
+                y = min(i + 1, m - i, j + 1, n - j)
+                ans += bs.find_int_right(0, y, check1)
+                y = min(i + 1, j + 1, m - i - 1, n - j - 1)
+                ans += bs.find_int_right(0, y, check2)
+        ac.st(ans)
+        return
