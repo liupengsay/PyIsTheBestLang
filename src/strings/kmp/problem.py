@@ -1,5 +1,5 @@
 """
-Algorithm：kmp
+Algorithm：kmp|find|z-function|circular_section
 Description：string|prefix_suffix
 
 ====================================LeetCode====================================
