@@ -82,7 +82,6 @@ P1368（https://www.luogu.com.cn/problem/P1368）
 19（https://poj.org/problem?id=1509）
 20（https://codeforces.com/gym/103585/problem/K）
 
-
 """
 import bisect
 from collections import Counter
