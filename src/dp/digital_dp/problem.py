@@ -133,35 +133,35 @@ class Solution:
         tag: digital_dp|inclusion_exclusion
         """
 
-        def check(num):
-            @lru_cache(None)
-            def dfs(i, cnt, is_limit, is_num):
-                if i == n:
-                    if is_num:
-                        return 1 if min_sum <= cnt <= max_sum else 0
-                    return 0
+        def check(n):
+            # calculate the number of occurrences of positive integer binary bit 1 from 1 to n
 
+            @lru_cache(None)
+            def dfs(i, is_limit, is_num, cnt):
+                if i == m:
+                    return 1 if (min_sum <= cnt <= max_sum and is_num) else 0
+                if cnt + 9 * (m - i) < min_sum:
+                    return 0
+                if cnt > max_sum:
+                    return 0
                 res = 0
                 if not is_num:
-                    res += dfs(i + 1, 0, False, False)
-                floor = 0 if is_num else 1
-                ceil = int(s[i]) if is_limit else 9
-                for x in range(floor, ceil + 1):
+                    res += dfs(i + 1, False, False, 0)
+                low = 0 if is_num else 1
+                high = int(st[i]) if is_limit else 9
+                for x in range(low, high + 1):
                     if cnt + x <= max_sum:
-                        res += dfs(i + 1, cnt + x, is_limit and ceil == x, True)
-                    res %= mod
-                return res
+                        res += dfs(i + 1, is_limit and high == x, True, cnt + x)
+                return res % mod
 
-            s = str(num)
-            n = len(s)
-            ans = dfs(0, 0, True, False)
+            st = str(n)
+            m = len(st)
+            ans = dfs(0, True, False, 0)
             dfs.cache_clear()
             return ans
 
         mod = 10 ** 9 + 7
-        num2 = int(num2)
-        num1 = int(num1)
-        return (check(num2) - check(num1 - 1)) % mod
+        return (check(int(num2)) - check(int(num1) - 1)) % mod
 
     @staticmethod
     def lc_2801(low: str, high: str) -> int:

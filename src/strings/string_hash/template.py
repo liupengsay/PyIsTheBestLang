@@ -4,6 +4,57 @@ import random
 from src.utils.fast_io import inf
 
 
+class MatrixHash:
+    def __init__(self, m, n, grid):
+        """
+        primes = PrimeSieve().eratosthenes_sieve(100)
+        primes = [x for x in primes if 26 < x < 100]
+        """
+        primes = [29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
+        self.m, self.n = m, n
+
+        self.p1 = primes[random.randint(0, len(primes) - 1)]
+        while True:
+            self.p2 = primes[random.randint(0, len(primes) - 1)]
+            if self.p2 != self.p1:
+                break
+
+        ceil = self.m if self.m > self.n else self.n
+        self.pp1 = [1] * (ceil + 1)
+        self.pp2 = [1] * (ceil + 1)
+        self.mod = random.randint(10 ** 9 + 7, (1 << 31) - 1)
+
+        for i in range(1, ceil):
+            self.pp1[i] = (self.pp1[i - 1] * self.p1) % self.mod
+            self.pp2[i] = (self.pp2[i - 1] * self.p2) % self.mod
+
+        self.pre = [0] * (self.n + 1) * (self.m + 1)
+
+        for i in range(self.m):
+            for j in range(self.n):
+                val = self.pre[i * (self.n + 1) + j + 1] * self.p1 + self.pre[(i + 1) * (self.n + 1) + j] * self.p2
+                val -= self.pre[i * (self.n + 1) + j] * self.p1 * self.p2 + grid[i * self.n + j]
+                self.pre[(i + 1) * (self.n + 1) + j + 1] = val % self.mod
+        return
+
+    def query_sub(self, i, j, a, b):
+        assert 0 <= i <= i + a - 1 < self.m
+        assert 0 <= j <= j + b - 1 < self.n
+        res = self.pre[(i + a) * (self.n + 1) + j + b] - self.pre[i * (self.n + 1) + j + b] * self.pp1[a] - self.pre[
+            (i + a) * (self.n + 1) + j] * self.pp2[b]
+        res += self.pre[i * (self.n + 1) + j] * self.pp1[a] * self.pp2[b]
+        return res % self.mod
+
+    def query_matrix(self, a, b, mat):
+        cur = [0] * (b + 1) * (a + 1)
+        for i in range(a):
+            for j in range(b):
+                val = cur[i * (b + 1) + j + 1] * self.p1 + cur[(i + 1) * (b + 1) + j] * self.p2
+                val -= cur[i * (b + 1) + j] * self.p1 * self.p2 + mat[i * b + j]
+                cur[(i + 1) * (b + 1) + j + 1] = val % self.mod
+        return cur[-1]
+
+
 class StringHash:
     def __init__(self, lst):
         """two mod to avoid hash crush"""

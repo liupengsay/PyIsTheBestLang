@@ -29,7 +29,6 @@ ARC061B（https://atcoder.jp/contests/abc045/tasks/arc061_b）hash|inclusion_exc
 
 
 =====================================AcWing=====================================
-137（https://www.acwing.com/problem/content/139/）matrix_hash
 
 """
 import random
@@ -138,53 +137,6 @@ class Solution:
         cnt[0] = (h - 2) * (w - 2) - sum(cnt[1:])
         for a in cnt:
             ac.st(a)
-        return
-
-    @staticmethod
-    def ac_137(ac=FastIO()):
-        """
-        url: https://www.acwing.com/problem/content/139/
-        tag: matrix_hash
-        """
-        p1 = random.randint(26, 100)
-        p2 = random.randint(26, 100)
-        mod1 = random.randint(10 ** 9 + 7, 2 ** 31 - 1)
-        mod2 = random.randint(10 ** 9 + 7, 2 ** 31 - 1)
-
-        def compute(ls):
-            res1 = 0
-            for num in ls:
-                res1 *= p1
-                res1 += num
-                res1 %= mod1
-            res2 = 0
-            for num in ls:
-                res2 *= p2
-                res2 += num
-                res2 %= mod2
-            return res1, res2
-
-        def check():
-            res = []
-            for ii in range(6):
-                cu = tuple(lst[ii:] + lst[:ii])
-                res.append(compute(cu))
-                cu = tuple(lst[:ii + 1][::-1] + lst[ii + 1:][::-1])
-                res.append(compute(cu))
-            return res
-
-        n = ac.read_int()
-        pre = set()
-        for _ in range(n):
-            lst = ac.read_list_ints()
-            now = check()
-            if any(cur in pre for cur in now):
-                ac.st("Twin snowflakes found.")
-                break
-            for cur in now:
-                pre.add(cur)
-        else:
-            ac.st("No two snowflakes are alike.")
         return
 
     @staticmethod

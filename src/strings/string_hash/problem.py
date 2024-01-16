@@ -25,6 +25,7 @@ P2852（https://www.luogu.com.cn/problem/P2852）binary_search|suffix_array|heig
 P4656（https://www.luogu.com.cn/problem/P4656）string_hash|greedy
 P6739（https://www.luogu.com.cn/problem/P6739）prefix_suffix|string_hash
 P3370（https://www.luogu.com.cn/problem/P3370）string_hash
+P2601（https://www.luogu.com.cn/problem/P2601）matrix_hash
 
 ===================================CodeForces===================================
 1800D（https://codeforces.com/contest/1800/problem/D）prefix_suffix|hash
@@ -38,13 +39,14 @@ P3370（https://www.luogu.com.cn/problem/P3370）string_hash
 ABC141E（https://atcoder.jp/contests/abc141/tasks/abc141_e）binary_search|string_hash|check
 
 =====================================AcWing=====================================
-138（https://www.acwing.com/problem/content/140/）string_hash
-156（https://www.acwing.com/problem/content/description/158/）matrix_hash
-157（https://www.acwing.com/problem/content/description/159/）tree_hash|tree_minimum_expression
+140（https://www.acwing.com/problem/content/140/）string_hash
+158（https://www.acwing.com/problem/content/description/158/）matrix_hash
+159（https://www.acwing.com/problem/content/description/159/）tree_hash|tree_minimum_expression
+139（https://www.acwing.com/problem/content/139/）matrix_hash
 
 =====================================LibraryChecker=====================================
 1（https://ac.nowcoder.com/acm/contest/64384/D）string_hash|implemention
-2（https://www.luogu.com.cn/problem/solution/UVA11019）
+2（https://www.luogu.com.cn/problem/solution/UVA11019）matrix_hash|string_hash
 
 """
 
@@ -54,8 +56,10 @@ from itertools import accumulate
 from typing import List
 
 from src.basis.binary_search.template import BinarySearch
+from src.graph.dijkstra.template import Dijkstra
 from src.mathmatics.fast_power.template import MatrixFastPower
-from src.strings.string_hash.template import StringHash, PointSetRangeHashReverse, RangeChangeRangeHashReverse
+from src.strings.string_hash.template import StringHash, PointSetRangeHashReverse, RangeChangeRangeHashReverse, \
+    MatrixHash
 from src.utils.fast_io import FastIO, inf
 
 
@@ -323,74 +327,27 @@ class Solution:
         return
 
     @staticmethod
-    def ac_156(ac=FastIO()):
+    def ac_158(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/158/
         tag: matrix_hash
         """
-        # 二维matrix_hash查找子矩阵是否存在
         m, n, a, b = ac.read_list_ints()
-        grid = [ac.read_str() for _ in range(m)]
-
-        # 双hash防止碰撞
-        p1 = random.randint(26, 100)
-        p2 = random.randint(26, 100)
-        mod1 = random.randint(10 ** 9 + 7, 2 ** 31 - 1)
-        mod2 = random.randint(10 ** 9 + 7, 2 ** 31 - 1)
-
-        def check(p, mod):
-
-            # 先列从左到右，按行从上到下
-            col = [[0] * n for _ in range(m + 1)]
-            for i in range(m):
-                for j in range(n):
-                    col[i + 1][j] = (col[i][j] * p + int(grid[i][j])) % mod
-
-            # 当前点往列向上 a 长度的hash值
-            pa = pow(p % mod, a, mod)
-            for j in range(n):
-                for i in range(m - 1, a - 2, -1):
-                    col[i + 1][j] = (col[i + 1][j] - col[i - a + 1][j] * pa) % mod
-
-            # 每一个形状为 a*b 的子matrix_hash值
-            pre = set()
-            pab = pow(pa, b, mod)  # 注意此时的模数
-            for i in range(a - 1, m):
-                lst = [0]
-                x = 0
-                for j in range(n):
-                    x *= pa
-                    x += col[i + 1][j]
-                    x %= mod
-                    lst.append(x)
-                    if j >= b - 1:
-                        # 向左 b 长度的hash值
-                        cur = (lst[j + 1] - (lst[j - b + 1] % mod) * pab) % mod
-                        pre.add(cur)
-            return pre
-
-        def check_read(p, mod):
-            # 先列从左到右，按行从上到下
-            y = 0
-            for j in range(b):
-                for i in range(a):
-                    y *= p
-                    y += int(grid[i][j])
-                    y %= mod
-            # 形式为 [[p^3, p^1], [p^2, p^0]]
-            return y
-
-        pre1 = check(p1, mod1)
-        pre2 = check(p2, mod2)
+        grid = []
+        for _ in range(n):
+            grid.extend([int(w) for w in ac.read_str()])
+        mh = MatrixHash(m, n, grid)
+        pre = set()
+        for i in range(m - a + 1):
+            for j in range(n - b + 1):
+                pre.add(mh.query_sub(i, j, a, b))
 
         for _ in range(ac.read_int()):
-            grid = [ac.read_str() for _ in range(a)]
-            y1 = check_read(p1, mod1)
-            y2 = check_read(p2, mod2)
-            if y1 in pre1 and y2 in pre2:
-                ac.st(1)
-            else:
-                ac.st(0)
+            mat = []
+            for _ in range(a):
+                mat.extend([int(w) for w in ac.read_str()])
+            cur = mh.query_matrix(a, b, mat)
+            ac.st(1 if cur in pre else 0)
         return
 
     @staticmethod
@@ -1090,3 +1047,78 @@ class Solution:
                         dp[i + 1] = dp[j] + z
 
         return dp[-1] if dp[-1] < inf else -1
+
+    @staticmethod
+    def ac_139(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/139/
+        tag: matrix_hash
+        """
+        p1 = random.randint(26, 100)
+        p2 = random.randint(26, 100)
+        mod1 = random.randint(10 ** 9 + 7, 2 ** 31 - 1)
+        mod2 = random.randint(10 ** 9 + 7, 2 ** 31 - 1)
+
+        def compute(ls):
+            res1 = 0
+            for num in ls:
+                res1 *= p1
+                res1 += num
+                res1 %= mod1
+            res2 = 0
+            for num in ls:
+                res2 *= p2
+                res2 += num
+                res2 %= mod2
+            return res1, res2
+
+        def check():
+            res = []
+            for ii in range(6):
+                cu = tuple(lst[ii:] + lst[:ii])
+                res.append(compute(cu))
+                cu = tuple(lst[:ii + 1][::-1] + lst[ii + 1:][::-1])
+                res.append(compute(cu))
+            return res
+
+        n = ac.read_int()
+        pre = set()
+        for _ in range(n):
+            lst = ac.read_list_ints()
+            now = check()
+            if any(cur in pre for cur in now):
+                ac.st("Twin snowflakes found.")
+                break
+            for cur in now:
+                pre.add(cur)
+        else:
+            ac.st("No two snowflakes are alike.")
+        return
+
+    @staticmethod
+    def library_check_2(ac=FastIO()):
+
+        """
+        url: https://www.luogu.com.cn/problem/solution/UVA11019
+        tag: matrix_hash|string_hash
+        """
+        for _ in range(ac.read_int()):  # TLE
+            m, n = ac.read_list_ints()
+            grid = []
+            for _ in range(n):
+                grid.extend([ord(w) - ord("a") for w in ac.read_str()])
+
+            mh = MatrixHash(m, n, grid)
+            a, b = ac.read_list_ints()
+            mat = []
+            for _ in range(a):
+                mat.extend([ord(w) - ord("a") for w in ac.read_str()])
+            cur = mh.query_matrix(a, b, mat)
+            ans = 0
+            for i in range(n - a + 1):
+                for j in range(m - b + 1):
+                    if mh.query_sub(i, j, a, b) == cur:
+                        ans += 1
+            ac.st(ans)
+        return
+
