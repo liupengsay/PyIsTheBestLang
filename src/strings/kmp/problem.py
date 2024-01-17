@@ -16,7 +16,7 @@ Description：string|prefix_suffix
 2800（https://leetcode.cn/problems/shortest-string-that-contains-three-strings/）
 1397（https://leetcode.cn/problems/find-all-good-strings/）
 459（https://leetcode.cn/problems/repeated-substring-pattern/）
-1163（https://leetcode.cn/problems/last-substring-in-lexicographical-order/）
+1163（https://leetcode.cn/problems/last-substring-in-lexicographical-order/）kmp|matrix_dp|kmp_automaton
 
 =====================================LuoGu======================================
 P3375（https://www.luogu.com.cn/problem/P3375）longest_prefix_suffix|find
@@ -44,7 +44,7 @@ P1368（https://www.luogu.com.cn/problem/P1368）
 1200E（https://codeforces.com/problemset/problem/1200/E）string_hash|kmp
 615C（https://codeforces.com/contest/615/problem/C）kmp|linear_dp|specific_plan
 1163D（https://codeforces.com/problemset/problem/1163/D）
-526D（https://codeforces.com/problemset/problem/526/D）
+526D（https://codeforces.com/contest/526/problem/D）brain_teaser|classical|kmp|circular_section
 954I（https://codeforces.com/problemset/problem/954/I）
 1003F（https://codeforces.com/problemset/problem/1003/F）
 25E（https://codeforces.com/problemset/problem/25/E）
@@ -85,6 +85,7 @@ P1368（https://www.luogu.com.cn/problem/P1368）
 
 """
 import bisect
+import math
 from collections import Counter
 from itertools import permutations
 from typing import List
@@ -563,3 +564,63 @@ class Solution:
                 ac.lst((x + 1 for x in ls))
         return
 
+    @staticmethod
+    def cf_1163d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1163/problem/D
+        tag: kmp|matrix_dp|kmp_automaton
+        """
+        c = [ord(w) - ord("a") for w in ac.read_str()]
+        s = [ord(w) - ord("a") for w in ac.read_str()]
+        t = [ord(w) - ord("a") for w in ac.read_str()]
+        n, m, k = len(c), len(s), len(t)
+
+        nxt_s = KMP().kmp_automaton(s)
+        nxt_t = KMP().kmp_automaton(t)
+
+        dp = [[-inf] * (k + 1) * (m + 1) for _ in range(2)]
+        dp[0][0] = 0
+        for i in range(n):
+            if chr(c[i] + ord("a")) == "*":
+                lst = list(range(26))
+            else:
+                lst = [c[i]]
+            for j in range(m + 1):
+                for x in range(k + 1):
+                    dp[(i & 1) ^ 1][j * (k + 1) + x] = -inf
+            for j in range(m + 1):
+                for x in range(k + 1):
+                    cur = dp[i & 1][j * (k + 1) + x]
+                    if cur == -inf:
+                        continue
+                    for w in lst:
+                        tmp = cur
+                        jj = nxt_s[j * 26 + w]
+                        xx = nxt_t[x * 26 + w]
+                        if jj == m:
+                            tmp += 1
+                        if xx == k:
+                            tmp -= 1
+                        if tmp > dp[(i & 1) ^ 1][jj * (k + 1) + xx]:
+                            dp[(i & 1) ^ 1][jj * (k + 1) + xx] = tmp
+        ac.st(max(dp[n & 1]))
+        return
+
+    @staticmethod
+    def cf_526d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/526/problem/D
+        tag: brain_teaser|classical|kmp|circular_section
+        """
+        n, k = ac.read_list_ints()
+        ans = ["0"] * n
+        s = ac.read_str()
+        pi = KMP().prefix_function(s)
+        for i in range(n):
+            c = i + 1 - pi[i]
+            low = math.ceil((i + 1) / ((k + 1) * c))
+            high = (i + 1) // (k * c)
+            if low <= high:
+                ans[i] = "1"
+        ac.st("".join(ans))
+        return

@@ -1,4 +1,3 @@
-
 class KMP:
     def __init__(self):
         return
@@ -62,3 +61,16 @@ class KMP:
         if pos == "prefix":
             return self.prefix_function(s + "#" + s[::-1])[-1]
         return self.prefix_function(s[::-1] + "#" + s)[-1]
+
+    @staticmethod
+    def kmp_automaton(s):
+        n = len(s)
+        m = 26
+        nxt = [0] * m * (n + 1)
+        j = 0
+        for i in range(1, n + 1):
+            j = nxt[j * m + s[i - 1]]
+            nxt[(i - 1) * m + s[i - 1]] = i
+            for k in range(m):
+                nxt[i * m + k] = nxt[j * m + k]
+        return nxt
