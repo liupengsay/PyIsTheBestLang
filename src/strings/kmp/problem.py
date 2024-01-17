@@ -40,9 +40,9 @@ P1368（https://www.luogu.com.cn/problem/P1368）
 126B（https://codeforces.com/contest/126/problem/B）kmp|z-function|classical|brute_force
 471D（https://codeforces.com/contest/471/problem/D）kmp|brain_teaser|classical|diff_array
 346B（https://codeforces.com/contest/346/problem/B）kmp|lcs|matrix_dp
-494B（https://codeforces.com/contest/494/problem/B）
+494B（https://codeforces.com/contest/494/problem/B）kmp|linear_dp|prefix_sum
 1200E（https://codeforces.com/problemset/problem/1200/E）string_hash|kmp
-615C（https://codeforces.com/problemset/problem/615/C）
+615C（https://codeforces.com/contest/615/problem/C）kmp|linear_dp|specific_plan
 1163D（https://codeforces.com/problemset/problem/1163/D）
 526D（https://codeforces.com/problemset/problem/526/D）
 954I（https://codeforces.com/problemset/problem/954/I）
@@ -92,7 +92,7 @@ from typing import List
 from src.data_structure.sorted_list.template import SortedList
 from src.mathmatics.fast_power.template import MatrixFastPower
 from src.strings.kmp.template import KMP
-from src.utils.fast_io import FastIO
+from src.utils.fast_io import FastIO, inf
 
 
 class Solution:
@@ -521,3 +521,45 @@ class Solution:
             pre[i] = (pre[i - 1] + dp[i]) % mod
         ac.st((dp[-1] - 1) % mod)
         return
+
+    @staticmethod
+    def cf_615c(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/615/problem/C
+        tag: kmp|linear_dp|specific_plan
+        """
+        s = ac.read_str()
+        t = ac.read_str()
+        m, n = len(s), len(t)
+        dp = [inf] * (n + 1)
+        dp[0] = 0
+        state = [() for _ in range(n + 1)]
+        for i in range(n):
+            pre = t[:i + 1][::-1]
+            z_flip = KMP().z_function(pre + "#" + s)
+            for j in range(i + 2, i + 2 + m):
+                if z_flip[j] and dp[i + 1 - z_flip[j]] + 1 < dp[i + 1]:
+                    dp[i + 1] = dp[i + 1 - z_flip[j]] + 1
+                    a, b = j - i - 2, j - i - 2 + z_flip[j] - 1
+                    state[i + 1] = (b, a)
+
+            z_flip = KMP().z_function(pre + "#" + s[::-1])
+            for j in range(i + 2, i + 2 + m):
+                if z_flip[j] and dp[i + 1 - z_flip[j]] + 1 < dp[i + 1]:
+                    dp[i + 1] = dp[i + 1 - z_flip[j]] + 1
+                    a, b = j - i - 2, j - i - 2 + z_flip[j] - 1
+                    state[i + 1] = (m - 1 - b, m - 1 - a)
+        if dp[-1] == inf:
+            ac.st(-1)
+        else:
+            ans = []
+            x = n
+            while x:
+                ans.append(state[x])
+                x -= abs(state[x][0] - state[x][1]) + 1
+            ac.st(len(ans))
+            ans.reverse()
+            for ls in ans:
+                ac.lst((x + 1 for x in ls))
+        return
+
