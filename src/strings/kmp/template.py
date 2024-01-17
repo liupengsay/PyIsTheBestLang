@@ -13,7 +13,7 @@ class KMP:
                 j = pi[j - 1]
             if s[i] == s[j]:
                 j += 1
-            pi[i] = j  # pi[i]<=i
+            pi[i] = j  # pi[i]<=i also known as next
         # pi[0] = 0
         return pi
 
