@@ -10,7 +10,7 @@ Description：lexicographical_order|counter|high_to_low|low_to_high
 902（https://leetcode.cn/problems/numbers-at-most-n-given-digit-set/）counter|digital_dp
 1012（https://leetcode.cn/problems/numbers-with-repeated-digits/）inclusion_exclusion|counter|digital_dp
 1067（https://leetcode.cn/problems/digit-count-in-range/）counter|digital_dp|inclusion_exclusion
-1397（https://leetcode.cn/problems/find-all-good-strings/）digital_dp|implemention
+1397（https://leetcode.cn/problems/find-all-good-strings/）digital_dp|implemention|kmp
 2376（https://leetcode.cn/problems/count-special-integers/）counter|digital_dp
 2719（https://leetcode.cn/problems/count-of-integers/）digital_dp|inclusion_exclusion
 2801（https://leetcode.cn/problems/count-stepping-numbers-in-range/）digital_dp|inclusion_exclusion

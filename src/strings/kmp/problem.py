@@ -13,17 +13,16 @@ Description：string|prefix_suffix
 2851（https://leetcode.cn/problems/string-transformation/description/）kmp|matrix_fast_power|string_hash
 3008（https://leetcode.cn/problems/find-beautiful-indices-in-the-given-array-ii/）kmp|find
 686（https://leetcode.cn/problems/repeated-string-match/）kmp|find|greedy
-2800（https://leetcode.cn/problems/shortest-string-that-contains-three-strings/）
-1397（https://leetcode.cn/problems/find-all-good-strings/）
+1397（https://leetcode.cn/problems/find-all-good-strings/）digital_dp|kmp_automaton
 459（https://leetcode.cn/problems/repeated-substring-pattern/）
 1163（https://leetcode.cn/problems/last-substring-in-lexicographical-order/）kmp|matrix_dp|kmp_automaton
 
 =====================================LuoGu======================================
 P3375（https://www.luogu.com.cn/problem/P3375）longest_prefix_suffix|find
 P4391（https://www.luogu.com.cn/problem/P4391）brain_teaser|kmp|n-pi[n-1]
-P3435（https://www.luogu.com.cn/problem/P3435）
+P3435（https://www.luogu.com.cn/problem/P3435）kmp|longest_circular_section|prefix_function_reverse|classical
 P4824（https://www.luogu.com.cn/problem/P4824）
-P2375（https://www.luogu.com.cn/problem/P2375）
+P2375（https://www.luogu.com.cn/problem/P2375）kmp|z-function|diff_array
 P7114（https://www.luogu.com.cn/problem/P7114）
 P3426（https://www.luogu.com.cn/problem/P3426）
 P3193（https://www.luogu.com.cn/problem/P3193）
@@ -32,6 +31,7 @@ P3538（https://www.luogu.com.cn/problem/P3538）
 P4036（https://www.luogu.com.cn/problem/P4036）
 P5410（https://www.luogu.com.cn/problem/P5410）
 P1368（https://www.luogu.com.cn/problem/P1368）
+P3121（https://www.luogu.com.cn/problem/P3121）
 
 ===================================CodeForces===================================
 1326D2（https://codeforces.com/problemset/problem/1326/D2）manacher|greedy|prefix_suffix|longest_prefix_suffix|palindrome_substring
@@ -43,12 +43,10 @@ P1368（https://www.luogu.com.cn/problem/P1368）
 494B（https://codeforces.com/contest/494/problem/B）kmp|linear_dp|prefix_sum
 1200E（https://codeforces.com/problemset/problem/1200/E）string_hash|kmp
 615C（https://codeforces.com/contest/615/problem/C）kmp|linear_dp|specific_plan
-1163D（https://codeforces.com/problemset/problem/1163/D）
+1163D（https://codeforces.com/problemset/problem/1163/D）kmp|matrix_dp|kmp_automaton
 526D（https://codeforces.com/contest/526/problem/D）brain_teaser|classical|kmp|circular_section
 954I（https://codeforces.com/problemset/problem/954/I）
-1003F（https://codeforces.com/problemset/problem/1003/F）
-25E（https://codeforces.com/problemset/problem/25/E）
-808G（https://codeforces.com/problemset/problem/808/G）
+808G（https://codeforces.com/contest/808/problem/G）kmp|kmp_automaton|z-function|matrix_dp
 182D（https://codeforces.com/problemset/problem/182/D）
 526D（https://codeforces.com/problemset/problem/526/D）
 535D（https://codeforces.com/problemset/problem/535/D）
@@ -87,6 +85,7 @@ P1368（https://www.luogu.com.cn/problem/P1368）
 import bisect
 import math
 from collections import Counter
+from functools import lru_cache
 from itertools import permutations
 from typing import List
 
@@ -248,50 +247,35 @@ class Solution:
 
         s = [ac.read_str() for _ in range(3)]
 
-        def check(a, b):
-            c = b + "#" + a
-            f = KMP().prefix_function(c)
-            m = len(b)
-            if max(f[m:]) == m:
-                return a
-            x = f[-1]
-            return a + b[x:]
-
         ind = list(range(3))
         ans = sum(len(w) for w in s)
+        kmp = KMP()
         for item in permutations(ind, 3):
-            t1, t2, t3 = [s[x] for x in item]
-            cur = len(check(check(t1, t2), t3))
+            cur = len(kmp.merge_b_from_a(kmp.merge_b_from_a(s[item[0]], s[item[1]]), s[item[2]]))
             if cur < ans:
                 ans = cur
         ac.st(ans)
         return
 
     @staticmethod
-    def lc_2800(aa: str, bb: str, cc: str) -> str:
+    def lc_2800(a: str, b: str, c: str) -> str:
         """
         url: https://leetcode.cn/problems/shortest-string-that-contains-three-strings/
         tag: kmp|prefix_suffix|greedy|brain_teaser
         """
 
-        def check(a, b):
-            c = b + "#" + a
-            f = KMP().prefix_function(c)
-            m = len(b)
-            if max(f[m:]) == m:
-                return a
-            x = f[-1]
-            return a + b[x:]
-
-        s = [aa, bb, cc]
+        s = [a, b, c]
         ind = list(range(3))
-        ans = "".join(s)
+        ans = sum(len(w) for w in s)
+        kmp = KMP()
+        res = a + b + c
         for item in permutations(ind, 3):
-            t1, t2, t3 = [s[x] for x in item]
-            cur = check(check(t1, t2), t3)
-            if len(cur) < len(ans) or (len(cur) == len(ans) and cur < ans):
+            st = kmp.merge_b_from_a(kmp.merge_b_from_a(s[item[0]], s[item[1]]), s[item[2]])
+            cur = len(st)
+            if cur < ans or (cur == ans and st < res):
                 ans = cur
-        return ans
+                res = st
+        return res
 
     @staticmethod
     def lc_2851(s: str, t: str, k: int) -> int:
@@ -623,4 +607,110 @@ class Solution:
             if low <= high:
                 ans[i] = "1"
         ac.st("".join(ans))
+        return
+
+    @staticmethod
+    def cf_808g(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/808/problem/G
+        tag: kmp|kmp_automaton|z-function|matrix_dp
+        """
+        s = ac.read_str()
+        t = ac.read_str()
+        m, n = len(s), len(t)
+        z = KMP().z_function(t)
+        ind = [0]
+        for i in range(1, n):
+            if z[i] == n - i:
+                ind.append(n - i)
+
+        dp = [[-inf] * n for _ in range(2)]
+        pre = 0
+        dp[pre][0] = 0
+        for w in s:
+            cur = 1 - pre
+            for j in range(n):
+                dp[cur][j] = -inf
+            dp[cur][0] = max(dp[pre])
+            for j in range(n):
+                if t[j] == w or w == "?":
+                    if j == n - 1:
+                        for x in ind:
+                            dp[cur][x] = ac.max(dp[cur][x], dp[pre][j] + 1)
+                    else:
+                        dp[cur][j + 1] = ac.max(dp[cur][j + 1], dp[pre][j])
+            pre = cur
+        ac.st(max(dp[pre]))
+        return
+
+    @staticmethod
+    def lc_1397(n: int, s1: str, s2: str, evil: str) -> int:
+
+        """
+        url: https://leetcode.cn/problems/find-all-good-strings/
+        tag: digital_dp|kmp_automaton
+        """
+
+        @lru_cache(None)
+        def dfs(i, is_floor_limit, is_ceil_limit, sub_evil):
+            if sub_evil == m:
+                return 0
+            if i == n:
+                return 1
+            res = 0
+            start = 0 if not is_floor_limit else s1[i]
+            end = 25 if not is_ceil_limit else s2[i]
+            for w in range(start, end + 1):
+                cur_evil = sub_evil + 1 if evil[sub_evil] == w else nxt[sub_evil * 26 + w]
+                res += dfs(i + 1, is_floor_limit and s1[i] == w, is_ceil_limit and s2[i] == w, cur_evil)
+                res %= mod
+            return res
+
+        mod = 10 ** 9 + 7
+        m = len(evil)
+        s1 = [ord(w) - ord("a") for w in s1]
+        s2 = [ord(w) - ord("a") for w in s2]
+        evil = [ord(w) - ord("a") for w in evil]
+        n = len(s1)
+        nxt = KMP().kmp_automaton(evil)
+        ans = dfs(0, True, True, 0)
+        return ans
+
+    @staticmethod
+    def lg_p3435(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3435
+        tag: kmp|longest_circular_section|prefix_function_reverse|classical
+        """
+        n = ac.read_int()
+        s = ac.read_str()
+        nxt = KMP().prefix_function_reverse(s)
+        ans = sum(i + 1 - nxt[i] for i in range(1, n) if nxt[i])
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p2375(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2375
+        tag: kmp|z-function|diff_array
+        """
+        mod = 10 ** 9 + 7
+        for _ in range(ac.read_int()):
+            s = ac.read_str()
+            n = len(s)
+            z = KMP().z_function(s)
+            diff = [0] * n
+            for i in range(1, n):
+                if z[i]:
+                    x = ac.min(z[i], i)
+                    diff[i] += 1
+                    if i + x < n:
+                        diff[i + x] -= 1
+            ans = 1
+            for i in range(1, n):
+                diff[i] += diff[i - 1]
+                ans *= (diff[i] + 1)
+                ans %= mod
+            ac.st(ans)
         return

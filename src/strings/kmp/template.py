@@ -2,8 +2,8 @@ class KMP:
     def __init__(self):
         return
 
-    @staticmethod
-    def prefix_function(s):
+    @classmethod
+    def prefix_function(cls, s):
         """calculate the longest common true prefix and true suffix for s [:i+1] and s [:i+1]"""
         n = len(s)
         pi = [0] * n
@@ -15,7 +15,7 @@ class KMP:
                 j += 1
             pi[i] = j  # pi[i] <= i also known as next
         # pi[0] = 0
-        return pi
+        return pi    # longest common true prefix_suffix / i+1-nex[i] is shortest circular_section
 
     @staticmethod
     def z_function(s):
@@ -35,6 +35,18 @@ class KMP:
                 r = i + z[i] - 1
         # z[0] = 0
         return z
+
+    def prefix_function_reverse(self, s):
+        n = len(s)
+        nxt = [0] + self.prefix_function(s)
+        nxt[1] = 0
+        for i in range(2, n + 1):
+            j = i
+            while nxt[j]:
+                j = nxt[j]
+            if nxt[i]:
+                nxt[i] = j
+        return nxt[1:]  # shortest common true prefix_suffix / i+1-nex[i] is longest circular_section
 
     def find(self, s1, s2):
         """find the index position of s2 in s1"""
@@ -74,3 +86,13 @@ class KMP:
             for k in range(m):
                 nxt[i * m + k] = nxt[j * m + k]
         return nxt
+
+    @classmethod
+    def merge_b_from_a(cls, a, b):
+        c = b + "#" + a
+        f = cls.prefix_function(c)
+        m = len(b)
+        if max(f[m:]) == m:
+            return a
+        x = f[-1]
+        return a + b[x:]

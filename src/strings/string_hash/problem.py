@@ -26,7 +26,7 @@ P4656（https://www.luogu.com.cn/problem/P4656）string_hash|greedy
 P6739（https://www.luogu.com.cn/problem/P6739）prefix_suffix|string_hash
 P3370（https://www.luogu.com.cn/problem/P3370）string_hash
 P2601（https://www.luogu.com.cn/problem/P2601）matrix_hash
-
+P4824（https://www.luogu.com.cn/problem/P4824）string_hash
 ===================================CodeForces===================================
 1800D（https://codeforces.com/contest/1800/problem/D）prefix_suffix|hash
 514C（https://codeforces.com/problemset/problem/514/C）string_hash
@@ -1189,3 +1189,31 @@ class Solution:
                 ans += bs.find_int_right(0, y, check2)
         ac.st(ans)
         return
+
+    @staticmethod
+    def lg_p4824(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4824
+        tag: string_hash|stack|implemention
+        """
+
+        s = ac.read_str()
+        t = ac.read_str()
+        m, n = len(s), len(t)
+        sh = StringHash([ord(w) - ord("a") for w in s + t])
+        del t
+        target = sh.query(m, m + n - 1)
+        i = 0
+        stack = []
+        for w in s:
+            x = ord(w) - ord("a")
+            stack.append(w)
+            sh.pre[i + 1] = (sh.pre[i] * sh.p + x) % sh.mod
+            i += 1
+            if i >= n and sh.query(i - n, i - 1) == target:
+                i -= n
+                for _ in range(n):
+                    stack.pop()
+        ac.st("".join(stack))
+        return
+

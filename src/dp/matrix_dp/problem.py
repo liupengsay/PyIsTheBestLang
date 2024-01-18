@@ -109,6 +109,7 @@ P8786（https://www.luogu.com.cn/problem/P8786）classical|md_matrix_dp| impleme
 1381B（https://codeforces.com/problemset/problem/1381/B）matrix_dp|monotonic_stack
 1393D（https://codeforces.com/problemset/problem/1393/D）matrix_dp
 1731D（https://codeforces.com/contest/1731/problem/D）binary_search|maximum_square
+1003F（https://codeforces.com/contest/1003/problem/F）con_lcp|matrix_dp
 
 ====================================AtCoder=====================================
 ABC130E（https://atcoder.jp/contests/abc130/tasks/abc130_e）matrix_prefix_sum|matrix_dp
@@ -2329,3 +2330,44 @@ class Solution:
             return False
 
         return dfs(0, 0, 0)
+
+    @staticmethod
+    def cf_1003f(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1003/problem/F
+        tag: con_lcp|matrix_dp
+        """
+        n = ac.read_int()
+        words = ac.read_list_strs()
+        lst = [len(w) for w in words]
+        eq = [0] * n * n
+        for i in range(n):
+            eq[i * n + i] = 1
+            for j in range(i + 1, n):
+                if words[i] == words[j]:
+                    eq[i * n + j] = eq[j * n + i] = 1
+
+        dp = [0] * (n + 1) * (n + 1)
+        for i in range(n - 1, -1, -1):
+            for j in range(n - 1, -1, -1):
+                if eq[i * n + j]:
+                    dp[i * (n + 1) + j] = dp[(i + 1) * (n + 1) + j + 1] + 1
+
+        ans = sum(len(word) for word in words) + n - 1
+        for i in range(n):
+            for j in range(i, n):
+                x = cnt = 0
+                cur = -1
+                length = j - i + 1
+                while x < n:
+                    if dp[i * (n + 1) + x] >= length:
+                        cur += 1 + length
+                        x += length
+                        cnt += 1
+                    else:
+                        cur += 1 + lst[x]
+                        x += 1
+                if cnt > 1:
+                    ans = ac.min(ans, cur)
+        ac.st(ans)
+        return
