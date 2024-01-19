@@ -14,7 +14,7 @@ Description：string|prefix_suffix
 3008（https://leetcode.cn/problems/find-beautiful-indices-in-the-given-array-ii/）kmp|find
 686（https://leetcode.cn/problems/repeated-string-match/）kmp|find|greedy
 1397（https://leetcode.cn/problems/find-all-good-strings/）digital_dp|kmp_automaton
-459（https://leetcode.cn/problems/repeated-substring-pattern/）
+459（https://leetcode.cn/problems/repeated-substring-pattern/）kmp|circular_section
 1163（https://leetcode.cn/problems/last-substring-in-lexicographical-order/）kmp|matrix_dp|kmp_automaton
 
 =====================================LuoGu======================================
@@ -25,13 +25,12 @@ P4824（https://www.luogu.com.cn/problem/P4824）
 P2375（https://www.luogu.com.cn/problem/P2375）kmp|z-function|diff_array
 P7114（https://www.luogu.com.cn/problem/P7114）
 P3426（https://www.luogu.com.cn/problem/P3426）
-P3193（https://www.luogu.com.cn/problem/P3193）
-P4503（https://www.luogu.com.cn/problem/P4503）
-P3538（https://www.luogu.com.cn/problem/P3538）
-P4036（https://www.luogu.com.cn/problem/P4036）
-P5410（https://www.luogu.com.cn/problem/P5410）
+P3193（https://www.luogu.com.cn/problem/P3193）kmp_automaton|matrix_fast_power|matrix_dp
+P4036（https://www.luogu.com.cn/problem/P4036）kmp|z-function
+P5410（https://www.luogu.com.cn/problem/P5410）kmp|z-function
 P1368（https://www.luogu.com.cn/problem/P1368）
 P3121（https://www.luogu.com.cn/problem/P3121）
+P5829（https://www.luogu.com.cn/problem/P5829）kmp|z-function|fail_tree|classical|border|longest_common_border|tree_lca
 
 ===================================CodeForces===================================
 1326D2（https://codeforces.com/problemset/problem/1326/D2）manacher|greedy|prefix_suffix|longest_prefix_suffix|palindrome_substring
@@ -47,9 +46,8 @@ P3121（https://www.luogu.com.cn/problem/P3121）
 526D（https://codeforces.com/contest/526/problem/D）brain_teaser|classical|kmp|circular_section
 954I（https://codeforces.com/problemset/problem/954/I）
 808G（https://codeforces.com/contest/808/problem/G）kmp|kmp_automaton|z-function|matrix_dp
-182D（https://codeforces.com/problemset/problem/182/D）
-526D（https://codeforces.com/problemset/problem/526/D）
-535D（https://codeforces.com/problemset/problem/535/D）
+182D（https://codeforces.com/problemset/problem/182/D）kmp|circular_section|num_factor
+535D（https://codeforces.com/problemset/problem/535/D）kmp|z-function|union_find
 1051E（https://codeforces.com/contest/1051/problem/E）
 496B（https://codeforces.com/problemset/problem/496/B）
 
@@ -69,8 +67,8 @@ P3121（https://www.luogu.com.cn/problem/P3121）
 7（https://www.luogu.com.cn/problem/UVA11022）
 8（https://poj.org/problem?id=2406）
 9（https://www.luogu.com.cn/problem/UVA455）
-10（https://judge.yosupo.jp/problem/zalgorithm）
-11（https://codeforces.com/edu/course/2/lesson/3/3/practice/contest/272263/problem/A）
+10（https://judge.yosupo.jp/problem/zalgorithm）kmp|z-function
+11（https://codeforces.com/edu/course/2/lesson/3/3/practice/contest/272263/problem/A）kmp|z-function
 12（https://codeforces.com/edu/course/2/lesson/3/4/practice/contest/272262/problem/A）
 13（https://codeforces.com/edu/course/2/lesson/3/4/practice/contest/272262/problem/B）
 14（https://codeforces.com/edu/course/2/lesson/3/4/practice/contest/272262/problem/C）
@@ -90,7 +88,10 @@ from itertools import permutations
 from typing import List
 
 from src.data_structure.sorted_list.template import SortedList
+from src.graph.tree_lca.template import TreeAncestor
+from src.graph.union_find.template import UnionFind
 from src.mathmatics.fast_power.template import MatrixFastPower
+from src.mathmatics.number_theory.template import NumFactor
 from src.strings.kmp.template import KMP
 from src.utils.fast_io import FastIO, inf
 
@@ -713,4 +714,189 @@ class Solution:
                 ans *= (diff[i] + 1)
                 ans %= mod
             ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p3193(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3193
+        tag: kmp_automaton|matrix_fast_power|matrix_dp
+        """
+        n, m, k = ac.read_list_ints()
+        lst = [int(w) for w in ac.read_str()]
+        nxt = KMP().kmp_automaton(lst, 10)
+        grid = [[0] * (m + 9) for _ in range(m + 9)]
+        for i in range(10):
+            for j in range(m):
+                ind = i if j == 0 else j + 9
+                for x in range(10):
+                    y = nxt[j * 10 + x]
+                    if y == 0:
+                        grid[x][ind] = 1
+                    elif y < m:
+                        grid[y + 9][ind] = 1
+
+        initial = [0] * (m + 9)
+        for x in range(10):
+            if x == lst[0] and m > 1:
+                initial[10] = 1
+            elif x != lst[0]:
+                initial[x] = 1
+        mat = MatrixFastPower().matrix_pow(grid, n - 1, k)
+        ans = 0
+        for i in range(m + 9):
+            ans += sum(mat[i][j] * initial[j] for j in range(m + 9))
+        ac.st(ans % k)
+        return
+
+    @staticmethod
+    def lg_p4036(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4036
+        tag: kmp|z-function
+        """
+        lst = [ord(w) - ord("a") for w in ac.read_str()]
+        for _ in range(ac.read_int()):
+            cur = ac.read_list_strs()
+            if cur[0] == "Q":
+                x, y = [int(w) - 1 for w in cur[1:]]
+                n = len(lst)
+                ans = KMP().z_function(lst[x:] + [-1] + lst[y:])[n - x + 1]
+                ac.st(ans)
+            elif cur[0] == "R":
+                x = int(cur[1]) - 1
+                w = ord(cur[2]) - ord("a")
+                lst[x] = w
+            else:
+                x = int(cur[1])
+                w = ord(cur[2]) - ord("a")
+                lst.insert(x, w)
+        return
+
+    @staticmethod
+    def lg_p5829(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5829
+        tag: kmp|z-function|fail_tree|classical|border|longest_common_border|tree_lca
+        """
+        lst = [ord(w) - ord("a") for w in ac.read_str()]
+        n = len(lst)
+        pi = [0] + KMP().prefix_function(lst)
+
+        edges = [[] for _ in range(n + 1)]
+        for i in range(1, n + 1):
+            if pi[i]:
+                edges[pi[i]].append(i)
+            else:
+                edges[0].append(i)
+        tree = TreeAncestor(edges, 0)
+        for _ in range(ac.read_int()):
+            p, q = ac.read_list_ints()
+            ac.st(tree.get_lca(pi[p], pi[q]))
+        return
+
+    @staticmethod
+    def cf_182d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/182/problem/D
+        tag: kmp|circular_section|num_factor
+        """
+        s = ac.read_str()
+        t = ac.read_str()
+        m, n = len(s), len(t)
+        c1 = m - KMP().prefix_function(s)[-1]
+        c2 = n - KMP().prefix_function(t)[-1]
+        if m % c1:
+            c1 = m
+        if n % c2:
+            c2 = n
+        if c1 != c2 or s[:c1] != t[:c2]:
+            ac.st(0)
+        else:
+            ac.st(len(NumFactor().get_all_factor(math.gcd(m // c1, n // c2))))
+        return
+
+    @staticmethod
+    def lc_459(s: str) -> bool:
+        """
+        url: https://leetcode.cn/problems/repeated-substring-pattern/
+        tag: kmp|circular_section
+        """
+        n = len(s)
+        c = n - KMP().prefix_function(s)[-1]
+        return n % c == 0 and n // c > 1
+
+    @staticmethod
+    def library_check_10(ac=FastIO()):
+        """
+        url: https://judge.yosupo.jp/problem/zalgorithm
+        tag: kmp|z-function
+        """
+        s = ac.read_str()
+        z = KMP().z_function(s)
+        z[0] = len(s)
+        ac.lst(z)
+        return
+
+    @staticmethod
+    def library_check_11(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/3/3/practice/contest/272263/problem/A
+        tag: kmp|z-function
+        """
+        s = ac.read_str()
+        z = KMP().z_function(s)
+        ac.lst(z)
+        return
+
+    @staticmethod
+    def lg_p5410(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5410
+        tag: kmp|z-function
+        """
+        a = ac.read_str()
+        b = ac.read_str()
+        m, n = len(a), len(b)
+        z = KMP().z_function(b + "#" + a)
+        z[0] = n
+        ans = 0
+        for i in range(n):
+            ans ^= (i + 1) * (z[i] + 1)
+        ac.st(ans)
+
+        ans = 0
+        for i in range(n + 1, n + m + 1):
+            ans ^= (i - n) * (z[i] + 1)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_535d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/535/problem/D
+        tag: kmp|z-function|union_find
+        """
+        n, k = ac.read_list_ints()
+        s = ac.read_str()
+        m = len(s)
+        lst = [""] * n
+        uf = UnionFind(n + 1)
+        pos = ac.read_list_ints_minus_one()
+        for i in pos:
+            start = i
+            end = i + m - 1
+            while uf.find(i) <= end:
+                j = uf.find(i)
+                lst[j] = s[j - start]
+                uf.union_right(j, j + 1)
+                i = j + 1
+
+        z = KMP().z_function(list(s) + ["#"] + lst)
+        if not all(z[m + 1 + i] == m for i in pos):
+            ac.st(0)
+            return
+        mod = 1000000007
+        ans = pow(26, lst.count(""), mod)
+        ac.st(ans)
         return

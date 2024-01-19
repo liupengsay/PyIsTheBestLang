@@ -27,6 +27,9 @@ P6739（https://www.luogu.com.cn/problem/P6739）prefix_suffix|string_hash
 P3370（https://www.luogu.com.cn/problem/P3370）string_hash
 P2601（https://www.luogu.com.cn/problem/P2601）matrix_hash
 P4824（https://www.luogu.com.cn/problem/P4824）string_hash
+P4503（https://www.luogu.com.cn/problem/P4503）string_hash
+P3538（https://www.luogu.com.cn/problem/P3538）string_hash|prime_factor|brute_force|circular_section
+
 ===================================CodeForces===================================
 1800D（https://codeforces.com/contest/1800/problem/D）prefix_suffix|hash
 514C（https://codeforces.com/problemset/problem/514/C）string_hash
@@ -59,6 +62,7 @@ from typing import List
 from src.basis.binary_search.template import BinarySearch
 from src.graph.dijkstra.template import Dijkstra
 from src.mathmatics.fast_power.template import MatrixFastPower
+from src.mathmatics.prime_factor.template import PrimeFactor
 from src.strings.string_hash.template import StringHash, PointSetRangeHashReverse, RangeChangeRangeHashReverse, \
     MatrixHash, MatrixHashReverse
 from src.utils.fast_io import FastIO, inf
@@ -1148,7 +1152,6 @@ class Solution:
             ac.st(1 if cur in pre else 0)
         return
 
-
     @staticmethod
     def lg_p2601(ac=FastIO()):
 
@@ -1217,3 +1220,79 @@ class Solution:
         ac.st("".join(stack))
         return
 
+    @staticmethod
+    def lg_p4503(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4503
+        tag: string_hash
+        """
+
+        ind = dict()
+        words = []
+        for i in range(10):
+            ind[str(i)] = i
+            words.append(str(i))
+        for i in range(26):
+            ind[chr(i + ord("a"))] = 10 + i
+            words.append(chr(i + ord("a")))
+        for i in range(26):
+            ind[chr(i + ord("A"))] = 36 + i
+            words.append(chr(i + ord("A")))
+        ind["_"] = 62
+        ind["@"] = 63
+        words.extend(["_", "@"])
+
+        n, ll, s = ac.read_list_ints()
+        sh1 = StringHash([0] * ll)
+        sh2 = StringHash([0] * ll)
+        cnt = dict()
+        ans = 0
+        for _ in range(n):
+            st = [ind[w] + 1 for w in ac.read_str()]
+            for j in range(ll):
+                sh1.pre[j + 1] = (sh1.pre[j] * sh1.p + st[j]) % sh1.mod
+                sh2.pre[j + 1] = (sh2.pre[j] * sh2.p + st[j]) % sh2.mod
+            for j in range(ll):
+                pre1 = sh1.pre[j]
+                post1 = sh1.query(j + 1, ll - 1)
+                pre2 = sh2.pre[j]
+                post2 = sh2.query(j + 1, ll - 1)
+                right = ll - j - 1
+                cur1 = (pre1 * sh1.pp[right + 1] + post1) % sh1.mod
+                cur2 = (pre2 * sh2.pp[right + 1] + post2) % sh2.mod
+                ans += cnt.get((cur1, cur2), 0)
+                cnt[(cur1, cur2)] = cnt.get((cur1, cur2), 0) + 1
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p3538(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3538
+        tag: string_hash|prime_factor|brute_force|circular_section
+        """
+        n = ac.read_int()
+        lst = [ord(w) - ord("a") for w in ac.read_str()]
+        sh1 = StringHash(lst)
+        sh2 = StringHash(lst)
+
+        def check(cur):
+            pre1 = sh1.query(a, b - cur)
+            post1 = sh1.query(a + cur, b)
+
+            pre2 = sh2.query(a, b - cur)
+            post2 = sh2.query(a + cur, b)
+            return pre1 == post1 and pre2 == post2
+
+        pf = PrimeFactor(n)
+        for _ in range(ac.read_int()):
+            a, b = ac.read_list_ints_minus_one()
+            length = b - a + 1
+            ans = length
+            while length > 1:
+                p = pf.min_prime[length]
+                if check(ans // p):
+                    ans //= p
+                length //= p
+            ac.st(ans)
+        return

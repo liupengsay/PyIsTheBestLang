@@ -75,9 +75,8 @@ class KMP:
         return self.prefix_function(s[::-1] + "#" + s)[-1]
 
     @staticmethod
-    def kmp_automaton(s):
+    def kmp_automaton(s, m=26):
         n = len(s)
-        m = 26
         nxt = [0] * m * (n + 1)
         j = 0
         for i in range(1, n + 1):
