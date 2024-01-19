@@ -48,13 +48,16 @@ P5829（https://www.luogu.com.cn/problem/P5829）kmp|z-function|fail_tree|classi
 808G（https://codeforces.com/contest/808/problem/G）kmp|kmp_automaton|z-function|matrix_dp
 182D（https://codeforces.com/problemset/problem/182/D）kmp|circular_section|num_factor
 535D（https://codeforces.com/problemset/problem/535/D）kmp|z-function|union_find
-1051E（https://codeforces.com/contest/1051/problem/E）
-496B（https://codeforces.com/problemset/problem/496/B）
+1051E（https://codeforces.com/contest/1051/problem/E）kmp|z-function|linear_dp
+
 
 =====================================AcWing=====================================
 143（https://www.acwing.com/problem/content/143/）kmp|circular_section
 162（https://www.acwing.com/problem/content/162/）z_function|template
 3826（https://www.acwing.com/problem/content/3826/）kmp|z_function
+
+=====================================AtCoder=====================================
+284F（https://atcoder.jp/contests/abc284/tasks/abc284_f）
 
 
 =====================================LibraryChecker=====================================
@@ -69,15 +72,14 @@ P5829（https://www.luogu.com.cn/problem/P5829）kmp|z-function|fail_tree|classi
 9（https://www.luogu.com.cn/problem/UVA455）
 10（https://judge.yosupo.jp/problem/zalgorithm）kmp|z-function
 11（https://codeforces.com/edu/course/2/lesson/3/3/practice/contest/272263/problem/A）kmp|z-function
-12（https://codeforces.com/edu/course/2/lesson/3/4/practice/contest/272262/problem/A）
-13（https://codeforces.com/edu/course/2/lesson/3/4/practice/contest/272262/problem/B）
-14（https://codeforces.com/edu/course/2/lesson/3/4/practice/contest/272262/problem/C）
-15（https://codeforces.com/edu/course/2/lesson/3/4/practice/contest/272262/problem/D）
-16（https://codeforces.com/edu/course/2/lesson/3/4/practice/contest/272262/problem/E）
-17（https://codeforces.com/edu/course/2/lesson/3/4/practice/contest/272262/problem/F）
-18（https://atcoder.jp/contests/abc284/tasks/abc284_f）
-19（https://poj.org/problem?id=1509）
-20（https://codeforces.com/gym/103585/problem/K）
+12（https://codeforces.com/edu/course/2/lesson/3/4/practice/contest/272262/problem/A）kmp|circular_section
+13（https://codeforces.com/edu/course/2/lesson/3/4/practice/contest/272262/problem/B）kmp|find|z-function
+14（https://codeforces.com/edu/course/2/lesson/3/4/practice/contest/272262/problem/C）kmp|diff_array|z-function
+15（https://codeforces.com/edu/course/2/lesson/3/4/practice/contest/272262/problem/D）kmp|find_longest_palindrome
+16（https://codeforces.com/edu/course/2/lesson/3/4/practice/contest/272262/problem/E）kmp|z-function
+17（https://codeforces.com/edu/course/2/lesson/3/4/practice/contest/272262/problem/F）kmp|z-function
+18（https://poj.org/problem?id=1509）
+19（https://codeforces.com/gym/103585/problem/K）
 
 """
 import bisect
@@ -900,3 +902,196 @@ class Solution:
         ans = pow(26, lst.count(""), mod)
         ac.st(ans)
         return
+
+    @staticmethod
+    def cf_1051e(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1051/problem/E
+        tag: kmp|z-function|linear_dp
+        """
+        s = ac.read_str()
+        ll = ac.read_str()
+        rr = ac.read_str()
+        n = len(s)
+        nll = len(ll)
+        nrr = len(rr)
+        zll = KMP().z_function(ll + "#" + s)[nll + 1:]
+        zrr = KMP().z_function(rr + "#" + s)[nrr + 1:]
+
+        def compare_ll(ind):
+            lcp = zll[ind]
+            if lcp == nll:
+                return True
+            return s[ind + lcp] >= ll[lcp]
+
+        def compare_rr(ind):
+            lcp = zrr[ind]
+            if lcp == nrr:
+                return True
+            return s[ind + lcp] <= rr[lcp]
+
+        mod = 998244353
+        dp = [0] * (n + 1)
+        post = [0] * (n + 1)
+        dp[n] = post[n] = 1
+        for i in range(n - 1, -1, -1):
+            if s[i] == "0":
+                if ll == "0":
+                    dp[i] = dp[i + 1]
+                post[i] = (post[i + 1] + dp[i]) % mod
+                continue
+            left = i + nll
+            right = i + nrr
+            if i + nll > n or not compare_ll(i):
+                left += 1
+            if i + nrr > n or not compare_rr(i):
+                right -= 1
+            if left <= right and left <= n:
+                dp[i] = (post[left] - (post[right + 1] if right < n else 0)) % mod
+            post[i] = (post[i + 1] + dp[i]) % mod
+        ac.st(dp[0])
+        return
+
+    @staticmethod
+    def library_check_12(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/3/4/practice/contest/272262/problem/A
+        tag: kmp|circular_section
+        """
+        for _ in range(ac.read_int()):
+            s = ac.read_str()
+            n = len(s)
+            ans = n - KMP().prefix_function(s)[-1]
+            ac.st(s[:ans])
+        return
+
+    @staticmethod
+    def library_check_13(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/3/4/practice/contest/272262/problem/B
+        tag: kmp|find|z-function
+        """
+        for _ in range(ac.read_int()):
+            s = ac.read_str()
+            t = ac.read_str()
+            ind = KMP().find(s + s, t)
+            if not ind:
+                ac.st(-1)
+            else:
+                ac.st(ind[0])
+        return
+
+    @staticmethod
+    def library_check_14(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/3/4/practice/contest/272262/problem/C
+        tag: kmp|diff_array|z-function
+        """
+        for _ in range(ac.read_int()):
+            s = ac.read_str()
+            n = len(s)
+            diff = [0] * (n + 1)
+            z = KMP().z_function(s + "#" + s)[n + 1:]
+            for x in z:
+                diff[0] += 1
+                if x + 1 <= n:
+                    diff[x + 1] -= 1
+            for i in range(1, n + 1):
+                diff[i] += diff[i - 1]
+            ac.lst(diff[1:])
+        return
+
+    @staticmethod
+    def library_check_15(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/3/4/practice/contest/272262/problem/D
+        tag: kmp|find_longest_palindrome
+        """
+        s = ac.read_str()
+        ac.st(KMP().find_longest_palindrome(s, "prefix"))
+        return
+
+    @staticmethod
+    def library_check_16(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/3/4/practice/contest/272262/problem/E
+        tag: kmp|z-function
+        """
+        s = ac.read_str()
+        t = ac.read_str()
+
+        n = len(s)
+        if len(t) != n:
+            ac.st("No")
+            return
+        if s == t:
+            ac.st("Yes")
+            ac.st(0)
+            return
+
+        z1 = KMP().z_function(t + "#" + s)[n + 1:]
+        z2 = KMP().z_function(t[::-1] + "#" + s)[n + 1:]
+        for i in range(n):
+            if z1[i] == n - i and z2[0] >= i:
+                ac.st("Yes")
+                ac.st(i)
+                return
+        ac.st("No")
+        return
+
+    @staticmethod
+    def library_check_17(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/3/4/practice/contest/272262/problem/F
+        tag: kmp|z-function
+        """
+        for _ in range(ac.read_int()):
+            s = ac.read_str()
+            t = ac.read_str()
+            if t in s:
+                ac.st(s)
+                continue
+            if s in t:
+                ac.st(t)
+                continue
+            m, n = len(s), len(t)
+            z = KMP().z_function(s + "#" + t)[m + 1:]
+            ans = s + t
+            for i in range(n):
+                if z[i] == n - i:
+                    cur = t[:-z[i]] + s
+                    if len(cur) < len(ans):
+                        ans = cur
+                    break
+
+            z = KMP().z_function(t + "#" + s)[n + 1:]
+            for i in range(m):
+                if z[i] == m - i:
+                    cur = s[:-z[i]] + t
+                    if len(cur) < len(ans):
+                        ans = cur
+                    break
+            ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_284f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc284/tasks/abc284_f
+        tag: kmp|z-function
+        """
+        n = ac.read_int()
+        s = ac.read_str()
+        sr = s[::-1]
+        z1 = KMP().z_function(sr + s)[2 * n:]  # 4*n
+        z2 = KMP().z_function(s + sr)[2 * n:]  # 4*n
+        for i in range(n):
+            right = 2 * n - n - i
+            left = n - right
+            if z2[i] >= right and z1[right] >= left:
+                ac.st(sr[i:i + n])
+                ac.st(right)
+                return
+        ac.st(-1)
+        return
+

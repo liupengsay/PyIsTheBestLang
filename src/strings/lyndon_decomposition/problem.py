@@ -6,9 +6,16 @@ Description：rotate_string|lexicographical_order
 1163（https://leetcode.cn/problems/last-substring-in-lexicographical-order/）brain_teaser|maximum_expression|minimum_expression|maximum_expression
 
 =====================================LuoGu======================================
+P1368（https://www.luogu.com.cn/problem/P1368）lyndon_decomposition|min_express
+
+===================================CodeForces===================================
+496B（https://codeforces.com/problemset/problem/496/B）lyndon_decomposition|min_express
 
 =====================================AcWing=====================================
 158（https://www.acwing.com/problem/content/160/）minimum_expression
+
+=====================================LibraryChecker=====================================
+1（https://codeforces.com/gym/103585/problem/K） lyndon_decomposition|max_express
 
 """
 
@@ -27,10 +34,9 @@ class Solution:
         url: https://leetcode.cn/problems/last-substring-in-lexicographical-order/
         tag: brain_teaser|maximum_expression|minimum_expression|maximum_expression
         """
-        # 求maximum_expression
-        s += chr(ord("a") - 1)
-        i, _ = LyndonDecomposition().max_express(s)
-        return s[i:-1]
+        ld = LyndonDecomposition()
+        ans = ld.max_express(s + "0")[0]
+        return s[ans:]
 
     @staticmethod
     def ac_158(ac=FastIO()):
@@ -48,4 +54,50 @@ class Solution:
             ac.st(s1)
         else:
             ac.st("No")
+        return
+
+    @staticmethod
+    def lg_p1368(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1368
+        tag: lyndon_decomposition|min_express
+        """
+        ac.read_int()
+        lst = ac.read_list_ints()
+        ans = LyndonDecomposition().min_express(lst)
+        ac.lst(ans[1])
+        return
+
+    @staticmethod
+    def library_check_1(ac=FastIO()):
+        """
+        url: https://codeforces.com/gym/103585/problem/K
+        tag: lyndon_decomposition|max_express
+        """
+        s = ac.read_str()
+        ans = LyndonDecomposition().max_express(s[::-1])
+        if ans[0]:
+            ac.st(ans[1])
+        else:
+            w = max(s[:-1])
+            i = s.index(w)
+            ac.st(s[:i + 1][::-1] + s[i + 1:][::-1])
+        return
+
+    @staticmethod
+    def cf_496b(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/496/B
+        tag: lyndon_decomposition|min_express
+        """
+        ac.read_int()
+        lst = [int(w) for w in ac.read_str()]
+        ld = LyndonDecomposition()
+        ans = ld.min_express(lst)[1]
+        for _ in range(10):
+            lst = [(x + 1) % 10 for x in lst]
+            cur = ld.min_express(lst)[1]
+            if cur < ans:
+                ans = cur
+        ac.st("".join(str(x) for x in ans))
         return

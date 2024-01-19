@@ -39,6 +39,7 @@ Description：matrix_prefix_sum|sub_matrix_sum|maximum_square|edit_distance|lcs|
 1959（https://leetcode.cn/problems/minimum-total-space-wasted-with-k-resizing-operations/description/）matrix_dp|prefix_sum
 1458（https://leetcode.cn/problems/max-dot-product-of-two-subsequences/description/）matrix_dp
 1745（https://leetcode.cn/problems/palindrome-partitioning-iv/description/）matrix_dp|palindrome_substring|manacher|brute_force
+2809（https://leetcode.cn/problems/minimum-time-to-make-array-sum-at-most-x/）matrix_dp|greedy|implemention
 
 =====================================LuoGu======================================
 P2701（https://www.luogu.com.cn/problem/P2701）maximum_square|matrix_dp|brute_force|classical|O(n^3)|hollow
@@ -132,7 +133,7 @@ from src.basis.diff_array.template import PreFixSumMatrix
 from src.data_structure.tree_array.template import PointDescendPreMin
 from src.greedy.longest_increasing_subsequence.template import LcsComputeByLis
 from src.mathmatics.comb_perm.template import Combinatorics
-from src.utils.fast_io import FastIO
+from src.utils.fast_io import FastIO, ac_max
 from src.utils.fast_io import inf
 
 
@@ -2371,3 +2372,27 @@ class Solution:
                     ans = ac.min(ans, cur)
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_2809(nums1: List[int], nums2: List[int], x: int) -> int:
+        """
+        url: https://leetcode.cn/problems/minimum-time-to-make-array-sum-at-most-x/
+        tag: matrix_dp|greedy|implemention
+        """
+        n = len(nums2)
+        ind = list(range(n))
+        ind.sort(key=lambda it: nums2[it])
+
+        dp = [[0] * (n + 1) for _ in range(2)]
+        pre = 0
+        for i in range(n):
+            cur = 1-pre
+            for j in range(1, i + 2):
+                dp[cur][j] = ac_max(dp[pre][j], dp[pre][j - 1] + nums2[ind[i]] * j + nums1[ind[i]])
+            pre = cur
+        s1 = sum(nums1)
+        s2 = sum(nums2)
+        for j in range(n + 1):
+            if s1 + s2 * j - dp[pre][j] <= x:
+                return j
+        return -1

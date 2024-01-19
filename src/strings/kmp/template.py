@@ -5,14 +5,14 @@ class KMP:
     @classmethod
     def prefix_function(cls, s):
         """calculate the longest common true prefix and true suffix for s [:i+1] and s [:i+1]"""
-        n = len(s)
+        n = len(s)  # fail tree
         pi = [0] * n
         for i in range(1, n):
             j = pi[i - 1]
             while j > 0 and s[i] != s[j]:
                 j = pi[j - 1]
-            if s[i] == s[j]:
-                j += 1
+            if s[i] == s[j]:  # all pi[i] pi[pi[i]] ... are border
+                j += 1   # all i+1-pi[i] pi[i]+1-pi[pi[i]] ... are circular_section
             pi[i] = j  # pi[i] <= i also known as next
         # pi[0] = 0
         return pi    # longest common true prefix_suffix / i+1-nex[i] is shortest circular_section

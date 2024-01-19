@@ -2,7 +2,7 @@ class LyndonDecomposition:
     def __init__(self):
         return
 
-    #
+
     @staticmethod
     def solve_by_duval(s):
         """template of duval algorithm"""
