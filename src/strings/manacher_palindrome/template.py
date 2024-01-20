@@ -137,7 +137,7 @@ class ManacherPlindrome:
             right = j + arm[j] - 1
             while left <= right:
                 if t[left] != "#":
-                    if right // 2 == 0:
+                    if right // 2 == n-1:
                         end.append(left // 2)
                     break
                 left += 1
@@ -185,6 +185,42 @@ class ManacherPlindrome:
             start[i] += start[i - 1]
             end[i] += end[i - 1]
         return start, end
+
+    def palindrome_count_start_end_odd(self, s: str) -> (list, list):
+        """template of get the number of palindrome substring for every i-th character as start or end pos"""
+        n = len(s)
+        # trick to promise every palindrome substring has odd length
+        # with # centered as the original even palindrome substring
+        # letter centered as the original odd palindrome substring
+        t = "#" + "#".join(list(s)) + "#"
+        arm = self.manacher(t)
+        m = len(t)
+
+        # end position index of palindrome substring starting with the current index as the boundary
+        start = [0] * n
+        end = [0] * n
+        for j in range(m):
+            left = j - arm[j] + 1
+            right = j + arm[j] - 1
+            while left <= right:
+                if t[left] != "#":
+                    x, y = left // 2, right // 2
+                    if (y - x + 1) % 2:
+                        mid = x + (y - x + 1) // 2
+                        start[x] += 1
+                        if mid + 1 < n:
+                            start[mid + 1] -= 1
+                        end[mid] += 1
+                        if y + 1 < n:
+                            end[y + 1] -= 1
+                    break
+                left += 1
+                right -= 1
+        for i in range(1, n):
+            start[i] += start[i - 1]
+            end[i] += end[i - 1]
+        return start, end
+
 
     def palindrome_length_count(self, s: str) -> (list, list):
         """template of get the endpoint of palindrome substring for every i-th character as start or end pos"""

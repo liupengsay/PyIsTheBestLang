@@ -9,7 +9,7 @@ Description：dp|center|center_expansion_method|manacher
 1745（https://leetcode-cn.com/problems/palindrome-partitioning-iv/）manacher|palindrome_start_end
 2472（https://leetcode.cn/problems/maximum-number-of-non-overlapping-palindrome-substrings/）
 214（https://leetcode-cn.com/problems/shortest-palindrome/）manacher|linear_dp|palindrome_start_end
-647（https://leetcode-cn.com/problems/palindromic-substrings/）
+647（https://leetcode-cn.com/problems/palindromic-substrings/）manacher|palindrome_count
 
 =====================================AcWing======================================
 141（https://www.acwing.com/problem/content/141/）manacher|longest_palindrome_substring|binary_search|hash
@@ -38,7 +38,7 @@ P5446（https://www.luogu.com.cn/problem/P5446）
 
 ===================================LibraryChecker===================================
 1（https://judge.yosupo.jp/problem/enumerate_palindromes）counter|palindrome_substring
-2（https://www.luogu.com.cn/problem/P1659）
+2（https://www.luogu.com.cn/problem/UVA11475）palindrome_just_end|manacher
 
 
 """
@@ -361,3 +361,29 @@ class Solution:
         ans = sum(cnt[i] for i in range(2, m + 1, 2))
         ac.st(ans)
         return
+
+    @staticmethod
+    def library_check_2(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/UVA11475
+        tag: palindrome_just_end|manacher
+        """
+        while True:
+            s = ac.read_str()
+            if not s:
+                break
+            post = ManacherPlindrome().palindrome_just_end(s)
+            if not post:
+                ac.st(s + s)
+            else:
+                x = min(post)
+                ac.st(s + s[:x][::-1])
+        return
+
+    @staticmethod
+    def lc_647(s: str) -> int:
+        """
+        url: https://leetcode.cn/problems/palindromic-substrings/
+        tag: manacher|palindrome_count
+        """
+        return ManacherPlindrome().palindrome_count(s)
