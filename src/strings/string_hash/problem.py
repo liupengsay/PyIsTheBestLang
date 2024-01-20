@@ -36,7 +36,8 @@ P3538（https://www.luogu.com.cn/problem/P3538）string_hash|prime_factor|brute_
 1200E（https://codeforces.com/problemset/problem/1200/E）string_hash|kmp
 580E（https://codeforces.com/problemset/problem/580/E）segment_tree_hash|range_change|range_hash_reverse|circular_section
 452F（https://codeforces.com/contest/452/problem/F）segment_tree_hash|string_hash|point_set|range_hash|range_reverse
-
+7D（https://codeforces.com/problemset/problem/7/D）string_hash|palindrome|classical
+835D（https://codeforces.com/problemset/problem/835/D）palindrome|string_hash
 
 ====================================AtCoder=====================================
 ABC141E（https://atcoder.jp/contests/abc141/tasks/abc141_e）binary_search|string_hash|check
@@ -1295,4 +1296,60 @@ class Solution:
                     ans //= p
                 length //= p
             ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_7d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/7/D
+        tag: string_hash|palindrome|classical
+        """
+        p = 131
+        mod = 10 ** 9 + 7
+        s = ac.read_str()
+        n = len(s)
+        pre = rev = 0
+        pp = 1
+        dp = [0] * (n + 1)
+        for i in range(n):
+            x = ord(s[i]) - ord("a")
+            pre = (pre * p + x) % mod
+            rev = (x * pp + rev) % mod
+            pp = (pp * p) % mod
+            if pre != rev:
+                continue
+            dp[i + 1] = dp[(i + 1) // 2] + 1
+        ac.st(sum(dp))
+        return
+
+    @staticmethod
+    def cf_835d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/835/D
+        tag: palindrome|string_hash
+        """
+        s = ac.read_str()
+        lst = [ord(w) - ord("a") for w in s]
+        n = len(s)
+        dp = [0] * (n + 1)
+        ans = [0] * (n + 1)
+        p = 131
+        mod = 10 ** 9 + 7
+        for i in range(n):
+            dp[i] = 1
+            pp = p
+            pre = rev = lst[i]
+            ans[1] += 1
+            for j in range(i + 1, n):
+                pre = (pre * p + lst[j]) % mod
+                rev = (lst[j] * pp + rev) % mod
+                pp = (pp * p) % mod
+                if pre == rev:
+                    dp[j] = dp[i + (j - i + 1) // 2 - 1] + 1
+                    ans[dp[j]] += 1
+                else:
+                    dp[j] = 0
+        for i in range(n - 1, -1, -1):
+            ans[i] += ans[i + 1]
+        ac.lst(ans[1:])
         return

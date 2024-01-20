@@ -111,6 +111,7 @@ P8786（https://www.luogu.com.cn/problem/P8786）classical|md_matrix_dp| impleme
 1393D（https://codeforces.com/problemset/problem/1393/D）matrix_dp
 1731D（https://codeforces.com/contest/1731/problem/D）binary_search|maximum_square
 1003F（https://codeforces.com/contest/1003/problem/F）con_lcp|matrix_dp
+835D（https://codeforces.com/problemset/problem/835/D）palindrome|matrix_dp
 
 ====================================AtCoder=====================================
 ABC130E（https://atcoder.jp/contests/abc130/tasks/abc130_e）matrix_prefix_sum|matrix_dp
@@ -2396,3 +2397,34 @@ class Solution:
             if s1 + s2 * j - dp[pre][j] <= x:
                 return j
         return -1
+
+    @staticmethod
+    def cf_835d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/835/D
+        tag: palindrome|matrix_dp
+        """
+        s = ac.read_str()
+        n = len(s)
+        dp = [[0] * n for _ in range(2)]
+        ans = [0] * (n + 1)
+        pre = 0
+        for i in range(n - 1, -1, -1):
+            cur = 1 - pre
+            for j in range(n):
+                dp[cur][j] = 0
+            dp[cur][i] = 1
+            ans[1] += 1
+            if i + 1 < n and s[i] == s[i + 1]:
+                dp[cur][i + 1] = 2
+                ans[2] += 1
+            for j in range(i + 2, n):
+                if not dp[pre][j - 1] or s[i] != s[j]:
+                    continue
+                dp[cur][j] = dp[cur][i + (j - i + 1) // 2 - 1] + 1
+                ans[dp[cur][j]] += 1
+            pre = cur
+        for i in range(n - 1, -1, -1):
+            ans[i] += ans[i + 1]
+        ac.lst(ans[1:])
+        return

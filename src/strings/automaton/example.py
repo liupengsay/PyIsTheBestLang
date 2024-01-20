@@ -1,6 +1,6 @@
 import unittest
 
-from src.strings.ac_auto_machine.template import AhoCorasick, AhoCorasickAutomation
+from src.strings.automaton.template import AhoCorasick, AhoCorasickAutomation
 
 
 class TestGeneral(unittest.TestCase):

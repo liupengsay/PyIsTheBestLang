@@ -9,7 +9,7 @@ Description：string|bit_operation
 1803（https://leetcode.cn/problems/count-pairs-with-xor-in-a-range/）01-trie_like|classical
 677（https://leetcode.cn/problems/map-sum-pairs/）prefix|counter
 2479（https://leetcode.cn/problems/maximum-xor-of-two-non-overlapping-subtrees/）01-trie_like|maximum_xor
-1717（https://leetcode.cn/problems/multi-search-lcci/）ac_auto_machine|counter|trie_like|reverse_thinking
+1717（https://leetcode.cn/problems/multi-search-lcci/）automaton|counter|trie_like|reverse_thinking
 1707（https://leetcode.cn/problems/maximum-xor-with-an-element-from-array/）sort|offline_query|01-trie_like
 1938（https://leetcode.cn/problems/maximum-genetic-difference-query/）dfs|back_track|01-trie_like|maximum_xor
 1032（https://leetcode.cn/problems/stream-of-characters/description/）trie_like|classical|reverse_order
@@ -66,7 +66,7 @@ class Solution:
     def lc_1717(big: str, smalls: List[str]) -> List[List[int]]:
         """
         url: https://leetcode.cn/problems/multi-search-lcci/
-        tag: ac_auto_machine|counter|trie_like|reverse_thinking
+        tag: automaton|counter|trie_like|reverse_thinking
         """
         n = len(smalls)
         sts = StringTrieSearch(sum(len(x) for x in smalls) + 1, n)
