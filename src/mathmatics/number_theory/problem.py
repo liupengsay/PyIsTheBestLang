@@ -71,18 +71,18 @@ ABC114D（https://atcoder.jp/contests/abc114/tasks/abc114_d）prime_factorizatio
 ABC134D（https://atcoder.jp/contests/abc134/tasks/abc134_d）reverse_thinking|construction
 
 =====================================AcWing=====================================
-97（https://www.acwing.com/problem/content/99/）a^b|math|factorization
-124（https://www.acwing.com/problem/content/126/）base
-196（https://www.acwing.com/problem/content/198/）counter
-198（https://www.acwing.com/problem/content/200/）anti_prime_number
-199（https://www.acwing.com/problem/content/description/201/）brute_force
-3727（https://www.acwing.com/problem/content/description/3730/）brain_teaser|base
-3999（https://www.acwing.com/problem/content/description/4002/）CF1295D
-4319（https://www.acwing.com/problem/content/4322/）prime_factorization|prefix_hash|counter
-4484（https://www.acwing.com/problem/content/4487/）base
-4486（https://www.acwing.com/problem/content/description/4489/）prime_factorization|greedy
-4622（https://www.acwing.com/problem/content/description/4625/）brain_teaser|greedy|construction
-5049（https://www.acwing.com/problem/content/description/5052/）prime_factorization|comb
+99（https://www.acwing.com/problem/content/99/）a^b|math|factorization
+126（https://www.acwing.com/problem/content/126/）base
+198（https://www.acwing.com/problem/content/198/）counter
+200（https://www.acwing.com/problem/content/200/）anti_prime_number
+201（https://www.acwing.com/problem/content/description/201/）brute_force
+3730（https://www.acwing.com/problem/content/description/3730/）brain_teaser|base
+4002（https://www.acwing.com/problem/content/description/4002/）CF1295D
+4322（https://www.acwing.com/problem/content/4322/）prime_factorization|prefix_hash|counter
+4487（https://www.acwing.com/problem/content/4487/）base
+4489（https://www.acwing.com/problem/content/description/4489/）prime_factorization|greedy
+4625（https://www.acwing.com/problem/content/description/4625/）brain_teaser|greedy|construction
+5052（https://www.acwing.com/problem/content/description/5052/）prime_factorization|comb
 
 
 """
@@ -592,12 +592,11 @@ class Solution:
         return NumBase().get_k_bin_of_n(ans, -2)
 
     @staticmethod
-    def ac_3727(ac=FastIO()):
+    def ac_3730(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/3730/
         tag: brain_teaser|base
         """
-        # brain_teaser转换成进制表达问题
 
         for _ in range(ac.read_int()):
             def check():
@@ -624,9 +623,9 @@ class Solution:
     def ac_4484(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/4487/
-        tag: base
+        tag: n-base
         """
-        # 分数在某个进制下是否为有限小数问题
+
         for _ in range(ac.read_int()):
 
             def check():
@@ -636,7 +635,6 @@ class Solution:
                     if gg == 1:
                         break
                     q //= gg
-
                 return q == 1
 
             p, q, b = ac.read_list_ints()
@@ -653,13 +651,13 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/4489/
         tag: prime_factorization|greedy
         """
-        # prime_factorization|greedy题
+
         n = ac.read_int()
         if n == 1:
             ac.lst([1, 0])
             return
 
-        res = NumberTheory().get_prime_factor(n)
+        res = NumFactor().get_prime_factor(n)
 
         ans = 1
         x = 0
@@ -685,18 +683,17 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/4625/
         tag: brain_teaser|greedy|construction
         """
-        # brain_teaser|greedyconstruction
+
         n = ac.read_int()
         if n < 4:
             ac.st(1)
         elif n % 2 == 0:
             ac.st(2)
         else:
-            if NumberTheory().is_prime4(n - 2):
+            if PrimeJudge().is_prime_speed(n - 2):
                 ac.st(2)
             else:
                 ac.st(3)
-
         return
 
     @staticmethod
