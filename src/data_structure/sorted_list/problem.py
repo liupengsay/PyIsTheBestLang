@@ -16,6 +16,7 @@ Description：range_query|binary_search
 2250（https://leetcode.cn/problems/count-number-of-rectangles-containing-each-point/）offline_query|pointer|sort|binary_search
 2426（https://leetcode.cn/problems/number-of-pairs-satisfying-inequality/）math|sorted_list|binary_search
 2276（https://leetcode.cn/problems/count-integers-in-intervals/）sorted_list|implemention|classical
+3013（https://leetcode.com/problems/divide-an-array-into-subarrays-with-minimum-cost-ii/）sorted_list|top_k_sum
 
 =====================================LuoGu======================================
 P7333（https://www.luogu.com.cn/problem/P7333）sort|sorted_list|circular_array|range_query
@@ -52,7 +53,7 @@ import bisect
 from bisect import insort_left, bisect_left
 from typing import List
 
-from src.data_structure.sorted_list.template import SortedList
+from src.data_structure.sorted_list.template import SortedList, TopKSum
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
 
@@ -376,6 +377,7 @@ class Solution:
         url: https://leetcode.cn/problems/count-integers-in-intervals/
         tag: sorted_list|implemention|classical
         """
+
         class CountIntervals:
 
             def __init__(self):
@@ -399,3 +401,27 @@ class Solution:
                 return self.sum
 
         return CountIntervals
+
+    @staticmethod
+    def lc_3013(nums: List[int], k: int, dist: int) -> int:
+        """
+        url: https://leetcode.com/problems/divide-an-array-into-subarrays-with-minimum-cost-ii/
+        tag: sorted_list|top_k_sum
+        """
+        n = len(nums)
+        ans = inf
+        lst = TopKSum(k - 2)
+        j = 2
+        for i in range(1, n):
+            if i >= 2:
+                lst.remove(nums[i])
+            if n - i - 1 < k - 2:
+                break
+            while j <= i + dist and j < n:
+                lst.add(nums[j])
+                j += 1
+            if len(lst.lst) >= k - 2:
+                cur = nums[0] + nums[i] + lst.top_k_sum
+                if cur < ans:
+                    ans = cur
+        return ans

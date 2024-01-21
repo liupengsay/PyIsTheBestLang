@@ -235,3 +235,30 @@ class SortedList:
     def __repr__(self):
         """Return strings representation of sorted list."""
         return 'SortedList({0})'.format(list(self))
+
+
+class TopKSum:
+    def __init__(self, k):
+        self.k = k
+        self.lst = SortedList()
+        self.top_k_sum = 0
+        return
+
+    def add(self, num):
+        self.lst.add(num)
+        ind = self.lst.bisect_left(num)
+        if ind <= self.k - 1:
+            self.top_k_sum += num
+            if len(self.lst) >= self.k + 1:
+                self.top_k_sum -= self.lst[self.k]
+        return
+
+    def remove(self, num):
+        ind = self.lst.bisect_left(num)
+        self.lst.discard(num)
+        if ind <= self.k - 1:
+            self.top_k_sum -= num
+            if len(self.lst) >= self.k:
+                self.top_k_sum += self.lst[self.k - 1]
+        return
+

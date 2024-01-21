@@ -53,6 +53,7 @@ P8838（https://www.luogu.com.cn/problem/P8838）dfs|back_track
 
 ====================================AtCoder=====================================
 ABC133F（https://atcoder.jp/contests/abc133/tasks/abc133_f）euler_order|online_tree_dis|binary_search|prefix_sum
+ABC337G（https://atcoder.jp/contests/abc337/tasks/abc337_g）dfs_order|contribution_method|classical|tree_array
 
 =====================================AcWing=====================================
 4310（https://www.acwing.com/problem/content/4313/）dfs_order|template
@@ -944,3 +945,43 @@ class Solution:
                     if ans:
                         return True
         return False
+
+    @staticmethod
+    def abc_337g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc337/tasks/abc337_g
+        tag: dfs_order|contribution_method|classical|tree_array
+        """
+        n = ac.read_int()
+        dct = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            i, j = ac.read_list_ints_minus_one()
+            dct[i].append(j)
+            dct[j].append(i)
+        start, end = DFS().gen_bfs_order_iteration(dct, 0)
+
+        diff = [0] * (n + 1)
+
+        tree = PointAddRangeSum(n)
+        for i in range(n):
+            v = i
+            for j in dct[i]:
+                if start[j] > start[i]:
+                    x = tree.range_sum(start[j] + 1, end[j] + 1)
+                    if 0 <= start[j] - 1:
+                        diff[0] += x  # [0, start[j]-1]
+                        diff[start[j]] -= x
+                    if end[j] + 1 <= n - 1:
+                        diff[end[j] + 1] += x  # [end[j]+1, n-1]
+                        diff[n] -= x
+                    v -= x
+            # [start[i], end[i]]
+            diff[start[i]] += v
+            diff[end[i] + 1] -= v
+            tree.point_add(start[i] + 1, 1)
+
+        for i in range(1, n):
+            diff[i] += diff[i - 1]
+        ac.lst([diff[start[i]] for i in range(n)])
+        return
+

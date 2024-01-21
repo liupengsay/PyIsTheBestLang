@@ -44,6 +44,7 @@ Description：brain_teaser
 1946（https://leetcode.cn/problems/largest-number-after-mutating-substring/description/）greedy|classical
 1540（https://leetcode.cn/problems/can-convert-string-in-k-moves/）greedy|brain_teaser|pointer
 1121（https://leetcode.cn/problems/divide-array-into-increasing-sequences/description/）brain_teaser|greedy|classical|maximum
+3012（https://leetcode.com/problems/minimize-length-of-array-using-operations/）brain_teaser|perishu_theorem|hard|greedy
 
 =====================================LuoGu======================================
 P1031（https://www.luogu.com.cn/problem/P1031）greedy|prefix_sum|counter
@@ -189,6 +190,7 @@ import heapq
 import math
 from bisect import insort_left, bisect_left
 from collections import Counter, deque, defaultdict
+from functools import reduce
 from typing import List
 
 from src.data_structure.sorted_list.template import SortedList
@@ -328,6 +330,7 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/1538/
         tag: greedy|card_split_average|classical|circular_array
         """
+
         def check(nums):
             # 环形均分纸牌
             nn = len(nums)
@@ -1143,6 +1146,7 @@ class Solution:
         url: https://codeforces.com/contest/1665/problem/C
         tag: graph|greedy
         """
+
         def solve():
             n = ac.read_int()
             dct = [[] for _ in range(n)]
@@ -1266,6 +1270,7 @@ class Solution:
         url: https://leetcode.cn/problems/sum-game/description/
         tag: game_dp|brain_teaser|classification_discussion
         """
+
         # 博弈brain_teaser|classification_discussion
         def check(s):
             res = 0
@@ -1403,7 +1408,7 @@ class Solution:
                 if c > ceil:
                     break
 
-            ans = [0]*q
+            ans = [0] * q
             m = len(ops)
             for i, kk in enumerate(queries):
 
@@ -1427,3 +1432,16 @@ class Solution:
                             break
             ac.lst(ans)
         return
+
+    @staticmethod
+    def lc_3012(nums: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/minimize-length-of-array-using-operations/
+        tag: brain_teaser|perishu_theorem|hard|greedy
+        """
+        low = min(nums)
+        gcd = reduce(math.gcd, nums)
+        if gcd < low:
+            return 1
+        cnt = nums.count(low)
+        return (cnt + 1) // 2

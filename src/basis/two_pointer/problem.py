@@ -48,6 +48,7 @@ P6465（https://www.luogu.com.cn/problem/P6465）sliding_window|two_pointers|cou
 
 ====================================AtCoder=====================================
 ARC100B（https://atcoder.jp/contests/abc102/tasks/arc100_b）two_pointers|brute_force
+ABC337F（https://atcoder.jp/contests/abc337/tasks/abc337_f）two_pointers|implemention|greedy
 
 =====================================AcWing=====================================
 4217（https://www.acwing.com/problem/content/4220/）two_pointers|sliding_window
@@ -512,4 +513,49 @@ class Solution:
             pre[0] -= ind[s[i]][0]
             pre[1] -= ind[s[i]][1]
         ac.st(ans if ans < inf else -1)
+        return
+
+    @staticmethod
+    def abc_337f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc337/tasks/abc337_f
+        tag: two_pointers|implemention|greedy
+        """
+        n, m, k = ac.read_list_ints()
+        cnt = [0] * (n + 1)
+        nums = ac.read_list_ints()
+        for num in nums:
+            cnt[num] += 1
+        j = 0
+        color = 0
+        cur = dict()
+        tot = 0
+        for i in range(n):
+            while color < m and j < i + n:
+                cur[nums[j]] = cur.get(nums[j], 0) + 1
+                if k > 1:
+                    if cur[nums[j]] == 1:
+                        tot += ac.min(cnt[nums[j]], k)
+                        color += 1
+                    elif cur[nums[j]] % k == 1:
+                        color += 1
+                        x = cur[nums[j]] // k
+                        tot += ac.min(k, cnt[nums[j]] - x * k)
+                else:
+                    tot += 1
+                    color += 1
+                j += 1
+            ac.st(tot)
+            nums.append(nums[i])
+            if k > 1:
+                cur[nums[i]] -= 1
+                if cur[nums[i]] % k == 0:
+                    x = cur[nums[i]] // k
+                    color -= 1
+                    tot -= ac.min(k, cnt[nums[i]] - x * k)
+            else:
+                cur[nums[i]] -= 1
+
+                color -= 1
+                tot -= 1
         return

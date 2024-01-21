@@ -69,6 +69,7 @@ P8782（https://www.luogu.com.cn/problem/P8782）base|greedy|classical
 ====================================AtCoder=====================================
 ABC114D（https://atcoder.jp/contests/abc114/tasks/abc114_d）prime_factorization|counter
 ABC134D（https://atcoder.jp/contests/abc134/tasks/abc134_d）reverse_thinking|construction
+ABC337E（https://atcoder.jp/contests/abc337/tasks/abc337_e）n-base|classical
 
 =====================================AcWing=====================================
 99（https://www.acwing.com/problem/content/99/）a^b|math|factorization
@@ -790,4 +791,33 @@ class Solution:
                         seen.add(w)
                         ans += gcd != 1
             ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_337e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc337/tasks/abc337_e
+        tag: n-base|classical
+        """
+        n = ac.read_int()
+        m = n.bit_length() if n.bit_count() > 1 else n.bit_length() - 1
+
+        dct = [[] for _ in range(m + 1)]
+        for i in range(1, n + 1):
+            for j in range(m):
+                if i & (1 << j):
+                    dct[j + 1].append(i)
+
+        ac.st(m)
+        for ls in dct[1:]:
+            ac.lst([len(ls)] + ls[:])
+        stdout.flush()
+
+        s = ac.read_str()
+        ans = 0
+        for i in range(m):
+            if s[i] == "1":
+                ans |= 1 << i
+        ac.st(ans if ans else n)
+        stdout.flush()
         return

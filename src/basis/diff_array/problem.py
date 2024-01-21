@@ -32,6 +32,8 @@ Description：prefix_sum|prefix_sum_of_prefix_sum|suffix_sum
 1703（https://leetcode.cn/problems/minimum-adjacent-swaps-for-k-consecutive-ones/）prefix_sum|median|greedy|1520E
 2167（https://leetcode.cn/problems/minimum-time-to-remove-all-cars-containing-illegal-goods/）math|prefix_sum|brute_force
 2983（https://leetcode.cn/problems/palindrome-rearrangement-queries/）brain_teaser|prefix_sum|brute_force|range_intersection
+3017（https://leetcode.com/problems/count-the-number-of-houses-at-a-certain-distance-ii/description/）diff_array|classical
+
 
 =====================================LuoGu======================================
 list?user=739032&status=12&page=15（https://www.luogu.com.cn/record/list?user=739032&status=12&page=15）suffix_sum
@@ -1658,3 +1660,94 @@ class Solution:
                 else:
                     ans.append(True)
         return ans
+
+    @staticmethod
+    def lc_3017(n: int, x: int, y: int) -> List[int]:
+        """
+        url: https://leetcode.com/problems/count-the-number-of-houses-at-a-certain-distance-ii/description/
+        tag: diff_array|classical
+        """
+        def update():
+            if 0<=low <= high:
+                cnt[low] += 1
+                if high + 1 <= n:
+                    cnt[high + 1] -= 1
+            return
+
+        cnt = [0] * (n + 1)
+        x -= 1
+        y -= 1
+        if x > y:
+            x, y = y, x
+        if abs(x - y) <= 1:
+            for i in range(n):
+                low = 0
+                high = i
+                update()
+
+                low = 0
+                high = n - 1 - i
+                update()
+            for i in range(1, n + 1):
+                cnt[i] += cnt[i - 1]
+            return cnt[1:]
+
+
+        for i in range(x + 1):
+            # 左边
+            if i+1<=x:
+                low = i + 1 - i
+                high = x - i
+                update()  # [i+1, x]
+
+            if y <= n-1:
+                low = x - i + 1 + y - y  # [y, n-1]
+                high = x - i + 1 + n - 1 - y
+                update()
+
+
+            j = (x + y + 1) // 2
+            # [x+1, j]
+            if x+1<=j<y:
+                low = x + 1 - i
+                high = j - i
+                update()
+
+            # [j+1, y-1]
+            if j+1<=y-1:
+                low = x - i + 1 + y - (y - 1)
+                high = x - i + 1 + y - (j + 1)
+                update()
+
+        # 右边
+        for i in range(y, n):
+            # [i+1, n-1]
+            low = i + 1 - i
+            high = n - 1 - i
+            update()
+
+        # 中间
+        for i in range(x+1, y):
+
+            # [y, n-1]
+            if y <= n-1:
+                right = ac_min(y-i, i-x+1)
+                low = right + y-y
+                high = right+n-1-y
+                update()
+
+            j = min((2 * i + y - x + 1) // 2, y-1)
+            # [i+1, j]
+            if i+1<=j<y:
+                low = 1
+                high = j-i
+                update()
+            # [j+1, y-1]
+            if j+1<=y-1:
+                low = i-x+1+y-(y-1)
+                high = i-x+1+y-(j+1)
+                update()
+
+        for i in range(1, n+1):
+            cnt[i] += cnt[i-1]
+        return [x*2 for x in cnt[1:]]
