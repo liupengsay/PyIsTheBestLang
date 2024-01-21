@@ -1,5 +1,43 @@
 from typing import List
 
+from src.data_structure.sorted_list.template import SortedList
+
+
+class MinimumPairXor:
+    def __init__(self):
+        """
+        if x < y < z then min(x^y, y^z) < x^z, thus the minimum xor pair must be adjacent
+        """
+        self.lst = SortedList()
+        self.xor = SortedList()
+        return
+
+    def add(self, num):
+        i = self.lst.bisect_left(num)
+        if i < len(self.lst):
+            if 0 <= i - 1:
+                self.xor.discard(self.lst[i] ^ self.lst[i - 1])
+        self.lst.add(num)
+        if 0 <= i - 1 < len(self.lst):
+            self.xor.add(num ^ self.lst[i - 1])
+        if 0 <= i + 1 < len(self.lst):
+            self.xor.add(num ^ self.lst[i + 1])
+        return
+
+    def remove(self, num):
+        i = self.lst.bisect_left(num)
+        if 0 <= i - 1 < len(self.lst):
+            self.xor.discard(num ^ self.lst[i - 1])
+        if 0 <= i + 1 < len(self.lst):
+            self.xor.discard(num ^ self.lst[i + 1])
+        self.lst.discard(num)
+        if i < len(self.lst) and i - 1 >= 0:
+            self.xor.add(self.lst[i] ^ self.lst[i - 1])
+        return
+
+    def query(self):
+        return self.xor[0]
+
 
 class BitOperation:
     def __init__(self):

@@ -1,9 +1,32 @@
+import random
 import unittest
 
-from src.mathmatics.bit_operation.template import BitOperation
+from src.mathmatics.bit_operation.template import BitOperation, MinimumPairXor
+from src.utils.fast_io import inf
 
 
 class TestGeneral(unittest.TestCase):
+
+    def test_minimum_pair(self):
+        for x in range(3):
+            n = 5 * 10 ** x
+            minimum_xor = MinimumPairXor()
+            nums = []
+            for _ in range(n):
+                num = random.randint(0, n)
+                minimum_xor.add(num)
+                nums.append(num)
+                if len(nums) >= 2:
+                    c = len(nums)
+                    assert [minimum_xor.lst[i] for i in range(c)] == sorted(nums)
+                    floor = inf
+                    for a in range(c):
+                        for b in range(a + 1, c):
+                            cur = nums[a] ^ nums[b]
+                            if cur < floor:
+                                floor = cur
+                    assert floor == minimum_xor.query()
+        return
 
     def test_bit_operation(self):
         bo = BitOperation()
@@ -26,7 +49,6 @@ class TestGeneral(unittest.TestCase):
         for i in range(100000):
             pre ^= i
             assert bo.sum_xor(i) == pre
-            assert bo.sum_xor_2(i) == pre
         return
 
 

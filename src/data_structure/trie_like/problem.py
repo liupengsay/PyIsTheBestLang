@@ -1,19 +1,20 @@
 """
-Algorithm：trie_like|01-trie_like
+Algorithm：trie_like|binary_trie
 Description：string|bit_operation
 
 ====================================LeetCode====================================
-421（https://leetcode.cn/problems/maximum-xor-of-two-numbers-in-an-array/）01-trie_like
+421（https://leetcode.cn/problems/maximum-xor-of-two-numbers-in-an-array/）binary_trie
 638（https://leetcode.cn/problems/shopping-offers/）trie_like|memory_search
 2416（https://leetcode.cn/problems/sum-of-prefix-scores-of-strings/）prefix|counter
-1803（https://leetcode.cn/problems/count-pairs-with-xor-in-a-range/）01-trie_like|classical
+1803（https://leetcode.cn/problems/count-pairs-with-xor-in-a-range/）binary_trie|classical
 677（https://leetcode.cn/problems/map-sum-pairs/）prefix|counter
-2479（https://leetcode.cn/problems/maximum-xor-of-two-non-overlapping-subtrees/）01-trie_like|maximum_xor
+2479（https://leetcode.cn/problems/maximum-xor-of-two-non-overlapping-subtrees/）binary_trie|maximum_xor
 1717（https://leetcode.cn/problems/multi-search-lcci/）automaton|counter|trie_like|reverse_thinking
-1707（https://leetcode.cn/problems/maximum-xor-with-an-element-from-array/）sort|offline_query|01-trie_like
-1938（https://leetcode.cn/problems/maximum-genetic-difference-query/）dfs|back_track|01-trie_like|maximum_xor
+1707（https://leetcode.cn/problems/maximum-xor-with-an-element-from-array/）sort|offline_query|binary_trie
+1938（https://leetcode.cn/problems/maximum-genetic-difference-query/）dfs|back_track|binary_trie|maximum_xor
 1032（https://leetcode.cn/problems/stream-of-characters/description/）trie_like|classical|reverse_order
 1554（https://leetcode.cn/problems/strings-differ-by-one-character/）string_hash|trie
+2935（https://leetcode.cn/problems/maximum-strong-pair-xor-ii/description/）binary_trie|hash|bit_operation
 
 =====================================LuoGu======================================
 P8306（https://www.luogu.com.cn/problem/P8306）trie_like
@@ -25,23 +26,31 @@ P5283（https://www.luogu.com.cn/problem/P5283）trie_like|kth_xor|heapq|greedy
 P2922（https://www.luogu.com.cn/problem/P2922）trie_like|prefix|counter
 P1738（https://www.luogu.com.cn/problem/P1738）trie_like|counter
 P8420（https://www.luogu.com.cn/problem/P8420）trie_like|greedy
+P4735（https://www.luogu.com.cn/problem/P4735）
 
 ===================================CodeForces===================================
 1792D（https://codeforces.com/problemset/problem/1792/D）trie_like|counter
-706D（https://codeforces.com/problemset/problem/706/D）01-trie_like|maximum_xor
-241B（https://codeforces.com/contest/241/problem/B）01-trie_like|kth_xor|heapq|greedy
+706D（https://codeforces.com/problemset/problem/706/D）binary_trie|maximum_xor
+241B（https://codeforces.com/contest/241/problem/B）binary_trie|kth_xor|heapq|greedy
 665E（https://codeforces.com/contest/665/problem/E）counter|xor_pair
-282E（https://codeforces.com/contest/282/problem/E）01-trie_like|maximum_xor
+282E（https://codeforces.com/contest/282/problem/E）binary_trie|maximum_xor
 1902E（https://codeforces.com/contest/1902/problem/E）trie_like|prefix_count
-665E（https://codeforces.com/contest/665/problem/E）01-trie_like|get_cnt_smaller_xor
-817E（https://codeforces.com/contest/817/problem/E）01-trie_like|get_cnt_smaller_xor
-1777F（ttps://codeforces.com/problemset/problem/1777/F）
+665E（https://codeforces.com/contest/665/problem/E）binary_trie|get_cnt_smaller_xor
+817E（https://codeforces.com/contest/817/problem/E）binary_trie|get_cnt_smaller_xor
+1777F（https://codeforces.com/problemset/problem/1777/F）
+1446C（https://codeforces.com/contest/1446/problem/C）
+923C（https://codeforces.com/problemset/problem/923/C）binary_trie|greedy
+1055F（https://codeforces.com/problemset/problem/1055/F）binary_trie|get_cnt_smaller_xor
+1720D2（https://codeforces.com/contest/1720/problem/D2）
+1849F（https://codeforces.com/problemset/problem/1849/F）
+888G（https://codeforces.com/problemset/problem/888/G）
 
 =====================================AcWing=====================================
 144（https://www.acwing.com/problem/content/144/）trie_like|prefix_count
 145（https://www.acwing.com/problem/content/145/）maximum_xor|classical
-146（https://www.acwing.com/problem/content/description/146/）01-trie_like|maximum_xor
+146（https://www.acwing.com/problem/content/description/146/）binary_trie|maximum_xor
 163（https://www.acwing.com/problem/content/163/）trie_like
+258（https://www.acwing.com/problem/content/258/）
 
 =====================================LibraryChecker=====================================
 1（https://judge.yosupo.jp/problem/set_xor_min）template|minimum_xor|classical|update|query
@@ -53,7 +62,8 @@ from functools import reduce
 from operator import or_
 from typing import List
 
-from src.data_structure.trie_like.template import BinaryTrieXor, StringTriePrefix, StringTrieSearch
+from src.data_structure.trie_like.template import BinaryTrieXor, StringTriePrefix, StringTrieSearch, \
+    BinaryTrieXorLimited
 from src.utils.fast_io import FastIO, ac_max
 from src.utils.fast_io import inf
 
@@ -107,7 +117,7 @@ class Solution:
     def lc_1803_1(nums: List[int], low: int, high: int) -> int:
         """
         url: https://leetcode.cn/problems/count-pairs-with-xor-in-a-range/
-        tag: 01-trie_like|classical|inclusion_exclusion
+        tag: binary_trie|classical|inclusion_exclusion
         """
         n = len(nums)
         trie = BinaryTrieXor(max(high, max(nums)), n)
@@ -122,7 +132,7 @@ class Solution:
     def lc_1803_2(nums: List[int], low: int, high: int) -> int:
         """
         url: https://leetcode.cn/problems/count-pairs-with-xor-in-a-range/
-        tag: 01-trie_like|classical|hard
+        tag: binary_trie|classical|hard
         """
         ans, cnt = 0, Counter(nums)
         high += 1
@@ -143,7 +153,7 @@ class Solution:
     def cf_706d(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/706/D
-        tag: 01-trie_like|maximum_xor
+        tag: binary_trie|maximum_xor
         """
         q = ac.read_int()
         trie = BinaryTrieXor(10 ** 9, q)
@@ -171,7 +181,7 @@ class Solution:
         for i in range(2):
             pre = 0
             for j, word in enumerate(words):
-                ans -= trie.count([ord(w)-ord("a") for w in word[::-1]]) * 2
+                ans -= trie.count([ord(w) - ord("a") for w in word[::-1]]) * 2
                 ans += j * len(word) + pre
                 pre += len(word)
                 trie.add([ord(w) - ord("a") for w in word])
@@ -197,7 +207,7 @@ class Solution:
     def lc_2479(n: int, edges: List[List[int]], values: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/maximum-xor-of-two-non-overlapping-subtrees/
-        tag: 01-trie_like|maximum_xor|classical|dfs_order|implemention
+        tag: binary_trie|maximum_xor|classical|dfs_order|implemention
         """
         dct = [[] for _ in range(n)]
         for i, j in edges:
@@ -262,7 +272,7 @@ class Solution:
     def lg_p4551_1(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P4551
-        tag: get_maximum_xor|01-trie_like|hash|implemention
+        tag: get_maximum_xor|binary_trie|hash|implemention
         """
         n = ac.read_int()
         dct = [[] for _ in range(n)]
@@ -285,7 +295,7 @@ class Solution:
     def lg_p4551_2(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P4551
-        tag: get_maximum_xor|01-trie_like|hash|implemention
+        tag: get_maximum_xor|binary_trie|hash|implemention
         """
         n = ac.read_int()
         dct = [[] for _ in range(n)]
@@ -339,7 +349,7 @@ class Solution:
     def cf_241b(ac=FastIO()):
         """
         url: https://codeforces.com/contest/241/problem/B
-        tag: 01-trie_like|kth_xor|heapq|greedy
+        tag: binary_trie|kth_xor|heapq|greedy
         """
         mod = 10 ** 9 + 7
         n, k = ac.read_list_ints()
@@ -397,7 +407,7 @@ class Solution:
     def ac_146_1(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/146/
-        tag: 01-trie_like|maximum_xor|hash
+        tag: binary_trie|maximum_xor|hash
         """
         n = ac.read_int()
         dct = [[] for _ in range(n)]
@@ -422,7 +432,7 @@ class Solution:
     def ac_146_2(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/146/
-        tag: 01-trie_like|maximum_xor|hash
+        tag: binary_trie|maximum_xor|hash
         """
         n = ac.read_int()
         dct = [[] for _ in range(n)]
@@ -631,10 +641,10 @@ class Solution:
         return
 
     @staticmethod
-    def lc_1707(nums: List[int], queries: List[List[int]]) -> List[int]:
+    def lc_1707_1(nums: List[int], queries: List[List[int]]) -> List[int]:
         """
         url: https://leetcode.cn/problems/maximum-xor-with-an-element-from-array/
-        tag: sort|offline_query|01-trie_like
+        tag: sort|offline_query|binary_trie
         """
         n = len(nums)
         nums.sort()
@@ -658,10 +668,23 @@ class Solution:
         return ans
 
     @staticmethod
+    def lc_1707_2(nums: List[int], queries: List[List[int]]) -> List[int]:
+        """
+        url: https://leetcode.cn/problems/maximum-xor-with-an-element-from-array/
+        tag: sort|offline_query|binary_trie
+        """
+        n = len(nums)
+        trie = BinaryTrieXorLimited(10 ** 9, n)
+        for num in nums:
+            trie.add(num)
+        ans = [trie.get_maximum_xor_limited(x, m) for x, m in queries]
+        return ans
+
+    @staticmethod
     def cf_665e_1(ac=FastIO()):
         """
         url: https://codeforces.com/contest/665/problem/E
-        tag: 01-trie_like|get_cnt_smaller_xor
+        tag: binary_trie|get_cnt_smaller_xor
         """
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -735,7 +758,7 @@ class Solution:
     def lc_421_1(nums: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/maximum-xor-of-two-numbers-in-an-array/
-        tag: 01-trie_like|hash
+        tag: binary_trie|hash
         """
         trie = BinaryTrieXor(max(nums) + 1, len(nums))
         ans = 0
@@ -749,7 +772,7 @@ class Solution:
     def lc_421_2(nums: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/maximum-xor-of-two-numbers-in-an-array/
-        tag: 01-trie_like|hash
+        tag: binary_trie|hash
         """
         m = max(nums).bit_length() - 1  # faster!
         ans = 0
@@ -767,7 +790,7 @@ class Solution:
     def cf_282e(ac=FastIO()):
         """
         url: https://codeforces.com/contest/282/problem/E
-        tag: 01-trie_like|maximum_xor
+        tag: binary_trie|maximum_xor
         """
 
         n = ac.read_int()
@@ -791,7 +814,7 @@ class Solution:
     def lc_1938(parents: List[int], queries: List[List[int]]) -> List[int]:
         """
         url: https://leetcode.cn/problems/maximum-genetic-difference-query/
-        tag: dfs|back_track|01-trie_like|maximum_xor
+        tag: dfs|back_track|binary_trie|maximum_xor
         """
         n = len(parents)
         root = -1
@@ -829,10 +852,119 @@ class Solution:
         tag: string_hash|trie
         """
         n, m = len(words), len(words[0])
-        trie = StringTrieSearch(m*n, n, 26)
+        trie = StringTrieSearch(m * n, n, 26)
         for i, word in enumerate(words):
             lst = [ord(w) - ord("a") for w in word]
             if trie.search_for_one_difference(lst):
                 return True
-            trie.add_int(lst, i+1)
+            trie.add_int(lst, i + 1)
         return False
+
+    @staticmethod
+    def lc_2935_1(nums: List[int]) -> int:
+        """
+        url: https://leetcode.cn/problems/maximum-strong-pair-xor-ii/description/
+        tag: binary_trie|hash|bit_operation
+        """
+        ceil = max(nums)
+        n = len(nums)
+        nums.sort()
+        trie = BinaryTrieXor(ceil, n)
+        ans = j = 0
+        for i in range(n):
+            while j < n and nums[j] - nums[i] <= nums[i]:
+                cur = trie.get_maximum_xor(nums[j])
+                trie.add(nums[j], 1)
+                if cur > ans:
+                    ans = cur
+                j += 1
+            trie.remove(nums[i], 1)
+        return ans
+
+    @staticmethod
+    def lc_2935_2(nums: List[int]) -> int:
+        """
+        url: https://leetcode.cn/problems/maximum-strong-pair-xor-ii/description/
+        tag: binary_trie|hash|bit_operation
+        """
+        nums.sort()
+        ceil = len(bin(max(nums))) - 1
+        ans = mask = 0
+        for i in range(ceil, -1, -1):
+            new_ans = ans | (1 << i)
+            pre = dict()
+            mask |= (1 << i)
+            for num in nums:
+                cur = num & mask
+                if cur ^ new_ans in pre and pre[cur ^ new_ans] * 2 >= num:
+                    ans = new_ans
+                    break
+                pre[cur] = num
+        return ans
+
+    @staticmethod
+    def cf_923c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/923/C
+        tag: binary_trie|greedy
+        """
+        n = ac.read_int()
+        a = ac.read_list_ints()
+        b = ac.read_list_ints()
+        trie = BinaryTrieXor(1 << 30, n)
+        for num in b:
+            trie.add(num, 1)
+        ans = []
+        for num in a:
+            ans.append(trie.get_minimum_xor(num))
+            trie.remove(num ^ ans[-1])
+        ac.lst(ans)
+        return
+
+    @staticmethod
+    def cf_1055f(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1055/problem/F
+        tag: binary_trie|get_cnt_smaller_xor
+        """
+        n, k = ac.read_list_ints()
+        dis = [0] * n
+        dct = [[] for _ in range(n)]
+        for i in range(n - 1):
+            p, w = ac.read_list_ints()
+            dct[p - 1].append((i + 1, w))
+        stack = [0]
+        while stack:
+            x = stack.pop()
+            for y, w in dct[x]:
+                dis[y] = dis[x] ^ w
+                stack.append(y)
+
+        trie = BinaryTrieXor(max(dis) + 1, n)
+        for num in dis:
+            trie.add(num, 1)
+        ans = (1 << 62) - 1
+        for i in range(61, -1, -1):
+            cnt = sum(trie.get_cnt_smaller_xor(x, ans ^ (1 << i)) for x in dis)
+            if cnt >= k:
+                ans ^= 1 << i
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_817e(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/817/problem/E
+        tag: binary_trie|get_cnt_smaller_xor
+        """
+        q = ac.read_int()
+        binary_trie = BinaryTrieXor(10 ** 8, q)
+        for _ in range(q):
+            lst = ac.read_list_ints()
+            if lst[0] == 1:
+                binary_trie.add(lst[1])
+            elif lst[0] == 2:
+                binary_trie.remove(lst[1])
+            else:
+                ac.st(binary_trie.get_cnt_smaller_xor(lst[1], lst[2] - 1))
+        return

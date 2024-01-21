@@ -9,6 +9,7 @@ from src.data_structure.trie_like.template import BinaryTrieXor, StringTriePrefi
 class TestGeneral(unittest.TestCase):
 
     def test_binary_trie(self):
+        random.seed(2024)
         for mi in range(10):
             max_num = 10 ** mi
             num_cnt = 5 * 10 ** 3

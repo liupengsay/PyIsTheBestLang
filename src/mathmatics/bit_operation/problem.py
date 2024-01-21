@@ -61,10 +61,15 @@ P8965（https://www.luogu.com.cn/problem/P8965）tree_dp|xor
 ABC117D（https://atcoder.jp/contests/abc117/tasks/abc117_d）bit_operation|greedy|brain_teaser
 ABC147D（https://atcoder.jp/contests/abc147/tasks/abc147_d）classical|xor_sum
 ABC121D（https://atcoder.jp/contests/abc121/tasks/abc121_d）classical|xor_sum
+ABC308G（https://atcoder.jp/contests/abc308/tasks/abc308_g）minimum_pair_xor|dynamic
+
+
 =====================================AcWing=====================================
 998（https://www.acwing.com/problem/content/1000/）or|xor|and|bit_operation|greedy
 4614（https://www.acwing.com/problem/content/4617/）bit_operation|brute_force|prefix_sum|preprocess
 
+=====================================Library=====================================
+1（https://ac.nowcoder.com/acm/contest/53485/F）minimum_pair_xor|dynamic|classical
 
 https://blog.csdn.net/qq_35473473/article/details/106320878
 """
@@ -75,7 +80,7 @@ from operator import xor, or_
 from typing import List
 
 from src.basis.binary_search.template import BinarySearch
-from src.mathmatics.bit_operation.template import BitOperation
+from src.mathmatics.bit_operation.template import BitOperation, MinimumPairXor
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
 
@@ -705,3 +710,41 @@ class Solution:
 
         ans = BinarySearch().find_int_right(0, 10 ** 15, check)
         return ans
+
+    @staticmethod
+    def abc_308g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc308/tasks/abc308_g
+        tag: minimum_pair_xor|dynamic|classical
+        """
+        q = ac.read_int()
+        minimum_xor = MinimumPairXor()
+        for _ in range(q):
+            lst = ac.read_list_ints()
+
+            if lst[0] == 1:
+                minimum_xor.add(lst[1])
+            elif lst[0] == 2:
+                minimum_xor.remove(lst[1])
+            else:
+                ac.st(minimum_xor.query())
+        return
+
+    @staticmethod
+    def library_check_1(ac=FastIO()):
+        """
+        url: https://ac.nowcoder.com/acm/contest/53485/F
+        tag: minimum_pair_xor|dynamic|classical
+        """
+        q = ac.read_int()
+        minimum_xor = MinimumPairXor()
+        for _ in range(q):
+            lst = ac.read_list_strs()
+
+            if lst[0] == "ADD":
+                minimum_xor.add(int(lst[1]))
+            elif lst[0] == "DEL":
+                minimum_xor.remove(int(lst[1]))
+            else:
+                ac.st(minimum_xor.query())
+        return
