@@ -14,7 +14,7 @@ class Range:
         x, y = lst[0]
         for a, b in lst[1:]:
             if a <= y:  # [1, 3] + [3, 4] = [1, 4]
-                # if wanted range_merge_to_disjoint like [1, 2] + [3, 4] = [1, 4] can change to a <= y-1 or a < y
+                # if wanted range_merge_to_disjoint like [1, 2] + [3, 4] = [1, 4] can change to a <= y+1 or a < y
                 y = y if y > b else b
             else:
                 ans.append([x, y])

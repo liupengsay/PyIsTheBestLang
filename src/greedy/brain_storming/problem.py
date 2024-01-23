@@ -157,6 +157,8 @@ P8887（https://www.luogu.com.cn/problem/P8887）brain_teaser|greedy
 1649B（https://codeforces.com/contest/1649/problem/B）maximum_greedy|classical
 1914E2（https://codeforces.com/contest/1914/problem/E2）greedy|custom_sort
 1929D（https://codeforces.com/contest/1920/problem/D）data_range|brute_force|reverse_thinking
+724D（https://codeforces.com/contest/724/problem/D）greedy|implemention|brain_teaser
+
 
 ====================================AtCoder=====================================
 ARC062A（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|greedy|custom_sort
@@ -1445,3 +1447,36 @@ class Solution:
             return 1
         cnt = nums.count(low)
         return (cnt + 1) // 2
+
+    @staticmethod
+    def cf_724d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/724/problem/D
+        tag: greedy|implemention|brain_teaser
+        """
+        m = ac.read_int()
+        s = ac.read_str()
+        n = len(s)
+        for i in range(26):
+            ind = []
+            w = chr(i + ord("a"))
+            diff = [0] * n
+            for j in range(n):
+                if ord(s[j]) - ord("a") <= i:
+                    ind.append(j)
+                    diff[j] = 1
+            pre = ac.accumulate(diff)
+            if all(pre[i + 1] - pre[i - m + 1] > 0 for i in range(m - 1, n)):
+                stack = [-1]
+                for j in ind:
+                    while len(stack) >= 2 and s[stack[-1]] == w and j - stack[-2] <= m:
+                        stack.pop()
+                    stack.append(j)
+                while len(stack) >= 2 and s[stack[-1]] == w and stack[-2] >= n - m:
+                    stack.pop()
+                lst = [s[x] for x in stack[1:]]
+                lst.sort()
+                ac.st("".join(lst))
+                return
+
+        return

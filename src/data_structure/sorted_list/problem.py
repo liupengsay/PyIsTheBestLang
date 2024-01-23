@@ -17,6 +17,8 @@ Description：range_query|binary_search
 2426（https://leetcode.cn/problems/number-of-pairs-satisfying-inequality/）math|sorted_list|binary_search
 2276（https://leetcode.cn/problems/count-integers-in-intervals/）sorted_list|implemention|classical
 3013（https://leetcode.com/problems/divide-an-array-into-subarrays-with-minimum-cost-ii/）sorted_list|top_k_sum
+1851（https://leetcode.cn/problems/minimum-interval-to-include-each-query）
+
 
 =====================================LuoGu======================================
 P7333（https://www.luogu.com.cn/problem/P7333）sort|sorted_list|circular_array|range_query
