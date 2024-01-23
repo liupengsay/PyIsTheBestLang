@@ -25,7 +25,7 @@ Description：graph|reverse_thinking|permutation_circle|offline_query|merge_wise
 947（https://leetcode.cn/contest/weekly-contest-112/problems/most-stones-removed-with-same-row-or-column/）brain_teaser|union_find
 547（https://leetcode.cn/problems/number-of-provinces/description/）union_find
 684（https://leetcode.cn/problems/redundant-connection/description/）union_find
-1562（https://leetcode.cn/problems/find-latest-group-of-size-m/description/）
+1562（https://leetcode.cn/problems/find-latest-group-of-size-m/description/）union_find|sorted_list
 407（https://leetcode-cn.com/problems/trapping-rain-water-ii/）union_find|classical
 1632（https://leetcode.cn/problems/rank-transform-of-a-matrix/）union_find|matrix_rank|row_column_union_find
 
@@ -79,6 +79,9 @@ P5930（https://www.luogu.com.cn/problem/P5930）union_find|classical
 650C（https://codeforces.com/problemset/problem/650/C）union_find|matrix_rank|row_column_union_find
 1253D（https://codeforces.com/problemset/problem/1253/D）union_find_right
 1851G（https://codeforces.com/contest/1851/problem/G）union_find|offline_query|brain_teaser
+1609D（https://codeforces.com/problemset/problem/1609/D）union_find|part|sorted_list
+1850H（https://codeforces.com/contest/1850/problem/H）union_find_weighted_dis|classical|hard
+
 
 ====================================AtCoder=====================================
 ARC065B（https://atcoder.jp/contests/abc049/tasks/arc065_b）union_find|several_union_find
@@ -89,6 +92,7 @@ ABC304E（https://atcoder.jp/contests/abc304/tasks/abc304_e）union_find|reverse
 ABC237E（https://atcoder.jp/contests/abc238/tasks/abc238_e）union_find_range|prefix_sum|brain_teaser
 ABC279F（https://atcoder.jp/contests/abc279/tasks/abc279_f）union_find_range|brain_teaser|build_graph|classical
 ABC214D（https://atcoder.jp/contests/abc214/tasks/abc214_d）union_find|contribution_method|counter
+ARC107C（https://www.luogu.com.cn/problem/AT_arc107_c）union_find|comb_perm
 
 =====================================AcWing=====================================
 4309（https://www.acwing.com/problem/content/description/4309/）union_find_right_range
@@ -102,8 +106,12 @@ ABC214D（https://atcoder.jp/contests/abc214/tasks/abc214_d）union_find|contrib
 4（https://codeforces.com/edu/course/2/lesson/7/1/practice/contest/289390/problem/C）union_find|heuristic_merge|classical|hard
 5（https://codeforces.com/edu/course/2/lesson/7/1/practice/contest/289390/problem/D）union_find|reverse_thinking|classical
 6（https://codeforces.com/edu/course/2/lesson/7/2/practice/contest/289391/problem/A）union_find_range
+7（https://codeforces.com/edu/course/2/lesson/7/2/practice/contest/289391/problem/B）union_find_range
+8（https://codeforces.com/edu/course/2/lesson/7/2/practice/contest/289391/problem/C）union_find_range
+9（https://codeforces.com/edu/course/2/lesson/7/2/practice/contest/289391/problem/D）union_find_weighted_dis|classical|hard
 
 """
+
 import decimal
 import math
 from collections import defaultdict, Counter, deque
@@ -114,7 +122,8 @@ from src.basis.tree_node.template import TreeNode
 from src.data_structure.sorted_list.template import SortedList
 from src.graph.dijkstra.template import Dijkstra
 from src.graph.union_find.template import UnionFind, UnionFindWeighted, UnionFindSP, UnionFindInd
-from src.mathmatics.number_theory.template import NumberTheory
+from src.mathmatics.comb_perm.template import Combinatorics
+from src.mathmatics.number_theory.template import PrimeSieve
 from src.mathmatics.prime_factor.template import PrimeFactor
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
@@ -402,24 +411,18 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1196
         tag: union_find_weighted|classical|hard
         """
-        n = 10
-        uf = UnionFindWeighted(n)
+        uf = UnionFindWeighted(3 * 10 ** 4)
         for _ in range(ac.read_int()):
-            lst = ac.read_list_strs()
-            i, j = [int(w) - 1 for w in lst[1:]]
-            while i >= n or j >= n:
-                uf.root_or_size.append(-1)
-                uf.front.append(0)
-                n += 1
-            if lst[0] == "M":
-                uf.union(i, j)
+            op, i, j = ac.read_list_strs()
+            i = int(i) - 1
+            j = int(j) - 1
+            if op == "M":
+                uf.union_right(i, j)
             else:
-                root_x = uf.find(i)
-                root_y = uf.find(j)
-                if root_x != root_y:
-                    ac.st(-1)
+                if uf.is_connected(i, j):
+                    ac.st(abs(uf.dis[i] - uf.dis[j]) - 1)
                 else:
-                    ac.st(abs(uf.front[i] - uf.front[j]) - 1)
+                    ac.st(-1)
         return
 
     @staticmethod
@@ -510,7 +513,7 @@ class Solution:
         a, b, p = ac.read_list_ints()
         nums = list(range(a, b + 1))
         ind = {num: num - a for num in nums}
-        primes = [x for x in NumberTheory().sieve_of_eratosthenes(b) if x >= p]
+        primes = [x for x in PrimeSieve().eratosthenes_sieve(b) if x >= p]
 
         uf = UnionFind(b - a + 1)
         for x in primes:
@@ -1785,4 +1788,145 @@ class Solution:
                 ac.st(ans if ans < n + 1 else -1)
             else:
                 uf.union_right(x, x + 1)
+        return
+
+    @staticmethod
+    def library_check_7(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/7/2/practice/contest/289391/problem/B
+        tag: union_find_range
+        """
+        n = ac.read_int()
+        uf = UnionFind(n + 2)
+        nums = ac.read_list_ints()
+        ans = [-1] * n
+        for i in range(n):
+            x = uf.find(nums[i])
+            if x == n + 1:
+                x = uf.find(1)
+            ans[i] = x
+            uf.union_right(x, x + 1)
+        ac.lst(ans)
+        return
+
+    @staticmethod
+    def library_check_8(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/7/2/practice/contest/289391/problem/C
+        tag: union_find_range
+        """
+        n, q = ac.read_list_ints()
+        uf = UnionFind(n)
+        uf_range = UnionFind(n)
+        for _ in range(q):
+            op, x, y = ac.read_list_ints_minus_one()
+            if op == 0:
+                uf.union(x, y)
+            elif op == 1:
+                while x < y:
+                    uf.union(x, x + 1)
+                    uf_range.union_right(x, x + 1)
+                    x = uf_range.find(x)
+            else:
+                ac.st("YES" if uf.is_connected(x, y) else "NO")
+        return
+
+    @staticmethod
+    def cf_1609d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1609/D
+        tag: union_find|part|sorted_list
+        """
+        n, q = ac.read_list_ints()
+        uf = UnionFind(n)
+        lst = SortedList([1] * n)
+        cnt = 0
+        for _ in range(q):
+            i, j = ac.read_list_ints_minus_one()
+            if uf.is_connected(i, j):
+                cnt += 1
+            else:
+                lst.discard(uf.size(i))
+                lst.discard(uf.size(j))
+                uf.union(i, j)
+                lst.add(uf.size(i))
+            n = len(lst)
+            ans = 0
+            for i in range(n - 1, n - cnt - 2, -1):
+                if i < 0:
+                    break
+                ans += lst[i]
+            ac.st(ans - 1)
+        return
+
+    @staticmethod
+    def arc_107c(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/AT_arc107_c
+        tag: union_find|comb_perm
+        """
+        n, k = ac.read_list_ints()
+        mod = 998244353
+        cb = Combinatorics(n, mod)
+        grid = [ac.read_list_ints() for _ in range(n)]
+
+        ans = 1
+        uf = UnionFind(n)
+        for i in range(n):
+            for j in range(i + 1, n):
+                if all(grid[i][x] + grid[j][x] <= k for x in range(n)):
+                    uf.union(i, j)
+        for va in uf.get_root_size().values():
+            ans *= cb.factorial(va)
+            ans %= mod
+
+        uf = UnionFind(n)
+        for i in range(n):
+            for j in range(i + 1, n):
+                if all(grid[x][i] + grid[x][j] <= k for x in range(n)):
+                    uf.union(i, j)
+        for va in uf.get_root_size().values():
+            ans *= cb.factorial(va)
+            ans %= mod
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1850h(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1850/problem/H
+        tag: union_find_weighted_dis|classical|hard
+        """
+        uf = UnionFindWeighted(2 * 10 ** 5)
+        for _ in range(ac.read_int()):
+            n, m = ac.read_list_ints()
+            for i in range(n):
+                uf.root_or_size[i] = -1
+                uf.dis[i] = 0
+            ans = "YES"
+            for _ in range(m):
+                u, v, d = ac.read_list_ints_minus_one()
+                d += 1
+                if ans == "YES" and uf.union(u, v, d):
+                    ans = "NO"
+            ac.st(ans)
+        return
+
+    @staticmethod
+    def library_check_9(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/7/2/practice/contest/289391/problem/D
+        tag: union_find_weighted_dis|classical|hard
+        """
+        n, m = ac.read_list_ints()
+        uf = UnionFindWeighted(n)
+        for _ in range(m):
+            lst = ac.read_list_ints()
+            if lst[0] == 1:
+                a, b = [w - 1 for w in lst[1:]]
+                uf.union_right_weight(a, b, 1)
+            else:
+                c = lst[1] - 1
+                uf.find(c)
+                ac.st(uf.dis[c])
         return

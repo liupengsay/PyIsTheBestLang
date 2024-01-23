@@ -1,7 +1,7 @@
 class Combinatorics:
     def __init__(self, n, mod):
         assert mod > n
-        self.n = n
+        self.n = n + 10
         self.mod = mod
 
         self.perm = [1]
