@@ -101,7 +101,7 @@ ABC214D（https://atcoder.jp/contests/abc214/tasks/abc214_d）union_find|contrib
 3（https://codeforces.com/edu/course/2/lesson/7/1/practice/contest/289390/problem/B）union_find_max|union_find_min
 4（https://codeforces.com/edu/course/2/lesson/7/1/practice/contest/289390/problem/C）union_find|heuristic_merge|classical|hard
 5（https://codeforces.com/edu/course/2/lesson/7/1/practice/contest/289390/problem/D）union_find|reverse_thinking|classical
-
+6（https://codeforces.com/edu/course/2/lesson/7/2/practice/contest/289391/problem/A）union_find_range
 
 """
 import decimal
@@ -1767,4 +1767,22 @@ class Solution:
             else:
                 uf.union(x, y)
         ac.st("\n".join(ans[::-1]))
+        return
+
+    @staticmethod
+    def library_check_6(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/7/2/practice/contest/289391/problem/A
+        tag: union_find_range
+        """
+        n, m = ac.read_list_ints()
+        uf = UnionFind(n + 2)
+        for _ in range(m):
+            op, x = ac.read_list_strs()
+            x = int(x)
+            if op == "?":
+                ans = uf.find(x)
+                ac.st(ans if ans < n + 1 else -1)
+            else:
+                uf.union_right(x, x + 1)
         return
