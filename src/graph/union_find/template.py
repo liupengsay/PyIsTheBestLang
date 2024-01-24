@@ -186,56 +186,6 @@ class UnionFindWeighted:
             return True
         return False
 
-    def union_right(self, x, y):
-        root_x = self.find(x)
-        root_y = self.find(y)
-        size = self.root_or_size[root_y]
-        self.root_or_size[root_y] += self.root_or_size[root_x]
-        self.root_or_size[root_x] = root_y
-        self.dis[root_x] += size
-        return True
-
-    def size(self, x):
-        return -self.root_or_size[self.find(x)]
-
-    def is_connected(self, x, y):
-        return self.find(x) == self.find(y)
-
-
-class UnionFindWeighted:
-    def __init__(self, n):
-        self.root_or_size = [-1] * n
-        self.dis = [0] * n
-
-    def find(self, x):  # distance to the root
-        stack = []
-        while self.root_or_size[x] >= 0:
-            stack.append(x)
-            x = self.root_or_size[x]
-        d = 0
-        while stack:
-            y = stack.pop()
-            self.root_or_size[y] = x
-            self.dis[y] += d
-            d = self.dis[y]
-        return x
-
-    def union(self, x, y, val):
-        root_x = self.find(x)
-        root_y = self.find(y)
-        if root_x != root_y:
-            if self.root_or_size[root_x] > self.root_or_size[root_y]:
-                self.root_or_size[root_y] += self.root_or_size[root_x]
-                self.root_or_size[root_x] = root_y
-                self.dis[root_x] = val + self.dis[y] - self.dis[x]  # distance to the root
-            else:
-                self.root_or_size[root_x] += self.root_or_size[root_y]
-                self.root_or_size[root_y] = root_x
-                self.dis[root_y] = -val + self.dis[x] - self.dis[y]  # distance to the root
-        elif self.dis[x] - self.dis[y] != val:
-            return True
-        return False
-
     def union_right_weight(self, x, y, val):
         root_x = self.find(x)
         root_y = self.find(y)

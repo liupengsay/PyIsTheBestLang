@@ -59,6 +59,8 @@ P8785（https://www.luogu.com.cn/problem/P8785）union_find|counter
 P8787（https://www.luogu.com.cn/problem/P8787）greedy|heapq|implemention|union_find
 P8881（https://www.luogu.com.cn/problem/P8881）brain_teaser|union_find|circle_judge|part
 P5930（https://www.luogu.com.cn/problem/P5930）union_find|classical
+P2024（https://www.luogu.com.cn/problem/P2024）union_find_type|build_graph
+P3402（https://www.luogu.com.cn/problem/P3402）
 
 ===================================CodeForces===================================
 25D（https://codeforces.com/problemset/problem/25/D）union_find
@@ -81,6 +83,11 @@ P5930（https://www.luogu.com.cn/problem/P5930）union_find|classical
 1851G（https://codeforces.com/contest/1851/problem/G）union_find|offline_query|brain_teaser
 1609D（https://codeforces.com/problemset/problem/1609/D）union_find|part|sorted_list
 1850H（https://codeforces.com/contest/1850/problem/H）union_find_weighted_dis|classical|hard
+766D（https://codeforces.com/problemset/problem/766/D）union_find_type|build_graph|bipartite_graph
+1594D（https://codeforces.com/contest/1594/problem/D）union_find_type|build_graph|bipartite_graph|2-sat
+1290C（https://codeforces.com/problemset/problem/1290/C）
+1713E（https://codeforces.com/contest/1713/problem/E）
+1788F（https://codeforces.com/problemset/problem/1788/F）
 
 
 ====================================AtCoder=====================================
@@ -109,6 +116,7 @@ ARC107C（https://www.luogu.com.cn/problem/AT_arc107_c）union_find|comb_perm
 7（https://codeforces.com/edu/course/2/lesson/7/2/practice/contest/289391/problem/B）union_find_range
 8（https://codeforces.com/edu/course/2/lesson/7/2/practice/contest/289391/problem/C）union_find_range
 9（https://codeforces.com/edu/course/2/lesson/7/2/practice/contest/289391/problem/D）union_find_weighted_dis|classical|hard
+10（https://codeforces.com/edu/course/2/lesson/7/2/practice/contest/289391/problem/J）union_find_type|build_graph
 
 """
 
@@ -1929,4 +1937,130 @@ class Solution:
                 c = lst[1] - 1
                 uf.find(c)
                 ac.st(uf.dis[c])
+        return
+
+    @staticmethod
+    def cf_766d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/766/D
+        tag: union_find_type|build_graph|bipartite_graph
+        """
+        n, m, q = ac.read_list_ints()
+        uf = UnionFind(n * 2)
+        words = ac.read_list_strs()
+        ind = {w: i for i, w in enumerate(words)}
+        for _ in range(m):
+            lst = ac.read_list_strs()
+            if lst[0] == "1":
+                i, j = ind[lst[1]], ind[lst[2]]
+                if uf.is_connected(i, j + n):
+                    ac.st("NO")
+                else:
+                    ac.st("YES")
+                    uf.union(i, j)
+                    uf.union(i + n, j + n)
+            else:
+                i, j = ind[lst[1]], ind[lst[2]]
+                if uf.is_connected(i, j):
+                    ac.st("NO")
+                else:
+                    ac.st("YES")
+                    uf.union(i, j + n)
+                    uf.union(i + n, j)
+        for _ in range(q):
+            i, j = [ind[w] for w in ac.read_list_strs()]
+            if uf.is_connected(i, j):
+                ac.st(1)
+            elif uf.is_connected(i, j + n):
+                ac.st(2)
+            else:
+                ac.st(3)
+        return
+
+    @staticmethod
+    def cf_1594d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1594/problem/D
+        tag: union_find_type|build_graph|bipartite_graph|2-sat
+        """
+
+        for _ in range(ac.read_int()):
+            n, m = ac.read_list_ints()
+            uf = UnionFind(n * 2)
+            for _ in range(m):
+                i, j, s = ac.read_list_strs()
+                i = int(i) - 1
+                j = int(j) - 1
+                if s == "crewmate":
+                    uf.union(i, j)
+                    uf.union(i + n, j + n)
+                else:
+                    uf.union(i, j + n)
+                    uf.union(i + n, j)
+
+            visit = [0] * 2 * n
+            ans = 0
+            group = uf.get_root_part()
+            for i in range(n):
+                if uf.is_connected(i, i + n):
+                    ac.st(-1)
+                    break
+                if visit[uf.find(i)] or visit[uf.find(i + n)]:
+                    continue
+                cur = ac.max(sum(x < n for x in group[uf.find(i)]), sum(x < n for x in group[uf.find(i + n)]))
+                ans += cur
+                visit[uf.find(i)] = visit[uf.find(i + n)] = 1
+            else:
+                ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p2024(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2024
+        tag: union_find_type|build_graph
+        """
+
+        n, k = ac.read_list_ints()
+        ans = 0
+        uf = UnionFind(n * 3)
+        for _ in range(k):
+            op, x, y = ac.read_list_ints_minus_one()
+            if x >= n or y >= n:
+                ans += 1
+            elif op == 0:
+                if uf.is_connected(x, y + n) or uf.is_connected(x, y + 2 * n):
+                    ans += 1
+                else:
+                    uf.union(x, y)
+                    uf.union(x + n, y + n)
+                    uf.union(x + 2 * n, y + 2 * n)
+            else:
+                if uf.is_connected(x, y) or uf.is_connected(x + 2 * n, y):
+                    ans += 1
+                else:
+                    uf.union(x, y + 2 * n)
+                    uf.union(x + n, y)
+                    uf.union(x + 2 * n, y + n)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def library_check_10(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/7/2/practice/contest/289391/problem/J
+        tag: union_find_type|build_graph
+        """
+
+        n, k = ac.read_list_ints()
+        uf = UnionFind(n * 2)
+        for i in range(k):
+            x, y = ac.read_list_ints_minus_one()
+            if uf.is_connected(x, y):
+                ac.st(i + 1)
+                break
+            uf.union(x, y + n)
+            uf.union(x + n, y)
+        else:
+            ac.st(-1)
         return
