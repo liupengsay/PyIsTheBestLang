@@ -66,6 +66,13 @@ ABC332F（https://atcoder.jp/contests/abc332/tasks/abc332_f）RangeAffineRangeSu
 1（https://judge.yosupo.jp/problem/range_affine_point_get）RangeAffineRangeSum
 2（https://judge.yosupo.jp/problem/range_affine_range_sum）RangeAffineRangeSum
 3（https://judge.yosupo.jp/problem/point_set_range_composite）PointSetRangeComposite
+4（https://codeforces.com/edu/course/2/lesson/4/1/practice/contest/273169/problem/A）PointSetRangeSum
+5（https://codeforces.com/edu/course/2/lesson/4/1/practice/contest/273169/problem/B）segment_tree|point_set|range_min
+6（https://codeforces.com/edu/course/2/lesson/4/1/practice/contest/273169/problem/C）segment_tree|point_set|range_min_count
+7（https://codeforces.com/edu/course/2/lesson/4/2/practice/contest/273278/problem/A）segment_tree|point_set|range_max_sub_sum
+8（https://codeforces.com/edu/course/2/lesson/4/2/practice/contest/273278/problem/B）segment_tree|point_set|range_sum_bisect_left
+9（https://codeforces.com/edu/course/2/lesson/4/2/practice/contest/273278/problem/C）segment_tree|point_set|range_max_bisect_left
+
 
 """
 from collections import defaultdict
@@ -78,7 +85,8 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeD
     RangeOrRangeAnd, RangeChangeRangeSumMinMax, RangeKthSmallest, RangeChangeRangeMaxNonEmpConSubSum, \
     RangeAscendRangeMaxBinarySearchFindLeft, RangeAffineRangeSum, PointSetRangeComposite, RangeLongestRegularBrackets, \
     RangeChangeAddRangeMax, RangeXorUpdateRangeXorQuery, PointSetRangeLongestAlter, \
-    RangeSqrtRangeSum, RangeChangeReverseRangeSumLongestConSub, PointSetRangeOr
+    RangeSqrtRangeSum, RangeChangeReverseRangeSumLongestConSub, PointSetRangeOr, PointSetRangeSum, PointSetRangeMin, \
+    PointSetRangeMinCount, PointSetRangeMaxSubSum, PointSetRangeMax
 from src.data_structure.sorted_list.template import SortedList
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
@@ -123,7 +131,7 @@ class Solution:
         return
 
     @staticmethod
-    def library_2(ac=FastIO()):
+    def library_check_2(ac=FastIO()):
         """
         url: https://judge.yosupo.jp/problem/range_affine_range_sum
         tag: RangeAffineRangeSum
@@ -1194,3 +1202,118 @@ class Solution:
                     ans = cur
             tree.point_set(i, i, 1 << xx)
         return ans
+
+    @staticmethod
+    def library_check_4(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/4/1/practice/contest/273169/problem/A
+        tag: segment_tree|point_set|range_sum
+        """
+        n, q = ac.read_list_ints()
+        tree = PointSetRangeSum(n)
+        tree.build(ac.read_list_ints())
+        for _ in range(q):
+            op, x, y = ac.read_list_ints()
+            if op == 1:
+                tree.point_set(x, x, y)
+            else:
+                ans = tree.range_sum(x, y - 1)
+                ac.st(ans)
+        return
+
+    @staticmethod
+    def library_check_5(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/4/1/practice/contest/273169/problem/B
+        tag: segment_tree|point_set|range_min
+        """
+        n, q = ac.read_list_ints()
+        tree = PointSetRangeMin(n, inf)
+        tree.build(ac.read_list_ints())
+        for _ in range(q):
+            op, x, y = ac.read_list_ints()
+            if op == 1:
+                tree.point_set(x, x, y)
+            else:
+                ans = tree.range_min(x, y - 1)
+                ac.st(ans)
+        return
+
+    @staticmethod
+    def library_check_6(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/4/1/practice/contest/273169/problem/C
+        tag: segment_tree|point_set|range_min_count
+        """
+        n, q = ac.read_list_ints()
+        tree = PointSetRangeMinCount(n, 0)
+        nums = ac.read_list_ints()
+        tree.build(nums)
+        ac.get_random_seed()
+        for _ in range(q):
+            op, x, y = ac.read_list_ints()
+            if op == 1:
+                tree.point_set(x, x, y)
+            else:
+                ans = tree.range_min_count(x, y - 1)
+                ac.lst(ans)
+        return
+
+    @staticmethod
+    def library_check_7(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/4/2/practice/contest/273278/problem/A
+        tag: segment_tree|point_set|range_max_sub_sum
+        """
+        n, q = ac.read_list_ints()
+        tree = PointSetRangeMaxSubSum(n, 0)
+        nums = ac.read_list_ints()
+        tree.build(nums)
+        ans = tree.cover[1]
+        ac.st(ac.max(ans, 0))
+        for _ in range(q):
+            x, y = ac.read_list_ints()
+            ans = tree.point_set_range_max_sub_sum(x, y)
+            ac.st(ac.max(ans, 0))
+        return
+
+    @staticmethod
+    def library_check_8(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/4/2/practice/contest/273278/problem/B
+        tag: segment_tree|point_set|range_sum_bisect_left
+        """
+        n, q = ac.read_list_ints()
+        tree = PointSetRangeSum(n, 0)
+        nums = ac.read_list_ints()
+        tree.build(nums)
+        for _ in range(q):
+            x, y = ac.read_list_ints()
+            if x == 1:
+                nums[y] = 1 - nums[y]
+                tree.point_set(y, nums[y])
+            else:
+                ans = tree.range_sum_bisect_left(y + 1)
+                ac.st(ans)
+        return
+
+    @staticmethod
+    def library_check_9(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/4/2/practice/contest/273278/problem/C
+        tag: segment_tree|point_set|range_max_bisect_left
+        """
+        n, q = ac.read_list_ints()
+        tree = PointSetRangeMax(n, 0)
+        tree.build(ac.read_list_ints())
+
+        for _ in range(q):
+            lst = ac.read_list_ints()
+            if lst[0] == 1:
+                i, v = lst[1:]
+                tree.point_set(i, v)
+            else:
+                x = lst[1]
+                ans = tree.range_max_bisect_left(x) if tree.cover[1] >= x else -1
+                ac.st(ans)
+        return

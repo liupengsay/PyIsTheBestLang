@@ -8,10 +8,33 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, \
     RangeAddRangeSumMinMax, RangeChangeRangeSumMinMax, RangeChangeRangeMaxNonEmpConSubSum, \
     RangeOrRangeAnd, \
     RangeChangeRangeSumMinMaxDynamic, RangeChangeRangeOr, RangeAffineRangeSum, RangeAddMulRangeSum, \
-    RangeChangeAddRangeMax, RangeXorUpdateRangeXorQuery, RangeChangeReverseRangeSumLongestConSub
+    RangeChangeAddRangeMax, RangeXorUpdateRangeXorQuery, RangeChangeReverseRangeSumLongestConSub, PointSetRangeMinCount
 
 
 class TestGeneral(unittest.TestCase):
+
+    def test_point_set_range_min_count(self):
+        low = 1
+        high = 100
+        n = 100
+        nums = [random.randint(low, high) for _ in range(n)]
+        segment_tree = PointSetRangeMinCount(n, 0)
+        segment_tree.build(nums)
+        for _ in range(10000):
+            i = random.randint(0, n - 1)
+            num = random.randint(low, high)
+            nums[i] = num
+            segment_tree.point_set(i, i, num)
+
+            ll = random.randint(0, n - 1)
+            rr = random.randint(ll, n - 1)
+            low = min(nums[ll:rr+1])
+            cnt = nums[ll:rr+1].count(low)
+            res = segment_tree.range_min_count(ll, rr)
+            assert res == (low, cnt)
+        assert nums == segment_tree.get()
+        return
+
 
     def test_range_or_range_and(self):
         low = 0
