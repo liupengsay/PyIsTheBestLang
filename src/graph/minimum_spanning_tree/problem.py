@@ -51,6 +51,8 @@ ARC076B（https://atcoder.jp/contests/abc065/tasks/arc076_b）mst
 ================================LibraryChecker================================
 Manhattan MST（https://judge.yosupo.jp/problem/manhattanmst）
 Directed MST（https://judge.yosupo.jp/problem/directedmst）
+3（https://codeforces.com/edu/course/2/lesson/7/2/practice/contest/289391/problem/F）mst|brute_force
+4（https://codeforces.com/edu/course/2/lesson/7/2/practice/contest/289391/problem/H）mst|greedy
 
 """
 import math
@@ -839,3 +841,63 @@ class Solution:
                 return self.puf.is_connected(p, q, limit)
 
         return DistanceLimitedPathsExist
+
+    @staticmethod
+    def library_check_3(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/7/2/practice/contest/289391/problem/F
+        tag: mst|brute_force
+        """
+        n, m = ac.read_list_ints()
+        edges = [tuple(ac.read_list_ints()) for _ in range(m)]
+        edges.sort(key=lambda it: it[2])
+        uf = UnionFind(n)
+        for x in range(m-1, -1, -1):
+            i, j, w = edges[x]
+            uf.union(i - 1, j - 1)
+            if uf.part == 1:
+                break
+        else:
+            ac.st("NO")
+            return
+        ans = inf
+        uf = UnionFind(n)
+        for i in range(x+1):
+            uf.initialize()
+            s = edges[i][2]
+            for j in range(i, m):
+                x, y, w = edges[j]
+                uf.union(x - 1, y - 1)
+                if uf.part == 1 or w - s > ans:
+                    if uf.part == 1 and w - s <= ans:
+                        ans = w - s
+                    break
+        ac.st("YES")
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def library_check_4(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/7/2/practice/contest/289391/problem/H
+        tag: mst|greedy
+        """
+        n, m, s = ac.read_list_ints()
+        edges = [tuple(ac.read_list_ints()) for _ in range(m)]
+        ind = list(range(m))
+        ind.sort(key=lambda it: -edges[it][2])
+        uf = UnionFind(n)
+        rest = []
+        cost = 0
+        for i in ind:
+            x, y, w = edges[i]
+            if not uf.union(x - 1, y - 1):
+                rest.append(i)
+                cost += w
+        rest.reverse()
+        while cost > s:
+            cost -= edges[rest.pop()][2]
+        ac.st(len(rest))
+        ac.lst([x + 1 for x in rest])
+        return
+

@@ -28,7 +28,7 @@ P6095（https://www.luogu.com.cn/problem/P6095）
 
 =====================================AcWing=====================================
 142（https://www.acwing.com/problem/content/142/）suffix_array|template
-140（https://www.acwing.com/problem/content/140/）
+140（https://www.acwing.com/problem/content/140/）suffix_array|lexicographical_order|lcp|sparse_table|sub_string|classical
 
 =====================================CodeForces=====================================
 123D（https://codeforces.com/problemset/problem/123/D）suffix_array|height|monotonic_stack
@@ -66,12 +66,13 @@ ABC272F（https://atcoder.jp/contests/abc272/tasks/abc272_f）suffix_array|sa|tr
 17（https://poj.org/problem?id=3729）
 18（https://onlinejudge.u-aizu.ac.jp/problems/2292）
 19（https://poj.org/problem?id=3415）
-20（https://codeforces.com/edu/course/2/lesson/2/5/practice/contest/269656/problem/E）
-21（https://codeforces.com/edu/course/2/lesson/2/5/practice/contest/269656/problem/C）
+20（https://codeforces.com/edu/course/2/lesson/2/5/practice/contest/269656/problem/E）suffix_array|monotonic_stack|height|counter
+21（https://codeforces.com/edu/course/2/lesson/2/5/practice/contest/269656/problem/C）suffix_array|lexicographical_order|lcp|sparse_table|sub_string|classical
 
 """
 
 from collections import deque
+from functools import cmp_to_key
 from typing import List
 
 from src.basis.binary_search.template import BinarySearch
@@ -430,7 +431,9 @@ class Solution:
             ri, rj = rk[ii], rk[jj]
             if ri > rj:
                 ri, rj = rj, ri
-            return st.query(ri + 2, rj + 1)
+            if ri == rj:
+                return n - sa[ri]
+            return st.query(ri + 1, rj)
 
         for x in range(1, n):
             for i in range(0, n - x, x):
@@ -1150,4 +1153,109 @@ class Solution:
             if s[i] == "0" and n - i > ans:
                 ans = n - i
         ac.st(ans)
+        return
+
+    @staticmethod
+    def library_check_21(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/2/5/practice/contest/269656/problem/C
+        tag: suffix_array|lexicographical_order|lcp|sparse_table|sub_string|classical
+        """
+        s = [ord(w) - 33 for w in ac.read_str()]
+        n = len(s)
+        sa, rk, height = SuffixArray().build(s, 95)
+        st = SparseTable(height, min)
+        q = ac.read_int()
+        queries = [tuple(ac.read_list_ints_minus_one()) for _ in range(q)]
+
+        def lcp(ii, jj):
+            ri, rj = rk[ii], rk[jj]
+            if ri > rj:
+                ri, rj = rj, ri
+            if ri == rj:
+                return n - sa[ri]
+            return st.query(ri + 1, rj)
+
+        def compare(a, b):
+            i1, j1 = a
+            i2, j2 = b
+            x = lcp(i1, i2)
+            x = ac.min(x, j1 - i1 + 1)
+            x = ac.min(x, j2 - i2 + 1)
+            if x == j1 - i1 + 1:
+                if x == j2 - i2 + 1:
+                    return -1 if i1 < i2 else 1
+                return -1
+            if x == j2 - i2 + 1:
+                return 1
+            return -1 if s[i1 + x] < s[i2 + x] else 1
+
+        queries.sort(key=cmp_to_key(compare))
+        for q in queries:
+            ac.lst([x + 1 for x in q])
+        return
+
+    @staticmethod
+    def ac_140(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/140/
+        tag: suffix_array|lexicographical_order|lcp|sparse_table|sub_string|classical
+        """
+        s = [ord(w) - ord("a") for w in ac.read_str()]
+        n = len(s)
+        sa, rk, height = SuffixArray().build(s, 26)
+        st = SparseTable(height, min)
+
+        def lcp(ii, jj):
+            ri, rj = rk[ii], rk[jj]
+            if ri > rj:
+                ri, rj = rj, ri
+            if ri == rj:
+                return n - sa[ri]
+            return st.query(ri + 1, rj)
+
+        for _ in range(ac.read_int()):
+            i1, j1, i2, j2 = ac.read_list_ints_minus_one()
+            x = lcp(i1, i2)
+            x = ac.min(x, j1 - i1 + 1)
+            if j1 - i1 + 1 == j2 - i2 + 1 == x:
+                ac.st("Yes")
+            else:
+                ac.st("No")
+        return
+
+    @staticmethod
+    def library_check_20(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/2/5/practice/contest/269656/problem/E
+        tag: suffix_array|monotonic_stack|height|counter
+        """
+        n, m = ac.read_list_ints()
+        s = ac.read_list_ints_minus_one()
+        sa, rk, height = SuffixArray().build(s, m)
+
+        left = [0] * n
+        right = [n - 1] * n
+        stack = []
+        for i in range(n):
+            while stack and height[stack[-1]] > height[i]:
+                right[stack.pop()] = i - 1
+            stack.append(i)
+
+        stack = []
+        for i in range(n - 1, -1, -1):
+            while stack and height[stack[-1]] > height[i]:
+                left[stack.pop()] = i + 1
+            stack.append(i)
+
+        ans = n
+        res = [0, n]
+        for i in range(n):
+            cur = height[i] * (right[i] - left[i] + 2)
+            if cur > ans:
+                ans = cur
+                res = [sa[i], sa[i] + height[i]]
+        ac.st(ans)
+        ac.st(res[1] - res[0])
+        ac.lst([x + 1 for x in s[res[0]:res[1]]])
         return
