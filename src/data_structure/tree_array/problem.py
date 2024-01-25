@@ -48,9 +48,11 @@ ABC127F（https://atcoder.jp/contests/abc127/tasks/abc127_f）discretization|tre
 1550C（https://codeforces.com/contest/1550/problem/C）PointAscendPreMax
 1679C（https://codeforces.com/contest/1679/problem/C）PointAddRangeSum
 
+=====================================LibraryChecker=====================================
 1（https://judge.yosupo.jp/problem/vertex_add_subtree_sum）tree_array|dfs_order
 135. tree_matrix|3（https://loj.ac/p/135）range_change|range_sum
 134. tree_matrix|2（https://loj.ac/p/134）range_change|range_sum
+4（https://codeforces.com/edu/course/2/lesson/4/3/practice/contest/274545/problem/A）tree_array|point_set|range_sum|inversion
 
 """
 from collections import defaultdict, deque
@@ -953,3 +955,20 @@ class Solution:
                 return self.tree.range_sum(row1 + 1, col1 + 1, row2 + 1, col2 + 1)
 
         return NumMatrix
+
+    @staticmethod
+    def library_check_4(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/4/3/practice/contest/274545/problem/A
+        tag: segment_tree|point_set|range_sum|inversion
+        """
+        n = ac.read_int()
+        tree = PointAddRangeSum(n, 0)
+        nums = ac.read_list_ints()
+        ans = [0] * n
+        for j in range(n):
+            i = n + 1 - nums[j]
+            ans[j] = tree.range_sum(1, i)
+            tree.point_add(i, 1)
+        ac.lst(ans)
+        return

@@ -372,7 +372,7 @@ class RangeAscendRangeMaxBinarySearchFindLeft:
                 stack.append((m + 1, b, (i << 1) | 1))
         return highest
 
-    def binary_search_find_left(self, left, right, val):
+    def range_max_bisect_left(self, left, right, val):
         """binary search with segment tree like"""
         assert 0 <= left <= right <= self.n - 1
         stack = [(0, self.n - 1, 1)]
@@ -598,6 +598,20 @@ class RangeAddRangeSumMinMax:
                 stack.append((m + 1, t, (i << 1) | 1))
         return ans
 
+    def point_get(self, ind) -> int:
+        s, t, i = 0, self.n - 1, 1  # assert 0 <= ind <= self.n - 1
+        while True:
+            if s == t == ind:
+                ans = self.cover[i]
+                break
+            m = s + (t - s) // 2
+            self._push_down(i, s, m, t)
+            if ind <= m:
+                s, t, i = s, m, i << 1
+            else:
+                s, t, i = m + 1, t, (i << 1) | 1
+        return ans
+
     def range_min(self, left: int, right: int) -> int:
         # query the range min
         stack = [(0, self.n - 1, 1)]
@@ -616,7 +630,6 @@ class RangeAddRangeSumMinMax:
         return lowest
 
     def range_min_bisect_left(self, val) -> int:
-        # query the range min with bisect_left
         s, t, i = 0, self.n - 1, 1
         while s < t:
             m = s + (t - s) // 2
@@ -654,6 +667,80 @@ class RangeAddRangeSumMinMax:
                 continue
             m = s + (t - s) // 2
             self._push_down(i, s, m, t)
+            stack.append((s, m, i << 1))
+            stack.append((m + 1, t, (i << 1) | 1))
+        return nums
+
+
+class RangeAddPointGet:
+    def __init__(self, n) -> None:
+        self.n = n
+        self.lazy = [0] * (4 * self.n)
+        return
+
+    def build(self, nums):
+        stack = [(0, self.n - 1, 1)]  # assert self.n == len(nums)
+        while stack:
+            s, t, i = stack.pop()
+            if s == t:
+                self._make_tag(i, nums[s])
+            else:
+                m = s + (t - s) // 2
+                stack.append((s, m, i << 1))
+                stack.append((m + 1, t, (i << 1) | 1))
+        return
+
+    def _push_down(self, i: int) -> None:
+        if self.lazy[i]:
+            self.lazy[i << 1] += self.lazy[i]
+            self.lazy[(i << 1) | 1] += self.lazy[i]
+            self.lazy[i] = 0
+
+    def _make_tag(self, i, val) -> None:
+        self.lazy[i] += val
+        return
+
+    def range_add(self, left: int, right: int, val: int) -> None:
+        stack = [(0, self.n - 1, 1)]  # assert 0 <= left <= right <= self.n - 1
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                self._make_tag(i, val)
+                continue
+
+            m = s + (t - s) // 2
+            self._push_down(i)
+
+            if left <= m:
+                stack.append((s, m, i << 1))
+            if right > m:
+                stack.append((m + 1, t, (i << 1) | 1))
+        return
+
+    def point_get(self, ind) -> int:
+        s, t, i = 0, self.n - 1, 1  # assert 0 <= ind < self.n
+        while True:
+            if s == t == ind:
+                ans = self.lazy[i]
+                break
+            m = s + (t - s) // 2
+            self._push_down(i)
+            if ind <= m:
+                s, t, i = s, m, i << 1
+            else:
+                s, t, i = m + 1, t, (i << 1) | 1
+        return ans
+
+    def get(self):
+        stack = [(0, self.n - 1, 1)]
+        nums = [0] * self.n
+        while stack:
+            s, t, i = stack.pop()
+            if s == t:
+                nums[s] = self.lazy[i]
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i)
             stack.append((s, m, i << 1))
             stack.append((m + 1, t, (i << 1) | 1))
         return nums
@@ -1061,6 +1148,20 @@ class RangeChangeRangeSumMinMax:
             if right > m:
                 stack.append((m + 1, t, (i << 1) | 1))
         return highest
+
+    def point_get(self, ind) -> int:
+        s, t, i = 0, self.n - 1, 1  # assert 0 <= ind <= self.n - 1
+        while True:
+            if s == t == ind:
+                ans = self.cover[i]
+                break
+            m = s + (t - s) // 2
+            self._push_down(i, s, m, t)
+            if ind <= m:
+                s, t, i = s, m, i << 1
+            else:
+                s, t, i = m + 1, t, (i << 1) | 1
+        return ans
 
 
 class RangeChangeReverseRangeSumLongestConSub:
@@ -1900,7 +2001,7 @@ class PointSetRangeOr:
                 stack.append((m + 1, t, (i << 1) | 1))
         return ans
 
-    def range_or_binary_search_right(self, left: int, k) -> int:
+    def range_or_bisect_right(self, left: int, k) -> int:
         stack = [(0, self.n - 1, 1)]
         ans = val = 0
         while stack:
@@ -2194,7 +2295,7 @@ class PointSetRangeLongestAlter:
                 self._push_up(i, s, m, t)
         return
 
-    def point_set_range_longest_alter(self, left: int, right: int) -> None:
+    def point_set_range_longest_alter(self, left: int, right: int):
         stack = [(0, self.n - 1, 1)]
         while stack:
             s, t, i = stack.pop()
@@ -2304,6 +2405,108 @@ class PointSetRangeMax:
             if self.cover[i << 1] >= val:
                 s, t, i = s, m, i << 1
             else:
+                s, t, i = m + 1, t, (i << 1) | 1
+        return t
+
+    def range_max_bisect_left_with_ind(self, ind, val) -> int:
+        stack = [(0, self.n - 1, 1)]  # assert 0 <= ind < self.n
+        res = -1
+        while stack and res == -1:
+            a, b, i = stack.pop()
+            if a == b >= ind:
+                if self.cover[i] >= val:
+                    res = a
+                continue
+            m = a + (b - a) // 2
+            if self.cover[(i << 1) | 1] >= val:
+                stack.append((m + 1, b, (i << 1) | 1))
+            if ind <= m and self.cover[i << 1] >= val:
+                stack.append((a, m, i << 1))
+        return res
+
+
+class PointSetRangeSum:
+
+    def __init__(self, n, initial=0):
+        self.n = n
+        self.initial = initial
+        self.cover = [initial] * (4 * n)
+        return
+
+    def _push_up(self, i):
+        self.cover[i] = self.cover[i << 1] + self.cover[(i << 1) | 1]
+        return
+
+    def build(self, nums) -> None:
+        stack = [(0, self.n - 1, 1)]  # assert self.n == len(nums)
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if s == t:
+                    self.cover[i] = nums[s]
+                else:
+                    stack.append((s, t, ~i))
+                    m = s + (t - s) // 2
+                    stack.append((s, m, i << 1))
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def get(self):
+        stack = [(0, self.n - 1, 1)]
+        nums = [0] * self.n
+        while stack:
+            s, t, i = stack.pop()
+            if s == t:
+                val = self.cover[i]
+                nums[s] = val
+                continue
+            m = s + (t - s) // 2
+            stack.append((s, m, i << 1))
+            stack.append((m + 1, t, (i << 1) | 1))
+        return nums
+
+    def point_set(self, ind, val):
+        s, t, i = 0, self.n - 1, 1  # assert 0 <= left == right <= self.n - 1
+        while True:
+            if s == t == ind:
+                self.cover[i] = val
+                break
+            m = s + (t - s) // 2
+            if ind <= m:
+                s, t, i = s, m, i << 1
+            else:
+                s, t, i = m + 1, t, (i << 1) | 1
+        while i > 1:
+            i //= 2
+            self._push_up(i)
+        return
+
+    def range_sum(self, left: int, right: int) -> int:
+        stack = [(0, self.n - 1, 1)]
+        ans = 0
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                ans += self.cover[i]
+                continue
+            m = s + (t - s) // 2
+            if left <= m:
+                stack.append((s, m, i << 1))
+            if right > m:
+                stack.append((m + 1, t, (i << 1) | 1))
+        return ans
+
+    def range_sum_bisect_left(self, val) -> int:
+        s, t, i = 0, self.n - 1, 1
+        while s < t:
+            m = s + (t - s) // 2
+            if self.cover[i << 1] >= val:
+                s, t, i = s, m, i << 1
+            else:
+                val -= self.cover[i << 1]
                 s, t, i = m + 1, t, (i << 1) | 1
         return t
 
@@ -2417,92 +2620,6 @@ class RangeXorUpdateRangeXorQuery:
         return ans
 
 
-class PointSetRangeSum:
-
-    def __init__(self, n, initial=0):
-        self.n = n
-        self.initial = initial
-        self.cover = [initial] * (4 * n)
-        return
-
-    def _push_up(self, i):
-        self.cover[i] = self.cover[i << 1] + self.cover[(i << 1) | 1]
-        return
-
-    def build(self, nums) -> None:
-        stack = [(0, self.n - 1, 1)]  # assert self.n == len(nums)
-        while stack:
-            s, t, i = stack.pop()
-            if i >= 0:
-                if s == t:
-                    self.cover[i] = nums[s]
-                else:
-                    stack.append((s, t, ~i))
-                    m = s + (t - s) // 2
-                    stack.append((s, m, i << 1))
-                    stack.append((m + 1, t, (i << 1) | 1))
-            else:
-                i = ~i
-                self._push_up(i)
-        return
-
-    def get(self):
-        stack = [(0, self.n - 1, 1)]
-        nums = [0] * self.n
-        while stack:
-            s, t, i = stack.pop()
-            if s == t:
-                val = self.cover[i]
-                nums[s] = val
-                continue
-            m = s + (t - s) // 2
-            stack.append((s, m, i << 1))
-            stack.append((m + 1, t, (i << 1) | 1))
-        return nums
-
-    def point_set(self, ind, val):
-        s, t, i = 0, self.n - 1, 1  # assert 0 <= left == right <= self.n - 1
-        while True:
-            if s == t == ind:
-                self.cover[i] = val
-                break
-            m = s + (t - s) // 2
-            if ind <= m:
-                s, t, i = s, m, i << 1
-            else:
-                s, t, i = m + 1, t, (i << 1) | 1
-        while i > 1:
-            i //= 2
-            self._push_up(i)
-        return
-
-    def range_sum(self, left: int, right: int) -> int:
-        stack = [(0, self.n - 1, 1)]
-        ans = 0
-        while stack:
-            s, t, i = stack.pop()
-            if left <= s and t <= right:
-                ans += self.cover[i]
-                continue
-            m = s + (t - s) // 2
-            if left <= m:
-                stack.append((s, m, i << 1))
-            if right > m:
-                stack.append((m + 1, t, (i << 1) | 1))
-        return ans
-
-    def range_sum_bisect_left(self, val) -> int:
-        s, t, i = 0, self.n - 1, 1
-        while s < t:
-            m = s + (t - s) // 2
-            if self.cover[i << 1] >= val:
-                s, t, i = s, m, i << 1
-            else:
-                val -= self.cover[i << 1]
-                s, t, i = m + 1, t, (i << 1) | 1
-        return t
-
-
 class PointSetRangeMin:
 
     def __init__(self, n, initial=0):
@@ -2555,24 +2672,20 @@ class PointSetRangeMin:
             stack.append((m + 1, t, (i << 1) | 1))
         return nums
 
-    def point_set(self, left, right, val):
-        assert 0 <= left == right <= self.n - 1
-        stack = [(0, self.n - 1, 1)]
-        while stack:
-            s, t, i = stack.pop()
-            if i >= 0:
-                if s == t == left:
-                    self._make_tag(i, val)
-                    continue
-                stack.append((s, t, ~i))
-                m = s + (t - s) // 2
-                if left <= m:
-                    stack.append((s, m, i << 1))
-                if right > m:
-                    stack.append((m + 1, t, (i << 1) | 1))
+    def point_set(self, ind, val):
+        s, t, i = 0, self.n - 1, 1  # assert 0 <= left == right <= self.n - 1
+        while True:
+            if s == t == ind:
+                self._make_tag(i, val)
+                break
+            m = s + (t - s) // 2
+            if ind <= m:
+                s, t, i = s, m, i << 1
             else:
-                i = ~i
-                self._push_up(i)
+                s, t, i = m + 1, t, (i << 1) | 1
+        while i > 1:
+            i //= 2
+            self._push_up(i)
         return
 
     def range_min(self, left: int, right: int) -> int:
@@ -2650,24 +2763,20 @@ class PointSetRangeMinCount:
             stack.append((m + 1, t, (i << 1) | 1))
         return nums
 
-    def point_set(self, left, right, val):
-        assert 0 <= left == right <= self.n - 1
-        stack = [(0, self.n - 1, 1)]
-        while stack:
-            s, t, i = stack.pop()
-            if i >= 0:
-                if s == t == left:
-                    self._make_tag(i, val)
-                    continue
-                stack.append((s, t, ~i))
-                m = s + (t - s) // 2
-                if left <= m:
-                    stack.append((s, m, i << 1))
-                if right > m:
-                    stack.append((m + 1, t, (i << 1) | 1))
+    def point_set(self, ind, val):
+        s, t, i = 0, self.n - 1, 1  # assert 0 <= left == right <= self.n - 1
+        while True:
+            if s == t == ind:
+                self._make_tag(i, val)
+                break
+            m = s + (t - s) // 2
+            if ind <= m:
+                s, t, i = s, m, i << 1
             else:
-                i = ~i
-                self._push_up(i)
+                s, t, i = m + 1, t, (i << 1) | 1
+        while i > 1:
+            i //= 2
+            self._push_up(i)
         return
 
     def range_min_count(self, left: int, right: int):
