@@ -64,7 +64,7 @@ from src.basis.binary_search.template import BinarySearch
 from src.graph.dijkstra.template import Dijkstra
 from src.mathmatics.fast_power.template import MatrixFastPower
 from src.mathmatics.prime_factor.template import PrimeFactor
-from src.strings.string_hash.template import StringHash, PointSetRangeHashReverse, RangeChangeRangeHashReverse, \
+from src.strings.string_hash.template import StringHash, PointSetRangeHashReverse, RangeSetRangeHashReverse, \
     MatrixHash, MatrixHashReverse
 from src.utils.fast_io import FastIO, inf
 
@@ -959,8 +959,8 @@ class Solution:
         tag: segment_tree_hash|range_change|range_hash_reverse|circular_section
         """
         n, m, k = ac.read_list_ints()
-        tree1 = RangeChangeRangeHashReverse(n, 10)
-        tree2 = RangeChangeRangeHashReverse(n, 10)
+        tree1 = RangeSetRangeHashReverse(n, 10)
+        tree2 = RangeSetRangeHashReverse(n, 10)
         s = ac.read_str()
         tree1.build([int(w) for w in s])
         tree2.build([int(w) for w in s])
@@ -968,8 +968,8 @@ class Solution:
             lst = ac.read_list_ints()
             if lst[0] == 1:
                 l, r, c = lst[1:]
-                tree1.range_change(l - 1, r - 1, c)
-                tree2.range_change(l - 1, r - 1, c)
+                tree1.range_set(l - 1, r - 1, c)
+                tree2.range_set(l - 1, r - 1, c)
             else:
                 l, r, d = lst[1:]
                 if d == r - l + 1:

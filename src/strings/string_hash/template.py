@@ -299,7 +299,7 @@ class PointSetRangeHashReverse:
         return ans
 
 
-class RangeChangeRangeHashReverse:
+class RangeSetRangeHashReverse:
     def __init__(self, n, tag=inf) -> None:
         self.n = n
         self.tag = tag
@@ -374,7 +374,7 @@ class RangeChangeRangeHashReverse:
             stack.append((m + 1, t, (i << 1) | 1))
         return nums
 
-    def range_change(self, left: int, right: int, val: int) -> None:
+    def range_set(self, left: int, right: int, val: int) -> None:
         stack = [(0, self.n - 1, 1)]
         while stack:
             s, t, i = stack.pop()

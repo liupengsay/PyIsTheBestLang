@@ -1,7 +1,7 @@
 import random
 import unittest
 
-from src.strings.string_hash.template import PointSetRangeHashReverse, RangeChangeRangeHashReverse
+from src.strings.string_hash.template import PointSetRangeHashReverse, RangeSetRangeHashReverse
 
 
 class TestGeneral(unittest.TestCase):
@@ -77,14 +77,14 @@ class TestGeneral(unittest.TestCase):
 
         n = 10 ** 4
         nums = [0] * n
-        tree = RangeChangeRangeHashReverse(n)
+        tree = RangeSetRangeHashReverse(n)
         for _ in range(1000):
             ll = random.randint(0, n - 1)
             rr = random.randint(ll, n - 1)
             num = random.randint(0, n - 1)
             for i in range(ll, rr + 1):
                 nums[i] = num
-            tree.range_change(ll, rr, num)
+            tree.range_set(ll, rr, num)
 
             ll = random.randint(0, n - 1)
             rr = random.randint(ll, n - 1)

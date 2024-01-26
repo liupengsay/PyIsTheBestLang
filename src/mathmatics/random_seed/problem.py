@@ -49,7 +49,7 @@ class Solution:
                         tot += 1
                         start = i
                     else:
-                        tree.range_change(dct[pre] + 1, i, 1)
+                        tree.range_set(dct[pre] + 1, i, 1)
                 else:
                     dct[pre] = i
 
