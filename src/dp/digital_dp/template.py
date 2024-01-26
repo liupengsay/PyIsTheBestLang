@@ -1,4 +1,7 @@
 from functools import lru_cache
+from itertools import accumulate
+
+from src.utils.fast_io import ac_max
 
 
 class DigitalDP:
@@ -34,7 +37,7 @@ class DigitalDP:
         return ans
 
     @staticmethod
-    def count_digit(num, d):
+    def count_digit_dfs(num, d):
         # Calculate the number of occurrences of digit d within 1 to num
 
         @lru_cache(None)
@@ -58,114 +61,48 @@ class DigitalDP:
         return dfs(0, 0, True, False)
 
     @staticmethod
+    def count_digit_dp(num, d):
+        # Calculate the number of occurrences of digit d within 1 to num by iteration
+        num += 1
+        lst = [int(x) for x in str(num)]
+        n = len(lst)
+        pre = [0] * (n + 1)
+        c = 0
+        zero = 0
+        cnt = 1
+        for i in range(n):
+            cur = [0] * (n + 1)
+            for x in range(i + 1):
+                cur[x] += 9 * pre[x]
+                cur[x + 1] += pre[x]
+            for w in range(lst[i]):
+                cur[c + int(w == d)] += 1
+            c += int(lst[i] == d)
+            pre = cur
+            zero += cnt
+            cnt *= 10
+        ans = sum(pre[i] * i for i in range(n + 1))
+        return ans if d else ans - zero
+
+    @staticmethod
     def count_digit_sum(num):
         # Calculate the number of occurrences of digit d within 1 to num
-
-        @lru_cache(None)
-        def dfs(i, cnt, is_limit, is_num):
-            if i == n:
-                if is_num:
-                    return cnt
-                return 0
-            res = 0
-            if not is_num:
-                res += dfs(i + 1, 0, False, False)
-
-            floor = 0 if is_num else 1
-            ceil = int(s[i]) if is_limit else 9
-            for x in range(floor, ceil + 1):
-                res += dfs(i + 1, cnt + x, is_limit and ceil == x, True)
-            return res
-
-        s = str(num)
-        n = len(s)
-        return dfs(0, 0, True, False)
-
-    @staticmethod
-    def count_digit_bfs(num, d):
-        # Calculate the number of occurrences of digit d within 1 to num
-        s = str(num)
-        n = len(s)
-        dp = dict()
-        sub = [[]]
-        ind = 1
-        stack = [(0, 0, 1, False, 0)]
-        while stack:
-            i, cnt, is_limit, is_num, x = stack.pop()
-            if i >= 0:
-                if i == n:
-                    dp[x] = cnt if is_num else 0
-                    continue
-                stack.append((~i, cnt, is_limit, is_num, x))
-                if not is_num:
-                    stack.append((i + 1, 0, False, False, ind))
-                    sub.append([])
-                    sub[x].append(ind)
-                    ind += 1
-
-                floor = 0 if is_num else 1
-                ceil = int(s[i]) if is_limit else 9
-                for xx in range(floor, ceil + 1):
-                    stack.append((i + 1, cnt + int(xx == d), is_limit and ceil == xx, True, ind))
-                    sub.append([])
-                    sub[x].append(ind)
-                    ind += 1
-            else:
-                dp[x] = sum(dp[y] for y in sub[x])
-        return dp[0]
-
-    @staticmethod
-    def count_digit_iteration(num, d):
-        # Calculate the number of occurrences of digit d within 1 to num by iteration
-        assert num >= 1
-        s = str(num)
-        n = len(s)
-
-        dp = [[[0 for _ in range(4)] for _ in range(n + 2)] for _ in range(n + 1)]
-        for i in range(n, -1, -1):
-            for cnt in range(n, -1, -1):
-                for is_limit in range(1, -1, -1):
-                    for is_num in range(1, -1, -1):
-                        if i == n:
-                            dp[i][cnt][is_limit*2+is_num] = cnt if is_num else 0
-                            continue
-                        res = 0
-                        if not is_num:
-                            res += dp[i + 1][0][0]
-                        floor = 0 if is_num else 1
-                        ceil = int(s[i]) if is_limit else 9
-                        for x in range(floor, ceil + 1):
-                            res += dp[i + 1][cnt + int(x == d)][int(is_limit and x == ceil)*2+1]
-                        dp[i][cnt][is_limit*2+is_num] = res
-        return dp[0][0][2]
-
-    @staticmethod
-    def count_digit_iteration_md(num, d):
-        # Calculate the number of occurrences of digit d within 1 to num by iteration
-        assert num >= 1
-        s = str(num)
-        n = len(s)
-
-        def idx(i1, i2, i3, i4):
-            return i1 * (n + 2) * 2 * 2 + i2 * 2 * 2 + i3 * 2 + i4
-
-        dp = [0] * (n + 1) * (n + 2) * 2 * 2
-        for i in range(n, -1, -1):
-            for cnt in range(n, -1, -1):
-                for is_limit in range(1, -1, -1):
-                    for is_num in range(1, -1, -1):
-                        if i == n:
-                            dp[idx(i, cnt, is_limit, is_num)] = cnt if is_num else 0
-                            continue
-                        res = 0
-                        if not is_num:
-                            res += dp[idx(i + 1, 0, 0, 0)]
-                        floor = 0 if is_num else 1
-                        ceil = int(s[i]) if is_limit else 9
-                        for x in range(floor, ceil + 1):
-                            res += dp[idx(i + 1, cnt + int(x == d), int(is_limit and x == ceil), 1)]
-                        dp[idx(i, cnt, is_limit, is_num)] = res
-        return dp[idx(0, 0, 1, 0)]
+        num += 1
+        lst = [int(x) for x in str(num)]
+        n = len(lst)
+        pre_sum = 0
+        dp = [0] * (9 * n + 1)
+        for i in range(n):
+            ndp = [0] * (9 * n + 1)
+            pre_dp = list(accumulate(dp, initial=0))
+            for digit_sum in range(9 * n + 1):
+                ndp[digit_sum] += pre_dp[digit_sum + 1] - pre_dp[ac_max(0, digit_sum - 9)]
+            for cur_digit in range(lst[i]):
+                ndp[pre_sum + cur_digit] += 1
+            pre_sum += lst[i]
+            dp = ndp
+        ans = sum(dp[x] * x for x in range(9 * n + 1))
+        return ans
 
     @staticmethod
     def count_num_base(num, d):

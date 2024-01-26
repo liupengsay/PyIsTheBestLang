@@ -34,11 +34,11 @@ P4513（https://www.luogu.com.cn/problem/P4513）segment_tree|range_change|range
 P1471（https://www.luogu.com.cn/problem/P1471）math|segment_tree|RangeAddRangeSum
 P6492（https://www.luogu.com.cn/problem/P6492）segment_tree|range_change|range_merge|sub_consequence
 P4145（https://www.luogu.com.cn/problem/P4145）math|segment_tree|RangeAddRangeSum
-P1558（https://www.luogu.com.cn/problem/P1558）segment_tree|RangeChangeRangeOr
+P1558（https://www.luogu.com.cn/problem/P1558）segment_tree|RangeSetRangeOr
 P3740（https://www.luogu.com.cn/problem/P3740）discretization|segment_tree|RangeChangeRangeSum
 P4588（https://www.luogu.com.cn/problem/P4588）segment_tree|RangeChangeRangeMul
 P6627（https://www.luogu.com.cn/problem/P6627）segment_tree|range_xor
-P8081（https://www.luogu.com.cn/problem/P8081）diff_array|counter|action_scop|segment_tree|RangeChangeRangeOr
+P8081（https://www.luogu.com.cn/problem/P8081）diff_array|counter|action_scop|segment_tree|RangeSetRangeOr
 P8812（https://www.luogu.com.cn/problem/P8812）segment_tree|RangeDescendRangeMin
 P8856（https://www.luogu.com.cn/problem/solution/P8856）segment_tree|RangeAddRangeSumMaxMin
 
@@ -53,8 +53,8 @@ P8856（https://www.luogu.com.cn/problem/solution/P8856）segment_tree|RangeAddR
 987C（https://codeforces.com/problemset/problem/987/C）brute_force|segment_tree|prefix_suffix
 1216F（https://codeforces.com/contest/1216/problem/F）segment_tree|dp|monotonic_queue
 1665E（https://codeforces.com/contest/1665/problem/E）segment_tree
-1478E（https://codeforces.com/contest/1478/problem/E）RangeChangeRangeSumMinMax|backward_thinking|implemention
-1679E（https://codeforces.com/contest/1679/problem/B）RangeChangeRangeSumMinMax|range_change|range_sum
+1478E（https://codeforces.com/contest/1478/problem/E）RangeSetRangeSumMinMax|backward_thinking|implemention
+1679E（https://codeforces.com/contest/1679/problem/B）RangeSetRangeSumMinMax|range_change|range_sum
 
 ====================================AtCoder=====================================
 ABC332F（https://atcoder.jp/contests/abc332/tasks/abc332_f）RangeAffineRangeSum
@@ -78,21 +78,28 @@ ABC332F（https://atcoder.jp/contests/abc332/tasks/abc332_f）RangeAffineRangeSu
 13（https://codeforces.com/edu/course/2/lesson/4/3/practice/contest/274545/problem/C）segment_tree|point_set|range_sum|range_include
 14（https://codeforces.com/edu/course/2/lesson/4/3/practice/contest/274545/problem/D）segment_tree|point_set|range_sum|range_include|reverse_thinking|include_exclude
 15（https://codeforces.com/edu/course/2/lesson/4/3/practice/contest/274545/problem/E）segment_tree|range_add|point_get
-
+16（https://codeforces.com/edu/course/2/lesson/4/4/practice/contest/274684/problem/A）segment_tree|point_set|range_sum
+17（https://codeforces.com/edu/course/2/lesson/4/4/practice/contest/274684/problem/B）segment_tree|matrix_build|range_mul
+18（https://codeforces.com/edu/course/2/lesson/4/4/practice/contest/274684/problem/C）segment_tree|point_set|range_inverse
+19（https://codeforces.com/edu/course/2/lesson/4/4/practice/contest/274684/problem/D）segment_tree|point_set|range_or
+20（https://codeforces.com/edu/course/2/lesson/5/1/practice/contest/279634/problem/A）segment_tree|range_add|point_get
+21（https://codeforces.com/edu/course/2/lesson/5/1/practice/contest/279634/problem/A）segment_tree|range_ascend|point_get
+22（https://codeforces.com/edu/course/2/lesson/5/1/practice/contest/279634/problem/A）segment_tree|range_set|point_get
 
 """
 from collections import defaultdict
 from typing import List
 
 from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeDescendRangeMin, \
-    RangeAddRangeSumMinMax, RangeRevereRangeBitCount, RangeChangeRangeOr, \
+    RangeAddRangeSumMinMax, RangeRevereRangeBitCount, RangeSetRangeOr, \
     RangeAddRangeAvgDev, \
-    RangeChangeRangeSumMinMaxDynamic, PointSetRangeLongestSubSame, \
-    RangeOrRangeAnd, RangeChangeRangeSumMinMax, RangeKthSmallest, RangeChangeRangeMaxNonEmpConSubSum, \
-    RangeAscendRangeMaxBinarySearchFindLeft, RangeAffineRangeSum, PointSetRangeComposite, RangeLongestRegularBrackets, \
-    RangeChangeAddRangeMax, RangeXorUpdateRangeXorQuery, PointSetRangeLongestAlter, \
-    RangeSqrtRangeSum, RangeChangeReverseRangeSumLongestConSub, PointSetRangeOr, PointSetRangeSum, PointSetRangeMin, \
-    PointSetRangeMinCount, PointSetRangeMaxSubSum, PointSetRangeMax, RangeAddPointGet
+    RangeSetRangeSumMinMaxDynamic, PointSetRangeLongestSubSame, \
+    RangeOrRangeAnd, RangeSetRangeSumMinMax, RangeKthSmallest, RangeSetRangeMaxNonEmpConSubSum, \
+    RangeAffineRangeSum, PointSetRangeComposite, RangeLongestRegularBrackets, \
+    RangeSetAddRangeMax, RangeXorUpdateRangeXorQuery, PointSetRangeLongestAlter, \
+    RangeSqrtRangeSum, RangeSetReverseRangeSumLongestConSub, PointSetRangeOr, PointSetRangeSum, PointSetRangeMin, \
+    PointSetRangeMinCount, PointSetRangeMaxSubSum, PointSetRangeMax, RangeAddPointGet, MatrixBuildRangeMul, \
+    PointSetRangeInversion, RangeSetPointGet, RangeAscendPointGet
 from src.data_structure.sorted_list.template import SortedList
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
@@ -285,7 +292,7 @@ class Solution:
     def cf_1478e(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1478/problem/E
-        tag: RangeChangeRangeSumMinMax|backward_thinking|implemention
+        tag: RangeSetRangeSumMinMax|backward_thinking|implemention
         """
         for _ in range(ac.read_int()):
             def check():
@@ -294,7 +301,7 @@ class Solution:
                 t = [int(w) for w in ac.read_str()]
                 queries = [ac.read_list_ints_minus_one() for _ in range(q)]
                 queries.reverse()
-                tree = RangeChangeRangeSumMinMax(n)
+                tree = RangeSetRangeSumMinMax(n)
                 tree.build(t)
                 for ll, rr in queries:
                     cur_sum = tree.range_sum(ll, rr)
@@ -461,7 +468,7 @@ class Solution:
         """
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
-        tree = RangeChangeAddRangeMax(n)
+        tree = RangeSetAddRangeMax(n)
         tree.build(nums)
         for _ in range(m):
             lst = ac.read_list_ints()
@@ -511,7 +518,7 @@ class Solution:
         tag: segment_tree|range_change|range_merge|sub_consequence
         """
         n, m = ac.read_list_ints()
-        segment = RangeChangeRangeMaxNonEmpConSubSum(n, 1000)
+        segment = RangeSetRangeMaxNonEmpConSubSum(n, 1000)
         segment.build([ac.read_int() for _ in range(n)])
         for _ in range(m):
             lst = ac.read_list_ints()
@@ -639,7 +646,7 @@ class Solution:
         tag: segment_tree_binary_search|static_range
         """
         n = len(heights)
-        tree = RangeAscendRangeMaxBinarySearchFindLeft(n)
+        tree = RangeAscendRangeMax(n)
         tree.build(heights)
         ans = []
         for ll, rr in queries:
@@ -684,7 +691,7 @@ class Solution:
         tag: segment_tree|range_reverse|range_sum
         """
         n, m = ac.read_list_ints()
-        tree = RangeChangeReverseRangeSumLongestConSub(n)
+        tree = RangeSetReverseRangeSumLongestConSub(n)
         tree.build(ac.read_list_ints())
         ans = []
         for _ in range(m):
@@ -705,10 +712,10 @@ class Solution:
     def lg_p1558(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1558
-        tag: segment_tree|RangeChangeRangeOr
+        tag: segment_tree|RangeSetRangeOr
         """
         n, t, q = ac.read_list_ints()
-        tree = RangeChangeRangeOr(n)
+        tree = RangeSetRangeOr(n)
         tree.range_change(0, n - 1, 1)
         for _ in range(q):
             lst = ac.read_list_strs()
@@ -746,7 +753,7 @@ class Solution:
         ind = {num: i for i, num in enumerate(nodes)}
 
         n = len(nodes)
-        tree = RangeChangeRangeSumMinMax(n)
+        tree = RangeSetRangeSumMinMax(n)
         tree.build([0] * n)
         for i in range(m):
             a, b = nums[i]
@@ -781,11 +788,11 @@ class Solution:
     def lg_p8081(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P8081
-        tag: diff_array|counter|action_scop|segment_tree|RangeChangeRangeOr
+        tag: diff_array|counter|action_scop|segment_tree|RangeSetRangeOr
         """
         n = ac.read_int()
         nums = ac.read_list_ints()
-        tree = RangeChangeRangeSumMinMax(n)
+        tree = RangeSetRangeSumMinMax(n)
         pre = 0
         ceil = 0
         for i in range(n):
@@ -1077,7 +1084,7 @@ class Solution:
         class CountIntervals:
             def __init__(self):
                 self.n = 10 ** 9 + 7
-                self.segment_tree = RangeChangeRangeSumMinMaxDynamic(self.n)
+                self.segment_tree = RangeSetRangeSumMinMaxDynamic(self.n)
 
             def add(self, left: int, right: int) -> None:
                 self.segment_tree.range_change(left, right, 1)
@@ -1436,6 +1443,155 @@ class Solution:
             if lst[0] == 1:
                 ll, rr, vv = lst[1:]
                 tree.range_add(ll, rr - 1, vv)
+            else:
+                ans = tree.point_get(lst[1])
+                ac.st(ans)
+        return
+
+    @staticmethod
+    def library_check_16(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/4/4/practice/contest/274684/problem/A
+        tag: segment_tree|point_set|range_sum
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        odd = PointSetRangeSum(n)
+        lst = [nums[i] if i % 2 else 0 for i in range(n)]
+        odd.build(lst)
+
+        even = PointSetRangeSum(n)
+        lst = [nums[i] if i % 2 == 0 else 0 for i in range(n)]
+        even.build(lst)
+
+        for _ in range(ac.read_int()):
+            op, x, y = ac.read_list_ints()
+            if op == 0:
+                if (x - 1) % 2:
+                    odd.point_set(x - 1, y)
+                else:
+                    even.point_set(x - 1, y)
+            else:
+                odd_sum = odd.range_sum(x - 1, y - 1)
+                even_sum = even.range_sum(x - 1, y - 1)
+                ans = odd_sum - even_sum if (x - 1) % 2 else even_sum - odd_sum
+                ac.st(ans)
+        return
+
+    @staticmethod
+    def library_check_17(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/4/4/practice/contest/274684/problem/B
+        tag: segment_tree|matrix_build|range_mul
+        """
+        r, n, m = ac.read_list_ints()
+        nums = []
+        for _ in range(n):
+            for _ in range(2):
+                nums.extend(ac.read_list_ints())
+            ac.read_str()
+
+        tree = MatrixBuildRangeMul(n, 0, r)
+        tree.matrix_build(nums)
+
+        for _ in range(m):
+            ll, rr = ac.read_list_ints_minus_one()
+            ans = tree.range_mul(ll, rr)
+            ac.lst((ans[0], ans[1]))
+            ac.lst((ans[2], ans[3]))
+            ac.st("")
+        return
+
+    @staticmethod
+    def library_check_18(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/4/4/practice/contest/274684/problem/C
+        tag: segment_tree|point_set|range_inverse
+        """
+        n, q = ac.read_list_ints()
+        tree = PointSetRangeInversion(n, 40)
+        tree.build(ac.read_list_ints_minus_one())
+
+        for _ in range(q):
+            op, x, y = ac.read_list_ints_minus_one()
+            if op == 0:
+                ans = tree.range_inverse(x, y)
+                ac.st(ans)
+            else:
+                tree.point_set(x, y)
+        return
+
+    @staticmethod
+    def library_check_19(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/4/4/practice/contest/274684/problem/D
+        tag: segment_tree|point_set|range_or
+        """
+        n, q = ac.read_list_ints()
+        tree = PointSetRangeOr(n)
+        tree.build([1 << x for x in ac.read_list_ints_minus_one()])
+
+        for _ in range(q):
+            op, x, y = ac.read_list_ints_minus_one()
+            if op == 0:
+                ans = tree.range_or(x, y)
+                ac.st(bin(ans).count("1"))
+            else:
+                tree.point_set(x, x, 1 << y)
+        return
+
+    @staticmethod
+    def library_check_20(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/5/1/practice/contest/279634/problem/A
+        tag: segment_tree|range_add|point_get
+        """
+        n, q = ac.read_list_ints()
+        tree = RangeAddPointGet(n)
+
+        for _ in range(q):
+            lst = ac.read_list_ints()
+            if lst[0] == 1:
+                ll, rr, v = lst[1:]
+                tree.range_add(ll, rr - 1, v)
+            else:
+                ans = tree.point_get(lst[1])
+                ac.st(ans)
+        return
+
+    @staticmethod
+    def library_check_21(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/5/1/practice/contest/279634/problem/A
+        tag: segment_tree|range_ascend|point_get
+        """
+        n, q = ac.read_list_ints()
+        tree = RangeAscendPointGet(n)
+
+        for _ in range(q):
+            lst = ac.read_list_ints()
+            if lst[0] == 1:
+                ll, rr, v = lst[1:]
+                tree.range_ascend(ll, rr - 1, v)
+            else:
+                ans = tree.point_get(lst[1])
+                ac.st(ans)
+        return
+
+    @staticmethod
+    def library_check_22(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/5/1/practice/contest/279634/problem/A
+        tag: segment_tree|range_set|point_get
+        """
+        n, q = ac.read_list_ints()
+        tree = RangeSetPointGet(n)
+        tree.build([0] * n)
+        for _ in range(q):
+            lst = ac.read_list_ints()
+            if lst[0] == 1:
+                ll, rr, v = lst[1:]
+                tree.range_set(ll, rr - 1, v)
             else:
                 ans = tree.point_get(lst[1])
                 ac.st(ans)

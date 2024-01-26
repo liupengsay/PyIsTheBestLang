@@ -5,10 +5,10 @@ from operator import or_, xor
 
 from src.data_structure.segment_tree.template import RangeAscendRangeMax, \
     RangeDescendRangeMin, \
-    RangeAddRangeSumMinMax, RangeChangeRangeSumMinMax, RangeChangeRangeMaxNonEmpConSubSum, \
+    RangeAddRangeSumMinMax, RangeSetRangeSumMinMax, RangeSetRangeMaxNonEmpConSubSum, \
     RangeOrRangeAnd, \
-    RangeChangeRangeSumMinMaxDynamic, RangeChangeRangeOr, RangeAffineRangeSum, RangeAddMulRangeSum, \
-    RangeChangeAddRangeMax, RangeXorUpdateRangeXorQuery, RangeChangeReverseRangeSumLongestConSub, PointSetRangeMinCount, \
+    RangeSetRangeSumMinMaxDynamic, RangeSetRangeOr, RangeAffineRangeSum, RangeAddMulRangeSum, \
+    RangeSetAddRangeMax, RangeXorUpdateRangeXorQuery, RangeSetReverseRangeSumLongestConSub, PointSetRangeMinCount, \
     RangeAddPointGet
 
 
@@ -194,7 +194,7 @@ class TestGeneral(unittest.TestCase):
         random.seed(2023)
         high = 10000
         nums = [random.randint(0, 1) for _ in range(high)]
-        segment_tree = RangeChangeReverseRangeSumLongestConSub(high)
+        segment_tree = RangeSetReverseRangeSumLongestConSub(high)
         segment_tree.build(nums)
 
         def check(tmp):
@@ -266,7 +266,7 @@ class TestGeneral(unittest.TestCase):
         for _ in range(100):
             n = random.randint(1000, 10 ** 4)
             nums = [random.randint(low, high) for _ in range(n)]
-            segment_tree = RangeChangeAddRangeMax(n)
+            segment_tree = RangeSetAddRangeMax(n)
             segment_tree.build(nums)
             assert segment_tree.range_max(0, high - 1) == max(nums)
 
@@ -299,8 +299,8 @@ class TestGeneral(unittest.TestCase):
     def test_range_add_mul_range_sum(self):
         low = -10000
         high = 10000
-        nums = [random.randint(low, high) for _ in range(high)]
         mod = 10 ** 9 + 7
+        nums = [random.randint(low, high) % mod for _ in range(high)]
         segment_tree = RangeAddMulRangeSum(high, mod)
         segment_tree.build(nums)
 
@@ -377,7 +377,7 @@ class TestGeneral(unittest.TestCase):
         high = 10000
         n = 10000
         nums = [random.randint(low, high) for _ in range(n)]
-        segment_tree = RangeChangeRangeSumMinMax(n)
+        segment_tree = RangeSetRangeSumMinMax(n)
         segment_tree.build(nums)
         assert segment_tree.range_min(0, n - 1) == min(nums)
         assert segment_tree.range_max(0, n - 1) == max(nums)
@@ -430,7 +430,7 @@ class TestGeneral(unittest.TestCase):
         high = 10000
         n = 10000
         nums = [random.randint(low, high) for _ in range(n)]
-        segment_tree = RangeChangeRangeOr(n)
+        segment_tree = RangeSetRangeOr(n)
         segment_tree.build(nums)
 
         for _ in range(high):
@@ -452,7 +452,7 @@ class TestGeneral(unittest.TestCase):
         high = 10000
         n = 10000
         nums = [0] * n
-        segment_tree = RangeChangeRangeSumMinMaxDynamic(n)
+        segment_tree = RangeSetRangeSumMinMaxDynamic(n)
 
         for _ in range(high):
             left = random.randint(0, high - 1)
@@ -508,7 +508,7 @@ class TestGeneral(unittest.TestCase):
         low = 0
         high = 10000
         nums = [random.randint(low, high) for _ in range(high)]
-        segment_tree = RangeChangeRangeMaxNonEmpConSubSum(high, high)
+        segment_tree = RangeSetRangeMaxNonEmpConSubSum(high, high)
         segment_tree.build(nums)
         assert segment_tree.range_max_non_emp_con_sub_sum(0, high - 1) == check(nums)
         assert segment_tree.get() == nums

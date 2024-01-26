@@ -5,6 +5,7 @@ Description：
 
 ====================================LeetCode====================================
 1483（https://leetcode.cn/problems/kth-ancestor-of-a-tree-node/）sparse_table|tree_array|lca|tree_lca|classical
+2846（https://leetcode.cn/problems/minimum-edge-weight-equilibrium-queries-in-a-tree）tree_lca|greedy
 
 =====================================LuoGu======================================
 P3379（https://www.luogu.com.cn/problem/P3379）tree_lca|classical
@@ -32,6 +33,7 @@ P3384（https://www.luogu.com.cn/problem/P3384）tree_chain_split|tree_array|imp
 
 """
 import math
+from typing import List
 
 from src.data_structure.tree_array.template import RangeAddRangeSum
 from src.graph.tree_diff_array.template import TreeDiffArray
@@ -386,3 +388,38 @@ class Solution:
             ans.append(str(uf.get_lca(x, y)))
         ac.st("\n".join(ans))
         return
+
+    @staticmethod
+    def lc_2846(n: int, edges: List[List[int]], queries: List[List[int]]) -> List[int]:
+
+        """
+        url: https://leetcode.cn/problems/minimum-edge-weight-equilibrium-queries-in-a-tree
+        tag: tree_lca|greedy
+        """
+        dct = [[] for _ in range(n)]
+        for i, j, _ in edges:
+            dct[i].append(j)
+            dct[j].append(i)
+        tree = TreeAncestor(dct)
+
+        dct = [[] for _ in range(n)]
+        for i, j, w in edges:
+            dct[i].append([j, w - 1])
+            dct[j].append([i, w - 1])
+        cnt = [[0] * 26 for _ in range(n)]
+        stack = [(0, -1)]
+        while stack:
+            i, fa = stack.pop()
+            for j, w in dct[i]:
+                if j != fa:
+                    cnt[j] = cnt[i][:]
+                    cnt[j][w] += 1
+                    stack.append((j, i))
+        ans = []
+        for i, j in queries:
+            k = tree.get_lca(i, j)
+            cur = [cnt[i][w] + cnt[j][w] - 2 * cnt[k][w] for w in range(26)]
+            ceil = max(cur)
+            tot = sum(cur)
+            ans.append(tot - ceil)
+        return ans

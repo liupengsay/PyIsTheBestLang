@@ -35,7 +35,6 @@ P1836（https://www.luogu.com.cn/problem/P1836）digital_dp
 """
 from functools import lru_cache
 
-from src.basis.binary_search.template import BinarySearch
 from src.dp.digital_dp.template import DigitalDP
 from src.utils.fast_io import FastIO
 
@@ -122,9 +121,7 @@ class Solution:
         url: https://leetcode.cn/problems/number-of-digit-one/
         tag: counter|digital_dp
         """
-        if not n:
-            return 0
-        return DigitalDP().count_digit(n, 1)
+        return DigitalDP().count_digit_dp(n, 1)
 
     @staticmethod
     def lc_2719(num1: str, num2: str, min_sum: int, max_sum: int) -> int:
@@ -239,39 +236,7 @@ class Solution:
         tag: counter|digital_dp|inclusion_exclusion
         """
         dd = DigitalDP()
-        return dd.count_digit(high, d) - dd.count_digit(low - 1, d)
-
-    @staticmethod
-    def lc_100160(k: int, x: int) -> int:
-        """
-        url: https://leetcode.cn/problems/maximum-number-that-sum-of-the-prices-is-less-than-or-equal-to-k/description/
-        tag: bit_operation|binary_search|digital_dp
-        """
-
-        def check(n):
-            @lru_cache(None)
-            def dfs(i, is_limit, is_num, cnt):
-                if i == m:
-                    if is_num:
-                        return cnt
-                    return 0
-                res = 0
-                if not is_num:
-                    res += dfs(i + 1, False, False, cnt)
-                low = 0 if is_num else 1
-                high = int(st[i]) if is_limit else 1
-                for d in range(low, high + 1):
-                    res += dfs(i + 1, is_limit and high == d, True, cnt + int((m - i) % x == 0) * d)
-                return res
-
-            st = bin(n)[2:]
-            m = len(st)
-            cur = dfs(0, True, False, 0)
-            dfs.cache_clear()
-            return cur <= k
-
-        ans = BinarySearch().find_int_right(0, 10 ** 15, check)
-        return ans
+        return dd.count_digit_dp(high, d) - dd.count_digit_dp(low - 1, d)
 
     @staticmethod
     def abc_336e(ac=FastIO()):
@@ -280,30 +245,29 @@ class Solution:
         tag: brut_force|digital_dp
         """
         num = ac.read_int()
-        st = str(num)
-        n = len(st)
+        num += 1
+        lst = [int(x) for x in str(num)]
+        n = len(lst)
         ans = 0
-        for sss in range(1, 9 * n + 1):
-
-            @lru_cache(None)
-            def dfs(i, is_limit, is_num, ds, w):
-                if i == n:
-                    return 1 if (is_num and ds == sss and w == 0) else 0
-                if ds > sss:
-                    return 0
-                if ds + (n - i) * 9 < sss:
-                    return 0
-                res = 0
-                if not is_num:
-                    res += dfs(i + 1, False, 0, 0, 0)
-                floor = 0 if is_num else 1
-                ceil = int(st[i]) if is_limit else 9
-                for x in range(floor, ceil + 1):
-                    res += dfs(i + 1, is_limit and ceil == x, 1, ds + x, (w * 10 + x) % sss)
-                return res
-
-            cur = dfs(0, True, False, 0, 0)
-            dfs.cache_clear()
-            ans += cur
+        for digit_sum in range(1, 9 * n + 1):
+            pre = [0] * digit_sum * (digit_sum + 1)
+            x = x_mod = 0
+            for k in range(n):
+                cur = [0] * digit_sum * (digit_sum + 1)
+                for i in range(min(digit_sum + 1, (k + 1) * 9 + 1)):
+                    for j in range(digit_sum):
+                        if not pre[i * digit_sum + j]:
+                            continue
+                        for d in range(10):
+                            if i + d > digit_sum:
+                                break
+                            cur[(i + d) * digit_sum + (j * 10 + d) % digit_sum] += pre[i * digit_sum + j]
+                for i in range(lst[k]):
+                    if x + i <= digit_sum:
+                        cur[(x + i) * digit_sum + (x_mod * 10 + i) % digit_sum] += 1
+                x += lst[k]
+                x_mod = (x_mod * 10 + lst[k]) % digit_sum
+                pre = cur
+            ans += pre[digit_sum * digit_sum + 0]
         ac.st(ans)
         return

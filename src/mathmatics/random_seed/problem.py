@@ -12,7 +12,7 @@ Description：
 """
 import random
 
-from src.data_structure.segment_tree.template import RangeChangeRangeSumMinMax
+from src.data_structure.segment_tree.template import RangeSetRangeSumMinMax
 from src.utils.fast_io import FastIO
 
 
@@ -29,7 +29,7 @@ class Solution:
             nums = ac.read_list_ints()
             rd = [random.randint(0, 10 ** 18) for _ in range(n)]
             nums = [nums[i] ^ rd[nums[i] - 1] for i in range(n * 2)]
-            tree = RangeChangeRangeSumMinMax(2 * n)
+            tree = RangeSetRangeSumMinMax(2 * n)
             start = -1
             dct = dict()
             pre = 0
