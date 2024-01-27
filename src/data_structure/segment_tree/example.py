@@ -9,7 +9,8 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, \
     RangeOrRangeAnd, \
     RangeSetRangeSumMinMaxDynamic, RangeSetRangeOr, RangeAffineRangeSum, RangeAddMulRangeSum, \
     RangeSetAddRangeSumMinMax, RangeXorUpdateRangeXorQuery, RangeSetReverseRangeSumLongestConSub, PointSetRangeMinCount, \
-    RangeAddPointGet
+    RangeAddPointGet, RangeSetRangeSegCountLength, RangeAddRangeWeightedSum, \
+    RangeChminChmaxPointGet, RangeSetPreSumMaxDynamic, RangeSetPreSumMaxDynamicDct, RangeSetRangeSumMinMaxDynamicDct
 
 
 class TestGeneral(unittest.TestCase):
@@ -188,6 +189,33 @@ class TestGeneral(unittest.TestCase):
                 nums[left:right + 1])
 
         assert tree.get() == nums
+        return
+
+    def test_range_chmin_chmax_add_range_sum_min_max(self):
+        low = -2000
+        high = 2000
+        nums = [random.randint(low, high) for _ in range(high)]
+        tree = RangeChminChmaxPointGet(high, -high, high)
+        tree.build(nums)
+        assert tree.get() == nums
+
+        for _ in range(high):
+
+            left = random.randint(0, high - 1)
+            right = random.randint(left, high - 1)
+            num = random.randint(-high, high)
+            tree.range_chmin_chmax(left, right, num, tree.high_initial)
+            for i in range(left, right + 1):
+                nums[i] = max(num, nums[i])
+
+            left = random.randint(0, high - 1)
+            right = random.randint(left, high - 1)
+            num = random.randint(-high, high)
+            tree.range_chmin_chmax(left, right, tree.low_initial, num)
+            for i in range(left, right + 1):
+                nums[i] = min(num, nums[i])
+            assert tree.get() == nums
+            assert [tree.point_get(i) for i in range(high)] == nums
         return
 
     def test_range_set_reverse_range_sum_longest_con_sub_sum(self):
@@ -453,10 +481,9 @@ class TestGeneral(unittest.TestCase):
         return
 
     def test_range_set_range_sum_min_max_dynamic(self):
-        high = 10000
-        n = 10000
+        high = n = 10000
         nums = [0] * n
-        tree = RangeSetRangeSumMinMaxDynamic(n)
+        tree = RangeSetRangeSumMinMaxDynamic(n, -high - 1)
 
         for _ in range(high):
             left = random.randint(0, high - 1)
@@ -495,9 +522,256 @@ class TestGeneral(unittest.TestCase):
                 nums[left:right + 1])
             assert tree.range_sum(left, right) == sum(
                 nums[left:right + 1])
+
         assert tree.range_min(0, n - 1) == min(nums)
         assert tree.range_max(0, n - 1) == max(nums)
         assert tree.range_sum(0, n - 1) == sum(nums)
+
+        low = 0
+        high = 10
+        n = 1000
+        nums = [0] * n
+        tree = RangeSetRangeSumMinMaxDynamic(n, -1)
+
+        for _ in range(high):
+            left = random.randint(0, high - 1)
+            right = random.randint(left, high - 1)
+            num = random.randint(low, high)
+            tree.range_set(left, right, num)
+            for i in range(left, right + 1):
+                nums[i] = num
+            left = random.randint(0, high - 1)
+            right = random.randint(left, high - 1)
+            assert tree.range_min(left, right) == min(
+                nums[left:right + 1])
+            assert tree.range_max(left, right) == max(
+                nums[left:right + 1])
+            assert tree.range_sum(left, right) == sum(
+                nums[left:right + 1])
+
+            left = random.randint(0, high - 1)
+            right = left
+            num = random.randint(low, high)
+            tree.range_set(left, right, num)
+            for i in range(left, right + 1):
+                nums[i] = num
+            assert tree.range_min(left, right) == min(
+                nums[left:right + 1])
+            assert tree.range_max(left, right) == max(
+                nums[left:right + 1])
+            assert tree.range_sum(left, right) == sum(
+                nums[left:right + 1])
+
+            left = random.randint(0, high - 1)
+            right = random.randint(left, high - 1)
+            assert tree.range_min(left, right) == min(
+                nums[left:right + 1])
+            assert tree.range_max(left, right) == max(
+                nums[left:right + 1])
+            assert tree.range_sum(left, right) == sum(
+                nums[left:right + 1])
+
+            cur = random.randint(0, sum(nums) + 1)
+            ans = 0
+            pre = cur
+            for num in nums:
+                if cur >= num:
+                    ans += 1
+                    cur -= num
+                else:
+                    break
+            assert ans == tree.range_sum_bisect_left(pre)
+            for cur in [0, sum(nums), sum(nums) + 1]:
+                ans = 0
+                pre = cur
+                for num in nums:
+                    if cur >= num:
+                        ans += 1
+                        cur -= num
+                    else:
+                        break
+                assert ans == tree.range_sum_bisect_left(pre)
+        return
+
+    def test_range_set_range_sum_min_max_dynamic_dct(self):
+        high = 10000
+        n = 10000
+        nums = [0] * n
+        tree = RangeSetRangeSumMinMaxDynamicDct(n, 30, -high - 1)
+
+        for _ in range(high):
+            left = random.randint(0, high - 1)
+            right = random.randint(left, high - 1)
+            num = random.randint(-high, high)
+            tree.range_set(left, right, num)
+            for i in range(left, right + 1):
+                nums[i] = num
+            left = random.randint(0, high - 1)
+            right = random.randint(left, high - 1)
+            assert tree.range_min(left, right) == min(
+                nums[left:right + 1])
+            assert tree.range_max(left, right) == max(
+                nums[left:right + 1])
+            assert tree.range_sum(left, right) == sum(
+                nums[left:right + 1])
+
+            left = random.randint(0, high - 1)
+            right = left
+            num = random.randint(-high, high)
+            tree.range_set(left, right, num)
+            for i in range(left, right + 1):
+                nums[i] = num
+            assert tree.range_min(left, right) == min(
+                nums[left:right + 1])
+            assert tree.range_max(left, right) == max(
+                nums[left:right + 1])
+            assert tree.range_sum(left, right) == sum(
+                nums[left:right + 1])
+
+            left = random.randint(0, high - 1)
+            right = random.randint(left, high - 1)
+            assert tree.range_min(left, right) == min(
+                nums[left:right + 1])
+            assert tree.range_max(left, right) == max(
+                nums[left:right + 1])
+            assert tree.range_sum(left, right) == sum(
+                nums[left:right + 1])
+
+        assert tree.range_min(0, n - 1) == min(nums)
+        assert tree.range_max(0, n - 1) == max(nums)
+        assert tree.range_sum(0, n - 1) == sum(nums)
+
+        low = 0
+        high = 10
+        n = 1000
+        nums = [0] * n
+        tree = RangeSetRangeSumMinMaxDynamic(n, -1)
+
+        for _ in range(high):
+            left = random.randint(0, high - 1)
+            right = random.randint(left, high - 1)
+            num = random.randint(low, high)
+            tree.range_set(left, right, num)
+            for i in range(left, right + 1):
+                nums[i] = num
+            left = random.randint(0, high - 1)
+            right = random.randint(left, high - 1)
+            assert tree.range_min(left, right) == min(
+                nums[left:right + 1])
+            assert tree.range_max(left, right) == max(
+                nums[left:right + 1])
+            assert tree.range_sum(left, right) == sum(
+                nums[left:right + 1])
+
+            left = random.randint(0, high - 1)
+            right = left
+            num = random.randint(low, high)
+            tree.range_set(left, right, num)
+            for i in range(left, right + 1):
+                nums[i] = num
+            assert tree.range_min(left, right) == min(
+                nums[left:right + 1])
+            assert tree.range_max(left, right) == max(
+                nums[left:right + 1])
+            assert tree.range_sum(left, right) == sum(
+                nums[left:right + 1])
+
+            left = random.randint(0, high - 1)
+            right = random.randint(left, high - 1)
+            assert tree.range_min(left, right) == min(
+                nums[left:right + 1])
+            assert tree.range_max(left, right) == max(
+                nums[left:right + 1])
+            assert tree.range_sum(left, right) == sum(
+                nums[left:right + 1])
+
+            cur = random.randint(0, sum(nums) + 1)
+            ans = 0
+            pre = cur
+            for num in nums:
+                if cur >= num:
+                    ans += 1
+                    cur -= num
+                else:
+                    break
+            assert ans == tree.range_sum_bisect_left(pre)
+            for cur in [0, sum(nums), sum(nums) + 1]:
+                ans = 0
+                pre = cur
+                for num in nums:
+                    if cur >= num:
+                        ans += 1
+                        cur -= num
+                    else:
+                        break
+                assert ans == tree.range_sum_bisect_left(pre)
+        return
+
+
+    def test_range_set_pre_sum_max_dynamic(self):
+        high = n = 1000
+        nums = [0] * n
+        tree = RangeSetPreSumMaxDynamic(n, -high - 1)
+
+        for _ in range(high):
+            left = random.randint(0, n - 1)
+            right = random.randint(left, n - 1)
+            num = random.randint(-high, high)
+            tree.range_set(left, right, num)
+            for i in range(left, right + 1):
+                nums[i] = num
+            left = random.randint(0, n - 1)
+            right = random.randint(left, n - 1)
+            pre = [0]
+            for num in nums:
+                pre.append(pre[-1] + num)
+            assert tree.range_sum(left, right) == sum(nums[left:right + 1])
+            assert tree.pre_sum_max[1] == max(pre[1:])
+            assert tree.range_pre_sum_max(n - 1) == max(pre[1:])
+            for i in range(1, len(pre)):
+                assert max(pre[1:i + 1]) == tree.range_pre_sum_max(i - 1)
+            cur = random.randint(0, max(pre) + 10)
+            ans = pre = 0
+            for num in nums:
+                if pre + num > cur:
+                    break
+                else:
+                    ans += 1
+                    pre += num
+            assert ans == tree.range_pre_sum_max_bisect_left(cur)
+        return
+
+    def test_range_set_pre_sum_max_dynamic_dct(self):
+        high = n = 1000
+        nums = [0] * n
+        tree = RangeSetPreSumMaxDynamicDct(n, 3*10, -high - 1)
+
+        for _ in range(high):
+            left = random.randint(0, n - 1)
+            right = random.randint(left, n - 1)
+            num = random.randint(-high, high)
+            tree.range_set(left, right, num)
+            for i in range(left, right + 1):
+                nums[i] = num
+            left = random.randint(0, n - 1)
+            right = random.randint(left, n - 1)
+            pre = [0]
+            for num in nums:
+                pre.append(pre[-1] + num)
+            assert tree.range_sum(left, right) == sum(nums[left:right + 1])
+            assert tree.pre_sum_max[1] == max(pre[1:])
+            assert tree.range_pre_sum_max(n - 1) == max(pre[1:])
+            for i in range(1, len(pre)):
+                assert max(pre[1:i + 1]) == tree.range_pre_sum_max(i - 1)
+            cur = random.randint(0, max(pre) + 10)
+            ans = pre = 0
+            for num in nums:
+                if pre + num > cur:
+                    break
+                else:
+                    ans += 1
+                    pre += num
+            assert ans == tree.range_pre_sum_max_bisect_left(cur)
         return
 
     def test_range_set_range_max_non_emp_son_sub_sum(self):
@@ -527,6 +801,83 @@ class TestGeneral(unittest.TestCase):
             right = random.randint(left, high - 1)
             assert tree.get() == nums
             assert tree.range_max_non_emp_con_sub_sum(left, right) == check(nums[left:right + 1])
+        return
+
+    def test_range_set_range_seg_count_length(self):
+
+        def check(lst):
+            cnt = s = 0
+            pre = lst[0]
+            c = 1
+            for a in lst[1:]:
+                if a == pre:
+                    c += 1
+                else:
+                    if pre:
+                        cnt += 1
+                        s += c
+                    pre = a
+                    c = 1
+            if pre:
+                cnt += 1
+                s += c
+            return cnt, s
+
+        low = 0
+        high = 1
+        for x in range(5):
+            n = 10 ** x
+            nums = [random.randint(low, high) for _ in range(n)]
+            tree = RangeSetRangeSegCountLength(n, -1)
+            tree.build(nums)
+            assert tree.range_seg_count_length(0, n - 1) == check(nums)
+            assert tree.get() == nums
+            for _ in range(1000):
+                left = random.randint(0, n - 1)
+                right = random.randint(left, n - 1)
+                num = random.randint(low, high)
+                tree.range_set(left, right, num)
+                for i in range(left, right + 1):
+                    nums[i] = num
+                assert (tree.cover[1], tree.sum[1]) == check(nums)
+
+                left = random.randint(0, n - 1)
+                right = random.randint(left, n - 1)
+                assert tree.get() == nums
+                assert tree.range_seg_count_length(left, right) == check(nums[left:right + 1])
+                assert tree.range_seg_count_length(0, n - 1) == check(nums)
+                assert tree.left[1] == nums[0]
+                assert tree.right[1] == nums[-1]
+                assert tree.sum[1] == sum(nums)
+                assert tree.cover[1] == check(nums)[0]
+
+        return
+
+    def test_range_add_range_weighted_sum(self):
+
+        def check(lst):
+            res = sum(xx * (ind + 1) for ind, xx in enumerate(lst))
+            return res
+
+        low = -10
+        high = 100
+        for x in range(5):
+            n = 10 ** x
+            nums = [random.randint(low, high) for _ in range(n)]
+            tree = RangeAddRangeWeightedSum(n)
+            tree.build(nums)
+            assert tree.get() == nums
+            for _ in range(1000):
+                left = random.randint(0, n - 1)
+                right = random.randint(left, n - 1)
+                num = random.randint(low, high)
+                tree.range_add(left, right, num)
+                for i in range(left, right + 1):
+                    nums[i] += num
+                left = random.randint(0, n - 1)
+                right = random.randint(left, n - 1)
+                assert tree.range_weighted_sum(left, right) == check(nums[left:right + 1])
+            assert tree.get() == nums
         return
 
 

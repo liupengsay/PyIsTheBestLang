@@ -110,7 +110,8 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeD
     RangeXorUpdateRangeXorQuery, PointSetRangeLongestAlter, \
     RangeSqrtRangeSum, RangeSetReverseRangeSumLongestConSub, PointSetRangeOr, PointSetRangeSum, PointSetRangeMin, \
     PointSetRangeMinCount, PointSetRangeMaxSubSum, PointSetRangeMax, RangeAddPointGet, MatrixBuildRangeMul, \
-    PointSetRangeInversion, RangeSetPointGet, RangeAscendPointGet, RangeSetAddRangeSumMinMax
+    PointSetRangeInversion, RangeSetPointGet, RangeAscendPointGet, RangeSetAddRangeSumMinMax, \
+    RangeSetRangeSegCountLength, RangeAddRangeWeightedSum, RangeChminChmaxPointGet, RangeSetPreSumMaxDynamicDct
 from src.data_structure.sorted_list.template import SortedList
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
@@ -1830,9 +1831,134 @@ class Solution:
                 tree.range_set_add(ll, rr - 1, (v, 0))
             elif lst[0] == 2:
                 ll, rr, v = lst[1:]
-                tree.range_set_add(ll, rr - 1, (-tree.inf, v))
+                tree.range_set_add(ll, rr - 1, (-tree.initial, v))
             else:
                 ll, rr = lst[1:]
                 ans = tree.range_sum(ll, rr - 1)
                 ac.st(ans)
+        return
+
+    @staticmethod
+    def library_check_34(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/5/4/practice/contest/280801/problem/B
+        tag: segment_tree|diff_array|range_add|point_get|range_sum
+        """
+        n, q = ac.read_list_ints()
+        tree = RangeAddPointGet(n)
+        diff = RangeAddRangeSumMinMax(n + 1)
+        for _ in range(q):
+            lst = ac.read_list_ints()
+            if lst[0] == 1:
+                ll, rr, a, d = lst[1:]
+                tree.range_add(ll - 1, rr - 1, a)
+                if ll <= rr - 1:
+                    diff.range_add(ll, rr - 1, d)
+                    diff.range_add(rr, rr, -d * (rr - ll))
+            else:
+                ans = diff.range_sum(0, lst[1] - 1) + tree.point_get(lst[1] - 1)
+                ac.st(ans)
+        return
+
+    @staticmethod
+    def library_check_35(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/5/4/practice/contest/280801/problem/C
+        tag: segment_tree|range_set|range_seg_count_length
+        """
+        q = ac.read_int()
+        n = 10 ** 6 + 10
+        tree = RangeSetRangeSegCountLength(n)
+        base = 5 * 10 ** 5
+        for _ in range(q):
+            lst = ac.read_list_strs()
+            ll, d = [int(w) for w in lst[1:]]
+            ll += base
+            rr = ll + d - 1
+            if lst[0] == "W":
+                tree.range_set(ll, rr, 0)
+            else:
+                tree.range_set(ll, rr, 1)
+            ac.lst([tree.cover[1], tree.sum[1]])
+        return
+
+    @staticmethod
+    def library_check_36(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/5/4/practice/contest/280801/problem/D
+        tag: segment_tree|range_add|range_weighted_sum
+        """
+        n, q = ac.read_list_ints()
+        tree = RangeAddRangeWeightedSum(n)
+        tree.build(ac.read_list_ints())
+        for _ in range(q):
+            lst = ac.read_list_ints()
+            if lst[0] == 1:
+                ll, rr, d = lst[1:]
+                tree.range_add(ll - 1, rr - 1, d)
+            else:
+                ll, rr = lst[1:]
+                ans = tree.range_weighted_sum(ll - 1, rr - 1)
+                ac.st(ans)
+        return
+
+    @staticmethod
+    def library_check_37(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/5/4/practice/contest/280801/problem/E
+        tag: segment_tree|range_chmin_chmax|point_get
+        """
+        n, q = ac.read_list_ints()
+        tree = RangeChminChmaxPointGet(n, 0, 10 ** 5)
+        for _ in range(q):
+            lst = ac.read_list_ints()
+            if lst[0] == 1:
+                ll, rr, hh = lst[1:]
+                tree.range_chmin_chmax(ll, rr, hh, tree.high_initial)
+            else:
+                ll, rr, hh = lst[1:]
+                tree.range_chmin_chmax(ll, rr, tree.low_initial, hh)
+        ans = tree.get()
+        ac.st("\n".join(str(x) for x in ans))
+        return
+
+    @staticmethod
+    def library_check_38(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/5/4/practice/contest/280801/problem/E
+        tag: segment_tree|range_chmin_chmax|point_get
+        """
+        n, q = ac.read_list_ints()
+        tree = RangeChminChmaxPointGet(n, 0, 10 ** 5)
+        for _ in range(q):
+            lst = ac.read_list_ints()
+            if lst[0] == 1:
+                ll, rr, hh = lst[1:]
+                tree.range_chmin_chmax(ll, rr, hh, tree.high_initial)
+            else:
+                ll, rr, hh = lst[1:]
+                tree.range_chmin_chmax(ll, rr, tree.low_initial, hh)
+        ans = tree.get()
+        ac.st("\n".join(str(x) for x in ans))
+        return
+
+    @staticmethod
+    def library_check_39(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/5/4/practice/contest/280801/problem/F
+        tag: segment_tree_dynamic|range_set|range_sum_bisect_left
+        """
+        n = ac.read_int()
+        tree = RangeSetPreSumMaxDynamicDct(n, 10 ** 5, -1 << 32)
+        while True:
+            lst = ac.read_list_strs()
+            if lst[0] == "I":
+                ll, rr, hh = [int(w) for w in lst[1:]]
+                tree.range_set(ll - 1, rr - 1, hh)
+            elif lst[0] == "Q":
+                hh = int(lst[1])
+                ans = tree.range_pre_sum_max_bisect_left(hh)
+                ac.st(ans)
+            else:
+                break
         return
